@@ -9,10 +9,25 @@ EXTAB_O_FILES :=                                    \
 EXTABINDEX_O_FILES :=                               \
     $(BUILD_DIR)/asm/exidx.o						\
 
-TEXT_O_FILES := 						            \
-    $(BUILD_DIR)/asm/text.o							\
+TEXT_O_FILES := 						            	\
+    $(BUILD_DIR)/asm/text.o								\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSCreatureMgr.o	\
-    $(BUILD_DIR)/asm/text2.o						\
+    $(BUILD_DIR)/asm/text_2.o							\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o		\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o	\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khSceneLoader.o	\
+    $(BUILD_DIR)/asm/plugProjectKonoU/newGame2DMgr.o	\
+    $(BUILD_DIR)/asm/plugProjectKonoU/newScreenMgr.o	\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khReadyGo.o		\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khFinalFloor.o	\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khDayEndResult.o	\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khUtil.o			\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khFinalResult.o	\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khPayDept.o		\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o		\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o	\
+    $(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o	\
+    $(BUILD_DIR)/asm/text_3.o							\
 
 CTORS_O_FILES :=                                    \
     $(BUILD_DIR)/asm/ctors.o						\

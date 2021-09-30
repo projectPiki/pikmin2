@@ -17,8 +17,8 @@ VERSION := usa
 
 BUILD_DIR := build/$(NAME).$(VERSION)
 
-SRC_DIRS := src src/plugProjectHikinoU
-ASM_DIRS := asm asm/plugProjectHikinoU
+SRC_DIRS := src src/plugProjectHikinoU src/plugProjectKonoU
+ASM_DIRS := asm asm/plugProjectHikinoU asm/plugProjectKonoU
 
 # Inputs
 S_FILES := $(wildcard asm/*.s)
