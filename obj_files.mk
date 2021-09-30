@@ -62,6 +62,31 @@ TEXT_O_FILES := 						            	\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiAnimator.o	\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiMgr.o	\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushi.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/zukan2D.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/hiScore2D.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushi.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChou.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeSelect2D.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeResult2D.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/vsSelect2D.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrUtil.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/scrollList.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrWindow.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackMan.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o		\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o		\
     $(BUILD_DIR)/asm/text_2.o							\
     $(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o		\
     $(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o	\
