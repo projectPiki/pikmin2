@@ -26,6 +26,42 @@ TEXT_O_FILES := 						            	\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSScene.o		\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTrack.o	\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/dayEndCount.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/hurryUp2D.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/gameOver2D.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/testBase.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombMgr.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/bomb.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggMgr.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/egg.o			\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiState.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiMgr.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModoki.o			\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/plantsMgr.o			\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/plantsAnimator.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/plants.o				\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyState.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyMgr.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulin.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumo.o		\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNestMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNest.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiState.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiAnimator.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushi.o		\
     $(BUILD_DIR)/asm/text_2.o							\
     $(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o		\
     $(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o	\
