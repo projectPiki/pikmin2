@@ -12,6 +12,10 @@ EXTABINDEX_O_FILES :=                               \
 TEXT_O_FILES := 						            	\
     $(BUILD_DIR)/asm/text.o								\
     $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o	\
+    $(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o	\
+    $(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantState.o	\
+    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInteractBattle.o	\
+    $(BUILD_DIR)/asm/plugProjectYamashitaU/generalEnemyMgr.o	\
     $(BUILD_DIR)/asm/text_1.o							\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o	\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o			\
@@ -90,7 +94,51 @@ TEXT_O_FILES := 						            	\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o		\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o		\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o		\
-    $(BUILD_DIR)/asm/text_2.o							\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxPikmin.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/particle2dMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dBase.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dEffect.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/particleMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2Title.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleUnit.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiUtility.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleCamera.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleLight.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenMemoryCard.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxTPkEffectMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyGeneral.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi3DGraph.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiGeometry.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DGraph.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOption.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenProgre.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOptionMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DCallBack.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFramework.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenPushStart.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTitleMenu.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiSaveMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenSaveMenu.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiFileSelectMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardMgr_Load.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleCoordMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitlePikmin.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleKogane.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleChappy.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTMBack.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiMainTitleMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleFog.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyBoss.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardEReader.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o	\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o	\
     $(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o		\
     $(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o	\
     $(BUILD_DIR)/asm/plugProjectKonoU/khSceneLoader.o	\
