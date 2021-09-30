@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen14DispCaveResultFPQ34Game6Result5TNodeUlUlUlUlbP7JKRHeapb
 __ct__Q32kh6Screen14DispCaveResultFPQ34Game6Result5TNodeUlUlUlUlbP7JKRHeapb:
 /* 803F8694 003F55D4  94 21 FF E0 */	stwu r1, -0x20(r1)

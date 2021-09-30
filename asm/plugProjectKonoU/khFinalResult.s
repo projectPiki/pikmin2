@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen15DispFinalResultFPQ32kh6Screen15TotalResultDataQ42kh6Screen15DispFinalResult10ResultTypeP7JKRHeap
 __ct__Q32kh6Screen15DispFinalResultFPQ32kh6Screen15TotalResultDataQ42kh6Screen15DispFinalResult10ResultTypeP7JKRHeap:
 /* 8040C1E8 00409128  3D 00 80 4B */	lis r8, __vt__Q32og6Screen14DispMemberBase@ha

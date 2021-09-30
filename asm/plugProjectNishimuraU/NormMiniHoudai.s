@@ -1,0 +1,42 @@
+.include "macros.inc"
+
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global __ct__Q34Game14NormMiniHoudai3ObjFv
+__ct__Q34Game14NormMiniHoudai3ObjFv:
+/* 803015F8 002FE538  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 803015FC 002FE53C  7C 08 02 A6 */	mflr r0
+/* 80301600 002FE540  90 01 00 14 */	stw r0, 0x14(r1)
+/* 80301604 002FE544  7C 80 07 35 */	extsh. r0, r4
+/* 80301608 002FE548  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 8030160C 002FE54C  7C 7F 1B 78 */	mr r31, r3
+/* 80301610 002FE550  41 82 00 24 */	beq lbl_80301634
+/* 80301614 002FE554  38 1F 03 08 */	addi r0, r31, 0x308
+/* 80301618 002FE558  3C 60 80 4B */	lis r3, __vt__Q24Game10PelletView@ha
+/* 8030161C 002FE55C  90 1F 01 7C */	stw r0, 0x17c(r31)
+/* 80301620 002FE560  38 63 A6 78 */	addi r3, r3, __vt__Q24Game10PelletView@l
+/* 80301624 002FE564  38 00 00 00 */	li r0, 0
+/* 80301628 002FE568  90 7F 03 08 */	stw r3, 0x308(r31)
+/* 8030162C 002FE56C  90 1F 03 0C */	stw r0, 0x30c(r31)
+/* 80301630 002FE570  90 1F 03 10 */	stw r0, 0x310(r31)
+lbl_80301634:
+/* 80301634 002FE574  7F E3 FB 78 */	mr r3, r31
+/* 80301638 002FE578  38 80 00 00 */	li r4, 0
+/* 8030163C 002FE57C  4B FE A9 BD */	bl __ct__Q34Game10MiniHoudai3ObjFv
+/* 80301640 002FE580  3C 60 80 4D */	lis r3, __vt__Q34Game14NormMiniHoudai3Obj@ha
+/* 80301644 002FE584  38 1F 03 08 */	addi r0, r31, 0x308
+/* 80301648 002FE588  38 A3 72 88 */	addi r5, r3, __vt__Q34Game14NormMiniHoudai3Obj@l
+/* 8030164C 002FE58C  7F E3 FB 78 */	mr r3, r31
+/* 80301650 002FE590  90 BF 00 00 */	stw r5, 0(r31)
+/* 80301654 002FE594  38 85 01 B0 */	addi r4, r5, 0x1b0
+/* 80301658 002FE598  38 A5 02 FC */	addi r5, r5, 0x2fc
+/* 8030165C 002FE59C  90 9F 01 78 */	stw r4, 0x178(r31)
+/* 80301660 002FE5A0  80 9F 01 7C */	lwz r4, 0x17c(r31)
+/* 80301664 002FE5A4  90 A4 00 00 */	stw r5, 0(r4)
+/* 80301668 002FE5A8  80 9F 01 7C */	lwz r4, 0x17c(r31)
+/* 8030166C 002FE5AC  7C 04 00 50 */	subf r0, r4, r0
+/* 80301670 002FE5B0  90 04 00 0C */	stw r0, 0xc(r4)
+/* 80301674 002FE5B4  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 80301678 002FE5B8  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8030167C 002FE5BC  7C 08 03 A6 */	mtlr r0
+/* 80301680 002FE5C0  38 21 00 10 */	addi r1, r1, 0x10
+/* 80301684 002FE5C4  4E 80 00 20 */	blr 

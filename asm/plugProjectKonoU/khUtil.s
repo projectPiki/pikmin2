@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getSerialTagName__Q22kh6ScreenFUxi
 getSerialTagName__Q22kh6ScreenFUxi:
 /* 8040B3F4 00408334  3C C0 66 66 */	lis r6, 0x66666667@ha

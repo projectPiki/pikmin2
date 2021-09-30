@@ -1,0 +1,69 @@
+.include "macros.inc"
+
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global loadSettingFile__Q24Game14EnemyParmsBaseFP10JKRArchivePc
+loadSettingFile__Q24Game14EnemyParmsBaseFP10JKRArchivePc:
+/* 8012A244 00127184  94 21 FB D0 */	stwu r1, -0x430(r1)
+/* 8012A248 00127188  7C 08 02 A6 */	mflr r0
+/* 8012A24C 0012718C  90 01 04 34 */	stw r0, 0x434(r1)
+/* 8012A250 00127190  93 E1 04 2C */	stw r31, 0x42c(r1)
+/* 8012A254 00127194  7C 7F 1B 78 */	mr r31, r3
+/* 8012A258 00127198  7C 83 23 78 */	mr r3, r4
+/* 8012A25C 0012719C  81 84 00 00 */	lwz r12, 0(r4)
+/* 8012A260 001271A0  7C A4 2B 78 */	mr r4, r5
+/* 8012A264 001271A4  81 8C 00 14 */	lwz r12, 0x14(r12)
+/* 8012A268 001271A8  7D 89 03 A6 */	mtctr r12
+/* 8012A26C 001271AC  4E 80 04 21 */	bctrl 
+/* 8012A270 001271B0  28 03 00 00 */	cmplwi r3, 0
+/* 8012A274 001271B4  41 82 00 4C */	beq lbl_8012A2C0
+/* 8012A278 001271B8  7C 64 1B 78 */	mr r4, r3
+/* 8012A27C 001271BC  38 61 00 08 */	addi r3, r1, 8
+/* 8012A280 001271C0  38 A0 FF FF */	li r5, -1
+/* 8012A284 001271C4  48 2E B6 75 */	bl __ct__9RamStreamFPvi
+/* 8012A288 001271C8  38 00 00 01 */	li r0, 1
+/* 8012A28C 001271CC  2C 00 00 01 */	cmpwi r0, 1
+/* 8012A290 001271D0  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8012A294 001271D4  40 82 00 0C */	bne lbl_8012A2A0
+/* 8012A298 001271D8  38 00 00 00 */	li r0, 0
+/* 8012A29C 001271DC  90 01 04 1C */	stw r0, 0x41c(r1)
+lbl_8012A2A0:
+/* 8012A2A0 001271E0  7F E3 FB 78 */	mr r3, r31
+/* 8012A2A4 001271E4  38 81 00 08 */	addi r4, r1, 8
+/* 8012A2A8 001271E8  81 9F 00 D8 */	lwz r12, 0xd8(r31)
+/* 8012A2AC 001271EC  81 8C 00 08 */	lwz r12, 8(r12)
+/* 8012A2B0 001271F0  7D 89 03 A6 */	mtctr r12
+/* 8012A2B4 001271F4  4E 80 04 21 */	bctrl 
+/* 8012A2B8 001271F8  38 60 00 01 */	li r3, 1
+/* 8012A2BC 001271FC  48 00 00 08 */	b lbl_8012A2C4
+lbl_8012A2C0:
+/* 8012A2C0 00127200  38 60 00 00 */	li r3, 0
+lbl_8012A2C4:
+/* 8012A2C4 00127204  80 01 04 34 */	lwz r0, 0x434(r1)
+/* 8012A2C8 00127208  83 E1 04 2C */	lwz r31, 0x42c(r1)
+/* 8012A2CC 0012720C  7C 08 03 A6 */	mtlr r0
+/* 8012A2D0 00127210  38 21 04 30 */	addi r1, r1, 0x430
+/* 8012A2D4 00127214  4E 80 00 20 */	blr 
+
+.global setDebugParm__Q24Game14EnemyParmsBaseFUl
+setDebugParm__Q24Game14EnemyParmsBaseFUl:
+/* 8012A2D8 00127218  A0 C3 00 DC */	lhz r6, 0xdc(r3)
+/* 8012A2DC 0012721C  54 85 04 3E */	clrlwi r5, r4, 0x10
+/* 8012A2E0 00127220  54 80 84 3E */	srwi r0, r4, 0x10
+/* 8012A2E4 00127224  7C C4 2B 78 */	or r4, r6, r5
+/* 8012A2E8 00127228  B0 83 00 DC */	sth r4, 0xdc(r3)
+/* 8012A2EC 0012722C  A0 83 00 DE */	lhz r4, 0xde(r3)
+/* 8012A2F0 00127230  7C 80 03 78 */	or r0, r4, r0
+/* 8012A2F4 00127234  B0 03 00 DE */	sth r0, 0xde(r3)
+/* 8012A2F8 00127238  4E 80 00 20 */	blr 
+
+.global resetDebugParm__Q24Game14EnemyParmsBaseFUl
+resetDebugParm__Q24Game14EnemyParmsBaseFUl:
+/* 8012A2FC 0012723C  A0 C3 00 DC */	lhz r6, 0xdc(r3)
+/* 8012A300 00127240  54 85 04 3E */	clrlwi r5, r4, 0x10
+/* 8012A304 00127244  54 80 84 3E */	srwi r0, r4, 0x10
+/* 8012A308 00127248  7C C4 28 78 */	andc r4, r6, r5
+/* 8012A30C 0012724C  B0 83 00 DC */	sth r4, 0xdc(r3)
+/* 8012A310 00127250  A0 83 00 DE */	lhz r4, 0xde(r3)
+/* 8012A314 00127254  7C 80 00 78 */	andc r0, r4, r0
+/* 8012A318 00127258  B0 03 00 DE */	sth r0, 0xde(r3)
+/* 8012A31C 0012725C  4E 80 00 20 */	blr 

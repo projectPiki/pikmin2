@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q32kh6Screen12MailSaveDataFv
 clear__Q32kh6Screen12MailSaveDataFv:
 /* 80410FE0 0040DF20  38 80 00 00 */	li r4, 0

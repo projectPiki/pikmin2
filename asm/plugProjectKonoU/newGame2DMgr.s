@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q26Screen9Game2DMgrFv
 create__Q26Screen9Game2DMgrFv:
 /* 803FBEEC 003F8E2C  94 21 FF F0 */	stwu r1, -0x10(r1)

@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q32kh6Screen14khUtilFadePaneFv
 __dt__Q32kh6Screen14khUtilFadePaneFv:
 /* 803F1B04 003EEA44  94 21 FF F0 */	stwu r1, -0x10(r1)

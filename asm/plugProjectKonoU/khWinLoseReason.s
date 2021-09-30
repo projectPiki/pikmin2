@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doCreate__Q32kh6Screen16ObjWinLoseReasonFP10JKRArchive
 doCreate__Q32kh6Screen16ObjWinLoseReasonFP10JKRArchive:
 /* 80410714 0040D654  94 21 FF E0 */	stwu r1, -0x20(r1)

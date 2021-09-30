@@ -17,9 +17,14 @@ VERSION := usa
 
 BUILD_DIR := build/$(NAME).$(VERSION)
 
-SRC_DIRS := src src/plugProjectHikinoU src/plugProjectKonoU
-ASM_DIRS := asm asm/plugProjectHikinoU asm/plugProjectKonoU
-
+SRC_DIRS := src src/Dolphin src/JSystem src/sysBootupU src/sysCommonU src/sysGCU \
+			src/plugProjectEbisawaU src/plugProjectHikinoU src/plugProjectKandoU \
+			src/plugProjectKonoU src/plugProjectMorimuraU src/plugProjectNishimuraU \
+			src/plugProjectOgawaU src/plugProjectYamashitaU src/utilityU
+ASM_DIRS := asm asm/Dolphin asm/JSystem asm/sysBootupU asm/sysCommonU asm/sysGCU \
+			asm/plugProjectEbisawaU asm/plugProjectHikinoU asm/plugProjectKandoU \
+			asm/plugProjectKonoU asm/plugProjectMorimuraU asm/plugProjectNishimuraU \
+			asm/plugProjectOgawaU asm/plugProjectYamashitaU asm/utilityU
 # Inputs
 S_FILES := $(wildcard asm/*.s)
 C_FILES := $(wildcard src/*.c)

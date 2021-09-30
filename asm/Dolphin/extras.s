@@ -1,0 +1,46 @@
+.include "macros.inc"
+
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global stricmp
+stricmp:
+/* 800CFCDC 000CCC1C  88 03 00 00 */	lbz r0, 0(r3)
+/* 800CFCE0 000CCC20  38 63 00 01 */	addi r3, r3, 1
+/* 800CFCE4 000CCC24  7C 00 07 74 */	extsb r0, r0
+/* 800CFCE8 000CCC28  2C 00 FF FF */	cmpwi r0, -1
+/* 800CFCEC 000CCC2C  40 82 00 0C */	bne lbl_800CFCF8
+/* 800CFCF0 000CCC30  38 A0 FF FF */	li r5, -1
+/* 800CFCF4 000CCC34  48 00 00 14 */	b lbl_800CFD08
+lbl_800CFCF8:
+/* 800CFCF8 000CCC38  3C A0 80 4A */	lis r5, __lower_map@ha
+/* 800CFCFC 000CCC3C  54 00 06 3E */	clrlwi r0, r0, 0x18
+/* 800CFD00 000CCC40  38 A5 6C F0 */	addi r5, r5, __lower_map@l
+/* 800CFD04 000CCC44  7C A5 00 AE */	lbzx r5, r5, r0
+lbl_800CFD08:
+/* 800CFD08 000CCC48  88 04 00 00 */	lbz r0, 0(r4)
+/* 800CFD0C 000CCC4C  7C A6 07 74 */	extsb r6, r5
+/* 800CFD10 000CCC50  38 84 00 01 */	addi r4, r4, 1
+/* 800CFD14 000CCC54  7C 00 07 74 */	extsb r0, r0
+/* 800CFD18 000CCC58  2C 00 FF FF */	cmpwi r0, -1
+/* 800CFD1C 000CCC5C  40 82 00 0C */	bne lbl_800CFD28
+/* 800CFD20 000CCC60  38 00 FF FF */	li r0, -1
+/* 800CFD24 000CCC64  48 00 00 14 */	b lbl_800CFD38
+lbl_800CFD28:
+/* 800CFD28 000CCC68  3C A0 80 4A */	lis r5, __lower_map@ha
+/* 800CFD2C 000CCC6C  54 00 06 3E */	clrlwi r0, r0, 0x18
+/* 800CFD30 000CCC70  38 A5 6C F0 */	addi r5, r5, __lower_map@l
+/* 800CFD34 000CCC74  7C 05 00 AE */	lbzx r0, r5, r0
+lbl_800CFD38:
+/* 800CFD38 000CCC78  7C 00 07 74 */	extsb r0, r0
+/* 800CFD3C 000CCC7C  7C 06 00 00 */	cmpw r6, r0
+/* 800CFD40 000CCC80  40 80 00 0C */	bge lbl_800CFD4C
+/* 800CFD44 000CCC84  38 60 FF FF */	li r3, -1
+/* 800CFD48 000CCC88  4E 80 00 20 */	blr 
+lbl_800CFD4C:
+/* 800CFD4C 000CCC8C  40 81 00 0C */	ble lbl_800CFD58
+/* 800CFD50 000CCC90  38 60 00 01 */	li r3, 1
+/* 800CFD54 000CCC94  4E 80 00 20 */	blr 
+lbl_800CFD58:
+/* 800CFD58 000CCC98  7C C0 07 75 */	extsb. r0, r6
+/* 800CFD5C 000CCC9C  40 82 FF 80 */	bne stricmp
+/* 800CFD60 000CCCA0  38 60 00 00 */	li r3, 0
+/* 800CFD64 000CCCA4  4E 80 00 20 */	blr 

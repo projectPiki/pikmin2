@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doUpdateFadein__Q32kh6Screen10ObjReadyGoFv
 doUpdateFadein__Q32kh6Screen10ObjReadyGoFv:
 /* 80401268 003FE1A8  94 21 FF F0 */	stwu r1, -0x10(r1)

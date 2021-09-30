@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createScene_Koono__Q22kh6ScreenFl
 createScene_Koono__Q22kh6ScreenFl:
 /* 803FBAD4 003F8A14  94 21 FF F0 */	stwu r1, -0x10(r1)

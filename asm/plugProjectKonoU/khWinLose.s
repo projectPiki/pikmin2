@@ -1,5 +1,6 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen10ObjWinLoseFv
 __ct__Q32kh6Screen10ObjWinLoseFv:
 /* 8040FCE8 0040CC28  94 21 FF F0 */	stwu r1, -0x10(r1)
