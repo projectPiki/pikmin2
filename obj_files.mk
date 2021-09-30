@@ -1,463 +1,583 @@
 # Linker order for every file, passed to the Metrowerks linker.
 
-INIT_O_FILES := 						            \
-    $(BUILD_DIR)/asm/init.o							\
+INIT_O_FILES:=\
+	$(BUILD_DIR)/asm/init.o\
 
-EXTAB_O_FILES :=                                    \
-    $(BUILD_DIR)/asm/extab.o						\
+EXTAB_O_FILES:=\
+	$(BUILD_DIR)/asm/extab.o\
 
-EXTABINDEX_O_FILES :=                               \
-    $(BUILD_DIR)/asm/exidx.o						\
+EXTABINDEX_O_FILES:=\
+	$(BUILD_DIR)/asm/exidx.o\
 
-TEXT_O_FILES := 						            	\
-    $(BUILD_DIR)/asm/text.o								\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantState.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInteractBattle.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/generalEnemyMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyAnimator.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/kochappy.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyState.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAction.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/chappy.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/chappyState.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/chappyAnimator.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/chappyMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/lifeGaugeMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/carryInfoMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/gameLightMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/vtxAnm.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInfo.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/farm.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/farmMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/genEnemy.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/timeMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantGenerator.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInteractActions.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAnimatorBase.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoenInfo.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneDrawInfo.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneObj.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyParmsBase.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/walkSmokeEffect.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/ChappyBaseMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/ChappyBase.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/BlueChappyMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/BlueChappy.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappyMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappy.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/BlueKochappyMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/BlueKochappy.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/YellowKochappy.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/YellowKochappyMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/KochappyBaseMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/KochappyBase.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBlendAnimatorBase.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyPelletInfo.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyEffectNode.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyMgrBase.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyFSM.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/treasureLightMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectYamashitaU/effectAnimator.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pikiAnimator.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/collinfo.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameDynamics.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/creature.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/fakePiki.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/navi.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/piki.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/baseGameSection.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGameSection.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/cellPyramid.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/naviMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pikiMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/mapMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/baseHIOSection.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/naviWhistle.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/routeMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/onyonMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/objectTypes.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/naviState.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pikiState.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/interactPiki.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameCPlate.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/updateMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiAction.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiPrimitives.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiFormation.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/creatureStick.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/interactBattle.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiFree.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiAttack.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiTransport.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiEnter.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pathfinder.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletState.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/dynCreature.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameGenerator.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/genPiki.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/genNavi.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/genItem.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiConstants.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameMapParts.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsGameSection.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gamePlatMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemGate.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiBreakGate.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameStat.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemHole.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemHoney.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameCaveInfo.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/creatureLOD.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/interactNavi.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemPikihead.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemPlant.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemRock.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiBreakRock.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiCrop.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/registItem.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gamePlayData.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemCave.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemBigFountain.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemBridge.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pikiContainer.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameGeneratorCache.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemTreasure.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemDownFloor.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/kandoLib.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemBarrel.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletNumber.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletCarcass.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletFruit.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletOtakara.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/genPellet.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletItem.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/mapMgrTraceMove.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/efxModelObjects.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemUjamushi.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiWeed.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/flockMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/itemWeed.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiBridge.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiTeki.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainGame.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveGame.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainResult.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveResult.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_WorldMap.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_FileSelect.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gamePlayDataMemCard.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/radarInfo.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Movie.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/navi_demoCheck.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Zukan.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameResultTexMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gamePelletList.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Title.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Game.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Result.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Load.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsStageData.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/cellMgrParms.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsGS_VSGame.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameSoundEvent.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiBattle.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameDeathCount.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiBore.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/mapPartsView.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Ending.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameIconTexture.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameTekiStat.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameHighscore.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gamePlayCommonData.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletCarry.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/gameChallenge2D.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsTekiMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsCardMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/aiRescue.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/baseGameSectionDraw.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Load.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/singleGS_DayEnd.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/baseGameSectionKantei.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/sweepPrune.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/texCaster.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o	\
-    $(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o	\
-    $(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o	\
-    $(BUILD_DIR)/asm/text_1.o							\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o	\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o			\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o		\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSystemIF.o	\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSAutoBgm.o		\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBnkMgr.o		\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSTaskBase.o	\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTask.o		\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSCreatureMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSAutoBgm_MeloArranger.o	\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSe.o			\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeBase.o		\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSScene.o		\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTrack.o	\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/dayEndCount.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/hurryUp2D.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/gameOver2D.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/testBase.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombState.o	\
+TEXT_O_FILES:=\
+	$(BUILD_DIR)/asm/text.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantState.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInteractBattle.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/generalEnemyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappy.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyState.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAction.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappy.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyState.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/lifeGaugeMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/carryInfoMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/gameLightMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/vtxAnm.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInfo.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/farm.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/farmMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/genEnemy.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/timeMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantGenerator.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInteractActions.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAnimatorBase.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoenInfo.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneDrawInfo.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneObj.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyParmsBase.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/walkSmokeEffect.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/ChappyBaseMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/ChappyBase.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueChappyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueChappy.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappy.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueKochappyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueKochappy.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowKochappy.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowKochappyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/KochappyBaseMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/KochappyBase.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBlendAnimatorBase.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyPelletInfo.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyEffectNode.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyMgrBase.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyFSM.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/treasureLightMgr.o\
+	$(BUILD_DIR)/asm/plugProjectYamashitaU/effectAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/collinfo.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameDynamics.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/creature.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/fakePiki.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/navi.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/piki.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/baseGameSection.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGameSection.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/cellPyramid.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/naviMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pikiMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/mapMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/baseHIOSection.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/naviWhistle.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/routeMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/onyonMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/objectTypes.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/naviState.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pikiState.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/interactPiki.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameCPlate.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/updateMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiAction.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiPrimitives.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiFormation.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/creatureStick.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/interactBattle.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiFree.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiAttack.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiTransport.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiEnter.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pathfinder.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletState.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/dynCreature.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameGenerator.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/genPiki.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/genNavi.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/genItem.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiConstants.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameMapParts.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsGameSection.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlatMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemGate.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiBreakGate.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameStat.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemHole.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemHoney.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameCaveInfo.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/creatureLOD.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/interactNavi.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemPikihead.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemPlant.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemRock.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiBreakRock.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiCrop.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/registItem.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayData.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemCave.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemBigFountain.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemBridge.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pikiContainer.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameGeneratorCache.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemTreasure.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemDownFloor.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/kandoLib.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemBarrel.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletNumber.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletCarcass.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletFruit.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletOtakara.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/genPellet.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletItem.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/mapMgrTraceMove.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/efxModelObjects.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemUjamushi.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiWeed.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/flockMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/itemWeed.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiBridge.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiTeki.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainGame.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveGame.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainResult.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveResult.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_WorldMap.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_FileSelect.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayDataMemCard.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/radarInfo.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Movie.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/navi_demoCheck.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Zukan.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameResultTexMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gamePelletList.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Title.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Game.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Result.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Load.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsStageData.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/cellMgrParms.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_VSGame.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameSoundEvent.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiBattle.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameDeathCount.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiBore.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/mapPartsView.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Ending.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameIconTexture.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameTekiStat.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameHighscore.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayCommonData.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletCarry.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/gameChallenge2D.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsTekiMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsCardMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/aiRescue.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/baseGameSectionDraw.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Load.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_DayEnd.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/baseGameSectionKantei.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/sweepPrune.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/texCaster.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/shadowMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapNode.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/EnemyUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapDraw.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapChecker.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandEnemyUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/DoorNode.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapUnitGenerator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapCreator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapScore.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ItemUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandItemUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/GateUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandGateUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ObjectLayout.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/CameraMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ContRumble.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RumbleMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/PomAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/PomMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Pom.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/PomState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/FrogState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/FrogAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/FrogMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Frog.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjibMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ujib.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjibState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjibAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganeState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganeMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kogane.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganeAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/QurioneState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/QurioneMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Qurione.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/QurioneAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RumbleData.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrogMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrog.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Rock.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjiaState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjiaAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjiaMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ujia.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TobiState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TobiAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TobiMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tobi.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/HibaState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/HibaAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/HibaMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Hiba.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHibaState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHibaAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHibaMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHiba.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecHibaState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecHibaAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecHibaMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecHiba.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Sarai.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tank.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/CatfishMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Catfish.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tadpole.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBug.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/WtankMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Wtank.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ArmorMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Armor.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Mar.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MarAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MarMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MarState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/WealthyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Wealthy.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/FartMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Fart.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ArmorState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/ArmorAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Queen.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Baby.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/DemonMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/Demon.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenShadow.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireChappyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireChappy.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowState.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowMgr.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrow.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappyState.o\
+	$(BUILD_DIR)/asm/text_1.o\
+	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSystemIF.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSAutoBgm.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBnkMgr.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSTaskBase.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTask.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSCreatureMgr.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSAutoBgm_MeloArranger.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSe.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeBase.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSScene.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTrack.o\
+	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/dayEndCount.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/hurryUp2D.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/gameOver2D.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/testBase.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombState.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombMgr.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/bomb.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggState.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggMgr.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/egg.o			\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiState.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiMgr.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModoki.o			\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/plantsMgr.o			\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/plantsAnimator.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/plants.o				\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyState.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyMgr.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinState.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulin.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoState.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumo.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNestMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNest.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiState.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushi.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/zukan2D.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/hiScore2D.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiState.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushi.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouState.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChou.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeSelect2D.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeResult2D.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/vsSelect2D.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrUtil.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/scrollList.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrWindow.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManState.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackMan.o		\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreState.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreAnimator.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o		\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o		\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o		\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxPikmin.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/particle2dMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dBase.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dEffect.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/particleMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2Title.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleUnit.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiUtility.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleCamera.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleLight.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenMemoryCard.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxTPkEffectMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyGeneral.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi3DGraph.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiGeometry.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DGraph.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOption.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenProgre.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOptionMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DCallBack.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFramework.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenPushStart.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTitleMenu.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiSaveMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenSaveMenu.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiFileSelectMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardMgr_Load.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleCoordMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitlePikmin.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleKogane.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleChappy.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTMBack.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiMainTitleMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleFog.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyBoss.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardEReader.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o	\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o		\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khSceneLoader.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/newGame2DMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/newScreenMgr.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khReadyGo.o		\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khFinalFloor.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khDayEndResult.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khUtil.o			\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khFinalResult.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khPayDept.o		\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o		\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o	\
-    $(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o	\
-    $(BUILD_DIR)/asm/sysBootupU/sysBootup.o	\
-    $(BUILD_DIR)/asm/sysCommonU/node.o	\
-    $(BUILD_DIR)/asm/sysCommonU/sysMath.o	\
-    $(BUILD_DIR)/asm/sysCommonU/id32.o	\
-    $(BUILD_DIR)/asm/sysCommonU/parameters.o	\
-    $(BUILD_DIR)/asm/sysCommonU/stream.o	\
-    $(BUILD_DIR)/asm/sysCommonU/geometry.o	\
-    $(BUILD_DIR)/asm/sysCommonU/mapCollision.o	\
-    $(BUILD_DIR)/asm/sysCommonU/camera.o	\
-    $(BUILD_DIR)/asm/sysCommonU/tagparams.o	\
-    $(BUILD_DIR)/asm/sysCommonU/sysTemplates.o	\
-    $(BUILD_DIR)/asm/sysCommonU/mapCode.o	\
-    $(BUILD_DIR)/asm/sysCommonU/geomIntersection.o	\
-    $(BUILD_DIR)/asm/sysCommonU/geomOBBTree.o	\
-    $(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o	\
-    $(BUILD_DIR)/asm/sysCommonU/geomCylinder.o	\
-    $(BUILD_DIR)/asm/sysCommonU/geomClone.o	\
-    $(BUILD_DIR)/asm/sysGCU/system.o	\
-    $(BUILD_DIR)/asm/sysGCU/section.o	\
-    $(BUILD_DIR)/asm/sysGCU/gameflow.o	\
-    $(BUILD_DIR)/asm/sysGCU/menuSection.o	\
-    $(BUILD_DIR)/asm/sysGCU/dvdThread.o	\
-    $(BUILD_DIR)/asm/sysGCU/appThread.o	\
-    $(BUILD_DIR)/asm/sysGCU/controller.o	\
-    $(BUILD_DIR)/asm/sysGCU/graphics.o	\
-    $(BUILD_DIR)/asm/sysGCU/matMath.o	\
-    $(BUILD_DIR)/asm/sysGCU/sysShape.o	\
-    $(BUILD_DIR)/asm/sysGCU/reset.o	\
-    $(BUILD_DIR)/asm/sysGCU/dvdStatus.o	\
-    $(BUILD_DIR)/asm/sysGCU/sysTimers.o	\
-    $(BUILD_DIR)/asm/sysGCU/modelMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/heapStatus.o	\
-    $(BUILD_DIR)/asm/sysGCU/light.o	\
-    $(BUILD_DIR)/asm/sysGCU/wipe.o	\
-    $(BUILD_DIR)/asm/sysGCU/moviePlayer.o	\
-    $(BUILD_DIR)/asm/sysGCU/JSTObjectActor.o	\
-    $(BUILD_DIR)/asm/sysGCU/JSTObjectCamera.o	\
-    $(BUILD_DIR)/asm/sysGCU/JSTObjectGameActor.o	\
-    $(BUILD_DIR)/asm/sysGCU/JSTObjectSystem.o	\
-    $(BUILD_DIR)/asm/sysGCU/JSTFindCreature.o	\
-    $(BUILD_DIR)/asm/sysGCU/movieConfig.o	\
-    $(BUILD_DIR)/asm/sysGCU/gameConfig.o	\
-    $(BUILD_DIR)/asm/sysGCU/fogMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/aramMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/resourceMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/resourceMgr2D.o	\
-    $(BUILD_DIR)/asm/sysGCU/sysMaterialAnim.o	\
-    $(BUILD_DIR)/asm/sysGCU/P2DScreen.o	\
-    $(BUILD_DIR)/asm/sysGCU/movieMessage.o	\
-    $(BUILD_DIR)/asm/sysGCU/moviePlayerPauseAndDraw.o	\
-    $(BUILD_DIR)/asm/sysGCU/JSTObjectSpecialActor.o	\
-    $(BUILD_DIR)/asm/sysGCU/messageSequence.o	\
-    $(BUILD_DIR)/asm/sysGCU/messageMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/messageObj.o	\
-    $(BUILD_DIR)/asm/sysGCU/messageRendering.o	\
-    $(BUILD_DIR)/asm/sysGCU/message.o	\
-    $(BUILD_DIR)/asm/sysGCU/modelEffect.o	\
-    $(BUILD_DIR)/asm/sysGCU/messageReference.o	\
-    $(BUILD_DIR)/asm/sysGCU/simpleMessage.o	\
-    $(BUILD_DIR)/asm/sysGCU/sysShapeAnimation.o	\
-    $(BUILD_DIR)/asm/sysGCU/sysShapeModel.o	\
-    $(BUILD_DIR)/asm/sysGCU/windowMessage.o	\
-    $(BUILD_DIR)/asm/sysGCU/memoryCard.o	\
-    $(BUILD_DIR)/asm/sysGCU/pikmin2MemoryCardMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/commonSaveData.o	\
-    $(BUILD_DIR)/asm/sysGCU/bootSection.o	\
-    $(BUILD_DIR)/asm/sysGCU/titleSection.o	\
-    $(BUILD_DIR)/asm/sysGCU/loadResource.o	\
-    $(BUILD_DIR)/asm/sysGCU/rootMenuSection.o	\
-    $(BUILD_DIR)/asm/sysGCU/demoSection.o	\
-    $(BUILD_DIR)/asm/sysGCU/THPAudioDecode.o	\
-    $(BUILD_DIR)/asm/sysGCU/THPDraw.o	\
-    $(BUILD_DIR)/asm/sysGCU/THPPlayer.o	\
-    $(BUILD_DIR)/asm/sysGCU/THPRead.o	\
-    $(BUILD_DIR)/asm/sysGCU/THPVideoDecode.o	\
-    $(BUILD_DIR)/asm/sysGCU/pikmin2THPPlayer.o	\
-    $(BUILD_DIR)/asm/sysGCU/captionMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/captionMessage.o	\
-    $(BUILD_DIR)/asm/sysGCU/screenScene.o	\
-    $(BUILD_DIR)/asm/sysGCU/screenMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/screenObj.o	\
-    $(BUILD_DIR)/asm/sysGCU/JSTObjectParticleActor.o	\
-    $(BUILD_DIR)/asm/sysGCU/moviePlayerAudio.o	\
-    $(BUILD_DIR)/asm/sysGCU/illustratedBookMessage.o	\
-    $(BUILD_DIR)/asm/sysGCU/sysDrawBuffer.o	\
-    $(BUILD_DIR)/asm/sysGCU/pikmin2AramMgr.o	\
-    $(BUILD_DIR)/asm/sysGCU/messageAnalyzer.o	\
-    $(BUILD_DIR)/asm/utilityU/menu.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_Director.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_Factory.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_ObjSound.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_Demo.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_Scene.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_BossMgr.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_Se.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_DirectorMgr.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_Sound.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_TrackMap.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o	\
-    $(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o	\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/bomb.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/egg.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModoki.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/plantsMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/plantsAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/plants.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulin.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumo.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNestMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNest.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushi.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/zukan2D.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/hiScore2D.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushi.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChou.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeSelect2D.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeResult2D.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/vsSelect2D.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrUtil.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/scrollList.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrWindow.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackMan.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreState.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreAnimator.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o\
+	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxPikmin.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/particle2dMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dBase.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dEffect.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/particleMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2Title.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleUnit.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiUtility.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleCamera.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleLight.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenMemoryCard.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxTPkEffectMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyGeneral.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi3DGraph.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiGeometry.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DGraph.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOption.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenProgre.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOptionMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DCallBack.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFramework.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenPushStart.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTitleMenu.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiSaveMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenSaveMenu.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiFileSelectMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardMgr_Load.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleCoordMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitlePikmin.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleKogane.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleChappy.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTMBack.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiMainTitleMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleFog.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyBoss.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardEReader.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khSceneLoader.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/newGame2DMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/newScreenMgr.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khReadyGo.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khFinalFloor.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khDayEndResult.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khUtil.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khFinalResult.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khPayDept.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
+	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
+	$(BUILD_DIR)/asm/sysBootupU/sysBootup.o\
+	$(BUILD_DIR)/asm/sysCommonU/node.o\
+	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
+	$(BUILD_DIR)/asm/sysCommonU/id32.o\
+	$(BUILD_DIR)/asm/sysCommonU/parameters.o\
+	$(BUILD_DIR)/asm/sysCommonU/stream.o\
+	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
+	$(BUILD_DIR)/asm/sysCommonU/mapCollision.o\
+	$(BUILD_DIR)/asm/sysCommonU/camera.o\
+	$(BUILD_DIR)/asm/sysCommonU/tagparams.o\
+	$(BUILD_DIR)/asm/sysCommonU/sysTemplates.o\
+	$(BUILD_DIR)/asm/sysCommonU/mapCode.o\
+	$(BUILD_DIR)/asm/sysCommonU/geomIntersection.o\
+	$(BUILD_DIR)/asm/sysCommonU/geomOBBTree.o\
+	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
+	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
+	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
+	$(BUILD_DIR)/asm/sysGCU/system.o\
+	$(BUILD_DIR)/asm/sysGCU/section.o\
+	$(BUILD_DIR)/asm/sysGCU/gameflow.o\
+	$(BUILD_DIR)/asm/sysGCU/menuSection.o\
+	$(BUILD_DIR)/asm/sysGCU/dvdThread.o\
+	$(BUILD_DIR)/asm/sysGCU/appThread.o\
+	$(BUILD_DIR)/asm/sysGCU/controller.o\
+	$(BUILD_DIR)/asm/sysGCU/graphics.o\
+	$(BUILD_DIR)/asm/sysGCU/matMath.o\
+	$(BUILD_DIR)/asm/sysGCU/sysShape.o\
+	$(BUILD_DIR)/asm/sysGCU/reset.o\
+	$(BUILD_DIR)/asm/sysGCU/dvdStatus.o\
+	$(BUILD_DIR)/asm/sysGCU/sysTimers.o\
+	$(BUILD_DIR)/asm/sysGCU/modelMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/heapStatus.o\
+	$(BUILD_DIR)/asm/sysGCU/light.o\
+	$(BUILD_DIR)/asm/sysGCU/wipe.o\
+	$(BUILD_DIR)/asm/sysGCU/moviePlayer.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectActor.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectCamera.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectGameActor.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectSystem.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTFindCreature.o\
+	$(BUILD_DIR)/asm/sysGCU/movieConfig.o\
+	$(BUILD_DIR)/asm/sysGCU/gameConfig.o\
+	$(BUILD_DIR)/asm/sysGCU/fogMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/aramMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/resourceMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/resourceMgr2D.o\
+	$(BUILD_DIR)/asm/sysGCU/sysMaterialAnim.o\
+	$(BUILD_DIR)/asm/sysGCU/P2DScreen.o\
+	$(BUILD_DIR)/asm/sysGCU/movieMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/moviePlayerPauseAndDraw.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectSpecialActor.o\
+	$(BUILD_DIR)/asm/sysGCU/messageSequence.o\
+	$(BUILD_DIR)/asm/sysGCU/messageMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/messageObj.o\
+	$(BUILD_DIR)/asm/sysGCU/messageRendering.o\
+	$(BUILD_DIR)/asm/sysGCU/message.o\
+	$(BUILD_DIR)/asm/sysGCU/modelEffect.o\
+	$(BUILD_DIR)/asm/sysGCU/messageReference.o\
+	$(BUILD_DIR)/asm/sysGCU/simpleMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/sysShapeAnimation.o\
+	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
+	$(BUILD_DIR)/asm/sysGCU/windowMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/memoryCard.o\
+	$(BUILD_DIR)/asm/sysGCU/pikmin2MemoryCardMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/commonSaveData.o\
+	$(BUILD_DIR)/asm/sysGCU/bootSection.o\
+	$(BUILD_DIR)/asm/sysGCU/titleSection.o\
+	$(BUILD_DIR)/asm/sysGCU/loadResource.o\
+	$(BUILD_DIR)/asm/sysGCU/rootMenuSection.o\
+	$(BUILD_DIR)/asm/sysGCU/demoSection.o\
+	$(BUILD_DIR)/asm/sysGCU/THPAudioDecode.o\
+	$(BUILD_DIR)/asm/sysGCU/THPDraw.o\
+	$(BUILD_DIR)/asm/sysGCU/THPPlayer.o\
+	$(BUILD_DIR)/asm/sysGCU/THPRead.o\
+	$(BUILD_DIR)/asm/sysGCU/THPVideoDecode.o\
+	$(BUILD_DIR)/asm/sysGCU/pikmin2THPPlayer.o\
+	$(BUILD_DIR)/asm/sysGCU/captionMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/captionMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/screenScene.o\
+	$(BUILD_DIR)/asm/sysGCU/screenMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/screenObj.o\
+	$(BUILD_DIR)/asm/sysGCU/JSTObjectParticleActor.o\
+	$(BUILD_DIR)/asm/sysGCU/moviePlayerAudio.o\
+	$(BUILD_DIR)/asm/sysGCU/illustratedBookMessage.o\
+	$(BUILD_DIR)/asm/sysGCU/sysDrawBuffer.o\
+	$(BUILD_DIR)/asm/sysGCU/pikmin2AramMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/messageAnalyzer.o\
+	$(BUILD_DIR)/asm/utilityU/menu.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_Director.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_Factory.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjSound.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_Demo.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_Scene.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_BossMgr.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_Se.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_DirectorMgr.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_Sound.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_TrackMap.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
+	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
 
-CTORS_O_FILES :=                                    \
-    $(BUILD_DIR)/asm/ctors.o						\
+CTORS_O_FILES:=\
+	$(BUILD_DIR)/asm/ctors.o\
 
-DTORS_O_FILES :=                                    \
-    $(BUILD_DIR)/asm/dtors.o						\
+DTORS_O_FILES:=\
+	$(BUILD_DIR)/asm/dtors.o\
 
-RODATA_O_FILES :=                                   \
-    $(BUILD_DIR)/asm/rodata.o						\
+RODATA_O_FILES:=\
+	$(BUILD_DIR)/asm/rodata.o\
 
-DATA_O_FILES :=                                     \
-    $(BUILD_DIR)/asm/data.o							\
+DATA_O_FILES:=\
+	$(BUILD_DIR)/asm/data.o\
 
-BSS_O_FILES :=                                      \
-    $(BUILD_DIR)/asm/bss.o							\
+BSS_O_FILES:=\
+	$(BUILD_DIR)/asm/bss.o\
 
-SDATA_O_FILES :=                                    \
-    $(BUILD_DIR)/asm/sdata.o						\
+SDATA_O_FILES:=\
+	$(BUILD_DIR)/asm/sdata.o\
 
-SBSS_O_FILES :=										\
-    $(BUILD_DIR)/asm/sbss.o							\
+SBSS_O_FILES:=\
+	$(BUILD_DIR)/asm/sbss.o\
 
-SDATA2_O_FILES :=                                   \
-    $(BUILD_DIR)/asm/sdata2.o						\
-	
-SBSS2_O_FILES :=									\
-    $(BUILD_DIR)/asm/sbss2.o						\
+SDATA2_O_FILES:=\
+	$(BUILD_DIR)/asm/sdata2.o\
+
+SBSS2_O_FILES:=\
+	$(BUILD_DIR)/asm/sbss2.o\
