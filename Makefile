@@ -17,12 +17,13 @@ VERSION := usa
 
 BUILD_DIR := build/$(NAME).$(VERSION)
 
-SRC_DIRS := src
-ASM_DIRS := asm
+SRC_DIRS := src src/plugProjectHikinoU
+ASM_DIRS := asm asm/plugProjectHikinoU
 
 # Inputs
 S_FILES := $(wildcard asm/*.s)
 C_FILES := $(wildcard src/*.c)
+CPP_FILES := $(wildcard src/*.cpp)
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
 
 # Outputs
@@ -47,12 +48,15 @@ MWLD_VERSION := 2.7e
 # Programs
 ifeq ($(WINDOWS),1)
   WINE :=
+  AS      := $(DEVKITPPC)/bin/powerpc-eabi-as.exe
+  OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy.exe
+  CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
 else
   WINE := wine
+  AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
+  OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
+  CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
 endif
-AS      := $(DEVKITPPC)/bin/powerpc-eabi-as.exe
-OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy.exe
-CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
 CC      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
@@ -62,7 +66,7 @@ PYTHON  := python3
 POSTPROC := tools/postprocess.py
 
 # Options
-INCLUDES := -i include/ -i include/dolphin/ -i src/sysdolphin/ -i include/dolphin/mtx/
+INCLUDES := -i include/
 
 ASFLAGS := -mgekko -I include/ 
 LDFLAGS := -map $(MAP) -fp hard -nodefaults
@@ -110,7 +114,11 @@ $(BUILD_DIR)/%.o: %.s
 
 $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
-	$(PYTHON) $(POSTPROC) $(PROCFLAGS) $@
+	#$(PYTHON) $(POSTPROC) $(PROCFLAGS) $@
+
+$(BUILD_DIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
+	#$(PYTHON) $(POSTPROC) $(PROCFLAGS) $@
 
 ### Debug Print ###
 
