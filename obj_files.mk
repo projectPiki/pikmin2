@@ -11,6 +11,8 @@ EXTABINDEX_O_FILES :=                               \
 
 TEXT_O_FILES := 						            	\
     $(BUILD_DIR)/asm/text.o								\
+    $(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o	\
+    $(BUILD_DIR)/asm/text_1.o							\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o	\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o			\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o		\
@@ -87,6 +89,7 @@ TEXT_O_FILES := 						            	\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o	\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o		\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o		\
+	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o		\
     $(BUILD_DIR)/asm/text_2.o							\
     $(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o		\
     $(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o	\
@@ -102,6 +105,8 @@ TEXT_O_FILES := 						            	\
     $(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o		\
     $(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o	\
     $(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o	\
+    $(BUILD_DIR)/asm/sysBootupU/sysBootup.o	\
+    $(BUILD_DIR)/asm/sysCommonU/node.o	\
     $(BUILD_DIR)/asm/text_3.o							\
 
 CTORS_O_FILES :=                                    \
