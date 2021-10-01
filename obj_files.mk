@@ -10,6 +10,7 @@ EXTABINDEX_O_FILES:=\
 	$(BUILD_DIR)/asm/exidx.o\
 
 TEXT_O_FILES:=\
+	$(BUILD_DIR)/asm/JSystem/object-particle.o\
 	$(BUILD_DIR)/asm/text.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o\
