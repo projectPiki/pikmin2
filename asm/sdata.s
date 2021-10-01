@@ -2,28 +2,22 @@
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .global sSZSBufferSize__7JKRAram
 sSZSBufferSize__7JKRAram:
-	#.incbin "baserom.dol", 0x4ECC20, 0x8
 	.4byte 0x00000400
 	.skip 0x4
 .global errorRetry__16JKRDvdAramRipper
 errorRetry__16JKRDvdAramRipper:
-	#.incbin "baserom.dol", 0x4ECC28, 0x4
 	.4byte 0x01000000
 .global sSZSBufferSize__16JKRDvdAramRipper
 sSZSBufferSize__16JKRDvdAramRipper:
-	#.incbin "baserom.dol", 0x4ECC2C, 0x4
 	.4byte 0x00000400
 .global errorRetry__12JKRDvdRipper
 errorRetry__12JKRDvdRipper:
-	#.incbin "baserom.dol", 0x4ECC30, 0x4
 	.4byte 0x01000000
 .global sSZSBufferSize__12JKRDvdRipper
 sSZSBufferSize__12JKRDvdRipper:
-	#.incbin "baserom.dol", 0x4ECC34, 0x4
 	.4byte 0x00000400
 .global rootPath$2747
 rootPath$2747:
-	#.incbin "baserom.dol", 0x4ECC38, 0x8
 	.4byte 0x2f000000
 	.skip 0x4
 .global sDefaultFillFlag__7JKRHeap
