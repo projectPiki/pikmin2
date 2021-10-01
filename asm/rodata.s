@@ -4973,10 +4973,11 @@ lbl_804995B0:
 	.incbin "baserom.dol", 0x4965B0, 0x20
 .global lbl_804995D0
 lbl_804995D0:
-	.incbin "baserom.dol", 0x4965D0, 0x20
+	.asciz "bootup -----------------------\n"
 .global lbl_804995F0
 lbl_804995F0:
-	.incbin "baserom.dol", 0x4965F0, 0xC
+	.asciz "node.cpp"
+	.skip 0x3
 .global lbl_804995FC
 lbl_804995FC:
 	.incbin "baserom.dol", 0x4965FC, 0x18
