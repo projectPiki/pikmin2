@@ -650,6 +650,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysBootupU/sysBootup.o\
 	$(BUILD_DIR)/asm/sysCommonU/node.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
+	$(BUILD_DIR)/src/sysCommonU/id32.o\
 	$(BUILD_DIR)/asm/sysCommonU/id32.o\
 	$(BUILD_DIR)/asm/sysCommonU/parameters.o\
 	$(BUILD_DIR)/asm/sysCommonU/stream.o\

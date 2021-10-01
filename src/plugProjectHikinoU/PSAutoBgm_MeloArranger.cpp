@@ -5,17 +5,17 @@
  * Address:	........
  * Size:	000018
  */
-void avoidChk__Q29PSAutoBgm19MeloArr_FixTipAvoidFRQ29PSAutoBgm10MeloArrArg(void)
+/* void PSAutoBgm::MeloArr_FixTipAvoid::avoidChk( (PSAutoBgm::MeloArrArg &))
 {
 	// UNUSED FUNCTION
-}
+} */
 
 /*
  * --INFO--
  * Address:	8033EE9C
  * Size:	00003C
  */
-void avoidChk__Q29PSAutoBgm19MeloArr_RandomAvoidFRQ29PSAutoBgm10MeloArrArg(void)
+void PSAutoBgm::MeloArr_RandomAvoid::avoidChk( (PSAutoBgm::MeloArrArg &))
 {
 /*
 .loc_0x0:
@@ -42,37 +42,37 @@ void avoidChk__Q29PSAutoBgm19MeloArr_RandomAvoidFRQ29PSAutoBgm10MeloArrArg(void)
  * Address:	........
  * Size:	000024
  */
-void avoidChk__Q29PSAutoBgm23MeloArr_AvoidOnCycleAllFRQ29PSAutoBgm10MeloArrArg(void)
+/* void PSAutoBgm::MeloArr_AvoidOnCycleAll::avoidChk( (PSAutoBgm::MeloArrArg &))
 {
 	// UNUSED FUNCTION
-}
+} */
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000034
  */
-void pre__Q29PSAutoBgm23MeloArr_AvoidOnCycleAllFRQ29PSAutoBgm10MeloArrArg(void)
-{
-	// UNUSED FUNCTION
-}
+// void PSAutoBgm::MeloArr_AvoidOnCycleAll::pre( (PSAutoBgm::MeloArrArg &))
+// {
+//	UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000078
  */
-void assertCheck__Q29PSAutoBgm10MeloArrArgCFv(void)
-{
+// void PSAutoBgm::MeloArrArg::assertCheck( const(void))
+// {
 	// UNUSED FUNCTION
-}
+// }
 
 /*
  * --INFO--
  * Address:	8033EED8
  * Size:	000138
  */
-void isToAvoid__Q29PSAutoBgm10MeloArrMgrFRQ29PSAutoBgm10MeloArrArg(void)
+void PSAutoBgm::MeloArrMgr::isToAvoid( (PSAutoBgm::MeloArrArg &))
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void isToAvoid__Q29PSAutoBgm10MeloArrMgrFRQ29PSAutoBgm10MeloArrArg(void)
  * Address:	8033F010
  * Size:	000004
  */
-void post__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg(void)
+void PSAutoBgm::MeloArrBase::post( (PSAutoBgm::MeloArrArg &))
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void post__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg(void)
  * Address:	8033F014
  * Size:	000004
  */
-void pre__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg(void)
+void PSAutoBgm::MeloArrBase::pre( (PSAutoBgm::MeloArrArg &))
 {
 /*
 .loc_0x0:
@@ -208,17 +208,17 @@ void pre__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg(void)
  * Address:	........
  * Size:	000098
  */
-void __dt__Q29PSAutoBgm23MeloArr_AvoidOnCycleAllFv(void)
-{
+// void PSAutoBgm::MeloArr_AvoidOnCycleAll::__dt( (void))
+// {
 	// UNUSED FUNCTION
-}
+// }
 
 /*
  * --INFO--
  * Address:	8033F018
  * Size:	00000C
  */
-void directOn__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track(void)
+void PSAutoBgm::MeloArrBase::directOn( (PSAutoBgm::Track *))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void directOn__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track(void)
  * Address:	8033F024
  * Size:	00000C
  */
-void directOff__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track(void)
+void PSAutoBgm::MeloArrBase::directOff( (PSAutoBgm::Track *))
 {
 /*
 .loc_0x0:
@@ -248,7 +248,7 @@ void directOff__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track(void)
  * Address:	8033F030
  * Size:	000080
  */
-void __dt__Q29PSAutoBgm11MeloArrBaseFv(void)
+void PSAutoBgm::MeloArrBase::__dt( (void))
 {
 /*
 .loc_0x0:
@@ -296,7 +296,7 @@ void __dt__Q29PSAutoBgm11MeloArrBaseFv(void)
  * Address:	8033F0B0
  * Size:	000098
  */
-void __dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv(void)
+void PSAutoBgm::MeloArr_RandomAvoid::__dt( (void))
 {
 /*
 .loc_0x0:
@@ -350,27 +350,27 @@ void __dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv(void)
  * Address:	........
  * Size:	000098
  */
-void __dt__Q29PSAutoBgm19MeloArr_FixTipAvoidFv(void)
-{
+// void PSAutoBgm::MeloArr_FixTipAvoid::__dt( (void))
+// {
 	// UNUSED FUNCTION
-}
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void @16@__dt__Q29PSAutoBgm19MeloArr_FixTipAvoidFv(void)
-{
+// void @16@PSAutoBgm::MeloArr_FixTipAvoid::__dt( (void))
+// {
 	// UNUSED FUNCTION
-}
+// }
 
 /*
  * --INFO--
  * Address:	8033F148
  * Size:	000008
  */
-void @16@__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv(void)
+void @16@PSAutoBgm::MeloArr_RandomAvoid::__dt( (void))
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void @16@__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv(void)
  * Address:	8033F150
  * Size:	000008
  */
-void @16@__dt__Q29PSAutoBgm11MeloArrBaseFv(void)
+void @16@PSAutoBgm::MeloArrBase::__dt( (void))
 {
 /*
 .loc_0x0:
@@ -398,7 +398,7 @@ void @16@__dt__Q29PSAutoBgm11MeloArrBaseFv(void)
  * Address:	........
  * Size:	000008
  */
-void @16@__dt__Q29PSAutoBgm23MeloArr_AvoidOnCycleAllFv(void)
-{
+// void @16@PSAutoBgm::MeloArr_AvoidOnCycleAll::__dt( (void))
+// {
 	// UNUSED FUNCTION
-}
+// }

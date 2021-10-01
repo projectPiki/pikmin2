@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000004
  */
-//void registerAnime__Q26PSGame16SoundCreatureMgrFPvPCc(void)
+//void PSGame::SoundCreatureMgr::registerAnime( (void *, char const *))
 //{
 	// UNUSED FUNCTION
 //}

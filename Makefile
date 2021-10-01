@@ -47,7 +47,7 @@ O_FILES := $(INIT_O_FILES) $(EXTAB_O_FILES) $(EXTABINDEX_O_FILES) $(TEXT_O_FILES
 # Tools
 #-------------------------------------------------------------------------------
 
-MWCC_VERSION := 1.0
+MWCC_VERSION := 2.6
 MWLD_VERSION := 2.7e
 
 # Programs

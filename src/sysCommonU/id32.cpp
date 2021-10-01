@@ -1,41 +1,43 @@
+/* 
 
 
-/*
  * --INFO--
  * Address:	........
  * Size:	0000E0
- */
+
 void _Print(char *, ...)
 {
 	// UNUSED FUNCTION
 }
 
-/*
+
  * --INFO--
  * Address:	80413254
  * Size:	00001C
- */
-void ID32::isEof()
-{
-/*
-.loc_0x0:
-  lis       r4, 0x5F65
-  lwz       r3, 0x8(r3)
-  addi      r0, r4, 0x6F66
-  sub       r0, r0, r3
-  cntlzw    r0, r0
-  rlwinm    r3,r0,27,5,31
-  blr
 */
-}
+#include "id32.h"
 
+bool ID32::isEof()
+{
+	return (this->rawID == '_eof');
+/* .loc_0x0:
+	lis       r4, 0x5F65
+	lwz       r3, 0x8(r3)
+	addi      r0, r4, 0x6F66
+	sub       r0, r0, r3
+	cntlzw    r0, r0
+	rlwinm    r3,r0,27,5,31
+	blr */
+
+}
 /*
  * --INFO--
  * Address:	80413270
  * Size:	000038
  */
-void ID32::ID32()
-{
+ID32::ID32() { this->setID('none'); }
+//	setID(this, 'none');
+//	return;
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -45,23 +47,24 @@ void ID32::ID32()
   addi      r4, r4, 0x6E65
   stw       r31, 0xC(r1)
   mr        r31, r3
-  bl        0x4C
+  bl        ID32::setID
   lwz       r0, 0x14(r1)
   mr        r3, r31
   lwz       r31, 0xC(r1)
   mtlr      r0
   addi      r1, r1, 0x10
   blr
-*/
-}
-
+  */
+//}
 /*
  * --INFO--
  * Address:	804132A8
  * Size:	000030
  */
-void ID32::ID32(unsigned long)
-{
+ID32::ID32(unsigned long id) { this->setID(id); }
+//{
+//	setID(this, id);
+//	return;
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -69,25 +72,24 @@ void ID32::ID32(unsigned long)
   stw       r0, 0x14(r1)
   stw       r31, 0xC(r1)
   mr        r31, r3
-  bl        .loc_0x30
+  bl        ID32::setID
   lwz       r0, 0x14(r1)
   mr        r3, r31
   lwz       r31, 0xC(r1)
   mtlr      r0
   addi      r1, r1, 0x10
   blr       
-
-.loc_0x30:
 */
-}
-
+//}
 /*
  * --INFO--
  * Address:	804132D8
  * Size:	000024
  */
-void ID32::setID(unsigned long)
+void ID32::setID(unsigned long set_id)
 {
+	this->rawID = set_id;
+	this->updateString();
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -107,8 +109,18 @@ void ID32::setID(unsigned long)
  * Address:	804132FC
  * Size:	0000B8
  */
-void ID32::match(unsigned long, char)
+bool ID32::match(unsigned long _id, char exception)
 {
+	char* p_id = reinterpret_cast<char*>(&_id);
+	char* m_id = reinterpret_cast<char*>(&this->rawID);
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (p_id[i] != exception && p_id[i] != m_id[i])
+			return 0;
+	}
+	return 1;
+}
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -167,8 +179,7 @@ void ID32::match(unsigned long, char)
 .loc_0xB0:
   addi      r1, r1, 0x10
   blr
-*/
-}
+ */
 
 /*
  * --INFO--
@@ -177,6 +188,10 @@ void ID32::match(unsigned long, char)
  */
 void ID32::updateID()
 {
+	char* m_id = reinterpret_cast<char*>(&this->rawID);
+
+	for (int i = 0; i < 4; i++)
+		m_id[i] = this->inputstring[i];
 /*
 .loc_0x0:
   lbz       r0, 0x0(r3)
@@ -198,6 +213,11 @@ void ID32::updateID()
  */
 void ID32::updateString()
 {
+	char* m_id = reinterpret_cast<char*>(&this->rawID);
+
+	for (int i = 0; i < 4; i++)
+		this->inputstring[i] = m_id[i];
+	inputstring[4] = '\0';
 /*
 .loc_0x0:
   lbz       r4, 0x8(r3)
@@ -211,40 +231,46 @@ void ID32::updateString()
   stb       r4, 0x3(r3)
   stb       r0, 0x4(r3)
   blr
-*/
+ */
 }
 
-/*
+ /*
  * --INFO--
  * Address:	80413404
  * Size:	000030
  */
-void ID32::operator= (unsigned long)
+void ID32::operator= (unsigned long _id) //{ this->setID(_id); }
 {
-/*
-.loc_0x0:
-  stw       r4, 0x8(r3)
-  li        r0, 0
-  lbz       r4, 0x8(r3)
-  stb       r4, 0x0(r3)
-  lbz       r4, 0x9(r3)
-  stb       r4, 0x1(r3)
-  lbz       r4, 0xA(r3)
-  stb       r4, 0x2(r3)
-  lbz       r4, 0xB(r3)
-  stb       r4, 0x3(r3)
-  stb       r0, 0x4(r3)
-  blr
-*/
+	this->rawID = _id;
+	this->inputstring[0] = *(char*)&this->rawID;
+	this->inputstring[1] = *(char*)((int)&this->rawID + 1);
+	this->inputstring[2] = *(char*)((int)&this->rawID + 2);
+	this->inputstring[3] = *(char*)((int)&this->rawID + 3);
+	this->inputstring[4] = '\0';
+	return;
+	/*
+	.loc_0x0:
+	  stw       r4, 0x8(r3)
+	  li        r0, 0
+	  lbz       r4, 0x8(r3)
+	  stb       r4, 0x0(r3)
+	  lbz       r4, 0x9(r3)
+	  stb       r4, 0x1(r3)
+	  lbz       r4, 0xA(r3)
+	  stb       r4, 0x2(r3)
+	  lbz       r4, 0xB(r3)
+	  stb       r4, 0x3(r3)
+	  stb       r0, 0x4(r3)
+	  blr
+	*/
 }
-
 /*
  * --INFO--
  * Address:	80413434
  * Size:	000014
  */
-void ID32::operator== (unsigned long)
-{
+bool ID32::operator== (unsigned long target) { return (this->rawID == target); }
+
 /*
 .loc_0x0:
   lwz       r0, 0x8(r3)
@@ -253,15 +279,14 @@ void ID32::operator== (unsigned long)
   rlwinm    r3,r0,27,5,31
   blr
 */
-}
 
 /*
  * --INFO--
  * Address:	80413448
  * Size:	000018
  */
-void ID32::operator!= (unsigned long)
-{
+bool ID32::operator!= (unsigned long _id) { return (this->rawID != _id); }
+
 /*
 .loc_0x0:
   lwz       r0, 0x8(r3)
@@ -271,15 +296,15 @@ void ID32::operator!= (unsigned long)
   rlwinm    r3,r0,1,31,31
   blr
 */
-}
+
 
 /*
  * --INFO--
  * Address:	80413460
  * Size:	000090
  */
-void ID32::write(Stream &)
-{
+//void ID32::write(Stream &)
+//{
 /*
 .loc_0x0:
   stwu      r1, -0x20(r1)
@@ -323,15 +348,15 @@ void ID32::write(Stream &)
   addi      r1, r1, 0x20
   blr
 */
-}
+//}
 
 /*
  * --INFO--
  * Address:	804134F0
  * Size:	0000EC
  */
-void ID32::read(Stream &)
-{
+//void ID32::read(Stream &)
+//{
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -398,28 +423,34 @@ void ID32::read(Stream &)
   addi      r1, r1, 0x10
   blr
 */
-}
+//}
 
 /*
  * --INFO--
  * Address:	804135DC
  * Size:	000004
  */
-void ID32::print()
-{
+//void ID32::print()
+//{
+//	return;
 /*
 .loc_0x0:
-  blr
-*/
-}
+blr
+ */
+//}
+/* 
 
-/*
  * --INFO--
  * Address:	804135E0
  * Size:	000038
  */
-void ID32::sprint(char *)
-{
+//void ID32::sprint(char *str)
+//{
+//	str[0] = (this->rawID & 0xFF000000) >> 24;
+//	str[1] = (this->rawID & 0xFF0000) >> 16;
+//	str[2] = (this->rawID & 0xFF00) >> 8;
+//	str[3] = this->rawID;
+//	str[4] = '\0';
 /*
 .loc_0x0:
   lwz       r5, 0x8(r3)
@@ -436,16 +467,16 @@ void ID32::sprint(char *)
   stb       r3, 0x3(r4)
   stb       r0, 0x4(r4)
   blr
-*/
-}
+  */
+//}
 
 /*
  * --INFO--
  * Address:	80413618
  * Size:	000040
  */
-void __sinit_id32_cpp(void)
-{
+//void __sinit_id32_cpp(void)
+//{
 /*
 .loc_0x0:
   lis       r4, 0x5F65
@@ -465,4 +496,4 @@ void __sinit_id32_cpp(void)
   stb       r0, 0x4(r7)
   blr
 */
-}
+//}
