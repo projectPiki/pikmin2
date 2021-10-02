@@ -18,86 +18,99 @@ sSZSBufferSize__12JKRDvdRipper:
 	.4byte 0x00000400
 .global rootPath$2747
 rootPath$2747:
-	.4byte 0x2f000000
-	.skip 0x4
+	.byte 0x2f
+	.skip 0x7
 .global sDefaultFillFlag__7JKRHeap
 sDefaultFillFlag__7JKRHeap:
-	.incbin "baserom.dol", 0x4ECC40, 0x8
+	.byte 1
+	.skip 7
 .global sVisible__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2
 sVisible__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2:
-	.incbin "baserom.dol", 0x4ECC48, 0x8
+	.byte 1
+	.skip 7
 .global sMessageBuffer__12JUTException
 sMessageBuffer__12JUTException:
-	.incbin "baserom.dol", 0x4ECC50, 0x8
+	.skip 8
 .global sStickMode__10JUTGamePad
 sStickMode__10JUTGamePad:
-	.incbin "baserom.dol", 0x4ECC58, 0x4
+	.4byte 1
 .global sClampMode__10JUTGamePad
 sClampMode__10JUTGamePad:
-	.incbin "baserom.dol", 0x4ECC5C, 0x4
+	.4byte 1
 .global sPressPoint__Q210JUTGamePad6CStick
 sPressPoint__Q210JUTGamePad6CStick:
-	.incbin "baserom.dol", 0x4ECC60, 0x4
+	.float 0.5
 .global sReleasePoint__Q210JUTGamePad6CStick
 sReleasePoint__Q210JUTGamePad6CStick:
-	.incbin "baserom.dol", 0x4ECC64, 0x4
+	.float 0.25
 .global sResetPattern__Q210JUTGamePad13C3ButtonReset
 sResetPattern__Q210JUTGamePad13C3ButtonReset:
-	.incbin "baserom.dol", 0x4ECC68, 0x4
+	.4byte 0x00001600
 .global sResetMaskPattern__Q210JUTGamePad13C3ButtonReset
 sResetMaskPattern__Q210JUTGamePad13C3ButtonReset:
-	.incbin "baserom.dol", 0x4ECC6C, 0x4
+	.4byte 0x0000ffff
 .global oneFrameRate
 oneFrameRate:
-	.incbin "baserom.dol", 0x4ECC70, 0x4
+	.float 8.0
 .global oneFrameRateUser
 oneFrameRateUser:
-	.incbin "baserom.dol", 0x4ECC74, 0x4
+	.float 10.0
 .global ColorBlack
 ColorBlack:
-	.incbin "baserom.dol", 0x4ECC78, 0x4
+	.4byte 0
 .global ColorWhite
 ColorWhite:
-	.incbin "baserom.dol", 0x4ECC7C, 0x4
+	.4byte 0xffffffff
 .global Unit01
 Unit01:
-	.incbin "baserom.dol", 0x4ECC80, 0x8
+	.skip 4
+	.float 1.0
 .global cm2hw$551
 cm2hw$551:
-	.incbin "baserom.dol", 0x4ECC88, 0x4
+	.4byte 0x00020103
 .global J3DGDTexMode0Ids
 J3DGDTexMode0Ids:
-	.incbin "baserom.dol", 0x4ECC8C, 0x8
+	.4byte 0x80818283
+	.4byte 0xa0a1a2a3
 .global J3DGDTexMode1Ids
 J3DGDTexMode1Ids:
-	.incbin "baserom.dol", 0x4ECC94, 0x8
+	.4byte 0x84858687
+	.4byte 0xa4a5a6a7
 .global J3DGDTexImage0Ids
 J3DGDTexImage0Ids:
-	.incbin "baserom.dol", 0x4ECC9C, 0x8
+	.4byte 0x88898a8b
+	.4byte 0xa8a9aaab
 .global J3DGDTexImage3Ids
 J3DGDTexImage3Ids:
-	.incbin "baserom.dol", 0x4ECCA4, 0x8
+	.4byte 0x94959697
+	.4byte 0xb4b5b6b7
 .global J3DGDTexTlutIds
 J3DGDTexTlutIds:
-	.incbin "baserom.dol", 0x4ECCAC, 0x8
+	.4byte 0x98999a9b
+	.4byte 0xb8b9babb
 .global GX2HWFiltConv
 GX2HWFiltConv:
-	.incbin "baserom.dol", 0x4ECCB4, 0x8
+	.4byte 0x00040105
+	.4byte 0x02060000
 .global J3DTexImage1Ids
 J3DTexImage1Ids:
-	.incbin "baserom.dol", 0x4ECCBC, 0x8
+	.4byte 0x8c8d8e8f
+	.4byte 0xacadaeaf
 .global J3DTexImage2Ids
 J3DTexImage2Ids:
-	.incbin "baserom.dol", 0x4ECCC4, 0xC
+	.4byte 0x90919293
+	.4byte 0xb0b1b2b3
+	.skip 4
 .global SizeOfLoadMatColors
 SizeOfLoadMatColors:
-	.incbin "baserom.dol", 0x4ECCD0, 0x4
+	.4byte 0xd
 .global SizeOfLoadAmbColors
 SizeOfLoadAmbColors:
-	.incbin "baserom.dol", 0x4ECCD4, 0x4
+	.4byte 0xd
 .global SizeOfLoadColorChans
 SizeOfLoadColorChans:
-	.incbin "baserom.dol", 0x4ECCD8, 0x8
+	.4byte 0x15
+	.skip 4
 .global sNoUseDrawMtxPtr__12J3DMtxBuffer
 sNoUseDrawMtxPtr__12J3DMtxBuffer:
 	.incbin "baserom.dol", 0x4ECCE0, 0x4
@@ -148,16 +161,17 @@ zz_80514788:
 	.incbin "baserom.dol", 0x4ECD28, 0x8
 .global MAX_MIXERLEVEL__9JASDriver
 MAX_MIXERLEVEL__9JASDriver:
-	.incbin "baserom.dol", 0x4ECD30, 0x2
+	.2byte 0x2ee0
 .global MAX_AUTOMIXERLEVEL__9JASDriver
 MAX_AUTOMIXERLEVEL__9JASDriver:
-	.incbin "baserom.dol", 0x4ECD32, 0x2
+	.2byte 0x2ee0
 .global JAS_SYSTEM_OUTPUT_MODE__9JASDriver
 JAS_SYSTEM_OUTPUT_MODE__9JASDriver:
-	.incbin "baserom.dol", 0x4ECD34, 0x4
+	.4byte 1
 .global COMP_BLOCKSAMPLES$600
 COMP_BLOCKSAMPLES$600:
-	.incbin "baserom.dol", 0x4ECD38, 0x8
+	.4byte 0x10100101
+	.4byte 0x01101001
 .global COMP_BLOCKBYTES$601
 COMP_BLOCKBYTES$601:
 	.incbin "baserom.dol", 0x4ECD40, 0x8
