@@ -237,8 +237,8 @@ OSLoadContext:
 /* 800ED094 000E9FD4  38 A4 EC 38 */	addi r5, r4, OSDisableInterrupts@l
 /* 800ED098 000E9FD8  7C 06 28 40 */	cmplw r6, r5
 /* 800ED09C 000E9FDC  40 81 00 18 */	ble lbl_800ED0B4
-/* 800ED0A0 000E9FE0  3C 80 80 0F */	lis r4, lbl_800EEC44@ha
-/* 800ED0A4 000E9FE4  38 04 EC 44 */	addi r0, r4, lbl_800EEC44@l
+/* 800ED0A0 000E9FE0  3C 80 80 0F */	lis r4, __RAS_OSDisableInterrupts_end@ha
+/* 800ED0A4 000E9FE4  38 04 EC 44 */	addi r0, r4, __RAS_OSDisableInterrupts_end@l
 /* 800ED0A8 000E9FE8  7C 06 00 40 */	cmplw r6, r0
 /* 800ED0AC 000E9FEC  40 80 00 08 */	bge lbl_800ED0B4
 /* 800ED0B0 000E9FF0  90 A3 01 98 */	stw r5, 0x198(r3)

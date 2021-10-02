@@ -3,10 +3,12 @@
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global OSDisableInterrupts
 OSDisableInterrupts:
+__RAS_OSDisableInterrupts_begin:
 /* 800EEC38 000EBB78  7C 60 00 A6 */	mfmsr r3
 /* 800EEC3C 000EBB7C  54 64 04 5E */	rlwinm r4, r3, 0, 0x11, 0xf
 /* 800EEC40 000EBB80  7C 80 01 24 */	mtmsr r4
-lbl_800EEC44:
+.global __RAS_OSDisableInterrupts_end
+__RAS_OSDisableInterrupts_end:
 /* 800EEC44 000EBB84  54 63 8F FE */	rlwinm r3, r3, 0x11, 0x1f, 0x1f
 /* 800EEC48 000EBB88  4E 80 00 20 */	blr 
 
