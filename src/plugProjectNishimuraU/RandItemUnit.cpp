@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8024E38C
  * Size:	000064
  */
-void __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator(void)
+void Game::Cave::RandItemUnit::__ct( (Game::Cave::MapUnitGenerator *))
 {
 /*
 .loc_0x0:
@@ -56,7 +56,7 @@ void __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator(void)
  * Address:	8024E3F0
  * Size:	000008
  */
-void setManageClassPtr__Q34Game4Cave12RandItemUnitFPQ34Game4Cave12RandMapScore(void)
+void Game::Cave::RandItemUnit::setManageClassPtr( (Game::Cave::RandMapScore *))
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void setManageClassPtr__Q34Game4Cave12RandItemUnitFPQ34Game4Cave12RandMapScore(v
  * Address:	8024E3F8
  * Size:	000104
  */
-void setItemSlot__Q34Game4Cave12RandItemUnitFv(void)
+void Game::Cave::RandItemUnit::setItemSlot(void)
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void setItemSlot__Q34Game4Cave12RandItemUnitFv(void)
  * Address:	8024E4FC
  * Size:	000110
  */
-void isItemSetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandItemUnit::isItemSetDone( (Game::Cave::MapNode *, Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void isItemSetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePQ34Game4Cav
  * Address:	8024E60C
  * Size:	0000E8
  */
-void isGroundCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandItemUnit::isGroundCapEnemySetDone( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void isGroundCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode(v
  * Address:	8024E6F4
  * Size:	0000D0
  */
-void isFallCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandItemUnit::isFallCapEnemySetDone( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void isFallCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode(voi
  * Address:	8024E7C4
  * Size:	00000C
  */
-void setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandItemUnit::setItemDropPositionList( (Game::Cave::MapNode **, Game::Cave::BaseGen **))
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<float>fi(void)
  * Address:	8024E9F8
  * Size:	00038C
  */
-void getItemNormalSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandItemUnit::getItemNormalSetMapNode( (Game::Cave::BaseGen **))
 {
 /*
 .loc_0x0:
@@ -911,7 +911,7 @@ void getItemNormalSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen(
  * Address:	8024ED84
  * Size:	000340
  */
-void getItemHardSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandItemUnit::getItemHardSetMapNode( (Game::Cave::BaseGen **))
 {
 /*
 .loc_0x0:
@@ -1191,7 +1191,7 @@ void getItemHardSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen(vo
  * Address:	8024F0C4
  * Size:	000180
  */
-void getItemUnit__Q34Game4Cave12RandItemUnitFv(void)
+void Game::Cave::RandItemUnit::getItemUnit(void)
 {
 /*
 .loc_0x0:
@@ -1315,7 +1315,7 @@ void getItemUnit__Q34Game4Cave12RandItemUnitFv(void)
  * Address:	8024F244
  * Size:	000060
  */
-void getItemSlotNum__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandItemUnit::getItemSlotNum( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -1359,7 +1359,7 @@ void getItemSlotNum__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode(void)
  * Address:	8024F2A4
  * Size:	00005C
  */
-void isItemSetHard__Q34Game4Cave12RandItemUnitFv(void)
+void Game::Cave::RandItemUnit::isItemSetHard(void)
 {
 /*
 .loc_0x0:
@@ -1404,7 +1404,7 @@ void isItemSetHard__Q34Game4Cave12RandItemUnitFv(void)
  * Address:	8024F300
  * Size:	000148
  */
-void getItemDropMapNode__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodeiRi(void)
+void Game::Cave::RandItemUnit::getItemDropMapNode( (Game::Cave::MapNode *, Game::Cave::MapNode **, int, int &))
 {
 /*
 .loc_0x0:
@@ -1510,7 +1510,7 @@ void getItemDropMapNode__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Ga
  * Address:	8024F448
  * Size:	000314
  */
-void getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodei(void)
+void Game::Cave::RandItemUnit::getItemBaseGenPosition( (Game::Cave::MapNode *, int))
 {
 /*
 .loc_0x0:
@@ -1747,7 +1747,7 @@ void getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodei(v
  * Address:	8024F75C
  * Size:	00018C
  */
-void getItemDropList__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenRi(void)
+void Game::Cave::RandItemUnit::getItemDropList( (Game::Cave::MapNode *, Game::Cave::MapNode **, Game::Cave::BaseGen **, int &))
 {
 /*
 .loc_0x0:
@@ -1872,7 +1872,7 @@ void getItemDropList__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4
  * Address:	8024F8E8
  * Size:	0002CC
  */
-void getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGeniii(void)
+void Game::Cave::RandItemUnit::getItemBaseGenPosition( (Game::Cave::MapNode **, Game::Cave::BaseGen **, int, int, int))
 {
 /*
 .loc_0x0:
@@ -2099,7 +2099,7 @@ void getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePP
  * Address:	8024FBB4
  * Size:	000114
  */
-void getItemDropSortingList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenPii(void)
+void Game::Cave::RandItemUnit::getItemDropSortingList( (Game::Cave::MapNode **, Game::Cave::BaseGen **, int *, int))
 {
 /*
 .loc_0x0:

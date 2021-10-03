@@ -5,7 +5,7 @@
  * Address:	80453AE8
  * Size:	000090
  */
-void __ct__Q26Screen7ObjBaseFv(void)
+void Screen::ObjBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -53,7 +53,7 @@ void __ct__Q26Screen7ObjBaseFv(void)
  * Address:	80453B78
  * Size:	00002C
  */
-void create__Q26Screen7ObjBaseFP10JKRArchive(void)
+void Screen::ObjBase::create( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -76,7 +76,7 @@ void create__Q26Screen7ObjBaseFP10JKRArchive(void)
  * Address:	80453BA4
  * Size:	0000AC
  */
-void start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg(void)
+void Screen::ObjBase::start( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg(void)
  * Address:	80453C50
  * Size:	000138
  */
-void end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg(void)
+void Screen::ObjBase::end( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg(void)
  * Address:	80453D88
  * Size:	000110
  */
-void update__Q26Screen7ObjBaseFv(void)
+void Screen::ObjBase::update(void)
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void update__Q26Screen7ObjBaseFv(void)
  * Address:	80453E98
  * Size:	000038
  */
-void draw__Q26Screen7ObjBaseFR8Graphics(void)
+void Screen::ObjBase::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void draw__Q26Screen7ObjBaseFR8Graphics(void)
  * Address:	80453ED0
  * Size:	0000D8
  */
-void doDraw__Q26Screen7ObjBaseFR8Graphics(void)
+void Screen::ObjBase::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -435,7 +435,7 @@ void doDraw__Q26Screen7ObjBaseFR8Graphics(void)
  * Address:	80453FA8
  * Size:	00000C
  */
-void getDispMember__Q26Screen7ObjBaseFv(void)
+void Screen::ObjBase::getDispMember(void)
 {
 /*
 .loc_0x0:
@@ -450,7 +450,7 @@ void getDispMember__Q26Screen7ObjBaseFv(void)
  * Address:	80453FB4
  * Size:	00002C
  */
-void confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg(void)
+void Screen::ObjBase::confirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -473,7 +473,7 @@ void confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg(void)
  * Address:	80453FE0
  * Size:	00002C
  */
-void confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg(void)
+void Screen::ObjBase::confirmStartScene( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -496,7 +496,7 @@ void confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg(void)
  * Address:	8045400C
  * Size:	000034
  */
-void confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg(void)
+void Screen::ObjBase::confirmEndScene( (Screen::EndSceneArg *))
 {
 /*
 .loc_0x0:
@@ -521,7 +521,7 @@ void confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg(void)
  * Address:	80454040
  * Size:	000030
  */
-void getGamePad__Q26Screen7ObjBaseCFv(void)
+void Screen::ObjBase::getGamePad( const
 {
 /*
 .loc_0x0:
@@ -545,7 +545,7 @@ void getGamePad__Q26Screen7ObjBaseCFv(void)
  * Address:	80454070
  * Size:	000044
  */
-void __ct__Q26Screen10ObjMgrBaseFv(void)
+void Screen::ObjMgrBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void __ct__Q26Screen10ObjMgrBaseFv(void)
  * Address:	804540B4
  * Size:	000058
  */
-void registObj__Q26Screen10ObjMgrBaseFPQ26Screen8IObjBasePQ26Screen9SceneBase(void)
+void Screen::ObjMgrBase::registObj( (Screen::IObjBase *, Screen::SceneBase *))
 {
 /*
 .loc_0x0:
@@ -608,7 +608,7 @@ void registObj__Q26Screen10ObjMgrBaseFPQ26Screen8IObjBasePQ26Screen9SceneBase(vo
  * Address:	8045410C
  * Size:	000068
  */
-void update__Q26Screen10ObjMgrBaseFv(void)
+void Screen::ObjMgrBase::update(void)
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void update__Q26Screen10ObjMgrBaseFv(void)
  * Address:	80454174
  * Size:	00005C
  */
-void draw__Q26Screen10ObjMgrBaseFR8Graphics(void)
+void Screen::ObjMgrBase::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void draw__Q26Screen10ObjMgrBaseFR8Graphics(void)
  * Address:	804541D0
  * Size:	000098
  */
-void search__Q26Screen10ObjMgrBaseFPQ26Screen9SceneBasePc(void)
+void Screen::ObjMgrBase::search( (Screen::SceneBase *, char *))
 {
 /*
 .loc_0x0:
@@ -749,7 +749,7 @@ void search__Q26Screen10ObjMgrBaseFPQ26Screen9SceneBasePc(void)
  * Address:	80454268
  * Size:	000078
  */
-void start__Q26Screen10ObjMgrBaseFPQ26Screen13StartSceneArg(void)
+void Screen::ObjMgrBase::start( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -797,7 +797,7 @@ void start__Q26Screen10ObjMgrBaseFPQ26Screen13StartSceneArg(void)
  * Address:	804542E0
  * Size:	000078
  */
-void end__Q26Screen10ObjMgrBaseFPQ26Screen11EndSceneArg(void)
+void Screen::ObjMgrBase::end( (Screen::EndSceneArg *))
 {
 /*
 .loc_0x0:
@@ -845,7 +845,7 @@ void end__Q26Screen10ObjMgrBaseFPQ26Screen11EndSceneArg(void)
  * Address:	80454358
  * Size:	00007C
  */
-void confirmSetScene__Q26Screen10ObjMgrBaseFRQ26Screen11SetSceneArg(void)
+void Screen::ObjMgrBase::confirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -896,7 +896,7 @@ void confirmSetScene__Q26Screen10ObjMgrBaseFRQ26Screen11SetSceneArg(void)
  * Address:	804543D4
  * Size:	00007C
  */
-void confirmStartScene__Q26Screen10ObjMgrBaseFPQ26Screen13StartSceneArg(void)
+void Screen::ObjMgrBase::confirmStartScene( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -947,7 +947,7 @@ void confirmStartScene__Q26Screen10ObjMgrBaseFPQ26Screen13StartSceneArg(void)
  * Address:	80454450
  * Size:	00007C
  */
-void confirmEndScene__Q26Screen10ObjMgrBaseFPQ26Screen11EndSceneArg(void)
+void Screen::ObjMgrBase::confirmEndScene( (Screen::EndSceneArg *))
 {
 /*
 .loc_0x0:
@@ -998,7 +998,7 @@ void confirmEndScene__Q26Screen10ObjMgrBaseFPQ26Screen11EndSceneArg(void)
  * Address:	804544CC
  * Size:	000008
  */
-void @24@__dt__Q26Screen7ObjBaseFv(void)
+void @24@Screen::ObjBase::__dt(void)
 {
 /*
 .loc_0x0:

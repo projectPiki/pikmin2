@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000084
  */
-void __ct__Q34Game10ChappyBase9GeneratorFv(void)
+void Game::ChappyBase::Generator::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q34Game10ChappyBase9GeneratorFv(void)
  * Address:	........
  * Size:	00000C
  */
-void getLatestVersion__Q34Game10ChappyBase9GeneratorFv(void)
+void Game::ChappyBase::Generator::getLatestVersion(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void getLatestVersion__Q34Game10ChappyBase9GeneratorFv(void)
  * Address:	........
  * Size:	000074
  */
-void doRead__Q34Game10ChappyBase9GeneratorFR6Stream(void)
+void Game::ChappyBase::Generator::doRead( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void doRead__Q34Game10ChappyBase9GeneratorFR6Stream(void)
  * Address:	........
  * Size:	000004
  */
-void doWrite__Q34Game10ChappyBase9GeneratorFR6Stream(void)
+void Game::ChappyBase::Generator::doWrite( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void doWrite__Q34Game10ChappyBase9GeneratorFR6Stream(void)
  * Address:	........
  * Size:	000004
  */
-void doReadLatestVersion__Q34Game10ChappyBase9GeneratorFR6Stream(void)
+void Game::ChappyBase::Generator::doReadLatestVersion( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -65,7 +65,7 @@ void doReadLatestVersion__Q34Game10ChappyBase9GeneratorFR6Stream(void)
  * Address:	........
  * Size:	000004
  */
-void doReadOldVersion__Q34Game10ChappyBase9GeneratorFR6Stream(void)
+void Game::ChappyBase::Generator::doReadOldVersion( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +75,7 @@ void doReadOldVersion__Q34Game10ChappyBase9GeneratorFR6Stream(void)
  * Address:	8012A670
  * Size:	000050
  */
-void __ct__Q34Game10ChappyBase3MgrFiUc(void)
+void Game::ChappyBase::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -107,7 +107,7 @@ void __ct__Q34Game10ChappyBase3MgrFiUc(void)
  * Address:	8012A6C0
  * Size:	0000C0
  */
-void loadModelData__Q34Game10ChappyBase3MgrFv(void)
+void Game::ChappyBase::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void loadModelData__Q34Game10ChappyBase3MgrFv(void)
  * Address:	8012A780
  * Size:	0000A0
  */
-void loadAnimData__Q34Game10ChappyBase3MgrFv(void)
+void Game::ChappyBase::Mgr::loadAnimData(void)
 {
 /*
 .loc_0x0:
@@ -231,7 +231,7 @@ void loadAnimData__Q34Game10ChappyBase3MgrFv(void)
  * Address:	8012A820
  * Size:	00011C
  */
-void createModel__Q34Game10ChappyBase3MgrFv(void)
+void Game::ChappyBase::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -324,7 +324,7 @@ void createModel__Q34Game10ChappyBase3MgrFv(void)
  * Address:	8012A93C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10ChappyBase3MgrFv(void)
+void Game::ChappyBase::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -338,7 +338,7 @@ void getEnemyTypeID__Q34Game10ChappyBase3MgrFv(void)
  * Address:	8012A944
  * Size:	000004
  */
-void doAlloc__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -351,7 +351,7 @@ void doAlloc__Q24Game12EnemyMgrBaseFv(void)
  * Address:	........
  * Size:	000070
  */
-void __dt__Q34Game10ChappyBase9GeneratorFv(void)
+void Game::ChappyBase::Generator::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -361,7 +361,7 @@ void __dt__Q34Game10ChappyBase9GeneratorFv(void)
  * Address:	........
  * Size:	000008
  */
-void getInitialParam__Q34Game10ChappyBase9GeneratorFv(void)
+void Game::ChappyBase::Generator::getInitialParam(void)
 {
 	// UNUSED FUNCTION
 }
@@ -371,7 +371,7 @@ void getInitialParam__Q34Game10ChappyBase9GeneratorFv(void)
  * Address:	8012A948
  * Size:	000008
  */
-void @4@__dt__Q34Game10ChappyBase3MgrFv(void)
+void @4@Game::ChappyBase::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

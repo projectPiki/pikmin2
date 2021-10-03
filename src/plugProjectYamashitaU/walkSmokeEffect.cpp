@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012A320
  * Size:	000034
  */
-void __ct__Q34Game15WalkSmokeEffect3ObjFv(void)
+void Game::WalkSmokeEffect::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -40,7 +40,7 @@ void __ct__Q34Game15WalkSmokeEffect3ObjFv(void)
  * Address:	........
  * Size:	000030
  */
-void init__Q34Game15WalkSmokeEffect3ObjFP7Matrixff(void)
+void Game::WalkSmokeEffect::Obj::init( (Matrixf *, float))
 {
 	// UNUSED FUNCTION
 }
@@ -50,7 +50,7 @@ void init__Q34Game15WalkSmokeEffect3ObjFP7Matrixff(void)
  * Address:	........
  * Size:	0001A8
  */
-void update__Q34Game15WalkSmokeEffect3ObjFPQ24Game9EnemyBase(void)
+void Game::WalkSmokeEffect::Obj::update( (Game::EnemyBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -60,7 +60,7 @@ void update__Q34Game15WalkSmokeEffect3ObjFPQ24Game9EnemyBase(void)
  * Address:	........
  * Size:	00004C
  */
-void draw__Q34Game15WalkSmokeEffect3ObjFR8Graphics(void)
+void Game::WalkSmokeEffect::Obj::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -70,7 +70,7 @@ void draw__Q34Game15WalkSmokeEffect3ObjFR8Graphics(void)
  * Address:	8012A354
  * Size:	000010
  */
-void __ct__Q34Game15WalkSmokeEffect3MgrFv(void)
+void Game::WalkSmokeEffect::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -86,7 +86,7 @@ void __ct__Q34Game15WalkSmokeEffect3MgrFv(void)
  * Address:	8012A364
  * Size:	0000B4
  */
-void alloc__Q34Game15WalkSmokeEffect3MgrFi(void)
+void Game::WalkSmokeEffect::Mgr::alloc( (int))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void alloc__Q34Game15WalkSmokeEffect3MgrFi(void)
  * Address:	8012A418
  * Size:	0001C8
  */
-void update__Q34Game15WalkSmokeEffect3MgrFPQ24Game9EnemyBase(void)
+void Game::WalkSmokeEffect::Mgr::update( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -283,7 +283,7 @@ void update__Q34Game15WalkSmokeEffect3MgrFPQ24Game9EnemyBase(void)
  * Address:	........
  * Size:	0000C4
  */
-void draw__Q34Game15WalkSmokeEffect3MgrFR8Graphics(void)
+void Game::WalkSmokeEffect::Mgr::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -293,7 +293,7 @@ void draw__Q34Game15WalkSmokeEffect3MgrFR8Graphics(void)
  * Address:	8012A5E0
  * Size:	000090
  */
-void setup__Q34Game15WalkSmokeEffect3MgrFiPQ28SysShape5ModelPcf(void)
+void Game::WalkSmokeEffect::Mgr::setup( (int, SysShape::Model *, char *, float))
 {
 /*
 .loc_0x0:

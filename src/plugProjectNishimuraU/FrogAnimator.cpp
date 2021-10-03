@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802580AC
  * Size:	000008
  */
-void setAnimMgr__Q34Game4Frog14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Frog::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game4Frog14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802580B4
  * Size:	000008
  */
-void getAnimator__Q34Game4Frog14ProperAnimatorFi(void)
+void Game::Frog::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game4Frog14ProperAnimatorFi(void)
  * Address:	802580BC
  * Size:	00005C
  */
-void __dt__Q34Game4Frog14ProperAnimatorFv(void)
+void Game::Frog::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game4Frog14ProperAnimatorFv(void)
  * Address:	80258118
  * Size:	000008
  */
-void getAnimator__Q34Game4Frog14ProperAnimatorFv(void)
+void Game::Frog::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

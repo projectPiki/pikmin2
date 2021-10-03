@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802AAD94
  * Size:	00020C
  */
-void __ct__Q34Game8Damagumo17DamagumoShadowMgrFPQ34Game8Damagumo3Obj(void)
+void Game::Damagumo::DamagumoShadowMgr::__ct( (Game::Damagumo::Obj *))
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void __ct__Q34Game8Damagumo17DamagumoShadowMgrFPQ34Game8Damagumo3Obj(void)
  * Address:	802AAFA0
  * Size:	00014C
  */
-void init__Q34Game8Damagumo17DamagumoShadowMgrFv(void)
+void Game::Damagumo::DamagumoShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void setJointPosPtr__Q34Game8Damagumo17DamagumoShadowMgrFiiP10Vector3<float>(voi
  * Address:	802AB104
  * Size:	00039C
  */
-void update__Q34Game8Damagumo17DamagumoShadowMgrFv(void)
+void Game::Damagumo::DamagumoShadowMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -548,7 +548,7 @@ void update__Q34Game8Damagumo17DamagumoShadowMgrFv(void)
  * Address:	802AB4A0
  * Size:	000070
  */
-void __dt__Q24Game17TubeShadowSetNodeFv(void)
+void Game::TubeShadowSetNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -592,7 +592,7 @@ void __dt__Q24Game17TubeShadowSetNodeFv(void)
  * Address:	802AB510
  * Size:	000070
  */
-void __dt__Q24Game19TubeShadowTransNodeFv(void)
+void Game::TubeShadowTransNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -636,7 +636,7 @@ void __dt__Q24Game19TubeShadowTransNodeFv(void)
  * Address:	802AB580
  * Size:	000070
  */
-void __dt__Q24Game16SphereShadowNodeFv(void)
+void Game::SphereShadowNode::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802F1264
  * Size:	000130
  */
-void __ct__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1394
  * Size:	000004
  */
-void setInitialSetting__Q34Game7Sokkuri3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Sokkuri::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void setInitialSetting__Q34Game7Sokkuri3ObjFPQ24Game21EnemyInitialParamBase(void
  * Address:	802F1398
  * Size:	00008C
  */
-void onInit__Q34Game7Sokkuri3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Sokkuri::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void onInit__Q34Game7Sokkuri3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802F1424
  * Size:	000034
  */
-void doUpdate__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void doUpdate__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1458
  * Size:	000004
  */
-void doDirectDraw__Q34Game7Sokkuri3ObjFR8Graphics(void)
+void Game::Sokkuri::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void doDirectDraw__Q34Game7Sokkuri3ObjFR8Graphics(void)
  * Address:	802F145C
  * Size:	000020
  */
-void doDebugDraw__Q34Game7Sokkuri3ObjFR8Graphics(void)
+void Game::Sokkuri::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void doDebugDraw__Q34Game7Sokkuri3ObjFR8Graphics(void)
  * Address:	802F147C
  * Size:	00004C
  */
-void setFSM__Q34Game7Sokkuri3ObjFPQ34Game7Sokkuri3FSM(void)
+void Game::Sokkuri::Obj::setFSM( (Game::Sokkuri::FSM *))
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void setFSM__Q34Game7Sokkuri3ObjFPQ34Game7Sokkuri3FSM(void)
  * Address:	802F14C8
  * Size:	000118
  */
-void getShadowParam__Q34Game7Sokkuri3ObjFRQ24Game11ShadowParam(void)
+void Game::Sokkuri::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void getShadowParam__Q34Game7Sokkuri3ObjFRQ24Game11ShadowParam(void)
  * Address:	802F15E0
  * Size:	000008
  */
-void isUnderground__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void isUnderground__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F15E8
  * Size:	00009C
  */
-void pressCallBack__Q34Game7Sokkuri3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Sokkuri::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -417,7 +417,7 @@ void pressCallBack__Q34Game7Sokkuri3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802F1684
  * Size:	00009C
  */
-void hipdropCallBack__Q34Game7Sokkuri3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Sokkuri::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -472,7 +472,7 @@ void hipdropCallBack__Q34Game7Sokkuri3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802F1720
  * Size:	0000FC
  */
-void wallCallback__Q34Game7Sokkuri3ObjFRCQ24Game8MoveInfo(void)
+void Game::Sokkuri::Obj::wallCallback( (Game::MoveInfo const &))
 {
 /*
 .loc_0x0:
@@ -553,7 +553,7 @@ void wallCallback__Q34Game7Sokkuri3ObjFRCQ24Game8MoveInfo(void)
  * Address:	802F181C
  * Size:	000040
  */
-void doStartStoneState__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -581,7 +581,7 @@ void doStartStoneState__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F185C
  * Size:	000020
  */
-void doFinishStoneState__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void doFinishStoneState__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F187C
  * Size:	000028
  */
-void startCarcassMotion__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void startCarcassMotion__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F18A4
  * Size:	0000AC
  */
-void getOffsetForMapCollision__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -682,7 +682,7 @@ void getOffsetForMapCollision__Q34Game7Sokkuri3ObjFv(void)
  * Address:	........
  * Size:	000068
  */
-void getSearchedTarget__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::getSearchedTarget(void)
 {
 	// UNUSED FUNCTION
 }
@@ -692,7 +692,7 @@ void getSearchedTarget__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1950
  * Size:	00007C
  */
-void isAppear__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::isAppear(void)
 {
 /*
 .loc_0x0:
@@ -743,7 +743,7 @@ void isAppear__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F19CC
  * Size:	0000A8
  */
-void isDisappear__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::isDisappear(void)
 {
 /*
 .loc_0x0:
@@ -805,7 +805,7 @@ void isDisappear__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1A74
  * Size:	0001E0
  */
-void setNextMoveInfo__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::setNextMoveInfo(void)
 {
 /*
 .loc_0x0:
@@ -947,7 +947,7 @@ void setNextMoveInfo__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1C54
  * Size:	00016C
  */
-void updateMoveState__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::updateMoveState(void)
 {
 /*
 .loc_0x0:
@@ -1076,7 +1076,7 @@ void updateMoveState__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1DC0
  * Size:	00002C
  */
-void resetMoveVelocity__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::resetMoveVelocity(void)
 {
 /*
 .loc_0x0:
@@ -1101,7 +1101,7 @@ void resetMoveVelocity__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1DEC
  * Size:	000078
  */
-void setNextWaitInfo__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::setNextWaitInfo(void)
 {
 /*
 .loc_0x0:
@@ -1143,7 +1143,7 @@ void setNextWaitInfo__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1E64
  * Size:	0000C4
  */
-void createDownEffect__Q34Game7Sokkuri3ObjFff(void)
+void Game::Sokkuri::Obj::createDownEffect( (float, float))
 {
 /*
 .loc_0x0:
@@ -1208,7 +1208,7 @@ void createDownEffect__Q34Game7Sokkuri3ObjFff(void)
  * Address:	802F1F28
  * Size:	0000C0
  */
-void createBubbleEffect__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::createBubbleEffect(void)
 {
 /*
 .loc_0x0:
@@ -1270,7 +1270,7 @@ void createBubbleEffect__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F1FE8
  * Size:	000048
  */
-void createEfxHamon__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::createEfxHamon(void)
 {
 /*
 .loc_0x0:
@@ -1302,7 +1302,7 @@ void createEfxHamon__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F2030
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1316,7 +1316,7 @@ void getDownSmokeScale__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F2038
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

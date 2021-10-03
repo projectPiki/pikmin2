@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000078
  */
-void setConstSetting__Q24Game10GameConfigFv(void)
+void Game::GameConfig::setConstSetting(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void setConstSetting__Q24Game10GameConfigFv(void)
  * Address:	80432170
  * Size:	000130
  */
-void __ct__Q24Game10GameConfigFv(void)
+void Game::GameConfig::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q24Game10GameConfigFv(void)
  * Address:	804322A0
  * Size:	000070
  */
-void __dt__Q34Game10GameConfig5ParmsFv(void)
+void Game::GameConfig::Parms::__dt(void)
 {
 /*
 .loc_0x0:
@@ -157,7 +157,7 @@ void __dt__Q34Game10GameConfig5ParmsFv(void)
  * Address:	80432310
  * Size:	000460
  */
-void __ct__Q34Game10GameConfig5ParmsFv(void)
+void Game::GameConfig::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -449,7 +449,7 @@ void __ct__Q34Game10GameConfig5ParmsFv(void)
  * Address:	80432770
  * Size:	000128
  */
-void load__Q24Game10GameConfigFPc(void)
+void Game::GameConfig::load( (char *))
 {
 /*
 .loc_0x0:
@@ -576,7 +576,7 @@ void __sinit_gameConfig_cpp(void)
  * Address:	804328D4
  * Size:	000074
  */
-void __dt__Q24Game10GameConfigFv(void)
+void Game::GameConfig::__dt(void)
 {
 /*
 .loc_0x0:

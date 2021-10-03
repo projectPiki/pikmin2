@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802EBCE0
  * Size:	000008
  */
-void setAnimMgr__Q34Game10MiniHoudai14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::MiniHoudai::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game10MiniHoudai14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802EBCE8
  * Size:	000008
  */
-void getAnimator__Q34Game10MiniHoudai14ProperAnimatorFi(void)
+void Game::MiniHoudai::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game10MiniHoudai14ProperAnimatorFi(void)
  * Address:	802EBCF0
  * Size:	00005C
  */
-void __dt__Q34Game10MiniHoudai14ProperAnimatorFv(void)
+void Game::MiniHoudai::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game10MiniHoudai14ProperAnimatorFv(void)
  * Address:	802EBD4C
  * Size:	000008
  */
-void getAnimator__Q34Game10MiniHoudai14ProperAnimatorFv(void)
+void Game::MiniHoudai::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

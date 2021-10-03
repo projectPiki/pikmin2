@@ -5,7 +5,7 @@
  * Address:	8030DA00
  * Size:	00000C
  */
-void initGround__Q22og9newScreenFv(void)
+void og::newScreen::initGround(void)
 {
 /*
 .loc_0x0:
@@ -20,7 +20,7 @@ void initGround__Q22og9newScreenFv(void)
  * Address:	8030DA0C
  * Size:	000054
  */
-void __ct__Q32og9newScreen6GroundFv(void)
+void og::newScreen::Ground::__ct(void)
 {
 /*
 .loc_0x0:
@@ -53,7 +53,7 @@ void __ct__Q32og9newScreen6GroundFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen6GroundFv(void)
+void og::newScreen::Ground::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -63,7 +63,7 @@ void __dt__Q32og9newScreen6GroundFv(void)
  * Address:	8030DA60
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen6GroundFPQ28Resource10MgrCommand(void)
+void og::newScreen::Ground::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -76,7 +76,7 @@ void doUserCallBackFunc__Q32og9newScreen6GroundFPQ28Resource10MgrCommand(void)
  * Address:	8030DA64
  * Size:	0000C0
  */
-void doCreateObj__Q32og9newScreen6GroundFP10JKRArchive(void)
+void og::newScreen::Ground::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -142,7 +142,7 @@ void doCreateObj__Q32og9newScreen6GroundFP10JKRArchive(void)
  * Address:	8030DB24
  * Size:	00004C
  */
-void doStart__Q32og9newScreen6GroundFPQ26Screen13StartSceneArg(void)
+void og::newScreen::Ground::doStart( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void doStart__Q32og9newScreen6GroundFPQ26Screen13StartSceneArg(void)
  * Address:	8030DB70
  * Size:	000310
  */
-void doUpdateActive__Q32og9newScreen6GroundFv(void)
+void og::newScreen::Ground::doUpdateActive(void)
 {
 /*
 .loc_0x0:
@@ -403,7 +403,7 @@ void doUpdateActive__Q32og9newScreen6GroundFv(void)
  * Address:	8030DE80
  * Size:	00000C
  */
-void getResName__Q32og9newScreen6GroundCFv(void)
+void og::newScreen::Ground::getResName( const
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void getResName__Q32og9newScreen6GroundCFv(void)
  * Address:	8030DE8C
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen6GroundFv(void)
+void og::newScreen::Ground::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -432,7 +432,7 @@ void getSceneType__Q32og9newScreen6GroundFv(void)
  * Address:	8030DE94
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen6GroundFv(void)
+void og::newScreen::Ground::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -447,7 +447,7 @@ void getOwnerID__Q32og9newScreen6GroundFv(void)
  * Address:	8030DEA0
  * Size:	000010
  */
-void getMemberID__Q32og9newScreen6GroundFv(void)
+void og::newScreen::Ground::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void getMemberID__Q32og9newScreen6GroundFv(void)
  * Address:	8030DEB0
  * Size:	000008
  */
-void isDrawInDemo__Q32og9newScreen6GroundCFv(void)
+void og::newScreen::Ground::isDrawInDemo( const
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025D898
  * Size:	000050
  */
-void __ct__Q34Game6Kogane3MgrFiUc(void)
+void Game::Kogane::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game6Kogane3MgrFiUc(void)
  * Address:	8025D8E8
  * Size:	0000E8
  */
-void loadModelData__Q34Game6Kogane3MgrFv(void)
+void Game::Kogane::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -127,7 +127,7 @@ void loadModelData__Q34Game6Kogane3MgrFv(void)
  * Address:	8025D9D0
  * Size:	0000A0
  */
-void loadAnimData__Q34Game6Kogane3MgrFv(void)
+void Game::Kogane::Mgr::loadAnimData(void)
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void loadAnimData__Q34Game6Kogane3MgrFv(void)
  * Address:	8025DA70
  * Size:	000130
  */
-void createModel__Q34Game6Kogane3MgrFv(void)
+void Game::Kogane::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -283,7 +283,7 @@ void createModel__Q34Game6Kogane3MgrFv(void)
  * Address:	8025DBA0
  * Size:	0000B0
  */
-void __dt__Q34Game6Kogane3MgrFv(void)
+void Game::Kogane::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void __dt__Q34Game6Kogane3MgrFv(void)
  * Address:	8025DC50
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Kogane3MgrFv(void)
+void Game::Kogane::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void getEnemyTypeID__Q34Game6Kogane3MgrFv(void)
  * Address:	8025DC58
  * Size:	00002C
  */
-void doLoadBmd__Q34Game6Kogane3MgrFPv(void)
+void Game::Kogane::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -380,7 +380,7 @@ void doLoadBmd__Q34Game6Kogane3MgrFPv(void)
  * Address:	8025DC84
  * Size:	000008
  */
-void @4@__dt__Q34Game6Kogane3MgrFv(void)
+void @4@Game::Kogane::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

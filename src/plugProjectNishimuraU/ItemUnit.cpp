@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8024E170
  * Size:	00006C
  */
-void __ct__Q34Game4Cave8ItemNodeFv(void)
+void Game::Cave::ItemNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -54,7 +54,7 @@ void __ct__Q34Game4Cave8ItemNodeFv(void)
  * Address:	8024E1DC
  * Size:	00008C
  */
-void __ct__Q34Game4Cave8ItemNodeFPQ34Game4Cave8ItemUnitPQ34Game4Cave7BaseGeni(void)
+void Game::Cave::ItemNode::__ct( (Game::Cave::ItemUnit *, Game::Cave::BaseGen *, int))
 {
 /*
 .loc_0x0:
@@ -101,7 +101,7 @@ void __ct__Q34Game4Cave8ItemNodeFPQ34Game4Cave8ItemUnitPQ34Game4Cave7BaseGeni(vo
  * Address:	8024E268
  * Size:	000068
  */
-void makeGlobalData__Q34Game4Cave8ItemNodeFPQ34Game4Cave7MapNode(void)
+void Game::Cave::ItemNode::makeGlobalData( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -139,7 +139,7 @@ void makeGlobalData__Q34Game4Cave8ItemNodeFPQ34Game4Cave7MapNode(void)
  * Address:	8024E2D0
  * Size:	000020
  */
-void getObjectId__Q34Game4Cave8ItemNodeFv(void)
+void Game::Cave::ItemNode::getObjectId(void)
 {
 /*
 .loc_0x0:
@@ -161,7 +161,7 @@ void getObjectId__Q34Game4Cave8ItemNodeFv(void)
  * Address:	8024E2F0
  * Size:	000008
  */
-void getObjectType__Q34Game4Cave8ItemNodeFv(void)
+void Game::Cave::ItemNode::getObjectType(void)
 {
 /*
 .loc_0x0:
@@ -175,7 +175,7 @@ void getObjectType__Q34Game4Cave8ItemNodeFv(void)
  * Address:	8024E2F8
  * Size:	000008
  */
-void getBirthCount__Q34Game4Cave8ItemNodeFv(void)
+void Game::Cave::ItemNode::getBirthCount(void)
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void getBirthCount__Q34Game4Cave8ItemNodeFv(void)
  * Address:	8024E300
  * Size:	000014
  */
-void getBirthPosition__Q34Game4Cave8ItemNodeFRfRf(void)
+void Game::Cave::ItemNode::getBirthPosition( (float &, float &))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void getBirthPosition__Q34Game4Cave8ItemNodeFRfRf(void)
  * Address:	8024E314
  * Size:	000008
  */
-void getDirection__Q34Game4Cave8ItemNodeFv(void)
+void Game::Cave::ItemNode::getDirection(void)
 {
 /*
 .loc_0x0:
@@ -220,7 +220,7 @@ void getDirection__Q34Game4Cave8ItemNodeFv(void)
  * Address:	8024E31C
  * Size:	000070
  */
-void __dt__Q34Game4Cave8ItemNodeFv(void)
+void Game::Cave::ItemNode::__dt(void)
 {
 /*
 .loc_0x0:

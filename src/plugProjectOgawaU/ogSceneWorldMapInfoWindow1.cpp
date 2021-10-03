@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8032C208
  * Size:	00003C
  */
-void __ct__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
+void og::newScreen::WorldMapInfoWindow1::__ct(void)
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
  * Address:	........
  * Size:	000060
  */
-void __dt__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
+void og::newScreen::WorldMapInfoWindow1::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void __dt__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
  * Address:	8032C244
  * Size:	0000A4
  */
-void doCreateObj__Q32og9newScreen19WorldMapInfoWindow1FP10JKRArchive(void)
+void og::newScreen::WorldMapInfoWindow1::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void doCreateObj__Q32og9newScreen19WorldMapInfoWindow1FP10JKRArchive(void)
  * Address:	8032C2E8
  * Size:	000008
  */
-void doConfirmSetScene__Q32og9newScreen19WorldMapInfoWindow1FRQ26Screen11SetSceneArg(void)
+void og::newScreen::WorldMapInfoWindow1::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -123,7 +123,7 @@ void doConfirmSetScene__Q32og9newScreen19WorldMapInfoWindow1FRQ26Screen11SetScen
  * Address:	8032C2F0
  * Size:	000064
  */
-void doGetFinishState__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
+void og::newScreen::WorldMapInfoWindow1::doGetFinishState(void)
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void doGetFinishState__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
  * Address:	8032C354
  * Size:	00000C
  */
-void getResName__Q32og9newScreen19WorldMapInfoWindow1CFv(void)
+void og::newScreen::WorldMapInfoWindow1::getResName( const
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void getResName__Q32og9newScreen19WorldMapInfoWindow1CFv(void)
  * Address:	8032C360
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
+void og::newScreen::WorldMapInfoWindow1::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void getSceneType__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
  * Address:	8032C368
  * Size:	000014
  */
-void getMemberID__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
+void og::newScreen::WorldMapInfoWindow1::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void getMemberID__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
  * Address:	8032C37C
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen19WorldMapInfoWindow1Fv(void)
+void og::newScreen::WorldMapInfoWindow1::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

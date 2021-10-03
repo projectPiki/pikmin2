@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803A3644
  * Size:	000050
  */
-void __ct__Q28Morimura17TConfirmEndWindowFPCc(void)
+void Morimura::TConfirmEndWindow::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q28Morimura17TConfirmEndWindowFPCc(void)
  * Address:	803A3694
  * Size:	000040
  */
-void doStart__Q28Morimura17TConfirmEndWindowFPCQ26Screen13StartSceneArg(void)
+void Morimura::TConfirmEndWindow::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -75,7 +75,7 @@ void doStart__Q28Morimura17TConfirmEndWindowFPCQ26Screen13StartSceneArg(void)
  * Address:	803A36D4
  * Size:	000054
  */
-void doUpdateFadeinFinish__Q28Morimura17TConfirmEndWindowFv(void)
+void Morimura::TConfirmEndWindow::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void doUpdateFadeinFinish__Q28Morimura17TConfirmEndWindowFv(void)
  * Address:	803A3728
  * Size:	000020
  */
-void doUpdateFadein__Q28Morimura17TConfirmEndWindowFv(void)
+void Morimura::TConfirmEndWindow::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -128,7 +128,7 @@ void doUpdateFadein__Q28Morimura17TConfirmEndWindowFv(void)
  * Address:	803A3748
  * Size:	000040
  */
-void doUpdateFadeoutFinish__Q28Morimura17TConfirmEndWindowFv(void)
+void Morimura::TConfirmEndWindow::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -156,7 +156,7 @@ void doUpdateFadeoutFinish__Q28Morimura17TConfirmEndWindowFv(void)
  * Address:	803A3788
  * Size:	000028
  */
-void doUpdateFadeout__Q28Morimura17TConfirmEndWindowFv(void)
+void Morimura::TConfirmEndWindow::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void doUpdateFadeout__Q28Morimura17TConfirmEndWindowFv(void)
  * Address:	803A37B0
  * Size:	000038
  */
-void doDraw__Q28Morimura17TConfirmEndWindowFR8Graphics(void)
+void Morimura::TConfirmEndWindow::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void doDraw__Q28Morimura17TConfirmEndWindowFR8Graphics(void)
  * Address:	803A37E8
  * Size:	000024
  */
-void setRetireMsg__Q28Morimura17TConfirmEndWindowFUx(void)
+void Morimura::TConfirmEndWindow::setRetireMsg( (unsigned long long))
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void setRetireMsg__Q28Morimura17TConfirmEndWindowFUx(void)
  * Address:	803A380C
  * Size:	000074
  */
-void __ct__Q28Morimura24TSelectExplanationWindowFP10JKRArchivei(void)
+void Morimura::TSelectExplanationWindow::__ct( (JKRArchive *, int))
 {
 /*
 .loc_0x0:
@@ -272,7 +272,7 @@ void __ct__Q28Morimura24TSelectExplanationWindowFP10JKRArchivei(void)
  * Address:	803A3880
  * Size:	000194
  */
-void update__Q28Morimura24TSelectExplanationWindowFv(void)
+void Morimura::TSelectExplanationWindow::update(void)
 {
 /*
 .loc_0x0:
@@ -401,7 +401,7 @@ void update__Q28Morimura24TSelectExplanationWindowFv(void)
  * Address:	803A3A14
  * Size:	00002C
  */
-void draw__Q28Morimura24TSelectExplanationWindowFR8GraphicsP13J2DPerspGraph(void)
+void Morimura::TSelectExplanationWindow::draw( (Graphics &, J2DPerspGraph *))
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void draw__Q28Morimura24TSelectExplanationWindowFR8GraphicsP13J2DPerspGraph(void
  * Address:	803A3A40
  * Size:	000014
  */
-void openWindow__Q28Morimura24TSelectExplanationWindowFv(void)
+void Morimura::TSelectExplanationWindow::openWindow(void)
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void openWindow__Q28Morimura24TSelectExplanationWindowFv(void)
  * Address:	803A3A54
  * Size:	000014
  */
-void closeWindow__Q28Morimura24TSelectExplanationWindowFv(void)
+void Morimura::TSelectExplanationWindow::closeWindow(void)
 {
 /*
 .loc_0x0:
@@ -460,7 +460,7 @@ void closeWindow__Q28Morimura24TSelectExplanationWindowFv(void)
  * Address:	803A3A68
  * Size:	000080
  */
-void __dt__Q28Morimura17TConfirmEndWindowFv(void)
+void Morimura::TConfirmEndWindow::__dt(void)
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void __dt__Q28Morimura17TConfirmEndWindowFv(void)
  * Address:	803A3AE8
  * Size:	000008
  */
-void @24@__dt__Q28Morimura17TConfirmEndWindowFv(void)
+void @24@Morimura::TConfirmEndWindow::__dt(void)
 {
 /*
 .loc_0x0:

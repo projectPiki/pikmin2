@@ -5,7 +5,7 @@
  * Address:	8032CD30
  * Size:	000044
  */
-void __ct__Q32og9newScreen13ChallengeBaseFv(void)
+void og::newScreen::ChallengeBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q32og9newScreen13ChallengeBaseFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen13ChallengeBaseFv(void)
+void og::newScreen::ChallengeBase::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -44,7 +44,7 @@ void __dt__Q32og9newScreen13ChallengeBaseFv(void)
  * Address:	8032CD74
  * Size:	0000A4
  */
-void updateCountDown__Q32og9newScreen13ChallengeBaseFfPQ32og6Screen21DispMemberDayEndCount(void)
+void og::newScreen::ChallengeBase::updateCountDown( (float, og::Screen::DispMemberDayEndCount *))
 {
 /*
 .loc_0x0:

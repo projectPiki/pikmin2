@@ -5,7 +5,7 @@
  * Address:	80309614
  * Size:	000098
  */
-void __ct__Q32og6Screen16CallBack_MessageFv(void)
+void og::Screen::CallBack_Message::__ct(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void __ct__Q32og6Screen16CallBack_MessageFv(void)
  * Address:	........
  * Size:	000134
  */
-void drawInfo__Q32og6Screen16CallBack_MessageFR14J2DGrafContext(void)
+void og::Screen::CallBack_Message::drawInfo( (J2DGrafContext &))
 {
 	// UNUSED FUNCTION
 }
@@ -65,7 +65,7 @@ void drawInfo__Q32og6Screen16CallBack_MessageFR14J2DGrafContext(void)
  * Address:	803096AC
  * Size:	0001B4
  */
-void draw__Q32og6Screen16CallBack_MessageFR8GraphicsR14J2DGrafContext(void)
+void og::Screen::CallBack_Message::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -198,7 +198,7 @@ void draw__Q32og6Screen16CallBack_MessageFR8GraphicsR14J2DGrafContext(void)
  * Address:	........
  * Size:	0000E4
  */
-void __ct__Q32og6Screen25CallBack_MessageAndShadowFffP7J2DPane(void)
+void og::Screen::CallBack_MessageAndShadow::__ct( (float, float, J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -208,7 +208,7 @@ void __ct__Q32og6Screen25CallBack_MessageAndShadowFffP7J2DPane(void)
  * Address:	80309860
  * Size:	000080
  */
-void __dt__Q32og6Screen16CallBack_MessageFv(void)
+void og::Screen::CallBack_Message::__dt(void)
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void __dt__Q32og6Screen16CallBack_MessageFv(void)
  * Address:	........
  * Size:	0001DC
  */
-void draw__Q32og6Screen25CallBack_MessageAndShadowFR8GraphicsR14J2DGrafContext(void)
+void og::Screen::CallBack_MessageAndShadow::draw( (Graphics &, J2DGrafContext &))
 {
 	// UNUSED FUNCTION
 }
@@ -266,7 +266,7 @@ void draw__Q32og6Screen25CallBack_MessageAndShadowFR8GraphicsR14J2DGrafContext(v
  * Address:	........
  * Size:	0003C4
  */
-void MessageSetInfoShadow__Q22og6ScreenFP7J2DPanePQ25P2JME19TRenderingProcessorP7J2DPane(void)
+void og::Screen::MessageSetInfoShadow( (J2DPane *, P2JME::TRenderingProcessor *, J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -276,7 +276,7 @@ void MessageSetInfoShadow__Q22og6ScreenFP7J2DPanePQ25P2JME19TRenderingProcessorP
  * Address:	803098E0
  * Size:	000194
  */
-void checkVisibleGlb__Q22og6ScreenFP7J2DPane(void)
+void og::Screen::checkVisibleGlb( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void J2DPane::isVisible() const
  * Address:	80309A7C
  * Size:	00031C
  */
-void setCallBackMessageSub__Q22og6ScreenFPQ29P2DScreen3MgrP7J2DPane(void)
+void og::Screen::setCallBackMessageSub( (P2DScreen::Mgr *, J2DPane *))
 {
 /*
 .loc_0x0:
@@ -696,7 +696,7 @@ void J2DPane::getUserInfo() const
  * Address:	80309DA8
  * Size:	000008
  */
-void getMsgPtr__Q22og5Lib2DFv(void)
+void og::Lib2D::getMsgPtr(void)
 {
 /*
 .loc_0x0:
@@ -710,7 +710,7 @@ void getMsgPtr__Q22og5Lib2DFv(void)
  * Address:	80309DB0
  * Size:	000050
  */
-void __ct__Q29P2DScreen12CallBackNodeFv(void)
+void P2DScreen::CallBackNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -742,7 +742,7 @@ void __ct__Q29P2DScreen12CallBackNodeFv(void)
  * Address:	80309E00
  * Size:	000024
  */
-void setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr(void)
+void og::Screen::setCallBackMessage( (P2DScreen::Mgr *))
 {
 /*
 .loc_0x0:
@@ -763,7 +763,7 @@ void setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr(void)
  * Address:	........
  * Size:	0003DC
  */
-void setCallBackMessageAndShadowSub__Q22og6ScreenFPQ29P2DScreen3MgrP7J2DPaneffP7J2DPaneUxUx(void)
+void og::Screen::setCallBackMessageAndShadowSub( (P2DScreen::Mgr *, J2DPane *, float, float, J2DPane *, unsigned long long, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -773,7 +773,7 @@ void setCallBackMessageAndShadowSub__Q22og6ScreenFPQ29P2DScreen3MgrP7J2DPaneffP7
  * Address:	........
  * Size:	000038
  */
-void setCallBackMessageAndShadow__Q22og6ScreenFPQ29P2DScreen3MgrffP7J2DPaneUxUx(void)
+void og::Screen::setCallBackMessageAndShadow( (P2DScreen::Mgr *, float, float, J2DPane *, unsigned long long, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -783,7 +783,7 @@ void setCallBackMessageAndShadow__Q22og6ScreenFPQ29P2DScreen3MgrffP7J2DPaneUxUx(
  * Address:	........
  * Size:	000090
  */
-void __dt__Q32og6Screen25CallBack_MessageAndShadowFv(void)
+void og::Screen::CallBack_MessageAndShadow::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -793,7 +793,7 @@ void __dt__Q32og6Screen25CallBack_MessageAndShadowFv(void)
  * Address:	80309E24
  * Size:	000004
  */
-void update__Q32og6Screen16CallBack_MessageFv(void)
+void og::Screen::CallBack_Message::update(void)
 {
 /*
 .loc_0x0:

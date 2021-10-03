@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8043E1D8
  * Size:	0000C4
  */
-void __ct__Q28SysShape5ModelFP12J3DModelDataUlUl(void)
+void SysShape::Model::__ct( (J3DModelData *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -78,7 +78,7 @@ void __ct__Q28SysShape5ModelFP12J3DModelDataUlUl(void)
  * Address:	8043E29C
  * Size:	00017C
  */
-void enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai(void)
+void SysShape::Model::enableMaterialAnim( (J3DModelData *, int))
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai(void)
  * Address:	8043E418
  * Size:	000174
  */
-void enableMaterialAnim__Q28SysShape5ModelFi(void)
+void SysShape::Model::enableMaterialAnim( (int))
 {
 /*
 .loc_0x0:
@@ -314,7 +314,7 @@ void enableMaterialAnim__Q28SysShape5ModelFi(void)
  * Address:	8043E58C
  * Size:	000048
  */
-void getMatrix__Q28SysShape5ModelFi(void)
+void SysShape::Model::getMatrix( (int))
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void getMatrix__Q28SysShape5ModelFi(void)
  * Address:	8043E5D4
  * Size:	00015C
  */
-void getRoughBoundingRadius__Q28SysShape5ModelFv(void)
+void SysShape::Model::getRoughBoundingRadius(void)
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void getRoughBoundingRadius__Q28SysShape5ModelFv(void)
  * Address:	8043E730
  * Size:	000174
  */
-void getRoughCenter__Q28SysShape5ModelFv(void)
+void SysShape::Model::getRoughCenter(void)
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void getRoughCenter__Q28SysShape5ModelFv(void)
  * Address:	........
  * Size:	0000A4
  */
-void entry__Q28SysShape5ModelFRQ23Sys6Sphere(void)
+void SysShape::Model::entry( (Sys::Sphere &))
 {
 	// UNUSED FUNCTION
 }
@@ -606,7 +606,7 @@ void entry__Q28SysShape5ModelFRQ23Sys6Sphere(void)
  * Address:	8043E8A4
  * Size:	000098
  */
-void isVisible__Q28SysShape5ModelFRQ23Sys6Sphere(void)
+void SysShape::Model::isVisible( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -664,7 +664,7 @@ void isVisible__Q28SysShape5ModelFRQ23Sys6Sphere(void)
  * Address:	8043E93C
  * Size:	000080
  */
-void jointVisible__Q28SysShape5ModelFbi(void)
+void SysShape::Model::jointVisible( (bool, int))
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void jointVisible__Q28SysShape5ModelFbi(void)
  * Address:	8043E9BC
  * Size:	000058
  */
-void hide__Q28SysShape5ModelFv(void)
+void SysShape::Model::hide(void)
 {
 /*
 .loc_0x0:
@@ -760,7 +760,7 @@ void hide__Q28SysShape5ModelFv(void)
  * Address:	8043EA14
  * Size:	000058
  */
-void show__Q28SysShape5ModelFv(void)
+void SysShape::Model::show(void)
 {
 /*
 .loc_0x0:
@@ -802,7 +802,7 @@ void show__Q28SysShape5ModelFv(void)
  * Address:	8043EA6C
  * Size:	000044
  */
-void hidePackets__Q28SysShape5ModelFv(void)
+void SysShape::Model::hidePackets(void)
 {
 /*
 .loc_0x0:
@@ -835,7 +835,7 @@ void hidePackets__Q28SysShape5ModelFv(void)
  * Address:	8043EAB0
  * Size:	000044
  */
-void showPackets__Q28SysShape5ModelFv(void)
+void SysShape::Model::showPackets(void)
 {
 /*
 .loc_0x0:
@@ -868,7 +868,7 @@ void showPackets__Q28SysShape5ModelFv(void)
  * Address:	8043EAF4
  * Size:	0000BC
  */
-void initJoints__Q28SysShape5ModelFv(void)
+void SysShape::Model::initJoints(void)
 {
 /*
 .loc_0x0:
@@ -931,7 +931,7 @@ void initJoints__Q28SysShape5ModelFv(void)
  * Address:	8043EBB0
  * Size:	000060
  */
-void __dt__Q28SysShape5JointFv(void)
+void SysShape::Joint::__dt(void)
 {
 /*
 .loc_0x0:
@@ -969,7 +969,7 @@ void __dt__Q28SysShape5JointFv(void)
  * Address:	8043EC10
  * Size:	00005C
  */
-void __ct__Q28SysShape5JointFv(void)
+void SysShape::Joint::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1004,7 +1004,7 @@ void __ct__Q28SysShape5JointFv(void)
  * Address:	8043EC6C
  * Size:	000330
  */
-void initJointsRec__Q28SysShape5ModelFiPQ28SysShape5Joint(void)
+void SysShape::Model::initJointsRec( (int, SysShape::Joint *))
 {
 /*
 .loc_0x0:
@@ -1280,7 +1280,7 @@ void J3DJoint::getChild()
  * Address:	8043EFB4
  * Size:	000030
  */
-void getJointIndex__Q28SysShape5ModelFPc(void)
+void SysShape::Model::getJointIndex( (char *))
 {
 /*
 .loc_0x0:
@@ -1304,7 +1304,7 @@ void getJointIndex__Q28SysShape5ModelFPc(void)
  * Address:	8043EFE4
  * Size:	00005C
  */
-void getJoint__Q28SysShape5ModelFPc(void)
+void SysShape::Model::getJoint( (char *))
 {
 /*
 .loc_0x0:
@@ -1343,7 +1343,7 @@ void getJoint__Q28SysShape5ModelFPc(void)
  * Address:	........
  * Size:	000050
  */
-void update__Q28SysShape5ModelFv(void)
+void SysShape::Model::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1353,7 +1353,7 @@ void update__Q28SysShape5ModelFv(void)
  * Address:	8043F040
  * Size:	00000C
  */
-void setViewCalcModeImm__Q28SysShape5ModelFv(void)
+void SysShape::Model::setViewCalcModeImm(void)
 {
 /*
 .loc_0x0:
@@ -1368,7 +1368,7 @@ void setViewCalcModeImm__Q28SysShape5ModelFv(void)
  * Address:	8043F04C
  * Size:	00000C
  */
-void setViewCalcModeInd__Q28SysShape5ModelFv(void)
+void SysShape::Model::setViewCalcModeInd(void)
 {
 /*
 .loc_0x0:
@@ -1383,7 +1383,7 @@ void setViewCalcModeInd__Q28SysShape5ModelFv(void)
  * Address:	........
  * Size:	000040
  */
-void needViewCalc__Q28SysShape5ModelFv(void)
+void SysShape::Model::needViewCalc(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1393,7 +1393,7 @@ void needViewCalc__Q28SysShape5ModelFv(void)
  * Address:	8043F058
  * Size:	000068
  */
-void viewCalc__Q28SysShape5ModelFv(void)
+void SysShape::Model::viewCalc(void)
 {
 /*
 .loc_0x0:
@@ -1437,7 +1437,7 @@ void viewCalc__Q28SysShape5ModelFv(void)
  * Address:	8043F0C0
  * Size:	00004C
  */
-void setCurrentViewNo__Q28SysShape5ModelFUl(void)
+void SysShape::Model::setCurrentViewNo( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1472,7 +1472,7 @@ void setCurrentViewNo__Q28SysShape5ModelFUl(void)
  * Address:	8043F10C
  * Size:	000014
  */
-void isMtxImmediate__Q28SysShape5ModelFv(void)
+void SysShape::Model::isMtxImmediate(void)
 {
 /*
 .loc_0x0:
@@ -1489,7 +1489,7 @@ void isMtxImmediate__Q28SysShape5ModelFv(void)
  * Address:	8043F120
  * Size:	000008
  */
-void isModel__Q28SysShape5ModelFv(void)
+void SysShape::Model::isModel(void)
 {
 /*
 .loc_0x0:
@@ -1503,7 +1503,7 @@ void isModel__Q28SysShape5ModelFv(void)
  * Address:	8043F128
  * Size:	000008
  */
-void isVisible__Q28SysShape5ModelFv(void)
+void SysShape::Model::isVisible(void)
 {
 /*
 .loc_0x0:
@@ -1517,7 +1517,7 @@ void isVisible__Q28SysShape5ModelFv(void)
  * Address:	8043F130
  * Size:	000030
  */
-void jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint(void)
+void SysShape::Model::jointVisible( (bool, SysShape::Joint *))
 {
 /*
 .loc_0x0:

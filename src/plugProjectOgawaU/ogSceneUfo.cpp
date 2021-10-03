@@ -5,7 +5,7 @@
  * Address:	803248F4
  * Size:	00003C
  */
-void __ct__Q32og9newScreen7UfoMenuFv(void)
+void og::newScreen::UfoMenu::__ct(void)
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void __ct__Q32og9newScreen7UfoMenuFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen7UfoMenuFv(void)
+void og::newScreen::UfoMenu::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,7 +42,7 @@ void __dt__Q32og9newScreen7UfoMenuFv(void)
  * Address:	80324930
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen7UfoMenuFPQ28Resource10MgrCommand(void)
+void og::newScreen::UfoMenu::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void doUserCallBackFunc__Q32og9newScreen7UfoMenuFPQ28Resource10MgrCommand(void)
  * Address:	80324934
  * Size:	000078
  */
-void doCreateObj__Q32og9newScreen7UfoMenuFP10JKRArchive(void)
+void og::newScreen::UfoMenu::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -99,7 +99,7 @@ void doCreateObj__Q32og9newScreen7UfoMenuFP10JKRArchive(void)
  * Address:	803249AC
  * Size:	000060
  */
-void doConfirmSetScene__Q32og9newScreen7UfoMenuFRQ26Screen11SetSceneArg(void)
+void og::newScreen::UfoMenu::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void doConfirmSetScene__Q32og9newScreen7UfoMenuFRQ26Screen11SetSceneArg(void)
  * Address:	80324A0C
  * Size:	00000C
  */
-void doSetBackupScene__Q32og9newScreen7UfoMenuFRQ26Screen11SetSceneArg(void)
+void og::newScreen::UfoMenu::doSetBackupScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -156,7 +156,7 @@ void doSetBackupScene__Q32og9newScreen7UfoMenuFRQ26Screen11SetSceneArg(void)
  * Address:	80324A18
  * Size:	00000C
  */
-void getResName__Q32og9newScreen7UfoMenuCFv(void)
+void og::newScreen::UfoMenu::getResName( const
 {
 /*
 .loc_0x0:
@@ -171,7 +171,7 @@ void getResName__Q32og9newScreen7UfoMenuCFv(void)
  * Address:	80324A24
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen7UfoMenuFv(void)
+void og::newScreen::UfoMenu::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void getSceneType__Q32og9newScreen7UfoMenuFv(void)
  * Address:	80324A2C
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen7UfoMenuFv(void)
+void og::newScreen::UfoMenu::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void getOwnerID__Q32og9newScreen7UfoMenuFv(void)
  * Address:	80324A38
  * Size:	000014
  */
-void getMemberID__Q32og9newScreen7UfoMenuFv(void)
+void og::newScreen::UfoMenu::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -217,7 +217,7 @@ void getMemberID__Q32og9newScreen7UfoMenuFv(void)
  * Address:	80324A4C
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen7UfoMenuFv(void)
+void og::newScreen::UfoMenu::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

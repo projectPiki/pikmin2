@@ -871,7 +871,7 @@ void Camera::getLookAtPosition_()
  * Address:	8041AB68
  * Size:	000008
  */
-void isRunning__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::isRunning(void)
 {
 /*
 .loc_0x0:

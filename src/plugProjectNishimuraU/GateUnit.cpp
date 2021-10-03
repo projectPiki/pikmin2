@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8024FCC8
  * Size:	00005C
  */
-void __ct__Q34Game4Cave8GateNodeFv(void)
+void Game::Cave::GateNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -50,7 +50,7 @@ void __ct__Q34Game4Cave8GateNodeFv(void)
  * Address:	8024FD24
  * Size:	00009C
  */
-void __ct__Q34Game4Cave8GateNodeFPQ34Game4Cave8GateUnitii(void)
+void Game::Cave::GateNode::__ct( (Game::Cave::GateUnit *, int, int))
 {
 /*
 .loc_0x0:
@@ -101,7 +101,7 @@ void __ct__Q34Game4Cave8GateNodeFPQ34Game4Cave8GateUnitii(void)
  * Address:	8024FDC0
  * Size:	000020
  */
-void getObjectId__Q34Game4Cave8GateNodeFv(void)
+void Game::Cave::GateNode::getObjectId(void)
 {
 /*
 .loc_0x0:
@@ -123,7 +123,7 @@ void getObjectId__Q34Game4Cave8GateNodeFv(void)
  * Address:	8024FDE0
  * Size:	000008
  */
-void getObjectType__Q34Game4Cave8GateNodeFv(void)
+void Game::Cave::GateNode::getObjectType(void)
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void getObjectType__Q34Game4Cave8GateNodeFv(void)
  * Address:	8024FDE8
  * Size:	000008
  */
-void getBirthCount__Q34Game4Cave8GateNodeFv(void)
+void Game::Cave::GateNode::getBirthCount(void)
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void getBirthCount__Q34Game4Cave8GateNodeFv(void)
  * Address:	8024FDF0
  * Size:	000008
  */
-void getDirection__Q34Game4Cave8GateNodeFv(void)
+void Game::Cave::GateNode::getDirection(void)
 {
 /*
 .loc_0x0:
@@ -165,7 +165,7 @@ void getDirection__Q34Game4Cave8GateNodeFv(void)
  * Address:	8024FDF8
  * Size:	000008
  */
-void getBirthDoorIndex__Q34Game4Cave8GateNodeFv(void)
+void Game::Cave::GateNode::getBirthDoorIndex(void)
 {
 /*
 .loc_0x0:
@@ -179,7 +179,7 @@ void getBirthDoorIndex__Q34Game4Cave8GateNodeFv(void)
  * Address:	8024FE00
  * Size:	000070
  */
-void __dt__Q34Game4Cave8GateNodeFv(void)
+void Game::Cave::GateNode::__dt(void)
 {
 /*
 .loc_0x0:

@@ -5,7 +5,7 @@
  * Address:	80309E28
  * Size:	0001E8
  */
-void __ct__Q32og6Screen7MenuMgrFv(void)
+void og::Screen::MenuMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void __ct__Q32og6Screen7MenuMgrFv(void)
  * Address:	8030A010
  * Size:	000084
  */
-void __dt__Q25efx2d9TChasePosFv(void)
+void efx2d::TChasePos::__dt(void)
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void __dt__Q25efx2d9TChasePosFv(void)
  * Address:	8030A094
  * Size:	00006C
  */
-void __dt__Q25efx2d8TForeverFv(void)
+void efx2d::TForever::__dt(void)
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void __dt__Q25efx2d8TForeverFv(void)
  * Address:	8030A100
  * Size:	000094
  */
-void startCursor__Q32og6Screen7MenuMgrFf(void)
+void og::Screen::MenuMgr::startCursor( (float))
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void startCursor__Q32og6Screen7MenuMgrFf(void)
  * Address:	8030A194
  * Size:	000070
  */
-void killCursor__Q32og6Screen7MenuMgrFv(void)
+void og::Screen::MenuMgr::killCursor(void)
 {
 /*
 .loc_0x0:
@@ -332,7 +332,7 @@ void killCursor__Q32og6Screen7MenuMgrFv(void)
  * Address:	........
  * Size:	00004C
  */
-void initCommon__Q32og6Screen7MenuMgrFv(void)
+void og::Screen::MenuMgr::initCommon(void)
 {
 	// UNUSED FUNCTION
 }
@@ -342,7 +342,7 @@ void initCommon__Q32og6Screen7MenuMgrFv(void)
  * Address:	........
  * Size:	0002F4
  */
-void initSub__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUx(void)
+void og::Screen::MenuMgr::initSub( (J2DScreen *, unsigned short, unsigned long long, unsigned long long, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -352,7 +352,7 @@ void initSub__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUx(void)
  * Address:	8030A204
  * Size:	00021C
  */
-void init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx(void)
+void og::Screen::MenuMgr::init2taku( (J2DScreen *, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -499,7 +499,7 @@ void init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx(void)
  * Address:	8030A420
  * Size:	00021C
  */
-void init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx(void)
+void og::Screen::MenuMgr::init2takuTitle( (J2DScreen *, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -646,7 +646,7 @@ void init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx(void)
  * Address:	........
  * Size:	0002F0
  */
-void init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUx(void)
+void og::Screen::MenuMgr::init( (J2DScreen *, unsigned short, unsigned long long, unsigned long long, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -656,7 +656,7 @@ void init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUx(void)
  * Address:	8030A63C
  * Size:	000494
  */
-void init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUxUxUx(void)
+void og::Screen::MenuMgr::init( (J2DScreen *, unsigned short, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -973,7 +973,7 @@ void init__Q32og6Screen7MenuMgrFP9J2DScreenUsUxUxUxUxUx(void)
  * Address:	8030AAD0
  * Size:	000090
  */
-void selectSub__Q32og6Screen7MenuMgrFUs(void)
+void og::Screen::MenuMgr::selectSub( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -1025,7 +1025,7 @@ void selectSub__Q32og6Screen7MenuMgrFUs(void)
  * Address:	8030AB60
  * Size:	000098
  */
-void select__Q32og6Screen7MenuMgrFUs(void)
+void og::Screen::MenuMgr::select( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -1079,7 +1079,7 @@ void select__Q32og6Screen7MenuMgrFUs(void)
  * Address:	8030ABF8
  * Size:	000014
  */
-void initSelNum__Q32og6Screen7MenuMgrFUs(void)
+void og::Screen::MenuMgr::initSelNum( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -1116,7 +1116,7 @@ void calcPoint__Q32og6Screen7MenuMgrFR10Vector2<float>R10Vector2<float>fP10Vecto
  * Address:	8030AC0C
  * Size:	000580
  */
-void update__Q32og6Screen7MenuMgrFv(void)
+void og::Screen::MenuMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -1506,7 +1506,7 @@ void update__Q32og6Screen7MenuMgrFv(void)
  * Address:	8030B18C
  * Size:	0000EC
  */
-void draw__Q32og6Screen7MenuMgrFP14J2DGrafContext(void)
+void og::Screen::MenuMgr::draw( (J2DGrafContext *))
 {
 /*
 .loc_0x0:
@@ -1587,7 +1587,7 @@ void draw__Q32og6Screen7MenuMgrFP14J2DGrafContext(void)
  * Address:	8030B278
  * Size:	0000F8
  */
-void MenuOnOff__Q32og6Screen7MenuMgrFv(void)
+void og::Screen::MenuMgr::MenuOnOff(void)
 {
 /*
 .loc_0x0:

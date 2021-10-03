@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80383100
  * Size:	000038
  */
-void eyeScaleCallBack__Q24Game8UmiMushiFP8J3DJointi(void)
+void Game::UmiMushi::eyeScaleCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void eyeScaleCallBack__Q24Game8UmiMushiFP8J3DJointi(void)
  * Address:	80383138
  * Size:	000038
  */
-void weakScaleCallBack__Q24Game8UmiMushiFP8J3DJointi(void)
+void Game::UmiMushi::weakScaleCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -71,7 +71,7 @@ void weakScaleCallBack__Q24Game8UmiMushiFP8J3DJointi(void)
  * Address:	80383170
  * Size:	0000B4
  */
-void setParameters__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -132,7 +132,7 @@ void setParameters__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80383224
  * Size:	000030
  */
-void getBodyRadius__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::getBodyRadius(void)
 {
 /*
 .loc_0x0:
@@ -180,7 +180,7 @@ void birth__Q34Game8UmiMushi3ObjFR10Vector3<float>f(void)
  * Address:	80383274
  * Size:	0005A8
  */
-void onInit__Q34Game8UmiMushi3ObjFPQ24Game15CreatureInitArg(void)
+void Game::UmiMushi::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -590,7 +590,7 @@ void onInit__Q34Game8UmiMushi3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8038381C
  * Size:	000428
  */
-void __ct__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -896,7 +896,7 @@ void __ct__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80383C44
  * Size:	00004C
  */
-void setFSM__Q34Game8UmiMushi3ObjFPQ34Game8UmiMushi3FSM(void)
+void Game::UmiMushi::Obj::setFSM( (Game::UmiMushi::FSM *))
 {
 /*
 .loc_0x0:
@@ -927,7 +927,7 @@ void setFSM__Q34Game8UmiMushi3ObjFPQ34Game8UmiMushi3FSM(void)
  * Address:	80383C90
  * Size:	000090
  */
-void doUpdate__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -979,7 +979,7 @@ void doUpdate__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80383D20
  * Size:	0004B0
  */
-void doAnimationCullingOff__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -1339,7 +1339,7 @@ void doAnimationCullingOff__Q34Game8UmiMushi3ObjFv(void)
  * Address:	803841D0
  * Size:	000034
  */
-void doAnimationCullingOn__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::doAnimationCullingOn(void)
 {
 /*
 .loc_0x0:
@@ -1364,7 +1364,7 @@ void doAnimationCullingOn__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80384204
  * Size:	000004
  */
-void doDirectDraw__Q34Game8UmiMushi3ObjFR8Graphics(void)
+void Game::UmiMushi::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1377,7 +1377,7 @@ void doDirectDraw__Q34Game8UmiMushi3ObjFR8Graphics(void)
  * Address:	80384208
  * Size:	000020
  */
-void doDebugDraw__Q34Game8UmiMushi3ObjFR8Graphics(void)
+void Game::UmiMushi::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1397,7 +1397,7 @@ void doDebugDraw__Q34Game8UmiMushi3ObjFR8Graphics(void)
  * Address:	80384228
  * Size:	000098
  */
-void changeMaterial__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -1447,7 +1447,7 @@ void changeMaterial__Q34Game8UmiMushi3ObjFv(void)
  * Address:	803842C0
  * Size:	0000DC
  */
-void doStartMovie__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -1514,7 +1514,7 @@ void doStartMovie__Q34Game8UmiMushi3ObjFv(void)
  * Address:	8038439C
  * Size:	0000DC
  */
-void doEndMovie__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -1581,7 +1581,7 @@ void doEndMovie__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80384478
  * Size:	000090
  */
-void getShadowParam__Q34Game8UmiMushi3ObjFRQ24Game11ShadowParam(void)
+void Game::UmiMushi::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -1629,7 +1629,7 @@ void getShadowParam__Q34Game8UmiMushi3ObjFRQ24Game11ShadowParam(void)
  * Address:	80384508
  * Size:	000040
  */
-void doSimulation__Q34Game8UmiMushi3ObjFf(void)
+void Game::UmiMushi::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -1659,7 +1659,7 @@ void doSimulation__Q34Game8UmiMushi3ObjFf(void)
  * Address:	80384548
  * Size:	000164
  */
-void damageCallBack__Q34Game8UmiMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::UmiMushi::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1770,7 +1770,7 @@ void damageCallBack__Q34Game8UmiMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	803846AC
  * Size:	0000BC
  */
-void pressCallBack__Q34Game8UmiMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::UmiMushi::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1833,7 +1833,7 @@ void pressCallBack__Q34Game8UmiMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80384768
  * Size:	0000BC
  */
-void hipdropCallBack__Q34Game8UmiMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::UmiMushi::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1896,7 +1896,7 @@ void hipdropCallBack__Q34Game8UmiMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80384824
  * Size:	0000AC
  */
-void earthquakeCallBack__Q34Game8UmiMushi3ObjFPQ24Game8Creaturef(void)
+void Game::UmiMushi::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -1955,7 +1955,7 @@ void earthquakeCallBack__Q34Game8UmiMushi3ObjFPQ24Game8Creaturef(void)
  * Address:	803848D0
  * Size:	000020
  */
-void collisionCallback__Q34Game8UmiMushi3ObjFRQ24Game9CollEvent(void)
+void Game::UmiMushi::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1975,7 +1975,7 @@ void collisionCallback__Q34Game8UmiMushi3ObjFRQ24Game9CollEvent(void)
  * Address:	803848F0
  * Size:	000130
  */
-void initMouthSlots__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -2071,7 +2071,7 @@ void initMouthSlots__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80384A20
  * Size:	000094
  */
-void doStartStoneState__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -2120,7 +2120,7 @@ void doStartStoneState__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80384AB4
  * Size:	0000BC
  */
-void doFinishStoneState__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -2179,7 +2179,7 @@ void doFinishStoneState__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80384B70
  * Size:	000028
  */
-void startCarcassMotion__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -2201,7 +2201,7 @@ void startCarcassMotion__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80384B98
  * Size:	00004C
  */
-void doGetLifeGaugeParam__Q34Game8UmiMushi3ObjFRQ24Game14LifeGaugeParam(void)
+void Game::UmiMushi::Obj::doGetLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -2234,7 +2234,7 @@ void doGetLifeGaugeParam__Q34Game8UmiMushi3ObjFRQ24Game14LifeGaugeParam(void)
  * Address:	80384BE4
  * Size:	00005C
  */
-void isReachToGoal__Q34Game8UmiMushi3ObjFf(void)
+void Game::UmiMushi::Obj::isReachToGoal( (float))
 {
 /*
 .loc_0x0:
@@ -2271,7 +2271,7 @@ void isReachToGoal__Q34Game8UmiMushi3ObjFf(void)
  * Address:	80384C40
  * Size:	000358
  */
-void walkFunc__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::walkFunc(void)
 {
 /*
 .loc_0x0:
@@ -2515,7 +2515,7 @@ void walkFunc__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80384F98
  * Size:	000150
  */
-void setNextGoal__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::setNextGoal(void)
 {
 /*
 .loc_0x0:
@@ -2619,7 +2619,7 @@ void setNextGoal__Q34Game8UmiMushi3ObjFv(void)
  * Address:	803850E8
  * Size:	000810
  */
-void changeColor__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::changeColor(void)
 {
 /*
 .loc_0x0:
@@ -3183,7 +3183,7 @@ void changeColor__Q34Game8UmiMushi3ObjFv(void)
  * Address:	803858F8
  * Size:	0001C0
  */
-void resetColor__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::resetColor(void)
 {
 /*
 .loc_0x0:
@@ -3313,7 +3313,7 @@ void resetColor__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80385AB8
  * Size:	0001BC
  */
-void turnFunc__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::turnFunc(void)
 {
 /*
 .loc_0x0:
@@ -3444,7 +3444,7 @@ void turnFunc__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80385C74
  * Size:	000014
  */
-void resetWalkParm__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::resetWalkParm(void)
 {
 /*
 .loc_0x0:
@@ -3461,7 +3461,7 @@ void resetWalkParm__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80385C88
  * Size:	000248
  */
-void isChangeNavi__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::isChangeNavi(void)
 {
 /*
 .loc_0x0:
@@ -3637,7 +3637,7 @@ void isChangeNavi__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80385ED0
  * Size:	0001D8
  */
-void isFindTarget__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::isFindTarget(void)
 {
 /*
 .loc_0x0:
@@ -3777,7 +3777,7 @@ void isFindTarget__Q34Game8UmiMushi3ObjFv(void)
  * Address:	803860A8
  * Size:	000240
  */
-void isAttackStart__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::isAttackStart(void)
 {
 /*
 .loc_0x0:
@@ -3941,7 +3941,7 @@ void isAttackStart__Q34Game8UmiMushi3ObjFv(void)
  * Address:	803862E8
  * Size:	0001B4
  */
-void isNeedTurn__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::isNeedTurn(void)
 {
 /*
 .loc_0x0:
@@ -4068,7 +4068,7 @@ void isNeedTurn__Q34Game8UmiMushi3ObjFv(void)
  * Address:	8038649C
  * Size:	00005C
  */
-void isOutOfTerritory__Q34Game8UmiMushi3ObjFf(void)
+void Game::UmiMushi::Obj::isOutOfTerritory( (float))
 {
 /*
 .loc_0x0:
@@ -4105,7 +4105,7 @@ void isOutOfTerritory__Q34Game8UmiMushi3ObjFf(void)
  * Address:	........
  * Size:	000044
  */
-void returnHome__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::returnHome(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4115,7 +4115,7 @@ void returnHome__Q34Game8UmiMushi3ObjFv(void)
  * Address:	803864F8
  * Size:	00012C
  */
-void canMove__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::canMove(void)
 {
 /*
 .loc_0x0:
@@ -4210,7 +4210,7 @@ void canMove__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386624
  * Size:	000490
  */
-void outMove__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::outMove(void)
 {
 /*
 .loc_0x0:
@@ -4544,7 +4544,7 @@ void outMove__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386AB4
  * Size:	000080
  */
-void setFindAnim__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::setFindAnim(void)
 {
 /*
 .loc_0x0:
@@ -4592,7 +4592,7 @@ void setFindAnim__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386B34
  * Size:	000044
  */
-void fadeAllEffect__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::fadeAllEffect(void)
 {
 /*
 .loc_0x0:
@@ -4623,7 +4623,7 @@ void fadeAllEffect__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386B78
  * Size:	0000A8
  */
-void fadeColorEffect__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::fadeColorEffect(void)
 {
 /*
 .loc_0x0:
@@ -4677,7 +4677,7 @@ void fadeColorEffect__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386C20
  * Size:	00010C
  */
-void createColorEffect__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::createColorEffect(void)
 {
 /*
 .loc_0x0:
@@ -4760,7 +4760,7 @@ void createColorEffect__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386D2C
  * Size:	0000C0
  */
-void attackEffect__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::attackEffect(void)
 {
 /*
 .loc_0x0:
@@ -4820,7 +4820,7 @@ void attackEffect__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386DEC
  * Size:	0000C0
  */
-void meltEffect__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::meltEffect(void)
 {
 /*
 .loc_0x0:
@@ -4880,7 +4880,7 @@ void meltEffect__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386EAC
  * Size:	00010C
  */
-void flickEffect__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::flickEffect(void)
 {
 /*
 .loc_0x0:
@@ -4961,7 +4961,7 @@ void flickEffect__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80386FB8
  * Size:	000070
  */
-void eatEffect__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::eatEffect(void)
 {
 /*
 .loc_0x0:
@@ -5001,7 +5001,7 @@ void eatEffect__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80387028
  * Size:	000070
  */
-void bubbleEffect__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::bubbleEffect(void)
 {
 /*
 .loc_0x0:
@@ -5041,7 +5041,7 @@ void bubbleEffect__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80387098
  * Size:	000028
  */
-void delShadow__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::delShadow(void)
 {
 /*
 .loc_0x0:
@@ -5063,7 +5063,7 @@ void delShadow__Q34Game8UmiMushi3ObjFv(void)
  * Address:	803870C0
  * Size:	0002C8
  */
-void eyeScaleMtxCalc__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::eyeScaleMtxCalc(void)
 {
 /*
 .loc_0x0:
@@ -5277,7 +5277,7 @@ void eyeScaleMtxCalc__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80387388
  * Size:	000184
  */
-void weakScaleMtxCalc__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::weakScaleMtxCalc(void)
 {
 /*
 .loc_0x0:
@@ -5404,7 +5404,7 @@ void weakScaleMtxCalc__Q34Game8UmiMushi3ObjFv(void)
  * Address:	8038750C
  * Size:	00009C
  */
-void __dt__Q23efx11TUmiDeadawaFv(void)
+void efx::TUmiDeadawa::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5459,7 +5459,7 @@ void __dt__Q23efx11TUmiDeadawaFv(void)
  * Address:	803875A8
  * Size:	00009C
  */
-void __dt__Q23efx7TUmiEatFv(void)
+void efx::TUmiEat::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5514,7 +5514,7 @@ void __dt__Q23efx7TUmiEatFv(void)
  * Address:	80387644
  * Size:	000004
  */
-void setInitialSetting__Q34Game8UmiMushi3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::UmiMushi::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -5540,7 +5540,7 @@ void applyImpulse__Q34Game8UmiMushi3ObjFR10Vector3<float>R10Vector3<float>(void)
  * Address:	8038764C
  * Size:	00000C
  */
-void getDamageCoeStoneState__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::getDamageCoeStoneState(void)
 {
 /*
 .loc_0x0:
@@ -5555,7 +5555,7 @@ void getDamageCoeStoneState__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80387658
  * Size:	000028
  */
-void eatWhitePikminCallBack__Q34Game8UmiMushi3ObjFPQ24Game8Creaturef(void)
+void Game::UmiMushi::Obj::eatWhitePikminCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -5577,7 +5577,7 @@ void eatWhitePikminCallBack__Q34Game8UmiMushi3ObjFPQ24Game8Creaturef(void)
  * Address:	80387680
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -5591,7 +5591,7 @@ void getEnemyTypeID__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80387688
  * Size:	000008
  */
-void getMouthSlots__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -5605,7 +5605,7 @@ void getMouthSlots__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80387690
  * Size:	000014
  */
-void @932@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @932@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -5622,7 +5622,7 @@ void @932@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	803876A4
  * Size:	000014
  */
-void @932@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @932@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -5639,7 +5639,7 @@ void @932@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	803876B8
  * Size:	000014
  */
-void @932@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @932@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -5656,7 +5656,7 @@ void @932@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	803876CC
  * Size:	000014
  */
-void @932@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @932@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -5673,7 +5673,7 @@ void @932@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	803876E0
  * Size:	000014
  */
-void @932@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @932@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -5690,7 +5690,7 @@ void @932@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	803876F4
  * Size:	000014
  */
-void @932@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @932@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -5707,7 +5707,7 @@ void @932@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	80387708
  * Size:	000008
  */
-void @4@__dt__Q23efx7TUmiEatFv(void)
+void @4@efx::TUmiEat::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5721,7 +5721,7 @@ void @4@__dt__Q23efx7TUmiEatFv(void)
  * Address:	80387710
  * Size:	000008
  */
-void @4@__dt__Q23efx11TUmiDeadawaFv(void)
+void @4@efx::TUmiDeadawa::__dt(void)
 {
 /*
 .loc_0x0:

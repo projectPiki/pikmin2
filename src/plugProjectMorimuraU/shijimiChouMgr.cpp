@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803884C0
  * Size:	00005C
  */
-void __ct__Q34Game11ShijimiChou3MgrFiUc(void)
+void Game::ShijimiChou::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -50,7 +50,7 @@ void __ct__Q34Game11ShijimiChou3MgrFiUc(void)
  * Address:	8038851C
  * Size:	000150
  */
-void doAlloc__Q34Game11ShijimiChou3MgrFv(void)
+void Game::ShijimiChou::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void doAlloc__Q34Game11ShijimiChou3MgrFv(void)
  * Address:	8038866C
  * Size:	000010
  */
-void getEnemy__Q34Game11ShijimiChou3MgrFi(void)
+void Game::ShijimiChou::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void getEnemy__Q34Game11ShijimiChou3MgrFi(void)
  * Address:	8038867C
  * Size:	0000B0
  */
-void __ct__Q34Game11ShijimiChou5ParmsFv(void)
+void Game::ShijimiChou::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -236,7 +236,7 @@ void __ct__Q34Game11ShijimiChou5ParmsFv(void)
  * Address:	8038872C
  * Size:	000238
  */
-void __ct__Q44Game11ShijimiChou5Parms11ProperParmsFv(void)
+void Game::ShijimiChou::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -392,7 +392,7 @@ void __ct__Q44Game11ShijimiChou5Parms11ProperParmsFv(void)
  * Address:	80388964
  * Size:	000038
  */
-void loadModelData__Q34Game11ShijimiChou3MgrFv(void)
+void Game::ShijimiChou::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void loadModelData__Q34Game11ShijimiChou3MgrFv(void)
  * Address:	8038899C
  * Size:	000138
  */
-void createModel__Q34Game11ShijimiChou3MgrFv(void)
+void Game::ShijimiChou::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void createModel__Q34Game11ShijimiChou3MgrFv(void)
  * Address:	80388AD4
  * Size:	0000C8
  */
-void birth__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::ShijimiChou::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -584,7 +584,7 @@ void birth__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	80388B9C
  * Size:	000050
  */
-void doAnimation__Q34Game11ShijimiChou3MgrFv(void)
+void Game::ShijimiChou::Mgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -618,7 +618,7 @@ void doAnimation__Q34Game11ShijimiChou3MgrFv(void)
  * Address:	80388BEC
  * Size:	000058
  */
-void fetch__Q34Game11ShijimiChou3MgrFP8J3DModelf(void)
+void Game::ShijimiChou::Mgr::fetch( (J3DModel *, float))
 {
 /*
 .loc_0x0:
@@ -654,7 +654,7 @@ void fetch__Q34Game11ShijimiChou3MgrFP8J3DModelf(void)
  * Address:	80388C44
  * Size:	0004BC
  */
-void createGroup__Q34Game11ShijimiChou3MgrFPQ34Game11ShijimiChou3Obji(void)
+void Game::ShijimiChou::Mgr::createGroup( (Game::ShijimiChou::Obj *, int))
 {
 /*
 .loc_0x0:
@@ -1001,7 +1001,7 @@ void createGroup__Q34Game11ShijimiChou3MgrFPQ34Game11ShijimiChou3Obji(void)
  * Address:	80389100
  * Size:	0000B8
  */
-void createGroupByBigFoot__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArgi(void)
+void Game::ShijimiChou::Mgr::createGroupByBigFoot( (Game::EnemyBirthArg &, int))
 {
 /*
 .loc_0x0:
@@ -1061,7 +1061,7 @@ void createGroupByBigFoot__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArgi(voi
  * Address:	803891B8
  * Size:	0000B8
  */
-void createGroupByPlants__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArgi(void)
+void Game::ShijimiChou::Mgr::createGroupByPlants( (Game::EnemyBirthArg &, int))
 {
 /*
 .loc_0x0:
@@ -1121,7 +1121,7 @@ void createGroupByPlants__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArgi(void
  * Address:	80389270
  * Size:	000198
  */
-void createGroupByEnemy__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArgPQ24Game9EnemyBaseib(void)
+void Game::ShijimiChou::Mgr::createGroupByEnemy( (Game::EnemyBirthArg &, Game::EnemyBase *, int, bool))
 {
 /*
 .loc_0x0:
@@ -1245,7 +1245,7 @@ void createGroupByEnemy__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArgPQ24Gam
  * Address:	80389408
  * Size:	0000B0
  */
-void __dt__Q34Game11ShijimiChou3MgrFv(void)
+void Game::ShijimiChou::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1305,7 +1305,7 @@ void __dt__Q34Game11ShijimiChou3MgrFv(void)
  * Address:	803894B8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11ShijimiChou3MgrFv(void)
+void Game::ShijimiChou::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1319,7 +1319,7 @@ void getEnemyTypeID__Q34Game11ShijimiChou3MgrFv(void)
  * Address:	803894C0
  * Size:	000060
  */
-void createObj__Q34Game11ShijimiChou3MgrFi(void)
+void Game::ShijimiChou::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -1355,7 +1355,7 @@ void createObj__Q34Game11ShijimiChou3MgrFi(void)
  * Address:	80389520
  * Size:	0000BC
  */
-void __dt__Q34Game11ShijimiChou3ObjFv(void)
+void Game::ShijimiChou::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1418,7 +1418,7 @@ void __dt__Q34Game11ShijimiChou3ObjFv(void)
  * Address:	803895DC
  * Size:	000050
  */
-void read__Q34Game11ShijimiChou5ParmsFR6Stream(void)
+void Game::ShijimiChou::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1450,7 +1450,7 @@ void read__Q34Game11ShijimiChou5ParmsFR6Stream(void)
  * Address:	8038962C
  * Size:	000008
  */
-void @4@__dt__Q34Game11ShijimiChou3MgrFv(void)
+void @4@Game::ShijimiChou::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

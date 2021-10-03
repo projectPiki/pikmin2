@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80380A2C
  * Size:	000198
  */
-void init__Q34Game8UmiMushi3FSMFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void init__Q34Game8UmiMushi3FSMFPQ24Game9EnemyBase(void)
  * Address:	80380BC4
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi9StateWaitFi(void)
+void Game::UmiMushi::StateWait::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void __ct__Q34Game8UmiMushi9StateWaitFi(void)
  * Address:	80380C00
  * Size:	000054
  */
-void init__Q34Game8UmiMushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void init__Q34Game8UmiMushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80380C54
  * Size:	000214
  */
-void exec__Q34Game8UmiMushi9StateWaitFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -376,7 +376,7 @@ void exec__Q34Game8UmiMushi9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	80380E68
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi9StateWalkFi(void)
+void Game::UmiMushi::StateWalk::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -403,7 +403,7 @@ void __ct__Q34Game8UmiMushi9StateWalkFi(void)
  * Address:	80380EA4
  * Size:	000060
  */
-void init__Q34Game8UmiMushi9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateWalk::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -439,7 +439,7 @@ void init__Q34Game8UmiMushi9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80380F04
  * Size:	0002C0
  */
-void exec__Q34Game8UmiMushi9StateWalkFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateWalk::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -647,7 +647,7 @@ void exec__Q34Game8UmiMushi9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	803811C4
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi9StateFindFi(void)
+void Game::UmiMushi::StateFind::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -674,7 +674,7 @@ void __ct__Q34Game8UmiMushi9StateFindFi(void)
  * Address:	80381200
  * Size:	00008C
  */
-void init__Q34Game8UmiMushi9StateFindFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateFind::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -725,7 +725,7 @@ void init__Q34Game8UmiMushi9StateFindFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8038128C
  * Size:	00012C
  */
-void exec__Q34Game8UmiMushi9StateFindFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateFind::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -820,7 +820,7 @@ void exec__Q34Game8UmiMushi9StateFindFPQ24Game9EnemyBase(void)
  * Address:	803813B8
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi11StateSearchFi(void)
+void Game::UmiMushi::StateSearch::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -847,7 +847,7 @@ void __ct__Q34Game8UmiMushi11StateSearchFi(void)
  * Address:	803813F4
  * Size:	000040
  */
-void init__Q34Game8UmiMushi11StateSearchFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateSearch::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -875,7 +875,7 @@ void init__Q34Game8UmiMushi11StateSearchFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	80381434
  * Size:	000294
  */
-void exec__Q34Game8UmiMushi11StateSearchFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateSearch::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1068,7 +1068,7 @@ void exec__Q34Game8UmiMushi11StateSearchFPQ24Game9EnemyBase(void)
  * Address:	803816C8
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi9StateTurnFi(void)
+void Game::UmiMushi::StateTurn::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1095,7 +1095,7 @@ void __ct__Q34Game8UmiMushi9StateTurnFi(void)
  * Address:	80381704
  * Size:	000040
  */
-void init__Q34Game8UmiMushi9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1123,7 +1123,7 @@ void init__Q34Game8UmiMushi9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80381744
  * Size:	0001EC
  */
-void exec__Q34Game8UmiMushi9StateTurnFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1276,7 +1276,7 @@ void exec__Q34Game8UmiMushi9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	80381930
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi10StateFlickFi(void)
+void Game::UmiMushi::StateFlick::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1303,7 +1303,7 @@ void __ct__Q34Game8UmiMushi10StateFlickFi(void)
  * Address:	8038196C
  * Size:	000160
  */
-void init__Q34Game8UmiMushi10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1411,7 +1411,7 @@ void init__Q34Game8UmiMushi10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	80381ACC
  * Size:	000190
  */
-void exec__Q34Game8UmiMushi10StateFlickFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1531,7 +1531,7 @@ void exec__Q34Game8UmiMushi10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	80381C5C
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi11StateAttackFi(void)
+void Game::UmiMushi::StateAttack::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1558,7 +1558,7 @@ void __ct__Q34Game8UmiMushi11StateAttackFi(void)
  * Address:	80381C98
  * Size:	000118
  */
-void init__Q34Game8UmiMushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1648,7 +1648,7 @@ void init__Q34Game8UmiMushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	80381DB0
  * Size:	000520
  */
-void exec__Q34Game8UmiMushi11StateAttackFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2034,7 +2034,7 @@ void exec__Q34Game8UmiMushi11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	803822D0
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi8StateEatFi(void)
+void Game::UmiMushi::StateEat::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2061,7 +2061,7 @@ void __ct__Q34Game8UmiMushi8StateEatFi(void)
  * Address:	8038230C
  * Size:	000040
  */
-void init__Q34Game8UmiMushi8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateEat::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2089,7 +2089,7 @@ void init__Q34Game8UmiMushi8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8038234C
  * Size:	0000B8
  */
-void exec__Q34Game8UmiMushi8StateEatFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateEat::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2151,7 +2151,7 @@ void exec__Q34Game8UmiMushi8StateEatFPQ24Game9EnemyBase(void)
  * Address:	80382404
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi9StateDeadFi(void)
+void Game::UmiMushi::StateDead::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2178,7 +2178,7 @@ void __ct__Q34Game8UmiMushi9StateDeadFi(void)
  * Address:	80382440
  * Size:	000088
  */
-void init__Q34Game8UmiMushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2224,7 +2224,7 @@ void init__Q34Game8UmiMushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803824C8
  * Size:	0000B8
  */
-void exec__Q34Game8UmiMushi9StateDeadFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2294,7 +2294,7 @@ void exec__Q34Game8UmiMushi9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80382580
  * Size:	00003C
  */
-void __ct__Q34Game8UmiMushi9StateLostFi(void)
+void Game::UmiMushi::StateLost::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2321,7 +2321,7 @@ void __ct__Q34Game8UmiMushi9StateLostFi(void)
  * Address:	803825BC
  * Size:	000054
  */
-void init__Q34Game8UmiMushi9StateLostFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::UmiMushi::StateLost::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2354,7 +2354,7 @@ void init__Q34Game8UmiMushi9StateLostFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80382610
  * Size:	000090
  */
-void exec__Q34Game8UmiMushi9StateLostFPQ24Game9EnemyBase(void)
+void Game::UmiMushi::StateLost::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

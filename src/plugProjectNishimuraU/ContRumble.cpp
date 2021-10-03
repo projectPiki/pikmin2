@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000060
  */
-void __ct__Q24Game10RumbleNodeFv(void)
+void Game::RumbleNode::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game10RumbleNodeFv(void)
  * Address:	........
  * Size:	0000D0
  */
-void update__Q24Game10RumbleNodeFv(void)
+void Game::RumbleNode::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void update__Q24Game10RumbleNodeFv(void)
  * Address:	........
  * Size:	000020
  */
-void startRumble__Q24Game10RumbleNodeFifPQ24Game10RumbleDataf(void)
+void Game::RumbleNode::startRumble( (int, float, Game::RumbleData *, float))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void startRumble__Q24Game10RumbleNodeFifPQ24Game10RumbleDataf(void)
  * Address:	........
  * Size:	000014
  */
-void isSameLabel__Q24Game10RumbleNodeFi(void)
+void Game::RumbleNode::isSameLabel( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void isSameLabel__Q24Game10RumbleNodeFi(void)
  * Address:	........
  * Size:	00005C
  */
-void isRumbleEnd__Q24Game10RumbleNodeFv(void)
+void Game::RumbleNode::isRumbleEnd(void)
 {
 	// UNUSED FUNCTION
 }
@@ -65,7 +65,7 @@ void isRumbleEnd__Q24Game10RumbleNodeFv(void)
  * Address:	80252B20
  * Size:	000158
  */
-void __ct__Q24Game10ContRumbleFii(void)
+void Game::ContRumble::__ct( (int, int))
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void __ct__Q24Game10ContRumbleFii(void)
  * Address:	80252C78
  * Size:	00008C
  */
-void init__Q24Game10ContRumbleFv(void)
+void Game::ContRumble::init(void)
 {
 /*
 .loc_0x0:
@@ -224,7 +224,7 @@ void init__Q24Game10ContRumbleFv(void)
  * Address:	80252D04
  * Size:	000290
  */
-void update__Q24Game10ContRumbleFv(void)
+void Game::ContRumble::update(void)
 {
 /*
 .loc_0x0:
@@ -432,7 +432,7 @@ void update__Q24Game10ContRumbleFv(void)
  * Address:	80252F94
  * Size:	000058
  */
-void setController__Q24Game10ContRumbleFb(void)
+void Game::ContRumble::setController( (bool))
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void setController__Q24Game10ContRumbleFb(void)
  * Address:	80252FEC
  * Size:	000104
  */
-void startRumble__Q24Game10ContRumbleFif(void)
+void Game::ContRumble::startRumble( (int, float))
 {
 /*
 .loc_0x0:
@@ -551,7 +551,7 @@ void startRumble__Q24Game10ContRumbleFif(void)
  * Address:	802530F0
  * Size:	000088
  */
-void rumbleStop__Q24Game10ContRumbleFv(void)
+void Game::ContRumble::rumbleStop(void)
 {
 /*
 .loc_0x0:
@@ -603,7 +603,7 @@ void rumbleStop__Q24Game10ContRumbleFv(void)
  * Address:	80253178
  * Size:	000090
  */
-void rumbleStop__Q24Game10ContRumbleFi(void)
+void Game::ContRumble::rumbleStop( (int))
 {
 /*
 .loc_0x0:
@@ -659,7 +659,7 @@ void rumbleStop__Q24Game10ContRumbleFi(void)
  * Address:	........
  * Size:	000028
  */
-void stopMotor__Q24Game10ContRumbleFv(void)
+void Game::ContRumble::stopMotor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -669,7 +669,7 @@ void stopMotor__Q24Game10ContRumbleFv(void)
  * Address:	80253208
  * Size:	00009C
  */
-void getRumbleParameter__Q24Game10ContRumbleFiRfRf(void)
+void Game::ContRumble::getRumbleParameter( (int, float &, float &))
 {
 /*
 .loc_0x0:
@@ -720,7 +720,7 @@ void getRumbleParameter__Q24Game10ContRumbleFiRfRf(void)
  * Address:	802532A4
  * Size:	000060
  */
-void __dt__Q24Game10RumbleNodeFv(void)
+void Game::RumbleNode::__dt(void)
 {
 /*
 .loc_0x0:

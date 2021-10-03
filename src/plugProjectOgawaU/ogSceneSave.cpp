@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80324DB4
  * Size:	00003C
  */
-void __ct__Q32og9newScreen4SaveFv(void)
+void og::newScreen::Save::__ct(void)
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q32og9newScreen4SaveFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen4SaveFv(void)
+void og::newScreen::Save::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void __dt__Q32og9newScreen4SaveFv(void)
  * Address:	80324DF0
  * Size:	000078
  */
-void doUserCallBackFunc__Q32og9newScreen4SaveFPQ28Resource10MgrCommand(void)
+void og::newScreen::Save::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -94,7 +94,7 @@ void doUserCallBackFunc__Q32og9newScreen4SaveFPQ28Resource10MgrCommand(void)
  * Address:	80324E68
  * Size:	000030
  */
-void doCreateObj__Q32og9newScreen4SaveFP10JKRArchive(void)
+void og::newScreen::Save::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void doCreateObj__Q32og9newScreen4SaveFP10JKRArchive(void)
  * Address:	80324E98
  * Size:	000068
  */
-void doCreateObjUserCallBackFunc__Q32og9newScreen4SaveFP10JKRArchive(void)
+void og::newScreen::Save::doCreateObjUserCallBackFunc( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void doCreateObjUserCallBackFunc__Q32og9newScreen4SaveFP10JKRArchive(void)
  * Address:	80324F00
  * Size:	000008
  */
-void getResName__Q32og9newScreen4SaveCFv(void)
+void og::newScreen::Save::getResName( const
 {
 /*
 .loc_0x0:
@@ -172,7 +172,7 @@ void getResName__Q32og9newScreen4SaveCFv(void)
  * Address:	80324F08
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen4SaveFv(void)
+void og::newScreen::Save::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -186,7 +186,7 @@ void getSceneType__Q32og9newScreen4SaveFv(void)
  * Address:	80324F10
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen4SaveFv(void)
+void og::newScreen::Save::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -201,7 +201,7 @@ void getOwnerID__Q32og9newScreen4SaveFv(void)
  * Address:	80324F1C
  * Size:	000010
  */
-void getMemberID__Q32og9newScreen4SaveFv(void)
+void og::newScreen::Save::getMemberID(void)
 {
 /*
 .loc_0x0:

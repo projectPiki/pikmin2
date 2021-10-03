@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802D3998
  * Size:	000050
  */
-void __ct__Q34Game9OniKurage3MgrFiUc(void)
+void Game::OniKurage::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game9OniKurage3MgrFiUc(void)
  * Address:	802D39E8
  * Size:	000048
  */
-void doAlloc__Q34Game9OniKurage3MgrFv(void)
+void Game::OniKurage::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game9OniKurage3MgrFv(void)
  * Address:	802D3A30
  * Size:	000048
  */
-void __ct__Q34Game9OniKurage5ParmsFv(void)
+void Game::OniKurage::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game9OniKurage5ParmsFv(void)
  * Address:	802D3A78
  * Size:	00023C
  */
-void __ct__Q44Game9OniKurage5Parms11ProperParmsFv(void)
+void Game::OniKurage::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void __ct__Q44Game9OniKurage5Parms11ProperParmsFv(void)
  * Address:	802D3CB4
  * Size:	000060
  */
-void createObj__Q34Game9OniKurage3MgrFi(void)
+void Game::OniKurage::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void createObj__Q34Game9OniKurage3MgrFi(void)
  * Address:	802D3D14
  * Size:	0000BC
  */
-void __dt__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void __dt__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D3DD0
  * Size:	000010
  */
-void getEnemy__Q34Game9OniKurage3MgrFi(void)
+void Game::OniKurage::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void getEnemy__Q34Game9OniKurage3MgrFi(void)
  * Address:	802D3DE0
  * Size:	000068
  */
-void loadModelData__Q34Game9OniKurage3MgrFv(void)
+void Game::OniKurage::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void loadModelData__Q34Game9OniKurage3MgrFv(void)
  * Address:	802D3E48
  * Size:	0000B0
  */
-void __dt__Q34Game9OniKurage3MgrFv(void)
+void Game::OniKurage::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -487,7 +487,7 @@ void __dt__Q34Game9OniKurage3MgrFv(void)
  * Address:	802D3EF8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9OniKurage3MgrFv(void)
+void Game::OniKurage::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -501,7 +501,7 @@ void getEnemyTypeID__Q34Game9OniKurage3MgrFv(void)
  * Address:	802D3F00
  * Size:	00002C
  */
-void doLoadBmd__Q34Game9OniKurage3MgrFPv(void)
+void Game::OniKurage::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -524,7 +524,7 @@ void doLoadBmd__Q34Game9OniKurage3MgrFPv(void)
  * Address:	802D3F2C
  * Size:	000050
  */
-void read__Q34Game9OniKurage5ParmsFR6Stream(void)
+void Game::OniKurage::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -556,7 +556,7 @@ void read__Q34Game9OniKurage5ParmsFR6Stream(void)
  * Address:	802D3F7C
  * Size:	000008
  */
-void @4@__dt__Q34Game9OniKurage3MgrFv(void)
+void @4@Game::OniKurage::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

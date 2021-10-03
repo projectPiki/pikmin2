@@ -688,7 +688,7 @@ void JSULink<Menu::KeyEvent>::~JSULink()
  * Address:	80456840
  * Size:	000080
  */
-void __ct__Q24Menu8MenuItemFQ34Menu8MenuItem9cTypeFlagiPc(void)
+void Menu::MenuItem::__ct( (Menu::MenuItem::cTypeFlag, int, char *))
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void JSUList<Menu::KeyEvent>::~JSUList()
  * Address:	804568C0
  * Size:	00001C
  */
-void getNext__Q24Menu8MenuItemFv(void)
+void Menu::MenuItem::getNext(void)
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void getNext__Q24Menu8MenuItemFv(void)
  * Address:	804568DC
  * Size:	00001C
  */
-void getPrev__Q24Menu8MenuItemFv(void)
+void Menu::MenuItem::getPrev(void)
 {
 /*
 .loc_0x0:
@@ -794,7 +794,7 @@ void getPrev__Q24Menu8MenuItemFv(void)
  * Address:	804568F8
  * Size:	000200
  */
-void checkEvents__Q24Menu8MenuItemFP4Menui(void)
+void Menu::MenuItem::checkEvents( (Menu *, int))
 {
 /*
 .loc_0x0:

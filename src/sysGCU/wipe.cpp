@@ -862,7 +862,7 @@ void BallFader::BallFader(int)
  * Address:	........
  * Size:	000004
  */
-void __ct__Q29BallFader4BallFv(void)
+void BallFader::Ball::__ct(void)
 {
 	// UNUSED FUNCTION
 }

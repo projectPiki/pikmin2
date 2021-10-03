@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802E3D68
  * Size:	000050
  */
-void __ct__Q34Game6Kabuto3MgrFiUc(void)
+void Game::Kabuto::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game6Kabuto3MgrFiUc(void)
  * Address:	802E3DB8
  * Size:	0000E8
  */
-void loadModelData__Q34Game6Kabuto3MgrFv(void)
+void Game::Kabuto::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -127,7 +127,7 @@ void loadModelData__Q34Game6Kabuto3MgrFv(void)
  * Address:	802E3EA0
  * Size:	0000A0
  */
-void loadAnimData__Q34Game6Kabuto3MgrFv(void)
+void Game::Kabuto::Mgr::loadAnimData(void)
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void loadAnimData__Q34Game6Kabuto3MgrFv(void)
  * Address:	802E3F40
  * Size:	00014C
  */
-void createModel__Q34Game6Kabuto3MgrFv(void)
+void Game::Kabuto::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void createModel__Q34Game6Kabuto3MgrFv(void)
  * Address:	802E408C
  * Size:	0000B0
  */
-void __dt__Q34Game6Kabuto3MgrFv(void)
+void Game::Kabuto::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void __dt__Q34Game6Kabuto3MgrFv(void)
  * Address:	802E413C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Kabuto3MgrFv(void)
+void Game::Kabuto::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -366,7 +366,7 @@ void getEnemyTypeID__Q34Game6Kabuto3MgrFv(void)
  * Address:	802E4144
  * Size:	00002C
  */
-void doLoadBmd__Q34Game6Kabuto3MgrFPv(void)
+void Game::Kabuto::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -389,7 +389,7 @@ void doLoadBmd__Q34Game6Kabuto3MgrFPv(void)
  * Address:	802E4170
  * Size:	000008
  */
-void @4@__dt__Q34Game6Kabuto3MgrFv(void)
+void @4@Game::Kabuto::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

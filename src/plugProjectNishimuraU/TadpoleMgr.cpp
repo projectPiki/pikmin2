@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80278264
  * Size:	000050
  */
-void __ct__Q34Game7Tadpole3MgrFiUc(void)
+void Game::Tadpole::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game7Tadpole3MgrFiUc(void)
  * Address:	802782B4
  * Size:	000048
  */
-void doAlloc__Q34Game7Tadpole3MgrFv(void)
+void Game::Tadpole::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game7Tadpole3MgrFv(void)
  * Address:	802782FC
  * Size:	000098
  */
-void __ct__Q34Game7Tadpole5ParmsFv(void)
+void Game::Tadpole::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void __ct__Q34Game7Tadpole5ParmsFv(void)
  * Address:	80278394
  * Size:	000060
  */
-void createObj__Q34Game7Tadpole3MgrFi(void)
+void Game::Tadpole::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -167,7 +167,7 @@ void createObj__Q34Game7Tadpole3MgrFi(void)
  * Address:	802783F4
  * Size:	0000BC
  */
-void __dt__Q34Game7Tadpole3ObjFv(void)
+void Game::Tadpole::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void __dt__Q34Game7Tadpole3ObjFv(void)
  * Address:	802784B0
  * Size:	000010
  */
-void getEnemy__Q34Game7Tadpole3MgrFi(void)
+void Game::Tadpole::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void getEnemy__Q34Game7Tadpole3MgrFi(void)
  * Address:	802784C0
  * Size:	000050
  */
-void read__Q34Game7Tadpole5ParmsFR6Stream(void)
+void Game::Tadpole::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -278,7 +278,7 @@ void read__Q34Game7Tadpole5ParmsFR6Stream(void)
  * Address:	80278510
  * Size:	0000B0
  */
-void __dt__Q34Game7Tadpole3MgrFv(void)
+void Game::Tadpole::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -338,7 +338,7 @@ void __dt__Q34Game7Tadpole3MgrFv(void)
  * Address:	802785C0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Tadpole3MgrFv(void)
+void Game::Tadpole::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void getEnemyTypeID__Q34Game7Tadpole3MgrFv(void)
  * Address:	802785C8
  * Size:	000008
  */
-void @4@__dt__Q34Game7Tadpole3MgrFv(void)
+void @4@Game::Tadpole::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

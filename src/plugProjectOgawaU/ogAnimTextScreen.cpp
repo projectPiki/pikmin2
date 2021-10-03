@@ -5,7 +5,7 @@
  * Address:	803087B8
  * Size:	000134
  */
-void setAnimTextScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
+void og::Screen::setAnimTextScreen( (JKRArchive *, P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -100,7 +100,7 @@ void setAnimTextScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
  * Address:	803088EC
  * Size:	00013C
  */
-void setMenuScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
+void og::Screen::setMenuScreen( (JKRArchive *, P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void setMenuScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
  * Address:	80308A28
  * Size:	00013C
  */
-void setMenuTitleScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
+void og::Screen::setMenuTitleScreen( (JKRArchive *, P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -296,7 +296,7 @@ void setMenuTitleScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
  * Address:	80308B64
  * Size:	000228
  */
-void __ct__Q32og6Screen15AnimText_ScreenFPQ29P2DScreen3MgrUx(void)
+void og::Screen::AnimText_Screen::__ct( (P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void __ct__Q32og6Screen15AnimText_ScreenFPQ29P2DScreen3MgrUx(void)
  * Address:	80308D8C
  * Size:	000080
  */
-void __dt__Q32og6Screen15CallBack_ScreenFv(void)
+void og::Screen::CallBack_Screen::__dt(void)
 {
 /*
 .loc_0x0:
@@ -496,7 +496,7 @@ void __dt__Q32og6Screen15CallBack_ScreenFv(void)
  * Address:	80308E0C
  * Size:	00060C
  */
-void update__Q32og6Screen15AnimText_ScreenFv(void)
+void og::Screen::AnimText_Screen::update(void)
 {
 /*
 .loc_0x0:
@@ -939,7 +939,7 @@ void update__Q32og6Screen15AnimText_ScreenFv(void)
  * Address:	80309418
  * Size:	000008
  */
-void setAnimScreen__Q32og6Screen15AnimText_ScreenFPQ32og6Screen10AnimScreen(void)
+void og::Screen::AnimText_Screen::setAnimScreen( (og::Screen::AnimScreen *))
 {
 /*
 .loc_0x0:
@@ -953,7 +953,7 @@ void setAnimScreen__Q32og6Screen15AnimText_ScreenFPQ32og6Screen10AnimScreen(void
  * Address:	80309420
  * Size:	00001C
  */
-void setText__Q32og6Screen15AnimText_ScreenFUx(void)
+void og::Screen::AnimText_Screen::setText( (unsigned long long))
 {
 /*
 .loc_0x0:
@@ -972,7 +972,7 @@ void setText__Q32og6Screen15AnimText_ScreenFUx(void)
  * Address:	........
  * Size:	000030
  */
-void setTextAnim__Q32og6Screen15AnimText_ScreenFUx(void)
+void og::Screen::AnimText_Screen::setTextAnim( (unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -982,7 +982,7 @@ void setTextAnim__Q32og6Screen15AnimText_ScreenFUx(void)
  * Address:	8030943C
  * Size:	000018
  */
-void stop__Q32og6Screen15AnimText_ScreenFv(void)
+void og::Screen::AnimText_Screen::stop(void)
 {
 /*
 .loc_0x0:
@@ -1000,7 +1000,7 @@ void stop__Q32og6Screen15AnimText_ScreenFv(void)
  * Address:	80309454
  * Size:	00003C
  */
-void open__Q32og6Screen15AnimText_ScreenFf(void)
+void og::Screen::AnimText_Screen::open( (float))
 {
 /*
 .loc_0x0:
@@ -1027,7 +1027,7 @@ void open__Q32og6Screen15AnimText_ScreenFf(void)
  * Address:	80309490
  * Size:	000048
  */
-void close__Q32og6Screen15AnimText_ScreenFv(void)
+void og::Screen::AnimText_Screen::close(void)
 {
 /*
 .loc_0x0:
@@ -1057,7 +1057,7 @@ void close__Q32og6Screen15AnimText_ScreenFv(void)
  * Address:	803094D8
  * Size:	0000AC
  */
-void blink__Q32og6Screen15AnimText_ScreenFff(void)
+void og::Screen::AnimText_Screen::blink( (float, float))
 {
 /*
 .loc_0x0:
@@ -1118,7 +1118,7 @@ void blink__Q32og6Screen15AnimText_ScreenFff(void)
  * Address:	80309584
  * Size:	000090
  */
-void __dt__Q32og6Screen15AnimText_ScreenFv(void)
+void og::Screen::AnimText_Screen::__dt(void)
 {
 /*
 .loc_0x0:

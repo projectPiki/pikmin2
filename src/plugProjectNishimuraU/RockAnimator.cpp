@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026287C
  * Size:	000008
  */
-void setAnimMgr__Q34Game4Rock14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Rock::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game4Rock14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80262884
  * Size:	000008
  */
-void getAnimator__Q34Game4Rock14ProperAnimatorFi(void)
+void Game::Rock::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game4Rock14ProperAnimatorFi(void)
  * Address:	8026288C
  * Size:	00005C
  */
-void __dt__Q34Game4Rock14ProperAnimatorFv(void)
+void Game::Rock::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game4Rock14ProperAnimatorFv(void)
  * Address:	802628E8
  * Size:	000008
  */
-void getAnimator__Q34Game4Rock14ProperAnimatorFv(void)
+void Game::Rock::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

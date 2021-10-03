@@ -5,7 +5,7 @@
  * Address:	80459BD4
  * Size:	000274
  */
-void play__Q23PSM12Env_PollutinFv(void)
+void PSM::Env_Pollutin::play(void)
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void play__Q23PSM12Env_PollutinFv(void)
  * Address:	........
  * Size:	000068
  */
-void __ct__Q23PSM24EnvSe_Perspective_AvoidYFUlf3Vecf(void)
+void PSM::EnvSe_Perspective_AvoidY::__ct( (unsigned long, float, Vec, float))
 {
 	// UNUSED FUNCTION
 }
@@ -210,7 +210,7 @@ void __ct__Q23PSM24EnvSe_Perspective_AvoidYFUlf3Vecf(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q26PSGame17EnvSe_PerspectiveFv(void)
+void PSGame::EnvSe_Perspective::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -220,7 +220,7 @@ void __dt__Q26PSGame17EnvSe_PerspectiveFv(void)
  * Address:	80459E48
  * Size:	000280
  */
-void play__Q23PSM24EnvSe_Perspective_AvoidYFv(void)
+void PSM::EnvSe_Perspective_AvoidY::play(void)
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void play__Q23PSM24EnvSe_Perspective_AvoidYFv(void)
  * Address:	8045A0C8
  * Size:	0000A0
  */
-void newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec(void)
+void PSM::EnvSeObjBuilder::newSeObj( (unsigned long, float, Vec))
 {
 /*
 .loc_0x0:
@@ -472,7 +472,7 @@ void newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec(void)
  * Address:	8045A168
  * Size:	00005C
  */
-void onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase(void)
+void PSM::EnvSeObjBuilder::onBuild( (PSSystem::EnvSeBase *))
 {
 /*
 .loc_0x0:
@@ -507,7 +507,7 @@ void onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase(void)
  * Address:	8045A1C4
  * Size:	00003C
  */
-void __ct__Q23PSM8SceneMgrFv(void)
+void PSM::SceneMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -534,7 +534,7 @@ void __ct__Q23PSM8SceneMgrFv(void)
  * Address:	8045A200
  * Size:	0000D8
  */
-void newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo(void)
+void PSM::SceneMgr::newMainBgm( (char const *, JAInter::SoundInfo &))
 {
 /*
 .loc_0x0:
@@ -606,7 +606,7 @@ void newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo(void)
  * Address:	8045A2D8
  * Size:	000014
  */
-void curSceneIsBigBossFloor__Q23PSM8SceneMgrFv(void)
+void PSM::SceneMgr::curSceneIsBigBossFloor(void)
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void curSceneIsBigBossFloor__Q23PSM8SceneMgrFv(void)
  * Address:	8045A2EC
  * Size:	0001C0
  */
-void newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo(void)
+void PSM::SceneMgr::newDirectedBgm( (char const *, JAInter::SoundInfo &))
 {
 /*
 .loc_0x0:
@@ -771,7 +771,7 @@ void newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo(void)
  * Address:	8045A4AC
  * Size:	0001F4
  */
-void newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo(void)
+void PSM::SceneMgr::newGameScene( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -930,7 +930,7 @@ void newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo(void)
  * Address:	8045A6A0
  * Size:	0018BC
  */
-void initEnvironmentSe__Q23PSM8SceneMgrFPQ23PSM10Scene_Game(void)
+void PSM::SceneMgr::initEnvironmentSe( (PSM::Scene_Game *))
 {
 /*
 .loc_0x0:
@@ -2953,7 +2953,7 @@ void PSM::SetNoYOfset(PSSystem::EnvSeMgr *)
  * Address:	8045C05C
  * Size:	00002C
  */
-void setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo(void)
+void PSM::EnvSeObjBuilder::setInfo( (PSM::PersEnvInfo))
 {
 /*
 .loc_0x0:
@@ -3051,7 +3051,7 @@ void __ct__Q29JGeometry8TBox3<float>FRCQ29JGeometry8TBox3<float>(void)
  * Address:	8045C12C
  * Size:	000164
  */
-void newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase(void)
+void PSM::SceneMgr::newAutoBgm( (char const *, char const *, JAInter::SoundInfo &, JADUtility::AccessMode, PSGame::SceneInfo &, PSSystem::DirectorMgrBase *))
 {
 /*
 .loc_0x0:
@@ -3170,7 +3170,7 @@ void JSULink<PSAutoBgm::MeloArrBase>::~JSULink()
  * Address:	8045C290
  * Size:	000060
  */
-void __ct__Q23PSM13MiddleBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase(void)
+void PSM::MiddleBossSeq::__ct( (char const *, JAInter::SoundInfo const &, PSSystem::DirectorMgrBase *))
 {
 /*
 .loc_0x0:
@@ -3206,7 +3206,7 @@ void __ct__Q23PSM13MiddleBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15Director
  * Address:	8045C2F0
  * Size:	000094
  */
-void onJump__Q23PSM13MiddleBossSeqFUs(void)
+void PSM::MiddleBossSeq::onJump( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3265,7 +3265,7 @@ void onJump__Q23PSM13MiddleBossSeqFUs(void)
  * Address:	8045C384
  * Size:	000040
  */
-void exec__Q23PSM13MiddleBossSeqFv(void)
+void PSM::MiddleBossSeq::exec(void)
 {
 /*
 .loc_0x0:
@@ -3295,7 +3295,7 @@ void exec__Q23PSM13MiddleBossSeqFv(void)
  * Address:	8045C3C4
  * Size:	00005C
  */
-void requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs(void)
+void PSM::MiddleBossSeq::requestJumpBgmQuickly( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3332,7 +3332,7 @@ void requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs(void)
  * Address:	8045C420
  * Size:	00005C
  */
-void requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs(void)
+void PSM::MiddleBossSeq::requestJumpBgmOnBeat( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3369,7 +3369,7 @@ void requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs(void)
  * Address:	8045C47C
  * Size:	00005C
  */
-void requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs(void)
+void PSM::MiddleBossSeq::requestJumpBgmEveryBeat( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3406,7 +3406,7 @@ void requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs(void)
  * Address:	8045C4D8
  * Size:	000214
  */
-void jumpCheck__Q23PSM13MiddleBossSeqFUs(void)
+void PSM::MiddleBossSeq::jumpCheck( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3591,7 +3591,7 @@ void jumpCheck__Q23PSM13MiddleBossSeqFUs(void)
  * Address:	8045C6EC
  * Size:	00006C
  */
-void __ct__Q23PSM10BigBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase(void)
+void PSM::BigBossSeq::__ct( (char const *, JAInter::SoundInfo const &, PSSystem::DirectorMgrBase *))
 {
 /*
 .loc_0x0:
@@ -3630,7 +3630,7 @@ void __ct__Q23PSM10BigBossSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgr
  * Address:	8045C758
  * Size:	000080
  */
-void __dt__Q23PSM13MiddleBossSeqFv(void)
+void PSM::MiddleBossSeq::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3678,7 +3678,7 @@ void __dt__Q23PSM13MiddleBossSeqFv(void)
  * Address:	8045C7D8
  * Size:	0001B4
  */
-void jumpCheck__Q23PSM10BigBossSeqFUs(void)
+void PSM::BigBossSeq::jumpCheck( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3819,7 +3819,7 @@ void jumpCheck__Q23PSM10BigBossSeqFUs(void)
  * Address:	8045C98C
  * Size:	000098
  */
-void onJump__Q23PSM10BigBossSeqFUs(void)
+void PSM::BigBossSeq::onJump( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3879,7 +3879,7 @@ void onJump__Q23PSM10BigBossSeqFUs(void)
  * Address:	8045CA24
  * Size:	000058
  */
-void __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr(void)
+void PSM::PersEnvManager::__ct( (PSSystem::EnvSeMgr *))
 {
 /*
 .loc_0x0:
@@ -3913,7 +3913,7 @@ void __ct__Q23PSM14PersEnvManagerFPQ28PSSystem8EnvSeMgr(void)
  * Address:	8045CA7C
  * Size:	000040
  */
-void playOk__Q23PSM14PersEnvManagerFPQ23PSM24EnvSe_Perspective_AvoidY(void)
+void PSM::PersEnvManager::playOk( (PSM::EnvSe_Perspective_AvoidY *))
 {
 /*
 .loc_0x0:
@@ -3947,7 +3947,7 @@ void playOk__Q23PSM14PersEnvManagerFPQ23PSM24EnvSe_Perspective_AvoidY(void)
  * Address:	8045CABC
  * Size:	0001C4
  */
-void exec__Q23PSM14PersEnvManagerFv(void)
+void PSM::PersEnvManager::exec(void)
 {
 /*
 .loc_0x0:
@@ -4098,7 +4098,7 @@ void exec__Q23PSM14PersEnvManagerFv(void)
  * Address:	8045CC80
  * Size:	000090
  */
-void __dt__Q23PSM10BigBossSeqFv(void)
+void PSM::BigBossSeq::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4150,7 +4150,7 @@ void __dt__Q23PSM10BigBossSeqFv(void)
  * Address:	8045CD10
  * Size:	00000C
  */
-void getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv(void)
+void PSM::EnvSe_Perspective_AvoidY::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -4165,7 +4165,7 @@ void getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv(void)
  * Address:	8045CD1C
  * Size:	00000C
  */
-void getCastType__Q23PSM12Env_PollutinFv(void)
+void PSM::Env_Pollutin::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -4180,7 +4180,7 @@ void getCastType__Q23PSM12Env_PollutinFv(void)
  * Address:	8045CD28
  * Size:	000060
  */
-void __dt__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4218,7 +4218,7 @@ void __dt__Q23PSM9SceneBaseFv(void)
  * Address:	........
  * Size:	000084
  */
-void __dt__Q26PSGame13EnvSe_AutoPanFv(void)
+void PSGame::EnvSe_AutoPan::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4228,7 +4228,7 @@ void __dt__Q26PSGame13EnvSe_AutoPanFv(void)
  * Address:	8045CD88
  * Size:	000054
  */
-void __ct__Q28PSSystem8EnvSeMgrFv(void)
+void PSSystem::EnvSeMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -4271,7 +4271,7 @@ void JSUList<PSSystem::EnvSeBase>::~JSUList()
  * Address:	8045CDDC
  * Size:	000060
  */
-void __dt__Q23PSM15EnvSeObjBuilderFv(void)
+void PSM::EnvSeObjBuilder::__dt(void)
 {
 /*
 .loc_0x0:

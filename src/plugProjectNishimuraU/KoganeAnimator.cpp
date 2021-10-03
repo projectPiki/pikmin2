@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025F020
  * Size:	000008
  */
-void setAnimMgr__Q34Game6Kogane14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Kogane::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game6Kogane14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	8025F028
  * Size:	000008
  */
-void getAnimator__Q34Game6Kogane14ProperAnimatorFi(void)
+void Game::Kogane::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game6Kogane14ProperAnimatorFi(void)
  * Address:	8025F030
  * Size:	00005C
  */
-void __dt__Q34Game6Kogane14ProperAnimatorFv(void)
+void Game::Kogane::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game6Kogane14ProperAnimatorFv(void)
  * Address:	8025F08C
  * Size:	000008
  */
-void getAnimator__Q34Game6Kogane14ProperAnimatorFv(void)
+void Game::Kogane::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

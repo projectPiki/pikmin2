@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802F2DEC
  * Size:	000050
  */
-void __ct__Q34Game4Hana3MgrFiUc(void)
+void Game::Hana::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Hana3MgrFiUc(void)
  * Address:	802F2E3C
  * Size:	000048
  */
-void doAlloc__Q34Game4Hana3MgrFv(void)
+void Game::Hana::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game4Hana3MgrFv(void)
  * Address:	802F2E84
  * Size:	000060
  */
-void createObj__Q34Game4Hana3MgrFi(void)
+void Game::Hana::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game4Hana3MgrFi(void)
  * Address:	802F2EE4
  * Size:	0000F0
  */
-void __dt__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void __dt__Q34Game4Hana3ObjFv(void)
  * Address:	802F2FD4
  * Size:	000010
  */
-void getEnemy__Q34Game4Hana3MgrFi(void)
+void Game::Hana::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void getEnemy__Q34Game4Hana3MgrFi(void)
  * Address:	802F2FE4
  * Size:	000068
  */
-void loadModelData__Q34Game4Hana3MgrFv(void)
+void Game::Hana::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void loadModelData__Q34Game4Hana3MgrFv(void)
  * Address:	802F304C
  * Size:	0000B0
  */
-void __dt__Q34Game4Hana3MgrFv(void)
+void Game::Hana::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void __dt__Q34Game4Hana3MgrFv(void)
  * Address:	802F30FC
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Hana3MgrFv(void)
+void Game::Hana::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -323,7 +323,7 @@ void getEnemyTypeID__Q34Game4Hana3MgrFv(void)
  * Address:	802F3104
  * Size:	00002C
  */
-void doLoadBmd__Q34Game4Hana3MgrFPv(void)
+void Game::Hana::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -346,7 +346,7 @@ void doLoadBmd__Q34Game4Hana3MgrFPv(void)
  * Address:	802F3130
  * Size:	000008
  */
-void @4@__dt__Q34Game4Hana3MgrFv(void)
+void @4@Game::Hana::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

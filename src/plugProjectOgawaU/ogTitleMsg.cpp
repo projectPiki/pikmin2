@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000108
  */
-void __ct__Q32og9newScreen20TitleMessageAnalyzerFv(void)
+void og::newScreen::TitleMessageAnalyzer::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q32og9newScreen20TitleMessageAnalyzerFv(void)
  * Address:	8032EA58
  * Size:	000070
  */
-void __dt__Q25P2JME8AnalyzerFv(void)
+void P2JME::Analyzer::__dt(void)
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void __dt__Q25P2JME8AnalyzerFv(void)
  * Address:	........
  * Size:	000018
  */
-void set2ByteString__Q32og9newScreen20TitleMessageAnalyzerFPci(void)
+void og::newScreen::TitleMessageAnalyzer::set2ByteString( (char *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -79,7 +79,7 @@ void set2ByteString__Q32og9newScreen20TitleMessageAnalyzerFPci(void)
  * Address:	8032EAC8
  * Size:	000228
  */
-void do_character__Q32og9newScreen20TitleMessageAnalyzerFi(void)
+void og::newScreen::TitleMessageAnalyzer::do_character( (int))
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void do_character__Q32og9newScreen20TitleMessageAnalyzerFi(void)
  * Address:	8032ECF0
  * Size:	00028C
  */
-void __ct__Q32og9newScreen8TitleMsgFP9J2DScreenP7J2DPanePc(void)
+void og::newScreen::TitleMsg::__ct( (J2DScreen *, J2DPane *, char *))
 {
 /*
 .loc_0x0:
@@ -444,7 +444,7 @@ void __ct__Q32og9newScreen8TitleMsgFP9J2DScreenP7J2DPanePc(void)
  * Address:	8032EF7C
  * Size:	000080
  */
-void __dt__Q32og9newScreen20TitleMessageAnalyzerFv(void)
+void og::newScreen::TitleMessageAnalyzer::__dt(void)
 {
 /*
 .loc_0x0:
@@ -492,7 +492,7 @@ void __dt__Q32og9newScreen20TitleMessageAnalyzerFv(void)
  * Address:	8032EFFC
  * Size:	000154
  */
-void setFontPane__Q32og9newScreen8TitleMsgFP12J2DPictureExi(void)
+void og::newScreen::TitleMsg::setFontPane( (J2DPictureEx *, int))
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void setFontPane__Q32og9newScreen8TitleMsgFP12J2DPictureExi(void)
  * Address:	8032F150
  * Size:	000164
  */
-void setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering(void)
+void og::newScreen::TitleMsg::setCentering( (og::newScreen::TitleMsg::EnumCentering))
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCenter
  * Address:	........
  * Size:	000004
  */
-void drawMsgArea__Q32og9newScreen8TitleMsgFR14J2DGrafContext(void)
+void og::newScreen::TitleMsg::drawMsgArea( (J2DGrafContext &))
 {
 	// UNUSED FUNCTION
 }
@@ -718,7 +718,7 @@ void drawMsgArea__Q32og9newScreen8TitleMsgFR14J2DGrafContext(void)
  * Address:	8032F2B4
  * Size:	0000D0
  */
-void setColor__Q32og9newScreen8TitleMsgFRQ28JUtility6TColorRQ28JUtility6TColor(void)
+void og::newScreen::TitleMsg::setColor( (JUtility::TColor &, JUtility::TColor &))
 {
 /*
 .loc_0x0:
@@ -786,7 +786,7 @@ void setColor__Q32og9newScreen8TitleMsgFRQ28JUtility6TColorRQ28JUtility6TColor(v
  * Address:	8032F384
  * Size:	0000F0
  */
-void __ct__Q32og9newScreen12TitleMsgDropFP9J2DScreenP7J2DPanePc(void)
+void og::newScreen::TitleMsgDrop::__ct( (J2DScreen *, J2DPane *, char *))
 {
 /*
 .loc_0x0:
@@ -864,7 +864,7 @@ void __ct__Q32og9newScreen12TitleMsgDropFP9J2DScreenP7J2DPanePc(void)
  * Address:	8032F474
  * Size:	00003C
  */
-void __dt__Q42og9newScreen12TitleMsgDrop6MotionFv(void)
+void og::newScreen::TitleMsgDrop::Motion::__dt(void)
 {
 /*
 .loc_0x0:
@@ -893,7 +893,7 @@ void __dt__Q42og9newScreen12TitleMsgDrop6MotionFv(void)
  * Address:	8032F4B0
  * Size:	00001C
  */
-void __ct__Q42og9newScreen12TitleMsgDrop6MotionFv(void)
+void og::newScreen::TitleMsgDrop::Motion::__ct(void)
 {
 /*
 .loc_0x0:
@@ -912,7 +912,7 @@ void __ct__Q42og9newScreen12TitleMsgDrop6MotionFv(void)
  * Address:	........
  * Size:	0000A0
  */
-void __dt__Q32og9newScreen8TitleMsgFv(void)
+void og::newScreen::TitleMsg::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -922,7 +922,7 @@ void __dt__Q32og9newScreen8TitleMsgFv(void)
  * Address:	8032F4CC
  * Size:	000128
  */
-void init__Q32og9newScreen12TitleMsgDropFv(void)
+void og::newScreen::TitleMsgDrop::init(void)
 {
 /*
 .loc_0x0:
@@ -1012,7 +1012,7 @@ void init__Q32og9newScreen12TitleMsgDropFv(void)
  * Address:	8032F5F4
  * Size:	000230
  */
-void update__Q32og9newScreen12TitleMsgDropFv(void)
+void og::newScreen::TitleMsgDrop::update(void)
 {
 /*
 .loc_0x0:
@@ -1174,7 +1174,7 @@ void update__Q32og9newScreen12TitleMsgDropFv(void)
  * Address:	8032F824
  * Size:	00006C
  */
-void end__Q32og9newScreen12TitleMsgDropFv(void)
+void og::newScreen::TitleMsgDrop::end(void)
 {
 /*
 .loc_0x0:
@@ -1217,7 +1217,7 @@ void end__Q32og9newScreen12TitleMsgDropFv(void)
  * Address:	8032F890
  * Size:	00018C
  */
-void __ct__Q32og9newScreen12TitleMsgWaveFP9J2DScreenP7J2DPanePc(void)
+void og::newScreen::TitleMsgWave::__ct( (J2DScreen *, J2DPane *, char *))
 {
 /*
 .loc_0x0:
@@ -1342,7 +1342,7 @@ void __ct__Q32og9newScreen12TitleMsgWaveFP9J2DScreenP7J2DPanePc(void)
  * Address:	8032FA1C
  * Size:	000004
  */
-void init__Q32og9newScreen12TitleMsgWaveFv(void)
+void og::newScreen::TitleMsgWave::init(void)
 {
 /*
 .loc_0x0:
@@ -1355,7 +1355,7 @@ void init__Q32og9newScreen12TitleMsgWaveFv(void)
  * Address:	8032FA20
  * Size:	0000B0
  */
-void start__Q32og9newScreen12TitleMsgWaveFv(void)
+void og::newScreen::TitleMsgWave::start(void)
 {
 /*
 .loc_0x0:
@@ -1415,7 +1415,7 @@ void start__Q32og9newScreen12TitleMsgWaveFv(void)
  * Address:	8032FAD0
  * Size:	0002E0
  */
-void update__Q32og9newScreen12TitleMsgWaveFv(void)
+void og::newScreen::TitleMsgWave::update(void)
 {
 /*
 .loc_0x0:
@@ -1623,7 +1623,7 @@ void update__Q32og9newScreen12TitleMsgWaveFv(void)
  * Address:	8032FDB0
  * Size:	00006C
  */
-void end__Q32og9newScreen12TitleMsgWaveFv(void)
+void og::newScreen::TitleMsgWave::end(void)
 {
 /*
 .loc_0x0:
@@ -1666,7 +1666,7 @@ void end__Q32og9newScreen12TitleMsgWaveFv(void)
  * Address:	8032FE1C
  * Size:	000014
  */
-void setParam__Q32og9newScreen12TitleMsgWaveFffff(void)
+void og::newScreen::TitleMsgWave::setParam( (float, float, float, float))
 {
 /*
 .loc_0x0:
@@ -1683,7 +1683,7 @@ void setParam__Q32og9newScreen12TitleMsgWaveFffff(void)
  * Address:	8032FE30
  * Size:	0000F8
  */
-void __ct__Q32og9newScreen13TitleMsgClashFP9J2DScreenP7J2DPanePc(void)
+void og::newScreen::TitleMsgClash::__ct( (J2DScreen *, J2DPane *, char *))
 {
 /*
 .loc_0x0:
@@ -1763,7 +1763,7 @@ void __ct__Q32og9newScreen13TitleMsgClashFP9J2DScreenP7J2DPanePc(void)
  * Address:	8032FF28
  * Size:	000014
  */
-void init__Q32og9newScreen13TitleMsgClashFv(void)
+void og::newScreen::TitleMsgClash::init(void)
 {
 /*
 .loc_0x0:
@@ -1780,7 +1780,7 @@ void init__Q32og9newScreen13TitleMsgClashFv(void)
  * Address:	8032FF3C
  * Size:	000214
  */
-void update__Q32og9newScreen13TitleMsgClashFv(void)
+void og::newScreen::TitleMsgClash::update(void)
 {
 /*
 .loc_0x0:
@@ -1933,7 +1933,7 @@ void update__Q32og9newScreen13TitleMsgClashFv(void)
  * Address:	80330150
  * Size:	00006C
  */
-void end__Q32og9newScreen13TitleMsgClashFv(void)
+void og::newScreen::TitleMsgClash::end(void)
 {
 /*
 .loc_0x0:
@@ -1976,7 +1976,7 @@ void end__Q32og9newScreen13TitleMsgClashFv(void)
  * Address:	803301BC
  * Size:	000004
  */
-void start__Q32og9newScreen8TitleMsgFv(void)
+void og::newScreen::TitleMsg::start(void)
 {
 /*
 .loc_0x0:
@@ -1989,7 +1989,7 @@ void start__Q32og9newScreen8TitleMsgFv(void)
  * Address:	803301C0
  * Size:	000084
  */
-void __dt__Q25efx2d13T2DCvnameChalFv(void)
+void efx2d::T2DCvnameChal::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2038,7 +2038,7 @@ void __dt__Q25efx2d13T2DCvnameChalFv(void)
  * Address:	80330244
  * Size:	000008
  */
-void tagColor__Q25P2JME8AnalyzerFPCvUl(void)
+void P2JME::Analyzer::tagColor( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2052,7 +2052,7 @@ void tagColor__Q25P2JME8AnalyzerFPCvUl(void)
  * Address:	8033024C
  * Size:	000008
  */
-void tagSize__Q25P2JME8AnalyzerFPCvUl(void)
+void P2JME::Analyzer::tagSize( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2066,7 +2066,7 @@ void tagSize__Q25P2JME8AnalyzerFPCvUl(void)
  * Address:	80330254
  * Size:	000008
  */
-void tagRuby__Q25P2JME8AnalyzerFPCvUl(void)
+void P2JME::Analyzer::tagRuby( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2080,7 +2080,7 @@ void tagRuby__Q25P2JME8AnalyzerFPCvUl(void)
  * Address:	8033025C
  * Size:	000008
  */
-void tagFont__Q25P2JME8AnalyzerFPCvUl(void)
+void P2JME::Analyzer::tagFont( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2094,7 +2094,7 @@ void tagFont__Q25P2JME8AnalyzerFPCvUl(void)
  * Address:	80330264
  * Size:	000008
  */
-void tagImage__Q25P2JME8AnalyzerFUsPCvUl(void)
+void P2JME::Analyzer::tagImage( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2108,7 +2108,7 @@ void tagImage__Q25P2JME8AnalyzerFUsPCvUl(void)
  * Address:	8033026C
  * Size:	000008
  */
-void tagColorEX__Q25P2JME8AnalyzerFUsPCvUl(void)
+void P2JME::Analyzer::tagColorEX( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2122,7 +2122,7 @@ void tagColorEX__Q25P2JME8AnalyzerFUsPCvUl(void)
  * Address:	80330274
  * Size:	000008
  */
-void tagControl__Q25P2JME8AnalyzerFUsPCvUl(void)
+void P2JME::Analyzer::tagControl( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2136,7 +2136,7 @@ void tagControl__Q25P2JME8AnalyzerFUsPCvUl(void)
  * Address:	8033027C
  * Size:	000008
  */
-void tagPosition__Q25P2JME8AnalyzerFUsPCvUl(void)
+void P2JME::Analyzer::tagPosition( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2150,7 +2150,7 @@ void tagPosition__Q25P2JME8AnalyzerFUsPCvUl(void)
  * Address:	80330284
  * Size:	000008
  */
-void @8@__dt__Q25efx2d13T2DCvnameChalFv(void)
+void @8@efx2d::T2DCvnameChal::__dt(void)
 {
 /*
 .loc_0x0:

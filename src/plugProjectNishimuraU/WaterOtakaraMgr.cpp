@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B86E0
  * Size:	000050
  */
-void __ct__Q34Game12WaterOtakara3MgrFiUc(void)
+void Game::WaterOtakara::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game12WaterOtakara3MgrFiUc(void)
  * Address:	802B8730
  * Size:	000048
  */
-void doAlloc__Q34Game12WaterOtakara3MgrFv(void)
+void Game::WaterOtakara::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game12WaterOtakara3MgrFv(void)
  * Address:	802B8778
  * Size:	000060
  */
-void createObj__Q34Game12WaterOtakara3MgrFi(void)
+void Game::WaterOtakara::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game12WaterOtakara3MgrFi(void)
  * Address:	802B87D8
  * Size:	0000F0
  */
-void __dt__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void __dt__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B88C8
  * Size:	000010
  */
-void getEnemy__Q34Game12WaterOtakara3MgrFi(void)
+void Game::WaterOtakara::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void getEnemy__Q34Game12WaterOtakara3MgrFi(void)
  * Address:	802B88D8
  * Size:	000080
  */
-void loadTexData__Q34Game12WaterOtakara3MgrFv(void)
+void Game::WaterOtakara::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void loadTexData__Q34Game12WaterOtakara3MgrFv(void)
  * Address:	802B8958
  * Size:	0000C8
  */
-void __dt__Q34Game12WaterOtakara3MgrFv(void)
+void Game::WaterOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void __dt__Q34Game12WaterOtakara3MgrFv(void)
  * Address:	802B8A20
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12WaterOtakara3MgrFv(void)
+void Game::WaterOtakara::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void getEnemyTypeID__Q34Game12WaterOtakara3MgrFv(void)
  * Address:	802B8A28
  * Size:	000008
  */
-void getChangeTexture__Q34Game12WaterOtakara3MgrFv(void)
+void Game::WaterOtakara::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void getChangeTexture__Q34Game12WaterOtakara3MgrFv(void)
  * Address:	802B8A30
  * Size:	000008
  */
-void @4@__dt__Q34Game12WaterOtakara3MgrFv(void)
+void @4@Game::WaterOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

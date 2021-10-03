@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80455700
  * Size:	00005C
  */
-void __ct__Q23Sys10DrawBufferFv(void)
+void Sys::DrawBuffer::__ct(void)
 {
 /*
 .loc_0x0:
@@ -50,7 +50,7 @@ void __ct__Q23Sys10DrawBufferFv(void)
  * Address:	8045575C
  * Size:	000060
  */
-void __dt__Q23Sys10DrawBufferFv(void)
+void Sys::DrawBuffer::__dt(void)
 {
 /*
 .loc_0x0:
@@ -88,7 +88,7 @@ void __dt__Q23Sys10DrawBufferFv(void)
  * Address:	804557BC
  * Size:	0000DC
  */
-void create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg(void)
+void Sys::DrawBuffer::create( (Sys::DrawBuffer::CreateArg &))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void create__Q23Sys10DrawBufferFRQ33Sys10DrawBuffer9CreateArg(void)
  * Address:	80455898
  * Size:	000088
  */
-void draw__Q23Sys10DrawBufferFv(void)
+void Sys::DrawBuffer::draw(void)
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void draw__Q23Sys10DrawBufferFv(void)
  * Address:	80455920
  * Size:	000058
  */
-void frameInit__Q23Sys10DrawBufferFv(void)
+void Sys::DrawBuffer::frameInit(void)
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void frameInit__Q23Sys10DrawBufferFv(void)
  * Address:	80455978
  * Size:	000054
  */
-void __ct__Q23Sys11DrawBuffersFv(void)
+void Sys::DrawBuffers::__ct(void)
 {
 /*
 .loc_0x0:
@@ -280,7 +280,7 @@ void __ct__Q23Sys11DrawBuffersFv(void)
  * Address:	804559CC
  * Size:	000060
  */
-void __dt__Q23Sys11DrawBuffersFv(void)
+void Sys::DrawBuffers::__dt(void)
 {
 /*
 .loc_0x0:
@@ -318,7 +318,7 @@ void __dt__Q23Sys11DrawBuffersFv(void)
  * Address:	80455A2C
  * Size:	000098
  */
-void allocate__Q23Sys11DrawBuffersFi(void)
+void Sys::DrawBuffers::allocate( (int))
 {
 /*
 .loc_0x0:
@@ -374,7 +374,7 @@ void allocate__Q23Sys11DrawBuffersFi(void)
  * Address:	80455AC4
  * Size:	00008C
  */
-void get__Q23Sys11DrawBuffersFi(void)
+void Sys::DrawBuffers::get( (int))
 {
 /*
 .loc_0x0:
@@ -425,7 +425,7 @@ void get__Q23Sys11DrawBuffersFi(void)
  * Address:	80455B50
  * Size:	0000E0
  */
-void frameInitAll__Q23Sys11DrawBuffersFv(void)
+void Sys::DrawBuffers::frameInitAll(void)
 {
 /*
 .loc_0x0:

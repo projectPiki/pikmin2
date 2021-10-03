@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000228
  */
-void getNaviPtr__Q22og9newScreenFi(void)
+void og::newScreen::getNaviPtr( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void getNaviPtr__Q22og9newScreenFi(void)
  * Address:	8030F6F0
  * Size:	000114
  */
-void __ct__Q32og9newScreen11ObjSMenuMapFPCc(void)
+void og::newScreen::ObjSMenuMap::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -106,7 +106,7 @@ void __ct__Q32og9newScreen11ObjSMenuMapFPCc(void)
  * Address:	8030F804
  * Size:	0000AC
  */
-void __dt__Q32og9newScreen12ObjSMenuBaseFv(void)
+void og::newScreen::ObjSMenuBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -165,7 +165,7 @@ void __dt__Q32og9newScreen12ObjSMenuBaseFv(void)
  * Address:	8030F8B0
  * Size:	0000C4
  */
-void __dt__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::__dt(void)
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void __dt__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	........
  * Size:	000024
  */
-void calcMapScale__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::calcMapScale(void)
 {
 	// UNUSED FUNCTION
 }
@@ -250,7 +250,7 @@ void calcMapPos__Q32og9newScreen11ObjSMenuMapF10Vector2<float>P10Vector2<float>(
  * Address:	8030F974
  * Size:	00026C
  */
-void setMapTexture__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::setMapTexture(void)
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void setMapTexture__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	........
  * Size:	0001B0
  */
-void setMapPos__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::setMapPos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -443,7 +443,7 @@ void setMapPos__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	........
  * Size:	0000BC
  */
-void setCompass__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::setCompass(void)
 {
 	// UNUSED FUNCTION
 }
@@ -453,7 +453,7 @@ void setCompass__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	8030FBE0
  * Size:	0001B8
  */
-void tuningIcon__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::tuningIcon(void)
 {
 /*
 .loc_0x0:
@@ -593,7 +593,7 @@ void tuningIcon__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	8030FD98
  * Size:	000C74
  */
-void initMapIcon__Q32og9newScreen11ObjSMenuMapFP10JKRArchive(void)
+void og::newScreen::ObjSMenuMap::initMapIcon( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1500,7 +1500,7 @@ void initMapIcon__Q32og9newScreen11ObjSMenuMapFP10JKRArchive(void)
  * Address:	80310A0C
  * Size:	0001E4
  */
-void appendCaveName__Q32og9newScreen11ObjSMenuMapFP7J2DPaneUsUx(void)
+void og::newScreen::ObjSMenuMap::appendCaveName( (J2DPane *, unsigned short, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -1639,7 +1639,7 @@ void appendCaveName__Q32og9newScreen11ObjSMenuMapFP7J2DPaneUsUx(void)
  * Address:	........
  * Size:	000004
  */
-void rotateMap__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::rotateMap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1649,7 +1649,7 @@ void rotateMap__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80310BF0
  * Size:	0002E8
  */
-void transMap__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::transMap(void)
 {
 /*
 .loc_0x0:
@@ -1887,7 +1887,7 @@ void transMap__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	........
  * Size:	0000C4
  */
-void scaleMap__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::scaleMap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1897,7 +1897,7 @@ void scaleMap__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	........
  * Size:	0000B0
  */
-void setMapColor__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::setMapColor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1907,7 +1907,7 @@ void setMapColor__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	........
  * Size:	000054
  */
-void calcCaveNameAlpha__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::calcCaveNameAlpha(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1917,7 +1917,7 @@ void calcCaveNameAlpha__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80310ED8
  * Size:	000960
  */
-void doCreate__Q32og9newScreen11ObjSMenuMapFP10JKRArchive(void)
+void og::newScreen::ObjSMenuMap::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -2591,7 +2591,7 @@ void doCreate__Q32og9newScreen11ObjSMenuMapFP10JKRArchive(void)
  * Address:	80311838
  * Size:	000598
  */
-void updateMap__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::updateMap(void)
 {
 /*
 .loc_0x0:
@@ -2989,7 +2989,7 @@ void updateMap__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80311DD0
  * Size:	0000A8
  */
-void commonUpdate__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::commonUpdate(void)
 {
 /*
 .loc_0x0:
@@ -3043,7 +3043,7 @@ void commonUpdate__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80311E78
  * Size:	00006C
  */
-void doUpdateLAction__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::doUpdateLAction(void)
 {
 /*
 .loc_0x0:
@@ -3082,7 +3082,7 @@ void doUpdateLAction__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80311EE4
  * Size:	0000C4
  */
-void doUpdateRAction__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::doUpdateRAction(void)
 {
 /*
 .loc_0x0:
@@ -3147,7 +3147,7 @@ void doUpdateRAction__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80311FA8
  * Size:	00010C
  */
-void doUpdate__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -3238,7 +3238,7 @@ void doUpdate__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	803120B4
  * Size:	000138
  */
-void doDraw__Q32og9newScreen11ObjSMenuMapFR8Graphics(void)
+void og::newScreen::ObjSMenuMap::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -3336,7 +3336,7 @@ void doDraw__Q32og9newScreen11ObjSMenuMapFR8Graphics(void)
  * Address:	803121EC
  * Size:	00032C
  */
-void drawMap__Q32og9newScreen11ObjSMenuMapFR8Graphics(void)
+void og::newScreen::ObjSMenuMap::drawMap( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -3691,7 +3691,7 @@ void drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect<float>R6Color4f(vo
  * Address:	803126F8
  * Size:	000214
  */
-void drawVecZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR3VecR3VecR3VecR3VecR6Color4f(void)
+void og::newScreen::ObjSMenuMap::drawVecZ( (Graphics &, Vec &, Vec &, Vec &, Vec &, Color4 &, float))
 {
 /*
 .loc_0x0:
@@ -3836,7 +3836,7 @@ void drawVecZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR3VecR3VecR3VecR3VecR6Colo
  * Address:	8031290C
  * Size:	0000A4
  */
-void doStart__Q32og9newScreen11ObjSMenuMapFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjSMenuMap::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -3889,7 +3889,7 @@ void doStart__Q32og9newScreen11ObjSMenuMapFPCQ26Screen13StartSceneArg(void)
  * Address:	803129B0
  * Size:	000008
  */
-void doEnd__Q32og9newScreen11ObjSMenuMapFPCQ26Screen11EndSceneArg(void)
+void og::newScreen::ObjSMenuMap::doEnd( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -3903,7 +3903,7 @@ void doEnd__Q32og9newScreen11ObjSMenuMapFPCQ26Screen11EndSceneArg(void)
  * Address:	803129B8
  * Size:	000020
  */
-void doUpdateFinish__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -3923,7 +3923,7 @@ void doUpdateFinish__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	803129D8
  * Size:	00004C
  */
-void doUpdateFadeout__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -3954,7 +3954,7 @@ void doUpdateFadeout__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80312A24
  * Size:	000014
  */
-void in_L__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::in_L(void)
 {
 /*
 .loc_0x0:
@@ -3971,7 +3971,7 @@ void in_L__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80312A38
  * Size:	000014
  */
-void in_R__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::in_R(void)
 {
 /*
 .loc_0x0:
@@ -3988,7 +3988,7 @@ void in_R__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80312A4C
  * Size:	00000C
  */
-void wait__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::wait(void)
 {
 /*
 .loc_0x0:
@@ -4003,7 +4003,7 @@ void wait__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80312A58
  * Size:	00002C
  */
-void out_L__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::out_L(void)
 {
 /*
 .loc_0x0:
@@ -4026,7 +4026,7 @@ void out_L__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80312A84
  * Size:	00002C
  */
-void out_R__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::out_R(void)
 {
 /*
 .loc_0x0:
@@ -4049,7 +4049,7 @@ void out_R__Q32og9newScreen11ObjSMenuMapFv(void)
  * Address:	80312AB0
  * Size:	000008
  */
-void getClassSize__Q26Screen11SetSceneArgFv(void)
+void Screen::SetSceneArg::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -4063,7 +4063,7 @@ void getClassSize__Q26Screen11SetSceneArgFv(void)
  * Address:	80312AB8
  * Size:	000008
  */
-void getSceneType__Q26Screen11SetSceneArgCFv(void)
+void Screen::SetSceneArg::getSceneType( const
 {
 /*
 .loc_0x0:
@@ -4077,7 +4077,7 @@ void getSceneType__Q26Screen11SetSceneArgCFv(void)
  * Address:	80312AC0
  * Size:	000008
  */
-void getSceneType__Q26Screen12SceneArgBaseCFv(void)
+void Screen::SceneArgBase::getSceneType( const
 {
 /*
 .loc_0x0:
@@ -4091,7 +4091,7 @@ void getSceneType__Q26Screen12SceneArgBaseCFv(void)
  * Address:	80312AC8
  * Size:	000004
  */
-void doUpdateCancelAction__Q32og9newScreen11ObjSMenuMapFv(void)
+void og::newScreen::ObjSMenuMap::doUpdateCancelAction(void)
 {
 /*
 .loc_0x0:
@@ -4190,7 +4190,7 @@ void __sinit_ogObjSMenuMap_cpp(void)
  * Address:	80312BF4
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen11ObjSMenuMapFv(void)
+void @24@og::newScreen::ObjSMenuMap::__dt(void)
 {
 /*
 .loc_0x0:

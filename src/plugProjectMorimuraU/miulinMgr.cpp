@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80363F58
  * Size:	000050
  */
-void __ct__Q34Game6Miulin3MgrFiUc(void)
+void Game::Miulin::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game6Miulin3MgrFiUc(void)
  * Address:	80363FA8
  * Size:	000048
  */
-void doAlloc__Q34Game6Miulin3MgrFv(void)
+void Game::Miulin::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game6Miulin3MgrFv(void)
  * Address:	80363FF0
  * Size:	000208
  */
-void __ct__Q34Game6Miulin5ParmsFv(void)
+void Game::Miulin::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void __ct__Q34Game6Miulin5ParmsFv(void)
  * Address:	803641F8
  * Size:	000020
  */
-void birth__Q34Game6Miulin3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::Miulin::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -243,7 +243,7 @@ void birth__Q34Game6Miulin3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	80364218
  * Size:	0000B0
  */
-void __dt__Q34Game6Miulin3MgrFv(void)
+void Game::Miulin::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void __dt__Q34Game6Miulin3MgrFv(void)
  * Address:	803642C8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Miulin3MgrFv(void)
+void Game::Miulin::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -317,7 +317,7 @@ void getEnemyTypeID__Q34Game6Miulin3MgrFv(void)
  * Address:	803642D0
  * Size:	000060
  */
-void createObj__Q34Game6Miulin3MgrFi(void)
+void Game::Miulin::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -353,7 +353,7 @@ void createObj__Q34Game6Miulin3MgrFi(void)
  * Address:	80364330
  * Size:	0000BC
  */
-void __dt__Q34Game6Miulin3ObjFv(void)
+void Game::Miulin::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -416,7 +416,7 @@ void __dt__Q34Game6Miulin3ObjFv(void)
  * Address:	803643EC
  * Size:	000010
  */
-void getEnemy__Q34Game6Miulin3MgrFi(void)
+void Game::Miulin::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -432,7 +432,7 @@ void getEnemy__Q34Game6Miulin3MgrFi(void)
  * Address:	803643FC
  * Size:	000050
  */
-void read__Q34Game6Miulin5ParmsFR6Stream(void)
+void Game::Miulin::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -464,7 +464,7 @@ void read__Q34Game6Miulin5ParmsFR6Stream(void)
  * Address:	8036444C
  * Size:	000008
  */
-void @4@__dt__Q34Game6Miulin3MgrFv(void)
+void @4@Game::Miulin::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

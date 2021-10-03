@@ -5,7 +5,7 @@
  * Address:	8046D144
  * Size:	00021C
  */
-void partInit__Q23PSM14ClusterFactoryFUc(void)
+void PSM::ClusterFactory::partInit( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -180,7 +180,7 @@ void partInit__Q23PSM14ClusterFactoryFUc(void)
  * Address:	8046D360
  * Size:	000074
  */
-void __ct__Q23PSM14WorldMapRocketFv(void)
+void PSM::WorldMapRocket::__ct(void)
 {
 /*
 .loc_0x0:
@@ -221,7 +221,7 @@ void __ct__Q23PSM14WorldMapRocketFv(void)
  * Address:	8046D3D4
  * Size:	000060
  */
-void __dt__Q23PSM14WorldMapRocketFv(void)
+void PSM::WorldMapRocket::__dt(void)
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void __dt__Q23PSM14WorldMapRocketFv(void)
  * Address:	8046D434
  * Size:	000490
  */
-void startRocketSE__Q23PSM14WorldMapRocketFff(void)
+void PSM::WorldMapRocket::startRocketSE( (float, float))
 {
 /*
 .loc_0x0:
@@ -579,7 +579,7 @@ void startRocketSE__Q23PSM14WorldMapRocketFff(void)
  * Address:	8046D8C4
  * Size:	000008
  */
-void stateChange__Q23PSM14WorldMapRocketFQ33PSM14WorldMapRocket11rocketState(void)
+void PSM::WorldMapRocket::stateChange( (PSM::WorldMapRocket::rocketState))
 {
 /*
 .loc_0x0:
@@ -593,7 +593,7 @@ void stateChange__Q23PSM14WorldMapRocketFQ33PSM14WorldMapRocket11rocketState(voi
  * Address:	8046D8CC
  * Size:	000004
  */
-void __ct__Q23PSM11PikiHummingFv(void)
+void PSM::PikiHumming::__ct(void)
 {
 /*
 .loc_0x0:
@@ -606,7 +606,7 @@ void __ct__Q23PSM11PikiHummingFv(void)
  * Address:	........
  * Size:	000028
  */
-void init__Q23PSM11PikiHummingFQ23PSM7HumTypeUlii(void)
+void PSM::PikiHumming::init( (PSM::HumType, unsigned long, int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -616,7 +616,7 @@ void init__Q23PSM11PikiHummingFQ23PSM7HumTypeUlii(void)
  * Address:	........
  * Size:	0000A8
  */
-void exec__Q23PSM11PikiHummingFQ23PSM7HumTypeb(void)
+void PSM::PikiHumming::exec( (PSM::HumType, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -626,7 +626,7 @@ void exec__Q23PSM11PikiHummingFQ23PSM7HumTypeb(void)
  * Address:	........
  * Size:	000084
  */
-void play__Q23PSM11PikiHummingFPQ23PSM4Piki(void)
+void PSM::PikiHumming::play( (PSM::Piki *))
 {
 	// UNUSED FUNCTION
 }
@@ -636,7 +636,7 @@ void play__Q23PSM11PikiHummingFPQ23PSM4Piki(void)
  * Address:	8046D8D0
  * Size:	0000FC
  */
-void __ct__Q23PSM14PikiHummingMgrFv(void)
+void PSM::PikiHummingMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -711,7 +711,7 @@ void __ct__Q23PSM14PikiHummingMgrFv(void)
  * Address:	8046D9CC
  * Size:	000624
  */
-void exec__Q23PSM14PikiHummingMgrFv(void)
+void PSM::PikiHummingMgr::exec(void)
 {
 /*
 .loc_0x0:
@@ -1196,7 +1196,7 @@ void exec__Q23PSM14PikiHummingMgrFv(void)
  * Address:	........
  * Size:	00002C
  */
-void entryRequest__Q23PSM14PikiHummingMgrFv(void)
+void PSM::PikiHummingMgr::entryRequest(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1206,7 +1206,7 @@ void entryRequest__Q23PSM14PikiHummingMgrFv(void)
  * Address:	8046DFF0
  * Size:	0000C4
  */
-void play__Q23PSM14PikiHummingMgrFPQ23PSM4Piki(void)
+void PSM::PikiHummingMgr::play( (PSM::Piki *))
 {
 /*
 .loc_0x0:
@@ -2659,7 +2659,7 @@ void PSPlayCaveHoleSound(PSM::Creature *)
  * Address:	8046F21C
  * Size:	000030
  */
-void identifyPart__Q23PSM14ClusterFactoryFUc(void)
+void PSM::ClusterFactory::identifyPart( (unsigned char))
 {
 /*
 .loc_0x0:

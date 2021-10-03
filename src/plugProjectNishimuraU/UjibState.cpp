@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025B1A8
  * Size:	000478
  */
-void init__Q34Game4Ujib3FSMFPQ24Game9EnemyBase(void)
+void Game::Ujib::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -339,7 +339,7 @@ void init__Q34Game4Ujib3FSMFPQ24Game9EnemyBase(void)
  * Address:	8025B620
  * Size:	00005C
  */
-void init__Q34Game4Ujib9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -374,7 +374,7 @@ void init__Q34Game4Ujib9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025B67C
  * Size:	000044
  */
-void exec__Q34Game4Ujib9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -405,7 +405,7 @@ void exec__Q34Game4Ujib9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8025B6C0
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void cleanup__Q34Game4Ujib9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8025B6C4
  * Size:	000064
  */
-void init__Q34Game4Ujib10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StatePress::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -455,7 +455,7 @@ void init__Q34Game4Ujib10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025B728
  * Size:	000044
  */
-void exec__Q34Game4Ujib10StatePressFPQ24Game9EnemyBase(void)
+void Game::Ujib::StatePress::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -486,7 +486,7 @@ void exec__Q34Game4Ujib10StatePressFPQ24Game9EnemyBase(void)
  * Address:	8025B76C
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib10StatePressFPQ24Game9EnemyBase(void)
+void Game::Ujib::StatePress::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -499,7 +499,7 @@ void cleanup__Q34Game4Ujib10StatePressFPQ24Game9EnemyBase(void)
  * Address:	8025B770
  * Size:	0000BC
  */
-void init__Q34Game4Ujib9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateStay::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -558,7 +558,7 @@ void init__Q34Game4Ujib9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025B82C
  * Size:	0000B0
  */
-void exec__Q34Game4Ujib9StateStayFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateStay::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -618,7 +618,7 @@ void exec__Q34Game4Ujib9StateStayFPQ24Game9EnemyBase(void)
  * Address:	8025B8DC
  * Size:	000084
  */
-void cleanup__Q34Game4Ujib9StateStayFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateStay::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -663,7 +663,7 @@ void cleanup__Q34Game4Ujib9StateStayFPQ24Game9EnemyBase(void)
  * Address:	8025B960
  * Size:	000080
  */
-void init__Q34Game4Ujib11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -707,7 +707,7 @@ void init__Q34Game4Ujib11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025B9E0
  * Size:	000080
  */
-void exec__Q34Game4Ujib11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -755,7 +755,7 @@ void exec__Q34Game4Ujib11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	8025BA60
  * Size:	00003C
  */
-void cleanup__Q34Game4Ujib11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateAppear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -782,7 +782,7 @@ void cleanup__Q34Game4Ujib11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	8025BA9C
  * Size:	00006C
  */
-void init__Q34Game4Ujib9StateDiveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateDive::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -821,7 +821,7 @@ void init__Q34Game4Ujib9StateDiveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025BB08
  * Size:	000050
  */
-void exec__Q34Game4Ujib9StateDiveFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateDive::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -855,7 +855,7 @@ void exec__Q34Game4Ujib9StateDiveFPQ24Game9EnemyBase(void)
  * Address:	8025BB58
  * Size:	00003C
  */
-void cleanup__Q34Game4Ujib9StateDiveFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateDive::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -882,7 +882,7 @@ void cleanup__Q34Game4Ujib9StateDiveFPQ24Game9EnemyBase(void)
  * Address:	8025BB94
  * Size:	000034
  */
-void init__Q34Game4Ujib9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -907,7 +907,7 @@ void init__Q34Game4Ujib9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025BBC8
  * Size:	0004C8
  */
-void exec__Q34Game4Ujib9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1249,7 +1249,7 @@ void exec__Q34Game4Ujib9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	8025C090
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1262,7 +1262,7 @@ void cleanup__Q34Game4Ujib9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	8025C094
  * Size:	000034
  */
-void init__Q34Game4Ujib13StateMoveSideFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateMoveSide::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1287,7 +1287,7 @@ void init__Q34Game4Ujib13StateMoveSideFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025C0C8
  * Size:	000130
  */
-void exec__Q34Game4Ujib13StateMoveSideFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateMoveSide::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1385,7 +1385,7 @@ void exec__Q34Game4Ujib13StateMoveSideFPQ24Game9EnemyBase(void)
  * Address:	8025C1F8
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib13StateMoveSideFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateMoveSide::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1398,7 +1398,7 @@ void cleanup__Q34Game4Ujib13StateMoveSideFPQ24Game9EnemyBase(void)
  * Address:	8025C1FC
  * Size:	000034
  */
-void init__Q34Game4Ujib15StateMoveCentreFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateMoveCentre::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1423,7 +1423,7 @@ void init__Q34Game4Ujib15StateMoveCentreFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	8025C230
  * Size:	000130
  */
-void exec__Q34Game4Ujib15StateMoveCentreFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateMoveCentre::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1521,7 +1521,7 @@ void exec__Q34Game4Ujib15StateMoveCentreFPQ24Game9EnemyBase(void)
  * Address:	8025C360
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib15StateMoveCentreFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateMoveCentre::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1534,7 +1534,7 @@ void cleanup__Q34Game4Ujib15StateMoveCentreFPQ24Game9EnemyBase(void)
  * Address:	8025C364
  * Size:	000034
  */
-void init__Q34Game4Ujib12StateMoveTopFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateMoveTop::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1559,7 +1559,7 @@ void init__Q34Game4Ujib12StateMoveTopFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025C398
  * Size:	000130
  */
-void exec__Q34Game4Ujib12StateMoveTopFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateMoveTop::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1657,7 +1657,7 @@ void exec__Q34Game4Ujib12StateMoveTopFPQ24Game9EnemyBase(void)
  * Address:	8025C4C8
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib12StateMoveTopFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateMoveTop::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1670,7 +1670,7 @@ void cleanup__Q34Game4Ujib12StateMoveTopFPQ24Game9EnemyBase(void)
  * Address:	8025C4CC
  * Size:	000034
  */
-void init__Q34Game4Ujib11StateGoHomeFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateGoHome::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1695,7 +1695,7 @@ void init__Q34Game4Ujib11StateGoHomeFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025C500
  * Size:	0001DC
  */
-void exec__Q34Game4Ujib11StateGoHomeFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateGoHome::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1838,7 +1838,7 @@ void exec__Q34Game4Ujib11StateGoHomeFPQ24Game9EnemyBase(void)
  * Address:	8025C6DC
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib11StateGoHomeFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateGoHome::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1851,7 +1851,7 @@ void cleanup__Q34Game4Ujib11StateGoHomeFPQ24Game9EnemyBase(void)
  * Address:	8025C6E0
  * Size:	000058
  */
-void init__Q34Game4Ujib12StateAttack1FPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateAttack1::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1885,7 +1885,7 @@ void init__Q34Game4Ujib12StateAttack1FPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025C738
  * Size:	000140
  */
-void exec__Q34Game4Ujib12StateAttack1FPQ24Game9EnemyBase(void)
+void Game::Ujib::StateAttack1::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1991,7 +1991,7 @@ void exec__Q34Game4Ujib12StateAttack1FPQ24Game9EnemyBase(void)
  * Address:	8025C878
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib12StateAttack1FPQ24Game9EnemyBase(void)
+void Game::Ujib::StateAttack1::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2004,7 +2004,7 @@ void cleanup__Q34Game4Ujib12StateAttack1FPQ24Game9EnemyBase(void)
  * Address:	8025C87C
  * Size:	000048
  */
-void init__Q34Game4Ujib12StateAttack2FPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateAttack2::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2034,7 +2034,7 @@ void init__Q34Game4Ujib12StateAttack2FPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025C8C4
  * Size:	000218
  */
-void exec__Q34Game4Ujib12StateAttack2FPQ24Game9EnemyBase(void)
+void Game::Ujib::StateAttack2::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2198,7 +2198,7 @@ void exec__Q34Game4Ujib12StateAttack2FPQ24Game9EnemyBase(void)
  * Address:	8025CADC
  * Size:	000010
  */
-void cleanup__Q34Game4Ujib12StateAttack2FPQ24Game9EnemyBase(void)
+void Game::Ujib::StateAttack2::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2214,7 +2214,7 @@ void cleanup__Q34Game4Ujib12StateAttack2FPQ24Game9EnemyBase(void)
  * Address:	8025CAEC
  * Size:	00003C
  */
-void init__Q34Game4Ujib8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Ujib::StateEat::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2241,7 +2241,7 @@ void init__Q34Game4Ujib8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025CB28
  * Size:	0001A8
  */
-void exec__Q34Game4Ujib8StateEatFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateEat::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2371,7 +2371,7 @@ void exec__Q34Game4Ujib8StateEatFPQ24Game9EnemyBase(void)
  * Address:	8025CCD0
  * Size:	000004
  */
-void cleanup__Q34Game4Ujib8StateEatFPQ24Game9EnemyBase(void)
+void Game::Ujib::StateEat::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

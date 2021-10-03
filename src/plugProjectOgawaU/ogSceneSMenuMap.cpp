@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80312BFC
  * Size:	000050
  */
-void __ct__Q32og9newScreen8SMenuMapFv(void)
+void og::newScreen::SMenuMap::__ct(void)
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q32og9newScreen8SMenuMapFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen14SceneSMenuBaseFv(void)
+void og::newScreen::SceneSMenuBase::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -57,7 +57,7 @@ void __dt__Q32og9newScreen14SceneSMenuBaseFv(void)
  * Address:	........
  * Size:	000084
  */
-void __dt__Q32og9newScreen8SMenuMapFv(void)
+void og::newScreen::SMenuMap::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -67,7 +67,7 @@ void __dt__Q32og9newScreen8SMenuMapFv(void)
  * Address:	80312C4C
  * Size:	000148
  */
-void doUserCallBackFunc__Q32og9newScreen8SMenuMapFPQ28Resource10MgrCommand(void)
+void og::newScreen::SMenuMap::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -183,7 +183,7 @@ void doUserCallBackFunc__Q32og9newScreen8SMenuMapFPQ28Resource10MgrCommand(void)
  * Address:	80312D94
  * Size:	000080
  */
-void doCreateObj__Q32og9newScreen8SMenuMapFP10JKRArchive(void)
+void og::newScreen::SMenuMap::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void doCreateObj__Q32og9newScreen8SMenuMapFP10JKRArchive(void)
  * Address:	80312E14
  * Size:	000004
  */
-void doUpdateActive__Q32og9newScreen8SMenuMapFv(void)
+void og::newScreen::SMenuMap::doUpdateActive(void)
 {
 /*
 .loc_0x0:
@@ -242,7 +242,7 @@ void doUpdateActive__Q32og9newScreen8SMenuMapFv(void)
  * Address:	80312E18
  * Size:	000068
  */
-void doConfirmSetScene__Q32og9newScreen8SMenuMapFRQ26Screen11SetSceneArg(void)
+void og::newScreen::SMenuMap::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void doConfirmSetScene__Q32og9newScreen8SMenuMapFRQ26Screen11SetSceneArg(void)
  * Address:	80312E80
  * Size:	00000C
  */
-void doSetBackupScene__Q32og9newScreen8SMenuMapFRQ26Screen11SetSceneArg(void)
+void og::newScreen::SMenuMap::doSetBackupScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -297,7 +297,7 @@ void doSetBackupScene__Q32og9newScreen8SMenuMapFRQ26Screen11SetSceneArg(void)
  * Address:	........
  * Size:	000084
  */
-void close__Q32og9newScreen8SMenuMapFv(void)
+void og::newScreen::SMenuMap::close(void)
 {
 	// UNUSED FUNCTION
 }
@@ -307,7 +307,7 @@ void close__Q32og9newScreen8SMenuMapFv(void)
  * Address:	80312E8C
  * Size:	00000C
  */
-void getResName__Q32og9newScreen8SMenuMapCFv(void)
+void og::newScreen::SMenuMap::getResName( const
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void getResName__Q32og9newScreen8SMenuMapCFv(void)
  * Address:	80312E98
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen8SMenuMapFv(void)
+void og::newScreen::SMenuMap::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -336,7 +336,7 @@ void getSceneType__Q32og9newScreen8SMenuMapFv(void)
  * Address:	80312EA0
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen8SMenuMapFv(void)
+void og::newScreen::SMenuMap::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -351,7 +351,7 @@ void getOwnerID__Q32og9newScreen8SMenuMapFv(void)
  * Address:	80312EAC
  * Size:	000010
  */
-void getMemberID__Q32og9newScreen8SMenuMapFv(void)
+void og::newScreen::SMenuMap::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -367,7 +367,7 @@ void getMemberID__Q32og9newScreen8SMenuMapFv(void)
  * Address:	80312EBC
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen8SMenuMapFv(void)
+void og::newScreen::SMenuMap::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:
@@ -381,7 +381,7 @@ void isUseBackupSceneInfo__Q32og9newScreen8SMenuMapFv(void)
  * Address:	80312EC4
  * Size:	000008
  */
-void doGetFinishState__Q32og9newScreen14SceneSMenuBaseFv(void)
+void og::newScreen::SceneSMenuBase::doGetFinishState(void)
 {
 /*
 .loc_0x0:
@@ -395,7 +395,7 @@ void doGetFinishState__Q32og9newScreen14SceneSMenuBaseFv(void)
  * Address:	80312ECC
  * Size:	000004
  */
-void doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand(void)
+void Screen::SceneBase::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:

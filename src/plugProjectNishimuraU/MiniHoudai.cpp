@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802EBFF8
  * Size:	000148
  */
-void __ct__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void __ct__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC140
  * Size:	000004
  */
-void setInitialSetting__Q34Game10MiniHoudai3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::MiniHoudai::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -128,7 +128,7 @@ void setInitialSetting__Q34Game10MiniHoudai3ObjFPQ24Game21EnemyInitialParamBase(
  * Address:	802EC144
  * Size:	0000C8
  */
-void onInit__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureInitArg(void)
+void Game::MiniHoudai::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void onInit__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802EC20C
  * Size:	00004C
  */
-void onKill__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureKillArg(void)
+void Game::MiniHoudai::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void onKill__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802EC258
  * Size:	000054
  */
-void doUpdate__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void doUpdate__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC2AC
  * Size:	000034
  */
-void doUpdateCommon__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -281,7 +281,7 @@ void doUpdateCommon__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC2E0
  * Size:	00003C
  */
-void doAnimationCullingOff__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void doAnimationCullingOff__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC31C
  * Size:	000004
  */
-void doDirectDraw__Q34Game10MiniHoudai3ObjFR8Graphics(void)
+void Game::MiniHoudai::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void doDirectDraw__Q34Game10MiniHoudai3ObjFR8Graphics(void)
  * Address:	802EC320
  * Size:	000020
  */
-void doDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics(void)
+void Game::MiniHoudai::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void doDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics(void)
  * Address:	802EC340
  * Size:	00004C
  */
-void setFSM__Q34Game10MiniHoudai3ObjFPQ34Game10MiniHoudai3FSM(void)
+void Game::MiniHoudai::Obj::setFSM( (Game::MiniHoudai::FSM *))
 {
 /*
 .loc_0x0:
@@ -372,7 +372,7 @@ void setFSM__Q34Game10MiniHoudai3ObjFPQ34Game10MiniHoudai3FSM(void)
  * Address:	802EC38C
  * Size:	0000E0
  */
-void getShadowParam__Q34Game10MiniHoudai3ObjFRQ24Game11ShadowParam(void)
+void Game::MiniHoudai::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void getShadowParam__Q34Game10MiniHoudai3ObjFRQ24Game11ShadowParam(void)
  * Address:	802EC46C
  * Size:	000044
  */
-void damageCallBack__Q34Game10MiniHoudai3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::MiniHoudai::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -481,7 +481,7 @@ void damageCallBack__Q34Game10MiniHoudai3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802EC4B0
  * Size:	000034
  */
-void doStartStoneState__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -506,7 +506,7 @@ void doStartStoneState__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC4E4
  * Size:	000020
  */
-void doFinishStoneState__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -526,7 +526,7 @@ void doFinishStoneState__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC504
  * Size:	000034
  */
-void doStartEarthquakeFitState__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doStartEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -551,7 +551,7 @@ void doStartEarthquakeFitState__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC538
  * Size:	000020
  */
-void doFinishEarthquakeFitState__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doFinishEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -571,7 +571,7 @@ void doFinishEarthquakeFitState__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC558
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void doStartWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC58C
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -621,7 +621,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC5C0
  * Size:	000028
  */
-void startCarcassMotion__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -643,7 +643,7 @@ void startCarcassMotion__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC5E8
  * Size:	000020
  */
-void doStartMovie__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -663,7 +663,7 @@ void doStartMovie__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC608
  * Size:	000020
  */
-void doEndMovie__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -683,7 +683,7 @@ void doEndMovie__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC628
  * Size:	000064
  */
-void initWalkSmokeEffect__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -720,7 +720,7 @@ void initWalkSmokeEffect__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC68C
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -734,7 +734,7 @@ void getWalkSmokeEffectMgr__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC694
  * Size:	000014
  */
-void doBecomeCarcass__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doBecomeCarcass(void)
 {
 /*
 .loc_0x0:
@@ -751,7 +751,7 @@ void doBecomeCarcass__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC6A8
  * Size:	0001FC
  */
-void doUpdateCarcass__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doUpdateCarcass(void)
 {
 /*
 .loc_0x0:
@@ -896,7 +896,7 @@ void doUpdateCarcass__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC8A4
  * Size:	000064
  */
-void doGetLifeGaugeParam__Q34Game10MiniHoudai3ObjFRQ24Game14LifeGaugeParam(void)
+void Game::MiniHoudai::Obj::doGetLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -937,7 +937,7 @@ void doGetLifeGaugeParam__Q34Game10MiniHoudai3ObjFRQ24Game14LifeGaugeParam(void)
  * Address:	802EC908
  * Size:	000050
  */
-void updateCaution__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::updateCaution(void)
 {
 /*
 .loc_0x0:
@@ -973,7 +973,7 @@ void updateCaution__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC958
  * Size:	000024
  */
-void getViewAngle__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::getViewAngle(void)
 {
 /*
 .loc_0x0:
@@ -996,7 +996,7 @@ void getViewAngle__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC97C
  * Size:	000010
  */
-void resetWayPoint__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::resetWayPoint(void)
 {
 /*
 .loc_0x0:
@@ -1012,7 +1012,7 @@ void resetWayPoint__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EC98C
  * Size:	0000B0
  */
-void setNearestWayPoint__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::setNearestWayPoint(void)
 {
 /*
 .loc_0x0:
@@ -1072,7 +1072,7 @@ void setNearestWayPoint__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ECA3C
  * Size:	000260
  */
-void setLinkWayPoint__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::setLinkWayPoint(void)
 {
 /*
 .loc_0x0:
@@ -1252,7 +1252,7 @@ void setLinkWayPoint__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ECC9C
  * Size:	00006C
  */
-void getSearchedTarget__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::getSearchedTarget(void)
 {
 /*
 .loc_0x0:
@@ -1297,7 +1297,7 @@ void getSearchedTarget__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ECD08
  * Size:	000128
  */
-void updateTargetDistance__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::updateTargetDistance(void)
 {
 /*
 .loc_0x0:
@@ -1397,7 +1397,7 @@ void updateTargetDistance__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ECE30
  * Size:	0000BC
  */
-void updateHomePosition__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::updateHomePosition(void)
 {
 /*
 .loc_0x0:
@@ -1462,7 +1462,7 @@ void updateHomePosition__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ECEEC
  * Size:	00032C
  */
-void isAttackableTarget__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::isAttackableTarget(void)
 {
 /*
 .loc_0x0:
@@ -1701,7 +1701,7 @@ void isAttackableTarget__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED218
  * Size:	000048
  */
-void createShotGun__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::createShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1733,7 +1733,7 @@ void createShotGun__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED260
  * Size:	000024
  */
-void setupShotGun__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::setupShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1764,7 +1764,7 @@ void setShotGunTarget__Q34Game10MiniHoudai3ObjFR10Vector3<float>(void)
  * Address:	802ED284
  * Size:	000024
  */
-void resetShotGunCallBack__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::resetShotGunCallBack(void)
 {
 /*
 .loc_0x0:
@@ -1785,7 +1785,7 @@ void resetShotGunCallBack__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED2A8
  * Size:	000024
  */
-void setShotGunCallBack__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::setShotGunCallBack(void)
 {
 /*
 .loc_0x0:
@@ -1806,7 +1806,7 @@ void setShotGunCallBack__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED2CC
  * Size:	000024
  */
-void doUpdateShotGun__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doUpdateShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1827,7 +1827,7 @@ void doUpdateShotGun__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED2F0
  * Size:	000024
  */
-void doUpdateCommonShotGun__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::doUpdateCommonShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1848,7 +1848,7 @@ void doUpdateCommonShotGun__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED314
  * Size:	000024
  */
-void startShotGunRotation__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::startShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -1869,7 +1869,7 @@ void startShotGunRotation__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED338
  * Size:	000024
  */
-void finishShotGunRotation__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::finishShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -1890,7 +1890,7 @@ void finishShotGunRotation__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED35C
  * Size:	000024
  */
-void isShotGunRotation__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::isShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -1911,7 +1911,7 @@ void isShotGunRotation__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED380
  * Size:	000024
  */
-void isShotGunLockOn__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::isShotGunLockOn(void)
 {
 /*
 .loc_0x0:
@@ -1932,7 +1932,7 @@ void isShotGunLockOn__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED3A4
  * Size:	000024
  */
-void isFinishShotGun__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::isFinishShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1953,7 +1953,7 @@ void isFinishShotGun__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED3C8
  * Size:	000024
  */
-void emitShotGun__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::emitShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1974,7 +1974,7 @@ void emitShotGun__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED3EC
  * Size:	00002C
  */
-void setShotGunTargetPosition__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::setShotGunTargetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1997,7 +1997,7 @@ void setShotGunTargetPosition__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	........
  * Size:	000024
  */
-void shotGunDoDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics(void)
+void Game::MiniHoudai::Obj::shotGunDoDebugDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -2007,7 +2007,7 @@ void shotGunDoDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics(void)
  * Address:	802ED418
  * Size:	000024
  */
-void forceFinishShotGun__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::forceFinishShotGun(void)
 {
 /*
 .loc_0x0:
@@ -2028,7 +2028,7 @@ void forceFinishShotGun__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED43C
  * Size:	000138
  */
-void createEffect__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -2122,7 +2122,7 @@ void createEffect__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED574
  * Size:	000058
  */
-void setupEffect__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -2156,7 +2156,7 @@ void setupEffect__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED5CC
  * Size:	0000A0
  */
-void createSmokeSmallEffect__Q34Game10MiniHoudai3ObjFb(void)
+void Game::MiniHoudai::Obj::createSmokeSmallEffect( (bool))
 {
 /*
 .loc_0x0:
@@ -2212,7 +2212,7 @@ void createSmokeSmallEffect__Q34Game10MiniHoudai3ObjFb(void)
  * Address:	802ED66C
  * Size:	0000E8
  */
-void createSmokeLargeEffect__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::createSmokeLargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -2282,7 +2282,7 @@ void createSmokeLargeEffect__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED754
  * Size:	000024
  */
-void createDownEffect__Q34Game10MiniHoudai3ObjFf(void)
+void Game::MiniHoudai::Obj::createDownEffect( (float))
 {
 /*
 .loc_0x0:
@@ -2303,7 +2303,7 @@ void createDownEffect__Q34Game10MiniHoudai3ObjFf(void)
  * Address:	802ED778
  * Size:	000034
  */
-void startChargeEffect__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::startChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -2328,7 +2328,7 @@ void startChargeEffect__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED7AC
  * Size:	000030
  */
-void finishChargeEffect__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::finishChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -2352,7 +2352,7 @@ void finishChargeEffect__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED7DC
  * Size:	000034
  */
-void createDeadLightEffect__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::createDeadLightEffect(void)
 {
 /*
 .loc_0x0:
@@ -2377,7 +2377,7 @@ void createDeadLightEffect__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED810
  * Size:	0001D4
  */
-void createDeadBombEmitEffect__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::createDeadBombEmitEffect(void)
 {
 /*
 .loc_0x0:
@@ -2506,7 +2506,7 @@ void createDeadBombEmitEffect__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802ED9E4
  * Size:	000058
  */
-void effectDrawOn__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -2540,7 +2540,7 @@ void effectDrawOn__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EDA3C
  * Size:	000058
  */
-void effectDrawOff__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -2574,7 +2574,7 @@ void effectDrawOff__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EDA94
  * Size:	00009C
  */
-void __dt__Q23efx15TChibiDeadLightFv(void)
+void efx::TChibiDeadLight::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2629,7 +2629,7 @@ void __dt__Q23efx15TChibiDeadLightFv(void)
  * Address:	802EDB30
  * Size:	00009C
  */
-void __dt__Q23efx12TChibiChargeFv(void)
+void efx::TChibiCharge::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2684,7 +2684,7 @@ void __dt__Q23efx12TChibiChargeFv(void)
  * Address:	802EDBCC
  * Size:	0000BC
  */
-void __dt__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2747,7 +2747,7 @@ void __dt__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EDC88
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game10MiniHoudai3ObjFv(void)
+void Game::MiniHoudai::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -2761,7 +2761,7 @@ void getDownSmokeScale__Q34Game10MiniHoudai3ObjFv(void)
  * Address:	802EDC90
  * Size:	000008
  */
-void @4@__dt__Q23efx12TChibiChargeFv(void)
+void @4@efx::TChibiCharge::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2775,7 +2775,7 @@ void @4@__dt__Q23efx12TChibiChargeFv(void)
  * Address:	802EDC98
  * Size:	000008
  */
-void @4@__dt__Q23efx15TChibiDeadLightFv(void)
+void @4@efx::TChibiDeadLight::__dt(void)
 {
 /*
 .loc_0x0:

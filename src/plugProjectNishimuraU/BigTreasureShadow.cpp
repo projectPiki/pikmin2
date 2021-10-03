@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802DA5C8
  * Size:	000418
  */
-void __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj(void)
+void Game::BigTreasure::BigTreasureShadowMgr::__ct( (Game::BigTreasure::Obj *))
 {
 /*
 .loc_0x0:
@@ -333,7 +333,7 @@ void __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj(
  * Address:	802DA9E0
  * Size:	0002B4
  */
-void init__Q34Game11BigTreasure20BigTreasureShadowMgrFv(void)
+void Game::BigTreasure::BigTreasureShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -550,7 +550,7 @@ void setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3<flo
  * Address:	802DACB4
  * Size:	000510
  */
-void update__Q34Game11BigTreasure20BigTreasureShadowMgrFv(void)
+void Game::BigTreasure::BigTreasureShadowMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -910,7 +910,7 @@ void update__Q34Game11BigTreasure20BigTreasureShadowMgrFv(void)
  * Address:	802DB1C4
  * Size:	0000F4
  */
-void updateTreasureShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm(void)
+void Game::BigTreasure::BigTreasureShadowMgr::updateTreasureShadow( (Game::JointShadowParm &))
 {
 /*
 .loc_0x0:
@@ -991,7 +991,7 @@ void updateTreasureShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15
  * Address:	802DB2B8
  * Size:	000348
  */
-void updateHandShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm(void)
+void Game::BigTreasure::BigTreasureShadowMgr::updateHandShadow( (Game::JointShadowParm &))
 {
 /*
 .loc_0x0:
@@ -1215,7 +1215,7 @@ void updateHandShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15Join
  * Address:	802DB600
  * Size:	000544
  */
-void updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointShadowParm(void)
+void Game::BigTreasure::BigTreasureShadowMgr::updateAntennaShadow( (Game::JointShadowParm &))
 {
 /*
 .loc_0x0:
@@ -1566,7 +1566,7 @@ void updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15J
  * Address:	802DBB44
  * Size:	000070
  */
-void __dt__Q24Game17TubeShadowPosNodeFv(void)
+void Game::TubeShadowPosNode::__dt(void)
 {
 /*
 .loc_0x0:

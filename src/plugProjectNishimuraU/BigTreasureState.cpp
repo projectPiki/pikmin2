@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802D72CC
  * Size:	00042C
  */
-void init__Q34Game11BigTreasure3FSMFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -318,7 +318,7 @@ void init__Q34Game11BigTreasure3FSMFPQ24Game9EnemyBase(void)
  * Address:	802D76F8
  * Size:	000080
  */
-void init__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void init__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802D7778
  * Size:	000230
  */
-void exec__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -542,7 +542,7 @@ void exec__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802D79A8
  * Size:	000004
  */
-void cleanup__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -555,7 +555,7 @@ void cleanup__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802D79AC
  * Size:	000080
  */
-void init__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateStay::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -599,7 +599,7 @@ void init__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802D7A2C
  * Size:	0000FC
  */
-void exec__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateStay::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -686,7 +686,7 @@ void exec__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBase(void)
  * Address:	802D7B28
  * Size:	000004
  */
-void cleanup__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateStay::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -699,7 +699,7 @@ void cleanup__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBase(void)
  * Address:	802D7B2C
  * Size:	0000AC
  */
-void init__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateLand::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -754,7 +754,7 @@ void init__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802D7BD8
  * Size:	000324
  */
-void exec__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateLand::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -995,7 +995,7 @@ void exec__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBase(void)
  * Address:	802D7EFC
  * Size:	000030
  */
-void cleanup__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateLand::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1019,7 +1019,7 @@ void cleanup__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBase(void)
  * Address:	802D7F2C
  * Size:	0000A0
  */
-void init__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void init__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802D7FCC
  * Size:	000140
  */
-void exec__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1175,7 +1175,7 @@ void exec__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802D810C
  * Size:	000024
  */
-void cleanup__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1196,7 +1196,7 @@ void cleanup__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802D8130
  * Size:	0000A0
  */
-void init__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateItemWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1248,7 +1248,7 @@ void init__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBasePQ24Game8StateA
  * Address:	802D81D0
  * Size:	000124
  */
-void exec__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateItemWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1345,7 +1345,7 @@ void exec__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBase(void)
  * Address:	802D82F4
  * Size:	000024
  */
-void cleanup__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateItemWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1366,7 +1366,7 @@ void cleanup__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBase(void)
  * Address:	802D8318
  * Size:	000074
  */
-void init__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1407,7 +1407,7 @@ void init__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	802D838C
  * Size:	0000DC
  */
-void exec__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1482,7 +1482,7 @@ void exec__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	802D8468
  * Size:	000024
  */
-void cleanup__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1503,7 +1503,7 @@ void cleanup__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	802D848C
  * Size:	000098
  */
-void init__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StatePreAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1553,7 +1553,7 @@ void init__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBasePQ24Game8State
  * Address:	802D8524
  * Size:	00019C
  */
-void exec__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StatePreAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1682,7 +1682,7 @@ void exec__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBase(void)
  * Address:	802D86C0
  * Size:	000024
  */
-void cleanup__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StatePreAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1703,7 +1703,7 @@ void cleanup__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBase(void)
  * Address:	802D86E4
  * Size:	000078
  */
-void init__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1745,7 +1745,7 @@ void init__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
  * Address:	802D875C
  * Size:	000148
  */
-void exec__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1851,7 +1851,7 @@ void exec__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802D88A4
  * Size:	000040
  */
-void cleanup__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1879,7 +1879,7 @@ void cleanup__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802D88E4
  * Size:	000080
  */
-void init__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StatePutItem::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1923,7 +1923,7 @@ void init__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBasePQ24Game8StateAr
  * Address:	802D8964
  * Size:	000128
  */
-void exec__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StatePutItem::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2019,7 +2019,7 @@ void exec__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBase(void)
  * Address:	802D8A8C
  * Size:	000024
  */
-void cleanup__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StatePutItem::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2040,7 +2040,7 @@ void cleanup__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBase(void)
  * Address:	802D8AB0
  * Size:	000074
  */
-void init__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateDropItem::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2081,7 +2081,7 @@ void init__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBasePQ24Game8StateA
  * Address:	802D8B24
  * Size:	0000EC
  */
-void exec__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateDropItem::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2160,7 +2160,7 @@ void exec__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBase(void)
  * Address:	802D8C10
  * Size:	000024
  */
-void cleanup__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateDropItem::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2181,7 +2181,7 @@ void cleanup__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBase(void)
  * Address:	802D8C34
  * Size:	0000A8
  */
-void init__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateWalk::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2235,7 +2235,7 @@ void init__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802D8CDC
  * Size:	000144
  */
-void exec__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateWalk::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2340,7 +2340,7 @@ void exec__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	802D8E20
  * Size:	000004
  */
-void cleanup__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateWalk::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2353,7 +2353,7 @@ void cleanup__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	802D8E24
  * Size:	0000A8
  */
-void init__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BigTreasure::StateItemWalk::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2407,7 +2407,7 @@ void init__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBasePQ24Game8StateA
  * Address:	802D8ECC
  * Size:	0001EC
  */
-void exec__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateItemWalk::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2568,7 +2568,7 @@ void exec__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBase(void)
  * Address:	802D90B8
  * Size:	000004
  */
-void cleanup__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBase(void)
+void Game::BigTreasure::StateItemWalk::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

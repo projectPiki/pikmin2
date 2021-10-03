@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802BEDE0
  * Size:	000050
  */
-void __ct__Q34Game6Houdai3MgrFiUc(void)
+void Game::Houdai::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game6Houdai3MgrFiUc(void)
  * Address:	802BEE30
  * Size:	000048
  */
-void doAlloc__Q34Game6Houdai3MgrFv(void)
+void Game::Houdai::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game6Houdai3MgrFv(void)
  * Address:	802BEE78
  * Size:	000048
  */
-void __ct__Q34Game6Houdai5ParmsFv(void)
+void Game::Houdai::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game6Houdai5ParmsFv(void)
  * Address:	802BEEC0
  * Size:	0002EC
  */
-void __ct__Q44Game6Houdai5Parms11ProperParmsFv(void)
+void Game::Houdai::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -314,7 +314,7 @@ void __ct__Q44Game6Houdai5Parms11ProperParmsFv(void)
  * Address:	802BF1AC
  * Size:	000060
  */
-void createObj__Q34Game6Houdai3MgrFi(void)
+void Game::Houdai::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void createObj__Q34Game6Houdai3MgrFi(void)
  * Address:	802BF20C
  * Size:	0000BC
  */
-void __dt__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -413,7 +413,7 @@ void __dt__Q34Game6Houdai3ObjFv(void)
  * Address:	802BF2C8
  * Size:	000010
  */
-void getEnemy__Q34Game6Houdai3MgrFi(void)
+void Game::Houdai::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -429,7 +429,7 @@ void getEnemy__Q34Game6Houdai3MgrFi(void)
  * Address:	802BF2D8
  * Size:	000068
  */
-void loadModelData__Q34Game6Houdai3MgrFv(void)
+void Game::Houdai::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -471,7 +471,7 @@ void loadModelData__Q34Game6Houdai3MgrFv(void)
  * Address:	802BF340
  * Size:	0000B0
  */
-void __dt__Q34Game6Houdai3MgrFv(void)
+void Game::Houdai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void __dt__Q34Game6Houdai3MgrFv(void)
  * Address:	802BF3F0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Houdai3MgrFv(void)
+void Game::Houdai::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -545,7 +545,7 @@ void getEnemyTypeID__Q34Game6Houdai3MgrFv(void)
  * Address:	802BF3F8
  * Size:	00002C
  */
-void doLoadBmd__Q34Game6Houdai3MgrFPv(void)
+void Game::Houdai::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -568,7 +568,7 @@ void doLoadBmd__Q34Game6Houdai3MgrFPv(void)
  * Address:	802BF424
  * Size:	000050
  */
-void read__Q34Game6Houdai5ParmsFR6Stream(void)
+void Game::Houdai::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -600,7 +600,7 @@ void read__Q34Game6Houdai5ParmsFR6Stream(void)
  * Address:	802BF474
  * Size:	000008
  */
-void @4@__dt__Q34Game6Houdai3MgrFv(void)
+void @4@Game::Houdai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

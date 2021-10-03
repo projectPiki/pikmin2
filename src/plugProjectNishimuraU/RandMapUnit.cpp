@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80245C5C
  * Size:	000030
  */
-void __ct__Q34Game4Cave11EditMapUnitFv(void)
+void Game::Cave::EditMapUnit::__ct(void)
 {
 /*
 .loc_0x0:
@@ -39,7 +39,7 @@ void __ct__Q34Game4Cave11EditMapUnitFv(void)
  * Address:	80245C8C
  * Size:	0000B8
  */
-void read__Q34Game4Cave11EditMapUnitFPc(void)
+void Game::Cave::EditMapUnit::read( (char *))
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void read__Q34Game4Cave11EditMapUnitFPc(void)
  * Address:	80245D44
  * Size:	0001E8
  */
-void read__Q34Game4Cave11EditMapUnitFP6Stream(void)
+void Game::Cave::EditMapUnit::read( (Stream *))
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void read__Q34Game4Cave11EditMapUnitFP6Stream(void)
  * Address:	80245F2C
  * Size:	000054
  */
-void setEditNumber__Q34Game4Cave11EditMapUnitFi(void)
+void Game::Cave::EditMapUnit::setEditNumber( (int))
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void setEditNumber__Q34Game4Cave11EditMapUnitFi(void)
  * Address:	80245F80
  * Size:	00019C
  */
-void __ct__Q34Game4Cave11RandMapUnitFPQ34Game4Cave16MapUnitGenerator(void)
+void Game::Cave::RandMapUnit::__ct( (Game::Cave::MapUnitGenerator *))
 {
 /*
 .loc_0x0:
@@ -423,7 +423,7 @@ void __ct__Q34Game4Cave11RandMapUnitFPQ34Game4Cave16MapUnitGenerator(void)
  * Address:	8024611C
  * Size:	0000F4
  */
-void setMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::setMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void setMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80246210
  * Size:	000034
  */
-void getAliveMapIndex__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapUnit::getAliveMapIndex( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -537,7 +537,7 @@ void getAliveMapIndex__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNode(void)
  * Address:	80246244
  * Size:	0000A0
  */
-void getTextureSize__Q34Game4Cave11RandMapUnitFRiRi(void)
+void Game::Cave::RandMapUnit::getTextureSize( (int &, int &))
 {
 /*
 .loc_0x0:
@@ -597,7 +597,7 @@ void getTextureSize__Q34Game4Cave11RandMapUnitFRiRi(void)
  * Address:	802462E4
  * Size:	00006C
  */
-void getRandMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::getRandMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -642,7 +642,7 @@ void getRandMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80246350
  * Size:	000284
  */
-void changeCapToRootLoopMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::changeCapToRootLoopMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -855,7 +855,7 @@ void changeCapToRootLoopMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	802465D4
  * Size:	000360
  */
-void changeTwoToOneMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::changeTwoToOneMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -1133,7 +1133,7 @@ void changeTwoToOneMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80246934
  * Size:	000144
  */
-void setEditorMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::setEditorMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -1238,7 +1238,7 @@ void setEditorMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80246A78
  * Size:	00006C
  */
-void setFirstMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::setFirstMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -1281,7 +1281,7 @@ void setFirstMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80246AE4
  * Size:	00008C
  */
-void getFirstMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::getFirstMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -1342,7 +1342,7 @@ void getFirstMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80246B70
  * Size:	000188
  */
-void getNormalRandMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::getNormalRandMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -1470,7 +1470,7 @@ void getNormalRandMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80246CF8
  * Size:	0000C8
  */
-void setUnitKindOrder__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNodePi(void)
+void Game::Cave::RandMapUnit::setUnitKindOrder( (Game::Cave::MapNode *, int *))
 {
 /*
 .loc_0x0:
@@ -1540,7 +1540,7 @@ void setUnitKindOrder__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNodePi(void)
  * Address:	80246DC0
  * Size:	000314
  */
-void setUnitDoorSorting__Q34Game4Cave11RandMapUnitFi(void)
+void Game::Cave::RandMapUnit::setUnitDoorSorting( (int))
 {
 /*
 .loc_0x0:
@@ -1797,7 +1797,7 @@ void setUnitDoorSorting__Q34Game4Cave11RandMapUnitFi(void)
  * Address:	802470D4
  * Size:	000164
  */
-void setRandomDoorIndex__Q34Game4Cave11RandMapUnitFPii(void)
+void Game::Cave::RandMapUnit::setRandomDoorIndex( (int *, int))
 {
 /*
 .loc_0x0:
@@ -1910,7 +1910,7 @@ void setRandomDoorIndex__Q34Game4Cave11RandMapUnitFPii(void)
  * Address:	80247238
  * Size:	000208
  */
-void getLoopRandMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::getLoopRandMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -2072,7 +2072,7 @@ void getLoopRandMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80247440
  * Size:	0000C8
  */
-void getCalcDoorIndex__Q34Game4Cave11RandMapUnitFRiRiRii(void)
+void Game::Cave::RandMapUnit::getCalcDoorIndex( (int &, int &, int &, int))
 {
 /*
 .loc_0x0:
@@ -2148,7 +2148,7 @@ void getCalcDoorIndex__Q34Game4Cave11RandMapUnitFRiRiRii(void)
  * Address:	80247508
  * Size:	00012C
  */
-void getLinkDoorNodeFirst__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNodeiiiRi(void)
+void Game::Cave::RandMapUnit::getLinkDoorNodeFirst( (Game::Cave::MapNode *, int, int, int, int &))
 {
 /*
 .loc_0x0:
@@ -2249,7 +2249,7 @@ void getLinkDoorNodeFirst__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNodeiiiRi(
  * Address:	80247634
  * Size:	0000D0
  */
-void isInLinkArea__Q34Game4Cave11RandMapUnitFiiiii(void)
+void Game::Cave::RandMapUnit::isInLinkArea( (int, int, int, int, int))
 {
 /*
 .loc_0x0:
@@ -2325,7 +2325,7 @@ void isInLinkArea__Q34Game4Cave11RandMapUnitFiiiii(void)
  * Address:	80247704
  * Size:	000130
  */
-void getLoopMapNode__Q34Game4Cave11RandMapUnitFPPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapUnit::getLoopMapNode( (Game::Cave::MapNode **))
 {
 /*
 .loc_0x0:
@@ -2425,7 +2425,7 @@ void getLoopMapNode__Q34Game4Cave11RandMapUnitFPPQ34Game4Cave7MapNode(void)
  * Address:	80247834
  * Size:	0000EC
  */
-void getLinkDoorDirection__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNodeiPQ34Game4Cave7MapNodei(void)
+void Game::Cave::RandMapUnit::getLinkDoorDirection( (Game::Cave::MapNode *, int, Game::Cave::MapNode *, int))
 {
 /*
 .loc_0x0:
@@ -2508,7 +2508,7 @@ void getLinkDoorDirection__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNodeiPQ34G
  * Address:	80247920
  * Size:	0000BC
  */
-void getUpToLinkDoorDir__Q34Game4Cave11RandMapUnitFiii(void)
+void Game::Cave::RandMapUnit::getUpToLinkDoorDir( (int, int, int))
 {
 /*
 .loc_0x0:
@@ -2589,7 +2589,7 @@ void getUpToLinkDoorDir__Q34Game4Cave11RandMapUnitFiii(void)
  * Address:	802479DC
  * Size:	0000C4
  */
-void getRightToLinkDoorDir__Q34Game4Cave11RandMapUnitFiii(void)
+void Game::Cave::RandMapUnit::getRightToLinkDoorDir( (int, int, int))
 {
 /*
 .loc_0x0:
@@ -2672,7 +2672,7 @@ void getRightToLinkDoorDir__Q34Game4Cave11RandMapUnitFiii(void)
  * Address:	80247AA0
  * Size:	0000BC
  */
-void getDownToLinkDoorDir__Q34Game4Cave11RandMapUnitFiii(void)
+void Game::Cave::RandMapUnit::getDownToLinkDoorDir( (int, int, int))
 {
 /*
 .loc_0x0:
@@ -2753,7 +2753,7 @@ void getDownToLinkDoorDir__Q34Game4Cave11RandMapUnitFiii(void)
  * Address:	80247B5C
  * Size:	0000C0
  */
-void getLeftToLinkDoorDir__Q34Game4Cave11RandMapUnitFiii(void)
+void Game::Cave::RandMapUnit::getLeftToLinkDoorDir( (int, int, int))
 {
 /*
 .loc_0x0:
@@ -2835,7 +2835,7 @@ void getLeftToLinkDoorDir__Q34Game4Cave11RandMapUnitFiii(void)
  * Address:	80247C1C
  * Size:	0002F0
  */
-void getLoopEndMapUnit__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::getLoopEndMapUnit(void)
 {
 /*
 .loc_0x0:
@@ -3083,7 +3083,7 @@ void getLoopEndMapUnit__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80247F0C
  * Size:	000070
  */
-void getPartsKindNum__Q34Game4Cave11RandMapUnitFi(void)
+void Game::Cave::RandMapUnit::getPartsKindNum( (int))
 {
 /*
 .loc_0x0:
@@ -3129,7 +3129,7 @@ void getPartsKindNum__Q34Game4Cave11RandMapUnitFi(void)
  * Address:	80247F7C
  * Size:	00008C
  */
-void getOpenDoorNum__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::getOpenDoorNum(void)
 {
 /*
 .loc_0x0:
@@ -3186,7 +3186,7 @@ void getOpenDoorNum__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	80248008
  * Size:	0000B4
  */
-void addMap__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfoiib(void)
+void Game::Cave::RandMapUnit::addMap( (Game::Cave::UnitInfo *, int, int, bool))
 {
 /*
 .loc_0x0:
@@ -3251,7 +3251,7 @@ void addMap__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfoiib(void)
  * Address:	802480BC
  * Size:	0003DC
  */
-void changeMapPriority__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfo(void)
+void Game::Cave::RandMapUnit::changeMapPriority( (Game::Cave::UnitInfo *))
 {
 /*
 .loc_0x0:
@@ -3562,7 +3562,7 @@ void changeMapPriority__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfo(void)
  * Address:	80248498
  * Size:	00012C
  */
-void moveCentre__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::moveCentre(void)
 {
 /*
 .loc_0x0:
@@ -3669,7 +3669,7 @@ void moveCentre__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	802485C4
  * Size:	000134
  */
-void closeDoorCheck__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::closeDoorCheck(void)
 {
 /*
 .loc_0x0:
@@ -3780,7 +3780,7 @@ void closeDoorCheck__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	802486F8
  * Size:	000038
  */
-void deleteMapNode__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapUnit::deleteMapNode( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -3806,7 +3806,7 @@ void deleteMapNode__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNode(void)
  * Address:	80248730
  * Size:	000198
  */
-void createLoopMapNodeCheck__Q34Game4Cave11RandMapUnitFv(void)
+void Game::Cave::RandMapUnit::createLoopMapNodeCheck(void)
 {
 /*
 .loc_0x0:
@@ -3952,7 +3952,7 @@ void createLoopMapNodeCheck__Q34Game4Cave11RandMapUnitFv(void)
  * Address:	802488C8
  * Size:	00004C
  */
-void isLoopMapNodeCheck__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNodei(void)
+void Game::Cave::RandMapUnit::isLoopMapNodeCheck( (Game::Cave::MapNode *, int))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802BF47C
  * Size:	00027C
  */
-void __ct__Q34Game6Houdai15HoudaiShadowMgrFPQ34Game6Houdai3Obj(void)
+void Game::Houdai::HoudaiShadowMgr::__ct( (Game::Houdai::Obj *))
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void __ct__Q34Game6Houdai15HoudaiShadowMgrFPQ34Game6Houdai3Obj(void)
  * Address:	802BF6F8
  * Size:	0001B0
  */
-void init__Q34Game6Houdai15HoudaiShadowMgrFv(void)
+void Game::Houdai::HoudaiShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -346,7 +346,7 @@ void setJointPosPtr__Q34Game6Houdai15HoudaiShadowMgrFiiP10Vector3<float>(void)
  * Address:	802BF8C0
  * Size:	0003F0
  */
-void update__Q34Game6Houdai15HoudaiShadowMgrFv(void)
+void Game::Houdai::HoudaiShadowMgr::update(void)
 {
 /*
 .loc_0x0:

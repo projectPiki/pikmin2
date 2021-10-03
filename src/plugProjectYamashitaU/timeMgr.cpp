@@ -15,7 +15,7 @@ void Game::_Print(char *, ...)
  * Address:	80126C00
  * Size:	000090
  */
-void __ct__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q24Game7TimeMgrFv(void)
  * Address:	80126C90
  * Size:	000034
  */
-void __ct__Q24Game12TimeMgrParmsFv(void)
+void Game::TimeMgrParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -92,7 +92,7 @@ void __ct__Q24Game12TimeMgrParmsFv(void)
  * Address:	80126CC4
  * Size:	00032C
  */
-void __ct__Q34Game12TimeMgrParms5ParmsFv(void)
+void Game::TimeMgrParms::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void __ct__Q34Game12TimeMgrParms5ParmsFv(void)
  * Address:	80126FF0
  * Size:	0000B0
  */
-void init__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -367,7 +367,7 @@ void init__Q24Game7TimeMgrFv(void)
  * Address:	801270A0
  * Size:	00003C
  */
-void setTime__Q24Game7TimeMgrFf(void)
+void Game::TimeMgr::setTime( (float))
 {
 /*
 .loc_0x0:
@@ -394,7 +394,7 @@ void setTime__Q24Game7TimeMgrFf(void)
  * Address:	801270DC
  * Size:	000040
  */
-void setStartTime__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::setStartTime(void)
 {
 /*
 .loc_0x0:
@@ -422,7 +422,7 @@ void setStartTime__Q24Game7TimeMgrFv(void)
  * Address:	8012711C
  * Size:	000040
  */
-void setEndTime__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::setEndTime(void)
 {
 /*
 .loc_0x0:
@@ -452,7 +452,7 @@ void setEndTime__Q24Game7TimeMgrFv(void)
  * Address:	8012715C
  * Size:	000168
  */
-void updateSlot__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::updateSlot(void)
 {
 /*
 .loc_0x0:
@@ -570,7 +570,7 @@ void updateSlot__Q24Game7TimeMgrFv(void)
  * Address:	801272C4
  * Size:	000060
  */
-void getSunGaugeRatio__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::getSunGaugeRatio(void)
 {
 /*
 .loc_0x0:
@@ -610,7 +610,7 @@ void getSunGaugeRatio__Q24Game7TimeMgrFv(void)
  * Address:	........
  * Size:	000038
  */
-void updateFrame__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::updateFrame(void)
 {
 	// UNUSED FUNCTION
 }
@@ -620,7 +620,7 @@ void updateFrame__Q24Game7TimeMgrFv(void)
  * Address:	80127324
  * Size:	000074
  */
-void update__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -665,7 +665,7 @@ void update__Q24Game7TimeMgrFv(void)
  * Address:	80127398
  * Size:	000018
  */
-void isDayOver__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::isDayOver(void)
 {
 /*
 .loc_0x0:
@@ -683,7 +683,7 @@ void isDayOver__Q24Game7TimeMgrFv(void)
  * Address:	801273B0
  * Size:	000030
  */
-void isDayTime__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::isDayTime(void)
 {
 /*
 .loc_0x0:
@@ -709,7 +709,7 @@ void isDayTime__Q24Game7TimeMgrFv(void)
  * Address:	801273E0
  * Size:	000020
  */
-void getRealDayTime__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::getRealDayTime(void)
 {
 /*
 .loc_0x0:
@@ -729,7 +729,7 @@ void getRealDayTime__Q24Game7TimeMgrFv(void)
  * Address:	80127400
  * Size:	000150
  */
-void loadSettingFile__Q24Game7TimeMgrFPc(void)
+void Game::TimeMgr::loadSettingFile( (char *))
 {
 /*
 .loc_0x0:
@@ -829,7 +829,7 @@ void loadSettingFile__Q24Game7TimeMgrFPc(void)
  * Address:	80127550
  * Size:	000060
  */
-void __dt__Q24Game7TimeMgrFv(void)
+void Game::TimeMgr::__dt(void)
 {
 /*
 .loc_0x0:

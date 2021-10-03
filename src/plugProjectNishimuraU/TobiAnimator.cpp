@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802693D4
  * Size:	000008
  */
-void setAnimMgr__Q34Game4Tobi14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Tobi::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game4Tobi14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802693DC
  * Size:	000008
  */
-void getAnimator__Q34Game4Tobi14ProperAnimatorFi(void)
+void Game::Tobi::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game4Tobi14ProperAnimatorFi(void)
  * Address:	802693E4
  * Size:	00005C
  */
-void __dt__Q34Game4Tobi14ProperAnimatorFv(void)
+void Game::Tobi::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game4Tobi14ProperAnimatorFv(void)
  * Address:	80269440
  * Size:	000008
  */
-void getAnimator__Q34Game4Tobi14ProperAnimatorFv(void)
+void Game::Tobi::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

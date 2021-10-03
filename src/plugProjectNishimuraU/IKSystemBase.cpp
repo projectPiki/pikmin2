@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802A9E5C
  * Size:	000070
  */
-void __ct__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void __ct__Q24Game12IKSystemBaseFv(void)
  * Address:	802A9ECC
  * Size:	000030
  */
-void init__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::init(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void init__Q24Game12IKSystemBaseFv(void)
  * Address:	802A9EFC
  * Size:	000010
  */
-void setLegJointMatrix__Q24Game12IKSystemBaseFiP7Matrixf(void)
+void Game::IKSystemBase::setLegJointMatrix( (int, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -95,7 +95,7 @@ void setLegJointMatrix__Q24Game12IKSystemBaseFiP7Matrixf(void)
  * Address:	802A9F0C
  * Size:	000008
  */
-void setParameters__Q24Game12IKSystemBaseFPQ24Game13IKSystemParms(void)
+void Game::IKSystemBase::setParameters( (Game::IKSystemParms *))
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void setParameters__Q24Game12IKSystemBaseFPQ24Game13IKSystemParms(void)
  * Address:	802A9F14
  * Size:	0000F0
  */
-void startProgramedIK__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::startProgramedIK(void)
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void startMovePosition__Q24Game12IKSystemBaseFR10Vector3<float>(void)
  * Address:	802AA0F8
  * Size:	00000C
  */
-void startBlendMotion__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::startBlendMotion(void)
 {
 /*
 .loc_0x0:
@@ -277,7 +277,7 @@ void startBlendMotion__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA104
  * Size:	00000C
  */
-void finishBlendMotion__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::finishBlendMotion(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void finishBlendMotion__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA110
  * Size:	00000C
  */
-void checkJointScaleOn__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::checkJointScaleOn(void)
 {
 /*
 .loc_0x0:
@@ -307,7 +307,7 @@ void checkJointScaleOn__Q24Game12IKSystemBaseFv(void)
  * Address:	........
  * Size:	00000C
  */
-void checkJointScaleOff__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::checkJointScaleOff(void)
 {
 	// UNUSED FUNCTION
 }
@@ -317,7 +317,7 @@ void checkJointScaleOff__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA11C
  * Size:	00007C
  */
-void update__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::update(void)
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void update__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA198
  * Size:	0000F8
  */
-void makeMatrix__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::makeMatrix(void)
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void makeMatrix__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA290
  * Size:	0000C4
  */
-void moveBottomJointPosition__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::moveBottomJointPosition(void)
 {
 /*
 .loc_0x0:
@@ -511,7 +511,7 @@ void moveBottomJointPosition__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA354
  * Size:	000008
  */
-void onGround__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::onGround(void)
 {
 /*
 .loc_0x0:
@@ -525,7 +525,7 @@ void onGround__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA35C
  * Size:	00001C
  */
-void getBottomJointPosition__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::getBottomJointPosition(void)
 {
 /*
 .loc_0x0:
@@ -544,7 +544,7 @@ void getBottomJointPosition__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA378
  * Size:	00004C
  */
-void getCollisionCentre__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::getCollisionCentre(void)
 {
 /*
 .loc_0x0:
@@ -575,7 +575,7 @@ void getCollisionCentre__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA3C4
  * Size:	000008
  */
-void getMoveRatio__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::getMoveRatio(void)
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void getMoveRatio__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA3CC
  * Size:	000280
  */
-void onGroundPosition__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::onGroundPosition(void)
 {
 /*
 .loc_0x0:
@@ -779,7 +779,7 @@ void onGroundPosition__Q24Game12IKSystemBaseFv(void)
  * Address:	802AA64C
  * Size:	000084
  */
-void makeBendRatio__Q24Game12IKSystemBaseFv(void)
+void Game::IKSystemBase::makeBendRatio(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80300E68
  * Size:	00002C
  */
-void __ct__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave16MapUnitGenerator(void)
+void Game::Cave::RandCapEnemyUnit::__ct( (Game::Cave::MapUnitGenerator *))
 {
 /*
 .loc_0x0:
@@ -38,7 +38,7 @@ void __ct__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave16MapUnitGenerator(void)
  * Address:	80300E94
  * Size:	000008
  */
-void setManageClassPtr__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave12RandItemUnit(void)
+void Game::Cave::RandCapEnemyUnit::setManageClassPtr( (Game::Cave::RandItemUnit *))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void setManageClassPtr__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave12RandItemUn
  * Address:	80300E9C
  * Size:	000108
  */
-void setCapEnemySlot__Q34Game4Cave16RandCapEnemyUnitFv(void)
+void Game::Cave::RandCapEnemyUnit::setCapEnemySlot(void)
 {
 /*
 .loc_0x0:
@@ -144,7 +144,7 @@ void setCapEnemySlot__Q34Game4Cave16RandCapEnemyUnitFv(void)
  * Address:	80300FA4
  * Size:	0001BC
  */
-void setCapCommonEnemySlot__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave7MapNodei(void)
+void Game::Cave::RandCapEnemyUnit::setCapCommonEnemySlot( (Game::Cave::MapNode *, int))
 {
 /*
 .loc_0x0:
@@ -287,7 +287,7 @@ void setCapCommonEnemySlot__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave7MapNode
  * Address:	80301160
  * Size:	000098
  */
-void setCapEnemy__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave9EnemyUnitii(void)
+void Game::Cave::RandCapEnemyUnit::setCapEnemy( (Game::Cave::MapNode *, Game::Cave::EnemyUnit *, int, int))
 {
 /*
 .loc_0x0:

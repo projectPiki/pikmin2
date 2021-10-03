@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026CC80
  * Size:	000064
  */
-void __ct__Q34Game7GasHiba3MgrFiUc(void)
+void Game::GasHiba::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void __ct__Q34Game7GasHiba3MgrFiUc(void)
  * Address:	8026CCE4
  * Size:	000048
  */
-void doAlloc__Q34Game7GasHiba3MgrFv(void)
+void Game::GasHiba::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -86,7 +86,7 @@ void doAlloc__Q34Game7GasHiba3MgrFv(void)
  * Address:	8026CD2C
  * Size:	0001CC
  */
-void __ct__Q34Game7GasHiba5ParmsFv(void)
+void Game::GasHiba::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -213,7 +213,7 @@ void __ct__Q34Game7GasHiba5ParmsFv(void)
  * Address:	8026CEF8
  * Size:	000060
  */
-void createObj__Q34Game7GasHiba3MgrFi(void)
+void Game::GasHiba::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void createObj__Q34Game7GasHiba3MgrFi(void)
  * Address:	8026CF58
  * Size:	0000BC
  */
-void __dt__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -312,7 +312,7 @@ void __dt__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026D014
  * Size:	000010
  */
-void getEnemy__Q34Game7GasHiba3MgrFi(void)
+void Game::GasHiba::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -328,7 +328,7 @@ void getEnemy__Q34Game7GasHiba3MgrFi(void)
  * Address:	8026D024
  * Size:	000050
  */
-void read__Q34Game7GasHiba5ParmsFR6Stream(void)
+void Game::GasHiba::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -360,7 +360,7 @@ void read__Q34Game7GasHiba5ParmsFR6Stream(void)
  * Address:	8026D074
  * Size:	0000C8
  */
-void __dt__Q34Game7GasHiba3MgrFv(void)
+void Game::GasHiba::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void __dt__Q34Game7GasHiba3MgrFv(void)
  * Address:	8026D13C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7GasHiba3MgrFv(void)
+void Game::GasHiba::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void getEnemyTypeID__Q34Game7GasHiba3MgrFv(void)
  * Address:	8026D144
  * Size:	000008
  */
-void @4@__dt__Q34Game7GasHiba3MgrFv(void)
+void @4@Game::GasHiba::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

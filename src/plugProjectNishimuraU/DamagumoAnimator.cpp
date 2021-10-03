@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802A5058
  * Size:	000008
  */
-void setAnimMgr__Q34Game8Damagumo14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Damagumo::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game8Damagumo14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802A5060
  * Size:	000008
  */
-void getAnimator__Q34Game8Damagumo14ProperAnimatorFi(void)
+void Game::Damagumo::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game8Damagumo14ProperAnimatorFi(void)
  * Address:	802A5068
  * Size:	00005C
  */
-void __dt__Q34Game8Damagumo14ProperAnimatorFv(void)
+void Game::Damagumo::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game8Damagumo14ProperAnimatorFv(void)
  * Address:	802A50C4
  * Size:	000008
  */
-void getAnimator__Q34Game8Damagumo14ProperAnimatorFv(void)
+void Game::Damagumo::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

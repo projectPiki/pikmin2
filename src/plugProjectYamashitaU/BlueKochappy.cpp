@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012CF38
  * Size:	000130
  */
-void __ct__Q34Game12BlueKochappy3ObjFv(void)
+void Game::BlueKochappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q34Game12BlueKochappy3ObjFv(void)
  * Address:	8012D068
  * Size:	0001A4
  */
-void changeMaterial__Q34Game12BlueKochappy3ObjFv(void)
+void Game::BlueKochappy::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void changeMaterial__Q34Game12BlueKochappy3ObjFv(void)
  * Address:	8012D20C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12BlueKochappy3ObjFv(void)
+void Game::BlueKochappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

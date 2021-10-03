@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000078
  */
-void equalSet__Q23PSM13DemoInitiatorFPCcPCcUc(void)
+void PSM::DemoInitiator::equalSet( (char const *, char const *, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void equalSet__Q23PSM13DemoInitiatorFPCcPCcUc(void)
  * Address:	........
  * Size:	000074
  */
-void equalSetStream__Q23PSM13DemoInitiatorFPCcUlUc(void)
+void PSM::DemoInitiator::equalSetStream( (char const *, unsigned long, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void equalSetStream__Q23PSM13DemoInitiatorFPCcUlUc(void)
  * Address:	........
  * Size:	000080
  */
-void equalSetEx__Q23PSM13DemoInitiatorFPCcbPCcUc(void)
+void PSM::DemoInitiator::equalSetEx( (char const *, bool, char const *, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void equalSetEx__Q23PSM13DemoInitiatorFPCcbPCcUc(void)
  * Address:	........
  * Size:	00007C
  */
-void equalSetExStream__Q23PSM13DemoInitiatorFPCcbUlUc(void)
+void PSM::DemoInitiator::equalSetExStream( (char const *, bool, unsigned long, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void equalSetExStream__Q23PSM13DemoInitiatorFPCcbUlUc(void)
  * Address:	........
  * Size:	000058
  */
-void is__Q23PSM13DemoInitiatorFPCc(void)
+void PSM::DemoInitiator::is( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void is__Q23PSM13DemoInitiatorFPCc(void)
  * Address:	........
  * Size:	00007C
  */
-void numberSet__Q23PSM13DemoInitiatorFPCcPCcUc(void)
+void PSM::DemoInitiator::numberSet( (char const *, char const *, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -65,7 +65,7 @@ void numberSet__Q23PSM13DemoInitiatorFPCcPCcUc(void)
  * Address:	........
  * Size:	00004C
  */
-void setDefault__Q23PSM13DemoInitiatorFPCcUcUl(void)
+void PSM::DemoInitiator::setDefault( (char const *, unsigned char, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +75,7 @@ void setDefault__Q23PSM13DemoInitiatorFPCcUcUl(void)
  * Address:	80463FE8
  * Size:	00005C
  */
-void __ct__Q23PSM4DemoFv(void)
+void PSM::Demo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void __ct__Q23PSM4DemoFv(void)
  * Address:	80464044
  * Size:	00020C
  */
-void init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg(void)
+void PSM::Demo::init( (Vec *, Vec *, float (*)[4], PSM::DemoArg))
 {
 /*
 .loc_0x0:
@@ -273,7 +273,7 @@ void init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg(void)
  * Address:	80464250
  * Size:	0000EC
  */
-void demo1stLoadSync__Q23PSM4DemoFv(void)
+void PSM::Demo::demo1stLoadSync(void)
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void demo1stLoadSync__Q23PSM4DemoFv(void)
  * Address:	8046433C
  * Size:	000048
  */
-void initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo(void)
+void PSM::Demo::initDemoScene( (PSM::DemoArg &, PSM::Scene_Demo *))
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo(void)
  * Address:	80464384
  * Size:	001DA4
  */
-void initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc(void)
+void PSM::Demo::initiate( (PSM::DemoArg, unsigned char *))
 {
 /*
 .loc_0x0:
@@ -2703,7 +2703,7 @@ void initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc(void)
  * Address:	80466128
  * Size:	000184
  */
-void __dt__Q23PSM4DemoFv(void)
+void PSM::Demo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2830,7 +2830,7 @@ void __dt__Q23PSM4DemoFv(void)
  * Address:	........
  * Size:	000124
  */
-void becomeDemoCamera__Q23PSM4DemoFv(void)
+void PSM::Demo::becomeDemoCamera(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2840,7 +2840,7 @@ void becomeDemoCamera__Q23PSM4DemoFv(void)
  * Address:	804662AC
  * Size:	0006C0
  */
-void onDemoTop__Q23PSM4DemoFv(void)
+void PSM::Demo::onDemoTop(void)
 {
 /*
 .loc_0x0:
@@ -3364,7 +3364,7 @@ void onDemoTop__Q23PSM4DemoFv(void)
  * Address:	8046696C
  * Size:	000104
  */
-void becomeSceneCamera__Q23PSM4DemoFv(void)
+void PSM::Demo::becomeSceneCamera(void)
 {
 /*
 .loc_0x0:
@@ -3451,7 +3451,7 @@ void becomeSceneCamera__Q23PSM4DemoFv(void)
  * Address:	80466A70
  * Size:	0000FC
  */
-void onDemoFadeoutStart__Q23PSM4DemoFUl(void)
+void PSM::Demo::onDemoFadeoutStart( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -3536,7 +3536,7 @@ void onDemoFadeoutStart__Q23PSM4DemoFUl(void)
  * Address:	80466B6C
  * Size:	000664
  */
-void onDemoEnd__Q23PSM4DemoFv(void)
+void PSM::Demo::onDemoEnd(void)
 {
 /*
 .loc_0x0:
@@ -4035,7 +4035,7 @@ void onDemoEnd__Q23PSM4DemoFv(void)
  * Address:	804671D0
  * Size:	000268
  */
-void onMessageEnd__Q23PSM4DemoFi(void)
+void PSM::Demo::onMessageEnd( (int))
 {
 /*
 .loc_0x0:
@@ -4391,7 +4391,7 @@ void PSMGetGameSceneA()
  * Address:	80467608
  * Size:	000018
  */
-void isPollutUp__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::isPollutUp(void)
 {
 /*
 .loc_0x0:
@@ -4409,7 +4409,7 @@ void isPollutUp__Q23PSM10Scene_CaveFv(void)
  * Address:	80467620
  * Size:	000008
  */
-void getEnvSe__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::getEnvSe(void)
 {
 /*
 .loc_0x0:
@@ -4423,7 +4423,7 @@ void getEnvSe__Q23PSM9SceneBaseFv(void)
  * Address:	80467628
  * Size:	000008
  */
-void setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode(void)
+void PSM::ObjCalcBase::setMode( (PSM::ObjCalcBase::Mode))
 {
 /*
 .loc_0x0:

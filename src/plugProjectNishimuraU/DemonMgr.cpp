@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8028E048
  * Size:	000050
  */
-void __ct__Q34Game5Demon3MgrFiUc(void)
+void Game::Demon::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game5Demon3MgrFiUc(void)
  * Address:	8028E098
  * Size:	000048
  */
-void doAlloc__Q34Game5Demon3MgrFv(void)
+void Game::Demon::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game5Demon3MgrFv(void)
  * Address:	8028E0E0
  * Size:	000060
  */
-void createObj__Q34Game5Demon3MgrFi(void)
+void Game::Demon::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game5Demon3MgrFi(void)
  * Address:	8028E140
  * Size:	0000F0
  */
-void __dt__Q34Game5Demon3ObjFv(void)
+void Game::Demon::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void __dt__Q34Game5Demon3ObjFv(void)
  * Address:	8028E230
  * Size:	000010
  */
-void getEnemy__Q34Game5Demon3MgrFi(void)
+void Game::Demon::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void getEnemy__Q34Game5Demon3MgrFi(void)
  * Address:	8028E240
  * Size:	000068
  */
-void loadModelData__Q34Game5Demon3MgrFv(void)
+void Game::Demon::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void loadModelData__Q34Game5Demon3MgrFv(void)
  * Address:	8028E2A8
  * Size:	0000B0
  */
-void __dt__Q34Game5Demon3MgrFv(void)
+void Game::Demon::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void __dt__Q34Game5Demon3MgrFv(void)
  * Address:	8028E358
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Demon3MgrFv(void)
+void Game::Demon::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -323,7 +323,7 @@ void getEnemyTypeID__Q34Game5Demon3MgrFv(void)
  * Address:	8028E360
  * Size:	00002C
  */
-void doLoadBmd__Q34Game5Demon3MgrFPv(void)
+void Game::Demon::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -346,7 +346,7 @@ void doLoadBmd__Q34Game5Demon3MgrFPv(void)
  * Address:	8028E38C
  * Size:	000008
  */
-void @4@__dt__Q34Game5Demon3MgrFv(void)
+void @4@Game::Demon::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

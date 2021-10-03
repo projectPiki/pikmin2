@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000B4
  */
-void __ct__Q32og6Screen15CallBack_FurikoFv(void)
+void og::Screen::CallBack_Furiko::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q32og6Screen15CallBack_FurikoFv(void)
  * Address:	80329F18
  * Size:	000040
  */
-void stop__Q32og6Screen15CallBack_FurikoFv(void)
+void og::Screen::CallBack_Furiko::stop(void)
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void stop__Q32og6Screen15CallBack_FurikoFv(void)
  * Address:	........
  * Size:	0000F4
  */
-void init__Q32og6Screen15CallBack_FurikoFP7J2DPanefff(void)
+void og::Screen::CallBack_Furiko::init( (J2DPane *, float, float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -53,7 +53,7 @@ void init__Q32og6Screen15CallBack_FurikoFP7J2DPanefff(void)
  * Address:	80329F58
  * Size:	000010
  */
-void setParam__Q32og6Screen15CallBack_FurikoFfff(void)
+void og::Screen::CallBack_Furiko::setParam( (float, float, float))
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void setParam__Q32og6Screen15CallBack_FurikoFfff(void)
  * Address:	80329F68
  * Size:	000168
  */
-void update__Q32og6Screen15CallBack_FurikoFv(void)
+void og::Screen::CallBack_Furiko::update(void)
 {
 /*
 .loc_0x0:
@@ -179,7 +179,7 @@ void update__Q32og6Screen15CallBack_FurikoFv(void)
  * Address:	8032A0D0
  * Size:	0001A0
  */
-void draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext(void)
+void og::Screen::CallBack_Furiko::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -319,7 +319,7 @@ void draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext(void)
  * Address:	8032A270
  * Size:	0001D0
  */
-void setCallBack_Furiko__Q22og6ScreenFPQ29P2DScreen3MgrUx(void)
+void og::Screen::setCallBack_Furiko( (P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -457,7 +457,7 @@ void setCallBack_Furiko__Q22og6ScreenFPQ29P2DScreen3MgrUx(void)
  * Address:	8032A440
  * Size:	000270
  */
-void setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr(void)
+void og::Screen::setFurikoScreen( (P2DScreen::Mgr *))
 {
 /*
 .loc_0x0:
@@ -639,7 +639,7 @@ void setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr(void)
  * Address:	8032A6B0
  * Size:	000024
  */
-void getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx(void)
+void og::Screen::getFurikoPtr( (P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -660,7 +660,7 @@ void getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx(void)
  * Address:	8032A6D4
  * Size:	000080
  */
-void __dt__Q32og6Screen15CallBack_FurikoFv(void)
+void og::Screen::CallBack_Furiko::__dt(void)
 {
 /*
 .loc_0x0:

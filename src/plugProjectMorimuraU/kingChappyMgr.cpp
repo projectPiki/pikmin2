@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8035C288
  * Size:	000050
  */
-void __ct__Q34Game10KingChappy3MgrFiUc(void)
+void Game::KingChappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game10KingChappy3MgrFiUc(void)
  * Address:	8035C2D8
  * Size:	000048
  */
-void doAlloc__Q34Game10KingChappy3MgrFv(void)
+void Game::KingChappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game10KingChappy3MgrFv(void)
  * Address:	8035C320
  * Size:	00006C
  */
-void __ct__Q34Game10KingChappy5ParmsFv(void)
+void Game::KingChappy::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void __ct__Q34Game10KingChappy5ParmsFv(void)
  * Address:	8035C38C
  * Size:	0005F4
  */
-void __ct__Q44Game10KingChappy5Parms11ProperParmsFv(void)
+void Game::KingChappy::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -517,7 +517,7 @@ void __ct__Q44Game10KingChappy5Parms11ProperParmsFv(void)
  * Address:	8035C980
  * Size:	000020
  */
-void birth__Q34Game10KingChappy3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::KingChappy::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -537,7 +537,7 @@ void birth__Q34Game10KingChappy3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	8035C9A0
  * Size:	000020
  */
-void createModel__Q34Game10KingChappy3MgrFv(void)
+void Game::KingChappy::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -557,7 +557,7 @@ void createModel__Q34Game10KingChappy3MgrFv(void)
  * Address:	8035C9C0
  * Size:	0000EC
  */
-void requestState__Q34Game10KingChappy3MgrFPQ34Game10KingChappy3Obji(void)
+void Game::KingChappy::Mgr::requestState( (Game::KingChappy::Obj *, int))
 {
 /*
 .loc_0x0:
@@ -638,7 +638,7 @@ void requestState__Q34Game10KingChappy3MgrFPQ34Game10KingChappy3Obji(void)
  * Address:	8035CAAC
  * Size:	000010
  */
-void getEnemy__Q34Game10KingChappy3MgrFi(void)
+void Game::KingChappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -654,7 +654,7 @@ void getEnemy__Q34Game10KingChappy3MgrFi(void)
  * Address:	8035CABC
  * Size:	0000B0
  */
-void __dt__Q34Game10KingChappy3MgrFv(void)
+void Game::KingChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -714,7 +714,7 @@ void __dt__Q34Game10KingChappy3MgrFv(void)
  * Address:	8035CB6C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10KingChappy3MgrFv(void)
+void Game::KingChappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -728,7 +728,7 @@ void getEnemyTypeID__Q34Game10KingChappy3MgrFv(void)
  * Address:	8035CB74
  * Size:	000060
  */
-void createObj__Q34Game10KingChappy3MgrFi(void)
+void Game::KingChappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -764,7 +764,7 @@ void createObj__Q34Game10KingChappy3MgrFi(void)
  * Address:	8035CBD4
  * Size:	0000BC
  */
-void __dt__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -827,7 +827,7 @@ void __dt__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035CC90
  * Size:	000050
  */
-void read__Q34Game10KingChappy5ParmsFR6Stream(void)
+void Game::KingChappy::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -859,7 +859,7 @@ void read__Q34Game10KingChappy5ParmsFR6Stream(void)
  * Address:	8035CCE0
  * Size:	000008
  */
-void @4@__dt__Q34Game10KingChappy3MgrFv(void)
+void @4@Game::KingChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803011F8
  * Size:	000050
  */
-void __ct__Q34Game14NormMiniHoudai3MgrFiUc(void)
+void Game::NormMiniHoudai::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game14NormMiniHoudai3MgrFiUc(void)
  * Address:	80301248
  * Size:	000048
  */
-void doAlloc__Q34Game14NormMiniHoudai3MgrFv(void)
+void Game::NormMiniHoudai::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game14NormMiniHoudai3MgrFv(void)
  * Address:	80301290
  * Size:	0000DC
  */
-void __ct__Q34Game10MiniHoudai5ParmsFv(void)
+void Game::MiniHoudai::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void __ct__Q34Game10MiniHoudai5ParmsFv(void)
  * Address:	8030136C
  * Size:	000060
  */
-void createObj__Q34Game14NormMiniHoudai3MgrFi(void)
+void Game::NormMiniHoudai::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void createObj__Q34Game14NormMiniHoudai3MgrFi(void)
  * Address:	803013CC
  * Size:	0000EC
  */
-void __dt__Q34Game14NormMiniHoudai3ObjFv(void)
+void Game::NormMiniHoudai::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void __dt__Q34Game14NormMiniHoudai3ObjFv(void)
  * Address:	803014B8
  * Size:	000010
  */
-void getEnemy__Q34Game14NormMiniHoudai3MgrFi(void)
+void Game::NormMiniHoudai::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -275,7 +275,7 @@ void getEnemy__Q34Game14NormMiniHoudai3MgrFi(void)
  * Address:	803014C8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game14NormMiniHoudai3ObjFv(void)
+void Game::NormMiniHoudai::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void getEnemyTypeID__Q34Game14NormMiniHoudai3ObjFv(void)
  * Address:	803014D0
  * Size:	000050
  */
-void read__Q34Game10MiniHoudai5ParmsFR6Stream(void)
+void Game::MiniHoudai::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void read__Q34Game10MiniHoudai5ParmsFR6Stream(void)
  * Address:	80301520
  * Size:	0000C8
  */
-void __dt__Q34Game14NormMiniHoudai3MgrFv(void)
+void Game::NormMiniHoudai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -387,7 +387,7 @@ void __dt__Q34Game14NormMiniHoudai3MgrFv(void)
  * Address:	803015E8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game14NormMiniHoudai3MgrFv(void)
+void Game::NormMiniHoudai::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -401,7 +401,7 @@ void getEnemyTypeID__Q34Game14NormMiniHoudai3MgrFv(void)
  * Address:	803015F0
  * Size:	000008
  */
-void @4@__dt__Q34Game14NormMiniHoudai3MgrFv(void)
+void @4@Game::NormMiniHoudai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

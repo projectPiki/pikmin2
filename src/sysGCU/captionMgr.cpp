@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000080
  */
-void __ct__Q27Caption4NodeFv(void)
+void Caption::Node::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q27Caption4NodeFv(void)
  * Address:	804508E8
  * Size:	000064
  */
-void read__Q27Caption4NodeFR6Stream(void)
+void Caption::Node::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void read__Q27Caption4NodeFR6Stream(void)
  * Address:	8045094C
  * Size:	0000D4
  */
-void __ct__Q27Caption3MgrFv(void)
+void Caption::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -119,7 +119,7 @@ void __ct__Q27Caption3MgrFv(void)
  * Address:	80450A20
  * Size:	000080
  */
-void __dt__Q35P2JME7Caption8TControlFv(void)
+void P2JME::Caption::TControl::__dt(void)
 {
 /*
 .loc_0x0:
@@ -167,7 +167,7 @@ void __dt__Q35P2JME7Caption8TControlFv(void)
  * Address:	80450AA0
  * Size:	000108
  */
-void read__Q27Caption3MgrFR6Stream(void)
+void Caption::Mgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void read__Q27Caption3MgrFR6Stream(void)
  * Address:	80450BA8
  * Size:	000068
  */
-void reset__Q27Caption3MgrFv(void)
+void Caption::Mgr::reset(void)
 {
 /*
 .loc_0x0:
@@ -301,7 +301,7 @@ void reset__Q27Caption3MgrFv(void)
  * Address:	80450C10
  * Size:	000068
  */
-void resetMessageObjs__Q27Caption3MgrFv(void)
+void Caption::Mgr::resetMessageObjs(void)
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void resetMessageObjs__Q27Caption3MgrFv(void)
  * Address:	........
  * Size:	00002C
  */
-void setCurrentNode__Q27Caption3MgrFl(void)
+void Caption::Mgr::setCurrentNode( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -351,7 +351,7 @@ void setCurrentNode__Q27Caption3MgrFl(void)
  * Address:	80450C78
  * Size:	000194
  */
-void update__Q27Caption3MgrFl(void)
+void Caption::Mgr::update( (long))
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void update__Q27Caption3MgrFl(void)
  * Address:	80450E0C
  * Size:	000098
  */
-void draw__Q27Caption3MgrFR8Graphics(void)
+void Caption::Mgr::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -558,7 +558,7 @@ void draw__Q27Caption3MgrFR8Graphics(void)
  * Address:	80450EA4
  * Size:	00005C
  */
-void getFreeMessage__Q27Caption3MgrFv(void)
+void Caption::Mgr::getFreeMessage(void)
 {
 /*
 .loc_0x0:
@@ -597,7 +597,7 @@ void getFreeMessage__Q27Caption3MgrFv(void)
  * Address:	80450F00
  * Size:	000060
  */
-void __dt__Q27Caption3MgrFv(void)
+void Caption::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -635,7 +635,7 @@ void __dt__Q27Caption3MgrFv(void)
  * Address:	80450F60
  * Size:	000060
  */
-void __dt__Q27Caption4NodeFv(void)
+void Caption::Node::__dt(void)
 {
 /*
 .loc_0x0:

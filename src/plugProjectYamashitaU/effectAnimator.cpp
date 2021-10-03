@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000044
  */
-void __ct__Q214EffectAnimator3ObjFv(void)
+void EffectAnimator::Obj::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q214EffectAnimator3ObjFv(void)
  * Address:	........
  * Size:	000088
  */
-void setup__Q214EffectAnimator3ObjFPQ214EffectAnimator7KeyData(void)
+void EffectAnimator::Obj::setup( (EffectAnimator::KeyData *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void setup__Q214EffectAnimator3ObjFPQ214EffectAnimator7KeyData(void)
  * Address:	........
  * Size:	000104
  */
-void calcValue__Q214EffectAnimator3ObjFf(void)
+void EffectAnimator::Obj::calcValue( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void calcValue__Q214EffectAnimator3ObjFf(void)
  * Address:	........
  * Size:	000044
  */
-void __ct__Q214EffectAnimator6ObjMgrFv(void)
+void EffectAnimator::ObjMgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void __ct__Q214EffectAnimator6ObjMgrFv(void)
  * Address:	........
  * Size:	00006C
  */
-void update__Q214EffectAnimator6ObjMgrFPQ23efx13TKechappyTestf(void)
+void EffectAnimator::ObjMgr::update( (efx::TKechappyTest *, float))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void update__Q214EffectAnimator6ObjMgrFPQ23efx13TKechappyTestf(void)
  * Address:	80132CB4
  * Size:	000004
  */
-void update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf(void)
+void EffectAnimator::Obj::update( (efx::TKechappyTest *, float))
 {
 /*
 .loc_0x0:
@@ -68,7 +68,7 @@ void update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf(void)
  * Address:	80132CB8
  * Size:	0002F8
  */
-void setup__Q214EffectAnimator6ObjMgrFPQ214EffectAnimator10ObjMgrData(void)
+void EffectAnimator::ObjMgr::setup( (EffectAnimator::ObjMgrData *))
 {
 /*
 .loc_0x0:
@@ -312,7 +312,7 @@ void setup__Q214EffectAnimator6ObjMgrFPQ214EffectAnimator10ObjMgrData(void)
  * Address:	80132FB0
  * Size:	000060
  */
-void __dt__Q214EffectAnimator3ObjFv(void)
+void EffectAnimator::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void __dt__Q214EffectAnimator3ObjFv(void)
  * Address:	80133010
  * Size:	00000C
  */
-void __ct__Q214EffectAnimator3MgrFv(void)
+void EffectAnimator::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void __ct__Q214EffectAnimator3MgrFv(void)
  * Address:	8013301C
  * Size:	0000B4
  */
-void setup__Q214EffectAnimator3MgrFv(void)
+void EffectAnimator::Mgr::setup(void)
 {
 /*
 .loc_0x0:
@@ -430,7 +430,7 @@ void setup__Q214EffectAnimator3MgrFv(void)
  * Address:	801330D0
  * Size:	0000E4
  */
-void update__Q214EffectAnimator3MgrFPQ23efx13TKechappyTestif(void)
+void EffectAnimator::Mgr::update( (efx::TKechappyTest *, int, float))
 {
 /*
 .loc_0x0:
@@ -509,7 +509,7 @@ void update__Q214EffectAnimator3MgrFPQ23efx13TKechappyTestif(void)
  * Address:	801331B4
  * Size:	000070
  */
-void __dt__Q214EffectAnimator9LengthObjFv(void)
+void EffectAnimator::LengthObj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -553,7 +553,7 @@ void __dt__Q214EffectAnimator9LengthObjFv(void)
  * Address:	80133224
  * Size:	000118
  */
-void update__Q214EffectAnimator9LengthObjFPQ23efx13TKechappyTestf(void)
+void EffectAnimator::LengthObj::update( (efx::TKechappyTest *, float))
 {
 /*
 .loc_0x0:
@@ -647,7 +647,7 @@ void update__Q214EffectAnimator9LengthObjFPQ23efx13TKechappyTestf(void)
  * Address:	8013333C
  * Size:	000070
  */
-void __dt__Q214EffectAnimator10BristleObjFv(void)
+void EffectAnimator::BristleObj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void __dt__Q214EffectAnimator10BristleObjFv(void)
  * Address:	801333AC
  * Size:	000118
  */
-void update__Q214EffectAnimator10BristleObjFPQ23efx13TKechappyTestf(void)
+void EffectAnimator::BristleObj::update( (efx::TKechappyTest *, float))
 {
 /*
 .loc_0x0:
@@ -785,7 +785,7 @@ void update__Q214EffectAnimator10BristleObjFPQ23efx13TKechappyTestf(void)
  * Address:	801334C4
  * Size:	000070
  */
-void __dt__Q214EffectAnimator12VibrationObjFv(void)
+void EffectAnimator::VibrationObj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -829,7 +829,7 @@ void __dt__Q214EffectAnimator12VibrationObjFv(void)
  * Address:	80133534
  * Size:	000118
  */
-void update__Q214EffectAnimator12VibrationObjFPQ23efx13TKechappyTestf(void)
+void EffectAnimator::VibrationObj::update( (efx::TKechappyTest *, float))
 {
 /*
 .loc_0x0:

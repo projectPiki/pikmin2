@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80248914
  * Size:	0000A8
  */
-void __ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb(void)
+void Game::Cave::RandEnemyUnit::__ct( (Game::Cave::MapUnitGenerator *, bool))
 {
 /*
 .loc_0x0:
@@ -77,7 +77,7 @@ void __ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb(void)
  * Address:	802489BC
  * Size:	000008
  */
-void setManageClassPtr__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave12RandMapScore(void)
+void Game::Cave::RandEnemyUnit::setManageClassPtr( (Game::Cave::RandMapScore *))
 {
 /*
 .loc_0x0:
@@ -91,7 +91,7 @@ void setManageClassPtr__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave12RandMapScore(
  * Address:	802489C4
  * Size:	000054
  */
-void setEnemySlot__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setEnemySlot(void)
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void setEnemySlot__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	80248A18
  * Size:	000278
  */
-void setEnemyTypeWeight__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setEnemyTypeWeight(void)
 {
 /*
 .loc_0x0:
@@ -318,7 +318,7 @@ void setEnemyTypeWeight__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	80248C90
  * Size:	0000F0
  */
-void setEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setEnemyTypeC(void)
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void setEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	80248D80
  * Size:	0000CC
  */
-void setEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setEnemyTypeF(void)
 {
 /*
 .loc_0x0:
@@ -471,7 +471,7 @@ void setEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	80248E4C
  * Size:	0000CC
  */
-void setEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setEnemyTypeB(void)
 {
 /*
 .loc_0x0:
@@ -542,7 +542,7 @@ void setEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	80248F18
  * Size:	000104
  */
-void setEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setEnemyTypeA(void)
 {
 /*
 .loc_0x0:
@@ -627,7 +627,7 @@ void setEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	8024901C
  * Size:	000190
  */
-void setVersusHibaTypeC__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setVersusHibaTypeC(void)
 {
 /*
 .loc_0x0:
@@ -759,7 +759,7 @@ void setVersusHibaTypeC__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	802491AC
  * Size:	0001A4
  */
-void setVersusEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setVersusEnemyTypeC(void)
 {
 /*
 .loc_0x0:
@@ -892,7 +892,7 @@ void setVersusEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	80249350
  * Size:	0002F8
  */
-void setSlotEnemyTypeC__Q34Game4Cave13RandEnemyUnitFRii(void)
+void Game::Cave::RandEnemyUnit::setSlotEnemyTypeC( (int &, int))
 {
 /*
 .loc_0x0:
@@ -1140,7 +1140,7 @@ void setSlotEnemyTypeC__Q34Game4Cave13RandEnemyUnitFRii(void)
  * Address:	80249648
  * Size:	0001A0
  */
-void setUnitRandEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeC(void)
 {
 /*
 .loc_0x0:
@@ -1270,7 +1270,7 @@ void setUnitRandEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	802497E8
  * Size:	0000D8
  */
-void makeSetEnemyTypeC__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodeiPQ34Game4Cave9EnemyUnit(void)
+void Game::Cave::RandEnemyUnit::makeSetEnemyTypeC( (Game::Cave::MapNode *, int, Game::Cave::EnemyUnit *))
 {
 /*
 .loc_0x0:
@@ -1338,7 +1338,7 @@ void makeSetEnemyTypeC__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodeiPQ34Ga
  * Address:	802498C0
  * Size:	00017C
  */
-void setVersusEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setVersusEnemyTypeF(void)
 {
 /*
 .loc_0x0:
@@ -1461,7 +1461,7 @@ void setVersusEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	80249A3C
  * Size:	0003E0
  */
-void setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi(void)
+void Game::Cave::RandEnemyUnit::setSlotEnemyTypeF( (int))
 {
 /*
 .loc_0x0:
@@ -1767,7 +1767,7 @@ void setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi(void)
  * Address:	80249E1C
  * Size:	0001A0
  */
-void setUnitRandEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeF(void)
 {
 /*
 .loc_0x0:
@@ -1897,7 +1897,7 @@ void setUnitRandEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	80249FBC
  * Size:	000088
  */
-void makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit(void)
+void Game::Cave::RandEnemyUnit::makeSetEnemyTypeF( (Game::Cave::MapNode *, Game::Cave::BaseGen *, Game::Cave::EnemyUnit *))
 {
 /*
 .loc_0x0:
@@ -1945,7 +1945,7 @@ void makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Gam
  * Address:	8024A044
  * Size:	00017C
  */
-void setVersusEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setVersusEnemyTypeB(void)
 {
 /*
 .loc_0x0:
@@ -2068,7 +2068,7 @@ void setVersusEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	8024A1C0
  * Size:	0003E0
  */
-void setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi(void)
+void Game::Cave::RandEnemyUnit::setSlotEnemyTypeB( (int))
 {
 /*
 .loc_0x0:
@@ -2374,7 +2374,7 @@ void setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi(void)
  * Address:	8024A5A0
  * Size:	0001A0
  */
-void setUnitRandEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeB(void)
 {
 /*
 .loc_0x0:
@@ -2504,7 +2504,7 @@ void setUnitRandEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	8024A740
  * Size:	000088
  */
-void makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit(void)
+void Game::Cave::RandEnemyUnit::makeSetEnemyTypeB( (Game::Cave::MapNode *, Game::Cave::BaseGen *, Game::Cave::EnemyUnit *))
 {
 /*
 .loc_0x0:
@@ -2552,7 +2552,7 @@ void makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Gam
  * Address:	8024A7C8
  * Size:	0002CC
  */
-void setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setVersusEasyEnemy(void)
 {
 /*
 .loc_0x0:
@@ -2763,7 +2763,7 @@ void setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	8024AA94
  * Size:	000144
  */
-void getVersusEasyEnemyBaseGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandEnemyUnit::getVersusEasyEnemyBaseGen( (Game::Cave::MapNode *, Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:
@@ -2878,7 +2878,7 @@ void getVersusEasyEnemyBaseGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNod
  * Address:	8024ABD8
  * Size:	0001D4
  */
-void setVersusEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv(void)
+void Game::Cave::RandEnemyUnit::setVersusEnemyTypeA(void)
 {
 /*
 .loc_0x0:
@@ -3029,7 +3029,7 @@ void setVersusEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv(void)
  * Address:	8024ADAC
  * Size:	0003D4
  */
-void setSlotEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiRii(void)
+void Game::Cave::RandEnemyUnit::setSlotEnemyTypeA( (int &, int &, int))
 {
 /*
 .loc_0x0:
@@ -3328,7 +3328,7 @@ void setSlotEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiRii(void)
  * Address:	8024B180
  * Size:	000298
  */
-void setUnitRandEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiii(void)
+void Game::Cave::RandEnemyUnit::setUnitRandEnemyTypeA( (int &, int, int))
 {
 /*
 .loc_0x0:
@@ -3528,7 +3528,7 @@ void setUnitRandEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiii(void)
  * Address:	8024B418
  * Size:	000420
  */
-void makeSetEnemyTypeA__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUniti(void)
+void Game::Cave::RandEnemyUnit::makeSetEnemyTypeA( (Game::Cave::MapNode *, Game::Cave::BaseGen *, Game::Cave::EnemyUnit *, int))
 {
 /*
 .loc_0x0:
@@ -3842,7 +3842,7 @@ void makeSetEnemyTypeA__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Gam
  * Address:	8024B838
  * Size:	00003C
  */
-void isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandEnemyUnit::isEnemySetGen( (Game::Cave::MapNode *, Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802C7810
  * Size:	00020C
  */
-void __ct__Q34Game7BigFoot16BigFootShadowMgrFPQ34Game7BigFoot3Obj(void)
+void Game::BigFoot::BigFootShadowMgr::__ct( (Game::BigFoot::Obj *))
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void __ct__Q34Game7BigFoot16BigFootShadowMgrFPQ34Game7BigFoot3Obj(void)
  * Address:	802C7A1C
  * Size:	00014C
  */
-void init__Q34Game7BigFoot16BigFootShadowMgrFv(void)
+void Game::BigFoot::BigFootShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void setJointPosPtr__Q34Game7BigFoot16BigFootShadowMgrFiiP10Vector3<float>(void)
  * Address:	802C7B80
  * Size:	000370
  */
-void update__Q34Game7BigFoot16BigFootShadowMgrFv(void)
+void Game::BigFoot::BigFootShadowMgr::update(void)
 {
 /*
 .loc_0x0:

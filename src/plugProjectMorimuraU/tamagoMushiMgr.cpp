@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8036D988
  * Size:	000050
  */
-void __ct__Q34Game11TamagoMushi3MgrFiUc(void)
+void Game::TamagoMushi::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game11TamagoMushi3MgrFiUc(void)
  * Address:	8036D9D8
  * Size:	000100
  */
-void doAlloc__Q34Game11TamagoMushi3MgrFv(void)
+void Game::TamagoMushi::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void J3DUMtxCacheBase::~J3DUMtxCacheBase()
  * Address:	8036DB20
  * Size:	000010
  */
-void getEnemy__Q34Game11TamagoMushi3MgrFi(void)
+void Game::TamagoMushi::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void getEnemy__Q34Game11TamagoMushi3MgrFi(void)
  * Address:	8036DB30
  * Size:	000260
  */
-void __ct__Q34Game11TamagoMushi5ParmsFv(void)
+void Game::TamagoMushi::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void __ct__Q34Game11TamagoMushi5ParmsFv(void)
  * Address:	8036DD90
  * Size:	000048
  */
-void birth__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::TamagoMushi::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -381,7 +381,7 @@ void birth__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	8036DDD8
  * Size:	000058
  */
-void fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf(void)
+void Game::TamagoMushi::Mgr::fetch( (J3DModel *, float))
 {
 /*
 .loc_0x0:
@@ -417,7 +417,7 @@ void fetch__Q34Game11TamagoMushi3MgrFP8J3DModelf(void)
  * Address:	........
  * Size:	000090
  */
-void getFreeNum__Q34Game11TamagoMushi3MgrFv(void)
+void Game::TamagoMushi::Mgr::getFreeNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -573,7 +573,7 @@ void createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10V
  * Address:	8036DFD8
  * Size:	0003AC
  */
-void createGroup__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objib(void)
+void Game::TamagoMushi::Mgr::createGroup( (Game::TamagoMushi::Obj *, int, bool))
 {
 /*
 .loc_0x0:
@@ -846,7 +846,7 @@ void createGroup__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objib(void)
  * Address:	8036E384
  * Size:	000484
  */
-void createGroupByBigFoot__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objibf(void)
+void Game::TamagoMushi::Mgr::createGroupByBigFoot( (Game::TamagoMushi::Obj *, int, bool, float))
 {
 /*
 .loc_0x0:
@@ -1167,7 +1167,7 @@ void createGroupByBigFoot__Q34Game11TamagoMushi3MgrFPQ34Game11TamagoMushi3Objibf
  * Address:	8036E808
  * Size:	0000B0
  */
-void __dt__Q34Game11TamagoMushi3MgrFv(void)
+void Game::TamagoMushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1227,7 +1227,7 @@ void __dt__Q34Game11TamagoMushi3MgrFv(void)
  * Address:	8036E8B8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11TamagoMushi3MgrFv(void)
+void Game::TamagoMushi::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1241,7 +1241,7 @@ void getEnemyTypeID__Q34Game11TamagoMushi3MgrFv(void)
  * Address:	8036E8C0
  * Size:	000060
  */
-void createObj__Q34Game11TamagoMushi3MgrFi(void)
+void Game::TamagoMushi::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -1277,7 +1277,7 @@ void createObj__Q34Game11TamagoMushi3MgrFi(void)
  * Address:	8036E920
  * Size:	0000BC
  */
-void __dt__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1340,7 +1340,7 @@ void __dt__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	8036E9DC
  * Size:	000050
  */
-void read__Q34Game11TamagoMushi5ParmsFR6Stream(void)
+void Game::TamagoMushi::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1507,7 +1507,7 @@ void J3DUMtxCacheRef<J3DUMtxAnmCacheTable>::~J3DUMtxCacheRef()
  * Address:	8036EBA0
  * Size:	000008
  */
-void @4@__dt__Q34Game11TamagoMushi3MgrFv(void)
+void @4@Game::TamagoMushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

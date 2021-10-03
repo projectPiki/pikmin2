@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803258E8
  * Size:	00003C
  */
-void __ct__Q32og9newScreen8FinalMsgFv(void)
+void og::newScreen::FinalMsg::__ct(void)
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q32og9newScreen8FinalMsgFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen8FinalMsgFv(void)
+void og::newScreen::FinalMsg::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void __dt__Q32og9newScreen8FinalMsgFv(void)
  * Address:	80325924
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen8FinalMsgFPQ28Resource10MgrCommand(void)
+void og::newScreen::FinalMsg::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void doUserCallBackFunc__Q32og9newScreen8FinalMsgFPQ28Resource10MgrCommand(void)
  * Address:	80325928
  * Size:	000078
  */
-void doCreateObj__Q32og9newScreen8FinalMsgFP10JKRArchive(void)
+void og::newScreen::FinalMsg::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void doCreateObj__Q32og9newScreen8FinalMsgFP10JKRArchive(void)
  * Address:	803259A0
  * Size:	000064
  */
-void doGetFinishState__Q32og9newScreen8FinalMsgFv(void)
+void og::newScreen::FinalMsg::doGetFinishState(void)
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void doGetFinishState__Q32og9newScreen8FinalMsgFv(void)
  * Address:	80325A04
  * Size:	00000C
  */
-void getResName__Q32og9newScreen8FinalMsgCFv(void)
+void og::newScreen::FinalMsg::getResName( const
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void getResName__Q32og9newScreen8FinalMsgCFv(void)
  * Address:	80325A10
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen8FinalMsgFv(void)
+void og::newScreen::FinalMsg::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void getSceneType__Q32og9newScreen8FinalMsgFv(void)
  * Address:	80325A18
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen8FinalMsgFv(void)
+void og::newScreen::FinalMsg::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void getOwnerID__Q32og9newScreen8FinalMsgFv(void)
  * Address:	80325A24
  * Size:	000014
  */
-void getMemberID__Q32og9newScreen8FinalMsgFv(void)
+void og::newScreen::FinalMsg::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -209,7 +209,7 @@ void getMemberID__Q32og9newScreen8FinalMsgFv(void)
  * Address:	80325A38
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen8FinalMsgFv(void)
+void og::newScreen::FinalMsg::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

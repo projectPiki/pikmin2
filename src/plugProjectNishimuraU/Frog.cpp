@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80258548
  * Size:	000138
  */
-void __ct__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game4Frog3ObjFv(void)
  * Address:	80258680
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Frog3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Frog::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game4Frog3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	80258684
  * Size:	000078
  */
-void onInit__Q34Game4Frog3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Frog::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void onInit__Q34Game4Frog3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802586FC
  * Size:	000044
  */
-void onKill__Q34Game4Frog3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Frog::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void onKill__Q34Game4Frog3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	80258740
  * Size:	000044
  */
-void doUpdate__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -224,7 +224,7 @@ void doUpdate__Q34Game4Frog3ObjFv(void)
  * Address:	80258784
  * Size:	000280
  */
-void doSimulationFlying__Q34Game4Frog3ObjFf(void)
+void Game::Frog::Obj::doSimulationFlying( (float))
 {
 /*
 .loc_0x0:
@@ -420,7 +420,7 @@ void doSimulationFlying__Q34Game4Frog3ObjFf(void)
  * Address:	80258A04
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Frog3ObjFR8Graphics(void)
+void Game::Frog::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void doDirectDraw__Q34Game4Frog3ObjFR8Graphics(void)
  * Address:	80258A08
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Frog3ObjFR8Graphics(void)
+void Game::Frog::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -453,7 +453,7 @@ void doDebugDraw__Q34Game4Frog3ObjFR8Graphics(void)
  * Address:	80258A28
  * Size:	00004C
  */
-void setFSM__Q34Game4Frog3ObjFPQ34Game4Frog3FSM(void)
+void Game::Frog::Obj::setFSM( (Game::Frog::FSM *))
 {
 /*
 .loc_0x0:
@@ -484,7 +484,7 @@ void setFSM__Q34Game4Frog3ObjFPQ34Game4Frog3FSM(void)
  * Address:	80258A74
  * Size:	000110
  */
-void getShadowParam__Q34Game4Frog3ObjFRQ24Game11ShadowParam(void)
+void Game::Frog::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void getShadowParam__Q34Game4Frog3ObjFRQ24Game11ShadowParam(void)
  * Address:	80258B84
  * Size:	000104
  */
-void collisionCallback__Q34Game4Frog3ObjFRQ24Game9CollEvent(void)
+void Game::Frog::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -655,7 +655,7 @@ void collisionCallback__Q34Game4Frog3ObjFRQ24Game9CollEvent(void)
  * Address:	80258C88
  * Size:	000034
  */
-void doStartStoneState__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -680,7 +680,7 @@ void doStartStoneState__Q34Game4Frog3ObjFv(void)
  * Address:	80258CBC
  * Size:	000064
  */
-void doFinishStoneState__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -719,7 +719,7 @@ void doFinishStoneState__Q34Game4Frog3ObjFv(void)
  * Address:	80258D20
  * Size:	000034
  */
-void doStartEarthquakeFitState__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doStartEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -744,7 +744,7 @@ void doStartEarthquakeFitState__Q34Game4Frog3ObjFv(void)
  * Address:	80258D54
  * Size:	00005C
  */
-void doFinishEarthquakeFitState__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doFinishEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -781,7 +781,7 @@ void doFinishEarthquakeFitState__Q34Game4Frog3ObjFv(void)
  * Address:	80258DB0
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -806,7 +806,7 @@ void doStartWaitingBirthTypeDrop__Q34Game4Frog3ObjFv(void)
  * Address:	80258DE4
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -831,7 +831,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game4Frog3ObjFv(void)
  * Address:	80258E18
  * Size:	000028
  */
-void startCarcassMotion__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -853,7 +853,7 @@ void startCarcassMotion__Q34Game4Frog3ObjFv(void)
  * Address:	80258E40
  * Size:	00001C
  */
-void viewGetCollTreeOffset__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::viewGetCollTreeOffset(void)
 {
 /*
 .loc_0x0:
@@ -872,7 +872,7 @@ void viewGetCollTreeOffset__Q34Game4Frog3ObjFv(void)
  * Address:	80258E5C
  * Size:	000020
  */
-void doStartMovie__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -892,7 +892,7 @@ void doStartMovie__Q34Game4Frog3ObjFv(void)
  * Address:	80258E7C
  * Size:	000020
  */
-void doEndMovie__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -912,7 +912,7 @@ void doEndMovie__Q34Game4Frog3ObjFv(void)
  * Address:	80258E9C
  * Size:	000088
  */
-void getOffsetForMapCollision__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -991,7 +991,7 @@ void getCommonEffectPos__Q34Game4Frog3ObjFR10Vector3<float>(void)
  * Address:	80258F78
  * Size:	000050
  */
-void updateCaution__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::updateCaution(void)
 {
 /*
 .loc_0x0:
@@ -1027,7 +1027,7 @@ void updateCaution__Q34Game4Frog3ObjFv(void)
  * Address:	80258FC8
  * Size:	000024
  */
-void getViewAngle__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::getViewAngle(void)
 {
 /*
 .loc_0x0:
@@ -1050,7 +1050,7 @@ void getViewAngle__Q34Game4Frog3ObjFv(void)
  * Address:	80258FEC
  * Size:	0000D8
  */
-void startJumpAttack__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::startJumpAttack(void)
 {
 /*
 .loc_0x0:
@@ -1124,7 +1124,7 @@ void startJumpAttack__Q34Game4Frog3ObjFv(void)
  * Address:	802590C4
  * Size:	0000D8
  */
-void resetHomePosition__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::resetHomePosition(void)
 {
 /*
 .loc_0x0:
@@ -1196,7 +1196,7 @@ void resetHomePosition__Q34Game4Frog3ObjFv(void)
  * Address:	8025919C
  * Size:	00024C
  */
-void pressOnGround__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::pressOnGround(void)
 {
 /*
 .loc_0x0:
@@ -1363,7 +1363,7 @@ void pressOnGround__Q34Game4Frog3ObjFv(void)
  * Address:	802593E8
  * Size:	0000B0
  */
-void createEffect__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1421,7 +1421,7 @@ void createEffect__Q34Game4Frog3ObjFv(void)
  * Address:	80259498
  * Size:	000010
  */
-void setupEffect__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -1437,7 +1437,7 @@ void setupEffect__Q34Game4Frog3ObjFv(void)
  * Address:	802594A8
  * Size:	000034
  */
-void startJumpEffect__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::startJumpEffect(void)
 {
 /*
 .loc_0x0:
@@ -1462,7 +1462,7 @@ void startJumpEffect__Q34Game4Frog3ObjFv(void)
  * Address:	802594DC
  * Size:	000030
  */
-void finishJumpEffect__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::finishJumpEffect(void)
 {
 /*
 .loc_0x0:
@@ -1486,7 +1486,7 @@ void finishJumpEffect__Q34Game4Frog3ObjFv(void)
  * Address:	8025950C
  * Size:	0000C0
  */
-void createDownEffect__Q34Game4Frog3ObjFf(void)
+void Game::Frog::Obj::createDownEffect( (float))
 {
 /*
 .loc_0x0:
@@ -1550,7 +1550,7 @@ void createDownEffect__Q34Game4Frog3ObjFf(void)
  * Address:	802595CC
  * Size:	000030
  */
-void effectDrawOn__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -1574,7 +1574,7 @@ void effectDrawOn__Q34Game4Frog3ObjFv(void)
  * Address:	802595FC
  * Size:	000030
  */
-void effectDrawOff__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -1598,7 +1598,7 @@ void effectDrawOff__Q34Game4Frog3ObjFv(void)
  * Address:	8025962C
  * Size:	00009C
  */
-void __dt__Q23efx9TFrogPotaFv(void)
+void efx::TFrogPota::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1653,7 +1653,7 @@ void __dt__Q23efx9TFrogPotaFv(void)
  * Address:	802596C8
  * Size:	000004
  */
-void forceKill__Q23efx8TSimple4Fv(void)
+void efx::TSimple4::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -1666,7 +1666,7 @@ void forceKill__Q23efx8TSimple4Fv(void)
  * Address:	802596CC
  * Size:	000004
  */
-void fade__Q23efx8TSimple4Fv(void)
+void efx::TSimple4::fade(void)
 {
 /*
 .loc_0x0:
@@ -1679,7 +1679,7 @@ void fade__Q23efx8TSimple4Fv(void)
  * Address:	802596D0
  * Size:	000004
  */
-void inWaterCallback__Q34Game4Frog3ObjFPQ24Game8WaterBox(void)
+void Game::Frog::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1692,7 +1692,7 @@ void inWaterCallback__Q34Game4Frog3ObjFPQ24Game8WaterBox(void)
  * Address:	802596D4
  * Size:	000004
  */
-void outWaterCallback__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1705,7 +1705,7 @@ void outWaterCallback__Q34Game4Frog3ObjFv(void)
  * Address:	802596D8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1741,7 +1741,7 @@ void __sinit_Frog_cpp(void)
  * Address:	80259708
  * Size:	000014
  */
-void @736@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @736@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1758,7 +1758,7 @@ void @736@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8025971C
  * Size:	000014
  */
-void @736@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @736@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1775,7 +1775,7 @@ void @736@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80259730
  * Size:	000014
  */
-void @736@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @736@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1792,7 +1792,7 @@ void @736@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80259744
  * Size:	000014
  */
-void @736@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @736@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1809,7 +1809,7 @@ void @736@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80259758
  * Size:	000014
  */
-void @736@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @736@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1826,7 +1826,7 @@ void @736@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8025976C
  * Size:	000014
  */
-void @736@12@viewGetCollTreeOffset__Q34Game4Frog3ObjFv(void)
+void @736@12@Game::Frog::Obj::viewGetCollTreeOffset(void)
 {
 /*
 .loc_0x0:
@@ -1843,7 +1843,7 @@ void @736@12@viewGetCollTreeOffset__Q34Game4Frog3ObjFv(void)
  * Address:	80259780
  * Size:	000014
  */
-void @736@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @736@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -1860,7 +1860,7 @@ void @736@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	80259794
  * Size:	000008
  */
-void @4@__dt__Q23efx9TFrogPotaFv(void)
+void @4@efx::TFrogPota::__dt(void)
 {
 /*
 .loc_0x0:

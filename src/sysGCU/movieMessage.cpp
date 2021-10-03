@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	0000B8
  */
-void __ct__Q35P2JME5Movie10WindowPaneFv(void)
+void P2JME::Movie::WindowPane::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q35P2JME5Movie10WindowPaneFv(void)
  * Address:	80434F5C
  * Size:	000020
  */
-void doInit__Q35P2JME5Movie10WindowPaneFv(void)
+void P2JME::Movie::WindowPane::doInit(void)
 {
 /*
 .loc_0x0:
@@ -45,7 +45,7 @@ void doInit__Q35P2JME5Movie10WindowPaneFv(void)
  * Address:	80434F7C
  * Size:	000164
  */
-void update__Q35P2JME5Movie10WindowPaneFv(void)
+void P2JME::Movie::WindowPane::update(void)
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void update__Q35P2JME5Movie10WindowPaneFv(void)
  * Address:	804350E0
  * Size:	000278
  */
-void moveWindow__Q35P2JME5Movie10WindowPaneFb(void)
+void P2JME::Movie::WindowPane::moveWindow( (bool))
 {
 /*
 .loc_0x0:
@@ -346,7 +346,7 @@ void moveWindow__Q35P2JME5Movie10WindowPaneFb(void)
  * Address:	80435358
  * Size:	000048
  */
-void open__Q35P2JME5Movie10WindowPaneFf(void)
+void P2JME::Movie::WindowPane::open( (float))
 {
 /*
 .loc_0x0:
@@ -376,7 +376,7 @@ void open__Q35P2JME5Movie10WindowPaneFf(void)
  * Address:	........
  * Size:	000024
  */
-void close__Q35P2JME5Movie10WindowPaneFf(void)
+void P2JME::Movie::WindowPane::close( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -386,7 +386,7 @@ void close__Q35P2JME5Movie10WindowPaneFf(void)
  * Address:	........
  * Size:	0000A4
  */
-void __ct__Q35P2JME5Movie8AbtnPaneFUc(void)
+void P2JME::Movie::AbtnPane::__ct( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -396,7 +396,7 @@ void __ct__Q35P2JME5Movie8AbtnPaneFUc(void)
  * Address:	804353A0
  * Size:	000054
  */
-void doInit__Q35P2JME5Movie8AbtnPaneFv(void)
+void P2JME::Movie::AbtnPane::doInit(void)
 {
 /*
 .loc_0x0:
@@ -429,7 +429,7 @@ void doInit__Q35P2JME5Movie8AbtnPaneFv(void)
  * Address:	804353F4
  * Size:	000170
  */
-void update__Q35P2JME5Movie8AbtnPaneFv(void)
+void P2JME::Movie::AbtnPane::update(void)
 {
 /*
 .loc_0x0:
@@ -547,7 +547,7 @@ void update__Q35P2JME5Movie8AbtnPaneFv(void)
  * Address:	........
  * Size:	0000CC
  */
-void __ct__Q35P2JME5Movie13PodIconScreenFv(void)
+void P2JME::Movie::PodIconScreen::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -557,7 +557,7 @@ void __ct__Q35P2JME5Movie13PodIconScreenFv(void)
  * Address:	........
  * Size:	000078
  */
-void setTrans__Q35P2JME5Movie13PodIconScreenFv(void)
+void P2JME::Movie::PodIconScreen::setTrans(void)
 {
 	// UNUSED FUNCTION
 }
@@ -567,7 +567,7 @@ void setTrans__Q35P2JME5Movie13PodIconScreenFv(void)
  * Address:	........
  * Size:	000168
  */
-void reset__Q35P2JME5Movie13PodIconScreenFv(void)
+void P2JME::Movie::PodIconScreen::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -577,7 +577,7 @@ void reset__Q35P2JME5Movie13PodIconScreenFv(void)
  * Address:	........
  * Size:	000178
  */
-void appear__Q35P2JME5Movie13PodIconScreenFv(void)
+void P2JME::Movie::PodIconScreen::appear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -587,7 +587,7 @@ void appear__Q35P2JME5Movie13PodIconScreenFv(void)
  * Address:	........
  * Size:	0002A0
  */
-void disappear__Q35P2JME5Movie13PodIconScreenFv(void)
+void P2JME::Movie::PodIconScreen::disappear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -597,7 +597,7 @@ void disappear__Q35P2JME5Movie13PodIconScreenFv(void)
  * Address:	........
  * Size:	0001E0
  */
-void set__Q35P2JME5Movie13PodIconScreenFP10JKRArchive(void)
+void P2JME::Movie::PodIconScreen::set( (JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -607,7 +607,7 @@ void set__Q35P2JME5Movie13PodIconScreenFP10JKRArchive(void)
  * Address:	80435564
  * Size:	000438
  */
-void update__Q35P2JME5Movie13PodIconScreenFv(void)
+void P2JME::Movie::PodIconScreen::update(void)
 {
 /*
 .loc_0x0:
@@ -925,7 +925,7 @@ void update__Q35P2JME5Movie13PodIconScreenFv(void)
  * Address:	........
  * Size:	00003C
  */
-void __ct__Q35P2JME5Movie19MessageWindowScreenFv(void)
+void P2JME::Movie::MessageWindowScreen::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -935,7 +935,7 @@ void __ct__Q35P2JME5Movie19MessageWindowScreenFv(void)
  * Address:	........
  * Size:	00026C
  */
-void set__Q35P2JME5Movie19MessageWindowScreenFP10JKRArchive(void)
+void P2JME::Movie::MessageWindowScreen::set( (JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -945,7 +945,7 @@ void set__Q35P2JME5Movie19MessageWindowScreenFP10JKRArchive(void)
  * Address:	8043599C
  * Size:	000080
  */
-void __ct__Q35P2JME5Movie8TControlFv(void)
+void P2JME::Movie::TControl::__ct(void)
 {
 /*
 .loc_0x0:
@@ -989,7 +989,7 @@ void __ct__Q35P2JME5Movie8TControlFv(void)
  * Address:	80435A1C
  * Size:	000070
  */
-void __dt__Q35P2JME6Window8TControlFv(void)
+void P2JME::Window::TControl::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1033,7 +1033,7 @@ void __dt__Q35P2JME6Window8TControlFv(void)
  * Address:	80435A8C
  * Size:	0007B0
  */
-void onInit__Q35P2JME5Movie8TControlFv(void)
+void P2JME::Movie::TControl::onInit(void)
 {
 /*
 .loc_0x0:
@@ -1587,7 +1587,7 @@ void onInit__Q35P2JME5Movie8TControlFv(void)
  * Address:	8043623C
  * Size:	000038
  */
-void reset__Q35P2JME5Movie8TControlFv(void)
+void P2JME::Movie::TControl::reset(void)
 {
 /*
 .loc_0x0:
@@ -1615,7 +1615,7 @@ void reset__Q35P2JME5Movie8TControlFv(void)
  * Address:	80436274
  * Size:	0004E0
  */
-void setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag(void)
+void P2JME::Movie::TControl::setMode( (P2JME::Movie::TControl::EModeFlag))
 {
 /*
 .loc_0x0:
@@ -1975,7 +1975,7 @@ void setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag(void)
  * Address:	80436754
  * Size:	000024
  */
-void open__Q35P2JME5Movie19MessageWindowScreenFf(void)
+void P2JME::Movie::MessageWindowScreen::open( (float))
 {
 /*
 .loc_0x0:
@@ -1996,7 +1996,7 @@ void open__Q35P2JME5Movie19MessageWindowScreenFf(void)
  * Address:	80436778
  * Size:	000228
  */
-void update__Q35P2JME5Movie8TControlFP10ControllerP10Controller(void)
+void P2JME::Movie::TControl::update( (Controller *, Controller *))
 {
 /*
 .loc_0x0:
@@ -2176,7 +2176,7 @@ void update__Q35P2JME5Movie8TControlFP10ControllerP10Controller(void)
  * Address:	804369A0
  * Size:	0000CC
  */
-void draw__Q35P2JME5Movie8TControlFR8Graphics(void)
+void P2JME::Movie::TControl::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2243,7 +2243,7 @@ void draw__Q35P2JME5Movie8TControlFR8Graphics(void)
  * Address:	80436A6C
  * Size:	000080
  */
-void __dt__Q35P2JME5Movie8TControlFv(void)
+void P2JME::Movie::TControl::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2291,7 +2291,7 @@ void __dt__Q35P2JME5Movie8TControlFv(void)
  * Address:	80436AEC
  * Size:	000020
  */
-void draw__Q35P2JME6Window8TControlFPA4_fPA4_f(void)
+void P2JME::Window::TControl::draw( (float (*)[4], float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -2311,7 +2311,7 @@ void draw__Q35P2JME6Window8TControlFPA4_fPA4_f(void)
  * Address:	80436B0C
  * Size:	00007C
  */
-void createRenderingProcessor__Q35P2JME6Window8TControlFv(void)
+void P2JME::Window::TControl::createRenderingProcessor(void)
 {
 /*
 .loc_0x0:
@@ -2358,7 +2358,7 @@ void createRenderingProcessor__Q35P2JME6Window8TControlFv(void)
  * Address:	80436B88
  * Size:	000080
  */
-void createSequenceProcessor__Q35P2JME6Window8TControlFv(void)
+void P2JME::Window::TControl::createSequenceProcessor(void)
 {
 /*
 .loc_0x0:
@@ -2406,7 +2406,7 @@ void createSequenceProcessor__Q35P2JME6Window8TControlFv(void)
  * Address:	80436C08
  * Size:	000038
  */
-void setMessageID__Q25P2JME8TControlFUx(void)
+void P2JME::TControl::setMessageID( (unsigned long long))
 {
 /*
 .loc_0x0:
@@ -2432,7 +2432,7 @@ void setMessageID__Q25P2JME8TControlFUx(void)
  * Address:	80436C40
  * Size:	000010
  */
-void createReference__Q25P2JME8TControlFv(void)
+void P2JME::TControl::createReference(void)
 {
 /*
 .loc_0x0:
@@ -2448,7 +2448,7 @@ void createReference__Q25P2JME8TControlFv(void)
  * Address:	80436C50
  * Size:	000010
  */
-void createResourceContainer__Q25P2JME8TControlFv(void)
+void P2JME::TControl::createResourceContainer(void)
 {
 /*
 .loc_0x0:
@@ -2464,7 +2464,7 @@ void createResourceContainer__Q25P2JME8TControlFv(void)
  * Address:	80436C60
  * Size:	0000A4
  */
-void __dt__Q35P2JME5Movie19MessageWindowScreenFv(void)
+void P2JME::Movie::MessageWindowScreen::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2523,7 +2523,7 @@ void __dt__Q35P2JME5Movie19MessageWindowScreenFv(void)
  * Address:	80436D04
  * Size:	0000A4
  */
-void __dt__Q35P2JME5Movie13PodIconScreenFv(void)
+void P2JME::Movie::PodIconScreen::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2582,7 +2582,7 @@ void __dt__Q35P2JME5Movie13PodIconScreenFv(void)
  * Address:	80436DA8
  * Size:	000080
  */
-void __dt__Q35P2JME5Movie8AbtnPaneFv(void)
+void P2JME::Movie::AbtnPane::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2630,7 +2630,7 @@ void __dt__Q35P2JME5Movie8AbtnPaneFv(void)
  * Address:	80436E28
  * Size:	000080
  */
-void __dt__Q35P2JME5Movie10WindowPaneFv(void)
+void P2JME::Movie::WindowPane::__dt(void)
 {
 /*
 .loc_0x0:

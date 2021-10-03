@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8028D470
  * Size:	000140
  */
-void __ct__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game4Baby3ObjFv(void)
  * Address:	8028D5B0
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Baby3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Baby::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void setInitialSetting__Q34Game4Baby3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8028D5B4
  * Size:	0000B8
  */
-void onInit__Q34Game4Baby3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Baby::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -188,7 +188,7 @@ void onInit__Q34Game4Baby3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8028D66C
  * Size:	000048
  */
-void doUpdate__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -218,7 +218,7 @@ void doUpdate__Q34Game4Baby3ObjFv(void)
  * Address:	8028D6B4
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Baby3ObjFR8Graphics(void)
+void Game::Baby::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -231,7 +231,7 @@ void doDirectDraw__Q34Game4Baby3ObjFR8Graphics(void)
  * Address:	8028D6B8
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Baby3ObjFR8Graphics(void)
+void Game::Baby::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void doDebugDraw__Q34Game4Baby3ObjFR8Graphics(void)
  * Address:	8028D6D8
  * Size:	00004C
  */
-void setFSM__Q34Game4Baby3ObjFPQ34Game4Baby3FSM(void)
+void Game::Baby::Obj::setFSM( (Game::Baby::FSM *))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void setFSM__Q34Game4Baby3ObjFPQ34Game4Baby3FSM(void)
  * Address:	8028D724
  * Size:	000068
  */
-void getShadowParam__Q34Game4Baby3ObjFRQ24Game11ShadowParam(void)
+void Game::Baby::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -324,7 +324,7 @@ void getShadowParam__Q34Game4Baby3ObjFRQ24Game11ShadowParam(void)
  * Address:	8028D78C
  * Size:	000074
  */
-void pressCallBack__Q34Game4Baby3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Baby::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void pressCallBack__Q34Game4Baby3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8028D800
  * Size:	000074
  */
-void hipdropCallBack__Q34Game4Baby3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Baby::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void hipdropCallBack__Q34Game4Baby3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8028D874
  * Size:	000020
  */
-void doStartStoneState__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -434,7 +434,7 @@ void doStartStoneState__Q34Game4Baby3ObjFv(void)
  * Address:	8028D894
  * Size:	00005C
  */
-void doFinishStoneState__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -471,7 +471,7 @@ void doFinishStoneState__Q34Game4Baby3ObjFv(void)
  * Address:	8028D8F0
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -496,7 +496,7 @@ void doStartWaitingBirthTypeDrop__Q34Game4Baby3ObjFv(void)
  * Address:	8028D924
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -521,7 +521,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game4Baby3ObjFv(void)
  * Address:	8028D958
  * Size:	000020
  */
-void doStartMovie__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -541,7 +541,7 @@ void doStartMovie__Q34Game4Baby3ObjFv(void)
  * Address:	8028D978
  * Size:	000020
  */
-void doEndMovie__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -561,7 +561,7 @@ void doEndMovie__Q34Game4Baby3ObjFv(void)
  * Address:	8028D998
  * Size:	00008C
  */
-void initMouthSlots__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void initMouthSlots__Q34Game4Baby3ObjFv(void)
  * Address:	8028DA24
  * Size:	00008C
  */
-void getSlotPikiNum__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::getSlotPikiNum(void)
 {
 /*
 .loc_0x0:
@@ -665,7 +665,7 @@ void getSlotPikiNum__Q34Game4Baby3ObjFv(void)
  * Address:	8028DAB0
  * Size:	000008
  */
-void getMouthSlots__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -679,7 +679,7 @@ void getMouthSlots__Q34Game4Baby3ObjFv(void)
  * Address:	8028DAB8
  * Size:	00001C
  */
-void resetRandTargetPosition__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::resetRandTargetPosition(void)
 {
 /*
 .loc_0x0:
@@ -698,7 +698,7 @@ void resetRandTargetPosition__Q34Game4Baby3ObjFv(void)
  * Address:	8028DAD4
  * Size:	000074
  */
-void resetZukanAnimationFrame__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::resetZukanAnimationFrame(void)
 {
 /*
 .loc_0x0:
@@ -739,7 +739,7 @@ void resetZukanAnimationFrame__Q34Game4Baby3ObjFv(void)
  * Address:	8028DB48
  * Size:	00020C
  */
-void moveNoTarget__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::moveNoTarget(void)
 {
 /*
 .loc_0x0:
@@ -894,7 +894,7 @@ void moveNoTarget__Q34Game4Baby3ObjFv(void)
  * Address:	8028DD54
  * Size:	0000F4
  */
-void createHoney__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::createHoney(void)
 {
 /*
 .loc_0x0:
@@ -969,7 +969,7 @@ void createHoney__Q34Game4Baby3ObjFv(void)
  * Address:	8028DE48
  * Size:	0000B4
  */
-void createEffect__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1028,7 +1028,7 @@ void createEffect__Q34Game4Baby3ObjFv(void)
  * Address:	8028DEFC
  * Size:	000004
  */
-void setupEffect__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -1041,7 +1041,7 @@ void setupEffect__Q34Game4Baby3ObjFv(void)
  * Address:	8028DF00
  * Size:	000034
  */
-void createBornEffect__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::createBornEffect(void)
 {
 /*
 .loc_0x0:
@@ -1066,7 +1066,7 @@ void createBornEffect__Q34Game4Baby3ObjFv(void)
  * Address:	8028DF34
  * Size:	000030
  */
-void effectDrawOn__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -1090,7 +1090,7 @@ void effectDrawOn__Q34Game4Baby3ObjFv(void)
  * Address:	8028DF64
  * Size:	000030
  */
-void effectDrawOff__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -1114,7 +1114,7 @@ void effectDrawOff__Q34Game4Baby3ObjFv(void)
  * Address:	8028DF94
  * Size:	00009C
  */
-void __dt__Q23efx9TBabyBornFv(void)
+void efx::TBabyBorn::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1169,7 +1169,7 @@ void __dt__Q23efx9TBabyBornFv(void)
  * Address:	8028E030
  * Size:	000004
  */
-void inWaterCallback__Q34Game4Baby3ObjFPQ24Game8WaterBox(void)
+void Game::Baby::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1182,7 +1182,7 @@ void inWaterCallback__Q34Game4Baby3ObjFPQ24Game8WaterBox(void)
  * Address:	8028E034
  * Size:	000004
  */
-void outWaterCallback__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1195,7 +1195,7 @@ void outWaterCallback__Q34Game4Baby3ObjFv(void)
  * Address:	8028E038
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1209,7 +1209,7 @@ void getEnemyTypeID__Q34Game4Baby3ObjFv(void)
  * Address:	8028E040
  * Size:	000008
  */
-void @4@__dt__Q23efx9TBabyBornFv(void)
+void @4@efx::TBabyBorn::__dt(void)
 {
 /*
 .loc_0x0:

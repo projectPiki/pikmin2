@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025CCD4
  * Size:	000008
  */
-void setAnimMgr__Q34Game4Ujib14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Ujib::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game4Ujib14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	8025CCDC
  * Size:	000008
  */
-void getAnimator__Q34Game4Ujib14ProperAnimatorFi(void)
+void Game::Ujib::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game4Ujib14ProperAnimatorFi(void)
  * Address:	8025CCE4
  * Size:	00005C
  */
-void __dt__Q34Game4Ujib14ProperAnimatorFv(void)
+void Game::Ujib::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game4Ujib14ProperAnimatorFv(void)
  * Address:	8025CD40
  * Size:	000008
  */
-void getAnimator__Q34Game4Ujib14ProperAnimatorFv(void)
+void Game::Ujib::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

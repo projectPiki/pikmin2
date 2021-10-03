@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8032C3AC
  * Size:	0000A0
  */
-void __ct__Q32og6Screen15TotalPokoScreenFv(void)
+void og::Screen::TotalPokoScreen::__ct(void)
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void __ct__Q32og6Screen15TotalPokoScreenFv(void)
  * Address:	8032C44C
  * Size:	000070
  */
-void showTotalPoko__Q32og6Screen15TotalPokoScreenFv(void)
+void og::Screen::TotalPokoScreen::showTotalPoko(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void showTotalPoko__Q32og6Screen15TotalPokoScreenFv(void)
  * Address:	8032C4BC
  * Size:	000070
  */
-void setTotalPoko__Q32og6Screen15TotalPokoScreenFUl(void)
+void og::Screen::TotalPokoScreen::setTotalPoko( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -155,7 +155,7 @@ void setTotalPoko__Q32og6Screen15TotalPokoScreenFUl(void)
  * Address:	8032C52C
  * Size:	000044
  */
-void closeTotalPoko__Q32og6Screen15TotalPokoScreenFv(void)
+void og::Screen::TotalPokoScreen::closeTotalPoko(void)
 {
 /*
 .loc_0x0:
@@ -186,7 +186,7 @@ void closeTotalPoko__Q32og6Screen15TotalPokoScreenFv(void)
  * Address:	8032C570
  * Size:	000010
  */
-void hideTotalPoko__Q32og6Screen15TotalPokoScreenFv(void)
+void og::Screen::TotalPokoScreen::hideTotalPoko(void)
 {
 /*
 .loc_0x0:
@@ -202,7 +202,7 @@ void hideTotalPoko__Q32og6Screen15TotalPokoScreenFv(void)
  * Address:	8032C580
  * Size:	000138
  */
-void setCallBack__Q32og6Screen15TotalPokoScreenFP10JKRArchiveffff(void)
+void og::Screen::TotalPokoScreen::setCallBack( (JKRArchive *, float, float, float, float))
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void setCallBack__Q32og6Screen15TotalPokoScreenFP10JKRArchiveffff(void)
  * Address:	8032C6B8
  * Size:	000144
  */
-void update__Q32og6Screen15TotalPokoScreenFv(void)
+void og::Screen::TotalPokoScreen::update(void)
 {
 /*
 .loc_0x0:
@@ -393,7 +393,7 @@ void update__Q32og6Screen15TotalPokoScreenFv(void)
  * Address:	8032C7FC
  * Size:	0000A4
  */
-void __dt__Q32og6Screen15TotalPokoScreenFv(void)
+void og::Screen::TotalPokoScreen::__dt(void)
 {
 /*
 .loc_0x0:

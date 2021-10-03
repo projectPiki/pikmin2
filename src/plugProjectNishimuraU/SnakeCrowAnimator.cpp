@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80292B28
  * Size:	000008
  */
-void setAnimMgr__Q34Game9SnakeCrow14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::SnakeCrow::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game9SnakeCrow14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80292B30
  * Size:	000008
  */
-void getAnimator__Q34Game9SnakeCrow14ProperAnimatorFi(void)
+void Game::SnakeCrow::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game9SnakeCrow14ProperAnimatorFi(void)
  * Address:	80292B38
  * Size:	00005C
  */
-void __dt__Q34Game9SnakeCrow14ProperAnimatorFv(void)
+void Game::SnakeCrow::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game9SnakeCrow14ProperAnimatorFv(void)
  * Address:	80292B94
  * Size:	000008
  */
-void getAnimator__Q34Game9SnakeCrow14ProperAnimatorFv(void)
+void Game::SnakeCrow::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

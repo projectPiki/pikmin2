@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8036EBA8
  * Size:	000020
  */
-void setParameters__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void birth__Q34Game11TamagoMushi3ObjFR10Vector3<float>f(void)
  * Address:	8036EBE8
  * Size:	0002D0
  */
-void onInit__Q34Game11TamagoMushi3ObjFPQ24Game15CreatureInitArg(void)
+void Game::TamagoMushi::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void onInit__Q34Game11TamagoMushi3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8036EEB8
  * Size:	00013C
  */
-void __ct__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -356,7 +356,7 @@ void __ct__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	8036EFF4
  * Size:	00004C
  */
-void setFSM__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3FSM(void)
+void Game::TamagoMushi::Obj::setFSM( (Game::TamagoMushi::FSM *))
 {
 /*
 .loc_0x0:
@@ -387,7 +387,7 @@ void setFSM__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3FSM(void)
  * Address:	8036F040
  * Size:	0000A0
  */
-void doUpdate__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void doUpdate__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	8036F0E0
  * Size:	000158
  */
-void doAnimationCullingOff__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -549,7 +549,7 @@ void doAnimationCullingOff__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	8036F238
  * Size:	000004
  */
-void doDirectDraw__Q34Game11TamagoMushi3ObjFR8Graphics(void)
+void Game::TamagoMushi::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -562,7 +562,7 @@ void doDirectDraw__Q34Game11TamagoMushi3ObjFR8Graphics(void)
  * Address:	8036F23C
  * Size:	000020
  */
-void doDebugDraw__Q34Game11TamagoMushi3ObjFR8Graphics(void)
+void Game::TamagoMushi::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -582,7 +582,7 @@ void doDebugDraw__Q34Game11TamagoMushi3ObjFR8Graphics(void)
  * Address:	8036F25C
  * Size:	0000DC
  */
-void pressCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::TamagoMushi::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -720,7 +720,7 @@ void bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3<float>f(
  * Address:	8036F3F4
  * Size:	000134
  */
-void damageCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::TamagoMushi::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -817,7 +817,7 @@ void damageCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8036F528
  * Size:	0000F8
  */
-void collisionCallback__Q34Game11TamagoMushi3ObjFRQ24Game9CollEvent(void)
+void Game::TamagoMushi::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -893,7 +893,7 @@ void collisionCallback__Q34Game11TamagoMushi3ObjFRQ24Game9CollEvent(void)
  * Address:	8036F620
  * Size:	000178
  */
-void bounceCallback__Q34Game11TamagoMushi3ObjFPQ23Sys8Triangle(void)
+void Game::TamagoMushi::Obj::bounceCallback( (Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -1007,7 +1007,7 @@ void bounceCallback__Q34Game11TamagoMushi3ObjFPQ23Sys8Triangle(void)
  * Address:	8036F798
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::TamagoMushi::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1030,7 +1030,7 @@ void hipdropCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreaturefP8CollPart(void
  * Address:	8036F7C4
  * Size:	000030
  */
-void earthquakeCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8Creaturef(void)
+void Game::TamagoMushi::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -1054,7 +1054,7 @@ void earthquakeCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8Creaturef(void)
  * Address:	8036F7F4
  * Size:	0000A8
  */
-void getShadowParam__Q34Game11TamagoMushi3ObjFRQ24Game11ShadowParam(void)
+void Game::TamagoMushi::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -1112,7 +1112,7 @@ void getShadowParam__Q34Game11TamagoMushi3ObjFRQ24Game11ShadowParam(void)
  * Address:	8036F89C
  * Size:	000030
  */
-void needShadow__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -1136,7 +1136,7 @@ void needShadow__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	8036F8CC
  * Size:	000208
  */
-void genItem__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::genItem(void)
 {
 /*
 .loc_0x0:
@@ -1292,7 +1292,7 @@ void genItem__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	8036FAD4
  * Size:	000310
  */
-void walkFunc__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::walkFunc(void)
 {
 /*
 .loc_0x0:
@@ -1520,7 +1520,7 @@ void walkFunc__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	8036FDE4
  * Size:	000168
  */
-void setGoalRandom__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::setGoalRandom(void)
 {
 /*
 .loc_0x0:
@@ -1686,7 +1686,7 @@ void setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3<float>(void)
  * Address:	80370004
  * Size:	00015C
  */
-void turnFunc__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::turnFunc(void)
 {
 /*
 .loc_0x0:
@@ -1793,7 +1793,7 @@ void turnFunc__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	80370160
  * Size:	000034
  */
-void isReachToGoal__Q34Game11TamagoMushi3ObjFf(void)
+void Game::TamagoMushi::Obj::isReachToGoal( (float))
 {
 /*
 .loc_0x0:
@@ -1818,7 +1818,7 @@ void isReachToGoal__Q34Game11TamagoMushi3ObjFf(void)
  * Address:	80370194
  * Size:	00002C
  */
-void resetWalkParm__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::resetWalkParm(void)
 {
 /*
 .loc_0x0:
@@ -1841,7 +1841,7 @@ void resetWalkParm__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	803701C0
  * Size:	000028
  */
-void startCarcassMotion__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -1863,7 +1863,7 @@ void startCarcassMotion__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	803701E8
  * Size:	000058
  */
-void setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj(void)
+void Game::TamagoMushi::Obj::setLeader( (Game::TamagoMushi::Obj *))
 {
 /*
 .loc_0x0:
@@ -1903,7 +1903,7 @@ void setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj(void)
  * Address:	80370240
  * Size:	000054
  */
-void setTypeBall__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::setTypeBall(void)
 {
 /*
 .loc_0x0:
@@ -1936,7 +1936,7 @@ void setTypeBall__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	80370294
  * Size:	000344
  */
-void appearPanic__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::appearPanic(void)
 {
 /*
 .loc_0x0:
@@ -2181,7 +2181,7 @@ void appearPanic__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	803705D8
  * Size:	0003BC
  */
-void isFound__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::isFound(void)
 {
 /*
 .loc_0x0:
@@ -2496,7 +2496,7 @@ void Parm<float>::operator() ()
  * Address:	8037099C
  * Size:	000014
  */
-void isZukanMode__Q24Game10GameSystemFv(void)
+void Game::GameSystem::isZukanMode(void)
 {
 /*
 .loc_0x0:
@@ -2513,7 +2513,7 @@ void isZukanMode__Q24Game10GameSystemFv(void)
  * Address:	803709B0
  * Size:	000044
  */
-void createFellow__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::createFellow(void)
 {
 /*
 .loc_0x0:
@@ -2546,7 +2546,7 @@ void createFellow__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	803709F4
  * Size:	00009C
  */
-void ballMove__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::ballMove(void)
 {
 /*
 .loc_0x0:
@@ -2599,7 +2599,7 @@ void ballMove__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	80370A90
  * Size:	0000A8
  */
-void createHideEffect__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::createHideEffect(void)
 {
 /*
 .loc_0x0:
@@ -2653,7 +2653,7 @@ void createHideEffect__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	80370B38
  * Size:	0000A8
  */
-void createAppearEffect__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -2707,7 +2707,7 @@ void createAppearEffect__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	80370BE0
  * Size:	000004
  */
-void setInitialSetting__Q34Game11TamagoMushi3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::TamagoMushi::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -2720,7 +2720,7 @@ void setInitialSetting__Q34Game11TamagoMushi3ObjFPQ24Game21EnemyInitialParamBase
  * Address:	80370BE4
  * Size:	000014
  */
-void isLivingThing__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -2737,7 +2737,7 @@ void isLivingThing__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	80370BF8
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -2751,7 +2751,7 @@ void getDownSmokeScale__Q34Game11TamagoMushi3ObjFv(void)
  * Address:	80370C00
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11TamagoMushi3ObjFv(void)
+void Game::TamagoMushi::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

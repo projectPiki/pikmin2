@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80115F90
  * Size:	000144
  */
-void __ct__Q34Game6Chappy3ObjFv(void)
+void Game::Chappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -114,7 +114,7 @@ void __ct__Q34Game6Chappy3ObjFv(void)
  * Address:	801160D4
  * Size:	00004C
  */
-void setFSM__Q34Game10ChappyBase3ObjFPQ34Game10ChappyBase3FSM(void)
+void Game::ChappyBase::Obj::setFSM( (Game::ChappyBase::FSM *))
 {
 /*
 .loc_0x0:
@@ -145,7 +145,7 @@ void setFSM__Q34Game10ChappyBase3ObjFPQ34Game10ChappyBase3FSM(void)
  * Address:	80116120
  * Size:	0000BC
  */
-void __dt__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void __dt__Q34Game10ChappyBase3ObjFv(void)
  * Address:	801161DC
  * Size:	0002B0
  */
-void changeMaterial__Q34Game6Chappy3ObjFv(void)
+void Game::Chappy::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void changeMaterial__Q34Game6Chappy3ObjFv(void)
  * Address:	8011648C
  * Size:	000008
  */
-void getChangeTexture1__Q34Game6Chappy3MgrFv(void)
+void Game::Chappy::Mgr::getChangeTexture1(void)
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void getChangeTexture1__Q34Game6Chappy3MgrFv(void)
  * Address:	80116494
  * Size:	000008
  */
-void getChangeTexture0__Q34Game6Chappy3MgrFv(void)
+void Game::Chappy::Mgr::getChangeTexture0(void)
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void getChangeTexture0__Q34Game6Chappy3MgrFv(void)
  * Address:	8011649C
  * Size:	0000EC
  */
-void __dt__Q34Game6Chappy3ObjFv(void)
+void Game::Chappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -499,7 +499,7 @@ void __dt__Q34Game6Chappy3ObjFv(void)
  * Address:	80116588
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Chappy3ObjFv(void)
+void Game::Chappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -513,7 +513,7 @@ void getEnemyTypeID__Q34Game6Chappy3ObjFv(void)
  * Address:	80116590
  * Size:	000008
  */
-void getMouthSlots__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -527,7 +527,7 @@ void getMouthSlots__Q34Game10ChappyBase3ObjFv(void)
  * Address:	80116598
  * Size:	000020
  */
-void setAnimationSpeed__Q34Game10ChappyBase3ObjFf(void)
+void Game::ChappyBase::Obj::setAnimationSpeed( (float))
 {
 /*
 .loc_0x0:
@@ -547,7 +547,7 @@ void setAnimationSpeed__Q34Game10ChappyBase3ObjFf(void)
  * Address:	801165B8
  * Size:	000004
  */
-void resetUnderGround__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::resetUnderGround(void)
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void resetUnderGround__Q34Game10ChappyBase3ObjFv(void)
  * Address:	801165BC
  * Size:	000004
  */
-void setUnderGround__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::setUnderGround(void)
 {
 /*
 .loc_0x0:
@@ -573,7 +573,7 @@ void setUnderGround__Q34Game10ChappyBase3ObjFv(void)
  * Address:	801165C0
  * Size:	000004
  */
-void createFlickEffect__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::createFlickEffect(void)
 {
 /*
 .loc_0x0:
@@ -586,7 +586,7 @@ void createFlickEffect__Q34Game10ChappyBase3ObjFv(void)
  * Address:	801165C4
  * Size:	000004
  */
-void createSmokeEffect__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::createSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -599,7 +599,7 @@ void createSmokeEffect__Q34Game10ChappyBase3ObjFv(void)
  * Address:	801165C8
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -613,7 +613,7 @@ void getDownSmokeScale__Q34Game10ChappyBase3ObjFv(void)
  * Address:	801165D0
  * Size:	000014
  */
-void @740@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @740@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -630,7 +630,7 @@ void @740@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	801165E4
  * Size:	000014
  */
-void @740@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @740@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -647,7 +647,7 @@ void @740@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	801165F8
  * Size:	000014
  */
-void @740@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @740@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -664,7 +664,7 @@ void @740@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8011660C
  * Size:	000014
  */
-void @740@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @740@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -681,7 +681,7 @@ void @740@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80116620
  * Size:	000014
  */
-void @740@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @740@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -698,7 +698,7 @@ void @740@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80116634
  * Size:	000014
  */
-void @740@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @740@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

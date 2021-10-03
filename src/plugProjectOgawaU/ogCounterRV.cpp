@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8030B524
  * Size:	0001E0
  */
-void __ct__Q32og6Screen18CallBack_CounterRVFPPcUsUsP10JKRArchive(void)
+void og::Screen::CallBack_CounterRV::__ct( (char **, unsigned short, unsigned short, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void __ct__Q32og6Screen18CallBack_CounterRVFPPcUsUsP10JKRArchive(void)
  * Address:	8030B704
  * Size:	000040
  */
-void show__Q32og6Screen18CallBack_CounterRVFv(void)
+void og::Screen::CallBack_CounterRV::show(void)
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void show__Q32og6Screen18CallBack_CounterRVFv(void)
  * Address:	8030B744
  * Size:	000034
  */
-void setValue__Q32og6Screen18CallBack_CounterRVFv(void)
+void og::Screen::CallBack_CounterRV::setValue(void)
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void setValue__Q32og6Screen18CallBack_CounterRVFv(void)
  * Address:	8030B778
  * Size:	000048
  */
-void hide__Q32og6Screen18CallBack_CounterRVFv(void)
+void og::Screen::CallBack_CounterRV::hide(void)
 {
 /*
 .loc_0x0:
@@ -250,7 +250,7 @@ void hide__Q32og6Screen18CallBack_CounterRVFv(void)
  * Address:	8030B7C0
  * Size:	000018
  */
-void getMotherPane__Q32og6Screen18CallBack_CounterRVFv(void)
+void og::Screen::CallBack_CounterRV::getMotherPane(void)
 {
 /*
 .loc_0x0:
@@ -268,7 +268,7 @@ void getMotherPane__Q32og6Screen18CallBack_CounterRVFv(void)
  * Address:	8030B7D8
  * Size:	000008
  */
-void setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb(void)
+void og::Screen::CallBack_CounterRV::setPuyoAnim( (bool))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb(void)
  * Address:	8030B7E0
  * Size:	000008
  */
-void setPuyoAnimZero__Q32og6Screen18CallBack_CounterRVFb(void)
+void og::Screen::CallBack_CounterRV::setPuyoAnimZero( (bool))
 {
 /*
 .loc_0x0:
@@ -296,7 +296,7 @@ void setPuyoAnimZero__Q32og6Screen18CallBack_CounterRVFb(void)
  * Address:	8030B7E8
  * Size:	000008
  */
-void setBlind__Q32og6Screen18CallBack_CounterRVFb(void)
+void og::Screen::CallBack_CounterRV::setBlind( (bool))
 {
 /*
 .loc_0x0:
@@ -310,7 +310,7 @@ void setBlind__Q32og6Screen18CallBack_CounterRVFb(void)
  * Address:	........
  * Size:	000008
  */
-void setRandMode__Q32og6Screen18CallBack_CounterRVFb(void)
+void og::Screen::CallBack_CounterRV::setRandMode( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -320,7 +320,7 @@ void setRandMode__Q32og6Screen18CallBack_CounterRVFb(void)
  * Address:	........
  * Size:	000018
  */
-void setValPtr__Q32og6Screen18CallBack_CounterRVFPUl(void)
+void og::Screen::CallBack_CounterRV::setValPtr( (unsigned long *))
 {
 	// UNUSED FUNCTION
 }
@@ -330,7 +330,7 @@ void setValPtr__Q32og6Screen18CallBack_CounterRVFPUl(void)
  * Address:	8030B7F0
  * Size:	000008
  */
-void setZeroAlpha__Q32og6Screen18CallBack_CounterRVFUc(void)
+void og::Screen::CallBack_CounterRV::setZeroAlpha( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -344,7 +344,7 @@ void setZeroAlpha__Q32og6Screen18CallBack_CounterRVFUc(void)
  * Address:	8030B7F8
  * Size:	0000E4
  */
-void startPuyoUp__Q32og6Screen18CallBack_CounterRVFf(void)
+void og::Screen::CallBack_CounterRV::startPuyoUp( (float))
 {
 /*
 .loc_0x0:
@@ -419,7 +419,7 @@ void startPuyoUp__Q32og6Screen18CallBack_CounterRVFf(void)
  * Address:	8030B8DC
  * Size:	000008
  */
-void setCenteringMode__Q32og6Screen18CallBack_CounterRVFQ42og6Screen18CallBack_CounterRV17EnumCenteringMode(void)
+void og::Screen::CallBack_CounterRV::setCenteringMode( (og::Screen::CallBack_CounterRV::EnumCenteringMode))
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void setCenteringMode__Q32og6Screen18CallBack_CounterRVFQ42og6Screen18CallBack_C
  * Address:	8030B8E4
  * Size:	0004D0
  */
-void init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb(void)
+void og::Screen::CallBack_CounterRV::init( (J2DScreen *, unsigned long long, unsigned long long, unsigned long long, unsigned long *, bool))
 {
 /*
 .loc_0x0:
@@ -791,7 +791,7 @@ void init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb(void)
  * Address:	8030BDB4
  * Size:	000220
  */
-void setKetaSub__Q32og6Screen18CallBack_CounterRVFibb(void)
+void og::Screen::CallBack_CounterRV::setKetaSub( (int, bool, bool))
 {
 /*
 .loc_0x0:
@@ -961,7 +961,7 @@ void setKetaSub__Q32og6Screen18CallBack_CounterRVFibb(void)
  * Address:	8030BFD4
  * Size:	0000B0
  */
-void setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb(void)
+void og::Screen::CallBack_CounterRV::setCounterUpDown( (int, bool, bool))
 {
 /*
 .loc_0x0:
@@ -1021,7 +1021,7 @@ void setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb(void)
  * Address:	8030C084
  * Size:	0003F8
  */
-void setValue__Q32og6Screen18CallBack_CounterRVFbb(void)
+void og::Screen::CallBack_CounterRV::setValue( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -1315,7 +1315,7 @@ void setValue__Q32og6Screen18CallBack_CounterRVFbb(void)
  * Address:	8030C47C
  * Size:	0000B0
  */
-void update__Q32og6Screen18CallBack_CounterRVFv(void)
+void og::Screen::CallBack_CounterRV::update(void)
 {
 /*
 .loc_0x0:
@@ -1379,7 +1379,7 @@ void update__Q32og6Screen18CallBack_CounterRVFv(void)
  * Address:	8030C52C
  * Size:	000004
  */
-void draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext(void)
+void og::Screen::CallBack_CounterRV::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -1392,7 +1392,7 @@ void draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext(void)
  * Address:	8030C530
  * Size:	0000D8
  */
-void setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRArchive(void)
+void og::Screen::setCallBack_CounterRV( (P2DScreen::Mgr *, unsigned long long, unsigned long long, unsigned long long, unsigned long *, unsigned short, unsigned short, bool, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1460,7 +1460,7 @@ void setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRAr
  * Address:	8030C608
  * Size:	00017C
  */
-void setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive(void)
+void og::Screen::setCallBack_CounterRV( (P2DScreen::Mgr *, unsigned long long, unsigned long *, unsigned short, bool, bool, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1575,7 +1575,7 @@ void setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
  * Address:	........
  * Size:	000170
  */
-void setCallBack_CounterRV2__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive(void)
+void og::Screen::setCallBack_CounterRV2( (P2DScreen::Mgr *, unsigned long long, unsigned long *, unsigned short, bool, bool, JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -1585,7 +1585,7 @@ void setCallBack_CounterRV2__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchiv
  * Address:	8030C784
  * Size:	00018C
  */
-void setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUlUsbbP10JKRArchive(void)
+void og::Screen::setCallBack_CounterRV( (P2DScreen::Mgr *, unsigned long long, unsigned long, unsigned short, bool, bool, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1706,7 +1706,7 @@ void setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxUlUsbbP10JKRArchive(
  * Address:	8030C910
  * Size:	000080
  */
-void __dt__Q32og6Screen18CallBack_CounterRVFv(void)
+void og::Screen::CallBack_CounterRV::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000014
  */
-void setVtxColorIndex__Q24Game17FieldVtxColorInfoFUs(void)
+void Game::FieldVtxColorInfo::setVtxColorIndex( (unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void setVtxColorIndex__Q24Game17FieldVtxColorInfoFUs(void)
  * Address:	........
  * Size:	000044
  */
-void __ct__Q24Game20FieldVtxColorControlFv(void)
+void Game::FieldVtxColorControl::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void __ct__Q24Game20FieldVtxColorControlFv(void)
  * Address:	80122450
  * Size:	0000B0
  */
-void __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData(void)
+void Game::FieldVtxColorMgr::__ct( (J3DModelData *))
 {
 /*
 .loc_0x0:
@@ -93,7 +93,7 @@ void __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData(void)
  * Address:	80122500
  * Size:	0001F8
  */
-void createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv(void)
+void Game::FieldVtxColorMgr::createFieldVtxColorInfo(void)
 {
 /*
 .loc_0x0:
@@ -253,7 +253,7 @@ void createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv(void)
  * Address:	801226F8
  * Size:	00001C
  */
-void __ct__Q24Game17FieldVtxColorInfoFv(void)
+void Game::FieldVtxColorInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -272,7 +272,7 @@ void __ct__Q24Game17FieldVtxColorInfoFv(void)
  * Address:	........
  * Size:	0000E0
  */
-void updateFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColorControl(void)
+void Game::FieldVtxColorMgr::updateFieldVtxColorControl( (Game::FieldVtxColorControl *))
 {
 	// UNUSED FUNCTION
 }
@@ -282,7 +282,7 @@ void updateFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxCol
  * Address:	80122714
  * Size:	0001C8
  */
-void initVtxColor__Q24Game16FieldVtxColorMgrFv(void)
+void Game::FieldVtxColorMgr::initVtxColor(void)
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void initVtxColor__Q24Game16FieldVtxColorMgrFv(void)
  * Address:	801228DC
  * Size:	000280
  */
-void calc__Q24Game16FieldVtxColorMgrFP15J3DVertexBuffer(void)
+void Game::FieldVtxColorMgr::calc( (J3DVertexBuffer *))
 {
 /*
 .loc_0x0:
@@ -662,7 +662,7 @@ void calc__Q24Game16FieldVtxColorMgrFP15J3DVertexBuffer(void)
  * Address:	........
  * Size:	0000A4
  */
-void setupFieldVtxColorInfoFromFan__Q24Game16FieldVtxColorMgrFPviiii(void)
+void Game::FieldVtxColorMgr::setupFieldVtxColorInfoFromFan( (void *, int, int, int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -672,7 +672,7 @@ void setupFieldVtxColorInfoFromFan__Q24Game16FieldVtxColorMgrFPviiii(void)
  * Address:	80122B5C
  * Size:	000158
  */
-void setupFieldVtxColorInfoFromStrip__Q24Game16FieldVtxColorMgrFPviiii(void)
+void Game::FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip( (void *, int, int, int, int))
 {
 /*
 .loc_0x0:
@@ -798,7 +798,7 @@ void setupFieldVtxColorInfoFromStrip__Q24Game16FieldVtxColorMgrFPviiii(void)
  * Address:	80122CB4
  * Size:	000210
  */
-void setupFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFP8J3DShape(void)
+void Game::FieldVtxColorMgr::setupFieldVtxColorInfo( (J3DShape *))
 {
 /*
 .loc_0x0:
@@ -1253,7 +1253,7 @@ void setupFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColo
  * Address:	........
  * Size:	00006C
  */
-void drawDebugInfo__Q24Game16FieldVtxColorMgrFR8Graphics(void)
+void Game::FieldVtxColorMgr::drawDebugInfo( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -1263,7 +1263,7 @@ void drawDebugInfo__Q24Game16FieldVtxColorMgrFR8Graphics(void)
  * Address:	801231F0
  * Size:	000080
  */
-void __dt__Q24Game16FieldVtxColorMgrFv(void)
+void Game::FieldVtxColorMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1311,7 +1311,7 @@ void __dt__Q24Game16FieldVtxColorMgrFv(void)
  * Address:	80123270
  * Size:	000008
  */
-void @12@__dt__Q24Game16FieldVtxColorMgrFv(void)
+void @12@Game::FieldVtxColorMgr::__dt(void)
 {
 /*
 .loc_0x0:

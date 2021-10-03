@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000108
  */
-void __ct__Q24Game12CylinderListFi(void)
+void Game::CylinderList::__ct( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game12CylinderListFi(void)
  * Address:	........
  * Size:	000210
  */
-void createCylinder__Q24Game12CylinderListFif(void)
+void Game::CylinderList::createCylinder( (int, float))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void createCylinder__Q24Game12CylinderListFif(void)
  * Address:	........
  * Size:	00002C
  */
-void draw__Q24Game12CylinderListFv(void)
+void Game::CylinderList::draw(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void draw__Q24Game12CylinderListFv(void)
  * Address:	8023DA30
  * Size:	0004DC
  */
-void __ct__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -416,7 +416,7 @@ void __ct__Q24Game12CylinderBaseFv(void)
  * Address:	8023DF0C
  * Size:	000008
  */
-void setColor__Q24Game12CylinderBaseFP6Color4(void)
+void Game::CylinderBase::setColor( (Color4 *))
 {
 /*
 .loc_0x0:
@@ -451,7 +451,7 @@ void setShadowRect__Q24Game12CylinderBaseFR7Rect<float>(void)
  * Address:	8023DF38
  * Size:	0000B4
  */
-void setCameraParms__Q24Game12CylinderBaseFP6Camerai(void)
+void Game::CylinderBase::setCameraParms( (Camera *, int))
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void setCameraParms__Q24Game12CylinderBaseFP6Camerai(void)
  * Address:	8023DFEC
  * Size:	0000CC
  */
-void makeSRT__Q24Game12CylinderBaseFR7MatrixfRQ24Game11ShadowParam(void)
+void Game::CylinderBase::makeSRT( (Matrixf &, Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -575,7 +575,7 @@ void makeSRT__Q24Game12CylinderBaseFR7MatrixfRQ24Game11ShadowParam(void)
  * Address:	8023E0B8
  * Size:	0000A4
  */
-void getCylinderType__Q24Game12CylinderBaseFRQ24Game11ShadowParami(void)
+void Game::CylinderBase::getCylinderType( (Game::ShadowParam &, int))
 {
 /*
 .loc_0x0:
@@ -634,7 +634,7 @@ void getCylinderType__Q24Game12CylinderBaseFRQ24Game11ShadowParami(void)
  * Address:	8023E15C
  * Size:	000004
  */
-void setFilterTextureID__Q24Game12CylinderBaseFi(void)
+void Game::CylinderBase::setFilterTextureID( (int))
 {
 /*
 .loc_0x0:
@@ -647,7 +647,7 @@ void setFilterTextureID__Q24Game12CylinderBaseFi(void)
  * Address:	8023E160
  * Size:	000004
  */
-void drawInit__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::drawInit(void)
 {
 /*
 .loc_0x0:
@@ -660,7 +660,7 @@ void drawInit__Q24Game12CylinderBaseFv(void)
  * Address:	8023E164
  * Size:	000004
  */
-void drawCylinder__Q24Game12CylinderBaseFR7Matrixfi(void)
+void Game::CylinderBase::drawCylinder( (Matrixf &, int))
 {
 /*
 .loc_0x0:
@@ -673,7 +673,7 @@ void drawCylinder__Q24Game12CylinderBaseFR7Matrixfi(void)
  * Address:	8023E168
  * Size:	000004
  */
-void drawFinish__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::drawFinish(void)
 {
 /*
 .loc_0x0:
@@ -686,7 +686,7 @@ void drawFinish__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	00010C
  */
-void setupFillGX__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::setupFillGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -696,7 +696,7 @@ void setupFillGX__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	00005C
  */
-void setupDrawCylinderGX__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::setupDrawCylinderGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -706,7 +706,7 @@ void setupDrawCylinderGX__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	000088
  */
-void setupFilterGX__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::setupFilterGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -716,7 +716,7 @@ void setupFilterGX__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	00004C
  */
-void setOrthoProjection__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::setOrthoProjection(void)
 {
 	// UNUSED FUNCTION
 }
@@ -726,7 +726,7 @@ void setOrthoProjection__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	0000A4
  */
-void setOrthoCamera__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::setOrthoCamera(void)
 {
 	// UNUSED FUNCTION
 }
@@ -736,7 +736,7 @@ void setOrthoCamera__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	0000D0
  */
-void setScissorViewport__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::setScissorViewport(void)
 {
 	// UNUSED FUNCTION
 }
@@ -746,7 +746,7 @@ void setScissorViewport__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	000090
  */
-void fillShadowRect__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::fillShadowRect(void)
 {
 	// UNUSED FUNCTION
 }
@@ -756,7 +756,7 @@ void fillShadowRect__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	0000D4
  */
-void fillRectAlphaZero__Q24Game12CylinderBaseFv(void)
+void Game::CylinderBase::fillRectAlphaZero(void)
 {
 	// UNUSED FUNCTION
 }
@@ -766,7 +766,7 @@ void fillRectAlphaZero__Q24Game12CylinderBaseFv(void)
  * Address:	........
  * Size:	000038
  */
-void drawCylinderList__Q24Game12CylinderBaseFi(void)
+void Game::CylinderBase::drawCylinderList( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -776,7 +776,7 @@ void drawCylinderList__Q24Game12CylinderBaseFi(void)
  * Address:	8023E16C
  * Size:	000164
  */
-void __ct__Q24Game15ShadowCylinder2FPQ24Game11ShadowParmsP6Color4(void)
+void Game::ShadowCylinder2::__ct( (Game::ShadowParms *, Color4 *))
 {
 /*
 .loc_0x0:
@@ -885,7 +885,7 @@ void __ct__Q24Game15ShadowCylinder2FPQ24Game11ShadowParmsP6Color4(void)
  * Address:	8023E2D0
  * Size:	000044
  */
-void setFilterTextureID__Q24Game15ShadowCylinder2Fi(void)
+void Game::ShadowCylinder2::setFilterTextureID( (int))
 {
 /*
 .loc_0x0:
@@ -920,7 +920,7 @@ void setFilterTextureID__Q24Game15ShadowCylinder2Fi(void)
  * Address:	8023E314
  * Size:	000350
  */
-void drawInit__Q24Game15ShadowCylinder2Fv(void)
+void Game::ShadowCylinder2::drawInit(void)
 {
 /*
 .loc_0x0:
@@ -1144,7 +1144,7 @@ void drawInit__Q24Game15ShadowCylinder2Fv(void)
  * Address:	8023E664
  * Size:	0000C0
  */
-void drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi(void)
+void Game::ShadowCylinder2::drawCylinder( (Matrixf &, int))
 {
 /*
 .loc_0x0:
@@ -1204,7 +1204,7 @@ void drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi(void)
  * Address:	8023E724
  * Size:	0001E4
  */
-void drawFinish__Q24Game15ShadowCylinder2Fv(void)
+void Game::ShadowCylinder2::drawFinish(void)
 {
 /*
 .loc_0x0:
@@ -1339,7 +1339,7 @@ void drawFinish__Q24Game15ShadowCylinder2Fv(void)
  * Address:	8023E908
  * Size:	000170
  */
-void copyShadowTexture__Q24Game15ShadowCylinder2Fv(void)
+void Game::ShadowCylinder2::copyShadowTexture(void)
 {
 /*
 .loc_0x0:
@@ -1443,7 +1443,7 @@ void copyShadowTexture__Q24Game15ShadowCylinder2Fv(void)
  * Address:	8023EA78
  * Size:	0000FC
  */
-void setupTextureFilterGX__Q24Game15ShadowCylinder2Fv(void)
+void Game::ShadowCylinder2::setupTextureFilterGX(void)
 {
 /*
 .loc_0x0:
@@ -1518,7 +1518,7 @@ void setupTextureFilterGX__Q24Game15ShadowCylinder2Fv(void)
  * Address:	8023EB74
  * Size:	000108
  */
-void drawTextureFilter__Q24Game15ShadowCylinder2Fv(void)
+void Game::ShadowCylinder2::drawTextureFilter(void)
 {
 /*
 .loc_0x0:
@@ -1596,7 +1596,7 @@ void drawTextureFilter__Q24Game15ShadowCylinder2Fv(void)
  * Address:	8023EC7C
  * Size:	00005C
  */
-void __ct__Q24Game15ShadowCylinder3FPQ24Game11ShadowParmsP6Color4(void)
+void Game::ShadowCylinder3::__ct( (Game::ShadowParms *, Color4 *))
 {
 /*
 .loc_0x0:
@@ -1631,7 +1631,7 @@ void __ct__Q24Game15ShadowCylinder3FPQ24Game11ShadowParmsP6Color4(void)
  * Address:	8023ECD8
  * Size:	000350
  */
-void drawInit__Q24Game15ShadowCylinder3Fv(void)
+void Game::ShadowCylinder3::drawInit(void)
 {
 /*
 .loc_0x0:
@@ -1855,7 +1855,7 @@ void drawInit__Q24Game15ShadowCylinder3Fv(void)
  * Address:	8023F028
  * Size:	0000F8
  */
-void drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi(void)
+void Game::ShadowCylinder3::drawCylinder( (Matrixf &, int))
 {
 /*
 .loc_0x0:
@@ -1929,7 +1929,7 @@ void drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi(void)
  * Address:	8023F120
  * Size:	0001D4
  */
-void drawFinish__Q24Game15ShadowCylinder3Fv(void)
+void Game::ShadowCylinder3::drawFinish(void)
 {
 /*
 .loc_0x0:
@@ -2060,7 +2060,7 @@ void drawFinish__Q24Game15ShadowCylinder3Fv(void)
  * Address:	8023F2F4
  * Size:	0000D0
  */
-void drawScreenFilter__Q24Game15ShadowCylinder3Fv(void)
+void Game::ShadowCylinder3::drawScreenFilter(void)
 {
 /*
 .loc_0x0:
@@ -2124,7 +2124,7 @@ void drawScreenFilter__Q24Game15ShadowCylinder3Fv(void)
  * Address:	8023F3C4
  * Size:	000004
  */
-void setFilterTextureID__Q24Game15ShadowCylinder3Fi(void)
+void Game::ShadowCylinder3::setFilterTextureID( (int))
 {
 /*
 .loc_0x0:

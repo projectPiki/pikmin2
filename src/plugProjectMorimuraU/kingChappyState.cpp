@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803591BC
  * Size:	000204
  */
-void init__Q34Game10KingChappy3FSMFPQ24Game9EnemyBase(void)
+void Game::KingChappy::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void init__Q34Game10KingChappy3FSMFPQ24Game9EnemyBase(void)
  * Address:	803593C0
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy9StateWalkFi(void)
+void Game::KingChappy::StateWalk::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void __ct__Q34Game10KingChappy9StateWalkFi(void)
  * Address:	803593FC
  * Size:	000080
  */
-void init__Q34Game10KingChappy9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateWalk::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void init__Q34Game10KingChappy9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	8035947C
  * Size:	0001A4
  */
-void exec__Q34Game10KingChappy9StateWalkFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateWalk::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -388,7 +388,7 @@ void exec__Q34Game10KingChappy9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	80359620
  * Size:	000028
  */
-void cleanup__Q34Game10KingChappy9StateWalkFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateWalk::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void cleanup__Q34Game10KingChappy9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	80359648
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy11StateAttackFi(void)
+void Game::KingChappy::StateAttack::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -437,7 +437,7 @@ void __ct__Q34Game10KingChappy11StateAttackFi(void)
  * Address:	80359684
  * Size:	00006C
  */
-void init__Q34Game10KingChappy11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -476,7 +476,7 @@ void init__Q34Game10KingChappy11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	803596F0
  * Size:	0006AC
  */
-void exec__Q34Game10KingChappy11StateAttackFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -985,7 +985,7 @@ void exec__Q34Game10KingChappy11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	80359D9C
  * Size:	00003C
  */
-void cleanup__Q34Game10KingChappy11StateAttackFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1012,7 +1012,7 @@ void cleanup__Q34Game10KingChappy11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	80359DD8
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy9StateDeadFi(void)
+void Game::KingChappy::StateDead::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1039,7 +1039,7 @@ void __ct__Q34Game10KingChappy9StateDeadFi(void)
  * Address:	80359E14
  * Size:	0000CC
  */
-void init__Q34Game10KingChappy9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1102,7 +1102,7 @@ void init__Q34Game10KingChappy9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	80359EE0
  * Size:	0000DC
  */
-void exec__Q34Game10KingChappy9StateDeadFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1179,7 +1179,7 @@ void exec__Q34Game10KingChappy9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80359FBC
  * Size:	000028
  */
-void cleanup__Q34Game10KingChappy9StateDeadFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1201,7 +1201,7 @@ void cleanup__Q34Game10KingChappy9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80359FE4
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy10StateFlickFi(void)
+void Game::KingChappy::StateFlick::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1228,7 +1228,7 @@ void __ct__Q34Game10KingChappy10StateFlickFi(void)
  * Address:	8035A020
  * Size:	000060
  */
-void init__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1264,7 +1264,7 @@ void init__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	8035A080
  * Size:	0008EC
  */
-void exec__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1907,7 +1907,7 @@ void exec__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	8035A96C
  * Size:	000010
  */
-void cleanup__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1923,7 +1923,7 @@ void cleanup__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	8035A97C
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy11StateWarCryFi(void)
+void Game::KingChappy::StateWarCry::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1950,7 +1950,7 @@ void __ct__Q34Game10KingChappy11StateWarCryFi(void)
  * Address:	8035A9B8
  * Size:	000054
  */
-void init__Q34Game10KingChappy11StateWarCryFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateWarCry::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1983,7 +1983,7 @@ void init__Q34Game10KingChappy11StateWarCryFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	8035AA0C
  * Size:	0006D0
  */
-void exec__Q34Game10KingChappy11StateWarCryFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateWarCry::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2473,7 +2473,7 @@ void exec__Q34Game10KingChappy11StateWarCryFPQ24Game9EnemyBase(void)
  * Address:	8035B0DC
  * Size:	000040
  */
-void cleanup__Q34Game10KingChappy11StateWarCryFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateWarCry::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2501,7 +2501,7 @@ void cleanup__Q34Game10KingChappy11StateWarCryFPQ24Game9EnemyBase(void)
  * Address:	8035B11C
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy11StateDamageFi(void)
+void Game::KingChappy::StateDamage::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2528,7 +2528,7 @@ void __ct__Q34Game10KingChappy11StateDamageFi(void)
  * Address:	8035B158
  * Size:	000040
  */
-void init__Q34Game10KingChappy11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateDamage::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2556,7 +2556,7 @@ void init__Q34Game10KingChappy11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	8035B198
  * Size:	0001B4
  */
-void exec__Q34Game10KingChappy11StateDamageFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateDamage::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2701,7 +2701,7 @@ void exec__Q34Game10KingChappy11StateDamageFPQ24Game9EnemyBase(void)
  * Address:	8035B34C
  * Size:	000040
  */
-void cleanup__Q34Game10KingChappy11StateDamageFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateDamage::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2729,7 +2729,7 @@ void cleanup__Q34Game10KingChappy11StateDamageFPQ24Game9EnemyBase(void)
  * Address:	8035B38C
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy9StateTurnFi(void)
+void Game::KingChappy::StateTurn::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2756,7 +2756,7 @@ void __ct__Q34Game10KingChappy9StateTurnFi(void)
  * Address:	8035B3C8
  * Size:	000048
  */
-void init__Q34Game10KingChappy9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2786,7 +2786,7 @@ void init__Q34Game10KingChappy9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	8035B410
  * Size:	0000F8
  */
-void exec__Q34Game10KingChappy9StateTurnFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2868,7 +2868,7 @@ void exec__Q34Game10KingChappy9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	8035B508
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy8StateEatFi(void)
+void Game::KingChappy::StateEat::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2895,7 +2895,7 @@ void __ct__Q34Game10KingChappy8StateEatFi(void)
  * Address:	8035B544
  * Size:	000050
  */
-void init__Q34Game10KingChappy8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateEat::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2927,7 +2927,7 @@ void init__Q34Game10KingChappy8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	8035B594
  * Size:	0000A4
  */
-void exec__Q34Game10KingChappy8StateEatFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateEat::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2986,7 +2986,7 @@ void exec__Q34Game10KingChappy8StateEatFPQ24Game9EnemyBase(void)
  * Address:	8035B638
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy9StateHideFi(void)
+void Game::KingChappy::StateHide::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -3013,7 +3013,7 @@ void __ct__Q34Game10KingChappy9StateHideFi(void)
  * Address:	8035B674
  * Size:	0000BC
  */
-void init__Q34Game10KingChappy9StateHideFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateHide::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3072,7 +3072,7 @@ void init__Q34Game10KingChappy9StateHideFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	8035B730
  * Size:	0001B8
  */
-void exec__Q34Game10KingChappy9StateHideFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateHide::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3216,7 +3216,7 @@ void exec__Q34Game10KingChappy9StateHideFPQ24Game9EnemyBase(void)
  * Address:	8035B8E8
  * Size:	000054
  */
-void cleanup__Q34Game10KingChappy9StateHideFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateHide::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3249,7 +3249,7 @@ void cleanup__Q34Game10KingChappy9StateHideFPQ24Game9EnemyBase(void)
  * Address:	8035B93C
  * Size:	000040
  */
-void __ct__Q34Game10KingChappy13StateHideWaitFi(void)
+void Game::KingChappy::StateHideWait::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -3277,7 +3277,7 @@ void __ct__Q34Game10KingChappy13StateHideWaitFi(void)
  * Address:	8035B97C
  * Size:	000080
  */
-void init__Q34Game10KingChappy13StateHideWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateHideWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3321,7 +3321,7 @@ void init__Q34Game10KingChappy13StateHideWaitFPQ24Game9EnemyBasePQ24Game8StateAr
  * Address:	8035B9FC
  * Size:	00018C
  */
-void exec__Q34Game10KingChappy13StateHideWaitFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateHideWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3448,7 +3448,7 @@ void exec__Q34Game10KingChappy13StateHideWaitFPQ24Game9EnemyBase(void)
  * Address:	8035BB88
  * Size:	000040
  */
-void cleanup__Q34Game10KingChappy13StateHideWaitFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateHideWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3476,7 +3476,7 @@ void cleanup__Q34Game10KingChappy13StateHideWaitFPQ24Game9EnemyBase(void)
  * Address:	8035BBC8
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy11StateAppearFi(void)
+void Game::KingChappy::StateAppear::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -3503,7 +3503,7 @@ void __ct__Q34Game10KingChappy11StateAppearFi(void)
  * Address:	8035BC04
  * Size:	0002EC
  */
-void init__Q34Game10KingChappy11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3714,7 +3714,7 @@ void init__Q34Game10KingChappy11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	8035BEF0
  * Size:	00019C
  */
-void exec__Q34Game10KingChappy11StateAppearFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3843,7 +3843,7 @@ void exec__Q34Game10KingChappy11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	8035C08C
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy12StateCautionFi(void)
+void Game::KingChappy::StateCaution::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -3870,7 +3870,7 @@ void __ct__Q34Game10KingChappy12StateCautionFi(void)
  * Address:	8035C0C8
  * Size:	00002C
  */
-void init__Q34Game10KingChappy12StateCautionFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateCaution::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3893,7 +3893,7 @@ void init__Q34Game10KingChappy12StateCautionFPQ24Game9EnemyBasePQ24Game8StateArg
  * Address:	8035C0F4
  * Size:	000064
  */
-void exec__Q34Game10KingChappy12StateCautionFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateCaution::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3934,7 +3934,7 @@ void exec__Q34Game10KingChappy12StateCautionFPQ24Game9EnemyBase(void)
  * Address:	8035C158
  * Size:	00003C
  */
-void __ct__Q34Game10KingChappy12StateSwallowFi(void)
+void Game::KingChappy::StateSwallow::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -3961,7 +3961,7 @@ void __ct__Q34Game10KingChappy12StateSwallowFi(void)
  * Address:	8035C194
  * Size:	00002C
  */
-void init__Q34Game10KingChappy12StateSwallowFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KingChappy::StateSwallow::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3984,7 +3984,7 @@ void init__Q34Game10KingChappy12StateSwallowFPQ24Game9EnemyBasePQ24Game8StateArg
  * Address:	8035C1C0
  * Size:	000094
  */
-void exec__Q34Game10KingChappy12StateSwallowFPQ24Game9EnemyBase(void)
+void Game::KingChappy::StateSwallow::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -4037,7 +4037,7 @@ void exec__Q34Game10KingChappy12StateSwallowFPQ24Game9EnemyBase(void)
  * Address:	8035C254
  * Size:	00000C
  */
-void getName__Q23efx12ArgRotYScaleFv(void)
+void efx::ArgRotYScale::getName(void)
 {
 /*
 .loc_0x0:

@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000C8
  */
-void __ct__Q33PSM12BossBgmFader9TypedProcFff(void)
+void PSM::BossBgmFader::TypedProc::__ct( (float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q33PSM12BossBgmFader9TypedProcFff(void)
  * Address:	8046C6B8
  * Size:	0001D8
  */
-void update__Q33PSM12BossBgmFader9TypedProcFv(void)
+void PSM::BossBgmFader::TypedProc::update(void)
 {
 /*
 .loc_0x0:
@@ -171,7 +171,7 @@ void update__Q33PSM12BossBgmFader9TypedProcFv(void)
  * Address:	........
  * Size:	00000C
  */
-void endUpdate__Q33PSM12BossBgmFader9TypedProcFv(void)
+void PSM::BossBgmFader::TypedProc::endUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -181,7 +181,7 @@ void endUpdate__Q33PSM12BossBgmFader9TypedProcFv(void)
  * Address:	........
  * Size:	000100
  */
-void getBossFadeVolume__Q33PSM12BossBgmFader9TypedProcFv(void)
+void PSM::BossBgmFader::TypedProc::getBossFadeVolume(void)
 {
 	// UNUSED FUNCTION
 }
@@ -191,7 +191,7 @@ void getBossFadeVolume__Q33PSM12BossBgmFader9TypedProcFv(void)
  * Address:	........
  * Size:	0000DC
  */
-void __ct__Q33PSM12BossBgmFader17TypedProc_MidBossFff(void)
+void PSM::BossBgmFader::TypedProc_MidBoss::__ct( (float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -201,7 +201,7 @@ void __ct__Q33PSM12BossBgmFader17TypedProc_MidBossFff(void)
  * Address:	........
  * Size:	000064
  */
-void __dt__Q33PSM12BossBgmFader9TypedProcFv(void)
+void PSM::BossBgmFader::TypedProc::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -211,7 +211,7 @@ void __dt__Q33PSM12BossBgmFader9TypedProcFv(void)
  * Address:	8046C890
  * Size:	00003C
  */
-void update__Q33PSM12BossBgmFader17TypedProc_MidBossFv(void)
+void PSM::BossBgmFader::TypedProc_MidBoss::update(void)
 {
 /*
 .loc_0x0:
@@ -240,7 +240,7 @@ void update__Q33PSM12BossBgmFader17TypedProc_MidBossFv(void)
  * Address:	8046C8CC
  * Size:	0000EC
  */
-void __ct__Q33PSM12BossBgmFader3MgrFv(void)
+void PSM::BossBgmFader::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -313,7 +313,7 @@ void __ct__Q33PSM12BossBgmFader3MgrFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q33PSM12BossBgmFader17TypedProc_MidBossFv(void)
+void PSM::BossBgmFader::TypedProc_MidBoss::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -344,7 +344,7 @@ void appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<PSM::EnemyBoss>(void)
  * Address:	8046C9DC
  * Size:	000768
  */
-void exec__Q33PSM12BossBgmFader3MgrFv(void)
+void PSM::BossBgmFader::Mgr::exec(void)
 {
 /*
 .loc_0x0:

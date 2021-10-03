@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803006EC
  * Size:	0000A4
  */
-void __ct__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300790
  * Size:	000064
  */
-void onKill__Q34Game9FixKabuto3ObjFPQ24Game15CreatureKillArg(void)
+void Game::FixKabuto::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -107,7 +107,7 @@ void onKill__Q34Game9FixKabuto3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	803007F4
  * Size:	0001A4
  */
-void changeMaterial__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -228,7 +228,7 @@ void changeMaterial__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300998
  * Size:	000140
  */
-void createEffect__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -324,7 +324,7 @@ void createEffect__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300AD8
  * Size:	000018
  */
-void setupEffect__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -342,7 +342,7 @@ void setupEffect__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300AF0
  * Size:	000058
  */
-void startRotateEffect__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::startRotateEffect(void)
 {
 /*
 .loc_0x0:
@@ -376,7 +376,7 @@ void startRotateEffect__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300B48
  * Size:	000030
  */
-void finishRotateEffect__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::finishRotateEffect(void)
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void finishRotateEffect__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300B78
  * Size:	000058
  */
-void startWaitEffect__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::startWaitEffect(void)
 {
 /*
 .loc_0x0:
@@ -434,7 +434,7 @@ void startWaitEffect__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300BD0
  * Size:	000030
  */
-void finishWaitEffect__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::finishWaitEffect(void)
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void finishWaitEffect__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300C00
  * Size:	000050
  */
-void effectDrawOn__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -490,7 +490,7 @@ void effectDrawOn__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300C50
  * Size:	000050
  */
-void effectDrawOff__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -522,7 +522,7 @@ void effectDrawOff__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300CA0
  * Size:	00009C
  */
-void __dt__Q23efx12TKkabutoWaitFv(void)
+void efx::TKkabutoWait::__dt(void)
 {
 /*
 .loc_0x0:
@@ -577,7 +577,7 @@ void __dt__Q23efx12TKkabutoWaitFv(void)
  * Address:	80300D3C
  * Size:	00009C
  */
-void __dt__Q23efx11TKkabutoRotFv(void)
+void efx::TKkabutoRot::__dt(void)
 {
 /*
 .loc_0x0:
@@ -632,7 +632,7 @@ void __dt__Q23efx11TKkabutoRotFv(void)
  * Address:	80300DD8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -646,7 +646,7 @@ void getEnemyTypeID__Q34Game9FixKabuto3ObjFv(void)
  * Address:	80300DE0
  * Size:	000014
  */
-void @748@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @748@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -663,7 +663,7 @@ void @748@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	80300DF4
  * Size:	000014
  */
-void @748@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @748@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -680,7 +680,7 @@ void @748@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80300E08
  * Size:	000014
  */
-void @748@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @748@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -697,7 +697,7 @@ void @748@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80300E1C
  * Size:	000014
  */
-void @748@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @748@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -714,7 +714,7 @@ void @748@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80300E30
  * Size:	000014
  */
-void @748@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @748@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -731,7 +731,7 @@ void @748@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80300E44
  * Size:	000014
  */
-void @748@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @748@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -748,7 +748,7 @@ void @748@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	80300E58
  * Size:	000008
  */
-void @4@__dt__Q23efx11TKkabutoRotFv(void)
+void @4@efx::TKkabutoRot::__dt(void)
 {
 /*
 .loc_0x0:
@@ -762,7 +762,7 @@ void @4@__dt__Q23efx11TKkabutoRotFv(void)
  * Address:	80300E60
  * Size:	000008
  */
-void @4@__dt__Q23efx12TKkabutoWaitFv(void)
+void @4@efx::TKkabutoWait::__dt(void)
 {
 /*
 .loc_0x0:

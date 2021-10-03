@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802BFCB0
  * Size:	000024
  */
-void invokeOnGround__Q34Game6Houdai20HoudaiGroundCallBackFiPQ24Game8WaterBox(void)
+void Game::Houdai::HoudaiGroundCallBack::invokeOnGround( (int, Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -36,7 +36,7 @@ void invokeOnGround__Q34Game6Houdai20HoudaiGroundCallBackFiPQ24Game8WaterBox(voi
  * Address:	802BFCD4
  * Size:	000024
  */
-void invokeOffGround__Q34Game6Houdai20HoudaiGroundCallBackFiPQ24Game8WaterBox(void)
+void Game::Houdai::HoudaiGroundCallBack::invokeOffGround( (int, Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void invokeOffGround__Q34Game6Houdai20HoudaiGroundCallBackFiPQ24Game8WaterBox(vo
  * Address:	802BFCF8
  * Size:	00016C
  */
-void __ct__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void __ct__Q34Game6Houdai3ObjFv(void)
  * Address:	802BFE64
  * Size:	000004
  */
-void setInitialSetting__Q34Game6Houdai3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Houdai::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -179,7 +179,7 @@ void setInitialSetting__Q34Game6Houdai3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	802BFE68
  * Size:	000144
  */
-void onInit__Q34Game6Houdai3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Houdai::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -272,7 +272,7 @@ void onInit__Q34Game6Houdai3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802BFFAC
  * Size:	000054
  */
-void onKill__Q34Game6Houdai3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Houdai::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -305,7 +305,7 @@ void onKill__Q34Game6Houdai3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802C0000
  * Size:	000088
  */
-void setParameters__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -353,7 +353,7 @@ void setParameters__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0088
  * Size:	0000B4
  */
-void doUpdate__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -412,7 +412,7 @@ void doUpdate__Q34Game6Houdai3ObjFv(void)
  * Address:	802C013C
  * Size:	00003C
  */
-void doUpdateCommon__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -439,7 +439,7 @@ void doUpdateCommon__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0178
  * Size:	0000A0
  */
-void doAnimationCullingOff__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -491,7 +491,7 @@ void doAnimationCullingOff__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0218
  * Size:	000004
  */
-void doDirectDraw__Q34Game6Houdai3ObjFR8Graphics(void)
+void Game::Houdai::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void doDirectDraw__Q34Game6Houdai3ObjFR8Graphics(void)
  * Address:	802C021C
  * Size:	000020
  */
-void doDebugDraw__Q34Game6Houdai3ObjFR8Graphics(void)
+void Game::Houdai::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -524,7 +524,7 @@ void doDebugDraw__Q34Game6Houdai3ObjFR8Graphics(void)
  * Address:	802C023C
  * Size:	00004C
  */
-void setFSM__Q34Game6Houdai3ObjFPQ34Game6Houdai3FSM(void)
+void Game::Houdai::Obj::setFSM( (Game::Houdai::FSM *))
 {
 /*
 .loc_0x0:
@@ -555,7 +555,7 @@ void setFSM__Q34Game6Houdai3ObjFPQ34Game6Houdai3FSM(void)
  * Address:	802C0288
  * Size:	00003C
  */
-void getShadowParam__Q34Game6Houdai3ObjFRQ24Game11ShadowParam(void)
+void Game::Houdai::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -582,7 +582,7 @@ void getShadowParam__Q34Game6Houdai3ObjFRQ24Game11ShadowParam(void)
  * Address:	802C02C4
  * Size:	0000B4
  */
-void damageCallBack__Q34Game6Houdai3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Houdai::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -645,7 +645,7 @@ void damageCallBack__Q34Game6Houdai3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802C0378
  * Size:	000054
  */
-void doStartStoneState__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void doStartStoneState__Q34Game6Houdai3ObjFv(void)
  * Address:	802C03CC
  * Size:	000078
  */
-void doFinishStoneState__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -722,7 +722,7 @@ void doFinishStoneState__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0444
  * Size:	000020
  */
-void doStartMovie__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -742,7 +742,7 @@ void doStartMovie__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0464
  * Size:	000020
  */
-void doEndMovie__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -811,7 +811,7 @@ void getThrowupItemVelocity__Q34Game6Houdai3ObjFP10Vector3<float>(void)
  * Address:	802C04E8
  * Size:	0000C8
  */
-void setTargetPattern__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setTargetPattern(void)
 {
 /*
 .loc_0x0:
@@ -875,7 +875,7 @@ void setTargetPattern__Q34Game6Houdai3ObjFv(void)
  * Address:	802C05B0
  * Size:	000298
  */
-void getTargetPosition__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::getTargetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1065,7 +1065,7 @@ void getTargetPosition__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0848
  * Size:	000234
  */
-void setShotGunTargetPosition__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setShotGunTargetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1232,7 +1232,7 @@ void setShotGunTargetPosition__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0A7C
  * Size:	00010C
  */
-void createIKSystem__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1317,7 +1317,7 @@ void createIKSystem__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0B88
  * Size:	000124
  */
-void setupIKSystem__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setupIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1404,7 +1404,7 @@ void setupIKSystem__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0CAC
  * Size:	000090
  */
-void setIKParameter__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setIKParameter(void)
 {
 /*
 .loc_0x0:
@@ -1472,7 +1472,7 @@ void setIKSystemTargetPosition__Q34Game6Houdai3ObjFR10Vector3<float>(void)
  * Address:	802C0D5C
  * Size:	000060
  */
-void updateIKSystem__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::updateIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1508,7 +1508,7 @@ void updateIKSystem__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0DBC
  * Size:	000060
  */
-void doAnimationIKSystem__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doAnimationIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1544,7 +1544,7 @@ void doAnimationIKSystem__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0E1C
  * Size:	000024
  */
-void finishAnimationIKSystem__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishAnimationIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1565,7 +1565,7 @@ void finishAnimationIKSystem__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0E40
  * Size:	000024
  */
-void startProgramedIK__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startProgramedIK(void)
 {
 /*
 .loc_0x0:
@@ -1586,7 +1586,7 @@ void startProgramedIK__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0E64
  * Size:	000024
  */
-void startIKMotion__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -1607,7 +1607,7 @@ void startIKMotion__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0E88
  * Size:	000024
  */
-void finishIKMotion__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -1628,7 +1628,7 @@ void finishIKMotion__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0EAC
  * Size:	000024
  */
-void forceFinishIKMotion__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::forceFinishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -1649,7 +1649,7 @@ void forceFinishIKMotion__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0ED0
  * Size:	000024
  */
-void isFinishIKMotion__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::isFinishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -1670,7 +1670,7 @@ void isFinishIKMotion__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0EF4
  * Size:	000024
  */
-void startBlendMotion__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startBlendMotion(void)
 {
 /*
 .loc_0x0:
@@ -1691,7 +1691,7 @@ void startBlendMotion__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0F18
  * Size:	000024
  */
-void finishBlendMotion__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishBlendMotion(void)
 {
 /*
 .loc_0x0:
@@ -1712,7 +1712,7 @@ void finishBlendMotion__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0F3C
  * Size:	000020
  */
-void getTraceCentrePosition__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::getTraceCentrePosition(void)
 {
 /*
 .loc_0x0:
@@ -1732,7 +1732,7 @@ void getTraceCentrePosition__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0F5C
  * Size:	000048
  */
-void createShadowSystem__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -1764,7 +1764,7 @@ void createShadowSystem__Q34Game6Houdai3ObjFv(void)
  * Address:	802C0FA4
  * Size:	000074
  */
-void setupShadowSystem__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setupShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -1809,7 +1809,7 @@ void setupShadowSystem__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1018
  * Size:	000024
  */
-void doAnimationShadowSystem__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doAnimationShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -1830,7 +1830,7 @@ void doAnimationShadowSystem__Q34Game6Houdai3ObjFv(void)
  * Address:	802C103C
  * Size:	000078
  */
-void setShotGunEmitKeepTimerOn__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setShotGunEmitKeepTimerOn(void)
 {
 /*
 .loc_0x0:
@@ -1872,7 +1872,7 @@ void setShotGunEmitKeepTimerOn__Q34Game6Houdai3ObjFv(void)
  * Address:	802C10B4
  * Size:	000078
  */
-void setShotGunEmitKeepTimerOff__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setShotGunEmitKeepTimerOff(void)
 {
 /*
 .loc_0x0:
@@ -1914,7 +1914,7 @@ void setShotGunEmitKeepTimerOff__Q34Game6Houdai3ObjFv(void)
  * Address:	802C112C
  * Size:	000030
  */
-void updateShotGunTimer__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::updateShotGunTimer(void)
 {
 /*
 .loc_0x0:
@@ -1940,7 +1940,7 @@ void updateShotGunTimer__Q34Game6Houdai3ObjFv(void)
  * Address:	802C115C
  * Size:	00001C
  */
-void isTransitShotGunState__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::isTransitShotGunState(void)
 {
 /*
 .loc_0x0:
@@ -1959,7 +1959,7 @@ void isTransitShotGunState__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1178
  * Size:	000048
  */
-void createShotGun__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1991,7 +1991,7 @@ void createShotGun__Q34Game6Houdai3ObjFv(void)
  * Address:	802C11C0
  * Size:	000024
  */
-void setupShotGun__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setupShotGun(void)
 {
 /*
 .loc_0x0:
@@ -2033,7 +2033,7 @@ void setShotGunTarget__Q34Game6Houdai3ObjFR10Vector3<float>(void)
  * Address:	802C1208
  * Size:	000024
  */
-void resetShotGunCallBack__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::resetShotGunCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2054,7 +2054,7 @@ void resetShotGunCallBack__Q34Game6Houdai3ObjFv(void)
  * Address:	802C122C
  * Size:	000024
  */
-void setShotGunCallBack__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setShotGunCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2075,7 +2075,7 @@ void setShotGunCallBack__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1250
  * Size:	000024
  */
-void doUpdateShotGun__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doUpdateShotGun(void)
 {
 /*
 .loc_0x0:
@@ -2096,7 +2096,7 @@ void doUpdateShotGun__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1274
  * Size:	000024
  */
-void doUpdateCommonShotGun__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::doUpdateCommonShotGun(void)
 {
 /*
 .loc_0x0:
@@ -2117,7 +2117,7 @@ void doUpdateCommonShotGun__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1298
  * Size:	000024
  */
-void startShotGunRotation__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -2138,7 +2138,7 @@ void startShotGunRotation__Q34Game6Houdai3ObjFv(void)
  * Address:	802C12BC
  * Size:	000024
  */
-void finishShotGunRotation__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -2159,7 +2159,7 @@ void finishShotGunRotation__Q34Game6Houdai3ObjFv(void)
  * Address:	802C12E0
  * Size:	000024
  */
-void isShotGunRotation__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::isShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -2180,7 +2180,7 @@ void isShotGunRotation__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1304
  * Size:	000024
  */
-void isShotGunLockOn__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::isShotGunLockOn(void)
 {
 /*
 .loc_0x0:
@@ -2201,7 +2201,7 @@ void isShotGunLockOn__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1328
  * Size:	000024
  */
-void isFinishShotGun__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::isFinishShotGun(void)
 {
 /*
 .loc_0x0:
@@ -2222,7 +2222,7 @@ void isFinishShotGun__Q34Game6Houdai3ObjFv(void)
  * Address:	802C134C
  * Size:	00005C
  */
-void emitShotGun__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::emitShotGun(void)
 {
 /*
 .loc_0x0:
@@ -2257,7 +2257,7 @@ void emitShotGun__Q34Game6Houdai3ObjFv(void)
  * Address:	802C13A8
  * Size:	000024
  */
-void forceFinishShotGun__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::forceFinishShotGun(void)
 {
 /*
 .loc_0x0:
@@ -2278,7 +2278,7 @@ void forceFinishShotGun__Q34Game6Houdai3ObjFv(void)
  * Address:	802C13CC
  * Size:	000038
  */
-void setupCollision__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setupCollision(void)
 {
 /*
 .loc_0x0:
@@ -2306,7 +2306,7 @@ void setupCollision__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1404
  * Size:	0000C8
  */
-void startBossChargeBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startBossChargeBGM(void)
 {
 /*
 .loc_0x0:
@@ -2374,7 +2374,7 @@ void startBossChargeBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C14CC
  * Size:	0000DC
  */
-void startBossAttackLoopBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startBossAttackLoopBGM(void)
 {
 /*
 .loc_0x0:
@@ -2449,7 +2449,7 @@ void startBossAttackLoopBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C15A8
  * Size:	0000D8
  */
-void finishBossAttackLoopBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishBossAttackLoopBGM(void)
 {
 /*
 .loc_0x0:
@@ -2523,7 +2523,7 @@ void finishBossAttackLoopBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1680
  * Size:	0000D4
  */
-void startStoneStateBossAttackLoopBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startStoneStateBossAttackLoopBGM(void)
 {
 /*
 .loc_0x0:
@@ -2596,7 +2596,7 @@ void startStoneStateBossAttackLoopBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1754
  * Size:	0000D4
  */
-void finishStoneStateBossAttackLoopBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishStoneStateBossAttackLoopBGM(void)
 {
 /*
 .loc_0x0:
@@ -2669,7 +2669,7 @@ void finishStoneStateBossAttackLoopBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1828
  * Size:	0000C8
  */
-void startBossFlickBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startBossFlickBGM(void)
 {
 /*
 .loc_0x0:
@@ -2737,7 +2737,7 @@ void startBossFlickBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C18F0
  * Size:	0000FC
  */
-void updateBossBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::updateBossBGM(void)
 {
 /*
 .loc_0x0:
@@ -2822,7 +2822,7 @@ void updateBossBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C19EC
  * Size:	0000BC
  */
-void resetBossAppearBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::resetBossAppearBGM(void)
 {
 /*
 .loc_0x0:
@@ -2887,7 +2887,7 @@ void resetBossAppearBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1AA8
  * Size:	0000BC
  */
-void setBossAppearBGM__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setBossAppearBGM(void)
 {
 /*
 .loc_0x0:
@@ -2952,7 +2952,7 @@ void setBossAppearBGM__Q34Game6Houdai3ObjFv(void)
  * Address:	802C1B64
  * Size:	0005CC
  */
-void createEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -3363,7 +3363,7 @@ void createEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2130
  * Size:	0001A8
  */
-void setupEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -3483,7 +3483,7 @@ void setupEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C22D8
  * Size:	000384
  */
-void createOnGroundEffect__Q34Game6Houdai3ObjFiPQ24Game8WaterBox(void)
+void Game::Houdai::Obj::createOnGroundEffect( (int, Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -3740,7 +3740,7 @@ void createOnGroundEffect__Q34Game6Houdai3ObjFiPQ24Game8WaterBox(void)
  * Address:	802C265C
  * Size:	000168
  */
-void createOffGroundEffect__Q34Game6Houdai3ObjFiPQ24Game8WaterBox(void)
+void Game::Houdai::Obj::createOffGroundEffect( (int, Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -3854,7 +3854,7 @@ void createOffGroundEffect__Q34Game6Houdai3ObjFiPQ24Game8WaterBox(void)
  * Address:	802C27C4
  * Size:	00005C
  */
-void startPinchJointEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startPinchJointEffect(void)
 {
 /*
 .loc_0x0:
@@ -3891,7 +3891,7 @@ void startPinchJointEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2820
  * Size:	000058
  */
-void finishPinchJointEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishPinchJointEffect(void)
 {
 /*
 .loc_0x0:
@@ -3927,7 +3927,7 @@ void finishPinchJointEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2878
  * Size:	000194
  */
-void createHoudaiDeadEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createHoudaiDeadEffect(void)
 {
 /*
 .loc_0x0:
@@ -4048,7 +4048,7 @@ void createHoudaiDeadEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2A0C
  * Size:	000120
  */
-void updatePinchLife__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::updatePinchLife(void)
 {
 /*
 .loc_0x0:
@@ -4140,7 +4140,7 @@ void updatePinchLife__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2B2C
  * Size:	0000F0
  */
-void createAppearEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -4212,7 +4212,7 @@ void createAppearEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2C1C
  * Size:	000034
  */
-void createAppearHahenEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createAppearHahenEffect(void)
 {
 /*
 .loc_0x0:
@@ -4237,7 +4237,7 @@ void createAppearHahenEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2C50
  * Size:	00003C
  */
-void createAppearFootEffect__Q34Game6Houdai3ObjFi(void)
+void Game::Houdai::Obj::createAppearFootEffect( (int))
 {
 /*
 .loc_0x0:
@@ -4264,7 +4264,7 @@ void createAppearFootEffect__Q34Game6Houdai3ObjFi(void)
  * Address:	802C2C8C
  * Size:	00007C
  */
-void startSteamEffect__Q34Game6Houdai3ObjFb(void)
+void Game::Houdai::Obj::startSteamEffect( (bool))
 {
 /*
 .loc_0x0:
@@ -4311,7 +4311,7 @@ void startSteamEffect__Q34Game6Houdai3ObjFb(void)
  * Address:	802C2D08
  * Size:	00006C
  */
-void finishSteamEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishSteamEffect(void)
 {
 /*
 .loc_0x0:
@@ -4352,7 +4352,7 @@ void finishSteamEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2D74
  * Size:	00005C
  */
-void startChimneyEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::startChimneyEffect(void)
 {
 /*
 .loc_0x0:
@@ -4389,7 +4389,7 @@ void startChimneyEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2DD0
  * Size:	000058
  */
-void finishChimneyEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::finishChimneyEffect(void)
 {
 /*
 .loc_0x0:
@@ -4425,7 +4425,7 @@ void finishChimneyEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2E28
  * Size:	000090
  */
-void createShotGunOpenEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createShotGunOpenEffect(void)
 {
 /*
 .loc_0x0:
@@ -4473,7 +4473,7 @@ void createShotGunOpenEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C2EB8
  * Size:	000258
  */
-void createDeadBombEffect__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::createDeadBombEffect(void)
 {
 /*
 .loc_0x0:
@@ -4645,7 +4645,7 @@ void createDeadBombEffect__Q34Game6Houdai3ObjFv(void)
  * Address:	802C3110
  * Size:	00017C
  */
-void effectDrawOn__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -4760,7 +4760,7 @@ void effectDrawOn__Q34Game6Houdai3ObjFv(void)
  * Address:	802C328C
  * Size:	00017C
  */
-void effectDrawOff__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -4875,7 +4875,7 @@ void effectDrawOff__Q34Game6Houdai3ObjFv(void)
  * Address:	802C3408
  * Size:	00000C
  */
-void getName__Q23efx9ArgPosPosFv(void)
+void efx::ArgPosPos::getName(void)
 {
 /*
 .loc_0x0:
@@ -4890,7 +4890,7 @@ void getName__Q23efx9ArgPosPosFv(void)
  * Address:	802C3414
  * Size:	00009C
  */
-void __dt__Q23efx13THdamaSteamBdFv(void)
+void efx::THdamaSteamBd::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4945,7 +4945,7 @@ void __dt__Q23efx13THdamaSteamBdFv(void)
  * Address:	802C34B0
  * Size:	00009C
  */
-void __dt__Q23efx14THdamaOnSteam1Fv(void)
+void efx::THdamaOnSteam1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5000,7 +5000,7 @@ void __dt__Q23efx14THdamaOnSteam1Fv(void)
  * Address:	802C354C
  * Size:	00009C
  */
-void __dt__Q23efx14THdamaOnHahen1Fv(void)
+void efx::THdamaOnHahen1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5055,7 +5055,7 @@ void __dt__Q23efx14THdamaOnHahen1Fv(void)
  * Address:	802C35E8
  * Size:	00009C
  */
-void __dt__Q23efx11THdamaHahenFv(void)
+void efx::THdamaHahen::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5110,7 +5110,7 @@ void __dt__Q23efx11THdamaHahenFv(void)
  * Address:	802C3684
  * Size:	00009C
  */
-void __dt__Q23efx13THdamaSteamStFv(void)
+void efx::THdamaSteamSt::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5165,7 +5165,7 @@ void __dt__Q23efx13THdamaSteamStFv(void)
  * Address:	802C3720
  * Size:	00009C
  */
-void __dt__Q23efx11THdamaSteamFv(void)
+void efx::THdamaSteam::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5220,7 +5220,7 @@ void __dt__Q23efx11THdamaSteamFv(void)
  * Address:	802C37BC
  * Size:	00009C
  */
-void __dt__Q23efx14THdamaOnHahen2Fv(void)
+void efx::THdamaOnHahen2::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5275,7 +5275,7 @@ void __dt__Q23efx14THdamaOnHahen2Fv(void)
  * Address:	802C3858
  * Size:	000004
  */
-void inWaterCallback__Q34Game6Houdai3ObjFPQ24Game8WaterBox(void)
+void Game::Houdai::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -5288,7 +5288,7 @@ void inWaterCallback__Q34Game6Houdai3ObjFPQ24Game8WaterBox(void)
  * Address:	802C385C
  * Size:	000004
  */
-void outWaterCallback__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -5301,7 +5301,7 @@ void outWaterCallback__Q34Game6Houdai3ObjFv(void)
  * Address:	802C3860
  * Size:	000008
  */
-void getDamageCoeStoneState__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::getDamageCoeStoneState(void)
 {
 /*
 .loc_0x0:
@@ -5315,7 +5315,7 @@ void getDamageCoeStoneState__Q34Game6Houdai3ObjFv(void)
  * Address:	802C3868
  * Size:	000004
  */
-void throwupItemInDeathProcedure__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::throwupItemInDeathProcedure(void)
 {
 /*
 .loc_0x0:
@@ -5328,7 +5328,7 @@ void throwupItemInDeathProcedure__Q34Game6Houdai3ObjFv(void)
  * Address:	802C386C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Houdai3ObjFv(void)
+void Game::Houdai::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -5364,7 +5364,7 @@ void __sinit_Houdai_cpp(void)
  * Address:	802C389C
  * Size:	000014
  */
-void @1056@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @1056@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -5381,7 +5381,7 @@ void @1056@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	802C38B0
  * Size:	000014
  */
-void @1056@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @1056@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -5398,7 +5398,7 @@ void @1056@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802C38C4
  * Size:	000014
  */
-void @1056@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @1056@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -5415,7 +5415,7 @@ void @1056@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802C38D8
  * Size:	000014
  */
-void @1056@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @1056@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -5432,7 +5432,7 @@ void @1056@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802C38EC
  * Size:	000014
  */
-void @1056@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @1056@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -5449,7 +5449,7 @@ void @1056@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802C3900
  * Size:	000014
  */
-void @1056@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @1056@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -5466,7 +5466,7 @@ void @1056@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	802C3914
  * Size:	000008
  */
-void @4@__dt__Q23efx14THdamaOnHahen2Fv(void)
+void @4@efx::THdamaOnHahen2::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5480,7 +5480,7 @@ void @4@__dt__Q23efx14THdamaOnHahen2Fv(void)
  * Address:	802C391C
  * Size:	000008
  */
-void @4@__dt__Q23efx11THdamaSteamFv(void)
+void @4@efx::THdamaSteam::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5494,7 +5494,7 @@ void @4@__dt__Q23efx11THdamaSteamFv(void)
  * Address:	802C3924
  * Size:	000008
  */
-void @4@__dt__Q23efx13THdamaSteamStFv(void)
+void @4@efx::THdamaSteamSt::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5508,7 +5508,7 @@ void @4@__dt__Q23efx13THdamaSteamStFv(void)
  * Address:	802C392C
  * Size:	000008
  */
-void @4@__dt__Q23efx11THdamaHahenFv(void)
+void @4@efx::THdamaHahen::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5522,7 +5522,7 @@ void @4@__dt__Q23efx11THdamaHahenFv(void)
  * Address:	802C3934
  * Size:	000008
  */
-void @4@__dt__Q23efx14THdamaOnHahen1Fv(void)
+void @4@efx::THdamaOnHahen1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5536,7 +5536,7 @@ void @4@__dt__Q23efx14THdamaOnHahen1Fv(void)
  * Address:	802C393C
  * Size:	000008
  */
-void @4@__dt__Q23efx14THdamaOnSteam1Fv(void)
+void @4@efx::THdamaOnSteam1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5550,7 +5550,7 @@ void @4@__dt__Q23efx14THdamaOnSteam1Fv(void)
  * Address:	802C3944
  * Size:	000008
  */
-void @4@__dt__Q23efx13THdamaSteamBdFv(void)
+void @4@efx::THdamaSteamBd::__dt(void)
 {
 /*
 .loc_0x0:

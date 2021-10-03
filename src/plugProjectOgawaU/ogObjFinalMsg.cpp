@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80324F2C
  * Size:	000080
  */
-void __ct__Q32og9newScreen11ObjFinalMsgFPCc(void)
+void og::newScreen::ObjFinalMsg::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void __ct__Q32og9newScreen11ObjFinalMsgFPCc(void)
  * Address:	80324FAC
  * Size:	0000AC
  */
-void __dt__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::__dt(void)
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void __dt__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	80325058
  * Size:	0002CC
  */
-void doCreate__Q32og9newScreen11ObjFinalMsgFP10JKRArchive(void)
+void og::newScreen::ObjFinalMsg::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void doCreate__Q32og9newScreen11ObjFinalMsgFP10JKRArchive(void)
  * Address:	80325324
  * Size:	000070
  */
-void blink_Menu__Q32og9newScreen11ObjFinalMsgFi(void)
+void og::newScreen::ObjFinalMsg::blink_Menu( (int))
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void blink_Menu__Q32og9newScreen11ObjFinalMsgFi(void)
  * Address:	........
  * Size:	000054
  */
-void commonUpdate__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::commonUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -375,7 +375,7 @@ void commonUpdate__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	80325394
  * Size:	000068
  */
-void doUpdate__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -415,7 +415,7 @@ void doUpdate__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	803253FC
  * Size:	0001C0
  */
-void menu__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::menu(void)
 {
 /*
 .loc_0x0:
@@ -557,7 +557,7 @@ void menu__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	803255BC
  * Size:	000060
  */
-void doDraw__Q32og9newScreen11ObjFinalMsgFR8Graphics(void)
+void og::newScreen::ObjFinalMsg::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -595,7 +595,7 @@ void doDraw__Q32og9newScreen11ObjFinalMsgFR8Graphics(void)
  * Address:	8032561C
  * Size:	000060
  */
-void doStart__Q32og9newScreen11ObjFinalMsgFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjFinalMsg::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -631,7 +631,7 @@ void doStart__Q32og9newScreen11ObjFinalMsgFPCQ26Screen13StartSceneArg(void)
  * Address:	8032567C
  * Size:	000008
  */
-void doEnd__Q32og9newScreen11ObjFinalMsgFPCQ26Screen11EndSceneArg(void)
+void og::newScreen::ObjFinalMsg::doEnd( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -645,7 +645,7 @@ void doEnd__Q32og9newScreen11ObjFinalMsgFPCQ26Screen11EndSceneArg(void)
  * Address:	80325684
  * Size:	0000B8
  */
-void doUpdateFadein__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -705,7 +705,7 @@ void doUpdateFadein__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	8032573C
  * Size:	00003C
  */
-void doUpdateFadeinFinish__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -732,7 +732,7 @@ void doUpdateFadeinFinish__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	80325778
  * Size:	000038
  */
-void doUpdateFinish__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -758,7 +758,7 @@ void doUpdateFinish__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	803257B0
  * Size:	0000B0
  */
-void doUpdateFadeout__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -816,7 +816,7 @@ void doUpdateFadeout__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	80325860
  * Size:	000034
  */
-void doUpdateFadeoutFinish__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -841,7 +841,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	80325894
  * Size:	00004C
  */
-void wait__Q32og9newScreen11ObjFinalMsgFv(void)
+void og::newScreen::ObjFinalMsg::wait(void)
 {
 /*
 .loc_0x0:
@@ -872,7 +872,7 @@ void wait__Q32og9newScreen11ObjFinalMsgFv(void)
  * Address:	803258E0
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen11ObjFinalMsgFv(void)
+void @24@og::newScreen::ObjFinalMsg::__dt(void)
 {
 /*
 .loc_0x0:

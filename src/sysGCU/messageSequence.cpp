@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80437844
  * Size:	000084
  */
-void __ct__Q25P2JME18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl(void)
+void P2JME::TSequenceProcessor::__ct( (JMessage::TReference const *, JMessage::TControl *))
 {
 /*
 .loc_0x0:
@@ -60,7 +60,7 @@ void __ct__Q25P2JME18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TC
  * Address:	804378C8
  * Size:	000034
  */
-void do_begin__Q25P2JME18TSequenceProcessorFPCvPCc(void)
+void P2JME::TSequenceProcessor::do_begin( (void const *, char const *))
 {
 /*
 .loc_0x0:
@@ -85,7 +85,7 @@ void do_begin__Q25P2JME18TSequenceProcessorFPCvPCc(void)
  * Address:	804378FC
  * Size:	000004
  */
-void do_end__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::do_end(void)
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void do_end__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	........
  * Size:	000008
  */
-void tagColor__Q25P2JME18TSequenceProcessorFPCvUl(void)
+void P2JME::TSequenceProcessor::tagColor( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -108,7 +108,7 @@ void tagColor__Q25P2JME18TSequenceProcessorFPCvUl(void)
  * Address:	........
  * Size:	000008
  */
-void tagSize__Q25P2JME18TSequenceProcessorFPCvUl(void)
+void P2JME::TSequenceProcessor::tagSize( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -118,7 +118,7 @@ void tagSize__Q25P2JME18TSequenceProcessorFPCvUl(void)
  * Address:	........
  * Size:	000008
  */
-void tagRuby__Q25P2JME18TSequenceProcessorFPCvUl(void)
+void P2JME::TSequenceProcessor::tagRuby( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +128,7 @@ void tagRuby__Q25P2JME18TSequenceProcessorFPCvUl(void)
  * Address:	........
  * Size:	000008
  */
-void tagFont__Q25P2JME18TSequenceProcessorFPCvUl(void)
+void P2JME::TSequenceProcessor::tagFont( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -138,7 +138,7 @@ void tagFont__Q25P2JME18TSequenceProcessorFPCvUl(void)
  * Address:	80437900
  * Size:	0000A4
  */
-void do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl(void)
+void P2JME::TSequenceProcessor::do_tag( (unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -209,7 +209,7 @@ void do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl(void)
  * Address:	804379A4
  * Size:	000008
  */
-void do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl(void)
+void P2JME::TSequenceProcessor::do_systemTagCode( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl(void)
  * Address:	804379AC
  * Size:	0001D8
  */
-void do_isReady__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::do_isReady(void)
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void do_isReady__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437B84
  * Size:	000004
  */
-void doFastForwardSE__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::doFastForwardSE(void)
 {
 /*
 .loc_0x0:
@@ -398,7 +398,7 @@ void doFastForwardSE__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437B88
  * Size:	000008
  */
-void do_jump_isReady__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::do_jump_isReady(void)
 {
 /*
 .loc_0x0:
@@ -412,7 +412,7 @@ void do_jump_isReady__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437B90
  * Size:	00000C
  */
-void do_jump__Q25P2JME18TSequenceProcessorFPCvPCc(void)
+void P2JME::TSequenceProcessor::do_jump( (void const *, char const *))
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void do_jump__Q25P2JME18TSequenceProcessorFPCvPCc(void)
  * Address:	80437B9C
  * Size:	000004
  */
-void do_branch_query__Q25P2JME18TSequenceProcessorFUs(void)
+void P2JME::TSequenceProcessor::do_branch_query( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void do_branch_query__Q25P2JME18TSequenceProcessorFUs(void)
  * Address:	80437BA0
  * Size:	000008
  */
-void do_branch_queryResult__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::do_branch_queryResult(void)
 {
 /*
 .loc_0x0:
@@ -454,7 +454,7 @@ void do_branch_queryResult__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437BA8
  * Size:	00000C
  */
-void do_branch__Q25P2JME18TSequenceProcessorFPCvPCc(void)
+void P2JME::TSequenceProcessor::do_branch( (void const *, char const *))
 {
 /*
 .loc_0x0:
@@ -469,7 +469,7 @@ void do_branch__Q25P2JME18TSequenceProcessorFPCvPCc(void)
  * Address:	80437BB4
  * Size:	0000A8
  */
-void do_character__Q25P2JME18TSequenceProcessorFi(void)
+void P2JME::TSequenceProcessor::do_character( (int))
 {
 /*
 .loc_0x0:
@@ -533,7 +533,7 @@ void do_character__Q25P2JME18TSequenceProcessorFi(void)
  * Address:	80437C5C
  * Size:	000004
  */
-void doCharacterSE__Q25P2JME18TSequenceProcessorFi(void)
+void P2JME::TSequenceProcessor::doCharacterSE( (int))
 {
 /*
 .loc_0x0:
@@ -546,7 +546,7 @@ void doCharacterSE__Q25P2JME18TSequenceProcessorFi(void)
  * Address:	80437C60
  * Size:	000004
  */
-void doCharacterSEStart__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::doCharacterSEStart(void)
 {
 /*
 .loc_0x0:
@@ -559,7 +559,7 @@ void doCharacterSEStart__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437C64
  * Size:	0000F4
  */
-void tagControl__Q25P2JME18TSequenceProcessorFUsPCvUl(void)
+void P2JME::TSequenceProcessor::tagControl( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void tagControl__Q25P2JME18TSequenceProcessorFUsPCvUl(void)
  * Address:	80437D58
  * Size:	00004C
  */
-void setAbtnWait__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::setAbtnWait(void)
 {
 /*
 .loc_0x0:
@@ -683,7 +683,7 @@ void setAbtnWait__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437DA4
  * Size:	000004
  */
-void doCharacterSEEnd__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::doCharacterSEEnd(void)
 {
 /*
 .loc_0x0:
@@ -696,7 +696,7 @@ void doCharacterSEEnd__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437DA8
  * Size:	000060
  */
-void resetAbtnWait__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::resetAbtnWait(void)
 {
 /*
 .loc_0x0:
@@ -732,7 +732,7 @@ void resetAbtnWait__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437E08
  * Size:	00002C
  */
-void doResetAbtnWaitSE__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::doResetAbtnWaitSE(void)
 {
 /*
 .loc_0x0:
@@ -755,7 +755,7 @@ void doResetAbtnWaitSE__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437E34
  * Size:	000018
  */
-void reset__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::reset(void)
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void reset__Q25P2JME18TSequenceProcessorFv(void)
  * Address:	80437E4C
  * Size:	000060
  */
-void __dt__Q25P2JME18TSequenceProcessorFv(void)
+void P2JME::TSequenceProcessor::__dt(void)
 {
 /*
 .loc_0x0:

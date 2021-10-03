@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8028E394
  * Size:	000090
  */
-void __ct__Q34Game5Demon3ObjFv(void)
+void Game::Demon::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q34Game5Demon3ObjFv(void)
  * Address:	8028E424
  * Size:	0003F0
  */
-void getAttackableTarget__Q34Game5Demon3ObjFv(void)
+void Game::Demon::Obj::getAttackableTarget(void)
 {
 /*
 .loc_0x0:
@@ -351,7 +351,7 @@ void getAttackableTarget__Q34Game5Demon3ObjFv(void)
  * Address:	8028E814
  * Size:	00033C
  */
-void catchTarget__Q34Game5Demon3ObjFv(void)
+void Game::Demon::Obj::catchTarget(void)
 {
 /*
 .loc_0x0:
@@ -598,7 +598,7 @@ void catchTarget__Q34Game5Demon3ObjFv(void)
  * Address:	8028EB50
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Demon3ObjFv(void)
+void Game::Demon::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void getEnemyTypeID__Q34Game5Demon3ObjFv(void)
  * Address:	8028EB58
  * Size:	000008
  */
-void getStickPikminNum__Q34Game5Demon3ObjFv(void)
+void Game::Demon::Obj::getStickPikminNum(void)
 {
 /*
 .loc_0x0:
@@ -626,7 +626,7 @@ void getStickPikminNum__Q34Game5Demon3ObjFv(void)
  * Address:	8028EB60
  * Size:	000008
  */
-void resetAttackableTimer__Q34Game5Demon3ObjFf(void)
+void Game::Demon::Obj::resetAttackableTimer( (float))
 {
 /*
 .loc_0x0:

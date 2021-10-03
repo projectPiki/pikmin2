@@ -5,7 +5,7 @@
  * Address:	8041C434
  * Size:	00000C
  */
-void getAttribute__Q27MapCode4CodeFv(void)
+void MapCode::Code::getAttribute(void)
 {
 /*
 .loc_0x0:
@@ -20,7 +20,7 @@ void getAttribute__Q27MapCode4CodeFv(void)
  * Address:	........
  * Size:	000018
  */
-void getAttributeName__Q27MapCode4CodeFv(void)
+void MapCode::Code::getAttributeName(void)
 {
 	// UNUSED FUNCTION
 }
@@ -30,7 +30,7 @@ void getAttributeName__Q27MapCode4CodeFv(void)
  * Address:	8041C440
  * Size:	00000C
  */
-void getSlipCode__Q27MapCode4CodeFv(void)
+void MapCode::Code::getSlipCode(void)
 {
 /*
 .loc_0x0:
@@ -45,7 +45,7 @@ void getSlipCode__Q27MapCode4CodeFv(void)
  * Address:	........
  * Size:	000018
  */
-void getSlipCodeName__Q27MapCode4CodeFv(void)
+void MapCode::Code::getSlipCodeName(void)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void getSlipCodeName__Q27MapCode4CodeFv(void)
  * Address:	8041C44C
  * Size:	00000C
  */
-void isBald__Q27MapCode4CodeFv(void)
+void MapCode::Code::isBald(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void isBald__Q27MapCode4CodeFv(void)
  * Address:	........
  * Size:	00002C
  */
-void write__Q27MapCode4CodeFR6Stream(void)
+void MapCode::Code::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -80,7 +80,7 @@ void write__Q27MapCode4CodeFR6Stream(void)
  * Address:	........
  * Size:	000034
  */
-void read__Q27MapCode4CodeFR6Stream(void)
+void MapCode::Code::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -90,7 +90,7 @@ void read__Q27MapCode4CodeFR6Stream(void)
  * Address:	8041C458
  * Size:	000024
  */
-void setCode__Q27MapCode4CodeFiib(void)
+void MapCode::Code::setCode( (int, int, bool))
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void setCode__Q27MapCode4CodeFiib(void)
  * Address:	8041C47C
  * Size:	00007C
  */
-void __ct__Q27MapCode3MgrFv(void)
+void MapCode::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -154,7 +154,7 @@ void __ct__Q27MapCode3MgrFv(void)
  * Address:	8041C4F8
  * Size:	000090
  */
-void __dt__Q37MapCode3Mgr9CodeArrayFv(void)
+void MapCode::Mgr::CodeArray::__dt(void)
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void Container<MapCode::Code>::~Container()
  * Address:	........
  * Size:	000094
  */
-void __dt__Q27MapCode3MgrFv(void)
+void MapCode::Mgr::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -308,7 +308,7 @@ void __dt__Q27MapCode3MgrFv(void)
  * Address:	........
  * Size:	00002C
  */
-void write__Q27MapCode3MgrFR6Stream(void)
+void MapCode::Mgr::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -404,7 +404,7 @@ void ArrayContainer<MapCode::Code>::writeObject(Stream &, MapCode::Code &)
  * Address:	8041C760
  * Size:	00002C
  */
-void read__Q27MapCode3MgrFR6Stream(void)
+void MapCode::Mgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -527,7 +527,7 @@ void ArrayContainer<MapCode::Code>::alloc(int)
  * Address:	8041C87C
  * Size:	000044
  */
-void attachCodes__Q27MapCode3MgrFPQ23Sys13TriangleTable(void)
+void MapCode::Mgr::attachCodes( (Sys::TriangleTable *))
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void attachCodes__Q27MapCode3MgrFPQ23Sys13TriangleTable(void)
  * Address:	8041C8C0
  * Size:	00002C
  */
-void writeObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code(void)
+void MapCode::Mgr::CodeArray::writeObject( (Stream &, MapCode::Code &))
 {
 /*
 .loc_0x0:
@@ -583,7 +583,7 @@ void writeObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code(void)
  * Address:	8041C8EC
  * Size:	000034
  */
-void readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code(void)
+void MapCode::Mgr::CodeArray::readObject( (Stream &, MapCode::Code &))
 {
 /*
 .loc_0x0:

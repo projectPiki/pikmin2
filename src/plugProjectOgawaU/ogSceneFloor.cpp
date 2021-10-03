@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8031BE60
  * Size:	00003C
  */
-void __ct__Q32og9newScreen5FloorFv(void)
+void og::newScreen::Floor::__ct(void)
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q32og9newScreen5FloorFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen5FloorFv(void)
+void og::newScreen::Floor::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void __dt__Q32og9newScreen5FloorFv(void)
  * Address:	8031BE9C
  * Size:	00013C
  */
-void doUserCallBackFunc__Q32og9newScreen5FloorFPQ28Resource10MgrCommand(void)
+void og::newScreen::Floor::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -155,7 +155,7 @@ void doUserCallBackFunc__Q32og9newScreen5FloorFPQ28Resource10MgrCommand(void)
  * Address:	8031BFD8
  * Size:	000004
  */
-void doCreateObj__Q32og9newScreen5FloorFP10JKRArchive(void)
+void og::newScreen::Floor::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void doCreateObj__Q32og9newScreen5FloorFP10JKRArchive(void)
  * Address:	8031BFDC
  * Size:	000008
  */
-void getResName__Q32og9newScreen5FloorCFv(void)
+void og::newScreen::Floor::getResName( const
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void getResName__Q32og9newScreen5FloorCFv(void)
  * Address:	8031BFE4
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen5FloorFv(void)
+void og::newScreen::Floor::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void getSceneType__Q32og9newScreen5FloorFv(void)
  * Address:	8031BFEC
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen5FloorFv(void)
+void og::newScreen::Floor::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void getOwnerID__Q32og9newScreen5FloorFv(void)
  * Address:	8031BFF8
  * Size:	000010
  */
-void getMemberID__Q32og9newScreen5FloorFv(void)
+void og::newScreen::Floor::getMemberID(void)
 {
 /*
 .loc_0x0:

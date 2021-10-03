@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80292B9C
  * Size:	000050
  */
-void __ct__Q34Game9SnakeCrow3MgrFiUc(void)
+void Game::SnakeCrow::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game9SnakeCrow3MgrFiUc(void)
  * Address:	80292BEC
  * Size:	000048
  */
-void doAlloc__Q34Game9SnakeCrow3MgrFv(void)
+void Game::SnakeCrow::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game9SnakeCrow3MgrFv(void)
  * Address:	80292C34
  * Size:	000190
  */
-void __ct__Q34Game9SnakeCrow5ParmsFv(void)
+void Game::SnakeCrow::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -193,7 +193,7 @@ void __ct__Q34Game9SnakeCrow5ParmsFv(void)
  * Address:	80292DC4
  * Size:	000060
  */
-void createObj__Q34Game9SnakeCrow3MgrFi(void)
+void Game::SnakeCrow::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void createObj__Q34Game9SnakeCrow3MgrFi(void)
  * Address:	80292E24
  * Size:	0000BC
  */
-void __dt__Q34Game9SnakeCrow3ObjFv(void)
+void Game::SnakeCrow::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void __dt__Q34Game9SnakeCrow3ObjFv(void)
  * Address:	80292EE0
  * Size:	000010
  */
-void getEnemy__Q34Game9SnakeCrow3MgrFi(void)
+void Game::SnakeCrow::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void getEnemy__Q34Game9SnakeCrow3MgrFi(void)
  * Address:	80292EF0
  * Size:	000068
  */
-void loadModelData__Q34Game9SnakeCrow3MgrFv(void)
+void Game::SnakeCrow::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void loadModelData__Q34Game9SnakeCrow3MgrFv(void)
  * Address:	80292F58
  * Size:	0000B0
  */
-void __dt__Q34Game9SnakeCrow3MgrFv(void)
+void Game::SnakeCrow::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void __dt__Q34Game9SnakeCrow3MgrFv(void)
  * Address:	80293008
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9SnakeCrow3MgrFv(void)
+void Game::SnakeCrow::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void getEnemyTypeID__Q34Game9SnakeCrow3MgrFv(void)
  * Address:	80293010
  * Size:	00002C
  */
-void doLoadBmd__Q34Game9SnakeCrow3MgrFPv(void)
+void Game::SnakeCrow::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -447,7 +447,7 @@ void doLoadBmd__Q34Game9SnakeCrow3MgrFPv(void)
  * Address:	8029303C
  * Size:	000050
  */
-void read__Q34Game9SnakeCrow5ParmsFR6Stream(void)
+void Game::SnakeCrow::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void read__Q34Game9SnakeCrow5ParmsFR6Stream(void)
  * Address:	8029308C
  * Size:	000008
  */
-void @4@__dt__Q34Game9SnakeCrow3MgrFv(void)
+void @4@Game::SnakeCrow::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

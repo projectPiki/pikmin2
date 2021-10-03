@@ -5,7 +5,7 @@
  * Address:	80127974
  * Size:	000044
  */
-void __ct__Q24Game17EnemyAnimatorBaseFv(void)
+void Game::EnemyAnimatorBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q24Game17EnemyAnimatorBaseFv(void)
  * Address:	........
  * Size:	000090
  */
-void animateCommon__Q24Game17EnemyAnimatorBaseFv(void)
+void Game::EnemyAnimatorBase::animateCommon(void)
 {
 	// UNUSED FUNCTION
 }
@@ -44,7 +44,7 @@ void animateCommon__Q24Game17EnemyAnimatorBaseFv(void)
  * Address:	801279B8
  * Size:	000124
  */
-void animate__Q24Game17EnemyAnimatorBaseFf(void)
+void Game::EnemyAnimatorBase::animate( (float))
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void animate__Q24Game17EnemyAnimatorBaseFf(void)
  * Address:	80127ADC
  * Size:	000124
  */
-void animate__Q24Game17EnemyAnimatorBaseFif(void)
+void Game::EnemyAnimatorBase::animate( (int, float))
 {
 /*
 .loc_0x0:

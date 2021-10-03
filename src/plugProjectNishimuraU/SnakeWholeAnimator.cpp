@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802CE268
  * Size:	000008
  */
-void setAnimMgr__Q34Game10SnakeWhole14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::SnakeWhole::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game10SnakeWhole14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802CE270
  * Size:	000008
  */
-void getAnimator__Q34Game10SnakeWhole14ProperAnimatorFi(void)
+void Game::SnakeWhole::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game10SnakeWhole14ProperAnimatorFi(void)
  * Address:	802CE278
  * Size:	00005C
  */
-void __dt__Q34Game10SnakeWhole14ProperAnimatorFv(void)
+void Game::SnakeWhole::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game10SnakeWhole14ProperAnimatorFv(void)
  * Address:	802CE2D4
  * Size:	000008
  */
-void getAnimator__Q34Game10SnakeWhole14ProperAnimatorFv(void)
+void Game::SnakeWhole::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

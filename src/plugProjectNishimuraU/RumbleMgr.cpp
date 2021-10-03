@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80253304
  * Size:	000048
  */
-void __ct__Q24Game9RumbleMgrFv(void)
+void Game::RumbleMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -45,7 +45,7 @@ void __ct__Q24Game9RumbleMgrFv(void)
  * Address:	8025334C
  * Size:	000158
  */
-void loadResource__Q24Game9RumbleMgrFv(void)
+void Game::RumbleMgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void loadResource__Q24Game9RumbleMgrFv(void)
  * Address:	802534A4
  * Size:	000108
  */
-void init__Q24Game9RumbleMgrFv(void)
+void Game::RumbleMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -239,7 +239,7 @@ void init__Q24Game9RumbleMgrFv(void)
  * Address:	802535AC
  * Size:	0001D4
  */
-void update__Q24Game9RumbleMgrFv(void)
+void Game::RumbleMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -525,7 +525,7 @@ void startRumble__Q24Game9RumbleMgrFiR10Vector3<float>i(void)
  * Address:	80253924
  * Size:	0000B8
  */
-void startRumble__Q24Game9RumbleMgrFii(void)
+void Game::RumbleMgr::startRumble( (int, int))
 {
 /*
 .loc_0x0:
@@ -591,7 +591,7 @@ void startRumble__Q24Game9RumbleMgrFii(void)
  * Address:	802539DC
  * Size:	000094
  */
-void stopRumble__Q24Game9RumbleMgrFii(void)
+void Game::RumbleMgr::stopRumble( (int, int))
 {
 /*
 .loc_0x0:
@@ -646,7 +646,7 @@ void stopRumble__Q24Game9RumbleMgrFii(void)
  * Address:	80253A70
  * Size:	000088
  */
-void stopRumble__Q24Game9RumbleMgrFi(void)
+void Game::RumbleMgr::stopRumble( (int))
 {
 /*
 .loc_0x0:
@@ -698,7 +698,7 @@ void stopRumble__Q24Game9RumbleMgrFi(void)
  * Address:	80253AF8
  * Size:	00007C
  */
-void isRumbleUpdateOn__Q24Game9RumbleMgrFv(void)
+void Game::RumbleMgr::isRumbleUpdateOn(void)
 {
 /*
 .loc_0x0:
@@ -786,7 +786,7 @@ void setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<float>(void)
  * Address:	80253BD0
  * Size:	000068
  */
-void isStartAndEnd__Q24Game9RumbleMgrFPii(void)
+void Game::RumbleMgr::isStartAndEnd( (int *, int))
 {
 /*
 .loc_0x0:
@@ -830,7 +830,7 @@ void isStartAndEnd__Q24Game9RumbleMgrFPii(void)
  * Address:	80253C38
  * Size:	0000C0
  */
-void readRumbleParms__Q24Game9RumbleMgrFPc(void)
+void Game::RumbleMgr::readRumbleParms( (char *))
 {
 /*
 .loc_0x0:
@@ -896,7 +896,7 @@ void readRumbleParms__Q24Game9RumbleMgrFPc(void)
  * Address:	80253CF8
  * Size:	0000C0
  */
-void readRumbleData__Q24Game9RumbleMgrFPc(void)
+void Game::RumbleMgr::readRumbleData( (char *))
 {
 /*
 .loc_0x0:
@@ -962,7 +962,7 @@ void readRumbleData__Q24Game9RumbleMgrFPc(void)
  * Address:	80253DB8
  * Size:	000060
  */
-void __dt__Q24Game9RumbleMgrFv(void)
+void Game::RumbleMgr::__dt(void)
 {
 /*
 .loc_0x0:

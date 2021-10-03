@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802F0B90
  * Size:	000008
  */
-void setAnimMgr__Q34Game7Sokkuri14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Sokkuri::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game7Sokkuri14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802F0B98
  * Size:	000008
  */
-void getAnimator__Q34Game7Sokkuri14ProperAnimatorFi(void)
+void Game::Sokkuri::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game7Sokkuri14ProperAnimatorFi(void)
  * Address:	802F0BA0
  * Size:	00005C
  */
-void __dt__Q34Game7Sokkuri14ProperAnimatorFv(void)
+void Game::Sokkuri::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game7Sokkuri14ProperAnimatorFv(void)
  * Address:	802F0BFC
  * Size:	000008
  */
-void getAnimator__Q34Game7Sokkuri14ProperAnimatorFv(void)
+void Game::Sokkuri::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

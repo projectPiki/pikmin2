@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802698AC
  * Size:	000138
  */
-void __ct__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game4Tobi3ObjFv(void)
  * Address:	802699E4
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Tobi3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Tobi::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game4Tobi3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	802699E8
  * Size:	000098
  */
-void onInit__Q34Game4Tobi3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Tobi::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -174,7 +174,7 @@ void onInit__Q34Game4Tobi3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80269A80
  * Size:	000048
  */
-void doUpdate__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void doUpdate__Q34Game4Tobi3ObjFv(void)
  * Address:	80269AC8
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Tobi3ObjFR8Graphics(void)
+void Game::Tobi::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -217,7 +217,7 @@ void doDirectDraw__Q34Game4Tobi3ObjFR8Graphics(void)
  * Address:	80269ACC
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Tobi3ObjFR8Graphics(void)
+void Game::Tobi::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -237,7 +237,7 @@ void doDebugDraw__Q34Game4Tobi3ObjFR8Graphics(void)
  * Address:	80269AEC
  * Size:	00004C
  */
-void setFSM__Q34Game4Tobi3ObjFPQ34Game4Tobi3FSM(void)
+void Game::Tobi::Obj::setFSM( (Game::Tobi::FSM *))
 {
 /*
 .loc_0x0:
@@ -268,7 +268,7 @@ void setFSM__Q34Game4Tobi3ObjFPQ34Game4Tobi3FSM(void)
  * Address:	80269B38
  * Size:	0000E0
  */
-void getShadowParam__Q34Game4Tobi3ObjFRQ24Game11ShadowParam(void)
+void Game::Tobi::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -342,7 +342,7 @@ void getShadowParam__Q34Game4Tobi3ObjFRQ24Game11ShadowParam(void)
  * Address:	80269C18
  * Size:	0000A4
  */
-void pressCallBack__Q34Game4Tobi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Tobi::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -403,7 +403,7 @@ void pressCallBack__Q34Game4Tobi3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80269CBC
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game4Tobi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Tobi::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void hipdropCallBack__Q34Game4Tobi3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80269CE8
  * Size:	000094
  */
-void flyCollisionCallBack__Q34Game4Tobi3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Tobi::Obj::flyCollisionCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void flyCollisionCallBack__Q34Game4Tobi3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80269D7C
  * Size:	000038
  */
-void doStartStoneState__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -505,7 +505,7 @@ void doStartStoneState__Q34Game4Tobi3ObjFv(void)
  * Address:	80269DB4
  * Size:	00005C
  */
-void doFinishStoneState__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -542,7 +542,7 @@ void doFinishStoneState__Q34Game4Tobi3ObjFv(void)
  * Address:	80269E10
  * Size:	000038
  */
-void doStartEarthquakeFitState__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::doStartEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -568,7 +568,7 @@ void doStartEarthquakeFitState__Q34Game4Tobi3ObjFv(void)
  * Address:	80269E48
  * Size:	00005C
  */
-void doFinishEarthquakeFitState__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::doFinishEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -605,7 +605,7 @@ void doFinishEarthquakeFitState__Q34Game4Tobi3ObjFv(void)
  * Address:	80269EA4
  * Size:	000028
  */
-void startCarcassMotion__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -627,7 +627,7 @@ void startCarcassMotion__Q34Game4Tobi3ObjFv(void)
  * Address:	80269ECC
  * Size:	00008C
  */
-void initMouthSlots__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void initMouthSlots__Q34Game4Tobi3ObjFv(void)
  * Address:	80269F58
  * Size:	00007C
  */
-void lifeRecover__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::lifeRecover(void)
 {
 /*
 .loc_0x0:
@@ -725,7 +725,7 @@ void lifeRecover__Q34Game4Tobi3ObjFv(void)
  * Address:	80269FD4
  * Size:	000030
  */
-void lifeIncrement__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::lifeIncrement(void)
 {
 /*
 .loc_0x0:
@@ -749,7 +749,7 @@ void lifeIncrement__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A004
  * Size:	000220
  */
-void randomFlyingTarget__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::randomFlyingTarget(void)
 {
 /*
 .loc_0x0:
@@ -905,7 +905,7 @@ void randomFlyingTarget__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A224
  * Size:	000024
  */
-void isFlyingLife__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::isFlyingLife(void)
 {
 /*
 .loc_0x0:
@@ -926,7 +926,7 @@ void isFlyingLife__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A248
  * Size:	000034
  */
-void setInWaterDamage__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::setInWaterDamage(void)
 {
 /*
 .loc_0x0:
@@ -953,7 +953,7 @@ void setInWaterDamage__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A27C
  * Size:	0000B4
  */
-void resetAppearCheck__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::resetAppearCheck(void)
 {
 /*
 .loc_0x0:
@@ -1014,7 +1014,7 @@ void resetAppearCheck__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A330
  * Size:	000048
  */
-void isAppearCheck__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::isAppearCheck(void)
 {
 /*
 .loc_0x0:
@@ -1048,7 +1048,7 @@ void isAppearCheck__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A378
  * Size:	000020
  */
-void resetBridgeSearch__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::resetBridgeSearch(void)
 {
 /*
 .loc_0x0:
@@ -1068,7 +1068,7 @@ void resetBridgeSearch__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A398
  * Size:	000048
  */
-void setBridgeSearch__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::setBridgeSearch(void)
 {
 /*
 .loc_0x0:
@@ -1102,7 +1102,7 @@ void setBridgeSearch__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A3E0
  * Size:	0002C0
  */
-void setNearestBridge__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::setNearestBridge(void)
 {
 /*
 .loc_0x0:
@@ -1314,7 +1314,7 @@ void setNearestBridge__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A6A0
  * Size:	000004
  */
-void setCullingCheck__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::setCullingCheck(void)
 {
 /*
 .loc_0x0:
@@ -1327,7 +1327,7 @@ void setCullingCheck__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A6A4
  * Size:	0001B4
  */
-void checkBreakOrMove__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::checkBreakOrMove(void)
 {
 /*
 .loc_0x0:
@@ -1466,7 +1466,7 @@ void checkBreakOrMove__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A858
  * Size:	000028
  */
-void isBreakBridge__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::isBreakBridge(void)
 {
 /*
 .loc_0x0:
@@ -1490,7 +1490,7 @@ void isBreakBridge__Q34Game4Tobi3ObjFv(void)
  * Address:	8026A880
  * Size:	0002A8
  */
-void moveBridgeSide__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::moveBridgeSide(void)
 {
 /*
 .loc_0x0:
@@ -1680,7 +1680,7 @@ void moveBridgeSide__Q34Game4Tobi3ObjFv(void)
  * Address:	8026AB28
  * Size:	000288
  */
-void moveBridgeCentre__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::moveBridgeCentre(void)
 {
 /*
 .loc_0x0:
@@ -1862,7 +1862,7 @@ void moveBridgeCentre__Q34Game4Tobi3ObjFv(void)
  * Address:	8026ADB0
  * Size:	0002F0
  */
-void moveBridgeTop__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::moveBridgeTop(void)
 {
 /*
 .loc_0x0:
@@ -2074,7 +2074,7 @@ void moveBridgeTop__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B0A0
  * Size:	00005C
  */
-void breakTargetBridge__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::breakTargetBridge(void)
 {
 /*
 .loc_0x0:
@@ -2109,7 +2109,7 @@ void breakTargetBridge__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B0FC
  * Size:	00008C
  */
-void createAppearEffect__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -2156,7 +2156,7 @@ void createAppearEffect__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B188
  * Size:	00008C
  */
-void createDisAppearEffect__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::createDisAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -2203,7 +2203,7 @@ void createDisAppearEffect__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B214
  * Size:	000090
  */
-void createBridgeEffect__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::createBridgeEffect(void)
 {
 /*
 .loc_0x0:
@@ -2251,7 +2251,7 @@ void createBridgeEffect__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B2A4
  * Size:	000090
  */
-void createEatEffect__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::createEatEffect(void)
 {
 /*
 .loc_0x0:
@@ -2299,7 +2299,7 @@ void createEatEffect__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B334
  * Size:	000008
  */
-void isUnderground__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -2313,7 +2313,7 @@ void isUnderground__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B33C
  * Size:	000008
  */
-void getMouthSlots__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -2327,7 +2327,7 @@ void getMouthSlots__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B344
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -2341,7 +2341,7 @@ void getDownSmokeScale__Q34Game4Tobi3ObjFv(void)
  * Address:	8026B34C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

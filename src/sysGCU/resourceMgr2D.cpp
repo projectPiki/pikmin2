@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000A0
  */
-void __ct__Q28Resource5Mgr2DFP7JKRHeap(void)
+void Resource::Mgr2D::__ct( (JKRHeap *))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q28Resource5Mgr2DFP7JKRHeap(void)
  * Address:	........
  * Size:	000070
  */
-void __dt__Q28Resource3MgrFv(void)
+void Resource::Mgr::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __dt__Q28Resource3MgrFv(void)
  * Address:	80433F70
  * Size:	0000B0
  */
-void init__Q28Resource5Mgr2DFP7JKRHeap(void)
+void Resource::Mgr2D::init( (JKRHeap *))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80313F4C
  * Size:	000050
  */
-void __ct__Q32og9newScreen9SMenuItemFv(void)
+void og::newScreen::SMenuItem::__ct(void)
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q32og9newScreen9SMenuItemFv(void)
  * Address:	........
  * Size:	000084
  */
-void __dt__Q32og9newScreen9SMenuItemFv(void)
+void og::newScreen::SMenuItem::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -57,7 +57,7 @@ void __dt__Q32og9newScreen9SMenuItemFv(void)
  * Address:	80313F9C
  * Size:	000068
  */
-void doConfirmSetScene__Q32og9newScreen9SMenuItemFRQ26Screen11SetSceneArg(void)
+void og::newScreen::SMenuItem::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void doConfirmSetScene__Q32og9newScreen9SMenuItemFRQ26Screen11SetSceneArg(void)
  * Address:	80314004
  * Size:	00000C
  */
-void doSetBackupScene__Q32og9newScreen9SMenuItemFRQ26Screen11SetSceneArg(void)
+void og::newScreen::SMenuItem::doSetBackupScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void doSetBackupScene__Q32og9newScreen9SMenuItemFRQ26Screen11SetSceneArg(void)
  * Address:	80314010
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen9SMenuItemFPQ28Resource10MgrCommand(void)
+void og::newScreen::SMenuItem::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -125,7 +125,7 @@ void doUserCallBackFunc__Q32og9newScreen9SMenuItemFPQ28Resource10MgrCommand(void
  * Address:	80314014
  * Size:	000060
  */
-void doCreateObj__Q32og9newScreen9SMenuItemFP10JKRArchive(void)
+void og::newScreen::SMenuItem::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void doCreateObj__Q32og9newScreen9SMenuItemFP10JKRArchive(void)
  * Address:	80314074
  * Size:	000004
  */
-void doUpdateActive__Q32og9newScreen9SMenuItemFv(void)
+void og::newScreen::SMenuItem::doUpdateActive(void)
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void doUpdateActive__Q32og9newScreen9SMenuItemFv(void)
  * Address:	80314078
  * Size:	00000C
  */
-void getResName__Q32og9newScreen9SMenuItemCFv(void)
+void og::newScreen::SMenuItem::getResName( const
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void getResName__Q32og9newScreen9SMenuItemCFv(void)
  * Address:	80314084
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen9SMenuItemFv(void)
+void og::newScreen::SMenuItem::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -205,7 +205,7 @@ void getSceneType__Q32og9newScreen9SMenuItemFv(void)
  * Address:	8031408C
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen9SMenuItemFv(void)
+void og::newScreen::SMenuItem::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -220,7 +220,7 @@ void getOwnerID__Q32og9newScreen9SMenuItemFv(void)
  * Address:	80314098
  * Size:	000014
  */
-void getMemberID__Q32og9newScreen9SMenuItemFv(void)
+void og::newScreen::SMenuItem::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -237,7 +237,7 @@ void getMemberID__Q32og9newScreen9SMenuItemFv(void)
  * Address:	803140AC
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen9SMenuItemFv(void)
+void og::newScreen::SMenuItem::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

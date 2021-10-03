@@ -5,7 +5,7 @@
  * Address:	8012E0E8
  * Size:	000044
  */
-void __ct__Q24Game22EnemyBlendAnimatorBaseFv(void)
+void Game::EnemyBlendAnimatorBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q24Game22EnemyBlendAnimatorBaseFv(void)
  * Address:	8012E12C
  * Size:	000024
  */
-void setAnimMgr__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape7AnimMgr(void)
+void Game::EnemyBlendAnimatorBase::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void setAnimMgr__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape7AnimMgr(void)
  * Address:	8012E150
  * Size:	000008
  */
-void getAnimator__Q24Game22EnemyBlendAnimatorBaseFv(void)
+void Game::EnemyBlendAnimatorBase::getAnimator(void)
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void getAnimator__Q24Game22EnemyBlendAnimatorBaseFv(void)
  * Address:	8012E158
  * Size:	000014
  */
-void getAnimator__Q24Game22EnemyBlendAnimatorBaseFi(void)
+void Game::EnemyBlendAnimatorBase::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -86,7 +86,7 @@ void getAnimator__Q24Game22EnemyBlendAnimatorBaseFi(void)
  * Address:	8012E16C
  * Size:	00009C
  */
-void startBlend__Q24Game22EnemyBlendAnimatorBaseFiiPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener(void)
+void Game::EnemyBlendAnimatorBase::startBlend( (int, int, SysShape::BlendFunction *, float, SysShape::MotionListener *))
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void startBlend__Q24Game22EnemyBlendAnimatorBaseFiiPQ28SysShape13BlendFunctionfP
  * Address:	8012E208
  * Size:	000024
  */
-void endBlend__Q24Game22EnemyBlendAnimatorBaseFv(void)
+void Game::EnemyBlendAnimatorBase::endBlend(void)
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void endBlend__Q24Game22EnemyBlendAnimatorBaseFv(void)
  * Address:	8012E22C
  * Size:	000048
  */
-void animate__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape13BlendFunctionfff(void)
+void Game::EnemyBlendAnimatorBase::animate( (SysShape::BlendFunction *, float, float, float))
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void animate__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape13BlendFunctionfff(voi
  * Address:	8012E274
  * Size:	0000B0
  */
-void animate__Q24Game22EnemyBlendAnimatorBaseFf(void)
+void Game::EnemyBlendAnimatorBase::animate( (float))
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void animate__Q24Game22EnemyBlendAnimatorBaseFf(void)
  * Address:	8012E324
  * Size:	000004
  */
-void getValue__Q28SysShape14BlendLinearFunFf(void)
+void SysShape::BlendLinearFun::getValue( (float))
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void __sinit_enemyBlendAnimatorBase_cpp(void)
  * Address:	8012E344
  * Size:	000008
  */
-void getValue__Q28SysShape18BlendQuadraticFuncFf(void)
+void SysShape::BlendQuadraticFunc::getValue( (float))
 {
 /*
 .loc_0x0:

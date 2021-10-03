@@ -5,7 +5,7 @@
  * Address:	8033028C
  * Size:	00002C
  */
-void __ct__Q32og6Screen8AngleMgrFv(void)
+void og::Screen::AngleMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -28,7 +28,7 @@ void __ct__Q32og6Screen8AngleMgrFv(void)
  * Address:	803302B8
  * Size:	000010
  */
-void init__Q32og6Screen8AngleMgrFfff(void)
+void og::Screen::AngleMgr::init( (float, float, float))
 {
 /*
 .loc_0x0:
@@ -44,7 +44,7 @@ void init__Q32og6Screen8AngleMgrFfff(void)
  * Address:	803302C8
  * Size:	000080
  */
-void chase__Q32og6Screen8AngleMgrFff(void)
+void og::Screen::AngleMgr::chase( (float, float))
 {
 /*
 .loc_0x0:
@@ -100,7 +100,7 @@ void chase__Q32og6Screen8AngleMgrFff(void)
  * Address:	........
  * Size:	000030
  */
-void reverseSpeed__Q32og6Screen8AngleMgrFf(void)
+void og::Screen::AngleMgr::reverseSpeed( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -110,7 +110,7 @@ void reverseSpeed__Q32og6Screen8AngleMgrFf(void)
  * Address:	80330348
  * Size:	0001A8
  */
-void calc__Q32og6Screen8AngleMgrFv(void)
+void og::Screen::AngleMgr::calc(void)
 {
 /*
 .loc_0x0:

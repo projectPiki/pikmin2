@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803A102C
  * Size:	0000B8
  */
-void draw__Q28Morimura16TCallbackScissorFR8GraphicsR14J2DGrafContext(void)
+void Morimura::TCallbackScissor::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void draw__Q28Morimura16TCallbackScissorFR8GraphicsR14J2DGrafContext(void)
  * Address:	803A10E4
  * Size:	0000C0
  */
-void __ct__Q28Morimura13TOffsetMsgSetFPUxUxi(void)
+void Morimura::TOffsetMsgSet::__ct( (unsigned long long *, unsigned long long, int))
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void __ct__Q28Morimura13TOffsetMsgSetFPUxUxi(void)
  * Address:	803A11A4
  * Size:	000068
  */
-void __ct__Q28Morimura13TOffsetMsgSetFPUxUxiPUxPi(void)
+void Morimura::TOffsetMsgSet::__ct( (unsigned long long *, unsigned long long, int, unsigned long long *, int *))
 {
 /*
 .loc_0x0:
@@ -179,7 +179,7 @@ void __ct__Q28Morimura13TOffsetMsgSetFPUxUxiPUxPi(void)
  * Address:	803A120C
  * Size:	00019C
  */
-void getMsgID__Q28Morimura13TOffsetMsgSetFi(void)
+void Morimura::TOffsetMsgSet::getMsgID( (int))
 {
 /*
 .loc_0x0:
@@ -314,7 +314,7 @@ void getMsgID__Q28Morimura13TOffsetMsgSetFi(void)
  * Address:	803A13A8
  * Size:	000028
  */
-void __ct__Q28Morimura11TScreenBaseFP10JKRArchivei(void)
+void Morimura::TScreenBase::__ct( (JKRArchive *, int))
 {
 /*
 .loc_0x0:
@@ -336,7 +336,7 @@ void __ct__Q28Morimura11TScreenBaseFP10JKRArchivei(void)
  * Address:	803A13D0
  * Size:	000090
  */
-void create__Q28Morimura11TScreenBaseFPCcUl(void)
+void Morimura::TScreenBase::create( (char const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void create__Q28Morimura11TScreenBaseFPCcUl(void)
  * Address:	803A1460
  * Size:	0000B0
  */
-void addAnim__Q28Morimura11TScreenBaseFPc(void)
+void Morimura::TScreenBase::addAnim( (char *))
 {
 /*
 .loc_0x0:
@@ -444,7 +444,7 @@ void addAnim__Q28Morimura11TScreenBaseFPc(void)
  * Address:	........
  * Size:	000048
  */
-void __dt__Q32og6Screen10AnimScreenFv(void)
+void og::Screen::AnimScreen::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -454,7 +454,7 @@ void __dt__Q32og6Screen10AnimScreenFv(void)
  * Address:	803A1510
  * Size:	000088
  */
-void update__Q28Morimura11TScreenBaseFv(void)
+void Morimura::TScreenBase::update(void)
 {
 /*
 .loc_0x0:
@@ -506,7 +506,7 @@ void update__Q28Morimura11TScreenBaseFv(void)
  * Address:	803A1598
  * Size:	000038
  */
-void draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph(void)
+void Morimura::TScreenBase::draw( (Graphics &, J2DPerspGraph *))
 {
 /*
 .loc_0x0:
@@ -534,7 +534,7 @@ void draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph(void)
  * Address:	803A15D0
  * Size:	000124
  */
-void __ct__Q28Morimura8TIndPaneFPCcff(void)
+void Morimura::TIndPane::__ct( (char const *, float, float))
 {
 /*
 .loc_0x0:
@@ -621,7 +621,7 @@ void __ct__Q28Morimura8TIndPaneFPCcff(void)
  * Address:	803A16F4
  * Size:	0000A4
  */
-void createIndTexture__Q28Morimura8TIndPaneFPCc(void)
+void Morimura::TIndPane::createIndTexture( (char const *))
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void createIndTexture__Q28Morimura8TIndPaneFPCc(void)
  * Address:	803A1798
  * Size:	000074
  */
-void createCaptureTexture__Q28Morimura8TIndPaneF9_GXTexFmt(void)
+void Morimura::TIndPane::createCaptureTexture( (_GXTexFmt))
 {
 /*
 .loc_0x0:
@@ -721,7 +721,7 @@ void createCaptureTexture__Q28Morimura8TIndPaneF9_GXTexFmt(void)
  * Address:	803A180C
  * Size:	000308
  */
-void draw__Q28Morimura8TIndPaneFv(void)
+void Morimura::TIndPane::draw(void)
 {
 /*
 .loc_0x0:
@@ -935,7 +935,7 @@ void draw__Q28Morimura8TIndPaneFv(void)
  * Address:	803A1B14
  * Size:	0000A8
  */
-void setValue__Q28Morimura15TScaleUpCounterFbb(void)
+void Morimura::TScaleUpCounter::setValue( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -999,7 +999,7 @@ void setValue__Q28Morimura15TScaleUpCounterFbb(void)
  * Address:	803A1BBC
  * Size:	000060
  */
-void forceScaleUp__Q28Morimura15TScaleUpCounterFb(void)
+void Morimura::TScaleUpCounter::forceScaleUp( (bool))
 {
 /*
 .loc_0x0:
@@ -1039,7 +1039,7 @@ void forceScaleUp__Q28Morimura15TScaleUpCounterFb(void)
  * Address:	803A1C1C
  * Size:	000040
  */
-void setScale__Q28Morimura15TScaleUpCounterFff(void)
+void Morimura::TScaleUpCounter::setScale( (float, float))
 {
 /*
 .loc_0x0:
@@ -1287,7 +1287,7 @@ void Morimura::setScaleUpCounter2(P2DScreen::Mgr *, unsigned long long, unsigned
  * Address:	803A1F2C
  * Size:	0000B8
  */
-void drawSelf__Q28Morimura12TScissorPaneFffPA3_A4_f(void)
+void Morimura::TScissorPane::drawSelf( (float, float, float (*)[3][4]))
 {
 /*
 .loc_0x0:
@@ -1345,7 +1345,7 @@ void drawSelf__Q28Morimura12TScissorPaneFffPA3_A4_f(void)
  * Address:	803A1FE4
  * Size:	000060
  */
-void __dt__Q28Morimura12TScissorPaneFv(void)
+void Morimura::TScissorPane::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1383,7 +1383,7 @@ void __dt__Q28Morimura12TScissorPaneFv(void)
  * Address:	803A2044
  * Size:	000090
  */
-void __dt__Q28Morimura15TScaleUpCounterFv(void)
+void Morimura::TScaleUpCounter::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1435,7 +1435,7 @@ void __dt__Q28Morimura15TScaleUpCounterFv(void)
  * Address:	803A20D4
  * Size:	000080
  */
-void __dt__Q28Morimura16TCallbackScissorFv(void)
+void Morimura::TCallbackScissor::__dt(void)
 {
 /*
 .loc_0x0:

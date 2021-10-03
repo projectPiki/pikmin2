@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80245418
  * Size:	000008
  */
-void __ct__Q34Game4Cave11RandMapDrawFPQ34Game4Cave16MapUnitGenerator(void)
+void Game::Cave::RandMapDraw::__ct( (Game::Cave::MapUnitGenerator *))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3<float>(void)
  * Address:	802455EC
  * Size:	000078
  */
-void draw__Q34Game4Cave11RandMapDrawFR8Graphicsfff(void)
+void Game::Cave::RandMapDraw::draw( (Graphics &, float, float, float))
 {
 /*
 .loc_0x0:

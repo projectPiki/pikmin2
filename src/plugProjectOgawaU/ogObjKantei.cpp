@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80318244
  * Size:	000120
  */
-void __ct__Q32og9newScreen9ObjKanteiFPCc(void)
+void og::newScreen::ObjKantei::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -99,7 +99,7 @@ void __ct__Q32og9newScreen9ObjKanteiFPCc(void)
  * Address:	80318364
  * Size:	0000AC
  */
-void __dt__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::__dt(void)
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void __dt__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	........
  * Size:	000050
  */
-void startItemName__Q32og9newScreen9ObjKanteiFUx(void)
+void og::newScreen::ObjKantei::startItemName( (unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -168,7 +168,7 @@ void startItemName__Q32og9newScreen9ObjKanteiFUx(void)
  * Address:	80318410
  * Size:	0007CC
  */
-void doCreate__Q32og9newScreen9ObjKanteiFP10JKRArchive(void)
+void og::newScreen::ObjKantei::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -723,7 +723,7 @@ void doCreate__Q32og9newScreen9ObjKanteiFP10JKRArchive(void)
  * Address:	........
  * Size:	000068
  */
-void startKanteiVoice__Q32og9newScreen9ObjKanteiFi(void)
+void og::newScreen::ObjKantei::startKanteiVoice( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -733,7 +733,7 @@ void startKanteiVoice__Q32og9newScreen9ObjKanteiFi(void)
  * Address:	........
  * Size:	0000F4
  */
-void updateKanteiVoice__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::updateKanteiVoice(void)
 {
 	// UNUSED FUNCTION
 }
@@ -743,7 +743,7 @@ void updateKanteiVoice__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	80318BDC
  * Size:	000258
  */
-void scaleAnimItemName__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::scaleAnimItemName(void)
 {
 /*
 .loc_0x0:
@@ -923,7 +923,7 @@ void scaleAnimItemName__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	80318E34
  * Size:	000154
  */
-void commonUpdate__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::commonUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1028,7 +1028,7 @@ void commonUpdate__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	80318F88
  * Size:	00040C
  */
-void doUpdate__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1321,7 +1321,7 @@ void doUpdate__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	80319394
  * Size:	000040
  */
-void finishKantei__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::finishKantei(void)
 {
 /*
 .loc_0x0:
@@ -1351,7 +1351,7 @@ void finishKantei__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	803193D4
  * Size:	000290
  */
-void doDraw__Q32og9newScreen9ObjKanteiFR8Graphics(void)
+void og::newScreen::ObjKantei::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1537,7 +1537,7 @@ void doDraw__Q32og9newScreen9ObjKanteiFR8Graphics(void)
  * Address:	80319664
  * Size:	00003C
  */
-void doDrawMsg__Q32og9newScreen9ObjKanteiFR8Graphics(void)
+void og::newScreen::ObjKantei::doDrawMsg( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1566,7 +1566,7 @@ void doDrawMsg__Q32og9newScreen9ObjKanteiFR8Graphics(void)
  * Address:	803196A0
  * Size:	00010C
  */
-void doStart__Q32og9newScreen9ObjKanteiFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjKantei::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -1657,7 +1657,7 @@ void doStart__Q32og9newScreen9ObjKanteiFPCQ26Screen13StartSceneArg(void)
  * Address:	803197AC
  * Size:	000010
  */
-void doEnd__Q32og9newScreen9ObjKanteiFPCQ26Screen11EndSceneArg(void)
+void og::newScreen::ObjKantei::doEnd( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -1673,7 +1673,7 @@ void doEnd__Q32og9newScreen9ObjKanteiFPCQ26Screen11EndSceneArg(void)
  * Address:	803197BC
  * Size:	000004
  */
-void doUpdateFadeinFinish__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -1686,7 +1686,7 @@ void doUpdateFadeinFinish__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	803197C0
  * Size:	000040
  */
-void doUpdateFinish__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -1716,7 +1716,7 @@ void doUpdateFinish__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	80319800
  * Size:	000004
  */
-void doUpdateFadeoutFinish__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -1729,7 +1729,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	80319804
  * Size:	0001A4
  */
-void doUpdateFadein__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -1856,7 +1856,7 @@ void doUpdateFadein__Q32og9newScreen9ObjKanteiFv(void)
  * Address:	803199A8
  * Size:	0001AC
  */
-void doUpdateFadeout__Q32og9newScreen9ObjKanteiFv(void)
+void og::newScreen::ObjKantei::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -2029,7 +2029,7 @@ void __sinit_ogObjKantei_cpp(void)
  * Address:	80319BD4
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen9ObjKanteiFv(void)
+void @24@og::newScreen::ObjKantei::__dt(void)
 {
 /*
 .loc_0x0:

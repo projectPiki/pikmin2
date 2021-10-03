@@ -5,7 +5,7 @@
  * Address:	80124018
  * Size:	0000C0
  */
-void __ct__Q34Game4Farm7FarmMgrFUl(void)
+void Game::Farm::FarmMgr::__ct( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q34Game4Farm7FarmMgrFUl(void)
  * Address:	801240D8
  * Size:	00002C
  */
-void setupSound__Q34Game4Farm7FarmMgrFv(void)
+void Game::Farm::FarmMgr::setupSound(void)
 {
 /*
 .loc_0x0:
@@ -96,7 +96,7 @@ void setupSound__Q34Game4Farm7FarmMgrFv(void)
  * Address:	80124104
  * Size:	000124
  */
-void doAnimation__Q34Game4Farm7FarmMgrFv(void)
+void Game::Farm::FarmMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void doAnimation__Q34Game4Farm7FarmMgrFv(void)
  * Address:	80124228
  * Size:	000008
  */
-void getJAIObject__Q24Game8CreatureFv(void)
+void Game::Creature::getJAIObject(void)
 {
 /*
 .loc_0x0:
@@ -213,7 +213,7 @@ void getJAIObject__Q24Game8CreatureFv(void)
  * Address:	80124230
  * Size:	000068
  */
-void doEntry__Q34Game4Farm7FarmMgrFv(void)
+void Game::Farm::FarmMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void doEntry__Q34Game4Farm7FarmMgrFv(void)
  * Address:	80124298
  * Size:	00005C
  */
-void doSetView__Q34Game4Farm7FarmMgrFi(void)
+void Game::Farm::FarmMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void doSetView__Q34Game4Farm7FarmMgrFi(void)
  * Address:	801242F4
  * Size:	00004C
  */
-void doViewCalc__Q34Game4Farm7FarmMgrFv(void)
+void Game::Farm::FarmMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void doViewCalc__Q34Game4Farm7FarmMgrFv(void)
  * Address:	80124340
  * Size:	000004
  */
-void doSimulation__Q34Game4Farm7FarmMgrFf(void)
+void Game::Farm::FarmMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void doSimulation__Q34Game4Farm7FarmMgrFf(void)
  * Address:	80124344
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Farm7FarmMgrFR8Graphics(void)
+void Game::Farm::FarmMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -361,7 +361,7 @@ void doDirectDraw__Q34Game4Farm7FarmMgrFR8Graphics(void)
  * Address:	80124348
  * Size:	000050
  */
-void doDebugDraw__Q34Game4Farm7FarmMgrFR8Graphics(void)
+void Game::Farm::FarmMgr::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void doDebugDraw__Q34Game4Farm7FarmMgrFR8Graphics(void)
  * Address:	80124398
  * Size:	000068
  */
-void addFarmBmd__Q34Game4Farm7FarmMgrFPv(void)
+void Game::Farm::FarmMgr::addFarmBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -437,7 +437,7 @@ void addFarmBmd__Q34Game4Farm7FarmMgrFPv(void)
  * Address:	80124400
  * Size:	000074
  */
-void createNewFarm__Q34Game4Farm7FarmMgrFPv(void)
+void Game::Farm::FarmMgr::createNewFarm( (void *))
 {
 /*
 .loc_0x0:
@@ -490,7 +490,7 @@ void getNearestFarm__Q34Game4Farm7FarmMgrFR10Vector3<float>(void)
  * Address:	80124474
  * Size:	000120
  */
-void addObstacle__Q34Game4Farm7FarmMgrFPQ24Game8Creatureff(void)
+void Game::Farm::FarmMgr::addObstacle( (Game::Creature *, float, float))
 {
 /*
 .loc_0x0:
@@ -590,7 +590,7 @@ void addObstacle__Q34Game4Farm7FarmMgrFPQ24Game8Creatureff(void)
  * Address:	80124594
  * Size:	0000F0
  */
-void addPlant__Q34Game4Farm7FarmMgrFPQ24Game8Creature(void)
+void Game::Farm::FarmMgr::addPlant( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void addPlant__Q34Game4Farm7FarmMgrFPQ24Game8Creature(void)
  * Address:	80124684
  * Size:	00004C
  */
-void initAllFarmObjectNodes__Q34Game4Farm7FarmMgrFv(void)
+void Game::Farm::FarmMgr::initAllFarmObjectNodes(void)
 {
 /*
 .loc_0x0:
@@ -715,7 +715,7 @@ void initAllFarmObjectNodes__Q34Game4Farm7FarmMgrFv(void)
  * Address:	801246D0
  * Size:	000078
  */
-void __dt__Q34Game4Farm7FarmMgrFv(void)
+void Game::Farm::FarmMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -781,7 +781,7 @@ void __sinit_farmMgr_cpp(void)
  * Address:	80124770
  * Size:	000008
  */
-void @4@__dt__Q34Game4Farm7FarmMgrFv(void)
+void @4@Game::Farm::FarmMgr::__dt(void)
 {
 /*
 .loc_0x0:

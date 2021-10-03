@@ -25,7 +25,7 @@ void P2JME::getCurrentMesResName()
  * Address:	80437EAC
  * Size:	000040
  */
-void create__Q25P2JME3MgrFP10JKRExpHeap(void)
+void P2JME::Mgr::create( (JKRExpHeap *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void create__Q25P2JME3MgrFP10JKRExpHeap(void)
  * Address:	80437EEC
  * Size:	000170
  */
-void __ct__Q25P2JME3MgrFP10JKRExpHeap(void)
+void P2JME::Mgr::__ct( (JKRExpHeap *))
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void __ct__Q25P2JME3MgrFP10JKRExpHeap(void)
  * Address:	8043805C
  * Size:	000068
  */
-void __dt__Q25P2JME3MgrFv(void)
+void P2JME::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void __dt__Q25P2JME3MgrFv(void)
  * Address:	........
  * Size:	000004
  */
-void reloadMessageResource__Q25P2JME3MgrFv(void)
+void P2JME::Mgr::reloadMessageResource(void)
 {
 	// UNUSED FUNCTION
 }
@@ -213,7 +213,7 @@ void reloadMessageResource__Q25P2JME3MgrFv(void)
  * Address:	804380C4
  * Size:	000100
  */
-void setupMessage__Q25P2JME3MgrFv(void)
+void P2JME::Mgr::setupMessage(void)
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void setupMessage__Q25P2JME3MgrFv(void)
  * Address:	804381C4
  * Size:	0000F8
  */
-void setupTex__Q25P2JME3MgrFv(void)
+void P2JME::Mgr::setupTex(void)
 {
 /*
 .loc_0x0:
@@ -377,7 +377,7 @@ void setupTex__Q25P2JME3MgrFv(void)
  * Address:	804382BC
  * Size:	000248
  */
-void setupFont__Q25P2JME3MgrFPCcP10JKRExpHeap(void)
+void P2JME::Mgr::setupFont( (char const *, JKRExpHeap *))
 {
 /*
 .loc_0x0:
@@ -553,7 +553,7 @@ void setupFont__Q25P2JME3MgrFPCcP10JKRExpHeap(void)
  * Address:	80438504
  * Size:	0001A8
  */
-void createImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi(void)
+void P2JME::Mgr::createImage( (P2JME::ImageGroup::EID, int))
 {
 /*
 .loc_0x0:
@@ -685,7 +685,7 @@ void createImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi(void)
  * Address:	804386AC
  * Size:	0000C4
  */
-void setImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDiP10JUTTexture(void)
+void P2JME::Mgr::setImage( (P2JME::ImageGroup::EID, int, JUTTexture *))
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void setImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDiP10JUTTexture(void)
  * Address:	80438770
  * Size:	0000B8
  */
-void getImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi(void)
+void P2JME::Mgr::getImage( (P2JME::ImageGroup::EID, int))
 {
 /*
 .loc_0x0:
@@ -816,7 +816,7 @@ void getImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi(void)
  * Address:	80438828
  * Size:	000104
  */
-void setupMessageResource__Q25P2JME3MgrFP10JKRArchivePCc(void)
+void P2JME::Mgr::setupMessageResource( (JKRArchive *, char const *))
 {
 /*
 .loc_0x0:
@@ -897,7 +897,7 @@ void setupMessageResource__Q25P2JME3MgrFP10JKRArchivePCc(void)
  * Address:	8043892C
  * Size:	0000E0
  */
-void setupColor__Q25P2JME3MgrFP10JKRArchivePCc(void)
+void P2JME::Mgr::setupColor( (JKRArchive *, char const *))
 {
 /*
 .loc_0x0:

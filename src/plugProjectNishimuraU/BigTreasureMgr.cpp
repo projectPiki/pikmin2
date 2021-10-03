@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802D90E4
  * Size:	000110
  */
-void __ct__Q34Game11BigTreasure3MgrFiUc(void)
+void Game::BigTreasure::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -99,7 +99,7 @@ void __ct__Q34Game11BigTreasure3MgrFiUc(void)
  * Address:	802D91F4
  * Size:	000048
  */
-void doAlloc__Q34Game11BigTreasure3MgrFv(void)
+void Game::BigTreasure::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void doAlloc__Q34Game11BigTreasure3MgrFv(void)
  * Address:	802D923C
  * Size:	000048
  */
-void __ct__Q34Game11BigTreasure5ParmsFv(void)
+void Game::BigTreasure::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -165,7 +165,7 @@ void __ct__Q34Game11BigTreasure5ParmsFv(void)
  * Address:	802D9284
  * Size:	000FF8
  */
-void __ct__Q44Game11BigTreasure5Parms11ProperParmsFv(void)
+void Game::BigTreasure::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1201,7 +1201,7 @@ void __ct__Q44Game11BigTreasure5Parms11ProperParmsFv(void)
  * Address:	802DA27C
  * Size:	000060
  */
-void createObj__Q34Game11BigTreasure3MgrFi(void)
+void Game::BigTreasure::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -1237,7 +1237,7 @@ void createObj__Q34Game11BigTreasure3MgrFi(void)
  * Address:	802DA2DC
  * Size:	0000BC
  */
-void __dt__Q34Game11BigTreasure3ObjFv(void)
+void Game::BigTreasure::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1300,7 +1300,7 @@ void __dt__Q34Game11BigTreasure3ObjFv(void)
  * Address:	802DA398
  * Size:	000010
  */
-void getEnemy__Q34Game11BigTreasure3MgrFi(void)
+void Game::BigTreasure::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -1316,7 +1316,7 @@ void getEnemy__Q34Game11BigTreasure3MgrFi(void)
  * Address:	802DA3A8
  * Size:	000068
  */
-void loadModelData__Q34Game11BigTreasure3MgrFv(void)
+void Game::BigTreasure::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -1358,7 +1358,7 @@ void loadModelData__Q34Game11BigTreasure3MgrFv(void)
  * Address:	802DA410
  * Size:	00007C
  */
-void createModel__Q34Game11BigTreasure3MgrFv(void)
+void Game::BigTreasure::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -1405,7 +1405,7 @@ void createModel__Q34Game11BigTreasure3MgrFv(void)
  * Address:	802DA48C
  * Size:	0000B0
  */
-void __dt__Q34Game11BigTreasure3MgrFv(void)
+void Game::BigTreasure::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1465,7 +1465,7 @@ void __dt__Q34Game11BigTreasure3MgrFv(void)
  * Address:	802DA53C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11BigTreasure3MgrFv(void)
+void Game::BigTreasure::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1479,7 +1479,7 @@ void getEnemyTypeID__Q34Game11BigTreasure3MgrFv(void)
  * Address:	802DA544
  * Size:	00002C
  */
-void doLoadBmd__Q34Game11BigTreasure3MgrFPv(void)
+void Game::BigTreasure::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -1502,7 +1502,7 @@ void doLoadBmd__Q34Game11BigTreasure3MgrFPv(void)
  * Address:	802DA570
  * Size:	000050
  */
-void read__Q34Game11BigTreasure5ParmsFR6Stream(void)
+void Game::BigTreasure::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1534,7 +1534,7 @@ void read__Q34Game11BigTreasure5ParmsFR6Stream(void)
  * Address:	802DA5C0
  * Size:	000008
  */
-void @4@__dt__Q34Game11BigTreasure3MgrFv(void)
+void @4@Game::BigTreasure::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

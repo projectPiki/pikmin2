@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802E1834
  * Size:	000480
  */
-void init__Q34Game6Kabuto3FSMFPQ24Game9EnemyBase(void)
+void Game::Kabuto::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void init__Q34Game6Kabuto3FSMFPQ24Game9EnemyBase(void)
  * Address:	802E1CB4
  * Size:	0000A0
  */
-void init__Q34Game6Kabuto9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void init__Q34Game6Kabuto9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802E1D54
  * Size:	000004
  */
-void finishWaitEffect__Q34Game6Kabuto3ObjFv(void)
+void Game::Kabuto::Obj::finishWaitEffect(void)
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void finishWaitEffect__Q34Game6Kabuto3ObjFv(void)
  * Address:	802E1D58
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Kabuto3ObjFv(void)
+void Game::Kabuto::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void getEnemyTypeID__Q34Game6Kabuto3ObjFv(void)
  * Address:	802E1D60
  * Size:	000044
  */
-void exec__Q34Game6Kabuto9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -455,7 +455,7 @@ void exec__Q34Game6Kabuto9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802E1DA4
  * Size:	000004
  */
-void cleanup__Q34Game6Kabuto9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void cleanup__Q34Game6Kabuto9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802E1DA8
  * Size:	00006C
  */
-void init__Q34Game6Kabuto9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -507,7 +507,7 @@ void init__Q34Game6Kabuto9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802E1E14
  * Size:	00010C
  */
-void exec__Q34Game6Kabuto9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void exec__Q34Game6Kabuto9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802E1F20
  * Size:	000024
  */
-void cleanup__Q34Game6Kabuto9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void cleanup__Q34Game6Kabuto9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802E1F44
  * Size:	000054
  */
-void init__Q34Game6Kabuto9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -650,7 +650,7 @@ void init__Q34Game6Kabuto9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802E1F98
  * Size:	000340
  */
-void exec__Q34Game6Kabuto9StateTurnFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -888,7 +888,7 @@ void exec__Q34Game6Kabuto9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	802E22D8
  * Size:	000024
  */
-void cleanup__Q34Game6Kabuto9StateTurnFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateTurn::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -909,7 +909,7 @@ void cleanup__Q34Game6Kabuto9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	802E22FC
  * Size:	000050
  */
-void init__Q34Game6Kabuto9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -941,7 +941,7 @@ void init__Q34Game6Kabuto9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802E234C
  * Size:	00038C
  */
-void exec__Q34Game6Kabuto9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1204,7 +1204,7 @@ void exec__Q34Game6Kabuto9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802E26D8
  * Size:	000024
  */
-void cleanup__Q34Game6Kabuto9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1225,7 +1225,7 @@ void cleanup__Q34Game6Kabuto9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802E26FC
  * Size:	000068
  */
-void init__Q34Game6Kabuto10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1263,7 +1263,7 @@ void init__Q34Game6Kabuto10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802E2764
  * Size:	00016C
  */
-void exec__Q34Game6Kabuto10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1372,7 +1372,7 @@ void exec__Q34Game6Kabuto10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	802E28D0
  * Size:	000038
  */
-void cleanup__Q34Game6Kabuto10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1398,7 +1398,7 @@ void cleanup__Q34Game6Kabuto10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	802E2908
  * Size:	00007C
  */
-void init__Q34Game6Kabuto11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1441,7 +1441,7 @@ void init__Q34Game6Kabuto11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802E2984
  * Size:	000128
  */
-void exec__Q34Game6Kabuto11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1537,7 +1537,7 @@ void exec__Q34Game6Kabuto11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802E2AAC
  * Size:	000044
  */
-void cleanup__Q34Game6Kabuto11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1566,7 +1566,7 @@ void cleanup__Q34Game6Kabuto11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802E2AF0
  * Size:	0000B8
  */
-void init__Q34Game6Kabuto12StateFixStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateFixStay::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1624,7 +1624,7 @@ void init__Q34Game6Kabuto12StateFixStayFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	802E2BA8
  * Size:	0000E4
  */
-void exec__Q34Game6Kabuto12StateFixStayFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixStay::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1695,7 +1695,7 @@ void exec__Q34Game6Kabuto12StateFixStayFPQ24Game9EnemyBase(void)
  * Address:	802E2C8C
  * Size:	000084
  */
-void cleanup__Q34Game6Kabuto12StateFixStayFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixStay::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1740,7 +1740,7 @@ void cleanup__Q34Game6Kabuto12StateFixStayFPQ24Game9EnemyBase(void)
  * Address:	802E2D10
  * Size:	00018C
  */
-void init__Q34Game6Kabuto14StateFixAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateFixAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1851,7 +1851,7 @@ void init__Q34Game6Kabuto14StateFixAppearFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802E2E9C
  * Size:	000244
  */
-void exec__Q34Game6Kabuto14StateFixAppearFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2020,7 +2020,7 @@ void exec__Q34Game6Kabuto14StateFixAppearFPQ24Game9EnemyBase(void)
  * Address:	802E30E0
  * Size:	000010
  */
-void cleanup__Q34Game6Kabuto14StateFixAppearFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixAppear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2036,7 +2036,7 @@ void cleanup__Q34Game6Kabuto14StateFixAppearFPQ24Game9EnemyBase(void)
  * Address:	802E30F0
  * Size:	000130
  */
-void init__Q34Game6Kabuto12StateFixHideFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateFixHide::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2124,7 +2124,7 @@ void init__Q34Game6Kabuto12StateFixHideFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	802E3220
  * Size:	000090
  */
-void exec__Q34Game6Kabuto12StateFixHideFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixHide::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2174,7 +2174,7 @@ void exec__Q34Game6Kabuto12StateFixHideFPQ24Game9EnemyBase(void)
  * Address:	802E32B0
  * Size:	000024
  */
-void cleanup__Q34Game6Kabuto12StateFixHideFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixHide::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2195,7 +2195,7 @@ void cleanup__Q34Game6Kabuto12StateFixHideFPQ24Game9EnemyBase(void)
  * Address:	802E32D4
  * Size:	000054
  */
-void init__Q34Game6Kabuto12StateFixWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateFixWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2228,7 +2228,7 @@ void init__Q34Game6Kabuto12StateFixWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	802E3328
  * Size:	000004
  */
-void startWaitEffect__Q34Game6Kabuto3ObjFv(void)
+void Game::Kabuto::Obj::startWaitEffect(void)
 {
 /*
 .loc_0x0:
@@ -2241,7 +2241,7 @@ void startWaitEffect__Q34Game6Kabuto3ObjFv(void)
  * Address:	802E332C
  * Size:	000204
  */
-void exec__Q34Game6Kabuto12StateFixWaitFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2396,7 +2396,7 @@ void exec__Q34Game6Kabuto12StateFixWaitFPQ24Game9EnemyBase(void)
  * Address:	802E3530
  * Size:	000004
  */
-void cleanup__Q34Game6Kabuto12StateFixWaitFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2409,7 +2409,7 @@ void cleanup__Q34Game6Kabuto12StateFixWaitFPQ24Game9EnemyBase(void)
  * Address:	802E3534
  * Size:	000068
  */
-void init__Q34Game6Kabuto12StateFixTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateFixTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2447,7 +2447,7 @@ void init__Q34Game6Kabuto12StateFixTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	802E359C
  * Size:	000004
  */
-void startRotateEffect__Q34Game6Kabuto3ObjFv(void)
+void Game::Kabuto::Obj::startRotateEffect(void)
 {
 /*
 .loc_0x0:
@@ -2460,7 +2460,7 @@ void startRotateEffect__Q34Game6Kabuto3ObjFv(void)
  * Address:	802E35A0
  * Size:	000290
  */
-void exec__Q34Game6Kabuto12StateFixTurnFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2654,7 +2654,7 @@ void exec__Q34Game6Kabuto12StateFixTurnFPQ24Game9EnemyBase(void)
  * Address:	802E3830
  * Size:	000030
  */
-void cleanup__Q34Game6Kabuto12StateFixTurnFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixTurn::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2678,7 +2678,7 @@ void cleanup__Q34Game6Kabuto12StateFixTurnFPQ24Game9EnemyBase(void)
  * Address:	802E3860
  * Size:	000004
  */
-void finishRotateEffect__Q34Game6Kabuto3ObjFv(void)
+void Game::Kabuto::Obj::finishRotateEffect(void)
 {
 /*
 .loc_0x0:
@@ -2691,7 +2691,7 @@ void finishRotateEffect__Q34Game6Kabuto3ObjFv(void)
  * Address:	802E3864
  * Size:	000068
  */
-void init__Q34Game6Kabuto14StateFixAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateFixAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2729,7 +2729,7 @@ void init__Q34Game6Kabuto14StateFixAttackFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802E38CC
  * Size:	000260
  */
-void exec__Q34Game6Kabuto14StateFixAttackFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2907,7 +2907,7 @@ void exec__Q34Game6Kabuto14StateFixAttackFPQ24Game9EnemyBase(void)
  * Address:	802E3B2C
  * Size:	000004
  */
-void cleanup__Q34Game6Kabuto14StateFixAttackFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2920,7 +2920,7 @@ void cleanup__Q34Game6Kabuto14StateFixAttackFPQ24Game9EnemyBase(void)
  * Address:	802E3B30
  * Size:	000054
  */
-void init__Q34Game6Kabuto13StateFixFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kabuto::StateFixFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2953,7 +2953,7 @@ void init__Q34Game6Kabuto13StateFixFlickFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802E3B84
  * Size:	00016C
  */
-void exec__Q34Game6Kabuto13StateFixFlickFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3062,7 +3062,7 @@ void exec__Q34Game6Kabuto13StateFixFlickFPQ24Game9EnemyBase(void)
  * Address:	802E3CF0
  * Size:	000004
  */
-void cleanup__Q34Game6Kabuto13StateFixFlickFPQ24Game9EnemyBase(void)
+void Game::Kabuto::StateFixFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

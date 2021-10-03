@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80307DCC
  * Size:	0000E4
  */
-void __ct__Q32og6Screen10MapCounterFPQ32og6Screen7DataMap(void)
+void og::Screen::MapCounter::__ct( (og::Screen::DataMap *))
 {
 /*
 .loc_0x0:
@@ -84,7 +84,7 @@ void __ct__Q32og6Screen10MapCounterFPQ32og6Screen7DataMap(void)
  * Address:	80307EB0
  * Size:	000038
  */
-void dispRed__Q32og6Screen10MapCounterFb(void)
+void og::Screen::MapCounter::dispRed( (bool))
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void dispRed__Q32og6Screen10MapCounterFb(void)
  * Address:	80307EE8
  * Size:	000038
  */
-void dispYellow__Q32og6Screen10MapCounterFb(void)
+void og::Screen::MapCounter::dispYellow( (bool))
 {
 /*
 .loc_0x0:
@@ -140,7 +140,7 @@ void dispYellow__Q32og6Screen10MapCounterFb(void)
  * Address:	80307F20
  * Size:	000038
  */
-void dispBlue__Q32og6Screen10MapCounterFb(void)
+void og::Screen::MapCounter::dispBlue( (bool))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void dispBlue__Q32og6Screen10MapCounterFb(void)
  * Address:	80307F58
  * Size:	000038
  */
-void dispWhite__Q32og6Screen10MapCounterFb(void)
+void og::Screen::MapCounter::dispWhite( (bool))
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void dispWhite__Q32og6Screen10MapCounterFb(void)
  * Address:	80307F90
  * Size:	000038
  */
-void dispBlack__Q32og6Screen10MapCounterFb(void)
+void og::Screen::MapCounter::dispBlack( (bool))
 {
 /*
 .loc_0x0:
@@ -224,7 +224,7 @@ void dispBlack__Q32og6Screen10MapCounterFb(void)
  * Address:	80307FC8
  * Size:	000028
  */
-void dispFree__Q32og6Screen10MapCounterFb(void)
+void og::Screen::MapCounter::dispFree( (bool))
 {
 /*
 .loc_0x0:
@@ -248,7 +248,7 @@ void dispFree__Q32og6Screen10MapCounterFb(void)
  * Address:	........
  * Size:	0000E0
  */
-void setCallBack_CounterMap__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRArchive(void)
+void og::Screen::setCallBack_CounterMap( (P2DScreen::Mgr *, unsigned long long, unsigned long long, unsigned long long, unsigned long *, unsigned short, unsigned short, bool, JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -258,7 +258,7 @@ void setCallBack_CounterMap__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsUsbP10JKRA
  * Address:	80307FF0
  * Size:	000724
  */
-void setCallBack__Q32og6Screen10MapCounterFP10JKRArchive(void)
+void og::Screen::MapCounter::setCallBack( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -749,7 +749,7 @@ void setCallBack__Q32og6Screen10MapCounterFP10JKRArchive(void)
  * Address:	80308714
  * Size:	0000A4
  */
-void __dt__Q32og6Screen10MapCounterFv(void)
+void og::Screen::MapCounter::__dt(void)
 {
 /*
 .loc_0x0:

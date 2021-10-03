@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8028D04C
  * Size:	000008
  */
-void setAnimMgr__Q34Game4Baby14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Baby::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game4Baby14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	8028D054
  * Size:	000008
  */
-void getAnimator__Q34Game4Baby14ProperAnimatorFi(void)
+void Game::Baby::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game4Baby14ProperAnimatorFi(void)
  * Address:	8028D05C
  * Size:	00005C
  */
-void __dt__Q34Game4Baby14ProperAnimatorFv(void)
+void Game::Baby::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game4Baby14ProperAnimatorFv(void)
  * Address:	8028D0B8
  * Size:	000008
  */
-void getAnimator__Q34Game4Baby14ProperAnimatorFv(void)
+void Game::Baby::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

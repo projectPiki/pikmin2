@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000E0
  */
-void _Print__Q24Game4FarmFPce(void)
+void Game::Farm::_Print( (char *,...))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void _Print__Q24Game4FarmFPce(void)
  * Address:	........
  * Size:	000040
  */
-void __ct__Q34Game4Farm5PlantFPQ24Game8Creature(void)
+void Game::Farm::Plant::__ct( (Game::Creature *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q34Game4Farm5PlantFPQ24Game8Creature(void)
  * Address:	........
  * Size:	0000A4
  */
-void sendInteraction__Q34Game4Farm5PlantFv(void)
+void Game::Farm::Plant::sendInteraction(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void sendInteraction__Q34Game4Farm5PlantFv(void)
  * Address:	........
  * Size:	000004
  */
-void doDebugDraw__Q34Game4Farm5PlantFR8Graphics(void)
+void Game::Farm::Plant::doDebugDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void doDebugDraw__Q34Game4Farm5PlantFR8Graphics(void)
  * Address:	........
  * Size:	0000F0
  */
-void __ct__Q34Game4Farm8ObstacleFPQ34Game4Farm4FarmPQ24Game16FieldVtxColorMgrPQ24Game8Creatureff(void)
+void Game::Farm::Obstacle::__ct( (Game::Farm::Farm *, Game::FieldVtxColorMgr *, Game::Creature *, float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void __ct__Q34Game4Farm8ObstacleFPQ34Game4Farm4FarmPQ24Game16FieldVtxColorMgrPQ2
  * Address:	801234F8
  * Size:	000030
  */
-void setPower__Q34Game4Farm8ObstacleFf(void)
+void Game::Farm::Obstacle::setPower( (float))
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void setPower__Q34Game4Farm8ObstacleFf(void)
  * Address:	........
  * Size:	0000C0
  */
-void doDebugDraw__Q34Game4Farm8ObstacleFR8Graphics(void)
+void Game::Farm::Obstacle::doDebugDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -89,7 +89,7 @@ void doDebugDraw__Q34Game4Farm8ObstacleFR8Graphics(void)
  * Address:	80123528
  * Size:	0000BC
  */
-void __ct__Q34Game4Farm4FarmFv(void)
+void Game::Farm::Farm::__ct(void)
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void __ct__Q34Game4Farm4FarmFv(void)
  * Address:	801235E4
  * Size:	000200
  */
-void loadResource__Q34Game4Farm4FarmFUlPv(void)
+void Game::Farm::Farm::loadResource( (unsigned long, void *))
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void loadResource__Q34Game4Farm4FarmFUlPv(void)
  * Address:	801237E4
  * Size:	000004
  */
-void update__Q34Game4Farm4FarmFv(void)
+void Game::Farm::Farm::update(void)
 {
 /*
 .loc_0x0:
@@ -311,7 +311,7 @@ void update__Q34Game4Farm4FarmFv(void)
  * Address:	801237E8
  * Size:	000034
  */
-void doAnimation__Q34Game4Farm4FarmFv(void)
+void Game::Farm::Farm::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -336,7 +336,7 @@ void doAnimation__Q34Game4Farm4FarmFv(void)
  * Address:	8012381C
  * Size:	000034
  */
-void doEntry__Q34Game4Farm4FarmFv(void)
+void Game::Farm::Farm::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -361,7 +361,7 @@ void doEntry__Q34Game4Farm4FarmFv(void)
  * Address:	80123850
  * Size:	000024
  */
-void doSetView__Q34Game4Farm4FarmFUl(void)
+void Game::Farm::Farm::doSetView( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -382,7 +382,7 @@ void doSetView__Q34Game4Farm4FarmFUl(void)
  * Address:	80123874
  * Size:	000024
  */
-void doViewCalc__Q34Game4Farm4FarmFv(void)
+void Game::Farm::Farm::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -403,7 +403,7 @@ void doViewCalc__Q34Game4Farm4FarmFv(void)
  * Address:	80123898
  * Size:	000070
  */
-void addObstacle__Q34Game4Farm4FarmFPQ24Game8Creatureff(void)
+void Game::Farm::Farm::addObstacle( (Game::Creature *, float, float))
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void addObstacle__Q34Game4Farm4FarmFPQ24Game8Creatureff(void)
  * Address:	80123908
  * Size:	00000C
  */
-void getCreatureName__Q24Game8CreatureFv(void)
+void Game::Creature::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void getCreatureName__Q24Game8CreatureFv(void)
  * Address:	80123914
  * Size:	000114
  */
-void createNewObstacle__Q34Game4Farm4FarmFPQ24Game8Creatureff(void)
+void Game::Farm::Farm::createNewObstacle( (Game::Creature *, float, float))
 {
 /*
 .loc_0x0:
@@ -541,7 +541,7 @@ void createNewObstacle__Q34Game4Farm4FarmFPQ24Game8Creatureff(void)
  * Address:	80123A28
  * Size:	000044
  */
-void addPlant__Q34Game4Farm4FarmFPQ24Game8Creature(void)
+void Game::Farm::Farm::addPlant( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -572,7 +572,7 @@ void addPlant__Q34Game4Farm4FarmFPQ24Game8Creature(void)
  * Address:	80123A6C
  * Size:	0000B0
  */
-void createNewPlant__Q34Game4Farm4FarmFPQ24Game8Creature(void)
+void Game::Farm::Farm::createNewPlant( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -630,7 +630,7 @@ void createNewPlant__Q34Game4Farm4FarmFPQ24Game8Creature(void)
  * Address:	80123B1C
  * Size:	0001DC
  */
-void updateObjectRelation__Q34Game4Farm4FarmFb(void)
+void Game::Farm::Farm::updateObjectRelation( (bool))
 {
 /*
 .loc_0x0:
@@ -781,7 +781,7 @@ void updateObjectRelation__Q34Game4Farm4FarmFb(void)
  * Address:	80123CF8
  * Size:	000108
  */
-void doDebugDraw__Q34Game4Farm4FarmFR8Graphics(void)
+void Game::Farm::Farm::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -867,7 +867,7 @@ void doDebugDraw__Q34Game4Farm4FarmFR8Graphics(void)
  * Address:	80123E00
  * Size:	0000DC
  */
-void initAllObjectNodes__Q34Game4Farm4FarmFv(void)
+void Game::Farm::Farm::initAllObjectNodes(void)
 {
 /*
 .loc_0x0:
@@ -946,7 +946,7 @@ void initAllObjectNodes__Q34Game4Farm4FarmFv(void)
  * Address:	80123EDC
  * Size:	000060
  */
-void __dt__Q34Game4Farm5PlantFv(void)
+void Game::Farm::Plant::__dt(void)
 {
 /*
 .loc_0x0:
@@ -984,7 +984,7 @@ void __dt__Q34Game4Farm5PlantFv(void)
  * Address:	80123F3C
  * Size:	000060
  */
-void __dt__Q34Game4Farm8ObstacleFv(void)
+void Game::Farm::Obstacle::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1022,7 +1022,7 @@ void __dt__Q34Game4Farm8ObstacleFv(void)
  * Address:	80123F9C
  * Size:	00007C
  */
-void __dt__Q34Game4Farm4FarmFv(void)
+void Game::Farm::Farm::__dt(void)
 {
 /*
 .loc_0x0:

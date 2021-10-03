@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802C5C18
  * Size:	000098
  */
-void __ct__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -67,7 +67,7 @@ void __ct__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C5CB0
  * Size:	0000C0
  */
-void doUpdate__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void doUpdate__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C5D70
  * Size:	000004
  */
-void doDirectDraw__Q34Game10LeafChappy3ObjFR8Graphics(void)
+void Game::LeafChappy::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -146,7 +146,7 @@ void doDirectDraw__Q34Game10LeafChappy3ObjFR8Graphics(void)
  * Address:	802C5D74
  * Size:	0000C4
  */
-void getShadowParam__Q34Game10LeafChappy3ObjFRQ24Game11ShadowParam(void)
+void Game::LeafChappy::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -213,7 +213,7 @@ void getShadowParam__Q34Game10LeafChappy3ObjFRQ24Game11ShadowParam(void)
  * Address:	802C5E38
  * Size:	0000B4
  */
-void initMouthSlots__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -274,7 +274,7 @@ void initMouthSlots__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C5EEC
  * Size:	000064
  */
-void initWalkSmokeEffect__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -311,7 +311,7 @@ void initWalkSmokeEffect__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C5F50
  * Size:	000020
  */
-void doBecomeCarcass__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::doBecomeCarcass(void)
 {
 /*
 .loc_0x0:
@@ -331,7 +331,7 @@ void doBecomeCarcass__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C5F70
  * Size:	000020
  */
-void doUpdateCarcass__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::doUpdateCarcass(void)
 {
 /*
 .loc_0x0:
@@ -351,7 +351,7 @@ void doUpdateCarcass__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C5F90
  * Size:	000020
  */
-void doGetLifeGaugeParam__Q34Game10LeafChappy3ObjFRQ24Game14LifeGaugeParam(void)
+void Game::LeafChappy::Obj::doGetLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -371,7 +371,7 @@ void doGetLifeGaugeParam__Q34Game10LeafChappy3ObjFRQ24Game14LifeGaugeParam(void)
  * Address:	802C5FB0
  * Size:	000244
  */
-void birthChildren__Q34Game10LeafChappy3ObjFRQ24Game13EnemyBirthArg(void)
+void Game::LeafChappy::Obj::birthChildren( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -538,7 +538,7 @@ void birthChildren__Q34Game10LeafChappy3ObjFRQ24Game13EnemyBirthArg(void)
  * Address:	802C61F4
  * Size:	00007C
  */
-void startEnemyRumble__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::startEnemyRumble(void)
 {
 /*
 .loc_0x0:
@@ -581,7 +581,7 @@ void startEnemyRumble__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C6270
  * Size:	000050
  */
-void createFootmarks__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::createFootmarks(void)
 {
 /*
 .loc_0x0:
@@ -615,7 +615,7 @@ void createFootmarks__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C62C0
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -629,7 +629,7 @@ void getDownSmokeScale__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C62C8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -643,7 +643,7 @@ void getEnemyTypeID__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C62D0
  * Size:	000004
  */
-void createChappyRelation__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::createChappyRelation(void)
 {
 /*
 .loc_0x0:
@@ -656,7 +656,7 @@ void createChappyRelation__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C62D4
  * Size:	000004
  */
-void resetChappyRelation__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::resetChappyRelation(void)
 {
 /*
 .loc_0x0:
@@ -669,7 +669,7 @@ void resetChappyRelation__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C62D8
  * Size:	000008
  */
-void getChappyRelation__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::getChappyRelation(void)
 {
 /*
 .loc_0x0:
@@ -683,7 +683,7 @@ void getChappyRelation__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C62E0
  * Size:	000008
  */
-void getFootmarks__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::getFootmarks(void)
 {
 /*
 .loc_0x0:

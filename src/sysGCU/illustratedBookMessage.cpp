@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000048
  */
-void __ct__Q35P2JME15IllustratedBook18TSequenceProcessorFPQ28JMessage10TReferencePQ28JMessage8TControl(void)
+void P2JME::IllustratedBook::TSequenceProcessor::__ct( (JMessage::TReference *, JMessage::TControl *))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q35P2JME15IllustratedBook18TSequenceProcessorFPQ28JMessage10TReferenc
  * Address:	80454F88
  * Size:	000070
  */
-void __dt__Q25P2JME13TSeqProcNoSeqFv(void)
+void P2JME::TSeqProcNoSeq::__dt(void)
 {
 /*
 .loc_0x0:
@@ -90,7 +90,7 @@ void makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2J
  * Address:	80455044
  * Size:	000060
  */
-void __ct__Q35P2JME15IllustratedBook8TControlFv(void)
+void P2JME::IllustratedBook::TControl::__ct(void)
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void __ct__Q35P2JME15IllustratedBook8TControlFv(void)
  * Address:	804550A4
  * Size:	00003C
  */
-void onInit__Q35P2JME15IllustratedBook8TControlFv(void)
+void P2JME::IllustratedBook::TControl::onInit(void)
 {
 /*
 .loc_0x0:
@@ -153,7 +153,7 @@ void onInit__Q35P2JME15IllustratedBook8TControlFv(void)
  * Address:	804550E0
  * Size:	00003C
  */
-void reset__Q35P2JME15IllustratedBook8TControlFv(void)
+void P2JME::IllustratedBook::TControl::reset(void)
 {
 /*
 .loc_0x0:
@@ -180,7 +180,7 @@ void reset__Q35P2JME15IllustratedBook8TControlFv(void)
  * Address:	8045511C
  * Size:	000028
  */
-void getScrollPosition__Q35P2JME15IllustratedBook8TControlFv(void)
+void P2JME::IllustratedBook::TControl::getScrollPosition(void)
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void getScrollPosition__Q35P2JME15IllustratedBook8TControlFv(void)
  * Address:	80455144
  * Size:	0000F4
  */
-void scroll__Q35P2JME15IllustratedBook8TControlFf(void)
+void P2JME::IllustratedBook::TControl::scroll( (float))
 {
 /*
 .loc_0x0:
@@ -291,7 +291,7 @@ void scroll__Q35P2JME15IllustratedBook8TControlFf(void)
  * Address:	80455238
  * Size:	0000D0
  */
-void update__Q35P2JME15IllustratedBook8TControlFP10ControllerP10Controller(void)
+void P2JME::IllustratedBook::TControl::update( (Controller *, Controller *))
 {
 /*
 .loc_0x0:
@@ -355,7 +355,7 @@ void update__Q35P2JME15IllustratedBook8TControlFP10ControllerP10Controller(void)
  * Address:	80455308
  * Size:	000080
  */
-void setTextBoxInfo__Q35P2JME15IllustratedBook8TControlFP10J2DTextBox(void)
+void P2JME::IllustratedBook::TControl::setTextBoxInfo( (J2DTextBox *))
 {
 /*
 .loc_0x0:
@@ -401,7 +401,7 @@ void setTextBoxInfo__Q35P2JME15IllustratedBook8TControlFP10J2DTextBox(void)
  * Address:	80455388
  * Size:	000078
  */
-void draw__Q35P2JME15IllustratedBook8TControlFPA4_fPA4_f(void)
+void P2JME::IllustratedBook::TControl::draw( (float (*)[4], float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -447,7 +447,7 @@ void draw__Q35P2JME15IllustratedBook8TControlFPA4_fPA4_f(void)
  * Address:	80455400
  * Size:	000080
  */
-void __dt__Q35P2JME15IllustratedBook8TControlFv(void)
+void P2JME::IllustratedBook::TControl::__dt(void)
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void __dt__Q35P2JME15IllustratedBook8TControlFv(void)
  * Address:	80455480
  * Size:	000020
  */
-void draw__Q35P2JME15IllustratedBook8TControlFR8Graphics(void)
+void P2JME::IllustratedBook::TControl::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -515,7 +515,7 @@ void draw__Q35P2JME15IllustratedBook8TControlFR8Graphics(void)
  * Address:	804554A0
  * Size:	000084
  */
-void createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv(void)
+void P2JME::IllustratedBook::TControl::createRenderingProcessor(void)
 {
 /*
 .loc_0x0:
@@ -564,7 +564,7 @@ void createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv(void)
  * Address:	80455524
  * Size:	000094
  */
-void createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv(void)
+void P2JME::IllustratedBook::TControl::createSequenceProcessor(void)
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv(void)
  * Address:	804555B8
  * Size:	0000B8
  */
-void __dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv(void)
+void P2JME::IllustratedBook::TRenderingProcessor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -681,7 +681,7 @@ void __dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv(void)
  * Address:	80455670
  * Size:	000008
  */
-void doTagControlAbtnWait__Q35P2JME15IllustratedBook19TRenderingProcessorFv(void)
+void P2JME::IllustratedBook::TRenderingProcessor::doTagControlAbtnWait(void)
 {
 /*
 .loc_0x0:
@@ -695,7 +695,7 @@ void doTagControlAbtnWait__Q35P2JME15IllustratedBook19TRenderingProcessorFv(void
  * Address:	80455678
  * Size:	000080
  */
-void __dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv(void)
+void P2JME::IllustratedBook::TSequenceProcessor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -743,7 +743,7 @@ void __dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv(void)
  * Address:	804556F8
  * Size:	000008
  */
-void do_isReady__Q25P2JME13TSeqProcNoSeqFv(void)
+void P2JME::TSeqProcNoSeq::do_isReady(void)
 {
 /*
 .loc_0x0:

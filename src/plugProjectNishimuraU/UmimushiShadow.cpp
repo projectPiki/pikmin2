@@ -219,7 +219,7 @@ void makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP
  * Address:	802F2A84
  * Size:	0000C4
  */
-void __ct__Q34Game8UmiMushi17UmimushiShadowMgrFPQ34Game8UmiMushi3Obj(void)
+void Game::UmiMushi::UmimushiShadowMgr::__ct( (Game::UmiMushi::Obj *))
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void __ct__Q34Game8UmiMushi17UmimushiShadowMgrFPQ34Game8UmiMushi3Obj(void)
  * Address:	802F2B48
  * Size:	000068
  */
-void init__Q34Game8UmiMushi17UmimushiShadowMgrFv(void)
+void Game::UmiMushi::UmimushiShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -324,7 +324,7 @@ void init__Q34Game8UmiMushi17UmimushiShadowMgrFv(void)
  * Address:	802F2BB0
  * Size:	00015C
  */
-void update__Q34Game8UmiMushi17UmimushiShadowMgrFv(void)
+void Game::UmiMushi::UmimushiShadowMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void update__Q34Game8UmiMushi17UmimushiShadowMgrFv(void)
  * Address:	802F2D0C
  * Size:	000070
  */
-void __dt__Q24Game24UmimushiSphereShadowNodeFv(void)
+void Game::UmimushiSphereShadowNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -471,7 +471,7 @@ void __dt__Q24Game24UmimushiSphereShadowNodeFv(void)
  * Address:	802F2D7C
  * Size:	000070
  */
-void __dt__Q24Game22UmimushiTubeShadowNodeFv(void)
+void Game::UmimushiTubeShadowNode::__dt(void)
 {
 /*
 .loc_0x0:

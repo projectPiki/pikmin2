@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025DC8C
  * Size:	000130
  */
-void __ct__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q34Game6Kogane3ObjFv(void)
  * Address:	8025DDBC
  * Size:	000004
  */
-void setInitialSetting__Q34Game6Kogane3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Kogane::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void setInitialSetting__Q34Game6Kogane3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8025DDC0
  * Size:	000130
  */
-void onInit__Q34Game6Kogane3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Kogane::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void onInit__Q34Game6Kogane3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8025DEF0
  * Size:	000004
  */
-void resetFartTimer__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::resetFartTimer(void)
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void resetFartTimer__Q34Game6Kogane3ObjFv(void)
  * Address:	8025DEF4
  * Size:	000050
  */
-void onKill__Q34Game6Kogane3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Kogane::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void onKill__Q34Game6Kogane3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	8025DF44
  * Size:	000034
  */
-void doUpdate__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -284,7 +284,7 @@ void doUpdate__Q34Game6Kogane3ObjFv(void)
  * Address:	8025DF78
  * Size:	000020
  */
-void doUpdateCommon__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -304,7 +304,7 @@ void doUpdateCommon__Q34Game6Kogane3ObjFv(void)
  * Address:	8025DF98
  * Size:	000004
  */
-void doDirectDraw__Q34Game6Kogane3ObjFR8Graphics(void)
+void Game::Kogane::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -317,7 +317,7 @@ void doDirectDraw__Q34Game6Kogane3ObjFR8Graphics(void)
  * Address:	8025DF9C
  * Size:	000020
  */
-void doDebugDraw__Q34Game6Kogane3ObjFR8Graphics(void)
+void Game::Kogane::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -337,7 +337,7 @@ void doDebugDraw__Q34Game6Kogane3ObjFR8Graphics(void)
  * Address:	8025DFBC
  * Size:	00004C
  */
-void setFSM__Q34Game6Kogane3ObjFPQ34Game6Kogane3FSM(void)
+void Game::Kogane::Obj::setFSM( (Game::Kogane::FSM *))
 {
 /*
 .loc_0x0:
@@ -368,7 +368,7 @@ void setFSM__Q34Game6Kogane3ObjFPQ34Game6Kogane3FSM(void)
  * Address:	8025E008
  * Size:	0000A0
  */
-void getShadowParam__Q34Game6Kogane3ObjFRQ24Game11ShadowParam(void)
+void Game::Kogane::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -420,7 +420,7 @@ void getShadowParam__Q34Game6Kogane3ObjFRQ24Game11ShadowParam(void)
  * Address:	8025E0A8
  * Size:	00006C
  */
-void pressCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Kogane::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void pressCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8025E114
  * Size:	00003C
  */
-void wallCallback__Q34Game6Kogane3ObjFRCQ24Game8MoveInfo(void)
+void Game::Kogane::Obj::wallCallback( (Game::MoveInfo const &))
 {
 /*
 .loc_0x0:
@@ -490,7 +490,7 @@ void wallCallback__Q34Game6Kogane3ObjFRCQ24Game8MoveInfo(void)
  * Address:	8025E150
  * Size:	000060
  */
-void earthquakeCallBack__Q34Game6Kogane3ObjFPQ24Game8Creaturef(void)
+void Game::Kogane::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -530,7 +530,7 @@ void earthquakeCallBack__Q34Game6Kogane3ObjFPQ24Game8Creaturef(void)
  * Address:	8025E1B0
  * Size:	00006C
  */
-void hipdropCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Kogane::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -573,7 +573,7 @@ void hipdropCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8025E21C
  * Size:	000050
  */
-void doStartStoneState__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -605,7 +605,7 @@ void doStartStoneState__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E26C
  * Size:	000050
  */
-void doFinishStoneState__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -637,7 +637,7 @@ void doFinishStoneState__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E2BC
  * Size:	00002C
  */
-void doStartMovie__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -660,7 +660,7 @@ void doStartMovie__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E2E8
  * Size:	000004
  */
-void effectDrawOff__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -673,7 +673,7 @@ void effectDrawOff__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E2EC
  * Size:	00002C
  */
-void doEndMovie__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -696,7 +696,7 @@ void doEndMovie__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E318
  * Size:	000004
  */
-void effectDrawOn__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -709,7 +709,7 @@ void effectDrawOn__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E31C
  * Size:	000084
  */
-void transitDamageState__Q34Game6Kogane3ObjFf(void)
+void Game::Kogane::Obj::transitDamageState( (float))
 {
 /*
 .loc_0x0:
@@ -762,7 +762,7 @@ void transitDamageState__Q34Game6Kogane3ObjFf(void)
  * Address:	8025E3A0
  * Size:	000108
  */
-void transitDisappear__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::transitDisappear(void)
 {
 /*
 .loc_0x0:
@@ -844,7 +844,7 @@ void transitDisappear__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E4A8
  * Size:	000050
  */
-void getBodyJointPos__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::getBodyJointPos(void)
 {
 /*
 .loc_0x0:
@@ -876,7 +876,7 @@ void getBodyJointPos__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E4F8
  * Size:	0000A4
  */
-void koganeScaleUp__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::koganeScaleUp(void)
 {
 /*
 .loc_0x0:
@@ -933,7 +933,7 @@ void koganeScaleUp__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E59C
  * Size:	00008C
  */
-void koganeScaleDown__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::koganeScaleDown(void)
 {
 /*
 .loc_0x0:
@@ -1115,7 +1115,7 @@ void setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<float>(void)
  * Address:	8025E7D4
  * Size:	000078
  */
-void resetAppearTimer__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::resetAppearTimer(void)
 {
 /*
 .loc_0x0:
@@ -1157,7 +1157,7 @@ void resetAppearTimer__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E84C
  * Size:	000080
  */
-void isAppear__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::isAppear(void)
 {
 /*
 .loc_0x0:
@@ -1207,7 +1207,7 @@ void isAppear__Q34Game6Kogane3ObjFv(void)
  * Address:	8025E8CC
  * Size:	000084
  */
-void resetMoveTimer__Q34Game6Kogane3ObjFff(void)
+void Game::Kogane::Obj::resetMoveTimer( (float, float))
 {
 /*
 .loc_0x0:
@@ -1252,7 +1252,7 @@ void resetMoveTimer__Q34Game6Kogane3ObjFff(void)
  * Address:	8025E950
  * Size:	000194
  */
-void createTreasureItem__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::createTreasureItem(void)
 {
 /*
 .loc_0x0:
@@ -1371,7 +1371,7 @@ void createTreasureItem__Q34Game6Kogane3ObjFv(void)
  * Address:	8025EAE4
  * Size:	000294
  */
-void createPellet__Q34Game6Kogane3ObjFii(void)
+void Game::Kogane::Obj::createPellet( (int, int))
 {
 /*
 .loc_0x0:
@@ -1564,7 +1564,7 @@ void createPellet__Q34Game6Kogane3ObjFii(void)
  * Address:	8025ED78
  * Size:	0001DC
  */
-void createDoping__Q34Game6Kogane3ObjFUci(void)
+void Game::Kogane::Obj::createDoping( (unsigned char, int))
 {
 /*
 .loc_0x0:
@@ -1707,7 +1707,7 @@ void createDoping__Q34Game6Kogane3ObjFUci(void)
  * Address:	8025EF54
  * Size:	0000BC
  */
-void __dt__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1770,7 +1770,7 @@ void __dt__Q34Game6Kogane3ObjFv(void)
  * Address:	8025F010
  * Size:	000004
  */
-void inWaterCallback__Q34Game6Kogane3ObjFPQ24Game8WaterBox(void)
+void Game::Kogane::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1783,7 +1783,7 @@ void inWaterCallback__Q34Game6Kogane3ObjFPQ24Game8WaterBox(void)
  * Address:	8025F014
  * Size:	000004
  */
-void outWaterCallback__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1796,7 +1796,7 @@ void outWaterCallback__Q34Game6Kogane3ObjFv(void)
  * Address:	8025F018
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

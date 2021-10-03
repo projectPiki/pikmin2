@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80300158
  * Size:	000090
  */
-void __ct__Q34Game9RedKabuto3ObjFv(void)
+void Game::RedKabuto::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q34Game9RedKabuto3ObjFv(void)
  * Address:	803001E8
  * Size:	0001A4
  */
-void changeMaterial__Q34Game9RedKabuto3ObjFv(void)
+void Game::RedKabuto::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -186,7 +186,7 @@ void changeMaterial__Q34Game9RedKabuto3ObjFv(void)
  * Address:	8030038C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9RedKabuto3ObjFv(void)
+void Game::RedKabuto::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

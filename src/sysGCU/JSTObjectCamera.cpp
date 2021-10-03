@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8042F6E4
  * Size:	0000F0
  */
-void __ct__Q34Game5P2JST12ObjectCameraFPCcPQ24Game11MoviePlayer(void)
+void Game::P2JST::ObjectCamera::__ct( (char const *, Game::MoviePlayer *))
 {
 /*
 .loc_0x0:
@@ -89,7 +89,7 @@ void __ct__Q34Game5P2JST12ObjectCameraFPCcPQ24Game11MoviePlayer(void)
  * Address:	8042F7D4
  * Size:	000068
  */
-void __dt__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::__dt(void)
 {
 /*
 .loc_0x0:
@@ -129,7 +129,7 @@ void __dt__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042F83C
  * Size:	0000A8
  */
-void reset__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::reset(void)
 {
 /*
 .loc_0x0:
@@ -183,7 +183,7 @@ void reset__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042F8E4
  * Size:	000004
  */
-void update__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::update(void)
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void update__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042F8E8
  * Size:	000024
  */
-void setProjection__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::setProjection(void)
 {
 /*
 .loc_0x0:
@@ -217,7 +217,7 @@ void setProjection__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042F90C
  * Size:	00007C
  */
-void setView__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::setView(void)
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void setView__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042F988
  * Size:	00006C
  */
-void updateCamera__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::updateCamera(void)
 {
 /*
 .loc_0x0:
@@ -299,7 +299,7 @@ void updateCamera__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042F9F4
  * Size:	000008
  */
-void JSGGetName__Q34Game5P2JST12ObjectCameraCFv(void)
+void Game::P2JST::ObjectCamera::JSGGetName( const
 {
 /*
 .loc_0x0:
@@ -313,7 +313,7 @@ void JSGGetName__Q34Game5P2JST12ObjectCameraCFv(void)
  * Address:	8042F9FC
  * Size:	000008
  */
-void JSGSetFlag__Q34Game5P2JST12ObjectCameraFUl(void)
+void Game::P2JST::ObjectCamera::JSGSetFlag( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -327,7 +327,7 @@ void JSGSetFlag__Q34Game5P2JST12ObjectCameraFUl(void)
  * Address:	8042FA04
  * Size:	000008
  */
-void JSGGetFlag__Q34Game5P2JST12ObjectCameraCFv(void)
+void Game::P2JST::ObjectCamera::JSGGetFlag( const
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void JSGGetFlag__Q34Game5P2JST12ObjectCameraCFv(void)
  * Address:	8042FA0C
  * Size:	000010
  */
-void JSGSetData__Q34Game5P2JST12ObjectCameraFUlPCvUl(void)
+void Game::P2JST::ObjectCamera::JSGSetData( (unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void JSGSetData__Q34Game5P2JST12ObjectCameraFUlPCvUl(void)
  * Address:	8042FA1C
  * Size:	00001C
  */
-void JSGSetViewPosition__Q34Game5P2JST12ObjectCameraFRC3Vec(void)
+void Game::P2JST::ObjectCamera::JSGSetViewPosition( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -376,7 +376,7 @@ void JSGSetViewPosition__Q34Game5P2JST12ObjectCameraFRC3Vec(void)
  * Address:	8042FA38
  * Size:	00001C
  */
-void JSGGetViewPosition__Q34Game5P2JST12ObjectCameraCFP3Vec(void)
+void Game::P2JST::ObjectCamera::JSGGetViewPosition( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -395,7 +395,7 @@ void JSGGetViewPosition__Q34Game5P2JST12ObjectCameraCFP3Vec(void)
  * Address:	8042FA54
  * Size:	00001C
  */
-void JSGSetViewTargetPosition__Q34Game5P2JST12ObjectCameraFRC3Vec(void)
+void Game::P2JST::ObjectCamera::JSGSetViewTargetPosition( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void JSGSetViewTargetPosition__Q34Game5P2JST12ObjectCameraFRC3Vec(void)
  * Address:	8042FA70
  * Size:	00001C
  */
-void JSGGetViewTargetPosition__Q34Game5P2JST12ObjectCameraCFP3Vec(void)
+void Game::P2JST::ObjectCamera::JSGGetViewTargetPosition( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void JSGGetViewTargetPosition__Q34Game5P2JST12ObjectCameraCFP3Vec(void)
  * Address:	8042FA8C
  * Size:	000008
  */
-void JSGSetViewRoll__Q34Game5P2JST12ObjectCameraFf(void)
+void Game::P2JST::ObjectCamera::JSGSetViewRoll( (float))
 {
 /*
 .loc_0x0:
@@ -447,7 +447,7 @@ void JSGSetViewRoll__Q34Game5P2JST12ObjectCameraFf(void)
  * Address:	8042FA94
  * Size:	000008
  */
-void JSGGetViewRoll__Q34Game5P2JST12ObjectCameraCFv(void)
+void Game::P2JST::ObjectCamera::JSGGetViewRoll( const
 {
 /*
 .loc_0x0:
@@ -461,7 +461,7 @@ void JSGGetViewRoll__Q34Game5P2JST12ObjectCameraCFv(void)
  * Address:	8042FA9C
  * Size:	000008
  */
-void JSGSetProjectionNear__Q34Game5P2JST12ObjectCameraFf(void)
+void Game::P2JST::ObjectCamera::JSGSetProjectionNear( (float))
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void JSGSetProjectionNear__Q34Game5P2JST12ObjectCameraFf(void)
  * Address:	8042FAA4
  * Size:	000008
  */
-void JSGGetProjectionNear__Q34Game5P2JST12ObjectCameraCFv(void)
+void Game::P2JST::ObjectCamera::JSGGetProjectionNear( const
 {
 /*
 .loc_0x0:
@@ -489,7 +489,7 @@ void JSGGetProjectionNear__Q34Game5P2JST12ObjectCameraCFv(void)
  * Address:	8042FAAC
  * Size:	000008
  */
-void JSGSetProjectionFar__Q34Game5P2JST12ObjectCameraFf(void)
+void Game::P2JST::ObjectCamera::JSGSetProjectionFar( (float))
 {
 /*
 .loc_0x0:
@@ -503,7 +503,7 @@ void JSGSetProjectionFar__Q34Game5P2JST12ObjectCameraFf(void)
  * Address:	8042FAB4
  * Size:	000008
  */
-void JSGGetProjectionFar__Q34Game5P2JST12ObjectCameraCFv(void)
+void Game::P2JST::ObjectCamera::JSGGetProjectionFar( const
 {
 /*
 .loc_0x0:
@@ -517,7 +517,7 @@ void JSGGetProjectionFar__Q34Game5P2JST12ObjectCameraCFv(void)
  * Address:	8042FABC
  * Size:	000008
  */
-void JSGSetProjectionFovy__Q34Game5P2JST12ObjectCameraFf(void)
+void Game::P2JST::ObjectCamera::JSGSetProjectionFovy( (float))
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void JSGSetProjectionFovy__Q34Game5P2JST12ObjectCameraFf(void)
  * Address:	8042FAC4
  * Size:	000008
  */
-void JSGGetProjectionFovy__Q34Game5P2JST12ObjectCameraCFv(void)
+void Game::P2JST::ObjectCamera::JSGGetProjectionFovy( const
 {
 /*
 .loc_0x0:
@@ -545,7 +545,7 @@ void JSGGetProjectionFovy__Q34Game5P2JST12ObjectCameraCFv(void)
  * Address:	8042FACC
  * Size:	000064
  */
-void JSGSetProjectionAspect__Q34Game5P2JST12ObjectCameraFf(void)
+void Game::P2JST::ObjectCamera::JSGSetProjectionAspect( (float))
 {
 /*
 .loc_0x0:
@@ -582,7 +582,7 @@ void JSGSetProjectionAspect__Q34Game5P2JST12ObjectCameraFf(void)
  * Address:	8042FB30
  * Size:	000008
  */
-void JSGGetProjectionAspect__Q34Game5P2JST12ObjectCameraCFv(void)
+void Game::P2JST::ObjectCamera::JSGGetProjectionAspect( const
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void JSGGetProjectionAspect__Q34Game5P2JST12ObjectCameraCFv(void)
  * Address:	........
  * Size:	000168
  */
-void setParms__Q34Game5P2JST12ObjectCameraFP6Camera(void)
+void Game::P2JST::ObjectCamera::setParms( (Camera *))
 {
 	// UNUSED FUNCTION
 }
@@ -606,7 +606,7 @@ void setParms__Q34Game5P2JST12ObjectCameraFP6Camera(void)
  * Address:	8042FB38
  * Size:	0001A0
  */
-void setCamera__Q34Game5P2JST12ObjectCameraFP6Camera(void)
+void Game::P2JST::ObjectCamera::setCamera( (Camera *))
 {
 /*
 .loc_0x0:
@@ -722,7 +722,7 @@ void setCamera__Q34Game5P2JST12ObjectCameraFP6Camera(void)
  * Address:	8042FCD8
  * Size:	000038
  */
-void start__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::start(void)
 {
 /*
 .loc_0x0:
@@ -748,7 +748,7 @@ void start__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042FD10
  * Size:	000050
  */
-void stop__Q34Game5P2JST12ObjectCameraFv(void)
+void Game::P2JST::ObjectCamera::stop(void)
 {
 /*
 .loc_0x0:
@@ -804,7 +804,7 @@ void __sinit_JSTObjectCamera_cpp(void)
  * Address:	8042FD88
  * Size:	000008
  */
-void @4@stop__Q34Game5P2JST12ObjectCameraFv(void)
+void @4@Game::P2JST::ObjectCamera::stop(void)
 {
 /*
 .loc_0x0:
@@ -818,7 +818,7 @@ void @4@stop__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042FD90
  * Size:	000008
  */
-void @4@start__Q34Game5P2JST12ObjectCameraFv(void)
+void @4@Game::P2JST::ObjectCamera::start(void)
 {
 /*
 .loc_0x0:
@@ -832,7 +832,7 @@ void @4@start__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042FD98
  * Size:	000008
  */
-void @4@update__Q34Game5P2JST12ObjectCameraFv(void)
+void @4@Game::P2JST::ObjectCamera::update(void)
 {
 /*
 .loc_0x0:
@@ -846,7 +846,7 @@ void @4@update__Q34Game5P2JST12ObjectCameraFv(void)
  * Address:	8042FDA0
  * Size:	000008
  */
-void @4@reset__Q34Game5P2JST12ObjectCameraFv(void)
+void @4@Game::P2JST::ObjectCamera::reset(void)
 {
 /*
 .loc_0x0:

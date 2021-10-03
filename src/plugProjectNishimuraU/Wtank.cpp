@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8027C80C
  * Size:	0000A4
  */
-void __ct__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q34Game5Wtank3ObjFv(void)
  * Address:	8027C8B0
  * Size:	0001A4
  */
-void changeMaterial__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void changeMaterial__Q34Game5Wtank3ObjFv(void)
  * Address:	8027CA54
  * Size:	00019C
  */
-void createEffect__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void createEffect__Q34Game5Wtank3ObjFv(void)
  * Address:	8027CBF0
  * Size:	00009C
  */
-void __dt__Q23efx14TTankWatYodareFv(void)
+void efx::TTankWatYodare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -363,7 +363,7 @@ void __dt__Q23efx14TTankWatYodareFv(void)
  * Address:	........
  * Size:	0000F8
  */
-void __dt__Q23efx8TTankWatFv(void)
+void efx::TTankWat::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -373,7 +373,7 @@ void __dt__Q23efx8TTankWatFv(void)
  * Address:	8027CC8C
  * Size:	000084
  */
-void __dt__Q23efx11TTankWatHitFv(void)
+void efx::TTankWatHit::__dt(void)
 {
 /*
 .loc_0x0:
@@ -422,7 +422,7 @@ void __dt__Q23efx11TTankWatHitFv(void)
  * Address:	8027CD10
  * Size:	00006C
  */
-void __dt__Q23efx17TOneEmitterSimpleFv(void)
+void efx::TOneEmitterSimple::__dt(void)
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void __dt__Q23efx17TOneEmitterSimpleFv(void)
  * Address:	8027CD7C
  * Size:	000060
  */
-void __dt__Q23efx26TParticleCallBack_TankFireFv(void)
+void efx::TParticleCallBack_TankFire::__dt(void)
 {
 /*
 .loc_0x0:
@@ -501,7 +501,7 @@ void __dt__Q23efx26TParticleCallBack_TankFireFv(void)
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx10TChaseMtx4Fv(void)
+void efx::TChaseMtx4::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -511,7 +511,7 @@ void __dt__Q23efx10TChaseMtx4Fv(void)
  * Address:	8027CDDC
  * Size:	000050
  */
-void setupEffect__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -543,7 +543,7 @@ void setupEffect__Q34Game5Wtank3ObjFv(void)
  * Address:	8027CE2C
  * Size:	000034
  */
-void startEffect__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::startEffect(void)
 {
 /*
 .loc_0x0:
@@ -568,7 +568,7 @@ void startEffect__Q34Game5Wtank3ObjFv(void)
  * Address:	8027CE60
  * Size:	000054
  */
-void startYodare__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::startYodare(void)
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void startYodare__Q34Game5Wtank3ObjFv(void)
  * Address:	8027CEB4
  * Size:	000048
  */
-void fade__Q23efx8TTankWatFv(void)
+void efx::TTankWat::fade(void)
 {
 /*
 .loc_0x0:
@@ -633,7 +633,7 @@ void fade__Q23efx8TTankWatFv(void)
  * Address:	8027CEFC
  * Size:	000044
  */
-void fade__Q23efx17TOneEmitterSimpleFv(void)
+void efx::TOneEmitterSimple::fade(void)
 {
 /*
 .loc_0x0:
@@ -664,7 +664,7 @@ void fade__Q23efx17TOneEmitterSimpleFv(void)
  * Address:	8027CF40
  * Size:	000050
  */
-void finishEffect__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::finishEffect(void)
 {
 /*
 .loc_0x0:
@@ -696,7 +696,7 @@ void finishEffect__Q34Game5Wtank3ObjFv(void)
  * Address:	8027CF90
  * Size:	000050
  */
-void effectDrawOn__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -728,7 +728,7 @@ void effectDrawOn__Q34Game5Wtank3ObjFv(void)
  * Address:	8027CFE0
  * Size:	000040
  */
-void endDemoDrawOn__Q23efx8TTankWatFv(void)
+void efx::TTankWat::endDemoDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -756,7 +756,7 @@ void endDemoDrawOn__Q23efx8TTankWatFv(void)
  * Address:	8027D020
  * Size:	00001C
  */
-void endDemoDrawOn__Q23efx17TOneEmitterSimpleFv(void)
+void efx::TOneEmitterSimple::endDemoDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -775,7 +775,7 @@ void endDemoDrawOn__Q23efx17TOneEmitterSimpleFv(void)
  * Address:	8027D03C
  * Size:	000050
  */
-void effectDrawOff__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -807,7 +807,7 @@ void effectDrawOff__Q34Game5Wtank3ObjFv(void)
  * Address:	8027D08C
  * Size:	000040
  */
-void startDemoDrawOff__Q23efx8TTankWatFv(void)
+void efx::TTankWat::startDemoDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -835,7 +835,7 @@ void startDemoDrawOff__Q23efx8TTankWatFv(void)
  * Address:	8027D0CC
  * Size:	00001C
  */
-void startDemoDrawOff__Q23efx17TOneEmitterSimpleFv(void)
+void efx::TOneEmitterSimple::startDemoDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -854,7 +854,7 @@ void startDemoDrawOff__Q23efx17TOneEmitterSimpleFv(void)
  * Address:	8027D0E8
  * Size:	000060
  */
-void interactCreature__Q34Game5Wtank3ObjFPQ24Game8Creature(void)
+void Game::Wtank::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -890,7 +890,7 @@ void interactCreature__Q34Game5Wtank3ObjFPQ24Game8Creature(void)
  * Address:	8027D148
  * Size:	00000C
  */
-void stopEffectRadius__Q34Game5Wtank3ObjFf(void)
+void Game::Wtank::Obj::stopEffectRadius( (float))
 {
 /*
 .loc_0x0:
@@ -905,7 +905,7 @@ void stopEffectRadius__Q34Game5Wtank3ObjFf(void)
  * Address:	8027D154
  * Size:	000044
  */
-void createChargeSE__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::createChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -934,7 +934,7 @@ void createChargeSE__Q34Game5Wtank3ObjFv(void)
  * Address:	8027D198
  * Size:	000044
  */
-void createDisChargeSE__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::createDisChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -963,7 +963,7 @@ void createDisChargeSE__Q34Game5Wtank3ObjFv(void)
  * Address:	8027D1DC
  * Size:	000044
  */
-void forceKill__Q23efx17TOneEmitterSimpleFv(void)
+void efx::TOneEmitterSimple::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -994,7 +994,7 @@ void forceKill__Q23efx17TOneEmitterSimpleFv(void)
  * Address:	8027D220
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1008,7 +1008,7 @@ void getEnemyTypeID__Q34Game5Wtank3ObjFv(void)
  * Address:	8027D228
  * Size:	000014
  */
-void @780@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @780@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1025,7 +1025,7 @@ void @780@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8027D23C
  * Size:	000014
  */
-void @780@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @780@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1042,7 +1042,7 @@ void @780@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8027D250
  * Size:	000014
  */
-void @780@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @780@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1059,7 +1059,7 @@ void @780@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8027D264
  * Size:	000014
  */
-void @780@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @780@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1076,7 +1076,7 @@ void @780@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8027D278
  * Size:	000014
  */
-void @780@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @780@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1093,7 +1093,7 @@ void @780@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8027D28C
  * Size:	000014
  */
-void @780@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @780@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -1110,7 +1110,7 @@ void @780@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	8027D2A0
  * Size:	000008
  */
-void @4@executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter(void)
+void @4@efx::TOneEmitterSimple::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1124,7 +1124,7 @@ void @4@executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter(void)
  * Address:	8027D2A8
  * Size:	000008
  */
-void @4@__dt__Q23efx11TTankWatHitFv(void)
+void @4@efx::TTankWatHit::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1138,7 +1138,7 @@ void @4@__dt__Q23efx11TTankWatHitFv(void)
  * Address:	8027D2B0
  * Size:	000008
  */
-void @4@__dt__Q23efx14TTankWatYodareFv(void)
+void @4@efx::TTankWatYodare::__dt(void)
 {
 /*
 .loc_0x0:

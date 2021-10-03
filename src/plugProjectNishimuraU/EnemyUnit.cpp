@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802440F4
  * Size:	000074
  */
-void __ct__Q34Game4Cave9EnemyNodeFv(void)
+void Game::Cave::EnemyNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -56,7 +56,7 @@ void __ct__Q34Game4Cave9EnemyNodeFv(void)
  * Address:	80244168
  * Size:	000060
  */
-void __dt__Q24Game16ObjectLayoutNodeFv(void)
+void Game::ObjectLayoutNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -94,7 +94,7 @@ void __dt__Q24Game16ObjectLayoutNodeFv(void)
  * Address:	802441C8
  * Size:	000094
  */
-void __ct__Q34Game4Cave9EnemyNodeFPQ34Game4Cave9EnemyUnitPQ34Game4Cave7BaseGeni(void)
+void Game::Cave::EnemyNode::__ct( (Game::Cave::EnemyUnit *, Game::Cave::BaseGen *, int))
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void __ct__Q34Game4Cave9EnemyNodeFPQ34Game4Cave9EnemyUnitPQ34Game4Cave7BaseGeni(
  * Address:	8024425C
  * Size:	0001A8
  */
-void makeGlobalData__Q34Game4Cave9EnemyNodeFPQ34Game4Cave7MapNode(void)
+void Game::Cave::EnemyNode::makeGlobalData( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3<float>f(void)
  * Address:	80244424
  * Size:	000008
  */
-void setBirthDoorIndex__Q34Game4Cave9EnemyNodeFi(void)
+void Game::Cave::EnemyNode::setBirthDoorIndex( (int))
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void setBirthDoorIndex__Q34Game4Cave9EnemyNodeFi(void)
  * Address:	8024442C
  * Size:	000020
  */
-void getObjectId__Q34Game4Cave9EnemyNodeFv(void)
+void Game::Cave::EnemyNode::getObjectId(void)
 {
 /*
 .loc_0x0:
@@ -325,7 +325,7 @@ void getObjectId__Q34Game4Cave9EnemyNodeFv(void)
  * Address:	8024444C
  * Size:	000020
  */
-void getExtraCode__Q34Game4Cave9EnemyNodeFv(void)
+void Game::Cave::EnemyNode::getExtraCode(void)
 {
 /*
 .loc_0x0:
@@ -347,7 +347,7 @@ void getExtraCode__Q34Game4Cave9EnemyNodeFv(void)
  * Address:	8024446C
  * Size:	000020
  */
-void getObjectType__Q34Game4Cave9EnemyNodeFv(void)
+void Game::Cave::EnemyNode::getObjectType(void)
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void getObjectType__Q34Game4Cave9EnemyNodeFv(void)
  * Address:	8024448C
  * Size:	000008
  */
-void getBirthCount__Q34Game4Cave9EnemyNodeFv(void)
+void Game::Cave::EnemyNode::getBirthCount(void)
 {
 /*
 .loc_0x0:
@@ -383,7 +383,7 @@ void getBirthCount__Q34Game4Cave9EnemyNodeFv(void)
  * Address:	80244494
  * Size:	000014
  */
-void getBirthPosition__Q34Game4Cave9EnemyNodeFRfRf(void)
+void Game::Cave::EnemyNode::getBirthPosition( (float &, float &))
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void getBirthPosition__Q34Game4Cave9EnemyNodeFRfRf(void)
  * Address:	802444A8
  * Size:	000008
  */
-void getDirection__Q34Game4Cave9EnemyNodeFv(void)
+void Game::Cave::EnemyNode::getDirection(void)
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void getDirection__Q34Game4Cave9EnemyNodeFv(void)
  * Address:	802444B0
  * Size:	000008
  */
-void getBirthDoorIndex__Q34Game4Cave9EnemyNodeFv(void)
+void Game::Cave::EnemyNode::getBirthDoorIndex(void)
 {
 /*
 .loc_0x0:
@@ -428,7 +428,7 @@ void getBirthDoorIndex__Q34Game4Cave9EnemyNodeFv(void)
  * Address:	802444B8
  * Size:	000070
  */
-void __dt__Q34Game4Cave9EnemyNodeFv(void)
+void Game::Cave::EnemyNode::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8044CBB8
  * Size:	000054
  */
-void __ct__Q24Demo7SectionFP7JKRHeap(void)
+void Demo::Section::__ct( (JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -48,7 +48,7 @@ void __ct__Q24Demo7SectionFP7JKRHeap(void)
  * Address:	8044CC0C
  * Size:	000088
  */
-void __dt__Q24Demo7SectionFv(void)
+void Demo::Section::__dt(void)
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void __dt__Q24Demo7SectionFv(void)
  * Address:	8044CC94
  * Size:	0001A0
  */
-void init__Q24Demo7SectionFv(void)
+void Demo::Section::init(void)
 {
 /*
 .loc_0x0:
@@ -220,7 +220,7 @@ void init__Q24Demo7SectionFv(void)
  * Address:	8044CE34
  * Size:	0000E8
  */
-void doDraw__Q24Demo7SectionFR8Graphics(void)
+void Demo::Section::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -290,7 +290,7 @@ void doDraw__Q24Demo7SectionFR8Graphics(void)
  * Address:	8044CF1C
  * Size:	0000AC
  */
-void doUpdate__Q24Demo7SectionFv(void)
+void Demo::Section::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void doUpdate__Q24Demo7SectionFv(void)
  * Address:	8044CFC8
  * Size:	0000B0
  */
-void doExit__Q24Demo7SectionFv(void)
+void Demo::Section::doExit(void)
 {
 /*
 .loc_0x0:
@@ -411,7 +411,7 @@ void doExit__Q24Demo7SectionFv(void)
  * Address:	8044D078
  * Size:	0000A4
  */
-void doLoadingStart__Q24Demo7SectionFv(void)
+void Demo::Section::doLoadingStart(void)
 {
 /*
 .loc_0x0:
@@ -466,7 +466,7 @@ void doLoadingStart__Q24Demo7SectionFv(void)
  * Address:	8044D11C
  * Size:	000038
  */
-void doLoading__Q24Demo7SectionFv(void)
+void Demo::Section::doLoading(void)
 {
 /*
 .loc_0x0:
@@ -492,7 +492,7 @@ void doLoading__Q24Demo7SectionFv(void)
  * Address:	8044D154
  * Size:	0000C8
  */
-void loadResource__Q24Demo7SectionFv(void)
+void Demo::Section::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void loadResource__Q24Demo7SectionFv(void)
  * Address:	8044D21C
  * Size:	000070
  */
-void __dt__Q24Demo11HIORootNodeFv(void)
+void Demo::HIORootNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -604,7 +604,7 @@ void __dt__Q24Demo11HIORootNodeFv(void)
  * Address:	8044D28C
  * Size:	000008
  */
-void forceReset__Q24Demo7SectionFv(void)
+void Demo::Section::forceReset(void)
 {
 /*
 .loc_0x0:

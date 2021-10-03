@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8042FDA8
  * Size:	000094
  */
-void __ct__Q34Game5P2JST15ObjectGameActorFPCcPQ24Game11MoviePlayerPQ24Game8Creature(void)
+void Game::P2JST::ObjectGameActor::__ct( (char const *, Game::MoviePlayer *, Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void __ct__Q34Game5P2JST15ObjectGameActorFPCcPQ24Game11MoviePlayerPQ24Game8Creat
  * Address:	8042FE3C
  * Size:	000054
  */
-void reset__Q34Game5P2JST15ObjectGameActorFv(void)
+void Game::P2JST::ObjectGameActor::reset(void)
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void reset__Q34Game5P2JST15ObjectGameActorFv(void)
  * Address:	8042FE90
  * Size:	000124
  */
-void stop__Q34Game5P2JST15ObjectGameActorFv(void)
+void Game::P2JST::ObjectGameActor::stop(void)
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void stop__Q34Game5P2JST15ObjectGameActorFv(void)
  * Address:	8042FFB4
  * Size:	0004D8
  */
-void update__Q34Game5P2JST15ObjectGameActorFv(void)
+void Game::P2JST::ObjectGameActor::update(void)
 {
 /*
 .loc_0x0:
@@ -554,7 +554,7 @@ void update__Q34Game5P2JST15ObjectGameActorFv(void)
  * Address:	8043048C
  * Size:	000074
  */
-void JSGSetAnimation__Q34Game5P2JST15ObjectGameActorFUl(void)
+void Game::P2JST::ObjectGameActor::JSGSetAnimation( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -597,7 +597,7 @@ void JSGSetAnimation__Q34Game5P2JST15ObjectGameActorFUl(void)
  * Address:	80430500
  * Size:	000008
  */
-void JSGSetShape__Q34Game5P2JST15ObjectGameActorFUl(void)
+void Game::P2JST::ObjectGameActor::JSGSetShape( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -611,7 +611,7 @@ void JSGSetShape__Q34Game5P2JST15ObjectGameActorFUl(void)
  * Address:	80430508
  * Size:	00001C
  */
-void JSGSetTranslation__Q34Game5P2JST15ObjectGameActorFRC3Vec(void)
+void Game::P2JST::ObjectGameActor::JSGSetTranslation( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -630,7 +630,7 @@ void JSGSetTranslation__Q34Game5P2JST15ObjectGameActorFRC3Vec(void)
  * Address:	80430524
  * Size:	000058
  */
-void JSGGetTranslation__Q34Game5P2JST15ObjectGameActorCFP3Vec(void)
+void Game::P2JST::ObjectGameActor::JSGGetTranslation( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -664,7 +664,7 @@ void JSGGetTranslation__Q34Game5P2JST15ObjectGameActorCFP3Vec(void)
  * Address:	8043057C
  * Size:	00001C
  */
-void JSGSetRotation__Q34Game5P2JST15ObjectGameActorFRC3Vec(void)
+void Game::P2JST::ObjectGameActor::JSGSetRotation( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -683,7 +683,7 @@ void JSGSetRotation__Q34Game5P2JST15ObjectGameActorFRC3Vec(void)
  * Address:	80430598
  * Size:	00001C
  */
-void JSGGetRotation__Q34Game5P2JST15ObjectGameActorCFP3Vec(void)
+void Game::P2JST::ObjectGameActor::JSGGetRotation( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -702,7 +702,7 @@ void JSGGetRotation__Q34Game5P2JST15ObjectGameActorCFP3Vec(void)
  * Address:	804305B4
  * Size:	0000E0
  */
-void JSGFindNodeID__Q34Game5P2JST15ObjectGameActorCFPCc(void)
+void Game::P2JST::ObjectGameActor::JSGFindNodeID( const(char const *))
 {
 /*
 .loc_0x0:
@@ -776,7 +776,7 @@ void JSGFindNodeID__Q34Game5P2JST15ObjectGameActorCFPCc(void)
  * Address:	80430694
  * Size:	0000D8
  */
-void JSGGetNodeTransformation__Q34Game5P2JST15ObjectGameActorCFUlPA4_f(void)
+void Game::P2JST::ObjectGameActor::JSGGetNodeTransformation( const(unsigned long, float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -848,7 +848,7 @@ void JSGGetNodeTransformation__Q34Game5P2JST15ObjectGameActorCFUlPA4_f(void)
  * Address:	8043076C
  * Size:	000138
  */
-void parseUserData___Q34Game5P2JST15ObjectGameActorFUlPCv(void)
+void Game::P2JST::ObjectGameActor::parseUserData_( (unsigned long, void const *))
 {
 /*
 .loc_0x0:
@@ -950,7 +950,7 @@ void parseUserData___Q34Game5P2JST15ObjectGameActorFUlPCv(void)
  * Address:	804308A4
  * Size:	000068
  */
-void __dt__Q34Game5P2JST15ObjectGameActorFv(void)
+void Game::P2JST::ObjectGameActor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1012,7 +1012,7 @@ void __sinit_JSTObjectGameActor_cpp(void)
  * Address:	80430934
  * Size:	000008
  */
-void @4@parseUserData___Q34Game5P2JST15ObjectGameActorFUlPCv(void)
+void @4@Game::P2JST::ObjectGameActor::parseUserData_( (unsigned long, void const *))
 {
 /*
 .loc_0x0:
@@ -1026,7 +1026,7 @@ void @4@parseUserData___Q34Game5P2JST15ObjectGameActorFUlPCv(void)
  * Address:	8043093C
  * Size:	000008
  */
-void @4@stop__Q34Game5P2JST15ObjectGameActorFv(void)
+void @4@Game::P2JST::ObjectGameActor::stop(void)
 {
 /*
 .loc_0x0:
@@ -1040,7 +1040,7 @@ void @4@stop__Q34Game5P2JST15ObjectGameActorFv(void)
  * Address:	80430944
  * Size:	000008
  */
-void @4@update__Q34Game5P2JST15ObjectGameActorFv(void)
+void @4@Game::P2JST::ObjectGameActor::update(void)
 {
 /*
 .loc_0x0:
@@ -1054,7 +1054,7 @@ void @4@update__Q34Game5P2JST15ObjectGameActorFv(void)
  * Address:	8043094C
  * Size:	000008
  */
-void @4@reset__Q34Game5P2JST15ObjectGameActorFv(void)
+void @4@Game::P2JST::ObjectGameActor::reset(void)
 {
 /*
 .loc_0x0:

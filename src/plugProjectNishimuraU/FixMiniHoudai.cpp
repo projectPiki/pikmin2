@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8030195C
  * Size:	000090
  */
-void __ct__Q34Game13FixMiniHoudai3ObjFv(void)
+void Game::FixMiniHoudai::Obj::__ct(void)
 {
 /*
 .loc_0x0:

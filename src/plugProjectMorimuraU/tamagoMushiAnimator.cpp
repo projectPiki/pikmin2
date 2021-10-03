@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8036D914
  * Size:	000008
  */
-void setAnimMgr__Q34Game11TamagoMushi14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::TamagoMushi::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game11TamagoMushi14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	8036D91C
  * Size:	000008
  */
-void getAnimator__Q34Game11TamagoMushi14ProperAnimatorFi(void)
+void Game::TamagoMushi::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game11TamagoMushi14ProperAnimatorFi(void)
  * Address:	8036D924
  * Size:	00005C
  */
-void __dt__Q34Game11TamagoMushi14ProperAnimatorFv(void)
+void Game::TamagoMushi::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game11TamagoMushi14ProperAnimatorFv(void)
  * Address:	8036D980
  * Size:	000008
  */
-void getAnimator__Q34Game11TamagoMushi14ProperAnimatorFv(void)
+void Game::TamagoMushi::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

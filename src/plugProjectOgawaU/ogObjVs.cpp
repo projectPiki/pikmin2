@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80325A40
  * Size:	00015C
  */
-void __ct__Q32og9newScreen5ObjVsFPCc(void)
+void og::newScreen::ObjVs::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -114,7 +114,7 @@ void __ct__Q32og9newScreen5ObjVsFPCc(void)
  * Address:	80325B9C
  * Size:	0000AC
  */
-void __dt__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::__dt(void)
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void __dt__Q32og9newScreen5ObjVsFv(void)
  * Address:	80325C48
  * Size:	000800
  */
-void doCreate__Q32og9newScreen5ObjVsFP10JKRArchive(void)
+void og::newScreen::ObjVs::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -749,7 +749,7 @@ void doCreate__Q32og9newScreen5ObjVsFP10JKRArchive(void)
  * Address:	........
  * Size:	000020
  */
-void isCompBdama__Q32og9newScreen5ObjVsFi(void)
+void og::newScreen::ObjVs::isCompBdama( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -759,7 +759,7 @@ void isCompBdama__Q32og9newScreen5ObjVsFi(void)
  * Address:	........
  * Size:	000138
  */
-void startGetBdama__Q32og9newScreen5ObjVsFP7J2DPane(void)
+void og::newScreen::ObjVs::startGetBdama( (J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -769,7 +769,7 @@ void startGetBdama__Q32og9newScreen5ObjVsFP7J2DPane(void)
  * Address:	........
  * Size:	0000C8
  */
-void startBdamaComp__Q32og9newScreen5ObjVsFP7J2DPane(void)
+void og::newScreen::ObjVs::startBdamaComp( (J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -779,7 +779,7 @@ void startBdamaComp__Q32og9newScreen5ObjVsFP7J2DPane(void)
  * Address:	........
  * Size:	000124
  */
-void startBdamaWinRed__Q32og9newScreen5ObjVsFP7J2DPane(void)
+void og::newScreen::ObjVs::startBdamaWinRed( (J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -789,7 +789,7 @@ void startBdamaWinRed__Q32og9newScreen5ObjVsFP7J2DPane(void)
  * Address:	........
  * Size:	00013C
  */
-void startBdamaWinBlue__Q32og9newScreen5ObjVsFP7J2DPane(void)
+void og::newScreen::ObjVs::startBdamaWinBlue( (J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -799,7 +799,7 @@ void startBdamaWinBlue__Q32og9newScreen5ObjVsFP7J2DPane(void)
  * Address:	80326448
  * Size:	000A28
  */
-void setOnOffBdama__Q32og9newScreen5ObjVsFb(void)
+void og::newScreen::ObjVs::setOnOffBdama( (bool))
 {
 /*
 .loc_0x0:
@@ -1501,7 +1501,7 @@ void setOnOffBdama__Q32og9newScreen5ObjVsFb(void)
  * Address:	80326E70
  * Size:	0002B8
  */
-void init__Q42og9newScreen5ObjVs9ScreenSetFPQ32og6Screen8DataNaviP10JKRArchivePUl(void)
+void og::newScreen::ObjVs::ScreenSet::init( (og::Screen::DataNavi *, JKRArchive *, unsigned long *))
 {
 /*
 .loc_0x0:
@@ -1689,7 +1689,7 @@ void init__Q42og9newScreen5ObjVs9ScreenSetFPQ32og6Screen8DataNaviP10JKRArchivePU
  * Address:	........
  * Size:	0000EC
  */
-void update__Q42og9newScreen5ObjVs9ScreenSetFRQ32og6Screen8DataNavi(void)
+void og::newScreen::ObjVs::ScreenSet::update( (og::Screen::DataNavi &))
 {
 	// UNUSED FUNCTION
 }
@@ -1699,7 +1699,7 @@ void update__Q42og9newScreen5ObjVs9ScreenSetFRQ32og6Screen8DataNavi(void)
  * Address:	80327128
  * Size:	00056C
  */
-void checkObake__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::checkObake(void)
 {
 /*
 .loc_0x0:
@@ -2102,7 +2102,7 @@ void checkObake__Q32og9newScreen5ObjVsFv(void)
  * Address:	80327694
  * Size:	0002AC
  */
-void doUpdateCommon__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -2301,7 +2301,7 @@ void doUpdateCommon__Q32og9newScreen5ObjVsFv(void)
  * Address:	80327940
  * Size:	000044
  */
-void doUpdate__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -2332,7 +2332,7 @@ void doUpdate__Q32og9newScreen5ObjVsFv(void)
  * Address:	80327984
  * Size:	000130
  */
-void doDraw__Q32og9newScreen5ObjVsFR8Graphics(void)
+void og::newScreen::ObjVs::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2420,7 +2420,7 @@ void doDraw__Q32og9newScreen5ObjVsFR8Graphics(void)
  * Address:	80327AB4
  * Size:	000014
  */
-void doStart__Q32og9newScreen5ObjVsFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjVs::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -2437,7 +2437,7 @@ void doStart__Q32og9newScreen5ObjVsFPCQ26Screen13StartSceneArg(void)
  * Address:	80327AC8
  * Size:	000010
  */
-void doEnd__Q32og9newScreen5ObjVsFPCQ26Screen11EndSceneArg(void)
+void og::newScreen::ObjVs::doEnd( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -2453,7 +2453,7 @@ void doEnd__Q32og9newScreen5ObjVsFPCQ26Screen11EndSceneArg(void)
  * Address:	80327AD8
  * Size:	000004
  */
-void doUpdateFadeinFinish__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -2466,7 +2466,7 @@ void doUpdateFadeinFinish__Q32og9newScreen5ObjVsFv(void)
  * Address:	80327ADC
  * Size:	00000C
  */
-void doUpdateFinish__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -2481,7 +2481,7 @@ void doUpdateFinish__Q32og9newScreen5ObjVsFv(void)
  * Address:	80327AE8
  * Size:	000004
  */
-void doUpdateFadeoutFinish__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -2494,7 +2494,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen5ObjVsFv(void)
  * Address:	80327AEC
  * Size:	000074
  */
-void doUpdateFadein__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -2537,7 +2537,7 @@ void doUpdateFadein__Q32og9newScreen5ObjVsFv(void)
  * Address:	80327B60
  * Size:	00007C
  */
-void doUpdateFadeout__Q32og9newScreen5ObjVsFv(void)
+void og::newScreen::ObjVs::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -2582,7 +2582,7 @@ void doUpdateFadeout__Q32og9newScreen5ObjVsFv(void)
  * Address:	80327BDC
  * Size:	00000C
  */
-void getName__Q25efx2d8ArgScaleFv(void)
+void efx2d::ArgScale::getName(void)
 {
 /*
 .loc_0x0:
@@ -2636,7 +2636,7 @@ void __sinit_ogObjVs_cpp(void)
  * Address:	80327C54
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen5ObjVsFv(void)
+void @24@og::newScreen::ObjVs::__dt(void)
 {
 /*
 .loc_0x0:

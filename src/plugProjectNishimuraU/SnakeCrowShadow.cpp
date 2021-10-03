@@ -263,7 +263,7 @@ void makeShadowSRT__Q24Game25SnakeCrowSphereShadowNodeFRQ24Game15JointShadowParm
  * Address:	802F83E8
  * Size:	0000EC
  */
-void __ct__Q34Game9SnakeCrow18SnakeCrowShadowMgrFPQ34Game9SnakeCrow3Obj(void)
+void Game::SnakeCrow::SnakeCrowShadowMgr::__ct( (Game::SnakeCrow::Obj *))
 {
 /*
 .loc_0x0:
@@ -342,7 +342,7 @@ void __ct__Q34Game9SnakeCrow18SnakeCrowShadowMgrFPQ34Game9SnakeCrow3Obj(void)
  * Address:	802F84D4
  * Size:	0000C0
  */
-void init__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv(void)
+void Game::SnakeCrow::SnakeCrowShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -404,7 +404,7 @@ void init__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv(void)
  * Address:	802F8594
  * Size:	000078
  */
-void startJointShadow__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv(void)
+void Game::SnakeCrow::SnakeCrowShadowMgr::startJointShadow(void)
 {
 /*
 .loc_0x0:
@@ -450,7 +450,7 @@ void startJointShadow__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv(void)
  * Address:	802F860C
  * Size:	000064
  */
-void finishJointShadow__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv(void)
+void Game::SnakeCrow::SnakeCrowShadowMgr::finishJointShadow(void)
 {
 /*
 .loc_0x0:
@@ -491,7 +491,7 @@ void finishJointShadow__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv(void)
  * Address:	802F8670
  * Size:	00025C
  */
-void update__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv(void)
+void Game::SnakeCrow::SnakeCrowShadowMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -664,7 +664,7 @@ void update__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv(void)
  * Address:	802F88CC
  * Size:	000070
  */
-void __dt__Q24Game25SnakeCrowSphereShadowNodeFv(void)
+void Game::SnakeCrowSphereShadowNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void __dt__Q24Game25SnakeCrowSphereShadowNodeFv(void)
  * Address:	802F893C
  * Size:	000070
  */
-void __dt__Q24Game23SnakeCrowTubeShadowNodeFv(void)
+void Game::SnakeCrowTubeShadowNode::__dt(void)
 {
 /*
 .loc_0x0:

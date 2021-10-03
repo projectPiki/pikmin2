@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000030
  */
-void setJointInfo__Q34Game5Queen15QueenShadowNodeFPQ28SysShape5JointR7Matrixf(void)
+void Game::Queen::QueenShadowNode::setJointInfo( (SysShape::Joint *, Matrixf &))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void setJointInfo__Q34Game5Queen15QueenShadowNodeFPQ28SysShape5JointR7Matrixf(vo
  * Address:	8028EB68
  * Size:	0001AC
  */
-void makeShadowSRT__Q34Game5Queen15QueenShadowNodeFv(void)
+void Game::Queen::QueenShadowNode::makeShadowSRT(void)
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void makeShadowSRT__Q34Game5Queen15QueenShadowNodeFv(void)
  * Address:	8028ED14
  * Size:	0000B4
  */
-void __ct__Q34Game5Queen14QueenShadowMgrFPQ34Game5Queen3Obj(void)
+void Game::Queen::QueenShadowMgr::__ct( (Game::Queen::Obj *))
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void __ct__Q34Game5Queen14QueenShadowMgrFPQ34Game5Queen3Obj(void)
  * Address:	8028EDC8
  * Size:	0002A4
  */
-void init__Q34Game5Queen14QueenShadowMgrFv(void)
+void Game::Queen::QueenShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -392,7 +392,7 @@ void init__Q34Game5Queen14QueenShadowMgrFv(void)
  * Address:	8028F06C
  * Size:	00005C
  */
-void update__Q34Game5Queen14QueenShadowMgrFv(void)
+void Game::Queen::QueenShadowMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -429,7 +429,7 @@ void update__Q34Game5Queen14QueenShadowMgrFv(void)
  * Address:	8028F0C8
  * Size:	000070
  */
-void __dt__Q34Game5Queen15QueenShadowNodeFv(void)
+void Game::Queen::QueenShadowNode::__dt(void)
 {
 /*
 .loc_0x0:

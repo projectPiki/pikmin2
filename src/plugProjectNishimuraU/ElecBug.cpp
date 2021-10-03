@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8027AC88
  * Size:	000138
  */
-void __ct__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027ADC0
  * Size:	000004
  */
-void setInitialSetting__Q34Game7ElecBug3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::ElecBug::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game7ElecBug3ObjFPQ24Game21EnemyInitialParamBase(void
  * Address:	8027ADC4
  * Size:	0000A4
  */
-void onInit__Q34Game7ElecBug3ObjFPQ24Game15CreatureInitArg(void)
+void Game::ElecBug::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void onInit__Q34Game7ElecBug3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8027AE68
  * Size:	000044
  */
-void onKill__Q34Game7ElecBug3ObjFPQ24Game15CreatureKillArg(void)
+void Game::ElecBug::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void onKill__Q34Game7ElecBug3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	8027AEAC
  * Size:	000048
  */
-void doUpdate__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -236,7 +236,7 @@ void doUpdate__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027AEF4
  * Size:	000004
  */
-void doDirectDraw__Q34Game7ElecBug3ObjFR8Graphics(void)
+void Game::ElecBug::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void doDirectDraw__Q34Game7ElecBug3ObjFR8Graphics(void)
  * Address:	8027AEF8
  * Size:	000020
  */
-void doDebugDraw__Q34Game7ElecBug3ObjFR8Graphics(void)
+void Game::ElecBug::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -269,7 +269,7 @@ void doDebugDraw__Q34Game7ElecBug3ObjFR8Graphics(void)
  * Address:	8027AF18
  * Size:	00004C
  */
-void setFSM__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3FSM(void)
+void Game::ElecBug::Obj::setFSM( (Game::ElecBug::FSM *))
 {
 /*
 .loc_0x0:
@@ -300,7 +300,7 @@ void setFSM__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3FSM(void)
  * Address:	8027AF64
  * Size:	000080
  */
-void getShadowParam__Q34Game7ElecBug3ObjFRQ24Game11ShadowParam(void)
+void Game::ElecBug::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -344,7 +344,7 @@ void getShadowParam__Q34Game7ElecBug3ObjFRQ24Game11ShadowParam(void)
  * Address:	8027AFE4
  * Size:	0001E4
  */
-void collisionCallback__Q34Game7ElecBug3ObjFRQ24Game9CollEvent(void)
+void Game::ElecBug::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -491,7 +491,7 @@ void collisionCallback__Q34Game7ElecBug3ObjFRQ24Game9CollEvent(void)
  * Address:	8027B1C8
  * Size:	0001BC
  */
-void pressCallBack__Q34Game7ElecBug3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::ElecBug::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -628,7 +628,7 @@ void pressCallBack__Q34Game7ElecBug3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8027B384
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game7ElecBug3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::ElecBug::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -651,7 +651,7 @@ void hipdropCallBack__Q34Game7ElecBug3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8027B3B0
  * Size:	0000C0
  */
-void earthquakeCallBack__Q34Game7ElecBug3ObjFPQ24Game8Creaturef(void)
+void Game::ElecBug::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -715,7 +715,7 @@ void earthquakeCallBack__Q34Game7ElecBug3ObjFPQ24Game8Creaturef(void)
  * Address:	8027B470
  * Size:	000040
  */
-void doStartStoneState__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -743,7 +743,7 @@ void doStartStoneState__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B4B0
  * Size:	000040
  */
-void doFinishStoneState__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void doFinishStoneState__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B4F0
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -798,7 +798,7 @@ void doStartWaitingBirthTypeDrop__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B524
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -823,7 +823,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B558
  * Size:	000028
  */
-void startCarcassMotion__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -845,7 +845,7 @@ void startCarcassMotion__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B580
  * Size:	000020
  */
-void doStartMovie__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void doStartMovie__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B5A0
  * Size:	000020
  */
-void doEndMovie__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -885,7 +885,7 @@ void doEndMovie__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B5C0
  * Size:	0001A4
  */
-void setTargetPosition__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::setTargetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1008,7 +1008,7 @@ void setTargetPosition__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B764
  * Size:	00001C
  */
-void resetPartnerPtr__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::resetPartnerPtr(void)
 {
 /*
 .loc_0x0:
@@ -1027,7 +1027,7 @@ void resetPartnerPtr__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B780
  * Size:	000070
  */
-void isBecomeChargeState__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::isBecomeChargeState(void)
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void isBecomeChargeState__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B7F0
  * Size:	000030
  */
-void startChargeState__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj(void)
+void Game::ElecBug::Obj::startChargeState( (Game::ElecBug::Obj *))
 {
 /*
 .loc_0x0:
@@ -1097,7 +1097,7 @@ void startChargeState__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj(void)
  * Address:	8027B820
  * Size:	000044
  */
-void startChildChargeState__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj(void)
+void Game::ElecBug::Obj::startChildChargeState( (Game::ElecBug::Obj *))
 {
 /*
 .loc_0x0:
@@ -1126,7 +1126,7 @@ void startChildChargeState__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj(void)
  * Address:	8027B864
  * Size:	000044
  */
-void createEffect__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1159,7 +1159,7 @@ void createEffect__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027B8A8
  * Size:	000168
  */
-void __ct__Q23efx12TDnkmsEffectFv(void)
+void efx::TDnkmsEffect::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1261,7 +1261,7 @@ void __ct__Q23efx12TDnkmsEffectFv(void)
  * Address:	8027BA10
  * Size:	000084
  */
-void __dt__Q23efx14TDnkmsThunderBFv(void)
+void efx::TDnkmsThunderB::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1310,7 +1310,7 @@ void __dt__Q23efx14TDnkmsThunderBFv(void)
  * Address:	8027BA94
  * Size:	000084
  */
-void __dt__Q23efx14TDnkmsThunderAFv(void)
+void efx::TDnkmsThunderA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1359,7 +1359,7 @@ void __dt__Q23efx14TDnkmsThunderAFv(void)
  * Address:	8027BB18
  * Size:	00009C
  */
-void __dt__Q23efx13TDnkmsHoudenBFv(void)
+void efx::TDnkmsHoudenB::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1414,7 +1414,7 @@ void __dt__Q23efx13TDnkmsHoudenBFv(void)
  * Address:	8027BBB4
  * Size:	00009C
  */
-void __dt__Q23efx13TDnkmsHoudenAFv(void)
+void efx::TDnkmsHoudenA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1469,7 +1469,7 @@ void __dt__Q23efx13TDnkmsHoudenAFv(void)
  * Address:	8027BC50
  * Size:	000010
  */
-void setupEffect__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -1485,7 +1485,7 @@ void setupEffect__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027BC60
  * Size:	000040
  */
-void startChargeEffect__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::startChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -1513,7 +1513,7 @@ void startChargeEffect__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027BCA0
  * Size:	0000C0
  */
-void startDischargeEffect__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj(void)
+void Game::ElecBug::Obj::startDischargeEffect( (Game::ElecBug::Obj *))
 {
 /*
 .loc_0x0:
@@ -1573,7 +1573,7 @@ void startDischargeEffect__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj(void)
  * Address:	8027BD60
  * Size:	0000A4
  */
-void finishPartnerAndEffect__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::finishPartnerAndEffect(void)
 {
 /*
 .loc_0x0:
@@ -1628,7 +1628,7 @@ void finishPartnerAndEffect__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027BE04
  * Size:	00008C
  */
-void effectDrawOn__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -1675,7 +1675,7 @@ void effectDrawOn__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027BE90
  * Size:	00008C
  */
-void effectDrawOff__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -1722,7 +1722,7 @@ void effectDrawOff__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027BF1C
  * Size:	0004D0
  */
-void checkInteract__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj(void)
+void Game::ElecBug::Obj::checkInteract( (Game::ElecBug::Obj *))
 {
 /*
 .loc_0x0:
@@ -2080,7 +2080,7 @@ void checkInteract__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj(void)
  * Address:	8027C3EC
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -2094,7 +2094,7 @@ void getDownSmokeScale__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027C3F4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -2108,7 +2108,7 @@ void getEnemyTypeID__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027C3FC
  * Size:	000008
  */
-void @4@__dt__Q23efx13TDnkmsHoudenAFv(void)
+void @4@efx::TDnkmsHoudenA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2122,7 +2122,7 @@ void @4@__dt__Q23efx13TDnkmsHoudenAFv(void)
  * Address:	8027C404
  * Size:	000008
  */
-void @4@__dt__Q23efx13TDnkmsHoudenBFv(void)
+void @4@efx::TDnkmsHoudenB::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void Game::_Print(char *, ...)
  * Address:	8042C700
  * Size:	000150
  */
-void __ct__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q24Game11MoviePlayerFv(void)
  * Address:	8042C850
  * Size:	000060
  */
-void __dt__Q24Game12MovieContextFv(void)
+void Game::MovieContext::__dt(void)
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void __dt__Q24Game12MovieContextFv(void)
  * Address:	8042C8B0
  * Size:	00002C
  */
-void reset__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::reset(void)
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void reset__Q24Game11MoviePlayerFv(void)
  * Address:	8042C8DC
  * Size:	00001C
  */
-void getActiveOrima__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::getActiveOrima(void)
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void getActiveOrima__Q24Game11MoviePlayerFv(void)
  * Address:	8042C8F8
  * Size:	00001C
  */
-void getActiveGameCamera__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::getActiveGameCamera(void)
 {
 /*
 .loc_0x0:
@@ -218,7 +218,7 @@ void getActiveGameCamera__Q24Game11MoviePlayerFv(void)
  * Address:	........
  * Size:	00006C
  */
-void setMovieHeap__Q24Game11MoviePlayerFP7JKRHeap(void)
+void Game::MoviePlayer::setMovieHeap( (JKRHeap *))
 {
 	// UNUSED FUNCTION
 }
@@ -228,7 +228,7 @@ void setMovieHeap__Q24Game11MoviePlayerFP7JKRHeap(void)
  * Address:	8042C914
  * Size:	0000BC
  */
-void allocMovieHeap__Q24Game11MoviePlayerFUl(void)
+void Game::MoviePlayer::allocMovieHeap( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -291,7 +291,7 @@ void allocMovieHeap__Q24Game11MoviePlayerFUl(void)
  * Address:	........
  * Size:	000038
  */
-void clearMovieHeap__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::clearMovieHeap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -301,7 +301,7 @@ void clearMovieHeap__Q24Game11MoviePlayerFv(void)
  * Address:	8042C9D0
  * Size:	000060
  */
-void play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg(void)
+void Game::MoviePlayer::play( (Game::MoviePlayArg &))
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg(void)
  * Address:	8042CA30
  * Size:	00033C
  */
-void play__Q24Game11MoviePlayerFPQ24Game11MovieConfigRQ24Game12MoviePlayArgb(void)
+void Game::MoviePlayer::play( (Game::MovieConfig *, Game::MoviePlayArg &, bool))
 {
 /*
 .loc_0x0:
@@ -592,7 +592,7 @@ void play__Q24Game11MoviePlayerFPQ24Game11MovieConfigRQ24Game12MoviePlayArgb(voi
  * Address:	........
  * Size:	000064
  */
-void doStartMovie__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::doStartMovie(void)
 {
 	// UNUSED FUNCTION
 }
@@ -602,7 +602,7 @@ void doStartMovie__Q24Game11MoviePlayerFv(void)
  * Address:	8042CD6C
  * Size:	000024
  */
-void findConfig__Q24Game11MoviePlayerFPcPc(void)
+void Game::MoviePlayer::findConfig( (char *, char *))
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void findConfig__Q24Game11MoviePlayerFPcPc(void)
  * Address:	8042CD90
  * Size:	0000B0
  */
-void __ct__Q24Game12MovieContextFv(void)
+void Game::MovieContext::__ct(void)
 {
 /*
 .loc_0x0:
@@ -679,7 +679,7 @@ void __ct__Q24Game12MovieContextFv(void)
  * Address:	8042CE40
  * Size:	00009C
  */
-void allocContexts__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::allocContexts(void)
 {
 /*
 .loc_0x0:
@@ -732,7 +732,7 @@ void allocContexts__Q24Game11MoviePlayerFv(void)
  * Address:	8042CEDC
  * Size:	0000AC
  */
-void clearContexts__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::clearContexts(void)
 {
 /*
 .loc_0x0:
@@ -791,7 +791,7 @@ void clearContexts__Q24Game11MoviePlayerFv(void)
  * Address:	........
  * Size:	0000F0
  */
-void playSuspended__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::playSuspended(void)
 {
 	// UNUSED FUNCTION
 }
@@ -801,7 +801,7 @@ void playSuspended__Q24Game11MoviePlayerFv(void)
  * Address:	8042CF88
  * Size:	0000AC
  */
-void clearSuspendedDemo__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::clearSuspendedDemo(void)
 {
 /*
 .loc_0x0:
@@ -860,7 +860,7 @@ void clearSuspendedDemo__Q24Game11MoviePlayerFv(void)
  * Address:	........
  * Size:	000020
  */
-void hasSuspendedDemo__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::hasSuspendedDemo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -870,7 +870,7 @@ void hasSuspendedDemo__Q24Game11MoviePlayerFv(void)
  * Address:	8042D034
  * Size:	00006C
  */
-void getNewContext__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::getNewContext(void)
 {
 /*
 .loc_0x0:
@@ -911,7 +911,7 @@ void getNewContext__Q24Game11MoviePlayerFv(void)
  * Address:	8042D0A0
  * Size:	000008
  */
-void getChild__Q24Game12MovieContextFv(void)
+void Game::MovieContext::getChild(void)
 {
 /*
 .loc_0x0:
@@ -925,7 +925,7 @@ void getChild__Q24Game12MovieContextFv(void)
  * Address:	........
  * Size:	000038
  */
-void hasSuspendedContext__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::hasSuspendedContext(void)
 {
 	// UNUSED FUNCTION
 }
@@ -935,7 +935,7 @@ void hasSuspendedContext__Q24Game11MoviePlayerFv(void)
  * Address:	........
  * Size:	00006C
  */
-void getSuspendedContext__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::getSuspendedContext(void)
 {
 	// UNUSED FUNCTION
 }
@@ -945,7 +945,7 @@ void getSuspendedContext__Q24Game11MoviePlayerFv(void)
  * Address:	8042D0A8
  * Size:	000088
  */
-void setContext__Q24Game11MoviePlayerFPQ24Game12MovieContextPQ24Game11MovieConfigRQ24Game12MoviePlayArg(void)
+void Game::MoviePlayer::setContext( (Game::MovieContext *, Game::MovieConfig *, Game::MoviePlayArg &))
 {
 /*
 .loc_0x0:
@@ -991,7 +991,7 @@ void setContext__Q24Game11MoviePlayerFPQ24Game12MovieContextPQ24Game11MovieConfi
  * Address:	8042D130
  * Size:	000478
  */
-void loadResource__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -1337,7 +1337,7 @@ void __dt__Q27JGadget39TLinkList<JStudio::TCreateObject, -4>Fv(void)
  * Address:	8042D5A8
  * Size:	0000C0
  */
-void parse__Q24Game11MoviePlayerFb(void)
+void Game::MoviePlayer::parse( (bool))
 {
 /*
 .loc_0x0:
@@ -1403,7 +1403,7 @@ void parse__Q24Game11MoviePlayerFb(void)
  * Address:	8042D668
  * Size:	0007C4
  */
-void update__Q24Game11MoviePlayerFP10ControllerP10Controller(void)
+void Game::MoviePlayer::update( (Controller *, Controller *))
 {
 /*
 .loc_0x0:
@@ -2006,7 +2006,7 @@ void update__Q24Game11MoviePlayerFP10ControllerP10Controller(void)
  * Address:	8042DE2C
  * Size:	00002C
  */
-void update__Q25P2JME8TControlFP10ControllerP10Controller(void)
+void P2JME::TControl::update( (Controller *, Controller *))
 {
 /*
 .loc_0x0:
@@ -2029,7 +2029,7 @@ void update__Q25P2JME8TControlFP10ControllerP10Controller(void)
  * Address:	8042DE58
  * Size:	000078
  */
-void draw__Q24Game11MoviePlayerFR8Graphics(void)
+void Game::MoviePlayer::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2073,7 +2073,7 @@ void draw__Q24Game11MoviePlayerFR8Graphics(void)
  * Address:	8042DED0
  * Size:	000074
  */
-void start__Q24Game11MoviePlayerFP6Camera(void)
+void Game::MoviePlayer::start( (Camera *))
 {
 /*
 .loc_0x0:
@@ -2118,7 +2118,7 @@ void start__Q24Game11MoviePlayerFP6Camera(void)
  * Address:	8042DF44
  * Size:	000120
  */
-void stop__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::stop(void)
 {
 /*
 .loc_0x0:
@@ -2212,7 +2212,7 @@ void stop__Q24Game11MoviePlayerFv(void)
  * Address:	........
  * Size:	00010C
  */
-void do_stop__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::do_stop(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2222,7 +2222,7 @@ void do_stop__Q24Game11MoviePlayerFv(void)
  * Address:	8042E064
  * Size:	000324
  */
-void setCamera__Q24Game11MoviePlayerFP6Camera(void)
+void Game::MoviePlayer::setCamera( (Camera *))
 {
 /*
 .loc_0x0:
@@ -2477,7 +2477,7 @@ void setCamera__Q24Game11MoviePlayerFP6Camera(void)
  * Address:	........
  * Size:	000014
  */
-void suspend__Q24Game11MoviePlayerFl(void)
+void Game::MoviePlayer::suspend( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -2487,7 +2487,7 @@ void suspend__Q24Game11MoviePlayerFl(void)
  * Address:	8042E388
  * Size:	0000D0
  */
-void unsuspend__Q24Game11MoviePlayerFlb(void)
+void Game::MoviePlayer::unsuspend( (long, bool))
 {
 /*
 .loc_0x0:
@@ -2563,7 +2563,7 @@ void unsuspend__Q24Game11MoviePlayerFlb(void)
  * Address:	8042E458
  * Size:	0000C4
  */
-void resetFrame__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::resetFrame(void)
 {
 /*
 .loc_0x0:
@@ -2681,7 +2681,7 @@ void setTransform__Q24Game11MoviePlayerFR10Vector3<float>f(void)
  * Address:	8042E5B8
  * Size:	000034
  */
-void isPlaying__Q24Game11MoviePlayerFPc(void)
+void Game::MoviePlayer::isPlaying( (char *))
 {
 /*
 .loc_0x0:
@@ -2710,7 +2710,7 @@ void isPlaying__Q24Game11MoviePlayerFPc(void)
  * Address:	........
  * Size:	000020
  */
-void isLoadingBlack__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::isLoadingBlack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2720,7 +2720,7 @@ void isLoadingBlack__Q24Game11MoviePlayerFv(void)
  * Address:	8042E5EC
  * Size:	000148
  */
-void drawLoading__Q24Game11MoviePlayerFR8Graphics(void)
+void Game::MoviePlayer::drawLoading( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2824,7 +2824,7 @@ void drawLoading__Q24Game11MoviePlayerFR8Graphics(void)
  * Address:	8042E734
  * Size:	000108
  */
-void skip__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::skip(void)
 {
 /*
 .loc_0x0:
@@ -2908,7 +2908,7 @@ void skip__Q24Game11MoviePlayerFv(void)
  * Address:	........
  * Size:	000404
  */
-void draw2d__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::draw2d(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2918,7 +2918,7 @@ void draw2d__Q24Game11MoviePlayerFv(void)
  * Address:	8042E83C
  * Size:	000008
  */
-void getNext__Q24Game12MovieContextFv(void)
+void Game::MovieContext::getNext(void)
 {
 /*
 .loc_0x0:
@@ -2932,7 +2932,7 @@ void getNext__Q24Game12MovieContextFv(void)
  * Address:	8042E844
  * Size:	0000C4
  */
-void __dt__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8024B874
  * Size:	000014
  */
-void __ct__Q34Game4Cave6AdjustFv(void)
+void Game::Cave::Adjust::__ct(void)
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void __ct__Q34Game4Cave6AdjustFv(void)
  * Address:	8024B888
  * Size:	000044
  */
-void __ct__Q34Game4Cave10AdjustNodeFv(void)
+void Game::Cave::AdjustNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -61,7 +61,7 @@ void __ct__Q34Game4Cave10AdjustNodeFv(void)
  * Address:	8024B8CC
  * Size:	00004C
  */
-void __ct__Q34Game4Cave10AdjustNodeFPQ34Game4Cave6Adjust(void)
+void Game::Cave::AdjustNode::__ct( (Game::Cave::Adjust *))
 {
 /*
 .loc_0x0:
@@ -92,7 +92,7 @@ void __ct__Q34Game4Cave10AdjustNodeFPQ34Game4Cave6Adjust(void)
  * Address:	8024B918
  * Size:	000010
  */
-void __ct__Q34Game4Cave4DoorFv(void)
+void Game::Cave::Door::__ct(void)
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void __ct__Q34Game4Cave4DoorFv(void)
  * Address:	8024B928
  * Size:	000050
  */
-void __ct__Q34Game4Cave8DoorNodeFv(void)
+void Game::Cave::DoorNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -140,7 +140,7 @@ void __ct__Q34Game4Cave8DoorNodeFv(void)
  * Address:	8024B978
  * Size:	000064
  */
-void __ct__Q34Game4Cave8DoorNodeFRQ34Game4Cave4Door(void)
+void Game::Cave::DoorNode::__ct( (Game::Cave::Door &))
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void __ct__Q34Game4Cave8DoorNodeFRQ34Game4Cave4Door(void)
  * Address:	8024B9DC
  * Size:	000070
  */
-void isDoorAdjust__Q34Game4Cave8DoorNodeFPQ34Game4Cave8DoorNode(void)
+void Game::Cave::DoorNode::isDoorAdjust( (Game::Cave::DoorNode *))
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void isDoorAdjust__Q34Game4Cave8DoorNodeFPQ34Game4Cave8DoorNode(void)
  * Address:	8024BA4C
  * Size:	000060
  */
-void __dt__Q34Game4Cave8DoorNodeFv(void)
+void Game::Cave::DoorNode::__dt(void)
 {
 /*
 .loc_0x0:

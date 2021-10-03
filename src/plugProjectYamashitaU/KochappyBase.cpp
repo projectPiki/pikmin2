@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012DAE8
  * Size:	000148
  */
-void __ct__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -153,7 +153,7 @@ void birth__Q34Game12KochappyBase3ObjFR10Vector3<float>f(void)
  * Address:	8012DC98
  * Size:	000004
  */
-void setInitialSetting__Q34Game12KochappyBase3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::KochappyBase::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void setInitialSetting__Q34Game12KochappyBase3ObjFPQ24Game21EnemyInitialParamBas
  * Address:	8012DC9C
  * Size:	000068
  */
-void onInit__Q34Game12KochappyBase3ObjFPQ24Game15CreatureInitArg(void)
+void Game::KochappyBase::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void onInit__Q34Game12KochappyBase3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8012DD04
  * Size:	000088
  */
-void doUpdate__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -252,7 +252,7 @@ void doUpdate__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8012DD8C
  * Size:	000004
  */
-void doDirectDraw__Q34Game12KochappyBase3ObjFR8Graphics(void)
+void Game::KochappyBase::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void doDirectDraw__Q34Game12KochappyBase3ObjFR8Graphics(void)
  * Address:	8012DD90
  * Size:	000020
  */
-void doDebugDraw__Q34Game12KochappyBase3ObjFR8Graphics(void)
+void Game::KochappyBase::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void doDebugDraw__Q34Game12KochappyBase3ObjFR8Graphics(void)
  * Address:	8012DDB0
  * Size:	000088
  */
-void getShadowParam__Q34Game12KochappyBase3ObjFRQ24Game11ShadowParam(void)
+void Game::KochappyBase::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -331,7 +331,7 @@ void getShadowParam__Q34Game12KochappyBase3ObjFRQ24Game11ShadowParam(void)
  * Address:	8012DE38
  * Size:	000040
  */
-void bounceCallback__Q34Game12KochappyBase3ObjFPQ23Sys8Triangle(void)
+void Game::KochappyBase::Obj::bounceCallback( (Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -361,7 +361,7 @@ void bounceCallback__Q34Game12KochappyBase3ObjFPQ23Sys8Triangle(void)
  * Address:	8012DE78
  * Size:	0000A0
  */
-void pressCallBack__Q34Game12KochappyBase3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::KochappyBase::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -419,7 +419,7 @@ void pressCallBack__Q34Game12KochappyBase3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8012DF18
  * Size:	000020
  */
-void doStartStoneState__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -439,7 +439,7 @@ void doStartStoneState__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8012DF38
  * Size:	000004
  */
-void doFinishStoneState__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -452,7 +452,7 @@ void doFinishStoneState__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8012DF3C
  * Size:	000064
  */
-void getOffsetForMapCollision__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -489,7 +489,7 @@ void getOffsetForMapCollision__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8012DFA0
  * Size:	000028
  */
-void startCarcassMotion__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -511,7 +511,7 @@ void startCarcassMotion__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8012DFC8
  * Size:	00008C
  */
-void initMouthSlots__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -562,7 +562,7 @@ void initMouthSlots__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8012E054
  * Size:	00008C
  */
-void initWalkSmokeEffect__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -611,7 +611,7 @@ void initWalkSmokeEffect__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8012E0E0
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:

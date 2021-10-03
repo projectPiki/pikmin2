@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026D14C
  * Size:	000138
  */
-void __ct__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026D284
  * Size:	000004
  */
-void setInitialSetting__Q34Game7GasHiba3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::GasHiba::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game7GasHiba3ObjFPQ24Game21EnemyInitialParamBase(void
  * Address:	8026D288
  * Size:	000100
  */
-void onInit__Q34Game7GasHiba3ObjFPQ24Game15CreatureInitArg(void)
+void Game::GasHiba::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void onInit__Q34Game7GasHiba3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8026D388
  * Size:	000034
  */
-void doUpdate__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void doUpdate__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026D3BC
  * Size:	000004
  */
-void doDirectDraw__Q34Game7GasHiba3ObjFR8Graphics(void)
+void Game::GasHiba::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -238,7 +238,7 @@ void doDirectDraw__Q34Game7GasHiba3ObjFR8Graphics(void)
  * Address:	8026D3C0
  * Size:	000020
  */
-void doDebugDraw__Q34Game7GasHiba3ObjFR8Graphics(void)
+void Game::GasHiba::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void doDebugDraw__Q34Game7GasHiba3ObjFR8Graphics(void)
  * Address:	8026D3E0
  * Size:	00004C
  */
-void setFSM__Q34Game7GasHiba3ObjFPQ34Game7GasHiba3FSM(void)
+void Game::GasHiba::Obj::setFSM( (Game::GasHiba::FSM *))
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void setFSM__Q34Game7GasHiba3ObjFPQ34Game7GasHiba3FSM(void)
  * Address:	8026D42C
  * Size:	000038
  */
-void getShadowParam__Q34Game7GasHiba3ObjFRQ24Game11ShadowParam(void)
+void Game::GasHiba::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -315,7 +315,7 @@ void getShadowParam__Q34Game7GasHiba3ObjFRQ24Game11ShadowParam(void)
  * Address:	8026D464
  * Size:	0000C8
  */
-void damageCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::GasHiba::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -381,7 +381,7 @@ void damageCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8026D52C
  * Size:	000030
  */
-void pressCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::GasHiba::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -405,7 +405,7 @@ void pressCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8026D55C
  * Size:	000030
  */
-void hipdropCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::GasHiba::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -454,7 +454,7 @@ void bombCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreatureR10Vector3<float>f(void)
  * Address:	8026D5C0
  * Size:	0001D0
  */
-void interactGasAttack__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::interactGasAttack(void)
 {
 /*
 .loc_0x0:
@@ -590,7 +590,7 @@ void interactGasAttack__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026D790
  * Size:	000018
  */
-void resetBridgeGateCheck__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::resetBridgeGateCheck(void)
 {
 /*
 .loc_0x0:
@@ -608,7 +608,7 @@ void resetBridgeGateCheck__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026D7A8
  * Size:	0005B0
  */
-void setInitLivingThing__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::setInitLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1060,7 +1060,7 @@ void setInitLivingThing__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DD58
  * Size:	00009C
  */
-void updateLivingThing__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::updateLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1117,7 +1117,7 @@ void updateLivingThing__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DDF4
  * Size:	000008
  */
-void isLivingThing__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1131,7 +1131,7 @@ void isLivingThing__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DDFC
  * Size:	000024
  */
-void setupLodParms__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::setupLodParms(void)
 {
 /*
 .loc_0x0:
@@ -1152,7 +1152,7 @@ void setupLodParms__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DE20
  * Size:	00002C
  */
-void updateEfxLod__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::updateEfxLod(void)
 {
 /*
 .loc_0x0:
@@ -1175,7 +1175,7 @@ void updateEfxLod__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DE4C
  * Size:	00005C
  */
-void createEffect__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1212,7 +1212,7 @@ void createEffect__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DEA8
  * Size:	0000A0
  */
-void startGasEffect__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::startGasEffect(void)
 {
 /*
 .loc_0x0:
@@ -1266,7 +1266,7 @@ void startGasEffect__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DF48
  * Size:	000030
  */
-void finishGasEffect__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::finishGasEffect(void)
 {
 /*
 .loc_0x0:
@@ -1290,7 +1290,7 @@ void finishGasEffect__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DF78
  * Size:	000044
  */
-void generatorKill__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::generatorKill(void)
 {
 /*
 .loc_0x0:
@@ -1321,7 +1321,7 @@ void generatorKill__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DFBC
  * Size:	00000C
  */
-void getName__Q23efx11ArgGasuHibaFv(void)
+void efx::ArgGasuHiba::getName(void)
 {
 /*
 .loc_0x0:
@@ -1336,7 +1336,7 @@ void getName__Q23efx11ArgGasuHibaFv(void)
  * Address:	8026DFC8
  * Size:	000004
  */
-void doSimulation__Q34Game7GasHiba3ObjFf(void)
+void Game::GasHiba::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -1349,7 +1349,7 @@ void doSimulation__Q34Game7GasHiba3ObjFf(void)
  * Address:	8026DFCC
  * Size:	000004
  */
-void inWaterCallback__Q34Game7GasHiba3ObjFPQ24Game8WaterBox(void)
+void Game::GasHiba::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1362,7 +1362,7 @@ void inWaterCallback__Q34Game7GasHiba3ObjFPQ24Game8WaterBox(void)
  * Address:	8026DFD0
  * Size:	000004
  */
-void outWaterCallback__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1375,7 +1375,7 @@ void outWaterCallback__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026DFD4
  * Size:	000004
  */
-void lifeRecover__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::lifeRecover(void)
 {
 /*
 .loc_0x0:

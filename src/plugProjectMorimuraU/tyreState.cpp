@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803AB864
  * Size:	0000C0
  */
-void init__Q34Game4Tyre3FSMFPQ24Game9EnemyBase(void)
+void Game::Tyre::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -85,7 +85,7 @@ void init__Q34Game4Tyre3FSMFPQ24Game9EnemyBase(void)
  * Address:	803AB924
  * Size:	00003C
  */
-void __ct__Q34Game4Tyre9StateMoveFi(void)
+void Game::Tyre::StateMove::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void __ct__Q34Game4Tyre9StateMoveFi(void)
  * Address:	803AB960
  * Size:	000048
  */
-void init__Q34Game4Tyre9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tyre::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -142,7 +142,7 @@ void init__Q34Game4Tyre9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803AB9A8
  * Size:	0000BC
  */
-void exec__Q34Game4Tyre9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Tyre::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -209,7 +209,7 @@ void exec__Q34Game4Tyre9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	803ABA64
  * Size:	000024
  */
-void cleanup__Q34Game4Tyre9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Tyre::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void cleanup__Q34Game4Tyre9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	803ABA88
  * Size:	00003C
  */
-void __ct__Q34Game4Tyre9StateLandFi(void)
+void Game::Tyre::StateLand::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void __ct__Q34Game4Tyre9StateLandFi(void)
  * Address:	803ABAC4
  * Size:	000048
  */
-void init__Q34Game4Tyre9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tyre::StateLand::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -287,7 +287,7 @@ void init__Q34Game4Tyre9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803ABB0C
  * Size:	0000B4
  */
-void exec__Q34Game4Tyre9StateLandFPQ24Game9EnemyBase(void)
+void Game::Tyre::StateLand::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -346,7 +346,7 @@ void exec__Q34Game4Tyre9StateLandFPQ24Game9EnemyBase(void)
  * Address:	803ABBC0
  * Size:	00003C
  */
-void __ct__Q34Game4Tyre11StateFreezeFi(void)
+void Game::Tyre::StateFreeze::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -373,7 +373,7 @@ void __ct__Q34Game4Tyre11StateFreezeFi(void)
  * Address:	803ABBFC
  * Size:	000074
  */
-void init__Q34Game4Tyre11StateFreezeFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tyre::StateFreeze::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void init__Q34Game4Tyre11StateFreezeFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803ABC70
  * Size:	0000B4
  */
-void exec__Q34Game4Tyre11StateFreezeFPQ24Game9EnemyBase(void)
+void Game::Tyre::StateFreeze::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -477,7 +477,7 @@ void exec__Q34Game4Tyre11StateFreezeFPQ24Game9EnemyBase(void)
  * Address:	803ABD24
  * Size:	00003C
  */
-void __ct__Q34Game4Tyre9StateDeadFi(void)
+void Game::Tyre::StateDead::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void __ct__Q34Game4Tyre9StateDeadFi(void)
  * Address:	803ABD60
  * Size:	000048
  */
-void init__Q34Game4Tyre9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tyre::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -534,7 +534,7 @@ void init__Q34Game4Tyre9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803ABDA8
  * Size:	000044
  */
-void exec__Q34Game4Tyre9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Tyre::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

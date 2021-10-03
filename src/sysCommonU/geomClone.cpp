@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80421ACC
  * Size:	000120
  */
-void clone__Q23Sys10TriDividerFR7Matrixf(void)
+void Sys::TriDivider::clone( (Matrixf &))
 {
 /*
 .loc_0x0:
@@ -105,7 +105,7 @@ void clone__Q23Sys10TriDividerFR7Matrixf(void)
  * Address:	80421BEC
  * Size:	000160
  */
-void cloneFrom__Q23Sys11VertexTableFR7MatrixfPQ23Sys11VertexTable(void)
+void Sys::VertexTable::cloneFrom( (Matrixf &, Sys::VertexTable *))
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void cloneFrom__Q23Sys11VertexTableFR7MatrixfPQ23Sys11VertexTable(void)
  * Address:	80421D4C
  * Size:	0000B4
  */
-void cloneFrom__Q23Sys13TriangleTableFR7MatrixfPQ23Sys13TriangleTablePQ23Sys11VertexTable(void)
+void Sys::TriangleTable::cloneFrom( (Matrixf &, Sys::TriangleTable *, Sys::VertexTable *))
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void cloneFrom__Q23Sys13TriangleTableFR7MatrixfPQ23Sys13TriangleTablePQ23Sys11Ve
  * Address:	80421E00
  * Size:	0000C4
  */
-void do_clone__Q23Sys11GridDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable(void)
+void Sys::GridDivider::do_clone( (Matrixf &, Sys::VertexTable *, Sys::TriangleTable *))
 {
 /*
 .loc_0x0:

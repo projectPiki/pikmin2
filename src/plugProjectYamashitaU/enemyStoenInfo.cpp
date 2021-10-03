@@ -5,7 +5,7 @@
  * Address:	80128108
  * Size:	000164
  */
-void setup__Q34Game10EnemyStone4InfoFR6Stream(void)
+void Game::EnemyStone::Info::setup( (Stream &))
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void setup__Q34Game10EnemyStone4InfoFR6Stream(void)
  * Address:	8012826C
  * Size:	000014
  */
-void __ct__Q34Game10EnemyStone7ObjInfoFv(void)
+void Game::EnemyStone::ObjInfo::__ct(void)
 {
 /*
 .loc_0x0:

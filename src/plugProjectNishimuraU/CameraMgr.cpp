@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80250988
  * Size:	000048
  */
-void __ct__Q24Game9CameraMgrFv(void)
+void Game::CameraMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -45,7 +45,7 @@ void __ct__Q24Game9CameraMgrFv(void)
  * Address:	802509D0
  * Size:	00012C
  */
-void loadResource__Q24Game9CameraMgrFv(void)
+void Game::CameraMgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -144,7 +144,7 @@ void loadResource__Q24Game9CameraMgrFv(void)
  * Address:	80250AFC
  * Size:	0004D0
  */
-void __ct__Q24Game14VibrationParmsFv(void)
+void Game::VibrationParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -466,7 +466,7 @@ void __ct__Q24Game14VibrationParmsFv(void)
  * Address:	80250FCC
  * Size:	000E78
  */
-void __ct__Q24Game11CameraParmsFv(void)
+void Game::CameraParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1406,7 +1406,7 @@ void __ct__Q24Game11CameraParmsFv(void)
  * Address:	80251E44
  * Size:	0000A8
  */
-void setViewport__Q24Game9CameraMgrFP8Viewporti(void)
+void Game::CameraMgr::setViewport( (Viewport *, int))
 {
 /*
 .loc_0x0:
@@ -1464,7 +1464,7 @@ void setViewport__Q24Game9CameraMgrFP8Viewporti(void)
  * Address:	80251EEC
  * Size:	00014C
  */
-void init__Q24Game9CameraMgrFi(void)
+void Game::CameraMgr::init( (int))
 {
 /*
 .loc_0x0:
@@ -1575,7 +1575,7 @@ void init__Q24Game9CameraMgrFi(void)
  * Address:	80252038
  * Size:	000094
  */
-void setCameraAngle__Q24Game9CameraMgrFfi(void)
+void Game::CameraMgr::setCameraAngle( (float, int))
 {
 /*
 .loc_0x0:
@@ -1632,7 +1632,7 @@ void setCameraAngle__Q24Game9CameraMgrFfi(void)
  * Address:	802520CC
  * Size:	000170
  */
-void update__Q24Game9CameraMgrFv(void)
+void Game::CameraMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -1859,7 +1859,7 @@ void startVibration__Q24Game9CameraMgrFiR10Vector3<float>i(void)
  * Address:	80252390
  * Size:	0000DC
  */
-void startVibration__Q24Game9CameraMgrFii(void)
+void Game::CameraMgr::startVibration( (int, int))
 {
 /*
 .loc_0x0:
@@ -1936,7 +1936,7 @@ void startVibration__Q24Game9CameraMgrFii(void)
  * Address:	8025246C
  * Size:	000070
  */
-void controllerLock__Q24Game9CameraMgrFi(void)
+void Game::CameraMgr::controllerLock( (int))
 {
 /*
 .loc_0x0:
@@ -1982,7 +1982,7 @@ void controllerLock__Q24Game9CameraMgrFi(void)
  * Address:	802524DC
  * Size:	000070
  */
-void controllerUnLock__Q24Game9CameraMgrFi(void)
+void Game::CameraMgr::controllerUnLock( (int))
 {
 /*
 .loc_0x0:
@@ -2028,7 +2028,7 @@ void controllerUnLock__Q24Game9CameraMgrFi(void)
  * Address:	8025254C
  * Size:	000090
  */
-void startDemoCamera__Q24Game9CameraMgrFii(void)
+void Game::CameraMgr::startDemoCamera( (int, int))
 {
 /*
 .loc_0x0:
@@ -2082,7 +2082,7 @@ void startDemoCamera__Q24Game9CameraMgrFii(void)
  * Address:	802525DC
  * Size:	00007C
  */
-void finishDemoCamera__Q24Game9CameraMgrFi(void)
+void Game::CameraMgr::finishDemoCamera( (int))
 {
 /*
 .loc_0x0:
@@ -2245,7 +2245,7 @@ void changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<Game::CameraArg *>(void)
  * Address:	802527B8
  * Size:	000058
  */
-void isChangePlayer__Q24Game9CameraMgrFv(void)
+void Game::CameraMgr::isChangePlayer(void)
 {
 /*
 .loc_0x0:
@@ -2285,7 +2285,7 @@ void isChangePlayer__Q24Game9CameraMgrFv(void)
  * Address:	80252810
  * Size:	000058
  */
-void setZukanCamera__Q24Game9CameraMgrFP12LookAtCamera(void)
+void Game::CameraMgr::setZukanCamera( (LookAtCamera *))
 {
 /*
 .loc_0x0:
@@ -2323,7 +2323,7 @@ void setZukanCamera__Q24Game9CameraMgrFP12LookAtCamera(void)
  * Address:	80252868
  * Size:	000028
  */
-void isCameraUpdateOn__Q24Game9CameraMgrFv(void)
+void Game::CameraMgr::isCameraUpdateOn(void)
 {
 /*
 .loc_0x0:
@@ -2347,7 +2347,7 @@ void isCameraUpdateOn__Q24Game9CameraMgrFv(void)
  * Address:	80252890
  * Size:	000068
  */
-void isStartAndEnd__Q24Game9CameraMgrFPii(void)
+void Game::CameraMgr::isStartAndEnd( (int *, int))
 {
 /*
 .loc_0x0:
@@ -2391,7 +2391,7 @@ void isStartAndEnd__Q24Game9CameraMgrFPii(void)
  * Address:	802528F8
  * Size:	000084
  */
-void isVibrationStart__Q24Game9CameraMgrFii(void)
+void Game::CameraMgr::isVibrationStart( (int, int))
 {
 /*
 .loc_0x0:
@@ -2442,7 +2442,7 @@ void isVibrationStart__Q24Game9CameraMgrFii(void)
  * Address:	8025297C
  * Size:	0000A8
  */
-void readCameraParms__Q24Game9CameraMgrFPc(void)
+void Game::CameraMgr::readCameraParms( (char *))
 {
 /*
 .loc_0x0:
@@ -2502,7 +2502,7 @@ void readCameraParms__Q24Game9CameraMgrFPc(void)
  * Address:	80252A24
  * Size:	000074
  */
-void readParameter__Q24Game9CameraMgrFR6Stream(void)
+void Game::CameraMgr::readParameter( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2545,7 +2545,7 @@ void readParameter__Q24Game9CameraMgrFR6Stream(void)
  * Address:	........
  * Size:	000074
  */
-void writeParameter__Q24Game9CameraMgrFR6Stream(void)
+void Game::CameraMgr::writeParameter( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -2555,7 +2555,7 @@ void writeParameter__Q24Game9CameraMgrFR6Stream(void)
  * Address:	80252A98
  * Size:	000060
  */
-void __dt__Q24Game9CameraMgrFv(void)
+void Game::CameraMgr::__dt(void)
 {
 /*
 .loc_0x0:

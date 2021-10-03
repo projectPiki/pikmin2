@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8027C40C
  * Size:	000050
  */
-void __ct__Q34Game5Wtank3MgrFiUc(void)
+void Game::Wtank::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game5Wtank3MgrFiUc(void)
  * Address:	8027C45C
  * Size:	000048
  */
-void doAlloc__Q34Game5Wtank3MgrFv(void)
+void Game::Wtank::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game5Wtank3MgrFv(void)
  * Address:	8027C4A4
  * Size:	000058
  */
-void __ct__Q34Game4Tank5ParmsFv(void)
+void Game::Tank::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void __ct__Q34Game4Tank5ParmsFv(void)
  * Address:	8027C4FC
  * Size:	000060
  */
-void createObj__Q34Game5Wtank3MgrFi(void)
+void Game::Wtank::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void createObj__Q34Game5Wtank3MgrFi(void)
  * Address:	8027C55C
  * Size:	0000F0
  */
-void __dt__Q34Game5Wtank3ObjFv(void)
+void Game::Wtank::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void __dt__Q34Game5Wtank3ObjFv(void)
  * Address:	8027C64C
  * Size:	000010
  */
-void getEnemy__Q34Game5Wtank3MgrFi(void)
+void Game::Wtank::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -243,7 +243,7 @@ void getEnemy__Q34Game5Wtank3MgrFi(void)
  * Address:	8027C65C
  * Size:	000080
  */
-void loadTexData__Q34Game5Wtank3MgrFv(void)
+void Game::Wtank::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -291,7 +291,7 @@ void loadTexData__Q34Game5Wtank3MgrFv(void)
  * Address:	8027C6DC
  * Size:	0000C8
  */
-void __dt__Q34Game5Wtank3MgrFv(void)
+void Game::Wtank::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void __dt__Q34Game5Wtank3MgrFv(void)
  * Address:	8027C7A4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Wtank3MgrFv(void)
+void Game::Wtank::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -371,7 +371,7 @@ void getEnemyTypeID__Q34Game5Wtank3MgrFv(void)
  * Address:	8027C7AC
  * Size:	000008
  */
-void getChangeTexture__Q34Game5Wtank3MgrFv(void)
+void Game::Wtank::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void getChangeTexture__Q34Game5Wtank3MgrFv(void)
  * Address:	8027C7B4
  * Size:	000050
  */
-void read__Q34Game4Tank5ParmsFR6Stream(void)
+void Game::Tank::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -417,7 +417,7 @@ void read__Q34Game4Tank5ParmsFR6Stream(void)
  * Address:	8027C804
  * Size:	000008
  */
-void @4@__dt__Q34Game5Wtank3MgrFv(void)
+void @4@Game::Wtank::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

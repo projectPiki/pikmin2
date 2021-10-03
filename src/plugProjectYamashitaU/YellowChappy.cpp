@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012C378
  * Size:	000154
  */
-void __ct__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void __ct__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012C4CC
  * Size:	000048
  */
-void onInit__Q34Game12YellowChappy3ObjFPQ24Game15CreatureInitArg(void)
+void Game::YellowChappy::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void onInit__Q34Game12YellowChappy3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8012C514
  * Size:	0001B0
  */
-void doUpdateCommon__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -284,7 +284,7 @@ void doUpdateCommon__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012C6C4
  * Size:	000040
  */
-void onKill__Q34Game12YellowChappy3ObjFPQ24Game15CreatureKillArg(void)
+void Game::YellowChappy::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -312,7 +312,7 @@ void onKill__Q34Game12YellowChappy3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	8012C704
  * Size:	000068
  */
-void createEffect__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void createEffect__Q34Game12YellowChappy3ObjFv(void)
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx10TChaseMtx3Fv(void)
+void efx::TChaseMtx3::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -362,7 +362,7 @@ void __dt__Q23efx10TChaseMtx3Fv(void)
  * Address:	8012C76C
  * Size:	0000B4
  */
-void setupEffect__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -423,7 +423,7 @@ void setupEffect__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012C820
  * Size:	000028
  */
-void doStartMovie__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -445,7 +445,7 @@ void doStartMovie__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012C848
  * Size:	000004
  */
-void doEndMovie__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void doEndMovie__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012C84C
  * Size:	0002B0
  */
-void changeMaterial__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -646,7 +646,7 @@ void changeMaterial__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012CAFC
  * Size:	00004C
  */
-void doStartWaitingBirthTypeDrop__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void doStartWaitingBirthTypeDrop__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012CB48
  * Size:	00004C
  */
-void doFinishWaitingBirthTypeDrop__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012CB94
  * Size:	000004
  */
-void forceKill__Q23efx8TSimple1Fv(void)
+void efx::TSimple1::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -721,7 +721,7 @@ void forceKill__Q23efx8TSimple1Fv(void)
  * Address:	8012CB98
  * Size:	000004
  */
-void fade__Q23efx8TSimple1Fv(void)
+void efx::TSimple1::fade(void)
 {
 /*
 .loc_0x0:
@@ -734,7 +734,7 @@ void fade__Q23efx8TSimple1Fv(void)
  * Address:	8012CB9C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -748,7 +748,7 @@ void getEnemyTypeID__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012CBA4
  * Size:	000014
  */
-void @752@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @752@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -765,7 +765,7 @@ void @752@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8012CBB8
  * Size:	000014
  */
-void @752@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @752@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -782,7 +782,7 @@ void @752@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8012CBCC
  * Size:	000014
  */
-void @752@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @752@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -799,7 +799,7 @@ void @752@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8012CBE0
  * Size:	000014
  */
-void @752@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @752@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -816,7 +816,7 @@ void @752@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8012CBF4
  * Size:	000014
  */
-void @752@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @752@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -833,7 +833,7 @@ void @752@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8012CC08
  * Size:	000014
  */
-void @752@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @752@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

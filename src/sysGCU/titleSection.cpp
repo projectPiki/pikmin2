@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8044A03C
  * Size:	0000F0
  */
-void __ct__Q25Title7SectionFP7JKRHeap(void)
+void Title::Section::__ct( (JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -89,7 +89,7 @@ void __ct__Q25Title7SectionFP7JKRHeap(void)
  * Address:	8044A12C
  * Size:	000070
  */
-void __dt__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void __dt__Q33ebi5Omake4TMgrFv(void)
  * Address:	8044A19C
  * Size:	000054
  */
-void __dt__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void __dt__Q33ebi6Option4TMgrFv(void)
  * Address:	8044A1F0
  * Size:	000270
  */
-void __dt__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void __dt__Q23ebi13TMainTitleMgrFv(void)
  * Address:	8044A460
  * Size:	0000A4
  */
-void __dt__Q25Title7SectionFv(void)
+void Title::Section::__dt(void)
 {
 /*
 .loc_0x0:
@@ -407,7 +407,7 @@ void __dt__Q25Title7SectionFv(void)
  * Address:	8044A504
  * Size:	0000C4
  */
-void doExit__Q25Title7SectionFv(void)
+void Title::Section::doExit(void)
 {
 /*
 .loc_0x0:
@@ -474,7 +474,7 @@ void doExit__Q25Title7SectionFv(void)
  * Address:	8044A5C8
  * Size:	000104
  */
-void loadResident__Q25Title7SectionFv(void)
+void Title::Section::loadResident(void)
 {
 /*
 .loc_0x0:
@@ -557,7 +557,7 @@ void loadResident__Q25Title7SectionFv(void)
  * Address:	8044A6CC
  * Size:	000434
  */
-void init__Q25Title7SectionFv(void)
+void Title::Section::init(void)
 {
 /*
 .loc_0x0:
@@ -872,7 +872,7 @@ void init__Q25Title7SectionFv(void)
  * Address:	8044AB00
  * Size:	00002C
  */
-void menuCancel__Q25Title7SectionFR4Menu(void)
+void Title::Section::menuCancel( (Menu &))
 {
 /*
 .loc_0x0:
@@ -895,7 +895,7 @@ void menuCancel__Q25Title7SectionFR4Menu(void)
  * Address:	8044AB2C
  * Size:	000054
  */
-void menuSelect__Q25Title7SectionFR4Menu(void)
+void Title::Section::menuSelect( (Menu &))
 {
 /*
 .loc_0x0:
@@ -932,7 +932,7 @@ void menuSelect__Q25Title7SectionFR4Menu(void)
  * Address:	8044AB80
  * Size:	000110
  */
-void doDraw__Q25Title7SectionFR8Graphics(void)
+void Title::Section::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1026,7 +1026,7 @@ void doDraw__Q25Title7SectionFR8Graphics(void)
  * Address:	........
  * Size:	000200
  */
-void drawShortCuts__Q25Title7SectionFR8Graphics(void)
+void Title::Section::drawShortCuts( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -1036,7 +1036,7 @@ void drawShortCuts__Q25Title7SectionFR8Graphics(void)
  * Address:	........
  * Size:	000150
  */
-void drawShortCut__Q25Title7SectionFR8GraphicsiiiPc(void)
+void Title::Section::drawShortCut( (Graphics &, int, int, int, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -1046,7 +1046,7 @@ void drawShortCut__Q25Title7SectionFR8GraphicsiiiPc(void)
  * Address:	........
  * Size:	000004
  */
-void drawDebugInfo__Q25Title7SectionFR8Graphics(void)
+void Title::Section::drawDebugInfo( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -1056,7 +1056,7 @@ void drawDebugInfo__Q25Title7SectionFR8Graphics(void)
  * Address:	........
  * Size:	000118
  */
-void updateMenu__Q25Title7SectionFv(void)
+void Title::Section::updateMenu(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1066,7 +1066,7 @@ void updateMenu__Q25Title7SectionFv(void)
  * Address:	8044AC90
  * Size:	000688
  */
-void doUpdateMainTitle__Q25Title7SectionFv(void)
+void Title::Section::doUpdateMainTitle(void)
 {
 /*
 .loc_0x0:
@@ -1566,7 +1566,7 @@ void doUpdateMainTitle__Q25Title7SectionFv(void)
  * Address:	........
  * Size:	000214
  */
-void doUpdateHiScore__Q25Title7SectionFv(void)
+void Title::Section::doUpdateHiScore(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1576,7 +1576,7 @@ void doUpdateHiScore__Q25Title7SectionFv(void)
  * Address:	8044B318
  * Size:	0004C8
  */
-void doUpdateOmake__Q25Title7SectionFv(void)
+void Title::Section::doUpdateOmake(void)
 {
 /*
 .loc_0x0:
@@ -1956,7 +1956,7 @@ void doUpdateOmake__Q25Title7SectionFv(void)
  * Address:	........
  * Size:	00025C
  */
-void doUpdateOption__Q25Title7SectionFv(void)
+void Title::Section::doUpdateOption(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1966,7 +1966,7 @@ void doUpdateOption__Q25Title7SectionFv(void)
  * Address:	8044B7E0
  * Size:	000108
  */
-void run__Q25Title7SectionFv(void)
+void Title::Section::run(void)
 {
 /*
 .loc_0x0:
@@ -2054,7 +2054,7 @@ void run__Q25Title7SectionFv(void)
  * Address:	8044B8E8
  * Size:	0005B8
  */
-void doUpdate__Q25Title7SectionFv(void)
+void Title::Section::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -2504,7 +2504,7 @@ void doUpdate__Q25Title7SectionFv(void)
  * Address:	8044BEA0
  * Size:	000040
  */
-void isFinishable__Q25Title7SectionFv(void)
+void Title::Section::isFinishable(void)
 {
 /*
 .loc_0x0:
@@ -2532,7 +2532,7 @@ void isFinishable__Q25Title7SectionFv(void)
  * Address:	8044BEE0
  * Size:	00008C
  */
-void doLoadingStart__Q25Title7SectionFv(void)
+void Title::Section::doLoadingStart(void)
 {
 /*
 .loc_0x0:
@@ -2581,7 +2581,7 @@ void doLoadingStart__Q25Title7SectionFv(void)
  * Address:	8044BF6C
  * Size:	0000EC
  */
-void doLoading__Q25Title7SectionFv(void)
+void Title::Section::doLoading(void)
 {
 /*
 .loc_0x0:
@@ -2660,7 +2660,7 @@ void doLoading__Q25Title7SectionFv(void)
  * Address:	8044C058
  * Size:	0003C8
  */
-void loadResource__Q25Title7SectionFv(void)
+void Title::Section::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -2934,7 +2934,7 @@ void loadResource__Q25Title7SectionFv(void)
  * Address:	........
  * Size:	000100
  */
-void __ct__Q210TitleDummy7SectionFP7JKRHeap(void)
+void TitleDummy::Section::__ct( (JKRHeap *))
 {
 	// UNUSED FUNCTION
 }
@@ -2944,7 +2944,7 @@ void __ct__Q210TitleDummy7SectionFP7JKRHeap(void)
  * Address:	........
  * Size:	000034
  */
-void init__Q210TitleDummy7SectionFv(void)
+void TitleDummy::Section::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2954,7 +2954,7 @@ void init__Q210TitleDummy7SectionFv(void)
  * Address:	........
  * Size:	0001C0
  */
-void loadResource__Q210TitleDummy7SectionFv(void)
+void TitleDummy::Section::loadResource(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2964,7 +2964,7 @@ void loadResource__Q210TitleDummy7SectionFv(void)
  * Address:	........
  * Size:	000124
  */
-void doUpdate__Q210TitleDummy7SectionFv(void)
+void TitleDummy::Section::doUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2974,7 +2974,7 @@ void doUpdate__Q210TitleDummy7SectionFv(void)
  * Address:	........
  * Size:	0000C0
  */
-void doDraw__Q210TitleDummy7SectionFR8Graphics(void)
+void TitleDummy::Section::doDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -2984,7 +2984,7 @@ void doDraw__Q210TitleDummy7SectionFR8Graphics(void)
  * Address:	........
  * Size:	000060
  */
-void __dt__Q210TitleDummy7SectionFv(void)
+void TitleDummy::Section::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2994,7 +2994,7 @@ void __dt__Q210TitleDummy7SectionFv(void)
  * Address:	8044C420
  * Size:	000008
  */
-void forceReset__Q25Title7SectionFv(void)
+void Title::Section::forceReset(void)
 {
 /*
 .loc_0x0:

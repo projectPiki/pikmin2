@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80307B58
  * Size:	000090
  */
-void __ct__Q32og6Screen14ContenaCounterFPQ32og6Screen17DispMemberContena(void)
+void og::Screen::ContenaCounter::__ct( (og::Screen::DispMemberContena *))
 {
 /*
 .loc_0x0:
@@ -63,7 +63,7 @@ void __ct__Q32og6Screen14ContenaCounterFPQ32og6Screen17DispMemberContena(void)
  * Address:	80307BE8
  * Size:	000140
  */
-void setblo__Q32og6Screen14ContenaCounterFPcP10JKRArchive(void)
+void og::Screen::ContenaCounter::setblo( (char *, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -155,7 +155,7 @@ void setblo__Q32og6Screen14ContenaCounterFPcP10JKRArchive(void)
  * Address:	80307D28
  * Size:	0000A4
  */
-void __dt__Q32og6Screen14ContenaCounterFv(void)
+void og::Screen::ContenaCounter::__dt(void)
 {
 /*
 .loc_0x0:

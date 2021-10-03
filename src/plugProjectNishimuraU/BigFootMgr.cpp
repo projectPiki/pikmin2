@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802C6F58
  * Size:	000050
  */
-void __ct__Q34Game7BigFoot3MgrFiUc(void)
+void Game::BigFoot::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game7BigFoot3MgrFiUc(void)
  * Address:	802C6FA8
  * Size:	000048
  */
-void doAlloc__Q34Game7BigFoot3MgrFv(void)
+void Game::BigFoot::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game7BigFoot3MgrFv(void)
  * Address:	802C6FF0
  * Size:	000048
  */
-void __ct__Q34Game7BigFoot5ParmsFv(void)
+void Game::BigFoot::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game7BigFoot5ParmsFv(void)
  * Address:	802C7038
  * Size:	0003D8
  */
-void __ct__Q44Game7BigFoot5Parms11ProperParmsFv(void)
+void Game::BigFoot::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -373,7 +373,7 @@ void __ct__Q44Game7BigFoot5Parms11ProperParmsFv(void)
  * Address:	802C7410
  * Size:	000060
  */
-void createObj__Q34Game7BigFoot3MgrFi(void)
+void Game::BigFoot::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void createObj__Q34Game7BigFoot3MgrFi(void)
  * Address:	802C7470
  * Size:	0000BC
  */
-void __dt__Q34Game7BigFoot3ObjFv(void)
+void Game::BigFoot::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -472,7 +472,7 @@ void __dt__Q34Game7BigFoot3ObjFv(void)
  * Address:	802C752C
  * Size:	000010
  */
-void getEnemy__Q34Game7BigFoot3MgrFi(void)
+void Game::BigFoot::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -488,7 +488,7 @@ void getEnemy__Q34Game7BigFoot3MgrFi(void)
  * Address:	802C753C
  * Size:	000068
  */
-void loadModelData__Q34Game7BigFoot3MgrFv(void)
+void Game::BigFoot::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -530,7 +530,7 @@ void loadModelData__Q34Game7BigFoot3MgrFv(void)
  * Address:	802C75A4
  * Size:	0000B4
  */
-void loadTexData__Q34Game7BigFoot3MgrFv(void)
+void Game::BigFoot::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -593,7 +593,7 @@ void loadTexData__Q34Game7BigFoot3MgrFv(void)
  * Address:	802C7658
  * Size:	00007C
  */
-void createModel__Q34Game7BigFoot3MgrFv(void)
+void Game::BigFoot::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -640,7 +640,7 @@ void createModel__Q34Game7BigFoot3MgrFv(void)
  * Address:	802C76D4
  * Size:	0000B0
  */
-void __dt__Q34Game7BigFoot3MgrFv(void)
+void Game::BigFoot::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -700,7 +700,7 @@ void __dt__Q34Game7BigFoot3MgrFv(void)
  * Address:	802C7784
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7BigFoot3MgrFv(void)
+void Game::BigFoot::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -714,7 +714,7 @@ void getEnemyTypeID__Q34Game7BigFoot3MgrFv(void)
  * Address:	802C778C
  * Size:	00002C
  */
-void doLoadBmd__Q34Game7BigFoot3MgrFPv(void)
+void Game::BigFoot::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -737,7 +737,7 @@ void doLoadBmd__Q34Game7BigFoot3MgrFPv(void)
  * Address:	802C77B8
  * Size:	000050
  */
-void read__Q34Game7BigFoot5ParmsFR6Stream(void)
+void Game::BigFoot::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -769,7 +769,7 @@ void read__Q34Game7BigFoot5ParmsFR6Stream(void)
  * Address:	802C7808
  * Size:	000008
  */
-void @4@__dt__Q34Game7BigFoot3MgrFv(void)
+void @4@Game::BigFoot::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

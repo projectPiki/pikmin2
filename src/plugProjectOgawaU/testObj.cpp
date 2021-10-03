@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000060
  */
-void __ct__Q32og9newScreen4TestFPCc(void)
+void og::newScreen::Test::__ct( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q32og9newScreen4TestFPCc(void)
  * Address:	8030D868
  * Size:	000094
  */
-void __dt__Q26Screen7ObjBaseFv(void)
+void Screen::ObjBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -78,7 +78,7 @@ void __dt__Q26Screen7ObjBaseFv(void)
  * Address:	........
  * Size:	0000AC
  */
-void __dt__Q32og9newScreen4TestFv(void)
+void og::newScreen::Test::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -88,7 +88,7 @@ void __dt__Q32og9newScreen4TestFv(void)
  * Address:	........
  * Size:	00011C
  */
-void doCreate__Q32og9newScreen4TestFP10JKRArchive(void)
+void og::newScreen::Test::doCreate( (JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -98,7 +98,7 @@ void doCreate__Q32og9newScreen4TestFP10JKRArchive(void)
  * Address:	........
  * Size:	000040
  */
-void doUpdate__Q32og9newScreen4TestFv(void)
+void og::newScreen::Test::doUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -108,7 +108,7 @@ void doUpdate__Q32og9newScreen4TestFv(void)
  * Address:	........
  * Size:	000034
  */
-void doDraw__Q32og9newScreen4TestFR8Graphics(void)
+void og::newScreen::Test::doDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -118,7 +118,7 @@ void doDraw__Q32og9newScreen4TestFR8Graphics(void)
  * Address:	........
  * Size:	000008
  */
-void doStart__Q32og9newScreen4TestFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::Test::doStart( (Screen::StartSceneArg const *))
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +128,7 @@ void doStart__Q32og9newScreen4TestFPCQ26Screen13StartSceneArg(void)
  * Address:	........
  * Size:	000008
  */
-void doEnd__Q32og9newScreen4TestFPCQ26Screen11EndSceneArg(void)
+void og::newScreen::Test::doEnd( (Screen::EndSceneArg const *))
 {
 	// UNUSED FUNCTION
 }
@@ -138,7 +138,7 @@ void doEnd__Q32og9newScreen4TestFPCQ26Screen11EndSceneArg(void)
  * Address:	........
  * Size:	000004
  */
-void doUpdateFadeinFinish__Q32og9newScreen4TestFv(void)
+void og::newScreen::Test::doUpdateFadeinFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -148,7 +148,7 @@ void doUpdateFadeinFinish__Q32og9newScreen4TestFv(void)
  * Address:	........
  * Size:	000004
  */
-void doUpdateFinish__Q32og9newScreen4TestFv(void)
+void og::newScreen::Test::doUpdateFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -158,7 +158,7 @@ void doUpdateFinish__Q32og9newScreen4TestFv(void)
  * Address:	........
  * Size:	000004
  */
-void doUpdateFadeoutFinish__Q32og9newScreen4TestFv(void)
+void og::newScreen::Test::doUpdateFadeoutFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -168,7 +168,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen4TestFv(void)
  * Address:	........
  * Size:	000008
  */
-void doUpdateFadein__Q32og9newScreen4TestFv(void)
+void og::newScreen::Test::doUpdateFadein(void)
 {
 	// UNUSED FUNCTION
 }
@@ -178,7 +178,7 @@ void doUpdateFadein__Q32og9newScreen4TestFv(void)
  * Address:	........
  * Size:	000008
  */
-void doUpdateFadeout__Q32og9newScreen4TestFv(void)
+void og::newScreen::Test::doUpdateFadeout(void)
 {
 	// UNUSED FUNCTION
 }
@@ -188,7 +188,7 @@ void doUpdateFadeout__Q32og9newScreen4TestFv(void)
  * Address:	........
  * Size:	000008
  */
-void getSize__Q32og6Screen14DispMemberTestFv(void)
+void og::Screen::DispMemberTest::getSize(void)
 {
 	// UNUSED FUNCTION
 }
@@ -198,7 +198,7 @@ void getSize__Q32og6Screen14DispMemberTestFv(void)
  * Address:	........
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen14DispMemberTestFv(void)
+void og::Screen::DispMemberTest::getOwnerID(void)
 {
 	// UNUSED FUNCTION
 }
@@ -208,7 +208,7 @@ void getOwnerID__Q32og6Screen14DispMemberTestFv(void)
  * Address:	........
  * Size:	000010
  */
-void getMemberID__Q32og6Screen14DispMemberTestFv(void)
+void og::Screen::DispMemberTest::getMemberID(void)
 {
 	// UNUSED FUNCTION
 }
@@ -218,7 +218,7 @@ void getMemberID__Q32og6Screen14DispMemberTestFv(void)
  * Address:	8030D8FC
  * Size:	000060
  */
-void setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase(void)
+void Screen::ObjBase::setOwner( (Screen::SceneBase *))
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase(void)
  * Address:	8030D95C
  * Size:	000008
  */
-void getOwner__Q26Screen7ObjBaseCFv(void)
+void Screen::ObjBase::getOwner( const
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void getOwner__Q26Screen7ObjBaseCFv(void)
  * Address:	8030D964
  * Size:	000008
  */
-void doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg(void)
+void Screen::ObjBase::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -284,7 +284,7 @@ void doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg(void)
  * Address:	8030D96C
  * Size:	000008
  */
-void doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg(void)
+void Screen::ObjBase::doConfirmStartScene( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg(void)
  * Address:	8030D974
  * Size:	000008
  */
-void doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg(void)
+void Screen::ObjBase::doConfirmEndScene( (Screen::EndSceneArg *&))
 {
 /*
 .loc_0x0:
@@ -312,7 +312,7 @@ void doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg(void)
  * Address:	8030D97C
  * Size:	00007C
  */
-void __dt__Q26Screen8IObjBaseFv(void)
+void Screen::IObjBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void __dt__Q26Screen8IObjBaseFv(void)
  * Address:	8030D9F8
  * Size:	000008
  */
-void @24@__dt__Q26Screen8IObjBaseFv(void)
+void @24@Screen::IObjBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -371,7 +371,7 @@ void @24@__dt__Q26Screen8IObjBaseFv(void)
  * Address:	........
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen4TestFv(void)
+void @24@og::newScreen::Test::__dt(void)
 {
 	// UNUSED FUNCTION
 }

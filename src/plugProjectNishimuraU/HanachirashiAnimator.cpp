@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802A12B4
  * Size:	000008
  */
-void setAnimMgr__Q34Game12Hanachirashi14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Hanachirashi::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game12Hanachirashi14ProperAnimatorFPQ28SysShape7AnimMgr(void
  * Address:	802A12BC
  * Size:	000008
  */
-void getAnimator__Q34Game12Hanachirashi14ProperAnimatorFi(void)
+void Game::Hanachirashi::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game12Hanachirashi14ProperAnimatorFi(void)
  * Address:	802A12C4
  * Size:	00005C
  */
-void __dt__Q34Game12Hanachirashi14ProperAnimatorFv(void)
+void Game::Hanachirashi::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game12Hanachirashi14ProperAnimatorFv(void)
  * Address:	802A1320
  * Size:	000008
  */
-void getAnimator__Q34Game12Hanachirashi14ProperAnimatorFv(void)
+void Game::Hanachirashi::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

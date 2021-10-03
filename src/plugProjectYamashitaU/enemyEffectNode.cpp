@@ -5,7 +5,7 @@
  * Address:	8012E510
  * Size:	000134
  */
-void __ct__Q24Game20EnemyEffectNodeHamonFv(void)
+void Game::EnemyEffectNodeHamon::__ct(void)
 {
 /*
 .loc_0x0:
@@ -94,7 +94,7 @@ void __ct__Q24Game20EnemyEffectNodeHamonFv(void)
  * Address:	........
  * Size:	000124
  */
-void __dt__Q23efx11TEnemyHamonFv(void)
+void efx::TEnemyHamon::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -104,7 +104,7 @@ void __dt__Q23efx11TEnemyHamonFv(void)
  * Address:	........
  * Size:	000118
  */
-void __dt__Q23efx19TEnemyHamonChasePosFv(void)
+void efx::TEnemyHamonChasePos::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -114,7 +114,7 @@ void __dt__Q23efx19TEnemyHamonChasePosFv(void)
  * Address:	8012E644
  * Size:	00009C
  */
-void __dt__Q23efx15TEnemyHamonMIndFv(void)
+void efx::TEnemyHamonMInd::__dt(void)
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void __dt__Q23efx15TEnemyHamonMIndFv(void)
  * Address:	8012E6E0
  * Size:	00009C
  */
-void __dt__Q23efx12TEnemyHamonMFv(void)
+void efx::TEnemyHamonM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -224,7 +224,7 @@ void __dt__Q23efx12TEnemyHamonMFv(void)
  * Address:	8012E77C
  * Size:	000060
  */
-void __dt__Q24Game19EnemyEffectNodeBaseFv(void)
+void Game::EnemyEffectNodeBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void __dt__Q24Game19EnemyEffectNodeBaseFv(void)
  * Address:	8012E7DC
  * Size:	00011C
  */
-void create__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase(void)
+void Game::EnemyEffectNodeHamon::create( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -347,7 +347,7 @@ void create__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase(void)
  * Address:	8012E8F8
  * Size:	00002C
  */
-void fade__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase(void)
+void Game::EnemyEffectNodeHamon::fade( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void fade__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase(void)
  * Address:	8012E924
  * Size:	000044
  */
-void fade__Q23efx11TEnemyHamonFv(void)
+void efx::TEnemyHamon::fade(void)
 {
 /*
 .loc_0x0:
@@ -399,7 +399,7 @@ void fade__Q23efx11TEnemyHamonFv(void)
  * Address:	8012E968
  * Size:	000050
  */
-void fade__Q23efx19TEnemyHamonChasePosFv(void)
+void efx::TEnemyHamonChasePos::fade(void)
 {
 /*
 .loc_0x0:
@@ -431,7 +431,7 @@ void fade__Q23efx19TEnemyHamonChasePosFv(void)
  * Address:	8012E9B8
  * Size:	00002C
  */
-void forceKill__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase(void)
+void Game::EnemyEffectNodeHamon::forceKill( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -454,7 +454,7 @@ void forceKill__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase(void)
  * Address:	8012E9E4
  * Size:	000044
  */
-void forceKill__Q23efx11TEnemyHamonFv(void)
+void efx::TEnemyHamon::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -483,7 +483,7 @@ void forceKill__Q23efx11TEnemyHamonFv(void)
  * Address:	8012EA28
  * Size:	000050
  */
-void forceKill__Q23efx19TEnemyHamonChasePosFv(void)
+void efx::TEnemyHamonChasePos::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -515,7 +515,7 @@ void forceKill__Q23efx19TEnemyHamonChasePosFv(void)
  * Address:	8012EA78
  * Size:	00004C
  */
-void update__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase(void)
+void Game::EnemyEffectNodeHamon::update( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -546,7 +546,7 @@ void update__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase(void)
  * Address:	8012EAC4
  * Size:	000160
  */
-void __dt__Q24Game20EnemyEffectNodeHamonFv(void)
+void Game::EnemyEffectNodeHamon::__dt(void)
 {
 /*
 .loc_0x0:

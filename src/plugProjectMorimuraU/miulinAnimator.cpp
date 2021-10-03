@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80363EE4
  * Size:	000008
  */
-void setAnimMgr__Q34Game6Miulin14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Miulin::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game6Miulin14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80363EEC
  * Size:	000008
  */
-void getAnimator__Q34Game6Miulin14ProperAnimatorFi(void)
+void Game::Miulin::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game6Miulin14ProperAnimatorFi(void)
  * Address:	80363EF4
  * Size:	00005C
  */
-void __dt__Q34Game6Miulin14ProperAnimatorFv(void)
+void Game::Miulin::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game6Miulin14ProperAnimatorFv(void)
  * Address:	80363F50
  * Size:	000008
  */
-void getAnimator__Q34Game6Miulin14ProperAnimatorFv(void)
+void Game::Miulin::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

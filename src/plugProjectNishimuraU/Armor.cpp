@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8027D69C
  * Size:	000140
  */
-void __ct__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game5Armor3ObjFv(void)
  * Address:	8027D7DC
  * Size:	000004
  */
-void setInitialSetting__Q34Game5Armor3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Armor::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void setInitialSetting__Q34Game5Armor3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8027D7E0
  * Size:	000098
  */
-void onInit__Q34Game5Armor3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Armor::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void onInit__Q34Game5Armor3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8027D878
  * Size:	000048
  */
-void doUpdate__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void doUpdate__Q34Game5Armor3ObjFv(void)
  * Address:	8027D8C0
  * Size:	000004
  */
-void doDirectDraw__Q34Game5Armor3ObjFR8Graphics(void)
+void Game::Armor::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -219,7 +219,7 @@ void doDirectDraw__Q34Game5Armor3ObjFR8Graphics(void)
  * Address:	8027D8C4
  * Size:	000020
  */
-void doDebugDraw__Q34Game5Armor3ObjFR8Graphics(void)
+void Game::Armor::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -239,7 +239,7 @@ void doDebugDraw__Q34Game5Armor3ObjFR8Graphics(void)
  * Address:	8027D8E4
  * Size:	00004C
  */
-void setFSM__Q34Game5Armor3ObjFPQ34Game5Armor3FSM(void)
+void Game::Armor::Obj::setFSM( (Game::Armor::FSM *))
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void setFSM__Q34Game5Armor3ObjFPQ34Game5Armor3FSM(void)
  * Address:	8027D930
  * Size:	0000EC
  */
-void getShadowParam__Q34Game5Armor3ObjFRQ24Game11ShadowParam(void)
+void Game::Armor::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -351,7 +351,7 @@ void getShadowParam__Q34Game5Armor3ObjFRQ24Game11ShadowParam(void)
  * Address:	8027DA1C
  * Size:	000094
  */
-void damageCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Armor::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -406,7 +406,7 @@ void damageCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8027DAB0
  * Size:	000068
  */
-void hipdropCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Armor::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void hipdropCallBack__Q34Game5Armor3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8027DB18
  * Size:	000260
  */
-void doStartStoneState__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -628,7 +628,7 @@ void doStartStoneState__Q34Game5Armor3ObjFv(void)
  * Address:	8027DD78
  * Size:	000034
  */
-void doFinishStoneState__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -653,7 +653,7 @@ void doFinishStoneState__Q34Game5Armor3ObjFv(void)
  * Address:	8027DDAC
  * Size:	000028
  */
-void startCarcassMotion__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -675,7 +675,7 @@ void startCarcassMotion__Q34Game5Armor3ObjFv(void)
  * Address:	8027DDD4
  * Size:	000020
  */
-void doStartMovie__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -695,7 +695,7 @@ void doStartMovie__Q34Game5Armor3ObjFv(void)
  * Address:	8027DDF4
  * Size:	000020
  */
-void doEndMovie__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -715,7 +715,7 @@ void doEndMovie__Q34Game5Armor3ObjFv(void)
  * Address:	8027DE14
  * Size:	00008C
  */
-void initMouthSlots__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -766,7 +766,7 @@ void initMouthSlots__Q34Game5Armor3ObjFv(void)
  * Address:	8027DEA0
  * Size:	000030
  */
-void lifeIncrement__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::lifeIncrement(void)
 {
 /*
 .loc_0x0:
@@ -790,7 +790,7 @@ void lifeIncrement__Q34Game5Armor3ObjFv(void)
  * Address:	8027DED0
  * Size:	0003EC
  */
-void attackPikmin__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::attackPikmin(void)
 {
 /*
 .loc_0x0:
@@ -1081,7 +1081,7 @@ void attackPikmin__Q34Game5Armor3ObjFv(void)
  * Address:	8027E2BC
  * Size:	00008C
  */
-void getSlotPikiNum__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::getSlotPikiNum(void)
 {
 /*
 .loc_0x0:
@@ -1134,7 +1134,7 @@ void getSlotPikiNum__Q34Game5Armor3ObjFv(void)
  * Address:	8027E348
  * Size:	000008
  */
-void getMouthSlots__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1148,7 +1148,7 @@ void getMouthSlots__Q34Game5Armor3ObjFv(void)
  * Address:	8027E350
  * Size:	00002C
  */
-void killSlotPiki__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::killSlotPiki(void)
 {
 /*
 .loc_0x0:
@@ -1171,7 +1171,7 @@ void killSlotPiki__Q34Game5Armor3ObjFv(void)
  * Address:	8027E37C
  * Size:	000020
  */
-void resetBridgeSearch__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::resetBridgeSearch(void)
 {
 /*
 .loc_0x0:
@@ -1191,7 +1191,7 @@ void resetBridgeSearch__Q34Game5Armor3ObjFv(void)
  * Address:	8027E39C
  * Size:	000048
  */
-void setBridgeSearch__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::setBridgeSearch(void)
 {
 /*
 .loc_0x0:
@@ -1225,7 +1225,7 @@ void setBridgeSearch__Q34Game5Armor3ObjFv(void)
  * Address:	8027E3E4
  * Size:	0002C0
  */
-void setNearestBridge__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::setNearestBridge(void)
 {
 /*
 .loc_0x0:
@@ -1437,7 +1437,7 @@ void setNearestBridge__Q34Game5Armor3ObjFv(void)
  * Address:	8027E6A4
  * Size:	000004
  */
-void setCullingCheck__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::setCullingCheck(void)
 {
 /*
 .loc_0x0:
@@ -1450,7 +1450,7 @@ void setCullingCheck__Q34Game5Armor3ObjFv(void)
  * Address:	8027E6A8
  * Size:	0001B4
  */
-void checkBreakOrMove__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::checkBreakOrMove(void)
 {
 /*
 .loc_0x0:
@@ -1589,7 +1589,7 @@ void checkBreakOrMove__Q34Game5Armor3ObjFv(void)
  * Address:	8027E85C
  * Size:	000028
  */
-void isBreakBridge__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::isBreakBridge(void)
 {
 /*
 .loc_0x0:
@@ -1613,7 +1613,7 @@ void isBreakBridge__Q34Game5Armor3ObjFv(void)
  * Address:	8027E884
  * Size:	0002A8
  */
-void moveBridgeSide__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::moveBridgeSide(void)
 {
 /*
 .loc_0x0:
@@ -1803,7 +1803,7 @@ void moveBridgeSide__Q34Game5Armor3ObjFv(void)
  * Address:	8027EB2C
  * Size:	000288
  */
-void moveBridgeCentre__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::moveBridgeCentre(void)
 {
 /*
 .loc_0x0:
@@ -1985,7 +1985,7 @@ void moveBridgeCentre__Q34Game5Armor3ObjFv(void)
  * Address:	8027EDB4
  * Size:	00031C
  */
-void moveBridgeTop__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::moveBridgeTop(void)
 {
 /*
 .loc_0x0:
@@ -2210,7 +2210,7 @@ void moveBridgeTop__Q34Game5Armor3ObjFv(void)
  * Address:	8027F0D0
  * Size:	00005C
  */
-void breakTargetBridge__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::breakTargetBridge(void)
 {
 /*
 .loc_0x0:
@@ -2245,7 +2245,7 @@ void breakTargetBridge__Q34Game5Armor3ObjFv(void)
  * Address:	8027F12C
  * Size:	0000B0
  */
-void createEffect__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -2303,7 +2303,7 @@ void createEffect__Q34Game5Armor3ObjFv(void)
  * Address:	8027F1DC
  * Size:	000040
  */
-void setupEffect__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -2331,7 +2331,7 @@ void setupEffect__Q34Game5Armor3ObjFv(void)
  * Address:	8027F21C
  * Size:	000034
  */
-void createAttackEffect__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::createAttackEffect(void)
 {
 /*
 .loc_0x0:
@@ -2356,7 +2356,7 @@ void createAttackEffect__Q34Game5Armor3ObjFv(void)
  * Address:	8027F250
  * Size:	00008C
  */
-void createAppearEffect__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -2403,7 +2403,7 @@ void createAppearEffect__Q34Game5Armor3ObjFv(void)
  * Address:	8027F2DC
  * Size:	00008C
  */
-void createDisAppearEffect__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::createDisAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -2450,7 +2450,7 @@ void createDisAppearEffect__Q34Game5Armor3ObjFv(void)
  * Address:	8027F368
  * Size:	000090
  */
-void createBridgeEffect__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::createBridgeEffect(void)
 {
 /*
 .loc_0x0:
@@ -2498,7 +2498,7 @@ void createBridgeEffect__Q34Game5Armor3ObjFv(void)
  * Address:	8027F3F8
  * Size:	000030
  */
-void effectDrawOn__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -2522,7 +2522,7 @@ void effectDrawOn__Q34Game5Armor3ObjFv(void)
  * Address:	8027F428
  * Size:	000030
  */
-void effectDrawOff__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -2546,7 +2546,7 @@ void effectDrawOff__Q34Game5Armor3ObjFv(void)
  * Address:	8027F458
  * Size:	00009C
  */
-void __dt__Q23efx12TYoroiAttackFv(void)
+void efx::TYoroiAttack::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2601,7 +2601,7 @@ void __dt__Q23efx12TYoroiAttackFv(void)
  * Address:	8027F4F4
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -2615,7 +2615,7 @@ void getDownSmokeScale__Q34Game5Armor3ObjFv(void)
  * Address:	8027F4FC
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -2629,7 +2629,7 @@ void getEnemyTypeID__Q34Game5Armor3ObjFv(void)
  * Address:	8027F504
  * Size:	000008
  */
-void @4@__dt__Q23efx12TYoroiAttackFv(void)
+void @4@efx::TYoroiAttack::__dt(void)
 {
 /*
 .loc_0x0:

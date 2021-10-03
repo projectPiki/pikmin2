@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B27CC
  * Size:	000138
  */
-void __ct__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2904
  * Size:	000004
  */
-void setInitialSetting__Q34Game9BombSarai3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::BombSarai::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game9BombSarai3ObjFPQ24Game21EnemyInitialParamBase(vo
  * Address:	802B2908
  * Size:	000098
  */
-void onInit__Q34Game9BombSarai3ObjFPQ24Game15CreatureInitArg(void)
+void Game::BombSarai::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void onInit__Q34Game9BombSarai3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802B29A0
  * Size:	000050
  */
-void onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg(void)
+void Game::BombSarai::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802B29F0
  * Size:	0000A4
  */
-void doUpdate__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void doUpdate__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2A94
  * Size:	000004
  */
-void doDirectDraw__Q34Game9BombSarai3ObjFR8Graphics(void)
+void Game::BombSarai::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -276,7 +276,7 @@ void doDirectDraw__Q34Game9BombSarai3ObjFR8Graphics(void)
  * Address:	802B2A98
  * Size:	000020
  */
-void doDebugDraw__Q34Game9BombSarai3ObjFR8Graphics(void)
+void Game::BombSarai::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -296,7 +296,7 @@ void doDebugDraw__Q34Game9BombSarai3ObjFR8Graphics(void)
  * Address:	802B2AB8
  * Size:	00004C
  */
-void setFSM__Q34Game9BombSarai3ObjFPQ34Game9BombSarai3FSM(void)
+void Game::BombSarai::Obj::setFSM( (Game::BombSarai::FSM *))
 {
 /*
 .loc_0x0:
@@ -327,7 +327,7 @@ void setFSM__Q34Game9BombSarai3ObjFPQ34Game9BombSarai3FSM(void)
  * Address:	802B2B04
  * Size:	0000D4
  */
-void getShadowParam__Q34Game9BombSarai3ObjFRQ24Game11ShadowParam(void)
+void Game::BombSarai::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3<float>f(voi
  * Address:	802B2C14
  * Size:	00008C
  */
-void doFinishStoneState__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -478,7 +478,7 @@ void doFinishStoneState__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2CA0
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -503,7 +503,7 @@ void doStartWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2CD4
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -528,7 +528,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2D08
  * Size:	000028
  */
-void startCarcassMotion__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -550,7 +550,7 @@ void startCarcassMotion__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2D30
  * Size:	000020
  */
-void doStartMovie__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -570,7 +570,7 @@ void doStartMovie__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2D50
  * Size:	000020
  */
-void doEndMovie__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -590,7 +590,7 @@ void doEndMovie__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2D70
  * Size:	0001A0
  */
-void setHeightVelocity__Q34Game9BombSarai3ObjFb(void)
+void Game::BombSarai::Obj::setHeightVelocity( (bool))
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void setHeightVelocity__Q34Game9BombSarai3ObjFb(void)
  * Address:	802B2F10
  * Size:	0001E8
  */
-void setRandTarget__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::setRandTarget(void)
 {
 /*
 .loc_0x0:
@@ -862,7 +862,7 @@ void setRandTarget__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B30F8
  * Size:	000038
  */
-void addPitchRatio__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::addPitchRatio(void)
 {
 /*
 .loc_0x0:
@@ -888,7 +888,7 @@ void addPitchRatio__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B3130
  * Size:	0000C8
  */
-void supplyBomb__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::supplyBomb(void)
 {
 /*
 .loc_0x0:
@@ -996,7 +996,7 @@ void throwBomb__Q34Game9BombSarai3ObjFR10Vector3<float>(void)
  * Address:	802B3270
  * Size:	000070
  */
-void getAttackablePikmin__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::getAttackablePikmin(void)
 {
 /*
 .loc_0x0:
@@ -1040,7 +1040,7 @@ void getAttackablePikmin__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B32E0
  * Size:	000144
  */
-void getNextStateOnHeight__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::getNextStateOnHeight(void)
 {
 /*
 .loc_0x0:
@@ -1147,7 +1147,7 @@ void getNextStateOnHeight__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B3424
  * Size:	0000B0
  */
-void createEffect__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1205,7 +1205,7 @@ void createEffect__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B34D4
  * Size:	000044
  */
-void setupEffect__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -1234,7 +1234,7 @@ void setupEffect__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B3518
  * Size:	000034
  */
-void createSupliEffect__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::createSupliEffect(void)
 {
 /*
 .loc_0x0:
@@ -1259,7 +1259,7 @@ void createSupliEffect__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B354C
  * Size:	00011C
  */
-void createBalloonEffect__Q34Game9BombSarai3ObjFi(void)
+void Game::BombSarai::Obj::createBalloonEffect( (int))
 {
 /*
 .loc_0x0:
@@ -1354,7 +1354,7 @@ void createBalloonEffect__Q34Game9BombSarai3ObjFi(void)
  * Address:	802B3668
  * Size:	000024
  */
-void createDownEffect__Q34Game9BombSarai3ObjFf(void)
+void Game::BombSarai::Obj::createDownEffect( (float))
 {
 /*
 .loc_0x0:
@@ -1375,7 +1375,7 @@ void createDownEffect__Q34Game9BombSarai3ObjFf(void)
  * Address:	802B368C
  * Size:	000030
  */
-void effectDrawOn__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -1399,7 +1399,7 @@ void effectDrawOn__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B36BC
  * Size:	000030
  */
-void effectDrawOff__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -1423,7 +1423,7 @@ void effectDrawOff__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B36EC
  * Size:	00009C
  */
-void __dt__Q23efx12TBsaraiSupliFv(void)
+void efx::TBsaraiSupli::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1478,7 +1478,7 @@ void __dt__Q23efx12TBsaraiSupliFv(void)
  * Address:	802B3788
  * Size:	000004
  */
-void inWaterCallback__Q34Game9BombSarai3ObjFPQ24Game8WaterBox(void)
+void Game::BombSarai::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1491,7 +1491,7 @@ void inWaterCallback__Q34Game9BombSarai3ObjFPQ24Game8WaterBox(void)
  * Address:	802B378C
  * Size:	000004
  */
-void outWaterCallback__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1504,7 +1504,7 @@ void outWaterCallback__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B3790
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1518,7 +1518,7 @@ void getDownSmokeScale__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B3798
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1532,7 +1532,7 @@ void getEnemyTypeID__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B37A0
  * Size:	000008
  */
-void @4@__dt__Q23efx12TBsaraiSupliFv(void)
+void @4@efx::TBsaraiSupli::__dt(void)
 {
 /*
 .loc_0x0:

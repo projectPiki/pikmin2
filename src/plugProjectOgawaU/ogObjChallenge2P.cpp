@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8031EBE8
  * Size:	000064
  */
-void __ct__Q32og9newScreen14ObjChallenge2PFPCc(void)
+void og::newScreen::ObjChallenge2P::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void __ct__Q32og9newScreen14ObjChallenge2PFPCc(void)
  * Address:	8031EC4C
  * Size:	000068
  */
-void __dt__Q32og9newScreen14ObjChallenge2PFv(void)
+void og::newScreen::ObjChallenge2P::__dt(void)
 {
 /*
 .loc_0x0:
@@ -92,7 +92,7 @@ void __dt__Q32og9newScreen14ObjChallenge2PFv(void)
  * Address:	8031ECB4
  * Size:	0006C4
  */
-void doCreate__Q32og9newScreen14ObjChallenge2PFP10JKRArchive(void)
+void og::newScreen::ObjChallenge2P::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -581,7 +581,7 @@ void doCreate__Q32og9newScreen14ObjChallenge2PFP10JKRArchive(void)
  * Address:	8031F378
  * Size:	0002BC
  */
-void init__Q42og9newScreen14ObjChallenge2P9ScreenSetFPQ32og6Screen8DataNaviP10JKRArchivePQ32og6Screen21DispMemberChallenge2P(void)
+void og::newScreen::ObjChallenge2P::ScreenSet::init( (og::Screen::DataNavi *, JKRArchive *, og::Screen::DispMemberChallenge2P *))
 {
 /*
 .loc_0x0:
@@ -770,7 +770,7 @@ void init__Q42og9newScreen14ObjChallenge2P9ScreenSetFPQ32og6Screen8DataNaviP10JK
  * Address:	........
  * Size:	0000EC
  */
-void update__Q42og9newScreen14ObjChallenge2P9ScreenSetFRQ32og6Screen8DataNavi(void)
+void og::newScreen::ObjChallenge2P::ScreenSet::update( (og::Screen::DataNavi &))
 {
 	// UNUSED FUNCTION
 }
@@ -780,7 +780,7 @@ void update__Q42og9newScreen14ObjChallenge2P9ScreenSetFRQ32og6Screen8DataNavi(vo
  * Address:	8031F634
  * Size:	000260
  */
-void commonUpdate__Q32og9newScreen14ObjChallenge2PFv(void)
+void og::newScreen::ObjChallenge2P::commonUpdate(void)
 {
 /*
 .loc_0x0:
@@ -954,7 +954,7 @@ void commonUpdate__Q32og9newScreen14ObjChallenge2PFv(void)
  * Address:	8031F894
  * Size:	000024
  */
-void doUpdate__Q32og9newScreen14ObjChallenge2PFv(void)
+void og::newScreen::ObjChallenge2P::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -975,7 +975,7 @@ void doUpdate__Q32og9newScreen14ObjChallenge2PFv(void)
  * Address:	8031F8B8
  * Size:	0001F8
  */
-void doDraw__Q32og9newScreen14ObjChallenge2PFR8Graphics(void)
+void og::newScreen::ObjChallenge2P::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1113,7 +1113,7 @@ void doDraw__Q32og9newScreen14ObjChallenge2PFR8Graphics(void)
  * Address:	8031FAB0
  * Size:	000004
  */
-void doUpdateFadeinFinish__Q32og9newScreen14ObjChallenge2PFv(void)
+void og::newScreen::ObjChallenge2P::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -1126,7 +1126,7 @@ void doUpdateFadeinFinish__Q32og9newScreen14ObjChallenge2PFv(void)
  * Address:	8031FAB4
  * Size:	00000C
  */
-void doUpdateFinish__Q32og9newScreen14ObjChallenge2PFv(void)
+void og::newScreen::ObjChallenge2P::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -1141,7 +1141,7 @@ void doUpdateFinish__Q32og9newScreen14ObjChallenge2PFv(void)
  * Address:	8031FAC0
  * Size:	000004
  */
-void doUpdateFadeoutFinish__Q32og9newScreen14ObjChallenge2PFv(void)
+void og::newScreen::ObjChallenge2P::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -1154,7 +1154,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen14ObjChallenge2PFv(void)
  * Address:	8031FAC4
  * Size:	000074
  */
-void doUpdateFadein__Q32og9newScreen14ObjChallenge2PFv(void)
+void og::newScreen::ObjChallenge2P::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -1197,7 +1197,7 @@ void doUpdateFadein__Q32og9newScreen14ObjChallenge2PFv(void)
  * Address:	8031FB38
  * Size:	00007C
  */
-void doUpdateFadeout__Q32og9newScreen14ObjChallenge2PFv(void)
+void og::newScreen::ObjChallenge2P::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -1242,7 +1242,7 @@ void doUpdateFadeout__Q32og9newScreen14ObjChallenge2PFv(void)
  * Address:	8031FBB4
  * Size:	000074
  */
-void doStart__Q32og9newScreen14ObjChallenge2PFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjChallenge2P::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -1352,7 +1352,7 @@ void __sinit_ogObjChallenge2P_cpp(void)
  * Address:	8031FCFC
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen14ObjChallenge2PFv(void)
+void @24@og::newScreen::ObjChallenge2P::__dt(void)
 {
 /*
 .loc_0x0:

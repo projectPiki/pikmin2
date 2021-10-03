@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802992B4
  * Size:	000050
  */
-void __ct__Q34Game10KumaChappy3MgrFiUc(void)
+void Game::KumaChappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game10KumaChappy3MgrFiUc(void)
  * Address:	80299304
  * Size:	000048
  */
-void doAlloc__Q34Game10KumaChappy3MgrFv(void)
+void Game::KumaChappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game10KumaChappy3MgrFv(void)
  * Address:	8029934C
  * Size:	000118
  */
-void __ct__Q34Game10KumaChappy5ParmsFv(void)
+void Game::KumaChappy::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void __ct__Q34Game10KumaChappy5ParmsFv(void)
  * Address:	80299464
  * Size:	000060
  */
-void createObj__Q34Game10KumaChappy3MgrFi(void)
+void Game::KumaChappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void createObj__Q34Game10KumaChappy3MgrFi(void)
  * Address:	802994C4
  * Size:	0000BC
  */
-void __dt__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void __dt__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299580
  * Size:	000010
  */
-void getEnemy__Q34Game10KumaChappy3MgrFi(void)
+void Game::KumaChappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -278,7 +278,7 @@ void getEnemy__Q34Game10KumaChappy3MgrFi(void)
  * Address:	80299590
  * Size:	000050
  */
-void read__Q34Game10KumaChappy5ParmsFR6Stream(void)
+void Game::KumaChappy::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -310,7 +310,7 @@ void read__Q34Game10KumaChappy5ParmsFR6Stream(void)
  * Address:	802995E0
  * Size:	0000B0
  */
-void __dt__Q34Game10KumaChappy3MgrFv(void)
+void Game::KumaChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void __dt__Q34Game10KumaChappy3MgrFv(void)
  * Address:	80299690
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10KumaChappy3MgrFv(void)
+void Game::KumaChappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void getEnemyTypeID__Q34Game10KumaChappy3MgrFv(void)
  * Address:	80299698
  * Size:	000008
  */
-void @4@__dt__Q34Game10KumaChappy3MgrFv(void)
+void @4@Game::KumaChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

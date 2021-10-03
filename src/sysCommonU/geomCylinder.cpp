@@ -132,7 +132,7 @@ void set__Q23Sys8CylinderFRC10Vector3<float>RC10Vector3<float>f(void)
  * Address:	........
  * Size:	000188
  */
-void intersect__Q23Sys8CylinderFRC5Plane(void)
+void Sys::Cylinder::intersect( (Plane const &))
 {
 	// UNUSED FUNCTION
 }
@@ -142,7 +142,7 @@ void intersect__Q23Sys8CylinderFRC5Plane(void)
  * Address:	80421764
  * Size:	000190
  */
-void culled__Q23Sys8CylinderFRC5Plane(void)
+void Sys::Cylinder::culled( (Plane const &))
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void culled__Q23Sys8CylinderFRC5Plane(void)
  * Address:	804218F4
  * Size:	0001D8
  */
-void intersect__Q23Sys8CylinderFRCQ23Sys8TriangleRf(void)
+void Sys::Cylinder::intersect( (Sys::Triangle const &, float &))
 {
 /*
 .loc_0x0:
@@ -402,7 +402,7 @@ void intersect__Q23Sys8CylinderFRCQ23Sys8TriangleRf(void)
  * Address:	........
  * Size:	0004A0
  */
-void draw__Q23Sys8CylinderFR8Graphics(void)
+void Sys::Cylinder::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }

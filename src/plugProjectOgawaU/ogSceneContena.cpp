@@ -5,7 +5,7 @@
  * Address:	80321F08
  * Size:	000044
  */
-void __ct__Q32og9newScreen7ContenaFv(void)
+void og::newScreen::Contena::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q32og9newScreen7ContenaFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen7ContenaFv(void)
+void og::newScreen::Contena::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -44,7 +44,7 @@ void __dt__Q32og9newScreen7ContenaFv(void)
  * Address:	80321F4C
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen7ContenaFPQ28Resource10MgrCommand(void)
+void og::newScreen::Contena::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void doUserCallBackFunc__Q32og9newScreen7ContenaFPQ28Resource10MgrCommand(void)
  * Address:	80321F50
  * Size:	000100
  */
-void doCreateObj__Q32og9newScreen7ContenaFP10JKRArchive(void)
+void og::newScreen::Contena::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void doCreateObj__Q32og9newScreen7ContenaFP10JKRArchive(void)
  * Address:	80322050
  * Size:	00000C
  */
-void getResName__Q32og9newScreen7ContenaCFv(void)
+void og::newScreen::Contena::getResName( const
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void getResName__Q32og9newScreen7ContenaCFv(void)
  * Address:	8032205C
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen7ContenaFv(void)
+void og::newScreen::Contena::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -172,7 +172,7 @@ void getSceneType__Q32og9newScreen7ContenaFv(void)
  * Address:	80322064
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen7ContenaFv(void)
+void og::newScreen::Contena::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -187,7 +187,7 @@ void getOwnerID__Q32og9newScreen7ContenaFv(void)
  * Address:	80322070
  * Size:	000014
  */
-void getMemberID__Q32og9newScreen7ContenaFv(void)
+void og::newScreen::Contena::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void getMemberID__Q32og9newScreen7ContenaFv(void)
  * Address:	80322084
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen7ContenaFv(void)
+void og::newScreen::Contena::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void Game::_Print(char *, ...)
  * Address:	8010BA00
  * Size:	00007C
  */
-void actEnemy__Q24Game15InteractHipdropFPQ24Game9EnemyBase(void)
+void Game::InteractHipdrop::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -60,7 +60,7 @@ void actEnemy__Q24Game15InteractHipdropFPQ24Game9EnemyBase(void)
  * Address:	8010BA7C
  * Size:	000074
  */
-void actEnemy__Q24Game18InteractEarthquakeFPQ24Game9EnemyBase(void)
+void Game::InteractEarthquake::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void actEnemy__Q24Game18InteractEarthquakeFPQ24Game9EnemyBase(void)
  * Address:	8010BAF0
  * Size:	000040
  */
-void actEnemy__Q24Game13InteractPressFPQ24Game9EnemyBase(void)
+void Game::InteractPress::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void actEnemy__Q24Game13InteractPressFPQ24Game9EnemyBase(void)
  * Address:	8010BB30
  * Size:	000040
  */
-void actEnemy__Q24Game20InteractFlyCollisionFPQ24Game9EnemyBase(void)
+void Game::InteractFlyCollision::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void actEnemy__Q24Game20InteractFlyCollisionFPQ24Game9EnemyBase(void)
  * Address:	8010BB70
  * Size:	00011C
  */
-void actEnemy__Q24Game14InteractAttackFPQ24Game9EnemyBase(void)
+void Game::InteractAttack::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -252,7 +252,7 @@ void actEnemy__Q24Game14InteractAttackFPQ24Game9EnemyBase(void)
  * Address:	8010BC8C
  * Size:	000038
  */
-void actEnemy__Q24Game12InteractDropFPQ24Game9EnemyBase(void)
+void Game::InteractDrop::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -278,7 +278,7 @@ void actEnemy__Q24Game12InteractDropFPQ24Game9EnemyBase(void)
  * Address:	8010BCC4
  * Size:	000078
  */
-void actEnemy__Q24Game12InteractBombFPQ24Game9EnemyBase(void)
+void Game::InteractBomb::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

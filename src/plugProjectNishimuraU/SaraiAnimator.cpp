@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80272490
  * Size:	000008
  */
-void setAnimMgr__Q34Game5Sarai14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Sarai::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game5Sarai14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80272498
  * Size:	000008
  */
-void getAnimator__Q34Game5Sarai14ProperAnimatorFi(void)
+void Game::Sarai::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game5Sarai14ProperAnimatorFi(void)
  * Address:	802724A0
  * Size:	00005C
  */
-void __dt__Q34Game5Sarai14ProperAnimatorFv(void)
+void Game::Sarai::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game5Sarai14ProperAnimatorFv(void)
  * Address:	802724FC
  * Size:	000008
  */
-void getAnimator__Q34Game5Sarai14ProperAnimatorFv(void)
+void Game::Sarai::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

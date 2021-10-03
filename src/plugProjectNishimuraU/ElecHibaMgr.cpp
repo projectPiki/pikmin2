@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026EA08
  * Size:	00008C
  */
-void __ct__Q34Game8ElecHiba9GeneratorFv(void)
+void Game::ElecHiba::Generator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -62,7 +62,7 @@ void __ct__Q34Game8ElecHiba9GeneratorFv(void)
  * Address:	8026EA94
  * Size:	00000C
  */
-void getLatestVersion__Q34Game8ElecHiba9GeneratorFv(void)
+void Game::ElecHiba::Generator::getLatestVersion(void)
 {
 /*
 .loc_0x0:
@@ -77,7 +77,7 @@ void getLatestVersion__Q34Game8ElecHiba9GeneratorFv(void)
  * Address:	8026EAA0
  * Size:	000074
  */
-void doRead__Q34Game8ElecHiba9GeneratorFR6Stream(void)
+void Game::ElecHiba::Generator::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void doRead__Q34Game8ElecHiba9GeneratorFR6Stream(void)
  * Address:	8026EB14
  * Size:	000060
  */
-void doWrite__Q34Game8ElecHiba9GeneratorFR6Stream(void)
+void Game::ElecHiba::Generator::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void doWrite__Q34Game8ElecHiba9GeneratorFR6Stream(void)
  * Address:	8026EB74
  * Size:	000034
  */
-void doReadLatestVersion__Q34Game8ElecHiba9GeneratorFR6Stream(void)
+void Game::ElecHiba::Generator::doReadLatestVersion( (Stream &))
 {
 /*
 .loc_0x0:
@@ -183,7 +183,7 @@ void doReadLatestVersion__Q34Game8ElecHiba9GeneratorFR6Stream(void)
  * Address:	8026EBA8
  * Size:	000004
  */
-void doReadOldVersion__Q34Game8ElecHiba9GeneratorFR6Stream(void)
+void Game::ElecHiba::Generator::doReadOldVersion( (Stream &))
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void doReadOldVersion__Q34Game8ElecHiba9GeneratorFR6Stream(void)
  * Address:	8026EBAC
  * Size:	000064
  */
-void __ct__Q34Game8ElecHiba3MgrFiUc(void)
+void Game::ElecHiba::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void __ct__Q34Game8ElecHiba3MgrFiUc(void)
  * Address:	8026EC10
  * Size:	000048
  */
-void doAlloc__Q34Game8ElecHiba3MgrFv(void)
+void Game::ElecHiba::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -267,7 +267,7 @@ void doAlloc__Q34Game8ElecHiba3MgrFv(void)
  * Address:	8026EC58
  * Size:	0001CC
  */
-void __ct__Q34Game8ElecHiba5ParmsFv(void)
+void Game::ElecHiba::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -394,7 +394,7 @@ void __ct__Q34Game8ElecHiba5ParmsFv(void)
  * Address:	8026EE24
  * Size:	000060
  */
-void createObj__Q34Game8ElecHiba3MgrFi(void)
+void Game::ElecHiba::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -430,7 +430,7 @@ void createObj__Q34Game8ElecHiba3MgrFi(void)
  * Address:	8026EE84
  * Size:	0000E0
  */
-void __dt__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void __dt__Q34Game8ElecHiba3ObjFv(void)
  * Address:	8026EF64
  * Size:	000010
  */
-void getEnemy__Q34Game8ElecHiba3MgrFi(void)
+void Game::ElecHiba::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -520,7 +520,7 @@ void getEnemy__Q34Game8ElecHiba3MgrFi(void)
  * Address:	8026EF74
  * Size:	0000E4
  */
-void birth__Q34Game8ElecHiba3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::ElecHiba::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -591,7 +591,7 @@ void birth__Q34Game8ElecHiba3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	8026F058
  * Size:	0000C8
  */
-void __dt__Q34Game8ElecHiba3MgrFv(void)
+void Game::ElecHiba::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -657,7 +657,7 @@ void __dt__Q34Game8ElecHiba3MgrFv(void)
  * Address:	8026F120
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8ElecHiba3MgrFv(void)
+void Game::ElecHiba::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -671,7 +671,7 @@ void getEnemyTypeID__Q34Game8ElecHiba3MgrFv(void)
  * Address:	8026F128
  * Size:	000060
  */
-void __dt__Q34Game8ElecHiba8TeamListFv(void)
+void Game::ElecHiba::TeamList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -709,7 +709,7 @@ void __dt__Q34Game8ElecHiba8TeamListFv(void)
  * Address:	8026F188
  * Size:	000050
  */
-void read__Q34Game8ElecHiba5ParmsFR6Stream(void)
+void Game::ElecHiba::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -741,7 +741,7 @@ void read__Q34Game8ElecHiba5ParmsFR6Stream(void)
  * Address:	8026F1D8
  * Size:	000070
  */
-void __dt__Q34Game8ElecHiba9GeneratorFv(void)
+void Game::ElecHiba::Generator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -785,7 +785,7 @@ void __dt__Q34Game8ElecHiba9GeneratorFv(void)
  * Address:	8026F248
  * Size:	000008
  */
-void getInitialParam__Q34Game8ElecHiba9GeneratorFv(void)
+void Game::ElecHiba::Generator::getInitialParam(void)
 {
 /*
 .loc_0x0:
@@ -799,7 +799,7 @@ void getInitialParam__Q34Game8ElecHiba9GeneratorFv(void)
  * Address:	8026F250
  * Size:	000008
  */
-void @4@__dt__Q34Game8ElecHiba3MgrFv(void)
+void @4@Game::ElecHiba::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

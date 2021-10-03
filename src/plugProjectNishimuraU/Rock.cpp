@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80262FF0
  * Size:	000138
  */
-void __ct__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -146,7 +146,7 @@ void birth__Q34Game4Rock3ObjFR10Vector3<float>f(void)
  * Address:	80263184
  * Size:	000028
  */
-void setInitialSetting__Q34Game4Rock3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Rock::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void setInitialSetting__Q34Game4Rock3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	802631AC
  * Size:	0001E0
  */
-void onInit__Q34Game4Rock3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Rock::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -312,7 +312,7 @@ void onInit__Q34Game4Rock3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8026338C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -326,7 +326,7 @@ void getEnemyTypeID__Q34Game4Rock3ObjFv(void)
  * Address:	80263394
  * Size:	000054
  */
-void onKill__Q34Game4Rock3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Rock::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -359,7 +359,7 @@ void onKill__Q34Game4Rock3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802633E8
  * Size:	000034
  */
-void doUpdate__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void doUpdate__Q34Game4Rock3ObjFv(void)
  * Address:	8026341C
  * Size:	00004C
  */
-void setFSM__Q34Game4Rock3ObjFPQ34Game4Rock3FSM(void)
+void Game::Rock::Obj::setFSM( (Game::Rock::FSM *))
 {
 /*
 .loc_0x0:
@@ -415,7 +415,7 @@ void setFSM__Q34Game4Rock3ObjFPQ34Game4Rock3FSM(void)
  * Address:	80263468
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Rock3ObjFR8Graphics(void)
+void Game::Rock::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -428,7 +428,7 @@ void doDirectDraw__Q34Game4Rock3ObjFR8Graphics(void)
  * Address:	8026346C
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Rock3ObjFR8Graphics(void)
+void Game::Rock::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void doDebugDraw__Q34Game4Rock3ObjFR8Graphics(void)
  * Address:	8026348C
  * Size:	0000E4
  */
-void getShadowParam__Q34Game4Rock3ObjFRQ24Game11ShadowParam(void)
+void Game::Rock::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -523,7 +523,7 @@ void getShadowParam__Q34Game4Rock3ObjFRQ24Game11ShadowParam(void)
  * Address:	80263570
  * Size:	000060
  */
-void needShadow__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -567,7 +567,7 @@ void needShadow__Q34Game4Rock3ObjFv(void)
  * Address:	802635D0
  * Size:	000088
  */
-void hipdropCallBack__Q34Game4Rock3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Rock::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void hipdropCallBack__Q34Game4Rock3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80263658
  * Size:	0001A4
  */
-void collisionCallback__Q34Game4Rock3ObjFRQ24Game9CollEvent(void)
+void Game::Rock::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -746,7 +746,7 @@ void collisionCallback__Q34Game4Rock3ObjFRQ24Game9CollEvent(void)
  * Address:	802637FC
  * Size:	000054
  */
-void wallCallback__Q34Game4Rock3ObjFRCQ24Game8MoveInfo(void)
+void Game::Rock::Obj::wallCallback( (Game::MoveInfo const &))
 {
 /*
 .loc_0x0:
@@ -781,7 +781,7 @@ void wallCallback__Q34Game4Rock3ObjFRCQ24Game8MoveInfo(void)
  * Address:	80263850
  * Size:	00006C
  */
-void inWaterCallback__Q34Game4Rock3ObjFPQ24Game8WaterBox(void)
+void Game::Rock::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -822,7 +822,7 @@ void inWaterCallback__Q34Game4Rock3ObjFPQ24Game8WaterBox(void)
  * Address:	802638BC
  * Size:	000060
  */
-void outWaterCallback__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -860,7 +860,7 @@ void outWaterCallback__Q34Game4Rock3ObjFv(void)
  * Address:	8026391C
  * Size:	000020
  */
-void doStartMovie__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -880,7 +880,7 @@ void doStartMovie__Q34Game4Rock3ObjFv(void)
  * Address:	8026393C
  * Size:	000020
  */
-void doEndMovie__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -900,7 +900,7 @@ void doEndMovie__Q34Game4Rock3ObjFv(void)
  * Address:	8026395C
  * Size:	00002C
  */
-void ignoreAtari__Q34Game4Rock3ObjFPQ24Game8Creature(void)
+void Game::Rock::Obj::ignoreAtari( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -925,7 +925,7 @@ void ignoreAtari__Q34Game4Rock3ObjFPQ24Game8Creature(void)
  * Address:	80263988
  * Size:	00007C
  */
-void fallRockScaleUp__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::fallRockScaleUp(void)
 {
 /*
 .loc_0x0:
@@ -972,7 +972,7 @@ void fallRockScaleUp__Q34Game4Rock3ObjFv(void)
  * Address:	80263A04
  * Size:	00007C
  */
-void moveRockScaleUp__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::moveRockScaleUp(void)
 {
 /*
 .loc_0x0:
@@ -1019,7 +1019,7 @@ void moveRockScaleUp__Q34Game4Rock3ObjFv(void)
  * Address:	80263A80
  * Size:	000100
  */
-void initMoveVelocity__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::initMoveVelocity(void)
 {
 /*
 .loc_0x0:
@@ -1101,7 +1101,7 @@ void initMoveVelocity__Q34Game4Rock3ObjFv(void)
  * Address:	80263B80
  * Size:	0003A0
  */
-void updateMoveVelocity__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::updateMoveVelocity(void)
 {
 /*
 .loc_0x0:
@@ -1369,7 +1369,7 @@ void updateMoveVelocity__Q34Game4Rock3ObjFv(void)
  * Address:	80263F20
  * Size:	0001A4
  */
-void createEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1492,7 +1492,7 @@ void createEffect__Q34Game4Rock3ObjFv(void)
  * Address:	........
  * Size:	000090
  */
-void __dt__Q23efx17TRockWRunChasePosFv(void)
+void efx::TRockWRunChasePos::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1502,7 +1502,7 @@ void __dt__Q23efx17TRockWRunChasePosFv(void)
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx10TChasePos3Fv(void)
+void efx::TChasePos3::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1512,7 +1512,7 @@ void __dt__Q23efx10TChasePos3Fv(void)
  * Address:	802640C4
  * Size:	000018
  */
-void setupEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -1530,7 +1530,7 @@ void setupEffect__Q34Game4Rock3ObjFv(void)
  * Address:	802640DC
  * Size:	000034
  */
-void startFallEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::startFallEffect(void)
 {
 /*
 .loc_0x0:
@@ -1555,7 +1555,7 @@ void startFallEffect__Q34Game4Rock3ObjFv(void)
  * Address:	80264110
  * Size:	000030
  */
-void finishFallEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::finishFallEffect(void)
 {
 /*
 .loc_0x0:
@@ -1579,7 +1579,7 @@ void finishFallEffect__Q34Game4Rock3ObjFv(void)
  * Address:	80264140
  * Size:	000034
  */
-void startRollingGroundEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::startRollingGroundEffect(void)
 {
 /*
 .loc_0x0:
@@ -1604,7 +1604,7 @@ void startRollingGroundEffect__Q34Game4Rock3ObjFv(void)
  * Address:	80264174
  * Size:	000030
  */
-void finishRollingGroundEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::finishRollingGroundEffect(void)
 {
 /*
 .loc_0x0:
@@ -1628,7 +1628,7 @@ void finishRollingGroundEffect__Q34Game4Rock3ObjFv(void)
  * Address:	802641A4
  * Size:	0000E8
  */
-void startRollingWaterEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::startRollingWaterEffect(void)
 {
 /*
 .loc_0x0:
@@ -1704,7 +1704,7 @@ void startRollingWaterEffect__Q34Game4Rock3ObjFv(void)
  * Address:	8026428C
  * Size:	000010
  */
-void create__Q23efx9TRockWRunFPQ23efx3Arg(void)
+void efx::TRockWRun::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1720,7 +1720,7 @@ void create__Q23efx9TRockWRunFPQ23efx3Arg(void)
  * Address:	8026429C
  * Size:	000030
  */
-void finishRollingWaterEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::finishRollingWaterEffect(void)
 {
 /*
 .loc_0x0:
@@ -1744,7 +1744,7 @@ void finishRollingWaterEffect__Q34Game4Rock3ObjFv(void)
  * Address:	802642CC
  * Size:	000044
  */
-void fade__Q23efx9TRockWRunFv(void)
+void efx::TRockWRun::fade(void)
 {
 /*
 .loc_0x0:
@@ -1773,7 +1773,7 @@ void fade__Q23efx9TRockWRunFv(void)
  * Address:	80264310
  * Size:	0000A4
  */
-void updateWaterEffectPosition__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::updateWaterEffectPosition(void)
 {
 /*
 .loc_0x0:
@@ -1830,7 +1830,7 @@ void updateWaterEffectPosition__Q34Game4Rock3ObjFv(void)
  * Address:	802643B4
  * Size:	000098
  */
-void createRockDeadEffect__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::createRockDeadEffect(void)
 {
 /*
 .loc_0x0:
@@ -1880,7 +1880,7 @@ void createRockDeadEffect__Q34Game4Rock3ObjFv(void)
  * Address:	8026444C
  * Size:	000064
  */
-void effectDrawOn__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -1917,7 +1917,7 @@ void effectDrawOn__Q34Game4Rock3ObjFv(void)
  * Address:	802644B0
  * Size:	000064
  */
-void effectDrawOff__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -1954,7 +1954,7 @@ void effectDrawOff__Q34Game4Rock3ObjFv(void)
  * Address:	80264514
  * Size:	000044
  */
-void forceKill__Q23efx9TRockWRunFv(void)
+void efx::TRockWRun::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -1983,7 +1983,7 @@ void forceKill__Q23efx9TRockWRunFv(void)
  * Address:	80264558
  * Size:	00009C
  */
-void __dt__Q23efx10TRockGrRunFv(void)
+void efx::TRockGrRun::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2038,7 +2038,7 @@ void __dt__Q23efx10TRockGrRunFv(void)
  * Address:	802645F4
  * Size:	00009C
  */
-void __dt__Q23efx8TRockRunFv(void)
+void efx::TRockRun::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2093,7 +2093,7 @@ void __dt__Q23efx8TRockRunFv(void)
  * Address:	80264690
  * Size:	000008
  */
-void isLivingThing__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -2107,7 +2107,7 @@ void isLivingThing__Q34Game4Rock3ObjFv(void)
  * Address:	80264698
  * Size:	000014
  */
-void @744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @744@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -2124,7 +2124,7 @@ void @744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	802646AC
  * Size:	000014
  */
-void @744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @744@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -2141,7 +2141,7 @@ void @744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802646C0
  * Size:	000014
  */
-void @744@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @744@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -2158,7 +2158,7 @@ void @744@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802646D4
  * Size:	000014
  */
-void @744@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @744@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -2175,7 +2175,7 @@ void @744@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802646E8
  * Size:	000014
  */
-void @744@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @744@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -2192,7 +2192,7 @@ void @744@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802646FC
  * Size:	000014
  */
-void @744@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @744@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -2209,7 +2209,7 @@ void @744@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	80264710
  * Size:	000008
  */
-void @4@__dt__Q23efx8TRockRunFv(void)
+void @4@efx::TRockRun::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2223,7 +2223,7 @@ void @4@__dt__Q23efx8TRockRunFv(void)
  * Address:	80264718
  * Size:	000008
  */
-void @4@__dt__Q23efx10TRockGrRunFv(void)
+void @4@efx::TRockGrRun::__dt(void)
 {
 /*
 .loc_0x0:

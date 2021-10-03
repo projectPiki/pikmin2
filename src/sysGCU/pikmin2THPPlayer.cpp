@@ -5,7 +5,7 @@
  * Address:	8044FDF0
  * Size:	000118
  */
-void __ct__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::__ct(void)
 {
 /*
 .loc_0x0:
@@ -89,7 +89,7 @@ void __ct__Q24Game9THPPlayerFv(void)
  * Address:	8044FF08
  * Size:	000098
  */
-void __dt__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::__dt(void)
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void __dt__Q24Game9THPPlayerFv(void)
  * Address:	8044FFA0
  * Size:	0000CC
  */
-void load__Q24Game9THPPlayerFQ34Game9THPPlayer11EMovieIndex(void)
+void Game::THPPlayer::load( (Game::THPPlayer::EMovieIndex))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void load__Q24Game9THPPlayerFQ34Game9THPPlayer11EMovieIndex(void)
  * Address:	8045006C
  * Size:	00006C
  */
-void load__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::load(void)
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void load__Q24Game9THPPlayerFv(void)
  * Address:	........
  * Size:	00003C
  */
-void reset__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -265,7 +265,7 @@ void reset__Q24Game9THPPlayerFv(void)
  * Address:	804500D8
  * Size:	000024
  */
-void loadResource__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void loadResource__Q24Game9THPPlayerFv(void)
  * Address:	804500FC
  * Size:	0001CC
  */
-void loadResource__Q24Game9THPPlayerFRCQ24Game24THPPlayerLoadResourceArg(void)
+void Game::THPPlayer::loadResource( (Game::THPPlayerLoadResourceArg const &))
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void loadResource__Q24Game9THPPlayerFRCQ24Game24THPPlayerLoadResourceArg(void)
  * Address:	804502C8
  * Size:	0000FC
  */
-void prepare__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::prepare(void)
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void prepare__Q24Game9THPPlayerFv(void)
  * Address:	804503C4
  * Size:	0000C0
  */
-void init__Q24Game9THPPlayerFP7JKRHeap(void)
+void Game::THPPlayer::init( (JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void init__Q24Game9THPPlayerFP7JKRHeap(void)
  * Address:	80450484
  * Size:	0000A0
  */
-void play__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::play(void)
 {
 /*
 .loc_0x0:
@@ -634,7 +634,7 @@ void play__Q24Game9THPPlayerFv(void)
  * Address:	80450524
  * Size:	000038
  */
-void pause__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::pause(void)
 {
 /*
 .loc_0x0:
@@ -664,7 +664,7 @@ void pause__Q24Game9THPPlayerFv(void)
  * Address:	8045055C
  * Size:	000028
  */
-void stop__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::stop(void)
 {
 /*
 .loc_0x0:
@@ -686,7 +686,7 @@ void stop__Q24Game9THPPlayerFv(void)
  * Address:	80450584
  * Size:	000094
  */
-void update__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::update(void)
 {
 /*
 .loc_0x0:
@@ -745,7 +745,7 @@ void update__Q24Game9THPPlayerFv(void)
  * Address:	80450618
  * Size:	0000DC
  */
-void draw__Q24Game9THPPlayerFR8Graphics(void)
+void Game::THPPlayer::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -818,7 +818,7 @@ void draw__Q24Game9THPPlayerFR8Graphics(void)
  * Address:	804506F4
  * Size:	0000BC
  */
-void draw__Q24Game9THPPlayerFR8Graphicsllf(void)
+void Game::THPPlayer::draw( (Graphics &, long, long, float))
 {
 /*
 .loc_0x0:
@@ -877,7 +877,7 @@ void draw__Q24Game9THPPlayerFR8Graphicsllf(void)
  * Address:	804507B0
  * Size:	000088
  */
-void draw__Q24Game9THPPlayerFR8GraphicsllUlUl(void)
+void Game::THPPlayer::draw( (Graphics &, long, long, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -927,7 +927,7 @@ void draw__Q24Game9THPPlayerFR8GraphicsllUlUl(void)
  * Address:	80450838
  * Size:	00005C
  */
-void isFinishLoading__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::isFinishLoading(void)
 {
 /*
 .loc_0x0:
@@ -966,7 +966,7 @@ void isFinishLoading__Q24Game9THPPlayerFv(void)
  * Address:	80450894
  * Size:	00001C
  */
-void isFinishPlaying__Q24Game9THPPlayerFv(void)
+void Game::THPPlayer::isFinishPlaying(void)
 {
 /*
 .loc_0x0:
@@ -1009,7 +1009,7 @@ void Delegate<Game::THPPlayer>::invoke()
  * Address:	804508E0
  * Size:	000008
  */
-void @24@__dt__Q24Game9THPPlayerFv(void)
+void @24@Game::THPPlayer::__dt(void)
 {
 /*
 .loc_0x0:

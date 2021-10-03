@@ -5,7 +5,7 @@
  * Address:	801275B0
  * Size:	000098
  */
-void __ct__Q34Game8Pelplant9GeneratorFv(void)
+void Game::Pelplant::Generator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void __ct__Q34Game8Pelplant9GeneratorFv(void)
  * Address:	80127648
  * Size:	00008C
  */
-void doRead__Q34Game8Pelplant9GeneratorFR6Stream(void)
+void Game::Pelplant::Generator::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -106,7 +106,7 @@ void doRead__Q34Game8Pelplant9GeneratorFR6Stream(void)
  * Address:	801276D4
  * Size:	00000C
  */
-void getLatestVersion__Q34Game8Pelplant9GeneratorFv(void)
+void Game::Pelplant::Generator::getLatestVersion(void)
 {
 /*
 .loc_0x0:
@@ -121,7 +121,7 @@ void getLatestVersion__Q34Game8Pelplant9GeneratorFv(void)
  * Address:	801276E0
  * Size:	000064
  */
-void doReadOldVersion__Q34Game8Pelplant9GeneratorFR6Stream(void)
+void Game::Pelplant::Generator::doReadOldVersion( (Stream &))
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void doReadOldVersion__Q34Game8Pelplant9GeneratorFR6Stream(void)
  * Address:	80127744
  * Size:	0000C8
  */
-void doWrite__Q34Game8Pelplant9GeneratorFR6Stream(void)
+void Game::Pelplant::Generator::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -224,7 +224,7 @@ void doWrite__Q34Game8Pelplant9GeneratorFR6Stream(void)
  * Address:	8012780C
  * Size:	000070
  */
-void __dt__Q34Game8Pelplant9GeneratorFv(void)
+void Game::Pelplant::Generator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -268,7 +268,7 @@ void __dt__Q34Game8Pelplant9GeneratorFv(void)
  * Address:	8012787C
  * Size:	000008
  */
-void getInitialParam__Q34Game8Pelplant9GeneratorFv(void)
+void Game::Pelplant::Generator::getInitialParam(void)
 {
 /*
 .loc_0x0:

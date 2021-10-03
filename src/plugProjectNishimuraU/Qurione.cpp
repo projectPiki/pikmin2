@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80260178
  * Size:	000154
  */
-void __ct__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -153,7 +153,7 @@ void birth__Q34Game7Qurione3ObjFR10Vector3<float>f(void)
  * Address:	80260328
  * Size:	00002C
  */
-void setInitialSetting__Q34Game7Qurione3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Qurione::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void setInitialSetting__Q34Game7Qurione3ObjFPQ24Game21EnemyInitialParamBase(void
  * Address:	80260354
  * Size:	0000EC
  */
-void onInit__Q34Game7Qurione3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Qurione::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void onInit__Q34Game7Qurione3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80260440
  * Size:	000044
  */
-void onKill__Q34Game7Qurione3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Qurione::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -276,7 +276,7 @@ void onKill__Q34Game7Qurione3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	80260484
  * Size:	000034
  */
-void doUpdate__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -301,7 +301,7 @@ void doUpdate__Q34Game7Qurione3ObjFv(void)
  * Address:	802604B8
  * Size:	00004C
  */
-void setFSM__Q34Game7Qurione3ObjFPQ34Game7Qurione3FSM(void)
+void Game::Qurione::Obj::setFSM( (Game::Qurione::FSM *))
 {
 /*
 .loc_0x0:
@@ -332,7 +332,7 @@ void setFSM__Q34Game7Qurione3ObjFPQ34Game7Qurione3FSM(void)
  * Address:	80260504
  * Size:	000004
  */
-void doDirectDraw__Q34Game7Qurione3ObjFR8Graphics(void)
+void Game::Qurione::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -345,7 +345,7 @@ void doDirectDraw__Q34Game7Qurione3ObjFR8Graphics(void)
  * Address:	80260508
  * Size:	000020
  */
-void doDebugDraw__Q34Game7Qurione3ObjFR8Graphics(void)
+void Game::Qurione::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void doDebugDraw__Q34Game7Qurione3ObjFR8Graphics(void)
  * Address:	80260528
  * Size:	00005C
  */
-void getShadowParam__Q34Game7Qurione3ObjFRQ24Game11ShadowParam(void)
+void Game::Qurione::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void getShadowParam__Q34Game7Qurione3ObjFRQ24Game11ShadowParam(void)
  * Address:	80260584
  * Size:	000088
  */
-void flyCollisionCallBack__Q34Game7Qurione3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Qurione::Obj::flyCollisionCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -450,7 +450,7 @@ void flyCollisionCallBack__Q34Game7Qurione3ObjFPQ24Game8CreaturefP8CollPart(void
  * Address:	8026060C
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void doStartWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv(void)
  * Address:	80260640
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -500,7 +500,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv(void)
  * Address:	80260674
  * Size:	000020
  */
-void doStartMovie__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -520,7 +520,7 @@ void doStartMovie__Q34Game7Qurione3ObjFv(void)
  * Address:	80260694
  * Size:	000020
  */
-void doEndMovie__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -540,7 +540,7 @@ void doEndMovie__Q34Game7Qurione3ObjFv(void)
  * Address:	802606B4
  * Size:	000188
  */
-void setQurioneStartPos__Q34Game7Qurione3ObjFf(void)
+void Game::Qurione::Obj::setQurioneStartPos( (float))
 {
 /*
 .loc_0x0:
@@ -662,7 +662,7 @@ void setQurioneStartPos__Q34Game7Qurione3ObjFf(void)
  * Address:	........
  * Size:	0000EC
  */
-void setHeightVelocity__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::setHeightVelocity(void)
 {
 	// UNUSED FUNCTION
 }
@@ -672,7 +672,7 @@ void setHeightVelocity__Q34Game7Qurione3ObjFv(void)
  * Address:	8026083C
  * Size:	00016C
  */
-void moveFaceDir__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::moveFaceDir(void)
 {
 /*
 .loc_0x0:
@@ -781,7 +781,7 @@ void moveFaceDir__Q34Game7Qurione3ObjFv(void)
  * Address:	802609A8
  * Size:	000038
  */
-void addPitchRatio__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::addPitchRatio(void)
 {
 /*
 .loc_0x0:
@@ -807,7 +807,7 @@ void addPitchRatio__Q34Game7Qurione3ObjFv(void)
  * Address:	802609E0
  * Size:	000088
  */
-void resetUtilityTimer__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::resetUtilityTimer(void)
 {
 /*
 .loc_0x0:
@@ -857,7 +857,7 @@ void resetUtilityTimer__Q34Game7Qurione3ObjFv(void)
  * Address:	80260A68
  * Size:	00006C
  */
-void isAppear__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::isAppear(void)
 {
 /*
 .loc_0x0:
@@ -902,7 +902,7 @@ void isAppear__Q34Game7Qurione3ObjFv(void)
  * Address:	80260AD4
  * Size:	000030
  */
-void isFlyKill__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::isFlyKill(void)
 {
 /*
 .loc_0x0:
@@ -930,7 +930,7 @@ void isFlyKill__Q34Game7Qurione3ObjFv(void)
  * Address:	80260B04
  * Size:	0000A4
  */
-void attachItem__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::attachItem(void)
 {
 /*
 .loc_0x0:
@@ -985,7 +985,7 @@ void attachItem__Q34Game7Qurione3ObjFv(void)
  * Address:	80260BA8
  * Size:	00004C
  */
-void dropItem__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::dropItem(void)
 {
 /*
 .loc_0x0:
@@ -1018,7 +1018,7 @@ void dropItem__Q34Game7Qurione3ObjFv(void)
  * Address:	80260BF4
  * Size:	00002C
  */
-void addQurioneScale__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::addQurioneScale(void)
 {
 /*
 .loc_0x0:
@@ -1041,7 +1041,7 @@ void addQurioneScale__Q34Game7Qurione3ObjFv(void)
  * Address:	80260C20
  * Size:	00002C
  */
-void subQurioneScale__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::subQurioneScale(void)
 {
 /*
 .loc_0x0:
@@ -1064,7 +1064,7 @@ void subQurioneScale__Q34Game7Qurione3ObjFv(void)
  * Address:	80260C4C
  * Size:	0001C0
  */
-void createEffect__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1194,7 +1194,7 @@ void createEffect__Q34Game7Qurione3ObjFv(void)
  * Address:	80260E0C
  * Size:	000054
  */
-void setupEffect__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -1227,7 +1227,7 @@ void setupEffect__Q34Game7Qurione3ObjFv(void)
  * Address:	80260E60
  * Size:	0000A0
  */
-void createHitEffect__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::createHitEffect(void)
 {
 /*
 .loc_0x0:
@@ -1279,7 +1279,7 @@ void createHitEffect__Q34Game7Qurione3ObjFv(void)
  * Address:	80260F00
  * Size:	00004C
  */
-void startGlowEffect__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::startGlowEffect(void)
 {
 /*
 .loc_0x0:
@@ -1310,7 +1310,7 @@ void startGlowEffect__Q34Game7Qurione3ObjFv(void)
  * Address:	80260F4C
  * Size:	00002C
  */
-void setGlowEffectScale__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::setGlowEffectScale(void)
 {
 /*
 .loc_0x0:
@@ -1333,7 +1333,7 @@ void setGlowEffectScale__Q34Game7Qurione3ObjFv(void)
  * Address:	80260F78
  * Size:	000030
  */
-void finishGlowEffect__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::finishGlowEffect(void)
 {
 /*
 .loc_0x0:
@@ -1357,7 +1357,7 @@ void finishGlowEffect__Q34Game7Qurione3ObjFv(void)
  * Address:	80260FA8
  * Size:	000034
  */
-void createAppearEffect__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -1382,7 +1382,7 @@ void createAppearEffect__Q34Game7Qurione3ObjFv(void)
  * Address:	80260FDC
  * Size:	000034
  */
-void createDisppearEffect__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::createDisppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -1407,7 +1407,7 @@ void createDisppearEffect__Q34Game7Qurione3ObjFv(void)
  * Address:	80261010
  * Size:	000064
  */
-void effectDrawOn__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -1444,7 +1444,7 @@ void effectDrawOn__Q34Game7Qurione3ObjFv(void)
  * Address:	80261074
  * Size:	000064
  */
-void effectDrawOff__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -1481,7 +1481,7 @@ void effectDrawOff__Q34Game7Qurione3ObjFv(void)
  * Address:	802610D8
  * Size:	00009C
  */
-void __dt__Q23efx10TQuriDisapFv(void)
+void efx::TQuriDisap::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1536,7 +1536,7 @@ void __dt__Q23efx10TQuriDisapFv(void)
  * Address:	80261174
  * Size:	00009C
  */
-void __dt__Q23efx8TQuriAppFv(void)
+void efx::TQuriApp::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1591,7 +1591,7 @@ void __dt__Q23efx8TQuriAppFv(void)
  * Address:	80261210
  * Size:	00009C
  */
-void __dt__Q23efx9TQuriGlowFv(void)
+void efx::TQuriGlow::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1646,7 +1646,7 @@ void __dt__Q23efx9TQuriGlowFv(void)
  * Address:	802612AC
  * Size:	000004
  */
-void inWaterCallback__Q34Game7Qurione3ObjFPQ24Game8WaterBox(void)
+void Game::Qurione::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1659,7 +1659,7 @@ void inWaterCallback__Q34Game7Qurione3ObjFPQ24Game8WaterBox(void)
  * Address:	802612B0
  * Size:	000004
  */
-void outWaterCallback__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1672,7 +1672,7 @@ void outWaterCallback__Q34Game7Qurione3ObjFv(void)
  * Address:	802612B4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1686,7 +1686,7 @@ void getEnemyTypeID__Q34Game7Qurione3ObjFv(void)
  * Address:	802612BC
  * Size:	000014
  */
-void @764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @764@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1703,7 +1703,7 @@ void @764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	802612D0
  * Size:	000014
  */
-void @764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @764@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1720,7 +1720,7 @@ void @764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802612E4
  * Size:	000014
  */
-void @764@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @764@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1737,7 +1737,7 @@ void @764@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802612F8
  * Size:	000014
  */
-void @764@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @764@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1754,7 +1754,7 @@ void @764@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8026130C
  * Size:	000014
  */
-void @764@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @764@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1771,7 +1771,7 @@ void @764@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80261320
  * Size:	000014
  */
-void @764@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @764@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -1788,7 +1788,7 @@ void @764@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	80261334
  * Size:	000008
  */
-void @4@__dt__Q23efx9TQuriGlowFv(void)
+void @4@efx::TQuriGlow::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1802,7 +1802,7 @@ void @4@__dt__Q23efx9TQuriGlowFv(void)
  * Address:	8026133C
  * Size:	000008
  */
-void @4@__dt__Q23efx8TQuriAppFv(void)
+void @4@efx::TQuriApp::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1816,7 +1816,7 @@ void @4@__dt__Q23efx8TQuriAppFv(void)
  * Address:	80261344
  * Size:	000008
  */
-void @4@__dt__Q23efx10TQuriDisapFv(void)
+void @4@efx::TQuriDisap::__dt(void)
 {
 /*
 .loc_0x0:

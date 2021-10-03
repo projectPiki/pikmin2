@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8041FFA8
  * Size:	0001C0
  */
-void traceMove_new__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof(void)
+void Sys::OBBTree::traceMove_new( (Matrixf &, Matrixf &, Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -950,7 +950,7 @@ void traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13Tri
  * Address:	80420C54
  * Size:	000098
  */
-void traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof(void)
+void Sys::OBBTree::traceMove_new_global( (Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:

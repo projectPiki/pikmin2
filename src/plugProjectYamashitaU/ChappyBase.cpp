@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012A950
  * Size:	00015C
  */
-void __ct__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -149,7 +149,7 @@ void birth__Q34Game10ChappyBase3ObjFR10Vector3<float>f(void)
  * Address:	8012AAF0
  * Size:	000004
  */
-void setInitialSetting__Q34Game10ChappyBase3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::ChappyBase::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void setInitialSetting__Q34Game10ChappyBase3ObjFPQ24Game21EnemyInitialParamBase(
  * Address:	8012AAF4
  * Size:	000080
  */
-void onInit__Q34Game10ChappyBase3ObjFPQ24Game15CreatureInitArg(void)
+void Game::ChappyBase::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void onInit__Q34Game10ChappyBase3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8012AB74
  * Size:	000034
  */
-void doUpdate__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -231,7 +231,7 @@ void doUpdate__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012ABA8
  * Size:	000004
  */
-void doDirectDraw__Q34Game10ChappyBase3ObjFR8Graphics(void)
+void Game::ChappyBase::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void doDirectDraw__Q34Game10ChappyBase3ObjFR8Graphics(void)
  * Address:	8012ABAC
  * Size:	000020
  */
-void doDebugDraw__Q34Game10ChappyBase3ObjFR8Graphics(void)
+void Game::ChappyBase::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -264,7 +264,7 @@ void doDebugDraw__Q34Game10ChappyBase3ObjFR8Graphics(void)
  * Address:	8012ABCC
  * Size:	0000C8
  */
-void getShadowParam__Q34Game10ChappyBase3ObjFRQ24Game11ShadowParam(void)
+void Game::ChappyBase::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -330,7 +330,7 @@ void getShadowParam__Q34Game10ChappyBase3ObjFRQ24Game11ShadowParam(void)
  * Address:	8012AC94
  * Size:	000040
  */
-void damageCallBack__Q34Game10ChappyBase3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::ChappyBase::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void damageCallBack__Q34Game10ChappyBase3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8012ACD4
  * Size:	000150
  */
-void collisionCallback__Q34Game10ChappyBase3ObjFRQ24Game9CollEvent(void)
+void Game::ChappyBase::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void collisionCallback__Q34Game10ChappyBase3ObjFRQ24Game9CollEvent(void)
  * Address:	8012AE24
  * Size:	000050
  */
-void doStartStoneState__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -502,7 +502,7 @@ void doStartStoneState__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012AE74
  * Size:	000004
  */
-void doFinishStoneState__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -515,7 +515,7 @@ void doFinishStoneState__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012AE78
  * Size:	000064
  */
-void getOffsetForMapCollision__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void getOffsetForMapCollision__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012AEDC
  * Size:	000028
  */
-void startCarcassMotion__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void startCarcassMotion__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012AF04
  * Size:	0000DC
  */
-void initMouthSlots__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -645,7 +645,7 @@ void initMouthSlots__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012AFE0
  * Size:	000064
  */
-void initWalkSmokeEffect__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -682,7 +682,7 @@ void initWalkSmokeEffect__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B044
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -696,7 +696,7 @@ void getWalkSmokeEffectMgr__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B04C
  * Size:	000200
  */
-void isWakeup__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::isWakeup(void)
 {
 /*
 .loc_0x0:
@@ -852,7 +852,7 @@ void isWakeup__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B24C
  * Size:	0000B0
  */
-void setCollEvent__Q34Game10ChappyBase3ObjFRQ24Game9CollEvent(void)
+void Game::ChappyBase::Obj::setCollEvent( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -914,7 +914,7 @@ void setCollEvent__Q34Game10ChappyBase3ObjFRQ24Game9CollEvent(void)
  * Address:	8012B2FC
  * Size:	0000C8
  */
-void flickStatePikmin__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::flickStatePikmin(void)
 {
 /*
 .loc_0x0:
@@ -976,7 +976,7 @@ void flickStatePikmin__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B3C4
  * Size:	0001A4
  */
-void flickAttackBomb__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::flickAttackBomb(void)
 {
 /*
 .loc_0x0:
@@ -1097,7 +1097,7 @@ void flickAttackBomb__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B568
  * Size:	000060
  */
-void flickAttackFail__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::flickAttackFail(void)
 {
 /*
 .loc_0x0:
@@ -1133,7 +1133,7 @@ void flickAttackFail__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B5C8
  * Size:	000024
  */
-void eatAttackPikmin__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::eatAttackPikmin(void)
 {
 /*
 .loc_0x0:
@@ -1154,7 +1154,7 @@ void eatAttackPikmin__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B5EC
  * Size:	0000B0
  */
-void createEffect__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1212,7 +1212,7 @@ void createEffect__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B69C
  * Size:	000084
  */
-void __dt__Q23efx9TChaseMtxFv(void)
+void efx::TChaseMtx::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1261,7 +1261,7 @@ void __dt__Q23efx9TChaseMtxFv(void)
  * Address:	8012B720
  * Size:	000050
  */
-void setupEffect__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -1295,7 +1295,7 @@ void setupEffect__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B770
  * Size:	000034
  */
-void startSleepEffect__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::startSleepEffect(void)
 {
 /*
 .loc_0x0:
@@ -1320,7 +1320,7 @@ void startSleepEffect__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B7A4
  * Size:	000030
  */
-void finishSleepEffect__Q34Game10ChappyBase3ObjFv(void)
+void Game::ChappyBase::Obj::finishSleepEffect(void)
 {
 /*
 .loc_0x0:
@@ -1344,7 +1344,7 @@ void finishSleepEffect__Q34Game10ChappyBase3ObjFv(void)
  * Address:	8012B7D4
  * Size:	00009C
  */
-void __dt__Q23efx9THanachoNFv(void)
+void efx::THanachoN::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1399,7 +1399,7 @@ void __dt__Q23efx9THanachoNFv(void)
  * Address:	8012B870
  * Size:	000004
  */
-void doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter(void)
+void efx::TSync::doExecuteAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1412,7 +1412,7 @@ void doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter(void)
  * Address:	8012B874
  * Size:	000010
  */
-void startDemoDrawOff__Q23efx5TSyncFv(void)
+void efx::TSync::startDemoDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -1428,7 +1428,7 @@ void startDemoDrawOff__Q23efx5TSyncFv(void)
  * Address:	8012B884
  * Size:	000010
  */
-void endDemoDrawOn__Q23efx5TSyncFv(void)
+void efx::TSync::endDemoDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -1444,7 +1444,7 @@ void endDemoDrawOn__Q23efx5TSyncFv(void)
  * Address:	8012B894
  * Size:	000008
  */
-void @4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter(void)
+void @4@efx::TSync::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1458,7 +1458,7 @@ void @4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter(void)
  * Address:	8012B89C
  * Size:	000008
  */
-void @4@execute__Q23efx5TSyncFP14JPABaseEmitter(void)
+void @4@efx::TSync::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1472,7 +1472,7 @@ void @4@execute__Q23efx5TSyncFP14JPABaseEmitter(void)
  * Address:	8012B8A4
  * Size:	000008
  */
-void @4@__dt__Q23efx9THanachoNFv(void)
+void @4@efx::THanachoN::__dt(void)
 {
 /*
 .loc_0x0:

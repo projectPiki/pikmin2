@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80362618
  * Size:	000150
  */
-void init__Q34Game6Miulin3FSMFPQ24Game9EnemyBase(void)
+void Game::Miulin::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -129,7 +129,7 @@ void init__Q34Game6Miulin3FSMFPQ24Game9EnemyBase(void)
  * Address:	80362768
  * Size:	00003C
  */
-void __ct__Q34Game6Miulin9StateWaitFi(void)
+void Game::Miulin::StateWait::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -156,7 +156,7 @@ void __ct__Q34Game6Miulin9StateWaitFi(void)
  * Address:	803627A4
  * Size:	00008C
  */
-void init__Q34Game6Miulin9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Miulin::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void init__Q34Game6Miulin9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80362830
  * Size:	000118
  */
-void exec__Q34Game6Miulin9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Miulin::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void exec__Q34Game6Miulin9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	80362948
  * Size:	00003C
  */
-void __ct__Q34Game6Miulin9StateWalkFi(void)
+void Game::Miulin::StateWalk::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void __ct__Q34Game6Miulin9StateWalkFi(void)
  * Address:	80362984
  * Size:	00016C
  */
-void init__Q34Game6Miulin9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Miulin::StateWalk::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void init__Q34Game6Miulin9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80362AF0
  * Size:	000364
  */
-void exec__Q34Game6Miulin9StateWalkFPQ24Game9EnemyBase(void)
+void Game::Miulin::StateWalk::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -684,7 +684,7 @@ void exec__Q34Game6Miulin9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	80362E54
  * Size:	000040
  */
-void __ct__Q34Game6Miulin16StateAttackStartFi(void)
+void Game::Miulin::StateAttackStart::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -712,7 +712,7 @@ void __ct__Q34Game6Miulin16StateAttackStartFi(void)
  * Address:	80362E94
  * Size:	00004C
  */
-void init__Q34Game6Miulin16StateAttackStartFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Miulin::StateAttackStart::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -743,7 +743,7 @@ void init__Q34Game6Miulin16StateAttackStartFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	80362EE0
  * Size:	000050
  */
-void exec__Q34Game6Miulin16StateAttackStartFPQ24Game9EnemyBase(void)
+void Game::Miulin::StateAttackStart::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -777,7 +777,7 @@ void exec__Q34Game6Miulin16StateAttackStartFPQ24Game9EnemyBase(void)
  * Address:	80362F30
  * Size:	000040
  */
-void __ct__Q34Game6Miulin14StateAttackingFi(void)
+void Game::Miulin::StateAttacking::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -805,7 +805,7 @@ void __ct__Q34Game6Miulin14StateAttackingFi(void)
  * Address:	80362F70
  * Size:	000058
  */
-void init__Q34Game6Miulin14StateAttackingFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Miulin::StateAttacking::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -839,7 +839,7 @@ void init__Q34Game6Miulin14StateAttackingFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	80362FC8
  * Size:	00082C
  */
-void exec__Q34Game6Miulin14StateAttackingFPQ24Game9EnemyBase(void)
+void Game::Miulin::StateAttacking::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1434,7 +1434,7 @@ void exec__Q34Game6Miulin14StateAttackingFPQ24Game9EnemyBase(void)
  * Address:	803637F4
  * Size:	000040
  */
-void __ct__Q34Game6Miulin14StateAttackEndFi(void)
+void Game::Miulin::StateAttackEnd::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1462,7 +1462,7 @@ void __ct__Q34Game6Miulin14StateAttackEndFi(void)
  * Address:	80363834
  * Size:	000054
  */
-void init__Q34Game6Miulin14StateAttackEndFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Miulin::StateAttackEnd::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1495,7 +1495,7 @@ void init__Q34Game6Miulin14StateAttackEndFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	80363888
  * Size:	0000AC
  */
-void exec__Q34Game6Miulin14StateAttackEndFPQ24Game9EnemyBase(void)
+void Game::Miulin::StateAttackEnd::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1556,7 +1556,7 @@ void exec__Q34Game6Miulin14StateAttackEndFPQ24Game9EnemyBase(void)
  * Address:	80363934
  * Size:	00003C
  */
-void __ct__Q34Game6Miulin9StateTurnFi(void)
+void Game::Miulin::StateTurn::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1583,7 +1583,7 @@ void __ct__Q34Game6Miulin9StateTurnFi(void)
  * Address:	80363970
  * Size:	0000F4
  */
-void init__Q34Game6Miulin9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Miulin::StateTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1664,7 +1664,7 @@ void init__Q34Game6Miulin9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80363A64
  * Size:	000178
  */
-void exec__Q34Game6Miulin9StateTurnFPQ24Game9EnemyBase(void)
+void Game::Miulin::StateTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1786,7 +1786,7 @@ void exec__Q34Game6Miulin9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	80363BDC
  * Size:	00003C
  */
-void __ct__Q34Game6Miulin10StateFlickFi(void)
+void Game::Miulin::StateFlick::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1813,7 +1813,7 @@ void __ct__Q34Game6Miulin10StateFlickFi(void)
  * Address:	80363C18
  * Size:	00004C
  */
-void init__Q34Game6Miulin10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Miulin::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1844,7 +1844,7 @@ void init__Q34Game6Miulin10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80363C64
  * Size:	000190
  */
-void exec__Q34Game6Miulin10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Miulin::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1964,7 +1964,7 @@ void exec__Q34Game6Miulin10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	80363DF4
  * Size:	00003C
  */
-void __ct__Q34Game6Miulin9StateDeadFi(void)
+void Game::Miulin::StateDead::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1991,7 +1991,7 @@ void __ct__Q34Game6Miulin9StateDeadFi(void)
  * Address:	80363E30
  * Size:	000054
  */
-void init__Q34Game6Miulin9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Miulin::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2024,7 +2024,7 @@ void init__Q34Game6Miulin9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80363E84
  * Size:	000060
  */
-void exec__Q34Game6Miulin9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Miulin::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

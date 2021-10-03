@@ -5,7 +5,7 @@
  * Address:	80127C00
  * Size:	000088
  */
-void __ct__Q34Game10EnemyStone3MgrFv(void)
+void Game::EnemyStone::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -51,7 +51,7 @@ void __ct__Q34Game10EnemyStone3MgrFv(void)
  * Address:	80127C88
  * Size:	000174
  */
-void loadResource__Q34Game10EnemyStone3MgrFv(void)
+void Game::EnemyStone::Mgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void loadResource__Q34Game10EnemyStone3MgrFv(void)
  * Address:	80127DFC
  * Size:	000024
  */
-void __defctor__Q34Game10EnemyStone8DrawInfoFv(void)
+void Game::EnemyStone::DrawInfo::__defctor(void)
 {
 /*
 .loc_0x0:
@@ -181,7 +181,7 @@ void __defctor__Q34Game10EnemyStone8DrawInfoFv(void)
  * Address:	........
  * Size:	00003C
  */
-void getDrawInfo__Q34Game10EnemyStone3MgrFv(void)
+void Game::EnemyStone::Mgr::getDrawInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -191,7 +191,7 @@ void getDrawInfo__Q34Game10EnemyStone3MgrFv(void)
  * Address:	........
  * Size:	000048
  */
-void addDrawInfo__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::Mgr::addDrawInfo( (Game::EnemyStone::DrawInfo *))
 {
 	// UNUSED FUNCTION
 }
@@ -201,7 +201,7 @@ void addDrawInfo__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	80127E20
  * Size:	0000F8
  */
-void regist__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone3Obj(void)
+void Game::EnemyStone::Mgr::regist( (Game::EnemyStone::Obj *))
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void regist__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone3Obj(void)
  * Address:	80127F18
  * Size:	00008C
  */
-void release__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone3Obj(void)
+void Game::EnemyStone::Mgr::release( (Game::EnemyStone::Obj *))
 {
 /*
 .loc_0x0:
@@ -340,7 +340,7 @@ void release__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone3Obj(void)
  * Address:	80127FA4
  * Size:	000164
  */
-void draw__Q34Game10EnemyStone3MgrFP8Viewport(void)
+void Game::EnemyStone::Mgr::draw( (Viewport *))
 {
 /*
 .loc_0x0:

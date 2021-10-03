@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8034F5E0
  * Size:	000070
  */
-void actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase(void)
+void Game::InteractSuckFinish::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -63,7 +63,7 @@ void actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase(void)
  * Address:	8034F650
  * Size:	000068
  */
-void setParameters__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void birth__Q34Game13PanModokiBase3ObjFR10Vector3<float>f(void)
  * Address:	8034F7D8
  * Size:	0001DC
  */
-void onInit__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureInitArg(void)
+void Game::PanModokiBase::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -328,7 +328,7 @@ void onInit__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8034F9B4
  * Size:	0002A0
  */
-void __ct__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void __ct__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8034FC54
  * Size:	000034
  */
-void doUpdate__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -543,7 +543,7 @@ void doUpdate__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8034FC88
  * Size:	0000B4
  */
-void doAnimation__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -606,7 +606,7 @@ void doAnimation__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8034FD3C
  * Size:	000318
  */
-void doAnimationStick__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::doAnimationStick(void)
 {
 /*
 .loc_0x0:
@@ -844,7 +844,7 @@ void doAnimationStick__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80350054
  * Size:	00027C
  */
-void updateCaptureMatrix__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::updateCaptureMatrix(void)
 {
 /*
 .loc_0x0:
@@ -1023,7 +1023,7 @@ void updateCaptureMatrix__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803502D0
  * Size:	000004
  */
-void doDirectDraw__Q34Game13PanModokiBase3ObjFR8Graphics(void)
+void Game::PanModokiBase::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1036,7 +1036,7 @@ void doDirectDraw__Q34Game13PanModokiBase3ObjFR8Graphics(void)
  * Address:	803502D4
  * Size:	000020
  */
-void doDebugDraw__Q34Game13PanModokiBase3ObjFR8Graphics(void)
+void Game::PanModokiBase::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1056,7 +1056,7 @@ void doDebugDraw__Q34Game13PanModokiBase3ObjFR8Graphics(void)
  * Address:	803502F4
  * Size:	000030
  */
-void damageCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::PanModokiBase::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1082,7 +1082,7 @@ void damageCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart(voi
  * Address:	80350324
  * Size:	0001BC
  */
-void pressCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::PanModokiBase::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1229,7 +1229,7 @@ void pressCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart(void
  * Address:	803504E0
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::PanModokiBase::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1252,7 +1252,7 @@ void hipdropCallBack__Q34Game13PanModokiBase3ObjFPQ24Game8CreaturefP8CollPart(vo
  * Address:	8035050C
  * Size:	0000AC
  */
-void collisionCallback__Q34Game13PanModokiBase3ObjFRQ24Game9CollEvent(void)
+void Game::PanModokiBase::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1311,7 +1311,7 @@ void collisionCallback__Q34Game13PanModokiBase3ObjFRQ24Game9CollEvent(void)
  * Address:	803505B8
  * Size:	000044
  */
-void outWaterCallback__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1342,7 +1342,7 @@ void outWaterCallback__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803505FC
  * Size:	000034
  */
-void inWaterCallback__Q34Game13PanModokiBase3ObjFPQ24Game8WaterBox(void)
+void Game::PanModokiBase::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1367,7 +1367,7 @@ void inWaterCallback__Q34Game13PanModokiBase3ObjFPQ24Game8WaterBox(void)
  * Address:	80350630
  * Size:	000054
  */
-void bounceCallback__Q34Game13PanModokiBase3ObjFPQ23Sys8Triangle(void)
+void Game::PanModokiBase::Obj::bounceCallback( (Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -1402,7 +1402,7 @@ void bounceCallback__Q34Game13PanModokiBase3ObjFPQ23Sys8Triangle(void)
  * Address:	80350684
  * Size:	000050
  */
-void damageRumble__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::damageRumble(void)
 {
 /*
 .loc_0x0:
@@ -1434,7 +1434,7 @@ void damageRumble__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803506D4
  * Size:	00021C
  */
-void doSimulation__Q34Game13PanModokiBase3ObjFf(void)
+void Game::PanModokiBase::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -1601,7 +1601,7 @@ void doSimulation__Q34Game13PanModokiBase3ObjFf(void)
  * Address:	803508F0
  * Size:	000088
  */
-void getShadowParam__Q34Game13PanModokiBase3ObjFRQ24Game11ShadowParam(void)
+void Game::PanModokiBase::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -1647,7 +1647,7 @@ void getShadowParam__Q34Game13PanModokiBase3ObjFRQ24Game11ShadowParam(void)
  * Address:	80350978
  * Size:	000058
  */
-void needShadow__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -1685,7 +1685,7 @@ void needShadow__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803509D0
  * Size:	000028
  */
-void startCarcassMotion__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -1707,7 +1707,7 @@ void startCarcassMotion__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803509F8
  * Size:	00008C
  */
-void initMouthSlots__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1758,7 +1758,7 @@ void initMouthSlots__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80350A84
  * Size:	000044
  */
-void onKill__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureKillArg(void)
+void Game::PanModokiBase::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -1787,7 +1787,7 @@ void onKill__Q34Game13PanModokiBase3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	80350AC8
  * Size:	000050
  */
-void doStartMovie__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -1819,7 +1819,7 @@ void doStartMovie__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80350B18
  * Size:	000050
  */
-void doEndMovie__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -1851,7 +1851,7 @@ void doEndMovie__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80350B68
  * Size:	000054
  */
-void doStartStoneState__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -1884,7 +1884,7 @@ void doStartStoneState__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80350BBC
  * Size:	0000AC
  */
-void doFinishStoneState__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -1943,7 +1943,7 @@ void doFinishStoneState__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80350C68
  * Size:	000064
  */
-void initWalkSmokeEffect__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -1980,7 +1980,7 @@ void initWalkSmokeEffect__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80350CCC
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -1994,7 +1994,7 @@ void getWalkSmokeEffectMgr__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80350CD4
  * Size:	0004B4
  */
-void findNextRoutePoint__Q34Game13PanModokiBase3ObjFb(void)
+void Game::PanModokiBase::Obj::findNextRoutePoint( (bool))
 {
 /*
 .loc_0x0:
@@ -2345,7 +2345,7 @@ void findNextRoutePoint__Q34Game13PanModokiBase3ObjFb(void)
  * Address:	80351188
  * Size:	000274
  */
-void isCarryToGoal__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::isCarryToGoal(void)
 {
 /*
 .loc_0x0:
@@ -2542,7 +2542,7 @@ void isCarryToGoal__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803513FC
  * Size:	0002CC
  */
-void walkFunc__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::walkFunc(void)
 {
 /*
 .loc_0x0:
@@ -2763,7 +2763,7 @@ void walkFunc__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803516C8
  * Size:	000184
  */
-void isReachToGoal__Q34Game13PanModokiBase3ObjFf(void)
+void Game::PanModokiBase::Obj::isReachToGoal( (float))
 {
 /*
 .loc_0x0:
@@ -2886,7 +2886,7 @@ void isReachToGoal__Q34Game13PanModokiBase3ObjFf(void)
  * Address:	8035184C
  * Size:	000074
  */
-void canBack__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::canBack(void)
 {
 /*
 .loc_0x0:
@@ -2931,7 +2931,7 @@ void canBack__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803518C0
  * Size:	000344
  */
-void findNearestPellet__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::findNearestPellet(void)
 {
 /*
 .loc_0x0:
@@ -3166,7 +3166,7 @@ void findNearestPellet__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80351C04
  * Size:	000068
  */
-void getCarryTarget__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::getCarryTarget(void)
 {
 /*
 .loc_0x0:
@@ -3210,7 +3210,7 @@ void getCarryTarget__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80351C6C
  * Size:	0001E4
  */
-void releaseCarryTarget__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::releaseCarryTarget(void)
 {
 /*
 .loc_0x0:
@@ -3361,7 +3361,7 @@ void releaseCarryTarget__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80351E50
  * Size:	000284
  */
-void checkNearHomeGraphIndex__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::checkNearHomeGraphIndex(void)
 {
 /*
 .loc_0x0:
@@ -3546,7 +3546,7 @@ void checkNearHomeGraphIndex__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	........
  * Size:	0000D0
  */
-void clearCarryVelocity__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::clearCarryVelocity(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3556,7 +3556,7 @@ void clearCarryVelocity__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803520D4
  * Size:	000518
  */
-void carryTarget__Q34Game13PanModokiBase3ObjFf(void)
+void Game::PanModokiBase::Obj::carryTarget( (float))
 {
 /*
 .loc_0x0:
@@ -3934,7 +3934,7 @@ void carryTarget__Q34Game13PanModokiBase3ObjFf(void)
  * Address:	803525EC
  * Size:	000050
  */
-void changeCarryDir__Q34Game13PanModokiBase3ObjFb(void)
+void Game::PanModokiBase::Obj::changeCarryDir( (bool))
 {
 /*
 .loc_0x0:
@@ -3970,7 +3970,7 @@ void changeCarryDir__Q34Game13PanModokiBase3ObjFb(void)
  * Address:	8035263C
  * Size:	0001B4
  */
-void setCarryDir__Q34Game13PanModokiBase3ObjFb(void)
+void Game::PanModokiBase::Obj::setCarryDir( (bool))
 {
 /*
 .loc_0x0:
@@ -4105,7 +4105,7 @@ void setCarryDir__Q34Game13PanModokiBase3ObjFb(void)
  * Address:	803527F0
  * Size:	000384
  */
-void endCarry__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::endCarry(void)
 {
 /*
 .loc_0x0:
@@ -4374,7 +4374,7 @@ void endCarry__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80352B74
  * Size:	0000A0
  */
-void checkSucked__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::checkSucked(void)
 {
 /*
 .loc_0x0:
@@ -4434,7 +4434,7 @@ void checkSucked__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80352C14
  * Size:	0000BC
  */
-void suckFinish__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::suckFinish(void)
 {
 /*
 .loc_0x0:
@@ -4501,7 +4501,7 @@ void suckFinish__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80352CD0
  * Size:	000118
  */
-void isEndPathFinder__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::isEndPathFinder(void)
 {
 /*
 .loc_0x0:
@@ -4605,7 +4605,7 @@ void isEndPathFinder__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80352DE8
  * Size:	0002BC
  */
-void setPathFinder__Q34Game13PanModokiBase3ObjFb(void)
+void Game::PanModokiBase::Obj::setPathFinder( (bool))
 {
 /*
 .loc_0x0:
@@ -4810,7 +4810,7 @@ void setPathFinder__Q34Game13PanModokiBase3ObjFb(void)
  * Address:	803530A4
  * Size:	000044
  */
-void releasePathFinder__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::releasePathFinder(void)
 {
 /*
 .loc_0x0:
@@ -4841,7 +4841,7 @@ void releasePathFinder__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803530E8
  * Size:	000020
  */
-void killNest__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::killNest(void)
 {
 /*
 .loc_0x0:
@@ -4863,7 +4863,7 @@ void killNest__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80353108
  * Size:	000324
  */
-void isTargetable__Q34Game13PanModokiBase3ObjFPQ24Game6Pellet(void)
+void Game::PanModokiBase::Obj::isTargetable( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -5227,7 +5227,7 @@ void calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<float>(void)
  * Address:	803535A8
  * Size:	000028
  */
-void boundEffect__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::boundEffect(void)
 {
 /*
 .loc_0x0:
@@ -5249,7 +5249,7 @@ void boundEffect__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803535D0
  * Size:	0000E8
  */
-void createAppearEffect__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -5323,7 +5323,7 @@ void createAppearEffect__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803536B8
  * Size:	0000E0
  */
-void createHideEffect__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::createHideEffect(void)
 {
 /*
 .loc_0x0:
@@ -5395,7 +5395,7 @@ void createHideEffect__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80353798
  * Size:	000030
  */
-void fadeHideEffect__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::fadeHideEffect(void)
 {
 /*
 .loc_0x0:
@@ -5419,7 +5419,7 @@ void fadeHideEffect__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	803537C8
  * Size:	000084
  */
-void createPulledSmokeEffect__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::createPulledSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -5464,7 +5464,7 @@ void createPulledSmokeEffect__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8035384C
  * Size:	000030
  */
-void fadePulledSmokeEffect__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::fadePulledSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -5488,7 +5488,7 @@ void fadePulledSmokeEffect__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8035387C
  * Size:	0002CC
  */
-void throwUpEatItem__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::throwUpEatItem(void)
 {
 /*
 .loc_0x0:
@@ -5695,7 +5695,7 @@ void throwUpEatItem__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	80353B48
  * Size:	0000B8
  */
-void __ct__Q34Game11OoPanModoki3ObjFv(void)
+void Game::OoPanModoki::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -5755,7 +5755,7 @@ void __ct__Q34Game11OoPanModoki3ObjFv(void)
  * Address:	80353C00
  * Size:	000034
  */
-void appearRumble__Q34Game11OoPanModoki3ObjFv(void)
+void Game::OoPanModoki::Obj::appearRumble(void)
 {
 /*
 .loc_0x0:
@@ -5780,7 +5780,7 @@ void appearRumble__Q34Game11OoPanModoki3ObjFv(void)
  * Address:	80353C34
  * Size:	000034
  */
-void hideRumble__Q34Game11OoPanModoki3ObjFv(void)
+void Game::OoPanModoki::Obj::hideRumble(void)
 {
 /*
 .loc_0x0:
@@ -5805,7 +5805,7 @@ void hideRumble__Q34Game11OoPanModoki3ObjFv(void)
  * Address:	80353C68
  * Size:	000094
  */
-void pressCallBack__Q34Game11OoPanModoki3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::OoPanModoki::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -5858,7 +5858,7 @@ void pressCallBack__Q34Game11OoPanModoki3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80353CFC
  * Size:	000018
  */
-void canTarget__Q34Game11OoPanModoki3ObjFii(void)
+void Game::OoPanModoki::Obj::canTarget( (int, int))
 {
 /*
 .loc_0x0:
@@ -5876,7 +5876,7 @@ void canTarget__Q34Game11OoPanModoki3ObjFii(void)
  * Address:	80353D14
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game11OoPanModoki3ObjFv(void)
+void Game::OoPanModoki::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -5890,7 +5890,7 @@ void getDownSmokeScale__Q34Game11OoPanModoki3ObjFv(void)
  * Address:	80353D1C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11OoPanModoki3ObjFv(void)
+void Game::OoPanModoki::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

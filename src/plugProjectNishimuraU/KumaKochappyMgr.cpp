@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802E6CE4
  * Size:	000050
  */
-void __ct__Q34Game12KumaKochappy3MgrFiUc(void)
+void Game::KumaKochappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game12KumaKochappy3MgrFiUc(void)
  * Address:	802E6D34
  * Size:	000048
  */
-void doAlloc__Q34Game12KumaKochappy3MgrFv(void)
+void Game::KumaKochappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game12KumaKochappy3MgrFv(void)
  * Address:	802E6D7C
  * Size:	000098
  */
-void __ct__Q34Game12KumaKochappy5ParmsFv(void)
+void Game::KumaKochappy::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void __ct__Q34Game12KumaKochappy5ParmsFv(void)
  * Address:	802E6E14
  * Size:	000060
  */
-void createObj__Q34Game12KumaKochappy3MgrFi(void)
+void Game::KumaKochappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -167,7 +167,7 @@ void createObj__Q34Game12KumaKochappy3MgrFi(void)
  * Address:	802E6E74
  * Size:	0000BC
  */
-void __dt__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void __dt__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E6F30
  * Size:	000010
  */
-void getEnemy__Q34Game12KumaKochappy3MgrFi(void)
+void Game::KumaKochappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void getEnemy__Q34Game12KumaKochappy3MgrFi(void)
  * Address:	802E6F40
  * Size:	000050
  */
-void read__Q34Game12KumaKochappy5ParmsFR6Stream(void)
+void Game::KumaKochappy::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -278,7 +278,7 @@ void read__Q34Game12KumaKochappy5ParmsFR6Stream(void)
  * Address:	802E6F90
  * Size:	0000B0
  */
-void __dt__Q34Game12KumaKochappy3MgrFv(void)
+void Game::KumaKochappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -338,7 +338,7 @@ void __dt__Q34Game12KumaKochappy3MgrFv(void)
  * Address:	802E7040
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12KumaKochappy3MgrFv(void)
+void Game::KumaKochappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void getEnemyTypeID__Q34Game12KumaKochappy3MgrFv(void)
  * Address:	802E7048
  * Size:	000008
  */
-void @4@__dt__Q34Game12KumaKochappy3MgrFv(void)
+void @4@Game::KumaKochappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

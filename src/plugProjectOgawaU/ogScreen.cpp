@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80301EB8
  * Size:	000008
  */
-void setSpeed__Q32og6Screen15ArrowAlphaBlinkFf(void)
+void og::Screen::ArrowAlphaBlink::setSpeed( (float))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setSpeed__Q32og6Screen15ArrowAlphaBlinkFf(void)
  * Address:	........
  * Size:	000008
  */
-void setAmp__Q32og6Screen15ArrowAlphaBlinkFf(void)
+void og::Screen::ArrowAlphaBlink::setAmp( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -39,7 +39,7 @@ void setAmp__Q32og6Screen15ArrowAlphaBlinkFf(void)
  * Address:	........
  * Size:	000008
  */
-void setBottom__Q32og6Screen15ArrowAlphaBlinkFf(void)
+void og::Screen::ArrowAlphaBlink::setBottom( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -49,7 +49,7 @@ void setBottom__Q32og6Screen15ArrowAlphaBlinkFf(void)
  * Address:	80301EC0
  * Size:	0000C0
  */
-void calc__Q32og6Screen15ArrowAlphaBlinkFv(void)
+void og::Screen::ArrowAlphaBlink::calc(void)
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void calc__Q32og6Screen15ArrowAlphaBlinkFv(void)
  * Address:	80301F80
  * Size:	00021C
  */
-void capturePictureTreeColor__Q22og6ScreenFP7J2DPanei(void)
+void og::Screen::capturePictureTreeColor( (J2DPane *, int))
 {
 /*
 .loc_0x0:
@@ -280,7 +280,7 @@ void capturePictureTreeColor__Q22og6ScreenFP7J2DPanei(void)
  * Address:	8030219C
  * Size:	00003C
  */
-void __ct__Q32og6Screen20PictureTreeColorInfoFv(void)
+void og::Screen::PictureTreeColorInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -307,7 +307,7 @@ void __ct__Q32og6Screen20PictureTreeColorInfoFv(void)
  * Address:	........
  * Size:	0000AC
  */
-void recoverPictureTreeColor__Q22og6ScreenFPQ32og6Screen27PictureTreeColorCaptureInfo(void)
+void og::Screen::recoverPictureTreeColor( (og::Screen::PictureTreeColorCaptureInfo *))
 {
 	// UNUSED FUNCTION
 }
@@ -317,7 +317,7 @@ void recoverPictureTreeColor__Q22og6ScreenFPQ32og6Screen27PictureTreeColorCaptur
  * Address:	803021D8
  * Size:	000154
  */
-void blendColor__Q22og6ScreenFRQ28JUtility6TColorRQ28JUtility6TColorfPQ28JUtility6TColor(void)
+void og::Screen::blendColor( (JUtility::TColor &, JUtility::TColor &, float, JUtility::TColor *))
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void blendColor__Q22og6ScreenFRQ28JUtility6TColorRQ28JUtility6TColorfPQ28JUtilit
  * Address:	........
  * Size:	0003D0
  */
-void setPictureTreeColor__Q22og6ScreenFP7J2DPaneRQ28JUtility6TColorRQ28JUtility6TColorf(void)
+void og::Screen::setPictureTreeColor( (J2DPane *, JUtility::TColor &, JUtility::TColor &, float))
 {
 	// UNUSED FUNCTION
 }
@@ -428,7 +428,7 @@ void setPictureTreeColor__Q22og6ScreenFP7J2DPaneRQ28JUtility6TColorRQ28JUtility6
  * Address:	8030232C
  * Size:	000370
  */
-void blendPictureTreeColor__Q22og6ScreenFPQ32og6Screen27PictureTreeColorCaptureInfoRQ28JUtility6TColorRQ28JUtility6TColorf(void)
+void og::Screen::blendPictureTreeColor( (og::Screen::PictureTreeColorCaptureInfo *, JUtility::TColor &, JUtility::TColor &, float))
 {
 /*
 .loc_0x0:
@@ -674,7 +674,7 @@ void blendPictureTreeColor__Q22og6ScreenFPQ32og6Screen27PictureTreeColorCaptureI
  * Address:	8030269C
  * Size:	0000C8
  */
-void calcSmooth0to1__Q22og6ScreenFff(void)
+void og::Screen::calcSmooth0to1( (float, float))
 {
 /*
 .loc_0x0:
@@ -804,7 +804,7 @@ void calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<float>(void)
  * Address:	........
  * Size:	000154
  */
-void kakomiPane__Q22og6ScreenFP7J2DPane(void)
+void og::Screen::kakomiPane( (J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -814,7 +814,7 @@ void kakomiPane__Q22og6ScreenFP7J2DPane(void)
  * Address:	........
  * Size:	000224
  */
-void centeringPane__Q22og6ScreenFP7J2DPanebb(void)
+void og::Screen::centeringPane( (J2DPane *, bool, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -824,7 +824,7 @@ void centeringPane__Q22og6ScreenFP7J2DPanebb(void)
  * Address:	80302814
  * Size:	00010C
  */
-void maskTag2__Q22og6ScreenFUxUs(void)
+void og::Screen::maskTag2( (unsigned long long, unsigned short))
 {
 /*
 .loc_0x0:
@@ -905,7 +905,7 @@ void maskTag2__Q22og6ScreenFUxUs(void)
  * Address:	80302920
  * Size:	0000A0
  */
-void maskTag__Q22og6ScreenFUxUsUs(void)
+void og::Screen::maskTag( (unsigned long long, unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -965,7 +965,7 @@ void maskTag__Q22og6ScreenFUxUsUs(void)
  * Address:	803029C0
  * Size:	0000B4
  */
-void CalcKeta__Q22og6ScreenFUl(void)
+void og::Screen::CalcKeta( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1026,7 +1026,7 @@ void CalcKeta__Q22og6ScreenFUl(void)
  * Address:	80302A74
  * Size:	000158
  */
-void MojiToNum__Q22og6ScreenFUxi(void)
+void og::Screen::MojiToNum( (unsigned long long, int))
 {
 /*
 .loc_0x0:
@@ -1138,7 +1138,7 @@ void MojiToNum__Q22og6ScreenFUxi(void)
  * Address:	80302BCC
  * Size:	000158
  */
-void TagToName__Q22og6ScreenFUxPc(void)
+void og::Screen::TagToName( (unsigned long long, char *))
 {
 /*
 .loc_0x0:
@@ -1266,7 +1266,7 @@ void TagToName__Q22og6ScreenFUxPc(void)
  * Address:	........
  * Size:	000134
  */
-void NameToTag__Q22og6ScreenFPc(void)
+void og::Screen::NameToTag( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -1276,7 +1276,7 @@ void NameToTag__Q22og6ScreenFPc(void)
  * Address:	80302D24
  * Size:	0000F4
  */
-void CharCodeToTag__Q22og6ScreenFPc(void)
+void og::Screen::CharCodeToTag( (char *))
 {
 /*
 .loc_0x0:
@@ -1349,7 +1349,7 @@ void CharCodeToTag__Q22og6ScreenFPc(void)
  * Address:	80302E18
  * Size:	000094
  */
-void TagToHex__Q22og6ScreenFUxPc(void)
+void og::Screen::TagToHex( (unsigned long long, char *))
 {
 /*
 .loc_0x0:
@@ -1402,7 +1402,7 @@ void TagToHex__Q22og6ScreenFUxPc(void)
  * Address:	80302EAC
  * Size:	00018C
  */
-void TagSearch__Q22og6ScreenFP9J2DScreenUx(void)
+void og::Screen::TagSearch( (J2DScreen *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -1533,7 +1533,7 @@ void TagSearch__Q22og6ScreenFP9J2DScreenUx(void)
  * Address:	80303038
  * Size:	000028
  */
-void __ct__Q32og6Screen8AlphaMgrFv(void)
+void og::Screen::AlphaMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1555,7 +1555,7 @@ void __ct__Q32og6Screen8AlphaMgrFv(void)
  * Address:	80303060
  * Size:	00000C
  */
-void setBlinkArea__Q32og6Screen8AlphaMgrFff(void)
+void og::Screen::AlphaMgr::setBlinkArea( (float, float))
 {
 /*
 .loc_0x0:
@@ -1570,7 +1570,7 @@ void setBlinkArea__Q32og6Screen8AlphaMgrFff(void)
  * Address:	8030306C
  * Size:	000064
  */
-void in__Q32og6Screen8AlphaMgrFf(void)
+void og::Screen::AlphaMgr::in( (float))
 {
 /*
 .loc_0x0:
@@ -1611,7 +1611,7 @@ void in__Q32og6Screen8AlphaMgrFf(void)
  * Address:	803030D0
  * Size:	000064
  */
-void out__Q32og6Screen8AlphaMgrFf(void)
+void og::Screen::AlphaMgr::out( (float))
 {
 /*
 .loc_0x0:
@@ -1652,7 +1652,7 @@ void out__Q32og6Screen8AlphaMgrFf(void)
  * Address:	80303134
  * Size:	000050
  */
-void blink__Q32og6Screen8AlphaMgrFf(void)
+void og::Screen::AlphaMgr::blink( (float))
 {
 /*
 .loc_0x0:
@@ -1688,7 +1688,7 @@ void blink__Q32og6Screen8AlphaMgrFf(void)
  * Address:	80303184
  * Size:	000190
  */
-void calc__Q32og6Screen8AlphaMgrFv(void)
+void og::Screen::AlphaMgr::calc(void)
 {
 /*
 .loc_0x0:
@@ -1818,7 +1818,7 @@ void calc__Q32og6Screen8AlphaMgrFv(void)
  * Address:	80303314
  * Size:	0001D4
  */
-void setAlphaScreen__Q22og6ScreenFP7J2DPane(void)
+void og::Screen::setAlphaScreen( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -2050,7 +2050,7 @@ void J2DPane::getTagName() const
  * Address:	........
  * Size:	000070
  */
-void __ct__Q32og6Screen11AnimeScreenFP10JKRArchivei(void)
+void og::Screen::AnimeScreen::__ct( (JKRArchive *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -2060,7 +2060,7 @@ void __ct__Q32og6Screen11AnimeScreenFP10JKRArchivei(void)
  * Address:	8030350C
  * Size:	000094
  */
-void __dt__Q29P2DScreen10Mgr_tuningFv(void)
+void P2DScreen::Mgr_tuning::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2115,7 +2115,7 @@ void __dt__Q29P2DScreen10Mgr_tuningFv(void)
  * Address:	........
  * Size:	0000C8
  */
-void addAnim__Q32og6Screen11AnimeScreenFUxPc(void)
+void og::Screen::AnimeScreen::addAnim( (unsigned long long, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -2125,7 +2125,7 @@ void addAnim__Q32og6Screen11AnimeScreenFUxPc(void)
  * Address:	........
  * Size:	000088
  */
-void setP2DScreen__Q22og6ScreenFPcUlP10JKRArchive(void)
+void og::Screen::setP2DScreen( (char *, unsigned long, JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -2135,7 +2135,7 @@ void setP2DScreen__Q22og6ScreenFPcUlP10JKRArchive(void)
  * Address:	........
  * Size:	000004
  */
-void dumpInfoResTIMG__Q22og6ScreenFPC7ResTIMG(void)
+void og::Screen::dumpInfoResTIMG( (ResTIMG const *))
 {
 	// UNUSED FUNCTION
 }
@@ -2145,7 +2145,7 @@ void dumpInfoResTIMG__Q22og6ScreenFPC7ResTIMG(void)
  * Address:	........
  * Size:	000200
  */
-void drawPaneFrame__Q22og6ScreenFR14J2DGrafContextP7J2DPaneRQ28JUtility6TColor(void)
+void og::Screen::drawPaneFrame( (J2DGrafContext &, J2DPane *, JUtility::TColor &))
 {
 	// UNUSED FUNCTION
 }
@@ -2155,7 +2155,7 @@ void drawPaneFrame__Q22og6ScreenFR14J2DGrafContextP7J2DPaneRQ28JUtility6TColor(v
  * Address:	803035A0
  * Size:	000004
  */
-void update__Q29P2DScreen4NodeFv(void)
+void P2DScreen::Node::update(void)
 {
 /*
 .loc_0x0:
@@ -2168,7 +2168,7 @@ void update__Q29P2DScreen4NodeFv(void)
  * Address:	803035A4
  * Size:	000004
  */
-void draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext(void)
+void P2DScreen::Node::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -2181,7 +2181,7 @@ void draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext(void)
  * Address:	803035A8
  * Size:	000004
  */
-void doInit__Q29P2DScreen4NodeFv(void)
+void P2DScreen::Node::doInit(void)
 {
 /*
 .loc_0x0:
@@ -2194,7 +2194,7 @@ void doInit__Q29P2DScreen4NodeFv(void)
  * Address:	803035AC
  * Size:	000060
  */
-void __dt__Q29P2DScreen4NodeFv(void)
+void P2DScreen::Node::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2232,7 +2232,7 @@ void __dt__Q29P2DScreen4NodeFv(void)
  * Address:	........
  * Size:	0000A4
  */
-void __dt__Q32og6Screen11AnimeScreenFv(void)
+void og::Screen::AnimeScreen::__dt(void)
 {
 	// UNUSED FUNCTION
 }

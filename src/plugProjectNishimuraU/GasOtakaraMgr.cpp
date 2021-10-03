@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B8F3C
  * Size:	000050
  */
-void __ct__Q34Game10GasOtakara3MgrFiUc(void)
+void Game::GasOtakara::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game10GasOtakara3MgrFiUc(void)
  * Address:	802B8F8C
  * Size:	000048
  */
-void doAlloc__Q34Game10GasOtakara3MgrFv(void)
+void Game::GasOtakara::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game10GasOtakara3MgrFv(void)
  * Address:	802B8FD4
  * Size:	000060
  */
-void createObj__Q34Game10GasOtakara3MgrFi(void)
+void Game::GasOtakara::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game10GasOtakara3MgrFi(void)
  * Address:	802B9034
  * Size:	0000F0
  */
-void __dt__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void __dt__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B9124
  * Size:	000010
  */
-void getEnemy__Q34Game10GasOtakara3MgrFi(void)
+void Game::GasOtakara::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void getEnemy__Q34Game10GasOtakara3MgrFi(void)
  * Address:	802B9134
  * Size:	000080
  */
-void loadTexData__Q34Game10GasOtakara3MgrFv(void)
+void Game::GasOtakara::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void loadTexData__Q34Game10GasOtakara3MgrFv(void)
  * Address:	802B91B4
  * Size:	0000C8
  */
-void __dt__Q34Game10GasOtakara3MgrFv(void)
+void Game::GasOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void __dt__Q34Game10GasOtakara3MgrFv(void)
  * Address:	802B927C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10GasOtakara3MgrFv(void)
+void Game::GasOtakara::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void getEnemyTypeID__Q34Game10GasOtakara3MgrFv(void)
  * Address:	802B9284
  * Size:	000008
  */
-void getChangeTexture__Q34Game10GasOtakara3MgrFv(void)
+void Game::GasOtakara::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void getChangeTexture__Q34Game10GasOtakara3MgrFv(void)
  * Address:	802B928C
  * Size:	000008
  */
-void @4@__dt__Q34Game10GasOtakara3MgrFv(void)
+void @4@Game::GasOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

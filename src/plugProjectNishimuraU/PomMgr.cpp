@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80253E8C
  * Size:	000050
  */
-void __ct__Q34Game3Pom3MgrFiUc(void)
+void Game::Pom::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game3Pom3MgrFiUc(void)
  * Address:	80253EDC
  * Size:	0001F4
  */
-void birth__Q34Game3Pom3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::Pom::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void birth__Q34Game3Pom3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	802540D0
  * Size:	000048
  */
-void doAlloc__Q34Game3Pom3MgrFv(void)
+void Game::Pom::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -234,7 +234,7 @@ void doAlloc__Q34Game3Pom3MgrFv(void)
  * Address:	80254118
  * Size:	0001C8
  */
-void __ct__Q34Game3Pom5ParmsFv(void)
+void Game::Pom::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -360,7 +360,7 @@ void __ct__Q34Game3Pom5ParmsFv(void)
  * Address:	802542E0
  * Size:	000188
  */
-void createObj__Q34Game3Pom3MgrFi(void)
+void Game::Pom::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -480,7 +480,7 @@ void createObj__Q34Game3Pom3MgrFi(void)
  * Address:	80254468
  * Size:	0000BC
  */
-void __dt__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -543,7 +543,7 @@ void __dt__Q34Game3Pom3ObjFv(void)
  * Address:	80254524
  * Size:	000010
  */
-void getEnemy__Q34Game3Pom3MgrFi(void)
+void Game::Pom::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -559,7 +559,7 @@ void getEnemy__Q34Game3Pom3MgrFi(void)
  * Address:	80254534
  * Size:	000138
  */
-void createModel__Q34Game3Pom3MgrFv(void)
+void Game::Pom::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -659,7 +659,7 @@ void createModel__Q34Game3Pom3MgrFv(void)
  * Address:	8025466C
  * Size:	000050
  */
-void read__Q34Game3Pom5ParmsFR6Stream(void)
+void Game::Pom::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void read__Q34Game3Pom5ParmsFR6Stream(void)
  * Address:	802546BC
  * Size:	0000B0
  */
-void __dt__Q34Game3Pom3MgrFv(void)
+void Game::Pom::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -751,7 +751,7 @@ void __dt__Q34Game3Pom3MgrFv(void)
  * Address:	8025476C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game3Pom3MgrFv(void)
+void Game::Pom::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -787,7 +787,7 @@ void __sinit_PomMgr_cpp(void)
  * Address:	8025479C
  * Size:	000008
  */
-void @4@__dt__Q34Game3Pom3MgrFv(void)
+void @4@Game::Pom::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

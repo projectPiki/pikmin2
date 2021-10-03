@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80436ED0
  * Size:	000070
  */
-void setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig(void)
+void Game::MoviePlayer::setPauseAndDraw( (Game::MovieConfig *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig(void)
  * Address:	80436F40
  * Size:	000498
  */
-void clearPauseAndDraw__Q24Game11MoviePlayerFv(void)
+void Game::MoviePlayer::clearPauseAndDraw(void)
 {
 /*
 .loc_0x0:

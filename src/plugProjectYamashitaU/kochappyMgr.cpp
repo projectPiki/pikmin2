@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801122B4
  * Size:	000050
  */
-void __ct__Q34Game8Kochappy3MgrFiUc(void)
+void Game::Kochappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game8Kochappy3MgrFiUc(void)
  * Address:	80112304
  * Size:	0000B0
  */
-void __dt__Q34Game12KochappyBase3MgrFv(void)
+void Game::KochappyBase::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -107,7 +107,7 @@ void __dt__Q34Game12KochappyBase3MgrFv(void)
  * Address:	801123B4
  * Size:	000048
  */
-void doAlloc__Q34Game8Kochappy3MgrFv(void)
+void Game::Kochappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void doAlloc__Q34Game8Kochappy3MgrFv(void)
  * Address:	801123FC
  * Size:	000118
  */
-void __ct__Q34Game12KochappyBase5ParmsFv(void)
+void Game::KochappyBase::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void __ct__Q34Game12KochappyBase5ParmsFv(void)
  * Address:	80112514
  * Size:	000048
  */
-void loadTexData__Q34Game8Kochappy3MgrFv(void)
+void Game::Kochappy::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -253,7 +253,7 @@ void loadTexData__Q34Game8Kochappy3MgrFv(void)
  * Address:	8011255C
  * Size:	0000C8
  */
-void __dt__Q34Game8Kochappy3MgrFv(void)
+void Game::Kochappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -319,7 +319,7 @@ void __dt__Q34Game8Kochappy3MgrFv(void)
  * Address:	80112624
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8Kochappy3MgrFv(void)
+void Game::Kochappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -333,7 +333,7 @@ void getEnemyTypeID__Q34Game8Kochappy3MgrFv(void)
  * Address:	8011262C
  * Size:	000060
  */
-void createObj__Q34Game8Kochappy3MgrFi(void)
+void Game::Kochappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void createObj__Q34Game8Kochappy3MgrFi(void)
  * Address:	8011268C
  * Size:	000010
  */
-void getEnemy__Q34Game8Kochappy3MgrFi(void)
+void Game::Kochappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void getEnemy__Q34Game8Kochappy3MgrFi(void)
  * Address:	8011269C
  * Size:	000050
  */
-void read__Q34Game12KochappyBase5ParmsFR6Stream(void)
+void Game::KochappyBase::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -417,7 +417,7 @@ void read__Q34Game12KochappyBase5ParmsFR6Stream(void)
  * Address:	801126EC
  * Size:	000008
  */
-void @4@__dt__Q34Game8Kochappy3MgrFv(void)
+void @4@Game::Kochappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

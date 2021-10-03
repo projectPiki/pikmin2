@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803491C8
  * Size:	000084
  */
-void __ct__Q28Morimura9TTestBaseFPc(void)
+void Morimura::TTestBase::__ct( (char *))
 {
 /*
 .loc_0x0:
@@ -60,7 +60,7 @@ void __ct__Q28Morimura9TTestBaseFPc(void)
  * Address:	8034924C
  * Size:	000020
  */
-void doStart__Q28Morimura9TTestBaseFPCQ26Screen13StartSceneArg(void)
+void Morimura::TTestBase::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -80,7 +80,7 @@ void doStart__Q28Morimura9TTestBaseFPCQ26Screen13StartSceneArg(void)
  * Address:	8034926C
  * Size:	000010
  */
-void doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg(void)
+void Morimura::TTestBase::doEnd( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -96,7 +96,7 @@ void doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg(void)
  * Address:	8034927C
  * Size:	0000B0
  */
-void doUpdateFadein__Q28Morimura9TTestBaseFv(void)
+void Morimura::TTestBase::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void doUpdateFadein__Q28Morimura9TTestBaseFv(void)
  * Address:	8034932C
  * Size:	00000C
  */
-void doUpdateFinish__Q28Morimura9TTestBaseFv(void)
+void Morimura::TTestBase::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void doUpdateFinish__Q28Morimura9TTestBaseFv(void)
  * Address:	80349338
  * Size:	0000B8
  */
-void doUpdateFadeout__Q28Morimura9TTestBaseFv(void)
+void Morimura::TTestBase::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -237,7 +237,7 @@ void doUpdateFadeout__Q28Morimura9TTestBaseFv(void)
  * Address:	803493F0
  * Size:	000008
  */
-void @24@__dt__Q28Morimura9TTestBaseFv(void)
+void @24@Morimura::TTestBase::__dt(void)
 {
 /*
 .loc_0x0:

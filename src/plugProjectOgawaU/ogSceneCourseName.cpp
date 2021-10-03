@@ -5,7 +5,7 @@
  * Address:	80318050
  * Size:	00003C
  */
-void __ct__Q32og9newScreen10CourseNameFv(void)
+void og::newScreen::CourseName::__ct(void)
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void __ct__Q32og9newScreen10CourseNameFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen10CourseNameFv(void)
+void og::newScreen::CourseName::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,7 +42,7 @@ void __dt__Q32og9newScreen10CourseNameFv(void)
  * Address:	........
  * Size:	000098
  */
-void getCourseNum__Q32og9newScreen10CourseNameFv(void)
+void og::newScreen::CourseName::getCourseNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void getCourseNum__Q32og9newScreen10CourseNameFv(void)
  * Address:	8031808C
  * Size:	000128
  */
-void doUserCallBackFunc__Q32og9newScreen10CourseNameFPQ28Resource10MgrCommand(void)
+void og::newScreen::CourseName::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void doUserCallBackFunc__Q32og9newScreen10CourseNameFPQ28Resource10MgrCommand(vo
  * Address:	803181B4
  * Size:	000004
  */
-void doCreateObj__Q32og9newScreen10CourseNameFP10JKRArchive(void)
+void og::newScreen::CourseName::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -161,7 +161,7 @@ void doCreateObj__Q32og9newScreen10CourseNameFP10JKRArchive(void)
  * Address:	803181B8
  * Size:	000060
  */
-void doCreateObjUserCallBackFunc__Q32og9newScreen10CourseNameFP10JKRArchive(void)
+void og::newScreen::CourseName::doCreateObjUserCallBackFunc( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void doCreateObjUserCallBackFunc__Q32og9newScreen10CourseNameFP10JKRArchive(void
  * Address:	80318218
  * Size:	000008
  */
-void getResName__Q32og9newScreen10CourseNameCFv(void)
+void og::newScreen::CourseName::getResName( const
 {
 /*
 .loc_0x0:
@@ -213,7 +213,7 @@ void getResName__Q32og9newScreen10CourseNameCFv(void)
  * Address:	80318220
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen10CourseNameFv(void)
+void og::newScreen::CourseName::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void getSceneType__Q32og9newScreen10CourseNameFv(void)
  * Address:	80318228
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen10CourseNameFv(void)
+void og::newScreen::CourseName::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -242,7 +242,7 @@ void getOwnerID__Q32og9newScreen10CourseNameFv(void)
  * Address:	80318234
  * Size:	000010
  */
-void getMemberID__Q32og9newScreen10CourseNameFv(void)
+void og::newScreen::CourseName::getMemberID(void)
 {
 /*
 .loc_0x0:

@@ -5,7 +5,7 @@
  * Address:	8030EF88
  * Size:	000098
  */
-void __ct__Q32og6Screen8BloGroupFUs(void)
+void og::Screen::BloGroup::__ct( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void __ct__Q32og6Screen8BloGroupFUs(void)
  * Address:	........
  * Size:	0000B4
  */
-void __dt__Q32og6Screen8BloGroupFv(void)
+void og::Screen::BloGroup::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -69,7 +69,7 @@ void __dt__Q32og6Screen8BloGroupFv(void)
  * Address:	8030F020
  * Size:	0000A0
  */
-void addBlo__Q32og6Screen8BloGroupFPcPQ29P2DScreen10Mgr_tuningUlP10JKRArchive(void)
+void og::Screen::BloGroup::addBlo( (char *, P2DScreen::Mgr_tuning *, unsigned long, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -125,7 +125,7 @@ void addBlo__Q32og6Screen8BloGroupFPcPQ29P2DScreen10Mgr_tuningUlP10JKRArchive(vo
  * Address:	........
  * Size:	000078
  */
-void setScissor__Q32og6Screen8BloGroupFiffff(void)
+void og::Screen::BloGroup::setScissor( (int, float, float, float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +135,7 @@ void setScissor__Q32og6Screen8BloGroupFiffff(void)
  * Address:	........
  * Size:	000044
  */
-void translate__Q32og6Screen8BloGroupFff(void)
+void og::Screen::BloGroup::translate( (float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -145,7 +145,7 @@ void translate__Q32og6Screen8BloGroupFff(void)
  * Address:	8030F0C0
  * Size:	000044
  */
-void scale__Q32og6Screen8BloGroupFf(void)
+void og::Screen::BloGroup::scale( (float))
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void scale__Q32og6Screen8BloGroupFf(void)
  * Address:	........
  * Size:	000080
  */
-void setAlpha__Q32og6Screen8BloGroupFUc(void)
+void og::Screen::BloGroup::setAlpha( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -188,7 +188,7 @@ void setAlpha__Q32og6Screen8BloGroupFUc(void)
  * Address:	8030F104
  * Size:	0000A4
  */
-void rotate__Q32og6Screen8BloGroupFff13J2DRotateAxisf(void)
+void og::Screen::BloGroup::rotate( (float, float, J2DRotateAxis, float))
 {
 /*
 .loc_0x0:
@@ -245,7 +245,7 @@ void rotate__Q32og6Screen8BloGroupFff13J2DRotateAxisf(void)
  * Address:	8030F1A8
  * Size:	000070
  */
-void update__Q32og6Screen8BloGroupFv(void)
+void og::Screen::BloGroup::update(void)
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void update__Q32og6Screen8BloGroupFv(void)
  * Address:	........
  * Size:	000064
  */
-void animation__Q32og6Screen8BloGroupFv(void)
+void og::Screen::BloGroup::animation(void)
 {
 	// UNUSED FUNCTION
 }
@@ -299,7 +299,7 @@ void animation__Q32og6Screen8BloGroupFv(void)
  * Address:	8030F218
  * Size:	0000E8
  */
-void draw__Q32og6Screen8BloGroupFP13J2DPerspGraph(void)
+void og::Screen::BloGroup::draw( (J2DPerspGraph *))
 {
 /*
 .loc_0x0:

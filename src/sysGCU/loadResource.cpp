@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000078
  */
-void __ct__Q212LoadResource4NodeFPCc(void)
+void LoadResource::Node::__ct( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q212LoadResource4NodeFPCc(void)
  * Address:	8044C520
  * Size:	0000B8
  */
-void __dt__Q212LoadResource4NodeFv(void)
+void LoadResource::Node::__dt(void)
 {
 /*
 .loc_0x0:
@@ -91,7 +91,7 @@ void __dt__Q212LoadResource4NodeFv(void)
  * Address:	........
  * Size:	000004
  */
-void dump__Q212LoadResource4NodeFv(void)
+void LoadResource::Node::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -101,7 +101,7 @@ void dump__Q212LoadResource4NodeFv(void)
  * Address:	8044C5D8
  * Size:	000044
  */
-void __ct__Q212LoadResource3ArgFPCc(void)
+void LoadResource::Arg::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -130,7 +130,7 @@ void __ct__Q212LoadResource3ArgFPCc(void)
  * Address:	8044C61C
  * Size:	000048
  */
-void __ct__Q212LoadResource11ArgAramOnlyFPCc(void)
+void LoadResource::ArgAramOnly::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void __ct__Q212LoadResource11ArgAramOnlyFPCc(void)
  * Address:	........
  * Size:	00009C
  */
-void __ct__Q212LoadResource3MgrFv(void)
+void LoadResource::Mgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -170,7 +170,7 @@ void __ct__Q212LoadResource3MgrFv(void)
  * Address:	8044C664
  * Size:	0000B0
  */
-void init__Q212LoadResource3MgrFv(void)
+void LoadResource::Mgr::init(void)
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void init__Q212LoadResource3MgrFv(void)
  * Address:	........
  * Size:	0000B4
  */
-void search__Q212LoadResource3MgrFPCc(void)
+void LoadResource::Mgr::search( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -240,7 +240,7 @@ void search__Q212LoadResource3MgrFPCc(void)
  * Address:	........
  * Size:	00002C
  */
-void dump__Q212LoadResource3MgrFv(void)
+void LoadResource::Mgr::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -250,7 +250,7 @@ void dump__Q212LoadResource3MgrFv(void)
  * Address:	8044C714
  * Size:	00008C
  */
-void mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg(void)
+void LoadResource::Mgr::mountArchive( (LoadResource::Arg &))
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg(void)
  * Address:	8044C7A0
  * Size:	000324
  */
-void load__Q212LoadResource3MgrFRQ212LoadResource3Arg(void)
+void LoadResource::Mgr::load( (LoadResource::Arg &))
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void load__Q212LoadResource3MgrFRQ212LoadResource3Arg(void)
  * Address:	8044CAC4
  * Size:	000008
  */
-void @24@__dt__Q212LoadResource4NodeFv(void)
+void @24@LoadResource::Node::__dt(void)
 {
 /*
 .loc_0x0:

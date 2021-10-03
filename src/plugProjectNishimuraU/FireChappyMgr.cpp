@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8028F138
  * Size:	000050
  */
-void __ct__Q34Game10FireChappy3MgrFiUc(void)
+void Game::FireChappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game10FireChappy3MgrFiUc(void)
  * Address:	8028F188
  * Size:	000048
  */
-void doAlloc__Q34Game10FireChappy3MgrFv(void)
+void Game::FireChappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game10FireChappy3MgrFv(void)
  * Address:	8028F1D0
  * Size:	000060
  */
-void createObj__Q34Game10FireChappy3MgrFi(void)
+void Game::FireChappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game10FireChappy3MgrFi(void)
  * Address:	8028F230
  * Size:	0000F0
  */
-void __dt__Q34Game10FireChappy3ObjFv(void)
+void Game::FireChappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void __dt__Q34Game10FireChappy3ObjFv(void)
  * Address:	8028F320
  * Size:	000010
  */
-void getEnemy__Q34Game10FireChappy3MgrFi(void)
+void Game::FireChappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void getEnemy__Q34Game10FireChappy3MgrFi(void)
  * Address:	8028F330
  * Size:	000068
  */
-void loadModelData__Q34Game10FireChappy3MgrFv(void)
+void Game::FireChappy::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void loadModelData__Q34Game10FireChappy3MgrFv(void)
  * Address:	8028F398
  * Size:	00012C
  */
-void loadTexData__Q34Game10FireChappy3MgrFv(void)
+void Game::FireChappy::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void loadTexData__Q34Game10FireChappy3MgrFv(void)
  * Address:	8028F4C4
  * Size:	00007C
  */
-void createModel__Q34Game10FireChappy3MgrFv(void)
+void Game::FireChappy::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -395,7 +395,7 @@ void createModel__Q34Game10FireChappy3MgrFv(void)
  * Address:	8028F540
  * Size:	0000B0
  */
-void __dt__Q34Game10FireChappy3MgrFv(void)
+void Game::FireChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -455,7 +455,7 @@ void __dt__Q34Game10FireChappy3MgrFv(void)
  * Address:	8028F5F0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10FireChappy3MgrFv(void)
+void Game::FireChappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -469,7 +469,7 @@ void getEnemyTypeID__Q34Game10FireChappy3MgrFv(void)
  * Address:	8028F5F8
  * Size:	00002C
  */
-void doLoadBmd__Q34Game10FireChappy3MgrFPv(void)
+void Game::FireChappy::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -492,7 +492,7 @@ void doLoadBmd__Q34Game10FireChappy3MgrFPv(void)
  * Address:	8028F624
  * Size:	000008
  */
-void @4@__dt__Q34Game10FireChappy3MgrFv(void)
+void @4@Game::FireChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802E6C70
  * Size:	000008
  */
-void setAnimMgr__Q34Game12KumaKochappy14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::KumaKochappy::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game12KumaKochappy14ProperAnimatorFPQ28SysShape7AnimMgr(void
  * Address:	802E6C78
  * Size:	000008
  */
-void getAnimator__Q34Game12KumaKochappy14ProperAnimatorFi(void)
+void Game::KumaKochappy::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game12KumaKochappy14ProperAnimatorFi(void)
  * Address:	802E6C80
  * Size:	00005C
  */
-void __dt__Q34Game12KumaKochappy14ProperAnimatorFv(void)
+void Game::KumaKochappy::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game12KumaKochappy14ProperAnimatorFv(void)
  * Address:	802E6CDC
  * Size:	000008
  */
-void getAnimator__Q34Game12KumaKochappy14ProperAnimatorFv(void)
+void Game::KumaKochappy::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

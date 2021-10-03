@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80275A18
  * Size:	000050
  */
-void __ct__Q34Game4Tank3MgrFiUc(void)
+void Game::Tank::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Tank3MgrFiUc(void)
  * Address:	80275A68
  * Size:	00009C
  */
-void loadModelData__Q34Game4Tank3MgrFv(void)
+void Game::Tank::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -104,7 +104,7 @@ void loadModelData__Q34Game4Tank3MgrFv(void)
  * Address:	80275B04
  * Size:	000090
  */
-void loadAnimData__Q34Game4Tank3MgrFv(void)
+void Game::Tank::Mgr::loadAnimData(void)
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void loadAnimData__Q34Game4Tank3MgrFv(void)
  * Address:	80275B94
  * Size:	000138
  */
-void createModel__Q34Game4Tank3MgrFv(void)
+void Game::Tank::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void createModel__Q34Game4Tank3MgrFv(void)
  * Address:	80275CCC
  * Size:	0000B0
  */
-void __dt__Q34Game4Tank3MgrFv(void)
+void Game::Tank::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -318,7 +318,7 @@ void __dt__Q34Game4Tank3MgrFv(void)
  * Address:	80275D7C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Tank3MgrFv(void)
+void Game::Tank::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -332,7 +332,7 @@ void getEnemyTypeID__Q34Game4Tank3MgrFv(void)
  * Address:	80275D84
  * Size:	000008
  */
-void @4@__dt__Q34Game4Tank3MgrFv(void)
+void @4@Game::Tank::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

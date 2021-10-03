@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802A1328
  * Size:	000050
  */
-void __ct__Q34Game12Hanachirashi3MgrFiUc(void)
+void Game::Hanachirashi::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game12Hanachirashi3MgrFiUc(void)
  * Address:	802A1378
  * Size:	000048
  */
-void doAlloc__Q34Game12Hanachirashi3MgrFv(void)
+void Game::Hanachirashi::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game12Hanachirashi3MgrFv(void)
  * Address:	802A13C0
  * Size:	000048
  */
-void __ct__Q34Game12Hanachirashi5ParmsFv(void)
+void Game::Hanachirashi::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game12Hanachirashi5ParmsFv(void)
  * Address:	802A1408
  * Size:	00023C
  */
-void __ct__Q44Game12Hanachirashi5Parms11ProperParmsFv(void)
+void Game::Hanachirashi::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void __ct__Q44Game12Hanachirashi5Parms11ProperParmsFv(void)
  * Address:	802A1644
  * Size:	000060
  */
-void createObj__Q34Game12Hanachirashi3MgrFi(void)
+void Game::Hanachirashi::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void createObj__Q34Game12Hanachirashi3MgrFi(void)
  * Address:	802A16A4
  * Size:	0000BC
  */
-void __dt__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void __dt__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A1760
  * Size:	000010
  */
-void getEnemy__Q34Game12Hanachirashi3MgrFi(void)
+void Game::Hanachirashi::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void getEnemy__Q34Game12Hanachirashi3MgrFi(void)
  * Address:	802A1770
  * Size:	00012C
  */
-void loadTexData__Q34Game12Hanachirashi3MgrFv(void)
+void Game::Hanachirashi::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -484,7 +484,7 @@ void loadTexData__Q34Game12Hanachirashi3MgrFv(void)
  * Address:	802A189C
  * Size:	00013C
  */
-void createModel__Q34Game12Hanachirashi3MgrFv(void)
+void Game::Hanachirashi::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -585,7 +585,7 @@ void createModel__Q34Game12Hanachirashi3MgrFv(void)
  * Address:	802A19D8
  * Size:	0000B0
  */
-void __dt__Q34Game12Hanachirashi3MgrFv(void)
+void Game::Hanachirashi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -645,7 +645,7 @@ void __dt__Q34Game12Hanachirashi3MgrFv(void)
  * Address:	802A1A88
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12Hanachirashi3MgrFv(void)
+void Game::Hanachirashi::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -659,7 +659,7 @@ void getEnemyTypeID__Q34Game12Hanachirashi3MgrFv(void)
  * Address:	802A1A90
  * Size:	000050
  */
-void read__Q34Game12Hanachirashi5ParmsFR6Stream(void)
+void Game::Hanachirashi::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void read__Q34Game12Hanachirashi5ParmsFR6Stream(void)
  * Address:	802A1AE0
  * Size:	000008
  */
-void @4@__dt__Q34Game12Hanachirashi3MgrFv(void)
+void @4@Game::Hanachirashi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802F0C04
  * Size:	000050
  */
-void __ct__Q34Game7Sokkuri3MgrFiUc(void)
+void Game::Sokkuri::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game7Sokkuri3MgrFiUc(void)
  * Address:	802F0C54
  * Size:	000048
  */
-void doAlloc__Q34Game7Sokkuri3MgrFv(void)
+void Game::Sokkuri::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game7Sokkuri3MgrFv(void)
  * Address:	802F0C9C
  * Size:	000048
  */
-void __ct__Q34Game7Sokkuri5ParmsFv(void)
+void Game::Sokkuri::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game7Sokkuri5ParmsFv(void)
  * Address:	802F0CE4
  * Size:	0002B0
  */
-void __ct__Q44Game7Sokkuri5Parms11ProperParmsFv(void)
+void Game::Sokkuri::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -299,7 +299,7 @@ void __ct__Q44Game7Sokkuri5Parms11ProperParmsFv(void)
  * Address:	802F0F94
  * Size:	000060
  */
-void createObj__Q34Game7Sokkuri3MgrFi(void)
+void Game::Sokkuri::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void createObj__Q34Game7Sokkuri3MgrFi(void)
  * Address:	802F0FF4
  * Size:	0000BC
  */
-void __dt__Q34Game7Sokkuri3ObjFv(void)
+void Game::Sokkuri::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -398,7 +398,7 @@ void __dt__Q34Game7Sokkuri3ObjFv(void)
  * Address:	802F10B0
  * Size:	000010
  */
-void getEnemy__Q34Game7Sokkuri3MgrFi(void)
+void Game::Sokkuri::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void getEnemy__Q34Game7Sokkuri3MgrFi(void)
  * Address:	802F10C0
  * Size:	000068
  */
-void loadModelData__Q34Game7Sokkuri3MgrFv(void)
+void Game::Sokkuri::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -456,7 +456,7 @@ void loadModelData__Q34Game7Sokkuri3MgrFv(void)
  * Address:	802F1128
  * Size:	0000B0
  */
-void __dt__Q34Game7Sokkuri3MgrFv(void)
+void Game::Sokkuri::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -516,7 +516,7 @@ void __dt__Q34Game7Sokkuri3MgrFv(void)
  * Address:	802F11D8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Sokkuri3MgrFv(void)
+void Game::Sokkuri::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -530,7 +530,7 @@ void getEnemyTypeID__Q34Game7Sokkuri3MgrFv(void)
  * Address:	802F11E0
  * Size:	00002C
  */
-void doLoadBmd__Q34Game7Sokkuri3MgrFPv(void)
+void Game::Sokkuri::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -553,7 +553,7 @@ void doLoadBmd__Q34Game7Sokkuri3MgrFPv(void)
  * Address:	802F120C
  * Size:	000050
  */
-void read__Q34Game7Sokkuri5ParmsFR6Stream(void)
+void Game::Sokkuri::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -585,7 +585,7 @@ void read__Q34Game7Sokkuri5ParmsFR6Stream(void)
  * Address:	802F125C
  * Size:	000008
  */
-void @4@__dt__Q34Game7Sokkuri3MgrFv(void)
+void @4@Game::Sokkuri::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

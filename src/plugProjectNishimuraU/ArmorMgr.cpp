@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8027D2B8
  * Size:	000050
  */
-void __ct__Q34Game5Armor3MgrFiUc(void)
+void Game::Armor::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game5Armor3MgrFiUc(void)
  * Address:	8027D308
  * Size:	000048
  */
-void doAlloc__Q34Game5Armor3MgrFv(void)
+void Game::Armor::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game5Armor3MgrFv(void)
  * Address:	8027D350
  * Size:	000110
  */
-void __ct__Q34Game5Armor5ParmsFv(void)
+void Game::Armor::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -161,7 +161,7 @@ void __ct__Q34Game5Armor5ParmsFv(void)
  * Address:	8027D460
  * Size:	000060
  */
-void createObj__Q34Game5Armor3MgrFi(void)
+void Game::Armor::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void createObj__Q34Game5Armor3MgrFi(void)
  * Address:	8027D4C0
  * Size:	0000BC
  */
-void __dt__Q34Game5Armor3ObjFv(void)
+void Game::Armor::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void __dt__Q34Game5Armor3ObjFv(void)
  * Address:	8027D57C
  * Size:	000010
  */
-void getEnemy__Q34Game5Armor3MgrFi(void)
+void Game::Armor::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -276,7 +276,7 @@ void getEnemy__Q34Game5Armor3MgrFi(void)
  * Address:	8027D58C
  * Size:	000050
  */
-void read__Q34Game5Armor5ParmsFR6Stream(void)
+void Game::Armor::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void read__Q34Game5Armor5ParmsFR6Stream(void)
  * Address:	8027D5DC
  * Size:	0000B0
  */
-void __dt__Q34Game5Armor3MgrFv(void)
+void Game::Armor::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -368,7 +368,7 @@ void __dt__Q34Game5Armor3MgrFv(void)
  * Address:	8027D68C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Armor3MgrFv(void)
+void Game::Armor::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -382,7 +382,7 @@ void getEnemyTypeID__Q34Game5Armor3MgrFv(void)
  * Address:	8027D694
  * Size:	000008
  */
-void @4@__dt__Q34Game5Armor3MgrFv(void)
+void @4@Game::Armor::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

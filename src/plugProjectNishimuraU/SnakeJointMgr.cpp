@@ -43,7 +43,7 @@ void Game::SnakeJointCallBack(J3DJoint *, int)
  * Address:	802D166C
  * Size:	00003C
  */
-void __ct__Q24Game13SnakeJointMgrFPQ24Game9EnemyBase(void)
+void Game::SnakeJointMgr::__ct( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q24Game13SnakeJointMgrFPQ24Game9EnemyBase(void)
  * Address:	........
  * Size:	000004
  */
-void init__Q24Game13SnakeJointMgrFv(void)
+void Game::SnakeJointMgr::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -80,7 +80,7 @@ void init__Q24Game13SnakeJointMgrFv(void)
  * Address:	802D16A8
  * Size:	0000B8
  */
-void setupCallBackJoint__Q24Game13SnakeJointMgrFv(void)
+void Game::SnakeJointMgr::setupCallBackJoint(void)
 {
 /*
 .loc_0x0:
@@ -142,7 +142,7 @@ void setupCallBackJoint__Q24Game13SnakeJointMgrFv(void)
  * Address:	802D1760
  * Size:	000020
  */
-void startModify__Q24Game13SnakeJointMgrFff(void)
+void Game::SnakeJointMgr::startModify( (float, float))
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void startModify__Q24Game13SnakeJointMgrFff(void)
  * Address:	802D1780
  * Size:	00001C
  */
-void returnModify__Q24Game13SnakeJointMgrFf(void)
+void Game::SnakeJointMgr::returnModify( (float))
 {
 /*
 .loc_0x0:
@@ -181,7 +181,7 @@ void returnModify__Q24Game13SnakeJointMgrFf(void)
  * Address:	802D179C
  * Size:	00000C
  */
-void finishModify__Q24Game13SnakeJointMgrFv(void)
+void Game::SnakeJointMgr::finishModify(void)
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void finishModify__Q24Game13SnakeJointMgrFv(void)
  * Address:	802D17A8
  * Size:	000080
  */
-void doAnimation__Q24Game13SnakeJointMgrFv(void)
+void Game::SnakeJointMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void doAnimation__Q24Game13SnakeJointMgrFv(void)
  * Address:	802D1828
  * Size:	00000C
  */
-void finishAnimation__Q24Game13SnakeJointMgrFv(void)
+void Game::SnakeJointMgr::finishAnimation(void)
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void finishAnimation__Q24Game13SnakeJointMgrFv(void)
  * Address:	802D1834
  * Size:	0002AC
  */
-void makeMatrix__Q24Game13SnakeJointMgrFv(void)
+void Game::SnakeJointMgr::makeMatrix(void)
 {
 /*
 .loc_0x0:

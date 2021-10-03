@@ -5,7 +5,7 @@
  * Address:	804718D0
  * Size:	0000A8
  */
-void __ct__Q23PSM15BgmTrackMapFileFb(void)
+void PSM::BgmTrackMapFile::__ct( (bool))
 {
 /*
 .loc_0x0:
@@ -63,7 +63,7 @@ void __ct__Q23PSM15BgmTrackMapFileFb(void)
  * Address:	........
  * Size:	000060
  */
-void loadNReadTrackMap__Q23PSM15BgmTrackMapFileFPCcPCc(void)
+void PSM::BgmTrackMapFile::loadNReadTrackMap( (char const *, char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -73,7 +73,7 @@ void loadNReadTrackMap__Q23PSM15BgmTrackMapFileFPCcPCc(void)
  * Address:	80471978
  * Size:	00077C
  */
-void readTrackMap__Q23PSM15BgmTrackMapFileFPCc(void)
+void PSM::BgmTrackMapFile::readTrackMap( (char const *))
 {
 /*
 .loc_0x0:
@@ -618,7 +618,7 @@ void readTrackMap__Q23PSM15BgmTrackMapFileFPCc(void)
  * Address:	........
  * Size:	0000D4
  */
-void getTrackMapA__Q23PSM15BgmTrackMapFileFPCc(void)
+void PSM::BgmTrackMapFile::getTrackMapA( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -628,7 +628,7 @@ void getTrackMapA__Q23PSM15BgmTrackMapFileFPCc(void)
  * Address:	804720F4
  * Size:	000294
  */
-void read__Q23PSM15BgmTrackMapFileFR6Stream(void)
+void PSM::BgmTrackMapFile::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -839,7 +839,7 @@ void read__Q23PSM15BgmTrackMapFileFR6Stream(void)
  * Address:	80472388
  * Size:	000110
  */
-void __ct__Q23PSM11BgmTrackMapFv(void)
+void PSM::BgmTrackMap::__ct(void)
 {
 /*
 .loc_0x0:
@@ -923,7 +923,7 @@ void __ct__Q23PSM11BgmTrackMapFv(void)
  * Address:	80472498
  * Size:	000008
  */
-void @28@__dt__Q23PSM15BgmTrackMapFileFv(void)
+void @28@PSM::BgmTrackMapFile::__dt(void)
 {
 /*
 .loc_0x0:

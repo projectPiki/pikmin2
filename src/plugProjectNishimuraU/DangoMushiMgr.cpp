@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802FBD1C
  * Size:	000050
  */
-void __ct__Q34Game10DangoMushi3MgrFiUc(void)
+void Game::DangoMushi::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game10DangoMushi3MgrFiUc(void)
  * Address:	802FBD6C
  * Size:	000048
  */
-void doAlloc__Q34Game10DangoMushi3MgrFv(void)
+void Game::DangoMushi::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game10DangoMushi3MgrFv(void)
  * Address:	802FBDB4
  * Size:	000154
  */
-void __ct__Q34Game10DangoMushi5ParmsFv(void)
+void Game::DangoMushi::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void __ct__Q34Game10DangoMushi5ParmsFv(void)
  * Address:	802FBF08
  * Size:	000060
  */
-void createObj__Q34Game10DangoMushi3MgrFi(void)
+void Game::DangoMushi::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void createObj__Q34Game10DangoMushi3MgrFi(void)
  * Address:	802FBF68
  * Size:	0000BC
  */
-void __dt__Q34Game10DangoMushi3ObjFv(void)
+void Game::DangoMushi::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -277,7 +277,7 @@ void __dt__Q34Game10DangoMushi3ObjFv(void)
  * Address:	802FC024
  * Size:	000010
  */
-void getEnemy__Q34Game10DangoMushi3MgrFi(void)
+void Game::DangoMushi::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -293,7 +293,7 @@ void getEnemy__Q34Game10DangoMushi3MgrFi(void)
  * Address:	802FC034
  * Size:	000068
  */
-void loadModelData__Q34Game10DangoMushi3MgrFv(void)
+void Game::DangoMushi::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void loadModelData__Q34Game10DangoMushi3MgrFv(void)
  * Address:	802FC09C
  * Size:	0000B4
  */
-void loadTexData__Q34Game10DangoMushi3MgrFv(void)
+void Game::DangoMushi::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -398,7 +398,7 @@ void loadTexData__Q34Game10DangoMushi3MgrFv(void)
  * Address:	802FC150
  * Size:	000130
  */
-void createModel__Q34Game10DangoMushi3MgrFv(void)
+void Game::DangoMushi::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -496,7 +496,7 @@ void createModel__Q34Game10DangoMushi3MgrFv(void)
  * Address:	802FC280
  * Size:	0000B0
  */
-void __dt__Q34Game10DangoMushi3MgrFv(void)
+void Game::DangoMushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -556,7 +556,7 @@ void __dt__Q34Game10DangoMushi3MgrFv(void)
  * Address:	802FC330
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10DangoMushi3MgrFv(void)
+void Game::DangoMushi::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -570,7 +570,7 @@ void getEnemyTypeID__Q34Game10DangoMushi3MgrFv(void)
  * Address:	802FC338
  * Size:	00002C
  */
-void doLoadBmd__Q34Game10DangoMushi3MgrFPv(void)
+void Game::DangoMushi::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -593,7 +593,7 @@ void doLoadBmd__Q34Game10DangoMushi3MgrFPv(void)
  * Address:	802FC364
  * Size:	000050
  */
-void read__Q34Game10DangoMushi5ParmsFR6Stream(void)
+void Game::DangoMushi::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -625,7 +625,7 @@ void read__Q34Game10DangoMushi5ParmsFR6Stream(void)
  * Address:	802FC3B4
  * Size:	000008
  */
-void @4@__dt__Q34Game10DangoMushi3MgrFv(void)
+void @4@Game::DangoMushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

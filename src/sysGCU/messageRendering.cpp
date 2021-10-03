@@ -5,7 +5,7 @@
  * Address:	804391F0
  * Size:	00003C
  */
-void __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference(void)
+void P2JME::TRenderingProcessorBase::__ct( (JMessage::TReference const *))
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference(void)
  * Address:	8043922C
  * Size:	000174
  */
-void do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl(void)
+void P2JME::TRenderingProcessorBase::do_tag( (unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl(void)
  * Address:	804393A0
  * Size:	000008
  */
-void tagFont__Q25P2JME23TRenderingProcessorBaseFPCvUl(void)
+void P2JME::TRenderingProcessorBase::tagFont( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void tagFont__Q25P2JME23TRenderingProcessorBaseFPCvUl(void)
  * Address:	804393A8
  * Size:	000008
  */
-void tagRuby__Q25P2JME23TRenderingProcessorBaseFPCvUl(void)
+void P2JME::TRenderingProcessorBase::tagRuby( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void tagRuby__Q25P2JME23TRenderingProcessorBaseFPCvUl(void)
  * Address:	804393B0
  * Size:	000008
  */
-void tagSize__Q25P2JME23TRenderingProcessorBaseFPCvUl(void)
+void P2JME::TRenderingProcessorBase::tagSize( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -205,7 +205,7 @@ void tagSize__Q25P2JME23TRenderingProcessorBaseFPCvUl(void)
  * Address:	804393B8
  * Size:	000008
  */
-void tagColor__Q25P2JME23TRenderingProcessorBaseFPCvUl(void)
+void P2JME::TRenderingProcessorBase::tagColor( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -219,7 +219,7 @@ void tagColor__Q25P2JME23TRenderingProcessorBaseFPCvUl(void)
  * Address:	804393C0
  * Size:	000008
  */
-void tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl(void)
+void P2JME::TRenderingProcessorBase::tagPosition( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl(void)
  * Address:	804393C8
  * Size:	000008
  */
-void tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl(void)
+void P2JME::TRenderingProcessorBase::tagControl( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl(void)
  * Address:	804393D0
  * Size:	000008
  */
-void tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl(void)
+void P2JME::TRenderingProcessorBase::tagColorEX( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -261,7 +261,7 @@ void tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl(void)
  * Address:	804393D8
  * Size:	000008
  */
-void tagImage__Q25P2JME23TRenderingProcessorBaseFUsPCvUl(void)
+void P2JME::TRenderingProcessorBase::tagImage( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -275,7 +275,7 @@ void tagImage__Q25P2JME23TRenderingProcessorBaseFUsPCvUl(void)
  * Address:	804393E0
  * Size:	000218
  */
-void __ct__Q25P2JME19TRenderingProcessorFPCQ28JMessage10TReference(void)
+void P2JME::TRenderingProcessor::__ct( (JMessage::TReference const *))
 {
 /*
 .loc_0x0:
@@ -421,7 +421,7 @@ void __ct__Q25P2JME19TRenderingProcessorFPCQ28JMessage10TReference(void)
  * Address:	804395F8
  * Size:	000060
  */
-void __dt__Q25P2JME23TRenderingProcessorBaseFv(void)
+void P2JME::TRenderingProcessorBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -459,7 +459,7 @@ void __dt__Q25P2JME23TRenderingProcessorBaseFv(void)
  * Address:	........
  * Size:	00007C
  */
-void setDrawLocateX__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::setDrawLocateX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -469,7 +469,7 @@ void setDrawLocateX__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	........
  * Size:	000338
  */
-void setDrawLocateY__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::setDrawLocateY(void)
 {
 	// UNUSED FUNCTION
 }
@@ -479,7 +479,7 @@ void setDrawLocateY__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	80439658
  * Size:	0000E8
  */
-void do_begin__Q25P2JME19TRenderingProcessorFPCvPCc(void)
+void P2JME::TRenderingProcessor::do_begin( (void const *, char const *))
 {
 /*
 .loc_0x0:
@@ -551,7 +551,7 @@ void do_begin__Q25P2JME19TRenderingProcessorFPCvPCc(void)
  * Address:	80439740
  * Size:	0003B0
  */
-void setDrawLocate__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::setDrawLocate(void)
 {
 /*
 .loc_0x0:
@@ -821,7 +821,7 @@ void setDrawLocate__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	........
  * Size:	000050
  */
-void addDrawLines__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::addDrawLines(void)
 {
 	// UNUSED FUNCTION
 }
@@ -831,7 +831,7 @@ void addDrawLines__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	80439AF0
  * Size:	0000DC
  */
-void newParagraph__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::newParagraph(void)
 {
 /*
 .loc_0x0:
@@ -904,7 +904,7 @@ void newParagraph__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	80439BCC
  * Size:	00031C
  */
-void do_character__Q25P2JME19TRenderingProcessorFi(void)
+void P2JME::TRenderingProcessor::do_character( (int))
 {
 /*
 .loc_0x0:
@@ -1149,7 +1149,7 @@ void do_character__Q25P2JME19TRenderingProcessorFi(void)
  * Address:	........
  * Size:	0000B0
  */
-void mf__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::mf(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1159,7 +1159,7 @@ void mf__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	80439EE8
  * Size:	0000B8
  */
-void do_select_begin__Q25P2JME19TRenderingProcessorFUl(void)
+void P2JME::TRenderingProcessor::do_select_begin( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1217,7 +1217,7 @@ void do_select_begin__Q25P2JME19TRenderingProcessorFUl(void)
  * Address:	80439FA0
  * Size:	00006C
  */
-void do_select_end__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::do_select_end(void)
 {
 /*
 .loc_0x0:
@@ -1256,7 +1256,7 @@ void do_select_end__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043A00C
  * Size:	0000BC
  */
-void do_select_separate__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::do_select_separate(void)
 {
 /*
 .loc_0x0:
@@ -1315,7 +1315,7 @@ void do_select_separate__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043A0C8
  * Size:	000174
  */
-void do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl(void)
+void P2JME::TRenderingProcessor::do_tag( (unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1446,7 +1446,7 @@ void do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl(void)
  * Address:	8043A23C
  * Size:	000008
  */
-void do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
+void P2JME::TRenderingProcessor::do_systemTagCode( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1460,7 +1460,7 @@ void do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
  * Address:	8043A244
  * Size:	00002C
  */
-void tagColor__Q25P2JME19TRenderingProcessorFPCvUl(void)
+void P2JME::TRenderingProcessor::tagColor( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1487,7 +1487,7 @@ void tagColor__Q25P2JME19TRenderingProcessorFPCvUl(void)
  * Address:	8043A270
  * Size:	00003C
  */
-void tagSize__Q25P2JME19TRenderingProcessorFPCvUl(void)
+void P2JME::TRenderingProcessor::tagSize( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1514,7 +1514,7 @@ void tagSize__Q25P2JME19TRenderingProcessorFPCvUl(void)
  * Address:	8043A2AC
  * Size:	000164
  */
-void tagRuby__Q25P2JME19TRenderingProcessorFPCvUl(void)
+void P2JME::TRenderingProcessor::tagRuby( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1623,7 +1623,7 @@ void tagRuby__Q25P2JME19TRenderingProcessorFPCvUl(void)
  * Address:	8043A410
  * Size:	000008
  */
-void tagFont__Q25P2JME19TRenderingProcessorFPCvUl(void)
+void P2JME::TRenderingProcessor::tagFont( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1637,7 +1637,7 @@ void tagFont__Q25P2JME19TRenderingProcessorFPCvUl(void)
  * Address:	8043A418
  * Size:	000024
  */
-void tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
+void P2JME::TRenderingProcessor::tagColorEX( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1662,7 +1662,7 @@ void tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
  * Address:	8043A43C
  * Size:	00006C
  */
-void tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
+void P2JME::TRenderingProcessor::tagControl( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1709,7 +1709,7 @@ void tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
  * Address:	8043A4A8
  * Size:	000014
  */
-void doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::doTagControlAbtnWait(void)
 {
 /*
 .loc_0x0:
@@ -1726,7 +1726,7 @@ void doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043A4BC
  * Size:	00071C
  */
-void tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
+void P2JME::TRenderingProcessor::tagPosition( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2219,7 +2219,7 @@ void tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
  * Address:	8043ABD8
  * Size:	00001C
  */
-void initRuby__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::initRuby(void)
 {
 /*
 .loc_0x0:
@@ -2238,7 +2238,7 @@ void initRuby__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043ABF4
  * Size:	000360
  */
-void drawRuby__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::drawRuby(void)
 {
 /*
 .loc_0x0:
@@ -2490,7 +2490,7 @@ void drawRuby__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043AF54
  * Size:	000438
  */
-void tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
+void P2JME::TRenderingProcessor::tagImage( (unsigned short, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2814,7 +2814,7 @@ void tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl(void)
  * Address:	........
  * Size:	0001B8
  */
-void calcColorCoe__Q25P2JME19TRenderingProcessorFRCQ28JUtility6TColorPQ28JUtility6TColor(void)
+void P2JME::TRenderingProcessor::calcColorCoe( (JUtility::TColor const &, JUtility::TColor *))
 {
 	// UNUSED FUNCTION
 }
@@ -2824,7 +2824,7 @@ void calcColorCoe__Q25P2JME19TRenderingProcessorFRCQ28JUtility6TColorPQ28JUtilit
  * Address:	8043B38C
  * Size:	000440
  */
-void doDrawLetter__Q25P2JME19TRenderingProcessorFffffib(void)
+void P2JME::TRenderingProcessor::doDrawLetter( (float, float, float, float, int, bool))
 {
 /*
 .loc_0x0:
@@ -3156,7 +3156,7 @@ void doDrawLetter__Q25P2JME19TRenderingProcessorFffffib(void)
  * Address:	8043B7CC
  * Size:	00029C
  */
-void doDrawRuby__Q25P2JME19TRenderingProcessorFffffib(void)
+void P2JME::TRenderingProcessor::doDrawRuby( (float, float, float, float, int, bool))
 {
 /*
 .loc_0x0:
@@ -3359,7 +3359,7 @@ void doDrawRuby__Q25P2JME19TRenderingProcessorFffffib(void)
  * Address:	8043BA68
  * Size:	000074
  */
-void doDrawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff(void)
+void P2JME::TRenderingProcessor::doDrawImage( (JUTTexture *, float, float, float, float))
 {
 /*
 .loc_0x0:
@@ -3402,7 +3402,7 @@ void doDrawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff(void)
  * Address:	8043BADC
  * Size:	000334
  */
-void setImageGX__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::setImageGX(void)
 {
 /*
 .loc_0x0:
@@ -3623,7 +3623,7 @@ void setImageGX__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043BE10
  * Size:	0004F4
  */
-void drawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff(void)
+void P2JME::TRenderingProcessor::drawImage( (JUTTexture *, float, float, float, float))
 {
 /*
 .loc_0x0:
@@ -4000,7 +4000,7 @@ void drawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff(void)
  * Address:	8043C304
  * Size:	000010
  */
-void reset__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::reset(void)
 {
 /*
 .loc_0x0:
@@ -4016,7 +4016,7 @@ void reset__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043C314
  * Size:	000128
  */
-void calcWidth__Q25P2JME19TRenderingProcessorFP7JUTFontifb(void)
+void P2JME::TRenderingProcessor::calcWidth( (JUTFont *, int, float, bool))
 {
 /*
 .loc_0x0:
@@ -4108,7 +4108,7 @@ void calcWidth__Q25P2JME19TRenderingProcessorFP7JUTFontifb(void)
  * Address:	8043C43C
  * Size:	000024
  */
-void setLineWidth__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::setLineWidth(void)
 {
 /*
 .loc_0x0:
@@ -4129,7 +4129,7 @@ void setLineWidth__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043C460
  * Size:	0000D8
  */
-void resetLineWidth__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::resetLineWidth(void)
 {
 /*
 .loc_0x0:
@@ -4197,7 +4197,7 @@ void resetLineWidth__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043C538
  * Size:	000040
  */
-void setOnePageLine__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::setOnePageLine(void)
 {
 /*
 .loc_0x0:
@@ -4231,7 +4231,7 @@ void setOnePageLine__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043C578
  * Size:	0000D8
  */
-void resetOnePageLine__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::resetOnePageLine(void)
 {
 /*
 .loc_0x0:
@@ -4299,7 +4299,7 @@ void resetOnePageLine__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	........
  * Size:	0000A0
  */
-void resetPageInfo__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::resetPageInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4309,7 +4309,7 @@ void resetPageInfo__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043C650
  * Size:	00008C
  */
-void setPageInfo__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::setPageInfo(void)
 {
 /*
 .loc_0x0:
@@ -4360,7 +4360,7 @@ void setPageInfo__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043C6DC
  * Size:	000020
  */
-void preProcCode__Q25P2JME19TRenderingProcessorFUi(void)
+void P2JME::TRenderingProcessor::preProcCode( (unsigned int))
 {
 /*
 .loc_0x0:
@@ -4380,7 +4380,7 @@ void preProcCode__Q25P2JME19TRenderingProcessorFUi(void)
  * Address:	8043C6FC
  * Size:	000020
  */
-void preProcID__Q25P2JME19TRenderingProcessorFUiUi(void)
+void P2JME::TRenderingProcessor::preProcID( (unsigned int, unsigned int))
 {
 /*
 .loc_0x0:
@@ -4400,7 +4400,7 @@ void preProcID__Q25P2JME19TRenderingProcessorFUiUi(void)
  * Address:	........
  * Size:	000260
  */
-void preProcCenteringPre__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::preProcCenteringPre(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4410,7 +4410,7 @@ void preProcCenteringPre__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	........
  * Size:	00011C
  */
-void preProcCenteringPost__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::preProcCenteringPost(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4420,7 +4420,7 @@ void preProcCenteringPost__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043C71C
  * Size:	00039C
  */
-void preProcCenteringCode__Q25P2JME19TRenderingProcessorFUi(void)
+void P2JME::TRenderingProcessor::preProcCenteringCode( (unsigned int))
 {
 /*
 .loc_0x0:
@@ -4683,7 +4683,7 @@ void preProcCenteringCode__Q25P2JME19TRenderingProcessorFUi(void)
  * Address:	8043CAB8
  * Size:	0003AC
  */
-void preProcCenteringID__Q25P2JME19TRenderingProcessorFUiUi(void)
+void P2JME::TRenderingProcessor::preProcCenteringID( (unsigned int, unsigned int))
 {
 /*
 .loc_0x0:
@@ -4950,7 +4950,7 @@ void preProcCenteringID__Q25P2JME19TRenderingProcessorFUiUi(void)
  * Address:	8043CE64
  * Size:	000008
  */
-void setFont__Q25P2JME19TRenderingProcessorFP7JUTFont(void)
+void P2JME::TRenderingProcessor::setFont( (JUTFont *))
 {
 /*
 .loc_0x0:
@@ -4964,7 +4964,7 @@ void setFont__Q25P2JME19TRenderingProcessorFP7JUTFont(void)
  * Address:	8043CE6C
  * Size:	00044C
  */
-void setTextBoxInfo__Q25P2JME19TRenderingProcessorFP7J2DPane(void)
+void P2JME::TRenderingProcessor::setTextBoxInfo( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -5273,7 +5273,7 @@ void setTextBoxInfo__Q25P2JME19TRenderingProcessorFP7J2DPane(void)
  * Address:	8043D2B8
  * Size:	000070
  */
-void __dt__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5317,7 +5317,7 @@ void __dt__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	8043D328
  * Size:	000004
  */
-void do_character__Q25P2JME23TRenderingProcessorBaseFi(void)
+void P2JME::TRenderingProcessorBase::do_character( (int))
 {
 /*
 .loc_0x0:

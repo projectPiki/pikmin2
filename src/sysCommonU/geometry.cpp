@@ -84,7 +84,7 @@ void getAxisVector__Q23Sys4TubeFR10Vector3<float>(void)
  * Address:	........
  * Size:	00002C
  */
-void getYRatio__Q23Sys4TubeFf(void)
+void Sys::Tube::getYRatio( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -354,7 +354,7 @@ void getPosRatio__Q23Sys4TubeFRC10Vector3<float>(void)
  * Address:	........
  * Size:	00001C
  */
-void getRatioRadius__Q23Sys4TubeFf(void)
+void Sys::Tube::getRatioRadius( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -374,7 +374,7 @@ void getPosGradient__Q23Sys4TubeFR10Vector3<float>fR10Vector3<float>R10Vector3<f
  * Address:	80415EC8
  * Size:	00004C
  */
-void setPos__Q23Sys4TubeFf(void)
+void Sys::Tube::setPos( (float))
 {
 /*
 .loc_0x0:
@@ -405,7 +405,7 @@ void setPos__Q23Sys4TubeFf(void)
  * Address:	80415F14
  * Size:	000058
  */
-void intersect__Q23Sys6SphereFRQ23Sys6Sphere(void)
+void Sys::Sphere::intersect( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3<float>(void)
  * Address:	8041608C
  * Size:	000204
  */
-void intersect__Q23Sys6SphereFRQ23Sys4EdgeRf(void)
+void Sys::Sphere::intersect( (Sys::Edge &, float &))
 {
 /*
 .loc_0x0:
@@ -1176,7 +1176,7 @@ void intersectRay__Q23Sys6SphereFR10Vector3<float>R10Vector3<float>(void)
  * Address:	804168F0
  * Size:	000068
  */
-void __ct__Q23Sys8TriangleFv(void)
+void Sys::Triangle::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1224,7 +1224,7 @@ void findNearestPoint__Q23Sys8TriangleFRQ23Sys11VertexTableR10Vector3<float>R10V
  * Address:	80416958
  * Size:	000168
  */
-void createSphere__Q23Sys8TriangleFRQ23Sys11VertexTable(void)
+void Sys::Triangle::createSphere( (Sys::VertexTable &))
 {
 /*
 .loc_0x0:
@@ -1330,7 +1330,7 @@ void createSphere__Q23Sys8TriangleFRQ23Sys11VertexTable(void)
  * Address:	80416AC0
  * Size:	000084
  */
-void fastIntersect__Q23Sys8TriangleFRQ23Sys6Sphere(void)
+void Sys::Triangle::fastIntersect( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1375,7 +1375,7 @@ void fastIntersect__Q23Sys8TriangleFRQ23Sys6Sphere(void)
  * Address:	........
  * Size:	000088
  */
-void write__Q23Sys8TriangleFR6Stream(void)
+void Sys::Triangle::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -1385,7 +1385,7 @@ void write__Q23Sys8TriangleFR6Stream(void)
  * Address:	........
  * Size:	000088
  */
-void read__Q23Sys8TriangleFR6Stream(void)
+void Sys::Triangle::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -1395,7 +1395,7 @@ void read__Q23Sys8TriangleFR6Stream(void)
  * Address:	........
  * Size:	000038
  */
-void constructFromJ3D__Q23Sys8TriangleFRQ23Sys11VertexTableR14__J3DUTriangle(void)
+void Sys::Triangle::constructFromJ3D( (Sys::VertexTable &, __J3DUTriangle &))
 {
 	// UNUSED FUNCTION
 }
@@ -1405,7 +1405,7 @@ void constructFromJ3D__Q23Sys8TriangleFRQ23Sys11VertexTableR14__J3DUTriangle(voi
  * Address:	........
  * Size:	000004
  */
-void draw__Q23Sys8TriangleFR8GraphicsRQ23Sys11VertexTableb(void)
+void Sys::Triangle::draw( (Graphics &, Sys::VertexTable &, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -1415,7 +1415,7 @@ void draw__Q23Sys8TriangleFR8GraphicsRQ23Sys11VertexTableb(void)
  * Address:	80416B44
  * Size:	000104
  */
-void calcDist__Q23Sys8TriangleFR5PlaneRQ23Sys11VertexTable(void)
+void Sys::Triangle::calcDist( (Plane &, Sys::VertexTable &))
 {
 /*
 .loc_0x0:
@@ -1508,7 +1508,7 @@ void calcDist__Q23Sys8TriangleFR5PlaneRQ23Sys11VertexTable(void)
  * Address:	........
  * Size:	0001EC
  */
-void intersect__Q23Sys8TriangleFRQ23Sys11VertexTableR10BoundBox2d(void)
+void Sys::Triangle::intersect( (Sys::VertexTable &, BoundBox2d &))
 {
 	// UNUSED FUNCTION
 }
@@ -2025,7 +2025,7 @@ void intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<float>Rf(void)
  * Address:	804172EC
  * Size:	0002AC
  */
-void intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6Sphere(void)
+void Sys::Triangle::intersect( (Sys::VertexTable &, Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -2761,7 +2761,7 @@ void insideXZ__Q23Sys8TriangleFR10Vector3<float>(void)
  * Address:	80417C74
  * Size:	0004C8
  */
-void makePlanes__Q23Sys8TriangleFRQ23Sys11VertexTable(void)
+void Sys::Triangle::makePlanes( (Sys::VertexTable &))
 {
 /*
 .loc_0x0:
@@ -3087,7 +3087,7 @@ void makePlanes__Q23Sys8TriangleFRQ23Sys11VertexTable(void)
  * Address:	8041813C
  * Size:	000040
  */
-void condition__Q23Sys16RayIntersectInfoFRQ23Sys8Triangle(void)
+void Sys::RayIntersectInfo::condition( (Sys::Triangle &))
 {
 /*
 .loc_0x0:
@@ -3119,7 +3119,7 @@ void condition__Q23Sys16RayIntersectInfoFRQ23Sys8Triangle(void)
  * Address:	8041817C
  * Size:	000428
  */
-void createTriangles__Q23Sys11GridDividerFRQ23Sys17CreateTriangleArg(void)
+void Sys::GridDivider::createTriangles( (Sys::CreateTriangleArg &))
 {
 /*
 .loc_0x0:
@@ -3575,7 +3575,7 @@ void getMinY__Q23Sys11GridDividerFR10Vector3<float>(void)
  * Address:	8041877C
  * Size:	000234
  */
-void getCurrTri__Q23Sys11GridDividerFRQ24Game11CurrTriInfo(void)
+void Sys::GridDivider::getCurrTri( (Game::CurrTriInfo &))
 {
 /*
 .loc_0x0:
@@ -3750,7 +3750,7 @@ void getCurrTri__Q23Sys11GridDividerFRQ24Game11CurrTriInfo(void)
  * Address:	804189B0
  * Size:	000230
  */
-void findTriLists__Q23Sys11GridDividerFRQ23Sys6Sphere(void)
+void Sys::GridDivider::findTriLists( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -3940,7 +3940,7 @@ void findTriLists__Q23Sys11GridDividerFRQ23Sys6Sphere(void)
  * Address:	80418BE0
  * Size:	00045C
  */
-void create__Q23Sys11GridDividerFR8BoundBoxiiPQ23Sys11VertexTablePQ23Sys13TriangleTable(void)
+void Sys::GridDivider::create( (BoundBox &, int, int, Sys::VertexTable *, Sys::TriangleTable *))
 {
 /*
 .loc_0x0:
@@ -4301,7 +4301,7 @@ void create__Q23Sys11GridDividerFR8BoundBoxiiPQ23Sys11VertexTablePQ23Sys13Triang
  * Address:	8041903C
  * Size:	000088
  */
-void __ct__Q23Sys12TriIndexListFv(void)
+void Sys::TriIndexList::__ct(void)
 {
 /*
 .loc_0x0:
@@ -4347,7 +4347,7 @@ void __ct__Q23Sys12TriIndexListFv(void)
  * Address:	........
  * Size:	00006C
  */
-void write__Q23Sys11GridDividerFR6Stream(void)
+void Sys::GridDivider::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -4439,7 +4439,7 @@ void ArrayContainer<Sys::Triangle>::writeObject(Stream &, Sys::Triangle &)
  * Address:	........
  * Size:	0000C0
  */
-void write__Q23Sys8GridInfoFR6Stream(void)
+void Sys::GridInfo::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -4449,7 +4449,7 @@ void write__Q23Sys8GridInfoFR6Stream(void)
  * Address:	8041919C
  * Size:	000248
  */
-void read__Q23Sys11GridDividerFR6Stream(void)
+void Sys::GridDivider::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -4688,7 +4688,7 @@ void ArrayContainer<Sys::Triangle>::readObject(Stream &, Sys::Triangle &)
  * Address:	80419498
  * Size:	000074
  */
-void createTriangleSphere__Q23Sys13TriangleTableFRQ23Sys11VertexTable(void)
+void Sys::TriangleTable::createTriangleSphere( (Sys::VertexTable &))
 {
 /*
 .loc_0x0:
@@ -4733,7 +4733,7 @@ void createTriangleSphere__Q23Sys13TriangleTableFRQ23Sys11VertexTable(void)
  * Address:	8041950C
  * Size:	000088
  */
-void constructClone__Q23Sys12TriIndexListFRQ23Sys13TriangleTable(void)
+void Sys::TriIndexList::constructClone( (Sys::TriangleTable &))
 {
 /*
 .loc_0x0:
@@ -5078,7 +5078,7 @@ void makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13Tri
  * Address:	80419978
  * Size:	000004
  */
-void draw__Q23Sys12TriIndexListFR8GraphicsRQ23Sys11VertexTableRQ23Sys13TriangleTableb(void)
+void Sys::TriIndexList::draw( (Graphics &, Sys::VertexTable &, Sys::TriangleTable &, bool))
 {
 /*
 .loc_0x0:
@@ -5091,7 +5091,7 @@ void draw__Q23Sys12TriIndexListFR8GraphicsRQ23Sys11VertexTableRQ23Sys13TriangleT
  * Address:	8041997C
  * Size:	00007C
  */
-void __ct__Q23Sys13TriangleTableFv(void)
+void Sys::TriangleTable::__ct(void)
 {
 /*
 .loc_0x0:
@@ -5226,7 +5226,7 @@ void Container<Sys::Triangle>::~Container()
  * Address:	........
  * Size:	000060
  */
-void findMaxVertexIndex__Q23Sys13TriangleTableFv(void)
+void Sys::TriangleTable::findMaxVertexIndex(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5236,7 +5236,7 @@ void findMaxVertexIndex__Q23Sys13TriangleTableFv(void)
  * Address:	80419AE8
  * Size:	00013C
  */
-void transform__Q23Sys11VertexTableFR7Matrixf(void)
+void Sys::VertexTable::transform( (Matrixf &))
 {
 /*
 .loc_0x0:
@@ -5347,7 +5347,7 @@ void transform__Q23Sys11VertexTableFR7Matrixf(void)
  * Address:	80419C24
  * Size:	0000D4
  */
-void write__Q23Sys11VertexTableFR6Stream(void)
+void Sys::VertexTable::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -5437,7 +5437,7 @@ void writeObject__Q23Sys11VertexTableFR6StreamR10Vector3<float>(void)
  * Address:	80419D1C
  * Size:	000090
  */
-void __dt__Q23Sys11VertexTableFv(void)
+void Sys::VertexTable::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5510,7 +5510,7 @@ void readObject__Q23Sys11VertexTableFR6StreamR10Vector3<float>(void)
  * Address:	80419DD0
  * Size:	000090
  */
-void __dt__Q23Sys13TriangleTableFv(void)
+void Sys::TriangleTable::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5562,7 +5562,7 @@ void __dt__Q23Sys13TriangleTableFv(void)
  * Address:	80419E60
  * Size:	000088
  */
-void readObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle(void)
+void Sys::TriangleTable::readObject( (Stream &, Sys::Triangle &))
 {
 /*
 .loc_0x0:
@@ -5608,7 +5608,7 @@ void readObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle(void)
  * Address:	80419EE8
  * Size:	000088
  */
-void writeObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle(void)
+void Sys::TriangleTable::writeObject( (Stream &, Sys::Triangle &))
 {
 /*
 .loc_0x0:
@@ -5654,7 +5654,7 @@ void writeObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle(void)
  * Address:	80419F70
  * Size:	000034
  */
-void getBoundBox__Q23Sys11GridDividerFR8BoundBox(void)
+void Sys::GridDivider::getBoundBox( (BoundBox &))
 {
 /*
 .loc_0x0:

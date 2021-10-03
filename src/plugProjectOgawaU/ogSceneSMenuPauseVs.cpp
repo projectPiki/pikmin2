@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80329CFC
  * Size:	00003C
  */
-void __ct__Q32og9newScreen12SMenuPauseVSFv(void)
+void og::newScreen::SMenuPauseVS::__ct(void)
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q32og9newScreen12SMenuPauseVSFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen12SMenuPauseVSFv(void)
+void og::newScreen::SMenuPauseVS::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void __dt__Q32og9newScreen12SMenuPauseVSFv(void)
  * Address:	80329D38
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen12SMenuPauseVSFPQ28Resource10MgrCommand(void)
+void og::newScreen::SMenuPauseVS::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void doUserCallBackFunc__Q32og9newScreen12SMenuPauseVSFPQ28Resource10MgrCommand(
  * Address:	80329D3C
  * Size:	000078
  */
-void doCreateObj__Q32og9newScreen12SMenuPauseVSFP10JKRArchive(void)
+void og::newScreen::SMenuPauseVS::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void doCreateObj__Q32og9newScreen12SMenuPauseVSFP10JKRArchive(void)
  * Address:	80329DB4
  * Size:	000088
  */
-void doGetFinishState__Q32og9newScreen12SMenuPauseVSFv(void)
+void og::newScreen::SMenuPauseVS::doGetFinishState(void)
 {
 /*
 .loc_0x0:
@@ -157,7 +157,7 @@ void doGetFinishState__Q32og9newScreen12SMenuPauseVSFv(void)
  * Address:	80329E3C
  * Size:	000004
  */
-void doUpdateActive__Q32og9newScreen12SMenuPauseVSFv(void)
+void og::newScreen::SMenuPauseVS::doUpdateActive(void)
 {
 /*
 .loc_0x0:
@@ -170,7 +170,7 @@ void doUpdateActive__Q32og9newScreen12SMenuPauseVSFv(void)
  * Address:	80329E40
  * Size:	000068
  */
-void doConfirmSetScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg(void)
+void og::newScreen::SMenuPauseVS::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void doConfirmSetScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg(vo
  * Address:	80329EA8
  * Size:	00000C
  */
-void doSetBackupScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg(void)
+void og::newScreen::SMenuPauseVS::doSetBackupScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void doSetBackupScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg(voi
  * Address:	80329EB4
  * Size:	00000C
  */
-void getResName__Q32og9newScreen12SMenuPauseVSCFv(void)
+void og::newScreen::SMenuPauseVS::getResName( const
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void getResName__Q32og9newScreen12SMenuPauseVSCFv(void)
  * Address:	80329EC0
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen12SMenuPauseVSFv(void)
+void og::newScreen::SMenuPauseVS::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void getSceneType__Q32og9newScreen12SMenuPauseVSFv(void)
  * Address:	80329EC8
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen12SMenuPauseVSFv(void)
+void og::newScreen::SMenuPauseVS::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -273,7 +273,7 @@ void getOwnerID__Q32og9newScreen12SMenuPauseVSFv(void)
  * Address:	80329ED4
  * Size:	000014
  */
-void getMemberID__Q32og9newScreen12SMenuPauseVSFv(void)
+void og::newScreen::SMenuPauseVS::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -290,7 +290,7 @@ void getMemberID__Q32og9newScreen12SMenuPauseVSFv(void)
  * Address:	80329EE8
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen12SMenuPauseVSFv(void)
+void og::newScreen::SMenuPauseVS::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

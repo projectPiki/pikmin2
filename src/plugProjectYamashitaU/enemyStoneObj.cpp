@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80129B30
  * Size:	0000A8
  */
-void __ct__Q34Game10EnemyStone3ObjFPQ24Game9EnemyBasePQ34Game10EnemyStone4Info(void)
+void Game::EnemyStone::Obj::__ct( (Game::EnemyBase *, Game::EnemyStone::Info *))
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void __ct__Q34Game10EnemyStone3ObjFPQ24Game9EnemyBasePQ34Game10EnemyStone4Info(v
  * Address:	80129BD8
  * Size:	000104
  */
-void start__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::start(void)
 {
 /*
 .loc_0x0:
@@ -154,7 +154,7 @@ void start__Q34Game10EnemyStone3ObjFv(void)
  * Address:	........
  * Size:	000038
  */
-void finish__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::finish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -164,7 +164,7 @@ void finish__Q34Game10EnemyStone3ObjFv(void)
  * Address:	80129CDC
  * Size:	0000E0
  */
-void shake__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::shake(void)
 {
 /*
 .loc_0x0:
@@ -240,7 +240,7 @@ void shake__Q34Game10EnemyStone3ObjFv(void)
  * Address:	........
  * Size:	000078
  */
-void updateDrawInfo__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::updateDrawInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -250,7 +250,7 @@ void updateDrawInfo__Q34Game10EnemyStone3ObjFv(void)
  * Address:	........
  * Size:	000078
  */
-void fitDrawInfo__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::fitDrawInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -260,7 +260,7 @@ void fitDrawInfo__Q34Game10EnemyStone3ObjFv(void)
  * Address:	........
  * Size:	000078
  */
-void disappearDrawInfo__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::disappearDrawInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -270,7 +270,7 @@ void disappearDrawInfo__Q34Game10EnemyStone3ObjFv(void)
  * Address:	80129DBC
  * Size:	0002A8
  */
-void update__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::update(void)
 {
 /*
 .loc_0x0:
@@ -478,7 +478,7 @@ void update__Q34Game10EnemyStone3ObjFv(void)
  * Address:	8012A064
  * Size:	000088
  */
-void checkDrawInfoState__Q34Game10EnemyStone3ObjFi(void)
+void Game::EnemyStone::Obj::checkDrawInfoState( (int))
 {
 /*
 .loc_0x0:
@@ -534,7 +534,7 @@ void checkDrawInfoState__Q34Game10EnemyStone3ObjFi(void)
  * Address:	8012A0EC
  * Size:	0000B4
  */
-void dead__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::dead(void)
 {
 /*
 .loc_0x0:
@@ -597,7 +597,7 @@ void dead__Q34Game10EnemyStone3ObjFv(void)
  * Address:	8012A1A0
  * Size:	00007C
  */
-void __dt__Q34Game10EnemyStone3ObjFv(void)
+void Game::EnemyStone::Obj::__dt(void)
 {
 /*
 .loc_0x0:

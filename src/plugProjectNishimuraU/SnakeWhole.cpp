@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802CE798
  * Size:	00016C
  */
-void __ct__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void __ct__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CE904
  * Size:	000004
  */
-void setInitialSetting__Q34Game10SnakeWhole3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::SnakeWhole::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void setInitialSetting__Q34Game10SnakeWhole3ObjFPQ24Game21EnemyInitialParamBase(
  * Address:	802CE908
  * Size:	0000CC
  */
-void onInit__Q34Game10SnakeWhole3ObjFPQ24Game15CreatureInitArg(void)
+void Game::SnakeWhole::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void onInit__Q34Game10SnakeWhole3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802CE9D4
  * Size:	000050
  */
-void doUpdate__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -232,7 +232,7 @@ void doUpdate__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CEA24
  * Size:	000034
  */
-void doUpdateCommon__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void doUpdateCommon__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CEA58
  * Size:	000034
  */
-void doAnimationUpdateAnimator__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doAnimationUpdateAnimator(void)
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void doAnimationUpdateAnimator__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CEA8C
  * Size:	00003C
  */
-void doAnimationCullingOff__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void doAnimationCullingOff__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CEAC8
  * Size:	000004
  */
-void doDirectDraw__Q34Game10SnakeWhole3ObjFR8Graphics(void)
+void Game::SnakeWhole::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void doDirectDraw__Q34Game10SnakeWhole3ObjFR8Graphics(void)
  * Address:	802CEACC
  * Size:	000020
  */
-void doDebugDraw__Q34Game10SnakeWhole3ObjFR8Graphics(void)
+void Game::SnakeWhole::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -342,7 +342,7 @@ void doDebugDraw__Q34Game10SnakeWhole3ObjFR8Graphics(void)
  * Address:	802CEAEC
  * Size:	00004C
  */
-void setFSM__Q34Game10SnakeWhole3ObjFPQ34Game10SnakeWhole3FSM(void)
+void Game::SnakeWhole::Obj::setFSM( (Game::SnakeWhole::FSM *))
 {
 /*
 .loc_0x0:
@@ -373,7 +373,7 @@ void setFSM__Q34Game10SnakeWhole3ObjFPQ34Game10SnakeWhole3FSM(void)
  * Address:	802CEB38
  * Size:	0000B0
  */
-void getShadowParam__Q34Game10SnakeWhole3ObjFRQ24Game11ShadowParam(void)
+void Game::SnakeWhole::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void getShadowParam__Q34Game10SnakeWhole3ObjFRQ24Game11ShadowParam(void)
  * Address:	802CEBE8
  * Size:	000098
  */
-void damageCallBack__Q34Game10SnakeWhole3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::SnakeWhole::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -489,7 +489,7 @@ void damageCallBack__Q34Game10SnakeWhole3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802CEC80
  * Size:	000020
  */
-void doStartStoneState__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -509,7 +509,7 @@ void doStartStoneState__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CECA0
  * Size:	000048
  */
-void doFinishStoneState__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -539,7 +539,7 @@ void doFinishStoneState__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CECE8
  * Size:	000028
  */
-void startCarcassMotion__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -561,7 +561,7 @@ void startCarcassMotion__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CED10
  * Size:	000020
  */
-void doStartMovie__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -581,7 +581,7 @@ void doStartMovie__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CED30
  * Size:	000020
  */
-void doEndMovie__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void doEndMovie__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CED50
  * Size:	0000BC
  */
-void initMouthSlots__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -698,7 +698,7 @@ void getThrowupItemPosition__Q34Game10SnakeWhole3ObjFP10Vector3<float>(void)
  * Address:	802CEE64
  * Size:	00003C
  */
-void isOutTerritory__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::isOutTerritory(void)
 {
 /*
 .loc_0x0:
@@ -725,7 +725,7 @@ void isOutTerritory__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CEEA0
  * Size:	00003C
  */
-void isInHomeRange__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::isInHomeRange(void)
 {
 /*
 .loc_0x0:
@@ -963,7 +963,7 @@ void setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3<float>(void)
  * Address:	802CF188
  * Size:	000078
  */
-void updateFace__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::updateFace(void)
 {
 /*
 .loc_0x0:
@@ -1009,7 +1009,7 @@ void updateFace__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CF200
  * Size:	000080
  */
-void updateConstraint__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::updateConstraint(void)
 {
 /*
 .loc_0x0:
@@ -1059,7 +1059,7 @@ void updateConstraint__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CF280
  * Size:	000530
  */
-void appearNearByTarget__Q34Game10SnakeWhole3ObjFPQ24Game8Creature(void)
+void Game::SnakeWhole::Obj::appearNearByTarget( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1429,7 +1429,7 @@ void appearNearByTarget__Q34Game10SnakeWhole3ObjFPQ24Game8Creature(void)
  * Address:	802CF7B0
  * Size:	00020C
  */
-void setAttackPosition__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::setAttackPosition(void)
 {
 /*
 .loc_0x0:
@@ -1580,7 +1580,7 @@ void setAttackPosition__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CF9BC
  * Size:	0005F4
  */
-void getAttackPiki__Q34Game10SnakeWhole3ObjFi(void)
+void Game::SnakeWhole::Obj::getAttackPiki( (int))
 {
 /*
 .loc_0x0:
@@ -2005,7 +2005,7 @@ void getAttackPiki__Q34Game10SnakeWhole3ObjFi(void)
  * Address:	802CFFB0
  * Size:	0005C8
  */
-void getAttackNavi__Q34Game10SnakeWhole3ObjFi(void)
+void Game::SnakeWhole::Obj::getAttackNavi( (int))
 {
 /*
 .loc_0x0:
@@ -2419,7 +2419,7 @@ void getAttackNavi__Q34Game10SnakeWhole3ObjFi(void)
  * Address:	802D0578
  * Size:	000050
  */
-void getSearchedTarget__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::getSearchedTarget(void)
 {
 /*
 .loc_0x0:
@@ -2455,7 +2455,7 @@ void getSearchedTarget__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D05C8
  * Size:	000068
  */
-void getSwallowSlot__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::getSwallowSlot(void)
 {
 /*
 .loc_0x0:
@@ -2501,7 +2501,7 @@ void getSwallowSlot__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0630
  * Size:	00006C
  */
-void isSwallowPikmin__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::isSwallowPikmin(void)
 {
 /*
 .loc_0x0:
@@ -2548,7 +2548,7 @@ void isSwallowPikmin__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D069C
  * Size:	00024C
  */
-void getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::getStickHeadPikmin(void)
 {
 /*
 .loc_0x0:
@@ -2725,7 +2725,7 @@ void getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D08E8
  * Size:	000048
  */
-void createJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::createJointCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2757,7 +2757,7 @@ void createJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0930
  * Size:	000024
  */
-void setupJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::setupJointCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2778,7 +2778,7 @@ void setupJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0954
  * Size:	000024
  */
-void doAnimationJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doAnimationJointCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2799,7 +2799,7 @@ void doAnimationJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0978
  * Size:	000024
  */
-void finishAnimationJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::finishAnimationJointCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2820,7 +2820,7 @@ void finishAnimationJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D099C
  * Size:	0000B8
  */
-void startJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::startJointCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2878,7 +2878,7 @@ void startJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0A54
  * Size:	000088
  */
-void returnJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::returnJointCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2924,7 +2924,7 @@ void returnJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0ADC
  * Size:	000024
  */
-void finishJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::finishJointCallBack(void)
 {
 /*
 .loc_0x0:
@@ -2945,7 +2945,7 @@ void finishJointCallBack__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0B00
  * Size:	000038
  */
-void setupCollision__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::setupCollision(void)
 {
 /*
 .loc_0x0:
@@ -2973,7 +2973,7 @@ void setupCollision__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0B38
  * Size:	000040
  */
-void lifeIncrement__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::lifeIncrement(void)
 {
 /*
 .loc_0x0:
@@ -3001,7 +3001,7 @@ void lifeIncrement__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0B78
  * Size:	000048
  */
-void createShadowSystem__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::createShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -3033,7 +3033,7 @@ void createShadowSystem__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0BC0
  * Size:	000024
  */
-void setupShadowSystem__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::setupShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -3054,7 +3054,7 @@ void setupShadowSystem__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0BE4
  * Size:	000024
  */
-void doAnimationShadowSystem__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::doAnimationShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -3075,7 +3075,7 @@ void doAnimationShadowSystem__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0C08
  * Size:	000024
  */
-void startJointShadow__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::startJointShadow(void)
 {
 /*
 .loc_0x0:
@@ -3096,7 +3096,7 @@ void startJointShadow__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0C2C
  * Size:	000024
  */
-void finishJointShadow__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::finishJointShadow(void)
 {
 /*
 .loc_0x0:
@@ -3117,7 +3117,7 @@ void finishJointShadow__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0C50
  * Size:	000040
  */
-void deleteJointShadow__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::deleteJointShadow(void)
 {
 /*
 .loc_0x0:
@@ -3145,7 +3145,7 @@ void deleteJointShadow__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0C90
  * Size:	0000E0
  */
-void startBossAttackBGM__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::startBossAttackBGM(void)
 {
 /*
 .loc_0x0:
@@ -3223,7 +3223,7 @@ void startBossAttackBGM__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0D70
  * Size:	0000C8
  */
-void startBossFlickBGM__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::startBossFlickBGM(void)
 {
 /*
 .loc_0x0:
@@ -3291,7 +3291,7 @@ void startBossFlickBGM__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0E38
  * Size:	0000FC
  */
-void updateBossBGM__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::updateBossBGM(void)
 {
 /*
 .loc_0x0:
@@ -3376,7 +3376,7 @@ void updateBossBGM__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D0F34
  * Size:	0000D0
  */
-void resetBossAppearBGM__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::resetBossAppearBGM(void)
 {
 /*
 .loc_0x0:
@@ -3448,7 +3448,7 @@ void resetBossAppearBGM__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D1004
  * Size:	0000CC
  */
-void setBossAppearBGM__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::setBossAppearBGM(void)
 {
 /*
 .loc_0x0:
@@ -3519,7 +3519,7 @@ void setBossAppearBGM__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D10D0
  * Size:	000068
  */
-void createEffect__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -3559,7 +3559,7 @@ void createEffect__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D1138
  * Size:	000078
  */
-void setupEffect__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -3601,7 +3601,7 @@ void setupEffect__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D11B0
  * Size:	0001D4
  */
-void createAppearEffect__Q34Game10SnakeWhole3ObjFi(void)
+void Game::SnakeWhole::Obj::createAppearEffect( (int))
 {
 /*
 .loc_0x0:
@@ -3740,7 +3740,7 @@ void createAppearEffect__Q34Game10SnakeWhole3ObjFi(void)
  * Address:	802D1384
  * Size:	000034
  */
-void createDeadStartEffect__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::createDeadStartEffect(void)
 {
 /*
 .loc_0x0:
@@ -3765,7 +3765,7 @@ void createDeadStartEffect__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D13B8
  * Size:	000094
  */
-void createDeadFinishEffect__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::createDeadFinishEffect(void)
 {
 /*
 .loc_0x0:
@@ -3814,7 +3814,7 @@ void createDeadFinishEffect__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D144C
  * Size:	00003C
  */
-void createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf(void)
+void Game::SnakeWhole::Obj::createWalkSmokeEffect( (float))
 {
 /*
 .loc_0x0:
@@ -3845,7 +3845,7 @@ void createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf(void)
  * Address:	802D1488
  * Size:	000030
  */
-void effectDrawOn__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -3869,7 +3869,7 @@ void effectDrawOn__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D14B8
  * Size:	000030
  */
-void effectDrawOff__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -3893,7 +3893,7 @@ void effectDrawOff__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D14E8
  * Size:	000048
  */
-void createEfxHamon__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::createEfxHamon(void)
 {
 /*
 .loc_0x0:
@@ -3925,7 +3925,7 @@ void createEfxHamon__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D1530
  * Size:	000008
  */
-void isUnderground__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -3939,7 +3939,7 @@ void isUnderground__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D1538
  * Size:	000058
  */
-void getFitEffectPos__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::getFitEffectPos(void)
 {
 /*
 .loc_0x0:
@@ -3973,7 +3973,7 @@ void getFitEffectPos__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D1590
  * Size:	000004
  */
-void inWaterCallback__Q34Game10SnakeWhole3ObjFPQ24Game8WaterBox(void)
+void Game::SnakeWhole::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -3986,7 +3986,7 @@ void inWaterCallback__Q34Game10SnakeWhole3ObjFPQ24Game8WaterBox(void)
  * Address:	802D1594
  * Size:	000004
  */
-void outWaterCallback__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -3999,7 +3999,7 @@ void outWaterCallback__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D1598
  * Size:	000008
  */
-void getDamageCoeStoneState__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::getDamageCoeStoneState(void)
 {
 /*
 .loc_0x0:
@@ -4013,7 +4013,7 @@ void getDamageCoeStoneState__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D15A0
  * Size:	000008
  */
-void getMouthSlots__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -4027,7 +4027,7 @@ void getMouthSlots__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D15A8
  * Size:	000004
  */
-void throwupItemInDeathProcedure__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::throwupItemInDeathProcedure(void)
 {
 /*
 .loc_0x0:
@@ -4040,7 +4040,7 @@ void throwupItemInDeathProcedure__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D15AC
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -4054,7 +4054,7 @@ void getDownSmokeScale__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D15B4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -4068,7 +4068,7 @@ void getEnemyTypeID__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802D15BC
  * Size:	000014
  */
-void @816@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @816@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -4085,7 +4085,7 @@ void @816@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	802D15D0
  * Size:	000014
  */
-void @816@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @816@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -4102,7 +4102,7 @@ void @816@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802D15E4
  * Size:	000014
  */
-void @816@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @816@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -4119,7 +4119,7 @@ void @816@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802D15F8
  * Size:	000014
  */
-void @816@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @816@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -4136,7 +4136,7 @@ void @816@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802D160C
  * Size:	000014
  */
-void @816@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @816@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -4153,7 +4153,7 @@ void @816@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802D1620
  * Size:	000014
  */
-void @816@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @816@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

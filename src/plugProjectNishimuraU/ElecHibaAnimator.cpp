@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026E994
  * Size:	000008
  */
-void setAnimMgr__Q34Game8ElecHiba14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::ElecHiba::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game8ElecHiba14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	8026E99C
  * Size:	000008
  */
-void getAnimator__Q34Game8ElecHiba14ProperAnimatorFi(void)
+void Game::ElecHiba::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game8ElecHiba14ProperAnimatorFi(void)
  * Address:	8026E9A4
  * Size:	00005C
  */
-void __dt__Q34Game8ElecHiba14ProperAnimatorFv(void)
+void Game::ElecHiba::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game8ElecHiba14ProperAnimatorFv(void)
  * Address:	8026EA00
  * Size:	000008
  */
-void getAnimator__Q34Game8ElecHiba14ProperAnimatorFv(void)
+void Game::ElecHiba::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

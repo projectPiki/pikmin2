@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802BBCD4
  * Size:	000050
  */
-void __ct__Q34Game8Imomushi3MgrFiUc(void)
+void Game::Imomushi::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game8Imomushi3MgrFiUc(void)
  * Address:	802BBD24
  * Size:	000048
  */
-void doAlloc__Q34Game8Imomushi3MgrFv(void)
+void Game::Imomushi::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game8Imomushi3MgrFv(void)
  * Address:	802BBD6C
  * Size:	000190
  */
-void __ct__Q34Game8Imomushi5ParmsFv(void)
+void Game::Imomushi::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -193,7 +193,7 @@ void __ct__Q34Game8Imomushi5ParmsFv(void)
  * Address:	802BBEFC
  * Size:	000060
  */
-void createObj__Q34Game8Imomushi3MgrFi(void)
+void Game::Imomushi::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void createObj__Q34Game8Imomushi3MgrFi(void)
  * Address:	802BBF5C
  * Size:	0000BC
  */
-void __dt__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void __dt__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BC018
  * Size:	000010
  */
-void getEnemy__Q34Game8Imomushi3MgrFi(void)
+void Game::Imomushi::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void getEnemy__Q34Game8Imomushi3MgrFi(void)
  * Address:	802BC028
  * Size:	000050
  */
-void read__Q34Game8Imomushi5ParmsFR6Stream(void)
+void Game::Imomushi::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -340,7 +340,7 @@ void read__Q34Game8Imomushi5ParmsFR6Stream(void)
  * Address:	802BC078
  * Size:	0000B0
  */
-void __dt__Q34Game8Imomushi3MgrFv(void)
+void Game::Imomushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void __dt__Q34Game8Imomushi3MgrFv(void)
  * Address:	802BC128
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8Imomushi3MgrFv(void)
+void Game::Imomushi::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void getEnemyTypeID__Q34Game8Imomushi3MgrFv(void)
  * Address:	802BC130
  * Size:	000008
  */
-void @4@__dt__Q34Game8Imomushi3MgrFv(void)
+void @4@Game::Imomushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

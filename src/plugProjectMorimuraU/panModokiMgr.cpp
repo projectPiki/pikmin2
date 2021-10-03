@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8034E9C0
  * Size:	000050
  */
-void __ct__Q34Game9PanModoki3MgrFiUc(void)
+void Game::PanModoki::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game9PanModoki3MgrFiUc(void)
  * Address:	8034EA10
  * Size:	000048
  */
-void doAlloc__Q34Game9PanModoki3MgrFv(void)
+void Game::PanModoki::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game9PanModoki3MgrFv(void)
  * Address:	8034EA58
  * Size:	000064
  */
-void __ct__Q34Game13PanModokiBase5ParmsFv(void)
+void Game::PanModokiBase::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -120,7 +120,7 @@ void __ct__Q34Game13PanModokiBase5ParmsFv(void)
  * Address:	8034EABC
  * Size:	0002B4
  */
-void __ct__Q44Game13PanModokiBase5Parms11ProperParmsFv(void)
+void Game::PanModokiBase::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -307,7 +307,7 @@ void __ct__Q44Game13PanModokiBase5Parms11ProperParmsFv(void)
  * Address:	8034ED70
  * Size:	000020
  */
-void birth__Q34Game9PanModoki3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::PanModoki::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -327,7 +327,7 @@ void birth__Q34Game9PanModoki3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	8034ED90
  * Size:	000050
  */
-void __ct__Q34Game11OoPanModoki3MgrFiUc(void)
+void Game::OoPanModoki::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -359,7 +359,7 @@ void __ct__Q34Game11OoPanModoki3MgrFiUc(void)
  * Address:	8034EDE0
  * Size:	000048
  */
-void doAlloc__Q34Game11OoPanModoki3MgrFv(void)
+void Game::OoPanModoki::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -391,7 +391,7 @@ void doAlloc__Q34Game11OoPanModoki3MgrFv(void)
  * Address:	8034EE28
  * Size:	000020
  */
-void birth__Q34Game11OoPanModoki3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::OoPanModoki::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -411,7 +411,7 @@ void birth__Q34Game11OoPanModoki3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	8034EE48
  * Size:	00002C
  */
-void doLoadBmd__Q34Game11OoPanModoki3MgrFPv(void)
+void Game::OoPanModoki::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -434,7 +434,7 @@ void doLoadBmd__Q34Game11OoPanModoki3MgrFPv(void)
  * Address:	8034EE74
  * Size:	000068
  */
-void loadModelData__Q34Game11OoPanModoki3MgrFv(void)
+void Game::OoPanModoki::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -476,7 +476,7 @@ void loadModelData__Q34Game11OoPanModoki3MgrFv(void)
  * Address:	8034EEDC
  * Size:	0000B0
  */
-void __dt__Q34Game11OoPanModoki3MgrFv(void)
+void Game::OoPanModoki::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -536,7 +536,7 @@ void __dt__Q34Game11OoPanModoki3MgrFv(void)
  * Address:	8034EF8C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11OoPanModoki3MgrFv(void)
+void Game::OoPanModoki::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -550,7 +550,7 @@ void getEnemyTypeID__Q34Game11OoPanModoki3MgrFv(void)
  * Address:	8034EF94
  * Size:	000060
  */
-void createObj__Q34Game11OoPanModoki3MgrFi(void)
+void Game::OoPanModoki::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -586,7 +586,7 @@ void createObj__Q34Game11OoPanModoki3MgrFi(void)
  * Address:	8034EFF4
  * Size:	0000EC
  */
-void __dt__Q34Game11OoPanModoki3ObjFv(void)
+void Game::OoPanModoki::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -661,7 +661,7 @@ void __dt__Q34Game11OoPanModoki3ObjFv(void)
  * Address:	8034F0E0
  * Size:	000010
  */
-void getEnemy__Q34Game11OoPanModoki3MgrFi(void)
+void Game::OoPanModoki::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void getEnemy__Q34Game11OoPanModoki3MgrFi(void)
  * Address:	8034F0F0
  * Size:	0000B0
  */
-void __dt__Q34Game9PanModoki3MgrFv(void)
+void Game::PanModoki::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -737,7 +737,7 @@ void __dt__Q34Game9PanModoki3MgrFv(void)
  * Address:	8034F1A0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9PanModoki3MgrFv(void)
+void Game::PanModoki::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -751,7 +751,7 @@ void getEnemyTypeID__Q34Game9PanModoki3MgrFv(void)
  * Address:	8034F1A8
  * Size:	000060
  */
-void createObj__Q34Game9PanModoki3MgrFi(void)
+void Game::PanModoki::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -787,7 +787,7 @@ void createObj__Q34Game9PanModoki3MgrFi(void)
  * Address:	8034F208
  * Size:	0000EC
  */
-void __dt__Q34Game9PanModoki3ObjFv(void)
+void Game::PanModoki::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -862,7 +862,7 @@ void __dt__Q34Game9PanModoki3ObjFv(void)
  * Address:	8034F2F4
  * Size:	000090
  */
-void __ct__Q34Game9PanModoki3ObjFv(void)
+void Game::PanModoki::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -912,7 +912,7 @@ void __ct__Q34Game9PanModoki3ObjFv(void)
  * Address:	8034F384
  * Size:	0000BC
  */
-void __dt__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -975,7 +975,7 @@ void __dt__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8034F440
  * Size:	000010
  */
-void getEnemy__Q34Game9PanModoki3MgrFi(void)
+void Game::PanModoki::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -991,7 +991,7 @@ void getEnemy__Q34Game9PanModoki3MgrFi(void)
  * Address:	8034F450
  * Size:	000018
  */
-void canTarget__Q34Game9PanModoki3ObjFii(void)
+void Game::PanModoki::Obj::canTarget( (int, int))
 {
 /*
 .loc_0x0:
@@ -1009,7 +1009,7 @@ void canTarget__Q34Game9PanModoki3ObjFii(void)
  * Address:	8034F468
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game9PanModoki3ObjFv(void)
+void Game::PanModoki::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1023,7 +1023,7 @@ void getDownSmokeScale__Q34Game9PanModoki3ObjFv(void)
  * Address:	8034F470
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9PanModoki3ObjFv(void)
+void Game::PanModoki::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1037,7 +1037,7 @@ void getEnemyTypeID__Q34Game9PanModoki3ObjFv(void)
  * Address:	8034F478
  * Size:	000004
  */
-void setInitialSetting__Q34Game13PanModokiBase3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::PanModokiBase::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -1063,7 +1063,7 @@ void applyImpulse__Q34Game13PanModokiBase3ObjFR10Vector3<float>R10Vector3<float>
  * Address:	8034F480
  * Size:	00000C
  */
-void isLivingThing__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1078,7 +1078,7 @@ void isLivingThing__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8034F48C
  * Size:	000014
  */
-void isUnderground__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -1095,7 +1095,7 @@ void isUnderground__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8034F4A0
  * Size:	000014
  */
-void ignoreAtari__Q34Game13PanModokiBase3ObjFPQ24Game8Creature(void)
+void Game::PanModokiBase::Obj::ignoreAtari( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1112,7 +1112,7 @@ void ignoreAtari__Q34Game13PanModokiBase3ObjFPQ24Game8Creature(void)
  * Address:	8034F4B4
  * Size:	000008
  */
-void getMouthSlots__Q34Game13PanModokiBase3ObjFv(void)
+void Game::PanModokiBase::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1126,7 +1126,7 @@ void getMouthSlots__Q34Game13PanModokiBase3ObjFv(void)
  * Address:	8034F4BC
  * Size:	00004C
  */
-void setFSM__Q34Game13PanModokiBase3ObjFPQ34Game13PanModokiBase3FSM(void)
+void Game::PanModokiBase::Obj::setFSM( (Game::PanModokiBase::FSM *))
 {
 /*
 .loc_0x0:
@@ -1157,7 +1157,7 @@ void setFSM__Q34Game13PanModokiBase3ObjFPQ34Game13PanModokiBase3FSM(void)
  * Address:	8034F508
  * Size:	000050
  */
-void read__Q34Game13PanModokiBase5ParmsFR6Stream(void)
+void Game::PanModokiBase::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1189,7 +1189,7 @@ void read__Q34Game13PanModokiBase5ParmsFR6Stream(void)
  * Address:	8034F558
  * Size:	000014
  */
-void @968@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @968@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1206,7 +1206,7 @@ void @968@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8034F56C
  * Size:	000014
  */
-void @968@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @968@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1223,7 +1223,7 @@ void @968@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8034F580
  * Size:	000014
  */
-void @968@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @968@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1240,7 +1240,7 @@ void @968@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8034F594
  * Size:	000014
  */
-void @968@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @968@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1257,7 +1257,7 @@ void @968@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8034F5A8
  * Size:	000014
  */
-void @968@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @968@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1274,7 +1274,7 @@ void @968@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8034F5BC
  * Size:	000014
  */
-void @968@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @968@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -1291,7 +1291,7 @@ void @968@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	8034F5D0
  * Size:	000008
  */
-void @4@__dt__Q34Game9PanModoki3MgrFv(void)
+void @4@Game::PanModoki::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1305,7 +1305,7 @@ void @4@__dt__Q34Game9PanModoki3MgrFv(void)
  * Address:	8034F5D8
  * Size:	000008
  */
-void @4@__dt__Q34Game11OoPanModoki3MgrFv(void)
+void @4@Game::OoPanModoki::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

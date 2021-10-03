@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80300394
  * Size:	000050
  */
-void __ct__Q34Game9FixKabuto3MgrFiUc(void)
+void Game::FixKabuto::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game9FixKabuto3MgrFiUc(void)
  * Address:	803003E4
  * Size:	000048
  */
-void doAlloc__Q34Game9FixKabuto3MgrFv(void)
+void Game::FixKabuto::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game9FixKabuto3MgrFv(void)
  * Address:	8030042C
  * Size:	000060
  */
-void createObj__Q34Game9FixKabuto3MgrFi(void)
+void Game::FixKabuto::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game9FixKabuto3MgrFi(void)
  * Address:	8030048C
  * Size:	0000F0
  */
-void __dt__Q34Game9FixKabuto3ObjFv(void)
+void Game::FixKabuto::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void __dt__Q34Game9FixKabuto3ObjFv(void)
  * Address:	8030057C
  * Size:	000010
  */
-void getEnemy__Q34Game9FixKabuto3MgrFi(void)
+void Game::FixKabuto::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void getEnemy__Q34Game9FixKabuto3MgrFi(void)
  * Address:	8030058C
  * Size:	000080
  */
-void loadTexData__Q34Game9FixKabuto3MgrFv(void)
+void Game::FixKabuto::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void loadTexData__Q34Game9FixKabuto3MgrFv(void)
  * Address:	8030060C
  * Size:	0000C8
  */
-void __dt__Q34Game9FixKabuto3MgrFv(void)
+void Game::FixKabuto::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void __dt__Q34Game9FixKabuto3MgrFv(void)
  * Address:	803006D4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9FixKabuto3MgrFv(void)
+void Game::FixKabuto::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void getEnemyTypeID__Q34Game9FixKabuto3MgrFv(void)
  * Address:	803006DC
  * Size:	000008
  */
-void getChangeTexture__Q34Game9FixKabuto3MgrFv(void)
+void Game::FixKabuto::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void getChangeTexture__Q34Game9FixKabuto3MgrFv(void)
  * Address:	803006E4
  * Size:	000008
  */
-void @4@__dt__Q34Game9FixKabuto3MgrFv(void)
+void @4@Game::FixKabuto::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

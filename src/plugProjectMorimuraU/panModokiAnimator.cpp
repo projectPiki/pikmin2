@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8034E94C
  * Size:	000008
  */
-void setAnimMgr__Q34Game13PanModokiBase14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::PanModokiBase::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game13PanModokiBase14ProperAnimatorFPQ28SysShape7AnimMgr(voi
  * Address:	8034E954
  * Size:	000008
  */
-void getAnimator__Q34Game13PanModokiBase14ProperAnimatorFi(void)
+void Game::PanModokiBase::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game13PanModokiBase14ProperAnimatorFi(void)
  * Address:	8034E95C
  * Size:	00005C
  */
-void __dt__Q34Game13PanModokiBase14ProperAnimatorFv(void)
+void Game::PanModokiBase::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game13PanModokiBase14ProperAnimatorFv(void)
  * Address:	8034E9B8
  * Size:	000008
  */
-void getAnimator__Q34Game13PanModokiBase14ProperAnimatorFv(void)
+void Game::PanModokiBase::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

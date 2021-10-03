@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80290724
  * Size:	000328
  */
-void init__Q34Game9SnakeCrow3FSMFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void init__Q34Game9SnakeCrow3FSMFPQ24Game9EnemyBase(void)
  * Address:	80290A4C
  * Size:	0000C4
  */
-void init__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void init__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80290B10
  * Size:	000170
  */
-void exec__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -422,7 +422,7 @@ void exec__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80290C80
  * Size:	000004
  */
-void cleanup__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -435,7 +435,7 @@ void cleanup__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80290C84
  * Size:	000124
  */
-void init__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateStay::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -522,7 +522,7 @@ void init__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80290DA8
  * Size:	000618
  */
-void exec__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateStay::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -974,7 +974,7 @@ void exec__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBase(void)
  * Address:	802913C0
  * Size:	000090
  */
-void cleanup__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateStay::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1022,7 +1022,7 @@ void cleanup__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBase(void)
  * Address:	80291450
  * Size:	0000CC
  */
-void init__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateAppear1::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1085,7 +1085,7 @@ void init__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	8029151C
  * Size:	000158
  */
-void exec__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateAppear1::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1195,7 +1195,7 @@ void exec__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBase(void)
  * Address:	80291674
  * Size:	000068
  */
-void cleanup__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateAppear1::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1235,7 +1235,7 @@ void cleanup__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBase(void)
  * Address:	802916DC
  * Size:	0000CC
  */
-void init__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateAppear2::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1298,7 +1298,7 @@ void init__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	802917A8
  * Size:	000234
  */
-void exec__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateAppear2::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1469,7 +1469,7 @@ void exec__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBase(void)
  * Address:	802919DC
  * Size:	000068
  */
-void cleanup__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateAppear2::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1509,7 +1509,7 @@ void cleanup__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBase(void)
  * Address:	80291A44
  * Size:	000140
  */
-void init__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateDisappear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1601,7 +1601,7 @@ void init__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg
  * Address:	80291B84
  * Size:	000108
  */
-void exec__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateDisappear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1685,7 +1685,7 @@ void exec__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBase(void)
  * Address:	80291C8C
  * Size:	000064
  */
-void cleanup__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateDisappear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1722,7 +1722,7 @@ void cleanup__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBase(void)
  * Address:	80291CF0
  * Size:	000048
  */
-void init__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1752,7 +1752,7 @@ void init__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80291D38
  * Size:	0006C0
  */
-void exec__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2238,7 +2238,7 @@ void exec__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802923F8
  * Size:	000024
  */
-void cleanup__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2259,7 +2259,7 @@ void cleanup__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8029241C
  * Size:	00004C
  */
-void init__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2290,7 +2290,7 @@ void init__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	80292468
  * Size:	000334
  */
-void exec__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2541,7 +2541,7 @@ void exec__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	8029279C
  * Size:	000010
  */
-void cleanup__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2557,7 +2557,7 @@ void cleanup__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802927AC
  * Size:	00003C
  */
-void init__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateEat::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2584,7 +2584,7 @@ void init__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802927E8
  * Size:	000178
  */
-void exec__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateEat::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2704,7 +2704,7 @@ void exec__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBase(void)
  * Address:	80292960
  * Size:	000004
  */
-void cleanup__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateEat::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2717,7 +2717,7 @@ void cleanup__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBase(void)
  * Address:	80292964
  * Size:	000040
  */
-void init__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::SnakeCrow::StateStruggle::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2745,7 +2745,7 @@ void init__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	802929A4
  * Size:	000158
  */
-void exec__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateStruggle::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2855,7 +2855,7 @@ void exec__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBase(void)
  * Address:	80292AFC
  * Size:	000004
  */
-void cleanup__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBase(void)
+void Game::SnakeCrow::StateStruggle::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

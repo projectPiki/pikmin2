@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802427A8
  * Size:	0000A4
  */
-void __ct__Q34Game4Cave8MapUnitsFP10JUTTexture(void)
+void Game::Cave::MapUnits::__ct( (JUTTexture *))
 {
 /*
 .loc_0x0:
@@ -72,7 +72,7 @@ void __ct__Q34Game4Cave8MapUnitsFP10JUTTexture(void)
  * Address:	8024284C
  * Size:	000060
  */
-void setDoorNum__Q34Game4Cave8MapUnitsFi(void)
+void Game::Cave::MapUnits::setDoorNum( (int))
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void setDoorNum__Q34Game4Cave8MapUnitsFi(void)
  * Address:	802428AC
  * Size:	000060
  */
-void __dt__Q34Game4Cave10AdjustNodeFv(void)
+void Game::Cave::AdjustNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -146,7 +146,7 @@ void __dt__Q34Game4Cave10AdjustNodeFv(void)
  * Address:	8024290C
  * Size:	000008
  */
-void setUnitName__Q34Game4Cave8MapUnitsFPc(void)
+void Game::Cave::MapUnits::setUnitName( (char *))
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void setUnitName__Q34Game4Cave8MapUnitsFPc(void)
  * Address:	80242914
  * Size:	000008
  */
-void setUnitIndex__Q34Game4Cave8MapUnitsFi(void)
+void Game::Cave::MapUnits::setUnitIndex( (int))
 {
 /*
 .loc_0x0:
@@ -174,7 +174,7 @@ void setUnitIndex__Q34Game4Cave8MapUnitsFi(void)
  * Address:	8024291C
  * Size:	000008
  */
-void setUnitKind__Q34Game4Cave8MapUnitsFi(void)
+void Game::Cave::MapUnits::setUnitKind( (int))
 {
 /*
 .loc_0x0:
@@ -188,7 +188,7 @@ void setUnitKind__Q34Game4Cave8MapUnitsFi(void)
  * Address:	80242924
  * Size:	00000C
  */
-void setUnitSize__Q34Game4Cave8MapUnitsFii(void)
+void Game::Cave::MapUnits::setUnitSize( (int, int))
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void setUnitSize__Q34Game4Cave8MapUnitsFii(void)
  * Address:	80242930
  * Size:	000008
  */
-void setBaseGenPtr__Q34Game4Cave8MapUnitsFPQ34Game4Cave7BaseGen(void)
+void Game::Cave::MapUnits::setBaseGenPtr( (Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:
@@ -217,7 +217,7 @@ void setBaseGenPtr__Q34Game4Cave8MapUnitsFPQ34Game4Cave7BaseGen(void)
  * Address:	........
  * Size:	000008
  */
-void setUnitTexture__Q34Game4Cave8MapUnitsFP10JUTTexture(void)
+void Game::Cave::MapUnits::setUnitTexture( (JUTTexture *))
 {
 	// UNUSED FUNCTION
 }
@@ -227,7 +227,7 @@ void setUnitTexture__Q34Game4Cave8MapUnitsFP10JUTTexture(void)
  * Address:	........
  * Size:	000008
  */
-void getUnitName__Q34Game4Cave8MapUnitsFv(void)
+void Game::Cave::MapUnits::getUnitName(void)
 {
 	// UNUSED FUNCTION
 }
@@ -237,7 +237,7 @@ void getUnitName__Q34Game4Cave8MapUnitsFv(void)
  * Address:	........
  * Size:	000008
  */
-void getUnitIndex__Q34Game4Cave8MapUnitsFv(void)
+void Game::Cave::MapUnits::getUnitIndex(void)
 {
 	// UNUSED FUNCTION
 }
@@ -247,7 +247,7 @@ void getUnitIndex__Q34Game4Cave8MapUnitsFv(void)
  * Address:	........
  * Size:	000008
  */
-void getUnitKind__Q34Game4Cave8MapUnitsFv(void)
+void Game::Cave::MapUnits::getUnitKind(void)
 {
 	// UNUSED FUNCTION
 }
@@ -257,7 +257,7 @@ void getUnitKind__Q34Game4Cave8MapUnitsFv(void)
  * Address:	........
  * Size:	000008
  */
-void getUnitSizeX__Q34Game4Cave8MapUnitsFv(void)
+void Game::Cave::MapUnits::getUnitSizeX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -267,7 +267,7 @@ void getUnitSizeX__Q34Game4Cave8MapUnitsFv(void)
  * Address:	........
  * Size:	000008
  */
-void getUnitSizeY__Q34Game4Cave8MapUnitsFv(void)
+void Game::Cave::MapUnits::getUnitSizeY(void)
 {
 	// UNUSED FUNCTION
 }
@@ -277,7 +277,7 @@ void getUnitSizeY__Q34Game4Cave8MapUnitsFv(void)
  * Address:	........
  * Size:	000008
  */
-void getBaseGen__Q34Game4Cave8MapUnitsFv(void)
+void Game::Cave::MapUnits::getBaseGen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -287,7 +287,7 @@ void getBaseGen__Q34Game4Cave8MapUnitsFv(void)
  * Address:	........
  * Size:	000008
  */
-void getUnitTexture__Q34Game4Cave8MapUnitsFv(void)
+void Game::Cave::MapUnits::getUnitTexture(void)
 {
 	// UNUSED FUNCTION
 }
@@ -297,7 +297,7 @@ void getUnitTexture__Q34Game4Cave8MapUnitsFv(void)
  * Address:	80242938
  * Size:	000064
  */
-void __ct__Q34Game4Cave8UnitInfoFPQ34Game4Cave8MapUnits(void)
+void Game::Cave::UnitInfo::__ct( (Game::Cave::MapUnits *))
 {
 /*
 .loc_0x0:
@@ -336,7 +336,7 @@ void __ct__Q34Game4Cave8UnitInfoFPQ34Game4Cave8MapUnits(void)
  * Address:	8024299C
  * Size:	00000C
  */
-void setUnitTexture__Q34Game4Cave8UnitInfoFP10JUTTexture(void)
+void Game::Cave::UnitInfo::setUnitTexture( (JUTTexture *))
 {
 /*
 .loc_0x0:
@@ -351,7 +351,7 @@ void setUnitTexture__Q34Game4Cave8UnitInfoFP10JUTTexture(void)
  * Address:	802429A8
  * Size:	000008
  */
-void setUnitRotation__Q34Game4Cave8UnitInfoFi(void)
+void Game::Cave::UnitInfo::setUnitRotation( (int))
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void setUnitRotation__Q34Game4Cave8UnitInfoFi(void)
  * Address:	802429B0
  * Size:	0001BC
  */
-void create__Q34Game4Cave8UnitInfoFv(void)
+void Game::Cave::UnitInfo::create(void)
 {
 /*
 .loc_0x0:
@@ -520,7 +520,7 @@ void create__Q34Game4Cave8UnitInfoFv(void)
  * Address:	80242B6C
  * Size:	00000C
  */
-void getUnitName__Q34Game4Cave8UnitInfoFv(void)
+void Game::Cave::UnitInfo::getUnitName(void)
 {
 /*
 .loc_0x0:
@@ -535,7 +535,7 @@ void getUnitName__Q34Game4Cave8UnitInfoFv(void)
  * Address:	........
  * Size:	00000C
  */
-void getUnitIndex__Q34Game4Cave8UnitInfoFv(void)
+void Game::Cave::UnitInfo::getUnitIndex(void)
 {
 	// UNUSED FUNCTION
 }
@@ -545,7 +545,7 @@ void getUnitIndex__Q34Game4Cave8UnitInfoFv(void)
  * Address:	80242B78
  * Size:	00000C
  */
-void getUnitKind__Q34Game4Cave8UnitInfoFv(void)
+void Game::Cave::UnitInfo::getUnitKind(void)
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void getUnitKind__Q34Game4Cave8UnitInfoFv(void)
  * Address:	80242B84
  * Size:	000008
  */
-void getUnitSizeX__Q34Game4Cave8UnitInfoFv(void)
+void Game::Cave::UnitInfo::getUnitSizeX(void)
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void getUnitSizeX__Q34Game4Cave8UnitInfoFv(void)
  * Address:	80242B8C
  * Size:	000008
  */
-void getUnitSizeY__Q34Game4Cave8UnitInfoFv(void)
+void Game::Cave::UnitInfo::getUnitSizeY(void)
 {
 /*
 .loc_0x0:
@@ -588,7 +588,7 @@ void getUnitSizeY__Q34Game4Cave8UnitInfoFv(void)
  * Address:	80242B94
  * Size:	000008
  */
-void getUnitRotation__Q34Game4Cave8UnitInfoFv(void)
+void Game::Cave::UnitInfo::getUnitRotation(void)
 {
 /*
 .loc_0x0:
@@ -602,7 +602,7 @@ void getUnitRotation__Q34Game4Cave8UnitInfoFv(void)
  * Address:	80242B9C
  * Size:	000024
  */
-void getDoorNode__Q34Game4Cave8UnitInfoFi(void)
+void Game::Cave::UnitInfo::getDoorNode( (int))
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void getDoorNode__Q34Game4Cave8UnitInfoFi(void)
  * Address:	80242BC0
  * Size:	00000C
  */
-void getBaseGen__Q34Game4Cave8UnitInfoFv(void)
+void Game::Cave::UnitInfo::getBaseGen(void)
 {
 /*
 .loc_0x0:
@@ -638,7 +638,7 @@ void getBaseGen__Q34Game4Cave8UnitInfoFv(void)
  * Address:	80242BCC
  * Size:	00018C
  */
-void draw__Q34Game4Cave8UnitInfoFffff(void)
+void Game::Cave::UnitInfo::draw( (float, float, float, float))
 {
 /*
 .loc_0x0:

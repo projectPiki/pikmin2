@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012D5E4
  * Size:	000050
  */
-void __ct__Q34Game14YellowKochappy3MgrFiUc(void)
+void Game::YellowKochappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game14YellowKochappy3MgrFiUc(void)
  * Address:	8012D634
  * Size:	000048
  */
-void doAlloc__Q34Game14YellowKochappy3MgrFv(void)
+void Game::YellowKochappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game14YellowKochappy3MgrFv(void)
  * Address:	8012D67C
  * Size:	000048
  */
-void loadTexData__Q34Game14YellowKochappy3MgrFv(void)
+void Game::YellowKochappy::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void loadTexData__Q34Game14YellowKochappy3MgrFv(void)
  * Address:	8012D6C4
  * Size:	0000C8
  */
-void __dt__Q34Game14YellowKochappy3MgrFv(void)
+void Game::YellowKochappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -175,7 +175,7 @@ void __dt__Q34Game14YellowKochappy3MgrFv(void)
  * Address:	8012D78C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game14YellowKochappy3MgrFv(void)
+void Game::YellowKochappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void getEnemyTypeID__Q34Game14YellowKochappy3MgrFv(void)
  * Address:	8012D794
  * Size:	000060
  */
-void createObj__Q34Game14YellowKochappy3MgrFi(void)
+void Game::YellowKochappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void createObj__Q34Game14YellowKochappy3MgrFi(void)
  * Address:	8012D7F4
  * Size:	000010
  */
-void getEnemy__Q34Game14YellowKochappy3MgrFi(void)
+void Game::YellowKochappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -241,7 +241,7 @@ void getEnemy__Q34Game14YellowKochappy3MgrFi(void)
  * Address:	8012D804
  * Size:	000008
  */
-void @4@__dt__Q34Game14YellowKochappy3MgrFv(void)
+void @4@Game::YellowKochappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

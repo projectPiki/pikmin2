@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8032BC48
  * Size:	000080
  */
-void __ct__Q32og9newScreen22ObjWorldMapInfoWindow1FPCc(void)
+void og::newScreen::ObjWorldMapInfoWindow1::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void __ct__Q32og9newScreen22ObjWorldMapInfoWindow1FPCc(void)
  * Address:	8032BCC8
  * Size:	000300
  */
-void doCreate__Q32og9newScreen22ObjWorldMapInfoWindow1FP10JKRArchive(void)
+void og::newScreen::ObjWorldMapInfoWindow1::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -273,7 +273,7 @@ void doCreate__Q32og9newScreen22ObjWorldMapInfoWindow1FP10JKRArchive(void)
  * Address:	8032BFC8
  * Size:	00005C
  */
-void doStart__Q32og9newScreen22ObjWorldMapInfoWindow1FPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjWorldMapInfoWindow1::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void doStart__Q32og9newScreen22ObjWorldMapInfoWindow1FPCQ26Screen13StartSceneArg
  * Address:	8032C024
  * Size:	000020
  */
-void commonUpdate__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void og::newScreen::ObjWorldMapInfoWindow1::commonUpdate(void)
 {
 /*
 .loc_0x0:
@@ -328,7 +328,7 @@ void commonUpdate__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
  * Address:	8032C044
  * Size:	000038
  */
-void out_cancel__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void og::newScreen::ObjWorldMapInfoWindow1::out_cancel(void)
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void out_cancel__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
  * Address:	8032C07C
  * Size:	000038
  */
-void out_menu_0__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void og::newScreen::ObjWorldMapInfoWindow1::out_menu_0(void)
 {
 /*
 .loc_0x0:
@@ -380,7 +380,7 @@ void out_menu_0__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
  * Address:	8032C0B4
  * Size:	000038
  */
-void out_menu_1__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void og::newScreen::ObjWorldMapInfoWindow1::out_menu_1(void)
 {
 /*
 .loc_0x0:
@@ -406,7 +406,7 @@ void out_menu_1__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
  * Address:	8032C0EC
  * Size:	00000C
  */
-void out_L__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void og::newScreen::ObjWorldMapInfoWindow1::out_L(void)
 {
 /*
 .loc_0x0:
@@ -421,7 +421,7 @@ void out_L__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
  * Address:	8032C0F8
  * Size:	00006C
  */
-void doUpdateFadeoutFinish__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void og::newScreen::ObjWorldMapInfoWindow1::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -460,7 +460,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
  * Address:	8032C164
  * Size:	00000C
  */
-void getResult__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void og::newScreen::ObjWorldMapInfoWindow1::getResult(void)
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void getResult__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
  * Address:	8032C170
  * Size:	000068
  */
-void __dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void og::newScreen::ObjWorldMapInfoWindow1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -515,7 +515,7 @@ void __dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
  * Address:	8032C1D8
  * Size:	000008
  */
-void getSize__Q32og6Screen26DispMemberWorldMapInfoWin1Fv(void)
+void og::Screen::DispMemberWorldMapInfoWin1::getSize(void)
 {
 /*
 .loc_0x0:
@@ -529,7 +529,7 @@ void getSize__Q32og6Screen26DispMemberWorldMapInfoWin1Fv(void)
  * Address:	8032C1E0
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen26DispMemberWorldMapInfoWin1Fv(void)
+void og::Screen::DispMemberWorldMapInfoWin1::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -544,7 +544,7 @@ void getOwnerID__Q32og6Screen26DispMemberWorldMapInfoWin1Fv(void)
  * Address:	8032C1EC
  * Size:	000014
  */
-void getMemberID__Q32og6Screen26DispMemberWorldMapInfoWin1Fv(void)
+void og::Screen::DispMemberWorldMapInfoWin1::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -561,7 +561,7 @@ void getMemberID__Q32og6Screen26DispMemberWorldMapInfoWin1Fv(void)
  * Address:	8032C200
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv(void)
+void @24@og::newScreen::ObjWorldMapInfoWindow1::__dt(void)
 {
 /*
 .loc_0x0:

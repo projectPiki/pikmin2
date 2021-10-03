@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8029C1C4
  * Size:	000058
  */
-void actEnemy__Q24Game25InteractFuefukiTimerResetFPQ24Game9EnemyBase(void)
+void Game::InteractFuefukiTimerReset::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -53,7 +53,7 @@ void actEnemy__Q24Game25InteractFuefukiTimerResetFPQ24Game9EnemyBase(void)
  * Address:	8029C21C
  * Size:	000140
  */
-void __ct__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void __ct__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C35C
  * Size:	000004
  */
-void setInitialSetting__Q34Game7Fuefuki3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Fuefuki::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -190,7 +190,7 @@ void birth__Q34Game7Fuefuki3ObjFR10Vector3<float>f(void)
  * Address:	8029C390
  * Size:	000088
  */
-void onInit__Q34Game7Fuefuki3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Fuefuki::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -236,7 +236,7 @@ void onInit__Q34Game7Fuefuki3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8029C418
  * Size:	000054
  */
-void onKill__Q34Game7Fuefuki3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Fuefuki::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -271,7 +271,7 @@ void onKill__Q34Game7Fuefuki3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	8029C46C
  * Size:	000078
  */
-void doUpdate__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -315,7 +315,7 @@ void doUpdate__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C4E4
  * Size:	000004
  */
-void doDirectDraw__Q34Game7Fuefuki3ObjFR8Graphics(void)
+void Game::Fuefuki::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -328,7 +328,7 @@ void doDirectDraw__Q34Game7Fuefuki3ObjFR8Graphics(void)
  * Address:	8029C4E8
  * Size:	000020
  */
-void doDebugDraw__Q34Game7Fuefuki3ObjFR8Graphics(void)
+void Game::Fuefuki::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void doDebugDraw__Q34Game7Fuefuki3ObjFR8Graphics(void)
  * Address:	8029C508
  * Size:	00004C
  */
-void setFSM__Q34Game7Fuefuki3ObjFPQ34Game7Fuefuki3FSM(void)
+void Game::Fuefuki::Obj::setFSM( (Game::Fuefuki::FSM *))
 {
 /*
 .loc_0x0:
@@ -379,7 +379,7 @@ void setFSM__Q34Game7Fuefuki3ObjFPQ34Game7Fuefuki3FSM(void)
  * Address:	8029C554
  * Size:	0000A4
  */
-void getShadowParam__Q34Game7Fuefuki3ObjFRQ24Game11ShadowParam(void)
+void Game::Fuefuki::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -436,7 +436,7 @@ void getShadowParam__Q34Game7Fuefuki3ObjFRQ24Game11ShadowParam(void)
  * Address:	8029C5F8
  * Size:	000068
  */
-void pressCallBack__Q34Game7Fuefuki3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Fuefuki::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -478,7 +478,7 @@ void pressCallBack__Q34Game7Fuefuki3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8029C660
  * Size:	000068
  */
-void hipdropCallBack__Q34Game7Fuefuki3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Fuefuki::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -520,7 +520,7 @@ void hipdropCallBack__Q34Game7Fuefuki3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8029C6C8
  * Size:	000044
  */
-void doStartStoneState__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -551,7 +551,7 @@ void doStartStoneState__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C70C
  * Size:	000044
  */
-void doFinishStoneState__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -582,7 +582,7 @@ void doFinishStoneState__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C750
  * Size:	000044
  */
-void doStartEarthquakeFitState__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doStartEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -613,7 +613,7 @@ void doStartEarthquakeFitState__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C794
  * Size:	000044
  */
-void doFinishEarthquakeFitState__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doFinishEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -644,7 +644,7 @@ void doFinishEarthquakeFitState__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C7D8
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -669,7 +669,7 @@ void doStartWaitingBirthTypeDrop__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C80C
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -694,7 +694,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C840
  * Size:	000028
  */
-void startCarcassMotion__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -716,7 +716,7 @@ void startCarcassMotion__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C868
  * Size:	000020
  */
-void doStartMovie__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -736,7 +736,7 @@ void doStartMovie__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C888
  * Size:	000020
  */
-void doEndMovie__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -756,7 +756,7 @@ void doEndMovie__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C8A8
  * Size:	0000C0
  */
-void getOffsetForMapCollision__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -822,7 +822,7 @@ void getOffsetForMapCollision__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C968
  * Size:	000078
  */
-void resetAppearTimer__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::resetAppearTimer(void)
 {
 /*
 .loc_0x0:
@@ -864,7 +864,7 @@ void resetAppearTimer__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029C9E0
  * Size:	00002C
  */
-void resetWhisleTimer__Q34Game7Fuefuki3ObjFb(void)
+void Game::Fuefuki::Obj::resetWhisleTimer( (bool))
 {
 /*
 .loc_0x0:
@@ -889,7 +889,7 @@ void resetWhisleTimer__Q34Game7Fuefuki3ObjFb(void)
  * Address:	8029CA0C
  * Size:	000078
  */
-void isWhisleTimeMax__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::isWhisleTimeMax(void)
 {
 /*
 .loc_0x0:
@@ -937,7 +937,7 @@ void isWhisleTimeMax__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029CA84
  * Size:	000038
  */
-void startWhisle__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::startWhisle(void)
 {
 /*
 .loc_0x0:
@@ -963,7 +963,7 @@ void startWhisle__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029CABC
  * Size:	000324
  */
-void updateWhisle__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::updateWhisle(void)
 {
 /*
 .loc_0x0:
@@ -1198,7 +1198,7 @@ void updateWhisle__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029CDE0
  * Size:	000038
  */
-void finishWhisle__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::finishWhisle(void)
 {
 /*
 .loc_0x0:
@@ -1224,7 +1224,7 @@ void finishWhisle__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029CE18
  * Size:	0002A0
  */
-void setTargetPosition__Q34Game7Fuefuki3ObjFb(void)
+void Game::Fuefuki::Obj::setTargetPosition( (bool))
 {
 /*
 .loc_0x0:
@@ -1418,7 +1418,7 @@ void setTargetPosition__Q34Game7Fuefuki3ObjFb(void)
  * Address:	8029D0B8
  * Size:	0001E0
  */
-void isJumpAway__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::isJumpAway(void)
 {
 /*
 .loc_0x0:
@@ -1564,7 +1564,7 @@ void isJumpAway__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D298
  * Size:	000048
  */
-void isArriveTarget__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::isArriveTarget(void)
 {
 /*
 .loc_0x0:
@@ -1598,7 +1598,7 @@ void isArriveTarget__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D2E0
  * Size:	000050
  */
-void createFootmarks__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::createFootmarks(void)
 {
 /*
 .loc_0x0:
@@ -1632,7 +1632,7 @@ void createFootmarks__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D330
  * Size:	0000BC
  */
-void updateFootmarks__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::updateFootmarks(void)
 {
 /*
 .loc_0x0:
@@ -1697,7 +1697,7 @@ void updateFootmarks__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D3EC
  * Size:	00019C
  */
-void createEffect__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1816,7 +1816,7 @@ void createEffect__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D588
  * Size:	00009C
  */
-void startWhisleEffect__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::startWhisleEffect(void)
 {
 /*
 .loc_0x0:
@@ -1867,7 +1867,7 @@ void startWhisleEffect__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D624
  * Size:	000078
  */
-void updateWhisleEffect__Q34Game7Fuefuki3ObjFf(void)
+void Game::Fuefuki::Obj::updateWhisleEffect( (float))
 {
 /*
 .loc_0x0:
@@ -1909,7 +1909,7 @@ void updateWhisleEffect__Q34Game7Fuefuki3ObjFf(void)
  * Address:	8029D69C
  * Size:	000050
  */
-void finishWhisleEffect__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::finishWhisleEffect(void)
 {
 /*
 .loc_0x0:
@@ -1941,7 +1941,7 @@ void finishWhisleEffect__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D6EC
  * Size:	00002C
  */
-void fade__Q23efx7TCursorFv(void)
+void efx::TCursor::fade(void)
 {
 /*
 .loc_0x0:
@@ -1964,7 +1964,7 @@ void fade__Q23efx7TCursorFv(void)
  * Address:	8029D718
  * Size:	000078
  */
-void createDownEffect__Q34Game7Fuefuki3ObjFf(void)
+void Game::Fuefuki::Obj::createDownEffect( (float))
 {
 /*
 .loc_0x0:
@@ -2006,7 +2006,7 @@ void createDownEffect__Q34Game7Fuefuki3ObjFf(void)
  * Address:	8029D790
  * Size:	000048
  */
-void createEfxHamon__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::createEfxHamon(void)
 {
 /*
 .loc_0x0:
@@ -2038,7 +2038,7 @@ void createEfxHamon__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D7D8
  * Size:	000050
  */
-void effectDrawOn__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -2070,7 +2070,7 @@ void effectDrawOn__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D828
  * Size:	00001C
  */
-void endDemoDrawOn__Q23efx11TOneEmitterFv(void)
+void efx::TOneEmitter::endDemoDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -2089,7 +2089,7 @@ void endDemoDrawOn__Q23efx11TOneEmitterFv(void)
  * Address:	8029D844
  * Size:	000050
  */
-void effectDrawOff__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -2121,7 +2121,7 @@ void effectDrawOff__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D894
  * Size:	00001C
  */
-void startDemoDrawOff__Q23efx11TOneEmitterFv(void)
+void efx::TOneEmitter::startDemoDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -2140,7 +2140,7 @@ void startDemoDrawOff__Q23efx11TOneEmitterFv(void)
  * Address:	8029D8B0
  * Size:	00000C
  */
-void getName__Q23efx9ArgCursorFv(void)
+void efx::ArgCursor::getName(void)
 {
 /*
 .loc_0x0:
@@ -2155,7 +2155,7 @@ void getName__Q23efx9ArgCursorFv(void)
  * Address:	8029D8BC
  * Size:	00009C
  */
-void __dt__Q23efx11TFuebugOnpaFv(void)
+void efx::TFuebugOnpa::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2210,7 +2210,7 @@ void __dt__Q23efx11TFuebugOnpaFv(void)
  * Address:	8029D958
  * Size:	000004
  */
-void inWaterCallback__Q34Game7Fuefuki3ObjFPQ24Game8WaterBox(void)
+void Game::Fuefuki::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -2223,7 +2223,7 @@ void inWaterCallback__Q34Game7Fuefuki3ObjFPQ24Game8WaterBox(void)
  * Address:	8029D95C
  * Size:	000004
  */
-void outWaterCallback__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -2236,7 +2236,7 @@ void outWaterCallback__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D960
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -2250,7 +2250,7 @@ void getEnemyTypeID__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D968
  * Size:	000008
  */
-void getFootmarks__Q34Game7Fuefuki3ObjFv(void)
+void Game::Fuefuki::Obj::getFootmarks(void)
 {
 /*
 .loc_0x0:
@@ -2264,7 +2264,7 @@ void getFootmarks__Q34Game7Fuefuki3ObjFv(void)
  * Address:	8029D970
  * Size:	000014
  */
-void @756@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @756@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -2281,7 +2281,7 @@ void @756@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8029D984
  * Size:	000014
  */
-void @756@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @756@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -2298,7 +2298,7 @@ void @756@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8029D998
  * Size:	000014
  */
-void @756@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @756@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -2315,7 +2315,7 @@ void @756@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8029D9AC
  * Size:	000014
  */
-void @756@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @756@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -2332,7 +2332,7 @@ void @756@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8029D9C0
  * Size:	000014
  */
-void @756@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @756@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -2349,7 +2349,7 @@ void @756@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8029D9D4
  * Size:	000014
  */
-void @756@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @756@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -2366,7 +2366,7 @@ void @756@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	8029D9E8
  * Size:	000008
  */
-void @4@__dt__Q23efx11TFuebugOnpaFv(void)
+void @4@efx::TFuebugOnpa::__dt(void)
 {
 /*
 .loc_0x0:

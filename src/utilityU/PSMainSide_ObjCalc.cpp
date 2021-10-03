@@ -5,7 +5,7 @@
  * Address:	804728A4
  * Size:	000060
  */
-void newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv(void)
+void PSM::ObjCalc_SingleGame::newInstance_SingleGame(void)
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv(void)
  * Address:	80472904
  * Size:	000008
  */
-void getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature(void)
+void PSM::ObjCalc_SingleGame::getPlayerNo( (PSM::Creature *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature(void)
  * Address:	8047290C
  * Size:	000008
  */
-void getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec(void)
+void PSM::ObjCalc_SingleGame::getPlayerNo( (Vec &))
 {
 /*
 .loc_0x0:
@@ -71,7 +71,7 @@ void getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec(void)
  * Address:	80472914
  * Size:	00005C
  */
-void newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv(void)
+void PSM::ObjCalc_2PGame::newInstance_2PGame(void)
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv(void)
  * Address:	80472970
  * Size:	0003BC
  */
-void getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec(void)
+void PSM::ObjCalc_2PGame::getPlayerNo( (Vec &))
 {
 /*
 .loc_0x0:
@@ -389,7 +389,7 @@ void getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec(void)
  * Address:	80472D2C
  * Size:	0000C8
  */
-void getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature(void)
+void PSM::ObjCalc_2PGame::getPlayerNo( (PSM::Creature *))
 {
 /*
 .loc_0x0:
@@ -461,7 +461,7 @@ void getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature(void)
  * Address:	80472DF4
  * Size:	000074
  */
-void __dt__Q23PSM18ObjCalc_SingleGameFv(void)
+void PSM::ObjCalc_SingleGame::__dt(void)
 {
 /*
 .loc_0x0:
@@ -506,7 +506,7 @@ void __dt__Q23PSM18ObjCalc_SingleGameFv(void)
  * Address:	80472E68
  * Size:	000074
  */
-void __dt__Q23PSM14ObjCalc_2PGameFv(void)
+void PSM::ObjCalc_2PGame::__dt(void)
 {
 /*
 .loc_0x0:
@@ -551,7 +551,7 @@ void __dt__Q23PSM14ObjCalc_2PGameFv(void)
  * Address:	80472EDC
  * Size:	000008
  */
-void is1PGame__Q23PSM14ObjCalc_2PGameFv(void)
+void PSM::ObjCalc_2PGame::is1PGame(void)
 {
 /*
 .loc_0x0:

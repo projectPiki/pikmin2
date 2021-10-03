@@ -5,7 +5,7 @@
  * Address:	80456AF8
  * Size:	000080
  */
-void __ct__Q23PSM14DamageDirectorFv(void)
+void PSM::DamageDirector::__ct(void)
 {
 /*
 .loc_0x0:
@@ -49,7 +49,7 @@ void __ct__Q23PSM14DamageDirectorFv(void)
  * Address:	80456B78
  * Size:	000080
  */
-void __dt__Q23PSM15OneShotDirectorFv(void)
+void PSM::OneShotDirector::__dt(void)
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void __dt__Q23PSM15OneShotDirectorFv(void)
  * Address:	80456BF8
  * Size:	000034
  */
-void directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase(void)
+void PSM::DamageDirector::directOnTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase(void)
  * Address:	80456C2C
  * Size:	00003C
  */
-void execInner__Q23PSM14DamageDirectorFv(void)
+void PSM::DamageDirector::execInner(void)
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void execInner__Q23PSM14DamageDirectorFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __ct__Q23PSM23TempoChangeDirectorBaseFPCcfl(void)
+void PSM::TempoChangeDirectorBase::__ct( (char const *, float, long))
 {
 	// UNUSED FUNCTION
 }
@@ -161,7 +161,7 @@ void __ct__Q23PSM23TempoChangeDirectorBaseFPCcfl(void)
  * Address:	80456C68
  * Size:	000080
  */
-void __dt__Q23PSM16SwitcherDirectorFv(void)
+void PSM::SwitcherDirector::__dt(void)
 {
 /*
 .loc_0x0:
@@ -209,7 +209,7 @@ void __dt__Q23PSM16SwitcherDirectorFv(void)
  * Address:	80456CE8
  * Size:	000030
  */
-void directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase(void)
+void PSM::TempoChangeDirectorBase::directOnTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase(v
  * Address:	80456D18
  * Size:	000030
  */
-void directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase(void)
+void PSM::TempoChangeDirectorBase::directOffTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase(
  * Address:	80456D48
  * Size:	000084
  */
-void __ct__Q23PSM25ActorDirector_TempoChangeFv(void)
+void PSM::ActorDirector_TempoChange::__ct(void)
 {
 /*
 .loc_0x0:
@@ -302,7 +302,7 @@ void __ct__Q23PSM25ActorDirector_TempoChangeFv(void)
  * Address:	80456DCC
  * Size:	000090
  */
-void __dt__Q23PSM23TempoChangeDirectorBaseFv(void)
+void PSM::TempoChangeDirectorBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void __dt__Q23PSM23TempoChangeDirectorBaseFv(void)
  * Address:	80456E5C
  * Size:	00003C
  */
-void execInner__Q23PSM25ActorDirector_TempoChangeFv(void)
+void PSM::ActorDirector_TempoChange::execInner(void)
 {
 /*
 .loc_0x0:
@@ -383,7 +383,7 @@ void execInner__Q23PSM25ActorDirector_TempoChangeFv(void)
  * Address:	80456E98
  * Size:	000078
  */
-void __ct__Q23PSM20PikminNumberDirectorFiUcRQ28PSSystem11DirectedBgm(void)
+void PSM::PikminNumberDirector::__ct( (int, unsigned char, PSSystem::DirectedBgm &))
 {
 /*
 .loc_0x0:
@@ -425,7 +425,7 @@ void __ct__Q23PSM20PikminNumberDirectorFiUcRQ28PSSystem11DirectedBgm(void)
  * Address:	80456F10
  * Size:	00004C
  */
-void directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase(void)
+void PSM::PikminNumberDirector::directOnTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -456,7 +456,7 @@ void directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase(void
  * Address:	80456F5C
  * Size:	00002C
  */
-void directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase(void)
+void PSM::PikminNumberDirector::directOffTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase(voi
  * Address:	80456F88
  * Size:	00003C
  */
-void execInner__Q23PSM20PikminNumberDirectorFv(void)
+void PSM::PikminNumberDirector::execInner(void)
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void execInner__Q23PSM20PikminNumberDirectorFv(void)
  * Address:	80456FC4
  * Size:	000094
  */
-void __ct__Q23PSM28PikminNumberDirector_AutoBgmFiUcRQ28PSSystem11DirectedBgm(void)
+void PSM::PikminNumberDirector_AutoBgm::__ct( (int, unsigned char, PSSystem::DirectedBgm &))
 {
 /*
 .loc_0x0:
@@ -557,7 +557,7 @@ void __ct__Q23PSM28PikminNumberDirector_AutoBgmFiUcRQ28PSSystem11DirectedBgm(voi
  * Address:	80457058
  * Size:	000090
  */
-void __dt__Q23PSM20PikminNumberDirectorFv(void)
+void PSM::PikminNumberDirector::__dt(void)
 {
 /*
 .loc_0x0:
@@ -609,7 +609,7 @@ void __dt__Q23PSM20PikminNumberDirectorFv(void)
  * Address:	804570E8
  * Size:	000088
  */
-void directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase(void)
+void PSM::PikminNumberDirector_AutoBgm::directOnTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -661,7 +661,7 @@ void directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackB
  * Address:	80457170
  * Size:	000088
  */
-void directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase(void)
+void PSM::PikminNumberDirector_AutoBgm::directOffTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -715,7 +715,7 @@ void directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrack
  * Address:	804571F8
  * Size:	0000B8
  */
-void getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase(void)
+void PSM::PikminNumberDirector_AutoBgm::getTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -777,7 +777,7 @@ void getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase(v
  * Address:	804572B0
  * Size:	00007C
  */
-void __ct__Q23PSM19TrackOnDirectorBaseFiPCcll(void)
+void PSM::TrackOnDirectorBase::__ct( (int, char const *, long, long))
 {
 /*
 .loc_0x0:
@@ -820,7 +820,7 @@ void __ct__Q23PSM19TrackOnDirectorBaseFiPCcll(void)
  * Address:	8045732C
  * Size:	000034
  */
-void onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack(void)
+void PSM::TrackOnDirectorBase::onPlayInit( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -845,7 +845,7 @@ void onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack(void)
  * Address:	80457360
  * Size:	000050
  */
-void directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase(void)
+void PSM::TrackOnDirectorBase::directOnTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -881,7 +881,7 @@ void directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase(void)
  * Address:	804573B0
  * Size:	00002C
  */
-void directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase(void)
+void PSM::TrackOnDirectorBase::directOffTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -904,7 +904,7 @@ void directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase(void
  * Address:	804573DC
  * Size:	000090
  */
-void execInner__Q23PSM22TrackOnDirector_VotingFv(void)
+void PSM::TrackOnDirector_Voting::execInner(void)
 {
 /*
 .loc_0x0:
@@ -956,7 +956,7 @@ void execInner__Q23PSM22TrackOnDirector_VotingFv(void)
  * Address:	........
  * Size:	0000E4
  */
-void __ct__Q23PSM22TrackOnDirector_ScaledFPCciffllUl(void)
+void PSM::TrackOnDirector_Scaled::__ct( (char const *, int, float, float, long, long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -966,7 +966,7 @@ void __ct__Q23PSM22TrackOnDirector_ScaledFPCciffllUl(void)
  * Address:	8045746C
  * Size:	000090
  */
-void __dt__Q23PSM19TrackOnDirectorBaseFv(void)
+void PSM::TrackOnDirectorBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1018,7 +1018,7 @@ void __dt__Q23PSM19TrackOnDirectorBaseFv(void)
  * Address:	804574FC
  * Size:	0000FC
  */
-void underDirection__Q23PSM22TrackOnDirector_ScaledFv(void)
+void PSM::TrackOnDirector_Scaled::underDirection(void)
 {
 /*
 .loc_0x0:
@@ -1101,7 +1101,7 @@ void underDirection__Q23PSM22TrackOnDirector_ScaledFv(void)
  * Address:	804575F8
  * Size:	00008C
  */
-void onUpdateFromMasterD__Q23PSM17ListDirectorActorFv(void)
+void PSM::ListDirectorActor::onUpdateFromMasterD(void)
 {
 /*
 .loc_0x0:
@@ -1152,7 +1152,7 @@ void onUpdateFromMasterD__Q23PSM17ListDirectorActorFv(void)
  * Address:	80457684
  * Size:	000098
  */
-void __ct__Q23PSM21ActorDirector_TrackOnFPCcill(void)
+void PSM::ActorDirector_TrackOn::__ct( (char const *, int, long, long))
 {
 /*
 .loc_0x0:
@@ -1202,7 +1202,7 @@ void __ct__Q23PSM21ActorDirector_TrackOnFPCcill(void)
  * Address:	8045771C
  * Size:	00003C
  */
-void execInner__Q23PSM21ActorDirector_TrackOnFv(void)
+void PSM::ActorDirector_TrackOn::execInner(void)
 {
 /*
 .loc_0x0:
@@ -1231,7 +1231,7 @@ void execInner__Q23PSM21ActorDirector_TrackOnFv(void)
  * Address:	80457758
  * Size:	0000F4
  */
-void __ct__Q23PSM20ActorDirector_ScaledFPCciffllUl(void)
+void PSM::ActorDirector_Scaled::__ct( (char const *, int, float, float, long, long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1304,7 +1304,7 @@ void __ct__Q23PSM20ActorDirector_ScaledFPCciffllUl(void)
  * Address:	8045784C
  * Size:	0000A0
  */
-void __dt__Q23PSM22TrackOnDirector_ScaledFv(void)
+void PSM::TrackOnDirector_Scaled::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1360,7 +1360,7 @@ void __dt__Q23PSM22TrackOnDirector_ScaledFv(void)
  * Address:	804578EC
  * Size:	00003C
  */
-void execInner__Q23PSM20ActorDirector_ScaledFv(void)
+void PSM::ActorDirector_Scaled::execInner(void)
 {
 /*
 .loc_0x0:
@@ -1389,7 +1389,7 @@ void execInner__Q23PSM20ActorDirector_ScaledFv(void)
  * Address:	80457928
  * Size:	000614
  */
-void getNearestDistance__Q23PSM20ActorDirector_ScaledFv(void)
+void PSM::ActorDirector_Scaled::getNearestDistance(void)
 {
 /*
 .loc_0x0:
@@ -1826,7 +1826,7 @@ void getNearestDistance__Q23PSM20ActorDirector_ScaledFv(void)
  * Address:	80457F3C
  * Size:	0000E4
  */
-void __ct__Q23PSM19ActorDirector_EnemyFPCcillUl(void)
+void PSM::ActorDirector_Enemy::__ct( (char const *, int, long, long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1895,7 +1895,7 @@ void __ct__Q23PSM19ActorDirector_EnemyFPCcillUl(void)
  * Address:	80458020
  * Size:	0000B0
  */
-void __dt__Q23PSM20ActorDirector_ScaledFv(void)
+void PSM::ActorDirector_Scaled::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1955,7 +1955,7 @@ void __dt__Q23PSM20ActorDirector_ScaledFv(void)
  * Address:	804580D0
  * Size:	000008
  */
-void onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature(void)
+void PSM::ActorDirector_Enemy::onSetMinDistObj( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1969,7 +1969,7 @@ void onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature(void)
  * Address:	804580D8
  * Size:	0001D0
  */
-void underDirection__Q23PSM19ActorDirector_EnemyFv(void)
+void PSM::ActorDirector_Enemy::underDirection(void)
 {
 /*
 .loc_0x0:
@@ -2115,7 +2115,7 @@ void underDirection__Q23PSM19ActorDirector_EnemyFv(void)
  * Address:	804582A8
  * Size:	000044
  */
-void getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase(void)
+void PSM::ActorDirector_Battle::getVolZeroDist( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2144,7 +2144,7 @@ void getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase(void)
  * Address:	804582EC
  * Size:	000044
  */
-void getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase(void)
+void PSM::ActorDirector_Battle::getVolMaxDist( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2173,7 +2173,7 @@ void getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase(void)
  * Address:	80458330
  * Size:	000044
  */
-void getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase(void)
+void PSM::ActorDirector_Kehai::getVolZeroDist( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2202,7 +2202,7 @@ void getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase(void)
  * Address:	80458374
  * Size:	000044
  */
-void getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase(void)
+void PSM::ActorDirector_Kehai::getVolMaxDist( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2231,7 +2231,7 @@ void getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase(void)
  * Address:	........
  * Size:	0000F4
  */
-void __ct__Q23PSM27ActorDirector_IchouNBeedamaFPCciffllUl(void)
+void PSM::ActorDirector_IchouNBeedama::__ct( (char const *, int, float, float, long, long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -2241,7 +2241,7 @@ void __ct__Q23PSM27ActorDirector_IchouNBeedamaFPCciffllUl(void)
  * Address:	........
  * Size:	00003C
  */
-void execInner__Q23PSM27ActorDirector_IchouNBeedamaFv(void)
+void PSM::ActorDirector_IchouNBeedama::execInner(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2251,7 +2251,7 @@ void execInner__Q23PSM27ActorDirector_IchouNBeedamaFv(void)
  * Address:	........
  * Size:	0000F8
  */
-void getPSOtakara__Q23PSM27ActorDirector_IchouNBeedamaFPQ24Game8Creature(void)
+void PSM::ActorDirector_IchouNBeedama::getPSOtakara( (Game::Creature *))
 {
 	// UNUSED FUNCTION
 }
@@ -2261,7 +2261,7 @@ void getPSOtakara__Q23PSM27ActorDirector_IchouNBeedamaFPQ24Game8Creature(void)
  * Address:	........
  * Size:	00037C
  */
-void getNearestDistance__Q23PSM27ActorDirector_IchouNBeedamaFv(void)
+void PSM::ActorDirector_IchouNBeedama::getNearestDistance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2271,7 +2271,7 @@ void getNearestDistance__Q23PSM27ActorDirector_IchouNBeedamaFv(void)
  * Address:	804583B8
  * Size:	00007C
  */
-void __ct__Q23PSM17PikAttackDirectorFi(void)
+void PSM::PikAttackDirector::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2314,7 +2314,7 @@ void __ct__Q23PSM17PikAttackDirectorFi(void)
  * Address:	80458434
  * Size:	00007C
  */
-void __ct__Q23PSM13ExiteDirectorFi(void)
+void PSM::ExiteDirector::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2357,7 +2357,7 @@ void __ct__Q23PSM13ExiteDirectorFi(void)
  * Address:	804584B0
  * Size:	000068
  */
-void __ct__Q23PSM15DirectorUpdatorFPQ28PSSystem12DirectorBaseUcQ33PSM15DirectorUpdator4Type(void)
+void PSM::DirectorUpdator::__ct( (PSSystem::DirectorBase *, unsigned char, PSM::DirectorUpdator::Type))
 {
 /*
 .loc_0x0:
@@ -2397,7 +2397,7 @@ void __ct__Q23PSM15DirectorUpdatorFPQ28PSSystem12DirectorBaseUcQ33PSM15DirectorU
  * Address:	80458518
  * Size:	000034
  */
-void directOn__Q23PSM15DirectorUpdatorFUc(void)
+void PSM::DirectorUpdator::directOn( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -2422,7 +2422,7 @@ void directOn__Q23PSM15DirectorUpdatorFUc(void)
  * Address:	8045854C
  * Size:	000034
  */
-void directOff__Q23PSM15DirectorUpdatorFUc(void)
+void PSM::DirectorUpdator::directOff( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -2447,7 +2447,7 @@ void directOff__Q23PSM15DirectorUpdatorFUc(void)
  * Address:	80458580
  * Size:	00012C
  */
-void frameEndWork__Q23PSM15DirectorUpdatorFv(void)
+void PSM::DirectorUpdator::frameEndWork(void)
 {
 /*
 .loc_0x0:
@@ -3893,7 +3893,7 @@ void PSMGetPikiBattleD()
  * Address:	80459510
  * Size:	0000A0
  */
-void __dt__Q23PSM13ExiteDirectorFv(void)
+void PSM::ExiteDirector::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3949,7 +3949,7 @@ void __dt__Q23PSM13ExiteDirectorFv(void)
  * Address:	804595B0
  * Size:	000004
  */
-void onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature(void)
+void PSM::ActorDirector_Scaled::onSetMinDistObj( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -3962,7 +3962,7 @@ void onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature(void)
  * Address:	804595B4
  * Size:	000008
  */
-void is1PGame__Q23PSM11ObjCalcBaseFv(void)
+void PSM::ObjCalcBase::is1PGame(void)
 {
 /*
 .loc_0x0:
@@ -3976,7 +3976,7 @@ void is1PGame__Q23PSM11ObjCalcBaseFv(void)
  * Address:	804595BC
  * Size:	000008
  */
-void is2PBattle__Q23PSM16OtakaraEventLinkFv(void)
+void PSM::OtakaraEventLink::is2PBattle(void)
 {
 /*
 .loc_0x0:
@@ -3990,7 +3990,7 @@ void is2PBattle__Q23PSM16OtakaraEventLinkFv(void)
  * Address:	804595C4
  * Size:	0000A0
  */
-void __dt__Q23PSM17PikAttackDirectorFv(void)
+void PSM::PikAttackDirector::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4046,7 +4046,7 @@ void __dt__Q23PSM17PikAttackDirectorFv(void)
  * Address:	........
  * Size:	0000B0
  */
-void __dt__Q23PSM27ActorDirector_IchouNBeedamaFv(void)
+void PSM::ActorDirector_IchouNBeedama::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4056,7 +4056,7 @@ void __dt__Q23PSM27ActorDirector_IchouNBeedamaFv(void)
  * Address:	80459664
  * Size:	0000D0
  */
-void __dt__Q23PSM19ActorDirector_KehaiFv(void)
+void PSM::ActorDirector_Kehai::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4124,7 +4124,7 @@ void __dt__Q23PSM19ActorDirector_KehaiFv(void)
  * Address:	80459734
  * Size:	0000D0
  */
-void __dt__Q23PSM20ActorDirector_BattleFv(void)
+void PSM::ActorDirector_Battle::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4192,7 +4192,7 @@ void __dt__Q23PSM20ActorDirector_BattleFv(void)
  * Address:	80459804
  * Size:	0000C0
  */
-void __dt__Q23PSM19ActorDirector_EnemyFv(void)
+void PSM::ActorDirector_Enemy::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4256,7 +4256,7 @@ void __dt__Q23PSM19ActorDirector_EnemyFv(void)
  * Address:	804598C4
  * Size:	0000A0
  */
-void __dt__Q23PSM21ActorDirector_TrackOnFv(void)
+void PSM::ActorDirector_TrackOn::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4312,7 +4312,7 @@ void __dt__Q23PSM21ActorDirector_TrackOnFv(void)
  * Address:	80459964
  * Size:	0000A0
  */
-void __dt__Q23PSM22TrackOnDirector_VotingFv(void)
+void PSM::TrackOnDirector_Voting::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4368,7 +4368,7 @@ void __dt__Q23PSM22TrackOnDirector_VotingFv(void)
  * Address:	80459A04
  * Size:	0000A0
  */
-void __dt__Q23PSM28PikminNumberDirector_AutoBgmFv(void)
+void PSM::PikminNumberDirector_AutoBgm::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4424,7 +4424,7 @@ void __dt__Q23PSM28PikminNumberDirector_AutoBgmFv(void)
  * Address:	80459AA4
  * Size:	0000A0
  */
-void __dt__Q23PSM25ActorDirector_TempoChangeFv(void)
+void PSM::ActorDirector_TempoChange::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4480,7 +4480,7 @@ void __dt__Q23PSM25ActorDirector_TempoChangeFv(void)
  * Address:	80459B44
  * Size:	000090
  */
-void __dt__Q23PSM14DamageDirectorFv(void)
+void PSM::DamageDirector::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	804428AC
  * Size:	00003C
  */
-void __ct__Q34Game10MemoryCard6PlayerFv(void)
+void Game::MemoryCard::Player::__ct(void)
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q34Game10MemoryCard6PlayerFv(void)
  * Address:	........
  * Size:	000044
  */
-void setDefault__Q34Game10MemoryCard6PlayerFb(void)
+void Game::MemoryCard::Player::setDefault( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -52,7 +52,7 @@ void setDefault__Q34Game10MemoryCard6PlayerFb(void)
  * Address:	804428E8
  * Size:	000044
  */
-void __ct__Q34Game10MemoryCard14PlayerFileInfoFv(void)
+void Game::MemoryCard::PlayerFileInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void __ct__Q34Game10MemoryCard14PlayerFileInfoFv(void)
  * Address:	........
  * Size:	000070
  */
-void setDefault__Q34Game10MemoryCard14PlayerFileInfoFScb(void)
+void Game::MemoryCard::PlayerFileInfo::setDefault( (signed char, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -91,7 +91,7 @@ void setDefault__Q34Game10MemoryCard14PlayerFileInfoFScb(void)
  * Address:	8044292C
  * Size:	000074
  */
-void getPlayer__Q34Game10MemoryCard14PlayerFileInfoFi(void)
+void Game::MemoryCard::PlayerFileInfo::getPlayer( (int))
 {
 /*
 .loc_0x0:
@@ -136,7 +136,7 @@ void getPlayer__Q34Game10MemoryCard14PlayerFileInfoFi(void)
  * Address:	........
  * Size:	0000F8
  */
-void setParameter__Q34Game10MemoryCard14PlayerFileInfoFScPQ34Game10MemoryCard16PlayerInfoHeader(void)
+void Game::MemoryCard::PlayerFileInfo::setParameter( (signed char, Game::MemoryCard::PlayerInfoHeader *))
 {
 	// UNUSED FUNCTION
 }
@@ -146,7 +146,7 @@ void setParameter__Q34Game10MemoryCard14PlayerFileInfoFScPQ34Game10MemoryCard16P
  * Address:	804429A0
  * Size:	000080
  */
-void isBrokenFile__Q34Game10MemoryCard14PlayerFileInfoFi(void)
+void Game::MemoryCard::PlayerFileInfo::isBrokenFile( (int))
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void isBrokenFile__Q34Game10MemoryCard14PlayerFileInfoFi(void)
  * Address:	80442A20
  * Size:	000094
  */
-void isNewFile__Q34Game10MemoryCard14PlayerFileInfoFi(void)
+void Game::MemoryCard::PlayerFileInfo::isNewFile( (int))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void isNewFile__Q34Game10MemoryCard14PlayerFileInfoFi(void)
  * Address:	........
  * Size:	000078
  */
-void getSaveCount__Q34Game10MemoryCard14PlayerFileInfoFi(void)
+void Game::MemoryCard::PlayerFileInfo::getSaveCount( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -259,7 +259,7 @@ void getSaveCount__Q34Game10MemoryCard14PlayerFileInfoFi(void)
  * Address:	........
  * Size:	000080
  */
-void addSaveCount__Q34Game10MemoryCard14PlayerFileInfoFi(void)
+void Game::MemoryCard::PlayerFileInfo::addSaveCount( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -269,7 +269,7 @@ void addSaveCount__Q34Game10MemoryCard14PlayerFileInfoFi(void)
  * Address:	........
  * Size:	00004C
  */
-void __ct__Q34Game10MemoryCard8ResourceFPQ34Game10MemoryCard3Mgr(void)
+void Game::MemoryCard::Resource::__ct( (Game::MemoryCard::Mgr *))
 {
 	// UNUSED FUNCTION
 }
@@ -279,7 +279,7 @@ void __ct__Q34Game10MemoryCard8ResourceFPQ34Game10MemoryCard3Mgr(void)
  * Address:	80442AB4
  * Size:	00006C
  */
-void __dt__Q34Game10MemoryCard8ResourceFv(void)
+void Game::MemoryCard::Resource::__dt(void)
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void __dt__Q34Game10MemoryCard8ResourceFv(void)
  * Address:	80442B20
  * Size:	00007C
  */
-void __ct__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -363,7 +363,7 @@ void __ct__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442B9C
  * Size:	000030
  */
-void isErrorOccured__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::isErrorOccured(void)
 {
 /*
 .loc_0x0:
@@ -387,7 +387,7 @@ void isErrorOccured__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442BCC
  * Size:	000120
  */
-void loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap(void)
+void Game::MemoryCard::Mgr::loadResource( (JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -481,7 +481,7 @@ void loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap(void)
  * Address:	80442CEC
  * Size:	000010
  */
-void destroyResource__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::destroyResource(void)
 {
 /*
 .loc_0x0:
@@ -497,7 +497,7 @@ void destroyResource__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442CFC
  * Size:	000020
  */
-void update__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::update(void)
 {
 /*
 .loc_0x0:
@@ -517,7 +517,7 @@ void update__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442D1C
  * Size:	00006C
  */
-void format__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::format(void)
 {
 /*
 .loc_0x0:
@@ -558,7 +558,7 @@ void format__Q34Game10MemoryCard3MgrFv(void)
  * Address:	........
  * Size:	000080
  */
-void setCommandFlag__Q34Game10MemoryCard3MgrFi(void)
+void Game::MemoryCard::Mgr::setCommandFlag( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -568,7 +568,7 @@ void setCommandFlag__Q34Game10MemoryCard3MgrFi(void)
  * Address:	........
  * Size:	000074
  */
-void verifySerialNo__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::verifySerialNo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -578,7 +578,7 @@ void verifySerialNo__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442D88
  * Size:	000074
  */
-void checkBeforeSave__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::checkBeforeSave(void)
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void checkBeforeSave__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442DFC
  * Size:	000074
  */
-void checkError__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::checkError(void)
 {
 /*
 .loc_0x0:
@@ -666,7 +666,7 @@ void checkError__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442E70
  * Size:	000074
  */
-void createNewFile__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::createNewFile(void)
 {
 /*
 .loc_0x0:
@@ -709,7 +709,7 @@ void createNewFile__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442EE4
  * Size:	0000B8
  */
-void saveGameOption__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::saveGameOption(void)
 {
 /*
 .loc_0x0:
@@ -771,7 +771,7 @@ void saveGameOption__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80442F9C
  * Size:	0000B8
  */
-void loadGameOption__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::loadGameOption(void)
 {
 /*
 .loc_0x0:
@@ -833,7 +833,7 @@ void loadGameOption__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80443054
  * Size:	000124
  */
-void savePlayerNoCheckSerialNumber__Q34Game10MemoryCard3MgrFi(void)
+void Game::MemoryCard::Mgr::savePlayerNoCheckSerialNumber( (int))
 {
 /*
 .loc_0x0:
@@ -930,7 +930,7 @@ void savePlayerNoCheckSerialNumber__Q34Game10MemoryCard3MgrFi(void)
  * Address:	80443178
  * Size:	000114
  */
-void savePlayer__Q34Game10MemoryCard3MgrFi(void)
+void Game::MemoryCard::Mgr::savePlayer( (int))
 {
 /*
 .loc_0x0:
@@ -1027,7 +1027,7 @@ void savePlayer__Q34Game10MemoryCard3MgrFi(void)
  * Address:	8044328C
  * Size:	000124
  */
-void loadPlayer__Q34Game10MemoryCard3MgrFi(void)
+void Game::MemoryCard::Mgr::loadPlayer( (int))
 {
 /*
 .loc_0x0:
@@ -1120,7 +1120,7 @@ void loadPlayer__Q34Game10MemoryCard3MgrFi(void)
  * Address:	804433B0
  * Size:	000124
  */
-void deletePlayer__Q34Game10MemoryCard3MgrFi(void)
+void Game::MemoryCard::Mgr::deletePlayer( (int))
 {
 /*
 .loc_0x0:
@@ -1213,7 +1213,7 @@ void deletePlayer__Q34Game10MemoryCard3MgrFi(void)
  * Address:	804434D4
  * Size:	000150
  */
-void copyPlayer__Q34Game10MemoryCard3MgrFii(void)
+void Game::MemoryCard::Mgr::copyPlayer( (int, int))
 {
 /*
 .loc_0x0:
@@ -1321,7 +1321,7 @@ void copyPlayer__Q34Game10MemoryCard3MgrFii(void)
  * Address:	80443624
  * Size:	0000E8
  */
-void getPlayerHeader__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard14PlayerFileInfo(void)
+void Game::MemoryCard::Mgr::getPlayerHeader( (Game::MemoryCard::PlayerFileInfo *))
 {
 /*
 .loc_0x0:
@@ -1395,7 +1395,7 @@ void getPlayerHeader__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard14PlayerFileIn
  * Address:	8044370C
  * Size:	000354
  */
-void doCardProc__Q34Game10MemoryCard3MgrFPvP20MemoryCardMgrCommand(void)
+void Game::MemoryCard::Mgr::doCardProc( (void *, MemoryCardMgrCommand *))
 {
 /*
 .loc_0x0:
@@ -1640,7 +1640,7 @@ void doCardProc__Q34Game10MemoryCard3MgrFPvP20MemoryCardMgrCommand(void)
  * Address:	80443A60
  * Size:	000390
  */
-void commandUpdatePlayerHeader__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard14PlayerFileInfo(void)
+void Game::MemoryCard::Mgr::commandUpdatePlayerHeader( (Game::MemoryCard::PlayerFileInfo *))
 {
 /*
 .loc_0x0:
@@ -1916,7 +1916,7 @@ void commandUpdatePlayerHeader__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard14Pl
  * Address:	80443DF0
  * Size:	00007C
  */
-void commandCheckBeforeSave__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::commandCheckBeforeSave(void)
 {
 /*
 .loc_0x0:
@@ -1965,7 +1965,7 @@ void commandCheckBeforeSave__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80443E6C
  * Size:	000080
  */
-void commandCheckError__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::commandCheckError(void)
 {
 /*
 .loc_0x0:
@@ -2017,7 +2017,7 @@ void commandCheckError__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80443EEC
  * Size:	0000B8
  */
-void checkSpace__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot(void)
+void Game::MemoryCard::Mgr::checkSpace( (MemoryCardMgr::ECardSlot))
 {
 /*
 .loc_0x0:
@@ -2087,7 +2087,7 @@ void checkSpace__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot(void)
  * Address:	80443FA4
  * Size:	000118
  */
-void commandSaveHeader__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::commandSaveHeader(void)
 {
 /*
 .loc_0x0:
@@ -2177,7 +2177,7 @@ void commandSaveHeader__Q34Game10MemoryCard3MgrFv(void)
  * Address:	804440BC
  * Size:	0001A0
  */
-void commandCreateNewFile__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::commandCreateNewFile(void)
 {
 /*
 .loc_0x0:
@@ -2319,7 +2319,7 @@ void commandCreateNewFile__Q34Game10MemoryCard3MgrFv(void)
  * Address:	8044425C
  * Size:	000100
  */
-void dataFormat__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot(void)
+void Game::MemoryCard::Mgr::dataFormat( (MemoryCardMgr::ECardSlot))
 {
 /*
 .loc_0x0:
@@ -2403,7 +2403,7 @@ void dataFormat__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot(void)
  * Address:	........
  * Size:	000114
  */
-void writeBrokenData__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot(void)
+void Game::MemoryCard::Mgr::writeBrokenData( (MemoryCardMgr::ECardSlot))
 {
 	// UNUSED FUNCTION
 }
@@ -2413,7 +2413,7 @@ void writeBrokenData__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot(void)
  * Address:	8044435C
  * Size:	000170
  */
-void varifyCardStatus__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::varifyCardStatus(void)
 {
 /*
 .loc_0x0:
@@ -2531,7 +2531,7 @@ void varifyCardStatus__Q34Game10MemoryCard3MgrFv(void)
  * Address:	804444CC
  * Size:	0001C0
  */
-void commandSaveGameOption__Q34Game10MemoryCard3MgrFbb(void)
+void Game::MemoryCard::Mgr::commandSaveGameOption( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -2675,7 +2675,7 @@ void commandSaveGameOption__Q34Game10MemoryCard3MgrFbb(void)
  * Address:	8044468C
  * Size:	000248
  */
-void commandLoadGameOption__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::commandLoadGameOption(void)
 {
 /*
 .loc_0x0:
@@ -2857,7 +2857,7 @@ void commandLoadGameOption__Q34Game10MemoryCard3MgrFv(void)
  * Address:	804448D4
  * Size:	000028
  */
-void writeGameOption__Q34Game10MemoryCard3MgrFR6Stream(void)
+void Game::MemoryCard::Mgr::writeGameOption( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2879,7 +2879,7 @@ void writeGameOption__Q34Game10MemoryCard3MgrFR6Stream(void)
  * Address:	804448FC
  * Size:	000028
  */
-void readGameOption__Q34Game10MemoryCard3MgrFR6Stream(void)
+void Game::MemoryCard::Mgr::readGameOption( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2901,7 +2901,7 @@ void readGameOption__Q34Game10MemoryCard3MgrFR6Stream(void)
  * Address:	80444924
  * Size:	000070
  */
-void checkSerialNo__Q34Game10MemoryCard3MgrFb(void)
+void Game::MemoryCard::Mgr::checkSerialNo( (bool))
 {
 /*
 .loc_0x0:
@@ -2947,7 +2947,7 @@ void checkSerialNo__Q34Game10MemoryCard3MgrFb(void)
  * Address:	80444994
  * Size:	0000D0
  */
-void commandSavePlayer__Q34Game10MemoryCard3MgrFScb(void)
+void Game::MemoryCard::Mgr::commandSavePlayer( (signed char, bool))
 {
 /*
 .loc_0x0:
@@ -3023,7 +3023,7 @@ void commandSavePlayer__Q34Game10MemoryCard3MgrFScb(void)
  * Address:	80444A64
  * Size:	000374
  */
-void commandSavePlayerNoCheckSerialNo__Q34Game10MemoryCard3MgrFScb(void)
+void Game::MemoryCard::Mgr::commandSavePlayerNoCheckSerialNo( (signed char, bool))
 {
 /*
 .loc_0x0:
@@ -3276,7 +3276,7 @@ void commandSavePlayerNoCheckSerialNo__Q34Game10MemoryCard3MgrFScb(void)
  * Address:	80444DD8
  * Size:	000070
  */
-void getPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHeaderPb(void)
+void Game::MemoryCard::Mgr::getPlayerInfo( (signed char, Game::MemoryCard::PlayerInfoHeader *, bool *))
 {
 /*
 .loc_0x0:
@@ -3320,7 +3320,7 @@ void getPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHe
  * Address:	80444E48
  * Size:	0002B0
  */
-void getIndexPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHeaderPb(void)
+void Game::MemoryCard::Mgr::getIndexPlayerInfo( (signed char, Game::MemoryCard::PlayerInfoHeader *, bool *))
 {
 /*
 .loc_0x0:
@@ -3526,7 +3526,7 @@ void getIndexPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerI
  * Address:	804450F8
  * Size:	00019C
  */
-void commandLoadPlayer__Q34Game10MemoryCard3MgrFSc(void)
+void Game::MemoryCard::Mgr::commandLoadPlayer( (signed char))
 {
 /*
 .loc_0x0:
@@ -3653,7 +3653,7 @@ void commandLoadPlayer__Q34Game10MemoryCard3MgrFSc(void)
  * Address:	80445294
  * Size:	00009C
  */
-void loadPlayerForNoCard__Q34Game10MemoryCard3MgrFSc(void)
+void Game::MemoryCard::Mgr::loadPlayerForNoCard( (signed char))
 {
 /*
 .loc_0x0:
@@ -3708,7 +3708,7 @@ void loadPlayerForNoCard__Q34Game10MemoryCard3MgrFSc(void)
  * Address:	80445330
  * Size:	000178
  */
-void loadPlayerProc__Q34Game10MemoryCard3MgrFScPUc(void)
+void Game::MemoryCard::Mgr::loadPlayerProc( (signed char, unsigned char *))
 {
 /*
 .loc_0x0:
@@ -3824,7 +3824,7 @@ void loadPlayerProc__Q34Game10MemoryCard3MgrFScPUc(void)
  * Address:	804454A8
  * Size:	000094
  */
-void commandDeletePlayer__Q34Game10MemoryCard3MgrFSc(void)
+void Game::MemoryCard::Mgr::commandDeletePlayer( (signed char))
 {
 /*
 .loc_0x0:
@@ -3877,7 +3877,7 @@ void commandDeletePlayer__Q34Game10MemoryCard3MgrFSc(void)
  * Address:	8044553C
  * Size:	00019C
  */
-void savePlayerProc__Q34Game10MemoryCard3MgrFScPUcb(void)
+void Game::MemoryCard::Mgr::savePlayerProc( (signed char, unsigned char *, bool))
 {
 /*
 .loc_0x0:
@@ -4008,7 +4008,7 @@ void savePlayerProc__Q34Game10MemoryCard3MgrFScPUcb(void)
  * Address:	804456D8
  * Size:	000068
  */
-void commandCheckSerialNo__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::commandCheckSerialNo(void)
 {
 /*
 .loc_0x0:
@@ -4050,7 +4050,7 @@ void commandCheckSerialNo__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80445740
  * Size:	0001C8
  */
-void commandCopyPlayer__Q34Game10MemoryCard3MgrFScSc(void)
+void Game::MemoryCard::Mgr::commandCopyPlayer( (signed char, signed char))
 {
 /*
 .loc_0x0:
@@ -4190,7 +4190,7 @@ void commandCopyPlayer__Q34Game10MemoryCard3MgrFScSc(void)
  * Address:	80445908
  * Size:	000024
  */
-void writePlayer__Q34Game10MemoryCard3MgrFR6Stream(void)
+void Game::MemoryCard::Mgr::writePlayer( (Stream &))
 {
 /*
 .loc_0x0:
@@ -4211,7 +4211,7 @@ void writePlayer__Q34Game10MemoryCard3MgrFR6Stream(void)
  * Address:	8044592C
  * Size:	000024
  */
-void readPlayer__Q34Game10MemoryCard3MgrFR6Stream(void)
+void Game::MemoryCard::Mgr::readPlayer( (Stream &))
 {
 /*
 .loc_0x0:
@@ -4232,7 +4232,7 @@ void readPlayer__Q34Game10MemoryCard3MgrFR6Stream(void)
  * Address:	80445950
  * Size:	000074
  */
-void checkOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo(void)
+void Game::MemoryCard::Mgr::checkOptionInfo( (Game::MemoryCard::OptionInfo *))
 {
 /*
 .loc_0x0:
@@ -4275,7 +4275,7 @@ void checkOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo(v
  * Address:	804459C4
  * Size:	000024
  */
-void calcCheckSumOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo(void)
+void Game::MemoryCard::Mgr::calcCheckSumOptionInfo( (Game::MemoryCard::OptionInfo *))
 {
 /*
 .loc_0x0:
@@ -4296,7 +4296,7 @@ void calcCheckSumOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10Optio
  * Address:	804459E8
  * Size:	000040
  */
-void testCheckSumOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo(void)
+void Game::MemoryCard::Mgr::testCheckSumOptionInfo( (Game::MemoryCard::OptionInfo *))
 {
 /*
 .loc_0x0:
@@ -4324,7 +4324,7 @@ void testCheckSumOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10Optio
  * Address:	80445A28
  * Size:	000074
  */
-void checkPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo(void)
+void Game::MemoryCard::Mgr::checkPlayerInfo( (Game::MemoryCard::PlayerInfo *))
 {
 /*
 .loc_0x0:
@@ -4367,7 +4367,7 @@ void checkPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo(v
  * Address:	80445A9C
  * Size:	000028
  */
-void calcCheckSumPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo(void)
+void Game::MemoryCard::Mgr::calcCheckSumPlayerInfo( (Game::MemoryCard::PlayerInfo *))
 {
 /*
 .loc_0x0:
@@ -4389,7 +4389,7 @@ void calcCheckSumPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10Playe
  * Address:	80445AC4
  * Size:	000048
  */
-void testCheckSumPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo(void)
+void Game::MemoryCard::Mgr::testCheckSumPlayerInfo( (Game::MemoryCard::PlayerInfo *))
 {
 /*
 .loc_0x0:
@@ -4419,7 +4419,7 @@ void testCheckSumPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10Playe
  * Address:	80445B0C
  * Size:	0000B8
  */
-void getCardStatus__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::getCardStatus(void)
 {
 /*
 .loc_0x0:
@@ -4493,7 +4493,7 @@ void getCardStatus__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80445BC4
  * Size:	0000B8
  */
-void writeInvalidGameOption__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::writeInvalidGameOption(void)
 {
 /*
 .loc_0x0:
@@ -4557,7 +4557,7 @@ void writeInvalidGameOption__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80445C7C
  * Size:	000070
  */
-void writeInvalidPlayerInfoAll__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::writeInvalidPlayerInfoAll(void)
 {
 /*
 .loc_0x0:
@@ -4603,7 +4603,7 @@ void writeInvalidPlayerInfoAll__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80445CEC
  * Size:	000110
  */
-void writeInvalidPlayerInfo__Q34Game10MemoryCard3MgrFiSc(void)
+void Game::MemoryCard::Mgr::writeInvalidPlayerInfo( (int, signed char))
 {
 /*
 .loc_0x0:
@@ -4689,7 +4689,7 @@ void writeInvalidPlayerInfo__Q34Game10MemoryCard3MgrFiSc(void)
  * Address:	80445DFC
  * Size:	0001A8
  */
-void checkPlayerNoPlayerInfo__Q34Game10MemoryCard3MgrFiScPQ34Game10MemoryCard16PlayerInfoHeader(void)
+void Game::MemoryCard::Mgr::checkPlayerNoPlayerInfo( (int, signed char, Game::MemoryCard::PlayerInfoHeader *))
 {
 /*
 .loc_0x0:
@@ -4819,7 +4819,7 @@ void checkPlayerNoPlayerInfo__Q34Game10MemoryCard3MgrFiScPQ34Game10MemoryCard16P
  * Address:	........
  * Size:	000040
  */
-void loadPlayerHeaderProc__Q34Game10MemoryCard3MgrFiPUc(void)
+void Game::MemoryCard::Mgr::loadPlayerHeaderProc( (int, unsigned char *))
 {
 	// UNUSED FUNCTION
 }
@@ -4829,7 +4829,7 @@ void loadPlayerHeaderProc__Q34Game10MemoryCard3MgrFiPUc(void)
  * Address:	80445FA4
  * Size:	000380
  */
-void getIndexInvalidPlayerInfo__Q34Game10MemoryCard3MgrFPiPScScUlb(void)
+void Game::MemoryCard::Mgr::getIndexInvalidPlayerInfo( (int *, signed char *, signed char, unsigned long, bool))
 {
 /*
 .loc_0x0:
@@ -5113,7 +5113,7 @@ void getIndexInvalidPlayerInfo__Q34Game10MemoryCard3MgrFPiPScScUlb(void)
  * Address:	80446324
  * Size:	0004BC
  */
-void modifyPlayerInfo__Q34Game10MemoryCard3MgrFScPb(void)
+void Game::MemoryCard::Mgr::modifyPlayerInfo( (signed char, bool *))
 {
 /*
 .loc_0x0:
@@ -5486,7 +5486,7 @@ void modifyPlayerInfo__Q34Game10MemoryCard3MgrFScPb(void)
  * Address:	804467E0
  * Size:	000084
  */
-void verifyCardSerialNo__Q34Game10MemoryCard3MgrFPUxQ213MemoryCardMgr9ECardSlot(void)
+void Game::MemoryCard::Mgr::verifyCardSerialNo( (unsigned long long *, MemoryCardMgr::ECardSlot))
 {
 /*
 .loc_0x0:
@@ -5535,7 +5535,7 @@ void verifyCardSerialNo__Q34Game10MemoryCard3MgrFPUxQ213MemoryCardMgr9ECardSlot(
  * Address:	80446864
  * Size:	00007C
  */
-void resetError__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::resetError(void)
 {
 /*
 .loc_0x0:
@@ -5584,7 +5584,7 @@ void resetError__Q34Game10MemoryCard3MgrFv(void)
  * Address:	804468E0
  * Size:	00012C
  */
-void doMakeHeader__Q34Game10MemoryCard3MgrFPUc(void)
+void Game::MemoryCard::Mgr::doMakeHeader( (unsigned char *))
 {
 /*
 .loc_0x0:
@@ -5675,7 +5675,7 @@ void doMakeHeader__Q34Game10MemoryCard3MgrFPUc(void)
  * Address:	80446A0C
  * Size:	000104
  */
-void doSetCardStat__Q34Game10MemoryCard3MgrFP8CARDStat(void)
+void Game::MemoryCard::Mgr::doSetCardStat( (CARDStat *))
 {
 /*
 .loc_0x0:
@@ -5752,7 +5752,7 @@ void doSetCardStat__Q34Game10MemoryCard3MgrFP8CARDStat(void)
  * Address:	80446B10
  * Size:	0000DC
  */
-void doCheckCardStat__Q34Game10MemoryCard3MgrFP8CARDStat(void)
+void Game::MemoryCard::Mgr::doCheckCardStat( (CARDStat *))
 {
 /*
 .loc_0x0:
@@ -5823,7 +5823,7 @@ void doCheckCardStat__Q34Game10MemoryCard3MgrFP8CARDStat(void)
  * Address:	80446BEC
  * Size:	000008
  */
-void getClassSize__Q34Game10MemoryCard25MgrCommandGetPlayerHeaderFv(void)
+void Game::MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -5837,7 +5837,7 @@ void getClassSize__Q34Game10MemoryCard25MgrCommandGetPlayerHeaderFv(void)
  * Address:	80446BF4
  * Size:	000008
  */
-void getClassSize__Q34Game10MemoryCard20MgrCommandCopyPlayerFv(void)
+void Game::MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -5851,7 +5851,7 @@ void getClassSize__Q34Game10MemoryCard20MgrCommandCopyPlayerFv(void)
  * Address:	80446BFC
  * Size:	000008
  */
-void getClassSize__Q34Game10MemoryCard18MgrCommandPlayerNoFv(void)
+void Game::MemoryCard::MgrCommandPlayerNo::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -5865,7 +5865,7 @@ void getClassSize__Q34Game10MemoryCard18MgrCommandPlayerNoFv(void)
  * Address:	80446C04
  * Size:	00005C
  */
-void __dt__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5904,7 +5904,7 @@ void __dt__Q34Game10MemoryCard3MgrFv(void)
  * Address:	80446C60
  * Size:	000008
  */
-void getHeaderSize__Q34Game10MemoryCard3MgrFv(void)
+void Game::MemoryCard::Mgr::getHeaderSize(void)
 {
 /*
 .loc_0x0:

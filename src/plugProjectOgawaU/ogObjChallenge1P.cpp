@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80327D48
  * Size:	000074
  */
-void __ct__Q32og9newScreen14ObjChallenge1PFPCc(void)
+void og::newScreen::ObjChallenge1P::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -56,7 +56,7 @@ void __ct__Q32og9newScreen14ObjChallenge1PFPCc(void)
  * Address:	80327DBC
  * Size:	000068
  */
-void __dt__Q32og9newScreen14ObjChallenge1PFv(void)
+void og::newScreen::ObjChallenge1P::__dt(void)
 {
 /*
 .loc_0x0:
@@ -96,7 +96,7 @@ void __dt__Q32og9newScreen14ObjChallenge1PFv(void)
  * Address:	80327E24
  * Size:	000678
  */
-void doCreate__Q32og9newScreen14ObjChallenge1PFP10JKRArchive(void)
+void og::newScreen::ObjChallenge1P::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -548,7 +548,7 @@ void doCreate__Q32og9newScreen14ObjChallenge1PFP10JKRArchive(void)
  * Address:	........
  * Size:	0001CC
  */
-void commonUpdate__Q32og9newScreen14ObjChallenge1PFv(void)
+void og::newScreen::ObjChallenge1P::commonUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -558,7 +558,7 @@ void commonUpdate__Q32og9newScreen14ObjChallenge1PFv(void)
  * Address:	8032849C
  * Size:	0001D4
  */
-void doUpdate__Q32og9newScreen14ObjChallenge1PFv(void)
+void og::newScreen::ObjChallenge1P::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -695,7 +695,7 @@ void doUpdate__Q32og9newScreen14ObjChallenge1PFv(void)
  * Address:	80328670
  * Size:	000030
  */
-void doDraw__Q32og9newScreen14ObjChallenge1PFR8Graphics(void)
+void og::newScreen::ObjChallenge1P::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -721,7 +721,7 @@ void doDraw__Q32og9newScreen14ObjChallenge1PFR8Graphics(void)
  * Address:	803286A0
  * Size:	000228
  */
-void doUpdateFadein__Q32og9newScreen14ObjChallenge1PFv(void)
+void og::newScreen::ObjChallenge1P::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -881,7 +881,7 @@ void doUpdateFadein__Q32og9newScreen14ObjChallenge1PFv(void)
  * Address:	803288C8
  * Size:	000004
  */
-void doUpdateFadeinFinish__Q32og9newScreen14ObjChallenge1PFv(void)
+void og::newScreen::ObjChallenge1P::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -894,7 +894,7 @@ void doUpdateFadeinFinish__Q32og9newScreen14ObjChallenge1PFv(void)
  * Address:	803288CC
  * Size:	00000C
  */
-void doUpdateFinish__Q32og9newScreen14ObjChallenge1PFv(void)
+void og::newScreen::ObjChallenge1P::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -909,7 +909,7 @@ void doUpdateFinish__Q32og9newScreen14ObjChallenge1PFv(void)
  * Address:	803288D8
  * Size:	000230
  */
-void doUpdateFadeout__Q32og9newScreen14ObjChallenge1PFv(void)
+void og::newScreen::ObjChallenge1P::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void doUpdateFadeout__Q32og9newScreen14ObjChallenge1PFv(void)
  * Address:	80328B08
  * Size:	000004
  */
-void doUpdateFadeoutFinish__Q32og9newScreen14ObjChallenge1PFv(void)
+void og::newScreen::ObjChallenge1P::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -1084,7 +1084,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen14ObjChallenge1PFv(void)
  * Address:	80328B0C
  * Size:	000074
  */
-void doStart__Q32og9newScreen14ObjChallenge1PFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjChallenge1P::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -1183,7 +1183,7 @@ void __sinit_ogObjChallenge1P_cpp(void)
  * Address:	80328C28
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen14ObjChallenge1PFv(void)
+void @24@og::newScreen::ObjChallenge1P::__dt(void)
 {
 /*
 .loc_0x0:

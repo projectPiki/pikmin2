@@ -5,7 +5,7 @@
  * Address:	80434AC0
  * Size:	000064
  */
-void __ct__Q29P2DScreen3MgrFv(void)
+void P2DScreen::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q29P2DScreen3MgrFv(void)
  * Address:	80434B24
  * Size:	000138
  */
-void addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node(void)
+void P2DScreen::Mgr::addCallBack( (unsigned long long, P2DScreen::Node *))
 {
 /*
 .loc_0x0:
@@ -152,7 +152,7 @@ void addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node(void)
  * Address:	80434C5C
  * Size:	000084
  */
-void addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node(void)
+void P2DScreen::Mgr::addCallBackPane( (J2DPane *, P2DScreen::Node *))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node(void)
  * Address:	80434CE0
  * Size:	00004C
  */
-void update__Q29P2DScreen3MgrFv(void)
+void P2DScreen::Mgr::update(void)
 {
 /*
 .loc_0x0:
@@ -234,7 +234,7 @@ void update__Q29P2DScreen3MgrFv(void)
  * Address:	80434D2C
  * Size:	000080
  */
-void draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext(void)
+void P2DScreen::Mgr::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext(void)
  * Address:	80434DAC
  * Size:	000088
  */
-void __ct__Q29P2DScreen10Mgr_tuningFv(void)
+void P2DScreen::Mgr_tuning::__ct(void)
 {
 /*
 .loc_0x0:
@@ -328,7 +328,7 @@ void __ct__Q29P2DScreen10Mgr_tuningFv(void)
  * Address:	80434E34
  * Size:	000128
  */
-void draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext(void)
+void P2DScreen::Mgr_tuning::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:

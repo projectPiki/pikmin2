@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80323584
  * Size:	000050
  */
-void __ct__Q32og9newScreen17SMenuPauseDoukutuFv(void)
+void og::newScreen::SMenuPauseDoukutu::__ct(void)
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q32og9newScreen17SMenuPauseDoukutuFv(void)
  * Address:	........
  * Size:	000084
  */
-void __dt__Q32og9newScreen17SMenuPauseDoukutuFv(void)
+void og::newScreen::SMenuPauseDoukutu::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -57,7 +57,7 @@ void __dt__Q32og9newScreen17SMenuPauseDoukutuFv(void)
  * Address:	803235D4
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen17SMenuPauseDoukutuFPQ28Resource10MgrCommand(void)
+void og::newScreen::SMenuPauseDoukutu::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void doUserCallBackFunc__Q32og9newScreen17SMenuPauseDoukutuFPQ28Resource10MgrCom
  * Address:	803235D8
  * Size:	000060
  */
-void doCreateObj__Q32og9newScreen17SMenuPauseDoukutuFP10JKRArchive(void)
+void og::newScreen::SMenuPauseDoukutu::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void doCreateObj__Q32og9newScreen17SMenuPauseDoukutuFP10JKRArchive(void)
  * Address:	80323638
  * Size:	000090
  */
-void doGetFinishState__Q32og9newScreen17SMenuPauseDoukutuFv(void)
+void og::newScreen::SMenuPauseDoukutu::doGetFinishState(void)
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void doGetFinishState__Q32og9newScreen17SMenuPauseDoukutuFv(void)
  * Address:	803236C8
  * Size:	000004
  */
-void doUpdateActive__Q32og9newScreen17SMenuPauseDoukutuFv(void)
+void og::newScreen::SMenuPauseDoukutu::doUpdateActive(void)
 {
 /*
 .loc_0x0:
@@ -171,7 +171,7 @@ void doUpdateActive__Q32og9newScreen17SMenuPauseDoukutuFv(void)
  * Address:	803236CC
  * Size:	000068
  */
-void doConfirmSetScene__Q32og9newScreen17SMenuPauseDoukutuFRQ26Screen11SetSceneArg(void)
+void og::newScreen::SMenuPauseDoukutu::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void doConfirmSetScene__Q32og9newScreen17SMenuPauseDoukutuFRQ26Screen11SetSceneA
  * Address:	80323734
  * Size:	00000C
  */
-void getResName__Q32og9newScreen17SMenuPauseDoukutuCFv(void)
+void og::newScreen::SMenuPauseDoukutu::getResName( const
 {
 /*
 .loc_0x0:
@@ -226,7 +226,7 @@ void getResName__Q32og9newScreen17SMenuPauseDoukutuCFv(void)
  * Address:	80323740
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen17SMenuPauseDoukutuFv(void)
+void og::newScreen::SMenuPauseDoukutu::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -240,7 +240,7 @@ void getSceneType__Q32og9newScreen17SMenuPauseDoukutuFv(void)
  * Address:	80323748
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen17SMenuPauseDoukutuFv(void)
+void og::newScreen::SMenuPauseDoukutu::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void getOwnerID__Q32og9newScreen17SMenuPauseDoukutuFv(void)
  * Address:	80323754
  * Size:	000014
  */
-void getMemberID__Q32og9newScreen17SMenuPauseDoukutuFv(void)
+void og::newScreen::SMenuPauseDoukutu::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -272,7 +272,7 @@ void getMemberID__Q32og9newScreen17SMenuPauseDoukutuFv(void)
  * Address:	80323768
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen17SMenuPauseDoukutuFv(void)
+void og::newScreen::SMenuPauseDoukutu::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8023F3F0
  * Size:	000138
  */
-void __ct__Q24Game10PlayCameraFPQ24Game4Navi(void)
+void Game::PlayCamera::__ct( (Game::Navi *))
 {
 /*
 .loc_0x0:
@@ -105,7 +105,7 @@ void __ct__Q24Game10PlayCameraFPQ24Game4Navi(void)
  * Address:	8023F528
  * Size:	000008
  */
-void setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms(void)
+void Game::PlayCamera::setCameraParms( (Game::CameraParms *))
 {
 /*
 .loc_0x0:
@@ -119,7 +119,7 @@ void setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms(void)
  * Address:	8023F530
  * Size:	000008
  */
-void setVibrationParms__Q24Game10PlayCameraFPQ24Game14VibrationParms(void)
+void Game::PlayCamera::setVibrationParms( (Game::VibrationParms *))
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void setVibrationParms__Q24Game10PlayCameraFPQ24Game14VibrationParms(void)
  * Address:	8023F538
  * Size:	00016C
  */
-void init__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::init(void)
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void init__Q24Game10PlayCameraFv(void)
  * Address:	8023F6A4
  * Size:	000034
  */
-void setCameraAngle__Q24Game10PlayCameraFf(void)
+void Game::PlayCamera::setCameraAngle( (float))
 {
 /*
 .loc_0x0:
@@ -271,7 +271,7 @@ void setCameraAngle__Q24Game10PlayCameraFf(void)
  * Address:	8023F6D8
  * Size:	00005C
  */
-void getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData(void)
+void Game::PlayCamera::getCameraData( (Game::CameraData &))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData(void)
  * Address:	8023F734
  * Size:	00005C
  */
-void setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData(void)
+void Game::PlayCamera::setCameraData( (Game::CameraData &))
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData(void)
  * Address:	8023F790
  * Size:	000080
  */
-void changePlayerMode__Q24Game10PlayCameraFb(void)
+void Game::PlayCamera::changePlayerMode( (bool))
 {
 /*
 .loc_0x0:
@@ -389,7 +389,7 @@ void changePlayerMode__Q24Game10PlayCameraFb(void)
  * Address:	8023F810
  * Size:	00004C
  */
-void isSpecialCamera__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::isSpecialCamera(void)
 {
 /*
 .loc_0x0:
@@ -422,7 +422,7 @@ void isSpecialCamera__Q24Game10PlayCameraFv(void)
  * Address:	8023F85C
  * Size:	0000E8
  */
-void doUpdate__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -506,7 +506,7 @@ void doUpdate__Q24Game10PlayCameraFv(void)
  * Address:	8023F944
  * Size:	0000E0
  */
-void updateMatrix__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::updateMatrix(void)
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void updateMatrix__Q24Game10PlayCameraFv(void)
  * Address:	8023FA24
  * Size:	00007C
  */
-void noUpdate__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::noUpdate(void)
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void noUpdate__Q24Game10PlayCameraFv(void)
  * Address:	8023FAA0
  * Size:	000044
  */
-void isVibration__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::isVibration(void)
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void isVibration__Q24Game10PlayCameraFv(void)
  * Address:	8023FAE4
  * Size:	000208
  */
-void startVibration__Q24Game10PlayCameraFif(void)
+void Game::PlayCamera::startVibration( (int, float))
 {
 /*
 .loc_0x0:
@@ -818,7 +818,7 @@ void startVibration__Q24Game10PlayCameraFif(void)
  * Address:	8023FCEC
  * Size:	0000D0
  */
-void startDemoCamera__Q24Game10PlayCameraFi(void)
+void Game::PlayCamera::startDemoCamera( (int))
 {
 /*
 .loc_0x0:
@@ -886,7 +886,7 @@ void startDemoCamera__Q24Game10PlayCameraFi(void)
  * Address:	8023FDBC
  * Size:	000020
  */
-void finishDemoCamera__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::finishDemoCamera(void)
 {
 /*
 .loc_0x0:
@@ -906,7 +906,7 @@ void finishDemoCamera__Q24Game10PlayCameraFv(void)
  * Address:	8023FDDC
  * Size:	0000EC
  */
-void updateCameraMode__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::updateCameraMode(void)
 {
 /*
 .loc_0x0:
@@ -993,7 +993,7 @@ void updateCameraMode__Q24Game10PlayCameraFv(void)
  * Address:	8023FEC8
  * Size:	000080
  */
-void startZoomCamera__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::startZoomCamera(void)
 {
 /*
 .loc_0x0:
@@ -1037,7 +1037,7 @@ void startZoomCamera__Q24Game10PlayCameraFv(void)
  * Address:	8023FF48
  * Size:	000084
  */
-void startGameCamera__Q24Game10PlayCameraFi(void)
+void Game::PlayCamera::startGameCamera( (int))
 {
 /*
 .loc_0x0:
@@ -1088,7 +1088,7 @@ void startGameCamera__Q24Game10PlayCameraFi(void)
  * Address:	8023FFCC
  * Size:	0002F8
  */
-void setTargetParms__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::setTargetParms(void)
 {
 /*
 .loc_0x0:
@@ -1308,7 +1308,7 @@ void setTargetParms__Q24Game10PlayCameraFv(void)
  * Address:	802402C4
  * Size:	000070
  */
-void setTargetThetaToWhistle__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::setTargetThetaToWhistle(void)
 {
 /*
 .loc_0x0:
@@ -1348,7 +1348,7 @@ void setTargetThetaToWhistle__Q24Game10PlayCameraFv(void)
  * Address:	80240334
  * Size:	000010
  */
-void setFollowTime__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::setFollowTime(void)
 {
 /*
 .loc_0x0:
@@ -1364,7 +1364,7 @@ void setFollowTime__Q24Game10PlayCameraFv(void)
  * Address:	80240344
  * Size:	000068
  */
-void setSmoothThetaSpeed__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::setSmoothThetaSpeed(void)
 {
 /*
 .loc_0x0:
@@ -1408,7 +1408,7 @@ void setSmoothThetaSpeed__Q24Game10PlayCameraFv(void)
  * Address:	802403AC
  * Size:	0000E0
  */
-void changeTargetTheta__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::changeTargetTheta(void)
 {
 /*
 .loc_0x0:
@@ -1484,7 +1484,7 @@ void changeTargetTheta__Q24Game10PlayCameraFv(void)
  * Address:	8024048C
  * Size:	000384
  */
-void changeTargetAtPosition__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::changeTargetAtPosition(void)
 {
 /*
 .loc_0x0:
@@ -1745,7 +1745,7 @@ void changeTargetAtPosition__Q24Game10PlayCameraFv(void)
  * Address:	80240810
  * Size:	000164
  */
-void updateParms__Q24Game10PlayCameraFi(void)
+void Game::PlayCamera::updateParms( (int))
 {
 /*
 .loc_0x0:
@@ -1856,7 +1856,7 @@ void updateParms__Q24Game10PlayCameraFi(void)
  * Address:	80240974
  * Size:	00012C
  */
-void updateVibration__Q24Game10PlayCameraFi(void)
+void Game::PlayCamera::updateVibration( (int))
 {
 /*
 .loc_0x0:
@@ -1951,7 +1951,7 @@ void updateVibration__Q24Game10PlayCameraFi(void)
  * Address:	80240AA0
  * Size:	000074
  */
-void otherVibFinished__Q24Game10PlayCameraFi(void)
+void Game::PlayCamera::otherVibFinished( (int))
 {
 /*
 .loc_0x0:
@@ -1996,7 +1996,7 @@ void otherVibFinished__Q24Game10PlayCameraFi(void)
  * Address:	80240B14
  * Size:	000174
  */
-void isModCameraFinished__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::isModCameraFinished(void)
 {
 /*
 .loc_0x0:
@@ -2127,7 +2127,7 @@ void isModCameraFinished__Q24Game10PlayCameraFv(void)
  * Address:	80240C88
  * Size:	000158
  */
-void setCollisionCameraTargetPhi__Q24Game10PlayCameraFi(void)
+void Game::PlayCamera::setCollisionCameraTargetPhi( (int))
 {
 /*
 .loc_0x0:
@@ -2259,7 +2259,7 @@ void setCollisionCameraTargetPhi__Q24Game10PlayCameraFi(void)
  * Address:	80240DE0
  * Size:	000384
  */
-void getCollisionCameraTargetPhi__Q24Game10PlayCameraFff(void)
+void Game::PlayCamera::getCollisionCameraTargetPhi( (float, float))
 {
 /*
 .loc_0x0:
@@ -2518,7 +2518,7 @@ void getCollisionCameraTargetPhi__Q24Game10PlayCameraFff(void)
  * Address:	80241164
  * Size:	0000D0
  */
-void __dt__Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2586,7 +2586,7 @@ void __dt__Q24Game10PlayCameraFv(void)
  * Address:	80241234
  * Size:	000004
  */
-void startVibration__Q24Game10PlayCameraFi(void)
+void Game::PlayCamera::startVibration( (int))
 {
 /*
 .loc_0x0:
@@ -2599,7 +2599,7 @@ void startVibration__Q24Game10PlayCameraFi(void)
  * Address:	80241238
  * Size:	00001C
  */
-void getLookAtPosition___Q24Game10PlayCameraFv(void)
+void Game::PlayCamera::getLookAtPosition_(void)
 {
 /*
 .loc_0x0:

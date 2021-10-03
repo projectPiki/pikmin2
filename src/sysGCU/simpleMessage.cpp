@@ -5,7 +5,7 @@
  * Address:	8043DBEC
  * Size:	000004
  */
-void __ct__Q25P2JME13SimpleMessageFv(void)
+void P2JME::SimpleMessage::__ct(void)
 {
 /*
 .loc_0x0:
@@ -18,7 +18,7 @@ void __ct__Q25P2JME13SimpleMessageFv(void)
  * Address:	8043DBF0
  * Size:	00006C
  */
-void init__Q25P2JME13SimpleMessageFv(void)
+void P2JME::SimpleMessage::init(void)
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void init__Q25P2JME13SimpleMessageFv(void)
  * Address:	........
  * Size:	00007C
  */
-void drawMessageCode__Q25P2JME13SimpleMessageFR8GraphicsUsUs(void)
+void P2JME::SimpleMessage::drawMessageCode( (Graphics &, unsigned short, unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -69,7 +69,7 @@ void drawMessageCode__Q25P2JME13SimpleMessageFR8GraphicsUsUs(void)
  * Address:	........
  * Size:	00006C
  */
-void drawMessageCode__Q25P2JME13SimpleMessageFR8GraphicsUl(void)
+void P2JME::SimpleMessage::drawMessageCode( (Graphics &, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -79,7 +79,7 @@ void drawMessageCode__Q25P2JME13SimpleMessageFR8GraphicsUl(void)
  * Address:	8043DC5C
  * Size:	000080
  */
-void drawMessageID__Q25P2JME13SimpleMessageFR8GraphicsUlUl(void)
+void P2JME::SimpleMessage::drawMessageID( (Graphics &, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -123,7 +123,7 @@ void drawMessageID__Q25P2JME13SimpleMessageFR8GraphicsUlUl(void)
  * Address:	........
  * Size:	000090
  */
-void drawMessageID__Q25P2JME13SimpleMessageFR8GraphicsPc(void)
+void P2JME::SimpleMessage::drawMessageID( (Graphics &, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -133,7 +133,7 @@ void drawMessageID__Q25P2JME13SimpleMessageFR8GraphicsPc(void)
  * Address:	........
  * Size:	000050
  */
-void locate__Q25P2JME13SimpleMessageFii(void)
+void P2JME::SimpleMessage::locate( (int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -143,7 +143,7 @@ void locate__Q25P2JME13SimpleMessageFii(void)
  * Address:	........
  * Size:	0003B0
  */
-void setInfo__Q25P2JME13SimpleMessageFP7J2DPane(void)
+void P2JME::SimpleMessage::setInfo( (J2DPane *))
 {
 	// UNUSED FUNCTION
 }

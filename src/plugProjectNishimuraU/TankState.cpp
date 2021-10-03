@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80273DE4
  * Size:	000280
  */
-void init__Q34Game4Tank3FSMFPQ24Game9EnemyBase(void)
+void Game::Tank::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -201,7 +201,7 @@ void init__Q34Game4Tank3FSMFPQ24Game9EnemyBase(void)
  * Address:	80274064
  * Size:	000070
  */
-void init__Q34Game4Tank9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tank::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -241,7 +241,7 @@ void init__Q34Game4Tank9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802740D4
  * Size:	000004
  */
-void finishEffect__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::finishEffect(void)
 {
 /*
 .loc_0x0:
@@ -254,7 +254,7 @@ void finishEffect__Q34Game4Tank3ObjFv(void)
  * Address:	802740D8
  * Size:	000044
  */
-void exec__Q34Game4Tank9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Tank::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void exec__Q34Game4Tank9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8027411C
  * Size:	000004
  */
-void cleanup__Q34Game4Tank9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Tank::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void cleanup__Q34Game4Tank9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80274120
  * Size:	000044
  */
-void init__Q34Game4Tank9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tank::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -327,7 +327,7 @@ void init__Q34Game4Tank9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80274164
  * Size:	000258
  */
-void exec__Q34Game4Tank9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Tank::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -507,7 +507,7 @@ void exec__Q34Game4Tank9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802743BC
  * Size:	000028
  */
-void cleanup__Q34Game4Tank9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Tank::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -529,7 +529,7 @@ void cleanup__Q34Game4Tank9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802743E4
  * Size:	000054
  */
-void init__Q34Game4Tank9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tank::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -562,7 +562,7 @@ void init__Q34Game4Tank9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80274438
  * Size:	00056C
  */
-void exec__Q34Game4Tank9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Tank::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -951,7 +951,7 @@ void exec__Q34Game4Tank9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802749A4
  * Size:	000028
  */
-void cleanup__Q34Game4Tank9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Tank::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -973,7 +973,7 @@ void cleanup__Q34Game4Tank9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802749CC
  * Size:	000104
  */
-void init__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tank::StateMoveTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1056,7 +1056,7 @@ void init__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80274AD0
  * Size:	000364
  */
-void exec__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase(void)
+void Game::Tank::StateMoveTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1307,7 +1307,7 @@ void exec__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase(void)
  * Address:	80274E34
  * Size:	000028
  */
-void cleanup__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase(void)
+void Game::Tank::StateMoveTurn::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1329,7 +1329,7 @@ void cleanup__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase(void)
  * Address:	80274E5C
  * Size:	000050
  */
-void init__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tank::StateChaseTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1361,7 +1361,7 @@ void init__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	80274EAC
  * Size:	0005F4
  */
-void exec__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBase(void)
+void Game::Tank::StateChaseTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1790,7 +1790,7 @@ void exec__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBase(void)
  * Address:	802754A0
  * Size:	00003C
  */
-void cleanup__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBase(void)
+void Game::Tank::StateChaseTurn::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1817,7 +1817,7 @@ void cleanup__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBase(void)
  * Address:	802754DC
  * Size:	000084
  */
-void init__Q34Game4Tank11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tank::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1862,7 +1862,7 @@ void init__Q34Game4Tank11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80275560
  * Size:	000004
  */
-void createChargeSE__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::createChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -1875,7 +1875,7 @@ void createChargeSE__Q34Game4Tank3ObjFv(void)
  * Address:	80275564
  * Size:	0001E0
  */
-void exec__Q34Game4Tank11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Tank::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2021,7 +2021,7 @@ void exec__Q34Game4Tank11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	80275744
  * Size:	000004
  */
-void startEffect__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::startEffect(void)
 {
 /*
 .loc_0x0:
@@ -2034,7 +2034,7 @@ void startEffect__Q34Game4Tank3ObjFv(void)
  * Address:	80275748
  * Size:	000004
  */
-void createDisChargeSE__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::createDisChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -2047,7 +2047,7 @@ void createDisChargeSE__Q34Game4Tank3ObjFv(void)
  * Address:	8027574C
  * Size:	000058
  */
-void cleanup__Q34Game4Tank11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Tank::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2081,7 +2081,7 @@ void cleanup__Q34Game4Tank11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802757A4
  * Size:	000004
  */
-void startYodare__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::startYodare(void)
 {
 /*
 .loc_0x0:
@@ -2094,7 +2094,7 @@ void startYodare__Q34Game4Tank3ObjFv(void)
  * Address:	802757A8
  * Size:	000058
  */
-void init__Q34Game4Tank10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Tank::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2128,7 +2128,7 @@ void init__Q34Game4Tank10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80275800
  * Size:	000180
  */
-void exec__Q34Game4Tank10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Tank::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2244,7 +2244,7 @@ void exec__Q34Game4Tank10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	80275980
  * Size:	000024
  */
-void cleanup__Q34Game4Tank10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Tank::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

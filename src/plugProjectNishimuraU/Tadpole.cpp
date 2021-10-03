@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802785D0
  * Size:	000130
  */
-void __ct__Q34Game7Tadpole3ObjFv(void)
+void Game::Tadpole::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q34Game7Tadpole3ObjFv(void)
  * Address:	80278700
  * Size:	000004
  */
-void setInitialSetting__Q34Game7Tadpole3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Tadpole::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void setInitialSetting__Q34Game7Tadpole3ObjFPQ24Game21EnemyInitialParamBase(void
  * Address:	80278704
  * Size:	000064
  */
-void onInit__Q34Game7Tadpole3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Tadpole::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void onInit__Q34Game7Tadpole3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80278768
  * Size:	000034
  */
-void doUpdate__Q34Game7Tadpole3ObjFv(void)
+void Game::Tadpole::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void doUpdate__Q34Game7Tadpole3ObjFv(void)
  * Address:	8027879C
  * Size:	000004
  */
-void doDirectDraw__Q34Game7Tadpole3ObjFR8Graphics(void)
+void Game::Tadpole::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void doDirectDraw__Q34Game7Tadpole3ObjFR8Graphics(void)
  * Address:	802787A0
  * Size:	000020
  */
-void doDebugDraw__Q34Game7Tadpole3ObjFR8Graphics(void)
+void Game::Tadpole::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -217,7 +217,7 @@ void doDebugDraw__Q34Game7Tadpole3ObjFR8Graphics(void)
  * Address:	802787C0
  * Size:	00004C
  */
-void setFSM__Q34Game7Tadpole3ObjFPQ34Game7Tadpole3FSM(void)
+void Game::Tadpole::Obj::setFSM( (Game::Tadpole::FSM *))
 {
 /*
 .loc_0x0:
@@ -248,7 +248,7 @@ void setFSM__Q34Game7Tadpole3ObjFPQ34Game7Tadpole3FSM(void)
  * Address:	8027880C
  * Size:	0000B0
  */
-void getShadowParam__Q34Game7Tadpole3ObjFRQ24Game11ShadowParam(void)
+void Game::Tadpole::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void getShadowParam__Q34Game7Tadpole3ObjFRQ24Game11ShadowParam(void)
  * Address:	802788BC
  * Size:	000068
  */
-void hipdropCallBack__Q34Game7Tadpole3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Tadpole::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void hipdropCallBack__Q34Game7Tadpole3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80278924
  * Size:	000028
  */
-void startCarcassMotion__Q34Game7Tadpole3ObjFv(void)
+void Game::Tadpole::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -372,7 +372,7 @@ void startCarcassMotion__Q34Game7Tadpole3ObjFv(void)
  * Address:	8027894C
  * Size:	0001E4
  */
-void setRandTarget__Q34Game7Tadpole3ObjFb(void)
+void Game::Tadpole::Obj::setRandTarget( (bool))
 {
 /*
 .loc_0x0:
@@ -513,7 +513,7 @@ void setRandTarget__Q34Game7Tadpole3ObjFb(void)
  * Address:	80278B30
  * Size:	0001C8
  */
-void getTargetPosition__Q34Game7Tadpole3ObjFPQ24Game8Creature(void)
+void Game::Tadpole::Obj::getTargetPosition( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -653,7 +653,7 @@ void getTargetPosition__Q34Game7Tadpole3ObjFPQ24Game8Creature(void)
  * Address:	80278CF8
  * Size:	000188
  */
-void createLeapEffect__Q34Game7Tadpole3ObjFv(void)
+void Game::Tadpole::Obj::createLeapEffect(void)
 {
 /*
 .loc_0x0:
@@ -767,7 +767,7 @@ void createLeapEffect__Q34Game7Tadpole3ObjFv(void)
  * Address:	80278E80
  * Size:	000004
  */
-void inWaterCallback__Q34Game7Tadpole3ObjFPQ24Game8WaterBox(void)
+void Game::Tadpole::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -780,7 +780,7 @@ void inWaterCallback__Q34Game7Tadpole3ObjFPQ24Game8WaterBox(void)
  * Address:	80278E84
  * Size:	000004
  */
-void outWaterCallback__Q34Game7Tadpole3ObjFv(void)
+void Game::Tadpole::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -793,7 +793,7 @@ void outWaterCallback__Q34Game7Tadpole3ObjFv(void)
  * Address:	80278E88
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Tadpole3ObjFv(void)
+void Game::Tadpole::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

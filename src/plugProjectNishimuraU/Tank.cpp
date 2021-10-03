@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80275D8C
  * Size:	000138
  */
-void __ct__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game4Tank3ObjFv(void)
  * Address:	80275EC4
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Tank3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Tank::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game4Tank3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	80275EC8
  * Size:	00009C
  */
-void onInit__Q34Game4Tank3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Tank::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -175,7 +175,7 @@ void onInit__Q34Game4Tank3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80275F64
  * Size:	000004
  */
-void setupEffect__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -188,7 +188,7 @@ void setupEffect__Q34Game4Tank3ObjFv(void)
  * Address:	80275F68
  * Size:	000050
  */
-void onKill__Q34Game4Tank3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Tank::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -220,7 +220,7 @@ void onKill__Q34Game4Tank3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	80275FB8
  * Size:	00004C
  */
-void doUpdate__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void doUpdate__Q34Game4Tank3ObjFv(void)
  * Address:	80276004
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Tank3ObjFR8Graphics(void)
+void Game::Tank::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -264,7 +264,7 @@ void doDirectDraw__Q34Game4Tank3ObjFR8Graphics(void)
  * Address:	80276008
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Tank3ObjFR8Graphics(void)
+void Game::Tank::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -284,7 +284,7 @@ void doDebugDraw__Q34Game4Tank3ObjFR8Graphics(void)
  * Address:	80276028
  * Size:	00004C
  */
-void setFSM__Q34Game4Tank3ObjFPQ34Game4Tank3FSM(void)
+void Game::Tank::Obj::setFSM( (Game::Tank::FSM *))
 {
 /*
 .loc_0x0:
@@ -315,7 +315,7 @@ void setFSM__Q34Game4Tank3ObjFPQ34Game4Tank3FSM(void)
  * Address:	80276074
  * Size:	000090
  */
-void getShadowParam__Q34Game4Tank3ObjFRQ24Game11ShadowParam(void)
+void Game::Tank::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -367,7 +367,7 @@ void getShadowParam__Q34Game4Tank3ObjFRQ24Game11ShadowParam(void)
  * Address:	80276104
  * Size:	000054
  */
-void doStartStoneState__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -402,7 +402,7 @@ void doStartStoneState__Q34Game4Tank3ObjFv(void)
  * Address:	80276158
  * Size:	00004C
  */
-void doFinishStoneState__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -435,7 +435,7 @@ void doFinishStoneState__Q34Game4Tank3ObjFv(void)
  * Address:	802761A4
  * Size:	000054
  */
-void doStartEarthquakeFitState__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doStartEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -470,7 +470,7 @@ void doStartEarthquakeFitState__Q34Game4Tank3ObjFv(void)
  * Address:	802761F8
  * Size:	00004C
  */
-void doFinishEarthquakeFitState__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doFinishEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -503,7 +503,7 @@ void doFinishEarthquakeFitState__Q34Game4Tank3ObjFv(void)
  * Address:	80276244
  * Size:	000040
  */
-void doStartWaitingBirthTypeDrop__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void doStartWaitingBirthTypeDrop__Q34Game4Tank3ObjFv(void)
  * Address:	80276284
  * Size:	000004
  */
-void effectDrawOff__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -544,7 +544,7 @@ void effectDrawOff__Q34Game4Tank3ObjFv(void)
  * Address:	80276288
  * Size:	000040
  */
-void doFinishWaitingBirthTypeDrop__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -572,7 +572,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game4Tank3ObjFv(void)
  * Address:	802762C8
  * Size:	000004
  */
-void effectDrawOn__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -585,7 +585,7 @@ void effectDrawOn__Q34Game4Tank3ObjFv(void)
  * Address:	802762CC
  * Size:	000028
  */
-void startCarcassMotion__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -607,7 +607,7 @@ void startCarcassMotion__Q34Game4Tank3ObjFv(void)
  * Address:	802762F4
  * Size:	00002C
  */
-void doStartMovie__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -630,7 +630,7 @@ void doStartMovie__Q34Game4Tank3ObjFv(void)
  * Address:	80276320
  * Size:	00002C
  */
-void doEndMovie__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -653,7 +653,7 @@ void doEndMovie__Q34Game4Tank3ObjFv(void)
  * Address:	8027634C
  * Size:	0000C4
  */
-void getOffsetForMapCollision__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void getOffsetForMapCollision__Q34Game4Tank3ObjFv(void)
  * Address:	80276410
  * Size:	000094
  */
-void initWalkSmokeEffect__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -767,7 +767,7 @@ void initWalkSmokeEffect__Q34Game4Tank3ObjFv(void)
  * Address:	802764A4
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -814,7 +814,7 @@ void getCommonEffectPos__Q34Game4Tank3ObjFR10Vector3<float>(void)
  * Address:	80276500
  * Size:	000338
  */
-void isAttackable__Q34Game4Tank3ObjFb(void)
+void Game::Tank::Obj::isAttackable( (bool))
 {
 /*
 .loc_0x0:
@@ -1060,7 +1060,7 @@ void isAttackable__Q34Game4Tank3ObjFb(void)
  * Address:	80276838
  * Size:	000004
  */
-void interactCreature__Q34Game4Tank3ObjFPQ24Game8Creature(void)
+void Game::Tank::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1237,7 +1237,7 @@ void emitCollideRatio__Q34Game4Tank3ObjFR10Vector3<float>R10Vector3<float>f(void
  * Address:	80276A64
  * Size:	000004
  */
-void stopEffectRadius__Q34Game4Tank3ObjFf(void)
+void Game::Tank::Obj::stopEffectRadius( (float))
 {
 /*
 .loc_0x0:
@@ -1250,7 +1250,7 @@ void stopEffectRadius__Q34Game4Tank3ObjFf(void)
  * Address:	80276A68
  * Size:	000130
  */
-void updateEmit__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::updateEmit(void)
 {
 /*
 .loc_0x0:
@@ -1346,7 +1346,7 @@ void updateEmit__Q34Game4Tank3ObjFv(void)
  * Address:	80276B98
  * Size:	000050
  */
-void updateCaution__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::updateCaution(void)
 {
 /*
 .loc_0x0:
@@ -1382,7 +1382,7 @@ void updateCaution__Q34Game4Tank3ObjFv(void)
  * Address:	80276BE8
  * Size:	000024
  */
-void getViewAngle__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::getViewAngle(void)
 {
 /*
 .loc_0x0:
@@ -1405,7 +1405,7 @@ void getViewAngle__Q34Game4Tank3ObjFv(void)
  * Address:	80276C0C
  * Size:	0000BC
  */
-void __dt__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1468,7 +1468,7 @@ void __dt__Q34Game4Tank3ObjFv(void)
  * Address:	80276CC8
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1482,7 +1482,7 @@ void getDownSmokeScale__Q34Game4Tank3ObjFv(void)
  * Address:	80276CD0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1496,7 +1496,7 @@ void getEnemyTypeID__Q34Game4Tank3ObjFv(void)
  * Address:	80276CD8
  * Size:	000004
  */
-void createEffect__Q34Game4Tank3ObjFv(void)
+void Game::Tank::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -1509,7 +1509,7 @@ void createEffect__Q34Game4Tank3ObjFv(void)
  * Address:	80276CDC
  * Size:	000014
  */
-void @776@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @776@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1526,7 +1526,7 @@ void @776@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	80276CF0
  * Size:	000014
  */
-void @776@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @776@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1543,7 +1543,7 @@ void @776@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80276D04
  * Size:	000014
  */
-void @776@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @776@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1560,7 +1560,7 @@ void @776@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80276D18
  * Size:	000014
  */
-void @776@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @776@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1577,7 +1577,7 @@ void @776@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80276D2C
  * Size:	000014
  */
-void @776@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @776@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1594,7 +1594,7 @@ void @776@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80276D40
  * Size:	000014
  */
-void @776@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @776@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

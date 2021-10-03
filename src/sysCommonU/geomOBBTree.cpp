@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8041CEBC
  * Size:	000170
  */
-void clone__Q23Sys7OBBTreeFR7Matrixf(void)
+void Sys::OBBTree::clone( (Matrixf &))
 {
 /*
 .loc_0x0:
@@ -127,7 +127,7 @@ void clone__Q23Sys7OBBTreeFR7Matrixf(void)
  * Address:	........
  * Size:	000108
  */
-void __ct__Q23Sys3OBBFv(void)
+void Sys::OBB::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -157,7 +157,7 @@ void intersect__Q23Sys3OBBFR10Vector3<float>(void)
  * Address:	........
  * Size:	000008
  */
-void intersect__Q23Sys3OBBFRQ23Sys6Sphere(void)
+void Sys::OBB::intersect( (Sys::Sphere &))
 {
 	// UNUSED FUNCTION
 }
@@ -167,7 +167,7 @@ void intersect__Q23Sys3OBBFRQ23Sys6Sphere(void)
  * Address:	........
  * Size:	0002AC
  */
-void intersect__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys8Triangle(void)
+void Sys::OBB::intersect( (Sys::VertexTable &, Sys::Triangle &))
 {
 	// UNUSED FUNCTION
 }
@@ -177,7 +177,7 @@ void intersect__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys8Triangle(void)
  * Address:	........
  * Size:	000004
  */
-void drawTriList__Q23Sys10TriDividerFR8GraphicsPQ23Sys12TriIndexList(void)
+void Sys::TriDivider::drawTriList( (Graphics &, Sys::TriIndexList *))
 {
 	// UNUSED FUNCTION
 }
@@ -187,7 +187,7 @@ void drawTriList__Q23Sys10TriDividerFR8GraphicsPQ23Sys12TriIndexList(void)
  * Address:	........
  * Size:	000004
  */
-void draw__Q23Sys3OBBFR8GraphicsRQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
+void Sys::OBB::draw( (Graphics &, Sys::VertexTable &, Sys::TriangleTable &))
 {
 	// UNUSED FUNCTION
 }
@@ -660,7 +660,7 @@ void create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8M
  * Address:	........
  * Size:	000084
  */
-void constructOBB2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
+void Sys::OBB::constructOBB2( (Sys::VertexTable &, Sys::TriangleTable &))
 {
 	// UNUSED FUNCTION
 }
@@ -670,7 +670,7 @@ void constructOBB2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
  * Address:	8041D730
  * Size:	0002D8
  */
-void autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii(void)
+void Sys::OBB::autoDivide( (Sys::VertexTable &, Sys::TriangleTable &, int, int))
 {
 /*
 .loc_0x0:
@@ -896,7 +896,7 @@ void ArrayContainer<int>::getNum()
  * Address:	........
  * Size:	000128
  */
-void countDivResult__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableiRiRi(void)
+void Sys::OBB::countDivResult( (Sys::VertexTable &, Sys::TriangleTable &, int, int &, int &))
 {
 	// UNUSED FUNCTION
 }
@@ -906,7 +906,7 @@ void countDivResult__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableiRiRi(
  * Address:	8041DA10
  * Size:	0001C4
  */
-void determineDivPlane__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
+void Sys::OBB::determineDivPlane( (Sys::VertexTable &, Sys::TriangleTable &))
 {
 /*
 .loc_0x0:
@@ -1049,7 +1049,7 @@ void determineDivPlane__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable(vo
  * Address:	8041DBD4
  * Size:	000480
  */
-void divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
+void Sys::OBB::divide( (Sys::VertexTable &, Sys::TriangleTable &))
 {
 /*
 .loc_0x0:
@@ -1385,7 +1385,7 @@ void divide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
  * Address:	8041E054
  * Size:	000144
  */
-void __ct__Q23Sys7OBBTreeFv(void)
+void Sys::OBBTree::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1478,7 +1478,7 @@ void __ct__Q23Sys7OBBTreeFv(void)
  * Address:	8041E198
  * Size:	00002C
  */
-void getCurrTri__Q23Sys7OBBTreeFRQ24Game11CurrTriInfo(void)
+void Sys::OBBTree::getCurrTri( (Game::CurrTriInfo &))
 {
 /*
 .loc_0x0:
@@ -1503,7 +1503,7 @@ void getCurrTri__Q23Sys7OBBTreeFRQ24Game11CurrTriInfo(void)
  * Address:	8041E1C4
  * Size:	000498
  */
-void getCurrTri__Q23Sys3OBBFRQ24Game11CurrTriInfo(void)
+void Sys::OBB::getCurrTri( (Game::CurrTriInfo &))
 {
 /*
 .loc_0x0:
@@ -1891,7 +1891,7 @@ void Plane::calcDist(const Vector3<float> &) const
  * Address:	8041E68C
  * Size:	000028
  */
-void isLeaf__Q23Sys3OBBFv(void)
+void Sys::OBB::isLeaf(void)
 {
 /*
 .loc_0x0:
@@ -1915,7 +1915,7 @@ void isLeaf__Q23Sys3OBBFv(void)
  * Address:	8041E6B4
  * Size:	000118
  */
-void getCurrTriTriList__Q23Sys3OBBFRQ24Game11CurrTriInfo(void)
+void Sys::OBB::getCurrTriTriList( (Game::CurrTriInfo &))
 {
 /*
 .loc_0x0:
@@ -2005,7 +2005,7 @@ void getCurrTriTriList__Q23Sys3OBBFRQ24Game11CurrTriInfo(void)
  * Address:	8041E7CC
  * Size:	0000B4
  */
-void construct__Q23Sys7OBBTreeFPQ23Sys11VertexTablePQ23Sys13TriangleTableii(void)
+void Sys::OBBTree::construct( (Sys::VertexTable *, Sys::TriangleTable *, int, int))
 {
 /*
 .loc_0x0:
@@ -2062,7 +2062,7 @@ void construct__Q23Sys7OBBTreeFPQ23Sys11VertexTablePQ23Sys13TriangleTableii(void
  * Address:	........
  * Size:	000004
  */
-void draw__Q23Sys7OBBTreeFR8Graphics(void)
+void Sys::OBBTree::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -2072,7 +2072,7 @@ void draw__Q23Sys7OBBTreeFR8Graphics(void)
  * Address:	........
  * Size:	00006C
  */
-void write__Q23Sys7OBBTreeFR6Stream(void)
+void Sys::OBBTree::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -2082,7 +2082,7 @@ void write__Q23Sys7OBBTreeFR6Stream(void)
  * Address:	8041E880
  * Size:	000118
  */
-void read__Q23Sys7OBBTreeFR6Stream(void)
+void Sys::OBBTree::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2168,7 +2168,7 @@ void read__Q23Sys7OBBTreeFR6Stream(void)
  * Address:	........
  * Size:	000030
  */
-void writeVertsOnly__Q23Sys7OBBTreeFR6Stream(void)
+void Sys::OBBTree::writeVertsOnly( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -2178,7 +2178,7 @@ void writeVertsOnly__Q23Sys7OBBTreeFR6Stream(void)
  * Address:	........
  * Size:	000054
  */
-void writeWithoutVerts__Q23Sys7OBBTreeFR6Stream(void)
+void Sys::OBBTree::writeWithoutVerts( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -2188,7 +2188,7 @@ void writeWithoutVerts__Q23Sys7OBBTreeFR6Stream(void)
  * Address:	8041E998
  * Size:	000078
  */
-void readWithoutVerts__Q23Sys7OBBTreeFR6StreamRQ23Sys11VertexTable(void)
+void Sys::OBBTree::readWithoutVerts( (Stream &, Sys::VertexTable &))
 {
 /*
 .loc_0x0:
@@ -2232,7 +2232,7 @@ void readWithoutVerts__Q23Sys7OBBTreeFR6StreamRQ23Sys11VertexTable(void)
  * Address:	8041EA10
  * Size:	000024
  */
-void traceMove__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof(void)
+void Sys::OBBTree::traceMove( (Matrixf &, Matrixf &, Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -2253,7 +2253,7 @@ void traceMove__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof(void)
  * Address:	8041EA34
  * Size:	000024
  */
-void traceMove_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof(void)
+void Sys::OBBTree::traceMove_global( (Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -2274,7 +2274,7 @@ void traceMove_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof(void)
  * Address:	........
  * Size:	0003A4
  */
-void traceMove_original__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof(void)
+void Sys::OBBTree::traceMove_original( (Matrixf &, Matrixf &, Game::MoveInfo &, float))
 {
 	// UNUSED FUNCTION
 }
@@ -2284,7 +2284,7 @@ void traceMove_original__Q23Sys7OBBTreeFR7MatrixfR7MatrixfRQ24Game8MoveInfof(voi
  * Address:	8041EA58
  * Size:	000214
  */
-void findRayIntersection__Q23Sys7OBBTreeFRQ23Sys16RayIntersectInfoR7MatrixfR7Matrixf(void)
+void Sys::OBBTree::findRayIntersection( (Sys::RayIntersectInfo &, Matrixf &, Matrixf &))
 {
 /*
 .loc_0x0:
@@ -2485,7 +2485,7 @@ void traceMove_original__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys
  * Address:	8041EC6C
  * Size:	0005C0
  */
-void findRayIntersection__Q23Sys3OBBFRQ23Sys16RayIntersectInfoR7MatrixfR7Matrixf(void)
+void Sys::OBB::findRayIntersection( (Sys::RayIntersectInfo &, Matrixf &, Matrixf &))
 {
 /*
 .loc_0x0:
@@ -2955,7 +2955,7 @@ void findRayIntersection__Q23Sys3OBBFRQ23Sys16RayIntersectInfoR7MatrixfR7Matrixf
  * Address:	8041F22C
  * Size:	000114
  */
-void findRayIntersectionTriList__Q23Sys3OBBFRQ23Sys16RayIntersectInfoR7MatrixfR7Matrixf(void)
+void Sys::OBB::findRayIntersectionTriList( (Sys::RayIntersectInfo &, Matrixf &, Matrixf &))
 {
 /*
 .loc_0x0:
@@ -3042,7 +3042,7 @@ void findRayIntersectionTriList__Q23Sys3OBBFRQ23Sys16RayIntersectInfoR7MatrixfR7
  * Address:	8041F340
  * Size:	000178
  */
-void findTriLists__Q23Sys3OBBFRQ23Sys6Sphere(void)
+void Sys::OBB::findTriLists( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -3818,7 +3818,7 @@ void getMinYTriList__Q23Sys3OBBFR10Vector3<float>RQ23Sys13TriangleTable(void)
  * Address:	........
  * Size:	000304
  */
-void write__Q23Sys3OBBFR6Stream(void)
+void Sys::OBB::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -3828,7 +3828,7 @@ void write__Q23Sys3OBBFR6Stream(void)
  * Address:	8041FC58
  * Size:	000320
  */
-void read__Q23Sys3OBBFR6Stream(void)
+void Sys::OBB::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -4060,7 +4060,7 @@ void read__Q23Sys3OBBFR6Stream(void)
  * Address:	8041FF78
  * Size:	000024
  */
-void findTriLists__Q23Sys7OBBTreeFRQ23Sys6Sphere(void)
+void Sys::OBBTree::findTriLists( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -4081,7 +4081,7 @@ void findTriLists__Q23Sys7OBBTreeFRQ23Sys6Sphere(void)
  * Address:	8041FF9C
  * Size:	000004
  */
-void getBoundBox__Q23Sys7OBBTreeFR8BoundBox(void)
+void Sys::OBBTree::getBoundBox( (BoundBox &))
 {
 /*
 .loc_0x0:
@@ -4094,7 +4094,7 @@ void getBoundBox__Q23Sys7OBBTreeFR8BoundBox(void)
  * Address:	8041FFA0
  * Size:	000008
  */
-void do_clone__Q23Sys10TriDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable(void)
+void Sys::TriDivider::do_clone( (Matrixf &, Sys::VertexTable *, Sys::TriangleTable *))
 {
 /*
 .loc_0x0:

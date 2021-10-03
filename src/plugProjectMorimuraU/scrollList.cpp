@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803A2154
  * Size:	00004C
  */
-void __ct__Q28Morimura11TIndexGroupFv(void)
+void Morimura::TIndexGroup::__ct(void)
 {
 /*
 .loc_0x0:
@@ -46,7 +46,7 @@ void __ct__Q28Morimura11TIndexGroupFv(void)
  * Address:	803A21A0
  * Size:	00006C
  */
-void upIndex__Q28Morimura11TIndexGroupFv(void)
+void Morimura::TIndexGroup::upIndex(void)
 {
 /*
 .loc_0x0:
@@ -89,7 +89,7 @@ void upIndex__Q28Morimura11TIndexGroupFv(void)
  * Address:	803A220C
  * Size:	00006C
  */
-void downIndex__Q28Morimura11TIndexGroupFv(void)
+void Morimura::TIndexGroup::downIndex(void)
 {
 /*
 .loc_0x0:
@@ -134,7 +134,7 @@ void downIndex__Q28Morimura11TIndexGroupFv(void)
  * Address:	........
  * Size:	000064
  */
-void speedUpdate__Q28Morimura11TIndexGroupFb(void)
+void Morimura::TIndexGroup::speedUpdate( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -144,7 +144,7 @@ void speedUpdate__Q28Morimura11TIndexGroupFb(void)
  * Address:	........
  * Size:	000088
  */
-void offsetUpdate__Q28Morimura11TIndexGroupFf(void)
+void Morimura::TIndexGroup::offsetUpdate( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -154,7 +154,7 @@ void offsetUpdate__Q28Morimura11TIndexGroupFf(void)
  * Address:	803A2278
  * Size:	000030
  */
-void rollSpUp__Q28Morimura11TIndexGroupFv(void)
+void Morimura::TIndexGroup::rollSpUp(void)
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void rollSpUp__Q28Morimura11TIndexGroupFv(void)
  * Address:	803A22A8
  * Size:	00009C
  */
-void update__Q28Morimura10TIndexPaneFv(void)
+void Morimura::TIndexPane::update(void)
 {
 /*
 .loc_0x0:
@@ -237,7 +237,7 @@ void update__Q28Morimura10TIndexPaneFv(void)
  * Address:	803A2344
  * Size:	000094
  */
-void createIconInfo__Q28Morimura10TIndexPaneFii(void)
+void Morimura::TIndexPane::createIconInfo( (int, int))
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void createIconInfo__Q28Morimura10TIndexPaneFii(void)
  * Address:	803A23D8
  * Size:	0001E4
  */
-void setIndex__Q28Morimura10TIndexPaneFi(void)
+void Morimura::TIndexPane::setIndex( (int))
 {
 /*
 .loc_0x0:
@@ -453,7 +453,7 @@ void setIndex__Q28Morimura10TIndexPaneFi(void)
  * Address:	803A25BC
  * Size:	000058
  */
-void getIndex__Q28Morimura10TIndexPaneFv(void)
+void Morimura::TIndexPane::getIndex(void)
 {
 /*
 .loc_0x0:
@@ -491,7 +491,7 @@ void getIndex__Q28Morimura10TIndexPaneFv(void)
  * Address:	803A2614
  * Size:	000008
  */
-void getListIndex__Q28Morimura10TIndexPaneFv(void)
+void Morimura::TIndexPane::getListIndex(void)
 {
 /*
 .loc_0x0:
@@ -505,7 +505,7 @@ void getListIndex__Q28Morimura10TIndexPaneFv(void)
  * Address:	803A261C
  * Size:	0000F4
  */
-void doIconOffsetY__Q28Morimura10TIndexPaneFv(void)
+void Morimura::TIndexPane::doIconOffsetY(void)
 {
 /*
 .loc_0x0:
@@ -582,7 +582,7 @@ void doIconOffsetY__Q28Morimura10TIndexPaneFv(void)
  * Address:	803A2710
  * Size:	000068
  */
-void __ct__Q28Morimura9TIconInfoFv(void)
+void Morimura::TIconInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -622,7 +622,7 @@ void __ct__Q28Morimura9TIconInfoFv(void)
  * Address:	803A2778
  * Size:	0000D0
  */
-void init__Q28Morimura9TIconInfoFPQ28Morimura15TScaleUpCounterP7J2DPaneP7J2DPane(void)
+void Morimura::TIconInfo::init( (Morimura::TScaleUpCounter *, J2DPane *, J2DPane *))
 {
 /*
 .loc_0x0:
@@ -692,7 +692,7 @@ void init__Q28Morimura9TIconInfoFPQ28Morimura15TScaleUpCounterP7J2DPaneP7J2DPane
  * Address:	803A2848
  * Size:	000198
  */
-void update__Q28Morimura9TIconInfoFf(void)
+void Morimura::TIconInfo::update( (float))
 {
 /*
 .loc_0x0:
@@ -812,7 +812,7 @@ void update__Q28Morimura9TIconInfoFf(void)
  * Address:	803A29E0
  * Size:	0001B4
  */
-void setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG(void)
+void Morimura::TIconInfo::setInfo( (int, ResTIMG const *))
 {
 /*
 .loc_0x0:
@@ -963,7 +963,7 @@ void setInfo__Q28Morimura9TIconInfoFiPC7ResTIMG(void)
  * Address:	803A2B94
  * Size:	000040
  */
-void startScaleUp__Q28Morimura9TIconInfoFf(void)
+void Morimura::TIconInfo::startScaleUp( (float))
 {
 /*
 .loc_0x0:
@@ -993,7 +993,7 @@ void startScaleUp__Q28Morimura9TIconInfoFf(void)
  * Address:	803A2BD4
  * Size:	0000E4
  */
-void create__Q28Morimura11TListScreenFPCcUl(void)
+void Morimura::TListScreen::create( (char const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1066,7 +1066,7 @@ void create__Q28Morimura11TListScreenFPCcUl(void)
  * Address:	803A2CB8
  * Size:	000090
  */
-void __ct__Q28Morimura11TScrollListFPc(void)
+void Morimura::TScrollList::__ct( (char *))
 {
 /*
 .loc_0x0:
@@ -1114,7 +1114,7 @@ void __ct__Q28Morimura11TScrollListFPc(void)
  * Address:	803A2D48
  * Size:	000428
  */
-void updateIndex__Q28Morimura11TScrollListFb(void)
+void Morimura::TScrollList::updateIndex( (bool))
 {
 /*
 .loc_0x0:
@@ -1428,7 +1428,7 @@ void updateIndex__Q28Morimura11TScrollListFb(void)
  * Address:	803A3170
  * Size:	0000DC
  */
-void getUpdateIndex__Q28Morimura11TScrollListFRib(void)
+void Morimura::TScrollList::getUpdateIndex( (int &, bool))
 {
 /*
 .loc_0x0:
@@ -1503,7 +1503,7 @@ void getUpdateIndex__Q28Morimura11TScrollListFRib(void)
  * Address:	803A324C
  * Size:	000390
  */
-void updateList__Q28Morimura11TScrollListFv(void)
+void Morimura::TScrollList::updateList(void)
 {
 /*
 .loc_0x0:
@@ -1791,7 +1791,7 @@ void updateList__Q28Morimura11TScrollListFv(void)
  * Address:	803A35DC
  * Size:	000060
  */
-void changeIndex__Q28Morimura11TScrollListFv(void)
+void Morimura::TScrollList::changeIndex(void)
 {
 /*
 .loc_0x0:
@@ -1827,7 +1827,7 @@ void changeIndex__Q28Morimura11TScrollListFv(void)
  * Address:	803A363C
  * Size:	000008
  */
-void @24@__dt__Q28Morimura11TScrollListFv(void)
+void @24@Morimura::TScrollList::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80272504
  * Size:	000050
  */
-void __ct__Q34Game5Sarai3MgrFiUc(void)
+void Game::Sarai::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game5Sarai3MgrFiUc(void)
  * Address:	80272554
  * Size:	000048
  */
-void doAlloc__Q34Game5Sarai3MgrFv(void)
+void Game::Sarai::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game5Sarai3MgrFv(void)
  * Address:	8027259C
  * Size:	000048
  */
-void __ct__Q34Game5Sarai5ParmsFv(void)
+void Game::Sarai::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game5Sarai5ParmsFv(void)
  * Address:	802725E4
  * Size:	0003A4
  */
-void __ct__Q44Game5Sarai5Parms11ProperParmsFv(void)
+void Game::Sarai::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -360,7 +360,7 @@ void __ct__Q44Game5Sarai5Parms11ProperParmsFv(void)
  * Address:	80272988
  * Size:	000060
  */
-void createObj__Q34Game5Sarai3MgrFi(void)
+void Game::Sarai::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void createObj__Q34Game5Sarai3MgrFi(void)
  * Address:	802729E8
  * Size:	0000BC
  */
-void __dt__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -459,7 +459,7 @@ void __dt__Q34Game5Sarai3ObjFv(void)
  * Address:	80272AA4
  * Size:	000010
  */
-void getEnemy__Q34Game5Sarai3MgrFi(void)
+void Game::Sarai::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void getEnemy__Q34Game5Sarai3MgrFi(void)
  * Address:	80272AB4
  * Size:	000050
  */
-void read__Q34Game5Sarai5ParmsFR6Stream(void)
+void Game::Sarai::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -507,7 +507,7 @@ void read__Q34Game5Sarai5ParmsFR6Stream(void)
  * Address:	80272B04
  * Size:	0000B0
  */
-void __dt__Q34Game5Sarai3MgrFv(void)
+void Game::Sarai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -567,7 +567,7 @@ void __dt__Q34Game5Sarai3MgrFv(void)
  * Address:	80272BB4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Sarai3MgrFv(void)
+void Game::Sarai::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -581,7 +581,7 @@ void getEnemyTypeID__Q34Game5Sarai3MgrFv(void)
  * Address:	80272BBC
  * Size:	000008
  */
-void @4@__dt__Q34Game5Sarai3MgrFv(void)
+void @4@Game::Sarai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

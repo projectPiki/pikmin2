@@ -45,7 +45,7 @@ void Screen::getSceneMemberName(Screen::SceneBase *)
  * Address:	80452300
  * Size:	000054
  */
-void __ct__Q26Screen13SceneInfoListFv(void)
+void Screen::SceneInfoList::__ct(void)
 {
 /*
 .loc_0x0:
@@ -78,7 +78,7 @@ void __ct__Q26Screen13SceneInfoListFv(void)
  * Address:	........
  * Size:	000064
  */
-void set__Q26Screen13SceneInfoListFlPQ32og6Screen14DispMemberBase(void)
+void Screen::SceneInfoList::set( (long, og::Screen::DispMemberBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -88,7 +88,7 @@ void set__Q26Screen13SceneInfoListFlPQ32og6Screen14DispMemberBase(void)
  * Address:	........
  * Size:	000088
  */
-void __ct__Q26Screen10MgrCommandFv(void)
+void Screen::MgrCommand::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -98,7 +98,7 @@ void __ct__Q26Screen10MgrCommandFv(void)
  * Address:	........
  * Size:	000048
  */
-void clearArgBuf__Q26Screen10MgrCommandFv(void)
+void Screen::MgrCommand::clearArgBuf(void)
 {
 	// UNUSED FUNCTION
 }
@@ -108,7 +108,7 @@ void clearArgBuf__Q26Screen10MgrCommandFv(void)
  * Address:	........
  * Size:	000048
  */
-void clearDispMemberBuf__Q26Screen10MgrCommandFv(void)
+void Screen::MgrCommand::clearDispMemberBuf(void)
 {
 	// UNUSED FUNCTION
 }
@@ -118,7 +118,7 @@ void clearDispMemberBuf__Q26Screen10MgrCommandFv(void)
  * Address:	........
  * Size:	0000E8
  */
-void setArg__Q26Screen10MgrCommandFPQ26Screen12SceneArgBase(void)
+void Screen::MgrCommand::setArg( (Screen::SceneArgBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +128,7 @@ void setArg__Q26Screen10MgrCommandFPQ26Screen12SceneArgBase(void)
  * Address:	........
  * Size:	0000F4
  */
-void setDispMember__Q26Screen10MgrCommandFPQ32og6Screen14DispMemberBase(void)
+void Screen::MgrCommand::setDispMember( (og::Screen::DispMemberBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -138,7 +138,7 @@ void setDispMember__Q26Screen10MgrCommandFPQ32og6Screen14DispMemberBase(void)
  * Address:	........
  * Size:	0001BC
  */
-void setTypeSetScene__Q26Screen10MgrCommandFRQ26Screen11SetSceneArg(void)
+void Screen::MgrCommand::setTypeSetScene( (Screen::SetSceneArg &))
 {
 	// UNUSED FUNCTION
 }
@@ -148,7 +148,7 @@ void setTypeSetScene__Q26Screen10MgrCommandFRQ26Screen11SetSceneArg(void)
  * Address:	........
  * Size:	000110
  */
-void setTypeStartScene__Q26Screen10MgrCommandFPQ26Screen12SceneArgBase(void)
+void Screen::MgrCommand::setTypeStartScene( (Screen::SceneArgBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -158,7 +158,7 @@ void setTypeStartScene__Q26Screen10MgrCommandFPQ26Screen12SceneArgBase(void)
  * Address:	........
  * Size:	000110
  */
-void setTypeEndScene__Q26Screen10MgrCommandFPQ26Screen12SceneArgBase(void)
+void Screen::MgrCommand::setTypeEndScene( (Screen::SceneArgBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -168,7 +168,7 @@ void setTypeEndScene__Q26Screen10MgrCommandFPQ26Screen12SceneArgBase(void)
  * Address:	........
  * Size:	00008C
  */
-void setTypeInvalid__Q26Screen10MgrCommandFv(void)
+void Screen::MgrCommand::setTypeInvalid(void)
 {
 	// UNUSED FUNCTION
 }
@@ -178,7 +178,7 @@ void setTypeInvalid__Q26Screen10MgrCommandFv(void)
  * Address:	80452354
  * Size:	0001CC
  */
-void __ct__Q26Screen3MgrFv(void)
+void Screen::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -311,7 +311,7 @@ void __ct__Q26Screen3MgrFv(void)
  * Address:	80452520
  * Size:	000060
  */
-void __dt__Q26Screen13SceneInfoListFv(void)
+void Screen::SceneInfoList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void __dt__Q26Screen13SceneInfoListFv(void)
  * Address:	80452580
  * Size:	000070
  */
-void init__Q26Screen3MgrFv(void)
+void Screen::Mgr::init(void)
 {
 /*
 .loc_0x0:
@@ -391,7 +391,7 @@ void init__Q26Screen3MgrFv(void)
  * Address:	804525F0
  * Size:	0000FC
  */
-void reset__Q26Screen3MgrFv(void)
+void Screen::Mgr::reset(void)
 {
 /*
 .loc_0x0:
@@ -474,7 +474,7 @@ void reset__Q26Screen3MgrFv(void)
  * Address:	........
  * Size:	000240
  */
-void create__Q26Screen3MgrFv(void)
+void Screen::Mgr::create(void)
 {
 	// UNUSED FUNCTION
 }
@@ -484,7 +484,7 @@ void create__Q26Screen3MgrFv(void)
  * Address:	804526EC
  * Size:	0001E8
  */
-void startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg(void)
+void Screen::Mgr::startScene( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -640,7 +640,7 @@ void startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg(void)
  * Address:	804528D4
  * Size:	00018C
  */
-void endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg(void)
+void Screen::Mgr::endScene( (Screen::EndSceneArg *))
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg(void)
  * Address:	80452A60
  * Size:	000008
  */
-void getCurrentCommand__Q26Screen3MgrFv(void)
+void Screen::Mgr::getCurrentCommand(void)
 {
 /*
 .loc_0x0:
@@ -787,7 +787,7 @@ void getCurrentCommand__Q26Screen3MgrFv(void)
  * Address:	80452A68
  * Size:	0000A8
  */
-void getNewCommand__Q26Screen3MgrFv(void)
+void Screen::Mgr::getNewCommand(void)
 {
 /*
 .loc_0x0:
@@ -847,7 +847,7 @@ void getNewCommand__Q26Screen3MgrFv(void)
  * Address:	80452B10
  * Size:	000058
  */
-void releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand(void)
+void Screen::Mgr::releaseCommand( (Screen::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -881,7 +881,7 @@ void releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand(void)
  * Address:	........
  * Size:	00002C
  */
-void updateCurrentScene__Q26Screen3MgrFv(void)
+void Screen::Mgr::updateCurrentScene(void)
 {
 	// UNUSED FUNCTION
 }
@@ -891,7 +891,7 @@ void updateCurrentScene__Q26Screen3MgrFv(void)
  * Address:	80452B68
  * Size:	0002D8
  */
-void update__Q26Screen3MgrFv(void)
+void Screen::Mgr::update(void)
 {
 /*
 .loc_0x0:
@@ -1117,7 +1117,7 @@ void update__Q26Screen3MgrFv(void)
  * Address:	80452E40
  * Size:	0000B4
  */
-void draw__Q26Screen3MgrFR8Graphics(void)
+void Screen::Mgr::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1180,7 +1180,7 @@ void draw__Q26Screen3MgrFR8Graphics(void)
  * Address:	80452EF4
  * Size:	000004
  */
-void drawBG__Q26Screen3MgrFR8Graphics(void)
+void Screen::Mgr::drawBG( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1193,7 +1193,7 @@ void drawBG__Q26Screen3MgrFR8Graphics(void)
  * Address:	80452EF8
  * Size:	000008
  */
-void doGetSceneBase__Q26Screen3MgrFl(void)
+void Screen::Mgr::doGetSceneBase( (long))
 {
 /*
 .loc_0x0:
@@ -1207,7 +1207,7 @@ void doGetSceneBase__Q26Screen3MgrFl(void)
  * Address:	........
  * Size:	0000A0
  */
-void getSceneBase__Q26Screen3MgrFl(void)
+void Screen::Mgr::getSceneBase( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -1217,7 +1217,7 @@ void getSceneBase__Q26Screen3MgrFl(void)
  * Address:	........
  * Size:	0000E4
  */
-void createNewBackupSceneInfo__Q26Screen3MgrFPQ26Screen9SceneBase(void)
+void Screen::Mgr::createNewBackupSceneInfo( (Screen::SceneBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -1227,7 +1227,7 @@ void createNewBackupSceneInfo__Q26Screen3MgrFPQ26Screen9SceneBase(void)
  * Address:	80452F00
  * Size:	000078
  */
-void clearBackupSceneInfo__Q26Screen3MgrFv(void)
+void Screen::Mgr::clearBackupSceneInfo(void)
 {
 /*
 .loc_0x0:
@@ -1273,7 +1273,7 @@ void clearBackupSceneInfo__Q26Screen3MgrFv(void)
  * Address:	80452F78
  * Size:	00024C
  */
-void changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc(void)
+void Screen::Mgr::changeScene( (Screen::SetSceneArg &, unsigned char *))
 {
 /*
 .loc_0x0:
@@ -1454,7 +1454,7 @@ void changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc(void)
  * Address:	804531C4
  * Size:	000598
  */
-void setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg(void)
+void Screen::Mgr::setScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -1890,7 +1890,7 @@ void setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg(void)
  * Address:	8045375C
  * Size:	000024
  */
-void isCurrentSceneLoading__Q26Screen3MgrFv(void)
+void Screen::Mgr::isCurrentSceneLoading(void)
 {
 /*
 .loc_0x0:
@@ -1911,7 +1911,7 @@ void isCurrentSceneLoading__Q26Screen3MgrFv(void)
  * Address:	80453780
  * Size:	000160
  */
-void copyDispMember__Q26Screen3MgrFPUcPUc(void)
+void Screen::Mgr::copyDispMember( (unsigned char *, unsigned char *))
 {
 /*
 .loc_0x0:
@@ -2017,7 +2017,7 @@ void copyDispMember__Q26Screen3MgrFPUcPUc(void)
  * Address:	804538E0
  * Size:	000034
  */
-void setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase(void)
+void Screen::Mgr::setDispMember( (og::Screen::DispMemberBase *))
 {
 /*
 .loc_0x0:
@@ -2046,7 +2046,7 @@ void setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase(void)
  * Address:	80453914
  * Size:	00001C
  */
-void getDispMember__Q26Screen3MgrFv(void)
+void Screen::Mgr::getDispMember(void)
 {
 /*
 .loc_0x0:
@@ -2067,7 +2067,7 @@ void getDispMember__Q26Screen3MgrFv(void)
  * Address:	80453930
  * Size:	000040
  */
-void getSceneType__Q26Screen3MgrFv(void)
+void Screen::Mgr::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -2099,7 +2099,7 @@ void getSceneType__Q26Screen3MgrFv(void)
  * Address:	80453970
  * Size:	000028
  */
-void isSceneFinish__Q26Screen3MgrFv(void)
+void Screen::Mgr::isSceneFinish(void)
 {
 /*
 .loc_0x0:
@@ -2123,7 +2123,7 @@ void isSceneFinish__Q26Screen3MgrFv(void)
  * Address:	80453998
  * Size:	000038
  */
-void getSceneFinishState__Q26Screen3MgrFv(void)
+void Screen::Mgr::getSceneFinishState(void)
 {
 /*
 .loc_0x0:
@@ -2151,7 +2151,7 @@ void getSceneFinishState__Q26Screen3MgrFv(void)
  * Address:	804539D0
  * Size:	00001C
  */
-void setGamePad__Q26Screen3MgrFP10Controller(void)
+void Screen::Mgr::setGamePad( (Controller *))
 {
 /*
 .loc_0x0:
@@ -2170,7 +2170,7 @@ void setGamePad__Q26Screen3MgrFP10Controller(void)
  * Address:	804539EC
  * Size:	000034
  */
-void setBackupScene__Q26Screen3MgrFv(void)
+void Screen::Mgr::setBackupScene(void)
 {
 /*
 .loc_0x0:
@@ -2199,7 +2199,7 @@ void setBackupScene__Q26Screen3MgrFv(void)
  * Address:	80453A20
  * Size:	000038
  */
-void isAnyReservation__Q26Screen3MgrCFv(void)
+void Screen::Mgr::isAnyReservation( const
 {
 /*
 .loc_0x0:
@@ -2233,7 +2233,7 @@ void isAnyReservation__Q26Screen3MgrCFv(void)
  * Address:	80453A58
  * Size:	000068
  */
-void __dt__Q26Screen10MgrCommandFv(void)
+void Screen::MgrCommand::__dt(void)
 {
 /*
 .loc_0x0:

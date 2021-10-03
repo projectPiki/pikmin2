@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80437400
  * Size:	000058
  */
-void __ct__Q34Game5P2JST18ObjectSpecialActorFPCcPQ24Game11MoviePlayer(void)
+void Game::P2JST::ObjectSpecialActor::__ct( (char const *, Game::MoviePlayer *))
 {
 /*
 .loc_0x0:
@@ -49,7 +49,7 @@ void __ct__Q34Game5P2JST18ObjectSpecialActorFPCcPQ24Game11MoviePlayer(void)
  * Address:	80437458
  * Size:	00005C
  */
-void reset__Q34Game5P2JST18ObjectSpecialActorFv(void)
+void Game::P2JST::ObjectSpecialActor::reset(void)
 {
 /*
 .loc_0x0:
@@ -84,7 +84,7 @@ void reset__Q34Game5P2JST18ObjectSpecialActorFv(void)
  * Address:	804374B4
  * Size:	000004
  */
-void stop__Q34Game5P2JST18ObjectSpecialActorFv(void)
+void Game::P2JST::ObjectSpecialActor::stop(void)
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void stop__Q34Game5P2JST18ObjectSpecialActorFv(void)
  * Address:	804374B8
  * Size:	000254
  */
-void update__Q34Game5P2JST18ObjectSpecialActorFv(void)
+void Game::P2JST::ObjectSpecialActor::update(void)
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void update__Q34Game5P2JST18ObjectSpecialActorFv(void)
  * Address:	8043770C
  * Size:	000084
  */
-void JSGSetAnimation__Q34Game5P2JST18ObjectSpecialActorFUl(void)
+void Game::P2JST::ObjectSpecialActor::JSGSetAnimation( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void JSGSetAnimation__Q34Game5P2JST18ObjectSpecialActorFUl(void)
  * Address:	80437790
  * Size:	000004
  */
-void parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv(void)
+void Game::P2JST::ObjectSpecialActor::parseUserData_( (unsigned long, void const *))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv(void)
  * Address:	80437794
  * Size:	000068
  */
-void __dt__Q34Game5P2JST18ObjectSpecialActorFv(void)
+void Game::P2JST::ObjectSpecialActor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void __sinit_JSTObjectSpecialActor_cpp(void)
  * Address:	80437824
  * Size:	000008
  */
-void @4@parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv(void)
+void @4@Game::P2JST::ObjectSpecialActor::parseUserData_( (unsigned long, void const *))
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void @4@parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv(void)
  * Address:	8043782C
  * Size:	000008
  */
-void @4@stop__Q34Game5P2JST18ObjectSpecialActorFv(void)
+void @4@Game::P2JST::ObjectSpecialActor::stop(void)
 {
 /*
 .loc_0x0:
@@ -438,7 +438,7 @@ void @4@stop__Q34Game5P2JST18ObjectSpecialActorFv(void)
  * Address:	80437834
  * Size:	000008
  */
-void @4@update__Q34Game5P2JST18ObjectSpecialActorFv(void)
+void @4@Game::P2JST::ObjectSpecialActor::update(void)
 {
 /*
 .loc_0x0:
@@ -452,7 +452,7 @@ void @4@update__Q34Game5P2JST18ObjectSpecialActorFv(void)
  * Address:	8043783C
  * Size:	000008
  */
-void @4@reset__Q34Game5P2JST18ObjectSpecialActorFv(void)
+void @4@Game::P2JST::ObjectSpecialActor::reset(void)
 {
 /*
 .loc_0x0:

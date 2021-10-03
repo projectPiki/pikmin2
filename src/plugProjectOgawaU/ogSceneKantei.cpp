@@ -5,7 +5,7 @@
  * Address:	80319BDC
  * Size:	000044
  */
-void __ct__Q32og9newScreen10KanteiDemoFv(void)
+void og::newScreen::KanteiDemo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q32og9newScreen10KanteiDemoFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen10KanteiDemoFv(void)
+void og::newScreen::KanteiDemo::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -44,7 +44,7 @@ void __dt__Q32og9newScreen10KanteiDemoFv(void)
  * Address:	80319C20
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen10KanteiDemoFPQ28Resource10MgrCommand(void)
+void og::newScreen::KanteiDemo::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void doUserCallBackFunc__Q32og9newScreen10KanteiDemoFPQ28Resource10MgrCommand(vo
  * Address:	80319C24
  * Size:	000068
  */
-void doCreateObj__Q32og9newScreen10KanteiDemoFP10JKRArchive(void)
+void og::newScreen::KanteiDemo::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void doCreateObj__Q32og9newScreen10KanteiDemoFP10JKRArchive(void)
  * Address:	80319C8C
  * Size:	00000C
  */
-void getResName__Q32og9newScreen10KanteiDemoCFv(void)
+void og::newScreen::KanteiDemo::getResName( const
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void getResName__Q32og9newScreen10KanteiDemoCFv(void)
  * Address:	80319C98
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen10KanteiDemoFv(void)
+void og::newScreen::KanteiDemo::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void getSceneType__Q32og9newScreen10KanteiDemoFv(void)
  * Address:	80319CA0
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen10KanteiDemoFv(void)
+void og::newScreen::KanteiDemo::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void getOwnerID__Q32og9newScreen10KanteiDemoFv(void)
  * Address:	80319CAC
  * Size:	000010
  */
-void getMemberID__Q32og9newScreen10KanteiDemoFv(void)
+void og::newScreen::KanteiDemo::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -157,7 +157,7 @@ void getMemberID__Q32og9newScreen10KanteiDemoFv(void)
  * Address:	80319CBC
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen10KanteiDemoFv(void)
+void og::newScreen::KanteiDemo::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

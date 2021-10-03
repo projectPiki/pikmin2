@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8031741C
  * Size:	0000A8
  */
-void __ct__Q32og9newScreen13ObjCourseNameFPCc(void)
+void og::newScreen::ObjCourseName::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void __ct__Q32og9newScreen13ObjCourseNameFPCc(void)
  * Address:	803174C4
  * Size:	0000AC
  */
-void __dt__Q32og9newScreen13ObjCourseNameFv(void)
+void og::newScreen::ObjCourseName::__dt(void)
 {
 /*
 .loc_0x0:
@@ -128,7 +128,7 @@ void __dt__Q32og9newScreen13ObjCourseNameFv(void)
  * Address:	80317570
  * Size:	000334
  */
-void doCreate__Q32og9newScreen13ObjCourseNameFP10JKRArchive(void)
+void og::newScreen::ObjCourseName::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void doCreate__Q32og9newScreen13ObjCourseNameFP10JKRArchive(void)
  * Address:	........
  * Size:	0000F0
  */
-void commonUpdate__Q32og9newScreen13ObjCourseNameFv(void)
+void og::newScreen::ObjCourseName::commonUpdate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -379,7 +379,7 @@ void commonUpdate__Q32og9newScreen13ObjCourseNameFv(void)
  * Address:	803178A4
  * Size:	0000F0
  */
-void doUpdate__Q32og9newScreen13ObjCourseNameFv(void)
+void og::newScreen::ObjCourseName::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -457,7 +457,7 @@ void doUpdate__Q32og9newScreen13ObjCourseNameFv(void)
  * Address:	80317994
  * Size:	000170
  */
-void doDraw__Q32og9newScreen13ObjCourseNameFR8Graphics(void)
+void og::newScreen::ObjCourseName::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -561,7 +561,7 @@ void doDraw__Q32og9newScreen13ObjCourseNameFR8Graphics(void)
  * Address:	80317B04
  * Size:	000014
  */
-void doStart__Q32og9newScreen13ObjCourseNameFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjCourseName::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -578,7 +578,7 @@ void doStart__Q32og9newScreen13ObjCourseNameFPCQ26Screen13StartSceneArg(void)
  * Address:	80317B18
  * Size:	000010
  */
-void doEnd__Q32og9newScreen13ObjCourseNameFPCQ26Screen11EndSceneArg(void)
+void og::newScreen::ObjCourseName::doEnd( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -594,7 +594,7 @@ void doEnd__Q32og9newScreen13ObjCourseNameFPCQ26Screen11EndSceneArg(void)
  * Address:	80317B28
  * Size:	000004
  */
-void doUpdateFadeinFinish__Q32og9newScreen13ObjCourseNameFv(void)
+void og::newScreen::ObjCourseName::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -607,7 +607,7 @@ void doUpdateFadeinFinish__Q32og9newScreen13ObjCourseNameFv(void)
  * Address:	80317B2C
  * Size:	00000C
  */
-void doUpdateFinish__Q32og9newScreen13ObjCourseNameFv(void)
+void og::newScreen::ObjCourseName::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -622,7 +622,7 @@ void doUpdateFinish__Q32og9newScreen13ObjCourseNameFv(void)
  * Address:	80317B38
  * Size:	000004
  */
-void doUpdateFadeoutFinish__Q32og9newScreen13ObjCourseNameFv(void)
+void og::newScreen::ObjCourseName::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -635,7 +635,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen13ObjCourseNameFv(void)
  * Address:	80317B3C
  * Size:	000120
  */
-void doUpdateFadein__Q32og9newScreen13ObjCourseNameFv(void)
+void og::newScreen::ObjCourseName::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -727,7 +727,7 @@ void doUpdateFadein__Q32og9newScreen13ObjCourseNameFv(void)
  * Address:	80317C5C
  * Size:	000134
  */
-void doUpdateFadeout__Q32og9newScreen13ObjCourseNameFv(void)
+void og::newScreen::ObjCourseName::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -824,7 +824,7 @@ void doUpdateFadeout__Q32og9newScreen13ObjCourseNameFv(void)
  * Address:	80317D90
  * Size:	000168
  */
-void drawBG__Q32og9newScreen13ObjCourseNameFR8Graphics(void)
+void og::newScreen::ObjCourseName::drawBG( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -954,7 +954,7 @@ void __sinit_ogObjCourseName_cpp(void)
  * Address:	80317F20
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen13ObjCourseNameFv(void)
+void @24@og::newScreen::ObjCourseName::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802F9A8C
  * Size:	000320
  */
-void init__Q34Game10DangoMushi3FSMFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -245,7 +245,7 @@ void init__Q34Game10DangoMushi3FSMFPQ24Game9EnemyBase(void)
  * Address:	802F9DAC
  * Size:	000088
  */
-void init__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void init__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802F9E34
  * Size:	00013C
  */
-void exec__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void exec__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802F9F70
  * Size:	000004
  */
-void cleanup__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void cleanup__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802F9F74
  * Size:	000094
  */
-void init__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateStay::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void init__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802FA008
  * Size:	000144
  */
-void exec__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateStay::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -561,7 +561,7 @@ void exec__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBase(void)
  * Address:	802FA14C
  * Size:	000004
  */
-void cleanup__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateStay::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void cleanup__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBase(void)
  * Address:	802FA150
  * Size:	00008C
  */
-void init__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -621,7 +621,7 @@ void init__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	802FA1DC
  * Size:	000400
  */
-void exec__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -905,7 +905,7 @@ void exec__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	802FA5DC
  * Size:	000030
  */
-void cleanup__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateAppear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -929,7 +929,7 @@ void cleanup__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	802FA60C
  * Size:	00009C
  */
-void init__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -984,7 +984,7 @@ void init__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802FA6A8
  * Size:	000364
  */
-void exec__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1227,7 +1227,7 @@ void exec__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802FAA0C
  * Size:	000004
  */
-void cleanup__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1240,7 +1240,7 @@ void cleanup__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802FAA10
  * Size:	00005C
  */
-void init__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1275,7 +1275,7 @@ void init__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802FAA6C
  * Size:	0007A8
  */
-void exec__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1811,7 +1811,7 @@ void exec__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802FB214
  * Size:	000004
  */
-void cleanup__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1824,7 +1824,7 @@ void cleanup__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802FB218
  * Size:	000088
  */
-void init__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1870,7 +1870,7 @@ void init__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	802FB2A0
  * Size:	000288
  */
-void exec__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2064,7 +2064,7 @@ void exec__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802FB528
  * Size:	000058
  */
-void cleanup__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2098,7 +2098,7 @@ void cleanup__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802FB580
  * Size:	0000D4
  */
-void init__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2163,7 +2163,7 @@ void init__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802FB654
  * Size:	000270
  */
-void exec__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2347,7 +2347,7 @@ void exec__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	802FB8C4
  * Size:	000068
  */
-void cleanup__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateTurn::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2385,7 +2385,7 @@ void cleanup__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	802FB92C
  * Size:	000050
  */
-void init__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateRecover::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2417,7 +2417,7 @@ void init__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBasePQ24Game8StateArg
  * Address:	802FB97C
  * Size:	0000FC
  */
-void exec__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateRecover::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2498,7 +2498,7 @@ void exec__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBase(void)
  * Address:	802FBA78
  * Size:	000004
  */
-void cleanup__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateRecover::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2511,7 +2511,7 @@ void cleanup__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBase(void)
  * Address:	802FBA7C
  * Size:	00006C
  */
-void init__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::DangoMushi::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2550,7 +2550,7 @@ void init__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	802FBAE8
  * Size:	0001E0
  */
-void exec__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2692,7 +2692,7 @@ void exec__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	802FBCC8
  * Size:	00002C
  */
-void cleanup__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBase(void)
+void Game::DangoMushi::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

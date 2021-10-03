@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8024FE70
  * Size:	000074
  */
-void __ct__Q34Game4Cave12RandGateUnitFPQ34Game4Cave16MapUnitGenerator(void)
+void Game::Cave::RandGateUnit::__ct( (Game::Cave::MapUnitGenerator *))
 {
 /*
 .loc_0x0:
@@ -60,7 +60,7 @@ void __ct__Q34Game4Cave12RandGateUnitFPQ34Game4Cave16MapUnitGenerator(void)
  * Address:	8024FEE4
  * Size:	00000C
  */
-void setManageClassPtr__Q34Game4Cave12RandGateUnitFPQ34Game4Cave12RandMapScorePQ34Game4Cave12RandItemUnit(void)
+void Game::Cave::RandGateUnit::setManageClassPtr( (Game::Cave::RandMapScore *, Game::Cave::RandItemUnit *))
 {
 /*
 .loc_0x0:
@@ -75,7 +75,7 @@ void setManageClassPtr__Q34Game4Cave12RandGateUnitFPQ34Game4Cave12RandMapScorePQ
  * Address:	8024FEF0
  * Size:	0000D8
  */
-void setGateDoor__Q34Game4Cave12RandGateUnitFv(void)
+void Game::Cave::RandGateUnit::setGateDoor(void)
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void setGateDoor__Q34Game4Cave12RandGateUnitFv(void)
  * Address:	8024FFC8
  * Size:	0000D4
  */
-void getGateUnit__Q34Game4Cave12RandGateUnitFv(void)
+void Game::Cave::RandGateUnit::getGateUnit(void)
 {
 /*
 .loc_0x0:
@@ -228,7 +228,7 @@ void getGateUnit__Q34Game4Cave12RandGateUnitFv(void)
  * Address:	8025009C
  * Size:	0000BC
  */
-void getRoomNodePtr__Q34Game4Cave12RandGateUnitFRi(void)
+void Game::Cave::RandGateUnit::getRoomNodePtr( (int &))
 {
 /*
 .loc_0x0:
@@ -297,7 +297,7 @@ void getRoomNodePtr__Q34Game4Cave12RandGateUnitFRi(void)
  * Address:	80250158
  * Size:	000160
  */
-void getItemSetCapDoor__Q34Game4Cave12RandGateUnitFRi(void)
+void Game::Cave::RandGateUnit::getItemSetCapDoor( (int &))
 {
 /*
 .loc_0x0:
@@ -413,7 +413,7 @@ void getItemSetCapDoor__Q34Game4Cave12RandGateUnitFRi(void)
  * Address:	802502B8
  * Size:	0000E4
  */
-void getRoomMinScoreDoor__Q34Game4Cave12RandGateUnitFRi(void)
+void Game::Cave::RandGateUnit::getRoomMinScoreDoor( (int &))
 {
 /*
 .loc_0x0:
@@ -496,7 +496,7 @@ void getRoomMinScoreDoor__Q34Game4Cave12RandGateUnitFRi(void)
  * Address:	8025039C
  * Size:	000218
  */
-void getRoomLowScoreDoor__Q34Game4Cave12RandGateUnitFRi(void)
+void Game::Cave::RandGateUnit::getRoomLowScoreDoor( (int &))
 {
 /*
 .loc_0x0:
@@ -674,7 +674,7 @@ void getRoomLowScoreDoor__Q34Game4Cave12RandGateUnitFRi(void)
  * Address:	802505B4
  * Size:	000270
  */
-void getRandomScoreDoor__Q34Game4Cave12RandGateUnitFRi(void)
+void Game::Cave::RandGateUnit::getRandomScoreDoor( (int &))
 {
 /*
 .loc_0x0:

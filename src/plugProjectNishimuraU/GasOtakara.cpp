@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B9294
  * Size:	0000A4
  */
-void __ct__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B9338
  * Size:	0001A4
  */
-void changeMaterial__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void changeMaterial__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B94DC
  * Size:	000060
  */
-void interactCreature__Q34Game10GasOtakara3ObjFPQ24Game8Creature(void)
+void Game::GasOtakara::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void interactCreature__Q34Game10GasOtakara3ObjFPQ24Game8Creature(void)
  * Address:	802B953C
  * Size:	000060
  */
-void createEffect__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void createEffect__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B959C
  * Size:	000048
  */
-void setupEffect__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void setupEffect__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B95E4
  * Size:	000034
  */
-void startChargeEffect__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::startChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void startChargeEffect__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B9618
  * Size:	000030
  */
-void finishChargeEffect__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::finishChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -344,7 +344,7 @@ void finishChargeEffect__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B9648
  * Size:	00008C
  */
-void createDisChargeEffect__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::createDisChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -391,7 +391,7 @@ void createDisChargeEffect__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B96D4
  * Size:	000030
  */
-void effectDrawOn__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -415,7 +415,7 @@ void effectDrawOn__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B9704
  * Size:	000030
  */
-void effectDrawOff__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -439,7 +439,7 @@ void effectDrawOff__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B9734
  * Size:	000044
  */
-void startDisChargeSE__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::startDisChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void startDisChargeSE__Q34Game10GasOtakara3ObjFv(void)
  * Address:	802B9778
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10GasOtakara3ObjFv(void)
+void Game::GasOtakara::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8041C9CC
  * Size:	0004F0
  */
-void intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ33Sys8Triangle11SphereSweep(void)
+void Sys::Triangle::intersect( (Sys::VertexTable &, Sys::Triangle::SphereSweep &))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802FF7CC
  * Size:	000050
  */
-void __ct__Q34Game11GreenKabuto3MgrFiUc(void)
+void Game::GreenKabuto::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game11GreenKabuto3MgrFiUc(void)
  * Address:	802FF81C
  * Size:	000048
  */
-void doAlloc__Q34Game11GreenKabuto3MgrFv(void)
+void Game::GreenKabuto::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game11GreenKabuto3MgrFv(void)
  * Address:	802FF864
  * Size:	000058
  */
-void __ct__Q34Game6Kabuto5ParmsFv(void)
+void Game::Kabuto::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void __ct__Q34Game6Kabuto5ParmsFv(void)
  * Address:	802FF8BC
  * Size:	000060
  */
-void createObj__Q34Game11GreenKabuto3MgrFi(void)
+void Game::GreenKabuto::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void createObj__Q34Game11GreenKabuto3MgrFi(void)
  * Address:	802FF91C
  * Size:	0000EC
  */
-void __dt__Q34Game11GreenKabuto3ObjFv(void)
+void Game::GreenKabuto::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -226,7 +226,7 @@ void __dt__Q34Game11GreenKabuto3ObjFv(void)
  * Address:	802FFA08
  * Size:	000010
  */
-void getEnemy__Q34Game11GreenKabuto3MgrFi(void)
+void Game::GreenKabuto::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -242,7 +242,7 @@ void getEnemy__Q34Game11GreenKabuto3MgrFi(void)
  * Address:	802FFA18
  * Size:	000080
  */
-void loadTexData__Q34Game11GreenKabuto3MgrFv(void)
+void Game::GreenKabuto::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -290,7 +290,7 @@ void loadTexData__Q34Game11GreenKabuto3MgrFv(void)
  * Address:	802FFA98
  * Size:	0000C8
  */
-void __dt__Q34Game11GreenKabuto3MgrFv(void)
+void Game::GreenKabuto::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -356,7 +356,7 @@ void __dt__Q34Game11GreenKabuto3MgrFv(void)
  * Address:	802FFB60
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11GreenKabuto3MgrFv(void)
+void Game::GreenKabuto::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void getEnemyTypeID__Q34Game11GreenKabuto3MgrFv(void)
  * Address:	802FFB68
  * Size:	000008
  */
-void getChangeTexture__Q34Game11GreenKabuto3MgrFv(void)
+void Game::GreenKabuto::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void getChangeTexture__Q34Game11GreenKabuto3MgrFv(void)
  * Address:	802FFB70
  * Size:	000050
  */
-void read__Q34Game6Kabuto5ParmsFR6Stream(void)
+void Game::Kabuto::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -416,7 +416,7 @@ void read__Q34Game6Kabuto5ParmsFR6Stream(void)
  * Address:	802FFBC0
  * Size:	000008
  */
-void @4@__dt__Q34Game11GreenKabuto3MgrFv(void)
+void @4@Game::GreenKabuto::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

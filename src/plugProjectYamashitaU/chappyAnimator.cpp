@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000E4
  */
-void _Print__Q24Game10ChappyBaseFPce(void)
+void Game::ChappyBase::_Print( (char *,...))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void _Print__Q24Game10ChappyBaseFPce(void)
  * Address:	80119710
  * Size:	000008
  */
-void setAnimMgr__Q34Game10ChappyBase14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::ChappyBase::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game10ChappyBase14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80119718
  * Size:	000008
  */
-void getAnimator__Q34Game10ChappyBase14ProperAnimatorFi(void)
+void Game::ChappyBase::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game10ChappyBase14ProperAnimatorFi(void)
  * Address:	80119720
  * Size:	00005C
  */
-void __dt__Q34Game10ChappyBase14ProperAnimatorFv(void)
+void Game::ChappyBase::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game10ChappyBase14ProperAnimatorFv(void)
  * Address:	8011977C
  * Size:	000008
  */
-void getAnimator__Q34Game10ChappyBase14ProperAnimatorFv(void)
+void Game::ChappyBase::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

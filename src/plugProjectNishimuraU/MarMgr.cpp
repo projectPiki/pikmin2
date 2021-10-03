@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80281F10
  * Size:	000050
  */
-void __ct__Q34Game3Mar3MgrFiUc(void)
+void Game::Mar::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game3Mar3MgrFiUc(void)
  * Address:	80281F60
  * Size:	000048
  */
-void doAlloc__Q34Game3Mar3MgrFv(void)
+void Game::Mar::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game3Mar3MgrFv(void)
  * Address:	80281FA8
  * Size:	000048
  */
-void __ct__Q34Game3Mar5ParmsFv(void)
+void Game::Mar::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game3Mar5ParmsFv(void)
  * Address:	80281FF0
  * Size:	00023C
  */
-void __ct__Q44Game3Mar5Parms11ProperParmsFv(void)
+void Game::Mar::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void __ct__Q44Game3Mar5Parms11ProperParmsFv(void)
  * Address:	8028222C
  * Size:	000060
  */
-void createObj__Q34Game3Mar3MgrFi(void)
+void Game::Mar::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void createObj__Q34Game3Mar3MgrFi(void)
  * Address:	8028228C
  * Size:	000010
  */
-void getEnemy__Q34Game3Mar3MgrFi(void)
+void Game::Mar::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void getEnemy__Q34Game3Mar3MgrFi(void)
  * Address:	8028229C
  * Size:	00012C
  */
-void loadTexData__Q34Game3Mar3MgrFv(void)
+void Game::Mar::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -421,7 +421,7 @@ void loadTexData__Q34Game3Mar3MgrFv(void)
  * Address:	802823C8
  * Size:	00013C
  */
-void createModel__Q34Game3Mar3MgrFv(void)
+void Game::Mar::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -522,7 +522,7 @@ void createModel__Q34Game3Mar3MgrFv(void)
  * Address:	80282504
  * Size:	0000B0
  */
-void __dt__Q34Game3Mar3MgrFv(void)
+void Game::Mar::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -582,7 +582,7 @@ void __dt__Q34Game3Mar3MgrFv(void)
  * Address:	802825B4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game3Mar3MgrFv(void)
+void Game::Mar::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void getEnemyTypeID__Q34Game3Mar3MgrFv(void)
  * Address:	802825BC
  * Size:	000050
  */
-void read__Q34Game3Mar5ParmsFR6Stream(void)
+void Game::Mar::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -628,7 +628,7 @@ void read__Q34Game3Mar5ParmsFR6Stream(void)
  * Address:	8028260C
  * Size:	000008
  */
-void @4@__dt__Q34Game3Mar3MgrFv(void)
+void @4@Game::Mar::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

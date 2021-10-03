@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025F094
  * Size:	000228
  */
-void init__Q34Game7Qurione3FSMFPQ24Game9EnemyBase(void)
+void Game::Qurione::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void init__Q34Game7Qurione3FSMFPQ24Game9EnemyBase(void)
  * Address:	8025F2BC
  * Size:	0000D0
  */
-void init__Q34Game7Qurione9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Qurione::StateStay::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -241,7 +241,7 @@ void init__Q34Game7Qurione9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025F38C
  * Size:	000088
  */
-void exec__Q34Game7Qurione9StateStayFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateStay::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void exec__Q34Game7Qurione9StateStayFPQ24Game9EnemyBase(void)
  * Address:	8025F414
  * Size:	00005C
  */
-void cleanup__Q34Game7Qurione9StateStayFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateStay::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -324,7 +324,7 @@ void cleanup__Q34Game7Qurione9StateStayFPQ24Game9EnemyBase(void)
  * Address:	8025F470
  * Size:	000074
  */
-void init__Q34Game7Qurione11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Qurione::StateAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void init__Q34Game7Qurione11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	8025F4E4
  * Size:	000080
  */
-void exec__Q34Game7Qurione11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -411,7 +411,7 @@ void exec__Q34Game7Qurione11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	8025F564
  * Size:	000054
  */
-void cleanup__Q34Game7Qurione11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateAppear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -444,7 +444,7 @@ void cleanup__Q34Game7Qurione11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	8025F5B8
  * Size:	00006C
  */
-void init__Q34Game7Qurione14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Qurione::StateDisappear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -483,7 +483,7 @@ void init__Q34Game7Qurione14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	8025F624
  * Size:	000080
  */
-void exec__Q34Game7Qurione14StateDisappearFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateDisappear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -529,7 +529,7 @@ void exec__Q34Game7Qurione14StateDisappearFPQ24Game9EnemyBase(void)
  * Address:	8025F6A4
  * Size:	000090
  */
-void cleanup__Q34Game7Qurione14StateDisappearFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateDisappear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -579,7 +579,7 @@ void cleanup__Q34Game7Qurione14StateDisappearFPQ24Game9EnemyBase(void)
  * Address:	8025F734
  * Size:	00003C
  */
-void init__Q34Game7Qurione9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Qurione::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -606,7 +606,7 @@ void init__Q34Game7Qurione9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025F770
  * Size:	000130
  */
-void exec__Q34Game7Qurione9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -696,7 +696,7 @@ void exec__Q34Game7Qurione9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	8025F8A0
  * Size:	000004
  */
-void cleanup__Q34Game7Qurione9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -709,7 +709,7 @@ void cleanup__Q34Game7Qurione9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	8025F8A4
  * Size:	00005C
  */
-void init__Q34Game7Qurione9StateDropFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Qurione::StateDrop::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -744,7 +744,7 @@ void init__Q34Game7Qurione9StateDropFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025F900
  * Size:	000068
  */
-void exec__Q34Game7Qurione9StateDropFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateDrop::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -786,7 +786,7 @@ void exec__Q34Game7Qurione9StateDropFPQ24Game9EnemyBase(void)
  * Address:	8025F968
  * Size:	000010
  */
-void cleanup__Q34Game7Qurione9StateDropFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateDrop::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -802,7 +802,7 @@ void cleanup__Q34Game7Qurione9StateDropFPQ24Game9EnemyBase(void)
  * Address:	8025F978
  * Size:	0000B0
  */
-void init__Q34Game7Qurione9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Qurione::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -858,7 +858,7 @@ void init__Q34Game7Qurione9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025FA28
  * Size:	000060
  */
-void exec__Q34Game7Qurione9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -896,7 +896,7 @@ void exec__Q34Game7Qurione9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8025FA88
  * Size:	000004
  */
-void cleanup__Q34Game7Qurione9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Qurione::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000E4
  */
-void _Print__Q24Game5P2JSTFPce(void)
+void Game::P2JST::_Print( (char *,...))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void _Print__Q24Game5P2JSTFPce(void)
  * Address:	80430954
  * Size:	0000A0
  */
-void __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer(void)
+void Game::P2JST::ObjectSystem::__ct( (char const *, Game::MoviePlayer *))
 {
 /*
 .loc_0x0:
@@ -77,7 +77,7 @@ void __dt__Q27JGadget33TList_pointer<JStage::TObject *>Fv(void)
  * Address:	804309F4
  * Size:	000084
  */
-void __dt__Q34Game5P2JST12ObjectSystemFv(void)
+void Game::P2JST::ObjectSystem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -128,7 +128,7 @@ void __dt__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	80430A78
  * Size:	0000A8
  */
-void destroyObjectAll__Q34Game5P2JST12ObjectSystemFv(void)
+void Game::P2JST::ObjectSystem::destroyObjectAll(void)
 {
 /*
 .loc_0x0:
@@ -188,7 +188,7 @@ void destroyObjectAll__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	80430B20
  * Size:	0000F4
  */
-void reset__Q34Game5P2JST12ObjectSystemFv(void)
+void Game::P2JST::ObjectSystem::reset(void)
 {
 /*
 .loc_0x0:
@@ -275,7 +275,7 @@ void reset__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	80430C14
  * Size:	0000AC
  */
-void entry__Q34Game5P2JST12ObjectSystemFv(void)
+void Game::P2JST::ObjectSystem::entry(void)
 {
 /*
 .loc_0x0:
@@ -338,7 +338,7 @@ void entry__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	80430CC0
  * Size:	0000D4
  */
-void update__Q34Game5P2JST12ObjectSystemFv(void)
+void Game::P2JST::ObjectSystem::update(void)
 {
 /*
 .loc_0x0:
@@ -413,7 +413,7 @@ void update__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	80430D94
  * Size:	0000D4
  */
-void start__Q34Game5P2JST12ObjectSystemFv(void)
+void Game::P2JST::ObjectSystem::start(void)
 {
 /*
 .loc_0x0:
@@ -488,7 +488,7 @@ void start__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	80430E68
  * Size:	0000D4
  */
-void stop__Q34Game5P2JST12ObjectSystemFv(void)
+void Game::P2JST::ObjectSystem::stop(void)
 {
 /*
 .loc_0x0:
@@ -563,7 +563,7 @@ void stop__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	80430F3C
  * Size:	0000FC
  */
-void findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject(void)
+void Game::P2JST::ObjectSystem::findObject( const(char const *, JStage::TEObject))
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void findObject__Q34Game5P2JST12ObjectSystemCFPCcQ26JStage8TEObject(void)
  * Address:	80431038
  * Size:	000310
  */
-void JSGFindObject__Q34Game5P2JST12ObjectSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject(void)
+void Game::P2JST::ObjectSystem::JSGFindObject( const(JStage::TObject **, char const *, JStage::TEObject))
 {
 /*
 .loc_0x0:
@@ -912,7 +912,7 @@ void JSGFindObject__Q34Game5P2JST12ObjectSystemCFPPQ26JStage7TObjectPCcQ26JStage
  * Address:	80431348
  * Size:	000008
  */
-void JSGGetName__Q34Game5P2JST12ObjectSystemCFv(void)
+void Game::P2JST::ObjectSystem::JSGGetName( const
 {
 /*
 .loc_0x0:
@@ -926,7 +926,7 @@ void JSGGetName__Q34Game5P2JST12ObjectSystemCFv(void)
  * Address:	80431350
  * Size:	000008
  */
-void JSGSetFlag__Q34Game5P2JST12ObjectSystemFUl(void)
+void Game::P2JST::ObjectSystem::JSGSetFlag( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -940,7 +940,7 @@ void JSGSetFlag__Q34Game5P2JST12ObjectSystemFUl(void)
  * Address:	80431358
  * Size:	000008
  */
-void JSGGetFlag__Q34Game5P2JST12ObjectSystemCFv(void)
+void Game::P2JST::ObjectSystem::JSGGetFlag( const
 {
 /*
 .loc_0x0:
@@ -954,7 +954,7 @@ void JSGGetFlag__Q34Game5P2JST12ObjectSystemCFv(void)
  * Address:	80431360
  * Size:	000010
  */
-void JSGSetData__Q34Game5P2JST12ObjectSystemFUlPCvUl(void)
+void Game::P2JST::ObjectSystem::JSGSetData( (unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -992,7 +992,7 @@ void __sinit_JSTObjectSystem_cpp(void)
  * Address:	80431398
  * Size:	000008
  */
-void @4@stop__Q34Game5P2JST12ObjectSystemFv(void)
+void @4@Game::P2JST::ObjectSystem::stop(void)
 {
 /*
 .loc_0x0:
@@ -1006,7 +1006,7 @@ void @4@stop__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	804313A0
  * Size:	000008
  */
-void @4@start__Q34Game5P2JST12ObjectSystemFv(void)
+void @4@Game::P2JST::ObjectSystem::start(void)
 {
 /*
 .loc_0x0:
@@ -1020,7 +1020,7 @@ void @4@start__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	804313A8
  * Size:	000008
  */
-void @4@update__Q34Game5P2JST12ObjectSystemFv(void)
+void @4@Game::P2JST::ObjectSystem::update(void)
 {
 /*
 .loc_0x0:
@@ -1034,7 +1034,7 @@ void @4@update__Q34Game5P2JST12ObjectSystemFv(void)
  * Address:	804313B0
  * Size:	000008
  */
-void @4@reset__Q34Game5P2JST12ObjectSystemFv(void)
+void @4@Game::P2JST::ObjectSystem::reset(void)
 {
 /*
 .loc_0x0:

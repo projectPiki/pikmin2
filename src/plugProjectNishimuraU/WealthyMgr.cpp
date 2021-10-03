@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80284470
  * Size:	000050
  */
-void __ct__Q34Game7Wealthy3MgrFiUc(void)
+void Game::Wealthy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game7Wealthy3MgrFiUc(void)
  * Address:	802844C0
  * Size:	000048
  */
-void doAlloc__Q34Game7Wealthy3MgrFv(void)
+void Game::Wealthy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game7Wealthy3MgrFv(void)
  * Address:	80284508
  * Size:	000048
  */
-void __ct__Q34Game6Kogane5ParmsFv(void)
+void Game::Kogane::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game6Kogane5ParmsFv(void)
  * Address:	80284550
  * Size:	00023C
  */
-void __ct__Q44Game6Kogane5Parms11ProperParmsFv(void)
+void Game::Kogane::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void __ct__Q44Game6Kogane5Parms11ProperParmsFv(void)
  * Address:	8028478C
  * Size:	000060
  */
-void createObj__Q34Game7Wealthy3MgrFi(void)
+void Game::Wealthy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void createObj__Q34Game7Wealthy3MgrFi(void)
  * Address:	802847EC
  * Size:	0000F0
  */
-void __dt__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -382,7 +382,7 @@ void __dt__Q34Game7Wealthy3ObjFv(void)
  * Address:	802848DC
  * Size:	000010
  */
-void getEnemy__Q34Game7Wealthy3MgrFi(void)
+void Game::Wealthy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -398,7 +398,7 @@ void getEnemy__Q34Game7Wealthy3MgrFi(void)
  * Address:	802848EC
  * Size:	000080
  */
-void loadTexData__Q34Game7Wealthy3MgrFv(void)
+void Game::Wealthy::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void loadTexData__Q34Game7Wealthy3MgrFv(void)
  * Address:	8028496C
  * Size:	000050
  */
-void read__Q34Game6Kogane5ParmsFR6Stream(void)
+void Game::Kogane::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -478,7 +478,7 @@ void read__Q34Game6Kogane5ParmsFR6Stream(void)
  * Address:	802849BC
  * Size:	0000C8
  */
-void __dt__Q34Game7Wealthy3MgrFv(void)
+void Game::Wealthy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -544,7 +544,7 @@ void __dt__Q34Game7Wealthy3MgrFv(void)
  * Address:	80284A84
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Wealthy3MgrFv(void)
+void Game::Wealthy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -558,7 +558,7 @@ void getEnemyTypeID__Q34Game7Wealthy3MgrFv(void)
  * Address:	80284A8C
  * Size:	000008
  */
-void getChangeTexture__Q34Game7Wealthy3MgrFv(void)
+void Game::Wealthy::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -572,7 +572,7 @@ void getChangeTexture__Q34Game7Wealthy3MgrFv(void)
  * Address:	80284A94
  * Size:	000008
  */
-void @4@__dt__Q34Game7Wealthy3MgrFv(void)
+void @4@Game::Wealthy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

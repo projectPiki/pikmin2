@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80284A9C
  * Size:	000098
  */
-void __ct__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -67,7 +67,7 @@ void __ct__Q34Game7Wealthy3ObjFv(void)
  * Address:	80284B34
  * Size:	0001F0
  */
-void changeMaterial__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void changeMaterial__Q34Game7Wealthy3ObjFv(void)
  * Address:	80284D24
  * Size:	000144
  */
-void createItem__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::createItem(void)
 {
 /*
 .loc_0x0:
@@ -324,7 +324,7 @@ void createItem__Q34Game7Wealthy3ObjFv(void)
  * Address:	80284E68
  * Size:	0000B0
  */
-void createEffect__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -382,7 +382,7 @@ void createEffect__Q34Game7Wealthy3ObjFv(void)
  * Address:	80284F18
  * Size:	000058
  */
-void startBodyEffect__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::startBodyEffect(void)
 {
 /*
 .loc_0x0:
@@ -416,7 +416,7 @@ void startBodyEffect__Q34Game7Wealthy3ObjFv(void)
  * Address:	80284F70
  * Size:	000030
  */
-void finishBodyEffect__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::finishBodyEffect(void)
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void finishBodyEffect__Q34Game7Wealthy3ObjFv(void)
  * Address:	80284FA0
  * Size:	000030
  */
-void effectDrawOn__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -464,7 +464,7 @@ void effectDrawOn__Q34Game7Wealthy3ObjFv(void)
  * Address:	80284FD0
  * Size:	000030
  */
-void effectDrawOff__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -488,7 +488,7 @@ void effectDrawOff__Q34Game7Wealthy3ObjFv(void)
  * Address:	80285000
  * Size:	000044
  */
-void createPressSENormal__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::createPressSENormal(void)
 {
 /*
 .loc_0x0:
@@ -517,7 +517,7 @@ void createPressSENormal__Q34Game7Wealthy3ObjFv(void)
  * Address:	80285044
  * Size:	00009C
  */
-void __dt__Q23efx11TOoganeKiraFv(void)
+void efx::TOoganeKira::__dt(void)
 {
 /*
 .loc_0x0:
@@ -572,7 +572,7 @@ void __dt__Q23efx11TOoganeKiraFv(void)
  * Address:	802850E0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Wealthy3ObjFv(void)
+void Game::Wealthy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -586,7 +586,7 @@ void getEnemyTypeID__Q34Game7Wealthy3ObjFv(void)
  * Address:	802850E8
  * Size:	000008
  */
-void @4@__dt__Q23efx11TOoganeKiraFv(void)
+void @4@efx::TOoganeKira::__dt(void)
 {
 /*
 .loc_0x0:

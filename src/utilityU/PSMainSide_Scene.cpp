@@ -5,7 +5,7 @@
  * Address:	80467630
  * Size:	000084
  */
-void __ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo(void)
+void PSM::SceneBase::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void __ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo(void)
  * Address:	804676B4
  * Size:	000008
  */
-void getSceneFx__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::getSceneFx(void)
 {
 /*
 .loc_0x0:
@@ -66,7 +66,7 @@ void getSceneFx__Q23PSM9SceneBaseFv(void)
  * Address:	804676BC
  * Size:	000058
  */
-void becomeSceneCamera__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::becomeSceneCamera(void)
 {
 /*
 .loc_0x0:
@@ -102,7 +102,7 @@ void becomeSceneCamera__Q23PSM9SceneBaseFv(void)
  * Address:	80467714
  * Size:	000054
  */
-void getSceneInfoA__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::getSceneInfoA(void)
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void getSceneInfoA__Q23PSM9SceneBaseFv(void)
  * Address:	80467768
  * Size:	000028
  */
-void pauseOn_2D__Q23PSM9SceneBaseFUcUc(void)
+void PSM::SceneBase::pauseOn_2D( (unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void pauseOn_2D__Q23PSM9SceneBaseFUcUc(void)
  * Address:	80467790
  * Size:	000024
  */
-void pauseOff_2D__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::pauseOff_2D(void)
 {
 /*
 .loc_0x0:
@@ -180,7 +180,7 @@ void pauseOff_2D__Q23PSM9SceneBaseFv(void)
  * Address:	804677B4
  * Size:	000004
  */
-void pauseOn_Demo__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::pauseOn_Demo(void)
 {
 /*
 .loc_0x0:
@@ -193,7 +193,7 @@ void pauseOn_Demo__Q23PSM9SceneBaseFv(void)
  * Address:	804677B8
  * Size:	000004
  */
-void pauseOff_Demo__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::pauseOff_Demo(void)
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void pauseOff_Demo__Q23PSM9SceneBaseFv(void)
  * Address:	804677BC
  * Size:	000090
  */
-void __ct__Q23PSM12Scene_GlobalFUcPQ26PSGame9SceneInfo(void)
+void PSM::Scene_Global::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void __ct__Q23PSM12Scene_GlobalFUcPQ26PSGame9SceneInfo(void)
  * Address:	8046784C
  * Size:	0000C8
  */
-void __dt__Q23PSM12Scene_GlobalFv(void)
+void PSM::Scene_Global::__dt(void)
 {
 /*
 .loc_0x0:
@@ -326,7 +326,7 @@ void __dt__Q23PSM12Scene_GlobalFv(void)
  * Address:	80467914
  * Size:	000008
  */
-void getCamDistVol__Q23PSM12Scene_GlobalFUc(void)
+void PSM::Scene_Global::getCamDistVol( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -340,7 +340,7 @@ void getCamDistVol__Q23PSM12Scene_GlobalFUc(void)
  * Address:	8046791C
  * Size:	000094
  */
-void getGlobalStream__Q23PSM12Scene_GlobalFv(void)
+void PSM::Scene_Global::getGlobalStream(void)
 {
 /*
 .loc_0x0:
@@ -393,7 +393,7 @@ void getGlobalStream__Q23PSM12Scene_GlobalFv(void)
  * Address:	804679B0
  * Size:	0000BC
  */
-void startGlobalStream__Q23PSM12Scene_GlobalFUl(void)
+void PSM::Scene_Global::startGlobalStream( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -456,7 +456,7 @@ void startGlobalStream__Q23PSM12Scene_GlobalFUl(void)
  * Address:	........
  * Size:	0000B4
  */
-void stopGlobalStream__Q23PSM12Scene_GlobalFUl(void)
+void PSM::Scene_Global::stopGlobalStream( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -466,7 +466,7 @@ void stopGlobalStream__Q23PSM12Scene_GlobalFUl(void)
  * Address:	80467A6C
  * Size:	000098
  */
-void __ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo(void)
+void PSM::Scene_Demo::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void __ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo(void)
  * Address:	80467B04
  * Size:	000084
  */
-void getSeSceneGate__Q23PSM10Scene_DemoFPQ23PSM7ObjBaseUl(void)
+void PSM::Scene_Demo::getSeSceneGate( (PSM::ObjBase *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -571,7 +571,7 @@ void getSeSceneGate__Q23PSM10Scene_DemoFPQ23PSM7ObjBaseUl(void)
  * Address:	80467B88
  * Size:	000008
  */
-void getCamDistVol__Q23PSM10Scene_DemoFUc(void)
+void PSM::Scene_Demo::getCamDistVol( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -585,7 +585,7 @@ void getCamDistVol__Q23PSM10Scene_DemoFUc(void)
  * Address:	80467B90
  * Size:	000114
  */
-void __ct__Q23PSM13Scene_ObjectsFUcPQ26PSGame9SceneInfo(void)
+void PSM::Scene_Objects::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -676,7 +676,7 @@ void __ct__Q23PSM13Scene_ObjectsFUcPQ26PSGame9SceneInfo(void)
  * Address:	80467CA4
  * Size:	0000F8
  */
-void __dt__Q23PSM13Scene_ObjectsFv(void)
+void PSM::Scene_Objects::__dt(void)
 {
 /*
 .loc_0x0:
@@ -760,7 +760,7 @@ void __dt__Q23PSM13Scene_ObjectsFv(void)
  * Address:	80467D9C
  * Size:	000064
  */
-void __dt__Q23PSM11ObjCalcBaseFv(void)
+void PSM::ObjCalcBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -801,7 +801,7 @@ void __dt__Q23PSM11ObjCalcBaseFv(void)
  * Address:	80467E00
  * Size:	000060
  */
-void adaptObjMgr__Q23PSM13Scene_ObjectsFv(void)
+void PSM::Scene_Objects::adaptObjMgr(void)
 {
 /*
 .loc_0x0:
@@ -839,7 +839,7 @@ void adaptObjMgr__Q23PSM13Scene_ObjectsFv(void)
  * Address:	80467E60
  * Size:	00001C
  */
-void detachObjMgr__Q23PSM13Scene_ObjectsFv(void)
+void PSM::Scene_Objects::detachObjMgr(void)
 {
 /*
 .loc_0x0:
@@ -858,7 +858,7 @@ void detachObjMgr__Q23PSM13Scene_ObjectsFv(void)
  * Address:	80467E7C
  * Size:	000040
  */
-void startMainSeq__Q23PSM13Scene_ObjectsFv(void)
+void PSM::Scene_Objects::startMainSeq(void)
 {
 /*
 .loc_0x0:
@@ -886,7 +886,7 @@ void startMainSeq__Q23PSM13Scene_ObjectsFv(void)
  * Address:	80467EBC
  * Size:	000024
  */
-void onStartMainSeq__Q23PSM13Scene_ObjectsFv(void)
+void PSM::Scene_Objects::onStartMainSeq(void)
 {
 /*
 .loc_0x0:
@@ -907,7 +907,7 @@ void onStartMainSeq__Q23PSM13Scene_ObjectsFv(void)
  * Address:	80467EE0
  * Size:	000014
  */
-void getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl(void)
+void PSM::Scene_Objects::getSeSceneGate( (PSM::ObjBase *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -924,7 +924,7 @@ void getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl(void)
  * Address:	80467EF4
  * Size:	000024
  */
-void getCamDistVol__Q23PSM13Scene_ObjectsFUc(void)
+void PSM::Scene_Objects::getCamDistVol( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -945,7 +945,7 @@ void getCamDistVol__Q23PSM13Scene_ObjectsFUc(void)
  * Address:	80467F18
  * Size:	000210
  */
-void exec__Q23PSM13Scene_ObjectsFv(void)
+void PSM::Scene_Objects::exec(void)
 {
 /*
 .loc_0x0:
@@ -1103,7 +1103,7 @@ void exec__Q23PSM13Scene_ObjectsFv(void)
  * Address:	........
  * Size:	000174
  */
-void __ct__Q23PSM10Scene_GameFUcPQ26PSGame9SceneInfo(void)
+void PSM::Scene_Game::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 	// UNUSED FUNCTION
 }
@@ -1123,7 +1123,7 @@ void JSUList<PSM::EnemyBoss>::~JSUList()
  * Address:	80468128
  * Size:	000114
  */
-void init__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::init(void)
 {
 /*
 .loc_0x0:
@@ -1214,7 +1214,7 @@ void init__Q23PSM10Scene_GameFv(void)
  * Address:	8046823C
  * Size:	000168
  */
-void __dt__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1334,7 +1334,7 @@ void __dt__Q23PSM10Scene_GameFv(void)
  * Address:	804683A4
  * Size:	0000B0
  */
-void __dt__Q33PSM12BossBgmFader3MgrFv(void)
+void PSM::BossBgmFader::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1396,7 +1396,7 @@ void __dt__Q33PSM12BossBgmFader3MgrFv(void)
  * Address:	80468454
  * Size:	000058
  */
-void attachBossFaderMgr__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::attachBossFaderMgr(void)
 {
 /*
 .loc_0x0:
@@ -1432,7 +1432,7 @@ void attachBossFaderMgr__Q23PSM10Scene_GameFv(void)
  * Address:	........
  * Size:	00000C
  */
-void detachBossFaderMgr__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::detachBossFaderMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1442,7 +1442,7 @@ void detachBossFaderMgr__Q23PSM10Scene_GameFv(void)
  * Address:	804684AC
  * Size:	0001DC
  */
-void bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss(void)
+void PSM::Scene_Game::bossKilled( (PSM::EnemyBoss *))
 {
 /*
 .loc_0x0:
@@ -1605,7 +1605,7 @@ void bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss(void)
  * Address:	80468688
  * Size:	000100
  */
-void startMainSeq__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::startMainSeq(void)
 {
 /*
 .loc_0x0:
@@ -1693,7 +1693,7 @@ void startMainSeq__Q23PSM10Scene_GameFv(void)
  * Address:	80468788
  * Size:	00008C
  */
-void stopMainSeq__Q23PSM10Scene_GameFUl(void)
+void PSM::Scene_Game::stopMainSeq( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1750,7 +1750,7 @@ void stopMainSeq__Q23PSM10Scene_GameFUl(void)
  * Address:	80468814
  * Size:	000050
  */
-void stopAllSound__Q23PSM10Scene_GameFUl(void)
+void PSM::Scene_Game::stopAllSound( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1784,7 +1784,7 @@ void stopAllSound__Q23PSM10Scene_GameFUl(void)
  * Address:	80468864
  * Size:	0003C4
  */
-void exec__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::exec(void)
 {
 /*
 .loc_0x0:
@@ -2083,7 +2083,7 @@ void exec__Q23PSM10Scene_GameFv(void)
  * Address:	80468C28
  * Size:	000008
  */
-void getEnvSe__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::getEnvSe(void)
 {
 /*
 .loc_0x0:
@@ -2097,7 +2097,7 @@ void getEnvSe__Q23PSM10Scene_GameFv(void)
  * Address:	80468C30
  * Size:	000058
  */
-void adaptEnvSe__Q23PSM10Scene_GameFPQ28PSSystem8EnvSeMgr(void)
+void PSM::Scene_Game::adaptEnvSe( (PSSystem::EnvSeMgr *))
 {
 /*
 .loc_0x0:
@@ -2133,7 +2133,7 @@ void adaptEnvSe__Q23PSM10Scene_GameFPQ28PSSystem8EnvSeMgr(void)
  * Address:	80468C88
  * Size:	000100
  */
-void bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs(void)
+void PSM::Scene_Game::bossAppear( (PSM::EnemyBoss *, unsigned short))
 {
 /*
 .loc_0x0:
@@ -2223,7 +2223,7 @@ void bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs(void)
  * Address:	80468D88
  * Size:	000578
  */
-void pauseOn_2D__Q23PSM10Scene_GameFUcUc(void)
+void PSM::Scene_Game::pauseOn_2D( (unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -2627,7 +2627,7 @@ void pauseOn_2D__Q23PSM10Scene_GameFUcUc(void)
  * Address:	80469300
  * Size:	000040
  */
-void pauseOff_2D__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::pauseOff_2D(void)
 {
 /*
 .loc_0x0:
@@ -2657,7 +2657,7 @@ void pauseOff_2D__Q23PSM10Scene_GameFv(void)
  * Address:	80469340
  * Size:	000548
  */
-void pauseOn_Demo__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::pauseOn_Demo(void)
 {
 /*
 .loc_0x0:
@@ -3047,7 +3047,7 @@ void pauseOn_Demo__Q23PSM10Scene_GameFv(void)
  * Address:	80469888
  * Size:	000004
  */
-void pauseOff_Demo__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::pauseOff_Demo(void)
 {
 /*
 .loc_0x0:
@@ -3060,7 +3060,7 @@ void pauseOff_Demo__Q23PSM10Scene_GameFv(void)
  * Address:	8046988C
  * Size:	0000B4
  */
-void akubiOK__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::akubiOK(void)
 {
 /*
 .loc_0x0:
@@ -3125,7 +3125,7 @@ void akubiOK__Q23PSM10Scene_GameFv(void)
  * Address:	80469940
  * Size:	000184
  */
-void __ct__Q23PSM12Scene_GroundFUcPQ26PSGame9SceneInfo(void)
+void PSM::Scene_Ground::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -3248,7 +3248,7 @@ void __ct__Q23PSM12Scene_GroundFUcPQ26PSGame9SceneInfo(void)
  * Address:	80469AC4
  * Size:	000044
  */
-void exec__Q23PSM12Scene_GroundFv(void)
+void PSM::Scene_Ground::exec(void)
 {
 /*
 .loc_0x0:
@@ -3279,7 +3279,7 @@ void exec__Q23PSM12Scene_GroundFv(void)
  * Address:	80469B08
  * Size:	00000C
  */
-void setPollutUp__Q23PSM12Scene_GroundFv(void)
+void PSM::Scene_Ground::setPollutUp(void)
 {
 /*
 .loc_0x0:
@@ -3294,7 +3294,7 @@ void setPollutUp__Q23PSM12Scene_GroundFv(void)
  * Address:	80469B14
  * Size:	0001AC
  */
-void fadeMainBgm__Q23PSM12Scene_GroundFfUlQ33PSM12Scene_Ground4Time(void)
+void PSM::Scene_Ground::fadeMainBgm( (float, unsigned long, PSM::Scene_Ground::Time))
 {
 /*
 .loc_0x0:
@@ -3427,7 +3427,7 @@ void fadeMainBgm__Q23PSM12Scene_GroundFfUlQ33PSM12Scene_Ground4Time(void)
  * Address:	80469CC0
  * Size:	000184
  */
-void jumpMainBgm__Q23PSM12Scene_GroundFUc(void)
+void PSM::Scene_Ground::jumpMainBgm( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -3562,7 +3562,7 @@ void jumpMainBgm__Q23PSM12Scene_GroundFUc(void)
  * Address:	80469E44
  * Size:	000050
  */
-void changeEnvSE_Noon__Q23PSM12Scene_GroundFv(void)
+void PSM::Scene_Ground::changeEnvSE_Noon(void)
 {
 /*
 .loc_0x0:
@@ -3602,7 +3602,7 @@ void changeEnvSE_Noon__Q23PSM12Scene_GroundFv(void)
  * Address:	80469E94
  * Size:	0001E4
  */
-void __ct__Q23PSM10Scene_CaveFUcPQ26PSGame9SceneInfo(void)
+void PSM::Scene_Cave::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -3759,7 +3759,7 @@ void __ct__Q23PSM10Scene_CaveFUcPQ26PSGame9SceneInfo(void)
  * Address:	8046A078
  * Size:	000008
  */
-void getSceneFx__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::getSceneFx(void)
 {
 /*
 .loc_0x0:
@@ -3773,7 +3773,7 @@ void getSceneFx__Q23PSM10Scene_CaveFv(void)
  * Address:	8046A080
  * Size:	000030
  */
-void isBossFloor__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::isBossFloor(void)
 {
 /*
 .loc_0x0:
@@ -3797,7 +3797,7 @@ void isBossFloor__Q23PSM10Scene_CaveFv(void)
  * Address:	8046A0B0
  * Size:	000044
  */
-void exec__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::exec(void)
 {
 /*
 .loc_0x0:
@@ -3828,7 +3828,7 @@ void exec__Q23PSM10Scene_CaveFv(void)
  * Address:	8046A0F4
  * Size:	00004C
  */
-void stopPollutionSe__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::stopPollutionSe(void)
 {
 /*
 .loc_0x0:
@@ -3869,7 +3869,7 @@ void stopPollutionSe__Q23PSM10Scene_CaveFv(void)
  * Address:	8046A140
  * Size:	0000F8
  */
-void startPollutUpSe__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::startPollutUpSe(void)
 {
 /*
 .loc_0x0:
@@ -3947,7 +3947,7 @@ void startPollutUpSe__Q23PSM10Scene_CaveFv(void)
  * Address:	8046A238
  * Size:	000144
  */
-void startMainSeq__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::startMainSeq(void)
 {
 /*
 .loc_0x0:
@@ -4058,7 +4058,7 @@ void startMainSeq__Q23PSM10Scene_CaveFv(void)
  * Address:	8046A37C
  * Size:	00024C
  */
-void init__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::init(void)
 {
 /*
 .loc_0x0:
@@ -4243,7 +4243,7 @@ void init__Q23PSM10Scene_CaveFv(void)
  * Address:	8046A5C8
  * Size:	0001D0
  */
-void bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs(void)
+void PSM::Scene_Cave::bossAppear( (PSM::EnemyBoss *, unsigned short))
 {
 /*
 .loc_0x0:
@@ -4399,7 +4399,7 @@ void bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs(void)
  * Address:	8046A798
  * Size:	000318
  */
-void bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss(void)
+void PSM::Scene_Cave::bossKilled( (PSM::EnemyBoss *))
 {
 /*
 .loc_0x0:
@@ -4665,7 +4665,7 @@ void bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss(void)
  * Address:	8046AAB0
  * Size:	0000D4
  */
-void akubiOK__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::akubiOK(void)
 {
 /*
 .loc_0x0:
@@ -4742,7 +4742,7 @@ void akubiOK__Q23PSM10Scene_CaveFv(void)
  * Address:	8046AB84
  * Size:	0001EC
  */
-void __ct__Q23PSM15Scene_ChallengeFUcPQ26PSGame9SceneInfo(void)
+void PSM::Scene_Challenge::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -4901,7 +4901,7 @@ void __ct__Q23PSM15Scene_ChallengeFUcPQ26PSGame9SceneInfo(void)
  * Address:	8046AD70
  * Size:	000178
  */
-void __dt__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5025,7 +5025,7 @@ void __dt__Q23PSM10Scene_CaveFv(void)
  * Address:	8046AEE8
  * Size:	00024C
  */
-void init__Q23PSM15Scene_ChallengeFv(void)
+void PSM::Scene_Challenge::init(void)
 {
 /*
 .loc_0x0:
@@ -5210,7 +5210,7 @@ void init__Q23PSM15Scene_ChallengeFv(void)
  * Address:	8046B134
  * Size:	0001FC
  */
-void startMainSeq__Q23PSM15Scene_ChallengeFv(void)
+void PSM::Scene_Challenge::startMainSeq(void)
 {
 /*
 .loc_0x0:
@@ -5373,7 +5373,7 @@ void startMainSeq__Q23PSM15Scene_ChallengeFv(void)
  * Address:	........
  * Size:	000108
  */
-void changeToKeyBgm__Q23PSM15Scene_ChallengeFv(void)
+void PSM::Scene_Challenge::changeToKeyBgm(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5383,7 +5383,7 @@ void changeToKeyBgm__Q23PSM15Scene_ChallengeFv(void)
  * Address:	8046B330
  * Size:	000078
  */
-void akubiOK__Q23PSM15Scene_ChallengeFv(void)
+void PSM::Scene_Challenge::akubiOK(void)
 {
 /*
 .loc_0x0:
@@ -5431,7 +5431,7 @@ void akubiOK__Q23PSM15Scene_ChallengeFv(void)
  * Address:	8046B3A8
  * Size:	000008
  */
-void getCamDistVol__Q23PSM11Scene_ZukanFUc(void)
+void PSM::Scene_Zukan::getCamDistVol( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -5445,7 +5445,7 @@ void getCamDistVol__Q23PSM11Scene_ZukanFUc(void)
  * Address:	8046B3B0
  * Size:	0000BC
  */
-void getSeSceneGate__Q23PSM11Scene_ZukanFPQ23PSM7ObjBaseUl(void)
+void PSM::Scene_Zukan::getSeSceneGate( (PSM::ObjBase *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -5518,7 +5518,7 @@ void getSeSceneGate__Q23PSM11Scene_ZukanFPQ23PSM7ObjBaseUl(void)
  * Address:	8046B46C
  * Size:	0000D4
  */
-void __ct__Q23PSM14Scene_WorldMapFUcPQ26PSGame9SceneInfo(void)
+void PSM::Scene_WorldMap::__ct( (unsigned char, PSGame::SceneInfo *))
 {
 /*
 .loc_0x0:
@@ -5587,7 +5587,7 @@ void __ct__Q23PSM14Scene_WorldMapFUcPQ26PSGame9SceneInfo(void)
  * Address:	8046B540
  * Size:	000070
  */
-void __dt__Q23PSM15Scene_NoObjectsFv(void)
+void PSM::Scene_NoObjects::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5631,7 +5631,7 @@ void __dt__Q23PSM15Scene_NoObjectsFv(void)
  * Address:	8046B5B0
  * Size:	000008
  */
-void getCamDistVol__Q23PSM15Scene_NoObjectsFUc(void)
+void PSM::Scene_NoObjects::getCamDistVol( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -6549,7 +6549,7 @@ void PSMuteOffSE_on2D()
  * Address:	8046C050
  * Size:	000070
  */
-void __dt__Q23PSM10Scene_DemoFv(void)
+void PSM::Scene_Demo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6593,7 +6593,7 @@ void __dt__Q23PSM10Scene_DemoFv(void)
  * Address:	8046C0C0
  * Size:	000008
  */
-void isCave__Q23PSM10Scene_CaveFv(void)
+void PSM::Scene_Cave::isCave(void)
 {
 /*
 .loc_0x0:
@@ -6607,7 +6607,7 @@ void isCave__Q23PSM10Scene_CaveFv(void)
  * Address:	8046C0C8
  * Size:	000008
  */
-void getPollutUpTimer__Q23PSM10Scene_CaveCFv(void)
+void PSM::Scene_Cave::getPollutUpTimer( const
 {
 /*
 .loc_0x0:
@@ -6621,7 +6621,7 @@ void getPollutUpTimer__Q23PSM10Scene_CaveCFv(void)
  * Address:	8046C0D0
  * Size:	000008
  */
-void isDemoScene__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::isDemoScene(void)
 {
 /*
 .loc_0x0:
@@ -6635,7 +6635,7 @@ void isDemoScene__Q23PSM10Scene_GameFv(void)
  * Address:	8046C0D8
  * Size:	000008
  */
-void isGameScene__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::isGameScene(void)
 {
 /*
 .loc_0x0:
@@ -6649,7 +6649,7 @@ void isGameScene__Q23PSM10Scene_GameFv(void)
  * Address:	8046C0E0
  * Size:	000178
  */
-void __dt__Q23PSM12Scene_GroundFv(void)
+void PSM::Scene_Ground::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6773,7 +6773,7 @@ void __dt__Q23PSM12Scene_GroundFv(void)
  * Address:	8046C258
  * Size:	000018
  */
-void isPollutUp__Q23PSM12Scene_GroundFv(void)
+void PSM::Scene_Ground::isPollutUp(void)
 {
 /*
 .loc_0x0:
@@ -6791,7 +6791,7 @@ void isPollutUp__Q23PSM12Scene_GroundFv(void)
  * Address:	8046C270
  * Size:	000008
  */
-void getPollutUpTimer__Q23PSM12Scene_GroundCFv(void)
+void PSM::Scene_Ground::getPollutUpTimer( const
 {
 /*
 .loc_0x0:
@@ -6805,7 +6805,7 @@ void getPollutUpTimer__Q23PSM12Scene_GroundCFv(void)
  * Address:	8046C278
  * Size:	000008
  */
-void isBossFloor__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::isBossFloor(void)
 {
 /*
 .loc_0x0:
@@ -6819,7 +6819,7 @@ void isBossFloor__Q23PSM10Scene_GameFv(void)
  * Address:	8046C280
  * Size:	000008
  */
-void isPollutUp__Q23PSM10Scene_GameFv(void)
+void PSM::Scene_Game::isPollutUp(void)
 {
 /*
 .loc_0x0:
@@ -6833,7 +6833,7 @@ void isPollutUp__Q23PSM10Scene_GameFv(void)
  * Address:	8046C288
  * Size:	000008
  */
-void getPollutUpTimer__Q23PSM10Scene_GameCFv(void)
+void PSM::Scene_Game::getPollutUpTimer( const
 {
 /*
 .loc_0x0:
@@ -6847,7 +6847,7 @@ void getPollutUpTimer__Q23PSM10Scene_GameCFv(void)
  * Address:	8046C290
  * Size:	000008
  */
-void isDemoScene__Q23PSM10Scene_DemoFv(void)
+void PSM::Scene_Demo::isDemoScene(void)
 {
 /*
 .loc_0x0:
@@ -6861,7 +6861,7 @@ void isDemoScene__Q23PSM10Scene_DemoFv(void)
  * Address:	8046C298
  * Size:	00003C
  */
-void getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl(void)
+void PSM::Scene_Global::getSeSceneGate( (PSM::ObjBase *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -6888,7 +6888,7 @@ void getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl(void)
  * Address:	8046C2D4
  * Size:	000080
  */
-void __dt__Q23PSM14Scene_WorldMapFv(void)
+void PSM::Scene_WorldMap::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6936,7 +6936,7 @@ void __dt__Q23PSM14Scene_WorldMapFv(void)
  * Address:	8046C354
  * Size:	000114
  */
-void __dt__Q23PSM11Scene_ZukanFv(void)
+void PSM::Scene_Zukan::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7029,7 +7029,7 @@ void __dt__Q23PSM11Scene_ZukanFv(void)
  * Address:	8046C468
  * Size:	000188
  */
-void __dt__Q23PSM15Scene_ChallengeFv(void)
+void PSM::Scene_Challenge::__dt(void)
 {
 /*
 .loc_0x0:

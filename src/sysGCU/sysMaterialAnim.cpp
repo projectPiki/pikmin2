@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000018
  */
-void __ct__Q23Sys16MatBaseAnimationFv(void)
+void Sys::MatBaseAnimation::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q23Sys16MatBaseAnimationFv(void)
  * Address:	80434020
  * Size:	000084
  */
-void attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData(void)
+void Sys::MatBaseAnimation::attachResource( (void *, J3DModelData *))
 {
 /*
 .loc_0x0:
@@ -72,7 +72,7 @@ void attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData(void)
  * Address:	804340A4
  * Size:	000090
  */
-void getFrameMax__Q23Sys16MatBaseAnimationFv(void)
+void Sys::MatBaseAnimation::getFrameMax(void)
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void getFrameMax__Q23Sys16MatBaseAnimationFv(void)
  * Address:	80434134
  * Size:	00002C
  */
-void __ct__Q23Sys15MatTexAnimationFv(void)
+void Sys::MatTexAnimation::__ct(void)
 {
 /*
 .loc_0x0:
@@ -145,7 +145,7 @@ void __ct__Q23Sys15MatTexAnimationFv(void)
  * Address:	80434160
  * Size:	000088
  */
-void onAttachResource__Q23Sys15MatTexAnimationFPv(void)
+void Sys::MatTexAnimation::onAttachResource( (void *))
 {
 /*
 .loc_0x0:
@@ -193,7 +193,7 @@ void onAttachResource__Q23Sys15MatTexAnimationFPv(void)
  * Address:	804341E8
  * Size:	00002C
  */
-void set__Q23Sys15MatTexAnimationFv(void)
+void Sys::MatTexAnimation::set(void)
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void set__Q23Sys15MatTexAnimationFv(void)
  * Address:	80434214
  * Size:	00002C
  */
-void remove__Q23Sys15MatTexAnimationFv(void)
+void Sys::MatTexAnimation::remove(void)
 {
 /*
 .loc_0x0:
@@ -239,7 +239,7 @@ void remove__Q23Sys15MatTexAnimationFv(void)
  * Address:	80434240
  * Size:	000030
  */
-void __ct__Q23Sys18MatTevRegAnimationFv(void)
+void Sys::MatTevRegAnimation::__ct(void)
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void __ct__Q23Sys18MatTevRegAnimationFv(void)
  * Address:	80434270
  * Size:	00008C
  */
-void onAttachResource__Q23Sys18MatTevRegAnimationFPv(void)
+void Sys::MatTevRegAnimation::onAttachResource( (void *))
 {
 /*
 .loc_0x0:
@@ -312,7 +312,7 @@ void onAttachResource__Q23Sys18MatTevRegAnimationFPv(void)
  * Address:	804342FC
  * Size:	00002C
  */
-void set__Q23Sys18MatTevRegAnimationFv(void)
+void Sys::MatTevRegAnimation::set(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void set__Q23Sys18MatTevRegAnimationFv(void)
  * Address:	80434328
  * Size:	00002C
  */
-void remove__Q23Sys18MatTevRegAnimationFv(void)
+void Sys::MatTevRegAnimation::remove(void)
 {
 /*
 .loc_0x0:
@@ -358,7 +358,7 @@ void remove__Q23Sys18MatTevRegAnimationFv(void)
  * Address:	80434354
  * Size:	000018
  */
-void __ct__Q23Sys15MatBaseAnimatorFv(void)
+void Sys::MatBaseAnimator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -376,7 +376,7 @@ void __ct__Q23Sys15MatBaseAnimatorFv(void)
  * Address:	8043436C
  * Size:	000070
  */
-void start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation(void)
+void Sys::MatBaseAnimator::start( (Sys::MatBaseAnimation *))
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation(void)
  * Address:	........
  * Size:	00004C
  */
-void removeMotion__Q23Sys15MatBaseAnimatorFv(void)
+void Sys::MatBaseAnimator::removeMotion(void)
 {
 	// UNUSED FUNCTION
 }
@@ -428,7 +428,7 @@ void removeMotion__Q23Sys15MatBaseAnimatorFv(void)
  * Address:	........
  * Size:	0001A4
  */
-void forward__Q23Sys15MatBaseAnimatorFf(void)
+void Sys::MatBaseAnimator::forward( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -438,7 +438,7 @@ void forward__Q23Sys15MatBaseAnimatorFf(void)
  * Address:	804343DC
  * Size:	000170
  */
-void setCurrentFrame__Q23Sys15MatBaseAnimatorFf(void)
+void Sys::MatBaseAnimator::setCurrentFrame( (float))
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void setCurrentFrame__Q23Sys15MatBaseAnimatorFf(void)
  * Address:	8043454C
  * Size:	000078
  */
-void animate__Q23Sys15MatBaseAnimatorFf(void)
+void Sys::MatBaseAnimator::animate( (float))
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void animate__Q23Sys15MatBaseAnimatorFf(void)
  * Address:	804345C4
  * Size:	000004
  */
-void do_animate__Q23Sys15MatBaseAnimatorFf(void)
+void Sys::MatBaseAnimator::do_animate( (float))
 {
 /*
 .loc_0x0:
@@ -609,7 +609,7 @@ void do_animate__Q23Sys15MatBaseAnimatorFf(void)
  * Address:	804345C8
  * Size:	0001B0
  */
-void do_animate__Q23Sys15MatLoopAnimatorFf(void)
+void Sys::MatLoopAnimator::do_animate( (float))
 {
 /*
 .loc_0x0:
@@ -743,7 +743,7 @@ void do_animate__Q23Sys15MatLoopAnimatorFf(void)
  * Address:	80434778
  * Size:	00000C
  */
-void onStart__Q23Sys17MatRepeatAnimatorFv(void)
+void Sys::MatRepeatAnimator::onStart(void)
 {
 /*
 .loc_0x0:
@@ -758,7 +758,7 @@ void onStart__Q23Sys17MatRepeatAnimatorFv(void)
  * Address:	80434784
  * Size:	000328
  */
-void do_animate__Q23Sys17MatRepeatAnimatorFf(void)
+void Sys::MatRepeatAnimator::do_animate( (float))
 {
 /*
 .loc_0x0:
@@ -1000,7 +1000,7 @@ void do_animate__Q23Sys17MatRepeatAnimatorFf(void)
  * Address:	80434AAC
  * Size:	000004
  */
-void onStart__Q23Sys15MatBaseAnimatorFv(void)
+void Sys::MatBaseAnimator::onStart(void)
 {
 /*
 .loc_0x0:
@@ -1013,7 +1013,7 @@ void onStart__Q23Sys15MatBaseAnimatorFv(void)
  * Address:	80434AB0
  * Size:	000008
  */
-void getAnmBase__Q23Sys18MatTevRegAnimationFv(void)
+void Sys::MatTevRegAnimation::getAnmBase(void)
 {
 /*
 .loc_0x0:
@@ -1027,7 +1027,7 @@ void getAnmBase__Q23Sys18MatTevRegAnimationFv(void)
  * Address:	80434AB8
  * Size:	000008
  */
-void getAnmBase__Q23Sys15MatTexAnimationFv(void)
+void Sys::MatTexAnimation::getAnmBase(void)
 {
 /*
 .loc_0x0:

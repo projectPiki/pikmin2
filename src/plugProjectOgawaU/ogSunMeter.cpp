@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000B4
  */
-void __ct__Q32og6Screen17CallBack_SunMeterFv(void)
+void og::Screen::CallBack_SunMeter::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q32og6Screen17CallBack_SunMeterFv(void)
  * Address:	........
  * Size:	000108
  */
-void init__Q32og6Screen17CallBack_SunMeterFP9J2DScreenPf(void)
+void og::Screen::CallBack_SunMeter::init( (J2DScreen *, float *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void init__Q32og6Screen17CallBack_SunMeterFP9J2DScreenPf(void)
  * Address:	80307294
  * Size:	00023C
  */
-void update__Q32og6Screen17CallBack_SunMeterFv(void)
+void og::Screen::CallBack_SunMeter::update(void)
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void update__Q32og6Screen17CallBack_SunMeterFv(void)
  * Address:	803074D0
  * Size:	000034
  */
-void startEffectChime__Q32og6Screen17CallBack_SunMeterFv(void)
+void og::Screen::CallBack_SunMeter::startEffectChime(void)
 {
 /*
 .loc_0x0:
@@ -217,7 +217,7 @@ void startEffectChime__Q32og6Screen17CallBack_SunMeterFv(void)
  * Address:	80307504
  * Size:	000044
  */
-void __ct__Q32og6Screen8SunMeterFv(void)
+void og::Screen::SunMeter::__ct(void)
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void __ct__Q32og6Screen8SunMeterFv(void)
  * Address:	80307548
  * Size:	0001B4
  */
-void setCallBack__Q32og6Screen8SunMeterFv(void)
+void og::Screen::SunMeter::setCallBack(void)
 {
 /*
 .loc_0x0:
@@ -371,7 +371,7 @@ void setCallBack__Q32og6Screen8SunMeterFv(void)
  * Address:	803076FC
  * Size:	0000A4
  */
-void __dt__Q32og6Screen8SunMeterFv(void)
+void og::Screen::SunMeter::__dt(void)
 {
 /*
 .loc_0x0:
@@ -430,7 +430,7 @@ void __dt__Q32og6Screen8SunMeterFv(void)
  * Address:	803077A0
  * Size:	000080
  */
-void __dt__Q32og6Screen17CallBack_SunMeterFv(void)
+void og::Screen::CallBack_SunMeter::__dt(void)
 {
 /*
 .loc_0x0:

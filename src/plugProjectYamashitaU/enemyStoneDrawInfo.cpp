@@ -5,7 +5,7 @@
  * Address:	80128280
  * Size:	0002D4
  */
-void init__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::StateMachine::init( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void init__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	80128554
  * Size:	000038
  */
-void makeMatrix__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::StateMachine::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void makeMatrix__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfo
  * Address:	8012858C
  * Size:	000024
  */
-void makeMatrix__Q34Game10EnemyStone8FSMStateFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::FSMState::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void makeMatrix__Q34Game10EnemyStone8FSMStateFPQ34Game10EnemyStone8DrawInfoP7Mat
  * Address:	801285B0
  * Size:	000014
  */
-void init__Q34Game10EnemyStone17FSMStateExpansionFPQ34Game10EnemyStone8DrawInfoPQ24Game8StateArg(void)
+void Game::EnemyStone::FSMStateExpansion::init( (Game::EnemyStone::DrawInfo *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void init__Q34Game10EnemyStone17FSMStateExpansionFPQ34Game10EnemyStone8DrawInfoP
  * Address:	801285C4
  * Size:	0001BC
  */
-void exec__Q34Game10EnemyStone17FSMStateExpansionFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateExpansion::exec( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -437,7 +437,7 @@ void transit__Q24Game38FSMState<Game::EnemyStone::DrawInfo>FPQ34Game10EnemyStone
  * Address:	801287B0
  * Size:	000004
  */
-void cleanup__Q34Game10EnemyStone17FSMStateExpansionFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateExpansion::cleanup( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -450,7 +450,7 @@ void cleanup__Q34Game10EnemyStone17FSMStateExpansionFPQ34Game10EnemyStone8DrawIn
  * Address:	801287B4
  * Size:	000140
  */
-void makeMatrix__Q34Game10EnemyStone17FSMStateExpansionFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::FSMStateExpansion::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -550,7 +550,7 @@ void makeMatrix__Q34Game10EnemyStone17FSMStateExpansionFPQ34Game10EnemyStone8Dra
  * Address:	801288F4
  * Size:	0000A0
  */
-void makeMatrix__Q34Game10EnemyStone21FSMStateExpansionFullFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::FSMStateExpansionFull::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -602,7 +602,7 @@ void makeMatrix__Q34Game10EnemyStone21FSMStateExpansionFullFPQ34Game10EnemyStone
  * Address:	80128994
  * Size:	000014
  */
-void init__Q34Game10EnemyStone11FSMStateFitFPQ34Game10EnemyStone8DrawInfoPQ24Game8StateArg(void)
+void Game::EnemyStone::FSMStateFit::init( (Game::EnemyStone::DrawInfo *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -619,7 +619,7 @@ void init__Q34Game10EnemyStone11FSMStateFitFPQ34Game10EnemyStone8DrawInfoPQ24Gam
  * Address:	801289A8
  * Size:	00005C
  */
-void exec__Q34Game10EnemyStone11FSMStateFitFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateFit::exec( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -656,7 +656,7 @@ void exec__Q34Game10EnemyStone11FSMStateFitFPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	80128A04
  * Size:	000004
  */
-void cleanup__Q34Game10EnemyStone11FSMStateFitFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateFit::cleanup( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -669,7 +669,7 @@ void cleanup__Q34Game10EnemyStone11FSMStateFitFPQ34Game10EnemyStone8DrawInfo(voi
  * Address:	80128A08
  * Size:	0000DC
  */
-void makeMatrix__Q34Game10EnemyStone11FSMStateFitFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::FSMStateFit::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -740,7 +740,7 @@ void makeMatrix__Q34Game10EnemyStone11FSMStateFitFPQ34Game10EnemyStone8DrawInfoP
  * Address:	80128AE4
  * Size:	000024
  */
-void init__Q34Game10EnemyStone13FSMStateShakeFPQ34Game10EnemyStone8DrawInfoPQ24Game8StateArg(void)
+void Game::EnemyStone::FSMStateShake::init( (Game::EnemyStone::DrawInfo *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -761,7 +761,7 @@ void init__Q34Game10EnemyStone13FSMStateShakeFPQ34Game10EnemyStone8DrawInfoPQ24G
  * Address:	80128B08
  * Size:	000278
  */
-void exec__Q34Game10EnemyStone13FSMStateShakeFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateShake::exec( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -961,7 +961,7 @@ void exec__Q34Game10EnemyStone13FSMStateShakeFPQ34Game10EnemyStone8DrawInfo(void
  * Address:	80128D80
  * Size:	000004
  */
-void cleanup__Q34Game10EnemyStone13FSMStateShakeFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateShake::cleanup( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -974,7 +974,7 @@ void cleanup__Q34Game10EnemyStone13FSMStateShakeFPQ34Game10EnemyStone8DrawInfo(v
  * Address:	80128D84
  * Size:	0002E4
  */
-void makeMatrix__Q34Game10EnemyStone13FSMStateShakeFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::FSMStateShake::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -1203,7 +1203,7 @@ void makeMatrix__Q34Game10EnemyStone13FSMStateShakeFPQ34Game10EnemyStone8DrawInf
  * Address:	80129068
  * Size:	00011C
  */
-void makeMatrix__Q34Game10EnemyStone17FSMStateBreakableFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::FSMStateBreakable::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -1292,7 +1292,7 @@ void makeMatrix__Q34Game10EnemyStone17FSMStateBreakableFPQ34Game10EnemyStone8Dra
  * Address:	80129184
  * Size:	00000C
  */
-void init__Q34Game10EnemyStone17FSMStateBreakableFPQ34Game10EnemyStone8DrawInfoPQ24Game8StateArg(void)
+void Game::EnemyStone::FSMStateBreakable::init( (Game::EnemyStone::DrawInfo *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1307,7 +1307,7 @@ void init__Q34Game10EnemyStone17FSMStateBreakableFPQ34Game10EnemyStone8DrawInfoP
  * Address:	80129190
  * Size:	000018
  */
-void exec__Q34Game10EnemyStone17FSMStateBreakableFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateBreakable::exec( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -1325,7 +1325,7 @@ void exec__Q34Game10EnemyStone17FSMStateBreakableFPQ34Game10EnemyStone8DrawInfo(
  * Address:	801291A8
  * Size:	000144
  */
-void init__Q34Game10EnemyStone17FSMStateDisappearFPQ34Game10EnemyStone8DrawInfoPQ24Game8StateArg(void)
+void Game::EnemyStone::FSMStateDisappear::init( (Game::EnemyStone::DrawInfo *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1424,7 +1424,7 @@ void init__Q34Game10EnemyStone17FSMStateDisappearFPQ34Game10EnemyStone8DrawInfoP
  * Address:	801292EC
  * Size:	000004
  */
-void cleanup__Q34Game10EnemyStone17FSMStateDisappearFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateDisappear::cleanup( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -1437,7 +1437,7 @@ void cleanup__Q34Game10EnemyStone17FSMStateDisappearFPQ34Game10EnemyStone8DrawIn
  * Address:	801292F0
  * Size:	000004
  */
-void exec__Q34Game10EnemyStone17FSMStateDisappearFPQ34Game10EnemyStone8DrawInfo(void)
+void Game::EnemyStone::FSMStateDisappear::exec( (Game::EnemyStone::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -1450,7 +1450,7 @@ void exec__Q34Game10EnemyStone17FSMStateDisappearFPQ34Game10EnemyStone8DrawInfo(
  * Address:	801292F4
  * Size:	000024
  */
-void makeMatrix__Q34Game10EnemyStone17FSMStateDisappearFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::FSMStateDisappear::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -1471,7 +1471,7 @@ void makeMatrix__Q34Game10EnemyStone17FSMStateDisappearFPQ34Game10EnemyStone8Dra
  * Address:	80129318
  * Size:	000144
  */
-void init__Q34Game10EnemyStone12FSMStateDeadFPQ34Game10EnemyStone8DrawInfoPQ24Game8StateArg(void)
+void Game::EnemyStone::FSMStateDead::init( (Game::EnemyStone::DrawInfo *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1570,7 +1570,7 @@ void init__Q34Game10EnemyStone12FSMStateDeadFPQ34Game10EnemyStone8DrawInfoPQ24Ga
  * Address:	8012945C
  * Size:	000024
  */
-void makeMatrix__Q34Game10EnemyStone12FSMStateDeadFPQ34Game10EnemyStone8DrawInfoP7Matrixf(void)
+void Game::EnemyStone::FSMStateDead::makeMatrix( (Game::EnemyStone::DrawInfo *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -1591,7 +1591,7 @@ void makeMatrix__Q34Game10EnemyStone12FSMStateDeadFPQ34Game10EnemyStone8DrawInfo
  * Address:	80129480
  * Size:	0000BC
  */
-void __ct__Q34Game10EnemyStone8DrawInfoFb(void)
+void Game::EnemyStone::DrawInfo::__ct( (bool))
 {
 /*
 .loc_0x0:
@@ -1654,7 +1654,7 @@ void __ct__Q34Game10EnemyStone8DrawInfoFb(void)
  * Address:	8012953C
  * Size:	000064
  */
-void reset__Q34Game10EnemyStone8DrawInfoFv(void)
+void Game::EnemyStone::DrawInfo::reset(void)
 {
 /*
 .loc_0x0:
@@ -1716,7 +1716,7 @@ void start__Q24Game42StateMachine<Game::EnemyStone::DrawInfo>FPQ34Game10EnemySto
  * Address:	801295D4
  * Size:	000044
  */
-void update__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase(void)
+void Game::EnemyStone::DrawInfo::update( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1745,7 +1745,7 @@ void update__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase(void)
  * Address:	80129618
  * Size:	0000A8
  */
-void makeMatrix__Q34Game10EnemyStone8DrawInfoFP7Matrixfb(void)
+void Game::EnemyStone::DrawInfo::makeMatrix( (Matrixf *, bool))
 {
 /*
 .loc_0x0:
@@ -1803,7 +1803,7 @@ void makeMatrix__Q34Game10EnemyStone8DrawInfoFP7Matrixfb(void)
  * Address:	801296C0
  * Size:	00000C
  */
-void getStateID__Q34Game10EnemyStone8DrawInfoFv(void)
+void Game::EnemyStone::DrawInfo::getStateID(void)
 {
 /*
 .loc_0x0:
@@ -1913,7 +1913,7 @@ void getPosAndScale__Q34Game10EnemyStone8DrawInfoFP10Vector3<float>Pf(void)
  * Address:	801297E0
  * Size:	00004C
  */
-void appear__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBasef(void)
+void Game::EnemyStone::DrawInfo::appear( (Game::EnemyBase *, float))
 {
 /*
 .loc_0x0:
@@ -1944,7 +1944,7 @@ void appear__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBasef(void)
  * Address:	8012982C
  * Size:	00004C
  */
-void fit__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase(void)
+void Game::EnemyStone::DrawInfo::fit( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1975,7 +1975,7 @@ void fit__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase(void)
  * Address:	80129878
  * Size:	00004C
  */
-void shake__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBasef(void)
+void Game::EnemyStone::DrawInfo::shake( (Game::EnemyBase *, float))
 {
 /*
 .loc_0x0:
@@ -2006,7 +2006,7 @@ void shake__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBasef(void)
  * Address:	801298C4
  * Size:	00004C
  */
-void disappear__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase(void)
+void Game::EnemyStone::DrawInfo::disappear( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2037,7 +2037,7 @@ void disappear__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase(void)
  * Address:	80129910
  * Size:	00004C
  */
-void dead__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase(void)
+void Game::EnemyStone::DrawInfo::dead( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

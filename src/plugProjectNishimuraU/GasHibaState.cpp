@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026C68C
  * Size:	000128
  */
-void init__Q34Game7GasHiba3FSMFPQ24Game9EnemyBase(void)
+void Game::GasHiba::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -107,7 +107,7 @@ void init__Q34Game7GasHiba3FSMFPQ24Game9EnemyBase(void)
  * Address:	8026C7B4
  * Size:	00017C
  */
-void init__Q34Game7GasHiba9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::GasHiba::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void init__Q34Game7GasHiba9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8026C930
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7GasHiba3ObjFv(void)
+void Game::GasHiba::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -228,7 +228,7 @@ void getEnemyTypeID__Q34Game7GasHiba3ObjFv(void)
  * Address:	8026C938
  * Size:	000004
  */
-void exec__Q34Game7GasHiba9StateDeadFPQ24Game9EnemyBase(void)
+void Game::GasHiba::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -241,7 +241,7 @@ void exec__Q34Game7GasHiba9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8026C93C
  * Size:	000004
  */
-void cleanup__Q34Game7GasHiba9StateDeadFPQ24Game9EnemyBase(void)
+void Game::GasHiba::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -254,7 +254,7 @@ void cleanup__Q34Game7GasHiba9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8026C940
  * Size:	000048
  */
-void init__Q34Game7GasHiba9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::GasHiba::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void init__Q34Game7GasHiba9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8026C988
  * Size:	0000C4
  */
-void exec__Q34Game7GasHiba9StateWaitFPQ24Game9EnemyBase(void)
+void Game::GasHiba::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -353,7 +353,7 @@ void exec__Q34Game7GasHiba9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8026CA4C
  * Size:	000004
  */
-void cleanup__Q34Game7GasHiba9StateWaitFPQ24Game9EnemyBase(void)
+void Game::GasHiba::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -366,7 +366,7 @@ void cleanup__Q34Game7GasHiba9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8026CA50
  * Size:	000048
  */
-void init__Q34Game7GasHiba11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::GasHiba::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void init__Q34Game7GasHiba11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	8026CA98
  * Size:	000150
  */
-void exec__Q34Game7GasHiba11StateAttackFPQ24Game9EnemyBase(void)
+void Game::GasHiba::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -502,7 +502,7 @@ void exec__Q34Game7GasHiba11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	8026CBE8
  * Size:	000024
  */
-void cleanup__Q34Game7GasHiba11StateAttackFPQ24Game9EnemyBase(void)
+void Game::GasHiba::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000044
  */
-void __ct__Q32og6Screen16CallBack_PictureFPQ29P2DScreen3MgrUx(void)
+void og::Screen::CallBack_Picture::__ct( (P2DScreen::Mgr *, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q32og6Screen16CallBack_PictureFPQ29P2DScreen3MgrUx(void)
  * Address:	8032CE18
  * Size:	000060
  */
-void update__Q32og6Screen16CallBack_PictureFv(void)
+void og::Screen::CallBack_Picture::update(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void update__Q32og6Screen16CallBack_PictureFv(void)
  * Address:	8032CE78
  * Size:	0002BC
  */
-void draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext(void)
+void og::Screen::CallBack_Picture::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext(void)
  * Address:	........
  * Size:	0000D4
  */
-void setCallBack_Picture__Q22og6ScreenFP10JKRArchivePcUxPQ29P2DScreen3MgrUx(void)
+void og::Screen::setCallBack_Picture( (JKRArchive *, char *, unsigned long long, P2DScreen::Mgr *, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -254,7 +254,7 @@ void setCallBack_Picture__Q22og6ScreenFP10JKRArchivePcUxPQ29P2DScreen3MgrUx(void
  * Address:	8032D134
  * Size:	00011C
  */
-void setCallBack_3DStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
+void og::Screen::setCallBack_3DStick( (JKRArchive *, P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void setCallBack_3DStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
  * Address:	8032D250
  * Size:	00011C
  */
-void setCallBack_3DStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
+void og::Screen::setCallBack_3DStickSmall( (JKRArchive *, P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -432,7 +432,7 @@ void setCallBack_3DStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(voi
  * Address:	........
  * Size:	00011C
  */
-void setCallBack_CStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
+void og::Screen::setCallBack_CStick( (JKRArchive *, P2DScreen::Mgr *, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -442,7 +442,7 @@ void setCallBack_CStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
  * Address:	........
  * Size:	00011C
  */
-void setCallBack_CStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void)
+void og::Screen::setCallBack_CStickSmall( (JKRArchive *, P2DScreen::Mgr *, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -452,7 +452,7 @@ void setCallBack_CStickSmall__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx(void
  * Address:	........
  * Size:	000038
  */
-void startCB_StickAnimAll__Q22og6ScreenFPQ32og6Screen16CallBack_Picture(void)
+void og::Screen::startCB_StickAnimAll( (og::Screen::CallBack_Picture *))
 {
 	// UNUSED FUNCTION
 }
@@ -462,7 +462,7 @@ void startCB_StickAnimAll__Q22og6ScreenFPQ32og6Screen16CallBack_Picture(void)
  * Address:	........
  * Size:	000040
  */
-void startCB_StickAnimUp__Q22og6ScreenFPQ32og6Screen16CallBack_Picture(void)
+void og::Screen::startCB_StickAnimUp( (og::Screen::CallBack_Picture *))
 {
 	// UNUSED FUNCTION
 }
@@ -472,7 +472,7 @@ void startCB_StickAnimUp__Q22og6ScreenFPQ32og6Screen16CallBack_Picture(void)
  * Address:	........
  * Size:	000040
  */
-void startCB_StickAnimDown__Q22og6ScreenFPQ32og6Screen16CallBack_Picture(void)
+void og::Screen::startCB_StickAnimDown( (og::Screen::CallBack_Picture *))
 {
 	// UNUSED FUNCTION
 }
@@ -482,7 +482,7 @@ void startCB_StickAnimDown__Q22og6ScreenFPQ32og6Screen16CallBack_Picture(void)
  * Address:	8032D36C
  * Size:	000010
  */
-void __ct__Q32og6Screen12StickAnimMgrFPQ32og6Screen16CallBack_Picture(void)
+void og::Screen::StickAnimMgr::__ct( (og::Screen::CallBack_Picture *))
 {
 /*
 .loc_0x0:
@@ -498,7 +498,7 @@ void __ct__Q32og6Screen12StickAnimMgrFPQ32og6Screen16CallBack_Picture(void)
  * Address:	........
  * Size:	00005C
  */
-void stickStop__Q32og6Screen12StickAnimMgrFv(void)
+void og::Screen::StickAnimMgr::stickStop(void)
 {
 	// UNUSED FUNCTION
 }
@@ -508,7 +508,7 @@ void stickStop__Q32og6Screen12StickAnimMgrFv(void)
  * Address:	8032D37C
  * Size:	0000D4
  */
-void stickUp__Q32og6Screen12StickAnimMgrFv(void)
+void og::Screen::StickAnimMgr::stickUp(void)
 {
 /*
 .loc_0x0:
@@ -585,7 +585,7 @@ void stickUp__Q32og6Screen12StickAnimMgrFv(void)
  * Address:	8032D450
  * Size:	0000E8
  */
-void stickDown__Q32og6Screen12StickAnimMgrFv(void)
+void og::Screen::StickAnimMgr::stickDown(void)
 {
 /*
 .loc_0x0:
@@ -669,7 +669,7 @@ void stickDown__Q32og6Screen12StickAnimMgrFv(void)
  * Address:	8032D538
  * Size:	0000BC
  */
-void stickUpDown__Q32og6Screen12StickAnimMgrFv(void)
+void og::Screen::StickAnimMgr::stickUpDown(void)
 {
 /*
 .loc_0x0:
@@ -738,7 +738,7 @@ void stickUpDown__Q32og6Screen12StickAnimMgrFv(void)
  * Address:	8032D5F4
  * Size:	000090
  */
-void __dt__Q32og6Screen16CallBack_PictureFv(void)
+void og::Screen::CallBack_Picture::__dt(void)
 {
 /*
 .loc_0x0:

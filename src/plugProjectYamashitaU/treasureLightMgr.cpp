@@ -5,7 +5,7 @@
  * Address:	8013286C
  * Size:	000150
  */
-void __ct__Q213TreasureLight3MgrFv(void)
+void TreasureLight::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -105,7 +105,7 @@ void __ct__Q213TreasureLight3MgrFv(void)
  * Address:	801329BC
  * Size:	000004
  */
-void update__Q213TreasureLight3MgrFv(void)
+void TreasureLight::Mgr::update(void)
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void update__Q213TreasureLight3MgrFv(void)
  * Address:	801329C0
  * Size:	000044
  */
-void set__Q213TreasureLight3MgrFR8Graphics(void)
+void TreasureLight::Mgr::set( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void set__Q213TreasureLight3MgrFR8Graphics(void)
  * Address:	80132A04
  * Size:	000044
  */
-void set__Q213TreasureLight3MgrFR7Matrixf(void)
+void TreasureLight::Mgr::set( (Matrixf &))
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void set__Q213TreasureLight3MgrFR7Matrixf(void)
  * Address:	80132A48
  * Size:	000184
  */
-void setCommonProc__Q213TreasureLight3MgrFv(void)
+void TreasureLight::Mgr::setCommonProc(void)
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void setCommonProc__Q213TreasureLight3MgrFv(void)
  * Address:	80132BCC
  * Size:	000020
  */
-void drawDebugInfo__Q213TreasureLight3MgrFR8Graphics(void)
+void TreasureLight::Mgr::drawDebugInfo( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void drawDebugInfo__Q213TreasureLight3MgrFR8Graphics(void)
  * Address:	80132BEC
  * Size:	0000A0
  */
-void __dt__Q213TreasureLight3MgrFv(void)
+void TreasureLight::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

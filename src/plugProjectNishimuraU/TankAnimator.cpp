@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802759A4
  * Size:	000008
  */
-void setAnimMgr__Q34Game4Tank14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Tank::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game4Tank14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802759AC
  * Size:	000008
  */
-void getAnimator__Q34Game4Tank14ProperAnimatorFi(void)
+void Game::Tank::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game4Tank14ProperAnimatorFi(void)
  * Address:	802759B4
  * Size:	00005C
  */
-void __dt__Q34Game4Tank14ProperAnimatorFv(void)
+void Game::Tank::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game4Tank14ProperAnimatorFv(void)
  * Address:	80275A10
  * Size:	000008
  */
-void getAnimator__Q34Game4Tank14ProperAnimatorFv(void)
+void Game::Tank::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

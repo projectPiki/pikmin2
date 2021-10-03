@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B7CCC
  * Size:	000050
  */
-void __ct__Q34Game11FireOtakara3MgrFiUc(void)
+void Game::FireOtakara::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game11FireOtakara3MgrFiUc(void)
  * Address:	802B7D1C
  * Size:	000048
  */
-void doAlloc__Q34Game11FireOtakara3MgrFv(void)
+void Game::FireOtakara::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game11FireOtakara3MgrFv(void)
  * Address:	802B7D64
  * Size:	000154
  */
-void __ct__Q34Game11OtakaraBase5ParmsFv(void)
+void Game::OtakaraBase::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void __ct__Q34Game11OtakaraBase5ParmsFv(void)
  * Address:	802B7EB8
  * Size:	000060
  */
-void createObj__Q34Game11FireOtakara3MgrFi(void)
+void Game::FireOtakara::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void createObj__Q34Game11FireOtakara3MgrFi(void)
  * Address:	802B7F18
  * Size:	0000F0
  */
-void __dt__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -290,7 +290,7 @@ void __dt__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B8008
  * Size:	000010
  */
-void getEnemy__Q34Game11FireOtakara3MgrFi(void)
+void Game::FireOtakara::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void getEnemy__Q34Game11FireOtakara3MgrFi(void)
  * Address:	802B8018
  * Size:	000080
  */
-void loadTexData__Q34Game11FireOtakara3MgrFv(void)
+void Game::FireOtakara::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void loadTexData__Q34Game11FireOtakara3MgrFv(void)
  * Address:	802B8098
  * Size:	0000C8
  */
-void __dt__Q34Game11FireOtakara3MgrFv(void)
+void Game::FireOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -420,7 +420,7 @@ void __dt__Q34Game11FireOtakara3MgrFv(void)
  * Address:	802B8160
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11FireOtakara3MgrFv(void)
+void Game::FireOtakara::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -434,7 +434,7 @@ void getEnemyTypeID__Q34Game11FireOtakara3MgrFv(void)
  * Address:	802B8168
  * Size:	000008
  */
-void getChangeTexture__Q34Game11FireOtakara3MgrFv(void)
+void Game::FireOtakara::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void getChangeTexture__Q34Game11FireOtakara3MgrFv(void)
  * Address:	802B8170
  * Size:	000050
  */
-void read__Q34Game11OtakaraBase5ParmsFR6Stream(void)
+void Game::OtakaraBase::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -480,7 +480,7 @@ void read__Q34Game11OtakaraBase5ParmsFR6Stream(void)
  * Address:	802B81C0
  * Size:	000008
  */
-void @4@__dt__Q34Game11FireOtakara3MgrFv(void)
+void @4@Game::FireOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

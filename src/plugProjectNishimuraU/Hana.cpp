@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802F3138
  * Size:	0000A4
  */
-void __ct__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q34Game4Hana3ObjFv(void)
  * Address:	802F31DC
  * Size:	000004
  */
-void createEffect__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -83,7 +83,7 @@ void createEffect__Q34Game4Hana3ObjFv(void)
  * Address:	802F31E0
  * Size:	000064
  */
-void onInit__Q34Game4Hana3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Hana::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -120,7 +120,7 @@ void onInit__Q34Game4Hana3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802F3244
  * Size:	000004
  */
-void setupEffect__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void setupEffect__Q34Game4Hana3ObjFv(void)
  * Address:	802F3248
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Hana3ObjFR8Graphics(void)
+void Game::Hana::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -146,7 +146,7 @@ void doDirectDraw__Q34Game4Hana3ObjFR8Graphics(void)
  * Address:	802F324C
  * Size:	0000E8
  */
-void getShadowParam__Q34Game4Hana3ObjFRQ24Game11ShadowParam(void)
+void Game::Hana::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -224,7 +224,7 @@ void getShadowParam__Q34Game4Hana3ObjFRQ24Game11ShadowParam(void)
  * Address:	802F3334
  * Size:	0000B4
  */
-void initMouthSlots__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void initMouthSlots__Q34Game4Hana3ObjFv(void)
  * Address:	802F33E8
  * Size:	000080
  */
-void isWakeup__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::isWakeup(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void isWakeup__Q34Game4Hana3ObjFv(void)
  * Address:	802F3468
  * Size:	000084
  */
-void flickStatePikmin__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::flickStatePikmin(void)
 {
 /*
 .loc_0x0:
@@ -380,7 +380,7 @@ void flickStatePikmin__Q34Game4Hana3ObjFv(void)
  * Address:	802F34EC
  * Size:	0000F0
  */
-void flickAttackBomb__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::flickAttackBomb(void)
 {
 /*
 .loc_0x0:
@@ -452,7 +452,7 @@ void flickAttackBomb__Q34Game4Hana3ObjFv(void)
  * Address:	802F35DC
  * Size:	00003C
  */
-void eatAttackPikmin__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::eatAttackPikmin(void)
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void eatAttackPikmin__Q34Game4Hana3ObjFv(void)
  * Address:	802F3618
  * Size:	000070
  */
-void resetUnderGround__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::resetUnderGround(void)
 {
 /*
 .loc_0x0:
@@ -519,7 +519,7 @@ void resetUnderGround__Q34Game4Hana3ObjFv(void)
  * Address:	802F3688
  * Size:	000084
  */
-void setUnderGround__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::setUnderGround(void)
 {
 /*
 .loc_0x0:
@@ -564,7 +564,7 @@ void setUnderGround__Q34Game4Hana3ObjFv(void)
  * Address:	802F370C
  * Size:	0001C0
  */
-void createSmokeEffect__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::createSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -700,7 +700,7 @@ void createSmokeEffect__Q34Game4Hana3ObjFv(void)
  * Address:	802F38CC
  * Size:	00007C
  */
-void satisfy__Q24Game21ConditionNotStickSlotFPQ24Game4Piki(void)
+void Game::ConditionNotStickSlot::satisfy( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -747,7 +747,7 @@ void satisfy__Q24Game21ConditionNotStickSlotFPQ24Game4Piki(void)
  * Address:	802F3948
  * Size:	000004
  */
-void changeMaterial__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -760,7 +760,7 @@ void changeMaterial__Q34Game4Hana3ObjFv(void)
  * Address:	802F394C
  * Size:	000008
  */
-void isUnderground__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -774,7 +774,7 @@ void isUnderground__Q34Game4Hana3ObjFv(void)
  * Address:	802F3954
  * Size:	000004
  */
-void initWalkSmokeEffect__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -787,7 +787,7 @@ void initWalkSmokeEffect__Q34Game4Hana3ObjFv(void)
  * Address:	802F3958
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -801,7 +801,7 @@ void getWalkSmokeEffectMgr__Q34Game4Hana3ObjFv(void)
  * Address:	802F3960
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -815,7 +815,7 @@ void getDownSmokeScale__Q34Game4Hana3ObjFv(void)
  * Address:	802F3968
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -829,7 +829,7 @@ void getEnemyTypeID__Q34Game4Hana3ObjFv(void)
  * Address:	802F3970
  * Size:	000004
  */
-void setAnimationSpeed__Q34Game4Hana3ObjFf(void)
+void Game::Hana::Obj::setAnimationSpeed( (float))
 {
 /*
 .loc_0x0:
@@ -842,7 +842,7 @@ void setAnimationSpeed__Q34Game4Hana3ObjFf(void)
  * Address:	802F3974
  * Size:	000004
  */
-void flickAttackFail__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::flickAttackFail(void)
 {
 /*
 .loc_0x0:
@@ -855,7 +855,7 @@ void flickAttackFail__Q34Game4Hana3ObjFv(void)
  * Address:	802F3978
  * Size:	000004
  */
-void startSleepEffect__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::startSleepEffect(void)
 {
 /*
 .loc_0x0:
@@ -868,7 +868,7 @@ void startSleepEffect__Q34Game4Hana3ObjFv(void)
  * Address:	802F397C
  * Size:	000004
  */
-void finishSleepEffect__Q34Game4Hana3ObjFv(void)
+void Game::Hana::Obj::finishSleepEffect(void)
 {
 /*
 .loc_0x0:

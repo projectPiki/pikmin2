@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80277008
  * Size:	000090
  */
-void __ct__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q34Game7Catfish3ObjFv(void)
  * Address:	80277098
  * Size:	00003C
  */
-void onInit__Q34Game7Catfish3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Catfish::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -92,7 +92,7 @@ void onInit__Q34Game7Catfish3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802770D4
  * Size:	0000C0
  */
-void getShadowParam__Q34Game7Catfish3ObjFRQ24Game11ShadowParam(void)
+void Game::Catfish::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -156,7 +156,7 @@ void getShadowParam__Q34Game7Catfish3ObjFRQ24Game11ShadowParam(void)
  * Address:	80277194
  * Size:	000028
  */
-void pressCallBack__Q34Game7Catfish3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Catfish::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void pressCallBack__Q34Game7Catfish3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802771BC
  * Size:	000020
  */
-void hipdropCallBack__Q34Game7Catfish3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Catfish::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -198,7 +198,7 @@ void hipdropCallBack__Q34Game7Catfish3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802771DC
  * Size:	0000A0
  */
-void initMouthSlots__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -254,7 +254,7 @@ void initMouthSlots__Q34Game7Catfish3ObjFv(void)
  * Address:	8027727C
  * Size:	000044
  */
-void resetEnemyNonStone__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::resetEnemyNonStone(void)
 {
 /*
 .loc_0x0:
@@ -287,7 +287,7 @@ void resetEnemyNonStone__Q34Game7Catfish3ObjFv(void)
  * Address:	802772C0
  * Size:	000028
  */
-void createDownEffect__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::createDownEffect(void)
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void createDownEffect__Q34Game7Catfish3ObjFv(void)
  * Address:	802772E8
  * Size:	000004
  */
-void changeMaterial__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void changeMaterial__Q34Game7Catfish3ObjFv(void)
  * Address:	802772EC
  * Size:	000004
  */
-void inWaterCallback__Q34Game7Catfish3ObjFPQ24Game8WaterBox(void)
+void Game::Catfish::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void inWaterCallback__Q34Game7Catfish3ObjFPQ24Game8WaterBox(void)
  * Address:	802772F0
  * Size:	000004
  */
-void outWaterCallback__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void outWaterCallback__Q34Game7Catfish3ObjFv(void)
  * Address:	802772F4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void getEnemyTypeID__Q34Game7Catfish3ObjFv(void)
  * Address:	802772FC
  * Size:	000010
  */
-void setEnemyNonStone__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::setEnemyNonStone(void)
 {
 /*
 .loc_0x0:

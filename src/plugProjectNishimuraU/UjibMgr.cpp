@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025979C
  * Size:	000050
  */
-void __ct__Q34Game4Ujib3MgrFiUc(void)
+void Game::Ujib::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Ujib3MgrFiUc(void)
  * Address:	802597EC
  * Size:	000048
  */
-void doAlloc__Q34Game4Ujib3MgrFv(void)
+void Game::Ujib::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game4Ujib3MgrFv(void)
  * Address:	80259834
  * Size:	0000DC
  */
-void __ct__Q34Game4Ujib5ParmsFv(void)
+void Game::Ujib::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void __ct__Q34Game4Ujib5ParmsFv(void)
  * Address:	80259910
  * Size:	000060
  */
-void createObj__Q34Game4Ujib3MgrFi(void)
+void Game::Ujib::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void createObj__Q34Game4Ujib3MgrFi(void)
  * Address:	80259970
  * Size:	0000BC
  */
-void __dt__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void __dt__Q34Game4Ujib3ObjFv(void)
  * Address:	80259A2C
  * Size:	000010
  */
-void getEnemy__Q34Game4Ujib3MgrFi(void)
+void Game::Ujib::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void getEnemy__Q34Game4Ujib3MgrFi(void)
  * Address:	80259A3C
  * Size:	000050
  */
-void read__Q34Game4Ujib5ParmsFR6Stream(void)
+void Game::Ujib::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void read__Q34Game4Ujib5ParmsFR6Stream(void)
  * Address:	80259A8C
  * Size:	0000B0
  */
-void __dt__Q34Game4Ujib3MgrFv(void)
+void Game::Ujib::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -355,7 +355,7 @@ void __dt__Q34Game4Ujib3MgrFv(void)
  * Address:	80259B3C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Ujib3MgrFv(void)
+void Game::Ujib::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void getEnemyTypeID__Q34Game4Ujib3MgrFv(void)
  * Address:	80259B44
  * Size:	000008
  */
-void @4@__dt__Q34Game4Ujib3MgrFv(void)
+void @4@Game::Ujib::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

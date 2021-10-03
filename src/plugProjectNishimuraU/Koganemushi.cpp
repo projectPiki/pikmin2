@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8029DD44
  * Size:	000090
  */
-void __ct__Q34Game11Koganemushi3ObjFv(void)
+void Game::Koganemushi::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q34Game11Koganemushi3ObjFv(void)
  * Address:	8029DDD4
  * Size:	0001F0
  */
-void changeMaterial__Q34Game11Koganemushi3ObjFv(void)
+void Game::Koganemushi::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -205,7 +205,7 @@ void changeMaterial__Q34Game11Koganemushi3ObjFv(void)
  * Address:	8029DFC4
  * Size:	00011C
  */
-void createItem__Q34Game11Koganemushi3ObjFv(void)
+void Game::Koganemushi::Obj::createItem(void)
 {
 /*
 .loc_0x0:
@@ -310,7 +310,7 @@ void createItem__Q34Game11Koganemushi3ObjFv(void)
  * Address:	8029E0E0
  * Size:	000044
  */
-void createPressSENormal__Q34Game11Koganemushi3ObjFv(void)
+void Game::Koganemushi::Obj::createPressSENormal(void)
 {
 /*
 .loc_0x0:
@@ -339,7 +339,7 @@ void createPressSENormal__Q34Game11Koganemushi3ObjFv(void)
  * Address:	8029E124
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11Koganemushi3ObjFv(void)
+void Game::Koganemushi::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

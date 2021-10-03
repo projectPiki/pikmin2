@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000084
  */
-void __ct__Q32og6Screen20CallBack_CounterSlotFPPcUsUsP10JKRArchive(void)
+void og::Screen::CallBack_CounterSlot::__ct( (char **, unsigned short, unsigned short, JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q32og6Screen20CallBack_CounterSlotFPPcUsUsP10JKRArchive(void)
  * Address:	8032A754
  * Size:	000030
  */
-void init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb(void)
+void og::Screen::CallBack_CounterSlot::init( (J2DScreen *, unsigned long long, unsigned long long, unsigned long long, unsigned long *, bool))
 {
 /*
 .loc_0x0:
@@ -49,7 +49,7 @@ void init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb(void)
  * Address:	8032A784
  * Size:	000010
  */
-void setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff(void)
+void og::Screen::CallBack_CounterSlot::setPuyoParam( (float, float, float))
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff(void)
  * Address:	8032A794
  * Size:	000270
  */
-void update__Q32og6Screen20CallBack_CounterSlotFv(void)
+void og::Screen::CallBack_CounterSlot::update(void)
 {
 /*
 .loc_0x0:
@@ -261,7 +261,7 @@ void update__Q32og6Screen20CallBack_CounterSlotFv(void)
  * Address:	8032AA04
  * Size:	000094
  */
-void slot_up__Q32og6Screen20CallBack_CounterSlotFi(void)
+void og::Screen::CallBack_CounterSlot::slot_up( (int))
 {
 /*
 .loc_0x0:
@@ -314,7 +314,7 @@ void slot_up__Q32og6Screen20CallBack_CounterSlotFi(void)
  * Address:	8032AA98
  * Size:	0000C0
  */
-void startSlot__Q32og6Screen20CallBack_CounterSlotFf(void)
+void og::Screen::CallBack_CounterSlot::startSlot( (float))
 {
 /*
 .loc_0x0:
@@ -378,7 +378,7 @@ void startSlot__Q32og6Screen20CallBack_CounterSlotFf(void)
  * Address:	8032AB58
  * Size:	000554
  */
-void setValue__Q32og6Screen20CallBack_CounterSlotFbb(void)
+void og::Screen::CallBack_CounterSlot::setValue( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void setValue__Q32og6Screen20CallBack_CounterSlotFbb(void)
  * Address:	8032B0AC
  * Size:	0001D0
  */
-void setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive(void)
+void og::Screen::setCallBack_CounterSlot( (P2DScreen::Mgr *, unsigned long long, unsigned long *, unsigned short, bool, bool, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -909,7 +909,7 @@ void setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchi
  * Address:	8032B27C
  * Size:	000090
  */
-void __dt__Q32og6Screen20CallBack_CounterSlotFv(void)
+void og::Screen::CallBack_CounterSlot::__dt(void)
 {
 /*
 .loc_0x0:
@@ -961,7 +961,7 @@ void __dt__Q32og6Screen20CallBack_CounterSlotFv(void)
  * Address:	8032B30C
  * Size:	000034
  */
-void setValue__Q32og6Screen20CallBack_CounterSlotFv(void)
+void og::Screen::CallBack_CounterSlot::setValue(void)
 {
 /*
 .loc_0x0:

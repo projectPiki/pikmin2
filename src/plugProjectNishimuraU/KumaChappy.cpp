@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802996A0
  * Size:	000154
  */
-void __ct__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void __ct__Q34Game10KumaChappy3ObjFv(void)
  * Address:	802997F4
  * Size:	000004
  */
-void setInitialSetting__Q34Game10KumaChappy3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::KumaChappy::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void setInitialSetting__Q34Game10KumaChappy3ObjFPQ24Game21EnemyInitialParamBase(
  * Address:	802997F8
  * Size:	00007C
  */
-void onInit__Q34Game10KumaChappy3ObjFPQ24Game15CreatureInitArg(void)
+void Game::KumaChappy::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -174,7 +174,7 @@ void onInit__Q34Game10KumaChappy3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80299874
  * Size:	000060
  */
-void doUpdate__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -210,7 +210,7 @@ void doUpdate__Q34Game10KumaChappy3ObjFv(void)
  * Address:	802998D4
  * Size:	000004
  */
-void doDirectDraw__Q34Game10KumaChappy3ObjFR8Graphics(void)
+void Game::KumaChappy::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void doDirectDraw__Q34Game10KumaChappy3ObjFR8Graphics(void)
  * Address:	802998D8
  * Size:	000020
  */
-void doDebugDraw__Q34Game10KumaChappy3ObjFR8Graphics(void)
+void Game::KumaChappy::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -243,7 +243,7 @@ void doDebugDraw__Q34Game10KumaChappy3ObjFR8Graphics(void)
  * Address:	802998F8
  * Size:	00004C
  */
-void setFSM__Q34Game10KumaChappy3ObjFPQ34Game10KumaChappy3FSM(void)
+void Game::KumaChappy::Obj::setFSM( (Game::KumaChappy::FSM *))
 {
 /*
 .loc_0x0:
@@ -274,7 +274,7 @@ void setFSM__Q34Game10KumaChappy3ObjFPQ34Game10KumaChappy3FSM(void)
  * Address:	80299944
  * Size:	0000C4
  */
-void getShadowParam__Q34Game10KumaChappy3ObjFRQ24Game11ShadowParam(void)
+void Game::KumaChappy::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void getShadowParam__Q34Game10KumaChappy3ObjFRQ24Game11ShadowParam(void)
  * Address:	80299A08
  * Size:	000038
  */
-void damageCallBack__Q34Game10KumaChappy3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::KumaChappy::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void damageCallBack__Q34Game10KumaChappy3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80299A40
  * Size:	000028
  */
-void startCarcassMotion__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -391,7 +391,7 @@ void startCarcassMotion__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299A68
  * Size:	0000A8
  */
-void getOffsetForMapCollision__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -449,7 +449,7 @@ void getOffsetForMapCollision__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299B10
  * Size:	0000DC
  */
-void initMouthSlots__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -520,7 +520,7 @@ void initMouthSlots__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299BEC
  * Size:	000064
  */
-void initWalkSmokeEffect__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -557,7 +557,7 @@ void initWalkSmokeEffect__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299C50
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -571,7 +571,7 @@ void getWalkSmokeEffectMgr__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299C58
  * Size:	000014
  */
-void doBecomeCarcass__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::doBecomeCarcass(void)
 {
 /*
 .loc_0x0:
@@ -588,7 +588,7 @@ void doBecomeCarcass__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299C6C
  * Size:	0001FC
  */
-void doUpdateCarcass__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::doUpdateCarcass(void)
 {
 /*
 .loc_0x0:
@@ -733,7 +733,7 @@ void doUpdateCarcass__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299E68
  * Size:	000064
  */
-void doGetLifeGaugeParam__Q34Game10KumaChappy3ObjFRQ24Game14LifeGaugeParam(void)
+void Game::KumaChappy::Obj::doGetLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -774,7 +774,7 @@ void doGetLifeGaugeParam__Q34Game10KumaChappy3ObjFRQ24Game14LifeGaugeParam(void)
  * Address:	80299ECC
  * Size:	000024
  */
-void getViewAngle__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::getViewAngle(void)
 {
 /*
 .loc_0x0:
@@ -797,7 +797,7 @@ void getViewAngle__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299EF0
  * Size:	000010
  */
-void resetWayPoint__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::resetWayPoint(void)
 {
 /*
 .loc_0x0:
@@ -813,7 +813,7 @@ void resetWayPoint__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299F00
  * Size:	0000B0
  */
-void setNearestWayPoint__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::setNearestWayPoint(void)
 {
 /*
 .loc_0x0:
@@ -873,7 +873,7 @@ void setNearestWayPoint__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80299FB0
  * Size:	000260
  */
-void setLinkWayPoint__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::setLinkWayPoint(void)
 {
 /*
 .loc_0x0:
@@ -1053,7 +1053,7 @@ void setLinkWayPoint__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A210
  * Size:	00006C
  */
-void getSearchedTarget__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::getSearchedTarget(void)
 {
 /*
 .loc_0x0:
@@ -1098,7 +1098,7 @@ void getSearchedTarget__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A27C
  * Size:	000128
  */
-void updateTargetDistance__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::updateTargetDistance(void)
 {
 /*
 .loc_0x0:
@@ -1198,7 +1198,7 @@ void updateTargetDistance__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A3A4
  * Size:	0000BC
  */
-void updateHomePosition__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::updateHomePosition(void)
 {
 /*
 .loc_0x0:
@@ -1263,7 +1263,7 @@ void updateHomePosition__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A460
  * Size:	000070
  */
-void createChappyRelation__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::createChappyRelation(void)
 {
 /*
 .loc_0x0:
@@ -1305,7 +1305,7 @@ void createChappyRelation__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A4D0
  * Size:	00007C
  */
-void startEnemyRumble__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::startEnemyRumble(void)
 {
 /*
 .loc_0x0:
@@ -1348,7 +1348,7 @@ void startEnemyRumble__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A54C
  * Size:	000060
  */
-void __dt__Q24Game14ChappyRelationFv(void)
+void Game::ChappyRelation::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1386,7 +1386,7 @@ void __dt__Q24Game14ChappyRelationFv(void)
  * Address:	8029A5AC
  * Size:	000008
  */
-void getMouthSlots__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1400,7 +1400,7 @@ void getMouthSlots__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A5B4
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1414,7 +1414,7 @@ void getDownSmokeScale__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A5BC
  * Size:	000008
  */
-void getChappyRelation__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::getChappyRelation(void)
 {
 /*
 .loc_0x0:
@@ -1428,7 +1428,7 @@ void getChappyRelation__Q34Game10KumaChappy3ObjFv(void)
  * Address:	8029A5C4
  * Size:	000014
  */
-void @760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @760@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1445,7 +1445,7 @@ void @760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8029A5D8
  * Size:	000014
  */
-void @760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @760@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1462,7 +1462,7 @@ void @760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8029A5EC
  * Size:	000014
  */
-void @760@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @760@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1479,7 +1479,7 @@ void @760@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8029A600
  * Size:	000014
  */
-void @760@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @760@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1496,7 +1496,7 @@ void @760@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8029A614
  * Size:	000014
  */
-void @760@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @760@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1513,7 +1513,7 @@ void @760@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8029A628
  * Size:	000014
  */
-void @760@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @760@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

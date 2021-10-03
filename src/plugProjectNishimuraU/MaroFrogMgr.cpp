@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026152C
  * Size:	000050
  */
-void __ct__Q34Game8MaroFrog3MgrFiUc(void)
+void Game::MaroFrog::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game8MaroFrog3MgrFiUc(void)
  * Address:	8026157C
  * Size:	000048
  */
-void doAlloc__Q34Game8MaroFrog3MgrFv(void)
+void Game::MaroFrog::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game8MaroFrog3MgrFv(void)
  * Address:	802615C4
  * Size:	000060
  */
-void createObj__Q34Game8MaroFrog3MgrFi(void)
+void Game::MaroFrog::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game8MaroFrog3MgrFi(void)
  * Address:	80261624
  * Size:	0000EC
  */
-void __dt__Q34Game8MaroFrog3ObjFv(void)
+void Game::MaroFrog::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -190,7 +190,7 @@ void __dt__Q34Game8MaroFrog3ObjFv(void)
  * Address:	80261710
  * Size:	000010
  */
-void getEnemy__Q34Game8MaroFrog3MgrFi(void)
+void Game::MaroFrog::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void getEnemy__Q34Game8MaroFrog3MgrFi(void)
  * Address:	80261720
  * Size:	0000B0
  */
-void __dt__Q34Game8MaroFrog3MgrFv(void)
+void Game::MaroFrog::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -266,7 +266,7 @@ void __dt__Q34Game8MaroFrog3MgrFv(void)
  * Address:	802617D0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8MaroFrog3MgrFv(void)
+void Game::MaroFrog::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -280,7 +280,7 @@ void getEnemyTypeID__Q34Game8MaroFrog3MgrFv(void)
  * Address:	802617D8
  * Size:	000008
  */
-void @4@__dt__Q34Game8MaroFrog3MgrFv(void)
+void @4@Game::MaroFrog::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

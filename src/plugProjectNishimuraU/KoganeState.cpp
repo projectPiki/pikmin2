@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025CD48
  * Size:	0001D4
  */
-void init__Q34Game6Kogane3FSMFPQ24Game9EnemyBase(void)
+void Game::Kogane::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -154,7 +154,7 @@ void init__Q34Game6Kogane3FSMFPQ24Game9EnemyBase(void)
  * Address:	8025CF1C
  * Size:	000098
  */
-void init__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kogane::StateAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void init__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025CFB4
  * Size:	000064
  */
-void exec__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Kogane::StateAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -243,7 +243,7 @@ void exec__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	8025D018
  * Size:	0001A0
  */
-void cleanup__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Kogane::StateAppear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -359,7 +359,7 @@ void cleanup__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	8025D1B8
  * Size:	000004
  */
-void startBodyEffect__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::startBodyEffect(void)
 {
 /*
 .loc_0x0:
@@ -372,7 +372,7 @@ void startBodyEffect__Q34Game6Kogane3ObjFv(void)
  * Address:	8025D1BC
  * Size:	000138
  */
-void init__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kogane::StateDisappear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -462,7 +462,7 @@ void init__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	8025D2F4
  * Size:	000004
  */
-void finishBodyEffect__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::finishBodyEffect(void)
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void finishBodyEffect__Q34Game6Kogane3ObjFv(void)
  * Address:	8025D2F8
  * Size:	00006C
  */
-void exec__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBase(void)
+void Game::Kogane::StateDisappear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void exec__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBase(void)
  * Address:	8025D364
  * Size:	000004
  */
-void cleanup__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBase(void)
+void Game::Kogane::StateDisappear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void cleanup__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBase(void)
  * Address:	8025D368
  * Size:	00006C
  */
-void init__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kogane::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -570,7 +570,7 @@ void init__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025D3D4
  * Size:	000004
  */
-void createFartEffect__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::createFartEffect(void)
 {
 /*
 .loc_0x0:
@@ -583,7 +583,7 @@ void createFartEffect__Q34Game6Kogane3ObjFv(void)
  * Address:	8025D3D8
  * Size:	000138
  */
-void exec__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Kogane::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -681,7 +681,7 @@ void exec__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	8025D510
  * Size:	000004
  */
-void cleanup__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Kogane::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -694,7 +694,7 @@ void cleanup__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	8025D514
  * Size:	00005C
  */
-void init__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kogane::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -729,7 +729,7 @@ void init__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025D570
  * Size:	0000BC
  */
-void exec__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Kogane::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -792,7 +792,7 @@ void exec__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8025D62C
  * Size:	000004
  */
-void cleanup__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Kogane::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -805,7 +805,7 @@ void cleanup__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8025D630
  * Size:	00011C
  */
-void init__Q34Game6Kogane10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Kogane::StatePress::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -888,7 +888,7 @@ void init__Q34Game6Kogane10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8025D74C
  * Size:	000004
  */
-void createPressSENormal__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::createPressSENormal(void)
 {
 /*
 .loc_0x0:
@@ -901,7 +901,7 @@ void createPressSENormal__Q34Game6Kogane3ObjFv(void)
  * Address:	8025D750
  * Size:	000130
  */
-void exec__Q34Game6Kogane10StatePressFPQ24Game9EnemyBase(void)
+void Game::Kogane::StatePress::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -999,7 +999,7 @@ void exec__Q34Game6Kogane10StatePressFPQ24Game9EnemyBase(void)
  * Address:	8025D880
  * Size:	000004
  */
-void createItem__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::createItem(void)
 {
 /*
 .loc_0x0:
@@ -1012,7 +1012,7 @@ void createItem__Q34Game6Kogane3ObjFv(void)
  * Address:	8025D884
  * Size:	000004
  */
-void createPressSESpecial__Q34Game6Kogane3ObjFv(void)
+void Game::Kogane::Obj::createPressSESpecial(void)
 {
 /*
 .loc_0x0:
@@ -1025,7 +1025,7 @@ void createPressSESpecial__Q34Game6Kogane3ObjFv(void)
  * Address:	8025D888
  * Size:	000010
  */
-void cleanup__Q34Game6Kogane10StatePressFPQ24Game9EnemyBase(void)
+void Game::Kogane::StatePress::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

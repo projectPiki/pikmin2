@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8038844C
  * Size:	000008
  */
-void setAnimMgr__Q34Game11ShijimiChou14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::ShijimiChou::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game11ShijimiChou14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80388454
  * Size:	000008
  */
-void getAnimator__Q34Game11ShijimiChou14ProperAnimatorFi(void)
+void Game::ShijimiChou::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game11ShijimiChou14ProperAnimatorFi(void)
  * Address:	8038845C
  * Size:	00005C
  */
-void __dt__Q34Game11ShijimiChou14ProperAnimatorFv(void)
+void Game::ShijimiChou::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game11ShijimiChou14ProperAnimatorFv(void)
  * Address:	803884B8
  * Size:	000008
  */
-void getAnimator__Q34Game11ShijimiChou14ProperAnimatorFv(void)
+void Game::ShijimiChou::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

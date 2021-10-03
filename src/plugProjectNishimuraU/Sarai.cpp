@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80272BC4
  * Size:	000138
  */
-void __ct__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game5Sarai3ObjFv(void)
  * Address:	80272CFC
  * Size:	000004
  */
-void setInitialSetting__Q34Game5Sarai3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Sarai::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game5Sarai3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	80272D00
  * Size:	000078
  */
-void onInit__Q34Game5Sarai3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Sarai::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void onInit__Q34Game5Sarai3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80272D78
  * Size:	000048
  */
-void doUpdate__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void doUpdate__Q34Game5Sarai3ObjFv(void)
  * Address:	80272DC0
  * Size:	00004C
  */
-void setFSM__Q34Game5Sarai3ObjFPQ34Game5Sarai3FSM(void)
+void Game::Sarai::Obj::setFSM( (Game::Sarai::FSM *))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void setFSM__Q34Game5Sarai3ObjFPQ34Game5Sarai3FSM(void)
  * Address:	80272E0C
  * Size:	000004
  */
-void doDirectDraw__Q34Game5Sarai3ObjFR8Graphics(void)
+void Game::Sarai::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -240,7 +240,7 @@ void doDirectDraw__Q34Game5Sarai3ObjFR8Graphics(void)
  * Address:	80272E10
  * Size:	000020
  */
-void doDebugDraw__Q34Game5Sarai3ObjFR8Graphics(void)
+void Game::Sarai::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void doDebugDraw__Q34Game5Sarai3ObjFR8Graphics(void)
  * Address:	80272E30
  * Size:	000140
  */
-void getShadowParam__Q34Game5Sarai3ObjFRQ24Game11ShadowParam(void)
+void Game::Sarai::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void getShadowParam__Q34Game5Sarai3ObjFRQ24Game11ShadowParam(void)
  * Address:	80272F70
  * Size:	000034
  */
-void doStartStoneState__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -387,7 +387,7 @@ void doStartStoneState__Q34Game5Sarai3ObjFv(void)
  * Address:	80272FA4
  * Size:	00005C
  */
-void doFinishStoneState__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void doFinishStoneState__Q34Game5Sarai3ObjFv(void)
  * Address:	80273000
  * Size:	000028
  */
-void startCarcassMotion__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void startCarcassMotion__Q34Game5Sarai3ObjFv(void)
  * Address:	80273028
  * Size:	0000A8
  */
-void initMouthSlots__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void initMouthSlots__Q34Game5Sarai3ObjFv(void)
  * Address:	802730D0
  * Size:	000108
  */
-void setHeightVelocity__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::setHeightVelocity(void)
 {
 /*
 .loc_0x0:
@@ -590,7 +590,7 @@ void setHeightVelocity__Q34Game5Sarai3ObjFv(void)
  * Address:	802731D8
  * Size:	000230
  */
-void setRandTarget__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::setRandTarget(void)
 {
 /*
 .loc_0x0:
@@ -754,7 +754,7 @@ void setRandTarget__Q34Game5Sarai3ObjFv(void)
  * Address:	80273408
  * Size:	000294
  */
-void fallMeckGround__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::fallMeckGround(void)
 {
 /*
 .loc_0x0:
@@ -949,7 +949,7 @@ void fallMeckGround__Q34Game5Sarai3ObjFv(void)
  * Address:	8027369C
  * Size:	00007C
  */
-void getCatchTargetNum__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::getCatchTargetNum(void)
 {
 /*
 .loc_0x0:
@@ -998,7 +998,7 @@ void getCatchTargetNum__Q34Game5Sarai3ObjFv(void)
  * Address:	80273718
  * Size:	000144
  */
-void getNextStateOnHeight__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::getNextStateOnHeight(void)
 {
 /*
 .loc_0x0:
@@ -1105,7 +1105,7 @@ void getNextStateOnHeight__Q34Game5Sarai3ObjFv(void)
  * Address:	8027385C
  * Size:	0000B0
  */
-void flickStickTarget__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::flickStickTarget(void)
 {
 /*
 .loc_0x0:
@@ -1167,7 +1167,7 @@ void flickStickTarget__Q34Game5Sarai3ObjFv(void)
  * Address:	8027390C
  * Size:	000080
  */
-void getStickPikminNum__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::getStickPikminNum(void)
 {
 /*
 .loc_0x0:
@@ -1217,7 +1217,7 @@ void getStickPikminNum__Q34Game5Sarai3ObjFv(void)
  * Address:	8027398C
  * Size:	0003D0
  */
-void getAttackableTarget__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::getAttackableTarget(void)
 {
 /*
 .loc_0x0:
@@ -1495,7 +1495,7 @@ void getAttackableTarget__Q34Game5Sarai3ObjFv(void)
  * Address:	80273D5C
  * Size:	000024
  */
-void catchTarget__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::catchTarget(void)
 {
 /*
 .loc_0x0:
@@ -1516,7 +1516,7 @@ void catchTarget__Q34Game5Sarai3ObjFv(void)
  * Address:	80273D80
  * Size:	000044
  */
-void createDownEffect__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::createDownEffect(void)
 {
 /*
 .loc_0x0:
@@ -1545,7 +1545,7 @@ void createDownEffect__Q34Game5Sarai3ObjFv(void)
  * Address:	80273DC4
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1559,7 +1559,7 @@ void getDownSmokeScale__Q34Game5Sarai3ObjFv(void)
  * Address:	80273DCC
  * Size:	000004
  */
-void inWaterCallback__Q34Game5Sarai3ObjFPQ24Game8WaterBox(void)
+void Game::Sarai::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1572,7 +1572,7 @@ void inWaterCallback__Q34Game5Sarai3ObjFPQ24Game8WaterBox(void)
  * Address:	80273DD0
  * Size:	000004
  */
-void outWaterCallback__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1585,7 +1585,7 @@ void outWaterCallback__Q34Game5Sarai3ObjFv(void)
  * Address:	80273DD4
  * Size:	000008
  */
-void getMouthSlots__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1599,7 +1599,7 @@ void getMouthSlots__Q34Game5Sarai3ObjFv(void)
  * Address:	80273DDC
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Sarai3ObjFv(void)
+void Game::Sarai::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8032D8E8
  * Size:	000140
  */
-void __ct__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032DA28
  * Size:	0000A8
  */
-void init__Q32og6Screen13OtakaraSensorFP7J2DPaneP7J2DPanei(void)
+void og::Screen::OtakaraSensor::init( (J2DPane *, J2DPane *, int))
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void init__Q32og6Screen13OtakaraSensorFP7J2DPaneP7J2DPanei(void)
  * Address:	8032DAD0
  * Size:	000150
  */
-void setParam__Q32og6Screen13OtakaraSensorFfibb(void)
+void og::Screen::OtakaraSensor::setParam( (float, int, bool, bool))
 {
 /*
 .loc_0x0:
@@ -281,7 +281,7 @@ void setParam__Q32og6Screen13OtakaraSensorFfibb(void)
  * Address:	8032DC20
  * Size:	00005C
  */
-void calcLevel__Q32og6Screen13OtakaraSensorFf(void)
+void og::Screen::OtakaraSensor::calcLevel( (float))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void calcLevel__Q32og6Screen13OtakaraSensorFf(void)
  * Address:	8032DC7C
  * Size:	000010
  */
-void show__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::show(void)
 {
 /*
 .loc_0x0:
@@ -338,7 +338,7 @@ void show__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032DC8C
  * Size:	000010
  */
-void hide__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::hide(void)
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void hide__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032DC9C
  * Size:	000014
  */
-void startSensorEff__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::startSensorEff(void)
 {
 /*
 .loc_0x0:
@@ -371,7 +371,7 @@ void startSensorEff__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032DCB0
  * Size:	0000D8
  */
-void adjPos__Q32og6Screen13OtakaraSensorFff(void)
+void og::Screen::OtakaraSensor::adjPos( (float, float))
 {
 /*
 .loc_0x0:
@@ -441,7 +441,7 @@ void adjPos__Q32og6Screen13OtakaraSensorFff(void)
  * Address:	8032DD88
  * Size:	000008
  */
-void adjScale__Q32og6Screen13OtakaraSensorFf(void)
+void og::Screen::OtakaraSensor::adjScale( (float))
 {
 /*
 .loc_0x0:
@@ -455,7 +455,7 @@ void adjScale__Q32og6Screen13OtakaraSensorFf(void)
  * Address:	8032DD90
  * Size:	000088
  */
-void update__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::update(void)
 {
 /*
 .loc_0x0:
@@ -505,7 +505,7 @@ void update__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032DE18
  * Size:	000160
  */
-void updateInit__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::updateInit(void)
 {
 /*
 .loc_0x0:
@@ -619,7 +619,7 @@ void updateInit__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032DF78
  * Size:	000370
  */
-void calcGrayColor__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::calcGrayColor(void)
 {
 /*
 .loc_0x0:
@@ -885,7 +885,7 @@ void calcGrayColor__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032E2E8
  * Size:	0001FC
  */
-void calcAppear__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::calcAppear(void)
 {
 /*
 .loc_0x0:
@@ -1028,7 +1028,7 @@ void calcAppear__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032E4E4
  * Size:	000138
  */
-void startGraySensor__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::startGraySensor(void)
 {
 /*
 .loc_0x0:
@@ -1118,7 +1118,7 @@ void startGraySensor__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032E61C
  * Size:	00022C
  */
-void calcAngle__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::calcAngle(void)
 {
 /*
 .loc_0x0:
@@ -1295,7 +1295,7 @@ void calcAngle__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032E848
  * Size:	000204
  */
-void calcReaction__Q32og6Screen13OtakaraSensorFv(void)
+void og::Screen::OtakaraSensor::calcReaction(void)
 {
 /*
 .loc_0x0:
@@ -1440,7 +1440,7 @@ void calcReaction__Q32og6Screen13OtakaraSensorFv(void)
  * Address:	8032EA4C
  * Size:	000004
  */
-void draw__Q32og6Screen13OtakaraSensorFR14J2DGrafContext(void)
+void og::Screen::OtakaraSensor::draw( (J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -1453,7 +1453,7 @@ void draw__Q32og6Screen13OtakaraSensorFR14J2DGrafContext(void)
  * Address:	8032EA50
  * Size:	000004
  */
-void kill__Q25efx2d8TSimple3Fv(void)
+void efx2d::TSimple3::kill(void)
 {
 /*
 .loc_0x0:
@@ -1466,7 +1466,7 @@ void kill__Q25efx2d8TSimple3Fv(void)
  * Address:	8032EA54
  * Size:	000004
  */
-void fade__Q25efx2d8TSimple3Fv(void)
+void efx2d::TSimple3::fade(void)
 {
 /*
 .loc_0x0:

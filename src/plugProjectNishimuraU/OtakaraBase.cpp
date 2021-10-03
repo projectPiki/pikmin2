@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B624C
  * Size:	000130
  */
-void __ct__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B637C
  * Size:	000004
  */
-void setInitialSetting__Q34Game11OtakaraBase3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::OtakaraBase::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void setInitialSetting__Q34Game11OtakaraBase3ObjFPQ24Game21EnemyInitialParamBase
  * Address:	802B6380
  * Size:	000104
  */
-void onInit__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureInitArg(void)
+void Game::OtakaraBase::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -205,7 +205,7 @@ void onInit__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802B6484
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -219,7 +219,7 @@ void getEnemyTypeID__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B648C
  * Size:	000004
  */
-void setupEffect__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -232,7 +232,7 @@ void setupEffect__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6490
  * Size:	00005C
  */
-void onKill__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureKillArg(void)
+void Game::OtakaraBase::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -267,7 +267,7 @@ void onKill__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802B64EC
  * Size:	000034
  */
-void doUpdate__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void doUpdate__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6520
  * Size:	0000F0
  */
-void doUpdateCommon__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -372,7 +372,7 @@ void doUpdateCommon__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6610
  * Size:	000004
  */
-void startDisChargeSE__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::startDisChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void startDisChargeSE__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6614
  * Size:	00007C
  */
-void doAnimationCullingOff__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -432,7 +432,7 @@ void doAnimationCullingOff__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6690
  * Size:	000004
  */
-void doDirectDraw__Q34Game11OtakaraBase3ObjFR8Graphics(void)
+void Game::OtakaraBase::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -445,7 +445,7 @@ void doDirectDraw__Q34Game11OtakaraBase3ObjFR8Graphics(void)
  * Address:	802B6694
  * Size:	000020
  */
-void doDebugDraw__Q34Game11OtakaraBase3ObjFR8Graphics(void)
+void Game::OtakaraBase::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -465,7 +465,7 @@ void doDebugDraw__Q34Game11OtakaraBase3ObjFR8Graphics(void)
  * Address:	802B66B4
  * Size:	00004C
  */
-void setFSM__Q34Game11OtakaraBase3ObjFPQ34Game11OtakaraBase3FSM(void)
+void Game::OtakaraBase::Obj::setFSM( (Game::OtakaraBase::FSM *))
 {
 /*
 .loc_0x0:
@@ -496,7 +496,7 @@ void setFSM__Q34Game11OtakaraBase3ObjFPQ34Game11OtakaraBase3FSM(void)
  * Address:	802B6700
  * Size:	0000EC
  */
-void getShadowParam__Q34Game11OtakaraBase3ObjFRQ24Game11ShadowParam(void)
+void Game::OtakaraBase::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -577,7 +577,7 @@ void getShadowParam__Q34Game11OtakaraBase3ObjFRQ24Game11ShadowParam(void)
  * Address:	802B67EC
  * Size:	000034
  */
-void damageCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::OtakaraBase::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -606,7 +606,7 @@ void damageCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802B6820
  * Size:	000078
  */
-void hipdropCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::OtakaraBase::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void hipdropCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart(void
  * Address:	802B6898
  * Size:	000070
  */
-void earthquakeCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8Creaturef(void)
+void Game::OtakaraBase::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -715,7 +715,7 @@ void bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3<float>f(
  * Address:	802B692C
  * Size:	00004C
  */
-void doStartStoneState__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -746,7 +746,7 @@ void doStartStoneState__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6978
  * Size:	00004C
  */
-void doFinishStoneState__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -779,7 +779,7 @@ void doFinishStoneState__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B69C4
  * Size:	00004C
  */
-void doStartEarthquakeState__Q34Game11OtakaraBase3ObjFf(void)
+void Game::OtakaraBase::Obj::doStartEarthquakeState( (float))
 {
 /*
 .loc_0x0:
@@ -810,7 +810,7 @@ void doStartEarthquakeState__Q34Game11OtakaraBase3ObjFf(void)
  * Address:	802B6A10
  * Size:	00004C
  */
-void doFinishEarthquakeState__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doFinishEarthquakeState(void)
 {
 /*
 .loc_0x0:
@@ -843,7 +843,7 @@ void doFinishEarthquakeState__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6A5C
  * Size:	00004C
  */
-void doStartEarthquakeFitState__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doStartEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -874,7 +874,7 @@ void doStartEarthquakeFitState__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6AA8
  * Size:	00004C
  */
-void doFinishEarthquakeFitState__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doFinishEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -907,7 +907,7 @@ void doFinishEarthquakeFitState__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6AF4
  * Size:	000040
  */
-void doStartWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -935,7 +935,7 @@ void doStartWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6B34
  * Size:	000004
  */
-void effectDrawOff__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -948,7 +948,7 @@ void effectDrawOff__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6B38
  * Size:	000064
  */
-void doFinishWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -987,7 +987,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6B9C
  * Size:	000004
  */
-void effectDrawOn__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -1000,7 +1000,7 @@ void effectDrawOn__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6BA0
  * Size:	000028
  */
-void startCarcassMotion__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -1022,7 +1022,7 @@ void startCarcassMotion__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6BC8
  * Size:	00002C
  */
-void doStartMovie__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -1045,7 +1045,7 @@ void doStartMovie__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6BF4
  * Size:	00002C
  */
-void doEndMovie__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -1068,7 +1068,7 @@ void doEndMovie__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6C20
  * Size:	000140
  */
-void isMovePositionSet__Q34Game11OtakaraBase3ObjFb(void)
+void Game::OtakaraBase::Obj::isMovePositionSet( (bool))
 {
 /*
 .loc_0x0:
@@ -1176,7 +1176,7 @@ void isMovePositionSet__Q34Game11OtakaraBase3ObjFb(void)
  * Address:	802B6D60
  * Size:	000148
  */
-void getNearestTreasure__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::getNearestTreasure(void)
 {
 /*
 .loc_0x0:
@@ -1276,7 +1276,7 @@ void getNearestTreasure__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B6EA8
  * Size:	0001C8
  */
-void getTargetPosition__Q34Game11OtakaraBase3ObjFPQ24Game8Creature(void)
+void Game::OtakaraBase::Obj::getTargetPosition( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1416,7 +1416,7 @@ void getTargetPosition__Q34Game11OtakaraBase3ObjFPQ24Game8Creature(void)
  * Address:	802B7070
  * Size:	000094
  */
-void resetTreasure__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::resetTreasure(void)
 {
 /*
 .loc_0x0:
@@ -1465,7 +1465,7 @@ void resetTreasure__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	........
  * Size:	000140
  */
-void setTreasure__Q34Game11OtakaraBase3ObjFPQ24Game8Creature(void)
+void Game::OtakaraBase::Obj::setTreasure( (Game::Creature *))
 {
 	// UNUSED FUNCTION
 }
@@ -1475,7 +1475,7 @@ void setTreasure__Q34Game11OtakaraBase3ObjFPQ24Game8Creature(void)
  * Address:	802B7104
  * Size:	00010C
  */
-void isTakeTreasure__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::isTakeTreasure(void)
 {
 /*
 .loc_0x0:
@@ -1564,7 +1564,7 @@ void isTakeTreasure__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7210
  * Size:	00024C
  */
-void takeTreasure__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::takeTreasure(void)
 {
 /*
 .loc_0x0:
@@ -1741,7 +1741,7 @@ void takeTreasure__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B745C
  * Size:	0000F8
  */
-void fallTreasure__Q34Game11OtakaraBase3ObjFb(void)
+void Game::OtakaraBase::Obj::fallTreasure( (bool))
 {
 /*
 .loc_0x0:
@@ -1821,7 +1821,7 @@ void fallTreasure__Q34Game11OtakaraBase3ObjFb(void)
  * Address:	802B7554
  * Size:	000028
  */
-void isDropTreasure__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::isDropTreasure(void)
 {
 /*
 .loc_0x0:
@@ -1845,7 +1845,7 @@ void isDropTreasure__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B757C
  * Size:	000054
  */
-void damageTreasure__Q34Game11OtakaraBase3ObjFf(void)
+void Game::OtakaraBase::Obj::damageTreasure( (float))
 {
 /*
 .loc_0x0:
@@ -1882,7 +1882,7 @@ void damageTreasure__Q34Game11OtakaraBase3ObjFf(void)
  * Address:	802B75D0
  * Size:	0001A8
  */
-void attackTarget__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::attackTarget(void)
 {
 /*
 .loc_0x0:
@@ -2008,7 +2008,7 @@ void attackTarget__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7778
  * Size:	000004
  */
-void interactCreature__Q34Game11OtakaraBase3ObjFPQ24Game8Creature(void)
+void Game::OtakaraBase::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -2021,7 +2021,7 @@ void interactCreature__Q34Game11OtakaraBase3ObjFPQ24Game8Creature(void)
  * Address:	802B777C
  * Size:	000134
  */
-void createTreasureFallEffect__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::createTreasureFallEffect(void)
 {
 /*
 .loc_0x0:
@@ -2112,7 +2112,7 @@ void createTreasureFallEffect__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B78B0
  * Size:	000088
  */
-void startEscapeSE__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::startEscapeSE(void)
 {
 /*
 .loc_0x0:
@@ -2162,7 +2162,7 @@ void startEscapeSE__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7938
  * Size:	0000FC
  */
-void initBombOtakara__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::initBombOtakara(void)
 {
 /*
 .loc_0x0:
@@ -2239,7 +2239,7 @@ void initBombOtakara__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7A34
  * Size:	000068
  */
-void isTransitChaseState__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::isTransitChaseState(void)
 {
 /*
 .loc_0x0:
@@ -2283,7 +2283,7 @@ void isTransitChaseState__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7A9C
  * Size:	00008C
  */
-void stimulateBomb__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::stimulateBomb(void)
 {
 /*
 .loc_0x0:
@@ -2332,7 +2332,7 @@ void stimulateBomb__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7B28
  * Size:	000038
  */
-void getChaseTargetCreature__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::getChaseTargetCreature(void)
 {
 /*
 .loc_0x0:
@@ -2358,7 +2358,7 @@ void getChaseTargetCreature__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7B60
  * Size:	00009C
  */
-void satisfy__Q24Game30ConditionNotStickClientAndItemFPQ24Game4Piki(void)
+void Game::ConditionNotStickClientAndItem::satisfy( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2415,7 +2415,7 @@ void satisfy__Q24Game30ConditionNotStickClientAndItemFPQ24Game4Piki(void)
  * Address:	802B7BFC
  * Size:	0000BC
  */
-void __dt__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2478,7 +2478,7 @@ void __dt__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7CB8
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -2492,7 +2492,7 @@ void getDownSmokeScale__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7CC0
  * Size:	000008
  */
-void getCellRadius__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::getCellRadius(void)
 {
 /*
 .loc_0x0:
@@ -2506,7 +2506,7 @@ void getCellRadius__Q34Game11OtakaraBase3ObjFv(void)
  * Address:	802B7CC8
  * Size:	000004
  */
-void createEffect__Q34Game11OtakaraBase3ObjFv(void)
+void Game::OtakaraBase::Obj::createEffect(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B8A38
  * Size:	0000A4
  */
-void __ct__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8ADC
  * Size:	0001A4
  */
-void changeMaterial__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void changeMaterial__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8C80
  * Size:	000060
  */
-void interactCreature__Q34Game12WaterOtakara3ObjFPQ24Game8Creature(void)
+void Game::WaterOtakara::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void interactCreature__Q34Game12WaterOtakara3ObjFPQ24Game8Creature(void)
  * Address:	802B8CE0
  * Size:	000060
  */
-void createEffect__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void createEffect__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8D40
  * Size:	000048
  */
-void setupEffect__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void setupEffect__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8D88
  * Size:	000034
  */
-void startChargeEffect__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::startChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void startChargeEffect__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8DBC
  * Size:	000030
  */
-void finishChargeEffect__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::finishChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -344,7 +344,7 @@ void finishChargeEffect__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8DEC
  * Size:	0000A4
  */
-void createDisChargeEffect__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::createDisChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void createDisChargeEffect__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8E90
  * Size:	000030
  */
-void effectDrawOn__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -421,7 +421,7 @@ void effectDrawOn__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8EC0
  * Size:	000030
  */
-void effectDrawOff__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -445,7 +445,7 @@ void effectDrawOff__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8EF0
  * Size:	000044
  */
-void startDisChargeSE__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::startDisChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -474,7 +474,7 @@ void startDisChargeSE__Q34Game12WaterOtakara3ObjFv(void)
  * Address:	802B8F34
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12WaterOtakara3ObjFv(void)
+void Game::WaterOtakara::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

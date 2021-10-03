@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80455C30
  * Size:	000060
  */
-void init__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::init(void)
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void init__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80455C90
  * Size:	000018
  */
-void __ct__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -75,7 +75,7 @@ void __ct__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80455CA8
  * Size:	000008
  */
-void setLoadPermission__Q211Pikmin2ARAM3MgrFb(void)
+void Pikmin2ARAM::Mgr::setLoadPermission( (bool))
 {
 /*
 .loc_0x0:
@@ -89,7 +89,7 @@ void setLoadPermission__Q211Pikmin2ARAM3MgrFb(void)
  * Address:	........
  * Size:	000010
  */
-void isEntryOnly__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::isEntryOnly(void)
 {
 	// UNUSED FUNCTION
 }
@@ -99,7 +99,7 @@ void isEntryOnly__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80455CB0
  * Size:	000060
  */
-void load__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::load(void)
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void load__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80455D10
  * Size:	000024
  */
-void dump__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::dump(void)
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void dump__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80455D34
  * Size:	0001A4
  */
-void loadEnemy__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::loadEnemy(void)
 {
 /*
 .loc_0x0:
@@ -287,7 +287,7 @@ void loadEnemy__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80455ED8
  * Size:	0000B8
  */
-void load2D__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::load2D(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void load2D__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80455F90
  * Size:	000078
  */
-void loadDemo__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::loadDemo(void)
 {
 /*
 .loc_0x0:
@@ -393,7 +393,7 @@ void loadDemo__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80456008
  * Size:	000078
  */
-void loadItem__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::loadItem(void)
 {
 /*
 .loc_0x0:
@@ -437,7 +437,7 @@ void loadItem__Q211Pikmin2ARAM3MgrFv(void)
  * Address:	80456080
  * Size:	000048
  */
-void __dt__Q211Pikmin2ARAM3MgrFv(void)
+void Pikmin2ARAM::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

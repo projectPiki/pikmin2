@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802A57A4
  * Size:	000024
  */
-void invokeOnGround__Q34Game8Damagumo22DamagumoGroundCallBackFiPQ24Game8WaterBox(void)
+void Game::Damagumo::DamagumoGroundCallBack::invokeOnGround( (int, Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -36,7 +36,7 @@ void invokeOnGround__Q34Game8Damagumo22DamagumoGroundCallBackFiPQ24Game8WaterBox
  * Address:	802A57C8
  * Size:	000024
  */
-void invokeOffGround__Q34Game8Damagumo22DamagumoGroundCallBackFiPQ24Game8WaterBox(void)
+void Game::Damagumo::DamagumoGroundCallBack::invokeOffGround( (int, Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void invokeOffGround__Q34Game8Damagumo22DamagumoGroundCallBackFiPQ24Game8WaterBo
  * Address:	802A57EC
  * Size:	00016C
  */
-void __ct__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void __ct__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5958
  * Size:	000034
  */
-void constructor__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::constructor(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void constructor__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A598C
  * Size:	000004
  */
-void setInitialSetting__Q34Game8Damagumo3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Damagumo::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void setInitialSetting__Q34Game8Damagumo3ObjFPQ24Game21EnemyInitialParamBase(voi
  * Address:	802A5990
  * Size:	000134
  */
-void onInit__Q34Game8Damagumo3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Damagumo::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -297,7 +297,7 @@ void onInit__Q34Game8Damagumo3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802A5AC4
  * Size:	000050
  */
-void doUpdate__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -329,7 +329,7 @@ void doUpdate__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5B14
  * Size:	000034
  */
-void doUpdateCommon__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void doUpdateCommon__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5B48
  * Size:	000098
  */
-void doAnimationCullingOff__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -404,7 +404,7 @@ void doAnimationCullingOff__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5BE0
  * Size:	000004
  */
-void doDirectDraw__Q34Game8Damagumo3ObjFR8Graphics(void)
+void Game::Damagumo::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -417,7 +417,7 @@ void doDirectDraw__Q34Game8Damagumo3ObjFR8Graphics(void)
  * Address:	802A5BE4
  * Size:	000020
  */
-void doDebugDraw__Q34Game8Damagumo3ObjFR8Graphics(void)
+void Game::Damagumo::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -437,7 +437,7 @@ void doDebugDraw__Q34Game8Damagumo3ObjFR8Graphics(void)
  * Address:	802A5C04
  * Size:	00004C
  */
-void setFSM__Q34Game8Damagumo3ObjFPQ34Game8Damagumo3FSM(void)
+void Game::Damagumo::Obj::setFSM( (Game::Damagumo::FSM *))
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void setFSM__Q34Game8Damagumo3ObjFPQ34Game8Damagumo3FSM(void)
  * Address:	802A5C50
  * Size:	00003C
  */
-void getShadowParam__Q34Game8Damagumo3ObjFRQ24Game11ShadowParam(void)
+void Game::Damagumo::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void getShadowParam__Q34Game8Damagumo3ObjFRQ24Game11ShadowParam(void)
  * Address:	802A5C8C
  * Size:	000050
  */
-void needShadow__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void needShadow__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5CDC
  * Size:	00009C
  */
-void damageCallBack__Q34Game8Damagumo3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Damagumo::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -586,7 +586,7 @@ void damageCallBack__Q34Game8Damagumo3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802A5D78
  * Size:	0001AC
  */
-void collisionCallback__Q34Game8Damagumo3ObjFRQ24Game9CollEvent(void)
+void Game::Damagumo::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -711,7 +711,7 @@ void collisionCallback__Q34Game8Damagumo3ObjFRQ24Game9CollEvent(void)
  * Address:	802A5F24
  * Size:	000034
  */
-void doStartStoneState__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -736,7 +736,7 @@ void doStartStoneState__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5F58
  * Size:	00005C
  */
-void doFinishStoneState__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void doFinishStoneState__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5FB4
  * Size:	000020
  */
-void doStartMovie__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -793,7 +793,7 @@ void doStartMovie__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5FD4
  * Size:	000020
  */
-void doEndMovie__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -866,7 +866,7 @@ void getThrowupItemVelocity__Q34Game8Damagumo3ObjFP10Vector3<float>(void)
  * Address:	802A6068
  * Size:	000298
  */
-void getTargetPosition__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::getTargetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1056,7 +1056,7 @@ void getTargetPosition__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6300
  * Size:	00010C
  */
-void createIKSystem__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::createIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1141,7 +1141,7 @@ void createIKSystem__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A640C
  * Size:	000124
  */
-void setupIKSystem__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::setupIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1228,7 +1228,7 @@ void setupIKSystem__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6530
  * Size:	000090
  */
-void setIKParameter__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::setIKParameter(void)
 {
 /*
 .loc_0x0:
@@ -1296,7 +1296,7 @@ void setIKSystemTargetPosition__Q34Game8Damagumo3ObjFR10Vector3<float>(void)
  * Address:	802A65E0
  * Size:	000060
  */
-void updateIKSystem__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::updateIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1332,7 +1332,7 @@ void updateIKSystem__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6640
  * Size:	000060
  */
-void doAnimationIKSystem__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doAnimationIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1368,7 +1368,7 @@ void doAnimationIKSystem__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A66A0
  * Size:	000024
  */
-void finishAnimationIKSystem__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::finishAnimationIKSystem(void)
 {
 /*
 .loc_0x0:
@@ -1389,7 +1389,7 @@ void finishAnimationIKSystem__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A66C4
  * Size:	000024
  */
-void startProgramedIK__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::startProgramedIK(void)
 {
 /*
 .loc_0x0:
@@ -1410,7 +1410,7 @@ void startProgramedIK__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A66E8
  * Size:	000024
  */
-void startIKMotion__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::startIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -1431,7 +1431,7 @@ void startIKMotion__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A670C
  * Size:	000024
  */
-void finishIKMotion__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::finishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -1452,7 +1452,7 @@ void finishIKMotion__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6730
  * Size:	000024
  */
-void forceFinishIKMotion__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::forceFinishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -1473,7 +1473,7 @@ void forceFinishIKMotion__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6754
  * Size:	000024
  */
-void isFinishIKMotion__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::isFinishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -1494,7 +1494,7 @@ void isFinishIKMotion__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6778
  * Size:	000024
  */
-void startBlendMotion__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::startBlendMotion(void)
 {
 /*
 .loc_0x0:
@@ -1515,7 +1515,7 @@ void startBlendMotion__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A679C
  * Size:	000024
  */
-void finishBlendMotion__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::finishBlendMotion(void)
 {
 /*
 .loc_0x0:
@@ -1536,7 +1536,7 @@ void finishBlendMotion__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A67C0
  * Size:	000020
  */
-void getTraceCentrePosition__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::getTraceCentrePosition(void)
 {
 /*
 .loc_0x0:
@@ -1556,7 +1556,7 @@ void getTraceCentrePosition__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A67E0
  * Size:	000024
  */
-void isCollisionCheck__Q34Game8Damagumo3ObjFP8CollPart(void)
+void Game::Damagumo::Obj::isCollisionCheck( (CollPart *))
 {
 /*
 .loc_0x0:
@@ -1577,7 +1577,7 @@ void isCollisionCheck__Q34Game8Damagumo3ObjFP8CollPart(void)
  * Address:	802A6804
  * Size:	000048
  */
-void createShadowSystem__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::createShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -1609,7 +1609,7 @@ void createShadowSystem__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A684C
  * Size:	000074
  */
-void setupShadowSystem__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::setupShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -1654,7 +1654,7 @@ void setupShadowSystem__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A68C0
  * Size:	000024
  */
-void doAnimationShadowSystem__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::doAnimationShadowSystem(void)
 {
 /*
 .loc_0x0:
@@ -1675,7 +1675,7 @@ void doAnimationShadowSystem__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A68E4
  * Size:	00004C
  */
-void createMaterialAnimation__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::createMaterialAnimation(void)
 {
 /*
 .loc_0x0:
@@ -1706,7 +1706,7 @@ void createMaterialAnimation__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6930
  * Size:	000060
  */
-void startMaterialAnimation__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::startMaterialAnimation(void)
 {
 /*
 .loc_0x0:
@@ -1742,7 +1742,7 @@ void startMaterialAnimation__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6990
  * Size:	00013C
  */
-void updateMaterialAnimation__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::updateMaterialAnimation(void)
 {
 /*
 .loc_0x0:
@@ -1845,7 +1845,7 @@ void updateMaterialAnimation__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6ACC
  * Size:	000090
  */
-void setupCollision__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::setupCollision(void)
 {
 /*
 .loc_0x0:
@@ -1897,7 +1897,7 @@ void setupCollision__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6B5C
  * Size:	00008C
  */
-void createItemAndEnemy__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::createItemAndEnemy(void)
 {
 /*
 .loc_0x0:
@@ -1946,7 +1946,7 @@ void createItemAndEnemy__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6BE8
  * Size:	0000C8
  */
-void startBossFlickBGM__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::startBossFlickBGM(void)
 {
 /*
 .loc_0x0:
@@ -2014,7 +2014,7 @@ void startBossFlickBGM__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6CB0
  * Size:	0000FC
  */
-void updateBossBGM__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::updateBossBGM(void)
 {
 /*
 .loc_0x0:
@@ -2099,7 +2099,7 @@ void updateBossBGM__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6DAC
  * Size:	0000C4
  */
-void resetBossAppearBGM__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::resetBossAppearBGM(void)
 {
 /*
 .loc_0x0:
@@ -2166,7 +2166,7 @@ void resetBossAppearBGM__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6E70
  * Size:	0000BC
  */
-void setBossAppearBGM__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::setBossAppearBGM(void)
 {
 /*
 .loc_0x0:
@@ -2231,7 +2231,7 @@ void setBossAppearBGM__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A6F2C
  * Size:	0005BC
  */
-void createEffect__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -2638,7 +2638,7 @@ void createEffect__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A74E8
  * Size:	000084
  */
-void __dt__Q23efx12TChasePosPosFv(void)
+void efx::TChasePosPos::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2687,7 +2687,7 @@ void __dt__Q23efx12TChasePosPosFv(void)
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx10TChasePos2Fv(void)
+void efx::TChasePos2::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2697,7 +2697,7 @@ void __dt__Q23efx10TChasePos2Fv(void)
  * Address:	802A756C
  * Size:	000184
  */
-void setupEffect__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -2808,7 +2808,7 @@ void setupEffect__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A76F0
  * Size:	0001F0
  */
-void createOnGroundEffect__Q34Game8Damagumo3ObjFiPQ24Game8WaterBox(void)
+void Game::Damagumo::Obj::createOnGroundEffect( (int, Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -2952,7 +2952,7 @@ void createOnGroundEffect__Q34Game8Damagumo3ObjFiPQ24Game8WaterBox(void)
  * Address:	802A78E0
  * Size:	000128
  */
-void createOffGroundEffect__Q34Game8Damagumo3ObjFiPQ24Game8WaterBox(void)
+void Game::Damagumo::Obj::createOffGroundEffect( (int, Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -3048,7 +3048,7 @@ void createOffGroundEffect__Q34Game8Damagumo3ObjFiPQ24Game8WaterBox(void)
  * Address:	802A7A08
  * Size:	0001A0
  */
-void startPinchJointEffect__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::startPinchJointEffect(void)
 {
 /*
 .loc_0x0:
@@ -3170,7 +3170,7 @@ void startPinchJointEffect__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A7BA8
  * Size:	000058
  */
-void finishPinchJointEffect__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::finishPinchJointEffect(void)
 {
 /*
 .loc_0x0:
@@ -3206,7 +3206,7 @@ void finishPinchJointEffect__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A7C00
  * Size:	0001C0
  */
-void startDeadEffect__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::startDeadEffect(void)
 {
 /*
 .loc_0x0:
@@ -3340,7 +3340,7 @@ void startDeadEffect__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A7DC0
  * Size:	000250
  */
-void updatePinchLife__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::updatePinchLife(void)
 {
 /*
 .loc_0x0:
@@ -3512,7 +3512,7 @@ void updatePinchLife__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A8010
  * Size:	000198
  */
-void effectDrawOn__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -3640,7 +3640,7 @@ void effectDrawOn__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A81A8
  * Size:	000198
  */
-void effectDrawOff__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -3768,7 +3768,7 @@ void effectDrawOff__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A8340
  * Size:	000038
  */
-void addShadowScale__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::addShadowScale(void)
 {
 /*
 .loc_0x0:
@@ -3794,7 +3794,7 @@ void addShadowScale__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A8378
  * Size:	00009C
  */
-void __dt__Q23efx16TDamaDeadHahenC2Fv(void)
+void efx::TDamaDeadHahenC2::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3849,7 +3849,7 @@ void __dt__Q23efx16TDamaDeadHahenC2Fv(void)
  * Address:	802A8414
  * Size:	00009C
  */
-void __dt__Q23efx16TDamaDeadHahenC1Fv(void)
+void efx::TDamaDeadHahenC1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3904,7 +3904,7 @@ void __dt__Q23efx16TDamaDeadHahenC1Fv(void)
  * Address:	802A84B0
  * Size:	00009C
  */
-void __dt__Q23efx10TDamaSmokeFv(void)
+void efx::TDamaSmoke::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3959,7 +3959,7 @@ void __dt__Q23efx10TDamaSmokeFv(void)
  * Address:	802A854C
  * Size:	00009C
  */
-void __dt__Q23efx15TDamaDeadHahenBFv(void)
+void efx::TDamaDeadHahenB::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4014,7 +4014,7 @@ void __dt__Q23efx15TDamaDeadHahenBFv(void)
  * Address:	802A85E8
  * Size:	00009C
  */
-void __dt__Q23efx15TDamaDeadHahenAFv(void)
+void efx::TDamaDeadHahenA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4069,7 +4069,7 @@ void __dt__Q23efx15TDamaDeadHahenAFv(void)
  * Address:	802A8684
  * Size:	00009C
  */
-void __dt__Q23efx14TDamaDeadElecBFv(void)
+void efx::TDamaDeadElecB::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4124,7 +4124,7 @@ void __dt__Q23efx14TDamaDeadElecBFv(void)
  * Address:	802A8720
  * Size:	00009C
  */
-void __dt__Q23efx14TDamaDeadElecAFv(void)
+void efx::TDamaDeadElecA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4179,7 +4179,7 @@ void __dt__Q23efx14TDamaDeadElecAFv(void)
  * Address:	802A87BC
  * Size:	00009C
  */
-void __dt__Q23efx10TDamaHahenFv(void)
+void efx::TDamaHahen::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4234,7 +4234,7 @@ void __dt__Q23efx10TDamaHahenFv(void)
  * Address:	802A8858
  * Size:	00009C
  */
-void __dt__Q23efx10TDamaFootwFv(void)
+void efx::TDamaFootw::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4289,7 +4289,7 @@ void __dt__Q23efx10TDamaFootwFv(void)
  * Address:	802A88F4
  * Size:	000088
  */
-void satisfy__Q24Game23ConditionNotStickClientFPQ24Game4Piki(void)
+void Game::ConditionNotStickClient::satisfy( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -4339,7 +4339,7 @@ void satisfy__Q24Game23ConditionNotStickClientFPQ24Game4Piki(void)
  * Address:	802A897C
  * Size:	000004
  */
-void inWaterCallback__Q34Game8Damagumo3ObjFPQ24Game8WaterBox(void)
+void Game::Damagumo::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -4352,7 +4352,7 @@ void inWaterCallback__Q34Game8Damagumo3ObjFPQ24Game8WaterBox(void)
  * Address:	802A8980
  * Size:	000004
  */
-void outWaterCallback__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -4365,7 +4365,7 @@ void outWaterCallback__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A8984
  * Size:	000008
  */
-void getDamageCoeStoneState__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::getDamageCoeStoneState(void)
 {
 /*
 .loc_0x0:
@@ -4379,7 +4379,7 @@ void getDamageCoeStoneState__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A898C
  * Size:	000004
  */
-void throwupItemInDeathProcedure__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::throwupItemInDeathProcedure(void)
 {
 /*
 .loc_0x0:
@@ -4392,7 +4392,7 @@ void throwupItemInDeathProcedure__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A8990
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -4428,7 +4428,7 @@ void __sinit_Damagumo_cpp(void)
  * Address:	802A89C0
  * Size:	000014
  */
-void @1176@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @1176@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -4445,7 +4445,7 @@ void @1176@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	802A89D4
  * Size:	000014
  */
-void @1176@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @1176@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -4462,7 +4462,7 @@ void @1176@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802A89E8
  * Size:	000014
  */
-void @1176@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @1176@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -4479,7 +4479,7 @@ void @1176@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802A89FC
  * Size:	000014
  */
-void @1176@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @1176@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -4496,7 +4496,7 @@ void @1176@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802A8A10
  * Size:	000014
  */
-void @1176@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @1176@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -4513,7 +4513,7 @@ void @1176@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802A8A24
  * Size:	000014
  */
-void @1176@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @1176@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -4530,7 +4530,7 @@ void @1176@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	802A8A38
  * Size:	000008
  */
-void @4@__dt__Q23efx10TDamaFootwFv(void)
+void @4@efx::TDamaFootw::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4544,7 +4544,7 @@ void @4@__dt__Q23efx10TDamaFootwFv(void)
  * Address:	802A8A40
  * Size:	000008
  */
-void @4@__dt__Q23efx10TDamaHahenFv(void)
+void @4@efx::TDamaHahen::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4558,7 +4558,7 @@ void @4@__dt__Q23efx10TDamaHahenFv(void)
  * Address:	802A8A48
  * Size:	000008
  */
-void @4@__dt__Q23efx14TDamaDeadElecAFv(void)
+void @4@efx::TDamaDeadElecA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4572,7 +4572,7 @@ void @4@__dt__Q23efx14TDamaDeadElecAFv(void)
  * Address:	802A8A50
  * Size:	000008
  */
-void @4@__dt__Q23efx14TDamaDeadElecBFv(void)
+void @4@efx::TDamaDeadElecB::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4586,7 +4586,7 @@ void @4@__dt__Q23efx14TDamaDeadElecBFv(void)
  * Address:	802A8A58
  * Size:	000008
  */
-void @4@__dt__Q23efx15TDamaDeadHahenAFv(void)
+void @4@efx::TDamaDeadHahenA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4600,7 +4600,7 @@ void @4@__dt__Q23efx15TDamaDeadHahenAFv(void)
  * Address:	802A8A60
  * Size:	000008
  */
-void @4@__dt__Q23efx15TDamaDeadHahenBFv(void)
+void @4@efx::TDamaDeadHahenB::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4614,7 +4614,7 @@ void @4@__dt__Q23efx15TDamaDeadHahenBFv(void)
  * Address:	802A8A68
  * Size:	000008
  */
-void @4@__dt__Q23efx10TDamaSmokeFv(void)
+void @4@efx::TDamaSmoke::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4628,7 +4628,7 @@ void @4@__dt__Q23efx10TDamaSmokeFv(void)
  * Address:	802A8A70
  * Size:	000008
  */
-void @4@__dt__Q23efx16TDamaDeadHahenC1Fv(void)
+void @4@efx::TDamaDeadHahenC1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4642,7 +4642,7 @@ void @4@__dt__Q23efx16TDamaDeadHahenC1Fv(void)
  * Address:	802A8A78
  * Size:	000008
  */
-void @4@__dt__Q23efx16TDamaDeadHahenC2Fv(void)
+void @4@efx::TDamaDeadHahenC2::__dt(void)
 {
 /*
 .loc_0x0:

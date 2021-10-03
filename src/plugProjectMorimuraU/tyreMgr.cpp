@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803ABE60
  * Size:	000050
  */
-void __ct__Q34Game4Tyre3MgrFiUc(void)
+void Game::Tyre::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Tyre3MgrFiUc(void)
  * Address:	803ABEB0
  * Size:	000048
  */
-void doAlloc__Q34Game4Tyre3MgrFv(void)
+void Game::Tyre::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game4Tyre3MgrFv(void)
  * Address:	803ABEF8
  * Size:	0000DC
  */
-void __ct__Q34Game4Tyre5ParmsFv(void)
+void Game::Tyre::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void __ct__Q34Game4Tyre5ParmsFv(void)
  * Address:	803ABFD4
  * Size:	000020
  */
-void birth__Q34Game4Tyre3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::Tyre::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void birth__Q34Game4Tyre3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	803ABFF4
  * Size:	000094
  */
-void loadModelData__Q34Game4Tyre3MgrFv(void)
+void Game::Tyre::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void loadModelData__Q34Game4Tyre3MgrFv(void)
  * Address:	803AC088
  * Size:	00002C
  */
-void doLoadBmd__Q34Game4Tyre3MgrFPv(void)
+void Game::Tyre::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void doLoadBmd__Q34Game4Tyre3MgrFPv(void)
  * Address:	803AC0B4
  * Size:	0000B0
  */
-void __dt__Q34Game4Tyre3MgrFv(void)
+void Game::Tyre::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void __dt__Q34Game4Tyre3MgrFv(void)
  * Address:	803AC164
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Tyre3MgrFv(void)
+void Game::Tyre::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void getEnemyTypeID__Q34Game4Tyre3MgrFv(void)
  * Address:	803AC16C
  * Size:	000060
  */
-void createObj__Q34Game4Tyre3MgrFi(void)
+void Game::Tyre::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -356,7 +356,7 @@ void createObj__Q34Game4Tyre3MgrFi(void)
  * Address:	803AC1CC
  * Size:	0000BC
  */
-void __dt__Q34Game4Tyre3ObjFv(void)
+void Game::Tyre::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -419,7 +419,7 @@ void __dt__Q34Game4Tyre3ObjFv(void)
  * Address:	803AC288
  * Size:	000010
  */
-void getEnemy__Q34Game4Tyre3MgrFi(void)
+void Game::Tyre::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -435,7 +435,7 @@ void getEnemy__Q34Game4Tyre3MgrFi(void)
  * Address:	803AC298
  * Size:	000050
  */
-void read__Q34Game4Tyre5ParmsFR6Stream(void)
+void Game::Tyre::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -467,7 +467,7 @@ void read__Q34Game4Tyre5ParmsFR6Stream(void)
  * Address:	803AC2E8
  * Size:	000008
  */
-void @4@__dt__Q34Game4Tyre3MgrFv(void)
+void @4@Game::Tyre::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

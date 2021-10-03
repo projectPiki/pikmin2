@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802A1AE8
  * Size:	00015C
  */
-void __ct__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -120,7 +120,7 @@ void __ct__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A1C44
  * Size:	000004
  */
-void setInitialSetting__Q34Game12Hanachirashi3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Hanachirashi::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void setInitialSetting__Q34Game12Hanachirashi3ObjFPQ24Game21EnemyInitialParamBas
  * Address:	802A1C48
  * Size:	0000F4
  */
-void onInit__Q34Game12Hanachirashi3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Hanachirashi::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void onInit__Q34Game12Hanachirashi3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802A1D3C
  * Size:	000044
  */
-void onKill__Q34Game12Hanachirashi3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Hanachirashi::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -235,7 +235,7 @@ void onKill__Q34Game12Hanachirashi3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802A1D80
  * Size:	000050
  */
-void doUpdate__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -267,7 +267,7 @@ void doUpdate__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A1DD0
  * Size:	0000D4
  */
-void changeMaterial__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -336,7 +336,7 @@ void changeMaterial__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A1EA4
  * Size:	00004C
  */
-void setFSM__Q34Game12Hanachirashi3ObjFPQ34Game12Hanachirashi3FSM(void)
+void Game::Hanachirashi::Obj::setFSM( (Game::Hanachirashi::FSM *))
 {
 /*
 .loc_0x0:
@@ -367,7 +367,7 @@ void setFSM__Q34Game12Hanachirashi3ObjFPQ34Game12Hanachirashi3FSM(void)
  * Address:	802A1EF0
  * Size:	000004
  */
-void doDirectDraw__Q34Game12Hanachirashi3ObjFR8Graphics(void)
+void Game::Hanachirashi::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -380,7 +380,7 @@ void doDirectDraw__Q34Game12Hanachirashi3ObjFR8Graphics(void)
  * Address:	802A1EF4
  * Size:	000020
  */
-void doDebugDraw__Q34Game12Hanachirashi3ObjFR8Graphics(void)
+void Game::Hanachirashi::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void doDebugDraw__Q34Game12Hanachirashi3ObjFR8Graphics(void)
  * Address:	802A1F14
  * Size:	000168
  */
-void getShadowParam__Q34Game12Hanachirashi3ObjFRQ24Game11ShadowParam(void)
+void Game::Hanachirashi::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void getShadowParam__Q34Game12Hanachirashi3ObjFRQ24Game11ShadowParam(void)
  * Address:	802A207C
  * Size:	00003C
  */
-void doStartStoneState__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -535,7 +535,7 @@ void doStartStoneState__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A20B8
  * Size:	00007C
  */
-void doFinishStoneState__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -586,7 +586,7 @@ void doFinishStoneState__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2134
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -611,7 +611,7 @@ void doStartWaitingBirthTypeDrop__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2168
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -636,7 +636,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A219C
  * Size:	000020
  */
-void doStartMovie__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -656,7 +656,7 @@ void doStartMovie__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A21BC
  * Size:	000020
  */
-void doEndMovie__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -676,7 +676,7 @@ void doEndMovie__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A21DC
  * Size:	000064
  */
-void getOffsetForMapCollision__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -781,7 +781,7 @@ void getThrowupItemVelocity__Q34Game12Hanachirashi3ObjFP10Vector3<float>(void)
  * Address:	802A22D0
  * Size:	000050
  */
-void getHeadJointPos__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::getHeadJointPos(void)
 {
 /*
 .loc_0x0:
@@ -813,7 +813,7 @@ void getHeadJointPos__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2320
  * Size:	00011C
  */
-void setHeightVelocity__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::setHeightVelocity(void)
 {
 /*
 .loc_0x0:
@@ -902,7 +902,7 @@ void setHeightVelocity__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A243C
  * Size:	0001D8
  */
-void setRandTarget__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::setRandTarget(void)
 {
 /*
 .loc_0x0:
@@ -1038,7 +1038,7 @@ void setRandTarget__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2614
  * Size:	00000C
  */
-void resetShadowOffset__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::resetShadowOffset(void)
 {
 /*
 .loc_0x0:
@@ -1053,7 +1053,7 @@ void resetShadowOffset__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2620
  * Size:	00000C
  */
-void setShadowOffsetMax__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::setShadowOffsetMax(void)
 {
 /*
 .loc_0x0:
@@ -1068,7 +1068,7 @@ void setShadowOffsetMax__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A262C
  * Size:	000028
  */
-void addShadowOffset__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::addShadowOffset(void)
 {
 /*
 .loc_0x0:
@@ -1090,7 +1090,7 @@ void addShadowOffset__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2654
  * Size:	000028
  */
-void subShadowOffset__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::subShadowOffset(void)
 {
 /*
 .loc_0x0:
@@ -1112,7 +1112,7 @@ void subShadowOffset__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A267C
  * Size:	00000C
  */
-void resetShadowRadius__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::resetShadowRadius(void)
 {
 /*
 .loc_0x0:
@@ -1127,7 +1127,7 @@ void resetShadowRadius__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2688
  * Size:	00002C
  */
-void subShadowRadius__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::subShadowRadius(void)
 {
 /*
 .loc_0x0:
@@ -1150,7 +1150,7 @@ void subShadowRadius__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A26B4
  * Size:	000030
  */
-void updateFallTimer__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::updateFallTimer(void)
 {
 /*
 .loc_0x0:
@@ -1176,7 +1176,7 @@ void updateFallTimer__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A26E4
  * Size:	0000A4
  */
-void getFlyingNextState__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::getFlyingNextState(void)
 {
 /*
 .loc_0x0:
@@ -1241,7 +1241,7 @@ void getFlyingNextState__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2788
  * Size:	000038
  */
-void addPitchRatio__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::addPitchRatio(void)
 {
 /*
 .loc_0x0:
@@ -1267,7 +1267,7 @@ void addPitchRatio__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A27C0
  * Size:	0003D4
  */
-void getSearchedPikmin__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::getSearchedPikmin(void)
 {
 /*
 .loc_0x0:
@@ -1546,7 +1546,7 @@ void getSearchedPikmin__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2B94
  * Size:	0002F0
  */
-void isTargetLost__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::isTargetLost(void)
 {
 /*
 .loc_0x0:
@@ -1756,7 +1756,7 @@ void isTargetLost__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A2E84
  * Size:	00038C
  */
-void isAttackable__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::isAttackable(void)
 {
 /*
 .loc_0x0:
@@ -2021,7 +2021,7 @@ void isAttackable__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A3210
  * Size:	0001AC
  */
-void updateEmit__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::updateEmit(void)
 {
 /*
 .loc_0x0:
@@ -2154,7 +2154,7 @@ void updateEmit__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A33BC
  * Size:	0001E8
  */
-void getAttackPosition__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::getAttackPosition(void)
 {
 /*
 .loc_0x0:
@@ -2296,7 +2296,7 @@ void getAttackPosition__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A35A4
  * Size:	00090C
  */
-void windTarget__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::windTarget(void)
 {
 /*
 .loc_0x0:
@@ -2951,7 +2951,7 @@ void windTarget__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A3EB0
  * Size:	000150
  */
-void createEffect__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -3055,7 +3055,7 @@ void createEffect__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A4000
  * Size:	00004C
  */
-void setupEffect__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -3086,7 +3086,7 @@ void setupEffect__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A404C
  * Size:	00007C
  */
-void startDeadEffect__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::startDeadEffect(void)
 {
 /*
 .loc_0x0:
@@ -3129,7 +3129,7 @@ void startDeadEffect__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A40C8
  * Size:	000034
  */
-void createSuckEffect__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::createSuckEffect(void)
 {
 /*
 .loc_0x0:
@@ -3154,7 +3154,7 @@ void createSuckEffect__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A40FC
  * Size:	000090
  */
-void startWindEffect__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::startWindEffect(void)
 {
 /*
 .loc_0x0:
@@ -3202,7 +3202,7 @@ void startWindEffect__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A418C
  * Size:	000078
  */
-void finishWindEffect__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::finishWindEffect(void)
 {
 /*
 .loc_0x0:
@@ -3244,7 +3244,7 @@ void finishWindEffect__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A4204
  * Size:	000074
  */
-void createDownEffect__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::createDownEffect(void)
 {
 /*
 .loc_0x0:
@@ -3285,7 +3285,7 @@ void createDownEffect__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A4278
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -3299,7 +3299,7 @@ void getDownSmokeScale__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A4280
  * Size:	000078
  */
-void effectDrawOn__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -3341,7 +3341,7 @@ void effectDrawOn__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A42F8
  * Size:	000078
  */
-void effectDrawOff__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -3383,7 +3383,7 @@ void effectDrawOff__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A4370
  * Size:	000004
  */
-void inWaterCallback__Q34Game12Hanachirashi3ObjFPQ24Game8WaterBox(void)
+void Game::Hanachirashi::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -3396,7 +3396,7 @@ void inWaterCallback__Q34Game12Hanachirashi3ObjFPQ24Game8WaterBox(void)
  * Address:	802A4374
  * Size:	000004
  */
-void outWaterCallback__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -3409,7 +3409,7 @@ void outWaterCallback__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A4378
  * Size:	000004
  */
-void throwupItemInDeathProcedure__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::throwupItemInDeathProcedure(void)
 {
 /*
 .loc_0x0:
@@ -3422,7 +3422,7 @@ void throwupItemInDeathProcedure__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A437C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12Hanachirashi3ObjFv(void)
+void Game::Hanachirashi::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -3436,7 +3436,7 @@ void getEnemyTypeID__Q34Game12Hanachirashi3ObjFv(void)
  * Address:	802A4384
  * Size:	000014
  */
-void @812@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @812@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -3453,7 +3453,7 @@ void @812@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	802A4398
  * Size:	000014
  */
-void @812@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @812@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -3470,7 +3470,7 @@ void @812@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802A43AC
  * Size:	000014
  */
-void @812@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @812@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -3487,7 +3487,7 @@ void @812@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	802A43C0
  * Size:	000014
  */
-void @812@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @812@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -3504,7 +3504,7 @@ void @812@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802A43D4
  * Size:	000014
  */
-void @812@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @812@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -3521,7 +3521,7 @@ void @812@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	802A43E8
  * Size:	000014
  */
-void @812@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @812@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

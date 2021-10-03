@@ -5,7 +5,7 @@
  * Address:	80130B9C
  * Size:	0001D0
  */
-void __ct__Q34Game15IllustratedBook12ColorSettingFv(void)
+void Game::IllustratedBook::ColorSetting::__ct(void)
 {
 /*
 .loc_0x0:
@@ -146,7 +146,7 @@ void Color4::Color4()
  * Address:	80130D70
  * Size:	000098
  */
-void read__Q34Game15IllustratedBook12ColorSettingFR6Stream(void)
+void Game::IllustratedBook::ColorSetting::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void read__Q34Game15IllustratedBook12ColorSettingFR6Stream(void)
  * Address:	80130E08
  * Size:	0008CC
  */
-void update__Q34Game15IllustratedBook12ColorSettingFv(void)
+void Game::IllustratedBook::ColorSetting::update(void)
 {
 /*
 .loc_0x0:
@@ -793,7 +793,7 @@ void update__Q34Game15IllustratedBook12ColorSettingFv(void)
  * Address:	801316D4
  * Size:	000148
  */
-void __ct__Q34Game15IllustratedBook13PositionParmsFv(void)
+void Game::IllustratedBook::PositionParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -887,7 +887,7 @@ void __ct__Q34Game15IllustratedBook13PositionParmsFv(void)
  * Address:	8013181C
  * Size:	000050
  */
-void read__Q34Game15IllustratedBook13PositionParmsFR6Stream(void)
+void Game::IllustratedBook::PositionParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -919,7 +919,7 @@ void read__Q34Game15IllustratedBook13PositionParmsFR6Stream(void)
  * Address:	........
  * Size:	0000BC
  */
-void __ct__Q34Game15IllustratedBook17PositionParmsListFv(void)
+void Game::IllustratedBook::PositionParmsList::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -929,7 +929,7 @@ void __ct__Q34Game15IllustratedBook17PositionParmsListFv(void)
  * Address:	8013186C
  * Size:	000060
  */
-void __dt__Q34Game15IllustratedBook13PositionParmsFv(void)
+void Game::IllustratedBook::PositionParms::__dt(void)
 {
 /*
 .loc_0x0:
@@ -967,7 +967,7 @@ void __dt__Q34Game15IllustratedBook13PositionParmsFv(void)
  * Address:	801318CC
  * Size:	000068
  */
-void read__Q34Game15IllustratedBook17PositionParmsListFR6Stream(void)
+void Game::IllustratedBook::PositionParmsList::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1007,7 +1007,7 @@ void read__Q34Game15IllustratedBook17PositionParmsListFR6Stream(void)
  * Address:	80131934
  * Size:	000020
  */
-void read__Q34Game15IllustratedBook11CameraParmsFR6Stream(void)
+void Game::IllustratedBook::CameraParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1027,7 +1027,7 @@ void read__Q34Game15IllustratedBook11CameraParmsFR6Stream(void)
  * Address:	80131954
  * Size:	000130
  */
-void __ct__Q34Game15IllustratedBook10EnemyParmsFv(void)
+void Game::IllustratedBook::EnemyParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1117,7 +1117,7 @@ void __ct__Q34Game15IllustratedBook10EnemyParmsFv(void)
  * Address:	80131A84
  * Size:	000040
  */
-void __ct__Q34Game15IllustratedBook11CameraParmsFv(void)
+void Game::IllustratedBook::CameraParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1147,7 +1147,7 @@ void __ct__Q34Game15IllustratedBook11CameraParmsFv(void)
  * Address:	80131AC4
  * Size:	0002E4
  */
-void __ct__Q44Game15IllustratedBook11CameraParms5ParmsFv(void)
+void Game::IllustratedBook::CameraParms::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1346,7 +1346,7 @@ void __ct__Q44Game15IllustratedBook11CameraParms5ParmsFv(void)
  * Address:	80131DA8
  * Size:	000064
  */
-void read__Q34Game15IllustratedBook10EnemyParmsFR6Stream(void)
+void Game::IllustratedBook::EnemyParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1383,7 +1383,7 @@ void read__Q34Game15IllustratedBook10EnemyParmsFR6Stream(void)
  * Address:	........
  * Size:	0000D0
  */
-void __ct__Q34Game15IllustratedBook14EnemyModeParmsFPQ34Game15IllustratedBook17PositionParmsList(void)
+void Game::IllustratedBook::EnemyModeParms::__ct( (Game::IllustratedBook::PositionParmsList *))
 {
 	// UNUSED FUNCTION
 }
@@ -1393,7 +1393,7 @@ void __ct__Q34Game15IllustratedBook14EnemyModeParmsFPQ34Game15IllustratedBook17P
  * Address:	80131E0C
  * Size:	000060
  */
-void __dt__Q34Game15IllustratedBook10EnemyParmsFv(void)
+void Game::IllustratedBook::EnemyParms::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1431,7 +1431,7 @@ void __dt__Q34Game15IllustratedBook10EnemyParmsFv(void)
  * Address:	80131E6C
  * Size:	000084
  */
-void read__Q34Game15IllustratedBook14EnemyModeParmsFR6Stream(void)
+void Game::IllustratedBook::EnemyModeParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1480,7 +1480,7 @@ void read__Q34Game15IllustratedBook14EnemyModeParmsFR6Stream(void)
  * Address:	80131EF0
  * Size:	000148
  */
-void __ct__Q34Game15IllustratedBook9ItemParmsFv(void)
+void Game::IllustratedBook::ItemParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1574,7 +1574,7 @@ void __ct__Q34Game15IllustratedBook9ItemParmsFv(void)
  * Address:	80132038
  * Size:	000064
  */
-void read__Q34Game15IllustratedBook9ItemParmsFR6Stream(void)
+void Game::IllustratedBook::ItemParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1611,7 +1611,7 @@ void read__Q34Game15IllustratedBook9ItemParmsFR6Stream(void)
  * Address:	........
  * Size:	000118
  */
-void __ct__Q34Game15IllustratedBook13ItemModeParmsFPQ34Game15IllustratedBook17PositionParmsList(void)
+void Game::IllustratedBook::ItemModeParms::__ct( (Game::IllustratedBook::PositionParmsList *))
 {
 	// UNUSED FUNCTION
 }
@@ -1621,7 +1621,7 @@ void __ct__Q34Game15IllustratedBook13ItemModeParmsFPQ34Game15IllustratedBook17Po
  * Address:	8013209C
  * Size:	000060
  */
-void __dt__Q34Game15IllustratedBook9ItemParmsFv(void)
+void Game::IllustratedBook::ItemParms::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1659,7 +1659,7 @@ void __dt__Q34Game15IllustratedBook9ItemParmsFv(void)
  * Address:	801320FC
  * Size:	000080
  */
-void read__Q34Game15IllustratedBook13ItemModeParmsFR6Stream(void)
+void Game::IllustratedBook::ItemModeParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1707,7 +1707,7 @@ void read__Q34Game15IllustratedBook13ItemModeParmsFR6Stream(void)
  * Address:	8013217C
  * Size:	00029C
  */
-void __ct__Q34Game15IllustratedBook5ParmsFv(void)
+void Game::IllustratedBook::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1894,7 +1894,7 @@ void __ct__Q34Game15IllustratedBook5ParmsFv(void)
  * Address:	80132418
  * Size:	000060
  */
-void __dt__Q34Game15IllustratedBook13ItemModeParmsFv(void)
+void Game::IllustratedBook::ItemModeParms::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1932,7 +1932,7 @@ void __dt__Q34Game15IllustratedBook13ItemModeParmsFv(void)
  * Address:	80132478
  * Size:	00007C
  */
-void __dt__Q34Game15IllustratedBook14EnemyModeParmsFv(void)
+void Game::IllustratedBook::EnemyModeParms::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1977,7 +1977,7 @@ void __dt__Q34Game15IllustratedBook14EnemyModeParmsFv(void)
  * Address:	801324F4
  * Size:	00007C
  */
-void __dt__Q34Game15IllustratedBook17PositionParmsListFv(void)
+void Game::IllustratedBook::PositionParmsList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2022,7 +2022,7 @@ void __dt__Q34Game15IllustratedBook17PositionParmsListFv(void)
  * Address:	80132570
  * Size:	000060
  */
-void __dt__Q34Game15IllustratedBook12ColorSettingFv(void)
+void Game::IllustratedBook::ColorSetting::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2060,7 +2060,7 @@ void __dt__Q34Game15IllustratedBook12ColorSettingFv(void)
  * Address:	801325D0
  * Size:	000090
  */
-void read__Q34Game15IllustratedBook5ParmsFR6Stream(void)
+void Game::IllustratedBook::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2108,7 +2108,7 @@ void read__Q34Game15IllustratedBook5ParmsFR6Stream(void)
  * Address:	80132660
  * Size:	0000D0
  */
-void loadFile__Q34Game15IllustratedBook5ParmsFP10JKRArchive(void)
+void Game::IllustratedBook::Parms::loadFile( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -2178,7 +2178,7 @@ void loadFile__Q34Game15IllustratedBook5ParmsFP10JKRArchive(void)
  * Address:	........
  * Size:	00011C
  */
-void loadFile__Q34Game15IllustratedBook5ParmsFPCc(void)
+void Game::IllustratedBook::Parms::loadFile( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -2188,7 +2188,7 @@ void loadFile__Q34Game15IllustratedBook5ParmsFPCc(void)
  * Address:	80132730
  * Size:	000114
  */
-void __dt__Q34Game15IllustratedBook5ParmsFv(void)
+void Game::IllustratedBook::Parms::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B9AD8
  * Size:	0000A4
  */
-void __ct__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802B9B7C
  * Size:	0001A4
  */
-void changeMaterial__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void changeMaterial__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802B9D20
  * Size:	000168
  */
-void interactCreature__Q34Game11ElecOtakara3ObjFPQ24Game8Creature(void)
+void Game::ElecOtakara::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -301,7 +301,7 @@ void interactCreature__Q34Game11ElecOtakara3ObjFPQ24Game8Creature(void)
  * Address:	802B9E88
  * Size:	000060
  */
-void createEffect__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -339,7 +339,7 @@ void createEffect__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802B9EE8
  * Size:	000048
  */
-void setupEffect__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void setupEffect__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802B9F30
  * Size:	000034
  */
-void startChargeEffect__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::startChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -394,7 +394,7 @@ void startChargeEffect__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802B9F64
  * Size:	000030
  */
-void finishChargeEffect__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::finishChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void finishChargeEffect__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802B9F94
  * Size:	000098
  */
-void createDisChargeEffect__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::createDisChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void createDisChargeEffect__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802BA02C
  * Size:	000030
  */
-void effectDrawOn__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -492,7 +492,7 @@ void effectDrawOn__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802BA05C
  * Size:	000030
  */
-void effectDrawOff__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -516,7 +516,7 @@ void effectDrawOff__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802BA08C
  * Size:	000044
  */
-void startDisChargeSE__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::startDisChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -545,7 +545,7 @@ void startDisChargeSE__Q34Game11ElecOtakara3ObjFv(void)
  * Address:	802BA0D0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11ElecOtakara3ObjFv(void)
+void Game::ElecOtakara::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

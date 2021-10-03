@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802D1AE0
  * Size:	000424
  */
-void init__Q34Game9OniKurage3FSMFPQ24Game9EnemyBase(void)
+void Game::OniKurage::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -316,7 +316,7 @@ void init__Q34Game9OniKurage3FSMFPQ24Game9EnemyBase(void)
  * Address:	802D1F04
  * Size:	0000CC
  */
-void init__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -383,7 +383,7 @@ void init__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802D1FD0
  * Size:	00018C
  */
-void exec__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void exec__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802D215C
  * Size:	000004
  */
-void cleanup__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -517,7 +517,7 @@ void cleanup__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802D2160
  * Size:	00005C
  */
-void init__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void init__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802D21BC
  * Size:	000148
  */
-void exec__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -656,7 +656,7 @@ void exec__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802D2304
  * Size:	000004
  */
-void cleanup__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -669,7 +669,7 @@ void cleanup__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802D2308
  * Size:	000074
  */
-void init__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -710,7 +710,7 @@ void init__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802D237C
  * Size:	0001DC
  */
-void exec__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -857,7 +857,7 @@ void exec__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802D2558
  * Size:	000004
  */
-void cleanup__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -870,7 +870,7 @@ void cleanup__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802D255C
  * Size:	00006C
  */
-void init__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateChase::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -909,7 +909,7 @@ void init__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802D25C8
  * Size:	00015C
  */
-void exec__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateChase::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1020,7 +1020,7 @@ void exec__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBase(void)
  * Address:	802D2724
  * Size:	000024
  */
-void cleanup__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateChase::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1041,7 +1041,7 @@ void cleanup__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBase(void)
  * Address:	802D2748
  * Size:	000080
  */
-void init__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1085,7 +1085,7 @@ void init__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802D27C8
  * Size:	000320
  */
-void exec__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1323,7 +1323,7 @@ void exec__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802D2AE8
  * Size:	000044
  */
-void cleanup__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1352,7 +1352,7 @@ void cleanup__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802D2B2C
  * Size:	000068
  */
-void init__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateFall::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1390,7 +1390,7 @@ void init__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802D2B94
  * Size:	000180
  */
-void exec__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateFall::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1504,7 +1504,7 @@ void exec__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBase(void)
  * Address:	802D2D14
  * Size:	000024
  */
-void cleanup__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateFall::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1525,7 +1525,7 @@ void cleanup__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBase(void)
  * Address:	802D2D38
  * Size:	000094
  */
-void init__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateDrop::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1574,7 +1574,7 @@ void init__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802D2DCC
  * Size:	000164
  */
-void exec__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateDrop::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1683,7 +1683,7 @@ void exec__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBase(void)
  * Address:	802D2F30
  * Size:	000024
  */
-void cleanup__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateDrop::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1704,7 +1704,7 @@ void cleanup__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBase(void)
  * Address:	802D2F54
  * Size:	0000C0
  */
-void init__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateLand::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1764,7 +1764,7 @@ void init__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802D3014
  * Size:	000080
  */
-void exec__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateLand::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1812,7 +1812,7 @@ void exec__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBase(void)
  * Address:	802D3094
  * Size:	000024
  */
-void cleanup__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateLand::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1833,7 +1833,7 @@ void cleanup__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBase(void)
  * Address:	802D30B8
  * Size:	000068
  */
-void init__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateTakeOff::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1871,7 +1871,7 @@ void init__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	802D3120
  * Size:	0000F0
  */
-void exec__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateTakeOff::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1951,7 +1951,7 @@ void exec__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBase(void)
  * Address:	802D3210
  * Size:	000024
  */
-void cleanup__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateTakeOff::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1972,7 +1972,7 @@ void cleanup__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBase(void)
  * Address:	802D3234
  * Size:	000060
  */
-void init__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateGround::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2008,7 +2008,7 @@ void init__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	802D3294
  * Size:	000138
  */
-void exec__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateGround::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2110,7 +2110,7 @@ void exec__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBase(void)
  * Address:	802D33CC
  * Size:	000024
  */
-void cleanup__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateGround::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2131,7 +2131,7 @@ void cleanup__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBase(void)
  * Address:	802D33F0
  * Size:	0000E0
  */
-void init__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateFlyFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2199,7 +2199,7 @@ void init__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	802D34D0
  * Size:	00017C
  */
-void exec__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateFlyFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2314,7 +2314,7 @@ void exec__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBase(void)
  * Address:	802D364C
  * Size:	000024
  */
-void cleanup__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateFlyFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2335,7 +2335,7 @@ void cleanup__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBase(void)
  * Address:	802D3670
  * Size:	0000DC
  */
-void init__Q34Game9OniKurage16StateGroundFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::OniKurage::StateGroundFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2402,7 +2402,7 @@ void init__Q34Game9OniKurage16StateGroundFlickFPQ24Game9EnemyBasePQ24Game8StateA
  * Address:	802D374C
  * Size:	00018C
  */
-void exec__Q34Game9OniKurage16StateGroundFlickFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateGroundFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2523,7 +2523,7 @@ void exec__Q34Game9OniKurage16StateGroundFlickFPQ24Game9EnemyBase(void)
  * Address:	802D38D8
  * Size:	000024
  */
-void cleanup__Q34Game9OniKurage16StateGroundFlickFPQ24Game9EnemyBase(void)
+void Game::OniKurage::StateGroundFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

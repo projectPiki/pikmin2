@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8024C5E4
  * Size:	0000F0
  */
-void nishimuraCreateRandomMap__Q24Game10RoomMapMgrFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit(void)
+void Game::RoomMapMgr::nishimuraCreateRandomMap( (Game::MapUnitInterface *, int, Game::Cave::FloorInfo *, bool, Game::Cave::EditMapUnit *))
 {
 /*
 .loc_0x0:
@@ -95,7 +95,7 @@ void nishimuraCreateRandomMap__Q24Game10RoomMapMgrFPQ24Game16MapUnitInterfaceiPQ
  * Address:	8024C6D4
  * Size:	00011C
  */
-void nishimuraPlaceRooms__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::nishimuraPlaceRooms(void)
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void nishimuraPlaceRooms__Q24Game10RoomMapMgrFv(void)
  * Address:	8024C7F0
  * Size:	000088
  */
-void nishimuraSetTexture__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::nishimuraSetTexture(void)
 {
 /*
 .loc_0x0:

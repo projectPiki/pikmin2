@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80250824
  * Size:	0000CC
  */
-void __ct__Q34Game4Cave12ObjectLayoutFPQ34Game4Cave7MapNode(void)
+void Game::Cave::ObjectLayout::__ct( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -80,7 +80,7 @@ void __ct__Q34Game4Cave12ObjectLayoutFPQ34Game4Cave7MapNode(void)
  * Address:	802508F0
  * Size:	000010
  */
-void setNode__Q34Game4Cave12ObjectLayoutFiPQ24Game16ObjectLayoutNode(void)
+void Game::Cave::ObjectLayout::setNode( (int, Game::ObjectLayoutNode *))
 {
 /*
 .loc_0x0:
@@ -96,7 +96,7 @@ void setNode__Q34Game4Cave12ObjectLayoutFiPQ24Game16ObjectLayoutNode(void)
  * Address:	80250900
  * Size:	000048
  */
-void getCount__Q34Game4Cave12ObjectLayoutFi(void)
+void Game::Cave::ObjectLayout::getCount( (int))
 {
 /*
 .loc_0x0:
@@ -130,7 +130,7 @@ void getCount__Q34Game4Cave12ObjectLayoutFi(void)
  * Address:	80250948
  * Size:	000040
  */
-void getNode__Q34Game4Cave12ObjectLayoutFii(void)
+void Game::Cave::ObjectLayout::getNode( (int, int))
 {
 /*
 .loc_0x0:

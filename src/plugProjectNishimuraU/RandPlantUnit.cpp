@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8029EF0C
  * Size:	00005C
  */
-void __ct__Q34Game4Cave13RandPlantUnitFPQ34Game4Cave16MapUnitGenerator(void)
+void Game::Cave::RandPlantUnit::__ct( (Game::Cave::MapUnitGenerator *))
 {
 /*
 .loc_0x0:
@@ -56,7 +56,7 @@ void __ct__Q34Game4Cave13RandPlantUnitFPQ34Game4Cave16MapUnitGenerator(void)
  * Address:	8029EF68
  * Size:	0000DC
  */
-void setPlantSlot__Q34Game4Cave13RandPlantUnitFv(void)
+void Game::Cave::RandPlantUnit::setPlantSlot(void)
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void setPlantSlot__Q34Game4Cave13RandPlantUnitFv(void)
  * Address:	8029F044
  * Size:	000134
  */
-void getPlantSetMapNode__Q34Game4Cave13RandPlantUnitFPPQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandPlantUnit::getPlantSetMapNode( (Game::Cave::BaseGen **))
 {
 /*
 .loc_0x0:
@@ -238,7 +238,7 @@ void getPlantSetMapNode__Q34Game4Cave13RandPlantUnitFPPQ34Game4Cave7BaseGen(void
  * Address:	8029F178
  * Size:	000068
  */
-void getPlantUnit__Q34Game4Cave13RandPlantUnitFPQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandPlantUnit::getPlantUnit( (Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:
@@ -284,7 +284,7 @@ void getPlantUnit__Q34Game4Cave13RandPlantUnitFPQ34Game4Cave7BaseGen(void)
  * Address:	8029F1E0
  * Size:	000048
  */
-void isPlantSet__Q34Game4Cave13RandPlantUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandPlantUnit::isPlantSet( (Game::Cave::MapNode *, Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:

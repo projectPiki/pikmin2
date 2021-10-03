@@ -5,7 +5,7 @@
  * Address:	80317F28
  * Size:	000024
  */
-void checkMovieActive__Q22og9newScreenFv(void)
+void og::newScreen::checkMovieActive(void)
 {
 /*
 .loc_0x0:
@@ -26,7 +26,7 @@ void checkMovieActive__Q22og9newScreenFv(void)
  * Address:	........
  * Size:	000004
  */
-void drawObjName__Q22og9newScreenFR8GraphicsPc(void)
+void og::newScreen::drawObjName( (Graphics &, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -36,7 +36,7 @@ void drawObjName__Q22og9newScreenFR8GraphicsPc(void)
  * Address:	........
  * Size:	000084
  */
-void getLanguageDir__Q22og9newScreenFPc(void)
+void og::newScreen::getLanguageDir( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -46,7 +46,7 @@ void getLanguageDir__Q22og9newScreenFPc(void)
  * Address:	80317F4C
  * Size:	0000DC
  */
-void makeLanguageResName__Q22og9newScreenFPcPCc(void)
+void og::newScreen::makeLanguageResName( (char *, char const *))
 {
 /*
 .loc_0x0:

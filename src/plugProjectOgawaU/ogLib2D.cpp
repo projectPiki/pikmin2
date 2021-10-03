@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000068
  */
-void __ct__Q22og5Lib2DFv(void)
+void og::Lib2D::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q22og5Lib2DFv(void)
  * Address:	8030F600
  * Size:	000068
  */
-void __dt__Q22og5Lib2DFv(void)
+void og::Lib2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void __dt__Q22og5Lib2DFv(void)
  * Address:	8030F668
  * Size:	000088
  */
-void create__Q22og5Lib2DFv(void)
+void og::Lib2D::create(void)
 {
 /*
 .loc_0x0:

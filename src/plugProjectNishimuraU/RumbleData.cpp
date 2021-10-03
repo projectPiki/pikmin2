@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802613C0
  * Size:	00000C
  */
-void __ct__Q24Game10RumbleDataFv(void)
+void Game::RumbleData::__ct(void)
 {
 /*
 .loc_0x0:
@@ -30,7 +30,7 @@ void __ct__Q24Game10RumbleDataFv(void)
  * Address:	........
  * Size:	0000D8
  */
-void read__Q24Game10RumbleDataFR6Stream(void)
+void Game::RumbleData::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -40,7 +40,7 @@ void read__Q24Game10RumbleDataFR6Stream(void)
  * Address:	802613CC
  * Size:	00000C
  */
-void __ct__Q24Game13RumbleDataMgrFv(void)
+void Game::RumbleDataMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void __ct__Q24Game13RumbleDataMgrFv(void)
  * Address:	802613D8
  * Size:	00002C
  */
-void getRumbleData__Q24Game13RumbleDataMgrFi(void)
+void Game::RumbleDataMgr::getRumbleData( (int))
 {
 /*
 .loc_0x0:
@@ -80,7 +80,7 @@ void getRumbleData__Q24Game13RumbleDataMgrFi(void)
  * Address:	80261404
  * Size:	000128
  */
-void read__Q24Game13RumbleDataMgrFR6Stream(void)
+void Game::RumbleDataMgr::read( (Stream &))
 {
 /*
 .loc_0x0:

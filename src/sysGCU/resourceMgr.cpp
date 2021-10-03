@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00007C
  */
-void __ct__Q28Resource4NodeFPCc(void)
+void Resource::Node::__ct( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q28Resource4NodeFPCc(void)
  * Address:	804330D8
  * Size:	0000DC
  */
-void __dt__Q28Resource4NodeFv(void)
+void Resource::Node::__dt(void)
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void __dt__Q28Resource4NodeFv(void)
  * Address:	........
  * Size:	000040
  */
-void dump__Q28Resource4NodeFv(void)
+void Resource::Node::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -108,7 +108,7 @@ void dump__Q28Resource4NodeFv(void)
  * Address:	........
  * Size:	0001CC
  */
-void drawDump__Q28Resource4NodeFR8GraphicsRiRi(void)
+void Resource::Node::drawDump( (Graphics &, int &, int &))
 {
 	// UNUSED FUNCTION
 }
@@ -118,7 +118,7 @@ void drawDump__Q28Resource4NodeFR8GraphicsRiRi(void)
  * Address:	........
  * Size:	00003C
  */
-void becomeCurrentHeap__Q28Resource4NodeFv(void)
+void Resource::Node::becomeCurrentHeap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +128,7 @@ void becomeCurrentHeap__Q28Resource4NodeFv(void)
  * Address:	........
  * Size:	000030
  */
-void destroy__Q28Resource4NodeFPQ28Resource4Node(void)
+void Resource::Node::destroy( (Resource::Node *))
 {
 	// UNUSED FUNCTION
 }
@@ -138,7 +138,7 @@ void destroy__Q28Resource4NodeFPQ28Resource4Node(void)
  * Address:	804331B4
  * Size:	000138
  */
-void __ct__Q28Resource10MgrCommandFPc(void)
+void Resource::MgrCommand::__ct( (char *))
 {
 /*
 .loc_0x0:
@@ -238,7 +238,7 @@ void __dt__Q38Resource10MgrCommand26@class$2436resourceMgr_cppFv(void)
  * Address:	804332EC
  * Size:	0000B8
  */
-void __dt__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::__dt(void)
 {
 /*
 .loc_0x0:
@@ -302,7 +302,7 @@ void __dt__Q28Resource10MgrCommandFv(void)
  * Address:	804333A4
  * Size:	000070
  */
-void becomeCurrentHeap__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::becomeCurrentHeap(void)
 {
 /*
 .loc_0x0:
@@ -344,7 +344,7 @@ void becomeCurrentHeap__Q28Resource10MgrCommandFv(void)
  * Address:	80433414
  * Size:	000088
  */
-void releaseCurrentHeap__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::releaseCurrentHeap(void)
 {
 /*
 .loc_0x0:
@@ -394,7 +394,7 @@ void releaseCurrentHeap__Q28Resource10MgrCommandFv(void)
  * Address:	........
  * Size:	0000E8
  */
-void isFinish__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::isFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -404,7 +404,7 @@ void isFinish__Q28Resource10MgrCommandFv(void)
  * Address:	8043349C
  * Size:	00000C
  */
-void getResource__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::getResource(void)
 {
 /*
 .loc_0x0:
@@ -419,7 +419,7 @@ void getResource__Q28Resource10MgrCommandFv(void)
  * Address:	........
  * Size:	000040
  */
-void setModeMemory__Q28Resource10MgrCommandFPQ28Resource4Node(void)
+void Resource::MgrCommand::setModeMemory( (Resource::Node *))
 {
 	// UNUSED FUNCTION
 }
@@ -429,7 +429,7 @@ void setModeMemory__Q28Resource10MgrCommandFPQ28Resource4Node(void)
  * Address:	........
  * Size:	000040
  */
-void setModeAram__Q28Resource10MgrCommandFPQ28Resource4NodePQ24ARAM4Node(void)
+void Resource::MgrCommand::setModeAram( (Resource::Node *, ARAM::Node *))
 {
 	// UNUSED FUNCTION
 }
@@ -439,7 +439,7 @@ void setModeAram__Q28Resource10MgrCommandFPQ28Resource4NodePQ24ARAM4Node(void)
  * Address:	........
  * Size:	000040
  */
-void setModeDvd__Q28Resource10MgrCommandFPQ28Resource4Node(void)
+void Resource::MgrCommand::setModeDvd( (Resource::Node *))
 {
 	// UNUSED FUNCTION
 }
@@ -449,7 +449,7 @@ void setModeDvd__Q28Resource10MgrCommandFPQ28Resource4Node(void)
  * Address:	804334A8
  * Size:	00001C
  */
-void setModeInvalid__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::setModeInvalid(void)
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void setModeInvalid__Q28Resource10MgrCommandFv(void)
  * Address:	804334C4
  * Size:	000048
  */
-void memoryCallBackFunc__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::memoryCallBackFunc(void)
 {
 /*
 .loc_0x0:
@@ -498,7 +498,7 @@ void memoryCallBackFunc__Q28Resource10MgrCommandFv(void)
  * Address:	8043350C
  * Size:	000094
  */
-void aramLoadCallBackFunc__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::aramLoadCallBackFunc(void)
 {
 /*
 .loc_0x0:
@@ -549,7 +549,7 @@ void aramLoadCallBackFunc__Q28Resource10MgrCommandFv(void)
  * Address:	804335A0
  * Size:	0000BC
  */
-void dvdLoadCallBackFunc__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::dvdLoadCallBackFunc(void)
 {
 /*
 .loc_0x0:
@@ -616,7 +616,7 @@ void dvdLoadCallBackFunc__Q28Resource10MgrCommandFv(void)
  * Address:	8043365C
  * Size:	000074
  */
-void userCallBackInvoke__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::userCallBackInvoke(void)
 {
 /*
 .loc_0x0:
@@ -659,7 +659,7 @@ void userCallBackInvoke__Q28Resource10MgrCommandFv(void)
  * Address:	........
  * Size:	000070
  */
-void destroy__Q28Resource10MgrCommandFv(void)
+void Resource::MgrCommand::destroy(void)
 {
 	// UNUSED FUNCTION
 }
@@ -669,7 +669,7 @@ void destroy__Q28Resource10MgrCommandFv(void)
  * Address:	804336D0
  * Size:	00010C
  */
-void __ct__Q28Resource3MgrFP7JKRHeapUl(void)
+void Resource::Mgr::__ct( (JKRHeap *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void __ct__Q28Resource3MgrFP7JKRHeapUl(void)
  * Address:	........
  * Size:	00006C
  */
-void search__Q28Resource3MgrFPCc(void)
+void Resource::Mgr::search( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -762,7 +762,7 @@ void search__Q28Resource3MgrFPCc(void)
  * Address:	........
  * Size:	000064
  */
-void dump__Q28Resource3MgrFv(void)
+void Resource::Mgr::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -772,7 +772,7 @@ void dump__Q28Resource3MgrFv(void)
  * Address:	804337DC
  * Size:	000004
  */
-void drawDump__Q28Resource3MgrFR8Graphicsii(void)
+void Resource::Mgr::drawDump( (Graphics &, int, int))
 {
 /*
 .loc_0x0:
@@ -785,7 +785,7 @@ void drawDump__Q28Resource3MgrFR8Graphicsii(void)
  * Address:	804337E0
  * Size:	0001B4
  */
-void createNewNode__Q28Resource3MgrFPCc(void)
+void Resource::Mgr::createNewNode( (char const *))
 {
 /*
 .loc_0x0:
@@ -924,7 +924,7 @@ void createNewNode__Q28Resource3MgrFPCc(void)
  * Address:	80433994
  * Size:	000188
  */
-void loadResource__Q28Resource3MgrFPQ28Resource10MgrCommandPCcb(void)
+void Resource::Mgr::loadResource( (Resource::MgrCommand *, char const *, bool))
 {
 /*
 .loc_0x0:
@@ -1050,7 +1050,7 @@ void loadResource__Q28Resource3MgrFPQ28Resource10MgrCommandPCcb(void)
  * Address:	80433B1C
  * Size:	000070
  */
-void destroy__Q28Resource3MgrFPQ28Resource10MgrCommand(void)
+void Resource::Mgr::destroy( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -1094,7 +1094,7 @@ void destroy__Q28Resource3MgrFPQ28Resource10MgrCommand(void)
  * Address:	80433B8C
  * Size:	000064
  */
-void destroyAll__Q28Resource3MgrFv(void)
+void Resource::Mgr::destroyAll(void)
 {
 /*
 .loc_0x0:
@@ -1137,7 +1137,7 @@ void destroyAll__Q28Resource3MgrFv(void)
  * Address:	80433BF0
  * Size:	0001E0
  */
-void sync__Q28Resource3MgrFPQ28Resource10MgrCommandb(void)
+void Resource::Mgr::sync( (Resource::MgrCommand *, bool))
 {
 /*
 .loc_0x0:
@@ -1311,7 +1311,7 @@ void sync__Q28Resource3MgrFPQ28Resource10MgrCommandb(void)
  * Address:	........
  * Size:	00013C
  */
-void syncAll__Q28Resource3MgrFb(void)
+void Resource::Mgr::syncAll( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -1321,7 +1321,7 @@ void syncAll__Q28Resource3MgrFb(void)
  * Address:	80433DD0
  * Size:	000130
  */
-void delFinishCommand__Q28Resource3MgrFv(void)
+void Resource::Mgr::delFinishCommand(void)
 {
 /*
 .loc_0x0:
@@ -1435,7 +1435,7 @@ void delFinishCommand__Q28Resource3MgrFv(void)
  * Address:	80433F00
  * Size:	000030
  */
-void searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand(void)
+void Resource::Mgr::searchCommand( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -1465,7 +1465,7 @@ void searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand(void)
  * Address:	........
  * Size:	000004
  */
-void watchHeap__Q28Resource3MgrFv(void)
+void Resource::Mgr::watchHeap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1499,7 +1499,7 @@ void Delegate<Resource::MgrCommand>::invoke()
  * Address:	80433F60
  * Size:	000008
  */
-void @24@__dt__Q28Resource4NodeFv(void)
+void @24@Resource::Node::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1513,7 +1513,7 @@ void @24@__dt__Q28Resource4NodeFv(void)
  * Address:	80433F68
  * Size:	000008
  */
-void @24@__dt__Q28Resource10MgrCommandFv(void)
+void @24@Resource::MgrCommand::__dt(void)
 {
 /*
 .loc_0x0:

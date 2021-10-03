@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802628F0
  * Size:	00009C
  */
-void __ct__Q34Game4Rock9GeneratorFv(void)
+void Game::Rock::Generator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -66,7 +66,7 @@ void __ct__Q34Game4Rock9GeneratorFv(void)
  * Address:	8026298C
  * Size:	00000C
  */
-void getLatestVersion__Q34Game4Rock9GeneratorFv(void)
+void Game::Rock::Generator::getLatestVersion(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void getLatestVersion__Q34Game4Rock9GeneratorFv(void)
  * Address:	80262998
  * Size:	000074
  */
-void doRead__Q34Game4Rock9GeneratorFR6Stream(void)
+void Game::Rock::Generator::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void doRead__Q34Game4Rock9GeneratorFR6Stream(void)
  * Address:	80262A0C
  * Size:	0000A4
  */
-void doWrite__Q34Game4Rock9GeneratorFR6Stream(void)
+void Game::Rock::Generator::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -179,7 +179,7 @@ void doWrite__Q34Game4Rock9GeneratorFR6Stream(void)
  * Address:	80262AB0
  * Size:	000058
  */
-void doReadLatestVersion__Q34Game4Rock9GeneratorFR6Stream(void)
+void Game::Rock::Generator::doReadLatestVersion( (Stream &))
 {
 /*
 .loc_0x0:
@@ -213,7 +213,7 @@ void doReadLatestVersion__Q34Game4Rock9GeneratorFR6Stream(void)
  * Address:	80262B08
  * Size:	000004
  */
-void doReadOldVersion__Q34Game4Rock9GeneratorFR6Stream(void)
+void Game::Rock::Generator::doReadOldVersion( (Stream &))
 {
 /*
 .loc_0x0:
@@ -226,7 +226,7 @@ void doReadOldVersion__Q34Game4Rock9GeneratorFR6Stream(void)
  * Address:	80262B0C
  * Size:	000050
  */
-void __ct__Q34Game4Rock3MgrFiUc(void)
+void Game::Rock::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void __ct__Q34Game4Rock3MgrFiUc(void)
  * Address:	80262B5C
  * Size:	000048
  */
-void doAlloc__Q34Game4Rock3MgrFv(void)
+void Game::Rock::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void doAlloc__Q34Game4Rock3MgrFv(void)
  * Address:	80262BA4
  * Size:	000098
  */
-void __ct__Q34Game4Rock5ParmsFv(void)
+void Game::Rock::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -342,7 +342,7 @@ void __ct__Q34Game4Rock5ParmsFv(void)
  * Address:	80262C3C
  * Size:	000160
  */
-void createObj__Q34Game4Rock3MgrFi(void)
+void Game::Rock::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -452,7 +452,7 @@ void createObj__Q34Game4Rock3MgrFi(void)
  * Address:	80262D9C
  * Size:	0000BC
  */
-void __dt__Q34Game4Rock3ObjFv(void)
+void Game::Rock::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -515,7 +515,7 @@ void __dt__Q34Game4Rock3ObjFv(void)
  * Address:	80262E58
  * Size:	000010
  */
-void getEnemy__Q34Game4Rock3MgrFi(void)
+void Game::Rock::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void getEnemy__Q34Game4Rock3MgrFi(void)
  * Address:	80262E68
  * Size:	000050
  */
-void read__Q34Game4Rock5ParmsFR6Stream(void)
+void Game::Rock::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -563,7 +563,7 @@ void read__Q34Game4Rock5ParmsFR6Stream(void)
  * Address:	80262EB8
  * Size:	0000B0
  */
-void __dt__Q34Game4Rock3MgrFv(void)
+void Game::Rock::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void __dt__Q34Game4Rock3MgrFv(void)
  * Address:	80262F68
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Rock3MgrFv(void)
+void Game::Rock::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -637,7 +637,7 @@ void getEnemyTypeID__Q34Game4Rock3MgrFv(void)
  * Address:	80262F70
  * Size:	000070
  */
-void __dt__Q34Game4Rock9GeneratorFv(void)
+void Game::Rock::Generator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -681,7 +681,7 @@ void __dt__Q34Game4Rock9GeneratorFv(void)
  * Address:	80262FE0
  * Size:	000008
  */
-void getInitialParam__Q34Game4Rock9GeneratorFv(void)
+void Game::Rock::Generator::getInitialParam(void)
 {
 /*
 .loc_0x0:
@@ -695,7 +695,7 @@ void getInitialParam__Q34Game4Rock9GeneratorFv(void)
  * Address:	80262FE8
  * Size:	000008
  */
-void @4@__dt__Q34Game4Rock3MgrFv(void)
+void @4@Game::Rock::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

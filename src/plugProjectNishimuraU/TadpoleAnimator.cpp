@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802781F0
  * Size:	000008
  */
-void setAnimMgr__Q34Game7Tadpole14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Tadpole::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game7Tadpole14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802781F8
  * Size:	000008
  */
-void getAnimator__Q34Game7Tadpole14ProperAnimatorFi(void)
+void Game::Tadpole::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game7Tadpole14ProperAnimatorFi(void)
  * Address:	80278200
  * Size:	00005C
  */
-void __dt__Q34Game7Tadpole14ProperAnimatorFv(void)
+void Game::Tadpole::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game7Tadpole14ProperAnimatorFv(void)
  * Address:	8027825C
  * Size:	000008
  */
-void getAnimator__Q34Game7Tadpole14ProperAnimatorFv(void)
+void Game::Tadpole::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

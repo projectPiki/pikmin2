@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00004C
  */
-void __ct__Q34Game11BigTreasure16AttackShadowNodeFi(void)
+void Game::BigTreasure::AttackShadowNode::__ct( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q34Game11BigTreasure16AttackShadowNodeFi(void)
  * Address:	802F39A8
  * Size:	000108
  */
-void makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv(void)
+void Game::BigTreasure::AttackShadowNode::makeShadowSRT(void)
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __ct__Q34Game11BigTreasure21BigTreasureFireAttackFPQ34Game11BigTreasure3ObjPQ34Game11BigTreasure26BigTreasureAttackParameter(void)
+void Game::BigTreasure::BigTreasureFireAttack::__ct( (Game::BigTreasure::Obj *, Game::BigTreasure::BigTreasureAttackParameter *))
 {
 	// UNUSED FUNCTION
 }
@@ -113,7 +113,7 @@ void __ct__Q34Game11BigTreasure21BigTreasureFireAttackFPQ34Game11BigTreasure3Obj
  * Address:	........
  * Size:	000024
  */
-void init__Q34Game11BigTreasure21BigTreasureFireAttackFv(void)
+void Game::BigTreasure::BigTreasureFireAttack::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -133,7 +133,7 @@ void start__Q34Game11BigTreasure21BigTreasureFireAttackFR10Vector3<float>R10Vect
  * Address:	802F3AB0
  * Size:	000374
  */
-void update__Q34Game11BigTreasure21BigTreasureFireAttackFv(void)
+void Game::BigTreasure::BigTreasureFireAttack::update(void)
 {
 /*
 .loc_0x0:
@@ -382,7 +382,7 @@ void update__Q34Game11BigTreasure21BigTreasureFireAttackFv(void)
  * Address:	........
  * Size:	000004
  */
-void finish__Q34Game11BigTreasure21BigTreasureFireAttackFv(void)
+void Game::BigTreasure::BigTreasureFireAttack::finish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -392,7 +392,7 @@ void finish__Q34Game11BigTreasure21BigTreasureFireAttackFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __ct__Q34Game11BigTreasure20BigTreasureGasAttackFPQ34Game11BigTreasure3ObjPQ34Game11BigTreasure26BigTreasureAttackParameter(void)
+void Game::BigTreasure::BigTreasureGasAttack::__ct( (Game::BigTreasure::Obj *, Game::BigTreasure::BigTreasureAttackParameter *))
 {
 	// UNUSED FUNCTION
 }
@@ -402,7 +402,7 @@ void __ct__Q34Game11BigTreasure20BigTreasureGasAttackFPQ34Game11BigTreasure3ObjP
  * Address:	........
  * Size:	000024
  */
-void init__Q34Game11BigTreasure20BigTreasureGasAttackFv(void)
+void Game::BigTreasure::BigTreasureGasAttack::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -422,7 +422,7 @@ void start__Q34Game11BigTreasure20BigTreasureGasAttackFR10Vector3<float>f(void)
  * Address:	802F3E24
  * Size:	000364
  */
-void update__Q34Game11BigTreasure20BigTreasureGasAttackFv(void)
+void Game::BigTreasure::BigTreasureGasAttack::update(void)
 {
 /*
 .loc_0x0:
@@ -669,7 +669,7 @@ void update__Q34Game11BigTreasure20BigTreasureGasAttackFv(void)
  * Address:	........
  * Size:	0000B0
  */
-void __ct__Q34Game11BigTreasure22BigTreasureWaterAttackFPQ34Game11BigTreasure3ObjPQ34Game11BigTreasure26BigTreasureAttackParameter(void)
+void Game::BigTreasure::BigTreasureWaterAttack::__ct( (Game::BigTreasure::Obj *, Game::BigTreasure::BigTreasureAttackParameter *))
 {
 	// UNUSED FUNCTION
 }
@@ -679,7 +679,7 @@ void __ct__Q34Game11BigTreasure22BigTreasureWaterAttackFPQ34Game11BigTreasure3Ob
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx10TChasePos4Fv(void)
+void efx::TChasePos4::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -689,7 +689,7 @@ void __dt__Q23efx10TChasePos4Fv(void)
  * Address:	........
  * Size:	000020
  */
-void init__Q34Game11BigTreasure22BigTreasureWaterAttackFv(void)
+void Game::BigTreasure::BigTreasureWaterAttack::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -709,7 +709,7 @@ void start__Q34Game11BigTreasure22BigTreasureWaterAttackFR10Vector3<float>R10Vec
  * Address:	802F4188
  * Size:	000324
  */
-void update__Q34Game11BigTreasure22BigTreasureWaterAttackFv(void)
+void Game::BigTreasure::BigTreasureWaterAttack::update(void)
 {
 /*
 .loc_0x0:
@@ -934,7 +934,7 @@ void update__Q34Game11BigTreasure22BigTreasureWaterAttackFv(void)
  * Address:	........
  * Size:	0000D0
  */
-void finish__Q34Game11BigTreasure22BigTreasureWaterAttackFv(void)
+void Game::BigTreasure::BigTreasureWaterAttack::finish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -944,7 +944,7 @@ void finish__Q34Game11BigTreasure22BigTreasureWaterAttackFv(void)
  * Address:	........
  * Size:	000184
  */
-void __ct__Q34Game11BigTreasure21BigTreasureElecAttackFPQ34Game11BigTreasure3ObjPQ34Game11BigTreasure26BigTreasureAttackParameter(void)
+void Game::BigTreasure::BigTreasureElecAttack::__ct( (Game::BigTreasure::Obj *, Game::BigTreasure::BigTreasureAttackParameter *))
 {
 	// UNUSED FUNCTION
 }
@@ -954,7 +954,7 @@ void __ct__Q34Game11BigTreasure21BigTreasureElecAttackFPQ34Game11BigTreasure3Obj
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx24TChasePosPosLocalZScale3Fv(void)
+void efx::TChasePosPosLocalZScale3::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -964,7 +964,7 @@ void __dt__Q23efx24TChasePosPosLocalZScale3Fv(void)
  * Address:	802F44AC
  * Size:	000084
  */
-void __dt__Q23efx23TChasePosPosLocalZScaleFv(void)
+void efx::TChasePosPosLocalZScale::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1013,7 +1013,7 @@ void __dt__Q23efx23TChasePosPosLocalZScaleFv(void)
  * Address:	........
  * Size:	000034
  */
-void init__Q34Game11BigTreasure21BigTreasureElecAttackFv(void)
+void Game::BigTreasure::BigTreasureElecAttack::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1033,7 +1033,7 @@ void start__Q34Game11BigTreasure21BigTreasureElecAttackFR10Vector3<float>R10Vect
  * Address:	........
  * Size:	000088
  */
-void startInteract__Q34Game11BigTreasure21BigTreasureElecAttackFPQ34Game11BigTreasure21BigTreasureElecAttack(void)
+void Game::BigTreasure::BigTreasureElecAttack::startInteract( (Game::BigTreasure::BigTreasureElecAttack *))
 {
 	// UNUSED FUNCTION
 }
@@ -1043,7 +1043,7 @@ void startInteract__Q34Game11BigTreasure21BigTreasureElecAttackFPQ34Game11BigTre
  * Address:	802F4530
  * Size:	000738
  */
-void update__Q34Game11BigTreasure21BigTreasureElecAttackFv(void)
+void Game::BigTreasure::BigTreasureElecAttack::update(void)
 {
 /*
 .loc_0x0:
@@ -1575,7 +1575,7 @@ void update__Q34Game11BigTreasure21BigTreasureElecAttackFv(void)
  * Address:	........
  * Size:	0000E8
  */
-void finish__Q34Game11BigTreasure21BigTreasureElecAttackFv(void)
+void Game::BigTreasure::BigTreasureElecAttack::finish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1585,7 +1585,7 @@ void finish__Q34Game11BigTreasure21BigTreasureElecAttackFv(void)
  * Address:	802F4C68
  * Size:	0007B4
  */
-void __ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj(void)
+void Game::BigTreasure::BigTreasureAttackMgr::__ct( (Game::BigTreasure::Obj *))
 {
 /*
 .loc_0x0:
@@ -2152,7 +2152,7 @@ void __ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj(
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx10TChaseMtx6Fv(void)
+void efx::TChaseMtx6::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2162,7 +2162,7 @@ void __dt__Q23efx10TChaseMtx6Fv(void)
  * Address:	802F541C
  * Size:	0001C8
  */
-void init__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -2308,7 +2308,7 @@ void init__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F55E4
  * Size:	0000E8
  */
-void update__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -2384,7 +2384,7 @@ void update__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	........
  * Size:	00008C
  */
-void setFireAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::setFireAttackParameter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2394,7 +2394,7 @@ void setFireAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F56CC
  * Size:	000130
  */
-void startFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::startFireAttack(void)
 {
 /*
 .loc_0x0:
@@ -2492,7 +2492,7 @@ void startFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F57FC
  * Size:	00009C
  */
-void startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::startNewFireList(void)
 {
 /*
 .loc_0x0:
@@ -2545,7 +2545,7 @@ void startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F5898
  * Size:	00018C
  */
-void updateFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateFireAttack(void)
 {
 /*
 .loc_0x0:
@@ -2672,7 +2672,7 @@ void updateFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	........
  * Size:	000030
  */
-void finishFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::finishFireAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2682,7 +2682,7 @@ void finishFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F5A24
  * Size:	000070
  */
-void updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateFireEmitPosition(void)
 {
 /*
 .loc_0x0:
@@ -2722,7 +2722,7 @@ void updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F5A94
  * Size:	0000A0
  */
-void updateFireSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureFireAttacki(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateFireSePosition( (Game::BigTreasure::BigTreasureFireAttack *, int))
 {
 /*
 .loc_0x0:
@@ -2774,7 +2774,7 @@ void updateFireSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11
  * Address:	........
  * Size:	0001A4
  */
-void setGasAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::setGasAttackParameter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2784,7 +2784,7 @@ void setGasAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F5B34
  * Size:	0002C4
  */
-void startGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::startGasAttack(void)
 {
 /*
 .loc_0x0:
@@ -3001,7 +3001,7 @@ void startGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F5DF8
  * Size:	00014C
  */
-void startNewGasList__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::startNewGasList(void)
 {
 /*
 .loc_0x0:
@@ -3108,7 +3108,7 @@ void startNewGasList__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F5F44
  * Size:	000344
  */
-void updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateGasAttack(void)
 {
 /*
 .loc_0x0:
@@ -3371,7 +3371,7 @@ void updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	........
  * Size:	000058
  */
-void finishGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::finishGasAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3381,7 +3381,7 @@ void finishGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F6288
  * Size:	000058
  */
-void updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateGasEmitPosition(void)
 {
 /*
 .loc_0x0:
@@ -3415,7 +3415,7 @@ void updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F62E0
  * Size:	0000A0
  */
-void updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure20BigTreasureGasAttacki(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateGasSePosition( (Game::BigTreasure::BigTreasureGasAttack *, int))
 {
 /*
 .loc_0x0:
@@ -3467,7 +3467,7 @@ void updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11B
  * Address:	........
  * Size:	0000DC
  */
-void setWaterAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::setWaterAttackParameter(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3477,7 +3477,7 @@ void setWaterAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F6380
  * Size:	00010C
  */
-void startWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::startWaterAttack(void)
 {
 /*
 .loc_0x0:
@@ -3566,7 +3566,7 @@ void startWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F648C
  * Size:	00047C
  */
-void startNewWaterList__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::startNewWaterList(void)
 {
 /*
 .loc_0x0:
@@ -3889,7 +3889,7 @@ void startNewWaterList__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F6908
  * Size:	000164
  */
-void updateWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateWaterAttack(void)
 {
 /*
 .loc_0x0:
@@ -4000,7 +4000,7 @@ void updateWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	........
  * Size:	000004
  */
-void finishWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::finishWaterAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4010,7 +4010,7 @@ void finishWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F6A6C
  * Size:	000058
  */
-void updateWaterEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateWaterEmitPosition(void)
 {
 /*
 .loc_0x0:
@@ -4044,7 +4044,7 @@ void updateWaterEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F6AC4
  * Size:	0002D8
  */
-void getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::getWaterTargetCreature(void)
 {
 /*
 .loc_0x0:
@@ -4262,7 +4262,7 @@ void getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F6D9C
  * Size:	0003FC
  */
-void setElecAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::setElecAttackParameter(void)
 {
 /*
 .loc_0x0:
@@ -4553,7 +4553,7 @@ void setElecAttackParameter__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F7198
  * Size:	000494
  */
-void startElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::startElecAttack(void)
 {
 /*
 .loc_0x0:
@@ -4882,7 +4882,7 @@ void startElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	........
  * Size:	000184
  */
-void startNewElecList__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::startNewElecList(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4892,7 +4892,7 @@ void startNewElecList__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F762C
  * Size:	000288
  */
-void updateElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateElecAttack(void)
 {
 /*
 .loc_0x0:
@@ -5092,7 +5092,7 @@ void updateElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	........
  * Size:	000190
  */
-void finishElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::finishElecAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5102,7 +5102,7 @@ void finishElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F78B4
  * Size:	0001E4
  */
-void finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::finishAttack(void)
 {
 /*
 .loc_0x0:
@@ -5247,7 +5247,7 @@ void finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F7A98
  * Size:	000080
  */
-void addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack(void)
+void Game::BigTreasure::BigTreasureAttackMgr::addAttackShadow( (Game::BigTreasure::BigTreasureWaterAttack *))
 {
 /*
 .loc_0x0:
@@ -5297,7 +5297,7 @@ void addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTr
  * Address:	802F7B18
  * Size:	000080
  */
-void addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack(void)
+void Game::BigTreasure::BigTreasureAttackMgr::addAttackShadow( (Game::BigTreasure::BigTreasureElecAttack *))
 {
 /*
 .loc_0x0:
@@ -5347,7 +5347,7 @@ void addAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTr
  * Address:	802F7B98
  * Size:	00006C
  */
-void delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure22BigTreasureWaterAttack(void)
+void Game::BigTreasure::BigTreasureAttackMgr::delAttackShadow( (Game::BigTreasure::BigTreasureWaterAttack *))
 {
 /*
 .loc_0x0:
@@ -5390,7 +5390,7 @@ void delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTr
  * Address:	802F7C04
  * Size:	00006C
  */
-void delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure21BigTreasureElecAttack(void)
+void Game::BigTreasure::BigTreasureAttackMgr::delAttackShadow( (Game::BigTreasure::BigTreasureElecAttack *))
 {
 /*
 .loc_0x0:
@@ -5433,7 +5433,7 @@ void delAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTr
  * Address:	802F7C70
  * Size:	000044
  */
-void updateAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
+void Game::BigTreasure::BigTreasureAttackMgr::updateAttackShadow(void)
 {
 /*
 .loc_0x0:
@@ -5466,7 +5466,7 @@ void updateAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFv(void)
  * Address:	802F7CB4
  * Size:	00009C
  */
-void __dt__Q23efx17TOootaElecAttack1Fv(void)
+void efx::TOootaElecAttack1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5521,7 +5521,7 @@ void __dt__Q23efx17TOootaElecAttack1Fv(void)
  * Address:	802F7D50
  * Size:	00009C
  */
-void __dt__Q23efx13TOootaElecLegFv(void)
+void efx::TOootaElecLeg::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5576,7 +5576,7 @@ void __dt__Q23efx13TOootaElecLegFv(void)
  * Address:	802F7DEC
  * Size:	00009C
  */
-void __dt__Q23efx15TOootaElecpartsFv(void)
+void efx::TOootaElecparts::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5631,7 +5631,7 @@ void __dt__Q23efx15TOootaElecpartsFv(void)
  * Address:	802F7E88
  * Size:	000060
  */
-void __dt__Q34Game11BigTreasure21BigTreasureElecAttackFv(void)
+void Game::BigTreasure::BigTreasureElecAttack::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5669,7 +5669,7 @@ void __dt__Q34Game11BigTreasure21BigTreasureElecAttackFv(void)
  * Address:	802F7EE8
  * Size:	000060
  */
-void __dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv(void)
+void Game::BigTreasure::BigTreasureWaterAttack::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5707,7 +5707,7 @@ void __dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv(void)
  * Address:	802F7F48
  * Size:	000060
  */
-void __dt__Q34Game11BigTreasure20BigTreasureGasAttackFv(void)
+void Game::BigTreasure::BigTreasureGasAttack::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5745,7 +5745,7 @@ void __dt__Q34Game11BigTreasure20BigTreasureGasAttackFv(void)
  * Address:	802F7FA8
  * Size:	000060
  */
-void __dt__Q34Game11BigTreasure21BigTreasureFireAttackFv(void)
+void Game::BigTreasure::BigTreasureFireAttack::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5783,7 +5783,7 @@ void __dt__Q34Game11BigTreasure21BigTreasureFireAttackFv(void)
  * Address:	802F8008
  * Size:	000070
  */
-void __dt__Q34Game11BigTreasure16AttackShadowNodeFv(void)
+void Game::BigTreasure::AttackShadowNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5827,7 +5827,7 @@ void __dt__Q34Game11BigTreasure16AttackShadowNodeFv(void)
  * Address:	802F8078
  * Size:	000008
  */
-void @4@__dt__Q23efx15TOootaElecpartsFv(void)
+void @4@efx::TOootaElecparts::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5841,7 +5841,7 @@ void @4@__dt__Q23efx15TOootaElecpartsFv(void)
  * Address:	802F8080
  * Size:	000008
  */
-void @4@__dt__Q23efx13TOootaElecLegFv(void)
+void @4@efx::TOootaElecLeg::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5855,7 +5855,7 @@ void @4@__dt__Q23efx13TOootaElecLegFv(void)
  * Address:	802F8088
  * Size:	000008
  */
-void @4@__dt__Q23efx17TOootaElecAttack1Fv(void)
+void @4@efx::TOootaElecAttack1::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012B8AC
  * Size:	000050
  */
-void __ct__Q34Game10BlueChappy3MgrFiUc(void)
+void Game::BlueChappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game10BlueChappy3MgrFiUc(void)
  * Address:	8012B8FC
  * Size:	00006C
  */
-void loadTexData__Q34Game10BlueChappy3MgrFv(void)
+void Game::BlueChappy::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -86,7 +86,7 @@ void loadTexData__Q34Game10BlueChappy3MgrFv(void)
  * Address:	8012B968
  * Size:	000048
  */
-void doAlloc__Q34Game10BlueChappy3MgrFv(void)
+void Game::BlueChappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void doAlloc__Q34Game10BlueChappy3MgrFv(void)
  * Address:	8012B9B0
  * Size:	0000C8
  */
-void __dt__Q34Game10BlueChappy3MgrFv(void)
+void Game::BlueChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void __dt__Q34Game10BlueChappy3MgrFv(void)
  * Address:	8012BA78
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10BlueChappy3MgrFv(void)
+void Game::BlueChappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -198,7 +198,7 @@ void getEnemyTypeID__Q34Game10BlueChappy3MgrFv(void)
  * Address:	8012BA80
  * Size:	000008
  */
-void getChangeTexture0__Q34Game10BlueChappy3MgrFv(void)
+void Game::BlueChappy::Mgr::getChangeTexture0(void)
 {
 /*
 .loc_0x0:
@@ -212,7 +212,7 @@ void getChangeTexture0__Q34Game10BlueChappy3MgrFv(void)
  * Address:	8012BA88
  * Size:	000008
  */
-void getChangeTexture1__Q34Game10BlueChappy3MgrFv(void)
+void Game::BlueChappy::Mgr::getChangeTexture1(void)
 {
 /*
 .loc_0x0:
@@ -226,7 +226,7 @@ void getChangeTexture1__Q34Game10BlueChappy3MgrFv(void)
  * Address:	8012BA90
  * Size:	000060
  */
-void createObj__Q34Game10BlueChappy3MgrFi(void)
+void Game::BlueChappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void createObj__Q34Game10BlueChappy3MgrFi(void)
  * Address:	8012BAF0
  * Size:	0000EC
  */
-void __dt__Q34Game10BlueChappy3ObjFv(void)
+void Game::BlueChappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -337,7 +337,7 @@ void __dt__Q34Game10BlueChappy3ObjFv(void)
  * Address:	8012BBDC
  * Size:	000010
  */
-void getEnemy__Q34Game10BlueChappy3MgrFi(void)
+void Game::BlueChappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -353,7 +353,7 @@ void getEnemy__Q34Game10BlueChappy3MgrFi(void)
  * Address:	8012BBEC
  * Size:	000008
  */
-void @4@__dt__Q34Game10BlueChappy3MgrFv(void)
+void @4@Game::BlueChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void Game::_Print(char *, ...)
  * Address:	8012A244
  * Size:	000094
  */
-void loadSettingFile__Q24Game14EnemyParmsBaseFP10JKRArchivePc(void)
+void Game::EnemyParmsBase::loadSettingFile( (JKRArchive *, char *))
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void loadSettingFile__Q24Game14EnemyParmsBaseFP10JKRArchivePc(void)
  * Address:	........
  * Size:	0000C8
  */
-void loadSettingFile__Q24Game14EnemyParmsBaseFPc(void)
+void Game::EnemyParmsBase::loadSettingFile( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -80,7 +80,7 @@ void loadSettingFile__Q24Game14EnemyParmsBaseFPc(void)
  * Address:	8012A2D8
  * Size:	000024
  */
-void setDebugParm__Q24Game14EnemyParmsBaseFUl(void)
+void Game::EnemyParmsBase::setDebugParm( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -101,7 +101,7 @@ void setDebugParm__Q24Game14EnemyParmsBaseFUl(void)
  * Address:	8012A2FC
  * Size:	000024
  */
-void resetDebugParm__Q24Game14EnemyParmsBaseFUl(void)
+void Game::EnemyParmsBase::resetDebugParm( (unsigned long))
 {
 /*
 .loc_0x0:

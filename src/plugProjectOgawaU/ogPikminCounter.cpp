@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8030421C
  * Size:	0000BC
  */
-void __ct__Q32og6Screen13PikminCounterFv(void)
+void og::Screen::PikminCounter::__ct(void)
 {
 /*
 .loc_0x0:
@@ -74,7 +74,7 @@ void __ct__Q32og6Screen13PikminCounterFv(void)
  * Address:	803042D8
  * Size:	00006C
  */
-void setParam__Q32og6Screen13PikminCounterFRQ32og6Screen8DataGameRQ32og6Screen8DataNavi(void)
+void og::Screen::PikminCounter::setParam( (og::Screen::DataGame &, og::Screen::DataNavi &))
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void setParam__Q32og6Screen13PikminCounterFRQ32og6Screen8DataGameRQ32og6Screen8D
  * Address:	........
  * Size:	000188
  */
-void setCallBackCommon__Q32og6Screen13PikminCounterFP10JKRArchiveb(void)
+void og::Screen::PikminCounter::setCallBackCommon( (JKRArchive *, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -123,7 +123,7 @@ void setCallBackCommon__Q32og6Screen13PikminCounterFP10JKRArchiveb(void)
  * Address:	80304344
  * Size:	0000F8
  */
-void update__Q32og6Screen13PikminCounterFv(void)
+void og::Screen::PikminCounter::update(void)
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void update__Q32og6Screen13PikminCounterFv(void)
  * Address:	8030443C
  * Size:	000230
  */
-void setCallBack__Q32og6Screen13PikminCounterFP10JKRArchive(void)
+void og::Screen::PikminCounter::setCallBack( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -359,7 +359,7 @@ void setCallBack__Q32og6Screen13PikminCounterFP10JKRArchive(void)
  * Address:	8030466C
  * Size:	000240
  */
-void setCallBack__Q32og6Screen17PikminCounterCaveFP10JKRArchive(void)
+void og::Screen::PikminCounterCave::setCallBack( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -521,7 +521,7 @@ void setCallBack__Q32og6Screen17PikminCounterCaveFP10JKRArchive(void)
  * Address:	803048AC
  * Size:	0001F8
  */
-void setCallBack__Q32og6Screen24PikminCounterChallenge1PFP10JKRArchive(void)
+void og::Screen::PikminCounterChallenge1P::setCallBack( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -665,7 +665,7 @@ void setCallBack__Q32og6Screen24PikminCounterChallenge1PFP10JKRArchive(void)
  * Address:	80304AA4
  * Size:	0000B4
  */
-void __dt__Q32og6Screen24PikminCounterChallenge1PFv(void)
+void og::Screen::PikminCounterChallenge1P::__dt(void)
 {
 /*
 .loc_0x0:
@@ -728,7 +728,7 @@ void __dt__Q32og6Screen24PikminCounterChallenge1PFv(void)
  * Address:	80304B58
  * Size:	0000B4
  */
-void __dt__Q32og6Screen17PikminCounterCaveFv(void)
+void og::Screen::PikminCounterCave::__dt(void)
 {
 /*
 .loc_0x0:
@@ -791,7 +791,7 @@ void __dt__Q32og6Screen17PikminCounterCaveFv(void)
  * Address:	80304C0C
  * Size:	0000A4
  */
-void __dt__Q32og6Screen13PikminCounterFv(void)
+void og::Screen::PikminCounter::__dt(void)
 {
 /*
 .loc_0x0:

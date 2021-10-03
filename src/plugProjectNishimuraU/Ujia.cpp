@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80266080
  * Size:	000130
  */
-void __ct__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q34Game4Ujia3ObjFv(void)
  * Address:	802661B0
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Ujia3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Ujia::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void setInitialSetting__Q34Game4Ujia3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	802661B4
  * Size:	000098
  */
-void onInit__Q34Game4Ujia3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Ujia::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -172,7 +172,7 @@ void onInit__Q34Game4Ujia3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8026624C
  * Size:	000034
  */
-void doUpdate__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void doUpdate__Q34Game4Ujia3ObjFv(void)
  * Address:	80266280
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Ujia3ObjFR8Graphics(void)
+void Game::Ujia::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -210,7 +210,7 @@ void doDirectDraw__Q34Game4Ujia3ObjFR8Graphics(void)
  * Address:	80266284
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Ujia3ObjFR8Graphics(void)
+void Game::Ujia::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void doDebugDraw__Q34Game4Ujia3ObjFR8Graphics(void)
  * Address:	802662A4
  * Size:	00004C
  */
-void setFSM__Q34Game4Ujia3ObjFPQ34Game4Ujia3FSM(void)
+void Game::Ujia::Obj::setFSM( (Game::Ujia::FSM *))
 {
 /*
 .loc_0x0:
@@ -261,7 +261,7 @@ void setFSM__Q34Game4Ujia3ObjFPQ34Game4Ujia3FSM(void)
  * Address:	802662F0
  * Size:	0000A8
  */
-void getShadowParam__Q34Game4Ujia3ObjFRQ24Game11ShadowParam(void)
+void Game::Ujia::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -319,7 +319,7 @@ void getShadowParam__Q34Game4Ujia3ObjFRQ24Game11ShadowParam(void)
  * Address:	80266398
  * Size:	000094
  */
-void pressCallBack__Q34Game4Ujia3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Ujia::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -372,7 +372,7 @@ void pressCallBack__Q34Game4Ujia3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8026642C
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game4Ujia3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Ujia::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -395,7 +395,7 @@ void hipdropCallBack__Q34Game4Ujia3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80266458
  * Size:	000028
  */
-void startCarcassMotion__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -417,7 +417,7 @@ void startCarcassMotion__Q34Game4Ujia3ObjFv(void)
  * Address:	80266480
  * Size:	000030
  */
-void lifeIncrement__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::lifeIncrement(void)
 {
 /*
 .loc_0x0:
@@ -441,7 +441,7 @@ void lifeIncrement__Q34Game4Ujia3ObjFv(void)
  * Address:	802664B0
  * Size:	000034
  */
-void setInWaterDamage__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::setInWaterDamage(void)
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void setInWaterDamage__Q34Game4Ujia3ObjFv(void)
  * Address:	802664E4
  * Size:	0000B4
  */
-void resetAppearCheck__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::resetAppearCheck(void)
 {
 /*
 .loc_0x0:
@@ -529,7 +529,7 @@ void resetAppearCheck__Q34Game4Ujia3ObjFv(void)
  * Address:	80266598
  * Size:	000048
  */
-void isAppearCheck__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::isAppearCheck(void)
 {
 /*
 .loc_0x0:
@@ -563,7 +563,7 @@ void isAppearCheck__Q34Game4Ujia3ObjFv(void)
  * Address:	802665E0
  * Size:	000020
  */
-void resetBridgeSearch__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::resetBridgeSearch(void)
 {
 /*
 .loc_0x0:
@@ -583,7 +583,7 @@ void resetBridgeSearch__Q34Game4Ujia3ObjFv(void)
  * Address:	80266600
  * Size:	000048
  */
-void setBridgeSearch__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::setBridgeSearch(void)
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void setBridgeSearch__Q34Game4Ujia3ObjFv(void)
  * Address:	80266648
  * Size:	0002C0
  */
-void setNearestBridge__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::setNearestBridge(void)
 {
 /*
 .loc_0x0:
@@ -829,7 +829,7 @@ void setNearestBridge__Q34Game4Ujia3ObjFv(void)
  * Address:	80266908
  * Size:	000004
  */
-void setCullingCheck__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::setCullingCheck(void)
 {
 /*
 .loc_0x0:
@@ -842,7 +842,7 @@ void setCullingCheck__Q34Game4Ujia3ObjFv(void)
  * Address:	8026690C
  * Size:	0001B4
  */
-void checkBreakOrMove__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::checkBreakOrMove(void)
 {
 /*
 .loc_0x0:
@@ -981,7 +981,7 @@ void checkBreakOrMove__Q34Game4Ujia3ObjFv(void)
  * Address:	80266AC0
  * Size:	000028
  */
-void isBreakBridge__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::isBreakBridge(void)
 {
 /*
 .loc_0x0:
@@ -1005,7 +1005,7 @@ void isBreakBridge__Q34Game4Ujia3ObjFv(void)
  * Address:	80266AE8
  * Size:	0002A8
  */
-void moveBridgeSide__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::moveBridgeSide(void)
 {
 /*
 .loc_0x0:
@@ -1195,7 +1195,7 @@ void moveBridgeSide__Q34Game4Ujia3ObjFv(void)
  * Address:	80266D90
  * Size:	000288
  */
-void moveBridgeCentre__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::moveBridgeCentre(void)
 {
 /*
 .loc_0x0:
@@ -1377,7 +1377,7 @@ void moveBridgeCentre__Q34Game4Ujia3ObjFv(void)
  * Address:	80267018
  * Size:	0002F0
  */
-void moveBridgeTop__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::moveBridgeTop(void)
 {
 /*
 .loc_0x0:
@@ -1589,7 +1589,7 @@ void moveBridgeTop__Q34Game4Ujia3ObjFv(void)
  * Address:	80267308
  * Size:	00005C
  */
-void breakTargetBridge__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::breakTargetBridge(void)
 {
 /*
 .loc_0x0:
@@ -1624,7 +1624,7 @@ void breakTargetBridge__Q34Game4Ujia3ObjFv(void)
  * Address:	80267364
  * Size:	00008C
  */
-void createAppearEffect__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -1671,7 +1671,7 @@ void createAppearEffect__Q34Game4Ujia3ObjFv(void)
  * Address:	802673F0
  * Size:	00008C
  */
-void createDisAppearEffect__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::createDisAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -1718,7 +1718,7 @@ void createDisAppearEffect__Q34Game4Ujia3ObjFv(void)
  * Address:	8026747C
  * Size:	000090
  */
-void createBridgeEffect__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::createBridgeEffect(void)
 {
 /*
 .loc_0x0:
@@ -1766,7 +1766,7 @@ void createBridgeEffect__Q34Game4Ujia3ObjFv(void)
  * Address:	8026750C
  * Size:	000008
  */
-void isUnderground__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -1780,7 +1780,7 @@ void isUnderground__Q34Game4Ujia3ObjFv(void)
  * Address:	80267514
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1794,7 +1794,7 @@ void getDownSmokeScale__Q34Game4Ujia3ObjFv(void)
  * Address:	8026751C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Ujia3ObjFv(void)
+void Game::Ujia::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1808,7 +1808,7 @@ void getEnemyTypeID__Q34Game4Ujia3ObjFv(void)
  * Address:	80267524
  * Size:	000014
  */
-void @724@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @724@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1825,7 +1825,7 @@ void @724@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	80267538
  * Size:	000014
  */
-void @724@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @724@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1842,7 +1842,7 @@ void @724@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8026754C
  * Size:	000014
  */
-void @724@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @724@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1859,7 +1859,7 @@ void @724@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80267560
  * Size:	000014
  */
-void @724@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @724@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1876,7 +1876,7 @@ void @724@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80267574
  * Size:	000014
  */
-void @724@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @724@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1893,7 +1893,7 @@ void @724@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80267588
  * Size:	000014
  */
-void @724@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @724@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

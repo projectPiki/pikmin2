@@ -5,7 +5,7 @@
  * Address:	80307820
  * Size:	000080
  */
-void __ct__Q32og6Screen18CallBack_CatchPikiFv(void)
+void og::Screen::CallBack_CatchPiki::__ct(void)
 {
 /*
 .loc_0x0:
@@ -49,7 +49,7 @@ void __ct__Q32og6Screen18CallBack_CatchPikiFv(void)
  * Address:	803078A0
  * Size:	00003C
  */
-void __dt__Q32og6Screen8ScaleMgrFv(void)
+void og::Screen::ScaleMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -78,7 +78,7 @@ void __dt__Q32og6Screen8ScaleMgrFv(void)
  * Address:	803078DC
  * Size:	0000C0
  */
-void init__Q32og6Screen18CallBack_CatchPikiFP9J2DScreenUxPUlP10JKRArchive(void)
+void og::Screen::CallBack_CatchPiki::init( (J2DScreen *, unsigned long long, unsigned long *, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -140,7 +140,7 @@ void init__Q32og6Screen18CallBack_CatchPikiFP9J2DScreenUxPUlP10JKRArchive(void)
  * Address:	8030799C
  * Size:	0000F0
  */
-void update__Q32og6Screen18CallBack_CatchPikiFv(void)
+void og::Screen::CallBack_CatchPiki::update(void)
 {
 /*
 .loc_0x0:
@@ -218,7 +218,7 @@ void update__Q32og6Screen18CallBack_CatchPikiFv(void)
  * Address:	80307A8C
  * Size:	00004C
  */
-void setPikiIcon__Q32og6Screen18CallBack_CatchPikiFi(void)
+void og::Screen::CallBack_CatchPiki::setPikiIcon( (int))
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void setPikiIcon__Q32og6Screen18CallBack_CatchPikiFi(void)
  * Address:	80307AD8
  * Size:	000080
  */
-void __dt__Q32og6Screen18CallBack_CatchPikiFv(void)
+void og::Screen::CallBack_CatchPiki::__dt(void)
 {
 /*
 .loc_0x0:

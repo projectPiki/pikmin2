@@ -5,7 +5,7 @@
  * Address:	80127884
  * Size:	00005C
  */
-void actEnemy__Q24Game18InteractFarmKareroFPQ24Game9EnemyBase(void)
+void Game::InteractFarmKarero::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -40,7 +40,7 @@ void actEnemy__Q24Game18InteractFarmKareroFPQ24Game9EnemyBase(void)
  * Address:	801278E0
  * Size:	000058
  */
-void actEnemy__Q24Game17InteractFarmHaeroFPQ24Game9EnemyBase(void)
+void Game::InteractFarmHaero::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -74,7 +74,7 @@ void actEnemy__Q24Game17InteractFarmHaeroFPQ24Game9EnemyBase(void)
  * Address:	80127938
  * Size:	00003C
  */
-void actEnemy__Q24Game12InteractDopeFPQ24Game9EnemyBase(void)
+void Game::InteractDope::actEnemy( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

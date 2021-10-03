@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80287B70
  * Size:	000278
  */
-void init__Q34Game5Queen3FSMFPQ24Game9EnemyBase(void)
+void Game::Queen::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void init__Q34Game5Queen3FSMFPQ24Game9EnemyBase(void)
  * Address:	80287DE8
  * Size:	000058
  */
-void init__Q34Game5Queen9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Queen::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void init__Q34Game5Queen9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80287E40
  * Size:	0000B8
  */
-void exec__Q34Game5Queen9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Queen::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void exec__Q34Game5Queen9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80287EF8
  * Size:	000004
  */
-void cleanup__Q34Game5Queen9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Queen::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void cleanup__Q34Game5Queen9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80287EFC
  * Size:	000070
  */
-void init__Q34Game5Queen10StateSleepFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Queen::StateSleep::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void init__Q34Game5Queen10StateSleepFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80287F6C
  * Size:	000154
  */
-void exec__Q34Game5Queen10StateSleepFPQ24Game9EnemyBase(void)
+void Game::Queen::StateSleep::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void exec__Q34Game5Queen10StateSleepFPQ24Game9EnemyBase(void)
  * Address:	802880C0
  * Size:	000040
  */
-void cleanup__Q34Game5Queen10StateSleepFPQ24Game9EnemyBase(void)
+void Game::Queen::StateSleep::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -491,7 +491,7 @@ void cleanup__Q34Game5Queen10StateSleepFPQ24Game9EnemyBase(void)
  * Address:	80288100
  * Size:	000070
  */
-void init__Q34Game5Queen9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Queen::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void init__Q34Game5Queen9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80288170
  * Size:	00013C
  */
-void exec__Q34Game5Queen9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Queen::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -634,7 +634,7 @@ void exec__Q34Game5Queen9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802882AC
  * Size:	000024
  */
-void cleanup__Q34Game5Queen9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Queen::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -655,7 +655,7 @@ void cleanup__Q34Game5Queen9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802882D0
  * Size:	000078
  */
-void init__Q34Game5Queen11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Queen::StateDamage::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -697,7 +697,7 @@ void init__Q34Game5Queen11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80288348
  * Size:	0000F4
  */
-void exec__Q34Game5Queen11StateDamageFPQ24Game9EnemyBase(void)
+void Game::Queen::StateDamage::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -780,7 +780,7 @@ void exec__Q34Game5Queen11StateDamageFPQ24Game9EnemyBase(void)
  * Address:	8028843C
  * Size:	000040
  */
-void cleanup__Q34Game5Queen11StateDamageFPQ24Game9EnemyBase(void)
+void Game::Queen::StateDamage::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -808,7 +808,7 @@ void cleanup__Q34Game5Queen11StateDamageFPQ24Game9EnemyBase(void)
  * Address:	8028847C
  * Size:	000080
  */
-void init__Q34Game5Queen10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Queen::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -852,7 +852,7 @@ void init__Q34Game5Queen10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802884FC
  * Size:	0000FC
  */
-void exec__Q34Game5Queen10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Queen::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -935,7 +935,7 @@ void exec__Q34Game5Queen10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	802885F8
  * Size:	000038
  */
-void cleanup__Q34Game5Queen10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Queen::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -961,7 +961,7 @@ void cleanup__Q34Game5Queen10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	80288630
  * Size:	000088
  */
-void init__Q34Game5Queen12StateRollingFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Queen::StateRolling::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1011,7 +1011,7 @@ void init__Q34Game5Queen12StateRollingFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802886B8
  * Size:	0005BC
  */
-void exec__Q34Game5Queen12StateRollingFPQ24Game9EnemyBase(void)
+void Game::Queen::StateRolling::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1442,7 +1442,7 @@ void exec__Q34Game5Queen12StateRollingFPQ24Game9EnemyBase(void)
  * Address:	80288C74
  * Size:	00004C
  */
-void cleanup__Q34Game5Queen12StateRollingFPQ24Game9EnemyBase(void)
+void Game::Queen::StateRolling::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1473,7 +1473,7 @@ void cleanup__Q34Game5Queen12StateRollingFPQ24Game9EnemyBase(void)
  * Address:	80288CC0
  * Size:	000070
  */
-void init__Q34Game5Queen9StateBornFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Queen::StateBorn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1513,7 +1513,7 @@ void init__Q34Game5Queen9StateBornFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80288D30
  * Size:	0000A8
  */
-void exec__Q34Game5Queen9StateBornFPQ24Game9EnemyBase(void)
+void Game::Queen::StateBorn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1573,7 +1573,7 @@ void exec__Q34Game5Queen9StateBornFPQ24Game9EnemyBase(void)
  * Address:	80288DD8
  * Size:	000040
  */
-void cleanup__Q34Game5Queen9StateBornFPQ24Game9EnemyBase(void)
+void Game::Queen::StateBorn::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

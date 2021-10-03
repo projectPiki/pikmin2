@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802C5918
  * Size:	000050
  */
-void __ct__Q34Game10LeafChappy3MgrFiUc(void)
+void Game::LeafChappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game10LeafChappy3MgrFiUc(void)
  * Address:	802C5968
  * Size:	000048
  */
-void birth__Q34Game10LeafChappy3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::LeafChappy::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void birth__Q34Game10LeafChappy3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	802C59B0
  * Size:	000048
  */
-void doAlloc__Q34Game10LeafChappy3MgrFv(void)
+void Game::LeafChappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void doAlloc__Q34Game10LeafChappy3MgrFv(void)
  * Address:	802C59F8
  * Size:	000060
  */
-void createObj__Q34Game10LeafChappy3MgrFi(void)
+void Game::LeafChappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void createObj__Q34Game10LeafChappy3MgrFi(void)
  * Address:	802C5A58
  * Size:	0000F0
  */
-void __dt__Q34Game10LeafChappy3ObjFv(void)
+void Game::LeafChappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void __dt__Q34Game10LeafChappy3ObjFv(void)
  * Address:	802C5B48
  * Size:	000010
  */
-void getEnemy__Q34Game10LeafChappy3MgrFi(void)
+void Game::LeafChappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -239,7 +239,7 @@ void getEnemy__Q34Game10LeafChappy3MgrFi(void)
  * Address:	802C5B58
  * Size:	0000B0
  */
-void __dt__Q34Game10LeafChappy3MgrFv(void)
+void Game::LeafChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -299,7 +299,7 @@ void __dt__Q34Game10LeafChappy3MgrFv(void)
  * Address:	802C5C08
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10LeafChappy3MgrFv(void)
+void Game::LeafChappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -313,7 +313,7 @@ void getEnemyTypeID__Q34Game10LeafChappy3MgrFv(void)
  * Address:	802C5C10
  * Size:	000008
  */
-void @4@__dt__Q34Game10LeafChappy3MgrFv(void)
+void @4@Game::LeafChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

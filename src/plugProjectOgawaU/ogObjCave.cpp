@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8031C008
  * Size:	00009C
  */
-void __ct__Q32og9newScreen7ObjCaveFPCc(void)
+void og::newScreen::ObjCave::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -66,7 +66,7 @@ void __ct__Q32og9newScreen7ObjCaveFPCc(void)
  * Address:	8031C0A4
  * Size:	0000AC
  */
-void __dt__Q32og9newScreen7ObjCaveFv(void)
+void og::newScreen::ObjCave::__dt(void)
 {
 /*
 .loc_0x0:
@@ -125,7 +125,7 @@ void __dt__Q32og9newScreen7ObjCaveFv(void)
  * Address:	8031C150
  * Size:	000518
  */
-void doCreate__Q32og9newScreen7ObjCaveFP10JKRArchive(void)
+void og::newScreen::ObjCave::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void doCreate__Q32og9newScreen7ObjCaveFP10JKRArchive(void)
  * Address:	8031C668
  * Size:	0003A4
  */
-void commonUpdate__Q32og9newScreen7ObjCaveFv(void)
+void og::newScreen::ObjCave::commonUpdate(void)
 {
 /*
 .loc_0x0:
@@ -770,7 +770,7 @@ void commonUpdate__Q32og9newScreen7ObjCaveFv(void)
  * Address:	8031CA0C
  * Size:	000024
  */
-void doUpdate__Q32og9newScreen7ObjCaveFv(void)
+void og::newScreen::ObjCave::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -791,7 +791,7 @@ void doUpdate__Q32og9newScreen7ObjCaveFv(void)
  * Address:	8031CA30
  * Size:	000064
  */
-void doDraw__Q32og9newScreen7ObjCaveFR8Graphics(void)
+void og::newScreen::ObjCave::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -832,7 +832,7 @@ void doDraw__Q32og9newScreen7ObjCaveFR8Graphics(void)
  * Address:	8031CA94
  * Size:	000014
  */
-void doStart__Q32og9newScreen7ObjCaveFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjCave::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -849,7 +849,7 @@ void doStart__Q32og9newScreen7ObjCaveFPCQ26Screen13StartSceneArg(void)
  * Address:	8031CAA8
  * Size:	000010
  */
-void doEnd__Q32og9newScreen7ObjCaveFPCQ26Screen11EndSceneArg(void)
+void og::newScreen::ObjCave::doEnd( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void doEnd__Q32og9newScreen7ObjCaveFPCQ26Screen11EndSceneArg(void)
  * Address:	8031CAB8
  * Size:	000074
  */
-void doUpdateFadein__Q32og9newScreen7ObjCaveFv(void)
+void og::newScreen::ObjCave::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -908,7 +908,7 @@ void doUpdateFadein__Q32og9newScreen7ObjCaveFv(void)
  * Address:	8031CB2C
  * Size:	000004
  */
-void doUpdateFadeinFinish__Q32og9newScreen7ObjCaveFv(void)
+void og::newScreen::ObjCave::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -921,7 +921,7 @@ void doUpdateFadeinFinish__Q32og9newScreen7ObjCaveFv(void)
  * Address:	8031CB30
  * Size:	00000C
  */
-void doUpdateFinish__Q32og9newScreen7ObjCaveFv(void)
+void og::newScreen::ObjCave::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -936,7 +936,7 @@ void doUpdateFinish__Q32og9newScreen7ObjCaveFv(void)
  * Address:	8031CB3C
  * Size:	00007C
  */
-void doUpdateFadeout__Q32og9newScreen7ObjCaveFv(void)
+void og::newScreen::ObjCave::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -981,7 +981,7 @@ void doUpdateFadeout__Q32og9newScreen7ObjCaveFv(void)
  * Address:	8031CBB8
  * Size:	000004
  */
-void doUpdateFadeoutFinish__Q32og9newScreen7ObjCaveFv(void)
+void og::newScreen::ObjCave::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -1057,7 +1057,7 @@ void __sinit_ogObjCave_cpp(void)
  * Address:	8031CC88
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen7ObjCaveFv(void)
+void @24@og::newScreen::ObjCave::__dt(void)
 {
 /*
 .loc_0x0:

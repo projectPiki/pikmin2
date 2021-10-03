@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802F9624
  * Size:	000090
  */
-void __ct__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F96B4
  * Size:	0001A4
  */
-void changeMaterial__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -186,7 +186,7 @@ void changeMaterial__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9858
  * Size:	0000B4
  */
-void damageCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::BombOtakara::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void damageCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802F990C
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::BombOtakara::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -274,7 +274,7 @@ void hipdropCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreaturefP8CollPart(void
  * Address:	802F9938
  * Size:	00007C
  */
-void earthquakeCallBack__Q34Game11BombOtakara3ObjFPQ24Game8Creaturef(void)
+void Game::BombOtakara::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void bombCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreatureR10Vector3<float>f(
  * Address:	802F99E4
  * Size:	00007C
  */
-void startEscapeSE__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::startEscapeSE(void)
 {
 /*
 .loc_0x0:
@@ -390,7 +390,7 @@ void startEscapeSE__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A60
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -404,7 +404,7 @@ void getEnemyTypeID__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A68
  * Size:	000004
  */
-void interactCreature__Q34Game11BombOtakara3ObjFPQ24Game8Creature(void)
+void Game::BombOtakara::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -417,7 +417,7 @@ void interactCreature__Q34Game11BombOtakara3ObjFPQ24Game8Creature(void)
  * Address:	802F9A6C
  * Size:	000004
  */
-void createEffect__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -430,7 +430,7 @@ void createEffect__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A70
  * Size:	000004
  */
-void setupEffect__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void setupEffect__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A74
  * Size:	000004
  */
-void startChargeEffect__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::startChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -456,7 +456,7 @@ void startChargeEffect__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A78
  * Size:	000004
  */
-void finishChargeEffect__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::finishChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -469,7 +469,7 @@ void finishChargeEffect__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A7C
  * Size:	000004
  */
-void createDisChargeEffect__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::createDisChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -482,7 +482,7 @@ void createDisChargeEffect__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A80
  * Size:	000004
  */
-void effectDrawOn__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void effectDrawOn__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A84
  * Size:	000004
  */
-void effectDrawOff__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void effectDrawOff__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F9A88
  * Size:	000004
  */
-void startDisChargeSE__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::startDisChargeSE(void)
 {
 /*
 .loc_0x0:

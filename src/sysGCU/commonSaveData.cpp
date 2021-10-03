@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80446C68
  * Size:	000044
  */
-void __ct__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -46,7 +46,7 @@ void __ct__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	80446CAC
  * Size:	000078
  */
-void setDefault__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::setDefault(void)
 {
 /*
 .loc_0x0:
@@ -88,7 +88,7 @@ void setDefault__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	80446D24
  * Size:	000018
  */
-void setCardSerialNo__Q34Game14CommonSaveData3MgrFUx(void)
+void Game::CommonSaveData::Mgr::setCardSerialNo( (unsigned long long))
 {
 /*
 .loc_0x0:
@@ -106,7 +106,7 @@ void setCardSerialNo__Q34Game14CommonSaveData3MgrFUx(void)
  * Address:	80446D3C
  * Size:	000020
  */
-void resetCardSerialNo__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::resetCardSerialNo(void)
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void resetCardSerialNo__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	80446D5C
  * Size:	0000AC
  */
-void write__Q34Game14CommonSaveData3MgrFR6Stream(void)
+void Game::CommonSaveData::Mgr::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -183,7 +183,7 @@ void write__Q34Game14CommonSaveData3MgrFR6Stream(void)
  * Address:	80446E08
  * Size:	0000AC
  */
-void read__Q34Game14CommonSaveData3MgrFR6Stream(void)
+void Game::CommonSaveData::Mgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -240,7 +240,7 @@ void read__Q34Game14CommonSaveData3MgrFR6Stream(void)
  * Address:	80446EB4
  * Size:	000100
  */
-void setup__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::setup(void)
 {
 /*
 .loc_0x0:
@@ -328,7 +328,7 @@ void setup__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	80446FB4
  * Size:	000014
  */
-void resetPlayer__Q34Game14CommonSaveData3MgrFSc(void)
+void Game::CommonSaveData::Mgr::resetPlayer( (signed char))
 {
 /*
 .loc_0x0:
@@ -345,7 +345,7 @@ void resetPlayer__Q34Game14CommonSaveData3MgrFSc(void)
  * Address:	80446FC8
  * Size:	000030
  */
-void setDeflicker__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::setDeflicker(void)
 {
 /*
 .loc_0x0:
@@ -371,7 +371,7 @@ void setDeflicker__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	80446FF8
  * Size:	0000D0
  */
-void setDeflicker__Q34Game14CommonSaveData3MgrFb(void)
+void Game::CommonSaveData::Mgr::setDeflicker( (bool))
 {
 /*
 .loc_0x0:
@@ -441,7 +441,7 @@ void setDeflicker__Q34Game14CommonSaveData3MgrFb(void)
  * Address:	804470C8
  * Size:	000034
  */
-void setSoundModeMono__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::setSoundModeMono(void)
 {
 /*
 .loc_0x0:
@@ -466,7 +466,7 @@ void setSoundModeMono__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	804470FC
  * Size:	000034
  */
-void setSoundModeStereo__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::setSoundModeStereo(void)
 {
 /*
 .loc_0x0:
@@ -491,7 +491,7 @@ void setSoundModeStereo__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	80447130
  * Size:	000034
  */
-void setSoundModeSurround__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::setSoundModeSurround(void)
 {
 /*
 .loc_0x0:
@@ -516,7 +516,7 @@ void setSoundModeSurround__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	80447164
  * Size:	00012C
  */
-void setBgmVolume__Q34Game14CommonSaveData3MgrFf(void)
+void Game::CommonSaveData::Mgr::setBgmVolume( (float))
 {
 /*
 .loc_0x0:
@@ -615,7 +615,7 @@ void setBgmVolume__Q34Game14CommonSaveData3MgrFf(void)
  * Address:	80447290
  * Size:	00012C
  */
-void setSeVolume__Q34Game14CommonSaveData3MgrFf(void)
+void Game::CommonSaveData::Mgr::setSeVolume( (float))
 {
 /*
 .loc_0x0:
@@ -714,7 +714,7 @@ void setSeVolume__Q34Game14CommonSaveData3MgrFf(void)
  * Address:	........
  * Size:	000024
  */
-void setLanguage__Q34Game14CommonSaveData3MgrFv(void)
+void Game::CommonSaveData::Mgr::setLanguage(void)
 {
 	// UNUSED FUNCTION
 }
@@ -724,7 +724,7 @@ void setLanguage__Q34Game14CommonSaveData3MgrFv(void)
  * Address:	........
  * Size:	000010
  */
-void setLanguage__Q34Game14CommonSaveData3MgrF9ELanguage(void)
+void Game::CommonSaveData::Mgr::setLanguage( (ELanguage))
 {
 	// UNUSED FUNCTION
 }

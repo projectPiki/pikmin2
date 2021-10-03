@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8010AB38
  * Size:	0001E0
  */
-void init__Q34Game8Pelplant3FSMFPQ24Game9EnemyBase(void)
+void Game::Pelplant::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -167,7 +167,7 @@ void init__Q34Game8Pelplant3FSMFPQ24Game9EnemyBase(void)
  * Address:	........
  * Size:	000040
  */
-void __ct__Q34Game8Pelplant14StateBlendAnimFiiii(void)
+void Game::Pelplant::StateBlendAnim::__ct( (int, int, int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -177,7 +177,7 @@ void __ct__Q34Game8Pelplant14StateBlendAnimFiiii(void)
  * Address:	8010AD18
  * Size:	00003C
  */
-void init__Q34Game8Pelplant14StateBlendAnimFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Pelplant::StateBlendAnim::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void init__Q34Game8Pelplant14StateBlendAnimFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	8010AD54
  * Size:	00007C
  */
-void exec__Q34Game8Pelplant14StateBlendAnimFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateBlendAnim::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void exec__Q34Game8Pelplant14StateBlendAnimFPQ24Game9EnemyBase(void)
  * Address:	8010ADD0
  * Size:	000098
  */
-void __ct__Q34Game8Pelplant11StateWitherFiiii(void)
+void Game::Pelplant::StateWither::__ct( (int, int, int, int))
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void __ct__Q34Game8Pelplant11StateWitherFiiii(void)
  * Address:	8010AE68
  * Size:	000070
  */
-void init__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Pelplant::StateWither::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void init__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	8010AED8
  * Size:	00007C
  */
-void exec__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateWither::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void exec__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBase(void)
  * Address:	8010AF54
  * Size:	000028
  */
-void cleanup__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateWither::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void cleanup__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBase(void)
  * Address:	8010AF7C
  * Size:	000088
  */
-void __ct__Q34Game8Pelplant9StateWaitFii(void)
+void Game::Pelplant::StateWait::__ct( (int, int))
 {
 /*
 .loc_0x0:
@@ -472,7 +472,7 @@ void __ct__Q34Game8Pelplant9StateWaitFii(void)
  * Address:	8010B004
  * Size:	000144
  */
-void init__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Pelplant::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -575,7 +575,7 @@ void init__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8010B148
  * Size:	000278
  */
-void exec__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -779,7 +779,7 @@ void exec__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8010B3C0
  * Size:	000004
  */
-void cleanup__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -792,7 +792,7 @@ void cleanup__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8010B3C4
  * Size:	000044
  */
-void __ct__Q34Game8Pelplant9StateGrowFiii(void)
+void Game::Pelplant::StateGrow::__ct( (int, int, int))
 {
 /*
 .loc_0x0:
@@ -821,7 +821,7 @@ void __ct__Q34Game8Pelplant9StateGrowFiii(void)
  * Address:	8010B408
  * Size:	0002E0
  */
-void init__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Pelplant::StateGrow::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1031,7 +1031,7 @@ void init__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8010B6E8
  * Size:	000060
  */
-void exec__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateGrow::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void exec__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBase(void)
  * Address:	8010B748
  * Size:	000004
  */
-void cleanup__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateGrow::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1084,7 +1084,7 @@ void cleanup__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBase(void)
  * Address:	8010B74C
  * Size:	000040
  */
-void __ct__Q34Game8Pelplant11StateDamageFii(void)
+void Game::Pelplant::StateDamage::__ct( (int, int))
 {
 /*
 .loc_0x0:
@@ -1112,7 +1112,7 @@ void __ct__Q34Game8Pelplant11StateDamageFii(void)
  * Address:	8010B78C
  * Size:	00008C
  */
-void init__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Pelplant::StateDamage::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1167,7 +1167,7 @@ void init__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	8010B818
  * Size:	000068
  */
-void exec__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateDamage::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1207,7 +1207,7 @@ void exec__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBase(void)
  * Address:	8010B880
  * Size:	000010
  */
-void cleanup__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateDamage::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1223,7 +1223,7 @@ void cleanup__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBase(void)
  * Address:	8010B890
  * Size:	000040
  */
-void __ct__Q34Game8Pelplant9StateDeadFii(void)
+void Game::Pelplant::StateDead::__ct( (int, int))
 {
 /*
 .loc_0x0:
@@ -1251,7 +1251,7 @@ void __ct__Q34Game8Pelplant9StateDeadFii(void)
  * Address:	8010B8D0
  * Size:	0000B4
  */
-void init__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Pelplant::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1318,7 +1318,7 @@ void init__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8010B984
  * Size:	000068
  */
-void exec__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1360,7 +1360,7 @@ void exec__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8010B9EC
  * Size:	000004
  */
-void cleanup__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Pelplant::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1373,7 +1373,7 @@ void cleanup__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8010B9F0
  * Size:	000004
  */
-void forceKill__Q23efx8TSimple3Fv(void)
+void efx::TSimple3::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -1386,7 +1386,7 @@ void forceKill__Q23efx8TSimple3Fv(void)
  * Address:	8010B9F4
  * Size:	000004
  */
-void fade__Q23efx8TSimple3Fv(void)
+void efx::TSimple3::fade(void)
 {
 /*
 .loc_0x0:
@@ -1399,7 +1399,7 @@ void fade__Q23efx8TSimple3Fv(void)
  * Address:	8010B9F8
  * Size:	000004
  */
-void forceKill__Q23efx8TSimple2Fv(void)
+void efx::TSimple2::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -1412,7 +1412,7 @@ void forceKill__Q23efx8TSimple2Fv(void)
  * Address:	8010B9FC
  * Size:	000004
  */
-void fade__Q23efx8TSimple2Fv(void)
+void efx::TSimple2::fade(void)
 {
 /*
 .loc_0x0:

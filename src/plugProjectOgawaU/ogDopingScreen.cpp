@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8030360C
  * Size:	0000F4
  */
-void __ct__Q32og6Screen12DopingScreenFv(void)
+void og::Screen::DopingScreen::__ct(void)
 {
 /*
 .loc_0x0:
@@ -96,7 +96,7 @@ void __ct__Q32og6Screen12DopingScreenFv(void)
  * Address:	80303700
  * Size:	0002CC
  */
-void setCallBack__Q32og6Screen12DopingScreenFP10JKRArchive(void)
+void og::Screen::DopingScreen::setCallBack( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -291,7 +291,7 @@ void setCallBack__Q32og6Screen12DopingScreenFP10JKRArchive(void)
  * Address:	803039CC
  * Size:	000038
  */
-void setParam__Q32og6Screen12DopingScreenFRQ32og6Screen8DataNavi(void)
+void og::Screen::DopingScreen::setParam( (og::Screen::DataNavi &))
 {
 /*
 .loc_0x0:
@@ -317,7 +317,7 @@ void setParam__Q32og6Screen12DopingScreenFRQ32og6Screen8DataNavi(void)
  * Address:	80303A04
  * Size:	000284
  */
-void update__Q32og6Screen12DopingScreenFv(void)
+void og::Screen::DopingScreen::update(void)
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void update__Q32og6Screen12DopingScreenFv(void)
  * Address:	80303C88
  * Size:	00000C
  */
-void adjPos__Q32og6Screen12DopingScreenFff(void)
+void og::Screen::DopingScreen::adjPos( (float, float))
 {
 /*
 .loc_0x0:
@@ -519,7 +519,7 @@ void adjPos__Q32og6Screen12DopingScreenFff(void)
  * Address:	80303C94
  * Size:	000044
  */
-void setDopingEnable__Q32og6Screen12DopingScreenFbb(void)
+void og::Screen::DopingScreen::setDopingEnable( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -554,7 +554,7 @@ void setDopingEnable__Q32og6Screen12DopingScreenFbb(void)
  * Address:	80303CD8
  * Size:	000010
  */
-void openDopingUp__Q32og6Screen12DopingScreenFv(void)
+void og::Screen::DopingScreen::openDopingUp(void)
 {
 /*
 .loc_0x0:
@@ -570,7 +570,7 @@ void openDopingUp__Q32og6Screen12DopingScreenFv(void)
  * Address:	80303CE8
  * Size:	000010
  */
-void openDopingDown__Q32og6Screen12DopingScreenFv(void)
+void og::Screen::DopingScreen::openDopingDown(void)
 {
 /*
 .loc_0x0:
@@ -586,7 +586,7 @@ void openDopingDown__Q32og6Screen12DopingScreenFv(void)
  * Address:	80303CF8
  * Size:	00000C
  */
-void openDopingKey__Q32og6Screen12DopingScreenFv(void)
+void og::Screen::DopingScreen::openDopingKey(void)
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void openDopingKey__Q32og6Screen12DopingScreenFv(void)
  * Address:	80303D04
  * Size:	000100
  */
-void __ct__Q32og6Screen11DopingCheckFv(void)
+void og::Screen::DopingCheck::__ct(void)
 {
 /*
 .loc_0x0:
@@ -679,7 +679,7 @@ void __ct__Q32og6Screen11DopingCheckFv(void)
  * Address:	80303E04
  * Size:	000044
  */
-void init__Q32og6Screen11DopingCheckFP7J2DPaneP7J2DPanePQ32og6Screen8ScaleMgrPQ32og6Screen8ScaleMgr(void)
+void og::Screen::DopingCheck::init( (J2DPane *, J2DPane *, og::Screen::ScaleMgr *, og::Screen::ScaleMgr *))
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void init__Q32og6Screen11DopingCheckFP7J2DPaneP7J2DPanePQ32og6Screen8ScaleMgrPQ3
  * Address:	80303E48
  * Size:	000100
  */
-void update__Q32og6Screen11DopingCheckFv(void)
+void og::Screen::DopingCheck::update(void)
 {
 /*
 .loc_0x0:
@@ -798,7 +798,7 @@ void update__Q32og6Screen11DopingCheckFv(void)
  * Address:	80303F48
  * Size:	000080
  */
-void effStart__Q32og6Screen11DopingCheckFP7J2DPane(void)
+void og::Screen::DopingCheck::effStart( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -842,7 +842,7 @@ void effStart__Q32og6Screen11DopingCheckFP7J2DPane(void)
  * Address:	........
  * Size:	0000D0
  */
-void startGetEff__Q32og6Screen11DopingCheckFP7J2DPane(void)
+void og::Screen::DopingCheck::startGetEff( (J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -852,7 +852,7 @@ void startGetEff__Q32og6Screen11DopingCheckFP7J2DPane(void)
  * Address:	80303FC8
  * Size:	0000D0
  */
-void startGetEff_Up__Q32og6Screen11DopingCheckFv(void)
+void og::Screen::DopingCheck::startGetEff_Up(void)
 {
 /*
 .loc_0x0:
@@ -916,7 +916,7 @@ void startGetEff_Up__Q32og6Screen11DopingCheckFv(void)
  * Address:	80304098
  * Size:	0000D0
  */
-void startGetEff_Down__Q32og6Screen11DopingCheckFv(void)
+void og::Screen::DopingCheck::startGetEff_Down(void)
 {
 /*
 .loc_0x0:
@@ -980,7 +980,7 @@ void startGetEff_Down__Q32og6Screen11DopingCheckFv(void)
  * Address:	80304168
  * Size:	000004
  */
-void kill__Q25efx2d8TSimple2Fv(void)
+void efx2d::TSimple2::kill(void)
 {
 /*
 .loc_0x0:
@@ -993,7 +993,7 @@ void kill__Q25efx2d8TSimple2Fv(void)
  * Address:	8030416C
  * Size:	000004
  */
-void fade__Q25efx2d8TSimple2Fv(void)
+void efx2d::TSimple2::fade(void)
 {
 /*
 .loc_0x0:
@@ -1006,7 +1006,7 @@ void fade__Q25efx2d8TSimple2Fv(void)
  * Address:	80304170
  * Size:	000004
  */
-void kill__Q25efx2d8TSimple1Fv(void)
+void efx2d::TSimple1::kill(void)
 {
 /*
 .loc_0x0:
@@ -1019,7 +1019,7 @@ void kill__Q25efx2d8TSimple1Fv(void)
  * Address:	80304174
  * Size:	000004
  */
-void fade__Q25efx2d8TSimple1Fv(void)
+void efx2d::TSimple1::fade(void)
 {
 /*
 .loc_0x0:
@@ -1032,7 +1032,7 @@ void fade__Q25efx2d8TSimple1Fv(void)
  * Address:	80304178
  * Size:	0000A4
  */
-void __dt__Q32og6Screen12DopingScreenFv(void)
+void og::Screen::DopingScreen::__dt(void)
 {
 /*
 .loc_0x0:

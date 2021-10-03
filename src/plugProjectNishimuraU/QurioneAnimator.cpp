@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026134C
  * Size:	000008
  */
-void setAnimMgr__Q34Game7Qurione14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Qurione::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game7Qurione14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80261354
  * Size:	000008
  */
-void getAnimator__Q34Game7Qurione14ProperAnimatorFi(void)
+void Game::Qurione::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game7Qurione14ProperAnimatorFi(void)
  * Address:	8026135C
  * Size:	00005C
  */
-void __dt__Q34Game7Qurione14ProperAnimatorFv(void)
+void Game::Qurione::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game7Qurione14ProperAnimatorFv(void)
  * Address:	802613B8
  * Size:	000008
  */
-void getAnimator__Q34Game7Qurione14ProperAnimatorFv(void)
+void Game::Qurione::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

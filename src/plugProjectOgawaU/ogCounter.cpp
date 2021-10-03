@@ -5,7 +5,7 @@
  * Address:	80305E48
  * Size:	000118
  */
-void makeSujiFontTable__Q22og6ScreenFPPcP10JKRArchive(void)
+void og::Screen::makeSujiFontTable( (char **, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -99,7 +99,7 @@ void makeSujiFontTable__Q22og6ScreenFPPcP10JKRArchive(void)
  * Address:	80305F60
  * Size:	000050
  */
-void setSuji__Q32og6Screen11CounterKetaFPP7ResTIMGUl(void)
+void og::Screen::CounterKeta::setSuji( (ResTIMG **, unsigned long))
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void setSuji__Q32og6Screen11CounterKetaFPP7ResTIMGUl(void)
  * Address:	80305FB0
  * Size:	000088
  */
-void calcScale__Q32og6Screen11CounterKetaFv(void)
+void og::Screen::CounterKeta::calcScale(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80428C50
  * Size:	000038
  */
-void clearAnimatorAll__Q28SysShape5ModelFv(void)
+void SysShape::Model::clearAnimatorAll(void)
 {
 /*
 .loc_0x0:
@@ -45,7 +45,7 @@ void clearAnimatorAll__Q28SysShape5ModelFv(void)
  * Address:	........
  * Size:	000080
  */
-void setAnimatorAll__Q28SysShape5ModelFRQ28SysShape12BaseAnimator(void)
+void SysShape::Model::setAnimatorAll( (SysShape::BaseAnimator &))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void setAnimatorAll__Q28SysShape5ModelFRQ28SysShape12BaseAnimator(void)
  * Address:	80428C88
  * Size:	0000C8
  */
-void startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener(void)
+void SysShape::Animator::startAnim( (int, SysShape::MotionListener *))
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener(void)
  * Address:	80428D50
  * Size:	000068
  */
-void startExAnim__Q28SysShape8AnimatorFPQ28SysShape8AnimInfo(void)
+void SysShape::Animator::startExAnim( (SysShape::AnimInfo *))
 {
 /*
 .loc_0x0:
@@ -171,7 +171,7 @@ void startExAnim__Q28SysShape8AnimatorFPQ28SysShape8AnimInfo(void)
  * Address:	80428DB8
  * Size:	000008
  */
-void assertValid__Q28SysShape8AnimatorFPQ28SysShape5Model(void)
+void SysShape::Animator::assertValid( (SysShape::Model *))
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void assertValid__Q28SysShape8AnimatorFPQ28SysShape5Model(void)
  * Address:	80428DC0
  * Size:	000040
  */
-void setCurrFrame__Q28SysShape8AnimatorFf(void)
+void SysShape::Animator::setCurrFrame( (float))
 {
 /*
 .loc_0x0:
@@ -213,7 +213,7 @@ void setCurrFrame__Q28SysShape8AnimatorFf(void)
  * Address:	80428E00
  * Size:	000100
  */
-void setFrameByKeyType__Q28SysShape8AnimatorFUl(void)
+void SysShape::Animator::setFrameByKeyType( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void setFrameByKeyType__Q28SysShape8AnimatorFUl(void)
  * Address:	80428F00
  * Size:	000078
  */
-void setLastFrame__Q28SysShape8AnimatorFv(void)
+void SysShape::Animator::setLastFrame(void)
 {
 /*
 .loc_0x0:
@@ -339,7 +339,7 @@ void setLastFrame__Q28SysShape8AnimatorFv(void)
  * Address:	80428F78
  * Size:	0002AC
  */
-void animate__Q28SysShape8AnimatorFf(void)
+void SysShape::Animator::animate( (float))
 {
 /*
 .loc_0x0:
@@ -544,7 +544,7 @@ void animate__Q28SysShape8AnimatorFf(void)
  * Address:	80429224
  * Size:	000080
  */
-void __ct__Q28SysShape13BlendAnimatorFv(void)
+void SysShape::BlendAnimator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -588,7 +588,7 @@ void __ct__Q28SysShape13BlendAnimatorFv(void)
  * Address:	804292A4
  * Size:	000154
  */
-void setAnimMgr__Q28SysShape13BlendAnimatorFPQ28SysShape7AnimMgr(void)
+void SysShape::BlendAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -707,7 +707,7 @@ void setAnimMgr__Q28SysShape13BlendAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	........
  * Size:	000124
  */
-void setWeight__Q28SysShape13BlendAnimatorFf(void)
+void SysShape::BlendAnimator::setWeight( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -717,7 +717,7 @@ void setWeight__Q28SysShape13BlendAnimatorFf(void)
  * Address:	804293F8
  * Size:	00015C
  */
-void startBlend__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener(void)
+void SysShape::BlendAnimator::startBlend( (SysShape::BlendFunction *, float, SysShape::MotionListener *))
 {
 /*
 .loc_0x0:
@@ -828,7 +828,7 @@ void startBlend__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfPQ28SysS
  * Address:	80429554
  * Size:	000018
  */
-void endBlend__Q28SysShape13BlendAnimatorFv(void)
+void SysShape::BlendAnimator::endBlend(void)
 {
 /*
 .loc_0x0:
@@ -846,7 +846,7 @@ void endBlend__Q28SysShape13BlendAnimatorFv(void)
  * Address:	8042956C
  * Size:	000278
  */
-void animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff(void)
+void SysShape::BlendAnimator::animate( (SysShape::BlendFunction *, float, float, float))
 {
 /*
 .loc_0x0:
@@ -1034,7 +1034,7 @@ void animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff(void)
  * Address:	804297E4
  * Size:	000040
  */
-void getCalc__Q28SysShape13BlendAnimatorFv(void)
+void SysShape::BlendAnimator::getCalc(void)
 {
 /*
 .loc_0x0:
@@ -1066,7 +1066,7 @@ void getCalc__Q28SysShape13BlendAnimatorFv(void)
  * Address:	80429824
  * Size:	00007C
  */
-void init__Q28SysShape5JointFUsPQ28SysShape5ModelP8J3DJoint(void)
+void SysShape::Joint::init( (unsigned short, SysShape::Model *, J3DJoint *))
 {
 /*
 .loc_0x0:
@@ -1109,7 +1109,7 @@ void init__Q28SysShape5JointFUsPQ28SysShape5ModelP8J3DJoint(void)
  * Address:	804298A0
  * Size:	000020
  */
-void getWorldMatrix__Q28SysShape5JointFv(void)
+void SysShape::Joint::getWorldMatrix(void)
 {
 /*
 .loc_0x0:
@@ -1129,7 +1129,7 @@ void getWorldMatrix__Q28SysShape5JointFv(void)
  * Address:	........
  * Size:	00000C
  */
-void setCallback__Q28SysShape5JointFPQ28SysShape13JointCallback(void)
+void SysShape::Joint::setCallback( (SysShape::JointCallback *))
 {
 	// UNUSED FUNCTION
 }
@@ -1139,7 +1139,7 @@ void setCallback__Q28SysShape5JointFPQ28SysShape13JointCallback(void)
  * Address:	........
  * Size:	000078
  */
-void calc__Q28SysShape13JointCallbackFv(void)
+void SysShape::JointCallback::calc(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1149,7 +1149,7 @@ void calc__Q28SysShape13JointCallbackFv(void)
  * Address:	........
  * Size:	00005C
  */
-void attach__Q28SysShape8AnimInfoFPQ28SysShape5ModelPv(void)
+void SysShape::AnimInfo::attach( (SysShape::Model *, void *))
 {
 	// UNUSED FUNCTION
 }
@@ -1159,7 +1159,7 @@ void attach__Q28SysShape8AnimInfoFPQ28SysShape5ModelPv(void)
  * Address:	804298C0
  * Size:	00006C
  */
-void getLowestAnimKey__Q28SysShape8AnimInfoFf(void)
+void SysShape::AnimInfo::getLowestAnimKey( (float))
 {
 /*
 .loc_0x0:
@@ -1204,7 +1204,7 @@ void getLowestAnimKey__Q28SysShape8AnimInfoFf(void)
  * Address:	........
  * Size:	00002C
  */
-void dump__Q28SysShape8AnimInfoFv(void)
+void SysShape::AnimInfo::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1214,7 +1214,7 @@ void dump__Q28SysShape8AnimInfoFv(void)
  * Address:	........
  * Size:	000064
  */
-void getLastLoopStart__Q28SysShape8AnimInfoFf(void)
+void SysShape::AnimInfo::getLastLoopStart( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -1224,7 +1224,7 @@ void getLastLoopStart__Q28SysShape8AnimInfoFf(void)
  * Address:	8042992C
  * Size:	000028
  */
-void getLastLoopStart__Q28SysShape8AnimInfoFPQ28SysShape8KeyEvent(void)
+void SysShape::AnimInfo::getLastLoopStart( (SysShape::KeyEvent *))
 {
 /*
 .loc_0x0:
@@ -1250,7 +1250,7 @@ void getLastLoopStart__Q28SysShape8AnimInfoFPQ28SysShape8KeyEvent(void)
  * Address:	80429954
  * Size:	000028
  */
-void getAnimKeyByType__Q28SysShape8AnimInfoFUl(void)
+void SysShape::AnimInfo::getAnimKeyByType( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1276,7 +1276,7 @@ void getAnimKeyByType__Q28SysShape8AnimInfoFUl(void)
  * Address:	8042997C
  * Size:	000020
  */
-void read__Q28SysShape8AnimInfoFR6Stream(void)
+void SysShape::AnimInfo::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1298,7 +1298,7 @@ void read__Q28SysShape8AnimInfoFR6Stream(void)
  * Address:	8042999C
  * Size:	00010C
  */
-void readEditor__Q28SysShape8AnimInfoFR6Stream(void)
+void SysShape::AnimInfo::readEditor( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1385,7 +1385,7 @@ void readEditor__Q28SysShape8AnimInfoFR6Stream(void)
  * Address:	80429AA8
  * Size:	00013C
  */
-void load__Q28SysShape7AnimMgrFPcP12J3DModelDataP13JKRFileLoader(void)
+void SysShape::AnimMgr::load( (char *, J3DModelData *, JKRFileLoader *))
 {
 /*
 .loc_0x0:
@@ -1484,7 +1484,7 @@ void load__Q28SysShape7AnimMgrFPcP12J3DModelDataP13JKRFileLoader(void)
  * Address:	80429BE4
  * Size:	000084
  */
-void __dt__Q28SysShape8AnimInfoFv(void)
+void SysShape::AnimInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1533,7 +1533,7 @@ void __dt__Q28SysShape8AnimInfoFv(void)
  * Address:	80429C68
  * Size:	000080
  */
-void dump__Q28SysShape7AnimMgrFv(void)
+void SysShape::AnimMgr::dump(void)
 {
 /*
 .loc_0x0:
@@ -1589,7 +1589,7 @@ void dump__Q28SysShape7AnimMgrFv(void)
  * Address:	........
  * Size:	0000CC
  */
-void load__Q28SysShape7AnimMgrFR6StreamPQ28SysShape5ModelP13JKRFileLoaderPc(void)
+void SysShape::AnimMgr::load( (Stream &, SysShape::Model *, JKRFileLoader *, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -1599,7 +1599,7 @@ void load__Q28SysShape7AnimMgrFR6StreamPQ28SysShape5ModelP13JKRFileLoaderPc(void
  * Address:	80429CE8
  * Size:	0000A0
  */
-void __dt__Q28SysShape7AnimMgrFv(void)
+void SysShape::AnimMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1657,7 +1657,7 @@ void __dt__Q28SysShape7AnimMgrFv(void)
  * Address:	........
  * Size:	00005C
  */
-void __dt__Q28SysShape13JointCallbackFv(void)
+void SysShape::JointCallback::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1667,7 +1667,7 @@ void __dt__Q28SysShape13JointCallbackFv(void)
  * Address:	........
  * Size:	000004
  */
-void init__Q28SysShape13JointCallbackFRC3VecRA3_A4_Cf(void)
+void SysShape::JointCallback::init( (Vec const &, float const (&)[3][4]))
 {
 	// UNUSED FUNCTION
 }

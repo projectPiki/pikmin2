@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80259B4C
  * Size:	000138
  */
-void __ct__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game4Ujib3ObjFv(void)
  * Address:	80259C84
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Ujib3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Ujib::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game4Ujib3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	80259C88
  * Size:	000098
  */
-void onInit__Q34Game4Ujib3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Ujib::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -174,7 +174,7 @@ void onInit__Q34Game4Ujib3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80259D20
  * Size:	000048
  */
-void doUpdate__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void doUpdate__Q34Game4Ujib3ObjFv(void)
  * Address:	80259D68
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Ujib3ObjFR8Graphics(void)
+void Game::Ujib::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -217,7 +217,7 @@ void doDirectDraw__Q34Game4Ujib3ObjFR8Graphics(void)
  * Address:	80259D6C
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Ujib3ObjFR8Graphics(void)
+void Game::Ujib::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -237,7 +237,7 @@ void doDebugDraw__Q34Game4Ujib3ObjFR8Graphics(void)
  * Address:	80259D8C
  * Size:	00004C
  */
-void setFSM__Q34Game4Ujib3ObjFPQ34Game4Ujib3FSM(void)
+void Game::Ujib::Obj::setFSM( (Game::Ujib::FSM *))
 {
 /*
 .loc_0x0:
@@ -268,7 +268,7 @@ void setFSM__Q34Game4Ujib3ObjFPQ34Game4Ujib3FSM(void)
  * Address:	80259DD8
  * Size:	0000A8
  */
-void getShadowParam__Q34Game4Ujib3ObjFRQ24Game11ShadowParam(void)
+void Game::Ujib::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -326,7 +326,7 @@ void getShadowParam__Q34Game4Ujib3ObjFRQ24Game11ShadowParam(void)
  * Address:	80259E80
  * Size:	000094
  */
-void pressCallBack__Q34Game4Ujib3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Ujib::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -379,7 +379,7 @@ void pressCallBack__Q34Game4Ujib3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80259F14
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game4Ujib3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Ujib::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -402,7 +402,7 @@ void hipdropCallBack__Q34Game4Ujib3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80259F40
  * Size:	000028
  */
-void startCarcassMotion__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void startCarcassMotion__Q34Game4Ujib3ObjFv(void)
  * Address:	80259F68
  * Size:	00008C
  */
-void initMouthSlots__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void initMouthSlots__Q34Game4Ujib3ObjFv(void)
  * Address:	80259FF4
  * Size:	000030
  */
-void lifeIncrement__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::lifeIncrement(void)
 {
 /*
 .loc_0x0:
@@ -499,7 +499,7 @@ void lifeIncrement__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A024
  * Size:	000034
  */
-void setInWaterDamage__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::setInWaterDamage(void)
 {
 /*
 .loc_0x0:
@@ -526,7 +526,7 @@ void setInWaterDamage__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A058
  * Size:	0000B4
  */
-void resetAppearCheck__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::resetAppearCheck(void)
 {
 /*
 .loc_0x0:
@@ -587,7 +587,7 @@ void resetAppearCheck__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A10C
  * Size:	000048
  */
-void isAppearCheck__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::isAppearCheck(void)
 {
 /*
 .loc_0x0:
@@ -621,7 +621,7 @@ void isAppearCheck__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A154
  * Size:	000020
  */
-void resetBridgeSearch__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::resetBridgeSearch(void)
 {
 /*
 .loc_0x0:
@@ -641,7 +641,7 @@ void resetBridgeSearch__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A174
  * Size:	000048
  */
-void setBridgeSearch__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::setBridgeSearch(void)
 {
 /*
 .loc_0x0:
@@ -675,7 +675,7 @@ void setBridgeSearch__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A1BC
  * Size:	0002C0
  */
-void setNearestBridge__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::setNearestBridge(void)
 {
 /*
 .loc_0x0:
@@ -887,7 +887,7 @@ void setNearestBridge__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A47C
  * Size:	000004
  */
-void setCullingCheck__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::setCullingCheck(void)
 {
 /*
 .loc_0x0:
@@ -900,7 +900,7 @@ void setCullingCheck__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A480
  * Size:	0001B4
  */
-void checkBreakOrMove__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::checkBreakOrMove(void)
 {
 /*
 .loc_0x0:
@@ -1039,7 +1039,7 @@ void checkBreakOrMove__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A634
  * Size:	000028
  */
-void isBreakBridge__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::isBreakBridge(void)
 {
 /*
 .loc_0x0:
@@ -1063,7 +1063,7 @@ void isBreakBridge__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A65C
  * Size:	0002A8
  */
-void moveBridgeSide__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::moveBridgeSide(void)
 {
 /*
 .loc_0x0:
@@ -1253,7 +1253,7 @@ void moveBridgeSide__Q34Game4Ujib3ObjFv(void)
  * Address:	8025A904
  * Size:	000288
  */
-void moveBridgeCentre__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::moveBridgeCentre(void)
 {
 /*
 .loc_0x0:
@@ -1435,7 +1435,7 @@ void moveBridgeCentre__Q34Game4Ujib3ObjFv(void)
  * Address:	8025AB8C
  * Size:	0002F0
  */
-void moveBridgeTop__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::moveBridgeTop(void)
 {
 /*
 .loc_0x0:
@@ -1647,7 +1647,7 @@ void moveBridgeTop__Q34Game4Ujib3ObjFv(void)
  * Address:	8025AE7C
  * Size:	00005C
  */
-void breakTargetBridge__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::breakTargetBridge(void)
 {
 /*
 .loc_0x0:
@@ -1682,7 +1682,7 @@ void breakTargetBridge__Q34Game4Ujib3ObjFv(void)
  * Address:	8025AED8
  * Size:	00008C
  */
-void createAppearEffect__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -1729,7 +1729,7 @@ void createAppearEffect__Q34Game4Ujib3ObjFv(void)
  * Address:	8025AF64
  * Size:	00008C
  */
-void createDisAppearEffect__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::createDisAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -1776,7 +1776,7 @@ void createDisAppearEffect__Q34Game4Ujib3ObjFv(void)
  * Address:	8025AFF0
  * Size:	000090
  */
-void createBridgeEffect__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::createBridgeEffect(void)
 {
 /*
 .loc_0x0:
@@ -1824,7 +1824,7 @@ void createBridgeEffect__Q34Game4Ujib3ObjFv(void)
  * Address:	8025B080
  * Size:	000090
  */
-void createEatEffect__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::createEatEffect(void)
 {
 /*
 .loc_0x0:
@@ -1872,7 +1872,7 @@ void createEatEffect__Q34Game4Ujib3ObjFv(void)
  * Address:	8025B110
  * Size:	000008
  */
-void isUnderground__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -1886,7 +1886,7 @@ void isUnderground__Q34Game4Ujib3ObjFv(void)
  * Address:	8025B118
  * Size:	000008
  */
-void getMouthSlots__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1900,7 +1900,7 @@ void getMouthSlots__Q34Game4Ujib3ObjFv(void)
  * Address:	8025B120
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1914,7 +1914,7 @@ void getDownSmokeScale__Q34Game4Ujib3ObjFv(void)
  * Address:	8025B128
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Ujib3ObjFv(void)
+void Game::Ujib::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1928,7 +1928,7 @@ void getEnemyTypeID__Q34Game4Ujib3ObjFv(void)
  * Address:	8025B130
  * Size:	000014
  */
-void @732@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @732@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1945,7 +1945,7 @@ void @732@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8025B144
  * Size:	000014
  */
-void @732@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @732@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1962,7 +1962,7 @@ void @732@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8025B158
  * Size:	000014
  */
-void @732@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @732@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1979,7 +1979,7 @@ void @732@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8025B16C
  * Size:	000014
  */
-void @732@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @732@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1996,7 +1996,7 @@ void @732@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8025B180
  * Size:	000014
  */
-void @732@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @732@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -2013,7 +2013,7 @@ void @732@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8025B194
  * Size:	000014
  */
-void @732@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @732@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

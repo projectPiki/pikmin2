@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	804313B8
  * Size:	000450
  */
-void findCreature__Q34Game5P2JST12ObjectSystemCFPCc(void)
+void Game::P2JST::ObjectSystem::findCreature( const(char const *))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012CC1C
  * Size:	000050
  */
-void __ct__Q34Game12BlueKochappy3MgrFiUc(void)
+void Game::BlueKochappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game12BlueKochappy3MgrFiUc(void)
  * Address:	8012CC6C
  * Size:	000048
  */
-void doAlloc__Q34Game12BlueKochappy3MgrFv(void)
+void Game::BlueKochappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game12BlueKochappy3MgrFv(void)
  * Address:	8012CCB4
  * Size:	000048
  */
-void loadTexData__Q34Game12BlueKochappy3MgrFv(void)
+void Game::BlueKochappy::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void loadTexData__Q34Game12BlueKochappy3MgrFv(void)
  * Address:	8012CCFC
  * Size:	0000C8
  */
-void __dt__Q34Game12BlueKochappy3MgrFv(void)
+void Game::BlueKochappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -175,7 +175,7 @@ void __dt__Q34Game12BlueKochappy3MgrFv(void)
  * Address:	8012CDC4
  * Size:	000008
  */
-void getChangeTexture__Q34Game12BlueKochappy3MgrFv(void)
+void Game::BlueKochappy::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void getChangeTexture__Q34Game12BlueKochappy3MgrFv(void)
  * Address:	8012CDCC
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12BlueKochappy3MgrFv(void)
+void Game::BlueKochappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void getEnemyTypeID__Q34Game12BlueKochappy3MgrFv(void)
  * Address:	8012CDD4
  * Size:	000060
  */
-void createObj__Q34Game12BlueKochappy3MgrFi(void)
+void Game::BlueKochappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -239,7 +239,7 @@ void createObj__Q34Game12BlueKochappy3MgrFi(void)
  * Address:	8012CE34
  * Size:	0000EC
  */
-void __dt__Q34Game12BlueKochappy3ObjFv(void)
+void Game::BlueKochappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -314,7 +314,7 @@ void __dt__Q34Game12BlueKochappy3ObjFv(void)
  * Address:	8012CF20
  * Size:	000010
  */
-void getEnemy__Q34Game12BlueKochappy3MgrFi(void)
+void Game::BlueKochappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -330,7 +330,7 @@ void getEnemy__Q34Game12BlueKochappy3MgrFi(void)
  * Address:	8012CF30
  * Size:	000008
  */
-void @4@__dt__Q34Game12BlueKochappy3MgrFv(void)
+void @4@Game::BlueKochappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

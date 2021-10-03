@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026B848
  * Size:	000008
  */
-void setAnimMgr__Q34Game4Hiba14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Hiba::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game4Hiba14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	8026B850
  * Size:	000008
  */
-void getAnimator__Q34Game4Hiba14ProperAnimatorFi(void)
+void Game::Hiba::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game4Hiba14ProperAnimatorFi(void)
  * Address:	8026B858
  * Size:	00005C
  */
-void __dt__Q34Game4Hiba14ProperAnimatorFv(void)
+void Game::Hiba::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game4Hiba14ProperAnimatorFv(void)
  * Address:	8026B8B4
  * Size:	000008
  */
-void getAnimator__Q34Game4Hiba14ProperAnimatorFv(void)
+void Game::Hiba::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

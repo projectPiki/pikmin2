@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802850F0
  * Size:	000050
  */
-void __ct__Q34Game4Fart3MgrFiUc(void)
+void Game::Fart::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Fart3MgrFiUc(void)
  * Address:	80285140
  * Size:	000048
  */
-void doAlloc__Q34Game4Fart3MgrFv(void)
+void Game::Fart::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game4Fart3MgrFv(void)
  * Address:	80285188
  * Size:	000060
  */
-void createObj__Q34Game4Fart3MgrFi(void)
+void Game::Fart::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game4Fart3MgrFi(void)
  * Address:	802851E8
  * Size:	0000F0
  */
-void __dt__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void __dt__Q34Game4Fart3ObjFv(void)
  * Address:	802852D8
  * Size:	000010
  */
-void getEnemy__Q34Game4Fart3MgrFi(void)
+void Game::Fart::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void getEnemy__Q34Game4Fart3MgrFi(void)
  * Address:	802852E8
  * Size:	000080
  */
-void loadTexData__Q34Game4Fart3MgrFv(void)
+void Game::Fart::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void loadTexData__Q34Game4Fart3MgrFv(void)
  * Address:	80285368
  * Size:	0000C8
  */
-void __dt__Q34Game4Fart3MgrFv(void)
+void Game::Fart::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void __dt__Q34Game4Fart3MgrFv(void)
  * Address:	80285430
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Fart3MgrFv(void)
+void Game::Fart::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void getEnemyTypeID__Q34Game4Fart3MgrFv(void)
  * Address:	80285438
  * Size:	000008
  */
-void getChangeTexture__Q34Game4Fart3MgrFv(void)
+void Game::Fart::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void getChangeTexture__Q34Game4Fart3MgrFv(void)
  * Address:	80285440
  * Size:	000008
  */
-void @4@__dt__Q34Game4Fart3MgrFv(void)
+void @4@Game::Fart::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

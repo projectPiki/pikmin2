@@ -5,7 +5,7 @@
  * Address:	8013070C
  * Size:	000030
  */
-void transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg(void)
+void Game::EnemyFSMState::transit( (Game::EnemyBase *, int, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg(void)
  * Address:	8013073C
  * Size:	00005C
  */
-void doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics(void)
+void Game::EnemyStateMachine::doDirectDraw( (Game::EnemyBase *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics(void)
  * Address:	80130798
  * Size:	000080
  */
-void start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg(void)
+void Game::EnemyStateMachine::start( (Game::EnemyBase *, int, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg(void
  * Address:	........
  * Size:	00004C
  */
-void resume__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
+void Game::EnemyStateMachine::resume( (Game::EnemyBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -118,7 +118,7 @@ void resume__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
  * Address:	........
  * Size:	00004C
  */
-void restart__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
+void Game::EnemyStateMachine::restart( (Game::EnemyBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -128,7 +128,7 @@ void restart__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
  * Address:	80130818
  * Size:	00004C
  */
-void exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
+void Game::EnemyStateMachine::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
  * Address:	80130864
  * Size:	0000A4
  */
-void create__Q24Game17EnemyStateMachineFi(void)
+void Game::EnemyStateMachine::create( (int))
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void create__Q24Game17EnemyStateMachineFi(void)
  * Address:	80130908
  * Size:	000084
  */
-void registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState(void)
+void Game::EnemyStateMachine::registerState( (Game::EnemyFSMState *))
 {
 /*
 .loc_0x0:
@@ -267,7 +267,7 @@ void registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState(void)
  * Address:	8013098C
  * Size:	000070
  */
-void getCurrID__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
+void Game::EnemyStateMachine::getCurrID( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -311,7 +311,7 @@ void getCurrID__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
  * Address:	801309FC
  * Size:	000070
  */
-void getCurrName__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
+void Game::EnemyStateMachine::getCurrName( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -355,7 +355,7 @@ void getCurrName__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
  * Address:	80130A6C
  * Size:	00011C
  */
-void transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg(void)
+void Game::EnemyStateMachine::transit( (Game::EnemyBase *, int, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -444,7 +444,7 @@ void transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg(vo
  * Address:	80130B88
  * Size:	000008
  */
-void setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState(void)
+void Game::EnemyStateMachine::setCurrState( (Game::EnemyBase *, Game::EnemyFSMState *))
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyF
  * Address:	80130B90
  * Size:	000008
  */
-void getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
+void Game::EnemyStateMachine::getCurrState( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -472,7 +472,7 @@ void getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
  * Address:	80130B98
  * Size:	000004
  */
-void init__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase(void)
+void Game::EnemyStateMachine::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

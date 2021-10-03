@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B21A4
  * Size:	000050
  */
-void __ct__Q34Game9BombSarai3MgrFiUc(void)
+void Game::BombSarai::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game9BombSarai3MgrFiUc(void)
  * Address:	802B21F4
  * Size:	000048
  */
-void doAlloc__Q34Game9BombSarai3MgrFv(void)
+void Game::BombSarai::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game9BombSarai3MgrFv(void)
  * Address:	802B223C
  * Size:	000048
  */
-void __ct__Q34Game9BombSarai5ParmsFv(void)
+void Game::BombSarai::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game9BombSarai5ParmsFv(void)
  * Address:	802B2284
  * Size:	000278
  */
-void __ct__Q44Game9BombSarai5Parms11ProperParmsFv(void)
+void Game::BombSarai::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void __ct__Q44Game9BombSarai5Parms11ProperParmsFv(void)
  * Address:	802B24FC
  * Size:	000060
  */
-void createObj__Q34Game9BombSarai3MgrFi(void)
+void Game::BombSarai::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void createObj__Q34Game9BombSarai3MgrFi(void)
  * Address:	802B255C
  * Size:	0000BC
  */
-void __dt__Q34Game9BombSarai3ObjFv(void)
+void Game::BombSarai::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void __dt__Q34Game9BombSarai3ObjFv(void)
  * Address:	802B2618
  * Size:	000010
  */
-void getEnemy__Q34Game9BombSarai3MgrFi(void)
+void Game::BombSarai::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void getEnemy__Q34Game9BombSarai3MgrFi(void)
  * Address:	802B2628
  * Size:	000068
  */
-void loadModelData__Q34Game9BombSarai3MgrFv(void)
+void Game::BombSarai::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -442,7 +442,7 @@ void loadModelData__Q34Game9BombSarai3MgrFv(void)
  * Address:	802B2690
  * Size:	0000B0
  */
-void __dt__Q34Game9BombSarai3MgrFv(void)
+void Game::BombSarai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -502,7 +502,7 @@ void __dt__Q34Game9BombSarai3MgrFv(void)
  * Address:	802B2740
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9BombSarai3MgrFv(void)
+void Game::BombSarai::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -516,7 +516,7 @@ void getEnemyTypeID__Q34Game9BombSarai3MgrFv(void)
  * Address:	802B2748
  * Size:	00002C
  */
-void doLoadBmd__Q34Game9BombSarai3MgrFPv(void)
+void Game::BombSarai::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -539,7 +539,7 @@ void doLoadBmd__Q34Game9BombSarai3MgrFPv(void)
  * Address:	802B2774
  * Size:	000050
  */
-void read__Q34Game9BombSarai5ParmsFR6Stream(void)
+void Game::BombSarai::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -571,7 +571,7 @@ void read__Q34Game9BombSarai5ParmsFR6Stream(void)
  * Address:	802B27C4
  * Size:	000008
  */
-void @4@__dt__Q34Game9BombSarai3MgrFv(void)
+void @4@Game::BombSarai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

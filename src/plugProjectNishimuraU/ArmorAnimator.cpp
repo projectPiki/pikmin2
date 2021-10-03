@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80287AFC
  * Size:	000008
  */
-void setAnimMgr__Q34Game5Armor14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Armor::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game5Armor14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80287B04
  * Size:	000008
  */
-void getAnimator__Q34Game5Armor14ProperAnimatorFi(void)
+void Game::Armor::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game5Armor14ProperAnimatorFi(void)
  * Address:	80287B0C
  * Size:	00005C
  */
-void __dt__Q34Game5Armor14ProperAnimatorFv(void)
+void Game::Armor::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game5Armor14ProperAnimatorFv(void)
  * Address:	80287B68
  * Size:	000008
  */
-void getAnimator__Q34Game5Armor14ProperAnimatorFv(void)
+void Game::Armor::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

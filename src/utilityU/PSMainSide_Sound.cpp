@@ -5,7 +5,7 @@
  * Address:	80470F0C
  * Size:	000078
  */
-void makeSeSound__Q23PSM7SeSoundFv(void)
+void PSM::SeSound::makeSeSound(void)
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void JAISe::~JAISe()
  * Address:	........
  * Size:	000064
  */
-void psACos__Q23PSM7SeSoundFf(void)
+void PSM::SeSound::psACos( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -69,7 +69,7 @@ void psACos__Q23PSM7SeSoundFf(void)
  * Address:	80470F84
  * Size:	000004
  */
-void onGet__Q23PSM7SeSoundFv(void)
+void PSM::SeSound::onGet(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void onGet__Q23PSM7SeSoundFv(void)
  * Address:	80470F88
  * Size:	0000A4
  */
-void onRelease__Q23PSM7SeSoundFv(void)
+void PSM::SeSound::onRelease(void)
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void onRelease__Q23PSM7SeSoundFv(void)
  * Address:	8047102C
  * Size:	000154
  */
-void initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo(void)
+void PSM::SeSound::initParameter( (void *, JAInter::Actor *, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo *))
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInf
  * Address:	80471180
  * Size:	0002D8
  */
-void setDistanceVolumeCommon__Q23PSM7SeSoundFfUc(void)
+void PSM::SeSound::setDistanceVolumeCommon( (float, unsigned char))
 {
 /*
 .loc_0x0:
@@ -490,7 +490,7 @@ void setDistanceVolumeCommon__Q23PSM7SeSoundFfUc(void)
  * Address:	80471458
  * Size:	000044
  */
-void specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo(void)
+void PSM::SeSound::specializePerspCalc( (PSGame::SoundTable::SePerspInfo const &))
 {
 /*
 .loc_0x0:
@@ -519,7 +519,7 @@ void specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo(vo
  * Address:	8047149C
  * Size:	00006C
  */
-void calcVolumeSpecialized__Q23PSM7SeSoundFf(void)
+void PSM::SeSound::calcVolumeSpecialized( (float))
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void calcVolumeSpecialized__Q23PSM7SeSoundFf(void)
  * Address:	80471508
  * Size:	00008C
  */
-void calcVolume__Q23PSM7SeSoundFfUcUc(void)
+void PSM::SeSound::calcVolume( (float, unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -609,7 +609,7 @@ void calcVolume__Q23PSM7SeSoundFfUcUc(void)
  * Address:	80471594
  * Size:	0000B8
  */
-void setSeDistancePan__Q23PSM7SeSoundFUc(void)
+void PSM::SeSound::setSeDistancePan( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -675,7 +675,7 @@ void setSeDistancePan__Q23PSM7SeSoundFUc(void)
  * Address:	8047164C
  * Size:	0000C8
  */
-void calcPan__Q23PSM7SeSoundFRC3Vecf(void)
+void PSM::SeSound::calcPan( (Vec const &, float))
 {
 /*
 .loc_0x0:
@@ -751,7 +751,7 @@ void calcPan__Q23PSM7SeSoundFRC3Vecf(void)
  * Address:	80471714
  * Size:	000088
  */
-void setSeDistanceDolby__Q23PSM7SeSoundFUc(void)
+void PSM::SeSound::setSeDistanceDolby( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -803,7 +803,7 @@ void setSeDistanceDolby__Q23PSM7SeSoundFUc(void)
  * Address:	8047179C
  * Size:	00010C
  */
-void calcDolby__Q23PSM7SeSoundFRC3Vecf(void)
+void PSM::SeSound::calcDolby( (Vec const &, float))
 {
 /*
 .loc_0x0:

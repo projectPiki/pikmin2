@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8025FA8C
  * Size:	000094
  */
-void __ct__Q34Game7Qurione9GeneratorFv(void)
+void Game::Qurione::Generator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void __ct__Q34Game7Qurione9GeneratorFv(void)
  * Address:	8025FB20
  * Size:	00000C
  */
-void getLatestVersion__Q34Game7Qurione9GeneratorFv(void)
+void Game::Qurione::Generator::getLatestVersion(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void getLatestVersion__Q34Game7Qurione9GeneratorFv(void)
  * Address:	8025FB2C
  * Size:	000074
  */
-void doRead__Q34Game7Qurione9GeneratorFR6Stream(void)
+void Game::Qurione::Generator::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void doRead__Q34Game7Qurione9GeneratorFR6Stream(void)
  * Address:	8025FBA0
  * Size:	000080
  */
-void doWrite__Q34Game7Qurione9GeneratorFR6Stream(void)
+void Game::Qurione::Generator::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void doWrite__Q34Game7Qurione9GeneratorFR6Stream(void)
  * Address:	8025FC20
  * Size:	00004C
  */
-void doReadLatestVersion__Q34Game7Qurione9GeneratorFR6Stream(void)
+void Game::Qurione::Generator::doReadLatestVersion( (Stream &))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void doReadLatestVersion__Q34Game7Qurione9GeneratorFR6Stream(void)
  * Address:	8025FC6C
  * Size:	000004
  */
-void doReadOldVersion__Q34Game7Qurione9GeneratorFR6Stream(void)
+void Game::Qurione::Generator::doReadOldVersion( (Stream &))
 {
 /*
 .loc_0x0:
@@ -212,7 +212,7 @@ void doReadOldVersion__Q34Game7Qurione9GeneratorFR6Stream(void)
  * Address:	8025FC70
  * Size:	000050
  */
-void __ct__Q34Game7Qurione3MgrFiUc(void)
+void Game::Qurione::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void __ct__Q34Game7Qurione3MgrFiUc(void)
  * Address:	8025FCC0
  * Size:	000048
  */
-void doAlloc__Q34Game7Qurione3MgrFv(void)
+void Game::Qurione::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -278,7 +278,7 @@ void doAlloc__Q34Game7Qurione3MgrFv(void)
  * Address:	8025FD08
  * Size:	000190
  */
-void __ct__Q34Game7Qurione5ParmsFv(void)
+void Game::Qurione::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -390,7 +390,7 @@ void __ct__Q34Game7Qurione5ParmsFv(void)
  * Address:	8025FE98
  * Size:	000060
  */
-void createObj__Q34Game7Qurione3MgrFi(void)
+void Game::Qurione::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void createObj__Q34Game7Qurione3MgrFi(void)
  * Address:	8025FEF8
  * Size:	0000BC
  */
-void __dt__Q34Game7Qurione3ObjFv(void)
+void Game::Qurione::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -489,7 +489,7 @@ void __dt__Q34Game7Qurione3ObjFv(void)
  * Address:	8025FFB4
  * Size:	000010
  */
-void getEnemy__Q34Game7Qurione3MgrFi(void)
+void Game::Qurione::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -505,7 +505,7 @@ void getEnemy__Q34Game7Qurione3MgrFi(void)
  * Address:	8025FFC4
  * Size:	000050
  */
-void read__Q34Game7Qurione5ParmsFR6Stream(void)
+void Game::Qurione::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -537,7 +537,7 @@ void read__Q34Game7Qurione5ParmsFR6Stream(void)
  * Address:	80260014
  * Size:	0000B0
  */
-void __dt__Q34Game7Qurione3MgrFv(void)
+void Game::Qurione::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -597,7 +597,7 @@ void __dt__Q34Game7Qurione3MgrFv(void)
  * Address:	802600C4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Qurione3MgrFv(void)
+void Game::Qurione::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -611,7 +611,7 @@ void getEnemyTypeID__Q34Game7Qurione3MgrFv(void)
  * Address:	802600CC
  * Size:	00002C
  */
-void doLoadBmd__Q34Game7Qurione3MgrFPv(void)
+void Game::Qurione::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -634,7 +634,7 @@ void doLoadBmd__Q34Game7Qurione3MgrFPv(void)
  * Address:	802600F8
  * Size:	000070
  */
-void __dt__Q34Game7Qurione9GeneratorFv(void)
+void Game::Qurione::Generator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void __dt__Q34Game7Qurione9GeneratorFv(void)
  * Address:	80260168
  * Size:	000008
  */
-void getInitialParam__Q34Game7Qurione9GeneratorFv(void)
+void Game::Qurione::Generator::getInitialParam(void)
 {
 /*
 .loc_0x0:
@@ -692,7 +692,7 @@ void getInitialParam__Q34Game7Qurione9GeneratorFv(void)
  * Address:	80260170
  * Size:	000008
  */
-void @4@__dt__Q34Game7Qurione3MgrFv(void)
+void @4@Game::Qurione::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -25,7 +25,7 @@ void Game::calcLightColor(Color4 *, Color4 &, Color4 &, float)
  * Address:	8011CCE0
  * Size:	000654
  */
-void __ct__Q24Game20GameLightTimeSettingFv(void)
+void Game::GameLightTimeSetting::__ct(void)
 {
 /*
 .loc_0x0:
@@ -444,7 +444,7 @@ void __ct__Q24Game20GameLightTimeSettingFv(void)
  * Address:	8011D334
  * Size:	0001D4
  */
-void __ct__Q24Game14GameFogSettingFv(void)
+void Game::GameFogSetting::__ct(void)
 {
 /*
 .loc_0x0:
@@ -573,7 +573,7 @@ void __ct__Q24Game14GameFogSettingFv(void)
  * Address:	........
  * Size:	0000C0
  */
-void read__Q24Game20GameLightTimeSettingFR6Stream(void)
+void Game::GameLightTimeSetting::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -583,7 +583,7 @@ void read__Q24Game20GameLightTimeSettingFR6Stream(void)
  * Address:	8011D508
  * Size:	000020
  */
-void read__Q24Game17GameShadowSettingFR6Stream(void)
+void Game::GameShadowSetting::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -603,7 +603,7 @@ void read__Q24Game17GameShadowSettingFR6Stream(void)
  * Address:	8011D528
  * Size:	000044
  */
-void read__Q24Game14GameFogSettingFR6Stream(void)
+void Game::GameFogSetting::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -632,7 +632,7 @@ void read__Q24Game14GameFogSettingFR6Stream(void)
  * Address:	8011D56C
  * Size:	000020
  */
-void read__Q24Game20GameLightSettingBaseFR6Stream(void)
+void Game::GameLightSettingBase::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void read__Q24Game20GameLightSettingBaseFR6Stream(void)
  * Address:	........
  * Size:	0001A8
  */
-void __ct__Q24Game19GameLightSunSettingFPc(void)
+void Game::GameLightSunSetting::__ct( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -662,7 +662,7 @@ void __ct__Q24Game19GameLightSunSettingFPc(void)
  * Address:	8011D58C
  * Size:	000060
  */
-void __dt__Q24Game20GameLightTimeSettingFv(void)
+void Game::GameLightTimeSetting::__dt(void)
 {
 /*
 .loc_0x0:
@@ -700,7 +700,7 @@ void __dt__Q24Game20GameLightTimeSettingFv(void)
  * Address:	........
  * Size:	0000E8
  */
-void read__Q24Game19GameLightSunSettingFR6Stream(void)
+void Game::GameLightSunSetting::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -710,7 +710,7 @@ void read__Q24Game19GameLightSunSettingFR6Stream(void)
  * Address:	8011D5EC
  * Size:	000738
  */
-void __ct__Q24Game20GameLightSpotSettingFPc(void)
+void Game::GameLightSpotSetting::__ct( (char *))
 {
 /*
 .loc_0x0:
@@ -1184,7 +1184,7 @@ void __ct__Q24Game20GameLightSpotSettingFPc(void)
  * Address:	........
  * Size:	0000CC
  */
-void read__Q24Game20GameLightSpotSettingFR6Stream(void)
+void Game::GameLightSpotSetting::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -1194,7 +1194,7 @@ void read__Q24Game20GameLightSpotSettingFR6Stream(void)
  * Address:	8011DD24
  * Size:	000044
  */
-void read__Q24Game20GameSpotLightSettingFR6Stream(void)
+void Game::GameSpotLightSetting::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1223,7 +1223,7 @@ void read__Q24Game20GameSpotLightSettingFR6Stream(void)
  * Address:	8011DD68
  * Size:	0001E0
  */
-void __ct__Q24Game19GameLightMgrSettingFv(void)
+void Game::GameLightMgrSetting::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1357,7 +1357,7 @@ void __ct__Q24Game19GameLightMgrSettingFv(void)
  * Address:	8011DF48
  * Size:	000060
  */
-void __dt__Q24Game20GameLightSpotSettingFv(void)
+void Game::GameLightSpotSetting::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1395,7 +1395,7 @@ void __dt__Q24Game20GameLightSpotSettingFv(void)
  * Address:	8011DFA8
  * Size:	00007C
  */
-void __dt__Q24Game19GameLightSunSettingFv(void)
+void Game::GameLightSunSetting::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1440,7 +1440,7 @@ void __dt__Q24Game19GameLightSunSettingFv(void)
  * Address:	8011E024
  * Size:	000074
  */
-void updateNode__Q24Game19GameLightMgrSettingFv(void)
+void Game::GameLightMgrSetting::updateNode(void)
 {
 /*
 .loc_0x0:
@@ -1485,7 +1485,7 @@ void updateNode__Q24Game19GameLightMgrSettingFv(void)
  * Address:	8011E098
  * Size:	0002F0
  */
-void read__Q24Game19GameLightMgrSettingFR6Stream(void)
+void Game::GameLightMgrSetting::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1699,7 +1699,7 @@ void read__Q24Game19GameLightMgrSettingFR6Stream(void)
  * Address:	8011E388
  * Size:	0001E0
  */
-void readOldVersion__Q24Game19GameLightMgrSettingF4ID32R6Stream(void)
+void Game::GameLightMgrSetting::readOldVersion( (ID32, Stream &))
 {
 /*
 .loc_0x0:
@@ -1841,7 +1841,7 @@ void readOldVersion__Q24Game19GameLightMgrSettingF4ID32R6Stream(void)
  * Address:	........
  * Size:	00006C
  */
-void start__Q24Game18GameLightEventNodeFRQ24Game17GameLightEventArg(void)
+void Game::GameLightEventNode::start( (Game::GameLightEventArg &))
 {
 	// UNUSED FUNCTION
 }
@@ -1851,7 +1851,7 @@ void start__Q24Game18GameLightEventNodeFRQ24Game17GameLightEventArg(void)
  * Address:	8011E568
  * Size:	0001F4
  */
-void update__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgr(void)
+void Game::GameLightEventNode::update( (Game::GameLightMgr *))
 {
 /*
 .loc_0x0:
@@ -2014,7 +2014,7 @@ void update__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgr(void)
  * Address:	8011E75C
  * Size:	00037C
  */
-void updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb(void)
+void Game::GameLightEventNode::updateCommon( (Game::GameLightMgr *, bool))
 {
 /*
 .loc_0x0:
@@ -2269,7 +2269,7 @@ void updateCommon__Q24Game18GameLightEventNodeFPQ24Game12GameLightMgrb(void)
  * Address:	8011EAD8
  * Size:	000464
  */
-void calcColor__Q24Game18GameLightEventNodeFP6Color4(void)
+void Game::GameLightEventNode::calcColor( (Color4 *))
 {
 /*
 .loc_0x0:
@@ -2642,7 +2642,7 @@ void calcColor__Q24Game18GameLightEventNodeFP6Color4(void)
  * Address:	8011EF3C
  * Size:	000310
  */
-void __ct__Q24Game12GameLightMgrFPc(void)
+void Game::GameLightMgr::__ct( (char *))
 {
 /*
 .loc_0x0:
@@ -2862,7 +2862,7 @@ void __ct__Q24Game12GameLightMgrFPc(void)
  * Address:	8011F24C
  * Size:	000060
  */
-void __dt__Q24Game18GameLightEventNodeFv(void)
+void Game::GameLightEventNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2900,7 +2900,7 @@ void __dt__Q24Game18GameLightEventNodeFv(void)
  * Address:	8011F2AC
  * Size:	00009C
  */
-void __ct__Q24Game18GameLightEventNodeFv(void)
+void Game::GameLightEventNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2964,7 +2964,7 @@ void Vector3<float>::Vector3()
  * Address:	8011F34C
  * Size:	0000DC
  */
-void __dt__Q24Game19GameLightMgrSettingFv(void)
+void Game::GameLightMgrSetting::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3091,7 +3091,7 @@ void LightMgr::~LightMgr()
  * Address:	8011F4B8
  * Size:	00002C
  */
-void start__Q24Game12GameLightMgrFv(void)
+void Game::GameLightMgr::start(void)
 {
 /*
 .loc_0x0:
@@ -3114,7 +3114,7 @@ void start__Q24Game12GameLightMgrFv(void)
  * Address:	8011F4E4
  * Size:	0000BC
  */
-void createEventLight__Q24Game12GameLightMgrFRQ24Game17GameLightEventArg(void)
+void Game::GameLightMgr::createEventLight( (Game::GameLightEventArg &))
 {
 /*
 .loc_0x0:
@@ -3175,7 +3175,7 @@ void createEventLight__Q24Game12GameLightMgrFRQ24Game17GameLightEventArg(void)
  * Address:	8011F5A0
  * Size:	000048
  */
-void loadParm__Q24Game12GameLightMgrFR6Stream(void)
+void Game::GameLightMgr::loadParm( (Stream &))
 {
 /*
 .loc_0x0:
@@ -3207,7 +3207,7 @@ void loadParm__Q24Game12GameLightMgrFR6Stream(void)
  * Address:	........
  * Size:	0000BC
  */
-void loadParm__Q24Game12GameLightMgrFPc(void)
+void Game::GameLightMgr::loadParm( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -3217,7 +3217,7 @@ void loadParm__Q24Game12GameLightMgrFPc(void)
  * Address:	8011F5E8
  * Size:	001AE8
  */
-void calcSetting__Q24Game12GameLightMgrFPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSettingPQ24Game20GameLightTimeSetting(void)
+void Game::GameLightMgr::calcSetting( (Game::GameLightTimeSetting *, Game::GameLightTimeSetting *, Game::GameLightTimeSetting *))
 {
 /*
 .loc_0x0:
@@ -5147,7 +5147,7 @@ void calcSetting__Q24Game12GameLightMgrFPQ24Game20GameLightTimeSettingPQ24Game20
  * Address:	801210D0
  * Size:	0001F0
  */
-void updateSunType__Q24Game12GameLightMgrFv(void)
+void Game::GameLightMgr::updateSunType(void)
 {
 /*
 .loc_0x0:
@@ -5301,7 +5301,7 @@ void updateSunType__Q24Game12GameLightMgrFv(void)
  * Address:	801212C0
  * Size:	000C00
  */
-void updateSpotType__Q24Game12GameLightMgrFv(void)
+void Game::GameLightMgr::updateSpotType(void)
 {
 /*
 .loc_0x0:
@@ -6165,7 +6165,7 @@ void updateSpotType__Q24Game12GameLightMgrFv(void)
  * Address:	........
  * Size:	00007C
  */
-void updateEventLight__Q24Game12GameLightMgrFv(void)
+void Game::GameLightMgr::updateEventLight(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6175,7 +6175,7 @@ void updateEventLight__Q24Game12GameLightMgrFv(void)
  * Address:	80121EC0
  * Size:	000094
  */
-void update__Q24Game12GameLightMgrFv(void)
+void Game::GameLightMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -6234,7 +6234,7 @@ void update__Q24Game12GameLightMgrFv(void)
  * Address:	80121F54
  * Size:	000054
  */
-void set__Q24Game12GameLightMgrFR8Graphics(void)
+void Game::GameLightMgr::set( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -6269,7 +6269,7 @@ void set__Q24Game12GameLightMgrFR8Graphics(void)
  * Address:	80121FA8
  * Size:	0002C0
  */
-void updatePosition__Q24Game12GameLightMgrFP8Viewport(void)
+void Game::GameLightMgr::updatePosition( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -6467,7 +6467,7 @@ void updatePosition__Q24Game12GameLightMgrFP8Viewport(void)
  * Address:	80122268
  * Size:	000154
  */
-void __dt__Q24Game12GameLightMgrFv(void)
+void Game::GameLightMgr::__dt(void)
 {
 /*
 .loc_0x0:

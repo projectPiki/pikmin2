@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80108300
  * Size:	0000B0
  */
-void getValue__Q34Game8Pelplant21BlendAccelerationFuncFf(void)
+void Game::Pelplant::BlendAccelerationFunc::getValue( (float))
 {
 /*
 .loc_0x0:
@@ -142,7 +142,7 @@ void birth__Q34Game8Pelplant3ObjFR10Vector3<float>f(void)
  * Address:	........
  * Size:	00002C
  */
-void setupFarmSetting__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::setupFarmSetting(void)
 {
 	// UNUSED FUNCTION
 }
@@ -152,7 +152,7 @@ void setupFarmSetting__Q34Game8Pelplant3ObjFv(void)
  * Address:	80108464
  * Size:	000280
  */
-void setInitialSetting__Q34Game8Pelplant3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Pelplant::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void setInitialSetting__Q34Game8Pelplant3ObjFPQ24Game21EnemyInitialParamBase(voi
  * Address:	801086E4
  * Size:	000138
  */
-void __ct__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void __ct__Q34Game8Pelplant3ObjFv(void)
  * Address:	8010881C
  * Size:	00004C
  */
-void setFSM__Q34Game8Pelplant3ObjFPQ34Game8Pelplant3FSM(void)
+void Game::Pelplant::Obj::setFSM( (Game::Pelplant::FSM *))
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void setFSM__Q34Game8Pelplant3ObjFPQ34Game8Pelplant3FSM(void)
  * Address:	80108868
  * Size:	00005C
  */
-void __dt__Q24Game22EnemyBlendAnimatorBaseFv(void)
+void Game::EnemyBlendAnimatorBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void __dt__Q24Game22EnemyBlendAnimatorBaseFv(void)
  * Address:	801088C4
  * Size:	000034
  */
-void doUpdate__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -543,7 +543,7 @@ void doUpdate__Q34Game8Pelplant3ObjFv(void)
  * Address:	801088F8
  * Size:	000088
  */
-void updateLODSphereRadius__Q34Game8Pelplant3ObjFi(void)
+void Game::Pelplant::Obj::updateLODSphereRadius( (int))
 {
 /*
 .loc_0x0:
@@ -591,7 +591,7 @@ void updateLODSphereRadius__Q34Game8Pelplant3ObjFi(void)
  * Address:	80108980
  * Size:	000004
  */
-void doDirectDraw__Q34Game8Pelplant3ObjFR8Graphics(void)
+void Game::Pelplant::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -604,7 +604,7 @@ void doDirectDraw__Q34Game8Pelplant3ObjFR8Graphics(void)
  * Address:	80108984
  * Size:	00018C
  */
-void doDebugDraw__Q34Game8Pelplant3ObjFR8Graphics(void)
+void Game::Pelplant::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -719,7 +719,7 @@ void doDebugDraw__Q34Game8Pelplant3ObjFR8Graphics(void)
  * Address:	80108B10
  * Size:	0000C0
  */
-void getShadowParam__Q34Game8Pelplant3ObjFRQ24Game11ShadowParam(void)
+void Game::Pelplant::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -787,7 +787,7 @@ void getShadowParam__Q34Game8Pelplant3ObjFRQ24Game11ShadowParam(void)
  * Address:	80108BD0
  * Size:	000090
  */
-void doAnimationUpdateAnimator__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::doAnimationUpdateAnimator(void)
 {
 /*
 .loc_0x0:
@@ -835,7 +835,7 @@ void doAnimationUpdateAnimator__Q34Game8Pelplant3ObjFv(void)
  * Address:	80108C60
  * Size:	000058
  */
-void getHeadScale__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::getHeadScale(void)
 {
 /*
 .loc_0x0:
@@ -881,7 +881,7 @@ void getNeckScale__Q34Game8Pelplant3ObjFP10Vector3<float>(void)
  * Address:	80108CB8
  * Size:	000198
  */
-void doAnimation__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -1005,7 +1005,7 @@ void doAnimation__Q34Game8Pelplant3ObjFv(void)
  * Address:	80108E50
  * Size:	000004
  */
-void doSimulation__Q34Game8Pelplant3ObjFf(void)
+void Game::Pelplant::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -1018,7 +1018,7 @@ void doSimulation__Q34Game8Pelplant3ObjFf(void)
  * Address:	80108E54
  * Size:	0000F0
  */
-void setPelletColor__Q34Game8Pelplant3ObjFUsb(void)
+void Game::Pelplant::Obj::setPelletColor( (unsigned short, bool))
 {
 /*
 .loc_0x0:
@@ -1104,7 +1104,7 @@ void setPelletColor__Q34Game8Pelplant3ObjFUsb(void)
  * Address:	80108F44
  * Size:	000190
  */
-void changePelletColor__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::changePelletColor(void)
 {
 /*
 .loc_0x0:
@@ -1244,7 +1244,7 @@ void changePelletColor__Q34Game8Pelplant3ObjFv(void)
  * Address:	801090D4
  * Size:	000110
  */
-void attachPellet__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::attachPellet(void)
 {
 /*
 .loc_0x0:
@@ -1336,7 +1336,7 @@ void attachPellet__Q34Game8Pelplant3ObjFv(void)
  * Address:	801091E4
  * Size:	000098
  */
-void damageCallBack__Q34Game8Pelplant3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Pelplant::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1388,7 +1388,7 @@ void damageCallBack__Q34Game8Pelplant3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8010927C
  * Size:	00000C
  */
-void isLivingThing__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1403,7 +1403,7 @@ void isLivingThing__Q34Game8Pelplant3ObjFv(void)
  * Address:	80109288
  * Size:	000078
  */
-void farmCallBack__Q34Game8Pelplant3ObjFPQ24Game8Creaturef(void)
+void Game::Pelplant::Obj::farmCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -1453,7 +1453,7 @@ void farmCallBack__Q34Game8Pelplant3ObjFPQ24Game8Creaturef(void)
  * Address:	........
  * Size:	000030
  */
-void addFarmPower__Q34Game8Pelplant3ObjFSc(void)
+void Game::Pelplant::Obj::addFarmPower( (signed char))
 {
 	// UNUSED FUNCTION
 }
@@ -1463,7 +1463,7 @@ void addFarmPower__Q34Game8Pelplant3ObjFSc(void)
  * Address:	80109300
  * Size:	000060
  */
-void onStickStart__Q34Game8Pelplant3ObjFPQ24Game8Creature(void)
+void Game::Pelplant::Obj::onStickStart( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1501,7 +1501,7 @@ void onStickStart__Q34Game8Pelplant3ObjFPQ24Game8Creature(void)
  * Address:	80109360
  * Size:	0000F0
  */
-void headJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi(void)
+void Game::Pelplant::Obj::headJointCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -1579,7 +1579,7 @@ void headJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi(void)
  * Address:	80109450
  * Size:	000104
  */
-void neckJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi(void)
+void Game::Pelplant::Obj::neckJointCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -1662,7 +1662,7 @@ void neckJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi(void)
  * Address:	80109554
  * Size:	000050
  */
-void __ct__Q34Game8Pelplant3MgrFiUc(void)
+void Game::Pelplant::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -1694,7 +1694,7 @@ void __ct__Q34Game8Pelplant3MgrFiUc(void)
  * Address:	801095A4
  * Size:	000098
  */
-void __dt__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1748,7 +1748,7 @@ void __dt__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8010963C
  * Size:	000048
  */
-void doAlloc__Q34Game8Pelplant3MgrFv(void)
+void Game::Pelplant::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -1782,7 +1782,7 @@ void doAlloc__Q34Game8Pelplant3MgrFv(void)
  * Address:	80109684
  * Size:	000118
  */
-void __ct__Q34Game8Pelplant5ParmsFv(void)
+void Game::Pelplant::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1866,7 +1866,7 @@ void __ct__Q34Game8Pelplant5ParmsFv(void)
  * Address:	8010979C
  * Size:	0001D4
  */
-void __ct__Q24Game14EnemyParmsBaseFv(void)
+void Game::EnemyParmsBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1997,7 +1997,7 @@ void __ct__Q24Game14EnemyParmsBaseFv(void)
  * Address:	80109970
  * Size:	000AE0
  */
-void __ct__Q34Game14EnemyParmsBase5ParmsFv(void)
+void Game::EnemyParmsBase::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2723,7 +2723,7 @@ void BitFlag<unsigned short>::BitFlag()
  * Address:	8010A460
  * Size:	000020
  */
-void birth__Q34Game8Pelplant3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::Pelplant::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -2743,7 +2743,7 @@ void birth__Q34Game8Pelplant3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	8010A480
  * Size:	0000D0
  */
-void onInit__Q34Game8Pelplant3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Pelplant::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -2813,7 +2813,7 @@ void onInit__Q34Game8Pelplant3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8010A550
  * Size:	000048
  */
-void doGetLifeGaugeParam__Q34Game8Pelplant3ObjFRQ24Game14LifeGaugeParam(void)
+void Game::Pelplant::Obj::doGetLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -2843,7 +2843,7 @@ void doGetLifeGaugeParam__Q34Game8Pelplant3ObjFRQ24Game14LifeGaugeParam(void)
  * Address:	8010A598
  * Size:	0000B0
  */
-void __dt__Q34Game8Pelplant3MgrFv(void)
+void Game::Pelplant::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2903,7 +2903,7 @@ void __dt__Q34Game8Pelplant3MgrFv(void)
  * Address:	8010A648
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8Pelplant3MgrFv(void)
+void Game::Pelplant::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -2917,7 +2917,7 @@ void getEnemyTypeID__Q34Game8Pelplant3MgrFv(void)
  * Address:	8010A650
  * Size:	000060
  */
-void createObj__Q34Game8Pelplant3MgrFi(void)
+void Game::Pelplant::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -2953,7 +2953,7 @@ void createObj__Q34Game8Pelplant3MgrFi(void)
  * Address:	8010A6B0
  * Size:	0000BC
  */
-void __dt__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3016,7 +3016,7 @@ void __dt__Q34Game8Pelplant3ObjFv(void)
  * Address:	8010A76C
  * Size:	000010
  */
-void getEnemy__Q34Game8Pelplant3MgrFi(void)
+void Game::Pelplant::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -3032,7 +3032,7 @@ void getEnemy__Q34Game8Pelplant3MgrFi(void)
  * Address:	8010A77C
  * Size:	000004
  */
-void initStoneSetting__Q34Game8Pelplant3MgrFv(void)
+void Game::Pelplant::Mgr::initStoneSetting(void)
 {
 /*
 .loc_0x0:
@@ -3045,7 +3045,7 @@ void initStoneSetting__Q34Game8Pelplant3MgrFv(void)
  * Address:	8010A780
  * Size:	00002C
  */
-void get__Q24Game12EnemyMgrBaseFPv(void)
+void Game::EnemyMgrBase::get( (void *))
 {
 /*
 .loc_0x0:
@@ -3068,7 +3068,7 @@ void get__Q24Game12EnemyMgrBaseFPv(void)
  * Address:	8010A7AC
  * Size:	000008
  */
-void getJ3DModelData__Q24Game12EnemyMgrBaseCFv(void)
+void Game::EnemyMgrBase::getJ3DModelData( const
 {
 /*
 .loc_0x0:
@@ -3082,7 +3082,7 @@ void getJ3DModelData__Q24Game12EnemyMgrBaseCFv(void)
  * Address:	8010A7B4
  * Size:	000008
  */
-void getGenerator__Q24Game12EnemyMgrBaseCFv(void)
+void Game::EnemyMgrBase::getGenerator( const
 {
 /*
 .loc_0x0:
@@ -3096,7 +3096,7 @@ void getGenerator__Q24Game12EnemyMgrBaseCFv(void)
  * Address:	8010A7BC
  * Size:	000008
  */
-void getMaxObjects__Q24Game12EnemyMgrBaseCFv(void)
+void Game::EnemyMgrBase::getMaxObjects( const
 {
 /*
 .loc_0x0:
@@ -3191,7 +3191,7 @@ void GenericObjectMgr::getMatrixLoadType()
  * Address:	8010A7E8
  * Size:	000008
  */
-void getEnd__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::getEnd(void)
 {
 /*
 .loc_0x0:
@@ -3205,7 +3205,7 @@ void getEnd__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8010A7F0
  * Size:	000030
  */
-void getStart__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::getStart(void)
 {
 /*
 .loc_0x0:
@@ -3229,7 +3229,7 @@ void getStart__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8010A820
  * Size:	00002C
  */
-void getObject__Q24Game12EnemyMgrBaseFPv(void)
+void Game::EnemyMgrBase::getObject( (void *))
 {
 /*
 .loc_0x0:
@@ -3252,7 +3252,7 @@ void getObject__Q24Game12EnemyMgrBaseFPv(void)
  * Address:	8010A84C
  * Size:	000044
  */
-void read__Q24Game14EnemyParmsBaseFR6Stream(void)
+void Game::EnemyParmsBase::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -3281,7 +3281,7 @@ void read__Q24Game14EnemyParmsBaseFR6Stream(void)
  * Address:	8010A890
  * Size:	000020
  */
-void read__Q24Game13CreatureParmsFR6Stream(void)
+void Game::CreatureParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -3301,7 +3301,7 @@ void read__Q24Game13CreatureParmsFR6Stream(void)
  * Address:	8010A8B0
  * Size:	000050
  */
-void read__Q34Game8Pelplant5ParmsFR6Stream(void)
+void Game::Pelplant::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -3371,7 +3371,7 @@ void GenericContainer::~GenericContainer()
  * Address:	8010A960
  * Size:	000080
  */
-void __dt__Q24Game13IEnemyMgrBaseFv(void)
+void Game::IEnemyMgrBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3419,7 +3419,7 @@ void __dt__Q24Game13IEnemyMgrBaseFv(void)
  * Address:	8010A9E0
  * Size:	00006C
  */
-void __dt__Q34Game8Pelplant14ProperAnimatorFv(void)
+void Game::Pelplant::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3462,7 +3462,7 @@ void __dt__Q34Game8Pelplant14ProperAnimatorFv(void)
  * Address:	8010AA4C
  * Size:	000020
  */
-void animate__Q24Game22EnemyBlendAnimatorBaseFif(void)
+void Game::EnemyBlendAnimatorBase::animate( (int, float))
 {
 /*
 .loc_0x0:
@@ -3482,7 +3482,7 @@ void animate__Q24Game22EnemyBlendAnimatorBaseFif(void)
  * Address:	8010AA6C
  * Size:	00000C
  */
-void getTypeID__Q24Game22EnemyBlendAnimatorBaseFv(void)
+void Game::EnemyBlendAnimatorBase::getTypeID(void)
 {
 /*
 .loc_0x0:
@@ -3497,7 +3497,7 @@ void getTypeID__Q24Game22EnemyBlendAnimatorBaseFv(void)
  * Address:	8010AA78
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8Pelplant3ObjFv(void)
+void Game::Pelplant::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -3539,7 +3539,7 @@ void Parm<float>::size()
  * Address:	8010AA90
  * Size:	000014
  */
-void @728@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @728@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -3556,7 +3556,7 @@ void @728@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8010AAA4
  * Size:	000014
  */
-void @728@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @728@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -3573,7 +3573,7 @@ void @728@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8010AAB8
  * Size:	000014
  */
-void @728@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @728@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -3590,7 +3590,7 @@ void @728@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8010AACC
  * Size:	000014
  */
-void @728@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @728@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -3607,7 +3607,7 @@ void @728@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8010AAE0
  * Size:	000014
  */
-void @728@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @728@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -3624,7 +3624,7 @@ void @728@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8010AAF4
  * Size:	000014
  */
-void @728@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @728@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -3641,7 +3641,7 @@ void @728@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	8010AB08
  * Size:	000008
  */
-void @4@__dt__Q24Game13IEnemyMgrBaseFv(void)
+void @4@Game::IEnemyMgrBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3655,7 +3655,7 @@ void @4@__dt__Q24Game13IEnemyMgrBaseFv(void)
  * Address:	8010AB10
  * Size:	000008
  */
-void @4@__dt__Q34Game8Pelplant3MgrFv(void)
+void @4@Game::Pelplant::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3669,7 +3669,7 @@ void @4@__dt__Q34Game8Pelplant3MgrFv(void)
  * Address:	8010AB18
  * Size:	000008
  */
-void @4@getEnd__Q24Game12EnemyMgrBaseFv(void)
+void @4@Game::EnemyMgrBase::getEnd(void)
 {
 /*
 .loc_0x0:
@@ -3683,7 +3683,7 @@ void @4@getEnd__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8010AB20
  * Size:	000008
  */
-void @4@getStart__Q24Game12EnemyMgrBaseFv(void)
+void @4@Game::EnemyMgrBase::getStart(void)
 {
 /*
 .loc_0x0:
@@ -3697,7 +3697,7 @@ void @4@getStart__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8010AB28
  * Size:	000008
  */
-void @4@getNext__Q24Game12EnemyMgrBaseFPv(void)
+void @4@Game::EnemyMgrBase::getNext( (void *))
 {
 /*
 .loc_0x0:
@@ -3711,7 +3711,7 @@ void @4@getNext__Q24Game12EnemyMgrBaseFPv(void)
  * Address:	8010AB30
  * Size:	000008
  */
-void @4@getObject__Q24Game12EnemyMgrBaseFPv(void)
+void @4@Game::EnemyMgrBase::getObject( (void *))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00003C
  */
-void __ct__Q24ARAM4NodeFv(void)
+void ARAM::Node::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24ARAM4NodeFv(void)
  * Address:	........
  * Size:	0000A8
  */
-void dvdToAram__Q24ARAM4NodeFPCcb(void)
+void ARAM::Node::dvdToAram( (char const *, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void dvdToAram__Q24ARAM4NodeFPCcb(void)
  * Address:	........
  * Size:	000140
  */
-void aramToMainRam__Q24ARAM4NodeFPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectioniPUl(void)
+void ARAM::Node::aramToMainRam( (unsigned char *, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap *, JKRDvdRipper::EAllocDirection, int, unsigned long *))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void aramToMainRam__Q24ARAM4NodeFPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRi
  * Address:	........
  * Size:	000004
  */
-void dump__Q24ARAM4NodeFv(void)
+void ARAM::Node::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void dump__Q24ARAM4NodeFv(void)
  * Address:	80432B18
  * Size:	000030
  */
-void init__Q24ARAM3MgrFv(void)
+void ARAM::Mgr::init(void)
 {
 /*
 .loc_0x0:
@@ -83,7 +83,7 @@ void init__Q24ARAM3MgrFv(void)
  * Address:	80432B48
  * Size:	000080
  */
-void __ct__Q24ARAM3MgrFv(void)
+void ARAM::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -129,7 +129,7 @@ void __ct__Q24ARAM3MgrFv(void)
  * Address:	80432BC8
  * Size:	00024C
  */
-void dvdToAram__Q24ARAM3MgrFPCcb(void)
+void ARAM::Mgr::dvdToAram( (char const *, bool))
 {
 /*
 .loc_0x0:
@@ -314,7 +314,7 @@ void dvdToAram__Q24ARAM3MgrFPCcb(void)
  * Address:	80432E14
  * Size:	000060
  */
-void __dt__Q24ARAM4NodeFv(void)
+void ARAM::Node::__dt(void)
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void __dt__Q24ARAM4NodeFv(void)
  * Address:	80432E74
  * Size:	000154
  */
-void aramToMainRam__Q24ARAM3MgrFPCcPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectioniPUl(void)
+void ARAM::Mgr::aramToMainRam( (char const *, unsigned char *, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap *, JKRDvdRipper::EAllocDirection, int, unsigned long *))
 {
 /*
 .loc_0x0:
@@ -461,7 +461,7 @@ void aramToMainRam__Q24ARAM3MgrFPCcPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvd
  * Address:	80432FC8
  * Size:	0000A0
  */
-void dump__Q24ARAM3MgrFv(void)
+void ARAM::Mgr::dump(void)
 {
 /*
 .loc_0x0:
@@ -525,7 +525,7 @@ void dump__Q24ARAM3MgrFv(void)
  * Address:	80433068
  * Size:	000070
  */
-void search__Q24ARAM3MgrFPCc(void)
+void ARAM::Mgr::search( (char const *))
 {
 /*
 .loc_0x0:

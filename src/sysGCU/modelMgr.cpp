@@ -161,7 +161,7 @@ void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<SysShape::Mo
  * Address:	8042ACD8
  * Size:	000084
  */
-void calcMaximumModelSize__Q28SysShape8ModelMgrFv(void)
+void SysShape::ModelMgr::calcMaximumModelSize(void)
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void calcMaximumModelSize__Q28SysShape8ModelMgrFv(void)
  * Address:	8042AD5C
  * Size:	0000A0
  */
-void calcModelSize__Q28SysShape8ModelMgrFP12J3DModelData(void)
+void SysShape::ModelMgr::calcModelSize( (J3DModelData *))
 {
 /*
 .loc_0x0:
@@ -274,7 +274,7 @@ void calcModelSize__Q28SysShape8ModelMgrFP12J3DModelData(void)
  * Address:	8042ADFC
  * Size:	0001C8
  */
-void createModel__Q28SysShape8ModelMgrFii(void)
+void SysShape::ModelMgr::createModel( (int, int))
 {
 /*
 .loc_0x0:

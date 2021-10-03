@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80301688
  * Size:	000050
  */
-void __ct__Q34Game13FixMiniHoudai3MgrFiUc(void)
+void Game::FixMiniHoudai::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game13FixMiniHoudai3MgrFiUc(void)
  * Address:	803016D8
  * Size:	000048
  */
-void doAlloc__Q34Game13FixMiniHoudai3MgrFv(void)
+void Game::FixMiniHoudai::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game13FixMiniHoudai3MgrFv(void)
  * Address:	80301720
  * Size:	000060
  */
-void createObj__Q34Game13FixMiniHoudai3MgrFi(void)
+void Game::FixMiniHoudai::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game13FixMiniHoudai3MgrFi(void)
  * Address:	80301780
  * Size:	0000EC
  */
-void __dt__Q34Game13FixMiniHoudai3ObjFv(void)
+void Game::FixMiniHoudai::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -190,7 +190,7 @@ void __dt__Q34Game13FixMiniHoudai3ObjFv(void)
  * Address:	8030186C
  * Size:	000010
  */
-void getEnemy__Q34Game13FixMiniHoudai3MgrFi(void)
+void Game::FixMiniHoudai::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void getEnemy__Q34Game13FixMiniHoudai3MgrFi(void)
  * Address:	8030187C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game13FixMiniHoudai3ObjFv(void)
+void Game::FixMiniHoudai::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -220,7 +220,7 @@ void getEnemyTypeID__Q34Game13FixMiniHoudai3ObjFv(void)
  * Address:	80301884
  * Size:	0000C8
  */
-void __dt__Q34Game13FixMiniHoudai3MgrFv(void)
+void Game::FixMiniHoudai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void __dt__Q34Game13FixMiniHoudai3MgrFv(void)
  * Address:	8030194C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game13FixMiniHoudai3MgrFv(void)
+void Game::FixMiniHoudai::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -300,7 +300,7 @@ void getEnemyTypeID__Q34Game13FixMiniHoudai3MgrFv(void)
  * Address:	80301954
  * Size:	000008
  */
-void @4@__dt__Q34Game13FixMiniHoudai3MgrFv(void)
+void @4@Game::FixMiniHoudai::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

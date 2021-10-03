@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803019EC
  * Size:	00025C
  */
-void makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf(void)
+void Game::TyreTubeShadowNode::makeShadowSRT( (Game::JointShadowParm &, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matri
  * Address:	80301C48
  * Size:	0000E4
  */
-void __ct__Q34Game4Tyre13TyreShadowMgrFPQ34Game4Tyre3Obj(void)
+void Game::Tyre::TyreShadowMgr::__ct( (Game::Tyre::Obj *))
 {
 /*
 .loc_0x0:
@@ -269,7 +269,7 @@ void __ct__Q34Game4Tyre13TyreShadowMgrFPQ34Game4Tyre3Obj(void)
  * Address:	80301D2C
  * Size:	000068
  */
-void init__Q34Game4Tyre13TyreShadowMgrFv(void)
+void Game::Tyre::TyreShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -307,7 +307,7 @@ void init__Q34Game4Tyre13TyreShadowMgrFv(void)
  * Address:	80301D94
  * Size:	0000B4
  */
-void update__Q34Game4Tyre13TyreShadowMgrFv(void)
+void Game::Tyre::TyreShadowMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void update__Q34Game4Tyre13TyreShadowMgrFv(void)
  * Address:	80301E48
  * Size:	000070
  */
-void __dt__Q24Game18TyreTubeShadowNodeFv(void)
+void Game::TyreTubeShadowNode::__dt(void)
 {
 /*
 .loc_0x0:

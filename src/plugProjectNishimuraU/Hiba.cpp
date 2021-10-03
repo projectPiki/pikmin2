@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026BE8C
  * Size:	000138
  */
-void __ct__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game4Hiba3ObjFv(void)
  * Address:	8026BFC4
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Hiba3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Hiba::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game4Hiba3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8026BFC8
  * Size:	0000F8
  */
-void onInit__Q34Game4Hiba3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Hiba::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -198,7 +198,7 @@ void onInit__Q34Game4Hiba3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8026C0C0
  * Size:	000034
  */
-void doUpdate__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void doUpdate__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C0F4
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Hiba3ObjFR8Graphics(void)
+void Game::Hiba::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -236,7 +236,7 @@ void doDirectDraw__Q34Game4Hiba3ObjFR8Graphics(void)
  * Address:	8026C0F8
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Hiba3ObjFR8Graphics(void)
+void Game::Hiba::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void doDebugDraw__Q34Game4Hiba3ObjFR8Graphics(void)
  * Address:	8026C118
  * Size:	00004C
  */
-void setFSM__Q34Game4Hiba3ObjFPQ34Game4Hiba3FSM(void)
+void Game::Hiba::Obj::setFSM( (Game::Hiba::FSM *))
 {
 /*
 .loc_0x0:
@@ -287,7 +287,7 @@ void setFSM__Q34Game4Hiba3ObjFPQ34Game4Hiba3FSM(void)
  * Address:	8026C164
  * Size:	000038
  */
-void getShadowParam__Q34Game4Hiba3ObjFRQ24Game11ShadowParam(void)
+void Game::Hiba::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -313,7 +313,7 @@ void getShadowParam__Q34Game4Hiba3ObjFRQ24Game11ShadowParam(void)
  * Address:	8026C19C
  * Size:	00007C
  */
-void damageCallBack__Q34Game4Hiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Hiba::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -360,7 +360,7 @@ void damageCallBack__Q34Game4Hiba3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8026C218
  * Size:	000030
  */
-void pressCallBack__Q34Game4Hiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Hiba::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void pressCallBack__Q34Game4Hiba3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8026C248
  * Size:	000030
  */
-void hipdropCallBack__Q34Game4Hiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Hiba::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void bombCallBack__Q34Game4Hiba3ObjFPQ24Game8CreatureR10Vector3<float>f(void)
  * Address:	8026C2AC
  * Size:	0001D0
  */
-void interactFireAttack__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::interactFireAttack(void)
 {
 /*
 .loc_0x0:
@@ -569,7 +569,7 @@ void interactFireAttack__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C47C
  * Size:	000024
  */
-void setupLodParms__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::setupLodParms(void)
 {
 /*
 .loc_0x0:
@@ -590,7 +590,7 @@ void setupLodParms__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C4A0
  * Size:	00002C
  */
-void updateEfxLod__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::updateEfxLod(void)
 {
 /*
 .loc_0x0:
@@ -613,7 +613,7 @@ void updateEfxLod__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C4CC
  * Size:	000064
  */
-void createEffect__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void createEffect__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C530
  * Size:	000058
  */
-void startFireEffect__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::startFireEffect(void)
 {
 /*
 .loc_0x0:
@@ -686,7 +686,7 @@ void startFireEffect__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C588
  * Size:	000030
  */
-void finishFireEffect__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::finishFireEffect(void)
 {
 /*
 .loc_0x0:
@@ -710,7 +710,7 @@ void finishFireEffect__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C5B8
  * Size:	000044
  */
-void generatorKill__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::generatorKill(void)
 {
 /*
 .loc_0x0:
@@ -741,7 +741,7 @@ void generatorKill__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C5FC
  * Size:	000004
  */
-void doSimulation__Q34Game4Hiba3ObjFf(void)
+void Game::Hiba::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -754,7 +754,7 @@ void doSimulation__Q34Game4Hiba3ObjFf(void)
  * Address:	8026C600
  * Size:	000004
  */
-void inWaterCallback__Q34Game4Hiba3ObjFPQ24Game8WaterBox(void)
+void Game::Hiba::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -767,7 +767,7 @@ void inWaterCallback__Q34Game4Hiba3ObjFPQ24Game8WaterBox(void)
  * Address:	8026C604
  * Size:	000004
  */
-void outWaterCallback__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -780,7 +780,7 @@ void outWaterCallback__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C608
  * Size:	000008
  */
-void isLivingThing__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -794,7 +794,7 @@ void isLivingThing__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C610
  * Size:	000004
  */
-void lifeRecover__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::lifeRecover(void)
 {
 /*
 .loc_0x0:
@@ -807,7 +807,7 @@ void lifeRecover__Q34Game4Hiba3ObjFv(void)
  * Address:	8026C614
  * Size:	000014
  */
-void @716@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @716@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -824,7 +824,7 @@ void @716@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8026C628
  * Size:	000014
  */
-void @716@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @716@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -841,7 +841,7 @@ void @716@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8026C63C
  * Size:	000014
  */
-void @716@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @716@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -858,7 +858,7 @@ void @716@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8026C650
  * Size:	000014
  */
-void @716@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @716@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -875,7 +875,7 @@ void @716@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8026C664
  * Size:	000014
  */
-void @716@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @716@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -892,7 +892,7 @@ void @716@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8026C678
  * Size:	000014
  */
-void @716@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @716@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

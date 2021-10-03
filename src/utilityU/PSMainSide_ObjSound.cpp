@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000050
  */
-void __ct__Q23PSM7ObjBaseFv(void)
+void PSM::ObjBase::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void JSULink<PSM::ObjBase>::~JSULink()
  * Address:	8045CE64
  * Size:	000080
  */
-void __dt__Q23PSM7ObjBaseFv(void)
+void PSM::ObjBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void __dt__Q23PSM7ObjBaseFv(void)
  * Address:	8045CEE4
  * Size:	00004C
  */
-void frameEnd_onPlaySe__Q23PSM6ObjMgrFv(void)
+void PSM::ObjMgr::frameEnd_onPlaySe(void)
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void frameEnd_onPlaySe__Q23PSM6ObjMgrFv(void)
  * Address:	8045CF30
  * Size:	000104
  */
-void __dt__Q23PSM6ObjMgrFv(void)
+void PSM::ObjMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void __dt__Q23PSM6ObjMgrFv(void)
  * Address:	........
  * Size:	0000CC
  */
-void __ct__Q23PSM8CreatureFPQ24Game8Creature(void)
+void PSM::Creature::__ct( (Game::Creature *))
 {
 	// UNUSED FUNCTION
 }
@@ -205,7 +205,7 @@ void __ct__Q23PSM8CreatureFPQ24Game8Creature(void)
  * Address:	........
  * Size:	00003C
  */
-void isVisible__Q23PSM8CreatureFv(void)
+void PSM::Creature::isVisible(void)
 {
 	// UNUSED FUNCTION
 }
@@ -215,7 +215,7 @@ void isVisible__Q23PSM8CreatureFv(void)
  * Address:	8045D034
  * Size:	000058
  */
-void exec__Q23PSM8CreatureFv(void)
+void PSM::Creature::exec(void)
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void exec__Q23PSM8CreatureFv(void)
  * Address:	8045D08C
  * Size:	000128
  */
-void judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff(void)
+void PSM::Creature::judgeNearWithPlayer( (Vec const &, Vec const &, float, float))
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff(void)
  * Address:	8045D1B4
  * Size:	0000A0
  */
-void isNear__Q23PSM8CreatureFPQ24Game8Creaturef(void)
+void PSM::Creature::isNear( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void isNear__Q23PSM8CreatureFPQ24Game8Creaturef(void)
  * Address:	8045D254
  * Size:	000070
  */
-void getPlayingHandleNum__Q23PSM8CreatureFv(void)
+void PSM::Creature::getPlayingHandleNum(void)
 {
 /*
 .loc_0x0:
@@ -455,7 +455,7 @@ void getPlayingHandleNum__Q23PSM8CreatureFv(void)
  * Address:	8045D2C4
  * Size:	00015C
  */
-void loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg(void)
+void PSM::Creature::loopCalc( (PSM::FrameCalcArg &))
 {
 /*
 .loc_0x0:
@@ -562,7 +562,7 @@ void loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg(void)
  * Address:	8045D420
  * Size:	000380
  */
-void startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg(void)
+void PSM::Creature::startSoundInner( (PSM::StartSoundArg &))
 {
 /*
 .loc_0x0:
@@ -834,7 +834,7 @@ void startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg(void)
  * Address:	8045D7A0
  * Size:	000004
  */
-void onPlayingSe__Q23PSM8CreatureFUlP8JAISound(void)
+void PSM::Creature::onPlayingSe( (unsigned long, JAISound *))
 {
 /*
 .loc_0x0:
@@ -847,7 +847,7 @@ void onPlayingSe__Q23PSM8CreatureFUlP8JAISound(void)
  * Address:	........
  * Size:	0000A0
  */
-void startSetSound__Q23PSM11CreatureObjFUlUcUl(void)
+void PSM::CreatureObj::startSetSound( (unsigned long, unsigned char, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -857,7 +857,7 @@ void startSetSound__Q23PSM11CreatureObjFUlUcUl(void)
  * Address:	........
  * Size:	000094
  */
-void startSetSound__Q23PSM11CreatureObjFPQ27JAInter6ObjectUlUcUl(void)
+void PSM::CreatureObj::startSetSound( (JAInter::Object *, unsigned long, unsigned char, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -867,7 +867,7 @@ void startSetSound__Q23PSM11CreatureObjFPQ27JAInter6ObjectUlUcUl(void)
  * Address:	8045D7A4
  * Size:	00010C
  */
-void __ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc(void)
+void PSM::CreatureObj::__ct( (Game::Creature *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -950,7 +950,7 @@ void __ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc(void)
  * Address:	8045D8B0
  * Size:	000098
  */
-void __dt__Q23PSM8CreatureFv(void)
+void PSM::Creature::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1004,7 +1004,7 @@ void __dt__Q23PSM8CreatureFv(void)
  * Address:	8045D948
  * Size:	00003C
  */
-void startSound__Q23PSM11CreatureObjFUlUl(void)
+void PSM::CreatureObj::startSound( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1031,7 +1031,7 @@ void startSound__Q23PSM11CreatureObjFUlUl(void)
  * Address:	8045D984
  * Size:	00008C
  */
-void startSound__Q23PSM11CreatureObjFUcUlUl(void)
+void PSM::CreatureObj::startSound( (unsigned char, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1078,7 +1078,7 @@ void startSound__Q23PSM11CreatureObjFUcUlUl(void)
  * Address:	8045DA10
  * Size:	0000A8
  */
-void startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl(void)
+void PSM::CreatureObj::startSound( (JAISound **, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1132,7 +1132,7 @@ void startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl(void)
  * Address:	8045DAB8
  * Size:	00004C
  */
-void frameEnd_onPlaySe__Q23PSM11CreatureObjFv(void)
+void PSM::CreatureObj::frameEnd_onPlaySe(void)
 {
 /*
 .loc_0x0:
@@ -1163,7 +1163,7 @@ void frameEnd_onPlaySe__Q23PSM11CreatureObjFv(void)
  * Address:	........
  * Size:	000118
  */
-void __ct__Q23PSM13CreatureAnimeFPQ24Game8CreatureUc(void)
+void PSM::CreatureAnime::__ct( (Game::Creature *, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -1173,7 +1173,7 @@ void __ct__Q23PSM13CreatureAnimeFPQ24Game8CreatureUc(void)
  * Address:	8045DB04
  * Size:	000148
  */
-void startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc(void)
+void PSM::CreatureAnime::startAnimSound( (unsigned long, JAISound **, JAInter::Actor *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -1277,7 +1277,7 @@ void startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc(void
  * Address:	8045DC4C
  * Size:	00003C
  */
-void startSound__Q23PSM13CreatureAnimeFUlUl(void)
+void PSM::CreatureAnime::startSound( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1304,7 +1304,7 @@ void startSound__Q23PSM13CreatureAnimeFUlUl(void)
  * Address:	8045DC88
  * Size:	0000B0
  */
-void startSound__Q23PSM13CreatureAnimeFUcUlUl(void)
+void PSM::CreatureAnime::startSound( (unsigned char, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1360,7 +1360,7 @@ void startSound__Q23PSM13CreatureAnimeFUcUlUl(void)
  * Address:	8045DD38
  * Size:	0000A8
  */
-void startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl(void)
+void PSM::CreatureAnime::startSound( (JAISound **, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1414,7 +1414,7 @@ void startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl(void)
  * Address:	8045DDE0
  * Size:	000040
  */
-void setAnime__Q23PSM13CreatureAnimeFP17JAIAnimeSoundDataUlff(void)
+void PSM::CreatureAnime::setAnime( (JAIAnimeSoundData *, unsigned long, float, float))
 {
 /*
 .loc_0x0:
@@ -1446,7 +1446,7 @@ void setAnime__Q23PSM13CreatureAnimeFP17JAIAnimeSoundDataUlff(void)
  * Address:	8045DE20
  * Size:	000304
  */
-void playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc(void)
+void PSM::CreatureAnime::playActorAnimSound( (JAInter::Actor *, float, unsigned char))
 {
 /*
 .loc_0x0:
@@ -1685,7 +1685,7 @@ void playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc(void)
  * Address:	8045E124
  * Size:	0000B4
  */
-void exec__Q23PSM13CreatureAnimeFv(void)
+void PSM::CreatureAnime::exec(void)
 {
 /*
 .loc_0x0:
@@ -1748,7 +1748,7 @@ void exec__Q23PSM13CreatureAnimeFv(void)
  * Address:	8045E1D8
  * Size:	0000C8
  */
-void onCalcOn__Q23PSM13CreatureAnimeFv(void)
+void PSM::CreatureAnime::onCalcOn(void)
 {
 /*
 .loc_0x0:
@@ -1814,7 +1814,7 @@ void onCalcOn__Q23PSM13CreatureAnimeFv(void)
  * Address:	8045E2A0
  * Size:	000024
  */
-void onCalcTurnOn__Q23PSM13CreatureAnimeFv(void)
+void PSM::CreatureAnime::onCalcTurnOn(void)
 {
 /*
 .loc_0x0:
@@ -1835,7 +1835,7 @@ void onCalcTurnOn__Q23PSM13CreatureAnimeFv(void)
  * Address:	8045E2C4
  * Size:	000004
  */
-void onCalcTurnOff__Q23PSM13CreatureAnimeFv(void)
+void PSM::CreatureAnime::onCalcTurnOff(void)
 {
 /*
 .loc_0x0:
@@ -1848,7 +1848,7 @@ void onCalcTurnOff__Q23PSM13CreatureAnimeFv(void)
  * Address:	8045E2C8
  * Size:	00004C
  */
-void frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv(void)
+void PSM::CreatureAnime::frameEnd_onPlaySe(void)
 {
 /*
 .loc_0x0:
@@ -1879,7 +1879,7 @@ void frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv(void)
  * Address:	8045E314
  * Size:	00004C
  */
-void battleOn__Q23PSM10BattleLinkFv(void)
+void PSM::BattleLink::battleOn(void)
 {
 /*
 .loc_0x0:
@@ -1912,7 +1912,7 @@ void battleOn__Q23PSM10BattleLinkFv(void)
  * Address:	8045E360
  * Size:	00004C
  */
-void battleOff__Q23PSM10BattleLinkFv(void)
+void PSM::BattleLink::battleOff(void)
 {
 /*
 .loc_0x0:
@@ -1945,7 +1945,7 @@ void battleOff__Q23PSM10BattleLinkFv(void)
  * Address:	8045E3AC
  * Size:	00004C
  */
-void kehaiOn__Q23PSM9KehaiLinkFv(void)
+void PSM::KehaiLink::kehaiOn(void)
 {
 /*
 .loc_0x0:
@@ -1978,7 +1978,7 @@ void kehaiOn__Q23PSM9KehaiLinkFv(void)
  * Address:	8045E3F8
  * Size:	00004C
  */
-void kehaiOff__Q23PSM9KehaiLinkFv(void)
+void PSM::KehaiLink::kehaiOff(void)
 {
 /*
 .loc_0x0:
@@ -2011,7 +2011,7 @@ void kehaiOff__Q23PSM9KehaiLinkFv(void)
  * Address:	8045E444
  * Size:	000180
  */
-void __ct__Q23PSM9EnemyBaseFPQ24Game9EnemyBaseUc(void)
+void PSM::EnemyBase::__ct( (Game::EnemyBase *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -2123,7 +2123,7 @@ void __ct__Q23PSM9EnemyBaseFPQ24Game9EnemyBaseUc(void)
  * Address:	........
  * Size:	000064
  */
-void __dt__Q23PSM9KehaiLinkFv(void)
+void PSM::KehaiLink::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2133,7 +2133,7 @@ void __dt__Q23PSM9KehaiLinkFv(void)
  * Address:	........
  * Size:	000064
  */
-void __dt__Q23PSM10BattleLinkFv(void)
+void PSM::BattleLink::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2153,7 +2153,7 @@ void JSULink<Game::Creature>::~JSULink()
  * Address:	8045E5C4
  * Size:	0000DC
  */
-void __dt__Q23PSM13CreatureAnimeFv(void)
+void PSM::CreatureAnime::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2226,7 +2226,7 @@ void __dt__Q23PSM13CreatureAnimeFv(void)
  * Address:	........
  * Size:	000008
  */
-void getEnemy__Q23PSM9EnemyBaseFv(void)
+void PSM::EnemyBase::getEnemy(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2236,7 +2236,7 @@ void getEnemy__Q23PSM9EnemyBaseFv(void)
  * Address:	8045E6A0
  * Size:	000174
  */
-void startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc(void)
+void PSM::EnemyBase::startAnimSound( (unsigned long, JAISound **, JAInter::Actor *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -2353,7 +2353,7 @@ void startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc(void)
  * Address:	8045E814
  * Size:	00005C
  */
-void startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg(void)
+void PSM::EnemyBase::startSoundInner( (PSM::StartSoundArg &))
 {
 /*
 .loc_0x0:
@@ -2392,7 +2392,7 @@ void startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg(void)
  * Address:	8045E870
  * Size:	000044
  */
-void onCalcTurnOn__Q23PSM9EnemyBaseFv(void)
+void PSM::EnemyBase::onCalcTurnOn(void)
 {
 /*
 .loc_0x0:
@@ -2421,7 +2421,7 @@ void onCalcTurnOn__Q23PSM9EnemyBaseFv(void)
  * Address:	8045E8B4
  * Size:	00004C
  */
-void onCalcTurnOff__Q23PSM9EnemyBaseFv(void)
+void PSM::EnemyBase::onCalcTurnOff(void)
 {
 /*
 .loc_0x0:
@@ -2452,7 +2452,7 @@ void onCalcTurnOff__Q23PSM9EnemyBaseFv(void)
  * Address:	8045E900
  * Size:	0000F0
  */
-void onCalcOn__Q23PSM9EnemyBaseFv(void)
+void PSM::EnemyBase::onCalcOn(void)
 {
 /*
 .loc_0x0:
@@ -2528,7 +2528,7 @@ void onCalcOn__Q23PSM9EnemyBaseFv(void)
  * Address:	8045E9F0
  * Size:	000060
  */
-void battleOff__Q23PSM9EnemyBaseFv(void)
+void PSM::EnemyBase::battleOff(void)
 {
 /*
 .loc_0x0:
@@ -2566,7 +2566,7 @@ void battleOff__Q23PSM9EnemyBaseFv(void)
  * Address:	8045EA50
  * Size:	000088
  */
-void updateKehai__Q23PSM9EnemyBaseFv(void)
+void PSM::EnemyBase::updateKehai(void)
 {
 /*
 .loc_0x0:
@@ -2616,7 +2616,7 @@ void updateKehai__Q23PSM9EnemyBaseFv(void)
  * Address:	8045EAD8
  * Size:	0000C8
  */
-void updateBattle__Q23PSM9EnemyBaseFv(void)
+void PSM::EnemyBase::updateBattle(void)
 {
 /*
 .loc_0x0:
@@ -2684,7 +2684,7 @@ void updateBattle__Q23PSM9EnemyBaseFv(void)
  * Address:	8045EBA0
  * Size:	000338
  */
-void calcKehai__Q23PSM9EnemyBaseFv(void)
+void PSM::EnemyBase::calcKehai(void)
 {
 /*
 .loc_0x0:
@@ -2926,7 +2926,7 @@ void calcKehai__Q23PSM9EnemyBaseFv(void)
  * Address:	8045EED8
  * Size:	000094
  */
-void judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff(void)
+void PSM::EnemyBase::judgeNearWithPlayer( (Vec const &, Vec const &, float, float))
 {
 /*
 .loc_0x0:
@@ -2989,7 +2989,7 @@ void judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff(void)
  * Address:	........
  * Size:	000118
  */
-void getDistance__Q23PSM9EnemyBaseFRC3Vec(void)
+void PSM::EnemyBase::getDistance( (Vec const &))
 {
 	// UNUSED FUNCTION
 }
@@ -2999,7 +2999,7 @@ void getDistance__Q23PSM9EnemyBaseFRC3Vec(void)
  * Address:	8045EF6C
  * Size:	0001AC
  */
-void __ct__Q23PSM18EnemyNotAggressiveFPQ24Game9EnemyBaseUc(void)
+void PSM::EnemyNotAggressive::__ct( (Game::EnemyBase *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -3122,7 +3122,7 @@ void __ct__Q23PSM18EnemyNotAggressiveFPQ24Game9EnemyBaseUc(void)
  * Address:	8045F118
  * Size:	000160
  */
-void __ct__Q23PSM9TsuyukusaFPQ24Game8Creature(void)
+void PSM::Tsuyukusa::__ct( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -3228,7 +3228,7 @@ void __ct__Q23PSM9TsuyukusaFPQ24Game8Creature(void)
  * Address:	8045F278
  * Size:	0000B8
  */
-void noukouFrameWork__Q23PSM9TsuyukusaFb(void)
+void PSM::Tsuyukusa::noukouFrameWork( (bool))
 {
 /*
 .loc_0x0:
@@ -3292,7 +3292,7 @@ void noukouFrameWork__Q23PSM9TsuyukusaFb(void)
  * Address:	........
  * Size:	000094
  */
-void setNoukou__Q23PSM9TsuyukusaFb(void)
+void PSM::Tsuyukusa::setNoukou( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -3302,7 +3302,7 @@ void setNoukou__Q23PSM9TsuyukusaFb(void)
  * Address:	8045F330
  * Size:	000128
  */
-void judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff(void)
+void PSM::EnemyBig::judgeNearWithPlayer( (Vec const &, Vec const &, float, float))
 {
 /*
 .loc_0x0:
@@ -3408,7 +3408,7 @@ void judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff(void)
  * Address:	........
  * Size:	0001F0
  */
-void __ct__Q23PSM9EnemyBossFPQ24Game9EnemyBase(void)
+void PSM::EnemyBoss::__ct( (Game::EnemyBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -3428,7 +3428,7 @@ void JSULink<PSM::EnemyBoss>::~JSULink()
  * Address:	8045F458
  * Size:	000074
  */
-void onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound(void)
+void PSM::EnemyBoss::onPlayingSe( (unsigned long, JAISound *))
 {
 /*
 .loc_0x0:
@@ -3471,7 +3471,7 @@ void onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound(void)
  * Address:	8045F4CC
  * Size:	000014
  */
-void judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff(void)
+void PSM::EnemyBoss::judgeNearWithPlayer( (Vec const &, Vec const &, float, float))
 {
 /*
 .loc_0x0:
@@ -3488,7 +3488,7 @@ void judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff(void)
  * Address:	8045F4E0
  * Size:	0000B4
  */
-void exec__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::exec(void)
 {
 /*
 .loc_0x0:
@@ -3551,7 +3551,7 @@ void exec__Q23PSM9EnemyBossFv(void)
  * Address:	8045F594
  * Size:	0000F8
  */
-void onCalcOn__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::onCalcOn(void)
 {
 /*
 .loc_0x0:
@@ -3631,7 +3631,7 @@ void onCalcOn__Q23PSM9EnemyBossFv(void)
  * Address:	8045F68C
  * Size:	000364
  */
-void calcDistance__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::calcDistance(void)
 {
 /*
 .loc_0x0:
@@ -3880,7 +3880,7 @@ void calcDistance__Q23PSM9EnemyBossFv(void)
  * Address:	8045F9F0
  * Size:	000140
  */
-void setAppearFlag__Q23PSM9EnemyBossFb(void)
+void PSM::EnemyBoss::setAppearFlag( (bool))
 {
 /*
 .loc_0x0:
@@ -3984,7 +3984,7 @@ void setAppearFlag__Q23PSM9EnemyBossFb(void)
  * Address:	8045FB30
  * Size:	00005C
  */
-void dyingFrameWork__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::dyingFrameWork(void)
 {
 /*
 .loc_0x0:
@@ -4023,7 +4023,7 @@ void dyingFrameWork__Q23PSM9EnemyBossFv(void)
  * Address:	8045FB8C
  * Size:	000234
  */
-void onDeathMotionTop__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::onDeathMotionTop(void)
 {
 /*
 .loc_0x0:
@@ -4212,7 +4212,7 @@ void onDeathMotionTop__Q23PSM9EnemyBossFv(void)
  * Address:	8045FDC0
  * Size:	00015C
  */
-void setKilled__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::setKilled(void)
 {
 /*
 .loc_0x0:
@@ -4331,7 +4331,7 @@ void setKilled__Q23PSM9EnemyBossFv(void)
  * Address:	8045FF1C
  * Size:	000024
  */
-void isOnDisappearing__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::isOnDisappearing(void)
 {
 /*
 .loc_0x0:
@@ -4352,7 +4352,7 @@ void isOnDisappearing__Q23PSM9EnemyBossFv(void)
  * Address:	8045FF40
  * Size:	000030
  */
-void updateDisappearing__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::updateDisappearing(void)
 {
 /*
 .loc_0x0:
@@ -4376,7 +4376,7 @@ void updateDisappearing__Q23PSM9EnemyBossFv(void)
  * Address:	8045FF70
  * Size:	000260
  */
-void __ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase(void)
+void PSM::EnemyMidBoss::__ct( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -4546,7 +4546,7 @@ void __ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase(void)
  * Address:	804601D0
  * Size:	0001A8
  */
-void __dt__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4676,7 +4676,7 @@ void __dt__Q23PSM9EnemyBossFv(void)
  * Address:	80460378
  * Size:	00021C
  */
-void onCalcOn__Q23PSM12EnemyMidBossFv(void)
+void PSM::EnemyMidBoss::onCalcOn(void)
 {
 /*
 .loc_0x0:
@@ -4847,7 +4847,7 @@ void onCalcOn__Q23PSM12EnemyMidBossFv(void)
  * Address:	80460594
  * Size:	0000EC
  */
-void jumpRequest__Q23PSM12EnemyMidBossFUs(void)
+void PSM::EnemyMidBoss::jumpRequest( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -4930,7 +4930,7 @@ void jumpRequest__Q23PSM12EnemyMidBossFUs(void)
  * Address:	80460680
  * Size:	00010C
  */
-void onAppear1st__Q23PSM12EnemyMidBossFv(void)
+void PSM::EnemyMidBoss::onAppear1st(void)
 {
 /*
 .loc_0x0:
@@ -5023,7 +5023,7 @@ void onAppear1st__Q23PSM12EnemyMidBossFv(void)
  * Address:	8046078C
  * Size:	000060
  */
-void postPikiAttack__Q23PSM12EnemyMidBossFb(void)
+void PSM::EnemyMidBoss::postPikiAttack( (bool))
 {
 /*
 .loc_0x0:
@@ -5063,7 +5063,7 @@ void postPikiAttack__Q23PSM12EnemyMidBossFb(void)
  * Address:	804607EC
  * Size:	000068
  */
-void __ct__Q23PSM12EnemyBigBossFPQ24Game9EnemyBase(void)
+void PSM::EnemyBigBoss::__ct( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -5101,7 +5101,7 @@ void __ct__Q23PSM12EnemyBigBossFPQ24Game9EnemyBase(void)
  * Address:	80460854
  * Size:	0001F0
  */
-void __dt__Q23PSM12EnemyMidBossFv(void)
+void PSM::EnemyMidBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5251,7 +5251,7 @@ void __dt__Q23PSM12EnemyMidBossFv(void)
  * Address:	80460A44
  * Size:	000088
  */
-void __dt__Q23PSM12EnemyBigBossFv(void)
+void PSM::EnemyBigBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5299,7 +5299,7 @@ void __dt__Q23PSM12EnemyBigBossFv(void)
  * Address:	80460ACC
  * Size:	0000E8
  */
-void jumpRequest__Q23PSM12EnemyBigBossFUs(void)
+void PSM::EnemyBigBoss::jumpRequest( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -5381,7 +5381,7 @@ void jumpRequest__Q23PSM12EnemyBigBossFUs(void)
  * Address:	80460BB4
  * Size:	000038
  */
-void onDeathMotionTop__Q23PSM12EnemyBigBossFv(void)
+void PSM::EnemyBigBoss::onDeathMotionTop(void)
 {
 /*
 .loc_0x0:
@@ -5407,7 +5407,7 @@ void onDeathMotionTop__Q23PSM12EnemyBigBossFv(void)
  * Address:	80460BEC
  * Size:	00010C
  */
-void onAppear1st__Q23PSM12EnemyBigBossFv(void)
+void PSM::EnemyBigBoss::onAppear1st(void)
 {
 /*
 .loc_0x0:
@@ -5500,7 +5500,7 @@ void onAppear1st__Q23PSM12EnemyBigBossFv(void)
  * Address:	80460CF8
  * Size:	0000BC
  */
-void onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound(void)
+void PSM::Enemy_SpecialChappy::onPlayingSe( (unsigned long, JAISound *))
 {
 /*
 .loc_0x0:
@@ -5565,7 +5565,7 @@ void onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound(void)
  * Address:	80460DB4
  * Size:	00002C
  */
-void eventStart__Q23PSM12DirectorLinkFv(void)
+void PSM::DirectorLink::eventStart(void)
 {
 /*
 .loc_0x0:
@@ -5588,7 +5588,7 @@ void eventStart__Q23PSM12DirectorLinkFv(void)
  * Address:	80460DE0
  * Size:	00004C
  */
-void eventRestart__Q23PSM12DirectorLinkFv(void)
+void PSM::DirectorLink::eventRestart(void)
 {
 /*
 .loc_0x0:
@@ -5621,7 +5621,7 @@ void eventRestart__Q23PSM12DirectorLinkFv(void)
  * Address:	80460E2C
  * Size:	00004C
  */
-void eventStop__Q23PSM12DirectorLinkFv(void)
+void PSM::DirectorLink::eventStop(void)
 {
 /*
 .loc_0x0:
@@ -5654,7 +5654,7 @@ void eventStop__Q23PSM12DirectorLinkFv(void)
  * Address:	80460E78
  * Size:	00002C
  */
-void eventFinish__Q23PSM12DirectorLinkFv(void)
+void PSM::DirectorLink::eventFinish(void)
 {
 /*
 .loc_0x0:
@@ -5677,7 +5677,7 @@ void eventFinish__Q23PSM12DirectorLinkFv(void)
  * Address:	80460EA4
  * Size:	000034
  */
-void getListDirectorActor__Q23PSM9EventLinkFv(void)
+void PSM::EventLink::getListDirectorActor(void)
 {
 /*
 .loc_0x0:
@@ -5706,7 +5706,7 @@ void getListDirectorActor__Q23PSM9EventLinkFv(void)
  * Address:	80460ED8
  * Size:	000034
  */
-void getListDirectorActor__Q23PSM16OtakaraEventLinkFv(void)
+void PSM::OtakaraEventLink::getListDirectorActor(void)
 {
 /*
 .loc_0x0:
@@ -5735,7 +5735,7 @@ void getListDirectorActor__Q23PSM16OtakaraEventLinkFv(void)
  * Address:	80460F0C
  * Size:	000004
  */
-void eventFinish__Q23PSM16OtakaraEventLinkFv(void)
+void PSM::OtakaraEventLink::eventFinish(void)
 {
 /*
 .loc_0x0:
@@ -5748,7 +5748,7 @@ void eventFinish__Q23PSM16OtakaraEventLinkFv(void)
  * Address:	........
  * Size:	000114
  */
-void getPSOtakara__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::getPSOtakara(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5758,7 +5758,7 @@ void getPSOtakara__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	........
  * Size:	000164
  */
-void isAvoidCase__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::isAvoidCase(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5768,7 +5768,7 @@ void isAvoidCase__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	80460F10
  * Size:	000250
  */
-void getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::getTargetDirector(void)
 {
 /*
 .loc_0x0:
@@ -5964,7 +5964,7 @@ void getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	80461160
  * Size:	000194
  */
-void eventStart__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::eventStart(void)
 {
 /*
 .loc_0x0:
@@ -6101,7 +6101,7 @@ void eventStart__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	804612F4
  * Size:	00002C
  */
-void eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::eventRestart(void)
 {
 /*
 .loc_0x0:
@@ -6124,7 +6124,7 @@ void eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	80461320
  * Size:	000194
  */
-void eventStop__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::eventStop(void)
 {
 /*
 .loc_0x0:
@@ -6261,7 +6261,7 @@ void eventStop__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	804614B4
  * Size:	00002C
  */
-void eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::eventFinish(void)
 {
 /*
 .loc_0x0:
@@ -6284,7 +6284,7 @@ void eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	804614E0
  * Size:	000140
  */
-void getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::getListDirectorActor(void)
 {
 /*
 .loc_0x0:
@@ -6388,7 +6388,7 @@ void getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	80461620
  * Size:	000170
  */
-void __ct__Q23PSM8WorkItemFPQ24Game8BaseItem(void)
+void PSM::WorkItem::__ct( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -6496,7 +6496,7 @@ void __ct__Q23PSM8WorkItemFPQ24Game8BaseItem(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q23PSM9EventLinkFv(void)
+void PSM::EventLink::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6506,7 +6506,7 @@ void __dt__Q23PSM9EventLinkFv(void)
  * Address:	........
  * Size:	000064
  */
-void __dt__Q23PSM12DirectorLinkFv(void)
+void PSM::DirectorLink::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6516,7 +6516,7 @@ void __dt__Q23PSM12DirectorLinkFv(void)
  * Address:	80461790
  * Size:	000030
  */
-void eventStart__Q23PSM8WorkItemFv(void)
+void PSM::WorkItem::eventStart(void)
 {
 /*
 .loc_0x0:
@@ -6540,7 +6540,7 @@ void eventStart__Q23PSM8WorkItemFv(void)
  * Address:	804617C0
  * Size:	000030
  */
-void eventRestart__Q23PSM8WorkItemFv(void)
+void PSM::WorkItem::eventRestart(void)
 {
 /*
 .loc_0x0:
@@ -6564,7 +6564,7 @@ void eventRestart__Q23PSM8WorkItemFv(void)
  * Address:	804617F0
  * Size:	000030
  */
-void eventStop__Q23PSM8WorkItemFv(void)
+void PSM::WorkItem::eventStop(void)
 {
 /*
 .loc_0x0:
@@ -6588,7 +6588,7 @@ void eventStop__Q23PSM8WorkItemFv(void)
  * Address:	80461820
  * Size:	000030
  */
-void eventFinish__Q23PSM8WorkItemFv(void)
+void PSM::WorkItem::eventFinish(void)
 {
 /*
 .loc_0x0:
@@ -6612,7 +6612,7 @@ void eventFinish__Q23PSM8WorkItemFv(void)
  * Address:	........
  * Size:	000184
  */
-void __ct__Q23PSM7OtakaraFPQ24Game8Creature(void)
+void PSM::Otakara::__ct( (Game::Creature *))
 {
 	// UNUSED FUNCTION
 }
@@ -6622,7 +6622,7 @@ void __ct__Q23PSM7OtakaraFPQ24Game8Creature(void)
  * Address:	80461850
  * Size:	0001A0
  */
-void setGoalOnyon__Q23PSM7OtakaraFPQ24Game8Creature(void)
+void PSM::Otakara::setGoalOnyon( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -6754,7 +6754,7 @@ void setGoalOnyon__Q23PSM7OtakaraFPQ24Game8Creature(void)
  * Address:	........
  * Size:	000084
  */
-void avoidNormalDirection__Q23PSM7OtakaraFv(void)
+void PSM::Otakara::avoidNormalDirection(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6764,7 +6764,7 @@ void avoidNormalDirection__Q23PSM7OtakaraFv(void)
  * Address:	804619F0
  * Size:	0000DC
  */
-void otakaraEventStart__Q23PSM7OtakaraFv(void)
+void PSM::Otakara::otakaraEventStart(void)
 {
 /*
 .loc_0x0:
@@ -6841,7 +6841,7 @@ void otakaraEventStart__Q23PSM7OtakaraFv(void)
  * Address:	80461ACC
  * Size:	0000DC
  */
-void otakaraEventRestart__Q23PSM7OtakaraFv(void)
+void PSM::Otakara::otakaraEventRestart(void)
 {
 /*
 .loc_0x0:
@@ -6918,7 +6918,7 @@ void otakaraEventRestart__Q23PSM7OtakaraFv(void)
  * Address:	80461BA8
  * Size:	0000DC
  */
-void otakaraEventStop__Q23PSM7OtakaraFv(void)
+void PSM::Otakara::otakaraEventStop(void)
 {
 /*
 .loc_0x0:
@@ -6995,7 +6995,7 @@ void otakaraEventStop__Q23PSM7OtakaraFv(void)
  * Address:	80461C84
  * Size:	0000DC
  */
-void otakaraEventFinish__Q23PSM7OtakaraFv(void)
+void PSM::Otakara::otakaraEventFinish(void)
 {
 /*
 .loc_0x0:
@@ -7072,7 +7072,7 @@ void otakaraEventFinish__Q23PSM7OtakaraFv(void)
  * Address:	80461D60
  * Size:	000224
  */
-void __ct__Q23PSM13PelletOtakaraFPQ34Game13PelletOtakara6Objectb(void)
+void PSM::PelletOtakara::__ct( (Game::PelletOtakara::Object *, bool))
 {
 /*
 .loc_0x0:
@@ -7233,7 +7233,7 @@ void __ct__Q23PSM13PelletOtakaraFPQ34Game13PelletOtakara6Objectb(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q23PSM16OtakaraEventLinkFv(void)
+void PSM::OtakaraEventLink::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -7243,7 +7243,7 @@ void __dt__Q23PSM16OtakaraEventLinkFv(void)
  * Address:	80461F84
  * Size:	000148
  */
-void __dt__Q23PSM7OtakaraFv(void)
+void PSM::Otakara::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7343,7 +7343,7 @@ void __dt__Q23PSM7OtakaraFv(void)
  * Address:	804620CC
  * Size:	0001D4
  */
-void __ct__Q23PSM10PelletItemFPQ34Game10PelletItem6Object(void)
+void PSM::PelletItem::__ct( (Game::PelletItem::Object *))
 {
 /*
 .loc_0x0:
@@ -7478,7 +7478,7 @@ void __ct__Q23PSM10PelletItemFPQ34Game10PelletItem6Object(void)
  * Address:	804622A0
  * Size:	000148
  */
-void __ct__Q23PSM4PikiFPQ24Game4Piki(void)
+void PSM::Piki::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -7576,7 +7576,7 @@ void __ct__Q23PSM4PikiFPQ24Game4Piki(void)
  * Address:	804623E8
  * Size:	000180
  */
-void onCalcOn__Q23PSM4PikiFv(void)
+void PSM::Piki::onCalcOn(void)
 {
 /*
 .loc_0x0:
@@ -7708,7 +7708,7 @@ void onCalcOn__Q23PSM4PikiFv(void)
  * Address:	80462568
  * Size:	00000C
  */
-void becomeFree__Q23PSM4PikiFv(void)
+void PSM::Piki::becomeFree(void)
 {
 /*
 .loc_0x0:
@@ -7723,7 +7723,7 @@ void becomeFree__Q23PSM4PikiFv(void)
  * Address:	80462574
  * Size:	00000C
  */
-void becomeNotFree__Q23PSM4PikiFv(void)
+void PSM::Piki::becomeNotFree(void)
 {
 /*
 .loc_0x0:
@@ -7738,7 +7738,7 @@ void becomeNotFree__Q23PSM4PikiFv(void)
  * Address:	80462580
  * Size:	000144
  */
-void startFreePikiSound__Q23PSM4PikiFUlUlUl(void)
+void PSM::Piki::startFreePikiSound( (unsigned long, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -7847,7 +7847,7 @@ void startFreePikiSound__Q23PSM4PikiFUlUlUl(void)
  * Address:	804626C4
  * Size:	000070
  */
-void startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl(void)
+void PSM::Piki::startPikiSound( (JAInter::Object *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -7891,7 +7891,7 @@ void startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl(void)
  * Address:	80462734
  * Size:	0000B4
  */
-void startPikiSetSound__Q23PSM4PikiFPQ27JAInter6ObjectUlQ36PSGame5SeMgr7SetSeIdUl(void)
+void PSM::Piki::startPikiSetSound( (JAInter::Object *, unsigned long, PSGame::SeMgr::SetSeId, unsigned long))
 {
 /*
 .loc_0x0:
@@ -7954,7 +7954,7 @@ void startPikiSetSound__Q23PSM4PikiFPQ27JAInter6ObjectUlQ36PSGame5SeMgr7SetSeIdU
  * Address:	804627E8
  * Size:	0001D4
  */
-void startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl(void)
+void PSM::Piki::startFreePikiSetSound( (unsigned long, PSGame::SeMgr::SetSeId, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -8111,7 +8111,7 @@ void startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl(void)
  * Address:	........
  * Size:	000010
  */
-void startDopingSound__Q23PSM4PikiFv(void)
+void PSM::Piki::startDopingSound(void)
 {
 	// UNUSED FUNCTION
 }
@@ -8121,7 +8121,7 @@ void startDopingSound__Q23PSM4PikiFv(void)
  * Address:	804629BC
  * Size:	000104
  */
-void checkHappaChappySE__Q23PSM4PikiFUl(void)
+void PSM::Piki::checkHappaChappySE( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -8204,7 +8204,7 @@ void checkHappaChappySE__Q23PSM4PikiFUl(void)
  * Address:	80462AC0
  * Size:	000138
  */
-void __ct__Q23PSM4NaviFPQ24Game4Navi(void)
+void PSM::Navi::__ct( (Game::Navi *))
 {
 /*
 .loc_0x0:
@@ -8298,7 +8298,7 @@ void __ct__Q23PSM4NaviFPQ24Game4Navi(void)
  * Address:	80462BF8
  * Size:	000024
  */
-void init__Q23PSM4NaviFUs(void)
+void PSM::Navi::init( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -8319,7 +8319,7 @@ void init__Q23PSM4NaviFUs(void)
  * Address:	80462C1C
  * Size:	000028
  */
-void setShacho__Q23PSM4NaviFv(void)
+void PSM::Navi::setShacho(void)
 {
 /*
 .loc_0x0:
@@ -8341,7 +8341,7 @@ void setShacho__Q23PSM4NaviFv(void)
  * Address:	80462C44
  * Size:	000050
  */
-void stopWaitVoice__Q23PSM4NaviFv(void)
+void PSM::Navi::stopWaitVoice(void)
 {
 /*
 .loc_0x0:
@@ -8375,7 +8375,7 @@ void stopWaitVoice__Q23PSM4NaviFv(void)
  * Address:	80462C94
  * Size:	000108
  */
-void startSound__Q23PSM4NaviFUlUl(void)
+void PSM::Navi::startSound( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -8467,7 +8467,7 @@ void startSound__Q23PSM4NaviFUlUl(void)
  * Address:	80462D9C
  * Size:	000028
  */
-void getManType__Q23PSM4NaviFv(void)
+void PSM::Navi::getManType(void)
 {
 /*
 .loc_0x0:
@@ -8491,7 +8491,7 @@ void getManType__Q23PSM4NaviFv(void)
  * Address:	80462DC4
  * Size:	0000A0
  */
-void playShugoSE__Q23PSM4NaviFv(void)
+void PSM::Navi::playShugoSE(void)
 {
 /*
 .loc_0x0:
@@ -8559,7 +8559,7 @@ void playShugoSE__Q23PSM4NaviFv(void)
  * Address:	80462E64
  * Size:	0000A0
  */
-void playKaisanSE__Q23PSM4NaviFv(void)
+void PSM::Navi::playKaisanSE(void)
 {
 /*
 .loc_0x0:
@@ -8627,7 +8627,7 @@ void playKaisanSE__Q23PSM4NaviFv(void)
  * Address:	80462F04
  * Size:	000130
  */
-void playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei(void)
+void PSM::Navi::playWalkSound( (PSM::Navi::FootType, int))
 {
 /*
 .loc_0x0:
@@ -8729,7 +8729,7 @@ void playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei(void)
  * Address:	80463034
  * Size:	000158
  */
-void __ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory(void)
+void PSM::Cluster::__ct( (Game::Creature *, PSSystem::ClusterSe::Factory &))
 {
 /*
 .loc_0x0:
@@ -8833,7 +8833,7 @@ void __ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory(void)
  * Address:	8046318C
  * Size:	000060
  */
-void startClusterSound__Q23PSM7ClusterFUc(void)
+void PSM::Cluster::startClusterSound( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -8969,7 +8969,7 @@ void PSSetLastBeedamaDirection(bool, bool)
  * Address:	804632BC
  * Size:	0000E8
  */
-void __dt__Q23PSM7ClusterFv(void)
+void PSM::Cluster::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9043,7 +9043,7 @@ void __dt__Q23PSM7ClusterFv(void)
  * Address:	804633A4
  * Size:	000008
  */
-void getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl(void)
+void PSM::SceneBase::getSeSceneGate( (PSM::ObjBase *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -9057,7 +9057,7 @@ void getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl(void)
  * Address:	804633AC
  * Size:	000008
  */
-void isDemoScene__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::isDemoScene(void)
 {
 /*
 .loc_0x0:
@@ -9071,7 +9071,7 @@ void isDemoScene__Q23PSM9SceneBaseFv(void)
  * Address:	804633B4
  * Size:	000004
  */
-void onDisappear__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::onDisappear(void)
 {
 /*
 .loc_0x0:
@@ -9084,7 +9084,7 @@ void onDisappear__Q23PSM9EnemyBossFv(void)
  * Address:	804633B8
  * Size:	000004
  */
-void onAppear__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::onAppear(void)
 {
 /*
 .loc_0x0:
@@ -9097,7 +9097,7 @@ void onAppear__Q23PSM9EnemyBossFv(void)
  * Address:	804633BC
  * Size:	000004
  */
-void onAppear1st__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::onAppear1st(void)
 {
 /*
 .loc_0x0:
@@ -9110,7 +9110,7 @@ void onAppear1st__Q23PSM9EnemyBossFv(void)
  * Address:	804633C0
  * Size:	000008
  */
-void getCastType__Q23PSM4NaviFv(void)
+void PSM::Navi::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9124,7 +9124,7 @@ void getCastType__Q23PSM4NaviFv(void)
  * Address:	804633C8
  * Size:	0000E8
  */
-void __dt__Q23PSM4PikiFv(void)
+void PSM::Piki::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9198,7 +9198,7 @@ void __dt__Q23PSM4PikiFv(void)
  * Address:	804634B0
  * Size:	000008
  */
-void getCastType__Q23PSM4PikiFv(void)
+void PSM::Piki::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9212,7 +9212,7 @@ void getCastType__Q23PSM4PikiFv(void)
  * Address:	804634B8
  * Size:	000168
  */
-void __dt__Q23PSM10PelletItemFv(void)
+void PSM::PelletItem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9320,7 +9320,7 @@ void __dt__Q23PSM10PelletItemFv(void)
  * Address:	80463620
  * Size:	000008
  */
-void getCastType__Q23PSM10PelletItemFv(void)
+void PSM::PelletItem::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9334,7 +9334,7 @@ void getCastType__Q23PSM10PelletItemFv(void)
  * Address:	80463628
  * Size:	000168
  */
-void __dt__Q23PSM13PelletOtakaraFv(void)
+void PSM::PelletOtakara::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9442,7 +9442,7 @@ void __dt__Q23PSM13PelletOtakaraFv(void)
  * Address:	80463790
  * Size:	000008
  */
-void getCastType__Q23PSM13PelletOtakaraFv(void)
+void PSM::PelletOtakara::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9456,7 +9456,7 @@ void getCastType__Q23PSM13PelletOtakaraFv(void)
  * Address:	80463798
  * Size:	000008
  */
-void getCastType__Q23PSM7OtakaraFv(void)
+void PSM::Otakara::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9470,7 +9470,7 @@ void getCastType__Q23PSM7OtakaraFv(void)
  * Address:	804637A0
  * Size:	000148
  */
-void __dt__Q23PSM8WorkItemFv(void)
+void PSM::WorkItem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9570,7 +9570,7 @@ void __dt__Q23PSM8WorkItemFv(void)
  * Address:	804638E8
  * Size:	000008
  */
-void getCastType__Q23PSM8WorkItemFv(void)
+void PSM::WorkItem::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9584,7 +9584,7 @@ void getCastType__Q23PSM8WorkItemFv(void)
  * Address:	804638F0
  * Size:	000008
  */
-void is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv(void)
+void PSM::OtakaraEventLink_2PBattle::is2PBattle(void)
 {
 /*
 .loc_0x0:
@@ -9598,7 +9598,7 @@ void is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv(void)
  * Address:	804638F8
  * Size:	0001C0
  */
-void __dt__Q23PSM19Enemy_SpecialChappyFv(void)
+void PSM::Enemy_SpecialChappy::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9732,7 +9732,7 @@ void __dt__Q23PSM19Enemy_SpecialChappyFv(void)
  * Address:	80463AB8
  * Size:	000008
  */
-void getCastType__Q23PSM8EnemyBigFv(void)
+void PSM::EnemyBig::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9746,7 +9746,7 @@ void getCastType__Q23PSM8EnemyBigFv(void)
  * Address:	80463AC0
  * Size:	000008
  */
-void getCastType__Q23PSM12EnemyBigBossFv(void)
+void PSM::EnemyBigBoss::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9760,7 +9760,7 @@ void getCastType__Q23PSM12EnemyBigBossFv(void)
  * Address:	80463AC8
  * Size:	000008
  */
-void getCastType__Q23PSM12EnemyMidBossFv(void)
+void PSM::EnemyMidBoss::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9774,7 +9774,7 @@ void getCastType__Q23PSM12EnemyMidBossFv(void)
  * Address:	80463AD0
  * Size:	000008
  */
-void getCastType__Q23PSM9EnemyBossFv(void)
+void PSM::EnemyBoss::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -9788,7 +9788,7 @@ void getCastType__Q23PSM9EnemyBossFv(void)
  * Address:	80463AD8
  * Size:	000100
  */
-void __dt__Q23PSM9TsuyukusaFv(void)
+void PSM::Tsuyukusa::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9870,7 +9870,7 @@ void __dt__Q23PSM9TsuyukusaFv(void)
  * Address:	80463BD8
  * Size:	000190
  */
-void __dt__Q23PSM18EnemyNotAggressiveFv(void)
+void PSM::EnemyNotAggressive::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9992,7 +9992,7 @@ void __dt__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463D68
  * Size:	000008
  */
-void getCastType__Q23PSM18EnemyNotAggressiveFv(void)
+void PSM::EnemyNotAggressive::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -10006,7 +10006,7 @@ void getCastType__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463D70
  * Size:	000004
  */
-void updateKehai__Q23PSM18EnemyNotAggressiveFv(void)
+void PSM::EnemyNotAggressive::updateKehai(void)
 {
 /*
 .loc_0x0:
@@ -10019,7 +10019,7 @@ void updateKehai__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463D74
  * Size:	000004
  */
-void updateBattle__Q23PSM18EnemyNotAggressiveFv(void)
+void PSM::EnemyNotAggressive::updateBattle(void)
 {
 /*
 .loc_0x0:
@@ -10032,7 +10032,7 @@ void updateBattle__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463D78
  * Size:	000004
  */
-void battleOff__Q23PSM18EnemyNotAggressiveFv(void)
+void PSM::EnemyNotAggressive::battleOff(void)
 {
 /*
 .loc_0x0:
@@ -10045,7 +10045,7 @@ void battleOff__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463D7C
  * Size:	000004
  */
-void battleOn__Q23PSM18EnemyNotAggressiveFv(void)
+void PSM::EnemyNotAggressive::battleOn(void)
 {
 /*
 .loc_0x0:
@@ -10058,7 +10058,7 @@ void battleOn__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463D80
  * Size:	000004
  */
-void kehaiOff__Q23PSM18EnemyNotAggressiveFv(void)
+void PSM::EnemyNotAggressive::kehaiOff(void)
 {
 /*
 .loc_0x0:
@@ -10071,7 +10071,7 @@ void kehaiOff__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463D84
  * Size:	000004
  */
-void kehaiOn__Q23PSM18EnemyNotAggressiveFv(void)
+void PSM::EnemyNotAggressive::kehaiOn(void)
 {
 /*
 .loc_0x0:
@@ -10084,7 +10084,7 @@ void kehaiOn__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463D88
  * Size:	000008
  */
-void getCastType__Q23PSM13CreatureAnimeFv(void)
+void PSM::CreatureAnime::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -10098,7 +10098,7 @@ void getCastType__Q23PSM13CreatureAnimeFv(void)
  * Address:	80463D90
  * Size:	0000F8
  */
-void __dt__Q23PSM4NaviFv(void)
+void PSM::Navi::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10176,7 +10176,7 @@ void __dt__Q23PSM4NaviFv(void)
  * Address:	80463E88
  * Size:	000008
  */
-void @16@__dt__Q23PSM7ObjBaseFv(void)
+void @16@PSM::ObjBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10190,7 +10190,7 @@ void @16@__dt__Q23PSM7ObjBaseFv(void)
  * Address:	80463E90
  * Size:	000008
  */
-void @12@__dt__Q23PSM6ObjMgrFv(void)
+void @12@PSM::ObjMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10204,7 +10204,7 @@ void @12@__dt__Q23PSM6ObjMgrFv(void)
  * Address:	80463E98
  * Size:	000008
  */
-void @16@__dt__Q23PSM6ObjMgrFv(void)
+void @16@PSM::ObjMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10218,7 +10218,7 @@ void @16@__dt__Q23PSM6ObjMgrFv(void)
  * Address:	80463EA0
  * Size:	000008
  */
-void @16@__dt__Q23PSM8CreatureFv(void)
+void @16@PSM::Creature::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10232,7 +10232,7 @@ void @16@__dt__Q23PSM8CreatureFv(void)
  * Address:	80463EA8
  * Size:	000008
  */
-void @16@__dt__Q23PSM11CreatureObjFv(void)
+void @16@PSM::CreatureObj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10246,7 +10246,7 @@ void @16@__dt__Q23PSM11CreatureObjFv(void)
  * Address:	80463EB0
  * Size:	000008
  */
-void @48@__dt__Q23PSM11CreatureObjFv(void)
+void @48@PSM::CreatureObj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10260,7 +10260,7 @@ void @48@__dt__Q23PSM11CreatureObjFv(void)
  * Address:	80463EB8
  * Size:	000008
  */
-void @16@__dt__Q23PSM13CreatureAnimeFv(void)
+void @16@PSM::CreatureAnime::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10274,7 +10274,7 @@ void @16@__dt__Q23PSM13CreatureAnimeFv(void)
  * Address:	80463EC0
  * Size:	000008
  */
-void @48@__dt__Q23PSM13CreatureAnimeFv(void)
+void @48@PSM::CreatureAnime::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10288,7 +10288,7 @@ void @48@__dt__Q23PSM13CreatureAnimeFv(void)
  * Address:	80463EC8
  * Size:	000008
  */
-void @48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc(void)
+void @48@PSM::CreatureAnime::startAnimSound( (unsigned long, JAISound **, JAInter::Actor *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -10302,7 +10302,7 @@ void @48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc(
  * Address:	80463ED0
  * Size:	000008
  */
-void @16@__dt__Q23PSM9EnemyBaseFv(void)
+void @16@PSM::EnemyBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10316,7 +10316,7 @@ void @16@__dt__Q23PSM9EnemyBaseFv(void)
  * Address:	80463ED8
  * Size:	000008
  */
-void @48@__dt__Q23PSM9EnemyBaseFv(void)
+void @48@PSM::EnemyBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10330,7 +10330,7 @@ void @48@__dt__Q23PSM9EnemyBaseFv(void)
  * Address:	80463EE0
  * Size:	000008
  */
-void @16@__dt__Q23PSM18EnemyNotAggressiveFv(void)
+void @16@PSM::EnemyNotAggressive::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10344,7 +10344,7 @@ void @16@__dt__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463EE8
  * Size:	000008
  */
-void @48@__dt__Q23PSM18EnemyNotAggressiveFv(void)
+void @48@PSM::EnemyNotAggressive::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10358,7 +10358,7 @@ void @48@__dt__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463EF0
  * Size:	000008
  */
-void @184@battleOff__Q23PSM18EnemyNotAggressiveFv(void)
+void @184@PSM::EnemyNotAggressive::battleOff(void)
 {
 /*
 .loc_0x0:
@@ -10372,7 +10372,7 @@ void @184@battleOff__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463EF8
  * Size:	000008
  */
-void @184@battleOn__Q23PSM18EnemyNotAggressiveFv(void)
+void @184@PSM::EnemyNotAggressive::battleOn(void)
 {
 /*
 .loc_0x0:
@@ -10386,7 +10386,7 @@ void @184@battleOn__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463F00
  * Size:	000008
  */
-void @204@kehaiOff__Q23PSM18EnemyNotAggressiveFv(void)
+void @204@PSM::EnemyNotAggressive::kehaiOff(void)
 {
 /*
 .loc_0x0:
@@ -10400,7 +10400,7 @@ void @204@kehaiOff__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463F08
  * Size:	000008
  */
-void @204@kehaiOn__Q23PSM18EnemyNotAggressiveFv(void)
+void @204@PSM::EnemyNotAggressive::kehaiOn(void)
 {
 /*
 .loc_0x0:
@@ -10414,7 +10414,7 @@ void @204@kehaiOn__Q23PSM18EnemyNotAggressiveFv(void)
  * Address:	80463F10
  * Size:	000008
  */
-void @16@__dt__Q23PSM9TsuyukusaFv(void)
+void @16@PSM::Tsuyukusa::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10428,7 +10428,7 @@ void @16@__dt__Q23PSM9TsuyukusaFv(void)
  * Address:	80463F18
  * Size:	000008
  */
-void @48@__dt__Q23PSM9TsuyukusaFv(void)
+void @48@PSM::Tsuyukusa::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10442,7 +10442,7 @@ void @48@__dt__Q23PSM9TsuyukusaFv(void)
  * Address:	80463F20
  * Size:	000008
  */
-void @16@__dt__Q23PSM8EnemyBigFv(void)
+void @16@PSM::EnemyBig::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10456,7 +10456,7 @@ void @16@__dt__Q23PSM8EnemyBigFv(void)
  * Address:	80463F28
  * Size:	000008
  */
-void @48@__dt__Q23PSM8EnemyBigFv(void)
+void @48@PSM::EnemyBig::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10470,7 +10470,7 @@ void @48@__dt__Q23PSM8EnemyBigFv(void)
  * Address:	80463F30
  * Size:	000008
  */
-void @16@__dt__Q23PSM9EnemyBossFv(void)
+void @16@PSM::EnemyBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10484,7 +10484,7 @@ void @16@__dt__Q23PSM9EnemyBossFv(void)
  * Address:	80463F38
  * Size:	000008
  */
-void @48@__dt__Q23PSM9EnemyBossFv(void)
+void @48@PSM::EnemyBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10498,7 +10498,7 @@ void @48@__dt__Q23PSM9EnemyBossFv(void)
  * Address:	80463F40
  * Size:	000008
  */
-void @16@__dt__Q23PSM12EnemyMidBossFv(void)
+void @16@PSM::EnemyMidBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10512,7 +10512,7 @@ void @16@__dt__Q23PSM12EnemyMidBossFv(void)
  * Address:	80463F48
  * Size:	000008
  */
-void @48@__dt__Q23PSM12EnemyMidBossFv(void)
+void @48@PSM::EnemyMidBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10526,7 +10526,7 @@ void @48@__dt__Q23PSM12EnemyMidBossFv(void)
  * Address:	80463F50
  * Size:	000008
  */
-void @16@__dt__Q23PSM12EnemyBigBossFv(void)
+void @16@PSM::EnemyBigBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10540,7 +10540,7 @@ void @16@__dt__Q23PSM12EnemyBigBossFv(void)
  * Address:	80463F58
  * Size:	000008
  */
-void @48@__dt__Q23PSM12EnemyBigBossFv(void)
+void @48@PSM::EnemyBigBoss::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10554,7 +10554,7 @@ void @48@__dt__Q23PSM12EnemyBigBossFv(void)
  * Address:	80463F60
  * Size:	000008
  */
-void @16@__dt__Q23PSM19Enemy_SpecialChappyFv(void)
+void @16@PSM::Enemy_SpecialChappy::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10568,7 +10568,7 @@ void @16@__dt__Q23PSM19Enemy_SpecialChappyFv(void)
  * Address:	80463F68
  * Size:	000008
  */
-void @48@__dt__Q23PSM19Enemy_SpecialChappyFv(void)
+void @48@PSM::Enemy_SpecialChappy::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10582,7 +10582,7 @@ void @48@__dt__Q23PSM19Enemy_SpecialChappyFv(void)
  * Address:	80463F70
  * Size:	000008
  */
-void @16@__dt__Q23PSM8WorkItemFv(void)
+void @16@PSM::WorkItem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10596,7 +10596,7 @@ void @16@__dt__Q23PSM8WorkItemFv(void)
  * Address:	80463F78
  * Size:	000008
  */
-void @48@__dt__Q23PSM8WorkItemFv(void)
+void @48@PSM::WorkItem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10610,7 +10610,7 @@ void @48@__dt__Q23PSM8WorkItemFv(void)
  * Address:	80463F80
  * Size:	000008
  */
-void @16@__dt__Q23PSM7OtakaraFv(void)
+void @16@PSM::Otakara::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10624,7 +10624,7 @@ void @16@__dt__Q23PSM7OtakaraFv(void)
  * Address:	80463F88
  * Size:	000008
  */
-void @48@__dt__Q23PSM7OtakaraFv(void)
+void @48@PSM::Otakara::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10638,7 +10638,7 @@ void @48@__dt__Q23PSM7OtakaraFv(void)
  * Address:	80463F90
  * Size:	000008
  */
-void @16@__dt__Q23PSM13PelletOtakaraFv(void)
+void @16@PSM::PelletOtakara::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10652,7 +10652,7 @@ void @16@__dt__Q23PSM13PelletOtakaraFv(void)
  * Address:	80463F98
  * Size:	000008
  */
-void @48@__dt__Q23PSM13PelletOtakaraFv(void)
+void @48@PSM::PelletOtakara::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10666,7 +10666,7 @@ void @48@__dt__Q23PSM13PelletOtakaraFv(void)
  * Address:	80463FA0
  * Size:	000008
  */
-void @16@__dt__Q23PSM10PelletItemFv(void)
+void @16@PSM::PelletItem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10680,7 +10680,7 @@ void @16@__dt__Q23PSM10PelletItemFv(void)
  * Address:	80463FA8
  * Size:	000008
  */
-void @48@__dt__Q23PSM10PelletItemFv(void)
+void @48@PSM::PelletItem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10694,7 +10694,7 @@ void @48@__dt__Q23PSM10PelletItemFv(void)
  * Address:	80463FB0
  * Size:	000008
  */
-void @16@__dt__Q23PSM4PikiFv(void)
+void @16@PSM::Piki::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10708,7 +10708,7 @@ void @16@__dt__Q23PSM4PikiFv(void)
  * Address:	80463FB8
  * Size:	000008
  */
-void @48@__dt__Q23PSM4PikiFv(void)
+void @48@PSM::Piki::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10722,7 +10722,7 @@ void @48@__dt__Q23PSM4PikiFv(void)
  * Address:	80463FC0
  * Size:	000008
  */
-void @16@__dt__Q23PSM4NaviFv(void)
+void @16@PSM::Navi::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10736,7 +10736,7 @@ void @16@__dt__Q23PSM4NaviFv(void)
  * Address:	80463FC8
  * Size:	000008
  */
-void @48@startSound__Q23PSM4NaviFUlUl(void)
+void @48@PSM::Navi::startSound( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -10750,7 +10750,7 @@ void @48@startSound__Q23PSM4NaviFUlUl(void)
  * Address:	80463FD0
  * Size:	000008
  */
-void @48@__dt__Q23PSM4NaviFv(void)
+void @48@PSM::Navi::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10764,7 +10764,7 @@ void @48@__dt__Q23PSM4NaviFv(void)
  * Address:	80463FD8
  * Size:	000008
  */
-void @16@__dt__Q23PSM7ClusterFv(void)
+void @16@PSM::Cluster::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10778,7 +10778,7 @@ void @16@__dt__Q23PSM7ClusterFv(void)
  * Address:	80463FE0
  * Size:	000008
  */
-void @48@__dt__Q23PSM7ClusterFv(void)
+void @48@PSM::Cluster::__dt(void)
 {
 /*
 .loc_0x0:

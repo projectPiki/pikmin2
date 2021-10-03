@@ -5,7 +5,7 @@
  * Address:	8030F31C
  * Size:	000080
  */
-void isID__Q32og6Screen14DispMemberBaseFUlUx(void)
+void og::Screen::DispMemberBase::isID( (unsigned long, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -53,7 +53,7 @@ void isID__Q32og6Screen14DispMemberBaseFUlUx(void)
  * Address:	8030F39C
  * Size:	000040
  */
-void getMemberName__Q32og6Screen14DispMemberBaseFPc(void)
+void og::Screen::DispMemberBase::getMemberName( (char *))
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void getMemberName__Q32og6Screen14DispMemberBaseFPc(void)
  * Address:	8030F3DC
  * Size:	0000E4
  */
-void setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase(void)
+void og::Screen::DispMemberBase::setSubMember( (og::Screen::DispMemberBase *))
 {
 /*
 .loc_0x0:
@@ -156,7 +156,7 @@ void setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase(vo
  * Address:	8030F4C0
  * Size:	00010C
  */
-void getSubMember__Q32og6Screen14DispMemberBaseFUlUx(void)
+void og::Screen::DispMemberBase::getSubMember( (unsigned long, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void getSubMember__Q32og6Screen14DispMemberBaseFUlUx(void)
  * Address:	8030F5CC
  * Size:	000034
  */
-void setSubMemberAll__Q32og6Screen14DispMemberBaseFv(void)
+void og::Screen::DispMemberBase::setSubMemberAll(void)
 {
 /*
 .loc_0x0:

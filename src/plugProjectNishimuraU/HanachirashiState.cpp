@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8029F228
  * Size:	000480
  */
-void init__Q34Game12Hanachirashi3FSMFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void init__Q34Game12Hanachirashi3FSMFPQ24Game9EnemyBase(void)
  * Address:	8029F6A8
  * Size:	0000AC
  */
-void init__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void init__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	8029F754
  * Size:	0000B8
  */
-void exec__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -464,7 +464,7 @@ void exec__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8029F80C
  * Size:	000004
  */
-void cleanup__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -477,7 +477,7 @@ void cleanup__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	8029F810
  * Size:	000054
  */
-void init__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -510,7 +510,7 @@ void init__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	8029F864
  * Size:	000138
  */
-void exec__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -610,7 +610,7 @@ void exec__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8029F99C
  * Size:	000004
  */
-void cleanup__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void cleanup__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8029F9A0
  * Size:	00004C
  */
-void init__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -654,7 +654,7 @@ void init__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	8029F9EC
  * Size:	0001A0
  */
-void exec__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -782,7 +782,7 @@ void exec__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	8029FB8C
  * Size:	000004
  */
-void cleanup__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -795,7 +795,7 @@ void cleanup__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	8029FB90
  * Size:	000030
  */
-void init__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateChase::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -819,7 +819,7 @@ void init__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBasePQ24Game8StateArg
  * Address:	8029FBC0
  * Size:	000530
  */
-void exec__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateChase::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1197,7 +1197,7 @@ void exec__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBase(void)
  * Address:	802A00F0
  * Size:	000024
  */
-void cleanup__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateChase::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1218,7 +1218,7 @@ void cleanup__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBase(void)
  * Address:	802A0114
  * Size:	000124
  */
-void init__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateChaseInside::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1313,7 +1313,7 @@ void init__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBasePQ24Game8St
  * Address:	802A0238
  * Size:	00037C
  */
-void exec__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateChaseInside::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1568,7 +1568,7 @@ void exec__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBase(void)
  * Address:	802A05B4
  * Size:	000024
  */
-void cleanup__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateChaseInside::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1589,7 +1589,7 @@ void cleanup__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBase(void)
  * Address:	802A05D8
  * Size:	000090
  */
-void init__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1637,7 +1637,7 @@ void init__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateAr
  * Address:	802A0668
  * Size:	00011C
  */
-void exec__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1730,7 +1730,7 @@ void exec__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802A0784
  * Size:	000054
  */
-void cleanup__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1763,7 +1763,7 @@ void cleanup__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802A07D8
  * Size:	000068
  */
-void init__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateFall::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1801,7 +1801,7 @@ void init__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	802A0840
  * Size:	0001A4
  */
-void exec__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateFall::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1932,7 +1932,7 @@ void exec__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBase(void)
  * Address:	802A09E4
  * Size:	000038
  */
-void cleanup__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateFall::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1958,7 +1958,7 @@ void cleanup__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBase(void)
  * Address:	802A0A1C
  * Size:	000070
  */
-void init__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateLand::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1998,7 +1998,7 @@ void init__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	802A0A8C
  * Size:	000080
  */
-void exec__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateLand::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2046,7 +2046,7 @@ void exec__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBase(void)
  * Address:	802A0B0C
  * Size:	000024
  */
-void cleanup__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateLand::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2067,7 +2067,7 @@ void cleanup__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBase(void)
  * Address:	802A0B30
  * Size:	000068
  */
-void init__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateGround::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2105,7 +2105,7 @@ void init__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBasePQ24Game8StateAr
  * Address:	802A0B98
  * Size:	000114
  */
-void exec__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateGround::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2196,7 +2196,7 @@ void exec__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBase(void)
  * Address:	802A0CAC
  * Size:	000024
  */
-void cleanup__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateGround::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2217,7 +2217,7 @@ void cleanup__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBase(void)
  * Address:	802A0CD0
  * Size:	000064
  */
-void init__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateTakeOff::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2254,7 +2254,7 @@ void init__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateA
  * Address:	802A0D34
  * Size:	0000EC
  */
-void exec__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateTakeOff::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2333,7 +2333,7 @@ void exec__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBase(void)
  * Address:	802A0E20
  * Size:	000038
  */
-void cleanup__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateTakeOff::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2359,7 +2359,7 @@ void cleanup__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBase(void)
  * Address:	802A0E58
  * Size:	000064
  */
-void init__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateFlyFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2396,7 +2396,7 @@ void init__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBasePQ24Game8State
  * Address:	802A0EBC
  * Size:	0000E4
  */
-void exec__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateFlyFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2471,7 +2471,7 @@ void exec__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBase(void)
  * Address:	802A0FA0
  * Size:	000024
  */
-void cleanup__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateFlyFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2492,7 +2492,7 @@ void cleanup__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBase(void)
  * Address:	802A0FC4
  * Size:	000064
  */
-void init__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateGroundFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2529,7 +2529,7 @@ void init__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBasePQ24Game8St
  * Address:	802A1028
  * Size:	000100
  */
-void exec__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateGroundFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2611,7 +2611,7 @@ void exec__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBase(void)
  * Address:	802A1128
  * Size:	000024
  */
-void cleanup__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateGroundFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2632,7 +2632,7 @@ void cleanup__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBase(void)
  * Address:	802A114C
  * Size:	000068
  */
-void init__Q34Game12Hanachirashi10StateLaughFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Hanachirashi::StateLaugh::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2670,7 +2670,7 @@ void init__Q34Game12Hanachirashi10StateLaughFPQ24Game9EnemyBasePQ24Game8StateArg
  * Address:	802A11B4
  * Size:	0000DC
  */
-void exec__Q34Game12Hanachirashi10StateLaughFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateLaugh::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2743,7 +2743,7 @@ void exec__Q34Game12Hanachirashi10StateLaughFPQ24Game9EnemyBase(void)
  * Address:	802A1290
  * Size:	000024
  */
-void cleanup__Q34Game12Hanachirashi10StateLaughFPQ24Game9EnemyBase(void)
+void Game::Hanachirashi::StateLaugh::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

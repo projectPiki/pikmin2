@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000110
  */
-void __ct__Q24Game11MovieConfigFv(void)
+void Game::MovieConfig::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game11MovieConfigFv(void)
  * Address:	80431830
  * Size:	000070
  */
-void __dt__Q34Game11MovieConfig6TParmsFv(void)
+void Game::MovieConfig::TParms::__dt(void)
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void __dt__Q34Game11MovieConfig6TParmsFv(void)
  * Address:	804318A0
  * Size:	000004
  */
-void dump__Q24Game11MovieConfigFv(void)
+void Game::MovieConfig::dump(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void dump__Q24Game11MovieConfigFv(void)
  * Address:	804318A4
  * Size:	00001C
  */
-void isSkippable__Q24Game11MovieConfigFv(void)
+void Game::MovieConfig::isSkippable(void)
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void isSkippable__Q24Game11MovieConfigFv(void)
  * Address:	804318C0
  * Size:	00000C
  */
-void isNeverSkippable__Q24Game11MovieConfigFv(void)
+void Game::MovieConfig::isNeverSkippable(void)
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void isNeverSkippable__Q24Game11MovieConfigFv(void)
  * Address:	804318CC
  * Size:	000054
  */
-void is__Q24Game11MovieConfigFPc(void)
+void Game::MovieConfig::is( (char *))
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void is__Q24Game11MovieConfigFPc(void)
  * Address:	80431920
  * Size:	0002D4
  */
-void read__Q24Game11MovieConfigFR6Stream(void)
+void Game::MovieConfig::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void read__Q24Game11MovieConfigFR6Stream(void)
  * Address:	80431BF4
  * Size:	000038
  */
-void construct__Q24Game9MovieListFv(void)
+void Game::MovieList::construct(void)
 {
 /*
 .loc_0x0:
@@ -394,7 +394,7 @@ void construct__Q24Game9MovieListFv(void)
  * Address:	80431C2C
  * Size:	0001BC
  */
-void __ct__Q24Game9MovieListFv(void)
+void Game::MovieList::__ct(void)
 {
 /*
 .loc_0x0:
@@ -521,7 +521,7 @@ void __ct__Q24Game9MovieListFv(void)
  * Address:	80431DE8
  * Size:	000098
  */
-void __dt__Q24Game11MovieConfigFv(void)
+void Game::MovieConfig::__dt(void)
 {
 /*
 .loc_0x0:
@@ -575,7 +575,7 @@ void __dt__Q24Game11MovieConfigFv(void)
  * Address:	80431E80
  * Size:	0000B0
  */
-void findConfig__Q24Game9MovieListFPcPc(void)
+void Game::MovieList::findConfig( (char *, char *))
 {
 /*
 .loc_0x0:
@@ -643,7 +643,7 @@ void findConfig__Q24Game9MovieListFPcPc(void)
  * Address:	........
  * Size:	000094
  */
-void getConfig__Q24Game9MovieListFi(void)
+void Game::MovieList::getConfig( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -653,7 +653,7 @@ void getConfig__Q24Game9MovieListFi(void)
  * Address:	80431F30
  * Size:	000164
  */
-void read__Q24Game9MovieListFR6Stream(void)
+void Game::MovieList::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -760,7 +760,7 @@ void read__Q24Game9MovieListFR6Stream(void)
  * Address:	80432094
  * Size:	0000B4
  */
-void __dt__Q24Game9MovieListFv(void)
+void Game::MovieList::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802AD090
  * Size:	000008
  */
-void setAnimMgr__Q34Game6Kurage14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Kurage::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game6Kurage14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802AD098
  * Size:	000008
  */
-void getAnimator__Q34Game6Kurage14ProperAnimatorFi(void)
+void Game::Kurage::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game6Kurage14ProperAnimatorFi(void)
  * Address:	802AD0A0
  * Size:	00005C
  */
-void __dt__Q34Game6Kurage14ProperAnimatorFv(void)
+void Game::Kurage::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game6Kurage14ProperAnimatorFv(void)
  * Address:	802AD0FC
  * Size:	000008
  */
-void getAnimator__Q34Game6Kurage14ProperAnimatorFv(void)
+void Game::Kurage::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

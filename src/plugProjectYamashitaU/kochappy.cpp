@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8010F31C
  * Size:	000130
  */
-void __ct__Q34Game8Kochappy3ObjFv(void)
+void Game::Kochappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q34Game8Kochappy3ObjFv(void)
  * Address:	8010F44C
  * Size:	00004C
  */
-void setFSM__Q34Game12KochappyBase3ObjFPQ34Game12KochappyBase3FSM(void)
+void Game::KochappyBase::Obj::setFSM( (Game::KochappyBase::FSM *))
 {
 /*
 .loc_0x0:
@@ -140,7 +140,7 @@ void setFSM__Q34Game12KochappyBase3ObjFPQ34Game12KochappyBase3FSM(void)
  * Address:	8010F498
  * Size:	000048
  */
-void __dt__Q24Game17EnemyAnimatorBaseFv(void)
+void Game::EnemyAnimatorBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -172,7 +172,7 @@ void __dt__Q24Game17EnemyAnimatorBaseFv(void)
  * Address:	8010F4E0
  * Size:	0000BC
  */
-void __dt__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -235,7 +235,7 @@ void __dt__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8010F59C
  * Size:	0001A4
  */
-void changeMaterial__Q34Game8Kochappy3ObjFv(void)
+void Game::Kochappy::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -356,7 +356,7 @@ void changeMaterial__Q34Game8Kochappy3ObjFv(void)
  * Address:	8010F740
  * Size:	000008
  */
-void getChangeTexture__Q34Game8Kochappy3MgrFv(void)
+void Game::Kochappy::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void getChangeTexture__Q34Game8Kochappy3MgrFv(void)
  * Address:	8010F748
  * Size:	0000EC
  */
-void __dt__Q34Game8Kochappy3ObjFv(void)
+void Game::Kochappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -445,7 +445,7 @@ void __dt__Q34Game8Kochappy3ObjFv(void)
  * Address:	8010F834
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8Kochappy3ObjFv(void)
+void Game::Kochappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -459,7 +459,7 @@ void getEnemyTypeID__Q34Game8Kochappy3ObjFv(void)
  * Address:	8010F83C
  * Size:	000020
  */
-void setAnimationSpeed__Q34Game12KochappyBase3ObjFf(void)
+void Game::KochappyBase::Obj::setAnimationSpeed( (float))
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void setAnimationSpeed__Q34Game12KochappyBase3ObjFf(void)
  * Address:	8010F85C
  * Size:	000008
  */
-void getMouthSlots__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -493,7 +493,7 @@ void getMouthSlots__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8010F864
  * Size:	000004
  */
-void resetEnemyNonStone__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::resetEnemyNonStone(void)
 {
 /*
 .loc_0x0:
@@ -506,7 +506,7 @@ void resetEnemyNonStone__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8010F868
  * Size:	000004
  */
-void setEnemyNonStone__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::setEnemyNonStone(void)
 {
 /*
 .loc_0x0:
@@ -519,7 +519,7 @@ void setEnemyNonStone__Q34Game12KochappyBase3ObjFv(void)
  * Address:	8010F86C
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game12KochappyBase3ObjFv(void)
+void Game::KochappyBase::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:

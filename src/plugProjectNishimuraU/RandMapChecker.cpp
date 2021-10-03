@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80245664
  * Size:	000008
  */
-void __ct__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapChecker::__ct( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void __ct__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
  * Address:	8024566C
  * Size:	00007C
  */
-void isPutOnMap__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapChecker::isPutOnMap( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -80,7 +80,7 @@ void isPutOnMap__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
  * Address:	802456E8
  * Size:	0000F0
  */
-void isPartsOnParts__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapChecker::isPartsOnParts( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void isPartsOnParts__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
  * Address:	802457D8
  * Size:	000220
  */
-void isDoorOnParts__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapChecker::isDoorOnParts( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -338,7 +338,7 @@ void isDoorOnParts__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
  * Address:	802459F8
  * Size:	0001E8
  */
-void isPartsOnDoor__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapChecker::isPartsOnDoor( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -498,7 +498,7 @@ void isPartsOnDoor__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode(void)
  * Address:	80245BE0
  * Size:	00007C
  */
-void isInnerBox__Q34Game4Cave14RandMapCheckerFiiiiiiii(void)
+void Game::Cave::RandMapChecker::isInnerBox( (int, int, int, int, int, int, int, int))
 {
 /*
 .loc_0x0:

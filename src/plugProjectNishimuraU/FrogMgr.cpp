@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80258120
  * Size:	000050
  */
-void __ct__Q34Game4Frog3MgrFiUc(void)
+void Game::Frog::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Frog3MgrFiUc(void)
  * Address:	80258170
  * Size:	000048
  */
-void doAlloc__Q34Game4Frog3MgrFv(void)
+void Game::Frog::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game4Frog3MgrFv(void)
  * Address:	802581B8
  * Size:	000154
  */
-void __ct__Q34Game4Frog5ParmsFv(void)
+void Game::Frog::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void __ct__Q34Game4Frog5ParmsFv(void)
  * Address:	8025830C
  * Size:	000060
  */
-void createObj__Q34Game4Frog3MgrFi(void)
+void Game::Frog::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void createObj__Q34Game4Frog3MgrFi(void)
  * Address:	8025836C
  * Size:	0000BC
  */
-void __dt__Q34Game4Frog3ObjFv(void)
+void Game::Frog::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -277,7 +277,7 @@ void __dt__Q34Game4Frog3ObjFv(void)
  * Address:	80258428
  * Size:	000010
  */
-void getEnemy__Q34Game4Frog3MgrFi(void)
+void Game::Frog::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -293,7 +293,7 @@ void getEnemy__Q34Game4Frog3MgrFi(void)
  * Address:	80258438
  * Size:	000050
  */
-void read__Q34Game4Frog5ParmsFR6Stream(void)
+void Game::Frog::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -325,7 +325,7 @@ void read__Q34Game4Frog5ParmsFR6Stream(void)
  * Address:	80258488
  * Size:	0000B0
  */
-void __dt__Q34Game4Frog3MgrFv(void)
+void Game::Frog::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void __dt__Q34Game4Frog3MgrFv(void)
  * Address:	80258538
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Frog3MgrFv(void)
+void Game::Frog::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -399,7 +399,7 @@ void getEnemyTypeID__Q34Game4Frog3MgrFv(void)
  * Address:	80258540
  * Size:	000008
  */
-void @4@__dt__Q34Game4Frog3MgrFv(void)
+void @4@Game::Frog::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

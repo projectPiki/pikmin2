@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802BC138
  * Size:	000138
  */
-void __ct__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BC270
  * Size:	000004
  */
-void setInitialSetting__Q34Game8Imomushi3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Imomushi::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game8Imomushi3ObjFPQ24Game21EnemyInitialParamBase(voi
  * Address:	802BC274
  * Size:	0000E8
  */
-void onInit__Q34Game8Imomushi3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Imomushi::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -198,7 +198,7 @@ void onInit__Q34Game8Imomushi3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802BC35C
  * Size:	000044
  */
-void onKill__Q34Game8Imomushi3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Imomushi::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void onKill__Q34Game8Imomushi3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802BC3A0
  * Size:	000034
  */
-void doUpdate__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -252,7 +252,7 @@ void doUpdate__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BC3D4
  * Size:	0004D0
  */
-void doAnimationStick__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doAnimationStick(void)
 {
 /*
 .loc_0x0:
@@ -618,7 +618,7 @@ void doAnimationStick__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BC8A4
  * Size:	000004
  */
-void doDirectDraw__Q34Game8Imomushi3ObjFR8Graphics(void)
+void Game::Imomushi::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -631,7 +631,7 @@ void doDirectDraw__Q34Game8Imomushi3ObjFR8Graphics(void)
  * Address:	802BC8A8
  * Size:	000020
  */
-void doDebugDraw__Q34Game8Imomushi3ObjFR8Graphics(void)
+void Game::Imomushi::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -651,7 +651,7 @@ void doDebugDraw__Q34Game8Imomushi3ObjFR8Graphics(void)
  * Address:	802BC8C8
  * Size:	00004C
  */
-void setFSM__Q34Game8Imomushi3ObjFPQ34Game8Imomushi3FSM(void)
+void Game::Imomushi::Obj::setFSM( (Game::Imomushi::FSM *))
 {
 /*
 .loc_0x0:
@@ -682,7 +682,7 @@ void setFSM__Q34Game8Imomushi3ObjFPQ34Game8Imomushi3FSM(void)
  * Address:	802BC914
  * Size:	0000D0
  */
-void getShadowParam__Q34Game8Imomushi3ObjFRQ24Game11ShadowParam(void)
+void Game::Imomushi::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -754,7 +754,7 @@ void getShadowParam__Q34Game8Imomushi3ObjFRQ24Game11ShadowParam(void)
  * Address:	802BC9E4
  * Size:	000064
  */
-void earthquakeCallBack__Q34Game8Imomushi3ObjFPQ24Game8Creaturef(void)
+void Game::Imomushi::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -795,7 +795,7 @@ void earthquakeCallBack__Q34Game8Imomushi3ObjFPQ24Game8Creaturef(void)
  * Address:	802BCA48
  * Size:	000080
  */
-void dropCallBack__Q34Game8Imomushi3ObjFPQ24Game8Creature(void)
+void Game::Imomushi::Obj::dropCallBack( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -845,7 +845,7 @@ void dropCallBack__Q34Game8Imomushi3ObjFPQ24Game8Creature(void)
  * Address:	802BCAC8
  * Size:	000034
  */
-void doStartStoneState__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -870,7 +870,7 @@ void doStartStoneState__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCAFC
  * Size:	00004C
  */
-void doFinishStoneState__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -905,7 +905,7 @@ void doFinishStoneState__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCB48
  * Size:	000034
  */
-void doStartEarthquakeState__Q34Game8Imomushi3ObjFf(void)
+void Game::Imomushi::Obj::doStartEarthquakeState( (float))
 {
 /*
 .loc_0x0:
@@ -930,7 +930,7 @@ void doStartEarthquakeState__Q34Game8Imomushi3ObjFf(void)
  * Address:	802BCB7C
  * Size:	00004C
  */
-void doFinishEarthquakeState__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doFinishEarthquakeState(void)
 {
 /*
 .loc_0x0:
@@ -965,7 +965,7 @@ void doFinishEarthquakeState__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCBC8
  * Size:	000034
  */
-void doStartEarthquakeFitState__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doStartEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -990,7 +990,7 @@ void doStartEarthquakeFitState__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCBFC
  * Size:	00004C
  */
-void doFinishEarthquakeFitState__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doFinishEarthquakeFitState(void)
 {
 /*
 .loc_0x0:
@@ -1025,7 +1025,7 @@ void doFinishEarthquakeFitState__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCC48
  * Size:	000028
  */
-void startCarcassMotion__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -1047,7 +1047,7 @@ void startCarcassMotion__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCC70
  * Size:	000020
  */
-void doStartMovie__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -1067,7 +1067,7 @@ void doStartMovie__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCC90
  * Size:	000020
  */
-void doEndMovie__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -1087,7 +1087,7 @@ void doEndMovie__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCCB0
  * Size:	000024
  */
-void lifeIncrement__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::lifeIncrement(void)
 {
 /*
 .loc_0x0:
@@ -1108,7 +1108,7 @@ void lifeIncrement__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCCD4
  * Size:	0000AC
  */
-void resetZukanStateTimer__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::resetZukanStateTimer(void)
 {
 /*
 .loc_0x0:
@@ -1163,7 +1163,7 @@ void resetZukanStateTimer__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCD80
  * Size:	000010
  */
-void resetStickDiff__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::resetStickDiff(void)
 {
 /*
 .loc_0x0:
@@ -1179,7 +1179,7 @@ void resetStickDiff__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BCD90
  * Size:	00001C
  */
-void setStickDiff__Q34Game8Imomushi3ObjFff(void)
+void Game::Imomushi::Obj::setStickDiff( (float, float))
 {
 /*
 .loc_0x0:
@@ -1198,7 +1198,7 @@ void setStickDiff__Q34Game8Imomushi3ObjFff(void)
  * Address:	802BCDAC
  * Size:	00031C
  */
-void getRandFruitsPlant__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::getRandFruitsPlant(void)
 {
 /*
 .loc_0x0:
@@ -1435,7 +1435,7 @@ void getRandFruitsPlant__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD0C8
  * Size:	0000C8
  */
-void startClimbPlant__Q34Game8Imomushi3ObjFP8CollPart(void)
+void Game::Imomushi::Obj::startClimbPlant( (CollPart *))
 {
 /*
 .loc_0x0:
@@ -1503,7 +1503,7 @@ void startClimbPlant__Q34Game8Imomushi3ObjFP8CollPart(void)
  * Address:	........
  * Size:	0000C8
  */
-void startAttackPlant__Q34Game8Imomushi3ObjFP8CollPart(void)
+void Game::Imomushi::Obj::startAttackPlant( (CollPart *))
 {
 	// UNUSED FUNCTION
 }
@@ -1513,7 +1513,7 @@ void startAttackPlant__Q34Game8Imomushi3ObjFP8CollPart(void)
  * Address:	802BD190
  * Size:	000030
  */
-void moveStickTube__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::moveStickTube(void)
 {
 /*
 .loc_0x0:
@@ -1537,7 +1537,7 @@ void moveStickTube__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD1C0
  * Size:	0000CC
  */
-void moveStickSphere__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::moveStickSphere(void)
 {
 /*
 .loc_0x0:
@@ -1600,7 +1600,7 @@ void moveStickSphere__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD28C
  * Size:	00019C
  */
-void eatTsuyukusa__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::eatTsuyukusa(void)
 {
 /*
 .loc_0x0:
@@ -1721,7 +1721,7 @@ void eatTsuyukusa__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD428
  * Size:	000074
  */
-void isAttackable__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::isAttackable(void)
 {
 /*
 .loc_0x0:
@@ -1766,7 +1766,7 @@ void isAttackable__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD49C
  * Size:	00004C
  */
-void isStickToFall__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::isStickToFall(void)
 {
 /*
 .loc_0x0:
@@ -1801,7 +1801,7 @@ void isStickToFall__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD4E8
  * Size:	000188
  */
-void setZukanTargetPosition__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::setZukanTargetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1917,7 +1917,7 @@ void setZukanTargetPosition__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD670
  * Size:	000034
  */
-void isInZukanTargetArea__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::isInZukanTargetArea(void)
 {
 /*
 .loc_0x0:
@@ -1942,7 +1942,7 @@ void isInZukanTargetArea__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD6A4
  * Size:	00013C
  */
-void createEffect__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -2037,7 +2037,7 @@ void createEffect__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD7E0
  * Size:	000040
  */
-void setupEffect__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -2065,7 +2065,7 @@ void setupEffect__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD820
  * Size:	00008C
  */
-void createAppearEffect__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::createAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -2112,7 +2112,7 @@ void createAppearEffect__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD8AC
  * Size:	00008C
  */
-void createDisAppearEffect__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::createDisAppearEffect(void)
 {
 /*
 .loc_0x0:
@@ -2159,7 +2159,7 @@ void createDisAppearEffect__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD938
  * Size:	000084
  */
-void startMoveTraceEffect__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::startMoveTraceEffect(void)
 {
 /*
 .loc_0x0:
@@ -2204,7 +2204,7 @@ void startMoveTraceEffect__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD9BC
  * Size:	000030
  */
-void finishMoveTraceEffect__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::finishMoveTraceEffect(void)
 {
 /*
 .loc_0x0:
@@ -2228,7 +2228,7 @@ void finishMoveTraceEffect__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BD9EC
  * Size:	000050
  */
-void effectDrawOn__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -2260,7 +2260,7 @@ void effectDrawOn__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BDA3C
  * Size:	000050
  */
-void effectDrawOff__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -2292,7 +2292,7 @@ void effectDrawOff__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BDA8C
  * Size:	00000C
  */
-void getName__Q23efx9ArgImoEatFv(void)
+void efx::ArgImoEat::getName(void)
 {
 /*
 .loc_0x0:
@@ -2307,7 +2307,7 @@ void getName__Q23efx9ArgImoEatFv(void)
  * Address:	802BDA98
  * Size:	000008
  */
-void isUnderground__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -2321,7 +2321,7 @@ void isUnderground__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BDAA0
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -2335,7 +2335,7 @@ void getDownSmokeScale__Q34Game8Imomushi3ObjFv(void)
  * Address:	802BDAA8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8Imomushi3ObjFv(void)
+void Game::Imomushi::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

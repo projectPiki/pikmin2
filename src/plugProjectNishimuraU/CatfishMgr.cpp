@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80276D54
  * Size:	000050
  */
-void __ct__Q34Game7Catfish3MgrFiUc(void)
+void Game::Catfish::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game7Catfish3MgrFiUc(void)
  * Address:	80276DA4
  * Size:	000048
  */
-void doAlloc__Q34Game7Catfish3MgrFv(void)
+void Game::Catfish::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game7Catfish3MgrFv(void)
  * Address:	80276DEC
  * Size:	000060
  */
-void createObj__Q34Game7Catfish3MgrFi(void)
+void Game::Catfish::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game7Catfish3MgrFi(void)
  * Address:	80276E4C
  * Size:	0000EC
  */
-void __dt__Q34Game7Catfish3ObjFv(void)
+void Game::Catfish::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -190,7 +190,7 @@ void __dt__Q34Game7Catfish3ObjFv(void)
  * Address:	80276F38
  * Size:	000010
  */
-void getEnemy__Q34Game7Catfish3MgrFi(void)
+void Game::Catfish::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void getEnemy__Q34Game7Catfish3MgrFi(void)
  * Address:	80276F48
  * Size:	0000B0
  */
-void __dt__Q34Game7Catfish3MgrFv(void)
+void Game::Catfish::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -266,7 +266,7 @@ void __dt__Q34Game7Catfish3MgrFv(void)
  * Address:	80276FF8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7Catfish3MgrFv(void)
+void Game::Catfish::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -280,7 +280,7 @@ void getEnemyTypeID__Q34Game7Catfish3MgrFv(void)
  * Address:	80277000
  * Size:	000008
  */
-void @4@__dt__Q34Game7Catfish3MgrFv(void)
+void @4@Game::Catfish::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

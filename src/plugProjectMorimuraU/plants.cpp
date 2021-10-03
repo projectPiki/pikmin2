@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803583CC
  * Size:	000050
  */
-void setParameters__Q34Game6Plants3ObjFv(void)
+void Game::Plants::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -67,7 +67,7 @@ void birth__Q34Game6Plants3ObjFR10Vector3<float>f(void)
  * Address:	8035843C
  * Size:	0001A8
  */
-void onInit__Q34Game6Plants3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Plants::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void onInit__Q34Game6Plants3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	803585E4
  * Size:	0000EC
  */
-void __ct__Q34Game6Plants3ObjFv(void)
+void Game::Plants::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -266,7 +266,7 @@ void __ct__Q34Game6Plants3ObjFv(void)
  * Address:	803586D0
  * Size:	000048
  */
-void update__Q34Game6Plants3ObjFv(void)
+void Game::Plants::Obj::update(void)
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void update__Q34Game6Plants3ObjFv(void)
  * Address:	80358718
  * Size:	00006C
  */
-void doAnimation__Q34Game6Plants3ObjFv(void)
+void Game::Plants::Obj::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -339,7 +339,7 @@ void doAnimation__Q34Game6Plants3ObjFv(void)
  * Address:	80358784
  * Size:	00009C
  */
-void doAnimationCullingOff__Q34Game6Plants3ObjFv(void)
+void Game::Plants::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -392,7 +392,7 @@ void doAnimationCullingOff__Q34Game6Plants3ObjFv(void)
  * Address:	80358820
  * Size:	000020
  */
-void doDebugDraw__Q34Game6Plants3ObjFR8Graphics(void)
+void Game::Plants::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -412,7 +412,7 @@ void doDebugDraw__Q34Game6Plants3ObjFR8Graphics(void)
  * Address:	80358840
  * Size:	000150
  */
-void collisionCallback__Q34Game6Plants3ObjFRQ24Game9CollEvent(void)
+void Game::Plants::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -514,7 +514,7 @@ void collisionCallback__Q34Game6Plants3ObjFRQ24Game9CollEvent(void)
  * Address:	80358990
  * Size:	000060
  */
-void earthquakeCallBack__Q34Game6Plants3ObjFPQ24Game8Creaturef(void)
+void Game::Plants::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void earthquakeCallBack__Q34Game6Plants3ObjFPQ24Game8Creaturef(void)
  * Address:	803589F0
  * Size:	0000A0
  */
-void touched__Q34Game6Plants3ObjFv(void)
+void Game::Plants::Obj::touched(void)
 {
 /*
 .loc_0x0:
@@ -606,7 +606,7 @@ void touched__Q34Game6Plants3ObjFv(void)
  * Address:	80358A90
  * Size:	000040
  */
-void touchedSE__Q34Game6Plants3ObjFPQ24Game4Navi(void)
+void Game::Plants::Obj::touchedSE( (Game::Navi *))
 {
 /*
 .loc_0x0:
@@ -636,7 +636,7 @@ void touchedSE__Q34Game6Plants3ObjFPQ24Game4Navi(void)
  * Address:	80358AD0
  * Size:	000040
  */
-void touchedSE__Q34Game12HikariKinoko3ObjFPQ24Game4Navi(void)
+void Game::HikariKinoko::Obj::touchedSE( (Game::Navi *))
 {
 /*
 .loc_0x0:
@@ -666,7 +666,7 @@ void touchedSE__Q34Game12HikariKinoko3ObjFPQ24Game4Navi(void)
  * Address:	80358B10
  * Size:	000048
  */
-void doEntry__Q34Game6Watage3ObjFv(void)
+void Game::Watage::Obj::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -696,7 +696,7 @@ void doEntry__Q34Game6Watage3ObjFv(void)
  * Address:	80358B58
  * Size:	000104
  */
-void touched__Q34Game6Watage3ObjFv(void)
+void Game::Watage::Obj::touched(void)
 {
 /*
 .loc_0x0:
@@ -775,7 +775,7 @@ void touched__Q34Game6Watage3ObjFv(void)
  * Address:	80358C5C
  * Size:	000048
  */
-void doEntry__Q34Game11Nekojarashi3ObjFv(void)
+void Game::Nekojarashi::Obj::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -805,7 +805,7 @@ void doEntry__Q34Game11Nekojarashi3ObjFv(void)
  * Address:	80358CA4
  * Size:	000040
  */
-void touchedSE__Q34Game8DiodeRed3ObjFPQ24Game4Navi(void)
+void Game::DiodeRed::Obj::touchedSE( (Game::Navi *))
 {
 /*
 .loc_0x0:
@@ -835,7 +835,7 @@ void touchedSE__Q34Game8DiodeRed3ObjFPQ24Game4Navi(void)
  * Address:	80358CE4
  * Size:	000048
  */
-void doEntry__Q34Game8DiodeRed3ObjFv(void)
+void Game::DiodeRed::Obj::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void doEntry__Q34Game8DiodeRed3ObjFv(void)
  * Address:	80358D2C
  * Size:	000040
  */
-void touchedSE__Q34Game10DiodeGreen3ObjFPQ24Game4Navi(void)
+void Game::DiodeGreen::Obj::touchedSE( (Game::Navi *))
 {
 /*
 .loc_0x0:
@@ -895,7 +895,7 @@ void touchedSE__Q34Game10DiodeGreen3ObjFPQ24Game4Navi(void)
  * Address:	80358D6C
  * Size:	000048
  */
-void doEntry__Q34Game10DiodeGreen3ObjFv(void)
+void Game::DiodeGreen::Obj::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -925,7 +925,7 @@ void doEntry__Q34Game10DiodeGreen3ObjFv(void)
  * Address:	80358DB4
  * Size:	000058
  */
-void setParameters__Q34Game10DiodeGreen3ObjFv(void)
+void Game::DiodeGreen::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -959,7 +959,7 @@ void setParameters__Q34Game10DiodeGreen3ObjFv(void)
  * Address:	80358E0C
  * Size:	00006C
  */
-void getLODCylinder__Q34Game10DiodeGreen3ObjFRQ23Sys8Cylinder(void)
+void Game::DiodeGreen::Obj::getLODCylinder( (Sys::Cylinder &))
 {
 /*
 .loc_0x0:
@@ -998,7 +998,7 @@ void getLODCylinder__Q34Game10DiodeGreen3ObjFRQ23Sys8Cylinder(void)
  * Address:	80358E78
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10DiodeGreen3ObjFv(void)
+void Game::DiodeGreen::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1012,7 +1012,7 @@ void getEnemyTypeID__Q34Game10DiodeGreen3ObjFv(void)
  * Address:	80358E80
  * Size:	000058
  */
-void setParameters__Q34Game8DiodeRed3ObjFv(void)
+void Game::DiodeRed::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -1046,7 +1046,7 @@ void setParameters__Q34Game8DiodeRed3ObjFv(void)
  * Address:	80358ED8
  * Size:	00006C
  */
-void getLODCylinder__Q34Game8DiodeRed3ObjFRQ23Sys8Cylinder(void)
+void Game::DiodeRed::Obj::getLODCylinder( (Sys::Cylinder &))
 {
 /*
 .loc_0x0:
@@ -1085,7 +1085,7 @@ void getLODCylinder__Q34Game8DiodeRed3ObjFRQ23Sys8Cylinder(void)
  * Address:	80358F44
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8DiodeRed3ObjFv(void)
+void Game::DiodeRed::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1099,7 +1099,7 @@ void getEnemyTypeID__Q34Game8DiodeRed3ObjFv(void)
  * Address:	80358F4C
  * Size:	000058
  */
-void setParameters__Q34Game11Nekojarashi3ObjFv(void)
+void Game::Nekojarashi::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -1133,7 +1133,7 @@ void setParameters__Q34Game11Nekojarashi3ObjFv(void)
  * Address:	80358FA4
  * Size:	000114
  */
-void getLODCylinder__Q34Game11Nekojarashi3ObjFRQ23Sys8Cylinder(void)
+void Game::Nekojarashi::Obj::getLODCylinder( (Sys::Cylinder &))
 {
 /*
 .loc_0x0:
@@ -1220,7 +1220,7 @@ void getLODCylinder__Q34Game11Nekojarashi3ObjFRQ23Sys8Cylinder(void)
  * Address:	803590B8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11Nekojarashi3ObjFv(void)
+void Game::Nekojarashi::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1234,7 +1234,7 @@ void getEnemyTypeID__Q34Game11Nekojarashi3ObjFv(void)
  * Address:	803590C0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Watage3ObjFv(void)
+void Game::Watage::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1248,7 +1248,7 @@ void getEnemyTypeID__Q34Game6Watage3ObjFv(void)
  * Address:	803590C8
  * Size:	000058
  */
-void setParameters__Q34Game12HikariKinoko3ObjFv(void)
+void Game::HikariKinoko::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -1282,7 +1282,7 @@ void setParameters__Q34Game12HikariKinoko3ObjFv(void)
  * Address:	80359120
  * Size:	00006C
  */
-void getLODCylinder__Q34Game12HikariKinoko3ObjFRQ23Sys8Cylinder(void)
+void Game::HikariKinoko::Obj::getLODCylinder( (Sys::Cylinder &))
 {
 /*
 .loc_0x0:
@@ -1321,7 +1321,7 @@ void getLODCylinder__Q34Game12HikariKinoko3ObjFRQ23Sys8Cylinder(void)
  * Address:	8035918C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12HikariKinoko3ObjFv(void)
+void Game::HikariKinoko::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

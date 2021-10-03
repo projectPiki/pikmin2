@@ -5,7 +5,7 @@
  * Address:	804560C8
  * Size:	00003C
  */
-void __ct__Q25P2JME8AnalyzerFPCQ28JMessage10TReference(void)
+void P2JME::Analyzer::__ct( (JMessage::TReference const *))
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void __ct__Q25P2JME8AnalyzerFPCQ28JMessage10TReference(void)
  * Address:	80456104
  * Size:	000004
  */
-void do_character__Q25P2JME8AnalyzerFi(void)
+void P2JME::Analyzer::do_character( (int))
 {
 /*
 .loc_0x0:
@@ -45,7 +45,7 @@ void do_character__Q25P2JME8AnalyzerFi(void)
  * Address:	80456108
  * Size:	00007C
  */
-void exec__Q25P2JME8AnalyzerFPc(void)
+void P2JME::Analyzer::exec( (char *))
 {
 /*
 .loc_0x0:
@@ -88,7 +88,7 @@ void exec__Q25P2JME8AnalyzerFPc(void)
  * Address:	........
  * Size:	000064
  */
-void exec__Q25P2JME8AnalyzerFUsUs(void)
+void P2JME::Analyzer::exec( (unsigned short, unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -98,7 +98,7 @@ void exec__Q25P2JME8AnalyzerFUsUs(void)
  * Address:	........
  * Size:	000058
  */
-void exec__Q25P2JME8AnalyzerFUl(void)
+void P2JME::Analyzer::exec( (unsigned long))
 {
 	// UNUSED FUNCTION
 }

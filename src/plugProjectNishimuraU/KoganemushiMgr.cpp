@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8029D9F0
  * Size:	000050
  */
-void __ct__Q34Game11Koganemushi3MgrFiUc(void)
+void Game::Koganemushi::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game11Koganemushi3MgrFiUc(void)
  * Address:	8029DA40
  * Size:	000048
  */
-void doAlloc__Q34Game11Koganemushi3MgrFv(void)
+void Game::Koganemushi::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game11Koganemushi3MgrFv(void)
  * Address:	8029DA88
  * Size:	000060
  */
-void createObj__Q34Game11Koganemushi3MgrFi(void)
+void Game::Koganemushi::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game11Koganemushi3MgrFi(void)
  * Address:	8029DAE8
  * Size:	0000EC
  */
-void __dt__Q34Game11Koganemushi3ObjFv(void)
+void Game::Koganemushi::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -190,7 +190,7 @@ void __dt__Q34Game11Koganemushi3ObjFv(void)
  * Address:	8029DBD4
  * Size:	000010
  */
-void getEnemy__Q34Game11Koganemushi3MgrFi(void)
+void Game::Koganemushi::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void getEnemy__Q34Game11Koganemushi3MgrFi(void)
  * Address:	8029DBE4
  * Size:	000080
  */
-void loadTexData__Q34Game11Koganemushi3MgrFv(void)
+void Game::Koganemushi::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -254,7 +254,7 @@ void loadTexData__Q34Game11Koganemushi3MgrFv(void)
  * Address:	8029DC64
  * Size:	0000C8
  */
-void __dt__Q34Game11Koganemushi3MgrFv(void)
+void Game::Koganemushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void __dt__Q34Game11Koganemushi3MgrFv(void)
  * Address:	8029DD2C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11Koganemushi3MgrFv(void)
+void Game::Koganemushi::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -334,7 +334,7 @@ void getEnemyTypeID__Q34Game11Koganemushi3MgrFv(void)
  * Address:	8029DD34
  * Size:	000008
  */
-void getChangeTexture__Q34Game11Koganemushi3MgrFv(void)
+void Game::Koganemushi::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void getChangeTexture__Q34Game11Koganemushi3MgrFv(void)
  * Address:	8029DD3C
  * Size:	000008
  */
-void @4@__dt__Q34Game11Koganemushi3MgrFv(void)
+void @4@Game::Koganemushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

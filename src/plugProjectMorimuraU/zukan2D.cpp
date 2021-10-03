@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80370C08
  * Size:	000204
  */
-void __ct__Q28Morimura10TZukanBaseFPc(void)
+void Morimura::TZukanBase::__ct( (char *))
 {
 /*
 .loc_0x0:
@@ -156,7 +156,7 @@ void __ct__Q28Morimura10TZukanBaseFPc(void)
  * Address:	80370E0C
  * Size:	0000C4
  */
-void __dt__Q28Morimura11TScrollListFv(void)
+void Morimura::TScrollList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -221,7 +221,7 @@ void __dt__Q28Morimura11TScrollListFv(void)
  * Address:	80370ED0
  * Size:	0000FC
  */
-void __dt__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -302,7 +302,7 @@ void __dt__Q28Morimura10TZukanBaseFv(void)
  * Address:	........
  * Size:	000044
  */
-void setDebugHeapParent__Q28Morimura10TZukanBaseFP7JKRHeap(void)
+void Morimura::TZukanBase::setDebugHeapParent( (JKRHeap *))
 {
 	// UNUSED FUNCTION
 }
@@ -312,7 +312,7 @@ void setDebugHeapParent__Q28Morimura10TZukanBaseFP7JKRHeap(void)
  * Address:	80370FCC
  * Size:	00090C
  */
-void doCreate__Q28Morimura10TZukanBaseFP10JKRArchive(void)
+void Morimura::TZukanBase::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -949,7 +949,7 @@ void doCreate__Q28Morimura10TZukanBaseFP10JKRArchive(void)
  * Address:	803718D8
  * Size:	000FC8
  */
-void doUpdate__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -2099,7 +2099,7 @@ void doUpdate__Q28Morimura10TZukanBaseFv(void)
  * Address:	803728A0
  * Size:	000008
  */
-void isListShow__Q28Morimura11TScrollListFi(void)
+void Morimura::TScrollList::isListShow( (int))
 {
 /*
 .loc_0x0:
@@ -2113,7 +2113,7 @@ void isListShow__Q28Morimura11TScrollListFi(void)
  * Address:	803728A8
  * Size:	0002B8
  */
-void updateButtonAlpha__Q28Morimura10TZukanBaseFUc(void)
+void Morimura::TZukanBase::updateButtonAlpha( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -2333,7 +2333,7 @@ void updateButtonAlpha__Q28Morimura10TZukanBaseFUc(void)
  * Address:	80372B60
  * Size:	000008
  */
-void isComplete__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::isComplete(void)
 {
 /*
 .loc_0x0:
@@ -2347,7 +2347,7 @@ void isComplete__Q28Morimura10TZukanBaseFv(void)
  * Address:	80372B68
  * Size:	000714
  */
-void doDraw__Q28Morimura10TZukanBaseFR8Graphics(void)
+void Morimura::TZukanBase::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2848,7 +2848,7 @@ void doDraw__Q28Morimura10TZukanBaseFR8Graphics(void)
  * Address:	8037327C
  * Size:	000004
  */
-void doDemoDraw__Q28Morimura10TZukanBaseFR8Graphics(void)
+void Morimura::TZukanBase::doDemoDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2861,7 +2861,7 @@ void doDemoDraw__Q28Morimura10TZukanBaseFR8Graphics(void)
  * Address:	80373280
  * Size:	000018
  */
-void doUpdateFadeoutFinish__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -2879,7 +2879,7 @@ void doUpdateFadeoutFinish__Q28Morimura10TZukanBaseFv(void)
  * Address:	80373298
  * Size:	000578
  */
-void indexPaneInit__Q28Morimura10TZukanBaseFP9J2DScreen(void)
+void Morimura::TZukanBase::indexPaneInit( (J2DScreen *))
 {
 /*
 .loc_0x0:
@@ -3291,7 +3291,7 @@ void indexPaneInit__Q28Morimura10TZukanBaseFP9J2DScreen(void)
  * Address:	80373810
  * Size:	000258
  */
-void paneInit__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::paneInit(void)
 {
 /*
 .loc_0x0:
@@ -3465,7 +3465,7 @@ void paneInit__Q28Morimura10TZukanBaseFv(void)
  * Address:	80373A68
  * Size:	0000C8
  */
-void changePaneInfo__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::changePaneInfo(void)
 {
 /*
 .loc_0x0:
@@ -3533,7 +3533,7 @@ void changePaneInfo__Q28Morimura10TZukanBaseFv(void)
  * Address:	80373B30
  * Size:	0000A8
  */
-void changeName__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::changeName(void)
 {
 /*
 .loc_0x0:
@@ -3591,7 +3591,7 @@ void changeName__Q28Morimura10TZukanBaseFv(void)
  * Address:	80373BD8
  * Size:	00005C
  */
-void doUpdateIn__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doUpdateIn(void)
 {
 /*
 .loc_0x0:
@@ -3630,7 +3630,7 @@ void doUpdateIn__Q28Morimura10TZukanBaseFv(void)
  * Address:	80373C34
  * Size:	000630
  */
-void doUpdateOut__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doUpdateOut(void)
 {
 /*
 .loc_0x0:
@@ -4106,7 +4106,7 @@ void doUpdateOut__Q28Morimura10TZukanBaseFv(void)
  * Address:	80374264
  * Size:	000114
  */
-void doPushXButton__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doPushXButton(void)
 {
 /*
 .loc_0x0:
@@ -4193,7 +4193,7 @@ void doPushXButton__Q28Morimura10TZukanBaseFv(void)
  * Address:	80374378
  * Size:	000130
  */
-void doPushYButton__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doPushYButton(void)
 {
 /*
 .loc_0x0:
@@ -4287,7 +4287,7 @@ void doPushYButton__Q28Morimura10TZukanBaseFv(void)
  * Address:	803744A8
  * Size:	0000B0
  */
-void doPushBButton__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doPushBButton(void)
 {
 /*
 .loc_0x0:
@@ -4349,7 +4349,7 @@ void doPushBButton__Q28Morimura10TZukanBaseFv(void)
  * Address:	80374558
  * Size:	000244
  */
-void setShortenIndex__Q28Morimura10TZukanBaseFiib(void)
+void Morimura::TZukanBase::setShortenIndex( (int, int, bool))
 {
 /*
 .loc_0x0:
@@ -4528,7 +4528,7 @@ void setShortenIndex__Q28Morimura10TZukanBaseFiib(void)
  * Address:	8037479C
  * Size:	000088
  */
-void windowOpenClose__Q28Morimura10TZukanBaseFUx(void)
+void Morimura::TZukanBase::windowOpenClose( (unsigned long long))
 {
 /*
 .loc_0x0:
@@ -4578,7 +4578,7 @@ void windowOpenClose__Q28Morimura10TZukanBaseFUx(void)
  * Address:	80374824
  * Size:	000074
  */
-void isPanelExist__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::isPanelExist(void)
 {
 /*
 .loc_0x0:
@@ -4619,7 +4619,7 @@ void isPanelExist__Q28Morimura10TZukanBaseFv(void)
  * Address:	80374898
  * Size:	000018
  */
-void requireRequest__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::requireRequest(void)
 {
 /*
 .loc_0x0:
@@ -4637,7 +4637,7 @@ void requireRequest__Q28Morimura10TZukanBaseFv(void)
  * Address:	803748B0
  * Size:	00000C
  */
-void requireEffectOff__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::requireEffectOff(void)
 {
 /*
 .loc_0x0:
@@ -4652,7 +4652,7 @@ void requireEffectOff__Q28Morimura10TZukanBaseFv(void)
  * Address:	803748BC
  * Size:	00001C
  */
-void isEnlargedWindow__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::isEnlargedWindow(void)
 {
 /*
 .loc_0x0:
@@ -4673,7 +4673,7 @@ void isEnlargedWindow__Q28Morimura10TZukanBaseFv(void)
  * Address:	803748D8
  * Size:	000020
  */
-void isMemoWindow__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::isMemoWindow(void)
 {
 /*
 .loc_0x0:
@@ -4695,7 +4695,7 @@ void isMemoWindow__Q28Morimura10TZukanBaseFv(void)
  * Address:	........
  * Size:	000048
  */
-void requireSceneEnd__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::requireSceneEnd(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4705,7 +4705,7 @@ void requireSceneEnd__Q28Morimura10TZukanBaseFv(void)
  * Address:	803748F8
  * Size:	000010
  */
-void checkRequest__Q28Morimura10TZukanBaseFRi(void)
+void Morimura::TZukanBase::checkRequest( (int &))
 {
 /*
 .loc_0x0:
@@ -4721,7 +4721,7 @@ void checkRequest__Q28Morimura10TZukanBaseFRi(void)
  * Address:	80374908
  * Size:	000068
  */
-void getCurrSelectId__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::getCurrSelectId(void)
 {
 /*
 .loc_0x0:
@@ -4763,7 +4763,7 @@ void getCurrSelectId__Q28Morimura10TZukanBaseFv(void)
  * Address:	80374970
  * Size:	000124
  */
-void getTexInfo__Q28Morimura10TZukanBaseFi(void)
+void Morimura::TZukanBase::getTexInfo( (int))
 {
 /*
 .loc_0x0:
@@ -4854,7 +4854,7 @@ void getTexInfo__Q28Morimura10TZukanBaseFi(void)
  * Address:	........
  * Size:	0000BC
  */
-void resetDebugShow__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::resetDebugShow(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4864,7 +4864,7 @@ void resetDebugShow__Q28Morimura10TZukanBaseFv(void)
  * Address:	........
  * Size:	00004C
  */
-void getIndexInfo__Q28Morimura16TEnemyZukanIndexFi(void)
+void Morimura::TEnemyZukanIndex::getIndexInfo( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -4874,7 +4874,7 @@ void getIndexInfo__Q28Morimura16TEnemyZukanIndexFi(void)
  * Address:	........
  * Size:	00005C
  */
-void __ct__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4884,7 +4884,7 @@ void __ct__Q28Morimura11TEnemyZukanFv(void)
  * Address:	80374A94
  * Size:	000124
  */
-void __dt__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4975,7 +4975,7 @@ void __dt__Q28Morimura11TEnemyZukanFv(void)
  * Address:	80374BB8
  * Size:	001734
  */
-void doCreate__Q28Morimura11TEnemyZukanFP10JKRArchive(void)
+void Morimura::TEnemyZukan::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -6658,7 +6658,7 @@ void doCreate__Q28Morimura11TEnemyZukanFP10JKRArchive(void)
  * Address:	803762EC
  * Size:	000044
  */
-void init__Q28Morimura15TScaleUpCounterFP9J2DScreenUxUxUxPUlb(void)
+void Morimura::TScaleUpCounter::init( (J2DScreen *, unsigned long long, unsigned long long, unsigned long long, unsigned long *, bool))
 {
 /*
 .loc_0x0:
@@ -6687,7 +6687,7 @@ void init__Q28Morimura15TScaleUpCounterFP9J2DScreenUxUxUxPUlb(void)
  * Address:	80376330
  * Size:	000008
  */
-void getIdMax__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::getIdMax(void)
 {
 /*
 .loc_0x0:
@@ -6701,7 +6701,7 @@ void getIdMax__Q28Morimura11TEnemyZukanFv(void)
  * Address:	80376338
  * Size:	0001D8
  */
-void setDetail__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::setDetail(void)
 {
 /*
 .loc_0x0:
@@ -6837,7 +6837,7 @@ void setDetail__Q28Morimura11TEnemyZukanFv(void)
  * Address:	80376510
  * Size:	000048
  */
-void setShortenIndex__Q28Morimura11TEnemyZukanFiib(void)
+void Morimura::TEnemyZukan::setShortenIndex( (int, int, bool))
 {
 /*
 .loc_0x0:
@@ -6869,7 +6869,7 @@ void setShortenIndex__Q28Morimura11TEnemyZukanFiib(void)
  * Address:	80376558
  * Size:	0000D8
  */
-void isListShow__Q28Morimura11TEnemyZukanFi(void)
+void Morimura::TEnemyZukan::isListShow( (int))
 {
 /*
 .loc_0x0:
@@ -6953,7 +6953,7 @@ void isListShow__Q28Morimura11TEnemyZukanFi(void)
  * Address:	80376630
  * Size:	000718
  */
-void indexPaneInit__Q28Morimura11TEnemyZukanFP9J2DScreen(void)
+void Morimura::TEnemyZukan::indexPaneInit( (J2DScreen *))
 {
 /*
 .loc_0x0:
@@ -7491,7 +7491,7 @@ void indexPaneInit__Q28Morimura11TEnemyZukanFP9J2DScreen(void)
  * Address:	80376D48
  * Size:	000970
  */
-void getUpdateIndex__Q28Morimura11TEnemyZukanFRib(void)
+void Morimura::TEnemyZukan::getUpdateIndex( (int &, bool))
 {
 /*
 .loc_0x0:
@@ -8247,7 +8247,7 @@ void getUpdateIndex__Q28Morimura11TEnemyZukanFRib(void)
  * Address:	803776B8
  * Size:	000024
  */
-void getNameID__Q28Morimura11TEnemyZukanFi(void)
+void Morimura::TEnemyZukan::getNameID( (int))
 {
 /*
 .loc_0x0:
@@ -8268,7 +8268,7 @@ void getNameID__Q28Morimura11TEnemyZukanFi(void)
  * Address:	803776DC
  * Size:	000024
  */
-void getXMsgID__Q28Morimura11TEnemyZukanFi(void)
+void Morimura::TEnemyZukan::getXMsgID( (int))
 {
 /*
 .loc_0x0:
@@ -8289,7 +8289,7 @@ void getXMsgID__Q28Morimura11TEnemyZukanFi(void)
  * Address:	80377700
  * Size:	000024
  */
-void getYMsgID__Q28Morimura11TEnemyZukanFi(void)
+void Morimura::TEnemyZukan::getYMsgID( (int))
 {
 /*
 .loc_0x0:
@@ -8310,7 +8310,7 @@ void getYMsgID__Q28Morimura11TEnemyZukanFi(void)
  * Address:	80377724
  * Size:	000050
  */
-void getModelIndex__Q28Morimura11TEnemyZukanFi(void)
+void Morimura::TEnemyZukan::getModelIndex( (int))
 {
 /*
 .loc_0x0:
@@ -8348,7 +8348,7 @@ void getModelIndex__Q28Morimura11TEnemyZukanFi(void)
  * Address:	80377774
  * Size:	000060
  */
-void setXWindow__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::setXWindow(void)
 {
 /*
 .loc_0x0:
@@ -8384,7 +8384,7 @@ void setXWindow__Q28Morimura11TEnemyZukanFv(void)
  * Address:	803777D4
  * Size:	000060
  */
-void setYWindow__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::setYWindow(void)
 {
 /*
 .loc_0x0:
@@ -8420,7 +8420,7 @@ void setYWindow__Q28Morimura11TEnemyZukanFv(void)
  * Address:	80377834
  * Size:	000034
  */
-void isOpenConfirmWindow__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::isOpenConfirmWindow(void)
 {
 /*
 .loc_0x0:
@@ -8445,7 +8445,7 @@ void isOpenConfirmWindow__Q28Morimura11TEnemyZukanFv(void)
  * Address:	80377868
  * Size:	0000FC
  */
-void isNewSupply__Q28Morimura11TEnemyZukanFib(void)
+void Morimura::TEnemyZukan::isNewSupply( (int, bool))
 {
 /*
 .loc_0x0:
@@ -8538,7 +8538,7 @@ void isNewSupply__Q28Morimura11TEnemyZukanFib(void)
  * Address:	80377964
  * Size:	0000E4
  */
-void isPanelExist__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::isPanelExist(void)
 {
 /*
 .loc_0x0:
@@ -8617,7 +8617,7 @@ void isPanelExist__Q28Morimura11TEnemyZukanFv(void)
  * Address:	80377A48
  * Size:	00004C
  */
-void openConfirmWindow__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::openConfirmWindow(void)
 {
 /*
 .loc_0x0:
@@ -8648,7 +8648,7 @@ void openConfirmWindow__Q28Morimura11TEnemyZukanFv(void)
  * Address:	80377A94
  * Size:	000134
  */
-void getPrice__Q28Morimura11TEnemyZukanFi(void)
+void Morimura::TEnemyZukan::getPrice( (int))
 {
 /*
 .loc_0x0:
@@ -8753,7 +8753,7 @@ void getPrice__Q28Morimura11TEnemyZukanFi(void)
  * Address:	80377BC8
  * Size:	0000F8
  */
-void getDefeatNum__Q28Morimura11TEnemyZukanFi(void)
+void Morimura::TEnemyZukan::getDefeatNum( (int))
 {
 /*
 .loc_0x0:
@@ -8843,7 +8843,7 @@ void getDefeatNum__Q28Morimura11TEnemyZukanFi(void)
  * Address:	80377CC0
  * Size:	00012C
  */
-void getKilledNum__Q28Morimura11TEnemyZukanFi(void)
+void Morimura::TEnemyZukan::getKilledNum( (int))
 {
 /*
 .loc_0x0:
@@ -8946,7 +8946,7 @@ void getKilledNum__Q28Morimura11TEnemyZukanFi(void)
  * Address:	80377DEC
  * Size:	000054
  */
-void __ct__Q28Morimura12TDEnemySceneFv(void)
+void Morimura::TDEnemyScene::__ct(void)
 {
 /*
 .loc_0x0:
@@ -8979,7 +8979,7 @@ void __ct__Q28Morimura12TDEnemySceneFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q28Morimura9THIOSceneFv(void)
+void Morimura::THIOScene::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -8989,7 +8989,7 @@ void __dt__Q28Morimura9THIOSceneFv(void)
  * Address:	80377E40
  * Size:	0000DC
  */
-void doCreateObj__Q28Morimura12TDEnemySceneFP10JKRArchive(void)
+void Morimura::TDEnemyScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -9060,7 +9060,7 @@ void doCreateObj__Q28Morimura12TDEnemySceneFP10JKRArchive(void)
  * Address:	80377F1C
  * Size:	000034
  */
-void doStart__Q28Morimura12TDEnemySceneFPQ26Screen13StartSceneArg(void)
+void Morimura::TDEnemyScene::doStart( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -9085,7 +9085,7 @@ void doStart__Q28Morimura12TDEnemySceneFPQ26Screen13StartSceneArg(void)
  * Address:	80377F50
  * Size:	000028
  */
-void isAppearConfirmWindow__Q28Morimura12TDEnemySceneFv(void)
+void Morimura::TDEnemyScene::isAppearConfirmWindow(void)
 {
 /*
 .loc_0x0:
@@ -9109,7 +9109,7 @@ void isAppearConfirmWindow__Q28Morimura12TDEnemySceneFv(void)
  * Address:	........
  * Size:	0000E8
  */
-void isCategoryComplete__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::isCategoryComplete(void)
 {
 	// UNUSED FUNCTION
 }
@@ -9119,7 +9119,7 @@ void isCategoryComplete__Q28Morimura10TItemZukanFv(void)
  * Address:	........
  * Size:	000148
  */
-void __ct__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -9129,7 +9129,7 @@ void __ct__Q28Morimura10TItemZukanFv(void)
  * Address:	80377F78
  * Size:	000124
  */
-void __dt__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::__dt(void)
 {
 /*
 .loc_0x0:
@@ -9220,7 +9220,7 @@ void __dt__Q28Morimura10TItemZukanFv(void)
  * Address:	8037809C
  * Size:	000424
  */
-void doUpdate__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -9541,7 +9541,7 @@ void doUpdate__Q28Morimura10TItemZukanFv(void)
  * Address:	803784C0
  * Size:	0000A8
  */
-void demoSet__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::demoSet(void)
 {
 /*
 .loc_0x0:
@@ -9599,7 +9599,7 @@ void demoSet__Q28Morimura10TItemZukanFv(void)
  * Address:	80378568
  * Size:	00045C
  */
-void setShortenIndex__Q28Morimura10TItemZukanFiib(void)
+void Morimura::TItemZukan::setShortenIndex( (int, int, bool))
 {
 /*
 .loc_0x0:
@@ -9936,7 +9936,7 @@ void setShortenIndex__Q28Morimura10TItemZukanFiib(void)
  * Address:	803789C4
  * Size:	000010
  */
-void getCategoryColorId__Q28Morimura10TItemZukanFi(void)
+void Morimura::TItemZukan::getCategoryColorId( (int))
 {
 /*
 .loc_0x0:
@@ -9952,7 +9952,7 @@ void getCategoryColorId__Q28Morimura10TItemZukanFi(void)
  * Address:	803789D4
  * Size:	0002D4
  */
-void doUpdateOut__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::doUpdateOut(void)
 {
 /*
 .loc_0x0:
@@ -10175,7 +10175,7 @@ void doUpdateOut__Q28Morimura10TItemZukanFv(void)
  * Address:	80378CA8
  * Size:	0000C0
  */
-void getUpdateIndex__Q28Morimura10TItemZukanFRib(void)
+void Morimura::TItemZukan::getUpdateIndex( (int &, bool))
 {
 /*
 .loc_0x0:
@@ -10245,7 +10245,7 @@ void getUpdateIndex__Q28Morimura10TItemZukanFRib(void)
  * Address:	80378D68
  * Size:	00003C
  */
-void getNameID__Q28Morimura10TItemZukanFi(void)
+void Morimura::TItemZukan::getNameID( (int))
 {
 /*
 .loc_0x0:
@@ -10272,7 +10272,7 @@ void getNameID__Q28Morimura10TItemZukanFi(void)
  * Address:	80378DA4
  * Size:	00003C
  */
-void getXMsgID__Q28Morimura10TItemZukanFi(void)
+void Morimura::TItemZukan::getXMsgID( (int))
 {
 /*
 .loc_0x0:
@@ -10299,7 +10299,7 @@ void getXMsgID__Q28Morimura10TItemZukanFi(void)
  * Address:	80378DE0
  * Size:	00003C
  */
-void getYMsgID__Q28Morimura10TItemZukanFi(void)
+void Morimura::TItemZukan::getYMsgID( (int))
 {
 /*
 .loc_0x0:
@@ -10326,7 +10326,7 @@ void getYMsgID__Q28Morimura10TItemZukanFi(void)
  * Address:	80378E1C
  * Size:	000034
  */
-void getModelIndex__Q28Morimura10TItemZukanFi(void)
+void Morimura::TItemZukan::getModelIndex( (int))
 {
 /*
 .loc_0x0:
@@ -10355,7 +10355,7 @@ void getModelIndex__Q28Morimura10TItemZukanFi(void)
  * Address:	80378E50
  * Size:	000020
  */
-void getIdMax__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::getIdMax(void)
 {
 /*
 .loc_0x0:
@@ -10375,7 +10375,7 @@ void getIdMax__Q28Morimura10TItemZukanFv(void)
  * Address:	80378E70
  * Size:	001690
  */
-void doCreate__Q28Morimura10TItemZukanFP10JKRArchive(void)
+void Morimura::TItemZukan::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -12021,7 +12021,7 @@ void doCreate__Q28Morimura10TItemZukanFP10JKRArchive(void)
  * Address:	8037A500
  * Size:	0007B4
  */
-void doDemoDraw__Q28Morimura10TItemZukanFR8Graphics(void)
+void Morimura::TItemZukan::doDemoDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -12546,7 +12546,7 @@ void doDemoDraw__Q28Morimura10TItemZukanFR8Graphics(void)
  * Address:	8037ACB4
  * Size:	000170
  */
-void setDetail__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::setDetail(void)
 {
 /*
 .loc_0x0:
@@ -12662,7 +12662,7 @@ void setDetail__Q28Morimura10TItemZukanFv(void)
  * Address:	8037AE24
  * Size:	000090
  */
-void isComplete__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::isComplete(void)
 {
 /*
 .loc_0x0:
@@ -12718,7 +12718,7 @@ void isComplete__Q28Morimura10TItemZukanFv(void)
  * Address:	8037AEB4
  * Size:	000080
  */
-void isListShow__Q28Morimura10TItemZukanFi(void)
+void Morimura::TItemZukan::isListShow( (int))
 {
 /*
 .loc_0x0:
@@ -12772,7 +12772,7 @@ void isListShow__Q28Morimura10TItemZukanFi(void)
  * Address:	8037AF34
  * Size:	00006C
  */
-void setXWindow__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::setXWindow(void)
 {
 /*
 .loc_0x0:
@@ -12811,7 +12811,7 @@ void setXWindow__Q28Morimura10TItemZukanFv(void)
  * Address:	8037AFA0
  * Size:	0000A8
  */
-void setYWindow__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::setYWindow(void)
 {
 /*
 .loc_0x0:
@@ -12869,7 +12869,7 @@ void setYWindow__Q28Morimura10TItemZukanFv(void)
  * Address:	8037B048
  * Size:	0000C0
  */
-void getPrice__Q28Morimura10TItemZukanFi(void)
+void Morimura::TItemZukan::getPrice( (int))
 {
 /*
 .loc_0x0:
@@ -12937,7 +12937,7 @@ void getPrice__Q28Morimura10TItemZukanFi(void)
  * Address:	8037B108
  * Size:	0000C8
  */
-void getWeight__Q28Morimura10TItemZukanFi(void)
+void Morimura::TItemZukan::getWeight( (int))
 {
 /*
 .loc_0x0:
@@ -13007,7 +13007,7 @@ void getWeight__Q28Morimura10TItemZukanFi(void)
  * Address:	8037B1D0
  * Size:	000098
  */
-void isNewSupply__Q28Morimura10TItemZukanFib(void)
+void Morimura::TItemZukan::isNewSupply( (int, bool))
 {
 /*
 .loc_0x0:
@@ -13067,7 +13067,7 @@ void isNewSupply__Q28Morimura10TItemZukanFib(void)
  * Address:	8037B268
  * Size:	0000C4
  */
-void isPanelExist__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::isPanelExist(void)
 {
 /*
 .loc_0x0:
@@ -13138,7 +13138,7 @@ void isPanelExist__Q28Morimura10TItemZukanFv(void)
  * Address:	8037B32C
  * Size:	000034
  */
-void isOpenConfirmWindow__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::isOpenConfirmWindow(void)
 {
 /*
 .loc_0x0:
@@ -13163,7 +13163,7 @@ void isOpenConfirmWindow__Q28Morimura10TItemZukanFv(void)
  * Address:	8037B360
  * Size:	00004C
  */
-void openConfirmWindow__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::openConfirmWindow(void)
 {
 /*
 .loc_0x0:
@@ -13194,7 +13194,7 @@ void openConfirmWindow__Q28Morimura10TItemZukanFv(void)
  * Address:	8037B3AC
  * Size:	000054
  */
-void __ct__Q28Morimura11TDItemSceneFv(void)
+void Morimura::TDItemScene::__ct(void)
 {
 /*
 .loc_0x0:
@@ -13227,7 +13227,7 @@ void __ct__Q28Morimura11TDItemSceneFv(void)
  * Address:	8037B400
  * Size:	0001C8
  */
-void doCreateObj__Q28Morimura11TDItemSceneFP10JKRArchive(void)
+void Morimura::TDItemScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -13357,7 +13357,7 @@ void doCreateObj__Q28Morimura11TDItemSceneFP10JKRArchive(void)
  * Address:	8037B5C8
  * Size:	000034
  */
-void doStart__Q28Morimura11TDItemSceneFPQ26Screen13StartSceneArg(void)
+void Morimura::TDItemScene::doStart( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -13382,7 +13382,7 @@ void doStart__Q28Morimura11TDItemSceneFPQ26Screen13StartSceneArg(void)
  * Address:	8037B5FC
  * Size:	000028
  */
-void isAppearConfirmWindow__Q28Morimura11TDItemSceneFv(void)
+void Morimura::TDItemScene::isAppearConfirmWindow(void)
 {
 /*
 .loc_0x0:
@@ -13406,7 +13406,7 @@ void isAppearConfirmWindow__Q28Morimura11TDItemSceneFv(void)
  * Address:	8037B624
  * Size:	000080
  */
-void __ct__Q28Morimura18TCallbackScrollMsgFv(void)
+void Morimura::TCallbackScrollMsg::__ct(void)
 {
 /*
 .loc_0x0:
@@ -13452,7 +13452,7 @@ void __ct__Q28Morimura18TCallbackScrollMsgFv(void)
  * Address:	8037B6A4
  * Size:	000070
  */
-void doInit__Q28Morimura18TCallbackScrollMsgFv(void)
+void Morimura::TCallbackScrollMsg::doInit(void)
 {
 /*
 .loc_0x0:
@@ -13494,7 +13494,7 @@ void doInit__Q28Morimura18TCallbackScrollMsgFv(void)
  * Address:	8037B714
  * Size:	000038
  */
-void update__Q28Morimura18TCallbackScrollMsgFv(void)
+void Morimura::TCallbackScrollMsg::update(void)
 {
 /*
 .loc_0x0:
@@ -13520,7 +13520,7 @@ void update__Q28Morimura18TCallbackScrollMsgFv(void)
  * Address:	8037B74C
  * Size:	0000C8
  */
-void reset__Q28Morimura18TCallbackScrollMsgFv(void)
+void Morimura::TCallbackScrollMsg::reset(void)
 {
 /*
 .loc_0x0:
@@ -13584,7 +13584,7 @@ void reset__Q28Morimura18TCallbackScrollMsgFv(void)
  * Address:	8037B814
  * Size:	000034
  */
-void scroll__Q28Morimura18TCallbackScrollMsgFf(void)
+void Morimura::TCallbackScrollMsg::scroll( (float))
 {
 /*
 .loc_0x0:
@@ -13609,7 +13609,7 @@ void scroll__Q28Morimura18TCallbackScrollMsgFf(void)
  * Address:	8037B848
  * Size:	000048
  */
-void draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext(void)
+void Morimura::TCallbackScrollMsg::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -13641,7 +13641,7 @@ void draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext(void)
  * Address:	8037B890
  * Size:	000024
  */
-void getPosRate__Q28Morimura18TCallbackScrollMsgFv(void)
+void Morimura::TCallbackScrollMsg::getPosRate(void)
 {
 /*
 .loc_0x0:
@@ -13662,7 +13662,7 @@ void getPosRate__Q28Morimura18TCallbackScrollMsgFv(void)
  * Address:	8037B8B4
  * Size:	000080
  */
-void __ct__Q28Morimura12TZukanWindowFP10JKRArchivei(void)
+void Morimura::TZukanWindow::__ct( (JKRArchive *, int))
 {
 /*
 .loc_0x0:
@@ -13706,7 +13706,7 @@ void __ct__Q28Morimura12TZukanWindowFP10JKRArchivei(void)
  * Address:	8037B934
  * Size:	000538
  */
-void create__Q28Morimura12TZukanWindowFPCcUl(void)
+void Morimura::TZukanWindow::create( (char const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -14078,7 +14078,7 @@ void create__Q28Morimura12TZukanWindowFPCcUl(void)
  * Address:	8037BE6C
  * Size:	000390
  */
-void update__Q28Morimura12TZukanWindowFv(void)
+void Morimura::TZukanWindow::update(void)
 {
 /*
 .loc_0x0:
@@ -14350,7 +14350,7 @@ void update__Q28Morimura12TZukanWindowFv(void)
  * Address:	8037C1FC
  * Size:	00002C
  */
-void draw__Q28Morimura12TZukanWindowFR8GraphicsP13J2DPerspGraph(void)
+void Morimura::TZukanWindow::draw( (Graphics &, J2DPerspGraph *))
 {
 /*
 .loc_0x0:
@@ -14375,7 +14375,7 @@ void draw__Q28Morimura12TZukanWindowFR8GraphicsP13J2DPerspGraph(void)
  * Address:	8037C228
  * Size:	0000F0
  */
-void windowOpen__Q28Morimura12TZukanWindowFv(void)
+void Morimura::TZukanWindow::windowOpen(void)
 {
 /*
 .loc_0x0:
@@ -14449,7 +14449,7 @@ void windowOpen__Q28Morimura12TZukanWindowFv(void)
  * Address:	8037C318
  * Size:	000030
  */
-void windowClose__Q28Morimura12TZukanWindowFv(void)
+void Morimura::TZukanWindow::windowClose(void)
 {
 /*
 .loc_0x0:
@@ -14477,7 +14477,7 @@ void windowClose__Q28Morimura12TZukanWindowFv(void)
  * Address:	8037C348
  * Size:	000038
  */
-void msgScroll__Q28Morimura12TZukanWindowFf(void)
+void Morimura::TZukanWindow::msgScroll( (float))
 {
 /*
 .loc_0x0:
@@ -14503,7 +14503,7 @@ void msgScroll__Q28Morimura12TZukanWindowFf(void)
  * Address:	8037C380
  * Size:	000030
  */
-void getPosRate__Q28Morimura12TZukanWindowFv(void)
+void Morimura::TZukanWindow::getPosRate(void)
 {
 /*
 .loc_0x0:
@@ -14527,7 +14527,7 @@ void getPosRate__Q28Morimura12TZukanWindowFv(void)
  * Address:	8037C3B0
  * Size:	00006C
  */
-void setWindowColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10(void)
+void Morimura::TZukanWindow::setWindowColor( (J2DGXColorS10 &))
 {
 /*
 .loc_0x0:
@@ -14566,7 +14566,7 @@ void setWindowColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10(void)
  * Address:	8037C41C
  * Size:	0000F0
  */
-void setIconColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10R13J2DGXColorS10(void)
+void Morimura::TZukanWindow::setIconColor( (J2DGXColorS10 &, J2DGXColorS10 &))
 {
 /*
 .loc_0x0:
@@ -14638,7 +14638,7 @@ void setIconColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10R13J2DGXColorS10(vo
  * Address:	8037C50C
  * Size:	00008C
  */
-void onIcon__Q28Morimura12TZukanWindowFi(void)
+void Morimura::TZukanWindow::onIcon( (int))
 {
 /*
 .loc_0x0:
@@ -14689,7 +14689,7 @@ void onIcon__Q28Morimura12TZukanWindowFi(void)
  * Address:	8037C598
  * Size:	0000D4
  */
-void moveIcon__Q28Morimura12TZukanWindowFf(void)
+void Morimura::TZukanWindow::moveIcon( (float))
 {
 /*
 .loc_0x0:
@@ -14764,7 +14764,7 @@ void moveIcon__Q28Morimura12TZukanWindowFf(void)
  * Address:	8037C66C
  * Size:	000040
  */
-void changeIconTexture__Q28Morimura12TZukanWindowFiP7ResTIMG(void)
+void Morimura::TZukanWindow::changeIconTexture( (int, ResTIMG *))
 {
 /*
 .loc_0x0:
@@ -14792,7 +14792,7 @@ void changeIconTexture__Q28Morimura12TZukanWindowFiP7ResTIMG(void)
  * Address:	8037C6AC
  * Size:	000090
  */
-void __dt__Q28Morimura18TCallbackScrollMsgFv(void)
+void Morimura::TCallbackScrollMsg::__dt(void)
 {
 /*
 .loc_0x0:
@@ -14844,7 +14844,7 @@ void __dt__Q28Morimura18TCallbackScrollMsgFv(void)
  * Address:	8037C73C
  * Size:	00000C
  */
-void getResName__Q28Morimura11TDItemSceneCFv(void)
+void Morimura::TDItemScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -14859,7 +14859,7 @@ void getResName__Q28Morimura11TDItemSceneCFv(void)
  * Address:	8037C748
  * Size:	000008
  */
-void getSceneType__Q28Morimura11TDItemSceneFv(void)
+void Morimura::TDItemScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -14873,7 +14873,7 @@ void getSceneType__Q28Morimura11TDItemSceneFv(void)
  * Address:	8037C750
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura11TDItemSceneFv(void)
+void Morimura::TDItemScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -14888,7 +14888,7 @@ void getOwnerID__Q28Morimura11TDItemSceneFv(void)
  * Address:	8037C75C
  * Size:	000010
  */
-void getMemberID__Q28Morimura11TDItemSceneFv(void)
+void Morimura::TDItemScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -14904,7 +14904,7 @@ void getMemberID__Q28Morimura11TDItemSceneFv(void)
  * Address:	8037C76C
  * Size:	000034
  */
-void getDispMemberBase__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::getDispMemberBase(void)
 {
 /*
 .loc_0x0:
@@ -14933,7 +14933,7 @@ void getDispMemberBase__Q28Morimura10TItemZukanFv(void)
  * Address:	8037C7A0
  * Size:	000008
  */
-void getDispDataZukan__Q28Morimura10TItemZukanFv(void)
+void Morimura::TItemZukan::getDispDataZukan(void)
 {
 /*
 .loc_0x0:
@@ -14947,7 +14947,7 @@ void getDispDataZukan__Q28Morimura10TItemZukanFv(void)
  * Address:	8037C7A8
  * Size:	000014
  */
-void doUpdateFadeinFinish__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -14964,7 +14964,7 @@ void doUpdateFadeinFinish__Q28Morimura10TZukanBaseFv(void)
  * Address:	8037C7BC
  * Size:	000028
  */
-void doUpdateFadeout__Q28Morimura10TZukanBaseFv(void)
+void Morimura::TZukanBase::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -14986,7 +14986,7 @@ void doUpdateFadeout__Q28Morimura10TZukanBaseFv(void)
  * Address:	8037C7E4
  * Size:	000004
  */
-void changeTextTevBlock__Q28Morimura11TScrollListFi(void)
+void Morimura::TScrollList::changeTextTevBlock( (int))
 {
 /*
 .loc_0x0:
@@ -14999,7 +14999,7 @@ void changeTextTevBlock__Q28Morimura11TScrollListFi(void)
  * Address:	8037C7E8
  * Size:	000004
  */
-void setPaneCharacter__Q28Morimura11TScrollListFi(void)
+void Morimura::TScrollList::setPaneCharacter( (int))
 {
 /*
 .loc_0x0:
@@ -15012,7 +15012,7 @@ void setPaneCharacter__Q28Morimura11TScrollListFi(void)
  * Address:	8037C7EC
  * Size:	00000C
  */
-void getResName__Q28Morimura12TDEnemySceneCFv(void)
+void Morimura::TDEnemyScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -15027,7 +15027,7 @@ void getResName__Q28Morimura12TDEnemySceneCFv(void)
  * Address:	8037C7F8
  * Size:	000008
  */
-void getSceneType__Q28Morimura12TDEnemySceneFv(void)
+void Morimura::TDEnemyScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -15041,7 +15041,7 @@ void getSceneType__Q28Morimura12TDEnemySceneFv(void)
  * Address:	8037C800
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura12TDEnemySceneFv(void)
+void Morimura::TDEnemyScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -15056,7 +15056,7 @@ void getOwnerID__Q28Morimura12TDEnemySceneFv(void)
  * Address:	8037C80C
  * Size:	000010
  */
-void getMemberID__Q28Morimura12TDEnemySceneFv(void)
+void Morimura::TDEnemyScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -15072,7 +15072,7 @@ void getMemberID__Q28Morimura12TDEnemySceneFv(void)
  * Address:	8037C81C
  * Size:	000034
  */
-void getDispMemberBase__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::getDispMemberBase(void)
 {
 /*
 .loc_0x0:
@@ -15101,7 +15101,7 @@ void getDispMemberBase__Q28Morimura11TEnemyZukanFv(void)
  * Address:	8037C850
  * Size:	000008
  */
-void getDispDataZukan__Q28Morimura11TEnemyZukanFv(void)
+void Morimura::TEnemyZukan::getDispDataZukan(void)
 {
 /*
 .loc_0x0:
@@ -15115,7 +15115,7 @@ void getDispDataZukan__Q28Morimura11TEnemyZukanFv(void)
  * Address:	8037C858
  * Size:	000008
  */
-void getCategoryColorId__Q28Morimura10TZukanBaseFi(void)
+void Morimura::TZukanBase::getCategoryColorId( (int))
 {
 /*
 .loc_0x0:
@@ -15218,7 +15218,7 @@ void __sinit_zukan2D_cpp(void)
  * Address:	8037C994
  * Size:	000008
  */
-void @24@__dt__Q28Morimura10TZukanBaseFv(void)
+void @24@Morimura::TZukanBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -15232,7 +15232,7 @@ void @24@__dt__Q28Morimura10TZukanBaseFv(void)
  * Address:	8037C99C
  * Size:	000008
  */
-void @24@__dt__Q28Morimura11TEnemyZukanFv(void)
+void @24@Morimura::TEnemyZukan::__dt(void)
 {
 /*
 .loc_0x0:
@@ -15246,7 +15246,7 @@ void @24@__dt__Q28Morimura11TEnemyZukanFv(void)
  * Address:	8037C9A4
  * Size:	000008
  */
-void @24@__dt__Q28Morimura10TItemZukanFv(void)
+void @24@Morimura::TItemZukan::__dt(void)
 {
 /*
 .loc_0x0:

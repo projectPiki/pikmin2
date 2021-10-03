@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8029E484
  * Size:	0000A4
  */
-void __ct__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q34Game5Ftank3ObjFv(void)
  * Address:	8029E528
  * Size:	0001A4
  */
-void changeMaterial__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void changeMaterial__Q34Game5Ftank3ObjFv(void)
  * Address:	8029E6CC
  * Size:	000048
  */
-void createEffect__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void createEffect__Q34Game5Ftank3ObjFv(void)
  * Address:	8029E714
  * Size:	0001FC
  */
-void __ct__Q23efx11TTankEffectFPA4_f(void)
+void efx::TTankEffect::__ct( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void __ct__Q23efx11TTankEffectFPA4_f(void)
  * Address:	8029E910
  * Size:	00009C
  */
-void __dt__Q23efx15TTankFireYodareFv(void)
+void efx::TTankFireYodare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -419,7 +419,7 @@ void __dt__Q23efx15TTankFireYodareFv(void)
  * Address:	........
  * Size:	000188
  */
-void __dt__Q23efx9TTankFireFv(void)
+void efx::TTankFire::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -429,7 +429,7 @@ void __dt__Q23efx9TTankFireFv(void)
  * Address:	8029E9AC
  * Size:	0000C0
  */
-void __dt__Q23efx12TTankFireINDFv(void)
+void efx::TTankFireIND::__dt(void)
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void __dt__Q23efx12TTankFireINDFv(void)
  * Address:	........
  * Size:	0000F8
  */
-void __dt__Q23efx12TTankFireABCFv(void)
+void efx::TTankFireABC::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -505,7 +505,7 @@ void __dt__Q23efx12TTankFireABCFv(void)
  * Address:	8029EA6C
  * Size:	000084
  */
-void __dt__Q23efx12TTankFireHitFv(void)
+void efx::TTankFireHit::__dt(void)
 {
 /*
 .loc_0x0:
@@ -554,7 +554,7 @@ void __dt__Q23efx12TTankFireHitFv(void)
  * Address:	8029EAF0
  * Size:	000054
  */
-void setupEffect__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -587,7 +587,7 @@ void setupEffect__Q34Game5Ftank3ObjFv(void)
  * Address:	8029EB44
  * Size:	000034
  */
-void startEffect__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::startEffect(void)
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void startEffect__Q34Game5Ftank3ObjFv(void)
  * Address:	8029EB78
  * Size:	000054
  */
-void startYodare__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::startYodare(void)
 {
 /*
 .loc_0x0:
@@ -645,7 +645,7 @@ void startYodare__Q34Game5Ftank3ObjFv(void)
  * Address:	8029EBCC
  * Size:	000050
  */
-void fade__Q23efx9TTankFireFv(void)
+void efx::TTankFire::fade(void)
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void fade__Q23efx9TTankFireFv(void)
  * Address:	8029EC1C
  * Size:	000048
  */
-void fade__Q23efx12TTankFireABCFv(void)
+void efx::TTankFireABC::fade(void)
 {
 /*
 .loc_0x0:
@@ -709,7 +709,7 @@ void fade__Q23efx12TTankFireABCFv(void)
  * Address:	8029EC64
  * Size:	000050
  */
-void finishEffect__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::finishEffect(void)
 {
 /*
 .loc_0x0:
@@ -741,7 +741,7 @@ void finishEffect__Q34Game5Ftank3ObjFv(void)
  * Address:	8029ECB4
  * Size:	000064
  */
-void effectDrawOn__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -778,7 +778,7 @@ void effectDrawOn__Q34Game5Ftank3ObjFv(void)
  * Address:	8029ED18
  * Size:	000040
  */
-void endDemoDrawOn__Q23efx12TTankFireABCFv(void)
+void efx::TTankFireABC::endDemoDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -806,7 +806,7 @@ void endDemoDrawOn__Q23efx12TTankFireABCFv(void)
  * Address:	8029ED58
  * Size:	000064
  */
-void effectDrawOff__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -843,7 +843,7 @@ void effectDrawOff__Q34Game5Ftank3ObjFv(void)
  * Address:	8029EDBC
  * Size:	000040
  */
-void startDemoDrawOff__Q23efx12TTankFireABCFv(void)
+void efx::TTankFireABC::startDemoDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -871,7 +871,7 @@ void startDemoDrawOff__Q23efx12TTankFireABCFv(void)
  * Address:	8029EDFC
  * Size:	000060
  */
-void interactCreature__Q34Game5Ftank3ObjFPQ24Game8Creature(void)
+void Game::Ftank::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -907,7 +907,7 @@ void interactCreature__Q34Game5Ftank3ObjFPQ24Game8Creature(void)
  * Address:	8029EE5C
  * Size:	000010
  */
-void stopEffectRadius__Q34Game5Ftank3ObjFf(void)
+void Game::Ftank::Obj::stopEffectRadius( (float))
 {
 /*
 .loc_0x0:
@@ -923,7 +923,7 @@ void stopEffectRadius__Q34Game5Ftank3ObjFf(void)
  * Address:	8029EE6C
  * Size:	000044
  */
-void createChargeSE__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::createChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -952,7 +952,7 @@ void createChargeSE__Q34Game5Ftank3ObjFv(void)
  * Address:	8029EEB0
  * Size:	000044
  */
-void createDisChargeSE__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::createDisChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -981,7 +981,7 @@ void createDisChargeSE__Q34Game5Ftank3ObjFv(void)
  * Address:	8029EEF4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -995,7 +995,7 @@ void getEnemyTypeID__Q34Game5Ftank3ObjFv(void)
  * Address:	8029EEFC
  * Size:	000008
  */
-void @4@__dt__Q23efx12TTankFireHitFv(void)
+void @4@efx::TTankFireHit::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1009,7 +1009,7 @@ void @4@__dt__Q23efx12TTankFireHitFv(void)
  * Address:	8029EF04
  * Size:	000008
  */
-void @4@__dt__Q23efx15TTankFireYodareFv(void)
+void @4@efx::TTankFireYodare::__dt(void)
 {
 /*
 .loc_0x0:

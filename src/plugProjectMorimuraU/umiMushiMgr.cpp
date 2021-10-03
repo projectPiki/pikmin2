@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8038273C
  * Size:	000050
  */
-void __ct__Q34Game8UmiMushi3MgrFiUc(void)
+void Game::UmiMushi::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game8UmiMushi3MgrFiUc(void)
  * Address:	8038278C
  * Size:	000048
  */
-void doAlloc__Q34Game8UmiMushi3MgrFv(void)
+void Game::UmiMushi::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game8UmiMushi3MgrFv(void)
  * Address:	803827D4
  * Size:	0000A4
  */
-void __ct__Q34Game8UmiMushi5ParmsFv(void)
+void Game::UmiMushi::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -136,7 +136,7 @@ void __ct__Q34Game8UmiMushi5ParmsFv(void)
  * Address:	80382878
  * Size:	000360
  */
-void __ct__Q44Game8UmiMushi5Parms11ProperParmsFv(void)
+void Game::UmiMushi::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -366,7 +366,7 @@ void __ct__Q44Game8UmiMushi5Parms11ProperParmsFv(void)
  * Address:	80382BD8
  * Size:	000020
  */
-void birth__Q34Game8UmiMushi3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::UmiMushi::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void birth__Q34Game8UmiMushi3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	80382BF8
  * Size:	000068
  */
-void loadModelData__Q34Game8UmiMushi3MgrFv(void)
+void Game::UmiMushi::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -428,7 +428,7 @@ void loadModelData__Q34Game8UmiMushi3MgrFv(void)
  * Address:	80382C60
  * Size:	0000BC
  */
-void loadTexData__Q34Game8UmiMushi3MgrFv(void)
+void Game::UmiMushi::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -493,7 +493,7 @@ void loadTexData__Q34Game8UmiMushi3MgrFv(void)
  * Address:	80382D1C
  * Size:	00007C
  */
-void createModel__Q34Game8UmiMushi3MgrFv(void)
+void Game::UmiMushi::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -540,7 +540,7 @@ void createModel__Q34Game8UmiMushi3MgrFv(void)
  * Address:	80382D98
  * Size:	000160
  */
-void createObj__Q34Game8UmiMushi3MgrFi(void)
+void Game::UmiMushi::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -650,7 +650,7 @@ void createObj__Q34Game8UmiMushi3MgrFi(void)
  * Address:	80382EF8
  * Size:	0000BC
  */
-void __dt__Q34Game8UmiMushi3ObjFv(void)
+void Game::UmiMushi::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -713,7 +713,7 @@ void __dt__Q34Game8UmiMushi3ObjFv(void)
  * Address:	80382FB4
  * Size:	0000B0
  */
-void __dt__Q34Game8UmiMushi3MgrFv(void)
+void Game::UmiMushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void __dt__Q34Game8UmiMushi3MgrFv(void)
  * Address:	80383064
  * Size:	00002C
  */
-void doLoadBmd__Q34Game8UmiMushi3MgrFPv(void)
+void Game::UmiMushi::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -796,7 +796,7 @@ void doLoadBmd__Q34Game8UmiMushi3MgrFPv(void)
  * Address:	80383090
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8UmiMushi3MgrFv(void)
+void Game::UmiMushi::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -810,7 +810,7 @@ void getEnemyTypeID__Q34Game8UmiMushi3MgrFv(void)
  * Address:	80383098
  * Size:	000010
  */
-void getEnemy__Q34Game8UmiMushi3MgrFi(void)
+void Game::UmiMushi::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -826,7 +826,7 @@ void getEnemy__Q34Game8UmiMushi3MgrFi(void)
  * Address:	803830A8
  * Size:	000050
  */
-void read__Q34Game8UmiMushi5ParmsFR6Stream(void)
+void Game::UmiMushi::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -858,7 +858,7 @@ void read__Q34Game8UmiMushi5ParmsFR6Stream(void)
  * Address:	803830F8
  * Size:	000008
  */
-void @4@__dt__Q34Game8UmiMushi3MgrFv(void)
+void @4@Game::UmiMushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B5E24
  * Size:	000008
  */
-void setAnimMgr__Q34Game11OtakaraBase14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::OtakaraBase::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game11OtakaraBase14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802B5E2C
  * Size:	000008
  */
-void getAnimator__Q34Game11OtakaraBase14ProperAnimatorFi(void)
+void Game::OtakaraBase::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game11OtakaraBase14ProperAnimatorFi(void)
  * Address:	802B5E34
  * Size:	00005C
  */
-void __dt__Q34Game11OtakaraBase14ProperAnimatorFv(void)
+void Game::OtakaraBase::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game11OtakaraBase14ProperAnimatorFv(void)
  * Address:	802B5E90
  * Size:	000008
  */
-void getAnimator__Q34Game11OtakaraBase14ProperAnimatorFv(void)
+void Game::OtakaraBase::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

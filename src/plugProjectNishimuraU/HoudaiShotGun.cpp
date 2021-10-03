@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802C394C
  * Size:	00003C
  */
-void levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi(void)
+void Game::Houdai::levelRotationCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -44,7 +44,7 @@ void levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi(void)
  * Address:	802C3988
  * Size:	00003C
  */
-void verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi(void)
+void Game::Houdai::verticalRotationCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi(void)
  * Address:	........
  * Size:	00004C
  */
-void __ct__Q34Game6Houdai17HoudaiShotGunNodeFPQ34Game6Houdai3Obj(void)
+void Game::Houdai::HoudaiShotGunNode::__ct( (Game::Houdai::Obj *))
 {
 	// UNUSED FUNCTION
 }
@@ -83,7 +83,7 @@ void __ct__Q34Game6Houdai17HoudaiShotGunNodeFPQ34Game6Houdai3Obj(void)
  * Address:	........
  * Size:	0000E8
  */
-void create__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
+void Game::Houdai::HoudaiShotGunNode::create(void)
 {
 	// UNUSED FUNCTION
 }
@@ -113,7 +113,7 @@ void setVelocity__Q34Game6Houdai17HoudaiShotGunNodeFR10Vector3<float>(void)
  * Address:	........
  * Size:	0000D8
  */
-void startShotGun__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
+void Game::Houdai::HoudaiShotGunNode::startShotGun(void)
 {
 	// UNUSED FUNCTION
 }
@@ -123,7 +123,7 @@ void startShotGun__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
  * Address:	802C39C4
  * Size:	000B10
  */
-void update__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
+void Game::Houdai::HoudaiShotGunNode::update(void)
 {
 /*
 .loc_0x0:
@@ -927,7 +927,7 @@ void update__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
  * Address:	........
  * Size:	000030
  */
-void effectDrawOn__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
+void Game::Houdai::HoudaiShotGunNode::effectDrawOn(void)
 {
 	// UNUSED FUNCTION
 }
@@ -937,7 +937,7 @@ void effectDrawOn__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
  * Address:	........
  * Size:	000030
  */
-void effectDrawOff__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
+void Game::Houdai::HoudaiShotGunNode::effectDrawOff(void)
 {
 	// UNUSED FUNCTION
 }
@@ -947,7 +947,7 @@ void effectDrawOff__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
  * Address:	........
  * Size:	000004
  */
-void doDebugDraw__Q34Game6Houdai17HoudaiShotGunNodeFR8Graphics(void)
+void Game::Houdai::HoudaiShotGunNode::doDebugDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -957,7 +957,7 @@ void doDebugDraw__Q34Game6Houdai17HoudaiShotGunNodeFR8Graphics(void)
  * Address:	802C44D4
  * Size:	000240
  */
-void __ct__Q34Game6Houdai16HoudaiShotGunMgrFPQ34Game6Houdai3Obj(void)
+void Game::Houdai::HoudaiShotGunMgr::__ct( (Game::Houdai::Obj *))
 {
 /*
 .loc_0x0:
@@ -1125,7 +1125,7 @@ void __ct__Q34Game6Houdai16HoudaiShotGunMgrFPQ34Game6Houdai3Obj(void)
  * Address:	802C4714
  * Size:	0000B4
  */
-void setupShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::setupShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1182,7 +1182,7 @@ void setupShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C47C8
  * Size:	00000C
  */
-void resetCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::resetCallBack(void)
 {
 /*
 .loc_0x0:
@@ -1197,7 +1197,7 @@ void resetCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C47D4
  * Size:	000008
  */
-void setCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::setCallBack(void)
 {
 /*
 .loc_0x0:
@@ -1211,7 +1211,7 @@ void setCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C47DC
  * Size:	000024
  */
-void startRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::startRotation(void)
 {
 /*
 .loc_0x0:
@@ -1232,7 +1232,7 @@ void startRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C4800
  * Size:	000014
  */
-void finishRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::finishRotation(void)
 {
 /*
 .loc_0x0:
@@ -1249,7 +1249,7 @@ void finishRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C4814
  * Size:	000008
  */
-void isShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::isShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -1263,7 +1263,7 @@ void isShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C481C
  * Size:	000008
  */
-void isShotGunLockOn__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::isShotGunLockOn(void)
 {
 /*
 .loc_0x0:
@@ -1277,7 +1277,7 @@ void isShotGunLockOn__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C4824
  * Size:	000008
  */
-void isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::isFinishShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1310,7 +1310,7 @@ void setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<float>(void)
  * Address:	802C4848
  * Size:	0003C0
  */
-void emitShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::emitShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1582,7 +1582,7 @@ void emitShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C4C08
  * Size:	000084
  */
-void doUpdate__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1635,7 +1635,7 @@ void doUpdate__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C4C8C
  * Size:	000078
  */
-void doUpdateCommon__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -1683,7 +1683,7 @@ void doUpdateCommon__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C4D04
  * Size:	000084
  */
-void forceFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::forceFinishShotGun(void)
 {
 /*
 .loc_0x0:
@@ -1732,7 +1732,7 @@ void forceFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C4D88
  * Size:	000234
  */
-void searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::searchShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -1917,7 +1917,7 @@ void searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C4FBC
  * Size:	000178
  */
-void returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::returnShotGunRotation(void)
 {
 /*
 .loc_0x0:
@@ -2061,7 +2061,7 @@ void returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C5134
  * Size:	000068
  */
-void rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint(void)
+void Game::Houdai::HoudaiShotGunMgr::rotateLevel( (J3DJoint *))
 {
 /*
 .loc_0x0:
@@ -2101,7 +2101,7 @@ void rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint(void)
  * Address:	802C519C
  * Size:	000258
  */
-void rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint(void)
+void Game::Houdai::HoudaiShotGunMgr::rotateVertical( (J3DJoint *))
 {
 /*
 .loc_0x0:
@@ -2289,7 +2289,7 @@ void rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint(void)
  * Address:	........
  * Size:	0000A8
  */
-void startLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::startLockOnEffect(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2299,7 +2299,7 @@ void startLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C53F4
  * Size:	000030
  */
-void finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::finishLockOnEffect(void)
 {
 /*
 .loc_0x0:
@@ -2323,7 +2323,7 @@ void finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C5424
  * Size:	000250
  */
-void setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::setShotGunLockOnPosition(void)
 {
 /*
 .loc_0x0:
@@ -2499,7 +2499,7 @@ void setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C5674
  * Size:	00009C
  */
-void effectDrawOn__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -2558,7 +2558,7 @@ void effectDrawOn__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C5710
  * Size:	00009C
  */
-void effectDrawOff__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -2617,7 +2617,7 @@ void effectDrawOff__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C57AC
  * Size:	000030
  */
-void startStoneStateEffectOff__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::startStoneStateEffectOff(void)
 {
 /*
 .loc_0x0:
@@ -2641,7 +2641,7 @@ void startStoneStateEffectOff__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	802C57DC
  * Size:	000030
  */
-void finishStoneStateEffectOn__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
+void Game::Houdai::HoudaiShotGunMgr::finishStoneStateEffectOn(void)
 {
 /*
 .loc_0x0:
@@ -2665,7 +2665,7 @@ void finishStoneStateEffectOn__Q34Game6Houdai16HoudaiShotGunMgrFv(void)
  * Address:	........
  * Size:	000004
  */
-void doDebugDraw__Q34Game6Houdai16HoudaiShotGunMgrFR8Graphics(void)
+void Game::Houdai::HoudaiShotGunMgr::doDebugDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -2675,7 +2675,7 @@ void doDebugDraw__Q34Game6Houdai16HoudaiShotGunMgrFR8Graphics(void)
  * Address:	802C580C
  * Size:	00009C
  */
-void __dt__Q23efx11THdamaSightFv(void)
+void efx::THdamaSight::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2730,7 +2730,7 @@ void __dt__Q23efx11THdamaSightFv(void)
  * Address:	802C58A8
  * Size:	000008
  */
-void getName__Q23efx6ArgDirFv(void)
+void efx::ArgDir::getName(void)
 {
 /*
 .loc_0x0:
@@ -2744,7 +2744,7 @@ void getName__Q23efx6ArgDirFv(void)
  * Address:	802C58B0
  * Size:	000060
  */
-void __dt__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
+void Game::Houdai::HoudaiShotGunNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2782,7 +2782,7 @@ void __dt__Q34Game6Houdai17HoudaiShotGunNodeFv(void)
  * Address:	802C5910
  * Size:	000008
  */
-void @4@__dt__Q23efx11THdamaSightFv(void)
+void @4@efx::THdamaSight::__dt(void)
 {
 /*
 .loc_0x0:

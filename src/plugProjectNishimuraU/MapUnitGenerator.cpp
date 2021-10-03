@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8024BAAC
  * Size:	000200
  */
-void __ct__Q34Game4Cave16MapUnitGeneratorFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit(void)
+void Game::Cave::MapUnitGenerator::__ct( (Game::MapUnitInterface *, int, Game::Cave::FloorInfo *, bool, Game::Cave::EditMapUnit *))
 {
 /*
 .loc_0x0:
@@ -179,7 +179,7 @@ void __ct__Q34Game4Cave16MapUnitGeneratorFPQ24Game16MapUnitInterfaceiPQ34Game4Ca
  * Address:	8024BCAC
  * Size:	000024
  */
-void __defctor__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::__defctor(void)
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void __defctor__Q34Game4Cave7MapNodeFv(void)
  * Address:	8024BCD0
  * Size:	0000AC
  */
-void createEditMapInfo__Q34Game4Cave16MapUnitGeneratorFPQ34Game4Cave11EditMapUnit(void)
+void Game::Cave::MapUnitGenerator::createEditMapInfo( (Game::Cave::EditMapUnit *))
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void createEditMapInfo__Q34Game4Cave16MapUnitGeneratorFPQ34Game4Cave11EditMapUni
  * Address:	8024BD7C
  * Size:	00024C
  */
-void createMemList__Q34Game4Cave16MapUnitGeneratorFPQ24Game16MapUnitInterfacei(void)
+void Game::Cave::MapUnitGenerator::createMemList( (Game::MapUnitInterface *, int))
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void createMemList__Q34Game4Cave16MapUnitGeneratorFPQ24Game16MapUnitInterfacei(v
  * Address:	8024BFC8
  * Size:	000078
  */
-void isCreateList__Q34Game4Cave16MapUnitGeneratorFPQ24Game16MapUnitInterface(void)
+void Game::Cave::MapUnitGenerator::isCreateList( (Game::MapUnitInterface *))
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void isCreateList__Q34Game4Cave16MapUnitGeneratorFPQ24Game16MapUnitInterface(voi
  * Address:	8024C040
  * Size:	0000CC
  */
-void memMapListSorting__Q34Game4Cave16MapUnitGeneratorFv(void)
+void Game::Cave::MapUnitGenerator::memMapListSorting(void)
 {
 /*
 .loc_0x0:
@@ -581,7 +581,7 @@ void memMapListSorting__Q34Game4Cave16MapUnitGeneratorFv(void)
  * Address:	8024C10C
  * Size:	00014C
  */
-void createMapPartsList__Q34Game4Cave16MapUnitGeneratorFv(void)
+void Game::Cave::MapUnitGenerator::createMapPartsList(void)
 {
 /*
 .loc_0x0:
@@ -692,7 +692,7 @@ void createMapPartsList__Q34Game4Cave16MapUnitGeneratorFv(void)
  * Address:	8024C258
  * Size:	0000B4
  */
-void createEnemyList__Q34Game4Cave16MapUnitGeneratorFv(void)
+void Game::Cave::MapUnitGenerator::createEnemyList(void)
 {
 /*
 .loc_0x0:
@@ -757,7 +757,7 @@ void createEnemyList__Q34Game4Cave16MapUnitGeneratorFv(void)
  * Address:	8024C30C
  * Size:	0000EC
  */
-void createCapEnemyList__Q34Game4Cave16MapUnitGeneratorFv(void)
+void Game::Cave::MapUnitGenerator::createCapEnemyList(void)
 {
 /*
 .loc_0x0:
@@ -844,7 +844,7 @@ void createCapEnemyList__Q34Game4Cave16MapUnitGeneratorFv(void)
  * Address:	8024C3F8
  * Size:	000030
  */
-void isPomGroup__Q34Game4Cave16MapUnitGeneratorFPQ34Game4Cave8TekiInfo(void)
+void Game::Cave::MapUnitGenerator::isPomGroup( (Game::Cave::TekiInfo *))
 {
 /*
 .loc_0x0:
@@ -872,7 +872,7 @@ void isPomGroup__Q34Game4Cave16MapUnitGeneratorFPQ34Game4Cave8TekiInfo(void)
  * Address:	8024C428
  * Size:	0000B4
  */
-void createGateList__Q34Game4Cave16MapUnitGeneratorFv(void)
+void Game::Cave::MapUnitGenerator::createGateList(void)
 {
 /*
 .loc_0x0:
@@ -937,7 +937,7 @@ void createGateList__Q34Game4Cave16MapUnitGeneratorFv(void)
  * Address:	8024C4DC
  * Size:	0000B4
  */
-void createItemList__Q34Game4Cave16MapUnitGeneratorFv(void)
+void Game::Cave::MapUnitGenerator::createItemList(void)
 {
 /*
 .loc_0x0:
@@ -1002,7 +1002,7 @@ void createItemList__Q34Game4Cave16MapUnitGeneratorFv(void)
  * Address:	8024C590
  * Size:	00002C
  */
-void createCaveLevel__Q34Game4Cave16MapUnitGeneratorFv(void)
+void Game::Cave::MapUnitGenerator::createCaveLevel(void)
 {
 /*
 .loc_0x0:

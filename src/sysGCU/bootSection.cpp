@@ -1483,7 +1483,7 @@ void BootSection::load2DResource()
  * Address:	8044851C
  * Size:	000294
  */
-void __ct__Q23ebi13TScreenProgreFv(void)
+void ebi::TScreenProgre::__ct(void)
 {
 /*
 .loc_0x0:

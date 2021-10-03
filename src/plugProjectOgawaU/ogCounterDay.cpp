@@ -5,7 +5,7 @@
  * Address:	8030D2B8
  * Size:	00004C
  */
-void __ct__Q32og6Screen19CallBack_CounterDayFPPcUsP10JKRArchive(void)
+void og::Screen::CallBack_CounterDay::__ct( (char **, unsigned short, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -36,7 +36,7 @@ void __ct__Q32og6Screen19CallBack_CounterDayFPPcUsP10JKRArchive(void)
  * Address:	8030D304
  * Size:	0000EC
  */
-void init__Q32og6Screen19CallBack_CounterDayFP9J2DScreenUxUxUxPUlb(void)
+void og::Screen::CallBack_CounterDay::init( (J2DScreen *, unsigned long long, unsigned long long, unsigned long long, unsigned long *, bool))
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void init__Q32og6Screen19CallBack_CounterDayFP9J2DScreenUxUxUxPUlb(void)
  * Address:	8030D3F0
  * Size:	000168
  */
-void setValue__Q32og6Screen19CallBack_CounterDayFv(void)
+void og::Screen::CallBack_CounterDay::setValue(void)
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void setValue__Q32og6Screen19CallBack_CounterDayFv(void)
  * Address:	8030D558
  * Size:	000040
  */
-void show__Q32og6Screen19CallBack_CounterDayFv(void)
+void og::Screen::CallBack_CounterDay::show(void)
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void show__Q32og6Screen19CallBack_CounterDayFv(void)
  * Address:	8030D598
  * Size:	00004C
  */
-void hide__Q32og6Screen19CallBack_CounterDayFv(void)
+void og::Screen::CallBack_CounterDay::hide(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void hide__Q32og6Screen19CallBack_CounterDayFv(void)
  * Address:	8030D5E4
  * Size:	000040
  */
-void update__Q32og6Screen19CallBack_CounterDayFv(void)
+void og::Screen::CallBack_CounterDay::update(void)
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void update__Q32og6Screen19CallBack_CounterDayFv(void)
  * Address:	8030D624
  * Size:	0000DC
  */
-void setCallBack_CounterDay__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsP10JKRArchive(void)
+void og::Screen::setCallBack_CounterDay( (P2DScreen::Mgr *, unsigned long long, unsigned long long, unsigned long long, unsigned long *, unsigned short, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -389,7 +389,7 @@ void setCallBack_CounterDay__Q22og6ScreenFPQ29P2DScreen3MgrUxUxUxPUlUsP10JKRArch
  * Address:	........
  * Size:	0000DC
  */
-void setCallBack_CounterDay__Q22og6ScreenFPPcPQ29P2DScreen3MgrUxUxUxPUlUsP10JKRArchive(void)
+void og::Screen::setCallBack_CounterDay( (char **, P2DScreen::Mgr *, unsigned long long, unsigned long long, unsigned long long, unsigned long *, unsigned short, JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -399,7 +399,7 @@ void setCallBack_CounterDay__Q22og6ScreenFPPcPQ29P2DScreen3MgrUxUxUxPUlUsP10JKRA
  * Address:	8030D700
  * Size:	000090
  */
-void __dt__Q32og6Screen19CallBack_CounterDayFv(void)
+void og::Screen::CallBack_CounterDay::__dt(void)
 {
 /*
 .loc_0x0:

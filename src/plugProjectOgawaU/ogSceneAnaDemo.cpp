@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8031EA58
  * Size:	000080
  */
-void __ct__Q32og9newScreen7AnaDemoFl(void)
+void og::newScreen::AnaDemo::__ct( (long))
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q32og9newScreen7AnaDemoFl(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen7AnaDemoFv(void)
+void og::newScreen::AnaDemo::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +75,7 @@ void __dt__Q32og9newScreen7AnaDemoFv(void)
  * Address:	8031EAD8
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen7AnaDemoFPQ28Resource10MgrCommand(void)
+void og::newScreen::AnaDemo::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -88,7 +88,7 @@ void doUserCallBackFunc__Q32og9newScreen7AnaDemoFPQ28Resource10MgrCommand(void)
  * Address:	8031EADC
  * Size:	000078
  */
-void doCreateObj__Q32og9newScreen7AnaDemoFP10JKRArchive(void)
+void og::newScreen::AnaDemo::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -132,7 +132,7 @@ void doCreateObj__Q32og9newScreen7AnaDemoFP10JKRArchive(void)
  * Address:	8031EB54
  * Size:	00000C
  */
-void getResName__Q32og9newScreen7AnaDemoCFv(void)
+void og::newScreen::AnaDemo::getResName( const
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void getResName__Q32og9newScreen7AnaDemoCFv(void)
  * Address:	8031EB60
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen7AnaDemoFv(void)
+void og::newScreen::AnaDemo::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -161,7 +161,7 @@ void getSceneType__Q32og9newScreen7AnaDemoFv(void)
  * Address:	8031EB68
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen7AnaDemoFv(void)
+void og::newScreen::AnaDemo::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void getOwnerID__Q32og9newScreen7AnaDemoFv(void)
  * Address:	8031EB74
  * Size:	00006C
  */
-void getMemberID__Q32og9newScreen7AnaDemoFv(void)
+void og::newScreen::AnaDemo::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -223,7 +223,7 @@ void getMemberID__Q32og9newScreen7AnaDemoFv(void)
  * Address:	8031EBE0
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen7AnaDemoFv(void)
+void og::newScreen::AnaDemo::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

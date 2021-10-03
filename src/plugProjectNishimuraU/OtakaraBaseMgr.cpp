@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B5E98
  * Size:	000050
  */
-void __ct__Q34Game11OtakaraBase3MgrFiUc(void)
+void Game::OtakaraBase::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game11OtakaraBase3MgrFiUc(void)
  * Address:	802B5EE8
  * Size:	0000BC
  */
-void loadModelData__Q34Game11OtakaraBase3MgrFv(void)
+void Game::OtakaraBase::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void loadModelData__Q34Game11OtakaraBase3MgrFv(void)
  * Address:	802B5FA4
  * Size:	0000B0
  */
-void loadAnimData__Q34Game11OtakaraBase3MgrFv(void)
+void Game::OtakaraBase::Mgr::loadAnimData(void)
 {
 /*
 .loc_0x0:
@@ -174,7 +174,7 @@ void loadAnimData__Q34Game11OtakaraBase3MgrFv(void)
  * Address:	802B6054
  * Size:	000138
  */
-void createModel__Q34Game11OtakaraBase3MgrFv(void)
+void Game::OtakaraBase::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -274,7 +274,7 @@ void createModel__Q34Game11OtakaraBase3MgrFv(void)
  * Address:	802B618C
  * Size:	0000B0
  */
-void __dt__Q34Game11OtakaraBase3MgrFv(void)
+void Game::OtakaraBase::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -334,7 +334,7 @@ void __dt__Q34Game11OtakaraBase3MgrFv(void)
  * Address:	802B623C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11OtakaraBase3MgrFv(void)
+void Game::OtakaraBase::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void getEnemyTypeID__Q34Game11OtakaraBase3MgrFv(void)
  * Address:	802B6244
  * Size:	000008
  */
-void @4@__dt__Q34Game11OtakaraBase3MgrFv(void)
+void @4@Game::OtakaraBase::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

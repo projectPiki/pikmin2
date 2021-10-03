@@ -5,7 +5,7 @@
  * Address:	80123278
  * Size:	000064
  */
-void getEnemyInfo__Q24Game13EnemyInfoFuncFii(void)
+void Game::EnemyInfoFunc::getEnemyInfo( (int, int))
 {
 /*
 .loc_0x0:
@@ -48,7 +48,7 @@ void getEnemyInfo__Q24Game13EnemyInfoFuncFii(void)
  * Address:	801232DC
  * Size:	000074
  */
-void getEnemyName__Q24Game13EnemyInfoFuncFii(void)
+void Game::EnemyInfoFunc::getEnemyName( (int, int))
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void getEnemyName__Q24Game13EnemyInfoFuncFii(void)
  * Address:	80123350
  * Size:	0000A4
  */
-void getEnemyResName__Q24Game13EnemyInfoFuncFii(void)
+void Game::EnemyInfoFunc::getEnemyResName( (int, int))
 {
 /*
 .loc_0x0:
@@ -164,7 +164,7 @@ void getEnemyResName__Q24Game13EnemyInfoFuncFii(void)
  * Address:	801233F4
  * Size:	000074
  */
-void getEnemyMember__Q24Game13EnemyInfoFuncFii(void)
+void Game::EnemyInfoFunc::getEnemyMember( (int, int))
 {
 /*
 .loc_0x0:
@@ -213,7 +213,7 @@ void getEnemyMember__Q24Game13EnemyInfoFuncFii(void)
  * Address:	80123468
  * Size:	000090
  */
-void getEnemyID__Q24Game13EnemyInfoFuncFPci(void)
+void Game::EnemyInfoFunc::getEnemyID( (char *, int))
 {
 /*
 .loc_0x0:

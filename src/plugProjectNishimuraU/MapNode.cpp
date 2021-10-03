@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80242D58
  * Size:	000018
  */
-void __ct__Q34Game4Cave10AdjustInfoFv(void)
+void Game::Cave::AdjustInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -33,7 +33,7 @@ void __ct__Q34Game4Cave10AdjustInfoFv(void)
  * Address:	80242D70
  * Size:	0002AC
  */
-void __ct__Q34Game4Cave7MapNodeFPQ34Game4Cave8UnitInfo(void)
+void Game::Cave::MapNode::__ct( (Game::Cave::UnitInfo *))
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void __ct__Q34Game4Cave7MapNodeFPQ34Game4Cave8UnitInfo(void)
  * Address:	8024301C
  * Size:	00000C
  */
-void setOffset__Q34Game4Cave7MapNodeFii(void)
+void Game::Cave::MapNode::setOffset( (int, int))
 {
 /*
 .loc_0x0:
@@ -245,7 +245,7 @@ void setOffset__Q34Game4Cave7MapNodeFii(void)
  * Address:	80243028
  * Size:	000024
  */
-void getDoorDirect__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::getDoorDirect( (int))
 {
 /*
 .loc_0x0:
@@ -266,7 +266,7 @@ void getDoorDirect__Q34Game4Cave7MapNodeFi(void)
  * Address:	8024304C
  * Size:	000100
  */
-void getDoorOffset__Q34Game4Cave7MapNodeFiRiRi(void)
+void Game::Cave::MapNode::getDoorOffset( (int, int &, int &))
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void getDoorOffset__Q34Game4Cave7MapNodeFiRiRi(void)
  * Address:	8024314C
  * Size:	0000FC
  */
-void isDoorSet__Q34Game4Cave7MapNodeFPQ34Game4Cave8DoorNodeiii(void)
+void Game::Cave::MapNode::isDoorSet( (Game::Cave::DoorNode *, int, int, int))
 {
 /*
 .loc_0x0:
@@ -441,7 +441,7 @@ void isDoorSet__Q34Game4Cave7MapNodeFPQ34Game4Cave8DoorNodeiii(void)
  * Address:	80243248
  * Size:	000034
  */
-void setDoorClose__Q34Game4Cave7MapNodeFiPQ34Game4Cave7MapNodei(void)
+void Game::Cave::MapNode::setDoorClose( (int, Game::Cave::MapNode *, int))
 {
 /*
 .loc_0x0:
@@ -466,7 +466,7 @@ void setDoorClose__Q34Game4Cave7MapNodeFiPQ34Game4Cave7MapNodei(void)
  * Address:	8024327C
  * Size:	00009C
  */
-void detachDoorClose__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::detachDoorClose(void)
 {
 /*
 .loc_0x0:
@@ -523,7 +523,7 @@ void detachDoorClose__Q34Game4Cave7MapNodeFv(void)
  * Address:	80243318
  * Size:	00001C
  */
-void isDoorClose__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::isDoorClose( (int))
 {
 /*
 .loc_0x0:
@@ -542,7 +542,7 @@ void isDoorClose__Q34Game4Cave7MapNodeFi(void)
  * Address:	80243334
  * Size:	000100
  */
-void resetDoorScore__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::resetDoorScore(void)
 {
 /*
 .loc_0x0:
@@ -626,7 +626,7 @@ void resetDoorScore__Q34Game4Cave7MapNodeFv(void)
  * Address:	80243434
  * Size:	000034
  */
-void setDoorScore__Q34Game4Cave7MapNodeFii(void)
+void Game::Cave::MapNode::setDoorScore( (int, int))
 {
 /*
 .loc_0x0:
@@ -651,7 +651,7 @@ void setDoorScore__Q34Game4Cave7MapNodeFii(void)
  * Address:	80243468
  * Size:	00001C
  */
-void isDoorScoreSetDone__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::isDoorScoreSetDone( (int))
 {
 /*
 .loc_0x0:
@@ -670,7 +670,7 @@ void isDoorScoreSetDone__Q34Game4Cave7MapNodeFi(void)
  * Address:	80243484
  * Size:	000024
  */
-void getDoorNode__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::getDoorNode( (int))
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void getDoorNode__Q34Game4Cave7MapNodeFi(void)
  * Address:	802434A8
  * Size:	000014
  */
-void getAdjustNode__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::getAdjustNode( (int))
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void getAdjustNode__Q34Game4Cave7MapNodeFi(void)
  * Address:	802434BC
  * Size:	000164
  */
-void isGateSetDoor__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::isGateSetDoor( (int))
 {
 /*
 .loc_0x0:
@@ -835,7 +835,7 @@ void isGateSetDoor__Q34Game4Cave7MapNodeFi(void)
  * Address:	80243620
  * Size:	000198
  */
-void getGateScore__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::getGateScore( (int))
 {
 /*
 .loc_0x0:
@@ -985,7 +985,7 @@ void getGateScore__Q34Game4Cave7MapNodeFi(void)
  * Address:	802437B8
  * Size:	0000AC
  */
-void setEnemyScore__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::setEnemyScore(void)
 {
 /*
 .loc_0x0:
@@ -1048,7 +1048,7 @@ void setEnemyScore__Q34Game4Cave7MapNodeFv(void)
  * Address:	80243864
  * Size:	000008
  */
-void setNodeScore__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::setNodeScore( (int))
 {
 /*
 .loc_0x0:
@@ -1062,7 +1062,7 @@ void setNodeScore__Q34Game4Cave7MapNodeFi(void)
  * Address:	8024386C
  * Size:	00000C
  */
-void copyNodeScoreToVersusScore__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::copyNodeScoreToVersusScore(void)
 {
 /*
 .loc_0x0:
@@ -1077,7 +1077,7 @@ void copyNodeScoreToVersusScore__Q34Game4Cave7MapNodeFv(void)
  * Address:	80243878
  * Size:	000014
  */
-void subNodeScoreToVersusScore__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::subNodeScoreToVersusScore(void)
 {
 /*
 .loc_0x0:
@@ -1094,7 +1094,7 @@ void subNodeScoreToVersusScore__Q34Game4Cave7MapNodeFv(void)
  * Address:	8024388C
  * Size:	000110
  */
-void draw__Q34Game4Cave7MapNodeFfff(void)
+void Game::Cave::MapNode::draw( (float, float, float))
 {
 /*
 .loc_0x0:
@@ -1174,7 +1174,7 @@ void draw__Q34Game4Cave7MapNodeFfff(void)
  * Address:	8024399C
  * Size:	000008
  */
-void getNodeOffsetX__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::getNodeOffsetX(void)
 {
 /*
 .loc_0x0:
@@ -1188,7 +1188,7 @@ void getNodeOffsetX__Q34Game4Cave7MapNodeFv(void)
  * Address:	802439A4
  * Size:	000008
  */
-void getNodeOffsetY__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::getNodeOffsetY(void)
 {
 /*
 .loc_0x0:
@@ -1202,7 +1202,7 @@ void getNodeOffsetY__Q34Game4Cave7MapNodeFv(void)
  * Address:	802439AC
  * Size:	000008
  */
-void getEnemyScore__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::getEnemyScore(void)
 {
 /*
 .loc_0x0:
@@ -1216,7 +1216,7 @@ void getEnemyScore__Q34Game4Cave7MapNodeFv(void)
  * Address:	802439B4
  * Size:	000008
  */
-void getNodeScore__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::getNodeScore(void)
 {
 /*
 .loc_0x0:
@@ -1230,7 +1230,7 @@ void getNodeScore__Q34Game4Cave7MapNodeFv(void)
  * Address:	802439BC
  * Size:	000008
  */
-void getVersusScore__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::getVersusScore(void)
 {
 /*
 .loc_0x0:
@@ -1244,7 +1244,7 @@ void getVersusScore__Q34Game4Cave7MapNodeFv(void)
  * Address:	802439C4
  * Size:	000024
  */
-void getUnitName__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::getUnitName(void)
 {
 /*
 .loc_0x0:
@@ -1265,7 +1265,7 @@ void getUnitName__Q34Game4Cave7MapNodeFv(void)
  * Address:	802439E8
  * Size:	0000D0
  */
-void getNodeCentreOffset__Q34Game4Cave7MapNodeFRfRf(void)
+void Game::Cave::MapNode::getNodeCentreOffset( (float &, float &))
 {
 /*
 .loc_0x0:
@@ -1329,7 +1329,7 @@ void getNodeCentreOffset__Q34Game4Cave7MapNodeFRfRf(void)
  * Address:	80243AB8
  * Size:	000024
  */
-void getDirection__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::getDirection(void)
 {
 /*
 .loc_0x0:
@@ -1350,7 +1350,7 @@ void getDirection__Q34Game4Cave7MapNodeFv(void)
  * Address:	80243ADC
  * Size:	0001C4
  */
-void getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen(void)
+void Game::Cave::MapNode::getBaseGenGlobalPosition( (Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:
@@ -1493,7 +1493,7 @@ void getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen(void)
  * Address:	80243CA0
  * Size:	00025C
  */
-void getDoorGlobalPosition__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::getDoorGlobalPosition( (int))
 {
 /*
 .loc_0x0:
@@ -1680,7 +1680,7 @@ void getDoorGlobalPosition__Q34Game4Cave7MapNodeFi(void)
  * Address:	80243EFC
  * Size:	0000EC
  */
-void getBaseGenGlobalDirection__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen(void)
+void Game::Cave::MapNode::getBaseGenGlobalDirection( (Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:
@@ -1763,7 +1763,7 @@ void getBaseGenGlobalDirection__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen(void)
  * Address:	80243FE8
  * Size:	000078
  */
-void getDoorGlobalDirection__Q34Game4Cave7MapNodeFi(void)
+void Game::Cave::MapNode::getDoorGlobalDirection( (int))
 {
 /*
 .loc_0x0:
@@ -1809,7 +1809,7 @@ void getDoorGlobalDirection__Q34Game4Cave7MapNodeFi(void)
  * Address:	80244060
  * Size:	000034
  */
-void getNumDoors__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::getNumDoors(void)
 {
 /*
 .loc_0x0:
@@ -1834,7 +1834,7 @@ void getNumDoors__Q34Game4Cave7MapNodeFv(void)
  * Address:	80244094
  * Size:	000060
  */
-void __dt__Q34Game4Cave7MapNodeFv(void)
+void Game::Cave::MapNode::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802CE2DC
  * Size:	000050
  */
-void __ct__Q34Game10SnakeWhole3MgrFiUc(void)
+void Game::SnakeWhole::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game10SnakeWhole3MgrFiUc(void)
  * Address:	802CE32C
  * Size:	000048
  */
-void doAlloc__Q34Game10SnakeWhole3MgrFv(void)
+void Game::SnakeWhole::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game10SnakeWhole3MgrFv(void)
  * Address:	802CE374
  * Size:	000154
  */
-void __ct__Q34Game10SnakeWhole5ParmsFv(void)
+void Game::SnakeWhole::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void __ct__Q34Game10SnakeWhole5ParmsFv(void)
  * Address:	802CE4C8
  * Size:	000060
  */
-void createObj__Q34Game10SnakeWhole3MgrFi(void)
+void Game::SnakeWhole::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void createObj__Q34Game10SnakeWhole3MgrFi(void)
  * Address:	802CE528
  * Size:	0000BC
  */
-void __dt__Q34Game10SnakeWhole3ObjFv(void)
+void Game::SnakeWhole::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -277,7 +277,7 @@ void __dt__Q34Game10SnakeWhole3ObjFv(void)
  * Address:	802CE5E4
  * Size:	000010
  */
-void getEnemy__Q34Game10SnakeWhole3MgrFi(void)
+void Game::SnakeWhole::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -293,7 +293,7 @@ void getEnemy__Q34Game10SnakeWhole3MgrFi(void)
  * Address:	802CE5F4
  * Size:	000068
  */
-void loadModelData__Q34Game10SnakeWhole3MgrFv(void)
+void Game::SnakeWhole::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void loadModelData__Q34Game10SnakeWhole3MgrFv(void)
  * Address:	802CE65C
  * Size:	0000B0
  */
-void __dt__Q34Game10SnakeWhole3MgrFv(void)
+void Game::SnakeWhole::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -395,7 +395,7 @@ void __dt__Q34Game10SnakeWhole3MgrFv(void)
  * Address:	802CE70C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10SnakeWhole3MgrFv(void)
+void Game::SnakeWhole::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void getEnemyTypeID__Q34Game10SnakeWhole3MgrFv(void)
  * Address:	802CE714
  * Size:	00002C
  */
-void doLoadBmd__Q34Game10SnakeWhole3MgrFPv(void)
+void Game::SnakeWhole::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -432,7 +432,7 @@ void doLoadBmd__Q34Game10SnakeWhole3MgrFPv(void)
  * Address:	802CE740
  * Size:	000050
  */
-void read__Q34Game10SnakeWhole5ParmsFR6Stream(void)
+void Game::SnakeWhole::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -464,7 +464,7 @@ void read__Q34Game10SnakeWhole5ParmsFR6Stream(void)
  * Address:	802CE790
  * Size:	000008
  */
-void @4@__dt__Q34Game10SnakeWhole3MgrFv(void)
+void @4@Game::SnakeWhole::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

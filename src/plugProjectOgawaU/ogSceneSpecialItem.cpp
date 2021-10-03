@@ -5,7 +5,7 @@
  * Address:	8031A2A0
  * Size:	00003C
  */
-void __ct__Q32og9newScreen11SpecialItemFv(void)
+void og::newScreen::SpecialItem::__ct(void)
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void __ct__Q32og9newScreen11SpecialItemFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q32og9newScreen11SpecialItemFv(void)
+void og::newScreen::SpecialItem::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,7 +42,7 @@ void __dt__Q32og9newScreen11SpecialItemFv(void)
  * Address:	8031A2DC
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen11SpecialItemFPQ28Resource10MgrCommand(void)
+void og::newScreen::SpecialItem::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void doUserCallBackFunc__Q32og9newScreen11SpecialItemFPQ28Resource10MgrCommand(v
  * Address:	8031A2E0
  * Size:	000060
  */
-void doCreateObj__Q32og9newScreen11SpecialItemFP10JKRArchive(void)
+void og::newScreen::SpecialItem::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -93,7 +93,7 @@ void doCreateObj__Q32og9newScreen11SpecialItemFP10JKRArchive(void)
  * Address:	8031A340
  * Size:	00004C
  */
-void doConfirmSetScene__Q32og9newScreen11SpecialItemFRQ26Screen11SetSceneArg(void)
+void og::newScreen::SpecialItem::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void doConfirmSetScene__Q32og9newScreen11SpecialItemFRQ26Screen11SetSceneArg(voi
  * Address:	8031A38C
  * Size:	00000C
  */
-void getResName__Q32og9newScreen11SpecialItemCFv(void)
+void og::newScreen::SpecialItem::getResName( const
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void getResName__Q32og9newScreen11SpecialItemCFv(void)
  * Address:	8031A398
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen11SpecialItemFv(void)
+void og::newScreen::SpecialItem::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -155,7 +155,7 @@ void getSceneType__Q32og9newScreen11SpecialItemFv(void)
  * Address:	8031A3A0
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen11SpecialItemFv(void)
+void og::newScreen::SpecialItem::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -170,7 +170,7 @@ void getOwnerID__Q32og9newScreen11SpecialItemFv(void)
  * Address:	8031A3AC
  * Size:	000014
  */
-void getMemberID__Q32og9newScreen11SpecialItemFv(void)
+void og::newScreen::SpecialItem::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -187,7 +187,7 @@ void getMemberID__Q32og9newScreen11SpecialItemFv(void)
  * Address:	8031A3C0
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32og9newScreen11SpecialItemFv(void)
+void og::newScreen::SpecialItem::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:

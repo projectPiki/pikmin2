@@ -310,7 +310,7 @@ void _Print(char *, ...)
  * Address:	80422230
  * Size:	000054
  */
-void __ct__Q26System20FragmentationCheckerFPcb(void)
+void System::FragmentationChecker::__ct( (char *, bool))
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void __ct__Q26System20FragmentationCheckerFPcb(void)
  * Address:	80422284
  * Size:	00005C
  */
-void __dt__Q26System20FragmentationCheckerFv(void)
+void System::FragmentationChecker::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1193,7 +1193,7 @@ void System::loadSoundResource()
  * Address:	........
  * Size:	000014
  */
-void __ct__Q26System11GXVerifyArgFv(void)
+void System::GXVerifyArg::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2556,7 +2556,7 @@ void AppThread::~AppThread()
  * Address:	804236F0
  * Size:	000038
  */
-void newSceneMgr__Q23PSM7FactoryFv(void)
+void PSM::Factory::newSceneMgr(void)
 {
 /*
 .loc_0x0:

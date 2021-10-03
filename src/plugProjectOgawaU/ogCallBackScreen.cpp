@@ -5,7 +5,7 @@
  * Address:	8030B370
  * Size:	0000A4
  */
-void __ct__Q32og6Screen15CallBack_ScreenFPQ29P2DScreen3MgrUx(void)
+void og::Screen::CallBack_Screen::__ct( (P2DScreen::Mgr *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -58,7 +58,7 @@ void __ct__Q32og6Screen15CallBack_ScreenFPQ29P2DScreen3MgrUx(void)
  * Address:	8030B414
  * Size:	000008
  */
-void getPartsScreen__Q32og6Screen15CallBack_ScreenFv(void)
+void og::Screen::CallBack_Screen::getPartsScreen(void)
 {
 /*
 .loc_0x0:
@@ -72,7 +72,7 @@ void getPartsScreen__Q32og6Screen15CallBack_ScreenFv(void)
  * Address:	........
  * Size:	000044
  */
-void changeScreen__Q32og6Screen15CallBack_ScreenFPQ29P2DScreen3MgrUx(void)
+void og::Screen::CallBack_Screen::changeScreen( (P2DScreen::Mgr *, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -82,7 +82,7 @@ void changeScreen__Q32og6Screen15CallBack_ScreenFPQ29P2DScreen3MgrUx(void)
  * Address:	8030B41C
  * Size:	000038
  */
-void update__Q32og6Screen15CallBack_ScreenFv(void)
+void og::Screen::CallBack_Screen::update(void)
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void update__Q32og6Screen15CallBack_ScreenFv(void)
  * Address:	8030B454
  * Size:	0000D0
  */
-void draw__Q32og6Screen15CallBack_ScreenFR8GraphicsR14J2DGrafContext(void)
+void og::Screen::CallBack_Screen::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:

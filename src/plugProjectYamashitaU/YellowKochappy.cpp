@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012D214
  * Size:	000130
  */
-void __ct__Q34Game14YellowKochappy3ObjFv(void)
+void Game::YellowKochappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q34Game14YellowKochappy3ObjFv(void)
  * Address:	8012D344
  * Size:	0001A4
  */
-void changeMaterial__Q34Game14YellowKochappy3ObjFv(void)
+void Game::YellowKochappy::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void changeMaterial__Q34Game14YellowKochappy3ObjFv(void)
  * Address:	8012D4E8
  * Size:	000008
  */
-void getChangeTexture__Q34Game14YellowKochappy3MgrFv(void)
+void Game::YellowKochappy::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void getChangeTexture__Q34Game14YellowKochappy3MgrFv(void)
  * Address:	8012D4F0
  * Size:	0000EC
  */
-void __dt__Q34Game14YellowKochappy3ObjFv(void)
+void Game::YellowKochappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -319,7 +319,7 @@ void __dt__Q34Game14YellowKochappy3ObjFv(void)
  * Address:	8012D5DC
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game14YellowKochappy3ObjFv(void)
+void Game::YellowKochappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

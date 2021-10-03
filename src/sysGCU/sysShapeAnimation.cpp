@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8043DCDC
  * Size:	000080
  */
-void attach__Q28SysShape8AnimInfoFP12J3DModelDataPv(void)
+void SysShape::AnimInfo::attach( (J3DModelData *, void *))
 {
 /*
 .loc_0x0:
@@ -61,7 +61,7 @@ void attach__Q28SysShape8AnimInfoFP12J3DModelDataPv(void)
  * Address:	8043DD5C
  * Size:	000120
  */
-void load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc(void)
+void SysShape::AnimMgr::load( (JKRFileLoader *, char *, J3DModelData *, JKRFileLoader *, char *))
 {
 /*
 .loc_0x0:
@@ -155,7 +155,7 @@ void load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoader
  * Address:	8043DE7C
  * Size:	000110
  */
-void load__Q28SysShape7AnimMgrFR6StreamP12J3DModelDataP13JKRFileLoaderPc(void)
+void SysShape::AnimMgr::load( (Stream &, J3DModelData *, JKRFileLoader *, char *))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void load__Q28SysShape7AnimMgrFR6StreamP12J3DModelDataP13JKRFileLoaderPc(void)
  * Address:	8043DF8C
  * Size:	0000D8
  */
-void read__Q28SysShape7AnimMgrFR6Stream(void)
+void SysShape::AnimMgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void read__Q28SysShape7AnimMgrFR6Stream(void)
  * Address:	8043E064
  * Size:	0000F8
  */
-void connectBasArc__Q28SysShape7AnimMgrFPcPcP13JKRFileLoader(void)
+void SysShape::AnimMgr::connectBasArc( (char *, char *, JKRFileLoader *))
 {
 /*
 .loc_0x0:
@@ -413,7 +413,7 @@ void connectBasArc__Q28SysShape7AnimMgrFPcPcP13JKRFileLoader(void)
  * Address:	8043E15C
  * Size:	000054
  */
-void registerSoundViewer__Q28SysShape7AnimMgrFPQ26PSGame16SoundCreatureMgr(void)
+void SysShape::AnimMgr::registerSoundViewer( (PSGame::SoundCreatureMgr *))
 {
 /*
 .loc_0x0:

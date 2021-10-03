@@ -5,7 +5,7 @@
  * Address:	80328C30
  * Size:	00003C
  */
-void __ct__Q32og9newScreen11Challenge1PFv(void)
+void og::newScreen::Challenge1P::__ct(void)
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void __ct__Q32og9newScreen11Challenge1PFv(void)
  * Address:	........
  * Size:	000060
  */
-void __dt__Q32og9newScreen11Challenge1PFv(void)
+void og::newScreen::Challenge1P::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,7 +42,7 @@ void __dt__Q32og9newScreen11Challenge1PFv(void)
  * Address:	80328C6C
  * Size:	000004
  */
-void doUserCallBackFunc__Q32og9newScreen11Challenge1PFPQ28Resource10MgrCommand(void)
+void og::newScreen::Challenge1P::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void doUserCallBackFunc__Q32og9newScreen11Challenge1PFPQ28Resource10MgrCommand(v
  * Address:	80328C70
  * Size:	00009C
  */
-void doCreateObj__Q32og9newScreen11Challenge1PFP10JKRArchive(void)
+void og::newScreen::Challenge1P::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void doCreateObj__Q32og9newScreen11Challenge1PFP10JKRArchive(void)
  * Address:	80328D0C
  * Size:	00004C
  */
-void doStart__Q32og9newScreen11Challenge1PFPQ26Screen13StartSceneArg(void)
+void og::newScreen::Challenge1P::doStart( (Screen::StartSceneArg *))
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void doStart__Q32og9newScreen11Challenge1PFPQ26Screen13StartSceneArg(void)
  * Address:	80328D58
  * Size:	000038
  */
-void doUpdateActive__Q32og9newScreen11Challenge1PFv(void)
+void og::newScreen::Challenge1P::doUpdateActive(void)
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void doUpdateActive__Q32og9newScreen11Challenge1PFv(void)
  * Address:	80328D90
  * Size:	00003C
  */
-void startCountDown__Q32og9newScreen11Challenge1PFv(void)
+void og::newScreen::Challenge1P::startCountDown(void)
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void startCountDown__Q32og9newScreen11Challenge1PFv(void)
  * Address:	80328DCC
  * Size:	00000C
  */
-void getResName__Q32og9newScreen11Challenge1PCFv(void)
+void og::newScreen::Challenge1P::getResName( const
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void getResName__Q32og9newScreen11Challenge1PCFv(void)
  * Address:	80328DD8
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen11Challenge1PFv(void)
+void og::newScreen::Challenge1P::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void getSceneType__Q32og9newScreen11Challenge1PFv(void)
  * Address:	80328DE0
  * Size:	00000C
  */
-void getOwnerID__Q32og9newScreen11Challenge1PFv(void)
+void og::newScreen::Challenge1P::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -240,7 +240,7 @@ void getOwnerID__Q32og9newScreen11Challenge1PFv(void)
  * Address:	80328DEC
  * Size:	000010
  */
-void getMemberID__Q32og9newScreen11Challenge1PFv(void)
+void og::newScreen::Challenge1P::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void getMemberID__Q32og9newScreen11Challenge1PFv(void)
  * Address:	80328DFC
  * Size:	000008
  */
-void isDrawInDemo__Q32og9newScreen11Challenge1PCFv(void)
+void og::newScreen::Challenge1P::isDrawInDemo( const
 {
 /*
 .loc_0x0:

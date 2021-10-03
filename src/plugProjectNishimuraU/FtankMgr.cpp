@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8029E12C
  * Size:	000050
  */
-void __ct__Q34Game5Ftank3MgrFiUc(void)
+void Game::Ftank::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game5Ftank3MgrFiUc(void)
  * Address:	8029E17C
  * Size:	000048
  */
-void doAlloc__Q34Game5Ftank3MgrFv(void)
+void Game::Ftank::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game5Ftank3MgrFv(void)
  * Address:	8029E1C4
  * Size:	000060
  */
-void createObj__Q34Game5Ftank3MgrFi(void)
+void Game::Ftank::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game5Ftank3MgrFi(void)
  * Address:	8029E224
  * Size:	0000F0
  */
-void __dt__Q34Game5Ftank3ObjFv(void)
+void Game::Ftank::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void __dt__Q34Game5Ftank3ObjFv(void)
  * Address:	8029E314
  * Size:	000010
  */
-void getEnemy__Q34Game5Ftank3MgrFi(void)
+void Game::Ftank::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void getEnemy__Q34Game5Ftank3MgrFi(void)
  * Address:	8029E324
  * Size:	000080
  */
-void loadTexData__Q34Game5Ftank3MgrFv(void)
+void Game::Ftank::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void loadTexData__Q34Game5Ftank3MgrFv(void)
  * Address:	8029E3A4
  * Size:	0000C8
  */
-void __dt__Q34Game5Ftank3MgrFv(void)
+void Game::Ftank::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void __dt__Q34Game5Ftank3MgrFv(void)
  * Address:	8029E46C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Ftank3MgrFv(void)
+void Game::Ftank::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void getEnemyTypeID__Q34Game5Ftank3MgrFv(void)
  * Address:	8029E474
  * Size:	000008
  */
-void getChangeTexture__Q34Game5Ftank3MgrFv(void)
+void Game::Ftank::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void getChangeTexture__Q34Game5Ftank3MgrFv(void)
  * Address:	8029E47C
  * Size:	000008
  */
-void @4@__dt__Q34Game5Ftank3MgrFv(void)
+void @4@Game::Ftank::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

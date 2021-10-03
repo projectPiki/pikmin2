@@ -46,7 +46,7 @@ void Game::makeObjectEnemy()
  * Address:	801247B4
  * Size:	0000D0
  */
-void __ct__Q24Game14GenObjectEnemyFv(void)
+void Game::GenObjectEnemy::__ct(void)
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void __ct__Q24Game14GenObjectEnemyFv(void)
  * Address:	........
  * Size:	000030
  */
-void initParms__Q24Game14GenObjectEnemyFv(void)
+void Game::GenObjectEnemy::initParms(void)
 {
 	// UNUSED FUNCTION
 }
@@ -122,7 +122,7 @@ void initParms__Q24Game14GenObjectEnemyFv(void)
  * Address:	80124884
  * Size:	00008C
  */
-void initialise__Q24Game14GenObjectEnemyFv(void)
+void Game::GenObjectEnemy::initialise(void)
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void initialise__Q24Game14GenObjectEnemyFv(void)
  * Address:	80124910
  * Size:	000004
  */
-void ramSaveParameters__Q24Game14GenObjectEnemyFR6Stream(void)
+void Game::GenObjectEnemy::ramSaveParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void ramSaveParameters__Q24Game14GenObjectEnemyFR6Stream(void)
  * Address:	80124914
  * Size:	000004
  */
-void ramLoadParameters__Q24Game14GenObjectEnemyFR6Stream(void)
+void Game::GenObjectEnemy::ramLoadParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void ramLoadParameters__Q24Game14GenObjectEnemyFR6Stream(void)
  * Address:	80124918
  * Size:	0006B4
  */
-void generate__Q24Game14GenObjectEnemyFPQ24Game9Generator(void)
+void Game::GenObjectEnemy::generate( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -682,7 +682,7 @@ void generate__Q24Game14GenObjectEnemyFPQ24Game9Generator(void)
  * Address:	80124FCC
  * Size:	0000E0
  */
-void birth__Q24Game14GenObjectEnemyFPQ24Game6GenArg(void)
+void Game::GenObjectEnemy::birth( (Game::GenArg *))
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void birth__Q24Game14GenObjectEnemyFPQ24Game6GenArg(void)
  * Address:	801250AC
  * Size:	000218
  */
-void doWrite__Q24Game14GenObjectEnemyFR6Stream(void)
+void Game::GenObjectEnemy::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -900,7 +900,7 @@ void doWrite__Q24Game14GenObjectEnemyFR6Stream(void)
  * Address:	801252C4
  * Size:	000004
  */
-void doWrite__Q24Game18EnemyGeneratorBaseFR6Stream(void)
+void Game::EnemyGeneratorBase::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -913,7 +913,7 @@ void doWrite__Q24Game18EnemyGeneratorBaseFR6Stream(void)
  * Address:	801252C8
  * Size:	00000C
  */
-void getLatestVersion__Q24Game18EnemyGeneratorBaseFv(void)
+void Game::EnemyGeneratorBase::getLatestVersion(void)
 {
 /*
 .loc_0x0:
@@ -928,7 +928,7 @@ void getLatestVersion__Q24Game18EnemyGeneratorBaseFv(void)
  * Address:	801252D4
  * Size:	0001E4
  */
-void doRead__Q24Game14GenObjectEnemyFR6Stream(void)
+void Game::GenObjectEnemy::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1069,7 +1069,7 @@ void doRead__Q24Game14GenObjectEnemyFR6Stream(void)
  * Address:	801254B8
  * Size:	000004
  */
-void doRead__Q24Game18EnemyGeneratorBaseFR6Stream(void)
+void Game::EnemyGeneratorBase::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1082,7 +1082,7 @@ void doRead__Q24Game18EnemyGeneratorBaseFR6Stream(void)
  * Address:	801254BC
  * Size:	000470
  */
-void doReadOldVersion__Q24Game14GenObjectEnemyFR6Stream(void)
+void Game::GenObjectEnemy::doReadOldVersion( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1408,7 +1408,7 @@ void doReadOldVersion__Q24Game14GenObjectEnemyFR6Stream(void)
  * Address:	8012592C
  * Size:	000E38
  */
-void createEnemyGenerator__Q24Game14GenObjectEnemyFv(void)
+void Game::GenObjectEnemy::createEnemyGenerator(void)
 {
 /*
 .loc_0x0:
@@ -2534,7 +2534,7 @@ void createEnemyGenerator__Q24Game14GenObjectEnemyFv(void)
  * Address:	80126764
  * Size:	00006C
  */
-void __ct__Q24Game18EnemyGeneratorBaseFPc(void)
+void Game::EnemyGeneratorBase::__ct( (char *))
 {
 /*
 .loc_0x0:
@@ -2573,7 +2573,7 @@ void __ct__Q24Game18EnemyGeneratorBaseFPc(void)
  * Address:	801267D0
  * Size:	00002C
  */
-void getShape__Q24Game14GenObjectEnemyFv(void)
+void Game::GenObjectEnemy::getShape(void)
 {
 /*
 .loc_0x0:
@@ -2596,7 +2596,7 @@ void getShape__Q24Game14GenObjectEnemyFv(void)
  * Address:	801267FC
  * Size:	000040
  */
-void updateUseList__Q24Game14GenObjectEnemyFPQ24Game9Generatori(void)
+void Game::GenObjectEnemy::updateUseList( (Game::Generator *, int))
 {
 /*
 .loc_0x0:
@@ -2626,7 +2626,7 @@ void updateUseList__Q24Game14GenObjectEnemyFPQ24Game9Generatori(void)
  * Address:	8012683C
  * Size:	00031C
  */
-void render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator(void)
+void Game::GenObjectEnemy::render( (Graphics &, Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -2841,7 +2841,7 @@ void render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator(void)
  * Address:	80126B58
  * Size:	000004
  */
-void draw__Q24Game18EnemyGeneratorBaseFR8GraphicsPQ24Game9Generator(void)
+void Game::EnemyGeneratorBase::draw( (Graphics &, Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -2854,7 +2854,7 @@ void draw__Q24Game18EnemyGeneratorBaseFR8GraphicsPQ24Game9Generator(void)
  * Address:	80126B5C
  * Size:	000060
  */
-void __dt__Q24Game18EnemyGeneratorBaseFv(void)
+void Game::EnemyGeneratorBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2892,7 +2892,7 @@ void __dt__Q24Game18EnemyGeneratorBaseFv(void)
  * Address:	80126BBC
  * Size:	000008
  */
-void getInitialParam__Q24Game18EnemyGeneratorBaseFv(void)
+void Game::EnemyGeneratorBase::getInitialParam(void)
 {
 /*
 .loc_0x0:
@@ -2906,7 +2906,7 @@ void getInitialParam__Q24Game18EnemyGeneratorBaseFv(void)
  * Address:	80126BC4
  * Size:	000008
  */
-void getName__Q24Game6GenArgFv(void)
+void Game::GenArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -2920,7 +2920,7 @@ void getName__Q24Game6GenArgFv(void)
  * Address:	80126BCC
  * Size:	000004
  */
-void update__Q24Game9GenObjectFPQ24Game9Generator(void)
+void Game::GenObject::update( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -2955,7 +2955,7 @@ void generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<float>(void)
  * Address:	80126BF8
  * Size:	000004
  */
-void getDebugInfo__Q24Game9GenObjectFPc(void)
+void Game::GenObject::getDebugInfo( (char *))
 {
 /*
 .loc_0x0:
@@ -2968,7 +2968,7 @@ void getDebugInfo__Q24Game9GenObjectFPc(void)
  * Address:	80126BFC
  * Size:	000004
  */
-void doEvent__Q24Game7GenBaseFUl(void)
+void Game::GenBase::doEvent( (unsigned long))
 {
 /*
 .loc_0x0:

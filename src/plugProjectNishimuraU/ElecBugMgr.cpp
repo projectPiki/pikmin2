@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8027A89C
  * Size:	000050
  */
-void __ct__Q34Game7ElecBug3MgrFiUc(void)
+void Game::ElecBug::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game7ElecBug3MgrFiUc(void)
  * Address:	8027A8EC
  * Size:	000048
  */
-void doAlloc__Q34Game7ElecBug3MgrFv(void)
+void Game::ElecBug::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game7ElecBug3MgrFv(void)
  * Address:	8027A934
  * Size:	000118
  */
-void __ct__Q34Game7ElecBug5ParmsFv(void)
+void Game::ElecBug::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void __ct__Q34Game7ElecBug5ParmsFv(void)
  * Address:	8027AA4C
  * Size:	000060
  */
-void createObj__Q34Game7ElecBug3MgrFi(void)
+void Game::ElecBug::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void createObj__Q34Game7ElecBug3MgrFi(void)
  * Address:	8027AAAC
  * Size:	0000BC
  */
-void __dt__Q34Game7ElecBug3ObjFv(void)
+void Game::ElecBug::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void __dt__Q34Game7ElecBug3ObjFv(void)
  * Address:	8027AB68
  * Size:	000010
  */
-void getEnemy__Q34Game7ElecBug3MgrFi(void)
+void Game::ElecBug::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -278,7 +278,7 @@ void getEnemy__Q34Game7ElecBug3MgrFi(void)
  * Address:	8027AB78
  * Size:	000050
  */
-void read__Q34Game7ElecBug5ParmsFR6Stream(void)
+void Game::ElecBug::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -310,7 +310,7 @@ void read__Q34Game7ElecBug5ParmsFR6Stream(void)
  * Address:	8027ABC8
  * Size:	0000B0
  */
-void __dt__Q34Game7ElecBug3MgrFv(void)
+void Game::ElecBug::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void __dt__Q34Game7ElecBug3MgrFv(void)
  * Address:	8027AC78
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game7ElecBug3MgrFv(void)
+void Game::ElecBug::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void getEnemyTypeID__Q34Game7ElecBug3MgrFv(void)
  * Address:	8027AC80
  * Size:	000008
  */
-void @4@__dt__Q34Game7ElecBug3MgrFv(void)
+void @4@Game::ElecBug::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

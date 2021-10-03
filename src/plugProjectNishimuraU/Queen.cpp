@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802894D4
  * Size:	00017C
  */
-void __ct__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -132,7 +132,7 @@ void __ct__Q34Game5Queen3ObjFv(void)
  * Address:	80289650
  * Size:	000004
  */
-void setInitialSetting__Q34Game5Queen3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Queen::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -145,7 +145,7 @@ void setInitialSetting__Q34Game5Queen3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	80289654
  * Size:	000100
  */
-void onInit__Q34Game5Queen3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Queen::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void onInit__Q34Game5Queen3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80289754
  * Size:	000058
  */
-void onKill__Q34Game5Queen3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Queen::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void onKill__Q34Game5Queen3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802897AC
  * Size:	0000B8
  */
-void setParameters__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void setParameters__Q34Game5Queen3ObjFv(void)
  * Address:	80289864
  * Size:	000050
  */
-void doUpdate__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -353,7 +353,7 @@ void doUpdate__Q34Game5Queen3ObjFv(void)
  * Address:	802898B4
  * Size:	000034
  */
-void doUpdateCommon__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -378,7 +378,7 @@ void doUpdateCommon__Q34Game5Queen3ObjFv(void)
  * Address:	802898E8
  * Size:	000054
  */
-void doAnimationCullingOff__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -413,7 +413,7 @@ void doAnimationCullingOff__Q34Game5Queen3ObjFv(void)
  * Address:	8028993C
  * Size:	000004
  */
-void doDirectDraw__Q34Game5Queen3ObjFR8Graphics(void)
+void Game::Queen::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void doDirectDraw__Q34Game5Queen3ObjFR8Graphics(void)
  * Address:	80289940
  * Size:	000020
  */
-void doDebugDraw__Q34Game5Queen3ObjFR8Graphics(void)
+void Game::Queen::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void doDebugDraw__Q34Game5Queen3ObjFR8Graphics(void)
  * Address:	80289960
  * Size:	00004C
  */
-void setFSM__Q34Game5Queen3ObjFPQ34Game5Queen3FSM(void)
+void Game::Queen::Obj::setFSM( (Game::Queen::FSM *))
 {
 /*
 .loc_0x0:
@@ -477,7 +477,7 @@ void setFSM__Q34Game5Queen3ObjFPQ34Game5Queen3FSM(void)
  * Address:	802899AC
  * Size:	00008C
  */
-void getShadowParam__Q34Game5Queen3ObjFRQ24Game11ShadowParam(void)
+void Game::Queen::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -524,7 +524,7 @@ void getShadowParam__Q34Game5Queen3ObjFRQ24Game11ShadowParam(void)
  * Address:	80289A38
  * Size:	0000B0
  */
-void damageCallBack__Q34Game5Queen3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Queen::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -588,7 +588,7 @@ void damageCallBack__Q34Game5Queen3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80289AE8
  * Size:	000008
  */
-void earthquakeCallBack__Q34Game5Queen3ObjFPQ24Game8Creaturef(void)
+void Game::Queen::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -602,7 +602,7 @@ void earthquakeCallBack__Q34Game5Queen3ObjFPQ24Game8Creaturef(void)
  * Address:	80289AF0
  * Size:	00004C
  */
-void doStartStoneState__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -633,7 +633,7 @@ void doStartStoneState__Q34Game5Queen3ObjFv(void)
  * Address:	80289B3C
  * Size:	000088
  */
-void doFinishStoneState__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -683,7 +683,7 @@ void doFinishStoneState__Q34Game5Queen3ObjFv(void)
  * Address:	80289BC4
  * Size:	000084
  */
-void ignoreAtari__Q34Game5Queen3ObjFPQ24Game8Creature(void)
+void Game::Queen::Obj::ignoreAtari( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -734,7 +734,7 @@ void ignoreAtari__Q34Game5Queen3ObjFPQ24Game8Creature(void)
  * Address:	80289C48
  * Size:	000028
  */
-void startCarcassMotion__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -756,7 +756,7 @@ void startCarcassMotion__Q34Game5Queen3ObjFv(void)
  * Address:	80289C70
  * Size:	000020
  */
-void doStartMovie__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -776,7 +776,7 @@ void doStartMovie__Q34Game5Queen3ObjFv(void)
  * Address:	80289C90
  * Size:	000020
  */
-void doEndMovie__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -796,7 +796,7 @@ void doEndMovie__Q34Game5Queen3ObjFv(void)
  * Address:	80289CB0
  * Size:	0002EC
  */
-void rollingAttack__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::rollingAttack(void)
 {
 /*
 .loc_0x0:
@@ -1019,7 +1019,7 @@ void rollingAttack__Q34Game5Queen3ObjFv(void)
  * Address:	80289F9C
  * Size:	0003A8
  */
-void flickPikmin__Q34Game5Queen3ObjFf(void)
+void Game::Queen::Obj::flickPikmin( (float))
 {
 /*
 .loc_0x0:
@@ -1289,7 +1289,7 @@ void flickPikmin__Q34Game5Queen3ObjFf(void)
  * Address:	8028A344
  * Size:	0001A8
  */
-void isRollingAttackLeft__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::isRollingAttackLeft(void)
 {
 /*
 .loc_0x0:
@@ -1419,7 +1419,7 @@ void isRollingAttackLeft__Q34Game5Queen3ObjFv(void)
  * Address:	8028A4EC
  * Size:	0002D4
  */
-void createCrashFallRock__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::createCrashFallRock(void)
 {
 /*
 .loc_0x0:
@@ -1624,7 +1624,7 @@ void createCrashFallRock__Q34Game5Queen3ObjFv(void)
  * Address:	8028A7C0
  * Size:	00019C
  */
-void createBabyChappy__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::createBabyChappy(void)
 {
 /*
 .loc_0x0:
@@ -1747,7 +1747,7 @@ void createBabyChappy__Q34Game5Queen3ObjFv(void)
  * Address:	........
  * Size:	00021C
  */
-void getBabyChappyCount__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::getBabyChappyCount(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1788,7 +1788,7 @@ void isDone__Q24Game31EnemyIterator<Game::Baby::Obj>Fv(void)
  * Address:	8028A9A8
  * Size:	000274
  */
-void updateCreateBaby__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::updateCreateBaby(void)
 {
 /*
 .loc_0x0:
@@ -1983,7 +1983,7 @@ void updateCreateBaby__Q34Game5Queen3ObjFv(void)
  * Address:	8028AC1C
  * Size:	00003C
  */
-void isCreateBaby__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::isCreateBaby(void)
 {
 /*
 .loc_0x0:
@@ -2012,7 +2012,7 @@ void isCreateBaby__Q34Game5Queen3ObjFv(void)
  * Address:	8028AC58
  * Size:	000018
  */
-void isHitCounterUp__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::isHitCounterUp(void)
 {
 /*
 .loc_0x0:
@@ -2030,7 +2030,7 @@ void isHitCounterUp__Q34Game5Queen3ObjFv(void)
  * Address:	8028AC70
  * Size:	000028
  */
-void resetJointShadow__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::resetJointShadow(void)
 {
 /*
 .loc_0x0:
@@ -2052,7 +2052,7 @@ void resetJointShadow__Q34Game5Queen3ObjFv(void)
  * Address:	8028AC98
  * Size:	000040
  */
-void releaseJointShadow__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::releaseJointShadow(void)
 {
 /*
 .loc_0x0:
@@ -2080,7 +2080,7 @@ void releaseJointShadow__Q34Game5Queen3ObjFv(void)
  * Address:	8028ACD8
  * Size:	0000C8
  */
-void startBossChargeBGM__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::startBossChargeBGM(void)
 {
 /*
 .loc_0x0:
@@ -2148,7 +2148,7 @@ void startBossChargeBGM__Q34Game5Queen3ObjFv(void)
  * Address:	8028ADA0
  * Size:	0000DC
  */
-void startBossAttackLoopBGM__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::startBossAttackLoopBGM(void)
 {
 /*
 .loc_0x0:
@@ -2223,7 +2223,7 @@ void startBossAttackLoopBGM__Q34Game5Queen3ObjFv(void)
  * Address:	8028AE7C
  * Size:	0000D8
  */
-void finishBossAttackLoopBGM__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::finishBossAttackLoopBGM(void)
 {
 /*
 .loc_0x0:
@@ -2297,7 +2297,7 @@ void finishBossAttackLoopBGM__Q34Game5Queen3ObjFv(void)
  * Address:	8028AF54
  * Size:	0000D4
  */
-void startStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::startStoneStateBossAttackLoopBGM(void)
 {
 /*
 .loc_0x0:
@@ -2370,7 +2370,7 @@ void startStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv(void)
  * Address:	8028B028
  * Size:	0000D4
  */
-void finishStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::finishStoneStateBossAttackLoopBGM(void)
 {
 /*
 .loc_0x0:
@@ -2443,7 +2443,7 @@ void finishStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv(void)
  * Address:	8028B0FC
  * Size:	0000FC
  */
-void updateBossBGM__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::updateBossBGM(void)
 {
 /*
 .loc_0x0:
@@ -2528,7 +2528,7 @@ void updateBossBGM__Q34Game5Queen3ObjFv(void)
  * Address:	8028B1F8
  * Size:	0000A8
  */
-void resetMidBossAppearBGM__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::resetMidBossAppearBGM(void)
 {
 /*
 .loc_0x0:
@@ -2586,7 +2586,7 @@ void resetMidBossAppearBGM__Q34Game5Queen3ObjFv(void)
  * Address:	8028B2A0
  * Size:	000080
  */
-void setMidBossAppearBGM__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::setMidBossAppearBGM(void)
 {
 /*
 .loc_0x0:
@@ -2634,7 +2634,7 @@ void setMidBossAppearBGM__Q34Game5Queen3ObjFv(void)
  * Address:	8028B320
  * Size:	000534
  */
-void createEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -3003,7 +3003,7 @@ void createEffect__Q34Game5Queen3ObjFv(void)
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx14TChasePosYRot3Fv(void)
+void efx::TChasePosYRot3::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3013,7 +3013,7 @@ void __dt__Q23efx14TChasePosYRot3Fv(void)
  * Address:	8028B854
  * Size:	000078
  */
-void setupEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -3055,7 +3055,7 @@ void setupEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028B8CC
  * Size:	000034
  */
-void createBornEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::createBornEffect(void)
 {
 /*
 .loc_0x0:
@@ -3080,7 +3080,7 @@ void createBornEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028B900
  * Size:	000080
  */
-void startRollingEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::startRollingEffect(void)
 {
 /*
 .loc_0x0:
@@ -3128,7 +3128,7 @@ void startRollingEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028B980
  * Size:	0000E0
  */
-void finishRollingEffect__Q34Game5Queen3ObjFb(void)
+void Game::Queen::Obj::finishRollingEffect( (bool))
 {
 /*
 .loc_0x0:
@@ -3206,7 +3206,7 @@ void finishRollingEffect__Q34Game5Queen3ObjFb(void)
  * Address:	8028BA60
  * Size:	000064
  */
-void forceFinishRollingEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::forceFinishRollingEffect(void)
 {
 /*
 .loc_0x0:
@@ -3243,7 +3243,7 @@ void forceFinishRollingEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028BAC4
  * Size:	000034
  */
-void startDamageEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::startDamageEffect(void)
 {
 /*
 .loc_0x0:
@@ -3268,7 +3268,7 @@ void startDamageEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028BAF8
  * Size:	000030
  */
-void finishDamageEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::finishDamageEffect(void)
 {
 /*
 .loc_0x0:
@@ -3292,7 +3292,7 @@ void finishDamageEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028BB28
  * Size:	000034
  */
-void createFlickEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::createFlickEffect(void)
 {
 /*
 .loc_0x0:
@@ -3317,7 +3317,7 @@ void createFlickEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028BB5C
  * Size:	000034
  */
-void createDeadEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::createDeadEffect(void)
 {
 /*
 .loc_0x0:
@@ -3342,7 +3342,7 @@ void createDeadEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028BB90
  * Size:	000034
  */
-void createWakeUpEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::createWakeUpEffect(void)
 {
 /*
 .loc_0x0:
@@ -3367,7 +3367,7 @@ void createWakeUpEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028BBC4
  * Size:	000034
  */
-void startSleepEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::startSleepEffect(void)
 {
 /*
 .loc_0x0:
@@ -3392,7 +3392,7 @@ void startSleepEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028BBF8
  * Size:	000030
  */
-void finishSleepEffect__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::finishSleepEffect(void)
 {
 /*
 .loc_0x0:
@@ -3416,7 +3416,7 @@ void finishSleepEffect__Q34Game5Queen3ObjFv(void)
  * Address:	8028BC28
  * Size:	000118
  */
-void effectDrawOn__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -3498,7 +3498,7 @@ void effectDrawOn__Q34Game5Queen3ObjFv(void)
  * Address:	8028BD40
  * Size:	000118
  */
-void effectDrawOff__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -3580,7 +3580,7 @@ void effectDrawOff__Q34Game5Queen3ObjFv(void)
  * Address:	8028BE58
  * Size:	00009C
  */
-void __dt__Q23efx13TQueenHanachoFv(void)
+void efx::TQueenHanacho::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3635,7 +3635,7 @@ void __dt__Q23efx13TQueenHanachoFv(void)
  * Address:	8028BEF4
  * Size:	00009C
  */
-void __dt__Q23efx12TQueenWakeupFv(void)
+void efx::TQueenWakeup::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3690,7 +3690,7 @@ void __dt__Q23efx12TQueenWakeupFv(void)
  * Address:	8028BF90
  * Size:	00009C
  */
-void __dt__Q23efx12TQueenDamageFv(void)
+void efx::TQueenDamage::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3745,7 +3745,7 @@ void __dt__Q23efx12TQueenDamageFv(void)
  * Address:	8028C02C
  * Size:	00009C
  */
-void __dt__Q23efx15TQueenCrashRockFv(void)
+void efx::TQueenCrashRock::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3800,7 +3800,7 @@ void __dt__Q23efx15TQueenCrashRockFv(void)
  * Address:	8028C0C8
  * Size:	00009C
  */
-void __dt__Q23efx12TQueenCrashLFv(void)
+void efx::TQueenCrashL::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3855,7 +3855,7 @@ void __dt__Q23efx12TQueenCrashLFv(void)
  * Address:	8028C164
  * Size:	00009C
  */
-void __dt__Q23efx12TQueenCrashRFv(void)
+void efx::TQueenCrashR::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3910,7 +3910,7 @@ void __dt__Q23efx12TQueenCrashRFv(void)
  * Address:	8028C200
  * Size:	00009C
  */
-void __dt__Q23efx9TQueenLayFv(void)
+void efx::TQueenLay::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4143,7 +4143,7 @@ void first__Q24Game31EnemyIterator<Game::Baby::Obj>Fv(void)
  * Address:	8028C494
  * Size:	000004
  */
-void inWaterCallback__Q34Game5Queen3ObjFPQ24Game8WaterBox(void)
+void Game::Queen::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -4156,7 +4156,7 @@ void inWaterCallback__Q34Game5Queen3ObjFPQ24Game8WaterBox(void)
  * Address:	8028C498
  * Size:	000004
  */
-void outWaterCallback__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -4169,7 +4169,7 @@ void outWaterCallback__Q34Game5Queen3ObjFv(void)
  * Address:	8028C49C
  * Size:	000008
  */
-void getDamageCoeStoneState__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::getDamageCoeStoneState(void)
 {
 /*
 .loc_0x0:
@@ -4183,7 +4183,7 @@ void getDamageCoeStoneState__Q34Game5Queen3ObjFv(void)
  * Address:	8028C4A4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game5Queen3ObjFv(void)
+void Game::Queen::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -4219,7 +4219,7 @@ void __sinit_Queen_cpp(void)
  * Address:	8028C4D4
  * Size:	000014
  */
-void @784@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @784@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -4236,7 +4236,7 @@ void @784@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8028C4E8
  * Size:	000014
  */
-void @784@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @784@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -4253,7 +4253,7 @@ void @784@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8028C4FC
  * Size:	000014
  */
-void @784@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @784@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -4270,7 +4270,7 @@ void @784@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8028C510
  * Size:	000014
  */
-void @784@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @784@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -4287,7 +4287,7 @@ void @784@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8028C524
  * Size:	000014
  */
-void @784@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @784@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -4304,7 +4304,7 @@ void @784@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8028C538
  * Size:	000014
  */
-void @784@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @784@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -4321,7 +4321,7 @@ void @784@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	8028C54C
  * Size:	000008
  */
-void @4@__dt__Q23efx9TQueenLayFv(void)
+void @4@efx::TQueenLay::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4335,7 +4335,7 @@ void @4@__dt__Q23efx9TQueenLayFv(void)
  * Address:	8028C554
  * Size:	000008
  */
-void @4@__dt__Q23efx12TQueenCrashRFv(void)
+void @4@efx::TQueenCrashR::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4349,7 +4349,7 @@ void @4@__dt__Q23efx12TQueenCrashRFv(void)
  * Address:	8028C55C
  * Size:	000008
  */
-void @4@__dt__Q23efx12TQueenCrashLFv(void)
+void @4@efx::TQueenCrashL::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4363,7 +4363,7 @@ void @4@__dt__Q23efx12TQueenCrashLFv(void)
  * Address:	8028C564
  * Size:	000008
  */
-void @4@__dt__Q23efx15TQueenCrashRockFv(void)
+void @4@efx::TQueenCrashRock::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4377,7 +4377,7 @@ void @4@__dt__Q23efx15TQueenCrashRockFv(void)
  * Address:	8028C56C
  * Size:	000008
  */
-void @4@__dt__Q23efx12TQueenDamageFv(void)
+void @4@efx::TQueenDamage::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4391,7 +4391,7 @@ void @4@__dt__Q23efx12TQueenDamageFv(void)
  * Address:	8028C574
  * Size:	000008
  */
-void @4@__dt__Q23efx12TQueenWakeupFv(void)
+void @4@efx::TQueenWakeup::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4405,7 +4405,7 @@ void @4@__dt__Q23efx12TQueenWakeupFv(void)
  * Address:	8028C57C
  * Size:	000008
  */
-void @4@__dt__Q23efx13TQueenHanachoFv(void)
+void @4@efx::TQueenHanacho::__dt(void)
 {
 /*
 .loc_0x0:

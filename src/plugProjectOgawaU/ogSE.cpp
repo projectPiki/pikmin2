@@ -5,7 +5,7 @@
  * Address:	8030C9B0
  * Size:	000028
  */
-void setSE__Q22og5SoundFUl(void)
+void og::Sound::setSE( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -27,7 +27,7 @@ void setSE__Q22og5SoundFUl(void)
  * Address:	8030C9D8
  * Size:	00002C
  */
-void setLifeDanger__Q22og5SoundFv(void)
+void og::Sound::setLifeDanger(void)
 {
 /*
 .loc_0x0:
@@ -50,7 +50,7 @@ void setLifeDanger__Q22og5SoundFv(void)
  * Address:	8030CA04
  * Size:	0000F4
  */
-void setChimeNoon__Q22og5SoundFv(void)
+void og::Sound::setChimeNoon(void)
 {
 /*
 .loc_0x0:
@@ -135,7 +135,7 @@ void setChimeNoon__Q22og5SoundFv(void)
  * Address:	8030CAF8
  * Size:	00002C
  */
-void setChime__Q22og5SoundFv(void)
+void og::Sound::setChime(void)
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void setChime__Q22og5SoundFv(void)
  * Address:	8030CB24
  * Size:	00002C
  */
-void setDecide__Q22og5SoundFv(void)
+void og::Sound::setDecide(void)
 {
 /*
 .loc_0x0:
@@ -181,7 +181,7 @@ void setDecide__Q22og5SoundFv(void)
  * Address:	8030CB50
  * Size:	00002C
  */
-void setCancel__Q22og5SoundFv(void)
+void og::Sound::setCancel(void)
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void setCancel__Q22og5SoundFv(void)
  * Address:	8030CB7C
  * Size:	00002C
  */
-void setCursor__Q22og5SoundFv(void)
+void og::Sound::setCursor(void)
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void setCursor__Q22og5SoundFv(void)
  * Address:	8030CBA8
  * Size:	00002C
  */
-void setOpen__Q22og5SoundFv(void)
+void og::Sound::setOpen(void)
 {
 /*
 .loc_0x0:
@@ -250,7 +250,7 @@ void setOpen__Q22og5SoundFv(void)
  * Address:	8030CBD4
  * Size:	00002C
  */
-void setClose__Q22og5SoundFv(void)
+void og::Sound::setClose(void)
 {
 /*
 .loc_0x0:
@@ -273,7 +273,7 @@ void setClose__Q22og5SoundFv(void)
  * Address:	........
  * Size:	00002C
  */
-void setPause__Q22og5SoundFv(void)
+void og::Sound::setPause(void)
 {
 	// UNUSED FUNCTION
 }
@@ -283,7 +283,7 @@ void setPause__Q22og5SoundFv(void)
  * Address:	8030CC00
  * Size:	000048
  */
-void setPlusMinus__Q22og5SoundFb(void)
+void og::Sound::setPlusMinus( (bool))
 {
 /*
 .loc_0x0:
@@ -317,7 +317,7 @@ void setPlusMinus__Q22og5SoundFb(void)
  * Address:	8030CC48
  * Size:	00002C
  */
-void setSMenuLR__Q22og5SoundFv(void)
+void og::Sound::setSMenuLR(void)
 {
 /*
 .loc_0x0:
@@ -340,7 +340,7 @@ void setSMenuLR__Q22og5SoundFv(void)
  * Address:	8030CC74
  * Size:	00002C
  */
-void setError__Q22og5SoundFv(void)
+void og::Sound::setError(void)
 {
 /*
 .loc_0x0:
@@ -363,7 +363,7 @@ void setError__Q22og5SoundFv(void)
  * Address:	8030CCA0
  * Size:	00002C
  */
-void setZoomIn__Q22og5SoundFv(void)
+void og::Sound::setZoomIn(void)
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void setZoomIn__Q22og5SoundFv(void)
  * Address:	8030CCCC
  * Size:	00002C
  */
-void setZoomOut__Q22og5SoundFv(void)
+void og::Sound::setZoomOut(void)
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void setZoomOut__Q22og5SoundFv(void)
  * Address:	8030CCF8
  * Size:	00002C
  */
-void setScroll__Q22og5SoundFv(void)
+void og::Sound::setScroll(void)
 {
 /*
 .loc_0x0:
@@ -432,7 +432,7 @@ void setScroll__Q22og5SoundFv(void)
  * Address:	8030CD24
  * Size:	00002C
  */
-void setOpenDoukutu__Q22og5SoundFv(void)
+void og::Sound::setOpenDoukutu(void)
 {
 /*
 .loc_0x0:
@@ -455,7 +455,7 @@ void setOpenDoukutu__Q22og5SoundFv(void)
  * Address:	8030CD50
  * Size:	00002C
  */
-void setSaveCave__Q22og5SoundFv(void)
+void og::Sound::setSaveCave(void)
 {
 /*
 .loc_0x0:
@@ -478,7 +478,7 @@ void setSaveCave__Q22og5SoundFv(void)
  * Address:	8030CD7C
  * Size:	00002C
  */
-void setOpenWMapMenu__Q22og5SoundFv(void)
+void og::Sound::setOpenWMapMenu(void)
 {
 /*
 .loc_0x0:
@@ -501,7 +501,7 @@ void setOpenWMapMenu__Q22og5SoundFv(void)
  * Address:	8030CDA8
  * Size:	00002C
  */
-void setOpenTotalPoko__Q22og5SoundFv(void)
+void og::Sound::setOpenTotalPoko(void)
 {
 /*
 .loc_0x0:
@@ -524,7 +524,7 @@ void setOpenTotalPoko__Q22og5SoundFv(void)
  * Address:	8030CDD4
  * Size:	00002C
  */
-void setCloseTotalPoko__Q22og5SoundFv(void)
+void og::Sound::setCloseTotalPoko(void)
 {
 /*
 .loc_0x0:
@@ -547,7 +547,7 @@ void setCloseTotalPoko__Q22og5SoundFv(void)
  * Address:	8030CE00
  * Size:	00002C
  */
-void setPlusTotalPoko__Q22og5SoundFv(void)
+void og::Sound::setPlusTotalPoko(void)
 {
 /*
 .loc_0x0:
@@ -570,7 +570,7 @@ void setPlusTotalPoko__Q22og5SoundFv(void)
  * Address:	8030CE2C
  * Size:	00002C
  */
-void setOpenFinalMsg__Q22og5SoundFv(void)
+void og::Sound::setOpenFinalMsg(void)
 {
 /*
 .loc_0x0:
@@ -593,7 +593,7 @@ void setOpenFinalMsg__Q22og5SoundFv(void)
  * Address:	8030CE58
  * Size:	00002C
  */
-void setSprayAdd__Q22og5SoundFv(void)
+void og::Sound::setSprayAdd(void)
 {
 /*
 .loc_0x0:
@@ -616,7 +616,7 @@ void setSprayAdd__Q22og5SoundFv(void)
  * Address:	8030CE84
  * Size:	00002C
  */
-void setTimeCarry__Q22og5SoundFv(void)
+void og::Sound::setTimeCarry(void)
 {
 /*
 .loc_0x0:
@@ -639,7 +639,7 @@ void setTimeCarry__Q22og5SoundFv(void)
  * Address:	........
  * Size:	00002C
  */
-void setSensorSE__Q22og5SoundFv(void)
+void og::Sound::setSensorSE(void)
 {
 	// UNUSED FUNCTION
 }
@@ -649,7 +649,7 @@ void setSensorSE__Q22og5SoundFv(void)
  * Address:	8030CEB0
  * Size:	00002C
  */
-void setGetSensor__Q22og5SoundFv(void)
+void og::Sound::setGetSensor(void)
 {
 /*
 .loc_0x0:
@@ -672,7 +672,7 @@ void setGetSensor__Q22og5SoundFv(void)
  * Address:	8030CEDC
  * Size:	00002C
  */
-void setFloorComplete__Q22og5SoundFv(void)
+void og::Sound::setFloorComplete(void)
 {
 /*
 .loc_0x0:
@@ -695,7 +695,7 @@ void setFloorComplete__Q22og5SoundFv(void)
  * Address:	8030CF08
  * Size:	00002C
  */
-void setGraySensor__Q22og5SoundFv(void)
+void og::Sound::setGraySensor(void)
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void setGraySensor__Q22og5SoundFv(void)
  * Address:	8030CF34
  * Size:	00002C
  */
-void setGetSpray__Q22og5SoundFv(void)
+void og::Sound::setGetSpray(void)
 {
 /*
 .loc_0x0:
@@ -741,7 +741,7 @@ void setGetSpray__Q22og5SoundFv(void)
  * Address:	........
  * Size:	00002C
  */
-void setItemName__Q22og5SoundFv(void)
+void og::Sound::setItemName(void)
 {
 	// UNUSED FUNCTION
 }
@@ -751,7 +751,7 @@ void setItemName__Q22og5SoundFv(void)
  * Address:	8030CF60
  * Size:	00002C
  */
-void setKanteiExit__Q22og5SoundFv(void)
+void og::Sound::setKanteiExit(void)
 {
 /*
 .loc_0x0:
@@ -774,7 +774,7 @@ void setKanteiExit__Q22og5SoundFv(void)
  * Address:	8030CF8C
  * Size:	000004
  */
-void setFloorTitle__Q22og5SoundFv(void)
+void og::Sound::setFloorTitle(void)
 {
 /*
 .loc_0x0:
@@ -787,7 +787,7 @@ void setFloorTitle__Q22og5SoundFv(void)
  * Address:	8030CF90
  * Size:	00002C
  */
-void setVsTitle__Q22og5SoundFv(void)
+void og::Sound::setVsTitle(void)
 {
 /*
 .loc_0x0:
@@ -810,7 +810,7 @@ void setVsTitle__Q22og5SoundFv(void)
  * Address:	8030CFBC
  * Size:	00002C
  */
-void setBdamaGet__Q22og5SoundFv(void)
+void og::Sound::setBdamaGet(void)
 {
 /*
 .loc_0x0:
@@ -833,7 +833,7 @@ void setBdamaGet__Q22og5SoundFv(void)
  * Address:	8030CFE8
  * Size:	000004
  */
-void setNaviChange__Q22og5SoundFi(void)
+void og::Sound::setNaviChange( (int))
 {
 /*
 .loc_0x0:
@@ -846,7 +846,7 @@ void setNaviChange__Q22og5SoundFi(void)
  * Address:	........
  * Size:	00002C
  */
-void setVsTitleAbutton__Q22og5SoundFv(void)
+void og::Sound::setVsTitleAbutton(void)
 {
 	// UNUSED FUNCTION
 }
@@ -856,7 +856,7 @@ void setVsTitleAbutton__Q22og5SoundFv(void)
  * Address:	........
  * Size:	0000D4
  */
-void stopSound__Q22og5SoundFv(void)
+void og::Sound::stopSound(void)
 {
 	// UNUSED FUNCTION
 }
@@ -866,7 +866,7 @@ void stopSound__Q22og5SoundFv(void)
  * Address:	8030CFEC
  * Size:	0000E0
  */
-void setVsWin1P__Q22og5SoundFv(void)
+void og::Sound::setVsWin1P(void)
 {
 /*
 .loc_0x0:
@@ -942,7 +942,7 @@ void setVsWin1P__Q22og5SoundFv(void)
  * Address:	8030D0CC
  * Size:	0000E0
  */
-void setVsWin2P__Q22og5SoundFv(void)
+void og::Sound::setVsWin2P(void)
 {
 /*
 .loc_0x0:
@@ -1018,7 +1018,7 @@ void setVsWin2P__Q22og5SoundFv(void)
  * Address:	8030D1AC
  * Size:	0000E0
  */
-void setVsDraw__Q22og5SoundFv(void)
+void og::Sound::setVsDraw(void)
 {
 /*
 .loc_0x0:
@@ -1094,7 +1094,7 @@ void setVsDraw__Q22og5SoundFv(void)
  * Address:	8030D28C
  * Size:	00002C
  */
-void setWarning__Q22og5SoundFv(void)
+void og::Sound::setWarning(void)
 {
 /*
 .loc_0x0:

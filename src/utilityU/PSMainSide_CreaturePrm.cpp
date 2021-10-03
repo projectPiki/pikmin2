@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	00000C
  */
-void __ct__Q23PSM15THPDinamicsProcFv(void)
+void PSM::THPDinamicsProc::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q23PSM15THPDinamicsProcFv(void)
  * Address:	804724A0
  * Size:	000070
  */
-void setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID(void)
+void PSM::THPDinamicsProc::setSetting( (PSM::THP_ID))
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID(void)
  * Address:	80472510
  * Size:	000110
  */
-void setSetting__Q23PSM15THPDinamicsProcFPQ23PSM15THPDemoDinamics(void)
+void PSM::THPDinamicsProc::setSetting( (PSM::THPDemoDinamics *))
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void setSetting__Q23PSM15THPDinamicsProcFPQ23PSM15THPDemoDinamics(void)
  * Address:	........
  * Size:	000128
  */
-void complessor__Q23PSM15THPDinamicsProcFf(void)
+void PSM::THPDinamicsProc::complessor( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -161,7 +161,7 @@ void complessor__Q23PSM15THPDinamicsProcFf(void)
  * Address:	80472620
  * Size:	000130
  */
-void dinamics__Q23PSM15THPDinamicsProcFf(void)
+void PSM::THPDinamicsProc::dinamics( (float))
 {
 /*
 .loc_0x0:
@@ -269,7 +269,7 @@ void dinamics__Q23PSM15THPDinamicsProcFf(void)
  * Address:	........
  * Size:	000084
  */
-void __ct__Q23PSM11CreaturePrmFv(void)
+void PSM::CreaturePrm::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -279,7 +279,7 @@ void __ct__Q23PSM11CreaturePrmFv(void)
  * Address:	80472750
  * Size:	000064
  */
-void __dt__Q23PSM11CreaturePrmFv(void)
+void PSM::CreaturePrm::__dt(void)
 {
 /*
 .loc_0x0:

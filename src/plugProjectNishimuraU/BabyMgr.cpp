@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8028D0C0
  * Size:	000050
  */
-void __ct__Q34Game4Baby3MgrFiUc(void)
+void Game::Baby::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Baby3MgrFiUc(void)
  * Address:	8028D110
  * Size:	000048
  */
-void doAlloc__Q34Game4Baby3MgrFv(void)
+void Game::Baby::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game4Baby3MgrFv(void)
  * Address:	8028D158
  * Size:	0000DC
  */
-void __ct__Q34Game4Baby5ParmsFv(void)
+void Game::Baby::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void __ct__Q34Game4Baby5ParmsFv(void)
  * Address:	8028D234
  * Size:	000060
  */
-void createObj__Q34Game4Baby3MgrFi(void)
+void Game::Baby::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void createObj__Q34Game4Baby3MgrFi(void)
  * Address:	8028D294
  * Size:	0000BC
  */
-void __dt__Q34Game4Baby3ObjFv(void)
+void Game::Baby::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void __dt__Q34Game4Baby3ObjFv(void)
  * Address:	8028D350
  * Size:	000010
  */
-void getEnemy__Q34Game4Baby3MgrFi(void)
+void Game::Baby::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void getEnemy__Q34Game4Baby3MgrFi(void)
  * Address:	8028D360
  * Size:	000050
  */
-void read__Q34Game4Baby5ParmsFR6Stream(void)
+void Game::Baby::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void read__Q34Game4Baby5ParmsFR6Stream(void)
  * Address:	8028D3B0
  * Size:	0000B0
  */
-void __dt__Q34Game4Baby3MgrFv(void)
+void Game::Baby::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -355,7 +355,7 @@ void __dt__Q34Game4Baby3MgrFv(void)
  * Address:	8028D460
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Baby3MgrFv(void)
+void Game::Baby::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void getEnemyTypeID__Q34Game4Baby3MgrFv(void)
  * Address:	8028D468
  * Size:	000008
  */
-void @4@__dt__Q34Game4Baby3MgrFv(void)
+void @4@Game::Baby::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

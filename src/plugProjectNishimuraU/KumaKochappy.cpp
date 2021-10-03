@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802E7050
  * Size:	000148
  */
-void __ct__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void __ct__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7198
  * Size:	000004
  */
-void setInitialSetting__Q34Game12KumaKochappy3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::KumaKochappy::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -128,7 +128,7 @@ void setInitialSetting__Q34Game12KumaKochappy3ObjFPQ24Game21EnemyInitialParamBas
  * Address:	802E719C
  * Size:	000068
  */
-void onInit__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureInitArg(void)
+void Game::KumaKochappy::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void onInit__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802E7204
  * Size:	000044
  */
-void onKill__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureKillArg(void)
+void Game::KumaKochappy::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void onKill__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802E7248
  * Size:	00004C
  */
-void doUpdate__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -226,7 +226,7 @@ void doUpdate__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7294
  * Size:	000004
  */
-void doDirectDraw__Q34Game12KumaKochappy3ObjFR8Graphics(void)
+void Game::KumaKochappy::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -239,7 +239,7 @@ void doDirectDraw__Q34Game12KumaKochappy3ObjFR8Graphics(void)
  * Address:	802E7298
  * Size:	000020
  */
-void doDebugDraw__Q34Game12KumaKochappy3ObjFR8Graphics(void)
+void Game::KumaKochappy::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void doDebugDraw__Q34Game12KumaKochappy3ObjFR8Graphics(void)
  * Address:	802E72B8
  * Size:	00004C
  */
-void setFSM__Q34Game12KumaKochappy3ObjFPQ34Game12KumaKochappy3FSM(void)
+void Game::KumaKochappy::Obj::setFSM( (Game::KumaKochappy::FSM *))
 {
 /*
 .loc_0x0:
@@ -290,7 +290,7 @@ void setFSM__Q34Game12KumaKochappy3ObjFPQ34Game12KumaKochappy3FSM(void)
  * Address:	802E7304
  * Size:	0000A8
  */
-void getShadowParam__Q34Game12KumaKochappy3ObjFRQ24Game11ShadowParam(void)
+void Game::KumaKochappy::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void getShadowParam__Q34Game12KumaKochappy3ObjFRQ24Game11ShadowParam(void)
  * Address:	802E73AC
  * Size:	000088
  */
-void pressCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::KumaKochappy::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -398,7 +398,7 @@ void pressCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802E7434
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::KumaKochappy::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -421,7 +421,7 @@ void hipdropCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart(voi
  * Address:	802E7460
  * Size:	000028
  */
-void startCarcassMotion__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void startCarcassMotion__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7488
  * Size:	00008C
  */
-void initMouthSlots__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -494,7 +494,7 @@ void initMouthSlots__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7514
  * Size:	000064
  */
-void initWalkSmokeEffect__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void initWalkSmokeEffect__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7578
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -545,7 +545,7 @@ void getWalkSmokeEffectMgr__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7580
  * Size:	000078
  */
-void resetZukanAnimationFrame__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::resetZukanAnimationFrame(void)
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void resetZukanAnimationFrame__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E75F8
  * Size:	000380
  */
-void setNearestParent__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::setNearestParent(void)
 {
 /*
 .loc_0x0:
@@ -878,7 +878,7 @@ void isDone__Q24Game38EnemyIterator<Game::KumaChappy::Obj>Fv(void)
  * Address:	802E79C4
  * Size:	0001A8
  */
-void setTargetParentPosition__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::setTargetParentPosition(void)
 {
 /*
 .loc_0x0:
@@ -1006,7 +1006,7 @@ void setTargetParentPosition__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7B6C
  * Size:	00001C
  */
-void updateHomePosition__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::updateHomePosition(void)
 {
 /*
 .loc_0x0:
@@ -1025,7 +1025,7 @@ void updateHomePosition__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7B88
  * Size:	000038
  */
-void getSearchedTarget__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::getSearchedTarget(void)
 {
 /*
 .loc_0x0:
@@ -1051,7 +1051,7 @@ void getSearchedTarget__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7BC0
  * Size:	000070
  */
-void createChappyRelation__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::createChappyRelation(void)
 {
 /*
 .loc_0x0:
@@ -1093,7 +1093,7 @@ void createChappyRelation__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7C30
  * Size:	000024
  */
-void releaseParent__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::releaseParent(void)
 {
 /*
 .loc_0x0:
@@ -1114,7 +1114,7 @@ void releaseParent__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7C54
  * Size:	00000C
  */
-void getParentRelation__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::getParentRelation(void)
 {
 /*
 .loc_0x0:
@@ -1129,7 +1129,7 @@ void getParentRelation__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7C60
  * Size:	00003C
  */
-void getEnemyIndex__Q34Game12KumaKochappy3ObjFRi(void)
+void Game::KumaKochappy::Obj::getEnemyIndex( (int &))
 {
 /*
 .loc_0x0:
@@ -1162,7 +1162,7 @@ void getEnemyIndex__Q34Game12KumaKochappy3ObjFRi(void)
  * Address:	802E7C9C
  * Size:	0000A0
  */
-void addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj(void)
+void Game::KumaKochappy::Obj::addParentEnemy( (Game::KumaChappy::Obj *))
 {
 /*
 .loc_0x0:
@@ -1396,7 +1396,7 @@ void first__Q24Game38EnemyIterator<Game::KumaChappy::Obj>Fv(void)
  * Address:	802E7F34
  * Size:	000008
  */
-void getMouthSlots__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1410,7 +1410,7 @@ void getMouthSlots__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7F3C
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1424,7 +1424,7 @@ void getDownSmokeScale__Q34Game12KumaKochappy3ObjFv(void)
  * Address:	802E7F44
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12KumaKochappy3ObjFv(void)
+void Game::KumaKochappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

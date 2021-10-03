@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802F92D0
  * Size:	000050
  */
-void __ct__Q34Game11BombOtakara3MgrFiUc(void)
+void Game::BombOtakara::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game11BombOtakara3MgrFiUc(void)
  * Address:	802F9320
  * Size:	000048
  */
-void doAlloc__Q34Game11BombOtakara3MgrFv(void)
+void Game::BombOtakara::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void doAlloc__Q34Game11BombOtakara3MgrFv(void)
  * Address:	802F9368
  * Size:	000060
  */
-void createObj__Q34Game11BombOtakara3MgrFi(void)
+void Game::BombOtakara::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void createObj__Q34Game11BombOtakara3MgrFi(void)
  * Address:	802F93C8
  * Size:	0000EC
  */
-void __dt__Q34Game11BombOtakara3ObjFv(void)
+void Game::BombOtakara::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -190,7 +190,7 @@ void __dt__Q34Game11BombOtakara3ObjFv(void)
  * Address:	802F94B4
  * Size:	000010
  */
-void getEnemy__Q34Game11BombOtakara3MgrFi(void)
+void Game::BombOtakara::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void getEnemy__Q34Game11BombOtakara3MgrFi(void)
  * Address:	802F94C4
  * Size:	000080
  */
-void loadTexData__Q34Game11BombOtakara3MgrFv(void)
+void Game::BombOtakara::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -254,7 +254,7 @@ void loadTexData__Q34Game11BombOtakara3MgrFv(void)
  * Address:	802F9544
  * Size:	0000C8
  */
-void __dt__Q34Game11BombOtakara3MgrFv(void)
+void Game::BombOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void __dt__Q34Game11BombOtakara3MgrFv(void)
  * Address:	802F960C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11BombOtakara3MgrFv(void)
+void Game::BombOtakara::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -334,7 +334,7 @@ void getEnemyTypeID__Q34Game11BombOtakara3MgrFv(void)
  * Address:	802F9614
  * Size:	000008
  */
-void getChangeTexture__Q34Game11BombOtakara3MgrFv(void)
+void Game::BombOtakara::Mgr::getChangeTexture(void)
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void getChangeTexture__Q34Game11BombOtakara3MgrFv(void)
  * Address:	802F961C
  * Size:	000008
  */
-void @4@__dt__Q34Game11BombOtakara3MgrFv(void)
+void @4@Game::BombOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80295E28
  * Size:	000328
  */
-void init__Q34Game10KumaChappy3FSMFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void init__Q34Game10KumaChappy3FSMFPQ24Game9EnemyBase(void)
  * Address:	80296150
  * Size:	000050
  */
-void init__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -279,7 +279,7 @@ void init__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802961A0
  * Size:	000098
  */
-void exec__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void exec__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80296238
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10KumaChappy3ObjFv(void)
+void Game::KumaChappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void getEnemyTypeID__Q34Game10KumaChappy3ObjFv(void)
  * Address:	80296240
  * Size:	000004
  */
-void cleanup__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void cleanup__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80296244
  * Size:	000058
  */
-void init__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateRebirth::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void init__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBasePQ24Game8StateArg
  * Address:	8029629C
  * Size:	0005B0
  */
-void exec__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateRebirth::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -794,7 +794,7 @@ void exec__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBase(void)
  * Address:	8029684C
  * Size:	000010
  */
-void cleanup__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateRebirth::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -810,7 +810,7 @@ void cleanup__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBase(void)
  * Address:	8029685C
  * Size:	00004C
  */
-void init__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateLost::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -841,7 +841,7 @@ void init__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802968A8
  * Size:	00045C
  */
-void exec__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateLost::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1148,7 +1148,7 @@ void exec__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBase(void)
  * Address:	80296D04
  * Size:	000004
  */
-void cleanup__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateLost::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1161,7 +1161,7 @@ void cleanup__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBase(void)
  * Address:	80296D08
  * Size:	000058
  */
-void init__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1195,7 +1195,7 @@ void init__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	80296D60
  * Size:	000550
  */
-void exec__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1569,7 +1569,7 @@ void exec__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802972B0
  * Size:	00003C
  */
-void cleanup__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1596,7 +1596,7 @@ void cleanup__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802972EC
  * Size:	000064
  */
-void init__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1633,7 +1633,7 @@ void init__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	80297350
  * Size:	0004D4
  */
-void exec__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1970,7 +1970,7 @@ void exec__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	80297824
  * Size:	00003C
  */
-void cleanup__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1997,7 +1997,7 @@ void cleanup__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	80297860
  * Size:	000060
  */
-void init__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateTurn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2033,7 +2033,7 @@ void init__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802978C0
  * Size:	000670
  */
-void exec__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateTurn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2489,7 +2489,7 @@ void exec__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	80297F30
  * Size:	00003C
  */
-void cleanup__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateTurn::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2516,7 +2516,7 @@ void cleanup__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBase(void)
  * Address:	80297F6C
  * Size:	000044
  */
-void init__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateTurnPath::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2545,7 +2545,7 @@ void init__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBasePQ24Game8StateAr
  * Address:	80297FB0
  * Size:	0004E0
  */
-void exec__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateTurnPath::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2893,7 +2893,7 @@ void exec__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBase(void)
  * Address:	80298490
  * Size:	000028
  */
-void cleanup__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateTurnPath::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2915,7 +2915,7 @@ void cleanup__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBase(void)
  * Address:	802984B8
  * Size:	000050
  */
-void init__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateWalk::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2947,7 +2947,7 @@ void init__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	80298508
  * Size:	00070C
  */
-void exec__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateWalk::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3448,7 +3448,7 @@ void exec__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	80298C14
  * Size:	00003C
  */
-void cleanup__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateWalk::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3475,7 +3475,7 @@ void cleanup__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	80298C50
  * Size:	000034
  */
-void init__Q34Game10KumaChappy13StateWalkPathFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::KumaChappy::StateWalkPath::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3500,7 +3500,7 @@ void init__Q34Game10KumaChappy13StateWalkPathFPQ24Game9EnemyBasePQ24Game8StateAr
  * Address:	80298C84
  * Size:	000594
  */
-void exec__Q34Game10KumaChappy13StateWalkPathFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateWalkPath::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3899,7 +3899,7 @@ void exec__Q34Game10KumaChappy13StateWalkPathFPQ24Game9EnemyBase(void)
  * Address:	80299218
  * Size:	000028
  */
-void cleanup__Q34Game10KumaChappy13StateWalkPathFPQ24Game9EnemyBase(void)
+void Game::KumaChappy::StateWalkPath::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

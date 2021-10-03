@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80244528
  * Size:	000088
  */
-void __ct__Q34Game4Cave10RandMapMgrFb(void)
+void Game::Cave::RandMapMgr::__ct( (bool))
 {
 /*
 .loc_0x0:
@@ -61,7 +61,7 @@ void __ct__Q34Game4Cave10RandMapMgrFb(void)
  * Address:	802445B0
  * Size:	0001A4
  */
-void loadResource__Q34Game4Cave10RandMapMgrFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit(void)
+void Game::Cave::RandMapMgr::loadResource( (Game::MapUnitInterface *, int, Game::Cave::FloorInfo *, bool, Game::Cave::EditMapUnit *))
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void loadResource__Q34Game4Cave10RandMapMgrFPQ24Game16MapUnitInterfaceiPQ34Game4
  * Address:	80244754
  * Size:	000104
  */
-void create__Q34Game4Cave10RandMapMgrFv(void)
+void Game::Cave::RandMapMgr::create(void)
 {
 /*
 .loc_0x0:
@@ -275,7 +275,7 @@ void create__Q34Game4Cave10RandMapMgrFv(void)
  * Address:	80244858
  * Size:	000034
  */
-void getNumRooms__Q34Game4Cave10RandMapMgrFv(void)
+void Game::Cave::RandMapMgr::getNumRooms(void)
 {
 /*
 .loc_0x0:
@@ -300,7 +300,7 @@ void getNumRooms__Q34Game4Cave10RandMapMgrFv(void)
  * Address:	8024488C
  * Size:	00003C
  */
-void getUseUnitName__Q34Game4Cave10RandMapMgrFi(void)
+void Game::Cave::RandMapMgr::getUseUnitName( (int))
 {
 /*
 .loc_0x0:
@@ -331,7 +331,7 @@ void getUseUnitName__Q34Game4Cave10RandMapMgrFi(void)
  * Address:	802448C8
  * Size:	000084
  */
-void getRoomData__Q34Game4Cave10RandMapMgrFiRfRfRi(void)
+void Game::Cave::RandMapMgr::getRoomData( (int, float &, float &, int &))
 {
 /*
 .loc_0x0:
@@ -380,7 +380,7 @@ void getRoomData__Q34Game4Cave10RandMapMgrFiRfRfRi(void)
  * Address:	8024494C
  * Size:	0000E4
  */
-void makeRoomLink__Q34Game4Cave10RandMapMgrFi(void)
+void Game::Cave::RandMapMgr::makeRoomLink( (int))
 {
 /*
 .loc_0x0:
@@ -461,7 +461,7 @@ void makeRoomLink__Q34Game4Cave10RandMapMgrFi(void)
  * Address:	80244A30
  * Size:	000084
  */
-void makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi(void)
+void Game::Cave::RandMapMgr::makeObjectLayoutInfo( (int))
 {
 /*
 .loc_0x0:
@@ -738,7 +738,7 @@ void getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<float>iff(void)
  * Address:	80244D64
  * Size:	000048
  */
-void setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture(void)
+void Game::Cave::RandMapMgr::setUnitTexture( (int, JUTTexture *))
 {
 /*
 .loc_0x0:
@@ -770,7 +770,7 @@ void setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture(void)
  * Address:	80244DAC
  * Size:	00000C
  */
-void setCaptureOn__Q34Game4Cave10RandMapMgrFv(void)
+void Game::Cave::RandMapMgr::setCaptureOn(void)
 {
 /*
 .loc_0x0:
@@ -785,7 +785,7 @@ void setCaptureOn__Q34Game4Cave10RandMapMgrFv(void)
  * Address:	80244DB8
  * Size:	0000DC
  */
-void captureRadarMap__Q34Game4Cave10RandMapMgrFR8Graphics(void)
+void Game::Cave::RandMapMgr::captureRadarMap( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -854,7 +854,7 @@ void captureRadarMap__Q34Game4Cave10RandMapMgrFR8Graphics(void)
  * Address:	80244E94
  * Size:	00001C
  */
-void isLastFloor__Q34Game4Cave10RandMapMgrFv(void)
+void Game::Cave::RandMapMgr::isLastFloor(void)
 {
 /*
 .loc_0x0:
@@ -875,7 +875,7 @@ void isLastFloor__Q34Game4Cave10RandMapMgrFv(void)
  * Address:	80244EB0
  * Size:	000008
  */
-void isVersusHiba__Q34Game4Cave10RandMapMgrFv(void)
+void Game::Cave::RandMapMgr::isVersusHiba(void)
 {
 /*
 .loc_0x0:
@@ -889,7 +889,7 @@ void isVersusHiba__Q34Game4Cave10RandMapMgrFv(void)
  * Address:	80244EB8
  * Size:	000008
  */
-void getRadarMapTexture__Q34Game4Cave10RandMapMgrFv(void)
+void Game::Cave::RandMapMgr::getRadarMapTexture(void)
 {
 /*
 .loc_0x0:
@@ -1131,7 +1131,7 @@ void getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<float>Pf(void)
  * Address:	80245158
  * Size:	000200
  */
-void drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics(void)
+void Game::Cave::RandMapMgr::drawFrameBuffer( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1271,7 +1271,7 @@ void drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics(void)
  * Address:	80245358
  * Size:	000060
  */
-void __dt__Q24Game8RoomLinkFv(void)
+void Game::RoomLink::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1309,7 +1309,7 @@ void __dt__Q24Game8RoomLinkFv(void)
  * Address:	802453B8
  * Size:	000060
  */
-void __dt__Q34Game4Cave10RandMapMgrFv(void)
+void Game::Cave::RandMapMgr::__dt(void)
 {
 /*
 .loc_0x0:

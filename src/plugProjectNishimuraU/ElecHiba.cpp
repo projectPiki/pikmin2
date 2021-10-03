@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026F258
  * Size:	000150
  */
-void __ct__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void birth__Q34Game8ElecHiba3ObjFR10Vector3<float>f(void)
  * Address:	8026F3E0
  * Size:	000080
  */
-void setInitialSetting__Q34Game8ElecHiba3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::ElecHiba::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void setInitialSetting__Q34Game8ElecHiba3ObjFPQ24Game21EnemyInitialParamBase(voi
  * Address:	8026F460
  * Size:	000144
  */
-void onInit__Q34Game8ElecHiba3ObjFPQ24Game15CreatureInitArg(void)
+void Game::ElecHiba::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -294,7 +294,7 @@ void onInit__Q34Game8ElecHiba3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8026F5A4
  * Size:	000040
  */
-void doUpdate__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -324,7 +324,7 @@ void doUpdate__Q34Game8ElecHiba3ObjFv(void)
  * Address:	8026F5E4
  * Size:	000004
  */
-void doDirectDraw__Q34Game8ElecHiba3ObjFR8Graphics(void)
+void Game::ElecHiba::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -337,7 +337,7 @@ void doDirectDraw__Q34Game8ElecHiba3ObjFR8Graphics(void)
  * Address:	8026F5E8
  * Size:	000020
  */
-void doDebugDraw__Q34Game8ElecHiba3ObjFR8Graphics(void)
+void Game::ElecHiba::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void doDebugDraw__Q34Game8ElecHiba3ObjFR8Graphics(void)
  * Address:	8026F608
  * Size:	00004C
  */
-void setFSM__Q34Game8ElecHiba3ObjFPQ34Game8ElecHiba3FSM(void)
+void Game::ElecHiba::Obj::setFSM( (Game::ElecHiba::FSM *))
 {
 /*
 .loc_0x0:
@@ -388,7 +388,7 @@ void setFSM__Q34Game8ElecHiba3ObjFPQ34Game8ElecHiba3FSM(void)
  * Address:	8026F654
  * Size:	000038
  */
-void getShadowParam__Q34Game8ElecHiba3ObjFRQ24Game11ShadowParam(void)
+void Game::ElecHiba::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void getShadowParam__Q34Game8ElecHiba3ObjFRQ24Game11ShadowParam(void)
  * Address:	8026F68C
  * Size:	0000CC
  */
-void damageCallBack__Q34Game8ElecHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::ElecHiba::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -487,7 +487,7 @@ void damageCallBack__Q34Game8ElecHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8026F758
  * Size:	000030
  */
-void pressCallBack__Q34Game8ElecHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::ElecHiba::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -511,7 +511,7 @@ void pressCallBack__Q34Game8ElecHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8026F788
  * Size:	000030
  */
-void hipdropCallBack__Q34Game8ElecHiba3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::ElecHiba::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void bombCallBack__Q34Game8ElecHiba3ObjFPQ24Game8CreatureR10Vector3<float>f(void
  * Address:	8026F7EC
  * Size:	000100
  */
-void doGetLifeGaugeParam__Q34Game8ElecHiba3ObjFRQ24Game14LifeGaugeParam(void)
+void Game::ElecHiba::Obj::doGetLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -640,7 +640,7 @@ void doGetLifeGaugeParam__Q34Game8ElecHiba3ObjFRQ24Game14LifeGaugeParam(void)
  * Address:	8026F8EC
  * Size:	00004C
  */
-void injure__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::injure(void)
 {
 /*
 .loc_0x0:
@@ -673,7 +673,7 @@ void injure__Q34Game8ElecHiba3ObjFv(void)
  * Address:	........
  * Size:	00001C
  */
-void getParentObjPtr__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::getParentObjPtr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -683,7 +683,7 @@ void getParentObjPtr__Q34Game8ElecHiba3ObjFv(void)
  * Address:	8026F938
  * Size:	00001C
  */
-void getChildObjPtr__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::getChildObjPtr(void)
 {
 /*
 .loc_0x0:
@@ -704,7 +704,7 @@ void getChildObjPtr__Q34Game8ElecHiba3ObjFv(void)
  * Address:	8026F954
  * Size:	000170
  */
-void setElecHibaPosition__Q34Game8ElecHiba3ObjFPQ34Game8ElecHiba12InitialParamf(void)
+void Game::ElecHiba::Obj::setElecHibaPosition( (Game::ElecHiba::InitialParam *, float))
 {
 /*
 .loc_0x0:
@@ -1240,7 +1240,7 @@ void interactDenkiAttack__Q34Game8ElecHiba3ObjFR10Vector3<float>(void)
  * Address:	8027008C
  * Size:	00004C
  */
-void addDamageMyself__Q34Game8ElecHiba3ObjFf(void)
+void Game::ElecHiba::Obj::addDamageMyself( (float))
 {
 /*
 .loc_0x0:
@@ -1277,7 +1277,7 @@ void addDamageMyself__Q34Game8ElecHiba3ObjFf(void)
  * Address:	802700D8
  * Size:	00002C
  */
-void damageIncrement__Q34Game8ElecHiba3ObjFf(void)
+void Game::ElecHiba::Obj::damageIncrement( (float))
 {
 /*
 .loc_0x0:
@@ -1300,7 +1300,7 @@ void damageIncrement__Q34Game8ElecHiba3ObjFf(void)
  * Address:	80270104
  * Size:	000024
  */
-void setupLodParms__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::setupLodParms(void)
 {
 /*
 .loc_0x0:
@@ -1321,7 +1321,7 @@ void setupLodParms__Q34Game8ElecHiba3ObjFv(void)
  * Address:	80270128
  * Size:	000038
  */
-void updateEfxLod__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::updateEfxLod(void)
 {
 /*
 .loc_0x0:
@@ -1349,7 +1349,7 @@ void updateEfxLod__Q34Game8ElecHiba3ObjFv(void)
  * Address:	80270160
  * Size:	0000DC
  */
-void createEffect__Q34Game8ElecHiba3ObjFb(void)
+void Game::ElecHiba::Obj::createEffect( (bool))
 {
 /*
 .loc_0x0:
@@ -1422,7 +1422,7 @@ void createEffect__Q34Game8ElecHiba3ObjFb(void)
  * Address:	8027023C
  * Size:	00009C
  */
-void __dt__Q23efx14TDenkipoleSignFv(void)
+void efx::TDenkipoleSign::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1477,7 +1477,7 @@ void __dt__Q23efx14TDenkipoleSignFv(void)
  * Address:	802702D8
  * Size:	00006C
  */
-void __ct__Q23efx14TDenkipoleSignFv(void)
+void efx::TDenkipoleSign::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1516,7 +1516,7 @@ void __ct__Q23efx14TDenkipoleSignFv(void)
  * Address:	80270344
  * Size:	000090
  */
-void __dt__Q23efx10TDenkiPoleFv(void)
+void efx::TDenkiPole::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1568,7 +1568,7 @@ void __dt__Q23efx10TDenkiPoleFv(void)
  * Address:	802703D4
  * Size:	000044
  */
-void __ct__Q23efx10TDenkiPoleFv(void)
+void efx::TDenkiPole::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1597,7 +1597,7 @@ void __ct__Q23efx10TDenkiPoleFv(void)
  * Address:	........
  * Size:	000090
  */
-void __dt__Q23efx10TDenkiHibaFv(void)
+void efx::TDenkiHiba::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1607,7 +1607,7 @@ void __dt__Q23efx10TDenkiHibaFv(void)
  * Address:	80270418
  * Size:	000110
  */
-void startChargeEffect__Q34Game8ElecHiba3ObjFPQ24Game8Creature(void)
+void Game::ElecHiba::Obj::startChargeEffect( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1689,7 +1689,7 @@ void startChargeEffect__Q34Game8ElecHiba3ObjFPQ24Game8Creature(void)
  * Address:	80270528
  * Size:	000038
  */
-void finishChargeEffect__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::finishChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -1717,7 +1717,7 @@ void finishChargeEffect__Q34Game8ElecHiba3ObjFv(void)
  * Address:	80270560
  * Size:	000070
  */
-void startDisChargeEffect__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::startDisChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -1763,7 +1763,7 @@ void startDisChargeEffect__Q34Game8ElecHiba3ObjFv(void)
  * Address:	802705D0
  * Size:	000038
  */
-void finishDisChargeEffect__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::finishDisChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -1791,7 +1791,7 @@ void finishDisChargeEffect__Q34Game8ElecHiba3ObjFv(void)
  * Address:	80270608
  * Size:	000044
  */
-void generatorKill__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::generatorKill(void)
 {
 /*
 .loc_0x0:
@@ -1822,7 +1822,7 @@ void generatorKill__Q34Game8ElecHiba3ObjFv(void)
  * Address:	8027064C
  * Size:	00006C
  */
-void setVersusHibaOnOff__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::setVersusHibaOnOff(void)
 {
 /*
 .loc_0x0:
@@ -1865,7 +1865,7 @@ void setVersusHibaOnOff__Q34Game8ElecHiba3ObjFv(void)
  * Address:	802706B8
  * Size:	00002C
  */
-void setVersusHibaType__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::setVersusHibaType(void)
 {
 /*
 .loc_0x0:
@@ -1890,7 +1890,7 @@ void setVersusHibaType__Q34Game8ElecHiba3ObjFv(void)
  * Address:	802706E4
  * Size:	000010
  */
-void resetAttrHitCount__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::resetAttrHitCount(void)
 {
 /*
 .loc_0x0:
@@ -1906,7 +1906,7 @@ void resetAttrHitCount__Q34Game8ElecHiba3ObjFv(void)
  * Address:	802706F4
  * Size:	000070
  */
-void addAttrAttackCount__Q34Game8ElecHiba3ObjFPQ24Game4Piki(void)
+void Game::ElecHiba::Obj::addAttrAttackCount( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1952,7 +1952,7 @@ void addAttrAttackCount__Q34Game8ElecHiba3ObjFPQ24Game4Piki(void)
  * Address:	80270764
  * Size:	000040
  */
-void isWaitFinish__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::isWaitFinish(void)
 {
 /*
 .loc_0x0:
@@ -1984,7 +1984,7 @@ void isWaitFinish__Q34Game8ElecHiba3ObjFv(void)
  * Address:	802707A4
  * Size:	000058
  */
-void isAttackFinish__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::isAttackFinish(void)
 {
 /*
 .loc_0x0:
@@ -2024,7 +2024,7 @@ void isAttackFinish__Q34Game8ElecHiba3ObjFv(void)
  * Address:	802707FC
  * Size:	00000C
  */
-void getName__Q23efx12ArgDenkiHibaFv(void)
+void efx::ArgDenkiHiba::getName(void)
 {
 /*
 .loc_0x0:
@@ -2039,7 +2039,7 @@ void getName__Q23efx12ArgDenkiHibaFv(void)
  * Address:	80270808
  * Size:	000004
  */
-void doSimulation__Q34Game8ElecHiba3ObjFf(void)
+void Game::ElecHiba::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2052,7 +2052,7 @@ void doSimulation__Q34Game8ElecHiba3ObjFf(void)
  * Address:	8027080C
  * Size:	000004
  */
-void inWaterCallback__Q34Game8ElecHiba3ObjFPQ24Game8WaterBox(void)
+void Game::ElecHiba::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -2065,7 +2065,7 @@ void inWaterCallback__Q34Game8ElecHiba3ObjFPQ24Game8WaterBox(void)
  * Address:	80270810
  * Size:	000004
  */
-void outWaterCallback__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -2078,7 +2078,7 @@ void outWaterCallback__Q34Game8ElecHiba3ObjFv(void)
  * Address:	80270814
  * Size:	000008
  */
-void isLivingThing__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -2092,7 +2092,7 @@ void isLivingThing__Q34Game8ElecHiba3ObjFv(void)
  * Address:	8027081C
  * Size:	000004
  */
-void lifeRecover__Q34Game8ElecHiba3ObjFv(void)
+void Game::ElecHiba::Obj::lifeRecover(void)
 {
 /*
 .loc_0x0:
@@ -2105,7 +2105,7 @@ void lifeRecover__Q34Game8ElecHiba3ObjFv(void)
  * Address:	80270820
  * Size:	000014
  */
-void @772@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @772@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -2122,7 +2122,7 @@ void @772@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	80270834
  * Size:	000014
  */
-void @772@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @772@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -2139,7 +2139,7 @@ void @772@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80270848
  * Size:	000014
  */
-void @772@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @772@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -2156,7 +2156,7 @@ void @772@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8027085C
  * Size:	000014
  */
-void @772@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @772@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -2173,7 +2173,7 @@ void @772@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80270870
  * Size:	000014
  */
-void @772@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @772@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -2190,7 +2190,7 @@ void @772@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80270884
  * Size:	000014
  */
-void @772@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @772@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -2207,7 +2207,7 @@ void @772@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	80270898
  * Size:	000008
  */
-void @4@__dt__Q23efx14TDenkipoleSignFv(void)
+void @4@efx::TDenkipoleSign::__dt(void)
 {
 /*
 .loc_0x0:

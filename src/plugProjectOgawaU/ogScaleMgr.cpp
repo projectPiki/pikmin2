@@ -5,7 +5,7 @@
  * Address:	80328E04
  * Size:	000044
  */
-void __ct__Q32og6Screen8ScaleMgrFv(void)
+void og::Screen::ScaleMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q32og6Screen8ScaleMgrFv(void)
  * Address:	80328E48
  * Size:	000048
  */
-void up__Q32og6Screen8ScaleMgrFv(void)
+void og::Screen::ScaleMgr::up(void)
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void up__Q32og6Screen8ScaleMgrFv(void)
  * Address:	80328E90
  * Size:	000048
  */
-void down__Q32og6Screen8ScaleMgrFv(void)
+void og::Screen::ScaleMgr::down(void)
 {
 /*
 .loc_0x0:
@@ -94,7 +94,7 @@ void down__Q32og6Screen8ScaleMgrFv(void)
  * Address:	........
  * Size:	0000A0
  */
-void up__Q32og6Screen8ScaleMgrFf(void)
+void og::Screen::ScaleMgr::up( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -104,7 +104,7 @@ void up__Q32og6Screen8ScaleMgrFf(void)
  * Address:	80328ED8
  * Size:	000064
  */
-void up__Q32og6Screen8ScaleMgrFffff(void)
+void og::Screen::ScaleMgr::up( (float, float, float, float))
 {
 /*
 .loc_0x0:
@@ -145,7 +145,7 @@ void up__Q32og6Screen8ScaleMgrFffff(void)
  * Address:	80328F3C
  * Size:	000028
  */
-void down__Q32og6Screen8ScaleMgrFfff(void)
+void og::Screen::ScaleMgr::down( (float, float, float))
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void down__Q32og6Screen8ScaleMgrFfff(void)
  * Address:	80328F64
  * Size:	000020
  */
-void setParam__Q32og6Screen8ScaleMgrFfff(void)
+void og::Screen::ScaleMgr::setParam( (float, float, float))
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void setParam__Q32og6Screen8ScaleMgrFfff(void)
  * Address:	80328F84
  * Size:	00020C
  */
-void calc__Q32og6Screen8ScaleMgrFv(void)
+void og::Screen::ScaleMgr::calc(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802E3CF4
  * Size:	000008
  */
-void setAnimMgr__Q34Game6Kabuto14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Kabuto::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game6Kabuto14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802E3CFC
  * Size:	000008
  */
-void getAnimator__Q34Game6Kabuto14ProperAnimatorFi(void)
+void Game::Kabuto::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game6Kabuto14ProperAnimatorFi(void)
  * Address:	802E3D04
  * Size:	00005C
  */
-void __dt__Q34Game6Kabuto14ProperAnimatorFv(void)
+void Game::Kabuto::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game6Kabuto14ProperAnimatorFv(void)
  * Address:	802E3D60
  * Size:	000008
  */
-void getAnimator__Q34Game6Kabuto14ProperAnimatorFv(void)
+void Game::Kabuto::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

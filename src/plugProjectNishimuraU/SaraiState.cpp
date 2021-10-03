@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802708A0
  * Size:	0003D0
  */
-void init__Q34Game5Sarai3FSMFPQ24Game9EnemyBase(void)
+void Game::Sarai::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -293,7 +293,7 @@ void init__Q34Game5Sarai3FSMFPQ24Game9EnemyBase(void)
  * Address:	80270C70
  * Size:	000070
  */
-void init__Q34Game5Sarai9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -333,7 +333,7 @@ void init__Q34Game5Sarai9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80270CE0
  * Size:	000044
  */
-void exec__Q34Game5Sarai9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void exec__Q34Game5Sarai9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80270D24
  * Size:	000004
  */
-void cleanup__Q34Game5Sarai9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -377,7 +377,7 @@ void cleanup__Q34Game5Sarai9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80270D28
  * Size:	000068
  */
-void init__Q34Game5Sarai9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateFall::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -415,7 +415,7 @@ void init__Q34Game5Sarai9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80270D90
  * Size:	0001B8
  */
-void exec__Q34Game5Sarai9StateFallFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateFall::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -553,7 +553,7 @@ void exec__Q34Game5Sarai9StateFallFPQ24Game9EnemyBase(void)
  * Address:	80270F48
  * Size:	000024
  */
-void cleanup__Q34Game5Sarai9StateFallFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateFall::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void cleanup__Q34Game5Sarai9StateFallFPQ24Game9EnemyBase(void)
  * Address:	80270F6C
  * Size:	000068
  */
-void init__Q34Game5Sarai11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateDamage::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void init__Q34Game5Sarai11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80270FD4
  * Size:	000108
  */
-void exec__Q34Game5Sarai11StateDamageFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateDamage::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -698,7 +698,7 @@ void exec__Q34Game5Sarai11StateDamageFPQ24Game9EnemyBase(void)
  * Address:	802710DC
  * Size:	000024
  */
-void cleanup__Q34Game5Sarai11StateDamageFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateDamage::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -719,7 +719,7 @@ void cleanup__Q34Game5Sarai11StateDamageFPQ24Game9EnemyBase(void)
  * Address:	80271100
  * Size:	00004C
  */
-void init__Q34Game5Sarai12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateTakeOff::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -750,7 +750,7 @@ void init__Q34Game5Sarai12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8027114C
  * Size:	000108
  */
-void exec__Q34Game5Sarai12StateTakeOffFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateTakeOff::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -838,7 +838,7 @@ void exec__Q34Game5Sarai12StateTakeOffFPQ24Game9EnemyBase(void)
  * Address:	80271254
  * Size:	000024
  */
-void cleanup__Q34Game5Sarai12StateTakeOffFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateTakeOff::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -859,7 +859,7 @@ void cleanup__Q34Game5Sarai12StateTakeOffFPQ24Game9EnemyBase(void)
  * Address:	80271278
  * Size:	000058
  */
-void init__Q34Game5Sarai10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -893,7 +893,7 @@ void init__Q34Game5Sarai10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802712D0
  * Size:	000118
  */
-void exec__Q34Game5Sarai10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -983,7 +983,7 @@ void exec__Q34Game5Sarai10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	802713E8
  * Size:	000030
  */
-void cleanup__Q34Game5Sarai10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1007,7 +1007,7 @@ void cleanup__Q34Game5Sarai10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	80271418
  * Size:	0000B0
  */
-void init__Q34Game5Sarai9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1067,7 +1067,7 @@ void init__Q34Game5Sarai9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802714C8
  * Size:	000160
  */
-void exec__Q34Game5Sarai9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1179,7 +1179,7 @@ void exec__Q34Game5Sarai9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	80271628
  * Size:	000004
  */
-void cleanup__Q34Game5Sarai9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1192,7 +1192,7 @@ void cleanup__Q34Game5Sarai9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	8027162C
  * Size:	00005C
  */
-void init__Q34Game5Sarai9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1227,7 +1227,7 @@ void init__Q34Game5Sarai9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80271688
  * Size:	000208
  */
-void exec__Q34Game5Sarai9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1383,7 +1383,7 @@ void exec__Q34Game5Sarai9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	80271890
  * Size:	000004
  */
-void cleanup__Q34Game5Sarai9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1396,7 +1396,7 @@ void cleanup__Q34Game5Sarai9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	80271894
  * Size:	000078
  */
-void init__Q34Game5Sarai11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1438,7 +1438,7 @@ void init__Q34Game5Sarai11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8027190C
  * Size:	000614
  */
-void exec__Q34Game5Sarai11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1881,7 +1881,7 @@ void exec__Q34Game5Sarai11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	80271F20
  * Size:	000044
  */
-void cleanup__Q34Game5Sarai11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1910,7 +1910,7 @@ void cleanup__Q34Game5Sarai11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	80271F64
  * Size:	000058
  */
-void init__Q34Game5Sarai9StateFailFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateFail::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1944,7 +1944,7 @@ void init__Q34Game5Sarai9StateFailFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80271FBC
  * Size:	0000D8
  */
-void exec__Q34Game5Sarai9StateFailFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateFail::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2014,7 +2014,7 @@ void exec__Q34Game5Sarai9StateFailFPQ24Game9EnemyBase(void)
  * Address:	80272094
  * Size:	000030
  */
-void cleanup__Q34Game5Sarai9StateFailFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateFail::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2038,7 +2038,7 @@ void cleanup__Q34Game5Sarai9StateFailFPQ24Game9EnemyBase(void)
  * Address:	802720C4
  * Size:	000064
  */
-void init__Q34Game5Sarai13StateCatchFlyFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateCatchFly::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2075,7 +2075,7 @@ void init__Q34Game5Sarai13StateCatchFlyFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	80272128
  * Size:	0001C0
  */
-void exec__Q34Game5Sarai13StateCatchFlyFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateCatchFly::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2213,7 +2213,7 @@ void exec__Q34Game5Sarai13StateCatchFlyFPQ24Game9EnemyBase(void)
  * Address:	802722E8
  * Size:	000024
  */
-void cleanup__Q34Game5Sarai13StateCatchFlyFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateCatchFly::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2234,7 +2234,7 @@ void cleanup__Q34Game5Sarai13StateCatchFlyFPQ24Game9EnemyBase(void)
  * Address:	8027230C
  * Size:	000070
  */
-void init__Q34Game5Sarai13StateFallMeckFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Sarai::StateFallMeck::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2274,7 +2274,7 @@ void init__Q34Game5Sarai13StateFallMeckFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	8027237C
  * Size:	0000BC
  */
-void exec__Q34Game5Sarai13StateFallMeckFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateFallMeck::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2341,7 +2341,7 @@ void exec__Q34Game5Sarai13StateFallMeckFPQ24Game9EnemyBase(void)
  * Address:	80272438
  * Size:	000054
  */
-void cleanup__Q34Game5Sarai13StateFallMeckFPQ24Game9EnemyBase(void)
+void Game::Sarai::StateFallMeck::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2374,7 +2374,7 @@ void cleanup__Q34Game5Sarai13StateFallMeckFPQ24Game9EnemyBase(void)
  * Address:	8027248C
  * Size:	000004
  */
-void resetAttackableTimer__Q34Game5Sarai3ObjFf(void)
+void Game::Sarai::Obj::resetAttackableTimer( (float))
 {
 /*
 .loc_0x0:

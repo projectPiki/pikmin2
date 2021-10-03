@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8027F50C
  * Size:	00015C
  */
-void __ct__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -120,7 +120,7 @@ void __ct__Q34Game3Mar3ObjFv(void)
  * Address:	8027F668
  * Size:	000004
  */
-void setInitialSetting__Q34Game3Mar3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Mar::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void setInitialSetting__Q34Game3Mar3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8027F66C
  * Size:	0000EC
  */
-void onInit__Q34Game3Mar3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Mar::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void onInit__Q34Game3Mar3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8027F758
  * Size:	000044
  */
-void onKill__Q34Game3Mar3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Mar::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void onKill__Q34Game3Mar3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	8027F79C
  * Size:	000050
  */
-void doUpdate__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void doUpdate__Q34Game3Mar3ObjFv(void)
  * Address:	8027F7EC
  * Size:	0000D4
  */
-void changeMaterial__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -334,7 +334,7 @@ void changeMaterial__Q34Game3Mar3ObjFv(void)
  * Address:	8027F8C0
  * Size:	00004C
  */
-void setFSM__Q34Game3Mar3ObjFPQ34Game3Mar3FSM(void)
+void Game::Mar::Obj::setFSM( (Game::Mar::FSM *))
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void setFSM__Q34Game3Mar3ObjFPQ34Game3Mar3FSM(void)
  * Address:	8027F90C
  * Size:	000004
  */
-void doDirectDraw__Q34Game3Mar3ObjFR8Graphics(void)
+void Game::Mar::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -378,7 +378,7 @@ void doDirectDraw__Q34Game3Mar3ObjFR8Graphics(void)
  * Address:	8027F910
  * Size:	000020
  */
-void doDebugDraw__Q34Game3Mar3ObjFR8Graphics(void)
+void Game::Mar::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -398,7 +398,7 @@ void doDebugDraw__Q34Game3Mar3ObjFR8Graphics(void)
  * Address:	8027F930
  * Size:	0000D0
  */
-void getShadowParam__Q34Game3Mar3ObjFRQ24Game11ShadowParam(void)
+void Game::Mar::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void getShadowParam__Q34Game3Mar3ObjFRQ24Game11ShadowParam(void)
  * Address:	8027FA00
  * Size:	00003C
  */
-void doStartStoneState__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void doStartStoneState__Q34Game3Mar3ObjFv(void)
  * Address:	8027FA3C
  * Size:	000074
  */
-void doFinishStoneState__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -542,7 +542,7 @@ void doFinishStoneState__Q34Game3Mar3ObjFv(void)
  * Address:	8027FAB0
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -567,7 +567,7 @@ void doStartWaitingBirthTypeDrop__Q34Game3Mar3ObjFv(void)
  * Address:	8027FAE4
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -592,7 +592,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game3Mar3ObjFv(void)
  * Address:	8027FB18
  * Size:	000020
  */
-void doStartMovie__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void doStartMovie__Q34Game3Mar3ObjFv(void)
  * Address:	8027FB38
  * Size:	000020
  */
-void doEndMovie__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -632,7 +632,7 @@ void doEndMovie__Q34Game3Mar3ObjFv(void)
  * Address:	8027FB58
  * Size:	000064
  */
-void getOffsetForMapCollision__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -737,7 +737,7 @@ void getThrowupItemVelocity__Q34Game3Mar3ObjFP10Vector3<float>(void)
  * Address:	8027FC4C
  * Size:	000050
  */
-void getHeadJointPos__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::getHeadJointPos(void)
 {
 /*
 .loc_0x0:
@@ -769,7 +769,7 @@ void getHeadJointPos__Q34Game3Mar3ObjFv(void)
  * Address:	8027FC9C
  * Size:	00011C
  */
-void setHeightVelocity__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::setHeightVelocity(void)
 {
 /*
 .loc_0x0:
@@ -858,7 +858,7 @@ void setHeightVelocity__Q34Game3Mar3ObjFv(void)
  * Address:	8027FDB8
  * Size:	0001D8
  */
-void setRandTarget__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::setRandTarget(void)
 {
 /*
 .loc_0x0:
@@ -994,7 +994,7 @@ void setRandTarget__Q34Game3Mar3ObjFv(void)
  * Address:	8027FF90
  * Size:	00000C
  */
-void resetShadowOffset__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::resetShadowOffset(void)
 {
 /*
 .loc_0x0:
@@ -1009,7 +1009,7 @@ void resetShadowOffset__Q34Game3Mar3ObjFv(void)
  * Address:	8027FF9C
  * Size:	00000C
  */
-void setShadowOffsetMax__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::setShadowOffsetMax(void)
 {
 /*
 .loc_0x0:
@@ -1024,7 +1024,7 @@ void setShadowOffsetMax__Q34Game3Mar3ObjFv(void)
  * Address:	8027FFA8
  * Size:	000028
  */
-void addShadowOffset__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::addShadowOffset(void)
 {
 /*
 .loc_0x0:
@@ -1046,7 +1046,7 @@ void addShadowOffset__Q34Game3Mar3ObjFv(void)
  * Address:	8027FFD0
  * Size:	000028
  */
-void subShadowOffset__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::subShadowOffset(void)
 {
 /*
 .loc_0x0:
@@ -1068,7 +1068,7 @@ void subShadowOffset__Q34Game3Mar3ObjFv(void)
  * Address:	8027FFF8
  * Size:	00000C
  */
-void resetShadowRadius__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::resetShadowRadius(void)
 {
 /*
 .loc_0x0:
@@ -1083,7 +1083,7 @@ void resetShadowRadius__Q34Game3Mar3ObjFv(void)
  * Address:	80280004
  * Size:	000030
  */
-void subShadowRadius__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::subShadowRadius(void)
 {
 /*
 .loc_0x0:
@@ -1107,7 +1107,7 @@ void subShadowRadius__Q34Game3Mar3ObjFv(void)
  * Address:	80280034
  * Size:	000030
  */
-void updateFallTimer__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::updateFallTimer(void)
 {
 /*
 .loc_0x0:
@@ -1133,7 +1133,7 @@ void updateFallTimer__Q34Game3Mar3ObjFv(void)
  * Address:	80280064
  * Size:	0000A4
  */
-void getFlyingNextState__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::getFlyingNextState(void)
 {
 /*
 .loc_0x0:
@@ -1198,7 +1198,7 @@ void getFlyingNextState__Q34Game3Mar3ObjFv(void)
  * Address:	80280108
  * Size:	000038
  */
-void addPitchRatio__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::addPitchRatio(void)
 {
 /*
 .loc_0x0:
@@ -1224,7 +1224,7 @@ void addPitchRatio__Q34Game3Mar3ObjFv(void)
  * Address:	80280140
  * Size:	0003AC
  */
-void getSearchedPikmin__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::getSearchedPikmin(void)
 {
 /*
 .loc_0x0:
@@ -1493,7 +1493,7 @@ void getSearchedPikmin__Q34Game3Mar3ObjFv(void)
  * Address:	802804EC
  * Size:	0002F0
  */
-void isTargetLost__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::isTargetLost(void)
 {
 /*
 .loc_0x0:
@@ -1703,7 +1703,7 @@ void isTargetLost__Q34Game3Mar3ObjFv(void)
  * Address:	802807DC
  * Size:	00038C
  */
-void isAttackable__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::isAttackable(void)
 {
 /*
 .loc_0x0:
@@ -1968,7 +1968,7 @@ void isAttackable__Q34Game3Mar3ObjFv(void)
  * Address:	80280B68
  * Size:	0001AC
  */
-void updateEmit__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::updateEmit(void)
 {
 /*
 .loc_0x0:
@@ -2101,7 +2101,7 @@ void updateEmit__Q34Game3Mar3ObjFv(void)
  * Address:	80280D14
  * Size:	0001E8
  */
-void getAttackPosition__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::getAttackPosition(void)
 {
 /*
 .loc_0x0:
@@ -2243,7 +2243,7 @@ void getAttackPosition__Q34Game3Mar3ObjFv(void)
  * Address:	80280EFC
  * Size:	0008F4
  */
-void windTarget__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::windTarget(void)
 {
 /*
 .loc_0x0:
@@ -2892,7 +2892,7 @@ void windTarget__Q34Game3Mar3ObjFv(void)
  * Address:	802817F0
  * Size:	000150
  */
-void createEffect__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -2996,7 +2996,7 @@ void createEffect__Q34Game3Mar3ObjFv(void)
  * Address:	80281940
  * Size:	00004C
  */
-void setupEffect__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -3027,7 +3027,7 @@ void setupEffect__Q34Game3Mar3ObjFv(void)
  * Address:	8028198C
  * Size:	00007C
  */
-void startDeadEffect__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::startDeadEffect(void)
 {
 /*
 .loc_0x0:
@@ -3070,7 +3070,7 @@ void startDeadEffect__Q34Game3Mar3ObjFv(void)
  * Address:	80281A08
  * Size:	000034
  */
-void createSuckEffect__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::createSuckEffect(void)
 {
 /*
 .loc_0x0:
@@ -3095,7 +3095,7 @@ void createSuckEffect__Q34Game3Mar3ObjFv(void)
  * Address:	80281A3C
  * Size:	000090
  */
-void startWindEffect__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::startWindEffect(void)
 {
 /*
 .loc_0x0:
@@ -3143,7 +3143,7 @@ void startWindEffect__Q34Game3Mar3ObjFv(void)
  * Address:	80281ACC
  * Size:	000078
  */
-void finishWindEffect__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::finishWindEffect(void)
 {
 /*
 .loc_0x0:
@@ -3185,7 +3185,7 @@ void finishWindEffect__Q34Game3Mar3ObjFv(void)
  * Address:	80281B44
  * Size:	000074
  */
-void createDownEffect__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::createDownEffect(void)
 {
 /*
 .loc_0x0:
@@ -3226,7 +3226,7 @@ void createDownEffect__Q34Game3Mar3ObjFv(void)
  * Address:	80281BB8
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -3240,7 +3240,7 @@ void getDownSmokeScale__Q34Game3Mar3ObjFv(void)
  * Address:	80281BC0
  * Size:	000078
  */
-void effectDrawOn__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -3282,7 +3282,7 @@ void effectDrawOn__Q34Game3Mar3ObjFv(void)
  * Address:	80281C38
  * Size:	000078
  */
-void effectDrawOff__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -3324,7 +3324,7 @@ void effectDrawOff__Q34Game3Mar3ObjFv(void)
  * Address:	80281CB0
  * Size:	00009C
  */
-void __dt__Q23efx9TFusenSuiFv(void)
+void efx::TFusenSui::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3379,7 +3379,7 @@ void __dt__Q23efx9TFusenSuiFv(void)
  * Address:	80281D4C
  * Size:	0000BC
  */
-void __dt__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3442,7 +3442,7 @@ void __dt__Q34Game3Mar3ObjFv(void)
  * Address:	80281E08
  * Size:	000004
  */
-void inWaterCallback__Q34Game3Mar3ObjFPQ24Game8WaterBox(void)
+void Game::Mar::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -3455,7 +3455,7 @@ void inWaterCallback__Q34Game3Mar3ObjFPQ24Game8WaterBox(void)
  * Address:	80281E0C
  * Size:	000004
  */
-void outWaterCallback__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -3468,7 +3468,7 @@ void outWaterCallback__Q34Game3Mar3ObjFv(void)
  * Address:	80281E10
  * Size:	000004
  */
-void throwupItemInDeathProcedure__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::throwupItemInDeathProcedure(void)
 {
 /*
 .loc_0x0:
@@ -3481,7 +3481,7 @@ void throwupItemInDeathProcedure__Q34Game3Mar3ObjFv(void)
  * Address:	80281E14
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game3Mar3ObjFv(void)
+void Game::Mar::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -3495,7 +3495,7 @@ void getEnemyTypeID__Q34Game3Mar3ObjFv(void)
  * Address:	80281E1C
  * Size:	000014
  */
-void @804@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @804@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -3512,7 +3512,7 @@ void @804@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	80281E30
  * Size:	000014
  */
-void @804@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @804@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -3529,7 +3529,7 @@ void @804@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80281E44
  * Size:	000014
  */
-void @804@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @804@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -3546,7 +3546,7 @@ void @804@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80281E58
  * Size:	000014
  */
-void @804@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @804@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -3563,7 +3563,7 @@ void @804@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80281E6C
  * Size:	000014
  */
-void @804@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @804@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -3580,7 +3580,7 @@ void @804@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	80281E80
  * Size:	000014
  */
-void @804@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @804@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -3597,7 +3597,7 @@ void @804@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	80281E94
  * Size:	000008
  */
-void @4@__dt__Q23efx9TFusenSuiFv(void)
+void @4@efx::TFusenSui::__dt(void)
 {
 /*
 .loc_0x0:

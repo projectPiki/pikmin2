@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80314238
  * Size:	0001F4
  */
-void getMenuColor__Q42og9newScreen13ObjSMenuPause9ObjHIOValFPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColor(void)
+void og::newScreen::ObjSMenuPause::ObjHIOVal::getMenuColor( (JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *, JUtility::TColor *))
 {
 /*
 .loc_0x0:
@@ -152,7 +152,7 @@ void getMenuColor__Q42og9newScreen13ObjSMenuPause9ObjHIOValFPQ28JUtility6TColorP
  * Address:	8031442C
  * Size:	0000D0
  */
-void __ct__Q32og9newScreen13ObjSMenuPauseFPCc(void)
+void og::newScreen::ObjSMenuPause::__ct( (char const *))
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void __ct__Q32og9newScreen13ObjSMenuPauseFPCc(void)
  * Address:	803144FC
  * Size:	0000C4
  */
-void __dt__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::__dt(void)
 {
 /*
 .loc_0x0:
@@ -281,7 +281,7 @@ void __dt__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	803145C0
  * Size:	00054C
  */
-void doCreate__Q32og9newScreen13ObjSMenuPauseFP10JKRArchive(void)
+void og::newScreen::ObjSMenuPause::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void doCreate__Q32og9newScreen13ObjSMenuPauseFP10JKRArchive(void)
  * Address:	........
  * Size:	000084
  */
-void open_TopMenu__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::open_TopMenu(void)
 {
 	// UNUSED FUNCTION
 }
@@ -662,7 +662,7 @@ void open_TopMenu__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	........
  * Size:	000040
  */
-void close_TopMenu__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::close_TopMenu(void)
 {
 	// UNUSED FUNCTION
 }
@@ -672,7 +672,7 @@ void close_TopMenu__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80314B0C
  * Size:	0000DC
  */
-void blink_TopMenu__Q32og9newScreen13ObjSMenuPauseFi(void)
+void og::newScreen::ObjSMenuPause::blink_TopMenu( (int))
 {
 /*
 .loc_0x0:
@@ -749,7 +749,7 @@ void blink_TopMenu__Q32og9newScreen13ObjSMenuPauseFi(void)
  * Address:	........
  * Size:	000084
  */
-void open_Yuugata__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::open_Yuugata(void)
 {
 	// UNUSED FUNCTION
 }
@@ -759,7 +759,7 @@ void open_Yuugata__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	........
  * Size:	000040
  */
-void close_Yuugata__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::close_Yuugata(void)
 {
 	// UNUSED FUNCTION
 }
@@ -769,7 +769,7 @@ void close_Yuugata__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	........
  * Size:	000074
  */
-void blink_Yuugata__Q32og9newScreen13ObjSMenuPauseFi(void)
+void og::newScreen::ObjSMenuPause::blink_Yuugata( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -779,7 +779,7 @@ void blink_Yuugata__Q32og9newScreen13ObjSMenuPauseFi(void)
  * Address:	........
  * Size:	000084
  */
-void open_Zenkai__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::open_Zenkai(void)
 {
 	// UNUSED FUNCTION
 }
@@ -789,7 +789,7 @@ void open_Zenkai__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	........
  * Size:	000040
  */
-void close_Zenkai__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::close_Zenkai(void)
 {
 	// UNUSED FUNCTION
 }
@@ -799,7 +799,7 @@ void close_Zenkai__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	........
  * Size:	000074
  */
-void blink_Zenkai__Q32og9newScreen13ObjSMenuPauseFi(void)
+void og::newScreen::ObjSMenuPause::blink_Zenkai( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -809,7 +809,7 @@ void blink_Zenkai__Q32og9newScreen13ObjSMenuPauseFi(void)
  * Address:	80314BE8
  * Size:	00006C
  */
-void doUpdateLAction__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::doUpdateLAction(void)
 {
 /*
 .loc_0x0:
@@ -848,7 +848,7 @@ void doUpdateLAction__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80314C54
  * Size:	0000C8
  */
-void doUpdateRAction__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::doUpdateRAction(void)
 {
 /*
 .loc_0x0:
@@ -914,7 +914,7 @@ void doUpdateRAction__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80314D1C
  * Size:	000010
  */
-void doUpdateCancelAction__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::doUpdateCancelAction(void)
 {
 /*
 .loc_0x0:
@@ -930,7 +930,7 @@ void doUpdateCancelAction__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80314D2C
  * Size:	000084
  */
-void commonUpdate__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::commonUpdate(void)
 {
 /*
 .loc_0x0:
@@ -975,7 +975,7 @@ void commonUpdate__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80314DB0
  * Size:	0000B0
  */
-void doUpdate__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1039,7 +1039,7 @@ void doUpdate__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80314E60
  * Size:	000098
  */
-void doDraw__Q32og9newScreen13ObjSMenuPauseFR8Graphics(void)
+void og::newScreen::ObjSMenuPause::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1091,7 +1091,7 @@ void doDraw__Q32og9newScreen13ObjSMenuPauseFR8Graphics(void)
  * Address:	80314EF8
  * Size:	0000A4
  */
-void doStart__Q32og9newScreen13ObjSMenuPauseFPCQ26Screen13StartSceneArg(void)
+void og::newScreen::ObjSMenuPause::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -1144,7 +1144,7 @@ void doStart__Q32og9newScreen13ObjSMenuPauseFPCQ26Screen13StartSceneArg(void)
  * Address:	80314F9C
  * Size:	000008
  */
-void doEnd__Q32og9newScreen13ObjSMenuPauseFPCQ26Screen11EndSceneArg(void)
+void og::newScreen::ObjSMenuPause::doEnd( (Screen::EndSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -1158,7 +1158,7 @@ void doEnd__Q32og9newScreen13ObjSMenuPauseFPCQ26Screen11EndSceneArg(void)
  * Address:	80314FA4
  * Size:	000034
  */
-void doUpdateFinish__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -1183,7 +1183,7 @@ void doUpdateFinish__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80314FD8
  * Size:	00004C
  */
-void doUpdateFadeout__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -1214,7 +1214,7 @@ void doUpdateFadeout__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315024
  * Size:	00012C
  */
-void doUpdateFadeoutFinish__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -1321,7 +1321,7 @@ void doUpdateFadeoutFinish__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315150
  * Size:	0004C0
  */
-void menu_pause__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::menu_pause(void)
 {
 /*
 .loc_0x0:
@@ -1675,7 +1675,7 @@ void menu_pause__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315610
  * Size:	000478
  */
-void menu_yuugata__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::menu_yuugata(void)
 {
 /*
 .loc_0x0:
@@ -2013,7 +2013,7 @@ void menu_yuugata__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315A88
  * Size:	000478
  */
-void menu_zenkai__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::menu_zenkai(void)
 {
 /*
 .loc_0x0:
@@ -2351,7 +2351,7 @@ void menu_zenkai__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315F00
  * Size:	000040
  */
-void killCursorAll__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::killCursorAll(void)
 {
 /*
 .loc_0x0:
@@ -2379,7 +2379,7 @@ void killCursorAll__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315F40
  * Size:	00006C
  */
-void menu__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::menu(void)
 {
 /*
 .loc_0x0:
@@ -2428,7 +2428,7 @@ void menu__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315FAC
  * Size:	000014
  */
-void in_L__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::in_L(void)
 {
 /*
 .loc_0x0:
@@ -2445,7 +2445,7 @@ void in_L__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315FC0
  * Size:	000014
  */
-void in_R__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::in_R(void)
 {
 /*
 .loc_0x0:
@@ -2462,7 +2462,7 @@ void in_R__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80315FD4
  * Size:	000030
  */
-void wait__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::wait(void)
 {
 /*
 .loc_0x0:
@@ -2486,7 +2486,7 @@ void wait__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80316004
  * Size:	00002C
  */
-void out_L__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::out_L(void)
 {
 /*
 .loc_0x0:
@@ -2509,7 +2509,7 @@ void out_L__Q32og9newScreen13ObjSMenuPauseFv(void)
  * Address:	80316030
  * Size:	00002C
  */
-void out_R__Q32og9newScreen13ObjSMenuPauseFv(void)
+void og::newScreen::ObjSMenuPause::out_R(void)
 {
 /*
 .loc_0x0:
@@ -2556,7 +2556,7 @@ void __sinit_ogObjSMenuPause_cpp(void)
  * Address:	80316084
  * Size:	000184
  */
-void __ct__Q42og9newScreen13ObjSMenuPause9ObjHIOValFv(void)
+void og::newScreen::ObjSMenuPause::ObjHIOVal::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2665,7 +2665,7 @@ void __ct__Q42og9newScreen13ObjSMenuPause9ObjHIOValFv(void)
  * Address:	80316208
  * Size:	000008
  */
-void @24@__dt__Q32og9newScreen13ObjSMenuPauseFv(void)
+void @24@og::newScreen::ObjSMenuPause::__dt(void)
 {
 /*
 .loc_0x0:

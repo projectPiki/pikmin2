@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802A50CC
  * Size:	000050
  */
-void __ct__Q34Game8Damagumo3MgrFiUc(void)
+void Game::Damagumo::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game8Damagumo3MgrFiUc(void)
  * Address:	802A511C
  * Size:	000048
  */
-void doAlloc__Q34Game8Damagumo3MgrFv(void)
+void Game::Damagumo::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game8Damagumo3MgrFv(void)
  * Address:	802A5164
  * Size:	0001C8
  */
-void __ct__Q34Game8Damagumo5ParmsFv(void)
+void Game::Damagumo::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void __ct__Q34Game8Damagumo5ParmsFv(void)
  * Address:	802A532C
  * Size:	000060
  */
-void createObj__Q34Game8Damagumo3MgrFi(void)
+void Game::Damagumo::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -243,7 +243,7 @@ void createObj__Q34Game8Damagumo3MgrFi(void)
  * Address:	802A538C
  * Size:	0000BC
  */
-void __dt__Q34Game8Damagumo3ObjFv(void)
+void Game::Damagumo::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void __dt__Q34Game8Damagumo3ObjFv(void)
  * Address:	802A5448
  * Size:	000010
  */
-void getEnemy__Q34Game8Damagumo3MgrFi(void)
+void Game::Damagumo::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void getEnemy__Q34Game8Damagumo3MgrFi(void)
  * Address:	802A5458
  * Size:	000068
  */
-void loadModelData__Q34Game8Damagumo3MgrFv(void)
+void Game::Damagumo::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void loadModelData__Q34Game8Damagumo3MgrFv(void)
  * Address:	802A54C0
  * Size:	00012C
  */
-void loadTexData__Q34Game8Damagumo3MgrFv(void)
+void Game::Damagumo::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void loadTexData__Q34Game8Damagumo3MgrFv(void)
  * Address:	802A55EC
  * Size:	00007C
  */
-void createModel__Q34Game8Damagumo3MgrFv(void)
+void Game::Damagumo::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -510,7 +510,7 @@ void createModel__Q34Game8Damagumo3MgrFv(void)
  * Address:	802A5668
  * Size:	0000B0
  */
-void __dt__Q34Game8Damagumo3MgrFv(void)
+void Game::Damagumo::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -570,7 +570,7 @@ void __dt__Q34Game8Damagumo3MgrFv(void)
  * Address:	802A5718
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8Damagumo3MgrFv(void)
+void Game::Damagumo::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -584,7 +584,7 @@ void getEnemyTypeID__Q34Game8Damagumo3MgrFv(void)
  * Address:	802A5720
  * Size:	00002C
  */
-void doLoadBmd__Q34Game8Damagumo3MgrFPv(void)
+void Game::Damagumo::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -607,7 +607,7 @@ void doLoadBmd__Q34Game8Damagumo3MgrFPv(void)
  * Address:	802A574C
  * Size:	000050
  */
-void read__Q34Game8Damagumo5ParmsFR6Stream(void)
+void Game::Damagumo::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -639,7 +639,7 @@ void read__Q34Game8Damagumo5ParmsFR6Stream(void)
  * Address:	802A579C
  * Size:	000008
  */
-void @4@__dt__Q34Game8Damagumo3MgrFv(void)
+void @4@Game::Damagumo::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

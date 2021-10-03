@@ -5,7 +5,7 @@
  * Address:	8043DB18
  * Size:	000074
  */
-void do_word__Q25P2JME10TReferenceCFUl(void)
+void P2JME::TReference::do_word( const(unsigned long))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void do_word__Q25P2JME10TReferenceCFUl(void)
  * Address:	8043DB8C
  * Size:	000060
  */
-void __dt__Q25P2JME10TReferenceFv(void)
+void P2JME::TReference::__dt(void)
 {
 /*
 .loc_0x0:

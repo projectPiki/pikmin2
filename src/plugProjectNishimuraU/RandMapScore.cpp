@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8024C878
  * Size:	0000A8
  */
-void __ct__Q34Game4Cave12RandMapScoreFPQ34Game4Cave16MapUnitGenerator(void)
+void Game::Cave::RandMapScore::__ct( (Game::Cave::MapUnitGenerator *))
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void __ct__Q34Game4Cave12RandMapScoreFPQ34Game4Cave16MapUnitGenerator(void)
  * Address:	8024C920
  * Size:	00006C
  */
-void setMapUnitScore__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::setMapUnitScore(void)
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void setMapUnitScore__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024C98C
  * Size:	000038
  */
-void setStartSlot__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::setStartSlot(void)
 {
 /*
 .loc_0x0:
@@ -142,7 +142,7 @@ void setStartSlot__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024C9C4
  * Size:	000058
  */
-void setGoalSlot__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::setGoalSlot(void)
 {
 /*
 .loc_0x0:
@@ -180,7 +180,7 @@ void setGoalSlot__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024CA1C
  * Size:	00018C
  */
-void makeObjectLayout__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePQ34Game4Cave12ObjectLayout(void)
+void Game::Cave::RandMapScore::makeObjectLayout( (Game::Cave::MapNode *, Game::Cave::ObjectLayout *))
 {
 /*
 .loc_0x0:
@@ -299,7 +299,7 @@ void makeObjectLayout__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePQ34Game4
  * Address:	8024CBA8
  * Size:	000010
  */
-void getFixObjNode__Q34Game4Cave12RandMapScoreFi(void)
+void Game::Cave::RandMapScore::getFixObjNode( (int))
 {
 /*
 .loc_0x0:
@@ -315,7 +315,7 @@ void getFixObjNode__Q34Game4Cave12RandMapScoreFi(void)
  * Address:	8024CBB8
  * Size:	000010
  */
-void getFixObjGen__Q34Game4Cave12RandMapScoreFi(void)
+void Game::Cave::RandMapScore::getFixObjGen( (int))
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<float>(void)
  * Address:	8024CC2C
  * Size:	000008
  */
-void getVersusHighScore__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::getVersusHighScore(void)
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void getVersusHighScore__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024CC34
  * Size:	000008
  */
-void getVersusLowScore__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::getVersusLowScore(void)
 {
 /*
 .loc_0x0:
@@ -398,7 +398,7 @@ void getVersusLowScore__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024CC3C
  * Size:	000084
  */
-void isScoreSetDone__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::isScoreSetDone(void)
 {
 /*
 .loc_0x0:
@@ -455,7 +455,7 @@ void isScoreSetDone__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024CCC0
  * Size:	0000C4
  */
-void clearRoomAndDoorScore__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::clearRoomAndDoorScore(void)
 {
 /*
 .loc_0x0:
@@ -526,7 +526,7 @@ void clearRoomAndDoorScore__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024CD84
  * Size:	000154
  */
-void setUnitAndDoorScore__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::setUnitAndDoorScore(void)
 {
 /*
 .loc_0x0:
@@ -641,7 +641,7 @@ void setUnitAndDoorScore__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024CED8
  * Size:	0000B0
  */
-void setStartMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapScore::setStartMapNodeScore( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -703,7 +703,7 @@ void setStartMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode(void
  * Address:	........
  * Size:	0000DC
  */
-void getRandRoomMapNode__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::getRandRoomMapNode(void)
 {
 	// UNUSED FUNCTION
 }
@@ -713,7 +713,7 @@ void getRandRoomMapNode__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024CF88
  * Size:	00013C
  */
-void setChallengePod__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::setChallengePod(void)
 {
 /*
 .loc_0x0:
@@ -822,7 +822,7 @@ void setChallengePod__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024D0C4
  * Size:	0001B8
  */
-void setVersusOnyon__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::setVersusOnyon(void)
 {
 /*
 .loc_0x0:
@@ -958,7 +958,7 @@ void setVersusOnyon__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024D27C
  * Size:	0000FC
  */
-void getMaxScoreRoomMapNode__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandMapScore::getMaxScoreRoomMapNode( (Game::Cave::MapNode *, Game::Cave::BaseGen **))
 {
 /*
 .loc_0x0:
@@ -1047,7 +1047,7 @@ void getMaxScoreRoomMapNode__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePPQ
  * Address:	8024D378
  * Size:	0003B0
  */
-void calcNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode(void)
+void Game::Cave::RandMapScore::calcNodeScore( (Game::Cave::MapNode *))
 {
 /*
 .loc_0x0:
@@ -1357,7 +1357,7 @@ void calcNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode(void)
  * Address:	8024D728
  * Size:	000048
  */
-void copyNodeScore__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::copyNodeScore(void)
 {
 /*
 .loc_0x0:
@@ -1391,7 +1391,7 @@ void copyNodeScore__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024D770
  * Size:	00008C
  */
-void subNodeScore__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::subNodeScore(void)
 {
 /*
 .loc_0x0:
@@ -1446,7 +1446,7 @@ void subNodeScore__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024D7FC
  * Size:	000064
  */
-void setMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodei(void)
+void Game::Cave::RandMapScore::setMapNodeScore( (Game::Cave::MapNode *, int))
 {
 /*
 .loc_0x0:
@@ -1487,7 +1487,7 @@ void setMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodei(void)
  * Address:	8024D860
  * Size:	0003BC
  */
-void setChallengeFixObjNormal__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::setChallengeFixObjNormal(void)
 {
 /*
 .loc_0x0:
@@ -1780,7 +1780,7 @@ void setChallengeFixObjNormal__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024DC1C
  * Size:	000324
  */
-void setChallengeFixObjHard__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::setChallengeFixObjHard(void)
 {
 /*
 .loc_0x0:
@@ -2033,7 +2033,7 @@ void setChallengeFixObjHard__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024DF40
  * Size:	000064
  */
-void isGoalSetHard__Q34Game4Cave12RandMapScoreFv(void)
+void Game::Cave::RandMapScore::isGoalSetHard(void)
 {
 /*
 .loc_0x0:
@@ -2084,7 +2084,7 @@ void isGoalSetHard__Q34Game4Cave12RandMapScoreFv(void)
  * Address:	8024DFA4
  * Size:	000128
  */
-void isFixObjSet__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen(void)
+void Game::Cave::RandMapScore::isFixObjSet( (Game::Cave::MapNode *, Game::Cave::BaseGen *))
 {
 /*
 .loc_0x0:
@@ -2184,7 +2184,7 @@ void isFixObjSet__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePQ34Game4Cave7
  * Address:	8024E0CC
  * Size:	000070
  */
-void __dt__Q34Game4Cave10FixObjNodeFv(void)
+void Game::Cave::FixObjNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2228,7 +2228,7 @@ void __dt__Q34Game4Cave10FixObjNodeFv(void)
  * Address:	8024E13C
  * Size:	000008
  */
-void getObjectId__Q34Game4Cave10FixObjNodeFv(void)
+void Game::Cave::FixObjNode::getObjectId(void)
 {
 /*
 .loc_0x0:
@@ -2242,7 +2242,7 @@ void getObjectId__Q34Game4Cave10FixObjNodeFv(void)
  * Address:	8024E144
  * Size:	000008
  */
-void getObjectType__Q34Game4Cave10FixObjNodeFv(void)
+void Game::Cave::FixObjNode::getObjectType(void)
 {
 /*
 .loc_0x0:
@@ -2256,7 +2256,7 @@ void getObjectType__Q34Game4Cave10FixObjNodeFv(void)
  * Address:	8024E14C
  * Size:	000008
  */
-void getBirthCount__Q34Game4Cave10FixObjNodeFv(void)
+void Game::Cave::FixObjNode::getBirthCount(void)
 {
 /*
 .loc_0x0:
@@ -2270,7 +2270,7 @@ void getBirthCount__Q34Game4Cave10FixObjNodeFv(void)
  * Address:	8024E154
  * Size:	000008
  */
-void getDirection__Q34Game4Cave10FixObjNodeFv(void)
+void Game::Cave::FixObjNode::getDirection(void)
 {
 /*
 .loc_0x0:
@@ -2284,7 +2284,7 @@ void getDirection__Q34Game4Cave10FixObjNodeFv(void)
  * Address:	8024E15C
  * Size:	000014
  */
-void getBirthPosition__Q34Game4Cave10FixObjNodeFRfRf(void)
+void Game::Cave::FixObjNode::getBirthPosition( (float &, float &))
 {
 /*
 .loc_0x0:

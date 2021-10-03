@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802617E0
  * Size:	000098
  */
-void __ct__Q34Game8MaroFrog3ObjFv(void)
+void Game::MaroFrog::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -67,7 +67,7 @@ void __ct__Q34Game8MaroFrog3ObjFv(void)
  * Address:	80261878
  * Size:	00045C
  */
-void attackNaviPosition__Q34Game8MaroFrog3ObjFv(void)
+void Game::MaroFrog::Obj::attackNaviPosition(void)
 {
 /*
 .loc_0x0:
@@ -378,7 +378,7 @@ void attackNaviPosition__Q34Game8MaroFrog3ObjFv(void)
  * Address:	80261CD4
  * Size:	0000B0
  */
-void createEffect__Q34Game8MaroFrog3ObjFv(void)
+void Game::MaroFrog::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -436,7 +436,7 @@ void createEffect__Q34Game8MaroFrog3ObjFv(void)
  * Address:	80261D84
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8MaroFrog3ObjFv(void)
+void Game::MaroFrog::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

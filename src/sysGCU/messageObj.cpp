@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80438A34
  * Size:	000074
  */
-void __ct__Q25P2JME8TControlFv(void)
+void P2JME::TControl::__ct(void)
 {
 /*
 .loc_0x0:
@@ -56,7 +56,7 @@ void __ct__Q25P2JME8TControlFv(void)
  * Address:	80438AA8
  * Size:	000024
  */
-void setController__Q25P2JME8TControlFP10ControllerP10Controller(void)
+void P2JME::TControl::setController( (Controller *, Controller *))
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void setController__Q25P2JME8TControlFP10ControllerP10Controller(void)
  * Address:	80438ACC
  * Size:	00006C
  */
-void setFont__Q25P2JME8TControlFP7JUTFont(void)
+void P2JME::TControl::setFont( (JUTFont *))
 {
 /*
 .loc_0x0:
@@ -120,7 +120,7 @@ void setFont__Q25P2JME8TControlFP7JUTFont(void)
  * Address:	80438B38
  * Size:	00009C
  */
-void setRubyFont__Q25P2JME8TControlFP7JUTFont(void)
+void P2JME::TControl::setRubyFont( (JUTFont *))
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void setRubyFont__Q25P2JME8TControlFP7JUTFont(void)
  * Address:	80438BD4
  * Size:	000104
  */
-void init__Q25P2JME8TControlFv(void)
+void P2JME::TControl::init(void)
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void init__Q25P2JME8TControlFv(void)
  * Address:	80438CD8
  * Size:	000008
  */
-void onInit__Q25P2JME8TControlFv(void)
+void P2JME::TControl::onInit(void)
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void onInit__Q25P2JME8TControlFv(void)
  * Address:	80438CE0
  * Size:	00007C
  */
-void createRenderingProcessor__Q25P2JME8TControlFv(void)
+void P2JME::TControl::createRenderingProcessor(void)
 {
 /*
 .loc_0x0:
@@ -317,7 +317,7 @@ void createRenderingProcessor__Q25P2JME8TControlFv(void)
  * Address:	80438D5C
  * Size:	000080
  */
-void createSequenceProcessor__Q25P2JME8TControlFv(void)
+void P2JME::TControl::createSequenceProcessor(void)
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void createSequenceProcessor__Q25P2JME8TControlFv(void)
  * Address:	80438DDC
  * Size:	000070
  */
-void reset__Q25P2JME8TControlFv(void)
+void P2JME::TControl::reset(void)
 {
 /*
 .loc_0x0:
@@ -405,7 +405,7 @@ void reset__Q25P2JME8TControlFv(void)
  * Address:	80438E4C
  * Size:	00008C
  */
-void update__Q25P2JME8TControlFv(void)
+void P2JME::TControl::update(void)
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void update__Q25P2JME8TControlFv(void)
  * Address:	80438ED8
  * Size:	000004
  */
-void update__Q25P2JME19TRenderingProcessorFv(void)
+void P2JME::TRenderingProcessor::update(void)
 {
 /*
 .loc_0x0:
@@ -471,7 +471,7 @@ void update__Q25P2JME19TRenderingProcessorFv(void)
  * Address:	........
  * Size:	000020
  */
-void drawCommon__Q25P2JME8TControlFv(void)
+void P2JME::TControl::drawCommon(void)
 {
 	// UNUSED FUNCTION
 }
@@ -481,7 +481,7 @@ void drawCommon__Q25P2JME8TControlFv(void)
  * Address:	80438EDC
  * Size:	000020
  */
-void draw__Q25P2JME8TControlFR8Graphics(void)
+void P2JME::TControl::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -501,7 +501,7 @@ void draw__Q25P2JME8TControlFR8Graphics(void)
  * Address:	80438EFC
  * Size:	000080
  */
-void draw__Q25P2JME8TControlFPA4_fPA4_f(void)
+void P2JME::TControl::draw( (float (*)[4], float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -547,7 +547,7 @@ void draw__Q25P2JME8TControlFPA4_fPA4_f(void)
  * Address:	80438F7C
  * Size:	000050
  */
-void setLocate__Q25P2JME8TControlFii(void)
+void P2JME::TControl::setLocate( (int, int))
 {
 /*
 .loc_0x0:
@@ -579,7 +579,7 @@ void setLocate__Q25P2JME8TControlFii(void)
  * Address:	80438FCC
  * Size:	000054
  */
-void setMessageID__Q25P2JME8TControlFPc(void)
+void P2JME::TControl::setMessageID( (char *))
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void setMessageID__Q25P2JME8TControlFPc(void)
  * Address:	80439020
  * Size:	000084
  */
-void setMessageID__Q25P2JME8TControlFUlUl(void)
+void P2JME::TControl::setMessageID( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -657,7 +657,7 @@ void setMessageID__Q25P2JME8TControlFUlUl(void)
  * Address:	804390A4
  * Size:	00007C
  */
-void setMessageCode__Q25P2JME8TControlFUsUs(void)
+void P2JME::TControl::setMessageCode( (unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -700,7 +700,7 @@ void setMessageCode__Q25P2JME8TControlFUsUs(void)
  * Address:	80439120
  * Size:	000070
  */
-void setMessageCode__Q25P2JME8TControlFUl(void)
+void P2JME::TControl::setMessageCode( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -740,7 +740,7 @@ void setMessageCode__Q25P2JME8TControlFUl(void)
  * Address:	80439190
  * Size:	000060
  */
-void __dt__Q25P2JME8TControlFv(void)
+void P2JME::TControl::__dt(void)
 {
 /*
 .loc_0x0:

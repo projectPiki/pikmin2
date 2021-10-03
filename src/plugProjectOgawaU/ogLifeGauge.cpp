@@ -5,7 +5,7 @@
  * Address:	80306038
  * Size:	000158
  */
-void __ct__Q32og6Screen18CallBack_LifeGaugeFv(void)
+void og::Screen::CallBack_LifeGauge::__ct(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void __ct__Q32og6Screen18CallBack_LifeGaugeFv(void)
  * Address:	80306190
  * Size:	000070
  */
-void __dt__Q29P2DScreen12CallBackNodeFv(void)
+void P2DScreen::CallBackNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -153,7 +153,7 @@ void __dt__Q29P2DScreen12CallBackNodeFv(void)
  * Address:	80306200
  * Size:	0002C4
  */
-void init__Q32og6Screen18CallBack_LifeGaugeFPQ29P2DScreen3MgrPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType(void)
+void og::Screen::CallBack_LifeGauge::init( (P2DScreen::Mgr *, og::Screen::DataNavi *, og::Screen::CallBack_LifeGauge::LifeGaugeType))
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void init__Q32og6Screen18CallBack_LifeGaugeFPQ29P2DScreen3MgrPQ32og6Screen8DataN
  * Address:	803064C4
  * Size:	000434
  */
-void setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType(void)
+void og::Screen::CallBack_LifeGauge::setType( (og::Screen::CallBack_LifeGauge::LifeGaugeType))
 {
 /*
 .loc_0x0:
@@ -639,7 +639,7 @@ void setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge1
  * Address:	803068F8
  * Size:	000078
  */
-void setOffset__Q32og6Screen18CallBack_LifeGaugeFff(void)
+void og::Screen::CallBack_LifeGauge::setOffset( (float, float))
 {
 /*
 .loc_0x0:
@@ -685,7 +685,7 @@ void setOffset__Q32og6Screen18CallBack_LifeGaugeFff(void)
  * Address:	80306970
  * Size:	000318
  */
-void moveIcon__Q32og6Screen18CallBack_LifeGaugeFv(void)
+void og::Screen::CallBack_LifeGauge::moveIcon(void)
 {
 /*
 .loc_0x0:
@@ -911,7 +911,7 @@ void moveIcon__Q32og6Screen18CallBack_LifeGaugeFv(void)
  * Address:	80306C88
  * Size:	00026C
  */
-void update__Q32og6Screen18CallBack_LifeGaugeFv(void)
+void og::Screen::CallBack_LifeGauge::update(void)
 {
 /*
 .loc_0x0:
@@ -1088,7 +1088,7 @@ void update__Q32og6Screen18CallBack_LifeGaugeFv(void)
  * Address:	80306EF4
  * Size:	0000B4
  */
-void draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext(void)
+void og::Screen::CallBack_LifeGauge::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -1147,7 +1147,7 @@ void draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext(void)
  * Address:	80306FA8
  * Size:	000118
  */
-void setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType(void)
+void og::Screen::NaviLifeGauge::setCallBack( (og::Screen::DataNavi *, og::Screen::CallBack_LifeGauge::LifeGaugeType))
 {
 /*
 .loc_0x0:
@@ -1235,7 +1235,7 @@ void setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen
  * Address:	803070C0
  * Size:	00002C
  */
-void setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType(void)
+void og::Screen::NaviLifeGauge::setType( (og::Screen::CallBack_LifeGauge::LifeGaugeType))
 {
 /*
 .loc_0x0:
@@ -1260,7 +1260,7 @@ void setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13Life
  * Address:	803070EC
  * Size:	00005C
  */
-void update__Q32og6Screen13NaviLifeGaugeFv(void)
+void og::Screen::NaviLifeGauge::update(void)
 {
 /*
 .loc_0x0:
@@ -1299,7 +1299,7 @@ void update__Q32og6Screen13NaviLifeGaugeFv(void)
  * Address:	80307148
  * Size:	0000A4
  */
-void __dt__Q32og6Screen13NaviLifeGaugeFv(void)
+void og::Screen::NaviLifeGauge::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1358,7 +1358,7 @@ void __dt__Q32og6Screen13NaviLifeGaugeFv(void)
  * Address:	803071EC
  * Size:	000080
  */
-void __dt__Q32og6Screen18CallBack_LifeGaugeFv(void)
+void og::Screen::CallBack_LifeGauge::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1406,7 +1406,7 @@ void __dt__Q32og6Screen18CallBack_LifeGaugeFv(void)
  * Address:	8030726C
  * Size:	000004
  */
-void update__Q29P2DScreen12CallBackNodeFv(void)
+void P2DScreen::CallBackNode::update(void)
 {
 /*
 .loc_0x0:

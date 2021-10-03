@@ -5,7 +5,7 @@
  * Address:	8030E958
  * Size:	0002F8
  */
-void CopyPicture__Q22og6ScreenFP12J2DPictureExUx(void)
+void og::Screen::CopyPicture( (J2DPictureEx *, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void CopyPicture__Q22og6ScreenFP12J2DPictureExUx(void)
  * Address:	8030EC50
  * Size:	000338
  */
-void CopyPictureToPane__Q22og6ScreenFP12J2DPictureExP7J2DPaneffUx(void)
+void og::Screen::CopyPictureToPane( (J2DPictureEx *, J2DPane *, float, float, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void CopyPictureToPane__Q22og6ScreenFP12J2DPictureExP7J2DPaneffUx(void)
  * Address:	........
  * Size:	00080C
  */
-void CopyTreeToPaneSub__Q22og6ScreenFP7J2DPaneP7J2DPanebPUxPUs(void)
+void og::Screen::CopyTreeToPaneSub( (J2DPane *, J2DPane *, bool, unsigned long long *, unsigned short *))
 {
 	// UNUSED FUNCTION
 }
@@ -453,7 +453,7 @@ void J2DMaterial::operator= (const J2DMaterial &)
  * Address:	........
  * Size:	00003C
  */
-void CopyTreeToPane__Q22og6ScreenFP7J2DPaneP7J2DPaneUx(void)
+void og::Screen::CopyTreeToPane( (J2DPane *, J2DPane *, unsigned long long))
 {
 	// UNUSED FUNCTION
 }

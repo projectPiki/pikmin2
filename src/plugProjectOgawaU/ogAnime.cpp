@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000088
  */
-void __ct__Q32og6Screen12AnimBaseBaseFv(void)
+void og::Screen::AnimBaseBase::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q32og6Screen12AnimBaseBaseFv(void)
  * Address:	........
  * Size:	000020
  */
-void setArea__Q32og6Screen12AnimBaseBaseFff(void)
+void og::Screen::AnimBaseBase::setArea( (float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void setArea__Q32og6Screen12AnimBaseBaseFff(void)
  * Address:	........
  * Size:	00010C
  */
-void init__Q32og6Screen12AnimBaseBaseFP10JKRArchivePc(void)
+void og::Screen::AnimBaseBase::init( (JKRArchive *, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void init__Q32og6Screen12AnimBaseBaseFP10JKRArchivePc(void)
  * Address:	80304CB0
  * Size:	000010
  */
-void start__Q32og6Screen12AnimBaseBaseFf(void)
+void og::Screen::AnimBaseBase::start( (float))
 {
 /*
 .loc_0x0:
@@ -61,7 +61,7 @@ void start__Q32og6Screen12AnimBaseBaseFf(void)
  * Address:	........
  * Size:	000024
  */
-void setAllArea__Q32og6Screen12AnimBaseBaseFv(void)
+void og::Screen::AnimBaseBase::setAllArea(void)
 {
 	// UNUSED FUNCTION
 }
@@ -71,7 +71,7 @@ void setAllArea__Q32og6Screen12AnimBaseBaseFv(void)
  * Address:	80304CC0
  * Size:	000150
  */
-void updateSub__Q32og6Screen12AnimBaseBaseFv(void)
+void og::Screen::AnimBaseBase::updateSub(void)
 {
 /*
 .loc_0x0:
@@ -183,7 +183,7 @@ void updateSub__Q32og6Screen12AnimBaseBaseFv(void)
  * Address:	80304E10
  * Size:	000078
  */
-void update__Q32og6Screen12AnimBaseBaseFv(void)
+void og::Screen::AnimBaseBase::update(void)
 {
 /*
 .loc_0x0:
@@ -231,7 +231,7 @@ void update__Q32og6Screen12AnimBaseBaseFv(void)
  * Address:	80304E88
  * Size:	00009C
  */
-void __ct__Q32og6Screen10AnimScreenFv(void)
+void og::Screen::AnimScreen::__ct(void)
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void __ct__Q32og6Screen10AnimScreenFv(void)
  * Address:	80304F24
  * Size:	000164
  */
-void init__Q32og6Screen10AnimScreenFP10JKRArchiveP9J2DScreenPc(void)
+void og::Screen::AnimScreen::init( (JKRArchive *, J2DScreen *, char *))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void init__Q32og6Screen10AnimScreenFP10JKRArchiveP9J2DScreenPc(void)
  * Address:	80305088
  * Size:	000090
  */
-void start__Q32og6Screen10AnimScreenFv(void)
+void og::Screen::AnimScreen::start(void)
 {
 /*
 .loc_0x0:
@@ -437,7 +437,7 @@ void start__Q32og6Screen10AnimScreenFv(void)
  * Address:	80305118
  * Size:	000060
  */
-void moveAnim__Q32og6Screen10AnimScreenFv(void)
+void og::Screen::AnimScreen::moveAnim(void)
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void moveAnim__Q32og6Screen10AnimScreenFv(void)
  * Address:	80305178
  * Size:	0000A0
  */
-void __ct__Q32og6Screen8AnimPaneFv(void)
+void og::Screen::AnimPane::__ct(void)
 {
 /*
 .loc_0x0:
@@ -527,7 +527,7 @@ void __ct__Q32og6Screen8AnimPaneFv(void)
  * Address:	80305218
  * Size:	000150
  */
-void init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc(void)
+void og::Screen::AnimPane::init( (JKRArchive *, J2DScreen *, unsigned long long, char *))
 {
 /*
 .loc_0x0:
@@ -625,7 +625,7 @@ void init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc(void)
  * Address:	80305368
  * Size:	000090
  */
-void start__Q32og6Screen8AnimPaneFv(void)
+void og::Screen::AnimPane::start(void)
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void start__Q32og6Screen8AnimPaneFv(void)
  * Address:	803053F8
  * Size:	000060
  */
-void moveAnim__Q32og6Screen8AnimPaneFv(void)
+void og::Screen::AnimPane::moveAnim(void)
 {
 /*
 .loc_0x0:
@@ -715,7 +715,7 @@ void moveAnim__Q32og6Screen8AnimPaneFv(void)
  * Address:	80305458
  * Size:	000090
  */
-void __ct__Q32og6Screen9AnimGroupFi(void)
+void og::Screen::AnimGroup::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -767,7 +767,7 @@ void __ct__Q32og6Screen9AnimGroupFi(void)
  * Address:	........
  * Size:	000064
  */
-void setAnim__Q32og6Screen9AnimGroupFPQ32og6Screen12AnimBaseBase(void)
+void og::Screen::AnimGroup::setAnim( (og::Screen::AnimBaseBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -777,7 +777,7 @@ void setAnim__Q32og6Screen9AnimGroupFPQ32og6Screen12AnimBaseBase(void)
  * Address:	803054E8
  * Size:	0001C0
  */
-void update__Q32og6Screen9AnimGroupFv(void)
+void og::Screen::AnimGroup::update(void)
 {
 /*
 .loc_0x0:
@@ -927,7 +927,7 @@ void update__Q32og6Screen9AnimGroupFv(void)
  * Address:	803056A8
  * Size:	00005C
  */
-void setSpeed__Q32og6Screen9AnimGroupFf(void)
+void og::Screen::AnimGroup::setSpeed( (float))
 {
 /*
 .loc_0x0:
@@ -972,7 +972,7 @@ void setSpeed__Q32og6Screen9AnimGroupFf(void)
  * Address:	80305704
  * Size:	00005C
  */
-void setRepeat__Q32og6Screen9AnimGroupFb(void)
+void og::Screen::AnimGroup::setRepeat( (bool))
 {
 /*
 .loc_0x0:
@@ -1017,7 +1017,7 @@ void setRepeat__Q32og6Screen9AnimGroupFb(void)
  * Address:	80305760
  * Size:	00005C
  */
-void setFrame__Q32og6Screen9AnimGroupFf(void)
+void og::Screen::AnimGroup::setFrame( (float))
 {
 /*
 .loc_0x0:
@@ -1062,7 +1062,7 @@ void setFrame__Q32og6Screen9AnimGroupFf(void)
  * Address:	........
  * Size:	000040
  */
-void setAlpha__Q32og6Screen9AnimGroupFUc(void)
+void og::Screen::AnimGroup::setAlpha( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -1072,7 +1072,7 @@ void setAlpha__Q32og6Screen9AnimGroupFUc(void)
  * Address:	803057BC
  * Size:	000054
  */
-void setAllArea__Q32og6Screen9AnimGroupFv(void)
+void og::Screen::AnimGroup::setAllArea(void)
 {
 /*
 .loc_0x0:
@@ -1111,7 +1111,7 @@ void setAllArea__Q32og6Screen9AnimGroupFv(void)
  * Address:	80305810
  * Size:	000020
  */
-void getFrame__Q32og6Screen9AnimGroupFv(void)
+void og::Screen::AnimGroup::getFrame(void)
 {
 /*
 .loc_0x0:
@@ -1131,7 +1131,7 @@ void getFrame__Q32og6Screen9AnimGroupFv(void)
  * Address:	80305830
  * Size:	000088
  */
-void setArea__Q32og6Screen9AnimGroupFff(void)
+void og::Screen::AnimGroup::setArea( (float, float))
 {
 /*
 .loc_0x0:
@@ -1187,7 +1187,7 @@ void setArea__Q32og6Screen9AnimGroupFff(void)
  * Address:	803058B8
  * Size:	0000A8
  */
-void start__Q32og6Screen9AnimGroupFv(void)
+void og::Screen::AnimGroup::start(void)
 {
 /*
 .loc_0x0:
@@ -1251,7 +1251,7 @@ void start__Q32og6Screen9AnimGroupFv(void)
  * Address:	80305960
  * Size:	000018
  */
-void reservAnim__Q32og6Screen9AnimGroupFfff(void)
+void og::Screen::AnimGroup::reservAnim( (float, float, float))
 {
 /*
 .loc_0x0:
@@ -1269,7 +1269,7 @@ void reservAnim__Q32og6Screen9AnimGroupFfff(void)
  * Address:	80305978
  * Size:	000020
  */
-void getLastFrame__Q32og6Screen9AnimGroupFv(void)
+void og::Screen::AnimGroup::getLastFrame(void)
 {
 /*
 .loc_0x0:
@@ -1289,7 +1289,7 @@ void getLastFrame__Q32og6Screen9AnimGroupFv(void)
  * Address:	80305998
  * Size:	000254
  */
-void registAnimGroupScreen__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J2DScreenPcf(void)
+void og::Screen::registAnimGroupScreen( (og::Screen::AnimGroup *, JKRArchive *, J2DScreen *, char *, float))
 {
 /*
 .loc_0x0:
@@ -1458,7 +1458,7 @@ void registAnimGroupScreen__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J
  * Address:	80305BEC
  * Size:	00025C
  */
-void registAnimGroupPane__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J2DScreenUxPcf(void)
+void og::Screen::registAnimGroupPane( (og::Screen::AnimGroup *, JKRArchive *, J2DScreen *, unsigned long long, char *, float))
 {
 /*
 .loc_0x0:
@@ -1629,7 +1629,7 @@ void registAnimGroupPane__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J2D
  * Address:	........
  * Size:	000058
  */
-void __ct__Q32og6Screen8AnimListFUs(void)
+void og::Screen::AnimList::__ct( (unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -1639,7 +1639,7 @@ void __ct__Q32og6Screen8AnimListFUs(void)
  * Address:	........
  * Size:	000040
  */
-void addAnim__Q32og6Screen8AnimListFPQ32og6Screen10AnimScreen(void)
+void og::Screen::AnimList::addAnim( (og::Screen::AnimScreen *))
 {
 	// UNUSED FUNCTION
 }
@@ -1649,7 +1649,7 @@ void addAnim__Q32og6Screen8AnimListFPQ32og6Screen10AnimScreen(void)
  * Address:	........
  * Size:	000014
  */
-void start__Q32og6Screen8AnimListFv(void)
+void og::Screen::AnimList::start(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1659,7 +1659,7 @@ void start__Q32og6Screen8AnimListFv(void)
  * Address:	........
  * Size:	000084
  */
-void nextAnim__Q32og6Screen8AnimListFf(void)
+void og::Screen::AnimList::nextAnim( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -1669,7 +1669,7 @@ void nextAnim__Q32og6Screen8AnimListFf(void)
  * Address:	........
  * Size:	000114
  */
-void update__Q32og6Screen8AnimListFv(void)
+void og::Screen::AnimList::update(void)
 {
 	// UNUSED FUNCTION
 }

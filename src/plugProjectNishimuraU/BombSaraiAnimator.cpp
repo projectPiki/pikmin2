@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B2130
  * Size:	000008
  */
-void setAnimMgr__Q34Game9BombSarai14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::BombSarai::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game9BombSarai14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	802B2138
  * Size:	000008
  */
-void getAnimator__Q34Game9BombSarai14ProperAnimatorFi(void)
+void Game::BombSarai::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game9BombSarai14ProperAnimatorFi(void)
  * Address:	802B2140
  * Size:	00005C
  */
-void __dt__Q34Game9BombSarai14ProperAnimatorFv(void)
+void Game::BombSarai::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game9BombSarai14ProperAnimatorFv(void)
  * Address:	802B219C
  * Size:	000008
  */
-void getAnimator__Q34Game9BombSarai14ProperAnimatorFv(void)
+void Game::BombSarai::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

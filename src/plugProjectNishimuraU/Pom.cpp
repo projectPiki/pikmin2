@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802547A4
  * Size:	000138
  */
-void __ct__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q34Game3Pom3ObjFv(void)
  * Address:	802548DC
  * Size:	000004
  */
-void setInitialSetting__Q34Game3Pom3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Pom::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void setInitialSetting__Q34Game3Pom3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	802548E0
  * Size:	000114
  */
-void onInit__Q34Game3Pom3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Pom::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -209,7 +209,7 @@ void onInit__Q34Game3Pom3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802549F4
  * Size:	000088
  */
-void doUpdate__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void doUpdate__Q34Game3Pom3ObjFv(void)
  * Address:	80254A7C
  * Size:	000110
  */
-void changeMaterial__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void changeMaterial__Q34Game3Pom3ObjFv(void)
  * Address:	80254B8C
  * Size:	000004
  */
-void doDirectDraw__Q34Game3Pom3ObjFR8Graphics(void)
+void Game::Pom::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -356,7 +356,7 @@ void doDirectDraw__Q34Game3Pom3ObjFR8Graphics(void)
  * Address:	80254B90
  * Size:	000020
  */
-void doDebugDraw__Q34Game3Pom3ObjFR8Graphics(void)
+void Game::Pom::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -376,7 +376,7 @@ void doDebugDraw__Q34Game3Pom3ObjFR8Graphics(void)
  * Address:	80254BB0
  * Size:	00004C
  */
-void setFSM__Q34Game3Pom3ObjFPQ34Game3Pom3FSM(void)
+void Game::Pom::Obj::setFSM( (Game::Pom::FSM *))
 {
 /*
 .loc_0x0:
@@ -407,7 +407,7 @@ void setFSM__Q34Game3Pom3ObjFPQ34Game3Pom3FSM(void)
  * Address:	80254BFC
  * Size:	000044
  */
-void getShadowParam__Q34Game3Pom3ObjFRQ24Game11ShadowParam(void)
+void Game::Pom::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -436,7 +436,7 @@ void getShadowParam__Q34Game3Pom3ObjFRQ24Game11ShadowParam(void)
  * Address:	80254C40
  * Size:	00012C
  */
-void pressCallBack__Q34Game3Pom3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Pom::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -529,7 +529,7 @@ void pressCallBack__Q34Game3Pom3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80254D6C
  * Size:	00002C
  */
-void hipdropCallBack__Q34Game3Pom3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Pom::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void hipdropCallBack__Q34Game3Pom3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80254D98
  * Size:	0000A8
  */
-void collisionCallback__Q34Game3Pom3ObjFRQ24Game9CollEvent(void)
+void Game::Pom::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -610,7 +610,7 @@ void collisionCallback__Q34Game3Pom3ObjFRQ24Game9CollEvent(void)
  * Address:	80254E40
  * Size:	00004C
  */
-void initMouthSlots__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -641,7 +641,7 @@ void initMouthSlots__Q34Game3Pom3ObjFv(void)
  * Address:	........
  * Size:	0000B4
  */
-void setPomColor__Q34Game3Pom3ObjFi(void)
+void Game::Pom::Obj::setPomColor( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -651,7 +651,7 @@ void setPomColor__Q34Game3Pom3ObjFi(void)
  * Address:	80254E8C
  * Size:	000510
  */
-void setPomParms__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::setPomParms(void)
 {
 /*
 .loc_0x0:
@@ -1079,7 +1079,7 @@ void setPomParms__Q34Game3Pom3ObjFv(void)
  * Address:	8025539C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1093,7 +1093,7 @@ void getEnemyTypeID__Q34Game3Pom3ObjFv(void)
  * Address:	802553A4
  * Size:	0004AC
  */
-void shotPikmin__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::shotPikmin(void)
 {
 /*
 .loc_0x0:
@@ -1436,7 +1436,7 @@ void shotPikmin__Q34Game3Pom3ObjFv(void)
  * Address:	80255850
  * Size:	00019C
  */
-void changePomColor__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::changePomColor(void)
 {
 /*
 .loc_0x0:
@@ -1577,7 +1577,7 @@ void changePomColor__Q34Game3Pom3ObjFv(void)
  * Address:	802559EC
  * Size:	000184
  */
-void createSwingSmokeEffect__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::createSwingSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -1690,7 +1690,7 @@ void createSwingSmokeEffect__Q34Game3Pom3ObjFv(void)
  * Address:	80255B70
  * Size:	000094
  */
-void createShotEffect__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::createShotEffect(void)
 {
 /*
 .loc_0x0:
@@ -1739,7 +1739,7 @@ void createShotEffect__Q34Game3Pom3ObjFv(void)
  * Address:	80255C04
  * Size:	000080
  */
-void createPomDeadEffect__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::createPomDeadEffect(void)
 {
 /*
 .loc_0x0:
@@ -1783,7 +1783,7 @@ void createPomDeadEffect__Q34Game3Pom3ObjFv(void)
  * Address:	80255C84
  * Size:	000004
  */
-void inWaterCallback__Q34Game3Pom3ObjFPQ24Game8WaterBox(void)
+void Game::Pom::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1796,7 +1796,7 @@ void inWaterCallback__Q34Game3Pom3ObjFPQ24Game8WaterBox(void)
  * Address:	80255C88
  * Size:	000004
  */
-void outWaterCallback__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1809,7 +1809,7 @@ void outWaterCallback__Q34Game3Pom3ObjFv(void)
  * Address:	80255C8C
  * Size:	000008
  */
-void isLivingThing__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1823,7 +1823,7 @@ void isLivingThing__Q34Game3Pom3ObjFv(void)
  * Address:	80255C94
  * Size:	000008
  */
-void getMouthSlots__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1837,7 +1837,7 @@ void getMouthSlots__Q34Game3Pom3ObjFv(void)
  * Address:	80255C9C
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game3Pom3ObjFv(void)
+void Game::Pom::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:

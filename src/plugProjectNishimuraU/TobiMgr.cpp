@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80269448
  * Size:	000050
  */
-void __ct__Q34Game4Tobi3MgrFiUc(void)
+void Game::Tobi::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Tobi3MgrFiUc(void)
  * Address:	80269498
  * Size:	000048
  */
-void doAlloc__Q34Game4Tobi3MgrFv(void)
+void Game::Tobi::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game4Tobi3MgrFv(void)
  * Address:	802694E0
  * Size:	000190
  */
-void __ct__Q34Game4Tobi5ParmsFv(void)
+void Game::Tobi::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -193,7 +193,7 @@ void __ct__Q34Game4Tobi5ParmsFv(void)
  * Address:	80269670
  * Size:	000060
  */
-void createObj__Q34Game4Tobi3MgrFi(void)
+void Game::Tobi::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void createObj__Q34Game4Tobi3MgrFi(void)
  * Address:	802696D0
  * Size:	0000BC
  */
-void __dt__Q34Game4Tobi3ObjFv(void)
+void Game::Tobi::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void __dt__Q34Game4Tobi3ObjFv(void)
  * Address:	8026978C
  * Size:	000010
  */
-void getEnemy__Q34Game4Tobi3MgrFi(void)
+void Game::Tobi::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -308,7 +308,7 @@ void getEnemy__Q34Game4Tobi3MgrFi(void)
  * Address:	8026979C
  * Size:	000050
  */
-void read__Q34Game4Tobi5ParmsFR6Stream(void)
+void Game::Tobi::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -340,7 +340,7 @@ void read__Q34Game4Tobi5ParmsFR6Stream(void)
  * Address:	802697EC
  * Size:	0000B0
  */
-void __dt__Q34Game4Tobi3MgrFv(void)
+void Game::Tobi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void __dt__Q34Game4Tobi3MgrFv(void)
  * Address:	8026989C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Tobi3MgrFv(void)
+void Game::Tobi::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void getEnemyTypeID__Q34Game4Tobi3MgrFv(void)
  * Address:	802698A4
  * Size:	000008
  */
-void @4@__dt__Q34Game4Tobi3MgrFv(void)
+void @4@Game::Tobi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

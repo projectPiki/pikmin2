@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012BFF0
  * Size:	000058
  */
-void __ct__Q34Game12YellowChappy3MgrFiUc(void)
+void Game::YellowChappy::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -49,7 +49,7 @@ void __ct__Q34Game12YellowChappy3MgrFiUc(void)
  * Address:	8012C048
  * Size:	00006C
  */
-void loadTexData__Q34Game12YellowChappy3MgrFv(void)
+void Game::YellowChappy::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -88,7 +88,7 @@ void loadTexData__Q34Game12YellowChappy3MgrFv(void)
  * Address:	8012C0B4
  * Size:	000048
  */
-void doAlloc__Q34Game12YellowChappy3MgrFv(void)
+void Game::YellowChappy::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -120,7 +120,7 @@ void doAlloc__Q34Game12YellowChappy3MgrFv(void)
  * Address:	8012C0FC
  * Size:	000034
  */
-void loadAnimData__Q34Game12YellowChappy3MgrFv(void)
+void Game::YellowChappy::Mgr::loadAnimData(void)
 {
 /*
 .loc_0x0:
@@ -145,7 +145,7 @@ void loadAnimData__Q34Game12YellowChappy3MgrFv(void)
  * Address:	8012C130
  * Size:	0000C8
  */
-void __dt__Q34Game12YellowChappy3MgrFv(void)
+void Game::YellowChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void __dt__Q34Game12YellowChappy3MgrFv(void)
  * Address:	8012C1F8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game12YellowChappy3MgrFv(void)
+void Game::YellowChappy::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void getEnemyTypeID__Q34Game12YellowChappy3MgrFv(void)
  * Address:	8012C200
  * Size:	000008
  */
-void getChangeTexture0__Q34Game12YellowChappy3MgrFv(void)
+void Game::YellowChappy::Mgr::getChangeTexture0(void)
 {
 /*
 .loc_0x0:
@@ -239,7 +239,7 @@ void getChangeTexture0__Q34Game12YellowChappy3MgrFv(void)
  * Address:	8012C208
  * Size:	000008
  */
-void getChangeTexture1__Q34Game12YellowChappy3MgrFv(void)
+void Game::YellowChappy::Mgr::getChangeTexture1(void)
 {
 /*
 .loc_0x0:
@@ -253,7 +253,7 @@ void getChangeTexture1__Q34Game12YellowChappy3MgrFv(void)
  * Address:	8012C210
  * Size:	000060
  */
-void createObj__Q34Game12YellowChappy3MgrFi(void)
+void Game::YellowChappy::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void createObj__Q34Game12YellowChappy3MgrFi(void)
  * Address:	8012C270
  * Size:	0000F0
  */
-void __dt__Q34Game12YellowChappy3ObjFv(void)
+void Game::YellowChappy::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void __dt__Q34Game12YellowChappy3ObjFv(void)
  * Address:	8012C360
  * Size:	000010
  */
-void getEnemy__Q34Game12YellowChappy3MgrFi(void)
+void Game::YellowChappy::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -381,7 +381,7 @@ void getEnemy__Q34Game12YellowChappy3MgrFi(void)
  * Address:	8012C370
  * Size:	000008
  */
-void @4@__dt__Q34Game12YellowChappy3MgrFv(void)
+void @4@Game::YellowChappy::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

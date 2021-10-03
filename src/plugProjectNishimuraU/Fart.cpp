@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80285448
  * Size:	000098
  */
-void __ct__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -67,7 +67,7 @@ void __ct__Q34Game4Fart3ObjFv(void)
  * Address:	802854E0
  * Size:	000070
  */
-void doUpdateCommon__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void doUpdateCommon__Q34Game4Fart3ObjFv(void)
  * Address:	80285550
  * Size:	0001F0
  */
-void changeMaterial__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void changeMaterial__Q34Game4Fart3ObjFv(void)
  * Address:	80285740
  * Size:	000020
  */
-void doDebugDraw__Q34Game4Fart3ObjFR8Graphics(void)
+void Game::Fart::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -269,7 +269,7 @@ void doDebugDraw__Q34Game4Fart3ObjFR8Graphics(void)
  * Address:	80285760
  * Size:	0001F4
  */
-void interactFartGasAttack__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::interactFartGasAttack(void)
 {
 /*
 .loc_0x0:
@@ -416,7 +416,7 @@ void interactFartGasAttack__Q34Game4Fart3ObjFv(void)
  * Address:	80285954
  * Size:	000120
  */
-void createItem__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::createItem(void)
 {
 /*
 .loc_0x0:
@@ -522,7 +522,7 @@ void createItem__Q34Game4Fart3ObjFv(void)
  * Address:	80285A74
  * Size:	0000B8
  */
-void createEffect__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -582,7 +582,7 @@ void createEffect__Q34Game4Fart3ObjFv(void)
  * Address:	80285B2C
  * Size:	000024
  */
-void resetFartTimer__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::resetFartTimer(void)
 {
 /*
 .loc_0x0:
@@ -603,7 +603,7 @@ void resetFartTimer__Q34Game4Fart3ObjFv(void)
  * Address:	80285B50
  * Size:	0000A8
  */
-void startBodyEffect__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::startBodyEffect(void)
 {
 /*
 .loc_0x0:
@@ -657,7 +657,7 @@ void startBodyEffect__Q34Game4Fart3ObjFv(void)
  * Address:	80285BF8
  * Size:	000030
  */
-void finishBodyEffect__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::finishBodyEffect(void)
 {
 /*
 .loc_0x0:
@@ -681,7 +681,7 @@ void finishBodyEffect__Q34Game4Fart3ObjFv(void)
  * Address:	80285C28
  * Size:	000204
  */
-void createFartEffect__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::createFartEffect(void)
 {
 /*
 .loc_0x0:
@@ -828,7 +828,7 @@ void createFartEffect__Q34Game4Fart3ObjFv(void)
  * Address:	80285E2C
  * Size:	000030
  */
-void effectDrawOn__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -852,7 +852,7 @@ void effectDrawOn__Q34Game4Fart3ObjFv(void)
  * Address:	80285E5C
  * Size:	000030
  */
-void effectDrawOff__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -876,7 +876,7 @@ void effectDrawOff__Q34Game4Fart3ObjFv(void)
  * Address:	80285E8C
  * Size:	000044
  */
-void createPressSESpecial__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::createPressSESpecial(void)
 {
 /*
 .loc_0x0:
@@ -905,7 +905,7 @@ void createPressSESpecial__Q34Game4Fart3ObjFv(void)
  * Address:	80285ED0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Fart3ObjFv(void)
+void Game::Fart::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

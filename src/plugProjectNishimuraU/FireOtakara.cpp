@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802B81C8
  * Size:	0000A4
  */
-void __ct__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void __ct__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B826C
  * Size:	0001A4
  */
-void changeMaterial__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -191,7 +191,7 @@ void changeMaterial__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B8410
  * Size:	000060
  */
-void interactCreature__Q34Game11FireOtakara3ObjFPQ24Game8Creature(void)
+void Game::FireOtakara::Obj::interactCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void interactCreature__Q34Game11FireOtakara3ObjFPQ24Game8Creature(void)
  * Address:	802B8470
  * Size:	000060
  */
-void createEffect__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void createEffect__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B84D0
  * Size:	000048
  */
-void setupEffect__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void setupEffect__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B8518
  * Size:	000034
  */
-void startChargeEffect__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::startChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void startChargeEffect__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B854C
  * Size:	000030
  */
-void finishChargeEffect__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::finishChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -344,7 +344,7 @@ void finishChargeEffect__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B857C
  * Size:	0000B0
  */
-void createDisChargeEffect__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::createDisChargeEffect(void)
 {
 /*
 .loc_0x0:
@@ -400,7 +400,7 @@ void createDisChargeEffect__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B862C
  * Size:	000030
  */
-void effectDrawOn__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void effectDrawOn__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B865C
  * Size:	000030
  */
-void effectDrawOff__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void effectDrawOff__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B868C
  * Size:	000044
  */
-void startDisChargeSE__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::startDisChargeSE(void)
 {
 /*
 .loc_0x0:
@@ -477,7 +477,7 @@ void startDisChargeSE__Q34Game11FireOtakara3ObjFv(void)
  * Address:	802B86D0
  * Size:	000004
  */
-void forceKill__Q23efx8TSimple5Fv(void)
+void efx::TSimple5::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -490,7 +490,7 @@ void forceKill__Q23efx8TSimple5Fv(void)
  * Address:	802B86D4
  * Size:	000004
  */
-void fade__Q23efx8TSimple5Fv(void)
+void efx::TSimple5::fade(void)
 {
 /*
 .loc_0x0:
@@ -503,7 +503,7 @@ void fade__Q23efx8TSimple5Fv(void)
  * Address:	802B86D8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game11FireOtakara3ObjFv(void)
+void Game::FireOtakara::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:

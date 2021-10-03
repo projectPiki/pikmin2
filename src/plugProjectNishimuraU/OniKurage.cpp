@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802D3F84
  * Size:	000140
  */
-void __ct__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D40C4
  * Size:	000004
  */
-void setInitialSetting__Q34Game9OniKurage3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::OniKurage::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void setInitialSetting__Q34Game9OniKurage3ObjFPQ24Game21EnemyInitialParamBase(vo
  * Address:	802D40C8
  * Size:	0000B0
  */
-void onInit__Q34Game9OniKurage3ObjFPQ24Game15CreatureInitArg(void)
+void Game::OniKurage::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void onInit__Q34Game9OniKurage3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	802D4178
  * Size:	000054
  */
-void onKill__Q34Game9OniKurage3ObjFPQ24Game15CreatureKillArg(void)
+void Game::OniKurage::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -215,7 +215,7 @@ void onKill__Q34Game9OniKurage3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	802D41CC
  * Size:	000108
  */
-void doUpdate__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -297,7 +297,7 @@ void doUpdate__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D42D4
  * Size:	000034
  */
-void doUpdateCommon__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void doUpdateCommon__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4308
  * Size:	000004
  */
-void doDirectDraw__Q34Game9OniKurage3ObjFR8Graphics(void)
+void Game::OniKurage::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void doDirectDraw__Q34Game9OniKurage3ObjFR8Graphics(void)
  * Address:	802D430C
  * Size:	000020
  */
-void doDebugDraw__Q34Game9OniKurage3ObjFR8Graphics(void)
+void Game::OniKurage::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -355,7 +355,7 @@ void doDebugDraw__Q34Game9OniKurage3ObjFR8Graphics(void)
  * Address:	802D432C
  * Size:	00004C
  */
-void setFSM__Q34Game9OniKurage3ObjFPQ34Game9OniKurage3FSM(void)
+void Game::OniKurage::Obj::setFSM( (Game::OniKurage::FSM *))
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void setFSM__Q34Game9OniKurage3ObjFPQ34Game9OniKurage3FSM(void)
  * Address:	802D4378
  * Size:	00010C
  */
-void getShadowParam__Q34Game9OniKurage3ObjFRQ24Game11ShadowParam(void)
+void Game::OniKurage::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -473,7 +473,7 @@ void getShadowParam__Q34Game9OniKurage3ObjFRQ24Game11ShadowParam(void)
  * Address:	802D4484
  * Size:	000038
  */
-void damageCallBack__Q34Game9OniKurage3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::OniKurage::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -503,7 +503,7 @@ void damageCallBack__Q34Game9OniKurage3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	802D44BC
  * Size:	000044
  */
-void doStartStoneState__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -532,7 +532,7 @@ void doStartStoneState__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4500
  * Size:	0000B8
  */
-void doFinishStoneState__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -600,7 +600,7 @@ void doFinishStoneState__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D45B8
  * Size:	000034
  */
-void doStartWaitingBirthTypeDrop__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::doStartWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -625,7 +625,7 @@ void doStartWaitingBirthTypeDrop__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D45EC
  * Size:	000034
  */
-void doFinishWaitingBirthTypeDrop__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::doFinishWaitingBirthTypeDrop(void)
 {
 /*
 .loc_0x0:
@@ -650,7 +650,7 @@ void doFinishWaitingBirthTypeDrop__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4620
  * Size:	000020
  */
-void doStartMovie__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -670,7 +670,7 @@ void doStartMovie__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4640
  * Size:	000020
  */
-void doEndMovie__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -690,7 +690,7 @@ void doEndMovie__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4660
  * Size:	0000C8
  */
-void initMouthSlots__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -756,7 +756,7 @@ void initMouthSlots__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4728
  * Size:	000098
  */
-void setHeightVelocity__Q34Game9OniKurage3ObjFff(void)
+void Game::OniKurage::Obj::setHeightVelocity( (float, float))
 {
 /*
 .loc_0x0:
@@ -806,7 +806,7 @@ void setHeightVelocity__Q34Game9OniKurage3ObjFff(void)
  * Address:	802D47C0
  * Size:	0001D8
  */
-void setRandTarget__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::setRandTarget(void)
 {
 /*
 .loc_0x0:
@@ -942,7 +942,7 @@ void setRandTarget__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4998
  * Size:	0000A4
  */
-void getMovePitchOffset__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::getMovePitchOffset(void)
 {
 /*
 .loc_0x0:
@@ -1001,7 +1001,7 @@ void getMovePitchOffset__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4A3C
  * Size:	0001A8
  */
-void getAttackPitchOffset__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::getAttackPitchOffset(void)
 {
 /*
 .loc_0x0:
@@ -1127,7 +1127,7 @@ void getAttackPitchOffset__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4BE4
  * Size:	0001A8
  */
-void getFlickPitchOffset__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::getFlickPitchOffset(void)
 {
 /*
 .loc_0x0:
@@ -1253,7 +1253,7 @@ void getFlickPitchOffset__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4D8C
  * Size:	000144
  */
-void getTakeOffPitchOffset__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::getTakeOffPitchOffset(void)
 {
 /*
 .loc_0x0:
@@ -1352,7 +1352,7 @@ void getTakeOffPitchOffset__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D4ED0
  * Size:	000168
  */
-void getFallPitchOffset__Q34Game9OniKurage3ObjFf(void)
+void Game::OniKurage::Obj::getFallPitchOffset( (float))
 {
 /*
 .loc_0x0:
@@ -1460,7 +1460,7 @@ void getFallPitchOffset__Q34Game9OniKurage3ObjFf(void)
  * Address:	802D5038
  * Size:	000030
  */
-void updateFallTimer__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::updateFallTimer(void)
 {
 /*
 .loc_0x0:
@@ -1486,7 +1486,7 @@ void updateFallTimer__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D5068
  * Size:	0000A4
  */
-void getFlyingNextState__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::getFlyingNextState(void)
 {
 /*
 .loc_0x0:
@@ -1551,7 +1551,7 @@ void getFlyingNextState__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D510C
  * Size:	000340
  */
-void getSearchedTarget__Q34Game9OniKurage3ObjFf(void)
+void Game::OniKurage::Obj::getSearchedTarget( (float))
 {
 /*
 .loc_0x0:
@@ -1789,7 +1789,7 @@ void getSearchedTarget__Q34Game9OniKurage3ObjFf(void)
  * Address:	802D544C
  * Size:	000238
  */
-void isSuck__Q34Game9OniKurage3ObjFfPQ24Game8Creature(void)
+void Game::OniKurage::Obj::isSuck( (float, Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1957,7 +1957,7 @@ void isSuck__Q34Game9OniKurage3ObjFfPQ24Game8Creature(void)
  * Address:	802D5684
  * Size:	000434
  */
-void suckPikmin__Q34Game9OniKurage3ObjFf(void)
+void Game::OniKurage::Obj::suckPikmin( (float))
 {
 /*
 .loc_0x0:
@@ -2256,7 +2256,7 @@ void suckPikmin__Q34Game9OniKurage3ObjFf(void)
  * Address:	802D5AB8
  * Size:	000570
  */
-void suckNavi__Q34Game9OniKurage3ObjFf(void)
+void Game::OniKurage::Obj::suckNavi( (float))
 {
 /*
 .loc_0x0:
@@ -2664,7 +2664,7 @@ void suckNavi__Q34Game9OniKurage3ObjFf(void)
  * Address:	802D6028
  * Size:	00026C
  */
-void updateCollPartOffset__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::updateCollPartOffset(void)
 {
 /*
 .loc_0x0:
@@ -2875,7 +2875,7 @@ void updateCollPartOffset__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6294
  * Size:	000100
  */
-void isFinishNaviSuck__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::isFinishNaviSuck(void)
 {
 /*
 .loc_0x0:
@@ -2971,7 +2971,7 @@ void isFinishNaviSuck__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6394
  * Size:	000028
  */
-void isNaviSucked__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::isNaviSucked(void)
 {
 /*
 .loc_0x0:
@@ -2997,7 +2997,7 @@ void isNaviSucked__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D63BC
  * Size:	00029C
  */
-void flickStickNavi__Q34Game9OniKurage3ObjFb(void)
+void Game::OniKurage::Obj::flickStickNavi( (bool))
 {
 /*
 .loc_0x0:
@@ -3218,7 +3218,7 @@ void flickStickNavi__Q34Game9OniKurage3ObjFb(void)
  * Address:	802D6658
  * Size:	000130
  */
-void escapeCheckNavi__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::escapeCheckNavi(void)
 {
 /*
 .loc_0x0:
@@ -3318,7 +3318,7 @@ void escapeCheckNavi__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6788
  * Size:	000340
  */
-void createEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::createEffect(void)
 {
 /*
 .loc_0x0:
@@ -3552,7 +3552,7 @@ void createEffect__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6AC8
  * Size:	00008C
  */
-void setupEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::setupEffect(void)
 {
 /*
 .loc_0x0:
@@ -3599,7 +3599,7 @@ void setupEffect__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6B54
  * Size:	000088
  */
-void startEyeHireBodyEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::startEyeHireBodyEffect(void)
 {
 /*
 .loc_0x0:
@@ -3645,7 +3645,7 @@ void startEyeHireBodyEffect__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6BDC
  * Size:	00007C
  */
-void finishEyeBodyEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::finishEyeBodyEffect(void)
 {
 /*
 .loc_0x0:
@@ -3688,7 +3688,7 @@ void finishEyeBodyEffect__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6C58
  * Size:	000024
  */
-void setHireEffectLife__Q34Game9OniKurage3ObjFs(void)
+void Game::OniKurage::Obj::setHireEffectLife( (short))
 {
 /*
 .loc_0x0:
@@ -3709,7 +3709,7 @@ void setHireEffectLife__Q34Game9OniKurage3ObjFs(void)
  * Address:	802D6C7C
  * Size:	000050
  */
-void finishHireEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::finishHireEffect(void)
 {
 /*
 .loc_0x0:
@@ -3796,7 +3796,7 @@ void updateSuckEffect__Q34Game9OniKurage3ObjFR10Vector3<float>(void)
  * Address:	802D6D48
  * Size:	000030
  */
-void finishSuckEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::finishSuckEffect(void)
 {
 /*
 .loc_0x0:
@@ -3820,7 +3820,7 @@ void finishSuckEffect__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6D78
  * Size:	000034
  */
-void createFlickNaviEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::createFlickNaviEffect(void)
 {
 /*
 .loc_0x0:
@@ -3845,7 +3845,7 @@ void createFlickNaviEffect__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6DAC
  * Size:	00009C
  */
-void createBodyBombEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::createBodyBombEffect(void)
 {
 /*
 .loc_0x0:
@@ -3896,7 +3896,7 @@ void createBodyBombEffect__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6E48
  * Size:	000044
  */
-void createDownEffect__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::createDownEffect(void)
 {
 /*
 .loc_0x0:
@@ -3925,7 +3925,7 @@ void createDownEffect__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6E8C
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -3939,7 +3939,7 @@ void getDownSmokeScale__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6E94
  * Size:	0000B4
  */
-void effectDrawOn__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::effectDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -3996,7 +3996,7 @@ void effectDrawOn__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6F48
  * Size:	0000B4
  */
-void effectDrawOff__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::effectDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -4053,7 +4053,7 @@ void effectDrawOff__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D6FFC
  * Size:	00009C
  */
-void __dt__Q23efx14TKurageDeadrunFv(void)
+void efx::TKurageDeadrun::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4108,7 +4108,7 @@ void __dt__Q23efx14TKurageDeadrunFv(void)
  * Address:	802D7098
  * Size:	00009C
  */
-void __dt__Q23efx11TKurageGepuFv(void)
+void efx::TKurageGepu::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4163,7 +4163,7 @@ void __dt__Q23efx11TKurageGepuFv(void)
  * Address:	802D7134
  * Size:	00009C
  */
-void __dt__Q23efx11TKurageKiraFv(void)
+void efx::TKurageKira::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4218,7 +4218,7 @@ void __dt__Q23efx11TKurageKiraFv(void)
  * Address:	802D71D0
  * Size:	00009C
  */
-void __dt__Q23efx10TKurageEyeFv(void)
+void efx::TKurageEye::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4273,7 +4273,7 @@ void __dt__Q23efx10TKurageEyeFv(void)
  * Address:	802D726C
  * Size:	000004
  */
-void inWaterCallback__Q34Game9OniKurage3ObjFPQ24Game8WaterBox(void)
+void Game::OniKurage::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -4286,7 +4286,7 @@ void inWaterCallback__Q34Game9OniKurage3ObjFPQ24Game8WaterBox(void)
  * Address:	802D7270
  * Size:	000004
  */
-void outWaterCallback__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -4299,7 +4299,7 @@ void outWaterCallback__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D7274
  * Size:	000008
  */
-void getMouthSlots__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -4313,7 +4313,7 @@ void getMouthSlots__Q34Game9OniKurage3ObjFv(void)
  * Address:	802D727C
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game9OniKurage3ObjFv(void)
+void Game::OniKurage::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -4349,7 +4349,7 @@ void __sinit_OniKurage_cpp(void)
  * Address:	802D72AC
  * Size:	000008
  */
-void @4@__dt__Q23efx10TKurageEyeFv(void)
+void @4@efx::TKurageEye::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4363,7 +4363,7 @@ void @4@__dt__Q23efx10TKurageEyeFv(void)
  * Address:	802D72B4
  * Size:	000008
  */
-void @4@__dt__Q23efx11TKurageKiraFv(void)
+void @4@efx::TKurageKira::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4377,7 +4377,7 @@ void @4@__dt__Q23efx11TKurageKiraFv(void)
  * Address:	802D72BC
  * Size:	000008
  */
-void @4@__dt__Q23efx11TKurageGepuFv(void)
+void @4@efx::TKurageGepu::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4391,7 +4391,7 @@ void @4@__dt__Q23efx11TKurageGepuFv(void)
  * Address:	802D72C4
  * Size:	000008
  */
-void @4@__dt__Q23efx14TKurageDeadrunFv(void)
+void @4@efx::TKurageDeadrun::__dt(void)
 {
 /*
 .loc_0x0:

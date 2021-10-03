@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8012EC24
  * Size:	000070
  */
-void __ct__Q24Game13EnemyBirthArgFv(void)
+void Game::EnemyBirthArg::__ct(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void __ct__Q24Game13EnemyBirthArgFv(void)
  * Address:	8012EC94
  * Size:	0000C4
  */
-void __ct__Q24Game12EnemyMgrBaseFiUc(void)
+void Game::EnemyMgrBase::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -116,7 +116,7 @@ void __ct__Q24Game12EnemyMgrBaseFiUc(void)
  * Address:	8012ED58
  * Size:	000070
  */
-void startMovie__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::startMovie(void)
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void startMovie__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012EDC8
  * Size:	000070
  */
-void endMovie__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::endMovie(void)
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void endMovie__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012EE38
  * Size:	0000A0
  */
-void alloc__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::alloc(void)
 {
 /*
 .loc_0x0:
@@ -264,7 +264,7 @@ void alloc__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012EED8
  * Size:	000110
  */
-void doAnimation__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void doAnimation__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012EFE8
  * Size:	0000B4
  */
-void doEntry__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -417,7 +417,7 @@ void doEntry__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012F09C
  * Size:	00008C
  */
-void doSetView__Q24Game12EnemyMgrBaseFi(void)
+void Game::EnemyMgrBase::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -470,7 +470,7 @@ void doSetView__Q24Game12EnemyMgrBaseFi(void)
  * Address:	8012F128
  * Size:	00007C
  */
-void doViewCalc__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -519,7 +519,7 @@ void doViewCalc__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012F1A4
  * Size:	0000EC
  */
-void doSimulation__Q24Game12EnemyMgrBaseFf(void)
+void Game::EnemyMgrBase::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -600,7 +600,7 @@ void doSimulation__Q24Game12EnemyMgrBaseFf(void)
  * Address:	8012F290
  * Size:	0000C4
  */
-void doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics(void)
+void Game::EnemyMgrBase::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -669,7 +669,7 @@ void doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics(void)
  * Address:	8012F354
  * Size:	000074
  */
-void getNext__Q24Game12EnemyMgrBaseFPv(void)
+void Game::EnemyMgrBase::getNext( (void *))
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void getNext__Q24Game12EnemyMgrBaseFPv(void)
  * Address:	........
  * Size:	000094
  */
-void getInactiveEnemy__Q24Game12EnemyMgrBaseFi(void)
+void Game::EnemyMgrBase::getInactiveEnemy( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -728,7 +728,7 @@ void getInactiveEnemy__Q24Game12EnemyMgrBaseFi(void)
  * Address:	8012F3C8
  * Size:	000184
  */
-void birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg(void)
+void Game::EnemyMgrBase::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -853,7 +853,7 @@ void birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg(void)
  * Address:	8012F54C
  * Size:	000008
  */
-void getEnemyTypeID__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -867,7 +867,7 @@ void getEnemyTypeID__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012F554
  * Size:	000164
  */
-void kill__Q24Game12EnemyMgrBaseFPQ24Game9EnemyBase(void)
+void Game::EnemyMgrBase::kill( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -980,7 +980,7 @@ void kill__Q24Game12EnemyMgrBaseFPQ24Game9EnemyBase(void)
  * Address:	8012F6B8
  * Size:	0000A8
  */
-void killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg(void)
+void Game::EnemyMgrBase::killAll( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -1042,7 +1042,7 @@ void killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg(void)
  * Address:	8012F760
  * Size:	00003C
  */
-void isValidEnemyTypeID__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::isValidEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1069,7 +1069,7 @@ void isValidEnemyTypeID__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012F79C
  * Size:	000100
  */
-void setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::setupSoundViewerAndBas(void)
 {
 /*
 .loc_0x0:
@@ -1149,7 +1149,7 @@ void setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012F89C
  * Size:	00008C
  */
-void init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase(void)
+void Game::EnemyMgrBase::init( (Game::EnemyParmsBase *))
 {
 /*
 .loc_0x0:
@@ -1196,7 +1196,7 @@ void init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase(void)
  * Address:	8012F928
  * Size:	000024
  */
-void setDebugParm__Q24Game12EnemyMgrBaseFUl(void)
+void Game::EnemyMgrBase::setDebugParm( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1217,7 +1217,7 @@ void setDebugParm__Q24Game12EnemyMgrBaseFUl(void)
  * Address:	8012F94C
  * Size:	000024
  */
-void resetDebugParm__Q24Game12EnemyMgrBaseFUl(void)
+void Game::EnemyMgrBase::resetDebugParm( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1238,7 +1238,7 @@ void resetDebugParm__Q24Game12EnemyMgrBaseFUl(void)
  * Address:	8012F970
  * Size:	0000AC
  */
-void createModel__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::createModel(void)
 {
 /*
 .loc_0x0:
@@ -1295,7 +1295,7 @@ void createModel__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012FA1C
  * Size:	0000C0
  */
-void initParms__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::initParms(void)
 {
 /*
 .loc_0x0:
@@ -1359,7 +1359,7 @@ void initParms__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012FADC
  * Size:	000078
  */
-void loadStoneSetting__Q24Game12EnemyMgrBaseFPCc(void)
+void Game::EnemyMgrBase::loadStoneSetting( (char const *))
 {
 /*
 .loc_0x0:
@@ -1405,7 +1405,7 @@ void loadStoneSetting__Q24Game12EnemyMgrBaseFPCc(void)
  * Address:	........
  * Size:	000284
  */
-void setupObjects__Q24Game12EnemyMgrBaseFPCc(void)
+void Game::EnemyMgrBase::setupObjects( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -1415,7 +1415,7 @@ void setupObjects__Q24Game12EnemyMgrBaseFPCc(void)
  * Address:	8012FB54
  * Size:	000090
  */
-void setupParms__Q24Game12EnemyMgrBaseFPCc(void)
+void Game::EnemyMgrBase::setupParms( (char const *))
 {
 /*
 .loc_0x0:
@@ -1467,7 +1467,7 @@ void setupParms__Q24Game12EnemyMgrBaseFPCc(void)
  * Address:	8012FBE4
  * Size:	000088
  */
-void loadResource__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -1515,7 +1515,7 @@ void loadResource__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012FC6C
  * Size:	0002FC
  */
-void initObjects__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::initObjects(void)
 {
 /*
 .loc_0x0:
@@ -1734,7 +1734,7 @@ void initObjects__Q24Game12EnemyMgrBaseFv(void)
  * Address:	8012FF68
  * Size:	0000C0
  */
-void initStoneSetting__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::initStoneSetting(void)
 {
 /*
 .loc_0x0:
@@ -1798,7 +1798,7 @@ void initStoneSetting__Q24Game12EnemyMgrBaseFv(void)
  * Address:	80130028
  * Size:	0000E4
  */
-void loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive(void)
+void Game::EnemyMgrBase::loadModelData( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1875,7 +1875,7 @@ void loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive(void)
  * Address:	8013010C
  * Size:	0000C0
  */
-void loadModelData__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -1937,7 +1937,7 @@ void loadModelData__Q24Game12EnemyMgrBaseFv(void)
  * Address:	801301CC
  * Size:	000154
  */
-void loadAnimData__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::loadAnimData(void)
 {
 /*
 .loc_0x0:
@@ -2044,7 +2044,7 @@ void loadAnimData__Q24Game12EnemyMgrBaseFv(void)
  * Address:	80130320
  * Size:	000074
  */
-void loadTexData__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -2087,7 +2087,7 @@ void loadTexData__Q24Game12EnemyMgrBaseFv(void)
  * Address:	80130394
  * Size:	00002C
  */
-void doLoadBmd__Q24Game12EnemyMgrBaseFPv(void)
+void Game::EnemyMgrBase::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -2110,7 +2110,7 @@ void doLoadBmd__Q24Game12EnemyMgrBaseFPv(void)
  * Address:	801303C0
  * Size:	000028
  */
-void doLoadBdl__Q24Game12EnemyMgrBaseFPv(void)
+void Game::EnemyMgrBase::doLoadBdl( (void *))
 {
 /*
 .loc_0x0:
@@ -2132,7 +2132,7 @@ void doLoadBdl__Q24Game12EnemyMgrBaseFPv(void)
  * Address:	801303E8
  * Size:	000090
  */
-void initGenerator__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::initGenerator(void)
 {
 /*
 .loc_0x0:
@@ -2182,7 +2182,7 @@ void initGenerator__Q24Game12EnemyMgrBaseFv(void)
  * Address:	80130478
  * Size:	0000E8
  */
-void doAnimationAlwaysMovieActor__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::doAnimationAlwaysMovieActor(void)
 {
 /*
 .loc_0x0:
@@ -2258,7 +2258,7 @@ void doAnimationAlwaysMovieActor__Q24Game12EnemyMgrBaseFv(void)
  * Address:	80130560
  * Size:	00007C
  */
-void doEntryAlwaysMovieActor__Q24Game12EnemyMgrBaseFv(void)
+void Game::EnemyMgrBase::doEntryAlwaysMovieActor(void)
 {
 /*
 .loc_0x0:
@@ -2307,7 +2307,7 @@ void doEntryAlwaysMovieActor__Q24Game12EnemyMgrBaseFv(void)
  * Address:	801305DC
  * Size:	00009C
  */
-void doSimulationAlwaysMovieActor__Q24Game12EnemyMgrBaseFf(void)
+void Game::EnemyMgrBase::doSimulationAlwaysMovieActor( (float))
 {
 /*
 .loc_0x0:
@@ -2364,7 +2364,7 @@ void doSimulationAlwaysMovieActor__Q24Game12EnemyMgrBaseFf(void)
  * Address:	80130678
  * Size:	00008C
  */
-void doDirectDrawAlwaysMovieActor__Q24Game12EnemyMgrBaseFR8Graphics(void)
+void Game::EnemyMgrBase::doDirectDrawAlwaysMovieActor( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2417,7 +2417,7 @@ void doDirectDrawAlwaysMovieActor__Q24Game12EnemyMgrBaseFR8Graphics(void)
  * Address:	80130704
  * Size:	000008
  */
-void @4@__dt__Q24Game12EnemyMgrBaseFv(void)
+void @4@Game::EnemyMgrBase::__dt(void)
 {
 /*
 .loc_0x0:

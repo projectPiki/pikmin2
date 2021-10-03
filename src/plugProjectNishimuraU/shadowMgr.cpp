@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000048
  */
-void __ct__Q24Game19JointShadowRootNodeFv(void)
+void Game::JointShadowRootNode::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game19JointShadowRootNodeFv(void)
  * Address:	8024127C
  * Size:	000060
  */
-void __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature(void)
+void Game::JointShadowRootNode::__ct( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -61,7 +61,7 @@ void __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature(void)
  * Address:	........
  * Size:	000058
  */
-void init__Q24Game19JointShadowRootNodeFi(void)
+void Game::JointShadowRootNode::init( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -71,7 +71,7 @@ void init__Q24Game19JointShadowRootNodeFi(void)
  * Address:	........
  * Size:	00004C
  */
-void __ct__Q24Game15JointShadowNodeFv(void)
+void Game::JointShadowNode::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -81,7 +81,7 @@ void __ct__Q24Game15JointShadowNodeFv(void)
  * Address:	802412DC
  * Size:	000074
  */
-void __ct__Q24Game15JointShadowNodeFi(void)
+void Game::JointShadowNode::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void __ct__Q24Game15JointShadowNodeFi(void)
  * Address:	80241350
  * Size:	000074
  */
-void init__Q24Game15JointShadowNodeFi(void)
+void Game::JointShadowNode::init( (int))
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void init__Q24Game15JointShadowNodeFi(void)
  * Address:	........
  * Size:	00004C
  */
-void __ct__Q24Game10ShadowNodeFv(void)
+void Game::ShadowNode::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -179,7 +179,7 @@ void __ct__Q24Game10ShadowNodeFv(void)
  * Address:	........
  * Size:	000070
  */
-void __ct__Q24Game10ShadowNodeFPQ24Game8Creaturei(void)
+void Game::ShadowNode::__ct( (Game::Creature *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -189,7 +189,7 @@ void __ct__Q24Game10ShadowNodeFPQ24Game8Creaturei(void)
  * Address:	........
  * Size:	000070
  */
-void init__Q24Game10ShadowNodeFi(void)
+void Game::ShadowNode::init( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -199,7 +199,7 @@ void init__Q24Game10ShadowNodeFi(void)
  * Address:	802413C4
  * Size:	000080
  */
-void __ct__Q24Game9ShadowMgrFi(void)
+void Game::ShadowMgr::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -245,7 +245,7 @@ void __ct__Q24Game9ShadowMgrFi(void)
  * Address:	80241444
  * Size:	000210
  */
-void loadResource__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -403,7 +403,7 @@ void loadResource__Q24Game9ShadowMgrFv(void)
  * Address:	80241654
  * Size:	000004
  */
-void init__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -416,7 +416,7 @@ void init__Q24Game9ShadowMgrFv(void)
  * Address:	80241658
  * Size:	000010
  */
-void setViewport__Q24Game9ShadowMgrFP8Viewporti(void)
+void Game::ShadowMgr::setViewport( (Viewport *, int))
 {
 /*
 .loc_0x0:
@@ -432,7 +432,7 @@ void setViewport__Q24Game9ShadowMgrFP8Viewporti(void)
  * Address:	80241668
  * Size:	000048
  */
-void setShadowColor__Q24Game9ShadowMgrFP6Color4(void)
+void Game::ShadowMgr::setShadowColor( (Color4 *))
 {
 /*
 .loc_0x0:
@@ -462,7 +462,7 @@ void setShadowColor__Q24Game9ShadowMgrFP6Color4(void)
  * Address:	........
  * Size:	000040
  */
-void resetShadowColor__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::resetShadowColor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -472,7 +472,7 @@ void resetShadowColor__Q24Game9ShadowMgrFv(void)
  * Address:	........
  * Size:	00000C
  */
-void drawShadowOn__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::drawShadowOn(void)
 {
 	// UNUSED FUNCTION
 }
@@ -482,7 +482,7 @@ void drawShadowOn__Q24Game9ShadowMgrFv(void)
  * Address:	........
  * Size:	00000C
  */
-void drawShadowOff__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::drawShadowOff(void)
 {
 	// UNUSED FUNCTION
 }
@@ -492,7 +492,7 @@ void drawShadowOff__Q24Game9ShadowMgrFv(void)
  * Address:	802416B0
  * Size:	000260
  */
-void update__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -692,7 +692,7 @@ void update__Q24Game9ShadowMgrFv(void)
  * Address:	........
  * Size:	000250
  */
-void draw__Q24Game9ShadowMgrFR8Graphics(void)
+void Game::ShadowMgr::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -702,7 +702,7 @@ void draw__Q24Game9ShadowMgrFR8Graphics(void)
  * Address:	80241910
  * Size:	000210
  */
-void draw__Q24Game9ShadowMgrFR8Graphicsi(void)
+void Game::ShadowMgr::draw( (Graphics &, int))
 {
 /*
 .loc_0x0:
@@ -864,7 +864,7 @@ void draw__Q24Game9ShadowMgrFR8Graphicsi(void)
  * Address:	80241B20
  * Size:	0000F0
  */
-void createShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::createShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -952,7 +952,7 @@ void createShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80241C10
  * Size:	000058
  */
-void killAll__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::killAll(void)
 {
 /*
 .loc_0x0:
@@ -986,7 +986,7 @@ void killAll__Q24Game9ShadowMgrFv(void)
  * Address:	80241C68
  * Size:	000044
  */
-void killShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::killShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1015,7 +1015,7 @@ void killShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80241CAC
  * Size:	000044
  */
-void addShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::addShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1044,7 +1044,7 @@ void addShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	........
  * Size:	000044
  */
-void addHeadShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::addHeadShadow( (Game::Creature *))
 {
 	// UNUSED FUNCTION
 }
@@ -1054,7 +1054,7 @@ void addHeadShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80241CF0
  * Size:	000044
  */
-void delShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::delShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1083,7 +1083,7 @@ void delShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80241D34
  * Size:	0000AC
  */
-void addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::addNormalShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1150,7 +1150,7 @@ void addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80241DE0
  * Size:	0000B8
  */
-void addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::addJointShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1222,7 +1222,7 @@ void addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	........
  * Size:	0000AC
  */
-void addHeadNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::addHeadNormalShadow( (Game::Creature *))
 {
 	// UNUSED FUNCTION
 }
@@ -1232,7 +1232,7 @@ void addHeadNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	........
  * Size:	0000B8
  */
-void addHeadJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::addHeadJointShadow( (Game::Creature *))
 {
 	// UNUSED FUNCTION
 }
@@ -1242,7 +1242,7 @@ void addHeadJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80241E98
  * Size:	00006C
  */
-void delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::delNormalShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1289,7 +1289,7 @@ void delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80241F04
  * Size:	000080
  */
-void delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::delJointShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1339,7 +1339,7 @@ void delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80241F84
  * Size:	0000AC
  */
-void killNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::killNormalShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1406,7 +1406,7 @@ void killNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	80242030
  * Size:	0000AC
  */
-void killJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
+void Game::ShadowMgr::killJointShadow( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1473,7 +1473,7 @@ void killJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature(void)
  * Address:	802420DC
  * Size:	000024
  */
-void setJointShadowRootNode__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNode(void)
+void Game::ShadowMgr::setJointShadowRootNode( (Game::JointShadowRootNode *))
 {
 /*
 .loc_0x0:
@@ -1494,7 +1494,7 @@ void setJointShadowRootNode__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNode(voi
  * Address:	80242100
  * Size:	0000F0
  */
-void setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb(void)
+void Game::ShadowMgr::setForceVisible( (Game::Creature *, bool))
 {
 /*
 .loc_0x0:
@@ -1598,7 +1598,7 @@ void setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb(void)
  * Address:	802421F0
  * Size:	000030
  */
-void getSize__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::getSize(void)
 {
 /*
 .loc_0x0:
@@ -1622,7 +1622,7 @@ void getSize__Q24Game9ShadowMgrFv(void)
  * Address:	80242220
  * Size:	000008
  */
-void getMax__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::getMax(void)
 {
 /*
 .loc_0x0:
@@ -1636,7 +1636,7 @@ void getMax__Q24Game9ShadowMgrFv(void)
  * Address:	80242228
  * Size:	000038
  */
-void getCreature__Q24Game9ShadowMgrFi(void)
+void Game::ShadowMgr::getCreature( (int))
 {
 /*
 .loc_0x0:
@@ -1666,7 +1666,7 @@ void getCreature__Q24Game9ShadowMgrFi(void)
  * Address:	80242260
  * Size:	000008
  */
-void getFirst__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::getFirst(void)
 {
 /*
 .loc_0x0:
@@ -1680,7 +1680,7 @@ void getFirst__Q24Game9ShadowMgrFv(void)
  * Address:	80242268
  * Size:	000008
  */
-void getNext__Q24Game9ShadowMgrFi(void)
+void Game::ShadowMgr::getNext( (int))
 {
 /*
 .loc_0x0:
@@ -1694,7 +1694,7 @@ void getNext__Q24Game9ShadowMgrFi(void)
  * Address:	80242270
  * Size:	00004C
  */
-void isDone__Q24Game9ShadowMgrFi(void)
+void Game::ShadowMgr::isDone( (int))
 {
 /*
 .loc_0x0:
@@ -1725,7 +1725,7 @@ void isDone__Q24Game9ShadowMgrFi(void)
  * Address:	802422BC
  * Size:	00004C
  */
-void getShadowMaskType__Q24Game9ShadowMgrFii(void)
+void Game::ShadowMgr::getShadowMaskType( (int, int))
 {
 /*
 .loc_0x0:
@@ -1762,7 +1762,7 @@ void getShadowMaskType__Q24Game9ShadowMgrFii(void)
  * Address:	80242308
  * Size:	00004C
  */
-void getShadowType__Q24Game9ShadowMgrFii(void)
+void Game::ShadowMgr::getShadowType( (int, int))
 {
 /*
 .loc_0x0:
@@ -1799,7 +1799,7 @@ void getShadowType__Q24Game9ShadowMgrFii(void)
  * Address:	80242354
  * Size:	000080
  */
-void isDrawNormalShadow__Q24Game9ShadowMgrFPQ24Game10ShadowNodei(void)
+void Game::ShadowMgr::isDrawNormalShadow( (Game::ShadowNode *, int))
 {
 /*
 .loc_0x0:
@@ -1849,7 +1849,7 @@ void isDrawNormalShadow__Q24Game9ShadowMgrFPQ24Game10ShadowNodei(void)
  * Address:	802423D4
  * Size:	000080
  */
-void isDrawJointShadow__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNodei(void)
+void Game::ShadowMgr::isDrawJointShadow( (Game::JointShadowRootNode *, int))
 {
 /*
 .loc_0x0:
@@ -1899,7 +1899,7 @@ void isDrawJointShadow__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNodei(void)
  * Address:	80242454
  * Size:	0000AC
  */
-void readShadowParms__Q24Game9ShadowMgrFPc(void)
+void Game::ShadowMgr::readShadowParms( (char *))
 {
 /*
 .loc_0x0:
@@ -1958,7 +1958,7 @@ void readShadowParms__Q24Game9ShadowMgrFPc(void)
  * Address:	80242500
  * Size:	000084
  */
-void write__Q24Game9ShadowMgrFR6Stream(void)
+void Game::ShadowMgr::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2003,7 +2003,7 @@ void write__Q24Game9ShadowMgrFR6Stream(void)
  * Address:	80242584
  * Size:	00007C
  */
-void read__Q24Game9ShadowMgrFR6Stream(void)
+void Game::ShadowMgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2046,7 +2046,7 @@ void read__Q24Game9ShadowMgrFR6Stream(void)
  * Address:	80242600
  * Size:	000060
  */
-void __dt__Q24Game9ShadowMgrFv(void)
+void Game::ShadowMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2084,7 +2084,7 @@ void __dt__Q24Game9ShadowMgrFv(void)
  * Address:	80242660
  * Size:	000060
  */
-void __dt__Q24Game10ShadowNodeFv(void)
+void Game::ShadowNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2122,7 +2122,7 @@ void __dt__Q24Game10ShadowNodeFv(void)
  * Address:	802426C0
  * Size:	000060
  */
-void __dt__Q24Game15JointShadowNodeFv(void)
+void Game::JointShadowNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2160,7 +2160,7 @@ void __dt__Q24Game15JointShadowNodeFv(void)
  * Address:	80242720
  * Size:	000060
  */
-void __dt__Q24Game19JointShadowRootNodeFv(void)
+void Game::JointShadowRootNode::__dt(void)
 {
 /*
 .loc_0x0:

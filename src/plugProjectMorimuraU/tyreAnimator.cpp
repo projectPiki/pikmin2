@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803ABDEC
  * Size:	000008
  */
-void setAnimMgr__Q34Game4Tyre14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Tyre::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game4Tyre14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	803ABDF4
  * Size:	000008
  */
-void getAnimator__Q34Game4Tyre14ProperAnimatorFi(void)
+void Game::Tyre::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game4Tyre14ProperAnimatorFi(void)
  * Address:	803ABDFC
  * Size:	00005C
  */
-void __dt__Q34Game4Tyre14ProperAnimatorFv(void)
+void Game::Tyre::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game4Tyre14ProperAnimatorFv(void)
  * Address:	803ABE58
  * Size:	000008
  */
-void getAnimator__Q34Game4Tyre14ProperAnimatorFv(void)
+void Game::Tyre::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

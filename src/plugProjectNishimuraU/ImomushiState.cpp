@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802BA0D8
  * Size:	0004D4
  */
-void init__Q34Game8Imomushi3FSMFPQ24Game9EnemyBase(void)
+void Game::Imomushi::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void init__Q34Game8Imomushi3FSMFPQ24Game9EnemyBase(void)
  * Address:	802BA5AC
  * Size:	000050
  */
-void init__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void init__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802BA5FC
  * Size:	000044
  */
-void exec__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void exec__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802BA640
  * Size:	000004
  */
-void cleanup__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateDead::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void cleanup__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	802BA644
  * Size:	00004C
  */
-void init__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateFallDive::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -471,7 +471,7 @@ void init__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	802BA690
  * Size:	000140
  */
-void exec__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateFallDive::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -571,7 +571,7 @@ void exec__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBase(void)
  * Address:	802BA7D0
  * Size:	000004
  */
-void cleanup__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateFallDive::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -584,7 +584,7 @@ void cleanup__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBase(void)
  * Address:	802BA7D4
  * Size:	00004C
  */
-void init__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateFallMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -615,7 +615,7 @@ void init__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBasePQ24Game8StateArg(v
  * Address:	802BA820
  * Size:	000178
  */
-void exec__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateFallMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -731,7 +731,7 @@ void exec__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBase(void)
  * Address:	802BA998
  * Size:	000004
  */
-void cleanup__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateFallMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -744,7 +744,7 @@ void cleanup__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBase(void)
  * Address:	802BA99C
  * Size:	0000C8
  */
-void init__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateStay::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -806,7 +806,7 @@ void init__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802BAA64
  * Size:	0000A8
  */
-void exec__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateStay::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -862,7 +862,7 @@ void exec__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBase(void)
  * Address:	802BAB0C
  * Size:	000090
  */
-void cleanup__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateStay::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -910,7 +910,7 @@ void cleanup__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBase(void)
  * Address:	802BAB9C
  * Size:	000080
  */
-void init__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -954,7 +954,7 @@ void init__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802BAC1C
  * Size:	0000D8
  */
-void exec__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1026,7 +1026,7 @@ void exec__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	802BACF4
  * Size:	00003C
  */
-void cleanup__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateAppear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1053,7 +1053,7 @@ void cleanup__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	802BAD30
  * Size:	000074
  */
-void init__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateDive::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1094,7 +1094,7 @@ void init__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802BADA4
  * Size:	000050
  */
-void exec__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateDive::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1128,7 +1128,7 @@ void exec__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBase(void)
  * Address:	802BADF4
  * Size:	00003C
  */
-void cleanup__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateDive::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1155,7 +1155,7 @@ void cleanup__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBase(void)
  * Address:	802BAE30
  * Size:	000048
  */
-void init__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1185,7 +1185,7 @@ void init__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802BAE78
  * Size:	000238
  */
-void exec__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1357,7 +1357,7 @@ void exec__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802BB0B0
  * Size:	000024
  */
-void cleanup__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1378,7 +1378,7 @@ void cleanup__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBase(void)
  * Address:	802BB0D4
  * Size:	000048
  */
-void init__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateGoHome::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1408,7 +1408,7 @@ void init__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802BB11C
  * Size:	00014C
  */
-void exec__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateGoHome::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1513,7 +1513,7 @@ void exec__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBase(void)
  * Address:	802BB268
  * Size:	000024
  */
-void cleanup__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateGoHome::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1534,7 +1534,7 @@ void cleanup__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBase(void)
  * Address:	802BB28C
  * Size:	00014C
  */
-void init__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateClimb::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1635,7 +1635,7 @@ void init__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	802BB3D8
  * Size:	000170
  */
-void exec__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateClimb::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1751,7 +1751,7 @@ void exec__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBase(void)
  * Address:	802BB548
  * Size:	000024
  */
-void cleanup__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateClimb::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1772,7 +1772,7 @@ void cleanup__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBase(void)
  * Address:	802BB56C
  * Size:	00009C
  */
-void init__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1823,7 +1823,7 @@ void init__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	802BB608
  * Size:	00015C
  */
-void exec__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1934,7 +1934,7 @@ void exec__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802BB764
  * Size:	000024
  */
-void cleanup__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1955,7 +1955,7 @@ void cleanup__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	802BB788
  * Size:	000094
  */
-void init__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2004,7 +2004,7 @@ void init__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	802BB81C
  * Size:	000138
  */
-void exec__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2104,7 +2104,7 @@ void exec__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802BB954
  * Size:	000024
  */
-void cleanup__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateWait::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2125,7 +2125,7 @@ void cleanup__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	802BB978
  * Size:	00006C
  */
-void init__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateZukanStay::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2164,7 +2164,7 @@ void init__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	802BB9E4
  * Size:	000058
  */
-void exec__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateZukanStay::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2200,7 +2200,7 @@ void exec__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBase(void)
  * Address:	802BBA3C
  * Size:	000030
  */
-void cleanup__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateZukanStay::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2224,7 +2224,7 @@ void cleanup__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBase(void)
  * Address:	802BBA6C
  * Size:	00005C
  */
-void init__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateZukanAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2259,7 +2259,7 @@ void init__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBasePQ24Game8StateAr
  * Address:	802BBAC8
  * Size:	000050
  */
-void exec__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateZukanAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2293,7 +2293,7 @@ void exec__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBase(void)
  * Address:	802BBB18
  * Size:	000010
  */
-void cleanup__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateZukanAppear::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2309,7 +2309,7 @@ void cleanup__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBase(void)
  * Address:	802BBB28
  * Size:	000058
  */
-void init__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Imomushi::StateZukanMove::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2343,7 +2343,7 @@ void init__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBasePQ24Game8StateArg(
  * Address:	802BBB80
  * Size:	0000BC
  */
-void exec__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateZukanMove::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2406,7 +2406,7 @@ void exec__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBase(void)
  * Address:	802BBC3C
  * Size:	000024
  */
-void cleanup__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBase(void)
+void Game::Imomushi::StateZukanMove::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

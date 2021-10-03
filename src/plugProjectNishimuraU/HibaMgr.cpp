@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8026B8BC
  * Size:	000064
  */
-void __ct__Q34Game4Hiba3MgrFiUc(void)
+void Game::Hiba::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void __ct__Q34Game4Hiba3MgrFiUc(void)
  * Address:	8026B920
  * Size:	0000B0
  */
-void __dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void __dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
  * Address:	8026B9D0
  * Size:	000048
  */
-void doAlloc__Q34Game4Hiba3MgrFv(void)
+void Game::Hiba::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -146,7 +146,7 @@ void doAlloc__Q34Game4Hiba3MgrFv(void)
  * Address:	8026BA18
  * Size:	000190
  */
-void __ct__Q34Game4Hiba5ParmsFv(void)
+void Game::Hiba::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void __ct__Q34Game4Hiba5ParmsFv(void)
  * Address:	8026BBA8
  * Size:	000060
  */
-void createObj__Q34Game4Hiba3MgrFi(void)
+void Game::Hiba::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -294,7 +294,7 @@ void createObj__Q34Game4Hiba3MgrFi(void)
  * Address:	8026BC08
  * Size:	0000BC
  */
-void __dt__Q34Game4Hiba3ObjFv(void)
+void Game::Hiba::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void __dt__Q34Game4Hiba3ObjFv(void)
  * Address:	8026BCC4
  * Size:	000010
  */
-void getEnemy__Q34Game4Hiba3MgrFi(void)
+void Game::Hiba::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -373,7 +373,7 @@ void getEnemy__Q34Game4Hiba3MgrFi(void)
  * Address:	8026BCD4
  * Size:	000050
  */
-void read__Q34Game4Hiba5ParmsFR6Stream(void)
+void Game::Hiba::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -405,7 +405,7 @@ void read__Q34Game4Hiba5ParmsFR6Stream(void)
  * Address:	8026BD24
  * Size:	0000C8
  */
-void __dt__Q34Game4Hiba3MgrFv(void)
+void Game::Hiba::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -471,7 +471,7 @@ void __dt__Q34Game4Hiba3MgrFv(void)
  * Address:	8026BDEC
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Hiba3MgrFv(void)
+void Game::Hiba::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -485,7 +485,7 @@ void getEnemyTypeID__Q34Game4Hiba3MgrFv(void)
  * Address:	8026BDF4
  * Size:	000008
  */
-void isAlwaysMovieActor__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::isAlwaysMovieActor(void)
 {
 /*
 .loc_0x0:
@@ -499,7 +499,7 @@ void isAlwaysMovieActor__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
  * Address:	8026BDFC
  * Size:	000020
  */
-void doAnimation__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -519,7 +519,7 @@ void doAnimation__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
  * Address:	8026BE1C
  * Size:	000020
  */
-void doEntry__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -539,7 +539,7 @@ void doEntry__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
  * Address:	8026BE3C
  * Size:	000020
  */
-void doSimulation__Q24Game28EnemyMgrBaseAlwaysMovieActorFf(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -559,7 +559,7 @@ void doSimulation__Q24Game28EnemyMgrBaseAlwaysMovieActorFf(void)
  * Address:	8026BE5C
  * Size:	000020
  */
-void doDirectDraw__Q24Game28EnemyMgrBaseAlwaysMovieActorFR8Graphics(void)
+void Game::EnemyMgrBaseAlwaysMovieActor::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -579,7 +579,7 @@ void doDirectDraw__Q24Game28EnemyMgrBaseAlwaysMovieActorFR8Graphics(void)
  * Address:	8026BE7C
  * Size:	000008
  */
-void @4@__dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
+void @4@Game::EnemyMgrBaseAlwaysMovieActor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -593,7 +593,7 @@ void @4@__dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv(void)
  * Address:	8026BE84
  * Size:	000008
  */
-void @4@__dt__Q34Game4Hiba3MgrFv(void)
+void @4@Game::Hiba::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

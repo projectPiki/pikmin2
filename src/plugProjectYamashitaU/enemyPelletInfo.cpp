@@ -5,7 +5,7 @@
  * Address:	8012E34C
  * Size:	000034
  */
-void __ct__Q24Game15EnemyPelletInfoFv(void)
+void Game::EnemyPelletInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -30,7 +30,7 @@ void __ct__Q24Game15EnemyPelletInfoFv(void)
  * Address:	8012E380
  * Size:	000120
  */
-void write__Q24Game15EnemyPelletInfoFR6Stream(void)
+void Game::EnemyPelletInfo::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -114,7 +114,7 @@ void write__Q24Game15EnemyPelletInfoFR6Stream(void)
  * Address:	8012E4A0
  * Size:	000070
  */
-void read__Q24Game15EnemyPelletInfoFR6Stream(void)
+void Game::EnemyPelletInfo::read( (Stream &))
 {
 /*
 .loc_0x0:

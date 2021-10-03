@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000044
  */
-void __ct__Q35P2JME7Caption19TRenderingProcessorFPQ28JMessage10TReference(void)
+void P2JME::Caption::TRenderingProcessor::__ct( (JMessage::TReference *))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q35P2JME7Caption19TRenderingProcessorFPQ28JMessage10TReference(void)
  * Address:	80450FC0
  * Size:	00000C
  */
-void doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo(void)
+void P2JME::Caption::TRenderingProcessor::doGetDrawInfo( (P2JME::Window::DrawInfo *))
 {
 /*
 .loc_0x0:
@@ -30,7 +30,7 @@ void doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawI
  * Address:	80450FCC
  * Size:	0001EC
  */
-void doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf(void)
+void P2JME::Caption::TRenderingProcessor::doDrawCommon( (float, float, Matrixf *, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -181,7 +181,7 @@ void doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf(vo
  * Address:	804511B8
  * Size:	000054
  */
-void __ct__Q35P2JME7Caption8TControlFv(void)
+void P2JME::Caption::TControl::__ct(void)
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void __ct__Q35P2JME7Caption8TControlFv(void)
  * Address:	8045120C
  * Size:	0000E8
  */
-void onInit__Q35P2JME7Caption8TControlFv(void)
+void P2JME::Caption::TControl::onInit(void)
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void onInit__Q35P2JME7Caption8TControlFv(void)
  * Address:	804512F4
  * Size:	000034
  */
-void reset__Q35P2JME7Caption8TControlFv(void)
+void P2JME::Caption::TControl::reset(void)
 {
 /*
 .loc_0x0:
@@ -311,7 +311,7 @@ void reset__Q35P2JME7Caption8TControlFv(void)
  * Address:	80451328
  * Size:	000128
  */
-void updateSetFrame__Q35P2JME7Caption8TControlFl(void)
+void P2JME::Caption::TControl::updateSetFrame( (long))
 {
 /*
 .loc_0x0:
@@ -407,7 +407,7 @@ void updateSetFrame__Q35P2JME7Caption8TControlFl(void)
  * Address:	80451450
  * Size:	000084
  */
-void draw__Q35P2JME7Caption8TControlFR8Graphics(void)
+void P2JME::Caption::TControl::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -454,7 +454,7 @@ void draw__Q35P2JME7Caption8TControlFR8Graphics(void)
  * Address:	804514D4
  * Size:	000058
  */
-void start__Q35P2JME7Caption8TControlFPcll(void)
+void P2JME::Caption::TControl::start( (char *, long, long))
 {
 /*
 .loc_0x0:
@@ -488,7 +488,7 @@ void start__Q35P2JME7Caption8TControlFPcll(void)
  * Address:	8045152C
  * Size:	000088
  */
-void createSequenceProcessor__Q35P2JME7Caption8TControlFv(void)
+void P2JME::Caption::TControl::createSequenceProcessor(void)
 {
 /*
 .loc_0x0:
@@ -538,7 +538,7 @@ void createSequenceProcessor__Q35P2JME7Caption8TControlFv(void)
  * Address:	804515B4
  * Size:	00008C
  */
-void createRenderingProcessor__Q35P2JME7Caption8TControlFv(void)
+void P2JME::Caption::TControl::createRenderingProcessor(void)
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void createRenderingProcessor__Q35P2JME7Caption8TControlFv(void)
  * Address:	80451640
  * Size:	000080
  */
-void __dt__Q35P2JME7Caption18TSequenceProcessorFv(void)
+void P2JME::Caption::TSequenceProcessor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -637,7 +637,7 @@ void __dt__Q35P2JME7Caption18TSequenceProcessorFv(void)
  * Address:	804516C0
  * Size:	000008
  */
-void do_isReady__Q35P2JME7Caption18TSequenceProcessorFv(void)
+void P2JME::Caption::TSequenceProcessor::do_isReady(void)
 {
 /*
 .loc_0x0:
@@ -651,7 +651,7 @@ void do_isReady__Q35P2JME7Caption18TSequenceProcessorFv(void)
  * Address:	804516C8
  * Size:	000004
  */
-void doResetAbtnWaitSE__Q35P2JME7Caption18TSequenceProcessorFv(void)
+void P2JME::Caption::TSequenceProcessor::doResetAbtnWaitSE(void)
 {
 /*
 .loc_0x0:
@@ -664,7 +664,7 @@ void doResetAbtnWaitSE__Q35P2JME7Caption18TSequenceProcessorFv(void)
  * Address:	804516CC
  * Size:	000004
  */
-void doCharacterSE__Q35P2JME7Caption18TSequenceProcessorFi(void)
+void P2JME::Caption::TSequenceProcessor::doCharacterSE( (int))
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void doCharacterSE__Q35P2JME7Caption18TSequenceProcessorFi(void)
  * Address:	804516D0
  * Size:	000004
  */
-void doCharacterSEStart__Q35P2JME7Caption18TSequenceProcessorFv(void)
+void P2JME::Caption::TSequenceProcessor::doCharacterSEStart(void)
 {
 /*
 .loc_0x0:
@@ -690,7 +690,7 @@ void doCharacterSEStart__Q35P2JME7Caption18TSequenceProcessorFv(void)
  * Address:	804516D4
  * Size:	000004
  */
-void doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv(void)
+void P2JME::Caption::TSequenceProcessor::doCharacterSEEnd(void)
 {
 /*
 .loc_0x0:
@@ -703,7 +703,7 @@ void doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv(void)
  * Address:	804516D8
  * Size:	0000B8
  */
-void __dt__Q35P2JME7Caption19TRenderingProcessorFv(void)
+void P2JME::Caption::TRenderingProcessor::__dt(void)
 {
 /*
 .loc_0x0:

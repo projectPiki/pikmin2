@@ -43,7 +43,7 @@ void Game::IKJointCallBack(J3DJoint *, int)
  * Address:	802A8AB8
  * Size:	00007C
  */
-void __ct__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -86,7 +86,7 @@ void __ct__Q24Game11IKSystemMgrFv(void)
  * Address:	802A8B34
  * Size:	000144
  */
-void init__Q24Game11IKSystemMgrFPQ24Game9EnemyBasePQ24Game19JointGroundCallBack(void)
+void Game::IKSystemMgr::init( (Game::EnemyBase *, Game::JointGroundCallBack *))
 {
 /*
 .loc_0x0:
@@ -181,7 +181,7 @@ void init__Q24Game11IKSystemMgrFPQ24Game9EnemyBasePQ24Game19JointGroundCallBack(
  * Address:	802A8C78
  * Size:	00006C
  */
-void setupJoint__Q24Game11IKSystemMgrFPQ28SysShape5ModeliPPc(void)
+void Game::IKSystemMgr::setupJoint( (SysShape::Model *, int, char **))
 {
 /*
 .loc_0x0:
@@ -222,7 +222,7 @@ void setupJoint__Q24Game11IKSystemMgrFPQ28SysShape5ModeliPPc(void)
  * Address:	802A8CE4
  * Size:	000038
  */
-void setupCallBack__Q24Game11IKSystemMgrFPQ28SysShape5ModelPc(void)
+void Game::IKSystemMgr::setupCallBack( (SysShape::Model *, char *))
 {
 /*
 .loc_0x0:
@@ -248,7 +248,7 @@ void setupCallBack__Q24Game11IKSystemMgrFPQ28SysShape5ModelPc(void)
  * Address:	802A8D1C
  * Size:	000064
  */
-void setParameters__Q24Game11IKSystemMgrFPQ24Game13IKSystemParms(void)
+void Game::IKSystemMgr::setParameters( (Game::IKSystemParms *))
 {
 /*
 .loc_0x0:
@@ -287,7 +287,7 @@ void setParameters__Q24Game11IKSystemMgrFPQ24Game13IKSystemParms(void)
  * Address:	802A8D80
  * Size:	000188
  */
-void startProgramedIK__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::startProgramedIK(void)
 {
 /*
 .loc_0x0:
@@ -405,7 +405,7 @@ void startProgramedIK__Q24Game11IKSystemMgrFv(void)
  * Address:	802A8F08
  * Size:	000024
  */
-void startIKMotion__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::startIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void startIKMotion__Q24Game11IKSystemMgrFv(void)
  * Address:	802A8F2C
  * Size:	00000C
  */
-void finishIKMotion__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::finishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -441,7 +441,7 @@ void finishIKMotion__Q24Game11IKSystemMgrFv(void)
  * Address:	802A8F38
  * Size:	000014
  */
-void forceFinishIKMotion__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::forceFinishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void forceFinishIKMotion__Q24Game11IKSystemMgrFv(void)
  * Address:	802A8F4C
  * Size:	00005C
  */
-void startBlendMotion__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::startBlendMotion(void)
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void startBlendMotion__Q24Game11IKSystemMgrFv(void)
  * Address:	802A8FA8
  * Size:	00005C
  */
-void finishBlendMotion__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::finishBlendMotion(void)
 {
 /*
 .loc_0x0:
@@ -532,7 +532,7 @@ void finishBlendMotion__Q24Game11IKSystemMgrFv(void)
  * Address:	802A9004
  * Size:	00005C
  */
-void checkJointScaleOn__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::checkJointScaleOn(void)
 {
 /*
 .loc_0x0:
@@ -569,7 +569,7 @@ void checkJointScaleOn__Q24Game11IKSystemMgrFv(void)
  * Address:	........
  * Size:	00005C
  */
-void checkJointScaleOff__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::checkJointScaleOff(void)
 {
 	// UNUSED FUNCTION
 }
@@ -579,7 +579,7 @@ void checkJointScaleOff__Q24Game11IKSystemMgrFv(void)
  * Address:	802A9060
  * Size:	000070
  */
-void isFinishIKMotion__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::isFinishIKMotion(void)
 {
 /*
 .loc_0x0:
@@ -629,7 +629,7 @@ void isFinishIKMotion__Q24Game11IKSystemMgrFv(void)
  * Address:	802A90D0
  * Size:	00000C
  */
-void resetAnimationCallBack__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::resetAnimationCallBack(void)
 {
 /*
 .loc_0x0:
@@ -644,7 +644,7 @@ void resetAnimationCallBack__Q24Game11IKSystemMgrFv(void)
  * Address:	802A90DC
  * Size:	000008
  */
-void setAnimationCallBack__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::setAnimationCallBack(void)
 {
 /*
 .loc_0x0:
@@ -658,7 +658,7 @@ void setAnimationCallBack__Q24Game11IKSystemMgrFv(void)
  * Address:	802A90E4
  * Size:	00007C
  */
-void doUpdate__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -703,7 +703,7 @@ void doUpdate__Q24Game11IKSystemMgrFv(void)
  * Address:	802A9160
  * Size:	00005C
  */
-void makeMatrix__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::makeMatrix(void)
 {
 /*
 .loc_0x0:
@@ -740,7 +740,7 @@ void makeMatrix__Q24Game11IKSystemMgrFv(void)
  * Address:	802A91BC
  * Size:	000038
  */
-void getCollisionCentre__Q24Game11IKSystemMgrFi(void)
+void Game::IKSystemMgr::getCollisionCentre( (int))
 {
 /*
 .loc_0x0:
@@ -766,7 +766,7 @@ void getCollisionCentre__Q24Game11IKSystemMgrFi(void)
  * Address:	802A91F4
  * Size:	00010C
  */
-void isCollisionCheck__Q24Game11IKSystemMgrFP8CollPart(void)
+void Game::IKSystemMgr::isCollisionCheck( (CollPart *))
 {
 /*
 .loc_0x0:
@@ -859,7 +859,7 @@ void isCollisionCheck__Q24Game11IKSystemMgrFP8CollPart(void)
  * Address:	802A9300
  * Size:	000308
  */
-void updateController__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::updateController(void)
 {
 /*
 .loc_0x0:
@@ -1099,7 +1099,7 @@ void updateController__Q24Game11IKSystemMgrFv(void)
  * Address:	802A9608
  * Size:	0003DC
  */
-void setNextCentrePosition__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::setNextCentrePosition(void)
 {
 /*
 .loc_0x0:
@@ -1390,7 +1390,7 @@ void setNextCentrePosition__Q24Game11IKSystemMgrFv(void)
  * Address:	802A99E4
  * Size:	0000FC
  */
-void calcFaceDir__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::calcFaceDir(void)
 {
 /*
 .loc_0x0:
@@ -1473,7 +1473,7 @@ void calcFaceDir__Q24Game11IKSystemMgrFv(void)
  * Address:	802A9AE0
  * Size:	000298
  */
-void calcCentrePosition__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::calcCentrePosition(void)
 {
 /*
 .loc_0x0:
@@ -1663,7 +1663,7 @@ void calcCentrePosition__Q24Game11IKSystemMgrFv(void)
  * Address:	802A9D78
  * Size:	0000E4
  */
-void calcTraceCentrePosition__Q24Game11IKSystemMgrFv(void)
+void Game::IKSystemMgr::calcTraceCentrePosition(void)
 {
 /*
 .loc_0x0:
