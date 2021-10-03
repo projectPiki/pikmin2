@@ -24,3 +24,4 @@ build
 tools/mwcc_compiler/
 decomp/
 src/.clang-format
+.clang-format
