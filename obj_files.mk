@@ -64,7 +64,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/mem_funcs.o\
 	$(BUILD_DIR)/asm/Dolphin/misc_io.o\
 	$(BUILD_DIR)/asm/Dolphin/printf.o\
-	$(BUILD_DIR)/asm/Dolphin/rand.o\
 	$(BUILD_DIR)/src/Dolphin/rand.o\
 	$(BUILD_DIR)/asm/Dolphin/scanf.o\
 	$(BUILD_DIR)/asm/Dolphin/string.o\
