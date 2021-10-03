@@ -62,7 +62,7 @@ else
   OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
 endif
-CC      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
+CC      = $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
@@ -83,6 +83,8 @@ PROCFLAGS := -fprologue-fixup=old_stack
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
 SBSS_PDHR := 10
+
+$(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.0
 
 #-------------------------------------------------------------------------------
 # Recipes

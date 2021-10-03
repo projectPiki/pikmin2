@@ -1,7 +1,0 @@
-﻿BasedOnStyle: WebKit
-ColumnLimit: 80
-AlignTrailingComments:  true
-AlignAfterOpenBracket: true
-AlignConsecutiveAssignments: true
-AllowShortFunctionsOnASingleLine: true
-FixNamespaceComments: true

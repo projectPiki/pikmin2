@@ -133,7 +133,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/dvdqueue.o\
 	$(BUILD_DIR)/asm/Dolphin/dvderror.o\
 	$(BUILD_DIR)/asm/Dolphin/dvdidutils.o\
-	$(BUILD_DIR)/asm/Dolphin/dvdFatal.o\
+	$(BUILD_DIR)/src/Dolphin/dvdFatal.o\
 	$(BUILD_DIR)/asm/Dolphin/fstload.o\
 	$(BUILD_DIR)/asm/Dolphin/EXIBios.o\
 	$(BUILD_DIR)/asm/Dolphin/EXIUart.o\
