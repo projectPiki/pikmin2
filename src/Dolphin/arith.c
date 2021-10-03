@@ -1,4 +1,4 @@
-
+#include "arith.h"
 
 /*
  * --INFO--
@@ -145,8 +145,30 @@ void ldiv(void)
  * Address:	800C60F8
  * Size:	000058
  */
-void div(void)
+div_t div(s32 __numer, s32 __denom)
 {
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  div_t ret;
+  
+  iVar2 = 1;
+  iVar3 = 1;
+  if (__numer < 0) {
+    __numer = -__numer;
+    iVar2 = -1;
+  }
+  if (__denom < 0) {
+    __denom = -__denom;
+    iVar3 = -1;
+  }
+  iVar1 = (__numer / __denom) * (iVar2 * iVar3);
+
+  
+  ret.quot = iVar1;
+  ret.rem = __numer * iVar2 - iVar3 * (iVar1 * __denom);
+  return ret;
+
 /*
 .loc_0x0:
   mr.       r7, r3
@@ -203,8 +225,9 @@ void labs(void)
  * Address:	800C6150
  * Size:	000010
  */
-void abs(void)
+int abs(int __x)
 {
+  return (__x >> 0x1f ^ __x) - (__x >> 0x1f);
 /*
 .loc_0x0:
   srawi     r4, r3, 0x1F
