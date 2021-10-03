@@ -4,6 +4,6 @@
 #include "types.h"
 
 void srand(u32);
-short rand(void);
+s16 rand(void);
 
 #endif
