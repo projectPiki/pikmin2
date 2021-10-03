@@ -1,7 +1,7 @@
 #ifndef _EGG_ANIMATOR_H
 #define _EGG_ANIMATOR_H
 
-#include "EnemyAnimatorBase.h"
+#include "common.h"
 #include "types.h"
 
 namespace Game {
