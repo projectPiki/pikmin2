@@ -6,6 +6,8 @@
 struct Stream {
     void printf(char*, ...);
     void writeByte(u8 byte);
+    void readByte();
+    char* getNextToken();
 
     u8 data[0xC];
     u32 _0C;
