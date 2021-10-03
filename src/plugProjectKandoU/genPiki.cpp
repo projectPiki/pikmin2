@@ -103,7 +103,7 @@ void makeObjectPiki()
  * Address:	801AC4E8
  * Size:	00008C
  */
-void initialise__Q24Game13GenObjectPikiFv(void)
+void Game::GenObjectPiki::initialise(void)
 {
 /*
 .loc_0x0:
@@ -150,7 +150,7 @@ void initialise__Q24Game13GenObjectPikiFv(void)
  * Address:	801AC574
  * Size:	00002C
  */
-void ramSaveParameters__Q24Game13GenObjectPikiFR6Stream(void)
+void Game::GenObjectPiki::ramSaveParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void ramSaveParameters__Q24Game13GenObjectPikiFR6Stream(void)
  * Address:	801AC5A0
  * Size:	000038
  */
-void ramLoadParameters__Q24Game13GenObjectPikiFR6Stream(void)
+void Game::GenObjectPiki::ramLoadParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void ramLoadParameters__Q24Game13GenObjectPikiFR6Stream(void)
  * Address:	801AC5D8
  * Size:	000258
  */
-void generate__Q24Game13GenObjectPikiFPQ24Game9Generator(void)
+void Game::GenObjectPiki::generate( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -373,7 +373,7 @@ void generate__Q24Game13GenObjectPikiFPQ24Game9Generator(void)
  * Address:	801AC830
  * Size:	0001B0
  */
-void birth__Q24Game13GenObjectPikiFPQ24Game6GenArg(void)
+void Game::GenObjectPiki::birth( (Game::GenArg *))
 {
 /*
 .loc_0x0:

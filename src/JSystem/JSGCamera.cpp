@@ -5,7 +5,7 @@
  * Address:	800987F4
  * Size:	000060
  */
-void __dt__Q26JStage7TCameraFv(void)
+void JStage::TCamera::__dt(void)
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void __dt__Q26JStage7TCameraFv(void)
  * Address:	80098854
  * Size:	000008
  */
-void JSGFGetType__Q26JStage7TCameraCFv(void)
+void JStage::TCamera::JSGFGetType( const
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void JSGFGetType__Q26JStage7TCameraCFv(void)
  * Address:	8009885C
  * Size:	000008
  */
-void JSGGetProjectionType__Q26JStage7TCameraCFv(void)
+void JStage::TCamera::JSGGetProjectionType( const
 {
 /*
 .loc_0x0:
@@ -71,7 +71,7 @@ void JSGGetProjectionType__Q26JStage7TCameraCFv(void)
  * Address:	80098864
  * Size:	000004
  */
-void JSGSetProjectionType__Q26JStage7TCameraFQ26JStage18TECameraProjection(void)
+void JStage::TCamera::JSGSetProjectionType( (JStage::TECameraProjection))
 {
 /*
 .loc_0x0:
@@ -84,7 +84,7 @@ void JSGSetProjectionType__Q26JStage7TCameraFQ26JStage18TECameraProjection(void)
  * Address:	80098868
  * Size:	000008
  */
-void JSGGetProjectionNear__Q26JStage7TCameraCFv(void)
+void JStage::TCamera::JSGGetProjectionNear( const
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void JSGGetProjectionNear__Q26JStage7TCameraCFv(void)
  * Address:	80098870
  * Size:	000004
  */
-void JSGSetProjectionNear__Q26JStage7TCameraFf(void)
+void JStage::TCamera::JSGSetProjectionNear( (float))
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void JSGSetProjectionNear__Q26JStage7TCameraFf(void)
  * Address:	80098874
  * Size:	00000C
  */
-void JSGGetProjectionFar__Q26JStage7TCameraCFv(void)
+void JStage::TCamera::JSGGetProjectionFar( const
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void JSGGetProjectionFar__Q26JStage7TCameraCFv(void)
  * Address:	80098880
  * Size:	000004
  */
-void JSGSetProjectionFar__Q26JStage7TCameraFf(void)
+void JStage::TCamera::JSGSetProjectionFar( (float))
 {
 /*
 .loc_0x0:
@@ -139,7 +139,7 @@ void JSGSetProjectionFar__Q26JStage7TCameraFf(void)
  * Address:	80098884
  * Size:	000008
  */
-void JSGGetProjectionFovy__Q26JStage7TCameraCFv(void)
+void JStage::TCamera::JSGGetProjectionFovy( const
 {
 /*
 .loc_0x0:
@@ -153,7 +153,7 @@ void JSGGetProjectionFovy__Q26JStage7TCameraCFv(void)
  * Address:	8009888C
  * Size:	000004
  */
-void JSGSetProjectionFovy__Q26JStage7TCameraFf(void)
+void JStage::TCamera::JSGSetProjectionFovy( (float))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void JSGSetProjectionFovy__Q26JStage7TCameraFf(void)
  * Address:	80098890
  * Size:	000008
  */
-void JSGGetProjectionAspect__Q26JStage7TCameraCFv(void)
+void JStage::TCamera::JSGGetProjectionAspect( const
 {
 /*
 .loc_0x0:
@@ -180,7 +180,7 @@ void JSGGetProjectionAspect__Q26JStage7TCameraCFv(void)
  * Address:	80098898
  * Size:	000004
  */
-void JSGSetProjectionAspect__Q26JStage7TCameraFf(void)
+void JStage::TCamera::JSGSetProjectionAspect( (float))
 {
 /*
 .loc_0x0:
@@ -193,7 +193,7 @@ void JSGSetProjectionAspect__Q26JStage7TCameraFf(void)
  * Address:	8009889C
  * Size:	000004
  */
-void JSGGetProjectionField__Q26JStage7TCameraCFPf(void)
+void JStage::TCamera::JSGGetProjectionField( const(float *))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void JSGGetProjectionField__Q26JStage7TCameraCFPf(void)
  * Address:	800988A0
  * Size:	000004
  */
-void JSGSetProjectionField__Q26JStage7TCameraFPCf(void)
+void JStage::TCamera::JSGSetProjectionField( (float const *))
 {
 /*
 .loc_0x0:
@@ -219,7 +219,7 @@ void JSGSetProjectionField__Q26JStage7TCameraFPCf(void)
  * Address:	800988A4
  * Size:	000008
  */
-void JSGGetViewType__Q26JStage7TCameraCFv(void)
+void JStage::TCamera::JSGGetViewType( const
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void JSGGetViewType__Q26JStage7TCameraCFv(void)
  * Address:	800988AC
  * Size:	000004
  */
-void JSGSetViewType__Q26JStage7TCameraFQ26JStage12TECameraView(void)
+void JStage::TCamera::JSGSetViewType( (JStage::TECameraView))
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void JSGSetViewType__Q26JStage7TCameraFQ26JStage12TECameraView(void)
  * Address:	800988B0
  * Size:	000004
  */
-void JSGGetViewPosition__Q26JStage7TCameraCFP3Vec(void)
+void JStage::TCamera::JSGGetViewPosition( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void JSGGetViewPosition__Q26JStage7TCameraCFP3Vec(void)
  * Address:	800988B4
  * Size:	000004
  */
-void JSGSetViewPosition__Q26JStage7TCameraFRC3Vec(void)
+void JStage::TCamera::JSGSetViewPosition( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -272,7 +272,7 @@ void JSGSetViewPosition__Q26JStage7TCameraFRC3Vec(void)
  * Address:	800988B8
  * Size:	000004
  */
-void JSGGetViewUpVector__Q26JStage7TCameraCFP3Vec(void)
+void JStage::TCamera::JSGGetViewUpVector( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void JSGGetViewUpVector__Q26JStage7TCameraCFP3Vec(void)
  * Address:	800988BC
  * Size:	000004
  */
-void JSGSetViewUpVector__Q26JStage7TCameraFRC3Vec(void)
+void JStage::TCamera::JSGSetViewUpVector( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void JSGSetViewUpVector__Q26JStage7TCameraFRC3Vec(void)
  * Address:	800988C0
  * Size:	000004
  */
-void JSGGetViewTargetPosition__Q26JStage7TCameraCFP3Vec(void)
+void JStage::TCamera::JSGGetViewTargetPosition( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -311,7 +311,7 @@ void JSGGetViewTargetPosition__Q26JStage7TCameraCFP3Vec(void)
  * Address:	800988C4
  * Size:	000004
  */
-void JSGSetViewTargetPosition__Q26JStage7TCameraFRC3Vec(void)
+void JStage::TCamera::JSGSetViewTargetPosition( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -324,7 +324,7 @@ void JSGSetViewTargetPosition__Q26JStage7TCameraFRC3Vec(void)
  * Address:	800988C8
  * Size:	000008
  */
-void JSGGetViewRoll__Q26JStage7TCameraCFv(void)
+void JStage::TCamera::JSGGetViewRoll( const
 {
 /*
 .loc_0x0:
@@ -338,7 +338,7 @@ void JSGGetViewRoll__Q26JStage7TCameraCFv(void)
  * Address:	800988D0
  * Size:	000004
  */
-void JSGSetViewRoll__Q26JStage7TCameraFf(void)
+void JStage::TCamera::JSGSetViewRoll( (float))
 {
 /*
 .loc_0x0:

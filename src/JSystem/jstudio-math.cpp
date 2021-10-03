@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000158
  */
-void getRotation_xyz__Q27JStudio4mathFPA4_ffff(void)
+void JStudio::math::getRotation_xyz( (float (*)[4], float, float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void getRotation_xyz__Q27JStudio4mathFPA4_ffff(void)
  * Address:	80010FC4
  * Size:	0001B0
  */
-void getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec(void)
+void JStudio::math::getTransformation_SRxyzT( (float (*)[4], Vec const &, Vec const &, Vec const &))
 {
 /*
 .loc_0x0:
@@ -135,7 +135,7 @@ void getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec(void)
  * Address:	........
  * Size:	0001B4
  */
-void transform_SRxyzT__Q27JStudio4mathFPA4_fPA4_CfRC3VecRC3VecRC3Vec(void)
+void JStudio::math::transform_SRxyzT( (float (*)[4], float const (*)[4], Vec const &, Vec const &, Vec const &))
 {
 	// UNUSED FUNCTION
 }
@@ -145,7 +145,7 @@ void transform_SRxyzT__Q27JStudio4mathFPA4_fPA4_CfRC3VecRC3VecRC3Vec(void)
  * Address:	80011174
  * Size:	000254
  */
-void getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf(void)
+void JStudio::math::getFromTransformation_SRxyzT( (Vec *, Vec *, Vec *, float const (*)[4]))
 {
 /*
 .loc_0x0:

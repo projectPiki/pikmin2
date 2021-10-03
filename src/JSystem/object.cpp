@@ -235,7 +235,7 @@ void JStudio_JStage::transform_toLocalFromGlobal(float (*) [4], const JStudio::T
  * Address:	80012044
  * Size:	000048
  */
-void adaptor_data___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectPCvUlPCvUl(void)
+void JStudio_JStage::TAdaptor_object_::adaptor_data_( (JStage::TObject *, void const *, unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -269,7 +269,7 @@ void adaptor_data___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectPCvUl
  * Address:	8001208C
  * Size:	00004C
  */
-void adaptor_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TSystemPCc(void)
+void JStudio_JStage::TAdaptor_object_::adaptor_findJSGObject_( (JStage::TSystem const *, char const *))
 {
 /*
 .loc_0x0:
@@ -304,7 +304,7 @@ void adaptor_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TS
  * Address:	800120D8
  * Size:	00002C
  */
-void adaptor_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc(void)
+void JStudio_JStage::TAdaptor_object_::adaptor_findJSGObjectNode_( (JStage::TObject const *, char const *))
 {
 /*
 .loc_0x0:
@@ -327,7 +327,7 @@ void adaptor_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStag
  * Address:	80012104
  * Size:	000094
  */
-void adaptor_ENABLE___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_object_::adaptor_ENABLE_( (JStage::TObject *, JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:

@@ -481,7 +481,7 @@ void __sinit_JASDriverIF_cpp(void)
  * Address:	800A4B38
  * Size:	000010
  */
-void __ct__Q214JASCallbackMgr9TCallbackFv(void)
+void JASCallbackMgr::TCallback::__ct(void)
 {
 /*
 .loc_0x0:

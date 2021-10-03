@@ -88,7 +88,7 @@ void mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<Game::CellObjec
  * Address:	8015668C
  * Size:	0000B4
  */
-void exitCell__Q24Game10CellObjectFv(void)
+void Game::CellObject::exitCell(void)
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void exitCell__Q24Game10CellObjectFv(void)
  * Address:	80156740
  * Size:	00003C
  */
-void __ct__Q24Game4CellFv(void)
+void Game::Cell::__ct(void)
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void __ct__Q24Game4CellFv(void)
  * Address:	........
  * Size:	000010
  */
-void clear__Q24Game4CellFv(void)
+void Game::Cell::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -711,7 +711,7 @@ void mapSearchDown__Q24Game4CellFP32IDelegate1<Game::CellObject *>Ul(void)
  * Address:	80156CF8
  * Size:	00004C
  */
-void resolveCollision__Q24Game4CellFv(void)
+void Game::Cell::resolveCollision(void)
 {
 /*
 .loc_0x0:
@@ -748,7 +748,7 @@ void resolveCollision__Q24Game4CellFv(void)
  * Address:	80156D44
  * Size:	000004
  */
-void initFrame__Q24Game11CellPyramidFv(void)
+void Game::CellPyramid::initFrame(void)
 {
 /*
 .loc_0x0:
@@ -761,7 +761,7 @@ void initFrame__Q24Game11CellPyramidFv(void)
  * Address:	........
  * Size:	000008
  */
-void getCheckCount__Q24Game11CellPyramidFv(void)
+void Game::CellPyramid::getCheckCount(void)
 {
 	// UNUSED FUNCTION
 }
@@ -771,7 +771,7 @@ void getCheckCount__Q24Game11CellPyramidFv(void)
  * Address:	........
  * Size:	000018
  */
-void dump__Q24Game4CellFv(void)
+void Game::Cell::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -781,7 +781,7 @@ void dump__Q24Game4CellFv(void)
  * Address:	........
  * Size:	00002C
  */
-void hasLeg__Q24Game4CellFPQ24Game7CellLeg(void)
+void Game::Cell::hasLeg( (Game::CellLeg *))
 {
 	// UNUSED FUNCTION
 }
@@ -791,7 +791,7 @@ void hasLeg__Q24Game4CellFPQ24Game7CellLeg(void)
  * Address:	........
  * Size:	0000B8
  */
-void calcCollisionDistance__Q24Game10CellObjectFPQ24Game10CellObject(void)
+void Game::CellObject::calcCollisionDistance( (Game::CellObject *))
 {
 	// UNUSED FUNCTION
 }
@@ -801,7 +801,7 @@ void calcCollisionDistance__Q24Game10CellObjectFPQ24Game10CellObject(void)
  * Address:	80156D48
  * Size:	0000D0
  */
-void updateCollisionBuffer__Q24Game10CellObjectFPQ24Game10CellObject(void)
+void Game::CellObject::updateCollisionBuffer( (Game::CellObject *))
 {
 /*
 .loc_0x0:
@@ -869,7 +869,7 @@ void updateCollisionBuffer__Q24Game10CellObjectFPQ24Game10CellObject(void)
  * Address:	........
  * Size:	000080
  */
-void resolveUsingBuffer__Q24Game10CellObjectFv(void)
+void Game::CellObject::resolveUsingBuffer(void)
 {
 	// UNUSED FUNCTION
 }
@@ -879,7 +879,7 @@ void resolveUsingBuffer__Q24Game10CellObjectFv(void)
  * Address:	80156E18
  * Size:	000018
  */
-void __ct__Q24Game15CollisionBufferFv(void)
+void Game::CollisionBuffer::__ct(void)
 {
 /*
 .loc_0x0:
@@ -897,7 +897,7 @@ void __ct__Q24Game15CollisionBufferFv(void)
  * Address:	........
  * Size:	000014
  */
-void isAvailable__Q24Game15CollisionBufferFv(void)
+void Game::CollisionBuffer::isAvailable(void)
 {
 	// UNUSED FUNCTION
 }
@@ -907,7 +907,7 @@ void isAvailable__Q24Game15CollisionBufferFv(void)
  * Address:	........
  * Size:	000018
  */
-void init__Q24Game15CollisionBufferFPQ24Game10CellObjectPQ24Game8CollNodei(void)
+void Game::CollisionBuffer::init( (Game::CellObject *, Game::CollNode *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -917,7 +917,7 @@ void init__Q24Game15CollisionBufferFPQ24Game10CellObjectPQ24Game8CollNodei(void)
  * Address:	80156E30
  * Size:	00006C
  */
-void alloc__Q24Game15CollisionBufferFPQ24Game10CellObjecti(void)
+void Game::CollisionBuffer::alloc( (Game::CellObject *, int))
 {
 /*
 .loc_0x0:
@@ -956,7 +956,7 @@ void alloc__Q24Game15CollisionBufferFPQ24Game10CellObjecti(void)
  * Address:	80156E9C
  * Size:	000014
  */
-void __ct__Q24Game8CollNodeFv(void)
+void Game::CollNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -973,7 +973,7 @@ void __ct__Q24Game8CollNodeFv(void)
  * Address:	........
  * Size:	000044
  */
-void clear__Q24Game15CollisionBufferFv(void)
+void Game::CollisionBuffer::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -983,7 +983,7 @@ void clear__Q24Game15CollisionBufferFv(void)
  * Address:	80156EB0
  * Size:	0000B8
  */
-void insert__Q24Game15CollisionBufferFPQ24Game10CellObjectf(void)
+void Game::CollisionBuffer::insert( (Game::CellObject *, float))
 {
 /*
 .loc_0x0:
@@ -1049,7 +1049,7 @@ void insert__Q24Game15CollisionBufferFPQ24Game10CellObjectf(void)
  * Address:	80156F68
  * Size:	000128
  */
-void pikiInsertPiki__Q24Game15CollisionBufferFPQ24Game10CellObjectf(void)
+void Game::CollisionBuffer::pikiInsertPiki( (Game::CellObject *, float))
 {
 /*
 .loc_0x0:
@@ -1145,7 +1145,7 @@ void pikiInsertPiki__Q24Game15CollisionBufferFPQ24Game10CellObjectf(void)
  * Address:	80157090
  * Size:	000128
  */
-void pikiInsertOther__Q24Game15CollisionBufferFPQ24Game10CellObjectf(void)
+void Game::CollisionBuffer::pikiInsertOther( (Game::CellObject *, float))
 {
 /*
 .loc_0x0:
@@ -1243,7 +1243,7 @@ void pikiInsertOther__Q24Game15CollisionBufferFPQ24Game10CellObjectf(void)
  * Address:	801571B8
  * Size:	0000F8
  */
-void insertSort__Q24Game15CollisionBufferFPQ24Game10CellObjectf(void)
+void Game::CollisionBuffer::insertSort( (Game::CellObject *, float))
 {
 /*
 .loc_0x0:
@@ -1327,7 +1327,7 @@ void insertSort__Q24Game15CollisionBufferFPQ24Game10CellObjectf(void)
  * Address:	801572B0
  * Size:	000044
  */
-void findIndex__Q24Game15CollisionBufferFPQ24Game10CellObject(void)
+void Game::CollisionBuffer::findIndex( (Game::CellObject *))
 {
 /*
 .loc_0x0:
@@ -1362,7 +1362,7 @@ void findIndex__Q24Game15CollisionBufferFPQ24Game10CellObject(void)
  * Address:	........
  * Size:	0000A4
  */
-void resolveCollision__Q24Game9CellLayerFv(void)
+void Game::CellLayer::resolveCollision(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1372,7 +1372,7 @@ void resolveCollision__Q24Game9CellLayerFv(void)
  * Address:	801572F4
  * Size:	000244
  */
-void resolveCollision__Q24Game11CellPyramidFv(void)
+void Game::CellPyramid::resolveCollision(void)
 {
 /*
 .loc_0x0:
@@ -1585,7 +1585,7 @@ void resolveCollision__Q24Game11CellPyramidFv(void)
  * Address:	80157538
  * Size:	000294
  */
-void rec_resolveColl__Q24Game4CellFv(void)
+void Game::Cell::rec_resolveColl(void)
 {
 /*
 .loc_0x0:
@@ -1838,7 +1838,7 @@ void CellMgrParms::getInstance()
  * Address:	........
  * Size:	000064
  */
-void clearAllCollBuffer__Q24Game4CellFv(void)
+void Game::Cell::clearAllCollBuffer(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1848,7 +1848,7 @@ void clearAllCollBuffer__Q24Game4CellFv(void)
  * Address:	........
  * Size:	00009C
  */
-void clearAllCollBuffer__Q24Game9CellLayerFv(void)
+void Game::CellLayer::clearAllCollBuffer(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1858,7 +1858,7 @@ void clearAllCollBuffer__Q24Game9CellLayerFv(void)
  * Address:	801577DC
  * Size:	0000DC
  */
-void clearAllCollBuffer__Q24Game11CellPyramidFv(void)
+void Game::CellPyramid::clearAllCollBuffer(void)
 {
 /*
 .loc_0x0:
@@ -1945,7 +1945,7 @@ void clearAllCollBuffer__Q24Game11CellPyramidFv(void)
  * Address:	........
  * Size:	000094
  */
-void appendList__Q24Game4CellFv(void)
+void Game::Cell::appendList(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1955,7 +1955,7 @@ void appendList__Q24Game4CellFv(void)
  * Address:	........
  * Size:	000084
  */
-void remove__Q24Game4CellFv(void)
+void Game::Cell::remove(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1965,7 +1965,7 @@ void remove__Q24Game4CellFv(void)
  * Address:	801578B8
  * Size:	000158
  */
-void exit__Q24Game4CellFPQ24Game7CellLegb(void)
+void Game::Cell::exit( (Game::CellLeg *, bool))
 {
 /*
 .loc_0x0:
@@ -2085,7 +2085,7 @@ void exit__Q24Game4CellFPQ24Game7CellLegb(void)
  * Address:	80157A10
  * Size:	0002EC
  */
-void entry__Q24Game4CellFPQ24Game7CellLegb(void)
+void Game::Cell::entry( (Game::CellLeg *, bool))
 {
 /*
 .loc_0x0:
@@ -2338,7 +2338,7 @@ void entry__Q24Game4CellFPQ24Game7CellLegb(void)
  * Address:	........
  * Size:	000058
  */
-void clear__Q24Game9CellLayerFv(void)
+void Game::CellLayer::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2348,7 +2348,7 @@ void clear__Q24Game9CellLayerFv(void)
  * Address:	........
  * Size:	0000D0
  */
-void createBottom__Q24Game9CellLayerFii(void)
+void Game::CellLayer::createBottom( (int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -2358,7 +2358,7 @@ void createBottom__Q24Game9CellLayerFii(void)
  * Address:	80157CFC
  * Size:	000048
  */
-void __cl__Q24Game9CellLayerFii(void)
+void Game::CellLayer::operator()( (int, int))
 {
 /*
 .loc_0x0:
@@ -2392,7 +2392,7 @@ void __cl__Q24Game9CellLayerFii(void)
  * Address:	80157D44
  * Size:	000578
  */
-void pileup__Q24Game9CellLayerFRQ24Game9CellLayer(void)
+void Game::CellLayer::pileup( (Game::CellLayer &))
 {
 /*
 .loc_0x0:
@@ -2862,7 +2862,7 @@ void drawCell__Q24Game9CellLayerFR8GraphicsR10Vector3<float>iif(void)
  * Address:	801582BC
  * Size:	00003C
  */
-void __ct__Q24Game11CellPyramidFv(void)
+void Game::CellPyramid::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2889,7 +2889,7 @@ void __ct__Q24Game11CellPyramidFv(void)
  * Address:	801582F8
  * Size:	000098
  */
-void clear__Q24Game11CellPyramidFv(void)
+void Game::CellPyramid::clear(void)
 {
 /*
 .loc_0x0:
@@ -3063,7 +3063,7 @@ void calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<int>(void)
  * Address:	80158520
  * Size:	000034
  */
-void entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere(void)
+void Game::CellPyramid::entry( (Game::CellObject *, Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -3472,7 +3472,7 @@ void entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<int>
  * Address:	80158A0C
  * Size:	0002EC
  */
-void create__Q24Game11CellPyramidFR10BoundBox2df(void)
+void Game::CellPyramid::create( (BoundBox2d &, float))
 {
 /*
 .loc_0x0:
@@ -3685,7 +3685,7 @@ void create__Q24Game11CellPyramidFR10BoundBox2df(void)
  * Address:	80158CF8
  * Size:	00003C
  */
-void __ct__Q24Game9CellLayerFv(void)
+void Game::CellLayer::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3712,7 +3712,7 @@ void __ct__Q24Game9CellLayerFv(void)
  * Address:	........
  * Size:	000004
  */
-void drawCell__Q24Game11CellPyramidFR8GraphicsRQ23Sys6Sphere(void)
+void Game::CellPyramid::drawCell( (Graphics &, Sys::Sphere &))
 {
 	// UNUSED FUNCTION
 }
@@ -3865,7 +3865,7 @@ void drawCell__Q24Game11CellPyramidFR8GraphicsiR7Rect<int>f(void)
  * Address:	........
  * Size:	000004
  */
-void drawCell__Q24Game11CellPyramidFR8Graphicsi(void)
+void Game::CellPyramid::drawCell( (Graphics &, int))
 {
 	// UNUSED FUNCTION
 }
@@ -3875,7 +3875,7 @@ void drawCell__Q24Game11CellPyramidFR8Graphicsi(void)
  * Address:	........
  * Size:	000004
  */
-void drawCell__Q24Game11CellPyramidFR8Graphics(void)
+void Game::CellPyramid::drawCell( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -3885,7 +3885,7 @@ void drawCell__Q24Game11CellPyramidFR8Graphics(void)
  * Address:	........
  * Size:	000088
  */
-void dumpCount__Q24Game11CellPyramidFRiRi(void)
+void Game::CellPyramid::dumpCount( (int &, int &))
 {
 	// UNUSED FUNCTION
 }
@@ -3895,7 +3895,7 @@ void dumpCount__Q24Game11CellPyramidFRiRi(void)
  * Address:	80158E68
  * Size:	0000F8
  */
-void resolveCollision_2__Q24Game4CellFv(void)
+void Game::Cell::resolveCollision_2(void)
 {
 /*
 .loc_0x0:
@@ -3989,7 +3989,7 @@ void resolveCollision_2__Q24Game4CellFv(void)
  * Address:	80158F60
  * Size:	000100
  */
-void resolveCollision_1__Q24Game4CellFv(void)
+void Game::Cell::resolveCollision_1(void)
 {
 /*
 .loc_0x0:
@@ -4085,7 +4085,7 @@ void resolveCollision_1__Q24Game4CellFv(void)
  * Address:	80159060
  * Size:	0001E0
  */
-void resolveCollision_3__Q24Game4CellFv(void)
+void Game::Cell::resolveCollision_3(void)
 {
 /*
 .loc_0x0:

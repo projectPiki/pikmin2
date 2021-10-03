@@ -429,7 +429,7 @@ void JASDsp::changeFXLineParam(unsigned char, unsigned char, unsigned long)
  * Address:	800A5638
  * Size:	00003C
  */
-void init__Q26JASDsp8TChannelFv(void)
+void JASDsp::TChannel::init(void)
 {
 /*
 .loc_0x0:
@@ -456,7 +456,7 @@ void init__Q26JASDsp8TChannelFv(void)
  * Address:	800A5674
  * Size:	0000A0
  */
-void playStart__Q26JASDsp8TChannelFv(void)
+void JASDsp::TChannel::playStart(void)
 {
 /*
 .loc_0x0:
@@ -510,7 +510,7 @@ void playStart__Q26JASDsp8TChannelFv(void)
  * Address:	800A5714
  * Size:	00000C
  */
-void playStop__Q26JASDsp8TChannelFv(void)
+void JASDsp::TChannel::playStop(void)
 {
 /*
 .loc_0x0:
@@ -525,7 +525,7 @@ void playStop__Q26JASDsp8TChannelFv(void)
  * Address:	800A5720
  * Size:	000010
  */
-void replyFinishRequest__Q26JASDsp8TChannelFv(void)
+void JASDsp::TChannel::replyFinishRequest(void)
 {
 /*
 .loc_0x0:
@@ -541,7 +541,7 @@ void replyFinishRequest__Q26JASDsp8TChannelFv(void)
  * Address:	800A5730
  * Size:	00000C
  */
-void forceStop__Q26JASDsp8TChannelFv(void)
+void JASDsp::TChannel::forceStop(void)
 {
 /*
 .loc_0x0:
@@ -556,7 +556,7 @@ void forceStop__Q26JASDsp8TChannelFv(void)
  * Address:	........
  * Size:	000014
  */
-void isActive__Q26JASDsp8TChannelCFv(void)
+void JASDsp::TChannel::isActive( const
 {
 	// UNUSED FUNCTION
 }
@@ -566,7 +566,7 @@ void isActive__Q26JASDsp8TChannelCFv(void)
  * Address:	800A573C
  * Size:	000014
  */
-void isFinish__Q26JASDsp8TChannelCFv(void)
+void JASDsp::TChannel::isFinish( const
 {
 /*
 .loc_0x0:
@@ -583,7 +583,7 @@ void isFinish__Q26JASDsp8TChannelCFv(void)
  * Address:	........
  * Size:	000008
  */
-void getBlockCounter__Q26JASDsp8TChannelCFv(void)
+void JASDsp::TChannel::getBlockCounter( const
 {
 	// UNUSED FUNCTION
 }
@@ -593,7 +593,7 @@ void getBlockCounter__Q26JASDsp8TChannelCFv(void)
  * Address:	........
  * Size:	000008
  */
-void getRemainSamples__Q26JASDsp8TChannelCFv(void)
+void JASDsp::TChannel::getRemainSamples( const
 {
 	// UNUSED FUNCTION
 }
@@ -603,7 +603,7 @@ void getRemainSamples__Q26JASDsp8TChannelCFv(void)
  * Address:	800A5750
  * Size:	000150
  */
-void setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl(void)
+void JASDsp::TChannel::setWaveInfo( (JASWaveInfo const &, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -713,7 +713,7 @@ void setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl(void)
  * Address:	800A58A0
  * Size:	000018
  */
-void setOscInfo__Q26JASDsp8TChannelFUl(void)
+void JASDsp::TChannel::setOscInfo( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -731,7 +731,7 @@ void setOscInfo__Q26JASDsp8TChannelFUl(void)
  * Address:	800A58B8
  * Size:	00002C
  */
-void initAutoMixer__Q26JASDsp8TChannelFv(void)
+void JASDsp::TChannel::initAutoMixer(void)
 {
 /*
 .loc_0x0:
@@ -756,7 +756,7 @@ void initAutoMixer__Q26JASDsp8TChannelFv(void)
  * Address:	800A58E4
  * Size:	00002C
  */
-void setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc(void)
+void JASDsp::TChannel::setAutoMixer( (unsigned short, unsigned char, unsigned char, unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -779,7 +779,7 @@ void setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc(void)
  * Address:	........
  * Size:	000008
  */
-void updateAMVolume__Q26JASDsp8TChannelFUs(void)
+void JASDsp::TChannel::updateAMVolume( (unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -789,7 +789,7 @@ void updateAMVolume__Q26JASDsp8TChannelFUs(void)
  * Address:	........
  * Size:	000010
  */
-void updateAMPan__Q26JASDsp8TChannelFUcUc(void)
+void JASDsp::TChannel::updateAMPan( (unsigned char, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -799,7 +799,7 @@ void updateAMPan__Q26JASDsp8TChannelFUcUc(void)
  * Address:	........
  * Size:	00000C
  */
-void updateAMFX__Q26JASDsp8TChannelFUc(void)
+void JASDsp::TChannel::updateAMFX( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -809,7 +809,7 @@ void updateAMFX__Q26JASDsp8TChannelFUc(void)
  * Address:	800A5910
  * Size:	000018
  */
-void setPitch__Q26JASDsp8TChannelFUs(void)
+void JASDsp::TChannel::setPitch( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -829,7 +829,7 @@ void setPitch__Q26JASDsp8TChannelFUs(void)
  * Address:	800A5928
  * Size:	00000C
  */
-void setMixerInitDelayMax__Q26JASDsp8TChannelFUc(void)
+void JASDsp::TChannel::setMixerInitDelayMax( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -844,7 +844,7 @@ void setMixerInitDelayMax__Q26JASDsp8TChannelFUc(void)
  * Address:	800A5934
  * Size:	000020
  */
-void setMixerInitVolume__Q26JASDsp8TChannelFUcs(void)
+void JASDsp::TChannel::setMixerInitVolume( (unsigned char, short))
 {
 /*
 .loc_0x0:
@@ -864,7 +864,7 @@ void setMixerInitVolume__Q26JASDsp8TChannelFUcs(void)
  * Address:	800A5954
  * Size:	000018
  */
-void setMixerInitDelaySamples__Q26JASDsp8TChannelFUcUc(void)
+void JASDsp::TChannel::setMixerInitDelaySamples( (unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -882,7 +882,7 @@ void setMixerInitDelaySamples__Q26JASDsp8TChannelFUcUc(void)
  * Address:	800A596C
  * Size:	000020
  */
-void setMixerDelaySamples__Q26JASDsp8TChannelFUcUc(void)
+void JASDsp::TChannel::setMixerDelaySamples( (unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -902,7 +902,7 @@ void setMixerDelaySamples__Q26JASDsp8TChannelFUcUc(void)
  * Address:	800A598C
  * Size:	00002C
  */
-void setMixerVolume__Q26JASDsp8TChannelFUcs(void)
+void JASDsp::TChannel::setMixerVolume( (unsigned char, short))
 {
 /*
 .loc_0x0:
@@ -925,7 +925,7 @@ void setMixerVolume__Q26JASDsp8TChannelFUcs(void)
  * Address:	800A59B8
  * Size:	00000C
  */
-void setPauseFlag__Q26JASDsp8TChannelFUc(void)
+void JASDsp::TChannel::setPauseFlag( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -940,7 +940,7 @@ void setPauseFlag__Q26JASDsp8TChannelFUc(void)
  * Address:	800A59C4
  * Size:	000024
  */
-void flush__Q26JASDsp8TChannelFv(void)
+void JASDsp::TChannel::flush(void)
 {
 /*
 .loc_0x0:
@@ -961,7 +961,7 @@ void flush__Q26JASDsp8TChannelFv(void)
  * Address:	800A59E8
  * Size:	000048
  */
-void initFilter__Q26JASDsp8TChannelFv(void)
+void JASDsp::TChannel::initFilter(void)
 {
 /*
 .loc_0x0:
@@ -991,7 +991,7 @@ void initFilter__Q26JASDsp8TChannelFv(void)
  * Address:	800A5A30
  * Size:	000038
  */
-void setFilterMode__Q26JASDsp8TChannelFUs(void)
+void JASDsp::TChannel::setFilterMode( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -1021,7 +1021,7 @@ void setFilterMode__Q26JASDsp8TChannelFUs(void)
  * Address:	800A5A68
  * Size:	000024
  */
-void setIIRFilterParam__Q26JASDsp8TChannelFPs(void)
+void JASDsp::TChannel::setIIRFilterParam( (short *))
 {
 /*
 .loc_0x0:
@@ -1042,7 +1042,7 @@ void setIIRFilterParam__Q26JASDsp8TChannelFPs(void)
  * Address:	800A5A8C
  * Size:	000044
  */
-void setFIR8FilterParam__Q26JASDsp8TChannelFPs(void)
+void JASDsp::TChannel::setFIR8FilterParam( (short *))
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void setFIR8FilterParam__Q26JASDsp8TChannelFPs(void)
  * Address:	800A5AD0
  * Size:	000008
  */
-void setDistFilter__Q26JASDsp8TChannelFs(void)
+void JASDsp::TChannel::setDistFilter( (short))
 {
 /*
 .loc_0x0:
@@ -1085,7 +1085,7 @@ void setDistFilter__Q26JASDsp8TChannelFs(void)
  * Address:	800A5AD8
  * Size:	000020
  */
-void setBusConnect__Q26JASDsp8TChannelFUcUc(void)
+void JASDsp::TChannel::setBusConnect( (unsigned char, unsigned char))
 {
 /*
 .loc_0x0:

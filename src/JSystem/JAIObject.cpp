@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000C8
  */
-void __ct__Q27JAInter10ObjectBaseFP3VecP7JKRHeapUc(void)
+void JAInter::ObjectBase::__ct( (Vec *, JKRHeap *, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q27JAInter10ObjectBaseFP3VecP7JKRHeapUc(void)
  * Address:	800B95FC
  * Size:	000074
  */
-void __dt__Q27JAInter10ObjectBaseFv(void)
+void JAInter::ObjectBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -58,7 +58,7 @@ void __dt__Q27JAInter10ObjectBaseFv(void)
  * Address:	800B9670
  * Size:	000164
  */
-void startSound__Q27JAInter10ObjectBaseFUlUl(void)
+void JAInter::ObjectBase::startSound( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -175,7 +175,7 @@ void startSound__Q27JAInter10ObjectBaseFUlUl(void)
  * Address:	800B97D4
  * Size:	000044
  */
-void handleStop__Q27JAInter10ObjectBaseFUcUl(void)
+void JAInter::ObjectBase::handleStop( (unsigned char, unsigned long))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void handleStop__Q27JAInter10ObjectBaseFUcUl(void)
  * Address:	800B9818
  * Size:	000048
  */
-void startSound__Q27JAInter10ObjectBaseFUcUlUl(void)
+void JAInter::ObjectBase::startSound( (unsigned char, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -236,7 +236,7 @@ void startSound__Q27JAInter10ObjectBaseFUcUlUl(void)
  * Address:	800B9860
  * Size:	000044
  */
-void startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl(void)
+void JAInter::ObjectBase::startSound( (JAISound **, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl(void)
  * Address:	800B98A4
  * Size:	000060
  */
-void stopSound__Q27JAInter10ObjectBaseFUlUl(void)
+void JAInter::ObjectBase::stopSound( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void stopSound__Q27JAInter10ObjectBaseFUlUl(void)
  * Address:	800B9904
  * Size:	000068
  */
-void stopAllSound__Q27JAInter10ObjectBaseFv(void)
+void JAInter::ObjectBase::stopAllSound(void)
 {
 /*
 .loc_0x0:
@@ -345,7 +345,7 @@ void stopAllSound__Q27JAInter10ObjectBaseFv(void)
  * Address:	800B996C
  * Size:	000044
  */
-void disable__Q27JAInter10ObjectBaseFv(void)
+void JAInter::ObjectBase::disable(void)
 {
 /*
 .loc_0x0:
@@ -374,7 +374,7 @@ void disable__Q27JAInter10ObjectBaseFv(void)
  * Address:	800B99B0
  * Size:	000040
  */
-void dispose__Q27JAInter10ObjectBaseFv(void)
+void JAInter::ObjectBase::dispose(void)
 {
 /*
 .loc_0x0:
@@ -402,7 +402,7 @@ void dispose__Q27JAInter10ObjectBaseFv(void)
  * Address:	800B99F0
  * Size:	00005C
  */
-void getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv(void)
+void JAInter::ObjectBase::getFreeSoundHandlePointer(void)
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv(void)
  * Address:	........
  * Size:	000058
  */
-void getFreeSoundHandleNo__Q27JAInter10ObjectBaseFv(void)
+void JAInter::ObjectBase::getFreeSoundHandleNo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -453,7 +453,7 @@ void getFreeSoundHandleNo__Q27JAInter10ObjectBaseFv(void)
  * Address:	800B9A4C
  * Size:	000054
  */
-void getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl(void)
+void JAInter::ObjectBase::getUseSoundHandlePointer( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -492,7 +492,7 @@ void getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl(void)
  * Address:	800B9AA0
  * Size:	00004C
  */
-void getUseSoundHandleNo__Q27JAInter10ObjectBaseFUl(void)
+void JAInter::ObjectBase::getUseSoundHandleNo( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -529,7 +529,7 @@ void getUseSoundHandleNo__Q27JAInter10ObjectBaseFUl(void)
  * Address:	........
  * Size:	000038
  */
-void reserveSoundHandle__Q27JAInter10ObjectBaseFUc(void)
+void JAInter::ObjectBase::reserveSoundHandle( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -539,7 +539,7 @@ void reserveSoundHandle__Q27JAInter10ObjectBaseFUc(void)
  * Address:	........
  * Size:	00001C
  */
-void cancelSoundHandle__Q27JAInter10ObjectBaseFUc(void)
+void JAInter::ObjectBase::cancelSoundHandle( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -549,7 +549,7 @@ void cancelSoundHandle__Q27JAInter10ObjectBaseFUc(void)
  * Address:	800B9AEC
  * Size:	0000F4
  */
-void __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc(void)
+void JAInter::Object::__ct( (Vec *, JKRHeap *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -628,7 +628,7 @@ void __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc(void)
  * Address:	800B9BE0
  * Size:	000084
  */
-void __dt__Q27JAInter6ObjectFv(void)
+void JAInter::Object::__dt(void)
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void __dt__Q27JAInter6ObjectFv(void)
  * Address:	800B9C64
  * Size:	00021C
  */
-void startSound__Q27JAInter6ObjectFUlUl(void)
+void JAInter::Object::startSound( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -858,7 +858,7 @@ void startSound__Q27JAInter6ObjectFUlUl(void)
  * Address:	800B9E80
  * Size:	000158
  */
-void disable__Q27JAInter6ObjectFv(void)
+void JAInter::Object::disable(void)
 {
 /*
 .loc_0x0:
@@ -968,7 +968,7 @@ void disable__Q27JAInter6ObjectFv(void)
  * Address:	800B9FD8
  * Size:	000214
  */
-void loop__Q27JAInter6ObjectFv(void)
+void JAInter::Object::loop(void)
 {
 /*
 .loc_0x0:

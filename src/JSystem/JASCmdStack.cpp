@@ -110,7 +110,7 @@ void JASPortCmd::execAllCommand()
  * Address:	800A67D8
  * Size:	000088
  */
-void execCommandOnce__Q210JASPortCmd9TPortHeadFv(void)
+void JASPortCmd::TPortHead::execCommandOnce(void)
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void execCommandOnce__Q210JASPortCmd9TPortHeadFv(void)
  * Address:	800A6860
  * Size:	000068
  */
-void execCommandStay__Q210JASPortCmd9TPortHeadFv(void)
+void JASPortCmd::TPortHead::execCommandStay(void)
 {
 /*
 .loc_0x0:
@@ -241,7 +241,7 @@ void __sinit_JASCmdStack_cpp(void)
  * Address:	800A6934
  * Size:	000058
  */
-void __dt__Q210JASPortCmd9TPortHeadFv(void)
+void JASPortCmd::TPortHead::__dt(void)
 {
 /*
 .loc_0x0:

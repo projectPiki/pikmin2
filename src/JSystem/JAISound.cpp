@@ -96,7 +96,7 @@ void JAISequence::JAISequence()
  * Address:	........
  * Size:	000058
  */
-void __dt__Q27JAInter12SeqParameterFv(void)
+void JAInter::SeqParameter::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3472,7 +3472,7 @@ void JAISound::initParameter(void *, JAInter::Actor *, unsigned long, unsigned l
  * Address:	800B56FC
  * Size:	000070
  */
-void init__Q27JAInter9LinkSoundFv(void)
+void JAInter::LinkSound::init(void)
 {
 /*
 .loc_0x0:
@@ -3516,7 +3516,7 @@ void init__Q27JAInter9LinkSoundFv(void)
  * Address:	800B576C
  * Size:	00007C
  */
-void getSound__Q27JAInter9LinkSoundFv(void)
+void JAInter::LinkSound::getSound(void)
 {
 /*
 .loc_0x0:
@@ -3574,7 +3574,7 @@ void JAISound::onGet()
  * Address:	800B57EC
  * Size:	000068
  */
-void releaseSound__Q27JAInter9LinkSoundFP8JAISound(void)
+void JAInter::LinkSound::releaseSound( (JAISound *))
 {
 /*
 .loc_0x0:
@@ -3627,7 +3627,7 @@ void JAISound::onRelease()
  * Address:	........
  * Size:	00001C
  */
-void getFreeStartFirstObject__Q27JAInter9LinkSoundFv(void)
+void JAInter::LinkSound::getFreeStartFirstObject(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3637,7 +3637,7 @@ void getFreeStartFirstObject__Q27JAInter9LinkSoundFv(void)
  * Address:	........
  * Size:	00001C
  */
-void getUsedEndFirstObject__Q27JAInter9LinkSoundFv(void)
+void JAInter::LinkSound::getUsedEndFirstObject(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3647,7 +3647,7 @@ void getUsedEndFirstObject__Q27JAInter9LinkSoundFv(void)
  * Address:	800B5858
  * Size:	000098
  */
-void set__Q27JAInter11MoveParaSetFfUl(void)
+void JAInter::MoveParaSet::set( (float, unsigned long))
 {
 /*
 .loc_0x0:
@@ -3705,7 +3705,7 @@ void set__Q27JAInter11MoveParaSetFfUl(void)
  * Address:	800B58F0
  * Size:	00004C
  */
-void move__Q27JAInter11MoveParaSetFv(void)
+void JAInter::MoveParaSet::move(void)
 {
 /*
 .loc_0x0:

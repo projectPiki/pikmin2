@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801C7604
  * Size:	000134
  */
-void init__Q24Game7GateFSMFPQ24Game8ItemGate(void)
+void Game::GateFSM::init( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void init__Q24Game7GateFSMFPQ24Game8ItemGate(void)
  * Address:	........
  * Size:	00014C
  */
-void __ct__Q24Game8ItemGateFv(void)
+void Game::ItemGate::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -120,7 +120,7 @@ void __ct__Q24Game8ItemGateFv(void)
  * Address:	801C7738
  * Size:	000048
  */
-void constructor__Q24Game8ItemGateFv(void)
+void Game::ItemGate::constructor(void)
 {
 /*
 .loc_0x0:
@@ -152,7 +152,7 @@ void constructor__Q24Game8ItemGateFv(void)
  * Address:	801C7780
  * Size:	000248
  */
-void onInit__Q24Game8ItemGateFPQ24Game15CreatureInitArg(void)
+void Game::ItemGate::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void start__Q24Game30StateMachine<Game::ItemGate>FPQ24Game8ItemGateiPQ24Game8Sta
  * Address:	801C79FC
  * Size:	0001E4
  */
-void onSetPosition__Q24Game8ItemGateFv(void)
+void Game::ItemGate::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -502,7 +502,7 @@ void onSetPosition__Q24Game8ItemGateFv(void)
  * Address:	801C7BE0
  * Size:	0000E8
  */
-void doLoad__Q24Game8ItemGateFR6Stream(void)
+void Game::ItemGate::doLoad( (Stream &))
 {
 /*
 .loc_0x0:
@@ -578,7 +578,7 @@ void doLoad__Q24Game8ItemGateFR6Stream(void)
  * Address:	801C7CC8
  * Size:	00004C
  */
-void doSave__Q24Game8ItemGateFR6Stream(void)
+void Game::ItemGate::doSave( (Stream &))
 {
 /*
 .loc_0x0:
@@ -609,7 +609,7 @@ void doSave__Q24Game8ItemGateFR6Stream(void)
  * Address:	801C7D14
  * Size:	00001C
  */
-void updateBoundSphere__Q24Game8ItemGateFv(void)
+void Game::ItemGate::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -628,7 +628,7 @@ void updateBoundSphere__Q24Game8ItemGateFv(void)
  * Address:	801C7D30
  * Size:	00007C
  */
-void update__Q24Game8ItemGateFv(void)
+void Game::ItemGate::update(void)
 {
 /*
 .loc_0x0:
@@ -671,7 +671,7 @@ void update__Q24Game8ItemGateFv(void)
  * Address:	801C7DAC
  * Size:	000130
  */
-void doAI__Q24Game8ItemGateFv(void)
+void Game::ItemGate::doAI(void)
 {
 /*
 .loc_0x0:
@@ -771,7 +771,7 @@ void doAI__Q24Game8ItemGateFv(void)
  * Address:	801C7EDC
  * Size:	000044
  */
-void onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent(void)
+void Game::ItemGate::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -802,7 +802,7 @@ void onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent(void)
  * Address:	801C7F20
  * Size:	000004
  */
-void onKeyEvent__Q24Game9GateStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent(void)
+void Game::GateState::onKeyEvent( (Game::ItemGate *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -815,7 +815,7 @@ void onKeyEvent__Q24Game9GateStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent(void)
  * Address:	801C7F24
  * Size:	00011C
  */
-void interactAttack__Q24Game8ItemGateFRQ24Game14InteractAttack(void)
+void Game::ItemGate::interactAttack( (Game::InteractAttack &))
 {
 /*
 .loc_0x0:
@@ -910,7 +910,7 @@ void interactAttack__Q24Game8ItemGateFRQ24Game14InteractAttack(void)
  * Address:	801C8040
  * Size:	000004
  */
-void onDamage__Q24Game9GateStateFPQ24Game8ItemGatef(void)
+void Game::GateState::onDamage( (Game::ItemGate *, float))
 {
 /*
 .loc_0x0:
@@ -923,7 +923,7 @@ void onDamage__Q24Game9GateStateFPQ24Game8ItemGatef(void)
  * Address:	801C8044
  * Size:	00006C
  */
-void initMotion__Q24Game8ItemGateFv(void)
+void Game::ItemGate::initMotion(void)
 {
 /*
 .loc_0x0:
@@ -966,7 +966,7 @@ void initMotion__Q24Game8ItemGateFv(void)
  * Address:	........
  * Size:	000048
  */
-void startDamageMotion__Q24Game8ItemGateFv(void)
+void Game::ItemGate::startDamageMotion(void)
 {
 	// UNUSED FUNCTION
 }
@@ -976,7 +976,7 @@ void startDamageMotion__Q24Game8ItemGateFv(void)
  * Address:	........
  * Size:	000128
  */
-void startDownMotion__Q24Game8ItemGateFv(void)
+void Game::ItemGate::startDownMotion(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1180,7 +1180,7 @@ void getVectorField__Q24Game8ItemGateFRQ23Sys6SphereR10Vector3<float>(void)
  * Address:	801C8340
  * Size:	00011C
  */
-void getWorkDistance__Q24Game8ItemGateFRQ23Sys6Sphere(void)
+void Game::ItemGate::getWorkDistance( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1275,7 +1275,7 @@ void getWorkDistance__Q24Game8ItemGateFRQ23Sys6Sphere(void)
  * Address:	801C845C
  * Size:	0003A8
  */
-void initPlanes__Q24Game8ItemGateFv(void)
+void Game::ItemGate::initPlanes(void)
 {
 /*
 .loc_0x0:
@@ -1533,7 +1533,7 @@ void initPlanes__Q24Game8ItemGateFv(void)
  * Address:	801C8804
  * Size:	0000D4
  */
-void changeMaterial__Q24Game8ItemGateFv(void)
+void Game::ItemGate::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -1608,7 +1608,7 @@ void changeMaterial__Q24Game8ItemGateFv(void)
  * Address:	801C88D8
  * Size:	0000A0
  */
-void getLifeGaugeParam__Q24Game8ItemGateFRQ24Game14LifeGaugeParam(void)
+void Game::ItemGate::getLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -1660,7 +1660,7 @@ void getLifeGaugeParam__Q24Game8ItemGateFRQ24Game14LifeGaugeParam(void)
  * Address:	801C8978
  * Size:	0001FC
  */
-void __ct__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2001,7 +2001,7 @@ void Container<Game::ItemGate>::~Container()
  * Address:	801C8D94
  * Size:	0000A0
  */
-void setupGate__Q24Game11ItemGateMgrFPQ24Game8ItemGate(void)
+void Game::ItemGateMgr::setupGate( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -2055,7 +2055,7 @@ void setupGate__Q24Game11ItemGateMgrFPQ24Game8ItemGate(void)
  * Address:	801C8E34
  * Size:	000158
  */
-void setupPlatform__Q24Game11ItemGateMgrFPQ24Game8ItemGate(void)
+void Game::ItemGateMgr::setupPlatform( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -2153,7 +2153,7 @@ void setupPlatform__Q24Game11ItemGateMgrFPQ24Game8ItemGate(void)
  * Address:	801C8F8C
  * Size:	0001D4
  */
-void birth__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -2290,7 +2290,7 @@ void birth__Q24Game11ItemGateMgrFv(void)
  * Address:	801C9160
  * Size:	0001E8
  */
-void initDependency__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::initDependency(void)
 {
 /*
 .loc_0x0:
@@ -2440,7 +2440,7 @@ void initDependency__Q24Game11ItemGateMgrFv(void)
  * Address:	801C9348
  * Size:	000054
  */
-void generatorNewItemParm__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::generatorNewItemParm(void)
 {
 /*
 .loc_0x0:
@@ -2475,7 +2475,7 @@ void generatorNewItemParm__Q24Game11ItemGateMgrFv(void)
  * Address:	801C939C
  * Size:	0000B0
  */
-void generatorWrite__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParm(void)
+void Game::ItemGateMgr::generatorWrite( (Stream &, Game::GenItemParm *))
 {
 /*
 .loc_0x0:
@@ -2533,7 +2533,7 @@ void generatorWrite__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParm(void)
  * Address:	801C944C
  * Size:	0000A8
  */
-void generatorRead__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParmUl(void)
+void Game::ItemGateMgr::generatorRead( (Stream &, Game::GenItemParm *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2755,7 +2755,7 @@ void generatorBirth__Q24Game11ItemGateMgrFR10Vector3<float>R10Vector3<float>PQ24
  * Address:	801C971C
  * Size:	000014
  */
-void getCaveName__Q24Game11ItemGateMgrFi(void)
+void Game::ItemGateMgr::getCaveName( (int))
 {
 /*
 .loc_0x0:
@@ -2772,7 +2772,7 @@ void getCaveName__Q24Game11ItemGateMgrFi(void)
  * Address:	801C9730
  * Size:	00004C
  */
-void getCaveID__Q24Game11ItemGateMgrFPc(void)
+void Game::ItemGateMgr::getCaveID( (char *))
 {
 /*
 .loc_0x0:
@@ -2803,7 +2803,7 @@ void getCaveID__Q24Game11ItemGateMgrFPc(void)
  * Address:	801C977C
  * Size:	000004
  */
-void init__Q24Game13GateWaitStateFPQ24Game8ItemGatePQ24Game8StateArg(void)
+void Game::GateWaitState::init( (Game::ItemGate *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2816,7 +2816,7 @@ void init__Q24Game13GateWaitStateFPQ24Game8ItemGatePQ24Game8StateArg(void)
  * Address:	801C9780
  * Size:	000004
  */
-void exec__Q24Game13GateWaitStateFPQ24Game8ItemGate(void)
+void Game::GateWaitState::exec( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -2829,7 +2829,7 @@ void exec__Q24Game13GateWaitStateFPQ24Game8ItemGate(void)
  * Address:	801C9784
  * Size:	000004
  */
-void cleanup__Q24Game13GateWaitStateFPQ24Game8ItemGate(void)
+void Game::GateWaitState::cleanup( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -2842,7 +2842,7 @@ void cleanup__Q24Game13GateWaitStateFPQ24Game8ItemGate(void)
  * Address:	801C9788
  * Size:	000040
  */
-void onDamage__Q24Game13GateWaitStateFPQ24Game8ItemGatef(void)
+void Game::GateWaitState::onDamage( (Game::ItemGate *, float))
 {
 /*
 .loc_0x0:
@@ -2894,7 +2894,7 @@ void transit__Q24Game26FSMState<Game::ItemGate>FPQ24Game8ItemGateiPQ24Game8State
  * Address:	801C97F8
  * Size:	000004
  */
-void onKeyEvent__Q24Game13GateWaitStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent(void)
+void Game::GateWaitState::onKeyEvent( (Game::ItemGate *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -2907,7 +2907,7 @@ void onKeyEvent__Q24Game13GateWaitStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent(
  * Address:	801C97FC
  * Size:	00005C
  */
-void init__Q24Game16GateDamagedStateFPQ24Game8ItemGatePQ24Game8StateArg(void)
+void Game::GateDamagedState::init( (Game::ItemGate *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2944,7 +2944,7 @@ void init__Q24Game16GateDamagedStateFPQ24Game8ItemGatePQ24Game8StateArg(void)
  * Address:	801C9858
  * Size:	0000C0
  */
-void exec__Q24Game16GateDamagedStateFPQ24Game8ItemGate(void)
+void Game::GateDamagedState::exec( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -3012,7 +3012,7 @@ void exec__Q24Game16GateDamagedStateFPQ24Game8ItemGate(void)
  * Address:	801C9918
  * Size:	000004
  */
-void cleanup__Q24Game16GateDamagedStateFPQ24Game8ItemGate(void)
+void Game::GateDamagedState::cleanup( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -3025,7 +3025,7 @@ void cleanup__Q24Game16GateDamagedStateFPQ24Game8ItemGate(void)
  * Address:	801C991C
  * Size:	000010
  */
-void onDamage__Q24Game16GateDamagedStateFPQ24Game8ItemGatef(void)
+void Game::GateDamagedState::onDamage( (Game::ItemGate *, float))
 {
 /*
 .loc_0x0:
@@ -3041,7 +3041,7 @@ void onDamage__Q24Game16GateDamagedStateFPQ24Game8ItemGatef(void)
  * Address:	801C992C
  * Size:	00000C
  */
-void onKeyEvent__Q24Game16GateDamagedStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent(void)
+void Game::GateDamagedState::onKeyEvent( (Game::ItemGate *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -3056,7 +3056,7 @@ void onKeyEvent__Q24Game16GateDamagedStateFPQ24Game8ItemGateRCQ28SysShape8KeyEve
  * Address:	801C9938
  * Size:	000224
  */
-void init__Q24Game13GateDownStateFPQ24Game8ItemGatePQ24Game8StateArg(void)
+void Game::GateDownState::init( (Game::ItemGate *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3213,7 +3213,7 @@ void init__Q24Game13GateDownStateFPQ24Game8ItemGatePQ24Game8StateArg(void)
  * Address:	801C9B5C
  * Size:	000008
  */
-void getFaceDir__Q24Game8ItemGateFv(void)
+void Game::ItemGate::getFaceDir(void)
 {
 /*
 .loc_0x0:
@@ -3227,7 +3227,7 @@ void getFaceDir__Q24Game8ItemGateFv(void)
  * Address:	801C9B64
  * Size:	000004
  */
-void exec__Q24Game13GateDownStateFPQ24Game8ItemGate(void)
+void Game::GateDownState::exec( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -3240,7 +3240,7 @@ void exec__Q24Game13GateDownStateFPQ24Game8ItemGate(void)
  * Address:	801C9B68
  * Size:	000004
  */
-void cleanup__Q24Game13GateDownStateFPQ24Game8ItemGate(void)
+void Game::GateDownState::cleanup( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -3253,7 +3253,7 @@ void cleanup__Q24Game13GateDownStateFPQ24Game8ItemGate(void)
  * Address:	801C9B6C
  * Size:	000010
  */
-void onDamage__Q24Game13GateDownStateFPQ24Game8ItemGatef(void)
+void Game::GateDownState::onDamage( (Game::ItemGate *, float))
 {
 /*
 .loc_0x0:
@@ -3269,7 +3269,7 @@ void onDamage__Q24Game13GateDownStateFPQ24Game8ItemGatef(void)
  * Address:	801C9B7C
  * Size:	000168
  */
-void onKeyEvent__Q24Game13GateDownStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent(void)
+void Game::GateDownState::onKeyEvent( (Game::ItemGate *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -3381,7 +3381,7 @@ void onKeyEvent__Q24Game13GateDownStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent(
  * Address:	801C9CE4
  * Size:	000180
  */
-void __ct__Q34Game15ItemDengekiGate3MgrFv(void)
+void Game::ItemDengekiGate::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3582,7 +3582,7 @@ void __dt__Q24Game29NodeItemMgr<Game::ItemGate>Fv(void)
  * Address:	801C9F80
  * Size:	0000A4
  */
-void setupGate__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate(void)
+void Game::ItemDengekiGate::Mgr::setupGate( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -3637,7 +3637,7 @@ void setupGate__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate(void)
  * Address:	801CA024
  * Size:	000158
  */
-void setupPlatform__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate(void)
+void Game::ItemDengekiGate::Mgr::setupPlatform( (Game::ItemGate *))
 {
 /*
 .loc_0x0:
@@ -3735,7 +3735,7 @@ void setupPlatform__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate(void)
  * Address:	801CA17C
  * Size:	000054
  */
-void generatorNewItemParm__Q34Game15ItemDengekiGate3MgrFv(void)
+void Game::ItemDengekiGate::Mgr::generatorNewItemParm(void)
 {
 /*
 .loc_0x0:
@@ -3770,7 +3770,7 @@ void generatorNewItemParm__Q34Game15ItemDengekiGate3MgrFv(void)
  * Address:	801CA1D0
  * Size:	000084
  */
-void generatorWrite__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParm(void)
+void Game::ItemDengekiGate::Mgr::generatorWrite( (Stream &, Game::GenItemParm *))
 {
 /*
 .loc_0x0:
@@ -3817,7 +3817,7 @@ void generatorWrite__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParm(
  * Address:	801CA254
  * Size:	000060
  */
-void generatorRead__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParmUl(void)
+void Game::ItemDengekiGate::Mgr::generatorRead( (Stream &, Game::GenItemParm *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -3915,7 +3915,7 @@ void generatorBirth__Q34Game15ItemDengekiGate3MgrFR10Vector3<float>R10Vector3<fl
  * Address:	801CA36C
  * Size:	000014
  */
-void getCaveName__Q34Game15ItemDengekiGate3MgrFi(void)
+void Game::ItemDengekiGate::Mgr::getCaveName( (int))
 {
 /*
 .loc_0x0:
@@ -3932,7 +3932,7 @@ void getCaveName__Q34Game15ItemDengekiGate3MgrFi(void)
  * Address:	801CA380
  * Size:	00004C
  */
-void getCaveID__Q34Game15ItemDengekiGate3MgrFPc(void)
+void Game::ItemDengekiGate::Mgr::getCaveID( (char *))
 {
 /*
 .loc_0x0:
@@ -3963,7 +3963,7 @@ void getCaveID__Q34Game15ItemDengekiGate3MgrFPc(void)
  * Address:	801CA3CC
  * Size:	000134
  */
-void __dt__Q34Game15ItemDengekiGate3MgrFv(void)
+void Game::ItemDengekiGate::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4060,7 +4060,7 @@ void __dt__Q34Game15ItemDengekiGate3MgrFv(void)
  * Address:	801CA500
  * Size:	00000C
  */
-void generatorGetID__Q34Game15ItemDengekiGate3MgrFv(void)
+void Game::ItemDengekiGate::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -4075,7 +4075,7 @@ void generatorGetID__Q34Game15ItemDengekiGate3MgrFv(void)
  * Address:	801CA50C
  * Size:	00000C
  */
-void generatorLocalVersion__Q34Game15ItemDengekiGate3MgrFv(void)
+void Game::ItemDengekiGate::Mgr::generatorLocalVersion(void)
 {
 /*
 .loc_0x0:
@@ -4090,7 +4090,7 @@ void generatorLocalVersion__Q34Game15ItemDengekiGate3MgrFv(void)
  * Address:	801CA518
  * Size:	00000C
  */
-void generatorGetID__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -4105,7 +4105,7 @@ void generatorGetID__Q24Game11ItemGateMgrFv(void)
  * Address:	801CA524
  * Size:	00000C
  */
-void generatorLocalVersion__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::generatorLocalVersion(void)
 {
 /*
 .loc_0x0:
@@ -4120,7 +4120,7 @@ void generatorLocalVersion__Q24Game11ItemGateMgrFv(void)
  * Address:	801CA530
  * Size:	00002C
  */
-void doAnimation__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -4143,7 +4143,7 @@ void doAnimation__Q24Game11ItemGateMgrFv(void)
  * Address:	801CA55C
  * Size:	00002C
  */
-void doEntry__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -4166,7 +4166,7 @@ void doEntry__Q24Game11ItemGateMgrFv(void)
  * Address:	801CA588
  * Size:	00002C
  */
-void doSetView__Q24Game11ItemGateMgrFi(void)
+void Game::ItemGateMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -4189,7 +4189,7 @@ void doSetView__Q24Game11ItemGateMgrFi(void)
  * Address:	801CA5B4
  * Size:	00002C
  */
-void doViewCalc__Q24Game11ItemGateMgrFv(void)
+void Game::ItemGateMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -4212,7 +4212,7 @@ void doViewCalc__Q24Game11ItemGateMgrFv(void)
  * Address:	801CA5E0
  * Size:	00002C
  */
-void doSimulation__Q24Game11ItemGateMgrFf(void)
+void Game::ItemGateMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -4235,7 +4235,7 @@ void doSimulation__Q24Game11ItemGateMgrFf(void)
  * Address:	801CA60C
  * Size:	00002C
  */
-void doDirectDraw__Q24Game11ItemGateMgrFR8Graphics(void)
+void Game::ItemGateMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -4258,7 +4258,7 @@ void doDirectDraw__Q24Game11ItemGateMgrFR8Graphics(void)
  * Address:	801CA638
  * Size:	000008
  */
-void getName__Q23efx7ArgRotYFv(void)
+void efx::ArgRotY::getName(void)
 {
 /*
 .loc_0x0:
@@ -4272,7 +4272,7 @@ void getName__Q23efx7ArgRotYFv(void)
  * Address:	801CA640
  * Size:	00009C
  */
-void __dt__Q23efx7TEgateAFv(void)
+void efx::TEgateA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4327,7 +4327,7 @@ void __dt__Q23efx7TEgateAFv(void)
  * Address:	801CA6DC
  * Size:	000008
  */
-void getCreatureName__Q24Game8ItemGateFv(void)
+void Game::ItemGate::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -4341,7 +4341,7 @@ void getCreatureName__Q24Game8ItemGateFv(void)
  * Address:	801CA6E4
  * Size:	000008
  */
-void getMabiki__Q24Game8ItemGateFv(void)
+void Game::ItemGate::getMabiki(void)
 {
 /*
 .loc_0x0:
@@ -4355,7 +4355,7 @@ void getMabiki__Q24Game8ItemGateFv(void)
  * Address:	801CA6EC
  * Size:	000004
  */
-void makeTrMatrix__Q24Game8ItemGateFv(void)
+void Game::ItemGate::makeTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -4368,7 +4368,7 @@ void makeTrMatrix__Q24Game8ItemGateFv(void)
  * Address:	801CA6F0
  * Size:	000004
  */
-void do_doAnimation__Q24Game8BaseItemFv(void)
+void Game::BaseItem::do_doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -4406,7 +4406,7 @@ void doAI__Q24Game59FSMItem<Game::ItemGate, Game::GateFSM, Game::GateState>Fv(vo
  * Address:	801CA728
  * Size:	000008
  */
-void getCreatureName__Q24Game8BaseItemFv(void)
+void Game::BaseItem::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -4420,7 +4420,7 @@ void getCreatureName__Q24Game8BaseItemFv(void)
  * Address:	801CA730
  * Size:	000004
  */
-void changeMaterial__Q24Game8BaseItemFv(void)
+void Game::BaseItem::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -4433,7 +4433,7 @@ void changeMaterial__Q24Game8BaseItemFv(void)
  * Address:	801CA734
  * Size:	000008
  */
-void getFaceDir__Q24Game8BaseItemFv(void)
+void Game::BaseItem::getFaceDir(void)
 {
 /*
 .loc_0x0:
@@ -6782,7 +6782,7 @@ void @376@onKeyEvent__Q24Game59FSMItem<Game::ItemGate, Game::GateFSM, Game::Gate
  * Address:	801CBF70
  * Size:	000008
  */
-void @376@onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent(void)
+void @376@Game::ItemGate::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -6796,7 +6796,7 @@ void @376@onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent(void)
  * Address:	801CBF78
  * Size:	000008
  */
-void @4@__dt__Q23efx7TEgateAFv(void)
+void @4@efx::TEgateA::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6978,7 +6978,7 @@ void @48@get__Q24Game29NodeItemMgr<Game::ItemGate>FPv(void)
  * Address:	801CBFE0
  * Size:	000008
  */
-void @48@__dt__Q34Game15ItemDengekiGate3MgrFv(void)
+void @48@Game::ItemDengekiGate::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

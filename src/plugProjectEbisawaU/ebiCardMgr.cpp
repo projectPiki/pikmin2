@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803D1104
  * Size:	000A2C
  */
-void init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMStateMachine::init( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -732,7 +732,7 @@ void init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr(void)
  * Address:	803D1B30
  * Size:	00002C
  */
-void init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
+void ebi::CardError::FSMState::init( (ebi::CardError::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -755,7 +755,7 @@ void init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg(voi
  * Address:	803D1B5C
  * Size:	000004
  */
-void do_init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
+void ebi::CardError::FSMState::do_init( (ebi::CardError::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -768,7 +768,7 @@ void do_init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg(
  * Address:	803D1B60
  * Size:	00002C
  */
-void exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState::exec( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -791,7 +791,7 @@ void exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr(void)
  * Address:	803D1B8C
  * Size:	000004
  */
-void do_exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState::do_exec( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -804,7 +804,7 @@ void do_exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr(void)
  * Address:	803D1B90
  * Size:	000084
  */
-void do_init__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
+void ebi::CardError::FSMState_Warning::do_init( (ebi::CardError::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -849,7 +849,7 @@ void do_init__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgrPQ24Game8
  * Address:	803D1C14
  * Size:	0000A4
  */
-void do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Warning::do_exec( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -908,7 +908,7 @@ void do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr(void)
  * Address:	803D1CB8
  * Size:	00003C
  */
-void do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
+void ebi::CardError::FSMState_Question::do_init( (ebi::CardError::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -935,7 +935,7 @@ void do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game
  * Address:	803D1CF4
  * Size:	000098
  */
-void do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Question::do_exec( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -991,7 +991,7 @@ void do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr(void)
  * Address:	803D1D8C
  * Size:	000074
  */
-void do_init__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
+void ebi::CardError::FSMState_CardRequest::do_init( (ebi::CardError::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1032,7 +1032,7 @@ void do_init__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgrPQ24G
  * Address:	803D1E00
  * Size:	000350
  */
-void do_exec__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_exec( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1286,7 +1286,7 @@ void do_exec__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void
  * Address:	803D2150
  * Size:	000064
  */
-void do_transitCardNoCard__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardNoCard( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1351,7 +1351,7 @@ void transit__Q24Game31FSMState<ebi::CardError::TMgr>FPQ33ebi9CardError4TMgriPQ2
  * Address:	803D21E4
  * Size:	000064
  */
-void do_transitCardIOError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardIOError( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1392,7 +1392,7 @@ void do_transitCardIOError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardE
  * Address:	803D2248
  * Size:	000064
  */
-void do_transitCardWrongDevice__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardWrongDevice( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1433,7 +1433,7 @@ void do_transitCardWrongDevice__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9C
  * Address:	803D22AC
  * Size:	000064
  */
-void do_transitCardWrongSector__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardWrongSector( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1474,7 +1474,7 @@ void do_transitCardWrongSector__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9C
  * Address:	803D2310
  * Size:	000064
  */
-void do_transitCardBroken__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardBroken( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1515,7 +1515,7 @@ void do_transitCardBroken__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardEr
  * Address:	803D2374
  * Size:	000064
  */
-void do_transitCardEncoding__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardEncoding( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1556,7 +1556,7 @@ void do_transitCardEncoding__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9Card
  * Address:	803D23D8
  * Size:	000064
  */
-void do_transitCardNoFileSpace__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardNoFileSpace( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1597,7 +1597,7 @@ void do_transitCardNoFileSpace__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9C
  * Address:	803D243C
  * Size:	000064
  */
-void do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardNoFileEntry( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1638,7 +1638,7 @@ void do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9C
  * Address:	803D24A0
  * Size:	000064
  */
-void do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardFileOpenError( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1679,7 +1679,7 @@ void do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi
  * Address:	803D2504
  * Size:	000068
  */
-void do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_CardRequest::do_transitCardSerialNoError( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1721,7 +1721,7 @@ void do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi
  * Address:	803D256C
  * Size:	000034
  */
-void do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8StateArg(void)
+void ebi::CardError::FSMState_NoCard::do_init( (ebi::CardError::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1746,7 +1746,7 @@ void do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8S
  * Address:	803D25A0
  * Size:	0000B0
  */
-void do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_NoCard::do_exec( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1808,7 +1808,7 @@ void do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr(void)
  * Address:	803D2650
  * Size:	000094
  */
-void __ct__Q33ebi9CardError4TMgrFv(void)
+void ebi::CardError::TMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1882,7 +1882,7 @@ void start__Q24Game35StateMachine<ebi::CardError::TMgr>FPQ33ebi9CardError4TMgriP
  * Address:	803D2718
  * Size:	000460
  */
-void __dt__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2206,7 +2206,7 @@ void __dt__Q33ebi6Screen11TMemoryCardFv(void)
  * Address:	803D2B78
  * Size:	0004C8
  */
-void __ct__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2524,7 +2524,7 @@ void __ct__Q33ebi6Screen11TMemoryCardFv(void)
  * Address:	........
  * Size:	0000A0
  */
-void __dt__Q23ebi12TYesNoCursorFv(void)
+void ebi::TYesNoCursor::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2534,7 +2534,7 @@ void __dt__Q23ebi12TYesNoCursorFv(void)
  * Address:	803D3040
  * Size:	000378
  */
-void startSeq__Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr9enumStart(void)
+void ebi::CardError::TMgr::startSeq( (ebi::CardError::TMgr::enumStart))
 {
 /*
 .loc_0x0:
@@ -2774,7 +2774,7 @@ void startSeq__Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr9enumStart(void)
  * Address:	803D33B8
  * Size:	000050
  */
-void forceQuitSeq__Q33ebi9CardError4TMgrFv(void)
+void ebi::CardError::TMgr::forceQuitSeq(void)
 {
 /*
 .loc_0x0:
@@ -2806,7 +2806,7 @@ void forceQuitSeq__Q33ebi9CardError4TMgrFv(void)
  * Address:	803D3408
  * Size:	000044
  */
-void goEnd___Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr7enumEnd(void)
+void ebi::CardError::TMgr::goEnd_( (ebi::CardError::TMgr::enumEnd))
 {
 /*
 .loc_0x0:
@@ -2835,7 +2835,7 @@ void goEnd___Q33ebi9CardError4TMgrFQ43ebi9CardError4TMgr7enumEnd(void)
  * Address:	803D344C
  * Size:	0000E0
  */
-void checkAndTransitNoCard___Q33ebi9CardError4TMgrFv(void)
+void ebi::CardError::TMgr::checkAndTransitNoCard_(void)
 {
 /*
 .loc_0x0:
@@ -2913,7 +2913,7 @@ void checkAndTransitNoCard___Q33ebi9CardError4TMgrFv(void)
  * Address:	803D352C
  * Size:	00006C
  */
-void update__Q33ebi9CardError4TMgrFv(void)
+void ebi::CardError::TMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -2954,7 +2954,7 @@ void update__Q33ebi9CardError4TMgrFv(void)
  * Address:	803D3598
  * Size:	00003C
  */
-void draw__Q33ebi9CardError4TMgrFv(void)
+void ebi::CardError::TMgr::draw(void)
 {
 /*
 .loc_0x0:
@@ -2983,7 +2983,7 @@ void draw__Q33ebi9CardError4TMgrFv(void)
  * Address:	803D35D4
  * Size:	000050
  */
-void isGetEnd__Q33ebi9CardError4TMgrFv(void)
+void ebi::CardError::TMgr::isGetEnd(void)
 {
 /*
 .loc_0x0:
@@ -3023,7 +3023,7 @@ void isGetEnd__Q33ebi9CardError4TMgrFv(void)
  * Address:	........
  * Size:	000028
  */
-void isFinish__Q33ebi9CardError4TMgrFv(void)
+void ebi::CardError::TMgr::isFinish(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3033,7 +3033,7 @@ void isFinish__Q33ebi9CardError4TMgrFv(void)
  * Address:	........
  * Size:	000004
  */
-void showInfo__Q33ebi9CardError4TMgrFllll(void)
+void ebi::CardError::TMgr::showInfo( (long, long, long, long))
 {
 	// UNUSED FUNCTION
 }
@@ -3043,7 +3043,7 @@ void showInfo__Q33ebi9CardError4TMgrFllll(void)
  * Address:	803D3624
  * Size:	000058
  */
-void getStateID__Q33ebi9CardError4TMgrFv(void)
+void ebi::CardError::TMgr::getStateID(void)
 {
 /*
 .loc_0x0:

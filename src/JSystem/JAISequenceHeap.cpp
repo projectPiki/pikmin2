@@ -5,7 +5,7 @@
  * Address:	800B0340
  * Size:	000254
  */
-void init__Q27JAInter7HeapMgrFUcUlUcUl(void)
+void JAInter::HeapMgr::init( (unsigned char, unsigned long, unsigned char, unsigned long))
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void init__Q27JAInter7HeapMgrFUcUlUcUl(void)
  * Address:	800B0594
  * Size:	000008
  */
-void getAutoHeapPointer__Q27JAInter7HeapMgrFv(void)
+void JAInter::HeapMgr::getAutoHeapPointer(void)
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void getAutoHeapPointer__Q27JAInter7HeapMgrFv(void)
  * Address:	........
  * Size:	000008
  */
-void getStayHeapPointer__Q27JAInter7HeapMgrFv(void)
+void JAInter::HeapMgr::getStayHeapPointer(void)
 {
 	// UNUSED FUNCTION
 }
@@ -202,7 +202,7 @@ void getStayHeapPointer__Q27JAInter7HeapMgrFv(void)
  * Address:	........
  * Size:	000008
  */
-void getAutoHeapCount__Q27JAInter7HeapMgrFv(void)
+void JAInter::HeapMgr::getAutoHeapCount(void)
 {
 	// UNUSED FUNCTION
 }
@@ -212,7 +212,7 @@ void getAutoHeapCount__Q27JAInter7HeapMgrFv(void)
  * Address:	........
  * Size:	000008
  */
-void getStayHeapCount__Q27JAInter7HeapMgrFv(void)
+void JAInter::HeapMgr::getStayHeapCount(void)
 {
 	// UNUSED FUNCTION
 }
@@ -222,7 +222,7 @@ void getStayHeapCount__Q27JAInter7HeapMgrFv(void)
  * Address:	800B059C
  * Size:	000100
  */
-void checkOnMemory__Q27JAInter7HeapMgrFUlPUc(void)
+void JAInter::HeapMgr::checkOnMemory( (unsigned long, unsigned char *))
 {
 /*
 .loc_0x0:
@@ -318,7 +318,7 @@ void checkOnMemory__Q27JAInter7HeapMgrFUlPUc(void)
  * Address:	800B069C
  * Size:	000024
  */
-void releaseAutoHeapPointer__Q27JAInter7HeapMgrFUc(void)
+void JAInter::HeapMgr::releaseAutoHeapPointer( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -339,7 +339,7 @@ void releaseAutoHeapPointer__Q27JAInter7HeapMgrFUc(void)
  * Address:	........
  * Size:	000074
  */
-void changeAutoHeapPointerToPosition__Q27JAInter7HeapMgrFPUc(void)
+void JAInter::HeapMgr::changeAutoHeapPointerToPosition( (unsigned char *))
 {
 	// UNUSED FUNCTION
 }
@@ -349,7 +349,7 @@ void changeAutoHeapPointerToPosition__Q27JAInter7HeapMgrFPUc(void)
  * Address:	800B06C0
  * Size:	0000E8
  */
-void checkUsefulAutoHeapPosition__Q27JAInter7HeapMgrFv(void)
+void JAInter::HeapMgr::checkUsefulAutoHeapPosition(void)
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void checkUsefulAutoHeapPosition__Q27JAInter7HeapMgrFv(void)
  * Address:	800B07A8
  * Size:	000048
  */
-void getFreeAutoHeapPointer__Q27JAInter7HeapMgrFUcUl(void)
+void JAInter::HeapMgr::getFreeAutoHeapPointer( (unsigned char, unsigned long))
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void getFreeAutoHeapPointer__Q27JAInter7HeapMgrFUcUl(void)
  * Address:	800B07F0
  * Size:	00000C
  */
-void checkUsefulStayHeapPosition__Q27JAInter7HeapMgrFv(void)
+void JAInter::HeapMgr::checkUsefulStayHeapPosition(void)
 {
 /*
 .loc_0x0:
@@ -478,7 +478,7 @@ void checkUsefulStayHeapPosition__Q27JAInter7HeapMgrFv(void)
  * Address:	800B07FC
  * Size:	000108
  */
-void getFreeStayHeapPointer__Q27JAInter7HeapMgrFUlUl(void)
+void JAInter::HeapMgr::getFreeStayHeapPointer( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -566,7 +566,7 @@ void getFreeStayHeapPointer__Q27JAInter7HeapMgrFUlUl(void)
  * Address:	........
  * Size:	00003C
  */
-void clearAutoHeap__Q27JAInter7HeapMgrFPQ27JAInter9HeapBlock(void)
+void JAInter::HeapMgr::clearAutoHeap( (JAInter::HeapBlock *))
 {
 	// UNUSED FUNCTION
 }
@@ -576,7 +576,7 @@ void clearAutoHeap__Q27JAInter7HeapMgrFPQ27JAInter9HeapBlock(void)
  * Address:	........
  * Size:	000054
  */
-void clearAutoHeap__Q27JAInter7HeapMgrFUl(void)
+void JAInter::HeapMgr::clearAutoHeap( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -586,7 +586,7 @@ void clearAutoHeap__Q27JAInter7HeapMgrFUl(void)
  * Address:	........
  * Size:	00006C
  */
-void clearStayHeap__Q27JAInter7HeapMgrFUl(void)
+void JAInter::HeapMgr::clearStayHeap( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -596,7 +596,7 @@ void clearStayHeap__Q27JAInter7HeapMgrFUl(void)
  * Address:	........
  * Size:	00007C
  */
-void getAutoHeapPointer__Q27JAInter7HeapMgrFUl(void)
+void JAInter::HeapMgr::getAutoHeapPointer( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -606,7 +606,7 @@ void getAutoHeapPointer__Q27JAInter7HeapMgrFUl(void)
  * Address:	800B0904
  * Size:	000014
  */
-void setAutoHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc(void)
+void JAInter::HeapMgr::setAutoHeapLoadedFlag( (unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void setAutoHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc(void)
  * Address:	800B0918
  * Size:	000014
  */
-void setStayHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc(void)
+void JAInter::HeapMgr::setStayHeapLoadedFlag( (unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -640,7 +640,7 @@ void setStayHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc(void)
  * Address:	800B092C
  * Size:	000018
  */
-void __ct__Q27JAInter9HeapBlockFv(void)
+void JAInter::HeapBlock::__ct(void)
 {
 /*
 .loc_0x0:

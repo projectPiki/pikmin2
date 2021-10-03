@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80349DD8
  * Size:	000050
  */
-void __ct__Q34Game4Bomb3MgrFiUc(void)
+void Game::Bomb::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game4Bomb3MgrFiUc(void)
  * Address:	80349E28
  * Size:	000048
  */
-void doAlloc__Q34Game4Bomb3MgrFv(void)
+void Game::Bomb::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game4Bomb3MgrFv(void)
  * Address:	80349E70
  * Size:	000150
  */
-void __ct__Q34Game4Bomb5ParmsFv(void)
+void Game::Bomb::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void __ct__Q34Game4Bomb5ParmsFv(void)
  * Address:	80349FC0
  * Size:	000020
  */
-void birth__Q34Game4Bomb3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::Bomb::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void birth__Q34Game4Bomb3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	80349FE0
  * Size:	0000B0
  */
-void __dt__Q34Game4Bomb3MgrFv(void)
+void Game::Bomb::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void __dt__Q34Game4Bomb3MgrFv(void)
  * Address:	8034A090
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Bomb3MgrFv(void)
+void Game::Bomb::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -271,7 +271,7 @@ void getEnemyTypeID__Q34Game4Bomb3MgrFv(void)
  * Address:	8034A098
  * Size:	000060
  */
-void createObj__Q34Game4Bomb3MgrFi(void)
+void Game::Bomb::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -307,7 +307,7 @@ void createObj__Q34Game4Bomb3MgrFi(void)
  * Address:	8034A0F8
  * Size:	0000BC
  */
-void __dt__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void __dt__Q34Game4Bomb3ObjFv(void)
  * Address:	8034A1B4
  * Size:	000010
  */
-void getEnemy__Q34Game4Bomb3MgrFi(void)
+void Game::Bomb::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void getEnemy__Q34Game4Bomb3MgrFi(void)
  * Address:	8034A1C4
  * Size:	000050
  */
-void read__Q34Game4Bomb5ParmsFR6Stream(void)
+void Game::Bomb::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void read__Q34Game4Bomb5ParmsFR6Stream(void)
  * Address:	8034A214
  * Size:	000008
  */
-void @4@__dt__Q34Game4Bomb3MgrFv(void)
+void @4@Game::Bomb::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

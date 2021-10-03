@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00007C
  */
-void initAnimators__Q23efx9OnyonSpotFPQ23Sys15MatTexAnimationPQ23Sys18MatTevRegAnimation(void)
+void efx::OnyonSpot::initAnimators( (Sys::MatTexAnimation *, Sys::MatTevRegAnimation *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void initAnimators__Q23efx9OnyonSpotFPQ23Sys15MatTexAnimationPQ23Sys18MatTevRegA
  * Address:	802055A4
  * Size:	000024
  */
-void getLODSphere__Q23efx9OnyonSpotFRQ23Sys6Sphere(void)
+void efx::OnyonSpot::getLODSphere( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -46,7 +46,7 @@ void getLODSphere__Q23efx9OnyonSpotFRQ23Sys6Sphere(void)
  * Address:	802055C8
  * Size:	000054
  */
-void getLODCylinder__Q23efx9OnyonSpotFRQ23Sys8Cylinder(void)
+void efx::OnyonSpot::getLODCylinder( (Sys::Cylinder &))
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void getLODCylinder__Q23efx9OnyonSpotFRQ23Sys8Cylinder(void)
  * Address:	8020561C
  * Size:	000050
  */
-void changeMaterial__Q23efx9OnyonSpotFv(void)
+void efx::OnyonSpot::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void changeMaterial__Q23efx9OnyonSpotFv(void)
  * Address:	8020566C
  * Size:	0001A4
  */
-void loadResources__Q23efx13OnyonSpotDataFv(void)
+void efx::OnyonSpotData::loadResources(void)
 {
 /*
 .loc_0x0:
@@ -234,7 +234,7 @@ void loadResources__Q23efx13OnyonSpotDataFv(void)
  * Address:	80205810
  * Size:	000180
  */
-void onCreate__Q23efx13OnyonSpotDataFP20ModelEffectCreateArg(void)
+void efx::OnyonSpotData::onCreate( (ModelEffectCreateArg *))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void onCreate__Q23efx13OnyonSpotDataFP20ModelEffectCreateArg(void)
  * Address:	80205990
  * Size:	000014
  */
-void getID__Q23efx13OnyonSpotDataFv(void)
+void efx::OnyonSpotData::getID(void)
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void getID__Q23efx13OnyonSpotDataFv(void)
  * Address:	802059A4
  * Size:	000070
  */
-void __dt__Q23efx13OnyonSpotDataFv(void)
+void efx::OnyonSpotData::__dt(void)
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void __dt__Q23efx13OnyonSpotDataFv(void)
  * Address:	80205A14
  * Size:	000008
  */
-void useCylinderLOD__Q23efx9OnyonSpotFv(void)
+void efx::OnyonSpot::useCylinderLOD(void)
 {
 /*
 .loc_0x0:

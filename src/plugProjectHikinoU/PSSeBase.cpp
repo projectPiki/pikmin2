@@ -5,7 +5,7 @@
  * Address:	80340838
  * Size:	0000A4
  */
-void __ct__Q28PSSystem9EnvSeBaseFUlf(void)
+void PSSystem::EnvSeBase::__ct( (unsigned long, float))
 {
 /*
 .loc_0x0:
@@ -68,7 +68,7 @@ void JSULink<PSSystem::EnvSeBase>::~JSULink()
  * Address:	........
  * Size:	000024
  */
-void requestMoveParam__Q28PSSystem9EnvSeBaseFQ28PSSystem12MoveParamSet(void)
+void PSSystem::EnvSeBase::requestMoveParam( (PSSystem::MoveParamSet))
 {
 	// UNUSED FUNCTION
 }
@@ -78,7 +78,7 @@ void requestMoveParam__Q28PSSystem9EnvSeBaseFQ28PSSystem12MoveParamSet(void)
  * Address:	........
  * Size:	0000CC
  */
-void doMoveParamRequest__Q28PSSystem9EnvSeBaseFv(void)
+void PSSystem::EnvSeBase::doMoveParamRequest(void)
 {
 	// UNUSED FUNCTION
 }
@@ -88,7 +88,7 @@ void doMoveParamRequest__Q28PSSystem9EnvSeBaseFv(void)
  * Address:	........
  * Size:	00001C
  */
-void setPauseFlag__Q28PSSystem9EnvSeBaseFUc(void)
+void PSSystem::EnvSeBase::setPauseFlag( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -98,7 +98,7 @@ void setPauseFlag__Q28PSSystem9EnvSeBaseFUc(void)
  * Address:	803408DC
  * Size:	00035C
  */
-void exec__Q28PSSystem9EnvSeBaseFv(void)
+void PSSystem::EnvSeBase::exec(void)
 {
 /*
 .loc_0x0:
@@ -353,7 +353,7 @@ void exec__Q28PSSystem9EnvSeBaseFv(void)
  * Address:	80340C38
  * Size:	000040
  */
-void play__Q28PSSystem9EnvSeBaseFv(void)
+void PSSystem::EnvSeBase::play(void)
 {
 /*
 .loc_0x0:
@@ -381,7 +381,7 @@ void play__Q28PSSystem9EnvSeBaseFv(void)
  * Address:	80340C78
  * Size:	000034
  */
-void setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc(void)
+void PSSystem::EnvSeMgr::setAllPauseFlag( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -412,7 +412,7 @@ void setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc(void)
  * Address:	........
  * Size:	000040
  */
-void setPauseFlag__Q28PSSystem8EnvSeMgrFUlUc(void)
+void PSSystem::EnvSeMgr::setPauseFlag( (unsigned long, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -422,7 +422,7 @@ void setPauseFlag__Q28PSSystem8EnvSeMgrFUlUc(void)
  * Address:	80340CAC
  * Size:	000024
  */
-void on__Q28PSSystem8EnvSeMgrFv(void)
+void PSSystem::EnvSeMgr::on(void)
 {
 /*
 .loc_0x0:
@@ -447,7 +447,7 @@ void on__Q28PSSystem8EnvSeMgrFv(void)
  * Address:	80340CD0
  * Size:	000050
  */
-void on__Q28PSSystem8EnvSeMgrFUlb(void)
+void PSSystem::EnvSeMgr::on( (unsigned long, bool))
 {
 /*
 .loc_0x0:
@@ -489,7 +489,7 @@ void on__Q28PSSystem8EnvSeMgrFUlb(void)
  * Address:	80340D20
  * Size:	000024
  */
-void off__Q28PSSystem8EnvSeMgrFv(void)
+void PSSystem::EnvSeMgr::off(void)
 {
 /*
 .loc_0x0:
@@ -514,7 +514,7 @@ void off__Q28PSSystem8EnvSeMgrFv(void)
  * Address:	80340D44
  * Size:	000050
  */
-void off__Q28PSSystem8EnvSeMgrFUlb(void)
+void PSSystem::EnvSeMgr::off( (unsigned long, bool))
 {
 /*
 .loc_0x0:
@@ -556,7 +556,7 @@ void off__Q28PSSystem8EnvSeMgrFUlb(void)
  * Address:	80340D94
  * Size:	00000C
  */
-void reservePauseOff__Q28PSSystem8EnvSeMgrFv(void)
+void PSSystem::EnvSeMgr::reservePauseOff(void)
 {
 /*
 .loc_0x0:
@@ -571,7 +571,7 @@ void reservePauseOff__Q28PSSystem8EnvSeMgrFv(void)
  * Address:	80340DA0
  * Size:	000070
  */
-void setVolumeRequest__Q28PSSystem8EnvSeMgrFfUlUc(void)
+void PSSystem::EnvSeMgr::setVolumeRequest( (float, unsigned long, unsigned char))
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void setVolumeRequest__Q28PSSystem8EnvSeMgrFfUlUc(void)
  * Address:	80340E10
  * Size:	000080
  */
-void exec__Q28PSSystem8EnvSeMgrFv(void)
+void PSSystem::EnvSeMgr::exec(void)
 {
 /*
 .loc_0x0:
@@ -667,7 +667,7 @@ void exec__Q28PSSystem8EnvSeMgrFv(void)
  * Address:	80340E90
  * Size:	000038
  */
-void reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv(void)
+void PSSystem::EnvSe_PauseOffReservator::reservatorTask(void)
 {
 /*
 .loc_0x0:
@@ -699,7 +699,7 @@ void reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv(void)
  * Address:	80340EC8
  * Size:	000020
  */
-void __ct__Q38PSSystem9ClusterSe11PartInitArgFv(void)
+void PSSystem::ClusterSe::PartInitArg::__ct(void)
 {
 /*
 .loc_0x0:
@@ -719,7 +719,7 @@ void __ct__Q38PSSystem9ClusterSe11PartInitArgFv(void)
  * Address:	........
  * Size:	0001AC
  */
-void check__Q38PSSystem9ClusterSe11PartInitArgFv(void)
+void PSSystem::ClusterSe::PartInitArg::check(void)
 {
 	// UNUSED FUNCTION
 }
@@ -729,7 +729,7 @@ void check__Q38PSSystem9ClusterSe11PartInitArgFv(void)
  * Address:	80340EE8
  * Size:	00002C
  */
-void __ct__Q38PSSystem9ClusterSe4PartFv(void)
+void PSSystem::ClusterSe::Part::__ct(void)
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void __ct__Q38PSSystem9ClusterSe4PartFv(void)
  * Address:	........
  * Size:	0001E0
  */
-void identify__Q38PSSystem9ClusterSe4PartFQ38PSSystem9ClusterSe11PartInitArg(void)
+void PSSystem::ClusterSe::Part::identify( (PSSystem::ClusterSe::PartInitArg))
 {
 	// UNUSED FUNCTION
 }
@@ -762,7 +762,7 @@ void identify__Q38PSSystem9ClusterSe4PartFQ38PSSystem9ClusterSe11PartInitArg(voi
  * Address:	........
  * Size:	000160
  */
-void play__Q38PSSystem9ClusterSe4PartFUcPQ27JAInter6Object(void)
+void PSSystem::ClusterSe::Part::play( (unsigned char, JAInter::Object *))
 {
 	// UNUSED FUNCTION
 }
@@ -772,7 +772,7 @@ void play__Q38PSSystem9ClusterSe4PartFUcPQ27JAInter6Object(void)
  * Address:	80340F14
  * Size:	00003C
  */
-void callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object(void)
+void PSSystem::ClusterSe::Part::callSe( (JAInter::Object *))
 {
 /*
 .loc_0x0:
@@ -799,7 +799,7 @@ void callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object(void)
  * Address:	80340F50
  * Size:	000060
  */
-void __ct__Q38PSSystem9ClusterSe7FactoryFUc(void)
+void PSSystem::ClusterSe::Factory::__ct( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -837,7 +837,7 @@ void __ct__Q38PSSystem9ClusterSe7FactoryFUc(void)
  * Address:	80340FB0
  * Size:	000074
  */
-void constructPart__Q38PSSystem9ClusterSe7FactoryFv(void)
+void PSSystem::ClusterSe::Factory::constructPart(void)
 {
 /*
 .loc_0x0:
@@ -880,7 +880,7 @@ void constructPart__Q38PSSystem9ClusterSe7FactoryFv(void)
  * Address:	80341024
  * Size:	0002B4
  */
-void constructParts__Q38PSSystem9ClusterSe3MgrFRQ38PSSystem9ClusterSe7Factory(void)
+void PSSystem::ClusterSe::Mgr::constructParts( (PSSystem::ClusterSe::Factory &))
 {
 /*
 .loc_0x0:
@@ -1091,7 +1091,7 @@ void constructParts__Q38PSSystem9ClusterSe3MgrFRQ38PSSystem9ClusterSe7Factory(vo
  * Address:	803412D8
  * Size:	0001A4
  */
-void play__Q38PSSystem9ClusterSe3MgrFUcPQ27JAInter6Object(void)
+void PSSystem::ClusterSe::Mgr::play( (unsigned char, JAInter::Object *))
 {
 /*
 .loc_0x0:

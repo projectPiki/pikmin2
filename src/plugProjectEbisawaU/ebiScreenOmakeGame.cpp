@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803F0CF4
  * Size:	000278
  */
-void __ct__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::__ct(void)
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void __ct__Q33ebi6Screen10TOmakeGameFv(void)
  * Address:	803F0F6C
  * Size:	0002F4
  */
-void doSetArchive__Q33ebi6Screen10TOmakeGameFP10JKRArchive(void)
+void ebi::Screen::TOmakeGame::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -392,7 +392,7 @@ void doSetArchive__Q33ebi6Screen10TOmakeGameFP10JKRArchive(void)
  * Address:	803F1260
  * Size:	000294
  */
-void doOpenScreen__Q33ebi6Screen10TOmakeGameFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TOmakeGame::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -573,7 +573,7 @@ void doOpenScreen__Q33ebi6Screen10TOmakeGameFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803F14F4
  * Size:	00003C
  */
-void doCloseScreen__Q33ebi6Screen10TOmakeGameFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TOmakeGame::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -600,7 +600,7 @@ void doCloseScreen__Q33ebi6Screen10TOmakeGameFPQ33ebi6Screen8ArgClose(void)
  * Address:	803F1530
  * Size:	000054
  */
-void doUpdateStateOpen__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -633,7 +633,7 @@ void doUpdateStateOpen__Q33ebi6Screen10TOmakeGameFv(void)
  * Address:	803F1584
  * Size:	000258
  */
-void doUpdateStateWait__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -805,7 +805,7 @@ void doUpdateStateWait__Q33ebi6Screen10TOmakeGameFv(void)
  * Address:	803F17DC
  * Size:	000054
  */
-void doUpdateStateClose__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -838,7 +838,7 @@ void doUpdateStateClose__Q33ebi6Screen10TOmakeGameFv(void)
  * Address:	803F1830
  * Size:	000074
  */
-void doDraw__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -879,7 +879,7 @@ void doDraw__Q33ebi6Screen10TOmakeGameFv(void)
  * Address:	803F18A4
  * Size:	000044
  */
-void setController__Q33ebi6Screen10TOmakeGameFP10Controller(void)
+void ebi::Screen::TOmakeGame::setController( (Controller *))
 {
 /*
 .loc_0x0:
@@ -908,7 +908,7 @@ void setController__Q33ebi6Screen10TOmakeGameFP10Controller(void)
  * Address:	803F18E8
  * Size:	000048
  */
-void isDelegateControl__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::isDelegateControl(void)
 {
 /*
 .loc_0x0:
@@ -940,7 +940,7 @@ void isDelegateControl__Q33ebi6Screen10TOmakeGameFv(void)
  * Address:	803F1930
  * Size:	00003C
  */
-void setSelfControl__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::setSelfControl(void)
 {
 /*
 .loc_0x0:
@@ -967,7 +967,7 @@ void setSelfControl__Q33ebi6Screen10TOmakeGameFv(void)
  * Address:	803F196C
  * Size:	000108
  */
-void openMsg__Q33ebi6Screen10TOmakeGameFl(void)
+void ebi::Screen::TOmakeGame::openMsg( (long))
 {
 /*
 .loc_0x0:
@@ -1069,7 +1069,7 @@ void openMsg__Q33ebi6Screen10TOmakeGameFl(void)
  * Address:	803F1A74
  * Size:	00000C
  */
-void getName__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::getName(void)
 {
 /*
 .loc_0x0:

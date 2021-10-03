@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801A35EC
  * Size:	000060
  */
-void __ct__Q24Game10PathfinderFv(void)
+void Game::Pathfinder::__ct(void)
 {
 /*
 .loc_0x0:
@@ -53,7 +53,7 @@ void __ct__Q24Game10PathfinderFv(void)
  * Address:	801A364C
  * Size:	0000C4
  */
-void create__Q24Game10PathfinderFiPQ24Game8RouteMgr(void)
+void Game::Pathfinder::create( (int, Game::RouteMgr *))
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void create__Q24Game10PathfinderFiPQ24Game8RouteMgr(void)
  * Address:	801A3710
  * Size:	000020
  */
-void __ct__Q24Game12AStarContextFv(void)
+void Game::AStarContext::__ct(void)
 {
 /*
 .loc_0x0:
@@ -138,7 +138,7 @@ void __ct__Q24Game12AStarContextFv(void)
  * Address:	801A3730
  * Size:	000124
  */
-void update__Q24Game10PathfinderFv(void)
+void Game::Pathfinder::update(void)
 {
 /*
 .loc_0x0:
@@ -241,7 +241,7 @@ void update__Q24Game10PathfinderFv(void)
  * Address:	........
  * Size:	000024
  */
-void getFreeContext__Q24Game10PathfinderFv(void)
+void Game::Pathfinder::getFreeContext(void)
 {
 	// UNUSED FUNCTION
 }
@@ -251,7 +251,7 @@ void getFreeContext__Q24Game10PathfinderFv(void)
  * Address:	........
  * Size:	00004C
  */
-void getContext__Q24Game10PathfinderFUl(void)
+void Game::Pathfinder::getContext( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -261,7 +261,7 @@ void getContext__Q24Game10PathfinderFUl(void)
  * Address:	801A3854
  * Size:	00014C
  */
-void start__Q24Game10PathfinderFRQ24Game15PathfindRequest(void)
+void Game::Pathfinder::start( (Game::PathfindRequest &))
 {
 /*
 .loc_0x0:
@@ -372,7 +372,7 @@ void start__Q24Game10PathfinderFRQ24Game15PathfindRequest(void)
  * Address:	801A39A0
  * Size:	0000C0
  */
-void makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode(void)
+void Game::Pathfinder::makepath( (unsigned long, Game::PathNode **))
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode(void)
  * Address:	........
  * Size:	0000C8
  */
-void makepath__Q24Game10PathfinderFUlPsi(void)
+void Game::Pathfinder::makepath( (unsigned long, short *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -458,7 +458,7 @@ void makepath__Q24Game10PathfinderFUlPsi(void)
  * Address:	801A3A60
  * Size:	000070
  */
-void release__Q24Game10PathfinderFUl(void)
+void Game::Pathfinder::release( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -506,7 +506,7 @@ void release__Q24Game10PathfinderFUl(void)
  * Address:	801A3AD0
  * Size:	000098
  */
-void check__Q24Game10PathfinderFUl(void)
+void Game::Pathfinder::check( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -568,7 +568,7 @@ void check__Q24Game10PathfinderFUl(void)
  * Address:	........
  * Size:	000018
  */
-void initNode__Q24Game8PathNodeFv(void)
+void Game::PathNode::initNode(void)
 {
 	// UNUSED FUNCTION
 }
@@ -578,7 +578,7 @@ void initNode__Q24Game8PathNodeFv(void)
  * Address:	........
  * Size:	000038
  */
-void add__Q24Game8PathNodeFPQ24Game8PathNode(void)
+void Game::PathNode::add( (Game::PathNode *))
 {
 	// UNUSED FUNCTION
 }
@@ -588,7 +588,7 @@ void add__Q24Game8PathNodeFPQ24Game8PathNode(void)
  * Address:	........
  * Size:	000098
  */
-void del__Q24Game8PathNodeFv(void)
+void Game::PathNode::del(void)
 {
 	// UNUSED FUNCTION
 }
@@ -598,7 +598,7 @@ void del__Q24Game8PathNodeFv(void)
  * Address:	........
  * Size:	000018
  */
-void dump__Q24Game8PathNodeFPc(void)
+void Game::PathNode::dump( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -608,7 +608,7 @@ void dump__Q24Game8PathNodeFPc(void)
  * Address:	........
  * Size:	0000DC
  */
-void pop__Q24Game8PathNodeFv(void)
+void Game::PathNode::pop(void)
 {
 	// UNUSED FUNCTION
 }
@@ -618,7 +618,7 @@ void pop__Q24Game8PathNodeFv(void)
  * Address:	........
  * Size:	000038
  */
-void countLinks__Q24Game8PathNodeFPPQ24Game8PathNode(void)
+void Game::PathNode::countLinks( (Game::PathNode **))
 {
 	// UNUSED FUNCTION
 }
@@ -628,7 +628,7 @@ void countLinks__Q24Game8PathNodeFPPQ24Game8PathNode(void)
  * Address:	801A3B68
  * Size:	000078
  */
-void init__Q24Game12AStarContextFPQ24Game8RouteMgri(void)
+void Game::AStarContext::init( (Game::RouteMgr *, int))
 {
 /*
 .loc_0x0:
@@ -676,7 +676,7 @@ void init__Q24Game12AStarContextFPQ24Game8RouteMgri(void)
  * Address:	801A3BE0
  * Size:	00000C
  */
-void __ct__Q24Game15AStarPathfinderFv(void)
+void Game::AStarPathfinder::__ct(void)
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void __ct__Q24Game15AStarPathfinderFv(void)
  * Address:	801A3BEC
  * Size:	000008
  */
-void setContext__Q24Game15AStarPathfinderFPQ24Game12AStarContext(void)
+void Game::AStarPathfinder::setContext( (Game::AStarContext *))
 {
 /*
 .loc_0x0:
@@ -705,7 +705,7 @@ void setContext__Q24Game15AStarPathfinderFPQ24Game12AStarContext(void)
  * Address:	........
  * Size:	0000A0
  */
-void getNode__Q24Game12AStarContextFs(void)
+void Game::AStarContext::getNode( (short))
 {
 	// UNUSED FUNCTION
 }
@@ -715,7 +715,7 @@ void getNode__Q24Game12AStarContextFs(void)
  * Address:	........
  * Size:	000558
  */
-void search__Q24Game15AStarPathfinderFssPsi(void)
+void Game::AStarPathfinder::search( (short, short, short *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -725,7 +725,7 @@ void search__Q24Game15AStarPathfinderFssPsi(void)
  * Address:	........
  * Size:	00057C
  */
-void search__Q24Game15AStarPathfinderFPQ24Game12AStarContextssPsiiRi(void)
+void Game::AStarPathfinder::search( (Game::AStarContext *, short, short, short *, int, int, int &))
 {
 	// UNUSED FUNCTION
 }
@@ -735,7 +735,7 @@ void search__Q24Game15AStarPathfinderFPQ24Game12AStarContextssPsiiRi(void)
  * Address:	801A3BF4
  * Size:	00017C
  */
-void initsearch__Q24Game15AStarPathfinderFPQ24Game12AStarContext(void)
+void Game::AStarPathfinder::initsearch( (Game::AStarContext *))
 {
 /*
 .loc_0x0:
@@ -860,7 +860,7 @@ void initsearch__Q24Game15AStarPathfinderFPQ24Game12AStarContext(void)
  * Address:	801A3D70
  * Size:	0004B8
  */
-void search__Q24Game15AStarPathfinderFPQ24Game12AStarContextiPPQ24Game8PathNode(void)
+void Game::AStarPathfinder::search( (Game::AStarContext *, int, Game::PathNode **))
 {
 /*
 .loc_0x0:
@@ -1274,7 +1274,7 @@ void search__Q24Game15AStarPathfinderFPQ24Game12AStarContextiPPQ24Game8PathNode(
  * Address:	801A4228
  * Size:	0000B4
  */
-void estimate__Q24Game15AStarPathfinderFss(void)
+void Game::AStarPathfinder::estimate( (short, short))
 {
 /*
 .loc_0x0:
@@ -1335,7 +1335,7 @@ void estimate__Q24Game15AStarPathfinderFss(void)
  * Address:	801A42DC
  * Size:	000034
  */
-void makepath__Q24Game12AStarContextFPQ24Game8PathNodePPQ24Game8PathNode(void)
+void Game::AStarContext::makepath( (Game::PathNode *, Game::PathNode **))
 {
 /*
 .loc_0x0:
@@ -1364,7 +1364,7 @@ void makepath__Q24Game12AStarContextFPQ24Game8PathNodePPQ24Game8PathNode(void)
  * Address:	........
  * Size:	000070
  */
-void constructPath__Q24Game15AStarPathfinderFPQ24Game8PathNodePsi(void)
+void Game::AStarPathfinder::constructPath( (Game::PathNode *, short *, int))
 {
 	// UNUSED FUNCTION
 }

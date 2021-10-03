@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8021E28C
  * Size:	000068
  */
-void getPosition__Q25Radar5PointFv(void)
+void Radar::Point::getPosition(void)
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void getPosition__Q25Radar5PointFv(void)
  * Address:	........
  * Size:	000010
  */
-void entry__Q25Radar5PointFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl(void)
+void Radar::Point::entry( (Game::TPositionObject *, Radar::cRadarType, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -67,7 +67,7 @@ void entry__Q25Radar5PointFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl(void)
  * Address:	........
  * Size:	000028
  */
-void clear__Q25Radar5PointFv(void)
+void Radar::Point::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -77,7 +77,7 @@ void clear__Q25Radar5PointFv(void)
  * Address:	8021E2F4
  * Size:	0000F4
  */
-void __ct__Q25Radar3MgrFv(void)
+void Radar::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -150,7 +150,7 @@ void __ct__Q25Radar3MgrFv(void)
  * Address:	8021E3E8
  * Size:	000050
  */
-void __ct__Q25Radar5PointFv(void)
+void Radar::Point::__ct(void)
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void __ct__Q25Radar5PointFv(void)
  * Address:	8021E438
  * Size:	000060
  */
-void __dt__Q25Radar5PointFv(void)
+void Radar::Point::__dt(void)
 {
 /*
 .loc_0x0:
@@ -220,7 +220,7 @@ void __dt__Q25Radar5PointFv(void)
  * Address:	8021E498
  * Size:	0000B4
  */
-void clear__Q25Radar3MgrFv(void)
+void Radar::Mgr::clear(void)
 {
 /*
 .loc_0x0:
@@ -281,7 +281,7 @@ void clear__Q25Radar3MgrFv(void)
  * Address:	8021E54C
  * Size:	000010
  */
-void bornFuefuki__Q25Radar3MgrFv(void)
+void Radar::Mgr::bornFuefuki(void)
 {
 /*
 .loc_0x0:
@@ -297,7 +297,7 @@ void bornFuefuki__Q25Radar3MgrFv(void)
  * Address:	8021E55C
  * Size:	000018
  */
-void dieFuefuki__Q25Radar3MgrFv(void)
+void Radar::Mgr::dieFuefuki(void)
 {
 /*
 .loc_0x0:
@@ -315,7 +315,7 @@ void dieFuefuki__Q25Radar3MgrFv(void)
  * Address:	8021E574
  * Size:	000010
  */
-void fuefuki__Q25Radar3MgrFv(void)
+void Radar::Mgr::fuefuki(void)
 {
 /*
 .loc_0x0:
@@ -331,7 +331,7 @@ void fuefuki__Q25Radar3MgrFv(void)
  * Address:	8021E584
  * Size:	000070
  */
-void entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl(void)
+void Radar::Mgr::entry( (Game::TPositionObject *, Radar::cRadarType, unsigned long))
 {
 /*
 .loc_0x0:
@@ -375,7 +375,7 @@ void entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl(void)
  * Address:	8021E5F4
  * Size:	00003C
  */
-void exit__Q25Radar3MgrFPQ24Game15TPositionObject(void)
+void Radar::Mgr::exit( (Game::TPositionObject *))
 {
 /*
 .loc_0x0:
@@ -406,7 +406,7 @@ void exit__Q25Radar3MgrFPQ24Game15TPositionObject(void)
  * Address:	8021E630
  * Size:	00001C
  */
-void getNumOtakaraItems__Q25Radar3MgrFv(void)
+void Radar::Mgr::getNumOtakaraItems(void)
 {
 /*
 .loc_0x0:
@@ -427,7 +427,7 @@ void getNumOtakaraItems__Q25Radar3MgrFv(void)
  * Address:	8021E64C
  * Size:	000064
  */
-void attach__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl(void)
+void Radar::Mgr::attach( (Game::TPositionObject *, Radar::cRadarType, unsigned long))
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void attach__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl(void)
  * Address:	8021E6B0
  * Size:	0000C4
  */
-void detach__Q25Radar3MgrFPQ24Game15TPositionObject(void)
+void Radar::Mgr::detach( (Game::TPositionObject *))
 {
 /*
 .loc_0x0:
@@ -695,7 +695,7 @@ void calcNearestTreasure__Q25Radar3MgrFR10Vector3<float>fR10Vector3<float>Rf(voi
  * Address:	8021E954
  * Size:	000568
  */
-void ogDummpyInit__Q25Radar3MgrFv(void)
+void Radar::Mgr::ogDummpyInit(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803E2520
  * Size:	00004C
  */
-void do_open__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W00_NoCard::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -50,7 +50,7 @@ void do_open__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr(void)
  * Address:	803E256C
  * Size:	000058
  */
-void do_transit__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W00_NoCard::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -88,7 +88,7 @@ void do_transit__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr(vo
  * Address:	803E25C4
  * Size:	00004C
  */
-void do_transitOnCard__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W00_NoCard::do_transitOnCard( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -123,7 +123,7 @@ void do_transitOnCard__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4T
  * Address:	803E2610
  * Size:	000054
  */
-void do_open__Q33ebi9CardError20FSMState_W01_IOErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W01_IOError::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void do_open__Q33ebi9CardError20FSMState_W01_IOErrorFPQ33ebi9CardError4TMgr(void
  * Address:	803E2664
  * Size:	000058
  */
-void do_transit__Q33ebi9CardError20FSMState_W01_IOErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W01_IOError::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -198,7 +198,7 @@ void do_transit__Q33ebi9CardError20FSMState_W01_IOErrorFPQ33ebi9CardError4TMgr(v
  * Address:	803E26BC
  * Size:	000054
  */
-void do_open__Q33ebi9CardError24FSMState_W02_WrongDeviceFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W02_WrongDevice::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -235,7 +235,7 @@ void do_open__Q33ebi9CardError24FSMState_W02_WrongDeviceFPQ33ebi9CardError4TMgr(
  * Address:	803E2710
  * Size:	000058
  */
-void do_transit__Q33ebi9CardError24FSMState_W02_WrongDeviceFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W02_WrongDevice::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -273,7 +273,7 @@ void do_transit__Q33ebi9CardError24FSMState_W02_WrongDeviceFPQ33ebi9CardError4TM
  * Address:	803E2768
  * Size:	000054
  */
-void do_open__Q33ebi9CardError24FSMState_W03_WrongSectorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W03_WrongSector::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -310,7 +310,7 @@ void do_open__Q33ebi9CardError24FSMState_W03_WrongSectorFPQ33ebi9CardError4TMgr(
  * Address:	803E27BC
  * Size:	000058
  */
-void do_transit__Q33ebi9CardError24FSMState_W03_WrongSectorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W03_WrongSector::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void do_transit__Q33ebi9CardError24FSMState_W03_WrongSectorFPQ33ebi9CardError4TM
  * Address:	803E2814
  * Size:	000054
  */
-void do_open__Q33ebi9CardError25FSMState_W04_OverCapacityFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W04_OverCapacity::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void do_open__Q33ebi9CardError25FSMState_W04_OverCapacityFPQ33ebi9CardError4TMgr
  * Address:	803E2868
  * Size:	000064
  */
-void do_transit__Q33ebi9CardError25FSMState_W04_OverCapacityFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W04_OverCapacity::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void do_transit__Q33ebi9CardError25FSMState_W04_OverCapacityFPQ33ebi9CardError4T
  * Address:	803E28CC
  * Size:	000054
  */
-void do_open__Q33ebi9CardError26FSMState_W05_InitCardOnIPLFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W05_InitCardOnIPL::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void do_open__Q33ebi9CardError26FSMState_W05_InitCardOnIPLFPQ33ebi9CardError4TMg
  * Address:	803E2920
  * Size:	000064
  */
-void do_transit__Q33ebi9CardError26FSMState_W05_InitCardOnIPLFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W05_InitCardOnIPL::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void do_transit__Q33ebi9CardError26FSMState_W05_InitCardOnIPLFPQ33ebi9CardError4
  * Address:	803E2984
  * Size:	000054
  */
-void do_open__Q33ebi9CardError26FSMState_W06_CardNotUsableFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W06_CardNotUsable::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -541,7 +541,7 @@ void do_open__Q33ebi9CardError26FSMState_W06_CardNotUsableFPQ33ebi9CardError4TMg
  * Address:	803E29D8
  * Size:	000058
  */
-void do_transit__Q33ebi9CardError26FSMState_W06_CardNotUsableFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W06_CardNotUsable::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -579,7 +579,7 @@ void do_transit__Q33ebi9CardError26FSMState_W06_CardNotUsableFPQ33ebi9CardError4
  * Address:	803E2A30
  * Size:	000054
  */
-void do_open__Q33ebi9CardError26FSMState_W07_NoFileForSaveFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W07_NoFileForSave::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -616,7 +616,7 @@ void do_open__Q33ebi9CardError26FSMState_W07_NoFileForSaveFPQ33ebi9CardError4TMg
  * Address:	803E2A84
  * Size:	000058
  */
-void do_transit__Q33ebi9CardError26FSMState_W07_NoFileForSaveFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W07_NoFileForSave::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -654,7 +654,7 @@ void do_transit__Q33ebi9CardError26FSMState_W07_NoFileForSaveFPQ33ebi9CardError4
  * Address:	803E2ADC
  * Size:	000054
  */
-void do_open__Q33ebi9CardError25FSMState_W08_FinishFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W08_FinishFormat::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void do_open__Q33ebi9CardError25FSMState_W08_FinishFormatFPQ33ebi9CardError4TMgr
  * Address:	803E2B30
  * Size:	00004C
  */
-void do_transit__Q33ebi9CardError25FSMState_W08_FinishFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W08_FinishFormat::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -726,7 +726,7 @@ void do_transit__Q33ebi9CardError25FSMState_W08_FinishFormatFPQ33ebi9CardError4T
  * Address:	803E2B7C
  * Size:	000054
  */
-void do_open__Q33ebi9CardError32FSMState_W09_FinishCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W09_FinishCreateNewFile::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -763,7 +763,7 @@ void do_open__Q33ebi9CardError32FSMState_W09_FinishCreateNewFileFPQ33ebi9CardErr
  * Address:	803E2BD0
  * Size:	00004C
  */
-void do_transit__Q33ebi9CardError32FSMState_W09_FinishCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W09_FinishCreateNewFile::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -798,7 +798,7 @@ void do_transit__Q33ebi9CardError32FSMState_W09_FinishCreateNewFileFPQ33ebi9Card
  * Address:	803E2C1C
  * Size:	000064
  */
-void do_open__Q33ebi9CardError26FSMState_W10_SerialNoErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W10_SerialNoError::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -839,7 +839,7 @@ void do_open__Q33ebi9CardError26FSMState_W10_SerialNoErrorFPQ33ebi9CardError4TMg
  * Address:	803E2C80
  * Size:	00005C
  */
-void do_transit__Q33ebi9CardError26FSMState_W10_SerialNoErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_W10_SerialNoError::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -878,7 +878,7 @@ void do_transit__Q33ebi9CardError26FSMState_W10_SerialNoErrorFPQ33ebi9CardError4
  * Address:	803E2CDC
  * Size:	000054
  */
-void do_open__Q33ebi9CardError32FSMState_WF0_FailToFormat_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF0_FailToFormat_NoCard::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -915,7 +915,7 @@ void do_open__Q33ebi9CardError32FSMState_WF0_FailToFormat_NoCardFPQ33ebi9CardErr
  * Address:	803E2D30
  * Size:	00004C
  */
-void do_transit__Q33ebi9CardError32FSMState_WF0_FailToFormat_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF0_FailToFormat_NoCard::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -950,7 +950,7 @@ void do_transit__Q33ebi9CardError32FSMState_WF0_FailToFormat_NoCardFPQ33ebi9Card
  * Address:	803E2D7C
  * Size:	000054
  */
-void do_open__Q33ebi9CardError33FSMState_WF1_FailToFormat_IOErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF1_FailToFormat_IOError::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -987,7 +987,7 @@ void do_open__Q33ebi9CardError33FSMState_WF1_FailToFormat_IOErrorFPQ33ebi9CardEr
  * Address:	803E2DD0
  * Size:	00004C
  */
-void do_transit__Q33ebi9CardError33FSMState_WF1_FailToFormat_IOErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF1_FailToFormat_IOError::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1022,7 +1022,7 @@ void do_transit__Q33ebi9CardError33FSMState_WF1_FailToFormat_IOErrorFPQ33ebi9Car
  * Address:	803E2E1C
  * Size:	000054
  */
-void do_open__Q33ebi9CardError39FSMState_WF2_FailToCreateNewFile_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF2_FailToCreateNewFile_NoCard::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1059,7 +1059,7 @@ void do_open__Q33ebi9CardError39FSMState_WF2_FailToCreateNewFile_NoCardFPQ33ebi9
  * Address:	803E2E70
  * Size:	00004C
  */
-void do_transit__Q33ebi9CardError39FSMState_WF2_FailToCreateNewFile_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF2_FailToCreateNewFile_NoCard::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1094,7 +1094,7 @@ void do_transit__Q33ebi9CardError39FSMState_WF2_FailToCreateNewFile_NoCardFPQ33e
  * Address:	803E2EBC
  * Size:	000054
  */
-void do_open__Q33ebi9CardError40FSMState_WF3_FailToCreateNewFile_IOErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF3_FailToCreateNewFile_IOError::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1131,7 +1131,7 @@ void do_open__Q33ebi9CardError40FSMState_WF3_FailToCreateNewFile_IOErrorFPQ33ebi
  * Address:	803E2F10
  * Size:	00004C
  */
-void do_transit__Q33ebi9CardError40FSMState_WF3_FailToCreateNewFile_IOErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF3_FailToCreateNewFile_IOError::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1166,7 +1166,7 @@ void do_transit__Q33ebi9CardError40FSMState_WF3_FailToCreateNewFile_IOErrorFPQ33
  * Address:	803E2F5C
  * Size:	000064
  */
-void do_open__Q33ebi9CardError30FSMState_WF4_FailToSave_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF4_FailToSave_NoCard::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1207,7 +1207,7 @@ void do_open__Q33ebi9CardError30FSMState_WF4_FailToSave_NoCardFPQ33ebi9CardError
  * Address:	803E2FC0
  * Size:	00004C
  */
-void do_transit__Q33ebi9CardError30FSMState_WF4_FailToSave_NoCardFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF4_FailToSave_NoCard::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1242,7 +1242,7 @@ void do_transit__Q33ebi9CardError30FSMState_WF4_FailToSave_NoCardFPQ33ebi9CardEr
  * Address:	803E300C
  * Size:	000064
  */
-void do_open__Q33ebi9CardError31FSMState_WF5_FailToSave_IOErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF5_FailToSave_IOError::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1283,7 +1283,7 @@ void do_open__Q33ebi9CardError31FSMState_WF5_FailToSave_IOErrorFPQ33ebi9CardErro
  * Address:	803E3070
  * Size:	00004C
  */
-void do_transit__Q33ebi9CardError31FSMState_WF5_FailToSave_IOErrorFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WF5_FailToSave_IOError::do_transit( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1318,7 +1318,7 @@ void do_transit__Q33ebi9CardError31FSMState_WF5_FailToSave_IOErrorFPQ33ebi9CardE
  * Address:	803E30BC
  * Size:	000054
  */
-void do_open__Q33ebi9CardError37FSMState_Q00_DataBrokenAndDoYouFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1355,7 +1355,7 @@ void do_open__Q33ebi9CardError37FSMState_Q00_DataBrokenAndDoYouFormatFPQ33ebi9Ca
  * Address:	803E3110
  * Size:	000064
  */
-void do_transitYes__Q33ebi9CardError37FSMState_Q00_DataBrokenAndDoYouFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_transitYes( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1396,7 +1396,7 @@ void do_transitYes__Q33ebi9CardError37FSMState_Q00_DataBrokenAndDoYouFormatFPQ33
  * Address:	803E3174
  * Size:	000064
  */
-void do_transitNo__Q33ebi9CardError37FSMState_Q00_DataBrokenAndDoYouFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_transitNo( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1437,7 +1437,7 @@ void do_transitNo__Q33ebi9CardError37FSMState_Q00_DataBrokenAndDoYouFormatFPQ33e
  * Address:	803E31D8
  * Size:	000054
  */
-void do_open__Q33ebi9CardError25FSMState_Q01_DoYouOpenIPLFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q01_DoYouOpenIPL::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1474,7 +1474,7 @@ void do_open__Q33ebi9CardError25FSMState_Q01_DoYouOpenIPLFPQ33ebi9CardError4TMgr
  * Address:	803E322C
  * Size:	000058
  */
-void do_transitYes__Q33ebi9CardError25FSMState_Q01_DoYouOpenIPLFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q01_DoYouOpenIPL::do_transitYes( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1512,7 +1512,7 @@ void do_transitYes__Q33ebi9CardError25FSMState_Q01_DoYouOpenIPLFPQ33ebi9CardErro
  * Address:	803E3284
  * Size:	000058
  */
-void do_transitNo__Q33ebi9CardError25FSMState_Q01_DoYouOpenIPLFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q01_DoYouOpenIPL::do_transitNo( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1550,7 +1550,7 @@ void do_transitNo__Q33ebi9CardError25FSMState_Q01_DoYouOpenIPLFPQ33ebi9CardError
  * Address:	803E32DC
  * Size:	000054
  */
-void do_open__Q33ebi9CardError24FSMState_Q02_DoYouFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q02_DoYouFormat::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1587,7 +1587,7 @@ void do_open__Q33ebi9CardError24FSMState_Q02_DoYouFormatFPQ33ebi9CardError4TMgr(
  * Address:	803E3330
  * Size:	000064
  */
-void do_transitYes__Q33ebi9CardError24FSMState_Q02_DoYouFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q02_DoYouFormat::do_transitYes( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1628,7 +1628,7 @@ void do_transitYes__Q33ebi9CardError24FSMState_Q02_DoYouFormatFPQ33ebi9CardError
  * Address:	803E3394
  * Size:	000064
  */
-void do_transitNo__Q33ebi9CardError24FSMState_Q02_DoYouFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q02_DoYouFormat::do_transitNo( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1669,7 +1669,7 @@ void do_transitNo__Q33ebi9CardError24FSMState_Q02_DoYouFormatFPQ33ebi9CardError4
  * Address:	803E33F8
  * Size:	000054
  */
-void do_open__Q33ebi9CardError31FSMState_Q03_DoYouCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q03_DoYouCreateNewFile::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1706,7 +1706,7 @@ void do_open__Q33ebi9CardError31FSMState_Q03_DoYouCreateNewFileFPQ33ebi9CardErro
  * Address:	803E344C
  * Size:	000064
  */
-void do_transitYes__Q33ebi9CardError31FSMState_Q03_DoYouCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q03_DoYouCreateNewFile::do_transitYes( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1747,7 +1747,7 @@ void do_transitYes__Q33ebi9CardError31FSMState_Q03_DoYouCreateNewFileFPQ33ebi9Ca
  * Address:	803E34B0
  * Size:	000064
  */
-void do_transitNo__Q33ebi9CardError31FSMState_Q03_DoYouCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q03_DoYouCreateNewFile::do_transitNo( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1788,7 +1788,7 @@ void do_transitNo__Q33ebi9CardError31FSMState_Q03_DoYouCreateNewFileFPQ33ebi9Car
  * Address:	803E3514
  * Size:	000064
  */
-void do_open__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1829,7 +1829,7 @@ void do_open__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ33ebi9C
  * Address:	803E3578
  * Size:	00005C
  */
-void do_transitYes__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_transitYes( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1868,7 +1868,7 @@ void do_transitYes__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ3
  * Address:	803E35D4
  * Size:	00005C
  */
-void do_transitNo__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_transitNo( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1907,7 +1907,7 @@ void do_transitNo__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ33
  * Address:	803E3630
  * Size:	000064
  */
-void do_open__Q33ebi9CardError25FSMState_Q05_GameCantSaveFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q05_GameCantSave::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1948,7 +1948,7 @@ void do_open__Q33ebi9CardError25FSMState_Q05_GameCantSaveFPQ33ebi9CardError4TMgr
  * Address:	803E3694
  * Size:	00005C
  */
-void do_transitYes__Q33ebi9CardError25FSMState_Q05_GameCantSaveFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q05_GameCantSave::do_transitYes( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1987,7 +1987,7 @@ void do_transitYes__Q33ebi9CardError25FSMState_Q05_GameCantSaveFPQ33ebi9CardErro
  * Address:	803E36F0
  * Size:	00005C
  */
-void do_transitNo__Q33ebi9CardError25FSMState_Q05_GameCantSaveFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_Q05_GameCantSave::do_transitNo( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2026,7 +2026,7 @@ void do_transitNo__Q33ebi9CardError25FSMState_Q05_GameCantSaveFPQ33ebi9CardError
  * Address:	803E374C
  * Size:	000028
  */
-void do_cardRequest__Q33ebi9CardError22FSMState_WN0_NowFormatFv(void)
+void ebi::CardError::FSMState_WN0_NowFormat::do_cardRequest(void)
 {
 /*
 .loc_0x0:
@@ -2048,7 +2048,7 @@ void do_cardRequest__Q33ebi9CardError22FSMState_WN0_NowFormatFv(void)
  * Address:	803E3774
  * Size:	00004C
  */
-void do_open__Q33ebi9CardError22FSMState_WN0_NowFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WN0_NowFormat::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2083,7 +2083,7 @@ void do_open__Q33ebi9CardError22FSMState_WN0_NowFormatFPQ33ebi9CardError4TMgr(vo
  * Address:	803E37C0
  * Size:	000034
  */
-void do_transitCardReady__Q33ebi9CardError22FSMState_WN0_NowFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WN0_NowFormat::do_transitCardReady( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2108,7 +2108,7 @@ void do_transitCardReady__Q33ebi9CardError22FSMState_WN0_NowFormatFPQ33ebi9CardE
  * Address:	803E37F4
  * Size:	000034
  */
-void do_transitCardNoCard__Q33ebi9CardError22FSMState_WN0_NowFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WN0_NowFormat::do_transitCardNoCard( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2133,7 +2133,7 @@ void do_transitCardNoCard__Q33ebi9CardError22FSMState_WN0_NowFormatFPQ33ebi9Card
  * Address:	803E3828
  * Size:	000034
  */
-void do_transitCardIOError__Q33ebi9CardError22FSMState_WN0_NowFormatFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WN0_NowFormat::do_transitCardIOError( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2158,7 +2158,7 @@ void do_transitCardIOError__Q33ebi9CardError22FSMState_WN0_NowFormatFPQ33ebi9Car
  * Address:	803E385C
  * Size:	00004C
  */
-void do_open__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WN1_NowCreateNewFile::do_open( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2193,7 +2193,7 @@ void do_open__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFPQ33ebi9CardError4
  * Address:	803E38A8
  * Size:	000028
  */
-void do_cardRequest__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFv(void)
+void ebi::CardError::FSMState_WN1_NowCreateNewFile::do_cardRequest(void)
 {
 /*
 .loc_0x0:
@@ -2215,7 +2215,7 @@ void do_cardRequest__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFv(void)
  * Address:	803E38D0
  * Size:	000034
  */
-void do_transitCardReady__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WN1_NowCreateNewFile::do_transitCardReady( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2240,7 +2240,7 @@ void do_transitCardReady__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFPQ33eb
  * Address:	803E3904
  * Size:	000034
  */
-void do_transitCardNoCard__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WN1_NowCreateNewFile::do_transitCardNoCard( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2265,7 +2265,7 @@ void do_transitCardNoCard__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFPQ33e
  * Address:	803E3938
  * Size:	000034
  */
-void do_transitCardIOError__Q33ebi9CardError29FSMState_WN1_NowCreateNewFileFPQ33ebi9CardError4TMgr(void)
+void ebi::CardError::FSMState_WN1_NowCreateNewFile::do_transitCardIOError( (ebi::CardError::TMgr *))
 {
 /*
 .loc_0x0:

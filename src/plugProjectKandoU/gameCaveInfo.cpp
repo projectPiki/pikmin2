@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801D60A4
  * Size:	000070
  */
-void __ct__Q34Game4Cave7BaseGenFv(void)
+void Game::Cave::BaseGen::__ct(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void __ct__Q34Game4Cave7BaseGenFv(void)
  * Address:	801D6114
  * Size:	0000F4
  */
-void read__Q34Game4Cave7BaseGenFR6Stream(void)
+void Game::Cave::BaseGen::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -144,7 +144,7 @@ void create__Q34Game4Cave7BaseGenFR10Vector3<float>(void)
  * Address:	801D6208
  * Size:	000004
  */
-void draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf(void)
+void Game::Cave::BaseGen::draw( (Graphics &, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -157,7 +157,7 @@ void draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf(void)
  * Address:	801D620C
  * Size:	0001A8
  */
-void read__Q34Game4Cave8TekiInfoFR6Stream(void)
+void Game::Cave::TekiInfo::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -299,7 +299,7 @@ void read__Q34Game4Cave8TekiInfoFR6Stream(void)
  * Address:	801D63B4
  * Size:	0000A8
  */
-void read__Q34Game4Cave8ItemInfoFR6Stream(void)
+void Game::Cave::ItemInfo::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -355,7 +355,7 @@ void read__Q34Game4Cave8ItemInfoFR6Stream(void)
  * Address:	801D645C
  * Size:	00008C
  */
-void read__Q34Game4Cave8GateInfoFR6Stream(void)
+void Game::Cave::GateInfo::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -402,7 +402,7 @@ void read__Q34Game4Cave8GateInfoFR6Stream(void)
  * Address:	........
  * Size:	00004C
  */
-void __ct__Q34Game4Cave7CapInfoFv(void)
+void Game::Cave::CapInfo::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -412,7 +412,7 @@ void __ct__Q34Game4Cave7CapInfoFv(void)
  * Address:	........
  * Size:	000038
  */
-void getWeight__Q34Game4Cave7CapInfoFv(void)
+void Game::Cave::CapInfo::getWeight(void)
 {
 	// UNUSED FUNCTION
 }
@@ -422,7 +422,7 @@ void getWeight__Q34Game4Cave7CapInfoFv(void)
  * Address:	801D64E8
  * Size:	00001C
  */
-void getTekiInfo__Q34Game4Cave7CapInfoFv(void)
+void Game::Cave::CapInfo::getTekiInfo(void)
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void getTekiInfo__Q34Game4Cave7CapInfoFv(void)
  * Address:	801D6504
  * Size:	0000C8
  */
-void read__Q34Game4Cave7CapInfoFR6Stream(void)
+void Game::Cave::CapInfo::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -513,7 +513,7 @@ void read__Q34Game4Cave7CapInfoFR6Stream(void)
  * Address:	801D65CC
  * Size:	000174
  */
-void __ct__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -618,7 +618,7 @@ void __ct__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6740
  * Size:	000060
  */
-void __dt__Q34Game4Cave7CapInfoFv(void)
+void Game::Cave::CapInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -656,7 +656,7 @@ void __dt__Q34Game4Cave7CapInfoFv(void)
  * Address:	801D67A0
  * Size:	000060
  */
-void __dt__Q34Game4Cave8GateInfoFv(void)
+void Game::Cave::GateInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -694,7 +694,7 @@ void __dt__Q34Game4Cave8GateInfoFv(void)
  * Address:	801D6800
  * Size:	000060
  */
-void __dt__Q34Game4Cave8ItemInfoFv(void)
+void Game::Cave::ItemInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -732,7 +732,7 @@ void __dt__Q34Game4Cave8ItemInfoFv(void)
  * Address:	801D6860
  * Size:	000060
  */
-void __dt__Q34Game4Cave8TekiInfoFv(void)
+void Game::Cave::TekiInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -770,7 +770,7 @@ void __dt__Q34Game4Cave8TekiInfoFv(void)
  * Address:	801D68C0
  * Size:	000410
  */
-void __ct__Q44Game4Cave9FloorInfo5ParmsFv(void)
+void Game::Cave::FloorInfo::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1044,7 +1044,7 @@ void __ct__Q44Game4Cave9FloorInfo5ParmsFv(void)
  * Address:	801D6CD0
  * Size:	000014
  */
-void hasHiddenCollision__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::hasHiddenCollision(void)
 {
 /*
 .loc_0x0:
@@ -1061,7 +1061,7 @@ void hasHiddenCollision__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6CE4
  * Size:	000008
  */
-void getTekiMax__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getTekiMax(void)
 {
 /*
 .loc_0x0:
@@ -1075,7 +1075,7 @@ void getTekiMax__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6CEC
  * Size:	00002C
  */
-void getTekiInfoNum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getTekiInfoNum(void)
 {
 /*
 .loc_0x0:
@@ -1098,7 +1098,7 @@ void getTekiInfoNum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6D18
  * Size:	000094
  */
-void getTekiInfo__Q34Game4Cave9FloorInfoFi(void)
+void Game::Cave::FloorInfo::getTekiInfo( (int))
 {
 /*
 .loc_0x0:
@@ -1151,7 +1151,7 @@ void getTekiInfo__Q34Game4Cave9FloorInfoFi(void)
  * Address:	801D6DAC
  * Size:	000024
  */
-void getTekiWeightSum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getTekiWeightSum(void)
 {
 /*
 .loc_0x0:
@@ -1176,7 +1176,7 @@ void getTekiWeightSum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6DD0
  * Size:	000008
  */
-void getItemMax__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getItemMax(void)
 {
 /*
 .loc_0x0:
@@ -1190,7 +1190,7 @@ void getItemMax__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6DD8
  * Size:	00002C
  */
-void getItemInfoNum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getItemInfoNum(void)
 {
 /*
 .loc_0x0:
@@ -1213,7 +1213,7 @@ void getItemInfoNum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6E04
  * Size:	000094
  */
-void getItemInfo__Q34Game4Cave9FloorInfoFi(void)
+void Game::Cave::FloorInfo::getItemInfo( (int))
 {
 /*
 .loc_0x0:
@@ -1266,7 +1266,7 @@ void getItemInfo__Q34Game4Cave9FloorInfoFi(void)
  * Address:	801D6E98
  * Size:	000024
  */
-void getItemWeightSum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getItemWeightSum(void)
 {
 /*
 .loc_0x0:
@@ -1291,7 +1291,7 @@ void getItemWeightSum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6EBC
  * Size:	000008
  */
-void getGateMax__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getGateMax(void)
 {
 /*
 .loc_0x0:
@@ -1305,7 +1305,7 @@ void getGateMax__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6EC4
  * Size:	00002C
  */
-void getGateInfoNum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getGateInfoNum(void)
 {
 /*
 .loc_0x0:
@@ -1328,7 +1328,7 @@ void getGateInfoNum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6EF0
  * Size:	000094
  */
-void getGateInfo__Q34Game4Cave9FloorInfoFi(void)
+void Game::Cave::FloorInfo::getGateInfo( (int))
 {
 /*
 .loc_0x0:
@@ -1381,7 +1381,7 @@ void getGateInfo__Q34Game4Cave9FloorInfoFi(void)
  * Address:	801D6F84
  * Size:	000024
  */
-void getGateWeightSum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getGateWeightSum(void)
 {
 /*
 .loc_0x0:
@@ -1406,7 +1406,7 @@ void getGateWeightSum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6FA8
  * Size:	000008
  */
-void getCapMax__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getCapMax(void)
 {
 /*
 .loc_0x0:
@@ -1420,7 +1420,7 @@ void getCapMax__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6FB0
  * Size:	00002C
  */
-void getCapInfoNum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getCapInfoNum(void)
 {
 /*
 .loc_0x0:
@@ -1443,7 +1443,7 @@ void getCapInfoNum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D6FDC
  * Size:	000094
  */
-void getCapInfo__Q34Game4Cave9FloorInfoFi(void)
+void Game::Cave::FloorInfo::getCapInfo( (int))
 {
 /*
 .loc_0x0:
@@ -1496,7 +1496,7 @@ void getCapInfo__Q34Game4Cave9FloorInfoFi(void)
  * Address:	........
  * Size:	000048
  */
-void getCapWeightSum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getCapWeightSum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1506,7 +1506,7 @@ void getCapWeightSum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D7070
  * Size:	000008
  */
-void getRoomNum__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getRoomNum(void)
 {
 /*
 .loc_0x0:
@@ -1520,7 +1520,7 @@ void getRoomNum__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D7078
  * Size:	000008
  */
-void getRouteRatio__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::getRouteRatio(void)
 {
 /*
 .loc_0x0:
@@ -1534,7 +1534,7 @@ void getRouteRatio__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D7080
  * Size:	000044
  */
-void hasEscapeFountain__Q34Game4Cave9FloorInfoFi(void)
+void Game::Cave::FloorInfo::hasEscapeFountain( (int))
 {
 /*
 .loc_0x0:
@@ -1567,7 +1567,7 @@ void hasEscapeFountain__Q34Game4Cave9FloorInfoFi(void)
  * Address:	801D70C4
  * Size:	000014
  */
-void useKaidanBarrel__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::useKaidanBarrel(void)
 {
 /*
 .loc_0x0:
@@ -1584,7 +1584,7 @@ void useKaidanBarrel__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D70D8
  * Size:	000224
  */
-void read__Q34Game4Cave9FloorInfoFR6Stream(void)
+void Game::Cave::FloorInfo::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1759,7 +1759,7 @@ void read__Q34Game4Cave9FloorInfoFR6Stream(void)
  * Address:	801D72FC
  * Size:	0000D0
  */
-void __ct__Q34Game4Cave8CaveInfoFv(void)
+void Game::Cave::CaveInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1823,7 +1823,7 @@ void __ct__Q34Game4Cave8CaveInfoFv(void)
  * Address:	801D73CC
  * Size:	0000E4
  */
-void __dt__Q34Game4Cave9FloorInfoFv(void)
+void Game::Cave::FloorInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1902,7 +1902,7 @@ void __dt__Q34Game4Cave9FloorInfoFv(void)
  * Address:	801D74B0
  * Size:	000040
  */
-void disablePelplant__Q34Game4Cave8CaveInfoFv(void)
+void Game::Cave::CaveInfo::disablePelplant(void)
 {
 /*
 .loc_0x0:
@@ -1940,7 +1940,7 @@ void disablePelplant__Q34Game4Cave8CaveInfoFv(void)
  * Address:	801D74F0
  * Size:	000008
  */
-void getFloorMax__Q34Game4Cave8CaveInfoFv(void)
+void Game::Cave::CaveInfo::getFloorMax(void)
 {
 /*
 .loc_0x0:
@@ -1954,7 +1954,7 @@ void getFloorMax__Q34Game4Cave8CaveInfoFv(void)
  * Address:	801D74F8
  * Size:	000034
  */
-void getFloorInfo__Q34Game4Cave8CaveInfoFi(void)
+void Game::Cave::CaveInfo::getFloorInfo( (int))
 {
 /*
 .loc_0x0:
@@ -1985,7 +1985,7 @@ void getFloorInfo__Q34Game4Cave8CaveInfoFi(void)
  * Address:	801D752C
  * Size:	0000F8
  */
-void load__Q34Game4Cave8CaveInfoFPc(void)
+void Game::Cave::CaveInfo::load( (char *))
 {
 /*
 .loc_0x0:
@@ -2065,7 +2065,7 @@ void load__Q34Game4Cave8CaveInfoFPc(void)
  * Address:	801D7624
  * Size:	000090
  */
-void read__Q34Game4Cave8CaveInfoFR6Stream(void)
+void Game::Cave::CaveInfo::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2119,7 +2119,7 @@ void read__Q34Game4Cave8CaveInfoFR6Stream(void)
  * Address:	801D76B4
  * Size:	0000F4
  */
-void __dt__Q34Game4Cave8CaveInfoFv(void)
+void Game::Cave::CaveInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2204,7 +2204,7 @@ void __dt__Q34Game4Cave8CaveInfoFv(void)
  * Address:	801D77A8
  * Size:	000060
  */
-void __dt__Q34Game4Cave7BaseGenFv(void)
+void Game::Cave::BaseGen::__dt(void)
 {
 /*
 .loc_0x0:

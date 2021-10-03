@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80365FF4
  * Size:	000204
  */
-void init__Q34Game6Jigumo3FSMFPQ24Game9EnemyBase(void)
+void Game::Jigumo::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void init__Q34Game6Jigumo3FSMFPQ24Game9EnemyBase(void)
  * Address:	803661F8
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo9StateWaitFi(void)
+void Game::Jigumo::StateWait::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void __ct__Q34Game6Jigumo9StateWaitFi(void)
  * Address:	80366234
  * Size:	000060
  */
-void init__Q34Game6Jigumo9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void init__Q34Game6Jigumo9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80366294
  * Size:	000100
  */
-void exec__Q34Game6Jigumo9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -329,7 +329,7 @@ void exec__Q34Game6Jigumo9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	80366394
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo11StateAppearFi(void)
+void Game::Jigumo::StateAppear::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -356,7 +356,7 @@ void __ct__Q34Game6Jigumo11StateAppearFi(void)
  * Address:	803663D0
  * Size:	000138
  */
-void init__Q34Game6Jigumo11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateAppear::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void init__Q34Game6Jigumo11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80366508
  * Size:	000324
  */
-void exec__Q34Game6Jigumo11StateAppearFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateAppear::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -681,7 +681,7 @@ void exec__Q34Game6Jigumo11StateAppearFPQ24Game9EnemyBase(void)
  * Address:	8036682C
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo9StateHideFi(void)
+void Game::Jigumo::StateHide::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void __ct__Q34Game6Jigumo9StateHideFi(void)
  * Address:	80366868
  * Size:	000128
  */
-void init__Q34Game6Jigumo9StateHideFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateHide::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -798,7 +798,7 @@ void init__Q34Game6Jigumo9StateHideFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80366990
  * Size:	000170
  */
-void exec__Q34Game6Jigumo9StateHideFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateHide::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -908,7 +908,7 @@ void exec__Q34Game6Jigumo9StateHideFPQ24Game9EnemyBase(void)
  * Address:	80366B00
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo9StateDeadFi(void)
+void Game::Jigumo::StateDead::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -935,7 +935,7 @@ void __ct__Q34Game6Jigumo9StateDeadFi(void)
  * Address:	80366B3C
  * Size:	00005C
  */
-void init__Q34Game6Jigumo9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -970,7 +970,7 @@ void init__Q34Game6Jigumo9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80366B98
  * Size:	0000C0
  */
-void exec__Q34Game6Jigumo9StateDeadFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1034,7 +1034,7 @@ void exec__Q34Game6Jigumo9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	80366C58
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo11StateAttackFi(void)
+void Game::Jigumo::StateAttack::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1061,7 +1061,7 @@ void __ct__Q34Game6Jigumo11StateAttackFi(void)
  * Address:	80366C94
  * Size:	0000BC
  */
-void init__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1120,7 +1120,7 @@ void init__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80366D50
  * Size:	000488
  */
-void exec__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1438,7 +1438,7 @@ void exec__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	803671D8
  * Size:	00001C
  */
-void getGoalPos__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getGoalPos(void)
 {
 /*
 .loc_0x0:
@@ -1457,7 +1457,7 @@ void getGoalPos__Q34Game6Jigumo3ObjFv(void)
  * Address:	803671F4
  * Size:	000038
  */
-void cleanup__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1483,7 +1483,7 @@ void cleanup__Q34Game6Jigumo11StateAttackFPQ24Game9EnemyBase(void)
  * Address:	8036722C
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo9StateMissFi(void)
+void Game::Jigumo::StateMiss::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1510,7 +1510,7 @@ void __ct__Q34Game6Jigumo9StateMissFi(void)
  * Address:	80367268
  * Size:	00004C
  */
-void init__Q34Game6Jigumo9StateMissFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateMiss::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1541,7 +1541,7 @@ void init__Q34Game6Jigumo9StateMissFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803672B4
  * Size:	000200
  */
-void exec__Q34Game6Jigumo9StateMissFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateMiss::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1691,7 +1691,7 @@ void exec__Q34Game6Jigumo9StateMissFPQ24Game9EnemyBase(void)
  * Address:	803674B4
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo11StateReturnFi(void)
+void Game::Jigumo::StateReturn::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1718,7 +1718,7 @@ void __ct__Q34Game6Jigumo11StateReturnFi(void)
  * Address:	803674F0
  * Size:	000040
  */
-void init__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateReturn::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1746,7 +1746,7 @@ void init__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80367530
  * Size:	000174
  */
-void exec__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateReturn::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1861,7 +1861,7 @@ void exec__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBase(void)
  * Address:	803676A4
  * Size:	00002C
  */
-void cleanup__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateReturn::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1884,7 +1884,7 @@ void cleanup__Q34Game6Jigumo11StateReturnFPQ24Game9EnemyBase(void)
  * Address:	803676D0
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo10StateCarryFi(void)
+void Game::Jigumo::StateCarry::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1911,7 +1911,7 @@ void __ct__Q34Game6Jigumo10StateCarryFi(void)
  * Address:	8036770C
  * Size:	000040
  */
-void init__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateCarry::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1939,7 +1939,7 @@ void init__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8036774C
  * Size:	000190
  */
-void exec__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateCarry::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2061,7 +2061,7 @@ void exec__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBase(void)
  * Address:	803678DC
  * Size:	00002C
  */
-void cleanup__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateCarry::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2084,7 +2084,7 @@ void cleanup__Q34Game6Jigumo10StateCarryFPQ24Game9EnemyBase(void)
  * Address:	80367908
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo10StateFlickFi(void)
+void Game::Jigumo::StateFlick::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2111,7 +2111,7 @@ void __ct__Q34Game6Jigumo10StateFlickFi(void)
  * Address:	80367944
  * Size:	0000CC
  */
-void init__Q34Game6Jigumo10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2178,7 +2178,7 @@ void init__Q34Game6Jigumo10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80367A10
  * Size:	0000FC
  */
-void exec__Q34Game6Jigumo10StateFlickFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2259,7 +2259,7 @@ void exec__Q34Game6Jigumo10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	80367B0C
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo8StateEatFi(void)
+void Game::Jigumo::StateEat::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2286,7 +2286,7 @@ void __ct__Q34Game6Jigumo8StateEatFi(void)
  * Address:	80367B48
  * Size:	000058
  */
-void init__Q34Game6Jigumo8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateEat::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2320,7 +2320,7 @@ void init__Q34Game6Jigumo8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80367BA0
  * Size:	000120
  */
-void exec__Q34Game6Jigumo8StateEatFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateEat::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2418,7 +2418,7 @@ void exec__Q34Game6Jigumo8StateEatFPQ24Game9EnemyBase(void)
  * Address:	80367CC0
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo11StateSearchFi(void)
+void Game::Jigumo::StateSearch::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2445,7 +2445,7 @@ void __ct__Q34Game6Jigumo11StateSearchFi(void)
  * Address:	80367CFC
  * Size:	000088
  */
-void init__Q34Game6Jigumo11StateSearchFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateSearch::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2491,7 +2491,7 @@ void init__Q34Game6Jigumo11StateSearchFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80367D84
  * Size:	000614
  */
-void exec__Q34Game6Jigumo11StateSearchFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateSearch::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2920,7 +2920,7 @@ void exec__Q34Game6Jigumo11StateSearchFPQ24Game9EnemyBase(void)
  * Address:	80368398
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo12StateSAttackFi(void)
+void Game::Jigumo::StateSAttack::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2947,7 +2947,7 @@ void __ct__Q34Game6Jigumo12StateSAttackFi(void)
  * Address:	803683D4
  * Size:	000058
  */
-void init__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateSAttack::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2981,7 +2981,7 @@ void init__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	8036842C
  * Size:	000238
  */
-void exec__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateSAttack::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3159,7 +3159,7 @@ void exec__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBase(void)
  * Address:	80368664
  * Size:	000024
  */
-void cleanup__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateSAttack::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3180,7 +3180,7 @@ void cleanup__Q34Game6Jigumo12StateSAttackFPQ24Game9EnemyBase(void)
  * Address:	80368688
  * Size:	00003C
  */
-void __ct__Q34Game6Jigumo10StateSMissFi(void)
+void Game::Jigumo::StateSMiss::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -3207,7 +3207,7 @@ void __ct__Q34Game6Jigumo10StateSMissFi(void)
  * Address:	803686C4
  * Size:	00002C
  */
-void init__Q34Game6Jigumo10StateSMissFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Jigumo::StateSMiss::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3230,7 +3230,7 @@ void init__Q34Game6Jigumo10StateSMissFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803686F0
  * Size:	000050
  */
-void exec__Q34Game6Jigumo10StateSMissFPQ24Game9EnemyBase(void)
+void Game::Jigumo::StateSMiss::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -3264,7 +3264,7 @@ void exec__Q34Game6Jigumo10StateSMissFPQ24Game9EnemyBase(void)
  * Address:	80368740
  * Size:	0000F0
  */
-void satisfy__Q34Game6Jigumo24ConditionHeightCheckPikiFPQ24Game4Piki(void)
+void Game::Jigumo::ConditionHeightCheckPiki::satisfy( (Game::Piki *))
 {
 /*
 .loc_0x0:

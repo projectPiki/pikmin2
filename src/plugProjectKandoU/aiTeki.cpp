@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8021295C
  * Size:	000090
  */
-void __ct__Q26PikiAI7ActTekiFPQ24Game4Piki(void)
+void PikiAI::ActTeki::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q26PikiAI7ActTekiFPQ24Game4Piki(void)
  * Address:	802129EC
  * Size:	00010C
  */
-void init__Q26PikiAI7ActTekiFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActTeki::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void init__Q26PikiAI7ActTekiFPQ26PikiAI9ActionArg(void)
  * Address:	80212AF8
  * Size:	000178
  */
-void exec__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::exec(void)
 {
 /*
 .loc_0x0:
@@ -266,7 +266,7 @@ void exec__Q26PikiAI7ActTekiFv(void)
  * Address:	80212C70
  * Size:	000050
  */
-void emotion_success__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::emotion_success(void)
 {
 /*
 .loc_0x0:
@@ -300,7 +300,7 @@ void emotion_success__Q26PikiAI7ActTekiFv(void)
  * Address:	80212CC0
  * Size:	000314
  */
-void makeTarget__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::makeTarget(void)
 {
 /*
 .loc_0x0:
@@ -543,7 +543,7 @@ void makeTarget__Q26PikiAI7ActTekiFv(void)
  * Address:	80212FD4
  * Size:	000344
  */
-void test_0__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::test_0(void)
 {
 /*
 .loc_0x0:
@@ -796,7 +796,7 @@ void test_0__Q26PikiAI7ActTekiFv(void)
  * Address:	80213318
  * Size:	000058
  */
-void doDirectDraw__Q26PikiAI7ActTekiFR8Graphics(void)
+void PikiAI::ActTeki::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -832,7 +832,7 @@ void doDirectDraw__Q26PikiAI7ActTekiFR8Graphics(void)
  * Address:	80213370
  * Size:	000130
  */
-void setTimer__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::setTimer(void)
 {
 /*
 .loc_0x0:
@@ -928,7 +928,7 @@ void setTimer__Q26PikiAI7ActTekiFv(void)
  * Address:	........
  * Size:	0002E4
  */
-void test_1__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::test_1(void)
 {
 	// UNUSED FUNCTION
 }
@@ -938,7 +938,7 @@ void test_1__Q26PikiAI7ActTekiFv(void)
  * Address:	........
  * Size:	000404
  */
-void test_2__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::test_2(void)
 {
 	// UNUSED FUNCTION
 }
@@ -948,7 +948,7 @@ void test_2__Q26PikiAI7ActTekiFv(void)
  * Address:	802134A0
  * Size:	000004
  */
-void cleanup__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -961,7 +961,7 @@ void cleanup__Q26PikiAI7ActTekiFv(void)
  * Address:	802134A4
  * Size:	0000E8
  */
-void collisionCallback__Q26PikiAI7ActTekiFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActTeki::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1035,7 +1035,7 @@ void collisionCallback__Q26PikiAI7ActTekiFPQ24Game4PikiRQ24Game9CollEvent(void)
  * Address:	8021358C
  * Size:	000004
  */
-void onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActTeki::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1048,7 +1048,7 @@ void onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent(void)
  * Address:	80213590
  * Size:	000008
  */
-void getNextAIType__Q26PikiAI7ActTekiFv(void)
+void PikiAI::ActTeki::getNextAIType(void)
 {
 /*
 .loc_0x0:
@@ -1062,7 +1062,7 @@ void getNextAIType__Q26PikiAI7ActTekiFv(void)
  * Address:	80213598
  * Size:	000014
  */
-void @72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent(void)
+void @72@4@PikiAI::ActTeki::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

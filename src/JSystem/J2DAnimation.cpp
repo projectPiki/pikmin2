@@ -2115,7 +2115,7 @@ void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen *)
  * Address:	8005C884
  * Size:	000010
  */
-void __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv(void)
+void J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2131,7 +2131,7 @@ void __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv(void)
  * Address:	8005C894
  * Size:	000054
  */
-void __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv(void)
+void J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::__dt(void)
 {
 /*
 .loc_0x0:

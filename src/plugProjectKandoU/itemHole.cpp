@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801D1738
  * Size:	000134
  */
-void init__Q34Game8ItemHole3FSMFPQ24Game8CFSMItem(void)
+void Game::ItemHole::FSM::init( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void init__Q34Game8ItemHole3FSMFPQ24Game8CFSMItem(void)
  * Address:	801D186C
  * Size:	00003C
  */
-void init__Q34Game8ItemHole11NormalStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHole::NormalState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void init__Q34Game8ItemHole11NormalStateFPQ24Game8CFSMItemPQ24Game8StateArg(void
  * Address:	801D18A8
  * Size:	000004
  */
-void exec__Q34Game8ItemHole11NormalStateFPQ24Game8CFSMItem(void)
+void Game::ItemHole::NormalState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -150,7 +150,7 @@ void exec__Q34Game8ItemHole11NormalStateFPQ24Game8CFSMItem(void)
  * Address:	801D18AC
  * Size:	000004
  */
-void cleanup__Q34Game8ItemHole11NormalStateFPQ24Game8CFSMItem(void)
+void Game::ItemHole::NormalState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void cleanup__Q34Game8ItemHole11NormalStateFPQ24Game8CFSMItem(void)
  * Address:	801D18B0
  * Size:	00005C
  */
-void init__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHole::AppearState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -198,7 +198,7 @@ void init__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItemPQ24Game8StateArg(void
  * Address:	801D190C
  * Size:	000118
  */
-void exec__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItem(void)
+void Game::ItemHole::AppearState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void transit__Q24Game26FSMState<Game::CFSMItem>FPQ24Game8CFSMItemiPQ24Game8State
  * Address:	801D1A54
  * Size:	000004
  */
-void cleanup__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItem(void)
+void Game::ItemHole::AppearState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -319,7 +319,7 @@ void cleanup__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItem(void)
  * Address:	801D1A58
  * Size:	00003C
  */
-void init__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHole::CloseState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -346,7 +346,7 @@ void init__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
  * Address:	801D1A94
  * Size:	000014
  */
-void exec__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem(void)
+void Game::ItemHole::CloseState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -363,7 +363,7 @@ void exec__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem(void)
  * Address:	801D1AA8
  * Size:	000004
  */
-void cleanup__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem(void)
+void Game::ItemHole::CloseState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -376,7 +376,7 @@ void cleanup__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem(void)
  * Address:	801D1AAC
  * Size:	00025C
  */
-void movieUserCommand__Q34Game8ItemHole4ItemFUlPQ24Game11MoviePlayer(void)
+void Game::ItemHole::Item::movieUserCommand( (unsigned long, Game::MoviePlayer *))
 {
 /*
 .loc_0x0:
@@ -557,7 +557,7 @@ void movieUserCommand__Q34Game8ItemHole4ItemFUlPQ24Game11MoviePlayer(void)
  * Address:	801D1D08
  * Size:	000108
  */
-void interactGotKey__Q34Game8ItemHole4ItemFRQ24Game14InteractGotKey(void)
+void Game::ItemHole::Item::interactGotKey( (Game::InteractGotKey &))
 {
 /*
 .loc_0x0:
@@ -639,7 +639,7 @@ void interactGotKey__Q34Game8ItemHole4ItemFRQ24Game14InteractGotKey(void)
  * Address:	801D1E10
  * Size:	000008
  */
-void getFaceDir__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::getFaceDir(void)
 {
 /*
 .loc_0x0:
@@ -653,7 +653,7 @@ void getFaceDir__Q34Game8ItemHole4ItemFv(void)
  * Address:	........
  * Size:	000068
  */
-void __ct__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -663,7 +663,7 @@ void __ct__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D1E18
  * Size:	0000C0
  */
-void onInit__Q34Game8ItemHole4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemHole::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -769,7 +769,7 @@ void start__Q24Game30StateMachine<Game::CFSMItem>FPQ24Game8CFSMItemiPQ24Game8Sta
  * Address:	801D1F50
  * Size:	000050
  */
-void changeMaterial__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -801,7 +801,7 @@ void changeMaterial__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D1FA0
  * Size:	0001DC
  */
-void onSetPosition__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -936,7 +936,7 @@ void onSetPosition__Q34Game8ItemHole4ItemFv(void)
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx9TForever4Fv(void)
+void efx::TForever4::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -946,7 +946,7 @@ void __dt__Q23efx9TForever4Fv(void)
  * Address:	801D217C
  * Size:	000314
  */
-void initDependency__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::initDependency(void)
 {
 /*
 .loc_0x0:
@@ -1183,7 +1183,7 @@ void initDependency__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D2490
  * Size:	000068
  */
-void makeTrMatrix__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::makeTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -1221,7 +1221,7 @@ void makeTrMatrix__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D24F8
  * Size:	000030
  */
-void canRide__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::canRide(void)
 {
 /*
 .loc_0x0:
@@ -1245,7 +1245,7 @@ void canRide__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D2528
  * Size:	000008
  */
-void canRide__Q34Game8ItemHole5StateFv(void)
+void Game::ItemHole::State::canRide(void)
 {
 /*
 .loc_0x0:
@@ -1259,7 +1259,7 @@ void canRide__Q34Game8ItemHole5StateFv(void)
  * Address:	801D2530
  * Size:	000014
  */
-void do_setLODParm__Q34Game8ItemHole4ItemFRQ24Game9AILODParm(void)
+void Game::ItemHole::Item::do_setLODParm( (Game::AILODParm &))
 {
 /*
 .loc_0x0:
@@ -1276,7 +1276,7 @@ void do_setLODParm__Q34Game8ItemHole4ItemFRQ24Game9AILODParm(void)
  * Address:	801D2544
  * Size:	000008
  */
-void sound_culling__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::sound_culling(void)
 {
 /*
 .loc_0x0:
@@ -1290,7 +1290,7 @@ void sound_culling__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D254C
  * Size:	0000E4
  */
-void doAI__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -1363,7 +1363,7 @@ void doAI__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D2630
  * Size:	0000BC
  */
-void doDirectDraw__Q34Game8ItemHole4ItemFR8Graphics(void)
+void Game::ItemHole::Item::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1422,7 +1422,7 @@ void doDirectDraw__Q34Game8ItemHole4ItemFR8Graphics(void)
  * Address:	801D26EC
  * Size:	000058
  */
-void createFSM__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::createFSM(void)
 {
 /*
 .loc_0x0:
@@ -1458,7 +1458,7 @@ void createFSM__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D2744
  * Size:	00007C
  */
-void __ct__Q34Game8ItemHole3MgrFv(void)
+void Game::ItemHole::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1503,7 +1503,7 @@ void __ct__Q34Game8ItemHole3MgrFv(void)
  * Address:	801D27C0
  * Size:	000100
  */
-void onLoadResources__Q34Game8ItemHole3MgrFv(void)
+void Game::ItemHole::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -1579,7 +1579,7 @@ void onLoadResources__Q34Game8ItemHole3MgrFv(void)
  * Address:	801D28C0
  * Size:	0000BC
  */
-void setup__Q34Game8ItemHole3MgrFPQ24Game8BaseItem(void)
+void Game::ItemHole::Mgr::setup( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1673,7 +1673,7 @@ void generatorBirth__Q34Game8ItemHole3MgrFR10Vector3<float>R10Vector3<float>PQ24
  * Address:	801D29D0
  * Size:	000134
  */
-void __dt__Q34Game8ItemHole3MgrFv(void)
+void Game::ItemHole::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1770,7 +1770,7 @@ void __dt__Q34Game8ItemHole3MgrFv(void)
  * Address:	801D2B04
  * Size:	000074
  */
-void doNew__Q34Game8ItemHole3MgrFv(void)
+void Game::ItemHole::Mgr::doNew(void)
 {
 /*
 .loc_0x0:
@@ -1813,7 +1813,7 @@ void doNew__Q34Game8ItemHole3MgrFv(void)
  * Address:	801D2B78
  * Size:	00000C
  */
-void generatorGetID__Q34Game8ItemHole3MgrFv(void)
+void Game::ItemHole::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -1828,7 +1828,7 @@ void generatorGetID__Q34Game8ItemHole3MgrFv(void)
  * Address:	801D2B84
  * Size:	000008
  */
-void getCreatureName__Q34Game8ItemHole4ItemFv(void)
+void Game::ItemHole::Item::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -1842,7 +1842,7 @@ void getCreatureName__Q34Game8ItemHole4ItemFv(void)
  * Address:	801D2B8C
  * Size:	000004
  */
-void onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf(void)
+void Game::CItemState::onDamage( (Game::CFSMItem *, float))
 {
 /*
 .loc_0x0:
@@ -1855,7 +1855,7 @@ void onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf(void)
  * Address:	801D2B90
  * Size:	000008
  */
-void canRide__Q34Game8ItemHole11NormalStateFv(void)
+void Game::ItemHole::NormalState::canRide(void)
 {
 /*
 .loc_0x0:
@@ -2092,7 +2092,7 @@ void __sinit_itemHole_cpp(void)
  * Address:	801D2D64
  * Size:	000008
  */
-void @48@__dt__Q34Game8ItemHole3MgrFv(void)
+void @48@Game::ItemHole::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

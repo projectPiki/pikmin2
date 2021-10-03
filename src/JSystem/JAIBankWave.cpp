@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000010
  */
-void setWsGroupNumber__Q27JAInter8BankWaveFll(void)
+void JAInter::BankWave::setWsGroupNumber( (long, long))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void setWsGroupNumber__Q27JAInter8BankWaveFll(void)
  * Address:	........
  * Size:	000010
  */
-void setWsLoadStatus__Q27JAInter8BankWaveFll(void)
+void JAInter::BankWave::setWsLoadStatus( (long, long))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void setWsLoadStatus__Q27JAInter8BankWaveFll(void)
  * Address:	........
  * Size:	000010
  */
-void getWsGroupNumber__Q27JAInter8BankWaveFl(void)
+void JAInter::BankWave::getWsGroupNumber( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void getWsGroupNumber__Q27JAInter8BankWaveFl(void)
  * Address:	........
  * Size:	000010
  */
-void getWsLoadStatus__Q27JAInter8BankWaveFl(void)
+void JAInter::BankWave::getWsLoadStatus( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void getWsLoadStatus__Q27JAInter8BankWaveFl(void)
  * Address:	800ABE44
  * Size:	000008
  */
-void setInitCallback__Q27JAInter8BankWaveFPFv_v(void)
+void JAInter::BankWave::setInitCallback( (void (*)
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void setInitCallback__Q27JAInter8BankWaveFPFv_v(void)
  * Address:	800ABE4C
  * Size:	000008
  */
-void setFirstLoadCallback__Q27JAInter8BankWaveFPFv_v(void)
+void JAInter::BankWave::setFirstLoadCallback( (void (*)
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void setFirstLoadCallback__Q27JAInter8BankWaveFPFv_v(void)
  * Address:	800ABE54
  * Size:	000008
  */
-void setSecondLoadCallback__Q27JAInter8BankWaveFPFv_v(void)
+void JAInter::BankWave::setSecondLoadCallback( (void (*)
 {
 /*
 .loc_0x0:
@@ -87,7 +87,7 @@ void setSecondLoadCallback__Q27JAInter8BankWaveFPFv_v(void)
  * Address:	800ABE5C
  * Size:	000148
  */
-void init__Q27JAInter8BankWaveFv(void)
+void JAInter::BankWave::init(void)
 {
 /*
 .loc_0x0:
@@ -201,7 +201,7 @@ void init__Q27JAInter8BankWaveFv(void)
  * Address:	........
  * Size:	00002C
  */
-void readInitSoundData__Q27JAInter8BankWaveFv(void)
+void JAInter::BankWave::readInitSoundData(void)
 {
 	// UNUSED FUNCTION
 }
@@ -211,7 +211,7 @@ void readInitSoundData__Q27JAInter8BankWaveFv(void)
  * Address:	800ABFA4
  * Size:	000094
  */
-void loadFirstStayWave__Q27JAInter8BankWaveFv(void)
+void JAInter::BankWave::loadFirstStayWave(void)
 {
 /*
 .loc_0x0:
@@ -268,7 +268,7 @@ void loadFirstStayWave__Q27JAInter8BankWaveFv(void)
  * Address:	800AC038
  * Size:	000094
  */
-void loadSecondStayWave__Q27JAInter8BankWaveFv(void)
+void JAInter::BankWave::loadSecondStayWave(void)
 {
 /*
 .loc_0x0:
@@ -325,7 +325,7 @@ void loadSecondStayWave__Q27JAInter8BankWaveFv(void)
  * Address:	........
  * Size:	00004C
  */
-void setSceneSetFinishCallback__Q27JAInter8BankWaveFll(void)
+void JAInter::BankWave::setSceneSetFinishCallback( (long, long))
 {
 	// UNUSED FUNCTION
 }
@@ -335,7 +335,7 @@ void setSceneSetFinishCallback__Q27JAInter8BankWaveFll(void)
  * Address:	800AC0CC
  * Size:	000018
  */
-void finishSceneSet__Q27JAInter8BankWaveFUl(void)
+void JAInter::BankWave::finishSceneSet( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -353,7 +353,7 @@ void finishSceneSet__Q27JAInter8BankWaveFUl(void)
  * Address:	........
  * Size:	000080
  */
-void loadSceneWave__Q27JAInter8BankWaveFll(void)
+void JAInter::BankWave::loadSceneWave( (long, long))
 {
 	// UNUSED FUNCTION
 }
@@ -363,7 +363,7 @@ void loadSceneWave__Q27JAInter8BankWaveFll(void)
  * Address:	........
  * Size:	000034
  */
-void checkSceneWaveOnMemory__Q27JAInter8BankWaveFll(void)
+void JAInter::BankWave::checkSceneWaveOnMemory( (long, long))
 {
 	// UNUSED FUNCTION
 }
@@ -373,7 +373,7 @@ void checkSceneWaveOnMemory__Q27JAInter8BankWaveFll(void)
  * Address:	800AC0E4
  * Size:	000074
  */
-void loadGroupWave__Q27JAInter8BankWaveFll(void)
+void JAInter::BankWave::loadGroupWave( (long, long))
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void loadGroupWave__Q27JAInter8BankWaveFll(void)
  * Address:	........
  * Size:	000010
  */
-void getWaveGroupNumber__Q27JAInter8BankWaveFl(void)
+void JAInter::BankWave::getWaveGroupNumber( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -424,7 +424,7 @@ void getWaveGroupNumber__Q27JAInter8BankWaveFl(void)
  * Address:	........
  * Size:	000010
  */
-void getWaveLoadStatus__Q27JAInter8BankWaveFl(void)
+void JAInter::BankWave::getWaveLoadStatus( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -434,7 +434,7 @@ void getWaveLoadStatus__Q27JAInter8BankWaveFl(void)
  * Address:	........
  * Size:	00003C
  */
-void checkAllWaveLoadStatus__Q27JAInter8BankWaveFv(void)
+void JAInter::BankWave::checkAllWaveLoadStatus(void)
 {
 	// UNUSED FUNCTION
 }

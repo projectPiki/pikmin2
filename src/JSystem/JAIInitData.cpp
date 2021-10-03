@@ -5,7 +5,7 @@
  * Address:	800ADBA4
  * Size:	000008
  */
-void setWsInitCallback__Q27JAInter8InitDataFPFPUl_v(void)
+void JAInter::InitData::setWsInitCallback( (void (*)(unsigned long *)))
 {
 /*
 .loc_0x0:
@@ -19,7 +19,7 @@ void setWsInitCallback__Q27JAInter8InitDataFPFPUl_v(void)
  * Address:	800ADBAC
  * Size:	000008
  */
-void setBnkInitCallback__Q27JAInter8InitDataFPFPUl_v(void)
+void JAInter::InitData::setBnkInitCallback( (void (*)(unsigned long *)))
 {
 /*
 .loc_0x0:
@@ -33,7 +33,7 @@ void setBnkInitCallback__Q27JAInter8InitDataFPFPUl_v(void)
  * Address:	800ADBB4
  * Size:	0000E4
  */
-void checkInitDataFile__Q27JAInter8InitDataFv(void)
+void JAInter::InitData::checkInitDataFile(void)
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void checkInitDataFile__Q27JAInter8InitDataFv(void)
  * Address:	800ADC98
  * Size:	000264
  */
-void checkInitDataOnMemory__Q27JAInter8InitDataFv(void)
+void JAInter::InitData::checkInitDataOnMemory(void)
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void checkInitDataOnMemory__Q27JAInter8InitDataFv(void)
  * Address:	800ADEFC
  * Size:	0000CC
  */
-void initBnkList__Q27JAInter8InitDataFPUl(void)
+void JAInter::InitData::initBnkList( (unsigned long *))
 {
 /*
 .loc_0x0:
@@ -356,7 +356,7 @@ void initBnkList__Q27JAInter8InitDataFPUl(void)
  * Address:	800ADFC8
  * Size:	0000D8
  */
-void initWsList__Q27JAInter8InitDataFPUl(void)
+void JAInter::InitData::initWsList( (unsigned long *))
 {
 /*
 .loc_0x0:

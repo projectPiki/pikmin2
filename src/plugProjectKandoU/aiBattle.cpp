@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8022ECB4
  * Size:	0000B8
  */
-void __ct__Q26PikiAI9ActBattleFPQ24Game4Piki(void)
+void PikiAI::ActBattle::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -77,7 +77,7 @@ void __ct__Q26PikiAI9ActBattleFPQ24Game4Piki(void)
  * Address:	........
  * Size:	000050
  */
-void getTekiAction__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::getTekiAction(void)
 {
 	// UNUSED FUNCTION
 }
@@ -87,7 +87,7 @@ void getTekiAction__Q26PikiAI9ActBattleFv(void)
  * Address:	........
  * Size:	000078
  */
-void send__Q26PikiAI9ActBattleFRQ26PikiAI13BattleMessage(void)
+void PikiAI::ActBattle::send( (PikiAI::BattleMessage &))
 {
 	// UNUSED FUNCTION
 }
@@ -97,7 +97,7 @@ void send__Q26PikiAI9ActBattleFRQ26PikiAI13BattleMessage(void)
  * Address:	........
  * Size:	00011C
  */
-void recv__Q26PikiAI9ActBattleFRQ26PikiAI13BattleMessage(void)
+void PikiAI::ActBattle::recv( (PikiAI::BattleMessage &))
 {
 	// UNUSED FUNCTION
 }
@@ -107,7 +107,7 @@ void recv__Q26PikiAI9ActBattleFRQ26PikiAI13BattleMessage(void)
  * Address:	8022ED6C
  * Size:	000044
  */
-void emotion_success__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::emotion_success(void)
 {
 /*
 .loc_0x0:
@@ -136,7 +136,7 @@ void emotion_success__Q26PikiAI9ActBattleFv(void)
  * Address:	8022EDB0
  * Size:	000300
  */
-void init__Q26PikiAI9ActBattleFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActBattle::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void init__Q26PikiAI9ActBattleFPQ26PikiAI9ActionArg(void)
  * Address:	8022F0B0
  * Size:	0000EC
  */
-void exec__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::exec(void)
 {
 /*
 .loc_0x0:
@@ -451,7 +451,7 @@ void exec__Q26PikiAI9ActBattleFv(void)
  * Address:	8022F19C
  * Size:	00000C
  */
-void cleanup__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -466,7 +466,7 @@ void cleanup__Q26PikiAI9ActBattleFv(void)
  * Address:	8022F1A8
  * Size:	000004
  */
-void collisionCallback__Q26PikiAI9ActBattleFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActBattle::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void collisionCallback__Q26PikiAI9ActBattleFPQ24Game4PikiRQ24Game9CollEvent(void
  * Address:	8022F1AC
  * Size:	000484
  */
-void onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActBattle::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -810,7 +810,7 @@ void onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent(void)
  * Address:	8022F630
  * Size:	0000BC
  */
-void initApproach__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::initApproach(void)
 {
 /*
 .loc_0x0:
@@ -871,7 +871,7 @@ void initApproach__Q26PikiAI9ActBattleFv(void)
  * Address:	8022F6EC
  * Size:	000050
  */
-void execApproach__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::execApproach(void)
 {
 /*
 .loc_0x0:
@@ -907,7 +907,7 @@ void execApproach__Q26PikiAI9ActBattleFv(void)
  * Address:	8022F73C
  * Size:	0000C8
  */
-void initBattle__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::initBattle(void)
 {
 /*
 .loc_0x0:
@@ -977,7 +977,7 @@ void initBattle__Q26PikiAI9ActBattleFv(void)
  * Address:	8022F804
  * Size:	0000FC
  */
-void execBattle__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::execBattle(void)
 {
 /*
 .loc_0x0:
@@ -1054,7 +1054,7 @@ void execBattle__Q26PikiAI9ActBattleFv(void)
  * Address:	........
  * Size:	000054
  */
-void initDamage__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::initDamage(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1064,7 +1064,7 @@ void initDamage__Q26PikiAI9ActBattleFv(void)
  * Address:	8022F900
  * Size:	0000E8
  */
-void execDamage__Q26PikiAI9ActBattleFv(void)
+void PikiAI::ActBattle::execDamage(void)
 {
 /*
 .loc_0x0:
@@ -1136,7 +1136,7 @@ void execDamage__Q26PikiAI9ActBattleFv(void)
  * Address:	8022F9E8
  * Size:	000014
  */
-void @32@4@onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent(void)
+void @32@4@PikiAI::ActBattle::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

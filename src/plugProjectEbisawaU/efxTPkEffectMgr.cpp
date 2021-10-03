@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803C4E0C
  * Size:	0000B4
  */
-void create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg(void)
+void efx::TPkOneEmitterSimple::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -80,7 +80,7 @@ void create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg(void)
  * Address:	803C4EC0
  * Size:	0000D4
  */
-void executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter(void)
+void efx::TPkOneEmitterSimple::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -167,7 +167,7 @@ void add__Q23efx19TPkOneEmitterSimpleFR10Vector3<float>(void)
  * Address:	803C4F94
  * Size:	000024
  */
-void globalInstance__Q23efx12TPkEffectMgrFv(void)
+void efx::TPkEffectMgr::globalInstance(void)
 {
 /*
 .loc_0x0:
@@ -188,7 +188,7 @@ void globalInstance__Q23efx12TPkEffectMgrFv(void)
  * Address:	803C4FB8
  * Size:	000050
  */
-void deleteInstance__Q23efx12TPkEffectMgrFv(void)
+void efx::TPkEffectMgr::deleteInstance(void)
 {
 /*
 .loc_0x0:
@@ -224,7 +224,7 @@ void deleteInstance__Q23efx12TPkEffectMgrFv(void)
  * Address:	803C5008
  * Size:	000048
  */
-void Instance__Q23efx12TPkEffectMgrFv(void)
+void efx::TPkEffectMgr::Instance(void)
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void Instance__Q23efx12TPkEffectMgrFv(void)
  * Address:	803C5050
  * Size:	0013BC
  */
-void __ct__Q23efx12TPkEffectMgrFv(void)
+void efx::TPkEffectMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1633,7 +1633,7 @@ void JSUList<efx::TOEContextS>::~JSUList()
  * Address:	803C640C
  * Size:	000058
  */
-void __dt__Q23efx11TOEContextSFv(void)
+void efx::TOEContextS::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1671,7 +1671,7 @@ void __dt__Q23efx11TOEContextSFv(void)
  * Address:	803C6464
  * Size:	000034
  */
-void __ct__Q23efx11TOEContextSFv(void)
+void efx::TOEContextS::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1706,7 +1706,7 @@ void JSULink<efx::TOEContextS>::~JSULink()
  * Address:	803C6498
  * Size:	000108
  */
-void __dt__Q23efx12TPkEffectMgrFv(void)
+void efx::TPkEffectMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1794,7 +1794,7 @@ void __dt__Q23efx12TPkEffectMgrFv(void)
  * Address:	803C65A0
  * Size:	000080
  */
-void __dt__Q23efx19TPkOneEmitterSimpleFv(void)
+void efx::TPkOneEmitterSimple::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1842,7 +1842,7 @@ void __dt__Q23efx19TPkOneEmitterSimpleFv(void)
  * Address:	803C6620
  * Size:	000098
  */
-void startMgr__Q23efx12TPkEffectMgrFv(void)
+void efx::TPkEffectMgr::startMgr(void)
 {
 /*
 .loc_0x0:
@@ -1896,7 +1896,7 @@ void startMgr__Q23efx12TPkEffectMgrFv(void)
  * Address:	803C66B8
  * Size:	000090
  */
-void exitMgr__Q23efx12TPkEffectMgrFv(void)
+void efx::TPkEffectMgr::exitMgr(void)
 {
 /*
 .loc_0x0:
@@ -1948,7 +1948,7 @@ void exitMgr__Q23efx12TPkEffectMgrFv(void)
  * Address:	803C6748
  * Size:	000044
  */
-void forceKill__Q23efx19TPkOneEmitterSimpleFv(void)
+void efx::TPkOneEmitterSimple::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -1979,7 +1979,7 @@ void forceKill__Q23efx19TPkOneEmitterSimpleFv(void)
  * Address:	803C678C
  * Size:	00000C
  */
-void resetContextS__Q23efx12TPkEffectMgrFv(void)
+void efx::TPkEffectMgr::resetContextS(void)
 {
 /*
 .loc_0x0:
@@ -2867,7 +2867,7 @@ void create__Q23efx9ToeKourinFP10Vector3<float>l(void)
  * Address:	803C717C
  * Size:	0000B8
  */
-void kill__Q23efx9ToeKourinFv(void)
+void efx::ToeKourin::kill(void)
 {
 /*
 .loc_0x0:
@@ -2967,7 +2967,7 @@ void create__Q23efx9ToeDopingFP10Vector3<float>(void)
  * Address:	803C729C
  * Size:	00002C
  */
-void kill__Q23efx9ToeDopingFv(void)
+void efx::ToeDoping::kill(void)
 {
 /*
 .loc_0x0:
@@ -3030,7 +3030,7 @@ void create__Q23efx11ToeNagekiraFP10Vector3<float>(void)
  * Address:	803C7330
  * Size:	00002C
  */
-void kill__Q23efx11ToeNagekiraFv(void)
+void efx::ToeNagekira::kill(void)
 {
 /*
 .loc_0x0:
@@ -3098,7 +3098,7 @@ void create__Q23efx8ToeMoeBCFP10Vector3<float>(void)
  * Address:	803C73D8
  * Size:	000048
  */
-void kill__Q23efx8ToeMoeBCFv(void)
+void efx::ToeMoeBC::kill(void)
 {
 /*
 .loc_0x0:
@@ -3168,7 +3168,7 @@ void create__Q23efx10ToeChudokuFP10Vector3<float>(void)
  * Address:	803C7488
  * Size:	00002C
  */
-void kill__Q23efx10ToeChudokuFv(void)
+void efx::ToeChudoku::kill(void)
 {
 /*
 .loc_0x0:
@@ -3236,7 +3236,7 @@ void create__Q23efx8ToeWaterFP10Vector3<float>(void)
  * Address:	803C7530
  * Size:	000048
  */
-void kill__Q23efx8ToeWaterFv(void)
+void efx::ToeWater::kill(void)
 {
 /*
 .loc_0x0:
@@ -3311,7 +3311,7 @@ void create__Q23efx9ToeHamonAFP10Vector3<float>(void)
  * Address:	803C75EC
  * Size:	00002C
  */
-void kill__Q23efx9ToeHamonAFv(void)
+void efx::ToeHamonA::kill(void)
 {
 /*
 .loc_0x0:
@@ -3379,7 +3379,7 @@ void create__Q23efx9ToeHamonBFP10Vector3<float>(void)
  * Address:	803C768C
  * Size:	00002C
  */
-void kill__Q23efx9ToeHamonBFv(void)
+void efx::ToeHamonB::kill(void)
 {
 /*
 .loc_0x0:
@@ -3442,7 +3442,7 @@ void create__Q23efx11ToeMoeSmokeFP10Vector3<float>(void)
  * Address:	803C7720
  * Size:	00002C
  */
-void kill__Q23efx11ToeMoeSmokeFv(void)
+void efx::ToeMoeSmoke::kill(void)
 {
 /*
 .loc_0x0:
@@ -3505,7 +3505,7 @@ void create__Q23efx11ToeTanekiraFP10Vector3<float>(void)
  * Address:	803C77B4
  * Size:	00002C
  */
-void kill__Q23efx11ToeTanekiraFv(void)
+void efx::ToeTanekira::kill(void)
 {
 /*
 .loc_0x0:
@@ -3528,7 +3528,7 @@ void kill__Q23efx11ToeTanekiraFv(void)
  * Address:	803C77E0
  * Size:	000044
  */
-void fade__Q23efx19TPkOneEmitterSimpleFv(void)
+void efx::TPkOneEmitterSimple::fade(void)
 {
 /*
 .loc_0x0:
@@ -3559,7 +3559,7 @@ void fade__Q23efx19TPkOneEmitterSimpleFv(void)
  * Address:	803C7824
  * Size:	000008
  */
-void @4@executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter(void)
+void @4@efx::TPkOneEmitterSimple::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -3573,7 +3573,7 @@ void @4@executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter(void)
  * Address:	803C782C
  * Size:	000008
  */
-void @4@__dt__Q23efx19TPkOneEmitterSimpleFv(void)
+void @4@efx::TPkOneEmitterSimple::__dt(void)
 {
 /*
 .loc_0x0:

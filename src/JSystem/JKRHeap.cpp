@@ -1825,7 +1825,7 @@ void operator delete[] (void *)
  * Address:	........
  * Size:	00007C
  */
-void __ct__Q27JKRHeap6TStateFRCQ37JKRHeap6TState9TArgumentRCQ37JKRHeap6TState9TLocation(void)
+void JKRHeap::TState::__ct( (JKRHeap::TState::TArgument const &, JKRHeap::TState::TLocation const &))
 {
 	// UNUSED FUNCTION
 }
@@ -1835,7 +1835,7 @@ void __ct__Q27JKRHeap6TStateFRCQ37JKRHeap6TState9TArgumentRCQ37JKRHeap6TState9TL
  * Address:	........
  * Size:	000080
  */
-void __ct__Q27JKRHeap6TStateFRCQ27JKRHeap6TStateb(void)
+void JKRHeap::TState::__ct( (JKRHeap::TState const &, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -1845,7 +1845,7 @@ void __ct__Q27JKRHeap6TStateFRCQ27JKRHeap6TStateb(void)
  * Address:	........
  * Size:	000080
  */
-void __ct__Q27JKRHeap6TStateFRCQ27JKRHeap6TStateRCQ37JKRHeap6TState9TLocationb(void)
+void JKRHeap::TState::__ct( (JKRHeap::TState const &, JKRHeap::TState::TLocation const &, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -1855,7 +1855,7 @@ void __ct__Q27JKRHeap6TStateFRCQ27JKRHeap6TStateRCQ37JKRHeap6TState9TLocationb(v
  * Address:	800240FC
  * Size:	000414
  */
-void __dt__Q27JKRHeap6TStateFv(void)
+void JKRHeap::TState::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2190,7 +2190,7 @@ void __dt__Q27JKRHeap6TStateFv(void)
  * Address:	80024510
  * Size:	000034
  */
-void dump__Q27JKRHeap6TStateCFv(void)
+void JKRHeap::TState::dump( const
 {
 /*
 .loc_0x0:
@@ -2215,7 +2215,7 @@ void dump__Q27JKRHeap6TStateCFv(void)
  * Address:	80024544
  * Size:	000008
  */
-void isVerbose__Q27JKRHeap6TStateFv(void)
+void JKRHeap::TState::isVerbose(void)
 {
 /*
 .loc_0x0:
@@ -2229,7 +2229,7 @@ void isVerbose__Q27JKRHeap6TStateFv(void)
  * Address:	8002454C
  * Size:	000080
  */
-void __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb(void)
+void JKRHeap::TState::__ct( (JKRHeap const *, unsigned long, bool))
 {
 /*
 .loc_0x0:
@@ -2277,7 +2277,7 @@ void __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb(void)
  * Address:	800245CC
  * Size:	000008
  */
-void isCompareOnDestructed__Q27JKRHeap6TStateCFv(void)
+void JKRHeap::TState::isCompareOnDestructed( const
 {
 /*
 .loc_0x0:
@@ -2291,7 +2291,7 @@ void isCompareOnDestructed__Q27JKRHeap6TStateCFv(void)
  * Address:	800245D4
  * Size:	000014
  */
-void __ct__Q37JKRHeap6TState9TLocationFv(void)
+void JKRHeap::TState::TLocation::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2308,7 +2308,7 @@ void __ct__Q37JKRHeap6TState9TLocationFv(void)
  * Address:	800245E8
  * Size:	000020
  */
-void __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb(void)
+void JKRHeap::TState::TArgument::__ct( (JKRHeap const *, unsigned long, bool))
 {
 /*
 .loc_0x0:
@@ -2332,7 +2332,7 @@ void __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb(void)
  * Address:	80024608
  * Size:	000008
  */
-void getHeap__Q27JKRHeap6TStateCFv(void)
+void JKRHeap::TState::getHeap( const
 {
 /*
 .loc_0x0:
@@ -2346,7 +2346,7 @@ void getHeap__Q27JKRHeap6TStateCFv(void)
  * Address:	80024610
  * Size:	000008
  */
-void getId__Q27JKRHeap6TStateCFv(void)
+void JKRHeap::TState::getId( const
 {
 /*
 .loc_0x0:

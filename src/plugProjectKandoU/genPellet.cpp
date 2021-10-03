@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00009C
  */
-void __ct__Q24Game9GenPelletFv(void)
+void Game::GenPellet::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -78,7 +78,7 @@ void makePellet()
  * Address:	80202828
  * Size:	00008C
  */
-void initialise__Q24Game9GenPelletFv(void)
+void Game::GenPellet::initialise(void)
 {
 /*
 .loc_0x0:
@@ -125,7 +125,7 @@ void initialise__Q24Game9GenPelletFv(void)
  * Address:	802028B4
  * Size:	00006C
  */
-void doEvent__Q24Game9GenPelletFUl(void)
+void Game::GenPellet::doEvent( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3<float>(void)
  * Address:	80202988
  * Size:	000050
  */
-void getShape__Q24Game9GenPelletFv(void)
+void Game::GenPellet::getShape(void)
 {
 /*
 .loc_0x0:
@@ -242,7 +242,7 @@ void getShape__Q24Game9GenPelletFv(void)
  * Address:	802029D8
  * Size:	000138
  */
-void doWrite__Q24Game9GenPelletFR6Stream(void)
+void Game::GenPellet::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -334,7 +334,7 @@ void doWrite__Q24Game9GenPelletFR6Stream(void)
  * Address:	80202B10
  * Size:	000118
  */
-void doRead__Q24Game9GenPelletFR6Stream(void)
+void Game::GenPellet::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -422,7 +422,7 @@ void doRead__Q24Game9GenPelletFR6Stream(void)
  * Address:	80202C28
  * Size:	000004
  */
-void ramSaveParameters__Q24Game9GenPelletFR6Stream(void)
+void Game::GenPellet::ramSaveParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -435,7 +435,7 @@ void ramSaveParameters__Q24Game9GenPelletFR6Stream(void)
  * Address:	80202C2C
  * Size:	000004
  */
-void ramLoadParameters__Q24Game9GenPelletFR6Stream(void)
+void Game::GenPellet::ramLoadParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void ramLoadParameters__Q24Game9GenPelletFR6Stream(void)
  * Address:	80202C30
  * Size:	000058
  */
-void updateUseList__Q24Game9GenPelletFPQ24Game9Generatori(void)
+void Game::GenPellet::updateUseList( (Game::Generator *, int))
 {
 /*
 .loc_0x0:
@@ -482,7 +482,7 @@ void updateUseList__Q24Game9GenPelletFPQ24Game9Generatori(void)
  * Address:	80202C88
  * Size:	000078
  */
-void generate__Q24Game9GenPelletFPQ24Game9Generator(void)
+void Game::GenPellet::generate( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -524,7 +524,7 @@ void generate__Q24Game9GenPelletFPQ24Game9Generator(void)
  * Address:	80202D00
  * Size:	000040
  */
-void getDebugInfo__Q24Game9GenPelletFPc(void)
+void Game::GenPellet::getDebugInfo( (char *))
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void getDebugInfo__Q24Game9GenPelletFPc(void)
  * Address:	80202D40
  * Size:	0000D4
  */
-void birth__Q24Game9GenPelletFPQ24Game6GenArg(void)
+void Game::GenPellet::birth( (Game::GenArg *))
 {
 /*
 .loc_0x0:

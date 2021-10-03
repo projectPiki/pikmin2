@@ -5,7 +5,7 @@
  * Address:	800272E4
  * Size:	00003C
  */
-void __dt__Q27JGadget13TNodeLinkListFv(void)
+void JGadget::TNodeLinkList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __dt__Q27JGadget13TNodeLinkListFv(void)
  * Address:	........
  * Size:	00004C
  */
-void erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator(void)
+void JGadget::TNodeLinkList::erase( (JGadget::TNodeLinkList::iterator))
 {
 	// UNUSED FUNCTION
 }
@@ -44,7 +44,7 @@ void erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator(void)
  * Address:	........
  * Size:	000060
  */
-void erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator(void)
+void JGadget::TNodeLinkList::erase( (JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator))
 {
 	// UNUSED FUNCTION
 }
@@ -54,7 +54,7 @@ void erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadg
  * Address:	........
  * Size:	000018
  */
-void clear__Q27JGadget13TNodeLinkListFv(void)
+void JGadget::TNodeLinkList::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -64,7 +64,7 @@ void clear__Q27JGadget13TNodeLinkListFv(void)
  * Address:	........
  * Size:	00004C
  */
-void splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkList(void)
+void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList &))
 {
 	// UNUSED FUNCTION
 }
@@ -74,7 +74,7 @@ void splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGa
  * Address:	........
  * Size:	0000A8
  */
-void splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator(void)
+void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList &, JGadget::TNodeLinkList::iterator))
 {
 	// UNUSED FUNCTION
 }
@@ -84,7 +84,7 @@ void splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGa
  * Address:	........
  * Size:	0000C4
  */
-void splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator(void)
+void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList &, JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator))
 {
 	// UNUSED FUNCTION
 }
@@ -94,7 +94,7 @@ void splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGa
  * Address:	........
  * Size:	000094
  */
-void swap__Q27JGadget13TNodeLinkListFRQ27JGadget13TNodeLinkList(void)
+void JGadget::TNodeLinkList::swap( (JGadget::TNodeLinkList &))
 {
 	// UNUSED FUNCTION
 }
@@ -104,7 +104,7 @@ void swap__Q27JGadget13TNodeLinkListFRQ27JGadget13TNodeLinkList(void)
  * Address:	........
  * Size:	00008C
  */
-void reverse__Q27JGadget13TNodeLinkListFv(void)
+void JGadget::TNodeLinkList::reverse(void)
 {
 	// UNUSED FUNCTION
 }
@@ -114,7 +114,7 @@ void reverse__Q27JGadget13TNodeLinkListFv(void)
  * Address:	........
  * Size:	000060
  */
-void Find__Q27JGadget13TNodeLinkListFPCQ27JGadget13TLinkListNode(void)
+void JGadget::TNodeLinkList::Find( (JGadget::TLinkListNode const *))
 {
 	// UNUSED FUNCTION
 }
@@ -124,7 +124,7 @@ void Find__Q27JGadget13TNodeLinkListFPCQ27JGadget13TLinkListNode(void)
  * Address:	80027320
  * Size:	00002C
  */
-void Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode(void)
+void JGadget::TNodeLinkList::Insert( (JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode *))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGa
  * Address:	8002734C
  * Size:	000024
  */
-void Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode(void)
+void JGadget::TNodeLinkList::Erase( (JGadget::TLinkListNode *))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode(void)
  * Address:	80027370
  * Size:	00002C
  */
-void Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode(void)
+void JGadget::TNodeLinkList::Remove( (JGadget::TLinkListNode *))
 {
 /*
 .loc_0x0:

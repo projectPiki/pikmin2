@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803F02A4
  * Size:	0002B4
  */
-void __ct__Q33ebi6Screen11TOmakeCardEFv(void)
+void ebi::Screen::TOmakeCardE::__ct(void)
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void __ct__Q33ebi6Screen11TOmakeCardEFv(void)
  * Address:	803F0558
  * Size:	000290
  */
-void doSetArchive__Q33ebi6Screen11TOmakeCardEFP10JKRArchive(void)
+void ebi::Screen::TOmakeCardE::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void doSetArchive__Q33ebi6Screen11TOmakeCardEFP10JKRArchive(void)
  * Address:	803F07E8
  * Size:	0000BC
  */
-void doOpenScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TOmakeCardE::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void doOpenScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803F08A4
  * Size:	000050
  */
-void doCloseScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TOmakeCardE::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void doCloseScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen8ArgClose(void)
  * Address:	803F08F4
  * Size:	00003C
  */
-void doInitWaitState__Q33ebi6Screen11TOmakeCardEFv(void)
+void ebi::Screen::TOmakeCardE::doInitWaitState(void)
 {
 /*
 .loc_0x0:
@@ -502,7 +502,7 @@ void doInitWaitState__Q33ebi6Screen11TOmakeCardEFv(void)
  * Address:	803F0930
  * Size:	000054
  */
-void doUpdateStateOpen__Q33ebi6Screen11TOmakeCardEFv(void)
+void ebi::Screen::TOmakeCardE::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -535,7 +535,7 @@ void doUpdateStateOpen__Q33ebi6Screen11TOmakeCardEFv(void)
  * Address:	803F0984
  * Size:	00029C
  */
-void doUpdateStateWait__Q33ebi6Screen11TOmakeCardEFv(void)
+void ebi::Screen::TOmakeCardE::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -748,7 +748,7 @@ void doUpdateStateWait__Q33ebi6Screen11TOmakeCardEFv(void)
  * Address:	803F0C20
  * Size:	000054
  */
-void doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv(void)
+void ebi::Screen::TOmakeCardE::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -781,7 +781,7 @@ void doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv(void)
  * Address:	803F0C74
  * Size:	000074
  */
-void doDraw__Q33ebi6Screen11TOmakeCardEFv(void)
+void ebi::Screen::TOmakeCardE::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -822,7 +822,7 @@ void doDraw__Q33ebi6Screen11TOmakeCardEFv(void)
  * Address:	803F0CE8
  * Size:	00000C
  */
-void getName__Q33ebi6Screen11TOmakeCardEFv(void)
+void ebi::Screen::TOmakeCardE::getName(void)
 {
 /*
 .loc_0x0:

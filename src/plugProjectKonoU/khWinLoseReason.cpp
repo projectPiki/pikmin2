@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000070
  */
-void __ct__Q32kh6Screen16ObjWinLoseReasonFi(void)
+void kh::Screen::ObjWinLoseReason::__ct( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q32kh6Screen16ObjWinLoseReasonFi(void)
  * Address:	80410714
  * Size:	0000CC
  */
-void doCreate__Q32kh6Screen16ObjWinLoseReasonFP10JKRArchive(void)
+void kh::Screen::ObjWinLoseReason::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -90,7 +90,7 @@ void doCreate__Q32kh6Screen16ObjWinLoseReasonFP10JKRArchive(void)
  * Address:	804107E0
  * Size:	000008
  */
-void doUpdate__Q32kh6Screen16ObjWinLoseReasonFv(void)
+void kh::Screen::ObjWinLoseReason::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -104,7 +104,7 @@ void doUpdate__Q32kh6Screen16ObjWinLoseReasonFv(void)
  * Address:	804107E8
  * Size:	000004
  */
-void doDraw__Q32kh6Screen16ObjWinLoseReasonFR8Graphics(void)
+void kh::Screen::ObjWinLoseReason::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -117,7 +117,7 @@ void doDraw__Q32kh6Screen16ObjWinLoseReasonFR8Graphics(void)
  * Address:	........
  * Size:	000174
  */
-void updateAnimation__Q32kh6Screen16ObjWinLoseReasonFv(void)
+void kh::Screen::ObjWinLoseReason::updateAnimation(void)
 {
 	// UNUSED FUNCTION
 }
@@ -127,7 +127,7 @@ void updateAnimation__Q32kh6Screen16ObjWinLoseReasonFv(void)
  * Address:	804107EC
  * Size:	000060
  */
-void __ct__Q32kh6Screen18SceneWinLoseReasonFv(void)
+void kh::Screen::SceneWinLoseReason::__ct(void)
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void __ct__Q32kh6Screen18SceneWinLoseReasonFv(void)
  * Address:	8041084C
  * Size:	000588
  */
-void doCreateObj__Q32kh6Screen18SceneWinLoseReasonFP10JKRArchive(void)
+void kh::Screen::SceneWinLoseReason::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -615,7 +615,7 @@ void doCreateObj__Q32kh6Screen18SceneWinLoseReasonFP10JKRArchive(void)
  * Address:	80410DD4
  * Size:	0000CC
  */
-void doUpdateActive__Q32kh6Screen18SceneWinLoseReasonFv(void)
+void kh::Screen::SceneWinLoseReason::doUpdateActive(void)
 {
 /*
 .loc_0x0:
@@ -688,7 +688,7 @@ void doUpdateActive__Q32kh6Screen18SceneWinLoseReasonFv(void)
  * Address:	80410EA0
  * Size:	000020
  */
-void doEnd__Q32kh6Screen18SceneWinLoseReasonFPQ26Screen11EndSceneArg(void)
+void kh::Screen::SceneWinLoseReason::doEnd( (Screen::EndSceneArg *))
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void doEnd__Q32kh6Screen18SceneWinLoseReasonFPQ26Screen11EndSceneArg(void)
  * Address:	80410EC0
  * Size:	00000C
  */
-void getResName__Q32kh6Screen18SceneWinLoseReasonCFv(void)
+void kh::Screen::SceneWinLoseReason::getResName( const
 {
 /*
 .loc_0x0:
@@ -723,7 +723,7 @@ void getResName__Q32kh6Screen18SceneWinLoseReasonCFv(void)
  * Address:	80410ECC
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen18SceneWinLoseReasonFv(void)
+void kh::Screen::SceneWinLoseReason::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -737,7 +737,7 @@ void getSceneType__Q32kh6Screen18SceneWinLoseReasonFv(void)
  * Address:	80410ED4
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen18SceneWinLoseReasonFv(void)
+void kh::Screen::SceneWinLoseReason::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -751,7 +751,7 @@ void getOwnerID__Q32kh6Screen18SceneWinLoseReasonFv(void)
  * Address:	80410EDC
  * Size:	000010
  */
-void getMemberID__Q32kh6Screen18SceneWinLoseReasonFv(void)
+void kh::Screen::SceneWinLoseReason::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -767,7 +767,7 @@ void getMemberID__Q32kh6Screen18SceneWinLoseReasonFv(void)
  * Address:	80410EEC
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen16ObjWinLoseReasonFv(void)
+void kh::Screen::ObjWinLoseReason::__dt(void)
 {
 /*
 .loc_0x0:
@@ -854,7 +854,7 @@ void __sinit_khWinLoseReason_cpp(void)
  * Address:	80410FD8
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen16ObjWinLoseReasonFv(void)
+void @24@kh::Screen::ObjWinLoseReason::__dt(void)
 {
 /*
 .loc_0x0:

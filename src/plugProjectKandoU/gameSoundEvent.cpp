@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8022EBCC
  * Size:	00001C
  */
-void __ct__Q24Game11TSoundEventFv(void)
+void Game::TSoundEvent::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q24Game11TSoundEventFv(void)
  * Address:	........
  * Size:	000014
  */
-void setup__Q24Game11TSoundEventFi(void)
+void Game::TSoundEvent::setup( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -44,7 +44,7 @@ void setup__Q24Game11TSoundEventFi(void)
  * Address:	8022EBE8
  * Size:	000048
  */
-void event__Q24Game11TSoundEventFv(void)
+void Game::TSoundEvent::event(void)
 {
 /*
 .loc_0x0:
@@ -78,7 +78,7 @@ void event__Q24Game11TSoundEventFv(void)
  * Address:	8022EC30
  * Size:	000010
  */
-void finish__Q24Game11TSoundEventFv(void)
+void Game::TSoundEvent::finish(void)
 {
 /*
 .loc_0x0:
@@ -94,7 +94,7 @@ void finish__Q24Game11TSoundEventFv(void)
  * Address:	8022EC40
  * Size:	000074
  */
-void update__Q24Game11TSoundEventFv(void)
+void Game::TSoundEvent::update(void)
 {
 /*
 .loc_0x0:

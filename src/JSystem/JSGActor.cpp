@@ -5,7 +5,7 @@
  * Address:	80098990
  * Size:	000060
  */
-void __dt__Q26JStage6TActorFv(void)
+void JStage::TActor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void __dt__Q26JStage6TActorFv(void)
  * Address:	800989F0
  * Size:	000008
  */
-void JSGFGetType__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGFGetType( const
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void JSGFGetType__Q26JStage6TActorCFv(void)
  * Address:	800989F8
  * Size:	000004
  */
-void JSGGetTranslation__Q26JStage6TActorCFP3Vec(void)
+void JStage::TActor::JSGGetTranslation( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -70,7 +70,7 @@ void JSGGetTranslation__Q26JStage6TActorCFP3Vec(void)
  * Address:	800989FC
  * Size:	000004
  */
-void JSGSetTranslation__Q26JStage6TActorFRC3Vec(void)
+void JStage::TActor::JSGSetTranslation( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -83,7 +83,7 @@ void JSGSetTranslation__Q26JStage6TActorFRC3Vec(void)
  * Address:	80098A00
  * Size:	000004
  */
-void JSGGetScaling__Q26JStage6TActorCFP3Vec(void)
+void JStage::TActor::JSGGetScaling( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -96,7 +96,7 @@ void JSGGetScaling__Q26JStage6TActorCFP3Vec(void)
  * Address:	80098A04
  * Size:	000004
  */
-void JSGSetScaling__Q26JStage6TActorFRC3Vec(void)
+void JStage::TActor::JSGSetScaling( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -109,7 +109,7 @@ void JSGSetScaling__Q26JStage6TActorFRC3Vec(void)
  * Address:	80098A08
  * Size:	000004
  */
-void JSGGetRotation__Q26JStage6TActorCFP3Vec(void)
+void JStage::TActor::JSGGetRotation( const(Vec *))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void JSGGetRotation__Q26JStage6TActorCFP3Vec(void)
  * Address:	80098A0C
  * Size:	000004
  */
-void JSGSetRotation__Q26JStage6TActorFRC3Vec(void)
+void JStage::TActor::JSGSetRotation( (Vec const &))
 {
 /*
 .loc_0x0:
@@ -135,7 +135,7 @@ void JSGSetRotation__Q26JStage6TActorFRC3Vec(void)
  * Address:	80098A10
  * Size:	000008
  */
-void JSGGetShape__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGGetShape( const
 {
 /*
 .loc_0x0:
@@ -149,7 +149,7 @@ void JSGGetShape__Q26JStage6TActorCFv(void)
  * Address:	80098A18
  * Size:	000004
  */
-void JSGSetShape__Q26JStage6TActorFUl(void)
+void JStage::TActor::JSGSetShape( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void JSGSetShape__Q26JStage6TActorFUl(void)
  * Address:	80098A1C
  * Size:	000008
  */
-void JSGGetAnimation__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGGetAnimation( const
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void JSGGetAnimation__Q26JStage6TActorCFv(void)
  * Address:	80098A24
  * Size:	000004
  */
-void JSGSetAnimation__Q26JStage6TActorFUl(void)
+void JStage::TActor::JSGSetAnimation( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void JSGSetAnimation__Q26JStage6TActorFUl(void)
  * Address:	80098A28
  * Size:	000008
  */
-void JSGGetAnimationFrame__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGGetAnimationFrame( const
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void JSGGetAnimationFrame__Q26JStage6TActorCFv(void)
  * Address:	80098A30
  * Size:	000004
  */
-void JSGSetAnimationFrame__Q26JStage6TActorFf(void)
+void JStage::TActor::JSGSetAnimationFrame( (float))
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void JSGSetAnimationFrame__Q26JStage6TActorFf(void)
  * Address:	80098A34
  * Size:	000008
  */
-void JSGGetAnimationFrameMax__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGGetAnimationFrameMax( const
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void JSGGetAnimationFrameMax__Q26JStage6TActorCFv(void)
  * Address:	80098A3C
  * Size:	000008
  */
-void JSGGetAnimationTransition__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGGetAnimationTransition( const
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void JSGGetAnimationTransition__Q26JStage6TActorCFv(void)
  * Address:	80098A44
  * Size:	000004
  */
-void JSGSetAnimationTransition__Q26JStage6TActorFf(void)
+void JStage::TActor::JSGSetAnimationTransition( (float))
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void JSGSetAnimationTransition__Q26JStage6TActorFf(void)
  * Address:	80098A48
  * Size:	000008
  */
-void JSGGetTextureAnimation__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGGetTextureAnimation( const
 {
 /*
 .loc_0x0:
@@ -271,7 +271,7 @@ void JSGGetTextureAnimation__Q26JStage6TActorCFv(void)
  * Address:	80098A50
  * Size:	000004
  */
-void JSGSetTextureAnimation__Q26JStage6TActorFUl(void)
+void JStage::TActor::JSGSetTextureAnimation( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -284,7 +284,7 @@ void JSGSetTextureAnimation__Q26JStage6TActorFUl(void)
  * Address:	80098A54
  * Size:	000008
  */
-void JSGGetTextureAnimationFrame__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGGetTextureAnimationFrame( const
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void JSGGetTextureAnimationFrame__Q26JStage6TActorCFv(void)
  * Address:	80098A5C
  * Size:	000004
  */
-void JSGSetTextureAnimationFrame__Q26JStage6TActorFf(void)
+void JStage::TActor::JSGSetTextureAnimationFrame( (float))
 {
 /*
 .loc_0x0:
@@ -311,7 +311,7 @@ void JSGSetTextureAnimationFrame__Q26JStage6TActorFf(void)
  * Address:	80098A60
  * Size:	000008
  */
-void JSGGetTextureAnimationFrameMax__Q26JStage6TActorCFv(void)
+void JStage::TActor::JSGGetTextureAnimationFrameMax( const
 {
 /*
 .loc_0x0:

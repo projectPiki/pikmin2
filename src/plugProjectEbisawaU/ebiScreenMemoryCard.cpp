@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00004C
  */
-void __ct__Q33ebi6Screen17TResourceObserverFPQ33ebi6Screen11TMemoryCard(void)
+void ebi::Screen::TResourceObserver::__ct( (ebi::Screen::TMemoryCard *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q33ebi6Screen17TResourceObserverFPQ33ebi6Screen11TMemoryCard(void)
  * Address:	803C2244
  * Size:	00006C
  */
-void __dt__Q33ebi6Screen17TResourceObserverFv(void)
+void ebi::Screen::TResourceObserver::__dt(void)
 {
 /*
 .loc_0x0:
@@ -66,7 +66,7 @@ void __dt__Q33ebi6Screen17TResourceObserverFv(void)
  * Address:	803C22B0
  * Size:	0000D8
  */
-void loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap(void)
+void ebi::Screen::TMemoryCard::loadResource( (JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -138,7 +138,7 @@ void loadResource__Q33ebi6Screen11TMemoryCardFP7JKRHeap(void)
  * Address:	803C2388
  * Size:	00039C
  */
-void setArchive__Q33ebi6Screen11TMemoryCardFP10JKRArchive(void)
+void ebi::Screen::TMemoryCard::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void setArchive__Q33ebi6Screen11TMemoryCardFP10JKRArchive(void)
  * Address:	803C2724
  * Size:	0001BC
  */
-void set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox(void)
+void ebi::E2DCallBack_BlinkFontColor::set( (J2DTextBox *, J2DTextBox *))
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox(void)
  * Address:	803C28E0
  * Size:	000018
  */
-void destroyResource__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::destroyResource(void)
 {
 /*
 .loc_0x0:
@@ -526,7 +526,7 @@ void destroyResource__Q33ebi6Screen11TMemoryCardFv(void)
  * Address:	803C28F8
  * Size:	001208
  */
-void open__Q33ebi6Screen11TMemoryCardFl(void)
+void ebi::Screen::TMemoryCard::open( (long))
 {
 /*
 .loc_0x0:
@@ -1698,7 +1698,7 @@ void open__Q33ebi6Screen11TMemoryCardFl(void)
  * Address:	803C3B00
  * Size:	000030
  */
-void close__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::close(void)
 {
 /*
 .loc_0x0:
@@ -1724,7 +1724,7 @@ void close__Q33ebi6Screen11TMemoryCardFv(void)
  * Address:	803C3B30
  * Size:	000024
  */
-void killScreen__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::killScreen(void)
 {
 /*
 .loc_0x0:
@@ -1745,7 +1745,7 @@ void killScreen__Q33ebi6Screen11TMemoryCardFv(void)
  * Address:	803C3B54
  * Size:	000334
  */
-void setSelect___Q33ebi6Screen11TMemoryCardFb(void)
+void ebi::Screen::TMemoryCard::setSelect_( (bool))
 {
 /*
 .loc_0x0:
@@ -1976,7 +1976,7 @@ void setSelect___Q33ebi6Screen11TMemoryCardFb(void)
  * Address:	803C3E88
  * Size:	000128
  */
-void update__Q23ebi12TYesNoCursorFv(void)
+void ebi::TYesNoCursor::update(void)
 {
 /*
 .loc_0x0:
@@ -2068,7 +2068,7 @@ void update__Q23ebi12TYesNoCursorFv(void)
  * Address:	803C3FB0
  * Size:	000028
  */
-void isFinish__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::isFinish(void)
 {
 /*
 .loc_0x0:
@@ -2092,7 +2092,7 @@ void isFinish__Q33ebi6Screen11TMemoryCardFv(void)
  * Address:	........
  * Size:	000014
  */
-void isDecide__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::isDecide(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2102,7 +2102,7 @@ void isDecide__Q33ebi6Screen11TMemoryCardFv(void)
  * Address:	803C3FD8
  * Size:	0004EC
  */
-void startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState(void)
+void ebi::Screen::TMemoryCard::startState( (ebi::Screen::TMemoryCard::enumState))
 {
 /*
 .loc_0x0:
@@ -2449,7 +2449,7 @@ void startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
  * Address:	803C44C4
  * Size:	0008C8
  */
-void update__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::update(void)
 {
 /*
 .loc_0x0:
@@ -3091,7 +3091,7 @@ void update__Q33ebi6Screen11TMemoryCardFv(void)
  * Address:	803C4D8C
  * Size:	000080
  */
-void draw__Q33ebi6Screen11TMemoryCardFv(void)
+void ebi::Screen::TMemoryCard::draw(void)
 {
 /*
 .loc_0x0:

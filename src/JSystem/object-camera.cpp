@@ -5,7 +5,7 @@
  * Address:	80013428
  * Size:	0000C4
  */
-void __ct__Q214JStudio_JStage15TAdaptor_cameraFPCQ26JStage7TSystemPQ26JStage7TCamera(void)
+void JStudio_JStage::TAdaptor_camera::__ct( (JStage::TSystem const *, JStage::TCamera *))
 {
 /*
 .loc_0x0:
@@ -66,7 +66,7 @@ void __ct__Q214JStudio_JStage15TAdaptor_cameraFPCQ26JStage7TSystemPQ26JStage7TCa
  * Address:	800134EC
  * Size:	000078
  */
-void __dt__Q214JStudio_JStage15TAdaptor_cameraFv(void)
+void JStudio_JStage::TAdaptor_camera::__dt(void)
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void __dt__Q214JStudio_JStage15TAdaptor_cameraFv(void)
  * Address:	80013564
  * Size:	000048
  */
-void adaptor_do_prepare__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_prepare( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void adaptor_do_prepare__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObjec
  * Address:	800135AC
  * Size:	0000E8
  */
-void adaptor_do_begin__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_begin( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -222,7 +222,7 @@ void adaptor_do_begin__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObject(
  * Address:	80013694
  * Size:	000054
  */
-void adaptor_do_end__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_end( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void adaptor_do_end__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObject(vo
  * Address:	800136E8
  * Size:	00005C
  */
-void adaptor_do_update__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObjectUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_update( (JStudio::TObject const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -290,7 +290,7 @@ void adaptor_do_update__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObject
  * Address:	80013744
  * Size:	000034
  */
-void adaptor_do_data__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObjectPCvUlPCvUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_data( (JStudio::TObject const *, void const *, unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -315,7 +315,7 @@ void adaptor_do_data__Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio7TObjectPC
  * Address:	80013778
  * Size:	000044
  */
-void adaptor_do_PARENT__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void adaptor_do_PARENT__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEO
  * Address:	800137BC
  * Size:	00005C
  */
-void adaptor_do_PARENT_NODE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_NODE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -389,7 +389,7 @@ void adaptor_do_PARENT_NODE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data
  * Address:	80013818
  * Size:	000080
  */
-void adaptor_do_PARENT_ENABLE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -441,7 +441,7 @@ void adaptor_do_PARENT_ENABLE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4da
  * Address:	80013898
  * Size:	000014
  */
-void adaptor_do_PARENT_FUNCTION__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_FUNCTION( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void adaptor_do_PARENT_FUNCTION__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4
  * Address:	800138AC
  * Size:	000044
  */
-void adaptor_do_TARGET_PARENT__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -491,7 +491,7 @@ void adaptor_do_TARGET_PARENT__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4da
  * Address:	800138F0
  * Size:	00005C
  */
-void adaptor_do_TARGET_PARENT_NODE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -532,7 +532,7 @@ void adaptor_do_TARGET_PARENT_NODE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStud
  * Address:	8001394C
  * Size:	000020
  */
-void adaptor_do_TARGET_PARENT_ENABLE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void adaptor_do_TARGET_PARENT_ENABLE__Q214JStudio_JStage15TAdaptor_cameraFQ37JSt
  * Address:	8001396C
  * Size:	0000FC
  */
-void setJSG_position___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl(void)
+void JStudio_JStage::TAdaptor_camera::setJSG_position_( (JStudio::TControl const *))
 {
 /*
 .loc_0x0:
@@ -643,7 +643,7 @@ void setJSG_position___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl
  * Address:	80013A68
  * Size:	000108
  */
-void getJSG_position___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl(void)
+void JStudio_JStage::TAdaptor_camera::getJSG_position_( (JStudio::TControl const *))
 {
 /*
 .loc_0x0:
@@ -737,7 +737,7 @@ void getJSG_position___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl
  * Address:	80013B70
  * Size:	0000E0
  */
-void setJSG_targetPosition___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl(void)
+void JStudio_JStage::TAdaptor_camera::setJSG_targetPosition_( (JStudio::TControl const *))
 {
 /*
 .loc_0x0:
@@ -819,7 +819,7 @@ void setJSG_targetPosition___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TC
  * Address:	80013C50
  * Size:	0000E4
  */
-void getJSG_targetPosition___Q214JStudio_JStage15TAdaptor_cameraFPCQ27JStudio8TControl(void)
+void JStudio_JStage::TAdaptor_camera::getJSG_targetPosition_( (JStudio::TControl const *))
 {
 /*
 .loc_0x0:

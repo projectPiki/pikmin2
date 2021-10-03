@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801A2720
  * Size:	0000D0
  */
-void __ct__Q26PikiAI8ActEnterFPQ24Game4Piki(void)
+void PikiAI::ActEnter::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -85,7 +85,7 @@ void __ct__Q26PikiAI8ActEnterFPQ24Game4Piki(void)
  * Address:	801A27F0
  * Size:	000338
  */
-void init__Q26PikiAI8ActEnterFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActEnter::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -319,7 +319,7 @@ void init__Q26PikiAI8ActEnterFPQ26PikiAI9ActionArg(void)
  * Address:	801A2B28
  * Size:	000240
  */
-void exec__Q26PikiAI8ActEnterFv(void)
+void PikiAI::ActEnter::exec(void)
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void exec__Q26PikiAI8ActEnterFv(void)
  * Address:	801A2D68
  * Size:	000068
  */
-void cleanup__Q26PikiAI8ActEnterFv(void)
+void PikiAI::ActEnter::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -533,7 +533,7 @@ void cleanup__Q26PikiAI8ActEnterFv(void)
  * Address:	801A2DD0
  * Size:	000004
  */
-void onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActEnter::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -546,7 +546,7 @@ void onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent(void)
  * Address:	801A2DD4
  * Size:	000078
  */
-void initStay__Q26PikiAI8ActEnterFv(void)
+void PikiAI::ActEnter::initStay(void)
 {
 /*
 .loc_0x0:
@@ -588,7 +588,7 @@ void initStay__Q26PikiAI8ActEnterFv(void)
  * Address:	801A2E4C
  * Size:	000064
  */
-void execStay__Q26PikiAI8ActEnterFv(void)
+void PikiAI::ActEnter::execStay(void)
 {
 /*
 .loc_0x0:
@@ -629,7 +629,7 @@ void execStay__Q26PikiAI8ActEnterFv(void)
  * Address:	801A2EB0
  * Size:	0001A0
  */
-void initSuck__Q26PikiAI8ActEnterFv(void)
+void PikiAI::ActEnter::initSuck(void)
 {
 /*
 .loc_0x0:
@@ -753,7 +753,7 @@ void initSuck__Q26PikiAI8ActEnterFv(void)
  * Address:	801A3050
  * Size:	00018C
  */
-void execSuck__Q26PikiAI8ActEnterFv(void)
+void PikiAI::ActEnter::execSuck(void)
 {
 /*
 .loc_0x0:
@@ -878,7 +878,7 @@ void execSuck__Q26PikiAI8ActEnterFv(void)
  * Address:	801A31DC
  * Size:	000070
  */
-void __ct__Q26PikiAI7ActExitFPQ24Game4Piki(void)
+void PikiAI::ActExit::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -920,7 +920,7 @@ void __ct__Q26PikiAI7ActExitFPQ24Game4Piki(void)
  * Address:	801A324C
  * Size:	000204
  */
-void init__Q26PikiAI7ActExitFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActExit::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -1063,7 +1063,7 @@ void init__Q26PikiAI7ActExitFPQ26PikiAI9ActionArg(void)
  * Address:	801A3450
  * Size:	0000A8
  */
-void exec__Q26PikiAI7ActExitFv(void)
+void PikiAI::ActExit::exec(void)
 {
 /*
 .loc_0x0:
@@ -1123,7 +1123,7 @@ void exec__Q26PikiAI7ActExitFv(void)
  * Address:	801A34F8
  * Size:	0000C8
  */
-void cleanup__Q26PikiAI7ActExitFv(void)
+void PikiAI::ActExit::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -1185,7 +1185,7 @@ void cleanup__Q26PikiAI7ActExitFv(void)
  * Address:	801A35C0
  * Size:	00000C
  */
-void getName__Q26PikiAI14ClimbActionArgFv(void)
+void PikiAI::ClimbActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -1200,7 +1200,7 @@ void getName__Q26PikiAI14ClimbActionArgFv(void)
  * Address:	801A35CC
  * Size:	00000C
  */
-void getName__Q26PikiAI16GotoPosActionArgFv(void)
+void PikiAI::GotoPosActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -1215,7 +1215,7 @@ void getName__Q26PikiAI16GotoPosActionArgFv(void)
  * Address:	801A35D8
  * Size:	000014
  */
-void @96@4@onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent(void)
+void @96@4@PikiAI::ActEnter::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

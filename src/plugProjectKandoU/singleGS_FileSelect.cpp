@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8021C718
  * Size:	0000A8
  */
-void __ct__Q34Game10SingleGame9FileStateFv(void)
+void Game::SingleGame::FileState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void __ct__Q34Game10SingleGame9FileStateFv(void)
  * Address:	8021C7C0
  * Size:	00009C
  */
-void init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::FileState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -124,7 +124,7 @@ void init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionPQ24Game8Sta
  * Address:	........
  * Size:	0000E4
  */
-void first_init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::FileState::first_init( (Game::SingleGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -134,7 +134,7 @@ void first_init__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection(void)
  * Address:	8021C85C
  * Size:	00019C
  */
-void dvdload__Q34Game10SingleGame9FileStateFv(void)
+void Game::SingleGame::FileState::dvdload(void)
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void dvdload__Q34Game10SingleGame9FileStateFv(void)
  * Address:	8021C9F8
  * Size:	000194
  */
-void exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::FileState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -390,7 +390,7 @@ void exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection(void)
  * Address:	8021CB8C
  * Size:	00027C
  */
-void startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::FileState::startGame( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -583,7 +583,7 @@ void startGame__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection(void)
  * Address:	8021CE08
  * Size:	0000C0
  */
-void draw__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::FileState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -645,7 +645,7 @@ void draw__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSectionR8Graphics(v
  * Address:	8021CEC8
  * Size:	0000D4
  */
-void cleanup__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::FileState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:

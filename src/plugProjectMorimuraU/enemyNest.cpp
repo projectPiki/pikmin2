@@ -40,7 +40,7 @@ void birth__Q34Game4Nest3ObjFR10Vector3<float>f(void)
  * Address:	8036CAC8
  * Size:	00011C
  */
-void onInit__Q34Game4Nest3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Nest::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -125,7 +125,7 @@ void onInit__Q34Game4Nest3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8036CBE4
  * Size:	000098
  */
-void __ct__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -177,7 +177,7 @@ void __ct__Q34Game4Nest3ObjFv(void)
  * Address:	8036CC7C
  * Size:	000020
  */
-void setHouseType__Q34Game4Nest3ObjFi(void)
+void Game::Nest::Obj::setHouseType( (int))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void setHouseType__Q34Game4Nest3ObjFi(void)
  * Address:	8036CC9C
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Nest3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Nest::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -212,7 +212,7 @@ void setInitialSetting__Q34Game4Nest3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8036CCA0
  * Size:	000004
  */
-void update__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::update(void)
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void update__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCA4
  * Size:	000004
  */
-void doUpdate__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -238,7 +238,7 @@ void doUpdate__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCA8
  * Size:	000004
  */
-void doSimulation__Q34Game4Nest3ObjFf(void)
+void Game::Nest::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void doSimulation__Q34Game4Nest3ObjFf(void)
  * Address:	8036CCAC
  * Size:	000004
  */
-void doAnimationCullingOn__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::doAnimationCullingOn(void)
 {
 /*
 .loc_0x0:
@@ -264,7 +264,7 @@ void doAnimationCullingOn__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCB0
  * Size:	000004
  */
-void doAnimationCullingOff__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -277,7 +277,7 @@ void doAnimationCullingOff__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCB4
  * Size:	000004
  */
-void doUpdateCommon__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::doUpdateCommon(void)
 {
 /*
 .loc_0x0:
@@ -290,7 +290,7 @@ void doUpdateCommon__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCB8
  * Size:	000004
  */
-void doEntry__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void doEntry__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCBC
  * Size:	000004
  */
-void doViewCalc__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -316,7 +316,7 @@ void doViewCalc__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCC0
  * Size:	000008
  */
-void isLivingThing__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -330,7 +330,7 @@ void isLivingThing__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCC8
  * Size:	000008
  */
-void ignoreAtari__Q34Game4Nest3ObjFPQ24Game8Creature(void)
+void Game::Nest::Obj::ignoreAtari( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -344,7 +344,7 @@ void ignoreAtari__Q34Game4Nest3ObjFPQ24Game8Creature(void)
  * Address:	8036CCD0
  * Size:	000008
  */
-void needShadow__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -358,7 +358,7 @@ void needShadow__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCD8
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -372,7 +372,7 @@ void getEnemyTypeID__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCE0
  * Size:	000008
  */
-void getSound_CurrAnimFrame__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::getSound_CurrAnimFrame(void)
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void getSound_CurrAnimFrame__Q34Game4Nest3ObjFv(void)
  * Address:	8036CCE8
  * Size:	000008
  */
-void getSound_CurrAnimSpeed__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::getSound_CurrAnimSpeed(void)
 {
 /*
 .loc_0x0:

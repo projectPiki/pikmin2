@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80205A28
  * Size:	0003D4
  */
-void __ct__Q34Game12ItemUjamushi9BoidParmsFv(void)
+void Game::ItemUjamushi::BoidParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -274,7 +274,7 @@ void __ct__Q34Game12ItemUjamushi9BoidParmsFv(void)
  * Address:	80205DFC
  * Size:	000138
  */
-void blendTo__Q34Game12ItemUjamushi9BoidParmsFRQ34Game12ItemUjamushi9BoidParmsRQ34Game12ItemUjamushi9BoidParmsf(void)
+void Game::ItemUjamushi::BoidParms::blendTo( (Game::ItemUjamushi::BoidParms &, Game::ItemUjamushi::BoidParms &, float))
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void blendTo__Q34Game12ItemUjamushi9BoidParmsFRQ34Game12ItemUjamushi9BoidParmsRQ
  * Address:	80205F34
  * Size:	00004C
  */
-void __ct__Q34Game12ItemUjamushi13BoidParameterFv(void)
+void Game::ItemUjamushi::BoidParameter::__ct(void)
 {
 /*
 .loc_0x0:
@@ -395,7 +395,7 @@ void __ct__Q34Game12ItemUjamushi13BoidParameterFv(void)
  * Address:	80205F80
  * Size:	000060
  */
-void __dt__Q44Game12ItemUjamushi13BoidParameter5TNodeFv(void)
+void Game::ItemUjamushi::BoidParameter::TNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void __dt__Q44Game12ItemUjamushi13BoidParameter5TNodeFv(void)
  * Address:	80205FE0
  * Size:	000048
  */
-void __ct__Q44Game12ItemUjamushi13BoidParameter5TNodeFv(void)
+void Game::ItemUjamushi::BoidParameter::TNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void __ct__Q44Game12ItemUjamushi13BoidParameter5TNodeFv(void)
  * Address:	80206028
  * Size:	0000C0
  */
-void getParms__Q34Game12ItemUjamushi13BoidParameterFiifRQ34Game12ItemUjamushi9BoidParms(void)
+void Game::ItemUjamushi::BoidParameter::getParms( (int, int, float, Game::ItemUjamushi::BoidParms &))
 {
 /*
 .loc_0x0:
@@ -527,7 +527,7 @@ void getParms__Q34Game12ItemUjamushi13BoidParameterFiifRQ34Game12ItemUjamushi9Bo
  * Address:	802060E8
  * Size:	000048
  */
-void newParms__Q34Game12ItemUjamushi13BoidParameterFv(void)
+void Game::ItemUjamushi::BoidParameter::newParms(void)
 {
 /*
 .loc_0x0:
@@ -559,7 +559,7 @@ void newParms__Q34Game12ItemUjamushi13BoidParameterFv(void)
  * Address:	........
  * Size:	0000A8
  */
-void write__Q34Game12ItemUjamushi13BoidParameterFR6Stream(void)
+void Game::ItemUjamushi::BoidParameter::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -569,7 +569,7 @@ void write__Q34Game12ItemUjamushi13BoidParameterFR6Stream(void)
  * Address:	80206130
  * Size:	0000A8
  */
-void read__Q34Game12ItemUjamushi13BoidParameterFR6Stream(void)
+void Game::ItemUjamushi::BoidParameter::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -631,7 +631,7 @@ void read__Q34Game12ItemUjamushi13BoidParameterFR6Stream(void)
  * Address:	........
  * Size:	000148
  */
-void __ct__Q34Game12ItemUjamushi8UjaParmsFv(void)
+void Game::ItemUjamushi::UjaParms::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -641,7 +641,7 @@ void __ct__Q34Game12ItemUjamushi8UjaParmsFv(void)
  * Address:	802061D8
  * Size:	0000A8
  */
-void __ct__Q34Game12ItemUjamushi3UjaFv(void)
+void Game::ItemUjamushi::Uja::__ct(void)
 {
 /*
 .loc_0x0:
@@ -705,7 +705,7 @@ void init__Q34Game12ItemUjamushi3UjaFPQ34Game12ItemUjamushi6UjaMgrR10Vector3<flo
  * Address:	80206280
  * Size:	000028
  */
-void damaged__Q34Game12ItemUjamushi3UjaFf(void)
+void Game::ItemUjamushi::Uja::damaged( (float))
 {
 /*
 .loc_0x0:
@@ -737,7 +737,7 @@ void setPosition__Q34Game12ItemUjamushi3UjaFR10Vector3<float>(void)
  * Address:	802062A8
  * Size:	00003C
  */
-void clearBuffer__Q34Game12ItemUjamushi3UjaFv(void)
+void Game::ItemUjamushi::Uja::clearBuffer(void)
 {
 /*
 .loc_0x0:
@@ -768,7 +768,7 @@ void clearBuffer__Q34Game12ItemUjamushi3UjaFv(void)
  * Address:	802062E4
  * Size:	000318
  */
-void updateBuffer__Q34Game12ItemUjamushi3UjaFv(void)
+void Game::ItemUjamushi::Uja::updateBuffer(void)
 {
 /*
 .loc_0x0:
@@ -1010,7 +1010,7 @@ void updateBuffer__Q34Game12ItemUjamushi3UjaFv(void)
  * Address:	802065FC
  * Size:	0000AC
  */
-void makeMatrix__Q34Game12ItemUjamushi3UjaFv(void)
+void Game::ItemUjamushi::Uja::makeMatrix(void)
 {
 /*
 .loc_0x0:
@@ -1065,7 +1065,7 @@ void makeMatrix__Q34Game12ItemUjamushi3UjaFv(void)
  * Address:	802066A8
  * Size:	00015C
  */
-void updateScale__Q34Game12ItemUjamushi3UjaFf(void)
+void Game::ItemUjamushi::Uja::updateScale( (float))
 {
 /*
 .loc_0x0:
@@ -1174,7 +1174,7 @@ void updateScale__Q34Game12ItemUjamushi3UjaFf(void)
  * Address:	80206804
  * Size:	00134C
  */
-void update__Q34Game12ItemUjamushi3UjaFRQ34Game12ItemUjamushi9BoidParms(void)
+void Game::ItemUjamushi::Uja::update( (Game::ItemUjamushi::BoidParms &))
 {
 /*
 .loc_0x0:
@@ -2836,7 +2836,7 @@ void operator- (const Vector3<float> &, const Vector3<float> &)
  * Address:	80207EA4
  * Size:	000130
  */
-void __ct__Q34Game12ItemUjamushi6UjaMgrFi(void)
+void Game::ItemUjamushi::UjaMgr::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -3108,7 +3108,7 @@ void Container<Game::ItemUjamushi::Uja>::~Container()
  * Address:	802081E4
  * Size:	000050
  */
-void init__Q34Game12ItemUjamushi6UjaMgrFRQ34Game12ItemUjamushi13UjaMgrInitArg(void)
+void Game::ItemUjamushi::UjaMgr::init( (Game::ItemUjamushi::UjaMgrInitArg &))
 {
 /*
 .loc_0x0:
@@ -3140,7 +3140,7 @@ void init__Q34Game12ItemUjamushi6UjaMgrFRQ34Game12ItemUjamushi13UjaMgrInitArg(vo
  * Address:	........
  * Size:	0000E0
  */
-void updateBlend__Q34Game12ItemUjamushi6UjaMgrFiif(void)
+void Game::ItemUjamushi::UjaMgr::updateBlend( (int, int, float))
 {
 	// UNUSED FUNCTION
 }
@@ -3150,7 +3150,7 @@ void updateBlend__Q34Game12ItemUjamushi6UjaMgrFiif(void)
  * Address:	........
  * Size:	0000B0
  */
-void appear__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void Game::ItemUjamushi::UjaMgr::appear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3213,7 +3213,7 @@ void MonoObjectMgr<Game::ItemUjamushi::Uja>::getAt(int)
  * Address:	........
  * Size:	000080
  */
-void disappear__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void Game::ItemUjamushi::UjaMgr::disappear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3223,7 +3223,7 @@ void disappear__Q34Game12ItemUjamushi6UjaMgrFv(void)
  * Address:	........
  * Size:	000080
  */
-void mogure__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void Game::ItemUjamushi::UjaMgr::mogure(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3233,7 +3233,7 @@ void mogure__Q34Game12ItemUjamushi6UjaMgrFv(void)
  * Address:	80208278
  * Size:	000418
  */
-void test_createUjas__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void Game::ItemUjamushi::UjaMgr::test_createUjas(void)
 {
 /*
 .loc_0x0:
@@ -3527,7 +3527,7 @@ void test_createUjas__Q34Game12ItemUjamushi6UjaMgrFv(void)
  * Address:	80208690
  * Size:	000024
  */
-void do_update_boundSphere__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void Game::ItemUjamushi::UjaMgr::do_update_boundSphere(void)
 {
 /*
 .loc_0x0:
@@ -3548,7 +3548,7 @@ void do_update_boundSphere__Q34Game12ItemUjamushi6UjaMgrFv(void)
  * Address:	802086B4
  * Size:	00029C
  */
-void do_update__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void Game::ItemUjamushi::UjaMgr::do_update(void)
 {
 /*
 .loc_0x0:
@@ -3764,7 +3764,7 @@ void isFlagAlive__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja>Fi(void)
  * Address:	80208964
  * Size:	0002E4
  */
-void astonishPikmins__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void Game::ItemUjamushi::UjaMgr::astonishPikmins(void)
 {
 /*
 .loc_0x0:
@@ -3983,7 +3983,7 @@ void astonishPikmins__Q34Game12ItemUjamushi6UjaMgrFv(void)
  * Address:	80208C48
  * Size:	000134
  */
-void init__Q34Game12ItemUjamushi3FSMFPQ34Game12ItemUjamushi4Item(void)
+void Game::ItemUjamushi::FSM::init( (Game::ItemUjamushi::Item *))
 {
 /*
 .loc_0x0:
@@ -4078,7 +4078,7 @@ void init__Q34Game12ItemUjamushi3FSMFPQ34Game12ItemUjamushi4Item(void)
  * Address:	........
  * Size:	000134
  */
-void __ct__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4088,7 +4088,7 @@ void __ct__Q34Game12ItemUjamushi4ItemFv(void)
  * Address:	80208D7C
  * Size:	0000C8
  */
-void onInit__Q34Game12ItemUjamushi4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemUjamushi::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -4179,7 +4179,7 @@ void start__Q24Game40StateMachine<Game::ItemUjamushi::Item>FPQ34Game12ItemUjamus
  * Address:	80208E78
  * Size:	0000C0
  */
-void onSetPosition__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -4241,7 +4241,7 @@ void onSetPosition__Q34Game12ItemUjamushi4ItemFv(void)
  * Address:	........
  * Size:	00008C
  */
-void changeBoid__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::changeBoid(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4251,7 +4251,7 @@ void changeBoid__Q34Game12ItemUjamushi4ItemFv(void)
  * Address:	80208F38
  * Size:	000064
  */
-void setBoidTimer__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::setBoidTimer(void)
 {
 /*
 .loc_0x0:
@@ -4288,7 +4288,7 @@ void setBoidTimer__Q34Game12ItemUjamushi4ItemFv(void)
  * Address:	80208F9C
  * Size:	00003C
  */
-void ignoreAtari__Q34Game12ItemUjamushi4ItemFPQ24Game8Creature(void)
+void Game::ItemUjamushi::Item::ignoreAtari( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -4315,7 +4315,7 @@ void ignoreAtari__Q34Game12ItemUjamushi4ItemFPQ24Game8Creature(void)
  * Address:	80208FD8
  * Size:	000078
  */
-void updateBoundSphere__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -4359,7 +4359,7 @@ void updateBoundSphere__Q34Game12ItemUjamushi4ItemFv(void)
  * Address:	80209050
  * Size:	000008
  */
-void isCollisionFlick__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::isCollisionFlick(void)
 {
 /*
 .loc_0x0:
@@ -4373,7 +4373,7 @@ void isCollisionFlick__Q34Game12ItemUjamushi4ItemFv(void)
  * Address:	80209058
  * Size:	000374
  */
-void interactFlockAttack__Q34Game12ItemUjamushi4ItemFRQ24Game19InteractFlockAttack(void)
+void Game::ItemUjamushi::Item::interactFlockAttack( (Game::InteractFlockAttack &))
 {
 /*
 .loc_0x0:
@@ -4622,7 +4622,7 @@ void interactFlockAttack__Q34Game12ItemUjamushi4ItemFRQ24Game19InteractFlockAtta
  * Address:	802093CC
  * Size:	0002AC
  */
-void doAI__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -4831,7 +4831,7 @@ void getNumObjects__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja>Fv(void)
  * Address:	80209680
  * Size:	000078
  */
-void doSimpleDraw__Q34Game12ItemUjamushi4ItemFP8Viewport(void)
+void Game::ItemUjamushi::Item::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -4873,7 +4873,7 @@ void doSimpleDraw__Q34Game12ItemUjamushi4ItemFP8Viewport(void)
  * Address:	802096F8
  * Size:	000310
  */
-void __ct__Q34Game12ItemUjamushi3MgrFv(void)
+void Game::ItemUjamushi::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -5087,7 +5087,7 @@ void __ct__Q34Game12ItemUjamushi3MgrFv(void)
  * Address:	80209A08
  * Size:	000084
  */
-void __dt__Q34Game12ItemUjamushi13BoidParameterFv(void)
+void Game::ItemUjamushi::BoidParameter::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5227,7 +5227,7 @@ void __dt__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item>Fv(void)
  * Address:	80209BA8
  * Size:	000200
  */
-void doSimpleDraw__Q34Game12ItemUjamushi3MgrFP8Viewport(void)
+void Game::ItemUjamushi::Mgr::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -5416,7 +5416,7 @@ void Iterator<Game::ItemUjamushi::Item>::isDone()
  * Address:	80209DF4
  * Size:	000004
  */
-void onLoadResources__Q34Game12ItemUjamushi3MgrFv(void)
+void Game::ItemUjamushi::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -5429,7 +5429,7 @@ void onLoadResources__Q34Game12ItemUjamushi3MgrFv(void)
  * Address:	........
  * Size:	000158
  */
-void birth__Q34Game12ItemUjamushi3MgrFv(void)
+void Game::ItemUjamushi::Mgr::birth(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5439,7 +5439,7 @@ void birth__Q34Game12ItemUjamushi3MgrFv(void)
  * Address:	80209DF8
  * Size:	00000C
  */
-void getCaveName__Q34Game12ItemUjamushi3MgrFi(void)
+void Game::ItemUjamushi::Mgr::getCaveName( (int))
 {
 /*
 .loc_0x0:
@@ -5454,7 +5454,7 @@ void getCaveName__Q34Game12ItemUjamushi3MgrFi(void)
  * Address:	80209E04
  * Size:	000054
  */
-void getCaveID__Q34Game12ItemUjamushi3MgrFPc(void)
+void Game::ItemUjamushi::Mgr::getCaveID( (char *))
 {
 /*
 .loc_0x0:
@@ -5487,7 +5487,7 @@ void getCaveID__Q34Game12ItemUjamushi3MgrFPc(void)
  * Address:	80209E58
  * Size:	000094
  */
-void init__Q34Game12ItemUjamushi9WaitStateFPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg(void)
+void Game::ItemUjamushi::WaitState::init( (Game::ItemUjamushi::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -5540,7 +5540,7 @@ void init__Q34Game12ItemUjamushi9WaitStateFPQ34Game12ItemUjamushi4ItemPQ24Game8S
  * Address:	80209EEC
  * Size:	000058
  */
-void exec__Q34Game12ItemUjamushi9WaitStateFPQ34Game12ItemUjamushi4Item(void)
+void Game::ItemUjamushi::WaitState::exec( (Game::ItemUjamushi::Item *))
 {
 /*
 .loc_0x0:
@@ -5600,7 +5600,7 @@ void transit__Q24Game36FSMState<Game::ItemUjamushi::Item>FPQ34Game12ItemUjamushi
  * Address:	80209F74
  * Size:	000004
  */
-void cleanup__Q34Game12ItemUjamushi9WaitStateFPQ34Game12ItemUjamushi4Item(void)
+void Game::ItemUjamushi::WaitState::cleanup( (Game::ItemUjamushi::Item *))
 {
 /*
 .loc_0x0:
@@ -5613,7 +5613,7 @@ void cleanup__Q34Game12ItemUjamushi9WaitStateFPQ34Game12ItemUjamushi4Item(void)
  * Address:	80209F78
  * Size:	0000C4
  */
-void init__Q34Game12ItemUjamushi11ActiveStateFPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg(void)
+void Game::ItemUjamushi::ActiveState::init( (Game::ItemUjamushi::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -5682,7 +5682,7 @@ void init__Q34Game12ItemUjamushi11ActiveStateFPQ34Game12ItemUjamushi4ItemPQ24Gam
  * Address:	8020A03C
  * Size:	000004
  */
-void exec__Q34Game12ItemUjamushi11ActiveStateFPQ34Game12ItemUjamushi4Item(void)
+void Game::ItemUjamushi::ActiveState::exec( (Game::ItemUjamushi::Item *))
 {
 /*
 .loc_0x0:
@@ -5695,7 +5695,7 @@ void exec__Q34Game12ItemUjamushi11ActiveStateFPQ34Game12ItemUjamushi4Item(void)
  * Address:	8020A040
  * Size:	000004
  */
-void cleanup__Q34Game12ItemUjamushi11ActiveStateFPQ34Game12ItemUjamushi4Item(void)
+void Game::ItemUjamushi::ActiveState::cleanup( (Game::ItemUjamushi::Item *))
 {
 /*
 .loc_0x0:
@@ -5708,7 +5708,7 @@ void cleanup__Q34Game12ItemUjamushi11ActiveStateFPQ34Game12ItemUjamushi4Item(voi
  * Address:	8020A044
  * Size:	000094
  */
-void init__Q34Game12ItemUjamushi8DigStateFPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg(void)
+void Game::ItemUjamushi::DigState::init( (Game::ItemUjamushi::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -5761,7 +5761,7 @@ void init__Q34Game12ItemUjamushi8DigStateFPQ34Game12ItemUjamushi4ItemPQ24Game8St
  * Address:	8020A0D8
  * Size:	000058
  */
-void exec__Q34Game12ItemUjamushi8DigStateFPQ34Game12ItemUjamushi4Item(void)
+void Game::ItemUjamushi::DigState::exec( (Game::ItemUjamushi::Item *))
 {
 /*
 .loc_0x0:
@@ -5797,7 +5797,7 @@ void exec__Q34Game12ItemUjamushi8DigStateFPQ34Game12ItemUjamushi4Item(void)
  * Address:	8020A130
  * Size:	000004
  */
-void cleanup__Q34Game12ItemUjamushi8DigStateFPQ34Game12ItemUjamushi4Item(void)
+void Game::ItemUjamushi::DigState::cleanup( (Game::ItemUjamushi::Item *))
 {
 /*
 .loc_0x0:
@@ -5810,7 +5810,7 @@ void cleanup__Q34Game12ItemUjamushi8DigStateFPQ34Game12ItemUjamushi4Item(void)
  * Address:	8020A134
  * Size:	00004C
  */
-void generatorNewItemParm__Q34Game12ItemUjamushi3MgrFv(void)
+void Game::ItemUjamushi::Mgr::generatorNewItemParm(void)
 {
 /*
 .loc_0x0:
@@ -5843,7 +5843,7 @@ void generatorNewItemParm__Q34Game12ItemUjamushi3MgrFv(void)
  * Address:	8020A180
  * Size:	000088
  */
-void generatorWrite__Q34Game12ItemUjamushi3MgrFR6StreamPQ24Game11GenItemParm(void)
+void Game::ItemUjamushi::Mgr::generatorWrite( (Stream &, Game::GenItemParm *))
 {
 /*
 .loc_0x0:
@@ -5891,7 +5891,7 @@ void generatorWrite__Q34Game12ItemUjamushi3MgrFR6StreamPQ24Game11GenItemParm(voi
  * Address:	8020A208
  * Size:	000064
  */
-void generatorRead__Q34Game12ItemUjamushi3MgrFR6StreamPQ24Game11GenItemParmUl(void)
+void Game::ItemUjamushi::Mgr::generatorRead( (Stream &, Game::GenItemParm *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -6065,7 +6065,7 @@ void generatorBirth__Q34Game12ItemUjamushi3MgrFR10Vector3<float>R10Vector3<float
  * Address:	8020A438
  * Size:	00000C
  */
-void getName__Q34Game12ItemUjamushi7InitArgFv(void)
+void Game::ItemUjamushi::InitArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -6080,7 +6080,7 @@ void getName__Q34Game12ItemUjamushi7InitArgFv(void)
  * Address:	8020A444
  * Size:	000174
  */
-void __dt__Q34Game12ItemUjamushi3MgrFv(void)
+void Game::ItemUjamushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6197,7 +6197,7 @@ void __dt__Q34Game12ItemUjamushi3MgrFv(void)
  * Address:	8020A5B8
  * Size:	00000C
  */
-void generatorGetID__Q34Game12ItemUjamushi3MgrFv(void)
+void Game::ItemUjamushi::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -6212,7 +6212,7 @@ void generatorGetID__Q34Game12ItemUjamushi3MgrFv(void)
  * Address:	8020A5C4
  * Size:	00000C
  */
-void generatorLocalVersion__Q34Game12ItemUjamushi3MgrFv(void)
+void Game::ItemUjamushi::Mgr::generatorLocalVersion(void)
 {
 /*
 .loc_0x0:
@@ -6605,7 +6605,7 @@ void NodeObjectMgr<Game::ItemUjamushi::Item>::~NodeObjectMgr()
  * Address:	8020A9E8
  * Size:	000008
  */
-void getFlockMgr__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::getFlockMgr(void)
 {
 /*
 .loc_0x0:
@@ -6619,7 +6619,7 @@ void getFlockMgr__Q34Game12ItemUjamushi4ItemFv(void)
  * Address:	8020A9F0
  * Size:	000004
  */
-void makeTrMatrix__Q34Game12ItemUjamushi4ItemFv(void)
+void Game::ItemUjamushi::Item::makeTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -6632,7 +6632,7 @@ void makeTrMatrix__Q34Game12ItemUjamushi4ItemFv(void)
  * Address:	8020A9F4
  * Size:	000008
  */
-void getMatrix__Q44Game12ItemUjamushi4Item10DummyShapeFi(void)
+void Game::ItemUjamushi::Item::DummyShape::getMatrix( (int))
 {
 /*
 .loc_0x0:
@@ -6671,7 +6671,7 @@ void doAI__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, G
  * Address:	8020AA30
  * Size:	000118
  */
-void __dt__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void Game::ItemUjamushi::UjaMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6759,7 +6759,7 @@ void __dt__Q34Game12ItemUjamushi6UjaMgrFv(void)
  * Address:	8020AB48
  * Size:	0000AC
  */
-void isWeed__Q24Game12BaseFlockMgrFi(void)
+void Game::BaseFlockMgr::isWeed( (int))
 {
 /*
 .loc_0x0:
@@ -6818,7 +6818,7 @@ void isWeed__Q24Game12BaseFlockMgrFi(void)
  * Address:	8020ABF4
  * Size:	000008
  */
-void isWeed__Q24Game6TFlockFv(void)
+void Game::TFlock::isWeed(void)
 {
 /*
 .loc_0x0:
@@ -6832,7 +6832,7 @@ void isWeed__Q24Game6TFlockFv(void)
  * Address:	8020ABFC
  * Size:	0000AC
  */
-void fear__Q24Game12BaseFlockMgrFi(void)
+void Game::BaseFlockMgr::fear( (int))
 {
 /*
 .loc_0x0:
@@ -6891,7 +6891,7 @@ void fear__Q24Game12BaseFlockMgrFi(void)
  * Address:	8020ACA8
  * Size:	000008
  */
-void fear__Q24Game6TFlockFv(void)
+void Game::TFlock::fear(void)
 {
 /*
 .loc_0x0:
@@ -6955,7 +6955,7 @@ void ObjectMgr<Game::ItemUjamushi::Uja>::~ObjectMgr()
  * Address:	8020AD38
  * Size:	000004
  */
-void do_update__Q24Game12BaseFlockMgrFv(void)
+void Game::BaseFlockMgr::do_update(void)
 {
 /*
 .loc_0x0:
@@ -6994,7 +6994,7 @@ void Iterator<Game::ItemUjamushi::Uja>::operator* ()
  * Address:	8020AD74
  * Size:	000018
  */
-void isVisible__Q34Game12ItemUjamushi3UjaFv(void)
+void Game::ItemUjamushi::Uja::isVisible(void)
 {
 /*
 .loc_0x0:
@@ -7012,7 +7012,7 @@ void isVisible__Q34Game12ItemUjamushi3UjaFv(void)
  * Address:	8020AD8C
  * Size:	000008
  */
-void getRadius__Q24Game6TFlockFv(void)
+void Game::TFlock::getRadius(void)
 {
 /*
 .loc_0x0:
@@ -7026,7 +7026,7 @@ void getRadius__Q24Game6TFlockFv(void)
  * Address:	8020AD94
  * Size:	000004
  */
-void constructor__Q24Game6TFlockFv(void)
+void Game::TFlock::constructor(void)
 {
 /*
 .loc_0x0:
@@ -7039,7 +7039,7 @@ void constructor__Q24Game6TFlockFv(void)
  * Address:	8020AD98
  * Size:	000008
  */
-void isVisible__Q24Game6TFlockFv(void)
+void Game::TFlock::isVisible(void)
 {
 /*
 .loc_0x0:
@@ -7053,7 +7053,7 @@ void isVisible__Q24Game6TFlockFv(void)
  * Address:	8020ADA0
  * Size:	000008
  */
-void damaged__Q24Game6TFlockFf(void)
+void Game::TFlock::damaged( (float))
 {
 /*
 .loc_0x0:
@@ -11264,7 +11264,7 @@ void @32@get__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja>FPv(void)
  * Address:	8020D70C
  * Size:	000008
  */
-void @32@__dt__Q34Game12ItemUjamushi6UjaMgrFv(void)
+void @32@Game::ItemUjamushi::UjaMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -11460,7 +11460,7 @@ void @48@get__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item>FPv(void)
  * Address:	8020D77C
  * Size:	000008
  */
-void @48@__dt__Q34Game12ItemUjamushi3MgrFv(void)
+void @48@Game::ItemUjamushi::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

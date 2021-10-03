@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803C1F58
  * Size:	000094
  */
-void loadSettingFile__Q33ebi5title14TTitleLightMgrFP10JKRArchivePc(void)
+void ebi::title::TTitleLightMgr::loadSettingFile( (JKRArchive *, char *))
 {
 /*
 .loc_0x0:
@@ -68,7 +68,7 @@ void loadSettingFile__Q33ebi5title14TTitleLightMgrFP10JKRArchivePc(void)
  * Address:	803C1FEC
  * Size:	00017C
  */
-void setParam___Q33ebi5title14TTitleLightMgrFv(void)
+void ebi::title::TTitleLightMgr::setParam_(void)
 {
 /*
 .loc_0x0:
@@ -187,7 +187,7 @@ void setParam___Q33ebi5title14TTitleLightMgrFv(void)
  * Address:	803C2168
  * Size:	000020
  */
-void update__Q33ebi5title14TTitleLightMgrFv(void)
+void ebi::title::TTitleLightMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void update__Q33ebi5title14TTitleLightMgrFv(void)
  * Address:	803C2188
  * Size:	000094
  */
-void setCameraMtx__Q33ebi5title14TTitleLightMgrFPA4_f(void)
+void ebi::title::TTitleLightMgr::setCameraMtx( (float (*)[4]))
 {
 /*
 .loc_0x0:

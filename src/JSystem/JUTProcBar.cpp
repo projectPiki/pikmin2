@@ -15,7 +15,7 @@ void JUTProcBar::JUTProcBar()
  * Address:	8002EFE0
  * Size:	000014
  */
-void __ct__Q210JUTProcBar5CTimeFv(void)
+void JUTProcBar::CTime::__ct(void)
 {
 /*
 .loc_0x0:

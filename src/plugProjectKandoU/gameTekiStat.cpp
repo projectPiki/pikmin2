@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8023381C
  * Size:	000034
  */
-void incKilled__Q34Game8TekiStat4InfoFv(void)
+void Game::TekiStat::Info::incKilled(void)
 {
 /*
 .loc_0x0:
@@ -40,7 +40,7 @@ void incKilled__Q34Game8TekiStat4InfoFv(void)
  * Address:	80233850
  * Size:	000028
  */
-void incKillPikmin__Q34Game8TekiStat4InfoFv(void)
+void Game::TekiStat::Info::incKillPikmin(void)
 {
 /*
 .loc_0x0:
@@ -62,7 +62,7 @@ void incKillPikmin__Q34Game8TekiStat4InfoFv(void)
  * Address:	80233878
  * Size:	000010
  */
-void __ct__Q34Game8TekiStat3MgrFv(void)
+void Game::TekiStat::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -78,7 +78,7 @@ void __ct__Q34Game8TekiStat3MgrFv(void)
  * Address:	80233888
  * Size:	000084
  */
-void whatsNew__Q34Game8TekiStat3MgrFv(void)
+void Game::TekiStat::Mgr::whatsNew(void)
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void whatsNew__Q34Game8TekiStat3MgrFv(void)
  * Address:	8023390C
  * Size:	000078
  */
-void setOutOfDateAll__Q34Game8TekiStat3MgrFv(void)
+void Game::TekiStat::Mgr::setOutOfDateAll(void)
 {
 /*
 .loc_0x0:
@@ -179,7 +179,7 @@ void setOutOfDateAll__Q34Game8TekiStat3MgrFv(void)
  * Address:	80233984
  * Size:	0000C8
  */
-void clear__Q34Game8TekiStat3MgrFv(void)
+void Game::TekiStat::Mgr::clear(void)
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void clear__Q34Game8TekiStat3MgrFv(void)
  * Address:	80233A4C
  * Size:	000060
  */
-void allocate__Q34Game8TekiStat3MgrFi(void)
+void Game::TekiStat::Mgr::allocate( (int))
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void allocate__Q34Game8TekiStat3MgrFi(void)
  * Address:	80233AAC
  * Size:	000018
  */
-void __ct__Q34Game8TekiStat4InfoFv(void)
+void Game::TekiStat::Info::__ct(void)
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void __ct__Q34Game8TekiStat4InfoFv(void)
  * Address:	80233AC4
  * Size:	00007C
  */
-void getTekiInfo__Q34Game8TekiStat3MgrFi(void)
+void Game::TekiStat::Mgr::getTekiInfo( (int))
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void getTekiInfo__Q34Game8TekiStat3MgrFi(void)
  * Address:	........
  * Size:	000058
  */
-void write__Q34Game8TekiStat4InfoFR6Stream(void)
+void Game::TekiStat::Info::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -360,7 +360,7 @@ void write__Q34Game8TekiStat4InfoFR6Stream(void)
  * Address:	........
  * Size:	000058
  */
-void read__Q34Game8TekiStat4InfoFR6Stream(void)
+void Game::TekiStat::Info::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -370,7 +370,7 @@ void read__Q34Game8TekiStat4InfoFR6Stream(void)
  * Address:	80233B40
  * Size:	0000C0
  */
-void write__Q34Game8TekiStat3MgrFR6Stream(void)
+void Game::TekiStat::Mgr::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -438,7 +438,7 @@ void write__Q34Game8TekiStat3MgrFR6Stream(void)
  * Address:	80233C00
  * Size:	0000EC
  */
-void read__Q34Game8TekiStat3MgrFR6Stream(void)
+void Game::TekiStat::Mgr::read( (Stream &))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80227D5C
  * Size:	000070
  */
-void getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind(void)
+void Game::PelletList::Mgr::getConfigList( (Game::PelletList::cKind))
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind(void)
  * Address:	80227DCC
  * Size:	000074
  */
-void getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind(void)
+void Game::PelletList::Mgr::getCount( (Game::PelletList::cKind))
 {
 /*
 .loc_0x0:
@@ -104,7 +104,7 @@ void getCount__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind(void)
  * Address:	80227E40
  * Size:	0000C0
  */
-void getConfigAndKind__Q34Game10PelletList3MgrFPcRQ34Game10PelletList5cKind(void)
+void Game::PelletList::Mgr::getConfigAndKind( (char *, Game::PelletList::cKind &))
 {
 /*
 .loc_0x0:
@@ -174,7 +174,7 @@ void getConfigAndKind__Q34Game10PelletList3MgrFPcRQ34Game10PelletList5cKind(void
  * Address:	........
  * Size:	000068
  */
-void __ct__Q34Game10PelletList3MgrFv(void)
+void Game::PelletList::Mgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -184,7 +184,7 @@ void __ct__Q34Game10PelletList3MgrFv(void)
  * Address:	80227F00
  * Size:	000070
  */
-void __dt__Q34Game10PelletList3MgrFv(void)
+void Game::PelletList::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -226,7 +226,7 @@ void __dt__Q34Game10PelletList3MgrFv(void)
  * Address:	80227F70
  * Size:	0001D8
  */
-void loadResource__Q34Game10PelletList3MgrFv(void)
+void Game::PelletList::Mgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -374,7 +374,7 @@ void loadResource__Q34Game10PelletList3MgrFv(void)
  * Address:	80228148
  * Size:	000018
  */
-void getDictionaryNum__Q34Game10PelletList3MgrFv(void)
+void Game::PelletList::Mgr::getDictionaryNum(void)
 {
 /*
 .loc_0x0:
@@ -392,7 +392,7 @@ void getDictionaryNum__Q34Game10PelletList3MgrFv(void)
  * Address:	80228160
  * Size:	0000A4
  */
-void getConfigFromDictionaryNo__Q34Game10PelletList3MgrFi(void)
+void Game::PelletList::Mgr::getConfigFromDictionaryNo( (int))
 {
 /*
 .loc_0x0:
@@ -451,7 +451,7 @@ void getConfigFromDictionaryNo__Q34Game10PelletList3MgrFi(void)
  * Address:	80228204
  * Size:	0000A4
  */
-void getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi(void)
+void Game::PelletList::Mgr::getOffsetFromDictionaryNo( (int))
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void getOffsetFromDictionaryNo__Q34Game10PelletList3MgrFi(void)
  * Address:	802282A8
  * Size:	000080
  */
-void globalInstance__Q34Game10PelletList3MgrFv(void)
+void Game::PelletList::Mgr::globalInstance(void)
 {
 /*
 .loc_0x0:
@@ -556,7 +556,7 @@ void globalInstance__Q34Game10PelletList3MgrFv(void)
  * Address:	........
  * Size:	000048
  */
-void deleteInstance__Q34Game10PelletList3MgrFv(void)
+void Game::PelletList::Mgr::deleteInstance(void)
 {
 	// UNUSED FUNCTION
 }

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803D3B10
  * Size:	000324
  */
-void doSetArchive__Q33ebi6Screen11TPressStartFP10JKRArchive(void)
+void ebi::Screen::TPressStart::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void doSetArchive__Q33ebi6Screen11TPressStartFP10JKRArchive(void)
  * Address:	803D3E34
  * Size:	000028
  */
-void doOpenScreen__Q33ebi6Screen11TPressStartFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TPressStart::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -266,7 +266,7 @@ void doOpenScreen__Q33ebi6Screen11TPressStartFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803D3E5C
  * Size:	000044
  */
-void doCloseScreen__Q33ebi6Screen11TPressStartFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TPressStart::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void doCloseScreen__Q33ebi6Screen11TPressStartFPQ33ebi6Screen8ArgClose(void)
  * Address:	803D3EA0
  * Size:	0000A4
  */
-void doUpdateStateWait__Q33ebi6Screen11TPressStartFv(void)
+void ebi::Screen::TPressStart::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void doUpdateStateWait__Q33ebi6Screen11TPressStartFv(void)
  * Address:	803D3F44
  * Size:	000108
  */
-void doUpdateStateClose__Q33ebi6Screen11TPressStartFv(void)
+void ebi::Screen::TPressStart::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -444,7 +444,7 @@ void doUpdateStateClose__Q33ebi6Screen11TPressStartFv(void)
  * Address:	803D404C
  * Size:	000080
  */
-void doDraw__Q33ebi6Screen11TPressStartFv(void)
+void ebi::Screen::TPressStart::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -488,7 +488,7 @@ void doDraw__Q33ebi6Screen11TPressStartFv(void)
  * Address:	803D40CC
  * Size:	00016C
  */
-void startLoop___Q33ebi6Screen11TPressStartFv(void)
+void ebi::Screen::TPressStart::startLoop_(void)
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void startLoop___Q33ebi6Screen11TPressStartFv(void)
  * Address:	803D4238
  * Size:	00000C
  */
-void getName__Q33ebi6Screen11TPressStartFv(void)
+void ebi::Screen::TPressStart::getName(void)
 {
 /*
 .loc_0x0:

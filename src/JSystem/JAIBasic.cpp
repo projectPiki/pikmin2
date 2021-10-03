@@ -505,7 +505,7 @@ void JAIBasic::initCamera()
  * Address:	800AC690
  * Size:	000014
  */
-void __defctor__Q27JAInter6CameraFv(void)
+void JAInter::Camera::__defctor(void)
 {
 /*
 .loc_0x0:

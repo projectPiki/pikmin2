@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801D04E8
  * Size:	0000F8
  */
-void __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki(void)
+void PikiAI::ActBreakGate::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki(void)
  * Address:	801D05E0
  * Size:	0000C8
  */
-void init__Q26PikiAI12ActBreakGateFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActBreakGate::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -165,7 +165,7 @@ void init__Q26PikiAI12ActBreakGateFPQ26PikiAI9ActionArg(void)
  * Address:	801D06A8
  * Size:	000068
  */
-void initFollow__Q26PikiAI12ActBreakGateFv(void)
+void PikiAI::ActBreakGate::initFollow(void)
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void initFollow__Q26PikiAI12ActBreakGateFv(void)
  * Address:	........
  * Size:	00009C
  */
-void initGoto__Q26PikiAI12ActBreakGateFv(void)
+void PikiAI::ActBreakGate::initGoto(void)
 {
 	// UNUSED FUNCTION
 }
@@ -213,7 +213,7 @@ void initGoto__Q26PikiAI12ActBreakGateFv(void)
  * Address:	........
  * Size:	000114
  */
-void initStickAttack__Q26PikiAI12ActBreakGateFv(void)
+void PikiAI::ActBreakGate::initStickAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -223,7 +223,7 @@ void initStickAttack__Q26PikiAI12ActBreakGateFv(void)
  * Address:	........
  * Size:	000058
  */
-void calcAttackPos__Q26PikiAI12ActBreakGateFv(void)
+void PikiAI::ActBreakGate::calcAttackPos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -233,7 +233,7 @@ void calcAttackPos__Q26PikiAI12ActBreakGateFv(void)
  * Address:	801D0710
  * Size:	000498
  */
-void exec__Q26PikiAI12ActBreakGateFv(void)
+void PikiAI::ActBreakGate::exec(void)
 {
 /*
 .loc_0x0:
@@ -585,7 +585,7 @@ void exec__Q26PikiAI12ActBreakGateFv(void)
  * Address:	801D0BA8
  * Size:	00005C
  */
-void cleanup__Q26PikiAI12ActBreakGateFv(void)
+void PikiAI::ActBreakGate::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -624,7 +624,7 @@ void cleanup__Q26PikiAI12ActBreakGateFv(void)
  * Address:	801D0C04
  * Size:	000044
  */
-void emotion_success__Q26PikiAI12ActBreakGateFv(void)
+void PikiAI::ActBreakGate::emotion_success(void)
 {
 /*
 .loc_0x0:
@@ -653,7 +653,7 @@ void emotion_success__Q26PikiAI12ActBreakGateFv(void)
  * Address:	801D0C48
  * Size:	000144
  */
-void platCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9PlatEvent(void)
+void PikiAI::ActBreakGate::platCallback( (Game::Piki *, Game::PlatEvent &))
 {
 /*
 .loc_0x0:
@@ -760,7 +760,7 @@ void platCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9PlatEvent(void)
  * Address:	801D0D8C
  * Size:	000004
  */
-void collisionCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActBreakGate::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void collisionCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9CollEvent(
  * Address:	801D0D90
  * Size:	000004
  */
-void bounceCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiPQ23Sys8Triangle(void)
+void PikiAI::ActBreakGate::bounceCallback( (Game::Piki *, Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -786,7 +786,7 @@ void bounceCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiPQ23Sys8Triangle(void)
  * Address:	801D0D94
  * Size:	000004
  */
-void onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActBreakGate::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -799,7 +799,7 @@ void onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent(void)
  * Address:	801D0D98
  * Size:	00000C
  */
-void getName__Q26PikiAI26FollowVectorFieldActionArgFv(void)
+void PikiAI::FollowVectorFieldActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -814,7 +814,7 @@ void getName__Q26PikiAI26FollowVectorFieldActionArgFv(void)
  * Address:	801D0DA4
  * Size:	000014
  */
-void @52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent(void)
+void @52@4@PikiAI::ActBreakGate::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

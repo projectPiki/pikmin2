@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803E85D8
  * Size:	000150
  */
-void __ct__Q43ebi5title6Chappy4TMgrFv(void)
+void ebi::title::Chappy::TMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void __ct__Q43ebi5title6Chappy4TMgrFv(void)
  * Address:	803E8728
  * Size:	000050
  */
-void setArchive__Q43ebi5title6Chappy4TMgrFP10JKRArchive(void)
+void ebi::title::Chappy::TMgr::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void setArchive__Q43ebi5title6Chappy4TMgrFP10JKRArchive(void)
  * Address:	803E8778
  * Size:	000028
  */
-void initUnit__Q43ebi5title6Chappy4TMgrFv(void)
+void ebi::title::Chappy::TMgr::initUnit(void)
 {
 /*
 .loc_0x0:
@@ -169,7 +169,7 @@ void initUnit__Q43ebi5title6Chappy4TMgrFv(void)
  * Address:	........
  * Size:	0000C8
  */
-void load__Q43ebi5title6Chappy11TAnimFolderFP12J3DModelDataP10JKRArchive(void)
+void ebi::title::Chappy::TAnimFolder::load( (J3DModelData *, JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -179,7 +179,7 @@ void load__Q43ebi5title6Chappy11TAnimFolderFP12J3DModelDataP10JKRArchive(void)
  * Address:	803E87A0
  * Size:	000068
  */
-void __ct__Q43ebi5title6Chappy9TAnimatorFv(void)
+void ebi::title::Chappy::TAnimator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -217,7 +217,7 @@ void __ct__Q43ebi5title6Chappy9TAnimatorFv(void)
  * Address:	803E8808
  * Size:	000128
  */
-void setArchive__Q43ebi5title6Chappy9TAnimatorFP10JKRArchive(void)
+void ebi::title::Chappy::TAnimator::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -305,7 +305,7 @@ void setArchive__Q43ebi5title6Chappy9TAnimatorFP10JKRArchive(void)
  * Address:	........
  * Size:	000078
  */
-void newJ3DModel__Q43ebi5title6Chappy9TAnimatorFv(void)
+void ebi::title::Chappy::TAnimator::newJ3DModel(void)
 {
 	// UNUSED FUNCTION
 }
@@ -315,7 +315,7 @@ void newJ3DModel__Q43ebi5title6Chappy9TAnimatorFv(void)
  * Address:	803E8930
  * Size:	000008
  */
-void setController__Q43ebi5title6Chappy5TUnitFP10Controller(void)
+void ebi::title::Chappy::TUnit::setController( (Controller *))
 {
 /*
 .loc_0x0:
@@ -329,7 +329,7 @@ void setController__Q43ebi5title6Chappy5TUnitFP10Controller(void)
  * Address:	803E8938
  * Size:	0000F4
  */
-void init__Q43ebi5title6Chappy5TUnitFPQ43ebi5title6Chappy4TMgr(void)
+void ebi::title::Chappy::TUnit::init( (ebi::title::Chappy::TMgr *))
 {
 /*
 .loc_0x0:
@@ -437,7 +437,7 @@ void startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<float>R10Vector2<floa
  * Address:	803E8A80
  * Size:	000030
  */
-void goHome__Q43ebi5title6Chappy5TUnitFv(void)
+void ebi::title::Chappy::TUnit::goHome(void)
 {
 /*
 .loc_0x0:
@@ -463,7 +463,7 @@ void goHome__Q43ebi5title6Chappy5TUnitFv(void)
  * Address:	803E8AB0
  * Size:	000024
  */
-void outOfCalc__Q43ebi5title6Chappy5TUnitFv(void)
+void ebi::title::Chappy::TUnit::outOfCalc(void)
 {
 /*
 .loc_0x0:
@@ -484,7 +484,7 @@ void outOfCalc__Q43ebi5title6Chappy5TUnitFv(void)
  * Address:	803E8AD4
  * Size:	000014
  */
-void isCalc__Q43ebi5title6Chappy5TUnitFv(void)
+void ebi::title::Chappy::TUnit::isCalc(void)
 {
 /*
 .loc_0x0:
@@ -501,7 +501,7 @@ void isCalc__Q43ebi5title6Chappy5TUnitFv(void)
  * Address:	803E8AE8
  * Size:	000014
  */
-void isController__Q43ebi5title6Chappy5TUnitFv(void)
+void ebi::title::Chappy::TUnit::isController(void)
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void isController__Q43ebi5title6Chappy5TUnitFv(void)
  * Address:	803E8AFC
  * Size:	000318
  */
-void startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState(void)
+void ebi::title::Chappy::TUnit::startAIState_( (ebi::title::Chappy::TUnit::enumAIState))
 {
 /*
 .loc_0x0:
@@ -744,7 +744,7 @@ void startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIS
  * Address:	........
  * Size:	000100
  */
-void startAction___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit10enumAction(void)
+void ebi::title::Chappy::TUnit::startAction_( (ebi::title::Chappy::TUnit::enumAction))
 {
 	// UNUSED FUNCTION
 }
@@ -754,7 +754,7 @@ void startAction___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit10enumActi
  * Address:	803E8E14
  * Size:	000A64
  */
-void update__Q43ebi5title6Chappy5TUnitFv(void)
+void ebi::title::Chappy::TUnit::update(void)
 {
 /*
 .loc_0x0:
@@ -1567,7 +1567,7 @@ void update__Q43ebi5title6Chappy5TUnitFv(void)
  * Address:	803E9878
  * Size:	0003A4
  */
-void __ct__Q43ebi5title6Chappy6TParamFv(void)
+void ebi::title::Chappy::TParam::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1814,7 +1814,7 @@ void __ct__Q43ebi5title6Chappy6TParamFv(void)
  * Address:	803E9C1C
  * Size:	000008
  */
-void getCreatureType__Q43ebi5title6Chappy5TUnitFv(void)
+void ebi::title::Chappy::TUnit::getCreatureType(void)
 {
 /*
 .loc_0x0:
@@ -1828,7 +1828,7 @@ void getCreatureType__Q43ebi5title6Chappy5TUnitFv(void)
  * Address:	803E9C24
  * Size:	000014
  */
-void getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl(void)
+void ebi::title::Chappy::TAnimFolder::getAnimRes( (long))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803C1A3C
  * Size:	000060
  */
-void init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff(void)
+void ebi::EUTPadInterface_countNum::init( (Controller *, long, long, long *, ebi::EUTPadInterface_countNum::enumMode, float, float))
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInter
  * Address:	803C1A9C
  * Size:	000304
  */
-void update__Q23ebi24EUTPadInterface_countNumFv(void)
+void ebi::EUTPadInterface_countNum::update(void)
 {
 /*
 .loc_0x0:

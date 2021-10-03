@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8020D784
  * Size:	00004C
  */
-void getInfo__Q26PikiAI7ActWeedFPc(void)
+void PikiAI::ActWeed::getInfo( (char *))
 {
 /*
 .loc_0x0:
@@ -46,7 +46,7 @@ void getInfo__Q26PikiAI7ActWeedFPc(void)
  * Address:	8020D7D0
  * Size:	000094
  */
-void __ct__Q26PikiAI7ActWeedFPQ24Game4Piki(void)
+void PikiAI::ActWeed::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -99,7 +99,7 @@ void __ct__Q26PikiAI7ActWeedFPQ24Game4Piki(void)
  * Address:	8020D864
  * Size:	000170
  */
-void init__Q26PikiAI7ActWeedFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActWeed::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -221,7 +221,7 @@ void init__Q26PikiAI7ActWeedFPQ26PikiAI9ActionArg(void)
  * Address:	8020D9D4
  * Size:	000068
  */
-void decideTarget__Q26PikiAI7ActWeedFv(void)
+void PikiAI::ActWeed::decideTarget(void)
 {
 /*
 .loc_0x0:
@@ -259,7 +259,7 @@ void decideTarget__Q26PikiAI7ActWeedFv(void)
  * Address:	........
  * Size:	0000B0
  */
-void initStickAttack__Q26PikiAI7ActWeedFv(void)
+void PikiAI::ActWeed::initStickAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -269,7 +269,7 @@ void initStickAttack__Q26PikiAI7ActWeedFv(void)
  * Address:	8020DA3C
  * Size:	000188
  */
-void initAdjust__Q26PikiAI7ActWeedFv(void)
+void PikiAI::ActWeed::initAdjust(void)
 {
 /*
 .loc_0x0:
@@ -389,7 +389,7 @@ void initAdjust__Q26PikiAI7ActWeedFv(void)
  * Address:	8020DBC4
  * Size:	0000D0
  */
-void calcAttackPos__Q26PikiAI7ActWeedFv(void)
+void PikiAI::ActWeed::calcAttackPos(void)
 {
 /*
 .loc_0x0:
@@ -459,7 +459,7 @@ void calcAttackPos__Q26PikiAI7ActWeedFv(void)
  * Address:	8020DC94
  * Size:	000840
  */
-void exec__Q26PikiAI7ActWeedFv(void)
+void PikiAI::ActWeed::exec(void)
 {
 /*
 .loc_0x0:
@@ -1061,7 +1061,7 @@ void exec__Q26PikiAI7ActWeedFv(void)
  * Address:	8020E4D4
  * Size:	000068
  */
-void cleanup__Q26PikiAI7ActWeedFv(void)
+void PikiAI::ActWeed::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -1105,7 +1105,7 @@ void cleanup__Q26PikiAI7ActWeedFv(void)
  * Address:	8020E53C
  * Size:	000004
  */
-void collisionCallback__Q26PikiAI7ActWeedFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActWeed::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1118,7 +1118,7 @@ void collisionCallback__Q26PikiAI7ActWeedFPQ24Game4PikiRQ24Game9CollEvent(void)
  * Address:	8020E540
  * Size:	000088
  */
-void __ct__Q26PikiAI14ActFlockAttackFPQ24Game4Piki(void)
+void PikiAI::ActFlockAttack::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1166,7 +1166,7 @@ void __ct__Q26PikiAI14ActFlockAttackFPQ24Game4Piki(void)
  * Address:	8020E5C8
  * Size:	000138
  */
-void init__Q26PikiAI14ActFlockAttackFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActFlockAttack::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -1266,7 +1266,7 @@ void init__Q26PikiAI14ActFlockAttackFPQ26PikiAI9ActionArg(void)
  * Address:	8020E700
  * Size:	000324
  */
-void exec__Q26PikiAI14ActFlockAttackFv(void)
+void PikiAI::ActFlockAttack::exec(void)
 {
 /*
 .loc_0x0:
@@ -1499,7 +1499,7 @@ void exec__Q26PikiAI14ActFlockAttackFv(void)
  * Address:	8020EA24
  * Size:	000064
  */
-void onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActFlockAttack::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1544,7 +1544,7 @@ void onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent(void)
  * Address:	8020EA88
  * Size:	00000C
  */
-void cleanup__Q26PikiAI14ActFlockAttackFv(void)
+void PikiAI::ActFlockAttack::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -1559,7 +1559,7 @@ void cleanup__Q26PikiAI14ActFlockAttackFv(void)
  * Address:	8020EA94
  * Size:	00000C
  */
-void getName__Q26PikiAI20FlockAttackActionArgFv(void)
+void PikiAI::FlockAttackActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -1596,7 +1596,7 @@ void __sinit_aiWeed_cpp(void)
  * Address:	8020EAC8
  * Size:	000014
  */
-void @40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent(void)
+void @40@4@PikiAI::ActFlockAttack::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

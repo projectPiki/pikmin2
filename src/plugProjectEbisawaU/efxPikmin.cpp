@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000004
  */
-void init__Q23efx24TParticleCallBack_YodareFP14JPABaseEmitterP15JPABaseParticle(void)
+void efx::TParticleCallBack_Yodare::init( (JPABaseEmitter *, JPABaseParticle *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void init__Q23efx24TParticleCallBack_YodareFP14JPABaseEmitterP15JPABaseParticle(
  * Address:	........
  * Size:	000124
  */
-void execute__Q23efx24TParticleCallBack_YodareFP14JPABaseEmitterP15JPABaseParticle(void)
+void efx::TParticleCallBack_Yodare::execute( (JPABaseEmitter *, JPABaseParticle *))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void execute__Q23efx24TParticleCallBack_YodareFP14JPABaseEmitterP15JPABasePartic
  * Address:	........
  * Size:	000078
  */
-void create__Q23efx14TTestYodareGenFPQ23efx3Arg(void)
+void efx::TTestYodareGen::create( (efx::Arg *))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void create__Q23efx14TTestYodareGenFPQ23efx3Arg(void)
  * Address:	803B66B0
  * Size:	0000F0
  */
-void create__Q23efx11TPkNageBlurFPQ23efx3Arg(void)
+void efx::TPkNageBlur::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void create__Q23efx11TPkNageBlurFPQ23efx3Arg(void)
  * Address:	803B67A0
  * Size:	0001E0
  */
-void create__Q23efx12TDopingSmokeFPQ23efx3Arg(void)
+void efx::TDopingSmoke::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void create__Q23efx12TDopingSmokeFPQ23efx3Arg(void)
  * Address:	803B6980
  * Size:	000060
  */
-void create__Q23efx11TOrimaLightFPQ23efx3Arg(void)
+void efx::TOrimaLight::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -331,7 +331,7 @@ void create__Q23efx11TOrimaLightFPQ23efx3Arg(void)
  * Address:	803B69E0
  * Size:	000060
  */
-void create__Q23efx14TOrimaLightActFPQ23efx3Arg(void)
+void efx::TOrimaLightAct::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -373,7 +373,7 @@ void create__Q23efx14TOrimaLightActFPQ23efx3Arg(void)
  * Address:	803B6A40
  * Size:	000078
  */
-void init__Q23efx7TCursorFll(void)
+void efx::TCursor::init( (long, long))
 {
 /*
 .loc_0x0:
@@ -429,7 +429,7 @@ void init__Q23efx7TCursorFll(void)
  * Address:	803B6AB8
  * Size:	000154
  */
-void create__Q23efx7TCursorFPQ23efx3Arg(void)
+void efx::TCursor::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -536,7 +536,7 @@ void create__Q23efx7TCursorFPQ23efx3Arg(void)
  * Address:	803B6C0C
  * Size:	000100
  */
-void update__Q23efx7TCursorFPQ23efx3Arg(void)
+void efx::TCursor::update( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -726,7 +726,7 @@ void calcPos___Q23efx7TCursorFP10Vector3<float>fl(void)
  * Address:	803B6E54
  * Size:	0000AC
  */
-void create__Q23efx13TFueactCircleFPQ23efx3Arg(void)
+void efx::TFueactCircle::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -791,7 +791,7 @@ void create__Q23efx13TFueactCircleFPQ23efx3Arg(void)
  * Address:	803B6F00
  * Size:	000124
  */
-void execute__Q23efx13TFueactCircleFP14JPABaseEmitter(void)
+void efx::TFueactCircle::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -886,7 +886,7 @@ void execute__Q23efx13TFueactCircleFP14JPABaseEmitter(void)
  * Address:	803B7024
  * Size:	0002CC
  */
-void execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle(void)
+void efx::TFueactCircle::execute( (JPABaseEmitter *, JPABaseParticle *))
 {
 /*
 .loc_0x0:
@@ -1095,7 +1095,7 @@ void execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle(void)
  * Address:	803B72F0
  * Size:	0001D4
  */
-void doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter(void)
+void efx::TFueactBiriBase::doExecuteEmitterOperation( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -2148,7 +2148,7 @@ void init__Q23efx11TNaviEffectFP10Vector3<float>PA4_fP10Vector3<float>Q33efx11TN
  * Address:	803B7E24
  * Size:	0000D8
  */
-void setNaviType__Q23efx11TNaviEffectFQ33efx11TNaviEffect12enumNaviType(void)
+void efx::TNaviEffect::setNaviType( (efx::TNaviEffect::enumNaviType))
 {
 /*
 .loc_0x0:
@@ -2224,7 +2224,7 @@ void setNaviType__Q23efx11TNaviEffectFQ33efx11TNaviEffect12enumNaviType(void)
  * Address:	803B7EFC
  * Size:	000020
  */
-void update__Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::update(void)
 {
 /*
 .loc_0x0:
@@ -2246,7 +2246,7 @@ void update__Q23efx11TNaviEffectFv(void)
  * Address:	803B7F1C
  * Size:	0000D8
  */
-void updateHamon___Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::updateHamon_(void)
 {
 /*
 .loc_0x0:
@@ -2362,7 +2362,7 @@ void createHamonA___Q23efx11TNaviEffectFP10Vector3<float>(void)
  * Address:	803B8054
  * Size:	000024
  */
-void killHamonA___Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::killHamonA_(void)
 {
 /*
 .loc_0x0:
@@ -2421,7 +2421,7 @@ void createHamonB___Q23efx11TNaviEffectFP10Vector3<float>(void)
  * Address:	803B80D8
  * Size:	000024
  */
-void killHamonB___Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::killHamonB_(void)
 {
 /*
 .loc_0x0:
@@ -2442,7 +2442,7 @@ void killHamonB___Q23efx11TNaviEffectFv(void)
  * Address:	803B80FC
  * Size:	000078
  */
-void createLight___Q23efx11TNaviEffectFPA4_f(void)
+void efx::TNaviEffect::createLight_( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -2486,7 +2486,7 @@ void createLight___Q23efx11TNaviEffectFPA4_f(void)
  * Address:	803B8174
  * Size:	00002C
  */
-void killLight___Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::killLight_(void)
 {
 /*
 .loc_0x0:
@@ -2509,7 +2509,7 @@ void killLight___Q23efx11TNaviEffectFv(void)
  * Address:	803B81A0
  * Size:	000078
  */
-void createLightAct___Q23efx11TNaviEffectFPA4_f(void)
+void efx::TNaviEffect::createLightAct_( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -2553,7 +2553,7 @@ void createLightAct___Q23efx11TNaviEffectFPA4_f(void)
  * Address:	803B8218
  * Size:	00002C
  */
-void killLightAct___Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::killLightAct_(void)
 {
 /*
 .loc_0x0:
@@ -2613,7 +2613,7 @@ void createCursor___Q23efx11TNaviEffectF10Vector3<float>f(void)
  * Address:	803B82A8
  * Size:	00002C
  */
-void killCursor___Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::killCursor_(void)
 {
 /*
 .loc_0x0:
@@ -2888,7 +2888,7 @@ void createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<float>(void)
  * Address:	803B860C
  * Size:	00002C
  */
-void killFueact___Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::killFueact_(void)
 {
 /*
 .loc_0x0:
@@ -2911,7 +2911,7 @@ void killFueact___Q23efx11TNaviEffectFv(void)
  * Address:	803B8638
  * Size:	000078
  */
-void createOrimadamage___Q23efx11TNaviEffectFPA4_f(void)
+void efx::TNaviEffect::createOrimadamage_( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -2955,7 +2955,7 @@ void createOrimadamage___Q23efx11TNaviEffectFPA4_f(void)
  * Address:	........
  * Size:	00002C
  */
-void killOrimadamage___Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::killOrimadamage_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2965,7 +2965,7 @@ void killOrimadamage___Q23efx11TNaviEffectFv(void)
  * Address:	803B86B0
  * Size:	00003C
  */
-void init__Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::init(void)
 {
 /*
 .loc_0x0:
@@ -2992,7 +2992,7 @@ void init__Q23efx9TPkEffectFv(void)
  * Address:	803B86EC
  * Size:	000034
  */
-void update__Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::update(void)
 {
 /*
 .loc_0x0:
@@ -3019,7 +3019,7 @@ void update__Q23efx9TPkEffectFv(void)
  * Address:	803B8720
  * Size:	000038
  */
-void updateMoeSmoke___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::updateMoeSmoke_(void)
 {
 /*
 .loc_0x0:
@@ -3049,7 +3049,7 @@ void updateMoeSmoke___Q23efx9TPkEffectFv(void)
  * Address:	803B8758
  * Size:	0000D0
  */
-void updateHamon___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::updateHamon_(void)
 {
 /*
 .loc_0x0:
@@ -3162,7 +3162,7 @@ void createKourin___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B888C
  * Size:	000024
  */
-void killKourin___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killKourin_(void)
 {
 /*
 .loc_0x0:
@@ -3221,7 +3221,7 @@ void createDoping___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B8910
  * Size:	000024
  */
-void killDoping___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killDoping_(void)
 {
 /*
 .loc_0x0:
@@ -3320,7 +3320,7 @@ void createNage___Q23efx9TPkEffectFP10Vector3<float>PA4_f(void)
  * Address:	803B8A2C
  * Size:	000044
  */
-void killNage___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killNage_(void)
 {
 /*
 .loc_0x0:
@@ -3394,7 +3394,7 @@ void createMoe___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B8AEC
  * Size:	000044
  */
-void killMoe___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killMoe_(void)
 {
 /*
 .loc_0x0:
@@ -3461,7 +3461,7 @@ void createChudoku___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B8B90
  * Size:	000024
  */
-void killChudoku___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killChudoku_(void)
 {
 /*
 .loc_0x0:
@@ -3520,7 +3520,7 @@ void createMoeSmoke___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B8C14
  * Size:	000024
  */
-void killMoeSmoke___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killMoeSmoke_(void)
 {
 /*
 .loc_0x0:
@@ -3583,7 +3583,7 @@ void createBlackDown___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B8CA8
  * Size:	00002C
  */
-void killBlackDown___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killBlackDown_(void)
 {
 /*
 .loc_0x0:
@@ -3644,7 +3644,7 @@ void createWater___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B8D34
  * Size:	000024
  */
-void killWater___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killWater_(void)
 {
 /*
 .loc_0x0:
@@ -3703,7 +3703,7 @@ void createHamonA___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B8DB8
  * Size:	000024
  */
-void killHamonA___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killHamonA_(void)
 {
 /*
 .loc_0x0:
@@ -3762,7 +3762,7 @@ void createHamonB___Q23efx9TPkEffectFP10Vector3<float>(void)
  * Address:	803B8E3C
  * Size:	000024
  */
-void killHamonB___Q23efx9TPkEffectFv(void)
+void efx::TPkEffect::killHamonB_(void)
 {
 /*
 .loc_0x0:
@@ -3783,7 +3783,7 @@ void killHamonB___Q23efx9TPkEffectFv(void)
  * Address:	803B8E60
  * Size:	000020
  */
-void init__Q23efx13TPkEffectTaneFv(void)
+void efx::TPkEffectTane::init(void)
 {
 /*
 .loc_0x0:
@@ -3841,7 +3841,7 @@ void createTanekira___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
  * Address:	803B8EE0
  * Size:	000024
  */
-void killTanekira___Q23efx13TPkEffectTaneFv(void)
+void efx::TPkEffectTane::killTanekira_(void)
 {
 /*
 .loc_0x0:
@@ -3901,7 +3901,7 @@ void createKourin___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
  * Address:	803B8F68
  * Size:	000024
  */
-void killKourin___Q23efx13TPkEffectTaneFv(void)
+void efx::TPkEffectTane::killKourin_(void)
 {
 /*
 .loc_0x0:
@@ -3964,7 +3964,7 @@ void createGlow1___Q23efx13TPkEffectTaneFP10Vector3<float>(void)
  * Address:	........
  * Size:	00002C
  */
-void killGlow1___Q23efx13TPkEffectTaneFv(void)
+void efx::TPkEffectTane::killGlow1_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3974,7 +3974,7 @@ void killGlow1___Q23efx13TPkEffectTaneFv(void)
  * Address:	803B8FFC
  * Size:	000004
  */
-void executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter(void)
+void efx::TFueactCircle::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -3987,7 +3987,7 @@ void executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter(void)
  * Address:	803B9000
  * Size:	00002C
  */
-void forceKill__Q23efx7TCursorFv(void)
+void efx::TCursor::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -4010,7 +4010,7 @@ void forceKill__Q23efx7TCursorFv(void)
  * Address:	........
  * Size:	000104
  */
-void __dt__Q23efx14TTestYodareGenFv(void)
+void efx::TTestYodareGen::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4020,7 +4020,7 @@ void __dt__Q23efx14TTestYodareGenFv(void)
  * Address:	........
  * Size:	000048
  */
-void forceKill__Q23efx14TTestYodareGenFv(void)
+void efx::TTestYodareGen::forceKill(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4030,7 +4030,7 @@ void forceKill__Q23efx14TTestYodareGenFv(void)
  * Address:	........
  * Size:	000048
  */
-void fade__Q23efx14TTestYodareGenFv(void)
+void efx::TTestYodareGen::fade(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4040,7 +4040,7 @@ void fade__Q23efx14TTestYodareGenFv(void)
  * Address:	........
  * Size:	000084
  */
-void __dt__Q23efx14TTestYodareHitFv(void)
+void efx::TTestYodareHit::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4050,7 +4050,7 @@ void __dt__Q23efx14TTestYodareHitFv(void)
  * Address:	........
  * Size:	000060
  */
-void __dt__Q23efx24TParticleCallBack_YodareFv(void)
+void efx::TParticleCallBack_Yodare::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4060,7 +4060,7 @@ void __dt__Q23efx24TParticleCallBack_YodareFv(void)
  * Address:	........
  * Size:	000008
  */
-void @4@__dt__Q23efx14TTestYodareHitFv(void)
+void @4@efx::TTestYodareHit::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4070,7 +4070,7 @@ void @4@__dt__Q23efx14TTestYodareHitFv(void)
  * Address:	........
  * Size:	000008
  */
-void @4@__dt__Q23efx14TTestYodareGenFv(void)
+void @4@efx::TTestYodareGen::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4080,7 +4080,7 @@ void @4@__dt__Q23efx14TTestYodareGenFv(void)
  * Address:	803B902C
  * Size:	000008
  */
-void @4@__dt__Q23efx11TPkNageBlurFv(void)
+void @4@efx::TPkNageBlur::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4094,7 +4094,7 @@ void @4@__dt__Q23efx11TPkNageBlurFv(void)
  * Address:	803B9034
  * Size:	000008
  */
-void @4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter(void)
+void @4@efx::TFueactCircle::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -4108,7 +4108,7 @@ void @4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter(void)
  * Address:	803B903C
  * Size:	000008
  */
-void @4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter(void)
+void @4@efx::TFueactCircle::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -4122,7 +4122,7 @@ void @4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter(void)
  * Address:	803B9044
  * Size:	000008
  */
-void @4@__dt__Q23efx13TFueactCircleFv(void)
+void @4@efx::TFueactCircle::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4136,7 +4136,7 @@ void @4@__dt__Q23efx13TFueactCircleFv(void)
  * Address:	803B904C
  * Size:	000008
  */
-void @8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle(void)
+void @8@efx::TFueactCircle::execute( (JPABaseEmitter *, JPABaseParticle *))
 {
 /*
 .loc_0x0:
@@ -4150,7 +4150,7 @@ void @8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle(void)
  * Address:	803B9054
  * Size:	000008
  */
-void @8@__dt__Q23efx13TFueactCircleFv(void)
+void @8@efx::TFueactCircle::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4164,7 +4164,7 @@ void @8@__dt__Q23efx13TFueactCircleFv(void)
  * Address:	803B905C
  * Size:	000008
  */
-void @4@__dt__Q23efx15TFueactBiriBaseFv(void)
+void @4@efx::TFueactBiriBase::__dt(void)
 {
 /*
 .loc_0x0:

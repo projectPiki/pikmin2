@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80219F48
  * Size:	000150
  */
-void __ct__Q34Game10SingleGame15MainResultStateFv(void)
+void Game::SingleGame::MainResultState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -117,7 +117,7 @@ void __ct__Q34Game10SingleGame15MainResultStateFv(void)
  * Address:	8021A098
  * Size:	000060
  */
-void __dt__Q34Game6Result5TNodeFv(void)
+void Game::Result::TNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -155,7 +155,7 @@ void __dt__Q34Game6Result5TNodeFv(void)
  * Address:	8021A0F8
  * Size:	000104
  */
-void init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::MainResultState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -236,7 +236,7 @@ void init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24G
  * Address:	8021A1FC
  * Size:	000024
  */
-void beforeSave__Q34Game10SingleGame15MainResultStateFv(void)
+void Game::SingleGame::MainResultState::beforeSave(void)
 {
 /*
 .loc_0x0:
@@ -257,7 +257,7 @@ void beforeSave__Q34Game10SingleGame15MainResultStateFv(void)
  * Address:	8021A220
  * Size:	000088
  */
-void loadResource__Q34Game10SingleGame15MainResultStateFv(void)
+void Game::SingleGame::MainResultState::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void loadResource__Q34Game10SingleGame15MainResultStateFv(void)
  * Address:	........
  * Size:	000148
  */
-void open2D__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::MainResultState::open2D( (Game::SingleGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -313,7 +313,7 @@ void open2D__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection(vo
  * Address:	8021A2A8
  * Size:	0003E8
  */
-void exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::MainResultState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -621,7 +621,7 @@ void exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection(void
  * Address:	8021A690
  * Size:	000030
  */
-void onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::MainResultState::onMovieDone( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -645,7 +645,7 @@ void onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSecti
  * Address:	8021A6C0
  * Size:	00035C
  */
-void createResultNodes__Q34Game10SingleGame15MainResultStateFv(void)
+void Game::SingleGame::MainResultState::createResultNodes(void)
 {
 /*
 .loc_0x0:
@@ -900,7 +900,7 @@ void createResultNodes__Q34Game10SingleGame15MainResultStateFv(void)
  * Address:	8021AA1C
  * Size:	000094
  */
-void draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::MainResultState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -953,7 +953,7 @@ void draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Gra
  * Address:	8021AAB0
  * Size:	00007C
  */
-void cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::MainResultState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -998,7 +998,7 @@ void cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection(v
  * Address:	8021AB2C
  * Size:	000008
  */
-void getSize__Q32kh6Screen20DispDayEndResultTitlFv(void)
+void kh::Screen::DispDayEndResultTitl::getSize(void)
 {
 /*
 .loc_0x0:
@@ -1012,7 +1012,7 @@ void getSize__Q32kh6Screen20DispDayEndResultTitlFv(void)
  * Address:	8021AB34
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv(void)
+void kh::Screen::DispDayEndResultTitl::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1026,7 +1026,7 @@ void getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv(void)
  * Address:	8021AB3C
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen20DispDayEndResultTitlFv(void)
+void kh::Screen::DispDayEndResultTitl::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -1043,7 +1043,7 @@ void getMemberID__Q32kh6Screen20DispDayEndResultTitlFv(void)
  * Address:	8021AB50
  * Size:	000008
  */
-void getSize__Q32kh6Screen16DispDayEndResultFv(void)
+void kh::Screen::DispDayEndResult::getSize(void)
 {
 /*
 .loc_0x0:
@@ -1057,7 +1057,7 @@ void getSize__Q32kh6Screen16DispDayEndResultFv(void)
  * Address:	8021AB58
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen16DispDayEndResultFv(void)
+void kh::Screen::DispDayEndResult::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void getOwnerID__Q32kh6Screen16DispDayEndResultFv(void)
  * Address:	8021AB60
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen16DispDayEndResultFv(void)
+void kh::Screen::DispDayEndResult::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -1088,7 +1088,7 @@ void getMemberID__Q32kh6Screen16DispDayEndResultFv(void)
  * Address:	8021AB74
  * Size:	000054
  */
-void doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv(void)
+void kh::Screen::DispDayEndResult::doSetSubMemberAll(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801CBFE8
  * Size:	000100
  */
-void __ct__Q24Game8BaseItemFi(void)
+void Game::BaseItem::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -93,7 +93,7 @@ void __ct__Q24Game8BaseItemFi(void)
  * Address:	801CC0E8
  * Size:	00004C
  */
-void constructor__Q24Game8BaseItemFv(void)
+void Game::BaseItem::constructor(void)
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void constructor__Q24Game8BaseItemFv(void)
  * Address:	801CC134
  * Size:	000014
  */
-void getJAIObject__Q24Game8BaseItemFv(void)
+void Game::BaseItem::getJAIObject(void)
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void getJAIObject__Q24Game8BaseItemFv(void)
  * Address:	801CC148
  * Size:	000008
  */
-void getPSCreature__Q24Game8BaseItemFv(void)
+void Game::BaseItem::getPSCreature(void)
 {
 /*
 .loc_0x0:
@@ -157,7 +157,7 @@ void getPSCreature__Q24Game8BaseItemFv(void)
  * Address:	801CC150
  * Size:	00008C
  */
-void startSound__Q24Game8BaseItemFUl(void)
+void Game::BaseItem::startSound( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void startSound__Q24Game8BaseItemFUl(void)
  * Address:	801CC1DC
  * Size:	000108
  */
-void doAnimation__Q24Game8BaseItemFv(void)
+void Game::BaseItem::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -290,7 +290,7 @@ void doAnimation__Q24Game8BaseItemFv(void)
  * Address:	801CC2E4
  * Size:	00002C
  */
-void updateTrMatrix__Q24Game8BaseItemFv(void)
+void Game::BaseItem::updateTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -313,7 +313,7 @@ void updateTrMatrix__Q24Game8BaseItemFv(void)
  * Address:	801CC310
  * Size:	0000C4
  */
-void entryShape__Q24Game8BaseItemFv(void)
+void Game::BaseItem::entryShape(void)
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void entryShape__Q24Game8BaseItemFv(void)
  * Address:	801CC3D4
  * Size:	000038
  */
-void doEntry__Q24Game8BaseItemFv(void)
+void Game::BaseItem::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void doEntry__Q24Game8BaseItemFv(void)
  * Address:	801CC40C
  * Size:	000074
  */
-void stimulate__Q24Game8BaseItemFRQ24Game11Interaction(void)
+void Game::BaseItem::stimulate( (Game::Interaction &))
 {
 /*
 .loc_0x0:
@@ -459,7 +459,7 @@ void stimulate__Q24Game8BaseItemFRQ24Game11Interaction(void)
  * Address:	801CC480
  * Size:	000004
  */
-void doSimulation__Q24Game8BaseItemFf(void)
+void Game::BaseItem::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -472,7 +472,7 @@ void doSimulation__Q24Game8BaseItemFf(void)
  * Address:	801CC484
  * Size:	00002C
  */
-void makeTrMatrix__Q24Game8BaseItemFv(void)
+void Game::BaseItem::makeTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void makeTrMatrix__Q24Game8BaseItemFv(void)
  * Address:	801CC4B0
  * Size:	0000DC
  */
-void update__Q24Game8BaseItemFv(void)
+void Game::BaseItem::update(void)
 {
 /*
 .loc_0x0:
@@ -568,7 +568,7 @@ void update__Q24Game8BaseItemFv(void)
  * Address:	801CC58C
  * Size:	000004
  */
-void doAI__Q24Game8BaseItemFv(void)
+void Game::BaseItem::doAI(void)
 {
 /*
 .loc_0x0:
@@ -581,7 +581,7 @@ void doAI__Q24Game8BaseItemFv(void)
  * Address:	801CC590
  * Size:	00007C
  */
-void do_updateLOD__Q24Game8BaseItemFv(void)
+void Game::BaseItem::do_updateLOD(void)
 {
 /*
 .loc_0x0:
@@ -626,7 +626,7 @@ void do_updateLOD__Q24Game8BaseItemFv(void)
  * Address:	801CC60C
  * Size:	00003C
  */
-void updateCollTree__Q24Game8BaseItemFv(void)
+void Game::BaseItem::updateCollTree(void)
 {
 /*
 .loc_0x0:
@@ -653,7 +653,7 @@ void updateCollTree__Q24Game8BaseItemFv(void)
  * Address:	801CC648
  * Size:	0001C4
  */
-void move__Q24Game8BaseItemFf(void)
+void Game::BaseItem::move( (float))
 {
 /*
 .loc_0x0:
@@ -786,7 +786,7 @@ void move__Q24Game8BaseItemFf(void)
  * Address:	801CC80C
  * Size:	00007C
  */
-void movieStartAnimation__Q24Game8BaseItemFUl(void)
+void Game::BaseItem::movieStartAnimation( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -833,7 +833,7 @@ void movieStartAnimation__Q24Game8BaseItemFUl(void)
  * Address:	801CC888
  * Size:	000088
  */
-void movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo(void)
+void Game::BaseItem::movieStartDemoAnimation( (SysShape::AnimInfo *))
 {
 /*
 .loc_0x0:
@@ -881,7 +881,7 @@ void movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo(void)
  * Address:	801CC910
  * Size:	000024
  */
-void movieSetAnimationLastFrame__Q24Game8BaseItemFv(void)
+void Game::BaseItem::movieSetAnimationLastFrame(void)
 {
 /*
 .loc_0x0:
@@ -921,7 +921,7 @@ void movieSetTranslation__Q24Game8BaseItemFR10Vector3<float>f(void)
  * Address:	801CC950
  * Size:	000050
  */
-void constructor__Q24Game8CFSMItemFv(void)
+void Game::CFSMItem::constructor(void)
 {
 /*
 .loc_0x0:
@@ -957,7 +957,7 @@ void constructor__Q24Game8CFSMItemFv(void)
  * Address:	801CC9A0
  * Size:	000054
  */
-void initFSM__Q24Game8CFSMItemFv(void)
+void Game::CFSMItem::initFSM(void)
 {
 /*
 .loc_0x0:
@@ -1003,7 +1003,7 @@ void init__Q24Game30StateMachine<Game::CFSMItem>FPQ24Game8CFSMItem(void)
  * Address:	801CC9F8
  * Size:	000034
  */
-void doAI__Q24Game8CFSMItemFv(void)
+void Game::CFSMItem::doAI(void)
 {
 /*
 .loc_0x0:
@@ -1042,7 +1042,7 @@ void setCurrState__Q24Game8CFSMItemFPQ24Game26FSMState<Game::CFSMItem>(void)
  * Address:	801CCA34
  * Size:	000008
  */
-void getCurrState__Q24Game8CFSMItemFv(void)
+void Game::CFSMItem::getCurrState(void)
 {
 /*
 .loc_0x0:
@@ -1056,7 +1056,7 @@ void getCurrState__Q24Game8CFSMItemFv(void)
  * Address:	801CCA3C
  * Size:	00001C
  */
-void getStateID__Q24Game8CFSMItemFv(void)
+void Game::CFSMItem::getStateID(void)
 {
 /*
 .loc_0x0:
@@ -1077,7 +1077,7 @@ void getStateID__Q24Game8CFSMItemFv(void)
  * Address:	801CCA58
  * Size:	000044
  */
-void bounceCallback__Q24Game8CFSMItemFPQ23Sys8Triangle(void)
+void Game::CFSMItem::bounceCallback( (Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -1108,7 +1108,7 @@ void bounceCallback__Q24Game8CFSMItemFPQ23Sys8Triangle(void)
  * Address:	801CCA9C
  * Size:	000004
  */
-void onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle(void)
+void Game::CItemState::onBounce( (Game::CFSMItem *, Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -1121,7 +1121,7 @@ void onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle(void)
  * Address:	801CCAA0
  * Size:	000044
  */
-void collisionCallback__Q24Game8CFSMItemFRQ24Game9CollEvent(void)
+void Game::CFSMItem::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1152,7 +1152,7 @@ void collisionCallback__Q24Game8CFSMItemFRQ24Game9CollEvent(void)
  * Address:	801CCAE4
  * Size:	000004
  */
-void onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent(void)
+void Game::CItemState::onCollision( (Game::CFSMItem *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1165,7 +1165,7 @@ void onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent(void)
  * Address:	801CCAE8
  * Size:	000044
  */
-void platCallback__Q24Game8CFSMItemFRQ24Game9PlatEvent(void)
+void Game::CFSMItem::platCallback( (Game::PlatEvent &))
 {
 /*
 .loc_0x0:
@@ -1196,7 +1196,7 @@ void platCallback__Q24Game8CFSMItemFRQ24Game9PlatEvent(void)
  * Address:	801CCB2C
  * Size:	000004
  */
-void onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent(void)
+void Game::CItemState::onPlatCollision( (Game::CFSMItem *, Game::PlatEvent &))
 {
 /*
 .loc_0x0:
@@ -1209,7 +1209,7 @@ void onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent(vo
  * Address:	801CCB30
  * Size:	000044
  */
-void onKeyEvent__Q24Game8CFSMItemFRCQ28SysShape8KeyEvent(void)
+void Game::CFSMItem::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1240,7 +1240,7 @@ void onKeyEvent__Q24Game8CFSMItemFRCQ28SysShape8KeyEvent(void)
  * Address:	801CCB74
  * Size:	000004
  */
-void onKeyEvent__Q24Game10CItemStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent(void)
+void Game::CItemState::onKeyEvent( (Game::CFSMItem *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1253,7 +1253,7 @@ void onKeyEvent__Q24Game10CItemStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent(voi
  * Address:	801CCB78
  * Size:	000038
  */
-void actItem__Q24Game14InteractAttackFPQ24Game8BaseItem(void)
+void Game::InteractAttack::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1279,7 +1279,7 @@ void actItem__Q24Game14InteractAttackFPQ24Game8BaseItem(void)
  * Address:	801CCBB0
  * Size:	000038
  */
-void actItem__Q24Game19InteractBreakBridgeFPQ24Game8BaseItem(void)
+void Game::InteractBreakBridge::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1305,7 +1305,7 @@ void actItem__Q24Game19InteractBreakBridgeFPQ24Game8BaseItem(void)
  * Address:	801CCBE8
  * Size:	000038
  */
-void actItem__Q24Game14InteractGotKeyFPQ24Game8BaseItem(void)
+void Game::InteractGotKey::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1331,7 +1331,7 @@ void actItem__Q24Game14InteractGotKeyFPQ24Game8BaseItem(void)
  * Address:	801CCC20
  * Size:	000038
  */
-void actItem__Q24Game11InteractEatFPQ24Game8BaseItem(void)
+void Game::InteractEat::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1357,7 +1357,7 @@ void actItem__Q24Game11InteractEatFPQ24Game8BaseItem(void)
  * Address:	801CCC58
  * Size:	000038
  */
-void actItem__Q24Game19InteractFlockAttackFPQ24Game8BaseItem(void)
+void Game::InteractFlockAttack::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1383,7 +1383,7 @@ void actItem__Q24Game19InteractFlockAttackFPQ24Game8BaseItem(void)
  * Address:	801CCC90
  * Size:	000038
  */
-void actItem__Q24Game14InteractAbsorbFPQ24Game8BaseItem(void)
+void Game::InteractAbsorb::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1409,7 +1409,7 @@ void actItem__Q24Game14InteractAbsorbFPQ24Game8BaseItem(void)
  * Address:	801CCCC8
  * Size:	000038
  */
-void actItem__Q24Game11InteractFueFPQ24Game8BaseItem(void)
+void Game::InteractFue::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1435,7 +1435,7 @@ void actItem__Q24Game11InteractFueFPQ24Game8BaseItem(void)
  * Address:	801CCD00
  * Size:	000038
  */
-void actItem__Q24Game18InteractFarmKareroFPQ24Game8BaseItem(void)
+void Game::InteractFarmKarero::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1461,7 +1461,7 @@ void actItem__Q24Game18InteractFarmKareroFPQ24Game8BaseItem(void)
  * Address:	801CCD38
  * Size:	000038
  */
-void actItem__Q24Game17InteractFarmHaeroFPQ24Game8BaseItem(void)
+void Game::InteractFarmHaero::actItem( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -1487,7 +1487,7 @@ void actItem__Q24Game17InteractFarmHaeroFPQ24Game8BaseItem(void)
  * Address:	801CCD70
  * Size:	00005C
  */
-void __ct__Q24Game11BaseItemMgrFi(void)
+void Game::BaseItemMgr::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1524,7 +1524,7 @@ void __ct__Q24Game11BaseItemMgrFi(void)
  * Address:	801CCDCC
  * Size:	000108
  */
-void setModelSize__Q24Game11BaseItemMgrFi(void)
+void Game::BaseItemMgr::setModelSize( (int))
 {
 /*
 .loc_0x0:
@@ -1610,7 +1610,7 @@ void setModelSize__Q24Game11BaseItemMgrFi(void)
  * Address:	801CCED4
  * Size:	00007C
  */
-void loadArchive__Q24Game11BaseItemMgrFPc(void)
+void Game::BaseItemMgr::loadArchive( (char *))
 {
 /*
 .loc_0x0:
@@ -1657,7 +1657,7 @@ void loadArchive__Q24Game11BaseItemMgrFPc(void)
  * Address:	801CCF50
  * Size:	0000AC
  */
-void loadBmd__Q24Game11BaseItemMgrFPciUl(void)
+void Game::BaseItemMgr::loadBmd( (char *, int, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1718,7 +1718,7 @@ void loadBmd__Q24Game11BaseItemMgrFPciUl(void)
  * Address:	........
  * Size:	0000A8
  */
-void loadBdl__Q24Game11BaseItemMgrFPciUl(void)
+void Game::BaseItemMgr::loadBdl( (char *, int, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -1728,7 +1728,7 @@ void loadBdl__Q24Game11BaseItemMgrFPciUl(void)
  * Address:	........
  * Size:	000084
  */
-void loadAnimMgr__Q24Game11BaseItemMgrFPc(void)
+void Game::BaseItemMgr::loadAnimMgr( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -1738,7 +1738,7 @@ void loadAnimMgr__Q24Game11BaseItemMgrFPc(void)
  * Address:	........
  * Size:	00004C
  */
-void loadCollision__Q24Game11BaseItemMgrFPc(void)
+void Game::BaseItemMgr::loadCollision( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -1748,7 +1748,7 @@ void loadCollision__Q24Game11BaseItemMgrFPc(void)
  * Address:	801CCFFC
  * Size:	000080
  */
-void loadAnimMgr__Q24Game11BaseItemMgrFP13JKRFileLoaderPc(void)
+void Game::BaseItemMgr::loadAnimMgr( (JKRFileLoader *, char *))
 {
 /*
 .loc_0x0:
@@ -1794,7 +1794,7 @@ void loadAnimMgr__Q24Game11BaseItemMgrFP13JKRFileLoaderPc(void)
  * Address:	801CD07C
  * Size:	000038
  */
-void loadCollision__Q24Game11BaseItemMgrFP13JKRFileLoaderPc(void)
+void Game::BaseItemMgr::loadCollision( (JKRFileLoader *, char *))
 {
 /*
 .loc_0x0:
@@ -1820,7 +1820,7 @@ void loadCollision__Q24Game11BaseItemMgrFP13JKRFileLoaderPc(void)
  * Address:	801CD0B4
  * Size:	000038
  */
-void generatorNewItemParm__Q24Game11BaseItemMgrFv(void)
+void Game::BaseItemMgr::generatorNewItemParm(void)
 {
 /*
 .loc_0x0:
@@ -1848,7 +1848,7 @@ void generatorNewItemParm__Q24Game11BaseItemMgrFv(void)
  * Address:	801CD0EC
  * Size:	000064
  */
-void generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm(void)
+void Game::BaseItemMgr::generatorGetShape( (Game::GenItemParm *))
 {
 /*
 .loc_0x0:
@@ -1889,7 +1889,7 @@ void generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm(void)
  * Address:	801CD150
  * Size:	00007C
  */
-void getModelData__Q24Game11BaseItemMgrFi(void)
+void Game::BaseItemMgr::getModelData( (int))
 {
 /*
 .loc_0x0:
@@ -1936,7 +1936,7 @@ void getModelData__Q24Game11BaseItemMgrFi(void)
  * Address:	........
  * Size:	000118
  */
-void setup__Q24Game11BaseItemMgrFPcPcPcPc(void)
+void Game::BaseItemMgr::setup( (char *, char *, char *, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -1946,7 +1946,7 @@ void setup__Q24Game11BaseItemMgrFPcPcPcPc(void)
  * Address:	........
  * Size:	000064
  */
-void loadPlatform__Q24Game11BaseItemMgrFPc(void)
+void Game::BaseItemMgr::loadPlatform( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -1956,7 +1956,7 @@ void loadPlatform__Q24Game11BaseItemMgrFPc(void)
  * Address:	........
  * Size:	0000F4
  */
-void loadPlatAttacher__Q24Game11BaseItemMgrFPc(void)
+void Game::BaseItemMgr::loadPlatAttacher( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -1966,7 +1966,7 @@ void loadPlatAttacher__Q24Game11BaseItemMgrFPc(void)
  * Address:	801CD1CC
  * Size:	000084
  */
-void openTextArc__Q24Game11BaseItemMgrFPc(void)
+void Game::BaseItemMgr::openTextArc( (char *))
 {
 /*
 .loc_0x0:
@@ -2015,7 +2015,7 @@ void openTextArc__Q24Game11BaseItemMgrFPc(void)
  * Address:	801CD250
  * Size:	000050
  */
-void closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive(void)
+void Game::BaseItemMgr::closeTextArc( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -2049,7 +2049,7 @@ void closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive(void)
  * Address:	........
  * Size:	0000F8
  */
-void setup__Q24Game11BaseItemMgrFP10JKRArchivePcPcPcPc(void)
+void Game::BaseItemMgr::setup( (JKRArchive *, char *, char *, char *, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -2059,7 +2059,7 @@ void setup__Q24Game11BaseItemMgrFP10JKRArchivePcPcPcPc(void)
  * Address:	801CD2A0
  * Size:	000068
  */
-void loadPlatform__Q24Game11BaseItemMgrFP13JKRFileLoaderPc(void)
+void Game::BaseItemMgr::loadPlatform( (JKRFileLoader *, char *))
 {
 /*
 .loc_0x0:
@@ -2099,7 +2099,7 @@ void loadPlatform__Q24Game11BaseItemMgrFP13JKRFileLoaderPc(void)
  * Address:	801CD308
  * Size:	0000BC
  */
-void loadPlatAttacher__Q24Game11BaseItemMgrFP13JKRFileLoaderPc(void)
+void Game::BaseItemMgr::loadPlatAttacher( (JKRFileLoader *, char *))
 {
 /*
 .loc_0x0:
@@ -2166,7 +2166,7 @@ void loadPlatAttacher__Q24Game11BaseItemMgrFP13JKRFileLoaderPc(void)
  * Address:	........
  * Size:	000074
  */
-void allocUseCounts__Q24Game11BaseItemMgrFi(void)
+void Game::BaseItemMgr::allocUseCounts( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -2176,7 +2176,7 @@ void allocUseCounts__Q24Game11BaseItemMgrFi(void)
  * Address:	........
  * Size:	000074
  */
-void clearUseCounts__Q24Game11BaseItemMgrFv(void)
+void Game::BaseItemMgr::clearUseCounts(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2186,7 +2186,7 @@ void clearUseCounts__Q24Game11BaseItemMgrFv(void)
  * Address:	........
  * Size:	0000A4
  */
-void getUseCount__Q24Game11BaseItemMgrFi(void)
+void Game::BaseItemMgr::getUseCount( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -2196,7 +2196,7 @@ void getUseCount__Q24Game11BaseItemMgrFi(void)
  * Address:	801CD3C4
  * Size:	00002C
  */
-void updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi(void)
+void Game::BaseItemMgr::updateUseList( (Game::GenItemParm *, int))
 {
 /*
 .loc_0x0:
@@ -2219,7 +2219,7 @@ void updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi(void)
  * Address:	801CD3F0
  * Size:	00002C
  */
-void loadResources__Q24Game11BaseItemMgrFv(void)
+void Game::BaseItemMgr::loadResources(void)
 {
 /*
 .loc_0x0:
@@ -2242,7 +2242,7 @@ void loadResources__Q24Game11BaseItemMgrFv(void)
  * Address:	801CD41C
  * Size:	000004
  */
-void setupSoundViewerAndBas__Q24Game11BaseItemMgrFv(void)
+void Game::BaseItemMgr::setupSoundViewerAndBas(void)
 {
 /*
 .loc_0x0:
@@ -2255,7 +2255,7 @@ void setupSoundViewerAndBas__Q24Game11BaseItemMgrFv(void)
  * Address:	801CD420
  * Size:	00014C
  */
-void __ct__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2552,7 +2552,7 @@ void Container<Game::BaseItem>::~Container()
  * Address:	801CD78C
  * Size:	00009C
  */
-void birth__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -2605,7 +2605,7 @@ void birth__Q24Game12TNodeItemMgrFv(void)
  * Address:	801CD828
  * Size:	000084
  */
-void entry__Q24Game12TNodeItemMgrFPQ24Game8BaseItem(void)
+void Game::TNodeItemMgr::entry( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -2652,7 +2652,7 @@ void entry__Q24Game12TNodeItemMgrFPQ24Game8BaseItem(void)
  * Address:	801CD8AC
  * Size:	0001E8
  */
-void initDependency__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::initDependency(void)
 {
 /*
 .loc_0x0:
@@ -2802,7 +2802,7 @@ void initDependency__Q24Game12TNodeItemMgrFv(void)
  * Address:	801CDA94
  * Size:	0000A8
  */
-void killAll__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::killAll(void)
 {
 /*
 .loc_0x0:
@@ -2862,7 +2862,7 @@ void killAll__Q24Game12TNodeItemMgrFv(void)
  * Address:	801CDB3C
  * Size:	0000C4
  */
-void __ct__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2923,7 +2923,7 @@ void __ct__Q24Game7ItemMgrFv(void)
  * Address:	801CDC00
  * Size:	0000E8
  */
-void __dt__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2999,7 +2999,7 @@ void __dt__Q24Game7ItemMgrFv(void)
  * Address:	801CDCE8
  * Size:	00006C
  */
-void addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr(void)
+void Game::ItemMgr::addMgr( (Game::BaseItemMgr *))
 {
 /*
 .loc_0x0:
@@ -3040,7 +3040,7 @@ void addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr(void)
  * Address:	801CDD54
  * Size:	0001E4
  */
-void initDependency__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::initDependency(void)
 {
 /*
 .loc_0x0:
@@ -3189,7 +3189,7 @@ void initDependency__Q24Game7ItemMgrFv(void)
  * Address:	801CDF38
  * Size:	0001E4
  */
-void doAnimation__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -3338,7 +3338,7 @@ void doAnimation__Q24Game7ItemMgrFv(void)
  * Address:	801CE11C
  * Size:	0001E4
  */
-void doEntry__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -3487,7 +3487,7 @@ void doEntry__Q24Game7ItemMgrFv(void)
  * Address:	801CE300
  * Size:	0001F4
  */
-void doSetView__Q24Game7ItemMgrFi(void)
+void Game::ItemMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -3640,7 +3640,7 @@ void doSetView__Q24Game7ItemMgrFi(void)
  * Address:	801CE4F4
  * Size:	0001E4
  */
-void doViewCalc__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -3789,7 +3789,7 @@ void doViewCalc__Q24Game7ItemMgrFv(void)
  * Address:	801CE6D8
  * Size:	0001F4
  */
-void doSimulation__Q24Game7ItemMgrFf(void)
+void Game::ItemMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -3942,7 +3942,7 @@ void doSimulation__Q24Game7ItemMgrFf(void)
  * Address:	801CE8CC
  * Size:	000004
  */
-void doDirectDraw__Q24Game7ItemMgrFR8Graphics(void)
+void Game::ItemMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -3955,7 +3955,7 @@ void doDirectDraw__Q24Game7ItemMgrFR8Graphics(void)
  * Address:	801CE8D0
  * Size:	0001F4
  */
-void doSimpleDraw__Q24Game7ItemMgrFP8Viewport(void)
+void Game::ItemMgr::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -4108,7 +4108,7 @@ void doSimpleDraw__Q24Game7ItemMgrFP8Viewport(void)
  * Address:	801CEAC4
  * Size:	0001E4
  */
-void setupSoundViewerAndBas__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::setupSoundViewerAndBas(void)
 {
 /*
 .loc_0x0:
@@ -4257,7 +4257,7 @@ void setupSoundViewerAndBas__Q24Game7ItemMgrFv(void)
  * Address:	801CECA8
  * Size:	0001E4
  */
-void loadResources__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::loadResources(void)
 {
 /*
 .loc_0x0:
@@ -4406,7 +4406,7 @@ void loadResources__Q24Game7ItemMgrFv(void)
  * Address:	801CEE8C
  * Size:	000204
  */
-void getIndexByMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr(void)
+void Game::ItemMgr::getIndexByMgr( (Game::BaseItemMgr *))
 {
 /*
 .loc_0x0:
@@ -4567,7 +4567,7 @@ void getIndexByMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr(void)
  * Address:	801CF090
  * Size:	000200
  */
-void getMgrByIndex__Q24Game7ItemMgrFi(void)
+void Game::ItemMgr::getMgrByIndex( (int))
 {
 /*
 .loc_0x0:
@@ -4727,7 +4727,7 @@ void getMgrByIndex__Q24Game7ItemMgrFi(void)
  * Address:	801CF290
  * Size:	000224
  */
-void getMgrByID__Q24Game7ItemMgrFR4ID32(void)
+void Game::ItemMgr::getMgrByID( (ID32 &))
 {
 /*
 .loc_0x0:
@@ -4896,7 +4896,7 @@ void getMgrByID__Q24Game7ItemMgrFR4ID32(void)
  * Address:	801CF4B4
  * Size:	00011C
  */
-void __dt__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4987,7 +4987,7 @@ void __dt__Q24Game12TNodeItemMgrFv(void)
  * Address:	801CF5D0
  * Size:	000024
  */
-void kill__Q24Game12TNodeItemMgrFPQ24Game8BaseItem(void)
+void Game::TNodeItemMgr::kill( (Game::BaseItem *))
 {
 /*
 .loc_0x0:
@@ -5008,7 +5008,7 @@ void kill__Q24Game12TNodeItemMgrFPQ24Game8BaseItem(void)
  * Address:	801CF5F4
  * Size:	00002C
  */
-void doAnimation__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -5031,7 +5031,7 @@ void doAnimation__Q24Game12TNodeItemMgrFv(void)
  * Address:	801CF620
  * Size:	00002C
  */
-void doEntry__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -5054,7 +5054,7 @@ void doEntry__Q24Game12TNodeItemMgrFv(void)
  * Address:	801CF64C
  * Size:	00002C
  */
-void doSetView__Q24Game12TNodeItemMgrFi(void)
+void Game::TNodeItemMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -5077,7 +5077,7 @@ void doSetView__Q24Game12TNodeItemMgrFi(void)
  * Address:	801CF678
  * Size:	00002C
  */
-void doViewCalc__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -5100,7 +5100,7 @@ void doViewCalc__Q24Game12TNodeItemMgrFv(void)
  * Address:	801CF6A4
  * Size:	00002C
  */
-void doSimulation__Q24Game12TNodeItemMgrFf(void)
+void Game::TNodeItemMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -5123,7 +5123,7 @@ void doSimulation__Q24Game12TNodeItemMgrFf(void)
  * Address:	801CF6D0
  * Size:	00002C
  */
-void doDirectDraw__Q24Game12TNodeItemMgrFR8Graphics(void)
+void Game::TNodeItemMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -5146,7 +5146,7 @@ void doDirectDraw__Q24Game12TNodeItemMgrFR8Graphics(void)
  * Address:	801CF6FC
  * Size:	00002C
  */
-void getEnd__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::getEnd(void)
 {
 /*
 .loc_0x0:
@@ -5183,7 +5183,7 @@ void NodeObjectMgr<Game::BaseItem>::getEnd()
  * Address:	801CF730
  * Size:	00002C
  */
-void getStart__Q24Game12TNodeItemMgrFv(void)
+void Game::TNodeItemMgr::getStart(void)
 {
 /*
 .loc_0x0:
@@ -5220,7 +5220,7 @@ void NodeObjectMgr<Game::BaseItem>::getStart()
  * Address:	801CF764
  * Size:	00002C
  */
-void getNext__Q24Game12TNodeItemMgrFPv(void)
+void Game::TNodeItemMgr::getNext( (void *))
 {
 /*
 .loc_0x0:
@@ -5257,7 +5257,7 @@ void NodeObjectMgr<Game::BaseItem>::getNext(void *)
  * Address:	801CF798
  * Size:	00002C
  */
-void get__Q24Game12TNodeItemMgrFPv(void)
+void Game::TNodeItemMgr::get( (void *))
 {
 /*
 .loc_0x0:
@@ -5294,7 +5294,7 @@ void NodeObjectMgr<Game::BaseItem>::get(void *)
  * Address:	801CF7CC
  * Size:	000004
  */
-void doAnimation__Q24Game11BaseItemMgrFv(void)
+void Game::BaseItemMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -5307,7 +5307,7 @@ void doAnimation__Q24Game11BaseItemMgrFv(void)
  * Address:	801CF7D0
  * Size:	000004
  */
-void doEntry__Q24Game11BaseItemMgrFv(void)
+void Game::BaseItemMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -5320,7 +5320,7 @@ void doEntry__Q24Game11BaseItemMgrFv(void)
  * Address:	801CF7D4
  * Size:	000004
  */
-void doSetView__Q24Game11BaseItemMgrFi(void)
+void Game::BaseItemMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -5333,7 +5333,7 @@ void doSetView__Q24Game11BaseItemMgrFi(void)
  * Address:	801CF7D8
  * Size:	000004
  */
-void doViewCalc__Q24Game11BaseItemMgrFv(void)
+void Game::BaseItemMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -5346,7 +5346,7 @@ void doViewCalc__Q24Game11BaseItemMgrFv(void)
  * Address:	801CF7DC
  * Size:	000004
  */
-void doSimulation__Q24Game11BaseItemMgrFf(void)
+void Game::BaseItemMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -5359,7 +5359,7 @@ void doSimulation__Q24Game11BaseItemMgrFf(void)
  * Address:	801CF7E0
  * Size:	000004
  */
-void doDirectDraw__Q24Game11BaseItemMgrFR8Graphics(void)
+void Game::BaseItemMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -6425,7 +6425,7 @@ void exec__Q24Game26FSMState<Game::CFSMItem>FPQ24Game8CFSMItem(void)
  * Address:	801D0440
  * Size:	000008
  */
-void @376@onKeyEvent__Q24Game8CFSMItemFRCQ28SysShape8KeyEvent(void)
+void @376@Game::CFSMItem::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -6537,7 +6537,7 @@ void ObjectMgr<Game::BaseItem>::@28@doAnimation()
  * Address:	801D0480
  * Size:	000008
  */
-void @48@getEnd__Q24Game12TNodeItemMgrFv(void)
+void @48@Game::TNodeItemMgr::getEnd(void)
 {
 /*
 .loc_0x0:
@@ -6551,7 +6551,7 @@ void @48@getEnd__Q24Game12TNodeItemMgrFv(void)
  * Address:	801D0488
  * Size:	000008
  */
-void @48@getStart__Q24Game12TNodeItemMgrFv(void)
+void @48@Game::TNodeItemMgr::getStart(void)
 {
 /*
 .loc_0x0:
@@ -6565,7 +6565,7 @@ void @48@getStart__Q24Game12TNodeItemMgrFv(void)
  * Address:	801D0490
  * Size:	000008
  */
-void @48@getNext__Q24Game12TNodeItemMgrFPv(void)
+void @48@Game::TNodeItemMgr::getNext( (void *))
 {
 /*
 .loc_0x0:
@@ -6579,7 +6579,7 @@ void @48@getNext__Q24Game12TNodeItemMgrFPv(void)
  * Address:	801D0498
  * Size:	000008
  */
-void @48@get__Q24Game12TNodeItemMgrFPv(void)
+void @48@Game::TNodeItemMgr::get( (void *))
 {
 /*
 .loc_0x0:
@@ -6593,7 +6593,7 @@ void @48@get__Q24Game12TNodeItemMgrFPv(void)
  * Address:	801D04A0
  * Size:	000008
  */
-void @48@__dt__Q24Game12TNodeItemMgrFv(void)
+void @48@Game::TNodeItemMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6607,7 +6607,7 @@ void @48@__dt__Q24Game12TNodeItemMgrFv(void)
  * Address:	801D04A8
  * Size:	000008
  */
-void @28@loadResources__Q24Game7ItemMgrFv(void)
+void @28@Game::ItemMgr::loadResources(void)
 {
 /*
 .loc_0x0:
@@ -6621,7 +6621,7 @@ void @28@loadResources__Q24Game7ItemMgrFv(void)
  * Address:	801D04B0
  * Size:	000008
  */
-void @28@doSimpleDraw__Q24Game7ItemMgrFP8Viewport(void)
+void @28@Game::ItemMgr::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -6635,7 +6635,7 @@ void @28@doSimpleDraw__Q24Game7ItemMgrFP8Viewport(void)
  * Address:	801D04B8
  * Size:	000008
  */
-void @28@doDirectDraw__Q24Game7ItemMgrFR8Graphics(void)
+void @28@Game::ItemMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -6649,7 +6649,7 @@ void @28@doDirectDraw__Q24Game7ItemMgrFR8Graphics(void)
  * Address:	801D04C0
  * Size:	000008
  */
-void @28@doSimulation__Q24Game7ItemMgrFf(void)
+void @28@Game::ItemMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -6663,7 +6663,7 @@ void @28@doSimulation__Q24Game7ItemMgrFf(void)
  * Address:	801D04C8
  * Size:	000008
  */
-void @28@doViewCalc__Q24Game7ItemMgrFv(void)
+void @28@Game::ItemMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -6677,7 +6677,7 @@ void @28@doViewCalc__Q24Game7ItemMgrFv(void)
  * Address:	801D04D0
  * Size:	000008
  */
-void @28@doSetView__Q24Game7ItemMgrFi(void)
+void @28@Game::ItemMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -6691,7 +6691,7 @@ void @28@doSetView__Q24Game7ItemMgrFi(void)
  * Address:	801D04D8
  * Size:	000008
  */
-void @28@doEntry__Q24Game7ItemMgrFv(void)
+void @28@Game::ItemMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -6705,7 +6705,7 @@ void @28@doEntry__Q24Game7ItemMgrFv(void)
  * Address:	801D04E0
  * Size:	000008
  */
-void @28@doAnimation__Q24Game7ItemMgrFv(void)
+void @28@Game::ItemMgr::doAnimation(void)
 {
 /*
 .loc_0x0:

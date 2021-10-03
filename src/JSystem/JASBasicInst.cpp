@@ -354,7 +354,7 @@ void JASBasicInst::setKeyRegionCount(unsigned long)
  * Address:	80099C14
  * Size:	000018
  */
-void __ct__Q212JASBasicInst7TKeymapFv(void)
+void JASBasicInst::TKeymap::__ct(void)
 {
 /*
 .loc_0x0:
@@ -549,7 +549,7 @@ void JASBasicInst::getKeyRegion(int) const
  * Address:	80099D60
  * Size:	000054
  */
-void __dt__Q212JASBasicInst7TKeymapFv(void)
+void JASBasicInst::TKeymap::__dt(void)
 {
 /*
 .loc_0x0:
@@ -584,7 +584,7 @@ void __dt__Q212JASBasicInst7TKeymapFv(void)
  * Address:	80099DB4
  * Size:	000058
  */
-void setVeloRegionCount__Q212JASBasicInst7TKeymapFUl(void)
+void JASBasicInst::TKeymap::setVeloRegionCount( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -618,7 +618,7 @@ void setVeloRegionCount__Q212JASBasicInst7TKeymapFUl(void)
  * Address:	80099E0C
  * Size:	000024
  */
-void getVeloRegion__Q212JASBasicInst7TKeymapFi(void)
+void JASBasicInst::TKeymap::getVeloRegion( (int))
 {
 /*
 .loc_0x0:
@@ -641,7 +641,7 @@ void getVeloRegion__Q212JASBasicInst7TKeymapFi(void)
  * Address:	80099E30
  * Size:	000024
  */
-void getVeloRegion__Q212JASBasicInst7TKeymapCFi(void)
+void JASBasicInst::TKeymap::getVeloRegion( const(int))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801E4B98
  * Size:	000664
  */
-void createManagers__Q24Game7ItemMgrFUl(void)
+void Game::ItemMgr::createManagers( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -500,7 +500,7 @@ void createManagers__Q24Game7ItemMgrFUl(void)
  * Address:	801E51FC
  * Size:	000048
  */
-void clearGlobalPointers__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::clearGlobalPointers(void)
 {
 /*
 .loc_0x0:
@@ -530,7 +530,7 @@ void clearGlobalPointers__Q24Game7ItemMgrFv(void)
  * Address:	801E5244
  * Size:	0000E8
  */
-void killAllExceptOnyonMgr__Q24Game7ItemMgrFv(void)
+void Game::ItemMgr::killAllExceptOnyonMgr(void)
 {
 /*
 .loc_0x0:

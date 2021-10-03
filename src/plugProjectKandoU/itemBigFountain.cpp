@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801EC188
  * Size:	00018C
  */
-void init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::FSM::init( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -134,7 +134,7 @@ void init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item(void)
  * Address:	801EC314
  * Size:	000048
  */
-void init__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void)
+void Game::ItemBigFountain::AppearState::init( (Game::ItemBigFountain::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -164,7 +164,7 @@ void init__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4ItemP
  * Address:	801EC35C
  * Size:	0000CC
  */
-void exec__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::AppearState::exec( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -253,7 +253,7 @@ void transit__Q24Game39FSMState<Game::ItemBigFountain::Item>FPQ34Game15ItemBigFo
  * Address:	801EC458
  * Size:	000004
  */
-void cleanup__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::AppearState::cleanup( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -266,7 +266,7 @@ void cleanup__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4It
  * Address:	801EC45C
  * Size:	00003C
  */
-void init__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void)
+void Game::ItemBigFountain::CloseState::init( (Game::ItemBigFountain::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -293,7 +293,7 @@ void init__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4ItemPQ
  * Address:	801EC498
  * Size:	000014
  */
-void exec__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::CloseState::exec( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -310,7 +310,7 @@ void exec__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item(v
  * Address:	801EC4AC
  * Size:	000004
  */
-void cleanup__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::CloseState::cleanup( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -323,7 +323,7 @@ void cleanup__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Ite
  * Address:	801EC4B0
  * Size:	000044
  */
-void init__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void)
+void Game::ItemBigFountain::WaitState::init( (Game::ItemBigFountain::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -352,7 +352,7 @@ void init__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemPQ24
  * Address:	801EC4F4
  * Size:	000034
  */
-void exec__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::WaitState::exec( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -377,7 +377,7 @@ void exec__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item(voi
  * Address:	801EC528
  * Size:	000004
  */
-void cleanup__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::WaitState::cleanup( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -390,7 +390,7 @@ void cleanup__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item(
  * Address:	801EC52C
  * Size:	000094
  */
-void onDamage__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Itemf(void)
+void Game::ItemBigFountain::WaitState::onDamage( (Game::ItemBigFountain::Item *, float))
 {
 /*
 .loc_0x0:
@@ -445,7 +445,7 @@ void onDamage__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item
  * Address:	801EC5C0
  * Size:	00000C
  */
-void onKeyEvent__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemBigFountain::WaitState::onKeyEvent( (Game::ItemBigFountain::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -460,7 +460,7 @@ void onKeyEvent__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4It
  * Address:	801EC5CC
  * Size:	00011C
  */
-void init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void)
+void Game::ItemBigFountain::OutState::init( (Game::ItemBigFountain::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -547,7 +547,7 @@ void init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24G
  * Address:	801EC6E8
  * Size:	000034
  */
-void exec__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::OutState::exec( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -572,7 +572,7 @@ void exec__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item(void
  * Address:	801EC71C
  * Size:	000004
  */
-void cleanup__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item(void)
+void Game::ItemBigFountain::OutState::cleanup( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -585,7 +585,7 @@ void cleanup__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item(v
  * Address:	801EC720
  * Size:	000204
  */
-void movieUserCommand__Q34Game15ItemBigFountain4ItemFUlPQ24Game11MoviePlayer(void)
+void Game::ItemBigFountain::Item::movieUserCommand( (unsigned long, Game::MoviePlayer *))
 {
 /*
 .loc_0x0:
@@ -744,7 +744,7 @@ void movieUserCommand__Q34Game15ItemBigFountain4ItemFUlPQ24Game11MoviePlayer(voi
  * Address:	801EC924
  * Size:	000108
  */
-void interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey(void)
+void Game::ItemBigFountain::Item::interactGotKey( (Game::InteractGotKey &))
 {
 /*
 .loc_0x0:
@@ -826,7 +826,7 @@ void interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey(void
  * Address:	........
  * Size:	0000DC
  */
-void __ct__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -836,7 +836,7 @@ void __ct__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ECA2C
  * Size:	000048
  */
-void constructor__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::constructor(void)
 {
 /*
 .loc_0x0:
@@ -868,7 +868,7 @@ void constructor__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ECA74
  * Size:	000284
  */
-void onInit__Q34Game15ItemBigFountain4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemBigFountain::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -1082,7 +1082,7 @@ void start__Q24Game43StateMachine<Game::ItemBigFountain::Item>FPQ34Game15ItemBig
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx9TForever3Fv(void)
+void efx::TForever3::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1092,7 +1092,7 @@ void __dt__Q23efx9TForever3Fv(void)
  * Address:	801ECD2C
  * Size:	000054
  */
-void initDependency__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::initDependency(void)
 {
 /*
 .loc_0x0:
@@ -1127,7 +1127,7 @@ void initDependency__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ECD80
  * Size:	0000C0
  */
-void update__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::update(void)
 {
 /*
 .loc_0x0:
@@ -1191,7 +1191,7 @@ void update__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ECE40
  * Size:	000060
  */
-void killAllEffect__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::killAllEffect(void)
 {
 /*
 .loc_0x0:
@@ -1231,7 +1231,7 @@ void killAllEffect__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ECEA0
  * Size:	000068
  */
-void makeTrMatrix__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::makeTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -1269,7 +1269,7 @@ void makeTrMatrix__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ECF08
  * Size:	000118
  */
-void onSetPosition__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1353,7 +1353,7 @@ void onSetPosition__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ED020
  * Size:	0000A0
  */
-void doAI__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -1411,7 +1411,7 @@ void doAI__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ED0C0
  * Size:	00016C
  */
-void doDirectDraw__Q34Game15ItemBigFountain4ItemFR8Graphics(void)
+void Game::ItemBigFountain::Item::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1518,7 +1518,7 @@ void doDirectDraw__Q34Game15ItemBigFountain4ItemFR8Graphics(void)
  * Address:	801ED22C
  * Size:	000038
  */
-void updateBoundSphere__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -1544,7 +1544,7 @@ void updateBoundSphere__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ED264
  * Size:	000004
  */
-void doSimulation__Q34Game15ItemBigFountain4ItemFf(void)
+void Game::ItemBigFountain::Item::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -1557,7 +1557,7 @@ void doSimulation__Q34Game15ItemBigFountain4ItemFf(void)
  * Address:	801ED268
  * Size:	000030
  */
-void canRide__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::canRide(void)
 {
 /*
 .loc_0x0:
@@ -1581,7 +1581,7 @@ void canRide__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801ED298
  * Size:	000008
  */
-void canRide__Q34Game15ItemBigFountain5StateFv(void)
+void Game::ItemBigFountain::State::canRide(void)
 {
 /*
 .loc_0x0:
@@ -1595,7 +1595,7 @@ void canRide__Q34Game15ItemBigFountain5StateFv(void)
  * Address:	801ED2A0
  * Size:	00011C
  */
-void interactAttack__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractAttack(void)
+void Game::ItemBigFountain::Item::interactAttack( (Game::InteractAttack &))
 {
 /*
 .loc_0x0:
@@ -1690,7 +1690,7 @@ void interactAttack__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractAttack(void
  * Address:	801ED3BC
  * Size:	000004
  */
-void onDamage__Q34Game15ItemBigFountain5StateFPQ34Game15ItemBigFountain4Itemf(void)
+void Game::ItemBigFountain::State::onDamage( (Game::ItemBigFountain::Item *, float))
 {
 /*
 .loc_0x0:
@@ -1779,7 +1779,7 @@ void getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<floa
  * Address:	801ED488
  * Size:	000060
  */
-void getWorkDistance__Q34Game15ItemBigFountain4ItemFRQ23Sys6Sphere(void)
+void Game::ItemBigFountain::Item::getWorkDistance( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1819,7 +1819,7 @@ void getWorkDistance__Q34Game15ItemBigFountain4ItemFRQ23Sys6Sphere(void)
  * Address:	801ED4E8
  * Size:	00003C
  */
-void onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent(void)
+void Game::ItemBigFountain::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1859,7 +1859,7 @@ void onKeyEvent__Q24Game40ItemState<Game::ItemBigFountain::Item>FPQ34Game15ItemB
  * Address:	801ED528
  * Size:	000120
  */
-void __ct__Q34Game15ItemBigFountain3MgrFv(void)
+void Game::ItemBigFountain::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1951,7 +1951,7 @@ void __ct__Q34Game15ItemBigFountain3MgrFv(void)
  * Address:	801ED648
  * Size:	000024
  */
-void read__Q34Game15ItemBigFountain13FountainParmsFR6Stream(void)
+void Game::ItemBigFountain::FountainParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1972,7 +1972,7 @@ void read__Q34Game15ItemBigFountain13FountainParmsFR6Stream(void)
  * Address:	801ED66C
  * Size:	0001EC
  */
-void __ct__Q34Game15ItemBigFountain13FountainParmsFv(void)
+void Game::ItemBigFountain::FountainParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2107,7 +2107,7 @@ void __ct__Q34Game15ItemBigFountain13FountainParmsFv(void)
  * Address:	801ED858
  * Size:	0000DC
  */
-void onLoadResources__Q34Game15ItemBigFountain3MgrFv(void)
+void Game::ItemBigFountain::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -2174,7 +2174,7 @@ void onLoadResources__Q34Game15ItemBigFountain3MgrFv(void)
  * Address:	801ED934
  * Size:	000020
  */
-void birth__Q34Game15ItemBigFountain3MgrFv(void)
+void Game::ItemBigFountain::Mgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -2228,7 +2228,7 @@ void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3<float>R10Vector3<fl
  * Address:	801ED9AC
  * Size:	000134
  */
-void __dt__Q34Game15ItemBigFountain3MgrFv(void)
+void Game::ItemBigFountain::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2325,7 +2325,7 @@ void __dt__Q34Game15ItemBigFountain3MgrFv(void)
  * Address:	801EDAE0
  * Size:	0000E8
  */
-void doNew__Q34Game15ItemBigFountain3MgrFv(void)
+void Game::ItemBigFountain::Mgr::doNew(void)
 {
 /*
 .loc_0x0:
@@ -2399,7 +2399,7 @@ void doNew__Q34Game15ItemBigFountain3MgrFv(void)
  * Address:	801EDBC8
  * Size:	00000C
  */
-void generatorGetID__Q34Game15ItemBigFountain3MgrFv(void)
+void Game::ItemBigFountain::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -2414,7 +2414,7 @@ void generatorGetID__Q34Game15ItemBigFountain3MgrFv(void)
  * Address:	801EDBD4
  * Size:	000008
  */
-void sound_culling__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::sound_culling(void)
 {
 /*
 .loc_0x0:
@@ -2428,7 +2428,7 @@ void sound_culling__Q34Game15ItemBigFountain4ItemFv(void)
  * Address:	801EDBDC
  * Size:	00000C
  */
-void getCreatureName__Q34Game15ItemBigFountain4ItemFv(void)
+void Game::ItemBigFountain::Item::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -2468,7 +2468,7 @@ void doAI__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::
  * Address:	801EDC1C
  * Size:	000008
  */
-void canRide__Q34Game15ItemBigFountain8OutStateFv(void)
+void Game::ItemBigFountain::OutState::canRide(void)
 {
 /*
 .loc_0x0:
@@ -2966,7 +2966,7 @@ void @376@onKeyEvent__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBi
  * Address:	801EDF64
  * Size:	000008
  */
-void @376@onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent(void)
+void @376@Game::ItemBigFountain::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -2980,7 +2980,7 @@ void @376@onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent(void)
  * Address:	801EDF6C
  * Size:	000008
  */
-void @48@__dt__Q34Game15ItemBigFountain3MgrFv(void)
+void @48@Game::ItemBigFountain::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

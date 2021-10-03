@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8034A21C
  * Size:	000020
  */
-void setParameters__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -35,7 +35,7 @@ void setParameters__Q34Game4Bomb3ObjFv(void)
  * Address:	8034A23C
  * Size:	0000EC
  */
-void onStartCapture__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::onStartCapture(void)
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void onStartCapture__Q34Game4Bomb3ObjFv(void)
  * Address:	8034A328
  * Size:	000048
  */
-void onEndCapture__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::onEndCapture(void)
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void birth__Q34Game4Bomb3ObjFR10Vector3<float>f(void)
  * Address:	8034A390
  * Size:	000168
  */
-void onInit__Q34Game4Bomb3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Bomb::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -266,7 +266,7 @@ void onInit__Q34Game4Bomb3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8034A4F8
  * Size:	0001DC
  */
-void __ct__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -405,7 +405,7 @@ void __ct__Q34Game4Bomb3ObjFv(void)
  * Address:	8034A6D4
  * Size:	00004C
  */
-void setFSM__Q34Game4Bomb3ObjFPQ34Game4Bomb3FSM(void)
+void Game::Bomb::Obj::setFSM( (Game::Bomb::FSM *))
 {
 /*
 .loc_0x0:
@@ -436,7 +436,7 @@ void setFSM__Q34Game4Bomb3ObjFPQ34Game4Bomb3FSM(void)
  * Address:	8034A720
  * Size:	0000D4
  */
-void doUpdate__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -509,7 +509,7 @@ void doUpdate__Q34Game4Bomb3ObjFv(void)
  * Address:	8034A7F4
  * Size:	000004
  */
-void doDirectDraw__Q34Game4Bomb3ObjFR8Graphics(void)
+void Game::Bomb::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -522,7 +522,7 @@ void doDirectDraw__Q34Game4Bomb3ObjFR8Graphics(void)
  * Address:	8034A7F8
  * Size:	000004
  */
-void doDebugDraw__Q34Game4Bomb3ObjFR8Graphics(void)
+void Game::Bomb::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -535,7 +535,7 @@ void doDebugDraw__Q34Game4Bomb3ObjFR8Graphics(void)
  * Address:	8034A7FC
  * Size:	00002C
  */
-void doEntry__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void doEntry__Q34Game4Bomb3ObjFv(void)
  * Address:	8034A828
  * Size:	0001F4
  */
-void doAnimationCullingOff__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -711,7 +711,7 @@ void doAnimationCullingOff__Q34Game4Bomb3ObjFv(void)
  * Address:	8034AA1C
  * Size:	00004C
  */
-void doAnimationCullingOn__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::doAnimationCullingOn(void)
 {
 /*
 .loc_0x0:
@@ -746,7 +746,7 @@ void doAnimationCullingOn__Q34Game4Bomb3ObjFv(void)
  * Address:	8034AA68
  * Size:	000134
  */
-void doSimulation__Q34Game4Bomb3ObjFf(void)
+void Game::Bomb::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -847,7 +847,7 @@ void doSimulation__Q34Game4Bomb3ObjFf(void)
  * Address:	8034AB9C
  * Size:	000050
  */
-void getShadowParam__Q34Game4Bomb3ObjFRQ24Game11ShadowParam(void)
+void Game::Bomb::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -879,7 +879,7 @@ void getShadowParam__Q34Game4Bomb3ObjFRQ24Game11ShadowParam(void)
  * Address:	8034ABEC
  * Size:	000048
  */
-void needShadow__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -913,7 +913,7 @@ void needShadow__Q34Game4Bomb3ObjFv(void)
  * Address:	8034AC34
  * Size:	000080
  */
-void doFinishStoneState__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -959,7 +959,7 @@ void doFinishStoneState__Q34Game4Bomb3ObjFv(void)
  * Address:	8034ACB4
  * Size:	000048
  */
-void doStartStoneState__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -989,7 +989,7 @@ void doStartStoneState__Q34Game4Bomb3ObjFv(void)
  * Address:	8034ACFC
  * Size:	000084
  */
-void onKill__Q34Game4Bomb3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Bomb::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -1036,7 +1036,7 @@ void onKill__Q34Game4Bomb3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	8034AD80
  * Size:	000030
  */
-void doStartMovie__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -1060,7 +1060,7 @@ void doStartMovie__Q34Game4Bomb3ObjFv(void)
  * Address:	8034ADB0
  * Size:	000030
  */
-void doEndMovie__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -1084,7 +1084,7 @@ void doEndMovie__Q34Game4Bomb3ObjFv(void)
  * Address:	8034ADE0
  * Size:	000074
  */
-void damageCallBack__Q34Game4Bomb3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Bomb::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1243,7 +1243,7 @@ void bombCallBack__Q34Game4Bomb3ObjFPQ24Game8CreatureR10Vector3<float>f(void)
  * Address:	8034AFB4
  * Size:	000008
  */
-void pressCallBack__Q34Game4Bomb3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Bomb::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1257,7 +1257,7 @@ void pressCallBack__Q34Game4Bomb3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8034AFBC
  * Size:	000078
  */
-void bounceCallback__Q34Game4Bomb3ObjFPQ23Sys8Triangle(void)
+void Game::Bomb::Obj::bounceCallback( (Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -1303,7 +1303,7 @@ void bounceCallback__Q34Game4Bomb3ObjFPQ23Sys8Triangle(void)
  * Address:	8034B034
  * Size:	00009C
  */
-void collisionCallback__Q34Game4Bomb3ObjFRQ24Game9CollEvent(void)
+void Game::Bomb::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1358,7 +1358,7 @@ void collisionCallback__Q34Game4Bomb3ObjFRQ24Game9CollEvent(void)
  * Address:	8034B0D0
  * Size:	000060
  */
-void forceBomb__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::forceBomb(void)
 {
 /*
 .loc_0x0:
@@ -1396,7 +1396,7 @@ void forceBomb__Q34Game4Bomb3ObjFv(void)
  * Address:	........
  * Size:	000048
  */
-void isBombStart__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::isBombStart(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1406,7 +1406,7 @@ void isBombStart__Q34Game4Bomb3ObjFv(void)
  * Address:	8034B130
  * Size:	000028
  */
-void bombEffInWater__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::bombEffInWater(void)
 {
 /*
 .loc_0x0:
@@ -1428,7 +1428,7 @@ void bombEffInWater__Q34Game4Bomb3ObjFv(void)
  * Address:	8034B158
  * Size:	00005C
  */
-void canEat__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::canEat(void)
 {
 /*
 .loc_0x0:
@@ -1467,7 +1467,7 @@ void canEat__Q34Game4Bomb3ObjFv(void)
  * Address:	8034B1B4
  * Size:	0000D8
  */
-void isAnimStart__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::isAnimStart(void)
 {
 /*
 .loc_0x0:
@@ -1549,7 +1549,7 @@ void isAnimStart__Q34Game4Bomb3ObjFv(void)
  * Address:	8034B28C
  * Size:	00009C
  */
-void __dt__Q23efx14TBombrockLightFv(void)
+void efx::TBombrockLight::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1604,7 +1604,7 @@ void __dt__Q23efx14TBombrockLightFv(void)
  * Address:	8034B328
  * Size:	000004
  */
-void setInitialSetting__Q34Game4Bomb3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Bomb::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -1617,7 +1617,7 @@ void setInitialSetting__Q34Game4Bomb3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8034B32C
  * Size:	000040
  */
-void isLivingThing__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1651,7 +1651,7 @@ void isLivingThing__Q34Game4Bomb3ObjFv(void)
  * Address:	8034B36C
  * Size:	000048
  */
-void isUnderground__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -1683,7 +1683,7 @@ void isUnderground__Q34Game4Bomb3ObjFv(void)
  * Address:	8034B3B4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Bomb3ObjFv(void)
+void Game::Bomb::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1697,7 +1697,7 @@ void getEnemyTypeID__Q34Game4Bomb3ObjFv(void)
  * Address:	8034B3BC
  * Size:	000008
  */
-void @4@__dt__Q23efx14TBombrockLightFv(void)
+void @4@efx::TBombrockLight::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801FB8CC
  * Size:	0000B0
  */
-void __ct__Q34Game13PelletCarcass3MgrFv(void)
+void Game::PelletCarcass::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -296,7 +296,7 @@ void Container<Game::PelletCarcass::Object>::~Container()
  * Address:	801FBC28
  * Size:	000064
  */
-void setupResources__Q34Game13PelletCarcass3MgrFv(void)
+void Game::PelletCarcass::Mgr::setupResources(void)
 {
 /*
 .loc_0x0:
@@ -333,7 +333,7 @@ void setupResources__Q34Game13PelletCarcass3MgrFv(void)
  * Address:	801FBC8C
  * Size:	0001B4
  */
-void __dt__Q34Game13PelletCarcass3MgrFv(void)
+void Game::PelletCarcass::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -462,7 +462,7 @@ void __dt__Q34Game13PelletCarcass3MgrFv(void)
  * Address:	801FBE40
  * Size:	000008
  */
-void createShape__Q34Game13PelletCarcass3MgrFii(void)
+void Game::PelletCarcass::Mgr::createShape( (int, int))
 {
 /*
 .loc_0x0:
@@ -476,7 +476,7 @@ void createShape__Q34Game13PelletCarcass3MgrFii(void)
  * Address:	801FBE48
  * Size:	000008
  */
-void getMgrName__Q34Game13PelletCarcass3MgrFv(void)
+void Game::PelletCarcass::Mgr::getMgrName(void)
 {
 /*
 .loc_0x0:
@@ -490,7 +490,7 @@ void getMgrName__Q34Game13PelletCarcass3MgrFv(void)
  * Address:	801FBE50
  * Size:	000008
  */
-void getMgrID__Q34Game13PelletCarcass3MgrFv(void)
+void Game::PelletCarcass::Mgr::getMgrID(void)
 {
 /*
 .loc_0x0:
@@ -3081,7 +3081,7 @@ void MonoObjectMgr<Game::PelletCarcass::Object>::alloc(int)
  * Address:	801FD8CC
  * Size:	00004C
  */
-void __ct__Q34Game13PelletCarcass6ObjectFv(void)
+void Game::PelletCarcass::Object::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3112,7 +3112,7 @@ void __ct__Q34Game13PelletCarcass6ObjectFv(void)
  * Address:	801FD918
  * Size:	000008
  */
-void getKind__Q34Game13PelletCarcass6ObjectFv(void)
+void Game::PelletCarcass::Object::getKind(void)
 {
 /*
 .loc_0x0:
@@ -3378,7 +3378,7 @@ void @84@get__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object>FPv(void)
  * Address:	801FD9B0
  * Size:	000008
  */
-void @84@__dt__Q34Game13PelletCarcass3MgrFv(void)
+void @84@Game::PelletCarcass::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

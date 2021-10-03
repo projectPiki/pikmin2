@@ -5,7 +5,7 @@
  * Address:	8002766C
  * Size:	000008
  */
-void extend_default__Q27JGadget6vectorFUlUlUl(void)
+void JGadget::vector::extend_default( (unsigned long, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -500,7 +500,7 @@ void __dt__Q37JGadget38TVector<void *, JGadget::TAllocator<void *>>23TDestructed
  * Address:	80027B88
  * Size:	000108
  */
-void __dt__Q27JGadget20TVector_pointer_voidFv(void)
+void JGadget::TVector_pointer_void::__dt(void)
 {
 /*
 .loc_0x0:
@@ -594,7 +594,7 @@ void __dt__Q27JGadget20TVector_pointer_voidFv(void)
  * Address:	80027C90
  * Size:	000020
  */
-void insert__Q27JGadget20TVector_pointer_voidFPPvRCPv(void)
+void JGadget::TVector_pointer_void::insert( (void **, void *const &))
 {
 /*
 .loc_0x0:
@@ -650,7 +650,7 @@ void insert__Q27JGadget38TVector<void *, JGadget::TAllocator<void *>>FPPvRCPv(vo
  * Address:	........
  * Size:	000020
  */
-void insert__Q27JGadget20TVector_pointer_voidFPPvUlRCPv(void)
+void JGadget::TVector_pointer_void::insert( (void **, unsigned long, void *const &))
 {
 	// UNUSED FUNCTION
 }
@@ -660,7 +660,7 @@ void insert__Q27JGadget20TVector_pointer_voidFPPvUlRCPv(void)
  * Address:	........
  * Size:	0000BC
  */
-void erase__Q27JGadget20TVector_pointer_voidFPPv(void)
+void JGadget::TVector_pointer_void::erase( (void **))
 {
 	// UNUSED FUNCTION
 }
@@ -670,7 +670,7 @@ void erase__Q27JGadget20TVector_pointer_voidFPPv(void)
  * Address:	80027D08
  * Size:	0000B8
  */
-void erase__Q27JGadget20TVector_pointer_voidFPPvPPv(void)
+void JGadget::TVector_pointer_void::erase( (void **, void **))
 {
 /*
 .loc_0x0:
@@ -740,7 +740,7 @@ void erase__Q27JGadget20TVector_pointer_voidFPPvPPv(void)
  * Address:	........
  * Size:	000020
  */
-void assign__Q27JGadget20TVector_pointer_voidFUlRCPv(void)
+void JGadget::TVector_pointer_void::assign( (unsigned long, void *const &))
 {
 	// UNUSED FUNCTION
 }
@@ -760,7 +760,7 @@ void assign__Q27JGadget38TVector<void *, JGadget::TAllocator<void *>>FUlRCPv(voi
  * Address:	........
  * Size:	000020
  */
-void resize__Q27JGadget20TVector_pointer_voidFUlRCPv(void)
+void JGadget::TVector_pointer_void::resize( (unsigned long, void *const &))
 {
 	// UNUSED FUNCTION
 }
@@ -790,7 +790,7 @@ void Resize_raw__Q27JGadget38TVector<void *, JGadget::TAllocator<void *>>FUl(voi
  * Address:	........
  * Size:	00013C
  */
-void reserve__Q27JGadget20TVector_pointer_voidFUl(void)
+void JGadget::TVector_pointer_void::reserve( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -800,7 +800,7 @@ void reserve__Q27JGadget20TVector_pointer_voidFUl(void)
  * Address:	........
  * Size:	000030
  */
-void __as__Q27JGadget20TVector_pointer_voidFRCQ27JGadget20TVector_pointer_void(void)
+void JGadget::TVector_pointer_void::operator=( (JGadget::TVector_pointer_void const &))
 {
 	// UNUSED FUNCTION
 }
@@ -820,7 +820,7 @@ void __as__Q27JGadget38TVector<void *, JGadget::TAllocator<void *>>FRCQ27JGadget
  * Address:	........
  * Size:	000020
  */
-void Insert_raw__Q27JGadget20TVector_pointer_voidFPPvUl(void)
+void JGadget::TVector_pointer_void::Insert_raw( (void **, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -830,7 +830,7 @@ void Insert_raw__Q27JGadget20TVector_pointer_voidFPPvUl(void)
  * Address:	........
  * Size:	000020
  */
-void Resize_raw__Q27JGadget20TVector_pointer_voidFUl(void)
+void JGadget::TVector_pointer_void::Resize_raw( (unsigned long))
 {
 	// UNUSED FUNCTION
 }

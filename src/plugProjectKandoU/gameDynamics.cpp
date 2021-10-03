@@ -311,7 +311,7 @@ void DynamicsParms::globalInstance()
  * Address:	........
  * Size:	000008
  */
-void length__Q24Game11RigidConfigFv(void)
+void Game::RigidConfig::length(void)
 {
 	// UNUSED FUNCTION
 }
@@ -321,7 +321,7 @@ void length__Q24Game11RigidConfigFv(void)
  * Address:	........
  * Size:	000114
  */
-void write__Q24Game11RigidConfigFPf(void)
+void Game::RigidConfig::write( (float *))
 {
 	// UNUSED FUNCTION
 }
@@ -331,7 +331,7 @@ void write__Q24Game11RigidConfigFPf(void)
  * Address:	........
  * Size:	000114
  */
-void read__Q24Game11RigidConfigFPf(void)
+void Game::RigidConfig::read( (float *))
 {
 	// UNUSED FUNCTION
 }
@@ -341,7 +341,7 @@ void read__Q24Game11RigidConfigFPf(void)
  * Address:	8013A050
  * Size:	000054
  */
-void __ct__Q24Game5RigidFv(void)
+void Game::Rigid::__ct(void)
 {
 /*
 .loc_0x0:
@@ -374,7 +374,7 @@ void __ct__Q24Game5RigidFv(void)
  * Address:	8013A0A4
  * Size:	000034
  */
-void __ct__Q24Game11RigidConfigFv(void)
+void Game::RigidConfig::__ct(void)
 {
 /*
 .loc_0x0:
@@ -399,7 +399,7 @@ void __ct__Q24Game11RigidConfigFv(void)
  * Address:	........
  * Size:	00000C
  */
-void init__Q24Game5RigidFv(void)
+void Game::Rigid::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -505,7 +505,7 @@ void initPositionIndex__Q24Game5RigidFR10Vector3<float>iR10Vector3<float>(void)
  * Address:	8013A1F0
  * Size:	000038
  */
-void updateMatrix__Q24Game5RigidFi(void)
+void Game::Rigid::updateMatrix( (int))
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void updateMatrix__Q24Game5RigidFi(void)
  * Address:	8013A228
  * Size:	00006C
  */
-void computeForces__Q24Game5RigidFi(void)
+void Game::Rigid::computeForces( (int))
 {
 /*
 .loc_0x0:
@@ -736,7 +736,7 @@ void getYDegree(Quat &, Vector3<float> &)
  * Address:	8013A4FC
  * Size:	000678
  */
-void integrate__Q24Game5RigidFfi(void)
+void Game::Rigid::integrate( (float, int))
 {
 /*
 .loc_0x0:

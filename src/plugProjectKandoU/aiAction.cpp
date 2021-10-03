@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80196A18
  * Size:	00001C
  */
-void __ct__Q26PikiAI6ActionFPQ24Game4Piki(void)
+void PikiAI::Action::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q26PikiAI6ActionFPQ24Game4Piki(void)
  * Address:	80196A34
  * Size:	000030
  */
-void getInfo__Q26PikiAI6ActionFPc(void)
+void PikiAI::Action::getInfo( (char *))
 {
 /*
 .loc_0x0:
@@ -58,7 +58,7 @@ void getInfo__Q26PikiAI6ActionFPc(void)
  * Address:	80196A64
  * Size:	000280
  */
-void __ct__Q26PikiAI5BrainFPQ24Game4Piki(void)
+void PikiAI::Brain::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void __ct__Q26PikiAI5BrainFPQ24Game4Piki(void)
  * Address:	80196CE4
  * Size:	00001C
  */
-void addAction__Q26PikiAI5BrainFPQ26PikiAI6Action(void)
+void PikiAI::Brain::addAction( (PikiAI::Action *))
 {
 /*
 .loc_0x0:
@@ -279,7 +279,7 @@ void addAction__Q26PikiAI5BrainFPQ26PikiAI6Action(void)
  * Address:	80196D00
  * Size:	000024
  */
-void getCurrAction__Q26PikiAI5BrainFv(void)
+void PikiAI::Brain::getCurrAction(void)
 {
 /*
 .loc_0x0:
@@ -302,7 +302,7 @@ void getCurrAction__Q26PikiAI5BrainFv(void)
  * Address:	........
  * Size:	00000C
  */
-void init__Q26PikiAI5BrainFv(void)
+void PikiAI::Brain::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -312,7 +312,7 @@ void init__Q26PikiAI5BrainFv(void)
  * Address:	80196D24
  * Size:	000258
  */
-void exec__Q26PikiAI5BrainFv(void)
+void PikiAI::Brain::exec(void)
 {
 /*
 .loc_0x0:
@@ -498,7 +498,7 @@ void exec__Q26PikiAI5BrainFv(void)
  * Address:	80196F7C
  * Size:	000004
  */
-void emotion_fail__Q26PikiAI6ActionFv(void)
+void PikiAI::Action::emotion_fail(void)
 {
 /*
 .loc_0x0:
@@ -511,7 +511,7 @@ void emotion_fail__Q26PikiAI6ActionFv(void)
  * Address:	80196F80
  * Size:	000004
  */
-void emotion_success__Q26PikiAI6ActionFv(void)
+void PikiAI::Action::emotion_success(void)
 {
 /*
 .loc_0x0:
@@ -524,7 +524,7 @@ void emotion_success__Q26PikiAI6ActionFv(void)
  * Address:	80196F84
  * Size:	000008
  */
-void getNextAIType__Q26PikiAI6ActionFv(void)
+void PikiAI::Action::getNextAIType(void)
 {
 /*
 .loc_0x0:
@@ -538,7 +538,7 @@ void getNextAIType__Q26PikiAI6ActionFv(void)
  * Address:	80196F8C
  * Size:	000008
  */
-void exec__Q26PikiAI6ActionFv(void)
+void PikiAI::Action::exec(void)
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void exec__Q26PikiAI6ActionFv(void)
  * Address:	80196F94
  * Size:	000100
  */
-void start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg(void)
+void PikiAI::Brain::start( (int, PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -646,7 +646,7 @@ void start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg(void)
  * Address:	80197094
  * Size:	000008
  */
-void applicable__Q26PikiAI6ActionFv(void)
+void PikiAI::Action::applicable(void)
 {
 /*
 .loc_0x0:
@@ -660,7 +660,7 @@ void applicable__Q26PikiAI6ActionFv(void)
  * Address:	8019709C
  * Size:	000004
  */
-void init__Q26PikiAI6ActionFPQ26PikiAI9ActionArg(void)
+void PikiAI::Action::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -673,7 +673,7 @@ void init__Q26PikiAI6ActionFPQ26PikiAI9ActionArg(void)
  * Address:	801970A0
  * Size:	000210
  */
-void searchOrima__Q26PikiAI5BrainFv(void)
+void PikiAI::Brain::searchOrima(void)
 {
 /*
 .loc_0x0:
@@ -835,7 +835,7 @@ void searchOrima__Q26PikiAI5BrainFv(void)
  * Address:	801972B0
  * Size:	000004
  */
-void doDirectDraw__Q26PikiAI6ActionFR8Graphics(void)
+void PikiAI::Action::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:

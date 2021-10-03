@@ -433,7 +433,7 @@ void JKRArchive::findDirectory(const char *, unsigned long) const
  * Address:	8001A92C
  * Size:	000044
  */
-void __ct__Q210JKRArchive8CArcNameFPPCcc(void)
+void JKRArchive::CArcName::__ct( (char const **, char))
 {
 /*
 .loc_0x0:
@@ -462,7 +462,7 @@ void __ct__Q210JKRArchive8CArcNameFPPCcc(void)
  * Address:	8001A970
  * Size:	000008
  */
-void getString__Q210JKRArchive8CArcNameCFv(void)
+void JKRArchive::CArcName::getString( const
 {
 /*
 .loc_0x0:
@@ -476,7 +476,7 @@ void getString__Q210JKRArchive8CArcNameCFv(void)
  * Address:	8001A978
  * Size:	000008
  */
-void getHash__Q210JKRArchive8CArcNameCFv(void)
+void JKRArchive::CArcName::getHash( const
 {
 /*
 .loc_0x0:
@@ -1047,7 +1047,7 @@ void JKRArchive::findIdResource(unsigned short) const
  * Address:	........
  * Size:	000014
  */
-void __ct__Q210JKRArchive8CArcNameFv(void)
+void JKRArchive::CArcName::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1057,7 +1057,7 @@ void __ct__Q210JKRArchive8CArcNameFv(void)
  * Address:	8001AF34
  * Size:	000098
  */
-void store__Q210JKRArchive8CArcNameFPCc(void)
+void JKRArchive::CArcName::store( (char const *))
 {
 /*
 .loc_0x0:
@@ -1113,7 +1113,7 @@ void store__Q210JKRArchive8CArcNameFPCc(void)
  * Address:	8001AFCC
  * Size:	0000C8
  */
-void store__Q210JKRArchive8CArcNameFPCcc(void)
+void JKRArchive::CArcName::store( (char const *, char))
 {
 /*
 .loc_0x0:

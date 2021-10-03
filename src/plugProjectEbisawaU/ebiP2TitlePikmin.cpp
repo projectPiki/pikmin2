@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	0000D4
  */
-void __ct__Q43ebi5title6Pikmin13TBoidParamMgrFv(void)
+void ebi::title::Pikmin::TBoidParamMgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q43ebi5title6Pikmin13TBoidParamMgrFv(void)
  * Address:	........
  * Size:	00004C
  */
-void startState__Q43ebi5title6Pikmin13TBoidParamMgrFQ53ebi5title6Pikmin13TBoidParamMgr9enumStatef(void)
+void ebi::title::Pikmin::TBoidParamMgr::startState( (ebi::title::Pikmin::TBoidParamMgr::enumState, float))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void startState__Q43ebi5title6Pikmin13TBoidParamMgrFQ53ebi5title6Pikmin13TBoidPa
  * Address:	........
  * Size:	000130
  */
-void update__Q43ebi5title6Pikmin13TBoidParamMgrFv(void)
+void ebi::title::Pikmin::TBoidParamMgr::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void update__Q43ebi5title6Pikmin13TBoidParamMgrFv(void)
  * Address:	........
  * Size:	00002C
  */
-void __ct__Q43ebi5title6Pikmin9TAnimatorFv(void)
+void ebi::title::Pikmin::TAnimator::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void __ct__Q43ebi5title6Pikmin9TAnimatorFv(void)
  * Address:	803E3DE8
  * Size:	0002D8
  */
-void setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive(void)
+void ebi::title::Pikmin::TAnimator::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive(void)
  * Address:	........
  * Size:	000020
  */
-void setAnmWait__Q43ebi5title6Pikmin9TAnimatorFP8J3DModelf(void)
+void ebi::title::Pikmin::TAnimator::setAnmWait( (J3DModel *, float))
 {
 	// UNUSED FUNCTION
 }
@@ -273,7 +273,7 @@ void setAnmWait__Q43ebi5title6Pikmin9TAnimatorFP8J3DModelf(void)
  * Address:	........
  * Size:	0000A4
  */
-void setAnmWave__Q43ebi5title6Pikmin9TAnimatorFP8J3DModelfff(void)
+void ebi::title::Pikmin::TAnimator::setAnmWave( (J3DModel *, float, float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -283,7 +283,7 @@ void setAnmWave__Q43ebi5title6Pikmin9TAnimatorFP8J3DModelfff(void)
  * Address:	........
  * Size:	000218
  */
-void newJ3DModel__Q43ebi5title6Pikmin9TAnimatorFl(void)
+void ebi::title::Pikmin::TAnimator::newJ3DModel( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -293,7 +293,7 @@ void newJ3DModel__Q43ebi5title6Pikmin9TAnimatorFl(void)
  * Address:	803E40C0
  * Size:	000198
  */
-void __ct__Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void __ct__Q43ebi5title6Pikmin4TMgrFv(void)
  * Address:	803E4258
  * Size:	000074
  */
-void __dt__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::__dt(void)
 {
 /*
 .loc_0x0:
@@ -456,7 +456,7 @@ void __dt__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	803E42CC
  * Size:	0000D8
  */
-void setArchive__Q43ebi5title6Pikmin4TMgrFP10JKRArchive(void)
+void ebi::title::Pikmin::TMgr::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -526,7 +526,7 @@ void setArchive__Q43ebi5title6Pikmin4TMgrFP10JKRArchive(void)
  * Address:	803E43A4
  * Size:	00011C
  */
-void initUnit__Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::initUnit(void)
 {
 /*
 .loc_0x0:
@@ -619,7 +619,7 @@ void initUnit__Q43ebi5title6Pikmin4TMgrFv(void)
  * Address:	803E44C0
  * Size:	0001A8
  */
-void update__Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -961,7 +961,7 @@ void setDestPos__Q43ebi5title6Pikmin4TMgrFP10Vector2<float>(void)
  * Address:	803E4930
  * Size:	0000C0
  */
-void forceArriveDest__Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::forceArriveDest(void)
 {
 /*
 .loc_0x0:
@@ -1025,7 +1025,7 @@ void forceArriveDest__Q43ebi5title6Pikmin4TMgrFv(void)
  * Address:	803E49F0
  * Size:	000088
  */
-void assemble__Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::assemble(void)
 {
 /*
 .loc_0x0:
@@ -1073,7 +1073,7 @@ void assemble__Q43ebi5title6Pikmin4TMgrFv(void)
  * Address:	803E4A78
  * Size:	000088
  */
-void quickAssemble__Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::quickAssemble(void)
 {
 /*
 .loc_0x0:
@@ -1121,7 +1121,7 @@ void quickAssemble__Q43ebi5title6Pikmin4TMgrFv(void)
  * Address:	803E4B00
  * Size:	000090
  */
-void startBoid1__Q43ebi5title6Pikmin4TMgrFf(void)
+void ebi::title::Pikmin::TMgr::startBoid1( (float))
 {
 /*
 .loc_0x0:
@@ -1171,7 +1171,7 @@ void startBoid1__Q43ebi5title6Pikmin4TMgrFf(void)
  * Address:	803E4B90
  * Size:	000090
  */
-void startBoid2__Q43ebi5title6Pikmin4TMgrFf(void)
+void ebi::title::Pikmin::TMgr::startBoid2( (float))
 {
 /*
 .loc_0x0:
@@ -1221,7 +1221,7 @@ void startBoid2__Q43ebi5title6Pikmin4TMgrFf(void)
  * Address:	803E4C20
  * Size:	000090
  */
-void startBoid3__Q43ebi5title6Pikmin4TMgrFf(void)
+void ebi::title::Pikmin::TMgr::startBoid3( (float))
 {
 /*
 .loc_0x0:
@@ -1271,7 +1271,7 @@ void startBoid3__Q43ebi5title6Pikmin4TMgrFf(void)
  * Address:	803E4CB0
  * Size:	00009C
  */
-void startWindBlow__Q43ebi5title6Pikmin4TMgrFRQ23ebi8EGEBox2f(void)
+void ebi::title::Pikmin::TMgr::startWindBlow( (ebi::EGEBox2f &))
 {
 /*
 .loc_0x0:
@@ -1326,7 +1326,7 @@ void startWindBlow__Q43ebi5title6Pikmin4TMgrFRQ23ebi8EGEBox2f(void)
  * Address:	803E4D4C
  * Size:	0000AC
  */
-void startDemo__Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::startDemo(void)
 {
 /*
 .loc_0x0:
@@ -1385,7 +1385,7 @@ void startDemo__Q43ebi5title6Pikmin4TMgrFv(void)
  * Address:	803E4DF8
  * Size:	00006C
  */
-void enemyPushOut__Q43ebi5title6Pikmin4TMgrFPQ33ebi5title8TObjBase(void)
+void ebi::title::Pikmin::TMgr::enemyPushOut( (ebi::title::TObjBase *))
 {
 /*
 .loc_0x0:
@@ -1426,7 +1426,7 @@ void enemyPushOut__Q43ebi5title6Pikmin4TMgrFPQ33ebi5title8TObjBase(void)
  * Address:	803E4E64
  * Size:	0003B8
  */
-void updateCalcBoid___Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::updateCalcBoid_(void)
 {
 /*
 .loc_0x0:
@@ -1714,7 +1714,7 @@ void updateCalcBoid___Q43ebi5title6Pikmin4TMgrFv(void)
  * Address:	803E521C
  * Size:	000070
  */
-void isAssemble__Q43ebi5title6Pikmin4TMgrFv(void)
+void ebi::title::Pikmin::TMgr::isAssemble(void)
 {
 /*
 .loc_0x0:
@@ -1760,7 +1760,7 @@ void isAssemble__Q43ebi5title6Pikmin4TMgrFv(void)
  * Address:	803E528C
  * Size:	000010
  */
-void getUnit__Q43ebi5title6Pikmin4TMgrFl(void)
+void ebi::title::Pikmin::TMgr::getUnit( (long))
 {
 /*
 .loc_0x0:
@@ -1776,7 +1776,7 @@ void getUnit__Q43ebi5title6Pikmin4TMgrFl(void)
  * Address:	803E529C
  * Size:	000360
  */
-void init__Q43ebi5title6Pikmin5TUnitFPQ43ebi5title6Pikmin4TMgrl(void)
+void ebi::title::Pikmin::TUnit::init( (ebi::title::Pikmin::TMgr *, long))
 {
 /*
 .loc_0x0:
@@ -2030,7 +2030,7 @@ void init__Q43ebi5title6Pikmin5TUnitFPQ43ebi5title6Pikmin4TMgrl(void)
  * Address:	803E55FC
  * Size:	000098
  */
-void goDestination__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::goDestination(void)
 {
 /*
 .loc_0x0:
@@ -2090,7 +2090,7 @@ void goDestination__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	........
  * Size:	000028
  */
-void chaseKogane__Q43ebi5title6Pikmin5TUnitFPQ33ebi5title8TObjBase(void)
+void ebi::title::Pikmin::TUnit::chaseKogane( (ebi::title::TObjBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -2100,7 +2100,7 @@ void chaseKogane__Q43ebi5title6Pikmin5TUnitFPQ33ebi5title8TObjBase(void)
  * Address:	803E5694
  * Size:	00006C
  */
-void beAttacked__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::beAttacked(void)
 {
 /*
 .loc_0x0:
@@ -2143,7 +2143,7 @@ void beAttacked__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	803E5700
  * Size:	00000C
  */
-void alive__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::alive(void)
 {
 /*
 .loc_0x0:
@@ -2158,7 +2158,7 @@ void alive__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	803E570C
  * Size:	000014
  */
-void isCalc__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::isCalc(void)
 {
 /*
 .loc_0x0:
@@ -2175,7 +2175,7 @@ void isCalc__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	803E5720
  * Size:	000024
  */
-void isAssemble__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::isAssemble(void)
 {
 /*
 .loc_0x0:
@@ -2200,7 +2200,7 @@ void isAssemble__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	803E5744
  * Size:	000024
  */
-void isWalk__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::isWalk(void)
 {
 /*
 .loc_0x0:
@@ -2225,7 +2225,7 @@ void isWalk__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	........
  * Size:	000014
  */
-void isBoid__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::isBoid(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2235,7 +2235,7 @@ void isBoid__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	803E5768
  * Size:	000150
  */
-void startState__Q43ebi5title6Pikmin5TUnitFQ53ebi5title6Pikmin5TUnit9enumState(void)
+void ebi::title::Pikmin::TUnit::startState( (ebi::title::Pikmin::TUnit::enumState))
 {
 /*
 .loc_0x0:
@@ -2345,7 +2345,7 @@ void startState__Q43ebi5title6Pikmin5TUnitFQ53ebi5title6Pikmin5TUnit9enumState(v
  * Address:	803E58B8
  * Size:	000DD4
  */
-void update__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::update(void)
 {
 /*
 .loc_0x0:
@@ -3562,7 +3562,7 @@ void updateSmoothWalk___Q43ebi5title6Pikmin5TUnitFR10Vector2<float>(void)
  * Address:	803E688C
  * Size:	000350
  */
-void updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::updateEnemyReaction_(void)
 {
 /*
 .loc_0x0:
@@ -3822,7 +3822,7 @@ void updateEnemyReaction___Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	803E6BDC
  * Size:	000238
  */
-void __ct__Q43ebi5title6Pikmin10TBoidParamFv(void)
+void ebi::title::Pikmin::TBoidParam::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3978,7 +3978,7 @@ void __ct__Q43ebi5title6Pikmin10TBoidParamFv(void)
  * Address:	803E6E14
  * Size:	0000FC
  */
-void __ct__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::__ct(void)
 {
 /*
 .loc_0x0:
@@ -4053,7 +4053,7 @@ void __ct__Q43ebi5title6Pikmin5TUnitFv(void)
  * Address:	803E6F10
  * Size:	000418
  */
-void __ct__Q43ebi5title6Pikmin6TParamFv(void)
+void ebi::title::Pikmin::TParam::__ct(void)
 {
 /*
 .loc_0x0:
@@ -4329,7 +4329,7 @@ void __ct__Q43ebi5title6Pikmin6TParamFv(void)
  * Address:	803E7328
  * Size:	000008
  */
-void getCreatureType__Q43ebi5title6Pikmin5TUnitFv(void)
+void ebi::title::Pikmin::TUnit::getCreatureType(void)
 {
 /*
 .loc_0x0:

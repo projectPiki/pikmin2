@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803FBEEC
  * Size:	000060
  */
-void create__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::create(void)
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void create__Q26Screen9Game2DMgrFv(void)
  * Address:	803FBF4C
  * Size:	000058
  */
-void __ct__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -91,7 +91,7 @@ void __ct__Q26Screen9Game2DMgrFv(void)
  * Address:	803FBFA4
  * Size:	000068
  */
-void __dt__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void __dt__Q26Screen9Game2DMgrFv(void)
  * Address:	803FC00C
  * Size:	000020
  */
-void initInCourse__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::initInCourse(void)
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void initInCourse__Q26Screen9Game2DMgrFv(void)
  * Address:	803FC02C
  * Size:	000024
  */
-void update__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -172,7 +172,7 @@ void update__Q26Screen9Game2DMgrFv(void)
  * Address:	803FC050
  * Size:	000024
  */
-void draw__Q26Screen9Game2DMgrFR8Graphics(void)
+void Screen::Game2DMgr::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -193,7 +193,7 @@ void draw__Q26Screen9Game2DMgrFR8Graphics(void)
  * Address:	803FC074
  * Size:	000004
  */
-void drawIndirect__Q26Screen9Game2DMgrFR8Graphics(void)
+void Screen::Game2DMgr::drawIndirect( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void drawIndirect__Q26Screen9Game2DMgrFR8Graphics(void)
  * Address:	803FC078
  * Size:	000024
  */
-void setGamePad__Q26Screen9Game2DMgrFP10Controller(void)
+void Screen::Game2DMgr::setGamePad( (Controller *))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void setGamePad__Q26Screen9Game2DMgrFP10Controller(void)
  * Address:	803FC09C
  * Size:	000034
  */
-void setDispMember__Q26Screen9Game2DMgrFPQ32og6Screen14DispMemberBase(void)
+void Screen::Game2DMgr::setDispMember( (og::Screen::DispMemberBase *))
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void setDispMember__Q26Screen9Game2DMgrFPQ32og6Screen14DispMemberBase(void)
  * Address:	803FC0D0
  * Size:	000038
  */
-void setToumeiBG__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::setToumeiBG(void)
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void setToumeiBG__Q26Screen9Game2DMgrFv(void)
  * Address:	........
  * Size:	000020
  */
-void sound_Low__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::sound_Low(void)
 {
 	// UNUSED FUNCTION
 }
@@ -292,7 +292,7 @@ void sound_Low__Q26Screen9Game2DMgrFv(void)
  * Address:	........
  * Size:	000020
  */
-void sound_Hi__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::sound_Hi(void)
 {
 	// UNUSED FUNCTION
 }
@@ -302,7 +302,7 @@ void sound_Hi__Q26Screen9Game2DMgrFv(void)
  * Address:	803FC108
  * Size:	0000BC
  */
-void open_GameGround__Q26Screen9Game2DMgrFRQ32og6Screen16DispMemberGround(void)
+void Screen::Game2DMgr::open_GameGround( (og::Screen::DispMemberGround &))
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void open_GameGround__Q26Screen9Game2DMgrFRQ32og6Screen16DispMemberGround(void)
  * Address:	803FC1C4
  * Size:	000060
  */
-void is_GameGround__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::is_GameGround(void)
 {
 /*
 .loc_0x0:
@@ -403,7 +403,7 @@ void is_GameGround__Q26Screen9Game2DMgrFv(void)
  * Address:	803FC224
  * Size:	0001B4
  */
-void open_GameCave__Q26Screen9Game2DMgrFRQ32og6Screen14DispMemberCavei(void)
+void Screen::Game2DMgr::open_GameCave( (og::Screen::DispMemberCave &, int))
 {
 /*
 .loc_0x0:
@@ -530,7 +530,7 @@ void open_GameCave__Q26Screen9Game2DMgrFRQ32og6Screen14DispMemberCavei(void)
  * Address:	803FC3D8
  * Size:	000060
  */
-void is_GameCave__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::is_GameCave(void)
 {
 /*
 .loc_0x0:
@@ -568,7 +568,7 @@ void is_GameCave__Q26Screen9Game2DMgrFv(void)
  * Address:	803FC438
  * Size:	0001A0
  */
-void open_GameVs__Q26Screen9Game2DMgrFRQ32og6Screen12DispMemberVsi(void)
+void Screen::Game2DMgr::open_GameVs( (og::Screen::DispMemberVs &, int))
 {
 /*
 .loc_0x0:
@@ -688,7 +688,7 @@ void open_GameVs__Q26Screen9Game2DMgrFRQ32og6Screen12DispMemberVsi(void)
  * Address:	803FC5D8
  * Size:	00009C
  */
-void check_VsStatus__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::check_VsStatus(void)
 {
 /*
 .loc_0x0:
@@ -749,7 +749,7 @@ void check_VsStatus__Q26Screen9Game2DMgrFv(void)
  * Address:	803FC674
  * Size:	000334
  */
-void open_GameChallenge2P__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberChallenge2Pi(void)
+void Screen::Game2DMgr::open_GameChallenge2P( (og::Screen::DispMemberChallenge2P &, int))
 {
 /*
 .loc_0x0:
@@ -974,7 +974,7 @@ void open_GameChallenge2P__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberChalleng
  * Address:	803FC9A8
  * Size:	000328
  */
-void open_GameChallenge1P__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberChallenge1Pi(void)
+void Screen::Game2DMgr::open_GameChallenge1P( (og::Screen::DispMemberChallenge1P &, int))
 {
 /*
 .loc_0x0:
@@ -1196,7 +1196,7 @@ void open_GameChallenge1P__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberChalleng
  * Address:	803FCCD0
  * Size:	0000B0
  */
-void open_SMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll(void)
+void Screen::Game2DMgr::open_SMenu( (og::Screen::DispMemberSMenuAll &))
 {
 /*
 .loc_0x0:
@@ -1266,7 +1266,7 @@ void open_SMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll(void)
  * Address:	803FCD80
  * Size:	0001B0
  */
-void open_SMenu_Sub__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll(void)
+void Screen::Game2DMgr::open_SMenu_Sub( (og::Screen::DispMemberSMenuAll &))
 {
 /*
 .loc_0x0:
@@ -1404,7 +1404,7 @@ void open_SMenu_Sub__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll(void)
  * Address:	803FCF30
  * Size:	000128
  */
-void check_SMenu__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::check_SMenu(void)
 {
 /*
 .loc_0x0:
@@ -1502,7 +1502,7 @@ void check_SMenu__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD058
  * Size:	0000A8
  */
-void open_WorldMapInfoWin0__Q26Screen9Game2DMgrFRQ32og6Screen26DispMemberWorldMapInfoWin0(void)
+void Screen::Game2DMgr::open_WorldMapInfoWin0( (og::Screen::DispMemberWorldMapInfoWin0 &))
 {
 /*
 .loc_0x0:
@@ -1560,7 +1560,7 @@ void open_WorldMapInfoWin0__Q26Screen9Game2DMgrFRQ32og6Screen26DispMemberWorldMa
  * Address:	803FD100
  * Size:	00007C
  */
-void check_WorldMapInfoWin0__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_WorldMapInfoWin0( const
 {
 /*
 .loc_0x0:
@@ -1611,7 +1611,7 @@ void check_WorldMapInfoWin0__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FD17C
  * Size:	0000A8
  */
-void open_WorldMapInfoWin1__Q26Screen9Game2DMgrFRQ32og6Screen26DispMemberWorldMapInfoWin1(void)
+void Screen::Game2DMgr::open_WorldMapInfoWin1( (og::Screen::DispMemberWorldMapInfoWin1 &))
 {
 /*
 .loc_0x0:
@@ -1669,7 +1669,7 @@ void open_WorldMapInfoWin1__Q26Screen9Game2DMgrFRQ32og6Screen26DispMemberWorldMa
  * Address:	803FD224
  * Size:	00007C
  */
-void check_WorldMapInfoWin1__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_WorldMapInfoWin1( const
 {
 /*
 .loc_0x0:
@@ -1720,7 +1720,7 @@ void check_WorldMapInfoWin1__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FD2A0
  * Size:	000124
  */
-void open_Kantei__Q26Screen9Game2DMgrFRQ32og6Screen16DispMemberKantei(void)
+void Screen::Game2DMgr::open_Kantei( (og::Screen::DispMemberKantei &))
 {
 /*
 .loc_0x0:
@@ -1821,7 +1821,7 @@ void open_Kantei__Q26Screen9Game2DMgrFRQ32og6Screen16DispMemberKantei(void)
  * Address:	803FD3C4
  * Size:	000084
  */
-void close_Kantei__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::close_Kantei(void)
 {
 /*
 .loc_0x0:
@@ -1870,7 +1870,7 @@ void close_Kantei__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD448
  * Size:	000074
  */
-void update_Kantei__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::update_Kantei(void)
 {
 /*
 .loc_0x0:
@@ -1913,7 +1913,7 @@ void update_Kantei__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD4BC
  * Size:	000090
  */
-void open_SpecialItem__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberSpecialItem(void)
+void Screen::Game2DMgr::open_SpecialItem( (og::Screen::DispMemberSpecialItem &))
 {
 /*
 .loc_0x0:
@@ -1961,7 +1961,7 @@ void open_SpecialItem__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberSpecialItem(
  * Address:	803FD54C
  * Size:	000084
  */
-void close_SpecialItem__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::close_SpecialItem(void)
 {
 /*
 .loc_0x0:
@@ -2010,7 +2010,7 @@ void close_SpecialItem__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD5D0
  * Size:	000090
  */
-void open_Floor__Q26Screen9Game2DMgrFRQ32og6Screen15DispMemberFloor(void)
+void Screen::Game2DMgr::open_Floor( (og::Screen::DispMemberFloor &))
 {
 /*
 .loc_0x0:
@@ -2058,7 +2058,7 @@ void open_Floor__Q26Screen9Game2DMgrFRQ32og6Screen15DispMemberFloor(void)
  * Address:	803FD660
  * Size:	000070
  */
-void close_Floor__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::close_Floor(void)
 {
 /*
 .loc_0x0:
@@ -2100,7 +2100,7 @@ void close_Floor__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD6D0
  * Size:	00005C
  */
-void set_FloorVS_LoadEnd__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::set_FloorVS_LoadEnd(void)
 {
 /*
 .loc_0x0:
@@ -2137,7 +2137,7 @@ void set_FloorVS_LoadEnd__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD72C
  * Size:	000048
  */
-void startCount_Floor__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::startCount_Floor(void)
 {
 /*
 .loc_0x0:
@@ -2169,7 +2169,7 @@ void startCount_Floor__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD774
  * Size:	000048
  */
-void startFadeBG_Floor__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::startFadeBG_Floor(void)
 {
 /*
 .loc_0x0:
@@ -2201,7 +2201,7 @@ void startFadeBG_Floor__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD7BC
  * Size:	000090
  */
-void open_CourseName__Q26Screen9Game2DMgrFRQ32og6Screen20DispMemberCourseName(void)
+void Screen::Game2DMgr::open_CourseName( (og::Screen::DispMemberCourseName &))
 {
 /*
 .loc_0x0:
@@ -2249,7 +2249,7 @@ void open_CourseName__Q26Screen9Game2DMgrFRQ32og6Screen20DispMemberCourseName(vo
  * Address:	803FD84C
  * Size:	000048
  */
-void startFadeBG_CourseName__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::startFadeBG_CourseName(void)
 {
 /*
 .loc_0x0:
@@ -2281,7 +2281,7 @@ void startFadeBG_CourseName__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD894
  * Size:	000070
  */
-void close_CourseName__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::close_CourseName(void)
 {
 /*
 .loc_0x0:
@@ -2323,7 +2323,7 @@ void close_CourseName__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD904
  * Size:	000048
  */
-void startCount_CourseName__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::startCount_CourseName(void)
 {
 /*
 .loc_0x0:
@@ -2355,7 +2355,7 @@ void startCount_CourseName__Q26Screen9Game2DMgrFv(void)
  * Address:	803FD94C
  * Size:	000258
  */
-void open_GameOver__Q26Screen9Game2DMgrFQ36Screen9Game2DMgr13GameOverTitle(void)
+void Screen::Game2DMgr::open_GameOver( (Screen::Game2DMgr::GameOverTitle))
 {
 /*
 .loc_0x0:
@@ -2531,7 +2531,7 @@ void open_GameOver__Q26Screen9Game2DMgrFQ36Screen9Game2DMgr13GameOverTitle(void)
  * Address:	803FDBA4
  * Size:	0000AC
  */
-void close_GameOver__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::close_GameOver(void)
 {
 /*
 .loc_0x0:
@@ -2594,7 +2594,7 @@ void close_GameOver__Q26Screen9Game2DMgrFv(void)
  * Address:	803FDC50
  * Size:	0000E0
  */
-void open_CaveInMenu__Q26Screen9Game2DMgrFRQ32og6Screen17DispMemberAnaDemo(void)
+void Screen::Game2DMgr::open_CaveInMenu( (og::Screen::DispMemberAnaDemo &))
 {
 /*
 .loc_0x0:
@@ -2668,7 +2668,7 @@ void open_CaveInMenu__Q26Screen9Game2DMgrFRQ32og6Screen17DispMemberAnaDemo(void)
  * Address:	803FDD30
  * Size:	00009C
  */
-void check_CaveInMenu__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::check_CaveInMenu(void)
 {
 /*
 .loc_0x0:
@@ -2729,7 +2729,7 @@ void check_CaveInMenu__Q26Screen9Game2DMgrFv(void)
  * Address:	803FDDCC
  * Size:	0000E0
  */
-void open_KanketuMenu__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberKanketuMenu(void)
+void Screen::Game2DMgr::open_KanketuMenu( (og::Screen::DispMemberKanketuMenu &))
 {
 /*
 .loc_0x0:
@@ -2803,7 +2803,7 @@ void open_KanketuMenu__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberKanketuMenu(
  * Address:	803FDEAC
  * Size:	0000F4
  */
-void open_ChallengeKanketuMenu__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberKanketuMenu(void)
+void Screen::Game2DMgr::open_ChallengeKanketuMenu( (og::Screen::DispMemberKanketuMenu &))
 {
 /*
 .loc_0x0:
@@ -2884,7 +2884,7 @@ void open_ChallengeKanketuMenu__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberKan
  * Address:	803FDFA0
  * Size:	00009C
  */
-void check_KanketuMenu__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::check_KanketuMenu(void)
 {
 /*
 .loc_0x0:
@@ -2945,7 +2945,7 @@ void check_KanketuMenu__Q26Screen9Game2DMgrFv(void)
  * Address:	803FE03C
  * Size:	000100
  */
-void open_CaveMoreMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberCaveMore(void)
+void Screen::Game2DMgr::open_CaveMoreMenu( (og::Screen::DispMemberCaveMore &))
 {
 /*
 .loc_0x0:
@@ -3029,7 +3029,7 @@ void open_CaveMoreMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberCaveMore(vo
  * Address:	803FE13C
  * Size:	00009C
  */
-void check_CaveMoreMenu__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::check_CaveMoreMenu(void)
 {
 /*
 .loc_0x0:
@@ -3090,7 +3090,7 @@ void check_CaveMoreMenu__Q26Screen9Game2DMgrFv(void)
  * Address:	803FE1D8
  * Size:	0000AC
  */
-void open_FinalResult__Q26Screen9Game2DMgrFRQ32kh6Screen15DispFinalResult(void)
+void Screen::Game2DMgr::open_FinalResult( (kh::Screen::DispFinalResult &))
 {
 /*
 .loc_0x0:
@@ -3149,7 +3149,7 @@ void open_FinalResult__Q26Screen9Game2DMgrFRQ32kh6Screen15DispFinalResult(void)
  * Address:	803FE284
  * Size:	00008C
  */
-void check_FinalResult__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_FinalResult( const
 {
 /*
 .loc_0x0:
@@ -3202,7 +3202,7 @@ void check_FinalResult__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FE310
  * Size:	0000A8
  */
-void open_CaveResult__Q26Screen9Game2DMgrFRQ32kh6Screen14DispCaveResult(void)
+void Screen::Game2DMgr::open_CaveResult( (kh::Screen::DispCaveResult &))
 {
 /*
 .loc_0x0:
@@ -3260,7 +3260,7 @@ void open_CaveResult__Q26Screen9Game2DMgrFRQ32kh6Screen14DispCaveResult(void)
  * Address:	803FE3B8
  * Size:	00008C
  */
-void check_CaveResult__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_CaveResult( const
 {
 /*
 .loc_0x0:
@@ -3313,7 +3313,7 @@ void check_CaveResult__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FE444
  * Size:	0000AC
  */
-void open_DayEndResult__Q26Screen9Game2DMgrFRQ32kh6Screen16DispDayEndResult(void)
+void Screen::Game2DMgr::open_DayEndResult( (kh::Screen::DispDayEndResult &))
 {
 /*
 .loc_0x0:
@@ -3372,7 +3372,7 @@ void open_DayEndResult__Q26Screen9Game2DMgrFRQ32kh6Screen16DispDayEndResult(void
  * Address:	803FE4F0
  * Size:	0000B0
  */
-void check_DayEndResult__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_DayEndResult( const
 {
 /*
 .loc_0x0:
@@ -3434,7 +3434,7 @@ void check_DayEndResult__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FE5A0
  * Size:	0000A8
  */
-void open_PayDept__Q26Screen9Game2DMgrFRQ32kh6Screen11DispPayDept(void)
+void Screen::Game2DMgr::open_PayDept( (kh::Screen::DispPayDept &))
 {
 /*
 .loc_0x0:
@@ -3492,7 +3492,7 @@ void open_PayDept__Q26Screen9Game2DMgrFRQ32kh6Screen11DispPayDept(void)
  * Address:	803FE648
  * Size:	00005C
  */
-void check_PayDept__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_PayDept( const
 {
 /*
 .loc_0x0:
@@ -3529,7 +3529,7 @@ void check_PayDept__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FE6A4
  * Size:	0000A8
  */
-void open_Save__Q26Screen9Game2DMgrFRQ32og6Screen14DispMemberSave(void)
+void Screen::Game2DMgr::open_Save( (og::Screen::DispMemberSave &))
 {
 /*
 .loc_0x0:
@@ -3587,7 +3587,7 @@ void open_Save__Q26Screen9Game2DMgrFRQ32og6Screen14DispMemberSave(void)
  * Address:	803FE74C
  * Size:	00005C
  */
-void check_Save__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_Save( const
 {
 /*
 .loc_0x0:
@@ -3624,7 +3624,7 @@ void check_Save__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FE7A8
  * Size:	0000A8
  */
-void open_FinalMessage__Q26Screen9Game2DMgrFRQ32og6Screen22DispMemberFinalMessage(void)
+void Screen::Game2DMgr::open_FinalMessage( (og::Screen::DispMemberFinalMessage &))
 {
 /*
 .loc_0x0:
@@ -3682,7 +3682,7 @@ void open_FinalMessage__Q26Screen9Game2DMgrFRQ32og6Screen22DispMemberFinalMessag
  * Address:	803FE850
  * Size:	000048
  */
-void check_FinalMessage__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_FinalMessage( const
 {
 /*
 .loc_0x0:
@@ -3716,7 +3716,7 @@ void check_FinalMessage__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FE898
  * Size:	000070
  */
-void stopFinalFloorSound__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::stopFinalFloorSound(void)
 {
 /*
 .loc_0x0:
@@ -3760,7 +3760,7 @@ void stopFinalFloorSound__Q26Screen9Game2DMgrFv(void)
  * Address:	803FE908
  * Size:	000070
  */
-void restartFinalFloorSound__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::restartFinalFloorSound(void)
 {
 /*
 .loc_0x0:
@@ -3804,7 +3804,7 @@ void restartFinalFloorSound__Q26Screen9Game2DMgrFv(void)
  * Address:	803FE978
  * Size:	000090
  */
-void check_ReadyGo__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_ReadyGo( const
 {
 /*
 .loc_0x0:
@@ -3858,7 +3858,7 @@ void check_ReadyGo__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FEA08
  * Size:	0000A8
  */
-void open_WinLoseReason__Q26Screen9Game2DMgrFRQ32kh6Screen17DispWinLoseReason(void)
+void Screen::Game2DMgr::open_WinLoseReason( (kh::Screen::DispWinLoseReason &))
 {
 /*
 .loc_0x0:
@@ -3916,7 +3916,7 @@ void open_WinLoseReason__Q26Screen9Game2DMgrFRQ32kh6Screen17DispWinLoseReason(vo
  * Address:	803FEAB0
  * Size:	000068
  */
-void check_WinLoseReason__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_WinLoseReason( const
 {
 /*
 .loc_0x0:
@@ -3958,7 +3958,7 @@ void check_WinLoseReason__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FEB18
  * Size:	0000A8
  */
-void open_WinLose__Q26Screen9Game2DMgrFRQ32kh6Screen11DispWinLose(void)
+void Screen::Game2DMgr::open_WinLose( (kh::Screen::DispWinLose &))
 {
 /*
 .loc_0x0:
@@ -4016,7 +4016,7 @@ void open_WinLose__Q26Screen9Game2DMgrFRQ32kh6Screen11DispWinLose(void)
  * Address:	803FEBC0
  * Size:	000090
  */
-void check_WinLose__Q26Screen9Game2DMgrCFv(void)
+void Screen::Game2DMgr::check_WinLose( const
 {
 /*
 .loc_0x0:
@@ -4070,7 +4070,7 @@ void check_WinLose__Q26Screen9Game2DMgrCFv(void)
  * Address:	803FEC50
  * Size:	0000D4
  */
-void open_TimeUp1P__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::open_TimeUp1P(void)
 {
 /*
 .loc_0x0:
@@ -4139,7 +4139,7 @@ void open_TimeUp1P__Q26Screen9Game2DMgrFv(void)
  * Address:	803FED24
  * Size:	0000D4
  */
-void open_TimeUp2P__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::open_TimeUp2P(void)
 {
 /*
 .loc_0x0:
@@ -4208,7 +4208,7 @@ void open_TimeUp2P__Q26Screen9Game2DMgrFv(void)
  * Address:	803FEDF8
  * Size:	000158
  */
-void open_Contena__Q26Screen9Game2DMgrFRQ32og6Screen17DispMemberContena(void)
+void Screen::Game2DMgr::open_Contena( (og::Screen::DispMemberContena &))
 {
 /*
 .loc_0x0:
@@ -4332,7 +4332,7 @@ void open_Contena__Q26Screen9Game2DMgrFRQ32og6Screen17DispMemberContena(void)
  * Address:	803FEF50
  * Size:	0000C8
  */
-void check_Contena__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::check_Contena(void)
 {
 /*
 .loc_0x0:
@@ -4408,7 +4408,7 @@ void check_Contena__Q26Screen9Game2DMgrFv(void)
  * Address:	803FF018
  * Size:	0000A8
  */
-void result_Contena__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::result_Contena(void)
 {
 /*
 .loc_0x0:
@@ -4468,7 +4468,7 @@ void result_Contena__Q26Screen9Game2DMgrFv(void)
  * Address:	803FF0C0
  * Size:	000244
  */
-void open_UfoMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberUfoGroup(void)
+void Screen::Game2DMgr::open_UfoMenu( (og::Screen::DispMemberUfoGroup &))
 {
 /*
 .loc_0x0:
@@ -4637,7 +4637,7 @@ void open_UfoMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberUfoGroup(void)
  * Address:	803FF304
  * Size:	000130
  */
-void check_UfoMenu__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::check_UfoMenu(void)
 {
 /*
 .loc_0x0:
@@ -4751,7 +4751,7 @@ void check_UfoMenu__Q26Screen9Game2DMgrFv(void)
  * Address:	803FF434
  * Size:	000098
  */
-void result_UfoMenu__Q26Screen9Game2DMgrFPiPi(void)
+void Screen::Game2DMgr::result_UfoMenu( (int *, int *))
 {
 /*
 .loc_0x0:
@@ -4807,7 +4807,7 @@ void result_UfoMenu__Q26Screen9Game2DMgrFPiPi(void)
  * Address:	803FF4CC
  * Size:	00009C
  */
-void open_ZukanEnemy__Q26Screen9Game2DMgrFRQ28Morimura20DispMemberZukanEnemy(void)
+void Screen::Game2DMgr::open_ZukanEnemy( (Morimura::DispMemberZukanEnemy &))
 {
 /*
 .loc_0x0:
@@ -4862,7 +4862,7 @@ void open_ZukanEnemy__Q26Screen9Game2DMgrFRQ28Morimura20DispMemberZukanEnemy(voi
  * Address:	803FF568
  * Size:	00009C
  */
-void open_ZukanItem__Q26Screen9Game2DMgrFRQ28Morimura19DispMemberZukanItem(void)
+void Screen::Game2DMgr::open_ZukanItem( (Morimura::DispMemberZukanItem &))
 {
 /*
 .loc_0x0:
@@ -4917,7 +4917,7 @@ void open_ZukanItem__Q26Screen9Game2DMgrFRQ28Morimura19DispMemberZukanItem(void)
  * Address:	803FF604
  * Size:	000030
  */
-void isZukanEnemy__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::isZukanEnemy(void)
 {
 /*
 .loc_0x0:
@@ -4941,7 +4941,7 @@ void isZukanEnemy__Q26Screen9Game2DMgrFv(void)
  * Address:	803FF634
  * Size:	000030
  */
-void isZukanItem__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::isZukanItem(void)
 {
 /*
 .loc_0x0:
@@ -4965,7 +4965,7 @@ void isZukanItem__Q26Screen9Game2DMgrFv(void)
  * Address:	803FF664
  * Size:	000084
  */
-void check_ZukanItemRequest__Q26Screen9Game2DMgrFRi(void)
+void Screen::Game2DMgr::check_ZukanItemRequest( (int &))
 {
 /*
 .loc_0x0:
@@ -5016,7 +5016,7 @@ void check_ZukanItemRequest__Q26Screen9Game2DMgrFRi(void)
  * Address:	803FF6E8
  * Size:	000084
  */
-void check_ZukanEnemyRequest__Q26Screen9Game2DMgrFRi(void)
+void Screen::Game2DMgr::check_ZukanEnemyRequest( (int &))
 {
 /*
 .loc_0x0:
@@ -5067,7 +5067,7 @@ void check_ZukanEnemyRequest__Q26Screen9Game2DMgrFRi(void)
  * Address:	803FF76C
  * Size:	000090
  */
-void getZukanEnemyCurrSelectId__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::getZukanEnemyCurrSelectId(void)
 {
 /*
 .loc_0x0:
@@ -5123,7 +5123,7 @@ void getZukanEnemyCurrSelectId__Q26Screen9Game2DMgrFv(void)
  * Address:	803FF7FC
  * Size:	000090
  */
-void getZukanItemCurrSelectId__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::getZukanItemCurrSelectId(void)
 {
 /*
 .loc_0x0:
@@ -5179,7 +5179,7 @@ void getZukanItemCurrSelectId__Q26Screen9Game2DMgrFv(void)
  * Address:	803FF88C
  * Size:	0000BC
  */
-void requireZukanRequest__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::requireZukanRequest(void)
 {
 /*
 .loc_0x0:
@@ -5246,7 +5246,7 @@ void requireZukanRequest__Q26Screen9Game2DMgrFv(void)
  * Address:	803FF948
  * Size:	0000BC
  */
-void requireZukanEffectOff__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::requireZukanEffectOff(void)
 {
 /*
 .loc_0x0:
@@ -5313,7 +5313,7 @@ void requireZukanEffectOff__Q26Screen9Game2DMgrFv(void)
  * Address:	803FFA04
  * Size:	0000E4
  */
-void isZukanEnlargedWindow__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::isZukanEnlargedWindow(void)
 {
 /*
 .loc_0x0:
@@ -5398,7 +5398,7 @@ void isZukanEnlargedWindow__Q26Screen9Game2DMgrFv(void)
  * Address:	803FFAE8
  * Size:	0000E4
  */
-void isZukanMemoWindow__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::isZukanMemoWindow(void)
 {
 /*
 .loc_0x0:
@@ -5483,7 +5483,7 @@ void isZukanMemoWindow__Q26Screen9Game2DMgrFv(void)
  * Address:	........
  * Size:	0000BC
  */
-void requireZukanEnd__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::requireZukanEnd(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5493,7 +5493,7 @@ void requireZukanEnd__Q26Screen9Game2DMgrFv(void)
  * Address:	803FFBCC
  * Size:	0000C4
  */
-void isAppearConfirmWindow__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::isAppearConfirmWindow(void)
 {
 /*
 .loc_0x0:
@@ -5562,7 +5562,7 @@ void isAppearConfirmWindow__Q26Screen9Game2DMgrFv(void)
  * Address:	803FFC90
  * Size:	00009C
  */
-void open_ChallengeSelect__Q26Screen9Game2DMgrFRQ28Morimura25DispMemberChallengeSelect(void)
+void Screen::Game2DMgr::open_ChallengeSelect( (Morimura::DispMemberChallengeSelect &))
 {
 /*
 .loc_0x0:
@@ -5617,7 +5617,7 @@ void open_ChallengeSelect__Q26Screen9Game2DMgrFRQ28Morimura25DispMemberChallenge
  * Address:	803FFD2C
  * Size:	00006C
  */
-void check_ChallengeSelect__Q26Screen9Game2DMgrFRiRi(void)
+void Screen::Game2DMgr::check_ChallengeSelect( (int &, int &))
 {
 /*
 .loc_0x0:
@@ -5658,7 +5658,7 @@ void check_ChallengeSelect__Q26Screen9Game2DMgrFRiRi(void)
  * Address:	803FFD98
  * Size:	00009C
  */
-void open_ChallengeResult__Q26Screen9Game2DMgrFRQ28Morimura25DispMemberChallengeResult(void)
+void Screen::Game2DMgr::open_ChallengeResult( (Morimura::DispMemberChallengeResult &))
 {
 /*
 .loc_0x0:
@@ -5713,7 +5713,7 @@ void open_ChallengeResult__Q26Screen9Game2DMgrFRQ28Morimura25DispMemberChallenge
  * Address:	803FFE34
  * Size:	000034
  */
-void isEndChallengeResult__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::isEndChallengeResult(void)
 {
 /*
 .loc_0x0:
@@ -5738,7 +5738,7 @@ void isEndChallengeResult__Q26Screen9Game2DMgrFv(void)
  * Address:	803FFE68
  * Size:	00009C
  */
-void open_VsSelect__Q26Screen9Game2DMgrFRQ28Morimura18DispMemberVsSelect(void)
+void Screen::Game2DMgr::open_VsSelect( (Morimura::DispMemberVsSelect &))
 {
 /*
 .loc_0x0:
@@ -5793,7 +5793,7 @@ void open_VsSelect__Q26Screen9Game2DMgrFRQ28Morimura18DispMemberVsSelect(void)
  * Address:	803FFF04
  * Size:	000078
  */
-void check_VsSelect__Q26Screen9Game2DMgrFRiRiRi(void)
+void Screen::Game2DMgr::check_VsSelect( (int &, int &, int &))
 {
 /*
 .loc_0x0:
@@ -5837,7 +5837,7 @@ void check_VsSelect__Q26Screen9Game2DMgrFRiRiRi(void)
  * Address:	803FFF7C
  * Size:	00009C
  */
-void open_HighScore__Q26Screen9Game2DMgrFRQ28Morimura19DispMemberHighScore(void)
+void Screen::Game2DMgr::open_HighScore( (Morimura::DispMemberHighScore &))
 {
 /*
 .loc_0x0:
@@ -5892,7 +5892,7 @@ void open_HighScore__Q26Screen9Game2DMgrFRQ28Morimura19DispMemberHighScore(void)
  * Address:	80400018
  * Size:	000058
  */
-void isEndHighScore__Q26Screen9Game2DMgrFv(void)
+void Screen::Game2DMgr::isEndHighScore(void)
 {
 /*
 .loc_0x0:
@@ -5930,7 +5930,7 @@ void isEndHighScore__Q26Screen9Game2DMgrFv(void)
  * Address:	........
  * Size:	00009C
  */
-void open_HurryUp__Q26Screen9Game2DMgrFRQ32og6Screen17DispMemberHurryUp(void)
+void Screen::Game2DMgr::open_HurryUp( (og::Screen::DispMemberHurryUp &))
 {
 	// UNUSED FUNCTION
 }
@@ -5940,7 +5940,7 @@ void open_HurryUp__Q26Screen9Game2DMgrFRQ32og6Screen17DispMemberHurryUp(void)
  * Address:	........
  * Size:	00009C
  */
-void open_CountDown__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberDayEndCount(void)
+void Screen::Game2DMgr::open_CountDown( (og::Screen::DispMemberDayEndCount &))
 {
 	// UNUSED FUNCTION
 }
@@ -5950,7 +5950,7 @@ void open_CountDown__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberDayEndCount(vo
  * Address:	........
  * Size:	0000D0
  */
-void setPoko__Q26Screen9Game2DMgrFUl(void)
+void Screen::Game2DMgr::setPoko( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -5960,7 +5960,7 @@ void setPoko__Q26Screen9Game2DMgrFUl(void)
  * Address:	80400070
  * Size:	00006C
  */
-void drawKanteiMsg__Q26Screen9Game2DMgrFR8Graphics(void)
+void Screen::Game2DMgr::drawKanteiMsg( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -6005,7 +6005,7 @@ void drawKanteiMsg__Q26Screen9Game2DMgrFR8Graphics(void)
  * Address:	804000DC
  * Size:	00008C
  */
-void checkDayEnd__Q26Screen9Game2DMgrCFf(void)
+void Screen::Game2DMgr::checkDayEnd( const(float))
 {
 /*
 .loc_0x0:
@@ -6056,7 +6056,7 @@ void checkDayEnd__Q26Screen9Game2DMgrCFf(void)
  * Address:	80400168
  * Size:	000008
  */
-void getClassSize__Q26Screen11EndSceneArgFv(void)
+void Screen::EndSceneArg::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -6070,7 +6070,7 @@ void getClassSize__Q26Screen11EndSceneArgFv(void)
  * Address:	80400170
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen15SArgChallenge1PCFv(void)
+void og::newScreen::SArgChallenge1P::getSceneType( const
 {
 /*
 .loc_0x0:
@@ -6084,7 +6084,7 @@ void getSceneType__Q32og9newScreen15SArgChallenge1PCFv(void)
  * Address:	80400178
  * Size:	000008
  */
-void getClassSize__Q32og9newScreen15SArgChallenge1PFv(void)
+void og::newScreen::SArgChallenge1P::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -6098,7 +6098,7 @@ void getClassSize__Q32og9newScreen15SArgChallenge1PFv(void)
  * Address:	80400180
  * Size:	000008
  */
-void getSceneType__Q32og9newScreen15SArgChallenge2PCFv(void)
+void og::newScreen::SArgChallenge2P::getSceneType( const
 {
 /*
 .loc_0x0:
@@ -6112,7 +6112,7 @@ void getSceneType__Q32og9newScreen15SArgChallenge2PCFv(void)
  * Address:	80400188
  * Size:	000008
  */
-void getClassSize__Q32og9newScreen15SArgChallenge2PFv(void)
+void og::newScreen::SArgChallenge2P::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -6126,7 +6126,7 @@ void getClassSize__Q32og9newScreen15SArgChallenge2PFv(void)
  * Address:	80400190
  * Size:	000008
  */
-void getSize__Q32kh6Screen11DispReadyGoFv(void)
+void kh::Screen::DispReadyGo::getSize(void)
 {
 /*
 .loc_0x0:
@@ -6140,7 +6140,7 @@ void getSize__Q32kh6Screen11DispReadyGoFv(void)
  * Address:	80400198
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen11DispReadyGoFv(void)
+void kh::Screen::DispReadyGo::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -6154,7 +6154,7 @@ void getOwnerID__Q32kh6Screen11DispReadyGoFv(void)
  * Address:	804001A0
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen11DispReadyGoFv(void)
+void kh::Screen::DispReadyGo::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -6171,7 +6171,7 @@ void getMemberID__Q32kh6Screen11DispReadyGoFv(void)
  * Address:	804001B4
  * Size:	000008
  */
-void getSize__Q32kh6Screen14DispFinalFloorFv(void)
+void kh::Screen::DispFinalFloor::getSize(void)
 {
 /*
 .loc_0x0:
@@ -6185,7 +6185,7 @@ void getSize__Q32kh6Screen14DispFinalFloorFv(void)
  * Address:	804001BC
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen14DispFinalFloorFv(void)
+void kh::Screen::DispFinalFloor::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -6199,7 +6199,7 @@ void getOwnerID__Q32kh6Screen14DispFinalFloorFv(void)
  * Address:	804001C4
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen14DispFinalFloorFv(void)
+void kh::Screen::DispFinalFloor::getMemberID(void)
 {
 /*
 .loc_0x0:

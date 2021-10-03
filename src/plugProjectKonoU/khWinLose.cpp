@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8040FCE8
  * Size:	0000B8
  */
-void __ct__Q32kh6Screen10ObjWinLoseFv(void)
+void kh::Screen::ObjWinLose::__ct(void)
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void __ct__Q32kh6Screen10ObjWinLoseFv(void)
  * Address:	8040FDA0
  * Size:	000418
  */
-void doCreate__Q32kh6Screen10ObjWinLoseFP10JKRArchive(void)
+void kh::Screen::ObjWinLose::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -381,7 +381,7 @@ void doCreate__Q32kh6Screen10ObjWinLoseFP10JKRArchive(void)
  * Address:	804101B8
  * Size:	000020
  */
-void doUpdate__Q32kh6Screen10ObjWinLoseFv(void)
+void kh::Screen::ObjWinLose::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -401,7 +401,7 @@ void doUpdate__Q32kh6Screen10ObjWinLoseFv(void)
  * Address:	804101D8
  * Size:	0000B8
  */
-void doDraw__Q32kh6Screen10ObjWinLoseFR8Graphics(void)
+void kh::Screen::ObjWinLose::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -465,7 +465,7 @@ void doDraw__Q32kh6Screen10ObjWinLoseFR8Graphics(void)
  * Address:	80410290
  * Size:	00038C
  */
-void updateAnimation__Q32kh6Screen10ObjWinLoseFv(void)
+void kh::Screen::ObjWinLose::updateAnimation(void)
 {
 /*
 .loc_0x0:
@@ -730,7 +730,7 @@ void updateAnimation__Q32kh6Screen10ObjWinLoseFv(void)
  * Address:	8041061C
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen10ObjWinLoseFv(void)
+void kh::Screen::ObjWinLose::__dt(void)
 {
 /*
 .loc_0x0:
@@ -818,7 +818,7 @@ void __sinit_khWinLose_cpp(void)
  * Address:	8041070C
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen10ObjWinLoseFv(void)
+void @24@kh::Screen::ObjWinLose::__dt(void)
 {
 /*
 .loc_0x0:

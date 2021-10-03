@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801A04CC
  * Size:	000070
  */
-void getInfo__Q26PikiAI9ActAttackFPc(void)
+void PikiAI::ActAttack::getInfo( (char *))
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void getInfo__Q26PikiAI9ActAttackFPc(void)
  * Address:	801A053C
  * Size:	000044
  */
-void emotion_success__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::emotion_success(void)
 {
 /*
 .loc_0x0:
@@ -84,7 +84,7 @@ void emotion_success__Q26PikiAI9ActAttackFv(void)
  * Address:	801A0580
  * Size:	0000D4
  */
-void __ct__Q26PikiAI9ActAttackFPQ24Game4Piki(void)
+void PikiAI::ActAttack::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -155,7 +155,7 @@ void __ct__Q26PikiAI9ActAttackFPQ24Game4Piki(void)
  * Address:	801A0654
  * Size:	00011C
  */
-void init__Q26PikiAI9ActAttackFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActAttack::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -250,7 +250,7 @@ void init__Q26PikiAI9ActAttackFPQ26PikiAI9ActionArg(void)
  * Address:	801A0770
  * Size:	000084
  */
-void initStickAttack__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::initStickAttack(void)
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void initStickAttack__Q26PikiAI9ActAttackFv(void)
  * Address:	801A07F4
  * Size:	0000A8
  */
-void initAdjust__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::initAdjust(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void initAdjust__Q26PikiAI9ActAttackFv(void)
  * Address:	801A089C
  * Size:	0000AC
  */
-void initJumpAdjust__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::initJumpAdjust(void)
 {
 /*
 .loc_0x0:
@@ -404,7 +404,7 @@ void initJumpAdjust__Q26PikiAI9ActAttackFv(void)
  * Address:	801A0948
  * Size:	00008C
  */
-void applicable__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::applicable(void)
 {
 /*
 .loc_0x0:
@@ -457,7 +457,7 @@ void applicable__Q26PikiAI9ActAttackFv(void)
  * Address:	........
  * Size:	0000D8
  */
-void initJump__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::initJump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -467,7 +467,7 @@ void initJump__Q26PikiAI9ActAttackFv(void)
  * Address:	801A09D4
  * Size:	0001C4
  */
-void calcAttackPos__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::calcAttackPos(void)
 {
 /*
 .loc_0x0:
@@ -602,7 +602,7 @@ void calcAttackPos__Q26PikiAI9ActAttackFv(void)
  * Address:	801A0B98
  * Size:	00094C
  */
-void exec__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::exec(void)
 {
 /*
 .loc_0x0:
@@ -1281,7 +1281,7 @@ void exec__Q26PikiAI9ActAttackFv(void)
  * Address:	801A14E4
  * Size:	000054
  */
-void cleanup__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -1318,7 +1318,7 @@ void cleanup__Q26PikiAI9ActAttackFv(void)
  * Address:	801A1538
  * Size:	0000E0
  */
-void collisionCallback__Q26PikiAI9ActAttackFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActAttack::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1388,7 +1388,7 @@ void collisionCallback__Q26PikiAI9ActAttackFPQ24Game4PikiRQ24Game9CollEvent(void
  * Address:	801A1618
  * Size:	00024C
  */
-void bounceCallback__Q26PikiAI9ActAttackFPQ24Game4PikiPQ23Sys8Triangle(void)
+void PikiAI::ActAttack::bounceCallback( (Game::Piki *, Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -1559,7 +1559,7 @@ void bounceCallback__Q26PikiAI9ActAttackFPQ24Game4PikiPQ23Sys8Triangle(void)
  * Address:	801A1864
  * Size:	000024
  */
-void onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActAttack::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1616,7 +1616,7 @@ void FindCondition::satisfy(CollPart *)
  * Address:	801A18E0
  * Size:	00000C
  */
-void getName__Q26PikiAI20ApproachPosActionArgFv(void)
+void PikiAI::ApproachPosActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -1631,7 +1631,7 @@ void getName__Q26PikiAI20ApproachPosActionArgFv(void)
  * Address:	801A18EC
  * Size:	00000C
  */
-void getName__Q26PikiAI20StickAttackActionArgFv(void)
+void PikiAI::StickAttackActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -1646,7 +1646,7 @@ void getName__Q26PikiAI20StickAttackActionArgFv(void)
  * Address:	801A18F8
  * Size:	000008
  */
-void getNextAIType__Q26PikiAI9ActAttackFv(void)
+void PikiAI::ActAttack::getNextAIType(void)
 {
 /*
 .loc_0x0:
@@ -1660,7 +1660,7 @@ void getNextAIType__Q26PikiAI9ActAttackFv(void)
  * Address:	801A1900
  * Size:	000014
  */
-void @56@4@onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent(void)
+void @56@4@PikiAI::ActAttack::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

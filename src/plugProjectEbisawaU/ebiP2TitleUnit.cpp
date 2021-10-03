@@ -25,7 +25,7 @@ void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float>
  * Address:	803C0AF8
  * Size:	000088
  */
-void loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc(void)
+void ebi::title::TParamBase::loadSettingFile( (JKRArchive *, char *))
 {
 /*
 .loc_0x0:
@@ -77,7 +77,7 @@ void loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc(void)
  * Address:	803C0B80
  * Size:	0000B0
  */
-void calcModelBaseMtx___Q33ebi5title8TObjBaseFv(void)
+void ebi::title::TObjBase::calcModelBaseMtx_(void)
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void pushOut___Q33ebi5title8TObjBaseFP10Vector2<float>f(void)
  * Address:	803C0C30
  * Size:	000094
  */
-void pushOut__Q33ebi5title8TObjBaseFPQ33ebi5title8TObjBase(void)
+void ebi::title::TObjBase::pushOut( (ebi::title::TObjBase *))
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void pushOut__Q33ebi5title8TObjBaseFPQ33ebi5title8TObjBase(void)
  * Address:	803C0CC4
  * Size:	000220
  */
-void setArchive__Q33ebi5title8TMapBaseFP10JKRArchive(void)
+void ebi::title::TMapBase::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void setArchive__Q33ebi5title8TMapBaseFP10JKRArchive(void)
  * Address:	803C0EE4
  * Size:	000048
  */
-void startWind__Q33ebi5title8TMapBaseFf(void)
+void ebi::title::TMapBase::startWind( (float))
 {
 /*
 .loc_0x0:
@@ -380,7 +380,7 @@ void startWind__Q33ebi5title8TMapBaseFf(void)
  * Address:	803C0F2C
  * Size:	00027C
  */
-void update__Q33ebi5title8TMapBaseFv(void)
+void ebi::title::TMapBase::update(void)
 {
 /*
 .loc_0x0:
@@ -571,7 +571,7 @@ void update__Q33ebi5title8TMapBaseFv(void)
  * Address:	803C11A8
  * Size:	000150
  */
-void setArchive__Q33ebi5title12TBGEnemyBaseFP10JKRArchive(void)
+void ebi::title::TBGEnemyBase::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -673,7 +673,7 @@ void setArchive__Q33ebi5title12TBGEnemyBaseFP10JKRArchive(void)
  * Address:	803C12F8
  * Size:	00005C
  */
-void start__Q33ebi5title12TBGEnemyBaseFv(void)
+void ebi::title::TBGEnemyBase::start(void)
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void start__Q33ebi5title12TBGEnemyBaseFv(void)
  * Address:	803C1354
  * Size:	000124
  */
-void update__Q33ebi5title12TBGEnemyBaseFv(void)
+void ebi::title::TBGEnemyBase::update(void)
 {
 /*
 .loc_0x0:
@@ -793,7 +793,7 @@ void update__Q33ebi5title12TBGEnemyBaseFv(void)
  * Address:	803C1478
  * Size:	0002D8
  */
-void setArchive__Q33ebi5title11TBlackPlaneFP10JKRArchive(void)
+void ebi::title::TBlackPlane::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1001,7 +1001,7 @@ void setArchive__Q33ebi5title11TBlackPlaneFP10JKRArchive(void)
  * Address:	803C1750
  * Size:	0000A0
  */
-void start__Q33ebi5title11TBlackPlaneFv(void)
+void ebi::title::TBlackPlane::start(void)
 {
 /*
 .loc_0x0:
@@ -1053,7 +1053,7 @@ void start__Q33ebi5title11TBlackPlaneFv(void)
  * Address:	803C17F0
  * Size:	000110
  */
-void updateBeforeCamera__Q33ebi5title11TBlackPlaneFv(void)
+void ebi::title::TBlackPlane::updateBeforeCamera(void)
 {
 /*
 .loc_0x0:
@@ -1133,7 +1133,7 @@ void updateBeforeCamera__Q33ebi5title11TBlackPlaneFv(void)
  * Address:	803C1900
  * Size:	000050
  */
-void updateAfterCamera__Q33ebi5title11TBlackPlaneFv(void)
+void ebi::title::TBlackPlane::updateAfterCamera(void)
 {
 /*
 .loc_0x0:
@@ -1165,7 +1165,7 @@ void updateAfterCamera__Q33ebi5title11TBlackPlaneFv(void)
  * Address:	803C1950
  * Size:	00004C
  */
-void setLogo__Q33ebi5title11TBlackPlaneFv(void)
+void ebi::title::TBlackPlane::setLogo(void)
 {
 /*
 .loc_0x0:
@@ -1196,7 +1196,7 @@ void setLogo__Q33ebi5title11TBlackPlaneFv(void)
  * Address:	803C199C
  * Size:	000078
  */
-void getCameraPos__Q33ebi5title11TBlackPlaneFv(void)
+void ebi::title::TBlackPlane::getCameraPos(void)
 {
 /*
 .loc_0x0:

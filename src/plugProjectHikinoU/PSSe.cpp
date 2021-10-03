@@ -5,7 +5,7 @@
  * Address:	8033F158
  * Size:	000210
  */
-void __ct__Q26PSGame5SeMgrFv(void)
+void PSGame::SeMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -171,7 +171,7 @@ void __ct__Q26PSGame5SeMgrFv(void)
  * Address:	8033F368
  * Size:	000120
  */
-void playMessageVoice__Q26PSGame5SeMgrFUlb(void)
+void PSGame::SeMgr::playMessageVoice( (unsigned long, bool))
 {
 /*
 .loc_0x0:
@@ -275,7 +275,7 @@ void playMessageVoice__Q26PSGame5SeMgrFUlb(void)
  * Address:	8033F488
  * Size:	00003C
  */
-void stopMessageVoice__Q26PSGame5SeMgrFv(void)
+void PSGame::SeMgr::stopMessageVoice(void)
 {
 /*
 .loc_0x0:
@@ -304,7 +304,7 @@ void stopMessageVoice__Q26PSGame5SeMgrFv(void)
  * Address:	8033F4C4
  * Size:	000050
  */
-void __ct__Q26PSGame5RappaFv(void)
+void PSGame::Rappa::__ct(void)
 {
 /*
 .loc_0x0:
@@ -336,7 +336,7 @@ void __ct__Q26PSGame5RappaFv(void)
  * Address:	8033F514
  * Size:	0000A0
  */
-void init__Q26PSGame5RappaFUs(void)
+void PSGame::Rappa::init( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -392,7 +392,7 @@ void init__Q26PSGame5RappaFUs(void)
  * Address:	8033F5B4
  * Size:	000008
  */
-void setId__Q26PSGame5RappaFUl(void)
+void PSGame::Rappa::setId( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -406,7 +406,7 @@ void setId__Q26PSGame5RappaFUl(void)
  * Address:	8033F5BC
  * Size:	000098
  */
-void __dt__Q26PSGame5RappaFv(void)
+void PSGame::Rappa::__dt(void)
 {
 /*
 .loc_0x0:
@@ -464,7 +464,7 @@ void __dt__Q26PSGame5RappaFv(void)
  * Address:	8033F654
  * Size:	000170
  */
-void playRappa__Q26PSGame5RappaFbffPQ27JAInter6Object(void)
+void PSGame::Rappa::playRappa( (bool, float, float, JAInter::Object *))
 {
 /*
 .loc_0x0:
@@ -592,7 +592,7 @@ void playRappa__Q26PSGame5RappaFbffPQ27JAInter6Object(void)
  * Address:	8033F7C4
  * Size:	00003C
  */
-void syncCpu_WaitChk__Q26PSGame5RappaFP8JASTrack(void)
+void PSGame::Rappa::syncCpu_WaitChk( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -619,7 +619,7 @@ void syncCpu_WaitChk__Q26PSGame5RappaFP8JASTrack(void)
  * Address:	8033F800
  * Size:	000008
  */
-void syncCpu_TblNo__Q26PSGame5RappaFP8JASTrack(void)
+void PSGame::Rappa::syncCpu_TblNo( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -633,7 +633,7 @@ void syncCpu_TblNo__Q26PSGame5RappaFP8JASTrack(void)
  * Address:	8033F808
  * Size:	000078
  */
-void __ct__Q26PSGame5SetSeFPCcss(void)
+void PSGame::SetSe::__ct( (char const *, short, short))
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void __ct__Q26PSGame5SetSeFPCcss(void)
  * Address:	8033F880
  * Size:	000038
  */
-void exec__Q26PSGame5SetSeFv(void)
+void PSGame::SetSe::exec(void)
 {
 /*
 .loc_0x0:
@@ -705,7 +705,7 @@ void exec__Q26PSGame5SetSeFv(void)
  * Address:	8033F8B8
  * Size:	0000B8
  */
-void startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl(void)
+void PSGame::SetSe::startSound( (JAInter::Object *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -769,7 +769,7 @@ void startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl(void)
  * Address:	8033F970
  * Size:	0000A0
  */
-void playSystemSe__Q26PSGame5SetSeFUlUl(void)
+void PSGame::SetSe::playSystemSe( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -827,7 +827,7 @@ void playSystemSe__Q26PSGame5SetSeFUlUl(void)
  * Address:	8033FA10
  * Size:	000084
  */
-void startCounter__Q26PSGame5SetSeFUl(void)
+void PSGame::SetSe::startCounter( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -872,7 +872,7 @@ void startCounter__Q26PSGame5SetSeFUl(void)
  * Address:	8033FA94
  * Size:	00000C
  */
-void __ct__Q26PSGame6RandIdFv(void)
+void PSGame::RandId::__ct(void)
 {
 /*
 .loc_0x0:
@@ -887,7 +887,7 @@ void __ct__Q26PSGame6RandIdFv(void)
  * Address:	........
  * Size:	0001B0
  */
-void getRandomId__Q26PSGame6RandIdFUlUl(void)
+void PSGame::RandId::getRandomId( (unsigned long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -897,7 +897,7 @@ void getRandomId__Q26PSGame6RandIdFUlUl(void)
  * Address:	8033FAA0
  * Size:	0001E8
  */
-void startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl(void)
+void PSGame::RandId::startSound( (JAInter::Object *, unsigned long, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1053,7 +1053,7 @@ void startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl(void)
  * Address:	........
  * Size:	0001C8
  */
-void playSystemSe__Q26PSGame6RandIdFUlUlUl(void)
+void PSGame::RandId::playSystemSe( (unsigned long, unsigned long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -1063,7 +1063,7 @@ void playSystemSe__Q26PSGame6RandIdFUlUlUl(void)
  * Address:	8033FC88
  * Size:	0001B8
  */
-void playSystemSe__Q26PSGame6RandIdFUlPP8JAISoundUlUl(void)
+void PSGame::RandId::playSystemSe( (unsigned long, JAISound **, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1205,7 +1205,7 @@ void playSystemSe__Q26PSGame6RandIdFUlPP8JAISoundUlUl(void)
  * Address:	8033FE40
  * Size:	000074
  */
-void setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound(void)
+void PSGame::EnvSe_Pan::setPanAndDolby( (JAISound *))
 {
 /*
 .loc_0x0:
@@ -1246,7 +1246,7 @@ void setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound(void)
  * Address:	8033FEB4
  * Size:	000060
  */
-void __ct__Q26PSGame17EnvSe_PerspectiveFUlf3Vec(void)
+void PSGame::EnvSe_Perspective::__ct( (unsigned long, float, Vec))
 {
 /*
 .loc_0x0:
@@ -1282,7 +1282,7 @@ void __ct__Q26PSGame17EnvSe_PerspectiveFUlf3Vec(void)
  * Address:	........
  * Size:	000064
  */
-void __dt__Q28PSSystem9EnvSeBaseFv(void)
+void PSSystem::EnvSeBase::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1292,7 +1292,7 @@ void __dt__Q28PSSystem9EnvSeBaseFv(void)
  * Address:	8033FF14
  * Size:	00004C
  */
-void play__Q26PSGame17EnvSe_PerspectiveFv(void)
+void PSGame::EnvSe_Perspective::play(void)
 {
 /*
 .loc_0x0:
@@ -1323,7 +1323,7 @@ void play__Q26PSGame17EnvSe_PerspectiveFv(void)
  * Address:	8033FF60
  * Size:	000088
  */
-void __ct__Q26PSGame13EnvSe_AutoPanFUlfffff(void)
+void PSGame::EnvSe_AutoPan::__ct( (unsigned long, float, float, float, float, float))
 {
 /*
 .loc_0x0:
@@ -1369,7 +1369,7 @@ void __ct__Q26PSGame13EnvSe_AutoPanFUlfffff(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q26PSGame9EnvSe_PanFv(void)
+void PSGame::EnvSe_Pan::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1379,7 +1379,7 @@ void __dt__Q26PSGame9EnvSe_PanFv(void)
  * Address:	8033FFE8
  * Size:	00000C
  */
-void setDirection__Q26PSGame13EnvSe_AutoPanFbb(void)
+void PSGame::EnvSe_AutoPan::setDirection( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -1394,7 +1394,7 @@ void setDirection__Q26PSGame13EnvSe_AutoPanFbb(void)
  * Address:	8033FFF4
  * Size:	00011C
  */
-void setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound(void)
+void PSGame::EnvSe_AutoPan::setPanAndDolby( (JAISound *))
 {
 /*
 .loc_0x0:
@@ -1658,7 +1658,7 @@ void __ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<float>(void)
  * Address:	8034032C
  * Size:	0002D0
  */
-void build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr(void)
+void PSGame::Builder_EvnSe_Perspective::build( (float, PSSystem::EnvSeMgr *))
 {
 /*
 .loc_0x0:
@@ -1874,7 +1874,7 @@ void build__Q26PSGame25Builder_EvnSe_PerspectiveFfPQ28PSSystem8EnvSeMgr(void)
  * Address:	803405FC
  * Size:	0000AC
  */
-void newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec(void)
+void PSGame::Builder_EvnSe_Perspective::newSeObj( (unsigned long, float, Vec))
 {
 /*
 .loc_0x0:
@@ -1931,7 +1931,7 @@ void newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec(void)
  * Address:	803406A8
  * Size:	0000C8
  */
-void __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv(void)
+void PSGame::Builder_EvnSe_Perspective::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2037,7 +2037,7 @@ void __dt__Q28PSSystem30SingletonBase<PSGame::SeMgr>Fv(void)
  * Address:	........
  * Size:	0000A8
  */
-void __dt__Q28PSSystem6IdListFv(void)
+void PSSystem::IdList::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2057,7 +2057,7 @@ void JSUList<PSSystem::IdLink>::~JSUList()
  * Address:	803407C0
  * Size:	000004
  */
-void onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase(void)
+void PSGame::Builder_EvnSe_Perspective::onBuild( (PSSystem::EnvSeBase *))
 {
 /*
 .loc_0x0:
@@ -2070,7 +2070,7 @@ void onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase(void)
  * Address:	803407C4
  * Size:	00000C
  */
-void getCastType__Q28PSSystem9EnvSeBaseFv(void)
+void PSSystem::EnvSeBase::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -2085,7 +2085,7 @@ void getCastType__Q28PSSystem9EnvSeBaseFv(void)
  * Address:	803407D0
  * Size:	000004
  */
-void setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound(void)
+void PSSystem::EnvSeBase::setPanAndDolby( (JAISound *))
 {
 /*
 .loc_0x0:
@@ -2098,7 +2098,7 @@ void setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound(void)
  * Address:	803407D4
  * Size:	000064
  */
-void __dt__Q26PSGame5SeMgrFv(void)
+void PSGame::SeMgr::__dt(void)
 {
 /*
 .loc_0x0:

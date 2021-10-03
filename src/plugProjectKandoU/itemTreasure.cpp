@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801F316C
  * Size:	000084
  */
-void init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item(void)
+void Game::ItemTreasure::FSM::init( (Game::ItemTreasure::Item *))
 {
 /*
 .loc_0x0:
@@ -62,7 +62,7 @@ void init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item(void)
  * Address:	801F31F0
  * Size:	00000C
  */
-void init__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4ItemPQ24Game8StateArg(void)
+void Game::ItemTreasure::NormalState::init( (Game::ItemTreasure::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -77,7 +77,7 @@ void init__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4ItemPQ24Gam
  * Address:	801F31FC
  * Size:	000004
  */
-void exec__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Item(void)
+void Game::ItemTreasure::NormalState::exec( (Game::ItemTreasure::Item *))
 {
 /*
 .loc_0x0:
@@ -90,7 +90,7 @@ void exec__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Item(void)
  * Address:	801F3200
  * Size:	000004
  */
-void cleanup__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Item(void)
+void Game::ItemTreasure::NormalState::cleanup( (Game::ItemTreasure::Item *))
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void cleanup__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Item(voi
  * Address:	801F3204
  * Size:	0003C8
  */
-void onDamage__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Itemf(void)
+void Game::ItemTreasure::NormalState::onDamage( (Game::ItemTreasure::Item *, float))
 {
 /*
 .loc_0x0:
@@ -383,7 +383,7 @@ void onDamage__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Itemf(v
  * Address:	801F35CC
  * Size:	000298
  */
-void releasePellet__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::releasePellet(void)
 {
 /*
 .loc_0x0:
@@ -569,7 +569,7 @@ void releasePellet__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	........
  * Size:	00010C
  */
-void __ct__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -579,7 +579,7 @@ void __ct__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F3864
  * Size:	000048
  */
-void constructor__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::constructor(void)
 {
 /*
 .loc_0x0:
@@ -611,7 +611,7 @@ void constructor__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F38AC
  * Size:	000080
  */
-void onInit__Q34Game12ItemTreasure4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemTreasure::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -680,7 +680,7 @@ void start__Q24Game40StateMachine<Game::ItemTreasure::Item>FPQ34Game12ItemTreasu
  * Address:	801F3960
  * Size:	000044
  */
-void onSetPosition__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -709,7 +709,7 @@ void onSetPosition__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F39A4
  * Size:	000048
  */
-void updateBoundSphere__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -739,7 +739,7 @@ void updateBoundSphere__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F39EC
  * Size:	000180
  */
-void doAI__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -857,7 +857,7 @@ void doAI__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F3B6C
  * Size:	000050
  */
-void doDirectDraw__Q34Game12ItemTreasure4ItemFR8Graphics(void)
+void Game::ItemTreasure::Item::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -984,7 +984,7 @@ void getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3<float>(
  * Address:	801F3CD8
  * Size:	000088
  */
-void getWorkDistance__Q34Game12ItemTreasure4ItemFRQ23Sys6Sphere(void)
+void Game::ItemTreasure::Item::getWorkDistance( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1034,7 +1034,7 @@ void getWorkDistance__Q34Game12ItemTreasure4ItemFRQ23Sys6Sphere(void)
  * Address:	801F3D60
  * Size:	0000B8
  */
-void setTreasure__Q34Game12ItemTreasure4ItemFPQ24Game6Pellet(void)
+void Game::ItemTreasure::Item::setTreasure( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -1098,7 +1098,7 @@ void setTreasure__Q34Game12ItemTreasure4ItemFPQ24Game6Pellet(void)
  * Address:	801F3E18
  * Size:	000030
  */
-void setLife__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::setLife(void)
 {
 /*
 .loc_0x0:
@@ -1124,7 +1124,7 @@ void setLife__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F3E48
  * Size:	000098
  */
-void getCurrMaxLife__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::getCurrMaxLife(void)
 {
 /*
 .loc_0x0:
@@ -1182,7 +1182,7 @@ void getCurrMaxLife__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	........
  * Size:	000144
  */
-void createTreasure__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::createTreasure(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1192,7 +1192,7 @@ void createTreasure__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F3EE0
  * Size:	00011C
  */
-void interactAttack__Q34Game12ItemTreasure4ItemFRQ24Game14InteractAttack(void)
+void Game::ItemTreasure::Item::interactAttack( (Game::InteractAttack &))
 {
 /*
 .loc_0x0:
@@ -1287,7 +1287,7 @@ void interactAttack__Q34Game12ItemTreasure4ItemFRQ24Game14InteractAttack(void)
  * Address:	801F3FFC
  * Size:	000004
  */
-void onDamage__Q34Game12ItemTreasure5StateFPQ34Game12ItemTreasure4Itemf(void)
+void Game::ItemTreasure::State::onDamage( (Game::ItemTreasure::Item *, float))
 {
 /*
 .loc_0x0:
@@ -1300,7 +1300,7 @@ void onDamage__Q34Game12ItemTreasure5StateFPQ34Game12ItemTreasure4Itemf(void)
  * Address:	801F4000
  * Size:	000058
  */
-void getWorkRadius__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::getWorkRadius(void)
 {
 /*
 .loc_0x0:
@@ -1338,7 +1338,7 @@ void getWorkRadius__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F4058
  * Size:	000060
  */
-void isVisible__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::isVisible(void)
 {
 /*
 .loc_0x0:
@@ -1378,7 +1378,7 @@ void isVisible__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F40B8
  * Size:	0000B0
  */
-void ignoreAtari__Q34Game12ItemTreasure4ItemFPQ24Game8Creature(void)
+void Game::ItemTreasure::Item::ignoreAtari( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1446,7 +1446,7 @@ void ignoreAtari__Q34Game12ItemTreasure4ItemFPQ24Game8Creature(void)
  * Address:	801F4168
  * Size:	000114
  */
-void __ct__Q34Game12ItemTreasure3MgrFv(void)
+void Game::ItemTreasure::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1535,7 +1535,7 @@ void __ct__Q34Game12ItemTreasure3MgrFv(void)
  * Address:	801F427C
  * Size:	000024
  */
-void read__Q34Game12ItemTreasure13TreasureParmsFR6Stream(void)
+void Game::ItemTreasure::TreasureParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1556,7 +1556,7 @@ void read__Q34Game12ItemTreasure13TreasureParmsFR6Stream(void)
  * Address:	801F42A0
  * Size:	0002A0
  */
-void __ct__Q34Game12ItemTreasure13TreasureParmsFv(void)
+void Game::ItemTreasure::TreasureParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1736,7 +1736,7 @@ void __ct__Q34Game12ItemTreasure13TreasureParmsFv(void)
  * Address:	801F4540
  * Size:	000130
  */
-void birth__Q34Game12ItemTreasure3MgrFv(void)
+void Game::ItemTreasure::Mgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -1864,7 +1864,7 @@ void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3<float>R10Vector3<float
  * Address:	801F46D0
  * Size:	000004
  */
-void onLoadResources__Q34Game12ItemTreasure3MgrFv(void)
+void Game::ItemTreasure::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -1877,7 +1877,7 @@ void onLoadResources__Q34Game12ItemTreasure3MgrFv(void)
  * Address:	801F46D4
  * Size:	000134
  */
-void __dt__Q34Game12ItemTreasure3MgrFv(void)
+void Game::ItemTreasure::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1974,7 +1974,7 @@ void __dt__Q34Game12ItemTreasure3MgrFv(void)
  * Address:	801F4808
  * Size:	000118
  */
-void doNew__Q34Game12ItemTreasure3MgrFv(void)
+void Game::ItemTreasure::Mgr::doNew(void)
 {
 /*
 .loc_0x0:
@@ -2060,7 +2060,7 @@ void doNew__Q34Game12ItemTreasure3MgrFv(void)
  * Address:	801F4920
  * Size:	00000C
  */
-void generatorGetID__Q34Game12ItemTreasure3MgrFv(void)
+void Game::ItemTreasure::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -2075,7 +2075,7 @@ void generatorGetID__Q34Game12ItemTreasure3MgrFv(void)
  * Address:	801F492C
  * Size:	00000C
  */
-void getCreatureName__Q34Game12ItemTreasure4ItemFv(void)
+void Game::ItemTreasure::Item::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -2090,7 +2090,7 @@ void getCreatureName__Q34Game12ItemTreasure4ItemFv(void)
  * Address:	801F4938
  * Size:	000008
  */
-void getMatrix__Q44Game12ItemTreasure4Item10DummyShapeFi(void)
+void Game::ItemTreasure::Item::DummyShape::getMatrix( (int))
 {
 /*
 .loc_0x0:
@@ -2104,7 +2104,7 @@ void getMatrix__Q44Game12ItemTreasure4Item10DummyShapeFi(void)
  * Address:	801F4940
  * Size:	000008
  */
-void isModel__Q28SysShape9MtxObjectFv(void)
+void SysShape::MtxObject::isModel(void)
 {
 /*
 .loc_0x0:
@@ -2643,7 +2643,7 @@ void @376@onKeyEvent__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreas
  * Address:	801F4CD4
  * Size:	000008
  */
-void @48@__dt__Q34Game12ItemTreasure3MgrFv(void)
+void @48@Game::ItemTreasure::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

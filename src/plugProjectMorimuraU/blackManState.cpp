@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803A3AF0
  * Size:	000174
  */
-void init__Q34Game8BlackMan3FSMFPQ24Game9EnemyBase(void)
+void Game::BlackMan::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -140,7 +140,7 @@ void init__Q34Game8BlackMan3FSMFPQ24Game9EnemyBase(void)
  * Address:	803A3C64
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan9StateWalkFi(void)
+void Game::BlackMan::StateWalk::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -167,7 +167,7 @@ void __ct__Q34Game8BlackMan9StateWalkFi(void)
  * Address:	803A3CA0
  * Size:	000080
  */
-void init__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateWalk::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -221,7 +221,7 @@ void init__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803A3D20
  * Size:	0001D4
  */
-void exec__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateWalk::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -364,7 +364,7 @@ void exec__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	803A3EF4
  * Size:	000024
  */
-void cleanup__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateWalk::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void cleanup__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBase(void)
  * Address:	803A3F18
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan9StateDeadFi(void)
+void Game::BlackMan::StateDead::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -412,7 +412,7 @@ void __ct__Q34Game8BlackMan9StateDeadFi(void)
  * Address:	803A3F54
  * Size:	000064
  */
-void init__Q34Game8BlackMan9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateDead::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -449,7 +449,7 @@ void init__Q34Game8BlackMan9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803A3FB8
  * Size:	0000FC
  */
-void exec__Q34Game8BlackMan9StateDeadFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateDead::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -534,7 +534,7 @@ void exec__Q34Game8BlackMan9StateDeadFPQ24Game9EnemyBase(void)
  * Address:	803A40B4
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan11StateFreezeFi(void)
+void Game::BlackMan::StateFreeze::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -561,7 +561,7 @@ void __ct__Q34Game8BlackMan11StateFreezeFi(void)
  * Address:	803A40F0
  * Size:	000090
  */
-void init__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateFreeze::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -613,7 +613,7 @@ void init__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	803A4180
  * Size:	0002F4
  */
-void exec__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateFreeze::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -836,7 +836,7 @@ void exec__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBase(void)
  * Address:	803A4474
  * Size:	000024
  */
-void cleanup__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateFreeze::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -857,7 +857,7 @@ void cleanup__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBase(void)
  * Address:	803A4498
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan9StateBendFi(void)
+void Game::BlackMan::StateBend::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -884,7 +884,7 @@ void __ct__Q34Game8BlackMan9StateBendFi(void)
  * Address:	803A44D4
  * Size:	000074
  */
-void init__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateBend::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -929,7 +929,7 @@ void init__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803A4548
  * Size:	0001E8
  */
-void exec__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateBend::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1077,7 +1077,7 @@ void exec__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBase(void)
  * Address:	803A4730
  * Size:	000024
  */
-void cleanup__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateBend::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1098,7 +1098,7 @@ void cleanup__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBase(void)
  * Address:	803A4754
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan11StateEscapeFi(void)
+void Game::BlackMan::StateEscape::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1125,7 +1125,7 @@ void __ct__Q34Game8BlackMan11StateEscapeFi(void)
  * Address:	803A4790
  * Size:	0000B0
  */
-void init__Q34Game8BlackMan11StateEscapeFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateEscape::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1185,7 +1185,7 @@ void init__Q34Game8BlackMan11StateEscapeFPQ24Game9EnemyBasePQ24Game8StateArg(voi
  * Address:	803A4840
  * Size:	0002B4
  */
-void exec__Q34Game8BlackMan11StateEscapeFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateEscape::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1394,7 +1394,7 @@ void exec__Q34Game8BlackMan11StateEscapeFPQ24Game9EnemyBase(void)
  * Address:	803A4AF4
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan9StateFallFi(void)
+void Game::BlackMan::StateFall::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1421,7 +1421,7 @@ void __ct__Q34Game8BlackMan9StateFallFi(void)
  * Address:	803A4B30
  * Size:	00004C
  */
-void init__Q34Game8BlackMan9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateFall::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1452,7 +1452,7 @@ void init__Q34Game8BlackMan9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803A4B7C
  * Size:	000178
  */
-void exec__Q34Game8BlackMan9StateFallFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateFall::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1564,7 +1564,7 @@ void exec__Q34Game8BlackMan9StateFallFPQ24Game9EnemyBase(void)
  * Address:	803A4CF4
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan12StateRecoverFi(void)
+void Game::BlackMan::StateRecover::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1591,7 +1591,7 @@ void __ct__Q34Game8BlackMan12StateRecoverFi(void)
  * Address:	803A4D30
  * Size:	0000C8
  */
-void init__Q34Game8BlackMan12StateRecoverFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateRecover::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1657,7 +1657,7 @@ void init__Q34Game8BlackMan12StateRecoverFPQ24Game9EnemyBasePQ24Game8StateArg(vo
  * Address:	803A4DF8
  * Size:	00016C
  */
-void exec__Q34Game8BlackMan12StateRecoverFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateRecover::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1778,7 +1778,7 @@ void exec__Q34Game8BlackMan12StateRecoverFPQ24Game9EnemyBase(void)
  * Address:	803A4F64
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan10StateFlickFi(void)
+void Game::BlackMan::StateFlick::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1805,7 +1805,7 @@ void __ct__Q34Game8BlackMan10StateFlickFi(void)
  * Address:	803A4FA0
  * Size:	000158
  */
-void init__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateFlick::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1917,7 +1917,7 @@ void init__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	803A50F8
  * Size:	0000B8
  */
-void exec__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateFlick::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -1981,7 +1981,7 @@ void exec__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	803A51B0
  * Size:	000024
  */
-void cleanup__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateFlick::cleanup( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -2002,7 +2002,7 @@ void cleanup__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBase(void)
  * Address:	803A51D4
  * Size:	00003C
  */
-void __ct__Q34Game8BlackMan10StateTiredFi(void)
+void Game::BlackMan::StateTired::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -2029,7 +2029,7 @@ void __ct__Q34Game8BlackMan10StateTiredFi(void)
  * Address:	803A5210
  * Size:	00005C
  */
-void init__Q34Game8BlackMan10StateTiredFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::BlackMan::StateTired::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2064,7 +2064,7 @@ void init__Q34Game8BlackMan10StateTiredFPQ24Game9EnemyBasePQ24Game8StateArg(void
  * Address:	803A526C
  * Size:	0000C0
  */
-void exec__Q34Game8BlackMan10StateTiredFPQ24Game9EnemyBase(void)
+void Game::BlackMan::StateTired::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

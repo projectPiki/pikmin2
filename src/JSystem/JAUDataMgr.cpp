@@ -5,7 +5,7 @@
  * Address:	800BA7F8
  * Size:	000044
  */
-void __ct__Q210JADUtility11DataMgrBaseFv(void)
+void JADUtility::DataMgrBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q210JADUtility11DataMgrBaseFv(void)
  * Address:	800BA83C
  * Size:	000078
  */
-void __dt__Q210JADUtility11DataMgrBaseFv(void)
+void JADUtility::DataMgrBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -80,7 +80,7 @@ void __dt__Q210JADUtility11DataMgrBaseFv(void)
  * Address:	........
  * Size:	0000D0
  */
-void __ct__Q210JADUtility15DataLoadMgrNodeFv(void)
+void JADUtility::DataLoadMgrNode::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -90,7 +90,7 @@ void __ct__Q210JADUtility15DataLoadMgrNodeFv(void)
  * Address:	800BA8B4
  * Size:	0000C8
  */
-void __dt__Q210JADUtility15DataLoadMgrNodeFv(void)
+void JADUtility::DataLoadMgrNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void __dt__Q210JADUtility15DataLoadMgrNodeFv(void)
  * Address:	........
  * Size:	000050
  */
-void setLoadPath__Q210JADUtility15DataLoadMgrNodeFPCc(void)
+void JADUtility::DataLoadMgrNode::setLoadPath( (char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -170,7 +170,7 @@ void setLoadPath__Q210JADUtility15DataLoadMgrNodeFPCc(void)
  * Address:	........
  * Size:	000230
  */
-void load__Q210JADUtility15DataLoadMgrNodeFQ310JADUtility15DataLoadMgrNode9ObjStatusb(void)
+void JADUtility::DataLoadMgrNode::load( (JADUtility::DataLoadMgrNode::ObjStatus, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -180,7 +180,7 @@ void load__Q210JADUtility15DataLoadMgrNodeFQ310JADUtility15DataLoadMgrNode9ObjSt
  * Address:	800BA97C
  * Size:	000008
  */
-void isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv(void)
+void JADUtility::DataLoadMgrNode::isTempBuffaMode(void)
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv(void)
  * Address:	........
  * Size:	0000B8
  */
-void initInstanceExt__Q210JADUtility15DataLoadMgrNodeFv(void)
+void JADUtility::DataLoadMgrNode::initInstanceExt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -204,7 +204,7 @@ void initInstanceExt__Q210JADUtility15DataLoadMgrNodeFv(void)
  * Address:	800BA984
  * Size:	0000F0
  */
-void initInstanceExt__Q210JADUtility15DataLoadMgrNodeFPvl(void)
+void JADUtility::DataLoadMgrNode::initInstanceExt( (void *, long))
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void initInstanceExt__Q210JADUtility15DataLoadMgrNodeFPvl(void)
  * Address:	800BAA74
  * Size:	000014
  */
-void setFlagsAsExternal__Q210JADUtility15DataLoadMgrNodeFPv(void)
+void JADUtility::DataLoadMgrNode::setFlagsAsExternal( (void *))
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void setFlagsAsExternal__Q210JADUtility15DataLoadMgrNodeFPv(void)
  * Address:	........
  * Size:	0000C4
  */
-void loadDvd__Q210JADUtility15DataLoadMgrNodeFPUl(void)
+void JADUtility::DataLoadMgrNode::loadDvd( (unsigned long *))
 {
 	// UNUSED FUNCTION
 }
@@ -313,7 +313,7 @@ void loadDvd__Q210JADUtility15DataLoadMgrNodeFPUl(void)
  * Address:	800BAA88
  * Size:	00015C
  */
-void __ct__Q210JADUtility11DataMgrNodeFv(void)
+void JADUtility::DataMgrNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -418,7 +418,7 @@ void __ct__Q210JADUtility11DataMgrNodeFv(void)
  * Address:	800BABE4
  * Size:	0000A8
  */
-void __dt__Q210JADUtility6StrPrmFv(void)
+void JADUtility::StrPrm::__dt(void)
 {
 /*
 .loc_0x0:
@@ -586,7 +586,7 @@ void __dt__Q210JADUtility7Prm<char *>Fv(void)
  * Address:	800BADAC
  * Size:	000078
  */
-void __dt__Q210JADUtility7PrmBaseFv(void)
+void JADUtility::PrmBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -642,7 +642,7 @@ void JSULink<JADUtility::PrmBase>::~JSULink()
  * Address:	........
  * Size:	0000FC
  */
-void __ct__Q210JADUtility18DataLoadMgrVirNodeFUl(void)
+void JADUtility::DataLoadMgrVirNode::__ct( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -652,7 +652,7 @@ void __ct__Q210JADUtility18DataLoadMgrVirNodeFUl(void)
  * Address:	........
  * Size:	0000FC
  */
-void __ct__Q210JADUtility14DataMgrVirNodeFUl(void)
+void JADUtility::DataMgrVirNode::__ct( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -662,7 +662,7 @@ void __ct__Q210JADUtility14DataMgrVirNodeFUl(void)
  * Address:	........
  * Size:	0000F0
  */
-void __dt__Q210JADUtility14DataMgrVirNodeFv(void)
+void JADUtility::DataMgrVirNode::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -672,7 +672,7 @@ void __dt__Q210JADUtility14DataMgrVirNodeFv(void)
  * Address:	........
  * Size:	000008
  */
-void getPath__Q210JADUtility14DataMgrVirNodeFv(void)
+void JADUtility::DataMgrVirNode::getPath(void)
 {
 	// UNUSED FUNCTION
 }
@@ -682,7 +682,7 @@ void getPath__Q210JADUtility14DataMgrVirNodeFv(void)
  * Address:	........
  * Size:	000044
  */
-void init__Q210JADUtility14DataMgrVirNodeFv(void)
+void JADUtility::DataMgrVirNode::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -692,7 +692,7 @@ void init__Q210JADUtility14DataMgrVirNodeFv(void)
  * Address:	........
  * Size:	000008
  */
-void getPath__Q210JADUtility18DataLoadMgrVirNodeFv(void)
+void JADUtility::DataLoadMgrVirNode::getPath(void)
 {
 	// UNUSED FUNCTION
 }
@@ -702,7 +702,7 @@ void getPath__Q210JADUtility18DataLoadMgrVirNodeFv(void)
  * Address:	........
  * Size:	000044
  */
-void init__Q210JADUtility18DataLoadMgrVirNodeFv(void)
+void JADUtility::DataLoadMgrVirNode::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -712,7 +712,7 @@ void init__Q210JADUtility18DataLoadMgrVirNodeFv(void)
  * Address:	........
  * Size:	0000F0
  */
-void __dt__Q210JADUtility18DataLoadMgrVirNodeFv(void)
+void JADUtility::DataLoadMgrVirNode::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -722,7 +722,7 @@ void __dt__Q210JADUtility18DataLoadMgrVirNodeFv(void)
  * Address:	800BAE24
  * Size:	0000A0
  */
-void save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream(void)
+void JADUtility::StrPrm::save( (JSUMemoryOutputStream &))
 {
 /*
 .loc_0x0:
@@ -782,7 +782,7 @@ void save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream(void)
  * Address:	800BAEC4
  * Size:	0000A0
  */
-void load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream(void)
+void JADUtility::StrPrm::load( (JSUMemoryInputStream &))
 {
 /*
 .loc_0x0:
@@ -842,7 +842,7 @@ void load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream(void)
  * Address:	800BAF64
  * Size:	000078
  */
-void save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream(void)
+void JADUtility::PrmBase::save( (JSUMemoryOutputStream &))
 {
 /*
 .loc_0x0:
@@ -888,7 +888,7 @@ void save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream(void)
  * Address:	800BAFDC
  * Size:	000164
  */
-void __dt__Q210JADUtility11DataMgrNodeFv(void)
+void JADUtility::DataMgrNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1001,7 +1001,7 @@ void __dt__Q210JADUtility11DataMgrNodeFv(void)
  * Address:	800BB140
  * Size:	000008
  */
-void getPath__Q210JADUtility11DataMgrNodeFv(void)
+void JADUtility::DataMgrNode::getPath(void)
 {
 /*
 .loc_0x0:
@@ -1015,7 +1015,7 @@ void getPath__Q210JADUtility11DataMgrNodeFv(void)
  * Address:	800BB148
  * Size:	000050
  */
-void setPath__Q210JADUtility11DataMgrNodeFPc(void)
+void JADUtility::DataMgrNode::setPath( (char *))
 {
 /*
 .loc_0x0:
@@ -1049,7 +1049,7 @@ void setPath__Q210JADUtility11DataMgrNodeFPc(void)
  * Address:	800BB198
  * Size:	000044
  */
-void init__Q210JADUtility11DataMgrNodeFv(void)
+void JADUtility::DataMgrNode::init(void)
 {
 /*
 .loc_0x0:
@@ -1078,7 +1078,7 @@ void init__Q210JADUtility11DataMgrNodeFv(void)
  * Address:	800BB1DC
  * Size:	000044
  */
-void init__Q210JADUtility15DataLoadMgrNodeFv(void)
+void JADUtility::DataLoadMgrNode::init(void)
 {
 /*
 .loc_0x0:
@@ -1107,7 +1107,7 @@ void init__Q210JADUtility15DataLoadMgrNodeFv(void)
  * Address:	800BB220
  * Size:	00003C
  */
-void init__Q210JADUtility11DataMgrBaseFv(void)
+void JADUtility::DataMgrBase::init(void)
 {
 /*
 .loc_0x0:
@@ -1221,7 +1221,7 @@ void load__Q210JADUtility7Prm<char *>FR20JSUMemoryInputStream(void)
  * Address:	800BB340
  * Size:	000014
  */
-void @532@28@init__Q210JADUtility15DataLoadMgrNodeFv(void)
+void @532@28@JADUtility::DataLoadMgrNode::init(void)
 {
 /*
 .loc_0x0:
@@ -1238,7 +1238,7 @@ void @532@28@init__Q210JADUtility15DataLoadMgrNodeFv(void)
  * Address:	800BB354
  * Size:	000014
  */
-void @532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv(void)
+void @532@28@JADUtility::DataLoadMgrNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1255,7 +1255,7 @@ void @532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv(void)
  * Address:	800BB368
  * Size:	000014
  */
-void @592@28@init__Q210JADUtility11DataMgrNodeFv(void)
+void @592@28@JADUtility::DataMgrNode::init(void)
 {
 /*
 .loc_0x0:
@@ -1272,7 +1272,7 @@ void @592@28@init__Q210JADUtility11DataMgrNodeFv(void)
  * Address:	800BB37C
  * Size:	000014
  */
-void @592@28@__dt__Q210JADUtility11DataMgrNodeFv(void)
+void @592@28@JADUtility::DataMgrNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1289,7 +1289,7 @@ void @592@28@__dt__Q210JADUtility11DataMgrNodeFv(void)
  * Address:	........
  * Size:	000014
  */
-void @532@28@init__Q210JADUtility18DataLoadMgrVirNodeFv(void)
+void @532@28@JADUtility::DataLoadMgrVirNode::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1299,7 +1299,7 @@ void @532@28@init__Q210JADUtility18DataLoadMgrVirNodeFv(void)
  * Address:	........
  * Size:	000014
  */
-void @532@28@__dt__Q210JADUtility18DataLoadMgrVirNodeFv(void)
+void @532@28@JADUtility::DataLoadMgrVirNode::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1309,7 +1309,7 @@ void @532@28@__dt__Q210JADUtility18DataLoadMgrVirNodeFv(void)
  * Address:	........
  * Size:	000014
  */
-void @532@28@init__Q210JADUtility14DataMgrVirNodeFv(void)
+void @532@28@JADUtility::DataMgrVirNode::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1319,7 +1319,7 @@ void @532@28@init__Q210JADUtility14DataMgrVirNodeFv(void)
  * Address:	........
  * Size:	000014
  */
-void @532@28@__dt__Q210JADUtility14DataMgrVirNodeFv(void)
+void @532@28@JADUtility::DataMgrVirNode::__dt(void)
 {
 	// UNUSED FUNCTION
 }

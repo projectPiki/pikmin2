@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	00000C
  */
-void __ct__Q28PSSystem7BeatMgrFv(void)
+void PSSystem::BeatMgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q28PSSystem7BeatMgrFv(void)
  * Address:	........
  * Size:	00001C
  */
-void setBeatOn__Q28PSSystem7BeatMgrFv(void)
+void PSSystem::BeatMgr::setBeatOn(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void setBeatOn__Q28PSSystem7BeatMgrFv(void)
  * Address:	803422A8
  * Size:	00002C
  */
-void proc__Q28PSSystem7BeatMgrFv(void)
+void PSSystem::BeatMgr::proc(void)
 {
 /*
 .loc_0x0:
@@ -50,7 +50,7 @@ void proc__Q28PSSystem7BeatMgrFv(void)
  * Address:	........
  * Size:	00005C
  */
-void __ct__Q28PSSystem12SeqTrackBaseFv(void)
+void PSSystem::SeqTrackBase::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -60,7 +60,7 @@ void __ct__Q28PSSystem12SeqTrackBaseFv(void)
  * Address:	........
  * Size:	00005C
  */
-void __dt__Q28PSSystem12TaskEntryMgrFv(void)
+void PSSystem::TaskEntryMgr::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -90,7 +90,7 @@ void JSUList<PSSystem::TaskEntry>::~JSUList()
  * Address:	803422D4
  * Size:	000028
  */
-void update__Q28PSSystem12SeqTrackBaseFv(void)
+void PSSystem::SeqTrackBase::update(void)
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void update__Q28PSSystem12SeqTrackBaseFv(void)
  * Address:	803422FC
  * Size:	000008
  */
-void init__Q28PSSystem12SeqTrackBaseFP8JASTrack(void)
+void PSSystem::SeqTrackBase::init( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -126,7 +126,7 @@ void init__Q28PSSystem12SeqTrackBaseFP8JASTrack(void)
  * Address:	80342304
  * Size:	000008
  */
-void getTaskEntryList__Q28PSSystem12SeqTrackBaseFv(void)
+void PSSystem::SeqTrackBase::getTaskEntryList(void)
 {
 /*
 .loc_0x0:
@@ -140,7 +140,7 @@ void getTaskEntryList__Q28PSSystem12SeqTrackBaseFv(void)
  * Address:	8034230C
  * Size:	0003A4
  */
-void __ct__Q28PSSystem12SeqTrackRootFv(void)
+void PSSystem::SeqTrackRoot::__ct(void)
 {
 /*
 .loc_0x0:
@@ -389,7 +389,7 @@ void __ct__Q28PSSystem12SeqTrackRootFv(void)
  * Address:	........
  * Size:	000150
  */
-void __dt__Q28PSSystem22TaskEntry_BankRandTaskFv(void)
+void PSSystem::TaskEntry_BankRandTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -399,7 +399,7 @@ void __dt__Q28PSSystem22TaskEntry_BankRandTaskFv(void)
  * Address:	........
  * Size:	00008C
  */
-void __dt__Q28PSSystem12BankRandTaskFv(void)
+void PSSystem::BankRandTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -409,7 +409,7 @@ void __dt__Q28PSSystem12BankRandTaskFv(void)
  * Address:	........
  * Size:	000150
  */
-void __dt__Q28PSSystem16TaskEntry_PitModFv(void)
+void PSSystem::TaskEntry_PitMod::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -419,7 +419,7 @@ void __dt__Q28PSSystem16TaskEntry_PitModFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __dt__Q28PSSystem14PitchResetTaskFv(void)
+void PSSystem::PitchResetTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -429,7 +429,7 @@ void __dt__Q28PSSystem14PitchResetTaskFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __dt__Q28PSSystem14SimpleWaitTaskFv(void)
+void PSSystem::SimpleWaitTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -439,7 +439,7 @@ void __dt__Q28PSSystem14SimpleWaitTaskFv(void)
  * Address:	........
  * Size:	00009C
  */
-void __dt__Q28PSSystem12PitchModTaskFv(void)
+void PSSystem::PitchModTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -449,7 +449,7 @@ void __dt__Q28PSSystem12PitchModTaskFv(void)
  * Address:	........
  * Size:	00008C
  */
-void __dt__Q28PSSystem20TriangleTableModTaskFv(void)
+void PSSystem::TriangleTableModTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -459,7 +459,7 @@ void __dt__Q28PSSystem20TriangleTableModTaskFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __dt__Q28PSSystem21ModParamWithTableTaskFv(void)
+void PSSystem::ModParamWithTableTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -469,7 +469,7 @@ void __dt__Q28PSSystem21ModParamWithTableTaskFv(void)
  * Address:	........
  * Size:	0000CC
  */
-void __dt__Q28PSSystem20TaskEntry_OuterParamFv(void)
+void PSSystem::TaskEntry_OuterParam::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -479,7 +479,7 @@ void __dt__Q28PSSystem20TaskEntry_OuterParamFv(void)
  * Address:	........
  * Size:	000150
  */
-void __dt__Q28PSSystem15TaskEntry_TempoFv(void)
+void PSSystem::TaskEntry_Tempo::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -489,7 +489,7 @@ void __dt__Q28PSSystem15TaskEntry_TempoFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __dt__Q28PSSystem12FlagWaitTaskFv(void)
+void PSSystem::FlagWaitTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -499,7 +499,7 @@ void __dt__Q28PSSystem12FlagWaitTaskFv(void)
  * Address:	........
  * Size:	00008C
  */
-void __dt__Q28PSSystem14OuterParamTaskFv(void)
+void PSSystem::OuterParamTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -509,7 +509,7 @@ void __dt__Q28PSSystem14OuterParamTaskFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __dt__Q28PSSystem16ModParamWithFadeFv(void)
+void PSSystem::ModParamWithFade::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -519,7 +519,7 @@ void __dt__Q28PSSystem16ModParamWithFadeFv(void)
  * Address:	........
  * Size:	00006C
  */
-void __dt__Q28PSSystem8TaskBaseFv(void)
+void PSSystem::TaskBase::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -529,7 +529,7 @@ void __dt__Q28PSSystem8TaskBaseFv(void)
  * Address:	........
  * Size:	000078
  */
-void __dt__Q28PSSystem9TaskEntryFv(void)
+void PSSystem::TaskEntry::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -569,7 +569,7 @@ void JSUList<PSSystem::TaskBase>::~JSUList()
  * Address:	........
  * Size:	00007C
  */
-void __dt__Q28PSSystem12SeqTrackBaseFv(void)
+void PSSystem::SeqTrackBase::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -579,7 +579,7 @@ void __dt__Q28PSSystem12SeqTrackBaseFv(void)
  * Address:	803426B0
  * Size:	000078
  */
-void init__Q28PSSystem12SeqTrackRootFP8JASTrack(void)
+void PSSystem::SeqTrackRoot::init( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -625,7 +625,7 @@ void init__Q28PSSystem12SeqTrackRootFP8JASTrack(void)
  * Address:	80342728
  * Size:	00007C
  */
-void initSwingRatio__Q28PSSystem12SeqTrackRootFv(void)
+void PSSystem::SeqTrackRoot::initSwingRatio(void)
 {
 /*
 .loc_0x0:
@@ -668,7 +668,7 @@ void initSwingRatio__Q28PSSystem12SeqTrackRootFv(void)
  * Address:	........
  * Size:	000078
  */
-void bankRandmizer__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase(void)
+void PSSystem::SeqTrackRoot::bankRandmizer( (float, unsigned long, PSSystem::DirectorBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -678,7 +678,7 @@ void bankRandmizer__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase(void
  * Address:	........
  * Size:	000078
  */
-void pitchShift__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase(void)
+void PSSystem::SeqTrackRoot::pitchShift( (float, unsigned long, PSSystem::DirectorBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -688,7 +688,7 @@ void pitchShift__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase(void)
  * Address:	803427A4
  * Size:	000088
  */
-void pitchModulation__Q28PSSystem12SeqTrackRootFffUlPQ28PSSystem12DirectorBase(void)
+void PSSystem::SeqTrackRoot::pitchModulation( (float, float, unsigned long, PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -734,7 +734,7 @@ void pitchModulation__Q28PSSystem12SeqTrackRootFffUlPQ28PSSystem12DirectorBase(v
  * Address:	8034282C
  * Size:	000078
  */
-void tempoChange__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase(void)
+void PSSystem::SeqTrackRoot::tempoChange( (float, unsigned long, PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -776,7 +776,7 @@ void tempoChange__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase(void)
  * Address:	803428A4
  * Size:	000024
  */
-void onStopSeq__Q28PSSystem12SeqTrackRootFv(void)
+void PSSystem::SeqTrackRoot::onStopSeq(void)
 {
 /*
 .loc_0x0:
@@ -797,7 +797,7 @@ void onStopSeq__Q28PSSystem12SeqTrackRootFv(void)
  * Address:	803428C8
  * Size:	00009C
  */
-void beatUpdate__Q28PSSystem12SeqTrackRootFv(void)
+void PSSystem::SeqTrackRoot::beatUpdate(void)
 {
 /*
 .loc_0x0:
@@ -854,7 +854,7 @@ void beatUpdate__Q28PSSystem12SeqTrackRootFv(void)
  * Address:	80342964
  * Size:	0002EC
  */
-void __ct__Q28PSSystem13SeqTrackChildFRCQ28PSSystem12SeqTrackRoot(void)
+void PSSystem::SeqTrackChild::__ct( (PSSystem::SeqTrackRoot const &))
 {
 /*
 .loc_0x0:
@@ -1053,7 +1053,7 @@ void __ct__Q28PSSystem13SeqTrackChildFRCQ28PSSystem12SeqTrackRoot(void)
  * Address:	........
  * Size:	0000B8
  */
-void __dt__Q28PSSystem16TaskEntry_IdMaskFv(void)
+void PSSystem::TaskEntry_IdMask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1063,7 +1063,7 @@ void __dt__Q28PSSystem16TaskEntry_IdMaskFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __dt__Q28PSSystem10IdMaskTaskFv(void)
+void PSSystem::IdMaskTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1073,7 +1073,7 @@ void __dt__Q28PSSystem10IdMaskTaskFv(void)
  * Address:	........
  * Size:	000104
  */
-void __dt__Q28PSSystem22TaskEntry_MuteOnVolumeFv(void)
+void PSSystem::TaskEntry_MuteOnVolume::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1083,7 +1083,7 @@ void __dt__Q28PSSystem22TaskEntry_MuteOnVolumeFv(void)
  * Address:	........
  * Size:	0001C0
  */
-void __dt__Q28PSSystem20TaskEntry_MuteVolumeFv(void)
+void PSSystem::TaskEntry_MuteVolume::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1093,7 +1093,7 @@ void __dt__Q28PSSystem20TaskEntry_MuteVolumeFv(void)
  * Address:	........
  * Size:	00007C
  */
-void __dt__Q28PSSystem8MuteTaskFv(void)
+void PSSystem::MuteTask::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1103,7 +1103,7 @@ void __dt__Q28PSSystem8MuteTaskFv(void)
  * Address:	80342C50
  * Size:	000084
  */
-void muteOffAndFadeIn__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase(void)
+void PSSystem::SeqTrackChild::muteOffAndFadeIn( (float, unsigned long, PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -1148,7 +1148,7 @@ void muteOffAndFadeIn__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase(
  * Address:	80342CD4
  * Size:	000074
  */
-void fadeoutAndMute__Q28PSSystem13SeqTrackChildFUlPQ28PSSystem12DirectorBase(void)
+void PSSystem::SeqTrackChild::fadeoutAndMute( (unsigned long, PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -1189,7 +1189,7 @@ void fadeoutAndMute__Q28PSSystem13SeqTrackChildFUlPQ28PSSystem12DirectorBase(voi
  * Address:	80342D48
  * Size:	000078
  */
-void fade__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase(void)
+void PSSystem::SeqTrackChild::fade( (float, unsigned long, PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -1231,7 +1231,7 @@ void fade__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase(void)
  * Address:	80342DC0
  * Size:	000068
  */
-void setIdMask__Q28PSSystem13SeqTrackChildFUcPQ28PSSystem12DirectorBase(void)
+void PSSystem::SeqTrackChild::setIdMask( (unsigned char, PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -1269,7 +1269,7 @@ void setIdMask__Q28PSSystem13SeqTrackChildFUcPQ28PSSystem12DirectorBase(void)
  * Address:	80342E28
  * Size:	000024
  */
-void onStopSeq__Q28PSSystem13SeqTrackChildFv(void)
+void PSSystem::SeqTrackChild::onStopSeq(void)
 {
 /*
 .loc_0x0:
@@ -1290,7 +1290,7 @@ void onStopSeq__Q28PSSystem13SeqTrackChildFv(void)
  * Address:	80342E4C
  * Size:	000030
  */
-void task__Q28PSSystem10IdMaskTaskFR8JASTrack(void)
+void PSSystem::IdMaskTask::task( (JASTrack &))
 {
 /*
 .loc_0x0:
@@ -1314,7 +1314,7 @@ void task__Q28PSSystem10IdMaskTaskFR8JASTrack(void)
  * Address:	80342E7C
  * Size:	000038
  */
-void task__Q28PSSystem8MuteTaskFR8JASTrack(void)
+void PSSystem::MuteTask::task( (JASTrack &))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8013CC68
  * Size:	00012C
  */
-void __ct__Q24Game8FakePikiFv(void)
+void Game::FakePiki::__ct(void)
 {
 /*
 .loc_0x0:
@@ -106,7 +106,7 @@ void __ct__Q24Game8FakePikiFv(void)
  * Address:	8013CD94
  * Size:	0000B8
  */
-void initFakePiki__Q24Game8FakePikiFv(void)
+void Game::FakePiki::initFakePiki(void)
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void initFakePiki__Q24Game8FakePikiFv(void)
  * Address:	8013CE4C
  * Size:	000028
  */
-void killFakePiki__Q24Game8FakePikiFv(void)
+void Game::FakePiki::killFakePiki(void)
 {
 /*
 .loc_0x0:
@@ -188,7 +188,7 @@ void killFakePiki__Q24Game8FakePikiFv(void)
  * Address:	8013CE74
  * Size:	0000B8
  */
-void initAnimator__Q24Game8FakePikiFv(void)
+void Game::FakePiki::initAnimator(void)
 {
 /*
 .loc_0x0:
@@ -250,7 +250,7 @@ void initAnimator__Q24Game8FakePikiFv(void)
  * Address:	8013CF2C
  * Size:	000028
  */
-void assertMotion__Q24Game8FakePikiFi(void)
+void Game::FakePiki::assertMotion( (int))
 {
 /*
 .loc_0x0:
@@ -276,7 +276,7 @@ void assertMotion__Q24Game8FakePikiFi(void)
  * Address:	8013CF54
  * Size:	00006C
  */
-void enableMotionBlend__Q24Game8FakePikiFv(void)
+void Game::FakePiki::enableMotionBlend(void)
 {
 /*
 .loc_0x0:
@@ -321,7 +321,7 @@ void enableMotionBlend__Q24Game8FakePikiFv(void)
  * Address:	8013CFC0
  * Size:	000100
  */
-void startMotion__Q24Game8FakePikiFiiPQ28SysShape14MotionListenerPQ28SysShape14MotionListener(void)
+void Game::FakePiki::startMotion( (int, int, SysShape::MotionListener *, SysShape::MotionListener *))
 {
 /*
 .loc_0x0:
@@ -407,7 +407,7 @@ void startMotion__Q24Game8FakePikiFiiPQ28SysShape14MotionListenerPQ28SysShape14M
  * Address:	8013D0C0
  * Size:	00001C
  */
-void finishMotion__Q24Game8FakePikiFv(void)
+void Game::FakePiki::finishMotion(void)
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void finishMotion__Q24Game8FakePikiFv(void)
  * Address:	8013D0DC
  * Size:	000008
  */
-void movieSetFaceDir__Q24Game8FakePikiFf(void)
+void Game::FakePiki::movieSetFaceDir( (float))
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void movieSetFaceDir__Q24Game8FakePikiFf(void)
  * Address:	8013D0E4
  * Size:	000008
  */
-void setDoAnimCallback__Q24Game8FakePikiFP9IDelegate(void)
+void Game::FakePiki::setDoAnimCallback( (IDelegate *))
 {
 /*
 .loc_0x0:
@@ -454,7 +454,7 @@ void setDoAnimCallback__Q24Game8FakePikiFP9IDelegate(void)
  * Address:	8013D0EC
  * Size:	00000C
  */
-void clearDoAnimCallback__Q24Game8FakePikiFv(void)
+void Game::FakePiki::clearDoAnimCallback(void)
 {
 /*
 .loc_0x0:
@@ -469,7 +469,7 @@ void clearDoAnimCallback__Q24Game8FakePikiFv(void)
  * Address:	8013D0F8
  * Size:	0003BC
  */
-void updateWalkAnimation__Q24Game8FakePikiFv(void)
+void Game::FakePiki::updateWalkAnimation(void)
 {
 /*
 .loc_0x0:
@@ -778,7 +778,7 @@ void updateWalkAnimation__Q24Game8FakePikiFv(void)
  * Address:	8013D4B4
  * Size:	00023C
  */
-void sNeckCallback__Q24Game8FakePikiFP8J3DJointi(void)
+void Game::FakePiki::sNeckCallback( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -947,7 +947,7 @@ void sNeckCallback__Q24Game8FakePikiFP8J3DJointi(void)
  * Address:	8013D6F0
  * Size:	0000C0
  */
-void startLookCreature__Q24Game8FakePikiFPQ24Game8Creature(void)
+void Game::FakePiki::startLookCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1021,7 +1021,7 @@ void startLookCreature__Q24Game8FakePikiFPQ24Game8Creature(void)
  * Address:	8013D7B0
  * Size:	000070
  */
-void updateLookCreature__Q24Game8FakePikiFv(void)
+void Game::FakePiki::updateLookCreature(void)
 {
 /*
 .loc_0x0:
@@ -1063,7 +1063,7 @@ void updateLookCreature__Q24Game8FakePikiFv(void)
  * Address:	8013D820
  * Size:	000004
  */
-void do_updateLookCreature__Q24Game8FakePikiFv(void)
+void Game::FakePiki::do_updateLookCreature(void)
 {
 /*
 .loc_0x0:
@@ -1076,7 +1076,7 @@ void do_updateLookCreature__Q24Game8FakePikiFv(void)
  * Address:	8013D824
  * Size:	000018
  */
-void finishLook__Q24Game8FakePikiFv(void)
+void Game::FakePiki::finishLook(void)
 {
 /*
 .loc_0x0:
@@ -1094,7 +1094,7 @@ void finishLook__Q24Game8FakePikiFv(void)
  * Address:	8013D83C
  * Size:	000398
  */
-void updateLook__Q24Game8FakePikiFv(void)
+void Game::FakePiki::updateLook(void)
 {
 /*
 .loc_0x0:
@@ -1412,7 +1412,7 @@ void turnTo__Q24Game8FakePikiFR10Vector3<float>(void)
  * Address:	8013DC34
  * Size:	0003B4
  */
-void moveVelocity__Q24Game8FakePikiFv(void)
+void Game::FakePiki::moveVelocity(void)
 {
 /*
 .loc_0x0:
@@ -1685,7 +1685,7 @@ void moveVelocity__Q24Game8FakePikiFv(void)
  * Address:	8013DFE8
  * Size:	0000B4
  */
-void moveRotation__Q24Game8FakePikiFv(void)
+void Game::FakePiki::moveRotation(void)
 {
 /*
 .loc_0x0:
@@ -1744,7 +1744,7 @@ void moveRotation__Q24Game8FakePikiFv(void)
  * Address:	8013E09C
  * Size:	000014
  */
-void useMoveRotation__Q24Game8FakePikiFv(void)
+void Game::FakePiki::useMoveRotation(void)
 {
 /*
 .loc_0x0:
@@ -1761,7 +1761,7 @@ void useMoveRotation__Q24Game8FakePikiFv(void)
  * Address:	8013E0B0
  * Size:	0006A4
  */
-void move__Q24Game8FakePikiFf(void)
+void Game::FakePiki::move( (float))
 {
 /*
 .loc_0x0:
@@ -2242,7 +2242,7 @@ void move__Q24Game8FakePikiFf(void)
  * Address:	8013E754
  * Size:	00003C
  */
-void __opi__Q34Game8GameStat11PikiCounterFv(void)
+void Game::GameStat::PikiCounter::operator int(void)
 {
 /*
 .loc_0x0:
@@ -2269,7 +2269,7 @@ void __opi__Q34Game8GameStat11PikiCounterFv(void)
  * Address:	8013E790
  * Size:	000014
  */
-void inWater__Q24Game8FakePikiFv(void)
+void Game::FakePiki::inWater(void)
 {
 /*
 .loc_0x0:
@@ -2299,7 +2299,7 @@ void wallCallback__Q24Game8FakePikiFR10Vector3<float>(void)
  * Address:	8013E7A8
  * Size:	000014
  */
-void useMapCollision__Q24Game8FakePikiFv(void)
+void Game::FakePiki::useMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -2316,7 +2316,7 @@ void useMapCollision__Q24Game8FakePikiFv(void)
  * Address:	8013E7BC
  * Size:	000008
  */
-void getMapCollisionRadius__Q24Game8FakePikiFv(void)
+void Game::FakePiki::getMapCollisionRadius(void)
 {
 /*
 .loc_0x0:
@@ -2330,7 +2330,7 @@ void getMapCollisionRadius__Q24Game8FakePikiFv(void)
  * Address:	8013E7C4
  * Size:	0000BC
  */
-void doEntry__Q24Game8FakePikiFv(void)
+void Game::FakePiki::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -2401,7 +2401,7 @@ void doEntry__Q24Game8FakePikiFv(void)
  * Address:	8013E880
  * Size:	000004
  */
-void doColorChange__Q24Game8FakePikiFv(void)
+void Game::FakePiki::doColorChange(void)
 {
 /*
 .loc_0x0:
@@ -2414,7 +2414,7 @@ void doColorChange__Q24Game8FakePikiFv(void)
  * Address:	8013E884
  * Size:	000494
  */
-void doAnimation__Q24Game8FakePikiFv(void)
+void Game::FakePiki::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -2745,7 +2745,7 @@ void doAnimation__Q24Game8FakePikiFv(void)
  * Address:	8013ED18
  * Size:	000024
  */
-void getBoundingSphere__Q24Game8FakePikiFRQ23Sys6Sphere(void)
+void Game::FakePiki::getBoundingSphere( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -2766,7 +2766,7 @@ void getBoundingSphere__Q24Game8FakePikiFRQ23Sys6Sphere(void)
  * Address:	8013ED3C
  * Size:	000014
  */
-void useMoveVelocity__Q24Game8FakePikiFv(void)
+void Game::FakePiki::useMoveVelocity(void)
 {
 /*
 .loc_0x0:
@@ -2783,7 +2783,7 @@ void useMoveVelocity__Q24Game8FakePikiFv(void)
  * Address:	8013ED50
  * Size:	000078
  */
-void updateTrMatrix__Q24Game8FakePikiFv(void)
+void Game::FakePiki::updateTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -2827,7 +2827,7 @@ void updateTrMatrix__Q24Game8FakePikiFv(void)
  * Address:	8013EDC8
  * Size:	000014
  */
-void useUpdateTrMatrix__Q24Game8FakePikiFv(void)
+void Game::FakePiki::useUpdateTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -2844,7 +2844,7 @@ void useUpdateTrMatrix__Q24Game8FakePikiFv(void)
  * Address:	8013EDDC
  * Size:	000560
  */
-void doSimulation__Q24Game8FakePikiFf(void)
+void Game::FakePiki::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -3246,7 +3246,7 @@ void doSimulation__Q24Game8FakePikiFf(void)
  * Address:	8013F33C
  * Size:	00001C
  */
-void getPosition__Q24Game8BaseItemFv(void)
+void Game::BaseItem::getPosition(void)
 {
 /*
 .loc_0x0:
@@ -3265,7 +3265,7 @@ void getPosition__Q24Game8BaseItemFv(void)
  * Address:	8013F358
  * Size:	00000C
  */
-void initCaptureStomach__Q24Game8FakePikiFv(void)
+void Game::FakePiki::initCaptureStomach(void)
 {
 /*
 .loc_0x0:
@@ -3280,7 +3280,7 @@ void initCaptureStomach__Q24Game8FakePikiFv(void)
  * Address:	8013F364
  * Size:	000008
  */
-void startCaptureStomach__Q24Game8FakePikiFP8CollPart(void)
+void Game::FakePiki::startCaptureStomach( (CollPart *))
 {
 /*
 .loc_0x0:
@@ -3294,7 +3294,7 @@ void startCaptureStomach__Q24Game8FakePikiFP8CollPart(void)
  * Address:	8013F36C
  * Size:	00000C
  */
-void endCaptureStomach__Q24Game8FakePikiFv(void)
+void Game::FakePiki::endCaptureStomach(void)
 {
 /*
 .loc_0x0:
@@ -3309,7 +3309,7 @@ void endCaptureStomach__Q24Game8FakePikiFv(void)
  * Address:	8013F378
  * Size:	000158
  */
-void updateStomach__Q24Game8FakePikiFv(void)
+void Game::FakePiki::updateStomach(void)
 {
 /*
 .loc_0x0:
@@ -3415,7 +3415,7 @@ void updateStomach__Q24Game8FakePikiFv(void)
  * Address:	8013F4D0
  * Size:	000008
  */
-void debugShapeDL__Q24Game8FakePikiFPc(void)
+void Game::FakePiki::debugShapeDL( (char *))
 {
 /*
 .loc_0x0:
@@ -3429,7 +3429,7 @@ void debugShapeDL__Q24Game8FakePikiFPc(void)
  * Address:	8013F4D8
  * Size:	000008
  */
-void getDownfloorMass__Q24Game8FakePikiFv(void)
+void Game::FakePiki::getDownfloorMass(void)
 {
 /*
 .loc_0x0:
@@ -3443,7 +3443,7 @@ void getDownfloorMass__Q24Game8FakePikiFv(void)
  * Address:	8013F4E0
  * Size:	000008
  */
-void isPikmin__Q24Game8FakePikiFv(void)
+void Game::FakePiki::isPikmin(void)
 {
 /*
 .loc_0x0:
@@ -3457,7 +3457,7 @@ void isPikmin__Q24Game8FakePikiFv(void)
  * Address:	8013F4E8
  * Size:	000004
  */
-void doDebugDL__Q24Game8FakePikiFv(void)
+void Game::FakePiki::doDebugDL(void)
 {
 /*
 .loc_0x0:
@@ -3470,7 +3470,7 @@ void doDebugDL__Q24Game8FakePikiFv(void)
  * Address:	8013F4EC
  * Size:	000004
  */
-void update__Q24Game8FakePikiFv(void)
+void Game::FakePiki::update(void)
 {
 /*
 .loc_0x0:
@@ -3483,7 +3483,7 @@ void update__Q24Game8FakePikiFv(void)
  * Address:	8013F4F0
  * Size:	000028
  */
-void setMoveRotation__Q24Game8FakePikiFb(void)
+void Game::FakePiki::setMoveRotation( (bool))
 {
 /*
 .loc_0x0:
@@ -3507,7 +3507,7 @@ void setMoveRotation__Q24Game8FakePikiFb(void)
  * Address:	8013F518
  * Size:	000028
  */
-void setUpdateTrMatrix__Q24Game8FakePikiFb(void)
+void Game::FakePiki::setUpdateTrMatrix( (bool))
 {
 /*
 .loc_0x0:
@@ -3531,7 +3531,7 @@ void setUpdateTrMatrix__Q24Game8FakePikiFb(void)
  * Address:	8013F540
  * Size:	000028
  */
-void setMoveVelocity__Q24Game8FakePikiFb(void)
+void Game::FakePiki::setMoveVelocity( (bool))
 {
 /*
 .loc_0x0:
@@ -3555,7 +3555,7 @@ void setMoveVelocity__Q24Game8FakePikiFb(void)
  * Address:	8013F568
  * Size:	000028
  */
-void setMapCollision__Q24Game8FakePikiFb(void)
+void Game::FakePiki::setMapCollision( (bool))
 {
 /*
 .loc_0x0:
@@ -3579,7 +3579,7 @@ void setMapCollision__Q24Game8FakePikiFb(void)
  * Address:	8013F590
  * Size:	00000C
  */
-void isZikatu__Q24Game8FakePikiFv(void)
+void Game::FakePiki::isZikatu(void)
 {
 /*
 .loc_0x0:
@@ -3594,7 +3594,7 @@ void isZikatu__Q24Game8FakePikiFv(void)
  * Address:	8013F59C
  * Size:	00003C
  */
-void setZikatu__Q24Game8FakePikiFb(void)
+void Game::FakePiki::setZikatu( (bool))
 {
 /*
 .loc_0x0:
@@ -3625,7 +3625,7 @@ void setZikatu__Q24Game8FakePikiFb(void)
  * Address:	8013F5D8
  * Size:	00000C
  */
-void wasZikatu__Q24Game8FakePikiFv(void)
+void Game::FakePiki::wasZikatu(void)
 {
 /*
 .loc_0x0:
@@ -3640,7 +3640,7 @@ void wasZikatu__Q24Game8FakePikiFv(void)
  * Address:	8013F5E4
  * Size:	000004
  */
-void inWaterCallback__Q24Game8FakePikiFPQ24Game8WaterBox(void)
+void Game::FakePiki::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -3653,7 +3653,7 @@ void inWaterCallback__Q24Game8FakePikiFPQ24Game8WaterBox(void)
  * Address:	8013F5E8
  * Size:	000004
  */
-void outWaterCallback__Q24Game8FakePikiFv(void)
+void Game::FakePiki::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -3666,7 +3666,7 @@ void outWaterCallback__Q24Game8FakePikiFv(void)
  * Address:	8013F5EC
  * Size:	000004
  */
-void onSetPosition__Q24Game8FakePikiFv(void)
+void Game::FakePiki::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -3708,7 +3708,7 @@ void onSetPosition__Q24Game8FakePikiFR10Vector3<float>(void)
  * Address:	8013F634
  * Size:	000008
  */
-void getFaceDir__Q24Game8FakePikiFv(void)
+void Game::FakePiki::getFaceDir(void)
 {
 /*
 .loc_0x0:
@@ -3722,7 +3722,7 @@ void getFaceDir__Q24Game8FakePikiFv(void)
  * Address:	8013F63C
  * Size:	00001C
  */
-void getVelocity__Q24Game8FakePikiFv(void)
+void Game::FakePiki::getVelocity(void)
 {
 /*
 .loc_0x0:
@@ -3779,7 +3779,7 @@ void getVelocityAt__Q24Game8FakePikiFR10Vector3<float>R10Vector3<float>(void)
  * Address:	8013F690
  * Size:	000008
  */
-void getSound_PosPtr__Q24Game8FakePikiFv(void)
+void Game::FakePiki::getSound_PosPtr(void)
 {
 /*
 .loc_0x0:
@@ -3793,7 +3793,7 @@ void getSound_PosPtr__Q24Game8FakePikiFv(void)
  * Address:	8013F698
  * Size:	000008
  */
-void isWalking__Q24Game8FakePikiFv(void)
+void Game::FakePiki::isWalking(void)
 {
 /*
 .loc_0x0:
@@ -3807,7 +3807,7 @@ void isWalking__Q24Game8FakePikiFv(void)
  * Address:	8013F6A0
  * Size:	000004
  */
-void onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent(void)
+void Game::FakePiki::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -3842,7 +3842,7 @@ void __sinit_fakePiki_cpp(void)
  * Address:	8013F6CC
  * Size:	000008
  */
-void @376@onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent(void)
+void @376@Game::FakePiki::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

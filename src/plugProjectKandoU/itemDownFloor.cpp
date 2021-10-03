@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801F4CDC
  * Size:	0001E4
  */
-void init__Q34Game13ItemDownFloor3FSMFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::FSM::init( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -158,7 +158,7 @@ void init__Q34Game13ItemDownFloor3FSMFPQ34Game13ItemDownFloor4Item(void)
  * Address:	........
  * Size:	000134
  */
-void __ct__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -168,7 +168,7 @@ void __ct__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F4EC0
  * Size:	000048
  */
-void constructor__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::constructor(void)
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void constructor__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F4F08
  * Size:	0000FC
  */
-void onInit__Q34Game13ItemDownFloor4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemDownFloor::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void start__Q24Game41StateMachine<Game::ItemDownFloor::Item>FPQ34Game13ItemDownF
  * Address:	801F5038
  * Size:	0002B4
  */
-void initDependency__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::initDependency(void)
 {
 /*
 .loc_0x0:
@@ -521,7 +521,7 @@ void initDependency__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F52EC
  * Size:	000138
  */
-void onSetPosition__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void onSetPosition__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F5424
  * Size:	00001C
  */
-void updateBoundSphere__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -636,7 +636,7 @@ void updateBoundSphere__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F5440
  * Size:	000044
  */
-void onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent(void)
+void Game::ItemDownFloor::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -667,7 +667,7 @@ void onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent(void)
  * Address:	801F5484
  * Size:	000004
  */
-void onKeyEvent__Q34Game13ItemDownFloor5StateFPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemDownFloor::State::onKeyEvent( (Game::ItemDownFloor::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -680,7 +680,7 @@ void onKeyEvent__Q34Game13ItemDownFloor5StateFPQ34Game13ItemDownFloor4ItemRCQ28S
  * Address:	........
  * Size:	000068
  */
-void initMotion__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::initMotion(void)
 {
 	// UNUSED FUNCTION
 }
@@ -690,7 +690,7 @@ void initMotion__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F5488
  * Size:	000338
  */
-void startDamageMotion__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::startDamageMotion(void)
 {
 /*
 .loc_0x0:
@@ -934,7 +934,7 @@ void startDamageMotion__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F57C0
  * Size:	00033C
  */
-void startDownMotion__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::startDownMotion(void)
 {
 /*
 .loc_0x0:
@@ -1179,7 +1179,7 @@ void startDownMotion__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F5AFC
  * Size:	0002E4
  */
-void startUpMotion__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::startUpMotion(void)
 {
 /*
 .loc_0x0:
@@ -1398,7 +1398,7 @@ void startUpMotion__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F5DE0
  * Size:	000004
  */
-void changeMaterial__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -1411,7 +1411,7 @@ void changeMaterial__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F5DE4
  * Size:	000038
  */
-void doSave__Q34Game13ItemDownFloor4ItemFR6Stream(void)
+void Game::ItemDownFloor::Item::doSave( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1439,7 +1439,7 @@ void doSave__Q34Game13ItemDownFloor4ItemFR6Stream(void)
  * Address:	801F5E1C
  * Size:	0000F8
  */
-void doLoad__Q34Game13ItemDownFloor4ItemFR6Stream(void)
+void Game::ItemDownFloor::Item::doLoad( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1517,7 +1517,7 @@ void doLoad__Q34Game13ItemDownFloor4ItemFR6Stream(void)
  * Address:	801F5F14
  * Size:	0000F8
  */
-void doAI__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -1601,7 +1601,7 @@ void doAI__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F600C
  * Size:	00023C
  */
-void platCallback__Q34Game13ItemDownFloor4ItemFRQ24Game9PlatEvent(void)
+void Game::ItemDownFloor::Item::platCallback( (Game::PlatEvent &))
 {
 /*
 .loc_0x0:
@@ -1780,7 +1780,7 @@ void platCallback__Q34Game13ItemDownFloor4ItemFRQ24Game9PlatEvent(void)
  * Address:	801F6248
  * Size:	000004
  */
-void onPlat__Q34Game13ItemDownFloor5StateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::State::onPlat( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -1793,7 +1793,7 @@ void onPlat__Q34Game13ItemDownFloor5StateFPQ34Game13ItemDownFloor4Item(void)
  * Address:	801F624C
  * Size:	00005C
  */
-void getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam(void)
+void Game::ItemDownFloor::Item::getCarryInfoParam( (CarryInfoParam &))
 {
 /*
 .loc_0x0:
@@ -1828,7 +1828,7 @@ void getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam(void)
  * Address:	801F62A8
  * Size:	0001E0
  */
-void __ct__Q34Game13ItemDownFloor3MgrFv(void)
+void Game::ItemDownFloor::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1964,7 +1964,7 @@ void __ct__Q34Game13ItemDownFloor3MgrFv(void)
  * Address:	801F6488
  * Size:	0000F0
  */
-void setupDownFloor__Q34Game13ItemDownFloor3MgrFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::Mgr::setupDownFloor( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2038,7 +2038,7 @@ void setupDownFloor__Q34Game13ItemDownFloor3MgrFPQ34Game13ItemDownFloor4Item(voi
  * Address:	801F6578
  * Size:	000108
  */
-void setupPlatform__Q34Game13ItemDownFloor3MgrFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::Mgr::setupPlatform( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2118,7 +2118,7 @@ void setupPlatform__Q34Game13ItemDownFloor3MgrFPQ34Game13ItemDownFloor4Item(void
  * Address:	801F6680
  * Size:	000004
  */
-void onLoadResources__Q34Game13ItemDownFloor3MgrFv(void)
+void Game::ItemDownFloor::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -2131,7 +2131,7 @@ void onLoadResources__Q34Game13ItemDownFloor3MgrFv(void)
  * Address:	801F6684
  * Size:	00017C
  */
-void birth__Q34Game13ItemDownFloor3MgrFv(void)
+void Game::ItemDownFloor::Mgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -2244,7 +2244,7 @@ void birth__Q34Game13ItemDownFloor3MgrFv(void)
  * Address:	801F6800
  * Size:	00003C
  */
-void getCaveName__Q34Game13ItemDownFloor3MgrFi(void)
+void Game::ItemDownFloor::Mgr::getCaveName( (int))
 {
 /*
 .loc_0x0:
@@ -2275,7 +2275,7 @@ void getCaveName__Q34Game13ItemDownFloor3MgrFi(void)
  * Address:	801F683C
  * Size:	0000B0
  */
-void getCaveID__Q34Game13ItemDownFloor3MgrFPc(void)
+void Game::ItemDownFloor::Mgr::getCaveID( (char *))
 {
 /*
 .loc_0x0:
@@ -2337,7 +2337,7 @@ void getCaveID__Q34Game13ItemDownFloor3MgrFPc(void)
  * Address:	801F68EC
  * Size:	000068
  */
-void init__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg(void)
+void Game::ItemDownFloor::WaitState::init( (Game::ItemDownFloor::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2379,7 +2379,7 @@ void init__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4ItemPQ24Game
  * Address:	801F6954
  * Size:	000060
  */
-void exec__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::WaitState::exec( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2441,7 +2441,7 @@ void transit__Q24Game37FSMState<Game::ItemDownFloor::Item>FPQ34Game13ItemDownFlo
  * Address:	801F69E4
  * Size:	000004
  */
-void cleanup__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::WaitState::cleanup( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2454,7 +2454,7 @@ void cleanup__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4Item(void
  * Address:	801F69E8
  * Size:	000004
  */
-void onKeyEvent__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemDownFloor::WaitState::onKeyEvent( (Game::ItemDownFloor::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -2467,7 +2467,7 @@ void onKeyEvent__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4ItemRC
  * Address:	801F69EC
  * Size:	000040
  */
-void onPlat__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::WaitState::onPlat( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2497,7 +2497,7 @@ void onPlat__Q34Game13ItemDownFloor9WaitStateFPQ34Game13ItemDownFloor4Item(void)
  * Address:	801F6A2C
  * Size:	000038
  */
-void init__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg(void)
+void Game::ItemDownFloor::DamagedState::init( (Game::ItemDownFloor::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2523,7 +2523,7 @@ void init__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4ItemPQ24
  * Address:	801F6A64
  * Size:	0000C4
  */
-void exec__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DamagedState::exec( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2592,7 +2592,7 @@ void exec__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4Item(voi
  * Address:	801F6B28
  * Size:	000004
  */
-void cleanup__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DamagedState::cleanup( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2605,7 +2605,7 @@ void cleanup__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4Item(
  * Address:	801F6B2C
  * Size:	00000C
  */
-void onKeyEvent__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemDownFloor::DamagedState::onKeyEvent( (Game::ItemDownFloor::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -2620,7 +2620,7 @@ void onKeyEvent__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4It
  * Address:	801F6B38
  * Size:	000004
  */
-void onPlat__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DamagedState::onPlat( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2633,7 +2633,7 @@ void onPlat__Q34Game13ItemDownFloor12DamagedStateFPQ34Game13ItemDownFloor4Item(v
  * Address:	801F6B3C
  * Size:	00009C
  */
-void init__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg(void)
+void Game::ItemDownFloor::DownState::init( (Game::ItemDownFloor::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2688,7 +2688,7 @@ void init__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4ItemPQ24Game
  * Address:	801F6BD8
  * Size:	000004
  */
-void exec__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DownState::exec( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2701,7 +2701,7 @@ void exec__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4Item(void)
  * Address:	801F6BDC
  * Size:	000004
  */
-void cleanup__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DownState::cleanup( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2714,7 +2714,7 @@ void cleanup__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4Item(void
  * Address:	801F6BE0
  * Size:	000220
  */
-void onKeyEvent__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemDownFloor::DownState::onKeyEvent( (Game::ItemDownFloor::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -2874,7 +2874,7 @@ void onKeyEvent__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4ItemRC
  * Address:	801F6E00
  * Size:	000004
  */
-void onPlat__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DownState::onPlat( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2887,7 +2887,7 @@ void onPlat__Q34Game13ItemDownFloor9DownStateFPQ34Game13ItemDownFloor4Item(void)
  * Address:	801F6E04
  * Size:	000024
  */
-void init__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg(void)
+void Game::ItemDownFloor::UpState::init( (Game::ItemDownFloor::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2908,7 +2908,7 @@ void init__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4ItemPQ24Game8S
  * Address:	801F6E28
  * Size:	000004
  */
-void exec__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::UpState::exec( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2921,7 +2921,7 @@ void exec__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4Item(void)
  * Address:	801F6E2C
  * Size:	000004
  */
-void cleanup__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::UpState::cleanup( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2934,7 +2934,7 @@ void cleanup__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4Item(void)
  * Address:	801F6E30
  * Size:	00003C
  */
-void onKeyEvent__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemDownFloor::UpState::onKeyEvent( (Game::ItemDownFloor::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -2961,7 +2961,7 @@ void onKeyEvent__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4ItemRCQ2
  * Address:	801F6E6C
  * Size:	000004
  */
-void onPlat__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::UpState::onPlat( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -2974,7 +2974,7 @@ void onPlat__Q34Game13ItemDownFloor7UpStateFPQ34Game13ItemDownFloor4Item(void)
  * Address:	801F6E70
  * Size:	00007C
  */
-void generatorNewItemParm__Q34Game13ItemDownFloor3MgrFv(void)
+void Game::ItemDownFloor::Mgr::generatorNewItemParm(void)
 {
 /*
 .loc_0x0:
@@ -3019,7 +3019,7 @@ void generatorNewItemParm__Q34Game13ItemDownFloor3MgrFv(void)
  * Address:	801F6EEC
  * Size:	000104
  */
-void generatorWrite__Q34Game13ItemDownFloor3MgrFR6StreamPQ24Game11GenItemParm(void)
+void Game::ItemDownFloor::Mgr::generatorWrite( (Stream &, Game::GenItemParm *))
 {
 /*
 .loc_0x0:
@@ -3098,7 +3098,7 @@ void generatorWrite__Q34Game13ItemDownFloor3MgrFR6StreamPQ24Game11GenItemParm(vo
  * Address:	801F6FF0
  * Size:	0000CC
  */
-void generatorRead__Q34Game13ItemDownFloor3MgrFR6StreamPQ24Game11GenItemParmUl(void)
+void Game::ItemDownFloor::Mgr::generatorRead( (Stream &, Game::GenItemParm *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -3312,7 +3312,7 @@ void generatorBirth__Q34Game13ItemDownFloor3MgrFR10Vector3<float>R10Vector3<floa
  * Address:	801F72A0
  * Size:	000134
  */
-void __dt__Q34Game13ItemDownFloor3MgrFv(void)
+void Game::ItemDownFloor::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3409,7 +3409,7 @@ void __dt__Q34Game13ItemDownFloor3MgrFv(void)
  * Address:	801F73D4
  * Size:	000140
  */
-void doNew__Q34Game13ItemDownFloor3MgrFv(void)
+void Game::ItemDownFloor::Mgr::doNew(void)
 {
 /*
 .loc_0x0:
@@ -3507,7 +3507,7 @@ void doNew__Q34Game13ItemDownFloor3MgrFv(void)
  * Address:	801F7514
  * Size:	00000C
  */
-void generatorGetID__Q34Game13ItemDownFloor3MgrFv(void)
+void Game::ItemDownFloor::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -3522,7 +3522,7 @@ void generatorGetID__Q34Game13ItemDownFloor3MgrFv(void)
  * Address:	801F7520
  * Size:	00000C
  */
-void generatorLocalVersion__Q34Game13ItemDownFloor3MgrFv(void)
+void Game::ItemDownFloor::Mgr::generatorLocalVersion(void)
 {
 /*
 .loc_0x0:
@@ -3537,7 +3537,7 @@ void generatorLocalVersion__Q34Game13ItemDownFloor3MgrFv(void)
  * Address:	801F752C
  * Size:	000004
  */
-void makeTrMatrix__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::makeTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -3550,7 +3550,7 @@ void makeTrMatrix__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F7530
  * Size:	000008
  */
-void getFaceDir__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::getFaceDir(void)
 {
 /*
 .loc_0x0:
@@ -3564,7 +3564,7 @@ void getFaceDir__Q34Game13ItemDownFloor4ItemFv(void)
  * Address:	801F7538
  * Size:	00000C
  */
-void getCreatureName__Q34Game13ItemDownFloor4ItemFv(void)
+void Game::ItemDownFloor::Item::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -3604,7 +3604,7 @@ void doAI__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM,
  * Address:	801F7578
  * Size:	000004
  */
-void init__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg(void)
+void Game::ItemDownFloor::DeadState::init( (Game::ItemDownFloor::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3617,7 +3617,7 @@ void init__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4ItemPQ24Game
  * Address:	801F757C
  * Size:	000004
  */
-void exec__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DeadState::exec( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -3630,7 +3630,7 @@ void exec__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4Item(void)
  * Address:	801F7580
  * Size:	000004
  */
-void cleanup__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DeadState::cleanup( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -3643,7 +3643,7 @@ void cleanup__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4Item(void
  * Address:	801F7584
  * Size:	000004
  */
-void onPlat__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4Item(void)
+void Game::ItemDownFloor::DeadState::onPlat( (Game::ItemDownFloor::Item *))
 {
 /*
 .loc_0x0:
@@ -4132,7 +4132,7 @@ void @376@onKeyEvent__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDown
  * Address:	801F78B0
  * Size:	000008
  */
-void @376@onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent(void)
+void @376@Game::ItemDownFloor::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -4146,7 +4146,7 @@ void @376@onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent(void)
  * Address:	801F78B8
  * Size:	000008
  */
-void @480@getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam(void)
+void @480@Game::ItemDownFloor::Item::getCarryInfoParam( (CarryInfoParam &))
 {
 /*
 .loc_0x0:
@@ -4160,7 +4160,7 @@ void @480@getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam(void)
  * Address:	801F78C0
  * Size:	000008
  */
-void @48@__dt__Q34Game13ItemDownFloor3MgrFv(void)
+void @48@Game::ItemDownFloor::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

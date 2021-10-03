@@ -68,7 +68,7 @@ void makeItem()
  * Address:	801ACDBC
  * Size:	00008C
  */
-void initialise__Q24Game7GenItemFv(void)
+void Game::GenItem::initialise(void)
 {
 /*
 .loc_0x0:
@@ -115,7 +115,7 @@ void initialise__Q24Game7GenItemFv(void)
  * Address:	801ACE48
  * Size:	000038
  */
-void updateUseList__Q24Game7GenItemFPQ24Game9Generatori(void)
+void Game::GenItem::updateUseList( (Game::Generator *, int))
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void updateUseList__Q24Game7GenItemFPQ24Game9Generatori(void)
  * Address:	801ACE80
  * Size:	00006C
  */
-void doEvent__Q24Game7GenItemFUl(void)
+void Game::GenItem::doEvent( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -222,7 +222,7 @@ void generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3<float>(void)
  * Address:	801ACF54
  * Size:	000050
  */
-void getShape__Q24Game7GenItemFv(void)
+void Game::GenItem::getShape(void)
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void getShape__Q24Game7GenItemFv(void)
  * Address:	801ACFA4
  * Size:	000154
  */
-void doWrite__Q24Game7GenItemFR6Stream(void)
+void Game::GenItem::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void doWrite__Q24Game7GenItemFR6Stream(void)
  * Address:	801AD0F8
  * Size:	000004
  */
-void generatorWrite__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParm(void)
+void Game::BaseItemMgr::generatorWrite( (Stream &, Game::GenItemParm *))
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void generatorWrite__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParm(void)
  * Address:	801AD0FC
  * Size:	00000C
  */
-void generatorLocalVersion__Q24Game11BaseItemMgrFv(void)
+void Game::BaseItemMgr::generatorLocalVersion(void)
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void generatorLocalVersion__Q24Game11BaseItemMgrFv(void)
  * Address:	801AD108
  * Size:	000148
  */
-void doRead__Q24Game7GenItemFR6Stream(void)
+void Game::GenItem::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -487,7 +487,7 @@ void doRead__Q24Game7GenItemFR6Stream(void)
  * Address:	801AD250
  * Size:	000004
  */
-void generatorRead__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParmUl(void)
+void Game::BaseItemMgr::generatorRead( (Stream &, Game::GenItemParm *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -500,7 +500,7 @@ void generatorRead__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParmUl(void)
  * Address:	801AD254
  * Size:	000004
  */
-void ramSaveParameters__Q24Game7GenItemFR6Stream(void)
+void Game::GenItem::ramSaveParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -513,7 +513,7 @@ void ramSaveParameters__Q24Game7GenItemFR6Stream(void)
  * Address:	801AD258
  * Size:	000004
  */
-void ramLoadParameters__Q24Game7GenItemFR6Stream(void)
+void Game::GenItem::ramLoadParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -526,7 +526,7 @@ void ramLoadParameters__Q24Game7GenItemFR6Stream(void)
  * Address:	801AD25C
  * Size:	000078
  */
-void generate__Q24Game7GenItemFPQ24Game9Generator(void)
+void Game::GenItem::generate( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -568,7 +568,7 @@ void generate__Q24Game7GenItemFPQ24Game9Generator(void)
  * Address:	801AD2D4
  * Size:	0000A4
  */
-void birth__Q24Game7GenItemFPQ24Game6GenArg(void)
+void Game::GenItem::birth( (Game::GenArg *))
 {
 /*
 .loc_0x0:
@@ -633,7 +633,7 @@ void makeObjectItem()
  * Address:	........
  * Size:	00008C
  */
-void initialise__Q24Game13GenObjectItemFv(void)
+void Game::GenObjectItem::initialise(void)
 {
 	// UNUSED FUNCTION
 }
@@ -643,7 +643,7 @@ void initialise__Q24Game13GenObjectItemFv(void)
  * Address:	........
  * Size:	00004C
  */
-void doWrite__Q24Game13GenObjectItemFR6Stream(void)
+void Game::GenObjectItem::doWrite( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -653,7 +653,7 @@ void doWrite__Q24Game13GenObjectItemFR6Stream(void)
  * Address:	........
  * Size:	00004C
  */
-void doRead__Q24Game13GenObjectItemFR6Stream(void)
+void Game::GenObjectItem::doRead( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -663,7 +663,7 @@ void doRead__Q24Game13GenObjectItemFR6Stream(void)
  * Address:	........
  * Size:	000004
  */
-void ramSaveParameters__Q24Game13GenObjectItemFR6Stream(void)
+void Game::GenObjectItem::ramSaveParameters( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -673,7 +673,7 @@ void ramSaveParameters__Q24Game13GenObjectItemFR6Stream(void)
  * Address:	........
  * Size:	000004
  */
-void ramLoadParameters__Q24Game13GenObjectItemFR6Stream(void)
+void Game::GenObjectItem::ramLoadParameters( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -683,7 +683,7 @@ void ramLoadParameters__Q24Game13GenObjectItemFR6Stream(void)
  * Address:	........
  * Size:	000078
  */
-void generate__Q24Game13GenObjectItemFPQ24Game9Generator(void)
+void Game::GenObjectItem::generate( (Game::Generator *))
 {
 	// UNUSED FUNCTION
 }
@@ -693,7 +693,7 @@ void generate__Q24Game13GenObjectItemFPQ24Game9Generator(void)
  * Address:	........
  * Size:	000074
  */
-void birth__Q24Game13GenObjectItemFPQ24Game6GenArg(void)
+void Game::GenObjectItem::birth( (Game::GenArg *))
 {
 	// UNUSED FUNCTION
 }

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801B62B0
  * Size:	000148
  */
-void __ct__Q24Game11AIConstantsFv(void)
+void Game::AIConstants::__ct(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __ct__Q24Game11AIConstantsFv(void)
  * Address:	801B63F8
  * Size:	000070
  */
-void __dt__Q24Game11AIConstantsFv(void)
+void Game::AIConstants::__dt(void)
 {
 /*
 .loc_0x0:

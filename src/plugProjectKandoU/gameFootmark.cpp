@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801B4794
  * Size:	00001C
  */
-void __ct__Q24Game8FootmarkFv(void)
+void Game::Footmark::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q24Game8FootmarkFv(void)
  * Address:	801B47B0
  * Size:	00001C
  */
-void __ct__Q24Game9FootmarksFv(void)
+void Game::Footmarks::__ct(void)
 {
 /*
 .loc_0x0:
@@ -53,7 +53,7 @@ void __ct__Q24Game9FootmarksFv(void)
  * Address:	801B47CC
  * Size:	00006C
  */
-void alloc__Q24Game9FootmarksFi(void)
+void Game::Footmarks::alloc( (int))
 {
 /*
 .loc_0x0:
@@ -92,7 +92,7 @@ void alloc__Q24Game9FootmarksFi(void)
  * Address:	801B4838
  * Size:	000134
  */
-void add__Q24Game9FootmarksFRQ24Game8Footmark(void)
+void Game::Footmarks::add( (Game::Footmark &))
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void add__Q24Game9FootmarksFRQ24Game8Footmark(void)
  * Address:	801B496C
  * Size:	00004C
  */
-void get__Q24Game9FootmarksFi(void)
+void Game::Footmarks::get( (int))
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void findNearest2__Q24Game9FootmarksFR10Vector3<float>i(void)
  * Address:	........
  * Size:	000004
  */
-void draw__Q24Game9FootmarksFR8Graphics(void)
+void Game::Footmarks::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }

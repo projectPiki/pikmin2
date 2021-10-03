@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803DD0A8
  * Size:	000350
  */
-void doSetArchive__Q33ebi6Screen9TSaveMenuFP10JKRArchive(void)
+void ebi::Screen::TSaveMenu::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -243,7 +243,7 @@ void doSetArchive__Q33ebi6Screen9TSaveMenuFP10JKRArchive(void)
  * Address:	803DD3F8
  * Size:	00007C
  */
-void doOpenScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TSaveMenu::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void doOpenScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803DD474
  * Size:	000064
  */
-void doCloseScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TSaveMenu::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -323,7 +323,7 @@ void doCloseScreen__Q33ebi6Screen9TSaveMenuFPQ33ebi6Screen8ArgClose(void)
  * Address:	803DD4D8
  * Size:	000084
  */
-void doKillScreen__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::doKillScreen(void)
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void doKillScreen__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DD55C
  * Size:	0000DC
  */
-void doUpdateStateOpen__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -439,7 +439,7 @@ void doUpdateStateOpen__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DD638
  * Size:	000074
  */
-void doUpdateStateWait__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -482,7 +482,7 @@ void doUpdateStateWait__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DD6AC
  * Size:	0000D4
  */
-void doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -549,7 +549,7 @@ void doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DD780
  * Size:	000234
  */
-void doDraw__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void doDraw__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DD9B4
  * Size:	0000B0
  */
-void loadResource__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -776,7 +776,7 @@ void loadResource__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DDA64
  * Size:	000094
  */
-void openMsg__Q33ebi6Screen9TSaveMenuFl(void)
+void ebi::Screen::TSaveMenu::openMsg( (long))
 {
 /*
 .loc_0x0:
@@ -833,7 +833,7 @@ void openMsg__Q33ebi6Screen9TSaveMenuFl(void)
  * Address:	803DDAF8
  * Size:	00003C
  */
-void closeMsg__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::closeMsg(void)
 {
 /*
 .loc_0x0:
@@ -864,7 +864,7 @@ void closeMsg__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DDB34
  * Size:	000054
  */
-void noMsg__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::noMsg(void)
 {
 /*
 .loc_0x0:
@@ -899,7 +899,7 @@ void noMsg__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DDB88
  * Size:	000010
  */
-void isFinishMsg__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::isFinishMsg(void)
 {
 /*
 .loc_0x0:
@@ -915,7 +915,7 @@ void isFinishMsg__Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DDB98
  * Size:	0003B4
  */
-void startMsgState___Q33ebi6Screen9TSaveMenuFQ43ebi6Screen9TSaveMenu12enumMsgState(void)
+void ebi::Screen::TSaveMenu::startMsgState_( (ebi::Screen::TSaveMenu::enumMsgState))
 {
 /*
 .loc_0x0:
@@ -1190,7 +1190,7 @@ void startMsgState___Q33ebi6Screen9TSaveMenuFQ43ebi6Screen9TSaveMenu12enumMsgSta
  * Address:	803DDF4C
  * Size:	000368
  */
-void updateMsg___Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::updateMsg_(void)
 {
 /*
 .loc_0x0:
@@ -1476,7 +1476,7 @@ void updateMsg___Q33ebi6Screen9TSaveMenuFv(void)
  * Address:	803DE2B4
  * Size:	00000C
  */
-void getName__Q33ebi6Screen9TSaveMenuFv(void)
+void ebi::Screen::TSaveMenu::getName(void)
 {
 /*
 .loc_0x0:

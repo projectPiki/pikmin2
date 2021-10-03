@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8023D41C
  * Size:	00000C
  */
-void clear__Q24Game17PelletBirthBufferFv(void)
+void Game::PelletBirthBuffer::clear(void)
 {
 /*
 .loc_0x0:
@@ -30,7 +30,7 @@ void clear__Q24Game17PelletBirthBufferFv(void)
  * Address:	8023D428
  * Size:	0000F0
  */
-void entry__Q24Game17PelletBirthBufferFRQ24Game13PelletInitArg(void)
+void Game::PelletBirthBuffer::entry( (Game::PelletInitArg &))
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void entry__Q24Game17PelletBirthBufferFRQ24Game13PelletInitArg(void)
  * Address:	8023D518
  * Size:	0000A0
  */
-void birthAll__Q24Game17PelletBirthBufferFv(void)
+void Game::PelletBirthBuffer::birthAll(void)
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void __sinit_pelletBirthBuffer_cpp(void)
  * Address:	8023D5F4
  * Size:	000058
  */
-void __ct__Q24Game13PelletInitArgFv(void)
+void Game::PelletInitArg::__ct(void)
 {
 /*
 .loc_0x0:

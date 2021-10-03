@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801F7970
  * Size:	000134
  */
-void init__Q34Game10ItemBarrel3FSMFPQ34Game10ItemBarrel4Item(void)
+void Game::ItemBarrel::FSM::init( (Game::ItemBarrel::Item *))
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void init__Q34Game10ItemBarrel3FSMFPQ34Game10ItemBarrel4Item(void)
  * Address:	801F7AA4
  * Size:	00000C
  */
-void init__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4ItemPQ24Game8StateArg(void)
+void Game::ItemBarrel::NormalState::init( (Game::ItemBarrel::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -125,7 +125,7 @@ void init__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4ItemPQ24Game8St
  * Address:	801F7AB0
  * Size:	000004
  */
-void exec__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4Item(void)
+void Game::ItemBarrel::NormalState::exec( (Game::ItemBarrel::Item *))
 {
 /*
 .loc_0x0:
@@ -138,7 +138,7 @@ void exec__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4Item(void)
  * Address:	801F7AB4
  * Size:	000004
  */
-void cleanup__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4Item(void)
+void Game::ItemBarrel::NormalState::cleanup( (Game::ItemBarrel::Item *))
 {
 /*
 .loc_0x0:
@@ -151,7 +151,7 @@ void cleanup__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4Item(void)
  * Address:	801F7AB8
  * Size:	000064
  */
-void onDamage__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4Itemf(void)
+void Game::ItemBarrel::NormalState::onDamage( (Game::ItemBarrel::Item *, float))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void transit__Q24Game34FSMState<Game::ItemBarrel::Item>FPQ34Game10ItemBarrel4Ite
  * Address:	801F7B4C
  * Size:	000004
  */
-void onKeyEvent__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemBarrel::NormalState::onKeyEvent( (Game::ItemBarrel::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void onKeyEvent__Q34Game10ItemBarrel11NormalStateFPQ34Game10ItemBarrel4ItemRCQ28
  * Address:	801F7B50
  * Size:	000170
  */
-void init__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4ItemPQ24Game8StateArg(void)
+void Game::ItemBarrel::DeadState::init( (Game::ItemBarrel::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void init__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4ItemPQ24Game8State
  * Address:	801F7CC0
  * Size:	000004
  */
-void exec__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4Item(void)
+void Game::ItemBarrel::DeadState::exec( (Game::ItemBarrel::Item *))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void exec__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4Item(void)
  * Address:	801F7CC4
  * Size:	000004
  */
-void cleanup__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4Item(void)
+void Game::ItemBarrel::DeadState::cleanup( (Game::ItemBarrel::Item *))
 {
 /*
 .loc_0x0:
@@ -361,7 +361,7 @@ void cleanup__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4Item(void)
  * Address:	801F7CC8
  * Size:	000004
  */
-void onDamage__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4Itemf(void)
+void Game::ItemBarrel::DeadState::onDamage( (Game::ItemBarrel::Item *, float))
 {
 /*
 .loc_0x0:
@@ -374,7 +374,7 @@ void onDamage__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4Itemf(void)
  * Address:	801F7CCC
  * Size:	000148
  */
-void onKeyEvent__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemBarrel::DeadState::onKeyEvent( (Game::ItemBarrel::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -470,7 +470,7 @@ void onKeyEvent__Q34Game10ItemBarrel9DeadStateFPQ34Game10ItemBarrel4ItemRCQ28Sys
  * Address:	801F7E14
  * Size:	000004
  */
-void init__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4ItemPQ24Game8StateArg(void)
+void Game::ItemBarrel::DamagedState::init( (Game::ItemBarrel::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -483,7 +483,7 @@ void init__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4ItemPQ24Game8S
  * Address:	801F7E18
  * Size:	000004
  */
-void exec__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4Item(void)
+void Game::ItemBarrel::DamagedState::exec( (Game::ItemBarrel::Item *))
 {
 /*
 .loc_0x0:
@@ -496,7 +496,7 @@ void exec__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4Item(void)
  * Address:	801F7E1C
  * Size:	000004
  */
-void cleanup__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4Item(void)
+void Game::ItemBarrel::DamagedState::cleanup( (Game::ItemBarrel::Item *))
 {
 /*
 .loc_0x0:
@@ -509,7 +509,7 @@ void cleanup__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4Item(void)
  * Address:	801F7E20
  * Size:	000010
  */
-void onDamage__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4Itemf(void)
+void Game::ItemBarrel::DamagedState::onDamage( (Game::ItemBarrel::Item *, float))
 {
 /*
 .loc_0x0:
@@ -525,7 +525,7 @@ void onDamage__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4Itemf(void
  * Address:	801F7E30
  * Size:	000004
  */
-void onKeyEvent__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemBarrel::DamagedState::onKeyEvent( (Game::ItemBarrel::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -538,7 +538,7 @@ void onKeyEvent__Q34Game10ItemBarrel12DamagedStateFPQ34Game10ItemBarrel4ItemRCQ2
  * Address:	801F7E34
  * Size:	000044
  */
-void doSave__Q34Game10ItemBarrel4ItemFR6Stream(void)
+void Game::ItemBarrel::Item::doSave( (Stream &))
 {
 /*
 .loc_0x0:
@@ -567,7 +567,7 @@ void doSave__Q34Game10ItemBarrel4ItemFR6Stream(void)
  * Address:	801F7E78
  * Size:	0000BC
  */
-void doLoad__Q34Game10ItemBarrel4ItemFR6Stream(void)
+void Game::ItemBarrel::Item::doLoad( (Stream &))
 {
 /*
 .loc_0x0:
@@ -632,7 +632,7 @@ void doLoad__Q34Game10ItemBarrel4ItemFR6Stream(void)
  * Address:	........
  * Size:	0000E4
  */
-void __ct__Q34Game10ItemBarrel4ItemFv(void)
+void Game::ItemBarrel::Item::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -642,7 +642,7 @@ void __ct__Q34Game10ItemBarrel4ItemFv(void)
  * Address:	801F7F34
  * Size:	000048
  */
-void constructor__Q34Game10ItemBarrel4ItemFv(void)
+void Game::ItemBarrel::Item::constructor(void)
 {
 /*
 .loc_0x0:
@@ -674,7 +674,7 @@ void constructor__Q34Game10ItemBarrel4ItemFv(void)
  * Address:	801F7F7C
  * Size:	000140
  */
-void onInit__Q34Game10ItemBarrel4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemBarrel::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -795,7 +795,7 @@ void start__Q24Game38StateMachine<Game::ItemBarrel::Item>FPQ34Game10ItemBarrel4I
  * Address:	801F80F0
  * Size:	00004C
  */
-void onSetPosition__Q34Game10ItemBarrel4ItemFv(void)
+void Game::ItemBarrel::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -826,7 +826,7 @@ void onSetPosition__Q34Game10ItemBarrel4ItemFv(void)
  * Address:	801F813C
  * Size:	000048
  */
-void updateBoundSphere__Q34Game10ItemBarrel4ItemFv(void)
+void Game::ItemBarrel::Item::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -856,7 +856,7 @@ void updateBoundSphere__Q34Game10ItemBarrel4ItemFv(void)
  * Address:	801F8184
  * Size:	0000C4
  */
-void doAI__Q34Game10ItemBarrel4ItemFv(void)
+void Game::ItemBarrel::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -1018,7 +1018,7 @@ void getVectorField__Q34Game10ItemBarrel4ItemFRQ23Sys6SphereR10Vector3<float>(vo
  * Address:	801F835C
  * Size:	000058
  */
-void getWorkRadius__Q34Game10ItemBarrel4ItemFv(void)
+void Game::ItemBarrel::Item::getWorkRadius(void)
 {
 /*
 .loc_0x0:
@@ -1056,7 +1056,7 @@ void getWorkRadius__Q34Game10ItemBarrel4ItemFv(void)
  * Address:	801F83B4
  * Size:	0000C4
  */
-void getWorkDistance__Q34Game10ItemBarrel4ItemFRQ23Sys6Sphere(void)
+void Game::ItemBarrel::Item::getWorkDistance( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1125,7 +1125,7 @@ void getWorkDistance__Q34Game10ItemBarrel4ItemFRQ23Sys6Sphere(void)
  * Address:	801F8478
  * Size:	000024
  */
-void createBarrel__Q34Game10ItemBarrel4ItemFv(void)
+void Game::ItemBarrel::Item::createBarrel(void)
 {
 /*
 .loc_0x0:
@@ -1146,7 +1146,7 @@ void createBarrel__Q34Game10ItemBarrel4ItemFv(void)
  * Address:	801F849C
  * Size:	000148
  */
-void interactAttack__Q34Game10ItemBarrel4ItemFRQ24Game14InteractAttack(void)
+void Game::ItemBarrel::Item::interactAttack( (Game::InteractAttack &))
 {
 /*
 .loc_0x0:
@@ -1256,7 +1256,7 @@ void interactAttack__Q34Game10ItemBarrel4ItemFRQ24Game14InteractAttack(void)
  * Address:	801F85E4
  * Size:	000004
  */
-void onDamage__Q34Game10ItemBarrel5StateFPQ34Game10ItemBarrel4Itemf(void)
+void Game::ItemBarrel::State::onDamage( (Game::ItemBarrel::Item *, float))
 {
 /*
 .loc_0x0:
@@ -1269,7 +1269,7 @@ void onDamage__Q34Game10ItemBarrel5StateFPQ34Game10ItemBarrel4Itemf(void)
  * Address:	801F85E8
  * Size:	000120
  */
-void __ct__Q34Game10ItemBarrel3MgrFv(void)
+void Game::ItemBarrel::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1361,7 +1361,7 @@ void __ct__Q34Game10ItemBarrel3MgrFv(void)
  * Address:	801F8708
  * Size:	000024
  */
-void read__Q34Game10ItemBarrel11BarrelParmsFR6Stream(void)
+void Game::ItemBarrel::BarrelParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1382,7 +1382,7 @@ void read__Q34Game10ItemBarrel11BarrelParmsFR6Stream(void)
  * Address:	801F872C
  * Size:	0001EC
  */
-void __ct__Q34Game10ItemBarrel11BarrelParmsFv(void)
+void Game::ItemBarrel::BarrelParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1517,7 +1517,7 @@ void __ct__Q34Game10ItemBarrel11BarrelParmsFv(void)
  * Address:	801F8918
  * Size:	000108
  */
-void birth__Q34Game10ItemBarrel3MgrFv(void)
+void Game::ItemBarrel::Mgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -1635,7 +1635,7 @@ void generatorBirth__Q34Game10ItemBarrel3MgrFR10Vector3<float>R10Vector3<float>P
  * Address:	801F8A80
  * Size:	0000B8
  */
-void onLoadResources__Q34Game10ItemBarrel3MgrFv(void)
+void Game::ItemBarrel::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -1693,7 +1693,7 @@ void onLoadResources__Q34Game10ItemBarrel3MgrFv(void)
  * Address:	801F8B38
  * Size:	000134
  */
-void __dt__Q34Game10ItemBarrel3MgrFv(void)
+void Game::ItemBarrel::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1790,7 +1790,7 @@ void __dt__Q34Game10ItemBarrel3MgrFv(void)
  * Address:	801F8C6C
  * Size:	0000F0
  */
-void doNew__Q34Game10ItemBarrel3MgrFv(void)
+void Game::ItemBarrel::Mgr::doNew(void)
 {
 /*
 .loc_0x0:
@@ -1866,7 +1866,7 @@ void doNew__Q34Game10ItemBarrel3MgrFv(void)
  * Address:	801F8D5C
  * Size:	00000C
  */
-void generatorGetID__Q34Game10ItemBarrel3MgrFv(void)
+void Game::ItemBarrel::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -1881,7 +1881,7 @@ void generatorGetID__Q34Game10ItemBarrel3MgrFv(void)
  * Address:	801F8D68
  * Size:	000008
  */
-void getCreatureName__Q34Game10ItemBarrel4ItemFv(void)
+void Game::ItemBarrel::Item::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -2396,7 +2396,7 @@ void @376@onKeyEvent__Q24Game83FSMItem<Game::ItemBarrel::Item, Game::ItemBarrel:
  * Address:	801F90CC
  * Size:	000008
  */
-void @48@__dt__Q34Game10ItemBarrel3MgrFv(void)
+void @48@Game::ItemBarrel::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

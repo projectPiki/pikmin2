@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000068
  */
-void __ct__Q24Game11CaveOtakaraFv(void)
+void Game::CaveOtakara::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game11CaveOtakaraFv(void)
  * Address:	........
  * Size:	000090
  */
-void __ct__Q24Game15CaveOtakaraInfoFv(void)
+void Game::CaveOtakaraInfo::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void __ct__Q24Game15CaveOtakaraInfoFv(void)
  * Address:	801AD378
  * Size:	000060
  */
-void __dt__Q24Game11CaveOtakaraFv(void)
+void Game::CaveOtakara::__dt(void)
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void __dt__Q24Game11CaveOtakaraFv(void)
  * Address:	........
  * Size:	0000EC
  */
-void read__Q24Game15CaveOtakaraInfoFR6Stream(void)
+void Game::CaveOtakaraInfo::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -83,7 +83,7 @@ void read__Q24Game15CaveOtakaraInfoFR6Stream(void)
  * Address:	........
  * Size:	000024
  */
-void get_index__Q24Game15CaveOtakaraInfoFi(void)
+void Game::CaveOtakaraInfo::get_index( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -93,7 +93,7 @@ void get_index__Q24Game15CaveOtakaraInfoFi(void)
  * Address:	........
  * Size:	00008C
  */
-void get_id__Q24Game15CaveOtakaraInfoFR4ID32(void)
+void Game::CaveOtakaraInfo::get_id( (ID32 &))
 {
 	// UNUSED FUNCTION
 }
@@ -103,7 +103,7 @@ void get_id__Q24Game15CaveOtakaraInfoFR4ID32(void)
  * Address:	........
  * Size:	000080
  */
-void getCaveIndex_FromID__Q24Game15CaveOtakaraInfoFR4ID32(void)
+void Game::CaveOtakaraInfo::getCaveIndex_FromID( (ID32 &))
 {
 	// UNUSED FUNCTION
 }
@@ -113,7 +113,7 @@ void getCaveIndex_FromID__Q24Game15CaveOtakaraInfoFR4ID32(void)
  * Address:	........
  * Size:	00003C
  */
-void getCaveID_FromIndex__Q24Game15CaveOtakaraInfoFi(void)
+void Game::CaveOtakaraInfo::getCaveID_FromIndex( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -123,7 +123,7 @@ void getCaveID_FromIndex__Q24Game15CaveOtakaraInfoFi(void)
  * Address:	........
  * Size:	000064
  */
-void __ct__Q24Game12LimitGenInfoFv(void)
+void Game::LimitGenInfo::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -133,7 +133,7 @@ void __ct__Q24Game12LimitGenInfoFv(void)
  * Address:	801AD3D8
  * Size:	000060
  */
-void __dt__Q24Game8LimitGenFv(void)
+void Game::LimitGen::__dt(void)
 {
 /*
 .loc_0x0:
@@ -171,7 +171,7 @@ void __dt__Q24Game8LimitGenFv(void)
  * Address:	........
  * Size:	0000CC
  */
-void read__Q24Game12LimitGenInfoFR6Stream(void)
+void Game::LimitGenInfo::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -181,7 +181,7 @@ void read__Q24Game12LimitGenInfoFR6Stream(void)
  * Address:	801AD438
  * Size:	000154
  */
-void __ct__Q24Game10CourseInfoFv(void)
+void Game::CourseInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -278,7 +278,7 @@ void __ct__Q24Game10CourseInfoFv(void)
  * Address:	........
  * Size:	00006C
  */
-void __dt__Q24Game15CaveOtakaraInfoFv(void)
+void Game::CaveOtakaraInfo::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -288,7 +288,7 @@ void __dt__Q24Game15CaveOtakaraInfoFv(void)
  * Address:	........
  * Size:	00006C
  */
-void __dt__Q24Game12LimitGenInfoFv(void)
+void Game::LimitGenInfo::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -298,7 +298,7 @@ void __dt__Q24Game12LimitGenInfoFv(void)
  * Address:	801AD58C
  * Size:	000004
  */
-void dump__Q24Game10CourseInfoFv(void)
+void Game::CourseInfo::dump(void)
 {
 /*
 .loc_0x0:
@@ -311,7 +311,7 @@ void dump__Q24Game10CourseInfoFv(void)
  * Address:	801AD590
  * Size:	0004C4
  */
-void read__Q24Game10CourseInfoFR6Stream(void)
+void Game::CourseInfo::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -668,7 +668,7 @@ void read__Q24Game10CourseInfoFR6Stream(void)
  * Address:	801ADA54
  * Size:	000088
  */
-void getOtakaraNum__Q24Game10CourseInfoFR4ID32(void)
+void Game::CourseInfo::getOtakaraNum( (ID32 &))
 {
 /*
 .loc_0x0:
@@ -726,7 +726,7 @@ void getOtakaraNum__Q24Game10CourseInfoFR4ID32(void)
  * Address:	801ADADC
  * Size:	000038
  */
-void getOtakaraNum__Q24Game10CourseInfoFi(void)
+void Game::CourseInfo::getOtakaraNum( (int))
 {
 /*
 .loc_0x0:
@@ -756,7 +756,7 @@ void getOtakaraNum__Q24Game10CourseInfoFi(void)
  * Address:	801ADB14
  * Size:	00008C
  */
-void getCaveIndex_FromID__Q24Game10CourseInfoFR4ID32(void)
+void Game::CourseInfo::getCaveIndex_FromID( (ID32 &))
 {
 /*
 .loc_0x0:
@@ -811,7 +811,7 @@ void getCaveIndex_FromID__Q24Game10CourseInfoFR4ID32(void)
  * Address:	801ADBA0
  * Size:	00009C
  */
-void getCaveinfoFilename_FromID__Q24Game10CourseInfoFR4ID32(void)
+void Game::CourseInfo::getCaveinfoFilename_FromID( (ID32 &))
 {
 /*
 .loc_0x0:
@@ -872,7 +872,7 @@ void getCaveinfoFilename_FromID__Q24Game10CourseInfoFR4ID32(void)
  * Address:	801ADC3C
  * Size:	00003C
  */
-void getCaveID_FromIndex__Q24Game10CourseInfoFi(void)
+void Game::CourseInfo::getCaveID_FromIndex( (int))
 {
 /*
 .loc_0x0:
@@ -903,7 +903,7 @@ void getCaveID_FromIndex__Q24Game10CourseInfoFi(void)
  * Address:	801ADC78
  * Size:	000008
  */
-void getCaveNum__Q24Game10CourseInfoFv(void)
+void Game::CourseInfo::getCaveNum(void)
 {
 /*
 .loc_0x0:
@@ -917,7 +917,7 @@ void getCaveNum__Q24Game10CourseInfoFv(void)
  * Address:	801ADC80
  * Size:	0001EC
  */
-void __ct__Q24Game6StagesFv(void)
+void Game::Stages::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1054,7 +1054,7 @@ void __ct__Q24Game6StagesFv(void)
  * Address:	801ADE6C
  * Size:	0000D0
  */
-void __dt__Q24Game10CourseInfoFv(void)
+void Game::CourseInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1126,7 +1126,7 @@ void __dt__Q24Game10CourseInfoFv(void)
  * Address:	........
  * Size:	000008
  */
-void update__Q24Game6StagesFv(void)
+void Game::Stages::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1136,7 +1136,7 @@ void update__Q24Game6StagesFv(void)
  * Address:	801ADF3C
  * Size:	000070
  */
-void getCourseInfo__Q24Game6StagesFPc(void)
+void Game::Stages::getCourseInfo( (char *))
 {
 /*
 .loc_0x0:
@@ -1184,7 +1184,7 @@ void getCourseInfo__Q24Game6StagesFPc(void)
  * Address:	801ADFAC
  * Size:	000074
  */
-void getCourseInfo__Q24Game6StagesFi(void)
+void Game::Stages::getCourseInfo( (int))
 {
 /*
 .loc_0x0:
@@ -1231,7 +1231,7 @@ void getCourseInfo__Q24Game6StagesFi(void)
  * Address:	........
  * Size:	0003FC
  */
-void draw2d__Q24Game6StagesFv(void)
+void Game::Stages::draw2d(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1241,7 +1241,7 @@ void draw2d__Q24Game6StagesFv(void)
  * Address:	801AE020
  * Size:	000234
  */
-void createMapMgr__Q24Game6StagesFPQ24Game10CourseInfoPQ24Game8RouteMgr(void)
+void Game::Stages::createMapMgr( (Game::CourseInfo *, Game::RouteMgr *))
 {
 /*
 .loc_0x0:
@@ -1446,7 +1446,7 @@ void MapCollision::~MapCollision()
  * Address:	........
  * Size:	000018
  */
-void dump__Q24Game6StagesFv(void)
+void Game::Stages::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1456,7 +1456,7 @@ void dump__Q24Game6StagesFv(void)
  * Address:	801AE2B4
  * Size:	000194
  */
-void read__Q24Game6StagesFR6Stream(void)
+void Game::Stages::read( (Stream &))
 {
 /*
 .loc_0x0:

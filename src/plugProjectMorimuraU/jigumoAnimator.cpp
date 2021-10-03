@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80368858
  * Size:	000008
  */
-void setAnimMgr__Q34Game6Jigumo14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::Jigumo::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game6Jigumo14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	80368860
  * Size:	000008
  */
-void getAnimator__Q34Game6Jigumo14ProperAnimatorFi(void)
+void Game::Jigumo::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game6Jigumo14ProperAnimatorFi(void)
  * Address:	80368868
  * Size:	00005C
  */
-void __dt__Q34Game6Jigumo14ProperAnimatorFv(void)
+void Game::Jigumo::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game6Jigumo14ProperAnimatorFv(void)
  * Address:	803688C4
  * Size:	000008
  */
-void getAnimator__Q34Game6Jigumo14ProperAnimatorFv(void)
+void Game::Jigumo::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

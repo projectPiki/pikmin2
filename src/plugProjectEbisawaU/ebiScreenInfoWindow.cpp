@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000224
  */
-void __ct__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	0002A0
  */
-void doSetArchive__Q33ebi6Screen11TInfoWindowFP10JKRArchive(void)
+void ebi::Screen::TInfoWindow::doSetArchive( (JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void doSetArchive__Q33ebi6Screen11TInfoWindowFP10JKRArchive(void)
  * Address:	........
  * Size:	00007C
  */
-void doOpenScreen__Q33ebi6Screen11TInfoWindowFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TInfoWindow::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void doOpenScreen__Q33ebi6Screen11TInfoWindowFPQ33ebi6Screen7ArgOpen(void)
  * Address:	........
  * Size:	000064
  */
-void doCloseScreen__Q33ebi6Screen11TInfoWindowFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TInfoWindow::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void doCloseScreen__Q33ebi6Screen11TInfoWindowFPQ33ebi6Screen8ArgClose(void)
  * Address:	........
  * Size:	000060
  */
-void doKillScreen__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::doKillScreen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -65,7 +65,7 @@ void doKillScreen__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	0000DC
  */
-void doUpdateStateOpen__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::doUpdateStateOpen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +75,7 @@ void doUpdateStateOpen__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	000074
  */
-void doUpdateStateWait__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::doUpdateStateWait(void)
 {
 	// UNUSED FUNCTION
 }
@@ -85,7 +85,7 @@ void doUpdateStateWait__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	0000D4
  */
-void doUpdateStateClose__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::doUpdateStateClose(void)
 {
 	// UNUSED FUNCTION
 }
@@ -95,7 +95,7 @@ void doUpdateStateClose__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	000234
  */
-void doDraw__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::doDraw(void)
 {
 	// UNUSED FUNCTION
 }
@@ -105,7 +105,7 @@ void doDraw__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	0000A4
  */
-void loadResource__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::loadResource(void)
 {
 	// UNUSED FUNCTION
 }
@@ -115,7 +115,7 @@ void loadResource__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	000078
  */
-void openMsgCommon___Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::openMsgCommon_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -125,7 +125,7 @@ void openMsgCommon___Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	000170
  */
-void openMsg_QuestionYesNo__Q33ebi6Screen11TInfoWindowFUxUxUx(void)
+void ebi::Screen::TInfoWindow::openMsg_QuestionYesNo( (unsigned long long, unsigned long long, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -135,7 +135,7 @@ void openMsg_QuestionYesNo__Q33ebi6Screen11TInfoWindowFUxUxUx(void)
  * Address:	........
  * Size:	00014C
  */
-void openMsg_YesNo__Q33ebi6Screen11TInfoWindowFUxUx(void)
+void ebi::Screen::TInfoWindow::openMsg_YesNo( (unsigned long long, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -145,7 +145,7 @@ void openMsg_YesNo__Q33ebi6Screen11TInfoWindowFUxUx(void)
  * Address:	........
  * Size:	0000C8
  */
-void openMsg_Warning__Q33ebi6Screen11TInfoWindowFUx(void)
+void ebi::Screen::TInfoWindow::openMsg_Warning( (unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -155,7 +155,7 @@ void openMsg_Warning__Q33ebi6Screen11TInfoWindowFUx(void)
  * Address:	........
  * Size:	0000AC
  */
-void closeMsg__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::closeMsg(void)
 {
 	// UNUSED FUNCTION
 }
@@ -165,7 +165,7 @@ void closeMsg__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	000088
  */
-void killMsg__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::killMsg(void)
 {
 	// UNUSED FUNCTION
 }
@@ -175,7 +175,7 @@ void killMsg__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	000010
  */
-void isFinishMsg__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::isFinishMsg(void)
 {
 	// UNUSED FUNCTION
 }
@@ -185,7 +185,7 @@ void isFinishMsg__Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	00047C
  */
-void updateMsg___Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::updateMsg_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -195,7 +195,7 @@ void updateMsg___Q33ebi6Screen11TInfoWindowFv(void)
  * Address:	........
  * Size:	0001E0
  */
-void __ct__Q23ebi20T2DCallBack_AnimTextFv(void)
+void ebi::T2DCallBack_AnimText::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -205,7 +205,7 @@ void __ct__Q23ebi20T2DCallBack_AnimTextFv(void)
  * Address:	803F1A80
  * Size:	000084
  */
-void __dt__Q29P2DScreen3MgrFv(void)
+void P2DScreen::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -254,7 +254,7 @@ void __dt__Q29P2DScreen3MgrFv(void)
  * Address:	........
  * Size:	00000C
  */
-void getName__Q33ebi6Screen11TInfoWindowFv(void)
+void ebi::Screen::TInfoWindow::getName(void)
 {
 	// UNUSED FUNCTION
 }

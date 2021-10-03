@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8019EE94
  * Size:	000024
  */
-void clearStick__Q24Game8CreatureFv(void)
+void Game::Creature::clearStick(void)
 {
 /*
 .loc_0x0:
@@ -36,7 +36,7 @@ void clearStick__Q24Game8CreatureFv(void)
  * Address:	8019EEB8
  * Size:	00003C
  */
-void releaseAllStickers__Q24Game8CreatureFv(void)
+void Game::Creature::releaseAllStickers(void)
 {
 /*
 .loc_0x0:
@@ -67,7 +67,7 @@ void releaseAllStickers__Q24Game8CreatureFv(void)
  * Address:	8019EEF4
  * Size:	000174
  */
-void startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart(void)
+void Game::Creature::startStick( (Game::Creature *, CollPart *))
 {
 /*
 .loc_0x0:
@@ -186,7 +186,7 @@ void startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart(void)
  * Address:	8019F068
  * Size:	0001B0
  */
-void startStickMouth__Q24Game8CreatureFPQ24Game8CreatureP8CollPart(void)
+void Game::Creature::startStickMouth( (Game::Creature *, CollPart *))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void startStickMouth__Q24Game8CreatureFPQ24Game8CreatureP8CollPart(void)
  * Address:	8019F218
  * Size:	00020C
  */
-void startStick__Q24Game8CreatureFPQ24Game8Creatures(void)
+void Game::Creature::startStick( (Game::Creature *, short))
 {
 /*
 .loc_0x0:
@@ -489,7 +489,7 @@ void startStick__Q24Game8CreatureFPQ24Game8Creatures(void)
  * Address:	8019F424
  * Size:	000150
  */
-void endStick__Q24Game8CreatureFv(void)
+void Game::Creature::endStick(void)
 {
 /*
 .loc_0x0:
@@ -599,7 +599,7 @@ void endStick__Q24Game8CreatureFv(void)
  * Address:	8019F574
  * Size:	000014
  */
-void isStickTo__Q24Game8CreatureFv(void)
+void Game::Creature::isStickTo(void)
 {
 /*
 .loc_0x0:
@@ -616,7 +616,7 @@ void isStickTo__Q24Game8CreatureFv(void)
  * Address:	8019F588
  * Size:	000060
  */
-void isStickToMouth__Q24Game8CreatureFv(void)
+void Game::Creature::isStickToMouth(void)
 {
 /*
 .loc_0x0:
@@ -654,7 +654,7 @@ void isStickToMouth__Q24Game8CreatureFv(void)
  * Address:	........
  * Size:	000028
  */
-void isStickLeader__Q24Game8CreatureFv(void)
+void Game::Creature::isStickLeader(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1003,7 +1003,7 @@ void updateStick__Q24Game8CreatureFR10Vector3<float>(void)
  * Address:	8019FA9C
  * Size:	00000C
  */
-void clearCapture__Q24Game8CreatureFv(void)
+void Game::Creature::clearCapture(void)
 {
 /*
 .loc_0x0:
@@ -1018,7 +1018,7 @@ void clearCapture__Q24Game8CreatureFv(void)
  * Address:	8019FAA8
  * Size:	000054
  */
-void startCapture__Q24Game8CreatureFP7Matrixf(void)
+void Game::Creature::startCapture( (Matrixf *))
 {
 /*
 .loc_0x0:
@@ -1051,7 +1051,7 @@ void startCapture__Q24Game8CreatureFP7Matrixf(void)
  * Address:	8019FAFC
  * Size:	0000A0
  */
-void updateCapture__Q24Game8CreatureFR7Matrixf(void)
+void Game::Creature::updateCapture( (Matrixf &))
 {
 /*
 .loc_0x0:
@@ -1105,7 +1105,7 @@ void updateCapture__Q24Game8CreatureFR7Matrixf(void)
  * Address:	8019FB9C
  * Size:	000058
  */
-void endCapture__Q24Game8CreatureFv(void)
+void Game::Creature::endCapture(void)
 {
 /*
 .loc_0x0:
@@ -1139,7 +1139,7 @@ void endCapture__Q24Game8CreatureFv(void)
  * Address:	8019FBF4
  * Size:	000068
  */
-void initialise__Q24Game8StickersFv(void)
+void Game::Stickers::initialise(void)
 {
 /*
 .loc_0x0:
@@ -1181,7 +1181,7 @@ void initialise__Q24Game8StickersFv(void)
  * Address:	8019FC5C
  * Size:	000108
  */
-void __ct__Q24Game8StickersFPQ24Game8Creature(void)
+void Game::Stickers::__ct( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1267,7 +1267,7 @@ void __ct__Q24Game8StickersFPQ24Game8Creature(void)
  * Address:	8019FD64
  * Size:	00008C
  */
-void __dt__Q24Game8StickersFv(void)
+void Game::Stickers::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1318,7 +1318,7 @@ void __dt__Q24Game8StickersFv(void)
  * Address:	8019FDF0
  * Size:	000070
  */
-void get__Q24Game8StickersFPv(void)
+void Game::Stickers::get( (void *))
 {
 /*
 .loc_0x0:
@@ -1362,7 +1362,7 @@ void get__Q24Game8StickersFPv(void)
  * Address:	8019FE60
  * Size:	000008
  */
-void getNext__Q24Game8StickersFPv(void)
+void Game::Stickers::getNext( (void *))
 {
 /*
 .loc_0x0:
@@ -1376,7 +1376,7 @@ void getNext__Q24Game8StickersFPv(void)
  * Address:	8019FE68
  * Size:	000008
  */
-void getStart__Q24Game8StickersFv(void)
+void Game::Stickers::getStart(void)
 {
 /*
 .loc_0x0:
@@ -1390,7 +1390,7 @@ void getStart__Q24Game8StickersFv(void)
  * Address:	8019FE70
  * Size:	000008
  */
-void getEnd__Q24Game8StickersFv(void)
+void Game::Stickers::getEnd(void)
 {
 /*
 .loc_0x0:

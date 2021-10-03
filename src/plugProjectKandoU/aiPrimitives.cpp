@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801972DC
  * Size:	00003C
  */
-void __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki(void)
+void PikiAI::ActGotoPos::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki(void)
  * Address:	80197318
  * Size:	000078
  */
-void init__Q26PikiAI10ActGotoPosFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActGotoPos::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -84,7 +84,7 @@ void init__Q26PikiAI10ActGotoPosFPQ26PikiAI9ActionArg(void)
  * Address:	80197390
  * Size:	00011C
  */
-void exec__Q26PikiAI10ActGotoPosFv(void)
+void PikiAI::ActGotoPos::exec(void)
 {
 /*
 .loc_0x0:
@@ -179,7 +179,7 @@ void exec__Q26PikiAI10ActGotoPosFv(void)
  * Address:	801974AC
  * Size:	000004
  */
-void cleanup__Q26PikiAI10ActGotoPosFv(void)
+void PikiAI::ActGotoPos::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void cleanup__Q26PikiAI10ActGotoPosFv(void)
  * Address:	801974B0
  * Size:	00003C
  */
-void __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki(void)
+void PikiAI::ActApproachPos::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -219,7 +219,7 @@ void __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki(void)
  * Address:	801974EC
  * Size:	000104
  */
-void init__Q26PikiAI14ActApproachPosFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActApproachPos::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -300,7 +300,7 @@ void init__Q26PikiAI14ActApproachPosFPQ26PikiAI9ActionArg(void)
  * Address:	801975F0
  * Size:	000328
  */
-void exec__Q26PikiAI14ActApproachPosFv(void)
+void PikiAI::ActApproachPos::exec(void)
 {
 /*
 .loc_0x0:
@@ -544,7 +544,7 @@ void exec__Q26PikiAI14ActApproachPosFv(void)
  * Address:	80197918
  * Size:	000034
  */
-void cleanup__Q26PikiAI14ActApproachPosFv(void)
+void PikiAI::ActApproachPos::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -569,7 +569,7 @@ void cleanup__Q26PikiAI14ActApproachPosFv(void)
  * Address:	8019794C
  * Size:	00003C
  */
-void __ct__Q26PikiAI11ActGotoSlotFPQ24Game4Piki(void)
+void PikiAI::ActGotoSlot::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void __ct__Q26PikiAI11ActGotoSlotFPQ24Game4Piki(void)
  * Address:	80197988
  * Size:	00018C
  */
-void init__Q26PikiAI11ActGotoSlotFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActGotoSlot::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -735,7 +735,7 @@ void wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<float>(void)
  * Address:	80197B2C
  * Size:	000014
  */
-void resetTimers__Q26PikiAI11ActGotoSlotFv(void)
+void PikiAI::ActGotoSlot::resetTimers(void)
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void resetTimers__Q26PikiAI11ActGotoSlotFv(void)
  * Address:	80197B40
  * Size:	000A94
  */
-void exec__Q26PikiAI11ActGotoSlotFv(void)
+void PikiAI::ActGotoSlot::exec(void)
 {
 /*
 .loc_0x0:
@@ -1547,7 +1547,7 @@ void exec__Q26PikiAI11ActGotoSlotFv(void)
  * Address:	801985D4
  * Size:	000004
  */
-void cleanup__Q26PikiAI11ActGotoSlotFv(void)
+void PikiAI::ActGotoSlot::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -1560,7 +1560,7 @@ void cleanup__Q26PikiAI11ActGotoSlotFv(void)
  * Address:	801985D8
  * Size:	00007C
  */
-void __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki(void)
+void PikiAI::ActPathMove::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1605,7 +1605,7 @@ void __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki(void)
  * Address:	80198654
  * Size:	0001BC
  */
-void init__Q26PikiAI11ActPathMoveFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActPathMove::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -1738,7 +1738,7 @@ void init__Q26PikiAI11ActPathMoveFPQ26PikiAI9ActionArg(void)
  * Address:	80198810
  * Size:	0003AC
  */
-void initPathfinding__Q26PikiAI11ActPathMoveFb(void)
+void PikiAI::ActPathMove::initPathfinding( (bool))
 {
 /*
 .loc_0x0:
@@ -2023,7 +2023,7 @@ void initPathfinding__Q26PikiAI11ActPathMoveFb(void)
  * Address:	80198BBC
  * Size:	00005C
  */
-void decideGoal__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::decideGoal(void)
 {
 /*
 .loc_0x0:
@@ -2060,7 +2060,7 @@ void decideGoal__Q26PikiAI11ActPathMoveFv(void)
  * Address:	80198C18
  * Size:	00011C
  */
-void exec__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::exec(void)
 {
 /*
 .loc_0x0:
@@ -2165,7 +2165,7 @@ void exec__Q26PikiAI11ActPathMoveFv(void)
  * Address:	80198D34
  * Size:	0002B0
  */
-void execPathfinding__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::execPathfinding(void)
 {
 /*
 .loc_0x0:
@@ -2383,7 +2383,7 @@ void execPathfinding__Q26PikiAI11ActPathMoveFv(void)
  * Address:	........
  * Size:	0001AC
  */
-void getCarrySpeed__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::getCarrySpeed(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2393,7 +2393,7 @@ void getCarrySpeed__Q26PikiAI11ActPathMoveFv(void)
  * Address:	80198FE4
  * Size:	0006A8
  */
-void execMoveGoal__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::execMoveGoal(void)
 {
 /*
 .loc_0x0:
@@ -2889,7 +2889,7 @@ void execMoveGoal__Q26PikiAI11ActPathMoveFv(void)
  * Address:	8019968C
  * Size:	00009C
  */
-void isAllBlue__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::isAllBlue(void)
 {
 /*
 .loc_0x0:
@@ -3002,7 +3002,7 @@ void carry__Q26PikiAI11ActPathMoveFR10Vector3<float>(void)
  * Address:	801997D0
  * Size:	000428
  */
-void execMove__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::execMove(void)
 {
 /*
 .loc_0x0:
@@ -3312,7 +3312,7 @@ void execMove__Q26PikiAI11ActPathMoveFv(void)
  * Address:	80199BF8
  * Size:	000090
  */
-void cleanup__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -3364,7 +3364,7 @@ void cleanup__Q26PikiAI11ActPathMoveFv(void)
  * Address:	80199C88
  * Size:	0004E8
  */
-void execMoveGuru__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::execMoveGuru(void)
 {
 /*
 .loc_0x0:
@@ -3740,7 +3740,7 @@ void execMoveGuru__Q26PikiAI11ActPathMoveFv(void)
  * Address:	8019A170
  * Size:	0000B8
  */
-void getWayPoint__Q26PikiAI11ActPathMoveFi(void)
+void PikiAI::ActPathMove::getWayPoint( (int))
 {
 /*
 .loc_0x0:
@@ -3810,7 +3810,7 @@ void getWayPoint__Q26PikiAI11ActPathMoveFi(void)
  * Address:	8019A228
  * Size:	00018C
  */
-void crGetPoint__Q26PikiAI11ActPathMoveFi(void)
+void PikiAI::ActPathMove::crGetPoint( (int))
 {
 /*
 .loc_0x0:
@@ -3941,7 +3941,7 @@ void crGetPoint__Q26PikiAI11ActPathMoveFi(void)
  * Address:	8019A3B4
  * Size:	0003C4
  */
-void contextCheck__Q26PikiAI11ActPathMoveFi(void)
+void PikiAI::ActPathMove::contextCheck( (int))
 {
 /*
 .loc_0x0:
@@ -4234,7 +4234,7 @@ void contextCheck__Q26PikiAI11ActPathMoveFi(void)
  * Address:	........
  * Size:	0000F0
  */
-void crPointOpen__Q26PikiAI11ActPathMoveFi(void)
+void PikiAI::ActPathMove::crPointOpen( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -4244,7 +4244,7 @@ void crPointOpen__Q26PikiAI11ActPathMoveFi(void)
  * Address:	8019A778
  * Size:	000134
  */
-void crGetRadius__Q26PikiAI11ActPathMoveFi(void)
+void PikiAI::ActPathMove::crGetRadius( (int))
 {
 /*
 .loc_0x0:
@@ -4355,7 +4355,7 @@ void crGetRadius__Q26PikiAI11ActPathMoveFi(void)
  * Address:	8019A8AC
  * Size:	000738
  */
-void crInit__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::crInit(void)
 {
 /*
 .loc_0x0:
@@ -4923,7 +4923,7 @@ void crInit__Q26PikiAI11ActPathMoveFv(void)
  * Address:	8019AFE4
  * Size:	000080
  */
-void crMakeRefs__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::crMakeRefs(void)
 {
 /*
 .loc_0x0:
@@ -4969,7 +4969,7 @@ void crMakeRefs__Q26PikiAI11ActPathMoveFv(void)
  * Address:	8019B064
  * Size:	000C54
  */
-void crMove__Q26PikiAI11ActPathMoveFv(void)
+void PikiAI::ActPathMove::crMove(void)
 {
 /*
 .loc_0x0:
@@ -5950,7 +5950,7 @@ void crMove__Q26PikiAI11ActPathMoveFv(void)
  * Address:	8019BCB8
  * Size:	00007C
  */
-void __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki(void)
+void PikiAI::ActStickAttack::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -5995,7 +5995,7 @@ void __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki(void)
  * Address:	8019BD34
  * Size:	0001F0
  */
-void init__Q26PikiAI14ActStickAttackFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActStickAttack::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -6151,7 +6151,7 @@ void init__Q26PikiAI14ActStickAttackFPQ26PikiAI9ActionArg(void)
  * Address:	8019BF24
  * Size:	000164
  */
-void exec__Q26PikiAI14ActStickAttackFv(void)
+void PikiAI::ActStickAttack::exec(void)
 {
 /*
 .loc_0x0:
@@ -6268,7 +6268,7 @@ void exec__Q26PikiAI14ActStickAttackFv(void)
  * Address:	8019C088
  * Size:	000650
  */
-void createEfx__Q26PikiAI14ActStickAttackFv(void)
+void PikiAI::ActStickAttack::createEfx(void)
 {
 /*
 .loc_0x0:
@@ -6704,7 +6704,7 @@ void createEfx__Q26PikiAI14ActStickAttackFv(void)
  * Address:	8019C6D8
  * Size:	000080
  */
-void onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActStickAttack::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -6762,7 +6762,7 @@ void onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent(void)
  * Address:	8019C758
  * Size:	000024
  */
-void cleanup__Q26PikiAI14ActStickAttackFv(void)
+void PikiAI::ActStickAttack::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -6783,7 +6783,7 @@ void cleanup__Q26PikiAI14ActStickAttackFv(void)
  * Address:	8019C77C
  * Size:	00003C
  */
-void __ct__Q26PikiAI8ActClimbFPQ24Game4Piki(void)
+void PikiAI::ActClimb::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -6810,7 +6810,7 @@ void __ct__Q26PikiAI8ActClimbFPQ24Game4Piki(void)
  * Address:	8019C7B8
  * Size:	000100
  */
-void init__Q26PikiAI8ActClimbFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActClimb::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -6888,7 +6888,7 @@ void init__Q26PikiAI8ActClimbFPQ26PikiAI9ActionArg(void)
  * Address:	8019C8B8
  * Size:	0000E4
  */
-void exec__Q26PikiAI8ActClimbFv(void)
+void PikiAI::ActClimb::exec(void)
 {
 /*
 .loc_0x0:
@@ -6965,7 +6965,7 @@ void exec__Q26PikiAI8ActClimbFv(void)
  * Address:	8019C99C
  * Size:	000004
  */
-void cleanup__Q26PikiAI8ActClimbFv(void)
+void PikiAI::ActClimb::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -6978,7 +6978,7 @@ void cleanup__Q26PikiAI8ActClimbFv(void)
  * Address:	8019C9A0
  * Size:	00003C
  */
-void __ct__Q26PikiAI9ActGatherFPQ24Game4Piki(void)
+void PikiAI::ActGather::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -7005,7 +7005,7 @@ void __ct__Q26PikiAI9ActGatherFPQ24Game4Piki(void)
  * Address:	8019C9DC
  * Size:	0000E0
  */
-void init__Q26PikiAI9ActGatherFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActGather::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -7075,7 +7075,7 @@ void init__Q26PikiAI9ActGatherFPQ26PikiAI9ActionArg(void)
  * Address:	8019CABC
  * Size:	000154
  */
-void exec__Q26PikiAI9ActGatherFv(void)
+void PikiAI::ActGather::exec(void)
 {
 /*
 .loc_0x0:
@@ -7186,7 +7186,7 @@ void exec__Q26PikiAI9ActGatherFv(void)
  * Address:	8019CC10
  * Size:	000004
  */
-void cleanup__Q26PikiAI9ActGatherFv(void)
+void PikiAI::ActGather::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -7199,7 +7199,7 @@ void cleanup__Q26PikiAI9ActGatherFv(void)
  * Address:	8019CC14
  * Size:	00003C
  */
-void __ct__Q26PikiAI20ActFollowVectorFieldFPQ24Game4Piki(void)
+void PikiAI::ActFollowVectorField::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -7226,7 +7226,7 @@ void __ct__Q26PikiAI20ActFollowVectorFieldFPQ24Game4Piki(void)
  * Address:	8019CC50
  * Size:	000060
  */
-void init__Q26PikiAI20ActFollowVectorFieldFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActFollowVectorField::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -7262,7 +7262,7 @@ void init__Q26PikiAI20ActFollowVectorFieldFPQ26PikiAI9ActionArg(void)
  * Address:	8019CCB0
  * Size:	000080
  */
-void exec__Q26PikiAI20ActFollowVectorFieldFv(void)
+void PikiAI::ActFollowVectorField::exec(void)
 {
 /*
 .loc_0x0:
@@ -7310,7 +7310,7 @@ void exec__Q26PikiAI20ActFollowVectorFieldFv(void)
  * Address:	8019CD30
  * Size:	000004
  */
-void cleanup__Q26PikiAI20ActFollowVectorFieldFv(void)
+void PikiAI::ActFollowVectorField::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -7345,7 +7345,7 @@ void __sinit_aiPrimitives_cpp(void)
  * Address:	8019CD5C
  * Size:	000014
  */
-void @36@4@onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent(void)
+void @36@4@PikiAI::ActStickAttack::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8034BB30
  * Size:	000020
  */
-void setParameters__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void birth__Q34Game3Egg3ObjFR10Vector3<float>f(void)
  * Address:	8034BB70
  * Size:	000150
  */
-void onInit__Q34Game3Egg3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Egg::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -155,7 +155,7 @@ void onInit__Q34Game3Egg3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8034BCC0
  * Size:	000138
  */
-void __ct__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void __ct__Q34Game3Egg3ObjFv(void)
  * Address:	8034BDF8
  * Size:	00004C
  */
-void setFSM__Q34Game3Egg3ObjFPQ34Game3Egg3FSM(void)
+void Game::Egg::Obj::setFSM( (Game::Egg::FSM *))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void setFSM__Q34Game3Egg3ObjFPQ34Game3Egg3FSM(void)
  * Address:	8034BE44
  * Size:	00006C
  */
-void doUpdate__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -325,7 +325,7 @@ void doUpdate__Q34Game3Egg3ObjFv(void)
  * Address:	8034BEB0
  * Size:	000004
  */
-void doDirectDraw__Q34Game3Egg3ObjFR8Graphics(void)
+void Game::Egg::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -338,7 +338,7 @@ void doDirectDraw__Q34Game3Egg3ObjFR8Graphics(void)
  * Address:	8034BEB4
  * Size:	000020
  */
-void doDebugDraw__Q34Game3Egg3ObjFR8Graphics(void)
+void Game::Egg::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -358,7 +358,7 @@ void doDebugDraw__Q34Game3Egg3ObjFR8Graphics(void)
  * Address:	8034BED4
  * Size:	00004C
  */
-void doSimulation__Q34Game3Egg3ObjFf(void)
+void Game::Egg::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -393,7 +393,7 @@ void doSimulation__Q34Game3Egg3ObjFf(void)
  * Address:	8034BF20
  * Size:	000128
  */
-void doAnimationCullingOff__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -491,7 +491,7 @@ void doAnimationCullingOff__Q34Game3Egg3ObjFv(void)
  * Address:	8034C048
  * Size:	000008
  */
-void pressCallBack__Q34Game3Egg3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Egg::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -505,7 +505,7 @@ void pressCallBack__Q34Game3Egg3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8034C050
  * Size:	000054
  */
-void bounceCallback__Q34Game3Egg3ObjFPQ23Sys8Triangle(void)
+void Game::Egg::Obj::bounceCallback( (Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -542,7 +542,7 @@ void bounceCallback__Q34Game3Egg3ObjFPQ23Sys8Triangle(void)
  * Address:	8034C0A4
  * Size:	000090
  */
-void collisionCallback__Q34Game3Egg3ObjFRQ24Game9CollEvent(void)
+void Game::Egg::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -592,7 +592,7 @@ void collisionCallback__Q34Game3Egg3ObjFRQ24Game9CollEvent(void)
  * Address:	8034C134
  * Size:	000050
  */
-void getShadowParam__Q34Game3Egg3ObjFRQ24Game11ShadowParam(void)
+void Game::Egg::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -624,7 +624,7 @@ void getShadowParam__Q34Game3Egg3ObjFRQ24Game11ShadowParam(void)
  * Address:	8034C184
  * Size:	000048
  */
-void needShadow__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -658,7 +658,7 @@ void needShadow__Q34Game3Egg3ObjFv(void)
  * Address:	8034C1CC
  * Size:	0000A0
  */
-void onStartCapture__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::onStartCapture(void)
 {
 /*
 .loc_0x0:
@@ -712,7 +712,7 @@ void onStartCapture__Q34Game3Egg3ObjFv(void)
  * Address:	8034C26C
  * Size:	000040
  */
-void onEndCapture__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::onEndCapture(void)
 {
 /*
 .loc_0x0:
@@ -740,7 +740,7 @@ void onEndCapture__Q34Game3Egg3ObjFv(void)
  * Address:	8034C2AC
  * Size:	0005F4
  */
-void genItem__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::genItem(void)
 {
 /*
 .loc_0x0:
@@ -1179,7 +1179,7 @@ void genItem__Q34Game3Egg3ObjFv(void)
  * Address:	8034C8A0
  * Size:	000004
  */
-void setInitialSetting__Q34Game3Egg3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Egg::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -1192,7 +1192,7 @@ void setInitialSetting__Q34Game3Egg3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8034C8A4
  * Size:	000010
  */
-void isLivingThing__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1208,7 +1208,7 @@ void isLivingThing__Q34Game3Egg3ObjFv(void)
  * Address:	8034C8B4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -1222,7 +1222,7 @@ void getEnemyTypeID__Q34Game3Egg3ObjFv(void)
  * Address:	8034C8BC
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -1236,7 +1236,7 @@ void getDownSmokeScale__Q34Game3Egg3ObjFv(void)
  * Address:	8034C8C4
  * Size:	000014
  */
-void @708@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @708@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -1253,7 +1253,7 @@ void @708@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8034C8D8
  * Size:	000014
  */
-void @708@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @708@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1270,7 +1270,7 @@ void @708@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8034C8EC
  * Size:	000014
  */
-void @708@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @708@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -1287,7 +1287,7 @@ void @708@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8034C900
  * Size:	000014
  */
-void @708@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @708@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1304,7 +1304,7 @@ void @708@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8034C914
  * Size:	000014
  */
-void @708@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @708@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -1321,7 +1321,7 @@ void @708@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8034C928
  * Size:	000014
  */
-void @708@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @708@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

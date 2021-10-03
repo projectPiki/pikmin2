@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8040284C
  * Size:	00008C
  */
-void __ct__Q32kh6Screen20DispDayEndResultItemFPQ34Game6Result5TNodeiib(void)
+void kh::Screen::DispDayEndResultItem::__ct( (Game::Result::TNode *, int, int, bool))
 {
 /*
 .loc_0x0:
@@ -66,7 +66,7 @@ void __ct__Q32kh6Screen20DispDayEndResultItemFPQ34Game6Result5TNodeiib(void)
  * Address:	804028D8
  * Size:	000294
  */
-void __ct__Q32kh6Screen4IncPFv(void)
+void kh::Screen::IncP::__ct(void)
 {
 /*
 .loc_0x0:
@@ -243,7 +243,7 @@ void __ct__Q32kh6Screen4IncPFv(void)
  * Address:	80402B6C
  * Size:	000030
  */
-void __ct__Q32kh6Screen20DispDayEndResultIncPFPCQ32kh6Screen4IncP(void)
+void kh::Screen::DispDayEndResultIncP::__ct( (kh::Screen::IncP const *))
 {
 /*
 .loc_0x0:
@@ -267,7 +267,7 @@ void __ct__Q32kh6Screen20DispDayEndResultIncPFPCQ32kh6Screen4IncP(void)
  * Address:	80402B9C
  * Size:	000050
  */
-void __ct__Q32kh6Screen20DispDayEndResultMailFP7JKRHeapQ32kh6Screen12MailCategory(void)
+void kh::Screen::DispDayEndResultMail::__ct( (JKRHeap *, kh::Screen::MailCategory))
 {
 /*
 .loc_0x0:
@@ -299,7 +299,7 @@ void __ct__Q32kh6Screen20DispDayEndResultMailFP7JKRHeapQ32kh6Screen12MailCategor
  * Address:	........
  * Size:	0000B4
  */
-void __ct__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -309,7 +309,7 @@ void __ct__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	80402BEC
  * Size:	0000FC
  */
-void doCreate__Q32kh6Screen19ObjDayEndResultBaseFP10JKRArchive(void)
+void kh::Screen::ObjDayEndResultBase::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void doCreate__Q32kh6Screen19ObjDayEndResultBaseFP10JKRArchive(void)
  * Address:	80402CE8
  * Size:	000098
  */
-void doStart__Q32kh6Screen19ObjDayEndResultBaseFPCQ26Screen13StartSceneArg(void)
+void kh::Screen::ObjDayEndResultBase::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void doStart__Q32kh6Screen19ObjDayEndResultBaseFPCQ26Screen13StartSceneArg(void)
  * Address:	80402D80
  * Size:	000044
  */
-void doUpdateFinish__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::doUpdateFinish(void)
 {
 /*
 .loc_0x0:
@@ -469,7 +469,7 @@ void doUpdateFinish__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	80402DC4
  * Size:	0000F4
  */
-void doUpdateFadein__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -542,7 +542,7 @@ void doUpdateFadein__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	80402EB8
  * Size:	000010
  */
-void doUpdateFadeinFinish__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -558,7 +558,7 @@ void doUpdateFadeinFinish__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	80402EC8
  * Size:	0000FC
  */
-void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -633,7 +633,7 @@ void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	80402FC4
  * Size:	000118
  */
-void doDraw__Q32kh6Screen19ObjDayEndResultBaseFR8Graphics(void)
+void kh::Screen::ObjDayEndResultBase::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -715,7 +715,7 @@ void doDraw__Q32kh6Screen19ObjDayEndResultBaseFR8Graphics(void)
  * Address:	804030DC
  * Size:	000280
  */
-void updateCommon__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::updateCommon(void)
 {
 /*
 .loc_0x0:
@@ -899,7 +899,7 @@ void updateCommon__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	8040335C
  * Size:	000098
  */
-void setFadeinFrm__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::setFadeinFrm(void)
 {
 /*
 .loc_0x0:
@@ -953,7 +953,7 @@ void setFadeinFrm__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	804033F4
  * Size:	000098
  */
-void setFadeoutFrm__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::setFadeoutFrm(void)
 {
 /*
 .loc_0x0:
@@ -1007,7 +1007,7 @@ void setFadeoutFrm__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	8040348C
  * Size:	000144
  */
-void __ct__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1100,7 +1100,7 @@ void __ct__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	804035D0
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void kh::Screen::ObjDayEndResultBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1159,7 +1159,7 @@ void __dt__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	8040367C
  * Size:	0007AC
  */
-void doCreate__Q32kh6Screen19ObjDayEndResultItemFP10JKRArchive(void)
+void kh::Screen::ObjDayEndResultItem::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1682,7 +1682,7 @@ void doCreate__Q32kh6Screen19ObjDayEndResultItemFP10JKRArchive(void)
  * Address:	80403E28
  * Size:	000108
  */
-void doStart__Q32kh6Screen19ObjDayEndResultItemFPCQ26Screen13StartSceneArg(void)
+void kh::Screen::ObjDayEndResultItem::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -1768,7 +1768,7 @@ void doStart__Q32kh6Screen19ObjDayEndResultItemFPCQ26Screen13StartSceneArg(void)
  * Address:	80403F30
  * Size:	00011C
  */
-void doUpdateFadein__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -1855,7 +1855,7 @@ void doUpdateFadein__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	8040404C
  * Size:	0002CC
  */
-void doUpdate__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -2070,7 +2070,7 @@ void doUpdate__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	80404318
  * Size:	000124
  */
-void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -2159,7 +2159,7 @@ void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	8040443C
  * Size:	0006C4
  */
-void doDraw__Q32kh6Screen19ObjDayEndResultItemFR8Graphics(void)
+void kh::Screen::ObjDayEndResultItem::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2630,7 +2630,7 @@ void doDraw__Q32kh6Screen19ObjDayEndResultItemFR8Graphics(void)
  * Address:	80404B00
  * Size:	0001D4
  */
-void statusNormal__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::statusNormal(void)
 {
 /*
 .loc_0x0:
@@ -2785,7 +2785,7 @@ void statusNormal__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	80404CD4
  * Size:	0000F4
  */
-void statusScrollUp__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::statusScrollUp(void)
 {
 /*
 .loc_0x0:
@@ -2860,7 +2860,7 @@ void statusScrollUp__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	80404DC8
  * Size:	0000F4
  */
-void statusScrollDown__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::statusScrollDown(void)
 {
 /*
 .loc_0x0:
@@ -2935,7 +2935,7 @@ void statusScrollDown__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	80404EBC
  * Size:	0001D4
  */
-void statusForceScroll__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::statusForceScroll(void)
 {
 /*
 .loc_0x0:
@@ -3078,7 +3078,7 @@ void statusForceScroll__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	80405090
  * Size:	00001C
  */
-void statusDrumRoll__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::statusDrumRoll(void)
 {
 /*
 .loc_0x0:
@@ -3097,7 +3097,7 @@ void statusDrumRoll__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	804050AC
  * Size:	0000C8
  */
-void statusTotalValue__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::statusTotalValue(void)
 {
 /*
 .loc_0x0:
@@ -3165,7 +3165,7 @@ void statusTotalValue__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	80405174
  * Size:	0003C8
  */
-void updateCommon__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::updateCommon(void)
 {
 /*
 .loc_0x0:
@@ -3433,7 +3433,7 @@ void updateCommon__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	8040553C
  * Size:	00019C
  */
-void __ct__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3548,7 +3548,7 @@ void __ct__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	804056D8
  * Size:	001374
  */
-void doCreate__Q32kh6Screen19ObjDayEndResultIncPFP10JKRArchive(void)
+void kh::Screen::ObjDayEndResultIncP::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -4873,7 +4873,7 @@ void doCreate__Q32kh6Screen19ObjDayEndResultIncPFP10JKRArchive(void)
  * Address:	80406A4C
  * Size:	00017C
  */
-void doUpdateFadein__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -4986,7 +4986,7 @@ void doUpdateFadein__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	80406BC8
  * Size:	00047C
  */
-void doUpdate__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -5333,7 +5333,7 @@ void doUpdate__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	80407044
  * Size:	000184
  */
-void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -5448,7 +5448,7 @@ void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	804071C8
  * Size:	000148
  */
-void doDraw__Q32kh6Screen19ObjDayEndResultIncPFR8Graphics(void)
+void kh::Screen::ObjDayEndResultIncP::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -5542,7 +5542,7 @@ void doDraw__Q32kh6Screen19ObjDayEndResultIncPFR8Graphics(void)
  * Address:	80407310
  * Size:	000050
  */
-void statusNormal__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::statusNormal(void)
 {
 /*
 .loc_0x0:
@@ -5576,7 +5576,7 @@ void statusNormal__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	80407360
  * Size:	000100
  */
-void statusFadeout__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::statusFadeout(void)
 {
 /*
 .loc_0x0:
@@ -5662,7 +5662,7 @@ void statusFadeout__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	80407460
  * Size:	000050
  */
-void statusDecP__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::statusDecP(void)
 {
 /*
 .loc_0x0:
@@ -5696,7 +5696,7 @@ void statusDecP__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	804074B0
  * Size:	000064
  */
-void statusFadein__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::statusFadein(void)
 {
 /*
 .loc_0x0:
@@ -5737,7 +5737,7 @@ void statusFadein__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	80407514
  * Size:	000140
  */
-void statusSlot__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::statusSlot(void)
 {
 /*
 .loc_0x0:
@@ -5843,7 +5843,7 @@ void statusSlot__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	80407654
  * Size:	00019C
  */
-void statusDecPSlot__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::statusDecPSlot(void)
 {
 /*
 .loc_0x0:
@@ -5974,7 +5974,7 @@ void statusDecPSlot__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	804077F0
  * Size:	000088
  */
-void callIncPSE__Q32kh6Screen19ObjDayEndResultIncPFi(void)
+void kh::Screen::ObjDayEndResultIncP::callIncPSE( (int))
 {
 /*
 .loc_0x0:
@@ -6028,7 +6028,7 @@ void callIncPSE__Q32kh6Screen19ObjDayEndResultIncPFi(void)
  * Address:	80407878
  * Size:	00004C
  */
-void callDecPSE__Q32kh6Screen19ObjDayEndResultIncPFi(void)
+void kh::Screen::ObjDayEndResultIncP::callDecPSE( (int))
 {
 /*
 .loc_0x0:
@@ -6061,7 +6061,7 @@ void callDecPSE__Q32kh6Screen19ObjDayEndResultIncPFi(void)
  * Address:	804078C4
  * Size:	000188
  */
-void effectCommon__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::effectCommon(void)
 {
 /*
 .loc_0x0:
@@ -6185,7 +6185,7 @@ void effectCommon__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	80407A4C
  * Size:	00036C
  */
-void updateCommon__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::updateCommon(void)
 {
 /*
 .loc_0x0:
@@ -6432,7 +6432,7 @@ void updateCommon__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	........
  * Size:	000134
  */
-void __ct__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6442,7 +6442,7 @@ void __ct__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80407DB8
  * Size:	0008B4
  */
-void doCreate__Q32kh6Screen19ObjDayEndResultMailFP10JKRArchive(void)
+void kh::Screen::ObjDayEndResultMail::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -7045,7 +7045,7 @@ void doCreate__Q32kh6Screen19ObjDayEndResultMailFP10JKRArchive(void)
  * Address:	8040866C
  * Size:	000010
  */
-void __ct__Q42kh6Screen19ObjDayEndResultMail11MailIconAnmFv(void)
+void kh::Screen::ObjDayEndResultMail::MailIconAnm::__ct(void)
 {
 /*
 .loc_0x0:
@@ -7061,7 +7061,7 @@ void __ct__Q42kh6Screen19ObjDayEndResultMail11MailIconAnmFv(void)
  * Address:	8040867C
  * Size:	000170
  */
-void doStart__Q32kh6Screen19ObjDayEndResultMailFPCQ26Screen13StartSceneArg(void)
+void kh::Screen::ObjDayEndResultMail::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -7177,7 +7177,7 @@ void doStart__Q32kh6Screen19ObjDayEndResultMailFPCQ26Screen13StartSceneArg(void)
  * Address:	804087EC
  * Size:	0001B8
  */
-void doUpdateFadein__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -7303,7 +7303,7 @@ void doUpdateFadein__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	804089A4
  * Size:	000280
  */
-void doUpdate__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -7493,7 +7493,7 @@ void doUpdate__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80408C24
  * Size:	0001B4
  */
-void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -7618,7 +7618,7 @@ void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80408DD8
  * Size:	000214
  */
-void statusNormal__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::statusNormal(void)
 {
 /*
 .loc_0x0:
@@ -7773,7 +7773,7 @@ void statusNormal__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80408FEC
  * Size:	0000A8
  */
-void statusFadeoutToLeft__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::statusFadeoutToLeft(void)
 {
 /*
 .loc_0x0:
@@ -7835,7 +7835,7 @@ void statusFadeoutToLeft__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80409094
  * Size:	000038
  */
-void statusFadeinFromLeft__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::statusFadeinFromLeft(void)
 {
 /*
 .loc_0x0:
@@ -7863,7 +7863,7 @@ void statusFadeinFromLeft__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	804090CC
  * Size:	0000B8
  */
-void statusFadeoutToRight__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::statusFadeoutToRight(void)
 {
 /*
 .loc_0x0:
@@ -7931,7 +7931,7 @@ void statusFadeoutToRight__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80409184
  * Size:	000038
  */
-void statusFadeinFromRight__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::statusFadeinFromRight(void)
 {
 /*
 .loc_0x0:
@@ -7959,7 +7959,7 @@ void statusFadeinFromRight__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	804091BC
  * Size:	00012C
  */
-void statusWaitOpen__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::statusWaitOpen(void)
 {
 /*
 .loc_0x0:
@@ -8066,7 +8066,7 @@ void statusWaitOpen__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	804092E8
  * Size:	0000D4
  */
-void statusOpenW__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::statusOpenW(void)
 {
 /*
 .loc_0x0:
@@ -8135,7 +8135,7 @@ void statusOpenW__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	804093BC
  * Size:	0000CC
  */
-void statusOpenH__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::statusOpenH(void)
 {
 /*
 .loc_0x0:
@@ -8202,7 +8202,7 @@ void statusOpenH__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80409488
  * Size:	000480
  */
-void changeMail__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::changeMail(void)
 {
 /*
 .loc_0x0:
@@ -8506,7 +8506,7 @@ void changeMail__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80409908
  * Size:	000064
  */
-void changeAlpha__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::changeAlpha(void)
 {
 /*
 .loc_0x0:
@@ -8543,7 +8543,7 @@ void changeAlpha__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	8040996C
  * Size:	0001C4
  */
-void doDraw__Q32kh6Screen19ObjDayEndResultMailFR8Graphics(void)
+void kh::Screen::ObjDayEndResultMail::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -8670,7 +8670,7 @@ void doDraw__Q32kh6Screen19ObjDayEndResultMailFR8Graphics(void)
  * Address:	80409B30
  * Size:	000288
  */
-void updateCommon__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::updateCommon(void)
 {
 /*
 .loc_0x0:
@@ -8856,7 +8856,7 @@ void updateCommon__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	80409DB8
  * Size:	0003BC
  */
-void setCallBackMessage__Q32kh6Screen19ObjDayEndResultMailFPQ29P2DScreen3MgrP7J2DPane(void)
+void kh::Screen::ObjDayEndResultMail::setCallBackMessage( (P2DScreen::Mgr *, J2DPane *))
 {
 /*
 .loc_0x0:
@@ -9141,7 +9141,7 @@ void setCallBackMessage__Q32kh6Screen19ObjDayEndResultMailFPQ29P2DScreen3MgrP7J2
  * Address:	8040A174
  * Size:	000024
  */
-void setCallBackMessage__Q32kh6Screen19ObjDayEndResultMailFPQ29P2DScreen3Mgr(void)
+void kh::Screen::ObjDayEndResultMail::setCallBackMessage( (P2DScreen::Mgr *))
 {
 /*
 .loc_0x0:
@@ -9162,7 +9162,7 @@ void setCallBackMessage__Q32kh6Screen19ObjDayEndResultMailFPQ29P2DScreen3Mgr(voi
  * Address:	8040A198
  * Size:	00005C
  */
-void skipped__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::skipped( const
 {
 /*
 .loc_0x0:
@@ -9197,7 +9197,7 @@ void skipped__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040A1F4
  * Size:	000068
  */
-void __ct__Q32kh6Screen19ObjDayEndResultTitlFv(void)
+void kh::Screen::ObjDayEndResultTitl::__ct(void)
 {
 /*
 .loc_0x0:
@@ -9235,7 +9235,7 @@ void __ct__Q32kh6Screen19ObjDayEndResultTitlFv(void)
  * Address:	8040A25C
  * Size:	0001BC
  */
-void doCreate__Q32kh6Screen19ObjDayEndResultTitlFP10JKRArchive(void)
+void kh::Screen::ObjDayEndResultTitl::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -9364,7 +9364,7 @@ void doCreate__Q32kh6Screen19ObjDayEndResultTitlFP10JKRArchive(void)
  * Address:	8040A418
  * Size:	000078
  */
-void doUpdateFadein__Q32kh6Screen19ObjDayEndResultTitlFv(void)
+void kh::Screen::ObjDayEndResultTitl::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -9410,7 +9410,7 @@ void doUpdateFadein__Q32kh6Screen19ObjDayEndResultTitlFv(void)
  * Address:	8040A490
  * Size:	000064
  */
-void doUpdate__Q32kh6Screen19ObjDayEndResultTitlFv(void)
+void kh::Screen::ObjDayEndResultTitl::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -9453,7 +9453,7 @@ void doUpdate__Q32kh6Screen19ObjDayEndResultTitlFv(void)
  * Address:	8040A4F4
  * Size:	000074
  */
-void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultTitlFv(void)
+void kh::Screen::ObjDayEndResultTitl::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -9498,7 +9498,7 @@ void doUpdateFadeout__Q32kh6Screen19ObjDayEndResultTitlFv(void)
  * Address:	8040A568
  * Size:	0000CC
  */
-void doUpdateFadeoutFinish__Q32kh6Screen19ObjDayEndResultTitlFv(void)
+void kh::Screen::ObjDayEndResultTitl::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -9563,7 +9563,7 @@ void doUpdateFadeoutFinish__Q32kh6Screen19ObjDayEndResultTitlFv(void)
  * Address:	8040A634
  * Size:	000144
  */
-void doDraw__Q32kh6Screen19ObjDayEndResultTitlFR8Graphics(void)
+void kh::Screen::ObjDayEndResultTitl::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -9656,7 +9656,7 @@ void doDraw__Q32kh6Screen19ObjDayEndResultTitlFR8Graphics(void)
  * Address:	8040A778
  * Size:	0000E0
  */
-void updateCommon__Q32kh6Screen19ObjDayEndResultTitlFv(void)
+void kh::Screen::ObjDayEndResultTitl::updateCommon(void)
 {
 /*
 .loc_0x0:
@@ -9728,7 +9728,7 @@ void updateCommon__Q32kh6Screen19ObjDayEndResultTitlFv(void)
  * Address:	8040A858
  * Size:	000048
  */
-void __ct__Q32kh6Screen21SceneDayEndResultMailFv(void)
+void kh::Screen::SceneDayEndResultMail::__ct(void)
 {
 /*
 .loc_0x0:
@@ -9758,7 +9758,7 @@ void __ct__Q32kh6Screen21SceneDayEndResultMailFv(void)
  * Address:	8040A8A0
  * Size:	00058C
  */
-void doUserCallBackFunc__Q32kh6Screen21SceneDayEndResultMailFPQ28Resource10MgrCommand(void)
+void kh::Screen::SceneDayEndResultMail::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -10177,7 +10177,7 @@ void doUserCallBackFunc__Q32kh6Screen21SceneDayEndResultMailFPQ28Resource10MgrCo
  * Address:	8040AE2C
  * Size:	000008
  */
-void getResName__Q32kh6Screen21SceneDayEndResultMailCFv(void)
+void kh::Screen::SceneDayEndResultMail::getResName( const
 {
 /*
 .loc_0x0:
@@ -10191,7 +10191,7 @@ void getResName__Q32kh6Screen21SceneDayEndResultMailCFv(void)
  * Address:	8040AE34
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen21SceneDayEndResultMailFv(void)
+void kh::Screen::SceneDayEndResultMail::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -10205,7 +10205,7 @@ void getSceneType__Q32kh6Screen21SceneDayEndResultMailFv(void)
  * Address:	8040AE3C
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen21SceneDayEndResultMailFv(void)
+void kh::Screen::SceneDayEndResultMail::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -10219,7 +10219,7 @@ void getOwnerID__Q32kh6Screen21SceneDayEndResultMailFv(void)
  * Address:	8040AE44
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen21SceneDayEndResultMailFv(void)
+void kh::Screen::SceneDayEndResultMail::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -10236,7 +10236,7 @@ void getMemberID__Q32kh6Screen21SceneDayEndResultMailFv(void)
  * Address:	8040AE58
  * Size:	000004
  */
-void doCreateObj__Q32kh6Screen21SceneDayEndResultMailFP10JKRArchive(void)
+void kh::Screen::SceneDayEndResultMail::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -10249,7 +10249,7 @@ void doCreateObj__Q32kh6Screen21SceneDayEndResultMailFP10JKRArchive(void)
  * Address:	8040AE5C
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen19ObjDayEndResultTitlFv(void)
+void kh::Screen::ObjDayEndResultTitl::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10308,7 +10308,7 @@ void __dt__Q32kh6Screen19ObjDayEndResultTitlFv(void)
  * Address:	8040AF08
  * Size:	0000C4
  */
-void __dt__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void kh::Screen::ObjDayEndResultMail::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10373,7 +10373,7 @@ void __dt__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	8040AFCC
  * Size:	000008
  */
-void getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getFadeinUpMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10387,7 +10387,7 @@ void getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040AFD4
  * Size:	000008
  */
-void getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getFadeinUpMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10401,7 +10401,7 @@ void getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040AFDC
  * Size:	000008
  */
-void getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getFadeoutUpMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10415,7 +10415,7 @@ void getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040AFE4
  * Size:	000008
  */
-void getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getFadeoutUpMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10429,7 +10429,7 @@ void getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040AFEC
  * Size:	000008
  */
-void getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getFadeinDownMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10443,7 +10443,7 @@ void getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040AFF4
  * Size:	000008
  */
-void getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getFadeinDownMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10457,7 +10457,7 @@ void getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040AFFC
  * Size:	000008
  */
-void getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getFadeoutDownMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10471,7 +10471,7 @@ void getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040B004
  * Size:	000008
  */
-void getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getFadeoutDownMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10485,7 +10485,7 @@ void getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040B00C
  * Size:	000008
  */
-void getStarWTagNum__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getStarWTagNum( const
 {
 /*
 .loc_0x0:
@@ -10499,7 +10499,7 @@ void getStarWTagNum__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040B014
  * Size:	000008
  */
-void getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getPStarWMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10513,7 +10513,7 @@ void getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040B01C
  * Size:	000008
  */
-void getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
+void kh::Screen::ObjDayEndResultMail::getPStarWMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10527,7 +10527,7 @@ void getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv(void)
  * Address:	8040B024
  * Size:	000008
  */
-void getClassSize__Q32kh6Screen20SArgDayEndResultItemFv(void)
+void kh::Screen::SArgDayEndResultItem::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -10541,7 +10541,7 @@ void getClassSize__Q32kh6Screen20SArgDayEndResultItemFv(void)
  * Address:	8040B02C
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen20SArgDayEndResultItemCFv(void)
+void kh::Screen::SArgDayEndResultItem::getSceneType( const
 {
 /*
 .loc_0x0:
@@ -10555,7 +10555,7 @@ void getSceneType__Q32kh6Screen20SArgDayEndResultItemCFv(void)
  * Address:	8040B034
  * Size:	000008
  */
-void getClassSize__Q32kh6Screen20SArgDayEndResultMailFv(void)
+void kh::Screen::SArgDayEndResultMail::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -10569,7 +10569,7 @@ void getClassSize__Q32kh6Screen20SArgDayEndResultMailFv(void)
  * Address:	8040B03C
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen20SArgDayEndResultMailCFv(void)
+void kh::Screen::SArgDayEndResultMail::getSceneType( const
 {
 /*
 .loc_0x0:
@@ -10583,7 +10583,7 @@ void getSceneType__Q32kh6Screen20SArgDayEndResultMailCFv(void)
  * Address:	8040B044
  * Size:	0000C4
  */
-void __dt__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void kh::Screen::ObjDayEndResultIncP::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10648,7 +10648,7 @@ void __dt__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	8040B108
  * Size:	000008
  */
-void getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getFadeinUpMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10662,7 +10662,7 @@ void getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B110
  * Size:	000008
  */
-void getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getFadeinUpMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10676,7 +10676,7 @@ void getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B118
  * Size:	000008
  */
-void getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getFadeoutUpMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10690,7 +10690,7 @@ void getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B120
  * Size:	000008
  */
-void getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getFadeoutUpMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10704,7 +10704,7 @@ void getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B128
  * Size:	000008
  */
-void getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getFadeinDownMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10718,7 +10718,7 @@ void getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B130
  * Size:	000008
  */
-void getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getFadeinDownMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10732,7 +10732,7 @@ void getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B138
  * Size:	000008
  */
-void getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10746,7 +10746,7 @@ void getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B140
  * Size:	000008
  */
-void getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getFadeoutDownMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10760,7 +10760,7 @@ void getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B148
  * Size:	000008
  */
-void getStarWTagNum__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getStarWTagNum( const
 {
 /*
 .loc_0x0:
@@ -10774,7 +10774,7 @@ void getStarWTagNum__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B150
  * Size:	000008
  */
-void getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getPStarWMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10788,7 +10788,7 @@ void getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B158
  * Size:	000008
  */
-void getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
+void kh::Screen::ObjDayEndResultIncP::getPStarWMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10802,7 +10802,7 @@ void getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv(void)
  * Address:	8040B160
  * Size:	000008
  */
-void getClassSize__Q32kh6Screen20SArgDayEndResultIncPFv(void)
+void kh::Screen::SArgDayEndResultIncP::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -10816,7 +10816,7 @@ void getClassSize__Q32kh6Screen20SArgDayEndResultIncPFv(void)
  * Address:	8040B168
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen20SArgDayEndResultIncPCFv(void)
+void kh::Screen::SArgDayEndResultIncP::getSceneType( const
 {
 /*
 .loc_0x0:
@@ -10830,7 +10830,7 @@ void getSceneType__Q32kh6Screen20SArgDayEndResultIncPCFv(void)
  * Address:	8040B170
  * Size:	000008
  */
-void getClassSize__Q32kh6Screen20SArgDayEndResultBaseFv(void)
+void kh::Screen::SArgDayEndResultBase::getClassSize(void)
 {
 /*
 .loc_0x0:
@@ -10844,7 +10844,7 @@ void getClassSize__Q32kh6Screen20SArgDayEndResultBaseFv(void)
  * Address:	8040B178
  * Size:	0000C4
  */
-void __dt__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void kh::Screen::ObjDayEndResultItem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10909,7 +10909,7 @@ void __dt__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	8040B23C
  * Size:	000008
  */
-void getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getFadeinUpMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10923,7 +10923,7 @@ void getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B244
  * Size:	000008
  */
-void getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getFadeinUpMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10937,7 +10937,7 @@ void getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B24C
  * Size:	000008
  */
-void getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getFadeoutUpMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10951,7 +10951,7 @@ void getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B254
  * Size:	000008
  */
-void getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getFadeoutUpMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10965,7 +10965,7 @@ void getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B25C
  * Size:	000008
  */
-void getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getFadeinDownMinFrm( const
 {
 /*
 .loc_0x0:
@@ -10979,7 +10979,7 @@ void getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B264
  * Size:	000008
  */
-void getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getFadeinDownMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -10993,7 +10993,7 @@ void getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B26C
  * Size:	000008
  */
-void getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getFadeoutDownMinFrm( const
 {
 /*
 .loc_0x0:
@@ -11007,7 +11007,7 @@ void getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B274
  * Size:	000008
  */
-void getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getFadeoutDownMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -11021,7 +11021,7 @@ void getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B27C
  * Size:	000008
  */
-void getStarWTagNum__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getStarWTagNum( const
 {
 /*
 .loc_0x0:
@@ -11035,7 +11035,7 @@ void getStarWTagNum__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B284
  * Size:	000008
  */
-void getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getPStarWMinFrm( const
 {
 /*
 .loc_0x0:
@@ -11049,7 +11049,7 @@ void getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B28C
  * Size:	000008
  */
-void getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
+void kh::Screen::ObjDayEndResultItem::getPStarWMaxFrm( const
 {
 /*
 .loc_0x0:
@@ -11063,7 +11063,7 @@ void getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv(void)
  * Address:	8040B294
  * Size:	000008
  */
-void getSize__Q32kh6Screen20DispDayEndResultMailFv(void)
+void kh::Screen::DispDayEndResultMail::getSize(void)
 {
 /*
 .loc_0x0:
@@ -11077,7 +11077,7 @@ void getSize__Q32kh6Screen20DispDayEndResultMailFv(void)
  * Address:	8040B29C
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen20DispDayEndResultMailFv(void)
+void kh::Screen::DispDayEndResultMail::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -11091,7 +11091,7 @@ void getOwnerID__Q32kh6Screen20DispDayEndResultMailFv(void)
  * Address:	8040B2A4
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen20DispDayEndResultMailFv(void)
+void kh::Screen::DispDayEndResultMail::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -11108,7 +11108,7 @@ void getMemberID__Q32kh6Screen20DispDayEndResultMailFv(void)
  * Address:	8040B2B8
  * Size:	000008
  */
-void getSize__Q32kh6Screen20DispDayEndResultIncPFv(void)
+void kh::Screen::DispDayEndResultIncP::getSize(void)
 {
 /*
 .loc_0x0:
@@ -11122,7 +11122,7 @@ void getSize__Q32kh6Screen20DispDayEndResultIncPFv(void)
  * Address:	8040B2C0
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen20DispDayEndResultIncPFv(void)
+void kh::Screen::DispDayEndResultIncP::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -11136,7 +11136,7 @@ void getOwnerID__Q32kh6Screen20DispDayEndResultIncPFv(void)
  * Address:	8040B2C8
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen20DispDayEndResultIncPFv(void)
+void kh::Screen::DispDayEndResultIncP::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -11153,7 +11153,7 @@ void getMemberID__Q32kh6Screen20DispDayEndResultIncPFv(void)
  * Address:	8040B2DC
  * Size:	000008
  */
-void getSize__Q32kh6Screen20DispDayEndResultItemFv(void)
+void kh::Screen::DispDayEndResultItem::getSize(void)
 {
 /*
 .loc_0x0:
@@ -11167,7 +11167,7 @@ void getSize__Q32kh6Screen20DispDayEndResultItemFv(void)
  * Address:	8040B2E4
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen20DispDayEndResultItemFv(void)
+void kh::Screen::DispDayEndResultItem::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -11181,7 +11181,7 @@ void getOwnerID__Q32kh6Screen20DispDayEndResultItemFv(void)
  * Address:	8040B2EC
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen20DispDayEndResultItemFv(void)
+void kh::Screen::DispDayEndResultItem::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -11261,7 +11261,7 @@ void __sinit_khDayEndResult_cpp(void)
  * Address:	8040B3CC
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen19ObjDayEndResultBaseFv(void)
+void @24@kh::Screen::ObjDayEndResultBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -11275,7 +11275,7 @@ void @24@__dt__Q32kh6Screen19ObjDayEndResultBaseFv(void)
  * Address:	8040B3D4
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen19ObjDayEndResultItemFv(void)
+void @24@kh::Screen::ObjDayEndResultItem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -11289,7 +11289,7 @@ void @24@__dt__Q32kh6Screen19ObjDayEndResultItemFv(void)
  * Address:	8040B3DC
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen19ObjDayEndResultIncPFv(void)
+void @24@kh::Screen::ObjDayEndResultIncP::__dt(void)
 {
 /*
 .loc_0x0:
@@ -11303,7 +11303,7 @@ void @24@__dt__Q32kh6Screen19ObjDayEndResultIncPFv(void)
  * Address:	8040B3E4
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen19ObjDayEndResultMailFv(void)
+void @24@kh::Screen::ObjDayEndResultMail::__dt(void)
 {
 /*
 .loc_0x0:
@@ -11317,7 +11317,7 @@ void @24@__dt__Q32kh6Screen19ObjDayEndResultMailFv(void)
  * Address:	8040B3EC
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen19ObjDayEndResultTitlFv(void)
+void @24@kh::Screen::ObjDayEndResultTitl::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803C1EBC
  * Size:	000074
  */
-void update__Q33ebi5title15TTitleCameraMgrFv(void)
+void ebi::title::TTitleCameraMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -56,7 +56,7 @@ void update__Q33ebi5title15TTitleCameraMgrFv(void)
  * Address:	........
  * Size:	0000C4
  */
-void clipByBox__Q33ebi5title15TTitleCameraMgrFP8J3DModel(void)
+void ebi::title::TTitleCameraMgr::clipByBox( (J3DModel *))
 {
 	// UNUSED FUNCTION
 }

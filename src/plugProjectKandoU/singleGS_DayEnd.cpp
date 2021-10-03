@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8023A250
  * Size:	0004A0
  */
-void init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::DayEndState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8
  * Address:	8023A6F0
  * Size:	00040C
  */
-void exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::DayEndState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -666,7 +666,7 @@ void exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection(void)
  * Address:	8023AAFC
  * Size:	0005B8
  */
-void onMovieStart__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::DayEndState::onMovieStart( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1092,7 +1092,7 @@ void onMovieStart__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionP
  * Address:	8023B0B4
  * Size:	0000F4
  */
-void onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::DayEndState::onMovieDone( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1171,7 +1171,7 @@ void onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ
  * Address:	8023B1A8
  * Size:	0002C0
  */
-void onMovieCommand__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectioni(void)
+void Game::SingleGame::DayEndState::onMovieCommand( (Game::SingleGameSection *, int))
 {
 /*
 .loc_0x0:
@@ -1383,7 +1383,7 @@ void onMovieCommand__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectio
  * Address:	8023B468
  * Size:	000028
  */
-void draw__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::DayEndState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -1405,7 +1405,7 @@ void draw__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionR8Graphic
  * Address:	8023B490
  * Size:	00007C
  */
-void cleanup__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::DayEndState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:

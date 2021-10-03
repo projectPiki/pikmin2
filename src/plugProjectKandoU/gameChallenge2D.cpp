@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802350A0
  * Size:	000064
  */
-void __ct__Q24Game21Challenge2D_TitleInfoFi(void)
+void Game::Challenge2D_TitleInfo::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void __ct__Q24Game21Challenge2D_TitleInfoFi(void)
  * Address:	80235104
  * Size:	000030
  */
-void __ct__Q34Game21Challenge2D_TitleInfo4InfoFv(void)
+void Game::Challenge2D_TitleInfo::Info::__ct(void)
 {
 /*
 .loc_0x0:
@@ -76,7 +76,7 @@ void __ct__Q34Game21Challenge2D_TitleInfo4InfoFv(void)
  * Address:	80235134
  * Size:	00007C
  */
-void __cl__Q24Game21Challenge2D_TitleInfoFi(void)
+void Game::Challenge2D_TitleInfo::operator()( (int))
 {
 /*
 .loc_0x0:
@@ -123,7 +123,7 @@ void __cl__Q24Game21Challenge2D_TitleInfoFi(void)
  * Address:	802351B0
  * Size:	000064
  */
-void __ct__Q24Game14Vs2D_TitleInfoFi(void)
+void Game::Vs2D_TitleInfo::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void __ct__Q24Game14Vs2D_TitleInfoFi(void)
  * Address:	80235214
  * Size:	00000C
  */
-void __ct__Q34Game14Vs2D_TitleInfo4InfoFv(void)
+void Game::Vs2D_TitleInfo::Info::__ct(void)
 {
 /*
 .loc_0x0:
@@ -175,7 +175,7 @@ void __ct__Q34Game14Vs2D_TitleInfo4InfoFv(void)
  * Address:	80235220
  * Size:	0000A8
  */
-void __cl__Q24Game14Vs2D_TitleInfoFi(void)
+void Game::Vs2D_TitleInfo::operator()( (int))
 {
 /*
 .loc_0x0:
@@ -237,7 +237,7 @@ void __cl__Q24Game14Vs2D_TitleInfoFi(void)
  * Address:	802352C8
  * Size:	000028
  */
-void __ct__Q24Game22Challenge2D_ResultInfoFv(void)
+void Game::Challenge2D_ResultInfo::__ct(void)
 {
 /*
 .loc_0x0:

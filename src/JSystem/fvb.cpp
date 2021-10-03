@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000048
  */
-void __dt__Q37JStudio3fvb7TObjectFv(void)
+void JStudio::fvb::TObject::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __dt__Q37JStudio3fvb7TObjectFv(void)
  * Address:	8000BB48
  * Size:	00021C
  */
-void prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl(void)
+void JStudio::fvb::TObject::prepare( (JStudio::fvb::data::TParse_TBlock const &, JStudio::fvb::TControl *))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void getCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@FQ47JStudio3fvb4da
  * Address:	........
  * Size:	000068
  */
-void __ct__Q37JStudio3fvb17TObject_compositeFPCvUl(void)
+void JStudio::fvb::TObject_composite::__ct( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -305,7 +305,7 @@ void __ct__Q37JStudio3fvb17TObject_compositeFPCvUl(void)
  * Address:	........
  * Size:	00003C
  */
-void __dt__Q37JStudio6object10TObject_IDFv(void)
+void JStudio::object::TObject_ID::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -315,7 +315,7 @@ void __dt__Q37JStudio6object10TObject_IDFv(void)
  * Address:	........
  * Size:	00003C
  */
-void __dt__Q37JStudio6object7TIDDataFv(void)
+void JStudio::object::TIDData::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -325,7 +325,7 @@ void __dt__Q37JStudio6object7TIDDataFv(void)
  * Address:	........
  * Size:	000080
  */
-void __ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBlock(void)
+void JStudio::fvb::TObject_composite::__ct( (JStudio::fvb::data::TParse_TBlock const &))
 {
 	// UNUSED FUNCTION
 }
@@ -335,7 +335,7 @@ void __ct__Q37JStudio3fvb17TObject_compositeFRCQ47JStudio3fvb4data13TParse_TBloc
  * Address:	8000BDB8
  * Size:	00006C
  */
-void prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl(void)
+void JStudio::fvb::TObject_composite::prepare_data_( (JStudio::fvb::data::TParse_TParagraph::TData const &, JStudio::fvb::TControl *))
 {
 /*
 .loc_0x0:
@@ -374,7 +374,7 @@ void prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TPa
  * Address:	........
  * Size:	000068
  */
-void __ct__Q37JStudio3fvb16TObject_constantFPCvUl(void)
+void JStudio::fvb::TObject_constant::__ct( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -384,7 +384,7 @@ void __ct__Q37JStudio3fvb16TObject_constantFPCvUl(void)
  * Address:	........
  * Size:	000080
  */
-void __ct__Q37JStudio3fvb16TObject_constantFRCQ47JStudio3fvb4data13TParse_TBlock(void)
+void JStudio::fvb::TObject_constant::__ct( (JStudio::fvb::data::TParse_TBlock const &))
 {
 	// UNUSED FUNCTION
 }
@@ -394,7 +394,7 @@ void __ct__Q37JStudio3fvb16TObject_constantFRCQ47JStudio3fvb4data13TParse_TBlock
  * Address:	8000BE24
  * Size:	000010
  */
-void prepare_data___Q37JStudio3fvb16TObject_constantFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl(void)
+void JStudio::fvb::TObject_constant::prepare_data_( (JStudio::fvb::data::TParse_TParagraph::TData const &, JStudio::fvb::TControl *))
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void prepare_data___Q37JStudio3fvb16TObject_constantFRCQ57JStudio3fvb4data17TPar
  * Address:	........
  * Size:	000068
  */
-void __ct__Q37JStudio3fvb18TObject_transitionFPCvUl(void)
+void JStudio::fvb::TObject_transition::__ct( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -420,7 +420,7 @@ void __ct__Q37JStudio3fvb18TObject_transitionFPCvUl(void)
  * Address:	........
  * Size:	000080
  */
-void __ct__Q37JStudio3fvb18TObject_transitionFRCQ47JStudio3fvb4data13TParse_TBlock(void)
+void JStudio::fvb::TObject_transition::__ct( (JStudio::fvb::data::TParse_TBlock const &))
 {
 	// UNUSED FUNCTION
 }
@@ -430,7 +430,7 @@ void __ct__Q37JStudio3fvb18TObject_transitionFRCQ47JStudio3fvb4data13TParse_TBlo
  * Address:	8000BE34
  * Size:	000018
  */
-void prepare_data___Q37JStudio3fvb18TObject_transitionFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl(void)
+void JStudio::fvb::TObject_transition::prepare_data_( (JStudio::fvb::data::TParse_TParagraph::TData const &, JStudio::fvb::TControl *))
 {
 /*
 .loc_0x0:
@@ -448,7 +448,7 @@ void prepare_data___Q37JStudio3fvb18TObject_transitionFRCQ57JStudio3fvb4data17TP
  * Address:	........
  * Size:	000068
  */
-void __ct__Q37JStudio3fvb12TObject_listFPCvUl(void)
+void JStudio::fvb::TObject_list::__ct( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -458,7 +458,7 @@ void __ct__Q37JStudio3fvb12TObject_listFPCvUl(void)
  * Address:	........
  * Size:	000080
  */
-void __ct__Q37JStudio3fvb12TObject_listFRCQ47JStudio3fvb4data13TParse_TBlock(void)
+void JStudio::fvb::TObject_list::__ct( (JStudio::fvb::data::TParse_TBlock const &))
 {
 	// UNUSED FUNCTION
 }
@@ -468,7 +468,7 @@ void __ct__Q37JStudio3fvb12TObject_listFRCQ47JStudio3fvb4data13TParse_TBlock(voi
  * Address:	8000BE4C
  * Size:	000020
  */
-void prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl(void)
+void JStudio::fvb::TObject_list::prepare_data_( (JStudio::fvb::data::TParse_TParagraph::TData const &, JStudio::fvb::TControl *))
 {
 /*
 .loc_0x0:
@@ -488,7 +488,7 @@ void prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_T
  * Address:	........
  * Size:	000068
  */
-void __ct__Q37JStudio3fvb22TObject_list_parameterFPCvUl(void)
+void JStudio::fvb::TObject_list_parameter::__ct( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -498,7 +498,7 @@ void __ct__Q37JStudio3fvb22TObject_list_parameterFPCvUl(void)
  * Address:	........
  * Size:	000080
  */
-void __ct__Q37JStudio3fvb22TObject_list_parameterFRCQ47JStudio3fvb4data13TParse_TBlock(void)
+void JStudio::fvb::TObject_list_parameter::__ct( (JStudio::fvb::data::TParse_TBlock const &))
 {
 	// UNUSED FUNCTION
 }
@@ -508,7 +508,7 @@ void __ct__Q37JStudio3fvb22TObject_list_parameterFRCQ47JStudio3fvb4data13TParse_
  * Address:	8000BE6C
  * Size:	000030
  */
-void prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl(void)
+void JStudio::fvb::TObject_list_parameter::prepare_data_( (JStudio::fvb::data::TParse_TParagraph::TData const &, JStudio::fvb::TControl *))
 {
 /*
 .loc_0x0:
@@ -532,7 +532,7 @@ void prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data
  * Address:	........
  * Size:	000068
  */
-void __ct__Q37JStudio3fvb15TObject_hermiteFPCvUl(void)
+void JStudio::fvb::TObject_hermite::__ct( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -542,7 +542,7 @@ void __ct__Q37JStudio3fvb15TObject_hermiteFPCvUl(void)
  * Address:	........
  * Size:	000080
  */
-void __ct__Q37JStudio3fvb15TObject_hermiteFRCQ47JStudio3fvb4data13TParse_TBlock(void)
+void JStudio::fvb::TObject_hermite::__ct( (JStudio::fvb::data::TParse_TBlock const &))
 {
 	// UNUSED FUNCTION
 }
@@ -552,7 +552,7 @@ void __ct__Q37JStudio3fvb15TObject_hermiteFRCQ47JStudio3fvb4data13TParse_TBlock(
  * Address:	8000BE9C
  * Size:	000038
  */
-void prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl(void)
+void JStudio::fvb::TObject_hermite::prepare_data_( (JStudio::fvb::data::TParse_TParagraph::TData const &, JStudio::fvb::TControl *))
 {
 /*
 .loc_0x0:
@@ -578,7 +578,7 @@ void prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TPars
  * Address:	8000BED4
  * Size:	000030
  */
-void __ct__Q37JStudio3fvb8TControlFv(void)
+void JStudio::fvb::TControl::__ct(void)
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void __dt__Q27JGadget37TLinkList<JStudio::fvb::TObject, -12>Fv(void)
  * Address:	8000BF04
  * Size:	00006C
  */
-void __dt__Q37JStudio3fvb8TControlFv(void)
+void JStudio::fvb::TControl::__dt(void)
 {
 /*
 .loc_0x0:
@@ -655,7 +655,7 @@ void __dt__Q37JStudio3fvb8TControlFv(void)
  * Address:	........
  * Size:	000050
  */
-void appendObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject(void)
+void JStudio::fvb::TControl::appendObject( (JStudio::fvb::TObject *))
 {
 	// UNUSED FUNCTION
 }
@@ -665,7 +665,7 @@ void appendObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject(void)
  * Address:	........
  * Size:	000034
  */
-void removeObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject(void)
+void JStudio::fvb::TControl::removeObject( (JStudio::fvb::TObject *))
 {
 	// UNUSED FUNCTION
 }
@@ -675,7 +675,7 @@ void removeObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject(void)
  * Address:	........
  * Size:	00005C
  */
-void removeObject_all__Q37JStudio3fvb8TControlFv(void)
+void JStudio::fvb::TControl::removeObject_all(void)
 {
 	// UNUSED FUNCTION
 }
@@ -685,7 +685,7 @@ void removeObject_all__Q37JStudio3fvb8TControlFv(void)
  * Address:	........
  * Size:	00005C
  */
-void destroyObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject(void)
+void JStudio::fvb::TControl::destroyObject( (JStudio::fvb::TObject *))
 {
 	// UNUSED FUNCTION
 }
@@ -695,7 +695,7 @@ void destroyObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject(void)
  * Address:	........
  * Size:	000084
  */
-void destroyObject_all__Q37JStudio3fvb8TControlFv(void)
+void JStudio::fvb::TControl::destroyObject_all(void)
 {
 	// UNUSED FUNCTION
 }
@@ -705,7 +705,7 @@ void destroyObject_all__Q37JStudio3fvb8TControlFv(void)
  * Address:	8000BF70
  * Size:	000094
  */
-void getObject__Q37JStudio3fvb8TControlFPCvUl(void)
+void JStudio::fvb::TControl::getObject( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -813,7 +813,7 @@ void std::find_if<JGadget::TLinkList<JStudio::fvb::TObject, -12>::iterator, JStu
  * Address:	........
  * Size:	00003C
  */
-void __dt__Q37JStudio6object18TPRObject_ID_equalFv(void)
+void JStudio::object::TPRObject_ID_equal::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -823,7 +823,7 @@ void __dt__Q37JStudio6object18TPRObject_ID_equalFv(void)
  * Address:	8000C0A0
  * Size:	00007C
  */
-void getObject_index__Q37JStudio3fvb8TControlFUl(void)
+void JStudio::fvb::TControl::getObject_index( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -878,7 +878,7 @@ void getObject_index__Q37JStudio3fvb8TControlFUl(void)
  * Address:	8000C11C
  * Size:	000048
  */
-void __dt__Q37JStudio3fvb8TFactoryFv(void)
+void JStudio::fvb::TFactory::__dt(void)
 {
 /*
 .loc_0x0:
@@ -910,7 +910,7 @@ void __dt__Q37JStudio3fvb8TFactoryFv(void)
  * Address:	8000C164
  * Size:	000308
  */
-void create__Q37JStudio3fvb8TFactoryFRCQ47JStudio3fvb4data13TParse_TBlock(void)
+void JStudio::fvb::TFactory::create( (JStudio::fvb::data::TParse_TBlock const &))
 {
 /*
 .loc_0x0:
@@ -1158,7 +1158,7 @@ void create__Q37JStudio3fvb8TFactoryFRCQ47JStudio3fvb4data13TParse_TBlock(void)
  * Address:	8000C46C
  * Size:	00003C
  */
-void destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject(void)
+void JStudio::fvb::TFactory::destroy( (JStudio::fvb::TObject *))
 {
 /*
 .loc_0x0:
@@ -1187,7 +1187,7 @@ void destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject(void)
  * Address:	8000C4A8
  * Size:	000020
  */
-void __ct__Q37JStudio3fvb6TParseFPQ37JStudio3fvb8TControl(void)
+void JStudio::fvb::TParse::__ct( (JStudio::fvb::TControl *))
 {
 /*
 .loc_0x0:
@@ -1207,7 +1207,7 @@ void __ct__Q37JStudio3fvb6TParseFPQ37JStudio3fvb8TControl(void)
  * Address:	8000C4C8
  * Size:	000060
  */
-void __dt__Q37JStudio3fvb6TParseFv(void)
+void JStudio::fvb::TParse::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1245,7 +1245,7 @@ void __dt__Q37JStudio3fvb6TParseFv(void)
  * Address:	8000C528
  * Size:	000098
  */
-void parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl(void)
+void JStudio::fvb::TParse::parseHeader_next( (void const **, unsigned long *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1303,7 +1303,7 @@ void parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl(void)
  * Address:	8000C5C0
  * Size:	000118
  */
-void parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl(void)
+void JStudio::fvb::TParse::parseBlock_next( (void const **, unsigned long *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1397,7 +1397,7 @@ void parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl(void)
  * Address:	8000C6D8
  * Size:	00008C
  */
-void __dt__Q37JStudio3fvb15TObject_hermiteFv(void)
+void JStudio::fvb::TObject_hermite::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1450,7 +1450,7 @@ void __dt__Q37JStudio3fvb15TObject_hermiteFv(void)
  * Address:	8000C764
  * Size:	00008C
  */
-void __dt__Q37JStudio3fvb22TObject_list_parameterFv(void)
+void JStudio::fvb::TObject_list_parameter::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1503,7 +1503,7 @@ void __dt__Q37JStudio3fvb22TObject_list_parameterFv(void)
  * Address:	8000C7F0
  * Size:	00008C
  */
-void __dt__Q37JStudio3fvb12TObject_listFv(void)
+void JStudio::fvb::TObject_list::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1556,7 +1556,7 @@ void __dt__Q37JStudio3fvb12TObject_listFv(void)
  * Address:	8000C87C
  * Size:	00008C
  */
-void __dt__Q37JStudio3fvb18TObject_transitionFv(void)
+void JStudio::fvb::TObject_transition::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1609,7 +1609,7 @@ void __dt__Q37JStudio3fvb18TObject_transitionFv(void)
  * Address:	8000C908
  * Size:	00008C
  */
-void __dt__Q37JStudio3fvb16TObject_constantFv(void)
+void JStudio::fvb::TObject_constant::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1662,7 +1662,7 @@ void __dt__Q37JStudio3fvb16TObject_constantFv(void)
  * Address:	8000C994
  * Size:	0000A8
  */
-void __dt__Q37JStudio3fvb17TObject_compositeFv(void)
+void JStudio::fvb::TObject_composite::__dt(void)
 {
 /*
 .loc_0x0:

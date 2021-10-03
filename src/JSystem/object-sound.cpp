@@ -5,7 +5,7 @@
  * Address:	80014FD8
  * Size:	0000C8
  */
-void __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem(void)
+void JStudio_JAudio::TAdaptor_sound::__ct( (JAIBasic *, JStage::TSystem const *))
 {
 /*
 .loc_0x0:
@@ -67,7 +67,7 @@ void __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem(void
  * Address:	800150A0
  * Size:	000084
  */
-void __dt__Q214JStudio_JAudio14TAdaptor_soundFv(void)
+void JStudio_JAudio::TAdaptor_sound::__dt(void)
 {
 /*
 .loc_0x0:
@@ -116,7 +116,7 @@ void __dt__Q214JStudio_JAudio14TAdaptor_soundFv(void)
  * Address:	80015124
  * Size:	0000CC
  */
-void adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_prepare( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
  * Address:	800151F0
  * Size:	000058
  */
-void adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_end( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject(voi
  * Address:	80015248
  * Size:	00014C
  */
-void adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_update( (JStudio::TObject const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -336,7 +336,7 @@ void adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectU
  * Address:	80015394
  * Size:	0000A4
  */
-void adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_SOUND( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -395,7 +395,7 @@ void adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOpe
  * Address:	80015438
  * Size:	000030
  */
-void adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -423,7 +423,7 @@ void adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOpe
  * Address:	80015468
  * Size:	000048
  */
-void adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_BEGIN_FADE_IN( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -457,7 +457,7 @@ void adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4dat
  * Address:	800154B0
  * Size:	000030
  */
-void adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_END( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -485,7 +485,7 @@ void adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOpera
  * Address:	800154E0
  * Size:	000048
  */
-void adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_END_FADE_OUT( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -519,7 +519,7 @@ void adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data
  * Address:	80015528
  * Size:	000068
  */
-void adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -561,7 +561,7 @@ void adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOp
  * Address:	80015590
  * Size:	000080
  */
-void adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_NODE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -611,7 +611,7 @@ void adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data1
  * Address:	80015610
  * Size:	000020
  */
-void adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_PARENT_ENABLE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -631,7 +631,7 @@ void adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4dat
  * Address:	80015630
  * Size:	000028
  */
-void adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JAudio::TAdaptor_sound::adaptor_do_LOCATED( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -653,7 +653,7 @@ void adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEO
  * Address:	........
  * Size:	000034
  */
-void toString_state___Q214JStudio_JAudio14TAdaptor_soundFi(void)
+void JStudio_JAudio::TAdaptor_sound::toString_state_( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -663,7 +663,7 @@ void toString_state___Q214JStudio_JAudio14TAdaptor_soundFi(void)
  * Address:	80015658
  * Size:	000040
  */
-void __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor(void)
+void JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::operator()( const(float, JStudio::TAdaptor *))
 {
 /*
 .loc_0x0:
@@ -693,7 +693,7 @@ void __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdap
  * Address:	80015698
  * Size:	0000D8
  */
-void beginSound_fadeIn___Q214JStudio_JAudio14TAdaptor_soundFUl(void)
+void JStudio_JAudio::TAdaptor_sound::beginSound_fadeIn_( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -767,7 +767,7 @@ void beginSound_fadeIn___Q214JStudio_JAudio14TAdaptor_soundFUl(void)
  * Address:	80015770
  * Size:	000050
  */
-void endSound_fadeOut___Q214JStudio_JAudio14TAdaptor_soundFUl(void)
+void JStudio_JAudio::TAdaptor_sound::endSound_fadeOut_( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -801,7 +801,7 @@ void endSound_fadeOut___Q214JStudio_JAudio14TAdaptor_soundFUl(void)
  * Address:	800157C0
  * Size:	000060
  */
-void __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv(void)
+void JStudio_JAudio::TAdaptor_sound::TVVOSetValue_::__dt(void)
 {
 /*
 .loc_0x0:

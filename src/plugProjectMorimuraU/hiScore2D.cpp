@@ -35,7 +35,7 @@ void J2DPane::isInfluencedAlpha() const
  * Address:	8037C9AC
  * Size:	000214
  */
-void draw__Q28Morimura15THiScoreIndPaneFv(void)
+void Morimura::THiScoreIndPane::draw(void)
 {
 /*
 .loc_0x0:
@@ -180,7 +180,7 @@ void draw__Q28Morimura15THiScoreIndPaneFv(void)
  * Address:	........
  * Size:	000030
  */
-void setRadius__Q28Morimura15THiScoreIndPaneFsf(void)
+void Morimura::THiScoreIndPane::setRadius( (short, float))
 {
 	// UNUSED FUNCTION
 }
@@ -190,7 +190,7 @@ void setRadius__Q28Morimura15THiScoreIndPaneFsf(void)
  * Address:	........
  * Size:	000048
  */
-void __ct__Q28Morimura18THiScoreListScreenFP10JKRArchivei(void)
+void Morimura::THiScoreListScreen::__ct( (JKRArchive *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -200,7 +200,7 @@ void __ct__Q28Morimura18THiScoreListScreenFP10JKRArchivei(void)
  * Address:	8037CBC0
  * Size:	00032C
  */
-void create__Q28Morimura18THiScoreListScreenFPCcUl(void)
+void Morimura::THiScoreListScreen::create( (char const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -425,7 +425,7 @@ void create__Q28Morimura18THiScoreListScreenFPCcUl(void)
  * Address:	8037CEEC
  * Size:	0001CC
  */
-void __ct__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::__ct(void)
 {
 /*
 .loc_0x0:
@@ -565,7 +565,7 @@ void Vector2<float>::Vector2()
  * Address:	8037D0BC
  * Size:	00105C
  */
-void doCreate__Q28Morimura8THiScoreFP10JKRArchive(void)
+void Morimura::THiScore::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1722,7 +1722,7 @@ void doCreate__Q28Morimura8THiScoreFP10JKRArchive(void)
  * Address:	8037E118
  * Size:	000060
  */
-void __dt__Q28Morimura8TIndPaneFv(void)
+void Morimura::TIndPane::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1760,7 +1760,7 @@ void __dt__Q28Morimura8TIndPaneFv(void)
  * Address:	8037E178
  * Size:	00001C
  */
-void getNameID__Q28Morimura8THiScoreFi(void)
+void Morimura::THiScore::getNameID( (int))
 {
 /*
 .loc_0x0:
@@ -1779,7 +1779,7 @@ void getNameID__Q28Morimura8THiScoreFi(void)
  * Address:	8037E194
  * Size:	0009F0
  */
-void doUpdate__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -2527,7 +2527,7 @@ void doUpdate__Q28Morimura8THiScoreFv(void)
  * Address:	8037EB84
  * Size:	000030
  */
-void update__Q28Morimura18THiScoreListScreenFv(void)
+void Morimura::THiScoreListScreen::update(void)
 {
 /*
 .loc_0x0:
@@ -2551,7 +2551,7 @@ void update__Q28Morimura18THiScoreListScreenFv(void)
  * Address:	8037EBB4
  * Size:	0001A8
  */
-void doDraw__Q28Morimura8THiScoreFR8Graphics(void)
+void Morimura::THiScore::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2671,7 +2671,7 @@ void doDraw__Q28Morimura8THiScoreFR8Graphics(void)
  * Address:	8037ED5C
  * Size:	000358
  */
-void paneInit__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::paneInit(void)
 {
 /*
 .loc_0x0:
@@ -2905,7 +2905,7 @@ void paneInit__Q28Morimura8THiScoreFv(void)
  * Address:	8037F0B4
  * Size:	00005C
  */
-void doUpdateFadeinFinish__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -2942,7 +2942,7 @@ void doUpdateFadeinFinish__Q28Morimura8THiScoreFv(void)
  * Address:	8037F110
  * Size:	00001C
  */
-void doUpdateFadeoutFinish__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -2961,7 +2961,7 @@ void doUpdateFadeoutFinish__Q28Morimura8THiScoreFv(void)
  * Address:	8037F12C
  * Size:	0005C4
  */
-void changePaneInfo__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::changePaneInfo(void)
 {
 /*
 .loc_0x0:
@@ -3394,7 +3394,7 @@ void changePaneInfo__Q28Morimura8THiScoreFv(void)
  * Address:	8037F6F0
  * Size:	000124
  */
-void setPaneCharacter__Q28Morimura8THiScoreFi(void)
+void Morimura::THiScore::setPaneCharacter( (int))
 {
 /*
 .loc_0x0:
@@ -3483,7 +3483,7 @@ void setPaneCharacter__Q28Morimura8THiScoreFi(void)
  * Address:	8037F814
  * Size:	00044C
  */
-void getRecord__Q28Morimura8THiScoreFii(void)
+void Morimura::THiScore::getRecord( (int, int))
 {
 /*
 .loc_0x0:
@@ -3820,7 +3820,7 @@ void getRecord__Q28Morimura8THiScoreFii(void)
  * Address:	8037FC60
  * Size:	00043C
  */
-void changeTextTevBlock__Q28Morimura8THiScoreFi(void)
+void Morimura::THiScore::changeTextTevBlock( (int))
 {
 /*
 .loc_0x0:
@@ -4113,7 +4113,7 @@ void changeTextTevBlock__Q28Morimura8THiScoreFi(void)
  * Address:	8038009C
  * Size:	00021C
  */
-void copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock(void)
+void Morimura::THiScore::copyTevBlock( (J2DTevBlock *, J2DTevBlock *))
 {
 /*
 .loc_0x0:
@@ -4264,7 +4264,7 @@ void copyTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock(void)
  * Address:	803802B8
  * Size:	00021C
  */
-void changeTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock(void)
+void Morimura::THiScore::changeTevBlock( (J2DTevBlock *, J2DTevBlock *))
 {
 /*
 .loc_0x0:
@@ -4415,7 +4415,7 @@ void changeTevBlock__Q28Morimura8THiScoreFP11J2DTevBlockP11J2DTevBlock(void)
  * Address:	803804D4
  * Size:	000080
  */
-void copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock(void)
+void Morimura::THiScore::copyColorBlock( (J2DColorBlock *, J2DColorBlock *))
 {
 /*
 .loc_0x0:
@@ -4463,7 +4463,7 @@ void copyColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock(void)
  * Address:	80380554
  * Size:	000080
  */
-void changeColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock(void)
+void Morimura::THiScore::changeColorBlock( (J2DColorBlock *, J2DColorBlock *))
 {
 /*
 .loc_0x0:
@@ -4511,7 +4511,7 @@ void changeColorBlock__Q28Morimura8THiScoreFP13J2DColorBlockP13J2DColorBlock(voi
  * Address:	803805D4
  * Size:	000180
  */
-void updateLayout__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::updateLayout(void)
 {
 /*
 .loc_0x0:
@@ -4625,7 +4625,7 @@ void updateLayout__Q28Morimura8THiScoreFv(void)
  * Address:	80380754
  * Size:	000050
  */
-void __ct__Q28Morimura13THiScoreSceneFv(void)
+void Morimura::THiScoreScene::__ct(void)
 {
 /*
 .loc_0x0:
@@ -4657,7 +4657,7 @@ void __ct__Q28Morimura13THiScoreSceneFv(void)
  * Address:	803807A4
  * Size:	00000C
  */
-void getResName__Q28Morimura13THiScoreSceneCFv(void)
+void Morimura::THiScoreScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -4672,7 +4672,7 @@ void getResName__Q28Morimura13THiScoreSceneCFv(void)
  * Address:	803807B0
  * Size:	000068
  */
-void doCreateObj__Q28Morimura13THiScoreSceneFP10JKRArchive(void)
+void Morimura::THiScoreScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -4712,7 +4712,7 @@ void doCreateObj__Q28Morimura13THiScoreSceneFP10JKRArchive(void)
  * Address:	80380818
  * Size:	000008
  */
-void getSceneType__Q28Morimura13THiScoreSceneFv(void)
+void Morimura::THiScoreScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -4726,7 +4726,7 @@ void getSceneType__Q28Morimura13THiScoreSceneFv(void)
  * Address:	80380820
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura13THiScoreSceneFv(void)
+void Morimura::THiScoreScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -4741,7 +4741,7 @@ void getOwnerID__Q28Morimura13THiScoreSceneFv(void)
  * Address:	8038082C
  * Size:	000010
  */
-void getMemberID__Q28Morimura13THiScoreSceneFv(void)
+void Morimura::THiScoreScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -4757,7 +4757,7 @@ void getMemberID__Q28Morimura13THiScoreSceneFv(void)
  * Address:	8038083C
  * Size:	000008
  */
-void getSize__Q28Morimura19DispMemberHighScoreFv(void)
+void Morimura::DispMemberHighScore::getSize(void)
 {
 /*
 .loc_0x0:
@@ -4771,7 +4771,7 @@ void getSize__Q28Morimura19DispMemberHighScoreFv(void)
  * Address:	80380844
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura19DispMemberHighScoreFv(void)
+void Morimura::DispMemberHighScore::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -4786,7 +4786,7 @@ void getOwnerID__Q28Morimura19DispMemberHighScoreFv(void)
  * Address:	80380850
  * Size:	000010
  */
-void getMemberID__Q28Morimura19DispMemberHighScoreFv(void)
+void Morimura::DispMemberHighScore::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -4802,7 +4802,7 @@ void getMemberID__Q28Morimura19DispMemberHighScoreFv(void)
  * Address:	80380860
  * Size:	000034
  */
-void getDispMemberBase__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::getDispMemberBase(void)
 {
 /*
 .loc_0x0:
@@ -4831,7 +4831,7 @@ void getDispMemberBase__Q28Morimura8THiScoreFv(void)
  * Address:	80380894
  * Size:	000008
  */
-void getIdMax__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::getIdMax(void)
 {
 /*
 .loc_0x0:
@@ -4845,7 +4845,7 @@ void getIdMax__Q28Morimura8THiScoreFv(void)
  * Address:	8038089C
  * Size:	000004
  */
-void setShortenIndex__Q28Morimura11TScrollListFiib(void)
+void Morimura::TScrollList::setShortenIndex( (int, int, bool))
 {
 /*
 .loc_0x0:
@@ -4858,7 +4858,7 @@ void setShortenIndex__Q28Morimura11TScrollListFiib(void)
  * Address:	803808A0
  * Size:	000004
  */
-void doUpdateIn__Q28Morimura11TScrollListFv(void)
+void Morimura::TScrollList::doUpdateIn(void)
 {
 /*
 .loc_0x0:
@@ -4871,7 +4871,7 @@ void doUpdateIn__Q28Morimura11TScrollListFv(void)
  * Address:	803808A4
  * Size:	000004
  */
-void doUpdateOut__Q28Morimura11TScrollListFv(void)
+void Morimura::TScrollList::doUpdateOut(void)
 {
 /*
 .loc_0x0:
@@ -4884,7 +4884,7 @@ void doUpdateOut__Q28Morimura11TScrollListFv(void)
  * Address:	803808A8
  * Size:	0000DC
  */
-void __dt__Q28Morimura8THiScoreFv(void)
+void Morimura::THiScore::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4955,7 +4955,7 @@ void __dt__Q28Morimura8THiScoreFv(void)
  * Address:	80380984
  * Size:	000070
  */
-void __dt__Q28Morimura15THiScoreIndPaneFv(void)
+void Morimura::THiScoreIndPane::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5023,7 +5023,7 @@ void __sinit_hiScore2D_cpp(void)
  * Address:	80380A24
  * Size:	000008
  */
-void @24@__dt__Q28Morimura8THiScoreFv(void)
+void @24@Morimura::THiScore::__dt(void)
 {
 /*
 .loc_0x0:

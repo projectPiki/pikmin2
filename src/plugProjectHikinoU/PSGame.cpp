@@ -5,7 +5,7 @@
  * Address:	80334268
  * Size:	000028
  */
-void getCaveNoFromID__Q26PSGame13CaveFloorInfoFv(void)
+void PSGame::CaveFloorInfo::getCaveNoFromID(void)
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void getCaveNoFromID__Q26PSGame13CaveFloorInfoFv(void)
  * Address:	........
  * Size:	000070
  */
-void __ct__Q26PSGame13ConductorListFv(void)
+void PSGame::ConductorList::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -39,7 +39,7 @@ void __ct__Q26PSGame13ConductorListFv(void)
  * Address:	80334290
  * Size:	0000D4
  */
-void __dt__Q26PSGame13ConductorListFv(void)
+void PSGame::ConductorList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -114,7 +114,7 @@ void __dt__Q26PSGame13ConductorListFv(void)
  * Address:	80334364
  * Size:	0001AC
  */
-void read__Q26PSGame13ConductorListFR6Stream(void)
+void PSGame::ConductorList::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -253,7 +253,7 @@ void read__Q26PSGame13ConductorListFR6Stream(void)
  * Address:	80334510
  * Size:	000014
  */
-void __ct__Q36PSGame13ConductorList8CaveInfoFv(void)
+void PSGame::ConductorList::CaveInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void __ct__Q36PSGame13ConductorList8CaveInfoFv(void)
  * Address:	........
  * Size:	0000F4
  */
-void getInfo__Q26PSGame13ConductorListFUcUc(void)
+void PSGame::ConductorList::getInfo( (unsigned char, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -280,7 +280,7 @@ void getInfo__Q26PSGame13ConductorListFUcUc(void)
  * Address:	........
  * Size:	00012C
  */
-void getAutoBgmInfo__Q26PSGame13ConductorListFUcUc(void)
+void PSGame::ConductorList::getAutoBgmInfo( (unsigned char, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -290,7 +290,7 @@ void getAutoBgmInfo__Q26PSGame13ConductorListFUcUc(void)
  * Address:	80334524
  * Size:	0003D4
  */
-void getSeqAndWaveFromConductor__Q26PSGame13ConductorListFPCcPUcPPc(void)
+void PSGame::ConductorList::getSeqAndWaveFromConductor( (char const *, unsigned char *, char **))
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void getSeqAndWaveFromConductor__Q26PSGame13ConductorListFPCcPUcPPc(void)
  * Address:	803348F8
  * Size:	0000E0
  */
-void __ct__Q36PSGame10SoundTable11CategoryMgrFv(void)
+void PSGame::SoundTable::CategoryMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -667,7 +667,7 @@ void __ct__Q36PSGame10SoundTable11CategoryMgrFv(void)
  * Address:	803349D8
  * Size:	000174
  */
-void initiate__Q36PSGame10SoundTable11CategoryMgrFUc(void)
+void PSGame::SoundTable::CategoryMgr::initiate( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -794,7 +794,7 @@ void initiate__Q36PSGame10SoundTable11CategoryMgrFUc(void)
  * Address:	80334B4C
  * Size:	000018
  */
-void set__Q36PSGame10SoundTable11SePerspInfoFfffff(void)
+void PSGame::SoundTable::SePerspInfo::set( (float, float, float, float, float))
 {
 /*
 .loc_0x0:
@@ -812,7 +812,7 @@ void set__Q36PSGame10SoundTable11SePerspInfoFfffff(void)
  * Address:	80334B64
  * Size:	000164
  */
-void getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc(void)
+void PSGame::SoundTable::SePerspInfo::getDistVol( (float, unsigned char))
 {
 /*
 .loc_0x0:
@@ -939,7 +939,7 @@ void getDistVol__Q36PSGame10SoundTable11SePerspInfoFfUc(void)
  * Address:	80334CC8
  * Size:	0000A8
  */
-void __ct__Q26PSGame9CameraMgrFv(void)
+void PSGame::CameraMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -993,7 +993,7 @@ void __ct__Q26PSGame9CameraMgrFv(void)
  * Address:	80334D70
  * Size:	000060
  */
-void __dt__Q26PSGame9CameraMgrFv(void)
+void PSGame::CameraMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1031,7 +1031,7 @@ void __dt__Q26PSGame9CameraMgrFv(void)
  * Address:	80334DD0
  * Size:	000024
  */
-void getBgmCamVol__Q26PSGame9CameraMgrFUc(void)
+void PSGame::CameraMgr::getBgmCamVol( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -1054,7 +1054,7 @@ void getBgmCamVol__Q26PSGame9CameraMgrFUc(void)
  * Address:	80334DF4
  * Size:	00004C
  */
-void update__Q26PSGame9CameraMgrFUcf(void)
+void PSGame::CameraMgr::update( (unsigned char, float))
 {
 /*
 .loc_0x0:
@@ -1085,7 +1085,7 @@ void update__Q26PSGame9CameraMgrFUcf(void)
  * Address:	80334E40
  * Size:	000010
  */
-void getCurrentCamDistVol__Q26PSGame9CameraMgrFUc(void)
+void PSGame::CameraMgr::getCurrentCamDistVol( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -1101,7 +1101,7 @@ void getCurrentCamDistVol__Q26PSGame9CameraMgrFUc(void)
  * Address:	80334E50
  * Size:	000088
  */
-void getVol_DistBetweenCamAndLookat__Q26PSGame9CameraMgrFf(void)
+void PSGame::CameraMgr::getVol_DistBetweenCamAndLookat( (float))
 {
 /*
 .loc_0x0:
@@ -1153,7 +1153,7 @@ void getVol_DistBetweenCamAndLookat__Q26PSGame9CameraMgrFf(void)
  * Address:	80334ED8
  * Size:	000034
  */
-void __ct__Q26PSGame10SysFactoryFv(void)
+void PSGame::SysFactory::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1178,7 +1178,7 @@ void __ct__Q26PSGame10SysFactoryFv(void)
  * Address:	80334F0C
  * Size:	000404
  */
-void newSoundSystem__Q26PSGame10SysFactoryFv(void)
+void PSGame::SysFactory::newSoundSystem(void)
 {
 /*
 .loc_0x0:
@@ -1491,7 +1491,7 @@ void newSoundSystem__Q26PSGame10SysFactoryFv(void)
  * Address:	80335310
  * Size:	000080
  */
-void preInitJAI__Q26PSGame10SysFactoryFv(void)
+void PSGame::SysFactory::preInitJAI(void)
 {
 /*
 .loc_0x0:
@@ -1535,7 +1535,7 @@ void preInitJAI__Q26PSGame10SysFactoryFv(void)
  * Address:	80335390
  * Size:	000120
  */
-void postInitJAI__Q26PSGame10SysFactoryFv(void)
+void PSGame::SysFactory::postInitJAI(void)
 {
 /*
 .loc_0x0:
@@ -1631,7 +1631,7 @@ void postInitJAI__Q26PSGame10SysFactoryFv(void)
  * Address:	803354B0
  * Size:	000038
  */
-void __ct__Q26PSGame9SceneInfoFv(void)
+void PSGame::SceneInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1657,7 +1657,7 @@ void __ct__Q26PSGame9SceneInfoFv(void)
  * Address:	803354E8
  * Size:	000078
  */
-void setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift(void)
+void PSGame::SceneInfo::setStageFlag( (PSGame::SceneInfo::FlagDef, PSGame::SceneInfo::FlagBitShift))
 {
 /*
 .loc_0x0:
@@ -1705,7 +1705,7 @@ void setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9Scen
  * Address:	80335560
  * Size:	000010
  */
-void getFlag__Q26PSGame9SceneInfoCFQ36PSGame9SceneInfo12FlagBitShift(void)
+void PSGame::SceneInfo::getFlag( const(PSGame::SceneInfo::FlagBitShift))
 {
 /*
 .loc_0x0:
@@ -1721,7 +1721,7 @@ void getFlag__Q26PSGame9SceneInfoCFQ36PSGame9SceneInfo12FlagBitShift(void)
  * Address:	80335570
  * Size:	000074
  */
-void setStageCamera__Q26PSGame9SceneInfoCFv(void)
+void PSGame::SceneInfo::setStageCamera( const
 {
 /*
 .loc_0x0:
@@ -1766,7 +1766,7 @@ void setStageCamera__Q26PSGame9SceneInfoCFv(void)
  * Address:	803355E4
  * Size:	00003C
  */
-void __ct__Q26PSGame8PikSceneFUc(void)
+void PSGame::PikScene::__ct( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -1793,7 +1793,7 @@ void __ct__Q26PSGame8PikSceneFUc(void)
  * Address:	80335620
  * Size:	000060
  */
-void __dt__Q26PSGame8PikSceneFv(void)
+void PSGame::PikScene::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1831,7 +1831,7 @@ void __dt__Q26PSGame8PikSceneFv(void)
  * Address:	80335680
  * Size:	0000A8
  */
-void getMiddleBossBgm__Q26PSGame8PikSceneFv(void)
+void PSGame::PikScene::getMiddleBossBgm(void)
 {
 /*
 .loc_0x0:
@@ -1893,7 +1893,7 @@ void getMiddleBossBgm__Q26PSGame8PikSceneFv(void)
  * Address:	........
  * Size:	00007C
  */
-void getJumpMainBgm__Q26PSGame8PikSceneFv(void)
+void PSGame::PikScene::getJumpMainBgm(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1903,7 +1903,7 @@ void getJumpMainBgm__Q26PSGame8PikSceneFv(void)
  * Address:	80335728
  * Size:	000378
  */
-void newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv(void)
+void PSGame::PikSceneMgr::newAndSetGlobalScene(void)
 {
 /*
 .loc_0x0:
@@ -2173,7 +2173,7 @@ void newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv(void)
  * Address:	80335AA0
  * Size:	0004AC
  */
-void newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo(void)
+void PSGame::PikSceneMgr::newAndSetCurrentScene( (PSGame::SceneInfo &))
 {
 /*
 .loc_0x0:
@@ -2530,7 +2530,7 @@ void newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo(void)
  * Address:	80335F4C
  * Size:	000098
  */
-void newBgmSeq__Q26PSGame11PikSceneMgrFPCcRQ27JAInter9SoundInfo(void)
+void PSGame::PikSceneMgr::newBgmSeq( (char const *, JAInter::SoundInfo &))
 {
 /*
 .loc_0x0:
@@ -2584,7 +2584,7 @@ void newBgmSeq__Q26PSGame11PikSceneMgrFPCcRQ27JAInter9SoundInfo(void)
  * Address:	80335FE4
  * Size:	000088
  */
-void newStreamBgm__Q26PSGame11PikSceneMgrFUlRQ27JAInter9SoundInfo(void)
+void PSGame::PikSceneMgr::newStreamBgm( (unsigned long, JAInter::SoundInfo &))
 {
 /*
 .loc_0x0:
@@ -2634,7 +2634,7 @@ void newStreamBgm__Q26PSGame11PikSceneMgrFUlRQ27JAInter9SoundInfo(void)
  * Address:	8033606C
  * Size:	000150
  */
-void initBossBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc(void)
+void PSGame::PikSceneMgr::initBossBgm( (PSGame::SceneInfo &, unsigned char *))
 {
 /*
 .loc_0x0:
@@ -2742,7 +2742,7 @@ void initBossBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc(void)
  * Address:	803361BC
  * Size:	000400
  */
-void initAdditionalBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPQ28PSSystem5Scene(void)
+void PSGame::PikSceneMgr::initAdditionalBgm( (PSGame::SceneInfo &, PSSystem::Scene *))
 {
 /*
 .loc_0x0:
@@ -3058,7 +3058,7 @@ void initAdditionalBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPQ28PSSystem5
  * Address:	803365BC
  * Size:	000D24
  */
-void initMainBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc(void)
+void PSGame::PikSceneMgr::initMainBgm( (PSGame::SceneInfo &, unsigned char *))
 {
 /*
 .loc_0x0:
@@ -4061,7 +4061,7 @@ void initMainBgm__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfoPUc(void)
  * Address:	........
  * Size:	0001A8
  */
-void getConductorFile__Q26PSGame17ConductorSelectorFPCcRQ26PSGame13CaveFloorInfoPUcPc(void)
+void PSGame::ConductorSelector::getConductorFile( (char const *, PSGame::CaveFloorInfo &, unsigned char *, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -5374,7 +5374,7 @@ void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr>Fv(
  * Address:	803381E4
  * Size:	000008
  */
-void @28@__dt__Q26PSGame13ConductorListFv(void)
+void @28@PSGame::ConductorList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5388,7 +5388,7 @@ void @28@__dt__Q26PSGame13ConductorListFv(void)
  * Address:	803381EC
  * Size:	000008
  */
-void isCaveFloor__Q26PSGame9SceneInfoFv(void)
+void PSGame::SceneInfo::isCaveFloor(void)
 {
 /*
 .loc_0x0:
@@ -5402,7 +5402,7 @@ void isCaveFloor__Q26PSGame9SceneInfoFv(void)
  * Address:	803381F4
  * Size:	000008
  */
-void curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv(void)
+void PSGame::PikSceneMgr::curSceneIsBigBossFloor(void)
 {
 /*
 .loc_0x0:
@@ -5416,7 +5416,7 @@ void curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv(void)
  * Address:	803381FC
  * Size:	000038
  */
-void exec__Q28PSSystem8SceneMgrFv(void)
+void PSSystem::SceneMgr::exec(void)
 {
 /*
 .loc_0x0:
@@ -5444,7 +5444,7 @@ void exec__Q28PSSystem8SceneMgrFv(void)
  * Address:	80338234
  * Size:	000004
  */
-void init__Q28PSSystem5SceneFv(void)
+void PSSystem::Scene::init(void)
 {
 /*
 .loc_0x0:
@@ -5457,7 +5457,7 @@ void init__Q28PSSystem5SceneFv(void)
  * Address:	80338238
  * Size:	000050
  */
-void __dt__Q29PSAutoBgm15ConductorArcMgrFv(void)
+void PSAutoBgm::ConductorArcMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5491,7 +5491,7 @@ void __dt__Q29PSAutoBgm15ConductorArcMgrFv(void)
  * Address:	80338288
  * Size:	000064
  */
-void __dt__Q36PSGame10SoundTable11CategoryMgrFv(void)
+void PSGame::SoundTable::CategoryMgr::__dt(void)
 {
 /*
 .loc_0x0:

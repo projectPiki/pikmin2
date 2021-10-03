@@ -185,7 +185,7 @@ void J2DBloSaver::save(const J2DScreen *, void *, unsigned long, bool)
  * Address:	........
  * Size:	000054
  */
-void __dt__Q211J2DBloSaver12MaterialNameFv(void)
+void J2DBloSaver::MaterialName::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -195,7 +195,7 @@ void __dt__Q211J2DBloSaver12MaterialNameFv(void)
  * Address:	........
  * Size:	000054
  */
-void __dt__Q211J2DBloSaver11ResFONTNameFv(void)
+void J2DBloSaver::ResFONTName::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -205,7 +205,7 @@ void __dt__Q211J2DBloSaver11ResFONTNameFv(void)
  * Address:	........
  * Size:	000054
  */
-void __dt__Q211J2DBloSaver11ResTIMGNameFv(void)
+void J2DBloSaver::ResTIMGName::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -255,7 +255,7 @@ void J2DBloSaver::makeResTIMGName(J2DBloSaver::ResTIMGName **, J2DPane **, unsig
  * Address:	........
  * Size:	000018
  */
-void __ct__Q211J2DBloSaver11ResTIMGNameFv(void)
+void J2DBloSaver::ResTIMGName::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -275,7 +275,7 @@ void J2DBloSaver::makeResFONTName(J2DBloSaver::ResFONTName **, J2DPane **, unsig
  * Address:	........
  * Size:	000010
  */
-void __ct__Q211J2DBloSaver11ResFONTNameFv(void)
+void J2DBloSaver::ResFONTName::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -295,7 +295,7 @@ void J2DBloSaver::makeMaterialName(J2DBloSaver::MaterialName **, J2DMaterial ***
  * Address:	........
  * Size:	000010
  */
-void __ct__Q211J2DBloSaver12MaterialNameFv(void)
+void J2DBloSaver::MaterialName::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -550,7 +550,7 @@ void J2DMaterial_SaveBlock::write_InSaver(unsigned char **)
  * Address:	........
  * Size:	00000C
  */
-void __ct__Q211J2DBloSaver19CTextureNameConnectFv(void)
+void J2DBloSaver::CTextureNameConnect::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -560,7 +560,7 @@ void __ct__Q211J2DBloSaver19CTextureNameConnectFv(void)
  * Address:	80049518
  * Size:	000050
  */
-void __dt__Q211J2DBloSaver19CTextureNameConnectFv(void)
+void J2DBloSaver::CTextureNameConnect::__dt(void)
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void __dt__Q211J2DBloSaver19CTextureNameConnectFv(void)
  * Address:	........
  * Size:	000100
  */
-void set__Q211J2DBloSaver19CTextureNameConnectFPC7ResTIMGPCc(void)
+void J2DBloSaver::CTextureNameConnect::set( (ResTIMG const *, char const *))
 {
 	// UNUSED FUNCTION
 }
@@ -606,7 +606,7 @@ void set__Q211J2DBloSaver19CTextureNameConnectFPC7ResTIMGPCc(void)
  * Address:	80049568
  * Size:	000070
  */
-void clear__Q211J2DBloSaver19CTextureNameConnectFv(void)
+void J2DBloSaver::CTextureNameConnect::clear(void)
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void clear__Q211J2DBloSaver19CTextureNameConnectFv(void)
  * Address:	........
  * Size:	000050
  */
-void get__Q211J2DBloSaver19CTextureNameConnectFPC7ResTIMG(void)
+void J2DBloSaver::CTextureNameConnect::get( (ResTIMG const *))
 {
 	// UNUSED FUNCTION
 }
@@ -662,7 +662,7 @@ void get__Q211J2DBloSaver19CTextureNameConnectFPC7ResTIMG(void)
  * Address:	........
  * Size:	00006C
  */
-void __ct__Q311J2DBloSaver19CTextureNameConnect3TNCFPC7ResTIMGPCc(void)
+void J2DBloSaver::CTextureNameConnect::TNC::__ct( (ResTIMG const *, char const *))
 {
 	// UNUSED FUNCTION
 }

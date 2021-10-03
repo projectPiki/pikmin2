@@ -1472,7 +1472,7 @@ void JKRFileCache::convStrLower(char *) const
  * Address:	800229C0
  * Size:	00006C
  */
-void __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv(void)
+void JKRFileCache::CCacheBlock::__ct( (unsigned long, unsigned long, void const *))
 {
 /*
 .loc_0x0:

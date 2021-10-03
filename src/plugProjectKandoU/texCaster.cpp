@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000064
  */
-void __ct__Q29TexCaster6CasterFv(void)
+void TexCaster::Caster::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q29TexCaster6CasterFv(void)
  * Address:	8023C95C
  * Size:	000060
  */
-void __dt__Q29TexCaster6CasterFv(void)
+void TexCaster::Caster::__dt(void)
 {
 /*
 .loc_0x0:
@@ -63,7 +63,7 @@ void __dt__Q29TexCaster6CasterFv(void)
  * Address:	........
  * Size:	000014
  */
-void show__Q29TexCaster6CasterFv(void)
+void TexCaster::Caster::show(void)
 {
 	// UNUSED FUNCTION
 }
@@ -73,7 +73,7 @@ void show__Q29TexCaster6CasterFv(void)
  * Address:	8023C9BC
  * Size:	000014
  */
-void hide__Q29TexCaster6CasterFv(void)
+void TexCaster::Caster::hide(void)
 {
 /*
 .loc_0x0:
@@ -90,7 +90,7 @@ void hide__Q29TexCaster6CasterFv(void)
  * Address:	8023C9D0
  * Size:	000080
  */
-void fadein__Q29TexCaster6CasterFf(void)
+void TexCaster::Caster::fadein( (float))
 {
 /*
 .loc_0x0:
@@ -136,7 +136,7 @@ void fadein__Q29TexCaster6CasterFf(void)
  * Address:	........
  * Size:	00007C
  */
-void fadeout__Q29TexCaster6CasterFf(void)
+void TexCaster::Caster::fadeout( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -146,7 +146,7 @@ void fadeout__Q29TexCaster6CasterFf(void)
  * Address:	........
  * Size:	000150
  */
-void makeDL__Q29TexCaster6CasterFv(void)
+void TexCaster::Caster::makeDL(void)
 {
 	// UNUSED FUNCTION
 }
@@ -156,7 +156,7 @@ void makeDL__Q29TexCaster6CasterFv(void)
  * Address:	........
  * Size:	000094
  */
-void update__Q29TexCaster6CasterFv(void)
+void TexCaster::Caster::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -166,7 +166,7 @@ void update__Q29TexCaster6CasterFv(void)
  * Address:	........
  * Size:	000138
  */
-void draw__Q29TexCaster6CasterFR8Graphics(void)
+void TexCaster::Caster::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -176,7 +176,7 @@ void draw__Q29TexCaster6CasterFR8Graphics(void)
  * Address:	........
  * Size:	000004
  */
-void drawLine__Q29TexCaster6CasterFR8Graphics(void)
+void TexCaster::Caster::drawLine( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -186,7 +186,7 @@ void drawLine__Q29TexCaster6CasterFR8Graphics(void)
  * Address:	........
  * Size:	000080
  */
-void __ct__Q29TexCaster3MgrFv(void)
+void TexCaster::Mgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -196,7 +196,7 @@ void __ct__Q29TexCaster3MgrFv(void)
  * Address:	........
  * Size:	000074
  */
-void __dt__Q29TexCaster3MgrFv(void)
+void TexCaster::Mgr::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -206,7 +206,7 @@ void __dt__Q29TexCaster3MgrFv(void)
  * Address:	8023CA50
  * Size:	0000A0
  */
-void globalInstance__Q29TexCaster3MgrFv(void)
+void TexCaster::Mgr::globalInstance(void)
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void globalInstance__Q29TexCaster3MgrFv(void)
  * Address:	8023CAF0
  * Size:	00006C
  */
-void deleteInstance__Q29TexCaster3MgrFv(void)
+void TexCaster::Mgr::deleteInstance(void)
 {
 /*
 .loc_0x0:
@@ -307,7 +307,7 @@ void deleteInstance__Q29TexCaster3MgrFv(void)
  * Address:	8023CB5C
  * Size:	0000E8
  */
-void loadResource__Q29TexCaster3MgrFv(void)
+void TexCaster::Mgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -383,7 +383,7 @@ void loadResource__Q29TexCaster3MgrFv(void)
  * Address:	8023CC44
  * Size:	000550
  */
-void create__Q29TexCaster3MgrFRQ23Sys6Spheref(void)
+void TexCaster::Mgr::create( (Sys::Sphere &, float))
 {
 /*
 .loc_0x0:
@@ -757,7 +757,7 @@ void create__Q29TexCaster3MgrFRQ23Sys6Spheref(void)
  * Address:	........
  * Size:	00007C
  */
-void getTexture__Q29TexCaster3MgrFi(void)
+void TexCaster::Mgr::getTexture( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -767,7 +767,7 @@ void getTexture__Q29TexCaster3MgrFi(void)
  * Address:	........
  * Size:	000118
  */
-void drawInit__Q29TexCaster3MgrFR8Graphics(void)
+void TexCaster::Mgr::drawInit( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -777,7 +777,7 @@ void drawInit__Q29TexCaster3MgrFR8Graphics(void)
  * Address:	8023D194
  * Size:	000288
  */
-void draw__Q29TexCaster3MgrFR8Graphics(void)
+void TexCaster::Mgr::draw( (Graphics &))
 {
 /*
 .loc_0x0:

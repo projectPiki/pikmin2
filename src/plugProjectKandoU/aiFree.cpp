@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8019FF38
  * Size:	0000D0
  */
-void __ct__Q26PikiAI7ActFreeFPQ24Game4Piki(void)
+void PikiAI::ActFree::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -85,7 +85,7 @@ void __ct__Q26PikiAI7ActFreeFPQ24Game4Piki(void)
  * Address:	801A0008
  * Size:	000190
  */
-void init__Q26PikiAI7ActFreeFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActFree::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void init__Q26PikiAI7ActFreeFPQ26PikiAI9ActionArg(void)
  * Address:	801A0198
  * Size:	0001D0
  */
-void exec__Q26PikiAI7ActFreeFv(void)
+void PikiAI::ActFree::exec(void)
 {
 /*
 .loc_0x0:
@@ -353,7 +353,7 @@ void exec__Q26PikiAI7ActFreeFv(void)
  * Address:	801A0368
  * Size:	00004C
  */
-void cleanup__Q26PikiAI7ActFreeFv(void)
+void PikiAI::ActFree::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void cleanup__Q26PikiAI7ActFreeFv(void)
  * Address:	801A03B4
  * Size:	000004
  */
-void onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActFree::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent(void)
  * Address:	801A03B8
  * Size:	0000EC
  */
-void collisionCallback__Q26PikiAI7ActFreeFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActFree::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -470,7 +470,7 @@ void collisionCallback__Q26PikiAI7ActFreeFPQ24Game4PikiRQ24Game9CollEvent(void)
  * Address:	801A04A4
  * Size:	00000C
  */
-void getName__Q26PikiAI15GatherActionArgFv(void)
+void PikiAI::GatherActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -485,7 +485,7 @@ void getName__Q26PikiAI15GatherActionArgFv(void)
  * Address:	801A04B0
  * Size:	000008
  */
-void getNextAIType__Q26PikiAI7ActFreeFv(void)
+void PikiAI::ActFree::getNextAIType(void)
 {
 /*
 .loc_0x0:
@@ -499,7 +499,7 @@ void getNextAIType__Q26PikiAI7ActFreeFv(void)
  * Address:	801A04B8
  * Size:	000014
  */
-void @32@4@onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent(void)
+void @32@4@PikiAI::ActFree::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

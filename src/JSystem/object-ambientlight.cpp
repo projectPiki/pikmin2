@@ -5,7 +5,7 @@
  * Address:	8001318C
  * Size:	0000A0
  */
-void __ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JStage13TAmbientLight(void)
+void JStudio_JStage::TAdaptor_ambientLight::__ct( (JStage::TSystem const *, JStage::TAmbientLight *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void __ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JSta
  * Address:	8001322C
  * Size:	000078
  */
-void __dt__Q214JStudio_JStage21TAdaptor_ambientLightFv(void)
+void JStudio_JStage::TAdaptor_ambientLight::__dt(void)
 {
 /*
 .loc_0x0:
@@ -101,7 +101,7 @@ void __dt__Q214JStudio_JStage21TAdaptor_ambientLightFv(void)
  * Address:	800132A4
  * Size:	000004
  */
-void adaptor_do_prepare__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_prepare( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -114,7 +114,7 @@ void adaptor_do_prepare__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7
  * Address:	800132A8
  * Size:	00008C
  */
-void adaptor_do_begin__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_begin( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -161,7 +161,7 @@ void adaptor_do_begin__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TO
  * Address:	80013334
  * Size:	000054
  */
-void adaptor_do_end__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_end( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void adaptor_do_end__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObj
  * Address:	80013388
  * Size:	00006C
  */
-void adaptor_do_update__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObjectUl(void)
+void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update( (JStudio::TObject const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void adaptor_do_update__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7T
  * Address:	800133F4
  * Size:	000034
  */
-void adaptor_do_data__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObjectPCvUlPCvUl(void)
+void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_data( (JStudio::TObject const *, void const *, unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:

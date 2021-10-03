@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801DCE28
  * Size:	00018C
  */
-void init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::FSM::init( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -134,7 +134,7 @@ void init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item(void)
  * Address:	801DCFB4
  * Size:	000034
  */
-void init__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg(void)
+void Game::ItemPlant::NormalState::init( (Game::ItemPlant::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void init__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4ItemPQ24Game8StateA
  * Address:	801DCFE8
  * Size:	000004
  */
-void startMotion__Q34Game9ItemPlant4ItemFi(void)
+void Game::ItemPlant::Item::startMotion( (int))
 {
 /*
 .loc_0x0:
@@ -172,7 +172,7 @@ void startMotion__Q34Game9ItemPlant4ItemFi(void)
  * Address:	801DCFEC
  * Size:	000128
  */
-void exec__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::NormalState::exec( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void exec__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD114
  * Size:	000004
  */
-void bearFruits__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::bearFruits(void)
 {
 /*
 .loc_0x0:
@@ -307,7 +307,7 @@ void transit__Q24Game32FSMState<Game::ItemPlant::Item>FPQ34Game9ItemPlant4ItemiP
  * Address:	801DD148
  * Size:	000004
  */
-void cleanup__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::NormalState::cleanup( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void cleanup__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD14C
  * Size:	000034
  */
-void eventKarero__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::NormalState::eventKarero( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -345,7 +345,7 @@ void eventKarero__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD180
  * Size:	00005C
  */
-void onDamage__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Itemf(void)
+void Game::ItemPlant::NormalState::onDamage( (Game::ItemPlant::Item *, float))
 {
 /*
 .loc_0x0:
@@ -380,7 +380,7 @@ void onDamage__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Itemf(void)
  * Address:	801DD1DC
  * Size:	000048
  */
-void init__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg(void)
+void Game::ItemPlant::DamagedState::init( (Game::ItemPlant::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void init__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemPQ24Game8State
  * Address:	801DD224
  * Size:	000004
  */
-void exec__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::DamagedState::exec( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -423,7 +423,7 @@ void exec__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD228
  * Size:	000004
  */
-void cleanup__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::DamagedState::cleanup( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -436,7 +436,7 @@ void cleanup__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD22C
  * Size:	00000C
  */
-void eventKarero__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::DamagedState::eventKarero( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -451,7 +451,7 @@ void eventKarero__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD238
  * Size:	00005C
  */
-void onKeyEvent__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPlant::DamagedState::onKeyEvent( (Game::ItemPlant::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -490,7 +490,7 @@ void onKeyEvent__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemRCQ28Sys
  * Address:	801DD294
  * Size:	000024
  */
-void onDamage__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Itemf(void)
+void Game::ItemPlant::DamagedState::onDamage( (Game::ItemPlant::Item *, float))
 {
 /*
 .loc_0x0:
@@ -511,7 +511,7 @@ void onDamage__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Itemf(void)
  * Address:	801DD2B8
  * Size:	000074
  */
-void init__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg(void)
+void Game::ItemPlant::GrowUpState::init( (Game::ItemPlant::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void init__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemPQ24Game8StateA
  * Address:	801DD32C
  * Size:	000004
  */
-void exec__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::GrowUpState::exec( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -565,7 +565,7 @@ void exec__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD330
  * Size:	000004
  */
-void cleanup__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::GrowUpState::cleanup( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -578,7 +578,7 @@ void cleanup__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD334
  * Size:	00000C
  */
-void eventKarero__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::GrowUpState::eventKarero( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -593,7 +593,7 @@ void eventKarero__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD340
  * Size:	000120
  */
-void onKeyEvent__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPlant::GrowUpState::onKeyEvent( (Game::ItemPlant::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -687,7 +687,7 @@ void onKeyEvent__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemRCQ28SysS
  * Address:	801DD460
  * Size:	000024
  */
-void onDamage__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Itemf(void)
+void Game::ItemPlant::GrowUpState::onDamage( (Game::ItemPlant::Item *, float))
 {
 /*
 .loc_0x0:
@@ -708,7 +708,7 @@ void onDamage__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Itemf(void)
  * Address:	801DD484
  * Size:	00007C
  */
-void init__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg(void)
+void Game::ItemPlant::KareruState::init( (Game::ItemPlant::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -751,7 +751,7 @@ void init__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemPQ24Game8StateA
  * Address:	801DD500
  * Size:	000004
  */
-void killFruits__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::killFruits(void)
 {
 /*
 .loc_0x0:
@@ -764,7 +764,7 @@ void killFruits__Q34Game9ItemPlant4ItemFv(void)
  * Address:	801DD504
  * Size:	00008C
  */
-void exec__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::KareruState::exec( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -813,7 +813,7 @@ void exec__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD590
  * Size:	000004
  */
-void cleanup__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::KareruState::cleanup( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -826,7 +826,7 @@ void cleanup__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD594
  * Size:	000018
  */
-void eventHaero__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::KareruState::eventHaero( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -844,7 +844,7 @@ void eventHaero__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD5AC
  * Size:	0000A4
  */
-void onKeyEvent__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPlant::KareruState::onKeyEvent( (Game::ItemPlant::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -907,7 +907,7 @@ void onKeyEvent__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemRCQ28SysS
  * Address:	801DD650
  * Size:	000004
  */
-void onDamage__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Itemf(void)
+void Game::ItemPlant::KareruState::onDamage( (Game::ItemPlant::Item *, float))
 {
 /*
 .loc_0x0:
@@ -920,7 +920,7 @@ void onDamage__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Itemf(void)
  * Address:	801DD654
  * Size:	000048
  */
-void constructor__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::constructor(void)
 {
 /*
 .loc_0x0:
@@ -952,7 +952,7 @@ void constructor__Q34Game9ItemPlant4ItemFv(void)
  * Address:	........
  * Size:	0000D4
  */
-void __ct__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -962,7 +962,7 @@ void __ct__Q34Game9ItemPlant4ItemFv(void)
  * Address:	801DD69C
  * Size:	000058
  */
-void onInit__Q34Game9ItemPlant4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemPlant::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -996,7 +996,7 @@ void onInit__Q34Game9ItemPlant4ItemFPQ24Game15CreatureInitArg(void)
  * Address:	801DD6F4
  * Size:	000028
  */
-void onStickStart__Q34Game9ItemPlant4ItemFPQ24Game8Creature(void)
+void Game::ItemPlant::Item::onStickStart( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1018,7 +1018,7 @@ void onStickStart__Q34Game9ItemPlant4ItemFPQ24Game8Creature(void)
  * Address:	801DD71C
  * Size:	00003C
  */
-void onStickEnd__Q34Game9ItemPlant4ItemFPQ24Game8Creature(void)
+void Game::ItemPlant::Item::onStickEnd( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1045,7 +1045,7 @@ void onStickEnd__Q34Game9ItemPlant4ItemFPQ24Game8Creature(void)
  * Address:	801DD758
  * Size:	000028
  */
-void onSetPosition__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1067,7 +1067,7 @@ void onSetPosition__Q34Game9ItemPlant4ItemFv(void)
  * Address:	801DD780
  * Size:	000044
  */
-void updateTrMatrix__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::updateTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -1096,7 +1096,7 @@ void updateTrMatrix__Q34Game9ItemPlant4ItemFv(void)
  * Address:	801DD7C4
  * Size:	000028
  */
-void startColorMotion__Q34Game9ItemPlant4ItemFi(void)
+void Game::ItemPlant::Item::startColorMotion( (int))
 {
 /*
 .loc_0x0:
@@ -1120,7 +1120,7 @@ void startColorMotion__Q34Game9ItemPlant4ItemFi(void)
  * Address:	801DD7EC
  * Size:	000090
  */
-void updateColorMotion__Q34Game9ItemPlant4ItemFf(void)
+void Game::ItemPlant::Item::updateColorMotion( (float))
 {
 /*
 .loc_0x0:
@@ -1170,7 +1170,7 @@ void updateColorMotion__Q34Game9ItemPlant4ItemFf(void)
  * Address:	801DD87C
  * Size:	000034
  */
-void doAI__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -1195,7 +1195,7 @@ void doAI__Q34Game9ItemPlant4ItemFv(void)
  * Address:	801DD8B0
  * Size:	000044
  */
-void interactAttack__Q34Game9ItemPlant4ItemFRQ24Game14InteractAttack(void)
+void Game::ItemPlant::Item::interactAttack( (Game::InteractAttack &))
 {
 /*
 .loc_0x0:
@@ -1237,7 +1237,7 @@ void onDamage__Q24Game33ItemState<Game::ItemPlant::Item>FPQ34Game9ItemPlant4Item
  * Address:	801DD8F8
  * Size:	000038
  */
-void interactFarmKarero__Q34Game9ItemPlant4ItemFRQ24Game18InteractFarmKarero(void)
+void Game::ItemPlant::Item::interactFarmKarero( (Game::InteractFarmKarero &))
 {
 /*
 .loc_0x0:
@@ -1263,7 +1263,7 @@ void interactFarmKarero__Q34Game9ItemPlant4ItemFRQ24Game18InteractFarmKarero(voi
  * Address:	801DD930
  * Size:	000004
  */
-void eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::State::eventKarero( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -1276,7 +1276,7 @@ void eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD934
  * Size:	000038
  */
-void interactFarmHaero__Q34Game9ItemPlant4ItemFRQ24Game17InteractFarmHaero(void)
+void Game::ItemPlant::Item::interactFarmHaero( (Game::InteractFarmHaero &))
 {
 /*
 .loc_0x0:
@@ -1302,7 +1302,7 @@ void interactFarmHaero__Q34Game9ItemPlant4ItemFRQ24Game17InteractFarmHaero(void)
  * Address:	801DD96C
  * Size:	000004
  */
-void eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item(void)
+void Game::ItemPlant::State::eventHaero( (Game::ItemPlant::Item *))
 {
 /*
 .loc_0x0:
@@ -1315,7 +1315,7 @@ void eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item(void)
  * Address:	801DD970
  * Size:	000120
  */
-void doDirectDraw__Q34Game9ItemPlant4ItemFR8Graphics(void)
+void Game::ItemPlant::Item::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1399,7 +1399,7 @@ void doDirectDraw__Q34Game9ItemPlant4ItemFR8Graphics(void)
  * Address:	801DDA90
  * Size:	000294
  */
-void addDamage__Q34Game9ItemPlant4ItemFf(void)
+void Game::ItemPlant::Item::addDamage( (float))
 {
 /*
 .loc_0x0:
@@ -1596,7 +1596,7 @@ void addDamage__Q34Game9ItemPlant4ItemFf(void)
  * Address:	801DDD24
  * Size:	000004
  */
-void dropFruit__Q34Game9ItemPlant4ItemFi(void)
+void Game::ItemPlant::Item::dropFruit( (int))
 {
 /*
 .loc_0x0:
@@ -1609,7 +1609,7 @@ void dropFruit__Q34Game9ItemPlant4ItemFi(void)
  * Address:	........
  * Size:	00001C
  */
-void __ct__Q34Game9ItemPlant12ProcAnimatorFv(void)
+void Game::ItemPlant::ProcAnimator::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1619,7 +1619,7 @@ void __ct__Q34Game9ItemPlant12ProcAnimatorFv(void)
  * Address:	........
  * Size:	0000D8
  */
-void create__Q34Game9ItemPlant12ProcAnimatorFi(void)
+void Game::ItemPlant::ProcAnimator::create( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -1629,7 +1629,7 @@ void create__Q34Game9ItemPlant12ProcAnimatorFi(void)
  * Address:	........
  * Size:	000088
  */
-void setMatrix__Q34Game9ItemPlant12ProcAnimatorFiP7Matrixf(void)
+void Game::ItemPlant::ProcAnimator::setMatrix( (int, Matrixf *))
 {
 	// UNUSED FUNCTION
 }
@@ -1639,7 +1639,7 @@ void setMatrix__Q34Game9ItemPlant12ProcAnimatorFiP7Matrixf(void)
  * Address:	........
  * Size:	000088
  */
-void setAngle__Q34Game9ItemPlant12ProcAnimatorFif(void)
+void Game::ItemPlant::ProcAnimator::setAngle( (int, float))
 {
 	// UNUSED FUNCTION
 }
@@ -1649,7 +1649,7 @@ void setAngle__Q34Game9ItemPlant12ProcAnimatorFif(void)
  * Address:	........
  * Size:	00007C
  */
-void getAngle__Q34Game9ItemPlant12ProcAnimatorFi(void)
+void Game::ItemPlant::ProcAnimator::getAngle( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -1659,7 +1659,7 @@ void getAngle__Q34Game9ItemPlant12ProcAnimatorFi(void)
  * Address:	801DDD28
  * Size:	000318
  */
-void calcAngles__Q34Game9ItemPlant12ProcAnimatorFv(void)
+void Game::ItemPlant::ProcAnimator::calcAngles(void)
 {
 /*
 .loc_0x0:
@@ -1909,7 +1909,7 @@ void calcAngles__Q34Game9ItemPlant12ProcAnimatorFv(void)
  * Address:	........
  * Size:	00009C
  */
-void calcDists__Q34Game9ItemPlant12ProcAnimatorFv(void)
+void Game::ItemPlant::ProcAnimator::calcDists(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1919,7 +1919,7 @@ void calcDists__Q34Game9ItemPlant12ProcAnimatorFv(void)
  * Address:	........
  * Size:	000030
  */
-void force__Q34Game9ItemPlant12ProcAnimatorFf(void)
+void Game::ItemPlant::ProcAnimator::force( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -1929,7 +1929,7 @@ void force__Q34Game9ItemPlant12ProcAnimatorFf(void)
  * Address:	801DE040
  * Size:	0004E4
  */
-void update__Q34Game9ItemPlant12ProcAnimatorFff(void)
+void Game::ItemPlant::ProcAnimator::update( (float, float))
 {
 /*
 .loc_0x0:
@@ -2292,7 +2292,7 @@ void update__Q34Game9ItemPlant12ProcAnimatorFff(void)
  * Address:	........
  * Size:	00007C
  */
-void draw__Q34Game9ItemPlant12ProcAnimatorFR8Graphics(void)
+void Game::ItemPlant::ProcAnimator::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -2302,7 +2302,7 @@ void draw__Q34Game9ItemPlant12ProcAnimatorFR8Graphics(void)
  * Address:	........
  * Size:	00010C
  */
-void __ct__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2312,7 +2312,7 @@ void __ct__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DE524
  * Size:	000034
  */
-void onKill__Q34Game9ItemPlant5PlantFPQ24Game15CreatureKillArg(void)
+void Game::ItemPlant::Plant::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -2367,7 +2367,7 @@ void getNearestFruit__Q34Game9ItemPlant5PlantFR10Vector3<float>(void)
  * Address:	801DE590
  * Size:	000024
  */
-void updateBoundSphere__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -2388,7 +2388,7 @@ void updateBoundSphere__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DE5B4
  * Size:	0001E0
  */
-void doDirectDraw__Q34Game9ItemPlant5PlantFR8Graphics(void)
+void Game::ItemPlant::Plant::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2520,7 +2520,7 @@ void doDirectDraw__Q34Game9ItemPlant5PlantFR8Graphics(void)
  * Address:	801DE794
  * Size:	000778
  */
-void onInit__Q34Game9ItemPlant5PlantFPQ24Game15CreatureInitArg(void)
+void Game::ItemPlant::Plant::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -3081,7 +3081,7 @@ void start__Q24Game36StateMachine<Game::ItemPlant::Item>FPQ34Game9ItemPlant4Item
  * Address:	801DEF40
  * Size:	000080
  */
-void doAI__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::doAI(void)
 {
 /*
 .loc_0x0:
@@ -3129,7 +3129,7 @@ void doAI__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DEFC0
  * Size:	000370
  */
-void startMotion__Q34Game9ItemPlant5PlantFi(void)
+void Game::ItemPlant::Plant::startMotion( (int))
 {
 /*
 .loc_0x0:
@@ -3389,7 +3389,7 @@ void startMotion__Q34Game9ItemPlant5PlantFi(void)
  * Address:	801DF330
  * Size:	000018
  */
-void setColor__Q34Game9ItemPlant5PlantFf(void)
+void Game::ItemPlant::Plant::setColor( (float))
 {
 /*
 .loc_0x0:
@@ -3407,7 +3407,7 @@ void setColor__Q34Game9ItemPlant5PlantFf(void)
  * Address:	801DF348
  * Size:	000020
  */
-void do_updateLOD__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::do_updateLOD(void)
 {
 /*
 .loc_0x0:
@@ -3427,7 +3427,7 @@ void do_updateLOD__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DF368
  * Size:	0002B0
  */
-void doAnimation__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -3625,7 +3625,7 @@ void doAnimation__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DF618
  * Size:	00002C
  */
-void bearFruits__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::bearFruits(void)
 {
 /*
 .loc_0x0:
@@ -3648,7 +3648,7 @@ void bearFruits__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DF644
  * Size:	000024
  */
-void killFruits__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::killFruits(void)
 {
 /*
 .loc_0x0:
@@ -3669,7 +3669,7 @@ void killFruits__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DF668
  * Size:	000080
  */
-void dropFruit__Q34Game9ItemPlant5PlantFi(void)
+void Game::ItemPlant::Plant::dropFruit( (int))
 {
 /*
 .loc_0x0:
@@ -3721,7 +3721,7 @@ void dropFruit__Q34Game9ItemPlant5PlantFi(void)
  * Address:	801DF6E8
  * Size:	000024
  */
-void hasFruits__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::hasFruits(void)
 {
 /*
 .loc_0x0:
@@ -3742,7 +3742,7 @@ void hasFruits__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DF70C
  * Size:	000024
  */
-void getFruitsNum__Q34Game9ItemPlant5PlantFv(void)
+void Game::ItemPlant::Plant::getFruitsNum(void)
 {
 /*
 .loc_0x0:
@@ -3763,7 +3763,7 @@ void getFruitsNum__Q34Game9ItemPlant5PlantFv(void)
  * Address:	801DF730
  * Size:	0001D0
  */
-void interactEat__Q34Game9ItemPlant5PlantFRQ24Game11InteractEat(void)
+void Game::ItemPlant::Plant::interactEat( (Game::InteractEat &))
 {
 /*
 .loc_0x0:
@@ -3903,7 +3903,7 @@ void interactEat__Q34Game9ItemPlant5PlantFRQ24Game11InteractEat(void)
  * Address:	801DF900
  * Size:	000120
  */
-void __ct__Q34Game9ItemPlant3MgrFv(void)
+void Game::ItemPlant::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3995,7 +3995,7 @@ void __ct__Q34Game9ItemPlant3MgrFv(void)
  * Address:	801DFA20
  * Size:	000024
  */
-void read__Q34Game9ItemPlant10PlantParmsFR6Stream(void)
+void Game::ItemPlant::PlantParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -4016,7 +4016,7 @@ void read__Q34Game9ItemPlant10PlantParmsFR6Stream(void)
  * Address:	801DFA44
  * Size:	000318
  */
-void __ct__Q34Game9ItemPlant10PlantParmsFv(void)
+void Game::ItemPlant::PlantParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -4226,7 +4226,7 @@ void __ct__Q34Game9ItemPlant10PlantParmsFv(void)
  * Address:	801DFD5C
  * Size:	000130
  */
-void birth__Q34Game9ItemPlant3MgrFv(void)
+void Game::ItemPlant::Mgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -4318,7 +4318,7 @@ void birth__Q34Game9ItemPlant3MgrFv(void)
  * Address:	801DFE8C
  * Size:	0000B4
  */
-void onLoadResources__Q34Game9ItemPlant3MgrFv(void)
+void Game::ItemPlant::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -4377,7 +4377,7 @@ void onLoadResources__Q34Game9ItemPlant3MgrFv(void)
  * Address:	801DFF40
  * Size:	00004C
  */
-void generatorNewItemParm__Q34Game9ItemPlant3MgrFv(void)
+void Game::ItemPlant::Mgr::generatorNewItemParm(void)
 {
 /*
 .loc_0x0:
@@ -4410,7 +4410,7 @@ void generatorNewItemParm__Q34Game9ItemPlant3MgrFv(void)
  * Address:	801DFF8C
  * Size:	000088
  */
-void generatorWrite__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParm(void)
+void Game::ItemPlant::Mgr::generatorWrite( (Stream &, Game::GenItemParm *))
 {
 /*
 .loc_0x0:
@@ -4458,7 +4458,7 @@ void generatorWrite__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParm(void)
  * Address:	801E0014
  * Size:	000088
  */
-void generatorRead__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParmUl(void)
+void Game::ItemPlant::Mgr::generatorRead( (Stream &, Game::GenItemParm *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -4569,7 +4569,7 @@ void generatorBirth__Q34Game9ItemPlant3MgrFR10Vector3<float>R10Vector3<float>PQ2
  * Address:	801E0150
  * Size:	000074
  */
-void init__Q34Game9ItemPlant6FruitsFiP7Matrixf(void)
+void Game::ItemPlant::Fruits::init( (int, Matrixf *))
 {
 /*
 .loc_0x0:
@@ -4610,7 +4610,7 @@ void init__Q34Game9ItemPlant6FruitsFiP7Matrixf(void)
  * Address:	801E01C4
  * Size:	000060
  */
-void __dt__Q34Game9ItemPlant9FruitSlotFv(void)
+void Game::ItemPlant::FruitSlot::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4648,7 +4648,7 @@ void __dt__Q34Game9ItemPlant9FruitSlotFv(void)
  * Address:	801E0224
  * Size:	000064
  */
-void update__Q34Game9ItemPlant6FruitsFv(void)
+void Game::ItemPlant::Fruits::update(void)
 {
 /*
 .loc_0x0:
@@ -4689,7 +4689,7 @@ void update__Q34Game9ItemPlant6FruitsFv(void)
  * Address:	801E0288
  * Size:	0002B4
  */
-void bearAll__Q34Game9ItemPlant6FruitsFUs(void)
+void Game::ItemPlant::Fruits::bearAll( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -4894,7 +4894,7 @@ void bearAll__Q34Game9ItemPlant6FruitsFUs(void)
  * Address:	801E053C
  * Size:	000040
  */
-void hasFruits__Q34Game9ItemPlant6FruitsFv(void)
+void Game::ItemPlant::Fruits::hasFruits(void)
 {
 /*
 .loc_0x0:
@@ -4928,7 +4928,7 @@ void hasFruits__Q34Game9ItemPlant6FruitsFv(void)
  * Address:	801E057C
  * Size:	000040
  */
-void countFruits__Q34Game9ItemPlant6FruitsFv(void)
+void Game::ItemPlant::Fruits::countFruits(void)
 {
 /*
 .loc_0x0:
@@ -4962,7 +4962,7 @@ void countFruits__Q34Game9ItemPlant6FruitsFv(void)
  * Address:	801E05BC
  * Size:	000064
  */
-void killAll__Q34Game9ItemPlant6FruitsFv(void)
+void Game::ItemPlant::Fruits::killAll(void)
 {
 /*
 .loc_0x0:
@@ -5096,7 +5096,7 @@ void getFruit__Q34Game9ItemPlant6FruitsFR10Vector3<float>(void)
  * Address:	801E072C
  * Size:	00004C
  */
-void __ct__Q34Game9ItemPlant9FruitSlotFv(void)
+void Game::ItemPlant::FruitSlot::__ct(void)
 {
 /*
 .loc_0x0:
@@ -5127,7 +5127,7 @@ void __ct__Q34Game9ItemPlant9FruitSlotFv(void)
  * Address:	801E0778
  * Size:	000050
  */
-void setFruit__Q34Game9ItemPlant9FruitSlotFPQ24Game6PelletP7MatrixfR7Matrixf(void)
+void Game::ItemPlant::FruitSlot::setFruit( (Game::Pellet *, Matrixf *, Matrixf &))
 {
 /*
 .loc_0x0:
@@ -5159,7 +5159,7 @@ void setFruit__Q34Game9ItemPlant9FruitSlotFPQ24Game6PelletP7MatrixfR7Matrixf(voi
  * Address:	801E07C8
  * Size:	000040
  */
-void dropFruit__Q34Game9ItemPlant9FruitSlotFv(void)
+void Game::ItemPlant::FruitSlot::dropFruit(void)
 {
 /*
 .loc_0x0:
@@ -5189,7 +5189,7 @@ void dropFruit__Q34Game9ItemPlant9FruitSlotFv(void)
  * Address:	801E0808
  * Size:	000044
  */
-void killFruit__Q34Game9ItemPlant9FruitSlotFv(void)
+void Game::ItemPlant::FruitSlot::killFruit(void)
 {
 /*
 .loc_0x0:
@@ -5220,7 +5220,7 @@ void killFruit__Q34Game9ItemPlant9FruitSlotFv(void)
  * Address:	801E084C
  * Size:	000034
  */
-void update__Q34Game9ItemPlant9FruitSlotFv(void)
+void Game::ItemPlant::FruitSlot::update(void)
 {
 /*
 .loc_0x0:
@@ -5247,7 +5247,7 @@ void update__Q34Game9ItemPlant9FruitSlotFv(void)
  * Address:	801E0880
  * Size:	000134
  */
-void __dt__Q34Game9ItemPlant3MgrFv(void)
+void Game::ItemPlant::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5344,7 +5344,7 @@ void __dt__Q34Game9ItemPlant3MgrFv(void)
  * Address:	801E09B4
  * Size:	000118
  */
-void doNew__Q34Game9ItemPlant3MgrFv(void)
+void Game::ItemPlant::Mgr::doNew(void)
 {
 /*
 .loc_0x0:
@@ -5430,7 +5430,7 @@ void doNew__Q34Game9ItemPlant3MgrFv(void)
  * Address:	801E0ACC
  * Size:	00000C
  */
-void generatorGetID__Q34Game9ItemPlant3MgrFv(void)
+void Game::ItemPlant::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -5445,7 +5445,7 @@ void generatorGetID__Q34Game9ItemPlant3MgrFv(void)
  * Address:	801E0AD8
  * Size:	00000C
  */
-void generatorLocalVersion__Q34Game9ItemPlant3MgrFv(void)
+void Game::ItemPlant::Mgr::generatorLocalVersion(void)
 {
 /*
 .loc_0x0:
@@ -5460,7 +5460,7 @@ void generatorLocalVersion__Q34Game9ItemPlant3MgrFv(void)
  * Address:	801E0AE4
  * Size:	000030
  */
-void changeMaterial__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -5484,7 +5484,7 @@ void changeMaterial__Q34Game9ItemPlant4ItemFv(void)
  * Address:	801E0B14
  * Size:	000004
  */
-void setColor__Q34Game9ItemPlant4ItemFf(void)
+void Game::ItemPlant::Item::setColor( (float))
 {
 /*
 .loc_0x0:
@@ -5497,7 +5497,7 @@ void setColor__Q34Game9ItemPlant4ItemFf(void)
  * Address:	801E0B18
  * Size:	000008
  */
-void hasFruits__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::hasFruits(void)
 {
 /*
 .loc_0x0:
@@ -5511,7 +5511,7 @@ void hasFruits__Q34Game9ItemPlant4ItemFv(void)
  * Address:	801E0B20
  * Size:	000008
  */
-void getFruitsNum__Q34Game9ItemPlant4ItemFv(void)
+void Game::ItemPlant::Item::getFruitsNum(void)
 {
 /*
 .loc_0x0:
@@ -6026,7 +6026,7 @@ void @376@onKeyEvent__Q24Game77FSMItem<Game::ItemPlant::Item, Game::ItemPlant::F
  * Address:	801E0E7C
  * Size:	000008
  */
-void @48@__dt__Q34Game9ItemPlant3MgrFv(void)
+void @48@Game::ItemPlant::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

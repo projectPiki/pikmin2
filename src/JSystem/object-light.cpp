@@ -5,7 +5,7 @@
  * Address:	800113C8
  * Size:	0000A8
  */
-void __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight(void)
+void JStudio_JStage::TAdaptor_light::__ct( (JStage::TSystem const *, JStage::TLight *))
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLig
  * Address:	80011470
  * Size:	000078
  */
-void __dt__Q214JStudio_JStage14TAdaptor_lightFv(void)
+void JStudio_JStage::TAdaptor_light::__dt(void)
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void __dt__Q214JStudio_JStage14TAdaptor_lightFv(void)
  * Address:	800114E8
  * Size:	000048
  */
-void adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_light::adaptor_do_prepare( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
  * Address:	80011530
  * Size:	0002AC
  */
-void adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_light::adaptor_do_begin( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -346,7 +346,7 @@ void adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject(v
  * Address:	800117DC
  * Size:	000054
  */
-void adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_light::adaptor_do_end( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -379,7 +379,7 @@ void adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject(voi
  * Address:	80011830
  * Size:	0001C8
  */
-void adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectUl(void)
+void JStudio_JStage::TAdaptor_light::adaptor_do_update( (JStudio::TObject const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -515,7 +515,7 @@ void adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectU
  * Address:	800119F8
  * Size:	000034
  */
-void adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCvUl(void)
+void JStudio_JStage::TAdaptor_light::adaptor_do_data( (JStudio::TObject const *, void const *, unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -540,7 +540,7 @@ void adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCv
  * Address:	80011A2C
  * Size:	000078
  */
-void adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_light::adaptor_do_FACULTY( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEO
  * Address:	80011AA4
  * Size:	000024
  */
-void adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JStage::TAdaptor_light::adaptor_do_ENABLE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOp
  * Address:	80011AC8
  * Size:	00000C
  */
-void __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor(void)
+void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::operator()( const(float, JStudio::TAdaptor *))
 {
 /*
 .loc_0x0:
@@ -632,7 +632,7 @@ void __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudi
  * Address:	80011AD4
  * Size:	000060
  */
-void __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv(void)
+void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::__dt(void)
 {
 /*
 .loc_0x0:

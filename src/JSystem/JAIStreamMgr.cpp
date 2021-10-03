@@ -5,7 +5,7 @@
  * Address:	800B764C
  * Size:	00031C
  */
-void init__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -226,7 +226,7 @@ void init__Q27JAInter9StreamMgrFv(void)
  * Address:	800B7968
  * Size:	000358
  */
-void storeStreamBuffer__Q27JAInter9StreamMgrFPP9JAIStreamPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo(void)
+void JAInter::StreamMgr::storeStreamBuffer( (JAIStream **, JAInter::Actor *, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo *))
 {
 /*
 .loc_0x0:
@@ -466,7 +466,7 @@ void storeStreamBuffer__Q27JAInter9StreamMgrFPP9JAIStreamPQ27JAInter5ActorUlUlUc
  * Address:	800B7CC0
  * Size:	000088
  */
-void releaseStreamBuffer__Q27JAInter9StreamMgrFP9JAIStreamUl(void)
+void JAInter::StreamMgr::releaseStreamBuffer( (JAIStream *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void releaseStreamBuffer__Q27JAInter9StreamMgrFP9JAIStreamUl(void)
  * Address:	800B7D48
  * Size:	0001AC
  */
-void checkSystem__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::checkSystem(void)
 {
 /*
 .loc_0x0:
@@ -657,7 +657,7 @@ void checkSystem__Q27JAInter9StreamMgrFv(void)
  * Address:	800B7EF4
  * Size:	000A00
  */
-void PlayingStream__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::PlayingStream(void)
 {
 /*
 .loc_0x0:
@@ -1453,7 +1453,7 @@ void PlayingStream__Q27JAInter9StreamMgrFv(void)
  * Address:	........
  * Size:	000038
  */
-void RequestStream__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::RequestStream(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1463,7 +1463,7 @@ void RequestStream__Q27JAInter9StreamMgrFv(void)
  * Address:	800B88F4
  * Size:	0000A8
  */
-void changeCallback__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::changeCallback(void)
 {
 /*
 .loc_0x0:
@@ -1529,7 +1529,7 @@ void changeCallback__Q27JAInter9StreamMgrFv(void)
  * Address:	800B899C
  * Size:	000030
  */
-void processGFrameStream__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::processGFrameStream(void)
 {
 /*
 .loc_0x0:
@@ -1557,7 +1557,7 @@ void processGFrameStream__Q27JAInter9StreamMgrFv(void)
  * Address:	800B89CC
  * Size:	0000E8
  */
-void checkEntriedStream__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::checkEntriedStream(void)
 {
 /*
 .loc_0x0:
@@ -1631,7 +1631,7 @@ void checkEntriedStream__Q27JAInter9StreamMgrFv(void)
  * Address:	800B8AB4
  * Size:	000070
  */
-void systemCallBack__Q27JAInter9StreamMgrFUlP13JASAramStreamPv(void)
+void JAInter::StreamMgr::systemCallBack( (unsigned long, JASAramStream *, void *))
 {
 /*
 .loc_0x0:
@@ -1677,7 +1677,7 @@ void systemCallBack__Q27JAInter9StreamMgrFUlP13JASAramStreamPv(void)
  * Address:	800B8B24
  * Size:	0000C8
  */
-void prepareSystem__Q27JAInter9StreamMgrFl(void)
+void JAInter::StreamMgr::prepareSystem( (long))
 {
 /*
 .loc_0x0:
@@ -1745,7 +1745,7 @@ void prepareSystem__Q27JAInter9StreamMgrFl(void)
  * Address:	800B8BEC
  * Size:	000198
  */
-void playDirect__Q27JAInter9StreamMgrFPc(void)
+void JAInter::StreamMgr::playDirect( (char *))
 {
 /*
 .loc_0x0:
@@ -1875,7 +1875,7 @@ void playDirect__Q27JAInter9StreamMgrFPc(void)
  * Address:	800B8D84
  * Size:	00003C
  */
-void stopDirect__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::stopDirect(void)
 {
 /*
 .loc_0x0:
@@ -1908,7 +1908,7 @@ void stopDirect__Q27JAInter9StreamMgrFv(void)
  * Address:	800B8DC0
  * Size:	0000EC
  */
-void initChannel__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::initChannel(void)
 {
 /*
 .loc_0x0:
@@ -1993,7 +1993,7 @@ void initChannel__Q27JAInter9StreamMgrFv(void)
  * Address:	800B8EAC
  * Size:	000008
  */
-void getStreamObjectPointer__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::getStreamObjectPointer(void)
 {
 /*
 .loc_0x0:
@@ -2007,7 +2007,7 @@ void getStreamObjectPointer__Q27JAInter9StreamMgrFv(void)
  * Address:	800B8EB4
  * Size:	000008
  */
-void getSystemStatus__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::getSystemStatus(void)
 {
 /*
 .loc_0x0:
@@ -2021,7 +2021,7 @@ void getSystemStatus__Q27JAInter9StreamMgrFv(void)
  * Address:	........
  * Size:	000008
  */
-void setParentHeap__Q27JAInter9StreamMgrFP7JASHeap(void)
+void JAInter::StreamMgr::setParentHeap( (JASHeap *))
 {
 	// UNUSED FUNCTION
 }
@@ -2031,7 +2031,7 @@ void setParentHeap__Q27JAInter9StreamMgrFP7JASHeap(void)
  * Address:	........
  * Size:	000010
  */
-void setAllockCallback__Q27JAInter9StreamMgrFPFv_Q37JAInter9StreamMgr10BufferInfo(void)
+void JAInter::StreamMgr::setAllockCallback( (JAInter::StreamMgr::BufferInfo (*)
 {
 	// UNUSED FUNCTION
 }
@@ -2041,7 +2041,7 @@ void setAllockCallback__Q27JAInter9StreamMgrFPFv_Q37JAInter9StreamMgr10BufferInf
  * Address:	........
  * Size:	000008
  */
-void setDeallockCallback__Q27JAInter9StreamMgrFPFv_v(void)
+void JAInter::StreamMgr::setDeallockCallback( (void (*)
 {
 	// UNUSED FUNCTION
 }
@@ -2051,7 +2051,7 @@ void setDeallockCallback__Q27JAInter9StreamMgrFPFv_v(void)
  * Address:	800B8EBC
  * Size:	000008
  */
-void getDecodedBufferBlocks__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::getDecodedBufferBlocks(void)
 {
 /*
 .loc_0x0:
@@ -2065,7 +2065,7 @@ void getDecodedBufferBlocks__Q27JAInter9StreamMgrFv(void)
  * Address:	........
  * Size:	000008
  */
-void setDecodedBufferBlocks__Q27JAInter9StreamMgrFUl(void)
+void JAInter::StreamMgr::setDecodedBufferBlocks( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -2075,7 +2075,7 @@ void setDecodedBufferBlocks__Q27JAInter9StreamMgrFUl(void)
  * Address:	800B8EC4
  * Size:	000018
  */
-void getDecodedBufferSize__Q27JAInter9StreamMgrFUl(void)
+void JAInter::StreamMgr::getDecodedBufferSize( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -2093,7 +2093,7 @@ void getDecodedBufferSize__Q27JAInter9StreamMgrFUl(void)
  * Address:	........
  * Size:	000008
  */
-void getStreamSound__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::getStreamSound(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2103,7 +2103,7 @@ void getStreamSound__Q27JAInter9StreamMgrFv(void)
  * Address:	........
  * Size:	000008
  */
-void setChannelMax__Q27JAInter9StreamMgrFUl(void)
+void JAInter::StreamMgr::setChannelMax( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -2113,7 +2113,7 @@ void setChannelMax__Q27JAInter9StreamMgrFUl(void)
  * Address:	800B8EDC
  * Size:	000008
  */
-void getChannelMax__Q27JAInter9StreamMgrFv(void)
+void JAInter::StreamMgr::getChannelMax(void)
 {
 /*
 .loc_0x0:
@@ -2127,7 +2127,7 @@ void getChannelMax__Q27JAInter9StreamMgrFv(void)
  * Address:	........
  * Size:	000010
  */
-void setExternalAramBuffer__Q27JAInter9StreamMgrFPFv_P7JASHeap(void)
+void JAInter::StreamMgr::setExternalAramBuffer( (JASHeap *(*)
 {
 	// UNUSED FUNCTION
 }

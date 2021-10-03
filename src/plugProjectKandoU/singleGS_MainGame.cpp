@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802135AC
  * Size:	0008B0
  */
-void init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::GameState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -665,7 +665,7 @@ void init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8Sta
  * Address:	........
  * Size:	000174
  */
-void gameStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::GameState::gameStart( (Game::SingleGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -675,7 +675,7 @@ void gameStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(void)
  * Address:	80213E5C
  * Size:	000288
  */
-void check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::GameState::check_DemoInout( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(
  * Address:	802140E4
  * Size:	00000C
  */
-void on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::GameState::on_section_fadeout( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -880,7 +880,7 @@ void on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSecti
  * Address:	802140F0
  * Size:	000B28
  */
-void on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl(void)
+void Game::SingleGame::GameState::on_demo_timer( (Game::SingleGameSection *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1690,7 +1690,7 @@ void on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl(
  * Address:	80214C18
  * Size:	0006E0
  */
-void exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::GameState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -2190,7 +2190,7 @@ void exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(void)
  * Address:	802152F8
  * Size:	0001DC
  */
-void __ct__Q32og6Screen18DispMemberSMenuAllFv(void)
+void og::Screen::DispMemberSMenuAll::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2321,7 +2321,7 @@ void __ct__Q32og6Screen18DispMemberSMenuAllFv(void)
  * Address:	802154D4
  * Size:	0000D4
  */
-void onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni(void)
+void Game::SingleGame::GameState::onOrimaDown( (Game::SingleGameSection *, int))
 {
 /*
 .loc_0x0:
@@ -2390,7 +2390,7 @@ void onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni(voi
  * Address:	802155A8
  * Size:	0000DC
  */
-void onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item(void)
+void Game::SingleGame::GameState::onHoleIn( (Game::SingleGameSection *, Game::ItemCave::Item *))
 {
 /*
 .loc_0x0:
@@ -2457,7 +2457,7 @@ void onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game
  * Address:	80215684
  * Size:	000004
  */
-void onMovieCommand__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni(void)
+void Game::SingleGame::GameState::onMovieCommand( (Game::SingleGameSection *, int))
 {
 /*
 .loc_0x0:
@@ -2470,7 +2470,7 @@ void onMovieCommand__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni(
  * Address:	80215688
  * Size:	000158
  */
-void onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::GameState::onMovieStart( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2584,7 +2584,7 @@ void onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24
  * Address:	802157E0
  * Size:	001A7C
  */
-void onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::GameState::onMovieDone( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -4479,7 +4479,7 @@ void onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24G
  * Address:	8021725C
  * Size:	000074
  */
-void needRepayDemo__Q34Game10SingleGame9GameStateFv(void)
+void Game::SingleGame::GameState::needRepayDemo(void)
 {
 /*
 .loc_0x0:
@@ -4528,7 +4528,7 @@ void needRepayDemo__Q34Game10SingleGame9GameStateFv(void)
  * Address:	802172D0
  * Size:	000140
  */
-void startRepayDemo__Q34Game10SingleGame9GameStateFv(void)
+void Game::SingleGame::GameState::startRepayDemo(void)
 {
 /*
 .loc_0x0:
@@ -4628,7 +4628,7 @@ void startRepayDemo__Q34Game10SingleGame9GameStateFv(void)
  * Address:	80217410
  * Size:	0000A8
  */
-void updateRepayDemo__Q34Game10SingleGame9GameStateFv(void)
+void Game::SingleGame::GameState::updateRepayDemo(void)
 {
 /*
 .loc_0x0:
@@ -4690,7 +4690,7 @@ void updateRepayDemo__Q34Game10SingleGame9GameStateFv(void)
  * Address:	........
  * Size:	000004
  */
-void drawRepayDemo__Q34Game10SingleGame9GameStateFR8Graphics(void)
+void Game::SingleGame::GameState::drawRepayDemo( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -4700,7 +4700,7 @@ void drawRepayDemo__Q34Game10SingleGame9GameStateFR8Graphics(void)
  * Address:	802174B8
  * Size:	000078
  */
-void draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::GameState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -4746,7 +4746,7 @@ void draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics(v
  * Address:	80217530
  * Size:	000068
  */
-void cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::GameState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -4786,7 +4786,7 @@ void cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection(void)
  * Address:	80217598
  * Size:	000008
  */
-void getSize__Q32og6Screen14DispMemberSaveFv(void)
+void og::Screen::DispMemberSave::getSize(void)
 {
 /*
 .loc_0x0:
@@ -4800,7 +4800,7 @@ void getSize__Q32og6Screen14DispMemberSaveFv(void)
  * Address:	802175A0
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen14DispMemberSaveFv(void)
+void og::Screen::DispMemberSave::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -4815,7 +4815,7 @@ void getOwnerID__Q32og6Screen14DispMemberSaveFv(void)
  * Address:	802175AC
  * Size:	000010
  */
-void getMemberID__Q32og6Screen14DispMemberSaveFv(void)
+void og::Screen::DispMemberSave::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -4831,7 +4831,7 @@ void getMemberID__Q32og6Screen14DispMemberSaveFv(void)
  * Address:	802175BC
  * Size:	000008
  */
-void getSize__Q32og6Screen19DispMemberSMenuContFv(void)
+void og::Screen::DispMemberSMenuCont::getSize(void)
 {
 /*
 .loc_0x0:
@@ -4845,7 +4845,7 @@ void getSize__Q32og6Screen19DispMemberSMenuContFv(void)
  * Address:	802175C4
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen19DispMemberSMenuContFv(void)
+void og::Screen::DispMemberSMenuCont::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -4860,7 +4860,7 @@ void getOwnerID__Q32og6Screen19DispMemberSMenuContFv(void)
  * Address:	802175D0
  * Size:	000014
  */
-void getMemberID__Q32og6Screen19DispMemberSMenuContFv(void)
+void og::Screen::DispMemberSMenuCont::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -4877,7 +4877,7 @@ void getMemberID__Q32og6Screen19DispMemberSMenuContFv(void)
  * Address:	802175E4
  * Size:	000008
  */
-void getSize__Q32og6Screen22DispMemberSMenuPauseVSFv(void)
+void og::Screen::DispMemberSMenuPauseVS::getSize(void)
 {
 /*
 .loc_0x0:
@@ -4891,7 +4891,7 @@ void getSize__Q32og6Screen22DispMemberSMenuPauseVSFv(void)
  * Address:	802175EC
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv(void)
+void og::Screen::DispMemberSMenuPauseVS::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -4906,7 +4906,7 @@ void getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv(void)
  * Address:	802175F8
  * Size:	000014
  */
-void getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv(void)
+void og::Screen::DispMemberSMenuPauseVS::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -4923,7 +4923,7 @@ void getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv(void)
  * Address:	8021760C
  * Size:	000008
  */
-void getSize__Q32og6Screen18DispMemberSMenuMapFv(void)
+void og::Screen::DispMemberSMenuMap::getSize(void)
 {
 /*
 .loc_0x0:
@@ -4937,7 +4937,7 @@ void getSize__Q32og6Screen18DispMemberSMenuMapFv(void)
  * Address:	80217614
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen18DispMemberSMenuMapFv(void)
+void og::Screen::DispMemberSMenuMap::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -4952,7 +4952,7 @@ void getOwnerID__Q32og6Screen18DispMemberSMenuMapFv(void)
  * Address:	80217620
  * Size:	000010
  */
-void getMemberID__Q32og6Screen18DispMemberSMenuMapFv(void)
+void og::Screen::DispMemberSMenuMap::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -4968,7 +4968,7 @@ void getMemberID__Q32og6Screen18DispMemberSMenuMapFv(void)
  * Address:	80217630
  * Size:	000008
  */
-void getSize__Q32og6Screen19DispMemberSMenuItemFv(void)
+void og::Screen::DispMemberSMenuItem::getSize(void)
 {
 /*
 .loc_0x0:
@@ -4982,7 +4982,7 @@ void getSize__Q32og6Screen19DispMemberSMenuItemFv(void)
  * Address:	80217638
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen19DispMemberSMenuItemFv(void)
+void og::Screen::DispMemberSMenuItem::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -4997,7 +4997,7 @@ void getOwnerID__Q32og6Screen19DispMemberSMenuItemFv(void)
  * Address:	80217644
  * Size:	000014
  */
-void getMemberID__Q32og6Screen19DispMemberSMenuItemFv(void)
+void og::Screen::DispMemberSMenuItem::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5014,7 +5014,7 @@ void getMemberID__Q32og6Screen19DispMemberSMenuItemFv(void)
  * Address:	80217658
  * Size:	000008
  */
-void getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv(void)
+void og::Screen::DispMemberSMenuPauseDoukutu::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5028,7 +5028,7 @@ void getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv(void)
  * Address:	80217660
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv(void)
+void og::Screen::DispMemberSMenuPauseDoukutu::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5043,7 +5043,7 @@ void getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv(void)
  * Address:	8021766C
  * Size:	000014
  */
-void getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv(void)
+void og::Screen::DispMemberSMenuPauseDoukutu::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5060,7 +5060,7 @@ void getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv(void)
  * Address:	80217680
  * Size:	000008
  */
-void getSize__Q32og6Screen20DispMemberSMenuPauseFv(void)
+void og::Screen::DispMemberSMenuPause::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5074,7 +5074,7 @@ void getSize__Q32og6Screen20DispMemberSMenuPauseFv(void)
  * Address:	80217688
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv(void)
+void og::Screen::DispMemberSMenuPause::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5089,7 +5089,7 @@ void getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv(void)
  * Address:	80217694
  * Size:	000014
  */
-void getMemberID__Q32og6Screen20DispMemberSMenuPauseFv(void)
+void og::Screen::DispMemberSMenuPause::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5106,7 +5106,7 @@ void getMemberID__Q32og6Screen20DispMemberSMenuPauseFv(void)
  * Address:	802176A8
  * Size:	000008
  */
-void getSize__Q32og6Screen18DispMemberSMenuAllFv(void)
+void og::Screen::DispMemberSMenuAll::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5120,7 +5120,7 @@ void getSize__Q32og6Screen18DispMemberSMenuAllFv(void)
  * Address:	802176B0
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen18DispMemberSMenuAllFv(void)
+void og::Screen::DispMemberSMenuAll::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5135,7 +5135,7 @@ void getOwnerID__Q32og6Screen18DispMemberSMenuAllFv(void)
  * Address:	802176BC
  * Size:	000010
  */
-void getMemberID__Q32og6Screen18DispMemberSMenuAllFv(void)
+void og::Screen::DispMemberSMenuAll::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5151,7 +5151,7 @@ void getMemberID__Q32og6Screen18DispMemberSMenuAllFv(void)
  * Address:	802176CC
  * Size:	00006C
  */
-void doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv(void)
+void og::Screen::DispMemberSMenuAll::doSetSubMemberAll(void)
 {
 /*
 .loc_0x0:

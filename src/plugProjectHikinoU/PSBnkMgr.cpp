@@ -5,7 +5,7 @@
  * Address:	8033D738
  * Size:	000064
  */
-void createInstance__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::createInstance(void)
 {
 /*
 .loc_0x0:
@@ -48,7 +48,7 @@ void createInstance__Q28PSSystem7BankMgrFv(void)
  * Address:	........
  * Size:	000048
  */
-void deleteInstance__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::deleteInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -58,7 +58,7 @@ void deleteInstance__Q28PSSystem7BankMgrFv(void)
  * Address:	8033D79C
  * Size:	000058
  */
-void __ct__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -92,7 +92,7 @@ void __ct__Q28PSSystem7BankMgrFv(void)
  * Address:	........
  * Size:	0000F4
  */
-void transInitDataFile__Q28PSSystem7BankMgrFPUcUl(void)
+void PSSystem::BankMgr::transInitDataFile( (unsigned char *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -102,7 +102,7 @@ void transInitDataFile__Q28PSSystem7BankMgrFPUcUl(void)
  * Address:	........
  * Size:	0001C8
  */
-void setBankData__Q28PSSystem7BankMgrFPUl(void)
+void PSSystem::BankMgr::setBankData( (unsigned long *))
 {
 	// UNUSED FUNCTION
 }
@@ -112,7 +112,7 @@ void setBankData__Q28PSSystem7BankMgrFPUl(void)
  * Address:	........
  * Size:	0001C8
  */
-void setWsData__Q28PSSystem7BankMgrFPUl(void)
+void PSSystem::BankMgr::setWsData( (unsigned long *))
 {
 	// UNUSED FUNCTION
 }
@@ -122,7 +122,7 @@ void setWsData__Q28PSSystem7BankMgrFPUl(void)
  * Address:	8033D7F4
  * Size:	000094
  */
-void preInit__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::preInit(void)
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void preInit__Q28PSSystem7BankMgrFv(void)
  * Address:	8033D888
  * Size:	000178
  */
-void init__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -305,7 +305,7 @@ void init__Q28PSSystem7BankMgrFv(void)
  * Address:	8033DA00
  * Size:	000078
  */
-void load__Q28PSSystem9WaveSceneFUsUsQ38PSSystem9WaveScene7AreaArgPQ28PSSystem11TaskChecker(void)
+void PSSystem::WaveScene::load( (unsigned short, unsigned short, PSSystem::WaveScene::AreaArg, PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void load__Q28PSSystem9WaveSceneFUsUsQ38PSSystem9WaveScene7AreaArgPQ28PSSystem11
  * Address:	8033DA78
  * Size:	000028
  */
-void __ct__Q38PSSystem9WaveScene8WaveAreaFv(void)
+void PSSystem::WaveScene::WaveArea::__ct(void)
 {
 /*
 .loc_0x0:
@@ -371,7 +371,7 @@ void __ct__Q38PSSystem9WaveScene8WaveAreaFv(void)
  * Address:	8033DAA0
  * Size:	000114
  */
-void loadWave__Q38PSSystem9WaveScene8WaveAreaFUsUsPQ28PSSystem11TaskChecker(void)
+void PSSystem::WaveScene::WaveArea::loadWave( (unsigned short, unsigned short, PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -466,7 +466,7 @@ void loadWave__Q38PSSystem9WaveScene8WaveAreaFUsUsPQ28PSSystem11TaskChecker(void
  * Address:	8033DBB4
  * Size:	0000B0
  */
-void deleteWave__Q38PSSystem9WaveScene8WaveAreaFv(void)
+void PSSystem::WaveScene::WaveArea::deleteWave(void)
 {
 /*
 .loc_0x0:
@@ -532,7 +532,7 @@ void deleteWave__Q38PSSystem9WaveScene8WaveAreaFv(void)
  * Address:	8033DC64
  * Size:	00007C
  */
-void waveLoadCallback__Q38PSSystem9WaveScene8WaveAreaFUl(void)
+void PSSystem::WaveScene::WaveArea::waveLoadCallback( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -577,7 +577,7 @@ void waveLoadCallback__Q38PSSystem9WaveScene8WaveAreaFUl(void)
  * Address:	8033DCE0
  * Size:	000090
  */
-void __dt__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -631,7 +631,7 @@ void __dt__Q28PSSystem7BankMgrFv(void)
  * Address:	8033DD70
  * Size:	000004
  */
-void secondLoadS__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::secondLoadS(void)
 {
 /*
 .loc_0x0:
@@ -644,7 +644,7 @@ void secondLoadS__Q28PSSystem7BankMgrFv(void)
  * Address:	8033DD74
  * Size:	000004
  */
-void firstLoadS__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::firstLoadS(void)
 {
 /*
 .loc_0x0:
@@ -657,7 +657,7 @@ void firstLoadS__Q28PSSystem7BankMgrFv(void)
  * Address:	8033DD78
  * Size:	000024
  */
-void initS__Q28PSSystem7BankMgrFv(void)
+void PSSystem::BankMgr::initS(void)
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void initS__Q28PSSystem7BankMgrFv(void)
  * Address:	8033DD9C
  * Size:	0001C8
  */
-void setWsDataS__Q28PSSystem7BankMgrFPUl(void)
+void PSSystem::BankMgr::setWsDataS( (unsigned long *))
 {
 /*
 .loc_0x0:
@@ -824,7 +824,7 @@ void setWsDataS__Q28PSSystem7BankMgrFPUl(void)
  * Address:	8033DF64
  * Size:	0001C8
  */
-void setBankDataS__Q28PSSystem7BankMgrFPUl(void)
+void PSSystem::BankMgr::setBankDataS( (unsigned long *))
 {
 /*
 .loc_0x0:
@@ -970,7 +970,7 @@ void setBankDataS__Q28PSSystem7BankMgrFPUl(void)
  * Address:	8033E12C
  * Size:	0000CC
  */
-void __dt__Q38PSSystem9WaveScene8WaveAreaFv(void)
+void PSSystem::WaveScene::WaveArea::__dt(void)
 {
 /*
 .loc_0x0:

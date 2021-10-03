@@ -5,7 +5,7 @@
  * Address:	800AE0A0
  * Size:	0003A4
  */
-void init__Q27JAInter5SeMgrFv(void)
+void JAInter::SeMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void init__Q27JAInter5SeMgrFv(void)
  * Address:	800AE444
  * Size:	0000F0
  */
-void __ct__Q27JAInter11SeParameterFv(void)
+void JAInter::SeParameter::__ct(void)
 {
 /*
 .loc_0x0:
@@ -360,7 +360,7 @@ void __ct__Q27JAInter11SeParameterFv(void)
  * Address:	800AE534
  * Size:	000018
  */
-void __ct__Q27JAInter19MoveParaSetInitZeroFv(void)
+void JAInter::MoveParaSetInitZero::__ct(void)
 {
 /*
 .loc_0x0:
@@ -378,7 +378,7 @@ void __ct__Q27JAInter19MoveParaSetInitZeroFv(void)
  * Address:	800AE54C
  * Size:	000018
  */
-void __ct__Q27JAInter19MoveParaSetInitHalfFv(void)
+void JAInter::MoveParaSetInitHalf::__ct(void)
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void __ct__Q27JAInter19MoveParaSetInitHalfFv(void)
  * Address:	800AE564
  * Size:	000018
  */
-void __defctor__Q27JAInter11MoveParaSetFv(void)
+void JAInter::MoveParaSet::__defctor(void)
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void __defctor__Q27JAInter11MoveParaSetFv(void)
  * Address:	800AE57C
  * Size:	000050
  */
-void startSeSequence__Q27JAInter5SeMgrFv(void)
+void JAInter::SeMgr::startSeSequence(void)
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void startSeSequence__Q27JAInter5SeMgrFv(void)
  * Address:	800AE5CC
  * Size:	000034
  */
-void processGFrameSe__Q27JAInter5SeMgrFv(void)
+void JAInter::SeMgr::processGFrameSe(void)
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void processGFrameSe__Q27JAInter5SeMgrFv(void)
  * Address:	800AE600
  * Size:	0007E4
  */
-void checkNextFrameSe__Q27JAInter5SeMgrFv(void)
+void JAInter::SeMgr::checkNextFrameSe(void)
 {
 /*
 .loc_0x0:
@@ -1120,7 +1120,7 @@ void checkNextFrameSe__Q27JAInter5SeMgrFv(void)
  * Address:	800AEDE4
  * Size:	000488
  */
-void checkPlayingSe__Q27JAInter5SeMgrFv(void)
+void JAInter::SeMgr::checkPlayingSe(void)
 {
 /*
 .loc_0x0:
@@ -1500,7 +1500,7 @@ void JAISe::setVolume(float, unsigned long, unsigned char)
  * Address:	800AF29C
  * Size:	0000F0
  */
-void setSeqMuteFromSeStart__Q27JAInter5SeMgrFP8JAISound(void)
+void JAInter::SeMgr::setSeqMuteFromSeStart( (JAISound *))
 {
 /*
 .loc_0x0:
@@ -1601,7 +1601,7 @@ void JAISequence::setVolume(float, unsigned long, unsigned char)
  * Address:	........
  * Size:	0000E4
  */
-void clearSeqMuteFromSeStop__Q27JAInter5SeMgrFP8JAISound(void)
+void JAInter::SeMgr::clearSeqMuteFromSeStop( (JAISound *))
 {
 	// UNUSED FUNCTION
 }
@@ -1611,7 +1611,7 @@ void clearSeqMuteFromSeStop__Q27JAInter5SeMgrFP8JAISound(void)
  * Address:	800AF3B8
  * Size:	0000D4
  */
-void checkSeMovePara__Q27JAInter5SeMgrFv(void)
+void JAInter::SeMgr::checkSeMovePara(void)
 {
 /*
 .loc_0x0:
@@ -1692,7 +1692,7 @@ void checkSeMovePara__Q27JAInter5SeMgrFv(void)
  * Address:	800AF48C
  * Size:	000168
  */
-void sendSeAllParameter__Q27JAInter5SeMgrFP5JAISe(void)
+void JAInter::SeMgr::sendSeAllParameter( (JAISe *))
 {
 /*
 .loc_0x0:
@@ -1798,7 +1798,7 @@ void sendSeAllParameter__Q27JAInter5SeMgrFP5JAISe(void)
  * Address:	800AF5F4
  * Size:	00010C
  */
-void checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf(void)
+void JAInter::SeMgr::checkPlayingSeUpdateMultiplication( (JAISe *, JAInter::SeqUpdateData *, float *, JAInter::MoveParaSet *, float, unsigned char, float *))
 {
 /*
 .loc_0x0:
@@ -1885,7 +1885,7 @@ void checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13Se
  * Address:	800AF700
  * Size:	00014C
  */
-void checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff(void)
+void JAInter::SeMgr::checkPlayingSeUpdateAddition( (JAISe *, JAInter::SeqUpdateData *, float *, JAInter::MoveParaSet *, unsigned char, float *, float))
 {
 /*
 .loc_0x0:
@@ -1990,7 +1990,7 @@ void checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdat
  * Address:	800AF84C
  * Size:	000008
  */
-void changeIDToCategory__Q27JAInter5SeMgrFUl(void)
+void JAInter::SeMgr::changeIDToCategory( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -2004,7 +2004,7 @@ void changeIDToCategory__Q27JAInter5SeMgrFUl(void)
  * Address:	800AF854
  * Size:	0001D0
  */
-void releaseSeRegist__Q27JAInter5SeMgrFP5JAISe(void)
+void JAInter::SeMgr::releaseSeRegist( (JAISe *))
 {
 /*
 .loc_0x0:
@@ -2148,7 +2148,7 @@ void releaseSeRegist__Q27JAInter5SeMgrFP5JAISe(void)
  * Address:	800AFA24
  * Size:	0006EC
  */
-void storeSeBuffer__Q27JAInter5SeMgrFPP5JAISePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo(void)
+void JAInter::SeMgr::storeSeBuffer( (JAISe **, JAInter::Actor *, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo *))
 {
 /*
 .loc_0x0:
@@ -2699,7 +2699,7 @@ void JAISe::stop(unsigned long)
  * Address:	800B0130
  * Size:	000208
  */
-void releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl(void)
+void JAInter::SeMgr::releaseSeBuffer( (JAISe *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2863,7 +2863,7 @@ void releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl(void)
  * Address:	800B0338
  * Size:	000008
  */
-void setSeSequenceStartCallback__Q27JAInter5SeMgrFPFv_v(void)
+void JAInter::SeMgr::setSeSequenceStartCallback( (void (*)
 {
 /*
 .loc_0x0:

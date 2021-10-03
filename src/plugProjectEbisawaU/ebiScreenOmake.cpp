@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803ED2A8
  * Size:	000274
  */
-void __ct__Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::__ct(void)
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void __ct__Q33ebi6Screen6TOmakeFv(void)
  * Address:	803ED51C
  * Size:	0005F0
  */
-void doSetArchive__Q33ebi6Screen6TOmakeFP10JKRArchive(void)
+void ebi::Screen::TOmake::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -582,7 +582,7 @@ void doSetArchive__Q33ebi6Screen6TOmakeFP10JKRArchive(void)
  * Address:	803EDB0C
  * Size:	0005F0
  */
-void doOpenScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TOmake::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -990,7 +990,7 @@ void doOpenScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803EE0FC
  * Size:	00004C
  */
-void doCloseScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TOmake::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -1021,7 +1021,7 @@ void doCloseScreen__Q33ebi6Screen6TOmakeFPQ33ebi6Screen8ArgClose(void)
  * Address:	803EE148
  * Size:	000048
  */
-void doInitWaitState__Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::doInitWaitState(void)
 {
 /*
 .loc_0x0:
@@ -1051,7 +1051,7 @@ void doInitWaitState__Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EE190
  * Size:	000084
  */
-void doUpdateStateOpen__Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -1102,7 +1102,7 @@ void doUpdateStateOpen__Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EE214
  * Size:	000484
  */
-void doUpdateStateWait__Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -1431,7 +1431,7 @@ void doUpdateStateWait__Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EE698
  * Size:	000074
  */
-void doUpdateStateClose__Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -1478,7 +1478,7 @@ void doUpdateStateClose__Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EE70C
  * Size:	000244
  */
-void doDraw__Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -1651,7 +1651,7 @@ void doDraw__Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EE950
  * Size:	000044
  */
-void setController__Q33ebi6Screen6TOmakeFP10Controller(void)
+void ebi::Screen::TOmake::setController( (Controller *))
 {
 /*
 .loc_0x0:
@@ -1680,7 +1680,7 @@ void setController__Q33ebi6Screen6TOmakeFP10Controller(void)
  * Address:	803EE994
  * Size:	000064
  */
-void showPanes___Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::showPanes_(void)
 {
 /*
 .loc_0x0:
@@ -1717,7 +1717,7 @@ void showPanes___Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EE9F8
  * Size:	000028
  */
-void hidePanes___Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::hidePanes_(void)
 {
 /*
 .loc_0x0:
@@ -1739,7 +1739,7 @@ void hidePanes___Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EEA20
  * Size:	000054
  */
-void openFromMovie___Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::openFromMovie_(void)
 {
 /*
 .loc_0x0:
@@ -1772,7 +1772,7 @@ void openFromMovie___Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EEA74
  * Size:	0000B0
  */
-void openFromCardE___Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::openFromCardE_(void)
 {
 /*
 .loc_0x0:
@@ -1828,7 +1828,7 @@ void openFromCardE___Q33ebi6Screen6TOmakeFv(void)
  * Address:	803EEB24
  * Size:	0000BC
  */
-void __ct__Q23ebi26E2DCallBack_BlinkFontColorFv(void)
+void ebi::E2DCallBack_BlinkFontColor::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1887,7 +1887,7 @@ void __ct__Q23ebi26E2DCallBack_BlinkFontColorFv(void)
  * Address:	803EEBE0
  * Size:	000008
  */
-void getName__Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::getName(void)
 {
 /*
 .loc_0x0:

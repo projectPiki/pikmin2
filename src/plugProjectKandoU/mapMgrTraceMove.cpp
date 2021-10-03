@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8020508C
  * Size:	000114
  */
-void traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof(void)
+void Game::ShapeMapMgr::traceMove( (Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof(void)
  * Address:	802051A0
  * Size:	000020
  */
-void traceMove__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof(void)
+void Game::MapMgr::traceMove( (MapCollision &, Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -132,7 +132,7 @@ void traceMove__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof(void)
  * Address:	........
  * Size:	00030C
  */
-void traceMove_test1030_1__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof(void)
+void Game::MapMgr::traceMove_test1030_1( (MapCollision &, Game::MoveInfo &, float))
 {
 	// UNUSED FUNCTION
 }
@@ -142,7 +142,7 @@ void traceMove_test1030_1__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof(void
  * Address:	802051C0
  * Size:	0003BC
  */
-void traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof(void)
+void Game::MapMgr::traceMove_test1203_cylinder( (MapCollision &, Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -425,7 +425,7 @@ void traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInf
  * Address:	........
  * Size:	000464
  */
-void traceMove_test__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof(void)
+void Game::MapMgr::traceMove_test( (MapCollision &, Game::MoveInfo &, float))
 {
 	// UNUSED FUNCTION
 }
@@ -435,7 +435,7 @@ void traceMove_test__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof(void)
  * Address:	........
  * Size:	000464
  */
-void traceMove_original__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof(void)
+void Game::MapMgr::traceMove_original( (MapCollision &, Game::MoveInfo &, float))
 {
 	// UNUSED FUNCTION
 }

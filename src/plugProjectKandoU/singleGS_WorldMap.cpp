@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8021B94C
  * Size:	0000E4
  */
-void __ct__Q34Game10SingleGame11SelectStateFv(void)
+void Game::SingleGame::SelectState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -88,7 +88,7 @@ void __ct__Q34Game10SingleGame11SelectStateFv(void)
  * Address:	8021BA30
  * Size:	000098
  */
-void init__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::SelectState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -138,7 +138,7 @@ void init__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSectionPQ24Game8
  * Address:	8021BAC8
  * Size:	000260
  */
-void initNext__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::SelectState::initNext( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -316,7 +316,7 @@ void initNext__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSection(void
  * Address:	8021BD28
  * Size:	000004
  */
-void init__Q34Game8WorldMap4BaseFRQ34Game8WorldMap7InitArg(void)
+void Game::WorldMap::Base::init( (Game::WorldMap::InitArg &))
 {
 /*
 .loc_0x0:
@@ -329,7 +329,7 @@ void init__Q34Game8WorldMap4BaseFRQ34Game8WorldMap7InitArg(void)
  * Address:	8021BD2C
  * Size:	00030C
  */
-void dvdload__Q34Game10SingleGame11SelectStateFv(void)
+void Game::SingleGame::SelectState::dvdload(void)
 {
 /*
 .loc_0x0:
@@ -570,7 +570,7 @@ void dvdload__Q34Game10SingleGame11SelectStateFv(void)
  * Address:	8021C038
  * Size:	000004
  */
-void loadResource__Q34Game8WorldMap4BaseFv(void)
+void Game::WorldMap::Base::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -583,7 +583,7 @@ void loadResource__Q34Game8WorldMap4BaseFv(void)
  * Address:	8021C03C
  * Size:	0002AC
  */
-void exec__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::SelectState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -800,7 +800,7 @@ void exec__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSection(void)
  * Address:	8021C2E8
  * Size:	000004
  */
-void update__Q34Game8WorldMap4BaseFRQ34Game8WorldMap9UpdateArg(void)
+void Game::WorldMap::Base::update( (Game::WorldMap::UpdateArg &))
 {
 /*
 .loc_0x0:
@@ -813,7 +813,7 @@ void update__Q34Game8WorldMap4BaseFRQ34Game8WorldMap9UpdateArg(void)
  * Address:	8021C2EC
  * Size:	0002D0
  */
-void draw__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::SelectState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -1007,7 +1007,7 @@ void draw__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSectionR8Graphic
  * Address:	8021C5BC
  * Size:	000004
  */
-void draw4th__Q34Game8WorldMap4BaseFR8Graphics(void)
+void Game::WorldMap::Base::draw4th( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1020,7 +1020,7 @@ void draw4th__Q34Game8WorldMap4BaseFR8Graphics(void)
  * Address:	8021C5C0
  * Size:	000004
  */
-void draw3rd__Q34Game8WorldMap4BaseFR8Graphics(void)
+void Game::WorldMap::Base::draw3rd( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1033,7 +1033,7 @@ void draw3rd__Q34Game8WorldMap4BaseFR8Graphics(void)
  * Address:	8021C5C4
  * Size:	000004
  */
-void draw2nd__Q34Game8WorldMap4BaseFR8Graphics(void)
+void Game::WorldMap::Base::draw2nd( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1046,7 +1046,7 @@ void draw2nd__Q34Game8WorldMap4BaseFR8Graphics(void)
  * Address:	8021C5C8
  * Size:	000004
  */
-void draw1st__Q34Game8WorldMap4BaseFR8Graphics(void)
+void Game::WorldMap::Base::draw1st( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1059,7 +1059,7 @@ void draw1st__Q34Game8WorldMap4BaseFR8Graphics(void)
  * Address:	8021C5CC
  * Size:	0000F4
  */
-void cleanup__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::SelectState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8022EA94
  * Size:	000044
  */
-void __ct__Q34Game6VsGame7VSStateFv(void)
+void Game::VsGame::VSState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -44,7 +44,7 @@ void __ct__Q34Game6VsGame7VSStateFv(void)
  * Address:	8022EAD8
  * Size:	0000CC
  */
-void do_init__Q34Game6VsGame7VSStateFPQ24Game13VsGameSection(void)
+void Game::VsGame::VSState::do_init( (Game::VsGameSection *))
 {
 /*
 .loc_0x0:

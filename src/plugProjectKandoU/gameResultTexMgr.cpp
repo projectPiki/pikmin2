@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80227418
  * Size:	000050
  */
-void __ct__Q34Game12ResultTexMgr3MgrFv(void)
+void Game::ResultTexMgr::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game12ResultTexMgr3MgrFv(void)
  * Address:	80227468
  * Size:	000060
  */
-void __dt__Q34Game12ResultTexMgr3MgrFv(void)
+void Game::ResultTexMgr::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -85,7 +85,7 @@ void __dt__Q34Game12ResultTexMgr3MgrFv(void)
  * Address:	802274C8
  * Size:	000340
  */
-void create__Q34Game12ResultTexMgr3MgrFRQ34Game12ResultTexMgr3Arg(void)
+void Game::ResultTexMgr::Mgr::create( (Game::ResultTexMgr::Arg &))
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void create__Q34Game12ResultTexMgr3MgrFRQ34Game12ResultTexMgr3Arg(void)
  * Address:	........
  * Size:	000058
  */
-void getOtakaraNum__Q34Game12ResultTexMgr3MgrFv(void)
+void Game::ResultTexMgr::Mgr::getOtakaraNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -353,7 +353,7 @@ void getOtakaraNum__Q34Game12ResultTexMgr3MgrFv(void)
  * Address:	........
  * Size:	000058
  */
-void getItemNum__Q34Game12ResultTexMgr3MgrFv(void)
+void Game::ResultTexMgr::Mgr::getItemNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -363,7 +363,7 @@ void getItemNum__Q34Game12ResultTexMgr3MgrFv(void)
  * Address:	80227808
  * Size:	0000B8
  */
-void getOtakaraItemTexture__Q34Game12ResultTexMgr3MgrFi(void)
+void Game::ResultTexMgr::Mgr::getOtakaraItemTexture( (int))
 {
 /*
 .loc_0x0:
@@ -431,7 +431,7 @@ void getOtakaraItemTexture__Q34Game12ResultTexMgr3MgrFi(void)
  * Address:	802278C0
  * Size:	000024
  */
-void getOtakaraTexture__Q34Game12ResultTexMgr3MgrFi(void)
+void Game::ResultTexMgr::Mgr::getOtakaraTexture( (int))
 {
 /*
 .loc_0x0:
@@ -452,7 +452,7 @@ void getOtakaraTexture__Q34Game12ResultTexMgr3MgrFi(void)
  * Address:	802278E4
  * Size:	000024
  */
-void getItemTexture__Q34Game12ResultTexMgr3MgrFi(void)
+void Game::ResultTexMgr::Mgr::getItemTexture( (int))
 {
 /*
 .loc_0x0:
@@ -473,7 +473,7 @@ void getItemTexture__Q34Game12ResultTexMgr3MgrFi(void)
  * Address:	80227908
  * Size:	000028
  */
-void getCarcassTexture__Q34Game12ResultTexMgr3MgrFv(void)
+void Game::ResultTexMgr::Mgr::getCarcassTexture(void)
 {
 /*
 .loc_0x0:
@@ -495,7 +495,7 @@ void getCarcassTexture__Q34Game12ResultTexMgr3MgrFv(void)
  * Address:	80227930
  * Size:	000064
  */
-void alloc__Q44Game12ResultTexMgr3Mgr8TexturesFi(void)
+void Game::ResultTexMgr::Mgr::Textures::alloc( (int))
 {
 /*
 .loc_0x0:
@@ -532,7 +532,7 @@ void alloc__Q44Game12ResultTexMgr3Mgr8TexturesFi(void)
  * Address:	80227994
  * Size:	000074
  */
-void getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi(void)
+void Game::ResultTexMgr::Mgr::Textures::getTexture( (int))
 {
 /*
 .loc_0x0:
@@ -577,7 +577,7 @@ void getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi(void)
  * Address:	80227A08
  * Size:	00005C
  */
-void __ct__Q34Game6Result5TNodeFv(void)
+void Game::Result::TNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void __ct__Q34Game6Result5TNodeFv(void)
  * Address:	80227A64
  * Size:	00001C
  */
-void setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii(void)
+void Game::Result::TNode::setTNode( (unsigned long long, JUTTexture *, int, int, int))
 {
 /*
 .loc_0x0:
@@ -631,7 +631,7 @@ void setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiii(void)
  * Address:	80227A80
  * Size:	000024
  */
-void setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiiii(void)
+void Game::Result::TNode::setTNode( (unsigned long long, JUTTexture *, int, int, int, int))
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void setTNode__Q34Game6Result5TNodeFUxP10JUTTextureiiii(void)
  * Address:	80227AA4
  * Size:	000078
  */
-void convertByMorimun__Q34Game6Result5TNodeFi(void)
+void Game::Result::TNode::convertByMorimun( (int))
 {
 /*
 .loc_0x0:
@@ -694,7 +694,7 @@ void convertByMorimun__Q34Game6Result5TNodeFi(void)
  * Address:	80227B1C
  * Size:	00005C
  */
-void __ct__Q24Game5DNodeFv(void)
+void Game::DNode::__ct(void)
 {
 /*
 .loc_0x0:
@@ -729,7 +729,7 @@ void __ct__Q24Game5DNodeFv(void)
  * Address:	........
  * Size:	000020
  */
-void addHead__Q24Game5DNodeFPQ24Game5DNode(void)
+void Game::DNode::addHead( (Game::DNode *))
 {
 	// UNUSED FUNCTION
 }
@@ -739,7 +739,7 @@ void addHead__Q24Game5DNodeFPQ24Game5DNode(void)
  * Address:	80227B78
  * Size:	0000B0
  */
-void add__Q24Game5DNodeFPQ24Game5DNode(void)
+void Game::DNode::add( (Game::DNode *))
 {
 /*
 .loc_0x0:
@@ -811,7 +811,7 @@ void add__Q24Game5DNodeFPQ24Game5DNode(void)
  * Address:	........
  * Size:	000020
  */
-void calcNextCount__Q24Game5DNodeFv(void)
+void Game::DNode::calcNextCount(void)
 {
 	// UNUSED FUNCTION
 }
@@ -821,7 +821,7 @@ void calcNextCount__Q24Game5DNodeFv(void)
  * Address:	........
  * Size:	0000B0
  */
-void concat__Q24Game5DNodeFPQ24Game5DNode(void)
+void Game::DNode::concat( (Game::DNode *))
 {
 	// UNUSED FUNCTION
 }
@@ -831,7 +831,7 @@ void concat__Q24Game5DNodeFPQ24Game5DNode(void)
  * Address:	80227C28
  * Size:	000068
  */
-void __dt__Q24Game5DNodeFv(void)
+void Game::DNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -873,7 +873,7 @@ void __dt__Q24Game5DNodeFv(void)
  * Address:	80227C90
  * Size:	000098
  */
-void del__Q24Game5DNodeFv(void)
+void Game::DNode::del(void)
 {
 /*
 .loc_0x0:
@@ -935,7 +935,7 @@ void del__Q24Game5DNodeFv(void)
  * Address:	80227D28
  * Size:	000034
  */
-void getChildCount__Q24Game5DNodeFv(void)
+void Game::DNode::getChildCount(void)
 {
 /*
 .loc_0x0:
@@ -966,7 +966,7 @@ void getChildCount__Q24Game5DNodeFv(void)
  * Address:	........
  * Size:	000094
  */
-void getChildAt__Q24Game5DNodeFi(void)
+void Game::DNode::getChildAt( (int))
 {
 	// UNUSED FUNCTION
 }

@@ -201,7 +201,7 @@ void JASDrumSet::getPerc(int) const
  * Address:	8009B2C8
  * Size:	000034
  */
-void __ct__Q210JASDrumSet5TPercFv(void)
+void JASDrumSet::TPerc::__ct(void)
 {
 /*
 .loc_0x0:
@@ -226,7 +226,7 @@ void __ct__Q210JASDrumSet5TPercFv(void)
  * Address:	8009B2FC
  * Size:	00005C
  */
-void __dt__Q210JASDrumSet5TPercFv(void)
+void JASDrumSet::TPerc::__dt(void)
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void __dt__Q210JASDrumSet5TPercFv(void)
  * Address:	8009B358
  * Size:	000078
  */
-void setEffectCount__Q210JASDrumSet5TPercFUl(void)
+void JASDrumSet::TPerc::setEffectCount( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void setEffectCount__Q210JASDrumSet5TPercFUl(void)
  * Address:	8009B3D0
  * Size:	000058
  */
-void setVeloRegionCount__Q210JASDrumSet5TPercFUl(void)
+void JASDrumSet::TPerc::setVeloRegionCount( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void setVeloRegionCount__Q210JASDrumSet5TPercFUl(void)
  * Address:	8009B428
  * Size:	000010
  */
-void getVeloRegion__Q210JASDrumSet5TPercFi(void)
+void JASDrumSet::TPerc::getVeloRegion( (int))
 {
 /*
 .loc_0x0:
@@ -359,7 +359,7 @@ void getVeloRegion__Q210JASDrumSet5TPercFi(void)
  * Address:	........
  * Size:	000010
  */
-void getVeloRegion__Q210JASDrumSet5TPercCFi(void)
+void JASDrumSet::TPerc::getVeloRegion( const(int))
 {
 	// UNUSED FUNCTION
 }
@@ -369,7 +369,7 @@ void getVeloRegion__Q210JASDrumSet5TPercCFi(void)
  * Address:	8009B438
  * Size:	000010
  */
-void setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect(void)
+void JASDrumSet::TPerc::setEffect( (int, JASInstEffect *))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect(void)
  * Address:	........
  * Size:	000024
  */
-void getEffect__Q210JASDrumSet5TPercFi(void)
+void JASDrumSet::TPerc::getEffect( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -395,7 +395,7 @@ void getEffect__Q210JASDrumSet5TPercFi(void)
  * Address:	8009B448
  * Size:	000008
  */
-void setRelease__Q210JASDrumSet5TPercFUl(void)
+void JASDrumSet::TPerc::setRelease( (unsigned long))
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000030
  */
-void __ct__Q24Game12BirthCounterFv(void)
+void Game::BirthCounter::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game12BirthCounterFv(void)
  * Address:	........
  * Size:	000024
  */
-void reset__Q24Game12BirthCounterFv(void)
+void Game::BirthCounter::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void reset__Q24Game12BirthCounterFv(void)
  * Address:	........
  * Size:	000078
  */
-void __cl__Q24Game12BirthCounterFi(void)
+void Game::BirthCounter::operator()( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void __cl__Q24Game12BirthCounterFi(void)
  * Address:	........
  * Size:	00005C
  */
-void read__Q24Game12BirthCounterFR6Stream(void)
+void Game::BirthCounter::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void read__Q24Game12BirthCounterFR6Stream(void)
  * Address:	........
  * Size:	000090
  */
-void write__Q24Game12BirthCounterFR6Stream(void)
+void Game::BirthCounter::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -65,7 +65,7 @@ void write__Q24Game12BirthCounterFR6Stream(void)
  * Address:	........
  * Size:	000030
  */
-void __ct__Q24Game8BirthMgrFv(void)
+void Game::BirthMgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -75,7 +75,7 @@ void __ct__Q24Game8BirthMgrFv(void)
  * Address:	8022F9FC
  * Size:	000068
  */
-void clear__Q24Game8BirthMgrFv(void)
+void Game::BirthMgr::clear(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void clear__Q24Game8BirthMgrFv(void)
  * Address:	8022FA64
  * Size:	000048
  */
-void inc__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::inc( (int))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void inc__Q24Game8BirthMgrFi(void)
  * Address:	8022FAAC
  * Size:	000048
  */
-void dec__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::dec( (int))
 {
 /*
 .loc_0x0:
@@ -181,7 +181,7 @@ void dec__Q24Game8BirthMgrFi(void)
  * Address:	8022FAF4
  * Size:	0000D0
  */
-void inc_today__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::inc_today( (int))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void inc_today__Q24Game8BirthMgrFi(void)
  * Address:	8022FBC4
  * Size:	0000D0
  */
-void inc_cave__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::inc_cave( (int))
 {
 /*
 .loc_0x0:
@@ -317,7 +317,7 @@ void inc_cave__Q24Game8BirthMgrFi(void)
  * Address:	8022FC94
  * Size:	0000D0
  */
-void dec_today__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::dec_today( (int))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void dec_today__Q24Game8BirthMgrFi(void)
  * Address:	8022FD64
  * Size:	0000D0
  */
-void dec_cave__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::dec_cave( (int))
 {
 /*
 .loc_0x0:
@@ -453,7 +453,7 @@ void dec_cave__Q24Game8BirthMgrFi(void)
  * Address:	8022FE34
  * Size:	000140
  */
-void account_cave__Q24Game8BirthMgrFv(void)
+void Game::BirthMgr::account_cave(void)
 {
 /*
 .loc_0x0:
@@ -555,7 +555,7 @@ void account_cave__Q24Game8BirthMgrFv(void)
  * Address:	8022FF74
  * Size:	0002B4
  */
-void account_today_adjust__Q24Game8BirthMgrFv(void)
+void Game::BirthMgr::account_today_adjust(void)
 {
 /*
 .loc_0x0:
@@ -766,7 +766,7 @@ void account_today_adjust__Q24Game8BirthMgrFv(void)
  * Address:	80230228
  * Size:	000204
  */
-void account_today__Q24Game8BirthMgrFv(void)
+void Game::BirthMgr::account_today(void)
 {
 /*
 .loc_0x0:
@@ -923,7 +923,7 @@ void account_today__Q24Game8BirthMgrFv(void)
  * Address:	........
  * Size:	000070
  */
-void get_cave__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::get_cave( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -933,7 +933,7 @@ void get_cave__Q24Game8BirthMgrFi(void)
  * Address:	........
  * Size:	000070
  */
-void get_today__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::get_today( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -943,7 +943,7 @@ void get_today__Q24Game8BirthMgrFi(void)
  * Address:	8023042C
  * Size:	000070
  */
-void get_total__Q24Game8BirthMgrFi(void)
+void Game::BirthMgr::get_total( (int))
 {
 /*
 .loc_0x0:
@@ -987,7 +987,7 @@ void get_total__Q24Game8BirthMgrFi(void)
  * Address:	8023049C
  * Size:	0000B0
  */
-void read__Q24Game8BirthMgrFR6Stream(void)
+void Game::BirthMgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1049,7 +1049,7 @@ void read__Q24Game8BirthMgrFR6Stream(void)
  * Address:	8023054C
  * Size:	000148
  */
-void write__Q24Game8BirthMgrFR6Stream(void)
+void Game::BirthMgr::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1149,7 +1149,7 @@ void write__Q24Game8BirthMgrFR6Stream(void)
  * Address:	........
  * Size:	000030
  */
-void __ct__Q24Game12DeathCounterFv(void)
+void Game::DeathCounter::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1159,7 +1159,7 @@ void __ct__Q24Game12DeathCounterFv(void)
  * Address:	........
  * Size:	00002C
  */
-void reset__Q24Game12DeathCounterFv(void)
+void Game::DeathCounter::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1169,7 +1169,7 @@ void reset__Q24Game12DeathCounterFv(void)
  * Address:	........
  * Size:	000100
  */
-void __cl__Q24Game12DeathCounterFi(void)
+void Game::DeathCounter::operator()( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -1179,7 +1179,7 @@ void __cl__Q24Game12DeathCounterFi(void)
  * Address:	........
  * Size:	00005C
  */
-void read__Q24Game12DeathCounterFR6Stream(void)
+void Game::DeathCounter::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -1189,7 +1189,7 @@ void read__Q24Game12DeathCounterFR6Stream(void)
  * Address:	........
  * Size:	000090
  */
-void write__Q24Game12DeathCounterFR6Stream(void)
+void Game::DeathCounter::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -1199,7 +1199,7 @@ void write__Q24Game12DeathCounterFR6Stream(void)
  * Address:	........
  * Size:	000030
  */
-void __ct__Q24Game8DeathMgrFv(void)
+void Game::DeathMgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1209,7 +1209,7 @@ void __ct__Q24Game8DeathMgrFv(void)
  * Address:	80230694
  * Size:	000084
  */
-void clear__Q24Game8DeathMgrFv(void)
+void Game::DeathMgr::clear(void)
 {
 /*
 .loc_0x0:
@@ -1254,7 +1254,7 @@ void clear__Q24Game8DeathMgrFv(void)
  * Address:	80230718
  * Size:	00005C
  */
-void inc__Q24Game8DeathMgrFi(void)
+void Game::DeathMgr::inc( (int))
 {
 /*
 .loc_0x0:
@@ -1297,7 +1297,7 @@ void inc__Q24Game8DeathMgrFi(void)
  * Address:	80230774
  * Size:	0000FC
  */
-void inc_today__Q24Game8DeathMgrFi(void)
+void Game::DeathMgr::inc_today( (int))
 {
 /*
 .loc_0x0:
@@ -1380,7 +1380,7 @@ void inc_today__Q24Game8DeathMgrFi(void)
  * Address:	80230870
  * Size:	0000FC
  */
-void inc_cave__Q24Game8DeathMgrFi(void)
+void Game::DeathMgr::inc_cave( (int))
 {
 /*
 .loc_0x0:
@@ -1463,7 +1463,7 @@ void inc_cave__Q24Game8DeathMgrFi(void)
  * Address:	8023096C
  * Size:	0001FC
  */
-void account_cave__Q24Game8DeathMgrFv(void)
+void Game::DeathMgr::account_cave(void)
 {
 /*
 .loc_0x0:
@@ -1620,7 +1620,7 @@ void account_cave__Q24Game8DeathMgrFv(void)
  * Address:	80230B68
  * Size:	0001FC
  */
-void account_today__Q24Game8DeathMgrFv(void)
+void Game::DeathMgr::account_today(void)
 {
 /*
 .loc_0x0:
@@ -1777,7 +1777,7 @@ void account_today__Q24Game8DeathMgrFv(void)
  * Address:	80230D64
  * Size:	0000E8
  */
-void get_cave__Q24Game8DeathMgrFi(void)
+void Game::DeathMgr::get_cave( (int))
 {
 /*
 .loc_0x0:
@@ -1855,7 +1855,7 @@ void get_cave__Q24Game8DeathMgrFi(void)
  * Address:	80230E4C
  * Size:	0000E8
  */
-void get_today__Q24Game8DeathMgrFi(void)
+void Game::DeathMgr::get_today( (int))
 {
 /*
 .loc_0x0:
@@ -1933,7 +1933,7 @@ void get_today__Q24Game8DeathMgrFi(void)
  * Address:	80230F34
  * Size:	0000E8
  */
-void get_total__Q24Game8DeathMgrFi(void)
+void Game::DeathMgr::get_total( (int))
 {
 /*
 .loc_0x0:
@@ -2011,7 +2011,7 @@ void get_total__Q24Game8DeathMgrFi(void)
  * Address:	8023101C
  * Size:	0000B0
  */
-void read__Q24Game8DeathMgrFR6Stream(void)
+void Game::DeathMgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2073,7 +2073,7 @@ void read__Q24Game8DeathMgrFR6Stream(void)
  * Address:	802310CC
  * Size:	000148
  */
-void write__Q24Game8DeathMgrFR6Stream(void)
+void Game::DeathMgr::write( (Stream &))
 {
 /*
 .loc_0x0:

@@ -5,7 +5,7 @@
  * Address:	80014D24
  * Size:	000038
  */
-void __ct__Q216JStudio_JMessage16TAdaptor_messageFPQ28JMessage8TControl(void)
+void JStudio_JMessage::TAdaptor_message::__ct( (JMessage::TControl *))
 {
 /*
 .loc_0x0:
@@ -31,7 +31,7 @@ void __ct__Q216JStudio_JMessage16TAdaptor_messageFPQ28JMessage8TControl(void)
  * Address:	80014D5C
  * Size:	000060
  */
-void __dt__Q216JStudio_JMessage16TAdaptor_messageFv(void)
+void JStudio_JMessage::TAdaptor_message::__dt(void)
 {
 /*
 .loc_0x0:
@@ -69,7 +69,7 @@ void __dt__Q216JStudio_JMessage16TAdaptor_messageFv(void)
  * Address:	80014DBC
  * Size:	00003C
  */
-void adaptor_do_MESSAGE__Q216JStudio_JMessage16TAdaptor_messageFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JMessage::TAdaptor_message::adaptor_do_MESSAGE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:

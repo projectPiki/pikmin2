@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803DE2C0
  * Size:	0005B0
  */
-void init__Q33ebi2FS15FSMStateMachineFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMStateMachine::init( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -421,7 +421,7 @@ void init__Q33ebi2FS15FSMStateMachineFPQ33ebi2FS4TMgr(void)
  * Address:	803DE870
  * Size:	00002C
  */
-void init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState::init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -444,7 +444,7 @@ void init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
  * Address:	803DE89C
  * Size:	00002C
  */
-void exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState::exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -467,7 +467,7 @@ void exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr(void)
  * Address:	803DE8C8
  * Size:	000070
  */
-void do_init__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState_SelectYesNo::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -507,7 +507,7 @@ void do_init__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgrPQ24Game8StateArg(v
  * Address:	803DE938
  * Size:	000204
  */
-void do_exec__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState_SelectYesNo::do_exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -674,7 +674,7 @@ void do_exec__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr(void)
  * Address:	803DEB3C
  * Size:	000060
  */
-void do_set__Q33ebi2FS21FSMState01_DataBrokenFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState01_DataBroken::do_set( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -710,7 +710,7 @@ void do_set__Q33ebi2FS21FSMState01_DataBrokenFPQ33ebi2FS4TMgrPQ24Game8StateArg(v
  * Address:	803DEB9C
  * Size:	000024
  */
-void do_set__Q33ebi2FS22FSMState03_DoYouDeleteFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState03_DoYouDelete::do_set( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -731,7 +731,7 @@ void do_set__Q33ebi2FS22FSMState03_DoYouDeleteFPQ33ebi2FS4TMgrPQ24Game8StateArg(
  * Address:	803DEBC0
  * Size:	000024
  */
-void do_decide__Q33ebi2FS22FSMState03_DoYouDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState03_DoYouDelete::do_decide( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void do_decide__Q33ebi2FS22FSMState03_DoYouDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DEBE4
  * Size:	000024
  */
-void do_set__Q33ebi2FS25FSMState07_DoYouOverwriteFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState07_DoYouOverwrite::do_set( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -773,7 +773,7 @@ void do_set__Q33ebi2FS25FSMState07_DoYouOverwriteFPQ33ebi2FS4TMgrPQ24Game8StateA
  * Address:	803DEC08
  * Size:	000038
  */
-void do_decide__Q33ebi2FS25FSMState07_DoYouOverwriteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState07_DoYouOverwrite::do_decide( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -799,7 +799,7 @@ void do_decide__Q33ebi2FS25FSMState07_DoYouOverwriteFPQ33ebi2FS4TMgr(void)
  * Address:	803DEC40
  * Size:	000060
  */
-void do_init__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState_Warning::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -835,7 +835,7 @@ void do_init__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
  * Address:	803DECA0
  * Size:	0000C4
  */
-void do_exec__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState_Warning::do_exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -904,7 +904,7 @@ void do_exec__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgr(void)
  * Address:	803DED64
  * Size:	000028
  */
-void do_open__Q33ebi2FS23FSMState05_FailToDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState05_FailToDelete::do_open( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -926,7 +926,7 @@ void do_open__Q33ebi2FS23FSMState05_FailToDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DED8C
  * Size:	000044
  */
-void do_transit__Q33ebi2FS23FSMState05_FailToDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState05_FailToDelete::do_transit( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -959,7 +959,7 @@ void do_transit__Q33ebi2FS23FSMState05_FailToDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DEDD0
  * Size:	000028
  */
-void do_open__Q33ebi2FS23FSMState06_FinishDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState06_FinishDelete::do_open( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -981,7 +981,7 @@ void do_open__Q33ebi2FS23FSMState06_FinishDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DEDF8
  * Size:	000034
  */
-void do_transit__Q33ebi2FS23FSMState06_FinishDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState06_FinishDelete::do_transit( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1006,7 +1006,7 @@ void do_transit__Q33ebi2FS23FSMState06_FinishDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DEE2C
  * Size:	000028
  */
-void do_open__Q33ebi2FS21FSMState08_FailToCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState08_FailToCopy::do_open( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1028,7 +1028,7 @@ void do_open__Q33ebi2FS21FSMState08_FailToCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DEE54
  * Size:	000044
  */
-void do_transit__Q33ebi2FS21FSMState08_FailToCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState08_FailToCopy::do_transit( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1061,7 +1061,7 @@ void do_transit__Q33ebi2FS21FSMState08_FailToCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DEE98
  * Size:	000028
  */
-void do_open__Q33ebi2FS21FSMState10_FinishCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState10_FinishCopy::do_open( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1083,7 +1083,7 @@ void do_open__Q33ebi2FS21FSMState10_FinishCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DEEC0
  * Size:	000034
  */
-void do_transit__Q33ebi2FS21FSMState10_FinishCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState10_FinishCopy::do_transit( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1108,7 +1108,7 @@ void do_transit__Q33ebi2FS21FSMState10_FinishCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DEEF4
  * Size:	00006C
  */
-void init__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState_CardTask::init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1147,7 +1147,7 @@ void init__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
  * Address:	803DEF60
  * Size:	0002C0
  */
-void exec__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState_CardTask::exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1373,7 +1373,7 @@ void exec__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr(void)
  * Address:	803DF220
  * Size:	000034
  */
-void do_transitCardPlayerDataBroken__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState_CardTask::do_transitCardPlayerDataBroken( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1398,7 +1398,7 @@ void do_transitCardPlayerDataBroken__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMg
  * Address:	803DF254
  * Size:	000040
  */
-void do_init__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState02_NowDelete::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1426,7 +1426,7 @@ void do_init__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgrPQ24Game8StateArg(v
  * Address:	803DF294
  * Size:	000024
  */
-void do_close__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState02_NowDelete::do_close( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1447,7 +1447,7 @@ void do_close__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DF2B8
  * Size:	00002C
  */
-void do_cardRequest__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState02_NowDelete::do_cardRequest( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1470,7 +1470,7 @@ void do_cardRequest__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DF2E4
  * Size:	000060
  */
-void do_transitCardReady__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState02_NowDelete::do_transitCardReady( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1506,7 +1506,7 @@ void do_transitCardReady__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DF344
  * Size:	000034
  */
-void do_transitCardNoCard__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState02_NowDelete::do_transitCardNoCard( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1531,7 +1531,7 @@ void do_transitCardNoCard__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DF378
  * Size:	000034
  */
-void do_transitCardIOError__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState02_NowDelete::do_transitCardIOError( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1556,7 +1556,7 @@ void do_transitCardIOError__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void
  * Address:	803DF3AC
  * Size:	000024
  */
-void cleanup__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState02_NowDelete::cleanup( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1577,7 +1577,7 @@ void cleanup__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr(void)
  * Address:	803DF3D0
  * Size:	000044
  */
-void do_init__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState09_NowCopy::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1606,7 +1606,7 @@ void do_init__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgrPQ24Game8StateArg(voi
  * Address:	803DF414
  * Size:	000024
  */
-void do_close__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState09_NowCopy::do_close( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1627,7 +1627,7 @@ void do_close__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DF438
  * Size:	000034
  */
-void do_cardRequest__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState09_NowCopy::do_cardRequest( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1652,7 +1652,7 @@ void do_cardRequest__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DF46C
  * Size:	000064
  */
-void do_transitCardReady__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState09_NowCopy::do_transitCardReady( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1689,7 +1689,7 @@ void do_transitCardReady__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DF4D0
  * Size:	000034
  */
-void do_transitCardNoCard__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState09_NowCopy::do_transitCardNoCard( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1714,7 +1714,7 @@ void do_transitCardNoCard__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DF504
  * Size:	000034
  */
-void do_transitCardIOError__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState09_NowCopy::do_transitCardIOError( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1739,7 +1739,7 @@ void do_transitCardIOError__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DF538
  * Size:	000024
  */
-void cleanup__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState09_NowCopy::cleanup( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1760,7 +1760,7 @@ void cleanup__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr(void)
  * Address:	803DF55C
  * Size:	00004C
  */
-void do_init__Q33ebi2FS21FSMState00a_OpenSceneFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState00a_OpenScene::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1791,7 +1791,7 @@ void do_init__Q33ebi2FS21FSMState00a_OpenSceneFPQ33ebi2FS4TMgrPQ24Game8StateArg(
  * Address:	803DF5A8
  * Size:	000064
  */
-void do_exec__Q33ebi2FS21FSMState00a_OpenSceneFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState00a_OpenScene::do_exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1830,7 +1830,7 @@ void do_exec__Q33ebi2FS21FSMState00a_OpenSceneFPQ33ebi2FS4TMgr(void)
  * Address:	803DF60C
  * Size:	0000AC
  */
-void do_init__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState00_SelectData::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1889,7 +1889,7 @@ void do_init__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgrPQ24Game8StateArg(
  * Address:	803DF6B8
  * Size:	000254
  */
-void do_exec__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState00_SelectData::do_exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2072,7 +2072,7 @@ void do_exec__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgr(void)
  * Address:	803DF90C
  * Size:	000064
  */
-void do_init__Q33ebi2FS21FSMState00b_CheckDataFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState00b_CheckData::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2109,7 +2109,7 @@ void do_init__Q33ebi2FS21FSMState00b_CheckDataFPQ33ebi2FS4TMgrPQ24Game8StateArg(
  * Address:	803DF970
  * Size:	0001E0
  */
-void do_exec__Q33ebi2FS21FSMState00b_CheckDataFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState00b_CheckData::do_exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2263,7 +2263,7 @@ void do_exec__Q33ebi2FS21FSMState00b_CheckDataFPQ33ebi2FS4TMgr(void)
  * Address:	803DFB50
  * Size:	00003C
  */
-void do_init__Q33ebi2FS22FSMState00c_DecideDataFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState00c_DecideData::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2290,7 +2290,7 @@ void do_init__Q33ebi2FS22FSMState00c_DecideDataFPQ33ebi2FS4TMgrPQ24Game8StateArg
  * Address:	803DFB8C
  * Size:	0000B4
  */
-void do_exec__Q33ebi2FS22FSMState00c_DecideDataFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState00c_DecideData::do_exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2353,7 +2353,7 @@ void do_exec__Q33ebi2FS22FSMState00c_DecideDataFPQ33ebi2FS4TMgr(void)
  * Address:	803DFC40
  * Size:	0000B0
  */
-void do_init__Q33ebi2FS31FSMState04_WhichDataDoYouCopyToFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState04_WhichDataDoYouCopyTo::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2419,7 +2419,7 @@ void do_init__Q33ebi2FS31FSMState04_WhichDataDoYouCopyToFPQ33ebi2FS4TMgrPQ24Game
  * Address:	803DFCF0
  * Size:	00029C
  */
-void do_exec__Q33ebi2FS31FSMState04_WhichDataDoYouCopyToFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState04_WhichDataDoYouCopyTo::do_exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -2644,7 +2644,7 @@ void do_exec__Q33ebi2FS31FSMState04_WhichDataDoYouCopyToFPQ33ebi2FS4TMgr(void)
  * Address:	803DFF8C
  * Size:	0000A4
  */
-void __ct__Q33ebi2FS4TMgrFv(void)
+void ebi::FS::TMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2697,7 +2697,7 @@ void __ct__Q33ebi2FS4TMgrFv(void)
  * Address:	803E0030
  * Size:	000048
  */
-void setController__Q33ebi2FS4TMgrFP10Controller(void)
+void ebi::FS::TMgr::setController( (Controller *))
 {
 /*
 .loc_0x0:
@@ -2727,7 +2727,7 @@ void setController__Q33ebi2FS4TMgrFP10Controller(void)
  * Address:	803E0078
  * Size:	0000FC
  */
-void perseInfo__Q33ebi2FS4TMgrFRQ34Game10MemoryCard14PlayerFileInfo(void)
+void ebi::FS::TMgr::perseInfo( (Game::MemoryCard::PlayerFileInfo &))
 {
 /*
 .loc_0x0:
@@ -2804,7 +2804,7 @@ void perseInfo__Q33ebi2FS4TMgrFRQ34Game10MemoryCard14PlayerFileInfo(void)
  * Address:	803E0174
  * Size:	000098
  */
-void update__Q33ebi2FS4TMgrFv(void)
+void ebi::FS::TMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -2856,7 +2856,7 @@ void update__Q33ebi2FS4TMgrFv(void)
  * Address:	803E020C
  * Size:	000048
  */
-void draw__Q33ebi2FS4TMgrFv(void)
+void ebi::FS::TMgr::draw(void)
 {
 /*
 .loc_0x0:
@@ -2888,7 +2888,7 @@ void draw__Q33ebi2FS4TMgrFv(void)
  * Address:	803E0254
  * Size:	000044
  */
-void startSeq__Q33ebi2FS4TMgrFv(void)
+void ebi::FS::TMgr::startSeq(void)
 {
 /*
 .loc_0x0:
@@ -2917,7 +2917,7 @@ void startSeq__Q33ebi2FS4TMgrFv(void)
  * Address:	803E0298
  * Size:	000058
  */
-void forceQuitSeq__Q33ebi2FS4TMgrFv(void)
+void ebi::FS::TMgr::forceQuitSeq(void)
 {
 /*
 .loc_0x0:
@@ -2951,7 +2951,7 @@ void forceQuitSeq__Q33ebi2FS4TMgrFv(void)
  * Address:	803E02F0
  * Size:	000028
  */
-void isFinish__Q33ebi2FS4TMgrFv(void)
+void ebi::FS::TMgr::isFinish(void)
 {
 /*
 .loc_0x0:
@@ -2973,7 +2973,7 @@ void isFinish__Q33ebi2FS4TMgrFv(void)
  * Address:	803E0318
  * Size:	000060
  */
-void goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd(void)
+void ebi::FS::TMgr::goEnd_( (ebi::FS::TMgr::enumEnd))
 {
 /*
 .loc_0x0:
@@ -3009,7 +3009,7 @@ void goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd(void)
  * Address:	803E0378
  * Size:	0000D0
  */
-void checkAndTransitNoCard___Q33ebi2FS4TMgrFv(void)
+void ebi::FS::TMgr::checkAndTransitNoCard_(void)
 {
 /*
 .loc_0x0:
@@ -3081,7 +3081,7 @@ void checkAndTransitNoCard___Q33ebi2FS4TMgrFv(void)
  * Address:	803E0448
  * Size:	000058
  */
-void getStateID__Q33ebi2FS4TMgrFv(void)
+void ebi::FS::TMgr::getStateID(void)
 {
 /*
 .loc_0x0:
@@ -3117,7 +3117,7 @@ void getStateID__Q33ebi2FS4TMgrFv(void)
  * Address:	803E04A0
  * Size:	000004
  */
-void do_init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3130,7 +3130,7 @@ void do_init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
  * Address:	803E04A4
  * Size:	000004
  */
-void do_exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState::do_exec( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -3143,7 +3143,7 @@ void do_exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr(void)
  * Address:	803E04A8
  * Size:	000004
  */
-void do_decide__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState_SelectYesNo::do_decide( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -3156,7 +3156,7 @@ void do_decide__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr(void)
  * Address:	803E04AC
  * Size:	000004
  */
-void do_init__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
+void ebi::FS::FSMState_CardTask::do_init( (ebi::FS::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3169,7 +3169,7 @@ void do_init__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgrPQ24Game8StateArg(void
  * Address:	803E04B0
  * Size:	000004
  */
-void do_close__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr(void)
+void ebi::FS::FSMState_CardTask::do_close( (ebi::FS::TMgr *))
 {
 /*
 .loc_0x0:
@@ -3231,7 +3231,7 @@ void start__Q24Game28StateMachine<ebi::FS::TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateA
  * Address:	803E0518
  * Size:	000BF4
  */
-void __dt__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::__dt(void)
 {
 /*
 .loc_0x0:

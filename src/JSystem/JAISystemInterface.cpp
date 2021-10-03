@@ -5,7 +5,7 @@
  * Address:	800B8EE4
  * Size:	000030
  */
-void checkFileExsistence__Q27JAInter15SystemInterfaceFPc(void)
+void JAInter::SystemInterface::checkFileExsistence( (char *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void checkFileExsistence__Q27JAInter15SystemInterfaceFPc(void)
  * Address:	800B8F14
  * Size:	0000EC
  */
-void checkSeqActiveFlag__Q27JAInter15SystemInterfaceFP8JASTrack(void)
+void JAInter::SystemInterface::checkSeqActiveFlag( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -106,7 +106,7 @@ void checkSeqActiveFlag__Q27JAInter15SystemInterfaceFP8JASTrack(void)
  * Address:	800B9000
  * Size:	00004C
  */
-void trackToSeqp__Q27JAInter15SystemInterfaceFP11JAISequenceUc(void)
+void JAInter::SystemInterface::trackToSeqp( (JAISequence *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void trackToSeqp__Q27JAInter15SystemInterfaceFP11JAISequenceUc(void)
  * Address:	........
  * Size:	000048
  */
-void trackToSeqp__Q27JAInter15SystemInterfaceFP8JASTrackUcUl(void)
+void JAInter::SystemInterface::trackToSeqp( (JASTrack *, unsigned char, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -151,7 +151,7 @@ void trackToSeqp__Q27JAInter15SystemInterfaceFP8JASTrackUcUl(void)
  * Address:	800B904C
  * Size:	00001C
  */
-void setSeqPortargsF32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcf(void)
+void JAInter::SystemInterface::setSeqPortargsF32( (JAInter::SeqUpdateData *, unsigned long, unsigned char, float))
 {
 /*
 .loc_0x0:
@@ -170,7 +170,7 @@ void setSeqPortargsF32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUl
  * Address:	........
  * Size:	00001C
  */
-void setSeqPortargsPS16__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcPs(void)
+void JAInter::SystemInterface::setSeqPortargsPS16( (JAInter::SeqUpdateData *, unsigned long, unsigned char, short *))
 {
 	// UNUSED FUNCTION
 }
@@ -180,7 +180,7 @@ void setSeqPortargsPS16__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataU
  * Address:	800B9068
  * Size:	00001C
  */
-void setSeqPortargsU32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcUl(void)
+void JAInter::SystemInterface::setSeqPortargsU32( (JAInter::SeqUpdateData *, unsigned long, unsigned char, unsigned long))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void setSeqPortargsU32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUl
  * Address:	800B9084
  * Size:	000058
  */
-void rootInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData(void)
+void JAInter::SystemInterface::rootInit( (JAInter::SeqUpdateData *))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void rootInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData(void)
  * Address:	800B90DC
  * Size:	000088
  */
-void trackInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData(void)
+void JAInter::SystemInterface::trackInit( (JAInter::SeqUpdateData *))
 {
 /*
 .loc_0x0:
@@ -289,7 +289,7 @@ void trackInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData(void)
  * Address:	800B9164
  * Size:	000288
  */
-void outerInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataP8JASTrackUlUsUc(void)
+void JAInter::SystemInterface::outerInit( (JAInter::SeqUpdateData *, JASTrack *, unsigned long, unsigned short, unsigned char))
 {
 /*
 .loc_0x0:
@@ -485,7 +485,7 @@ void outerInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataP8JASTrack
  * Address:	........
  * Size:	000068
  */
-void setPortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgsP8JASTrackUlUl(void)
+void JAInter::SystemInterface::setPortParameter( (JASPortArgs *, JASTrack *, unsigned long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -495,7 +495,7 @@ void setPortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgsP8JASTrackUlUl(
  * Address:	800B93EC
  * Size:	0001BC
  */
-void setSePortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs(void)
+void JAInter::SystemInterface::setSePortParameter( (JASPortArgs *))
 {
 /*
 .loc_0x0:
@@ -638,7 +638,7 @@ void setSePortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs(void)
  * Address:	........
  * Size:	000018
  */
-void JAIouterP__Q27JAInter15SystemInterfaceFPv(void)
+void JAInter::SystemInterface::JAIouterP( (void *))
 {
 	// UNUSED FUNCTION
 }
@@ -648,7 +648,7 @@ void JAIouterP__Q27JAInter15SystemInterfaceFPv(void)
  * Address:	........
  * Size:	000040
  */
-void JAIouterSW__Q27JAInter15SystemInterfaceFPv(void)
+void JAInter::SystemInterface::JAIouterSW( (void *))
 {
 	// UNUSED FUNCTION
 }
@@ -658,7 +658,7 @@ void JAIouterSW__Q27JAInter15SystemInterfaceFPv(void)
  * Address:	........
  * Size:	000094
  */
-void setAudioFrameParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs(void)
+void JAInter::SystemInterface::setAudioFrameParameter( (JASPortArgs *))
 {
 	// UNUSED FUNCTION
 }

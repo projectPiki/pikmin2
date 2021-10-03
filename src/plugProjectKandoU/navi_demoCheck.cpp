@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8021F3D0
  * Size:	001790
  */
-void demoCheck__Q24Game4NaviFv(void)
+void Game::Navi::demoCheck(void)
 {
 /*
 .loc_0x0:
@@ -1950,7 +1950,7 @@ void first__Q24Game30EnemyIterator<Game::Pom::Obj>Fv(void)
  * Address:	80220E04
  * Size:	0001C4
  */
-void checkDemoNaviAndPiki__Q24Game4NaviFRQ23Sys6Sphere(void)
+void Game::Navi::checkDemoNaviAndPiki( (Sys::Sphere &))
 {
 /*
 .loc_0x0:

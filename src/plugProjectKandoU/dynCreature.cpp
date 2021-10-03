@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801A7F3C
  * Size:	00005C
  */
-void __ct__Q24Game14DynParticleMgrFi(void)
+void Game::DynParticleMgr::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -106,7 +106,7 @@ void MonoObjectMgr<Game::DynParticle>::~MonoObjectMgr()
  * Address:	801A8038
  * Size:	000030
  */
-void resetMgr__Q24Game14DynParticleMgrFv(void)
+void Game::DynParticleMgr::resetMgr(void)
 {
 /*
 .loc_0x0:
@@ -134,7 +134,7 @@ void resetMgr__Q24Game14DynParticleMgrFv(void)
  * Address:	801A8068
  * Size:	000078
  */
-void getAt__Q24Game11DynParticleFi(void)
+void Game::DynParticle::getAt( (int))
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void getAt__Q24Game11DynParticleFi(void)
  * Address:	........
  * Size:	000058
  */
-void release__Q24Game11DynParticleFv(void)
+void Game::DynParticle::release(void)
 {
 	// UNUSED FUNCTION
 }
@@ -192,7 +192,7 @@ void release__Q24Game11DynParticleFv(void)
  * Address:	........
  * Size:	000050
  */
-void updateGlobal__Q24Game11DynParticleFR7Matrixf(void)
+void Game::DynParticle::updateGlobal( (Matrixf &))
 {
 	// UNUSED FUNCTION
 }
@@ -202,7 +202,7 @@ void updateGlobal__Q24Game11DynParticleFR7Matrixf(void)
  * Address:	801A80E0
  * Size:	000074
  */
-void __ct__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::__ct(void)
 {
 /*
 .loc_0x0:
@@ -243,7 +243,7 @@ void __ct__Q24Game11DynCreatureFv(void)
  * Address:	801A8154
  * Size:	0000B0
  */
-void createParticles__Q24Game11DynCreatureFi(void)
+void Game::DynCreature::createParticles( (int))
 {
 /*
 .loc_0x0:
@@ -313,7 +313,7 @@ void createParticles__Q24Game11DynCreatureFi(void)
  * Address:	801A8204
  * Size:	000074
  */
-void releaseParticles__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::releaseParticles(void)
 {
 /*
 .loc_0x0:
@@ -360,7 +360,7 @@ void releaseParticles__Q24Game11DynCreatureFv(void)
  * Address:	801A8278
  * Size:	00006C
  */
-void updateParticlePositions__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::updateParticlePositions(void)
 {
 /*
 .loc_0x0:
@@ -403,7 +403,7 @@ void updateParticlePositions__Q24Game11DynCreatureFv(void)
  * Address:	801A82E4
  * Size:	0004F4
  */
-void computeForces__Q24Game11DynCreatureFf(void)
+void Game::DynCreature::computeForces( (float))
 {
 /*
 .loc_0x0:
@@ -863,7 +863,7 @@ void range_check(Vector3<float> &)
  * Address:	........
  * Size:	000080
  */
-void getContactParticeRatio__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::getContactParticeRatio(void)
 {
 	// UNUSED FUNCTION
 }
@@ -873,7 +873,7 @@ void getContactParticeRatio__Q24Game11DynCreatureFv(void)
  * Address:	........
  * Size:	00002C
  */
-void getContactParticleNum__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::getContactParticleNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -883,7 +883,7 @@ void getContactParticleNum__Q24Game11DynCreatureFv(void)
  * Address:	........
  * Size:	000020
  */
-void getParticleNum__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::getParticleNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -893,7 +893,7 @@ void getParticleNum__Q24Game11DynCreatureFv(void)
  * Address:	801A888C
  * Size:	0004A8
  */
-void simulate__Q24Game11DynCreatureFf(void)
+void Game::DynCreature::simulate( (float))
 {
 /*
 .loc_0x0:
@@ -1263,7 +1263,7 @@ void simulate__Q24Game11DynCreatureFf(void)
  * Address:	801A8D34
  * Size:	00001C
  */
-void getPosition__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::getPosition(void)
 {
 /*
 .loc_0x0:
@@ -1337,7 +1337,7 @@ void onSetPosition__Q24Game11DynCreatureFR10Vector3<float>(void)
  * Address:	801A8DFC
  * Size:	000004
  */
-void onSetPosition__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1350,7 +1350,7 @@ void onSetPosition__Q24Game11DynCreatureFv(void)
  * Address:	801A8E00
  * Size:	00001C
  */
-void getVelocity__Q24Game11DynCreatureFv(void)
+void Game::DynCreature::getVelocity(void)
 {
 /*
 .loc_0x0:
@@ -1477,7 +1477,7 @@ void applyImpulse__Q24Game11DynCreatureFR10Vector3<float>R10Vector3<float>(void)
  * Address:	........
  * Size:	00019C
  */
-void simulateCylinder__Q24Game11DynCreatureFRQ23Sys8Cylinderf(void)
+void Game::DynCreature::simulateCylinder( (Sys::Cylinder &, float))
 {
 	// UNUSED FUNCTION
 }
@@ -1487,7 +1487,7 @@ void simulateCylinder__Q24Game11DynCreatureFRQ23Sys8Cylinderf(void)
  * Address:	801A8F0C
  * Size:	0000B8
  */
-void __dt__Q24Game14DynParticleMgrFv(void)
+void Game::DynParticleMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3254,7 +3254,7 @@ void ObjectMgr<Game::DynParticle>::doAnimation()
  * Address:	801AA208
  * Size:	000004
  */
-void doDirectDraw__Q24Game11DynParticleFR8Graphics(void)
+void Game::DynParticle::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -3267,7 +3267,7 @@ void doDirectDraw__Q24Game11DynParticleFR8Graphics(void)
  * Address:	801AA20C
  * Size:	000004
  */
-void doSimulation__Q24Game11DynParticleFf(void)
+void Game::DynParticle::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -3280,7 +3280,7 @@ void doSimulation__Q24Game11DynParticleFf(void)
  * Address:	801AA210
  * Size:	000004
  */
-void doViewCalc__Q24Game11DynParticleFv(void)
+void Game::DynParticle::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -3293,7 +3293,7 @@ void doViewCalc__Q24Game11DynParticleFv(void)
  * Address:	801AA214
  * Size:	000004
  */
-void doSetView__Q24Game11DynParticleFUl(void)
+void Game::DynParticle::doSetView( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -3306,7 +3306,7 @@ void doSetView__Q24Game11DynParticleFUl(void)
  * Address:	801AA218
  * Size:	000004
  */
-void doEntry__Q24Game11DynParticleFv(void)
+void Game::DynParticle::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -3319,7 +3319,7 @@ void doEntry__Q24Game11DynParticleFv(void)
  * Address:	801AA21C
  * Size:	000004
  */
-void doAnimation__Q24Game11DynParticleFv(void)
+void Game::DynParticle::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -3454,7 +3454,7 @@ void MonoObjectMgr<Game::DynParticle>::alloc(int)
  * Address:	801AA3A8
  * Size:	000004
  */
-void constructor__Q24Game11DynParticleFv(void)
+void Game::DynParticle::constructor(void)
 {
 /*
 .loc_0x0:
@@ -3467,7 +3467,7 @@ void constructor__Q24Game11DynParticleFv(void)
  * Address:	801AA3AC
  * Size:	000034
  */
-void __ct__Q24Game11DynParticleFv(void)
+void Game::DynParticle::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3819,7 +3819,7 @@ void ObjectMgr<Game::DynParticle>::@28@doAnimation()
  * Address:	801AA6AC
  * Size:	000008
  */
-void @28@resetMgr__Q24Game14DynParticleMgrFv(void)
+void @28@Game::DynParticleMgr::resetMgr(void)
 {
 /*
 .loc_0x0:

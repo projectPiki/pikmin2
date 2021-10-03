@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8023410C
  * Size:	0000FC
  */
-void __ct__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::__ct(void)
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void __ct__Q24Game14PlayCommonDataFv(void)
  * Address:	80234208
  * Size:	000078
  */
-void reset__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::reset(void)
 {
 /*
 .loc_0x0:
@@ -144,7 +144,7 @@ void reset__Q24Game14PlayCommonDataFv(void)
  * Address:	80234280
  * Size:	0000C0
  */
-void reset__Q24Game21PlayChallengeGameDataFv(void)
+void Game::PlayChallengeGameData::reset(void)
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void reset__Q24Game21PlayChallengeGameDataFv(void)
  * Address:	80234340
  * Size:	0000A0
  */
-void write__Q24Game14PlayCommonDataFR6Stream(void)
+void Game::PlayCommonData::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void write__Q24Game14PlayCommonDataFR6Stream(void)
  * Address:	802343E0
  * Size:	0000EC
  */
-void read__Q24Game14PlayCommonDataFR6Stream(void)
+void Game::PlayCommonData::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void read__Q24Game14PlayCommonDataFR6Stream(void)
  * Address:	802344CC
  * Size:	000078
  */
-void getHighscore_clear__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::getHighscore_clear( (int))
 {
 /*
 .loc_0x0:
@@ -387,7 +387,7 @@ void getHighscore_clear__Q24Game14PlayCommonDataFi(void)
  * Address:	80234544
  * Size:	000078
  */
-void getHighscore_complete__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::getHighscore_complete( (int))
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void getHighscore_complete__Q24Game14PlayCommonDataFi(void)
  * Address:	802345BC
  * Size:	000038
  */
-void entryHighscores_clear__Q24Game14PlayCommonDataFiPiPi(void)
+void Game::PlayCommonData::entryHighscores_clear( (int, int *, int *))
 {
 /*
 .loc_0x0:
@@ -459,7 +459,7 @@ void entryHighscores_clear__Q24Game14PlayCommonDataFiPiPi(void)
  * Address:	802345F4
  * Size:	000038
  */
-void entryHighscores_complete__Q24Game14PlayCommonDataFiPiPi(void)
+void Game::PlayCommonData::entryHighscores_complete( (int, int *, int *))
 {
 /*
 .loc_0x0:
@@ -487,7 +487,7 @@ void entryHighscores_complete__Q24Game14PlayCommonDataFiPiPi(void)
  * Address:	8023462C
  * Size:	0000E0
  */
-void entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi(void)
+void Game::PlayCommonData::entryHighscores_common( (Game::Highscore **, int, int *, int *))
 {
 /*
 .loc_0x0:
@@ -559,7 +559,7 @@ void entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi(vo
  * Address:	8023470C
  * Size:	00000C
  */
-void isChallengeGamePlayable__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::isChallengeGamePlayable(void)
 {
 /*
 .loc_0x0:
@@ -574,7 +574,7 @@ void isChallengeGamePlayable__Q24Game14PlayCommonDataFv(void)
  * Address:	80234718
  * Size:	00000C
  */
-void isLouieRescued__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::isLouieRescued(void)
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void isLouieRescued__Q24Game14PlayCommonDataFv(void)
  * Address:	80234724
  * Size:	00008C
  */
-void isPerfectChallenge__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::isPerfectChallenge(void)
 {
 /*
 .loc_0x0:
@@ -646,7 +646,7 @@ void isPerfectChallenge__Q24Game14PlayCommonDataFv(void)
  * Address:	802347B0
  * Size:	000030
  */
-void enableChallengeGame__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::enableChallengeGame(void)
 {
 /*
 .loc_0x0:
@@ -670,7 +670,7 @@ void enableChallengeGame__Q24Game14PlayCommonDataFv(void)
  * Address:	802347E0
  * Size:	000030
  */
-void enableLouieRescue__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::enableLouieRescue(void)
 {
 /*
 .loc_0x0:
@@ -694,7 +694,7 @@ void enableLouieRescue__Q24Game14PlayCommonDataFv(void)
  * Address:	80234810
  * Size:	00001C
  */
-void challenge_is_virgin__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::challenge_is_virgin(void)
 {
 /*
 .loc_0x0:
@@ -713,7 +713,7 @@ void challenge_is_virgin__Q24Game14PlayCommonDataFv(void)
  * Address:	8023482C
  * Size:	000014
  */
-void challenge_is_virgin_check_only__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::challenge_is_virgin_check_only(void)
 {
 /*
 .loc_0x0:
@@ -730,7 +730,7 @@ void challenge_is_virgin_check_only__Q24Game14PlayCommonDataFv(void)
  * Address:	80234840
  * Size:	000024
  */
-void challenge_get_CourseState__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_get_CourseState( (int))
 {
 /*
 .loc_0x0:
@@ -751,7 +751,7 @@ void challenge_get_CourseState__Q24Game14PlayCommonDataFi(void)
  * Address:	........
  * Size:	000008
  */
-void challenge_get_coursenum__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::challenge_get_coursenum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -761,7 +761,7 @@ void challenge_get_coursenum__Q24Game14PlayCommonDataFv(void)
  * Address:	80234864
  * Size:	00002C
  */
-void challenge_checkOpen__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_checkOpen( (int))
 {
 /*
 .loc_0x0:
@@ -784,7 +784,7 @@ void challenge_checkOpen__Q24Game14PlayCommonDataFi(void)
  * Address:	80234890
  * Size:	00002C
  */
-void challenge_checkClear__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_checkClear( (int))
 {
 /*
 .loc_0x0:
@@ -807,7 +807,7 @@ void challenge_checkClear__Q24Game14PlayCommonDataFi(void)
  * Address:	802348BC
  * Size:	00002C
  */
-void challenge_checkKunsho__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_checkKunsho( (int))
 {
 /*
 .loc_0x0:
@@ -830,7 +830,7 @@ void challenge_checkKunsho__Q24Game14PlayCommonDataFi(void)
  * Address:	802348E8
  * Size:	00004C
  */
-void challenge_checkJustOpen__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_checkJustOpen( (int))
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void challenge_checkJustOpen__Q24Game14PlayCommonDataFi(void)
  * Address:	80234934
  * Size:	00004C
  */
-void challenge_checkJustClear__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_checkJustClear( (int))
 {
 /*
 .loc_0x0:
@@ -900,7 +900,7 @@ void challenge_checkJustClear__Q24Game14PlayCommonDataFi(void)
  * Address:	80234980
  * Size:	00004C
  */
-void challenge_checkJustKunsho__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_checkJustKunsho( (int))
 {
 /*
 .loc_0x0:
@@ -935,7 +935,7 @@ void challenge_checkJustKunsho__Q24Game14PlayCommonDataFi(void)
  * Address:	802349CC
  * Size:	000094
  */
-void challenge_openNewCourse__Q24Game14PlayCommonDataFv(void)
+void Game::PlayCommonData::challenge_openNewCourse(void)
 {
 /*
 .loc_0x0:
@@ -994,7 +994,7 @@ void challenge_openNewCourse__Q24Game14PlayCommonDataFv(void)
  * Address:	80234A60
  * Size:	000030
  */
-void challenge_setClear__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_setClear( (int))
 {
 /*
 .loc_0x0:
@@ -1018,7 +1018,7 @@ void challenge_setClear__Q24Game14PlayCommonDataFi(void)
  * Address:	80234A90
  * Size:	000030
  */
-void challenge_setOpen__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_setOpen( (int))
 {
 /*
 .loc_0x0:
@@ -1042,7 +1042,7 @@ void challenge_setOpen__Q24Game14PlayCommonDataFi(void)
  * Address:	80234AC0
  * Size:	000080
  */
-void challenge_setKunsho__Q24Game14PlayCommonDataFi(void)
+void Game::PlayCommonData::challenge_setKunsho( (int))
 {
 /*
 .loc_0x0:
@@ -1092,7 +1092,7 @@ void challenge_setKunsho__Q24Game14PlayCommonDataFi(void)
  * Address:	80234B40
  * Size:	000084
  */
-void challenge_getHighscore__Q24Game14PlayCommonDataFii(void)
+void Game::PlayCommonData::challenge_getHighscore( (int, int))
 {
 /*
 .loc_0x0:
@@ -1141,7 +1141,7 @@ void challenge_getHighscore__Q24Game14PlayCommonDataFii(void)
  * Address:	80234BC4
  * Size:	0000C8
  */
-void __ct__Q24Game21PlayChallengeGameDataFv(void)
+void Game::PlayChallengeGameData::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1203,7 +1203,7 @@ void __ct__Q24Game21PlayChallengeGameDataFv(void)
  * Address:	80234C8C
  * Size:	000078
  */
-void __ct__Q34Game21PlayChallengeGameData11CourseStateFv(void)
+void Game::PlayChallengeGameData::CourseState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1245,7 +1245,7 @@ void __ct__Q34Game21PlayChallengeGameData11CourseStateFv(void)
  * Address:	80234D04
  * Size:	0000A4
  */
-void getState__Q24Game21PlayChallengeGameDataFi(void)
+void Game::PlayChallengeGameData::getState( (int))
 {
 /*
 .loc_0x0:
@@ -1304,7 +1304,7 @@ void getState__Q24Game21PlayChallengeGameDataFi(void)
  * Address:	80234DA8
  * Size:	00009C
  */
-void write__Q24Game21PlayChallengeGameDataFR6Stream(void)
+void Game::PlayChallengeGameData::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1361,7 +1361,7 @@ void write__Q24Game21PlayChallengeGameDataFR6Stream(void)
  * Address:	80234E44
  * Size:	00009C
  */
-void read__Q24Game21PlayChallengeGameDataFR6Stream(void)
+void Game::PlayChallengeGameData::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1418,7 +1418,7 @@ void read__Q24Game21PlayChallengeGameDataFR6Stream(void)
  * Address:	80234EE0
  * Size:	000018
  */
-void do_higher__Q24Game8LowscoreFii(void)
+void Game::Lowscore::do_higher( (int, int))
 {
 /*
 .loc_0x0:

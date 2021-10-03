@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000028
  */
-void insertBefore__Q210SweepPrune4NodeFPQ210SweepPrune4Node(void)
+void SweepPrune::Node::insertBefore( (SweepPrune::Node *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void insertBefore__Q210SweepPrune4NodeFPQ210SweepPrune4Node(void)
  * Address:	........
  * Size:	000020
  */
-void insertAfter__Q210SweepPrune4NodeFPQ210SweepPrune4Node(void)
+void SweepPrune::Node::insertAfter( (SweepPrune::Node *))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void insertAfter__Q210SweepPrune4NodeFPQ210SweepPrune4Node(void)
  * Address:	8023C5B0
  * Size:	0001C8
  */
-void insertSort__Q210SweepPrune4NodeFRQ210SweepPrune4Node(void)
+void SweepPrune::Node::insertSort( (SweepPrune::Node &))
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void insertSort__Q210SweepPrune4NodeFRQ210SweepPrune4Node(void)
  * Address:	8023C778
  * Size:	000070
  */
-void __ct__Q210SweepPrune6ObjectFv(void)
+void SweepPrune::Object::__ct(void)
 {
 /*
 .loc_0x0:
@@ -237,7 +237,7 @@ void __ct__Q210SweepPrune6ObjectFv(void)
  * Address:	8023C7E8
  * Size:	00002C
  */
-void __ct__Q210SweepPrune5WorldFv(void)
+void SweepPrune::World::__ct(void)
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void __ct__Q210SweepPrune5WorldFv(void)
  * Address:	........
  * Size:	00003C
  */
-void __dt__Q210SweepPrune5WorldFv(void)
+void SweepPrune::World::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -270,7 +270,7 @@ void __dt__Q210SweepPrune5WorldFv(void)
  * Address:	8023C814
  * Size:	000148
  */
-void resolve__Q210SweepPrune5WorldFRQ310SweepPrune5World10ResolveArg(void)
+void SweepPrune::World::resolve( (SweepPrune::World::ResolveArg &))
 {
 /*
 .loc_0x0:

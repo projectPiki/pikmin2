@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	0000B8
  */
-void create__Q32kh6Screen16khUtilFadePaneWMFPQ29P2DScreen3MgrUxUc(void)
+void kh::Screen::khUtilFadePaneWM::create( (P2DScreen::Mgr *, unsigned long long, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void create__Q32kh6Screen16khUtilFadePaneWMFPQ29P2DScreen3MgrUxUc(void)
  * Address:	803F1B04
  * Size:	00009C
  */
-void __dt__Q32kh6Screen14khUtilFadePaneFv(void)
+void kh::Screen::khUtilFadePane::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q32kh6Screen14khUtilFadePaneFv(void)
  * Address:	........
  * Size:	0000B8
  */
-void create__Q32kh6Screen16khUtilFadePaneWMFPQ29P2DScreen3MgrP7J2DPaneUc(void)
+void kh::Screen::khUtilFadePaneWM::create( (P2DScreen::Mgr *, J2DPane *, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -92,7 +92,7 @@ void create__Q32kh6Screen16khUtilFadePaneWMFPQ29P2DScreen3MgrP7J2DPaneUc(void)
  * Address:	803F1BA0
  * Size:	000058
  */
-void fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv(void)
+void kh::Screen::khUtilFadePaneWM::fadeout_finish(void)
 {
 /*
 .loc_0x0:
@@ -130,7 +130,7 @@ void fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv(void)
  * Address:	........
  * Size:	000060
  */
-void __ct__Q32kh6Screen16khUtilColorAnmWMFPQ29P2DScreen3MgrUxii(void)
+void kh::Screen::khUtilColorAnmWM::__ct( (P2DScreen::Mgr *, unsigned long long, int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -140,7 +140,7 @@ void __ct__Q32kh6Screen16khUtilColorAnmWMFPQ29P2DScreen3MgrUxii(void)
  * Address:	803F1BF8
  * Size:	000080
  */
-void __dt__Q32kh6Screen14khUtilColorAnmFv(void)
+void kh::Screen::khUtilColorAnm::__dt(void)
 {
 /*
 .loc_0x0:
@@ -188,7 +188,7 @@ void __dt__Q32kh6Screen14khUtilColorAnmFv(void)
  * Address:	........
  * Size:	00010C
  */
-void my_init__Q32kh6Screen16khUtilColorAnmWMFPP10J2DPicturePPQ32og6Screen18CallBack_CounterRV(void)
+void kh::Screen::khUtilColorAnmWM::my_init( (J2DPicture **, og::Screen::CallBack_CounterRV **))
 {
 	// UNUSED FUNCTION
 }
@@ -198,7 +198,7 @@ void my_init__Q32kh6Screen16khUtilColorAnmWMFPP10J2DPicturePPQ32og6Screen18CallB
  * Address:	........
  * Size:	000110
  */
-void effect_on__Q32kh6Screen16khUtilColorAnmWMFUl(void)
+void kh::Screen::khUtilColorAnmWM::effect_on( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -208,7 +208,7 @@ void effect_on__Q32kh6Screen16khUtilColorAnmWMFUl(void)
  * Address:	........
  * Size:	000084
  */
-void effect_off__Q32kh6Screen16khUtilColorAnmWMFv(void)
+void kh::Screen::khUtilColorAnmWM::effect_off(void)
 {
 	// UNUSED FUNCTION
 }
@@ -218,7 +218,7 @@ void effect_off__Q32kh6Screen16khUtilColorAnmWMFv(void)
  * Address:	803F1C78
  * Size:	00007C
  */
-void do_update__Q32kh6Screen16khUtilColorAnmWMFv(void)
+void kh::Screen::khUtilColorAnmWM::do_update(void)
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void do_update__Q32kh6Screen16khUtilColorAnmWMFv(void)
  * Address:	803F1CF4
  * Size:	0001E8
  */
-void __ct__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::__ct(void)
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void __ct__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F1EDC
  * Size:	000060
  */
-void __dt__Q34Game8WorldMap4BaseFv(void)
+void Game::WorldMap::Base::__dt(void)
 {
 /*
 .loc_0x0:
@@ -435,7 +435,7 @@ void __dt__Q34Game8WorldMap4BaseFv(void)
  * Address:	803F1F3C
  * Size:	0000CC
  */
-void init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg(void)
+void kh::Screen::WorldMap::init( (Game::WorldMap::InitArg &))
 {
 /*
 .loc_0x0:
@@ -500,7 +500,7 @@ void init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg(void)
  * Address:	803F2008
  * Size:	001790
  */
-void loadResource__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -2122,7 +2122,7 @@ void loadResource__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F3798
  * Size:	00003C
  */
-void __dt__Q42kh6Screen8WorldMap13OnyonDynamicsFv(void)
+void kh::Screen::WorldMap::OnyonDynamics::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2151,7 +2151,7 @@ void __dt__Q42kh6Screen8WorldMap13OnyonDynamicsFv(void)
  * Address:	803F37D4
  * Size:	001C20
  */
-void update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg(void)
+void kh::Screen::WorldMap::update( (Game::WorldMap::UpdateArg &))
 {
 /*
 .loc_0x0:
@@ -4119,7 +4119,7 @@ void update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg(void)
  * Address:	803F53F4
  * Size:	000198
  */
-void draw1st__Q32kh6Screen8WorldMapFR8Graphics(void)
+void kh::Screen::WorldMap::draw1st( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -4233,7 +4233,7 @@ void draw1st__Q32kh6Screen8WorldMapFR8Graphics(void)
  * Address:	803F558C
  * Size:	000064
  */
-void draw2nd__Q32kh6Screen8WorldMapFR8Graphics(void)
+void kh::Screen::WorldMap::draw2nd( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -4270,7 +4270,7 @@ void draw2nd__Q32kh6Screen8WorldMapFR8Graphics(void)
  * Address:	803F55F0
  * Size:	0002A0
  */
-void draw3rd__Q32kh6Screen8WorldMapFR8Graphics(void)
+void kh::Screen::WorldMap::draw3rd( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -4452,7 +4452,7 @@ void draw3rd__Q32kh6Screen8WorldMapFR8Graphics(void)
  * Address:	803F5890
  * Size:	000110
  */
-void draw4th__Q32kh6Screen8WorldMapFR8Graphics(void)
+void kh::Screen::WorldMap::draw4th( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -4534,7 +4534,7 @@ void draw4th__Q32kh6Screen8WorldMapFR8Graphics(void)
  * Address:	803F59A0
  * Size:	000330
  */
-void rocketMove__Q32kh6Screen8WorldMapFP7J2DPaneb(void)
+void kh::Screen::WorldMap::rocketMove( (J2DPane *, bool))
 {
 /*
 .loc_0x0:
@@ -4780,7 +4780,7 @@ void rocketMove__Q32kh6Screen8WorldMapFP7J2DPaneb(void)
  * Address:	803F5CD0
  * Size:	000404
  */
-void rocketUpdate__Q32kh6Screen8WorldMapFP7J2DPane(void)
+void kh::Screen::WorldMap::rocketUpdate( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -5049,7 +5049,7 @@ void rocketUpdate__Q32kh6Screen8WorldMapFP7J2DPane(void)
  * Address:	803F60D4
  * Size:	000090
  */
-void onyonMove__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::onyonMove(void)
 {
 /*
 .loc_0x0:
@@ -5101,7 +5101,7 @@ void onyonMove__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F6164
  * Size:	000068
  */
-void onyonUpdate__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::onyonUpdate(void)
 {
 /*
 .loc_0x0:
@@ -5143,7 +5143,7 @@ void onyonUpdate__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F61CC
  * Size:	0001F4
  */
-void postureControl__Q32kh6Screen8WorldMapFP7J2DPane(void)
+void kh::Screen::WorldMap::postureControl( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -5292,7 +5292,7 @@ void postureControl__Q32kh6Screen8WorldMapFP7J2DPane(void)
  * Address:	803F63C0
  * Size:	000230
  */
-void changeState__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::changeState(void)
 {
 /*
 .loc_0x0:
@@ -5460,7 +5460,7 @@ void changeState__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F65F0
  * Size:	0000C0
  */
-void tag2num__Q32kh6Screen8WorldMapFUx(void)
+void kh::Screen::WorldMap::tag2num( (unsigned long long))
 {
 /*
 .loc_0x0:
@@ -5522,7 +5522,7 @@ void tag2num__Q32kh6Screen8WorldMapFUx(void)
  * Address:	803F66B0
  * Size:	00008C
  */
-void finish__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::finish(void)
 {
 /*
 .loc_0x0:
@@ -5573,7 +5573,7 @@ void finish__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F673C
  * Size:	00007C
  */
-void newMapOpen__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::newMapOpen(void)
 {
 /*
 .loc_0x0:
@@ -5620,7 +5620,7 @@ void newMapOpen__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F67B8
  * Size:	00013C
  */
-void getTarget__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::getTarget(void)
 {
 /*
 .loc_0x0:
@@ -5862,7 +5862,7 @@ void getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<float>f(void)
  * Address:	803F6A68
  * Size:	000A4C
  */
-void changeInfo__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::changeInfo(void)
 {
 /*
 .loc_0x0:
@@ -6583,7 +6583,7 @@ void changeInfo__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F74B4
  * Size:	000550
  */
-void effectFirstTime__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::effectFirstTime(void)
 {
 /*
 .loc_0x0:
@@ -6965,7 +6965,7 @@ void effectFirstTime__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F7A04
  * Size:	000044
  */
-void __ct__Q42kh6Screen8WorldMap13OnyonDynamicsFv(void)
+void kh::Screen::WorldMap::OnyonDynamics::__ct(void)
 {
 /*
 .loc_0x0:
@@ -6994,7 +6994,7 @@ void __ct__Q42kh6Screen8WorldMap13OnyonDynamicsFv(void)
  * Address:	803F7A48
  * Size:	0000F8
  */
-void initPtcl__Q42kh6Screen8WorldMap13OnyonDynamicsFv(void)
+void kh::Screen::WorldMap::OnyonDynamics::initPtcl(void)
 {
 /*
 .loc_0x0:
@@ -7398,7 +7398,7 @@ void move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeom
  * Address:	803F7F98
  * Size:	00012C
  */
-void update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap(void)
+void kh::Screen::WorldMap::OnyonDynamics::update( (kh::Screen::WorldMap *))
 {
 /*
 .loc_0x0:
@@ -7485,7 +7485,7 @@ void update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap(void)
  * Address:	803F80C4
  * Size:	000030
  */
-void kill__Q42kh6Screen8WorldMap13OnyonDynamicsFv(void)
+void kh::Screen::WorldMap::OnyonDynamics::kill(void)
 {
 /*
 .loc_0x0:
@@ -7509,7 +7509,7 @@ void kill__Q42kh6Screen8WorldMap13OnyonDynamicsFv(void)
  * Address:	803F80F4
  * Size:	00000C
  */
-void getName__Q35efx2d8WorldMap11ArgDirScaleFv(void)
+void efx2d::WorldMap::ArgDirScale::getName(void)
 {
 /*
 .loc_0x0:
@@ -7524,7 +7524,7 @@ void getName__Q35efx2d8WorldMap11ArgDirScaleFv(void)
  * Address:	803F8100
  * Size:	00009C
  */
-void __dt__Q35efx2d8WorldMap10T2DShstar1Fv(void)
+void efx2d::WorldMap::T2DShstar1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7579,7 +7579,7 @@ void __dt__Q35efx2d8WorldMap10T2DShstar1Fv(void)
  * Address:	803F819C
  * Size:	00009C
  */
-void __dt__Q35efx2d8WorldMap11T2DMapFlareFv(void)
+void efx2d::WorldMap::T2DMapFlare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7634,7 +7634,7 @@ void __dt__Q35efx2d8WorldMap11T2DMapFlareFv(void)
  * Address:	803F8238
  * Size:	00009C
  */
-void __dt__Q35efx2d8WorldMap13T2DRocketGlowFv(void)
+void efx2d::WorldMap::T2DRocketGlow::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7689,7 +7689,7 @@ void __dt__Q35efx2d8WorldMap13T2DRocketGlowFv(void)
  * Address:	803F82D4
  * Size:	000070
  */
-void __dt__Q32kh6Screen8WorldMapFv(void)
+void kh::Screen::WorldMap::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7733,7 +7733,7 @@ void __dt__Q32kh6Screen8WorldMapFv(void)
  * Address:	803F8344
  * Size:	000004
  */
-void draw__Q34Game8WorldMap4BaseFR8Graphics(void)
+void Game::WorldMap::Base::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -7746,7 +7746,7 @@ void draw__Q34Game8WorldMap4BaseFR8Graphics(void)
  * Address:	803F8348
  * Size:	000090
  */
-void __dt__Q32kh6Screen16khUtilColorAnmWMFv(void)
+void kh::Screen::khUtilColorAnmWM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7798,7 +7798,7 @@ void __dt__Q32kh6Screen16khUtilColorAnmWMFv(void)
  * Address:	803F83D8
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen16khUtilFadePaneWMFv(void)
+void kh::Screen::khUtilFadePaneWM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7859,7 +7859,7 @@ void __dt__Q32kh6Screen16khUtilFadePaneWMFv(void)
  * Address:	803F8484
  * Size:	000004
  */
-void fadein_finish__Q32kh6Screen14khUtilFadePaneFv(void)
+void kh::Screen::khUtilFadePane::fadein_finish(void)
 {
 /*
 .loc_0x0:
@@ -7872,7 +7872,7 @@ void fadein_finish__Q32kh6Screen14khUtilFadePaneFv(void)
  * Address:	803F8488
  * Size:	000048
  */
-void __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv(void)
+void kh::Screen::khUtilFadePane::khPaneNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -8035,7 +8035,7 @@ void __ct__Q29JGeometry8TVec2<float>Fv(void)
  * Address:	803F867C
  * Size:	000008
  */
-void @8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv(void)
+void @8@efx2d::WorldMap::T2DRocketGlow::__dt(void)
 {
 /*
 .loc_0x0:
@@ -8049,7 +8049,7 @@ void @8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv(void)
  * Address:	803F8684
  * Size:	000008
  */
-void @8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv(void)
+void @8@efx2d::WorldMap::T2DMapFlare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -8063,7 +8063,7 @@ void @8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv(void)
  * Address:	803F868C
  * Size:	000008
  */
-void @8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv(void)
+void @8@efx2d::WorldMap::T2DShstar1::__dt(void)
 {
 /*
 .loc_0x0:

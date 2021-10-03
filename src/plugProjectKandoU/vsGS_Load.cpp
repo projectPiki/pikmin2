@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8022D0E8
  * Size:	0000F0
  */
-void __ct__Q34Game6VsGame9LoadStateFv(void)
+void Game::VsGame::LoadState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -91,7 +91,7 @@ void __ct__Q34Game6VsGame9LoadStateFv(void)
  * Address:	8022D1D8
  * Size:	0000D0
  */
-void init__Q34Game6VsGame9LoadStateFPQ24Game13VsGameSectionPQ24Game8StateArg(void)
+void Game::VsGame::LoadState::init( (Game::VsGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -157,7 +157,7 @@ void init__Q34Game6VsGame9LoadStateFPQ24Game13VsGameSectionPQ24Game8StateArg(voi
  * Address:	8022D2A8
  * Size:	000024
  */
-void dvdLoad__Q34Game6VsGame9LoadStateFv(void)
+void Game::VsGame::LoadState::dvdLoad(void)
 {
 /*
 .loc_0x0:
@@ -178,7 +178,7 @@ void dvdLoad__Q34Game6VsGame9LoadStateFv(void)
  * Address:	8022D2CC
  * Size:	0002C4
  */
-void exec__Q34Game6VsGame9LoadStateFPQ24Game13VsGameSection(void)
+void Game::VsGame::LoadState::exec( (Game::VsGameSection *))
 {
 /*
 .loc_0x0:
@@ -395,7 +395,7 @@ void exec__Q34Game6VsGame9LoadStateFPQ24Game13VsGameSection(void)
  * Address:	8022D590
  * Size:	00007C
  */
-void draw__Q34Game6VsGame9LoadStateFPQ24Game13VsGameSectionR8Graphics(void)
+void Game::VsGame::LoadState::draw( (Game::VsGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -438,7 +438,7 @@ void draw__Q34Game6VsGame9LoadStateFPQ24Game13VsGameSectionR8Graphics(void)
  * Address:	8022D60C
  * Size:	000004
  */
-void cleanup__Q34Game6VsGame9LoadStateFPQ24Game13VsGameSection(void)
+void Game::VsGame::LoadState::cleanup( (Game::VsGameSection *))
 {
 /*
 .loc_0x0:
@@ -451,7 +451,7 @@ void cleanup__Q34Game6VsGame9LoadStateFPQ24Game13VsGameSection(void)
  * Address:	8022D610
  * Size:	000008
  */
-void getSize__Q32og6Screen15DispMemberFloorFv(void)
+void og::Screen::DispMemberFloor::getSize(void)
 {
 /*
 .loc_0x0:
@@ -465,7 +465,7 @@ void getSize__Q32og6Screen15DispMemberFloorFv(void)
  * Address:	8022D618
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen15DispMemberFloorFv(void)
+void og::Screen::DispMemberFloor::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -480,7 +480,7 @@ void getOwnerID__Q32og6Screen15DispMemberFloorFv(void)
  * Address:	8022D624
  * Size:	000010
  */
-void getMemberID__Q32og6Screen15DispMemberFloorFv(void)
+void og::Screen::DispMemberFloor::getMemberID(void)
 {
 /*
 .loc_0x0:

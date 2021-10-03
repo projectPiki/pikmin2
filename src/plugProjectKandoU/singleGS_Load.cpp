@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000E4
  */
-void _Print__Q24Game10SingleGameFPce(void)
+void Game::SingleGame::_Print( (char *,...))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void _Print__Q24Game10SingleGameFPce(void)
  * Address:	80239E84
  * Size:	0000B4
  */
-void init__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::LoadState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -76,7 +76,7 @@ void init__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSectionPQ24Game8Sta
  * Address:	........
  * Size:	000160
  */
-void initNext__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::LoadState::initNext( (Game::SingleGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -86,7 +86,7 @@ void initNext__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSection(void)
  * Address:	80239F38
  * Size:	000238
  */
-void exec__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::LoadState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void exec__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSection(void)
  * Address:	8023A170
  * Size:	000090
  */
-void draw__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::LoadState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -312,7 +312,7 @@ void draw__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSectionR8Graphics(v
  * Address:	8023A200
  * Size:	000004
  */
-void cleanup__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::LoadState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -325,7 +325,7 @@ void cleanup__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSection(void)
  * Address:	8023A204
  * Size:	000008
  */
-void getSize__Q32og6Screen20DispMemberCourseNameFv(void)
+void og::Screen::DispMemberCourseName::getSize(void)
 {
 /*
 .loc_0x0:
@@ -339,7 +339,7 @@ void getSize__Q32og6Screen20DispMemberCourseNameFv(void)
  * Address:	8023A20C
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen20DispMemberCourseNameFv(void)
+void og::Screen::DispMemberCourseName::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void getOwnerID__Q32og6Screen20DispMemberCourseNameFv(void)
  * Address:	8023A218
  * Size:	000010
  */
-void getMemberID__Q32og6Screen20DispMemberCourseNameFv(void)
+void og::Screen::DispMemberCourseName::getMemberID(void)
 {
 /*
 .loc_0x0:

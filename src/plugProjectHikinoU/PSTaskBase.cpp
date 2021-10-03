@@ -5,7 +5,7 @@
  * Address:	8033E1F8
  * Size:	000054
  */
-void __ct__Q28PSSystem8TaskBaseFv(void)
+void PSSystem::TaskBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -48,7 +48,7 @@ void JSULink<PSSystem::TaskBase>::~JSULink()
  * Address:	........
  * Size:	000008
  */
-void checkInit__Q28PSSystem8TaskBaseFv(void)
+void PSSystem::TaskBase::checkInit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -58,7 +58,7 @@ void checkInit__Q28PSSystem8TaskBaseFv(void)
  * Address:	........
  * Size:	000014
  */
-void init__Q28PSSystem8TaskBaseFv(void)
+void PSSystem::TaskBase::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -68,7 +68,7 @@ void init__Q28PSSystem8TaskBaseFv(void)
  * Address:	........
  * Size:	000114
  */
-void stackTask__Q28PSSystem9TaskEntryFR8JASTrack(void)
+void PSSystem::TaskEntry::stackTask( (JASTrack &))
 {
 	// UNUSED FUNCTION
 }
@@ -78,7 +78,7 @@ void stackTask__Q28PSSystem9TaskEntryFR8JASTrack(void)
  * Address:	8033E24C
  * Size:	000024
  */
-void append__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase(void)
+void PSSystem::TaskEntry::append( (PSSystem::TaskBase *))
 {
 /*
 .loc_0x0:
@@ -99,7 +99,7 @@ void append__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase(void)
  * Address:	........
  * Size:	000024
  */
-void remove__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase(void)
+void PSSystem::TaskEntry::remove( (PSSystem::TaskBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -109,7 +109,7 @@ void remove__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase(void)
  * Address:	........
  * Size:	000060
  */
-void removeAll__Q28PSSystem9TaskEntryFv(void)
+void PSSystem::TaskEntry::removeAll(void)
 {
 	// UNUSED FUNCTION
 }
@@ -119,7 +119,7 @@ void removeAll__Q28PSSystem9TaskEntryFv(void)
  * Address:	8033E270
  * Size:	000034
  */
-void isUnderTask_byDirector__Q28PSSystem12TaskEntryMgrFPQ28PSSystem12DirectorBase(void)
+void PSSystem::TaskEntryMgr::isUnderTask_byDirector( (PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -150,7 +150,7 @@ void isUnderTask_byDirector__Q28PSSystem12TaskEntryMgrFPQ28PSSystem12DirectorBas
  * Address:	8033E2A4
  * Size:	000150
  */
-void update__Q28PSSystem12TaskEntryMgrFv(void)
+void PSSystem::TaskEntryMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -264,7 +264,7 @@ void update__Q28PSSystem12TaskEntryMgrFv(void)
  * Address:	8033E3F4
  * Size:	0000A0
  */
-void appendEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntryPQ28PSSystem12DirectorBase(void)
+void PSSystem::TaskEntryMgr::appendEntry( (PSSystem::TaskEntry *, PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void appendEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntryPQ28PSSystem12
  * Address:	8033E494
  * Size:	000074
  */
-void removeEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntry(void)
+void PSSystem::TaskEntryMgr::removeEntry( (PSSystem::TaskEntry *))
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void removeEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntry(void)
  * Address:	8033E508
  * Size:	0000A4
  */
-void removeAllEntry__Q28PSSystem12TaskEntryMgrFv(void)
+void PSSystem::TaskEntryMgr::removeAllEntry(void)
 {
 /*
 .loc_0x0:

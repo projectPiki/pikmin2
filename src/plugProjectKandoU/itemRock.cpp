@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801E0E84
  * Size:	000134
  */
-void init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item(void)
+void Game::ItemRock::FSM::init( (Game::ItemRock::Item *))
 {
 /*
 .loc_0x0:
@@ -110,7 +110,7 @@ void init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item(void)
  * Address:	801E0FB8
  * Size:	00003C
  */
-void init__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg(void)
+void Game::ItemRock::NormalState::init( (Game::ItemRock::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void init__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
  * Address:	801E0FF4
  * Size:	000090
  */
-void exec__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item(void)
+void Game::ItemRock::NormalState::exec( (Game::ItemRock::Item *))
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void transit__Q24Game31FSMState<Game::ItemRock::Item>FPQ34Game8ItemRock4ItemiPQ2
  * Address:	801E10B4
  * Size:	000004
  */
-void cleanup__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item(void)
+void Game::ItemRock::NormalState::cleanup( (Game::ItemRock::Item *))
 {
 /*
 .loc_0x0:
@@ -224,7 +224,7 @@ void cleanup__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item(void)
  * Address:	801E10B8
  * Size:	0000BC
  */
-void onDamage__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Itemf(void)
+void Game::ItemRock::NormalState::onDamage( (Game::ItemRock::Item *, float))
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void onDamage__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Itemf(void)
  * Address:	801E1174
  * Size:	0000F8
  */
-void onKeyEvent__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemRock::NormalState::onKeyEvent( (Game::ItemRock::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -367,7 +367,7 @@ void onKeyEvent__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemRCQ28SysSha
  * Address:	801E126C
  * Size:	000048
  */
-void init__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg(void)
+void Game::ItemRock::DownState::init( (Game::ItemRock::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void init__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg(vo
  * Address:	801E12B4
  * Size:	000004
  */
-void exec__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item(void)
+void Game::ItemRock::DownState::exec( (Game::ItemRock::Item *))
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void exec__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item(void)
  * Address:	801E12B8
  * Size:	000004
  */
-void cleanup__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item(void)
+void Game::ItemRock::DownState::cleanup( (Game::ItemRock::Item *))
 {
 /*
 .loc_0x0:
@@ -423,7 +423,7 @@ void cleanup__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item(void)
  * Address:	801E12BC
  * Size:	000010
  */
-void onDamage__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Itemf(void)
+void Game::ItemRock::DownState::onDamage( (Game::ItemRock::Item *, float))
 {
 /*
 .loc_0x0:
@@ -439,7 +439,7 @@ void onDamage__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Itemf(void)
  * Address:	801E12CC
  * Size:	0000F0
  */
-void onKeyEvent__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemRock::DownState::onKeyEvent( (Game::ItemRock::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -513,7 +513,7 @@ void onKeyEvent__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemRCQ28SysShape8
  * Address:	801E13BC
  * Size:	000058
  */
-void init__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg(void)
+void Game::ItemRock::UpState::init( (Game::ItemRock::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -547,7 +547,7 @@ void init__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg(void
  * Address:	801E1414
  * Size:	000004
  */
-void exec__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item(void)
+void Game::ItemRock::UpState::exec( (Game::ItemRock::Item *))
 {
 /*
 .loc_0x0:
@@ -560,7 +560,7 @@ void exec__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item(void)
  * Address:	801E1418
  * Size:	000004
  */
-void cleanup__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item(void)
+void Game::ItemRock::UpState::cleanup( (Game::ItemRock::Item *))
 {
 /*
 .loc_0x0:
@@ -573,7 +573,7 @@ void cleanup__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item(void)
  * Address:	801E141C
  * Size:	000010
  */
-void onDamage__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Itemf(void)
+void Game::ItemRock::UpState::onDamage( (Game::ItemRock::Item *, float))
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void onDamage__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Itemf(void)
  * Address:	801E142C
  * Size:	0000CC
  */
-void onKeyEvent__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemRock::UpState::onKeyEvent( (Game::ItemRock::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -652,7 +652,7 @@ void onKeyEvent__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemRCQ28SysShape8Ke
  * Address:	........
  * Size:	0000EC
  */
-void __ct__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -662,7 +662,7 @@ void __ct__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E14F8
  * Size:	000048
  */
-void constructor__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::constructor(void)
 {
 /*
 .loc_0x0:
@@ -694,7 +694,7 @@ void constructor__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E1540
  * Size:	00020C
  */
-void onInit__Q34Game8ItemRock4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemRock::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -872,7 +872,7 @@ void start__Q24Game35StateMachine<Game::ItemRock::Item>FPQ34Game8ItemRock4ItemiP
  * Address:	801E1780
  * Size:	000034
  */
-void onKill__Q34Game8ItemRock4ItemFPQ24Game15CreatureKillArg(void)
+void Game::ItemRock::Item::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -897,7 +897,7 @@ void onKill__Q34Game8ItemRock4ItemFPQ24Game15CreatureKillArg(void)
  * Address:	801E17B4
  * Size:	00005C
  */
-void onSetPosition__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -932,7 +932,7 @@ void onSetPosition__Q34Game8ItemRock4ItemFv(void)
  * Address:	........
  * Size:	000140
  */
-void emitDamageEffect__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::emitDamageEffect(void)
 {
 	// UNUSED FUNCTION
 }
@@ -942,7 +942,7 @@ void emitDamageEffect__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E1810
  * Size:	000044
  */
-void onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent(void)
+void Game::ItemRock::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -986,7 +986,7 @@ void onKeyEvent__Q24Game32ItemState<Game::ItemRock::Item>FPQ34Game8ItemRock4Item
  * Address:	801E1858
  * Size:	00010C
  */
-void startLoopEffect__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::startLoopEffect(void)
 {
 /*
 .loc_0x0:
@@ -1077,7 +1077,7 @@ void startLoopEffect__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E1964
  * Size:	000064
  */
-void finishLoopEffect__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::finishLoopEffect(void)
 {
 /*
 .loc_0x0:
@@ -1170,7 +1170,7 @@ void startFukuEffect__Q34Game8ItemRock4ItemFR10Vector3<float>(void)
  * Address:	801E1A78
  * Size:	000204
  */
-void doLoad__Q34Game8ItemRock4ItemFR6Stream(void)
+void Game::ItemRock::Item::doLoad( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1325,7 +1325,7 @@ void doLoad__Q34Game8ItemRock4ItemFR6Stream(void)
  * Address:	801E1C7C
  * Size:	000058
  */
-void doSave__Q34Game8ItemRock4ItemFR6Stream(void)
+void Game::ItemRock::Item::doSave( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1359,7 +1359,7 @@ void doSave__Q34Game8ItemRock4ItemFR6Stream(void)
  * Address:	801E1CD4
  * Size:	000048
  */
-void updateBoundSphere__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -1389,7 +1389,7 @@ void updateBoundSphere__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E1D1C
  * Size:	0001B4
  */
-void doAI__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -1526,7 +1526,7 @@ void doAI__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E1ED0
  * Size:	000020
  */
-void initMotion__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::initMotion(void)
 {
 /*
 .loc_0x0:
@@ -1546,7 +1546,7 @@ void initMotion__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E1EF0
  * Size:	000020
  */
-void on_movie_end__Q34Game8ItemRock4ItemFb(void)
+void Game::ItemRock::Item::on_movie_end( (bool))
 {
 /*
 .loc_0x0:
@@ -1568,7 +1568,7 @@ void on_movie_end__Q34Game8ItemRock4ItemFb(void)
  * Address:	801E1F10
  * Size:	00012C
  */
-void startWaitMotion__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::startWaitMotion(void)
 {
 /*
 .loc_0x0:
@@ -1677,7 +1677,7 @@ void startWaitMotion__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E203C
  * Size:	00009C
  */
-void startDamageMotion__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::startDamageMotion(void)
 {
 /*
 .loc_0x0:
@@ -1742,7 +1742,7 @@ void startDamageMotion__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E20D8
  * Size:	00028C
  */
-void startDownMotion__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::startDownMotion(void)
 {
 /*
 .loc_0x0:
@@ -1931,7 +1931,7 @@ void startDownMotion__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E2364
  * Size:	0000EC
  */
-void startUpMotion__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::startUpMotion(void)
 {
 /*
 .loc_0x0:
@@ -2111,7 +2111,7 @@ void getVectorField__Q34Game8ItemRock4ItemFRQ23Sys6SphereR10Vector3<float>(void)
  * Address:	801E2564
  * Size:	000088
  */
-void getWorkDistance__Q34Game8ItemRock4ItemFRQ23Sys6Sphere(void)
+void Game::ItemRock::Item::getWorkDistance( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -2161,7 +2161,7 @@ void getWorkDistance__Q34Game8ItemRock4ItemFRQ23Sys6Sphere(void)
  * Address:	801E25EC
  * Size:	000194
  */
-void createRock__Q34Game8ItemRock4ItemFi(void)
+void Game::ItemRock::Item::createRock( (int))
 {
 /*
 .loc_0x0:
@@ -2282,7 +2282,7 @@ void createRock__Q34Game8ItemRock4ItemFi(void)
  * Address:	801E2780
  * Size:	000174
  */
-void interactAttack__Q34Game8ItemRock4ItemFRQ24Game14InteractAttack(void)
+void Game::ItemRock::Item::interactAttack( (Game::InteractAttack &))
 {
 /*
 .loc_0x0:
@@ -2399,7 +2399,7 @@ void interactAttack__Q34Game8ItemRock4ItemFRQ24Game14InteractAttack(void)
  * Address:	801E28F4
  * Size:	000004
  */
-void onDamage__Q34Game8ItemRock5StateFPQ34Game8ItemRock4Itemf(void)
+void Game::ItemRock::State::onDamage( (Game::ItemRock::Item *, float))
 {
 /*
 .loc_0x0:
@@ -2412,7 +2412,7 @@ void onDamage__Q34Game8ItemRock5StateFPQ34Game8ItemRock4Itemf(void)
  * Address:	801E28F8
  * Size:	000028
  */
-void getWorkRadius__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::getWorkRadius(void)
 {
 /*
 .loc_0x0:
@@ -2436,7 +2436,7 @@ void getWorkRadius__Q34Game8ItemRock4ItemFv(void)
  * Address:	801E2920
  * Size:	000120
  */
-void __ct__Q34Game8ItemRock3MgrFv(void)
+void Game::ItemRock::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2528,7 +2528,7 @@ void __ct__Q34Game8ItemRock3MgrFv(void)
  * Address:	801E2A40
  * Size:	000024
  */
-void read__Q34Game8ItemRock9RockParmsFR6Stream(void)
+void Game::ItemRock::RockParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2549,7 +2549,7 @@ void read__Q34Game8ItemRock9RockParmsFR6Stream(void)
  * Address:	801E2A64
  * Size:	0001A4
  */
-void __ct__Q34Game8ItemRock9RockParmsFv(void)
+void Game::ItemRock::RockParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2668,7 +2668,7 @@ void __ct__Q34Game8ItemRock9RockParmsFv(void)
  * Address:	801E2C08
  * Size:	0002F0
  */
-void __ct__Q44Game8ItemRock9RockParms5ParmsFv(void)
+void Game::ItemRock::RockParms::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2870,7 +2870,7 @@ void __ct__Q44Game8ItemRock9RockParms5ParmsFv(void)
  * Address:	801E2EF8
  * Size:	000110
  */
-void birth__Q34Game8ItemRock3MgrFv(void)
+void Game::ItemRock::Mgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -2990,7 +2990,7 @@ void generatorBirth__Q34Game8ItemRock3MgrFR10Vector3<float>R10Vector3<float>PQ24
  * Address:	801E3068
  * Size:	0000A8
  */
-void onLoadResources__Q34Game8ItemRock3MgrFv(void)
+void Game::ItemRock::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -3044,7 +3044,7 @@ void onLoadResources__Q34Game8ItemRock3MgrFv(void)
  * Address:	801E3110
  * Size:	000134
  */
-void __dt__Q34Game8ItemRock3MgrFv(void)
+void Game::ItemRock::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3141,7 +3141,7 @@ void __dt__Q34Game8ItemRock3MgrFv(void)
  * Address:	801E3244
  * Size:	0000F8
  */
-void doNew__Q34Game8ItemRock3MgrFv(void)
+void Game::ItemRock::Mgr::doNew(void)
 {
 /*
 .loc_0x0:
@@ -3219,7 +3219,7 @@ void doNew__Q34Game8ItemRock3MgrFv(void)
  * Address:	801E333C
  * Size:	00000C
  */
-void generatorGetID__Q34Game8ItemRock3MgrFv(void)
+void Game::ItemRock::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -3234,7 +3234,7 @@ void generatorGetID__Q34Game8ItemRock3MgrFv(void)
  * Address:	801E3348
  * Size:	00000C
  */
-void getName__Q23efx9ArgKouhaiFv(void)
+void efx::ArgKouhai::getName(void)
 {
 /*
 .loc_0x0:
@@ -3249,7 +3249,7 @@ void getName__Q23efx9ArgKouhaiFv(void)
  * Address:	801E3354
  * Size:	00000C
  */
-void getCreatureName__Q34Game8ItemRock4ItemFv(void)
+void Game::ItemRock::Item::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -3730,7 +3730,7 @@ void @376@onKeyEvent__Q24Game74FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM
  * Address:	801E3690
  * Size:	000008
  */
-void @376@onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent(void)
+void @376@Game::ItemRock::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -3744,7 +3744,7 @@ void @376@onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent(void)
  * Address:	801E3698
  * Size:	000008
  */
-void @48@__dt__Q34Game8ItemRock3MgrFv(void)
+void @48@Game::ItemRock::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

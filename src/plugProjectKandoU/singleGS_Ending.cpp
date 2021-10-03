@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	802326A8
  * Size:	0000E0
  */
-void __ct__Q34Game10SingleGame11EndingStateFv(void)
+void Game::SingleGame::EndingState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -87,7 +87,7 @@ void __ct__Q34Game10SingleGame11EndingStateFv(void)
  * Address:	80232788
  * Size:	0000D4
  */
-void init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::EndingState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -154,7 +154,7 @@ void init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8
  * Address:	........
  * Size:	0000BC
  */
-void initNext__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::EndingState::initNext( (Game::SingleGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -164,7 +164,7 @@ void initNext__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection(void
  * Address:	8023285C
  * Size:	0001C8
  */
-void dvdload__Q34Game10SingleGame11EndingStateFv(void)
+void Game::SingleGame::EndingState::dvdload(void)
 {
 /*
 .loc_0x0:
@@ -304,7 +304,7 @@ void dvdload__Q34Game10SingleGame11EndingStateFv(void)
  * Address:	80232A24
  * Size:	000004
  */
-void do_dvdload__Q34Game10SingleGame11EndingStateFv(void)
+void Game::SingleGame::EndingState::do_dvdload(void)
 {
 /*
 .loc_0x0:
@@ -317,7 +317,7 @@ void do_dvdload__Q34Game10SingleGame11EndingStateFv(void)
  * Address:	80232A28
  * Size:	000850
  */
-void exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::EndingState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -909,7 +909,7 @@ void exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection(void)
  * Address:	80233278
  * Size:	0000D4
  */
-void draw__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::EndingState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -978,7 +978,7 @@ void draw__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionR8Graphic
  * Address:	8023334C
  * Size:	0000B8
  */
-void cleanup__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::EndingState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -1042,7 +1042,7 @@ void cleanup__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection(void)
  * Address:	80233404
  * Size:	000008
  */
-void getSize__Q32og6Screen22DispMemberFinalMessageFv(void)
+void og::Screen::DispMemberFinalMessage::getSize(void)
 {
 /*
 .loc_0x0:
@@ -1056,7 +1056,7 @@ void getSize__Q32og6Screen22DispMemberFinalMessageFv(void)
  * Address:	8023340C
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen22DispMemberFinalMessageFv(void)
+void og::Screen::DispMemberFinalMessage::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void getOwnerID__Q32og6Screen22DispMemberFinalMessageFv(void)
  * Address:	80233418
  * Size:	000014
  */
-void getMemberID__Q32og6Screen22DispMemberFinalMessageFv(void)
+void og::Screen::DispMemberFinalMessage::getMemberID(void)
 {
 /*
 .loc_0x0:

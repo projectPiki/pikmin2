@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8023B534
  * Size:	000064
  */
-void drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::drawOtakaraWindow( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	8023B598
  * Size:	000094
  */
-void setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature(void)
+void Game::BaseGameSection::setDraw2DCreature( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature(void)
  * Address:	8023B62C
  * Size:	0001E0
  */
-void startZoomWindow__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::startZoomWindow(void)
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void startZoomWindow__Q24Game15BaseGameSectionFv(void)
  * Address:	8023B80C
  * Size:	000258
  */
-void startKantei2D__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::startKantei2D(void)
 {
 /*
 .loc_0x0:
@@ -492,7 +492,7 @@ void onKanteiDone__Q24Game15BaseGameSectionFR7Rect<float>(void)
  * Address:	........
  * Size:	000038
  */
-void closeZoomWindow__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::closeZoomWindow(void)
 {
 	// UNUSED FUNCTION
 }
@@ -593,7 +593,7 @@ void init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<float>P10Controller
  * Address:	8023BC44
  * Size:	0002B0
  */
-void makeLookAt__Q34Game15BaseGameSection10ZoomCameraFv(void)
+void Game::BaseGameSection::ZoomCamera::makeLookAt(void)
 {
 /*
 .loc_0x0:
@@ -803,7 +803,7 @@ void makeLookAt__Q34Game15BaseGameSection10ZoomCameraFv(void)
  * Address:	8023BEF4
  * Size:	000164
  */
-void doUpdate__Q34Game15BaseGameSection10ZoomCameraFv(void)
+void Game::BaseGameSection::ZoomCamera::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -924,7 +924,7 @@ void doUpdate__Q34Game15BaseGameSection10ZoomCameraFv(void)
  * Address:	8023C058
  * Size:	000410
  */
-void do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::do_drawOtakaraWindow( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1212,7 +1212,7 @@ void do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	8023C468
  * Size:	0000D0
  */
-void __dt__Q34Game15BaseGameSection10ZoomCameraFv(void)
+void Game::BaseGameSection::ZoomCamera::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1293,7 +1293,7 @@ void LookAtCamera::startVibration(int)
  * Address:	8023C53C
  * Size:	000008
  */
-void getSize__Q32og6Screen21DispMemberSpecialItemFv(void)
+void og::Screen::DispMemberSpecialItem::getSize(void)
 {
 /*
 .loc_0x0:
@@ -1307,7 +1307,7 @@ void getSize__Q32og6Screen21DispMemberSpecialItemFv(void)
  * Address:	8023C544
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen21DispMemberSpecialItemFv(void)
+void og::Screen::DispMemberSpecialItem::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1322,7 +1322,7 @@ void getOwnerID__Q32og6Screen21DispMemberSpecialItemFv(void)
  * Address:	8023C550
  * Size:	000014
  */
-void getMemberID__Q32og6Screen21DispMemberSpecialItemFv(void)
+void og::Screen::DispMemberSpecialItem::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -1339,7 +1339,7 @@ void getMemberID__Q32og6Screen21DispMemberSpecialItemFv(void)
  * Address:	8023C564
  * Size:	000008
  */
-void getSize__Q32og6Screen16DispMemberKanteiFv(void)
+void og::Screen::DispMemberKantei::getSize(void)
 {
 /*
 .loc_0x0:
@@ -1353,7 +1353,7 @@ void getSize__Q32og6Screen16DispMemberKanteiFv(void)
  * Address:	8023C56C
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen16DispMemberKanteiFv(void)
+void og::Screen::DispMemberKantei::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1368,7 +1368,7 @@ void getOwnerID__Q32og6Screen16DispMemberKanteiFv(void)
  * Address:	8023C578
  * Size:	000010
  */
-void getMemberID__Q32og6Screen16DispMemberKanteiFv(void)
+void og::Screen::DispMemberKantei::getMemberID(void)
 {
 /*
 .loc_0x0:

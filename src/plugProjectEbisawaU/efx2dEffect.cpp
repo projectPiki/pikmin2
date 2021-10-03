@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803BA18C
  * Size:	00007C
  */
-void create__Q25efx2d9T2DCursorFPQ25efx2d3Arg(void)
+void efx2d::T2DCursor::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void create__Q25efx2d9T2DCursorFPQ25efx2d3Arg(void)
  * Address:	803BA208
  * Size:	00005C
  */
-void create__Q25efx2d12T2DCountKiraFPQ25efx2d3Arg(void)
+void efx2d::T2DCountKira::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void create__Q25efx2d12T2DCountKiraFPQ25efx2d3Arg(void)
  * Address:	........
  * Size:	0000E8
  */
-void create__Q25efx2d18T2DSensorAct_forVSFPQ25efx2d3Arg(void)
+void efx2d::T2DSensorAct_forVS::create( (efx2d::Arg *))
 {
 	// UNUSED FUNCTION
 }
@@ -113,7 +113,7 @@ void create__Q25efx2d18T2DSensorAct_forVSFPQ25efx2d3Arg(void)
  * Address:	803BA264
  * Size:	0000D8
  */
-void create__Q25efx2d18T2DSensorGet_forVSFPQ25efx2d3Arg(void)
+void efx2d::T2DSensorGet_forVS::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void create__Q25efx2d18T2DSensorGet_forVSFPQ25efx2d3Arg(void)
  * Address:	803BA33C
  * Size:	000140
  */
-void create__Q25efx2d17T2DSprayset_forVSFPQ25efx2d3Arg(void)
+void efx2d::T2DSprayset_forVS::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -283,7 +283,7 @@ void create__Q25efx2d17T2DSprayset_forVSFPQ25efx2d3Arg(void)
  * Address:	803BA47C
  * Size:	0000C8
  */
-void create__Q35efx2d10FileSelect13T2DFilecopiedFPQ25efx2d3Arg(void)
+void efx2d::FileSelect::T2DFilecopied::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -351,7 +351,7 @@ void create__Q35efx2d10FileSelect13T2DFilecopiedFPQ25efx2d3Arg(void)
  * Address:	803BA544
  * Size:	0000C8
  */
-void create__Q35efx2d10FileSelect13T2DFiledeleteFPQ25efx2d3Arg(void)
+void efx2d::FileSelect::T2DFiledelete::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -419,7 +419,7 @@ void create__Q35efx2d10FileSelect13T2DFiledeleteFPQ25efx2d3Arg(void)
  * Address:	803BA60C
  * Size:	0000C8
  */
-void create__Q35efx2d10FileSelect14T2DFiledeleteMFPQ25efx2d3Arg(void)
+void efx2d::FileSelect::T2DFiledeleteM::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -487,7 +487,7 @@ void create__Q35efx2d10FileSelect14T2DFiledeleteMFPQ25efx2d3Arg(void)
  * Address:	803BA6D4
  * Size:	0001CC
  */
-void create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg(void)
+void efx2d::FileSelect::T2DFilecopyBase::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -630,7 +630,7 @@ void create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg(void)
  * Address:	803BA8A0
  * Size:	0000DC
  */
-void create__Q35efx2d8WorldMap10T2DShstar2FPQ25efx2d3Arg(void)
+void efx2d::WorldMap::T2DShstar2::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -703,7 +703,7 @@ void create__Q35efx2d8WorldMap10T2DShstar2FPQ25efx2d3Arg(void)
  * Address:	803BA97C
  * Size:	0000F4
  */
-void create__Q35efx2d8WorldMap9T2DNewmapFPQ25efx2d3Arg(void)
+void efx2d::WorldMap::T2DNewmap::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -782,7 +782,7 @@ void create__Q35efx2d8WorldMap9T2DNewmapFPQ25efx2d3Arg(void)
  * Address:	803BAA70
  * Size:	0000AC
  */
-void create__Q35efx2d8WorldMap19TSimple_ArgDirScaleFPQ25efx2d3Arg(void)
+void efx2d::WorldMap::TSimple_ArgDirScale::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -841,7 +841,7 @@ void create__Q35efx2d8WorldMap19TSimple_ArgDirScaleFPQ25efx2d3Arg(void)
  * Address:	803BAB1C
  * Size:	00005C
  */
-void create__Q35efx2d8WorldMap12T2DOnyonKiraFPQ25efx2d3Arg(void)
+void efx2d::WorldMap::T2DOnyonKira::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -880,7 +880,7 @@ void create__Q35efx2d8WorldMap12T2DOnyonKiraFPQ25efx2d3Arg(void)
  * Address:	803BAB78
  * Size:	000040
  */
-void setGlobalParticleScale__Q35efx2d8WorldMap12T2DOnyonKiraFf(void)
+void efx2d::WorldMap::T2DOnyonKira::setGlobalParticleScale( (float))
 {
 /*
 .loc_0x0:
@@ -908,7 +908,7 @@ void setGlobalParticleScale__Q35efx2d8WorldMap12T2DOnyonKiraFf(void)
  * Address:	803BABB8
  * Size:	000018
  */
-void setGlobalParticleScale__Q35efx2d8WorldMap13T2DRocketGlowFf(void)
+void efx2d::WorldMap::T2DRocketGlow::setGlobalParticleScale( (float))
 {
 /*
 .loc_0x0:
@@ -926,7 +926,7 @@ void setGlobalParticleScale__Q35efx2d8WorldMap13T2DRocketGlowFf(void)
  * Address:	803BABD0
  * Size:	00005C
  */
-void create__Q35efx2d8WorldMap10T2DRocketBFPQ25efx2d3Arg(void)
+void efx2d::WorldMap::T2DRocketB::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -965,7 +965,7 @@ void create__Q35efx2d8WorldMap10T2DRocketBFPQ25efx2d3Arg(void)
  * Address:	803BAC2C
  * Size:	000040
  */
-void setGlobalParticleScale__Q35efx2d8WorldMap10T2DRocketBFf(void)
+void efx2d::WorldMap::T2DRocketB::setGlobalParticleScale( (float))
 {
 /*
 .loc_0x0:
@@ -993,7 +993,7 @@ void setGlobalParticleScale__Q35efx2d8WorldMap10T2DRocketBFf(void)
  * Address:	803BAC6C
  * Size:	00009C
  */
-void __dt__Q35efx2d8WorldMap10T2DRocketBFv(void)
+void efx2d::WorldMap::T2DRocketB::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1048,7 +1048,7 @@ void __dt__Q35efx2d8WorldMap10T2DRocketBFv(void)
  * Address:	803BAD08
  * Size:	00009C
  */
-void __dt__Q35efx2d8WorldMap12T2DOnyonKiraFv(void)
+void efx2d::WorldMap::T2DOnyonKira::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1103,7 +1103,7 @@ void __dt__Q35efx2d8WorldMap12T2DOnyonKiraFv(void)
  * Address:	803BADA4
  * Size:	000084
  */
-void __dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv(void)
+void efx2d::FileSelect::T2DFilecopyBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1152,7 +1152,7 @@ void __dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv(void)
  * Address:	803BAE28
  * Size:	000084
  */
-void __dt__Q25efx2d12T2DCountKiraFv(void)
+void efx2d::T2DCountKira::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1201,7 +1201,7 @@ void __dt__Q25efx2d12T2DCountKiraFv(void)
  * Address:	803BAEAC
  * Size:	00009C
  */
-void __dt__Q25efx2d9T2DCursorFv(void)
+void efx2d::T2DCursor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1256,7 +1256,7 @@ void __dt__Q25efx2d9T2DCursorFv(void)
  * Address:	803BAF48
  * Size:	000008
  */
-void @8@__dt__Q25efx2d9T2DCursorFv(void)
+void @8@efx2d::T2DCursor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1270,7 +1270,7 @@ void @8@__dt__Q25efx2d9T2DCursorFv(void)
  * Address:	803BAF50
  * Size:	000008
  */
-void @8@__dt__Q25efx2d12T2DCountKiraFv(void)
+void @8@efx2d::T2DCountKira::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1284,7 +1284,7 @@ void @8@__dt__Q25efx2d12T2DCountKiraFv(void)
  * Address:	803BAF58
  * Size:	000008
  */
-void @8@__dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv(void)
+void @8@efx2d::FileSelect::T2DFilecopyBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1298,7 +1298,7 @@ void @8@__dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv(void)
  * Address:	803BAF60
  * Size:	000008
  */
-void @8@__dt__Q35efx2d8WorldMap12T2DOnyonKiraFv(void)
+void @8@efx2d::WorldMap::T2DOnyonKira::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1312,7 +1312,7 @@ void @8@__dt__Q35efx2d8WorldMap12T2DOnyonKiraFv(void)
  * Address:	803BAF68
  * Size:	000008
  */
-void @8@__dt__Q35efx2d8WorldMap10T2DRocketBFv(void)
+void @8@efx2d::WorldMap::T2DRocketB::__dt(void)
 {
 /*
 .loc_0x0:

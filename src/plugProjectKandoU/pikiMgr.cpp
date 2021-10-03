@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8015CD14
  * Size:	0000B4
  */
-void __ct__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -78,7 +78,7 @@ void __ct__Q24Game7PikiMgrFv(void)
  * Address:	8015CDC8
  * Size:	000060
  */
-void __ct__Q24Game9PikiParmsFv(void)
+void Game::PikiParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -116,7 +116,7 @@ void __ct__Q24Game9PikiParmsFv(void)
  * Address:	8015CE28
  * Size:	0017C4
  */
-void __ct__Q34Game9PikiParms5ParmsFv(void)
+void Game::PikiParms::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1707,7 +1707,7 @@ void MonoObjectMgr<Game::Piki>::~MonoObjectMgr()
  * Address:	........
  * Size:	000050
  */
-void init__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1717,7 +1717,7 @@ void init__Q24Game7PikiMgrFv(void)
  * Address:	8015E68C
  * Size:	000038
  */
-void resetMgr__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::resetMgr(void)
 {
 /*
 .loc_0x0:
@@ -1743,7 +1743,7 @@ void resetMgr__Q24Game7PikiMgrFv(void)
  * Address:	8015E6C4
  * Size:	000064
  */
-void onAlloc__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::onAlloc(void)
 {
 /*
 .loc_0x0:
@@ -1800,7 +1800,7 @@ void MonoObjectMgr<Game::Piki>::getAt(int)
  * Address:	8015E738
  * Size:	000060
  */
-void setupPiki__Q24Game7PikiMgrFPQ24Game4Piki(void)
+void Game::PikiMgr::setupPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1836,7 +1836,7 @@ void setupPiki__Q24Game7PikiMgrFPQ24Game4Piki(void)
  * Address:	8015E798
  * Size:	000324
  */
-void birth__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -2089,7 +2089,7 @@ void birth__Q24Game7PikiMgrFv(void)
  * Address:	8015EABC
  * Size:	0000CC
  */
-void loadResources__Q24Game7PikiMgrFi(void)
+void Game::PikiMgr::loadResources( (int))
 {
 /*
 .loc_0x0:
@@ -2156,7 +2156,7 @@ void loadResources__Q24Game7PikiMgrFi(void)
  * Address:	8015EB88
  * Size:	000050
  */
-void read__Q24Game9PikiParmsFR6Stream(void)
+void Game::PikiParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2188,7 +2188,7 @@ void read__Q24Game9PikiParmsFR6Stream(void)
  * Address:	8015EBD8
  * Size:	000298
  */
-void load__Q24Game7PikiMgrFi(void)
+void Game::PikiMgr::load( (int))
 {
 /*
 .loc_0x0:
@@ -2376,7 +2376,7 @@ void load__Q24Game7PikiMgrFi(void)
  * Address:	8015EE70
  * Size:	000098
  */
-void loadBmd__Q24Game7PikiMgrFiPc(void)
+void Game::PikiMgr::loadBmd( (int, char *))
 {
 /*
 .loc_0x0:
@@ -2426,7 +2426,7 @@ void loadBmd__Q24Game7PikiMgrFiPc(void)
  * Address:	8015EF08
  * Size:	00004C
  */
-void createModelCallback__Q24Game7PikiMgrFPQ28SysShape5Model(void)
+void Game::PikiMgr::createModelCallback( (SysShape::Model *))
 {
 /*
 .loc_0x0:
@@ -2457,7 +2457,7 @@ void createModelCallback__Q24Game7PikiMgrFPQ28SysShape5Model(void)
  * Address:	8015EF54
  * Size:	000024
  */
-void createModel__Q24Game7PikiMgrFii(void)
+void Game::PikiMgr::createModel( (int, int))
 {
 /*
 .loc_0x0:
@@ -2478,7 +2478,7 @@ void createModel__Q24Game7PikiMgrFii(void)
  * Address:	8015EF78
  * Size:	000008
  */
-void createLeafModel__Q24Game7PikiMgrFii(void)
+void Game::PikiMgr::createLeafModel( (int, int))
 {
 /*
 .loc_0x0:
@@ -2492,7 +2492,7 @@ void createLeafModel__Q24Game7PikiMgrFii(void)
  * Address:	8015EF80
  * Size:	000280
  */
-void setMovieDraw__Q24Game7PikiMgrFb(void)
+void Game::PikiMgr::setMovieDraw( (bool))
 {
 /*
 .loc_0x0:
@@ -2690,7 +2690,7 @@ void setMovieDraw__Q24Game7PikiMgrFb(void)
  * Address:	8015F200
  * Size:	000084
  */
-void debugShapeDL__Q24Game7PikiMgrFPc(void)
+void Game::PikiMgr::debugShapeDL( (char *))
 {
 /*
 .loc_0x0:
@@ -2741,7 +2741,7 @@ void debugShapeDL__Q24Game7PikiMgrFPc(void)
  * Address:	8015F284
  * Size:	000198
  */
-void doSimpleDraw__Q24Game7PikiMgrFP8Viewport(void)
+void Game::PikiMgr::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -2871,7 +2871,7 @@ void doSimpleDraw__Q24Game7PikiMgrFP8Viewport(void)
  * Address:	8015F41C
  * Size:	0001D8
  */
-void doAnimation__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -3019,7 +3019,7 @@ void doAnimation__Q24Game7PikiMgrFv(void)
  * Address:	8015F5F4
  * Size:	000058
  */
-void setVsXlu__Q24Game7PikiMgrFib(void)
+void Game::PikiMgr::setVsXlu( (int, bool))
 {
 /*
 .loc_0x0:
@@ -3059,7 +3059,7 @@ void setVsXlu__Q24Game7PikiMgrFib(void)
  * Address:	8015F64C
  * Size:	0001FC
  */
-void doEntry__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -3226,7 +3226,7 @@ void doEntry__Q24Game7PikiMgrFv(void)
  * Address:	8015F848
  * Size:	000004
  */
-void setupSoundViewerAndBas__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::setupSoundViewerAndBas(void)
 {
 /*
 .loc_0x0:
@@ -3239,7 +3239,7 @@ void setupSoundViewerAndBas__Q24Game7PikiMgrFv(void)
  * Address:	8015F84C
  * Size:	000074
  */
-void getColorTransportScale__Q24Game7PikiMgrFi(void)
+void Game::PikiMgr::getColorTransportScale( (int))
 {
 /*
 .loc_0x0:
@@ -3288,7 +3288,7 @@ void getColorTransportScale__Q24Game7PikiMgrFi(void)
  * Address:	8015F8C0
  * Size:	00003C
  */
-void allocStorePikmins__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::allocStorePikmins(void)
 {
 /*
 .loc_0x0:
@@ -3317,7 +3317,7 @@ void allocStorePikmins__Q24Game7PikiMgrFv(void)
  * Address:	8015F8FC
  * Size:	00006C
  */
-void clearStorePikmins__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::clearStorePikmins(void)
 {
 /*
 .loc_0x0:
@@ -3368,7 +3368,7 @@ void saveStorePikmins__Q24Game7PikiMgrFP23Condition<Game::Piki>(void)
  * Address:	........
  * Size:	0000C8
  */
-void getStorePikmin__Q24Game7PikiMgrFii(void)
+void Game::PikiMgr::getStorePikmin( (int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -3623,7 +3623,7 @@ void moveAllPikmins__Q24Game7PikiMgrFR10Vector3<float>fP23Condition<Game::Piki>(
  * Address:	8015FCB4
  * Size:	000298
  */
-void forceEnterPikmins__Q24Game7PikiMgrFUc(void)
+void Game::PikiMgr::forceEnterPikmins( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -3821,7 +3821,7 @@ void forceEnterPikmins__Q24Game7PikiMgrFUc(void)
  * Address:	8015FF4C
  * Size:	00060C
  */
-void killDayEndPikmins__Q24Game7PikiMgrFRQ24Game13PikiContainer(void)
+void Game::PikiMgr::killDayEndPikmins( (Game::PikiContainer &))
 {
 /*
 .loc_0x0:
@@ -4268,7 +4268,7 @@ void killDayEndPikmins__Q24Game7PikiMgrFRQ24Game13PikiContainer(void)
  * Address:	80160558
  * Size:	000258
  */
-void killAllPikmins__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::killAllPikmins(void)
 {
 /*
 .loc_0x0:
@@ -4452,7 +4452,7 @@ void killAllPikmins__Q24Game7PikiMgrFv(void)
  * Address:	801607B0
  * Size:	0002C8
  */
-void caveSaveFormationPikmins__Q24Game7PikiMgrFb(void)
+void Game::PikiMgr::caveSaveFormationPikmins( (bool))
 {
 /*
 .loc_0x0:
@@ -4670,7 +4670,7 @@ void caveSaveFormationPikmins__Q24Game7PikiMgrFb(void)
  * Address:	80160A78
  * Size:	0002C4
  */
-void caveSaveAllPikmins__Q24Game7PikiMgrFbb(void)
+void Game::PikiMgr::caveSaveAllPikmins( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -4887,7 +4887,7 @@ void caveSaveAllPikmins__Q24Game7PikiMgrFbb(void)
  * Address:	........
  * Size:	000290
  */
-void saveFormationPikmins__Q24Game7PikiMgrFRQ24Game13PikiContainer(void)
+void Game::PikiMgr::saveFormationPikmins( (Game::PikiContainer &))
 {
 	// UNUSED FUNCTION
 }
@@ -4897,7 +4897,7 @@ void saveFormationPikmins__Q24Game7PikiMgrFRQ24Game13PikiContainer(void)
  * Address:	80160D3C
  * Size:	0002A8
  */
-void saveAllPikmins__Q24Game7PikiMgrFRQ24Game13PikiContainer(void)
+void Game::PikiMgr::saveAllPikmins( (Game::PikiContainer &))
 {
 /*
 .loc_0x0:
@@ -5103,7 +5103,7 @@ void saveAllPikmins__Q24Game7PikiMgrFRQ24Game13PikiContainer(void)
  * Address:	80160FE4
  * Size:	0000B8
  */
-void __dt__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5165,7 +5165,7 @@ void __dt__Q24Game7PikiMgrFv(void)
  * Address:	8016109C
  * Size:	000008
  */
-void getMgrName__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::getMgrName(void)
 {
 /*
 .loc_0x0:
@@ -5179,7 +5179,7 @@ void getMgrName__Q24Game7PikiMgrFv(void)
  * Address:	801610A4
  * Size:	000008
  */
-void getMatrixLoadType__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::getMatrixLoadType(void)
 {
 /*
 .loc_0x0:
@@ -5193,7 +5193,7 @@ void getMatrixLoadType__Q24Game7PikiMgrFv(void)
  * Address:	801610AC
  * Size:	000004
  */
-void loadResources__Q24Game7PikiMgrFv(void)
+void Game::PikiMgr::loadResources(void)
 {
 /*
 .loc_0x0:
@@ -7013,7 +7013,7 @@ void ObjectMgr<Game::Piki>::@28@doAnimation()
  * Address:	8016234C
  * Size:	000008
  */
-void @28@getMatrixLoadType__Q24Game7PikiMgrFv(void)
+void @28@Game::PikiMgr::getMatrixLoadType(void)
 {
 /*
 .loc_0x0:
@@ -7027,7 +7027,7 @@ void @28@getMatrixLoadType__Q24Game7PikiMgrFv(void)
  * Address:	80162354
  * Size:	000008
  */
-void @28@resetMgr__Q24Game7PikiMgrFv(void)
+void @28@Game::PikiMgr::resetMgr(void)
 {
 /*
 .loc_0x0:
@@ -7041,7 +7041,7 @@ void @28@resetMgr__Q24Game7PikiMgrFv(void)
  * Address:	8016235C
  * Size:	000008
  */
-void @28@loadResources__Q24Game7PikiMgrFv(void)
+void @28@Game::PikiMgr::loadResources(void)
 {
 /*
 .loc_0x0:
@@ -7055,7 +7055,7 @@ void @28@loadResources__Q24Game7PikiMgrFv(void)
  * Address:	80162364
  * Size:	000008
  */
-void @28@doSimpleDraw__Q24Game7PikiMgrFP8Viewport(void)
+void @28@Game::PikiMgr::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -7125,7 +7125,7 @@ void MonoObjectMgr<Game::Piki>::@28@doSetView(int)
  * Address:	8016238C
  * Size:	000008
  */
-void @28@doEntry__Q24Game7PikiMgrFv(void)
+void @28@Game::PikiMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -7139,7 +7139,7 @@ void @28@doEntry__Q24Game7PikiMgrFv(void)
  * Address:	80162394
  * Size:	000008
  */
-void @28@doAnimation__Q24Game7PikiMgrFv(void)
+void @28@Game::PikiMgr::doAnimation(void)
 {
 /*
 .loc_0x0:

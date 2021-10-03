@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801F1908
  * Size:	000088
  */
-void __ct__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::__ct(void)
 {
 /*
 .loc_0x0:
@@ -61,7 +61,7 @@ void __ct__Q24Game14GeneratorCacheFv(void)
  * Address:	801F1990
  * Size:	000060
  */
-void __dt__Q24Game11CourseCacheFv(void)
+void Game::CourseCache::__dt(void)
 {
 /*
 .loc_0x0:
@@ -99,7 +99,7 @@ void __dt__Q24Game11CourseCacheFv(void)
  * Address:	801F19F0
  * Size:	000098
  */
-void clearCache__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::clearCache(void)
 {
 /*
 .loc_0x0:
@@ -157,7 +157,7 @@ void clearCache__Q24Game14GeneratorCacheFv(void)
  * Address:	........
  * Size:	000098
  */
-void __dt__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -167,7 +167,7 @@ void __dt__Q24Game14GeneratorCacheFv(void)
  * Address:	801F1A88
  * Size:	000018
  */
-void clearGeneratorList__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::clearGeneratorList(void)
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void clearGeneratorList__Q24Game14GeneratorCacheFv(void)
  * Address:	801F1AA0
  * Size:	000078
  */
-void addGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator(void)
+void Game::GeneratorCache::addGenerator( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -237,7 +237,7 @@ void addGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator(void)
  * Address:	801F1B18
  * Size:	000008
  */
-void getFirstGenerator__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::getFirstGenerator(void)
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void getFirstGenerator__Q24Game14GeneratorCacheFv(void)
  * Address:	........
  * Size:	000034
  */
-void findRamGenerator__Q24Game14GeneratorCacheFi(void)
+void Game::GeneratorCache::findRamGenerator( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -261,7 +261,7 @@ void findRamGenerator__Q24Game14GeneratorCacheFi(void)
  * Address:	801F1B20
  * Size:	000024
  */
-void getTotalMePikmins__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::getTotalMePikmins(void)
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void getTotalMePikmins__Q24Game14GeneratorCacheFv(void)
  * Address:	801F1B44
  * Size:	000074
  */
-void getColorMePikmins__Q24Game14GeneratorCacheFi(void)
+void Game::GeneratorCache::getColorMePikmins( (int))
 {
 /*
 .loc_0x0:
@@ -333,7 +333,7 @@ void getColorMePikmins__Q24Game14GeneratorCacheFi(void)
  * Address:	801F1BB8
  * Size:	00009C
  */
-void getColorMePikmins__Q24Game11CourseCacheFPUci(void)
+void Game::CourseCache::getColorMePikmins( (unsigned char *, int))
 {
 /*
 .loc_0x0:
@@ -390,7 +390,7 @@ void getColorMePikmins__Q24Game11CourseCacheFPUci(void)
  * Address:	801F1C54
  * Size:	00009C
  */
-void createHeap__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::createHeap(void)
 {
 /*
 .loc_0x0:
@@ -447,7 +447,7 @@ void createHeap__Q24Game14GeneratorCacheFv(void)
  * Address:	........
  * Size:	000004
  */
-void destroyHeap__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::destroyHeap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -457,7 +457,7 @@ void destroyHeap__Q24Game14GeneratorCacheFv(void)
  * Address:	801F1CF0
  * Size:	000038
  */
-void findCache__Q24Game14GeneratorCacheFRQ24Game11CourseCachei(void)
+void Game::GeneratorCache::findCache( (Game::CourseCache &, int))
 {
 /*
 .loc_0x0:
@@ -489,7 +489,7 @@ void findCache__Q24Game14GeneratorCacheFRQ24Game11CourseCachei(void)
  * Address:	801F1D28
  * Size:	000128
  */
-void loadGenerators__Q24Game14GeneratorCacheFi(void)
+void Game::GeneratorCache::loadGenerators( (int))
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void loadGenerators__Q24Game14GeneratorCacheFi(void)
  * Address:	801F1E50
  * Size:	0001B8
  */
-void loadCreatures__Q24Game14GeneratorCacheFi(void)
+void Game::GeneratorCache::loadCreatures( (int))
 {
 /*
 .loc_0x0:
@@ -755,7 +755,7 @@ void loadCreatures__Q24Game14GeneratorCacheFi(void)
  * Address:	801F2008
  * Size:	000114
  */
-void loadPikiheads__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::loadPikiheads(void)
 {
 /*
 .loc_0x0:
@@ -840,7 +840,7 @@ void loadPikiheads__Q24Game14GeneratorCacheFv(void)
  * Address:	801F211C
  * Size:	0000C0
  */
-void slideCache__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::slideCache(void)
 {
 /*
 .loc_0x0:
@@ -908,7 +908,7 @@ void slideCache__Q24Game14GeneratorCacheFv(void)
  * Address:	801F21DC
  * Size:	00004C
  */
-void updateUseList__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::updateUseList(void)
 {
 /*
 .loc_0x0:
@@ -945,7 +945,7 @@ void updateUseList__Q24Game14GeneratorCacheFv(void)
  * Address:	801F2228
  * Size:	000078
  */
-void createNumberGenerators__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::createNumberGenerators(void)
 {
 /*
 .loc_0x0:
@@ -993,7 +993,7 @@ void createNumberGenerators__Q24Game14GeneratorCacheFv(void)
  * Address:	801F22A0
  * Size:	0000F8
  */
-void beginSave__Q24Game14GeneratorCacheFi(void)
+void Game::GeneratorCache::beginSave( (int))
 {
 /*
 .loc_0x0:
@@ -1091,7 +1091,7 @@ void beginSave__Q24Game14GeneratorCacheFi(void)
  * Address:	801F2398
  * Size:	0000C8
  */
-void endSave__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::endSave(void)
 {
 /*
 .loc_0x0:
@@ -1167,7 +1167,7 @@ void endSave__Q24Game14GeneratorCacheFv(void)
  * Address:	801F2460
  * Size:	0000F0
  */
-void saveGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator(void)
+void Game::GeneratorCache::saveGenerator( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -1243,7 +1243,7 @@ void saveGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator(void)
  * Address:	801F2550
  * Size:	000140
  */
-void saveCreature__Q24Game14GeneratorCacheFPQ24Game9Generator(void)
+void Game::GeneratorCache::saveCreature( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -1343,7 +1343,7 @@ void saveCreature__Q24Game14GeneratorCacheFPQ24Game9Generator(void)
  * Address:	801F2690
  * Size:	0002D0
  */
-void savePikiheads__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::savePikiheads(void)
 {
 /*
 .loc_0x0:
@@ -1557,7 +1557,7 @@ void savePikiheads__Q24Game14GeneratorCacheFv(void)
  * Address:	........
  * Size:	000030
  */
-void checkOverflow__Q24Game14GeneratorCacheFv(void)
+void Game::GeneratorCache::checkOverflow(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1567,7 +1567,7 @@ void checkOverflow__Q24Game14GeneratorCacheFv(void)
  * Address:	801F2960
  * Size:	000070
  */
-void __ct__Q24Game11CourseCacheFi(void)
+void Game::CourseCache::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -1607,7 +1607,7 @@ void __ct__Q24Game11CourseCacheFi(void)
  * Address:	801F29D0
  * Size:	000028
  */
-void beginSave__Q24Game11CourseCacheFi(void)
+void Game::CourseCache::beginSave( (int))
 {
 /*
 .loc_0x0:
@@ -1629,7 +1629,7 @@ void beginSave__Q24Game11CourseCacheFi(void)
  * Address:	801F29F8
  * Size:	000234
  */
-void write__Q24Game14GeneratorCacheFR6Stream(void)
+void Game::GeneratorCache::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1822,7 +1822,7 @@ void write__Q24Game14GeneratorCacheFR6Stream(void)
  * Address:	801F2C2C
  * Size:	0002B0
  */
-void read__Q24Game14GeneratorCacheFR6Stream(void)
+void Game::GeneratorCache::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2060,7 +2060,7 @@ void read__Q24Game14GeneratorCacheFR6Stream(void)
  * Address:	801F2EDC
  * Size:	0001D4
  */
-void write__Q24Game11CourseCacheFR6Stream(void)
+void Game::CourseCache::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2189,7 +2189,7 @@ void write__Q24Game11CourseCacheFR6Stream(void)
  * Address:	801F30B0
  * Size:	0000BC
  */
-void read__Q24Game11CourseCacheFR6Stream(void)
+void Game::CourseCache::read( (Stream &))
 {
 /*
 .loc_0x0:

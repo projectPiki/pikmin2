@@ -5,7 +5,7 @@
  * Address:	80035100
  * Size:	000008
  */
-void __ct__Q25JMath13TRandom_fast_FUl(void)
+void JMath::TRandom_fast_::__ct( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -19,7 +19,7 @@ void __ct__Q25JMath13TRandom_fast_FUl(void)
  * Address:	........
  * Size:	0000C8
  */
-void setSeed__Q25JMath15TRandom_enough_FUl(void)
+void JMath::TRandom_enough_::setSeed( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -29,7 +29,7 @@ void setSeed__Q25JMath15TRandom_enough_FUl(void)
  * Address:	........
  * Size:	0000A8
  */
-void get__Q25JMath15TRandom_enough_Fv(void)
+void JMath::TRandom_enough_::get(void)
 {
 	// UNUSED FUNCTION
 }

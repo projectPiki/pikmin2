@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80202E14
  * Size:	000004
  */
-void do_onInit__Q34Game10PelletItem6ObjectFPQ24Game15CreatureInitArg(void)
+void Game::PelletItem::Object::do_onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -28,7 +28,7 @@ void do_onInit__Q34Game10PelletItem6ObjectFPQ24Game15CreatureInitArg(void)
  * Address:	80202E18
  * Size:	00005C
  */
-void onBounce__Q34Game10PelletItem6ObjectFv(void)
+void Game::PelletItem::Object::onBounce(void)
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void onBounce__Q34Game10PelletItem6ObjectFv(void)
  * Address:	80202E74
  * Size:	000054
  */
-void constructor__Q34Game10PelletItem6ObjectFv(void)
+void Game::PelletItem::Object::constructor(void)
 {
 /*
 .loc_0x0:
@@ -100,7 +100,7 @@ void constructor__Q34Game10PelletItem6ObjectFv(void)
  * Address:	80202EC8
  * Size:	000074
  */
-void sound_otakaraEventStart__Q34Game10PelletItem6ObjectFv(void)
+void Game::PelletItem::Object::sound_otakaraEventStart(void)
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void sound_otakaraEventStart__Q34Game10PelletItem6ObjectFv(void)
  * Address:	80202F3C
  * Size:	000074
  */
-void sound_otakaraEventRestart__Q34Game10PelletItem6ObjectFv(void)
+void Game::PelletItem::Object::sound_otakaraEventRestart(void)
 {
 /*
 .loc_0x0:
@@ -186,7 +186,7 @@ void sound_otakaraEventRestart__Q34Game10PelletItem6ObjectFv(void)
  * Address:	80202FB0
  * Size:	000074
  */
-void sound_otakaraEventStop__Q34Game10PelletItem6ObjectFv(void)
+void Game::PelletItem::Object::sound_otakaraEventStop(void)
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void sound_otakaraEventStop__Q34Game10PelletItem6ObjectFv(void)
  * Address:	80203024
  * Size:	000074
  */
-void sound_otakaraEventFinish__Q34Game10PelletItem6ObjectFv(void)
+void Game::PelletItem::Object::sound_otakaraEventFinish(void)
 {
 /*
 .loc_0x0:
@@ -272,7 +272,7 @@ void sound_otakaraEventFinish__Q34Game10PelletItem6ObjectFv(void)
  * Address:	80203098
  * Size:	0000B0
  */
-void __ct__Q34Game10PelletItem3MgrFv(void)
+void Game::PelletItem::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -553,7 +553,7 @@ void Container<Game::PelletItem::Object>::~Container()
  * Address:	802033F4
  * Size:	000074
  */
-void setupResources__Q34Game10PelletItem3MgrFv(void)
+void Game::PelletItem::Mgr::setupResources(void)
 {
 /*
 .loc_0x0:
@@ -594,7 +594,7 @@ void setupResources__Q34Game10PelletItem3MgrFv(void)
  * Address:	80203468
  * Size:	000024
  */
-void generatorNewPelletParm__Q34Game10PelletItem3MgrFv(void)
+void Game::PelletItem::Mgr::generatorNewPelletParm(void)
 {
 /*
 .loc_0x0:
@@ -713,7 +713,7 @@ void generatorBirth__Q34Game10PelletItem3MgrFR10Vector3<float>R10Vector3<float>P
  * Address:	802035D4
  * Size:	000030
  */
-void generatorWrite__Q34Game10PelletItem3MgrFR6StreamPQ24Game13GenPelletParm(void)
+void Game::PelletItem::Mgr::generatorWrite( (Stream &, Game::GenPelletParm *))
 {
 /*
 .loc_0x0:
@@ -737,7 +737,7 @@ void generatorWrite__Q34Game10PelletItem3MgrFR6StreamPQ24Game13GenPelletParm(voi
  * Address:	80203604
  * Size:	000038
  */
-void generatorRead__Q34Game10PelletItem3MgrFR6StreamPQ24Game13GenPelletParmUl(void)
+void Game::PelletItem::Mgr::generatorRead( (Stream &, Game::GenPelletParm *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -763,7 +763,7 @@ void generatorRead__Q34Game10PelletItem3MgrFR6StreamPQ24Game13GenPelletParmUl(vo
  * Address:	8020363C
  * Size:	0001B4
  */
-void __dt__Q34Game10PelletItem3MgrFv(void)
+void Game::PelletItem::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -892,7 +892,7 @@ void __dt__Q34Game10PelletItem3MgrFv(void)
  * Address:	802037F0
  * Size:	000008
  */
-void getMgrName__Q34Game10PelletItem3MgrFv(void)
+void Game::PelletItem::Mgr::getMgrName(void)
 {
 /*
 .loc_0x0:
@@ -906,7 +906,7 @@ void getMgrName__Q34Game10PelletItem3MgrFv(void)
  * Address:	802037F8
  * Size:	000008
  */
-void getMgrID__Q34Game10PelletItem3MgrFv(void)
+void Game::PelletItem::Mgr::getMgrID(void)
 {
 /*
 .loc_0x0:
@@ -920,7 +920,7 @@ void getMgrID__Q34Game10PelletItem3MgrFv(void)
  * Address:	80203800
  * Size:	00000C
  */
-void generatorLocalVersion__Q34Game10PelletItem3MgrFv(void)
+void Game::PelletItem::Mgr::generatorLocalVersion(void)
 {
 /*
 .loc_0x0:
@@ -985,7 +985,7 @@ void ObjectMgr<Game::PelletItem::Object>::~ObjectMgr()
  * Address:	80203894
  * Size:	000008
  */
-void getKind__Q34Game10PelletItem6ObjectFv(void)
+void Game::PelletItem::Object::getKind(void)
 {
 /*
 .loc_0x0:
@@ -3262,7 +3262,7 @@ void MonoObjectMgr<Game::PelletItem::Object>::alloc(int)
  * Address:	80204FA8
  * Size:	00004C
  */
-void __ct__Q34Game10PelletItem6ObjectFv(void)
+void Game::PelletItem::Object::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3545,7 +3545,7 @@ void @84@get__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object>FPv(void)
  * Address:	80205084
  * Size:	000008
  */
-void @84@__dt__Q34Game10PelletItem3MgrFv(void)
+void @84@Game::PelletItem::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

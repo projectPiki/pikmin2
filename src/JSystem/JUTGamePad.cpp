@@ -896,7 +896,7 @@ void JUTGamePad::clearForReset()
  * Address:	8002DE14
  * Size:	00003C
  */
-void clear__Q210JUTGamePad7CButtonFv(void)
+void JUTGamePad::CButton::clear(void)
 {
 /*
 .loc_0x0:
@@ -923,7 +923,7 @@ void clear__Q210JUTGamePad7CButtonFv(void)
  * Address:	8002DE50
  * Size:	000190
  */
-void update__Q210JUTGamePad7CButtonFPC9PADStatusUl(void)
+void JUTGamePad::CButton::update( (PADStatus const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1051,7 +1051,7 @@ void update__Q210JUTGamePad7CButtonFPC9PADStatusUl(void)
  * Address:	8002DFE0
  * Size:	00001C
  */
-void clear__Q210JUTGamePad6CStickFv(void)
+void JUTGamePad::CStick::clear(void)
 {
 /*
 .loc_0x0:
@@ -1070,7 +1070,7 @@ void clear__Q210JUTGamePad6CStickFv(void)
  * Address:	8002DFFC
  * Size:	0002B8
  */
-void update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl(void)
+void JUTGamePad::CStick::update( (signed char, signed char, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1296,7 +1296,7 @@ void update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad1
  * Address:	8002E2B4
  * Size:	0000B4
  */
-void getButton__Q210JUTGamePad6CStickFUl(void)
+void JUTGamePad::CStick::getButton( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1365,7 +1365,7 @@ void getButton__Q210JUTGamePad6CStickFUl(void)
  * Address:	........
  * Size:	000024
  */
-void clear__Q210JUTGamePad7CRumbleFv(void)
+void JUTGamePad::CRumble::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1375,7 +1375,7 @@ void clear__Q210JUTGamePad7CRumbleFv(void)
  * Address:	8002E368
  * Size:	000074
  */
-void clear__Q210JUTGamePad7CRumbleFP10JUTGamePad(void)
+void JUTGamePad::CRumble::clear( (JUTGamePad *))
 {
 /*
 .loc_0x0:
@@ -1420,7 +1420,7 @@ void clear__Q210JUTGamePad7CRumbleFP10JUTGamePad(void)
  * Address:	........
  * Size:	000058
  */
-void startMotor__Q210JUTGamePad7CRumbleFi(void)
+void JUTGamePad::CRumble::startMotor( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -1430,7 +1430,7 @@ void startMotor__Q210JUTGamePad7CRumbleFi(void)
  * Address:	8002E3DC
  * Size:	000070
  */
-void stopMotor__Q210JUTGamePad7CRumbleFib(void)
+void JUTGamePad::CRumble::stopMotor( (int, bool))
 {
 /*
 .loc_0x0:
@@ -1482,7 +1482,7 @@ void getNumBit(unsigned char *, int)
  * Address:	8002E44C
  * Size:	00025C
  */
-void update__Q210JUTGamePad7CRumbleFs(void)
+void JUTGamePad::CRumble::update( (short))
 {
 /*
 .loc_0x0:
@@ -1663,7 +1663,7 @@ void update__Q210JUTGamePad7CRumbleFs(void)
  * Address:	........
  * Size:	000028
  */
-void triggerPatternedRumble__Q210JUTGamePad7CRumbleFUl(void)
+void JUTGamePad::CRumble::triggerPatternedRumble( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -1673,7 +1673,7 @@ void triggerPatternedRumble__Q210JUTGamePad7CRumbleFUl(void)
  * Address:	........
  * Size:	00005C
  */
-void setPatternedRumble__Q210JUTGamePad7CRumbleFsUsPv(void)
+void JUTGamePad::CRumble::setPatternedRumble( (short, unsigned short, void *))
 {
 	// UNUSED FUNCTION
 }
@@ -1683,7 +1683,7 @@ void setPatternedRumble__Q210JUTGamePad7CRumbleFsUsPv(void)
  * Address:	........
  * Size:	0000BC
  */
-void startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl(void)
+void JUTGamePad::CRumble::startPatternedRumble( (void *, JUTGamePad::CRumble::ERumble, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -1693,7 +1693,7 @@ void startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumb
  * Address:	........
  * Size:	000070
  */
-void stopPatternedRumble__Q210JUTGamePad7CRumbleFs(void)
+void JUTGamePad::CRumble::stopPatternedRumble( (short))
 {
 	// UNUSED FUNCTION
 }
@@ -1703,7 +1703,7 @@ void stopPatternedRumble__Q210JUTGamePad7CRumbleFs(void)
  * Address:	........
  * Size:	000024
  */
-void stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv(void)
+void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1723,7 +1723,7 @@ void JUTGamePad::getGamePad(int)
  * Address:	8002E6A8
  * Size:	000124
  */
-void setEnabled__Q210JUTGamePad7CRumbleFUl(void)
+void JUTGamePad::CRumble::setEnabled( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1822,7 +1822,7 @@ void setEnabled__Q210JUTGamePad7CRumbleFUl(void)
  * Address:	8002E7CC
  * Size:	00001C
  */
-void setRepeat__Q210JUTGamePad7CButtonFUlUlUl(void)
+void JUTGamePad::CButton::setRepeat( (unsigned long, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2331,7 +2331,7 @@ void JSUList<JUTGamePadLongPress>::~JSUList()
  * Address:	8002EA88
  * Size:	00001C
  */
-void __ct__Q210JUTGamePad6CStickFv(void)
+void JUTGamePad::CStick::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2350,7 +2350,7 @@ void __ct__Q210JUTGamePad6CStickFv(void)
  * Address:	8002EAA4
  * Size:	00003C
  */
-void __ct__Q210JUTGamePad7CButtonFv(void)
+void JUTGamePad::CButton::__ct(void)
 {
 /*
 .loc_0x0:

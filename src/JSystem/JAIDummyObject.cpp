@@ -5,7 +5,7 @@
  * Address:	800AD490
  * Size:	0000DC
  */
-void init__Q27JAInter14DummyObjectMgrFv(void)
+void JAInter::DummyObjectMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -76,7 +76,7 @@ void init__Q27JAInter14DummyObjectMgrFv(void)
  * Address:	800AD56C
  * Size:	000068
  */
-void getPointer__Q27JAInter14DummyObjectMgrFUl(void)
+void JAInter::DummyObjectMgr::getPointer( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void getPointer__Q27JAInter14DummyObjectMgrFUl(void)
  * Address:	........
  * Size:	000074
  */
-void releasePointer__Q27JAInter14DummyObjectMgrFPQ27JAInter8DummyVec(void)
+void JAInter::DummyObjectMgr::releasePointer( (JAInter::DummyVec *))
 {
 	// UNUSED FUNCTION
 }
@@ -132,7 +132,7 @@ void releasePointer__Q27JAInter14DummyObjectMgrFPQ27JAInter8DummyVec(void)
  * Address:	800AD5D4
  * Size:	0000F8
  */
-void check__Q27JAInter14DummyObjectMgrFv(void)
+void JAInter::DummyObjectMgr::check(void)
 {
 /*
 .loc_0x0:

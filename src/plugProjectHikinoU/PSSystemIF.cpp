@@ -73,7 +73,7 @@ void PSSystem::setObject(JASTrack *, void *, unsigned char)
  * Address:	8033841C
  * Size:	000134
  */
-void __ct__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg(void)
+void PSSystem::SysIF::__ct( (PSSystem::SetupArg const &))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void __ct__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg(void)
  * Address:	80338550
  * Size:	0000E0
  */
-void stopSoundSystem__Q28PSSystem5SysIFFv(void)
+void PSSystem::SysIF::stopSoundSystem(void)
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void stopSoundSystem__Q28PSSystem5SysIFFv(void)
  * Address:	........
  * Size:	00004C
  */
-void isAudioThreadTerminated__Q28PSSystem5SysIFFv(void)
+void PSSystem::SysIF::isAudioThreadTerminated(void)
 {
 	// UNUSED FUNCTION
 }
@@ -254,7 +254,7 @@ void isAudioThreadTerminated__Q28PSSystem5SysIFFv(void)
  * Address:	........
  * Size:	000054
  */
-void waitForAudioThreadTermination__Q28PSSystem5SysIFFv(void)
+void PSSystem::SysIF::waitForAudioThreadTermination(void)
 {
 	// UNUSED FUNCTION
 }
@@ -264,7 +264,7 @@ void waitForAudioThreadTermination__Q28PSSystem5SysIFFv(void)
  * Address:	80338630
  * Size:	000040
  */
-void playSystemSe__Q28PSSystem5SysIFFUlUl(void)
+void PSSystem::SysIF::playSystemSe( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void playSystemSe__Q28PSSystem5SysIFFUlUl(void)
  * Address:	80338670
  * Size:	00002C
  */
-void playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl(void)
+void PSSystem::SysIF::playSystemSe( (unsigned long, JAISound **, unsigned long))
 {
 /*
 .loc_0x0:
@@ -315,7 +315,7 @@ void playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl(void)
  * Address:	8033869C
  * Size:	000078
  */
-void initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg(void)
+void PSSystem::SysIF::initIF( (PSSystem::SetupArg const &))
 {
 /*
 .loc_0x0:
@@ -361,7 +361,7 @@ void initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg(void)
  * Address:	80338714
  * Size:	000038
  */
-void makeSe__Q28PSSystem5SysIFFv(void)
+void PSSystem::SysIF::makeSe(void)
 {
 /*
 .loc_0x0:
@@ -391,7 +391,7 @@ void makeSe__Q28PSSystem5SysIFFv(void)
  * Address:	8033874C
  * Size:	0000DC
  */
-void mainLoop__Q28PSSystem5SysIFFv(void)
+void PSSystem::SysIF::mainLoop(void)
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void mainLoop__Q28PSSystem5SysIFFv(void)
  * Address:	80338828
  * Size:	00008C
  */
-void setConfigVol_Se__Q28PSSystem5SysIFFf(void)
+void PSSystem::SysIF::setConfigVol_Se( (float))
 {
 /*
 .loc_0x0:
@@ -517,7 +517,7 @@ void setConfigVol_Se__Q28PSSystem5SysIFFf(void)
  * Address:	803388B4
  * Size:	0000C8
  */
-void setConfigVol_Bgm__Q28PSSystem5SysIFFf(void)
+void PSSystem::SysIF::setConfigVol_Bgm( (float))
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void setConfigVol_Bgm__Q28PSSystem5SysIFFf(void)
  * Address:	8033897C
  * Size:	000004
  */
-void __ct__Q28PSSystem5FxMgrFv(void)
+void PSSystem::FxMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -602,7 +602,7 @@ void __ct__Q28PSSystem5FxMgrFv(void)
  * Address:	80338980
  * Size:	000044
  */
-void __ct__Q28PSSystem12TextDataBaseFv(void)
+void PSSystem::TextDataBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -631,7 +631,7 @@ void __ct__Q28PSSystem12TextDataBaseFv(void)
  * Address:	803389C4
  * Size:	000070
  */
-void __dt__Q28PSSystem12TextDataBaseFv(void)
+void PSSystem::TextDataBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -673,7 +673,7 @@ void __dt__Q28PSSystem12TextDataBaseFv(void)
  * Address:	80338A34
  * Size:	00007C
  */
-void load__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection(void)
+void PSSystem::TextDataBase::load( (char const *, JKRDvdRipper::EAllocDirection))
 {
 /*
 .loc_0x0:
@@ -724,7 +724,7 @@ void load__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection(void)
  * Address:	80338AB0
  * Size:	000068
  */
-void onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection(void)
+void PSSystem::TextDataBase::onlyLoad( (char const *, JKRDvdRipper::EAllocDirection))
 {
 /*
 .loc_0x0:
@@ -762,7 +762,7 @@ void onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection(vo
  * Address:	80338B18
  * Size:	00000C
  */
-void start1stSeq__Q28PSSystem5SysIFFv(void)
+void PSSystem::SysIF::start1stSeq(void)
 {
 /*
 .loc_0x0:
@@ -777,7 +777,7 @@ void start1stSeq__Q28PSSystem5SysIFFv(void)
  * Address:	80338B24
  * Size:	000070
  */
-void makeSequence__Q28PSSystem5SysIFFv(void)
+void PSSystem::SysIF::makeSequence(void)
 {
 /*
 .loc_0x0:
@@ -827,7 +827,7 @@ void makeSequence__Q28PSSystem5SysIFFv(void)
  * Address:	80338B94
  * Size:	000058
  */
-void __ct__Q28PSSystem8SeqSoundFv(void)
+void PSSystem::SeqSound::__ct(void)
 {
 /*
 .loc_0x0:
@@ -871,7 +871,7 @@ void JAISequence::~JAISequence()
  * Address:	80338BEC
  * Size:	000070
  */
-void makeStream__Q28PSSystem5SysIFFv(void)
+void PSSystem::SysIF::makeStream(void)
 {
 /*
 .loc_0x0:
@@ -921,7 +921,7 @@ void makeStream__Q28PSSystem5SysIFFv(void)
  * Address:	80338C5C
  * Size:	000058
  */
-void __ct__Q28PSSystem11StreamSoundFv(void)
+void PSSystem::StreamSound::__ct(void)
 {
 /*
 .loc_0x0:

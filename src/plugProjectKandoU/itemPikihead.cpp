@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801D8ABC
  * Size:	000294
  */
-void init__Q34Game12ItemPikihead3FSMFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::FSM::init( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void init__Q34Game12ItemPikihead3FSMFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D8D50
  * Size:	000098
  */
-void init__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg(void)
+void Game::ItemPikihead::FallState::init( (Game::ItemPikihead::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void init__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4ItemPQ24Game8S
  * Address:	801D8DE8
  * Size:	000038
  */
-void exec__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::FallState::exec( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void exec__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D8E20
  * Size:	000024
  */
-void cleanup__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::FallState::cleanup( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void cleanup__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D8E44
  * Size:	000028
  */
-void onPlatCollision__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent(void)
+void Game::ItemPikihead::FallState::onPlatCollision( (Game::ItemPikihead::Item *, Game::PlatEvent &))
 {
 /*
 .loc_0x0:
@@ -325,7 +325,7 @@ void onPlatCollision__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4Ite
  * Address:	801D8E6C
  * Size:	0002F0
  */
-void onBounce__Q34Game12ItemPikihead9FallStateFPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle(void)
+void Game::ItemPikihead::FallState::onBounce( (Game::ItemPikihead::Item *, Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -569,7 +569,7 @@ void transit__Q24Game36FSMState<Game::ItemPikihead::Item>FPQ34Game12ItemPikihead
  * Address:	801D918C
  * Size:	00008C
  */
-void init__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg(void)
+void Game::ItemPikihead::BuryState::init( (Game::ItemPikihead::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -618,7 +618,7 @@ void init__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4ItemPQ24Game8S
  * Address:	801D9218
  * Size:	000068
  */
-void exec__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::BuryState::exec( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -658,7 +658,7 @@ void exec__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D9280
  * Size:	000004
  */
-void cleanup__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::BuryState::cleanup( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -671,7 +671,7 @@ void cleanup__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D9284
  * Size:	00000C
  */
-void onKeyEvent__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPikihead::BuryState::onKeyEvent( (Game::ItemPikihead::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -686,7 +686,7 @@ void onKeyEvent__Q34Game12ItemPikihead9BuryStateFPQ34Game12ItemPikihead4ItemRCQ2
  * Address:	801D9290
  * Size:	00008C
  */
-void init__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg(void)
+void Game::ItemPikihead::TaneState::init( (Game::ItemPikihead::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -735,7 +735,7 @@ void init__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4ItemPQ24Game8S
  * Address:	801D931C
  * Size:	000068
  */
-void exec__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::TaneState::exec( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -775,7 +775,7 @@ void exec__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D9384
  * Size:	000004
  */
-void cleanup__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::TaneState::cleanup( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -788,7 +788,7 @@ void cleanup__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D9388
  * Size:	00000C
  */
-void onKeyEvent__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPikihead::TaneState::onKeyEvent( (Game::ItemPikihead::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -803,7 +803,7 @@ void onKeyEvent__Q34Game12ItemPikihead9TaneStateFPQ34Game12ItemPikihead4ItemRCQ2
  * Address:	801D9394
  * Size:	000058
  */
-void init__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg(void)
+void Game::ItemPikihead::HatugaState::init( (Game::ItemPikihead::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -839,7 +839,7 @@ void init__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4ItemPQ24Gam
  * Address:	801D93EC
  * Size:	000004
  */
-void exec__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::HatugaState::exec( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -852,7 +852,7 @@ void exec__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D93F0
  * Size:	000004
  */
-void cleanup__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::HatugaState::cleanup( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void cleanup__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4Item(voi
  * Address:	801D93F4
  * Size:	000034
  */
-void onKeyEvent__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPikihead::HatugaState::onKeyEvent( (Game::ItemPikihead::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -890,7 +890,7 @@ void onKeyEvent__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4ItemR
  * Address:	801D9428
  * Size:	0000EC
  */
-void init__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg(void)
+void Game::ItemPikihead::WaitState::init( (Game::ItemPikihead::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -967,7 +967,7 @@ void init__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemPQ24Game8S
  * Address:	801D9514
  * Size:	00009C
  */
-void exec__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::WaitState::exec( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -1026,7 +1026,7 @@ void exec__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D95B0
  * Size:	000024
  */
-void cleanup__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::WaitState::cleanup( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -1047,7 +1047,7 @@ void cleanup__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D95D4
  * Size:	000038
  */
-void onKeyEvent__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPikihead::WaitState::onKeyEvent( (Game::ItemPikihead::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1075,7 +1075,7 @@ void onKeyEvent__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemRCQ2
  * Address:	801D960C
  * Size:	00004C
  */
-void init__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg(void)
+void Game::ItemPikihead::GrowState::init( (Game::ItemPikihead::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1108,7 +1108,7 @@ void init__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4ItemPQ24Game8S
  * Address:	801D9658
  * Size:	000004
  */
-void exec__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::GrowState::exec( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -1121,7 +1121,7 @@ void exec__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D965C
  * Size:	000004
  */
-void cleanup__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::GrowState::cleanup( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -1134,7 +1134,7 @@ void cleanup__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D9660
  * Size:	0000CC
  */
-void onKeyEvent__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPikihead::GrowState::onKeyEvent( (Game::ItemPikihead::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1203,7 +1203,7 @@ void onKeyEvent__Q34Game12ItemPikihead9GrowStateFPQ34Game12ItemPikihead4ItemRCQ2
  * Address:	801D972C
  * Size:	0000AC
  */
-void init__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg(void)
+void Game::ItemPikihead::SioreState::init( (Game::ItemPikihead::Item *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1260,7 +1260,7 @@ void init__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4ItemPQ24Game
  * Address:	801D97D8
  * Size:	000068
  */
-void exec__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::SioreState::exec( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -1300,7 +1300,7 @@ void exec__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4Item(void)
  * Address:	801D9840
  * Size:	000004
  */
-void cleanup__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4Item(void)
+void Game::ItemPikihead::SioreState::cleanup( (Game::ItemPikihead::Item *))
 {
 /*
 .loc_0x0:
@@ -1313,7 +1313,7 @@ void cleanup__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4Item(void
  * Address:	801D9844
  * Size:	000014
  */
-void onKeyEvent__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPikihead::SioreState::onKeyEvent( (Game::ItemPikihead::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1330,7 +1330,7 @@ void onKeyEvent__Q34Game12ItemPikihead10SioreStateFPQ34Game12ItemPikihead4ItemRC
  * Address:	801D9858
  * Size:	0001D0
  */
-void __ct__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1462,7 +1462,7 @@ void __ct__Q34Game12ItemPikihead4ItemFv(void)
  * Address:	........
  * Size:	000060
  */
-void __dt__Q23efx11ToeTanekiraFv(void)
+void efx::ToeTanekira::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1472,7 +1472,7 @@ void __dt__Q23efx11ToeTanekiraFv(void)
  * Address:	801D9A28
  * Size:	00009C
  */
-void __dt__Q23efx8TPkGlow1Fv(void)
+void efx::TPkGlow1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1527,7 +1527,7 @@ void __dt__Q23efx8TPkGlow1Fv(void)
  * Address:	801D9AC4
  * Size:	00021C
  */
-void onInit__Q34Game12ItemPikihead4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemPikihead::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -1711,7 +1711,7 @@ void start__Q24Game40StateMachine<Game::ItemPikihead::Item>FPQ34Game12ItemPikihe
  * Address:	801D9D14
  * Size:	000094
  */
-void onKill__Q34Game12ItemPikihead4ItemFPQ24Game15CreatureKillArg(void)
+void Game::ItemPikihead::Item::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -1800,7 +1800,7 @@ void cleanup__Q24Game36FSMState<Game::ItemPikihead::Item>FPQ34Game12ItemPikihead
  * Address:	801D9DD0
  * Size:	00002C
  */
-void needSave__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::needSave(void)
 {
 /*
 .loc_0x0:
@@ -1823,7 +1823,7 @@ void needSave__Q34Game12ItemPikihead4ItemFv(void)
  * Address:	801D9DFC
  * Size:	00005C
  */
-void cacheSave__Q34Game12ItemPikihead4ItemFR6Stream(void)
+void Game::ItemPikihead::Item::cacheSave( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1858,7 +1858,7 @@ void cacheSave__Q34Game12ItemPikihead4ItemFR6Stream(void)
  * Address:	801D9E58
  * Size:	0000A4
  */
-void cacheLoad__Q34Game12ItemPikihead4ItemFR6Stream(void)
+void Game::ItemPikihead::Item::cacheLoad( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1911,7 +1911,7 @@ void cacheLoad__Q34Game12ItemPikihead4ItemFR6Stream(void)
  * Address:	801D9EFC
  * Size:	000200
  */
-void makeTrMatrix__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::makeTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -2077,7 +2077,7 @@ void makeTrMatrix__Q34Game12ItemPikihead4ItemFv(void)
  * Address:	801DA0FC
  * Size:	000140
  */
-void doAI__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -2173,7 +2173,7 @@ void doAI__Q34Game12ItemPikihead4ItemFv(void)
  * Address:	801DA23C
  * Size:	00014C
  */
-void changeMaterial__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -2276,7 +2276,7 @@ void changeMaterial__Q34Game12ItemPikihead4ItemFv(void)
  * Address:	801DA388
  * Size:	000044
  */
-void onKeyEvent__Q34Game12ItemPikihead4ItemFRCQ28SysShape8KeyEvent(void)
+void Game::ItemPikihead::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -2307,7 +2307,7 @@ void onKeyEvent__Q34Game12ItemPikihead4ItemFRCQ28SysShape8KeyEvent(void)
  * Address:	801DA3CC
  * Size:	000004
  */
-void onKeyEvent__Q34Game12ItemPikihead5StateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemPikihead::State::onKeyEvent( (Game::ItemPikihead::Item *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -2320,7 +2320,7 @@ void onKeyEvent__Q34Game12ItemPikihead5StateFPQ34Game12ItemPikihead4ItemRCQ28Sys
  * Address:	801DA3D0
  * Size:	000024
  */
-void updateBoundSphere__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -2341,7 +2341,7 @@ void updateBoundSphere__Q34Game12ItemPikihead4ItemFv(void)
  * Address:	801DA3F4
  * Size:	000024
  */
-void getLODSphere__Q34Game12ItemPikihead4ItemFRQ23Sys6Sphere(void)
+void Game::ItemPikihead::Item::getLODSphere( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -2362,7 +2362,7 @@ void getLODSphere__Q34Game12ItemPikihead4ItemFRQ23Sys6Sphere(void)
  * Address:	801DA418
  * Size:	000004
  */
-void onSetPosition__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -2375,7 +2375,7 @@ void onSetPosition__Q34Game12ItemPikihead4ItemFv(void)
  * Address:	801DA41C
  * Size:	000074
  */
-void doSimulation__Q34Game12ItemPikihead4ItemFf(void)
+void Game::ItemPikihead::Item::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2418,7 +2418,7 @@ void doSimulation__Q34Game12ItemPikihead4ItemFf(void)
  * Address:	801DA490
  * Size:	00002C
  */
-void canPullout__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::canPullout(void)
 {
 /*
 .loc_0x0:
@@ -2441,7 +2441,7 @@ void canPullout__Q34Game12ItemPikihead4ItemFv(void)
  * Address:	801DA4BC
  * Size:	0001AC
  */
-void interactFue__Q34Game12ItemPikihead4ItemFRQ24Game11InteractFue(void)
+void Game::ItemPikihead::Item::interactFue( (Game::InteractFue &))
 {
 /*
 .loc_0x0:
@@ -2570,7 +2570,7 @@ void interactFue__Q34Game12ItemPikihead4ItemFRQ24Game11InteractFue(void)
  * Address:	801DA668
  * Size:	0000D4
  */
-void __ct__Q34Game12ItemPikihead3MgrFv(void)
+void Game::ItemPikihead::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2819,7 +2819,7 @@ void Container<Game::ItemPikihead::Item>::~Container()
  * Address:	801DA94C
  * Size:	0000AC
  */
-void onLoadResources__Q34Game12ItemPikihead3MgrFv(void)
+void Game::ItemPikihead::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -2874,7 +2874,7 @@ void onLoadResources__Q34Game12ItemPikihead3MgrFv(void)
  * Address:	801DA9F8
  * Size:	000378
  */
-void doSimpleDraw__Q34Game12ItemPikihead3MgrFP8Viewport(void)
+void Game::ItemPikihead::Mgr::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -3140,7 +3140,7 @@ void doSimpleDraw__Q34Game12ItemPikihead3MgrFP8Viewport(void)
  * Address:	801DAD70
  * Size:	00006C
  */
-void onCreateModel__Q34Game12ItemPikihead3MgrFPQ28SysShape5Model(void)
+void Game::ItemPikihead::Mgr::onCreateModel( (SysShape::Model *))
 {
 /*
 .loc_0x0:
@@ -3179,7 +3179,7 @@ void onCreateModel__Q34Game12ItemPikihead3MgrFPQ28SysShape5Model(void)
  * Address:	801DADDC
  * Size:	0000A0
  */
-void birth__Q34Game12ItemPikihead3MgrFv(void)
+void Game::ItemPikihead::Mgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -3277,7 +3277,7 @@ void generatorBirth__Q34Game12ItemPikihead3MgrFR10Vector3<float>R10Vector3<float
  * Address:	801DAEDC
  * Size:	000118
  */
-void __dt__Q34Game12ItemPikihead3MgrFv(void)
+void Game::ItemPikihead::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3365,7 +3365,7 @@ void __dt__Q34Game12ItemPikihead3MgrFv(void)
  * Address:	801DAFF4
  * Size:	00000C
  */
-void generatorGetID__Q34Game12ItemPikihead3MgrFv(void)
+void Game::ItemPikihead::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -3453,7 +3453,7 @@ void birth__Q24Game44FixedSizeItemMgr<Game::ItemPikihead::Item>Fv(void)
  * Address:	801DB0B4
  * Size:	00000C
  */
-void getCreatureName__Q34Game12ItemPikihead4ItemFv(void)
+void Game::ItemPikihead::Item::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -6362,7 +6362,7 @@ void @376@onKeyEvent__Q24Game89FSMItem<Game::ItemPikihead::Item, Game::ItemPikih
  * Address:	801DCD80
  * Size:	000008
  */
-void @4@__dt__Q23efx8TPkGlow1Fv(void)
+void @4@efx::TPkGlow1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6376,7 +6376,7 @@ void @4@__dt__Q23efx8TPkGlow1Fv(void)
  * Address:	801DCD88
  * Size:	000008
  */
-void @376@onKeyEvent__Q34Game12ItemPikihead4ItemFRCQ28SysShape8KeyEvent(void)
+void @376@Game::ItemPikihead::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -6642,7 +6642,7 @@ void @48@get__Q24Game44FixedSizeItemMgr<Game::ItemPikihead::Item>FPv(void)
  * Address:	801DCE20
  * Size:	000008
  */
-void @48@__dt__Q34Game12ItemPikihead3MgrFv(void)
+void @48@Game::ItemPikihead::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

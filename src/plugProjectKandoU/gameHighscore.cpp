@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80233CEC
  * Size:	00001C
  */
-void __ct__Q24Game9HighscoreFv(void)
+void Game::Highscore::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q24Game9HighscoreFv(void)
  * Address:	80233D08
  * Size:	000044
  */
-void allocate__Q24Game9HighscoreFi(void)
+void Game::Highscore::allocate( (int))
 {
 /*
 .loc_0x0:
@@ -63,7 +63,7 @@ void allocate__Q24Game9HighscoreFi(void)
  * Address:	80233D4C
  * Size:	000088
  */
-void getScore__Q24Game9HighscoreFi(void)
+void Game::Highscore::getScore( (int))
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void getScore__Q24Game9HighscoreFi(void)
  * Address:	........
  * Size:	00008C
  */
-void newRecord__Q24Game9HighscoreFi(void)
+void Game::Highscore::newRecord( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -123,7 +123,7 @@ void newRecord__Q24Game9HighscoreFi(void)
  * Address:	80233DD4
  * Size:	000178
  */
-void entryScore__Q24Game9HighscoreFi(void)
+void Game::Highscore::entryScore( (int))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void entryScore__Q24Game9HighscoreFi(void)
  * Address:	80233F4C
  * Size:	00004C
  */
-void higher__Q24Game9HighscoreFii(void)
+void Game::Highscore::higher( (int, int))
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void higher__Q24Game9HighscoreFii(void)
  * Address:	80233F98
  * Size:	000018
  */
-void do_higher__Q24Game9HighscoreFii(void)
+void Game::Highscore::do_higher( (int, int))
 {
 /*
 .loc_0x0:
@@ -304,7 +304,7 @@ void do_higher__Q24Game9HighscoreFii(void)
  * Address:	80233FB0
  * Size:	0000B8
  */
-void read__Q24Game9HighscoreFR6Stream(void)
+void Game::Highscore::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void read__Q24Game9HighscoreFR6Stream(void)
  * Address:	80234068
  * Size:	000074
  */
-void write__Q24Game9HighscoreFR6Stream(void)
+void Game::Highscore::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -415,7 +415,7 @@ void write__Q24Game9HighscoreFR6Stream(void)
  * Address:	802340DC
  * Size:	000030
  */
-void clear__Q24Game9HighscoreFv(void)
+void Game::Highscore::clear(void)
 {
 /*
 .loc_0x0:

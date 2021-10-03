@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801B6468
  * Size:	000024
  */
-void getDoor__Q24Game16MapUnitInterfaceFi(void)
+void Game::MapUnitInterface::getDoor( (int))
 {
 /*
 .loc_0x0:
@@ -36,7 +36,7 @@ void getDoor__Q24Game16MapUnitInterfaceFi(void)
  * Address:	801B648C
  * Size:	00001C
  */
-void getCellSize__Q24Game16MapUnitInterfaceFRiRi(void)
+void Game::MapUnitInterface::getCellSize( (int &, int &))
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void getCellSize__Q24Game16MapUnitInterfaceFRiRi(void)
  * Address:	801B64A8
  * Size:	000024
  */
-void getLink__Q24Game4DoorFi(void)
+void Game::Door::getLink( (int))
 {
 /*
 .loc_0x0:
@@ -76,7 +76,7 @@ void getLink__Q24Game4DoorFi(void)
  * Address:	........
  * Size:	000078
  */
-void write__Q24Game8DoorLinkFR6Stream(void)
+void Game::DoorLink::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -86,7 +86,7 @@ void write__Q24Game8DoorLinkFR6Stream(void)
  * Address:	........
  * Size:	000064
  */
-void read__Q24Game8DoorLinkFR6Stream(void)
+void Game::DoorLink::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -96,7 +96,7 @@ void read__Q24Game8DoorLinkFR6Stream(void)
  * Address:	........
  * Size:	000124
  */
-void write__Q24Game4DoorFR6Stream(void)
+void Game::Door::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -106,7 +106,7 @@ void write__Q24Game4DoorFR6Stream(void)
  * Address:	801B64CC
  * Size:	000104
  */
-void read__Q24Game4DoorFR6Stream(void)
+void Game::Door::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void read__Q24Game4DoorFR6Stream(void)
  * Address:	801B65D0
  * Size:	0000AC
  */
-void __ct__Q24Game7MapUnitFv(void)
+void Game::MapUnit::__ct(void)
 {
 /*
 .loc_0x0:
@@ -244,7 +244,7 @@ void __ct__Q24Game7MapUnitFv(void)
  * Address:	........
  * Size:	0000CC
  */
-void setupSizeInfo__Q24Game7MapUnitFv(void)
+void Game::MapUnit::setupSizeInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -278,7 +278,7 @@ void MapCollision::getBoundBox(BoundBox &)
  * Address:	........
  * Size:	000080
  */
-void save__Q24Game7MapUnitFR6Stream(void)
+void Game::MapUnit::save( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -288,7 +288,7 @@ void save__Q24Game7MapUnitFR6Stream(void)
  * Address:	801B66AC
  * Size:	00004C
  */
-void load__Q24Game7MapUnitFR6Stream(void)
+void Game::MapUnit::load( (Stream &))
 {
 /*
 .loc_0x0:
@@ -319,7 +319,7 @@ void load__Q24Game7MapUnitFR6Stream(void)
  * Address:	........
  * Size:	0000B8
  */
-void __ct__Q24Game10MapUnitMgrFv(void)
+void Game::MapUnitMgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -529,7 +529,7 @@ void Container<Game::MapUnit>::~Container()
  * Address:	801B6918
  * Size:	000088
  */
-void getAt__Q24Game10MapUnitMgrFi(void)
+void Game::MapUnitMgr::getAt( (int))
 {
 /*
 .loc_0x0:
@@ -585,7 +585,7 @@ void getAt__Q24Game10MapUnitMgrFi(void)
  * Address:	........
  * Size:	00020C
  */
-void findMapUnit__Q24Game10MapUnitMgrFPc(void)
+void Game::MapUnitMgr::findMapUnit( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -626,7 +626,7 @@ void Iterator<Game::MapUnit>::isDone()
  * Address:	........
  * Size:	000038
  */
-void testConstruct__Q24Game10MapUnitMgrFv(void)
+void Game::MapUnitMgr::testConstruct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -636,7 +636,7 @@ void testConstruct__Q24Game10MapUnitMgrFv(void)
  * Address:	........
  * Size:	000068
  */
-void loadShape__Q24Game10MapUnitMgrFPc(void)
+void Game::MapUnitMgr::loadShape( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -646,7 +646,7 @@ void loadShape__Q24Game10MapUnitMgrFPc(void)
  * Address:	801B69EC
  * Size:	000440
  */
-void makeUnit__Q24Game10MapUnitMgrFPQ24Game7MapUnitPc(void)
+void Game::MapUnitMgr::makeUnit( (Game::MapUnit *, char *))
 {
 /*
 .loc_0x0:
@@ -976,7 +976,7 @@ void makeUnit__Q24Game10MapUnitMgrFPQ24Game7MapUnitPc(void)
  * Address:	........
  * Size:	000048
  */
-void load__Q24Game10MapUnitMgrFPc(void)
+void Game::MapUnitMgr::load( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -986,7 +986,7 @@ void load__Q24Game10MapUnitMgrFPc(void)
  * Address:	801B6E2C
  * Size:	0000DC
  */
-void __ct__Q24Game7MapRoomFv(void)
+void Game::MapRoom::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1053,7 +1053,7 @@ void __ct__Q24Game7MapRoomFv(void)
  * Address:	........
  * Size:	0000FC
  */
-void countItems__Q24Game7MapRoomFv(void)
+void Game::MapRoom::countItems(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1063,7 +1063,7 @@ void countItems__Q24Game7MapRoomFv(void)
  * Address:	........
  * Size:	000170
  */
-void countEnemys__Q24Game7MapRoomFv(void)
+void Game::MapRoom::countEnemys(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1073,7 +1073,7 @@ void countEnemys__Q24Game7MapRoomFv(void)
  * Address:	801B6F08
  * Size:	000008
  */
-void getExtraCode__Q24Game16ObjectLayoutNodeFv(void)
+void Game::ObjectLayoutNode::getExtraCode(void)
 {
 /*
 .loc_0x0:
@@ -1087,7 +1087,7 @@ void getExtraCode__Q24Game16ObjectLayoutNodeFv(void)
  * Address:	801B6F10
  * Size:	0007B8
  */
-void placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob(void)
+void Game::MapRoom::placeObjects( (Game::Cave::FloorInfo *, bool))
 {
 /*
 .loc_0x0:
@@ -1635,7 +1635,7 @@ void placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob(void)
  * Address:	801B76C8
  * Size:	000008
  */
-void getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv(void)
+void Game::ObjectLayoutNode::getBirthDoorIndex(void)
 {
 /*
 .loc_0x0:
@@ -1649,7 +1649,7 @@ void getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv(void)
  * Address:	801B76D0
  * Size:	000008
  */
-void isFixedBattery__Q24Game16ObjectLayoutNodeFv(void)
+void Game::ObjectLayoutNode::isFixedBattery(void)
 {
 /*
 .loc_0x0:
@@ -1663,7 +1663,7 @@ void isFixedBattery__Q24Game16ObjectLayoutNodeFv(void)
  * Address:	801B76D8
  * Size:	000008
  */
-void getDirection__Q24Game16ObjectLayoutNodeFv(void)
+void Game::ObjectLayoutNode::getDirection(void)
 {
 /*
 .loc_0x0:
@@ -1677,7 +1677,7 @@ void getDirection__Q24Game16ObjectLayoutNodeFv(void)
  * Address:	801B76E0
  * Size:	000004
  */
-void getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf(void)
+void Game::ObjectLayoutNode::getBirthPosition( (float &, float &))
 {
 /*
 .loc_0x0:
@@ -1700,7 +1700,7 @@ void getCenterPosition__Q24Game7MapRoomFR10Vector3<float>(void)
  * Address:	........
  * Size:	00016C
  */
-void create__Q24Game7MapRoomFPQ24Game7MapUnitR7Matrixf(void)
+void Game::MapRoom::create( (Game::MapUnit *, Matrixf &))
 {
 	// UNUSED FUNCTION
 }
@@ -1710,7 +1710,7 @@ void create__Q24Game7MapRoomFPQ24Game7MapUnitR7Matrixf(void)
  * Address:	........
  * Size:	000064
  */
-void createDoorInfo__Q24Game7MapRoomFPQ24Game16MapUnitInterface(void)
+void Game::MapRoom::createDoorInfo( (Game::MapUnitInterface *))
 {
 	// UNUSED FUNCTION
 }
@@ -1720,7 +1720,7 @@ void createDoorInfo__Q24Game7MapRoomFPQ24Game16MapUnitInterface(void)
  * Address:	801B76E4
  * Size:	000004
  */
-void __ct__Q24Game12RoomDoorInfoFv(void)
+void Game::RoomDoorInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1733,7 +1733,7 @@ void __ct__Q24Game12RoomDoorInfoFv(void)
  * Address:	801B76E8
  * Size:	0000D4
  */
-void doAnimation__Q24Game7MapRoomFv(void)
+void Game::MapRoom::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -1810,7 +1810,7 @@ void doAnimation__Q24Game7MapRoomFv(void)
  * Address:	801B77BC
  * Size:	0001F4
  */
-void doEntry__Q24Game7MapRoomFv(void)
+void Game::MapRoom::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -1985,7 +1985,7 @@ void doEntry__Q24Game7MapRoomFv(void)
  * Address:	801B79B0
  * Size:	000124
  */
-void doSetView__Q24Game7MapRoomFi(void)
+void Game::MapRoom::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -2084,7 +2084,7 @@ void doSetView__Q24Game7MapRoomFi(void)
  * Address:	801B7AD4
  * Size:	000024
  */
-void doViewCalc__Q24Game7MapRoomFv(void)
+void Game::MapRoom::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -2105,7 +2105,7 @@ void doViewCalc__Q24Game7MapRoomFv(void)
  * Address:	801B7AF8
  * Size:	000004
  */
-void doSimulation__Q24Game7MapRoomFf(void)
+void Game::MapRoom::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2118,7 +2118,7 @@ void doSimulation__Q24Game7MapRoomFf(void)
  * Address:	801B7AFC
  * Size:	000004
  */
-void doDirectDraw__Q24Game7MapRoomFR8Graphics(void)
+void Game::MapRoom::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2131,7 +2131,7 @@ void doDirectDraw__Q24Game7MapRoomFR8Graphics(void)
  * Address:	801B7B00
  * Size:	0001E8
  */
-void __ct__Q24Game10RoomMapMgrFPQ34Game4Cave8CaveInfo(void)
+void Game::RoomMapMgr::__ct( (Game::Cave::CaveInfo *))
 {
 /*
 .loc_0x0:
@@ -2325,7 +2325,7 @@ void MonoObjectMgr<Game::MapRoom>::~MonoObjectMgr()
  * Address:	801B7D88
  * Size:	0001FC
  */
-void getMapRoom__Q24Game10RoomMapMgrFs(void)
+void Game::RoomMapMgr::getMapRoom( (short))
 {
 /*
 .loc_0x0:
@@ -2517,7 +2517,7 @@ void Iterator<Game::MapRoom>::isDone()
  * Address:	801B7FD0
  * Size:	00000C
  */
-void __ct__Q24Game9CaveVRBoxFv(void)
+void Game::CaveVRBox::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2532,7 +2532,7 @@ void __ct__Q24Game9CaveVRBoxFv(void)
  * Address:	........
  * Size:	000158
  */
-void create__Q24Game9CaveVRBoxFPc(void)
+void Game::CaveVRBox::create( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -2542,7 +2542,7 @@ void create__Q24Game9CaveVRBoxFPc(void)
  * Address:	801B7FDC
  * Size:	000A48
  */
-void createRandomMap__Q24Game10RoomMapMgrFiPQ34Game4Cave11EditMapUnit(void)
+void Game::RoomMapMgr::createRandomMap( (int, Game::Cave::EditMapUnit *))
 {
 /*
 .loc_0x0:
@@ -3306,7 +3306,7 @@ void createRandomMap__Q24Game10RoomMapMgrFiPQ34Game4Cave11EditMapUnit(void)
  * Address:	801B8A24
  * Size:	0000EC
  */
-void __dt__Q24Game16MapUnitInterfaceFv(void)
+void Game::MapUnitInterface::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3389,7 +3389,7 @@ void __dt__Q24Game16MapUnitInterfaceFv(void)
  * Address:	801B8B10
  * Size:	00003C
  */
-void __ct__Q24Game16MapUnitInterfaceFv(void)
+void Game::MapUnitInterface::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3416,7 +3416,7 @@ void __ct__Q24Game16MapUnitInterfaceFv(void)
  * Address:	801B8B4C
  * Size:	0000DC
  */
-void __dt__Q24Game9PartsViewFv(void)
+void Game::PartsView::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3493,7 +3493,7 @@ void __dt__Q24Game9PartsViewFv(void)
  * Address:	801B8C28
  * Size:	000224
  */
-void completeUnitData__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::completeUnitData(void)
 {
 /*
 .loc_0x0:
@@ -3660,7 +3660,7 @@ void completeUnitData__Q24Game10RoomMapMgrFv(void)
  * Address:	801B8E4C
  * Size:	000234
  */
-void setupJUTTextures__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::setupJUTTextures(void)
 {
 /*
 .loc_0x0:
@@ -3831,7 +3831,7 @@ void setupJUTTextures__Q24Game10RoomMapMgrFv(void)
  * Address:	801B9080
  * Size:	0002BC
  */
-void useUnit__Q24Game10RoomMapMgrFPc(void)
+void Game::RoomMapMgr::useUnit( (char *))
 {
 /*
 .loc_0x0:
@@ -4050,7 +4050,7 @@ void useUnit__Q24Game10RoomMapMgrFPc(void)
  * Address:	801B933C
  * Size:	000210
  */
-void getTexture__Q24Game10RoomMapMgrFPc(void)
+void Game::RoomMapMgr::getTexture( (char *))
 {
 /*
 .loc_0x0:
@@ -4214,7 +4214,7 @@ void getTexture__Q24Game10RoomMapMgrFPc(void)
  * Address:	801B954C
  * Size:	0001F4
  */
-void allocRooms__Q24Game10RoomMapMgrFi(void)
+void Game::RoomMapMgr::allocRooms( (int))
 {
 /*
 .loc_0x0:
@@ -4367,7 +4367,7 @@ void allocRooms__Q24Game10RoomMapMgrFi(void)
  * Address:	801B9740
  * Size:	000050
  */
-void makeRoom__Q24Game10RoomMapMgrFPcffiiPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo(void)
+void Game::RoomMapMgr::makeRoom( (char *, float, float, int, int, Game::RoomLink *, Game::ObjectLayoutInfo *))
 {
 /*
 .loc_0x0:
@@ -4399,7 +4399,7 @@ void makeRoom__Q24Game10RoomMapMgrFPcffiiPQ24Game8RoomLinkPQ24Game16ObjectLayout
  * Address:	801B9790
  * Size:	0003B4
  */
-void placeObjects__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::placeObjects(void)
 {
 /*
 .loc_0x0:
@@ -4674,7 +4674,7 @@ void placeObjects__Q24Game10RoomMapMgrFv(void)
  * Address:	801B9B44
  * Size:	000024
  */
-void getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d(void)
+void Game::RoomMapMgr::getBoundBox2d( (BoundBox2d &))
 {
 /*
 .loc_0x0:
@@ -4695,7 +4695,7 @@ void getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d(void)
  * Address:	801B9B68
  * Size:	000034
  */
-void getBoundBox__Q24Game10RoomMapMgrFR8BoundBox(void)
+void Game::RoomMapMgr::getBoundBox( (BoundBox &))
 {
 /*
 .loc_0x0:
@@ -4720,7 +4720,7 @@ void getBoundBox__Q24Game10RoomMapMgrFR8BoundBox(void)
  * Address:	801B9B9C
  * Size:	000004
  */
-void drawCollision__Q24Game10RoomMapMgrFR8GraphicsRQ23Sys6Sphere(void)
+void Game::RoomMapMgr::drawCollision( (Graphics &, Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -4733,7 +4733,7 @@ void drawCollision__Q24Game10RoomMapMgrFR8GraphicsRQ23Sys6Sphere(void)
  * Address:	801B9BA0
  * Size:	0001F0
  */
-void traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof(void)
+void Game::RoomMapMgr::traceMove( (Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -4885,7 +4885,7 @@ void traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof(void)
  * Address:	801B9D90
  * Size:	000024
  */
-void hasHiddenCollision__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::hasHiddenCollision(void)
 {
 /*
 .loc_0x0:
@@ -4906,7 +4906,7 @@ void hasHiddenCollision__Q24Game10RoomMapMgrFv(void)
  * Address:	801B9DB4
  * Size:	00008C
  */
-void constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere(void)
+void Game::RoomMapMgr::constraintBoundBox( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -4959,7 +4959,7 @@ void constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere(void)
  * Address:	801B9E40
  * Size:	0001F4
  */
-void entryToMapRoomCellMgr__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::entryToMapRoomCellMgr(void)
 {
 /*
 .loc_0x0:
@@ -5114,7 +5114,7 @@ void entryToMapRoomCellMgr__Q24Game10RoomMapMgrFv(void)
  * Address:	801BA034
  * Size:	000128
  */
-void findRoomIndex__Q24Game10RoomMapMgrFRQ23Sys6Sphere(void)
+void Game::RoomMapMgr::findRoomIndex( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -5208,7 +5208,7 @@ void findRoomIndex__Q24Game10RoomMapMgrFRQ23Sys6Sphere(void)
  * Address:	........
  * Size:	00003C
  */
-void createGlobalCollision__Q24Game7MapRoomFv(void)
+void Game::MapRoom::createGlobalCollision(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5218,7 +5218,7 @@ void createGlobalCollision__Q24Game7MapRoomFv(void)
  * Address:	801BA15C
  * Size:	0009FC
  */
-void createGlobalCollision__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::createGlobalCollision(void)
 {
 /*
 .loc_0x0:
@@ -6125,7 +6125,7 @@ void ArrayContainer<Sys::Triangle>::alloc(int)
  * Address:	801BAD60
  * Size:	000328
  */
-void traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof(void)
+void Game::RoomMapMgr::traceMove_new( (Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -6357,7 +6357,7 @@ void traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof(void)
  * Address:	801BB088
  * Size:	000740
  */
-void traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof(void)
+void Game::RoomMapMgr::traceMove_original( (Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -6891,7 +6891,7 @@ void traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof(void)
  * Address:	801BB7C8
  * Size:	0004F0
  */
-void findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo(void)
+void Game::RoomMapMgr::findRayIntersection( (Sys::RayIntersectInfo &))
 {
 /*
 .loc_0x0:
@@ -7298,7 +7298,7 @@ void getMinY__Q24Game10RoomMapMgrFR10Vector3<float>(void)
  * Address:	801BBD44
  * Size:	000770
  */
-void createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg(void)
+void Game::RoomMapMgr::createTriangles( (Sys::CreateTriangleArg &))
 {
 /*
 .loc_0x0:
@@ -7834,7 +7834,7 @@ void createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg(void)
  * Address:	801BC4B4
  * Size:	000460
  */
-void getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo(void)
+void Game::RoomMapMgr::getCurrTri( (Game::CurrTriInfo &))
 {
 /*
 .loc_0x0:
@@ -8160,7 +8160,7 @@ void getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo(void)
  * Address:	801BC914
  * Size:	0016B8
  */
-void makeOneRoom__Q24Game10RoomMapMgrFfffPcsPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo(void)
+void Game::RoomMapMgr::makeOneRoom( (float, float, float, char *, short, Game::RoomLink *, Game::ObjectLayoutInfo *))
 {
 /*
 .loc_0x0:
@@ -9854,7 +9854,7 @@ void makeOneRoom__Q24Game10RoomMapMgrFfffPcsPQ24Game8RoomLinkPQ24Game16ObjectLay
  * Address:	801BDFCC
  * Size:	0001F4
  */
-void deleteTemp__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::deleteTemp(void)
 {
 /*
 .loc_0x0:
@@ -10007,7 +10007,7 @@ void deleteTemp__Q24Game10RoomMapMgrFv(void)
  * Address:	801BE1C0
  * Size:	000094
  */
-void getMUI__Q24Game10RoomMapMgrFPQ24Game7MapUnit(void)
+void Game::RoomMapMgr::getMUI( (Game::MapUnit *))
 {
 /*
 .loc_0x0:
@@ -10064,7 +10064,7 @@ void getMUI__Q24Game10RoomMapMgrFPQ24Game7MapUnit(void)
  * Address:	801BE254
  * Size:	000060
  */
-void doAnimation__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -10102,7 +10102,7 @@ void doAnimation__Q24Game10RoomMapMgrFv(void)
  * Address:	801BE2B4
  * Size:	0000DC
  */
-void doEntry__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -10175,7 +10175,7 @@ void doEntry__Q24Game10RoomMapMgrFv(void)
  * Address:	801BE390
  * Size:	00007C
  */
-void doSetView__Q24Game10RoomMapMgrFi(void)
+void Game::RoomMapMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -10222,7 +10222,7 @@ void doSetView__Q24Game10RoomMapMgrFi(void)
  * Address:	801BE40C
  * Size:	000068
  */
-void doViewCalc__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -10264,7 +10264,7 @@ void doViewCalc__Q24Game10RoomMapMgrFv(void)
  * Address:	801BE474
  * Size:	000004
  */
-void doSimulation__Q24Game10RoomMapMgrFf(void)
+void Game::RoomMapMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -10277,7 +10277,7 @@ void doSimulation__Q24Game10RoomMapMgrFf(void)
  * Address:	801BE478
  * Size:	000210
  */
-void doDirectDraw__Q24Game10RoomMapMgrFR8Graphics(void)
+void Game::RoomMapMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -10458,7 +10458,7 @@ void getStartPosition__Q24Game10RoomMapMgrFR10Vector3<float>i(void)
  * Address:	801BE6AC
  * Size:	000008
  */
-void getDemoMatrix__Q24Game10RoomMapMgrFv(void)
+void Game::RoomMapMgr::getDemoMatrix(void)
 {
 /*
 .loc_0x0:
@@ -10472,7 +10472,7 @@ void getDemoMatrix__Q24Game10RoomMapMgrFv(void)
  * Address:	801BE6B4
  * Size:	000084
  */
-void __dt__Q24Game4DoorFv(void)
+void Game::Door::__dt(void)
 {
 /*
 .loc_0x0:
@@ -10521,7 +10521,7 @@ void __dt__Q24Game4DoorFv(void)
  * Address:	801BE738
  * Size:	000004
  */
-void constructor__Q24Game9PartsViewFv(void)
+void Game::PartsView::constructor(void)
 {
 /*
 .loc_0x0:
@@ -10534,7 +10534,7 @@ void constructor__Q24Game9PartsViewFv(void)
  * Address:	801BE73C
  * Size:	000004
  */
-void doSimulation__Q24Game9PartsViewFf(void)
+void Game::PartsView::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -10819,7 +10819,7 @@ void ObjectMgr<Game::MapRoom>::~ObjectMgr()
  * Address:	801BEA30
  * Size:	000024
  */
-void getBoundingSphere__Q24Game7MapRoomFRQ23Sys6Sphere(void)
+void Game::MapRoom::getBoundingSphere( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -10840,7 +10840,7 @@ void getBoundingSphere__Q24Game7MapRoomFRQ23Sys6Sphere(void)
  * Address:	801BEA54
  * Size:	000008
  */
-void getTypeName__Q24Game7MapRoomFv(void)
+void Game::MapRoom::getTypeName(void)
 {
 /*
 .loc_0x0:
@@ -10854,7 +10854,7 @@ void getTypeName__Q24Game7MapRoomFv(void)
  * Address:	801BEA5C
  * Size:	00000C
  */
-void getObjType__Q24Game7MapRoomFv(void)
+void Game::MapRoom::getObjType(void)
 {
 /*
 .loc_0x0:
@@ -10869,7 +10869,7 @@ void getObjType__Q24Game7MapRoomFv(void)
  * Address:	801BEA68
  * Size:	000008
  */
-void collisionUpdatable__Q24Game7MapRoomFv(void)
+void Game::MapRoom::collisionUpdatable(void)
 {
 /*
 .loc_0x0:
@@ -10883,7 +10883,7 @@ void collisionUpdatable__Q24Game7MapRoomFv(void)
  * Address:	801BEA70
  * Size:	00001C
  */
-void getPosition__Q24Game7MapRoomFv(void)
+void Game::MapRoom::getPosition(void)
 {
 /*
 .loc_0x0:
@@ -10902,7 +10902,7 @@ void getPosition__Q24Game7MapRoomFv(void)
  * Address:	801BEA8C
  * Size:	000004
  */
-void constructor__Q24Game7MapRoomFv(void)
+void Game::MapRoom::constructor(void)
 {
 /*
 .loc_0x0:
@@ -10915,7 +10915,7 @@ void constructor__Q24Game7MapRoomFv(void)
  * Address:	801BEA90
  * Size:	00000C
  */
-void getName__Q24Game15ItemGateInitArgFv(void)
+void Game::ItemGateInitArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -10930,7 +10930,7 @@ void getName__Q24Game15ItemGateInitArgFv(void)
  * Address:	801BEA9C
  * Size:	00000C
  */
-void getName__Q34Game15ItemBigFountain7InitArgFv(void)
+void Game::ItemBigFountain::InitArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -10945,7 +10945,7 @@ void getName__Q34Game15ItemBigFountain7InitArgFv(void)
  * Address:	801BEAA8
  * Size:	00000C
  */
-void getName__Q34Game8ItemHole7InitArgFv(void)
+void Game::ItemHole::InitArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -11138,7 +11138,7 @@ void Iterator<Game::MapUnit>::first()
  * Address:	801BECAC
  * Size:	0000E0
  */
-void __dt__Q24Game10MapUnitMgrFv(void)
+void Game::MapUnitMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -11212,7 +11212,7 @@ void __dt__Q24Game10MapUnitMgrFv(void)
  * Address:	801BED8C
  * Size:	000004
  */
-void constructor__Q24Game7MapUnitFv(void)
+void Game::MapUnit::constructor(void)
 {
 /*
 .loc_0x0:
@@ -11225,7 +11225,7 @@ void constructor__Q24Game7MapUnitFv(void)
  * Address:	801BED90
  * Size:	000004
  */
-void doAnimation__Q24Game7MapUnitFv(void)
+void Game::MapUnit::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -11238,7 +11238,7 @@ void doAnimation__Q24Game7MapUnitFv(void)
  * Address:	801BED94
  * Size:	000004
  */
-void doEntry__Q24Game7MapUnitFv(void)
+void Game::MapUnit::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -11251,7 +11251,7 @@ void doEntry__Q24Game7MapUnitFv(void)
  * Address:	801BED98
  * Size:	000004
  */
-void doSetView__Q24Game7MapUnitFi(void)
+void Game::MapUnit::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -11264,7 +11264,7 @@ void doSetView__Q24Game7MapUnitFi(void)
  * Address:	801BED9C
  * Size:	000004
  */
-void doViewCalc__Q24Game7MapUnitFv(void)
+void Game::MapUnit::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -11277,7 +11277,7 @@ void doViewCalc__Q24Game7MapUnitFv(void)
  * Address:	801BEDA0
  * Size:	000004
  */
-void doSimulation__Q24Game7MapUnitFf(void)
+void Game::MapUnit::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -11290,7 +11290,7 @@ void doSimulation__Q24Game7MapUnitFf(void)
  * Address:	801BEDA4
  * Size:	000004
  */
-void doDirectDraw__Q24Game7MapUnitFR8Graphics(void)
+void Game::MapUnit::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -11303,7 +11303,7 @@ void doDirectDraw__Q24Game7MapUnitFR8Graphics(void)
  * Address:	801BEDA8
  * Size:	000060
  */
-void __dt__Q24Game8DoorLinkFv(void)
+void Game::DoorLink::__dt(void)
 {
 /*
 .loc_0x0:
@@ -14366,7 +14366,7 @@ void ObjectMgr<Game::MapRoom>::@28@doAnimation()
  * Address:	801C0D6C
  * Size:	000014
  */
-void @280@4@frozenable__Q24Game6MapMgrFv(void)
+void @280@4@Game::MapMgr::frozenable(void)
 {
 /*
 .loc_0x0:
@@ -14383,7 +14383,7 @@ void @280@4@frozenable__Q24Game6MapMgrFv(void)
  * Address:	801C0D80
  * Size:	000014
  */
-void @280@4@doDirectDraw__Q24Game10RoomMapMgrFR8Graphics(void)
+void @280@4@Game::RoomMapMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -14400,7 +14400,7 @@ void @280@4@doDirectDraw__Q24Game10RoomMapMgrFR8Graphics(void)
  * Address:	801C0D94
  * Size:	000014
  */
-void @280@4@doSimulation__Q24Game10RoomMapMgrFf(void)
+void @280@4@Game::RoomMapMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -14417,7 +14417,7 @@ void @280@4@doSimulation__Q24Game10RoomMapMgrFf(void)
  * Address:	801C0DA8
  * Size:	000014
  */
-void @280@4@doViewCalc__Q24Game10RoomMapMgrFv(void)
+void @280@4@Game::RoomMapMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -14434,7 +14434,7 @@ void @280@4@doViewCalc__Q24Game10RoomMapMgrFv(void)
  * Address:	801C0DBC
  * Size:	000014
  */
-void @280@4@doSetView__Q24Game10RoomMapMgrFi(void)
+void @280@4@Game::RoomMapMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -14451,7 +14451,7 @@ void @280@4@doSetView__Q24Game10RoomMapMgrFi(void)
  * Address:	801C0DD0
  * Size:	000014
  */
-void @280@4@doEntry__Q24Game10RoomMapMgrFv(void)
+void @280@4@Game::RoomMapMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -14468,7 +14468,7 @@ void @280@4@doEntry__Q24Game10RoomMapMgrFv(void)
  * Address:	801C0DE4
  * Size:	000014
  */
-void @280@4@doAnimation__Q24Game10RoomMapMgrFv(void)
+void @280@4@Game::RoomMapMgr::doAnimation(void)
 {
 /*
 .loc_0x0:

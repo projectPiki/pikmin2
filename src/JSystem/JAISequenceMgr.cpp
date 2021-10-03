@@ -5,7 +5,7 @@
  * Address:	800B0944
  * Size:	000488
  */
-void init__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -327,7 +327,7 @@ void init__Q27JAInter11SequenceMgrFv(void)
  * Address:	800B0DCC
  * Size:	000020
  */
-void __ct__Q27JAInter7MuteBitFv(void)
+void JAInter::MuteBit::__ct(void)
 {
 /*
 .loc_0x0:
@@ -347,7 +347,7 @@ void __ct__Q27JAInter7MuteBitFv(void)
  * Address:	800B0DEC
  * Size:	00012C
  */
-void __ct__Q27JAInter13SeqUpdateDataFv(void)
+void JAInter::SeqUpdateData::__ct(void)
 {
 /*
 .loc_0x0:
@@ -434,7 +434,7 @@ void __ct__Q27JAInter13SeqUpdateDataFv(void)
  * Address:	800B0F18
  * Size:	000068
  */
-void __dt__Q27JAInter15PlayerParameterFv(void)
+void JAInter::PlayerParameter::__dt(void)
 {
 /*
 .loc_0x0:
@@ -476,7 +476,7 @@ void __dt__Q27JAInter15PlayerParameterFv(void)
  * Address:	800B0F80
  * Size:	000050
  */
-void __ct__Q27JAInter15PlayerParameterFv(void)
+void JAInter::PlayerParameter::__ct(void)
 {
 /*
 .loc_0x0:
@@ -556,7 +556,7 @@ void JSULink<JASPortCmd>::~JSULink()
  * Address:	800B1028
  * Size:	00006C
  */
-void getArchiveName__Q27JAInter11SequenceMgrFPc(void)
+void JAInter::SequenceMgr::getArchiveName( (char *))
 {
 /*
 .loc_0x0:
@@ -597,7 +597,7 @@ void getArchiveName__Q27JAInter11SequenceMgrFPc(void)
  * Address:	800B1094
  * Size:	000008
  */
-void setArchivePointer__Q27JAInter11SequenceMgrFP10JKRArchive(void)
+void JAInter::SequenceMgr::setArchivePointer( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -611,7 +611,7 @@ void setArchivePointer__Q27JAInter11SequenceMgrFP10JKRArchive(void)
  * Address:	800B109C
  * Size:	000008
  */
-void getArchivePointer__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::getArchivePointer(void)
 {
 /*
 .loc_0x0:
@@ -625,7 +625,7 @@ void getArchivePointer__Q27JAInter11SequenceMgrFv(void)
  * Address:	800B10A4
  * Size:	000008
  */
-void setCustomHeapCallback__Q27JAInter11SequenceMgrFPFUlUsP11JAISequence_Q37JAInter11SequenceMgr14CustomHeapInfo(void)
+void JAInter::SequenceMgr::setCustomHeapCallback( (JAInter::SequenceMgr::CustomHeapInfo (*)(unsigned long, unsigned short, JAISequence *)))
 {
 /*
 .loc_0x0:
@@ -639,7 +639,7 @@ void setCustomHeapCallback__Q27JAInter11SequenceMgrFPFUlUsP11JAISequence_Q37JAIn
  * Address:	800B10AC
  * Size:	000038
  */
-void processGFrameSequence__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::processGFrameSequence(void)
 {
 /*
 .loc_0x0:
@@ -667,7 +667,7 @@ void processGFrameSequence__Q27JAInter11SequenceMgrFv(void)
  * Address:	800B10E4
  * Size:	000430
  */
-void checkEntriedSeq__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::checkEntriedSeq(void)
 {
 /*
 .loc_0x0:
@@ -997,7 +997,7 @@ void checkEntriedSeq__Q27JAInter11SequenceMgrFv(void)
  * Address:	800B1514
  * Size:	0000B8
  */
-void checkFadeoutSeq__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::checkFadeoutSeq(void)
 {
 /*
 .loc_0x0:
@@ -1081,7 +1081,7 @@ void JAISequence::getVolume(unsigned char)
  * Address:	800B15EC
  * Size:	0000A4
  */
-void checkStoppedSeq__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::checkStoppedSeq(void)
 {
 /*
 .loc_0x0:
@@ -1142,7 +1142,7 @@ void checkStoppedSeq__Q27JAInter11SequenceMgrFv(void)
  * Address:	800B1690
  * Size:	0000EC
  */
-void checkPlayingSeq__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::checkPlayingSeq(void)
 {
 /*
 .loc_0x0:
@@ -1227,7 +1227,7 @@ void checkPlayingSeq__Q27JAInter11SequenceMgrFv(void)
  * Address:	800B177C
  * Size:	0000A0
  */
-void checkStartedSeq__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::checkStartedSeq(void)
 {
 /*
 .loc_0x0:
@@ -1285,7 +1285,7 @@ void checkStartedSeq__Q27JAInter11SequenceMgrFv(void)
  * Address:	800B181C
  * Size:	000224
  */
-void checkReadSeq__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::checkReadSeq(void)
 {
 /*
 .loc_0x0:
@@ -1448,7 +1448,7 @@ void checkReadSeq__Q27JAInter11SequenceMgrFv(void)
  * Address:	800B1A40
  * Size:	0000D8
  */
-void checkSeqWave__Q27JAInter11SequenceMgrFv(void)
+void JAInter::SequenceMgr::checkSeqWave(void)
 {
 /*
 .loc_0x0:
@@ -1524,7 +1524,7 @@ void checkSeqWave__Q27JAInter11SequenceMgrFv(void)
  * Address:	........
  * Size:	000138
  */
-void checkPlayingSeqUpdateMultiplication__Q27JAInter11SequenceMgrFUlUcUlPQ27JAInter11MoveParaSetPUlUcPf(void)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication( (unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet *, unsigned long *, unsigned char, float *))
 {
 	// UNUSED FUNCTION
 }
@@ -1534,7 +1534,7 @@ void checkPlayingSeqUpdateMultiplication__Q27JAInter11SequenceMgrFUlUcUlPQ27JAIn
  * Address:	........
  * Size:	000178
  */
-void checkPlayingSeqUpdateAddition__Q27JAInter11SequenceMgrFUlUcUlPQ27JAInter11MoveParaSetPUlUcPff(void)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition( (unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet *, unsigned long *, unsigned char, float *, float))
 {
 	// UNUSED FUNCTION
 }
@@ -1544,7 +1544,7 @@ void checkPlayingSeqUpdateAddition__Q27JAInter11SequenceMgrFUlUcUlPQ27JAInter11M
  * Address:	........
  * Size:	000118
  */
-void checkPlayingSeqUpdateTrack__Q27JAInter11SequenceMgrFUlUlPQ27JAInter11MoveParaSetPUlUcPf(void)
+void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack( (unsigned long, unsigned long, JAInter::MoveParaSet *, unsigned long *, unsigned char, float *))
 {
 	// UNUSED FUNCTION
 }
@@ -1554,7 +1554,7 @@ void checkPlayingSeqUpdateTrack__Q27JAInter11SequenceMgrFUlUlPQ27JAInter11MovePa
  * Address:	800B1B18
  * Size:	001078
  */
-void checkPlayingSeqTrack__Q27JAInter11SequenceMgrFUl(void)
+void JAInter::SequenceMgr::checkPlayingSeqTrack( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -2866,7 +2866,7 @@ void JAISequence::setPan(float, unsigned long, unsigned char)
  * Address:	800B2BE8
  * Size:	000130
  */
-void stopSeq__Q27JAInter11SequenceMgrFP11JAISequence(void)
+void JAInter::SequenceMgr::stopSeq( (JAISequence *))
 {
 /*
 .loc_0x0:
@@ -2966,7 +2966,7 @@ void stopSeq__Q27JAInter11SequenceMgrFP11JAISequence(void)
  * Address:	800B2D18
  * Size:	0000E4
  */
-void checkDvdLoadArc__Q27JAInter11SequenceMgrFUlUl(void)
+void JAInter::SequenceMgr::checkDvdLoadArc( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -3045,7 +3045,7 @@ void checkDvdLoadArc__Q27JAInter11SequenceMgrFUlUl(void)
  * Address:	800B2DFC
  * Size:	00009C
  */
-void checkCustomDvdLoadArc__Q27JAInter11SequenceMgrFUlUl(void)
+void JAInter::SequenceMgr::checkCustomDvdLoadArc( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -3100,7 +3100,7 @@ void checkCustomDvdLoadArc__Q27JAInter11SequenceMgrFUlUl(void)
  * Address:	........
  * Size:	00003C
  */
-void checkCustomDvdPreloadArc__Q27JAInter11SequenceMgrFUlUl(void)
+void JAInter::SequenceMgr::checkCustomDvdPreloadArc( (unsigned long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -3110,7 +3110,7 @@ void checkCustomDvdPreloadArc__Q27JAInter11SequenceMgrFUlUl(void)
  * Address:	800B2E98
  * Size:	000430
  */
-void storeSeqBuffer__Q27JAInter11SequenceMgrFPP11JAISequencePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo(void)
+void JAInter::SequenceMgr::storeSeqBuffer( (JAISequence **, JAInter::Actor *, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo *))
 {
 /*
 .loc_0x0:
@@ -3442,7 +3442,7 @@ void storeSeqBuffer__Q27JAInter11SequenceMgrFPP11JAISequencePQ27JAInter5ActorUlU
  * Address:	800B32C8
  * Size:	000388
  */
-void init__Q27JAInter12SeqParameterFv(void)
+void JAInter::SeqParameter::init(void)
 {
 /*
 .loc_0x0:
@@ -3694,7 +3694,7 @@ void init__Q27JAInter12SeqParameterFv(void)
  * Address:	800B3650
  * Size:	0001D8
  */
-void releaseSeqBuffer__Q27JAInter11SequenceMgrFP11JAISequenceUl(void)
+void JAInter::SequenceMgr::releaseSeqBuffer( (JAISequence *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -3848,7 +3848,7 @@ void releaseSeqBuffer__Q27JAInter11SequenceMgrFP11JAISequenceUl(void)
  * Address:	........
  * Size:	0000A0
  */
-void stopPlayingSeq__Q27JAInter11SequenceMgrFUl(void)
+void JAInter::SequenceMgr::stopPlayingSeq( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -3858,7 +3858,7 @@ void stopPlayingSeq__Q27JAInter11SequenceMgrFUl(void)
  * Address:	........
  * Size:	00007C
  */
-void checkPlayingSoundTrack__Q27JAInter11SequenceMgrFUl(void)
+void JAInter::SequenceMgr::checkPlayingSoundTrack( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -3868,7 +3868,7 @@ void checkPlayingSoundTrack__Q27JAInter11SequenceMgrFUl(void)
  * Address:	800B3828
  * Size:	000010
  */
-void getPlayTrackInfo__Q27JAInter11SequenceMgrFUl(void)
+void JAInter::SequenceMgr::getPlayTrackInfo( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -3884,7 +3884,7 @@ void getPlayTrackInfo__Q27JAInter11SequenceMgrFUl(void)
  * Address:	........
  * Size:	0001B0
  */
-void loadArcSeqData__Q27JAInter11SequenceMgrFUlb(void)
+void JAInter::SequenceMgr::loadArcSeqData( (unsigned long, bool))
 {
 	// UNUSED FUNCTION
 }
@@ -3894,7 +3894,7 @@ void loadArcSeqData__Q27JAInter11SequenceMgrFUlb(void)
  * Address:	........
  * Size:	0000B0
  */
-void loadCustomArcSeqData__Q27JAInter11SequenceMgrFUsb(void)
+void JAInter::SequenceMgr::loadCustomArcSeqData( (unsigned short, bool))
 {
 	// UNUSED FUNCTION
 }

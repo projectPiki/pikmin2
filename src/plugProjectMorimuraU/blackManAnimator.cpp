@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803A5354
  * Size:	000008
  */
-void setAnimMgr__Q34Game8BlackMan14ProperAnimatorFPQ28SysShape7AnimMgr(void)
+void Game::BlackMan::ProperAnimator::setAnimMgr( (SysShape::AnimMgr *))
 {
 /*
 .loc_0x0:
@@ -29,7 +29,7 @@ void setAnimMgr__Q34Game8BlackMan14ProperAnimatorFPQ28SysShape7AnimMgr(void)
  * Address:	803A535C
  * Size:	000008
  */
-void getAnimator__Q34Game8BlackMan14ProperAnimatorFi(void)
+void Game::BlackMan::ProperAnimator::getAnimator( (int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void getAnimator__Q34Game8BlackMan14ProperAnimatorFi(void)
  * Address:	803A5364
  * Size:	00005C
  */
-void __dt__Q34Game8BlackMan14ProperAnimatorFv(void)
+void Game::BlackMan::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __dt__Q34Game8BlackMan14ProperAnimatorFv(void)
  * Address:	803A53C0
  * Size:	000008
  */
-void getAnimator__Q34Game8BlackMan14ProperAnimatorFv(void)
+void Game::BlackMan::ProperAnimator::getAnimator(void)
 {
 /*
 .loc_0x0:

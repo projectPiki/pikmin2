@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80410FE0
  * Size:	00009C
  */
-void clear__Q32kh6Screen12MailSaveDataFv(void)
+void kh::Screen::MailSaveData::clear(void)
 {
 /*
 .loc_0x0:
@@ -66,7 +66,7 @@ void clear__Q32kh6Screen12MailSaveDataFv(void)
  * Address:	8041107C
  * Size:	000088
  */
-void read__Q32kh6Screen12MailSaveDataFR6Stream(void)
+void kh::Screen::MailSaveData::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -116,7 +116,7 @@ void read__Q32kh6Screen12MailSaveDataFR6Stream(void)
  * Address:	80411104
  * Size:	000088
  */
-void write__Q32kh6Screen12MailSaveDataFR6Stream(void)
+void kh::Screen::MailSaveData::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void write__Q32kh6Screen12MailSaveDataFR6Stream(void)
  * Address:	8041118C
  * Size:	000028
  */
-void set_history__Q32kh6Screen12MailSaveDataFSc(void)
+void kh::Screen::MailSaveData::set_history( (signed char))
 {
 /*
 .loc_0x0:

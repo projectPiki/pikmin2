@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000088
  */
-void __ct__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q32kh6Screen13ObjFinalFloorFv(void)
  * Address:	80401D38
  * Size:	00021C
  */
-void doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive(void)
+void kh::Screen::ObjFinalFloor::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive(void)
  * Address:	80401F54
  * Size:	000020
  */
-void doUpdate__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -202,7 +202,7 @@ void doUpdate__Q32kh6Screen13ObjFinalFloorFv(void)
  * Address:	80401F74
  * Size:	0000DC
  */
-void doDraw__Q32kh6Screen13ObjFinalFloorFR8Graphics(void)
+void kh::Screen::ObjFinalFloor::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -273,7 +273,7 @@ void doDraw__Q32kh6Screen13ObjFinalFloorFR8Graphics(void)
  * Address:	80402050
  * Size:	000038
  */
-void doUpdateFadein__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -299,7 +299,7 @@ void doUpdateFadein__Q32kh6Screen13ObjFinalFloorFv(void)
  * Address:	80402088
  * Size:	0001F8
  */
-void doUpdateFadeout__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -451,7 +451,7 @@ void doUpdateFadeout__Q32kh6Screen13ObjFinalFloorFv(void)
  * Address:	80402280
  * Size:	000034
  */
-void doUpdateFadeoutFinish__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -476,7 +476,7 @@ void doUpdateFadeoutFinish__Q32kh6Screen13ObjFinalFloorFv(void)
  * Address:	804022B4
  * Size:	0001C8
  */
-void updateAnimation__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::updateAnimation(void)
 {
 /*
 .loc_0x0:
@@ -616,7 +616,7 @@ void updateAnimation__Q32kh6Screen13ObjFinalFloorFv(void)
  * Address:	8040247C
  * Size:	000040
  */
-void stopSound__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::stopSound(void)
 {
 /*
 .loc_0x0:
@@ -646,7 +646,7 @@ void stopSound__Q32kh6Screen13ObjFinalFloorFv(void)
  * Address:	804024BC
  * Size:	00015C
  */
-void restartSound__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::restartSound(void)
 {
 /*
 .loc_0x0:
@@ -757,7 +757,7 @@ void restartSound__Q32kh6Screen13ObjFinalFloorFv(void)
  * Address:	80402618
  * Size:	000040
  */
-void doConfirmSetScene__Q32kh6Screen15SceneFinalFloorFRQ26Screen11SetSceneArg(void)
+void kh::Screen::SceneFinalFloor::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -785,7 +785,7 @@ void doConfirmSetScene__Q32kh6Screen15SceneFinalFloorFRQ26Screen11SetSceneArg(vo
  * Address:	80402658
  * Size:	00000C
  */
-void getResName__Q32kh6Screen15SceneFinalFloorCFv(void)
+void kh::Screen::SceneFinalFloor::getResName( const
 {
 /*
 .loc_0x0:
@@ -800,7 +800,7 @@ void getResName__Q32kh6Screen15SceneFinalFloorCFv(void)
  * Address:	80402664
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32kh6Screen15SceneFinalFloorFv(void)
+void kh::Screen::SceneFinalFloor::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:
@@ -814,7 +814,7 @@ void isUseBackupSceneInfo__Q32kh6Screen15SceneFinalFloorFv(void)
  * Address:	8040266C
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen15SceneFinalFloorFv(void)
+void kh::Screen::SceneFinalFloor::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -828,7 +828,7 @@ void getSceneType__Q32kh6Screen15SceneFinalFloorFv(void)
  * Address:	80402674
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen15SceneFinalFloorFv(void)
+void kh::Screen::SceneFinalFloor::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -842,7 +842,7 @@ void getOwnerID__Q32kh6Screen15SceneFinalFloorFv(void)
  * Address:	8040267C
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen15SceneFinalFloorFv(void)
+void kh::Screen::SceneFinalFloor::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -859,7 +859,7 @@ void getMemberID__Q32kh6Screen15SceneFinalFloorFv(void)
  * Address:	80402690
  * Size:	0000BC
  */
-void doCreateObj__Q32kh6Screen15SceneFinalFloorFP10JKRArchive(void)
+void kh::Screen::SceneFinalFloor::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -920,7 +920,7 @@ void doCreateObj__Q32kh6Screen15SceneFinalFloorFP10JKRArchive(void)
  * Address:	8040274C
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen13ObjFinalFloorFv(void)
+void kh::Screen::ObjFinalFloor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1010,7 +1010,7 @@ void __sinit_khFinalFloor_cpp(void)
  * Address:	80402844
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen13ObjFinalFloorFv(void)
+void @24@kh::Screen::ObjFinalFloor::__dt(void)
 {
 /*
 .loc_0x0:

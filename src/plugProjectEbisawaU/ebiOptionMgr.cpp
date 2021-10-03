@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803CE8F8
  * Size:	0002D8
  */
-void init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMStateMachine::init( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -225,7 +225,7 @@ void init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr(void)
  * Address:	803CEBD0
  * Size:	00002C
  */
-void init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState::init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -248,7 +248,7 @@ void init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
  * Address:	803CEBFC
  * Size:	000004
  */
-void do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState::do_init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -261,7 +261,7 @@ void do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
  * Address:	803CEC00
  * Size:	00002C
  */
-void exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState::exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -284,7 +284,7 @@ void exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr(void)
  * Address:	803CEC2C
  * Size:	000004
  */
-void do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState::do_exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -297,7 +297,7 @@ void do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr(void)
  * Address:	803CEC30
  * Size:	000050
  */
-void do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState_ScreenOpen::do_init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -329,7 +329,7 @@ void do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8Sta
  * Address:	803CEC80
  * Size:	000064
  */
-void do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState_ScreenOpen::do_exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -392,7 +392,7 @@ void transit__Q24Game28FSMState<ebi::Option::TMgr>FPQ33ebi6Option4TMgriPQ24Game8
  * Address:	803CED14
  * Size:	00000C
  */
-void do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState_ScreenWait::do_init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -407,7 +407,7 @@ void do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8Sta
  * Address:	803CED20
  * Size:	000144
  */
-void do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState_ScreenWait::do_exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr(void)
  * Address:	803CEE64
  * Size:	00003C
  */
-void do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState_ScreenClose::do_init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -545,7 +545,7 @@ void do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8St
  * Address:	803CEEA0
  * Size:	00004C
  */
-void do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState_ScreenClose::do_exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -578,7 +578,7 @@ void do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr(void)
  * Address:	803CEEEC
  * Size:	000044
  */
-void do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState_WaitCloseForNoCard::do_init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -607,7 +607,7 @@ void do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24
  * Address:	803CEF30
  * Size:	000084
  */
-void do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState_WaitCloseForNoCard::do_exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -656,7 +656,7 @@ void do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr(voi
  * Address:	803CEFB4
  * Size:	0000B8
  */
-void do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState_WorldMapInfoWindow::do_init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -714,7 +714,7 @@ void do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24
  * Address:	803CF06C
  * Size:	0000A0
  */
-void do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState_WorldMapInfoWindow::do_exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -772,7 +772,7 @@ void do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr(voi
  * Address:	803CF10C
  * Size:	00000C
  */
-void do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState_LoadOption::do_init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -787,7 +787,7 @@ void do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8Sta
  * Address:	803CF118
  * Size:	0001A0
  */
-void do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState_LoadOption::do_exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -923,7 +923,7 @@ void do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr(void)
  * Address:	803CF2B8
  * Size:	00002C
  */
-void do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+void ebi::Option::FSMState_SaveMgr::do_init( (ebi::Option::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -946,7 +946,7 @@ void do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateA
  * Address:	803CF2E4
  * Size:	000100
  */
-void do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr(void)
+void ebi::Option::FSMState_SaveMgr::do_exec( (ebi::Option::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1034,7 +1034,7 @@ void do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr(void)
  * Address:	803CF3E4
  * Size:	0000C0
  */
-void __ct__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1119,7 +1119,7 @@ void start__Q24Game32StateMachine<ebi::Option::TMgr>FPQ33ebi6Option4TMgriPQ24Gam
  * Address:	803CF4D8
  * Size:	00030C
  */
-void __dt__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1342,7 +1342,7 @@ void __dt__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CF7E4
  * Size:	000090
  */
-void __dt__Q23ebi20E2DCallBack_PurupuruFv(void)
+void ebi::E2DCallBack_Purupuru::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1394,7 +1394,7 @@ void __dt__Q23ebi20E2DCallBack_PurupuruFv(void)
  * Address:	803CF874
  * Size:	00043C
  */
-void __ct__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1677,7 +1677,7 @@ void __ct__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CFCB0
  * Size:	000090
  */
-void __dt__Q23ebi24E2DCallBack_WindowCursorFv(void)
+void ebi::E2DCallBack_WindowCursor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1729,7 +1729,7 @@ void __dt__Q23ebi24E2DCallBack_WindowCursorFv(void)
  * Address:	803CFD40
  * Size:	00008C
  */
-void __ct__Q23ebi20E2DCallBack_PurupuruFv(void)
+void ebi::E2DCallBack_Purupuru::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1776,7 +1776,7 @@ void __ct__Q23ebi20E2DCallBack_PurupuruFv(void)
  * Address:	803CFDCC
  * Size:	000090
  */
-void __dt__Q23ebi22E2DCallBack_BlinkAlphaFv(void)
+void ebi::E2DCallBack_BlinkAlpha::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1828,7 +1828,7 @@ void __dt__Q23ebi22E2DCallBack_BlinkAlphaFv(void)
  * Address:	803CFE5C
  * Size:	000090
  */
-void __dt__Q23ebi26E2DCallBack_BlinkFontColorFv(void)
+void ebi::E2DCallBack_BlinkFontColor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1880,7 +1880,7 @@ void __dt__Q23ebi26E2DCallBack_BlinkFontColorFv(void)
  * Address:	803CFEEC
  * Size:	000018
  */
-void __ct__Q23ebi16E2DFullFontColorFv(void)
+void ebi::E2DFullFontColor::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1898,7 +1898,7 @@ void __ct__Q23ebi16E2DFullFontColorFv(void)
  * Address:	803CFF04
  * Size:	000090
  */
-void __dt__Q23ebi25E2DCallBack_CalcAnimationFv(void)
+void ebi::E2DCallBack_CalcAnimation::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1950,7 +1950,7 @@ void __dt__Q23ebi25E2DCallBack_CalcAnimationFv(void)
  * Address:	803CFF94
  * Size:	0000AC
  */
-void __dt__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2011,7 +2011,7 @@ void __dt__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D0040
  * Size:	000080
  */
-void __dt__Q23ebi16E2DCallBack_BaseFv(void)
+void ebi::E2DCallBack_Base::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2059,7 +2059,7 @@ void __dt__Q23ebi16E2DCallBack_BaseFv(void)
  * Address:	803D00C0
  * Size:	000088
  */
-void loadResource__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -2105,7 +2105,7 @@ void loadResource__Q33ebi6Option4TMgrFv(void)
  * Address:	803D0148
  * Size:	00004C
  */
-void setController__Q33ebi6Option4TMgrFP10Controller(void)
+void ebi::Option::TMgr::setController( (Controller *))
 {
 /*
 .loc_0x0:
@@ -2136,7 +2136,7 @@ void setController__Q33ebi6Option4TMgrFP10Controller(void)
  * Address:	803D0194
  * Size:	00003C
  */
-void start__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::start(void)
 {
 /*
 .loc_0x0:
@@ -2163,7 +2163,7 @@ void start__Q33ebi6Option4TMgrFv(void)
  * Address:	........
  * Size:	000064
  */
-void forceQuit__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::forceQuit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2173,7 +2173,7 @@ void forceQuit__Q33ebi6Option4TMgrFv(void)
  * Address:	803D01D0
  * Size:	000028
  */
-void isFinish__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::isFinish(void)
 {
 /*
 .loc_0x0:
@@ -2195,7 +2195,7 @@ void isFinish__Q33ebi6Option4TMgrFv(void)
  * Address:	803D01F8
  * Size:	00007C
  */
-void goEnd___Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::goEnd_(void)
 {
 /*
 .loc_0x0:
@@ -2238,7 +2238,7 @@ void goEnd___Q33ebi6Option4TMgrFv(void)
  * Address:	803D0274
  * Size:	000094
  */
-void update__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -2289,7 +2289,7 @@ void update__Q33ebi6Option4TMgrFv(void)
  * Address:	803D0308
  * Size:	000090
  */
-void draw__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::draw(void)
 {
 /*
 .loc_0x0:
@@ -2341,7 +2341,7 @@ void draw__Q33ebi6Option4TMgrFv(void)
  * Address:	........
  * Size:	000024
  */
-void showInfo__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::showInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2351,7 +2351,7 @@ void showInfo__Q33ebi6Option4TMgrFv(void)
  * Address:	803D0398
  * Size:	000058
  */
-void getStateID__Q33ebi6Option4TMgrFv(void)
+void ebi::Option::TMgr::getStateID(void)
 {
 /*
 .loc_0x0:
@@ -2387,7 +2387,7 @@ void getStateID__Q33ebi6Option4TMgrFv(void)
  * Address:	803D03F0
  * Size:	000050
  */
-void do_update__Q23ebi25E2DCallBack_CalcAnimationFv(void)
+void ebi::E2DCallBack_CalcAnimation::do_update(void)
 {
 /*
 .loc_0x0:
@@ -2421,7 +2421,7 @@ void do_update__Q23ebi25E2DCallBack_CalcAnimationFv(void)
  * Address:	803D0440
  * Size:	000038
  */
-void update__Q23ebi16E2DCallBack_BaseFv(void)
+void ebi::E2DCallBack_Base::update(void)
 {
 /*
 .loc_0x0:
@@ -2449,7 +2449,7 @@ void update__Q23ebi16E2DCallBack_BaseFv(void)
  * Address:	803D0478
  * Size:	000004
  */
-void do_update__Q23ebi16E2DCallBack_BaseFv(void)
+void ebi::E2DCallBack_Base::do_update(void)
 {
 /*
 .loc_0x0:
@@ -2462,7 +2462,7 @@ void do_update__Q23ebi16E2DCallBack_BaseFv(void)
  * Address:	803D047C
  * Size:	000038
  */
-void draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext(void)
+void ebi::E2DCallBack_Base::draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:
@@ -2490,7 +2490,7 @@ void draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext(void)
  * Address:	803D04B4
  * Size:	000004
  */
-void do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext(void)
+void ebi::E2DCallBack_Base::do_draw( (Graphics &, J2DGrafContext &))
 {
 /*
 .loc_0x0:

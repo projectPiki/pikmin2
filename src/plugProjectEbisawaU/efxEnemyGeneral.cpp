@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803C7834
  * Size:	000274
  */
-void create__Q23efx10TEnemyPiyoFPQ23efx3Arg(void)
+void efx::TEnemyPiyo::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void create__Q23efx10TEnemyPiyoFPQ23efx3Arg(void)
  * Address:	803C7AA8
  * Size:	0000DC
  */
-void create__Q23efx13TEnemyPoisonLFPQ23efx3Arg(void)
+void efx::TEnemyPoisonL::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -267,7 +267,7 @@ void create__Q23efx13TEnemyPoisonLFPQ23efx3Arg(void)
  * Address:	803C7B84
  * Size:	0000DC
  */
-void create__Q23efx13TEnemyPoisonSFPQ23efx3Arg(void)
+void efx::TEnemyPoisonS::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -340,7 +340,7 @@ void create__Q23efx13TEnemyPoisonSFPQ23efx3Arg(void)
  * Address:	803C7C60
  * Size:	0000DC
  */
-void create__Q23efx11TSekikaLOffFPQ23efx3Arg(void)
+void efx::TSekikaLOff::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -413,7 +413,7 @@ void create__Q23efx11TSekikaLOffFPQ23efx3Arg(void)
  * Address:	803C7D3C
  * Size:	0000DC
  */
-void create__Q23efx10TSekikaLOnFPQ23efx3Arg(void)
+void efx::TSekikaLOn::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -486,7 +486,7 @@ void create__Q23efx10TSekikaLOnFPQ23efx3Arg(void)
  * Address:	803C7E18
  * Size:	0000DC
  */
-void create__Q23efx11TSekikaSOffFPQ23efx3Arg(void)
+void efx::TSekikaSOff::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -559,7 +559,7 @@ void create__Q23efx11TSekikaSOffFPQ23efx3Arg(void)
  * Address:	803C7EF4
  * Size:	0000DC
  */
-void create__Q23efx10TSekikaSOnFPQ23efx3Arg(void)
+void efx::TSekikaSOn::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -632,7 +632,7 @@ void create__Q23efx10TSekikaSOnFPQ23efx3Arg(void)
  * Address:	803C7FD0
  * Size:	0000DC
  */
-void create__Q23efx19TEnemyDead_ArgScaleFPQ23efx3Arg(void)
+void efx::TEnemyDead_ArgScale::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -705,7 +705,7 @@ void create__Q23efx19TEnemyDead_ArgScaleFPQ23efx3Arg(void)
  * Address:	803C80AC
  * Size:	00024C
  */
-void create__Q23efx10TEnemyDeadFPQ23efx3Arg(void)
+void efx::TEnemyDead::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -874,7 +874,7 @@ void create__Q23efx10TEnemyDeadFPQ23efx3Arg(void)
  * Address:	803C82F8
  * Size:	000318
  */
-void create__Q23efx15TEnemyWalkSmokeFPQ23efx3Arg(void)
+void efx::TEnemyWalkSmoke::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1098,7 +1098,7 @@ void create__Q23efx15TEnemyWalkSmokeFPQ23efx3Arg(void)
  * Address:	803C8610
  * Size:	0000DC
  */
-void create__Q23efx16TEnemyWalkSmokeMFPQ23efx3Arg(void)
+void efx::TEnemyWalkSmokeM::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1171,7 +1171,7 @@ void create__Q23efx16TEnemyWalkSmokeMFPQ23efx3Arg(void)
  * Address:	803C86EC
  * Size:	000078
  */
-void create__Q23efx16TEnemyWalkSmokeSFPQ23efx3Arg(void)
+void efx::TEnemyWalkSmokeS::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1217,7 +1217,7 @@ void create__Q23efx16TEnemyWalkSmokeSFPQ23efx3Arg(void)
  * Address:	803C8764
  * Size:	000068
  */
-void create__Q23efx15TEnemyDownSmokeFPQ23efx3Arg(void)
+void efx::TEnemyDownSmoke::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1259,7 +1259,7 @@ void create__Q23efx15TEnemyDownSmokeFPQ23efx3Arg(void)
  * Address:	803C87CC
  * Size:	00010C
  */
-void create__Q23efx13TEnemyDownWatFPQ23efx3Arg(void)
+void efx::TEnemyDownWat::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1344,7 +1344,7 @@ void create__Q23efx13TEnemyDownWatFPQ23efx3Arg(void)
  * Address:	803C88D8
  * Size:	0000F4
  */
-void create__Q23efx10TEnemyDiveFPQ23efx3Arg(void)
+void efx::TEnemyDive::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1423,7 +1423,7 @@ void create__Q23efx10TEnemyDiveFPQ23efx3Arg(void)
  * Address:	803C89CC
  * Size:	0003B8
  */
-void __ct__Q23efx20TEnemyBombScaleTableFQ34Game11EnemyTypeID12EEnemyTypeID(void)
+void efx::TEnemyBombScaleTable::__ct( (Game::EnemyTypeID::EEnemyTypeID))
 {
 /*
 .loc_0x0:
@@ -1675,7 +1675,7 @@ void __ct__Q23efx20TEnemyBombScaleTableFQ34Game11EnemyTypeID12EEnemyTypeID(void)
  * Address:	803C8D84
  * Size:	0001EC
  */
-void create__Q23efx10TEnemyBombFPQ23efx3Arg(void)
+void efx::TEnemyBomb::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1822,7 +1822,7 @@ void create__Q23efx10TEnemyBombFPQ23efx3Arg(void)
  * Address:	803C8F70
  * Size:	000124
  */
-void create__Q23efx11TEnemyBombMFPQ23efx3Arg(void)
+void efx::TEnemyBombM::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1913,7 +1913,7 @@ void create__Q23efx11TEnemyBombMFPQ23efx3Arg(void)
  * Address:	803C9094
  * Size:	000124
  */
-void create__Q23efx11TEnemyBombSFPQ23efx3Arg(void)
+void efx::TEnemyBombS::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -2004,7 +2004,7 @@ void create__Q23efx11TEnemyBombSFPQ23efx3Arg(void)
  * Address:	803C91B8
  * Size:	0001A4
  */
-void create__Q23efx13TEnemyApsmokeFPQ23efx3Arg(void)
+void efx::TEnemyApsmoke::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -2133,7 +2133,7 @@ void create__Q23efx13TEnemyApsmokeFPQ23efx3Arg(void)
  * Address:	803C935C
  * Size:	0000DC
  */
-void create__Q23efx14TEnemyApsmokeMFPQ23efx3Arg(void)
+void efx::TEnemyApsmokeM::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -2206,7 +2206,7 @@ void create__Q23efx14TEnemyApsmokeMFPQ23efx3Arg(void)
  * Address:	803C9438
  * Size:	0000DC
  */
-void create__Q23efx14TEnemyApsmokeSFPQ23efx3Arg(void)
+void efx::TEnemyApsmokeS::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -2279,7 +2279,7 @@ void create__Q23efx14TEnemyApsmokeSFPQ23efx3Arg(void)
  * Address:	803C9514
  * Size:	0000DC
  */
-void create__Q23efx12TEnemyHamonMFPQ23efx3Arg(void)
+void efx::TEnemyHamonM::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -2352,7 +2352,7 @@ void create__Q23efx12TEnemyHamonMFPQ23efx3Arg(void)
  * Address:	803C95F0
  * Size:	0000DC
  */
-void create__Q23efx15TEnemyHamonMIndFPQ23efx3Arg(void)
+void efx::TEnemyHamonMInd::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -2425,7 +2425,7 @@ void create__Q23efx15TEnemyHamonMIndFPQ23efx3Arg(void)
  * Address:	803C96CC
  * Size:	0002FC
  */
-void create__Q23efx19TEnemyHamonChasePosFPQ23efx3Arg(void)
+void efx::TEnemyHamonChasePos::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -2734,7 +2734,7 @@ void update__Q23efx11TEnemyHamonFR10Vector3<float>(void)
  * Address:	803C9B00
  * Size:	0000A0
  */
-void create__Q23efx11TEnemyHamonFPQ23efx3Arg(void)
+void efx::TEnemyHamon::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -2788,7 +2788,7 @@ void create__Q23efx11TEnemyHamonFPQ23efx3Arg(void)
  * Address:	803C9BA0
  * Size:	000140
  */
-void getLimitDepth___Q23efx11TEnemyHamonFv(void)
+void efx::TEnemyHamon::getLimitDepth_(void)
 {
 /*
 .loc_0x0:
@@ -2880,7 +2880,7 @@ void getLimitDepth___Q23efx11TEnemyHamonFv(void)
  * Address:	803C9CE0
  * Size:	000004
  */
-void forceKill__Q23efx13TEnemyApsmokeFv(void)
+void efx::TEnemyApsmoke::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -2893,7 +2893,7 @@ void forceKill__Q23efx13TEnemyApsmokeFv(void)
  * Address:	803C9CE4
  * Size:	000004
  */
-void fade__Q23efx13TEnemyApsmokeFv(void)
+void efx::TEnemyApsmoke::fade(void)
 {
 /*
 .loc_0x0:
@@ -2906,7 +2906,7 @@ void fade__Q23efx13TEnemyApsmokeFv(void)
  * Address:	803C9CE8
  * Size:	000004
  */
-void forceKill__Q23efx10TEnemyBombFv(void)
+void efx::TEnemyBomb::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -2919,7 +2919,7 @@ void forceKill__Q23efx10TEnemyBombFv(void)
  * Address:	803C9CEC
  * Size:	000004
  */
-void fade__Q23efx10TEnemyBombFv(void)
+void efx::TEnemyBomb::fade(void)
 {
 /*
 .loc_0x0:
@@ -2932,7 +2932,7 @@ void fade__Q23efx10TEnemyBombFv(void)
  * Address:	803C9CF0
  * Size:	000004
  */
-void forceKill__Q23efx15TEnemyWalkSmokeFv(void)
+void efx::TEnemyWalkSmoke::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -2945,7 +2945,7 @@ void forceKill__Q23efx15TEnemyWalkSmokeFv(void)
  * Address:	803C9CF4
  * Size:	000004
  */
-void fade__Q23efx15TEnemyWalkSmokeFv(void)
+void efx::TEnemyWalkSmoke::fade(void)
 {
 /*
 .loc_0x0:
@@ -2958,7 +2958,7 @@ void fade__Q23efx15TEnemyWalkSmokeFv(void)
  * Address:	803C9CF8
  * Size:	000008
  */
-void @4@__dt__Q23efx10TEnemyPiyoFv(void)
+void @4@efx::TEnemyPiyo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2972,7 +2972,7 @@ void @4@__dt__Q23efx10TEnemyPiyoFv(void)
  * Address:	803C9D00
  * Size:	000008
  */
-void @4@__dt__Q23efx12TEnemyHamonMFv(void)
+void @4@efx::TEnemyHamonM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2986,7 +2986,7 @@ void @4@__dt__Q23efx12TEnemyHamonMFv(void)
  * Address:	803C9D08
  * Size:	000008
  */
-void @4@__dt__Q23efx15TEnemyHamonMIndFv(void)
+void @4@efx::TEnemyHamonMInd::__dt(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80172520
  * Size:	000014
  */
-void __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb(void)
+void Game::WayPointIterator::__ct( (Game::WayPoint *, bool))
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb(void)
  * Address:	........
  * Size:	00002C
  */
-void getNumLinks__Q24Game16WayPointIteratorFv(void)
+void Game::WayPointIterator::getNumLinks(void)
 {
 	// UNUSED FUNCTION
 }
@@ -42,7 +42,7 @@ void getNumLinks__Q24Game16WayPointIteratorFv(void)
  * Address:	80172534
  * Size:	000028
  */
-void first__Q24Game16WayPointIteratorFv(void)
+void Game::WayPointIterator::first(void)
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void first__Q24Game16WayPointIteratorFv(void)
  * Address:	8017255C
  * Size:	00002C
  */
-void next__Q24Game16WayPointIteratorFv(void)
+void Game::WayPointIterator::next(void)
 {
 /*
 .loc_0x0:
@@ -87,7 +87,7 @@ void next__Q24Game16WayPointIteratorFv(void)
  * Address:	80172588
  * Size:	00003C
  */
-void isDone__Q24Game16WayPointIteratorFv(void)
+void Game::WayPointIterator::isDone(void)
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void isDone__Q24Game16WayPointIteratorFv(void)
  * Address:	801725C4
  * Size:	000034
  */
-void __ml__Q24Game16WayPointIteratorFv(void)
+void Game::WayPointIterator::operator*(void)
 {
 /*
 .loc_0x0:
@@ -145,7 +145,7 @@ void __ml__Q24Game16WayPointIteratorFv(void)
  * Address:	801725F8
  * Size:	0000A8
  */
-void forward__Q24Game16WayPointIteratorFv(void)
+void Game::WayPointIterator::forward(void)
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void forward__Q24Game16WayPointIteratorFv(void)
  * Address:	801726A0
  * Size:	00006C
  */
-void __ct__Q24Game8WayPointFv(void)
+void Game::WayPoint::__ct(void)
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void __ct__Q24Game8WayPointFv(void)
  * Address:	8017270C
  * Size:	000060
  */
-void __dt__Q34Game8WayPoint8RoomListFv(void)
+void Game::WayPoint::RoomList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -284,7 +284,7 @@ void __dt__Q34Game8WayPoint8RoomListFv(void)
  * Address:	8017276C
  * Size:	000084
  */
-void __dt__Q24Game8WayPointFv(void)
+void Game::WayPoint::__dt(void)
 {
 /*
 .loc_0x0:
@@ -333,7 +333,7 @@ void __dt__Q24Game8WayPointFv(void)
  * Address:	........
  * Size:	000034
  */
-void includeRoom__Q24Game8WayPointFs(void)
+void Game::WayPoint::includeRoom( (short))
 {
 	// UNUSED FUNCTION
 }
@@ -343,7 +343,7 @@ void includeRoom__Q24Game8WayPointFs(void)
  * Address:	801727F0
  * Size:	000084
  */
-void reset__Q24Game8WayPointFv(void)
+void Game::WayPoint::reset(void)
 {
 /*
 .loc_0x0:
@@ -388,7 +388,7 @@ void reset__Q24Game8WayPointFv(void)
  * Address:	........
  * Size:	000078
  */
-void getLink__Q24Game8WayPointFi(void)
+void Game::WayPoint::getLink( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -398,7 +398,7 @@ void getLink__Q24Game8WayPointFi(void)
  * Address:	80172874
  * Size:	000028
  */
-void setOpen__Q24Game8WayPointFb(void)
+void Game::WayPoint::setOpen( (bool))
 {
 /*
 .loc_0x0:
@@ -422,7 +422,7 @@ void setOpen__Q24Game8WayPointFb(void)
  * Address:	8017289C
  * Size:	000028
  */
-void setWater__Q24Game8WayPointFb(void)
+void Game::WayPoint::setWater( (bool))
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void setWater__Q24Game8WayPointFb(void)
  * Address:	801728C4
  * Size:	000028
  */
-void setBridge__Q24Game8WayPointFb(void)
+void Game::WayPoint::setBridge( (bool))
 {
 /*
 .loc_0x0:
@@ -470,7 +470,7 @@ void setBridge__Q24Game8WayPointFb(void)
  * Address:	........
  * Size:	000028
  */
-void setVisit__Q24Game8WayPointFb(void)
+void Game::WayPoint::setVisit( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -480,7 +480,7 @@ void setVisit__Q24Game8WayPointFb(void)
  * Address:	........
  * Size:	000048
  */
-void setVsColor__Q24Game8WayPointFi(void)
+void Game::WayPoint::setVsColor( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -490,7 +490,7 @@ void setVsColor__Q24Game8WayPointFi(void)
  * Address:	........
  * Size:	000040
  */
-void hasLinkTo__Q24Game8WayPointFs(void)
+void Game::WayPoint::hasLinkTo( (short))
 {
 	// UNUSED FUNCTION
 }
@@ -500,7 +500,7 @@ void hasLinkTo__Q24Game8WayPointFs(void)
  * Address:	........
  * Size:	0000B4
  */
-void addLink__Q24Game8WayPointFs(void)
+void Game::WayPoint::addLink( (short))
 {
 	// UNUSED FUNCTION
 }
@@ -510,7 +510,7 @@ void addLink__Q24Game8WayPointFs(void)
  * Address:	........
  * Size:	0000A4
  */
-void killLink__Q24Game8WayPointFs(void)
+void Game::WayPoint::killLink( (short))
 {
 	// UNUSED FUNCTION
 }
@@ -520,7 +520,7 @@ void killLink__Q24Game8WayPointFs(void)
  * Address:	........
  * Size:	00012C
  */
-void write__Q24Game8WayPointFR6Stream(void)
+void Game::WayPoint::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -530,7 +530,7 @@ void write__Q24Game8WayPointFR6Stream(void)
  * Address:	........
  * Size:	0000A0
  */
-void read__Q24Game8WayPointFR6Stream(void)
+void Game::WayPoint::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -540,7 +540,7 @@ void read__Q24Game8WayPointFR6Stream(void)
  * Address:	801728EC
  * Size:	000004
  */
-void directDraw__Q24Game8WayPointFR8Graphics(void)
+void Game::WayPoint::directDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -553,7 +553,7 @@ void directDraw__Q24Game8WayPointFR8Graphics(void)
  * Address:	801728F0
  * Size:	000004
  */
-void directDraw_Simple__Q24Game8WayPointFR8Graphics(void)
+void Game::WayPoint::directDraw_Simple( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -566,7 +566,7 @@ void directDraw_Simple__Q24Game8WayPointFR8Graphics(void)
  * Address:	........
  * Size:	00010C
  */
-void createOffPlane__Q24Game8WayPointFR5PlanePQ24Game8WayPoint(void)
+void Game::WayPoint::createOffPlane( (Plane &, Game::WayPoint *))
 {
 	// UNUSED FUNCTION
 }
@@ -576,7 +576,7 @@ void createOffPlane__Q24Game8WayPointFR5PlanePQ24Game8WayPoint(void)
  * Address:	........
  * Size:	00006C
  */
-void __ct__Q24Game8RouteMgrFv(void)
+void Game::RouteMgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -630,7 +630,7 @@ void Container<Game::WayPoint>::~Container()
  * Address:	80172964
  * Size:	000080
  */
-void __dt__Q24Game8RouteMgrFv(void)
+void Game::RouteMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void __dt__Q24Game8RouteMgrFv(void)
  * Address:	801729E4
  * Size:	000148
  */
-void makeInvertLinks__Q24Game8RouteMgrFv(void)
+void Game::RouteMgr::makeInvertLinks(void)
 {
 /*
 .loc_0x0:
@@ -792,7 +792,7 @@ void makeInvertLinks__Q24Game8RouteMgrFv(void)
  * Address:	80172B2C
  * Size:	0001E4
  */
-void linkable__Q24Game8RouteMgrFPQ24Game8WayPointPQ24Game8WayPoint(void)
+void Game::RouteMgr::linkable( (Game::WayPoint *, Game::WayPoint *))
 {
 /*
 .loc_0x0:
@@ -935,7 +935,7 @@ void linkable__Q24Game8RouteMgrFPQ24Game8WayPointPQ24Game8WayPoint(void)
  * Address:	80172D10
  * Size:	000268
  */
-void refreshWater__Q24Game8RouteMgrFv(void)
+void Game::RouteMgr::refreshWater(void)
 {
 /*
 .loc_0x0:
@@ -1152,7 +1152,7 @@ void Iterator<Game::WayPoint>::isDone()
  * Address:	80172FC4
  * Size:	0003A8
  */
-void getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg(void)
+void Game::RouteMgr::getNearestWayPoint( (Game::WPSearchArg &))
 {
 /*
 .loc_0x0:
@@ -1426,7 +1426,7 @@ void getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg(void)
  * Address:	8017336C
  * Size:	00081C
  */
-void getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg(void)
+void Game::RouteMgr::getNearestEdge( (Game::WPEdgeSearchArg &))
 {
 /*
 .loc_0x0:
@@ -2089,7 +2089,7 @@ void getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg(void)
  * Address:	80173B88
  * Size:	0001E0
  */
-void setCloseAll__Q24Game8RouteMgrFv(void)
+void Game::RouteMgr::setCloseAll(void)
 {
 /*
 .loc_0x0:
@@ -2237,7 +2237,7 @@ void setCloseAll__Q24Game8RouteMgrFv(void)
  * Address:	80173D68
  * Size:	000210
  */
-void openRoom__Q24Game8RouteMgrFs(void)
+void Game::RouteMgr::openRoom( (short))
 {
 /*
 .loc_0x0:
@@ -2405,7 +2405,7 @@ void openRoom__Q24Game8RouteMgrFs(void)
  * Address:	........
  * Size:	00011C
  */
-void sonarCheck__Q24Game8RouteMgrFRQ34Game8RouteMgr8SonarArg(void)
+void Game::RouteMgr::sonarCheck( (Game::RouteMgr::SonarArg &))
 {
 	// UNUSED FUNCTION
 }
@@ -2415,7 +2415,7 @@ void sonarCheck__Q24Game8RouteMgrFRQ34Game8RouteMgr8SonarArg(void)
  * Address:	80173F78
  * Size:	00031C
  */
-void write__Q24Game8RouteMgrFR6Stream(void)
+void Game::RouteMgr::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2646,7 +2646,7 @@ void write__Q24Game8RouteMgrFR6Stream(void)
  * Address:	........
  * Size:	000004
  */
-void directDraw__Q24Game8RouteMgrFR8GraphicsPQ24Game8WayPointPQ24Game8WayPointiPs(void)
+void Game::RouteMgr::directDraw( (Graphics &, Game::WayPoint *, Game::WayPoint *, int, short *))
 {
 	// UNUSED FUNCTION
 }
@@ -2656,7 +2656,7 @@ void directDraw__Q24Game8RouteMgrFR8GraphicsPQ24Game8WayPointPQ24Game8WayPointiP
  * Address:	80174294
  * Size:	00007C
  */
-void __ct__Q24Game12GameRouteMgrFv(void)
+void Game::GameRouteMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2699,7 +2699,7 @@ void __ct__Q24Game12GameRouteMgrFv(void)
  * Address:	80174310
  * Size:	0000BC
  */
-void __dt__Q24Game12GameRouteMgrFv(void)
+void Game::GameRouteMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2764,7 +2764,7 @@ void __dt__Q24Game12GameRouteMgrFv(void)
  * Address:	801743CC
  * Size:	0000F4
  */
-void read__Q24Game12GameRouteMgrFR6Stream(void)
+void Game::GameRouteMgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2845,7 +2845,7 @@ void read__Q24Game12GameRouteMgrFR6Stream(void)
  * Address:	801744C0
  * Size:	000088
  */
-void getWayPoint__Q24Game12GameRouteMgrFs(void)
+void Game::GameRouteMgr::getWayPoint( (short))
 {
 /*
 .loc_0x0:
@@ -2895,7 +2895,7 @@ void getWayPoint__Q24Game12GameRouteMgrFs(void)
  * Address:	80174548
  * Size:	000030
  */
-void get__Q24Game12GameRouteMgrFPv(void)
+void Game::GameRouteMgr::get( (void *))
 {
 /*
 .loc_0x0:
@@ -2919,7 +2919,7 @@ void get__Q24Game12GameRouteMgrFPv(void)
  * Address:	80174578
  * Size:	000008
  */
-void getNext__Q24Game12GameRouteMgrFPv(void)
+void Game::GameRouteMgr::getNext( (void *))
 {
 /*
 .loc_0x0:
@@ -2933,7 +2933,7 @@ void getNext__Q24Game12GameRouteMgrFPv(void)
  * Address:	80174580
  * Size:	000008
  */
-void getStart__Q24Game12GameRouteMgrFv(void)
+void Game::GameRouteMgr::getStart(void)
 {
 /*
 .loc_0x0:
@@ -2947,7 +2947,7 @@ void getStart__Q24Game12GameRouteMgrFv(void)
  * Address:	80174588
  * Size:	000008
  */
-void getEnd__Q24Game12GameRouteMgrFv(void)
+void Game::GameRouteMgr::getEnd(void)
 {
 /*
 .loc_0x0:
@@ -2961,7 +2961,7 @@ void getEnd__Q24Game12GameRouteMgrFv(void)
  * Address:	80174590
  * Size:	0000AC
  */
-void __ct__Q24Game14EditorRouteMgrFv(void)
+void Game::EditorRouteMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3016,7 +3016,7 @@ void __ct__Q24Game14EditorRouteMgrFv(void)
  * Address:	8017463C
  * Size:	000060
  */
-void __dt__Q34Game14EditorRouteMgr6WPNodeFv(void)
+void Game::EditorRouteMgr::WPNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3054,7 +3054,7 @@ void __dt__Q34Game14EditorRouteMgr6WPNodeFv(void)
  * Address:	8017469C
  * Size:	0001AC
  */
-void read__Q24Game14EditorRouteMgrFR6Stream(void)
+void Game::EditorRouteMgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -3189,7 +3189,7 @@ void read__Q24Game14EditorRouteMgrFR6Stream(void)
  * Address:	80174848
  * Size:	00008C
  */
-void addWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint(void)
+void Game::EditorRouteMgr::addWayPoint( (Game::WayPoint *))
 {
 /*
 .loc_0x0:
@@ -3238,7 +3238,7 @@ void addWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint(void)
  * Address:	801748D4
  * Size:	000088
  */
-void delWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint(void)
+void Game::EditorRouteMgr::delWayPoint( (Game::WayPoint *))
 {
 /*
 .loc_0x0:
@@ -3294,7 +3294,7 @@ void delWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint(void)
  * Address:	8017495C
  * Size:	000038
  */
-void getWayPoint__Q24Game14EditorRouteMgrFs(void)
+void Game::EditorRouteMgr::getWayPoint( (short))
 {
 /*
 .loc_0x0:
@@ -3326,7 +3326,7 @@ void getWayPoint__Q24Game14EditorRouteMgrFs(void)
  * Address:	80174994
  * Size:	000008
  */
-void get__Q24Game14EditorRouteMgrFPv(void)
+void Game::EditorRouteMgr::get( (void *))
 {
 /*
 .loc_0x0:
@@ -3340,7 +3340,7 @@ void get__Q24Game14EditorRouteMgrFPv(void)
  * Address:	8017499C
  * Size:	000008
  */
-void getNext__Q24Game14EditorRouteMgrFPv(void)
+void Game::EditorRouteMgr::getNext( (void *))
 {
 /*
 .loc_0x0:
@@ -3354,7 +3354,7 @@ void getNext__Q24Game14EditorRouteMgrFPv(void)
  * Address:	801749A4
  * Size:	000008
  */
-void getStart__Q24Game14EditorRouteMgrFv(void)
+void Game::EditorRouteMgr::getStart(void)
 {
 /*
 .loc_0x0:
@@ -3368,7 +3368,7 @@ void getStart__Q24Game14EditorRouteMgrFv(void)
  * Address:	801749AC
  * Size:	000008
  */
-void getEnd__Q24Game14EditorRouteMgrFv(void)
+void Game::EditorRouteMgr::getEnd(void)
 {
 /*
 .loc_0x0:
@@ -3382,7 +3382,7 @@ void getEnd__Q24Game14EditorRouteMgrFv(void)
  * Address:	801749B4
  * Size:	0000B8
  */
-void __dt__Q24Game14EditorRouteMgrFv(void)
+void Game::EditorRouteMgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -75,7 +75,7 @@ void makeObjectNavi()
  * Address:	801ACAC0
  * Size:	00008C
  */
-void initialise__Q24Game13GenObjectNaviFv(void)
+void Game::GenObjectNavi::initialise(void)
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void initialise__Q24Game13GenObjectNaviFv(void)
  * Address:	801ACB4C
  * Size:	000004
  */
-void ramSaveParameters__Q24Game13GenObjectNaviFR6Stream(void)
+void Game::GenObjectNavi::ramSaveParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -135,7 +135,7 @@ void ramSaveParameters__Q24Game13GenObjectNaviFR6Stream(void)
  * Address:	801ACB50
  * Size:	000004
  */
-void ramLoadParameters__Q24Game13GenObjectNaviFR6Stream(void)
+void Game::GenObjectNavi::ramLoadParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void ramLoadParameters__Q24Game13GenObjectNaviFR6Stream(void)
  * Address:	801ACB54
  * Size:	000078
  */
-void generate__Q24Game13GenObjectNaviFPQ24Game9Generator(void)
+void Game::GenObjectNavi::generate( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -210,7 +210,7 @@ void clear_calcs(SysShape::Model *, SysShape::Animator &)
  * Address:	801ACBCC
  * Size:	000138
  */
-void birth__Q24Game13GenObjectNaviFPQ24Game6GenArg(void)
+void Game::GenObjectNavi::birth( (Game::GenArg *))
 {
 /*
 .loc_0x0:
@@ -314,7 +314,7 @@ void birth__Q24Game13GenObjectNaviFPQ24Game6GenArg(void)
  * Address:	801ACD04
  * Size:	00001C
  */
-void getCalc__Q28SysShape8AnimatorFv(void)
+void SysShape::Animator::getCalc(void)
 {
 /*
 .loc_0x0:

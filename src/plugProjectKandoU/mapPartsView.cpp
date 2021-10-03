@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00000C
  */
-void getHalfX__Q24Game9PartsViewFv(void)
+void Game::PartsView::getHalfX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void getHalfX__Q24Game9PartsViewFv(void)
  * Address:	........
  * Size:	0002B0
  */
-void getOffset__Q24Game9PartsViewFv(void)
+void Game::PartsView::getOffset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void getOffset__Q24Game9PartsViewFv(void)
  * Address:	8023233C
  * Size:	000140
  */
-void __ct__Q24Game9PartsViewFv(void)
+void Game::PartsView::__ct(void)
 {
 /*
 .loc_0x0:
@@ -129,7 +129,7 @@ void __ct__Q24Game9PartsViewFv(void)
  * Address:	........
  * Size:	00015C
  */
-void __ct__Q24Game9PartsViewFPQ24Game7MapUnitPUc(void)
+void Game::PartsView::__ct( (Game::MapUnit *, unsigned char *))
 {
 	// UNUSED FUNCTION
 }
@@ -139,7 +139,7 @@ void __ct__Q24Game9PartsViewFPQ24Game7MapUnitPUc(void)
  * Address:	8023247C
  * Size:	000004
  */
-void doDirectDraw__Q24Game9PartsViewFR8Graphics(void)
+void Game::PartsView::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -152,7 +152,7 @@ void doDirectDraw__Q24Game9PartsViewFR8Graphics(void)
  * Address:	80232480
  * Size:	000074
  */
-void doAnimation__Q24Game9PartsViewFv(void)
+void Game::PartsView::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void doAnimation__Q24Game9PartsViewFv(void)
  * Address:	802324F4
  * Size:	000004
  */
-void doEntry__Q24Game9PartsViewFv(void)
+void Game::PartsView::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void doEntry__Q24Game9PartsViewFv(void)
  * Address:	802324F8
  * Size:	00002C
  */
-void doSetView__Q24Game9PartsViewFi(void)
+void Game::PartsView::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void doSetView__Q24Game9PartsViewFi(void)
  * Address:	80232524
  * Size:	00002C
  */
-void doViewCalc__Q24Game9PartsViewFv(void)
+void Game::PartsView::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void doViewCalc__Q24Game9PartsViewFv(void)
  * Address:	80232550
  * Size:	000158
  */
-void read__Q24Game9PartsViewFR6Stream(void)
+void Game::PartsView::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void read__Q24Game9PartsViewFR6Stream(void)
  * Address:	........
  * Size:	000178
  */
-void write__Q24Game9PartsViewFR6Stream(void)
+void Game::PartsView::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }

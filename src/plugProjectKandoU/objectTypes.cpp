@@ -5,7 +5,7 @@
  * Address:	8017D3F8
  * Size:	000054
  */
-void getName__Q24Game7ObjTypeFUs(void)
+void Game::ObjType::getName( (unsigned short))
 {
 /*
 .loc_0x0:

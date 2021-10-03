@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00009C
  */
-void __ct__Q32kh6Screen13OneResultDataFiiiiiPCcP10JKRArchive(void)
+void kh::Screen::OneResultData::__ct( (int, int, int, int, int, char const *, JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q32kh6Screen13OneResultDataFiiiiiPCcP10JKRArchive(void)
  * Address:	........
  * Size:	0002D8
  */
-void __ct__Q32kh6Screen15TotalResultDataFPCiPCiPPQ24Game9Highscore(void)
+void kh::Screen::TotalResultData::__ct( (int const *, int const *, Game::Highscore **))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void __ct__Q32kh6Screen15TotalResultDataFPCiPCiPPQ24Game9Highscore(void)
  * Address:	........
  * Size:	000098
  */
-void init__Q32kh6Screen15TotalResultDataFv(void)
+void kh::Screen::TotalResultData::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void init__Q32kh6Screen15TotalResultDataFv(void)
  * Address:	........
  * Size:	0000B0
  */
-void draw__Q32kh6Screen15TotalResultDataFR8GraphicsUlUl(void)
+void kh::Screen::TotalResultData::draw( (Graphics &, unsigned long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void draw__Q32kh6Screen15TotalResultDataFR8GraphicsUlUl(void)
  * Address:	8040C1E8
  * Size:	000034
  */
-void __ct__Q32kh6Screen15DispFinalResultFPQ32kh6Screen15TotalResultDataQ42kh6Screen15DispFinalResult10ResultTypeP7JKRHeap(void)
+void kh::Screen::DispFinalResult::__ct( (kh::Screen::TotalResultData *, kh::Screen::DispFinalResult::ResultType, JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -80,7 +80,7 @@ void __ct__Q32kh6Screen15DispFinalResultFPQ32kh6Screen15TotalResultDataQ42kh6Scr
  * Address:	8040C21C
  * Size:	0001A0
  */
-void __ct__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::__ct(void)
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void __ct__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040C3BC
  * Size:	000B8C
  */
-void doCreate__Q32kh6Screen14ObjFinalResultFP10JKRArchive(void)
+void kh::Screen::ObjFinalResult::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -971,7 +971,7 @@ void doCreate__Q32kh6Screen14ObjFinalResultFP10JKRArchive(void)
  * Address:	8040CF48
  * Size:	0001BC
  */
-void doUpdate__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1122,7 +1122,7 @@ void doUpdate__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040D104
  * Size:	00007C
  */
-void doUpdateFadein__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -1171,7 +1171,7 @@ void doUpdateFadein__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040D180
  * Size:	00006C
  */
-void doUpdateFadeout__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -1214,7 +1214,7 @@ void doUpdateFadeout__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040D1EC
  * Size:	0003F0
  */
-void doDraw__Q32kh6Screen14ObjFinalResultFR8Graphics(void)
+void kh::Screen::ObjFinalResult::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1494,7 +1494,7 @@ void doDraw__Q32kh6Screen14ObjFinalResultFR8Graphics(void)
  * Address:	8040D5DC
  * Size:	0005F4
  */
-void updateCommon__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::updateCommon(void)
 {
 /*
 .loc_0x0:
@@ -1917,7 +1917,7 @@ void updateCommon__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040DBD0
  * Size:	0003A4
  */
-void statusNormal__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::statusNormal(void)
 {
 /*
 .loc_0x0:
@@ -2174,7 +2174,7 @@ void statusNormal__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040DF74
  * Size:	00008C
  */
-void statusScrollUp__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::statusScrollUp(void)
 {
 /*
 .loc_0x0:
@@ -2223,7 +2223,7 @@ void statusScrollUp__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040E000
  * Size:	000090
  */
-void statusScrollDown__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::statusScrollDown(void)
 {
 /*
 .loc_0x0:
@@ -2273,7 +2273,7 @@ void statusScrollDown__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040E090
  * Size:	0001B8
  */
-void statusForceScroll__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::statusForceScroll(void)
 {
 /*
 .loc_0x0:
@@ -2405,7 +2405,7 @@ void statusForceScroll__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040E248
  * Size:	0008C0
  */
-void drawReplace__Q32kh6Screen14ObjFinalResultFR8Graphicsi(void)
+void kh::Screen::ObjFinalResult::drawReplace( (Graphics &, int))
 {
 /*
 .loc_0x0:
@@ -3013,7 +3013,7 @@ void drawReplace__Q32kh6Screen14ObjFinalResultFR8Graphicsi(void)
  * Address:	8040EB08
  * Size:	000128
  */
-void getClr__Q32kh6Screen14ObjFinalResultFRCQ28JUtility6TColorRCQ28JUtility6TColorf(void)
+void kh::Screen::ObjFinalResult::getClr( (JUtility::TColor const &, JUtility::TColor const &, float))
 {
 /*
 .loc_0x0:
@@ -3099,7 +3099,7 @@ void getClr__Q32kh6Screen14ObjFinalResultFRCQ28JUtility6TColorRCQ28JUtility6TCol
  * Address:	8040EC30
  * Size:	0000D8
  */
-void doUserCallBackFunc__Q32kh6Screen16SceneFinalResultFPQ28Resource10MgrCommand(void)
+void kh::Screen::SceneFinalResult::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -3173,7 +3173,7 @@ void doUserCallBackFunc__Q32kh6Screen16SceneFinalResultFPQ28Resource10MgrCommand
  * Address:	8040ED08
  * Size:	0002E4
  */
-void createDispMember__Q32kh6Screen16SceneFinalResultFPCiPCiPPQ24Game9Highscore(void)
+void kh::Screen::SceneFinalResult::createDispMember( (int const *, int const *, Game::Highscore **))
 {
 /*
 .loc_0x0:
@@ -3382,7 +3382,7 @@ void createDispMember__Q32kh6Screen16SceneFinalResultFPCiPCiPPQ24Game9Highscore(
  * Address:	8040EFEC
  * Size:	000008
  */
-void getResName__Q32kh6Screen16SceneFinalResultCFv(void)
+void kh::Screen::SceneFinalResult::getResName( const
 {
 /*
 .loc_0x0:
@@ -3396,7 +3396,7 @@ void getResName__Q32kh6Screen16SceneFinalResultCFv(void)
  * Address:	8040EFF4
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen16SceneFinalResultFv(void)
+void kh::Screen::SceneFinalResult::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -3410,7 +3410,7 @@ void getSceneType__Q32kh6Screen16SceneFinalResultFv(void)
  * Address:	8040EFFC
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen16SceneFinalResultFv(void)
+void kh::Screen::SceneFinalResult::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -3424,7 +3424,7 @@ void getOwnerID__Q32kh6Screen16SceneFinalResultFv(void)
  * Address:	8040F004
  * Size:	000010
  */
-void getMemberID__Q32kh6Screen16SceneFinalResultFv(void)
+void kh::Screen::SceneFinalResult::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -3440,7 +3440,7 @@ void getMemberID__Q32kh6Screen16SceneFinalResultFv(void)
  * Address:	8040F014
  * Size:	000004
  */
-void doCreateObj__Q32kh6Screen16SceneFinalResultFP10JKRArchive(void)
+void kh::Screen::SceneFinalResult::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -3453,7 +3453,7 @@ void doCreateObj__Q32kh6Screen16SceneFinalResultFP10JKRArchive(void)
  * Address:	8040F018
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen14ObjFinalResultFv(void)
+void kh::Screen::ObjFinalResult::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3512,7 +3512,7 @@ void __dt__Q32kh6Screen14ObjFinalResultFv(void)
  * Address:	8040F0C4
  * Size:	000008
  */
-void getSize__Q32kh6Screen15DispFinalResultFv(void)
+void kh::Screen::DispFinalResult::getSize(void)
 {
 /*
 .loc_0x0:
@@ -3526,7 +3526,7 @@ void getSize__Q32kh6Screen15DispFinalResultFv(void)
  * Address:	8040F0CC
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen15DispFinalResultFv(void)
+void kh::Screen::DispFinalResult::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -3540,7 +3540,7 @@ void getOwnerID__Q32kh6Screen15DispFinalResultFv(void)
  * Address:	8040F0D4
  * Size:	000010
  */
-void getMemberID__Q32kh6Screen15DispFinalResultFv(void)
+void kh::Screen::DispFinalResult::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -3629,7 +3629,7 @@ void __sinit_khFinalResult_cpp(void)
  * Address:	8040F1D8
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen14ObjFinalResultFv(void)
+void @24@kh::Screen::ObjFinalResult::__dt(void)
 {
 /*
 .loc_0x0:

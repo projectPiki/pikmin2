@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803E9C60
  * Size:	0000B4
  */
-void doSetArchive__Q33ebi6Screen7TTMBackFP10JKRArchive(void)
+void ebi::Screen::TTMBack::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -74,7 +74,7 @@ void doSetArchive__Q33ebi6Screen7TTMBackFP10JKRArchive(void)
  * Address:	803E9D14
  * Size:	000070
  */
-void doOpenScreen__Q33ebi6Screen7TTMBackFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TTMBack::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -116,7 +116,7 @@ void doOpenScreen__Q33ebi6Screen7TTMBackFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803E9D84
  * Size:	000044
  */
-void doCloseScreen__Q33ebi6Screen7TTMBackFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TTMBack::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -145,7 +145,7 @@ void doCloseScreen__Q33ebi6Screen7TTMBackFPQ33ebi6Screen8ArgClose(void)
  * Address:	803E9DC8
  * Size:	0000DC
  */
-void doUpdateStateOpen__Q33ebi6Screen7TTMBackFv(void)
+void ebi::Screen::TTMBack::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -222,7 +222,7 @@ void doUpdateStateOpen__Q33ebi6Screen7TTMBackFv(void)
  * Address:	803E9EA4
  * Size:	000034
  */
-void doUpdateStateWait__Q33ebi6Screen7TTMBackFv(void)
+void ebi::Screen::TTMBack::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void doUpdateStateWait__Q33ebi6Screen7TTMBackFv(void)
  * Address:	803E9ED8
  * Size:	0000D4
  */
-void doUpdateStateClose__Q33ebi6Screen7TTMBackFv(void)
+void ebi::Screen::TTMBack::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void doUpdateStateClose__Q33ebi6Screen7TTMBackFv(void)
  * Address:	803E9FAC
  * Size:	000074
  */
-void doDraw__Q33ebi6Screen7TTMBackFv(void)
+void ebi::Screen::TTMBack::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -363,7 +363,7 @@ void doDraw__Q33ebi6Screen7TTMBackFv(void)
  * Address:	803EA020
  * Size:	000090
  */
-void doSetArchive__Q33ebi6Screen13TNintendoLogoFP10JKRArchive(void)
+void ebi::Screen::TNintendoLogo::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -413,7 +413,7 @@ void doSetArchive__Q33ebi6Screen13TNintendoLogoFP10JKRArchive(void)
  * Address:	803EA0B0
  * Size:	000034
  */
-void doUpdateStateWait__Q33ebi6Screen13TNintendoLogoFv(void)
+void ebi::Screen::TNintendoLogo::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -438,7 +438,7 @@ void doUpdateStateWait__Q33ebi6Screen13TNintendoLogoFv(void)
  * Address:	803EA0E4
  * Size:	000074
  */
-void doDraw__Q33ebi6Screen13TNintendoLogoFv(void)
+void ebi::Screen::TNintendoLogo::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void doDraw__Q33ebi6Screen13TNintendoLogoFv(void)
  * Address:	803EA158
  * Size:	00000C
  */
-void getName__Q33ebi6Screen13TNintendoLogoFv(void)
+void ebi::Screen::TNintendoLogo::getName(void)
 {
 /*
 .loc_0x0:
@@ -494,7 +494,7 @@ void getName__Q33ebi6Screen13TNintendoLogoFv(void)
  * Address:	803EA164
  * Size:	00000C
  */
-void getName__Q33ebi6Screen7TTMBackFv(void)
+void ebi::Screen::TTMBack::getName(void)
 {
 /*
 .loc_0x0:

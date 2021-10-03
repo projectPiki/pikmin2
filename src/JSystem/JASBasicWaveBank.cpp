@@ -336,7 +336,7 @@ void JASBasicWaveBank::getWaveHandle(unsigned long) const
  * Address:	8009A164
  * Size:	000058
  */
-void __ct__Q216JASBasicWaveBank10TWaveGroupFP16JASBasicWaveBank(void)
+void JASBasicWaveBank::TWaveGroup::__ct( (JASBasicWaveBank *))
 {
 /*
 .loc_0x0:
@@ -380,7 +380,7 @@ void JASWaveArc::~JASWaveArc()
  * Address:	8009A1BC
  * Size:	0000B4
  */
-void __dt__Q216JASBasicWaveBank10TWaveGroupFv(void)
+void JASBasicWaveBank::TWaveGroup::__dt(void)
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void __dt__Q216JASBasicWaveBank10TWaveGroupFv(void)
  * Address:	8009A270
  * Size:	000060
  */
-void __dt__Q216JASBasicWaveBank9TWaveInfoFv(void)
+void JASBasicWaveBank::TWaveInfo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -483,7 +483,7 @@ void __dt__Q216JASBasicWaveBank9TWaveInfoFv(void)
  * Address:	8009A2D0
  * Size:	0001BC
  */
-void setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUl(void)
+void JASBasicWaveBank::TWaveGroup::setWaveCount( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -614,7 +614,7 @@ void setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUl(void)
  * Address:	8009A48C
  * Size:	000030
  */
-void __ct__Q216JASBasicWaveBank9TWaveInfoFv(void)
+void JASBasicWaveBank::TWaveInfo::__ct(void)
 {
 /*
 .loc_0x0:
@@ -638,7 +638,7 @@ void __ct__Q216JASBasicWaveBank9TWaveInfoFv(void)
  * Address:	8009A4BC
  * Size:	00005C
  */
-void __dt__Q216JASBasicWaveBank11TWaveHandleFv(void)
+void JASBasicWaveBank::TWaveHandle::__dt(void)
 {
 /*
 .loc_0x0:
@@ -709,7 +709,7 @@ void JASWaveHandle::~JASWaveHandle()
  * Address:	8009A560
  * Size:	000090
  */
-void setWaveInfo__Q216JASBasicWaveBank10TWaveGroupFiUlRC11JASWaveInfo(void)
+void JASBasicWaveBank::TWaveGroup::setWaveInfo( (int, unsigned long, JASWaveInfo const &))
 {
 /*
 .loc_0x0:
@@ -757,7 +757,7 @@ void setWaveInfo__Q216JASBasicWaveBank10TWaveGroupFiUlRC11JASWaveInfo(void)
  * Address:	8009A5F0
  * Size:	0000A0
  */
-void onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv(void)
+void JASBasicWaveBank::TWaveGroup::onLoadDone(void)
 {
 /*
 .loc_0x0:
@@ -815,7 +815,7 @@ void onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv(void)
  * Address:	8009A690
  * Size:	0000E8
  */
-void onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv(void)
+void JASBasicWaveBank::TWaveGroup::onEraseDone(void)
 {
 /*
 .loc_0x0:
@@ -903,7 +903,7 @@ void onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv(void)
  * Address:	8009A778
  * Size:	000014
  */
-void getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi(void)
+void JASBasicWaveBank::TWaveGroup::getWaveID( const(int))
 {
 /*
 .loc_0x0:
@@ -920,7 +920,7 @@ void getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi(void)
  * Address:	8009A78C
  * Size:	000008
  */
-void getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv(void)
+void JASBasicWaveBank::TWaveHandle::getWaveInfo( const
 {
 /*
 .loc_0x0:
@@ -934,7 +934,7 @@ void getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv(void)
  * Address:	8009A794
  * Size:	000024
  */
-void getWavePtr__Q216JASBasicWaveBank11TWaveHandleCFv(void)
+void JASBasicWaveBank::TWaveHandle::getWavePtr( const
 {
 /*
 .loc_0x0:

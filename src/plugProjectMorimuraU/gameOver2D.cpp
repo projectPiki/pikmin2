@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80347F48
  * Size:	00006C
  */
-void __ct__Q28Morimura13TGameOverBaseFPc(void)
+void Morimura::TGameOverBase::__ct( (char *))
 {
 /*
 .loc_0x0:
@@ -54,7 +54,7 @@ void __ct__Q28Morimura13TGameOverBaseFPc(void)
  * Address:	80347FB4
  * Size:	0000F0
  */
-void doUpdate__Q28Morimura13TGameOverBaseFv(void)
+void Morimura::TGameOverBase::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -134,7 +134,7 @@ void doUpdate__Q28Morimura13TGameOverBaseFv(void)
  * Address:	803480A4
  * Size:	000240
  */
-void doDraw__Q28Morimura13TGameOverBaseFR8Graphics(void)
+void Morimura::TGameOverBase::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -304,7 +304,7 @@ void doDraw__Q28Morimura13TGameOverBaseFR8Graphics(void)
  * Address:	........
  * Size:	000010
  */
-void init__Q28Morimura13TGameOverBaseFv(void)
+void Morimura::TGameOverBase::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -314,7 +314,7 @@ void init__Q28Morimura13TGameOverBaseFv(void)
  * Address:	803482E4
  * Size:	0000AC
  */
-void doCreate__Q28Morimura11TGameOver2DFP10JKRArchive(void)
+void Morimura::TGameOver2D::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -371,7 +371,7 @@ void doCreate__Q28Morimura11TGameOver2DFP10JKRArchive(void)
  * Address:	80348390
  * Size:	0000A0
  */
-void doCreate__Q28Morimura12TOrimaDown2DFP10JKRArchive(void)
+void Morimura::TOrimaDown2D::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -425,7 +425,7 @@ void doCreate__Q28Morimura12TOrimaDown2DFP10JKRArchive(void)
  * Address:	80348430
  * Size:	0000A0
  */
-void doCreate__Q28Morimura11TLujiDown2DFP10JKRArchive(void)
+void Morimura::TLujiDown2D::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void doCreate__Q28Morimura11TLujiDown2DFP10JKRArchive(void)
  * Address:	803484D0
  * Size:	0000A0
  */
-void doCreate__Q28Morimura16TPresidentDown2DFP10JKRArchive(void)
+void Morimura::TPresidentDown2D::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -533,7 +533,7 @@ void doCreate__Q28Morimura16TPresidentDown2DFP10JKRArchive(void)
  * Address:	80348570
  * Size:	0000A0
  */
-void doCreate__Q28Morimura13TPikminDown2DFP10JKRArchive(void)
+void Morimura::TPikminDown2D::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void doCreate__Q28Morimura13TPikminDown2DFP10JKRArchive(void)
  * Address:	80348610
  * Size:	000024
  */
-void __ct__Q28Morimura15TGameOverScreenFP10JKRArchivei(void)
+void Morimura::TGameOverScreen::__ct( (JKRArchive *, int))
 {
 /*
 .loc_0x0:
@@ -610,7 +610,7 @@ void __ct__Q28Morimura15TGameOverScreenFP10JKRArchivei(void)
  * Address:	80348634
  * Size:	000218
  */
-void init__Q28Morimura15TGameOverScreenFPCcUl(void)
+void Morimura::TGameOverScreen::init( (char const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -772,7 +772,7 @@ void init__Q28Morimura15TGameOverScreenFPCcUl(void)
  * Address:	8034884C
  * Size:	0000D0
  */
-void addAnim__Q28Morimura15TGameOverScreenFPc(void)
+void Morimura::TGameOverScreen::addAnim( (char *))
 {
 /*
 .loc_0x0:
@@ -840,7 +840,7 @@ void addAnim__Q28Morimura15TGameOverScreenFPc(void)
  * Address:	8034891C
  * Size:	00008C
  */
-void update__Q28Morimura15TGameOverScreenFv(void)
+void Morimura::TGameOverScreen::update(void)
 {
 /*
 .loc_0x0:
@@ -903,7 +903,7 @@ void Morimura::addYPos(J2DPane *, float)
  * Address:	803489A8
  * Size:	000024
  */
-void setPosY__Q28Morimura15TGameOverScreenFf(void)
+void Morimura::TGameOverScreen::setPosY( (float))
 {
 /*
 .loc_0x0:
@@ -924,7 +924,7 @@ void setPosY__Q28Morimura15TGameOverScreenFf(void)
  * Address:	803489CC
  * Size:	000038
  */
-void draw__Q28Morimura15TGameOverScreenFR8GraphicsP13J2DPerspGraph(void)
+void Morimura::TGameOverScreen::draw( (Graphics &, J2DPerspGraph *))
 {
 /*
 .loc_0x0:
@@ -952,7 +952,7 @@ void draw__Q28Morimura15TGameOverScreenFR8GraphicsP13J2DPerspGraph(void)
  * Address:	80348A04
  * Size:	000038
  */
-void orgdraw__Q28Morimura15TGameOverScreenFR8GraphicsP13J2DPerspGraph(void)
+void Morimura::TGameOverScreen::orgdraw( (Graphics &, J2DPerspGraph *))
 {
 /*
 .loc_0x0:
@@ -980,7 +980,7 @@ void orgdraw__Q28Morimura15TGameOverScreenFR8GraphicsP13J2DPerspGraph(void)
  * Address:	80348A3C
  * Size:	000184
  */
-void setFadeAlpha__Q28Morimura15TGameOverScreenFUc(void)
+void Morimura::TGameOverScreen::setFadeAlpha( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -1089,7 +1089,7 @@ void setFadeAlpha__Q28Morimura15TGameOverScreenFUc(void)
  * Address:	80348BC0
  * Size:	000060
  */
-void __dt__Q28Morimura10TGXSetPaneFv(void)
+void Morimura::TGXSetPane::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1127,7 +1127,7 @@ void __dt__Q28Morimura10TGXSetPaneFv(void)
  * Address:	80348C20
  * Size:	00002C
  */
-void drawSelf__Q28Morimura10TGXSetPaneFffPA3_A4_f(void)
+void Morimura::TGXSetPane::drawSelf( (float, float, float (*)[3][4]))
 {
 /*
 .loc_0x0:
@@ -1150,7 +1150,7 @@ void drawSelf__Q28Morimura10TGXSetPaneFffPA3_A4_f(void)
  * Address:	80348C4C
  * Size:	0000DC
  */
-void __dt__Q28Morimura13TPikminDown2DFv(void)
+void Morimura::TPikminDown2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1221,7 +1221,7 @@ void __dt__Q28Morimura13TPikminDown2DFv(void)
  * Address:	80348D28
  * Size:	000008
  */
-void getDispMemberBase__Q28Morimura13TGameOverBaseFv(void)
+void Morimura::TGameOverBase::getDispMemberBase(void)
 {
 /*
 .loc_0x0:
@@ -1235,7 +1235,7 @@ void getDispMemberBase__Q28Morimura13TGameOverBaseFv(void)
  * Address:	80348D30
  * Size:	000034
  */
-void doUpdateFadeout__Q28Morimura13TGameOverBaseFv(void)
+void Morimura::TGameOverBase::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -1264,7 +1264,7 @@ void doUpdateFadeout__Q28Morimura13TGameOverBaseFv(void)
  * Address:	80348D64
  * Size:	0000DC
  */
-void __dt__Q28Morimura16TPresidentDown2DFv(void)
+void Morimura::TPresidentDown2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1335,7 +1335,7 @@ void __dt__Q28Morimura16TPresidentDown2DFv(void)
  * Address:	80348E40
  * Size:	0000DC
  */
-void __dt__Q28Morimura11TLujiDown2DFv(void)
+void Morimura::TLujiDown2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1406,7 +1406,7 @@ void __dt__Q28Morimura11TLujiDown2DFv(void)
  * Address:	80348F1C
  * Size:	0000DC
  */
-void __dt__Q28Morimura12TOrimaDown2DFv(void)
+void Morimura::TOrimaDown2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1477,7 +1477,7 @@ void __dt__Q28Morimura12TOrimaDown2DFv(void)
  * Address:	80348FF8
  * Size:	0000DC
  */
-void __dt__Q28Morimura11TGameOver2DFv(void)
+void Morimura::TGameOver2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1548,7 +1548,7 @@ void __dt__Q28Morimura11TGameOver2DFv(void)
  * Address:	803490D4
  * Size:	0000C4
  */
-void __dt__Q28Morimura13TGameOverBaseFv(void)
+void Morimura::TGameOverBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1613,7 +1613,7 @@ void __dt__Q28Morimura13TGameOverBaseFv(void)
  * Address:	80349198
  * Size:	000008
  */
-void @24@__dt__Q28Morimura13TGameOverBaseFv(void)
+void @24@Morimura::TGameOverBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1627,7 +1627,7 @@ void @24@__dt__Q28Morimura13TGameOverBaseFv(void)
  * Address:	803491A0
  * Size:	000008
  */
-void @24@__dt__Q28Morimura11TGameOver2DFv(void)
+void @24@Morimura::TGameOver2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1641,7 +1641,7 @@ void @24@__dt__Q28Morimura11TGameOver2DFv(void)
  * Address:	803491A8
  * Size:	000008
  */
-void @24@__dt__Q28Morimura12TOrimaDown2DFv(void)
+void @24@Morimura::TOrimaDown2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1655,7 +1655,7 @@ void @24@__dt__Q28Morimura12TOrimaDown2DFv(void)
  * Address:	803491B0
  * Size:	000008
  */
-void @24@__dt__Q28Morimura11TLujiDown2DFv(void)
+void @24@Morimura::TLujiDown2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1669,7 +1669,7 @@ void @24@__dt__Q28Morimura11TLujiDown2DFv(void)
  * Address:	803491B8
  * Size:	000008
  */
-void @24@__dt__Q28Morimura16TPresidentDown2DFv(void)
+void @24@Morimura::TPresidentDown2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1683,7 +1683,7 @@ void @24@__dt__Q28Morimura16TPresidentDown2DFv(void)
  * Address:	803491C0
  * Size:	000008
  */
-void @24@__dt__Q28Morimura13TPikminDown2DFv(void)
+void @24@Morimura::TPikminDown2D::__dt(void)
 {
 /*
 .loc_0x0:

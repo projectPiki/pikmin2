@@ -114,7 +114,7 @@ void JASSimpleWaveBank::~JASSimpleWaveBank()
  * Address:	8009B7F8
  * Size:	00005C
  */
-void __dt__Q217JASSimpleWaveBank11TWaveHandleFv(void)
+void JASSimpleWaveBank::TWaveHandle::__dt(void)
 {
 /*
 .loc_0x0:
@@ -198,7 +198,7 @@ void JASSimpleWaveBank::setWaveTableSize(unsigned long)
  * Address:	8009B8D8
  * Size:	000024
  */
-void __ct__Q217JASSimpleWaveBank11TWaveHandleFv(void)
+void JASSimpleWaveBank::TWaveHandle::__ct(void)
 {
 /*
 .loc_0x0:
@@ -313,7 +313,7 @@ void JASSimpleWaveBank::getWaveArc(int)
  * Address:	8009B9D4
  * Size:	000008
  */
-void getWaveInfo__Q217JASSimpleWaveBank11TWaveHandleCFv(void)
+void JASSimpleWaveBank::TWaveHandle::getWaveInfo( const
 {
 /*
 .loc_0x0:
@@ -327,7 +327,7 @@ void getWaveInfo__Q217JASSimpleWaveBank11TWaveHandleCFv(void)
  * Address:	8009B9DC
  * Size:	000024
  */
-void getWavePtr__Q217JASSimpleWaveBank11TWaveHandleCFv(void)
+void JASSimpleWaveBank::TWaveHandle::getWavePtr( const
 {
 /*
 .loc_0x0:

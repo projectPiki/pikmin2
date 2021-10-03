@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8013AE84
  * Size:	00012C
  */
-void __ct__Q24Game8CreatureFv(void)
+void Game::Creature::__ct(void)
 {
 /*
 .loc_0x0:
@@ -102,7 +102,7 @@ void __ct__Q24Game8CreatureFv(void)
  * Address:	8013AFB0
  * Size:	000018
  */
-void __ct__Q24Game7CellLegFv(void)
+void Game::CellLeg::__ct(void)
 {
 /*
 .loc_0x0:
@@ -120,7 +120,7 @@ void __ct__Q24Game7CellLegFv(void)
  * Address:	8013AFC8
  * Size:	000120
  */
-void init__Q24Game8CreatureFPQ24Game15CreatureInitArg(void)
+void Game::Creature::init( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void init__Q24Game8CreatureFPQ24Game15CreatureInitArg(void)
  * Address:	8013B0E8
  * Size:	000004
  */
-void onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg(void)
+void Game::Creature::onInitPost( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -219,7 +219,7 @@ void onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg(void)
  * Address:	8013B0EC
  * Size:	000004
  */
-void onInit__Q24Game8CreatureFPQ24Game15CreatureInitArg(void)
+void Game::Creature::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -232,7 +232,7 @@ void onInit__Q24Game8CreatureFPQ24Game15CreatureInitArg(void)
  * Address:	8013B0F0
  * Size:	0000B4
  */
-void kill__Q24Game8CreatureFPQ24Game15CreatureKillArg(void)
+void Game::Creature::kill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -291,7 +291,7 @@ void kill__Q24Game8CreatureFPQ24Game15CreatureKillArg(void)
  * Address:	8013B1A4
  * Size:	000004
  */
-void onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg(void)
+void Game::Creature::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void getYVector__Q24Game8CreatureFR10Vector3<float>(void)
  * Address:	8013B3E0
  * Size:	000034
  */
-void getBodyRadius__Q24Game8CreatureFv(void)
+void Game::Creature::getBodyRadius(void)
 {
 /*
 .loc_0x0:
@@ -529,7 +529,7 @@ void getBodyRadius__Q24Game8CreatureFv(void)
  * Address:	8013B414
  * Size:	000034
  */
-void getCellRadius__Q24Game8CreatureFv(void)
+void Game::Creature::getCellRadius(void)
 {
 /*
 .loc_0x0:
@@ -554,7 +554,7 @@ void getCellRadius__Q24Game8CreatureFv(void)
  * Address:	8013B448
  * Size:	000024
  */
-void getTypeName__Q24Game8CreatureFv(void)
+void Game::Creature::getTypeName(void)
 {
 /*
 .loc_0x0:
@@ -575,7 +575,7 @@ void getTypeName__Q24Game8CreatureFv(void)
  * Address:	8013B46C
  * Size:	00008C
  */
-void getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam(void)
+void Game::Creature::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -622,7 +622,7 @@ void getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam(void)
  * Address:	8013B4F8
  * Size:	00000C
  */
-void needShadow__Q24Game8CreatureFv(void)
+void Game::Creature::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -637,7 +637,7 @@ void needShadow__Q24Game8CreatureFv(void)
  * Address:	8013B504
  * Size:	000070
  */
-void getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam(void)
+void Game::Creature::getLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam(void)
  * Address:	8013B574
  * Size:	000090
  */
-void save__Q24Game8CreatureFR6StreamUc(void)
+void Game::Creature::save( (Stream &, unsigned char))
 {
 /*
 .loc_0x0:
@@ -727,7 +727,7 @@ void save__Q24Game8CreatureFR6StreamUc(void)
  * Address:	8013B604
  * Size:	0000E4
  */
-void load__Q24Game8CreatureFR6StreamUc(void)
+void Game::Creature::load( (Stream &, unsigned char))
 {
 /*
 .loc_0x0:
@@ -800,7 +800,7 @@ void load__Q24Game8CreatureFR6StreamUc(void)
  * Address:	........
  * Size:	0000A0
  */
-void calcSphereDistance__Q24Game8CreatureFRQ23Sys6Sphere(void)
+void Game::Creature::calcSphereDistance( (Sys::Sphere &))
 {
 	// UNUSED FUNCTION
 }
@@ -810,7 +810,7 @@ void calcSphereDistance__Q24Game8CreatureFRQ23Sys6Sphere(void)
  * Address:	8013B6E8
  * Size:	0000BC
  */
-void calcSphereDistance__Q24Game8CreatureFPQ24Game8Creature(void)
+void Game::Creature::calcSphereDistance( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -873,7 +873,7 @@ void calcSphereDistance__Q24Game8CreatureFPQ24Game8Creature(void)
  * Address:	8013B7A4
  * Size:	0000CC
  */
-void applyAirDrag__Q24Game8CreatureFfff(void)
+void Game::Creature::applyAirDrag( (float, float, float))
 {
 /*
 .loc_0x0:
@@ -936,7 +936,7 @@ void applyAirDrag__Q24Game8CreatureFfff(void)
  * Address:	8013B870
  * Size:	00003C
  */
-void doAnimation__Q24Game8CreatureFv(void)
+void Game::Creature::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -965,7 +965,7 @@ void doAnimation__Q24Game8CreatureFv(void)
  * Address:	8013B8AC
  * Size:	000004
  */
-void doEntry__Q24Game8CreatureFv(void)
+void Game::Creature::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -978,7 +978,7 @@ void doEntry__Q24Game8CreatureFv(void)
  * Address:	8013B8B0
  * Size:	000108
  */
-void doSetView__Q24Game8CreatureFi(void)
+void Game::Creature::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -1068,7 +1068,7 @@ void doSetView__Q24Game8CreatureFi(void)
  * Address:	8013B9B8
  * Size:	00002C
  */
-void doViewCalc__Q24Game8CreatureFv(void)
+void Game::Creature::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -1093,7 +1093,7 @@ void doViewCalc__Q24Game8CreatureFv(void)
  * Address:	8013B9E4
  * Size:	000010
  */
-void isPiki__Q24Game8CreatureFv(void)
+void Game::Creature::isPiki(void)
 {
 /*
 .loc_0x0:
@@ -1109,7 +1109,7 @@ void isPiki__Q24Game8CreatureFv(void)
  * Address:	8013B9F4
  * Size:	000014
  */
-void isNavi__Q24Game8CreatureFv(void)
+void Game::Creature::isNavi(void)
 {
 /*
 .loc_0x0:
@@ -1126,7 +1126,7 @@ void isNavi__Q24Game8CreatureFv(void)
  * Address:	8013BA08
  * Size:	000014
  */
-void isTeki__Q24Game8CreatureFv(void)
+void Game::Creature::isTeki(void)
 {
 /*
 .loc_0x0:
@@ -1143,7 +1143,7 @@ void isTeki__Q24Game8CreatureFv(void)
  * Address:	8013BA1C
  * Size:	000014
  */
-void isPellet__Q24Game8CreatureFv(void)
+void Game::Creature::isPellet(void)
 {
 /*
 .loc_0x0:
@@ -1160,7 +1160,7 @@ void isPellet__Q24Game8CreatureFv(void)
  * Address:	8013BA30
  * Size:	000020
  */
-void sound_culling__Q24Game8CreatureFv(void)
+void Game::Creature::sound_culling(void)
 {
 /*
 .loc_0x0:
@@ -1180,7 +1180,7 @@ void sound_culling__Q24Game8CreatureFv(void)
  * Address:	8013BA50
  * Size:	00009C
  */
-void movie_begin__Q24Game8CreatureFb(void)
+void Game::Creature::movie_begin( (bool))
 {
 /*
 .loc_0x0:
@@ -1235,7 +1235,7 @@ void movie_begin__Q24Game8CreatureFb(void)
  * Address:	8013BAEC
  * Size:	000050
  */
-void movie_end__Q24Game8CreatureFb(void)
+void Game::Creature::movie_end( (bool))
 {
 /*
 .loc_0x0:
@@ -1267,7 +1267,7 @@ void movie_end__Q24Game8CreatureFb(void)
  * Address:	8013BB3C
  * Size:	0000E0
  */
-void checkWater__Q24Game8CreatureFPQ24Game8WaterBoxRQ23Sys6Sphere(void)
+void Game::Creature::checkWater( (Game::WaterBox *, Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1343,7 +1343,7 @@ void checkWater__Q24Game8CreatureFPQ24Game8WaterBoxRQ23Sys6Sphere(void)
  * Address:	8013BC1C
  * Size:	000004
  */
-void inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox(void)
+void Game::Creature::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1356,7 +1356,7 @@ void inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox(void)
  * Address:	8013BC20
  * Size:	000004
  */
-void outWaterCallback__Q24Game8CreatureFv(void)
+void Game::Creature::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1369,7 +1369,7 @@ void outWaterCallback__Q24Game8CreatureFv(void)
  * Address:	8013BC24
  * Size:	000144
  */
-void checkHell__Q24Game8CreatureFRQ34Game8Creature12CheckHellArg(void)
+void Game::Creature::checkHell( (Game::Creature::CheckHellArg &))
 {
 /*
 .loc_0x0:
@@ -1470,7 +1470,7 @@ void checkHell__Q24Game8CreatureFRQ34Game8Creature12CheckHellArg(void)
  * Address:	8013BD68
  * Size:	000178
  */
-void updateCell__Q24Game8CreatureFv(void)
+void Game::Creature::updateCell(void)
 {
 /*
 .loc_0x0:
@@ -1582,7 +1582,7 @@ void updateCell__Q24Game8CreatureFv(void)
  * Address:	8013BEE0
  * Size:	000008
  */
-void getCreatureID__Q24Game8CreatureFv(void)
+void Game::Creature::getCreatureID(void)
 {
 /*
 .loc_0x0:
@@ -1596,7 +1596,7 @@ void getCreatureID__Q24Game8CreatureFv(void)
  * Address:	8013BEE8
  * Size:	000044
  */
-void getCellPikiCount__Q24Game8CreatureFv(void)
+void Game::Creature::getCellPikiCount(void)
 {
 /*
 .loc_0x0:
@@ -1685,7 +1685,7 @@ void applyImpulse__Q24Game8CreatureFR10Vector3<float>R10Vector3<float>(void)
  * Address:	8013BFDC
  * Size:	0002E4
  */
-void checkCollision__Q24Game8CreatureFPQ24Game10CellObject(void)
+void Game::Creature::checkCollision( (Game::CellObject *))
 {
 /*
 .loc_0x0:
@@ -2541,7 +2541,7 @@ void resolveOneColl__Q24Game8CreatureFP8CollPartP8CollPartR10Vector3<float>(void
  * Address:	8013CB8C
  * Size:	000004
  */
-void collisionCallback__Q24Game8CreatureFRQ24Game9CollEvent(void)
+void Game::Creature::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -2578,7 +2578,7 @@ void Delegate3<Game::Creature, CollPart *, CollPart *, Vector3<float> &>::invoke
  * Address:	8013CBC0
  * Size:	000004
  */
-void constructor__Q24Game8CreatureFv(void)
+void Game::Creature::constructor(void)
 {
 /*
 .loc_0x0:
@@ -2591,7 +2591,7 @@ void constructor__Q24Game8CreatureFv(void)
  * Address:	8013CBC4
  * Size:	000004
  */
-void doSimulation__Q24Game8CreatureFf(void)
+void Game::Creature::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2604,7 +2604,7 @@ void doSimulation__Q24Game8CreatureFf(void)
  * Address:	8013CBC8
  * Size:	000008
  */
-void inWater__Q24Game8CreatureFv(void)
+void Game::Creature::inWater(void)
 {
 /*
 .loc_0x0:
@@ -2618,7 +2618,7 @@ void inWater__Q24Game8CreatureFv(void)
  * Address:	8013CBD0
  * Size:	000008
  */
-void isFlying__Q24Game8CreatureFv(void)
+void Game::Creature::isFlying(void)
 {
 /*
 .loc_0x0:
@@ -2632,7 +2632,7 @@ void isFlying__Q24Game8CreatureFv(void)
  * Address:	8013CBD8
  * Size:	000008
  */
-void getPSCreature__Q24Game8CreatureFv(void)
+void Game::Creature::getPSCreature(void)
 {
 /*
 .loc_0x0:
@@ -2646,7 +2646,7 @@ void getPSCreature__Q24Game8CreatureFv(void)
  * Address:	8013CBE0
  * Size:	000008
  */
-void getSound_PosPtr__Q24Game8CreatureFv(void)
+void Game::Creature::getSound_PosPtr(void)
 {
 /*
 .loc_0x0:
@@ -2660,7 +2660,7 @@ void getSound_PosPtr__Q24Game8CreatureFv(void)
  * Address:	8013CBE8
  * Size:	000008
  */
-void getSound_CurrAnimFrame__Q24Game8CreatureFv(void)
+void Game::Creature::getSound_CurrAnimFrame(void)
 {
 /*
 .loc_0x0:
@@ -2674,7 +2674,7 @@ void getSound_CurrAnimFrame__Q24Game8CreatureFv(void)
  * Address:	8013CBF0
  * Size:	000008
  */
-void getSound_CurrAnimSpeed__Q24Game8CreatureFv(void)
+void Game::Creature::getSound_CurrAnimSpeed(void)
 {
 /*
 .loc_0x0:
@@ -2688,7 +2688,7 @@ void getSound_CurrAnimSpeed__Q24Game8CreatureFv(void)
  * Address:	8013CBF8
  * Size:	00002C
  */
-void getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere(void)
+void Game::Creature::getLODSphere( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -2711,7 +2711,7 @@ void getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere(void)
  * Address:	8013CC24
  * Size:	000004
  */
-void onStickStart__Q24Game8CreatureFPQ24Game8Creature(void)
+void Game::Creature::onStickStart( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -2724,7 +2724,7 @@ void onStickStart__Q24Game8CreatureFPQ24Game8Creature(void)
  * Address:	8013CC28
  * Size:	000004
  */
-void onStickEnd__Q24Game8CreatureFPQ24Game8Creature(void)
+void Game::Creature::onStickEnd( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -2737,7 +2737,7 @@ void onStickEnd__Q24Game8CreatureFPQ24Game8Creature(void)
  * Address:	8013CC2C
  * Size:	000004
  */
-void checkCollision__Q24Game10CellObjectFPQ24Game10CellObject(void)
+void Game::CellObject::checkCollision( (Game::CellObject *))
 {
 /*
 .loc_0x0:
@@ -2750,7 +2750,7 @@ void checkCollision__Q24Game10CellObjectFPQ24Game10CellObject(void)
  * Address:	8013CC30
  * Size:	000008
  */
-void isPiki__Q24Game10CellObjectFv(void)
+void Game::CellObject::isPiki(void)
 {
 /*
 .loc_0x0:
@@ -2764,7 +2764,7 @@ void isPiki__Q24Game10CellObjectFv(void)
  * Address:	8013CC38
  * Size:	000008
  */
-void isNavi__Q24Game10CellObjectFv(void)
+void Game::CellObject::isNavi(void)
 {
 /*
 .loc_0x0:

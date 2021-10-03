@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	00015C
  */
-void __ct__Q29PSAutoBgm9ConductorFPQ29PSAutoBgm7AutoBgmi(void)
+void PSAutoBgm::Conductor::__ct( (PSAutoBgm::AutoBgm *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -243,7 +243,7 @@ void __dt__Q210JADUtility7Prm<unsigned char>Fv(void)
  * Address:	80339024
  * Size:	000290
  */
-void __dt__Q29PSAutoBgm9ConductorFv(void)
+void PSAutoBgm::Conductor::__dt(void)
 {
 /*
 .loc_0x0:
@@ -457,7 +457,7 @@ void __dt__Q29PSAutoBgm9ConductorFv(void)
  * Address:	........
  * Size:	000074
  */
-void onBeatProc__Q29PSAutoBgm9ConductorFv(void)
+void PSAutoBgm::Conductor::onBeatProc(void)
 {
 	// UNUSED FUNCTION
 }
@@ -467,7 +467,7 @@ void onBeatProc__Q29PSAutoBgm9ConductorFv(void)
  * Address:	........
  * Size:	000084
  */
-void onStartSeq__Q29PSAutoBgm9ConductorFP11JAISequence(void)
+void PSAutoBgm::Conductor::onStartSeq( (JAISequence *))
 {
 	// UNUSED FUNCTION
 }
@@ -477,7 +477,7 @@ void onStartSeq__Q29PSAutoBgm9ConductorFP11JAISequence(void)
  * Address:	803392B4
  * Size:	000034
  */
-void removeCallback__Q29PSAutoBgm9ConductorFUcPv(void)
+void PSAutoBgm::Conductor::removeCallback( (unsigned char, void *))
 {
 /*
 .loc_0x0:
@@ -502,7 +502,7 @@ void removeCallback__Q29PSAutoBgm9ConductorFUcPv(void)
  * Address:	803392E8
  * Size:	00011C
  */
-void seqCpuSync_AutoBgm__Q29PSAutoBgm9ConductorFP8JASTrackUsUlP8JASTrack(void)
+void PSAutoBgm::Conductor::seqCpuSync_AutoBgm( (JASTrack *, unsigned short, unsigned long, JASTrack *))
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void seqCpuSync_AutoBgm__Q29PSAutoBgm9ConductorFP8JASTrackUsUlP8JASTrack(void)
  * Address:	80339404
  * Size:	0000F4
  */
-void createTables__Q29PSAutoBgm9ConductorFP8JASTrack(void)
+void PSAutoBgm::Conductor::createTables( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void createTables__Q29PSAutoBgm9ConductorFP8JASTrack(void)
  * Address:	803394F8
  * Size:	0002A4
  */
-void __ct__Q29PSAutoBgm5TrackFv(void)
+void PSAutoBgm::Track::__ct(void)
 {
 /*
 .loc_0x0:
@@ -859,7 +859,7 @@ void __ct__Q29PSAutoBgm5TrackFv(void)
  * Address:	8033979C
  * Size:	00003C
  */
-void afterGetFromFree__Q29PSAutoBgm5TrackFv(void)
+void PSAutoBgm::Track::afterGetFromFree(void)
 {
 /*
 .loc_0x0:
@@ -886,7 +886,7 @@ void afterGetFromFree__Q29PSAutoBgm5TrackFv(void)
  * Address:	803397D8
  * Size:	0003DC
  */
-void __dt__Q29PSAutoBgm5TrackFv(void)
+void PSAutoBgm::Track::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1193,7 +1193,7 @@ void __dt__Q29PSAutoBgm5TrackFv(void)
  * Address:	........
  * Size:	000038
  */
-void onBeatProc__Q29PSAutoBgm5TrackFv(void)
+void PSAutoBgm::Track::onBeatProc(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1203,7 +1203,7 @@ void onBeatProc__Q29PSAutoBgm5TrackFv(void)
  * Address:	........
  * Size:	00000C
  */
-void getConductor__Q29PSAutoBgm5TrackFv(void)
+void PSAutoBgm::Track::getConductor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1213,7 +1213,7 @@ void getConductor__Q29PSAutoBgm5TrackFv(void)
  * Address:	80339BB4
  * Size:	00003C
  */
-void removeCallback__Q29PSAutoBgm5TrackFUcPv(void)
+void PSAutoBgm::Track::removeCallback( (unsigned char, void *))
 {
 /*
 .loc_0x0:
@@ -1240,7 +1240,7 @@ void removeCallback__Q29PSAutoBgm5TrackFUcPv(void)
  * Address:	80339BF0
  * Size:	0001B8
  */
-void seqCpuSync_AutoBgm_Track__Q29PSAutoBgm5TrackFP8JASTrackUsUlP8JASTrack(void)
+void PSAutoBgm::Track::seqCpuSync_AutoBgm_Track( (JASTrack *, unsigned short, unsigned long, JASTrack *))
 {
 /*
 .loc_0x0:
@@ -1388,7 +1388,7 @@ void seqCpuSync_AutoBgm_Track__Q29PSAutoBgm5TrackFP8JASTrackUsUlP8JASTrack(void)
  * Address:	80339DA8
  * Size:	000060
  */
-void incCurModule__Q29PSAutoBgm5TrackFv(void)
+void PSAutoBgm::Track::incCurModule(void)
 {
 /*
 .loc_0x0:
@@ -1428,7 +1428,7 @@ void incCurModule__Q29PSAutoBgm5TrackFv(void)
  * Address:	........
  * Size:	00007C
  */
-void getNo__Q29PSAutoBgm5TrackFv(void)
+void PSAutoBgm::Track::getNo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1438,7 +1438,7 @@ void getNo__Q29PSAutoBgm5TrackFv(void)
  * Address:	........
  * Size:	000098
  */
-void avoidCheck__Q29PSAutoBgm5TrackFUc(void)
+void PSAutoBgm::Track::avoidCheck( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -1448,7 +1448,7 @@ void avoidCheck__Q29PSAutoBgm5TrackFUc(void)
  * Address:	........
  * Size:	000078
  */
-void onStartSeq__Q29PSAutoBgm5TrackFP11JAISequence(void)
+void PSAutoBgm::Track::onStartSeq( (JAISequence *))
 {
 	// UNUSED FUNCTION
 }
@@ -1458,7 +1458,7 @@ void onStartSeq__Q29PSAutoBgm5TrackFP11JAISequence(void)
  * Address:	80339E08
  * Size:	000054
  */
-void afterGetFromFree__Q29PSAutoBgm6ModuleFv(void)
+void PSAutoBgm::Module::afterGetFromFree(void)
 {
 /*
 .loc_0x0:
@@ -1491,7 +1491,7 @@ void afterGetFromFree__Q29PSAutoBgm6ModuleFv(void)
  * Address:	80339E5C
  * Size:	000554
  */
-void __ct__Q29PSAutoBgm6ModuleFv(void)
+void PSAutoBgm::Module::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1848,7 +1848,7 @@ void __ct__Q29PSAutoBgm6ModuleFv(void)
  * Address:	8033A3B0
  * Size:	00072C
  */
-void __dt__Q29PSAutoBgm6ModuleFv(void)
+void PSAutoBgm::Module::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2393,7 +2393,7 @@ void __dt__Q29PSAutoBgm6ModuleFv(void)
  * Address:	........
  * Size:	00000C
  */
-void getTrack__Q29PSAutoBgm6ModuleFv(void)
+void PSAutoBgm::Module::getTrack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2403,7 +2403,7 @@ void getTrack__Q29PSAutoBgm6ModuleFv(void)
  * Address:	8033AADC
  * Size:	000044
  */
-void removeCallback__Q29PSAutoBgm6ModuleFUcPv(void)
+void PSAutoBgm::Module::removeCallback( (unsigned char, void *))
 {
 /*
 .loc_0x0:
@@ -2432,7 +2432,7 @@ void removeCallback__Q29PSAutoBgm6ModuleFUcPv(void)
  * Address:	8033AB20
  * Size:	000218
  */
-void seqCpuSync_AutoBgm_Module__Q29PSAutoBgm6ModuleFP8JASTrackUsUlP8JASTrack(void)
+void PSAutoBgm::Module::seqCpuSync_AutoBgm_Module( (JASTrack *, unsigned short, unsigned long, JASTrack *))
 {
 /*
 .loc_0x0:
@@ -2604,7 +2604,7 @@ void seqCpuSync_AutoBgm_Module__Q29PSAutoBgm6ModuleFP8JASTrackUsUlP8JASTrack(voi
  * Address:	........
  * Size:	000014
  */
-void onBeatProc__Q29PSAutoBgm6ModuleFv(void)
+void PSAutoBgm::Module::onBeatProc(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2634,7 +2634,7 @@ void PSAutoBgm::get16TblNum(unsigned char *, unsigned short)
  * Address:	8033AD38
  * Size:	0001BC
  */
-void setTableAddress__Q29PSAutoBgm6ModuleFP8JASTrack(void)
+void PSAutoBgm::Module::setTableAddress( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -2769,7 +2769,7 @@ void setTableAddress__Q29PSAutoBgm6ModuleFP8JASTrack(void)
  * Address:	8033AEF4
  * Size:	000154
  */
-void cycleLoop__Q29PSAutoBgm6ModuleFP8JASTrack(void)
+void PSAutoBgm::Module::cycleLoop( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -2884,7 +2884,7 @@ void cycleLoop__Q29PSAutoBgm6ModuleFP8JASTrack(void)
  * Address:	........
  * Size:	00007C
  */
-void getNo__Q29PSAutoBgm6ModuleFv(void)
+void PSAutoBgm::Module::getNo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2894,7 +2894,7 @@ void getNo__Q29PSAutoBgm6ModuleFv(void)
  * Address:	8033B048
  * Size:	000010
  */
-void cycleTop__Q29PSAutoBgm9CycleBaseFP8JASTrack(void)
+void PSAutoBgm::CycleBase::cycleTop( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -2910,7 +2910,7 @@ void cycleTop__Q29PSAutoBgm9CycleBaseFP8JASTrack(void)
  * Address:	8033B058
  * Size:	0001BC
  */
-void play__Q29PSAutoBgm9CycleBaseFP8JASTrack(void)
+void PSAutoBgm::CycleBase::play( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -3047,7 +3047,7 @@ void play__Q29PSAutoBgm9CycleBaseFP8JASTrack(void)
  * Address:	8033B214
  * Size:	000078
  */
-void checkCloser__Q29PSAutoBgm9CycleBaseFP8JASTrack(void)
+void PSAutoBgm::CycleBase::checkCloser( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -3095,7 +3095,7 @@ void checkCloser__Q29PSAutoBgm9CycleBaseFP8JASTrack(void)
  * Address:	8033B28C
  * Size:	000184
  */
-void __ct__Q29PSAutoBgm7OnCycleFPQ29PSAutoBgm6Module(void)
+void PSAutoBgm::OnCycle::__ct( (PSAutoBgm::Module *))
 {
 /*
 .loc_0x0:
@@ -3268,7 +3268,7 @@ void __dt__Q29PSAutoBgm11PrmLink<unsigned short>Fv(void)
  * Address:	8033B468
  * Size:	000360
  */
-void play__Q29PSAutoBgm7OnCycleFP8JASTrack(void)
+void PSAutoBgm::OnCycle::play( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -3530,7 +3530,7 @@ void play__Q29PSAutoBgm7OnCycleFP8JASTrack(void)
  * Address:	8033B7C8
  * Size:	000274
  */
-void setTip__Q29PSAutoBgm7OnCycleFP8JASTrack(void)
+void PSAutoBgm::OnCycle::setTip( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -3719,7 +3719,7 @@ void setTip__Q29PSAutoBgm7OnCycleFP8JASTrack(void)
  * Address:	8033BA3C
  * Size:	00005C
  */
-void historiesAreSameAll__Q29PSAutoBgm7OnCycleFv(void)
+void PSAutoBgm::OnCycle::historiesAreSameAll(void)
 {
 /*
 .loc_0x0:
@@ -3762,7 +3762,7 @@ void historiesAreSameAll__Q29PSAutoBgm7OnCycleFv(void)
  * Address:	8033BA98
  * Size:	0000BC
  */
-void avoidCheck__Q29PSAutoBgm7OnCycleFv(void)
+void PSAutoBgm::OnCycle::avoidCheck(void)
 {
 /*
 .loc_0x0:
@@ -3827,7 +3827,7 @@ void avoidCheck__Q29PSAutoBgm7OnCycleFv(void)
  * Address:	8033BB54
  * Size:	0000B0
  */
-void __ct__Q29PSAutoBgm8OffCycleFPQ29PSAutoBgm6Module(void)
+void PSAutoBgm::OffCycle::__ct( (PSAutoBgm::Module *))
 {
 /*
 .loc_0x0:
@@ -3883,7 +3883,7 @@ void __ct__Q29PSAutoBgm8OffCycleFPQ29PSAutoBgm6Module(void)
  * Address:	8033BC04
  * Size:	00015C
  */
-void __ct__Q29PSAutoBgm7AutoBgmFPCcPCcRCQ27JAInter9SoundInfoQ210JADUtility10AccessModePQ28PSSystem15DirectorMgrBase(void)
+void PSAutoBgm::AutoBgm::__ct( (char const *, char const *, JAInter::SoundInfo const &, JADUtility::AccessMode, PSSystem::DirectorMgrBase *))
 {
 /*
 .loc_0x0:
@@ -3986,7 +3986,7 @@ void __ct__Q29PSAutoBgm7AutoBgmFPCcPCcRCQ27JAInter9SoundInfoQ210JADUtility10Acce
  * Address:	8033BD60
  * Size:	000078
  */
-void __dt__Q29PSAutoBgm10MeloArrMgrFv(void)
+void PSAutoBgm::MeloArrMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4042,7 +4042,7 @@ void JSUList<PSAutoBgm::MeloArrBase>::~JSUList()
  * Address:	8033BDD8
  * Size:	000154
  */
-void __dt__Q29PSAutoBgm12ConductorMgrFv(void)
+void PSAutoBgm::ConductorMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4246,7 +4246,7 @@ void __dt__Q210JADUtility59PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoB
  * Address:	8033C058
  * Size:	000150
  */
-void startSeq__Q29PSAutoBgm7AutoBgmFv(void)
+void PSAutoBgm::AutoBgm::startSeq(void)
 {
 /*
 .loc_0x0:
@@ -4354,7 +4354,7 @@ void startSeq__Q29PSAutoBgm7AutoBgmFv(void)
  * Address:	8033C1A8
  * Size:	000044
  */
-void scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker(void)
+void PSAutoBgm::AutoBgm::scene1st( (PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -4385,7 +4385,7 @@ void scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker(void)
  * Address:	8033C1EC
  * Size:	000180
  */
-void loadConductor__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker(void)
+void PSAutoBgm::AutoBgm::loadConductor( (PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -4509,7 +4509,7 @@ void loadConductor__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker(void)
  * Address:	8033C36C
  * Size:	000074
  */
-void loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl(void)
+void PSAutoBgm::AutoBgm::loadedCallback( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -4552,7 +4552,7 @@ void loadedCallback__Q29PSAutoBgm7AutoBgmFUlUl(void)
  * Address:	8033C3E0
  * Size:	000168
  */
-void pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode(void)
+void PSAutoBgm::AutoBgm::pauseOn( (PSSystem::SeqBase::PauseMode))
 {
 /*
 .loc_0x0:
@@ -4678,7 +4678,7 @@ void pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode(void)
  * Address:	8033C548
  * Size:	000020
  */
-void pauseOff__Q29PSAutoBgm7AutoBgmFv(void)
+void PSAutoBgm::AutoBgm::pauseOff(void)
 {
 /*
 .loc_0x0:
@@ -4848,7 +4848,7 @@ void __dt__Q210JADUtility28PrmSetRc<PSAutoBgm::Track>Fv(void)
  * Address:	8033C6F8
  * Size:	0000C4
  */
-void __dt__Q210JADUtility10StrEditBoxFv(void)
+void JADUtility::StrEditBox::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5801,7 +5801,7 @@ void __ct__Q210JADUtility28PrmSetRc<PSAutoBgm::Track>Fv(void)
  * Address:	8033D0DC
  * Size:	000008
  */
-void avoidCheck__Q29PSAutoBgm9CycleBaseFv(void)
+void PSAutoBgm::CycleBase::avoidCheck(void)
 {
 /*
 .loc_0x0:
@@ -5815,7 +5815,7 @@ void avoidCheck__Q29PSAutoBgm9CycleBaseFv(void)
  * Address:	8033D0E4
  * Size:	000008
  */
-void getCycleType__Q29PSAutoBgm9CycleBaseFv(void)
+void PSAutoBgm::CycleBase::getCycleType(void)
 {
 /*
 .loc_0x0:
@@ -5884,7 +5884,7 @@ void JSUList<unsigned short>::~JSUList()
  * Address:	........
  * Size:	0000C4
  */
-void __dt__Q29PSAutoBgm9CycleBaseFv(void)
+void PSAutoBgm::CycleBase::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5894,7 +5894,7 @@ void __dt__Q29PSAutoBgm9CycleBaseFv(void)
  * Address:	8033D120
  * Size:	0001C4
  */
-void __dt__Q29PSAutoBgm7AutoBgmFv(void)
+void PSAutoBgm::AutoBgm::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6035,7 +6035,7 @@ void __dt__Q29PSAutoBgm7AutoBgmFv(void)
  * Address:	8033D2E4
  * Size:	000008
  */
-void getCastType__Q29PSAutoBgm7AutoBgmFv(void)
+void PSAutoBgm::AutoBgm::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -6049,7 +6049,7 @@ void getCastType__Q29PSAutoBgm7AutoBgmFv(void)
  * Address:	8033D2EC
  * Size:	000088
  */
-void newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv(void)
+void PSAutoBgm::AutoBgm::newSeqTrackRoot(void)
 {
 /*
 .loc_0x0:
@@ -6099,7 +6099,7 @@ void newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv(void)
  * Address:	8033D374
  * Size:	0000D0
  */
-void beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv(void)
+void PSAutoBgm::AutoBgmSeqTrackRoot::beatUpdate(void)
 {
 /*
 .loc_0x0:
@@ -6175,7 +6175,7 @@ void beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv(void)
  * Address:	8033D444
  * Size:	000008
  */
-void getSaveTempHeap__Q29PSAutoBgm12ConductorMgrFv(void)
+void PSAutoBgm::ConductorMgr::getSaveTempHeap(void)
 {
 /*
 .loc_0x0:
@@ -6189,7 +6189,7 @@ void getSaveTempHeap__Q29PSAutoBgm12ConductorMgrFv(void)
  * Address:	8033D44C
  * Size:	000008
  */
-void getObjHeap__Q29PSAutoBgm12ConductorMgrFv(void)
+void PSAutoBgm::ConductorMgr::getObjHeap(void)
 {
 /*
 .loc_0x0:
@@ -6203,7 +6203,7 @@ void getObjHeap__Q29PSAutoBgm12ConductorMgrFv(void)
  * Address:	8033D454
  * Size:	000008
  */
-void getDataHeap__Q29PSAutoBgm12ConductorMgrFv(void)
+void PSAutoBgm::ConductorMgr::getDataHeap(void)
 {
 /*
 .loc_0x0:
@@ -6217,7 +6217,7 @@ void getDataHeap__Q29PSAutoBgm12ConductorMgrFv(void)
  * Address:	8033D45C
  * Size:	000008
  */
-void getCycleType__Q29PSAutoBgm7OnCycleFv(void)
+void PSAutoBgm::OnCycle::getCycleType(void)
 {
 /*
 .loc_0x0:
@@ -6231,7 +6231,7 @@ void getCycleType__Q29PSAutoBgm7OnCycleFv(void)
  * Address:	8033D464
  * Size:	000008
  */
-void getEraseLink__Q29PSAutoBgm9ConductorFv(void)
+void PSAutoBgm::Conductor::getEraseLink(void)
 {
 /*
 .loc_0x0:
@@ -6245,7 +6245,7 @@ void getEraseLink__Q29PSAutoBgm9ConductorFv(void)
  * Address:	8033D46C
  * Size:	000004
  */
-void onBeatTop__Q28PSSystem12SeqTrackRootFv(void)
+void PSSystem::SeqTrackRoot::onBeatTop(void)
 {
 /*
 .loc_0x0:
@@ -6472,7 +6472,7 @@ void @600@28@__dt__Q210JADUtility59PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBg
  * Address:	8033D710
  * Size:	000014
  */
-void @600@28@init__Q210JADUtility11DataMgrNodeFv(void)
+void @600@28@JADUtility::DataMgrNode::init(void)
 {
 /*
 .loc_0x0:
@@ -6489,7 +6489,7 @@ void @600@28@init__Q210JADUtility11DataMgrNodeFv(void)
  * Address:	8033D724
  * Size:	000014
  */
-void @600@28@__dt__Q29PSAutoBgm12ConductorMgrFv(void)
+void @600@28@PSAutoBgm::ConductorMgr::__dt(void)
 {
 /*
 .loc_0x0:

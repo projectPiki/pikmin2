@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80196670
  * Size:	000018
  */
-void __ct__Q24Game13UpdateContextFv(void)
+void Game::UpdateContext::__ct(void)
 {
 /*
 .loc_0x0:
@@ -33,7 +33,7 @@ void __ct__Q24Game13UpdateContextFv(void)
  * Address:	80196688
  * Size:	00005C
  */
-void updatable__Q24Game13UpdateContextFv(void)
+void Game::UpdateContext::updatable(void)
 {
 /*
 .loc_0x0:
@@ -74,7 +74,7 @@ void updatable__Q24Game13UpdateContextFv(void)
  * Address:	801966E4
  * Size:	00003C
  */
-void init__Q24Game13UpdateContextFPQ24Game9UpdateMgr(void)
+void Game::UpdateContext::init( (Game::UpdateMgr *))
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void init__Q24Game13UpdateContextFPQ24Game9UpdateMgr(void)
  * Address:	80196720
  * Size:	000058
  */
-void exit__Q24Game13UpdateContextFv(void)
+void Game::UpdateContext::exit(void)
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void exit__Q24Game13UpdateContextFv(void)
  * Address:	80196778
  * Size:	00001C
  */
-void __ct__Q24Game9UpdateMgrFv(void)
+void Game::UpdateMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -160,7 +160,7 @@ void __ct__Q24Game9UpdateMgrFv(void)
  * Address:	80196794
  * Size:	000024
  */
-void update__Q24Game9UpdateMgrFv(void)
+void Game::UpdateMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -181,7 +181,7 @@ void update__Q24Game9UpdateMgrFv(void)
  * Address:	801967B8
  * Size:	000028
  */
-void updatable__Q24Game9UpdateMgrFPQ24Game13UpdateContext(void)
+void Game::UpdateMgr::updatable( (Game::UpdateContext *))
 {
 /*
 .loc_0x0:
@@ -205,7 +205,7 @@ void updatable__Q24Game9UpdateMgrFPQ24Game13UpdateContext(void)
  * Address:	801967E0
  * Size:	0000A0
  */
-void create__Q24Game9UpdateMgrFi(void)
+void Game::UpdateMgr::create( (int))
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void create__Q24Game9UpdateMgrFi(void)
  * Address:	80196880
  * Size:	0000D0
  */
-void addClient__Q24Game9UpdateMgrFPQ24Game13UpdateContext(void)
+void Game::UpdateMgr::addClient( (Game::UpdateContext *))
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void addClient__Q24Game9UpdateMgrFPQ24Game13UpdateContext(void)
  * Address:	80196950
  * Size:	0000C8
  */
-void removeClient__Q24Game9UpdateMgrFPQ24Game13UpdateContext(void)
+void Game::UpdateMgr::removeClient( (Game::UpdateContext *))
 {
 /*
 .loc_0x0:
@@ -411,7 +411,7 @@ void removeClient__Q24Game9UpdateMgrFPQ24Game13UpdateContext(void)
  * Address:	........
  * Size:	000004
  */
-void balanceClient__Q24Game9UpdateMgrFPQ24Game13UpdateContext(void)
+void Game::UpdateMgr::balanceClient( (Game::UpdateContext *))
 {
 	// UNUSED FUNCTION
 }
@@ -421,7 +421,7 @@ void balanceClient__Q24Game9UpdateMgrFPQ24Game13UpdateContext(void)
  * Address:	........
  * Size:	000004
  */
-void showInfo__Q24Game9UpdateMgrFR8Graphicsii(void)
+void Game::UpdateMgr::showInfo( (Graphics &, int, int))
 {
 	// UNUSED FUNCTION
 }

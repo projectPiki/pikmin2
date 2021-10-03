@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80346178
  * Size:	000224
  */
-void drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f(void)
+void Morimura::THuWhitePaneSet::drawSelf( (float, float, float (*)[3][4]))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f(void)
  * Address:	8034639C
  * Size:	000094
  */
-void gxSet__Q28Morimura15THuWhitePaneSetFv(void)
+void Morimura::THuWhitePaneSet::gxSet(void)
 {
 /*
 .loc_0x0:
@@ -215,7 +215,7 @@ void gxSet__Q28Morimura15THuWhitePaneSetFv(void)
  * Address:	80346430
  * Size:	0000B0
  */
-void __ct__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::__ct(void)
 {
 /*
 .loc_0x0:
@@ -271,7 +271,7 @@ void __ct__Q28Morimura10THurryUp2DFv(void)
  * Address:	803464E0
  * Size:	000024
  */
-void __ct__Q38Morimura10THurryUp2D11TStateParamFv(void)
+void Morimura::THurryUp2D::TStateParam::__ct(void)
 {
 /*
 .loc_0x0:
@@ -292,7 +292,7 @@ void __ct__Q38Morimura10THurryUp2D11TStateParamFv(void)
  * Address:	80346504
  * Size:	000390
  */
-void doCreate__Q28Morimura10THurryUp2DFP10JKRArchive(void)
+void Morimura::THurryUp2D::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -556,7 +556,7 @@ void doCreate__Q28Morimura10THurryUp2DFP10JKRArchive(void)
  * Address:	80346894
  * Size:	00018C
  */
-void doUpdate__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void doUpdate__Q28Morimura10THurryUp2DFv(void)
  * Address:	80346A20
  * Size:	00040C
  */
-void doDraw__Q28Morimura10THurryUp2DFR8Graphics(void)
+void Morimura::THurryUp2D::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -982,7 +982,7 @@ void doDraw__Q28Morimura10THurryUp2DFR8Graphics(void)
  * Address:	80346E2C
  * Size:	00005C
  */
-void doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg(void)
+void Morimura::THurryUp2D::doStart( (Screen::StartSceneArg const *))
 {
 /*
 .loc_0x0:
@@ -1019,7 +1019,7 @@ void doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg(void)
  * Address:	........
  * Size:	00002C
  */
-void calcCount__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::calcCount(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1029,7 +1029,7 @@ void calcCount__Q28Morimura10THurryUp2DFv(void)
  * Address:	80346E88
  * Size:	0004C0
  */
-void init__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::init(void)
 {
 /*
 .loc_0x0:
@@ -1353,7 +1353,7 @@ void init__Q28Morimura10THurryUp2DFv(void)
  * Address:	80347348
  * Size:	0002CC
  */
-void move__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::move(void)
 {
 /*
 .loc_0x0:
@@ -1558,7 +1558,7 @@ void move__Q28Morimura10THurryUp2DFv(void)
  * Address:	80347614
  * Size:	000168
  */
-void scaleUp1__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::scaleUp1(void)
 {
 /*
 .loc_0x0:
@@ -1666,7 +1666,7 @@ void scaleUp1__Q28Morimura10THurryUp2DFv(void)
  * Address:	8034777C
  * Size:	0001B0
  */
-void colorUp__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::colorUp(void)
 {
 /*
 .loc_0x0:
@@ -1790,7 +1790,7 @@ void colorUp__Q28Morimura10THurryUp2DFv(void)
  * Address:	8034792C
  * Size:	000240
  */
-void scaleUp2__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::scaleUp2(void)
 {
 /*
 .loc_0x0:
@@ -1952,7 +1952,7 @@ void scaleUp2__Q28Morimura10THurryUp2DFv(void)
  * Address:	80347B6C
  * Size:	000254
  */
-void changeState__Q28Morimura10THurryUp2DFif(void)
+void Morimura::THurryUp2D::changeState( (int, float))
 {
 /*
 .loc_0x0:
@@ -2125,7 +2125,7 @@ void changeState__Q28Morimura10THurryUp2DFif(void)
  * Address:	80347DC0
  * Size:	000034
  */
-void getDispMemberBase__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::getDispMemberBase(void)
 {
 /*
 .loc_0x0:
@@ -2154,7 +2154,7 @@ void getDispMemberBase__Q28Morimura10THurryUp2DFv(void)
  * Address:	80347DF4
  * Size:	0000C4
  */
-void __dt__Q28Morimura10THurryUp2DFv(void)
+void Morimura::THurryUp2D::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2219,7 +2219,7 @@ void __dt__Q28Morimura10THurryUp2DFv(void)
  * Address:	80347EB8
  * Size:	000060
  */
-void __dt__Q28Morimura15THuWhitePaneSetFv(void)
+void Morimura::THuWhitePaneSet::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2279,7 +2279,7 @@ void __sinit_hurryUp2D_cpp(void)
  * Address:	80347F40
  * Size:	000008
  */
-void @24@__dt__Q28Morimura10THurryUp2DFv(void)
+void @24@Morimura::THurryUp2D::__dt(void)
 {
 /*
 .loc_0x0:

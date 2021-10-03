@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80234EF8
  * Size:	000030
  */
-void __ct__Q24Game11PelletCarryFv(void)
+void Game::PelletCarry::__ct(void)
 {
 /*
 .loc_0x0:
@@ -41,7 +41,7 @@ void __ct__Q24Game11PelletCarryFv(void)
  * Address:	80234F28
  * Size:	000028
  */
-void reset__Q24Game11PelletCarryFv(void)
+void Game::PelletCarry::reset(void)
 {
 /*
 .loc_0x0:
@@ -114,7 +114,7 @@ void pull__Q24Game11PelletCarryFUsR10Vector3<float>f(void)
  * Address:	80234FD4
  * Size:	000034
  */
-void pullable__Q24Game11PelletCarryFUsf(void)
+void Game::PelletCarry::pullable( (unsigned short, float))
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void pullable__Q24Game11PelletCarryFUsf(void)
  * Address:	80235008
  * Size:	000034
  */
-void giveup__Q24Game11PelletCarryFUs(void)
+void Game::PelletCarry::giveup( (unsigned short))
 {
 /*
 .loc_0x0:

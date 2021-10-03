@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803CADC8
  * Size:	000100
  */
-void loadRam__Q33ebi6Screen16TOptionParameterFv(void)
+void ebi::Screen::TOptionParameter::loadRam(void)
 {
 /*
 .loc_0x0:
@@ -101,7 +101,7 @@ void loadRam__Q33ebi6Screen16TOptionParameterFv(void)
  * Address:	803CAEC8
  * Size:	0000FC
  */
-void saveRam__Q33ebi6Screen16TOptionParameterFv(void)
+void ebi::Screen::TOptionParameter::saveRam(void)
 {
 /*
 .loc_0x0:
@@ -186,7 +186,7 @@ void saveRam__Q33ebi6Screen16TOptionParameterFv(void)
  * Address:	803CAFC4
  * Size:	000024
  */
-void initParamForTest__Q33ebi6Screen16TOptionParameterFv(void)
+void ebi::Screen::TOptionParameter::initParamForTest(void)
 {
 /*
 .loc_0x0:
@@ -207,7 +207,7 @@ void initParamForTest__Q33ebi6Screen16TOptionParameterFv(void)
  * Address:	803CAFE8
  * Size:	0008D4
  */
-void doSetArchive__Q33ebi6Screen7TOptionFP10JKRArchive(void)
+void ebi::Screen::TOption::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -792,7 +792,7 @@ void doSetArchive__Q33ebi6Screen7TOptionFP10JKRArchive(void)
  * Address:	803CB8BC
  * Size:	000134
  */
-void doOpenScreen__Q33ebi6Screen7TOptionFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TOption::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -881,7 +881,7 @@ void doOpenScreen__Q33ebi6Screen7TOptionFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803CB9F0
  * Size:	00004C
  */
-void doCloseScreen__Q33ebi6Screen7TOptionFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TOption::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -912,7 +912,7 @@ void doCloseScreen__Q33ebi6Screen7TOptionFPQ33ebi6Screen8ArgClose(void)
  * Address:	803CBA3C
  * Size:	000024
  */
-void doInitWaitState__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::doInitWaitState(void)
 {
 /*
 .loc_0x0:
@@ -933,7 +933,7 @@ void doInitWaitState__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CBA60
  * Size:	000084
  */
-void doUpdateStateOpen__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -984,7 +984,7 @@ void doUpdateStateOpen__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CBAE4
  * Size:	0009B4
  */
-void doUpdateStateWait__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -1717,7 +1717,7 @@ void doUpdateStateWait__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CC498
  * Size:	000074
  */
-void doUpdateStateClose__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -1764,7 +1764,7 @@ void doUpdateStateClose__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CC50C
  * Size:	000244
  */
-void doDraw__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -1937,7 +1937,7 @@ void doDraw__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CC750
  * Size:	0000B0
  */
-void loadResource__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -1995,7 +1995,7 @@ void loadResource__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CC800
  * Size:	0000BC
  */
-void setController__Q33ebi6Screen7TOptionFP10Controller(void)
+void ebi::Screen::TOption::setController( (Controller *))
 {
 /*
 .loc_0x0:
@@ -2054,7 +2054,7 @@ void setController__Q33ebi6Screen7TOptionFP10Controller(void)
  * Address:	803CC8BC
  * Size:	000174
  */
-void initScreen___Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::initScreen_(void)
 {
 /*
 .loc_0x0:
@@ -2181,7 +2181,7 @@ void initScreen___Q33ebi6Screen7TOptionFv(void)
  * Address:	803CCA30
  * Size:	000C9C
  */
-void setOptionParamToScreen___Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::setOptionParamToScreen_(void)
 {
 /*
 .loc_0x0:
@@ -3046,7 +3046,7 @@ void setOptionParamToScreen___Q33ebi6Screen7TOptionFv(void)
  * Address:	803CD6CC
  * Size:	000008
  */
-void getName__Q33ebi6Screen7TOptionFv(void)
+void ebi::Screen::TOption::getName(void)
 {
 /*
 .loc_0x0:
@@ -3060,7 +3060,7 @@ void getName__Q33ebi6Screen7TOptionFv(void)
  * Address:	803CD6D4
  * Size:	000004
  */
-void doKillScreen__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::doKillScreen(void)
 {
 /*
 .loc_0x0:

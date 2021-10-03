@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803A53C8
  * Size:	000050
  */
-void __ct__Q34Game8BlackMan3MgrFiUc(void)
+void Game::BlackMan::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game8BlackMan3MgrFiUc(void)
  * Address:	803A5418
  * Size:	000048
  */
-void doAlloc__Q34Game8BlackMan3MgrFv(void)
+void Game::BlackMan::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game8BlackMan3MgrFv(void)
  * Address:	803A5460
  * Size:	0000EC
  */
-void __ct__Q34Game8BlackMan5ParmsFv(void)
+void Game::BlackMan::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -154,7 +154,7 @@ void __ct__Q34Game8BlackMan5ParmsFv(void)
  * Address:	803A554C
  * Size:	000368
  */
-void __ct__Q44Game8BlackMan5Parms11ProperParmsFv(void)
+void Game::BlackMan::Parms::ProperParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void __ct__Q44Game8BlackMan5Parms11ProperParmsFv(void)
  * Address:	803A58B4
  * Size:	000020
  */
-void birth__Q34Game8BlackMan3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::BlackMan::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -406,7 +406,7 @@ void birth__Q34Game8BlackMan3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	803A58D4
  * Size:	000094
  */
-void loadModelData__Q34Game8BlackMan3MgrFv(void)
+void Game::BlackMan::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -461,7 +461,7 @@ void loadModelData__Q34Game8BlackMan3MgrFv(void)
  * Address:	803A5968
  * Size:	0000BC
  */
-void loadTexData__Q34Game8BlackMan3MgrFv(void)
+void Game::BlackMan::Mgr::loadTexData(void)
 {
 /*
 .loc_0x0:
@@ -526,7 +526,7 @@ void loadTexData__Q34Game8BlackMan3MgrFv(void)
  * Address:	803A5A24
  * Size:	00002C
  */
-void doLoadBmd__Q34Game8BlackMan3MgrFPv(void)
+void Game::BlackMan::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -549,7 +549,7 @@ void doLoadBmd__Q34Game8BlackMan3MgrFPv(void)
  * Address:	803A5A50
  * Size:	000124
  */
-void createModel__Q34Game8BlackMan3MgrFv(void)
+void Game::BlackMan::Mgr::createModel(void)
 {
 /*
 .loc_0x0:
@@ -644,7 +644,7 @@ void createModel__Q34Game8BlackMan3MgrFv(void)
  * Address:	803A5B74
  * Size:	0000B0
  */
-void __dt__Q34Game8BlackMan3MgrFv(void)
+void Game::BlackMan::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -704,7 +704,7 @@ void __dt__Q34Game8BlackMan3MgrFv(void)
  * Address:	803A5C24
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8BlackMan3MgrFv(void)
+void Game::BlackMan::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void getEnemyTypeID__Q34Game8BlackMan3MgrFv(void)
  * Address:	803A5C2C
  * Size:	000060
  */
-void createObj__Q34Game8BlackMan3MgrFi(void)
+void Game::BlackMan::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -754,7 +754,7 @@ void createObj__Q34Game8BlackMan3MgrFi(void)
  * Address:	803A5C8C
  * Size:	0000BC
  */
-void __dt__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -817,7 +817,7 @@ void __dt__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A5D48
  * Size:	000010
  */
-void getEnemy__Q34Game8BlackMan3MgrFi(void)
+void Game::BlackMan::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -833,7 +833,7 @@ void getEnemy__Q34Game8BlackMan3MgrFi(void)
  * Address:	803A5D58
  * Size:	000050
  */
-void read__Q34Game8BlackMan5ParmsFR6Stream(void)
+void Game::BlackMan::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void read__Q34Game8BlackMan5ParmsFR6Stream(void)
  * Address:	803A5DA8
  * Size:	000008
  */
-void @4@__dt__Q34Game8BlackMan3MgrFv(void)
+void @4@Game::BlackMan::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

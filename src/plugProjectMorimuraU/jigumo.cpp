@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80368EA0
  * Size:	000038
  */
-void mouthScaleCallBack__Q24Game6JigumoFP8J3DJointi(void)
+void Game::Jigumo::mouthScaleCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void mouthScaleCallBack__Q24Game6JigumoFP8J3DJointi(void)
  * Address:	80368ED8
  * Size:	00016C
  */
-void setParameters__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -271,7 +271,7 @@ void birth__Q34Game6Jigumo3ObjFR10Vector3<float>f(void)
  * Address:	803691C0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void getEnemyTypeID__Q34Game6Jigumo3ObjFv(void)
  * Address:	803691C8
  * Size:	00023C
  */
-void onInit__Q34Game6Jigumo3ObjFPQ24Game15CreatureInitArg(void)
+void Game::Jigumo::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void onInit__Q34Game6Jigumo3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	80369404
  * Size:	0003E4
  */
-void __ct__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -733,7 +733,7 @@ void __ct__Q34Game6Jigumo3ObjFv(void)
  * Address:	803697E8
  * Size:	00004C
  */
-void setFSM__Q34Game6Jigumo3ObjFPQ34Game6Jigumo3FSM(void)
+void Game::Jigumo::Obj::setFSM( (Game::Jigumo::FSM *))
 {
 /*
 .loc_0x0:
@@ -764,7 +764,7 @@ void setFSM__Q34Game6Jigumo3ObjFPQ34Game6Jigumo3FSM(void)
  * Address:	80369834
  * Size:	000040
  */
-void doUpdate__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -794,7 +794,7 @@ void doUpdate__Q34Game6Jigumo3ObjFv(void)
  * Address:	80369874
  * Size:	000004
  */
-void doDirectDraw__Q34Game6Jigumo3ObjFR8Graphics(void)
+void Game::Jigumo::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -807,7 +807,7 @@ void doDirectDraw__Q34Game6Jigumo3ObjFR8Graphics(void)
  * Address:	80369878
  * Size:	000020
  */
-void doDebugDraw__Q34Game6Jigumo3ObjFR8Graphics(void)
+void Game::Jigumo::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -827,7 +827,7 @@ void doDebugDraw__Q34Game6Jigumo3ObjFR8Graphics(void)
  * Address:	80369898
  * Size:	00014C
  */
-void doAnimationCullingOff__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -928,7 +928,7 @@ void doAnimationCullingOff__Q34Game6Jigumo3ObjFv(void)
  * Address:	803699E4
  * Size:	000028
  */
-void startCarcassMotion__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -950,7 +950,7 @@ void startCarcassMotion__Q34Game6Jigumo3ObjFv(void)
  * Address:	80369A0C
  * Size:	0000BC
  */
-void initMouthSlots__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -1015,7 +1015,7 @@ void initMouthSlots__Q34Game6Jigumo3ObjFv(void)
  * Address:	80369AC8
  * Size:	00009C
  */
-void doGetLifeGaugeParam__Q34Game6Jigumo3ObjFRQ24Game14LifeGaugeParam(void)
+void Game::Jigumo::Obj::doGetLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -1068,7 +1068,7 @@ void doGetLifeGaugeParam__Q34Game6Jigumo3ObjFRQ24Game14LifeGaugeParam(void)
  * Address:	80369B64
  * Size:	000108
  */
-void pressCallBack__Q34Game6Jigumo3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Jigumo::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1154,7 +1154,7 @@ void pressCallBack__Q34Game6Jigumo3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80369C6C
  * Size:	0001B4
  */
-void damageCallBack__Q34Game6Jigumo3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::Jigumo::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -1285,7 +1285,7 @@ void damageCallBack__Q34Game6Jigumo3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80369E20
  * Size:	0000D0
  */
-void collisionCallback__Q34Game6Jigumo3ObjFRQ24Game9CollEvent(void)
+void Game::Jigumo::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1353,7 +1353,7 @@ void collisionCallback__Q34Game6Jigumo3ObjFRQ24Game9CollEvent(void)
  * Address:	80369EF0
  * Size:	000120
  */
-void outWaterCallback__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -1447,7 +1447,7 @@ void outWaterCallback__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036A010
  * Size:	000150
  */
-void inWaterCallback__Q34Game6Jigumo3ObjFPQ24Game8WaterBox(void)
+void Game::Jigumo::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -1553,7 +1553,7 @@ void inWaterCallback__Q34Game6Jigumo3ObjFPQ24Game8WaterBox(void)
  * Address:	8036A160
  * Size:	00007C
  */
-void earthquakeCallBack__Q34Game6Jigumo3ObjFPQ24Game8Creaturef(void)
+void Game::Jigumo::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -1600,7 +1600,7 @@ void earthquakeCallBack__Q34Game6Jigumo3ObjFPQ24Game8Creaturef(void)
  * Address:	8036A1DC
  * Size:	00009C
  */
-void getShadowParam__Q34Game6Jigumo3ObjFRQ24Game11ShadowParam(void)
+void Game::Jigumo::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -1651,7 +1651,7 @@ void getShadowParam__Q34Game6Jigumo3ObjFRQ24Game11ShadowParam(void)
  * Address:	8036A278
  * Size:	00007C
  */
-void needShadow__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::needShadow(void)
 {
 /*
 .loc_0x0:
@@ -1704,7 +1704,7 @@ void needShadow__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036A2F4
  * Size:	000174
  */
-void doSimulationGround__Q34Game6Jigumo3ObjFf(void)
+void Game::Jigumo::Obj::doSimulationGround( (float))
 {
 /*
 .loc_0x0:
@@ -1823,7 +1823,7 @@ void doSimulationGround__Q34Game6Jigumo3ObjFf(void)
  * Address:	8036A468
  * Size:	000034
  */
-void onKill__Q34Game6Jigumo3ObjFPQ24Game15CreatureKillArg(void)
+void Game::Jigumo::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -1848,7 +1848,7 @@ void onKill__Q34Game6Jigumo3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	8036A49C
  * Size:	000008
  */
-void isLivingThing__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::isLivingThing(void)
 {
 /*
 .loc_0x0:
@@ -1862,7 +1862,7 @@ void isLivingThing__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036A4A4
  * Size:	00008C
  */
-void doStartMovie__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -1909,7 +1909,7 @@ void doStartMovie__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036A530
  * Size:	00008C
  */
-void doEndMovie__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -1956,7 +1956,7 @@ void doEndMovie__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036A5BC
  * Size:	0000D8
  */
-void doStartStoneState__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -2026,7 +2026,7 @@ void doStartStoneState__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036A694
  * Size:	0000E8
  */
-void doFinishStoneState__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -2102,7 +2102,7 @@ void doFinishStoneState__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036A77C
  * Size:	000034
  */
-void getGoalDist__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getGoalDist(void)
 {
 /*
 .loc_0x0:
@@ -2127,7 +2127,7 @@ void getGoalDist__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036A7B0
  * Size:	0007DC
  */
-void walkFunc__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::walkFunc(void)
 {
 /*
 .loc_0x0:
@@ -2708,7 +2708,7 @@ void walkFunc__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036AF8C
  * Size:	00019C
  */
-void getOffsetForMapCollision__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getOffsetForMapCollision(void)
 {
 /*
 .loc_0x0:
@@ -2845,7 +2845,7 @@ void getOffsetForMapCollision__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036B128
  * Size:	000820
  */
-void calcBaseTrMatrix__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::calcBaseTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -3451,7 +3451,7 @@ void calcBaseTrMatrix__Q34Game6Jigumo3ObjFv(void)
  * Address:	........
  * Size:	0000E8
  */
-void isUnitePos__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::isUnitePos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3461,7 +3461,7 @@ void isUnitePos__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036B948
  * Size:	000058
  */
-void revisionAnimPos__Q34Game6Jigumo3ObjFf(void)
+void Game::Jigumo::Obj::revisionAnimPos( (float))
 {
 /*
 .loc_0x0:
@@ -3497,7 +3497,7 @@ void revisionAnimPos__Q34Game6Jigumo3ObjFf(void)
  * Address:	8036B9A0
  * Size:	000080
  */
-void getWalkSpeed__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getWalkSpeed(void)
 {
 /*
 .loc_0x0:
@@ -3553,7 +3553,7 @@ void getWalkSpeed__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036BA20
  * Size:	000074
  */
-void velocityControl__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::velocityControl(void)
 {
 /*
 .loc_0x0:
@@ -3596,7 +3596,7 @@ void velocityControl__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036BA94
  * Size:	0000A8
  */
-void getNearestPikiOrNavi__Q34Game6Jigumo3ObjFff(void)
+void Game::Jigumo::Obj::getNearestPikiOrNavi( (float, float))
 {
 /*
 .loc_0x0:
@@ -3652,7 +3652,7 @@ void getNearestPikiOrNavi__Q34Game6Jigumo3ObjFff(void)
  * Address:	8036BB3C
  * Size:	0001C0
  */
-void effectStart__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::effectStart(void)
 {
 /*
 .loc_0x0:
@@ -3786,7 +3786,7 @@ void effectStart__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036BCFC
  * Size:	00008C
  */
-void effectStop__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::effectStop(void)
 {
 /*
 .loc_0x0:
@@ -3833,7 +3833,7 @@ void effectStop__Q34Game6Jigumo3ObjFv(void)
  * Address:	........
  * Size:	0000A8
  */
-void appearEffectStart__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::appearEffectStart(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3843,7 +3843,7 @@ void appearEffectStart__Q34Game6Jigumo3ObjFv(void)
  * Address:	........
  * Size:	000030
  */
-void appearEffectStop__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::appearEffectStop(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3853,7 +3853,7 @@ void appearEffectStop__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036BD88
  * Size:	000028
  */
-void boundEffect__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::boundEffect(void)
 {
 /*
 .loc_0x0:
@@ -3875,7 +3875,7 @@ void boundEffect__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036BDB0
  * Size:	000124
  */
-void eatWaterEffect__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::eatWaterEffect(void)
 {
 /*
 .loc_0x0:
@@ -3962,7 +3962,7 @@ void eatWaterEffect__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036BED4
  * Size:	000020
  */
-void killNest__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::killNest(void)
 {
 /*
 .loc_0x0:
@@ -3984,7 +3984,7 @@ void killNest__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036BEF4
  * Size:	000194
  */
-void mouthScaleMtxCalc__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::mouthScaleMtxCalc(void)
 {
 /*
 .loc_0x0:
@@ -4117,7 +4117,7 @@ void mouthScaleMtxCalc__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036C088
  * Size:	000004
  */
-void setInitialSetting__Q34Game6Jigumo3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::Jigumo::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -4130,7 +4130,7 @@ void setInitialSetting__Q34Game6Jigumo3ObjFPQ24Game21EnemyInitialParamBase(void)
  * Address:	8036C08C
  * Size:	000014
  */
-void getCellRadius__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getCellRadius(void)
 {
 /*
 .loc_0x0:
@@ -4147,7 +4147,7 @@ void getCellRadius__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036C0A0
  * Size:	000008
  */
-void getBodyRadius__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getBodyRadius(void)
 {
 /*
 .loc_0x0:
@@ -4161,7 +4161,7 @@ void getBodyRadius__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036C0A8
  * Size:	000028
  */
-void eatWhitePikminCallBack__Q34Game6Jigumo3ObjFPQ24Game8Creaturef(void)
+void Game::Jigumo::Obj::eatWhitePikminCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -4183,7 +4183,7 @@ void eatWhitePikminCallBack__Q34Game6Jigumo3ObjFPQ24Game8Creaturef(void)
  * Address:	8036C0D0
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -4197,7 +4197,7 @@ void getDownSmokeScale__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036C0D8
  * Size:	000008
  */
-void getMouthSlots__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -4211,7 +4211,7 @@ void getMouthSlots__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036C0E0
  * Size:	00003C
  */
-void createEfxHamon__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::createEfxHamon(void)
 {
 /*
 .loc_0x0:
@@ -4240,7 +4240,7 @@ void createEfxHamon__Q34Game6Jigumo3ObjFv(void)
  * Address:	8036C11C
  * Size:	000014
  */
-void @908@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @908@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -4257,7 +4257,7 @@ void @908@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8036C130
  * Size:	000014
  */
-void @908@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @908@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -4274,7 +4274,7 @@ void @908@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8036C144
  * Size:	000014
  */
-void @908@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @908@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -4291,7 +4291,7 @@ void @908@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	8036C158
  * Size:	000014
  */
-void @908@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @908@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -4308,7 +4308,7 @@ void @908@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8036C16C
  * Size:	000014
  */
-void @908@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @908@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -4325,7 +4325,7 @@ void @908@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	8036C180
  * Size:	000014
  */
-void @908@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @908@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:

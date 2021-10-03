@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803EEBE8
  * Size:	0001D0
  */
-void init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr(void)
+void ebi::Omake::FSMStateMachine::init( (ebi::Omake::TMgr *))
 {
 /*
 .loc_0x0:
@@ -153,7 +153,7 @@ void init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr(void)
  * Address:	803EEDB8
  * Size:	00002C
  */
-void init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
+void ebi::Omake::FSMState::init( (ebi::Omake::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -176,7 +176,7 @@ void init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
  * Address:	803EEDE4
  * Size:	00002C
  */
-void exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr(void)
+void ebi::Omake::FSMState::exec( (ebi::Omake::TMgr *))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr(void)
  * Address:	803EEE10
  * Size:	0000DC
  */
-void do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
+void ebi::Omake::FSMState_OmakeScreen::do_init( (ebi::Omake::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -272,7 +272,7 @@ void do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8Stat
  * Address:	803EEEEC
  * Size:	0000A8
  */
-void do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr(void)
+void ebi::Omake::FSMState_OmakeScreen::do_exec( (ebi::Omake::TMgr *))
 {
 /*
 .loc_0x0:
@@ -332,7 +332,7 @@ void do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr(void)
  * Address:	803EEF94
  * Size:	000034
  */
-void do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
+void ebi::Omake::FSMState_CardEScreen::do_init( (ebi::Omake::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8Stat
  * Address:	803EEFC8
  * Size:	0000A0
  */
-void do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr(void)
+void ebi::Omake::FSMState_CardEScreen::do_exec( (ebi::Omake::TMgr *))
 {
 /*
 .loc_0x0:
@@ -413,7 +413,7 @@ void do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr(void)
  * Address:	803EF068
  * Size:	000048
  */
-void do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
+void ebi::Omake::FSMState_SelectGame::do_init( (ebi::Omake::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -443,7 +443,7 @@ void do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8State
  * Address:	803EF0B0
  * Size:	000378
  */
-void do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr(void)
+void ebi::Omake::FSMState_SelectGame::do_exec( (ebi::Omake::TMgr *))
 {
 /*
 .loc_0x0:
@@ -711,7 +711,7 @@ void do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr(void)
  * Address:	803EF428
  * Size:	0000B4
  */
-void __ct__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -768,7 +768,7 @@ void __ct__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF4DC
  * Size:	0000E8
  */
-void loadResource__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -840,7 +840,7 @@ void loadResource__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF5C4
  * Size:	000050
  */
-void newCardEMgrAndTask__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::newCardEMgrAndTask(void)
 {
 /*
 .loc_0x0:
@@ -872,7 +872,7 @@ void newCardEMgrAndTask__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF614
  * Size:	00003C
  */
-void start__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::start(void)
 {
 /*
 .loc_0x0:
@@ -899,7 +899,7 @@ void start__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF650
  * Size:	00003C
  */
-void goEnd___Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::goEnd_(void)
 {
 /*
 .loc_0x0:
@@ -926,7 +926,7 @@ void goEnd___Q33ebi5Omake4TMgrFv(void)
  * Address:	........
  * Size:	000084
  */
-void forceQuit__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::forceQuit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -936,7 +936,7 @@ void forceQuit__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF68C
  * Size:	000028
  */
-void isFinish__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::isFinish(void)
 {
 /*
 .loc_0x0:
@@ -958,7 +958,7 @@ void isFinish__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF6B4
  * Size:	0000E0
  */
-void update__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -1028,7 +1028,7 @@ void update__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF794
  * Size:	000080
  */
-void draw__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::draw(void)
 {
 /*
 .loc_0x0:
@@ -1074,7 +1074,7 @@ void draw__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF814
  * Size:	00002C
  */
-void isMovieState__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::isMovieState(void)
 {
 /*
 .loc_0x0:
@@ -1097,7 +1097,7 @@ void isMovieState__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF840
  * Size:	000054
  */
-void restartFromMovieState__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::restartFromMovieState(void)
 {
 /*
 .loc_0x0:
@@ -1132,7 +1132,7 @@ void restartFromMovieState__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF894
  * Size:	000008
  */
-void getMovieID__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::getMovieID(void)
 {
 /*
 .loc_0x0:
@@ -1146,7 +1146,7 @@ void getMovieID__Q33ebi5Omake4TMgrFv(void)
  * Address:	........
  * Size:	00016C
  */
-void isTouchAnyKey___Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::isTouchAnyKey_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1156,7 +1156,7 @@ void isTouchAnyKey___Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF89C
  * Size:	000058
  */
-void getStateID__Q33ebi5Omake4TMgrFv(void)
+void ebi::Omake::TMgr::getStateID(void)
 {
 /*
 .loc_0x0:
@@ -1192,7 +1192,7 @@ void getStateID__Q33ebi5Omake4TMgrFv(void)
  * Address:	803EF8F4
  * Size:	000004
  */
-void do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
+void ebi::Omake::FSMState::do_init( (ebi::Omake::TMgr *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1205,7 +1205,7 @@ void do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
  * Address:	803EF8F8
  * Size:	000004
  */
-void do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr(void)
+void ebi::Omake::FSMState::do_exec( (ebi::Omake::TMgr *))
 {
 /*
 .loc_0x0:
@@ -1267,7 +1267,7 @@ void start__Q24Game31StateMachine<ebi::Omake::TMgr>FPQ33ebi5Omake4TMgriPQ24Game8
  * Address:	803EF960
  * Size:	000278
  */
-void __dt__Q33ebi6Screen10TOmakeGameFv(void)
+void ebi::Screen::TOmakeGame::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1455,7 +1455,7 @@ void __dt__Q33ebi6Screen10TOmakeGameFv(void)
  * Address:	803EFBD8
  * Size:	0002E4
  */
-void __dt__Q33ebi6Screen11TOmakeCardEFv(void)
+void ebi::Screen::TOmakeCardE::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1676,7 +1676,7 @@ void __dt__Q33ebi6Screen11TOmakeCardEFv(void)
  * Address:	803EFEBC
  * Size:	000208
  */
-void __dt__Q33ebi6Screen6TOmakeFv(void)
+void ebi::Screen::TOmake::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2083,7 +2083,7 @@ void registerState__Q24Game31StateMachine<ebi::Omake::TMgr>FPQ24Game27FSMState<e
  * Address:	803F0298
  * Size:	00000C
  */
-void getName__Q33ebi6Screen12ArgOpenOmakeFv(void)
+void ebi::Screen::ArgOpenOmake::getName(void)
 {
 /*
 .loc_0x0:

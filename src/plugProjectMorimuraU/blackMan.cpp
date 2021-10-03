@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803A5DB0
  * Size:	00003C
  */
-void lHandCallBack__Q24Game8BlackManFP8J3DJointi(void)
+void Game::BlackMan::lHandCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -44,7 +44,7 @@ void lHandCallBack__Q24Game8BlackManFP8J3DJointi(void)
  * Address:	803A5DEC
  * Size:	00003C
  */
-void rHandCallBack__Q24Game8BlackManFP8J3DJointi(void)
+void Game::BlackMan::rHandCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void rHandCallBack__Q24Game8BlackManFP8J3DJointi(void)
  * Address:	803A5E28
  * Size:	00003C
  */
-void lFootCallBack__Q24Game8BlackManFP8J3DJointi(void)
+void Game::BlackMan::lFootCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -102,7 +102,7 @@ void lFootCallBack__Q24Game8BlackManFP8J3DJointi(void)
  * Address:	803A5E64
  * Size:	00003C
  */
-void rFootCallBack__Q24Game8BlackManFP8J3DJointi(void)
+void Game::BlackMan::rFootCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void rFootCallBack__Q24Game8BlackManFP8J3DJointi(void)
  * Address:	803A5EA0
  * Size:	000038
  */
-void bodyCallBack__Q24Game8BlackManFP8J3DJointi(void)
+void Game::BlackMan::bodyCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void bodyCallBack__Q24Game8BlackManFP8J3DJointi(void)
  * Address:	803A5ED8
  * Size:	0000F0
  */
-void setParameters__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void birth__Q34Game8BlackMan3ObjFR10Vector3<float>f(void)
  * Address:	803A5FE8
  * Size:	0006B4
  */
-void onInit__Q34Game8BlackMan3ObjFPQ24Game15CreatureInitArg(void)
+void Game::BlackMan::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -722,7 +722,7 @@ void onInit__Q34Game8BlackMan3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	803A669C
  * Size:	000560
  */
-void __ct__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1098,7 +1098,7 @@ void __ct__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A6BFC
  * Size:	00004C
  */
-void setFSM__Q34Game8BlackMan3ObjFPQ34Game8BlackMan3FSM(void)
+void Game::BlackMan::Obj::setFSM( (Game::BlackMan::FSM *))
 {
 /*
 .loc_0x0:
@@ -1129,7 +1129,7 @@ void setFSM__Q34Game8BlackMan3ObjFPQ34Game8BlackMan3FSM(void)
  * Address:	803A6C48
  * Size:	0006C4
  */
-void doUpdate__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1616,7 +1616,7 @@ void doUpdate__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A730C
  * Size:	000004
  */
-void doDirectDraw__Q34Game8BlackMan3ObjFR8Graphics(void)
+void Game::BlackMan::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1629,7 +1629,7 @@ void doDirectDraw__Q34Game8BlackMan3ObjFR8Graphics(void)
  * Address:	803A7310
  * Size:	000020
  */
-void doDebugDraw__Q34Game8BlackMan3ObjFR8Graphics(void)
+void Game::BlackMan::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1649,7 +1649,7 @@ void doDebugDraw__Q34Game8BlackMan3ObjFR8Graphics(void)
  * Address:	803A7330
  * Size:	000174
  */
-void doSimulation__Q34Game8BlackMan3ObjFf(void)
+void Game::BlackMan::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -1764,7 +1764,7 @@ void doSimulation__Q34Game8BlackMan3ObjFf(void)
  * Address:	803A74A4
  * Size:	000238
  */
-void doAnimationCullingOff__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -1934,7 +1934,7 @@ void doAnimationCullingOff__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A76DC
  * Size:	00003C
  */
-void onKill__Q34Game8BlackMan3ObjFPQ24Game15CreatureKillArg(void)
+void Game::BlackMan::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -1961,7 +1961,7 @@ void onKill__Q34Game8BlackMan3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	803A7718
  * Size:	0000DC
  */
-void doStartStoneState__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -2032,7 +2032,7 @@ void doStartStoneState__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A77F4
  * Size:	0000BC
  */
-void doFinishStoneState__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -2093,7 +2093,7 @@ void doFinishStoneState__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A78B0
  * Size:	000058
  */
-void isUnderground__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -2133,7 +2133,7 @@ void isUnderground__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A7908
  * Size:	0000A4
  */
-void doGetLifeGaugeParam__Q34Game8BlackMan3ObjFRQ24Game14LifeGaugeParam(void)
+void Game::BlackMan::Obj::doGetLifeGaugeParam( (Game::LifeGaugeParam &))
 {
 /*
 .loc_0x0:
@@ -2194,7 +2194,7 @@ void doGetLifeGaugeParam__Q34Game8BlackMan3ObjFRQ24Game14LifeGaugeParam(void)
  * Address:	803A79AC
  * Size:	0001B8
  */
-void collisionCallback__Q34Game8BlackMan3ObjFRQ24Game9CollEvent(void)
+void Game::BlackMan::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -2326,7 +2326,7 @@ void collisionCallback__Q34Game8BlackMan3ObjFRQ24Game9CollEvent(void)
  * Address:	803A7B64
  * Size:	00016C
  */
-void damageCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::BlackMan::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -2441,7 +2441,7 @@ void damageCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	803A7CD0
  * Size:	000134
  */
-void hipdropCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::BlackMan::Obj::hipdropCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -2544,7 +2544,7 @@ void hipdropCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	803A7E04
  * Size:	0000DC
  */
-void earthquakeCallBack__Q34Game8BlackMan3ObjFPQ24Game8Creaturef(void)
+void Game::BlackMan::Obj::earthquakeCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -2619,7 +2619,7 @@ void earthquakeCallBack__Q34Game8BlackMan3ObjFPQ24Game8Creaturef(void)
  * Address:	803A7EE0
  * Size:	000068
  */
-void doEntry__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -2661,7 +2661,7 @@ void doEntry__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A7F48
  * Size:	00031C
  */
-void changeMaterial__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -2876,7 +2876,7 @@ void changeMaterial__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A8264
  * Size:	000050
  */
-void getShadowParam__Q34Game8BlackMan3ObjFRQ24Game11ShadowParam(void)
+void Game::BlackMan::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -2908,7 +2908,7 @@ void getShadowParam__Q34Game8BlackMan3ObjFRQ24Game11ShadowParam(void)
  * Address:	803A82B4
  * Size:	000064
  */
-void initWalkSmokeEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -2945,7 +2945,7 @@ void initWalkSmokeEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A8318
  * Size:	00001C
  */
-void getWalkSmokeEffectMgr__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -2966,7 +2966,7 @@ void getWalkSmokeEffectMgr__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A8334
  * Size:	000848
  */
-void walkFunc__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::walkFunc(void)
 {
 /*
 .loc_0x0:
@@ -3596,7 +3596,7 @@ void walkFunc__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A8B7C
  * Size:	000034
  */
-void isReachToGoal__Q34Game8BlackMan3ObjFf(void)
+void Game::BlackMan::Obj::isReachToGoal( (float))
 {
 /*
 .loc_0x0:
@@ -3621,7 +3621,7 @@ void isReachToGoal__Q34Game8BlackMan3ObjFf(void)
  * Address:	803A8BB0
  * Size:	000ED0
  */
-void findNextRoutePoint__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::findNextRoutePoint(void)
 {
 /*
 .loc_0x0:
@@ -4719,7 +4719,7 @@ void findNextRoutePoint__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A9A80
  * Size:	0000D0
  */
-void findNextTraceRoutePoint__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::findNextTraceRoutePoint(void)
 {
 /*
 .loc_0x0:
@@ -4795,7 +4795,7 @@ void findNextTraceRoutePoint__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A9B50
  * Size:	000114
  */
-void isEndPathFinder__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::isEndPathFinder(void)
 {
 /*
 .loc_0x0:
@@ -4896,7 +4896,7 @@ void isEndPathFinder__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A9C64
  * Size:	0001D8
  */
-void setPathFinder__Q34Game8BlackMan3ObjFb(void)
+void Game::BlackMan::Obj::setPathFinder( (bool))
 {
 /*
 .loc_0x0:
@@ -5040,7 +5040,7 @@ void setPathFinder__Q34Game8BlackMan3ObjFb(void)
  * Address:	803A9E3C
  * Size:	000044
  */
-void releasePathFinder__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::releasePathFinder(void)
 {
 /*
 .loc_0x0:
@@ -5071,7 +5071,7 @@ void releasePathFinder__Q34Game8BlackMan3ObjFv(void)
  * Address:	803A9E80
  * Size:	000590
  */
-void jointMtxCalc__Q34Game8BlackMan3ObjFi(void)
+void Game::BlackMan::Obj::jointMtxCalc( (int))
 {
 /*
 .loc_0x0:
@@ -5471,7 +5471,7 @@ void jointMtxCalc__Q34Game8BlackMan3ObjFi(void)
  * Address:	803AA410
  * Size:	00028C
  */
-void bodyMtxCalc__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::bodyMtxCalc(void)
 {
 /*
 .loc_0x0:
@@ -5666,7 +5666,7 @@ void bodyMtxCalc__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AA69C
  * Size:	000040
  */
-void isTyreFreeze__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::isTyreFreeze(void)
 {
 /*
 .loc_0x0:
@@ -5698,7 +5698,7 @@ void isTyreFreeze__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AA6DC
  * Size:	00009C
  */
-void isTyreDead__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::isTyreDead(void)
 {
 /*
 .loc_0x0:
@@ -5755,7 +5755,7 @@ void isTyreDead__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AA778
  * Size:	000074
  */
-void isFallEnd__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::isFallEnd(void)
 {
 /*
 .loc_0x0:
@@ -5802,7 +5802,7 @@ void isFallEnd__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AA7EC
  * Size:	0001D4
  */
-void moveRestart__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::moveRestart(void)
 {
 /*
 .loc_0x0:
@@ -5949,7 +5949,7 @@ void moveRestart__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AA9C0
  * Size:	000004
  */
-void escape__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::escape(void)
 {
 /*
 .loc_0x0:
@@ -5962,7 +5962,7 @@ void escape__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AA9C4
  * Size:	000008
  */
-void setTimer__Q34Game8BlackMan3ObjFf(void)
+void Game::BlackMan::Obj::setTimer( (float))
 {
 /*
 .loc_0x0:
@@ -5976,7 +5976,7 @@ void setTimer__Q34Game8BlackMan3ObjFf(void)
  * Address:	803AA9CC
  * Size:	000008
  */
-void getTimer__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::getTimer(void)
 {
 /*
 .loc_0x0:
@@ -5990,7 +5990,7 @@ void getTimer__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AA9D4
  * Size:	0000A0
  */
-void collisionStOn__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::collisionStOn(void)
 {
 /*
 .loc_0x0:
@@ -6044,7 +6044,7 @@ void collisionStOn__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AAA74
  * Size:	000098
  */
-void collisionStOff__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::collisionStOff(void)
 {
 /*
 .loc_0x0:
@@ -6096,7 +6096,7 @@ void collisionStOff__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AAB0C
  * Size:	00004C
  */
-void flick__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::flick(void)
 {
 /*
 .loc_0x0:
@@ -6127,7 +6127,7 @@ void flick__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AAB58
  * Size:	000150
  */
-void recover__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::recover(void)
 {
 /*
 .loc_0x0:
@@ -6231,7 +6231,7 @@ void recover__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AACA8
  * Size:	0000F8
  */
-void recoverFlick__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::recoverFlick(void)
 {
 /*
 .loc_0x0:
@@ -6307,7 +6307,7 @@ void recoverFlick__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AADA0
  * Size:	00002C
  */
-void tyreFlick__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::tyreFlick(void)
 {
 /*
 .loc_0x0:
@@ -6332,7 +6332,7 @@ void tyreFlick__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AADCC
  * Size:	0000D0
  */
-void deadEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::deadEffect(void)
 {
 /*
 .loc_0x0:
@@ -6396,7 +6396,7 @@ void deadEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AAE9C
  * Size:	000034
  */
-void deadTraceEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::deadTraceEffect(void)
 {
 /*
 .loc_0x0:
@@ -6421,7 +6421,7 @@ void deadTraceEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AAED0
  * Size:	000074
  */
-void tyreUpEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::tyreUpEffect(void)
 {
 /*
 .loc_0x0:
@@ -6466,7 +6466,7 @@ void tyreUpEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AAF44
  * Size:	000050
  */
-void tyreDownEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::tyreDownEffect(void)
 {
 /*
 .loc_0x0:
@@ -6500,7 +6500,7 @@ void tyreDownEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AAF94
  * Size:	000094
  */
-void bendEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::bendEffect(void)
 {
 /*
 .loc_0x0:
@@ -6551,7 +6551,7 @@ void bendEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB028
  * Size:	00005C
  */
-void createTraceEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::createTraceEffect(void)
 {
 /*
 .loc_0x0:
@@ -6590,7 +6590,7 @@ void createTraceEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB084
  * Size:	000050
  */
-void fadeTraceEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::fadeTraceEffect(void)
 {
 /*
 .loc_0x0:
@@ -6622,7 +6622,7 @@ void fadeTraceEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB0D4
  * Size:	000058
  */
-void createFlickEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::createFlickEffect(void)
 {
 /*
 .loc_0x0:
@@ -6656,7 +6656,7 @@ void createFlickEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB12C
  * Size:	000050
  */
-void fadeFlickEffect__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::fadeFlickEffect(void)
 {
 /*
 .loc_0x0:
@@ -6688,7 +6688,7 @@ void fadeFlickEffect__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB17C
  * Size:	0000C4
  */
-void isFinalFloor__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::isFinalFloor(void)
 {
 /*
 .loc_0x0:
@@ -6755,7 +6755,7 @@ void isFinalFloor__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB240
  * Size:	0001C0
  */
-void appearFanfare__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::appearFanfare(void)
 {
 /*
 .loc_0x0:
@@ -6901,7 +6901,7 @@ void appearFanfare__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB400
  * Size:	00000C
  */
-void getName__Q23efx11ArgPrmColorFv(void)
+void efx::ArgPrmColor::getName(void)
 {
 /*
 .loc_0x0:
@@ -6916,7 +6916,7 @@ void getName__Q23efx11ArgPrmColorFv(void)
  * Address:	803AB40C
  * Size:	00009C
  */
-void __dt__Q23efx10TKageFlickFv(void)
+void efx::TKageFlick::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6971,7 +6971,7 @@ void __dt__Q23efx10TKageFlickFv(void)
  * Address:	803AB4A8
  * Size:	00009C
  */
-void __dt__Q23efx11TKageTyreupFv(void)
+void efx::TKageTyreup::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7026,7 +7026,7 @@ void __dt__Q23efx11TKageTyreupFv(void)
  * Address:	803AB544
  * Size:	00009C
  */
-void __dt__Q23efx10TKageDead1Fv(void)
+void efx::TKageDead1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7081,7 +7081,7 @@ void __dt__Q23efx10TKageDead1Fv(void)
  * Address:	803AB5E0
  * Size:	00009C
  */
-void __dt__Q23efx8TKageRunFv(void)
+void efx::TKageRun::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7136,7 +7136,7 @@ void __dt__Q23efx8TKageRunFv(void)
  * Address:	803AB67C
  * Size:	00009C
  */
-void __dt__Q23efx9TKageMoveFv(void)
+void efx::TKageMove::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7191,7 +7191,7 @@ void __dt__Q23efx9TKageMoveFv(void)
  * Address:	803AB718
  * Size:	000004
  */
-void setInitialSetting__Q34Game8BlackMan3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::BlackMan::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -7204,7 +7204,7 @@ void setInitialSetting__Q34Game8BlackMan3ObjFPQ24Game21EnemyInitialParamBase(voi
  * Address:	803AB71C
  * Size:	000004
  */
-void throwupItemInDeathProcedure__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::throwupItemInDeathProcedure(void)
 {
 /*
 .loc_0x0:
@@ -7217,7 +7217,7 @@ void throwupItemInDeathProcedure__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB720
  * Size:	00002C
  */
-void createEfxHamon__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::createEfxHamon(void)
 {
 /*
 .loc_0x0:
@@ -7242,7 +7242,7 @@ void createEfxHamon__Q34Game8BlackMan3ObjFv(void)
  * Address:	803AB74C
  * Size:	000040
  */
-void updateEfxHamon__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::updateEfxHamon(void)
 {
 /*
 .loc_0x0:
@@ -7288,7 +7288,7 @@ void bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3<float>f(void
  * Address:	803AB794
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game8BlackMan3ObjFv(void)
+void Game::BlackMan::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -7324,7 +7324,7 @@ void __sinit_blackMan_cpp(void)
  * Address:	803AB7C4
  * Size:	000014
  */
-void @940@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @940@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -7341,7 +7341,7 @@ void @940@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	803AB7D8
  * Size:	000014
  */
-void @940@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @940@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -7358,7 +7358,7 @@ void @940@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	803AB7EC
  * Size:	000014
  */
-void @940@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @940@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -7375,7 +7375,7 @@ void @940@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	803AB800
  * Size:	000014
  */
-void @940@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @940@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -7392,7 +7392,7 @@ void @940@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	803AB814
  * Size:	000014
  */
-void @940@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @940@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -7409,7 +7409,7 @@ void @940@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	803AB828
  * Size:	000014
  */
-void @940@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @940@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -7426,7 +7426,7 @@ void @940@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	803AB83C
  * Size:	000008
  */
-void @4@__dt__Q23efx9TKageMoveFv(void)
+void @4@efx::TKageMove::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7440,7 +7440,7 @@ void @4@__dt__Q23efx9TKageMoveFv(void)
  * Address:	803AB844
  * Size:	000008
  */
-void @4@__dt__Q23efx8TKageRunFv(void)
+void @4@efx::TKageRun::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7454,7 +7454,7 @@ void @4@__dt__Q23efx8TKageRunFv(void)
  * Address:	803AB84C
  * Size:	000008
  */
-void @4@__dt__Q23efx10TKageDead1Fv(void)
+void @4@efx::TKageDead1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7468,7 +7468,7 @@ void @4@__dt__Q23efx10TKageDead1Fv(void)
  * Address:	803AB854
  * Size:	000008
  */
-void @4@__dt__Q23efx11TKageTyreupFv(void)
+void @4@efx::TKageTyreup::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7482,7 +7482,7 @@ void @4@__dt__Q23efx11TKageTyreupFv(void)
  * Address:	803AB85C
  * Size:	000008
  */
-void @4@__dt__Q23efx10TKageFlickFv(void)
+void @4@efx::TKageFlick::__dt(void)
 {
 /*
 .loc_0x0:

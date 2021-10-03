@@ -2352,7 +2352,7 @@ void JKRExpHeap::DBshow()
  * Address:	80021754
  * Size:	000020
  */
-void initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockUlUcUc(void)
+void JKRExpHeap::CMemBlock::initiate( (JKRExpHeap::CMemBlock *, JKRExpHeap::CMemBlock *, unsigned long, unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -2372,7 +2372,7 @@ void initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap
  * Address:	80021774
  * Size:	000044
  */
-void allocFore__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc(void)
+void JKRExpHeap::CMemBlock::allocFore( (unsigned long, unsigned char, unsigned char, unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -2403,7 +2403,7 @@ void allocFore__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc(void)
  * Address:	800217B8
  * Size:	000058
  */
-void allocBack__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc(void)
+void JKRExpHeap::CMemBlock::allocBack( (unsigned long, unsigned char, unsigned char, unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -2441,7 +2441,7 @@ void allocBack__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc(void)
  * Address:	80021810
  * Size:	000060
  */
-void free__Q210JKRExpHeap9CMemBlockFP10JKRExpHeap(void)
+void JKRExpHeap::CMemBlock::free( (JKRExpHeap *))
 {
 /*
 .loc_0x0:
@@ -2485,7 +2485,7 @@ void free__Q210JKRExpHeap9CMemBlockFP10JKRExpHeap(void)
  * Address:	80021870
  * Size:	00001C
  */
-void getHeapBlock__Q210JKRExpHeap9CMemBlockFPv(void)
+void JKRExpHeap::CMemBlock::getHeapBlock( (void *))
 {
 /*
 .loc_0x0:

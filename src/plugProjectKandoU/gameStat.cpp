@@ -25,7 +25,7 @@ void _Print(char *, ...)
  * Address:	801D0DB8
  * Size:	000058
  */
-void clear__Q24Game8GameStatFv(void)
+void Game::GameStat::clear(void)
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void clear__Q24Game8GameStatFv(void)
  * Address:	801D0E10
  * Size:	000050
  */
-void getMapPikmins_exclude_Me__Q24Game8GameStatFi(void)
+void Game::GameStat::getMapPikmins_exclude_Me( (int))
 {
 /*
 .loc_0x0:
@@ -95,7 +95,7 @@ void getMapPikmins_exclude_Me__Q24Game8GameStatFi(void)
  * Address:	801D0E60
  * Size:	00008C
  */
-void getMapPikmins__Q24Game8GameStatFi(void)
+void Game::GameStat::getMapPikmins( (int))
 {
 /*
 .loc_0x0:
@@ -146,7 +146,7 @@ void getMapPikmins__Q24Game8GameStatFi(void)
  * Address:	801D0EEC
  * Size:	000050
  */
-void getZikatuPikmins__Q24Game8GameStatFi(void)
+void Game::GameStat::getZikatuPikmins( (int))
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void getZikatuPikmins__Q24Game8GameStatFi(void)
  * Address:	801D0F3C
  * Size:	0000F8
  */
-void getAllPikmins__Q24Game8GameStatFi(void)
+void Game::GameStat::getAllPikmins( (int))
 {
 /*
 .loc_0x0:
@@ -264,7 +264,7 @@ void getAllPikmins__Q24Game8GameStatFi(void)
  * Address:	801D1034
  * Size:	00003C
  */
-void __ct__Q34Game8GameStat11PikiCounterFv(void)
+void Game::GameStat::PikiCounter::__ct(void)
 {
 /*
 .loc_0x0:
@@ -293,7 +293,7 @@ void __ct__Q34Game8GameStat11PikiCounterFv(void)
  * Address:	801D1070
  * Size:	000024
  */
-void clear__Q34Game8GameStat11PikiCounterFv(void)
+void Game::GameStat::PikiCounter::clear(void)
 {
 /*
 .loc_0x0:
@@ -314,7 +314,7 @@ void clear__Q34Game8GameStat11PikiCounterFv(void)
  * Address:	801D1094
  * Size:	000084
  */
-void inc__Q34Game8GameStat11PikiCounterFPQ24Game4Piki(void)
+void Game::GameStat::PikiCounter::inc( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -363,7 +363,7 @@ void inc__Q34Game8GameStat11PikiCounterFPQ24Game4Piki(void)
  * Address:	801D1118
  * Size:	000084
  */
-void dec__Q34Game8GameStat11PikiCounterFPQ24Game4Piki(void)
+void Game::GameStat::PikiCounter::dec( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -412,7 +412,7 @@ void dec__Q34Game8GameStat11PikiCounterFPQ24Game4Piki(void)
  * Address:	801D119C
  * Size:	000080
  */
-void inc__Q34Game8GameStat11PikiCounterFi(void)
+void Game::GameStat::PikiCounter::inc( (int))
 {
 /*
 .loc_0x0:
@@ -460,7 +460,7 @@ void inc__Q34Game8GameStat11PikiCounterFi(void)
  * Address:	801D121C
  * Size:	000080
  */
-void dec__Q34Game8GameStat11PikiCounterFi(void)
+void Game::GameStat::PikiCounter::dec( (int))
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void dec__Q34Game8GameStat11PikiCounterFi(void)
  * Address:	........
  * Size:	000090
  */
-void add__Q34Game8GameStat11PikiCounterFPQ24Game4Pikii(void)
+void Game::GameStat::PikiCounter::add( (Game::Piki *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -518,7 +518,7 @@ void add__Q34Game8GameStat11PikiCounterFPQ24Game4Pikii(void)
  * Address:	........
  * Size:	000088
  */
-void set__Q34Game8GameStat11PikiCounterFPQ24Game4Pikii(void)
+void Game::GameStat::PikiCounter::set( (Game::Piki *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -528,7 +528,7 @@ void set__Q34Game8GameStat11PikiCounterFPQ24Game4Pikii(void)
  * Address:	........
  * Size:	00004C
  */
-void __ct__Q34Game8GameStat15PikiNaviCounterFv(void)
+void Game::GameStat::PikiNaviCounter::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -538,7 +538,7 @@ void __ct__Q34Game8GameStat15PikiNaviCounterFv(void)
  * Address:	801D129C
  * Size:	0000CC
  */
-void clear__Q34Game8GameStat15PikiNaviCounterFv(void)
+void Game::GameStat::PikiNaviCounter::clear(void)
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void clear__Q34Game8GameStat15PikiNaviCounterFv(void)
  * Address:	801D1368
  * Size:	0000AC
  */
-void inc__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Piki(void)
+void Game::GameStat::PikiNaviCounter::inc( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -664,7 +664,7 @@ void inc__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Piki(void)
  * Address:	801D1414
  * Size:	0000AC
  */
-void dec__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Piki(void)
+void Game::GameStat::PikiNaviCounter::dec( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -727,7 +727,7 @@ void dec__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Piki(void)
  * Address:	........
  * Size:	0000B8
  */
-void add__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Pikii(void)
+void Game::GameStat::PikiNaviCounter::add( (Game::Piki *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -737,7 +737,7 @@ void add__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Pikii(void)
  * Address:	........
  * Size:	0000B0
  */
-void set__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Pikii(void)
+void Game::GameStat::PikiNaviCounter::set( (Game::Piki *, int))
 {
 	// UNUSED FUNCTION
 }

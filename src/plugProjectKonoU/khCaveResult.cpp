@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803F8694
  * Size:	00007C
  */
-void __ct__Q32kh6Screen14DispCaveResultFPQ34Game6Result5TNodeUlUlUlUlbP7JKRHeapb(void)
+void kh::Screen::DispCaveResult::__ct( (Game::Result::TNode *, unsigned long, unsigned long, unsigned long, unsigned long, bool, JKRHeap *, bool))
 {
 /*
 .loc_0x0:
@@ -60,7 +60,7 @@ void __ct__Q32kh6Screen14DispCaveResultFPQ34Game6Result5TNodeUlUlUlUlbP7JKRHeapb
  * Address:	803F8710
  * Size:	0000AC
  */
-void init__Q32kh6Screen14DispCaveResultFPQ34Game6Result5TNodeUlb(void)
+void kh::Screen::DispCaveResult::init( (Game::Result::TNode *, unsigned long, bool))
 {
 /*
 .loc_0x0:
@@ -127,7 +127,7 @@ void init__Q32kh6Screen14DispCaveResultFPQ34Game6Result5TNodeUlb(void)
  * Address:	803F87BC
  * Size:	000134
  */
-void __ct__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::__ct(void)
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void __ct__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803F88F0
  * Size:	000B08
  */
-void doCreate__Q32kh6Screen13ObjCaveResultFP10JKRArchive(void)
+void kh::Screen::ObjCaveResult::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -974,7 +974,7 @@ void doCreate__Q32kh6Screen13ObjCaveResultFP10JKRArchive(void)
  * Address:	803F93F8
  * Size:	00034C
  */
-void doUpdate__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1227,7 +1227,7 @@ void doUpdate__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803F9744
  * Size:	000760
  */
-void doDraw__Q32kh6Screen13ObjCaveResultFR8Graphics(void)
+void kh::Screen::ObjCaveResult::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1755,7 +1755,7 @@ void doDraw__Q32kh6Screen13ObjCaveResultFR8Graphics(void)
  * Address:	803F9EA4
  * Size:	000068
  */
-void doUpdateFadein__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -1797,7 +1797,7 @@ void doUpdateFadein__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803F9F0C
  * Size:	000014
  */
-void doUpdateFadeinFinish__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::doUpdateFadeinFinish(void)
 {
 /*
 .loc_0x0:
@@ -1814,7 +1814,7 @@ void doUpdateFadeinFinish__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803F9F20
  * Size:	00006C
  */
-void doUpdateFadeout__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -1857,7 +1857,7 @@ void doUpdateFadeout__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803F9F8C
  * Size:	0001DC
  */
-void statusNormal__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusNormal(void)
 {
 /*
 .loc_0x0:
@@ -2014,7 +2014,7 @@ void statusNormal__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FA168
  * Size:	0000F4
  */
-void statusScrollUp__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusScrollUp(void)
 {
 /*
 .loc_0x0:
@@ -2089,7 +2089,7 @@ void statusScrollUp__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FA25C
  * Size:	0000F4
  */
-void statusScrollDown__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusScrollDown(void)
 {
 /*
 .loc_0x0:
@@ -2164,7 +2164,7 @@ void statusScrollDown__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FA350
  * Size:	0002F0
  */
-void statusForceScroll__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusForceScroll(void)
 {
 /*
 .loc_0x0:
@@ -2396,7 +2396,7 @@ void statusForceScroll__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FA640
  * Size:	00001C
  */
-void statusDrumRoll__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusDrumRoll(void)
 {
 /*
 .loc_0x0:
@@ -2415,7 +2415,7 @@ void statusDrumRoll__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FA65C
  * Size:	0000C0
  */
-void statusAllMoney__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusAllMoney(void)
 {
 /*
 .loc_0x0:
@@ -2481,7 +2481,7 @@ void statusAllMoney__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FA71C
  * Size:	0000E8
  */
-void statusDecP__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusDecP(void)
 {
 /*
 .loc_0x0:
@@ -2561,7 +2561,7 @@ void statusDecP__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FA804
  * Size:	000110
  */
-void statusLost__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusLost(void)
 {
 /*
 .loc_0x0:
@@ -2651,7 +2651,7 @@ void statusLost__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FA914
  * Size:	0001D4
  */
-void statusEffect__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::statusEffect(void)
 {
 /*
 .loc_0x0:
@@ -2786,7 +2786,7 @@ void statusEffect__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FAAE8
  * Size:	000564
  */
-void updateAnimation__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::updateAnimation(void)
 {
 /*
 .loc_0x0:
@@ -3161,7 +3161,7 @@ void updateAnimation__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FB04C
  * Size:	000078
  */
-void setAlpha__Q32kh6Screen13ObjCaveResultFiUc(void)
+void kh::Screen::ObjCaveResult::setAlpha( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -3203,7 +3203,7 @@ void setAlpha__Q32kh6Screen13ObjCaveResultFiUc(void)
  * Address:	803FB0C4
  * Size:	0000C4
  */
-void pikminSE__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::pikminSE(void)
 {
 /*
 .loc_0x0:
@@ -3272,7 +3272,7 @@ void pikminSE__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FB188
  * Size:	000038
  */
-void __ct__Q32kh6Screen8LostItemFv(void)
+void kh::Screen::LostItem::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3298,7 +3298,7 @@ void __ct__Q32kh6Screen8LostItemFv(void)
  * Address:	........
  * Size:	0000B8
  */
-void update__Q32kh6Screen8LostItemFv(void)
+void kh::Screen::LostItem::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3308,7 +3308,7 @@ void update__Q32kh6Screen8LostItemFv(void)
  * Address:	803FB1C0
  * Size:	000080
  */
-void __ct__Q32kh6Screen11LostItemMgrFi(void)
+void kh::Screen::LostItemMgr::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -3631,7 +3631,7 @@ void init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2<float>b(void)
  * Address:	803FB62C
  * Size:	000108
  */
-void update__Q32kh6Screen11LostItemMgrFv(void)
+void kh::Screen::LostItemMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -3721,7 +3721,7 @@ void update__Q32kh6Screen11LostItemMgrFv(void)
  * Address:	803FB734
  * Size:	000170
  */
-void draw__Q32kh6Screen11LostItemMgrFPQ29P2DScreen10Mgr_tuningUxPC7ResTIMGR8Graphics(void)
+void kh::Screen::LostItemMgr::draw( (P2DScreen::Mgr_tuning *, unsigned long long, ResTIMG const *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -3831,7 +3831,7 @@ void draw__Q32kh6Screen11LostItemMgrFPQ29P2DScreen10Mgr_tuningUxPC7ResTIMGR8Grap
  * Address:	803FB8A4
  * Size:	0000A4
  */
-void doUserCallBackFunc__Q32kh6Screen15SceneCaveResultFPQ28Resource10MgrCommand(void)
+void kh::Screen::SceneCaveResult::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -3890,7 +3890,7 @@ void doUserCallBackFunc__Q32kh6Screen15SceneCaveResultFPQ28Resource10MgrCommand(
  * Address:	803FB948
  * Size:	000008
  */
-void getResName__Q32kh6Screen15SceneCaveResultCFv(void)
+void kh::Screen::SceneCaveResult::getResName( const
 {
 /*
 .loc_0x0:
@@ -3904,7 +3904,7 @@ void getResName__Q32kh6Screen15SceneCaveResultCFv(void)
  * Address:	803FB950
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen15SceneCaveResultFv(void)
+void kh::Screen::SceneCaveResult::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -3918,7 +3918,7 @@ void getSceneType__Q32kh6Screen15SceneCaveResultFv(void)
  * Address:	803FB958
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen15SceneCaveResultFv(void)
+void kh::Screen::SceneCaveResult::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -3932,7 +3932,7 @@ void getOwnerID__Q32kh6Screen15SceneCaveResultFv(void)
  * Address:	803FB960
  * Size:	000010
  */
-void getMemberID__Q32kh6Screen15SceneCaveResultFv(void)
+void kh::Screen::SceneCaveResult::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -3948,7 +3948,7 @@ void getMemberID__Q32kh6Screen15SceneCaveResultFv(void)
  * Address:	803FB970
  * Size:	000004
  */
-void doCreateObj__Q32kh6Screen15SceneCaveResultFP10JKRArchive(void)
+void kh::Screen::SceneCaveResult::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -3961,7 +3961,7 @@ void doCreateObj__Q32kh6Screen15SceneCaveResultFP10JKRArchive(void)
  * Address:	803FB974
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen13ObjCaveResultFv(void)
+void kh::Screen::ObjCaveResult::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4020,7 +4020,7 @@ void __dt__Q32kh6Screen13ObjCaveResultFv(void)
  * Address:	803FBA20
  * Size:	000008
  */
-void getSize__Q32kh6Screen14DispCaveResultFv(void)
+void kh::Screen::DispCaveResult::getSize(void)
 {
 /*
 .loc_0x0:
@@ -4034,7 +4034,7 @@ void getSize__Q32kh6Screen14DispCaveResultFv(void)
  * Address:	803FBA28
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen14DispCaveResultFv(void)
+void kh::Screen::DispCaveResult::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -4048,7 +4048,7 @@ void getOwnerID__Q32kh6Screen14DispCaveResultFv(void)
  * Address:	803FBA30
  * Size:	000010
  */
-void getMemberID__Q32kh6Screen14DispCaveResultFv(void)
+void kh::Screen::DispCaveResult::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -4111,7 +4111,7 @@ void __sinit_khCaveResult_cpp(void)
  * Address:	803FBACC
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen13ObjCaveResultFv(void)
+void @24@kh::Screen::ObjCaveResult::__dt(void)
 {
 /*
 .loc_0x0:

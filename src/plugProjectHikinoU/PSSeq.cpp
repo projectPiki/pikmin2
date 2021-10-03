@@ -5,7 +5,7 @@
  * Address:	80330D20
  * Size:	000060
  */
-void __ct__Q28PSSystem11SeqDataListFv(void)
+void PSSystem::SeqDataList::__ct(void)
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void __ct__Q28PSSystem11SeqDataListFv(void)
  * Address:	80330D80
  * Size:	000088
  */
-void __dt__Q28PSSystem11SeqDataListFv(void)
+void PSSystem::SeqDataList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -93,7 +93,7 @@ void __dt__Q28PSSystem11SeqDataListFv(void)
  * Address:	80330E08
  * Size:	000108
  */
-void getSeqVolume__Q28PSSystem11SeqDataListFPCc(void)
+void PSSystem::SeqDataList::getSeqVolume( (char const *))
 {
 /*
 .loc_0x0:
@@ -183,7 +183,7 @@ void getSeqVolume__Q28PSSystem11SeqDataListFPCc(void)
  * Address:	80330F10
  * Size:	000060
  */
-void __ct__Q28PSSystem14StreamDataListFv(void)
+void PSSystem::StreamDataList::__ct(void)
 {
 /*
 .loc_0x0:
@@ -221,7 +221,7 @@ void __ct__Q28PSSystem14StreamDataListFv(void)
  * Address:	80330F70
  * Size:	000088
  */
-void __dt__Q28PSSystem14StreamDataListFv(void)
+void PSSystem::StreamDataList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -271,7 +271,7 @@ void __dt__Q28PSSystem14StreamDataListFv(void)
  * Address:	80330FF8
  * Size:	000110
  */
-void getStreamVolume__Q28PSSystem14StreamDataListFUl(void)
+void PSSystem::StreamDataList::getStreamVolume( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -363,7 +363,7 @@ void getStreamVolume__Q28PSSystem14StreamDataListFUl(void)
  * Address:	80331108
  * Size:	000094
  */
-void stop__Q28PSSystem12SeqSoundBaseFUl(void)
+void PSSystem::SeqSoundBase::stop( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void stop__Q28PSSystem12SeqSoundBaseFUl(void)
  * Address:	8033119C
  * Size:	000020
  */
-void stopInner__Q28PSSystem8SeqSoundFUl(void)
+void PSSystem::SeqSound::stopInner( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -434,7 +434,7 @@ void stopInner__Q28PSSystem8SeqSoundFUl(void)
  * Address:	803311BC
  * Size:	000020
  */
-void stopInner__Q28PSSystem11StreamSoundFUl(void)
+void PSSystem::StreamSound::stopInner( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -454,7 +454,7 @@ void stopInner__Q28PSSystem11StreamSoundFUl(void)
  * Address:	........
  * Size:	0000EC
  */
-void __ct__Q28PSSystem7SeqHeapFUlPQ28PSSystem7SeqBase(void)
+void PSSystem::SeqHeap::__ct( (unsigned long, PSSystem::SeqBase *))
 {
 	// UNUSED FUNCTION
 }
@@ -464,7 +464,7 @@ void __ct__Q28PSSystem7SeqHeapFUlPQ28PSSystem7SeqBase(void)
  * Address:	803311DC
  * Size:	000060
  */
-void __dt__Q28PSSystem7SeqHeapFv(void)
+void PSSystem::SeqHeap::__dt(void)
 {
 /*
 .loc_0x0:
@@ -502,7 +502,7 @@ void __dt__Q28PSSystem7SeqHeapFv(void)
  * Address:	8033123C
  * Size:	000200
  */
-void requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence(void)
+void PSSystem::SeqHeap::requestCallback( (unsigned long, unsigned short, JAISequence *))
 {
 /*
 .loc_0x0:
@@ -670,7 +670,7 @@ void requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence(void)
  * Address:	8033143C
  * Size:	0000D4
  */
-void loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker(void)
+void PSSystem::SeqHeap::loadSeqAsync( (PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -741,7 +741,7 @@ void loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker(void)
  * Address:	80331510
  * Size:	000098
  */
-void loadedCallback__Q28PSSystem7SeqHeapFUlUl(void)
+void PSSystem::SeqHeap::loadedCallback( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -795,7 +795,7 @@ void loadedCallback__Q28PSSystem7SeqHeapFUlUl(void)
  * Address:	803315A8
  * Size:	000030
  */
-void reservatorTask__Q28PSSystem17SeqPlayReservatorFv(void)
+void PSSystem::SeqPlayReservator::reservatorTask(void)
 {
 /*
 .loc_0x0:
@@ -819,7 +819,7 @@ void reservatorTask__Q28PSSystem17SeqPlayReservatorFv(void)
  * Address:	803315D8
  * Size:	000030
  */
-void reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv(void)
+void PSSystem::SeqPauseOffReservator::reservatorTask(void)
 {
 /*
 .loc_0x0:
@@ -843,7 +843,7 @@ void reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv(void)
  * Address:	80331608
  * Size:	000100
  */
-void __ct__Q28PSSystem7SeqBaseFPCcRCQ27JAInter9SoundInfo(void)
+void PSSystem::SeqBase::__ct( (char const *, JAInter::SoundInfo const &))
 {
 /*
 .loc_0x0:
@@ -931,7 +931,7 @@ void JSULink<PSSystem::SeqBase>::~JSULink()
  * Address:	80331708
  * Size:	000134
  */
-void init__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::init(void)
 {
 /*
 .loc_0x0:
@@ -1030,7 +1030,7 @@ void init__Q28PSSystem7SeqBaseFv(void)
  * Address:	8033183C
  * Size:	000098
  */
-void __dt__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1086,7 +1086,7 @@ void __dt__Q28PSSystem7SeqBaseFv(void)
  * Address:	803318D4
  * Size:	00003C
  */
-void isPlaying__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::isPlaying(void)
 {
 /*
 .loc_0x0:
@@ -1119,7 +1119,7 @@ void isPlaying__Q28PSSystem7SeqBaseFv(void)
  * Address:	80331910
  * Size:	000090
  */
-void getFileEntry__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::getFileEntry(void)
 {
 /*
 .loc_0x0:
@@ -1171,7 +1171,7 @@ void getFileEntry__Q28PSSystem7SeqBaseFv(void)
  * Address:	803319A0
  * Size:	0001D4
  */
-void pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode(void)
+void PSSystem::SeqBase::pauseOn( (PSSystem::SeqBase::PauseMode))
 {
 /*
 .loc_0x0:
@@ -1330,7 +1330,7 @@ void pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode(void)
  * Address:	80331B74
  * Size:	00013C
  */
-void pauseOff__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::pauseOff(void)
 {
 /*
 .loc_0x0:
@@ -1431,7 +1431,7 @@ void pauseOff__Q28PSSystem7SeqBaseFv(void)
  * Address:	80331CB0
  * Size:	0000D4
  */
-void exec__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::exec(void)
 {
 /*
 .loc_0x0:
@@ -1504,7 +1504,7 @@ void exec__Q28PSSystem7SeqBaseFv(void)
  * Address:	80331D84
  * Size:	000004
  */
-void onPlayingFrame__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::onPlayingFrame(void)
 {
 /*
 .loc_0x0:
@@ -1517,7 +1517,7 @@ void onPlayingFrame__Q28PSSystem7SeqBaseFv(void)
  * Address:	80331D88
  * Size:	000154
  */
-void startSeq__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::startSeq(void)
 {
 /*
 .loc_0x0:
@@ -1622,7 +1622,7 @@ void startSeq__Q28PSSystem7SeqBaseFv(void)
  * Address:	80331EDC
  * Size:	0000D0
  */
-void setConfigVolume__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::setConfigVolume(void)
 {
 /*
 .loc_0x0:
@@ -1688,7 +1688,7 @@ void setConfigVolume__Q28PSSystem7SeqBaseFv(void)
  * Address:	80331FAC
  * Size:	000038
  */
-void scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker(void)
+void PSSystem::SeqBase::scene1st( (PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -1716,7 +1716,7 @@ void scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker(void)
  * Address:	80331FE4
  * Size:	000060
  */
-void stopSeq__Q28PSSystem7SeqBaseFUl(void)
+void PSSystem::SeqBase::stopSeq( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1754,7 +1754,7 @@ void stopSeq__Q28PSSystem7SeqBaseFUl(void)
  * Address:	80332044
  * Size:	000114
  */
-void __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo(void)
+void PSSystem::BgmSeq::__ct( (char const *, JAInter::SoundInfo const &))
 {
 /*
 .loc_0x0:
@@ -1837,7 +1837,7 @@ void __ct__Q28PSSystem6BgmSeqFPCcRCQ27JAInter9SoundInfo(void)
  * Address:	80332158
  * Size:	0000C0
  */
-void __dt__Q28PSSystem6BgmSeqFv(void)
+void PSSystem::BgmSeq::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1903,7 +1903,7 @@ void __dt__Q28PSSystem6BgmSeqFv(void)
  * Address:	80332218
  * Size:	000100
  */
-void __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo(void)
+void PSSystem::StreamBgm::__ct( (unsigned long, JAInter::SoundInfo const &))
 {
 /*
 .loc_0x0:
@@ -1979,7 +1979,7 @@ void __ct__Q28PSSystem9StreamBgmFUlRCQ27JAInter9SoundInfo(void)
  * Address:	80332318
  * Size:	000004
  */
-void init__Q28PSSystem9StreamBgmFv(void)
+void PSSystem::StreamBgm::init(void)
 {
 /*
 .loc_0x0:
@@ -1992,7 +1992,7 @@ void init__Q28PSSystem9StreamBgmFv(void)
  * Address:	8033231C
  * Size:	0000EC
  */
-void __dt__Q28PSSystem9StreamBgmFv(void)
+void PSSystem::StreamBgm::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2069,7 +2069,7 @@ void __dt__Q28PSSystem9StreamBgmFv(void)
  * Address:	80332408
  * Size:	000008
  */
-void setId__Q28PSSystem9StreamBgmFUl(void)
+void PSSystem::StreamBgm::setId( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -2083,7 +2083,7 @@ void setId__Q28PSSystem9StreamBgmFUl(void)
  * Address:	80332410
  * Size:	00015C
  */
-void startSeq__Q28PSSystem9StreamBgmFv(void)
+void PSSystem::StreamBgm::startSeq(void)
 {
 /*
 .loc_0x0:
@@ -2192,7 +2192,7 @@ void startSeq__Q28PSSystem9StreamBgmFv(void)
  * Address:	8033256C
  * Size:	0000D0
  */
-void setConfigVolume__Q28PSSystem9StreamBgmFv(void)
+void PSSystem::StreamBgm::setConfigVolume(void)
 {
 /*
 .loc_0x0:
@@ -2258,7 +2258,7 @@ void setConfigVolume__Q28PSSystem9StreamBgmFv(void)
  * Address:	8033263C
  * Size:	000014
  */
-void isPlaying__Q28PSSystem9StreamBgmFv(void)
+void PSSystem::StreamBgm::isPlaying(void)
 {
 /*
 .loc_0x0:
@@ -2275,7 +2275,7 @@ void isPlaying__Q28PSSystem9StreamBgmFv(void)
  * Address:	80332650
  * Size:	0000C0
  */
-void __dt__Q28PSSystem5SeSeqFv(void)
+void PSSystem::SeSeq::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2341,7 +2341,7 @@ void __dt__Q28PSSystem5SeSeqFv(void)
  * Address:	80332710
  * Size:	00002C
  */
-void seqLoadAfter__Q28PSSystem5SeSeqFv(void)
+void PSSystem::SeSeq::seqLoadAfter(void)
 {
 /*
 .loc_0x0:
@@ -2364,7 +2364,7 @@ void seqLoadAfter__Q28PSSystem5SeSeqFv(void)
  * Address:	8033273C
  * Size:	0000D0
  */
-void setConfigVolume__Q28PSSystem5SeSeqFv(void)
+void PSSystem::SeSeq::setConfigVolume(void)
 {
 /*
 .loc_0x0:
@@ -2430,7 +2430,7 @@ void setConfigVolume__Q28PSSystem5SeSeqFv(void)
  * Address:	8033280C
  * Size:	0000A4
  */
-void stopSeq__Q28PSSystem5SeSeqFUl(void)
+void PSSystem::SeSeq::stopSeq( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -2489,7 +2489,7 @@ void stopSeq__Q28PSSystem5SeSeqFUl(void)
  * Address:	803328B0
  * Size:	000138
  */
-void __ct__Q28PSSystem11DirectedBgmFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase(void)
+void PSSystem::DirectedBgm::__ct( (char const *, JAInter::SoundInfo const &, PSSystem::DirectorMgrBase *))
 {
 /*
 .loc_0x0:
@@ -2581,7 +2581,7 @@ void __ct__Q28PSSystem11DirectedBgmFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15Direc
  * Address:	803329E8
  * Size:	0000C0
  */
-void initRootTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrack(void)
+void PSSystem::DirectedBgm::initRootTrack_onPlaying( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -2647,7 +2647,7 @@ void initRootTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrack(void)
  * Address:	80332AA8
  * Size:	0000D4
  */
-void initChildTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrackUc(void)
+void PSSystem::DirectedBgm::initChildTrack_onPlaying( (JASTrack *, unsigned char))
 {
 /*
 .loc_0x0:
@@ -2718,7 +2718,7 @@ void initChildTrack_onPlaying__Q28PSSystem11DirectedBgmFP8JASTrackUc(void)
  * Address:	........
  * Size:	000098
  */
-void getDirector__Q28PSSystem11DirectedBgmFUc(void)
+void PSSystem::DirectedBgm::getDirector( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -2728,7 +2728,7 @@ void getDirector__Q28PSSystem11DirectedBgmFUc(void)
  * Address:	80332B7C
  * Size:	000098
  */
-void getDirectorP__Q28PSSystem11DirectedBgmFUc(void)
+void PSSystem::DirectedBgm::getDirectorP( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -2782,7 +2782,7 @@ void getDirectorP__Q28PSSystem11DirectedBgmFUc(void)
  * Address:	80332C14
  * Size:	000064
  */
-void newSeqTrackRoot__Q28PSSystem11DirectedBgmFv(void)
+void PSSystem::DirectedBgm::newSeqTrackRoot(void)
 {
 /*
 .loc_0x0:
@@ -2823,7 +2823,7 @@ void newSeqTrackRoot__Q28PSSystem11DirectedBgmFv(void)
  * Address:	80332C78
  * Size:	000074
  */
-void newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot(void)
+void PSSystem::DirectedBgm::newSeqTrackChild( (unsigned char, PSSystem::SeqTrackRoot &))
 {
 /*
 .loc_0x0:
@@ -2868,7 +2868,7 @@ void newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot(voi
  * Address:	80332CEC
  * Size:	0001F0
  */
-void init__Q28PSSystem11DirectedBgmFv(void)
+void PSSystem::DirectedBgm::init(void)
 {
 /*
 .loc_0x0:
@@ -3024,7 +3024,7 @@ void init__Q28PSSystem11DirectedBgmFv(void)
  * Address:	80332EDC
  * Size:	000154
  */
-void startSeq__Q28PSSystem11DirectedBgmFv(void)
+void PSSystem::DirectedBgm::startSeq(void)
 {
 /*
 .loc_0x0:
@@ -3129,7 +3129,7 @@ void startSeq__Q28PSSystem11DirectedBgmFv(void)
  * Address:	80333030
  * Size:	0000F0
  */
-void stopSeq__Q28PSSystem11DirectedBgmFUl(void)
+void PSSystem::DirectedBgm::stopSeq( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -3209,7 +3209,7 @@ void stopSeq__Q28PSSystem11DirectedBgmFUl(void)
  * Address:	80333120
  * Size:	00002C
  */
-void onPlayingFrame__Q28PSSystem11DirectedBgmFv(void)
+void PSSystem::DirectedBgm::onPlayingFrame(void)
 {
 /*
 .loc_0x0:
@@ -3234,7 +3234,7 @@ void onPlayingFrame__Q28PSSystem11DirectedBgmFv(void)
  * Address:	8033314C
  * Size:	00002C
  */
-void onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv(void)
+void PSSystem::SeqTrackRoot_JumpBgm::onBeatTop(void)
 {
 /*
 .loc_0x0:
@@ -3259,7 +3259,7 @@ void onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv(void)
  * Address:	........
  * Size:	000084
  */
-void __ct__Q28PSSystem11JumpBgmPortFPQ28PSSystem10JumpBgmSeq(void)
+void PSSystem::JumpBgmPort::__ct( (PSSystem::JumpBgmSeq *))
 {
 	// UNUSED FUNCTION
 }
@@ -3269,7 +3269,7 @@ void __ct__Q28PSSystem11JumpBgmPortFPQ28PSSystem10JumpBgmSeq(void)
  * Address:	80333178
  * Size:	0000B8
  */
-void onBeatTop__Q28PSSystem11JumpBgmPortFRQ28PSSystem7BeatMgr(void)
+void PSSystem::JumpBgmPort::onBeatTop( (PSSystem::BeatMgr &))
 {
 /*
 .loc_0x0:
@@ -3331,7 +3331,7 @@ void onBeatTop__Q28PSSystem11JumpBgmPortFRQ28PSSystem7BeatMgr(void)
  * Address:	........
  * Size:	000048
  */
-void requestQuickly__Q28PSSystem11JumpBgmPortFUs(void)
+void PSSystem::JumpBgmPort::requestQuickly( (unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -3341,7 +3341,7 @@ void requestQuickly__Q28PSSystem11JumpBgmPortFUs(void)
  * Address:	........
  * Size:	000048
  */
-void requestOnBeat__Q28PSSystem11JumpBgmPortFUs(void)
+void PSSystem::JumpBgmPort::requestOnBeat( (unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -3351,7 +3351,7 @@ void requestOnBeat__Q28PSSystem11JumpBgmPortFUs(void)
  * Address:	........
  * Size:	000044
  */
-void requestEveryBeat__Q28PSSystem11JumpBgmPortFUs(void)
+void PSSystem::JumpBgmPort::requestEveryBeat( (unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -3361,7 +3361,7 @@ void requestEveryBeat__Q28PSSystem11JumpBgmPortFUs(void)
  * Address:	........
  * Size:	0000AC
  */
-void output__Q28PSSystem11JumpBgmPortFv(void)
+void PSSystem::JumpBgmPort::output(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3371,7 +3371,7 @@ void output__Q28PSSystem11JumpBgmPortFv(void)
  * Address:	80333230
  * Size:	000190
  */
-void __ct__Q28PSSystem10JumpBgmSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15DirectorMgrBase(void)
+void PSSystem::JumpBgmSeq::__ct( (char const *, JAInter::SoundInfo const &, PSSystem::DirectorMgrBase *))
 {
 /*
 .loc_0x0:
@@ -3485,7 +3485,7 @@ void __ct__Q28PSSystem10JumpBgmSeqFPCcRCQ27JAInter9SoundInfoPQ28PSSystem15Direct
  * Address:	803333C0
  * Size:	000080
  */
-void newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv(void)
+void PSSystem::JumpBgmSeq::newSeqTrackRoot(void)
 {
 /*
 .loc_0x0:
@@ -3533,7 +3533,7 @@ void newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv(void)
  * Address:	........
  * Size:	000420
  */
-void __dt__Q28PSSystem12SeqTrackRootFv(void)
+void PSSystem::SeqTrackRoot::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3543,7 +3543,7 @@ void __dt__Q28PSSystem12SeqTrackRootFv(void)
  * Address:	80333440
  * Size:	000170
  */
-void startSeq__Q28PSSystem10JumpBgmSeqFv(void)
+void PSSystem::JumpBgmSeq::startSeq(void)
 {
 /*
 .loc_0x0:
@@ -3655,7 +3655,7 @@ void startSeq__Q28PSSystem10JumpBgmSeqFv(void)
  * Address:	803335B0
  * Size:	000178
  */
-void startSeq__Q28PSSystem10JumpBgmSeqFUs(void)
+void PSSystem::JumpBgmSeq::startSeq( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3769,7 +3769,7 @@ void startSeq__Q28PSSystem10JumpBgmSeqFUs(void)
  * Address:	80333728
  * Size:	000060
  */
-void requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs(void)
+void PSSystem::JumpBgmSeq::requestJumpBgmQuickly( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3807,7 +3807,7 @@ void requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs(void)
  * Address:	80333788
  * Size:	000060
  */
-void requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs(void)
+void PSSystem::JumpBgmSeq::requestJumpBgmOnBeat( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3845,7 +3845,7 @@ void requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs(void)
  * Address:	803337E8
  * Size:	000054
  */
-void requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs(void)
+void PSSystem::JumpBgmSeq::requestJumpBgmEveryBeat( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -3880,7 +3880,7 @@ void requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs(void)
  * Address:	8033383C
  * Size:	00004C
  */
-void onPlayingFrame__Q28PSSystem10JumpBgmSeqFv(void)
+void PSSystem::JumpBgmSeq::onPlayingFrame(void)
 {
 /*
 .loc_0x0:
@@ -3915,7 +3915,7 @@ void onPlayingFrame__Q28PSSystem10JumpBgmSeqFv(void)
  * Address:	80333888
  * Size:	0000C8
  */
-void outputJumpRequest__Q28PSSystem10JumpBgmSeqFv(void)
+void PSSystem::JumpBgmSeq::outputJumpRequest(void)
 {
 /*
 .loc_0x0:
@@ -3983,7 +3983,7 @@ void outputJumpRequest__Q28PSSystem10JumpBgmSeqFv(void)
  * Address:	80333950
  * Size:	000040
  */
-void getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv(void)
+void PSSystem::JumpBgmSeq::getSeqStartPoint(void)
 {
 /*
 .loc_0x0:
@@ -4011,7 +4011,7 @@ void getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv(void)
  * Address:	80333990
  * Size:	000014
  */
-void setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl(void)
+void PSSystem::JumpBgmSeq::setAvoidJumpTimer_Checked( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -4028,7 +4028,7 @@ void setAvoidJumpTimer_Checked__Q28PSSystem10JumpBgmSeqFUl(void)
  * Address:	803339A4
  * Size:	000060
  */
-void isPlaying__Q28PSSystem6SeqMgrFv(void)
+void PSSystem::SeqMgr::isPlaying(void)
 {
 /*
 .loc_0x0:
@@ -4072,7 +4072,7 @@ void isPlaying__Q28PSSystem6SeqMgrFv(void)
  * Address:	80333A04
  * Size:	0000C8
  */
-void __dt__Q28PSSystem6SeqMgrFv(void)
+void PSSystem::SeqMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4144,7 +4144,7 @@ void __dt__Q28PSSystem6SeqMgrFv(void)
  * Address:	80333ACC
  * Size:	00005C
  */
-void pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode(void)
+void PSSystem::SeqMgr::pauseOnAllSeq( (PSSystem::SeqBase::PauseMode))
 {
 /*
 .loc_0x0:
@@ -4183,7 +4183,7 @@ void pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode(void)
  * Address:	80333B28
  * Size:	00004C
  */
-void pauseOffAllSeq__Q28PSSystem6SeqMgrFv(void)
+void PSSystem::SeqMgr::pauseOffAllSeq(void)
 {
 /*
 .loc_0x0:
@@ -4218,7 +4218,7 @@ void pauseOffAllSeq__Q28PSSystem6SeqMgrFv(void)
  * Address:	80333B74
  * Size:	000024
  */
-void reservePauseOffAllSeq__Q28PSSystem6SeqMgrFv(void)
+void PSSystem::SeqMgr::reservePauseOffAllSeq(void)
 {
 /*
 .loc_0x0:
@@ -4243,7 +4243,7 @@ void reservePauseOffAllSeq__Q28PSSystem6SeqMgrFv(void)
  * Address:	80333B98
  * Size:	000024
  */
-void cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv(void)
+void PSSystem::SeqMgr::cancelPauseOffAllSeq(void)
 {
 /*
 .loc_0x0:
@@ -4268,7 +4268,7 @@ void cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv(void)
  * Address:	80333BBC
  * Size:	000080
  */
-void exec__Q28PSSystem6SeqMgrFv(void)
+void PSSystem::SeqMgr::exec(void)
 {
 /*
 .loc_0x0:
@@ -4318,7 +4318,7 @@ void exec__Q28PSSystem6SeqMgrFv(void)
  * Address:	80333C3C
  * Size:	00005C
  */
-void stopAllSound__Q28PSSystem6SeqMgrFUl(void)
+void PSSystem::SeqMgr::stopAllSound( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -4357,7 +4357,7 @@ void stopAllSound__Q28PSSystem6SeqMgrFUl(void)
  * Address:	80333C98
  * Size:	00005C
  */
-void scene1st__Q28PSSystem6SeqMgrFPQ28PSSystem11TaskChecker(void)
+void PSSystem::SeqMgr::scene1st( (PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -4396,7 +4396,7 @@ void scene1st__Q28PSSystem6SeqMgrFPQ28PSSystem11TaskChecker(void)
  * Address:	80333CF4
  * Size:	0000E8
  */
-void findSeq__Q28PSSystem6SeqMgrFP8JASTrack(void)
+void PSSystem::SeqMgr::findSeq( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -4482,7 +4482,7 @@ void findSeq__Q28PSSystem6SeqMgrFP8JASTrack(void)
  * Address:	80333DDC
  * Size:	000080
  */
-void getPlayingSeq__Q28PSSystem6SeqMgrFP8JASTrack(void)
+void PSSystem::SeqMgr::getPlayingSeq( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -4534,7 +4534,7 @@ void getPlayingSeq__Q28PSSystem6SeqMgrFP8JASTrack(void)
  * Address:	80333E5C
  * Size:	00001C
  */
-void getFirstSeq__Q28PSSystem6SeqMgrFv(void)
+void PSSystem::SeqMgr::getFirstSeq(void)
 {
 /*
 .loc_0x0:
@@ -4555,7 +4555,7 @@ void getFirstSeq__Q28PSSystem6SeqMgrFv(void)
  * Address:	80333E78
  * Size:	000024
  */
-void getFirstSeqA__Q28PSSystem6SeqMgrFv(void)
+void PSSystem::SeqMgr::getFirstSeqA(void)
 {
 /*
 .loc_0x0:
@@ -4578,7 +4578,7 @@ void getFirstSeqA__Q28PSSystem6SeqMgrFv(void)
  * Address:	80333E9C
  * Size:	000034
  */
-void getSeq__Q28PSSystem6SeqMgrFUl(void)
+void PSSystem::SeqMgr::getSeq( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -4607,7 +4607,7 @@ void getSeq__Q28PSSystem6SeqMgrFUl(void)
  * Address:	80333ED0
  * Size:	0000E0
  */
-void __dt__Q28PSSystem10JumpBgmSeqFv(void)
+void PSSystem::JumpBgmSeq::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4749,7 +4749,7 @@ void __dt__Q28PSSystem42SingletonBase<PSSystem::StreamDataList>Fv(void)
  * Address:	80334050
  * Size:	000008
  */
-void @28@__dt__Q28PSSystem11SeqDataListFv(void)
+void @28@PSSystem::SeqDataList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4763,7 +4763,7 @@ void @28@__dt__Q28PSSystem11SeqDataListFv(void)
  * Address:	80334058
  * Size:	000008
  */
-void @28@__dt__Q28PSSystem14StreamDataListFv(void)
+void @28@PSSystem::StreamDataList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4777,7 +4777,7 @@ void @28@__dt__Q28PSSystem14StreamDataListFv(void)
  * Address:	80334060
  * Size:	000008
  */
-void @1696@stopInner__Q28PSSystem8SeqSoundFUl(void)
+void @1696@PSSystem::SeqSound::stopInner( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -4791,7 +4791,7 @@ void @1696@stopInner__Q28PSSystem8SeqSoundFUl(void)
  * Address:	80334068
  * Size:	000008
  */
-void @472@stopInner__Q28PSSystem11StreamSoundFUl(void)
+void @472@PSSystem::StreamSound::stopInner( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -4805,7 +4805,7 @@ void @472@stopInner__Q28PSSystem11StreamSoundFUl(void)
  * Address:	80334070
  * Size:	000004
  */
-void seqLoadAfter__Q28PSSystem7SeqBaseFv(void)
+void PSSystem::SeqBase::seqLoadAfter(void)
 {
 /*
 .loc_0x0:
@@ -4818,7 +4818,7 @@ void seqLoadAfter__Q28PSSystem7SeqBaseFv(void)
  * Address:	80334074
  * Size:	000008
  */
-void getHandleP__Q28PSSystem6BgmSeqFv(void)
+void PSSystem::BgmSeq::getHandleP(void)
 {
 /*
 .loc_0x0:
@@ -4832,7 +4832,7 @@ void getHandleP__Q28PSSystem6BgmSeqFv(void)
  * Address:	8033407C
  * Size:	0000D0
  */
-void __dt__Q28PSSystem11DirectedBgmFv(void)
+void PSSystem::DirectedBgm::__dt(void)
 {
 /*
 .loc_0x0:
@@ -4902,7 +4902,7 @@ void __dt__Q28PSSystem11DirectedBgmFv(void)
  * Address:	8033414C
  * Size:	000004
  */
-void onJump__Q28PSSystem10JumpBgmSeqFUs(void)
+void PSSystem::JumpBgmSeq::onJump( (unsigned short))
 {
 /*
 .loc_0x0:
@@ -4915,7 +4915,7 @@ void onJump__Q28PSSystem10JumpBgmSeqFUs(void)
  * Address:	80334150
  * Size:	000008
  */
-void getCastType__Q28PSSystem10JumpBgmSeqFv(void)
+void PSSystem::JumpBgmSeq::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -4929,7 +4929,7 @@ void getCastType__Q28PSSystem10JumpBgmSeqFv(void)
  * Address:	80334158
  * Size:	000008
  */
-void getSeqType__Q28PSSystem6BgmSeqFv(void)
+void PSSystem::BgmSeq::getSeqType(void)
 {
 /*
 .loc_0x0:
@@ -4943,7 +4943,7 @@ void getSeqType__Q28PSSystem6BgmSeqFv(void)
  * Address:	80334160
  * Size:	000008
  */
-void getCastType__Q28PSSystem11DirectedBgmFv(void)
+void PSSystem::DirectedBgm::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -4957,7 +4957,7 @@ void getCastType__Q28PSSystem11DirectedBgmFv(void)
  * Address:	80334168
  * Size:	00000C
  */
-void getSeqType__Q28PSSystem5SeSeqFv(void)
+void PSSystem::SeSeq::getSeqType(void)
 {
 /*
 .loc_0x0:
@@ -4972,7 +4972,7 @@ void getSeqType__Q28PSSystem5SeSeqFv(void)
  * Address:	80334174
  * Size:	000008
  */
-void getCastType__Q28PSSystem5SeSeqFv(void)
+void PSSystem::SeSeq::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -4986,7 +4986,7 @@ void getCastType__Q28PSSystem5SeSeqFv(void)
  * Address:	8033417C
  * Size:	000008
  */
-void getHandleP__Q28PSSystem5SeSeqFv(void)
+void PSSystem::SeSeq::getHandleP(void)
 {
 /*
 .loc_0x0:
@@ -5000,7 +5000,7 @@ void getHandleP__Q28PSSystem5SeSeqFv(void)
  * Address:	80334184
  * Size:	000008
  */
-void getHandleP__Q28PSSystem9StreamBgmFv(void)
+void PSSystem::StreamBgm::getHandleP(void)
 {
 /*
 .loc_0x0:
@@ -5014,7 +5014,7 @@ void getHandleP__Q28PSSystem9StreamBgmFv(void)
  * Address:	8033418C
  * Size:	000004
  */
-void scene1st__Q28PSSystem9StreamBgmFPQ28PSSystem11TaskChecker(void)
+void PSSystem::StreamBgm::scene1st( (PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -5027,7 +5027,7 @@ void scene1st__Q28PSSystem9StreamBgmFPQ28PSSystem11TaskChecker(void)
  * Address:	80334190
  * Size:	000008
  */
-void getSeqType__Q28PSSystem9StreamBgmFv(void)
+void PSSystem::StreamBgm::getSeqType(void)
 {
 /*
 .loc_0x0:
@@ -5041,7 +5041,7 @@ void getSeqType__Q28PSSystem9StreamBgmFv(void)
  * Address:	80334198
  * Size:	000008
  */
-void getCastType__Q28PSSystem9StreamBgmFv(void)
+void PSSystem::StreamBgm::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -5055,7 +5055,7 @@ void getCastType__Q28PSSystem9StreamBgmFv(void)
  * Address:	803341A0
  * Size:	000008
  */
-void getCastType__Q28PSSystem6BgmSeqFv(void)
+void PSSystem::BgmSeq::getCastType(void)
 {
 /*
 .loc_0x0:
@@ -5069,7 +5069,7 @@ void getCastType__Q28PSSystem6BgmSeqFv(void)
  * Address:	803341A8
  * Size:	000008
  */
-void read__Q28PSSystem14StreamDataListFR6Stream(void)
+void PSSystem::StreamDataList::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -5083,7 +5083,7 @@ void read__Q28PSSystem14StreamDataListFR6Stream(void)
  * Address:	803341B0
  * Size:	000008
  */
-void read__Q28PSSystem11SeqDataListFR6Stream(void)
+void PSSystem::SeqDataList::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -5097,7 +5097,7 @@ void read__Q28PSSystem11SeqDataListFR6Stream(void)
  * Address:	803341B8
  * Size:	00001C
  */
-void getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc(void)
+void PSSystem::TriangleTableModTask::getTgtWithTable( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -5116,7 +5116,7 @@ void getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc(void)
  * Address:	803341D4
  * Size:	000008
  */
-void getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv(void)
+void PSSystem::TriangleTableModTask::getTableIdxNum(void)
 {
 /*
 .loc_0x0:
@@ -5130,7 +5130,7 @@ void getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv(void)
  * Address:	803341DC
  * Size:	000034
  */
-void task__Q28PSSystem14PitchResetTaskFR8JASTrack(void)
+void PSSystem::PitchResetTask::task( (JASTrack &))
 {
 /*
 .loc_0x0:
@@ -5155,7 +5155,7 @@ void task__Q28PSSystem14PitchResetTaskFR8JASTrack(void)
  * Address:	80334210
  * Size:	000008
  */
-void task__Q28PSSystem12FlagWaitTaskFR8JASTrack(void)
+void PSSystem::FlagWaitTask::task( (JASTrack &))
 {
 /*
 .loc_0x0:
@@ -5169,7 +5169,7 @@ void task__Q28PSSystem12FlagWaitTaskFR8JASTrack(void)
  * Address:	80334218
  * Size:	00000C
  */
-void timeTask__Q28PSSystem12BankRandTaskFR8JASTrackf(void)
+void PSSystem::BankRandTask::timeTask( (JASTrack &, float))
 {
 /*
 .loc_0x0:
@@ -5184,7 +5184,7 @@ void timeTask__Q28PSSystem12BankRandTaskFR8JASTrackf(void)
  * Address:	80334224
  * Size:	00000C
  */
-void getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack(void)
+void PSSystem::BankRandTask::getPreParam( (JASTrack &))
 {
 /*
 .loc_0x0:
@@ -5199,7 +5199,7 @@ void getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack(void)
  * Address:	80334230
  * Size:	000038
  */
-void update__Q28PSSystem12SeqTrackRootFv(void)
+void PSSystem::SeqTrackRoot::update(void)
 {
 /*
 .loc_0x0:

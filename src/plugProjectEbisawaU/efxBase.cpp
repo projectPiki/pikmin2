@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803AE8B0
  * Size:	00003C
  */
-void executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter(void)
+void efx::TCallBack_StaticClipping::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter(void)
  * Address:	803AE8EC
  * Size:	000048
  */
-void add__Q23efx11TOneEmitterFPQ23efx7Context(void)
+void efx::TOneEmitter::add( (efx::Context *))
 {
 /*
 .loc_0x0:
@@ -72,7 +72,7 @@ void add__Q23efx11TOneEmitterFPQ23efx7Context(void)
  * Address:	........
  * Size:	000024
  */
-void del__Q23efx11TOneEmitterFPQ23efx7Context(void)
+void efx::TOneEmitter::del( (efx::Context *))
 {
 	// UNUSED FUNCTION
 }
@@ -82,7 +82,7 @@ void del__Q23efx11TOneEmitterFPQ23efx7Context(void)
  * Address:	803AE934
  * Size:	0000C0
  */
-void executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter(void)
+void efx::TOneEmitter::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -154,7 +154,7 @@ void executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter(void)
  * Address:	803AE9F4
  * Size:	0000A8
  */
-void create__Q23efx11TOneEmitterFPQ23efx3Arg(void)
+void efx::TOneEmitter::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void create__Q23efx11TOneEmitterFPQ23efx3Arg(void)
  * Address:	803AEA9C
  * Size:	000058
  */
-void fade__Q23efx11TOneEmitterFv(void)
+void efx::TOneEmitter::fade(void)
 {
 /*
 .loc_0x0:
@@ -252,7 +252,7 @@ void fade__Q23efx11TOneEmitterFv(void)
  * Address:	803AEAF4
  * Size:	000058
  */
-void forceKill__Q23efx11TOneEmitterFv(void)
+void efx::TOneEmitter::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void forceKill__Q23efx11TOneEmitterFv(void)
  * Address:	803AEB4C
  * Size:	000048
  */
-void add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos(void)
+void efx::TOneEmitterChasePos::add( (efx::ContextChasePos *))
 {
 /*
 .loc_0x0:
@@ -318,7 +318,7 @@ void add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos(void)
  * Address:	803AEB94
  * Size:	000024
  */
-void del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos(void)
+void efx::TOneEmitterChasePos::del( (efx::ContextChasePos *))
 {
 /*
 .loc_0x0:
@@ -339,7 +339,7 @@ void del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos(void)
  * Address:	803AEBB8
  * Size:	0000A8
  */
-void create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg(void)
+void efx::TOneEmitterChasePos::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -401,7 +401,7 @@ void create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg(void)
  * Address:	803AEC60
  * Size:	0000AC
  */
-void executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter(void)
+void efx::TOneEmitterChasePos::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter(void)
  * Address:	803AED0C
  * Size:	000058
  */
-void fade__Q23efx19TOneEmitterChasePosFv(void)
+void efx::TOneEmitterChasePos::fade(void)
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void fade__Q23efx19TOneEmitterChasePosFv(void)
  * Address:	803AED64
  * Size:	000058
  */
-void forceKill__Q23efx19TOneEmitterChasePosFv(void)
+void efx::TOneEmitterChasePos::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -540,7 +540,7 @@ void forceKill__Q23efx19TOneEmitterChasePosFv(void)
  * Address:	803AEDBC
  * Size:	0000BC
  */
-void create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg(void)
+void efx::TOneEmitterSimple::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -607,7 +607,7 @@ void create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg(void)
  * Address:	803AEE78
  * Size:	00010C
  */
-void executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter(void)
+void efx::TOneEmitterSimple::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -700,7 +700,7 @@ void executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter(void)
  * Address:	803AEF84
  * Size:	000090
  */
-void create__Q23efx8TSimple1FPQ23efx3Arg(void)
+void efx::TSimple1::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -756,7 +756,7 @@ void create__Q23efx8TSimple1FPQ23efx3Arg(void)
  * Address:	803AF014
  * Size:	0000A8
  */
-void create__Q23efx8TSimple2FPQ23efx3Arg(void)
+void efx::TSimple2::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -820,7 +820,7 @@ void create__Q23efx8TSimple2FPQ23efx3Arg(void)
  * Address:	803AF0BC
  * Size:	0000A8
  */
-void create__Q23efx8TSimple3FPQ23efx3Arg(void)
+void efx::TSimple3::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -884,7 +884,7 @@ void create__Q23efx8TSimple3FPQ23efx3Arg(void)
  * Address:	803AF164
  * Size:	0000A8
  */
-void create__Q23efx8TSimple4FPQ23efx3Arg(void)
+void efx::TSimple4::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -948,7 +948,7 @@ void create__Q23efx8TSimple4FPQ23efx3Arg(void)
  * Address:	803AF20C
  * Size:	0000A8
  */
-void create__Q23efx8TSimple5FPQ23efx3Arg(void)
+void efx::TSimple5::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1012,7 +1012,7 @@ void create__Q23efx8TSimple5FPQ23efx3Arg(void)
  * Address:	803AF2B4
  * Size:	0000E4
  */
-void create__Q23efx11TSimpleMtx1FPQ23efx3Arg(void)
+void efx::TSimpleMtx1::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1093,7 +1093,7 @@ void create__Q23efx11TSimpleMtx1FPQ23efx3Arg(void)
  * Address:	803AF398
  * Size:	00011C
  */
-void create__Q23efx11TSimpleMtx2FPQ23efx3Arg(void)
+void efx::TSimpleMtx2::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1192,7 +1192,7 @@ void create__Q23efx11TSimpleMtx2FPQ23efx3Arg(void)
  * Address:	803AF4B4
  * Size:	00011C
  */
-void create__Q23efx11TSimpleMtx3FPQ23efx3Arg(void)
+void efx::TSimpleMtx3::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1291,7 +1291,7 @@ void create__Q23efx11TSimpleMtx3FPQ23efx3Arg(void)
  * Address:	803AF5D0
  * Size:	00011C
  */
-void create__Q23efx11TSimpleMtx4FPQ23efx3Arg(void)
+void efx::TSimpleMtx4::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1390,7 +1390,7 @@ void create__Q23efx11TSimpleMtx4FPQ23efx3Arg(void)
  * Address:	803AF6EC
  * Size:	0000DC
  */
-void create__Q23efx5TSyncFPQ23efx3Arg(void)
+void efx::TSync::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1471,7 +1471,7 @@ void create__Q23efx5TSyncFPQ23efx3Arg(void)
  * Address:	803AF7C8
  * Size:	00006C
  */
-void execute__Q23efx5TSyncFP14JPABaseEmitter(void)
+void efx::TSync::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1516,7 +1516,7 @@ void execute__Q23efx5TSyncFP14JPABaseEmitter(void)
  * Address:	803AF834
  * Size:	000090
  */
-void executeAfter__Q23efx5TSyncFP14JPABaseEmitter(void)
+void efx::TSync::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1568,7 +1568,7 @@ void executeAfter__Q23efx5TSyncFP14JPABaseEmitter(void)
  * Address:	803AF8C4
  * Size:	00003C
  */
-void forceKill__Q23efx5TSyncFv(void)
+void efx::TSync::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -1595,7 +1595,7 @@ void forceKill__Q23efx5TSyncFv(void)
  * Address:	803AF900
  * Size:	000070
  */
-void fade__Q23efx5TSyncFv(void)
+void efx::TSync::fade(void)
 {
 /*
 .loc_0x0:
@@ -1639,7 +1639,7 @@ void fade__Q23efx5TSyncFv(void)
  * Address:	803AF970
  * Size:	000078
  */
-void doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter(void)
+void efx::TChasePos::doExecuteEmitterOperation( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1683,7 +1683,7 @@ void doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter(void)
  * Address:	803AF9E8
  * Size:	0000D8
  */
-void doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter(void)
+void efx::TChasePosYRot::doExecuteEmitterOperation( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1753,7 +1753,7 @@ void doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter(void)
  * Address:	803AFAC0
  * Size:	00006C
  */
-void doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter(void)
+void efx::TChaseMtx::doExecuteEmitterOperation( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1794,7 +1794,7 @@ void doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter(void)
  * Address:	803AFB2C
  * Size:	000078
  */
-void doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter(void)
+void efx::TChaseMtxT::doExecuteEmitterOperation( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1838,7 +1838,7 @@ void doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter(void)
  * Address:	803AFBA4
  * Size:	0000DC
  */
-void doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter(void)
+void efx::TChasePosPos::doExecuteEmitterOperation( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1991,7 +1991,7 @@ void efx::makeMtxZAxisAlongPosPos(float (*) [4], Vector3<float> &, Vector3<float
  * Address:	803AFD78
  * Size:	00014C
  */
-void doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter(void)
+void efx::TChasePosPosLocalZScale::doExecuteEmitterOperation( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -2094,7 +2094,7 @@ void doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitte
  * Address:	803AFEC4
  * Size:	00014C
  */
-void doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitter(void)
+void efx::TChasePosPosLocalYScale::doExecuteEmitterOperation( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -2197,7 +2197,7 @@ void doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitte
  * Address:	803B0010
  * Size:	000098
  */
-void __ct__Q23efx9TForever2FUsUs(void)
+void efx::TForever2::__ct( (unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -2257,7 +2257,7 @@ void __dt__Q23efx28TSyncGroup2<efx::TForever>Fv(void)
  * Address:	803B00A8
  * Size:	000058
  */
-void __ct__Q23efx8TForeverFv(void)
+void efx::TForever::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2291,7 +2291,7 @@ void __ct__Q23efx8TForeverFv(void)
  * Address:	803B0100
  * Size:	0000A8
  */
-void __ct__Q23efx9TForever3FUsUsUs(void)
+void efx::TForever3::__ct( (unsigned short, unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -2355,7 +2355,7 @@ void __dt__Q23efx28TSyncGroup3<efx::TForever>Fv(void)
  * Address:	803B01A8
  * Size:	000098
  */
-void __ct__Q23efx9TForever4FUsUsUsUs(void)
+void efx::TForever4::__ct( (unsigned short, unsigned short, unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -2480,7 +2480,7 @@ void __dt__Q23efx29TSyncGroup2<efx::TChasePos>Fv(void)
  * Address:	803B02EC
  * Size:	000058
  */
-void __ct__Q23efx9TChasePosFv(void)
+void efx::TChasePos::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2676,7 +2676,7 @@ void setPosptr__Q23efx10TChasePos4FP10Vector3<float>(void)
  * Address:	803B049C
  * Size:	0000AC
  */
-void __ct__Q23efx10TChaseMtx2FPA4_fUsUs(void)
+void efx::TChaseMtx2::__ct( (float (*)[4], unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -2741,7 +2741,7 @@ void __dt__Q23efx29TSyncGroup2<efx::TChaseMtx>Fv(void)
  * Address:	803B0548
  * Size:	000058
  */
-void __ct__Q23efx9TChaseMtxFv(void)
+void efx::TChaseMtx::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2775,7 +2775,7 @@ void __ct__Q23efx9TChaseMtxFv(void)
  * Address:	803B05A0
  * Size:	00000C
  */
-void setMtxptr__Q23efx10TChaseMtx2FPA4_f(void)
+void efx::TChaseMtx2::setMtxptr( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -2790,7 +2790,7 @@ void setMtxptr__Q23efx10TChaseMtx2FPA4_f(void)
  * Address:	803B05AC
  * Size:	0000A0
  */
-void __ct__Q23efx10TChaseMtx3FPA4_fUsUsUs(void)
+void efx::TChaseMtx3::__ct( (float (*)[4], unsigned short, unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -2852,7 +2852,7 @@ void __dt__Q23efx29TSyncGroup3<efx::TChaseMtx>Fv(void)
  * Address:	803B064C
  * Size:	000010
  */
-void setMtxptr__Q23efx10TChaseMtx3FPA4_f(void)
+void efx::TChaseMtx3::setMtxptr( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -2868,7 +2868,7 @@ void setMtxptr__Q23efx10TChaseMtx3FPA4_f(void)
  * Address:	803B065C
  * Size:	0000AC
  */
-void __ct__Q23efx10TChaseMtx4FPA4_fUsUsUsUs(void)
+void efx::TChaseMtx4::__ct( (float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -2933,7 +2933,7 @@ void __dt__Q23efx29TSyncGroup4<efx::TChaseMtx>Fv(void)
  * Address:	803B0708
  * Size:	000014
  */
-void setMtxptr__Q23efx10TChaseMtx4FPA4_f(void)
+void efx::TChaseMtx4::setMtxptr( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -2950,7 +2950,7 @@ void setMtxptr__Q23efx10TChaseMtx4FPA4_f(void)
  * Address:	........
  * Size:	0000B8
  */
-void __ct__Q23efx10TChaseMtx5FPA4_fUsUsUsUsUs(void)
+void efx::TChaseMtx5::__ct( (float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short, unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -2970,7 +2970,7 @@ void __dt__Q23efx29TSyncGroup5<efx::TChaseMtx>Fv(void)
  * Address:	........
  * Size:	000018
  */
-void setMtxptr__Q23efx10TChaseMtx5FPA4_f(void)
+void efx::TChaseMtx5::setMtxptr( (float (*)[4]))
 {
 	// UNUSED FUNCTION
 }
@@ -2980,7 +2980,7 @@ void setMtxptr__Q23efx10TChaseMtx5FPA4_f(void)
  * Address:	803B071C
  * Size:	0000C4
  */
-void __ct__Q23efx10TChaseMtx6FPA4_fUsUsUsUsUsUs(void)
+void efx::TChaseMtx6::__ct( (float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -3051,7 +3051,7 @@ void __dt__Q23efx29TSyncGroup6<efx::TChaseMtx>Fv(void)
  * Address:	803B07E0
  * Size:	00001C
  */
-void setMtxptr__Q23efx10TChaseMtx6FPA4_f(void)
+void efx::TChaseMtx6::setMtxptr( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -3070,7 +3070,7 @@ void setMtxptr__Q23efx10TChaseMtx6FPA4_f(void)
  * Address:	803B07FC
  * Size:	0000AC
  */
-void __ct__Q23efx11TChaseMtxT2FPA4_fUsUs(void)
+void efx::TChaseMtxT2::__ct( (float (*)[4], unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -3135,7 +3135,7 @@ void __dt__Q23efx31TSyncGroup2<efx::TChaseMtxT>Fv(void)
  * Address:	803B08A8
  * Size:	000058
  */
-void __ct__Q23efx10TChaseMtxTFv(void)
+void efx::TChaseMtxT::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3169,7 +3169,7 @@ void __ct__Q23efx10TChaseMtxTFv(void)
  * Address:	803B0900
  * Size:	00000C
  */
-void setMtxptr__Q23efx11TChaseMtxT2FPA4_f(void)
+void efx::TChaseMtxT2::setMtxptr( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -3184,7 +3184,7 @@ void setMtxptr__Q23efx11TChaseMtxT2FPA4_f(void)
  * Address:	........
  * Size:	0000A0
  */
-void __ct__Q23efx11TChaseMtxT3FPA4_fUsUsUs(void)
+void efx::TChaseMtxT3::__ct( (float (*)[4], unsigned short, unsigned short, unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -3204,7 +3204,7 @@ void __dt__Q23efx31TSyncGroup3<efx::TChaseMtxT>Fv(void)
  * Address:	........
  * Size:	000010
  */
-void setMtxptr__Q23efx11TChaseMtxT3FPA4_f(void)
+void efx::TChaseMtxT3::setMtxptr( (float (*)[4]))
 {
 	// UNUSED FUNCTION
 }
@@ -3214,7 +3214,7 @@ void setMtxptr__Q23efx11TChaseMtxT3FPA4_f(void)
  * Address:	803B090C
  * Size:	0000AC
  */
-void __ct__Q23efx11TChaseMtxT4FPA4_fUsUsUsUs(void)
+void efx::TChaseMtxT4::__ct( (float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -3279,7 +3279,7 @@ void __dt__Q23efx31TSyncGroup4<efx::TChaseMtxT>Fv(void)
  * Address:	803B09B8
  * Size:	000014
  */
-void setMtxptr__Q23efx11TChaseMtxT4FPA4_f(void)
+void efx::TChaseMtxT4::setMtxptr( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -3358,7 +3358,7 @@ void __dt__Q23efx34TSyncGroup2<efx::TChasePosYRot>Fv(void)
  * Address:	803B0A6C
  * Size:	000058
  */
-void __ct__Q23efx13TChasePosYRotFv(void)
+void efx::TChasePosYRot::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3402,7 +3402,7 @@ void setPosptr__Q23efx14TChasePosYRot2FP10Vector3<float>(void)
  * Address:	........
  * Size:	00000C
  */
-void setYRot__Q23efx14TChasePosYRot2FPf(void)
+void efx::TChasePosYRot2::setYRot( (float *))
 {
 	// UNUSED FUNCTION
 }
@@ -3488,7 +3488,7 @@ void setPosptr__Q23efx14TChasePosYRot3FP10Vector3<float>(void)
  * Address:	........
  * Size:	000010
  */
-void setYRot__Q23efx14TChasePosYRot3FPf(void)
+void efx::TChasePosYRot3::setYRot( (float *))
 {
 	// UNUSED FUNCTION
 }
@@ -3518,7 +3518,7 @@ void __dt__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale>Fv(void)
  * Address:	803B0B74
  * Size:	000058
  */
-void __ct__Q23efx23TChasePosPosLocalYScaleFv(void)
+void efx::TChasePosPosLocalYScale::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3673,7 +3673,7 @@ void __dt__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale>Fv(void)
  * Address:	803B0CB0
  * Size:	000058
  */
-void __ct__Q23efx23TChasePosPosLocalZScaleFv(void)
+void efx::TChasePosPosLocalZScale::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3808,7 +3808,7 @@ void setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<float>P10Vector3<flo
  * Address:	803B0DEC
  * Size:	00008C
  */
-void __dt__Q23efx19TOneEmitterChasePosFv(void)
+void efx::TOneEmitterChasePos::__dt(void)
 {
 /*
 .loc_0x0:
@@ -3859,7 +3859,7 @@ void __dt__Q23efx19TOneEmitterChasePosFv(void)
  * Address:	803B0E78
  * Size:	00001C
  */
-void startDemoDrawOff__Q23efx19TOneEmitterChasePosFv(void)
+void efx::TOneEmitterChasePos::startDemoDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -3878,7 +3878,7 @@ void startDemoDrawOff__Q23efx19TOneEmitterChasePosFv(void)
  * Address:	803B0E94
  * Size:	00001C
  */
-void endDemoDrawOn__Q23efx19TOneEmitterChasePosFv(void)
+void efx::TOneEmitterChasePos::endDemoDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -3897,7 +3897,7 @@ void endDemoDrawOn__Q23efx19TOneEmitterChasePosFv(void)
  * Address:	803B0EB0
  * Size:	000060
  */
-void __dt__Q23efx24TCallBack_StaticClippingFv(void)
+void efx::TCallBack_StaticClipping::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7254,7 +7254,7 @@ void __sinit_efxBase_cpp(void)
  * Address:	803B2D1C
  * Size:	000008
  */
-void @4@executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter(void)
+void @4@efx::TOneEmitter::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -7268,7 +7268,7 @@ void @4@executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter(void)
  * Address:	803B2D24
  * Size:	000008
  */
-void @4@__dt__Q23efx11TOneEmitterFv(void)
+void @4@efx::TOneEmitter::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7282,7 +7282,7 @@ void @4@__dt__Q23efx11TOneEmitterFv(void)
  * Address:	803B2D2C
  * Size:	000008
  */
-void @4@executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter(void)
+void @4@efx::TOneEmitterChasePos::executeAfter( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -7296,7 +7296,7 @@ void @4@executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter(void)
  * Address:	803B2D34
  * Size:	000008
  */
-void @4@__dt__Q23efx19TOneEmitterChasePosFv(void)
+void @4@efx::TOneEmitterChasePos::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7310,7 +7310,7 @@ void @4@__dt__Q23efx19TOneEmitterChasePosFv(void)
  * Address:	803B2D3C
  * Size:	000008
  */
-void @4@__dt__Q23efx17TOneEmitterSimpleFv(void)
+void @4@efx::TOneEmitterSimple::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7324,7 +7324,7 @@ void @4@__dt__Q23efx17TOneEmitterSimpleFv(void)
  * Address:	803B2D44
  * Size:	000008
  */
-void @4@__dt__Q23efx5TSyncFv(void)
+void @4@efx::TSync::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7338,7 +7338,7 @@ void @4@__dt__Q23efx5TSyncFv(void)
  * Address:	803B2D4C
  * Size:	000008
  */
-void @4@__dt__Q23efx9TChasePosFv(void)
+void @4@efx::TChasePos::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7352,7 +7352,7 @@ void @4@__dt__Q23efx9TChasePosFv(void)
  * Address:	803B2D54
  * Size:	000008
  */
-void @4@__dt__Q23efx13TChasePosYRotFv(void)
+void @4@efx::TChasePosYRot::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7366,7 +7366,7 @@ void @4@__dt__Q23efx13TChasePosYRotFv(void)
  * Address:	803B2D5C
  * Size:	000008
  */
-void @4@__dt__Q23efx9TChaseMtxFv(void)
+void @4@efx::TChaseMtx::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7380,7 +7380,7 @@ void @4@__dt__Q23efx9TChaseMtxFv(void)
  * Address:	803B2D64
  * Size:	000008
  */
-void @4@__dt__Q23efx10TChaseMtxTFv(void)
+void @4@efx::TChaseMtxT::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7394,7 +7394,7 @@ void @4@__dt__Q23efx10TChaseMtxTFv(void)
  * Address:	803B2D6C
  * Size:	000008
  */
-void @4@__dt__Q23efx12TChasePosPosFv(void)
+void @4@efx::TChasePosPos::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7408,7 +7408,7 @@ void @4@__dt__Q23efx12TChasePosPosFv(void)
  * Address:	803B2D74
  * Size:	000008
  */
-void @4@__dt__Q23efx23TChasePosPosLocalZScaleFv(void)
+void @4@efx::TChasePosPosLocalZScale::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7422,7 +7422,7 @@ void @4@__dt__Q23efx23TChasePosPosLocalZScaleFv(void)
  * Address:	803B2D7C
  * Size:	000008
  */
-void @4@__dt__Q23efx23TChasePosPosLocalYScaleFv(void)
+void @4@efx::TChasePosPosLocalYScale::__dt(void)
 {
 /*
 .loc_0x0:

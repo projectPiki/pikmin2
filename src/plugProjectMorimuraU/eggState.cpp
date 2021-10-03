@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8034B3C4
  * Size:	000054
  */
-void init__Q34Game3Egg3FSMFPQ24Game9EnemyBase(void)
+void Game::Egg::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void init__Q34Game3Egg3FSMFPQ24Game9EnemyBase(void)
  * Address:	8034B418
  * Size:	00003C
  */
-void __ct__Q34Game3Egg9StateWaitFi(void)
+void Game::Egg::StateWait::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void __ct__Q34Game3Egg9StateWaitFi(void)
  * Address:	8034B454
  * Size:	000040
  */
-void init__Q34Game3Egg9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Egg::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -107,7 +107,7 @@ void init__Q34Game3Egg9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	8034B494
  * Size:	0001A8
  */
-void exec__Q34Game3Egg9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Egg::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:

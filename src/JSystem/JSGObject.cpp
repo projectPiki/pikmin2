@@ -5,7 +5,7 @@
  * Address:	800988D4
  * Size:	000048
  */
-void __dt__Q26JStage7TObjectFv(void)
+void JStage::TObject::__dt(void)
 {
 /*
 .loc_0x0:
@@ -37,7 +37,7 @@ void __dt__Q26JStage7TObjectFv(void)
  * Address:	8009891C
  * Size:	000008
  */
-void JSGGetName__Q26JStage7TObjectCFv(void)
+void JStage::TObject::JSGGetName( const
 {
 /*
 .loc_0x0:
@@ -51,7 +51,7 @@ void JSGGetName__Q26JStage7TObjectCFv(void)
  * Address:	80098924
  * Size:	000004
  */
-void JSGUpdate__Q26JStage7TObjectFv(void)
+void JStage::TObject::JSGUpdate(void)
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void JSGUpdate__Q26JStage7TObjectFv(void)
  * Address:	80098928
  * Size:	000008
  */
-void JSGGetFlag__Q26JStage7TObjectCFv(void)
+void JStage::TObject::JSGGetFlag( const
 {
 /*
 .loc_0x0:
@@ -78,7 +78,7 @@ void JSGGetFlag__Q26JStage7TObjectCFv(void)
  * Address:	80098930
  * Size:	000004
  */
-void JSGSetFlag__Q26JStage7TObjectFUl(void)
+void JStage::TObject::JSGSetFlag( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -91,7 +91,7 @@ void JSGSetFlag__Q26JStage7TObjectFUl(void)
  * Address:	80098934
  * Size:	000008
  */
-void JSGGetData__Q26JStage7TObjectCFUlPvUl(void)
+void JStage::TObject::JSGGetData( const(unsigned long, void *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -105,7 +105,7 @@ void JSGGetData__Q26JStage7TObjectCFUlPvUl(void)
  * Address:	8009893C
  * Size:	000004
  */
-void JSGSetData__Q26JStage7TObjectFUlPCvUl(void)
+void JStage::TObject::JSGSetData( (unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void JSGSetData__Q26JStage7TObjectFUlPCvUl(void)
  * Address:	80098940
  * Size:	000004
  */
-void JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl(void)
+void JStage::TObject::JSGGetParent( const(JStage::TObject **, unsigned long *))
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl(void)
  * Address:	80098944
  * Size:	000004
  */
-void JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl(void)
+void JStage::TObject::JSGSetParent( (JStage::TObject *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -144,7 +144,7 @@ void JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl(void)
  * Address:	80098948
  * Size:	000004
  */
-void JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl(void)
+void JStage::TObject::JSGSetRelation( (bool, JStage::TObject *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -157,7 +157,7 @@ void JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl(void)
  * Address:	8009894C
  * Size:	000008
  */
-void JSGFindNodeID__Q26JStage7TObjectCFPCc(void)
+void JStage::TObject::JSGFindNodeID( const(char const *))
 {
 /*
 .loc_0x0:
@@ -171,7 +171,7 @@ void JSGFindNodeID__Q26JStage7TObjectCFPCc(void)
  * Address:	80098954
  * Size:	00003C
  */
-void JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f(void)
+void JStage::TObject::JSGGetNodeTransformation( const(unsigned long, float (*)[4]))
 {
 /*
 .loc_0x0:

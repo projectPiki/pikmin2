@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8022C7F4
  * Size:	000104
  */
-void __ct__Q34Game6VsGame11ResultStateFv(void)
+void Game::VsGame::ResultState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void __ct__Q34Game6VsGame11ResultStateFv(void)
  * Address:	8022C8F8
  * Size:	0000BC
  */
-void init__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSectionPQ24Game8StateArg(void)
+void Game::VsGame::ResultState::init( (Game::VsGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void init__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSectionPQ24Game8StateArg(
  * Address:	8022C9B4
  * Size:	0002A8
  */
-void prepareMorimuraInfo__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection(void)
+void Game::VsGame::ResultState::prepareMorimuraInfo( (Game::VsGameSection *))
 {
 /*
 .loc_0x0:
@@ -367,7 +367,7 @@ void prepareMorimuraInfo__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection(vo
  * Address:	........
  * Size:	000094
  */
-void initNext__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection(void)
+void Game::VsGame::ResultState::initNext( (Game::VsGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -377,7 +377,7 @@ void initNext__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection(void)
  * Address:	8022CC5C
  * Size:	00013C
  */
-void dvdload__Q34Game6VsGame11ResultStateFv(void)
+void Game::VsGame::ResultState::dvdload(void)
 {
 /*
 .loc_0x0:
@@ -478,7 +478,7 @@ void dvdload__Q34Game6VsGame11ResultStateFv(void)
  * Address:	8022CD98
  * Size:	00017C
  */
-void exec__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection(void)
+void Game::VsGame::ResultState::exec( (Game::VsGameSection *))
 {
 /*
 .loc_0x0:
@@ -599,7 +599,7 @@ void exec__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection(void)
  * Address:	8022CF14
  * Size:	000088
  */
-void draw__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSectionR8Graphics(void)
+void Game::VsGame::ResultState::draw( (Game::VsGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -647,7 +647,7 @@ void draw__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSectionR8Graphics(void)
  * Address:	8022CF9C
  * Size:	0000CC
  */
-void cleanup__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection(void)
+void Game::VsGame::ResultState::cleanup( (Game::VsGameSection *))
 {
 /*
 .loc_0x0:
@@ -714,7 +714,7 @@ void cleanup__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection(void)
  * Address:	8022D068
  * Size:	000008
  */
-void getSize__Q28Morimura25DispMemberChallengeResultFv(void)
+void Morimura::DispMemberChallengeResult::getSize(void)
 {
 /*
 .loc_0x0:
@@ -728,7 +728,7 @@ void getSize__Q28Morimura25DispMemberChallengeResultFv(void)
  * Address:	8022D070
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura25DispMemberChallengeResultFv(void)
+void Morimura::DispMemberChallengeResult::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -743,7 +743,7 @@ void getOwnerID__Q28Morimura25DispMemberChallengeResultFv(void)
  * Address:	8022D07C
  * Size:	000014
  */
-void getMemberID__Q28Morimura25DispMemberChallengeResultFv(void)
+void Morimura::DispMemberChallengeResult::getMemberID(void)
 {
 /*
 .loc_0x0:

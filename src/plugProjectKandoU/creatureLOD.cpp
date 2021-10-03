@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801D7808
  * Size:	00001C
  */
-void __ct__Q24Game9AILODParmFv(void)
+void Game::AILODParm::__ct(void)
 {
 /*
 .loc_0x0:
@@ -34,7 +34,7 @@ void __ct__Q24Game9AILODParmFv(void)
  * Address:	801D7824
  * Size:	000018
  */
-void __ct__Q24Game5AILODFv(void)
+void Game::AILOD::__ct(void)
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void __ct__Q24Game5AILODFv(void)
  * Address:	801D783C
  * Size:	0003A8
  */
-void updateLOD__Q24Game8CreatureFRQ24Game9AILODParm(void)
+void Game::Creature::updateLOD( (Game::AILODParm &))
 {
 /*
 .loc_0x0:

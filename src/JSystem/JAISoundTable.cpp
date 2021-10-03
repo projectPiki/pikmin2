@@ -5,7 +5,7 @@
  * Address:	800B744C
  * Size:	0000CC
  */
-void init__Q27JAInter10SoundTableFPUcUl(void)
+void JAInter::SoundTable::init( (unsigned char *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -74,7 +74,7 @@ void init__Q27JAInter10SoundTableFPUcUl(void)
  * Address:	800B7518
  * Size:	0000C4
  */
-void getInfoPointer__Q27JAInter10SoundTableFUl(void)
+void JAInter::SoundTable::getInfoPointer( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void getInfoPointer__Q27JAInter10SoundTableFUl(void)
  * Address:	800B75DC
  * Size:	000058
  */
-void getInfoFormat__Q27JAInter10SoundTableFUl(void)
+void JAInter::SoundTable::getInfoFormat( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -187,7 +187,7 @@ void getInfoFormat__Q27JAInter10SoundTableFUl(void)
  * Address:	........
  * Size:	0000E4
  */
-void setInfoTrack__Q27JAInter10SoundTableFUlUc(void)
+void JAInter::SoundTable::setInfoTrack( (unsigned long, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -197,7 +197,7 @@ void setInfoTrack__Q27JAInter10SoundTableFUlUc(void)
  * Address:	800B7634
  * Size:	000008
  */
-void getCategotyMax__Q27JAInter10SoundTableFv(void)
+void JAInter::SoundTable::getCategotyMax(void)
 {
 /*
 .loc_0x0:
@@ -211,7 +211,7 @@ void getCategotyMax__Q27JAInter10SoundTableFv(void)
  * Address:	800B763C
  * Size:	000010
  */
-void getSoundMax__Q27JAInter10SoundTableFUc(void)
+void JAInter::SoundTable::getSoundMax( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void getSoundMax__Q27JAInter10SoundTableFUc(void)
  * Address:	........
  * Size:	000008
  */
-void getSoundTablePointer__Q27JAInter10SoundTableFv(void)
+void JAInter::SoundTable::getSoundTablePointer(void)
 {
 	// UNUSED FUNCTION
 }

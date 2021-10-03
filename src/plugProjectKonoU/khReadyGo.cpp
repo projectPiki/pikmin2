@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000094
  */
-void __ct__Q32kh6Screen10ObjReadyGoFv(void)
+void kh::Screen::ObjReadyGo::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q32kh6Screen10ObjReadyGoFv(void)
  * Address:	80401268
  * Size:	0000A4
  */
-void doUpdateFadein__Q32kh6Screen10ObjReadyGoFv(void)
+void kh::Screen::ObjReadyGo::doUpdateFadein(void)
 {
 /*
 .loc_0x0:
@@ -84,7 +84,7 @@ void doUpdateFadein__Q32kh6Screen10ObjReadyGoFv(void)
  * Address:	8040130C
  * Size:	0001D4
  */
-void doCreate__Q32kh6Screen10ObjReadyGoFP10JKRArchive(void)
+void kh::Screen::ObjReadyGo::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -227,7 +227,7 @@ void doCreate__Q32kh6Screen10ObjReadyGoFP10JKRArchive(void)
  * Address:	804014E0
  * Size:	000020
  */
-void doUpdate__Q32kh6Screen10ObjReadyGoFv(void)
+void kh::Screen::ObjReadyGo::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void doUpdate__Q32kh6Screen10ObjReadyGoFv(void)
  * Address:	80401500
  * Size:	0000DC
  */
-void doDraw__Q32kh6Screen10ObjReadyGoFR8Graphics(void)
+void kh::Screen::ObjReadyGo::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -318,7 +318,7 @@ void doDraw__Q32kh6Screen10ObjReadyGoFR8Graphics(void)
  * Address:	804015DC
  * Size:	00018C
  */
-void doUpdateFadeout__Q32kh6Screen10ObjReadyGoFv(void)
+void kh::Screen::ObjReadyGo::doUpdateFadeout(void)
 {
 /*
 .loc_0x0:
@@ -435,7 +435,7 @@ void doUpdateFadeout__Q32kh6Screen10ObjReadyGoFv(void)
  * Address:	80401768
  * Size:	000384
  */
-void updateAnimation__Q32kh6Screen10ObjReadyGoFv(void)
+void kh::Screen::ObjReadyGo::updateAnimation(void)
 {
 /*
 .loc_0x0:
@@ -690,7 +690,7 @@ void updateAnimation__Q32kh6Screen10ObjReadyGoFv(void)
  * Address:	80401AEC
  * Size:	000040
  */
-void doConfirmSetScene__Q32kh6Screen12SceneReadyGoFRQ26Screen11SetSceneArg(void)
+void kh::Screen::SceneReadyGo::doConfirmSetScene( (Screen::SetSceneArg &))
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void doConfirmSetScene__Q32kh6Screen12SceneReadyGoFRQ26Screen11SetSceneArg(void)
  * Address:	80401B2C
  * Size:	00000C
  */
-void getResName__Q32kh6Screen12SceneReadyGoCFv(void)
+void kh::Screen::SceneReadyGo::getResName( const
 {
 /*
 .loc_0x0:
@@ -733,7 +733,7 @@ void getResName__Q32kh6Screen12SceneReadyGoCFv(void)
  * Address:	80401B38
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q32kh6Screen12SceneReadyGoFv(void)
+void kh::Screen::SceneReadyGo::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:
@@ -747,7 +747,7 @@ void isUseBackupSceneInfo__Q32kh6Screen12SceneReadyGoFv(void)
  * Address:	80401B40
  * Size:	000008
  */
-void getSceneType__Q32kh6Screen12SceneReadyGoFv(void)
+void kh::Screen::SceneReadyGo::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -761,7 +761,7 @@ void getSceneType__Q32kh6Screen12SceneReadyGoFv(void)
  * Address:	80401B48
  * Size:	000008
  */
-void getOwnerID__Q32kh6Screen12SceneReadyGoFv(void)
+void kh::Screen::SceneReadyGo::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -775,7 +775,7 @@ void getOwnerID__Q32kh6Screen12SceneReadyGoFv(void)
  * Address:	80401B50
  * Size:	000014
  */
-void getMemberID__Q32kh6Screen12SceneReadyGoFv(void)
+void kh::Screen::SceneReadyGo::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -792,7 +792,7 @@ void getMemberID__Q32kh6Screen12SceneReadyGoFv(void)
  * Address:	80401B64
  * Size:	0000C4
  */
-void doCreateObj__Q32kh6Screen12SceneReadyGoFP10JKRArchive(void)
+void kh::Screen::SceneReadyGo::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -855,7 +855,7 @@ void doCreateObj__Q32kh6Screen12SceneReadyGoFP10JKRArchive(void)
  * Address:	80401C28
  * Size:	0000AC
  */
-void __dt__Q32kh6Screen10ObjReadyGoFv(void)
+void kh::Screen::ObjReadyGo::__dt(void)
 {
 /*
 .loc_0x0:
@@ -949,7 +949,7 @@ void __sinit_khReadyGo_cpp(void)
  * Address:	80401D30
  * Size:	000008
  */
-void @24@__dt__Q32kh6Screen10ObjReadyGoFv(void)
+void @24@kh::Screen::ObjReadyGo::__dt(void)
 {
 /*
 .loc_0x0:

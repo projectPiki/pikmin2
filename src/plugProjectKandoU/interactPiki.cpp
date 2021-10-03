@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80192C84
  * Size:	0000E4
  */
-void actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki(void)
+void Game::InteractFueFuki::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -94,7 +94,7 @@ void actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki(void)
  * Address:	80192D68
  * Size:	000BD0
  */
-void actPiki__Q24Game11InteractFueFPQ24Game4Piki(void)
+void Game::InteractFue::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -964,7 +964,7 @@ void actPiki__Q24Game11InteractFueFPQ24Game4Piki(void)
  * Address:	80193938
  * Size:	00015C
  */
-void actPiki__Q24Game12InteractDopeFPQ24Game4Piki(void)
+void Game::InteractDope::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void actPiki__Q24Game12InteractDopeFPQ24Game4Piki(void)
  * Address:	80193A94
  * Size:	000100
  */
-void actPiki__Q24Game12InteractWindFPQ24Game4Piki(void)
+void Game::InteractWind::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1157,7 +1157,7 @@ void actPiki__Q24Game12InteractWindFPQ24Game4Piki(void)
  * Address:	80193B94
  * Size:	000120
  */
-void actPiki__Q24Game20InteractHanaChirashiFPQ24Game4Piki(void)
+void Game::InteractHanaChirashi::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1251,7 +1251,7 @@ void actPiki__Q24Game20InteractHanaChirashiFPQ24Game4Piki(void)
  * Address:	80193CB4
  * Size:	00015C
  */
-void actPiki__Q24Game12InteractBombFPQ24Game4Piki(void)
+void Game::InteractBomb::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1364,7 +1364,7 @@ void actPiki__Q24Game12InteractBombFPQ24Game4Piki(void)
  * Address:	80193E10
  * Size:	000114
  */
-void actPiki__Q24Game13InteractDenkiFPQ24Game4Piki(void)
+void Game::InteractDenki::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1455,7 +1455,7 @@ void actPiki__Q24Game13InteractDenkiFPQ24Game4Piki(void)
  * Address:	80193F24
  * Size:	0000A0
  */
-void actPiki__Q24Game16InteractFallMeckFPQ24Game4Piki(void)
+void Game::InteractFallMeck::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1513,7 +1513,7 @@ void actPiki__Q24Game16InteractFallMeckFPQ24Game4Piki(void)
  * Address:	80193FC4
  * Size:	000288
  */
-void actPiki__Q24Game12InteractBuryFPQ24Game4Piki(void)
+void Game::InteractBury::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1697,7 +1697,7 @@ void actPiki__Q24Game12InteractBuryFPQ24Game4Piki(void)
  * Address:	8019424C
  * Size:	0000DC
  */
-void actPiki__Q24Game20InteractSuikomi_TestFPQ24Game4Piki(void)
+void Game::InteractSuikomi_Test::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1772,7 +1772,7 @@ void actPiki__Q24Game20InteractSuikomi_TestFPQ24Game4Piki(void)
  * Address:	80194328
  * Size:	000118
  */
-void actPiki__Q24Game12InteractFireFPQ24Game4Piki(void)
+void Game::InteractFire::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1864,7 +1864,7 @@ void actPiki__Q24Game12InteractFireFPQ24Game4Piki(void)
  * Address:	80194440
  * Size:	000134
  */
-void actPiki__Q24Game16InteractAstonishFPQ24Game4Piki(void)
+void Game::InteractAstonish::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -1963,7 +1963,7 @@ void actPiki__Q24Game16InteractAstonishFPQ24Game4Piki(void)
  * Address:	80194574
  * Size:	000118
  */
-void actPiki__Q24Game14InteractBubbleFPQ24Game4Piki(void)
+void Game::InteractBubble::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2055,7 +2055,7 @@ void actPiki__Q24Game14InteractBubbleFPQ24Game4Piki(void)
  * Address:	8019468C
  * Size:	00013C
  */
-void actPiki__Q24Game11InteractGasFPQ24Game4Piki(void)
+void Game::InteractGas::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2158,7 +2158,7 @@ void actPiki__Q24Game11InteractGasFPQ24Game4Piki(void)
  * Address:	801947C8
  * Size:	0000C0
  */
-void actPiki__Q24Game14InteractBattleFPQ24Game4Piki(void)
+void Game::InteractBattle::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2224,7 +2224,7 @@ void actPiki__Q24Game14InteractBattleFPQ24Game4Piki(void)
  * Address:	80194888
  * Size:	000120
  */
-void actPiki__Q24Game13InteractPressFPQ24Game4Piki(void)
+void Game::InteractPress::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2320,7 +2320,7 @@ void actPiki__Q24Game13InteractPressFPQ24Game4Piki(void)
  * Address:	801949A8
  * Size:	000260
  */
-void actPiki__Q24Game13InteractFlickFPQ24Game4Piki(void)
+void Game::InteractFlick::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2502,7 +2502,7 @@ void actPiki__Q24Game13InteractFlickFPQ24Game4Piki(void)
  * Address:	80194C08
  * Size:	0002EC
  */
-void actPiki__Q24Game15InteractSwallowFPQ24Game4Piki(void)
+void Game::InteractSwallow::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2727,7 +2727,7 @@ void actPiki__Q24Game15InteractSwallowFPQ24Game4Piki(void)
  * Address:	80194EF4
  * Size:	0000CC
  */
-void actPiki__Q24Game12InteractKillFPQ24Game4Piki(void)
+void Game::InteractKill::actPiki( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2798,7 +2798,7 @@ void actPiki__Q24Game12InteractKillFPQ24Game4Piki(void)
  * Address:	80194FC0
  * Size:	00000C
  */
-void getName__Q26PikiAI12ActBattleArgFv(void)
+void PikiAI::ActBattleArg::getName(void)
 {
 /*
 .loc_0x0:

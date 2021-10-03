@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803EA170
  * Size:	0003B4
  */
-void __ct__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -264,7 +264,7 @@ void __ct__Q23ebi13TMainTitleMgrFv(void)
  * Address:	........
  * Size:	0000A0
  */
-void __dt__Q33ebi6Screen11TPressStartFv(void)
+void ebi::Screen::TPressStart::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -274,7 +274,7 @@ void __dt__Q33ebi6Screen11TPressStartFv(void)
  * Address:	803EA524
  * Size:	000068
  */
-void setMode__Q23ebi13TMainTitleMgrFl(void)
+void ebi::TMainTitleMgr::setMode( (long))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void setMode__Q23ebi13TMainTitleMgrFl(void)
  * Address:	803EA58C
  * Size:	000124
  */
-void loadResource__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void loadResource__Q23ebi13TMainTitleMgrFv(void)
  * Address:	803EA6B0
  * Size:	00004C
  */
-void setController__Q23ebi13TMainTitleMgrFP10Controller(void)
+void ebi::TMainTitleMgr::setController( (Controller *))
 {
 /*
 .loc_0x0:
@@ -440,7 +440,7 @@ void setController__Q23ebi13TMainTitleMgrFP10Controller(void)
  * Address:	803EA6FC
  * Size:	0000C0
  */
-void start__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::start(void)
 {
 /*
 .loc_0x0:
@@ -500,7 +500,7 @@ void start__Q23ebi13TMainTitleMgrFv(void)
  * Address:	803EA7BC
  * Size:	0001F0
  */
-void startMenuSet__Q23ebi13TMainTitleMgrFll(void)
+void ebi::TMainTitleMgr::startMenuSet( (long, long))
 {
 /*
 .loc_0x0:
@@ -658,7 +658,7 @@ void startMenuSet__Q23ebi13TMainTitleMgrFll(void)
  * Address:	803EA9AC
  * Size:	00000C
  */
-void forceQuit__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::forceQuit(void)
 {
 /*
 .loc_0x0:
@@ -673,7 +673,7 @@ void forceQuit__Q23ebi13TMainTitleMgrFv(void)
  * Address:	803EA9B8
  * Size:	000010
  */
-void isFinish__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::isFinish(void)
 {
 /*
 .loc_0x0:
@@ -689,7 +689,7 @@ void isFinish__Q23ebi13TMainTitleMgrFv(void)
  * Address:	........
  * Size:	000068
  */
-void isAnyKey__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::isAnyKey(void)
 {
 	// UNUSED FUNCTION
 }
@@ -699,7 +699,7 @@ void isAnyKey__Q23ebi13TMainTitleMgrFv(void)
  * Address:	803EA9C8
  * Size:	000008
  */
-void getSelectedMenu__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::getSelectedMenu(void)
 {
 /*
 .loc_0x0:
@@ -713,7 +713,7 @@ void getSelectedMenu__Q23ebi13TMainTitleMgrFv(void)
  * Address:	803EA9D0
  * Size:	0004B0
  */
-void update__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -1073,7 +1073,7 @@ void update__Q23ebi13TMainTitleMgrFv(void)
  * Address:	803EAE80
  * Size:	000274
  */
-void draw__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::draw(void)
 {
 /*
 .loc_0x0:
@@ -1258,7 +1258,7 @@ void draw__Q23ebi13TMainTitleMgrFv(void)
  * Address:	........
  * Size:	000034
  */
-void showInfo__Q23ebi13TMainTitleMgrFv(void)
+void ebi::TMainTitleMgr::showInfo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1268,7 +1268,7 @@ void showInfo__Q23ebi13TMainTitleMgrFv(void)
  * Address:	803EB0F4
  * Size:	000070
  */
-void __ct__Q23ebi25E2DCallBack_CalcAnimationFv(void)
+void ebi::E2DCallBack_CalcAnimation::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1308,7 +1308,7 @@ void __ct__Q23ebi25E2DCallBack_CalcAnimationFv(void)
  * Address:	........
  * Size:	00020C
  */
-void __dt__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1318,7 +1318,7 @@ void __dt__Q33ebi6Screen10TTitleMenuFv(void)
  * Address:	803EB164
  * Size:	000004
  */
-void __ct__Q33ebi6Screen22TTitleMenu_Object_IconFv(void)
+void ebi::Screen::TTitleMenu_Object_Icon::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1331,7 +1331,7 @@ void __ct__Q33ebi6Screen22TTitleMenu_Object_IconFv(void)
  * Address:	803EB168
  * Size:	00000C
  */
-void getName__Q33ebi6Screen8ArgCloseFv(void)
+void ebi::Screen::ArgClose::getName(void)
 {
 /*
 .loc_0x0:
@@ -1346,7 +1346,7 @@ void getName__Q33ebi6Screen8ArgCloseFv(void)
  * Address:	803EB174
  * Size:	000008
  */
-void getName__Q33ebi6Screen7ArgOpenFv(void)
+void ebi::Screen::ArgOpen::getName(void)
 {
 /*
 .loc_0x0:

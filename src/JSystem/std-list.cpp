@@ -45,7 +45,7 @@ void __ct__Q27JGadget18TList_pointer_voidFUlRCPvRCQ27JGadget14TAllocator<void *>
  * Address:	800274A4
  * Size:	0000C0
  */
-void __dt__Q27JGadget18TList_pointer_voidFv(void)
+void JGadget::TList_pointer_void::__dt(void)
 {
 /*
 .loc_0x0:
@@ -231,7 +231,7 @@ void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void *, JGadget::TA
  * Address:	........
  * Size:	0000E4
  */
-void remove__Q27JGadget18TList_pointer_voidFRCPv(void)
+void JGadget::TList_pointer_void::remove( (void *const &))
 {
 	// UNUSED FUNCTION
 }
@@ -241,7 +241,7 @@ void remove__Q27JGadget18TList_pointer_voidFRCPv(void)
  * Address:	........
  * Size:	000020
  */
-void assign__Q27JGadget18TList_pointer_voidFUlRCPv(void)
+void JGadget::TList_pointer_void::assign( (unsigned long, void *const &))
 {
 	// UNUSED FUNCTION
 }
@@ -261,7 +261,7 @@ void assign__Q27JGadget36TList<void *, JGadget::TAllocator<void *>>FUlRCPv(void)
  * Address:	........
  * Size:	0000FC
  */
-void resize__Q27JGadget18TList_pointer_voidFUlRCPv(void)
+void JGadget::TList_pointer_void::resize( (unsigned long, void *const &))
 {
 	// UNUSED FUNCTION
 }
@@ -271,7 +271,7 @@ void resize__Q27JGadget18TList_pointer_voidFUlRCPv(void)
  * Address:	........
  * Size:	0000DC
  */
-void unique__Q27JGadget18TList_pointer_voidFv(void)
+void JGadget::TList_pointer_void::unique(void)
 {
 	// UNUSED FUNCTION
 }
@@ -281,7 +281,7 @@ void unique__Q27JGadget18TList_pointer_voidFv(void)
  * Address:	........
  * Size:	000030
  */
-void __as__Q27JGadget18TList_pointer_voidFRCQ27JGadget18TList_pointer_void(void)
+void JGadget::TList_pointer_void::operator=( (JGadget::TList_pointer_void const &))
 {
 	// UNUSED FUNCTION
 }

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801E36A0
  * Size:	0000F8
  */
-void __ct__Q26PikiAI12ActBreakRockFPQ24Game4Piki(void)
+void PikiAI::ActBreakRock::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void __ct__Q26PikiAI12ActBreakRockFPQ24Game4Piki(void)
  * Address:	801E3798
  * Size:	0000C0
  */
-void init__Q26PikiAI12ActBreakRockFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActBreakRock::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -163,7 +163,7 @@ void init__Q26PikiAI12ActBreakRockFPQ26PikiAI9ActionArg(void)
  * Address:	801E3858
  * Size:	000068
  */
-void initFollow__Q26PikiAI12ActBreakRockFv(void)
+void PikiAI::ActBreakRock::initFollow(void)
 {
 /*
 .loc_0x0:
@@ -201,7 +201,7 @@ void initFollow__Q26PikiAI12ActBreakRockFv(void)
  * Address:	........
  * Size:	00009C
  */
-void initGoto__Q26PikiAI12ActBreakRockFv(void)
+void PikiAI::ActBreakRock::initGoto(void)
 {
 	// UNUSED FUNCTION
 }
@@ -211,7 +211,7 @@ void initGoto__Q26PikiAI12ActBreakRockFv(void)
  * Address:	........
  * Size:	0000E4
  */
-void initStickAttack__Q26PikiAI12ActBreakRockFv(void)
+void PikiAI::ActBreakRock::initStickAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -221,7 +221,7 @@ void initStickAttack__Q26PikiAI12ActBreakRockFv(void)
  * Address:	........
  * Size:	000058
  */
-void calcAttackPos__Q26PikiAI12ActBreakRockFv(void)
+void PikiAI::ActBreakRock::calcAttackPos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -231,7 +231,7 @@ void calcAttackPos__Q26PikiAI12ActBreakRockFv(void)
  * Address:	801E38C0
  * Size:	00032C
  */
-void exec__Q26PikiAI12ActBreakRockFv(void)
+void PikiAI::ActBreakRock::exec(void)
 {
 /*
 .loc_0x0:
@@ -490,7 +490,7 @@ void exec__Q26PikiAI12ActBreakRockFv(void)
  * Address:	801E3BEC
  * Size:	00005C
  */
-void cleanup__Q26PikiAI12ActBreakRockFv(void)
+void PikiAI::ActBreakRock::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -529,7 +529,7 @@ void cleanup__Q26PikiAI12ActBreakRockFv(void)
  * Address:	801E3C48
  * Size:	0000F0
  */
-void platCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiRQ24Game9PlatEvent(void)
+void PikiAI::ActBreakRock::platCallback( (Game::Piki *, Game::PlatEvent &))
 {
 /*
 .loc_0x0:
@@ -613,7 +613,7 @@ void platCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiRQ24Game9PlatEvent(void)
  * Address:	801E3D38
  * Size:	0000FC
  */
-void collisionCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActBreakRock::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -700,7 +700,7 @@ void collisionCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiRQ24Game9CollEvent(
  * Address:	801E3E34
  * Size:	000004
  */
-void bounceCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiPQ23Sys8Triangle(void)
+void PikiAI::ActBreakRock::bounceCallback( (Game::Piki *, Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -713,7 +713,7 @@ void bounceCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiPQ23Sys8Triangle(void)
  * Address:	801E3E38
  * Size:	000004
  */
-void onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActBreakRock::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -726,7 +726,7 @@ void onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent(void)
  * Address:	801E3E3C
  * Size:	000014
  */
-void @48@4@onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent(void)
+void @48@4@PikiAI::ActBreakRock::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

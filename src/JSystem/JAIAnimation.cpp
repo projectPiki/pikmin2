@@ -1206,7 +1206,7 @@ void JAIAnimeSound::~JAIAnimeSound()
  * Address:	800ABE38
  * Size:	00000C
  */
-void enable__Q27JAInter10ObjectBaseFv(void)
+void JAInter::ObjectBase::enable(void)
 {
 /*
 .loc_0x0:

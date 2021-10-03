@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000040
  */
-void __ct__Q34Game6VsGame12CardSelectorFv(void)
+void Game::VsGame::CardSelector::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q34Game6VsGame12CardSelectorFv(void)
  * Address:	........
  * Size:	000064
  */
-void getTotalWeight__Q34Game6VsGame12CardSelectorFv(void)
+void Game::VsGame::CardSelector::getTotalWeight(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void getTotalWeight__Q34Game6VsGame12CardSelectorFv(void)
  * Address:	........
  * Size:	000274
  */
-void selectCard__Q34Game6VsGame12CardSelectorFv(void)
+void Game::VsGame::CardSelector::selectCard(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void selectCard__Q34Game6VsGame12CardSelectorFv(void)
  * Address:	8023550C
  * Size:	000148
  */
-void __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr(void)
+void Game::VsGame::CardMgr::__ct( (Game::VsGameSection *, Game::VsGame::TekiMgr *))
 {
 /*
 .loc_0x0:
@@ -141,7 +141,7 @@ void __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr
  * Address:	80235654
  * Size:	000058
  */
-void __ct__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::__ct(void)
 {
 /*
 .loc_0x0:
@@ -175,7 +175,7 @@ void __ct__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	........
  * Size:	000020
  */
-void clear__Q34Game6VsGame7CardMgrFv(void)
+void Game::VsGame::CardMgr::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -185,7 +185,7 @@ void clear__Q34Game6VsGame7CardMgrFv(void)
  * Address:	802356AC
  * Size:	0002B8
  */
-void loadResource__Q34Game6VsGame7CardMgrFv(void)
+void Game::VsGame::CardMgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -399,7 +399,7 @@ void loadResource__Q34Game6VsGame7CardMgrFv(void)
  * Address:	80235964
  * Size:	000048
  */
-void update__Q34Game6VsGame7CardMgrFv(void)
+void Game::VsGame::CardMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -431,7 +431,7 @@ void update__Q34Game6VsGame7CardMgrFv(void)
  * Address:	........
  * Size:	000040
  */
-void getSlotOrigin__Q34Game6VsGame7CardMgrFi(void)
+void Game::VsGame::CardMgr::getSlotOrigin( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -441,7 +441,7 @@ void getSlotOrigin__Q34Game6VsGame7CardMgrFi(void)
  * Address:	........
  * Size:	000078
  */
-void getLampPos__Q34Game6VsGame7CardMgrFii(void)
+void Game::VsGame::CardMgr::getLampPos( (int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -451,7 +451,7 @@ void getLampPos__Q34Game6VsGame7CardMgrFii(void)
  * Address:	802359AC
  * Size:	0000A4
  */
-void draw__Q34Game6VsGame7CardMgrFR8Graphics(void)
+void Game::VsGame::CardMgr::draw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void draw__Q34Game6VsGame7CardMgrFR8Graphics(void)
  * Address:	........
  * Size:	000078
  */
-void getPlayerCard__Q34Game6VsGame7CardMgrFi(void)
+void Game::VsGame::CardMgr::getPlayerCard( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -518,7 +518,7 @@ void getPlayerCard__Q34Game6VsGame7CardMgrFi(void)
  * Address:	80235A50
  * Size:	000030
  */
-void stopSlot__Q34Game6VsGame7CardMgrFi(void)
+void Game::VsGame::CardMgr::stopSlot( (int))
 {
 /*
 .loc_0x0:
@@ -542,7 +542,7 @@ void stopSlot__Q34Game6VsGame7CardMgrFi(void)
  * Address:	80235A80
  * Size:	000D8C
  */
-void usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr(void)
+void Game::VsGame::CardMgr::usePlayerCard( (int, Game::VsGame::TekiMgr *))
 {
 /*
 .loc_0x0:
@@ -1547,7 +1547,7 @@ void usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr(void)
  * Address:	8023680C
  * Size:	0001BC
  */
-void gotPlayerCard__Q34Game6VsGame7CardMgrFi(void)
+void Game::VsGame::CardMgr::gotPlayerCard( (int))
 {
 /*
 .loc_0x0:
@@ -1678,7 +1678,7 @@ void gotPlayerCard__Q34Game6VsGame7CardMgrFi(void)
  * Address:	........
  * Size:	00004C
  */
-void clearPlayerCard__Q34Game6VsGame7CardMgrFv(void)
+void Game::VsGame::CardMgr::clearPlayerCard(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1688,7 +1688,7 @@ void clearPlayerCard__Q34Game6VsGame7CardMgrFv(void)
  * Address:	802369C8
  * Size:	000058
  */
-void clear__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::clear(void)
 {
 /*
 .loc_0x0:
@@ -1722,7 +1722,7 @@ void clear__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	80236A20
  * Size:	0005F0
  */
-void start__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::start(void)
 {
 /*
 .loc_0x0:
@@ -2172,7 +2172,7 @@ void start__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	80237010
  * Size:	000050
  */
-void startStop__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::startStop(void)
 {
 /*
 .loc_0x0:
@@ -2206,7 +2206,7 @@ void startStop__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	........
  * Size:	0000B4
  */
-void equalTo__Q44Game6VsGame7CardMgr11SlotMachineFi(void)
+void Game::VsGame::CardMgr::SlotMachine::equalTo( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -2216,7 +2216,7 @@ void equalTo__Q44Game6VsGame7CardMgr11SlotMachineFi(void)
  * Address:	........
  * Size:	00004C
  */
-void goodPlace__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::goodPlace(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2226,7 +2226,7 @@ void goodPlace__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	80237060
  * Size:	0007B8
  */
-void update__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::update(void)
 {
 /*
 .loc_0x0:
@@ -2768,7 +2768,7 @@ void update__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	80237818
  * Size:	000150
  */
-void updateAppear__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::updateAppear(void)
 {
 /*
 .loc_0x0:
@@ -2878,7 +2878,7 @@ void updateAppear__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	........
  * Size:	000078
  */
-void getTexture__Q34Game6VsGame7CardMgrFQ34Game6VsGame9eCardType(void)
+void Game::VsGame::CardMgr::getTexture( (Game::VsGame::eCardType))
 {
 	// UNUSED FUNCTION
 }
@@ -2888,7 +2888,7 @@ void getTexture__Q34Game6VsGame7CardMgrFQ34Game6VsGame9eCardType(void)
  * Address:	80237968
  * Size:	000354
  */
-void initDraw__Q34Game6VsGame7CardMgrFv(void)
+void Game::VsGame::CardMgr::initDraw(void)
 {
 /*
 .loc_0x0:
@@ -3137,7 +3137,7 @@ void initDraw__Q34Game6VsGame7CardMgrFv(void)
  * Address:	........
  * Size:	000020
  */
-void vert__Q34Game6VsGame7CardMgrFi(void)
+void Game::VsGame::CardMgr::vert( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -3147,7 +3147,7 @@ void vert__Q34Game6VsGame7CardMgrFi(void)
  * Address:	........
  * Size:	000020
  */
-void norm__Q34Game6VsGame7CardMgrFi(void)
+void Game::VsGame::CardMgr::norm( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -4127,7 +4127,7 @@ void LightObj::update()
  * Address:	80238B0C
  * Size:	000028
  */
-void startZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::startZoomIn(void)
 {
 /*
 .loc_0x0:
@@ -4149,7 +4149,7 @@ void startZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	80238B34
  * Size:	000020
  */
-void startZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::startZoomUse(void)
 {
 /*
 .loc_0x0:
@@ -4169,7 +4169,7 @@ void startZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	80238B54
  * Size:	0001F0
  */
-void updateZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::updateZoomIn(void)
 {
 /*
 .loc_0x0:
@@ -4321,7 +4321,7 @@ void updateZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	80238D44
  * Size:	000128
  */
-void updateZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
+void Game::VsGame::CardMgr::SlotMachine::updateZoomUse(void)
 {
 /*
 .loc_0x0:
@@ -4415,7 +4415,7 @@ void updateZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv(void)
  * Address:	80238E6C
  * Size:	000008
  */
-void setGroup__Q25efx2d5TBaseFUc(void)
+void efx2d::TBase::setGroup( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -4429,7 +4429,7 @@ void setGroup__Q25efx2d5TBaseFUc(void)
  * Address:	80238E74
  * Size:	00000C
  */
-void getName__Q25efx2d18ArgScaleColorColorFv(void)
+void efx2d::ArgScaleColorColor::getName(void)
 {
 /*
 .loc_0x0:
@@ -4444,7 +4444,7 @@ void getName__Q25efx2d18ArgScaleColorColorFv(void)
  * Address:	80238E80
  * Size:	000008
  */
-void getName__Q25efx2d3ArgFv(void)
+void efx2d::Arg::getName(void)
 {
 /*
 .loc_0x0:

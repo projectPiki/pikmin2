@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801D2D6C
  * Size:	00023C
  */
-void init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::FSM::init( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem(void)
  * Address:	801D2FA8
  * Size:	000004
  */
-void init__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHoney::FallState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -195,7 +195,7 @@ void init__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
  * Address:	801D2FAC
  * Size:	000004
  */
-void exec__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::FallState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -208,7 +208,7 @@ void exec__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItem(void)
  * Address:	801D2FB0
  * Size:	000004
  */
-void cleanup__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::FallState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -221,7 +221,7 @@ void cleanup__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItem(void)
  * Address:	801D2FB4
  * Size:	000034
  */
-void onBounce__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItemPQ23Sys8Triangle(void)
+void Game::ItemHoney::FallState::onBounce( (Game::CFSMItem *, Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void onBounce__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItemPQ23Sys8Triangle(voi
  * Address:	801D2FE8
  * Size:	0001C4
  */
-void init__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHoney::BounceState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -383,7 +383,7 @@ void init__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItemPQ24Game8StateArg(voi
  * Address:	801D31AC
  * Size:	000004
  */
-void exec__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::BounceState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void exec__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItem(void)
  * Address:	801D31B0
  * Size:	000004
  */
-void cleanup__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::BounceState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void cleanup__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItem(void)
  * Address:	801D31B4
  * Size:	000034
  */
-void onKeyEvent__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemHoney::BounceState::onKeyEvent( (Game::CFSMItem *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -434,7 +434,7 @@ void onKeyEvent__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItemRCQ28SysShape8K
  * Address:	801D31E8
  * Size:	000038
  */
-void init__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHoney::WaitState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -462,7 +462,7 @@ void init__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
  * Address:	801D3220
  * Size:	000004
  */
-void exec__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::WaitState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void exec__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItem(void)
  * Address:	801D3224
  * Size:	000004
  */
-void cleanup__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::WaitState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -488,7 +488,7 @@ void cleanup__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItem(void)
  * Address:	801D3228
  * Size:	00011C
  */
-void collisionCallback__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemRQ24Game9CollEvent(void)
+void Game::ItemHoney::WaitState::collisionCallback( (Game::CFSMItem *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -575,7 +575,7 @@ void collisionCallback__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemRQ24Game9Co
  * Address:	801D3344
  * Size:	000038
  */
-void interactAbsorb__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb(void)
+void Game::ItemHoney::WaitState::interactAbsorb( (Game::CFSMItem *, Game::InteractAbsorb &))
 {
 /*
 .loc_0x0:
@@ -601,7 +601,7 @@ void interactAbsorb__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemRQ24Game14Inte
  * Address:	801D337C
  * Size:	000038
  */
-void init__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHoney::ShrinkState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -629,7 +629,7 @@ void init__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemPQ24Game8StateArg(voi
  * Address:	801D33B4
  * Size:	000004
  */
-void exec__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::ShrinkState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -642,7 +642,7 @@ void exec__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItem(void)
  * Address:	801D33B8
  * Size:	000004
  */
-void cleanup__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::ShrinkState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -655,7 +655,7 @@ void cleanup__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItem(void)
  * Address:	801D33BC
  * Size:	000064
  */
-void onKeyEvent__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemHoney::ShrinkState::onKeyEvent( (Game::CFSMItem *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -713,7 +713,7 @@ void kill__Q24Game40FixedSizeItemMgr<Game::ItemHoney::Item>FPQ34Game9ItemHoney4I
  * Address:	801D3444
  * Size:	00004C
  */
-void init__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHoney::TouchState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -746,7 +746,7 @@ void init__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemPQ24Game8StateArg(void
  * Address:	801D3490
  * Size:	000004
  */
-void exec__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::TouchState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -759,7 +759,7 @@ void exec__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItem(void)
  * Address:	801D3494
  * Size:	000004
  */
-void cleanup__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::TouchState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -772,7 +772,7 @@ void cleanup__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItem(void)
  * Address:	801D3498
  * Size:	000038
  */
-void interactAbsorb__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb(void)
+void Game::ItemHoney::TouchState::interactAbsorb( (Game::CFSMItem *, Game::InteractAbsorb &))
 {
 /*
 .loc_0x0:
@@ -798,7 +798,7 @@ void interactAbsorb__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRQ24Game14In
  * Address:	801D34D0
  * Size:	000034
  */
-void onKeyEvent__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemHoney::TouchState::onKeyEvent( (Game::CFSMItem *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -823,7 +823,7 @@ void onKeyEvent__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRCQ28SysShape8Ke
  * Address:	801D3504
  * Size:	000080
  */
-void collisionCallback__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRQ24Game9CollEvent(void)
+void Game::ItemHoney::TouchState::collisionCallback( (Game::CFSMItem *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -869,7 +869,7 @@ void collisionCallback__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRQ24Game9
  * Address:	801D3584
  * Size:	000038
  */
-void init__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
+void Game::ItemHoney::DemoState::init( (Game::CFSMItem *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -897,7 +897,7 @@ void init__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItemPQ24Game8StateArg(void)
  * Address:	801D35BC
  * Size:	000004
  */
-void exec__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::DemoState::exec( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -910,7 +910,7 @@ void exec__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItem(void)
  * Address:	801D35C0
  * Size:	000004
  */
-void cleanup__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItem(void)
+void Game::ItemHoney::DemoState::cleanup( (Game::CFSMItem *))
 {
 /*
 .loc_0x0:
@@ -923,7 +923,7 @@ void cleanup__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItem(void)
  * Address:	801D35C4
  * Size:	000038
  */
-void onKeyEvent__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemHoney::DemoState::onKeyEvent( (Game::CFSMItem *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -951,7 +951,7 @@ void onKeyEvent__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItemRCQ28SysShape8KeyE
  * Address:	801D35FC
  * Size:	00003C
  */
-void demoOK__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::demoOK(void)
 {
 /*
 .loc_0x0:
@@ -982,7 +982,7 @@ void demoOK__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3638
  * Size:	000088
  */
-void __ct__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1028,7 +1028,7 @@ void __ct__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D36C0
  * Size:	000058
  */
-void createFSM__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::createFSM(void)
 {
 /*
 .loc_0x0:
@@ -1064,7 +1064,7 @@ void createFSM__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3718
  * Size:	000040
  */
-void doAI__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::doAI(void)
 {
 /*
 .loc_0x0:
@@ -1092,7 +1092,7 @@ void doAI__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3758
  * Size:	000158
  */
-void onInit__Q34Game9ItemHoney4ItemFPQ24Game15CreatureInitArg(void)
+void Game::ItemHoney::Item::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -1198,7 +1198,7 @@ void onInit__Q34Game9ItemHoney4ItemFPQ24Game15CreatureInitArg(void)
  * Address:	801D38B0
  * Size:	000004
  */
-void onSetPosition__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::onSetPosition(void)
 {
 /*
 .loc_0x0:
@@ -1211,7 +1211,7 @@ void onSetPosition__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D38B4
  * Size:	000008
  */
-void getMapCollisionRadius__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::getMapCollisionRadius(void)
 {
 /*
 .loc_0x0:
@@ -1225,7 +1225,7 @@ void getMapCollisionRadius__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D38BC
  * Size:	000130
  */
-void changeMaterial__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -1323,7 +1323,7 @@ void changeMaterial__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D39EC
  * Size:	000038
  */
-void updateBoundSphere__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::updateBoundSphere(void)
 {
 /*
 .loc_0x0:
@@ -1349,7 +1349,7 @@ void updateBoundSphere__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3A24
  * Size:	000094
  */
-void doSimulation__Q34Game9ItemHoney4ItemFf(void)
+void Game::ItemHoney::Item::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -1402,7 +1402,7 @@ void doSimulation__Q34Game9ItemHoney4ItemFf(void)
  * Address:	801D3AB8
  * Size:	000054
  */
-void absorbable__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::absorbable(void)
 {
 /*
 .loc_0x0:
@@ -1439,7 +1439,7 @@ void absorbable__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3B0C
  * Size:	000008
  */
-void absorbable__Q34Game9ItemHoney5StateFv(void)
+void Game::ItemHoney::State::absorbable(void)
 {
 /*
 .loc_0x0:
@@ -1453,7 +1453,7 @@ void absorbable__Q34Game9ItemHoney5StateFv(void)
  * Address:	801D3B14
  * Size:	000060
  */
-void onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent(void)
+void Game::ItemHoney::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1491,7 +1491,7 @@ void onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent(void)
  * Address:	801D3B74
  * Size:	000060
  */
-void collisionCallback__Q34Game9ItemHoney4ItemFRQ24Game9CollEvent(void)
+void Game::ItemHoney::Item::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1529,7 +1529,7 @@ void collisionCallback__Q34Game9ItemHoney4ItemFRQ24Game9CollEvent(void)
  * Address:	801D3BD4
  * Size:	000004
  */
-void collisionCallback__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game9CollEvent(void)
+void Game::ItemHoney::State::collisionCallback( (Game::CFSMItem *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1542,7 +1542,7 @@ void collisionCallback__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game9CollEv
  * Address:	801D3BD8
  * Size:	000068
  */
-void interactAbsorb__Q34Game9ItemHoney4ItemFRQ24Game14InteractAbsorb(void)
+void Game::ItemHoney::Item::interactAbsorb( (Game::InteractAbsorb &))
 {
 /*
 .loc_0x0:
@@ -1584,7 +1584,7 @@ void interactAbsorb__Q34Game9ItemHoney4ItemFRQ24Game14InteractAbsorb(void)
  * Address:	801D3C40
  * Size:	000008
  */
-void interactAbsorb__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb(void)
+void Game::ItemHoney::State::interactAbsorb( (Game::CFSMItem *, Game::InteractAbsorb &))
 {
 /*
 .loc_0x0:
@@ -1598,7 +1598,7 @@ void interactAbsorb__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game14Interact
  * Address:	801D3C48
  * Size:	000004
  */
-void doDirectDraw__Q34Game9ItemHoney4ItemFR8Graphics(void)
+void Game::ItemHoney::Item::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1611,7 +1611,7 @@ void doDirectDraw__Q34Game9ItemHoney4ItemFR8Graphics(void)
  * Address:	801D3C4C
  * Size:	00006C
  */
-void makeTrMatrix__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::makeTrMatrix(void)
 {
 /*
 .loc_0x0:
@@ -1650,7 +1650,7 @@ void makeTrMatrix__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3CB8
  * Size:	00003C
  */
-void onStartCapture__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::onStartCapture(void)
 {
 /*
 .loc_0x0:
@@ -1677,7 +1677,7 @@ void onStartCapture__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3CF4
  * Size:	000054
  */
-void onUpdateCapture__Q34Game9ItemHoney4ItemFR7Matrixf(void)
+void Game::ItemHoney::Item::onUpdateCapture( (Matrixf &))
 {
 /*
 .loc_0x0:
@@ -1710,7 +1710,7 @@ void onUpdateCapture__Q34Game9ItemHoney4ItemFR7Matrixf(void)
  * Address:	801D3D48
  * Size:	000028
  */
-void onEndCapture__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::onEndCapture(void)
 {
 /*
 .loc_0x0:
@@ -1732,7 +1732,7 @@ void onEndCapture__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3D70
  * Size:	00002C
  */
-void on_movie_end__Q34Game9ItemHoney4ItemFb(void)
+void Game::ItemHoney::Item::on_movie_end( (bool))
 {
 /*
 .loc_0x0:
@@ -1755,7 +1755,7 @@ void on_movie_end__Q34Game9ItemHoney4ItemFb(void)
  * Address:	801D3D9C
  * Size:	00002C
  */
-void isShrinking__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::isShrinking(void)
 {
 /*
 .loc_0x0:
@@ -1778,7 +1778,7 @@ void isShrinking__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D3DC8
  * Size:	0000D0
  */
-void __ct__Q34Game9ItemHoney3MgrFv(void)
+void Game::ItemHoney::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2026,7 +2026,7 @@ void Container<Game::ItemHoney::Item>::~Container()
  * Address:	801D40A8
  * Size:	000070
  */
-void onCreateModel__Q34Game9ItemHoney3MgrFPQ28SysShape5Model(void)
+void Game::ItemHoney::Mgr::onCreateModel( (SysShape::Model *))
 {
 /*
 .loc_0x0:
@@ -2066,7 +2066,7 @@ void onCreateModel__Q34Game9ItemHoney3MgrFPQ28SysShape5Model(void)
  * Address:	801D4118
  * Size:	0000CC
  */
-void onLoadResources__Q34Game9ItemHoney3MgrFv(void)
+void Game::ItemHoney::Mgr::onLoadResources(void)
 {
 /*
 .loc_0x0:
@@ -2129,7 +2129,7 @@ void onLoadResources__Q34Game9ItemHoney3MgrFv(void)
  * Address:	801D41E4
  * Size:	00002C
  */
-void birth__Q34Game9ItemHoney3MgrFv(void)
+void Game::ItemHoney::Mgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -2188,7 +2188,7 @@ void generatorBirth__Q34Game9ItemHoney3MgrFR10Vector3<float>R10Vector3<float>PQ2
  * Address:	801D4270
  * Size:	000118
  */
-void __dt__Q34Game9ItemHoney3MgrFv(void)
+void Game::ItemHoney::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2276,7 +2276,7 @@ void __dt__Q34Game9ItemHoney3MgrFv(void)
  * Address:	801D4388
  * Size:	00000C
  */
-void generatorGetID__Q34Game9ItemHoney3MgrFv(void)
+void Game::ItemHoney::Mgr::generatorGetID(void)
 {
 /*
 .loc_0x0:
@@ -2364,7 +2364,7 @@ void birth__Q24Game40FixedSizeItemMgr<Game::ItemHoney::Item>Fv(void)
  * Address:	801D4448
  * Size:	000008
  */
-void getCreatureName__Q34Game9ItemHoney4ItemFv(void)
+void Game::ItemHoney::Item::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -2378,7 +2378,7 @@ void getCreatureName__Q34Game9ItemHoney4ItemFv(void)
  * Address:	801D4450
  * Size:	000008
  */
-void absorbable__Q34Game9ItemHoney10TouchStateFv(void)
+void Game::ItemHoney::TouchState::absorbable(void)
 {
 /*
 .loc_0x0:
@@ -2392,7 +2392,7 @@ void absorbable__Q34Game9ItemHoney10TouchStateFv(void)
  * Address:	801D4458
  * Size:	000008
  */
-void interactAbsorb__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb(void)
+void Game::ItemHoney::ShrinkState::interactAbsorb( (Game::CFSMItem *, Game::InteractAbsorb &))
 {
 /*
 .loc_0x0:
@@ -2406,7 +2406,7 @@ void interactAbsorb__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemRQ24Game14I
  * Address:	801D4460
  * Size:	000008
  */
-void absorbable__Q34Game9ItemHoney11ShrinkStateFv(void)
+void Game::ItemHoney::ShrinkState::absorbable(void)
 {
 /*
 .loc_0x0:
@@ -2420,7 +2420,7 @@ void absorbable__Q34Game9ItemHoney11ShrinkStateFv(void)
  * Address:	801D4468
  * Size:	000008
  */
-void absorbable__Q34Game9ItemHoney9WaitStateFv(void)
+void Game::ItemHoney::WaitState::absorbable(void)
 {
 /*
 .loc_0x0:
@@ -2434,7 +2434,7 @@ void absorbable__Q34Game9ItemHoney9WaitStateFv(void)
  * Address:	801D4470
  * Size:	000004
  */
-void onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent(void)
+void Game::ItemHoney::State::onKeyEvent( (Game::CFSMItem *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -5039,7 +5039,7 @@ void Delegate1<Game::FixedSizeItemMgr<Game::ItemHoney::Item>, SysShape::Model *>
  * Address:	801D6004
  * Size:	000008
  */
-void @376@onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent(void)
+void @376@Game::ItemHoney::Item::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -5305,7 +5305,7 @@ void @48@get__Q24Game40FixedSizeItemMgr<Game::ItemHoney::Item>FPv(void)
  * Address:	801D609C
  * Size:	000008
  */
-void @48@__dt__Q34Game9ItemHoney3MgrFv(void)
+void @48@Game::ItemHoney::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

@@ -5,7 +5,7 @@
  * Address:	800BA564
  * Size:	0000AC
  */
-void __ct__Q210JADUtility10PrmSetBaseFb(void)
+void JADUtility::PrmSetBase::__ct( (bool))
 {
 /*
 .loc_0x0:
@@ -60,7 +60,7 @@ void __ct__Q210JADUtility10PrmSetBaseFb(void)
  * Address:	........
  * Size:	000094
  */
-void __dt__Q210JADUtility10PrmSetTreeFv(void)
+void JADUtility::PrmSetTree::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -120,7 +120,7 @@ void JSUList<JADUtility::PrmBase>::~JSUList()
  * Address:	........
  * Size:	000014
  */
-void appendDummy__Q210JADUtility10PrmSetBaseFUc(void)
+void JADUtility::PrmSetBase::appendDummy( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -130,7 +130,7 @@ void appendDummy__Q210JADUtility10PrmSetBaseFUc(void)
  * Address:	800BA610
  * Size:	000098
  */
-void load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream(void)
+void JADUtility::PrmSetBase::load( (JSUMemoryInputStream &))
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream(void)
  * Address:	800BA6A8
  * Size:	000040
  */
-void load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream(void)
+void JADUtility::PrmBase::load( (JSUMemoryInputStream &))
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream(void)
  * Address:	800BA6E8
  * Size:	0000E8
  */
-void __dt__Q210JADUtility10PrmSetBaseFv(void)
+void JADUtility::PrmSetBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -296,7 +296,7 @@ void __dt__Q210JADUtility10PrmSetBaseFv(void)
  * Address:	800BA7D0
  * Size:	000004
  */
-void appendAfter__Q210JADUtility10PrmSetBaseFv(void)
+void JADUtility::PrmSetBase::appendAfter(void)
 {
 /*
 .loc_0x0:
@@ -309,7 +309,7 @@ void appendAfter__Q210JADUtility10PrmSetBaseFv(void)
  * Address:	800BA7D4
  * Size:	000004
  */
-void afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase(void)
+void JADUtility::PrmSetBase::afterRemovingChildButton( (JADUtility::PrmSetBase *))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSe
  * Address:	800BA7D8
  * Size:	000004
  */
-void afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase(void)
+void JADUtility::PrmSetBase::afterRemovingThisButton( (JADUtility::PrmSetBase *))
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSet
  * Address:	800BA7DC
  * Size:	000008
  */
-void getEraseLink__Q210JADUtility10PrmSetBaseFv(void)
+void JADUtility::PrmSetBase::getEraseLink(void)
 {
 /*
 .loc_0x0:
@@ -349,7 +349,7 @@ void getEraseLink__Q210JADUtility10PrmSetBaseFv(void)
  * Address:	800BA7E4
  * Size:	000004
  */
-void afterGetFromFree__Q210JADUtility10PrmSetBaseFv(void)
+void JADUtility::PrmSetBase::afterGetFromFree(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	00000C
  */
-void prepareSave__Q24Game8PlayDataFv(void)
+void Game::PlayData::prepareSave(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void prepareSave__Q24Game8PlayDataFv(void)
  * Address:	8021CFF4
  * Size:	000740
  */
-void write__Q24Game8PlayDataFR6Stream(void)
+void Game::PlayData::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -525,7 +525,7 @@ void write__Q24Game8PlayDataFR6Stream(void)
  * Address:	8021D734
  * Size:	000404
  */
-void read__Q24Game8PlayDataFR6Stream(void)
+void Game::PlayData::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -836,7 +836,7 @@ void read__Q24Game8PlayDataFR6Stream(void)
  * Address:	8021DB38
  * Size:	000044
  */
-void read__Q34Game8PlayData8LimitGenFR6Stream(void)
+void Game::PlayData::LimitGen::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void read__Q34Game8PlayData8LimitGenFR6Stream(void)
  * Address:	8021DB7C
  * Size:	000078
  */
-void write__Q34Game8PlayData8LimitGenFR6Stream(void)
+void Game::PlayData::LimitGen::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -907,7 +907,7 @@ void write__Q34Game8PlayData8LimitGenFR6Stream(void)
  * Address:	........
  * Size:	0000C8
  */
-void write__Q24Game11KindCounterFR6Stream(void)
+void Game::KindCounter::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -917,7 +917,7 @@ void write__Q24Game11KindCounterFR6Stream(void)
  * Address:	........
  * Size:	000098
  */
-void read__Q24Game11KindCounterFR6Stream(void)
+void Game::KindCounter::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -927,7 +927,7 @@ void read__Q24Game11KindCounterFR6Stream(void)
  * Address:	8021DBF4
  * Size:	000208
  */
-void write__Q24Game16PelletCropMemoryFR6Stream(void)
+void Game::PelletCropMemory::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1081,7 +1081,7 @@ void write__Q24Game16PelletCropMemoryFR6Stream(void)
  * Address:	8021DDFC
  * Size:	000150
  */
-void read__Q24Game16PelletCropMemoryFR6Stream(void)
+void Game::PelletCropMemory::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1195,7 +1195,7 @@ void read__Q24Game16PelletCropMemoryFR6Stream(void)
  * Address:	8021DF4C
  * Size:	00007C
  */
-void write__Q24Game10OlimarDataFR6Stream(void)
+void Game::OlimarData::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1240,7 +1240,7 @@ void write__Q24Game10OlimarDataFR6Stream(void)
  * Address:	8021DFC8
  * Size:	00005C
  */
-void read__Q24Game10OlimarDataFR6Stream(void)
+void Game::OlimarData::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1277,7 +1277,7 @@ void read__Q24Game10OlimarDataFR6Stream(void)
  * Address:	8021E024
  * Size:	000198
  */
-void write__Q24Game12CaveSaveDataFR6Stream(void)
+void Game::CaveSaveData::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1391,7 +1391,7 @@ void write__Q24Game12CaveSaveDataFR6Stream(void)
  * Address:	8021E1BC
  * Size:	0000D0
  */
-void read__Q24Game12CaveSaveDataFR6StreamUl(void)
+void Game::CaveSaveData::read( (Stream &, unsigned long))
 {
 /*
 .loc_0x0:

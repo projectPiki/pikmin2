@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8021EED8
  * Size:	00008C
  */
-void __ct__Q34Game10SingleGame10MovieStateFv(void)
+void Game::SingleGame::MovieState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void __ct__Q34Game10SingleGame10MovieStateFv(void)
  * Address:	8021EF64
  * Size:	000290
  */
-void init__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::MovieState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -278,7 +278,7 @@ void init__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSectionPQ24Game8S
  * Address:	8021F1F4
  * Size:	000114
  */
-void exec__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::MovieState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -367,7 +367,7 @@ void exec__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSection(void)
  * Address:	8021F308
  * Size:	000040
  */
-void draw__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::MovieState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void draw__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSectionR8Graphics
  * Address:	8021F348
  * Size:	000048
  */
-void cleanup__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::MovieState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:

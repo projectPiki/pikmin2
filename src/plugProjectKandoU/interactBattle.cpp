@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8019FE78
  * Size:	000044
  */
-void actCommon__Q24Game13InteractFlickFPQ24Game8Creature(void)
+void Game::InteractFlick::actCommon( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -46,7 +46,7 @@ void actCommon__Q24Game13InteractFlickFPQ24Game8Creature(void)
  * Address:	8019FEBC
  * Size:	00006C
  */
-void actCommon__Q24Game14InteractAttackFPQ24Game8Creature(void)
+void Game::InteractAttack::actCommon( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -89,7 +89,7 @@ void actCommon__Q24Game14InteractAttackFPQ24Game8Creature(void)
  * Address:	8019FF28
  * Size:	000008
  */
-void actCommon__Q24Game15InteractSwallowFPQ24Game8Creature(void)
+void Game::InteractSwallow::actCommon( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -103,7 +103,7 @@ void actCommon__Q24Game15InteractSwallowFPQ24Game8Creature(void)
  * Address:	8019FF30
  * Size:	000008
  */
-void actCommon__Q24Game12InteractKillFPQ24Game8Creature(void)
+void Game::InteractKill::actCommon( (Game::Creature *))
 {
 /*
 .loc_0x0:

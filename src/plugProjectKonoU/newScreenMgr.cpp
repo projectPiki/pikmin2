@@ -568,7 +568,7 @@ void newScreen::createScene_Morimura(long)
  * Address:	........
  * Size:	000084
  */
-void __dt__Q28Morimura18TGameOverSceneBaseFv(void)
+void Morimura::TGameOverSceneBase::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -578,7 +578,7 @@ void __dt__Q28Morimura18TGameOverSceneBaseFv(void)
  * Address:	804008EC
  * Size:	000050
  */
-void doGetSceneBase__Q29newScreen3MgrFl(void)
+void newScreen::Mgr::doGetSceneBase( (long))
 {
 /*
 .loc_0x0:
@@ -614,7 +614,7 @@ void doGetSceneBase__Q29newScreen3MgrFl(void)
  * Address:	8040093C
  * Size:	0000AC
  */
-void create__Q29newScreen3MgrFv(void)
+void newScreen::Mgr::create(void)
 {
 /*
 .loc_0x0:
@@ -671,7 +671,7 @@ void create__Q29newScreen3MgrFv(void)
  * Address:	804009E8
  * Size:	0000B0
  */
-void __dt__Q26Screen3MgrFv(void)
+void Screen::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -731,7 +731,7 @@ void __dt__Q26Screen3MgrFv(void)
  * Address:	80400A98
  * Size:	0001A0
  */
-void drawBG__Q29newScreen3MgrFR8Graphics(void)
+void newScreen::Mgr::drawBG( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -857,7 +857,7 @@ void drawBG__Q29newScreen3MgrFR8Graphics(void)
  * Address:	80400C38
  * Size:	000064
  */
-void reset__Q29newScreen3MgrFv(void)
+void newScreen::Mgr::reset(void)
 {
 /*
 .loc_0x0:
@@ -898,7 +898,7 @@ void reset__Q29newScreen3MgrFv(void)
  * Address:	80400C9C
  * Size:	0000C0
  */
-void __dt__Q29newScreen3MgrFv(void)
+void newScreen::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -962,7 +962,7 @@ void __dt__Q29newScreen3MgrFv(void)
  * Address:	80400D5C
  * Size:	000024
  */
-void setColorBG__Q29newScreen3MgrFRQ28JUtility6TColor(void)
+void newScreen::Mgr::setColorBG( (JUtility::TColor &))
 {
 /*
 .loc_0x0:
@@ -983,7 +983,7 @@ void setColorBG__Q29newScreen3MgrFRQ28JUtility6TColor(void)
  * Address:	80400D80
  * Size:	000008
  */
-void setBGMode__Q29newScreen3MgrFi(void)
+void newScreen::Mgr::setBGMode( (int))
 {
 /*
 .loc_0x0:
@@ -997,7 +997,7 @@ void setBGMode__Q29newScreen3MgrFi(void)
  * Address:	80400D88
  * Size:	000004
  */
-void drawWipe__Q26Screen3MgrFR8Graphics(void)
+void Screen::Mgr::drawWipe( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1010,7 +1010,7 @@ void drawWipe__Q26Screen3MgrFR8Graphics(void)
  * Address:	80400D8C
  * Size:	000060
  */
-void __dt__Q26Screen7MgrBaseFv(void)
+void Screen::MgrBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1048,7 +1048,7 @@ void __dt__Q26Screen7MgrBaseFv(void)
  * Address:	80400DEC
  * Size:	00000C
  */
-void getResName__Q28Morimura16TPikminDownSceneCFv(void)
+void Morimura::TPikminDownScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -1063,7 +1063,7 @@ void getResName__Q28Morimura16TPikminDownSceneCFv(void)
  * Address:	80400DF8
  * Size:	000080
  */
-void doCreateObj__Q28Morimura16TPikminDownSceneFP10JKRArchive(void)
+void Morimura::TPikminDownScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1109,7 +1109,7 @@ void doCreateObj__Q28Morimura16TPikminDownSceneFP10JKRArchive(void)
  * Address:	80400E78
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q28Morimura16TPikminDownSceneFv(void)
+void Morimura::TPikminDownScene::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:
@@ -1123,7 +1123,7 @@ void isUseBackupSceneInfo__Q28Morimura16TPikminDownSceneFv(void)
  * Address:	80400E80
  * Size:	000008
  */
-void getSceneType__Q28Morimura16TPikminDownSceneFv(void)
+void Morimura::TPikminDownScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -1137,7 +1137,7 @@ void getSceneType__Q28Morimura16TPikminDownSceneFv(void)
  * Address:	80400E88
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura16TPikminDownSceneFv(void)
+void Morimura::TPikminDownScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1152,7 +1152,7 @@ void getOwnerID__Q28Morimura16TPikminDownSceneFv(void)
  * Address:	80400E94
  * Size:	000014
  */
-void getMemberID__Q28Morimura16TPikminDownSceneFv(void)
+void Morimura::TPikminDownScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -1169,7 +1169,7 @@ void getMemberID__Q28Morimura16TPikminDownSceneFv(void)
  * Address:	80400EA8
  * Size:	00000C
  */
-void getResName__Q28Morimura19TPresidentDownSceneCFv(void)
+void Morimura::TPresidentDownScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -1184,7 +1184,7 @@ void getResName__Q28Morimura19TPresidentDownSceneCFv(void)
  * Address:	80400EB4
  * Size:	000080
  */
-void doCreateObj__Q28Morimura19TPresidentDownSceneFP10JKRArchive(void)
+void Morimura::TPresidentDownScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1230,7 +1230,7 @@ void doCreateObj__Q28Morimura19TPresidentDownSceneFP10JKRArchive(void)
  * Address:	80400F34
  * Size:	000008
  */
-void getSceneType__Q28Morimura19TPresidentDownSceneFv(void)
+void Morimura::TPresidentDownScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -1244,7 +1244,7 @@ void getSceneType__Q28Morimura19TPresidentDownSceneFv(void)
  * Address:	80400F3C
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura19TPresidentDownSceneFv(void)
+void Morimura::TPresidentDownScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1259,7 +1259,7 @@ void getOwnerID__Q28Morimura19TPresidentDownSceneFv(void)
  * Address:	80400F48
  * Size:	000014
  */
-void getMemberID__Q28Morimura19TPresidentDownSceneFv(void)
+void Morimura::TPresidentDownScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -1276,7 +1276,7 @@ void getMemberID__Q28Morimura19TPresidentDownSceneFv(void)
  * Address:	80400F5C
  * Size:	00004C
  */
-void isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv(void)
+void Morimura::TGameOverSceneBase::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:
@@ -1311,7 +1311,7 @@ void isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv(void)
  * Address:	80400FA8
  * Size:	00000C
  */
-void getResName__Q28Morimura14TLujiDownSceneCFv(void)
+void Morimura::TLujiDownScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -1326,7 +1326,7 @@ void getResName__Q28Morimura14TLujiDownSceneCFv(void)
  * Address:	80400FB4
  * Size:	000080
  */
-void doCreateObj__Q28Morimura14TLujiDownSceneFP10JKRArchive(void)
+void Morimura::TLujiDownScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1372,7 +1372,7 @@ void doCreateObj__Q28Morimura14TLujiDownSceneFP10JKRArchive(void)
  * Address:	80401034
  * Size:	000008
  */
-void getSceneType__Q28Morimura14TLujiDownSceneFv(void)
+void Morimura::TLujiDownScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -1386,7 +1386,7 @@ void getSceneType__Q28Morimura14TLujiDownSceneFv(void)
  * Address:	8040103C
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura14TLujiDownSceneFv(void)
+void Morimura::TLujiDownScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1401,7 +1401,7 @@ void getOwnerID__Q28Morimura14TLujiDownSceneFv(void)
  * Address:	80401048
  * Size:	000014
  */
-void getMemberID__Q28Morimura14TLujiDownSceneFv(void)
+void Morimura::TLujiDownScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -1418,7 +1418,7 @@ void getMemberID__Q28Morimura14TLujiDownSceneFv(void)
  * Address:	8040105C
  * Size:	00000C
  */
-void getResName__Q28Morimura15TOrimaDownSceneCFv(void)
+void Morimura::TOrimaDownScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -1433,7 +1433,7 @@ void getResName__Q28Morimura15TOrimaDownSceneCFv(void)
  * Address:	80401068
  * Size:	000080
  */
-void doCreateObj__Q28Morimura15TOrimaDownSceneFP10JKRArchive(void)
+void Morimura::TOrimaDownScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1479,7 +1479,7 @@ void doCreateObj__Q28Morimura15TOrimaDownSceneFP10JKRArchive(void)
  * Address:	804010E8
  * Size:	000008
  */
-void getSceneType__Q28Morimura15TOrimaDownSceneFv(void)
+void Morimura::TOrimaDownScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -1493,7 +1493,7 @@ void getSceneType__Q28Morimura15TOrimaDownSceneFv(void)
  * Address:	804010F0
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura15TOrimaDownSceneFv(void)
+void Morimura::TOrimaDownScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1508,7 +1508,7 @@ void getOwnerID__Q28Morimura15TOrimaDownSceneFv(void)
  * Address:	804010FC
  * Size:	000014
  */
-void getMemberID__Q28Morimura15TOrimaDownSceneFv(void)
+void Morimura::TOrimaDownScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -1525,7 +1525,7 @@ void getMemberID__Q28Morimura15TOrimaDownSceneFv(void)
  * Address:	80401110
  * Size:	00000C
  */
-void getResName__Q28Morimura14TGameOverSceneCFv(void)
+void Morimura::TGameOverScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -1540,7 +1540,7 @@ void getResName__Q28Morimura14TGameOverSceneCFv(void)
  * Address:	8040111C
  * Size:	000080
  */
-void doCreateObj__Q28Morimura14TGameOverSceneFP10JKRArchive(void)
+void Morimura::TGameOverScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1586,7 +1586,7 @@ void doCreateObj__Q28Morimura14TGameOverSceneFP10JKRArchive(void)
  * Address:	8040119C
  * Size:	000008
  */
-void isUseBackupSceneInfo__Q28Morimura14TGameOverSceneFv(void)
+void Morimura::TGameOverScene::isUseBackupSceneInfo(void)
 {
 /*
 .loc_0x0:
@@ -1600,7 +1600,7 @@ void isUseBackupSceneInfo__Q28Morimura14TGameOverSceneFv(void)
  * Address:	804011A4
  * Size:	000008
  */
-void getSceneType__Q28Morimura14TGameOverSceneFv(void)
+void Morimura::TGameOverScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -1614,7 +1614,7 @@ void getSceneType__Q28Morimura14TGameOverSceneFv(void)
  * Address:	804011AC
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura14TGameOverSceneFv(void)
+void Morimura::TGameOverScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1629,7 +1629,7 @@ void getOwnerID__Q28Morimura14TGameOverSceneFv(void)
  * Address:	804011B8
  * Size:	000014
  */
-void getMemberID__Q28Morimura14TGameOverSceneFv(void)
+void Morimura::TGameOverScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -1646,7 +1646,7 @@ void getMemberID__Q28Morimura14TGameOverSceneFv(void)
  * Address:	804011CC
  * Size:	00000C
  */
-void getResName__Q28Morimura13THurryUpSceneCFv(void)
+void Morimura::THurryUpScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -1661,7 +1661,7 @@ void getResName__Q28Morimura13THurryUpSceneCFv(void)
  * Address:	804011D8
  * Size:	000068
  */
-void doCreateObj__Q28Morimura13THurryUpSceneFP10JKRArchive(void)
+void Morimura::THurryUpScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1701,7 +1701,7 @@ void doCreateObj__Q28Morimura13THurryUpSceneFP10JKRArchive(void)
  * Address:	80401240
  * Size:	000008
  */
-void getSceneType__Q28Morimura13THurryUpSceneFv(void)
+void Morimura::THurryUpScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -1715,7 +1715,7 @@ void getSceneType__Q28Morimura13THurryUpSceneFv(void)
  * Address:	80401248
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura13THurryUpSceneFv(void)
+void Morimura::THurryUpScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -1730,7 +1730,7 @@ void getOwnerID__Q28Morimura13THurryUpSceneFv(void)
  * Address:	80401254
  * Size:	000014
  */
-void getMemberID__Q28Morimura13THurryUpSceneFv(void)
+void Morimura::THurryUpScene::getMemberID(void)
 {
 /*
 .loc_0x0:

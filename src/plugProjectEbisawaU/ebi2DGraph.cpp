@@ -927,7 +927,7 @@ void ebi::EUTDrawWindow(J2DGrafContext &, long, long, long, long)
  * Address:	........
  * Size:	000004
  */
-void draw__Q23ebi14E2DDebugWindowFv(void)
+void ebi::E2DDebugWindow::draw(void)
 {
 	// UNUSED FUNCTION
 }

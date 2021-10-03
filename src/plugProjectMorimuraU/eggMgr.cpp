@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8034B6B0
  * Size:	000050
  */
-void __ct__Q34Game3Egg3MgrFiUc(void)
+void Game::Egg::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game3Egg3MgrFiUc(void)
  * Address:	8034B700
  * Size:	000048
  */
-void doAlloc__Q34Game3Egg3MgrFv(void)
+void Game::Egg::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game3Egg3MgrFv(void)
  * Address:	8034B748
  * Size:	00018C
  */
-void __ct__Q34Game3Egg5ParmsFv(void)
+void Game::Egg::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void __ct__Q34Game3Egg5ParmsFv(void)
  * Address:	8034B8D4
  * Size:	000020
  */
-void birth__Q34Game3Egg3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::Egg::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -212,7 +212,7 @@ void birth__Q34Game3Egg3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	8034B8F4
  * Size:	0000B0
  */
-void __dt__Q34Game3Egg3MgrFv(void)
+void Game::Egg::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -272,7 +272,7 @@ void __dt__Q34Game3Egg3MgrFv(void)
  * Address:	8034B9A4
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game3Egg3MgrFv(void)
+void Game::Egg::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void getEnemyTypeID__Q34Game3Egg3MgrFv(void)
  * Address:	8034B9AC
  * Size:	000060
  */
-void createObj__Q34Game3Egg3MgrFi(void)
+void Game::Egg::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -322,7 +322,7 @@ void createObj__Q34Game3Egg3MgrFi(void)
  * Address:	8034BA0C
  * Size:	0000BC
  */
-void __dt__Q34Game3Egg3ObjFv(void)
+void Game::Egg::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void __dt__Q34Game3Egg3ObjFv(void)
  * Address:	8034BAC8
  * Size:	000010
  */
-void getEnemy__Q34Game3Egg3MgrFi(void)
+void Game::Egg::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -401,7 +401,7 @@ void getEnemy__Q34Game3Egg3MgrFi(void)
  * Address:	8034BAD8
  * Size:	000050
  */
-void read__Q34Game3Egg5ParmsFR6Stream(void)
+void Game::Egg::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -433,7 +433,7 @@ void read__Q34Game3Egg5ParmsFR6Stream(void)
  * Address:	8034BB28
  * Size:	000008
  */
-void @4@__dt__Q34Game3Egg3MgrFv(void)
+void @4@Game::Egg::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

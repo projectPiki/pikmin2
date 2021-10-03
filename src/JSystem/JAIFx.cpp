@@ -5,7 +5,7 @@
  * Address:	800AD6CC
  * Size:	000160
  */
-void init__Q27JAInter2FxFv(void)
+void JAInter::Fx::init(void)
 {
 /*
 .loc_0x0:
@@ -119,7 +119,7 @@ void init__Q27JAInter2FxFv(void)
  * Address:	800AD82C
  * Size:	000008
  */
-void setSceneMax__Q27JAInter2FxFUc(void)
+void JAInter::Fx::setSceneMax( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -133,7 +133,7 @@ void setSceneMax__Q27JAInter2FxFUc(void)
  * Address:	800AD834
  * Size:	000024
  */
-void setBufferMax__Q27JAInter2FxFUlUlUlUl(void)
+void JAInter::Fx::setBufferMax( (unsigned long, unsigned long, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -154,7 +154,7 @@ void setBufferMax__Q27JAInter2FxFUlUlUlUl(void)
  * Address:	800AD858
  * Size:	000008
  */
-void setTablePointer__Q27JAInter2FxFPPv(void)
+void JAInter::Fx::setTablePointer( (void **))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void setTablePointer__Q27JAInter2FxFPPv(void)
  * Address:	800AD860
  * Size:	000010
  */
-void setBufferPointer__Q27JAInter2FxFUcPs(void)
+void JAInter::Fx::setBufferPointer( (unsigned char, short *))
 {
 /*
 .loc_0x0:
@@ -184,7 +184,7 @@ void setBufferPointer__Q27JAInter2FxFUcPs(void)
  * Address:	800AD870
  * Size:	000010
  */
-void setScenePointer__Q27JAInter2FxFUcPv(void)
+void JAInter::Fx::setScenePointer( (unsigned char, void *))
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void setScenePointer__Q27JAInter2FxFUcPv(void)
  * Address:	800AD880
  * Size:	000008
  */
-void getSceneMax__Q27JAInter2FxFv(void)
+void JAInter::Fx::getSceneMax(void)
 {
 /*
 .loc_0x0:
@@ -214,7 +214,7 @@ void getSceneMax__Q27JAInter2FxFv(void)
  * Address:	800AD888
  * Size:	000010
  */
-void getBufferSizeMax__Q27JAInter2FxFUc(void)
+void JAInter::Fx::getBufferSizeMax( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void getBufferSizeMax__Q27JAInter2FxFUc(void)
  * Address:	800AD898
  * Size:	000010
  */
-void getBufferPointer__Q27JAInter2FxFUc(void)
+void JAInter::Fx::getBufferPointer( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -246,7 +246,7 @@ void getBufferPointer__Q27JAInter2FxFUc(void)
  * Address:	800AD8A8
  * Size:	000008
  */
-void getFxconfigTable__Q27JAInter2FxFv(void)
+void JAInter::Fx::getFxconfigTable(void)
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void getFxconfigTable__Q27JAInter2FxFv(void)
  * Address:	........
  * Size:	000080
  */
-void clearBuffer__Q27JAInter2FxFUc(void)
+void JAInter::Fx::clearBuffer( (unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -270,7 +270,7 @@ void clearBuffer__Q27JAInter2FxFUc(void)
  * Address:	800AD8B0
  * Size:	0000A0
  */
-void clearAllBuffer__Q27JAInter2FxFv(void)
+void JAInter::Fx::clearAllBuffer(void)
 {
 /*
 .loc_0x0:

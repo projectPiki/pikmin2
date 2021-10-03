@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8013F6D4
  * Size:	000050
  */
-void getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam(void)
+void Game::Navi::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam(void)
  * Address:	8013F724
  * Size:	000024
  */
-void getLODSphere__Q24Game4NaviFRQ23Sys6Sphere(void)
+void Game::Navi::getLODSphere( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -68,7 +68,7 @@ void getLODSphere__Q24Game4NaviFRQ23Sys6Sphere(void)
  * Address:	8013F748
  * Size:	000208
  */
-void __ct__Q24Game4NaviFv(void)
+void Game::Navi::__ct(void)
 {
 /*
 .loc_0x0:
@@ -228,7 +228,7 @@ void __ct__Q24Game4NaviFv(void)
  * Address:	8013F950
  * Size:	0002B0
  */
-void __ct__Q23efx11TNaviEffectFv(void)
+void efx::TNaviEffect::__ct(void)
 {
 /*
 .loc_0x0:
@@ -412,7 +412,7 @@ void __ct__Q23efx11TNaviEffectFv(void)
  * Address:	........
  * Size:	000090
  */
-void __dt__Q23efx12TOrimadamageFv(void)
+void efx::TOrimadamage::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -422,7 +422,7 @@ void __dt__Q23efx12TOrimadamageFv(void)
  * Address:	8013FC00
  * Size:	000084
  */
-void __dt__Q23efx10TChaseMtxTFv(void)
+void efx::TChaseMtxT::__dt(void)
 {
 /*
 .loc_0x0:
@@ -471,7 +471,7 @@ void __dt__Q23efx10TChaseMtxTFv(void)
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx11TChaseMtxT2Fv(void)
+void efx::TChaseMtxT2::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -481,7 +481,7 @@ void __dt__Q23efx11TChaseMtxT2Fv(void)
  * Address:	........
  * Size:	000090
  */
-void __dt__Q23efx14TOrimaLightActFv(void)
+void efx::TOrimaLightAct::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -491,7 +491,7 @@ void __dt__Q23efx14TOrimaLightActFv(void)
  * Address:	........
  * Size:	000090
  */
-void __dt__Q23efx11TOrimaLightFv(void)
+void efx::TOrimaLight::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -501,7 +501,7 @@ void __dt__Q23efx11TOrimaLightFv(void)
  * Address:	........
  * Size:	000080
  */
-void __dt__Q23efx10TChaseMtx2Fv(void)
+void efx::TChaseMtx2::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -511,7 +511,7 @@ void __dt__Q23efx10TChaseMtx2Fv(void)
  * Address:	........
  * Size:	0000B4
  */
-void __dt__Q23efx7TCursorFv(void)
+void efx::TCursor::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -521,7 +521,7 @@ void __dt__Q23efx7TCursorFv(void)
  * Address:	8013FC84
  * Size:	000050
  */
-void __ct__Q23efx7ContextFv(void)
+void efx::Context::__ct(void)
 {
 /*
 .loc_0x0:
@@ -553,7 +553,7 @@ void __ct__Q23efx7ContextFv(void)
  * Address:	8013FCD4
  * Size:	00008C
  */
-void __dt__Q23efx11TOneEmitterFv(void)
+void efx::TOneEmitter::__dt(void)
 {
 /*
 .loc_0x0:
@@ -604,7 +604,7 @@ void __dt__Q23efx11TOneEmitterFv(void)
  * Address:	8013FD60
  * Size:	000060
  */
-void __dt__Q23efx7ContextFv(void)
+void efx::Context::__dt(void)
 {
 /*
 .loc_0x0:
@@ -642,7 +642,7 @@ void __dt__Q23efx7ContextFv(void)
  * Address:	........
  * Size:	000154
  */
-void __dt__Q23efx7TFueactFv(void)
+void efx::TFueact::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -652,7 +652,7 @@ void __dt__Q23efx7TFueactFv(void)
  * Address:	8013FDC0
  * Size:	00009C
  */
-void __dt__Q23efx12TFueactBiri2Fv(void)
+void efx::TFueactBiri2::__dt(void)
 {
 /*
 .loc_0x0:
@@ -707,7 +707,7 @@ void __dt__Q23efx12TFueactBiri2Fv(void)
  * Address:	8013FE5C
  * Size:	00009C
  */
-void __dt__Q23efx12TFueactBiri1Fv(void)
+void efx::TFueactBiri1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -762,7 +762,7 @@ void __dt__Q23efx12TFueactBiri1Fv(void)
  * Address:	8013FEF8
  * Size:	000084
  */
-void __dt__Q23efx15TFueactBiriBaseFv(void)
+void efx::TFueactBiriBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -811,7 +811,7 @@ void __dt__Q23efx15TFueactBiriBaseFv(void)
  * Address:	8013FF7C
  * Size:	000080
  */
-void __dt__Q23efx13TFueactCircleFv(void)
+void efx::TFueactCircle::__dt(void)
 {
 /*
 .loc_0x0:
@@ -857,7 +857,7 @@ void __dt__Q23efx13TFueactCircleFv(void)
  * Address:	........
  * Size:	000060
  */
-void __dt__Q23efx9ToeHamonBFv(void)
+void efx::ToeHamonB::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -867,7 +867,7 @@ void __dt__Q23efx9ToeHamonBFv(void)
  * Address:	........
  * Size:	000060
  */
-void __dt__Q23efx9ToeHamonAFv(void)
+void efx::ToeHamonA::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -877,7 +877,7 @@ void __dt__Q23efx9ToeHamonAFv(void)
  * Address:	8013FFFC
  * Size:	000060
  */
-void __dt__Q23efx15ContextChasePosFv(void)
+void efx::ContextChasePos::__dt(void)
 {
 /*
 .loc_0x0:
@@ -915,7 +915,7 @@ void __dt__Q23efx15ContextChasePosFv(void)
  * Address:	8014005C
  * Size:	000054
  */
-void __ct__Q23efx15ContextChasePosFv(void)
+void efx::ContextChasePos::__ct(void)
 {
 /*
 .loc_0x0:
@@ -948,7 +948,7 @@ void __ct__Q23efx15ContextChasePosFv(void)
  * Address:	801400B0
  * Size:	000290
  */
-void onInit__Q24Game4NaviFPQ24Game15CreatureInitArg(void)
+void Game::Navi::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -1130,7 +1130,7 @@ void onInit__Q24Game4NaviFPQ24Game15CreatureInitArg(void)
  * Address:	80140340
  * Size:	000008
  */
-void getCreatureID__Q24Game4NaviFv(void)
+void Game::Navi::getCreatureID(void)
 {
 /*
 .loc_0x0:
@@ -1219,7 +1219,7 @@ void onSetPosition__Q24Game4NaviFR10Vector3<float>(void)
  * Address:	80140404
  * Size:	000040
  */
-void onKill__Q24Game4NaviFPQ24Game15CreatureKillArg(void)
+void Game::Navi::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -1247,7 +1247,7 @@ void onKill__Q24Game4NaviFPQ24Game15CreatureKillArg(void)
  * Address:	80140444
  * Size:	0000D4
  */
-void onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent(void)
+void Game::Navi::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1320,7 +1320,7 @@ void onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent(void)
  * Address:	80140518
  * Size:	000004
  */
-void onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent(void)
+void Game::NaviState::onKeyEvent( (Game::Navi *, SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1333,7 +1333,7 @@ void onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent(void)
  * Address:	8014051C
  * Size:	000080
  */
-void getPosition__Q24Game4NaviFv(void)
+void Game::Navi::getPosition(void)
 {
 /*
 .loc_0x0:
@@ -1381,7 +1381,7 @@ void getPosition__Q24Game4NaviFv(void)
  * Address:	........
  * Size:	000008
  */
-void insideOnyon__Q24Game4NaviFv(void)
+void Game::Navi::insideOnyon(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1391,7 +1391,7 @@ void insideOnyon__Q24Game4NaviFv(void)
  * Address:	8014059C
  * Size:	000050
  */
-void onStickStart__Q24Game4NaviFPQ24Game8Creature(void)
+void Game::Navi::onStickStart( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1425,7 +1425,7 @@ void onStickStart__Q24Game4NaviFPQ24Game8Creature(void)
  * Address:	801405EC
  * Size:	000058
  */
-void onStickEnd__Q24Game4NaviFPQ24Game8Creature(void)
+void Game::Navi::onStickEnd( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -1461,7 +1461,7 @@ void onStickEnd__Q24Game4NaviFPQ24Game8Creature(void)
  * Address:	80140644
  * Size:	000654
  */
-void procActionButton__Q24Game4NaviFv(void)
+void Game::Navi::procActionButton(void)
 {
 /*
 .loc_0x0:
@@ -1975,7 +1975,7 @@ void Iterator<Game::ItemPikihead::Item>::isDone()
  * Address:	80140CF4
  * Size:	000138
  */
-void setupNukuAdjustArg__Q24Game4NaviFPQ34Game12ItemPikihead4ItemRQ24Game22NaviNukuAdjustStateArg(void)
+void Game::Navi::setupNukuAdjustArg( (Game::ItemPikihead::Item *, Game::NaviNukuAdjustStateArg &))
 {
 /*
 .loc_0x0:
@@ -2065,7 +2065,7 @@ void setupNukuAdjustArg__Q24Game4NaviFPQ34Game12ItemPikihead4ItemRQ24Game22NaviN
  * Address:	80140E2C
  * Size:	000050
  */
-void hasDope__Q24Game4NaviFi(void)
+void Game::Navi::hasDope( (int))
 {
 /*
 .loc_0x0:
@@ -2101,7 +2101,7 @@ void hasDope__Q24Game4NaviFi(void)
  * Address:	80140E7C
  * Size:	000044
  */
-void getDopeCount__Q24Game4NaviFi(void)
+void Game::Navi::getDopeCount( (int))
 {
 /*
 .loc_0x0:
@@ -2134,7 +2134,7 @@ void getDopeCount__Q24Game4NaviFi(void)
  * Address:	80140EC0
  * Size:	00004C
  */
-void useDope__Q24Game4NaviFi(void)
+void Game::Navi::useDope( (int))
 {
 /*
 .loc_0x0:
@@ -2169,7 +2169,7 @@ void useDope__Q24Game4NaviFi(void)
  * Address:	80140F0C
  * Size:	0000A0
  */
-void incDopeCount__Q24Game4NaviFi(void)
+void Game::Navi::incDopeCount( (int))
 {
 /*
 .loc_0x0:
@@ -2225,7 +2225,7 @@ void incDopeCount__Q24Game4NaviFi(void)
  * Address:	80140FAC
  * Size:	000008
  */
-void sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage(void)
+void Game::BaseGameSection::sendMessage( (Game::GameMessage &))
 {
 /*
 .loc_0x0:
@@ -2457,7 +2457,7 @@ void applyDopes__Q24Game4NaviFiR10Vector3<float>(void)
  * Address:	80141294
  * Size:	0001B0
  */
-void applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject(void)
+void Game::Navi::applyDopeSmoke( (Game::CellObject *))
 {
 /*
 .loc_0x0:
@@ -2581,7 +2581,7 @@ void applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject(void)
  * Address:	80141444
  * Size:	00001C
  */
-void getStateID__Q24Game4NaviFv(void)
+void Game::Navi::getStateID(void)
 {
 /*
 .loc_0x0:
@@ -2602,7 +2602,7 @@ void getStateID__Q24Game4NaviFv(void)
  * Address:	80141460
  * Size:	000044
  */
-void transit__Q24Game4NaviFiPQ24Game8StateArg(void)
+void Game::Navi::transit( (int, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2631,7 +2631,7 @@ void transit__Q24Game4NaviFiPQ24Game8StateArg(void)
  * Address:	801414A4
  * Size:	00000C
  */
-void getOlimarData__Q24Game4NaviFv(void)
+void Game::Navi::getOlimarData(void)
 {
 /*
 .loc_0x0:
@@ -2646,7 +2646,7 @@ void getOlimarData__Q24Game4NaviFv(void)
  * Address:	801414B0
  * Size:	000014
  */
-void getJAIObject__Q24Game4NaviFv(void)
+void Game::Navi::getJAIObject(void)
 {
 /*
 .loc_0x0:
@@ -2663,7 +2663,7 @@ void getJAIObject__Q24Game4NaviFv(void)
  * Address:	801414C4
  * Size:	000008
  */
-void getPSCreature__Q24Game4NaviFv(void)
+void Game::Navi::getPSCreature(void)
 {
 /*
 .loc_0x0:
@@ -2721,7 +2721,7 @@ void wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<float>(void)
  * Address:	80141514
  * Size:	000044
  */
-void bounceCallback__Q24Game4NaviFPQ23Sys8Triangle(void)
+void Game::Navi::bounceCallback( (Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -2752,7 +2752,7 @@ void bounceCallback__Q24Game4NaviFPQ23Sys8Triangle(void)
  * Address:	80141558
  * Size:	000004
  */
-void bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle(void)
+void Game::NaviState::bounceCallback( (Game::Navi *, Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -2765,7 +2765,7 @@ void bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle(void)
  * Address:	8014155C
  * Size:	000044
  */
-void collisionCallback__Q24Game4NaviFRQ24Game9CollEvent(void)
+void Game::Navi::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -2796,7 +2796,7 @@ void collisionCallback__Q24Game4NaviFRQ24Game9CollEvent(void)
  * Address:	801415A0
  * Size:	000004
  */
-void collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent(void)
+void Game::NaviState::collisionCallback( (Game::Navi *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -2809,7 +2809,7 @@ void collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent(void)
  * Address:	801415A4
  * Size:	000194
  */
-void platCallback__Q24Game4NaviFRQ24Game9PlatEvent(void)
+void Game::Navi::platCallback( (Game::PlatEvent &))
 {
 /*
 .loc_0x0:
@@ -2928,7 +2928,7 @@ void platCallback__Q24Game4NaviFRQ24Game9PlatEvent(void)
  * Address:	........
  * Size:	00005C
  */
-void __ct__Q24Game13ColorAnimatorFv(void)
+void Game::ColorAnimator::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2938,7 +2938,7 @@ void __ct__Q24Game13ColorAnimatorFv(void)
  * Address:	........
  * Size:	000060
  */
-void __dt__Q24Game13ColorAnimLoopFv(void)
+void Game::ColorAnimLoop::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2948,7 +2948,7 @@ void __dt__Q24Game13ColorAnimLoopFv(void)
  * Address:	........
  * Size:	00004C
  */
-void start__Q24Game13ColorAnimatorFi(void)
+void Game::ColorAnimator::start( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -2958,7 +2958,7 @@ void start__Q24Game13ColorAnimatorFi(void)
  * Address:	........
  * Size:	00008C
  */
-void setLoop__Q24Game13ColorAnimatorFiff(void)
+void Game::ColorAnimator::setLoop( (int, float, float))
 {
 	// UNUSED FUNCTION
 }
@@ -2968,7 +2968,7 @@ void setLoop__Q24Game13ColorAnimatorFiff(void)
  * Address:	........
  * Size:	00008C
  */
-void animate__Q24Game13ColorAnimatorFf(void)
+void Game::ColorAnimator::animate( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -2991,7 +2991,7 @@ void viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<float>(void)
  * Address:	8014173C
  * Size:	000008
  */
-void viewGetShape__Q24Game4NaviFv(void)
+void Game::Navi::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -3005,7 +3005,7 @@ void viewGetShape__Q24Game4NaviFv(void)
  * Address:	80141744
  * Size:	00001C
  */
-void viewGetBaseScale__Q24Game4NaviFv(void)
+void Game::Navi::viewGetBaseScale(void)
 {
 /*
 .loc_0x0:
@@ -3026,7 +3026,7 @@ void viewGetBaseScale__Q24Game4NaviFv(void)
  * Address:	80141760
  * Size:	0001F8
  */
-void doEntry__Q24Game4NaviFv(void)
+void Game::Navi::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -3184,7 +3184,7 @@ void doEntry__Q24Game4NaviFv(void)
  * Address:	80141958
  * Size:	0002C4
  */
-void doAnimation__Q24Game4NaviFv(void)
+void Game::Navi::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -3389,7 +3389,7 @@ void doAnimation__Q24Game4NaviFv(void)
  * Address:	80141C1C
  * Size:	000280
  */
-void updateCursor__Q24Game4NaviFv(void)
+void Game::Navi::updateCursor(void)
 {
 /*
 .loc_0x0:
@@ -3567,7 +3567,7 @@ void updateCursor__Q24Game4NaviFv(void)
  * Address:	80141E9C
  * Size:	000058
  */
-void doSimulation__Q24Game4NaviFf(void)
+void Game::Navi::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -3603,7 +3603,7 @@ void doSimulation__Q24Game4NaviFf(void)
  * Address:	80141EF4
  * Size:	0000B8
  */
-void doSetView__Q24Game4NaviFi(void)
+void Game::Navi::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -3665,7 +3665,7 @@ void doSetView__Q24Game4NaviFi(void)
  * Address:	80141FAC
  * Size:	00003C
  */
-void doViewCalc__Q24Game4NaviFv(void)
+void Game::Navi::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -3692,7 +3692,7 @@ void doViewCalc__Q24Game4NaviFv(void)
  * Address:	80141FE8
  * Size:	000014
  */
-void setLifeMax__Q24Game4NaviFv(void)
+void Game::Navi::setLifeMax(void)
 {
 /*
 .loc_0x0:
@@ -3709,7 +3709,7 @@ void setLifeMax__Q24Game4NaviFv(void)
  * Address:	80141FFC
  * Size:	000018
  */
-void getLifeRatio__Q24Game4NaviFv(void)
+void Game::Navi::getLifeRatio(void)
 {
 /*
 .loc_0x0:
@@ -3727,7 +3727,7 @@ void getLifeRatio__Q24Game4NaviFv(void)
  * Address:	80142014
  * Size:	0000AC
  */
-void getDownfloorMass__Q24Game4NaviFv(void)
+void Game::Navi::getDownfloorMass(void)
 {
 /*
 .loc_0x0:
@@ -3796,7 +3796,7 @@ void getDownfloorMass__Q24Game4NaviFv(void)
  * Address:	801420C0
  * Size:	0002A8
  */
-void update__Q24Game4NaviFv(void)
+void Game::Navi::update(void)
 {
 /*
 .loc_0x0:
@@ -3992,7 +3992,7 @@ void update__Q24Game4NaviFv(void)
  * Address:	80142368
  * Size:	000008
  */
-void vsUsableY__Q24Game9NaviStateFv(void)
+void Game::NaviState::vsUsableY(void)
 {
 /*
 .loc_0x0:
@@ -4006,7 +4006,7 @@ void vsUsableY__Q24Game9NaviStateFv(void)
  * Address:	80142370
  * Size:	000004
  */
-void openKanketuMenu__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller(void)
+void Game::BaseGameSection::openKanketuMenu( (Game::ItemBigFountain::Item *, Controller *))
 {
 /*
 .loc_0x0:
@@ -4019,7 +4019,7 @@ void openKanketuMenu__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4ItemP10
  * Address:	80142374
  * Size:	000004
  */
-void openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi(void)
+void Game::BaseGameSection::openCaveInMenu( (Game::ItemCave::Item *, int))
 {
 /*
 .loc_0x0:
@@ -4032,7 +4032,7 @@ void openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi(void)
  * Address:	80142378
  * Size:	000004
  */
-void openCaveMoreMenu__Q24Game15BaseGameSectionFPQ34Game8ItemHole4ItemP10Controller(void)
+void Game::BaseGameSection::openCaveMoreMenu( (Game::ItemHole::Item *, Controller *))
 {
 /*
 .loc_0x0:
@@ -4045,7 +4045,7 @@ void openCaveMoreMenu__Q24Game15BaseGameSectionFPQ34Game8ItemHole4ItemP10Control
  * Address:	8014237C
  * Size:	000004
  */
-void do_updateLookCreature__Q24Game4NaviFv(void)
+void Game::Navi::do_updateLookCreature(void)
 {
 /*
 .loc_0x0:
@@ -4058,7 +4058,7 @@ void do_updateLookCreature__Q24Game4NaviFv(void)
  * Address:	80142380
  * Size:	00009C
  */
-void inWaterCallback__Q24Game4NaviFPQ24Game8WaterBox(void)
+void Game::Navi::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -4111,7 +4111,7 @@ void inWaterCallback__Q24Game4NaviFPQ24Game8WaterBox(void)
  * Address:	8014241C
  * Size:	000044
  */
-void outWaterCallback__Q24Game4NaviFv(void)
+void Game::Navi::outWaterCallback(void)
 {
 /*
 .loc_0x0:
@@ -4140,7 +4140,7 @@ void outWaterCallback__Q24Game4NaviFv(void)
  * Address:	80142460
  * Size:	0000B0
  */
-void ignoreAtari__Q24Game4NaviFPQ24Game8Creature(void)
+void Game::Navi::ignoreAtari( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -4202,7 +4202,7 @@ void ignoreAtari__Q24Game4NaviFPQ24Game8Creature(void)
  * Address:	80142510
  * Size:	000008
  */
-void ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature(void)
+void Game::NaviState::ignoreAtari( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -4216,7 +4216,7 @@ void ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature(void)
  * Address:	80142518
  * Size:	00004C
  */
-void on_movie_begin__Q24Game4NaviFb(void)
+void Game::Navi::on_movie_begin( (bool))
 {
 /*
 .loc_0x0:
@@ -4247,7 +4247,7 @@ void on_movie_begin__Q24Game4NaviFb(void)
  * Address:	80142564
  * Size:	000048
  */
-void on_movie_end__Q24Game4NaviFb(void)
+void Game::Navi::on_movie_end( (bool))
 {
 /*
 .loc_0x0:
@@ -4277,7 +4277,7 @@ void on_movie_end__Q24Game4NaviFb(void)
  * Address:	801425AC
  * Size:	00027C
  */
-void movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer(void)
+void Game::Navi::movieUserCommand( (unsigned long, Game::MoviePlayer *))
 {
 /*
 .loc_0x0:
@@ -4460,7 +4460,7 @@ void movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer(void)
  * Address:	80142828
  * Size:	000028
  */
-void movieSetFaceDir__Q24Game4NaviFf(void)
+void Game::Navi::movieSetFaceDir( (float))
 {
 /*
 .loc_0x0:
@@ -4482,7 +4482,7 @@ void movieSetFaceDir__Q24Game4NaviFf(void)
  * Address:	80142850
  * Size:	00004C
  */
-void movieStartAnimation__Q24Game4NaviFUl(void)
+void Game::Navi::movieStartAnimation( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -4513,7 +4513,7 @@ void movieStartAnimation__Q24Game4NaviFUl(void)
  * Address:	8014289C
  * Size:	0000DC
  */
-void movieStartDemoAnimation__Q24Game4NaviFPQ28SysShape8AnimInfo(void)
+void Game::Navi::movieStartDemoAnimation( (SysShape::AnimInfo *))
 {
 /*
 .loc_0x0:
@@ -4723,7 +4723,7 @@ void movieGotoPosition__Q24Game4NaviFR10Vector3<float>(void)
  * Address:	80142B2C
  * Size:	0001A8
  */
-void set_movie_draw__Q24Game4NaviFb(void)
+void Game::Navi::set_movie_draw( (bool))
 {
 /*
 .loc_0x0:
@@ -4851,7 +4851,7 @@ void set_movie_draw__Q24Game4NaviFb(void)
  * Address:	80142CD4
  * Size:	000050
  */
-void isWalking__Q24Game4NaviFv(void)
+void Game::Navi::isWalking(void)
 {
 /*
 .loc_0x0:
@@ -4883,7 +4883,7 @@ void isWalking__Q24Game4NaviFv(void)
  * Address:	80142D24
  * Size:	00016C
  */
-void setDeadLaydown__Q24Game4NaviFv(void)
+void Game::Navi::setDeadLaydown(void)
 {
 /*
 .loc_0x0:
@@ -4996,7 +4996,7 @@ void setDeadLaydown__Q24Game4NaviFv(void)
  * Address:	80142E90
  * Size:	0002DC
  */
-void checkHole__Q24Game4NaviFv(void)
+void Game::Navi::checkHole(void)
 {
 /*
 .loc_0x0:
@@ -5254,7 +5254,7 @@ void Iterator<Game::BaseItem>::isDone()
  * Address:	801431B8
  * Size:	0002CC
  */
-void checkCave__Q24Game4NaviFv(void)
+void Game::Navi::checkCave(void)
 {
 /*
 .loc_0x0:
@@ -5477,7 +5477,7 @@ void checkCave__Q24Game4NaviFv(void)
  * Address:	80143484
  * Size:	0002B4
  */
-void checkBigFountain__Q24Game4NaviFv(void)
+void Game::Navi::checkBigFountain(void)
 {
 /*
 .loc_0x0:
@@ -5694,7 +5694,7 @@ void checkBigFountain__Q24Game4NaviFv(void)
  * Address:	80143738
  * Size:	000368
  */
-void checkOnyon__Q24Game4NaviFv(void)
+void Game::Navi::checkOnyon(void)
 {
 /*
 .loc_0x0:
@@ -5995,7 +5995,7 @@ void Iterator<Game::Onyon>::isDone()
  * Address:	80143AEC
  * Size:	000008
  */
-void getMapCollisionRadius__Q24Game4NaviFv(void)
+void Game::Navi::getMapCollisionRadius(void)
 {
 /*
 .loc_0x0:
@@ -6009,7 +6009,7 @@ void getMapCollisionRadius__Q24Game4NaviFv(void)
  * Address:	80143AF4
  * Size:	000004
  */
-void doDirectDraw__Q24Game4NaviFR8Graphics(void)
+void Game::Navi::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -6022,7 +6022,7 @@ void doDirectDraw__Q24Game4NaviFR8Graphics(void)
  * Address:	........
  * Size:	000004
  */
-void draw2d__Q24Game4NaviFR14J2DGrafContext(void)
+void Game::Navi::draw2d( (J2DGrafContext &))
 {
 	// UNUSED FUNCTION
 }
@@ -6032,7 +6032,7 @@ void draw2d__Q24Game4NaviFR14J2DGrafContext(void)
  * Address:	........
  * Size:	000008
  */
-void changeCamera__Q24Game4NaviFP6Camera(void)
+void Game::Navi::changeCamera( (Camera *))
 {
 	// UNUSED FUNCTION
 }
@@ -6042,7 +6042,7 @@ void changeCamera__Q24Game4NaviFP6Camera(void)
  * Address:	........
  * Size:	00000C
  */
-void restoreCamera__Q24Game4NaviFv(void)
+void Game::Navi::restoreCamera(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6052,7 +6052,7 @@ void restoreCamera__Q24Game4NaviFv(void)
  * Address:	80143AF8
  * Size:	00000C
  */
-void disableController__Q24Game4NaviFv(void)
+void Game::Navi::disableController(void)
 {
 /*
 .loc_0x0:
@@ -6067,7 +6067,7 @@ void disableController__Q24Game4NaviFv(void)
  * Address:	........
  * Size:	000008
  */
-void changeController__Q24Game4NaviFP10Controller(void)
+void Game::Navi::changeController( (Controller *))
 {
 	// UNUSED FUNCTION
 }
@@ -6077,7 +6077,7 @@ void changeController__Q24Game4NaviFP10Controller(void)
  * Address:	........
  * Size:	00000C
  */
-void restoreController__Q24Game4NaviFv(void)
+void Game::Navi::restoreController(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6087,7 +6087,7 @@ void restoreController__Q24Game4NaviFv(void)
  * Address:	80143B04
  * Size:	0000D8
  */
-void control__Q24Game4NaviFv(void)
+void Game::Navi::control(void)
 {
 /*
 .loc_0x0:
@@ -6165,7 +6165,7 @@ void control__Q24Game4NaviFv(void)
  * Address:	80143BDC
  * Size:	000418
  */
-void makeVelocity__Q24Game4NaviFv(void)
+void Game::Navi::makeVelocity(void)
 {
 /*
 .loc_0x0:
@@ -6592,7 +6592,7 @@ void reviseController__Q24Game4NaviFR10Vector3<float>(void)
  * Address:	80144198
  * Size:	0001D4
  */
-void callPikis__Q24Game4NaviFv(void)
+void Game::Navi::callPikis(void)
 {
 /*
 .loc_0x0:
@@ -6731,7 +6731,7 @@ void callPikis__Q24Game4NaviFv(void)
  * Address:	........
  * Size:	00014C
  */
-void applyForceObjectsInWhistle__Q24Game4NaviFPQ24Game10CellObject(void)
+void Game::Navi::applyForceObjectsInWhistle( (Game::CellObject *))
 {
 	// UNUSED FUNCTION
 }
@@ -6741,7 +6741,7 @@ void applyForceObjectsInWhistle__Q24Game4NaviFPQ24Game10CellObject(void)
  * Address:	8014436C
  * Size:	00008C
  */
-void invincible__Q24Game4NaviFv(void)
+void Game::Navi::invincible(void)
 {
 /*
 .loc_0x0:
@@ -6798,7 +6798,7 @@ void invincible__Q24Game4NaviFv(void)
  * Address:	801443F8
  * Size:	000008
  */
-void invincible__Q24Game9NaviStateFv(void)
+void Game::NaviState::invincible(void)
 {
 /*
 .loc_0x0:
@@ -6812,7 +6812,7 @@ void invincible__Q24Game9NaviStateFv(void)
  * Address:	80144400
  * Size:	000008
  */
-void setInvincibleTimer__Q24Game4NaviFUc(void)
+void Game::Navi::setInvincibleTimer( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -6826,7 +6826,7 @@ void setInvincibleTimer__Q24Game4NaviFUc(void)
  * Address:	80144408
  * Size:	000208
  */
-void startDamage__Q24Game4NaviFf(void)
+void Game::Navi::startDamage( (float))
 {
 /*
 .loc_0x0:
@@ -6994,7 +6994,7 @@ void startDamage__Q24Game4NaviFf(void)
  * Address:	80144610
  * Size:	000214
  */
-void addDamage__Q24Game4NaviFfb(void)
+void Game::Navi::addDamage( (float, bool))
 {
 /*
 .loc_0x0:
@@ -7163,7 +7163,7 @@ void addDamage__Q24Game4NaviFfb(void)
  * Address:	80144824
  * Size:	00029C
  */
-void enterAllPikis__Q24Game4NaviFv(void)
+void Game::Navi::enterAllPikis(void)
 {
 /*
 .loc_0x0:
@@ -7370,7 +7370,7 @@ void enterAllPikis__Q24Game4NaviFv(void)
  * Address:	80144AC0
  * Size:	000014
  */
-void formationable__Q24Game4NaviFv(void)
+void Game::Navi::formationable(void)
 {
 /*
 .loc_0x0:
@@ -7387,7 +7387,7 @@ void formationable__Q24Game4NaviFv(void)
  * Address:	........
  * Size:	00000C
  */
-void startKaisanDisable__Q24Game4NaviFv(void)
+void Game::Navi::startKaisanDisable(void)
 {
 	// UNUSED FUNCTION
 }
@@ -7397,7 +7397,7 @@ void startKaisanDisable__Q24Game4NaviFv(void)
  * Address:	80144AD4
  * Size:	000070
  */
-void updateKaisanDisable__Q24Game4NaviFv(void)
+void Game::Navi::updateKaisanDisable(void)
 {
 /*
 .loc_0x0:
@@ -7439,7 +7439,7 @@ void updateKaisanDisable__Q24Game4NaviFv(void)
  * Address:	80144B44
  * Size:	00000C
  */
-void clearKaisanDisable__Q24Game4NaviFv(void)
+void Game::Navi::clearKaisanDisable(void)
 {
 /*
 .loc_0x0:
@@ -7454,7 +7454,7 @@ void clearKaisanDisable__Q24Game4NaviFv(void)
  * Address:	80144B50
  * Size:	000010
  */
-void throwable__Q24Game4NaviFv(void)
+void Game::Navi::throwable(void)
 {
 /*
 .loc_0x0:
@@ -7470,7 +7470,7 @@ void throwable__Q24Game4NaviFv(void)
  * Address:	80144B60
  * Size:	00000C
  */
-void startThrowDisable__Q24Game4NaviFv(void)
+void Game::Navi::startThrowDisable(void)
 {
 /*
 .loc_0x0:
@@ -7485,7 +7485,7 @@ void startThrowDisable__Q24Game4NaviFv(void)
  * Address:	80144B6C
  * Size:	00003C
  */
-void updateThrowDisable__Q24Game4NaviFv(void)
+void Game::Navi::updateThrowDisable(void)
 {
 /*
 .loc_0x0:
@@ -7514,7 +7514,7 @@ void updateThrowDisable__Q24Game4NaviFv(void)
  * Address:	80144BA8
  * Size:	00000C
  */
-void clearThrowDisable__Q24Game4NaviFv(void)
+void Game::Navi::clearThrowDisable(void)
 {
 /*
 .loc_0x0:
@@ -7756,7 +7756,7 @@ void holeinAllPikis__Q24Game4NaviFR10Vector3<float>(void)
  * Address:	80144EB0
  * Size:	000008
  */
-void soft_transittable__Q24Game9PikiStateFi(void)
+void Game::PikiState::soft_transittable( (int))
 {
 /*
 .loc_0x0:
@@ -7770,7 +7770,7 @@ void soft_transittable__Q24Game9PikiStateFi(void)
  * Address:	80144EB8
  * Size:	000008
  */
-void transittable__Q24Game9PikiStateFi(void)
+void Game::PikiState::transittable( (int))
 {
 /*
 .loc_0x0:
@@ -8010,7 +8010,7 @@ void fountainonAllPikis__Q24Game4NaviFR10Vector3<float>(void)
  * Address:	801451B8
  * Size:	0002D4
  */
-void demowaitAllPikis__Q24Game4NaviFv(void)
+void Game::Navi::demowaitAllPikis(void)
 {
 /*
 .loc_0x0:
@@ -8227,7 +8227,7 @@ void demowaitAllPikis__Q24Game4NaviFv(void)
  * Address:	8014548C
  * Size:	000954
  */
-void releasePikis__Q24Game4NaviFv(void)
+void Game::Navi::releasePikis(void)
 {
 /*
 .loc_0x0:
@@ -8916,7 +8916,7 @@ void releasePikis__Q24Game4NaviFv(void)
  * Address:	80145DE0
  * Size:	000008
  */
-void releasable__Q24Game9PikiStateFv(void)
+void Game::PikiState::releasable(void)
 {
 /*
 .loc_0x0:
@@ -8930,7 +8930,7 @@ void releasable__Q24Game9PikiStateFv(void)
  * Address:	80145DE8
  * Size:	000920
  */
-void makeCStick__Q24Game4NaviFb(void)
+void Game::Navi::makeCStick( (bool))
 {
 /*
 .loc_0x0:
@@ -9604,7 +9604,7 @@ void makeCStick__Q24Game4NaviFb(void)
  * Address:	80146708
  * Size:	000064
  */
-void isCStickNetural__Q24Game4NaviFv(void)
+void Game::Navi::isCStickNetural(void)
 {
 /*
 .loc_0x0:
@@ -9641,7 +9641,7 @@ void isCStickNetural__Q24Game4NaviFv(void)
  * Address:	8014676C
  * Size:	0002BC
  */
-void findNextThrowPiki__Q24Game4NaviFv(void)
+void Game::Navi::findNextThrowPiki(void)
 {
 /*
 .loc_0x0:
@@ -9846,7 +9846,7 @@ void findNextThrowPiki__Q24Game4NaviFv(void)
  * Address:	80146A28
  * Size:	00002C
  */
-void ogGetNextThrowPiki__Q24Game4NaviFv(void)
+void Game::Navi::ogGetNextThrowPiki(void)
 {
 /*
 .loc_0x0:
@@ -10069,7 +10069,7 @@ void throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3<float>(void)
  * Address:	80146D14
  * Size:	000008
  */
-void commandOn__Q24Game4NaviFv(void)
+void Game::Navi::commandOn(void)
 {
 /*
 .loc_0x0:
@@ -10083,7 +10083,7 @@ void commandOn__Q24Game4NaviFv(void)
  * Address:	80146D1C
  * Size:	00000C
  */
-void getName__Q26PikiAI10ActFreeArgFv(void)
+void PikiAI::ActFreeArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -10098,7 +10098,7 @@ void getName__Q26PikiAI10ActFreeArgFv(void)
  * Address:	80146D28
  * Size:	00000C
  */
-void getName__Q26PikiAI17CreatureActionArgFv(void)
+void PikiAI::CreatureActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -10113,7 +10113,7 @@ void getName__Q26PikiAI17CreatureActionArgFv(void)
  * Address:	80146D34
  * Size:	00000C
  */
-void getName__Q26PikiAI9ActionArgFv(void)
+void PikiAI::ActionArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -10128,7 +10128,7 @@ void getName__Q26PikiAI9ActionArgFv(void)
  * Address:	80146D40
  * Size:	00000C
  */
-void getName__Q24Game13NaviDamageArgFv(void)
+void Game::NaviDamageArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -10499,7 +10499,7 @@ void Iterator<Game::BaseItem>::first()
  * Address:	8014713C
  * Size:	000008
  */
-void actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection(void)
+void Game::GameMessage::actCommon( (Game::BaseGameSection *))
 {
 /*
 .loc_0x0:
@@ -10513,7 +10513,7 @@ void actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection(void)
  * Address:	80147144
  * Size:	000008
  */
-void actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection(void)
+void Game::GameMessage::actSingle( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -10527,7 +10527,7 @@ void actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection(void)
  * Address:	8014714C
  * Size:	000008
  */
-void actVs__Q24Game11GameMessageFPQ24Game13VsGameSection(void)
+void Game::GameMessage::actVs( (Game::VsGameSection *))
 {
 /*
 .loc_0x0:
@@ -10738,7 +10738,7 @@ void setVelocity__Q24Game4NaviFR10Vector3<float>(void)
  * Address:	80147368
  * Size:	000008
  */
-void getCreatureName__Q24Game4NaviFv(void)
+void Game::Navi::getCreatureName(void)
 {
 /*
 .loc_0x0:
@@ -10752,7 +10752,7 @@ void getCreatureName__Q24Game4NaviFv(void)
  * Address:	80147370
  * Size:	00009C
  */
-void create__Q23efx7TFueactFPQ23efx3Arg(void)
+void efx::TFueact::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -10805,7 +10805,7 @@ void create__Q23efx7TFueactFPQ23efx3Arg(void)
  * Address:	8014740C
  * Size:	000064
  */
-void fade__Q23efx7TFueactFv(void)
+void efx::TFueact::fade(void)
 {
 /*
 .loc_0x0:
@@ -10842,7 +10842,7 @@ void fade__Q23efx7TFueactFv(void)
  * Address:	80147470
  * Size:	00003C
  */
-void fade__Q23efx13TFueactCircleFv(void)
+void efx::TFueactCircle::fade(void)
 {
 /*
 .loc_0x0:
@@ -10869,7 +10869,7 @@ void fade__Q23efx13TFueactCircleFv(void)
  * Address:	801474AC
  * Size:	000064
  */
-void forceKill__Q23efx7TFueactFv(void)
+void efx::TFueact::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -10906,7 +10906,7 @@ void forceKill__Q23efx7TFueactFv(void)
  * Address:	80147510
  * Size:	00003C
  */
-void forceKill__Q23efx13TFueactCircleFv(void)
+void efx::TFueactCircle::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -11116,7 +11116,7 @@ void __sinit_navi_cpp(void)
  * Address:	80147688
  * Size:	000008
  */
-void @4@__dt__Q23efx12TFueactBiri1Fv(void)
+void @4@efx::TFueactBiri1::__dt(void)
 {
 /*
 .loc_0x0:
@@ -11130,7 +11130,7 @@ void @4@__dt__Q23efx12TFueactBiri1Fv(void)
  * Address:	80147690
  * Size:	000008
  */
-void @4@__dt__Q23efx12TFueactBiri2Fv(void)
+void @4@efx::TFueactBiri2::__dt(void)
 {
 /*
 .loc_0x0:
@@ -11144,7 +11144,7 @@ void @4@__dt__Q23efx12TFueactBiri2Fv(void)
  * Address:	80147698
  * Size:	000008
  */
-void @376@onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent(void)
+void @376@Game::Navi::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -11175,7 +11175,7 @@ void @784@12@viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<float>(void)
  * Address:	801476B4
  * Size:	000014
  */
-void @784@12@viewGetShape__Q24Game4NaviFv(void)
+void @784@12@Game::Navi::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -11192,7 +11192,7 @@ void @784@12@viewGetShape__Q24Game4NaviFv(void)
  * Address:	801476C8
  * Size:	000014
  */
-void @784@12@viewGetBaseScale__Q24Game4NaviFv(void)
+void @784@12@Game::Navi::viewGetBaseScale(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80217760
  * Size:	000304
  */
-void init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::CaveState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8Sta
  * Address:	........
  * Size:	000174
  */
-void gameStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveState::gameStart( (Game::SingleGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -240,7 +240,7 @@ void gameStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void)
  * Address:	80217A64
  * Size:	00000C
  */
-void on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveState::on_section_fadeout( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSecti
  * Address:	80217A70
  * Size:	0002D4
  */
-void exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -464,7 +464,7 @@ void exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void)
  * Address:	80217D44
  * Size:	000098
  */
-void draw__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::CaveState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -520,7 +520,7 @@ void draw__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionR8Graphics(v
  * Address:	80217DDC
  * Size:	00048C
  */
-void check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveState::check_SMenu( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -859,7 +859,7 @@ void check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void
  * Address:	80218268
  * Size:	000068
  */
-void cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -899,7 +899,7 @@ void cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection(void)
  * Address:	802182D0
  * Size:	0000D4
  */
-void onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni(void)
+void Game::SingleGame::CaveState::onOrimaDown( (Game::SingleGameSection *, int))
 {
 /*
 .loc_0x0:
@@ -968,7 +968,7 @@ void onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni(voi
  * Address:	802183A4
  * Size:	000104
  */
-void onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item(void)
+void Game::SingleGame::CaveState::onFountainReturn( (Game::SingleGameSection *, Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -1045,7 +1045,7 @@ void onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
  * Address:	802184A8
  * Size:	000144
  */
-void onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item(void)
+void Game::SingleGame::CaveState::onNextFloor( (Game::SingleGameSection *, Game::ItemHole::Item *))
 {
 /*
 .loc_0x0:
@@ -1142,7 +1142,7 @@ void onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34G
  * Address:	802185EC
  * Size:	0005F0
  */
-void onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni(void)
+void Game::SingleGame::CaveState::onMovieCommand( (Game::SingleGameSection *, int))
 {
 /*
 .loc_0x0:
@@ -1596,7 +1596,7 @@ void onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni(
  * Address:	80218BDC
  * Size:	000490
  */
-void onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::CaveState::onMovieStart( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1948,7 +1948,7 @@ void onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24
  * Address:	8021906C
  * Size:	000EB4
  */
-void onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::CaveState::onMovieDone( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:

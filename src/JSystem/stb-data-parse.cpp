@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000050
  */
-void toString_block__Q37JStudio3stb4dataFPcUl(void)
+void JStudio::stb::data::toString_block( (char *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void toString_block__Q37JStudio3stb4dataFPcUl(void)
  * Address:	8000893C
  * Size:	00004C
  */
-void getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TParse_TSequence5TData(void)
+void JStudio::stb::data::TParse_TSequence::getData( const(JStudio::stb::data::TParse_TSequence::TData *))
 {
 /*
 .loc_0x0:
@@ -48,7 +48,7 @@ void getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TPars
  * Address:	80008988
  * Size:	000078
  */
-void getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData(void)
+void JStudio::stb::data::TParse_TParagraph::getData( const(JStudio::stb::data::TParse_TParagraph::TData *))
 {
 /*
 .loc_0x0:
@@ -94,7 +94,7 @@ void getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TPar
  * Address:	80008A00
  * Size:	000080
  */
-void getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData(void)
+void JStudio::stb::data::TParse_TParagraph_data::getData( const(JStudio::stb::data::TParse_TParagraph_data::TData *))
 {
 /*
 .loc_0x0:

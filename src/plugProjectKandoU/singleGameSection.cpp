@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80152074
  * Size:	000084
  */
-void __dt__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::__dt(void)
 {
 /*
 .loc_0x0:
@@ -64,7 +64,7 @@ void __dt__Q24Game17SingleGameSectionFv(void)
  * Address:	801520F8
  * Size:	000184
  */
-void startMainBgm__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::startMainBgm(void)
 {
 /*
 .loc_0x0:
@@ -189,7 +189,7 @@ void startMainBgm__Q24Game17SingleGameSectionFv(void)
  * Address:	8015227C
  * Size:	000008
  */
-void isGameScene__Q23PSM9SceneBaseFv(void)
+void PSM::SceneBase::isGameScene(void)
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void isGameScene__Q23PSM9SceneBaseFv(void)
  * Address:	80152284
  * Size:	0002A0
  */
-void init__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::FSM::init( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -407,7 +407,7 @@ void init__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSection(void)
  * Address:	........
  * Size:	000038
  */
-void draw__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::FSM::draw( (Game::SingleGameSection *, Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -417,7 +417,7 @@ void draw__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSectionR8Graphics(void)
  * Address:	80152524
  * Size:	000004
  */
-void draw__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::State::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -430,7 +430,7 @@ void draw__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionR8Graphics(void)
  * Address:	80152528
  * Size:	000020
  */
-void transit__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
+void Game::SingleGame::FSM::transit( (Game::SingleGameSection *, int, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -450,7 +450,7 @@ void transit__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSectioniPQ24Game8State
  * Address:	80152548
  * Size:	000040
  */
-void getState__Q34Game10SingleGame3FSMFi(void)
+void Game::SingleGame::FSM::getState( (int))
 {
 /*
 .loc_0x0:
@@ -486,7 +486,7 @@ void getState__Q34Game10SingleGame3FSMFi(void)
  * Address:	80152588
  * Size:	000200
  */
-void accountEarnings__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game16PelletCropMemoryb(void)
+void Game::SingleGame::State::accountEarnings( (Game::SingleGameSection *, Game::PelletCropMemory *, bool))
 {
 /*
 .loc_0x0:
@@ -646,7 +646,7 @@ void accountEarnings__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24G
  * Address:	80152788
  * Size:	000160
  */
-void init__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::CaveDayEndState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -758,7 +758,7 @@ void init__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSectionPQ24G
  * Address:	801528E8
  * Size:	0000B4
  */
-void exec__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveDayEndState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -841,7 +841,7 @@ void transit__Q24Game36FSMState<Game::SingleGameSection>FPQ24Game17SingleGameSec
  * Address:	801529CC
  * Size:	00003C
  */
-void draw__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::CaveDayEndState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -868,7 +868,7 @@ void draw__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSectionR8Gra
  * Address:	80152A08
  * Size:	000034
  */
-void cleanup__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveDayEndState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -893,7 +893,7 @@ void cleanup__Q34Game10SingleGame15CaveDayEndStateFPQ24Game17SingleGameSection(v
  * Address:	80152A3C
  * Size:	0000E0
  */
-void __ct__Q24Game17SingleGameSectionFP7JKRHeap(void)
+void Game::SingleGameSection::__ct( (JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -963,7 +963,7 @@ void __ct__Q24Game17SingleGameSectionFP7JKRHeap(void)
  * Address:	80152B1C
  * Size:	000034
  */
-void section_fadeout__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::section_fadeout(void)
 {
 /*
 .loc_0x0:
@@ -988,7 +988,7 @@ void section_fadeout__Q24Game17SingleGameSectionFv(void)
  * Address:	80152B50
  * Size:	000004
  */
-void on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::State::on_section_fadeout( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -1001,7 +1001,7 @@ void on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection(v
  * Address:	80152B54
  * Size:	00000C
  */
-void flow_goto_title__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::flow_goto_title(void)
 {
 /*
 .loc_0x0:
@@ -1016,7 +1016,7 @@ void flow_goto_title__Q24Game17SingleGameSectionFv(void)
  * Address:	80152B60
  * Size:	000188
  */
-void onInit__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::onInit(void)
 {
 /*
 .loc_0x0:
@@ -1157,7 +1157,7 @@ void start__Q24Game40StateMachine<Game::SingleGameSection>FPQ24Game17SingleGameS
  * Address:	80152D1C
  * Size:	0000EC
  */
-void doUpdate__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1232,7 +1232,7 @@ void doUpdate__Q24Game17SingleGameSectionFv(void)
  * Address:	80152E08
  * Size:	000004
  */
-void on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl(void)
+void Game::SingleGame::State::on_demo_timer( (Game::SingleGameSection *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1245,7 +1245,7 @@ void on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl(void
  * Address:	80152E0C
  * Size:	000050
  */
-void doDraw__Q24Game17SingleGameSectionFR8Graphics(void)
+void Game::SingleGameSection::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1279,7 +1279,7 @@ void doDraw__Q24Game17SingleGameSectionFR8Graphics(void)
  * Address:	80152E5C
  * Size:	00005C
  */
-void on_setCamController__Q24Game17SingleGameSectionFi(void)
+void Game::SingleGameSection::on_setCamController( (int))
 {
 /*
 .loc_0x0:
@@ -1316,7 +1316,7 @@ void on_setCamController__Q24Game17SingleGameSectionFi(void)
  * Address:	80152EB8
  * Size:	000260
  */
-void onSetSoundScene__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::onSetSoundScene(void)
 {
 /*
 .loc_0x0:
@@ -1502,7 +1502,7 @@ void onSetSoundScene__Q24Game17SingleGameSectionFv(void)
  * Address:	80153118
  * Size:	000008
  */
-void getCaveID__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::getCaveID(void)
 {
 /*
 .loc_0x0:
@@ -1516,7 +1516,7 @@ void getCaveID__Q24Game17SingleGameSectionFv(void)
  * Address:	80153120
  * Size:	0002A0
  */
-void onSetupFloatMemory__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::onSetupFloatMemory(void)
 {
 /*
 .loc_0x0:
@@ -1724,7 +1724,7 @@ void onSetupFloatMemory__Q24Game17SingleGameSectionFv(void)
  * Address:	801533C0
  * Size:	000050
  */
-void onClearHeap__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::onClearHeap(void)
 {
 /*
 .loc_0x0:
@@ -1758,7 +1758,7 @@ void onClearHeap__Q24Game17SingleGameSectionFv(void)
  * Address:	80153410
  * Size:	00000C
  */
-void onStartHeap__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::onStartHeap(void)
 {
 /*
 .loc_0x0:
@@ -1773,7 +1773,7 @@ void onStartHeap__Q24Game17SingleGameSectionFv(void)
  * Address:	8015341C
  * Size:	000044
  */
-void gmOrimaDown__Q24Game17SingleGameSectionFi(void)
+void Game::SingleGameSection::gmOrimaDown( (int))
 {
 /*
 .loc_0x0:
@@ -1804,7 +1804,7 @@ void gmOrimaDown__Q24Game17SingleGameSectionFi(void)
  * Address:	80153460
  * Size:	000004
  */
-void onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni(void)
+void Game::SingleGame::State::onOrimaDown( (Game::SingleGameSection *, int))
 {
 /*
 .loc_0x0:
@@ -1817,7 +1817,7 @@ void onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni(void)
  * Address:	80153464
  * Size:	000004
  */
-void gmPikminZero__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::gmPikminZero(void)
 {
 /*
 .loc_0x0:
@@ -1830,7 +1830,7 @@ void gmPikminZero__Q24Game17SingleGameSectionFv(void)
  * Address:	80153468
  * Size:	000020
  */
-void enableTimer__Q24Game17SingleGameSectionFfUl(void)
+void Game::SingleGameSection::enableTimer( (float, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1850,7 +1850,7 @@ void enableTimer__Q24Game17SingleGameSectionFfUl(void)
  * Address:	80153488
  * Size:	000080
  */
-void disableTimer__Q24Game17SingleGameSectionFUl(void)
+void Game::SingleGameSection::disableTimer( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1900,7 +1900,7 @@ void disableTimer__Q24Game17SingleGameSectionFUl(void)
  * Address:	80153508
  * Size:	000054
  */
-void onMovieStart__Q24Game17SingleGameSectionFPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGameSection::onMovieStart( (Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1935,7 +1935,7 @@ void onMovieStart__Q24Game17SingleGameSectionFPQ24Game11MovieConfigUlUl(void)
  * Address:	8015355C
  * Size:	000004
  */
-void onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::State::onMovieStart( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1948,7 +1948,7 @@ void onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game
  * Address:	80153560
  * Size:	000064
  */
-void onMovieDone__Q24Game17SingleGameSectionFPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGameSection::onMovieDone( (Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1987,7 +1987,7 @@ void onMovieDone__Q24Game17SingleGameSectionFPQ24Game11MovieConfigUlUl(void)
  * Address:	801535C4
  * Size:	000004
  */
-void onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl(void)
+void Game::SingleGame::State::onMovieDone( (Game::SingleGameSection *, Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -2000,7 +2000,7 @@ void onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game1
  * Address:	801535C8
  * Size:	00005C
  */
-void onMovieCommand__Q24Game17SingleGameSectionFi(void)
+void Game::SingleGameSection::onMovieCommand( (int))
 {
 /*
 .loc_0x0:
@@ -2037,7 +2037,7 @@ void onMovieCommand__Q24Game17SingleGameSectionFi(void)
  * Address:	80153624
  * Size:	000004
  */
-void onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni(void)
+void Game::SingleGame::State::onMovieCommand( (Game::SingleGameSection *, int))
 {
 /*
 .loc_0x0:
@@ -2050,7 +2050,7 @@ void onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni(void
  * Address:	80153628
  * Size:	000240
  */
-void playMovie_bootup__Q24Game17SingleGameSectionFPQ24Game5Onyon(void)
+void Game::SingleGameSection::playMovie_bootup( (Game::Onyon *))
 {
 /*
 .loc_0x0:
@@ -2216,7 +2216,7 @@ void playMovie_bootup__Q24Game17SingleGameSectionFPQ24Game5Onyon(void)
  * Address:	80153868
  * Size:	000008
  */
-void getFaceDir__Q24Game5OnyonFv(void)
+void Game::Onyon::getFaceDir(void)
 {
 /*
 .loc_0x0:
@@ -2230,7 +2230,7 @@ void getFaceDir__Q24Game5OnyonFv(void)
  * Address:	80153870
  * Size:	000454
  */
-void playMovie_helloPikmin__Q24Game17SingleGameSectionFPQ24Game4Piki(void)
+void Game::SingleGameSection::playMovie_helloPikmin( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -2535,7 +2535,7 @@ void playMovie_helloPikmin__Q24Game17SingleGameSectionFPQ24Game4Piki(void)
  * Address:	80153CC4
  * Size:	000004
  */
-void playMovie_firstexperience__Q24Game17SingleGameSectionFiPQ24Game8Creature(void)
+void Game::SingleGameSection::playMovie_firstexperience( (int, Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -2548,7 +2548,7 @@ void playMovie_firstexperience__Q24Game17SingleGameSectionFiPQ24Game8Creature(vo
  * Address:	80153CC8
  * Size:	0002A0
  */
-void saveMainMapSituation__Q24Game17SingleGameSectionFb(void)
+void Game::SingleGameSection::saveMainMapSituation( (bool))
 {
 /*
 .loc_0x0:
@@ -2748,7 +2748,7 @@ void saveMainMapSituation__Q24Game17SingleGameSectionFb(void)
  * Address:	80153F68
  * Size:	000030
  */
-void loadMainMapSituation__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::loadMainMapSituation(void)
 {
 /*
 .loc_0x0:
@@ -2772,7 +2772,7 @@ void loadMainMapSituation__Q24Game17SingleGameSectionFv(void)
  * Address:	80153F98
  * Size:	000018
  */
-void clearCaveMenus__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::clearCaveMenus(void)
 {
 /*
 .loc_0x0:
@@ -2790,7 +2790,7 @@ void clearCaveMenus__Q24Game17SingleGameSectionFv(void)
  * Address:	80153FB0
  * Size:	000418
  */
-void openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi(void)
+void Game::SingleGameSection::openCaveInMenu( (Game::ItemCave::Item *, int))
 {
 /*
 .loc_0x0:
@@ -3088,7 +3088,7 @@ void openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi(void)
  * Address:	801543C8
  * Size:	000008
  */
-void getCurrentCourseInfo__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::getCurrentCourseInfo(void)
 {
 /*
 .loc_0x0:
@@ -3102,7 +3102,7 @@ void getCurrentCourseInfo__Q24Game17SingleGameSectionFv(void)
  * Address:	801543D0
  * Size:	00019C
  */
-void openCaveMoreMenu__Q24Game17SingleGameSectionFPQ34Game8ItemHole4ItemP10Controller(void)
+void Game::SingleGameSection::openCaveMoreMenu( (Game::ItemHole::Item *, Controller *))
 {
 /*
 .loc_0x0:
@@ -3225,7 +3225,7 @@ void openCaveMoreMenu__Q24Game17SingleGameSectionFPQ34Game8ItemHole4ItemP10Contr
  * Address:	8015456C
  * Size:	00002C
  */
-void saveCaveMore__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::saveCaveMore(void)
 {
 /*
 .loc_0x0:
@@ -3248,7 +3248,7 @@ void saveCaveMore__Q24Game17SingleGameSectionFv(void)
  * Address:	80154598
  * Size:	000184
  */
-void openKanketuMenu__Q24Game17SingleGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller(void)
+void Game::SingleGameSection::openKanketuMenu( (Game::ItemBigFountain::Item *, Controller *))
 {
 /*
 .loc_0x0:
@@ -3365,7 +3365,7 @@ void openKanketuMenu__Q24Game17SingleGameSectionFPQ34Game15ItemBigFountain4ItemP
  * Address:	8015471C
  * Size:	000300
  */
-void updateCaveMenus__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::updateCaveMenus(void)
 {
 /*
 .loc_0x0:
@@ -3597,7 +3597,7 @@ void updateCaveMenus__Q24Game17SingleGameSectionFv(void)
  * Address:	80154A1C
  * Size:	000040
  */
-void goNextFloor__Q24Game17SingleGameSectionFPQ34Game8ItemHole4Item(void)
+void Game::SingleGameSection::goNextFloor( (Game::ItemHole::Item *))
 {
 /*
 .loc_0x0:
@@ -3625,7 +3625,7 @@ void goNextFloor__Q24Game17SingleGameSectionFPQ34Game8ItemHole4Item(void)
  * Address:	80154A5C
  * Size:	000004
  */
-void onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item(void)
+void Game::SingleGame::State::onNextFloor( (Game::SingleGameSection *, Game::ItemHole::Item *))
 {
 /*
 .loc_0x0:
@@ -3638,7 +3638,7 @@ void onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8
  * Address:	80154A60
  * Size:	000074
  */
-void goCave__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Item(void)
+void Game::SingleGameSection::goCave( (Game::ItemCave::Item *))
 {
 /*
 .loc_0x0:
@@ -3679,7 +3679,7 @@ void goCave__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Item(void)
  * Address:	80154AD4
  * Size:	000004
  */
-void onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item(void)
+void Game::SingleGame::State::onHoleIn( (Game::SingleGameSection *, Game::ItemCave::Item *))
 {
 /*
 .loc_0x0:
@@ -3692,7 +3692,7 @@ void onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8Ite
  * Address:	80154AD8
  * Size:	000048
  */
-void goMainMap__Q24Game17SingleGameSectionFPQ34Game15ItemBigFountain4Item(void)
+void Game::SingleGameSection::goMainMap( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -3722,7 +3722,7 @@ void goMainMap__Q24Game17SingleGameSectionFPQ34Game15ItemBigFountain4Item(void)
  * Address:	80154B20
  * Size:	000004
  */
-void onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item(void)
+void Game::SingleGame::State::onFountainReturn( (Game::SingleGameSection *, Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -3735,7 +3735,7 @@ void onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34
  * Address:	80154B24
  * Size:	000020
  */
-void setupMainMapGames__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::setupMainMapGames(void)
 {
 /*
 .loc_0x0:
@@ -3755,7 +3755,7 @@ void setupMainMapGames__Q24Game17SingleGameSectionFv(void)
  * Address:	80154B44
  * Size:	000020
  */
-void setupCaveGames__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::setupCaveGames(void)
 {
 /*
 .loc_0x0:
@@ -3777,7 +3777,7 @@ void setupCaveGames__Q24Game17SingleGameSectionFv(void)
  * Address:	80154B64
  * Size:	000474
  */
-void createFallPikmins__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::createFallPikmins(void)
 {
 /*
 .loc_0x0:
@@ -4094,7 +4094,7 @@ void createFallPikmins__Q24Game17SingleGameSectionFv(void)
  * Address:	........
  * Size:	000440
  */
-void createFallPikmins__Q24Game17SingleGameSectionFRQ24Game13PikiContaineri(void)
+void Game::SingleGameSection::createFallPikmins( (Game::PikiContainer &, int))
 {
 	// UNUSED FUNCTION
 }
@@ -4104,7 +4104,7 @@ void createFallPikmins__Q24Game17SingleGameSectionFRQ24Game13PikiContaineri(void
  * Address:	80154FD8
  * Size:	000504
  */
-void setDispMemberSMenu__Q24Game17SingleGameSectionFRQ32og6Screen18DispMemberSMenuAll(void)
+void Game::SingleGameSection::setDispMemberSMenu( (og::Screen::DispMemberSMenuAll &))
 {
 /*
 .loc_0x0:
@@ -4475,7 +4475,7 @@ void setDispMemberSMenu__Q24Game17SingleGameSectionFRQ32og6Screen18DispMemberSMe
  * Address:	801554DC
  * Size:	000010
  */
-void __cl__Q34Game8GameStat11PikiCounterFi(void)
+void Game::GameStat::PikiCounter::operator()( (int))
 {
 /*
 .loc_0x0:
@@ -4491,7 +4491,7 @@ void __cl__Q34Game8GameStat11PikiCounterFi(void)
  * Address:	........
  * Size:	0000E0
  */
-void setDispMemberNavi__Q24Game17SingleGameSectionFRQ32og6Screen8DataNavii(void)
+void Game::SingleGameSection::setDispMemberNavi( (og::Screen::DataNavi &, int))
 {
 	// UNUSED FUNCTION
 }
@@ -4501,7 +4501,7 @@ void setDispMemberNavi__Q24Game17SingleGameSectionFRQ32og6Screen8DataNavii(void)
  * Address:	........
  * Size:	000148
  */
-void calcOtakaraLevel__Q24Game17SingleGameSectionFRf(void)
+void Game::SingleGameSection::calcOtakaraLevel( (float &))
 {
 	// UNUSED FUNCTION
 }
@@ -4511,7 +4511,7 @@ void calcOtakaraLevel__Q24Game17SingleGameSectionFRf(void)
  * Address:	801554EC
  * Size:	00058C
  */
-void updateMainMapScreen__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::updateMainMapScreen(void)
 {
 /*
 .loc_0x0:
@@ -4916,7 +4916,7 @@ void updateMainMapScreen__Q24Game17SingleGameSectionFv(void)
  * Address:	80155A78
  * Size:	000004
  */
-void drawMainMapScreen__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::drawMainMapScreen(void)
 {
 /*
 .loc_0x0:
@@ -4929,7 +4929,7 @@ void drawMainMapScreen__Q24Game17SingleGameSectionFv(void)
  * Address:	80155A7C
  * Size:	0004D8
  */
-void updateCaveScreen__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::updateCaveScreen(void)
 {
 /*
 .loc_0x0:
@@ -5277,7 +5277,7 @@ void updateCaveScreen__Q24Game17SingleGameSectionFv(void)
  * Address:	80155F54
  * Size:	000008
  */
-void getCurrFloor__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::getCurrFloor(void)
 {
 /*
 .loc_0x0:
@@ -5291,7 +5291,7 @@ void getCurrFloor__Q24Game17SingleGameSectionFv(void)
  * Address:	80155F5C
  * Size:	000004
  */
-void drawCaveScreen__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::drawCaveScreen(void)
 {
 /*
 .loc_0x0:
@@ -5304,7 +5304,7 @@ void drawCaveScreen__Q24Game17SingleGameSectionFv(void)
  * Address:	80155F60
  * Size:	00008C
  */
-void newCaveOtakaraEarningsAndDrops__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::newCaveOtakaraEarningsAndDrops(void)
 {
 /*
 .loc_0x0:
@@ -5351,7 +5351,7 @@ void newCaveOtakaraEarningsAndDrops__Q24Game17SingleGameSectionFv(void)
  * Address:	80155FEC
  * Size:	000050
  */
-void clearCaveOtakaraEarningsAndDrops__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::clearCaveOtakaraEarningsAndDrops(void)
 {
 /*
 .loc_0x0:
@@ -5383,7 +5383,7 @@ void clearCaveOtakaraEarningsAndDrops__Q24Game17SingleGameSectionFv(void)
  * Address:	8015603C
  * Size:	000008
  */
-void getSize__Q32og6Screen14DispMemberCaveFv(void)
+void og::Screen::DispMemberCave::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5397,7 +5397,7 @@ void getSize__Q32og6Screen14DispMemberCaveFv(void)
  * Address:	80156044
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen14DispMemberCaveFv(void)
+void og::Screen::DispMemberCave::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5412,7 +5412,7 @@ void getOwnerID__Q32og6Screen14DispMemberCaveFv(void)
  * Address:	80156050
  * Size:	000010
  */
-void getMemberID__Q32og6Screen14DispMemberCaveFv(void)
+void og::Screen::DispMemberCave::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5428,7 +5428,7 @@ void getMemberID__Q32og6Screen14DispMemberCaveFv(void)
  * Address:	80156060
  * Size:	000004
  */
-void doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv(void)
+void og::Screen::DispMemberBase::doSetSubMemberAll(void)
 {
 /*
 .loc_0x0:
@@ -5441,7 +5441,7 @@ void doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv(void)
  * Address:	80156064
  * Size:	000008
  */
-void getSize__Q32og6Screen17DispMemberHurryUpFv(void)
+void og::Screen::DispMemberHurryUp::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5455,7 +5455,7 @@ void getSize__Q32og6Screen17DispMemberHurryUpFv(void)
  * Address:	8015606C
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen17DispMemberHurryUpFv(void)
+void og::Screen::DispMemberHurryUp::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5470,7 +5470,7 @@ void getOwnerID__Q32og6Screen17DispMemberHurryUpFv(void)
  * Address:	80156078
  * Size:	000014
  */
-void getMemberID__Q32og6Screen17DispMemberHurryUpFv(void)
+void og::Screen::DispMemberHurryUp::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5487,7 +5487,7 @@ void getMemberID__Q32og6Screen17DispMemberHurryUpFv(void)
  * Address:	8015608C
  * Size:	000008
  */
-void getSize__Q32og6Screen21DispMemberDayEndCountFv(void)
+void og::Screen::DispMemberDayEndCount::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5501,7 +5501,7 @@ void getSize__Q32og6Screen21DispMemberDayEndCountFv(void)
  * Address:	80156094
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen21DispMemberDayEndCountFv(void)
+void og::Screen::DispMemberDayEndCount::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5516,7 +5516,7 @@ void getOwnerID__Q32og6Screen21DispMemberDayEndCountFv(void)
  * Address:	801560A0
  * Size:	000014
  */
-void getMemberID__Q32og6Screen21DispMemberDayEndCountFv(void)
+void og::Screen::DispMemberDayEndCount::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5533,7 +5533,7 @@ void getMemberID__Q32og6Screen21DispMemberDayEndCountFv(void)
  * Address:	801560B4
  * Size:	000008
  */
-void getSize__Q32og6Screen16DispMemberGroundFv(void)
+void og::Screen::DispMemberGround::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5547,7 +5547,7 @@ void getSize__Q32og6Screen16DispMemberGroundFv(void)
  * Address:	801560BC
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen16DispMemberGroundFv(void)
+void og::Screen::DispMemberGround::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5562,7 +5562,7 @@ void getOwnerID__Q32og6Screen16DispMemberGroundFv(void)
  * Address:	801560C8
  * Size:	000010
  */
-void getMemberID__Q32og6Screen16DispMemberGroundFv(void)
+void og::Screen::DispMemberGround::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5578,7 +5578,7 @@ void getMemberID__Q32og6Screen16DispMemberGroundFv(void)
  * Address:	801560D8
  * Size:	00000C
  */
-void getName__Q24Game11PikiInitArgFv(void)
+void Game::PikiInitArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -5593,7 +5593,7 @@ void getName__Q24Game11PikiInitArgFv(void)
  * Address:	801560E4
  * Size:	000008
  */
-void getSize__Q32og6Screen21DispMemberKanketuMenuFv(void)
+void og::Screen::DispMemberKanketuMenu::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5607,7 +5607,7 @@ void getSize__Q32og6Screen21DispMemberKanketuMenuFv(void)
  * Address:	801560EC
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen21DispMemberKanketuMenuFv(void)
+void og::Screen::DispMemberKanketuMenu::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5622,7 +5622,7 @@ void getOwnerID__Q32og6Screen21DispMemberKanketuMenuFv(void)
  * Address:	801560F8
  * Size:	000014
  */
-void getMemberID__Q32og6Screen21DispMemberKanketuMenuFv(void)
+void og::Screen::DispMemberKanketuMenu::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5639,7 +5639,7 @@ void getMemberID__Q32og6Screen21DispMemberKanketuMenuFv(void)
  * Address:	8015610C
  * Size:	000008
  */
-void getSize__Q32og6Screen18DispMemberCaveMoreFv(void)
+void og::Screen::DispMemberCaveMore::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5653,7 +5653,7 @@ void getSize__Q32og6Screen18DispMemberCaveMoreFv(void)
  * Address:	80156114
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen18DispMemberCaveMoreFv(void)
+void og::Screen::DispMemberCaveMore::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5668,7 +5668,7 @@ void getOwnerID__Q32og6Screen18DispMemberCaveMoreFv(void)
  * Address:	80156120
  * Size:	000014
  */
-void getMemberID__Q32og6Screen18DispMemberCaveMoreFv(void)
+void og::Screen::DispMemberCaveMore::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5685,7 +5685,7 @@ void getMemberID__Q32og6Screen18DispMemberCaveMoreFv(void)
  * Address:	80156134
  * Size:	000008
  */
-void getSize__Q32og6Screen17DispMemberAnaDemoFv(void)
+void og::Screen::DispMemberAnaDemo::getSize(void)
 {
 /*
 .loc_0x0:
@@ -5699,7 +5699,7 @@ void getSize__Q32og6Screen17DispMemberAnaDemoFv(void)
  * Address:	8015613C
  * Size:	00000C
  */
-void getOwnerID__Q32og6Screen17DispMemberAnaDemoFv(void)
+void og::Screen::DispMemberAnaDemo::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -5714,7 +5714,7 @@ void getOwnerID__Q32og6Screen17DispMemberAnaDemoFv(void)
  * Address:	80156148
  * Size:	000014
  */
-void getMemberID__Q32og6Screen17DispMemberAnaDemoFv(void)
+void og::Screen::DispMemberAnaDemo::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -5731,7 +5731,7 @@ void getMemberID__Q32og6Screen17DispMemberAnaDemoFv(void)
  * Address:	8015615C
  * Size:	00000C
  */
-void getName__Q24Game11PikiKillArgFv(void)
+void Game::PikiKillArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -5746,7 +5746,7 @@ void getName__Q24Game11PikiKillArgFv(void)
  * Address:	80156168
  * Size:	00009C
  */
-void __dt__Q23efx11TLastMomijiFv(void)
+void efx::TLastMomiji::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5801,7 +5801,7 @@ void __dt__Q23efx11TLastMomijiFv(void)
  * Address:	80156204
  * Size:	00009C
  */
-void __dt__Q23efx13TForestSakuraFv(void)
+void efx::TForestSakura::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5856,7 +5856,7 @@ void __dt__Q23efx13TForestSakuraFv(void)
  * Address:	801562A0
  * Size:	00009C
  */
-void __dt__Q23efx13TTutorialSnowFv(void)
+void efx::TTutorialSnow::__dt(void)
 {
 /*
 .loc_0x0:
@@ -5911,7 +5911,7 @@ void __dt__Q23efx13TTutorialSnowFv(void)
  * Address:	8015633C
  * Size:	000008
  */
-void isCaveFloor__Q26PSGame13CaveFloorInfoFv(void)
+void PSGame::CaveFloorInfo::isCaveFloor(void)
 {
 /*
 .loc_0x0:
@@ -5925,7 +5925,7 @@ void isCaveFloor__Q26PSGame13CaveFloorInfoFv(void)
  * Address:	80156344
  * Size:	000014
  */
-void isBossFloor__Q26PSGame13CaveFloorInfoFv(void)
+void PSGame::CaveFloorInfo::isBossFloor(void)
 {
 /*
 .loc_0x0:
@@ -5942,7 +5942,7 @@ void isBossFloor__Q26PSGame13CaveFloorInfoFv(void)
  * Address:	80156358
  * Size:	000014
  */
-void isRelaxFloor__Q26PSGame13CaveFloorInfoFv(void)
+void PSGame::CaveFloorInfo::isRelaxFloor(void)
 {
 /*
 .loc_0x0:
@@ -5959,7 +5959,7 @@ void isRelaxFloor__Q26PSGame13CaveFloorInfoFv(void)
  * Address:	8015636C
  * Size:	000008
  */
-void isDevelopSection__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::isDevelopSection(void)
 {
 /*
 .loc_0x0:
@@ -5973,7 +5973,7 @@ void isDevelopSection__Q24Game17SingleGameSectionFv(void)
  * Address:	80156374
  * Size:	000008
  */
-void getTimerType__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::getTimerType(void)
 {
 /*
 .loc_0x0:
@@ -5987,7 +5987,7 @@ void getTimerType__Q24Game17SingleGameSectionFv(void)
  * Address:	8015637C
  * Size:	000008
  */
-void getCaveFilename__Q24Game17SingleGameSectionFv(void)
+void Game::SingleGameSection::getCaveFilename(void)
 {
 /*
 .loc_0x0:
@@ -6298,7 +6298,7 @@ void __sinit_singleGameSection_cpp(void)
  * Address:	801565B0
  * Size:	000008
  */
-void @4@__dt__Q23efx13TTutorialSnowFv(void)
+void @4@efx::TTutorialSnow::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6312,7 +6312,7 @@ void @4@__dt__Q23efx13TTutorialSnowFv(void)
  * Address:	801565B8
  * Size:	000008
  */
-void @4@__dt__Q23efx13TForestSakuraFv(void)
+void @4@efx::TForestSakura::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6326,7 +6326,7 @@ void @4@__dt__Q23efx13TForestSakuraFv(void)
  * Address:	801565C0
  * Size:	000008
  */
-void @4@__dt__Q23efx11TLastMomijiFv(void)
+void @4@efx::TLastMomiji::__dt(void)
 {
 /*
 .loc_0x0:

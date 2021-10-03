@@ -25,7 +25,7 @@ void check_fragmentation()
  * Address:	80164BF0
  * Size:	0000C0
  */
-void __ct__Q24Game14BaseHIOSectionFP7JKRHeap(void)
+void Game::BaseHIOSection::__ct( (JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -89,7 +89,7 @@ void __ct__Q24Game14BaseHIOSectionFP7JKRHeap(void)
  * Address:	80164CB0
  * Size:	0000C4
  */
-void __dt__Q24Game14BaseHIOSectionFv(void)
+void Game::BaseHIOSection::__dt(void)
 {
 /*
 .loc_0x0:
@@ -156,7 +156,7 @@ void __dt__Q24Game14BaseHIOSectionFv(void)
  * Address:	80164D74
  * Size:	000060
  */
-void __dt__Q24Game11HIORootNodeFv(void)
+void Game::HIORootNode::__dt(void)
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void __dt__Q24Game11HIORootNodeFv(void)
  * Address:	80164DD4
  * Size:	000150
  */
-void setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi(void)
+void Game::BaseHIOSection::setDisplay( (JFWDisplay *, int))
 {
 /*
 .loc_0x0:
@@ -296,7 +296,7 @@ void setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi(void)
  * Address:	80164F24
  * Size:	000080
  */
-void initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode(void)
+void Game::BaseHIOSection::initHIO( (Game::HIORootNode *))
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode(void)
  * Address:	80164FA4
  * Size:	000004
  */
-void createScreenRootNode__Q24Game14BaseHIOSectionFv(void)
+void Game::BaseHIOSection::createScreenRootNode(void)
 {
 /*
 .loc_0x0:
@@ -361,7 +361,7 @@ void createScreenRootNode__Q24Game14BaseHIOSectionFv(void)
  * Address:	80164FA8
  * Size:	000008
  */
-void doUpdate__Q24Game14BaseHIOSectionFv(void)
+void Game::BaseHIOSection::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -375,7 +375,7 @@ void doUpdate__Q24Game14BaseHIOSectionFv(void)
  * Address:	80164FB0
  * Size:	000024
  */
-void addGenNode__Q24Game14BaseHIOSectionFP5CNode(void)
+void Game::BaseHIOSection::addGenNode( (CNode *))
 {
 /*
 .loc_0x0:
@@ -396,7 +396,7 @@ void addGenNode__Q24Game14BaseHIOSectionFP5CNode(void)
  * Address:	80164FD4
  * Size:	000004
  */
-void refreshHIO__Q24Game14BaseHIOSectionFv(void)
+void Game::BaseHIOSection::refreshHIO(void)
 {
 /*
 .loc_0x0:
@@ -409,7 +409,7 @@ void refreshHIO__Q24Game14BaseHIOSectionFv(void)
  * Address:	80164FD8
  * Size:	000054
  */
-void __ct__Q24Game11HIORootNodeFP7Section(void)
+void Game::HIORootNode::__ct( (Section *))
 {
 /*
 .loc_0x0:

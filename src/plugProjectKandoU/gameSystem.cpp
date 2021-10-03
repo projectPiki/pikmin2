@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801B4A80
  * Size:	000100
  */
-void __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection(void)
+void Game::GameSystem::__ct( (Game::BaseGameSection *))
 {
 /*
 .loc_0x0:
@@ -91,7 +91,7 @@ void __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection(void)
  * Address:	801B4B80
  * Size:	0000E8
  */
-void __dt__Q24Game10GameSystemFv(void)
+void Game::GameSystem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -167,7 +167,7 @@ void __dt__Q24Game10GameSystemFv(void)
  * Address:	801B4C68
  * Size:	0000F0
  */
-void init__Q24Game10GameSystemFv(void)
+void Game::GameSystem::init(void)
 {
 /*
 .loc_0x0:
@@ -245,7 +245,7 @@ void init__Q24Game10GameSystemFv(void)
  * Address:	801B4D58
  * Size:	000020
  */
-void calcFrameDist__Q24Game10GameSystemFi(void)
+void Game::GameSystem::calcFrameDist( (int))
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void calcFrameDist__Q24Game10GameSystemFi(void)
  * Address:	801B4D78
  * Size:	0000DC
  */
-void startFrame__Q24Game10GameSystemFv(void)
+void Game::GameSystem::startFrame(void)
 {
 /*
 .loc_0x0:
@@ -340,7 +340,7 @@ void startFrame__Q24Game10GameSystemFv(void)
  * Address:	801B4E54
  * Size:	000018
  */
-void endFrame__Q24Game10GameSystemFv(void)
+void Game::GameSystem::endFrame(void)
 {
 /*
 .loc_0x0:
@@ -358,7 +358,7 @@ void endFrame__Q24Game10GameSystemFv(void)
  * Address:	801B4E6C
  * Size:	000038
  */
-void startFadeout__Q24Game10GameSystemFf(void)
+void Game::GameSystem::startFadeout( (float))
 {
 /*
 .loc_0x0:
@@ -386,7 +386,7 @@ void startFadeout__Q24Game10GameSystemFf(void)
  * Address:	801B4EA4
  * Size:	000038
  */
-void startFadein__Q24Game10GameSystemFf(void)
+void Game::GameSystem::startFadein( (float))
 {
 /*
 .loc_0x0:
@@ -414,7 +414,7 @@ void startFadein__Q24Game10GameSystemFf(void)
  * Address:	801B4EDC
  * Size:	000038
  */
-void startFadeoutin__Q24Game10GameSystemFf(void)
+void Game::GameSystem::startFadeoutin( (float))
 {
 /*
 .loc_0x0:
@@ -442,7 +442,7 @@ void startFadeoutin__Q24Game10GameSystemFf(void)
  * Address:	801B4F14
  * Size:	000038
  */
-void startFadeblack__Q24Game10GameSystemFv(void)
+void Game::GameSystem::startFadeblack(void)
 {
 /*
 .loc_0x0:
@@ -470,7 +470,7 @@ void startFadeblack__Q24Game10GameSystemFv(void)
  * Address:	801B4F4C
  * Size:	000038
  */
-void startFadewhite__Q24Game10GameSystemFv(void)
+void Game::GameSystem::startFadewhite(void)
 {
 /*
 .loc_0x0:
@@ -498,7 +498,7 @@ void startFadewhite__Q24Game10GameSystemFv(void)
  * Address:	801B4F84
  * Size:	000008
  */
-void setMoviePause__Q24Game10GameSystemFbPc(void)
+void Game::GameSystem::setMoviePause( (bool, char *))
 {
 /*
 .loc_0x0:
@@ -512,7 +512,7 @@ void setMoviePause__Q24Game10GameSystemFbPc(void)
  * Address:	801B4F8C
  * Size:	000008
  */
-void setFrozen__Q24Game10GameSystemFbPc(void)
+void Game::GameSystem::setFrozen( (bool, char *))
 {
 /*
 .loc_0x0:
@@ -526,7 +526,7 @@ void setFrozen__Q24Game10GameSystemFbPc(void)
  * Address:	801B4F94
  * Size:	00002C
  */
-void setPause__Q24Game10GameSystemFbPci(void)
+void Game::GameSystem::setPause( (bool, char *, int))
 {
 /*
 .loc_0x0:
@@ -549,7 +549,7 @@ void setPause__Q24Game10GameSystemFbPci(void)
  * Address:	801B4FC0
  * Size:	000008
  */
-void paused_soft__Q24Game10GameSystemFv(void)
+void Game::GameSystem::paused_soft(void)
 {
 /*
 .loc_0x0:
@@ -563,7 +563,7 @@ void paused_soft__Q24Game10GameSystemFv(void)
  * Address:	801B4FC8
  * Size:	000028
  */
-void paused__Q24Game10GameSystemFv(void)
+void Game::GameSystem::paused(void)
 {
 /*
 .loc_0x0:
@@ -587,7 +587,7 @@ void paused__Q24Game10GameSystemFv(void)
  * Address:	801B4FF0
  * Size:	000050
  */
-void startPause__Q24Game10GameSystemFbiPc(void)
+void Game::GameSystem::startPause( (bool, int, char *))
 {
 /*
 .loc_0x0:
@@ -625,7 +625,7 @@ void startPause__Q24Game10GameSystemFbiPc(void)
  * Address:	801B5040
  * Size:	00002C
  */
-void setDrawBuffer__Q24Game10GameSystemFi(void)
+void Game::GameSystem::setDrawBuffer( (int))
 {
 /*
 .loc_0x0:
@@ -650,7 +650,7 @@ void setDrawBuffer__Q24Game10GameSystemFi(void)
  * Address:	801B506C
  * Size:	00000C
  */
-void getLightMgr__Q24Game10GameSystemFv(void)
+void Game::GameSystem::getLightMgr(void)
 {
 /*
 .loc_0x0:
@@ -665,7 +665,7 @@ void getLightMgr__Q24Game10GameSystemFv(void)
  * Address:	801B5078
  * Size:	000274
  */
-void doAnimation__Q24Game10GameSystemFv(void)
+void Game::GameSystem::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -860,7 +860,7 @@ void doAnimation__Q24Game10GameSystemFv(void)
  * Address:	801B52EC
  * Size:	0001E4
  */
-void doEntry__Q24Game10GameSystemFv(void)
+void Game::GameSystem::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -1009,7 +1009,7 @@ void doEntry__Q24Game10GameSystemFv(void)
  * Address:	801B54D0
  * Size:	0001F4
  */
-void doSetView__Q24Game10GameSystemFi(void)
+void Game::GameSystem::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -1162,7 +1162,7 @@ void doSetView__Q24Game10GameSystemFi(void)
  * Address:	801B56C4
  * Size:	000404
  */
-void doViewCalc__Q24Game10GameSystemFv(void)
+void Game::GameSystem::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -1473,7 +1473,7 @@ void doViewCalc__Q24Game10GameSystemFv(void)
  * Address:	801B5AC8
  * Size:	000284
  */
-void doSimulation__Q24Game10GameSystemFf(void)
+void Game::GameSystem::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -1672,7 +1672,7 @@ void doSimulation__Q24Game10GameSystemFf(void)
  * Address:	801B5D4C
  * Size:	0001F4
  */
-void doSimpleDraw__Q24Game10GameSystemFP8Viewport(void)
+void Game::GameSystem::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -1825,7 +1825,7 @@ void doSimpleDraw__Q24Game10GameSystemFP8Viewport(void)
  * Address:	801B5F40
  * Size:	000004
  */
-void doDirectDraw__Q24Game10GameSystemFR8Graphics(void)
+void Game::GameSystem::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1838,7 +1838,7 @@ void doDirectDraw__Q24Game10GameSystemFR8Graphics(void)
  * Address:	801B5F44
  * Size:	000004
  */
-void directDraw__Q24Game10GameSystemFR8Graphics(void)
+void Game::GameSystem::directDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1851,7 +1851,7 @@ void directDraw__Q24Game10GameSystemFR8Graphics(void)
  * Address:	801B5F48
  * Size:	00006C
  */
-void addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr(void)
+void Game::GameSystem::addObjectMgr( (GenericObjectMgr *))
 {
 /*
 .loc_0x0:
@@ -1892,7 +1892,7 @@ void addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr(void)
  * Address:	801B5FB4
  * Size:	000020
  */
-void detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr(void)
+void Game::GameSystem::detachObjectMgr( (GenericObjectMgr *))
 {
 /*
 .loc_0x0:
@@ -1912,7 +1912,7 @@ void detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr(void)
  * Address:	........
  * Size:	000054
  */
-void detachAllMgr__Q24Game10GameSystemFv(void)
+void Game::GameSystem::detachAllMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1943,7 +1943,7 @@ void addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<GenericObjectMgr>(vo
  * Address:	801B5FF8
  * Size:	000058
  */
-void detachObjectMgr_reuse__Q24Game10GameSystemFP16GenericObjectMgr(void)
+void Game::GameSystem::detachObjectMgr_reuse( (GenericObjectMgr *))
 {
 /*
 .loc_0x0:
@@ -1985,7 +1985,7 @@ void detachObjectMgr_reuse__Q24Game10GameSystemFP16GenericObjectMgr(void)
  * Address:	........
  * Size:	0000FC
  */
-void __ct__Q24Game18OptimiseControllerFv(void)
+void Game::OptimiseController::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1995,7 +1995,7 @@ void __ct__Q24Game18OptimiseControllerFv(void)
  * Address:	801B6050
  * Size:	000068
  */
-void __dt__Q24Game18OptimiseControllerFv(void)
+void Game::OptimiseController::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2035,7 +2035,7 @@ void __dt__Q24Game18OptimiseControllerFv(void)
  * Address:	801B60B8
  * Size:	00010C
  */
-void globalInstance__Q24Game18OptimiseControllerFv(void)
+void Game::OptimiseController::globalInstance(void)
 {
 /*
 .loc_0x0:
@@ -2122,7 +2122,7 @@ void globalInstance__Q24Game18OptimiseControllerFv(void)
  * Address:	801B61C4
  * Size:	000048
  */
-void deleteInstance__Q24Game18OptimiseControllerFv(void)
+void Game::OptimiseController::deleteInstance(void)
 {
 /*
 .loc_0x0:
@@ -2213,7 +2213,7 @@ void __sinit_gameSystem_cpp(void)
  * Address:	801B6278
  * Size:	000008
  */
-void @28@doSimpleDraw__Q24Game10GameSystemFP8Viewport(void)
+void @28@Game::GameSystem::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -2227,7 +2227,7 @@ void @28@doSimpleDraw__Q24Game10GameSystemFP8Viewport(void)
  * Address:	801B6280
  * Size:	000008
  */
-void @28@doDirectDraw__Q24Game10GameSystemFR8Graphics(void)
+void @28@Game::GameSystem::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2241,7 +2241,7 @@ void @28@doDirectDraw__Q24Game10GameSystemFR8Graphics(void)
  * Address:	801B6288
  * Size:	000008
  */
-void @28@doSimulation__Q24Game10GameSystemFf(void)
+void @28@Game::GameSystem::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2255,7 +2255,7 @@ void @28@doSimulation__Q24Game10GameSystemFf(void)
  * Address:	801B6290
  * Size:	000008
  */
-void @28@doViewCalc__Q24Game10GameSystemFv(void)
+void @28@Game::GameSystem::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -2269,7 +2269,7 @@ void @28@doViewCalc__Q24Game10GameSystemFv(void)
  * Address:	801B6298
  * Size:	000008
  */
-void @28@doSetView__Q24Game10GameSystemFi(void)
+void @28@Game::GameSystem::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -2283,7 +2283,7 @@ void @28@doSetView__Q24Game10GameSystemFi(void)
  * Address:	801B62A0
  * Size:	000008
  */
-void @28@doEntry__Q24Game10GameSystemFv(void)
+void @28@Game::GameSystem::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -2297,7 +2297,7 @@ void @28@doEntry__Q24Game10GameSystemFv(void)
  * Address:	801B62A8
  * Size:	000008
  */
-void @28@doAnimation__Q24Game10GameSystemFv(void)
+void @28@Game::GameSystem::doAnimation(void)
 {
 /*
 .loc_0x0:

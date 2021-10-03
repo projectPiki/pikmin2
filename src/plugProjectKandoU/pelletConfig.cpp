@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801B3EEC
  * Size:	000048
  */
-void __ct__Q24Game16PelletConfigListFv(void)
+void Game::PelletConfigList::__ct(void)
 {
 /*
 .loc_0x0:
@@ -45,7 +45,7 @@ void __ct__Q24Game16PelletConfigListFv(void)
  * Address:	801B3F34
  * Size:	0000AC
  */
-void __ct__Q24Game12PelletConfigFv(void)
+void Game::PelletConfig::__ct(void)
 {
 /*
 .loc_0x0:
@@ -100,7 +100,7 @@ void __ct__Q24Game12PelletConfigFv(void)
  * Address:	801B3FE0
  * Size:	000070
  */
-void __dt__Q34Game12PelletConfig6TParmsFv(void)
+void Game::PelletConfig::TParms::__dt(void)
 {
 /*
 .loc_0x0:
@@ -144,7 +144,7 @@ void __dt__Q34Game12PelletConfig6TParmsFv(void)
  * Address:	801B4050
  * Size:	000374
  */
-void __ct__Q34Game12PelletConfig6TParmsFv(void)
+void Game::PelletConfig::TParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -415,7 +415,7 @@ void TagParameters::~TagParameters()
  * Address:	801B4424
  * Size:	000084
  */
-void getPelletConfig__Q24Game16PelletConfigListFPc(void)
+void Game::PelletConfigList::getPelletConfig( (char *))
 {
 /*
 .loc_0x0:
@@ -468,7 +468,7 @@ void getPelletConfig__Q24Game16PelletConfigListFPc(void)
  * Address:	801B44A8
  * Size:	00007C
  */
-void getPelletConfig__Q24Game16PelletConfigListFi(void)
+void Game::PelletConfigList::getPelletConfig( (int))
 {
 /*
 .loc_0x0:
@@ -515,7 +515,7 @@ void getPelletConfig__Q24Game16PelletConfigListFi(void)
  * Address:	801B4524
  * Size:	000044
  */
-void getPelletConfig_ByDictionaryNo__Q24Game16PelletConfigListFi(void)
+void Game::PelletConfigList::getPelletConfig_ByDictionaryNo( (int))
 {
 /*
 .loc_0x0:
@@ -550,7 +550,7 @@ void getPelletConfig_ByDictionaryNo__Q24Game16PelletConfigListFi(void)
  * Address:	........
  * Size:	000068
  */
-void dump__Q24Game16PelletConfigListFv(void)
+void Game::PelletConfigList::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -560,7 +560,7 @@ void dump__Q24Game16PelletConfigListFv(void)
  * Address:	........
  * Size:	00009C
  */
-void load__Q24Game16PelletConfigListFPc(void)
+void Game::PelletConfigList::load( (char *))
 {
 	// UNUSED FUNCTION
 }
@@ -570,7 +570,7 @@ void load__Q24Game16PelletConfigListFPc(void)
  * Address:	801B4568
  * Size:	000130
  */
-void read__Q24Game16PelletConfigListFR6Stream(void)
+void Game::PelletConfigList::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -668,7 +668,7 @@ void read__Q24Game16PelletConfigListFR6Stream(void)
  * Address:	801B4698
  * Size:	000098
  */
-void __dt__Q24Game12PelletConfigFv(void)
+void Game::PelletConfig::__dt(void)
 {
 /*
 .loc_0x0:
@@ -722,7 +722,7 @@ void __dt__Q24Game12PelletConfigFv(void)
  * Address:	........
  * Size:	000004
  */
-void write__Q24Game16PelletConfigListFR6Stream(void)
+void Game::PelletConfigList::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -745,7 +745,7 @@ void TagParm::flushValue()
  * Address:	801B4734
  * Size:	000060
  */
-void __dt__Q24Game16PelletConfigListFv(void)
+void Game::PelletConfigList::__dt(void)
 {
 /*
 .loc_0x0:

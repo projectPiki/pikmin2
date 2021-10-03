@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000088
  */
-void __ct__Q34Game13ChallengeGame9StageDataFv(void)
+void Game::ChallengeGame::StageData::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q34Game13ChallengeGame9StageDataFv(void)
  * Address:	8022D68C
  * Size:	000238
  */
-void read__Q34Game13ChallengeGame9StageDataFR6Stream(void)
+void Game::ChallengeGame::StageData::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -201,7 +201,7 @@ void read__Q34Game13ChallengeGame9StageDataFR6Stream(void)
  * Address:	........
  * Size:	0001DC
  */
-void write__Q34Game13ChallengeGame9StageDataFR6Stream(void)
+void Game::ChallengeGame::StageData::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -211,7 +211,7 @@ void write__Q34Game13ChallengeGame9StageDataFR6Stream(void)
  * Address:	8022D8C4
  * Size:	0000B4
  */
-void __ct__Q34Game13ChallengeGame9StageListFv(void)
+void Game::ChallengeGame::StageList::__ct(void)
 {
 /*
 .loc_0x0:
@@ -268,7 +268,7 @@ void __ct__Q34Game13ChallengeGame9StageListFv(void)
  * Address:	8022D978
  * Size:	000060
  */
-void __dt__Q34Game13ChallengeGame9StageDataFv(void)
+void Game::ChallengeGame::StageData::__dt(void)
 {
 /*
 .loc_0x0:
@@ -306,7 +306,7 @@ void __dt__Q34Game13ChallengeGame9StageDataFv(void)
  * Address:	8022D9D8
  * Size:	00010C
  */
-void read__Q34Game13ChallengeGame9StageListFR6Stream(void)
+void Game::ChallengeGame::StageList::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void read__Q34Game13ChallengeGame9StageListFR6Stream(void)
  * Address:	........
  * Size:	0000A0
  */
-void write__Q34Game13ChallengeGame9StageListFR6Stream(void)
+void Game::ChallengeGame::StageList::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -407,7 +407,7 @@ void write__Q34Game13ChallengeGame9StageListFR6Stream(void)
  * Address:	8022DAE4
  * Size:	000084
  */
-void getStageData__Q34Game13ChallengeGame9StageListFi(void)
+void Game::ChallengeGame::StageList::getStageData( (int))
 {
 /*
 .loc_0x0:
@@ -456,7 +456,7 @@ void getStageData__Q34Game13ChallengeGame9StageListFi(void)
  * Address:	........
  * Size:	000090
  */
-void __ct__Q34Game6VsGame9StageDataFv(void)
+void Game::VsGame::StageData::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -466,7 +466,7 @@ void __ct__Q34Game6VsGame9StageDataFv(void)
  * Address:	........
  * Size:	000284
  */
-void read__Q34Game6VsGame9StageDataFR6Stream(void)
+void Game::VsGame::StageData::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -476,7 +476,7 @@ void read__Q34Game6VsGame9StageDataFR6Stream(void)
  * Address:	........
  * Size:	00019C
  */
-void write__Q34Game6VsGame9StageDataFR6Stream(void)
+void Game::VsGame::StageData::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -486,7 +486,7 @@ void write__Q34Game6VsGame9StageDataFR6Stream(void)
  * Address:	8022DB68
  * Size:	0000BC
  */
-void __ct__Q34Game6VsGame9StageListFv(void)
+void Game::VsGame::StageList::__ct(void)
 {
 /*
 .loc_0x0:
@@ -545,7 +545,7 @@ void __ct__Q34Game6VsGame9StageListFv(void)
  * Address:	8022DC24
  * Size:	000060
  */
-void __dt__Q34Game6VsGame9StageDataFv(void)
+void Game::VsGame::StageData::__dt(void)
 {
 /*
 .loc_0x0:
@@ -583,7 +583,7 @@ void __dt__Q34Game6VsGame9StageDataFv(void)
  * Address:	8022DC84
  * Size:	000350
  */
-void read__Q34Game6VsGame9StageListFR6Stream(void)
+void Game::VsGame::StageList::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -831,7 +831,7 @@ void read__Q34Game6VsGame9StageListFR6Stream(void)
  * Address:	........
  * Size:	0001F8
  */
-void write__Q34Game6VsGame9StageListFR6Stream(void)
+void Game::VsGame::StageList::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -841,7 +841,7 @@ void write__Q34Game6VsGame9StageListFR6Stream(void)
  * Address:	8022DFD4
  * Size:	000084
  */
-void getStageData__Q34Game6VsGame9StageListFi(void)
+void Game::VsGame::StageList::getStageData( (int))
 {
 /*
 .loc_0x0:
@@ -890,7 +890,7 @@ void getStageData__Q34Game6VsGame9StageListFi(void)
  * Address:	8022E058
  * Size:	000084
  */
-void __dt__Q34Game6VsGame9StageListFv(void)
+void Game::VsGame::StageList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -939,7 +939,7 @@ void __dt__Q34Game6VsGame9StageListFv(void)
  * Address:	8022E0DC
  * Size:	000084
  */
-void __dt__Q34Game13ChallengeGame9StageListFv(void)
+void Game::ChallengeGame::StageList::__dt(void)
 {
 /*
 .loc_0x0:

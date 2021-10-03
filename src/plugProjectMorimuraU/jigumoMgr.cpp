@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803688CC
  * Size:	000050
  */
-void __ct__Q34Game6Jigumo3MgrFiUc(void)
+void Game::Jigumo::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -47,7 +47,7 @@ void __ct__Q34Game6Jigumo3MgrFiUc(void)
  * Address:	8036891C
  * Size:	000048
  */
-void doAlloc__Q34Game6Jigumo3MgrFv(void)
+void Game::Jigumo::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -81,7 +81,7 @@ void doAlloc__Q34Game6Jigumo3MgrFv(void)
  * Address:	80368964
  * Size:	00024C
  */
-void __ct__Q34Game6Jigumo5ParmsFv(void)
+void Game::Jigumo::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -240,7 +240,7 @@ void __ct__Q34Game6Jigumo5ParmsFv(void)
  * Address:	80368BB0
  * Size:	000020
  */
-void birth__Q34Game6Jigumo3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::Jigumo::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -260,7 +260,7 @@ void birth__Q34Game6Jigumo3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	80368BD0
  * Size:	000068
  */
-void loadModelData__Q34Game6Jigumo3MgrFv(void)
+void Game::Jigumo::Mgr::loadModelData(void)
 {
 /*
 .loc_0x0:
@@ -302,7 +302,7 @@ void loadModelData__Q34Game6Jigumo3MgrFv(void)
  * Address:	80368C38
  * Size:	0000B0
  */
-void __dt__Q34Game6Jigumo3MgrFv(void)
+void Game::Jigumo::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void __dt__Q34Game6Jigumo3MgrFv(void)
  * Address:	80368CE8
  * Size:	00002C
  */
-void doLoadBmd__Q34Game6Jigumo3MgrFPv(void)
+void Game::Jigumo::Mgr::doLoadBmd( (void *))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void doLoadBmd__Q34Game6Jigumo3MgrFPv(void)
  * Address:	80368D14
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game6Jigumo3MgrFv(void)
+void Game::Jigumo::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -399,7 +399,7 @@ void getEnemyTypeID__Q34Game6Jigumo3MgrFv(void)
  * Address:	80368D1C
  * Size:	000060
  */
-void createObj__Q34Game6Jigumo3MgrFi(void)
+void Game::Jigumo::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -435,7 +435,7 @@ void createObj__Q34Game6Jigumo3MgrFi(void)
  * Address:	80368D7C
  * Size:	0000BC
  */
-void __dt__Q34Game6Jigumo3ObjFv(void)
+void Game::Jigumo::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -498,7 +498,7 @@ void __dt__Q34Game6Jigumo3ObjFv(void)
  * Address:	80368E38
  * Size:	000010
  */
-void getEnemy__Q34Game6Jigumo3MgrFi(void)
+void Game::Jigumo::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -514,7 +514,7 @@ void getEnemy__Q34Game6Jigumo3MgrFi(void)
  * Address:	80368E48
  * Size:	000050
  */
-void read__Q34Game6Jigumo5ParmsFR6Stream(void)
+void Game::Jigumo::Parms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -546,7 +546,7 @@ void read__Q34Game6Jigumo5ParmsFR6Stream(void)
  * Address:	80368E98
  * Size:	000008
  */
-void @4@__dt__Q34Game6Jigumo3MgrFv(void)
+void @4@Game::Jigumo::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

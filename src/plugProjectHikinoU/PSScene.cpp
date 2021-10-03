@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000098
  */
-void __ct__Q28PSSystem10WaveLoaderFUcUc(void)
+void PSSystem::WaveLoader::__ct( (unsigned char, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void __ct__Q28PSSystem10WaveLoaderFUcUc(void)
  * Address:	8034147C
  * Size:	00007C
  */
-void __dt__Q28PSSystem9WaveSceneFv(void)
+void PSSystem::WaveScene::__dt(void)
 {
 /*
 .loc_0x0:
@@ -60,7 +60,7 @@ void __dt__Q28PSSystem9WaveSceneFv(void)
  * Address:	........
  * Size:	000064
  */
-void loadWaveAll__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskChecker(void)
+void PSSystem::WaveLoader::loadWaveAll( (PSSystem::TaskChecker *))
 {
 	// UNUSED FUNCTION
 }
@@ -70,7 +70,7 @@ void loadWaveAll__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskChecker(void)
  * Address:	803414F8
  * Size:	000040
  */
-void loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9WaveScene7AreaArg(void)
+void PSSystem::WaveLoader::loadWave( (PSSystem::TaskChecker *, PSSystem::WaveScene::AreaArg))
 {
 /*
 .loc_0x0:
@@ -100,7 +100,7 @@ void loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9Wave
  * Address:	80341538
  * Size:	000118
  */
-void __ct__Q28PSSystem5SceneFUc(void)
+void PSSystem::Scene::__ct( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -196,7 +196,7 @@ void JSUList<PSSystem::SeqBase>::~JSUList()
  * Address:	80341650
  * Size:	0000C4
  */
-void __dt__Q28PSSystem5SceneFv(void)
+void PSSystem::Scene::__dt(void)
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void __dt__Q28PSSystem5SceneFv(void)
  * Address:	80341714
  * Size:	0000BC
  */
-void adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene(void)
+void PSSystem::Scene::adaptChildScene( (PSSystem::Scene *))
 {
 /*
 .loc_0x0:
@@ -330,7 +330,7 @@ void adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene(void)
  * Address:	803417D0
  * Size:	000070
  */
-void adaptTo__Q28PSSystem5SceneFPPQ28PSSystem5Scene(void)
+void PSSystem::Scene::adaptTo( (PSSystem::Scene **))
 {
 /*
 .loc_0x0:
@@ -372,7 +372,7 @@ void adaptTo__Q28PSSystem5SceneFPPQ28PSSystem5Scene(void)
  * Address:	80341840
  * Size:	000058
  */
-void detach__Q28PSSystem5SceneFv(void)
+void PSSystem::Scene::detach(void)
 {
 /*
 .loc_0x0:
@@ -408,7 +408,7 @@ void detach__Q28PSSystem5SceneFv(void)
  * Address:	80341898
  * Size:	000060
  */
-void appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase(void)
+void PSSystem::Scene::appendSeq( (PSSystem::SeqBase *))
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase(void)
  * Address:	803418F8
  * Size:	00003C
  */
-void startMainSeq__Q28PSSystem5SceneFv(void)
+void PSSystem::Scene::startMainSeq(void)
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void startMainSeq__Q28PSSystem5SceneFv(void)
  * Address:	80341934
  * Size:	00003C
  */
-void stopMainSeq__Q28PSSystem5SceneFUl(void)
+void PSSystem::Scene::stopMainSeq( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -504,7 +504,7 @@ void stopMainSeq__Q28PSSystem5SceneFUl(void)
  * Address:	80341970
  * Size:	000024
  */
-void stopAllSound__Q28PSSystem5SceneFUl(void)
+void PSSystem::Scene::stopAllSound( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -525,7 +525,7 @@ void stopAllSound__Q28PSSystem5SceneFUl(void)
  * Address:	80341994
  * Size:	000088
  */
-void scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker(void)
+void PSSystem::Scene::scene1st( (PSSystem::TaskChecker *))
 {
 /*
 .loc_0x0:
@@ -573,7 +573,7 @@ void scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker(void)
  * Address:	80341A1C
  * Size:	00005C
  */
-void scene1stLoadSync__Q28PSSystem5SceneFv(void)
+void PSSystem::Scene::scene1stLoadSync(void)
 {
 /*
 .loc_0x0:
@@ -610,7 +610,7 @@ void scene1stLoadSync__Q28PSSystem5SceneFv(void)
  * Address:	80341A78
  * Size:	00004C
  */
-void exec__Q28PSSystem5SceneFv(void)
+void PSSystem::Scene::exec(void)
 {
 /*
 .loc_0x0:
@@ -643,7 +643,7 @@ void exec__Q28PSSystem5SceneFv(void)
  * Address:	80341AC4
  * Size:	000034
  */
-void refreshCurEndScene__Q28PSSystem8SceneMgrFv(void)
+void PSSystem::SceneMgr::refreshCurEndScene(void)
 {
 /*
 .loc_0x0:
@@ -672,7 +672,7 @@ void refreshCurEndScene__Q28PSSystem8SceneMgrFv(void)
  * Address:	80341AF8
  * Size:	000154
  */
-void findSeq__Q28PSSystem8SceneMgrFP8JASTrack(void)
+void PSSystem::SceneMgr::findSeq( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -785,7 +785,7 @@ void findSeq__Q28PSSystem8SceneMgrFP8JASTrack(void)
  * Address:	80341C4C
  * Size:	000154
  */
-void getPlayingSeq__Q28PSSystem8SceneMgrFP8JASTrack(void)
+void PSSystem::SceneMgr::getPlayingSeq( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -898,7 +898,7 @@ void getPlayingSeq__Q28PSSystem8SceneMgrFP8JASTrack(void)
  * Address:	80341DA0
  * Size:	000440
  */
-void deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene(void)
+void PSSystem::SceneMgr::deleteScene( (PSSystem::Scene *))
 {
 /*
 .loc_0x0:
@@ -1256,7 +1256,7 @@ void deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene(void)
  * Address:	........
  * Size:	000060
  */
-void deleteGlobalScene__Q28PSSystem8SceneMgrFv(void)
+void PSSystem::SceneMgr::deleteGlobalScene(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1266,7 +1266,7 @@ void deleteGlobalScene__Q28PSSystem8SceneMgrFv(void)
  * Address:	803421E0
  * Size:	000068
  */
-void deleteCurrentScene__Q28PSSystem8SceneMgrFv(void)
+void PSSystem::SceneMgr::deleteCurrentScene(void)
 {
 /*
 .loc_0x0:
@@ -1308,7 +1308,7 @@ void deleteCurrentScene__Q28PSSystem8SceneMgrFv(void)
  * Address:	80342248
  * Size:	000008
  */
-void getSeqMgr__Q28PSSystem5SceneFv(void)
+void PSSystem::Scene::getSeqMgr(void)
 {
 /*
 .loc_0x0:
@@ -1322,7 +1322,7 @@ void getSeqMgr__Q28PSSystem5SceneFv(void)
  * Address:	80342250
  * Size:	000008
  */
-void getChildScene__Q28PSSystem5SceneFv(void)
+void PSSystem::Scene::getChildScene(void)
 {
 /*
 .loc_0x0:

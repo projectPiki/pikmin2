@@ -748,7 +748,7 @@ void J2DIndTexOrder::J2DIndTexOrder()
  * Address:	........
  * Size:	000084
  */
-void __ct__Q211J2DMaterial21J2DMaterialAnmPointerFv(void)
+void J2DMaterial::J2DMaterialAnmPointer::__ct(void)
 {
 	// UNUSED FUNCTION
 }

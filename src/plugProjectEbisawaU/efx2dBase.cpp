@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803B9830
  * Size:	000098
  */
-void create__Q25efx2d8TSimple1FPQ25efx2d3Arg(void)
+void efx2d::TSimple1::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -71,7 +71,7 @@ void create__Q25efx2d8TSimple1FPQ25efx2d3Arg(void)
  * Address:	803B98C8
  * Size:	0000B0
  */
-void create__Q25efx2d8TSimple2FPQ25efx2d3Arg(void)
+void efx2d::TSimple2::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -135,7 +135,7 @@ void create__Q25efx2d8TSimple2FPQ25efx2d3Arg(void)
  * Address:	803B9978
  * Size:	0000B0
  */
-void create__Q25efx2d8TSimple3FPQ25efx2d3Arg(void)
+void efx2d::TSimple3::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -199,7 +199,7 @@ void create__Q25efx2d8TSimple3FPQ25efx2d3Arg(void)
  * Address:	803B9A28
  * Size:	0000A4
  */
-void create__Q25efx2d8TForeverFPQ25efx2d3Arg(void)
+void efx2d::TForever::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void create__Q25efx2d8TForeverFPQ25efx2d3Arg(void)
  * Address:	803B9ACC
  * Size:	00003C
  */
-void kill__Q25efx2d8TForeverFv(void)
+void efx2d::TForever::kill(void)
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void kill__Q25efx2d8TForeverFv(void)
  * Address:	803B9B08
  * Size:	00003C
  */
-void fade__Q25efx2d8TForeverFv(void)
+void efx2d::TForever::fade(void)
 {
 /*
 .loc_0x0:
@@ -312,7 +312,7 @@ void fade__Q25efx2d8TForeverFv(void)
  * Address:	803B9B44
  * Size:	000024
  */
-void setGlobalScale__Q25efx2d8TForeverFf(void)
+void efx2d::TForever::setGlobalScale( (float))
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void setGlobalTranslation__Q25efx2d8TForeverFR10Vector2<float>(void)
  * Address:	803B9B68
  * Size:	000028
  */
-void setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor(void)
+void efx2d::TForever::setGlobalEnvColor( (JUtility::TColor &))
 {
 /*
 .loc_0x0:
@@ -365,7 +365,7 @@ void setGlobalEnvColor__Q25efx2d8TForeverFRQ28JUtility6TColor(void)
  * Address:	803B9B90
  * Size:	000014
  */
-void setGlobalAlpha__Q25efx2d8TForeverFUc(void)
+void efx2d::TForever::setGlobalAlpha( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -382,7 +382,7 @@ void setGlobalAlpha__Q25efx2d8TForeverFUc(void)
  * Address:	803B9BA4
  * Size:	000080
  */
-void __ct__Q25efx2d9TForeverNFUc(void)
+void efx2d::TForeverN::__ct( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void __ct__Q25efx2d9TForeverNFUc(void)
  * Address:	803B9C24
  * Size:	000050
  */
-void __ct__Q25efx2d8TForeverFv(void)
+void efx2d::TForever::__ct(void)
 {
 /*
 .loc_0x0:
@@ -458,7 +458,7 @@ void __ct__Q25efx2d8TForeverFv(void)
  * Address:	803B9C74
  * Size:	000098
  */
-void create__Q25efx2d9TForeverNFPQ25efx2d3Arg(void)
+void efx2d::TForeverN::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -514,7 +514,7 @@ void create__Q25efx2d9TForeverNFPQ25efx2d3Arg(void)
  * Address:	803B9D0C
  * Size:	00006C
  */
-void kill__Q25efx2d9TForeverNFv(void)
+void efx2d::TForeverN::kill(void)
 {
 /*
 .loc_0x0:
@@ -557,7 +557,7 @@ void kill__Q25efx2d9TForeverNFv(void)
  * Address:	803B9D78
  * Size:	00006C
  */
-void fade__Q25efx2d9TForeverNFv(void)
+void efx2d::TForeverN::fade(void)
 {
 /*
 .loc_0x0:
@@ -600,7 +600,7 @@ void fade__Q25efx2d9TForeverNFv(void)
  * Address:	803B9DE4
  * Size:	00007C
  */
-void setGroup__Q25efx2d9TForeverNFUc(void)
+void efx2d::TForeverN::setGroup( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -647,7 +647,7 @@ void setGroup__Q25efx2d9TForeverNFUc(void)
  * Address:	........
  * Size:	000050
  */
-void setGlobalScale__Q25efx2d9TForeverNFf(void)
+void efx2d::TForeverN::setGlobalScale( (float))
 {
 	// UNUSED FUNCTION
 }
@@ -667,7 +667,7 @@ void setGlobalTranslation__Q25efx2d9TForeverNFR10Vector2<float>(void)
  * Address:	........
  * Size:	000054
  */
-void setGlobalEnvColor__Q25efx2d9TForeverNFRQ28JUtility6TColor(void)
+void efx2d::TForeverN::setGlobalEnvColor( (JUtility::TColor &))
 {
 	// UNUSED FUNCTION
 }
@@ -677,7 +677,7 @@ void setGlobalEnvColor__Q25efx2d9TForeverNFRQ28JUtility6TColor(void)
  * Address:	803B9E60
  * Size:	000040
  */
-void setGlobalAlpha__Q25efx2d9TForeverNFUc(void)
+void efx2d::TForeverN::setGlobalAlpha( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -711,7 +711,7 @@ void setGlobalAlpha__Q25efx2d9TForeverNFUc(void)
  * Address:	803B9EA0
  * Size:	000088
  */
-void create__Q25efx2d9TChasePosFPQ25efx2d3Arg(void)
+void efx2d::TChasePos::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -767,7 +767,7 @@ void create__Q25efx2d9TChasePosFPQ25efx2d3Arg(void)
  * Address:	803B9F28
  * Size:	000078
  */
-void execute__Q25efx2d9TChasePosFP14JPABaseEmitter(void)
+void efx2d::TChasePos::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -811,7 +811,7 @@ void execute__Q25efx2d9TChasePosFP14JPABaseEmitter(void)
  * Address:	803B9FA0
  * Size:	000088
  */
-void create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg(void)
+void efx2d::TChasePosDir::create( (efx2d::Arg *))
 {
 /*
 .loc_0x0:
@@ -867,7 +867,7 @@ void create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg(void)
  * Address:	803BA028
  * Size:	0000B8
  */
-void execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter(void)
+void efx2d::TChasePosDir::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -929,7 +929,7 @@ void execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter(void)
  * Address:	803BA0E0
  * Size:	000084
  */
-void __dt__Q25efx2d12TChasePosDirFv(void)
+void efx2d::TChasePosDir::__dt(void)
 {
 /*
 .loc_0x0:
@@ -978,7 +978,7 @@ void __dt__Q25efx2d12TChasePosDirFv(void)
  * Address:	803BA164
  * Size:	000008
  */
-void @8@__dt__Q25efx2d8TForeverFv(void)
+void @8@efx2d::TForever::__dt(void)
 {
 /*
 .loc_0x0:
@@ -992,7 +992,7 @@ void @8@__dt__Q25efx2d8TForeverFv(void)
  * Address:	803BA16C
  * Size:	000008
  */
-void @8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter(void)
+void @8@efx2d::TChasePos::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1006,7 +1006,7 @@ void @8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter(void)
  * Address:	803BA174
  * Size:	000008
  */
-void @8@__dt__Q25efx2d9TChasePosFv(void)
+void @8@efx2d::TChasePos::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1020,7 +1020,7 @@ void @8@__dt__Q25efx2d9TChasePosFv(void)
  * Address:	803BA17C
  * Size:	000008
  */
-void @8@execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter(void)
+void @8@efx2d::TChasePosDir::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -1034,7 +1034,7 @@ void @8@execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter(void)
  * Address:	803BA184
  * Size:	000008
  */
-void @8@__dt__Q25efx2d12TChasePosDirFv(void)
+void @8@efx2d::TChasePosDir::__dt(void)
 {
 /*
 .loc_0x0:

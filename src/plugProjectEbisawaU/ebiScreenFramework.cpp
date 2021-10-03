@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803D3850
  * Size:	00003C
  */
-void setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive(void)
+void ebi::Screen::TScreenBase::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -44,7 +44,7 @@ void setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive(void)
  * Address:	803D388C
  * Size:	000004
  */
-void doSetArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive(void)
+void ebi::Screen::TScreenBase::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void doSetArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive(void)
  * Address:	803D3890
  * Size:	000058
  */
-void openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TScreenBase::openScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -95,7 +95,7 @@ void openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803D38E8
  * Size:	000004
  */
-void doOpenScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TScreenBase::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -108,7 +108,7 @@ void doOpenScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803D38EC
  * Size:	000058
  */
-void closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TScreenBase::closeScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -146,7 +146,7 @@ void closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose(void)
  * Address:	803D3944
  * Size:	000004
  */
-void doCloseScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TScreenBase::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -159,7 +159,7 @@ void doCloseScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose(void)
  * Address:	803D3948
  * Size:	000040
  */
-void killScreen__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::killScreen(void)
 {
 /*
 .loc_0x0:
@@ -187,7 +187,7 @@ void killScreen__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3988
  * Size:	000010
  */
-void isFinishScreen__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::isFinishScreen(void)
 {
 /*
 .loc_0x0:
@@ -203,7 +203,7 @@ void isFinishScreen__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	........
  * Size:	000014
  */
-void isOpenScreen__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::isOpenScreen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -213,7 +213,7 @@ void isOpenScreen__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3998
  * Size:	000014
  */
-void isWaitScreen__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::isWaitScreen(void)
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void isWaitScreen__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D39AC
  * Size:	000014
  */
-void isCloseScreen__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::isCloseScreen(void)
 {
 /*
 .loc_0x0:
@@ -247,7 +247,7 @@ void isCloseScreen__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D39C0
  * Size:	0000EC
  */
-void update__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::update(void)
 {
 /*
 .loc_0x0:
@@ -328,7 +328,7 @@ void update__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3AAC
  * Size:	000008
  */
-void doUpdateStateClose__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -342,7 +342,7 @@ void doUpdateStateClose__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3AB4
  * Size:	000008
  */
-void doUpdateStateWait__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -356,7 +356,7 @@ void doUpdateStateWait__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3ABC
  * Size:	000004
  */
-void doInitWaitState__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::doInitWaitState(void)
 {
 /*
 .loc_0x0:
@@ -369,7 +369,7 @@ void doInitWaitState__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3AC0
  * Size:	000008
  */
-void doUpdateStateOpen__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -383,7 +383,7 @@ void doUpdateStateOpen__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3AC8
  * Size:	000038
  */
-void draw__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::draw(void)
 {
 /*
 .loc_0x0:
@@ -411,7 +411,7 @@ void draw__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3B00
  * Size:	000004
  */
-void doDraw__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void doDraw__Q33ebi6Screen11TScreenBaseFv(void)
  * Address:	803D3B04
  * Size:	00000C
  */
-void getName__Q33ebi6Screen11TScreenBaseFv(void)
+void ebi::Screen::TScreenBase::getName(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80165088
  * Size:	000034
  */
-void __ct__Q24Game11NaviWhistleFPQ24Game4Navi(void)
+void Game::NaviWhistle::__ct( (Game::Navi *))
 {
 /*
 .loc_0x0:
@@ -42,7 +42,7 @@ void __ct__Q24Game11NaviWhistleFPQ24Game4Navi(void)
  * Address:	801650BC
  * Size:	000128
  */
-void init__Q24Game11NaviWhistleFv(void)
+void Game::NaviWhistle::init(void)
 {
 /*
 .loc_0x0:
@@ -136,7 +136,7 @@ void init__Q24Game11NaviWhistleFv(void)
  * Address:	801651E4
  * Size:	000190
  */
-void updatePosition__Q24Game11NaviWhistleFv(void)
+void Game::NaviWhistle::updatePosition(void)
 {
 /*
 .loc_0x0:
@@ -252,7 +252,7 @@ void updatePosition__Q24Game11NaviWhistleFv(void)
  * Address:	80165374
  * Size:	000078
  */
-void start__Q24Game11NaviWhistleFv(void)
+void Game::NaviWhistle::start(void)
 {
 /*
 .loc_0x0:
@@ -300,7 +300,7 @@ void start__Q24Game11NaviWhistleFv(void)
  * Address:	801653EC
  * Size:	000034
  */
-void stop__Q24Game11NaviWhistleFv(void)
+void Game::NaviWhistle::stop(void)
 {
 /*
 .loc_0x0:
@@ -327,7 +327,7 @@ void stop__Q24Game11NaviWhistleFv(void)
  * Address:	80165420
  * Size:	000010
  */
-void timeout__Q24Game11NaviWhistleFv(void)
+void Game::NaviWhistle::timeout(void)
 {
 /*
 .loc_0x0:
@@ -343,7 +343,7 @@ void timeout__Q24Game11NaviWhistleFv(void)
  * Address:	80165430
  * Size:	0000F4
  */
-void setFaceDir__Q24Game11NaviWhistleFf(void)
+void Game::NaviWhistle::setFaceDir( (float))
 {
 /*
 .loc_0x0:
@@ -426,7 +426,7 @@ void setFaceDir__Q24Game11NaviWhistleFf(void)
  * Address:	80165524
  * Size:	0001F4
  */
-void updateWhistle__Q24Game11NaviWhistleFv(void)
+void Game::NaviWhistle::updateWhistle(void)
 {
 /*
 .loc_0x0:

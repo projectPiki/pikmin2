@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803EB1A4
  * Size:	000118
  */
-void setGX__Q33ebi5title12TTitleFogMgrFR6Camera(void)
+void ebi::title::TTitleFogMgr::setGX( (Camera &))
 {
 /*
 .loc_0x0:
@@ -101,7 +101,7 @@ void setGX__Q33ebi5title12TTitleFogMgrFR6Camera(void)
  * Address:	........
  * Size:	000040
  */
-void offGX__Q33ebi5title12TTitleFogMgrFv(void)
+void ebi::title::TTitleFogMgr::offGX(void)
 {
 	// UNUSED FUNCTION
 }
@@ -111,7 +111,7 @@ void offGX__Q33ebi5title12TTitleFogMgrFv(void)
  * Address:	803EB2BC
  * Size:	00007C
  */
-void loadSettingFile__Q33ebi5title12TTitleFogMgrFP10JKRArchivePc(void)
+void ebi::title::TTitleFogMgr::loadSettingFile( (JKRArchive *, char *))
 {
 /*
 .loc_0x0:

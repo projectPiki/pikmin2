@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8015928C
  * Size:	0000CC
  */
-void __ct__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -82,7 +82,7 @@ void __ct__Q24Game7NaviMgrFv(void)
  * Address:	80159358
  * Size:	000060
  */
-void __ct__Q24Game9NaviParmsFv(void)
+void Game::NaviParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -120,7 +120,7 @@ void __ct__Q24Game9NaviParmsFv(void)
  * Address:	801593B8
  * Size:	000F10
  */
-void __ct__Q34Game9NaviParms5ParmsFv(void)
+void Game::NaviParms::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1098,7 +1098,7 @@ void __ct__Q34Game9NaviParms5ParmsFv(void)
  * Address:	8015A2C8
  * Size:	0001A4
  */
-void __ct__Q24Game13FakePikiParmsFv(void)
+void Game::FakePikiParms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1217,7 +1217,7 @@ void __ct__Q24Game13FakePikiParmsFv(void)
  * Address:	8015A46C
  * Size:	0002B4
  */
-void __ct__Q34Game13FakePikiParms5ParmsFv(void)
+void Game::FakePikiParms::Parms::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1460,7 +1460,7 @@ void MonoObjectMgr<Game::Navi>::~MonoObjectMgr()
  * Address:	8015A7C0
  * Size:	000110
  */
-void __dt__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1548,7 +1548,7 @@ void __dt__Q24Game7NaviMgrFv(void)
  * Address:	........
  * Size:	000020
  */
-void init__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1558,7 +1558,7 @@ void init__Q24Game7NaviMgrFv(void)
  * Address:	8015A8D0
  * Size:	000078
  */
-void createPSMDirectorUpdator__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::createPSMDirectorUpdator(void)
 {
 /*
 .loc_0x0:
@@ -1602,7 +1602,7 @@ void createPSMDirectorUpdator__Q24Game7NaviMgrFv(void)
  * Address:	8015A948
  * Size:	00005C
  */
-void resetMgr__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::resetMgr(void)
 {
 /*
 .loc_0x0:
@@ -1641,7 +1641,7 @@ void resetMgr__Q24Game7NaviMgrFv(void)
  * Address:	8015A9A4
  * Size:	000090
  */
-void killAll__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::killAll(void)
 {
 /*
 .loc_0x0:
@@ -1695,7 +1695,7 @@ void killAll__Q24Game7NaviMgrFv(void)
  * Address:	8015AA34
  * Size:	0000F0
  */
-void setupNavi__Q24Game7NaviMgrFPQ24Game4Navi(void)
+void Game::NaviMgr::setupNavi( (Game::Navi *))
 {
 /*
 .loc_0x0:
@@ -1771,7 +1771,7 @@ void setupNavi__Q24Game7NaviMgrFPQ24Game4Navi(void)
  * Address:	8015AB24
  * Size:	0000FC
  */
-void birth__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::birth(void)
 {
 /*
 .loc_0x0:
@@ -1856,7 +1856,7 @@ void birth__Q24Game7NaviMgrFv(void)
  * Address:	8015AC20
  * Size:	00009C
  */
-void getActiveNavi__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::getActiveNavi(void)
 {
 /*
 .loc_0x0:
@@ -1915,7 +1915,7 @@ void getActiveNavi__Q24Game7NaviMgrFv(void)
  * Address:	8015ACBC
  * Size:	0000BC
  */
-void loadResources__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::loadResources(void)
 {
 /*
 .loc_0x0:
@@ -1978,7 +1978,7 @@ void loadResources__Q24Game7NaviMgrFv(void)
  * Address:	8015AD78
  * Size:	000050
  */
-void read__Q24Game9NaviParmsFR6Stream(void)
+void Game::NaviParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2010,7 +2010,7 @@ void read__Q24Game9NaviParmsFR6Stream(void)
  * Address:	8015ADC8
  * Size:	000264
  */
-void load__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::load(void)
 {
 /*
 .loc_0x0:
@@ -2181,7 +2181,7 @@ void load__Q24Game7NaviMgrFv(void)
  * Address:	8015B02C
  * Size:	000064
  */
-void createModel__Q24Game7NaviMgrFi(void)
+void Game::NaviMgr::createModel( (int))
 {
 /*
 .loc_0x0:
@@ -2220,7 +2220,7 @@ void createModel__Q24Game7NaviMgrFi(void)
  * Address:	8015B090
  * Size:	0000D4
  */
-void loadResources_float__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::loadResources_float(void)
 {
 /*
 .loc_0x0:
@@ -2293,7 +2293,7 @@ void loadResources_float__Q24Game7NaviMgrFv(void)
  * Address:	8015B164
  * Size:	00008C
  */
-void getAliveCount__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::getAliveCount(void)
 {
 /*
 .loc_0x0:
@@ -2346,7 +2346,7 @@ void getAliveCount__Q24Game7NaviMgrFv(void)
  * Address:	........
  * Size:	000090
  */
-void getSurviveNavi__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::getSurviveNavi(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2356,7 +2356,7 @@ void getSurviveNavi__Q24Game7NaviMgrFv(void)
  * Address:	8015B1F0
  * Size:	000018
  */
-void clearDeadCount__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::clearDeadCount(void)
 {
 /*
 .loc_0x0:
@@ -2374,7 +2374,7 @@ void clearDeadCount__Q24Game7NaviMgrFv(void)
  * Address:	8015B208
  * Size:	000078
  */
-void informOrimaDead__Q24Game7NaviMgrFi(void)
+void Game::NaviMgr::informOrimaDead( (int))
 {
 /*
 .loc_0x0:
@@ -2422,7 +2422,7 @@ void informOrimaDead__Q24Game7NaviMgrFi(void)
  * Address:	8015B280
  * Size:	00004C
  */
-void getDeadOrima__Q24Game7NaviMgrFi(void)
+void Game::NaviMgr::getDeadOrima( (int))
 {
 /*
 .loc_0x0:
@@ -2457,7 +2457,7 @@ void getDeadOrima__Q24Game7NaviMgrFi(void)
  * Address:	8015B2CC
  * Size:	0000EC
  */
-void getAliveOrima__Q24Game7NaviMgrFi(void)
+void Game::NaviMgr::getAliveOrima( (int))
 {
 /*
 .loc_0x0:
@@ -2542,7 +2542,7 @@ void getAliveOrima__Q24Game7NaviMgrFi(void)
  * Address:	8015B3B8
  * Size:	0000A8
  */
-void setMovieDraw__Q24Game7NaviMgrFb(void)
+void Game::NaviMgr::setMovieDraw( (bool))
 {
 /*
 .loc_0x0:
@@ -2606,7 +2606,7 @@ void setMovieDraw__Q24Game7NaviMgrFb(void)
  * Address:	8015B460
  * Size:	0000E0
  */
-void doAnimation__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -2682,7 +2682,7 @@ void doAnimation__Q24Game7NaviMgrFv(void)
  * Address:	8015B540
  * Size:	000168
  */
-void doEntry__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -2800,7 +2800,7 @@ void doEntry__Q24Game7NaviMgrFv(void)
  * Address:	8015B6A8
  * Size:	000378
  */
-void doSimulation__Q24Game7NaviMgrFf(void)
+void Game::NaviMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -3076,7 +3076,7 @@ void doSimulation__Q24Game7NaviMgrFf(void)
  * Address:	........
  * Size:	000074
  */
-void draw2d__Q24Game7NaviMgrFR14J2DGrafContext(void)
+void Game::NaviMgr::draw2d( (J2DGrafContext &))
 {
 	// UNUSED FUNCTION
 }
@@ -3086,7 +3086,7 @@ void draw2d__Q24Game7NaviMgrFR14J2DGrafContext(void)
  * Address:	8015BA20
  * Size:	000004
  */
-void setupSoundViewerAndBas__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::setupSoundViewerAndBas(void)
 {
 /*
 .loc_0x0:
@@ -3099,7 +3099,7 @@ void setupSoundViewerAndBas__Q24Game7NaviMgrFv(void)
  * Address:	8015BA24
  * Size:	000008
  */
-void getMgrName__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::getMgrName(void)
 {
 /*
 .loc_0x0:
@@ -3113,7 +3113,7 @@ void getMgrName__Q24Game7NaviMgrFv(void)
  * Address:	8015BA2C
  * Size:	000008
  */
-void frozenable__Q24Game7NaviMgrFv(void)
+void Game::NaviMgr::frozenable(void)
 {
 /*
 .loc_0x0:
@@ -3221,7 +3221,7 @@ void ObjectMgr<Game::Navi>::~ObjectMgr()
  * Address:	8015BB2C
  * Size:	000044
  */
-void read__Q24Game13FakePikiParmsFR6Stream(void)
+void Game::FakePikiParms::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -4931,7 +4931,7 @@ void ObjectMgr<Game::Navi>::@28@doAnimation()
  * Address:	8015CCC4
  * Size:	000008
  */
-void @28@frozenable__Q24Game7NaviMgrFv(void)
+void @28@Game::NaviMgr::frozenable(void)
 {
 /*
 .loc_0x0:
@@ -4945,7 +4945,7 @@ void @28@frozenable__Q24Game7NaviMgrFv(void)
  * Address:	8015CCCC
  * Size:	000008
  */
-void @28@resetMgr__Q24Game7NaviMgrFv(void)
+void @28@Game::NaviMgr::resetMgr(void)
 {
 /*
 .loc_0x0:
@@ -4959,7 +4959,7 @@ void @28@resetMgr__Q24Game7NaviMgrFv(void)
  * Address:	8015CCD4
  * Size:	000008
  */
-void @28@loadResources__Q24Game7NaviMgrFv(void)
+void @28@Game::NaviMgr::loadResources(void)
 {
 /*
 .loc_0x0:
@@ -4987,7 +4987,7 @@ void MonoObjectMgr<Game::Navi>::@28@doDirectDraw(Graphics &)
  * Address:	8015CCE4
  * Size:	000008
  */
-void @28@doSimulation__Q24Game7NaviMgrFf(void)
+void @28@Game::NaviMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -5029,7 +5029,7 @@ void MonoObjectMgr<Game::Navi>::@28@doSetView(int)
  * Address:	8015CCFC
  * Size:	000008
  */
-void @28@doEntry__Q24Game7NaviMgrFv(void)
+void @28@Game::NaviMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -5043,7 +5043,7 @@ void @28@doEntry__Q24Game7NaviMgrFv(void)
  * Address:	8015CD04
  * Size:	000008
  */
-void @28@doAnimation__Q24Game7NaviMgrFv(void)
+void @28@Game::NaviMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -5057,7 +5057,7 @@ void @28@doAnimation__Q24Game7NaviMgrFv(void)
  * Address:	8015CD0C
  * Size:	000008
  */
-void @48@__dt__Q24Game7NaviMgrFv(void)
+void @48@Game::NaviMgr::__dt(void)
 {
 /*
 .loc_0x0:

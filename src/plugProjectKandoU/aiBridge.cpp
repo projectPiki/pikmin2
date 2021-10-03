@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80212288
  * Size:	0000FC
  */
-void __ct__Q26PikiAI9ActBridgeFPQ24Game4Piki(void)
+void PikiAI::ActBridge::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void __ct__Q26PikiAI9ActBridgeFPQ24Game4Piki(void)
  * Address:	80212384
  * Size:	0000C8
  */
-void init__Q26PikiAI9ActBridgeFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActBridge::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void init__Q26PikiAI9ActBridgeFPQ26PikiAI9ActionArg(void)
  * Address:	8021244C
  * Size:	000068
  */
-void initFollow__Q26PikiAI9ActBridgeFv(void)
+void PikiAI::ActBridge::initFollow(void)
 {
 /*
 .loc_0x0:
@@ -204,7 +204,7 @@ void initFollow__Q26PikiAI9ActBridgeFv(void)
  * Address:	........
  * Size:	00009C
  */
-void initGoto__Q26PikiAI9ActBridgeFv(void)
+void PikiAI::ActBridge::initGoto(void)
 {
 	// UNUSED FUNCTION
 }
@@ -214,7 +214,7 @@ void initGoto__Q26PikiAI9ActBridgeFv(void)
  * Address:	........
  * Size:	0000BC
  */
-void initStickAttack__Q26PikiAI9ActBridgeFv(void)
+void PikiAI::ActBridge::initStickAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -224,7 +224,7 @@ void initStickAttack__Q26PikiAI9ActBridgeFv(void)
  * Address:	........
  * Size:	000058
  */
-void calcAttackPos__Q26PikiAI9ActBridgeFv(void)
+void PikiAI::ActBridge::calcAttackPos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -234,7 +234,7 @@ void calcAttackPos__Q26PikiAI9ActBridgeFv(void)
  * Address:	802124B4
  * Size:	00031C
  */
-void exec__Q26PikiAI9ActBridgeFv(void)
+void PikiAI::ActBridge::exec(void)
 {
 /*
 .loc_0x0:
@@ -481,7 +481,7 @@ void exec__Q26PikiAI9ActBridgeFv(void)
  * Address:	802127D0
  * Size:	00005C
  */
-void cleanup__Q26PikiAI9ActBridgeFv(void)
+void PikiAI::ActBridge::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -520,7 +520,7 @@ void cleanup__Q26PikiAI9ActBridgeFv(void)
  * Address:	8021282C
  * Size:	000110
  */
-void platCallback__Q26PikiAI9ActBridgeFPQ24Game4PikiRQ24Game9PlatEvent(void)
+void PikiAI::ActBridge::platCallback( (Game::Piki *, Game::PlatEvent &))
 {
 /*
 .loc_0x0:
@@ -610,7 +610,7 @@ void platCallback__Q26PikiAI9ActBridgeFPQ24Game4PikiRQ24Game9PlatEvent(void)
  * Address:	8021293C
  * Size:	000004
  */
-void collisionCallback__Q26PikiAI9ActBridgeFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActBridge::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void collisionCallback__Q26PikiAI9ActBridgeFPQ24Game4PikiRQ24Game9CollEvent(void
  * Address:	80212940
  * Size:	000004
  */
-void bounceCallback__Q26PikiAI9ActBridgeFPQ24Game4PikiPQ23Sys8Triangle(void)
+void PikiAI::ActBridge::bounceCallback( (Game::Piki *, Sys::Triangle *))
 {
 /*
 .loc_0x0:
@@ -636,7 +636,7 @@ void bounceCallback__Q26PikiAI9ActBridgeFPQ24Game4PikiPQ23Sys8Triangle(void)
  * Address:	80212944
  * Size:	000004
  */
-void onKeyEvent__Q26PikiAI9ActBridgeFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActBridge::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -649,7 +649,7 @@ void onKeyEvent__Q26PikiAI9ActBridgeFRCQ28SysShape8KeyEvent(void)
  * Address:	80212948
  * Size:	000014
  */
-void @52@4@onKeyEvent__Q26PikiAI9ActBridgeFRCQ28SysShape8KeyEvent(void)
+void @52@4@PikiAI::ActBridge::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

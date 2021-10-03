@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801A4310
  * Size:	0002AC
  */
-void init__Q24Game9PelletFSMFPQ24Game6Pellet(void)
+void Game::PelletFSM::init( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void init__Q24Game9PelletFSMFPQ24Game6Pellet(void)
  * Address:	801A45BC
  * Size:	000004
  */
-void init__Q24Game17PelletNormalStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletNormalState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void init__Q24Game17PelletNormalStateFPQ24Game6PelletPQ24Game8StateArg(void)
  * Address:	801A45C0
  * Size:	000004
  */
-void exec__Q24Game17PelletNormalStateFPQ24Game6Pellet(void)
+void Game::PelletNormalState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -242,7 +242,7 @@ void exec__Q24Game17PelletNormalStateFPQ24Game6Pellet(void)
  * Address:	801A45C4
  * Size:	000004
  */
-void cleanup__Q24Game17PelletNormalStateFPQ24Game6Pellet(void)
+void Game::PelletNormalState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -255,7 +255,7 @@ void cleanup__Q24Game17PelletNormalStateFPQ24Game6Pellet(void)
  * Address:	801A45C8
  * Size:	00007C
  */
-void init__Q24Game19PelletGoalWaitStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletGoalWaitState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -300,7 +300,7 @@ void init__Q24Game19PelletGoalWaitStateFPQ24Game6PelletPQ24Game8StateArg(void)
  * Address:	801A4644
  * Size:	000060
  */
-void exec__Q24Game19PelletGoalWaitStateFPQ24Game6Pellet(void)
+void Game::PelletGoalWaitState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -362,7 +362,7 @@ void transit__Q24Game24FSMState<Game::Pellet>FPQ24Game6PelletiPQ24Game8StateArg(
  * Address:	801A46D4
  * Size:	000004
  */
-void cleanup__Q24Game19PelletGoalWaitStateFPQ24Game6Pellet(void)
+void Game::PelletGoalWaitState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -375,7 +375,7 @@ void cleanup__Q24Game19PelletGoalWaitStateFPQ24Game6Pellet(void)
  * Address:	801A46D8
  * Size:	000680
  */
-void init__Q24Game15PelletGoalStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletGoalState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -863,7 +863,7 @@ void init__Q24Game15PelletGoalStateFPQ24Game6PelletPQ24Game8StateArg(void)
  * Address:	801A4D58
  * Size:	000D6C
  */
-void checkMovie__Q24Game15PelletGoalStateFPQ24Game6Pellet(void)
+void Game::PelletGoalState::checkMovie( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -1796,7 +1796,7 @@ void checkMovie__Q24Game15PelletGoalStateFPQ24Game6Pellet(void)
  * Address:	801A5AC4
  * Size:	000B34
  */
-void exec__Q24Game15PelletGoalStateFPQ24Game6Pellet(void)
+void Game::PelletGoalState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -2625,7 +2625,7 @@ void exec__Q24Game15PelletGoalStateFPQ24Game6Pellet(void)
  * Address:	801A65F8
  * Size:	000004
  */
-void cleanup__Q24Game15PelletGoalStateFPQ24Game6Pellet(void)
+void Game::PelletGoalState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -2638,7 +2638,7 @@ void cleanup__Q24Game15PelletGoalStateFPQ24Game6Pellet(void)
  * Address:	801A65FC
  * Size:	000144
  */
-void init__Q24Game17PelletAppearStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletAppearState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -2731,7 +2731,7 @@ void init__Q24Game17PelletAppearStateFPQ24Game6PelletPQ24Game8StateArg(void)
  * Address:	801A6740
  * Size:	000240
  */
-void exec__Q24Game17PelletAppearStateFPQ24Game6Pellet(void)
+void Game::PelletAppearState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -2899,7 +2899,7 @@ void exec__Q24Game17PelletAppearStateFPQ24Game6Pellet(void)
  * Address:	801A6980
  * Size:	000004
  */
-void cleanup__Q24Game17PelletAppearStateFPQ24Game6Pellet(void)
+void Game::PelletAppearState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -2912,7 +2912,7 @@ void cleanup__Q24Game17PelletAppearStateFPQ24Game6Pellet(void)
  * Address:	801A6984
  * Size:	000130
  */
-void init__Q24Game22PelletScaleAppearStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletScaleAppearState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3000,7 +3000,7 @@ void init__Q24Game22PelletScaleAppearStateFPQ24Game6PelletPQ24Game8StateArg(void
  * Address:	801A6AB4
  * Size:	0001BC
  */
-void exec__Q24Game22PelletScaleAppearStateFPQ24Game6Pellet(void)
+void Game::PelletScaleAppearState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3135,7 +3135,7 @@ void exec__Q24Game22PelletScaleAppearStateFPQ24Game6Pellet(void)
  * Address:	801A6C70
  * Size:	000034
  */
-void cleanup__Q24Game22PelletScaleAppearStateFPQ24Game6Pellet(void)
+void Game::PelletScaleAppearState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3160,7 +3160,7 @@ void cleanup__Q24Game22PelletScaleAppearStateFPQ24Game6Pellet(void)
  * Address:	801A6CA4
  * Size:	000024
  */
-void init__Q24Game15PelletBuryStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletBuryState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3181,7 +3181,7 @@ void init__Q24Game15PelletBuryStateFPQ24Game6PelletPQ24Game8StateArg(void)
  * Address:	801A6CC8
  * Size:	000004
  */
-void exec__Q24Game15PelletBuryStateFPQ24Game6Pellet(void)
+void Game::PelletBuryState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3194,7 +3194,7 @@ void exec__Q24Game15PelletBuryStateFPQ24Game6Pellet(void)
  * Address:	801A6CCC
  * Size:	000004
  */
-void cleanup__Q24Game15PelletBuryStateFPQ24Game6Pellet(void)
+void Game::PelletBuryState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3207,7 +3207,7 @@ void cleanup__Q24Game15PelletBuryStateFPQ24Game6Pellet(void)
  * Address:	801A6CD0
  * Size:	000038
  */
-void init__Q24Game16PelletZukanStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletZukanState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3233,7 +3233,7 @@ void init__Q24Game16PelletZukanStateFPQ24Game6PelletPQ24Game8StateArg(void)
  * Address:	801A6D08
  * Size:	000094
  */
-void exec__Q24Game16PelletZukanStateFPQ24Game6Pellet(void)
+void Game::PelletZukanState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3284,7 +3284,7 @@ void exec__Q24Game16PelletZukanStateFPQ24Game6Pellet(void)
  * Address:	801A6D9C
  * Size:	000004
  */
-void cleanup__Q24Game16PelletZukanStateFPQ24Game6Pellet(void)
+void Game::PelletZukanState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3297,7 +3297,7 @@ void cleanup__Q24Game16PelletZukanStateFPQ24Game6Pellet(void)
  * Address:	801A6DA0
  * Size:	000024
  */
-void init__Q24Game13PelletUpStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletUpState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3318,7 +3318,7 @@ void init__Q24Game13PelletUpStateFPQ24Game6PelletPQ24Game8StateArg(void)
  * Address:	801A6DC4
  * Size:	000004
  */
-void exec__Q24Game13PelletUpStateFPQ24Game6Pellet(void)
+void Game::PelletUpState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3331,7 +3331,7 @@ void exec__Q24Game13PelletUpStateFPQ24Game6Pellet(void)
  * Address:	801A6DC8
  * Size:	000004
  */
-void cleanup__Q24Game13PelletUpStateFPQ24Game6Pellet(void)
+void Game::PelletUpState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3344,7 +3344,7 @@ void cleanup__Q24Game13PelletUpStateFPQ24Game6Pellet(void)
  * Address:	801A6DCC
  * Size:	0000F0
  */
-void __ct__Q24Game17PelletReturnStateFv(void)
+void Game::PelletReturnState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3422,7 +3422,7 @@ void __ct__Q24Game17PelletReturnStateFv(void)
  * Address:	801A6EBC
  * Size:	000318
  */
-void init__Q24Game17PelletReturnStateFPQ24Game6PelletPQ24Game8StateArg(void)
+void Game::PelletReturnState::init( (Game::Pellet *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -3654,7 +3654,7 @@ void init__Q24Game17PelletReturnStateFPQ24Game6PelletPQ24Game8StateArg(void)
  * Address:	........
  * Size:	000280
  */
-void flick__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
+void Game::PelletReturnState::flick( (Game::Pellet *))
 {
 	// UNUSED FUNCTION
 }
@@ -3664,7 +3664,7 @@ void flick__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
  * Address:	801A71D4
  * Size:	0000D8
  */
-void exec__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
+void Game::PelletReturnState::exec( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3744,7 +3744,7 @@ void exec__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
  * Address:	801A72AC
  * Size:	00009C
  */
-void cleanup__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
+void Game::PelletReturnState::cleanup( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3799,7 +3799,7 @@ void cleanup__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
  * Address:	801A7348
  * Size:	0001B4
  */
-void initPathfinding__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
+void Game::PelletReturnState::initPathfinding( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3938,7 +3938,7 @@ void initPathfinding__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
  * Address:	801A74FC
  * Size:	000090
  */
-void execPathfinding__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
+void Game::PelletReturnState::execPathfinding( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3996,7 +3996,7 @@ void execPathfinding__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
  * Address:	801A758C
  * Size:	000858
  */
-void execMove__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
+void Game::PelletReturnState::execMove( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -4600,7 +4600,7 @@ void execMove__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
  * Address:	801A7DE4
  * Size:	000008
  */
-void execMoveGoal__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
+void Game::PelletReturnState::execMoveGoal( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -4614,7 +4614,7 @@ void execMoveGoal__Q24Game17PelletReturnStateFPQ24Game6Pellet(void)
  * Address:	........
  * Size:	000008
  */
-void getWayPont__Q24Game17PelletReturnStateFi(void)
+void Game::PelletReturnState::getWayPont( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -4624,7 +4624,7 @@ void getWayPont__Q24Game17PelletReturnStateFi(void)
  * Address:	801A7DEC
  * Size:	000008
  */
-void isBuried__Q24Game11PelletStateFv(void)
+void Game::PelletState::isBuried(void)
 {
 /*
 .loc_0x0:
@@ -4638,7 +4638,7 @@ void isBuried__Q24Game11PelletStateFv(void)
  * Address:	801A7DF4
  * Size:	000008
  */
-void appeared__Q24Game11PelletStateFv(void)
+void Game::PelletState::appeared(void)
 {
 /*
 .loc_0x0:
@@ -4652,7 +4652,7 @@ void appeared__Q24Game11PelletStateFv(void)
  * Address:	801A7DFC
  * Size:	000008
  */
-void isBuried__Q24Game13PelletUpStateFv(void)
+void Game::PelletUpState::isBuried(void)
 {
 /*
 .loc_0x0:
@@ -4666,7 +4666,7 @@ void isBuried__Q24Game13PelletUpStateFv(void)
  * Address:	801A7E04
  * Size:	000008
  */
-void isBuried__Q24Game15PelletBuryStateFv(void)
+void Game::PelletBuryState::isBuried(void)
 {
 /*
 .loc_0x0:
@@ -4680,7 +4680,7 @@ void isBuried__Q24Game15PelletBuryStateFv(void)
  * Address:	801A7E0C
  * Size:	000008
  */
-void appeared__Q24Game22PelletScaleAppearStateFv(void)
+void Game::PelletScaleAppearState::appeared(void)
 {
 /*
 .loc_0x0:
@@ -4694,7 +4694,7 @@ void appeared__Q24Game22PelletScaleAppearStateFv(void)
  * Address:	801A7E14
  * Size:	000008
  */
-void appeared__Q24Game17PelletAppearStateFv(void)
+void Game::PelletAppearState::appeared(void)
 {
 /*
 .loc_0x0:
@@ -4708,7 +4708,7 @@ void appeared__Q24Game17PelletAppearStateFv(void)
  * Address:	801A7E1C
  * Size:	000008
  */
-void isPickable__Q24Game17PelletNormalStateFv(void)
+void Game::PelletNormalState::isPickable(void)
 {
 /*
 .loc_0x0:

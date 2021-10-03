@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	0000CC
  */
-void setBlendPane__Q22og6ScreenF12J2DBlendInfoP9J2DScreenPUx(void)
+void og::Screen::setBlendPane( (J2DBlendInfo, J2DScreen *, unsigned long long *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void _Print(char *, ...)
  * Address:	8014ADA0
  * Size:	00021C
  */
-void __ct__Q24Game15BaseGameSectionFP7JKRHeap(void)
+void Game::BaseGameSection::__ct( (JKRHeap *))
 {
 /*
 .loc_0x0:
@@ -320,7 +320,7 @@ void DvdThreadCommand::~DvdThreadCommand()
  * Address:	8014B0FC
  * Size:	000074
  */
-void useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture(void)
+void Game::BaseGameSection::useSpecificFBTexture( (JUTTexture *))
 {
 /*
 .loc_0x0:
@@ -363,7 +363,7 @@ void useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture(void)
  * Address:	8014B170
  * Size:	00006C
  */
-void restoreFBTexture__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::restoreFBTexture(void)
 {
 /*
 .loc_0x0:
@@ -404,7 +404,7 @@ void restoreFBTexture__Q24Game15BaseGameSectionFv(void)
  * Address:	8014B1DC
  * Size:	000114
  */
-void __dt__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::__dt(void)
 {
 /*
 .loc_0x0:
@@ -493,7 +493,7 @@ void __dt__Q24Game15BaseGameSectionFv(void)
  * Address:	8014B2F0
  * Size:	000050
  */
-void loadSync__Q24Game15BaseGameSectionFP9IDelegateb(void)
+void Game::BaseGameSection::loadSync( (IDelegate *, bool))
 {
 /*
 .loc_0x0:
@@ -527,7 +527,7 @@ void loadSync__Q24Game15BaseGameSectionFP9IDelegateb(void)
  * Address:	8014B340
  * Size:	000120
  */
-void waitSyncLoad__Q24Game15BaseGameSectionFb(void)
+void Game::BaseGameSection::waitSyncLoad( (bool))
 {
 /*
 .loc_0x0:
@@ -621,7 +621,7 @@ void waitSyncLoad__Q24Game15BaseGameSectionFb(void)
  * Address:	8014B460
  * Size:	000050
  */
-void dvdloadGameSystem__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::dvdloadGameSystem(void)
 {
 /*
 .loc_0x0:
@@ -655,7 +655,7 @@ void dvdloadGameSystem__Q24Game15BaseGameSectionFv(void)
  * Address:	8014B4B0
  * Size:	000390
  */
-void init__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::init(void)
 {
 /*
 .loc_0x0:
@@ -909,7 +909,7 @@ void init__Q24Game15BaseGameSectionFv(void)
  * Address:	8014B840
  * Size:	000004
  */
-void onInit__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::onInit(void)
 {
 /*
 .loc_0x0:
@@ -922,7 +922,7 @@ void onInit__Q24Game15BaseGameSectionFv(void)
  * Address:	8014B844
  * Size:	000034
  */
-void drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode(void)
+void Game::BaseGameSection::drawInit( (Graphics &, Section::EDrawInitMode))
 {
 /*
 .loc_0x0:
@@ -949,7 +949,7 @@ void drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode(void
  * Address:	8014B878
  * Size:	000004
  */
-void section_fadeout__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::section_fadeout(void)
 {
 /*
 .loc_0x0:
@@ -962,7 +962,7 @@ void section_fadeout__Q24Game15BaseGameSectionFv(void)
  * Address:	8014B87C
  * Size:	0003A8
  */
-void doUpdate__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1246,7 +1246,7 @@ void doUpdate__Q24Game15BaseGameSectionFv(void)
  * Address:	8014BC24
  * Size:	000004
  */
-void onUpdate__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::onUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1259,7 +1259,7 @@ void onUpdate__Q24Game15BaseGameSectionFv(void)
  * Address:	8014BC28
  * Size:	000170
  */
-void doDraw__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1373,7 +1373,7 @@ void doDraw__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	8014BD98
  * Size:	000004
  */
-void pre2dDraw__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::pre2dDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1386,7 +1386,7 @@ void pre2dDraw__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	8014BD9C
  * Size:	000078
  */
-void movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl(void)
+void Game::BaseGameSection::movieDone( (Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1430,7 +1430,7 @@ void movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl(void)
  * Address:	8014BE14
  * Size:	000004
  */
-void onMovieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl(void)
+void Game::BaseGameSection::onMovieDone( (Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1443,7 +1443,7 @@ void onMovieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl(void)
  * Address:	8014BE18
  * Size:	00008C
  */
-void onMovieCommand__Q24Game15BaseGameSectionFi(void)
+void Game::BaseGameSection::onMovieCommand( (int))
 {
 /*
 .loc_0x0:
@@ -1498,7 +1498,7 @@ void onMovieCommand__Q24Game15BaseGameSectionFi(void)
  * Address:	8014BEA4
  * Size:	000450
  */
-void initJ3D__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::initJ3D(void)
 {
 /*
 .loc_0x0:
@@ -1790,7 +1790,7 @@ void initJ3D__Q24Game15BaseGameSectionFv(void)
  * Address:	8014C2F4
  * Size:	000034
  */
-void initResources__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::initResources(void)
 {
 /*
 .loc_0x0:
@@ -1815,7 +1815,7 @@ void initResources__Q24Game15BaseGameSectionFv(void)
  * Address:	8014C328
  * Size:	0001E4
  */
-void initViewports__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::initViewports( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2018,7 +2018,7 @@ void LookAtCamera::~LookAtCamera()
  * Address:	8014C5CC
  * Size:	001120
  */
-void initGenerators__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::initGenerators(void)
 {
 /*
 .loc_0x0:
@@ -3242,7 +3242,7 @@ void initGenerators__Q24Game15BaseGameSectionFv(void)
  * Address:	8014D6EC
  * Size:	0000A4
  */
-void advanceDayCount__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::advanceDayCount(void)
 {
 /*
 .loc_0x0:
@@ -3299,7 +3299,7 @@ void advanceDayCount__Q24Game15BaseGameSectionFv(void)
  * Address:	8014D790
  * Size:	0000D4
  */
-void saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo(void)
+void Game::BaseGameSection::saveToGeneratorCache( (Game::CourseInfo *))
 {
 /*
 .loc_0x0:
@@ -3378,7 +3378,7 @@ void saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo(void)
  * Address:	8014D864
  * Size:	0000AC
  */
-void pmTogglePlayer__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::pmTogglePlayer(void)
 {
 /*
 .loc_0x0:
@@ -3437,7 +3437,7 @@ void pmTogglePlayer__Q24Game15BaseGameSectionFv(void)
  * Address:	8014D910
  * Size:	000004
  */
-void onTogglePlayer__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::onTogglePlayer(void)
 {
 /*
 .loc_0x0:
@@ -3450,7 +3450,7 @@ void onTogglePlayer__Q24Game15BaseGameSectionFv(void)
  * Address:	........
  * Size:	000064
  */
-void pmPlayerJoin__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::pmPlayerJoin(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3460,7 +3460,7 @@ void pmPlayerJoin__Q24Game15BaseGameSectionFv(void)
  * Address:	8014D914
  * Size:	000004
  */
-void onPlayerJoin__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::onPlayerJoin(void)
 {
 /*
 .loc_0x0:
@@ -3473,7 +3473,7 @@ void onPlayerJoin__Q24Game15BaseGameSectionFv(void)
  * Address:	8014D918
  * Size:	0002B8
  */
-void setPlayerMode__Q24Game15BaseGameSectionFi(void)
+void Game::BaseGameSection::setPlayerMode( (int))
 {
 /*
 .loc_0x0:
@@ -3688,7 +3688,7 @@ void Splitter::split2(float)
  * Address:	8014DBD4
  * Size:	00014C
  */
-void onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg(void)
+void Game::BaseGameSection::onCameraBlendFinished( (Game::CameraArg *))
 {
 /*
 .loc_0x0:
@@ -3787,7 +3787,7 @@ void onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg(void)
  * Address:	8014DD20
  * Size:	000068
  */
-void setFixNearFar__Q24Game15BaseGameSectionFbff(void)
+void Game::BaseGameSection::setFixNearFar( (bool, float, float))
 {
 /*
 .loc_0x0:
@@ -3825,7 +3825,7 @@ void setFixNearFar__Q24Game15BaseGameSectionFbff(void)
  * Address:	8014DD88
  * Size:	000210
  */
-void setCamController__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::setCamController(void)
 {
 /*
 .loc_0x0:
@@ -3987,7 +3987,7 @@ void setCamController__Q24Game15BaseGameSectionFv(void)
  * Address:	8014DF98
  * Size:	000004
  */
-void on_setCamController__Q24Game15BaseGameSectionFi(void)
+void Game::BaseGameSection::on_setCamController( (int))
 {
 /*
 .loc_0x0:
@@ -4000,7 +4000,7 @@ void on_setCamController__Q24Game15BaseGameSectionFi(void)
  * Address:	........
  * Size:	000018
  */
-void getNumWindows__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::getNumWindows(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4010,7 +4010,7 @@ void getNumWindows__Q24Game15BaseGameSectionFv(void)
  * Address:	........
  * Size:	000008
  */
-void getActivePlayerID__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::getActivePlayerID(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4020,7 +4020,7 @@ void getActivePlayerID__Q24Game15BaseGameSectionFv(void)
  * Address:	8014DF9C
  * Size:	000184
  */
-void setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo(void)
+void Game::BaseGameSection::setDefaultPSSceneInfo( (PSGame::SceneInfo &))
 {
 /*
 .loc_0x0:
@@ -5179,7 +5179,7 @@ void prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<float>(void)
  * Address:	8014EED0
  * Size:	000074
  */
-void initLights__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::initLights(void)
 {
 /*
 .loc_0x0:
@@ -5222,7 +5222,7 @@ void initLights__Q24Game15BaseGameSectionFv(void)
  * Address:	8014EF44
  * Size:	000020
  */
-void draw3D__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::draw3D( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -5242,7 +5242,7 @@ void draw3D__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	8014EF64
  * Size:	0001D4
  */
-void drawParticle__Q24Game15BaseGameSectionFR8Graphicsi(void)
+void Game::BaseGameSection::drawParticle( (Graphics &, int))
 {
 /*
 .loc_0x0:
@@ -5393,7 +5393,7 @@ void drawParticle__Q24Game15BaseGameSectionFR8Graphicsi(void)
  * Address:	8014F138
  * Size:	0000A0
  */
-void draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::draw_Ogawa2D( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -5445,7 +5445,7 @@ void draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	8014F1D8
  * Size:	000004
  */
-void test_draw_treasure_detector__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::test_draw_treasure_detector(void)
 {
 /*
 .loc_0x0:
@@ -5458,7 +5458,7 @@ void test_draw_treasure_detector__Q24Game15BaseGameSectionFv(void)
  * Address:	8014F1DC
  * Size:	0001BC
  */
-void draw2D__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::draw2D( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -5585,7 +5585,7 @@ void draw2D__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	........
  * Size:	000004
  */
-void setupViewportMatrix__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::setupViewportMatrix( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -5595,7 +5595,7 @@ void setupViewportMatrix__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	8014F398
  * Size:	0000B8
  */
-void directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport(void)
+void Game::BaseGameSection::directDraw( (Graphics &, Viewport *))
 {
 /*
 .loc_0x0:
@@ -5655,7 +5655,7 @@ void directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport(void)
  * Address:	8014F450
  * Size:	000078
  */
-void directDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport(void)
+void Game::BaseGameSection::directDrawPost( (Graphics &, Viewport *))
 {
 /*
 .loc_0x0:
@@ -5697,7 +5697,7 @@ void directDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport(void)
  * Address:	........
  * Size:	000140
  */
-void j3dDraw__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::j3dDraw( (Viewport *))
 {
 	// UNUSED FUNCTION
 }
@@ -5707,7 +5707,7 @@ void j3dDraw__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	........
  * Size:	000004
  */
-void j3dDrawPostShadow__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::j3dDrawPostShadow( (Viewport *))
 {
 	// UNUSED FUNCTION
 }
@@ -5717,7 +5717,7 @@ void j3dDrawPostShadow__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	........
  * Size:	000004
  */
-void j3dDrawObjectLast__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::j3dDrawObjectLast( (Viewport *))
 {
 	// UNUSED FUNCTION
 }
@@ -5727,7 +5727,7 @@ void j3dDrawObjectLast__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	........
  * Size:	000004
  */
-void j3dDrawPost__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::j3dDrawPost( (Viewport *))
 {
 	// UNUSED FUNCTION
 }
@@ -5737,7 +5737,7 @@ void j3dDrawPost__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	........
  * Size:	000004
  */
-void j3dDrawLast__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::j3dDrawLast( (Viewport *))
 {
 	// UNUSED FUNCTION
 }
@@ -5747,7 +5747,7 @@ void j3dDrawLast__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	8014F4C8
  * Size:	000054
  */
-void j3dSetView__Q24Game15BaseGameSectionFP8Viewportb(void)
+void Game::BaseGameSection::j3dSetView( (Viewport *, bool))
 {
 /*
 .loc_0x0:
@@ -5780,7 +5780,7 @@ void j3dSetView__Q24Game15BaseGameSectionFP8Viewportb(void)
  * Address:	........
  * Size:	000068
  */
-void j3dViewCalc__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::j3dViewCalc( (Viewport *))
 {
 	// UNUSED FUNCTION
 }
@@ -5790,7 +5790,7 @@ void j3dViewCalc__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	8014F51C
  * Size:	000030
  */
-void doSimulation__Q24Game15BaseGameSectionFf(void)
+void Game::BaseGameSection::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -5814,7 +5814,7 @@ void doSimulation__Q24Game15BaseGameSectionFf(void)
  * Address:	8014F54C
  * Size:	000030
  */
-void doSimpleDraw__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -5838,7 +5838,7 @@ void doSimpleDraw__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	8014F57C
  * Size:	0001D8
  */
-void doAnimation__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -6009,7 +6009,7 @@ void changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<float>(void)
  * Address:	8014F7A0
  * Size:	0000C8
  */
-void doEntry__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -6073,7 +6073,7 @@ void doEntry__Q24Game15BaseGameSectionFv(void)
  * Address:	8014F868
  * Size:	000100
  */
-void doSetView__Q24Game15BaseGameSectionFi(void)
+void Game::BaseGameSection::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -6155,7 +6155,7 @@ void doSetView__Q24Game15BaseGameSectionFi(void)
  * Address:	8014F968
  * Size:	0000C8
  */
-void doViewCalc__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -6221,7 +6221,7 @@ void doViewCalc__Q24Game15BaseGameSectionFv(void)
  * Address:	........
  * Size:	000074
  */
-void initBlendCamera__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::initBlendCamera(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6231,7 +6231,7 @@ void initBlendCamera__Q24Game15BaseGameSectionFv(void)
  * Address:	8014FA30
  * Size:	000174
  */
-void updateBlendCamera__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::updateBlendCamera(void)
 {
 /*
 .loc_0x0:
@@ -6346,7 +6346,7 @@ void updateBlendCamera__Q24Game15BaseGameSectionFv(void)
  * Address:	........
  * Size:	0000DC
  */
-void blend1to2__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::blend1to2(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6356,7 +6356,7 @@ void blend1to2__Q24Game15BaseGameSectionFv(void)
  * Address:	........
  * Size:	0000DC
  */
-void blend2to1__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::blend2to1(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6366,7 +6366,7 @@ void blend2to1__Q24Game15BaseGameSectionFv(void)
  * Address:	8014FBA4
  * Size:	00006C
  */
-void setSplitter__Q24Game15BaseGameSectionFb(void)
+void Game::BaseGameSection::setSplitter( (bool))
 {
 /*
 .loc_0x0:
@@ -6409,7 +6409,7 @@ void setSplitter__Q24Game15BaseGameSectionFb(void)
  * Address:	........
  * Size:	00000C
  */
-void startSplit__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::startSplit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6419,7 +6419,7 @@ void startSplit__Q24Game15BaseGameSectionFv(void)
  * Address:	........
  * Size:	00000C
  */
-void changeSplit__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::changeSplit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6429,7 +6429,7 @@ void changeSplit__Q24Game15BaseGameSectionFv(void)
  * Address:	........
  * Size:	00000C
  */
-void endSplit__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::endSplit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6439,7 +6439,7 @@ void endSplit__Q24Game15BaseGameSectionFv(void)
  * Address:	8014FC10
  * Size:	000134
  */
-void updateSplitter__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::updateSplitter(void)
 {
 /*
 .loc_0x0:
@@ -6538,7 +6538,7 @@ void updateSplitter__Q24Game15BaseGameSectionFv(void)
  * Address:	8014FD44
  * Size:	000058
  */
-void doDirectDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport(void)
+void Game::BaseGameSection::doDirectDrawPost( (Graphics &, Viewport *))
 {
 /*
 .loc_0x0:
@@ -6576,7 +6576,7 @@ void doDirectDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport(void)
  * Address:	8014FD9C
  * Size:	000004
  */
-void doDirectDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport(void)
+void Game::BaseGameSection::doDirectDraw( (Graphics &, Viewport *))
 {
 /*
 .loc_0x0:
@@ -6589,7 +6589,7 @@ void doDirectDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport(void)
  * Address:	........
  * Size:	000078
  */
-void startHeap__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::startHeap(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6599,7 +6599,7 @@ void startHeap__Q24Game15BaseGameSectionFv(void)
  * Address:	8014FDA0
  * Size:	000004
  */
-void onStartHeap__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::onStartHeap(void)
 {
 /*
 .loc_0x0:
@@ -6612,7 +6612,7 @@ void onStartHeap__Q24Game15BaseGameSectionFv(void)
  * Address:	8014FDA4
  * Size:	0002A8
  */
-void clearHeap__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::clearHeap(void)
 {
 /*
 .loc_0x0:
@@ -6848,7 +6848,7 @@ void Controller::~Controller()
  * Address:	801500AC
  * Size:	000004
  */
-void onClearHeap__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::onClearHeap(void)
 {
 /*
 .loc_0x0:
@@ -6861,7 +6861,7 @@ void onClearHeap__Q24Game15BaseGameSectionFv(void)
  * Address:	801500B0
  * Size:	00002C
  */
-void startFadeout__Q24Game15BaseGameSectionFf(void)
+void Game::BaseGameSection::startFadeout( (float))
 {
 /*
 .loc_0x0:
@@ -6884,7 +6884,7 @@ void startFadeout__Q24Game15BaseGameSectionFf(void)
  * Address:	801500DC
  * Size:	00002C
  */
-void startFadein__Q24Game15BaseGameSectionFf(void)
+void Game::BaseGameSection::startFadein( (float))
 {
 /*
 .loc_0x0:
@@ -6907,7 +6907,7 @@ void startFadein__Q24Game15BaseGameSectionFf(void)
  * Address:	80150108
  * Size:	00002C
  */
-void startFadeoutin__Q24Game15BaseGameSectionFf(void)
+void Game::BaseGameSection::startFadeoutin( (float))
 {
 /*
 .loc_0x0:
@@ -6930,7 +6930,7 @@ void startFadeoutin__Q24Game15BaseGameSectionFf(void)
  * Address:	80150134
  * Size:	00003C
  */
-void startFadeblack__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::startFadeblack(void)
 {
 /*
 .loc_0x0:
@@ -6957,7 +6957,7 @@ void startFadeblack__Q24Game15BaseGameSectionFv(void)
  * Address:	80150170
  * Size:	00003C
  */
-void startFadewhite__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::startFadewhite(void)
 {
 /*
 .loc_0x0:
@@ -6984,7 +6984,7 @@ void startFadewhite__Q24Game15BaseGameSectionFv(void)
  * Address:	801501AC
  * Size:	0001C0
  */
-void setupFixMemory__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::setupFixMemory(void)
 {
 /*
 .loc_0x0:
@@ -7118,7 +7118,7 @@ void setupFixMemory__Q24Game15BaseGameSectionFv(void)
  * Address:	8015036C
  * Size:	000334
  */
-void setupFixMemory_dvdload__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::setupFixMemory_dvdload(void)
 {
 /*
 .loc_0x0:
@@ -7403,7 +7403,7 @@ void BaseGameAllocCallback(unsigned long, int, JKRHeap *, void *)
  * Address:	80150700
  * Size:	000008
  */
-void enableAllocHalt__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::enableAllocHalt(void)
 {
 /*
 .loc_0x0:
@@ -7417,7 +7417,7 @@ void enableAllocHalt__Q24Game15BaseGameSectionFv(void)
  * Address:	80150708
  * Size:	000008
  */
-void disableAllocHalt__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::disableAllocHalt(void)
 {
 /*
 .loc_0x0:
@@ -7431,7 +7431,7 @@ void disableAllocHalt__Q24Game15BaseGameSectionFv(void)
  * Address:	........
  * Size:	000008
  */
-void isAllocHalt__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::isAllocHalt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -7441,7 +7441,7 @@ void isAllocHalt__Q24Game15BaseGameSectionFv(void)
  * Address:	80150710
  * Size:	000CC0
  */
-void setupFloatMemory__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::setupFloatMemory(void)
 {
 /*
 .loc_0x0:
@@ -8371,7 +8371,7 @@ void setupFloatMemory__Q24Game15BaseGameSectionFv(void)
  * Address:	801513D0
  * Size:	000004
  */
-void onSetSoundScene__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::onSetSoundScene(void)
 {
 /*
 .loc_0x0:
@@ -8384,7 +8384,7 @@ void onSetSoundScene__Q24Game15BaseGameSectionFv(void)
  * Address:	801513D4
  * Size:	000008
  */
-void getCurrFloor__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::getCurrFloor(void)
 {
 /*
 .loc_0x0:
@@ -8398,7 +8398,7 @@ void getCurrFloor__Q24Game15BaseGameSectionFv(void)
  * Address:	801513DC
  * Size:	000008
  */
-void challengeDisablePelplant__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::challengeDisablePelplant(void)
 {
 /*
 .loc_0x0:
@@ -8412,7 +8412,7 @@ void challengeDisablePelplant__Q24Game15BaseGameSectionFv(void)
  * Address:	801513E4
  * Size:	000008
  */
-void getVsEditNumber__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::getVsEditNumber(void)
 {
 /*
 .loc_0x0:
@@ -8426,7 +8426,7 @@ void getVsEditNumber__Q24Game15BaseGameSectionFv(void)
  * Address:	801513EC
  * Size:	000008
  */
-void getEditorFilename__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::getEditorFilename(void)
 {
 /*
 .loc_0x0:
@@ -8440,7 +8440,7 @@ void getEditorFilename__Q24Game15BaseGameSectionFv(void)
  * Address:	801513F4
  * Size:	00000C
  */
-void getCaveFilename__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::getCaveFilename(void)
 {
 /*
 .loc_0x0:
@@ -8455,7 +8455,7 @@ void getCaveFilename__Q24Game15BaseGameSectionFv(void)
  * Address:	80151400
  * Size:	000004
  */
-void onSetupFloatMemory__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::onSetupFloatMemory(void)
 {
 /*
 .loc_0x0:
@@ -8468,7 +8468,7 @@ void onSetupFloatMemory__Q24Game15BaseGameSectionFv(void)
  * Address:	80151404
  * Size:	000008
  */
-void isDevelopSection__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::isDevelopSection(void)
 {
 /*
 .loc_0x0:
@@ -8526,7 +8526,7 @@ void JSUList<PSM::ObjBase>::~JSUList()
  * Address:	8015145C
  * Size:	0000A4
  */
-void setDrawBuffer__Q24Game15BaseGameSectionFi(void)
+void Game::BaseGameSection::setDrawBuffer( (int))
 {
 /*
 .loc_0x0:
@@ -8583,7 +8583,7 @@ void setDrawBuffer__Q24Game15BaseGameSectionFi(void)
  * Address:	80151500
  * Size:	000030
  */
-void postSetupFloatMemory__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::postSetupFloatMemory(void)
 {
 /*
 .loc_0x0:
@@ -8607,7 +8607,7 @@ void postSetupFloatMemory__Q24Game15BaseGameSectionFv(void)
  * Address:	80151530
  * Size:	000004
  */
-void setupJUTTextures__Q24Game6MapMgrFv(void)
+void Game::MapMgr::setupJUTTextures(void)
 {
 /*
 .loc_0x0:
@@ -8620,7 +8620,7 @@ void setupJUTTextures__Q24Game6MapMgrFv(void)
  * Address:	80151534
  * Size:	000200
  */
-void createFallPikminSound__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::createFallPikminSound(void)
 {
 /*
 .loc_0x0:
@@ -8776,7 +8776,7 @@ void createFallPikminSound__Q24Game15BaseGameSectionFv(void)
  * Address:	80151734
  * Size:	000004
  */
-void captureRadarmap__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::captureRadarmap( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -8789,7 +8789,7 @@ void captureRadarmap__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	........
  * Size:	000004
  */
-void drawRadarmap__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::drawRadarmap( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -8987,7 +8987,7 @@ void CullPlane::~CullPlane()
  * Address:	801518D8
  * Size:	000010
  */
-void forceFinish__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::forceFinish(void)
 {
 /*
 .loc_0x0:
@@ -9003,7 +9003,7 @@ void forceFinish__Q24Game15BaseGameSectionFv(void)
  * Address:	801518E8
  * Size:	000004
  */
-void addChallengeScore__Q24Game15BaseGameSectionFi(void)
+void Game::BaseGameSection::addChallengeScore( (int))
 {
 /*
 .loc_0x0:
@@ -9016,7 +9016,7 @@ void addChallengeScore__Q24Game15BaseGameSectionFi(void)
  * Address:	801518EC
  * Size:	000004
  */
-void startMainBgm__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::startMainBgm(void)
 {
 /*
 .loc_0x0:
@@ -9029,7 +9029,7 @@ void startMainBgm__Q24Game15BaseGameSectionFv(void)
  * Address:	801518F0
  * Size:	000004
  */
-void goNextFloor__Q24Game15BaseGameSectionFPQ34Game8ItemHole4Item(void)
+void Game::BaseGameSection::goNextFloor( (Game::ItemHole::Item *))
 {
 /*
 .loc_0x0:
@@ -9042,7 +9042,7 @@ void goNextFloor__Q24Game15BaseGameSectionFPQ34Game8ItemHole4Item(void)
  * Address:	801518F4
  * Size:	000004
  */
-void goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item(void)
+void Game::BaseGameSection::goCave( (Game::ItemCave::Item *))
 {
 /*
 .loc_0x0:
@@ -9055,7 +9055,7 @@ void goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item(void)
  * Address:	801518F8
  * Size:	000004
  */
-void goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item(void)
+void Game::BaseGameSection::goMainMap( (Game::ItemBigFountain::Item *))
 {
 /*
 .loc_0x0:
@@ -9068,7 +9068,7 @@ void goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item(void)
  * Address:	801518FC
  * Size:	00000C
  */
-void getCaveID__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::getCaveID(void)
 {
 /*
 .loc_0x0:
@@ -9083,7 +9083,7 @@ void getCaveID__Q24Game15BaseGameSectionFv(void)
  * Address:	80151908
  * Size:	000008
  */
-void getCurrentCourseInfo__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::getCurrentCourseInfo(void)
 {
 /*
 .loc_0x0:
@@ -9097,7 +9097,7 @@ void getCurrentCourseInfo__Q24Game15BaseGameSectionFv(void)
  * Address:	80151910
  * Size:	000008
  */
-void openContainerWindow__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::openContainerWindow(void)
 {
 /*
 .loc_0x0:
@@ -9111,7 +9111,7 @@ void openContainerWindow__Q24Game15BaseGameSectionFv(void)
  * Address:	80151918
  * Size:	000004
  */
-void closeContainerWindow__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::closeContainerWindow(void)
 {
 /*
 .loc_0x0:
@@ -9124,7 +9124,7 @@ void closeContainerWindow__Q24Game15BaseGameSectionFv(void)
  * Address:	8015191C
  * Size:	000004
  */
-void playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature(void)
+void Game::BaseGameSection::playMovie_firstexperience( (int, Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -9137,7 +9137,7 @@ void playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature(void
  * Address:	80151920
  * Size:	000004
  */
-void playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon(void)
+void Game::BaseGameSection::playMovie_bootup( (Game::Onyon *))
 {
 /*
 .loc_0x0:
@@ -9150,7 +9150,7 @@ void playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon(void)
  * Address:	80151924
  * Size:	000004
  */
-void playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki(void)
+void Game::BaseGameSection::playMovie_helloPikmin( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -9163,7 +9163,7 @@ void playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki(void)
  * Address:	80151928
  * Size:	000004
  */
-void disableTimer__Q24Game15BaseGameSectionFUl(void)
+void Game::BaseGameSection::disableTimer( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -9176,7 +9176,7 @@ void disableTimer__Q24Game15BaseGameSectionFUl(void)
  * Address:	8015192C
  * Size:	000004
  */
-void onMovieStart__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl(void)
+void Game::BaseGameSection::onMovieStart( (Game::MovieConfig *, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -9189,7 +9189,7 @@ void onMovieStart__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl(void)
  * Address:	80151930
  * Size:	000004
  */
-void gmOrimaDown__Q24Game15BaseGameSectionFi(void)
+void Game::BaseGameSection::gmOrimaDown( (int))
 {
 /*
 .loc_0x0:
@@ -9202,7 +9202,7 @@ void gmOrimaDown__Q24Game15BaseGameSectionFi(void)
  * Address:	80151934
  * Size:	000004
  */
-void gmPikminZero__Q24Game15BaseGameSectionFv(void)
+void Game::BaseGameSection::gmPikminZero(void)
 {
 /*
 .loc_0x0:

@@ -5,7 +5,7 @@
  * Address:	8040B3F4
  * Size:	00004C
  */
-void getSerialTagName__Q22kh6ScreenFUxi(void)
+void kh::Screen::getSerialTagName( (unsigned long long, int))
 {
 /*
 .loc_0x0:
@@ -36,7 +36,7 @@ void getSerialTagName__Q22kh6ScreenFUxi(void)
  * Address:	8040B440
  * Size:	000050
  */
-void setTex__Q22kh6ScreenFP9J2DScreenUxPC7ResTIMG(void)
+void kh::Screen::setTex( (J2DScreen *, unsigned long long, ResTIMG const *))
 {
 /*
 .loc_0x0:
@@ -68,7 +68,7 @@ void setTex__Q22kh6ScreenFP9J2DScreenUxPC7ResTIMG(void)
  * Address:	8040B490
  * Size:	000050
  */
-void setTex__Q22kh6ScreenFP9J2DScreenUxPCc(void)
+void kh::Screen::setTex( (J2DScreen *, unsigned long long, char const *))
 {
 /*
 .loc_0x0:
@@ -100,7 +100,7 @@ void setTex__Q22kh6ScreenFP9J2DScreenUxPCc(void)
  * Address:	8040B4E0
  * Size:	000210
  */
-void setMatAnm__Q22kh6ScreenFP7J2DPaneP10J2DAnmBase(void)
+void kh::Screen::setMatAnm( (J2DPane *, J2DAnmBase *))
 {
 /*
 .loc_0x0:
@@ -270,7 +270,7 @@ void setMatAnm__Q22kh6ScreenFP7J2DPaneP10J2DAnmBase(void)
  * Address:	8040B6F0
  * Size:	00021C
  */
-void setInfAlpha__Q22kh6ScreenFP7J2DPane(void)
+void kh::Screen::setInfAlpha( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -447,7 +447,7 @@ void setInfAlpha__Q22kh6ScreenFP7J2DPane(void)
  * Address:	8040B90C
  * Size:	0000EC
  */
-void getPaneCenterX__Q22kh6ScreenFP7J2DPane(void)
+void kh::Screen::getPaneCenterX( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void getPaneCenterX__Q22kh6ScreenFP7J2DPane(void)
  * Address:	8040B9F8
  * Size:	0000EC
  */
-void getPaneCenterY__Q22kh6ScreenFP7J2DPane(void)
+void kh::Screen::getPaneCenterY( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void getPaneCenterY__Q22kh6ScreenFP7J2DPane(void)
  * Address:	........
  * Size:	0001D0
  */
-void getPaneCenter__Q22kh6ScreenFP7J2DPanePfPf(void)
+void kh::Screen::getPaneCenter( (J2DPane *, float *, float *))
 {
 	// UNUSED FUNCTION
 }
@@ -599,7 +599,7 @@ void getPaneCenter__Q22kh6ScreenFP7J2DPanePfPf(void)
  * Address:	8040BAE4
  * Size:	0000A4
  */
-void create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc(void)
+void kh::Screen::khUtilFadePane::create( (P2DScreen::Mgr *, unsigned long long, unsigned char))
 {
 /*
 .loc_0x0:
@@ -662,7 +662,7 @@ void create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc(void)
  * Address:	........
  * Size:	0000A4
  */
-void create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrP7J2DPaneUc(void)
+void kh::Screen::khUtilFadePane::create( (P2DScreen::Mgr *, J2DPane *, unsigned char))
 {
 	// UNUSED FUNCTION
 }
@@ -672,7 +672,7 @@ void create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrP7J2DPaneUc(void)
  * Address:	8040BB88
  * Size:	000088
  */
-void __ct__Q32kh6Screen14khUtilFadePaneFUc(void)
+void kh::Screen::khUtilFadePane::__ct( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void __ct__Q32kh6Screen14khUtilFadePaneFUc(void)
  * Address:	8040BC10
  * Size:	000104
  */
-void update__Q32kh6Screen14khUtilFadePaneFv(void)
+void kh::Screen::khUtilFadePane::update(void)
 {
 /*
 .loc_0x0:
@@ -811,7 +811,7 @@ void update__Q32kh6Screen14khUtilFadePaneFv(void)
  * Address:	8040BD14
  * Size:	000004
  */
-void fadeout_finish__Q32kh6Screen14khUtilFadePaneFv(void)
+void kh::Screen::khUtilFadePane::fadeout_finish(void)
 {
 /*
 .loc_0x0:
@@ -824,7 +824,7 @@ void fadeout_finish__Q32kh6Screen14khUtilFadePaneFv(void)
  * Address:	8040BD18
  * Size:	0000B8
  */
-void add__Q32kh6Screen14khUtilFadePaneFP7J2DPane(void)
+void kh::Screen::khUtilFadePane::add( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -892,7 +892,7 @@ void add__Q32kh6Screen14khUtilFadePaneFP7J2DPane(void)
  * Address:	8040BDD0
  * Size:	000020
  */
-void fadein__Q32kh6Screen14khUtilFadePaneFv(void)
+void kh::Screen::khUtilFadePane::fadein(void)
 {
 /*
 .loc_0x0:
@@ -914,7 +914,7 @@ void fadein__Q32kh6Screen14khUtilFadePaneFv(void)
  * Address:	8040BDF0
  * Size:	000020
  */
-void fadeout__Q32kh6Screen14khUtilFadePaneFv(void)
+void kh::Screen::khUtilFadePane::fadeout(void)
 {
 /*
 .loc_0x0:
@@ -936,7 +936,7 @@ void fadeout__Q32kh6Screen14khUtilFadePaneFv(void)
  * Address:	8040BE10
  * Size:	000060
  */
-void set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc(void)
+void kh::Screen::khUtilFadePane::set_init_alpha( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -976,7 +976,7 @@ void set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc(void)
  * Address:	8040BE70
  * Size:	000158
  */
-void __ct__Q32kh6Screen14khUtilColorAnmFPQ29P2DScreen3MgrUxii(void)
+void kh::Screen::khUtilColorAnm::__ct( (P2DScreen::Mgr *, unsigned long long, int, int))
 {
 /*
 .loc_0x0:
@@ -1080,7 +1080,7 @@ void __ct__Q32kh6Screen14khUtilColorAnmFPQ29P2DScreen3MgrUxii(void)
  * Address:	8040BFC8
  * Size:	00021C
  */
-void update__Q32kh6Screen14khUtilColorAnmFv(void)
+void kh::Screen::khUtilColorAnm::update(void)
 {
 /*
 .loc_0x0:
@@ -1231,7 +1231,7 @@ void update__Q32kh6Screen14khUtilColorAnmFv(void)
  * Address:	8040C1E4
  * Size:	000004
  */
-void do_update__Q32kh6Screen14khUtilColorAnmFv(void)
+void kh::Screen::khUtilColorAnm::do_update(void)
 {
 /*
 .loc_0x0:

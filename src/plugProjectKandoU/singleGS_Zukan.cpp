@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000098
  */
-void __ct__Q34Game15IllustratedBook10DebugParmsFv(void)
+void Game::IllustratedBook::DebugParms::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q34Game15IllustratedBook10DebugParmsFv(void)
  * Address:	........
  * Size:	000044
  */
-void __ct__Q34Game15IllustratedBook11EnemyTexMgrFv(void)
+void Game::IllustratedBook::EnemyTexMgr::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void __ct__Q34Game15IllustratedBook11EnemyTexMgrFv(void)
  * Address:	........
  * Size:	0000F0
  */
-void create__Q34Game15IllustratedBook11EnemyTexMgrFv(void)
+void Game::IllustratedBook::EnemyTexMgr::create(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void create__Q34Game15IllustratedBook11EnemyTexMgrFv(void)
  * Address:	80221028
  * Size:	000284
  */
-void __ct__Q34Game15IllustratedBook6CameraFP10Controller(void)
+void Game::IllustratedBook::Camera::__ct( (Controller *))
 {
 /*
 .loc_0x0:
@@ -218,7 +218,7 @@ void __ct__Q34Game15IllustratedBook6CameraFP10Controller(void)
  * Address:	802212AC
  * Size:	0001D8
  */
-void startVibration__Q34Game15IllustratedBook6CameraFi(void)
+void Game::IllustratedBook::Camera::startVibration( (int))
 {
 /*
 .loc_0x0:
@@ -358,7 +358,7 @@ void startVibration__Q34Game15IllustratedBook6CameraFi(void)
  * Address:	........
  * Size:	000184
  */
-void debugDraw__Q34Game15IllustratedBook6CameraFR8Graphics(void)
+void Game::IllustratedBook::Camera::debugDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -414,7 +414,7 @@ void move__Q34Game15IllustratedBook6CameraFRC10Vector3<float>(void)
  * Address:	8022150C
  * Size:	000128
  */
-void setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature(void)
+void Game::IllustratedBook::Camera::setTarget( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -506,7 +506,7 @@ void setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature(void)
  * Address:	80221634
  * Size:	000274
  */
-void resetControl__Q34Game15IllustratedBook6CameraFv(void)
+void Game::IllustratedBook::Camera::resetControl(void)
 {
 /*
 .loc_0x0:
@@ -693,7 +693,7 @@ void setAtOffset__Q34Game15IllustratedBook6CameraFRC10Vector3<float>(void)
  * Address:	802218A8
  * Size:	000904
  */
-void doUpdate__Q34Game15IllustratedBook6CameraFv(void)
+void Game::IllustratedBook::Camera::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1324,7 +1324,7 @@ void doUpdate__Q34Game15IllustratedBook6CameraFv(void)
  * Address:	802221AC
  * Size:	000204
  */
-void updateCameraShake__Q34Game15IllustratedBook6CameraFv(void)
+void Game::IllustratedBook::Camera::updateCameraShake(void)
 {
 /*
 .loc_0x0:
@@ -1469,7 +1469,7 @@ void updateCameraShake__Q34Game15IllustratedBook6CameraFv(void)
  * Address:	802223B0
  * Size:	0000E8
  */
-void updateFocus__Q34Game15IllustratedBook6CameraFv(void)
+void Game::IllustratedBook::Camera::updateFocus(void)
 {
 /*
 .loc_0x0:
@@ -1547,7 +1547,7 @@ void updateFocus__Q34Game15IllustratedBook6CameraFv(void)
  * Address:	........
  * Size:	000020
  */
-void getFocus__Q34Game15IllustratedBook6CameraFv(void)
+void Game::IllustratedBook::Camera::getFocus(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1557,7 +1557,7 @@ void getFocus__Q34Game15IllustratedBook6CameraFv(void)
  * Address:	80222498
  * Size:	000054
  */
-void addFovy__Q34Game15IllustratedBook6CameraFf(void)
+void Game::IllustratedBook::Camera::addFovy( (float))
 {
 /*
 .loc_0x0:
@@ -1594,7 +1594,7 @@ void addFovy__Q34Game15IllustratedBook6CameraFf(void)
  * Address:	802224EC
  * Size:	0000EC
  */
-void __ct__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1667,7 +1667,7 @@ void __ct__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	802225D8
  * Size:	00036C
  */
-void init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::ZukanState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -1916,7 +1916,7 @@ void init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8S
  * Address:	........
  * Size:	0000E4
  */
-void startTekiMode__Q34Game10SingleGame10ZukanStateFb(void)
+void Game::SingleGame::ZukanState::startTekiMode( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -1926,7 +1926,7 @@ void startTekiMode__Q34Game10SingleGame10ZukanStateFb(void)
  * Address:	........
  * Size:	0000E4
  */
-void startPelletMode__Q34Game10SingleGame10ZukanStateFb(void)
+void Game::SingleGame::ZukanState::startPelletMode( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -1936,7 +1936,7 @@ void startPelletMode__Q34Game10SingleGame10ZukanStateFb(void)
  * Address:	80222944
  * Size:	000014
  */
-void setMode__Q34Game10SingleGame10ZukanStateFQ44Game10SingleGame10ZukanState5CMode(void)
+void Game::SingleGame::ZukanState::setMode( (Game::SingleGame::ZukanState::CMode))
 {
 /*
 .loc_0x0:
@@ -1953,7 +1953,7 @@ void setMode__Q34Game10SingleGame10ZukanStateFQ44Game10SingleGame10ZukanState5CM
  * Address:	80222958
  * Size:	00072C
  */
-void exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::ZukanState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -2508,7 +2508,7 @@ void exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
  * Address:	80223084
  * Size:	00016C
  */
-void execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionQ44Game10SingleGame10ZukanState5CMode(void)
+void Game::SingleGame::ZukanState::execModeChange( (Game::SingleGameSection *, Game::SingleGame::ZukanState::CMode))
 {
 /*
 .loc_0x0:
@@ -2631,7 +2631,7 @@ void execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
  * Address:	802231F0
  * Size:	0000E0
  */
-void execChangeTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::ZukanState::execChangeTeki( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -2713,7 +2713,7 @@ void execChangeTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
  * Address:	802232D0
  * Size:	0005A4
  */
-void execTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::ZukanState::execTeki( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -3114,7 +3114,7 @@ void execTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
  * Address:	80223874
  * Size:	000018
  */
-void startWipe__Q34Game10SingleGame10ZukanStateFf(void)
+void Game::SingleGame::ZukanState::startWipe( (float))
 {
 /*
 .loc_0x0:
@@ -3132,7 +3132,7 @@ void startWipe__Q34Game10SingleGame10ZukanStateFf(void)
  * Address:	8022388C
  * Size:	00003C
  */
-void createEnemy__Q34Game10SingleGame10ZukanStateFi(void)
+void Game::SingleGame::ZukanState::createEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -3161,7 +3161,7 @@ void createEnemy__Q34Game10SingleGame10ZukanStateFi(void)
  * Address:	........
  * Size:	00003C
  */
-void createItem__Q34Game10SingleGame10ZukanStateFi(void)
+void Game::SingleGame::ZukanState::createItem( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -3171,7 +3171,7 @@ void createItem__Q34Game10SingleGame10ZukanStateFi(void)
  * Address:	802238C8
  * Size:	0000EC
  */
-void execChangePellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::ZukanState::execChangePellet( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -3256,7 +3256,7 @@ void execChangePellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSecti
  * Address:	802239B4
  * Size:	0000B4
  */
-void execPellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::ZukanState::execPellet( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -3321,7 +3321,7 @@ void execPellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(voi
  * Address:	80223A68
  * Size:	00003C
  */
-void getMaxPelletID__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::getMaxPelletID(void)
 {
 /*
 .loc_0x0:
@@ -3348,7 +3348,7 @@ void getMaxPelletID__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	80223AA4
  * Size:	00007C
  */
-void getCurrentPelletConfig__Q34Game10SingleGame10ZukanStateFi(void)
+void Game::SingleGame::ZukanState::getCurrentPelletConfig( (int))
 {
 /*
 .loc_0x0:
@@ -3397,7 +3397,7 @@ void getCurrentPelletConfig__Q34Game10SingleGame10ZukanStateFi(void)
  * Address:	80223B20
  * Size:	000080
  */
-void convertPelletID__Q34Game10SingleGame10ZukanStateFRii(void)
+void Game::SingleGame::ZukanState::convertPelletID( (int &, int))
 {
 /*
 .loc_0x0:
@@ -3445,7 +3445,7 @@ void convertPelletID__Q34Game10SingleGame10ZukanStateFRii(void)
  * Address:	80223BA0
  * Size:	000274
  */
-void draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::ZukanState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -3618,7 +3618,7 @@ void draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
  * Address:	80223E14
  * Size:	000578
  */
-void drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::ZukanState::drawGradationEffect( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -3986,7 +3986,7 @@ void drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSe
  * Address:	8022438C
  * Size:	0007C0
  */
-void drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::ZukanState::drawLightEffect( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -4520,7 +4520,7 @@ void drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectio
  * Address:	........
  * Size:	000404
  */
-void debugDraw__Q34Game10SingleGame10ZukanStateFR8Graphics(void)
+void Game::SingleGame::ZukanState::debugDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -4530,7 +4530,7 @@ void debugDraw__Q34Game10SingleGame10ZukanStateFR8Graphics(void)
  * Address:	80224B4C
  * Size:	000994
  */
-void dvdloadA__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::dvdloadA(void)
 {
 /*
 .loc_0x0:
@@ -5219,7 +5219,7 @@ void dvdloadA__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	802254E0
  * Size:	0000E4
  */
-void createTeki__Q34Game10SingleGame10ZukanStateFi(void)
+void Game::SingleGame::ZukanState::createTeki( (int))
 {
 /*
 .loc_0x0:
@@ -5296,7 +5296,7 @@ void createTeki__Q34Game10SingleGame10ZukanStateFi(void)
  * Address:	802255C4
  * Size:	000040
  */
-void createPellet__Q34Game10SingleGame10ZukanStateFi(void)
+void Game::SingleGame::ZukanState::createPellet( (int))
 {
 /*
 .loc_0x0:
@@ -5324,7 +5324,7 @@ void createPellet__Q34Game10SingleGame10ZukanStateFi(void)
  * Address:	........
  * Size:	0000E4
  */
-void dvdloadB_common__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::dvdloadB_common(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5334,7 +5334,7 @@ void dvdloadB_common__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	80225604
  * Size:	000CDC
  */
-void dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::dvdloadB_teki(void)
 {
 /*
 .loc_0x0:
@@ -6289,7 +6289,7 @@ void dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	802262E0
  * Size:	0004B0
  */
-void dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::dvdloadB_pellet(void)
 {
 /*
 .loc_0x0:
@@ -6633,7 +6633,7 @@ void dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	80226790
  * Size:	000090
  */
-void clearHeapB_common__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::clearHeapB_common(void)
 {
 /*
 .loc_0x0:
@@ -6683,7 +6683,7 @@ void clearHeapB_common__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	80226820
  * Size:	0003BC
  */
-void clearHeapB_teki__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::clearHeapB_teki(void)
 {
 /*
 .loc_0x0:
@@ -6974,7 +6974,7 @@ void clearHeapB_teki__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	80226BDC
  * Size:	000174
  */
-void clearHeapB_pellet__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::clearHeapB_pellet(void)
 {
 /*
 .loc_0x0:
@@ -7097,7 +7097,7 @@ void clearHeapB_pellet__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	80226D50
  * Size:	0003AC
  */
-void clearHeaps__Q34Game10SingleGame10ZukanStateFv(void)
+void Game::SingleGame::ZukanState::clearHeaps(void)
 {
 /*
 .loc_0x0:
@@ -7384,7 +7384,7 @@ void clearHeaps__Q34Game10SingleGame10ZukanStateFv(void)
  * Address:	802270FC
  * Size:	0000A8
  */
-void cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::ZukanState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -7440,7 +7440,7 @@ void cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection(void)
  * Address:	802271A4
  * Size:	000008
  */
-void getSize__Q28Morimura19DispMemberZukanItemFv(void)
+void Morimura::DispMemberZukanItem::getSize(void)
 {
 /*
 .loc_0x0:
@@ -7454,7 +7454,7 @@ void getSize__Q28Morimura19DispMemberZukanItemFv(void)
  * Address:	802271AC
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura19DispMemberZukanItemFv(void)
+void Morimura::DispMemberZukanItem::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -7469,7 +7469,7 @@ void getOwnerID__Q28Morimura19DispMemberZukanItemFv(void)
  * Address:	802271B8
  * Size:	000010
  */
-void getMemberID__Q28Morimura19DispMemberZukanItemFv(void)
+void Morimura::DispMemberZukanItem::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -7485,7 +7485,7 @@ void getMemberID__Q28Morimura19DispMemberZukanItemFv(void)
  * Address:	802271C8
  * Size:	000008
  */
-void getSize__Q28Morimura20DispMemberZukanEnemyFv(void)
+void Morimura::DispMemberZukanEnemy::getSize(void)
 {
 /*
 .loc_0x0:
@@ -7499,7 +7499,7 @@ void getSize__Q28Morimura20DispMemberZukanEnemyFv(void)
  * Address:	802271D0
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura20DispMemberZukanEnemyFv(void)
+void Morimura::DispMemberZukanEnemy::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -7514,7 +7514,7 @@ void getOwnerID__Q28Morimura20DispMemberZukanEnemyFv(void)
  * Address:	802271DC
  * Size:	000010
  */
-void getMemberID__Q28Morimura20DispMemberZukanEnemyFv(void)
+void Morimura::DispMemberZukanEnemy::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -7530,7 +7530,7 @@ void getMemberID__Q28Morimura20DispMemberZukanEnemyFv(void)
  * Address:	802271EC
  * Size:	0000D0
  */
-void __dt__Q34Game15IllustratedBook6CameraFv(void)
+void Game::IllustratedBook::Camera::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7659,7 +7659,7 @@ void Camera::isSpecialCamera()
  * Address:	802272F0
  * Size:	000070
  */
-void __dt__Q34Game15IllustratedBook11EnemyTexMgrFv(void)
+void Game::IllustratedBook::EnemyTexMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7701,7 +7701,7 @@ void __dt__Q34Game15IllustratedBook11EnemyTexMgrFv(void)
  * Address:	80227360
  * Size:	000060
  */
-void __dt__Q34Game15IllustratedBook10DebugParmsFv(void)
+void Game::IllustratedBook::DebugParms::__dt(void)
 {
 /*
 .loc_0x0:

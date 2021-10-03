@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80393348
  * Size:	000020
  */
-void create__Q28Morimura22TChallengeResultScreenFPCcUl(void)
+void Morimura::TChallengeResultScreen::create( (char const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -35,7 +35,7 @@ void create__Q28Morimura22TChallengeResultScreenFPCcUl(void)
  * Address:	80393368
  * Size:	000118
  */
-void createAnimPane__Q28Morimura22TChallengeResultScreenFPc(void)
+void Morimura::TChallengeResultScreen::createAnimPane( (char *))
 {
 /*
 .loc_0x0:
@@ -127,7 +127,7 @@ void createAnimPane__Q28Morimura22TChallengeResultScreenFPc(void)
  * Address:	80393480
  * Size:	000054
  */
-void updateBckPane__Q28Morimura22TChallengeResultScreenFv(void)
+void Morimura::TChallengeResultScreen::updateBckPane(void)
 {
 /*
 .loc_0x0:
@@ -162,7 +162,7 @@ void updateBckPane__Q28Morimura22TChallengeResultScreenFv(void)
  * Address:	........
  * Size:	000050
  */
-void __ct__Q28Morimura26TChallengeResultDemoScreenFP10JKRArchivei(void)
+void Morimura::TChallengeResultDemoScreen::__ct( (JKRArchive *, int))
 {
 	// UNUSED FUNCTION
 }
@@ -172,7 +172,7 @@ void __ct__Q28Morimura26TChallengeResultDemoScreenFP10JKRArchivei(void)
  * Address:	803934D4
  * Size:	0000F8
  */
-void create__Q28Morimura26TChallengeResultDemoScreenFPCcUl(void)
+void Morimura::TChallengeResultDemoScreen::create( (char const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -252,7 +252,7 @@ void create__Q28Morimura26TChallengeResultDemoScreenFPCcUl(void)
  * Address:	803935CC
  * Size:	0000E4
  */
-void update__Q28Morimura26TChallengeResultDemoScreenFv(void)
+void Morimura::TChallengeResultDemoScreen::update(void)
 {
 /*
 .loc_0x0:
@@ -329,7 +329,7 @@ void update__Q28Morimura26TChallengeResultDemoScreenFv(void)
  * Address:	803936B0
  * Size:	00002C
  */
-void draw__Q28Morimura26TChallengeResultDemoScreenFR8GraphicsP13J2DPerspGraph(void)
+void Morimura::TChallengeResultDemoScreen::draw( (Graphics &, J2DPerspGraph *))
 {
 /*
 .loc_0x0:
@@ -354,7 +354,7 @@ void draw__Q28Morimura26TChallengeResultDemoScreenFR8GraphicsP13J2DPerspGraph(vo
  * Address:	........
  * Size:	00003C
  */
-void startDemo__Q28Morimura26TChallengeResultDemoScreenFv(void)
+void Morimura::TChallengeResultDemoScreen::startDemo(void)
 {
 	// UNUSED FUNCTION
 }
@@ -364,7 +364,7 @@ void startDemo__Q28Morimura26TChallengeResultDemoScreenFv(void)
  * Address:	........
  * Size:	0000CC
  */
-void setComplete__Q28Morimura26TChallengeResultDemoScreenFb(void)
+void Morimura::TChallengeResultDemoScreen::setComplete( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -374,7 +374,7 @@ void setComplete__Q28Morimura26TChallengeResultDemoScreenFb(void)
  * Address:	........
  * Size:	000074
  */
-void reset__Q28Morimura26TChallengeResultDemoScreenFv(void)
+void Morimura::TChallengeResultDemoScreen::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -384,7 +384,7 @@ void reset__Q28Morimura26TChallengeResultDemoScreenFv(void)
  * Address:	........
  * Size:	000028
  */
-void __ct__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -394,7 +394,7 @@ void __ct__Q28Morimura9TMovePaneFv(void)
  * Address:	803936DC
  * Size:	00007C
  */
-void setPane__Q28Morimura9TMovePaneFP7J2DPane(void)
+void Morimura::TMovePane::setPane( (J2DPane *))
 {
 /*
 .loc_0x0:
@@ -439,7 +439,7 @@ void setPane__Q28Morimura9TMovePaneFP7J2DPane(void)
  * Address:	80393758
  * Size:	0000FC
  */
-void update__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::update(void)
 {
 /*
 .loc_0x0:
@@ -532,7 +532,7 @@ void update__Q28Morimura9TMovePaneFv(void)
  * Address:	80393854
  * Size:	00016C
  */
-void move__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::move(void)
 {
 /*
 .loc_0x0:
@@ -645,7 +645,7 @@ void move__Q28Morimura9TMovePaneFv(void)
  * Address:	803939C0
  * Size:	00008C
  */
-void turn__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::turn(void)
 {
 /*
 .loc_0x0:
@@ -698,7 +698,7 @@ void turn__Q28Morimura9TMovePaneFv(void)
  * Address:	80393A4C
  * Size:	00007C
  */
-void getAngDist__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::getAngDist(void)
 {
 /*
 .loc_0x0:
@@ -745,7 +745,7 @@ void getAngDist__Q28Morimura9TMovePaneFv(void)
  * Address:	80393AC8
  * Size:	000204
  */
-void hosei__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::hosei(void)
 {
 /*
 .loc_0x0:
@@ -902,7 +902,7 @@ void hosei__Q28Morimura9TMovePaneFv(void)
  * Address:	80393CCC
  * Size:	000030
  */
-void rolling__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::rolling(void)
 {
 /*
 .loc_0x0:
@@ -926,7 +926,7 @@ void rolling__Q28Morimura9TMovePaneFv(void)
  * Address:	80393CFC
  * Size:	00012C
  */
-void stick__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::stick(void)
 {
 /*
 .loc_0x0:
@@ -1023,7 +1023,7 @@ void stick__Q28Morimura9TMovePaneFv(void)
  * Address:	........
  * Size:	00008C
  */
-void forceTurn__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::forceTurn(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1033,7 +1033,7 @@ void forceTurn__Q28Morimura9TMovePaneFv(void)
  * Address:	........
  * Size:	000088
  */
-void startStick__Q28Morimura9TMovePaneFP7J2DPane(void)
+void Morimura::TMovePane::startStick( (J2DPane *))
 {
 	// UNUSED FUNCTION
 }
@@ -1043,7 +1043,7 @@ void startStick__Q28Morimura9TMovePaneFP7J2DPane(void)
  * Address:	80393E28
  * Size:	000034
  */
-void isReachToGoal__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::isReachToGoal(void)
 {
 /*
 .loc_0x0:
@@ -1068,7 +1068,7 @@ void isReachToGoal__Q28Morimura9TMovePaneFv(void)
  * Address:	80393E5C
  * Size:	0000D0
  */
-void reset__Q28Morimura9TMovePaneFv(void)
+void Morimura::TMovePane::reset(void)
 {
 /*
 .loc_0x0:
@@ -1214,7 +1214,7 @@ void Morimura::setTCounterRV(P2DScreen::Mgr *, unsigned long long, unsigned long
  * Address:	8039402C
  * Size:	000130
  */
-void __ct__Q28Morimura10TCounterRVFPPcUsUsP10JKRArchive(void)
+void Morimura::TCounterRV::__ct( (char **, unsigned short, unsigned short, JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -1308,7 +1308,7 @@ void __ct__Q28Morimura10TCounterRVFPPcUsUsP10JKRArchive(void)
  * Address:	8039415C
  * Size:	0000DC
  */
-void update__Q28Morimura10TCounterRVFv(void)
+void Morimura::TCounterRV::update(void)
 {
 /*
 .loc_0x0:
@@ -1381,7 +1381,7 @@ void update__Q28Morimura10TCounterRVFv(void)
  * Address:	80394238
  * Size:	0000D8
  */
-void setValue__Q28Morimura10TCounterRVFbb(void)
+void Morimura::TCounterRV::setValue( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -1455,7 +1455,7 @@ void setValue__Q28Morimura10TCounterRVFbb(void)
  * Address:	........
  * Size:	000150
  */
-void createKiraEffect__Q28Morimura10TCounterRVFfi(void)
+void Morimura::TCounterRV::createKiraEffect( (float, int))
 {
 	// UNUSED FUNCTION
 }
@@ -1465,7 +1465,7 @@ void createKiraEffect__Q28Morimura10TCounterRVFfi(void)
  * Address:	........
  * Size:	000094
  */
-void fadeKiraEffect__Q28Morimura10TCounterRVFv(void)
+void Morimura::TCounterRV::fadeKiraEffect(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1475,7 +1475,7 @@ void fadeKiraEffect__Q28Morimura10TCounterRVFv(void)
  * Address:	........
  * Size:	00000C
  */
-void startScaleAnim__Q28Morimura10TCounterRVFv(void)
+void Morimura::TCounterRV::startScaleAnim(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1485,7 +1485,7 @@ void startScaleAnim__Q28Morimura10TCounterRVFv(void)
  * Address:	........
  * Size:	0000A8
  */
-void reset__Q28Morimura10TCounterRVFv(void)
+void Morimura::TCounterRV::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1495,7 +1495,7 @@ void reset__Q28Morimura10TCounterRVFv(void)
  * Address:	........
  * Size:	000060
  */
-void __ct__Q28Morimura23TChallengeResultCounterFPUlii(void)
+void Morimura::TChallengeResultCounter::__ct( (unsigned long *, int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -1505,7 +1505,7 @@ void __ct__Q28Morimura23TChallengeResultCounterFPUlii(void)
  * Address:	........
  * Size:	000138
  */
-void start__Q28Morimura23TChallengeResultCounterFv(void)
+void Morimura::TChallengeResultCounter::start(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1515,7 +1515,7 @@ void start__Q28Morimura23TChallengeResultCounterFv(void)
  * Address:	........
  * Size:	000040
  */
-void stop__Q28Morimura23TChallengeResultCounterFv(void)
+void Morimura::TChallengeResultCounter::stop(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1525,7 +1525,7 @@ void stop__Q28Morimura23TChallengeResultCounterFv(void)
  * Address:	........
  * Size:	000070
  */
-void getFillRate__Q28Morimura23TChallengeResultCounterFv(void)
+void Morimura::TChallengeResultCounter::getFillRate(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1535,7 +1535,7 @@ void getFillRate__Q28Morimura23TChallengeResultCounterFv(void)
  * Address:	........
  * Size:	0001B0
  */
-void update__Q28Morimura23TChallengeResultCounterFv(void)
+void Morimura::TChallengeResultCounter::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1545,7 +1545,7 @@ void update__Q28Morimura23TChallengeResultCounterFv(void)
  * Address:	........
  * Size:	000080
  */
-void resetTexture__Q28Morimura13TClearTextureFv(void)
+void Morimura::TClearTexture::resetTexture(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1555,7 +1555,7 @@ void resetTexture__Q28Morimura13TClearTextureFv(void)
  * Address:	........
  * Size:	0000A4
  */
-void changeTexture__Q28Morimura13TClearTextureFb(void)
+void Morimura::TClearTexture::changeTexture( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -1585,7 +1585,7 @@ void getEffectPosition__Q28Morimura13TClearTextureFR10Vector2<float>(void)
  * Address:	80394310
  * Size:	0002F0
  */
-void __ct__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1789,7 +1789,7 @@ void __ct__Q28Morimura16TChallengeResultFv(void)
  * Address:	80394600
  * Size:	000004
  */
-void __ct__Q38Morimura16TChallengeResult10VectorUnitFv(void)
+void Morimura::TChallengeResult::VectorUnit::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1802,7 +1802,7 @@ void __ct__Q38Morimura16TChallengeResult10VectorUnitFv(void)
  * Address:	80394604
  * Size:	0000F4
  */
-void __dt__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1881,7 +1881,7 @@ void __dt__Q28Morimura16TChallengeResultFv(void)
  * Address:	........
  * Size:	000044
  */
-void setDebugHeapParent__Q28Morimura16TChallengeResultFP7JKRHeap(void)
+void Morimura::TChallengeResult::setDebugHeapParent( (JKRHeap *))
 {
 	// UNUSED FUNCTION
 }
@@ -1891,7 +1891,7 @@ void setDebugHeapParent__Q28Morimura16TChallengeResultFP7JKRHeap(void)
  * Address:	803946F8
  * Size:	001854
  */
-void doCreate__Q28Morimura16TChallengeResultFP10JKRArchive(void)
+void Morimura::TChallengeResult::doCreate( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -3606,7 +3606,7 @@ void doCreate__Q28Morimura16TChallengeResultFP10JKRArchive(void)
  * Address:	80395F4C
  * Size:	0009C0
  */
-void doUpdate__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -4320,7 +4320,7 @@ void doUpdate__Q28Morimura16TChallengeResultFv(void)
  * Address:	8039690C
  * Size:	000160
  */
-void doDraw__Q28Morimura16TChallengeResultFR8Graphics(void)
+void Morimura::TChallengeResult::doDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -4422,7 +4422,7 @@ void doDraw__Q28Morimura16TChallengeResultFR8Graphics(void)
  * Address:	80396A6C
  * Size:	00005C
  */
-void doUpdateFadeoutFinish__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::doUpdateFadeoutFinish(void)
 {
 /*
 .loc_0x0:
@@ -4459,7 +4459,7 @@ void doUpdateFadeoutFinish__Q28Morimura16TChallengeResultFv(void)
  * Address:	80396AC8
  * Size:	000EDC
  */
-void setInfo__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::setInfo(void)
 {
 /*
 .loc_0x0:
@@ -5544,7 +5544,7 @@ void setInfo__Q28Morimura16TChallengeResultFv(void)
  * Address:	803979A4
  * Size:	001250
  */
-void updateDemo__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::updateDemo(void)
 {
 /*
 .loc_0x0:
@@ -6886,7 +6886,7 @@ void updateDemo__Q28Morimura16TChallengeResultFv(void)
  * Address:	80398BF4
  * Size:	000540
  */
-void changeAnimDemo__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::changeAnimDemo(void)
 {
 /*
 .loc_0x0:
@@ -7260,7 +7260,7 @@ void changeAnimDemo__Q28Morimura16TChallengeResultFv(void)
  * Address:	80399134
  * Size:	000220
  */
-void startRankInDemo__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::startRankInDemo(void)
 {
 /*
 .loc_0x0:
@@ -7420,7 +7420,7 @@ void startRankInDemo__Q28Morimura16TChallengeResultFv(void)
  * Address:	80399354
  * Size:	00017C
  */
-void startDemo__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::startDemo(void)
 {
 /*
 .loc_0x0:
@@ -7545,7 +7545,7 @@ void startDemo__Q28Morimura16TChallengeResultFv(void)
  * Address:	803994D0
  * Size:	000120
  */
-void fadeEffect__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::fadeEffect(void)
 {
 /*
 .loc_0x0:
@@ -7643,7 +7643,7 @@ void fadeEffect__Q28Morimura16TChallengeResultFv(void)
  * Address:	803995F0
  * Size:	0000B0
  */
-void doUserCallBackFunc__Q28Morimura21TChallengeResultSceneFPQ28Resource10MgrCommand(void)
+void Morimura::TChallengeResultScene::doUserCallBackFunc( (Resource::MgrCommand *))
 {
 /*
 .loc_0x0:
@@ -7703,7 +7703,7 @@ void doUserCallBackFunc__Q28Morimura21TChallengeResultSceneFPQ28Resource10MgrCom
  * Address:	803996A0
  * Size:	000008
  */
-void getResName__Q28Morimura21TChallengeResultSceneCFv(void)
+void Morimura::TChallengeResultScene::getResName( const
 {
 /*
 .loc_0x0:
@@ -7717,7 +7717,7 @@ void getResName__Q28Morimura21TChallengeResultSceneCFv(void)
  * Address:	803996A8
  * Size:	000004
  */
-void doCreateObj__Q28Morimura21TChallengeResultSceneFP10JKRArchive(void)
+void Morimura::TChallengeResultScene::doCreateObj( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -7730,7 +7730,7 @@ void doCreateObj__Q28Morimura21TChallengeResultSceneFP10JKRArchive(void)
  * Address:	803996AC
  * Size:	000008
  */
-void getSceneType__Q28Morimura21TChallengeResultSceneFv(void)
+void Morimura::TChallengeResultScene::getSceneType(void)
 {
 /*
 .loc_0x0:
@@ -7744,7 +7744,7 @@ void getSceneType__Q28Morimura21TChallengeResultSceneFv(void)
  * Address:	803996B4
  * Size:	00000C
  */
-void getOwnerID__Q28Morimura21TChallengeResultSceneFv(void)
+void Morimura::TChallengeResultScene::getOwnerID(void)
 {
 /*
 .loc_0x0:
@@ -7759,7 +7759,7 @@ void getOwnerID__Q28Morimura21TChallengeResultSceneFv(void)
  * Address:	803996C0
  * Size:	000014
  */
-void getMemberID__Q28Morimura21TChallengeResultSceneFv(void)
+void Morimura::TChallengeResultScene::getMemberID(void)
 {
 /*
 .loc_0x0:
@@ -7776,7 +7776,7 @@ void getMemberID__Q28Morimura21TChallengeResultSceneFv(void)
  * Address:	803996D4
  * Size:	000034
  */
-void getDispMemberBase__Q28Morimura16TChallengeResultFv(void)
+void Morimura::TChallengeResult::getDispMemberBase(void)
 {
 /*
 .loc_0x0:
@@ -7805,7 +7805,7 @@ void getDispMemberBase__Q28Morimura16TChallengeResultFv(void)
  * Address:	80399708
  * Size:	000084
  */
-void __dt__Q25efx2d15T2DCavecompLoopFv(void)
+void efx2d::T2DCavecompLoop::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7854,7 +7854,7 @@ void __dt__Q25efx2d15T2DCavecompLoopFv(void)
  * Address:	8039978C
  * Size:	000090
  */
-void __dt__Q28Morimura10TCounterRVFv(void)
+void Morimura::TCounterRV::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7906,7 +7906,7 @@ void __dt__Q28Morimura10TCounterRVFv(void)
  * Address:	8039981C
  * Size:	000008
  */
-void @8@__dt__Q25efx2d15T2DCavecompLoopFv(void)
+void @8@efx2d::T2DCavecompLoop::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7920,7 +7920,7 @@ void @8@__dt__Q25efx2d15T2DCavecompLoopFv(void)
  * Address:	80399824
  * Size:	000008
  */
-void @24@__dt__Q28Morimura16TChallengeResultFv(void)
+void @24@Morimura::TChallengeResult::__dt(void)
 {
 /*
 .loc_0x0:

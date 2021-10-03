@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000058
  */
-void toString_status__Q37JStudio3stb7TObjectFi(void)
+void JStudio::stb::TObject::toString_status( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void toString_status__Q37JStudio3stb7TObjectFi(void)
  * Address:	........
  * Size:	000048
  */
-void __ct__Q37JStudio3stb7TObjectFUlPCvUl(void)
+void JStudio::stb::TObject::__ct( (unsigned long, void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q37JStudio3stb7TObjectFUlPCvUl(void)
  * Address:	80010278
  * Size:	000070
  */
-void __ct__Q37JStudio3stb7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_object(void)
+void JStudio::stb::TObject::__ct( (JStudio::stb::data::TParse_TBlock_object const &))
 {
 /*
 .loc_0x0:
@@ -65,7 +65,7 @@ void __ct__Q37JStudio3stb7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_object(vo
  * Address:	800102E8
  * Size:	000048
  */
-void __dt__Q37JStudio3stb7TObjectFv(void)
+void JStudio::stb::TObject::__dt(void)
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void __dt__Q37JStudio3stb7TObjectFv(void)
  * Address:	........
  * Size:	000058
  */
-void setFlag_operation__Q37JStudio3stb7TObjectFUci(void)
+void JStudio::stb::TObject::setFlag_operation( (unsigned char, int))
 {
 	// UNUSED FUNCTION
 }
@@ -107,7 +107,7 @@ void setFlag_operation__Q37JStudio3stb7TObjectFUci(void)
  * Address:	........
  * Size:	000018
  */
-void reset__Q37JStudio3stb7TObjectFPCv(void)
+void JStudio::stb::TObject::reset( (void const *))
 {
 	// UNUSED FUNCTION
 }
@@ -117,7 +117,7 @@ void reset__Q37JStudio3stb7TObjectFPCv(void)
  * Address:	80010330
  * Size:	000238
  */
-void forward__Q37JStudio3stb7TObjectFUl(void)
+void JStudio::stb::TObject::forward( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -305,7 +305,7 @@ void forward__Q37JStudio3stb7TObjectFUl(void)
  * Address:	80010568
  * Size:	000004
  */
-void do_begin__Q37JStudio3stb7TObjectFv(void)
+void JStudio::stb::TObject::do_begin(void)
 {
 /*
 .loc_0x0:
@@ -318,7 +318,7 @@ void do_begin__Q37JStudio3stb7TObjectFv(void)
  * Address:	8001056C
  * Size:	000004
  */
-void do_end__Q37JStudio3stb7TObjectFv(void)
+void JStudio::stb::TObject::do_end(void)
 {
 /*
 .loc_0x0:
@@ -331,7 +331,7 @@ void do_end__Q37JStudio3stb7TObjectFv(void)
  * Address:	80010570
  * Size:	000004
  */
-void do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl(void)
+void JStudio::stb::TObject::do_paragraph( (unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -344,7 +344,7 @@ void do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl(void)
  * Address:	80010574
  * Size:	000004
  */
-void do_wait__Q37JStudio3stb7TObjectFUl(void)
+void JStudio::stb::TObject::do_wait( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -357,7 +357,7 @@ void do_wait__Q37JStudio3stb7TObjectFUl(void)
  * Address:	80010578
  * Size:	000004
  */
-void do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl(void)
+void JStudio::stb::TObject::do_data( (void const *, unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl(void)
  * Address:	8001057C
  * Size:	0001A4
  */
-void process_sequence___Q37JStudio3stb7TObjectFv(void)
+void JStudio::stb::TObject::process_sequence_(void)
 {
 /*
 .loc_0x0:
@@ -523,7 +523,7 @@ void process_sequence___Q37JStudio3stb7TObjectFv(void)
  * Address:	80010720
  * Size:	00013C
  */
-void process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl(void)
+void JStudio::stb::TObject::process_paragraph_reserved_( (unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -638,7 +638,7 @@ void process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl(void)
  * Address:	........
  * Size:	000058
  */
-void __ct__Q37JStudio3stb15TObject_controlFPCvUl(void)
+void JStudio::stb::TObject_control::__ct( (void const *, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -648,7 +648,7 @@ void __ct__Q37JStudio3stb15TObject_controlFPCvUl(void)
  * Address:	........
  * Size:	00007C
  */
-void __ct__Q37JStudio3stb15TObject_controlFRCQ47JStudio3stb4data20TParse_TBlock_object(void)
+void JStudio::stb::TObject_control::__ct( (JStudio::stb::data::TParse_TBlock_object const &))
 {
 	// UNUSED FUNCTION
 }
@@ -658,7 +658,7 @@ void __ct__Q37JStudio3stb15TObject_controlFRCQ47JStudio3stb4data20TParse_TBlock_
  * Address:	8001085C
  * Size:	000094
  */
-void __ct__Q37JStudio3stb8TControlFv(void)
+void JStudio::stb::TControl::__ct(void)
 {
 /*
 .loc_0x0:
@@ -707,7 +707,7 @@ void __ct__Q37JStudio3stb8TControlFv(void)
  * Address:	800108F0
  * Size:	00005C
  */
-void __dt__Q37JStudio3stb15TObject_controlFv(void)
+void JStudio::stb::TObject_control::__dt(void)
 {
 /*
 .loc_0x0:
@@ -756,7 +756,7 @@ void __dt__Q27JGadget37TLinkList<JStudio::stb::TObject, -12>Fv(void)
  * Address:	8001094C
  * Size:	00009C
  */
-void __dt__Q37JStudio3stb8TControlFv(void)
+void JStudio::stb::TControl::__dt(void)
 {
 /*
 .loc_0x0:
@@ -813,7 +813,7 @@ void __dt__Q37JStudio3stb8TControlFv(void)
  * Address:	........
  * Size:	000054
  */
-void appendObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject(void)
+void JStudio::stb::TControl::appendObject( (JStudio::stb::TObject *))
 {
 	// UNUSED FUNCTION
 }
@@ -823,7 +823,7 @@ void appendObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject(void)
  * Address:	........
  * Size:	000038
  */
-void removeObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject(void)
+void JStudio::stb::TControl::removeObject( (JStudio::stb::TObject *))
 {
 	// UNUSED FUNCTION
 }
@@ -833,7 +833,7 @@ void removeObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject(void)
  * Address:	........
  * Size:	00006C
  */
-void removeObject_all__Q37JStudio3stb8TControlFv(void)
+void JStudio::stb::TControl::removeObject_all(void)
 {
 	// UNUSED FUNCTION
 }
@@ -843,7 +843,7 @@ void removeObject_all__Q37JStudio3stb8TControlFv(void)
  * Address:	........
  * Size:	000064
  */
-void destroyObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject(void)
+void JStudio::stb::TControl::destroyObject( (JStudio::stb::TObject *))
 {
 	// UNUSED FUNCTION
 }
@@ -853,7 +853,7 @@ void destroyObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject(void)
  * Address:	........
  * Size:	000094
  */
-void destroyObject_all__Q37JStudio3stb8TControlFv(void)
+void JStudio::stb::TControl::destroyObject_all(void)
 {
 	// UNUSED FUNCTION
 }
@@ -863,7 +863,7 @@ void destroyObject_all__Q37JStudio3stb8TControlFv(void)
  * Address:	800109E8
  * Size:	000094
  */
-void getObject__Q37JStudio3stb8TControlFPCvUl(void)
+void JStudio::stb::TControl::getObject( (void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -971,7 +971,7 @@ void std::find_if<JGadget::TLinkList<JStudio::stb::TObject, -12>::iterator, JStu
  * Address:	........
  * Size:	00007C
  */
-void getObject_index__Q37JStudio3stb8TControlFUl(void)
+void JStudio::stb::TControl::getObject_index( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -981,7 +981,7 @@ void getObject_index__Q37JStudio3stb8TControlFUl(void)
  * Address:	........
  * Size:	000084
  */
-void reset__Q37JStudio3stb8TControlFv(void)
+void JStudio::stb::TControl::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -991,7 +991,7 @@ void reset__Q37JStudio3stb8TControlFv(void)
  * Address:	80010B18
  * Size:	0000F0
  */
-void forward__Q37JStudio3stb8TControlFUl(void)
+void JStudio::stb::TControl::forward( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -1071,7 +1071,7 @@ void forward__Q37JStudio3stb8TControlFUl(void)
  * Address:	80010C08
  * Size:	000048
  */
-void __dt__Q37JStudio3stb8TFactoryFv(void)
+void JStudio::stb::TFactory::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1103,7 +1103,7 @@ void __dt__Q37JStudio3stb8TFactoryFv(void)
  * Address:	80010C50
  * Size:	000008
  */
-void create__Q37JStudio3stb8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object(void)
+void JStudio::stb::TFactory::create( (JStudio::stb::data::TParse_TBlock_object const &))
 {
 /*
 .loc_0x0:
@@ -1117,7 +1117,7 @@ void create__Q37JStudio3stb8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
  * Address:	80010C58
  * Size:	00003C
  */
-void destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject(void)
+void JStudio::stb::TFactory::destroy( (JStudio::stb::TObject *))
 {
 /*
 .loc_0x0:
@@ -1146,7 +1146,7 @@ void destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject(void)
  * Address:	80010C94
  * Size:	000020
  */
-void __ct__Q37JStudio3stb6TParseFPQ37JStudio3stb8TControl(void)
+void JStudio::stb::TParse::__ct( (JStudio::stb::TControl *))
 {
 /*
 .loc_0x0:
@@ -1166,7 +1166,7 @@ void __ct__Q37JStudio3stb6TParseFPQ37JStudio3stb8TControl(void)
  * Address:	80010CB4
  * Size:	000060
  */
-void __dt__Q37JStudio3stb6TParseFv(void)
+void JStudio::stb::TParse::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1204,7 +1204,7 @@ void __dt__Q37JStudio3stb6TParseFv(void)
  * Address:	80010D14
  * Size:	0000C8
  */
-void parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl(void)
+void JStudio::stb::TParse::parseHeader_next( (void const **, unsigned long *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1276,7 +1276,7 @@ void parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl(void)
  * Address:	80010DDC
  * Size:	000054
  */
-void parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl(void)
+void JStudio::stb::TParse::parseBlock_next( (void const **, unsigned long *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1309,7 +1309,7 @@ void parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl(void)
  * Address:	80010E30
  * Size:	000008
  */
-void parseHeader__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl(void)
+void JStudio::stb::TParse::parseHeader( (JStudio::stb::data::TParse_THeader const &, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1323,7 +1323,7 @@ void parseHeader__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl(
  * Address:	80010E38
  * Size:	000038
  */
-void parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl(void)
+void JStudio::stb::TParse::parseBlock_block( (JStudio::stb::data::TParse_TBlock const &, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1349,7 +1349,7 @@ void parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBloc
  * Address:	80010E70
  * Size:	000154
  */
-void parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl(void)
+void JStudio::stb::TParse::parseBlock_object( (JStudio::stb::data::TParse_TBlock_object const &, unsigned long))
 {
 /*
 .loc_0x0:

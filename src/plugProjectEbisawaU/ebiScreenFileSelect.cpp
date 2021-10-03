@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	0000B8
  */
-void setArchive__Q43ebi6Screen10FileSelect21TScreenDataWindow_newFP10JKRArchive(void)
+void ebi::Screen::FileSelect::TScreenDataWindow_new::setArchive( (JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void setArchive__Q43ebi6Screen10FileSelect21TScreenDataWindow_newFP10JKRArchive(
  * Address:	........
  * Size:	000130
  */
-void setData__Q43ebi6Screen10FileSelect21TScreenDataWindow_newFlUx(void)
+void ebi::Screen::FileSelect::TScreenDataWindow_new::setData( (long, unsigned long long))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void setData__Q43ebi6Screen10FileSelect21TScreenDataWindow_newFlUx(void)
  * Address:	........
  * Size:	0002E4
  */
-void setArchive__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFP10JKRArchive(void)
+void ebi::Screen::FileSelect::TScreenDataWindow_data::setArchive( (JKRArchive *))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void setArchive__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFP10JKRArchive
  * Address:	803D4244
  * Size:	000254
  */
-void setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl(void)
+void ebi::Screen::FileSelect::TScreenDataWindow_data::setData( (long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -218,7 +218,7 @@ void setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl(vo
  * Address:	803D4498
  * Size:	000EB0
  */
-void __ct__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1178,7 +1178,7 @@ void __ct__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D5348
  * Size:	0000B0
  */
-void loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -1236,7 +1236,7 @@ void loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D53F8
  * Size:	0012E4
  */
-void doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive(void)
+void ebi::Screen::FileSelect::TMainScreen::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -2479,7 +2479,7 @@ void doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive(void)
  * Address:	803D66DC
  * Size:	000100
  */
-void doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::doKillScreen(void)
 {
 /*
 .loc_0x0:
@@ -2557,7 +2557,7 @@ void doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D67DC
  * Size:	000284
  */
-void doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::FileSelect::TMainScreen::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -2736,7 +2736,7 @@ void doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen
  * Address:	803D6A60
  * Size:	0001B0
  */
-void doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::doInitWaitState(void)
 {
 /*
 .loc_0x0:
@@ -2860,7 +2860,7 @@ void doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D6C10
  * Size:	000098
  */
-void doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::FileSelect::TMainScreen::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -2912,7 +2912,7 @@ void doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClo
  * Address:	803D6CA8
  * Size:	000088
  */
-void doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -2964,7 +2964,7 @@ void doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D6D30
  * Size:	00031C
  */
-void doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -3199,7 +3199,7 @@ void doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D704C
  * Size:	0000CC
  */
-void doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -3270,7 +3270,7 @@ void doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D7118
  * Size:	000374
  */
-void doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -3527,7 +3527,7 @@ void doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D748C
  * Size:	0001B0
  */
-void inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::inDataBall( (long))
 {
 /*
 .loc_0x0:
@@ -3659,7 +3659,7 @@ void inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D763C
  * Size:	0000A4
  */
-void outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::outDataBall( (long))
 {
 /*
 .loc_0x0:
@@ -3716,7 +3716,7 @@ void outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D76E0
  * Size:	0000A4
  */
-void decideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::decideDataBall( (long))
 {
 /*
 .loc_0x0:
@@ -3773,7 +3773,7 @@ void decideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D7784
  * Size:	000124
  */
-void createFiledecide__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::createFiledecide( (long))
 {
 /*
 .loc_0x0:
@@ -3860,7 +3860,7 @@ void createFiledecide__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D78A8
  * Size:	000030
  */
-void isFinishOutDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::isFinishOutDataBall( (long))
 {
 /*
 .loc_0x0:
@@ -3884,7 +3884,7 @@ void isFinishOutDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D78D8
  * Size:	000030
  */
-void isFinishDecideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::isFinishDecideDataBall( (long))
 {
 /*
 .loc_0x0:
@@ -3908,7 +3908,7 @@ void isFinishDecideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D7908
  * Size:	0000F4
  */
-void createCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::createCopyCursor( (long))
 {
 /*
 .loc_0x0:
@@ -3991,7 +3991,7 @@ void createCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D79FC
  * Size:	000050
  */
-void fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::fadeCopyCursor(void)
 {
 /*
 .loc_0x0:
@@ -4023,7 +4023,7 @@ void fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	........
  * Size:	000050
  */
-void killCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::killCopyCursor(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4033,7 +4033,7 @@ void killCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D7A4C
  * Size:	000010
  */
-void moveLeftCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::moveLeftCopyCursor(void)
 {
 /*
 .loc_0x0:
@@ -4049,7 +4049,7 @@ void moveLeftCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D7A5C
  * Size:	000010
  */
-void moveRightCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::moveRightCopyCursor(void)
 {
 /*
 .loc_0x0:
@@ -4065,7 +4065,7 @@ void moveRightCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D7A6C
  * Size:	0001E0
  */
-void createFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFll(void)
+void ebi::Screen::FileSelect::TMainScreen::createFilecopyEffect( (long, long))
 {
 /*
 .loc_0x0:
@@ -4197,7 +4197,7 @@ void createFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFll(void)
  * Address:	803D7C4C
  * Size:	000058
  */
-void fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::fadeFilecopyEffect(void)
 {
 /*
 .loc_0x0:
@@ -4231,7 +4231,7 @@ void fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D7CA4
  * Size:	000118
  */
-void createFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::createFiledeletingEffect( (long))
 {
 /*
 .loc_0x0:
@@ -4313,7 +4313,7 @@ void createFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D7DBC
  * Size:	000058
  */
-void fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::fadeFiledeletingEffect(void)
 {
 /*
 .loc_0x0:
@@ -4347,7 +4347,7 @@ void fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	........
  * Size:	0000F0
  */
-void killAllEffect__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::killAllEffect(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4357,7 +4357,7 @@ void killAllEffect__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D7E14
  * Size:	000318
  */
-void openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::openDataWindow( (long))
 {
 /*
 .loc_0x0:
@@ -4587,7 +4587,7 @@ void openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D812C
  * Size:	00006C
  */
-void closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::closeDataWindow(void)
 {
 /*
 .loc_0x0:
@@ -4628,7 +4628,7 @@ void closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8198
  * Size:	00006C
  */
-void decideDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::decideDataWindow(void)
 {
 /*
 .loc_0x0:
@@ -4669,7 +4669,7 @@ void decideDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8204
  * Size:	000024
  */
-void isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::isFinishCloseDataWindow(void)
 {
 /*
 .loc_0x0:
@@ -4690,7 +4690,7 @@ void isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8228
  * Size:	0002A0
  */
-void openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::openMSG( (long))
 {
 /*
 .loc_0x0:
@@ -4872,7 +4872,7 @@ void openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D84C8
  * Size:	000060
  */
-void closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::closeMSG(void)
 {
 /*
 .loc_0x0:
@@ -4910,7 +4910,7 @@ void closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8528
  * Size:	000028
  */
-void isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::isFinishCloseMSG(void)
 {
 /*
 .loc_0x0:
@@ -4934,7 +4934,7 @@ void isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8550
  * Size:	0000C4
  */
-void setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb(void)
+void ebi::Screen::FileSelect::TMainScreen::setYesNo( (bool))
 {
 /*
 .loc_0x0:
@@ -4999,7 +4999,7 @@ void setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb(void)
  * Address:	803D8614
  * Size:	000144
  */
-void updateMsg___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::updateMsg_(void)
 {
 /*
 .loc_0x0:
@@ -5106,7 +5106,7 @@ void updateMsg___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8758
  * Size:	00004C
  */
-void setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx(void)
+void ebi::Screen::FileSelect::TMainScreen::setMsgID_( (unsigned long long, unsigned long long, unsigned long long))
 {
 /*
 .loc_0x0:
@@ -5137,7 +5137,7 @@ void setMsgID___Q43ebi6Screen10FileSelect11TMainScreenFUxUxUx(void)
  * Address:	........
  * Size:	00005C
  */
-void isFinishOutCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::isFinishOutCopyErase(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5147,7 +5147,7 @@ void isFinishOutCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D87A4
  * Size:	00008C
  */
-void inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::inCopyErase(void)
 {
 /*
 .loc_0x0:
@@ -5196,7 +5196,7 @@ void inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8830
  * Size:	00008C
  */
-void outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::outCopyErase(void)
 {
 /*
 .loc_0x0:
@@ -5245,7 +5245,7 @@ void outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D88BC
  * Size:	00008C
  */
-void inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::inYesNo_(void)
 {
 /*
 .loc_0x0:
@@ -5294,7 +5294,7 @@ void inYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8948
  * Size:	00008C
  */
-void outYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::outYesNo_(void)
 {
 /*
 .loc_0x0:
@@ -5343,7 +5343,7 @@ void outYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	........
  * Size:	00005C
  */
-void isFinishOutYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::isFinishOutYesNo_(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5353,7 +5353,7 @@ void isFinishOutYesNo___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D89D4
  * Size:	0001C0
  */
-void setDataBallCopyResult__Q43ebi6Screen10FileSelect11TMainScreenFll(void)
+void ebi::Screen::FileSelect::TMainScreen::setDataBallCopyResult( (long, long))
 {
 /*
 .loc_0x0:
@@ -5477,7 +5477,7 @@ void setDataBallCopyResult__Q43ebi6Screen10FileSelect11TMainScreenFll(void)
  * Address:	803D8B94
  * Size:	000250
  */
-void setDataBallNew__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::setDataBallNew( (long))
 {
 /*
 .loc_0x0:
@@ -5637,7 +5637,7 @@ void setDataBallNew__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D8DE4
  * Size:	000098
  */
-void setDataBallBroken__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::setDataBallBroken( (long))
 {
 /*
 .loc_0x0:
@@ -5689,7 +5689,7 @@ void setDataBallBroken__Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D8E7C
  * Size:	00004C
  */
-void initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::initDataBalls_(void)
 {
 /*
 .loc_0x0:
@@ -5724,7 +5724,7 @@ void initDataBalls___Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D8EC8
  * Size:	000550
  */
-void setColorTimgDataBall___Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::setColorTimgDataBall_( (long))
 {
 /*
 .loc_0x0:
@@ -6104,7 +6104,7 @@ void setColorTimgDataBall___Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D9418
  * Size:	0000CC
  */
-void getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl(void)
+void ebi::Screen::FileSelect::TMainScreen::getDataBallColor_( (long))
 {
 /*
 .loc_0x0:
@@ -6177,7 +6177,7 @@ void getDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFl(void)
  * Address:	803D94E4
  * Size:	0001C0
  */
-void calcDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFUlUlUlUlUl(void)
+void ebi::Screen::FileSelect::TMainScreen::calcDataBallColor_( (unsigned long, unsigned long, unsigned long, unsigned long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -6319,7 +6319,7 @@ void calcDataBallColor___Q43ebi6Screen10FileSelect11TMainScreenFUlUlUlUlUl(void)
  * Address:	803D96A4
  * Size:	000080
  */
-void setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc(void)
+void ebi::Screen::FileSelect::TMainScreen::setIconColorAlpha_( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -6365,7 +6365,7 @@ void setIconColorAlpha___Q43ebi6Screen10FileSelect11TMainScreenFUc(void)
  * Address:	803D9724
  * Size:	000058
  */
-void __ct__Q43ebi6Screen10FileSelect9TFileDataFv(void)
+void ebi::Screen::FileSelect::TFileData::__ct(void)
 {
 /*
 .loc_0x0:
@@ -6399,7 +6399,7 @@ void __ct__Q43ebi6Screen10FileSelect9TFileDataFv(void)
  * Address:	803D977C
  * Size:	00000C
  */
-void getName__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
+void ebi::Screen::FileSelect::TMainScreen::getName(void)
 {
 /*
 .loc_0x0:
@@ -6414,7 +6414,7 @@ void getName__Q43ebi6Screen10FileSelect11TMainScreenFv(void)
  * Address:	803D9788
  * Size:	00009C
  */
-void __dt__Q35efx2d10FileSelect11T2DFileselMFv(void)
+void efx2d::FileSelect::T2DFileselM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6469,7 +6469,7 @@ void __dt__Q35efx2d10FileSelect11T2DFileselMFv(void)
  * Address:	803D9824
  * Size:	000084
  */
-void __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv(void)
+void efx2d::FileSelect::T2DFiledeletingM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6518,7 +6518,7 @@ void __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv(void)
  * Address:	803D98A8
  * Size:	000084
  */
-void __dt__Q35efx2d10FileSelect15T2DFiledeletingFv(void)
+void efx2d::FileSelect::T2DFiledeleting::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6567,7 +6567,7 @@ void __dt__Q35efx2d10FileSelect15T2DFiledeletingFv(void)
  * Address:	803D992C
  * Size:	00009C
  */
-void __dt__Q35efx2d10FileSelect12T2DFilecopyMFv(void)
+void efx2d::FileSelect::T2DFilecopyM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6622,7 +6622,7 @@ void __dt__Q35efx2d10FileSelect12T2DFilecopyMFv(void)
  * Address:	803D99C8
  * Size:	00009C
  */
-void __dt__Q35efx2d10FileSelect11T2DFilecopyFv(void)
+void efx2d::FileSelect::T2DFilecopy::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6677,7 +6677,7 @@ void __dt__Q35efx2d10FileSelect11T2DFilecopyFv(void)
  * Address:	803D9A64
  * Size:	000094
  */
-void __ct__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::__ct(void)
 {
 /*
 .loc_0x0:
@@ -6726,7 +6726,7 @@ void __ct__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D9AF8
  * Size:	000104
  */
-void set__Q23ebi26E2DCallBack_BlinkFontColorFRQ23ebi16E2DFullFontColorRQ23ebi16E2DFullFontColor(void)
+void ebi::E2DCallBack_BlinkFontColor::set( (ebi::E2DFullFontColor &, ebi::E2DFullFontColor &))
 {
 /*
 .loc_0x0:
@@ -6803,7 +6803,7 @@ void set__Q23ebi26E2DCallBack_BlinkFontColorFRQ23ebi16E2DFullFontColorRQ23ebi16E
  * Address:	803D9BFC
  * Size:	00000C
  */
-void getName__Q25efx2d8ArgColorFv(void)
+void efx2d::ArgColor::getName(void)
 {
 /*
 .loc_0x0:
@@ -6818,7 +6818,7 @@ void getName__Q25efx2d8ArgColorFv(void)
  * Address:	803D9C08
  * Size:	00000C
  */
-void getName__Q35efx2d10FileSelect11ArgFilecopyFv(void)
+void efx2d::FileSelect::ArgFilecopy::getName(void)
 {
 /*
 .loc_0x0:
@@ -6833,7 +6833,7 @@ void getName__Q35efx2d10FileSelect11ArgFilecopyFv(void)
  * Address:	803D9C14
  * Size:	00009C
  */
-void __dt__Q35efx2d10FileSelect10T2DFileselFv(void)
+void efx2d::FileSelect::T2DFilesel::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6888,7 +6888,7 @@ void __dt__Q35efx2d10FileSelect10T2DFileselFv(void)
  * Address:	803D9CB0
  * Size:	000008
  */
-void @8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv(void)
+void @8@efx2d::FileSelect::T2DFilecopy::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6902,7 +6902,7 @@ void @8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv(void)
  * Address:	803D9CB8
  * Size:	000008
  */
-void @8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv(void)
+void @8@efx2d::FileSelect::T2DFilecopyM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6916,7 +6916,7 @@ void @8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv(void)
  * Address:	803D9CC0
  * Size:	000008
  */
-void @8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv(void)
+void @8@efx2d::FileSelect::T2DFiledeleting::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6930,7 +6930,7 @@ void @8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv(void)
  * Address:	803D9CC8
  * Size:	000008
  */
-void @8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv(void)
+void @8@efx2d::FileSelect::T2DFiledeletingM::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6944,7 +6944,7 @@ void @8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv(void)
  * Address:	803D9CD0
  * Size:	000008
  */
-void @8@__dt__Q35efx2d10FileSelect10T2DFileselFv(void)
+void @8@efx2d::FileSelect::T2DFilesel::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6958,7 +6958,7 @@ void @8@__dt__Q35efx2d10FileSelect10T2DFileselFv(void)
  * Address:	803D9CD8
  * Size:	000008
  */
-void @8@__dt__Q35efx2d10FileSelect11T2DFileselMFv(void)
+void @8@efx2d::FileSelect::T2DFileselM::__dt(void)
 {
 /*
 .loc_0x0:

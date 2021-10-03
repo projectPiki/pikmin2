@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8022E36C
  * Size:	000034
  */
-void __ct__Q24Game15CellIteratorArgFv(void)
+void Game::CellIteratorArg::__ct(void)
 {
 /*
 .loc_0x0:
@@ -40,7 +40,7 @@ void __ct__Q24Game15CellIteratorArgFv(void)
  * Address:	8022E3A0
  * Size:	000040
  */
-void __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere(void)
+void Game::CellIteratorArg::__ct( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -68,7 +68,7 @@ void __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere(void)
  * Address:	8022E3E0
  * Size:	00007C
  */
-void __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg(void)
+void Game::CellIterator::__ct( (Game::CellIteratorArg &))
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg(void)
  * Address:	8022E45C
  * Size:	0000A4
  */
-void first__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::first(void)
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void first__Q24Game12CellIteratorFv(void)
  * Address:	8022E500
  * Size:	000034
  */
-void next__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::next(void)
 {
 /*
 .loc_0x0:
@@ -193,7 +193,7 @@ void next__Q24Game12CellIteratorFv(void)
  * Address:	8022E534
  * Size:	000010
  */
-void isDone__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::isDone(void)
 {
 /*
 .loc_0x0:
@@ -209,7 +209,7 @@ void isDone__Q24Game12CellIteratorFv(void)
  * Address:	8022E544
  * Size:	00001C
  */
-void __ml__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::operator*(void)
 {
 /*
 .loc_0x0:
@@ -230,7 +230,7 @@ void __ml__Q24Game12CellIteratorFv(void)
  * Address:	8022E560
  * Size:	00001C
  */
-void getCellObject__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::getCellObject(void)
 {
 /*
 .loc_0x0:
@@ -251,7 +251,7 @@ void getCellObject__Q24Game12CellIteratorFv(void)
  * Address:	8022E57C
  * Size:	0000EC
  */
-void step__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::step(void)
 {
 /*
 .loc_0x0:
@@ -332,7 +332,7 @@ void step__Q24Game12CellIteratorFv(void)
  * Address:	8022E668
  * Size:	000110
  */
-void find__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::find(void)
 {
 /*
 .loc_0x0:
@@ -430,7 +430,7 @@ void find__Q24Game12CellIteratorFv(void)
  * Address:	8022E778
  * Size:	00018C
  */
-void satisfy__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::satisfy(void)
 {
 /*
 .loc_0x0:
@@ -555,7 +555,7 @@ void satisfy__Q24Game12CellIteratorFv(void)
  * Address:	8022E904
  * Size:	00018C
  */
-void calcExtent__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::calcExtent(void)
 {
 /*
 .loc_0x0:
@@ -672,7 +672,7 @@ void calcExtent__Q24Game12CellIteratorFv(void)
  * Address:	8022EA90
  * Size:	000004
  */
-void dump__Q24Game12CellIteratorFv(void)
+void Game::CellIterator::dump(void)
 {
 /*
 .loc_0x0:

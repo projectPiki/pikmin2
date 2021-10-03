@@ -5,7 +5,7 @@
  * Address:	8000CA3C
  * Size:	000068
  */
-void getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData(void)
+void JStudio::fvb::data::TParse_TParagraph::getData( const(JStudio::fvb::data::TParse_TParagraph::TData *))
 {
 /*
 .loc_0x0:

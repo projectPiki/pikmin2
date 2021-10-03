@@ -5,7 +5,7 @@
  * Address:	80010188
  * Size:	0000F0
  */
-void isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData(void)
+void JStudio::object::TIDData::isEqual( (JStudio::object::TIDData const &, JStudio::object::TIDData const &))
 {
 /*
 .loc_0x0:

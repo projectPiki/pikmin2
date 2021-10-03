@@ -52,7 +52,7 @@ void ebi::gCardEMgr_ThreadFunc(void *)
  * Address:	........
  * Size:	000018
  */
-void changeEndian__Q23ebi11CardEReaderFUl(void)
+void ebi::CardEReader::changeEndian( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -62,7 +62,7 @@ void changeEndian__Q23ebi11CardEReaderFUl(void)
  * Address:	........
  * Size:	00000C
  */
-void roundup4b__Q23ebi11CardEReaderFUl(void)
+void ebi::CardEReader::roundup4b( (unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -72,7 +72,7 @@ void roundup4b__Q23ebi11CardEReaderFUl(void)
  * Address:	........
  * Size:	000070
  */
-void CardE_probeAGB__Q23ebi11CardEReaderFv(void)
+void ebi::CardEReader::CardE_probeAGB(void)
 {
 	// UNUSED FUNCTION
 }
@@ -82,7 +82,7 @@ void CardE_probeAGB__Q23ebi11CardEReaderFv(void)
  * Address:	803ECB9C
  * Size:	000274
  */
-void CardE_uploadToGBA__Q23ebi11CardEReaderFlPUcUl(void)
+void ebi::CardEReader::CardE_uploadToGBA( (long, unsigned char *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void CardE_uploadToGBA__Q23ebi11CardEReaderFlPUcUl(void)
  * Address:	803ECE10
  * Size:	000068
  */
-void __dt__Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void __dt__Q33ebi11CardEReader4TMgrFv(void)
  * Address:	803ECE78
  * Size:	00006C
  */
-void globalInstance__Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::globalInstance(void)
 {
 /*
 .loc_0x0:
@@ -378,7 +378,7 @@ void globalInstance__Q33ebi11CardEReader4TMgrFv(void)
  * Address:	........
  * Size:	000048
  */
-void deleteInstance__Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::deleteInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -388,7 +388,7 @@ void deleteInstance__Q33ebi11CardEReader4TMgrFv(void)
  * Address:	803ECEE4
  * Size:	00011C
  */
-void loadResource__Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -481,7 +481,7 @@ void loadResource__Q33ebi11CardEReader4TMgrFv(void)
  * Address:	803ED000
  * Size:	00003C
  */
-void init__Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::init(void)
 {
 /*
 .loc_0x0:
@@ -508,7 +508,7 @@ void init__Q33ebi11CardEReader4TMgrFv(void)
  * Address:	803ED03C
  * Size:	00001C
  */
-void uploadToGBA__Q33ebi11CardEReader4TMgrFl(void)
+void ebi::CardEReader::TMgr::uploadToGBA( (long))
 {
 /*
 .loc_0x0:
@@ -527,7 +527,7 @@ void uploadToGBA__Q33ebi11CardEReader4TMgrFl(void)
  * Address:	803ED058
  * Size:	000018
  */
-void probeAGB__Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::probeAGB(void)
 {
 /*
 .loc_0x0:
@@ -545,7 +545,7 @@ void probeAGB__Q33ebi11CardEReader4TMgrFv(void)
  * Address:	803ED070
  * Size:	000150
  */
-void update__Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -661,7 +661,7 @@ void update__Q33ebi11CardEReader4TMgrFv(void)
  * Address:	803ED1C0
  * Size:	000010
  */
-void isFinish__Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::isFinish(void)
 {
 /*
 .loc_0x0:
@@ -677,7 +677,7 @@ void isFinish__Q33ebi11CardEReader4TMgrFv(void)
  * Address:	803ED1D0
  * Size:	000074
  */
-void threadProc__Q33ebi11CardEReader4TMgrFPv(void)
+void ebi::CardEReader::TMgr::threadProc( (void *))
 {
 /*
 .loc_0x0:
@@ -724,7 +724,7 @@ void threadProc__Q33ebi11CardEReader4TMgrFPv(void)
  * Address:	803ED244
  * Size:	000054
  */
-void tryUploadToGBA___Q33ebi11CardEReader4TMgrFv(void)
+void ebi::CardEReader::TMgr::tryUploadToGBA_(void)
 {
 /*
 .loc_0x0:
@@ -761,7 +761,7 @@ void tryUploadToGBA___Q33ebi11CardEReader4TMgrFv(void)
  * Address:	803ED298
  * Size:	000010
  */
-void goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr(void)
+void ebi::CardEReader::TMgr::goEnd_( (ebi::CardEReader::TMgr::enumErr))
 {
 /*
 .loc_0x0:

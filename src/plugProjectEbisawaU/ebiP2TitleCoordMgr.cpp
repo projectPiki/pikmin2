@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803E396C
  * Size:	0001A4
  */
-void __ct__Q33ebi5title9TCoordMgrFv(void)
+void ebi::title::TCoordMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -132,7 +132,7 @@ void __ct__Q33ebi5title9TCoordMgrFv(void)
  * Address:	........
  * Size:	000090
  */
-void getDestPos__Q33ebi5title9TCoordMgrFl(void)
+void ebi::title::TCoordMgr::getDestPos( (long))
 {
 	// UNUSED FUNCTION
 }
@@ -244,7 +244,7 @@ void copyCoordinate__Q33ebi5title9TCoordMgrFP10Vector2<float>(void)
  * Address:	803E3C28
  * Size:	00007C
  */
-void readCoordinate__Q33ebi5title9TCoordMgrFP10JKRArchivePc(void)
+void ebi::title::TCoordMgr::readCoordinate( (JKRArchive *, char *))
 {
 /*
 .loc_0x0:
@@ -293,7 +293,7 @@ void readCoordinate__Q33ebi5title9TCoordMgrFP10JKRArchivePc(void)
  * Address:	803E3CA4
  * Size:	000144
  */
-void readCoordinate__Q33ebi5title9TCoordMgrFR6Stream(void)
+void ebi::title::TCoordMgr::readCoordinate( (Stream &))
 {
 /*
 .loc_0x0:

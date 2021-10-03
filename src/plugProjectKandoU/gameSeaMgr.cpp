@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000028
  */
-void __ct__Q24Game8WaterBoxFv(void)
+void Game::WaterBox::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game8WaterBoxFv(void)
  * Address:	........
  * Size:	0000B8
  */
-void __ct__Q24Game12AABBWaterBoxFv(void)
+void Game::AABBWaterBox::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void __ct__Q24Game12AABBWaterBoxFv(void)
  * Address:	801AE448
  * Size:	000028
  */
-void startDown__Q24Game12AABBWaterBoxFf(void)
+void Game::AABBWaterBox::startDown( (float))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void startDown__Q24Game12AABBWaterBoxFf(void)
  * Address:	801AE470
  * Size:	000038
  */
-void startUp__Q24Game12AABBWaterBoxFf(void)
+void Game::AABBWaterBox::startUp( (float))
 {
 /*
 .loc_0x0:
@@ -83,7 +83,7 @@ void startUp__Q24Game12AABBWaterBoxFf(void)
  * Address:	801AE4A8
  * Size:	0000B8
  */
-void update__Q24Game12AABBWaterBoxFv(void)
+void Game::AABBWaterBox::update(void)
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void update__Q24Game12AABBWaterBoxFv(void)
  * Address:	801AE560
  * Size:	0001B0
  */
-void attachModel__Q24Game12AABBWaterBoxFP12J3DModelDataPQ23Sys15MatTexAnimationf(void)
+void Game::AABBWaterBox::attachModel( (J3DModelData *, Sys::MatTexAnimation *, float))
 {
 /*
 .loc_0x0:
@@ -275,7 +275,7 @@ void attachModel__Q24Game12AABBWaterBoxFP12J3DModelDataPQ23Sys15MatTexAnimationf
  * Address:	801AE710
  * Size:	0000A0
  */
-void calcMatrix__Q24Game12AABBWaterBoxFv(void)
+void Game::AABBWaterBox::calcMatrix(void)
 {
 /*
 .loc_0x0:
@@ -329,7 +329,7 @@ void calcMatrix__Q24Game12AABBWaterBoxFv(void)
  * Address:	801AE7B0
  * Size:	000048
  */
-void doAnimation__Q24Game12AABBWaterBoxFv(void)
+void Game::AABBWaterBox::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -359,7 +359,7 @@ void doAnimation__Q24Game12AABBWaterBoxFv(void)
  * Address:	801AE7F8
  * Size:	000030
  */
-void doSetView__Q24Game12AABBWaterBoxFi(void)
+void Game::AABBWaterBox::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -385,7 +385,7 @@ void doSetView__Q24Game12AABBWaterBoxFi(void)
  * Address:	801AE828
  * Size:	00002C
  */
-void doViewCalc__Q24Game12AABBWaterBoxFv(void)
+void Game::AABBWaterBox::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void doViewCalc__Q24Game12AABBWaterBoxFv(void)
  * Address:	801AE854
  * Size:	000538
  */
-void doEntry__Q24Game12AABBWaterBoxFv(void)
+void Game::AABBWaterBox::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -774,7 +774,7 @@ void doEntry__Q24Game12AABBWaterBoxFv(void)
  * Address:	801AED8C
  * Size:	000210
  */
-void update__Q24Game6SeaMgrFv(void)
+void Game::SeaMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -938,7 +938,7 @@ void update__Q24Game6SeaMgrFv(void)
  * Address:	801AEF9C
  * Size:	000104
  */
-void inWater__Q24Game12AABBWaterBoxFRQ23Sys6Sphere(void)
+void Game::AABBWaterBox::inWater( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1037,7 +1037,7 @@ void inWater__Q24Game12AABBWaterBoxFRQ23Sys6Sphere(void)
  * Address:	801AF0A0
  * Size:	0000E4
  */
-void inWater2d__Q24Game12AABBWaterBoxFRQ23Sys6Sphere(void)
+void Game::AABBWaterBox::inWater2d( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1136,7 +1136,7 @@ void create__Q24Game12AABBWaterBoxFR10Vector3<float>R10Vector3<float>(void)
  * Address:	801AF184
  * Size:	0001C8
  */
-void globalise__Q24Game12AABBWaterBoxFPQ24Game12AABBWaterBoxR7Matrixf(void)
+void Game::AABBWaterBox::globalise( (Game::AABBWaterBox *, Matrixf &))
 {
 /*
 .loc_0x0:
@@ -1276,7 +1276,7 @@ void globalise__Q24Game12AABBWaterBoxFPQ24Game12AABBWaterBoxR7Matrixf(void)
  * Address:	801AF34C
  * Size:	000004
  */
-void directDraw__Q24Game12AABBWaterBoxFR8Graphics(void)
+void Game::AABBWaterBox::directDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1289,7 +1289,7 @@ void directDraw__Q24Game12AABBWaterBoxFR8Graphics(void)
  * Address:	801AF350
  * Size:	0002F8
  */
-void __ct__Q24Game6SeaMgrFv(void)
+void Game::SeaMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1727,7 +1727,7 @@ void Container<Game::WaterBox>::~Container()
  * Address:	........
  * Size:	000090
  */
-void addWaterBox__Q24Game6SeaMgrFPQ24Game8WaterBox(void)
+void Game::SeaMgr::addWaterBox( (Game::WaterBox *))
 {
 	// UNUSED FUNCTION
 }
@@ -1737,7 +1737,7 @@ void addWaterBox__Q24Game6SeaMgrFPQ24Game8WaterBox(void)
  * Address:	801AF868
  * Size:	000004
  */
-void attachModel__Q24Game8WaterBoxFP12J3DModelDataPQ23Sys15MatTexAnimationf(void)
+void Game::WaterBox::attachModel( (J3DModelData *, Sys::MatTexAnimation *, float))
 {
 /*
 .loc_0x0:
@@ -1750,7 +1750,7 @@ void attachModel__Q24Game8WaterBoxFP12J3DModelDataPQ23Sys15MatTexAnimationf(void
  * Address:	801AF86C
  * Size:	000214
  */
-void findWater__Q24Game6SeaMgrFRQ23Sys6Sphere(void)
+void Game::SeaMgr::findWater( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1915,7 +1915,7 @@ void findWater__Q24Game6SeaMgrFRQ23Sys6Sphere(void)
  * Address:	801AFA80
  * Size:	000214
  */
-void findWater2d__Q24Game6SeaMgrFRQ23Sys6Sphere(void)
+void Game::SeaMgr::findWater2d( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -2080,7 +2080,7 @@ void findWater2d__Q24Game6SeaMgrFRQ23Sys6Sphere(void)
  * Address:	801AFC94
  * Size:	000008
  */
-void inWater2d__Q24Game8WaterBoxFRQ23Sys6Sphere(void)
+void Game::WaterBox::inWater2d( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -2094,7 +2094,7 @@ void inWater2d__Q24Game8WaterBoxFRQ23Sys6Sphere(void)
  * Address:	........
  * Size:	000004
  */
-void directDraw__Q24Game6SeaMgrFR8Graphics(void)
+void Game::SeaMgr::directDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -2104,7 +2104,7 @@ void directDraw__Q24Game6SeaMgrFR8Graphics(void)
  * Address:	801AFC9C
  * Size:	00020C
  */
-void read__Q24Game6SeaMgrFR6Stream(void)
+void Game::SeaMgr::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -2255,7 +2255,7 @@ void read__Q24Game6SeaMgrFR6Stream(void)
  * Address:	801AFEA8
  * Size:	000308
  */
-void addSeaMgr__Q24Game6SeaMgrFPQ24Game6SeaMgrR7Matrixf(void)
+void Game::SeaMgr::addSeaMgr( (Game::SeaMgr *, Matrixf &))
 {
 /*
 .loc_0x0:
@@ -2481,7 +2481,7 @@ void addSeaMgr__Q24Game6SeaMgrFPQ24Game6SeaMgrR7Matrixf(void)
  * Address:	801B01B0
  * Size:	0000E0
  */
-void __dt__Q24Game6SeaMgrFv(void)
+void Game::SeaMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2555,7 +2555,7 @@ void __dt__Q24Game6SeaMgrFv(void)
  * Address:	801B0290
  * Size:	000010
  */
-void getSeaLevel__Q24Game12AABBWaterBoxFv(void)
+void Game::AABBWaterBox::getSeaLevel(void)
 {
 /*
 .loc_0x0:
@@ -2571,7 +2571,7 @@ void getSeaLevel__Q24Game12AABBWaterBoxFv(void)
  * Address:	801B02A0
  * Size:	000008
  */
-void getSeaHeightPtr__Q24Game12AABBWaterBoxFv(void)
+void Game::AABBWaterBox::getSeaHeightPtr(void)
 {
 /*
 .loc_0x0:
@@ -2585,7 +2585,7 @@ void getSeaHeightPtr__Q24Game12AABBWaterBoxFv(void)
  * Address:	801B02A8
  * Size:	000004
  */
-void doSimulation__Q24Game8WaterBoxFf(void)
+void Game::WaterBox::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2598,7 +2598,7 @@ void doSimulation__Q24Game8WaterBoxFf(void)
  * Address:	801B02AC
  * Size:	000004
  */
-void doDirectDraw__Q24Game8WaterBoxFR8Graphics(void)
+void Game::WaterBox::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2611,7 +2611,7 @@ void doDirectDraw__Q24Game8WaterBoxFR8Graphics(void)
  * Address:	801B02B0
  * Size:	000004
  */
-void startDown__Q24Game8WaterBoxFf(void)
+void Game::WaterBox::startDown( (float))
 {
 /*
 .loc_0x0:
@@ -2624,7 +2624,7 @@ void startDown__Q24Game8WaterBoxFf(void)
  * Address:	801B02B4
  * Size:	000004
  */
-void startUp__Q24Game8WaterBoxFf(void)
+void Game::WaterBox::startUp( (float))
 {
 /*
 .loc_0x0:
@@ -2637,7 +2637,7 @@ void startUp__Q24Game8WaterBoxFf(void)
  * Address:	801B02B8
  * Size:	000004
  */
-void directDraw__Q24Game8WaterBoxFR8Graphics(void)
+void Game::WaterBox::directDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2650,7 +2650,7 @@ void directDraw__Q24Game8WaterBoxFR8Graphics(void)
  * Address:	801B02BC
  * Size:	000004
  */
-void calcMatrix__Q24Game8WaterBoxFv(void)
+void Game::WaterBox::calcMatrix(void)
 {
 /*
 .loc_0x0:

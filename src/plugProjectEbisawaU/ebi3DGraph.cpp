@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803C9D10
  * Size:	000104
  */
-void load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc(void)
+void ebi::E3DAnimRes::load( (J3DModelData *, JKRArchive *, char *))
 {
 /*
 .loc_0x0:
@@ -94,7 +94,7 @@ void load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc(void)
  * Address:	803C9E14
  * Size:	000058
  */
-void setAnimFolder__Q23ebi11E3DAnimCtrlFPQ23ebi17E3DAnimFolderBase(void)
+void ebi::E3DAnimCtrl::setAnimFolder( (ebi::E3DAnimFolderBase *))
 {
 /*
 .loc_0x0:
@@ -130,7 +130,7 @@ void setAnimFolder__Q23ebi11E3DAnimCtrlFPQ23ebi17E3DAnimFolderBase(void)
  * Address:	803C9E6C
  * Size:	0000A4
  */
-void init__Q23ebi11E3DAnimCtrlFlf(void)
+void ebi::E3DAnimCtrl::init( (long, float))
 {
 /*
 .loc_0x0:
@@ -185,7 +185,7 @@ void init__Q23ebi11E3DAnimCtrlFlf(void)
  * Address:	........
  * Size:	000064
  */
-void setStartFrame__Q23ebi11E3DAnimCtrlFv(void)
+void ebi::E3DAnimCtrl::setStartFrame(void)
 {
 	// UNUSED FUNCTION
 }
@@ -195,7 +195,7 @@ void setStartFrame__Q23ebi11E3DAnimCtrlFv(void)
  * Address:	803C9F10
  * Size:	000080
  */
-void play__Q23ebi11E3DAnimCtrlFv(void)
+void ebi::E3DAnimCtrl::play(void)
 {
 /*
 .loc_0x0:
@@ -245,7 +245,7 @@ void play__Q23ebi11E3DAnimCtrlFv(void)
  * Address:	803C9F90
  * Size:	000064
  */
-void playStopEnd__Q23ebi11E3DAnimCtrlFv(void)
+void ebi::E3DAnimCtrl::playStopEnd(void)
 {
 /*
 .loc_0x0:
@@ -286,7 +286,7 @@ void playStopEnd__Q23ebi11E3DAnimCtrlFv(void)
  * Address:	........
  * Size:	000064
  */
-void stop__Q23ebi11E3DAnimCtrlFv(void)
+void ebi::E3DAnimCtrl::stop(void)
 {
 	// UNUSED FUNCTION
 }

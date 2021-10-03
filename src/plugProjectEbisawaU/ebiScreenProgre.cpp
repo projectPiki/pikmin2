@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803CD6D8
  * Size:	0000B0
  */
-void loadResource__Q23ebi13TScreenProgreFv(void)
+void ebi::TScreenProgre::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void loadResource__Q23ebi13TScreenProgreFv(void)
  * Address:	803CD788
  * Size:	000318
  */
-void setArchive__Q23ebi13TScreenProgreFP10JKRArchive(void)
+void ebi::TScreenProgre::setArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -285,7 +285,7 @@ void setArchive__Q23ebi13TScreenProgreFP10JKRArchive(void)
  * Address:	803CDAA0
  * Size:	0003E4
  */
-void startScreen__Q23ebi13TScreenProgreFlUl(void)
+void ebi::TScreenProgre::startScreen( (long, unsigned long))
 {
 /*
 .loc_0x0:
@@ -564,7 +564,7 @@ void startScreen__Q23ebi13TScreenProgreFlUl(void)
  * Address:	803CDE84
  * Size:	000054
  */
-void fadeout__Q23ebi13TScreenProgreFUl(void)
+void ebi::TScreenProgre::fadeout( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -603,7 +603,7 @@ void fadeout__Q23ebi13TScreenProgreFUl(void)
  * Address:	803CDED8
  * Size:	000028
  */
-void isFinish__Q23ebi13TScreenProgreFv(void)
+void ebi::TScreenProgre::isFinish(void)
 {
 /*
 .loc_0x0:
@@ -627,7 +627,7 @@ void isFinish__Q23ebi13TScreenProgreFv(void)
  * Address:	........
  * Size:	000060
  */
-void killScreen__Q23ebi13TScreenProgreFv(void)
+void ebi::TScreenProgre::killScreen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -637,7 +637,7 @@ void killScreen__Q23ebi13TScreenProgreFv(void)
  * Address:	803CDF00
  * Size:	0000C0
  */
-void startState__Q23ebi13TScreenProgreFQ33ebi13TScreenProgre9enumStateUl(void)
+void ebi::TScreenProgre::startState( (ebi::TScreenProgre::enumState, unsigned long))
 {
 /*
 .loc_0x0:
@@ -707,7 +707,7 @@ void startState__Q23ebi13TScreenProgreFQ33ebi13TScreenProgre9enumStateUl(void)
  * Address:	803CDFC0
  * Size:	000554
  */
-void update__Q23ebi13TScreenProgreFv(void)
+void ebi::TScreenProgre::update(void)
 {
 /*
 .loc_0x0:
@@ -1138,7 +1138,7 @@ void update__Q23ebi13TScreenProgreFv(void)
  * Address:	803CE514
  * Size:	0000DC
  */
-void draw__Q23ebi13TScreenProgreFv(void)
+void ebi::TScreenProgre::draw(void)
 {
 /*
 .loc_0x0:
@@ -1209,7 +1209,7 @@ void draw__Q23ebi13TScreenProgreFv(void)
  * Address:	803CE5F0
  * Size:	000308
  */
-void setDecide__Q23ebi13TScreenProgreFv(void)
+void ebi::TScreenProgre::setDecide(void)
 {
 /*
 .loc_0x0:

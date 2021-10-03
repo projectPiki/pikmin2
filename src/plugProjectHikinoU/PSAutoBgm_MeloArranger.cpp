@@ -52,7 +52,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::avoidChk( (PSAutoBgm::MeloArrArg &))
  * Address:	........
  * Size:	000034
  */
-// void PSAutoBgm::MeloArr_AvoidOnCycleAll::pre( (PSAutoBgm::MeloArrArg &))
+ */
 // {
 //	UNUSED FUNCTION
 // }
@@ -62,7 +62,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::avoidChk( (PSAutoBgm::MeloArrArg &))
  * Address:	........
  * Size:	000078
  */
-// void PSAutoBgm::MeloArrArg::assertCheck( const(void))
+ */
 // {
 	// UNUSED FUNCTION
 // }
@@ -208,7 +208,7 @@ void PSAutoBgm::MeloArrBase::pre( (PSAutoBgm::MeloArrArg &))
  * Address:	........
  * Size:	000098
  */
-// void PSAutoBgm::MeloArr_AvoidOnCycleAll::__dt( (void))
+ */
 // {
 	// UNUSED FUNCTION
 // }
@@ -350,7 +350,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::__dt( (void))
  * Address:	........
  * Size:	000098
  */
-// void PSAutoBgm::MeloArr_FixTipAvoid::__dt( (void))
+ */
 // {
 	// UNUSED FUNCTION
 // }
@@ -360,7 +360,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::__dt( (void))
  * Address:	........
  * Size:	000008
  */
-// void @16@PSAutoBgm::MeloArr_FixTipAvoid::__dt( (void))
+ */
 // {
 	// UNUSED FUNCTION
 // }
@@ -398,7 +398,7 @@ void @16@PSAutoBgm::MeloArrBase::__dt( (void))
  * Address:	........
  * Size:	000008
  */
-// void @16@PSAutoBgm::MeloArr_AvoidOnCycleAll::__dt( (void))
+ */
 // {
 	// UNUSED FUNCTION
 // }

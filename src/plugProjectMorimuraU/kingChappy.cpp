@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8035CCE8
  * Size:	000038
  */
-void lFootCallBack__Q24Game10KingChappyFP8J3DJointi(void)
+void Game::KingChappy::lFootCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void lFootCallBack__Q24Game10KingChappyFP8J3DJointi(void)
  * Address:	8035CD20
  * Size:	000038
  */
-void rFootCallBack__Q24Game10KingChappyFP8J3DJointi(void)
+void Game::KingChappy::rFootCallBack( (J3DJoint *, int))
 {
 /*
 .loc_0x0:
@@ -71,7 +71,7 @@ void rFootCallBack__Q24Game10KingChappyFP8J3DJointi(void)
  * Address:	8035CD58
  * Size:	0000A4
  */
-void setParameters__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::setParameters(void)
 {
 /*
 .loc_0x0:
@@ -148,7 +148,7 @@ void birth__Q34Game10KingChappy3ObjFR10Vector3<float>f(void)
  * Address:	8035CE1C
  * Size:	000448
  */
-void onInit__Q34Game10KingChappy3ObjFPQ24Game15CreatureInitArg(void)
+void Game::KingChappy::Obj::onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -460,7 +460,7 @@ void onInit__Q34Game10KingChappy3ObjFPQ24Game15CreatureInitArg(void)
  * Address:	8035D264
  * Size:	0005AC
  */
-void __ct__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::__ct(void)
 {
 /*
 .loc_0x0:
@@ -865,7 +865,7 @@ void __ct__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035D810
  * Size:	0001D8
  */
-void __ct__Q23efx14TKchDeadYodareFPA4_f(void)
+void efx::TKchDeadYodare::__ct( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -995,7 +995,7 @@ void __ct__Q23efx14TKchDeadYodareFPA4_f(void)
  * Address:	8035D9E8
  * Size:	000148
  */
-void __dt__Q23efx22TKchYodareBaseChaseMtxFv(void)
+void efx::TKchYodareBaseChaseMtx::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1099,7 +1099,7 @@ void __dt__Q23efx22TKchYodareBaseChaseMtxFv(void)
  * Address:	8035DB30
  * Size:	0000EC
  */
-void __dt__Q23efx27TParticleCallBack_KchYodareFv(void)
+void efx::TParticleCallBack_KchYodare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1176,7 +1176,7 @@ void __dt__Q23efx27TParticleCallBack_KchYodareFv(void)
  * Address:	8035DC1C
  * Size:	000084
  */
-void __dt__Q23efx16TKchYodareHitWatFv(void)
+void efx::TKchYodareHitWat::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1225,7 +1225,7 @@ void __dt__Q23efx16TKchYodareHitWatFv(void)
  * Address:	8035DCA0
  * Size:	000084
  */
-void __dt__Q23efx15TKchYodareHitGrFv(void)
+void efx::TKchYodareHitGr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1274,7 +1274,7 @@ void __dt__Q23efx15TKchYodareHitGrFv(void)
  * Address:	8035DD24
  * Size:	0001D8
  */
-void __ct__Q23efx16TKchAttackYodareFPA4_f(void)
+void efx::TKchAttackYodare::__ct( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -1404,7 +1404,7 @@ void __ct__Q23efx16TKchAttackYodareFPA4_f(void)
  * Address:	8035DEFC
  * Size:	0001D8
  */
-void __ct__Q23efx10TKchYodareFPA4_f(void)
+void efx::TKchYodare::__ct( (float (*)[4]))
 {
 /*
 .loc_0x0:
@@ -1534,7 +1534,7 @@ void __ct__Q23efx10TKchYodareFPA4_f(void)
  * Address:	8035E0D4
  * Size:	00004C
  */
-void setFSM__Q34Game10KingChappy3ObjFPQ34Game10KingChappy3FSM(void)
+void Game::KingChappy::Obj::setFSM( (Game::KingChappy::FSM *))
 {
 /*
 .loc_0x0:
@@ -1565,7 +1565,7 @@ void setFSM__Q34Game10KingChappy3ObjFPQ34Game10KingChappy3FSM(void)
  * Address:	8035E120
  * Size:	0001A0
  */
-void doUpdate__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::doUpdate(void)
 {
 /*
 .loc_0x0:
@@ -1691,7 +1691,7 @@ void doUpdate__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035E2C0
  * Size:	000004
  */
-void doDirectDraw__Q34Game10KingChappy3ObjFR8Graphics(void)
+void Game::KingChappy::Obj::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1704,7 +1704,7 @@ void doDirectDraw__Q34Game10KingChappy3ObjFR8Graphics(void)
  * Address:	8035E2C4
  * Size:	000020
  */
-void doDebugDraw__Q34Game10KingChappy3ObjFR8Graphics(void)
+void Game::KingChappy::Obj::doDebugDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -1724,7 +1724,7 @@ void doDebugDraw__Q34Game10KingChappy3ObjFR8Graphics(void)
  * Address:	8035E2E4
  * Size:	0000B8
  */
-void doAnimationUpdateAnimator__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::doAnimationUpdateAnimator(void)
 {
 /*
 .loc_0x0:
@@ -1786,7 +1786,7 @@ void doAnimationUpdateAnimator__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035E39C
  * Size:	000034
  */
-void onKill__Q34Game10KingChappy3ObjFPQ24Game15CreatureKillArg(void)
+void Game::KingChappy::Obj::onKill( (Game::CreatureKillArg *))
 {
 /*
 .loc_0x0:
@@ -1811,7 +1811,7 @@ void onKill__Q34Game10KingChappy3ObjFPQ24Game15CreatureKillArg(void)
  * Address:	8035E3D0
  * Size:	000588
  */
-void doAnimationCullingOff__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::doAnimationCullingOff(void)
 {
 /*
 .loc_0x0:
@@ -2227,7 +2227,7 @@ void doAnimationCullingOff__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035E958
  * Size:	000040
  */
-void doSimulation__Q34Game10KingChappy3ObjFf(void)
+void Game::KingChappy::Obj::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2257,7 +2257,7 @@ void doSimulation__Q34Game10KingChappy3ObjFf(void)
  * Address:	8035E998
  * Size:	000098
  */
-void getShadowParam__Q34Game10KingChappy3ObjFRQ24Game11ShadowParam(void)
+void Game::KingChappy::Obj::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -2307,7 +2307,7 @@ void getShadowParam__Q34Game10KingChappy3ObjFRQ24Game11ShadowParam(void)
  * Address:	8035EA30
  * Size:	000158
  */
-void damageCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::KingChappy::Obj::damageCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -2415,7 +2415,7 @@ void damageCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	8035EB88
  * Size:	000030
  */
-void collisionCallback__Q34Game10KingChappy3ObjFRQ24Game9CollEvent(void)
+void Game::KingChappy::Obj::collisionCallback( (Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -2439,7 +2439,7 @@ void collisionCallback__Q34Game10KingChappy3ObjFRQ24Game9CollEvent(void)
  * Address:	8035EBB8
  * Size:	000030
  */
-void wallCallback__Q34Game10KingChappy3ObjFRCQ24Game8MoveInfo(void)
+void Game::KingChappy::Obj::wallCallback( (Game::MoveInfo const &))
 {
 /*
 .loc_0x0:
@@ -2485,7 +2485,7 @@ void bombCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreatureR10Vector3<float>f(v
  * Address:	8035EC10
  * Size:	00004C
  */
-void inWaterCallback__Q34Game10KingChappy3ObjFPQ24Game8WaterBox(void)
+void Game::KingChappy::Obj::inWaterCallback( (Game::WaterBox *))
 {
 /*
 .loc_0x0:
@@ -2518,7 +2518,7 @@ void inWaterCallback__Q34Game10KingChappy3ObjFPQ24Game8WaterBox(void)
  * Address:	8035EC5C
  * Size:	000028
  */
-void startCarcassMotion__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::startCarcassMotion(void)
 {
 /*
 .loc_0x0:
@@ -2540,7 +2540,7 @@ void startCarcassMotion__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035EC84
  * Size:	000064
  */
-void initWalkSmokeEffect__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::initWalkSmokeEffect(void)
 {
 /*
 .loc_0x0:
@@ -2577,7 +2577,7 @@ void initWalkSmokeEffect__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035ECE8
  * Size:	000008
  */
-void getWalkSmokeEffectMgr__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::getWalkSmokeEffectMgr(void)
 {
 /*
 .loc_0x0:
@@ -2591,7 +2591,7 @@ void getWalkSmokeEffectMgr__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035ECF0
  * Size:	000074
  */
-void doStartStoneState__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::doStartStoneState(void)
 {
 /*
 .loc_0x0:
@@ -2632,7 +2632,7 @@ void doStartStoneState__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035ED64
  * Size:	0000A0
  */
-void doFinishStoneState__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::doFinishStoneState(void)
 {
 /*
 .loc_0x0:
@@ -2684,7 +2684,7 @@ void doFinishStoneState__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035EE04
  * Size:	00013C
  */
-void doStartMovie__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::doStartMovie(void)
 {
 /*
 .loc_0x0:
@@ -2775,7 +2775,7 @@ void doStartMovie__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035EF40
  * Size:	00005C
  */
-void startDemoDrawOff__Q23efx22TKchYodareBaseChaseMtxFv(void)
+void efx::TKchYodareBaseChaseMtx::startDemoDrawOff(void)
 {
 /*
 .loc_0x0:
@@ -2810,7 +2810,7 @@ void startDemoDrawOff__Q23efx22TKchYodareBaseChaseMtxFv(void)
  * Address:	8035EF9C
  * Size:	00013C
  */
-void doEndMovie__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::doEndMovie(void)
 {
 /*
 .loc_0x0:
@@ -2901,7 +2901,7 @@ void doEndMovie__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035F0D8
  * Size:	00005C
  */
-void endDemoDrawOn__Q23efx22TKchYodareBaseChaseMtxFv(void)
+void efx::TKchYodareBaseChaseMtx::endDemoDrawOn(void)
 {
 /*
 .loc_0x0:
@@ -2936,7 +2936,7 @@ void endDemoDrawOn__Q23efx22TKchYodareBaseChaseMtxFv(void)
  * Address:	8035F134
  * Size:	000134
  */
-void initMouthSlots__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::initMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -3029,7 +3029,7 @@ void initMouthSlots__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035F268
  * Size:	0001A4
  */
-void eatBomb__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::eatBomb(void)
 {
 /*
 .loc_0x0:
@@ -3164,7 +3164,7 @@ void eatBomb__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035F40C
  * Size:	000008
  */
-void getMouthSlots__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::getMouthSlots(void)
 {
 /*
 .loc_0x0:
@@ -3178,7 +3178,7 @@ void getMouthSlots__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035F414
  * Size:	0002C8
  */
-void getPikminInMouth__Q34Game10KingChappy3ObjFb(void)
+void Game::KingChappy::Obj::getPikminInMouth( (bool))
 {
 /*
 .loc_0x0:
@@ -3479,7 +3479,7 @@ void getTonguePosVel__Q34Game10KingChappy3ObjFR10Vector3<float>R10Vector3<float>
  * Address:	8035F7F8
  * Size:	0001F0
  */
-void setNextGoal__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::setNextGoal(void)
 {
 /*
 .loc_0x0:
@@ -3627,7 +3627,7 @@ void setNextGoal__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035F9E8
  * Size:	000500
  */
-void searchTarget__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::searchTarget(void)
 {
 /*
 .loc_0x0:
@@ -3985,7 +3985,7 @@ void searchTarget__Q34Game10KingChappy3ObjFv(void)
  * Address:	8035FEE8
  * Size:	000040
  */
-void isOutOfTerritory__Q34Game10KingChappy3ObjFf(void)
+void Game::KingChappy::Obj::isOutOfTerritory( (float))
 {
 /*
 .loc_0x0:
@@ -4013,7 +4013,7 @@ void isOutOfTerritory__Q34Game10KingChappy3ObjFf(void)
  * Address:	8035FF28
  * Size:	0000DC
  */
-void forceTransit__Q34Game10KingChappy3ObjFi(void)
+void Game::KingChappy::Obj::forceTransit( (int))
 {
 /*
 .loc_0x0:
@@ -4094,7 +4094,7 @@ void forceTransit__Q34Game10KingChappy3ObjFi(void)
  * Address:	80360004
  * Size:	000030
  */
-void requestTransit__Q34Game10KingChappy3ObjFi(void)
+void Game::KingChappy::Obj::requestTransit( (int))
 {
 /*
 .loc_0x0:
@@ -4118,7 +4118,7 @@ void requestTransit__Q34Game10KingChappy3ObjFi(void)
  * Address:	80360034
  * Size:	00012C
  */
-void walkFunc__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::walkFunc(void)
 {
 /*
 .loc_0x0:
@@ -4211,7 +4211,7 @@ void walkFunc__Q34Game10KingChappy3ObjFv(void)
  * Address:	80360160
  * Size:	0001AC
  */
-void turnFunc__Q34Game10KingChappy3ObjFf(void)
+void Game::KingChappy::Obj::turnFunc( (float))
 {
 /*
 .loc_0x0:
@@ -4338,7 +4338,7 @@ void turnFunc__Q34Game10KingChappy3ObjFf(void)
  * Address:	8036030C
  * Size:	000034
  */
-void isReachToGoal__Q34Game10KingChappy3ObjFf(void)
+void Game::KingChappy::Obj::isReachToGoal( (float))
 {
 /*
 .loc_0x0:
@@ -4363,7 +4363,7 @@ void isReachToGoal__Q34Game10KingChappy3ObjFf(void)
  * Address:	........
  * Size:	0000D8
  */
-void isUseTurn__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::isUseTurn(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4373,7 +4373,7 @@ void isUseTurn__Q34Game10KingChappy3ObjFv(void)
  * Address:	80360340
  * Size:	000844
  */
-void checkAttack__Q34Game10KingChappy3ObjFb(void)
+void Game::KingChappy::Obj::checkAttack( (bool))
 {
 /*
 .loc_0x0:
@@ -4948,7 +4948,7 @@ void checkAttack__Q34Game10KingChappy3ObjFb(void)
  * Address:	80360B84
  * Size:	00042C
  */
-void checkFlick__Q34Game10KingChappy3ObjFb(void)
+void Game::KingChappy::Obj::checkFlick( (bool))
 {
 /*
 .loc_0x0:
@@ -5253,7 +5253,7 @@ void checkFlick__Q34Game10KingChappy3ObjFb(void)
  * Address:	80360FB0
  * Size:	0000EC
  */
-void checkDead__Q34Game10KingChappy3ObjFb(void)
+void Game::KingChappy::Obj::checkDead( (bool))
 {
 /*
 .loc_0x0:
@@ -5330,7 +5330,7 @@ void checkDead__Q34Game10KingChappy3ObjFb(void)
  * Address:	8036109C
  * Size:	000128
  */
-void checkTurn__Q34Game10KingChappy3ObjFb(void)
+void Game::KingChappy::Obj::checkTurn( (bool))
 {
 /*
 .loc_0x0:
@@ -5420,7 +5420,7 @@ void checkTurn__Q34Game10KingChappy3ObjFb(void)
  * Address:	803611C4
  * Size:	00013C
  */
-void startMotionSelf__Q34Game10KingChappy3ObjFiPQ28SysShape14MotionListener(void)
+void Game::KingChappy::Obj::startMotionSelf( (int, SysShape::MotionListener *))
 {
 /*
 .loc_0x0:
@@ -5527,7 +5527,7 @@ void startMotionSelf__Q34Game10KingChappy3ObjFiPQ28SysShape14MotionListener(void
  * Address:	80361300
  * Size:	000098
  */
-void endBlendAnimation__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::endBlendAnimation(void)
 {
 /*
 .loc_0x0:
@@ -5581,7 +5581,7 @@ void endBlendAnimation__Q34Game10KingChappy3ObjFv(void)
  * Address:	80361398
  * Size:	000044
  */
-void leftFootMtxCalc__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::leftFootMtxCalc(void)
 {
 /*
 .loc_0x0:
@@ -5610,7 +5610,7 @@ void leftFootMtxCalc__Q34Game10KingChappy3ObjFv(void)
  * Address:	803613DC
  * Size:	000044
  */
-void rightFootMtxCalc__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::rightFootMtxCalc(void)
 {
 /*
 .loc_0x0:
@@ -5763,7 +5763,7 @@ void footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3<float>Pf(void)
  * Address:	803615B0
  * Size:	000078
  */
-void resetFootPos__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::resetFootPos(void)
 {
 /*
 .loc_0x0:
@@ -5805,7 +5805,7 @@ void resetFootPos__Q34Game10KingChappy3ObjFv(void)
  * Address:	80361628
  * Size:	0000DC
  */
-void fadeAllEffect__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::fadeAllEffect(void)
 {
 /*
 .loc_0x0:
@@ -5872,7 +5872,7 @@ void fadeAllEffect__Q34Game10KingChappy3ObjFv(void)
  * Address:	80361704
  * Size:	000054
  */
-void fade__Q23efx22TKchYodareBaseChaseMtxFv(void)
+void efx::TKchYodareBaseChaseMtx::fade(void)
 {
 /*
 .loc_0x0:
@@ -5905,7 +5905,7 @@ void fade__Q23efx22TKchYodareBaseChaseMtxFv(void)
  * Address:	80361758
  * Size:	000474
  */
-void createEffect__Q34Game10KingChappy3ObjFi(void)
+void Game::KingChappy::Obj::createEffect( (int))
 {
 /*
 .loc_0x0:
@@ -6212,7 +6212,7 @@ void createEffect__Q34Game10KingChappy3ObjFi(void)
  * Address:	80361BCC
  * Size:	000140
  */
-void fadeEffect__Q34Game10KingChappy3ObjFi(void)
+void Game::KingChappy::Obj::fadeEffect( (int))
 {
 /*
 .loc_0x0:
@@ -6306,7 +6306,7 @@ void fadeEffect__Q34Game10KingChappy3ObjFi(void)
  * Address:	80361D0C
  * Size:	0000C8
  */
-void createBounceEffect__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::createBounceEffect(void)
 {
 /*
 .loc_0x0:
@@ -6372,7 +6372,7 @@ void createBounceEffect__Q34Game10KingChappy3ObjFv(void)
  * Address:	80361DD4
  * Size:	00000C
  */
-void getName__Q23efx12ArgKchYodareFv(void)
+void efx::ArgKchYodare::getName(void)
 {
 /*
 .loc_0x0:
@@ -6387,7 +6387,7 @@ void getName__Q23efx12ArgKchYodareFv(void)
  * Address:	80361DE0
  * Size:	000160
  */
-void __dt__Q23efx10TKchYodareFv(void)
+void efx::TKchYodare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6497,7 +6497,7 @@ void __dt__Q23efx10TKchYodareFv(void)
  * Address:	80361F40
  * Size:	000054
  */
-void forceKill__Q23efx22TKchYodareBaseChaseMtxFv(void)
+void efx::TKchYodareBaseChaseMtx::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -6530,7 +6530,7 @@ void forceKill__Q23efx22TKchYodareBaseChaseMtxFv(void)
  * Address:	80361F94
  * Size:	000160
  */
-void __dt__Q23efx16TKchAttackYodareFv(void)
+void efx::TKchAttackYodare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6640,7 +6640,7 @@ void __dt__Q23efx16TKchAttackYodareFv(void)
  * Address:	803620F4
  * Size:	000160
  */
-void __dt__Q23efx14TKchDeadYodareFv(void)
+void efx::TKchDeadYodare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6750,7 +6750,7 @@ void __dt__Q23efx14TKchDeadYodareFv(void)
  * Address:	80362254
  * Size:	00009C
  */
-void __dt__Q23efx13TKchSmokeHanaFv(void)
+void efx::TKchSmokeHana::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6805,7 +6805,7 @@ void __dt__Q23efx13TKchSmokeHanaFv(void)
  * Address:	803622F0
  * Size:	00009C
  */
-void __dt__Q23efx10TKchCryIndFv(void)
+void efx::TKchCryInd::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6860,7 +6860,7 @@ void __dt__Q23efx10TKchCryIndFv(void)
  * Address:	8036238C
  * Size:	00006C
  */
-void __dt__Q34Game10KingChappy14ProperAnimatorFv(void)
+void Game::KingChappy::ProperAnimator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -6903,7 +6903,7 @@ void __dt__Q34Game10KingChappy14ProperAnimatorFv(void)
  * Address:	803623F8
  * Size:	000004
  */
-void setInitialSetting__Q34Game10KingChappy3ObjFPQ24Game21EnemyInitialParamBase(void)
+void Game::KingChappy::Obj::setInitialSetting( (Game::EnemyInitialParamBase *))
 {
 /*
 .loc_0x0:
@@ -6929,7 +6929,7 @@ void applyImpulse__Q34Game10KingChappy3ObjFR10Vector3<float>R10Vector3<float>(vo
  * Address:	80362400
  * Size:	00003C
  */
-void createEfxHamon__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::createEfxHamon(void)
 {
 /*
 .loc_0x0:
@@ -6958,7 +6958,7 @@ void createEfxHamon__Q34Game10KingChappy3ObjFv(void)
  * Address:	8036243C
  * Size:	000054
  */
-void updateEfxHamon__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::updateEfxHamon(void)
 {
 /*
 .loc_0x0:
@@ -6995,7 +6995,7 @@ void updateEfxHamon__Q34Game10KingChappy3ObjFv(void)
  * Address:	80362490
  * Size:	000020
  */
-void isUnderground__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::isUnderground(void)
 {
 /*
 .loc_0x0:
@@ -7017,7 +7017,7 @@ void isUnderground__Q34Game10KingChappy3ObjFv(void)
  * Address:	803624B0
  * Size:	000014
  */
-void getCellRadius__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::getCellRadius(void)
 {
 /*
 .loc_0x0:
@@ -7034,7 +7034,7 @@ void getCellRadius__Q34Game10KingChappy3ObjFv(void)
  * Address:	803624C4
  * Size:	000014
  */
-void getBodyRadius__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::getBodyRadius(void)
 {
 /*
 .loc_0x0:
@@ -7051,7 +7051,7 @@ void getBodyRadius__Q34Game10KingChappy3ObjFv(void)
  * Address:	803624D8
  * Size:	000030
  */
-void pressCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreaturefP8CollPart(void)
+void Game::KingChappy::Obj::pressCallBack( (Game::Creature *, float, CollPart *))
 {
 /*
 .loc_0x0:
@@ -7075,7 +7075,7 @@ void pressCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreaturefP8CollPart(void)
  * Address:	80362508
  * Size:	000028
  */
-void eatWhitePikminCallBack__Q34Game10KingChappy3ObjFPQ24Game8Creaturef(void)
+void Game::KingChappy::Obj::eatWhitePikminCallBack( (Game::Creature *, float))
 {
 /*
 .loc_0x0:
@@ -7097,7 +7097,7 @@ void eatWhitePikminCallBack__Q34Game10KingChappy3ObjFPQ24Game8Creaturef(void)
  * Address:	80362530
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -7111,7 +7111,7 @@ void getEnemyTypeID__Q34Game10KingChappy3ObjFv(void)
  * Address:	80362538
  * Size:	000008
  */
-void getDownSmokeScale__Q34Game10KingChappy3ObjFv(void)
+void Game::KingChappy::Obj::getDownSmokeScale(void)
 {
 /*
 .loc_0x0:
@@ -7147,7 +7147,7 @@ void __sinit_kingChappy_cpp(void)
  * Address:	80362568
  * Size:	000014
  */
-void @920@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
+void @920@12@Game::EnemyBase::viewOnPelletKilled(void)
 {
 /*
 .loc_0x0:
@@ -7164,7 +7164,7 @@ void @920@12@viewOnPelletKilled__Q24Game9EnemyBaseFv(void)
  * Address:	8036257C
  * Size:	000014
  */
-void @920@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
+void @920@12@Game::EnemyBase::viewStartCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -7181,7 +7181,7 @@ void @920@12@viewStartCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	80362590
  * Size:	000014
  */
-void @920@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
+void @920@12@Game::EnemyBase::viewStartPreCarryMotion(void)
 {
 /*
 .loc_0x0:
@@ -7198,7 +7198,7 @@ void @920@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv(void)
  * Address:	803625A4
  * Size:	000014
  */
-void @920@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
+void @920@12@Game::EnemyBase::view_finish_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -7215,7 +7215,7 @@ void @920@12@view_finish_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	803625B8
  * Size:	000014
  */
-void @920@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
+void @920@12@Game::EnemyBase::view_start_carrymotion(void)
 {
 /*
 .loc_0x0:
@@ -7232,7 +7232,7 @@ void @920@12@view_start_carrymotion__Q24Game9EnemyBaseFv(void)
  * Address:	803625CC
  * Size:	000014
  */
-void @920@12@viewGetShape__Q24Game9EnemyBaseFv(void)
+void @920@12@Game::EnemyBase::viewGetShape(void)
 {
 /*
 .loc_0x0:
@@ -7249,7 +7249,7 @@ void @920@12@viewGetShape__Q24Game9EnemyBaseFv(void)
  * Address:	803625E0
  * Size:	000008
  */
-void @4@__dt__Q23efx10TKchCryIndFv(void)
+void @4@efx::TKchCryInd::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7263,7 +7263,7 @@ void @4@__dt__Q23efx10TKchCryIndFv(void)
  * Address:	803625E8
  * Size:	000008
  */
-void @4@__dt__Q23efx13TKchSmokeHanaFv(void)
+void @4@efx::TKchSmokeHana::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7277,7 +7277,7 @@ void @4@__dt__Q23efx13TKchSmokeHanaFv(void)
  * Address:	803625F0
  * Size:	000008
  */
-void @4@__dt__Q23efx15TKchYodareHitGrFv(void)
+void @4@efx::TKchYodareHitGr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7291,7 +7291,7 @@ void @4@__dt__Q23efx15TKchYodareHitGrFv(void)
  * Address:	803625F8
  * Size:	000008
  */
-void @4@__dt__Q23efx16TKchYodareHitWatFv(void)
+void @4@efx::TKchYodareHitWat::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7305,7 +7305,7 @@ void @4@__dt__Q23efx16TKchYodareHitWatFv(void)
  * Address:	80362600
  * Size:	000008
  */
-void @4@__dt__Q23efx14TKchDeadYodareFv(void)
+void @4@efx::TKchDeadYodare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7319,7 +7319,7 @@ void @4@__dt__Q23efx14TKchDeadYodareFv(void)
  * Address:	80362608
  * Size:	000008
  */
-void @4@__dt__Q23efx16TKchAttackYodareFv(void)
+void @4@efx::TKchAttackYodare::__dt(void)
 {
 /*
 .loc_0x0:
@@ -7333,7 +7333,7 @@ void @4@__dt__Q23efx16TKchAttackYodareFv(void)
  * Address:	80362610
  * Size:	000008
  */
-void @4@__dt__Q23efx10TKchYodareFv(void)
+void @4@efx::TKchYodare::__dt(void)
 {
 /*
 .loc_0x0:

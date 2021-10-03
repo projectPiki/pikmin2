@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803D068C
  * Size:	000060
  */
-void do_update__Q23ebi20E2DCallBack_PurupuruFv(void)
+void ebi::E2DCallBack_Purupuru::do_update(void)
 {
 /*
 .loc_0x0:
@@ -53,7 +53,7 @@ void do_update__Q23ebi20E2DCallBack_PurupuruFv(void)
  * Address:	803D06EC
  * Size:	0002CC
  */
-void do_update__Q23ebi26E2DCallBack_BlinkFontColorFv(void)
+void ebi::E2DCallBack_BlinkFontColor::do_update(void)
 {
 /*
 .loc_0x0:
@@ -252,7 +252,7 @@ void do_update__Q23ebi26E2DCallBack_BlinkFontColorFv(void)
  * Address:	803D09B8
  * Size:	000118
  */
-void do_update__Q23ebi22E2DCallBack_BlinkAlphaFv(void)
+void ebi::E2DCallBack_BlinkAlpha::do_update(void)
 {
 /*
 .loc_0x0:
@@ -342,7 +342,7 @@ void do_update__Q23ebi22E2DCallBack_BlinkAlphaFv(void)
  * Address:	803D0AD0
  * Size:	0000C8
  */
-void loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell(void)
+void ebi::E2DCallBack_AnmBase::loadAnm( (char *, JKRArchive *, long, long))
 {
 /*
 .loc_0x0:
@@ -408,7 +408,7 @@ void loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell(void)
  * Address:	803D0B98
  * Size:	00010C
  */
-void play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb(void)
+void ebi::E2DCallBack_AnmBase::play( (float, J3DAnmAttr, bool))
 {
 /*
 .loc_0x0:
@@ -493,7 +493,7 @@ void play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb(void)
  * Address:	803D0CA4
  * Size:	000110
  */
-void playBack__Q23ebi19E2DCallBack_AnmBaseFfb(void)
+void ebi::E2DCallBack_AnmBase::playBack( (float, bool))
 {
 /*
 .loc_0x0:
@@ -579,7 +579,7 @@ void playBack__Q23ebi19E2DCallBack_AnmBaseFfb(void)
  * Address:	803D0DB4
  * Size:	000014
  */
-void stop__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::stop(void)
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void stop__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	........
  * Size:	000050
  */
-void disconnect__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::disconnect(void)
 {
 	// UNUSED FUNCTION
 }
@@ -606,7 +606,7 @@ void disconnect__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D0DC8
  * Size:	00003C
  */
-void setStartFrame__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::setStartFrame(void)
 {
 /*
 .loc_0x0:
@@ -633,7 +633,7 @@ void setStartFrame__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D0E04
  * Size:	00003C
  */
-void setEndFrame__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::setEndFrame(void)
 {
 /*
 .loc_0x0:
@@ -660,7 +660,7 @@ void setEndFrame__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D0E40
  * Size:	0000C0
  */
-void setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::setRandFrame(void)
 {
 /*
 .loc_0x0:
@@ -720,7 +720,7 @@ void setRandFrame__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D0F00
  * Size:	000054
  */
-void getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::getPlayFinRate(void)
 {
 /*
 .loc_0x0:
@@ -753,7 +753,7 @@ void getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D0F54
  * Size:	00005C
  */
-void do_update__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::do_update(void)
 {
 /*
 .loc_0x0:
@@ -792,7 +792,7 @@ void do_update__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D0FB0
  * Size:	000008
  */
-void isFinish__Q23ebi19E2DCallBack_AnmBaseFv(void)
+void ebi::E2DCallBack_AnmBase::isFinish(void)
 {
 /*
 .loc_0x0:
@@ -806,7 +806,7 @@ void isFinish__Q23ebi19E2DCallBack_AnmBaseFv(void)
  * Address:	803D0FB8
  * Size:	00014C
  */
-void do_update__Q23ebi24E2DCallBack_WindowCursorFv(void)
+void ebi::E2DCallBack_WindowCursor::do_update(void)
 {
 /*
 .loc_0x0:

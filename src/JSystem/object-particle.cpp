@@ -5,7 +5,7 @@
  * Address:	800056C0
  * Size:	0000E8
  */
-void __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem(void)
+void JStudio_JParticle::TAdaptor_particle::__ct( (JPAEmitterManager *, JStage::TSystem const *))
 {
 /*
 .loc_0x0:
@@ -75,7 +75,7 @@ void __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JSt
  * Address:	800057A8
  * Size:	000060
  */
-void __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv(void)
+void JStudio_JParticle::TAdaptor_particle::TJPACallback_::__dt(void)
 {
 /*
 .loc_0x0:
@@ -113,7 +113,7 @@ void __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv(void)
  * Address:	80005808
  * Size:	000018
  */
-void __ct__Q27JStudio14TVariableValueFv(void)
+void JStudio::TVariableValue::__ct(void)
 {
 /*
 .loc_0x0:
@@ -131,7 +131,7 @@ void __ct__Q27JStudio14TVariableValueFv(void)
  * Address:	80005820
  * Size:	000098
  */
-void __dt__Q217JStudio_JParticle17TAdaptor_particleFv(void)
+void JStudio_JParticle::TAdaptor_particle::__dt(void)
 {
 /*
 .loc_0x0:
@@ -187,7 +187,7 @@ void __dt__Q217JStudio_JParticle17TAdaptor_particleFv(void)
  * Address:	800058B8
  * Size:	000144
  */
-void adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7T
  * Address:	800059FC
  * Size:	000004
  */
-void adaptor_do_end__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_end( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -295,7 +295,7 @@ void adaptor_do_end__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObje
  * Address:	80005A00
  * Size:	0000B0
  */
-void adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObjectUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_update( (JStudio::TObject const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -361,7 +361,7 @@ void adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TO
  * Address:	80005AB0
  * Size:	000030
  */
-void adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -389,7 +389,7 @@ void adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data1
  * Address:	80005AE0
  * Size:	000048
  */
-void adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -423,7 +423,7 @@ void adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStud
  * Address:	80005B28
  * Size:	00002C
  */
-void adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_END( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -446,7 +446,7 @@ void adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15T
  * Address:	80005B54
  * Size:	000048
  */
-void adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -480,7 +480,7 @@ void adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudi
  * Address:	80005B9C
  * Size:	000014
  */
-void adaptor_do_PARTICLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -497,7 +497,7 @@ void adaptor_do_PARTICLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4da
  * Address:	80005BB0
  * Size:	000068
  */
-void adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -539,7 +539,7 @@ void adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data
  * Address:	80005C18
  * Size:	000080
  */
-void adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -589,7 +589,7 @@ void adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio
  * Address:	80005C98
  * Size:	000020
  */
-void adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl(void)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE( (JStudio::data::TEOperationData, void const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -609,7 +609,7 @@ void adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStud
  * Address:	........
  * Size:	000034
  */
-void toString_state___Q217JStudio_JParticle17TAdaptor_particleFi(void)
+void JStudio_JParticle::TAdaptor_particle::toString_state_( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -619,7 +619,7 @@ void toString_state___Q217JStudio_JParticle17TAdaptor_particleFi(void)
  * Address:	80005CB8
  * Size:	00035C
  */
-void execute__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_FP14JPABaseEmitter(void)
+void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute( (JPABaseEmitter *))
 {
 /*
 .loc_0x0:
@@ -882,7 +882,7 @@ void __dt__Q317JStudio_JParticle29@unnamed@object_particle_cpp@29TJPAEmitter_sto
  * Address:	80006014
  * Size:	0000E4
  */
-void beginParticle_fadeIn___Q217JStudio_JParticle17TAdaptor_particleFUl(void)
+void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -957,7 +957,7 @@ void beginParticle_fadeIn___Q217JStudio_JParticle17TAdaptor_particleFUl(void)
  * Address:	800060F8
  * Size:	000118
  */
-void endParticle_fadeOut___Q217JStudio_JParticle17TAdaptor_particleFUl(void)
+void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_( (unsigned long))
 {
 /*
 .loc_0x0:

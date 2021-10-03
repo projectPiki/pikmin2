@@ -5,7 +5,7 @@
  * Address:	8033E6B4
  * Size:	000124
  */
-void task__Q28PSSystem16ModParamWithFadeFR8JASTrack(void)
+void PSSystem::ModParamWithFade::task( (JASTrack &))
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void task__Q28PSSystem16ModParamWithFadeFR8JASTrack(void)
  * Address:	8033E7D8
  * Size:	0000F4
  */
-void task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack(void)
+void PSSystem::ModParamWithTableTask::task( (JASTrack &))
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack(void)
  * Address:	8033E8CC
  * Size:	000030
  */
-void tableTask__Q28PSSystem12PitchModTaskFR8JASTrackf(void)
+void PSSystem::PitchModTask::tableTask( (JASTrack &, float))
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void tableTask__Q28PSSystem12PitchModTaskFR8JASTrackf(void)
  * Address:	8033E8FC
  * Size:	0000D4
  */
-void getPreParam__Q28PSSystem14OuterParamTaskFR8JASTrack(void)
+void PSSystem::OuterParamTask::getPreParam( (JASTrack &))
 {
 /*
 .loc_0x0:
@@ -282,7 +282,7 @@ void getPreParam__Q28PSSystem14OuterParamTaskFR8JASTrack(void)
  * Address:	8033E9D0
  * Size:	000098
  */
-void timeTask__Q28PSSystem14OuterParamTaskFR8JASTrackf(void)
+void PSSystem::OuterParamTask::timeTask( (JASTrack &, float))
 {
 /*
 .loc_0x0:
@@ -336,7 +336,7 @@ void timeTask__Q28PSSystem14OuterParamTaskFR8JASTrackf(void)
  * Address:	8033EA68
  * Size:	000028
  */
-void task__Q28PSSystem14SimpleWaitTaskFR8JASTrack(void)
+void PSSystem::SimpleWaitTask::task( (JASTrack &))
 {
 /*
 .loc_0x0:
@@ -360,7 +360,7 @@ void task__Q28PSSystem14SimpleWaitTaskFR8JASTrack(void)
  * Address:	........
  * Size:	0000A8
  */
-void task__Q28PSSystem12BeatWaitTaskFR8JASTrack(void)
+void PSSystem::BeatWaitTask::task( (JASTrack &))
 {
 	// UNUSED FUNCTION
 }
@@ -370,7 +370,7 @@ void task__Q28PSSystem12BeatWaitTaskFR8JASTrack(void)
  * Address:	8033EA90
  * Size:	000074
  */
-void __ct__Q28PSSystem11BankRandPrmFv(void)
+void PSSystem::BankRandPrm::__ct(void)
 {
 /*
 .loc_0x0:
@@ -411,7 +411,7 @@ void __ct__Q28PSSystem11BankRandPrmFv(void)
  * Address:	........
  * Size:	0000E8
  */
-void initBankRandomize__Q28PSSystem11BankRandPrmFi(void)
+void PSSystem::BankRandPrm::initBankRandomize( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -421,7 +421,7 @@ void initBankRandomize__Q28PSSystem11BankRandPrmFi(void)
  * Address:	........
  * Size:	000088
  */
-void makeEntry__Q28PSSystem22TaskEntry_BankRandTaskFfUl(void)
+void PSSystem::TaskEntry_BankRandTask::makeEntry( (float, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -431,7 +431,7 @@ void makeEntry__Q28PSSystem22TaskEntry_BankRandTaskFfUl(void)
  * Address:	8033EB04
  * Size:	000080
  */
-void makeEntry__Q28PSSystem20TaskEntry_OuterParamFfUl(void)
+void PSSystem::TaskEntry_OuterParam::makeEntry( (float, unsigned long))
 {
 /*
 .loc_0x0:
@@ -475,7 +475,7 @@ void makeEntry__Q28PSSystem20TaskEntry_OuterParamFfUl(void)
  * Address:	........
  * Size:	0000BC
  */
-void makeEntry__Q28PSSystem21TaskEntry_Wait_VolumeFfUlUl(void)
+void PSSystem::TaskEntry_Wait_Volume::makeEntry( (float, unsigned long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -485,7 +485,7 @@ void makeEntry__Q28PSSystem21TaskEntry_Wait_VolumeFfUlUl(void)
  * Address:	8033EB84
  * Size:	000054
  */
-void makeEntry__Q28PSSystem16TaskEntry_IdMaskFUc(void)
+void PSSystem::TaskEntry_IdMask::makeEntry( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -518,7 +518,7 @@ void makeEntry__Q28PSSystem16TaskEntry_IdMaskFUc(void)
  * Address:	........
  * Size:	0000AC
  */
-void makeEntry__Q28PSSystem25TaskEntry_BeatWait_VolumeFQ38PSSystem12BeatWaitTask7BeatAttfUl(void)
+void PSSystem::TaskEntry_BeatWait_Volume::makeEntry( (PSSystem::BeatWaitTask::BeatAtt, float, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -528,7 +528,7 @@ void makeEntry__Q28PSSystem25TaskEntry_BeatWait_VolumeFQ38PSSystem12BeatWaitTask
  * Address:	8033EBD8
  * Size:	000110
  */
-void makeEntry__Q28PSSystem16TaskEntry_PitModFffUl(void)
+void PSSystem::TaskEntry_PitMod::makeEntry( (float, float, unsigned long))
 {
 /*
 .loc_0x0:
@@ -612,7 +612,7 @@ void makeEntry__Q28PSSystem16TaskEntry_PitModFffUl(void)
  * Address:	8033ECE8
  * Size:	0000A4
  */
-void makeEntry__Q28PSSystem20TaskEntry_MuteVolumeFfUl(void)
+void PSSystem::TaskEntry_MuteVolume::makeEntry( (float, unsigned long))
 {
 /*
 .loc_0x0:
@@ -665,7 +665,7 @@ void makeEntry__Q28PSSystem20TaskEntry_MuteVolumeFfUl(void)
  * Address:	8033ED8C
  * Size:	00008C
  */
-void makeEntry__Q28PSSystem22TaskEntry_MuteOnVolumeFUl(void)
+void PSSystem::TaskEntry_MuteOnVolume::makeEntry( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -712,7 +712,7 @@ void makeEntry__Q28PSSystem22TaskEntry_MuteOnVolumeFUl(void)
  * Address:	8033EE18
  * Size:	000080
  */
-void makeEntry__Q28PSSystem15TaskEntry_TempoFfUl(void)
+void PSSystem::TaskEntry_Tempo::makeEntry( (float, unsigned long))
 {
 /*
 .loc_0x0:

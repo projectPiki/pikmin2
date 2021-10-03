@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801FD9B8
  * Size:	000070
  */
-void do_onInit__Q34Game11PelletFruit6ObjectFPQ24Game15CreatureInitArg(void)
+void Game::PelletFruit::Object::do_onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void do_onInit__Q34Game11PelletFruit6ObjectFPQ24Game15CreatureInitArg(void)
  * Address:	801FDA28
  * Size:	000180
  */
-void do_update__Q34Game11PelletFruit6ObjectFv(void)
+void Game::PelletFruit::Object::do_update(void)
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void do_update__Q34Game11PelletFruit6ObjectFv(void)
  * Address:	801FDBA8
  * Size:	00011C
  */
-void changeMaterial__Q34Game11PelletFruit6ObjectFv(void)
+void Game::PelletFruit::Object::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -256,7 +256,7 @@ void changeMaterial__Q34Game11PelletFruit6ObjectFv(void)
  * Address:	801FDCC4
  * Size:	0000B0
  */
-void __ct__Q34Game11PelletFruit3MgrFv(void)
+void Game::PelletFruit::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -537,7 +537,7 @@ void Container<Game::PelletFruit::Object>::~Container()
  * Address:	801FE020
  * Size:	00008C
  */
-void setupResources__Q34Game11PelletFruit3MgrFv(void)
+void Game::PelletFruit::Mgr::setupResources(void)
 {
 /*
 .loc_0x0:
@@ -584,7 +584,7 @@ void setupResources__Q34Game11PelletFruit3MgrFv(void)
  * Address:	801FE0AC
  * Size:	00006C
  */
-void onCreateModel__Q34Game11PelletFruit3MgrFPQ28SysShape5Model(void)
+void Game::PelletFruit::Mgr::onCreateModel( (SysShape::Model *))
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void onCreateModel__Q34Game11PelletFruit3MgrFPQ28SysShape5Model(void)
  * Address:	801FE118
  * Size:	0001B4
  */
-void __dt__Q34Game11PelletFruit3MgrFv(void)
+void Game::PelletFruit::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void __dt__Q34Game11PelletFruit3MgrFv(void)
  * Address:	801FE2CC
  * Size:	000008
  */
-void getMgrName__Q34Game11PelletFruit3MgrFv(void)
+void Game::PelletFruit::Mgr::getMgrName(void)
 {
 /*
 .loc_0x0:
@@ -766,7 +766,7 @@ void getMgrName__Q34Game11PelletFruit3MgrFv(void)
  * Address:	801FE2D4
  * Size:	000008
  */
-void getMgrID__Q34Game11PelletFruit3MgrFv(void)
+void Game::PelletFruit::Mgr::getMgrID(void)
 {
 /*
 .loc_0x0:
@@ -830,7 +830,7 @@ void ObjectMgr<Game::PelletFruit::Object>::~ObjectMgr()
  * Address:	801FE364
  * Size:	000008
  */
-void getKind__Q34Game11PelletFruit6ObjectFv(void)
+void Game::PelletFruit::Object::getKind(void)
 {
 /*
 .loc_0x0:
@@ -3371,7 +3371,7 @@ void MonoObjectMgr<Game::PelletFruit::Object>::alloc(int)
  * Address:	801FFD58
  * Size:	00004C
  */
-void __ct__Q34Game11PelletFruit6ObjectFv(void)
+void Game::PelletFruit::Object::__ct(void)
 {
 /*
 .loc_0x0:
@@ -3676,7 +3676,7 @@ void @84@get__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>FPv(void)
  * Address:	801FFE5C
  * Size:	000008
  */
-void @84@__dt__Q34Game11PelletFruit3MgrFv(void)
+void @84@Game::PelletFruit::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

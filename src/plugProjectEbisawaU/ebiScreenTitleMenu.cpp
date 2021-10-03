@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803D9CE0
  * Size:	000928
  */
-void doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive(void)
+void ebi::Screen::TTitleMenu::doSetArchive( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -635,7 +635,7 @@ void doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive(void)
  * Address:	803DA608
  * Size:	00021C
  */
-void doOpenScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TTitleMenu::doOpenScreen( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -804,7 +804,7 @@ void doOpenScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803DA824
  * Size:	0001C4
  */
-void doInitWaitState__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::doInitWaitState(void)
 {
 /*
 .loc_0x0:
@@ -941,7 +941,7 @@ void doInitWaitState__Q33ebi6Screen10TTitleMenuFv(void)
  * Address:	803DA9E8
  * Size:	000070
  */
-void doCloseScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen8ArgClose(void)
+void ebi::Screen::TTitleMenu::doCloseScreen( (ebi::Screen::ArgClose *))
 {
 /*
 .loc_0x0:
@@ -985,7 +985,7 @@ void doCloseScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen8ArgClose(void)
  * Address:	803DAA58
  * Size:	000084
  */
-void doUpdateStateOpen__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::doUpdateStateOpen(void)
 {
 /*
 .loc_0x0:
@@ -1036,7 +1036,7 @@ void doUpdateStateOpen__Q33ebi6Screen10TTitleMenuFv(void)
  * Address:	803DAADC
  * Size:	000470
  */
-void doUpdateStateWait__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::doUpdateStateWait(void)
 {
 /*
 .loc_0x0:
@@ -1374,7 +1374,7 @@ void doUpdateStateWait__Q33ebi6Screen10TTitleMenuFv(void)
  * Address:	803DAF4C
  * Size:	0000D4
  */
-void doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::doUpdateStateClose(void)
 {
 /*
 .loc_0x0:
@@ -1449,7 +1449,7 @@ void doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv(void)
  * Address:	803DB020
  * Size:	000074
  */
-void doDraw__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::doDraw(void)
 {
 /*
 .loc_0x0:
@@ -1490,7 +1490,7 @@ void doDraw__Q33ebi6Screen10TTitleMenuFv(void)
  * Address:	803DB094
  * Size:	000008
  */
-void setController__Q33ebi6Screen10TTitleMenuFP10Controller(void)
+void ebi::Screen::TTitleMenu::setController( (Controller *))
 {
 /*
 .loc_0x0:
@@ -1504,7 +1504,7 @@ void setController__Q33ebi6Screen10TTitleMenuFP10Controller(void)
  * Address:	803DB09C
  * Size:	000060
  */
-void openMenuSet__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen(void)
+void ebi::Screen::TTitleMenu::openMenuSet( (ebi::Screen::ArgOpen *))
 {
 /*
 .loc_0x0:
@@ -1544,7 +1544,7 @@ void openMenuSet__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen(void)
  * Address:	803DB0FC
  * Size:	000008
  */
-void isDecide__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::isDecide(void)
 {
 /*
 .loc_0x0:
@@ -1558,7 +1558,7 @@ void isDecide__Q33ebi6Screen10TTitleMenuFv(void)
  * Address:	803DB104
  * Size:	000008
  */
-void isCancel__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::isCancel(void)
 {
 /*
 .loc_0x0:
@@ -1572,7 +1572,7 @@ void isCancel__Q33ebi6Screen10TTitleMenuFv(void)
  * Address:	803DB10C
  * Size:	00003C
  */
-void showPika___Q33ebi6Screen10TTitleMenuFl(void)
+void ebi::Screen::TTitleMenu::showPika_( (long))
 {
 /*
 .loc_0x0:
@@ -1603,7 +1603,7 @@ void showPika___Q33ebi6Screen10TTitleMenuFl(void)
  * Address:	803DB148
  * Size:	00003C
  */
-void hidePika___Q33ebi6Screen10TTitleMenuFl(void)
+void ebi::Screen::TTitleMenu::hidePika_( (long))
 {
 /*
 .loc_0x0:
@@ -1634,7 +1634,7 @@ void hidePika___Q33ebi6Screen10TTitleMenuFl(void)
  * Address:	803DB184
  * Size:	00000C
  */
-void getName__Q33ebi6Screen10TTitleMenuFv(void)
+void ebi::Screen::TTitleMenu::getName(void)
 {
 /*
 .loc_0x0:

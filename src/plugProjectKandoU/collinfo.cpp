@@ -802,7 +802,7 @@ void AgePlatform::AgePlatform()
  * Address:	80133DD4
  * Size:	000090
  */
-void __dt__Q23Sys11GridDividerFv(void)
+void Sys::GridDivider::__dt(void)
 {
 /*
 .loc_0x0:
@@ -856,7 +856,7 @@ void __dt__Q23Sys11GridDividerFv(void)
  * Address:	80133E64
  * Size:	0000A0
  */
-void __dt__Q23Sys12TriIndexListFv(void)
+void Sys::TriIndexList::__dt(void)
 {
 /*
 .loc_0x0:
@@ -912,7 +912,7 @@ void __dt__Q23Sys12TriIndexListFv(void)
  * Address:	........
  * Size:	00005C
  */
-void __dt__Q23Sys8GridInfoFv(void)
+void Sys::GridInfo::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -922,7 +922,7 @@ void __dt__Q23Sys8GridInfoFv(void)
  * Address:	80133F04
  * Size:	000060
  */
-void __dt__Q23Sys10TriDividerFv(void)
+void Sys::TriDivider::__dt(void)
 {
 /*
 .loc_0x0:
@@ -960,7 +960,7 @@ void __dt__Q23Sys10TriDividerFv(void)
  * Address:	80133F64
  * Size:	0000F8
  */
-void __dt__Q23Sys7OBBTreeFv(void)
+void Sys::OBBTree::__dt(void)
 {
 /*
 .loc_0x0:
@@ -8320,7 +8320,7 @@ void MouthCollPart::isMouth()
  * Address:	8013948C
  * Size:	0000D4
  */
-void __dt__Q23Sys3OBBFv(void)
+void Sys::OBB::__dt(void)
 {
 /*
 .loc_0x0:
@@ -8585,7 +8585,7 @@ void ArrayContainer<int>::readObject(Stream &, int &)
  * Address:	80139750
  * Size:	000034
  */
-void readObject__Q23Sys9IndexListFR6StreamRi(void)
+void Sys::IndexList::readObject( (Stream &, int &))
 {
 /*
 .loc_0x0:
@@ -8610,7 +8610,7 @@ void readObject__Q23Sys9IndexListFR6StreamRi(void)
  * Address:	80139784
  * Size:	000028
  */
-void writeObject__Q23Sys9IndexListFR6StreamRi(void)
+void Sys::IndexList::writeObject( (Stream &, int &))
 {
 /*
 .loc_0x0:
@@ -8632,7 +8632,7 @@ void writeObject__Q23Sys9IndexListFR6StreamRi(void)
  * Address:	801397AC
  * Size:	000090
  */
-void __dt__Q23Sys9IndexListFv(void)
+void Sys::IndexList::__dt(void)
 {
 /*
 .loc_0x0:

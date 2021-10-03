@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801FFE64
  * Size:	000094
  */
-void constructor__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::constructor(void)
 {
 /*
 .loc_0x0:
@@ -68,7 +68,7 @@ void constructor__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	801FFEF8
  * Size:	0000F4
  */
-void do_onInit__Q34Game13PelletOtakara6ObjectFPQ24Game15CreatureInitArg(void)
+void Game::PelletOtakara::Object::do_onInit( (Game::CreatureInitArg *))
 {
 /*
 .loc_0x0:
@@ -153,7 +153,7 @@ void do_onInit__Q34Game13PelletOtakara6ObjectFPQ24Game15CreatureInitArg(void)
  * Address:	801FFFEC
  * Size:	000020
  */
-void getShadowParam__Q34Game13PelletOtakara6ObjectFRQ24Game11ShadowParam(void)
+void Game::PelletOtakara::Object::getShadowParam( (Game::ShadowParam &))
 {
 /*
 .loc_0x0:
@@ -173,7 +173,7 @@ void getShadowParam__Q34Game13PelletOtakara6ObjectFRQ24Game11ShadowParam(void)
  * Address:	8020000C
  * Size:	000148
  */
-void sound_otakaraEventStart__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::sound_otakaraEventStart(void)
 {
 /*
 .loc_0x0:
@@ -283,7 +283,7 @@ void sound_otakaraEventStart__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	80200154
  * Size:	000148
  */
-void sound_otakaraEventRestart__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::sound_otakaraEventRestart(void)
 {
 /*
 .loc_0x0:
@@ -393,7 +393,7 @@ void sound_otakaraEventRestart__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	8020029C
  * Size:	000074
  */
-void sound_otakaraEventStop__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::sound_otakaraEventStop(void)
 {
 /*
 .loc_0x0:
@@ -436,7 +436,7 @@ void sound_otakaraEventStop__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	80200310
  * Size:	000074
  */
-void sound_otakaraEventFinish__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::sound_otakaraEventFinish(void)
 {
 /*
 .loc_0x0:
@@ -479,7 +479,7 @@ void sound_otakaraEventFinish__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	80200384
  * Size:	0000D8
  */
-void onCreateShape__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::onCreateShape(void)
 {
 /*
 .loc_0x0:
@@ -555,7 +555,7 @@ void onCreateShape__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	8020045C
  * Size:	0000B8
  */
-void theEntry__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::theEntry(void)
 {
 /*
 .loc_0x0:
@@ -617,7 +617,7 @@ void theEntry__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	80200514
  * Size:	000268
  */
-void changeMaterial__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::changeMaterial(void)
 {
 /*
 .loc_0x0:
@@ -789,7 +789,7 @@ void changeMaterial__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	8020077C
  * Size:	0000B0
  */
-void __ct__Q34Game13PelletOtakara3MgrFv(void)
+void Game::PelletOtakara::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1070,7 +1070,7 @@ void Container<Game::PelletOtakara::Object>::~Container()
  * Address:	80200AD8
  * Size:	00006C
  */
-void setupResources__Q34Game13PelletOtakara3MgrFv(void)
+void Game::PelletOtakara::Mgr::setupResources(void)
 {
 /*
 .loc_0x0:
@@ -1109,7 +1109,7 @@ void setupResources__Q34Game13PelletOtakara3MgrFv(void)
  * Address:	80200B44
  * Size:	000024
  */
-void generatorNewPelletParm__Q34Game13PelletOtakara3MgrFv(void)
+void Game::PelletOtakara::Mgr::generatorNewPelletParm(void)
 {
 /*
 .loc_0x0:
@@ -1228,7 +1228,7 @@ void generatorBirth__Q34Game13PelletOtakara3MgrFR10Vector3<float>R10Vector3<floa
  * Address:	80200CB0
  * Size:	000030
  */
-void generatorWrite__Q34Game13PelletOtakara3MgrFR6StreamPQ24Game13GenPelletParm(void)
+void Game::PelletOtakara::Mgr::generatorWrite( (Stream &, Game::GenPelletParm *))
 {
 /*
 .loc_0x0:
@@ -1252,7 +1252,7 @@ void generatorWrite__Q34Game13PelletOtakara3MgrFR6StreamPQ24Game13GenPelletParm(
  * Address:	80200CE0
  * Size:	000038
  */
-void generatorRead__Q34Game13PelletOtakara3MgrFR6StreamPQ24Game13GenPelletParmUl(void)
+void Game::PelletOtakara::Mgr::generatorRead( (Stream &, Game::GenPelletParm *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -1278,7 +1278,7 @@ void generatorRead__Q34Game13PelletOtakara3MgrFR6StreamPQ24Game13GenPelletParmUl
  * Address:	80200D18
  * Size:	0001B4
  */
-void __dt__Q34Game13PelletOtakara3MgrFv(void)
+void Game::PelletOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1407,7 +1407,7 @@ void __dt__Q34Game13PelletOtakara3MgrFv(void)
  * Address:	80200ECC
  * Size:	000008
  */
-void getMgrName__Q34Game13PelletOtakara3MgrFv(void)
+void Game::PelletOtakara::Mgr::getMgrName(void)
 {
 /*
 .loc_0x0:
@@ -1421,7 +1421,7 @@ void getMgrName__Q34Game13PelletOtakara3MgrFv(void)
  * Address:	80200ED4
  * Size:	000008
  */
-void getMgrID__Q34Game13PelletOtakara3MgrFv(void)
+void Game::PelletOtakara::Mgr::getMgrID(void)
 {
 /*
 .loc_0x0:
@@ -1435,7 +1435,7 @@ void getMgrID__Q34Game13PelletOtakara3MgrFv(void)
  * Address:	80200EDC
  * Size:	00000C
  */
-void generatorLocalVersion__Q34Game13PelletOtakara3MgrFv(void)
+void Game::PelletOtakara::Mgr::generatorLocalVersion(void)
 {
 /*
 .loc_0x0:
@@ -1500,7 +1500,7 @@ void ObjectMgr<Game::PelletOtakara::Object>::~ObjectMgr()
  * Address:	80200F70
  * Size:	000008
  */
-void getKind__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::getKind(void)
 {
 /*
 .loc_0x0:
@@ -1514,7 +1514,7 @@ void getKind__Q34Game13PelletOtakara6ObjectFv(void)
  * Address:	80200F78
  * Size:	00000C
  */
-void getBedamaColor__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::getBedamaColor(void)
 {
 /*
 .loc_0x0:
@@ -3776,7 +3776,7 @@ void MonoObjectMgr<Game::PelletOtakara::Object>::alloc(int)
  * Address:	80202680
  * Size:	00004C
  */
-void __ct__Q34Game13PelletOtakara6ObjectFv(void)
+void Game::PelletOtakara::Object::__ct(void)
 {
 /*
 .loc_0x0:
@@ -4081,7 +4081,7 @@ void @84@get__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>FPv(void)
  * Address:	80202784
  * Size:	000008
  */
-void @84@__dt__Q34Game13PelletOtakara3MgrFv(void)
+void @84@Game::PelletOtakara::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

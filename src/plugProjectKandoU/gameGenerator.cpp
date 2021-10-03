@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801AA6E4
  * Size:	000050
  */
-void __ct__Q24Game7GenBaseFUlPcPc(void)
+void Game::GenBase::__ct( (unsigned long, char *, char *))
 {
 /*
 .loc_0x0:
@@ -49,7 +49,7 @@ void __ct__Q24Game7GenBaseFUlPcPc(void)
  * Address:	........
  * Size:	000054
  */
-void writeVersion__Q24Game7GenBaseFR6Stream(void)
+void Game::GenBase::writeVersion( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -59,7 +59,7 @@ void writeVersion__Q24Game7GenBaseFR6Stream(void)
  * Address:	801AA734
  * Size:	00000C
  */
-void getLatestVersion__Q24Game7GenBaseFv(void)
+void Game::GenBase::getLatestVersion(void)
 {
 /*
 .loc_0x0:
@@ -74,7 +74,7 @@ void getLatestVersion__Q24Game7GenBaseFv(void)
  * Address:	........
  * Size:	0000DC
  */
-void write__Q24Game7GenBaseFR6Stream(void)
+void Game::GenBase::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -84,7 +84,7 @@ void write__Q24Game7GenBaseFR6Stream(void)
  * Address:	801AA740
  * Size:	000004
  */
-void doWrite__Q24Game7GenBaseFR6Stream(void)
+void Game::GenBase::doWrite( (Stream &))
 {
 /*
 .loc_0x0:
@@ -97,7 +97,7 @@ void doWrite__Q24Game7GenBaseFR6Stream(void)
  * Address:	801AA744
  * Size:	000020
  */
-void ramSaveParameters__Q24Game7GenBaseFR6Stream(void)
+void Game::GenBase::ramSaveParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -117,7 +117,7 @@ void ramSaveParameters__Q24Game7GenBaseFR6Stream(void)
  * Address:	801AA764
  * Size:	000020
  */
-void ramLoadParameters__Q24Game7GenBaseFR6Stream(void)
+void Game::GenBase::ramLoadParameters( (Stream &))
 {
 /*
 .loc_0x0:
@@ -137,7 +137,7 @@ void ramLoadParameters__Q24Game7GenBaseFR6Stream(void)
  * Address:	........
  * Size:	000050
  */
-void readVersion__Q24Game7GenBaseFR6Stream(void)
+void Game::GenBase::readVersion( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -147,7 +147,7 @@ void readVersion__Q24Game7GenBaseFR6Stream(void)
  * Address:	........
  * Size:	0000C0
  */
-void read__Q24Game7GenBaseFR6Stream(void)
+void Game::GenBase::read( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -157,7 +157,7 @@ void read__Q24Game7GenBaseFR6Stream(void)
  * Address:	801AA784
  * Size:	000004
  */
-void doRead__Q24Game7GenBaseFR6Stream(void)
+void Game::GenBase::doRead( (Stream &))
 {
 /*
 .loc_0x0:
@@ -170,7 +170,7 @@ void doRead__Q24Game7GenBaseFR6Stream(void)
  * Address:	801AA788
  * Size:	000050
  */
-void getLatestVersion__Q24Game9GenObjectFv(void)
+void Game::GenObject::getLatestVersion(void)
 {
 /*
 .loc_0x0:
@@ -206,7 +206,7 @@ void getLatestVersion__Q24Game9GenObjectFv(void)
  * Address:	........
  * Size:	000060
  */
-void createInstance__Q24Game16GenObjectFactoryFv(void)
+void Game::GenObjectFactory::createInstance(void)
 {
 	// UNUSED FUNCTION
 }
@@ -216,7 +216,7 @@ void createInstance__Q24Game16GenObjectFactoryFv(void)
  * Address:	801AA7D8
  * Size:	00000C
  */
-void initialiseSystem__Q24Game9GeneratorFv(void)
+void Game::Generator::initialiseSystem(void)
 {
 /*
 .loc_0x0:
@@ -231,7 +231,7 @@ void initialiseSystem__Q24Game9GeneratorFv(void)
  * Address:	801AA7E4
  * Size:	0000DC
  */
-void __ct__Q24Game9GeneratorFv(void)
+void Game::Generator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -298,7 +298,7 @@ void __ct__Q24Game9GeneratorFv(void)
  * Address:	........
  * Size:	0000D0
  */
-void __ct__Q24Game9GeneratorFi(void)
+void Game::Generator::__ct( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -308,7 +308,7 @@ void __ct__Q24Game9GeneratorFi(void)
  * Address:	801AA8C0
  * Size:	000068
  */
-void __dt__Q24Game9GeneratorFv(void)
+void Game::Generator::__dt(void)
 {
 /*
 .loc_0x0:
@@ -348,7 +348,7 @@ void __dt__Q24Game9GeneratorFv(void)
  * Address:	801AA928
  * Size:	000058
  */
-void updateUseList__Q24Game9GeneratorFv(void)
+void Game::Generator::updateUseList(void)
 {
 /*
 .loc_0x0:
@@ -384,7 +384,7 @@ void updateUseList__Q24Game9GeneratorFv(void)
  * Address:	801AA980
  * Size:	000004
  */
-void updateUseList__Q24Game9GenObjectFPQ24Game9Generatori(void)
+void Game::GenObject::updateUseList( (Game::Generator *, int))
 {
 /*
 .loc_0x0:
@@ -397,7 +397,7 @@ void updateUseList__Q24Game9GenObjectFPQ24Game9Generatori(void)
  * Address:	801AA984
  * Size:	000034
  */
-void isExpired__Q24Game9GeneratorFv(void)
+void Game::Generator::isExpired(void)
 {
 /*
 .loc_0x0:
@@ -424,7 +424,7 @@ void isExpired__Q24Game9GeneratorFv(void)
  * Address:	801AA9B8
  * Size:	0000B8
  */
-void loadCreature__Q24Game9GeneratorFR6Stream(void)
+void Game::Generator::loadCreature( (Stream &))
 {
 /*
 .loc_0x0:
@@ -492,7 +492,7 @@ void loadCreature__Q24Game9GeneratorFR6Stream(void)
  * Address:	801AAA70
  * Size:	000008
  */
-void generate__Q24Game9GenObjectFPQ24Game9Generator(void)
+void Game::GenObject::generate( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -506,7 +506,7 @@ void generate__Q24Game9GenObjectFPQ24Game9Generator(void)
  * Address:	801AAA78
  * Size:	00007C
  */
-void need_saveCreature__Q24Game9GeneratorFv(void)
+void Game::Generator::need_saveCreature(void)
 {
 /*
 .loc_0x0:
@@ -555,7 +555,7 @@ void need_saveCreature__Q24Game9GeneratorFv(void)
  * Address:	801AAAF4
  * Size:	0000C8
  */
-void saveCreature__Q24Game9GeneratorFR6Stream(void)
+void Game::Generator::saveCreature( (Stream &))
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void saveCreature__Q24Game9GeneratorFR6Stream(void)
  * Address:	801AABBC
  * Size:	000138
  */
-void generate__Q24Game9GeneratorFv(void)
+void Game::Generator::generate(void)
 {
 /*
 .loc_0x0:
@@ -729,7 +729,7 @@ void generate__Q24Game9GeneratorFv(void)
  * Address:	801AACF4
  * Size:	000024
  */
-void informDeath__Q24Game9GeneratorFPQ24Game8Creature(void)
+void Game::Generator::informDeath( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -752,7 +752,7 @@ void informDeath__Q24Game9GeneratorFPQ24Game8Creature(void)
  * Address:	........
  * Size:	000004
  */
-void update__Q24Game9GeneratorFv(void)
+void Game::Generator::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -762,7 +762,7 @@ void update__Q24Game9GeneratorFv(void)
  * Address:	........
  * Size:	000004
  */
-void render__Q24Game9GeneratorFR8Graphics(void)
+void Game::Generator::render( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -772,7 +772,7 @@ void render__Q24Game9GeneratorFR8Graphics(void)
  * Address:	801AAD18
  * Size:	0003A4
  */
-void read__Q24Game9GeneratorFR6Stream(void)
+void Game::Generator::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1069,7 +1069,7 @@ void read__Q24Game9GeneratorFR6Stream(void)
  * Address:	801AB0BC
  * Size:	00039C
  */
-void write__Q24Game9GeneratorFR6Stream(void)
+void Game::Generator::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -1330,7 +1330,7 @@ void write__Q24Game9GeneratorFR6Stream(void)
  * Address:	801AB458
  * Size:	000120
  */
-void __ct__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1418,7 +1418,7 @@ void __ct__Q24Game12GeneratorMgrFv(void)
  * Address:	801AB578
  * Size:	00003C
  */
-void addMgr__Q24Game12GeneratorMgrFPQ24Game12GeneratorMgr(void)
+void Game::GeneratorMgr::addMgr( (Game::GeneratorMgr *))
 {
 /*
 .loc_0x0:
@@ -1451,7 +1451,7 @@ void addMgr__Q24Game12GeneratorMgrFPQ24Game12GeneratorMgr(void)
  * Address:	........
  * Size:	000028
  */
-void isRootMgr__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::isRootMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1461,7 +1461,7 @@ void isRootMgr__Q24Game12GeneratorMgrFv(void)
  * Address:	801AB5B4
  * Size:	000148
  */
-void generate__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::generate(void)
 {
 /*
 .loc_0x0:
@@ -1575,7 +1575,7 @@ void generate__Q24Game12GeneratorMgrFv(void)
  * Address:	801AB6FC
  * Size:	00001C
  */
-void setDayLimit__Q24Game12GeneratorMgrFi(void)
+void Game::GeneratorMgr::setDayLimit( (int))
 {
 /*
 .loc_0x0:
@@ -1598,7 +1598,7 @@ void setDayLimit__Q24Game12GeneratorMgrFi(void)
  * Address:	801AB718
  * Size:	000098
  */
-void updateUseList__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::updateUseList(void)
 {
 /*
 .loc_0x0:
@@ -1660,7 +1660,7 @@ void updateUseList__Q24Game12GeneratorMgrFv(void)
  * Address:	........
  * Size:	000018
  */
-void update__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::update(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1670,7 +1670,7 @@ void update__Q24Game12GeneratorMgrFv(void)
  * Address:	........
  * Size:	00055C
  */
-void render__Q24Game12GeneratorMgrFR8Graphics(void)
+void Game::GeneratorMgr::render( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -1680,7 +1680,7 @@ void render__Q24Game12GeneratorMgrFR8Graphics(void)
  * Address:	801AB7B0
  * Size:	000008
  */
-void getNext__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::getNext(void)
 {
 /*
 .loc_0x0:
@@ -1694,7 +1694,7 @@ void getNext__Q24Game12GeneratorMgrFv(void)
  * Address:	801AB7B8
  * Size:	000008
  */
-void getChild__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::getChild(void)
 {
 /*
 .loc_0x0:
@@ -2044,7 +2044,7 @@ void Vector3<float>::operator= (const Vector3<float> &)
  * Address:	801ABC18
  * Size:	0002F0
  */
-void read__Q24Game12GeneratorMgrFR6Streamb(void)
+void Game::GeneratorMgr::read( (Stream &, bool))
 {
 /*
 .loc_0x0:
@@ -2266,7 +2266,7 @@ void read__Q24Game12GeneratorMgrFR6Streamb(void)
  * Address:	........
  * Size:	000118
  */
-void write__Q24Game12GeneratorMgrFR6Stream(void)
+void Game::GeneratorMgr::write( (Stream &))
 {
 	// UNUSED FUNCTION
 }
@@ -2276,7 +2276,7 @@ void write__Q24Game12GeneratorMgrFR6Stream(void)
  * Address:	801ABF08
  * Size:	0000D8
  */
-void doAnimation__Q24Game9GeneratorFv(void)
+void Game::Generator::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -2346,7 +2346,7 @@ void doAnimation__Q24Game9GeneratorFv(void)
  * Address:	801ABFE0
  * Size:	000070
  */
-void doEntry__Q24Game9GeneratorFv(void)
+void Game::Generator::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -2390,7 +2390,7 @@ void doEntry__Q24Game9GeneratorFv(void)
  * Address:	801AC050
  * Size:	000070
  */
-void doSetView__Q24Game9GeneratorFi(void)
+void Game::Generator::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -2434,7 +2434,7 @@ void doSetView__Q24Game9GeneratorFi(void)
  * Address:	801AC0C0
  * Size:	000060
  */
-void doViewCalc__Q24Game9GeneratorFv(void)
+void Game::Generator::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -2474,7 +2474,7 @@ void doViewCalc__Q24Game9GeneratorFv(void)
  * Address:	801AC120
  * Size:	00007C
  */
-void doAnimation__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -2523,7 +2523,7 @@ void doAnimation__Q24Game12GeneratorMgrFv(void)
  * Address:	801AC19C
  * Size:	00007C
  */
-void doEntry__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -2572,7 +2572,7 @@ void doEntry__Q24Game12GeneratorMgrFv(void)
  * Address:	801AC218
  * Size:	000090
  */
-void doSetView__Q24Game12GeneratorMgrFi(void)
+void Game::GeneratorMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -2626,7 +2626,7 @@ void doSetView__Q24Game12GeneratorMgrFi(void)
  * Address:	801AC2A8
  * Size:	00007C
  */
-void doViewCalc__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -2675,7 +2675,7 @@ void doViewCalc__Q24Game12GeneratorMgrFv(void)
  * Address:	801AC324
  * Size:	000060
  */
-void __dt__Q24Game12GeneratorMgrFv(void)
+void Game::GeneratorMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2713,7 +2713,7 @@ void __dt__Q24Game12GeneratorMgrFv(void)
  * Address:	801AC384
  * Size:	000004
  */
-void render__Q24Game9GenObjectFR8GraphicsPQ24Game9Generator(void)
+void Game::GenObject::render( (Graphics &, Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -2726,7 +2726,7 @@ void render__Q24Game9GenObjectFR8GraphicsPQ24Game9Generator(void)
  * Address:	801AC388
  * Size:	000008
  */
-void getShape__Q24Game7GenBaseFv(void)
+void Game::GenBase::getShape(void)
 {
 /*
 .loc_0x0:
@@ -2740,7 +2740,7 @@ void getShape__Q24Game7GenBaseFv(void)
  * Address:	801AC390
  * Size:	000004
  */
-void update__Q24Game7GenBaseFPQ24Game9Generator(void)
+void Game::GenBase::update( (Game::Generator *))
 {
 /*
 .loc_0x0:
@@ -2753,7 +2753,7 @@ void update__Q24Game7GenBaseFPQ24Game9Generator(void)
  * Address:	801AC394
  * Size:	000004
  */
-void render__Q24Game7GenBaseFR8GraphicsPQ24Game9Generator(void)
+void Game::GenBase::render( (Graphics &, Game::Generator *))
 {
 /*
 .loc_0x0:

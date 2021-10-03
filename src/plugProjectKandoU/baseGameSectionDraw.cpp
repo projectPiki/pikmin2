@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	0000E8
  */
-void newdraw_draw3D__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::newdraw_draw3D( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void newdraw_draw3D__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	........
  * Size:	000194
  */
-void newdraw_drawPreShadow__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::newdraw_drawPreShadow( (Viewport *))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void newdraw_drawPreShadow__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	........
  * Size:	000220
  */
-void newdraw_drawPostShadow__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::newdraw_drawPostShadow( (Viewport *))
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void newdraw_drawPostShadow__Q24Game15BaseGameSectionFP8Viewport(void)
  * Address:	........
  * Size:	0000D0
  */
-void newdraw_drawParticle__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::newdraw_drawParticle( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void newdraw_drawParticle__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	802398D8
  * Size:	0001F4
  */
-void newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics(void)
+void Game::BaseGameSection::newdraw_draw3D_all( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -202,7 +202,7 @@ void newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics(void)
  * Address:	80239ACC
  * Size:	000360
  */
-void newdraw_drawAll__Q24Game15BaseGameSectionFP8Viewport(void)
+void Game::BaseGameSection::newdraw_drawAll( (Viewport *))
 {
 /*
 .loc_0x0:

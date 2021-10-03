@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803493F8
  * Size:	000078
  */
-void init__Q34Game4Bomb3FSMFPQ24Game9EnemyBase(void)
+void Game::Bomb::FSM::init( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -63,7 +63,7 @@ void init__Q34Game4Bomb3FSMFPQ24Game9EnemyBase(void)
  * Address:	80349470
  * Size:	00003C
  */
-void __ct__Q34Game4Bomb9StateWaitFi(void)
+void Game::Bomb::StateWait::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -90,7 +90,7 @@ void __ct__Q34Game4Bomb9StateWaitFi(void)
  * Address:	803494AC
  * Size:	00005C
  */
-void init__Q34Game4Bomb9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Bomb::StateWait::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -125,7 +125,7 @@ void init__Q34Game4Bomb9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	80349508
  * Size:	000148
  */
-void exec__Q34Game4Bomb9StateWaitFPQ24Game9EnemyBase(void)
+void Game::Bomb::StateWait::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -231,7 +231,7 @@ void exec__Q34Game4Bomb9StateWaitFPQ24Game9EnemyBase(void)
  * Address:	80349650
  * Size:	00003C
  */
-void __ct__Q34Game4Bomb9StateBombFi(void)
+void Game::Bomb::StateBomb::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -258,7 +258,7 @@ void __ct__Q34Game4Bomb9StateBombFi(void)
  * Address:	8034968C
  * Size:	000060
  */
-void init__Q34Game4Bomb9StateBombFPQ24Game9EnemyBasePQ24Game8StateArg(void)
+void Game::Bomb::StateBomb::init( (Game::EnemyBase *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -294,7 +294,7 @@ void init__Q34Game4Bomb9StateBombFPQ24Game9EnemyBasePQ24Game8StateArg(void)
  * Address:	803496EC
  * Size:	0005C4
  */
-void exec__Q34Game4Bomb9StateBombFPQ24Game9EnemyBase(void)
+void Game::Bomb::StateBomb::exec( (Game::EnemyBase *))
 {
 /*
 .loc_0x0:
@@ -701,7 +701,7 @@ void exec__Q34Game4Bomb9StateBombFPQ24Game9EnemyBase(void)
  * Address:	80349CB0
  * Size:	000084
  */
-void create__Q23efx9TBombrockFPQ23efx3Arg(void)
+void efx::TBombrock::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -748,7 +748,7 @@ void create__Q23efx9TBombrockFPQ23efx3Arg(void)
  * Address:	80349D34
  * Size:	000004
  */
-void forceKill__Q23efx9TBombrockFv(void)
+void efx::TBombrock::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -761,7 +761,7 @@ void forceKill__Q23efx9TBombrockFv(void)
  * Address:	80349D38
  * Size:	000004
  */
-void fade__Q23efx9TBombrockFv(void)
+void efx::TBombrock::fade(void)
 {
 /*
 .loc_0x0:

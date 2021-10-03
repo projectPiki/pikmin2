@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80194FF4
  * Size:	000014
  */
-void get__Q24Game6CPlateFPv(void)
+void Game::CPlate::get( (void *))
 {
 /*
 .loc_0x0:
@@ -32,7 +32,7 @@ void get__Q24Game6CPlateFPv(void)
  * Address:	80195008
  * Size:	00003C
  */
-void getNext__Q24Game6CPlateFPv(void)
+void Game::CPlate::getNext( (void *))
 {
 /*
 .loc_0x0:
@@ -59,7 +59,7 @@ void getNext__Q24Game6CPlateFPv(void)
  * Address:	80195044
  * Size:	000008
  */
-void getStart__Q24Game6CPlateFv(void)
+void Game::CPlate::getStart(void)
 {
 /*
 .loc_0x0:
@@ -73,7 +73,7 @@ void getStart__Q24Game6CPlateFv(void)
  * Address:	8019504C
  * Size:	000008
  */
-void getEnd__Q24Game6CPlateFv(void)
+void Game::CPlate::getEnd(void)
 {
 /*
 .loc_0x0:
@@ -87,7 +87,7 @@ void getEnd__Q24Game6CPlateFv(void)
  * Address:	80195054
  * Size:	00000C
  */
-void shrink__Q24Game6CPlateFv(void)
+void Game::CPlate::shrink(void)
 {
 /*
 .loc_0x0:
@@ -102,7 +102,7 @@ void shrink__Q24Game6CPlateFv(void)
  * Address:	........
  * Size:	000018
  */
-void updateShrink__Q24Game6CPlateFv(void)
+void Game::CPlate::updateShrink(void)
 {
 	// UNUSED FUNCTION
 }
@@ -112,7 +112,7 @@ void updateShrink__Q24Game6CPlateFv(void)
  * Address:	80195060
  * Size:	0001F0
  */
-void __ct__Q24Game6CPlateFi(void)
+void Game::CPlate::__ct( (int))
 {
 /*
 .loc_0x0:
@@ -248,7 +248,7 @@ void __ct__Q24Game6CPlateFi(void)
  * Address:	80195250
  * Size:	00002C
  */
-void __ct__Q34Game6CPlate4SlotFv(void)
+void Game::CPlate::Slot::__ct(void)
 {
 /*
 .loc_0x0:
@@ -648,7 +648,7 @@ void setPosNeutral__Q24Game6CPlateFR10Vector3<float>fR10Vector3<float>f(void)
  * Address:	80195708
  * Size:	0000A8
  */
-void getSlot__Q24Game6CPlateFPQ24Game8CreaturePQ24Game18SlotChangeListenerb(void)
+void Game::CPlate::getSlot( (Game::Creature *, Game::SlotChangeListener *, bool))
 {
 /*
 .loc_0x0:
@@ -706,7 +706,7 @@ void getSlot__Q24Game6CPlateFPQ24Game8CreaturePQ24Game18SlotChangeListenerb(void
  * Address:	801957B0
  * Size:	0000B8
  */
-void changeFlower__Q24Game6CPlateFPQ24Game8Creature(void)
+void Game::CPlate::changeFlower( (Game::Creature *))
 {
 /*
 .loc_0x0:
@@ -766,7 +766,7 @@ void changeFlower__Q24Game6CPlateFPQ24Game8Creature(void)
  * Address:	80195868
  * Size:	000128
  */
-void releaseSlot__Q24Game6CPlateFPQ24Game8Creaturei(void)
+void Game::CPlate::releaseSlot( (Game::Creature *, int))
 {
 /*
 .loc_0x0:
@@ -860,7 +860,7 @@ void releaseSlot__Q24Game6CPlateFPQ24Game8Creaturei(void)
  * Address:	........
  * Size:	0000B0
  */
-void swapSlot__Q24Game6CPlateFii(void)
+void Game::CPlate::swapSlot( (int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -870,7 +870,7 @@ void swapSlot__Q24Game6CPlateFii(void)
  * Address:	80195990
  * Size:	000024
  */
-void validSlot__Q24Game6CPlateFi(void)
+void Game::CPlate::validSlot( (int))
 {
 /*
 .loc_0x0:
@@ -905,7 +905,7 @@ void getPriority(int *, int)
  * Address:	801959B4
  * Size:	0004A0
  */
-void sortByColor__Q24Game6CPlateFPQ24Game8Creaturei(void)
+void Game::CPlate::sortByColor( (Game::Creature *, int))
 {
 /*
 .loc_0x0:
@@ -1482,7 +1482,7 @@ void getSlotPosition__Q24Game6CPlateFiR10Vector3<float>(void)
  * Address:	801960F8
  * Size:	0001B8
  */
-void refresh__Q24Game6CPlateFif(void)
+void Game::CPlate::refresh( (int, float))
 {
 /*
 .loc_0x0:
@@ -1630,7 +1630,7 @@ void refresh__Q24Game6CPlateFif(void)
  * Address:	801962B0
  * Size:	0002EC
  */
-void refreshSlot__Q24Game6CPlateFf(void)
+void Game::CPlate::refreshSlot( (float))
 {
 /*
 .loc_0x0:
@@ -1851,7 +1851,7 @@ void refreshSlot__Q24Game6CPlateFf(void)
  * Address:	8019659C
  * Size:	000018
  */
-void update__Q24Game6CPlateFv(void)
+void Game::CPlate::update(void)
 {
 /*
 .loc_0x0:
@@ -1869,7 +1869,7 @@ void update__Q24Game6CPlateFv(void)
  * Address:	........
  * Size:	000004
  */
-void directDraw__Q24Game6CPlateFR8Graphics(void)
+void Game::CPlate::directDraw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -1879,7 +1879,7 @@ void directDraw__Q24Game6CPlateFR8Graphics(void)
  * Address:	801965B4
  * Size:	000080
  */
-void __dt__Q24Game6CPlateFv(void)
+void Game::CPlate::__dt(void)
 {
 /*
 .loc_0x0:

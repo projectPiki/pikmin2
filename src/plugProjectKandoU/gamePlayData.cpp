@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801E5354
  * Size:	000010
  */
-void __ct__Q24Game11KindCounterFv(void)
+void Game::KindCounter::__ct(void)
 {
 /*
 .loc_0x0:
@@ -31,7 +31,7 @@ void __ct__Q24Game11KindCounterFv(void)
  * Address:	801E5364
  * Size:	000074
  */
-void alloc__Q24Game11KindCounterFi(void)
+void Game::KindCounter::alloc( (int))
 {
 /*
 .loc_0x0:
@@ -76,7 +76,7 @@ void alloc__Q24Game11KindCounterFi(void)
  * Address:	801E53D8
  * Size:	000028
  */
-void clear__Q24Game11KindCounterFv(void)
+void Game::KindCounter::clear(void)
 {
 /*
 .loc_0x0:
@@ -102,7 +102,7 @@ void clear__Q24Game11KindCounterFv(void)
  * Address:	........
  * Size:	000088
  */
-void copyFrom__Q24Game11KindCounterFRQ24Game11KindCounter(void)
+void Game::KindCounter::copyFrom( (Game::KindCounter &))
 {
 	// UNUSED FUNCTION
 }
@@ -112,7 +112,7 @@ void copyFrom__Q24Game11KindCounterFRQ24Game11KindCounter(void)
  * Address:	........
  * Size:	000090
  */
-void addTo__Q24Game11KindCounterFRQ24Game11KindCounter(void)
+void Game::KindCounter::addTo( (Game::KindCounter &))
 {
 	// UNUSED FUNCTION
 }
@@ -122,7 +122,7 @@ void addTo__Q24Game11KindCounterFRQ24Game11KindCounter(void)
  * Address:	801E5400
  * Size:	000078
  */
-void __cl__Q24Game11KindCounterFi(void)
+void Game::KindCounter::operator()( (int))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void __cl__Q24Game11KindCounterFi(void)
  * Address:	........
  * Size:	00018C
  */
-void __ct__Q24Game16PelletCropMemoryFiii(void)
+void Game::PelletCropMemory::__ct( (int, int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -178,7 +178,7 @@ void __ct__Q24Game16PelletCropMemoryFiii(void)
  * Address:	801E5478
  * Size:	000280
  */
-void createClone__Q24Game16PelletCropMemoryFv(void)
+void Game::PelletCropMemory::createClone(void)
 {
 /*
 .loc_0x0:
@@ -388,7 +388,7 @@ void createClone__Q24Game16PelletCropMemoryFv(void)
  * Address:	801E56F8
  * Size:	000148
  */
-void addTo__Q24Game16PelletCropMemoryFPQ24Game16PelletCropMemory(void)
+void Game::PelletCropMemory::addTo( (Game::PelletCropMemory *))
 {
 /*
 .loc_0x0:
@@ -500,7 +500,7 @@ void addTo__Q24Game16PelletCropMemoryFPQ24Game16PelletCropMemory(void)
  * Address:	801E5840
  * Size:	000070
  */
-void clear__Q24Game16PelletCropMemoryFv(void)
+void Game::PelletCropMemory::clear(void)
 {
 /*
 .loc_0x0:
@@ -552,7 +552,7 @@ void clear__Q24Game16PelletCropMemoryFv(void)
  * Address:	........
  * Size:	000288
  */
-void obtainPellet__Q24Game16PelletCropMemoryFPQ24Game6Pellet(void)
+void Game::PelletCropMemory::obtainPellet( (Game::Pellet *))
 {
 	// UNUSED FUNCTION
 }
@@ -562,7 +562,7 @@ void obtainPellet__Q24Game16PelletCropMemoryFPQ24Game6Pellet(void)
  * Address:	801E58B0
  * Size:	000048
  */
-void calcEarnKinds__Q24Game16PelletCropMemoryFv(void)
+void Game::PelletCropMemory::calcEarnKinds(void)
 {
 /*
 .loc_0x0:
@@ -592,7 +592,7 @@ void calcEarnKinds__Q24Game16PelletCropMemoryFv(void)
  * Address:	........
  * Size:	000010
  */
-void calcNumKinds__Q24Game16PelletCropMemoryFv(void)
+void Game::PelletCropMemory::calcNumKinds(void)
 {
 	// UNUSED FUNCTION
 }
@@ -602,7 +602,7 @@ void calcNumKinds__Q24Game16PelletCropMemoryFv(void)
  * Address:	........
  * Size:	000198
  */
-void __ct__Q24Game17PelletFirstMemoryFiii(void)
+void Game::PelletFirstMemory::__ct( (int, int, int))
 {
 	// UNUSED FUNCTION
 }
@@ -612,7 +612,7 @@ void __ct__Q24Game17PelletFirstMemoryFiii(void)
  * Address:	801E58F8
  * Size:	0002C8
  */
-void firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet(void)
+void Game::PelletFirstMemory::firstCarryPellet( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -834,7 +834,7 @@ void firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet(void)
  * Address:	801E5BC0
  * Size:	000154
  */
-void obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri(void)
+void Game::PelletFirstMemory::obtainPellet( (Game::BasePelletMgr *, int))
 {
 /*
 .loc_0x0:
@@ -945,7 +945,7 @@ void obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri(void)
  * Address:	801E5D14
  * Size:	000154
  */
-void losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri(void)
+void Game::PelletFirstMemory::losePellet( (Game::BasePelletMgr *, int))
 {
 /*
 .loc_0x0:
@@ -1056,7 +1056,7 @@ void losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri(void)
  * Address:	801E5E68
  * Size:	00004C
  */
-void isCompletePelletTrigger__Q24Game8PlayDataFv(void)
+void Game::PlayData::isCompletePelletTrigger(void)
 {
 /*
 .loc_0x0:
@@ -1093,7 +1093,7 @@ void isCompletePelletTrigger__Q24Game8PlayDataFv(void)
  * Address:	801E5EB4
  * Size:	000058
  */
-void completeAll__Q24Game16PelletCropMemoryFv(void)
+void Game::PelletCropMemory::completeAll(void)
 {
 /*
 .loc_0x0:
@@ -1133,7 +1133,7 @@ void completeAll__Q24Game16PelletCropMemoryFv(void)
  * Address:	801E5F0C
  * Size:	00003C
  */
-void completeAll__Q24Game11KindCounterFv(void)
+void Game::KindCounter::completeAll(void)
 {
 /*
 .loc_0x0:
@@ -1166,7 +1166,7 @@ void completeAll__Q24Game11KindCounterFv(void)
  * Address:	801E5F48
  * Size:	00003C
  */
-void getEarnKinds__Q24Game11KindCounterFv(void)
+void Game::KindCounter::getEarnKinds(void)
 {
 /*
 .loc_0x0:
@@ -1199,7 +1199,7 @@ void getEarnKinds__Q24Game11KindCounterFv(void)
  * Address:	801E5F84
  * Size:	00003C
  */
-void __ct__Q24Game10OlimarDataFv(void)
+void Game::OlimarData::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1228,7 +1228,7 @@ void __ct__Q24Game10OlimarDataFv(void)
  * Address:	801E5FC0
  * Size:	000010
  */
-void clear__Q24Game10OlimarDataFv(void)
+void Game::OlimarData::clear(void)
 {
 /*
 .loc_0x0:
@@ -1244,7 +1244,7 @@ void clear__Q24Game10OlimarDataFv(void)
  * Address:	801E5FD0
  * Size:	000098
  */
-void hasItem__Q24Game10OlimarDataFi(void)
+void Game::OlimarData::hasItem( (int))
 {
 /*
 .loc_0x0:
@@ -1298,7 +1298,7 @@ void hasItem__Q24Game10OlimarDataFi(void)
  * Address:	801E6068
  * Size:	0000CC
  */
-void getItem__Q24Game10OlimarDataFi(void)
+void Game::OlimarData::getItem( (int))
 {
 /*
 .loc_0x0:
@@ -1373,7 +1373,7 @@ void getItem__Q24Game10OlimarDataFi(void)
  * Address:	801E6134
  * Size:	000084
  */
-void construct__Q24Game8PlayDataFv(void)
+void Game::PlayData::construct(void)
 {
 /*
 .loc_0x0:
@@ -1424,7 +1424,7 @@ void construct__Q24Game8PlayDataFv(void)
  * Address:	801E61B8
  * Size:	000854
  */
-void __ct__Q24Game8PlayDataFv(void)
+void Game::PlayData::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2059,7 +2059,7 @@ void __ct__Q24Game8PlayDataFv(void)
  * Address:	801E6A0C
  * Size:	000014
  */
-void __ct__Q34Game8PlayData11CaveOtakaraFv(void)
+void Game::PlayData::CaveOtakara::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2076,7 +2076,7 @@ void __ct__Q34Game8PlayData11CaveOtakaraFv(void)
  * Address:	801E6A20
  * Size:	000038
  */
-void __ct__Q34Game8PlayData8LimitGenFv(void)
+void Game::PlayData::LimitGen::__ct(void)
 {
 /*
 .loc_0x0:
@@ -2102,7 +2102,7 @@ void __ct__Q34Game8PlayData8LimitGenFv(void)
  * Address:	........
  * Size:	00003C
  */
-void __dt__Q32kh6Screen12MailSaveDataFv(void)
+void kh::Screen::MailSaveData::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2112,7 +2112,7 @@ void __dt__Q32kh6Screen12MailSaveDataFv(void)
  * Address:	801E6A58
  * Size:	000068
  */
-void __dt__Q24Game8PlayDataFv(void)
+void Game::PlayData::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2152,7 +2152,7 @@ void __dt__Q24Game8PlayDataFv(void)
  * Address:	801E6AC0
  * Size:	0003D0
  */
-void reset__Q24Game8PlayDataFv(void)
+void Game::PlayData::reset(void)
 {
 /*
 .loc_0x0:
@@ -2458,7 +2458,7 @@ void reset__Q24Game8PlayDataFv(void)
  * Address:	801E6E90
  * Size:	0000C8
  */
-void setDevelopSetting__Q24Game8PlayDataFbb(void)
+void Game::PlayData::setDevelopSetting( (bool, bool))
 {
 /*
 .loc_0x0:
@@ -2522,7 +2522,7 @@ void setDevelopSetting__Q24Game8PlayDataFbb(void)
  * Address:	801E6F58
  * Size:	0000B4
  */
-void calcPlayMinutes__Q24Game8PlayDataFv(void)
+void Game::PlayData::calcPlayMinutes(void)
 {
 /*
 .loc_0x0:
@@ -2579,7 +2579,7 @@ void calcPlayMinutes__Q24Game8PlayDataFv(void)
  * Address:	801E700C
  * Size:	000014
  */
-void resetContainerFlag__Q24Game8PlayDataFv(void)
+void Game::PlayData::resetContainerFlag(void)
 {
 /*
 .loc_0x0:
@@ -2596,7 +2596,7 @@ void resetContainerFlag__Q24Game8PlayDataFv(void)
  * Address:	801E7020
  * Size:	000088
  */
-void hasContainer__Q24Game8PlayDataFi(void)
+void Game::PlayData::hasContainer( (int))
 {
 /*
 .loc_0x0:
@@ -2646,7 +2646,7 @@ void hasContainer__Q24Game8PlayDataFi(void)
  * Address:	801E70A8
  * Size:	000030
  */
-void hasMetPikmin__Q24Game8PlayDataFi(void)
+void Game::PlayData::hasMetPikmin( (int))
 {
 /*
 .loc_0x0:
@@ -2672,7 +2672,7 @@ void hasMetPikmin__Q24Game8PlayDataFi(void)
  * Address:	801E70D8
  * Size:	0000A4
  */
-void hasBootContainer__Q24Game8PlayDataFi(void)
+void Game::PlayData::hasBootContainer( (int))
 {
 /*
 .loc_0x0:
@@ -2735,7 +2735,7 @@ void hasBootContainer__Q24Game8PlayDataFi(void)
  * Address:	801E717C
  * Size:	000080
  */
-void setContainer__Q24Game8PlayDataFi(void)
+void Game::PlayData::setContainer( (int))
 {
 /*
 .loc_0x0:
@@ -2783,7 +2783,7 @@ void setContainer__Q24Game8PlayDataFi(void)
  * Address:	801E71FC
  * Size:	000080
  */
-void setMeetPikmin__Q24Game8PlayDataFi(void)
+void Game::PlayData::setMeetPikmin( (int))
 {
 /*
 .loc_0x0:
@@ -2831,7 +2831,7 @@ void setMeetPikmin__Q24Game8PlayDataFi(void)
  * Address:	801E727C
  * Size:	000080
  */
-void setBootContainer__Q24Game8PlayDataFi(void)
+void Game::PlayData::setBootContainer( (int))
 {
 /*
 .loc_0x0:
@@ -2879,7 +2879,7 @@ void setBootContainer__Q24Game8PlayDataFi(void)
  * Address:	801E72FC
  * Size:	0000A8
  */
-void debugSetContainerFlagOn__Q24Game8PlayDataFv(void)
+void Game::PlayData::debugSetContainerFlagOn(void)
 {
 /*
 .loc_0x0:
@@ -2933,7 +2933,7 @@ void debugSetContainerFlagOn__Q24Game8PlayDataFv(void)
  * Address:	801E73A4
  * Size:	00003C
  */
-void setDemoFlag__Q24Game8PlayDataFi(void)
+void Game::PlayData::setDemoFlag( (int))
 {
 /*
 .loc_0x0:
@@ -2960,7 +2960,7 @@ void setDemoFlag__Q24Game8PlayDataFi(void)
  * Address:	801E73E0
  * Size:	000028
  */
-void isDemoFlag__Q24Game8PlayDataFi(void)
+void Game::PlayData::isDemoFlag( (int))
 {
 /*
 .loc_0x0:
@@ -2982,7 +2982,7 @@ void isDemoFlag__Q24Game8PlayDataFi(void)
  * Address:	801E7408
  * Size:	00003C
  */
-void setFindItemDemoFlag__Q24Game8PlayDataFi(void)
+void Game::PlayData::setFindItemDemoFlag( (int))
 {
 /*
 .loc_0x0:
@@ -3009,7 +3009,7 @@ void setFindItemDemoFlag__Q24Game8PlayDataFi(void)
  * Address:	801E7444
  * Size:	000028
  */
-void isFindItemDemoFlag__Q24Game8PlayDataFi(void)
+void Game::PlayData::isFindItemDemoFlag( (int))
 {
 /*
 .loc_0x0:
@@ -3031,7 +3031,7 @@ void isFindItemDemoFlag__Q24Game8PlayDataFi(void)
  * Address:	801E746C
  * Size:	000008
  */
-void setCurrentCourse__Q24Game8PlayDataFi(void)
+void Game::PlayData::setCurrentCourse( (int))
 {
 /*
 .loc_0x0:
@@ -3045,7 +3045,7 @@ void setCurrentCourse__Q24Game8PlayDataFi(void)
  * Address:	801E7474
  * Size:	00000C
  */
-void clearCurrentCave__Q24Game8PlayDataFv(void)
+void Game::PlayData::clearCurrentCave(void)
 {
 /*
 .loc_0x0:
@@ -3060,7 +3060,7 @@ void clearCurrentCave__Q24Game8PlayDataFv(void)
  * Address:	801E7480
  * Size:	00004C
  */
-void setCurrentCave__Q24Game8PlayDataFR4ID32i(void)
+void Game::PlayData::setCurrentCave( (ID32 &, int))
 {
 /*
 .loc_0x0:
@@ -3091,7 +3091,7 @@ void setCurrentCave__Q24Game8PlayDataFR4ID32i(void)
  * Address:	801E74CC
  * Size:	000010
  */
-void setCurrentCaveFloor__Q24Game8PlayDataFi(void)
+void Game::PlayData::setCurrentCaveFloor( (int))
 {
 /*
 .loc_0x0:
@@ -3107,7 +3107,7 @@ void setCurrentCaveFloor__Q24Game8PlayDataFi(void)
  * Address:	801E74DC
  * Size:	000008
  */
-void getCurrentCourseIndex__Q24Game8PlayDataFv(void)
+void Game::PlayData::getCurrentCourseIndex(void)
 {
 /*
 .loc_0x0:
@@ -3121,7 +3121,7 @@ void getCurrentCourseIndex__Q24Game8PlayDataFv(void)
  * Address:	801E74E4
  * Size:	000038
  */
-void getCurrentCourse__Q24Game8PlayDataFv(void)
+void Game::PlayData::getCurrentCourse(void)
 {
 /*
 .loc_0x0:
@@ -3151,7 +3151,7 @@ void getCurrentCourse__Q24Game8PlayDataFv(void)
  * Address:	801E751C
  * Size:	000048
  */
-void getCurrentCave__Q24Game8PlayDataFR4ID32Ri(void)
+void Game::PlayData::getCurrentCave( (ID32 &, int &))
 {
 /*
 .loc_0x0:
@@ -3181,7 +3181,7 @@ void getCurrentCave__Q24Game8PlayDataFR4ID32Ri(void)
  * Address:	801E7564
  * Size:	000030
  */
-void firstCarryPellet__Q24Game8PlayDataFPQ24Game6Pellet(void)
+void Game::PlayData::firstCarryPellet( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3205,7 +3205,7 @@ void firstCarryPellet__Q24Game8PlayDataFPQ24Game6Pellet(void)
  * Address:	801E7594
  * Size:	000030
  */
-void obtainPellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri(void)
+void Game::PlayData::obtainPellet( (Game::BasePelletMgr *, int))
 {
 /*
 .loc_0x0:
@@ -3229,7 +3229,7 @@ void obtainPellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri(void)
  * Address:	801E75C4
  * Size:	000030
  */
-void losePellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri(void)
+void Game::PlayData::losePellet( (Game::BasePelletMgr *, int))
 {
 /*
 .loc_0x0:
@@ -3253,7 +3253,7 @@ void losePellet__Q24Game8PlayDataFPQ24Game13BasePelletMgri(void)
  * Address:	801E75F4
  * Size:	000320
  */
-void obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet(void)
+void Game::PlayData::obtainPellet_Main( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3495,7 +3495,7 @@ void obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet(void)
  * Address:	801E7914
  * Size:	000284
  */
-void obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet(void)
+void Game::PlayData::obtainPellet_Cave( (Game::Pellet *))
 {
 /*
 .loc_0x0:
@@ -3692,7 +3692,7 @@ void obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet(void)
  * Address:	........
  * Size:	000004
  */
-void confirmCaveCropMemory__Q24Game8PlayDataFv(void)
+void Game::PlayData::confirmCaveCropMemory(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3702,7 +3702,7 @@ void confirmCaveCropMemory__Q24Game8PlayDataFv(void)
  * Address:	........
  * Size:	000150
  */
-void isPelletEverGot__Q24Game8PlayDataFPQ24Game6Pellet(void)
+void Game::PlayData::isPelletEverGot( (Game::Pellet *))
 {
 	// UNUSED FUNCTION
 }
@@ -3712,7 +3712,7 @@ void isPelletEverGot__Q24Game8PlayDataFPQ24Game6Pellet(void)
  * Address:	801E7B98
  * Size:	000104
  */
-void isPelletEverGot__Q24Game8PlayDataFUcUc(void)
+void Game::PlayData::isPelletEverGot( (unsigned char, unsigned char))
 {
 /*
 .loc_0x0:
@@ -3803,7 +3803,7 @@ void isPelletEverGot__Q24Game8PlayDataFUcUc(void)
  * Address:	801E7C9C
  * Size:	000128
  */
-void isPelletZukanVisible__Q24Game8PlayDataFi(void)
+void Game::PlayData::isPelletZukanVisible( (int))
 {
 /*
 .loc_0x0:
@@ -3903,7 +3903,7 @@ void isPelletZukanVisible__Q24Game8PlayDataFi(void)
  * Address:	801E7DC4
  * Size:	000138
  */
-void isPelletZukanWhatsNew__Q24Game8PlayDataFi(void)
+void Game::PlayData::isPelletZukanWhatsNew( (int))
 {
 /*
 .loc_0x0:
@@ -4007,7 +4007,7 @@ void isPelletZukanWhatsNew__Q24Game8PlayDataFi(void)
  * Address:	801E7EFC
  * Size:	0001BC
  */
-void hasPelletZukanWhatsNew__Q24Game8PlayDataFv(void)
+void Game::PlayData::hasPelletZukanWhatsNew(void)
 {
 /*
 .loc_0x0:
@@ -4160,7 +4160,7 @@ void hasPelletZukanWhatsNew__Q24Game8PlayDataFv(void)
  * Address:	801E80B8
  * Size:	0001A8
  */
-void setPelletZukanOutOfDateAll__Q24Game8PlayDataFv(void)
+void Game::PlayData::setPelletZukanOutOfDateAll(void)
 {
 /*
 .loc_0x0:
@@ -4306,7 +4306,7 @@ void setPelletZukanOutOfDateAll__Q24Game8PlayDataFv(void)
  * Address:	........
  * Size:	0000C4
  */
-void getTekiCarcassMoney__Q24Game8PlayDataFi(void)
+void Game::PlayData::getTekiCarcassMoney( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -4316,7 +4316,7 @@ void getTekiCarcassMoney__Q24Game8PlayDataFi(void)
  * Address:	801E8260
  * Size:	00007C
  */
-void getGroundOtakaraNum__Q24Game8PlayDataFi(void)
+void Game::PlayData::getGroundOtakaraNum( (int))
 {
 /*
 .loc_0x0:
@@ -4363,7 +4363,7 @@ void getGroundOtakaraNum__Q24Game8PlayDataFi(void)
  * Address:	801E82DC
  * Size:	000078
  */
-void getGroundOtakaraMax__Q24Game8PlayDataFi(void)
+void Game::PlayData::getGroundOtakaraMax( (int))
 {
 /*
 .loc_0x0:
@@ -4409,7 +4409,7 @@ void getGroundOtakaraMax__Q24Game8PlayDataFi(void)
  * Address:	801E8354
  * Size:	000084
  */
-void incGroundOtakara__Q24Game8PlayDataFi(void)
+void Game::PlayData::incGroundOtakara( (int))
 {
 /*
 .loc_0x0:
@@ -4458,7 +4458,7 @@ void incGroundOtakara__Q24Game8PlayDataFi(void)
  * Address:	801E83D8
  * Size:	000078
  */
-void getDopeCount__Q24Game8PlayDataFi(void)
+void Game::PlayData::getDopeCount( (int))
 {
 /*
 .loc_0x0:
@@ -4504,7 +4504,7 @@ void getDopeCount__Q24Game8PlayDataFi(void)
  * Address:	801E8450
  * Size:	000084
  */
-void setDopeCount__Q24Game8PlayDataFii(void)
+void Game::PlayData::setDopeCount( (int, int))
 {
 /*
 .loc_0x0:
@@ -4553,7 +4553,7 @@ void setDopeCount__Q24Game8PlayDataFii(void)
  * Address:	801E84D4
  * Size:	000080
  */
-void incDopeCount__Q24Game8PlayDataFi(void)
+void Game::PlayData::incDopeCount( (int))
 {
 /*
 .loc_0x0:
@@ -4601,7 +4601,7 @@ void incDopeCount__Q24Game8PlayDataFi(void)
  * Address:	801E8554
  * Size:	000084
  */
-void hasDope__Q24Game8PlayDataFi(void)
+void Game::PlayData::hasDope( (int))
 {
 /*
 .loc_0x0:
@@ -4650,7 +4650,7 @@ void hasDope__Q24Game8PlayDataFi(void)
  * Address:	801E85D8
  * Size:	000078
  */
-void getDopeFruitCount__Q24Game8PlayDataFi(void)
+void Game::PlayData::getDopeFruitCount( (int))
 {
 /*
 .loc_0x0:
@@ -4696,7 +4696,7 @@ void getDopeFruitCount__Q24Game8PlayDataFi(void)
  * Address:	801E8650
  * Size:	0000B4
  */
-void addDopeFruit__Q24Game8PlayDataFi(void)
+void Game::PlayData::addDopeFruit( (int))
 {
 /*
 .loc_0x0:
@@ -4761,7 +4761,7 @@ void addDopeFruit__Q24Game8PlayDataFi(void)
  * Address:	801E8704
  * Size:	0000C4
  */
-void useDope__Q24Game8PlayDataFi(void)
+void Game::PlayData::useDope( (int))
 {
 /*
 .loc_0x0:
@@ -4832,7 +4832,7 @@ void useDope__Q24Game8PlayDataFi(void)
  * Address:	801E87C8
  * Size:	0000DC
  */
-void isCaveFirstTime__Q24Game8PlayDataFiR4ID32(void)
+void Game::PlayData::isCaveFirstTime( (int, ID32 &))
 {
 /*
 .loc_0x0:
@@ -4905,7 +4905,7 @@ void isCaveFirstTime__Q24Game8PlayDataFiR4ID32(void)
  * Address:	........
  * Size:	0000CC
  */
-void isCaveFirstReturn__Q24Game8PlayDataFiR4ID32(void)
+void Game::PlayData::isCaveFirstReturn( (int, ID32 &))
 {
 	// UNUSED FUNCTION
 }
@@ -4915,7 +4915,7 @@ void isCaveFirstReturn__Q24Game8PlayDataFiR4ID32(void)
  * Address:	801E88A4
  * Size:	0000BC
  */
-void setCaveVisit__Q24Game8PlayDataFiR4ID32(void)
+void Game::PlayData::setCaveVisit( (int, ID32 &))
 {
 /*
 .loc_0x0:
@@ -4980,7 +4980,7 @@ void setCaveVisit__Q24Game8PlayDataFiR4ID32(void)
  * Address:	801E8960
  * Size:	0000B8
  */
-void incCaveOtakara__Q24Game8PlayDataFiR4ID32(void)
+void Game::PlayData::incCaveOtakara( (int, ID32 &))
 {
 /*
 .loc_0x0:
@@ -5044,7 +5044,7 @@ void incCaveOtakara__Q24Game8PlayDataFiR4ID32(void)
  * Address:	801E8A18
  * Size:	0000B8
  */
-void getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32(void)
+void Game::PlayData::getOtakaraNum_Course_CaveID( (int, ID32 &))
 {
 /*
 .loc_0x0:
@@ -5110,7 +5110,7 @@ void getOtakaraNum_Course_CaveID__Q24Game8PlayDataFiR4ID32(void)
  * Address:	801E8AD0
  * Size:	000048
  */
-void getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32(void)
+void Game::PlayData::getOtakaraMax_Course_CaveID( (int, ID32 &))
 {
 /*
 .loc_0x0:
@@ -5144,7 +5144,7 @@ void getOtakaraMax_Course_CaveID__Q24Game8PlayDataFiR4ID32(void)
  * Address:	801E8B18
  * Size:	0000D4
  */
-void initCaveOtakaras__Q24Game8PlayDataFv(void)
+void Game::PlayData::initCaveOtakaras(void)
 {
 /*
 .loc_0x0:
@@ -5227,7 +5227,7 @@ void initCaveOtakaras__Q24Game8PlayDataFv(void)
  * Address:	801E8BEC
  * Size:	000060
  */
-void read_CaveOtakara__Q24Game8PlayDataFR6Stream(void)
+void Game::PlayData::read_CaveOtakara( (Stream &))
 {
 /*
 .loc_0x0:
@@ -5267,7 +5267,7 @@ void read_CaveOtakara__Q24Game8PlayDataFR6Stream(void)
  * Address:	801E8C4C
  * Size:	000078
  */
-void write_CaveOtakara__Q24Game8PlayDataFR6Stream(void)
+void Game::PlayData::write_CaveOtakara( (Stream &))
 {
 /*
 .loc_0x0:
@@ -5315,7 +5315,7 @@ void write_CaveOtakara__Q24Game8PlayDataFR6Stream(void)
  * Address:	801E8CC4
  * Size:	0000D8
  */
-void write__Q34Game8PlayData11CaveOtakaraFR6Stream(void)
+void Game::PlayData::CaveOtakara::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -5385,7 +5385,7 @@ void write__Q34Game8PlayData11CaveOtakaraFR6Stream(void)
  * Address:	801E8D9C
  * Size:	0000C0
  */
-void read__Q34Game8PlayData11CaveOtakaraFR6Stream(void)
+void Game::PlayData::CaveOtakara::read( (Stream &))
 {
 /*
 .loc_0x0:
@@ -5451,7 +5451,7 @@ void read__Q34Game8PlayData11CaveOtakaraFR6Stream(void)
  * Address:	801E8E5C
  * Size:	000124
  */
-void getRepayLevel__Q24Game8PlayDataFv(void)
+void Game::PlayData::getRepayLevel(void)
 {
 /*
 .loc_0x0:
@@ -5558,7 +5558,7 @@ void getRepayLevel__Q24Game8PlayDataFv(void)
  * Address:	801E8F80
  * Size:	000044
  */
-void getRepayLevelPercent__Q24Game8PlayDataFi(void)
+void Game::PlayData::getRepayLevelPercent( (int))
 {
 /*
 .loc_0x0:
@@ -5591,7 +5591,7 @@ void getRepayLevelPercent__Q24Game8PlayDataFi(void)
  * Address:	801E8FC4
  * Size:	000160
  */
-void checkRepayLevelFirstClear__Q24Game8PlayDataFv(void)
+void Game::PlayData::checkRepayLevelFirstClear(void)
 {
 /*
 .loc_0x0:
@@ -5717,7 +5717,7 @@ void checkRepayLevelFirstClear__Q24Game8PlayDataFv(void)
  * Address:	801E9124
  * Size:	000174
  */
-void experienceRepayLevelFirstClear__Q24Game8PlayDataFv(void)
+void Game::PlayData::experienceRepayLevelFirstClear(void)
 {
 /*
 .loc_0x0:
@@ -5850,7 +5850,7 @@ void experienceRepayLevelFirstClear__Q24Game8PlayDataFv(void)
  * Address:	801E9298
  * Size:	000064
  */
-void initLimitGens__Q24Game8PlayDataFv(void)
+void Game::PlayData::initLimitGens(void)
 {
 /*
 .loc_0x0:
@@ -5891,7 +5891,7 @@ void initLimitGens__Q24Game8PlayDataFv(void)
  * Address:	801E92FC
  * Size:	00006C
  */
-void initCourses__Q24Game8PlayDataFb(void)
+void Game::PlayData::initCourses( (bool))
 {
 /*
 .loc_0x0:
@@ -5940,7 +5940,7 @@ void initCourses__Q24Game8PlayDataFb(void)
  * Address:	801E9368
  * Size:	000094
  */
-void openCourse__Q24Game8PlayDataFi(void)
+void Game::PlayData::openCourse( (int))
 {
 /*
 .loc_0x0:
@@ -5995,7 +5995,7 @@ void openCourse__Q24Game8PlayDataFi(void)
  * Address:	801E93FC
  * Size:	000084
  */
-void visitCourse__Q24Game8PlayDataFi(void)
+void Game::PlayData::visitCourse( (int))
 {
 /*
 .loc_0x0:
@@ -6044,7 +6044,7 @@ void visitCourse__Q24Game8PlayDataFi(void)
  * Address:	........
  * Size:	000080
  */
-void closeCourse__Q24Game8PlayDataFi(void)
+void Game::PlayData::closeCourse( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -6054,7 +6054,7 @@ void closeCourse__Q24Game8PlayDataFi(void)
  * Address:	801E9480
  * Size:	000080
  */
-void courseOpen__Q24Game8PlayDataFi(void)
+void Game::PlayData::courseOpen( (int))
 {
 /*
 .loc_0x0:
@@ -6102,7 +6102,7 @@ void courseOpen__Q24Game8PlayDataFi(void)
  * Address:	801E9500
  * Size:	0000E4
  */
-void courseJustOpen__Q24Game8PlayDataFi(void)
+void Game::PlayData::courseJustOpen( (int))
 {
 /*
 .loc_0x0:
@@ -6183,7 +6183,7 @@ void courseJustOpen__Q24Game8PlayDataFi(void)
  * Address:	801E95E4
  * Size:	0000DC
  */
-void courseFirstTime__Q24Game8PlayDataFi(void)
+void Game::PlayData::courseFirstTime( (int))
 {
 /*
 .loc_0x0:
@@ -6262,7 +6262,7 @@ void courseFirstTime__Q24Game8PlayDataFi(void)
  * Address:	801E96C0
  * Size:	000080
  */
-void courseVisited__Q24Game8PlayDataFi(void)
+void Game::PlayData::courseVisited( (int))
 {
 /*
 .loc_0x0:
@@ -6310,7 +6310,7 @@ void courseVisited__Q24Game8PlayDataFi(void)
  * Address:	801E9740
  * Size:	000084
  */
-void __ct__Q24Game12CaveSaveDataFv(void)
+void Game::CaveSaveData::__ct(void)
 {
 /*
 .loc_0x0:
@@ -6355,7 +6355,7 @@ void __ct__Q24Game12CaveSaveDataFv(void)
  * Address:	801E97C4
  * Size:	000068
  */
-void clear__Q24Game12CaveSaveDataFv(void)
+void Game::CaveSaveData::clear(void)
 {
 /*
 .loc_0x0:
@@ -6393,7 +6393,7 @@ void clear__Q24Game12CaveSaveDataFv(void)
  * Address:	801E982C
  * Size:	000194
  */
-void doneWorldMapEffect__Q24Game8PlayDataFv(void)
+void Game::PlayData::doneWorldMapEffect(void)
 {
 /*
 .loc_0x0:
@@ -6522,7 +6522,7 @@ void doneWorldMapEffect__Q24Game8PlayDataFv(void)
  * Address:	801E99C0
  * Size:	00007C
  */
-void getGroundOtakaraNum_Old__Q24Game8PlayDataFi(void)
+void Game::PlayData::getGroundOtakaraNum_Old( (int))
 {
 /*
 .loc_0x0:
@@ -6569,7 +6569,7 @@ void getGroundOtakaraNum_Old__Q24Game8PlayDataFi(void)
  * Address:	801E9A3C
  * Size:	0000B8
  */
-void getOtakaraNum_Course_CaveID_Old__Q24Game8PlayDataFiR4ID32(void)
+void Game::PlayData::getOtakaraNum_Course_CaveID_Old( (int, ID32 &))
 {
 /*
 .loc_0x0:
@@ -6635,7 +6635,7 @@ void getOtakaraNum_Course_CaveID_Old__Q24Game8PlayDataFiR4ID32(void)
  * Address:	801E9AF4
  * Size:	000008
  */
-void getMoney_Old__Q24Game8PlayDataFv(void)
+void Game::PlayData::getMoney_Old(void)
 {
 /*
 .loc_0x0:
@@ -6649,7 +6649,7 @@ void getMoney_Old__Q24Game8PlayDataFv(void)
  * Address:	801E9AFC
  * Size:	0000A4
  */
-void isCaveFirstTime_Old__Q24Game8PlayDataFiR4ID32(void)
+void Game::PlayData::isCaveFirstTime_Old( (int, ID32 &))
 {
 /*
 .loc_0x0:
@@ -6708,7 +6708,7 @@ void isCaveFirstTime_Old__Q24Game8PlayDataFiR4ID32(void)
  * Address:	801E9BA0
  * Size:	0000D4
  */
-void read_CaveOtakara_Old__Q24Game8PlayDataFR6Stream(void)
+void Game::PlayData::read_CaveOtakara_Old( (Stream &))
 {
 /*
 .loc_0x0:
@@ -6783,7 +6783,7 @@ void read_CaveOtakara_Old__Q24Game8PlayDataFR6Stream(void)
  * Address:	801E9C74
  * Size:	000118
  */
-void write_CaveOtakara_Old__Q24Game8PlayDataFR6Stream(void)
+void Game::PlayData::write_CaveOtakara_Old( (Stream &))
 {
 /*
 .loc_0x0:
@@ -6873,7 +6873,7 @@ void write_CaveOtakara_Old__Q24Game8PlayDataFR6Stream(void)
  * Address:	801E9D8C
  * Size:	000078
  */
-void getPikminCount_Today__Q24Game8PlayDataFi(void)
+void Game::PlayData::getPikminCount_Today( (int))
 {
 /*
 .loc_0x0:
@@ -6919,7 +6919,7 @@ void getPikminCount_Today__Q24Game8PlayDataFi(void)
  * Address:	801E9E04
  * Size:	000078
  */
-void getPikminCount_Yesterday__Q24Game8PlayDataFi(void)
+void Game::PlayData::getPikminCount_Yesterday( (int))
 {
 /*
 .loc_0x0:
@@ -6965,7 +6965,7 @@ void getPikminCount_Yesterday__Q24Game8PlayDataFi(void)
  * Address:	801E9E7C
  * Size:	000108
  */
-void setPikminCounts_Today__Q24Game8PlayDataFv(void)
+void Game::PlayData::setPikminCounts_Today(void)
 {
 /*
 .loc_0x0:
@@ -7053,7 +7053,7 @@ void setPikminCounts_Today__Q24Game8PlayDataFv(void)
  * Address:	801E9F84
  * Size:	000034
  */
-void setPikminCounts_Yesterday__Q24Game8PlayDataFv(void)
+void Game::PlayData::setPikminCounts_Yesterday(void)
 {
 /*
 .loc_0x0:

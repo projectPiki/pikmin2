@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000004
  */
-void __ct__Q24Game18TDispTriangleArrayFv(void)
+void Game::TDispTriangleArray::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game18TDispTriangleArrayFv(void)
  * Address:	........
  * Size:	000068
  */
-void alloc__Q24Game18TDispTriangleArrayFi(void)
+void Game::TDispTriangleArray::alloc( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void alloc__Q24Game18TDispTriangleArrayFi(void)
  * Address:	........
  * Size:	000054
  */
-void __ct__Q24Game13TDispTriangleFv(void)
+void Game::TDispTriangle::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -45,7 +45,7 @@ void __ct__Q24Game13TDispTriangleFv(void)
  * Address:	........
  * Size:	00000C
  */
-void clear__Q24Game18TDispTriangleArrayFv(void)
+void Game::TDispTriangleArray::clear(void)
 {
 	// UNUSED FUNCTION
 }
@@ -55,7 +55,7 @@ void clear__Q24Game18TDispTriangleArrayFv(void)
  * Address:	8016239C
  * Size:	000044
  */
-void store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei(void)
+void Game::TDispTriangleArray::store( (Sys::Triangle &, Sys::VertexTable &, int))
 {
 /*
 .loc_0x0:
@@ -86,7 +86,7 @@ void store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei(vo
  * Address:	801623E0
  * Size:	000044
  */
-void store__Q24Game18TDispTriangleArrayFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei(void)
+void Game::TDispTriangleArray::store( (Matrixf &, Sys::Triangle &, Sys::VertexTable &, int))
 {
 /*
 .loc_0x0:
@@ -117,7 +117,7 @@ void store__Q24Game18TDispTriangleArrayFR7MatrixfRQ23Sys8TriangleRQ23Sys11Vertex
  * Address:	........
  * Size:	000074
  */
-void draw__Q24Game18TDispTriangleArrayFR8Graphics(void)
+void Game::TDispTriangleArray::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -127,7 +127,7 @@ void draw__Q24Game18TDispTriangleArrayFR8Graphics(void)
  * Address:	80162424
  * Size:	0000C0
  */
-void store__Q24Game13TDispTriangleFRQ23Sys8TriangleRQ23Sys11VertexTablei(void)
+void Game::TDispTriangle::store( (Sys::Triangle &, Sys::VertexTable &, int))
 {
 /*
 .loc_0x0:
@@ -187,7 +187,7 @@ void store__Q24Game13TDispTriangleFRQ23Sys8TriangleRQ23Sys11VertexTablei(void)
  * Address:	801624E4
  * Size:	000100
  */
-void store__Q24Game13TDispTriangleFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei(void)
+void Game::TDispTriangle::store( (Matrixf &, Sys::Triangle &, Sys::VertexTable &, int))
 {
 /*
 .loc_0x0:
@@ -263,7 +263,7 @@ void store__Q24Game13TDispTriangleFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTable
  * Address:	........
  * Size:	000004
  */
-void draw__Q24Game13TDispTriangleFR8Graphics(void)
+void Game::TDispTriangle::draw( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -273,7 +273,7 @@ void draw__Q24Game13TDispTriangleFR8Graphics(void)
  * Address:	801625E4
  * Size:	000098
  */
-void __ct__Q24Game6MapMgrFv(void)
+void Game::MapMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -374,7 +374,7 @@ void getStartPosition__Q24Game6MapMgrFR10Vector3<float>i(void)
  * Address:	801626F8
  * Size:	00002C
  */
-void getMapRotation__Q24Game6MapMgrFv(void)
+void Game::MapMgr::getMapRotation(void)
 {
 /*
 .loc_0x0:
@@ -399,7 +399,7 @@ void getMapRotation__Q24Game6MapMgrFv(void)
  * Address:	80162724
  * Size:	00001C
  */
-void getDemoMatrix__Q24Game6MapMgrFv(void)
+void Game::MapMgr::getDemoMatrix(void)
 {
 /*
 .loc_0x0:
@@ -913,7 +913,7 @@ void getBestAngle__Q24Game6MapMgrFR10Vector3<float>ff(void)
  * Address:	80162E44
  * Size:	0002A4
  */
-void checkBeamCollision__Q24Game6MapMgrFRQ34Game6MapMgr16BeamCollisionArg(void)
+void Game::MapMgr::checkBeamCollision( (Game::MapMgr::BeamCollisionArg &))
 {
 /*
 .loc_0x0:
@@ -1118,7 +1118,7 @@ void checkBeamCollision__Q24Game6MapMgrFRQ34Game6MapMgr16BeamCollisionArg(void)
  * Address:	801630E8
  * Size:	000804
  */
-void load__Q24Game11ShapeMapMgrFRQ34Game11ShapeMapMgr7LoadArg(void)
+void Game::ShapeMapMgr::load( (Game::ShapeMapMgr::LoadArg &))
 {
 /*
 .loc_0x0:
@@ -1709,7 +1709,7 @@ void load__Q24Game11ShapeMapMgrFRQ34Game11ShapeMapMgr7LoadArg(void)
  * Address:	801638EC
  * Size:	00003C
  */
-void __ct__Q23Sys15MatLoopAnimatorFv(void)
+void Sys::MatLoopAnimator::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1736,7 +1736,7 @@ void __ct__Q23Sys15MatLoopAnimatorFv(void)
  * Address:	80163928
  * Size:	000034
  */
-void findWater__Q24Game6MapMgrFRQ23Sys6Sphere(void)
+void Game::MapMgr::findWater( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1765,7 +1765,7 @@ void findWater__Q24Game6MapMgrFRQ23Sys6Sphere(void)
  * Address:	8016395C
  * Size:	00009C
  */
-void do_update__Q24Game11ShapeMapMgrFv(void)
+void Game::ShapeMapMgr::do_update(void)
 {
 /*
 .loc_0x0:
@@ -1822,7 +1822,7 @@ void do_update__Q24Game11ShapeMapMgrFv(void)
  * Address:	801639F8
  * Size:	000050
  */
-void update__Q24Game6MapMgrFv(void)
+void Game::MapMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -1856,7 +1856,7 @@ void update__Q24Game6MapMgrFv(void)
  * Address:	80163A48
  * Size:	000004
  */
-void do_update__Q24Game6MapMgrFv(void)
+void Game::MapMgr::do_update(void)
 {
 /*
 .loc_0x0:
@@ -1869,7 +1869,7 @@ void do_update__Q24Game6MapMgrFv(void)
  * Address:	80163A4C
  * Size:	000018
  */
-void clearPerfMonitor__Q24Game6MapMgrFv(void)
+void Game::MapMgr::clearPerfMonitor(void)
 {
 /*
 .loc_0x0:
@@ -1887,7 +1887,7 @@ void clearPerfMonitor__Q24Game6MapMgrFv(void)
  * Address:	........
  * Size:	000258
  */
-void draw2d__Q24Game6MapMgrFR8Graphics(void)
+void Game::MapMgr::draw2d( (Graphics &))
 {
 	// UNUSED FUNCTION
 }
@@ -1897,7 +1897,7 @@ void draw2d__Q24Game6MapMgrFR8Graphics(void)
  * Address:	80163A64
  * Size:	0000AC
  */
-void drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere(void)
+void Game::ShapeMapMgr::drawCollision( (Graphics &, Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -1954,7 +1954,7 @@ void drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere(void)
  * Address:	80163B10
  * Size:	00002C
  */
-void createTriangles__Q24Game11ShapeMapMgrFRQ23Sys17CreateTriangleArg(void)
+void Game::ShapeMapMgr::createTriangles( (Sys::CreateTriangleArg &))
 {
 /*
 .loc_0x0:
@@ -2001,7 +2001,7 @@ void MapCollision::createTriangles(Sys::CreateTriangleArg &)
  * Address:	80163B6C
  * Size:	000004
  */
-void createTriangles__Q23Sys10TriDividerFRQ23Sys17CreateTriangleArg(void)
+void Sys::TriDivider::createTriangles( (Sys::CreateTriangleArg &))
 {
 /*
 .loc_0x0:
@@ -2061,7 +2061,7 @@ void getMinY__Q24Game11ShapeMapMgrFR10Vector3<float>(void)
  * Address:	80163BFC
  * Size:	00002C
  */
-void getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo(void)
+void Game::ShapeMapMgr::getCurrTri( (Game::CurrTriInfo &))
 {
 /*
 .loc_0x0:
@@ -2084,7 +2084,7 @@ void getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo(void)
  * Address:	80163C28
  * Size:	000038
  */
-void doAnimation__Q24Game11ShapeMapMgrFv(void)
+void Game::ShapeMapMgr::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -2112,7 +2112,7 @@ void doAnimation__Q24Game11ShapeMapMgrFv(void)
  * Address:	80163C60
  * Size:	000060
  */
-void doSetView__Q24Game11ShapeMapMgrFi(void)
+void Game::ShapeMapMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -2150,7 +2150,7 @@ void doSetView__Q24Game11ShapeMapMgrFi(void)
  * Address:	80163CC0
  * Size:	00004C
  */
-void doViewCalc__Q24Game11ShapeMapMgrFv(void)
+void Game::ShapeMapMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -2183,7 +2183,7 @@ void doViewCalc__Q24Game11ShapeMapMgrFv(void)
  * Address:	80163D0C
  * Size:	0000C0
  */
-void doEntry__Q24Game11ShapeMapMgrFv(void)
+void Game::ShapeMapMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -2249,7 +2249,7 @@ void doEntry__Q24Game11ShapeMapMgrFv(void)
  * Address:	80163DCC
  * Size:	000214
  */
-void findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo(void)
+void Game::ShapeMapMgr::findRayIntersection( (Sys::RayIntersectInfo &))
 {
 /*
 .loc_0x0:
@@ -2408,7 +2408,7 @@ void findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo(void)
  * Address:	80163FE0
  * Size:	000080
  */
-void getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d(void)
+void Game::ShapeMapMgr::getBoundBox2d( (BoundBox2d &))
 {
 /*
 .loc_0x0:
@@ -2452,7 +2452,7 @@ void getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d(void)
  * Address:	80164060
  * Size:	000090
  */
-void getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox(void)
+void Game::ShapeMapMgr::getBoundBox( (BoundBox &))
 {
 /*
 .loc_0x0:
@@ -2500,7 +2500,7 @@ void getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox(void)
  * Address:	801640F0
  * Size:	000008
  */
-void frozenable__Q24Game6MapMgrFv(void)
+void Game::MapMgr::frozenable(void)
 {
 /*
 .loc_0x0:
@@ -2514,7 +2514,7 @@ void frozenable__Q24Game6MapMgrFv(void)
  * Address:	801640F8
  * Size:	000004
  */
-void doDirectDraw__Q24Game6MapMgrFR8Graphics(void)
+void Game::MapMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2527,7 +2527,7 @@ void doDirectDraw__Q24Game6MapMgrFR8Graphics(void)
  * Address:	801640FC
  * Size:	000004
  */
-void doSimulation__Q24Game6MapMgrFf(void)
+void Game::MapMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2540,7 +2540,7 @@ void doSimulation__Q24Game6MapMgrFf(void)
  * Address:	80164100
  * Size:	000008
  */
-void findRayIntersection__Q24Game6MapMgrFRQ23Sys16RayIntersectInfo(void)
+void Game::MapMgr::findRayIntersection( (Sys::RayIntersectInfo &))
 {
 /*
 .loc_0x0:
@@ -2554,7 +2554,7 @@ void findRayIntersection__Q24Game6MapMgrFRQ23Sys16RayIntersectInfo(void)
  * Address:	80164108
  * Size:	000004
  */
-void createTriangles__Q24Game6MapMgrFRQ23Sys17CreateTriangleArg(void)
+void Game::MapMgr::createTriangles( (Sys::CreateTriangleArg &))
 {
 /*
 .loc_0x0:
@@ -2716,7 +2716,7 @@ void ObjectMgr<Game::WaterBox>::doViewCalc()
  * Address:	801642F0
  * Size:	000004
  */
-void doViewCalc__Q24Game8WaterBoxFv(void)
+void Game::WaterBox::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -2913,7 +2913,7 @@ void ObjectMgr<Game::WaterBox>::doSetView(int)
  * Address:	80164534
  * Size:	000004
  */
-void doSetView__Q24Game8WaterBoxFi(void)
+void Game::WaterBox::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -3075,7 +3075,7 @@ void ObjectMgr<Game::WaterBox>::doEntry()
  * Address:	8016471C
  * Size:	000004
  */
-void doEntry__Q24Game8WaterBoxFv(void)
+void Game::WaterBox::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -3237,7 +3237,7 @@ void ObjectMgr<Game::WaterBox>::doAnimation()
  * Address:	80164904
  * Size:	000004
  */
-void doAnimation__Q24Game8WaterBoxFv(void)
+void Game::WaterBox::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -3450,7 +3450,7 @@ void __sinit_mapMgr_cpp(void)
  * Address:	80164B28
  * Size:	000014
  */
-void @36@4@frozenable__Q24Game6MapMgrFv(void)
+void @36@4@Game::MapMgr::frozenable(void)
 {
 /*
 .loc_0x0:
@@ -3467,7 +3467,7 @@ void @36@4@frozenable__Q24Game6MapMgrFv(void)
  * Address:	80164B3C
  * Size:	000014
  */
-void @36@4@doDirectDraw__Q24Game6MapMgrFR8Graphics(void)
+void @36@4@Game::MapMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -3484,7 +3484,7 @@ void @36@4@doDirectDraw__Q24Game6MapMgrFR8Graphics(void)
  * Address:	80164B50
  * Size:	000014
  */
-void @36@4@doSimulation__Q24Game6MapMgrFf(void)
+void @36@4@Game::MapMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -3501,7 +3501,7 @@ void @36@4@doSimulation__Q24Game6MapMgrFf(void)
  * Address:	80164B64
  * Size:	000014
  */
-void @84@4@frozenable__Q24Game6MapMgrFv(void)
+void @84@4@Game::MapMgr::frozenable(void)
 {
 /*
 .loc_0x0:
@@ -3518,7 +3518,7 @@ void @84@4@frozenable__Q24Game6MapMgrFv(void)
  * Address:	80164B78
  * Size:	000014
  */
-void @84@4@doDirectDraw__Q24Game6MapMgrFR8Graphics(void)
+void @84@4@Game::MapMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -3535,7 +3535,7 @@ void @84@4@doDirectDraw__Q24Game6MapMgrFR8Graphics(void)
  * Address:	80164B8C
  * Size:	000014
  */
-void @84@4@doSimulation__Q24Game6MapMgrFf(void)
+void @84@4@Game::MapMgr::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -3552,7 +3552,7 @@ void @84@4@doSimulation__Q24Game6MapMgrFf(void)
  * Address:	80164BA0
  * Size:	000014
  */
-void @84@4@doViewCalc__Q24Game11ShapeMapMgrFv(void)
+void @84@4@Game::ShapeMapMgr::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -3569,7 +3569,7 @@ void @84@4@doViewCalc__Q24Game11ShapeMapMgrFv(void)
  * Address:	80164BB4
  * Size:	000014
  */
-void @84@4@doSetView__Q24Game11ShapeMapMgrFi(void)
+void @84@4@Game::ShapeMapMgr::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -3586,7 +3586,7 @@ void @84@4@doSetView__Q24Game11ShapeMapMgrFi(void)
  * Address:	80164BC8
  * Size:	000014
  */
-void @84@4@doEntry__Q24Game11ShapeMapMgrFv(void)
+void @84@4@Game::ShapeMapMgr::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -3603,7 +3603,7 @@ void @84@4@doEntry__Q24Game11ShapeMapMgrFv(void)
  * Address:	80164BDC
  * Size:	000014
  */
-void @84@4@doAnimation__Q24Game11ShapeMapMgrFv(void)
+void @84@4@Game::ShapeMapMgr::doAnimation(void)
 {
 /*
 .loc_0x0:

@@ -63,7 +63,7 @@ void J2DPicture::J2DPicture()
  * Address:	80039B94
  * Size:	00000C
  */
-void __ct__Q28JUtility6TColorFv(void)
+void JUtility::TColor::__ct(void)
 {
 /*
 .loc_0x0:

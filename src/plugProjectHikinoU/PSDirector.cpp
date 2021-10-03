@@ -5,7 +5,7 @@
  * Address:	80342EB4
  * Size:	000214
  */
-void __ct__Q28PSSystem12DirectorBaseFiPCc(void)
+void PSSystem::DirectorBase::__ct( (int, char const *))
 {
 /*
 .loc_0x0:
@@ -166,7 +166,7 @@ void __ct__Q28PSSystem12DirectorBaseFiPCc(void)
  * Address:	........
  * Size:	000078
  */
-void isUnderTask__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::isUnderTask(void)
 {
 	// UNUSED FUNCTION
 }
@@ -176,7 +176,7 @@ void isUnderTask__Q28PSSystem12DirectorBaseFv(void)
  * Address:	803430C8
  * Size:	000010
  */
-void isUnderDirection__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::isUnderDirection(void)
 {
 /*
 .loc_0x0:
@@ -192,7 +192,7 @@ void isUnderDirection__Q28PSSystem12DirectorBaseFv(void)
  * Address:	803430D8
  * Size:	0000A4
  */
-void setTrack__Q28PSSystem12DirectorBaseFUcPQ28PSSystem12SeqTrackBase(void)
+void PSSystem::DirectorBase::setTrack( (unsigned char, PSSystem::SeqTrackBase *))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void setTrack__Q28PSSystem12DirectorBaseFUcPQ28PSSystem12SeqTrackBase(void)
  * Address:	........
  * Size:	000094
  */
-void initCheck__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::initCheck(void)
 {
 	// UNUSED FUNCTION
 }
@@ -259,7 +259,7 @@ void initCheck__Q28PSSystem12DirectorBaseFv(void)
  * Address:	8034317C
  * Size:	00014C
  */
-void exec__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::exec(void)
 {
 /*
 .loc_0x0:
@@ -370,7 +370,7 @@ void exec__Q28PSSystem12DirectorBaseFv(void)
  * Address:	........
  * Size:	0000C8
  */
-void playInit__Q28PSSystem12DirectorBaseFP8JASTrack(void)
+void PSSystem::DirectorBase::playInit( (JASTrack *))
 {
 	// UNUSED FUNCTION
 }
@@ -380,7 +380,7 @@ void playInit__Q28PSSystem12DirectorBaseFP8JASTrack(void)
  * Address:	........
  * Size:	000068
  */
-void directOn_Tool__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::directOn_Tool(void)
 {
 	// UNUSED FUNCTION
 }
@@ -390,7 +390,7 @@ void directOn_Tool__Q28PSSystem12DirectorBaseFv(void)
  * Address:	........
  * Size:	000074
  */
-void directOff_Tool__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::directOff_Tool(void)
 {
 	// UNUSED FUNCTION
 }
@@ -400,7 +400,7 @@ void directOff_Tool__Q28PSSystem12DirectorBaseFv(void)
  * Address:	803432C8
  * Size:	000074
  */
-void directOn__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::directOn(void)
 {
 /*
 .loc_0x0:
@@ -447,7 +447,7 @@ void directOn__Q28PSSystem12DirectorBaseFv(void)
  * Address:	8034333C
  * Size:	0000B0
  */
-void directOnInner__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::directOnInner(void)
 {
 /*
 .loc_0x0:
@@ -511,7 +511,7 @@ void directOnInner__Q28PSSystem12DirectorBaseFv(void)
  * Address:	803433EC
  * Size:	000080
  */
-void directOff__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::directOff(void)
 {
 /*
 .loc_0x0:
@@ -563,7 +563,7 @@ void directOff__Q28PSSystem12DirectorBaseFv(void)
  * Address:	8034346C
  * Size:	0000B0
  */
-void directOffInner__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::directOffInner(void)
 {
 /*
 .loc_0x0:
@@ -627,7 +627,7 @@ void directOffInner__Q28PSSystem12DirectorBaseFv(void)
  * Address:	8034351C
  * Size:	000004
  */
-void doUpdateRequest__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::doUpdateRequest(void)
 {
 /*
 .loc_0x0:
@@ -640,7 +640,7 @@ void doUpdateRequest__Q28PSSystem12DirectorBaseFv(void)
  * Address:	80343520
  * Size:	000040
  */
-void powerOn__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::powerOn(void)
 {
 /*
 .loc_0x0:
@@ -668,7 +668,7 @@ void powerOn__Q28PSSystem12DirectorBaseFv(void)
  * Address:	........
  * Size:	000068
  */
-void powerOff__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::powerOff(void)
 {
 	// UNUSED FUNCTION
 }
@@ -678,7 +678,7 @@ void powerOff__Q28PSSystem12DirectorBaseFv(void)
  * Address:	80343560
  * Size:	000150
  */
-void exec__Q28PSSystem15OneShotDirectorFv(void)
+void PSSystem::OneShotDirector::exec(void)
 {
 /*
 .loc_0x0:
@@ -790,7 +790,7 @@ void exec__Q28PSSystem15OneShotDirectorFv(void)
  * Address:	803436B0
  * Size:	000198
  */
-void doUpdateRequest__Q28PSSystem16SwitcherDirectorFv(void)
+void PSSystem::SwitcherDirector::doUpdateRequest(void)
 {
 /*
 .loc_0x0:
@@ -928,7 +928,7 @@ void doUpdateRequest__Q28PSSystem16SwitcherDirectorFv(void)
  * Address:	80343848
  * Size:	000088
  */
-void __ct__Q28PSSystem15DirectorMgrBaseFUc(void)
+void PSSystem::DirectorMgrBase::__ct( (unsigned char))
 {
 /*
 .loc_0x0:
@@ -976,7 +976,7 @@ void __ct__Q28PSSystem15DirectorMgrBaseFUc(void)
  * Address:	803438D0
  * Size:	00012C
  */
-void initAndAdaptToBgm__Q28PSSystem15DirectorMgrBaseFRQ28PSSystem11DirectedBgm(void)
+void PSSystem::DirectorMgrBase::initAndAdaptToBgm( (PSSystem::DirectedBgm &))
 {
 /*
 .loc_0x0:
@@ -1077,7 +1077,7 @@ void initAndAdaptToBgm__Q28PSSystem15DirectorMgrBaseFRQ28PSSystem11DirectedBgm(v
  * Address:	803439FC
  * Size:	000164
  */
-void playInit__Q28PSSystem15DirectorMgrBaseFP8JASTrack(void)
+void PSSystem::DirectorMgrBase::playInit( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -1198,7 +1198,7 @@ void playInit__Q28PSSystem15DirectorMgrBaseFP8JASTrack(void)
  * Address:	80343B60
  * Size:	000068
  */
-void exec__Q28PSSystem15DirectorMgrBaseFv(void)
+void PSSystem::DirectorMgrBase::exec(void)
 {
 /*
 .loc_0x0:
@@ -1240,7 +1240,7 @@ void exec__Q28PSSystem15DirectorMgrBaseFv(void)
  * Address:	........
  * Size:	000060
  */
-void lock__Q28PSSystem15DirectorMgrBaseFv(void)
+void PSSystem::DirectorMgrBase::lock(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1250,7 +1250,7 @@ void lock__Q28PSSystem15DirectorMgrBaseFv(void)
  * Address:	........
  * Size:	000060
  */
-void unlock__Q28PSSystem15DirectorMgrBaseFv(void)
+void PSSystem::DirectorMgrBase::unlock(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1260,7 +1260,7 @@ void unlock__Q28PSSystem15DirectorMgrBaseFv(void)
  * Address:	80343BC8
  * Size:	0001BC
  */
-void off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm(void)
+void PSSystem::DirectorMgrBase::off( (PSSystem::DirectedBgm *))
 {
 /*
 .loc_0x0:
@@ -1413,7 +1413,7 @@ void off__Q28PSSystem15DirectorMgrBaseFPQ28PSSystem11DirectedBgm(void)
  * Address:	........
  * Size:	000010
  */
-void __ct__Q28PSSystem17DirectorActorBaseFv(void)
+void PSSystem::DirectorActorBase::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1423,7 +1423,7 @@ void __ct__Q28PSSystem17DirectorActorBaseFv(void)
  * Address:	80343D84
  * Size:	000024
  */
-void __ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem12DirectorBase(void)
+void PSSystem::DirectorCopyActor::__ct( (PSSystem::DirectorBase *, PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -1444,7 +1444,7 @@ void __ct__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBasePQ28PSSystem
  * Address:	80343DA8
  * Size:	000120
  */
-void exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase(void)
+void PSSystem::DirectorCopyActor::exec( (PSSystem::DirectorBase *))
 {
 /*
 .loc_0x0:
@@ -1538,7 +1538,7 @@ void exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase(void)
  * Address:	80343EC8
  * Size:	000004
  */
-void underDirection__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::underDirection(void)
 {
 /*
 .loc_0x0:
@@ -1551,7 +1551,7 @@ void underDirection__Q28PSSystem12DirectorBaseFv(void)
  * Address:	80343ECC
  * Size:	000004
  */
-void execInner__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::execInner(void)
 {
 /*
 .loc_0x0:
@@ -1564,7 +1564,7 @@ void execInner__Q28PSSystem12DirectorBaseFv(void)
  * Address:	80343ED0
  * Size:	000004
  */
-void onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack(void)
+void PSSystem::DirectorBase::onPlayInit( (JASTrack *))
 {
 /*
 .loc_0x0:
@@ -1577,7 +1577,7 @@ void onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack(void)
  * Address:	80343ED4
  * Size:	000004
  */
-void onDirectOn__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::onDirectOn(void)
 {
 /*
 .loc_0x0:
@@ -1590,7 +1590,7 @@ void onDirectOn__Q28PSSystem12DirectorBaseFv(void)
  * Address:	80343ED8
  * Size:	000004
  */
-void onDirectOff__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::onDirectOff(void)
 {
 /*
 .loc_0x0:
@@ -1603,7 +1603,7 @@ void onDirectOff__Q28PSSystem12DirectorBaseFv(void)
  * Address:	80343EDC
  * Size:	000004
  */
-void onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv(void)
+void PSSystem::DirectorCopyActor::onUpdateFromSlaveD(void)
 {
 /*
 .loc_0x0:
@@ -1616,7 +1616,7 @@ void onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv(void)
  * Address:	80343EE0
  * Size:	000004
  */
-void onUpdateFromMasterD__Q28PSSystem17DirectorCopyActorFv(void)
+void PSSystem::DirectorCopyActor::onUpdateFromMasterD(void)
 {
 /*
 .loc_0x0:
@@ -1629,7 +1629,7 @@ void onUpdateFromMasterD__Q28PSSystem17DirectorCopyActorFv(void)
  * Address:	80343EE4
  * Size:	000060
  */
-void __dt__Q28PSSystem15DirectorMgrBaseFv(void)
+void PSSystem::DirectorMgrBase::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1667,7 +1667,7 @@ void __dt__Q28PSSystem15DirectorMgrBaseFv(void)
  * Address:	80343F44
  * Size:	000070
  */
-void __dt__Q28PSSystem16SwitcherDirectorFv(void)
+void PSSystem::SwitcherDirector::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1711,7 +1711,7 @@ void __dt__Q28PSSystem16SwitcherDirectorFv(void)
  * Address:	80343FB4
  * Size:	000070
  */
-void __dt__Q28PSSystem15OneShotDirectorFv(void)
+void PSSystem::OneShotDirector::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1755,7 +1755,7 @@ void __dt__Q28PSSystem15OneShotDirectorFv(void)
  * Address:	80344024
  * Size:	000004
  */
-void directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase(void)
+void PSSystem::OneShotDirector::directOffTrack( (PSSystem::SeqTrackBase &))
 {
 /*
 .loc_0x0:
@@ -1768,7 +1768,7 @@ void directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase(voi
  * Address:	80344028
  * Size:	000060
  */
-void __dt__Q28PSSystem12DirectorBaseFv(void)
+void PSSystem::DirectorBase::__dt(void)
 {
 /*
 .loc_0x0:

@@ -94,7 +94,7 @@ void JASTrack::JASTrack()
  * Address:	8009F0C0
  * Size:	00004C
  */
-void __ct__Q28JASTrack11TimedParam_Fv(void)
+void JASTrack::TimedParam_::__ct(void)
 {
 /*
 .loc_0x0:
@@ -125,7 +125,7 @@ void __ct__Q28JASTrack11TimedParam_Fv(void)
  * Address:	8009F10C
  * Size:	000018
  */
-void __ct__Q28JASTrack10MoveParam_Fv(void)
+void JASTrack::MoveParam_::__ct(void)
 {
 /*
 .loc_0x0:
@@ -143,7 +143,7 @@ void __ct__Q28JASTrack10MoveParam_Fv(void)
  * Address:	8009F124
  * Size:	000130
  */
-void __ct__Q28JASTrack12AInnerParam_Fv(void)
+void JASTrack::AInnerParam_::__ct(void)
 {
 /*
 .loc_0x0:

@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8021AC20
  * Size:	0000F8
  */
-void __ct__Q34Game10SingleGame15CaveResultStateFv(void)
+void Game::SingleGame::CaveResultState::__ct(void)
 {
 /*
 .loc_0x0:
@@ -93,7 +93,7 @@ void __ct__Q34Game10SingleGame15CaveResultStateFv(void)
  * Address:	8021AD18
  * Size:	000124
  */
-void init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
+void Game::SingleGame::CaveResultState::init( (Game::SingleGameSection *, Game::StateArg *))
 {
 /*
 .loc_0x0:
@@ -182,7 +182,7 @@ void init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24G
  * Address:	........
  * Size:	00007C
  */
-void initNext__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveResultState::initNext( (Game::SingleGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -192,7 +192,7 @@ void initNext__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection(
  * Address:	8021AE3C
  * Size:	000240
  */
-void loadResource__Q34Game10SingleGame15CaveResultStateFv(void)
+void Game::SingleGame::CaveResultState::loadResource(void)
 {
 /*
 .loc_0x0:
@@ -366,7 +366,7 @@ void loadResource__Q34Game10SingleGame15CaveResultStateFv(void)
  * Address:	........
  * Size:	000134
  */
-void open2D__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveResultState::open2D( (Game::SingleGameSection *))
 {
 	// UNUSED FUNCTION
 }
@@ -376,7 +376,7 @@ void open2D__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection(vo
  * Address:	8021B07C
  * Size:	0002E8
  */
-void exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveResultState::exec( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -596,7 +596,7 @@ void exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection(void
  * Address:	8021B364
  * Size:	0000C0
  */
-void draw__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionR8Graphics(void)
+void Game::SingleGame::CaveResultState::draw( (Game::SingleGameSection *, Graphics &))
 {
 /*
 .loc_0x0:
@@ -658,7 +658,7 @@ void draw__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionR8Gra
  * Address:	8021B424
  * Size:	0000C4
  */
-void cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection(void)
+void Game::SingleGame::CaveResultState::cleanup( (Game::SingleGameSection *))
 {
 /*
 .loc_0x0:
@@ -723,7 +723,7 @@ void cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection(v
  * Address:	8021B4E8
  * Size:	00040C
  */
-void createResultNodes__Q34Game10SingleGame15CaveResultStateFv(void)
+void Game::SingleGame::CaveResultState::createResultNodes(void)
 {
 /*
 .loc_0x0:

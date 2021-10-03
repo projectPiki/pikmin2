@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801F1240
  * Size:	00004C
  */
-void __ct__Q24Game13PikiContainerFv(void)
+void Game::PikiContainer::__ct(void)
 {
 /*
 .loc_0x0:
@@ -48,7 +48,7 @@ void __ct__Q24Game13PikiContainerFv(void)
  * Address:	801F128C
  * Size:	00006C
  */
-void clear__Q24Game13PikiContainerFv(void)
+void Game::PikiContainer::clear(void)
 {
 /*
 .loc_0x0:
@@ -89,7 +89,7 @@ void clear__Q24Game13PikiContainerFv(void)
  * Address:	801F12F8
  * Size:	0000B0
  */
-void __as__Q24Game13PikiContainerFRQ24Game13PikiContainer(void)
+void Game::PikiContainer::operator=( (Game::PikiContainer &))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void __as__Q24Game13PikiContainerFRQ24Game13PikiContainer(void)
  * Address:	801F13A8
  * Size:	000074
  */
-void dump__Q24Game13PikiContainerFPc(void)
+void Game::PikiContainer::dump( (char *))
 {
 /*
 .loc_0x0:
@@ -194,7 +194,7 @@ void dump__Q24Game13PikiContainerFPc(void)
  * Address:	801F141C
  * Size:	0000C8
  */
-void getCount__Q24Game13PikiContainerFii(void)
+void Game::PikiContainer::getCount( (int, int))
 {
 /*
 .loc_0x0:
@@ -264,7 +264,7 @@ void getCount__Q24Game13PikiContainerFii(void)
  * Address:	801F14E4
  * Size:	0000CC
  */
-void __cl__Q24Game13PikiContainerFPQ24Game4Piki(void)
+void Game::PikiContainer::operator()( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -335,7 +335,7 @@ void __cl__Q24Game13PikiContainerFPQ24Game4Piki(void)
  * Address:	801F15B0
  * Size:	0000D4
  */
-void getColorSum__Q24Game13PikiContainerFi(void)
+void Game::PikiContainer::getColorSum( (int))
 {
 /*
 .loc_0x0:
@@ -410,7 +410,7 @@ void getColorSum__Q24Game13PikiContainerFi(void)
  * Address:	........
  * Size:	0000D0
  */
-void getHappaSum__Q24Game13PikiContainerFi(void)
+void Game::PikiContainer::getHappaSum( (int))
 {
 	// UNUSED FUNCTION
 }
@@ -420,7 +420,7 @@ void getHappaSum__Q24Game13PikiContainerFi(void)
  * Address:	801F1684
  * Size:	0000E4
  */
-void getTotalSum__Q24Game13PikiContainerFv(void)
+void Game::PikiContainer::getTotalSum(void)
 {
 /*
 .loc_0x0:
@@ -501,7 +501,7 @@ void getTotalSum__Q24Game13PikiContainerFv(void)
  * Address:	801F1768
  * Size:	000134
  */
-void write__Q24Game13PikiContainerFR6Stream(void)
+void Game::PikiContainer::write( (Stream &))
 {
 /*
 .loc_0x0:
@@ -602,7 +602,7 @@ void write__Q24Game13PikiContainerFR6Stream(void)
  * Address:	801F189C
  * Size:	00006C
  */
-void read__Q24Game13PikiContainerFR6Stream(void)
+void Game::PikiContainer::read( (Stream &))
 {
 /*
 .loc_0x0:

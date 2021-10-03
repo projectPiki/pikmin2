@@ -5,7 +5,7 @@
  * Address:	8009876C
  * Size:	000060
  */
-void __dt__Q26JStage7TSystemFv(void)
+void JStage::TSystem::__dt(void)
 {
 /*
 .loc_0x0:
@@ -43,7 +43,7 @@ void __dt__Q26JStage7TSystemFv(void)
  * Address:	800987CC
  * Size:	000008
  */
-void JSGFGetType__Q26JStage7TSystemCFv(void)
+void JStage::TSystem::JSGFGetType( const
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void JSGFGetType__Q26JStage7TSystemCFv(void)
  * Address:	800987D4
  * Size:	000008
  */
-void JSGFindObject__Q26JStage7TSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject(void)
+void JStage::TSystem::JSGFindObject( const(JStage::TObject **, char const *, JStage::TEObject))
 {
 /*
 .loc_0x0:
@@ -71,7 +71,7 @@ void JSGFindObject__Q26JStage7TSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject(
  * Address:	800987DC
  * Size:	000008
  */
-void JSGCreateObject__Q26JStage7TSystemFPCcQ26JStage8TEObjectUl(void)
+void JStage::TSystem::JSGCreateObject( (char const *, JStage::TEObject, unsigned long))
 {
 /*
 .loc_0x0:
@@ -85,7 +85,7 @@ void JSGCreateObject__Q26JStage7TSystemFPCcQ26JStage8TEObjectUl(void)
  * Address:	800987E4
  * Size:	000004
  */
-void JSGDestroyObject__Q26JStage7TSystemFPQ26JStage7TObject(void)
+void JStage::TSystem::JSGDestroyObject( (JStage::TObject *))
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void JSGDestroyObject__Q26JStage7TSystemFPQ26JStage7TObject(void)
  * Address:	800987E8
  * Size:	000008
  */
-void JSGGetSystemData__Q26JStage7TSystemFUl(void)
+void JStage::TSystem::JSGGetSystemData( (unsigned long))
 {
 /*
 .loc_0x0:
@@ -112,7 +112,7 @@ void JSGGetSystemData__Q26JStage7TSystemFUl(void)
  * Address:	800987F0
  * Size:	000004
  */
-void JSGSetSystemData__Q26JStage7TSystemFUlUl(void)
+void JStage::TSystem::JSGSetSystemData( (unsigned long, unsigned long))
 {
 /*
 .loc_0x0:

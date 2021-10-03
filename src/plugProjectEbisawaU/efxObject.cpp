@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	803B57BC
  * Size:	000108
  */
-void create__Q23efx12TOtakaraDiveFPQ23efx3Arg(void)
+void efx::TOtakaraDive::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -99,7 +99,7 @@ void create__Q23efx12TOtakaraDiveFPQ23efx3Arg(void)
  * Address:	803B58C4
  * Size:	000108
  */
-void create__Q23efx11TTsuyuGrow0FPQ23efx3Arg(void)
+void efx::TTsuyuGrow0::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -183,7 +183,7 @@ void create__Q23efx11TTsuyuGrow0FPQ23efx3Arg(void)
  * Address:	803B59CC
  * Size:	000100
  */
-void create__Q23efx11TOtakaraApLFPQ23efx3Arg(void)
+void efx::TOtakaraApL::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -265,7 +265,7 @@ void create__Q23efx11TOtakaraApLFPQ23efx3Arg(void)
  * Address:	803B5ACC
  * Size:	0000E8
  */
-void create__Q23efx11TOtakaraApSFPQ23efx3Arg(void)
+void efx::TOtakaraApS::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -341,7 +341,7 @@ void create__Q23efx11TOtakaraApSFPQ23efx3Arg(void)
  * Address:	803B5BB4
  * Size:	000314
  */
-void create__Q23efx10TOtakaraApFPQ23efx3Arg(void)
+void efx::TOtakaraAp::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -564,7 +564,7 @@ void create__Q23efx10TOtakaraApFPQ23efx3Arg(void)
  * Address:	803B5EC8
  * Size:	000124
  */
-void create__Q23efx8TEgateBCFPQ23efx3Arg(void)
+void efx::TEgateBC::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -659,7 +659,7 @@ void create__Q23efx8TEgateBCFPQ23efx3Arg(void)
  * Address:	803B5FEC
  * Size:	000124
  */
-void create__Q23efx13TKouhaiDamageFPQ23efx3Arg(void)
+void efx::TKouhaiDamage::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -760,7 +760,7 @@ void create__Q23efx13TKouhaiDamageFPQ23efx3Arg(void)
  * Address:	803B6110
  * Size:	0000E8
  */
-void create__Q23efx14TPelkira_ver01FPQ23efx3Arg(void)
+void efx::TPelkira_ver01::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -844,7 +844,7 @@ void create__Q23efx14TPelkira_ver01FPQ23efx3Arg(void)
  * Address:	803B61F8
  * Size:	0000D0
  */
-void create__Q23efx9ContainerFPQ23efx3Arg(void)
+void efx::Container::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -920,7 +920,7 @@ void create__Q23efx9ContainerFPQ23efx3Arg(void)
  * Address:	803B62C8
  * Size:	0000E8
  */
-void create__Q23efx12ContainerActFPQ23efx3Arg(void)
+void efx::ContainerAct::create( (efx::Arg *))
 {
 /*
 .loc_0x0:
@@ -1002,7 +1002,7 @@ void create__Q23efx12ContainerActFPQ23efx3Arg(void)
  * Address:	803B63B0
  * Size:	0001B0
  */
-void setRateLOD__Q23efx8WarpZoneFib(void)
+void efx::WarpZone::setRateLOD( (int, bool))
 {
 /*
 .loc_0x0:
@@ -1138,7 +1138,7 @@ void setRateLOD__Q23efx8WarpZoneFib(void)
  * Address:	803B6560
  * Size:	00009C
  */
-void __dt__Q23efx9ContainerFv(void)
+void efx::Container::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1193,7 +1193,7 @@ void __dt__Q23efx9ContainerFv(void)
  * Address:	803B65FC
  * Size:	00009C
  */
-void __dt__Q23efx14TPelkira_ver01Fv(void)
+void efx::TPelkira_ver01::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1248,7 +1248,7 @@ void __dt__Q23efx14TPelkira_ver01Fv(void)
  * Address:	803B6698
  * Size:	000004
  */
-void forceKill__Q23efx10TOtakaraApFv(void)
+void efx::TOtakaraAp::forceKill(void)
 {
 /*
 .loc_0x0:
@@ -1261,7 +1261,7 @@ void forceKill__Q23efx10TOtakaraApFv(void)
  * Address:	803B669C
  * Size:	000004
  */
-void fade__Q23efx10TOtakaraApFv(void)
+void efx::TOtakaraAp::fade(void)
 {
 /*
 .loc_0x0:
@@ -1274,7 +1274,7 @@ void fade__Q23efx10TOtakaraApFv(void)
  * Address:	803B66A0
  * Size:	000008
  */
-void @4@__dt__Q23efx14TPelkira_ver01Fv(void)
+void @4@efx::TPelkira_ver01::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1288,7 +1288,7 @@ void @4@__dt__Q23efx14TPelkira_ver01Fv(void)
  * Address:	803B66A8
  * Size:	000008
  */
-void @4@__dt__Q23efx9ContainerFv(void)
+void @4@efx::Container::__dt(void)
 {
 /*
 .loc_0x0:

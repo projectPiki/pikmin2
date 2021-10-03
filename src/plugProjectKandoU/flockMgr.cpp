@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8020EADC
  * Size:	0000E0
  */
-void update__Q24Game12BaseFlockMgrFv(void)
+void Game::BaseFlockMgr::update(void)
 {
 /*
 .loc_0x0:
@@ -200,7 +200,7 @@ void getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<float>(void)
  * Address:	........
  * Size:	000140
  */
-void getRandomFlock__Q24Game12BaseFlockMgrFv(void)
+void Game::BaseFlockMgr::getRandomFlock(void)
 {
 	// UNUSED FUNCTION
 }
@@ -210,7 +210,7 @@ void getRandomFlock__Q24Game12BaseFlockMgrFv(void)
  * Address:	8020ED10
  * Size:	00011C
  */
-void attackFlock__Q24Game12BaseFlockMgrFif(void)
+void Game::BaseFlockMgr::attackFlock( (int, float))
 {
 /*
 .loc_0x0:
@@ -303,7 +303,7 @@ void attackFlock__Q24Game12BaseFlockMgrFif(void)
  * Address:	8020EE2C
  * Size:	000294
  */
-void resolveCollision__Q24Game12BaseFlockMgrFf(void)
+void Game::BaseFlockMgr::resolveCollision( (float))
 {
 /*
 .loc_0x0:
@@ -510,7 +510,7 @@ void resolveCollision__Q24Game12BaseFlockMgrFf(void)
  * Address:	8020F0C0
  * Size:	000198
  */
-void doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai(void)
+void Game::BaseFlockMgr::doSimpleDraw( (Viewport *, J3DModelData **, int))
 {
 /*
 .loc_0x0:

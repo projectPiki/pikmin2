@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	80233484
  * Size:	000048
  */
-void __ct__Q34Game11IconTexture6LoaderFv(void)
+void Game::IconTexture::Loader::__ct(void)
 {
 /*
 .loc_0x0:
@@ -45,7 +45,7 @@ void __ct__Q34Game11IconTexture6LoaderFv(void)
  * Address:	802334CC
  * Size:	00008C
  */
-void __dt__Q34Game11IconTexture6LoaderFv(void)
+void Game::IconTexture::Loader::__dt(void)
 {
 /*
 .loc_0x0:
@@ -98,7 +98,7 @@ void __dt__Q34Game11IconTexture6LoaderFv(void)
  * Address:	80233558
  * Size:	000084
  */
-void loadResource__Q34Game11IconTexture6LoaderFPc(void)
+void Game::IconTexture::Loader::loadResource( (char *))
 {
 /*
 .loc_0x0:
@@ -147,7 +147,7 @@ void loadResource__Q34Game11IconTexture6LoaderFPc(void)
  * Address:	802335DC
  * Size:	000030
  */
-void getResTIMG__Q34Game11IconTexture6LoaderFPc(void)
+void Game::IconTexture::Loader::getResTIMG( (char *))
 {
 /*
 .loc_0x0:
@@ -171,7 +171,7 @@ void getResTIMG__Q34Game11IconTexture6LoaderFPc(void)
  * Address:	8023360C
  * Size:	000048
  */
-void __ct__Q34Game11IconTexture3MgrFv(void)
+void Game::IconTexture::Mgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -201,7 +201,7 @@ void __ct__Q34Game11IconTexture3MgrFv(void)
  * Address:	80233654
  * Size:	00008C
  */
-void __dt__Q34Game11IconTexture3MgrFv(void)
+void Game::IconTexture::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -252,7 +252,7 @@ void __dt__Q34Game11IconTexture3MgrFv(void)
  * Address:	802336E0
  * Size:	000084
  */
-void create__Q34Game11IconTexture3MgrFi(void)
+void Game::IconTexture::Mgr::create( (int))
 {
 /*
 .loc_0x0:
@@ -299,7 +299,7 @@ void create__Q34Game11IconTexture3MgrFi(void)
  * Address:	80233764
  * Size:	00008C
  */
-void setTexture__Q34Game11IconTexture3MgrFiP7ResTIMG(void)
+void Game::IconTexture::Mgr::setTexture( (int, ResTIMG *))
 {
 /*
 .loc_0x0:
@@ -350,7 +350,7 @@ void setTexture__Q34Game11IconTexture3MgrFiP7ResTIMG(void)
  * Address:	802337F0
  * Size:	00002C
  */
-void getTexture__Q34Game11IconTexture3MgrFi(void)
+void Game::IconTexture::Mgr::getTexture( (int))
 {
 /*
 .loc_0x0:

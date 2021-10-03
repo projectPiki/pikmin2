@@ -5,7 +5,7 @@
  * Address:	80014134
  * Size:	0000A0
  */
-void __ct__Q214JStudio_JStage12TAdaptor_fogFPCQ26JStage7TSystemPQ26JStage4TFog(void)
+void JStudio_JStage::TAdaptor_fog::__ct( (JStage::TSystem const *, JStage::TFog *))
 {
 /*
 .loc_0x0:
@@ -57,7 +57,7 @@ void __ct__Q214JStudio_JStage12TAdaptor_fogFPCQ26JStage7TSystemPQ26JStage4TFog(v
  * Address:	800141D4
  * Size:	000078
  */
-void __dt__Q214JStudio_JStage12TAdaptor_fogFv(void)
+void JStudio_JStage::TAdaptor_fog::__dt(void)
 {
 /*
 .loc_0x0:
@@ -101,7 +101,7 @@ void __dt__Q214JStudio_JStage12TAdaptor_fogFv(void)
  * Address:	8001424C
  * Size:	000048
  */
-void adaptor_do_prepare__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_fog::adaptor_do_prepare( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -139,7 +139,7 @@ void adaptor_do_prepare__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject(v
  * Address:	80014294
  * Size:	0000F4
  */
-void adaptor_do_begin__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_fog::adaptor_do_begin( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -216,7 +216,7 @@ void adaptor_do_begin__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject(voi
  * Address:	80014388
  * Size:	000054
  */
-void adaptor_do_end__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject(void)
+void JStudio_JStage::TAdaptor_fog::adaptor_do_end( (JStudio::TObject const *))
 {
 /*
 .loc_0x0:
@@ -249,7 +249,7 @@ void adaptor_do_end__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject(void)
  * Address:	800143DC
  * Size:	00006C
  */
-void adaptor_do_update__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectUl(void)
+void JStudio_JStage::TAdaptor_fog::adaptor_do_update( (JStudio::TObject const *, unsigned long))
 {
 /*
 .loc_0x0:
@@ -288,7 +288,7 @@ void adaptor_do_update__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectUl(
  * Address:	80014448
  * Size:	000034
  */
-void adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl(void)
+void JStudio_JStage::TAdaptor_fog::adaptor_do_data( (JStudio::TObject const *, void const *, unsigned long, void const *, unsigned long))
 {
 /*
 .loc_0x0:

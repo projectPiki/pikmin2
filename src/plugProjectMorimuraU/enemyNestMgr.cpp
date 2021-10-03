@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	8036C194
  * Size:	000070
  */
-void __ct__Q34Game4Nest3MgrFiUc(void)
+void Game::Nest::Mgr::__ct( (int, unsigned char))
 {
 /*
 .loc_0x0:
@@ -55,7 +55,7 @@ void __ct__Q34Game4Nest3MgrFiUc(void)
  * Address:	8036C204
  * Size:	000048
  */
-void doAlloc__Q34Game4Nest3MgrFv(void)
+void Game::Nest::Mgr::doAlloc(void)
 {
 /*
 .loc_0x0:
@@ -87,7 +87,7 @@ void doAlloc__Q34Game4Nest3MgrFv(void)
  * Address:	8036C24C
  * Size:	000020
  */
-void birth__Q34Game4Nest3MgrFRQ24Game13EnemyBirthArg(void)
+void Game::Nest::Mgr::birth( (Game::EnemyBirthArg &))
 {
 /*
 .loc_0x0:
@@ -107,7 +107,7 @@ void birth__Q34Game4Nest3MgrFRQ24Game13EnemyBirthArg(void)
  * Address:	8036C26C
  * Size:	00012C
  */
-void loadModelData__Q34Game4Nest3MgrFP10JKRArchive(void)
+void Game::Nest::Mgr::loadModelData( (JKRArchive *))
 {
 /*
 .loc_0x0:
@@ -202,7 +202,7 @@ void loadModelData__Q34Game4Nest3MgrFP10JKRArchive(void)
  * Address:	8036C398
  * Size:	000320
  */
-void doSimpleDraw__Q34Game4Nest3MgrFP8Viewport(void)
+void Game::Nest::Mgr::doSimpleDraw( (Viewport *))
 {
 /*
 .loc_0x0:
@@ -434,7 +434,7 @@ void doSimpleDraw__Q34Game4Nest3MgrFP8Viewport(void)
  * Address:	8036C6B8
  * Size:	000010
  */
-void getEnemy__Q34Game4Nest3MgrFi(void)
+void Game::Nest::Mgr::getEnemy( (int))
 {
 /*
 .loc_0x0:
@@ -450,7 +450,7 @@ void getEnemy__Q34Game4Nest3MgrFi(void)
  * Address:	8036C6C8
  * Size:	0001E8
  */
-void initObjects__Q34Game4Nest3MgrFv(void)
+void Game::Nest::Mgr::initObjects(void)
 {
 /*
 .loc_0x0:
@@ -604,7 +604,7 @@ void initObjects__Q34Game4Nest3MgrFv(void)
  * Address:	8036C8B0
  * Size:	000008
  */
-void getEnemyTypeID__Q34Game4Nest3MgrFv(void)
+void Game::Nest::Mgr::getEnemyTypeID(void)
 {
 /*
 .loc_0x0:
@@ -618,7 +618,7 @@ void getEnemyTypeID__Q34Game4Nest3MgrFv(void)
  * Address:	8036C8B8
  * Size:	0000B0
  */
-void __dt__Q34Game4Nest3MgrFv(void)
+void Game::Nest::Mgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -678,7 +678,7 @@ void __dt__Q34Game4Nest3MgrFv(void)
  * Address:	8036C968
  * Size:	000004
  */
-void loadAnimData__Q34Game4Nest3MgrFv(void)
+void Game::Nest::Mgr::loadAnimData(void)
 {
 /*
 .loc_0x0:
@@ -691,7 +691,7 @@ void loadAnimData__Q34Game4Nest3MgrFv(void)
  * Address:	8036C96C
  * Size:	000060
  */
-void createObj__Q34Game4Nest3MgrFi(void)
+void Game::Nest::Mgr::createObj( (int))
 {
 /*
 .loc_0x0:
@@ -727,7 +727,7 @@ void createObj__Q34Game4Nest3MgrFi(void)
  * Address:	8036C9CC
  * Size:	0000BC
  */
-void __dt__Q34Game4Nest3ObjFv(void)
+void Game::Nest::Obj::__dt(void)
 {
 /*
 .loc_0x0:
@@ -803,7 +803,7 @@ void __sinit_enemyNestMgr_cpp(void)
  * Address:	8036CA8C
  * Size:	000008
  */
-void @4@__dt__Q34Game4Nest3MgrFv(void)
+void @4@Game::Nest::Mgr::__dt(void)
 {
 /*
 .loc_0x0:

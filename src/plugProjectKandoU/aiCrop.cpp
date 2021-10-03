@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801E3E50
  * Size:	0000D4
  */
-void __ct__Q26PikiAI7ActCropFPQ24Game4Piki(void)
+void PikiAI::ActCrop::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -86,7 +86,7 @@ void __ct__Q26PikiAI7ActCropFPQ24Game4Piki(void)
  * Address:	801E3F24
  * Size:	000108
  */
-void init__Q26PikiAI7ActCropFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActCrop::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -172,7 +172,7 @@ void init__Q26PikiAI7ActCropFPQ26PikiAI9ActionArg(void)
  * Address:	........
  * Size:	00003C
  */
-void initClimb__Q26PikiAI7ActCropFv(void)
+void PikiAI::ActCrop::initClimb(void)
 {
 	// UNUSED FUNCTION
 }
@@ -182,7 +182,7 @@ void initClimb__Q26PikiAI7ActCropFv(void)
  * Address:	........
  * Size:	000114
  */
-void prepareClimb__Q26PikiAI7ActCropFv(void)
+void PikiAI::ActCrop::prepareClimb(void)
 {
 	// UNUSED FUNCTION
 }
@@ -192,7 +192,7 @@ void prepareClimb__Q26PikiAI7ActCropFv(void)
  * Address:	801E402C
  * Size:	0002C8
  */
-void execClimb__Q26PikiAI7ActCropFv(void)
+void PikiAI::ActCrop::execClimb(void)
 {
 /*
 .loc_0x0:
@@ -404,7 +404,7 @@ void execClimb__Q26PikiAI7ActCropFv(void)
  * Address:	801E42F4
  * Size:	000098
  */
-void initGoto__Q26PikiAI7ActCropFv(void)
+void PikiAI::ActCrop::initGoto(void)
 {
 /*
 .loc_0x0:
@@ -454,7 +454,7 @@ void initGoto__Q26PikiAI7ActCropFv(void)
  * Address:	801E438C
  * Size:	0000FC
  */
-void initAttack__Q26PikiAI7ActCropFv(void)
+void PikiAI::ActCrop::initAttack(void)
 {
 /*
 .loc_0x0:
@@ -531,7 +531,7 @@ void initAttack__Q26PikiAI7ActCropFv(void)
  * Address:	801E4488
  * Size:	0006AC
  */
-void exec__Q26PikiAI7ActCropFv(void)
+void PikiAI::ActCrop::exec(void)
 {
 /*
 .loc_0x0:
@@ -1016,7 +1016,7 @@ void exec__Q26PikiAI7ActCropFv(void)
  * Address:	801E4B34
  * Size:	000040
  */
-void cleanup__Q26PikiAI7ActCropFv(void)
+void PikiAI::ActCrop::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -1044,7 +1044,7 @@ void cleanup__Q26PikiAI7ActCropFv(void)
  * Address:	801E4B74
  * Size:	000004
  */
-void collisionCallback__Q26PikiAI7ActCropFPQ24Game4PikiRQ24Game9CollEvent(void)
+void PikiAI::ActCrop::collisionCallback( (Game::Piki *, Game::CollEvent &))
 {
 /*
 .loc_0x0:
@@ -1057,7 +1057,7 @@ void collisionCallback__Q26PikiAI7ActCropFPQ24Game4PikiRQ24Game9CollEvent(void)
  * Address:	801E4B78
  * Size:	000004
  */
-void onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActCrop::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -1070,7 +1070,7 @@ void onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent(void)
  * Address:	801E4B7C
  * Size:	000008
  */
-void getNextAIType__Q26PikiAI7ActCropFv(void)
+void PikiAI::ActCrop::getNextAIType(void)
 {
 /*
 .loc_0x0:
@@ -1084,7 +1084,7 @@ void getNextAIType__Q26PikiAI7ActCropFv(void)
  * Address:	801E4B84
  * Size:	000014
  */
-void @64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent(void)
+void @64@4@PikiAI::ActCrop::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

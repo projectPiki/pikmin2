@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	801A1914
  * Size:	000064
  */
-void getInfo__Q26PikiAI12ActTransportFPc(void)
+void PikiAI::ActTransport::getInfo( (char *))
 {
 /*
 .loc_0x0:
@@ -52,7 +52,7 @@ void getInfo__Q26PikiAI12ActTransportFPc(void)
  * Address:	801A1978
  * Size:	0000D0
  */
-void __ct__Q26PikiAI12ActTransportFPQ24Game4Piki(void)
+void PikiAI::ActTransport::__ct( (Game::Piki *))
 {
 /*
 .loc_0x0:
@@ -122,7 +122,7 @@ void __ct__Q26PikiAI12ActTransportFPQ24Game4Piki(void)
  * Address:	801A1A48
  * Size:	00017C
  */
-void init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg(void)
+void PikiAI::ActTransport::init( (PikiAI::ActionArg *))
 {
 /*
 .loc_0x0:
@@ -233,7 +233,7 @@ void init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg(void)
  * Address:	801A1BC4
  * Size:	000044
  */
-void emotion_success__Q26PikiAI12ActTransportFv(void)
+void PikiAI::ActTransport::emotion_success(void)
 {
 /*
 .loc_0x0:
@@ -262,7 +262,7 @@ void emotion_success__Q26PikiAI12ActTransportFv(void)
  * Address:	801A1C08
  * Size:	000004
  */
-void emotion_fail__Q26PikiAI12ActTransportFv(void)
+void PikiAI::ActTransport::emotion_fail(void)
 {
 /*
 .loc_0x0:
@@ -275,7 +275,7 @@ void emotion_fail__Q26PikiAI12ActTransportFv(void)
  * Address:	801A1C0C
  * Size:	0003E8
  */
-void exec__Q26PikiAI12ActTransportFv(void)
+void PikiAI::ActTransport::exec(void)
 {
 /*
 .loc_0x0:
@@ -579,7 +579,7 @@ void exec__Q26PikiAI12ActTransportFv(void)
  * Address:	801A1FF4
  * Size:	000078
  */
-void cleanup__Q26PikiAI12ActTransportFv(void)
+void PikiAI::ActTransport::cleanup(void)
 {
 /*
 .loc_0x0:
@@ -623,7 +623,7 @@ void cleanup__Q26PikiAI12ActTransportFv(void)
  * Address:	801A206C
  * Size:	00011C
  */
-void onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent(void)
+void PikiAI::ActTransport::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:
@@ -720,7 +720,7 @@ void onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent(void)
  * Address:	........
  * Size:	000068
  */
-void getNumStickers__Q26PikiAI12ActTransportFv(void)
+void PikiAI::ActTransport::getNumStickers(void)
 {
 	// UNUSED FUNCTION
 }
@@ -730,7 +730,7 @@ void getNumStickers__Q26PikiAI12ActTransportFv(void)
  * Address:	801A2188
  * Size:	00009C
  */
-void isStickLeader__Q26PikiAI12ActTransportFv(void)
+void PikiAI::ActTransport::isStickLeader(void)
 {
 /*
 .loc_0x0:
@@ -793,7 +793,7 @@ void isStickLeader__Q26PikiAI12ActTransportFv(void)
  * Address:	801A2224
  * Size:	0000BC
  */
-void initLift__Q26PikiAI12ActTransportFv(void)
+void PikiAI::ActTransport::initLift(void)
 {
 /*
 .loc_0x0:
@@ -854,7 +854,7 @@ void initLift__Q26PikiAI12ActTransportFv(void)
  * Address:	801A22E0
  * Size:	000414
  */
-void execLift__Q26PikiAI12ActTransportFv(void)
+void PikiAI::ActTransport::execLift(void)
 {
 /*
 .loc_0x0:
@@ -1167,7 +1167,7 @@ void execLift__Q26PikiAI12ActTransportFv(void)
  * Address:	801A26F4
  * Size:	00000C
  */
-void getName__Q26PikiAI11PathMoveArgFv(void)
+void PikiAI::PathMoveArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -1182,7 +1182,7 @@ void getName__Q26PikiAI11PathMoveArgFv(void)
  * Address:	801A2700
  * Size:	00000C
  */
-void getName__Q26PikiAI11GotoSlotArgFv(void)
+void PikiAI::GotoSlotArg::getName(void)
 {
 /*
 .loc_0x0:
@@ -1197,7 +1197,7 @@ void getName__Q26PikiAI11GotoSlotArgFv(void)
  * Address:	801A270C
  * Size:	000014
  */
-void @60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent(void)
+void @60@4@PikiAI::ActTransport::onKeyEvent( (SysShape::KeyEvent const &))
 {
 /*
 .loc_0x0:

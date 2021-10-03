@@ -15,7 +15,7 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	0000E0
  */
-void __ct__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::__ct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void __ct__Q24Game12PlatInstanceFv(void)
  * Address:	801C4BD4
  * Size:	000028
  */
-void setCollision__Q24Game12PlatInstanceFb(void)
+void Game::PlatInstance::setCollision( (bool))
 {
 /*
 .loc_0x0:
@@ -49,7 +49,7 @@ void setCollision__Q24Game12PlatInstanceFb(void)
  * Address:	........
  * Size:	00004C
  */
-void fixCollision__Q24Game12PlatInstanceFb(void)
+void Game::PlatInstance::fixCollision( (bool))
 {
 	// UNUSED FUNCTION
 }
@@ -59,7 +59,7 @@ void fixCollision__Q24Game12PlatInstanceFb(void)
  * Address:	801C4BFC
  * Size:	000020
  */
-void getPosition__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::getPosition(void)
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void getPosition__Q24Game12PlatInstanceFv(void)
  * Address:	801C4C1C
  * Size:	000050
  */
-void getBoundingSphere__Q24Game12PlatInstanceFRQ23Sys6Sphere(void)
+void Game::PlatInstance::getBoundingSphere( (Sys::Sphere &))
 {
 /*
 .loc_0x0:
@@ -121,7 +121,7 @@ void getMinY__Q24Game12PlatInstanceFR10Vector3<float>(void)
  * Address:	801C4C6C
  * Size:	000254
  */
-void getCurrTri__Q24Game12PlatInstanceFRQ24Game11CurrTriInfo(void)
+void Game::PlatInstance::getCurrTri( (Game::CurrTriInfo &))
 {
 /*
 .loc_0x0:
@@ -296,7 +296,7 @@ void getCurrTri__Q24Game12PlatInstanceFRQ24Game11CurrTriInfo(void)
  * Address:	801C4EC0
  * Size:	0002E4
  */
-void traceMove__Q24Game12PlatInstanceFRQ24Game8MoveInfof(void)
+void Game::PlatInstance::traceMove( (Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -517,7 +517,7 @@ void traceMove__Q24Game12PlatInstanceFRQ24Game8MoveInfof(void)
  * Address:	801C51A4
  * Size:	000018
  */
-void __ct__Q24Game20PlatInstanceAttacherFv(void)
+void Game::PlatInstanceAttacher::__ct(void)
 {
 /*
 .loc_0x0:
@@ -535,7 +535,7 @@ void __ct__Q24Game20PlatInstanceAttacherFv(void)
  * Address:	801C51BC
  * Size:	0001B0
  */
-void addToMgr__Q24Game20PlatInstanceAttacherFPQ24Game8CreatureR4ID32P12PlatAttacherb(void)
+void Game::PlatInstanceAttacher::addToMgr( (Game::Creature *, ID32 &, PlatAttacher *, bool))
 {
 /*
 .loc_0x0:
@@ -661,7 +661,7 @@ void addToMgr__Q24Game20PlatInstanceAttacherFPQ24Game8CreatureR4ID32P12PlatAttac
  * Address:	801C536C
  * Size:	000094
  */
-void setCollision__Q24Game20PlatInstanceAttacherFbUs(void)
+void Game::PlatInstanceAttacher::setCollision( (bool, unsigned short))
 {
 /*
 .loc_0x0:
@@ -718,7 +718,7 @@ void setCollision__Q24Game20PlatInstanceAttacherFbUs(void)
  * Address:	........
  * Size:	0000A0
  */
-void fixCollision__Q24Game20PlatInstanceAttacherFbUs(void)
+void Game::PlatInstanceAttacher::fixCollision( (bool, unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -728,7 +728,7 @@ void fixCollision__Q24Game20PlatInstanceAttacherFbUs(void)
  * Address:	801C5400
  * Size:	00009C
  */
-void fixCollision__Q24Game20PlatInstanceAttacherFb(void)
+void Game::PlatInstanceAttacher::fixCollision( (bool))
 {
 /*
 .loc_0x0:
@@ -787,7 +787,7 @@ void fixCollision__Q24Game20PlatInstanceAttacherFb(void)
  * Address:	801C549C
  * Size:	00008C
  */
-void setCode__Q24Game20PlatInstanceAttacherFR4ID32Us(void)
+void Game::PlatInstanceAttacher::setCode( (ID32 &, unsigned short))
 {
 /*
 .loc_0x0:
@@ -840,7 +840,7 @@ void setCode__Q24Game20PlatInstanceAttacherFR4ID32Us(void)
  * Address:	........
  * Size:	000098
  */
-void setCode__Q24Game20PlatInstanceAttacherFR4ID32Pc(void)
+void Game::PlatInstanceAttacher::setCode( (ID32 &, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -850,7 +850,7 @@ void setCode__Q24Game20PlatInstanceAttacherFR4ID32Pc(void)
  * Address:	........
  * Size:	0000A4
  */
-void setCollision__Q24Game20PlatInstanceAttacherFbPc(void)
+void Game::PlatInstanceAttacher::setCollision( (bool, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -860,7 +860,7 @@ void setCollision__Q24Game20PlatInstanceAttacherFbPc(void)
  * Address:	........
  * Size:	0000AC
  */
-void fixCollision__Q24Game20PlatInstanceAttacherFbPc(void)
+void Game::PlatInstanceAttacher::fixCollision( (bool, char *))
 {
 	// UNUSED FUNCTION
 }
@@ -870,7 +870,7 @@ void fixCollision__Q24Game20PlatInstanceAttacherFbPc(void)
  * Address:	801C5528
  * Size:	0000C0
  */
-void setShapeVisibility__Q24Game20PlatInstanceAttacherFv(void)
+void Game::PlatInstanceAttacher::setShapeVisibility(void)
 {
 /*
 .loc_0x0:
@@ -938,7 +938,7 @@ void setShapeVisibility__Q24Game20PlatInstanceAttacherFv(void)
  * Address:	801C55E8
  * Size:	0000B8
  */
-void __ct__Q24Game7PlatMgrFv(void)
+void Game::PlatMgr::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1196,7 +1196,7 @@ void Container<Game::PlatInstance>::~Container()
  * Address:	801C58C0
  * Size:	000064
  */
-void __ct__Q24Game18PlatAddInstanceArgFv(void)
+void Game::PlatAddInstanceArg::__ct(void)
 {
 /*
 .loc_0x0:
@@ -1233,7 +1233,7 @@ void __ct__Q24Game18PlatAddInstanceArgFv(void)
  * Address:	801C5924
  * Size:	000270
  */
-void addInstance__Q24Game7PlatMgrFRQ24Game18PlatAddInstanceArg(void)
+void Game::PlatMgr::addInstance( (Game::PlatAddInstanceArg &))
 {
 /*
 .loc_0x0:
@@ -1413,7 +1413,7 @@ void addInstance__Q24Game7PlatMgrFRQ24Game18PlatAddInstanceArg(void)
  * Address:	801C5B94
  * Size:	000004
  */
-void constructor__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::constructor(void)
 {
 /*
 .loc_0x0:
@@ -1426,7 +1426,7 @@ void constructor__Q24Game12PlatInstanceFv(void)
  * Address:	801C5B98
  * Size:	000020
  */
-void delInstance__Q24Game7PlatMgrFPQ24Game12PlatInstance(void)
+void Game::PlatMgr::delInstance( (Game::PlatInstance *))
 {
 /*
 .loc_0x0:
@@ -1446,7 +1446,7 @@ void delInstance__Q24Game7PlatMgrFPQ24Game12PlatInstance(void)
  * Address:	801C5BB8
  * Size:	0002A4
  */
-void traceMove__Q24Game7PlatMgrFRQ24Game8MoveInfof(void)
+void Game::PlatMgr::traceMove( (Game::MoveInfo &, float))
 {
 /*
 .loc_0x0:
@@ -1696,7 +1696,7 @@ void getMinY__Q24Game7PlatMgrFR10Vector3<float>(void)
  * Address:	801C5EA8
  * Size:	0002B0
  */
-void getCurrTri__Q24Game7PlatMgrFRQ24Game11CurrTriInfo(void)
+void Game::PlatMgr::getCurrTri( (Game::CurrTriInfo &))
 {
 /*
 .loc_0x0:
@@ -1908,7 +1908,7 @@ void getCurrTri__Q24Game7PlatMgrFRQ24Game11CurrTriInfo(void)
  * Address:	801C6158
  * Size:	000338
  */
-void findRayIntersection__Q24Game7PlatMgrFRQ23Sys16RayIntersectInfo(void)
+void Game::PlatMgr::findRayIntersection( (Sys::RayIntersectInfo &))
 {
 /*
 .loc_0x0:
@@ -2154,7 +2154,7 @@ void findRayIntersection__Q24Game7PlatMgrFRQ23Sys16RayIntersectInfo(void)
  * Address:	801C6490
  * Size:	0001DC
  */
-void resetOnCount__Q24Game7PlatMgrFv(void)
+void Game::PlatMgr::resetOnCount(void)
 {
 /*
 .loc_0x0:
@@ -2301,7 +2301,7 @@ void resetOnCount__Q24Game7PlatMgrFv(void)
  * Address:	801C666C
  * Size:	000004
  */
-void doDirectDraw__Q24Game7PlatMgrFR8Graphics(void)
+void Game::PlatMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2314,7 +2314,7 @@ void doDirectDraw__Q24Game7PlatMgrFR8Graphics(void)
  * Address:	801C6670
  * Size:	0000E0
  */
-void __dt__Q24Game7PlatMgrFv(void)
+void Game::PlatMgr::__dt(void)
 {
 /*
 .loc_0x0:
@@ -2566,7 +2566,7 @@ void Iterator<Game::PlatInstance>::first()
  * Address:	801C6948
  * Size:	000004
  */
-void checkCollision__Q24Game12PlatInstanceFPQ24Game10CellObject(void)
+void Game::PlatInstance::checkCollision( (Game::CellObject *))
 {
 /*
 .loc_0x0:
@@ -2579,7 +2579,7 @@ void checkCollision__Q24Game12PlatInstanceFPQ24Game10CellObject(void)
  * Address:	801C694C
  * Size:	000004
  */
-void doAnimation__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::doAnimation(void)
 {
 /*
 .loc_0x0:
@@ -2592,7 +2592,7 @@ void doAnimation__Q24Game12PlatInstanceFv(void)
  * Address:	801C6950
  * Size:	000004
  */
-void doEntry__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::doEntry(void)
 {
 /*
 .loc_0x0:
@@ -2605,7 +2605,7 @@ void doEntry__Q24Game12PlatInstanceFv(void)
  * Address:	801C6954
  * Size:	000004
  */
-void doSetView__Q24Game12PlatInstanceFi(void)
+void Game::PlatInstance::doSetView( (int))
 {
 /*
 .loc_0x0:
@@ -2618,7 +2618,7 @@ void doSetView__Q24Game12PlatInstanceFi(void)
  * Address:	801C6958
  * Size:	000004
  */
-void doViewCalc__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::doViewCalc(void)
 {
 /*
 .loc_0x0:
@@ -2631,7 +2631,7 @@ void doViewCalc__Q24Game12PlatInstanceFv(void)
  * Address:	801C695C
  * Size:	000004
  */
-void doSimulation__Q24Game12PlatInstanceFf(void)
+void Game::PlatInstance::doSimulation( (float))
 {
 /*
 .loc_0x0:
@@ -2644,7 +2644,7 @@ void doSimulation__Q24Game12PlatInstanceFf(void)
  * Address:	801C6960
  * Size:	000004
  */
-void doDirectDraw__Q24Game12PlatInstanceFR8Graphics(void)
+void Game::PlatInstance::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
@@ -2657,7 +2657,7 @@ void doDirectDraw__Q24Game12PlatInstanceFR8Graphics(void)
  * Address:	801C6964
  * Size:	00000C
  */
-void getTypeName__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::getTypeName(void)
 {
 /*
 .loc_0x0:
@@ -2672,7 +2672,7 @@ void getTypeName__Q24Game12PlatInstanceFv(void)
  * Address:	801C6970
  * Size:	00000C
  */
-void getObjType__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::getObjType(void)
 {
 /*
 .loc_0x0:
@@ -2687,7 +2687,7 @@ void getObjType__Q24Game12PlatInstanceFv(void)
  * Address:	801C697C
  * Size:	000008
  */
-void collisionUpdatable__Q24Game12PlatInstanceFv(void)
+void Game::PlatInstance::collisionUpdatable(void)
 {
 /*
 .loc_0x0:
@@ -3797,7 +3797,7 @@ void NodeObjectMgr<Game::PlatInstance>::@28@resetMgr()
  * Address:	801C75D4
  * Size:	000008
  */
-void @28@doDirectDraw__Q24Game7PlatMgrFR8Graphics(void)
+void @28@Game::PlatMgr::doDirectDraw( (Graphics &))
 {
 /*
 .loc_0x0:
