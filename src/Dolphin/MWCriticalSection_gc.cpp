@@ -7,7 +7,7 @@
  */
 void MWTerminateCriticalSection(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -17,18 +17,18 @@ void MWTerminateCriticalSection(void)
  */
 void MWExitCriticalSection(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, 0x0(r3)
-  bl        0x2D6B8
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      lwz       r3, 0x0(r3)
+      bl        0x2D6B8
+      lwz       r0, 0x14(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -38,21 +38,21 @@ void MWExitCriticalSection(void)
  */
 void MWEnterCriticalSection(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  bl        0x2D668
-  stw       r3, 0x0(r31)
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r3
+      bl        0x2D668
+      stw       r3, 0x0(r31)
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -62,8 +62,8 @@ void MWEnterCriticalSection(void)
  */
 void MWInitializeCriticalSection(void)
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }

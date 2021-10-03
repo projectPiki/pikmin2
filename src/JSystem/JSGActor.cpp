@@ -7,35 +7,35 @@
  */
 void JStage::TActor::__dt(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x44
-  lis       r5, 0x804A
-  li        r4, 0
-  addi      r0, r5, 0x36C0
-  stw       r0, 0x0(r30)
-  bl        -0xEC
-  extsh.    r0, r31
-  ble-      .loc_0x44
-  mr        r3, r30
-  bl        -0x7491C
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr.       r30, r3
+      beq-      .loc_0x44
+      lis       r5, 0x804A
+      li        r4, 0
+      addi      r0, r5, 0x36C0
+      stw       r0, 0x0(r30)
+      bl        -0xEC
+      extsh.    r0, r31
+      ble-      .loc_0x44
+      mr        r3, r30
+      bl        -0x7491C
 
-.loc_0x44:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x44:
+      lwz       r0, 0x14(r1)
+      mr        r3, r30
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -45,11 +45,11 @@ void JStage::TActor::__dt(void)
  */
 void JStage::TActor::JSGFGetType( const
 {
-/*
-.loc_0x0:
-  li        r3, 0x2
-  blr
-*/
+    /*
+    .loc_0x0:
+      li        r3, 0x2
+      blr
+    */
 }
 
 /*
@@ -59,10 +59,10 @@ void JStage::TActor::JSGFGetType( const
  */
 void JStage::TActor::JSGGetTranslation( const(Vec *))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -72,10 +72,10 @@ void JStage::TActor::JSGGetTranslation( const(Vec *))
  */
 void JStage::TActor::JSGSetTranslation( (Vec const &))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -85,10 +85,10 @@ void JStage::TActor::JSGSetTranslation( (Vec const &))
  */
 void JStage::TActor::JSGGetScaling( const(Vec *))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -98,10 +98,10 @@ void JStage::TActor::JSGGetScaling( const(Vec *))
  */
 void JStage::TActor::JSGSetScaling( (Vec const &))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -111,10 +111,10 @@ void JStage::TActor::JSGSetScaling( (Vec const &))
  */
 void JStage::TActor::JSGGetRotation( const(Vec *))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -124,10 +124,10 @@ void JStage::TActor::JSGGetRotation( const(Vec *))
  */
 void JStage::TActor::JSGSetRotation( (Vec const &))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -137,11 +137,11 @@ void JStage::TActor::JSGSetRotation( (Vec const &))
  */
 void JStage::TActor::JSGGetShape( const
 {
-/*
-.loc_0x0:
-  li        r3, -0x1
-  blr
-*/
+    /*
+    .loc_0x0:
+      li        r3, -0x1
+      blr
+    */
 }
 
 /*
@@ -151,10 +151,10 @@ void JStage::TActor::JSGGetShape( const
  */
 void JStage::TActor::JSGSetShape( (unsigned long))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -164,11 +164,11 @@ void JStage::TActor::JSGSetShape( (unsigned long))
  */
 void JStage::TActor::JSGGetAnimation( const
 {
-/*
-.loc_0x0:
-  li        r3, -0x1
-  blr
-*/
+    /*
+    .loc_0x0:
+      li        r3, -0x1
+      blr
+    */
 }
 
 /*
@@ -178,10 +178,10 @@ void JStage::TActor::JSGGetAnimation( const
  */
 void JStage::TActor::JSGSetAnimation( (unsigned long))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -191,11 +191,11 @@ void JStage::TActor::JSGSetAnimation( (unsigned long))
  */
 void JStage::TActor::JSGGetAnimationFrame( const
 {
-/*
-.loc_0x0:
-  lfs       f1, -0x76E0(r2)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lfs       f1, -0x76E0(r2)
+      blr
+    */
 }
 
 /*
@@ -205,10 +205,10 @@ void JStage::TActor::JSGGetAnimationFrame( const
  */
 void JStage::TActor::JSGSetAnimationFrame( (float))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -218,11 +218,11 @@ void JStage::TActor::JSGSetAnimationFrame( (float))
  */
 void JStage::TActor::JSGGetAnimationFrameMax( const
 {
-/*
-.loc_0x0:
-  lfs       f1, -0x76E0(r2)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lfs       f1, -0x76E0(r2)
+      blr
+    */
 }
 
 /*
@@ -232,11 +232,11 @@ void JStage::TActor::JSGGetAnimationFrameMax( const
  */
 void JStage::TActor::JSGGetAnimationTransition( const
 {
-/*
-.loc_0x0:
-  lfs       f1, -0x76E0(r2)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lfs       f1, -0x76E0(r2)
+      blr
+    */
 }
 
 /*
@@ -246,10 +246,10 @@ void JStage::TActor::JSGGetAnimationTransition( const
  */
 void JStage::TActor::JSGSetAnimationTransition( (float))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -259,11 +259,11 @@ void JStage::TActor::JSGSetAnimationTransition( (float))
  */
 void JStage::TActor::JSGGetTextureAnimation( const
 {
-/*
-.loc_0x0:
-  li        r3, -0x1
-  blr
-*/
+    /*
+    .loc_0x0:
+      li        r3, -0x1
+      blr
+    */
 }
 
 /*
@@ -273,10 +273,10 @@ void JStage::TActor::JSGGetTextureAnimation( const
  */
 void JStage::TActor::JSGSetTextureAnimation( (unsigned long))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -286,11 +286,11 @@ void JStage::TActor::JSGSetTextureAnimation( (unsigned long))
  */
 void JStage::TActor::JSGGetTextureAnimationFrame( const
 {
-/*
-.loc_0x0:
-  lfs       f1, -0x76E0(r2)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lfs       f1, -0x76E0(r2)
+      blr
+    */
 }
 
 /*
@@ -300,10 +300,10 @@ void JStage::TActor::JSGGetTextureAnimationFrame( const
  */
 void JStage::TActor::JSGSetTextureAnimationFrame( (float))
 {
-/*
-.loc_0x0:
-  blr
-*/
+    /*
+    .loc_0x0:
+      blr
+    */
 }
 
 /*
@@ -313,9 +313,9 @@ void JStage::TActor::JSGSetTextureAnimationFrame( (float))
  */
 void JStage::TActor::JSGGetTextureAnimationFrameMax( const
 {
-/*
-.loc_0x0:
-  lfs       f1, -0x76E0(r2)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lfs       f1, -0x76E0(r2)
+      blr
+    */
 }

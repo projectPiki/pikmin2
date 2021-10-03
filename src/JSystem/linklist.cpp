@@ -7,26 +7,26 @@
  */
 void JGadget::TNodeLinkList::__dt(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr.       r31, r3
-  beq-      .loc_0x24
-  extsh.    r0, r4
-  ble-      .loc_0x24
-  bl        -0x3250
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr.       r31, r3
+      beq-      .loc_0x24
+      extsh.    r0, r4
+      ble-      .loc_0x24
+      bl        -0x3250
 
-.loc_0x24:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x24:
+      lwz       r0, 0x14(r1)
+      mr        r3, r31
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -34,9 +34,9 @@ void JGadget::TNodeLinkList::__dt(void)
  * Address:	........
  * Size:	00004C
  */
-void JGadget::TNodeLinkList::erase( (JGadget::TNodeLinkList::iterator))
+void JGadget::TNodeLinkList::erase((JGadget::TNodeLinkList::iterator))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -44,9 +44,10 @@ void JGadget::TNodeLinkList::erase( (JGadget::TNodeLinkList::iterator))
  * Address:	........
  * Size:	000060
  */
-void JGadget::TNodeLinkList::erase( (JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator))
+void JGadget::TNodeLinkList::erase((JGadget::TNodeLinkList::iterator,
+                                    JGadget::TNodeLinkList::iterator))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -56,7 +57,7 @@ void JGadget::TNodeLinkList::erase( (JGadget::TNodeLinkList::iterator, JGadget::
  */
 void JGadget::TNodeLinkList::clear(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -64,9 +65,10 @@ void JGadget::TNodeLinkList::clear(void)
  * Address:	........
  * Size:	00004C
  */
-void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList &))
+void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
+                                     JGadget::TNodeLinkList&))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -74,9 +76,11 @@ void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget:
  * Address:	........
  * Size:	0000A8
  */
-void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList &, JGadget::TNodeLinkList::iterator))
+void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
+                                     JGadget::TNodeLinkList&,
+                                     JGadget::TNodeLinkList::iterator))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -84,9 +88,12 @@ void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget:
  * Address:	........
  * Size:	0000C4
  */
-void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList &, JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator))
+void JGadget::TNodeLinkList::splice((JGadget::TNodeLinkList::iterator,
+                                     JGadget::TNodeLinkList&,
+                                     JGadget::TNodeLinkList::iterator,
+                                     JGadget::TNodeLinkList::iterator))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -94,9 +101,9 @@ void JGadget::TNodeLinkList::splice( (JGadget::TNodeLinkList::iterator, JGadget:
  * Address:	........
  * Size:	000094
  */
-void JGadget::TNodeLinkList::swap( (JGadget::TNodeLinkList &))
+void JGadget::TNodeLinkList::swap((JGadget::TNodeLinkList&))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -106,7 +113,7 @@ void JGadget::TNodeLinkList::swap( (JGadget::TNodeLinkList &))
  */
 void JGadget::TNodeLinkList::reverse(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -114,9 +121,9 @@ void JGadget::TNodeLinkList::reverse(void)
  * Address:	........
  * Size:	000060
  */
-void JGadget::TNodeLinkList::Find( (JGadget::TLinkListNode const *))
+void JGadget::TNodeLinkList::Find((JGadget::TLinkListNode const*))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -124,22 +131,23 @@ void JGadget::TNodeLinkList::Find( (JGadget::TLinkListNode const *))
  * Address:	80027320
  * Size:	00002C
  */
-void JGadget::TNodeLinkList::Insert( (JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode *))
+void JGadget::TNodeLinkList::Insert((JGadget::TNodeLinkList::iterator,
+                                     JGadget::TLinkListNode*))
 {
-/*
-.loc_0x0:
-  lwz       r5, 0x0(r5)
-  lwz       r7, 0x4(r5)
-  stw       r5, 0x0(r6)
-  stw       r7, 0x4(r6)
-  stw       r6, 0x4(r5)
-  stw       r6, 0x0(r7)
-  lwz       r5, 0x0(r4)
-  addi      r0, r5, 0x1
-  stw       r0, 0x0(r4)
-  stw       r6, 0x0(r3)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lwz       r5, 0x0(r5)
+      lwz       r7, 0x4(r5)
+      stw       r5, 0x0(r6)
+      stw       r7, 0x4(r6)
+      stw       r6, 0x4(r5)
+      stw       r6, 0x0(r7)
+      lwz       r5, 0x0(r4)
+      addi      r0, r5, 0x1
+      stw       r0, 0x0(r4)
+      stw       r6, 0x0(r3)
+      blr
+    */
 }
 
 /*
@@ -147,20 +155,20 @@ void JGadget::TNodeLinkList::Insert( (JGadget::TNodeLinkList::iterator, JGadget:
  * Address:	8002734C
  * Size:	000024
  */
-void JGadget::TNodeLinkList::Erase( (JGadget::TLinkListNode *))
+void JGadget::TNodeLinkList::Erase((JGadget::TLinkListNode*))
 {
-/*
-.loc_0x0:
-  lwz       r6, 0x0(r5)
-  lwz       r5, 0x4(r5)
-  stw       r5, 0x4(r6)
-  stw       r6, 0x0(r5)
-  lwz       r5, 0x0(r4)
-  subi      r0, r5, 0x1
-  stw       r0, 0x0(r4)
-  stw       r6, 0x0(r3)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lwz       r6, 0x0(r5)
+      lwz       r5, 0x4(r5)
+      stw       r5, 0x4(r6)
+      stw       r6, 0x0(r5)
+      lwz       r5, 0x0(r4)
+      subi      r0, r5, 0x1
+      stw       r0, 0x0(r4)
+      stw       r6, 0x0(r3)
+      blr
+    */
 }
 
 /*
@@ -168,24 +176,24 @@ void JGadget::TNodeLinkList::Erase( (JGadget::TLinkListNode *))
  * Address:	80027370
  * Size:	00002C
  */
-void JGadget::TNodeLinkList::Remove( (JGadget::TLinkListNode *))
+void JGadget::TNodeLinkList::Remove((JGadget::TLinkListNode*))
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r4, 0x8(r1)
-  stw       r4, 0xC(r1)
-  addi      r4, r1, 0xC
-  bl        .loc_0x2C
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr       
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r4, 0x8(r1)
+      stw       r4, 0xC(r1)
+      addi      r4, r1, 0xC
+      bl        .loc_0x2C
+      lwz       r0, 0x14(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
 
-.loc_0x2C:
-*/
+    .loc_0x2C:
+    */
 }
 
 /*
@@ -193,73 +201,77 @@ void JGadget::TNodeLinkList::Remove( (JGadget::TLinkListNode *))
  * Address:	8002739C
  * Size:	0000E8
  */
-void remove_if<JGadget::@unnamed@linklist_cpp@::TPRIsEqual_pointer_<JGadget::TLinkListNode>>__Q27JGadget13TNodeLinkListFQ37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<JGadget::TLinkListNode>(void)
+void remove_if<JGadget::@unnamed @linklist_cpp
+               @ ::TPRIsEqual_pointer_<JGadget::TLinkListNode>>
+        __Q27JGadget13TNodeLinkListFQ37JGadget22 @unnamed @linklist_cpp
+    @46TPRIsEqual_pointer_
+    < JGadget::TLinkListNode > (void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x50(r1)
-  li        r5, 0
-  lwz       r6, 0x0(r4)
-  addi      r0, r3, 0x4
-  stw       r5, 0x44(r1)
-  addi      r8, r1, 0x44
-  stw       r5, 0x48(r1)
-  stw       r5, 0x40(r1)
-  stw       r8, 0x44(r1)
-  stw       r8, 0x48(r1)
-  lwz       r4, 0x4(r3)
-  stw       r6, 0x3C(r1)
-  stw       r4, 0x20(r1)
-  b         .loc_0xC8
+    /*
+    .loc_0x0:
+      stwu      r1, -0x50(r1)
+      li        r5, 0
+      lwz       r6, 0x0(r4)
+      addi      r0, r3, 0x4
+      stw       r5, 0x44(r1)
+      addi      r8, r1, 0x44
+      stw       r5, 0x48(r1)
+      stw       r5, 0x40(r1)
+      stw       r8, 0x44(r1)
+      stw       r8, 0x48(r1)
+      lwz       r4, 0x4(r3)
+      stw       r6, 0x3C(r1)
+      stw       r4, 0x20(r1)
+      b         .loc_0xC8
 
-.loc_0x38:
-  lwz       r5, 0x20(r1)
-  cmplw     r5, r6
-  bne-      .loc_0xC0
-  lwz       r4, 0x0(r5)
-  cmplw     r8, r5
-  stw       r5, 0x24(r1)
-  stw       r4, 0x20(r1)
-  stw       r5, 0x2C(r1)
-  stw       r8, 0x28(r1)
-  stw       r4, 0x8(r1)
-  stw       r5, 0x10(r1)
-  stw       r8, 0xC(r1)
-  beq-      .loc_0xC8
-  cmplw     r8, r4
-  stw       r4, 0x18(r1)
-  stw       r8, 0x14(r1)
-  beq-      .loc_0xC8
-  lwz       r7, 0x0(r5)
-  lwz       r4, 0x4(r5)
-  stw       r8, 0x1C(r1)
-  stw       r4, 0x4(r7)
-  stw       r7, 0x0(r4)
-  lwz       r4, 0x0(r3)
-  subi      r4, r4, 0x1
-  stw       r4, 0x0(r3)
-  lwz       r4, 0x48(r1)
-  stw       r8, 0x0(r5)
-  stw       r4, 0x4(r5)
-  stw       r5, 0x48(r1)
-  stw       r5, 0x0(r4)
-  lwz       r4, 0x40(r1)
-  addi      r4, r4, 0x1
-  stw       r4, 0x40(r1)
-  b         .loc_0xC8
+    .loc_0x38:
+      lwz       r5, 0x20(r1)
+      cmplw     r5, r6
+      bne-      .loc_0xC0
+      lwz       r4, 0x0(r5)
+      cmplw     r8, r5
+      stw       r5, 0x24(r1)
+      stw       r4, 0x20(r1)
+      stw       r5, 0x2C(r1)
+      stw       r8, 0x28(r1)
+      stw       r4, 0x8(r1)
+      stw       r5, 0x10(r1)
+      stw       r8, 0xC(r1)
+      beq-      .loc_0xC8
+      cmplw     r8, r4
+      stw       r4, 0x18(r1)
+      stw       r8, 0x14(r1)
+      beq-      .loc_0xC8
+      lwz       r7, 0x0(r5)
+      lwz       r4, 0x4(r5)
+      stw       r8, 0x1C(r1)
+      stw       r4, 0x4(r7)
+      stw       r7, 0x0(r4)
+      lwz       r4, 0x0(r3)
+      subi      r4, r4, 0x1
+      stw       r4, 0x0(r3)
+      lwz       r4, 0x48(r1)
+      stw       r8, 0x0(r5)
+      stw       r4, 0x4(r5)
+      stw       r5, 0x48(r1)
+      stw       r5, 0x0(r4)
+      lwz       r4, 0x40(r1)
+      addi      r4, r4, 0x1
+      stw       r4, 0x40(r1)
+      b         .loc_0xC8
 
-.loc_0xC0:
-  lwz       r4, 0x0(r5)
-  stw       r4, 0x20(r1)
+    .loc_0xC0:
+      lwz       r4, 0x0(r5)
+      stw       r4, 0x20(r1)
 
-.loc_0xC8:
-  lwz       r4, 0x20(r1)
-  cmplw     r4, r0
-  stw       r4, 0x38(r1)
-  stw       r4, 0x34(r1)
-  stw       r4, 0x30(r1)
-  bne+      .loc_0x38
-  addi      r1, r1, 0x50
-  blr
-*/
+    .loc_0xC8:
+      lwz       r4, 0x20(r1)
+      cmplw     r4, r0
+      stw       r4, 0x38(r1)
+      stw       r4, 0x34(r1)
+      stw       r4, 0x30(r1)
+      bne+      .loc_0x38
+      addi      r1, r1, 0x50
+      blr
+    */
 }

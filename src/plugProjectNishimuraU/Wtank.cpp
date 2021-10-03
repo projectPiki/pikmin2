@@ -5,9 +5,9 @@
  * Address:	........
  * Size:	0000E4
  */
-void _Print(char *, ...)
+void _Print(char*, ...)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -17,52 +17,52 @@ void _Print(char *, ...)
  */
 void Game::Wtank::Obj::__ct(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  extsh.    r0, r4
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  beq-      .loc_0x3C
-  addi      r0, r31, 0x30C
-  lis       r3, 0x804B
-  stw       r0, 0x17C(r31)
-  subi      r3, r3, 0x5988
-  li        r0, 0
-  stw       r3, 0x30C(r31)
-  stw       r0, 0x310(r31)
-  stw       r0, 0x314(r31)
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      extsh.    r0, r4
+      stw       r31, 0xC(r1)
+      mr        r31, r3
+      beq-      .loc_0x3C
+      addi      r0, r31, 0x30C
+      lis       r3, 0x804B
+      stw       r0, 0x17C(r31)
+      subi      r3, r3, 0x5988
+      li        r0, 0
+      stw       r3, 0x30C(r31)
+      stw       r0, 0x310(r31)
+      stw       r0, 0x314(r31)
 
-.loc_0x3C:
-  mr        r3, r31
-  li        r4, 0
-  bl        -0x6AC4
-  lis       r3, 0x804D
-  addi      r0, r31, 0x30C
-  subi      r5, r3, 0x7F6C
-  mr        r3, r31
-  stw       r5, 0x0(r31)
-  addi      r4, r5, 0x1B0
-  addi      r5, r5, 0x328
-  stw       r4, 0x178(r31)
-  lwz       r4, 0x17C(r31)
-  stw       r5, 0x0(r4)
-  lwz       r4, 0x17C(r31)
-  sub       r0, r0, r4
-  stw       r0, 0xC(r4)
-  lwz       r12, 0x0(r31)
-  lwz       r12, 0x2FC(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x3C:
+      mr        r3, r31
+      li        r4, 0
+      bl        -0x6AC4
+      lis       r3, 0x804D
+      addi      r0, r31, 0x30C
+      subi      r5, r3, 0x7F6C
+      mr        r3, r31
+      stw       r5, 0x0(r31)
+      addi      r4, r5, 0x1B0
+      addi      r5, r5, 0x328
+      stw       r4, 0x178(r31)
+      lwz       r4, 0x17C(r31)
+      stw       r5, 0x0(r4)
+      lwz       r4, 0x17C(r31)
+      sub       r0, r0, r4
+      stw       r0, 0xC(r4)
+      lwz       r12, 0x0(r31)
+      lwz       r12, 0x2FC(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      mr        r3, r31
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -72,118 +72,118 @@ void Game::Wtank::Obj::__ct(void)
  */
 void Game::Wtank::Obj::changeMaterial(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stmw      r27, 0xC(r1)
-  mr        r27, r3
-  lwz       r3, 0x180(r3)
-  lwz       r4, 0x174(r27)
-  lwz       r12, 0x0(r3)
-  lwz       r29, 0x8(r4)
-  lwz       r12, 0xE0(r12)
-  lwz       r30, 0x4(r29)
-  mtctr     r12
-  bctrl     
-  mr        r31, r3
-  mr        r3, r29
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r4, 0x174(r27)
-  lis       r3, 0x8051
-  lbz       r0, 0x0(r31)
-  subi      r27, r3, 0xDD0
-  lwz       r3, 0x8(r4)
-  li        r28, 0
-  lwz       r3, 0x4(r3)
-  lwz       r4, 0x6C(r3)
-  lwz       r3, 0x4(r4)
-  stb       r0, 0x0(r3)
-  lbz       r0, 0x1(r31)
-  stb       r0, 0x1(r3)
-  lhz       r0, 0x2(r31)
-  sth       r0, 0x2(r3)
-  lhz       r0, 0x4(r31)
-  sth       r0, 0x4(r3)
-  lbz       r0, 0x6(r31)
-  stb       r0, 0x6(r3)
-  lbz       r0, 0x7(r31)
-  stb       r0, 0x7(r3)
-  lbz       r0, 0x8(r31)
-  stb       r0, 0x8(r3)
-  lbz       r0, 0x9(r31)
-  stb       r0, 0x9(r3)
-  lhz       r0, 0xA(r31)
-  sth       r0, 0xA(r3)
-  lwz       r0, 0xC(r31)
-  stw       r0, 0xC(r3)
-  lbz       r0, 0x10(r31)
-  stb       r0, 0x10(r3)
-  lbz       r0, 0x11(r31)
-  stb       r0, 0x11(r3)
-  lbz       r0, 0x12(r31)
-  stb       r0, 0x12(r3)
-  lbz       r0, 0x13(r31)
-  stb       r0, 0x13(r3)
-  lbz       r0, 0x14(r31)
-  stb       r0, 0x14(r3)
-  lbz       r0, 0x15(r31)
-  stb       r0, 0x15(r3)
-  lbz       r0, 0x16(r31)
-  stb       r0, 0x16(r3)
-  lbz       r0, 0x17(r31)
-  stb       r0, 0x17(r3)
-  lbz       r0, 0x18(r31)
-  stb       r0, 0x18(r3)
-  lbz       r0, 0x19(r31)
-  stb       r0, 0x19(r3)
-  lha       r0, 0x1A(r31)
-  sth       r0, 0x1A(r3)
-  lwz       r0, 0x1C(r31)
-  stw       r0, 0x1C(r3)
-  lwz       r3, 0x4(r4)
-  lwz       r0, 0x1C(r3)
-  add       r0, r31, r0
-  sub       r0, r0, r3
-  stw       r0, 0x1C(r3)
-  lwz       r3, 0x4(r4)
-  lwz       r0, 0xC(r3)
-  add       r0, r31, r0
-  sub       r0, r0, r3
-  stw       r0, 0xC(r3)
-  b         .loc_0x180
+    /*
+    .loc_0x0:
+      stwu      r1, -0x20(r1)
+      mflr      r0
+      stw       r0, 0x24(r1)
+      stmw      r27, 0xC(r1)
+      mr        r27, r3
+      lwz       r3, 0x180(r3)
+      lwz       r4, 0x174(r27)
+      lwz       r12, 0x0(r3)
+      lwz       r29, 0x8(r4)
+      lwz       r12, 0xE0(r12)
+      lwz       r30, 0x4(r29)
+      mtctr     r12
+      bctrl
+      mr        r31, r3
+      mr        r3, r29
+      lwz       r12, 0x0(r29)
+      lwz       r12, 0x14(r12)
+      mtctr     r12
+      bctrl
+      lwz       r4, 0x174(r27)
+      lis       r3, 0x8051
+      lbz       r0, 0x0(r31)
+      subi      r27, r3, 0xDD0
+      lwz       r3, 0x8(r4)
+      li        r28, 0
+      lwz       r3, 0x4(r3)
+      lwz       r4, 0x6C(r3)
+      lwz       r3, 0x4(r4)
+      stb       r0, 0x0(r3)
+      lbz       r0, 0x1(r31)
+      stb       r0, 0x1(r3)
+      lhz       r0, 0x2(r31)
+      sth       r0, 0x2(r3)
+      lhz       r0, 0x4(r31)
+      sth       r0, 0x4(r3)
+      lbz       r0, 0x6(r31)
+      stb       r0, 0x6(r3)
+      lbz       r0, 0x7(r31)
+      stb       r0, 0x7(r3)
+      lbz       r0, 0x8(r31)
+      stb       r0, 0x8(r3)
+      lbz       r0, 0x9(r31)
+      stb       r0, 0x9(r3)
+      lhz       r0, 0xA(r31)
+      sth       r0, 0xA(r3)
+      lwz       r0, 0xC(r31)
+      stw       r0, 0xC(r3)
+      lbz       r0, 0x10(r31)
+      stb       r0, 0x10(r3)
+      lbz       r0, 0x11(r31)
+      stb       r0, 0x11(r3)
+      lbz       r0, 0x12(r31)
+      stb       r0, 0x12(r3)
+      lbz       r0, 0x13(r31)
+      stb       r0, 0x13(r3)
+      lbz       r0, 0x14(r31)
+      stb       r0, 0x14(r3)
+      lbz       r0, 0x15(r31)
+      stb       r0, 0x15(r3)
+      lbz       r0, 0x16(r31)
+      stb       r0, 0x16(r3)
+      lbz       r0, 0x17(r31)
+      stb       r0, 0x17(r3)
+      lbz       r0, 0x18(r31)
+      stb       r0, 0x18(r3)
+      lbz       r0, 0x19(r31)
+      stb       r0, 0x19(r3)
+      lha       r0, 0x1A(r31)
+      sth       r0, 0x1A(r3)
+      lwz       r0, 0x1C(r31)
+      stw       r0, 0x1C(r3)
+      lwz       r3, 0x4(r4)
+      lwz       r0, 0x1C(r3)
+      add       r0, r31, r0
+      sub       r0, r0, r3
+      stw       r0, 0x1C(r3)
+      lwz       r3, 0x4(r4)
+      lwz       r0, 0xC(r3)
+      add       r0, r31, r0
+      sub       r0, r0, r3
+      stw       r0, 0xC(r3)
+      b         .loc_0x180
 
-.loc_0x148:
-  lwz       r4, 0xC0(r29)
-  rlwinm    r3,r28,6,10,25
-  rlwinm    r0,r28,2,14,29
-  add       r4, r4, r3
-  stw       r4, 0x3C(r27)
-  lwz       r3, 0x60(r30)
-  lwz       r4, 0x2C(r4)
-  lwzx      r3, r3, r0
-  lwz       r4, 0x34(r4)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x24(r12)
-  mtctr     r12
-  bctrl     
-  addi      r28, r28, 0x1
+    .loc_0x148:
+      lwz       r4, 0xC0(r29)
+      rlwinm    r3,r28,6,10,25
+      rlwinm    r0,r28,2,14,29
+      add       r4, r4, r3
+      stw       r4, 0x3C(r27)
+      lwz       r3, 0x60(r30)
+      lwz       r4, 0x2C(r4)
+      lwzx      r3, r3, r0
+      lwz       r4, 0x34(r4)
+      lwz       r12, 0x0(r3)
+      lwz       r12, 0x24(r12)
+      mtctr     r12
+      bctrl
+      addi      r28, r28, 0x1
 
-.loc_0x180:
-  lhz       r0, 0x5C(r30)
-  rlwinm    r3,r28,0,16,31
-  cmplw     r3, r0
-  blt+      .loc_0x148
-  lmw       r27, 0xC(r1)
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
+    .loc_0x180:
+      lhz       r0, 0x5C(r30)
+      rlwinm    r3,r28,0,16,31
+      cmplw     r3, r0
+      blt+      .loc_0x148
+      lmw       r27, 0xC(r1)
+      lwz       r0, 0x24(r1)
+      mtlr      r0
+      addi      r1, r1, 0x20
+      blr
+    */
 }
 
 /*
@@ -193,114 +193,114 @@ void Game::Wtank::Obj::changeMaterial(void)
  */
 void Game::Wtank::Obj::createEffect(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  stw       r30, 0x18(r1)
-  mr        r30, r3
-  li        r3, 0x90
-  stw       r29, 0x14(r1)
-  stw       r28, 0x10(r1)
-  bl        -0x258BD4
-  mr.       r31, r3
-  beq-      .loc_0x178
-  li        r4, 0
-  li        r5, 0x1B6
-  li        r6, 0x1B7
-  li        r7, 0x1B8
-  li        r8, 0x1B9
-  bl        0x133BC4
-  lis       r3, 0x804E
-  lis       r6, 0x804B
-  addi      r0, r3, 0x6C4C
-  lis       r4, 0x804A
-  stw       r0, 0x0(r31)
-  addi      r0, r4, 0x3358
-  lis       r3, 0x804E
-  lfs       f0, -0x2E40(r2)
-  stw       r0, 0x54(r31)
-  addi      r0, r3, 0x6CE4
-  lis       r3, 0x804E
-  li        r8, 0
-  stw       r0, 0x54(r31)
-  addi      r5, r3, 0x6A8C
-  subi      r7, r6, 0x5808
-  lis       r4, 0x804A
-  stfs      f0, 0x58(r31)
-  subi      r6, r4, 0x1D84
-  addi      r4, r5, 0x14
-  li        r3, 0x1BA
-  stw       r8, 0x5C(r31)
-  li        r0, 0xA
-  addi      r29, r31, 0x60
-  stw       r7, 0x60(r31)
-  stw       r6, 0x64(r31)
-  stw       r5, 0x60(r31)
-  stw       r4, 0x64(r31)
-  stw       r8, 0x68(r31)
-  sth       r3, 0x6C(r31)
-  stw       r8, 0x74(r31)
-  stw       r0, 0x78(r31)
-  lwz       r28, 0x78(r31)
-  mulli     r3, r28, 0xC
-  addi      r3, r3, 0x10
-  bl        -0x258B78
-  lis       r4, 0x8012
-  mr        r7, r28
-  subi      r4, r4, 0xCB8
-  li        r5, 0
-  li        r6, 0xC
-  bl        -0x1BB14C
-  lis       r4, 0x804D
-  stw       r3, 0x10(r29)
-  subi      r3, r4, 0x7FAC
-  lis       r4, 0x804B
-  stw       r3, 0x0(r29)
-  addi      r0, r3, 0x14
-  lis       r5, 0x804A
-  lis       r3, 0x804E
-  stw       r0, 0x4(r29)
-  subi      r0, r4, 0x5808
-  addi      r4, r3, 0x698C
-  lis       r3, 0x804E
-  stw       r0, 0x7C(r31)
-  subi      r0, r5, 0x1D84
-  addi      r6, r3, 0x68A8
-  lis       r3, 0x804D
-  stw       r0, 0x80(r31)
-  subi      r3, r3, 0x7FF8
-  addi      r0, r4, 0x14
-  li        r8, 0
-  stw       r4, 0x7C(r31)
-  li        r7, 0x2B2
-  addi      r5, r6, 0x14
-  li        r4, 0x1BB
-  stw       r0, 0x80(r31)
-  addi      r0, r3, 0x14
-  stw       r8, 0x84(r31)
-  sth       r7, 0x88(r31)
-  stb       r8, 0x8A(r31)
-  stw       r6, 0x7C(r31)
-  stw       r5, 0x80(r31)
-  stw       r8, 0x8C(r31)
-  sth       r4, 0x88(r31)
-  stw       r3, 0x7C(r31)
-  stw       r0, 0x80(r31)
+    /*
+    .loc_0x0:
+      stwu      r1, -0x20(r1)
+      mflr      r0
+      stw       r0, 0x24(r1)
+      stw       r31, 0x1C(r1)
+      stw       r30, 0x18(r1)
+      mr        r30, r3
+      li        r3, 0x90
+      stw       r29, 0x14(r1)
+      stw       r28, 0x10(r1)
+      bl        -0x258BD4
+      mr.       r31, r3
+      beq-      .loc_0x178
+      li        r4, 0
+      li        r5, 0x1B6
+      li        r6, 0x1B7
+      li        r7, 0x1B8
+      li        r8, 0x1B9
+      bl        0x133BC4
+      lis       r3, 0x804E
+      lis       r6, 0x804B
+      addi      r0, r3, 0x6C4C
+      lis       r4, 0x804A
+      stw       r0, 0x0(r31)
+      addi      r0, r4, 0x3358
+      lis       r3, 0x804E
+      lfs       f0, -0x2E40(r2)
+      stw       r0, 0x54(r31)
+      addi      r0, r3, 0x6CE4
+      lis       r3, 0x804E
+      li        r8, 0
+      stw       r0, 0x54(r31)
+      addi      r5, r3, 0x6A8C
+      subi      r7, r6, 0x5808
+      lis       r4, 0x804A
+      stfs      f0, 0x58(r31)
+      subi      r6, r4, 0x1D84
+      addi      r4, r5, 0x14
+      li        r3, 0x1BA
+      stw       r8, 0x5C(r31)
+      li        r0, 0xA
+      addi      r29, r31, 0x60
+      stw       r7, 0x60(r31)
+      stw       r6, 0x64(r31)
+      stw       r5, 0x60(r31)
+      stw       r4, 0x64(r31)
+      stw       r8, 0x68(r31)
+      sth       r3, 0x6C(r31)
+      stw       r8, 0x74(r31)
+      stw       r0, 0x78(r31)
+      lwz       r28, 0x78(r31)
+      mulli     r3, r28, 0xC
+      addi      r3, r3, 0x10
+      bl        -0x258B78
+      lis       r4, 0x8012
+      mr        r7, r28
+      subi      r4, r4, 0xCB8
+      li        r5, 0
+      li        r6, 0xC
+      bl        -0x1BB14C
+      lis       r4, 0x804D
+      stw       r3, 0x10(r29)
+      subi      r3, r4, 0x7FAC
+      lis       r4, 0x804B
+      stw       r3, 0x0(r29)
+      addi      r0, r3, 0x14
+      lis       r5, 0x804A
+      lis       r3, 0x804E
+      stw       r0, 0x4(r29)
+      subi      r0, r4, 0x5808
+      addi      r4, r3, 0x698C
+      lis       r3, 0x804E
+      stw       r0, 0x7C(r31)
+      subi      r0, r5, 0x1D84
+      addi      r6, r3, 0x68A8
+      lis       r3, 0x804D
+      stw       r0, 0x80(r31)
+      subi      r3, r3, 0x7FF8
+      addi      r0, r4, 0x14
+      li        r8, 0
+      stw       r4, 0x7C(r31)
+      li        r7, 0x2B2
+      addi      r5, r6, 0x14
+      li        r4, 0x1BB
+      stw       r0, 0x80(r31)
+      addi      r0, r3, 0x14
+      stw       r8, 0x84(r31)
+      sth       r7, 0x88(r31)
+      stb       r8, 0x8A(r31)
+      stw       r6, 0x7C(r31)
+      stw       r5, 0x80(r31)
+      stw       r8, 0x8C(r31)
+      sth       r4, 0x88(r31)
+      stw       r3, 0x7C(r31)
+      stw       r0, 0x80(r31)
 
-.loc_0x178:
-  stw       r31, 0x308(r30)
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  lwz       r28, 0x10(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
+    .loc_0x178:
+      stw       r31, 0x308(r30)
+      lwz       r0, 0x24(r1)
+      lwz       r31, 0x1C(r1)
+      lwz       r30, 0x18(r1)
+      lwz       r29, 0x14(r1)
+      lwz       r28, 0x10(r1)
+      mtlr      r0
+      addi      r1, r1, 0x20
+      blr
+    */
 }
 
 /*
@@ -310,52 +310,52 @@ void Game::Wtank::Obj::createEffect(void)
  */
 void efx::TTankWatYodare::__dt(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x80
-  lis       r3, 0x804D
-  subi      r3, r3, 0x7FF8
-  stw       r3, 0x0(r30)
-  addi      r0, r3, 0x14
-  stw       r0, 0x4(r30)
-  beq-      .loc_0x70
-  lis       r3, 0x804E
-  addi      r3, r3, 0x68A8
-  stw       r3, 0x0(r30)
-  addi      r0, r3, 0x14
-  stw       r0, 0x4(r30)
-  beq-      .loc_0x70
-  lis       r4, 0x804E
-  addi      r3, r30, 0x4
-  addi      r5, r4, 0x698C
-  li        r4, 0
-  stw       r5, 0x0(r30)
-  addi      r0, r5, 0x14
-  stw       r0, 0x4(r30)
-  bl        -0x1ECFC0
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr.       r30, r3
+      beq-      .loc_0x80
+      lis       r3, 0x804D
+      subi      r3, r3, 0x7FF8
+      stw       r3, 0x0(r30)
+      addi      r0, r3, 0x14
+      stw       r0, 0x4(r30)
+      beq-      .loc_0x70
+      lis       r3, 0x804E
+      addi      r3, r3, 0x68A8
+      stw       r3, 0x0(r30)
+      addi      r0, r3, 0x14
+      stw       r0, 0x4(r30)
+      beq-      .loc_0x70
+      lis       r4, 0x804E
+      addi      r3, r30, 0x4
+      addi      r5, r4, 0x698C
+      li        r4, 0
+      stw       r5, 0x0(r30)
+      addi      r0, r5, 0x14
+      stw       r0, 0x4(r30)
+      bl        -0x1ECFC0
 
-.loc_0x70:
-  extsh.    r0, r31
-  ble-      .loc_0x80
-  mr        r3, r30
-  bl        -0x258BB8
+    .loc_0x70:
+      extsh.    r0, r31
+      ble-      .loc_0x80
+      mr        r3, r30
+      bl        -0x258BB8
 
-.loc_0x80:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x80:
+      lwz       r0, 0x14(r1)
+      mr        r3, r30
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -365,7 +365,7 @@ void efx::TTankWatYodare::__dt(void)
  */
 void efx::TTankWat::__dt(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -375,46 +375,46 @@ void efx::TTankWat::__dt(void)
  */
 void efx::TTankWatHit::__dt(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x68
-  lis       r3, 0x804D
-  subi      r3, r3, 0x7FAC
-  stw       r3, 0x0(r30)
-  addi      r0, r3, 0x14
-  stw       r0, 0x4(r30)
-  beq-      .loc_0x58
-  lis       r4, 0x804E
-  addi      r3, r30, 0x4
-  addi      r5, r4, 0x6A8C
-  li        r4, 0
-  stw       r5, 0x0(r30)
-  addi      r0, r5, 0x14
-  stw       r0, 0x4(r30)
-  bl        -0x1ED044
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr.       r30, r3
+      beq-      .loc_0x68
+      lis       r3, 0x804D
+      subi      r3, r3, 0x7FAC
+      stw       r3, 0x0(r30)
+      addi      r0, r3, 0x14
+      stw       r0, 0x4(r30)
+      beq-      .loc_0x58
+      lis       r4, 0x804E
+      addi      r3, r30, 0x4
+      addi      r5, r4, 0x6A8C
+      li        r4, 0
+      stw       r5, 0x0(r30)
+      addi      r0, r5, 0x14
+      stw       r0, 0x4(r30)
+      bl        -0x1ED044
 
-.loc_0x58:
-  extsh.    r0, r31
-  ble-      .loc_0x68
-  mr        r3, r30
-  bl        -0x258C3C
+    .loc_0x58:
+      extsh.    r0, r31
+      ble-      .loc_0x68
+      mr        r3, r30
+      bl        -0x258C3C
 
-.loc_0x68:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x68:
+      lwz       r0, 0x14(r1)
+      mr        r3, r30
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -424,38 +424,38 @@ void efx::TTankWatHit::__dt(void)
  */
 void efx::TOneEmitterSimple::__dt(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x50
-  lis       r4, 0x804E
-  addi      r3, r30, 0x4
-  addi      r5, r4, 0x6A8C
-  li        r4, 0
-  stw       r5, 0x0(r30)
-  addi      r0, r5, 0x14
-  stw       r0, 0x4(r30)
-  bl        -0x1ED0B0
-  extsh.    r0, r31
-  ble-      .loc_0x50
-  mr        r3, r30
-  bl        -0x258CA8
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr.       r30, r3
+      beq-      .loc_0x50
+      lis       r4, 0x804E
+      addi      r3, r30, 0x4
+      addi      r5, r4, 0x6A8C
+      li        r4, 0
+      stw       r5, 0x0(r30)
+      addi      r0, r5, 0x14
+      stw       r0, 0x4(r30)
+      bl        -0x1ED0B0
+      extsh.    r0, r31
+      ble-      .loc_0x50
+      mr        r3, r30
+      bl        -0x258CA8
 
-.loc_0x50:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x50:
+      lwz       r0, 0x14(r1)
+      mr        r3, r30
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -465,35 +465,35 @@ void efx::TOneEmitterSimple::__dt(void)
  */
 void efx::TParticleCallBack_TankFire::__dt(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x44
-  lis       r5, 0x804E
-  li        r4, 0
-  addi      r0, r5, 0x6CE4
-  stw       r0, 0x0(r30)
-  bl        -0x1E8D84
-  extsh.    r0, r31
-  ble-      .loc_0x44
-  mr        r3, r30
-  bl        -0x258D08
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr.       r30, r3
+      beq-      .loc_0x44
+      lis       r5, 0x804E
+      li        r4, 0
+      addi      r0, r5, 0x6CE4
+      stw       r0, 0x0(r30)
+      bl        -0x1E8D84
+      extsh.    r0, r31
+      ble-      .loc_0x44
+      mr        r3, r30
+      bl        -0x258D08
 
-.loc_0x44:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x44:
+      lwz       r0, 0x14(r1)
+      mr        r3, r30
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -503,7 +503,7 @@ void efx::TParticleCallBack_TankFire::__dt(void)
  */
 void efx::TChaseMtx4::__dt(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -513,29 +513,29 @@ void efx::TChaseMtx4::__dt(void)
  */
 void Game::Wtank::Obj::setupEffect(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  lwz       r3, 0x2C0(r3)
-  bl        0x1ACAA8
-  lwz       r31, 0x308(r30)
-  mr        r30, r3
-  mr        r4, r30
-  mr        r3, r31
-  bl        0x1338FC
-  stw       r30, 0x8C(r31)
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      stw       r30, 0x8(r1)
+      mr        r30, r3
+      lwz       r3, 0x2C0(r3)
+      bl        0x1ACAA8
+      lwz       r31, 0x308(r30)
+      mr        r30, r3
+      mr        r4, r30
+      mr        r3, r31
+      bl        0x1338FC
+      stw       r30, 0x8C(r31)
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -545,22 +545,22 @@ void Game::Wtank::Obj::setupEffect(void)
  */
 void Game::Wtank::Obj::startEffect(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  li        r4, 0
-  stw       r0, 0x14(r1)
-  lwz       r3, 0x308(r3)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x8(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      li        r4, 0
+      stw       r0, 0x14(r1)
+      lwz       r3, 0x308(r3)
+      lwz       r12, 0x0(r3)
+      lwz       r12, 0x8(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -570,30 +570,30 @@ void Game::Wtank::Obj::startEffect(void)
  */
 void Game::Wtank::Obj::startYodare(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  lwz       r31, 0x308(r3)
-  lwz       r12, 0x0(r31)
-  mr        r3, r31
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl     
-  addi      r3, r31, 0x7C
-  li        r4, 0
-  lwz       r12, 0x7C(r31)
-  lwz       r12, 0x8(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      lwz       r31, 0x308(r3)
+      lwz       r12, 0x0(r31)
+      mr        r3, r31
+      lwz       r12, 0x10(r12)
+      mtctr     r12
+      bctrl
+      addi      r3, r31, 0x7C
+      li        r4, 0
+      lwz       r12, 0x7C(r31)
+      lwz       r12, 0x8(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -603,29 +603,29 @@ void Game::Wtank::Obj::startYodare(void)
  */
 void efx::TTankWat::fade(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  bl        0x13447C
-  lwz       r3, 0x5C(r31)
-  cmplwi    r3, 0
-  beq-      .loc_0x34
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl     
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r3
+      bl        0x13447C
+      lwz       r3, 0x5C(r31)
+      cmplwi    r3, 0
+      beq-      .loc_0x34
+      lwz       r12, 0x0(r3)
+      lwz       r12, 0x10(r12)
+      mtctr     r12
+      bctrl
 
-.loc_0x34:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x34:
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -635,28 +635,28 @@ void efx::TTankWat::fade(void)
  */
 void efx::TOneEmitterSimple::fade(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  lwz       r4, 0x8(r3)
-  cmplwi    r4, 0
-  beq-      .loc_0x30
-  lwz       r3, -0x65E8(r13)
-  bl        0x13EB8C
-  li        r0, 0
-  stw       r0, 0x8(r31)
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r3
+      lwz       r4, 0x8(r3)
+      cmplwi    r4, 0
+      beq-      .loc_0x30
+      lwz       r3, -0x65E8(r13)
+      bl        0x13EB8C
+      li        r0, 0
+      stw       r0, 0x8(r31)
 
-.loc_0x30:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x30:
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -666,29 +666,29 @@ void efx::TOneEmitterSimple::fade(void)
  */
 void Game::Wtank::Obj::finishEffect(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  lwz       r31, 0x308(r3)
-  lwz       r12, 0x0(r31)
-  mr        r3, r31
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl     
-  addi      r3, r31, 0x7C
-  lwz       r12, 0x7C(r31)
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      lwz       r31, 0x308(r3)
+      lwz       r12, 0x0(r31)
+      mr        r3, r31
+      lwz       r12, 0x10(r12)
+      mtctr     r12
+      bctrl
+      addi      r3, r31, 0x7C
+      lwz       r12, 0x7C(r31)
+      lwz       r12, 0x10(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -698,29 +698,29 @@ void Game::Wtank::Obj::finishEffect(void)
  */
 void Game::Wtank::Obj::effectDrawOn(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  lwz       r31, 0x308(r3)
-  lwz       r12, 0x0(r31)
-  mr        r3, r31
-  lwz       r12, 0x18(r12)
-  mtctr     r12
-  bctrl     
-  addi      r3, r31, 0x7C
-  lwz       r12, 0x7C(r31)
-  lwz       r12, 0x44(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      lwz       r31, 0x308(r3)
+      lwz       r12, 0x0(r31)
+      mr        r3, r31
+      lwz       r12, 0x18(r12)
+      mtctr     r12
+      bctrl
+      addi      r3, r31, 0x7C
+      lwz       r12, 0x7C(r31)
+      lwz       r12, 0x44(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -730,25 +730,25 @@ void Game::Wtank::Obj::effectDrawOn(void)
  */
 void efx::TTankWat::endDemoDrawOn(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  bl        0x134458
-  addi      r3, r31, 0x60
-  lwz       r12, 0x60(r31)
-  lwz       r12, 0x38(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r3
+      bl        0x134458
+      addi      r3, r31, 0x60
+      lwz       r12, 0x60(r31)
+      lwz       r12, 0x38(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -758,16 +758,16 @@ void efx::TTankWat::endDemoDrawOn(void)
  */
 void efx::TOneEmitterSimple::endDemoDrawOn(void)
 {
-/*
-.loc_0x0:
-  lwz       r3, 0x8(r3)
-  cmplwi    r3, 0
-  beqlr-    
-  lwz       r0, 0xF4(r3)
-  rlwinm    r0,r0,0,30,28
-  stw       r0, 0xF4(r3)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lwz       r3, 0x8(r3)
+      cmplwi    r3, 0
+      beqlr-
+      lwz       r0, 0xF4(r3)
+      rlwinm    r0,r0,0,30,28
+      stw       r0, 0xF4(r3)
+      blr
+    */
 }
 
 /*
@@ -777,29 +777,29 @@ void efx::TOneEmitterSimple::endDemoDrawOn(void)
  */
 void Game::Wtank::Obj::effectDrawOff(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  lwz       r31, 0x308(r3)
-  lwz       r12, 0x0(r31)
-  mr        r3, r31
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl     
-  addi      r3, r31, 0x7C
-  lwz       r12, 0x7C(r31)
-  lwz       r12, 0x40(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      lwz       r31, 0x308(r3)
+      lwz       r12, 0x0(r31)
+      mr        r3, r31
+      lwz       r12, 0x14(r12)
+      mtctr     r12
+      bctrl
+      addi      r3, r31, 0x7C
+      lwz       r12, 0x7C(r31)
+      lwz       r12, 0x40(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -809,25 +809,25 @@ void Game::Wtank::Obj::effectDrawOff(void)
  */
 void efx::TTankWat::startDemoDrawOff(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  bl        0x134354
-  addi      r3, r31, 0x60
-  lwz       r12, 0x60(r31)
-  lwz       r12, 0x34(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r3
+      bl        0x134354
+      addi      r3, r31, 0x60
+      lwz       r12, 0x60(r31)
+      lwz       r12, 0x34(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -837,16 +837,16 @@ void efx::TTankWat::startDemoDrawOff(void)
  */
 void efx::TOneEmitterSimple::startDemoDrawOff(void)
 {
-/*
-.loc_0x0:
-  lwz       r3, 0x8(r3)
-  cmplwi    r3, 0
-  beqlr-    
-  lwz       r0, 0xF4(r3)
-  ori       r0, r0, 0x4
-  stw       r0, 0xF4(r3)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lwz       r3, 0x8(r3)
+      cmplwi    r3, 0
+      beqlr-
+      lwz       r0, 0xF4(r3)
+      ori       r0, r0, 0x4
+      stw       r0, 0xF4(r3)
+      blr
+    */
 }
 
 /*
@@ -854,35 +854,35 @@ void efx::TOneEmitterSimple::startDemoDrawOff(void)
  * Address:	8027D0E8
  * Size:	000060
  */
-void Game::Wtank::Obj::interactCreature( (Game::Creature *))
+void Game::Wtank::Obj::interactCreature((Game::Creature*))
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lis       r6, 0x804B
-  mr        r8, r4
-  stw       r0, 0x24(r1)
-  lis       r5, 0x804B
-  subi      r6, r6, 0x5D00
-  addi      r4, r1, 0x8
-  lwz       r7, 0xC0(r3)
-  addi      r0, r5, 0x4830
-  lfs       f0, 0x604(r7)
-  stw       r6, 0x8(r1)
-  stw       r3, 0xC(r1)
-  mr        r3, r8
-  stw       r0, 0x8(r1)
-  stfs      f0, 0x10(r1)
-  lwz       r12, 0x0(r8)
-  lwz       r12, 0x1A4(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x20(r1)
+      mflr      r0
+      lis       r6, 0x804B
+      mr        r8, r4
+      stw       r0, 0x24(r1)
+      lis       r5, 0x804B
+      subi      r6, r6, 0x5D00
+      addi      r4, r1, 0x8
+      lwz       r7, 0xC0(r3)
+      addi      r0, r5, 0x4830
+      lfs       f0, 0x604(r7)
+      stw       r6, 0x8(r1)
+      stw       r3, 0xC(r1)
+      mr        r3, r8
+      stw       r0, 0x8(r1)
+      stfs      f0, 0x10(r1)
+      lwz       r12, 0x0(r8)
+      lwz       r12, 0x1A4(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x24(r1)
+      mtlr      r0
+      addi      r1, r1, 0x20
+      blr
+    */
 }
 
 /*
@@ -890,14 +890,14 @@ void Game::Wtank::Obj::interactCreature( (Game::Creature *))
  * Address:	8027D148
  * Size:	00000C
  */
-void Game::Wtank::Obj::stopEffectRadius( (float))
+void Game::Wtank::Obj::stopEffectRadius((float))
 {
-/*
-.loc_0x0:
-  lwz       r3, 0x308(r3)
-  stfs      f1, 0x58(r3)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lwz       r3, 0x308(r3)
+      stfs      f1, 0x58(r3)
+      blr
+    */
 }
 
 /*
@@ -907,26 +907,26 @@ void Game::Wtank::Obj::stopEffectRadius( (float))
  */
 void Game::Wtank::Obj::createChargeSE(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0xF4(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r12, 0x0(r3)
-  li        r4, 0x5963
-  li        r5, 0
-  lwz       r12, 0xC(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      lwz       r12, 0x0(r3)
+      lwz       r12, 0xF4(r12)
+      mtctr     r12
+      bctrl
+      lwz       r12, 0x0(r3)
+      li        r4, 0x5963
+      li        r5, 0
+      lwz       r12, 0xC(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -936,26 +936,26 @@ void Game::Wtank::Obj::createChargeSE(void)
  */
 void Game::Wtank::Obj::createDisChargeSE(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0xF4(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r12, 0x0(r3)
-  li        r4, 0x50AA
-  li        r5, 0
-  lwz       r12, 0xC(r12)
-  mtctr     r12
-  bctrl     
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      lwz       r12, 0x0(r3)
+      lwz       r12, 0xF4(r12)
+      mtctr     r12
+      bctrl
+      lwz       r12, 0x0(r3)
+      li        r4, 0x50AA
+      li        r5, 0
+      lwz       r12, 0xC(r12)
+      mtctr     r12
+      bctrl
+      lwz       r0, 0x14(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -965,28 +965,28 @@ void Game::Wtank::Obj::createDisChargeSE(void)
  */
 void efx::TOneEmitterSimple::forceKill(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  lwz       r4, 0x8(r3)
-  cmplwi    r4, 0
-  beq-      .loc_0x30
-  lwz       r3, -0x65E8(r13)
-  bl        0x13E880
-  li        r0, 0
-  stw       r0, 0x8(r31)
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r3
+      lwz       r4, 0x8(r3)
+      cmplwi    r4, 0
+      beq-      .loc_0x30
+      lwz       r3, -0x65E8(r13)
+      bl        0x13E880
+      li        r0, 0
+      stw       r0, 0x8(r31)
 
-.loc_0x30:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x30:
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -996,11 +996,11 @@ void efx::TOneEmitterSimple::forceKill(void)
  */
 void Game::Wtank::Obj::getEnemyTypeID(void)
 {
-/*
-.loc_0x0:
-  li        r3, 0x19
-  blr
-*/
+    /*
+    .loc_0x0:
+      li        r3, 0x19
+      blr
+    */
 }
 
 /*
@@ -1008,16 +1008,16 @@ void Game::Wtank::Obj::getEnemyTypeID(void)
  * Address:	8027D228
  * Size:	000014
  */
-void @780@12@Game::EnemyBase::viewOnPelletKilled(void)
+void @780 @12 @Game::EnemyBase::viewOnPelletKilled(void)
 {
-/*
-.loc_0x0:
-  li        r11, 0xC
-  lwzx      r11, r3, r11
-  add       r3, r3, r11
-  subi      r3, r3, 0x30C
-  b         -0x17691C
-*/
+    /*
+    .loc_0x0:
+      li        r11, 0xC
+      lwzx      r11, r3, r11
+      add       r3, r3, r11
+      subi      r3, r3, 0x30C
+      b         -0x17691C
+    */
 }
 
 /*
@@ -1025,16 +1025,16 @@ void @780@12@Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8027D23C
  * Size:	000014
  */
-void @780@12@Game::EnemyBase::viewStartCarryMotion(void)
+void @780 @12 @Game::EnemyBase::viewStartCarryMotion(void)
 {
-/*
-.loc_0x0:
-  li        r11, 0xC
-  lwzx      r11, r3, r11
-  add       r3, r3, r11
-  subi      r3, r3, 0x30C
-  b         -0x176BA4
-*/
+    /*
+    .loc_0x0:
+      li        r11, 0xC
+      lwzx      r11, r3, r11
+      add       r3, r3, r11
+      subi      r3, r3, 0x30C
+      b         -0x176BA4
+    */
 }
 
 /*
@@ -1042,16 +1042,16 @@ void @780@12@Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8027D250
  * Size:	000014
  */
-void @780@12@Game::EnemyBase::viewStartPreCarryMotion(void)
+void @780 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
 {
-/*
-.loc_0x0:
-  li        r11, 0xC
-  lwzx      r11, r3, r11
-  add       r3, r3, r11
-  subi      r3, r3, 0x30C
-  b         -0x176B98
-*/
+    /*
+    .loc_0x0:
+      li        r11, 0xC
+      lwzx      r11, r3, r11
+      add       r3, r3, r11
+      subi      r3, r3, 0x30C
+      b         -0x176B98
+    */
 }
 
 /*
@@ -1059,16 +1059,16 @@ void @780@12@Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8027D264
  * Size:	000014
  */
-void @780@12@Game::EnemyBase::view_finish_carrymotion(void)
+void @780 @12 @Game::EnemyBase::view_finish_carrymotion(void)
 {
-/*
-.loc_0x0:
-  li        r11, 0xC
-  lwzx      r11, r3, r11
-  add       r3, r3, r11
-  subi      r3, r3, 0x30C
-  b         -0x1767FC
-*/
+    /*
+    .loc_0x0:
+      li        r11, 0xC
+      lwzx      r11, r3, r11
+      add       r3, r3, r11
+      subi      r3, r3, 0x30C
+      b         -0x1767FC
+    */
 }
 
 /*
@@ -1076,16 +1076,16 @@ void @780@12@Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8027D278
  * Size:	000014
  */
-void @780@12@Game::EnemyBase::view_start_carrymotion(void)
+void @780 @12 @Game::EnemyBase::view_start_carrymotion(void)
 {
-/*
-.loc_0x0:
-  li        r11, 0xC
-  lwzx      r11, r3, r11
-  add       r3, r3, r11
-  subi      r3, r3, 0x30C
-  b         -0x17683C
-*/
+    /*
+    .loc_0x0:
+      li        r11, 0xC
+      lwzx      r11, r3, r11
+      add       r3, r3, r11
+      subi      r3, r3, 0x30C
+      b         -0x17683C
+    */
 }
 
 /*
@@ -1093,16 +1093,16 @@ void @780@12@Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8027D28C
  * Size:	000014
  */
-void @780@12@Game::EnemyBase::viewGetShape(void)
+void @780 @12 @Game::EnemyBase::viewGetShape(void)
 {
-/*
-.loc_0x0:
-  li        r11, 0xC
-  lwzx      r11, r3, r11
-  add       r3, r3, r11
-  subi      r3, r3, 0x30C
-  b         -0x176BFC
-*/
+    /*
+    .loc_0x0:
+      li        r11, 0xC
+      lwzx      r11, r3, r11
+      add       r3, r3, r11
+      subi      r3, r3, 0x30C
+      b         -0x176BFC
+    */
 }
 
 /*
@@ -1110,13 +1110,13 @@ void @780@12@Game::EnemyBase::viewGetShape(void)
  * Address:	8027D2A0
  * Size:	000008
  */
-void @4@efx::TOneEmitterSimple::executeAfter( (JPABaseEmitter *))
+void @4 @efx::TOneEmitterSimple::executeAfter((JPABaseEmitter*))
 {
-/*
-.loc_0x0:
-  subi      r3, r3, 0x4
-  b         0x131BD4
-*/
+    /*
+    .loc_0x0:
+      subi      r3, r3, 0x4
+      b         0x131BD4
+    */
 }
 
 /*
@@ -1124,13 +1124,13 @@ void @4@efx::TOneEmitterSimple::executeAfter( (JPABaseEmitter *))
  * Address:	8027D2A8
  * Size:	000008
  */
-void @4@efx::TTankWatHit::__dt(void)
+void @4 @efx::TTankWatHit::__dt(void)
 {
-/*
-.loc_0x0:
-  subi      r3, r3, 0x4
-  b         -0x620
-*/
+    /*
+    .loc_0x0:
+      subi      r3, r3, 0x4
+      b         -0x620
+    */
 }
 
 /*
@@ -1138,11 +1138,11 @@ void @4@efx::TTankWatHit::__dt(void)
  * Address:	8027D2B0
  * Size:	000008
  */
-void @4@efx::TTankWatYodare::__dt(void)
+void @4 @efx::TTankWatYodare::__dt(void)
 {
-/*
-.loc_0x0:
-  subi      r3, r3, 0x4
-  b         -0x6C4
-*/
+    /*
+    .loc_0x0:
+      subi      r3, r3, 0x4
+      b         -0x6C4
+    */
 }

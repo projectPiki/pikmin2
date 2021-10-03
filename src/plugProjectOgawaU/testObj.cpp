@@ -5,9 +5,9 @@
  * Address:	........
  * Size:	0000E4
  */
-void _Print(char *, ...)
+void _Print(char*, ...)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -15,9 +15,9 @@ void _Print(char *, ...)
  * Address:	........
  * Size:	000060
  */
-void og::newScreen::Test::__ct( (char const *))
+void og::newScreen::Test::__ct((char const*))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -27,50 +27,50 @@ void og::newScreen::Test::__ct( (char const *))
  */
 void Screen::ObjBase::__dt(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x78
-  lis       r4, 0x804F
-  subi      r4, r4, 0x28A8
-  stw       r4, 0x0(r30)
-  addi      r0, r4, 0x10
-  stw       r0, 0x18(r30)
-  beq-      .loc_0x68
-  lis       r4, 0x804E
-  subi      r4, r4, 0x7DC0
-  stw       r4, 0x0(r30)
-  addi      r0, r4, 0x10
-  stw       r0, 0x18(r30)
-  bl        0x103D1C
-  addi      r3, r30, 0x18
-  li        r4, 0
-  bl        -0x2F088C
-  mr        r3, r30
-  li        r4, 0
-  bl        0x103CBC
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr.       r30, r3
+      beq-      .loc_0x78
+      lis       r4, 0x804F
+      subi      r4, r4, 0x28A8
+      stw       r4, 0x0(r30)
+      addi      r0, r4, 0x10
+      stw       r0, 0x18(r30)
+      beq-      .loc_0x68
+      lis       r4, 0x804E
+      subi      r4, r4, 0x7DC0
+      stw       r4, 0x0(r30)
+      addi      r0, r4, 0x10
+      stw       r0, 0x18(r30)
+      bl        0x103D1C
+      addi      r3, r30, 0x18
+      li        r4, 0
+      bl        -0x2F088C
+      mr        r3, r30
+      li        r4, 0
+      bl        0x103CBC
 
-.loc_0x68:
-  extsh.    r0, r31
-  ble-      .loc_0x78
-  mr        r3, r30
-  bl        -0x2E9828
+    .loc_0x68:
+      extsh.    r0, r31
+      ble-      .loc_0x78
+      mr        r3, r30
+      bl        -0x2E9828
 
-.loc_0x78:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x78:
+      lwz       r0, 0x14(r1)
+      mr        r3, r30
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -80,7 +80,7 @@ void Screen::ObjBase::__dt(void)
  */
 void og::newScreen::Test::__dt(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -88,9 +88,9 @@ void og::newScreen::Test::__dt(void)
  * Address:	........
  * Size:	00011C
  */
-void og::newScreen::Test::doCreate( (JKRArchive *))
+void og::newScreen::Test::doCreate((JKRArchive*))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -100,7 +100,7 @@ void og::newScreen::Test::doCreate( (JKRArchive *))
  */
 void og::newScreen::Test::doUpdate(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -108,9 +108,9 @@ void og::newScreen::Test::doUpdate(void)
  * Address:	........
  * Size:	000034
  */
-void og::newScreen::Test::doDraw( (Graphics &))
+void og::newScreen::Test::doDraw((Graphics&))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -118,9 +118,9 @@ void og::newScreen::Test::doDraw( (Graphics &))
  * Address:	........
  * Size:	000008
  */
-void og::newScreen::Test::doStart( (Screen::StartSceneArg const *))
+void og::newScreen::Test::doStart((Screen::StartSceneArg const*))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -128,9 +128,9 @@ void og::newScreen::Test::doStart( (Screen::StartSceneArg const *))
  * Address:	........
  * Size:	000008
  */
-void og::newScreen::Test::doEnd( (Screen::EndSceneArg const *))
+void og::newScreen::Test::doEnd((Screen::EndSceneArg const*))
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -140,7 +140,7 @@ void og::newScreen::Test::doEnd( (Screen::EndSceneArg const *))
  */
 void og::newScreen::Test::doUpdateFadeinFinish(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -150,7 +150,7 @@ void og::newScreen::Test::doUpdateFadeinFinish(void)
  */
 void og::newScreen::Test::doUpdateFinish(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -160,7 +160,7 @@ void og::newScreen::Test::doUpdateFinish(void)
  */
 void og::newScreen::Test::doUpdateFadeoutFinish(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -170,7 +170,7 @@ void og::newScreen::Test::doUpdateFadeoutFinish(void)
  */
 void og::newScreen::Test::doUpdateFadein(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -180,7 +180,7 @@ void og::newScreen::Test::doUpdateFadein(void)
  */
 void og::newScreen::Test::doUpdateFadeout(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -190,7 +190,7 @@ void og::newScreen::Test::doUpdateFadeout(void)
  */
 void og::Screen::DispMemberTest::getSize(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -200,7 +200,7 @@ void og::Screen::DispMemberTest::getSize(void)
  */
 void og::Screen::DispMemberTest::getOwnerID(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -210,7 +210,7 @@ void og::Screen::DispMemberTest::getOwnerID(void)
  */
 void og::Screen::DispMemberTest::getMemberID(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
 
 /*
@@ -218,37 +218,37 @@ void og::Screen::DispMemberTest::getMemberID(void)
  * Address:	8030D8FC
  * Size:	000060
  */
-void Screen::ObjBase::setOwner( (Screen::SceneBase *))
+void Screen::ObjBase::setOwner((Screen::SceneBase*))
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  lwz       r0, 0x34(r3)
-  cmplwi    r0, 0
-  beq-      .loc_0x44
-  lis       r3, 0x8049
-  lis       r5, 0x8049
-  subi      r3, r3, 0x1F88
-  li        r4, 0x81
-  subi      r5, r5, 0x1F7C
-  crclr     6, 0x6
-  bl        -0x2E32FC
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr        r30, r3
+      lwz       r0, 0x34(r3)
+      cmplwi    r0, 0
+      beq-      .loc_0x44
+      lis       r3, 0x8049
+      lis       r5, 0x8049
+      subi      r3, r3, 0x1F88
+      li        r4, 0x81
+      subi      r5, r5, 0x1F7C
+      crclr     6, 0x6
+      bl        -0x2E32FC
 
-.loc_0x44:
-  stw       r31, 0x34(r30)
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x44:
+      stw       r31, 0x34(r30)
+      lwz       r0, 0x14(r1)
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -258,11 +258,11 @@ void Screen::ObjBase::setOwner( (Screen::SceneBase *))
  */
 void Screen::ObjBase::getOwner( const
 {
-/*
-.loc_0x0:
-  lwz       r3, 0x34(r3)
-  blr
-*/
+    /*
+    .loc_0x0:
+      lwz       r3, 0x34(r3)
+      blr
+    */
 }
 
 /*
@@ -272,11 +272,11 @@ void Screen::ObjBase::getOwner( const
  */
 void Screen::ObjBase::doConfirmSetScene( (Screen::SetSceneArg &))
 {
-/*
-.loc_0x0:
-  li        r3, 0x1
-  blr
-*/
+    /*
+    .loc_0x0:
+      li        r3, 0x1
+      blr
+    */
 }
 
 /*
@@ -286,11 +286,11 @@ void Screen::ObjBase::doConfirmSetScene( (Screen::SetSceneArg &))
  */
 void Screen::ObjBase::doConfirmStartScene( (Screen::StartSceneArg *))
 {
-/*
-.loc_0x0:
-  li        r3, 0x1
-  blr
-*/
+    /*
+    .loc_0x0:
+      li        r3, 0x1
+      blr
+    */
 }
 
 /*
@@ -300,11 +300,11 @@ void Screen::ObjBase::doConfirmStartScene( (Screen::StartSceneArg *))
  */
 void Screen::ObjBase::doConfirmEndScene( (Screen::EndSceneArg *&))
 {
-/*
-.loc_0x0:
-  li        r3, 0x1
-  blr
-*/
+    /*
+    .loc_0x0:
+      li        r3, 0x1
+      blr
+    */
 }
 
 /*
@@ -314,42 +314,42 @@ void Screen::ObjBase::doConfirmEndScene( (Screen::EndSceneArg *&))
  */
 void Screen::IObjBase::__dt(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x60
-  lis       r4, 0x804E
-  subi      r4, r4, 0x7DC0
-  stw       r4, 0x0(r30)
-  addi      r0, r4, 0x10
-  stw       r0, 0x18(r30)
-  bl        0x103C20
-  addi      r3, r30, 0x18
-  li        r4, 0
-  bl        -0x2F0988
-  mr        r3, r30
-  li        r4, 0
-  bl        0x103BC0
-  extsh.    r0, r31
-  ble-      .loc_0x60
-  mr        r3, r30
-  bl        -0x2E9924
+    /*
+    .loc_0x0:
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr.       r30, r3
+      beq-      .loc_0x60
+      lis       r4, 0x804E
+      subi      r4, r4, 0x7DC0
+      stw       r4, 0x0(r30)
+      addi      r0, r4, 0x10
+      stw       r0, 0x18(r30)
+      bl        0x103C20
+      addi      r3, r30, 0x18
+      li        r4, 0
+      bl        -0x2F0988
+      mr        r3, r30
+      li        r4, 0
+      bl        0x103BC0
+      extsh.    r0, r31
+      ble-      .loc_0x60
+      mr        r3, r30
+      bl        -0x2E9924
 
-.loc_0x60:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    .loc_0x60:
+      lwz       r0, 0x14(r1)
+      mr        r3, r30
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    */
 }
 
 /*
@@ -359,11 +359,11 @@ void Screen::IObjBase::__dt(void)
  */
 void @24@Screen::IObjBase::__dt(void)
 {
-/*
-.loc_0x0:
-  subi      r3, r3, 0x18
-  b         -0x80
-*/
+    /*
+    .loc_0x0:
+      subi      r3, r3, 0x18
+      b         -0x80
+    */
 }
 
 /*
@@ -373,5 +373,5 @@ void @24@Screen::IObjBase::__dt(void)
  */
 void @24@og::newScreen::Test::__dt(void)
 {
-	// UNUSED FUNCTION
+    // UNUSED FUNCTION
 }
