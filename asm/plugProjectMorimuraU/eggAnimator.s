@@ -1,15 +1,6 @@
 .include "macros.inc"
 
-.section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global setAnimMgr__Q34Game3Egg14ProperAnimatorFPQ28SysShape7AnimMgr
-setAnimMgr__Q34Game3Egg14ProperAnimatorFPQ28SysShape7AnimMgr:
-/* 8034B63C 0034857C  90 83 00 20 */	stw r4, 0x20(r3)
-/* 8034B640 00348580  4E 80 00 20 */	blr 
-
-.global getAnimator__Q34Game3Egg14ProperAnimatorFi
-getAnimator__Q34Game3Egg14ProperAnimatorFi:
-/* 8034B644 00348584  38 63 00 10 */	addi r3, r3, 0x10
-/* 8034B648 00348588  4E 80 00 20 */	blr 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00*
 
 .global __dt__Q34Game3Egg14ProperAnimatorFv
 __dt__Q34Game3Egg14ProperAnimatorFv:
