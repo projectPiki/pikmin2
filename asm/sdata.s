@@ -113,116 +113,56 @@ SizeOfLoadColorChans:
 	.skip 4
 .global sNoUseDrawMtxPtr__12J3DMtxBuffer
 sNoUseDrawMtxPtr__12J3DMtxBuffer:
-	.byte 0x80
-	.byte 0x51
-	.byte 0x21
-	.byte 0x8
+	.4byte 0x80512108
 .global sNoUseNrmMtxPtr__12J3DMtxBuffer
 sNoUseNrmMtxPtr__12J3DMtxBuffer:
-	.byte 0x80
-	.byte 0x51
-	.byte 0x21
-	.byte 0x5C
+	.4byte 0x8051215C
 .global J3DUnit01
 J3DUnit01:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000000
+	.4byte 0x3F800000
 .global maxStdHeaps__Q29JFWSystem11CSetUpParam
 maxStdHeaps__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x2
+	.4byte 0x00000002
 .global sysHeapSize__Q29JFWSystem11CSetUpParam
 sysHeapSize__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00400000
 .global fifoBufSize__Q29JFWSystem11CSetUpParam
 fifoBufSize__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x4
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00040000
 .global aramAudioBufSize__Q29JFWSystem11CSetUpParam
 aramAudioBufSize__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00800000
 .global aramGraphBufSize__Q29JFWSystem11CSetUpParam
 aramGraphBufSize__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x60
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00600000
 .global streamPriority__Q29JFWSystem11CSetUpParam
 streamPriority__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x8
+	.4byte 0x00000008
 .global decompPriority__Q29JFWSystem11CSetUpParam
 decompPriority__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x7
+	.4byte 0x00000007
 .global aPiecePriority__Q29JFWSystem11CSetUpParam
 aPiecePriority__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x6
+	.4byte 0x00000006
 .global systemFontRes__Q29JFWSystem11CSetUpParam
 systemFontRes__Q29JFWSystem11CSetUpParam:
-	.byte 0x80
-	.byte 0x47
-	.byte 0x42
-	.byte 0xC0
+	.4byte 0x804742C0
 .global renderMode__Q29JFWSystem11CSetUpParam
 renderMode__Q29JFWSystem11CSetUpParam:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x84
-	.byte 0x0
+	.4byte 0x804A8400
 .global exConsoleBufferSize__Q29JFWSystem11CSetUpParam
 exConsoleBufferSize__Q29JFWSystem11CSetUpParam:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x24
-	.byte 0xFC
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x000024FC
+	.4byte 0x00000000
 .global p_dl
 p_dl:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x30
-	.byte 0xA0
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x30
-	.byte 0xC0
+	.4byte 0x804A30A0
+	.4byte 0x804A30C0
 .global zz_80514788
 zz_80514788:
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F800000
+	.4byte 0x00000000
 .global MAX_MIXERLEVEL__9JASDriver
 MAX_MIXERLEVEL__9JASDriver:
 	.2byte 0x2ee0
@@ -238,92 +178,44 @@ COMP_BLOCKSAMPLES$600:
 	.4byte 0x01101001
 .global COMP_BLOCKBYTES$601
 COMP_BLOCKBYTES$601:
-	.byte 0x9
-	.byte 0x5
-	.byte 0x8
-	.byte 0x10
-	.byte 0x1
-	.byte 0x1
-	.byte 0x1
-	.byte 0x1
+	.4byte 0x09050810
+	.4byte 0x01010101
 .global sDspDacBufferCount__9JASDriver
 sDspDacBufferCount__9JASDriver:
-	.byte 0x3
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x03000000
 .global sSubFrames__9JASDriver
 sSubFrames__9JASDriver:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x7
+	.4byte 0x00000007
 .global sMixMode__9JASDriver
 sMixMode__9JASDriver:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x2
+	.4byte 0x00000002
 .global sDacRate__9JASDriver
 sDacRate__9JASDriver:
-	.byte 0x46
-	.byte 0xFA
-	.byte 0x39
-	.byte 0x0
+	.4byte 0x46FA3900
 .global DSP_MIXERLEVEL
 DSP_MIXERLEVEL:
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x40000000
+	.4byte 0x00000000
 .global flags__Q27JAInter8BankWave
 flags__Q27JAInter8BankWave:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000000
 .global SceneSetFlag__Q27JAInter8BankWave
 SceneSetFlag__Q27JAInter8BankWave:
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
+	.4byte 0xFFFFFFFF
 .global initCallback__Q27JAInter8BankWave
 initCallback__Q27JAInter8BankWave:
-	.byte 0x80
-	.byte 0xA
-	.byte 0xBE
-	.byte 0x5C
+	.4byte 0x800ABE5C
 .global firstLoadCallback__Q27JAInter8BankWave
 firstLoadCallback__Q27JAInter8BankWave:
-	.byte 0x80
-	.byte 0xA
-	.byte 0xBF
-	.byte 0xA4
+	.4byte 0x800ABFA4
 .global secondLoadCallback__Q27JAInter8BankWave
 secondLoadCallback__Q27JAInter8BankWave:
-	.byte 0x80
-	.byte 0xA
-	.byte 0xC0
-	.byte 0x38
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x800AC038
+	.4byte 0x00000000
 .global msStopStatus__8JAIBasic
 msStopStatus__8JAIBasic:
-	.byte 0x3
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x03000000
+	.4byte 0x00000000
 .global distanceParameterMoveTime__18JAIGlobalParameter
 distanceParameterMoveTime__18JAIGlobalParameter:
 	.byte 0x3
@@ -348,428 +240,200 @@ seDistanceFxParameter__18JAIGlobalParameter:
 	.byte 0x96
 .global soundSceneMax__18JAIGlobalParameter
 soundSceneMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x2
+	.4byte 0x00000002
 .global seRegistMax__18JAIGlobalParameter
 seRegistMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x14
+	.4byte 0x00000014
 .global seTrackMax__18JAIGlobalParameter
 seTrackMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x20
+	.4byte 0x00000020
 .global seqTrackMax__18JAIGlobalParameter
 seqTrackMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x20
+	.4byte 0x00000020
 .global seqPlayTrackMax__18JAIGlobalParameter
 seqPlayTrackMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x8
+	.4byte 0x00000008
 .global seqControlBufferMax__18JAIGlobalParameter
 seqControlBufferMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x8
+	.4byte 0x00000008
 .global autoHeapMax__18JAIGlobalParameter
 autoHeapMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x2
+	.4byte 0x00000002
 .global stayHeapMax__18JAIGlobalParameter
 stayHeapMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x2
+	.4byte 0x00000002
 .global autoHeapRoomSize__18JAIGlobalParameter
 autoHeapRoomSize__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0xC0
-	.byte 0x0
+	.4byte 0x0000C000
 .global stayHeapSize__18JAIGlobalParameter
 stayHeapSize__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00010000
 .global initDataFileName__18JAIGlobalParameter
 initDataFileName__18JAIGlobalParameter:
-	.byte 0x80
-	.byte 0x47
-	.byte 0x96
-	.byte 0x88
+	.4byte 0x80479688
 .global wavePath__18JAIGlobalParameter
 wavePath__18JAIGlobalParameter:
-	.byte 0x80
-	.byte 0x51
-	.byte 0x6F
-	.byte 0x28
+	.4byte 0x80516F28
 .global sequenceArchivesPath__18JAIGlobalParameter
 sequenceArchivesPath__18JAIGlobalParameter:
-	.byte 0x80
-	.byte 0x51
-	.byte 0x6F
-	.byte 0x30
+	.4byte 0x80516F30
 .global streamPath__18JAIGlobalParameter
 streamPath__18JAIGlobalParameter:
-	.byte 0x80
-	.byte 0x51
-	.byte 0x6F
-	.byte 0x38
+	.4byte 0x80516F38
 .global audioResPath__18JAIGlobalParameter
 audioResPath__18JAIGlobalParameter:
-	.byte 0x80
-	.byte 0x47
-	.byte 0x96
-	.byte 0x94
+	.4byte 0x80479694
 .global sequenceArchivesFileName__18JAIGlobalParameter
 sequenceArchivesFileName__18JAIGlobalParameter:
-	.byte 0x80
-	.byte 0x47
-	.byte 0x96
-	.byte 0xA0
+	.4byte 0x804796A0
 .global inputGainDown__18JAIGlobalParameter
 inputGainDown__18JAIGlobalParameter:
-	.byte 0x3F
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F000000
 .global outputGainUp__18JAIGlobalParameter
 outputGainUp__18JAIGlobalParameter:
-	.byte 0x3F
-	.byte 0x99
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x3F99999A
 .global distanceMax__18JAIGlobalParameter
 distanceMax__18JAIGlobalParameter:
-	.byte 0x45
-	.byte 0x9C
-	.byte 0x40
-	.byte 0x0
+	.4byte 0x459C4000
 .global maxVolumeDistance__18JAIGlobalParameter
 maxVolumeDistance__18JAIGlobalParameter:
-	.byte 0x44
-	.byte 0x7A
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x447A0000
 .global seDolbyCenterValue__18JAIGlobalParameter
 seDolbyCenterValue__18JAIGlobalParameter:
-	.byte 0x41
-	.byte 0xF0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41F00000
 .global seDolbyFrontDistanceMax__18JAIGlobalParameter
 seDolbyFrontDistanceMax__18JAIGlobalParameter:
-	.byte 0xC3
-	.byte 0x96
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xC3960000
 .global seDolbyBehindDistanceMax__18JAIGlobalParameter
 seDolbyBehindDistanceMax__18JAIGlobalParameter:
-	.byte 0x44
-	.byte 0x7A
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x447A0000
 .global dopplarMoveTime__18JAIGlobalParameter
 dopplarMoveTime__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0xF
+	.4byte 0x0000000F
 .global dummyObjectLifeTime__18JAIGlobalParameter
 dummyObjectLifeTime__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x2
-	.byte 0x58
+	.4byte 0x00000258
 .global dummyObjectMax__18JAIGlobalParameter
 dummyObjectMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0xA
+	.4byte 0x0000000A
 .global seqMuteMoveSpeedSePlay__18JAIGlobalParameter
 seqMuteMoveSpeedSePlay__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x3
+	.4byte 0x00000003
 .global audioCameraMax__18JAIGlobalParameter
 audioCameraMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x1
+	.4byte 0x00000001
 .global systemTrackMax__18JAIGlobalParameter
 systemTrackMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x1
-	.byte 0x0
+	.4byte 0x00000100
 .global systemRootTrackMax__18JAIGlobalParameter
 systemRootTrackMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x10
+	.4byte 0x00000010
 .global panDistanceMax__18JAIGlobalParameter
 panDistanceMax__18JAIGlobalParameter:
-	.byte 0x43
-	.byte 0xFA
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x43FA0000
 .global panDistance2Max__18JAIGlobalParameter
 panDistance2Max__18JAIGlobalParameter:
-	.byte 0x44
-	.byte 0x7A
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x447A0000
 .global panAngleParameter__18JAIGlobalParameter
 panAngleParameter__18JAIGlobalParameter:
-	.byte 0x41
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41400000
 .global panAngleParameter2__18JAIGlobalParameter
 panAngleParameter2__18JAIGlobalParameter:
-	.byte 0x40
-	.byte 0x19
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x4019999A
 .global dopplarParameter__18JAIGlobalParameter
 dopplarParameter__18JAIGlobalParameter:
-	.byte 0x45
-	.byte 0x48
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x45480000
 .global seDistanceWaitMax__18JAIGlobalParameter
 seDistanceWaitMax__18JAIGlobalParameter:
-	.byte 0x0
-	.byte 0xC
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x000C0000
 .global seDistancepitchMax__18JAIGlobalParameter
 seDistancepitchMax__18JAIGlobalParameter:
-	.byte 0x3E
-	.byte 0x4C
-	.byte 0xCC
-	.byte 0xCD
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3E4CCCCD
+	.4byte 0x00000000
 .global wsInitCallback__Q27JAInter8InitData
 wsInitCallback__Q27JAInter8InitData:
-	.byte 0x80
-	.byte 0xA
-	.byte 0xDF
-	.byte 0xC8
+	.4byte 0x800ADFC8
 .global bnkInitCallback__Q27JAInter8InitData
 bnkInitCallback__Q27JAInter8InitData:
-	.byte 0x80
-	.byte 0xA
-	.byte 0xDE
-	.byte 0xFC
+	.4byte 0x800ADEFC
 .global seStartCallback__Q27JAInter5SeMgr
 seStartCallback__Q27JAInter5SeMgr:
-	.byte 0x80
-	.byte 0xA
-	.byte 0xE5
-	.byte 0x7C
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x800AE57C
+	.4byte 0x00000000
 .global sChannelMax__Q27JAInter9StreamMgr
 sChannelMax__Q27JAInter9StreamMgr:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x2
+	.4byte 0x00000002
 .global decodedBufferBlocks__Q27JAInter9StreamMgr
 decodedBufferBlocks__Q27JAInter9StreamMgr:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x27
-	.byte 0x60
+	.4byte 0x00002760
 .global fragmentID
 fragmentID:
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFE
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xFFFFFFFE
+	.4byte 0x00000000
 .global $$2wstringBase0
 $$2wstringBase0:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000000
+	.4byte 0x00000000
 .global next
 next:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000001
+	.4byte 0x00000000
 .global __float_nan
 __float_nan:
-	.byte 0x7F
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
+	.4byte 0x7FFFFFFF
 .global __float_huge
 __float_huge:
-	.byte 0x7F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x7F800000
 .global __double_max
 __double_max:
-	.byte 0x7F
-	.byte 0xEF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
+	.4byte 0x7FEFFFFF
+	.4byte 0xFFFFFFFF
 .global __double_huge
 __double_huge:
-	.byte 0x7F
-	.byte 0xF0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x7FF00000
+	.4byte 0x00000000
 .global __extended_min
 __extended_min:
-	.byte 0x0
-	.byte 0x10
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00100000
+	.4byte 0x00000000
 .global __extended_max
 __extended_max:
-	.byte 0x7F
-	.byte 0xEF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
+	.4byte 0x7FEFFFFF
+	.4byte 0xFFFFFFFF
 .global __float_max
 __float_max:
-	.byte 0x7F
-	.byte 0x7F
-	.byte 0xFF
-	.byte 0xFF
+	.4byte 0x7F7FFFFF
 .global __float_epsilon
 __float_epsilon:
-	.byte 0x34
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x34000000
 .global SendCount
 SendCount:
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x80000000
+	.4byte 0x00000000
 .global __VIVersion
 __VIVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x72
-	.byte 0xB0
+	.4byte 0x804A72B0
 .global lbl_805148EC
 lbl_805148EC:
-	.byte 0x76
-	.byte 0x69
-	.byte 0x2E
-	.byte 0x63
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x76692E63
+	.4byte 0x00000000
+	.4byte 0x00000000
 .global __ARVersion
 __ARVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x76
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804A7680
+	.4byte 0x00000000
 .global __ARQVersion
 __ARQVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x76
-	.byte 0xC8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804A76C8
+	.4byte 0x00000000
 .global __CARDVersion
 __CARDVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x77
-	.byte 0x10
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804A7710
+	.4byte 0x00000000
 .global next_1
 next_1:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000001
+	.4byte 0x00000000
 .global __CARDVendorID
 __CARDVendorID:
 	.byte 0xFF
@@ -778,568 +442,247 @@ __CARDVendorID:
 __CARDPermMask:
 	.byte 0x1C
 	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000000
 .global __DSPVersion
 __DSPVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x79
-	.byte 0x38
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804A7938
+	.4byte 0x00000000
 .global FirstRead
 FirstRead:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000001
+	.4byte 0x00000000
 .global lbl_80514930
 lbl_80514930:
-	.byte 0x64
-	.byte 0x76
-	.byte 0x64
-	.byte 0x66
-	.byte 0x73
-	.byte 0x2E
-	.byte 0x63
-	.byte 0x0
+	.4byte 0x64766466
+	.4byte 0x732E6300
 .global __DVDVersion
 __DVDVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x7C
-	.byte 0x98
+	.4byte 0x804A7C98
 .global autoInvalidation
 autoInvalidation:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x1
+	.4byte 0x00000001
 .global checkOptionalCommand
 checkOptionalCommand:
-	.byte 0x80
-	.byte 0xD
-	.byte 0xCD
-	.byte 0x28
+	.4byte 0x800DCD28
 .global lbl_80514944
 lbl_80514944:
-	.byte 0x64
-	.byte 0x76
-	.byte 0x64
-	.byte 0x2E
-	.byte 0x63
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x6476642E
+	.4byte 0x63000000
 .global DmaCommand
 DmaCommand:
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
+	.4byte 0xFFFFFFFF
 .global lbl_80514950
 lbl_80514950:
-	.byte 0xA
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x0A000000
 .global lbl_80514954
 lbl_80514954:
-	.byte 0x4F
-	.byte 0x46
-	.byte 0x46
-	.byte 0x0
+	.4byte 0x4F464600
 .global lbl_80514958
 lbl_80514958:
-	.byte 0x4F
-	.byte 0x4E
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x4F4E0000
+	.4byte 0x00000000
 .global __EXIVersion
 __EXIVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x7E
-	.byte 0xD0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804A7ED0
+	.4byte 0x00000000
 .global __GXVersion
 __GXVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x80
-	.byte 0x60
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804A8060
+	.4byte 0x00000000
 .global tbl1$263
 tbl1$263:
-	.byte 0x0
-	.byte 0x4
-	.byte 0x1
-	.byte 0x2
+	.4byte 0x00040102
 .global tbl2$264
 tbl2$264:
-	.byte 0x0
-	.byte 0x8
-	.byte 0x1
-	.byte 0x2
+	.4byte 0x00080102
 .global tbl3$265
 tbl3$265:
-	.byte 0x0
-	.byte 0xC
-	.byte 0x1
-	.byte 0x2
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x000C0102
+	.4byte 0x00000000
 .global GXTexMode0Ids
 GXTexMode0Ids:
-	.byte 0x80
-	.byte 0x81
-	.byte 0x82
-	.byte 0x83
-	.byte 0xA0
-	.byte 0xA1
-	.byte 0xA2
-	.byte 0xA3
+	.4byte 0x80818283
+	.4byte 0xA0A1A2A3
 .global GXTexMode1Ids
 GXTexMode1Ids:
-	.byte 0x84
-	.byte 0x85
-	.byte 0x86
-	.byte 0x87
-	.byte 0xA4
-	.byte 0xA5
-	.byte 0xA6
-	.byte 0xA7
+	.4byte 0x84858687
+	.4byte 0xA4A5A6A7
 .global GXTexImage0Ids
 GXTexImage0Ids:
-	.byte 0x88
-	.byte 0x89
-	.byte 0x8A
-	.byte 0x8B
-	.byte 0xA8
-	.byte 0xA9
-	.byte 0xAA
-	.byte 0xAB
+	.4byte 0x88898A8B
+	.4byte 0xA8A9AAAB
 .global GXTexImage1Ids
 GXTexImage1Ids:
-	.byte 0x8C
-	.byte 0x8D
-	.byte 0x8E
-	.byte 0x8F
-	.byte 0xAC
-	.byte 0xAD
-	.byte 0xAE
-	.byte 0xAF
+	.4byte 0x8C8D8E8F
+	.4byte 0xACADAEAF
 .global GXTexImage2Ids
 GXTexImage2Ids:
-	.byte 0x90
-	.byte 0x91
-	.byte 0x92
-	.byte 0x93
-	.byte 0xB0
-	.byte 0xB1
-	.byte 0xB2
-	.byte 0xB3
+	.4byte 0x90919293
+	.4byte 0xB0B1B2B3
 .global GXTexImage3Ids
 GXTexImage3Ids:
-	.byte 0x94
-	.byte 0x95
-	.byte 0x96
-	.byte 0x97
-	.byte 0xB4
-	.byte 0xB5
-	.byte 0xB6
-	.byte 0xB7
+	.4byte 0x94959697
+	.4byte 0xB4B5B6B7
 .global GXTexTlutIds
 GXTexTlutIds:
-	.byte 0x98
-	.byte 0x99
-	.byte 0x9A
-	.byte 0x9B
-	.byte 0xB8
-	.byte 0xB9
-	.byte 0xBA
-	.byte 0xBB
+	.4byte 0x98999A9B
+	.4byte 0xB8B9BABB
 .global GX2HWFiltConv_1
 GX2HWFiltConv_1:
-	.byte 0x0
-	.byte 0x4
-	.byte 0x1
-	.byte 0x5
-	.byte 0x2
-	.byte 0x6
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00040105
+	.4byte 0x02060000
 .global Unit01_1
 Unit01_1:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000000
+	.4byte 0x3F800000
 .global __OSVersion
 __OSVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x89
-	.byte 0x0
+	.4byte 0x804A8900
 .global lbl_805149CC
 lbl_805149CC:
-	.byte 0x25
-	.byte 0x30
-	.byte 0x38
-	.byte 0x78
-	.byte 0xA
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x25303878
+	.4byte 0x0A000000
 .global lbl_805149D4
 lbl_805149D4:
-	.byte 0x25
-	.byte 0x73
-	.byte 0xA
-	.byte 0x0
+	.4byte 0x25730A00
 .global __OSCurrHeap
 __OSCurrHeap:
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000000
 .global __OSArenaLo
 __OSArenaLo:
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000000
 .global __OSFpscrEnableBits
 __OSFpscrEnableBits:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0xF8
+	.4byte 0x000000F8
 .global lbl_805149EC
 lbl_805149EC:
-	.byte 0xA
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x0A000000
 .global fontEncode$80
 fontEncode$80:
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xFFFF0000
+	.4byte 0x00000000
 .global SwitchThreadCallback
 SwitchThreadCallback:
-	.byte 0x80
-	.byte 0xF
-	.byte 0x18
-	.byte 0x58
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x800F1858
+	.4byte 0x00000000
 .global __PADVersion
 __PADVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x9E
-	.byte 0x60
+	.4byte 0x804A9E60
 .global ResettingChan
 ResettingChan:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x20
+	.4byte 0x00000020
 .global XPatchBits
 XPatchBits:
-	.byte 0xF0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xF0000000
 .global AnalogMode
 AnalogMode:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x3
-	.byte 0x0
+	.4byte 0x00000300
 .global Spec
 Spec:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x5
+	.4byte 0x00000005
 .global MakeStatus
 MakeStatus:
-	.byte 0x80
-	.byte 0xF
-	.byte 0x48
-	.byte 0x2C
+	.4byte 0x800F482C
 .global CmdReadOrigin
 CmdReadOrigin:
-	.byte 0x41
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41000000
 .global CmdCalibrate
 CmdCalibrate:
-	.byte 0x42
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x42000000
 .global __SIVersion
 __SIVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0x9E
-	.byte 0xB8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804A9EB8
+	.4byte 0x00000000
 .global __AIVersion
 __AIVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0xA0
-	.byte 0x68
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804AA068
+	.4byte 0x00000000
 .global __THPVersion
 __THPVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0xA0
-	.byte 0xB0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804AA0B0
+	.4byte 0x00000000
 .global __GBAVersion
 __GBAVersion:
-	.byte 0x80
-	.byte 0x4A
-	.byte 0xA0
-	.byte 0xF8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x804AA0F8
+	.4byte 0x00000000
 .global cKochappyChangeTexName__Q34Game8Kochappy25$$2unnamed$$2kochappyMgr_cpp$$2
 cKochappyChangeTexName__Q34Game8Kochappy25$$2unnamed$$2kochappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xAB
-	.byte 0x44
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8047AB44
+	.4byte 0x00000000
 .global cChappyChangeTexName0__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2
 cChappyChangeTexName0__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xAE
-	.byte 0xD4
+	.4byte 0x8047AED4
 .global cChappyChangeTexName1__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2
 cChappyChangeTexName1__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xAE
-	.byte 0xF8
+	.4byte 0x8047AEF8
 .global gEnemyInfoNum__4Game
 gEnemyInfoNum__4Game:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x64
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000064
+	.4byte 0x00000000
 .global sStoneMdlName__27$$2unnamed$$2enemyStoneMgr_cpp$$2
 sStoneMdlName__27$$2unnamed$$2enemyStoneMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xBE
-	.byte 0x58
-	.byte 0x80
-	.byte 0x47
-	.byte 0xBE
-	.byte 0x6C
+	.4byte 0x8047BE58
+	.4byte 0x8047BE6C
 .global cChappyChangeTexName0__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2
 cChappyChangeTexName0__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xBF
-	.byte 0xC0
+	.4byte 0x8047BFC0
 .global cChappyChangeTexName1__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2
 cChappyChangeTexName1__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xBF
-	.byte 0xE8
+	.4byte 0x8047BFE8
 .global cChappyChangeTexName0__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2
 cChappyChangeTexName0__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xC0
-	.byte 0x30
+	.4byte 0x8047C030
 .global cChappyChangeTexName1__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2
 cChappyChangeTexName1__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xC0
-	.byte 0x5C
+	.4byte 0x8047C05C
 .global cKochappyChangeTexName__Q34Game12BlueKochappy29$$2unnamed$$2BlueKochappyMgr_cpp$$2
 cKochappyChangeTexName__Q34Game12BlueKochappy29$$2unnamed$$2BlueKochappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xC0
-	.byte 0xC0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8047C0C0
+	.4byte 0x00000000
 .global cKochappyChangeTexName__Q34Game14YellowKochappy31$$2unnamed$$2YellowKochappyMgr_cpp$$2
 cKochappyChangeTexName__Q34Game14YellowKochappy31$$2unnamed$$2YellowKochappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x47
-	.byte 0xC1
-	.byte 0x10
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8047C110
+	.4byte 0x00000000
 .global usePacketCulling__Q24Game8Creature
 usePacketCulling__Q24Game8Creature:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
+	.4byte 0x00000000
 .global kAngleSpeed__Q23efx7TCursor
 kAngleSpeed__Q23efx7TCursor:
-	.byte 0x3D
-	.byte 0x56
-	.byte 0x77
-	.byte 0x50
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3D567750
+	.4byte 0x00000000
 .global sOptDraw__Q24Game15BaseGameSection
 sOptDraw__Q24Game15BaseGameSection:
-	.byte 0x3
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x03000000
+	.4byte 0x00000000
 .global sOptResolveColl__Q24Game11CellPyramid
 sOptResolveColl__Q24Game11CellPyramid:
-	.byte 0x2
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x02000000
 .global sCellBugName__Q24Game11CellPyramid
 sCellBugName__Q24Game11CellPyramid:
-	.byte 0x80
-	.byte 0x51
-	.byte 0x86
-	.byte 0x40
+	.4byte 0x80518640
 .global sFromTekiEnable__Q24Game6Pellet
 sFromTekiEnable__Q24Game6Pellet:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
+	.4byte 0x00000000
 .global newVer
 newVer:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
+	.4byte 0x00000000
 .global maxBuffer__Q24Game8Stickers
 maxBuffer__Q24Game8Stickers:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x6E
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x0000006E
+	.4byte 0x00000000
 .global GeneratorCurrentVersion
 GeneratorCurrentVersion:
-	.byte 0x76
-	.byte 0x30
-	.byte 0x2E
-	.byte 0x33
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x76302E33
+	.4byte 0x00000000
 .global sGraspSituationOptimise__Q24Game4Piki
 sGraspSituationOptimise__Q24Game4Piki:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
+	.4byte 0x00000000
 .global useFixCollision__Q24Game12PlatInstance
 useFixCollision__Q24Game12PlatInstance:
 	.byte 0x1
@@ -1348,40 +691,19 @@ mUseCellMgr__Q24Game7PlatMgr:
 	.byte 0x1
 	.byte 0x0
 	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000000
 .global enum_floor_hiddens__26$$2unnamed$$2gameCaveInfo_cpp$$2
 enum_floor_hiddens__26$$2unnamed$$2gameCaveInfo_cpp$$2:
-	.byte 0x80
-	.byte 0x51
-	.byte 0x96
-	.byte 0xF0
-	.byte 0x80
-	.byte 0x51
-	.byte 0x96
-	.byte 0xF8
+	.4byte 0x805196F0
+	.4byte 0x805196F8
 .global mTraceMoveOptLevel__Q24Game6MapMgr
 mTraceMoveOptLevel__Q24Game6MapMgr:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
+	.4byte 0x00000000
 .global mVersion__Q24Game8PlayData
 mVersion__Q24Game8PlayData:
-	.byte 0x6A
-	.byte 0x30
-	.byte 0x30
-	.byte 0x39
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x6A303039
+	.4byte 0x00000000
 .global sEntryOpt__Q24Game12BaseHIOParms
 sEntryOpt__Q24Game12BaseHIOParms:
 	.byte 0x1
@@ -1404,304 +726,133 @@ sTekiChappyFlag__Q24Game12BaseHIOParms:
 	.byte 0x0
 .global asArrayOtakara__4Game
 asArrayOtakara__4Game:
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xFFFFFFFF
+	.4byte 0x3F800000
 .global cCoin__13VsOtakaraName
 cCoin__13VsOtakaraName:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x3E
-	.byte 0xE8
+	.4byte 0x80483EE8
 .global cBedamaBlue__13VsOtakaraName
 cBedamaBlue__13VsOtakaraName:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x3E
-	.byte 0xF4
+	.4byte 0x80483EF4
 .global cBedamaRed__13VsOtakaraName
 cBedamaRed__13VsOtakaraName:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x3F
-	.byte 0x4
+	.4byte 0x80483F04
 .global cBedamaYellow__13VsOtakaraName
 cBedamaYellow__13VsOtakaraName:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x3F
-	.byte 0x14
+	.4byte 0x80483F14
 .global cBedamaYellowDepth__13VsOtakaraName
 cBedamaYellowDepth__13VsOtakaraName:
-	.byte 0x41
-	.byte 0xA0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41A00000
+	.4byte 0x00000000
 .global cTankChangeTexName__Q34Game5Wtank22$$2unnamed$$2WtankMgr_cpp$$2
 cTankChangeTexName__Q34Game5Wtank22$$2unnamed$$2WtankMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x70
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x80487080
+	.4byte 0x00000000
 .global cMatAnimBtkTexName__Q34Game3Mar20$$2unnamed$$2MarMgr_cpp$$2
 cMatAnimBtkTexName__Q34Game3Mar20$$2unnamed$$2MarMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x74
-	.byte 0x34
+	.4byte 0x80487434
 .global cMatAnimBrkTexName__Q34Game3Mar20$$2unnamed$$2MarMgr_cpp$$2
 cMatAnimBrkTexName__Q34Game3Mar20$$2unnamed$$2MarMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x74
-	.byte 0x58
+	.4byte 0x80487458
 .global cKoganeChangeTexName__Q34Game7Wealthy24$$2unnamed$$2WealthyMgr_cpp$$2
 cKoganeChangeTexName__Q34Game7Wealthy24$$2unnamed$$2WealthyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x78
-	.byte 0x48
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x80487848
+	.4byte 0x00000000
 .global cKoganeChangeTexName__Q34Game4Fart21$$2unnamed$$2FartMgr_cpp$$2
 cKoganeChangeTexName__Q34Game4Fart21$$2unnamed$$2FartMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x7B
-	.byte 0xE8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x80487BE8
+	.4byte 0x00000000
 .global cMatAnimBtkTexName__Q34Game5Queen22$$2unnamed$$2QueenMgr_cpp$$2
 cMatAnimBtkTexName__Q34Game5Queen22$$2unnamed$$2QueenMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x7C
-	.byte 0x68
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x80487C68
+	.4byte 0x00000000
 .global cMatAnimBtkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2
 cMatAnimBtkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x83
-	.byte 0x48
+	.4byte 0x80488348
 .global cMatAnimBrkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2
 cMatAnimBrkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x83
-	.byte 0x70
+	.4byte 0x80488370
 .global cKoganeChangeTexName__Q34Game11Koganemushi28$$2unnamed$$2KoganemushiMgr_cpp$$2
 cKoganeChangeTexName__Q34Game11Koganemushi28$$2unnamed$$2KoganemushiMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x8F
-	.byte 0xB8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x80488FB8
+	.4byte 0x00000000
 .global cTankChangeTexName__Q34Game5Ftank22$$2unnamed$$2FtankMgr_cpp$$2
 cTankChangeTexName__Q34Game5Ftank22$$2unnamed$$2FtankMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x90
-	.byte 0x10
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x80489010
+	.4byte 0x00000000
 .global cMatAnimBtkTexName__Q34Game12Hanachirashi29$$2unnamed$$2HanachirashiMgr_cpp$$2
 cMatAnimBtkTexName__Q34Game12Hanachirashi29$$2unnamed$$2HanachirashiMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x90
-	.byte 0xCC
+	.4byte 0x804890CC
 .global cMatAnimBrkTexName__Q34Game12Hanachirashi29$$2unnamed$$2HanachirashiMgr_cpp$$2
 cMatAnimBrkTexName__Q34Game12Hanachirashi29$$2unnamed$$2HanachirashiMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x90
-	.byte 0xFC
+	.4byte 0x804890FC
 .global cMatAnimBtkTexName__Q34Game8Damagumo25$$2unnamed$$2DamagumoMgr_cpp$$2
 cMatAnimBtkTexName__Q34Game8Damagumo25$$2unnamed$$2DamagumoMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x94
-	.byte 0xC8
+	.4byte 0x804894C8
 .global cMatAnimBrkTexName__Q34Game8Damagumo25$$2unnamed$$2DamagumoMgr_cpp$$2
 cMatAnimBrkTexName__Q34Game8Damagumo25$$2unnamed$$2DamagumoMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0x94
-	.byte 0xF0
+	.4byte 0x804894F0
 .global cOtakaraChangeTexName__Q34Game11FireOtakara28$$2unnamed$$2FireOtakaraMgr_cpp$$2
 cOtakaraChangeTexName__Q34Game11FireOtakara28$$2unnamed$$2FireOtakaraMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xA3
-	.byte 0xCC
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048A3CC
+	.4byte 0x00000000
 .global cOtakaraChangeTexName__Q34Game12WaterOtakara29$$2unnamed$$2WaterOtakaraMgr_cpp$$2
 cOtakaraChangeTexName__Q34Game12WaterOtakara29$$2unnamed$$2WaterOtakaraMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xA7
-	.byte 0x60
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048A760
+	.4byte 0x00000000
 .global cOtakaraChangeTexName__Q34Game10GasOtakara27$$2unnamed$$2GasOtakaraMgr_cpp$$2
 cOtakaraChangeTexName__Q34Game10GasOtakara27$$2unnamed$$2GasOtakaraMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xA7
-	.byte 0xD0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048A7D0
+	.4byte 0x00000000
 .global cOtakaraChangeTexName__Q34Game11ElecOtakara28$$2unnamed$$2ElecOtakaraMgr_cpp$$2
 cOtakaraChangeTexName__Q34Game11ElecOtakara28$$2unnamed$$2ElecOtakaraMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xA8
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048A840
+	.4byte 0x00000000
 .global cMatAnimBrkTexName__Q34Game7BigFoot24$$2unnamed$$2BigFootMgr_cpp$$2
 cMatAnimBrkTexName__Q34Game7BigFoot24$$2unnamed$$2BigFootMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xB2
-	.byte 0x28
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048B228
+	.4byte 0x00000000
 .global cOtakaraChangeTexName__Q34Game11BombOtakara28$$2unnamed$$2BombOtakaraMgr_cpp$$2
 cOtakaraChangeTexName__Q34Game11BombOtakara28$$2unnamed$$2BombOtakaraMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xD3
-	.byte 0xD8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048D3D8
+	.4byte 0x00000000
 .global cMatAnimBrkTexName__Q34Game10DangoMushi27$$2unnamed$$2DangoMushiMgr_cpp$$2
 cMatAnimBrkTexName__Q34Game10DangoMushi27$$2unnamed$$2DangoMushiMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xD4
-	.byte 0x5C
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048D45C
+	.4byte 0x00000000
 .global cKabutoChangeTexName__Q34Game11GreenKabuto28$$2unnamed$$2GreenKabutoMgr_cpp$$2
 cKabutoChangeTexName__Q34Game11GreenKabuto28$$2unnamed$$2GreenKabutoMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xD8
-	.byte 0x10
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048D810
+	.4byte 0x00000000
 .global cKabutoChangeTexName__Q34Game9RedKabuto26$$2unnamed$$2RedKabutoMgr_cpp$$2
 cKabutoChangeTexName__Q34Game9RedKabuto26$$2unnamed$$2RedKabutoMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xD8
-	.byte 0x90
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048D890
+	.4byte 0x00000000
 .global cKabutoChangeTexName__Q34Game9FixKabuto26$$2unnamed$$2FixKabutoMgr_cpp$$2
 cKabutoChangeTexName__Q34Game9FixKabuto26$$2unnamed$$2FixKabutoMgr_cpp$$2:
-	.byte 0x80
-	.byte 0x48
-	.byte 0xD8
-	.byte 0xF8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8048D8F8
+	.4byte 0x00000000
 .global sDistanceParameterMoveTime__8PSSystem
 sDistanceParameterMoveTime__8PSSystem:
-	.byte 0x5
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x05000000
+	.4byte 0x00000000
 .global cRatio__Q26PSGame5Rappa
 cRatio__Q26PSGame5Rappa:
-	.byte 0x41
-	.byte 0x70
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41700000
 .global cBaseWaitTime__Q26PSGame5Rappa
 cBaseWaitTime__Q26PSGame5Rappa:
-	.byte 0x0
-	.byte 0x3
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00030000
 .global sRappa__Q26PSGame5Rappa
 sRappa__Q26PSGame5Rappa:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000000
+	.4byte 0x00000000
 .global cNotUsingMasterIdRatio__Q26PSGame6RandId
 cNotUsingMasterIdRatio__Q26PSGame6RandId:
-	.byte 0xBF
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xBF800000
+	.4byte 0x00000000
 .global mWaitTime__Q28Morimura12TDayEndCount
 mWaitTime__Q28Morimura12TDayEndCount:
-	.byte 0x3E
-	.byte 0xCC
-	.byte 0xCC
-	.byte 0xCD
+	.4byte 0x3ECCCCCD
 .global mAlphaMax__Q28Morimura12TDayEndCount
 mAlphaMax__Q28Morimura12TDayEndCount:
 	.byte 0xC8
@@ -1712,86 +863,44 @@ mWaitAlpha__Q28Morimura12TDayEndCount:
 	.byte 0x0
 .global mWaitScale__Q28Morimura12TDayEndCount
 mWaitScale__Q28Morimura12TDayEndCount:
-	.byte 0x3E
-	.byte 0x4C
-	.byte 0xCC
-	.byte 0xCD
+	.4byte 0x3E4CCCCD
 .global mStopScale__Q28Morimura12TDayEndCount
 mStopScale__Q28Morimura12TDayEndCount:
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F800000
 .global mScaleMax__Q28Morimura12TDayEndCount
 mScaleMax__Q28Morimura12TDayEndCount:
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x40000000
 .global m2pScale__Q28Morimura12TDayEndCount
 m2pScale__Q28Morimura12TDayEndCount:
-	.byte 0x3F
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F400000
 .global m2pOffsetY__Q28Morimura12TDayEndCount
 m2pOffsetY__Q28Morimura12TDayEndCount:
-	.byte 0x43
-	.byte 0x2A
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x432A0000
 .global mColor__Q28Morimura12TDayEndCount
 mColor__Q28Morimura12TDayEndCount:
-	.byte 0x0
-	.byte 0xFF
-	.byte 0x0
-	.byte 0xFF
+	.4byte 0x00FF00FF
 .global mNumberColor__Q28Morimura12TDayEndCount
 mNumberColor__Q28Morimura12TDayEndCount:
-	.byte 0xFF
-	.byte 0x64
-	.byte 0x0
-	.byte 0xFF
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xFF6400FF
+	.4byte 0x00000000
 .global mInitPosX__Q28Morimura10THurryUp2D
 mInitPosX__Q28Morimura10THurryUp2D:
-	.byte 0x44
-	.byte 0x61
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x44610000
 .global mMoveSp__Q28Morimura10THurryUp2D
 mMoveSp__Q28Morimura10THurryUp2D:
-	.byte 0x41
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41400000
 .global mScaleSp1__Q28Morimura10THurryUp2D
 mScaleSp1__Q28Morimura10THurryUp2D:
-	.byte 0x3C
-	.byte 0x23
-	.byte 0xD7
-	.byte 0xA
+	.4byte 0x3C23D70A
 .global mScaleSp2__Q28Morimura10THurryUp2D
 mScaleSp2__Q28Morimura10THurryUp2D:
-	.byte 0x3D
-	.byte 0xCC
-	.byte 0xCC
-	.byte 0xCD
+	.4byte 0x3DCCCCCD
 .global mScaleRate__Q28Morimura10THurryUp2D
 mScaleRate__Q28Morimura10THurryUp2D:
-	.byte 0x3F
-	.byte 0x82
-	.byte 0x8F
-	.byte 0x5C
+	.4byte 0x3F828F5C
 .global mColorUpSp__Q28Morimura10THurryUp2D
 mColorUpSp__Q28Morimura10THurryUp2D:
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F800000
 .global mRequestTimerMax__Q28Morimura10TZukanBase
 mRequestTimerMax__Q28Morimura10TZukanBase:
 	.byte 0x0
@@ -1802,176 +911,89 @@ mIconMove__Q28Morimura10TZukanBase:
 	.byte 0x0
 .global mLineSpace__Q28Morimura10TZukanBase
 mLineSpace__Q28Morimura10TZukanBase:
-	.byte 0x42
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x42400000
 .global mWarpRadius__Q28Morimura10TZukanBase
 mWarpRadius__Q28Morimura10TZukanBase:
-	.byte 0x41
-	.byte 0x70
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41700000
 .global mScrollValueCoe__Q28Morimura10TZukanBase
 mScrollValueCoe__Q28Morimura10TZukanBase:
-	.byte 0x40
-	.byte 0x60
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x40600000
 .global mScrollSpeedCoe__Q28Morimura10TZukanBase
 mScrollSpeedCoe__Q28Morimura10TZukanBase:
-	.byte 0x3D
-	.byte 0xA3
-	.byte 0xD7
-	.byte 0xA
+	.4byte 0x3DA3D70A
 .global mNewScale__Q28Morimura10TZukanBase
 mNewScale__Q28Morimura10TZukanBase:
-	.byte 0x3F
-	.byte 0x33
-	.byte 0x33
-	.byte 0x33
+	.4byte 0x3F333333
 .global mPodIconOffsetX__Q28Morimura10TZukanBase
 mPodIconOffsetX__Q28Morimura10TZukanBase:
-	.byte 0x43
-	.byte 0xF0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x43F00000
 .global mLargeCategoryScale__Q28Morimura10TZukanBase
 mLargeCategoryScale__Q28Morimura10TZukanBase:
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x40000000
 .global mCategoryAlphaRate__Q28Morimura10TZukanBase
 mCategoryAlphaRate__Q28Morimura10TZukanBase:
-	.byte 0x3F
-	.byte 0x19
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x3F19999A
 .global mDrawLineType__Q28Morimura10TZukanBase
 mDrawLineType__Q28Morimura10TZukanBase:
-	.byte 0x2
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x02000000
 .global mPictureOffsetY__Q28Morimura8THiScore
 mPictureOffsetY__Q28Morimura8THiScore:
-	.byte 0xC1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xC1000000
 .global mChangeAlpha__Q28Morimura8THiScore
 mChangeAlpha__Q28Morimura8THiScore:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
 .global mListOffsetY__Q28Morimura8THiScore
 mListOffsetY__Q28Morimura8THiScore:
-	.byte 0x41
-	.byte 0xC8
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41C80000
 .global mClearListHeightRate__Q28Morimura8THiScore
 mClearListHeightRate__Q28Morimura8THiScore:
-	.byte 0x3F
-	.byte 0xC6
-	.byte 0x66
-	.byte 0x66
+	.4byte 0x3FC66666
 .global mSelected1p__Q28Morimura16TChallengeSelect
 mSelected1p__Q28Morimura16TChallengeSelect:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
 .global mAlphaSpeed__Q28Morimura16TChallengeSelect
 mAlphaSpeed__Q28Morimura16TChallengeSelect:
-	.byte 0x3D
-	.byte 0x4C
-	.byte 0xCC
-	.byte 0xCD
+	.4byte 0x3D4CCCCD
 .global mFlashAnimInterval__Q28Morimura16TChallengeSelect
 mFlashAnimInterval__Q28Morimura16TChallengeSelect:
-	.byte 0x1
-	.byte 0x2C
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x012C0000
 .global mTextFlashVal__Q28Morimura16TChallengeSelect
 mTextFlashVal__Q28Morimura16TChallengeSelect:
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F800000
 .global mConnect2p__Q28Morimura16TChallengeSelect
 mConnect2p__Q28Morimura16TChallengeSelect:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
 .global mPanelMoveVal__Q28Morimura16TChallengeSelect
 mPanelMoveVal__Q28Morimura16TChallengeSelect:
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F800000
 .global mPanelMoveRate__Q28Morimura16TChallengeSelect
 mPanelMoveRate__Q28Morimura16TChallengeSelect:
-	.byte 0x3E
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3E800000
 .global mCircleY__Q28Morimura16TChallengeSelect
 mCircleY__Q28Morimura16TChallengeSelect:
-	.byte 0x42
-	.byte 0xC8
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x42C80000
 .global mTimerSpeed__Q28Morimura16TChallengeSelect
 mTimerSpeed__Q28Morimura16TChallengeSelect:
-	.byte 0x3E
-	.byte 0x19
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x3E19999A
 .global mMoveSpeed__Q28Morimura16TChallengeSelect
 mMoveSpeed__Q28Morimura16TChallengeSelect:
-	.byte 0x41
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41400000
 .global mSelectIconScale__Q28Morimura16TChallengeSelect
 mSelectIconScale__Q28Morimura16TChallengeSelect:
-	.byte 0x3F
-	.byte 0xC0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3FC00000
+	.4byte 0x00000000
 .global mMoveSpeed__Q28Morimura16TChallengeResult
 mMoveSpeed__Q28Morimura16TChallengeResult:
-	.byte 0x41
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41400000
 .global mAngRate__Q28Morimura16TChallengeResult
 mAngRate__Q28Morimura16TChallengeResult:
-	.byte 0x3E
-	.byte 0x99
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x3E99999A
 .global mAngVelMax__Q28Morimura16TChallengeResult
 mAngVelMax__Q28Morimura16TChallengeResult:
-	.byte 0x41
-	.byte 0xA0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41A00000
 .global mAccel__Q28Morimura16TChallengeResult
 mAccel__Q28Morimura16TChallengeResult:
-	.byte 0x3D
-	.byte 0xCC
-	.byte 0xCC
-	.byte 0xCD
+	.4byte 0x3DCCCCCD
 .global mTestDemo__Q28Morimura16TChallengeResult
 mTestDemo__Q28Morimura16TChallengeResult:
 	.byte 0x1
@@ -1984,260 +1006,125 @@ mTestRankInOrder__Q28Morimura16TChallengeResult:
 	.byte 0xFF
 .global mFlashInterval__Q28Morimura16TChallengeResult
 mFlashInterval__Q28Morimura16TChallengeResult:
-	.byte 0x42
-	.byte 0x20
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x42200000
 .global mDemoSpeedUpRate__Q28Morimura16TChallengeResult
 mDemoSpeedUpRate__Q28Morimura16TChallengeResult:
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x40000000
 .global mDemoSpeedUpMax__Q28Morimura16TChallengeResult
 mDemoSpeedUpMax__Q28Morimura16TChallengeResult:
-	.byte 0x40
-	.byte 0x40
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x40400000
 .global mFlashColor__Q28Morimura16TChallengeResult
 mFlashColor__Q28Morimura16TChallengeResult:
-	.byte 0xFF
-	.byte 0xFF
-	.byte 0x0
-	.byte 0xFF
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xFFFF00FF
+	.4byte 0x00000000
 .global mAngRate__Q28Morimura9TVsSelect
 mAngRate__Q28Morimura9TVsSelect:
-	.byte 0x3E
-	.byte 0x4C
-	.byte 0xCC
-	.byte 0xCD
+	.4byte 0x3E4CCCCD
 .global mMoveSpeed__Q28Morimura9TVsSelect
 mMoveSpeed__Q28Morimura9TVsSelect:
-	.byte 0x41
-	.byte 0xC8
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41C80000
 .global mIndVal__Q28Morimura9TVsSelect
 mIndVal__Q28Morimura9TVsSelect:
-	.byte 0x3D
-	.byte 0x4C
-	.byte 0xCC
-	.byte 0xCD
+	.4byte 0x3D4CCCCD
 .global mIndShuki__Q28Morimura9TVsSelect
 mIndShuki__Q28Morimura9TVsSelect:
-	.byte 0x3E
-	.byte 0x99
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x3E99999A
 .global mZoomFrameMax__Q28Morimura9TVsSelect
 mZoomFrameMax__Q28Morimura9TVsSelect:
-	.byte 0x41
-	.byte 0xC8
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41C80000
 .global mTestVal__Q28Morimura9TVsSelect
 mTestVal__Q28Morimura9TVsSelect:
-	.byte 0x41
-	.byte 0x20
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41200000
 .global mAngUp__Q28Morimura9TVsSelect
 mAngUp__Q28Morimura9TVsSelect:
-	.byte 0x3C
-	.byte 0xF5
-	.byte 0xC2
-	.byte 0x8F
+	.4byte 0x3CF5C28F
 .global mWindowScale__Q28Morimura9TVsSelect
 mWindowScale__Q28Morimura9TVsSelect:
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F800000
 .global mDemoScaleMax__Q28Morimura9TVsSelect
 mDemoScaleMax__Q28Morimura9TVsSelect:
-	.byte 0x40
-	.byte 0xC
-	.byte 0xCC
-	.byte 0xCD
+	.4byte 0x400CCCCD
 .global mDemoScale__Q28Morimura9TVsSelect
 mDemoScale__Q28Morimura9TVsSelect:
-	.byte 0x3F
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F800000
 .global mDemoOffsetMax__Q28Morimura9TVsSelect
 mDemoOffsetMax__Q28Morimura9TVsSelect:
-	.byte 0x43
-	.byte 0x91
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x43910000
 .global mFireAlphaRate__Q28Morimura9TVsSelect
 mFireAlphaRate__Q28Morimura9TVsSelect:
-	.byte 0x3F
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F000000
 .global mWideWindow__Q28Morimura11TScrollList
 mWideWindow__Q28Morimura11TScrollList:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
+	.4byte 0x00000000
 .global mClipRadiusS__11ParticleMgr
 mClipRadiusS__11ParticleMgr:
-	.byte 0x41
-	.byte 0x20
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41200000
 .global mClipRadiusM__11ParticleMgr
 mClipRadiusM__11ParticleMgr:
-	.byte 0x41
-	.byte 0xF0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x41F00000
 .global mClipRadiusL__11ParticleMgr
 mClipRadiusL__11ParticleMgr:
-	.byte 0x42
-	.byte 0xC8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x42C80000
+	.4byte 0x00000000
 .global cInitialCode__Q23ebi11CardEReader
 cInitialCode__Q23ebi11CardEReader:
-	.byte 0x50
-	.byte 0x53
-	.byte 0x41
-	.byte 0x4A
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x5053414A
+	.4byte 0x00000000
 .global sUseABXCommand
 sUseABXCommand:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
 .global cMapFileName
 cMapFileName:
-	.byte 0x80
-	.byte 0x49
-	.byte 0x98
-	.byte 0xE8
+	.4byte 0x804998E8
 .global mActiveSectionFlag__8GameFlow
 mActiveSectionFlag__8GameFlow:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x15
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x00000015
+	.4byte 0x00000000
 .global viewCalcMode__Q28SysShape5Model
 viewCalcMode__Q28SysShape5Model:
-	.byte 0x1
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x01000000
+	.4byte 0x00000000
 .global cFileName__Q24Game10MemoryCard
 cFileName__Q24Game10MemoryCard:
-	.byte 0x80
-	.byte 0x49
-	.byte 0xAD
-	.byte 0xB8
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x8049ADB8
+	.4byte 0x00000000
 .global sTinyPikminNum__13TinyPikminMgr
 sTinyPikminNum__13TinyPikminMgr:
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0xA
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x0000000A
+	.4byte 0x00000000
 .global sMovieIndex__26$$2unnamed$$2titleSection_cpp$$2
 sMovieIndex__26$$2unnamed$$2titleSection_cpp$$2:
 	.byte 0x0
 	.byte 0x2
 	.byte 0x4
-	.byte 0x1
-	.byte 0x3
-	.byte 0xB
-	.byte 0xB
+	.4byte 0x01030B0B
 .global sSeasonIndex__26$$2unnamed$$2titleSection_cpp$$2
 sSeasonIndex__26$$2unnamed$$2titleSection_cpp$$2:
 	.byte 0xFF
 .global sMovieIndexTable__Q24Demo25$$2unnamed$$2demoSection_cpp$$2
 sMovieIndexTable__Q24Demo25$$2unnamed$$2demoSection_cpp$$2:
-	.byte 0x5
-	.byte 0x6
-	.byte 0x7
-	.byte 0x0
-	.byte 0x8
-	.byte 0x9
-	.byte 0xA
-	.byte 0x0
+	.4byte 0x05060700
+	.4byte 0x08090A00
 .global sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2
 sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2:
-	.byte 0xFF
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0xFF000000
+	.4byte 0x00000000
 .global sTreasureLader_PitchDistance
 sTreasureLader_PitchDistance:
-	.byte 0x3F
-	.byte 0x45
-	.byte 0x1E
-	.byte 0xB8
+	.4byte 0x3F451EB8
 .global sTreasureLader_Pitch
 sTreasureLader_Pitch:
-	.byte 0x3F
-	.byte 0x85
-	.byte 0x1E
-	.byte 0xB8
+	.4byte 0x3F851EB8
 .global sTreasureLader_DistanceExp
 sTreasureLader_DistanceExp:
-	.byte 0x40
-	.byte 0xA0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x40A00000
 .global sTreasureLader_MinimumVolume
 sTreasureLader_MinimumVolume:
-	.byte 0x3E
-	.byte 0x99
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x3E99999A
 .global sLaderNoiseVolumeExp
 sLaderNoiseVolumeExp:
-	.byte 0x40
-	.byte 0xE5
-	.byte 0xC2
-	.byte 0x8F
+	.4byte 0x40E5C28F
 .global sLaderNoiseFuefukiTimerCenter
 sLaderNoiseFuefukiTimerCenter:
 	.byte 0x0
@@ -2248,81 +1135,39 @@ sLaderNoiseFuefukiTimerRandam:
 	.byte 0x8
 .global sLaderNoiseFuefukiSensMax
 sLaderNoiseFuefukiSensMax:
-	.byte 0x3E
-	.byte 0x99
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x3E99999A
 .global sLaderNoiseFuefukiVolumeMin
 sLaderNoiseFuefukiVolumeMin:
-	.byte 0x3E
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3E800000
 .global sLaderNoiseFuefukiVolumeMax
 sLaderNoiseFuefukiVolumeMax:
-	.byte 0x3F
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3F000000
+	.4byte 0x00000000
 .global cDol_0Rad__Q23PSM7SeSound
 cDol_0Rad__Q23PSM7SeSound:
-	.byte 0x3F
-	.byte 0x84
-	.byte 0xB
-	.byte 0x78
+	.4byte 0x3F840B78
 .global cDol_HalfRad__Q23PSM7SeSound
 cDol_HalfRad__Q23PSM7SeSound:
-	.byte 0x3F
-	.byte 0xC9
-	.byte 0xF
-	.byte 0xF9
+	.4byte 0x3FC90FF9
 .global cDol_FullRad__Q23PSM7SeSound
 cDol_FullRad__Q23PSM7SeSound:
-	.byte 0x40
-	.byte 0x7
-	.byte 0xA
-	.byte 0x3D
+	.4byte 0x40070A3D
 .global cPan_MaxAmp__Q23PSM7SeSound
 cPan_MaxAmp__Q23PSM7SeSound:
-	.byte 0x3F
-	.byte 0x7A
-	.byte 0xE1
-	.byte 0x48
+	.4byte 0x3F7AE148
 .global cCenterRad__Q23PSM7SeSound
 cCenterRad__Q23PSM7SeSound:
-	.byte 0x3F
-	.byte 0xC8
-	.byte 0xF5
-	.byte 0xC3
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3FC8F5C3
+	.4byte 0x00000000
 .global sCamFov__3PSM
 sCamFov__3PSM:
-	.byte 0x3E
-	.byte 0x80
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x3E800000
 .global sBoss_ViewDist__3PSM
 sBoss_ViewDist__3PSM:
-	.byte 0x44
-	.byte 0xA2
-	.byte 0x80
-	.byte 0x0
+	.4byte 0x44A28000
 .global sBoss_ViewDistVol__3PSM
 sBoss_ViewDistVol__3PSM:
-	.byte 0x3E
-	.byte 0x99
-	.byte 0x99
-	.byte 0x9A
+	.4byte 0x3E99999A
 .global sBoss_DistMax__3PSM
 sBoss_DistMax__3PSM:
-	.byte 0x45
-	.byte 0x7A
-	.byte 0x0
-	.byte 0x0
+	.4byte 0x457A0000
