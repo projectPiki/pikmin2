@@ -1,13 +1,13 @@
-/* 
+#include "id32.h"
 
-
+/*
  * --INFO--
  * Address:	........
  * Size:	0000E0
 
 void _Print(char *, ...)
 {
-	// UNUSED FUNCTION
+        // UNUSED FUNCTION
 }
 
 
@@ -15,72 +15,22 @@ void _Print(char *, ...)
  * Address:	80413254
  * Size:	00001C
 */
-#include "id32.h"
 
-bool ID32::isEof()
-{
-	return (this->rawID == '_eof');
-/* .loc_0x0:
-	lis       r4, 0x5F65
-	lwz       r3, 0x8(r3)
-	addi      r0, r4, 0x6F66
-	sub       r0, r0, r3
-	cntlzw    r0, r0
-	rlwinm    r3,r0,27,5,31
-	blr */
-
-}
+bool ID32::isEof() { return this->m_rawID == '_eof'; }
 /*
  * --INFO--
  * Address:	80413270
  * Size:	000038
  */
 ID32::ID32() { this->setID('none'); }
-//	setID(this, 'none');
-//	return;
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  lis       r4, 0x6E6F
-  stw       r0, 0x14(r1)
-  addi      r4, r4, 0x6E65
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  bl        ID32::setID
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-  */
-//}
+
 /*
  * --INFO--
  * Address:	804132A8
  * Size:	000030
  */
 ID32::ID32(unsigned long id) { this->setID(id); }
-//{
-//	setID(this, id);
-//	return;
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  bl        ID32::setID
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr       
-*/
-//}
+
 /*
  * --INFO--
  * Address:	804132D8
@@ -88,20 +38,8 @@ ID32::ID32(unsigned long id) { this->setID(id); }
  */
 void ID32::setID(unsigned long set_id)
 {
-	this->rawID = set_id;
-	this->updateString();
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r4, 0x8(r3)
-  bl        0xF0
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+    this->m_rawID = set_id;
+    this->updateString();
 }
 
 /*
@@ -111,75 +49,16 @@ void ID32::setID(unsigned long set_id)
  */
 bool ID32::match(unsigned long _id, char exception)
 {
-	char* p_id = reinterpret_cast<char*>(&_id);
-	char* m_id = reinterpret_cast<char*>(&this->rawID);
+    char* p_id = reinterpret_cast<char*>(&_id);
+    char* m_id = reinterpret_cast<char*>(&this->m_rawID);
 
-	for (int i = 0; i < 4; i++)
-	{
-		if (p_id[i] != exception && p_id[i] != m_id[i])
-			return 0;
-	}
-	return 1;
+    for (int i = 0; i < 4; i++) {
+        if (p_id[i] != exception && p_id[i] != m_id[i]) {
+            return false;
+        }
+    }
+    return true;
 }
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  extsb     r5, r5
-  stw       r4, 0x8(r1)
-  lbz       r0, 0x8(r1)
-  extsb     r4, r0
-  cmpw      r5, r4
-  beq-      .loc_0x34
-  lbz       r0, 0x8(r3)
-  extsb     r0, r0
-  cmpw      r4, r0
-  beq-      .loc_0x34
-  li        r3, 0
-  b         .loc_0xB0
-
-.loc_0x34:
-  lbz       r0, 0x9(r1)
-  extsb     r4, r0
-  cmpw      r5, r4
-  beq-      .loc_0x5C
-  lbz       r0, 0x9(r3)
-  extsb     r0, r0
-  cmpw      r4, r0
-  beq-      .loc_0x5C
-  li        r3, 0
-  b         .loc_0xB0
-
-.loc_0x5C:
-  lbz       r0, 0xA(r1)
-  extsb     r4, r0
-  cmpw      r5, r4
-  beq-      .loc_0x84
-  lbz       r0, 0xA(r3)
-  extsb     r0, r0
-  cmpw      r4, r0
-  beq-      .loc_0x84
-  li        r3, 0
-  b         .loc_0xB0
-
-.loc_0x84:
-  lbz       r0, 0xB(r1)
-  extsb     r4, r0
-  cmpw      r5, r4
-  beq-      .loc_0xAC
-  lbz       r0, 0xB(r3)
-  extsb     r0, r0
-  cmpw      r4, r0
-  beq-      .loc_0xAC
-  li        r3, 0
-  b         .loc_0xB0
-
-.loc_0xAC:
-  li        r3, 0x1
-
-.loc_0xB0:
-  addi      r1, r1, 0x10
-  blr
- */
 
 /*
  * --INFO--
@@ -188,22 +67,10 @@ bool ID32::match(unsigned long _id, char exception)
  */
 void ID32::updateID()
 {
-	char* m_id = reinterpret_cast<char*>(&this->rawID);
+    char* m_id = reinterpret_cast<char*>(&this->m_rawID);
 
-	for (int i = 0; i < 4; i++)
-		m_id[i] = this->inputstring[i];
-/*
-.loc_0x0:
-  lbz       r0, 0x0(r3)
-  stb       r0, 0x8(r3)
-  lbz       r0, 0x1(r3)
-  stb       r0, 0x9(r3)
-  lbz       r0, 0x2(r3)
-  stb       r0, 0xA(r3)
-  lbz       r0, 0x3(r3)
-  stb       r0, 0xB(r3)
-  blr
-*/
+    for (int i = 0; i < 4; i++)
+        m_id[i] = this->m_str[i];
 }
 
 /*
@@ -213,97 +80,50 @@ void ID32::updateID()
  */
 void ID32::updateString()
 {
-	char* m_id = reinterpret_cast<char*>(&this->rawID);
+    char* m_id = reinterpret_cast<char*>(&this->m_rawID);
 
-	for (int i = 0; i < 4; i++)
-		this->inputstring[i] = m_id[i];
-	inputstring[4] = '\0';
-/*
-.loc_0x0:
-  lbz       r4, 0x8(r3)
-  li        r0, 0
-  stb       r4, 0x0(r3)
-  lbz       r4, 0x9(r3)
-  stb       r4, 0x1(r3)
-  lbz       r4, 0xA(r3)
-  stb       r4, 0x2(r3)
-  lbz       r4, 0xB(r3)
-  stb       r4, 0x3(r3)
-  stb       r0, 0x4(r3)
-  blr
- */
+    for (int i = 0; i < 4; i++)
+        this->m_str[i] = m_id[i];
+    m_str[4] = '\0';
 }
 
- /*
+/*
  * --INFO--
  * Address:	80413404
  * Size:	000030
  */
-void ID32::operator= (unsigned long _id) //{ this->setID(_id); }
+void ID32::operator=(unsigned long _id)
 {
-	this->rawID = _id;
-	this->inputstring[0] = *(char*)&this->rawID;
-	this->inputstring[1] = *(char*)((int)&this->rawID + 1);
-	this->inputstring[2] = *(char*)((int)&this->rawID + 2);
-	this->inputstring[3] = *(char*)((int)&this->rawID + 3);
-	this->inputstring[4] = '\0';
-	return;
-	/*
-	.loc_0x0:
-	  stw       r4, 0x8(r3)
-	  li        r0, 0
-	  lbz       r4, 0x8(r3)
-	  stb       r4, 0x0(r3)
-	  lbz       r4, 0x9(r3)
-	  stb       r4, 0x1(r3)
-	  lbz       r4, 0xA(r3)
-	  stb       r4, 0x2(r3)
-	  lbz       r4, 0xB(r3)
-	  stb       r4, 0x3(r3)
-	  stb       r0, 0x4(r3)
-	  blr
-	*/
+    this->m_rawID  = _id;
+    this->m_str[0] = *(char*)&this->m_rawID;
+    this->m_str[1] = *(char*)((int)&this->m_rawID + 1);
+    this->m_str[2] = *(char*)((int)&this->m_rawID + 2);
+    this->m_str[3] = *(char*)((int)&this->m_rawID + 3);
+    this->m_str[4] = '\0';
 }
 /*
  * --INFO--
  * Address:	80413434
  * Size:	000014
  */
-bool ID32::operator== (unsigned long target) { return (this->rawID == target); }
-
-/*
-.loc_0x0:
-  lwz       r0, 0x8(r3)
-  sub       r0, r4, r0
-  cntlzw    r0, r0
-  rlwinm    r3,r0,27,5,31
-  blr
-*/
+bool ID32::operator==(unsigned long target)
+{
+    return (this->m_rawID == target);
+}
 
 /*
  * --INFO--
  * Address:	80413448
  * Size:	000018
  */
-bool ID32::operator!= (unsigned long _id) { return (this->rawID != _id); }
-
-/*
-.loc_0x0:
-  lwz       r0, 0x8(r3)
-  sub       r3, r4, r0
-  sub       r0, r0, r4
-  or        r0, r3, r0
-  rlwinm    r3,r0,1,31,31
-  blr
-*/
-
+bool ID32::operator!=(unsigned long _id) { return (this->m_rawID != _id); }
 
 /*
  * --INFO--
  * Address:	80413460
  * Size:	000090
  */
-//void ID32::write(Stream &)
+// void ID32::write(Stream&)
 //{
 /*
 .loc_0x0:
@@ -355,7 +175,7 @@ bool ID32::operator!= (unsigned long _id) { return (this->rawID != _id); }
  * Address:	804134F0
  * Size:	0000EC
  */
-//void ID32::read(Stream &)
+// void ID32::read(Stream &)
 //{
 /*
 .loc_0x0:
@@ -430,7 +250,7 @@ bool ID32::operator!= (unsigned long _id) { return (this->rawID != _id); }
  * Address:	804135DC
  * Size:	000004
  */
-//void ID32::print()
+// void ID32::print()
 //{
 //	return;
 /*
@@ -438,18 +258,18 @@ bool ID32::operator!= (unsigned long _id) { return (this->rawID != _id); }
 blr
  */
 //}
-/* 
+/*
 
  * --INFO--
  * Address:	804135E0
  * Size:	000038
  */
-//void ID32::sprint(char *str)
+// void ID32::sprint(char *str)
 //{
-//	str[0] = (this->rawID & 0xFF000000) >> 24;
-//	str[1] = (this->rawID & 0xFF0000) >> 16;
-//	str[2] = (this->rawID & 0xFF00) >> 8;
-//	str[3] = this->rawID;
+//	str[0] = (this->m_rawID & 0xFF000000) >> 24;
+//	str[1] = (this->m_rawID & 0xFF0000) >> 16;
+//	str[2] = (this->m_rawID & 0xFF00) >> 8;
+//	str[3] = this->m_rawID;
 //	str[4] = '\0';
 /*
 .loc_0x0:
@@ -475,7 +295,7 @@ blr
  * Address:	80413618
  * Size:	000040
  */
-//void __sinit_id32_cpp(void)
+// void __sinit_id32_cpp(void)
 //{
 /*
 .loc_0x0:
