@@ -2,17 +2,36 @@
 .section ._extab, "wa"  # 0x80005600 - 0x80005660
 .global $$2205
 $$2205:
-	.incbin "baserom.dol", 0x46FE40, 0x8
+	.4byte 0x30080000
+	.4byte 0x00000000
 .global $$2210
 $$2210:
-	.incbin "baserom.dol", 0x46FE48, 0x8
+	.4byte 0x20080000
+	.4byte 0x00000000
 .global $$2231
 $$2231:
-	.incbin "baserom.dol", 0x46FE50, 0x18
+	.4byte 0x20080000
+	.4byte 0x00000060
+	.4byte 0x00000010
+	.4byte 0x00000000
+	.4byte 0x82000008
+	.4byte 0x800C1938
 .global $$2239
 $$2239:
-	.incbin "baserom.dol", 0x46FE68, 0x8
+	.4byte 0x18080000
+	.4byte 0x00000000
 .global $$2262
 $$2262:
-	.incbin "baserom.dol", 0x46FE70, 0x30
+	.4byte 0x28080000
+	.4byte 0x00000070
+	.4byte 0x00000010
+	.4byte 0x00000000
+	.4byte 0x82000008
+	.4byte 0x800C1938
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
 	

@@ -1,7 +1,29 @@
 .include "macros.inc"
 .section ._exidx, "a"  # 0x80005660 - 0x800056C0
-	.incbin "baserom.dol", 0x46FEA0, 0x3C
+	.4byte 0x800C1748
+	.4byte 0x0000007C
+	.4byte 0x80005600
+	.4byte 0x800C17C4
+	.4byte 0x00000078
+	.4byte 0x80005608
+	.4byte 0x800C183C
+	.4byte 0x000000FC
+	.4byte 0x80005610
+	.4byte 0x800C1938
+	.4byte 0x000000B8
+	.4byte 0x80005628
+	.4byte 0x800C19F0
+	.4byte 0x00000104
+	.4byte 0x80005630
 .global lbl_8000569C
 lbl_8000569C:
-	.incbin "baserom.dol", 0x46FEDC, 0x24
+	.4byte 0x80005660
+	.4byte 0x8000569C
+	.4byte 0x800C1748
+	.4byte 0x000003AC
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
 	
