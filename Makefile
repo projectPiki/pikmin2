@@ -84,6 +84,8 @@ PROCFLAGS := -fprologue-fixup=old_stack
 SDATA_PDHR := 9
 SBSS_PDHR := 10
 
+$(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.0
+
 #-------------------------------------------------------------------------------
 # Recipes
 #-------------------------------------------------------------------------------

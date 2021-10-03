@@ -1,24 +1,24 @@
-
+extern void (*FatalFunc)();
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00008C
  */
-void ShowMessage(void)
+/* void ShowMessage(void)
 {
 	// UNUSED FUNCTION
-}
+} */
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000070
  */
-void DVDSetAutoFatalMessaging(void)
+/* void DVDSetAutoFatalMessaging(void)
 {
 	// UNUSED FUNCTION
-}
+} */
 
 /*
  * --INFO--
@@ -27,6 +27,10 @@ void DVDSetAutoFatalMessaging(void)
  */
 void __DVDPrintFatalMessage(void)
 {
+	  if (FatalFunc != 0) {
+    (*FatalFunc)();
+  }
+  return;
 /*
 .loc_0x0:
   mflr      r0
