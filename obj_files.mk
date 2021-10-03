@@ -826,7 +826,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
-	$(BUILD_DIR)/asm/sysBootupU/sysBootup.o\
+	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
 	$(BUILD_DIR)/asm/sysCommonU/node.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/src/sysCommonU/id32.o\
