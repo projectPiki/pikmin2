@@ -52,7 +52,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/alloc.o\
 	$(BUILD_DIR)/asm/Dolphin/ansi_files.o\
 	$(BUILD_DIR)/asm/Dolphin/ansi_fp.o\
-	$(BUILD_DIR)/asm/Dolphin/arith.o\
+	$(BUILD_DIR)/src/Dolphin/arith.o\
 	$(BUILD_DIR)/asm/Dolphin/buffer_io.o\
 	$(BUILD_DIR)/asm/Dolphin/critical_regions.gamecube.o\
 	$(BUILD_DIR)/asm/Dolphin/ctype.o\
