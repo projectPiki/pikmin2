@@ -80,7 +80,7 @@ void createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRC
  * Address:	800062EC
  * Size:	000060
  */
-void __dt__Q217JStudio_JParticle13TCreateObjectFv(void)
+void JStudio_JParticle::TCreateObject::__dt(void)
 {
 /*
 .loc_0x0:
@@ -118,7 +118,7 @@ void __dt__Q217JStudio_JParticle13TCreateObjectFv(void)
  * Address:	8000634C
  * Size:	000078
  */
-void create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object(void)
+void JStudio_JParticle::TCreateObject::create( (JStudio::TObject **, JStudio::stb::data::TParse_TBlock_object const &))
 {
 /*
 .loc_0x0:
@@ -168,7 +168,7 @@ void create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStud
  * Address:	800083A4
  * Size:	000044
  */
-void __ct__Q28JMessage8TControlFv(void)
+void JMessage::TControl::__ct(void)
 {
 /*
 .loc_0x0:
@@ -197,7 +197,7 @@ void __ct__Q28JMessage8TControlFv(void)
  * Address:	800083E8
  * Size:	000048
  */
-void __dt__Q28JMessage8TControlFv(void)
+void JMessage::TControl::__dt(void)
 {
 /*
 .loc_0x0:
@@ -229,7 +229,7 @@ void __dt__Q28JMessage8TControlFv(void)
  * Address:	80008430
  * Size:	000068
  */
-void reset__Q28JMessage8TControlFv(void)
+void JMessage::TControl::reset(void)
 {
 /*
 .loc_0x0:
@@ -271,7 +271,7 @@ void reset__Q28JMessage8TControlFv(void)
  * Address:	80008498
  * Size:	000088
  */
-void update__Q28JMessage8TControlFv(void)
+void JMessage::TControl::update(void)
 {
 /*
 .loc_0x0:
@@ -325,7 +325,7 @@ void update__Q28JMessage8TControlFv(void)
  * Address:	80008520
  * Size:	00015C
  */
-void render__Q28JMessage8TControlFv(void)
+void JMessage::TControl::render(void)
 {
 /*
 .loc_0x0:
@@ -436,7 +436,7 @@ void render__Q28JMessage8TControlFv(void)
  * Address:	8000867C
  * Size:	0000DC
  */
-void setMessageCode__Q28JMessage8TControlFUsUs(void)
+void JMessage::TControl::setMessageCode( (unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -515,7 +515,7 @@ void setMessageCode__Q28JMessage8TControlFUsUs(void)
  * Address:	80008758
  * Size:	0000FC
  */
-void setMessageID__Q28JMessage8TControlFUlUlPb(void)
+void JMessage::TControl::setMessageID( (unsigned long, unsigned long, bool *))
 {
 /*
 .loc_0x0:
@@ -606,7 +606,7 @@ void setMessageID__Q28JMessage8TControlFUlUlPb(void)
  * Address:	80008854
  * Size:	0000E8
  */
-void setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs(void)
+void JMessage::TControl::setMessageCode_inSequence_( (JMessage::TProcessor const *, unsigned short, unsigned short))
 {
 /*
 .loc_0x0:
@@ -686,7 +686,7 @@ void setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorU
  * Address:	80014734
  * Size:	000060
  */
-void __dt__Q214JStudio_JStage13TCreateObjectFv(void)
+void JStudio_JStage::TCreateObject::__dt(void)
 {
 /*
 .loc_0x0:
@@ -724,7 +724,7 @@ void __dt__Q214JStudio_JStage13TCreateObjectFv(void)
  * Address:	80014794
  * Size:	000194
  */
-void create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object(void)
+void JStudio_JStage::TCreateObject::create( (JStudio::TObject **, JStudio::stb::data::TParse_TBlock_object const &))
 {
 /*
 .loc_0x0:
@@ -1309,7 +1309,7 @@ void createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ4
  * Address:	........
  * Size:	000060
  */
-void __dt__Q216JStudio_JMessage18TCreateObject_baseFv(void)
+void JStudio_JMessage::TCreateObject_base::__dt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1319,7 +1319,7 @@ void __dt__Q216JStudio_JMessage18TCreateObject_baseFv(void)
  * Address:	80014EB4
  * Size:	0000AC
  */
-void create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object(void)
+void JStudio_JMessage::TCreateObject_base::create( (JStudio::TObject **, JStudio::stb::data::TParse_TBlock_object const &))
 {
 /*
 .loc_0x0:
@@ -1384,7 +1384,7 @@ void create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47J
  * Address:	80014F60
  * Size:	000070
  */
-void __dt__Q216JStudio_JMessage13TCreateObjectFv(void)
+void JStudio_JMessage::TCreateObject::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1428,7 +1428,7 @@ void __dt__Q216JStudio_JMessage13TCreateObjectFv(void)
  * Address:	80014FD0
  * Size:	000008
  */
-void find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object(void)
+void JStudio_JMessage::TCreateObject::find( (JStudio::stb::data::TParse_TBlock_object const &))
 {
 /*
 .loc_0x0:
@@ -1517,7 +1517,7 @@ void createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JSt
  * Address:	80015D10
  * Size:	000060
  */
-void __dt__Q214JStudio_JAudio13TCreateObjectFv(void)
+void JStudio_JAudio::TCreateObject::__dt(void)
 {
 /*
 .loc_0x0:
@@ -1555,7 +1555,7 @@ void __dt__Q214JStudio_JAudio13TCreateObjectFv(void)
  * Address:	80015D70
  * Size:	000078
  */
-void create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object(void)
+void JStudio_JAudio::TCreateObject::create( (JStudio::TObject **, JStudio::stb::data::TParse_TBlock_object const &))
 {
 /*
 .loc_0x0:

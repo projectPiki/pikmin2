@@ -5,7 +5,7 @@
  * Address:	........
  * Size:	000054
  */
-void parseVariableUInt_16_32__Q27JGadget6binaryFPPCvPQ37JGadget6binary5TEBit(void)
+void JGadget::binary::parseVariableUInt_16_32( (void const **, JGadget::binary::TEBit *))
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void parseVariableUInt_16_32__Q27JGadget6binaryFPPCvPQ37JGadget6binary5TEBit(voi
  * Address:	........
  * Size:	000084
  */
-void parseVariableUInt_8_16_32__Q27JGadget6binaryFPPCvPQ37JGadget6binary5TEBit(void)
+void JGadget::binary::parseVariableUInt_8_16_32( (void const **, JGadget::binary::TEBit *))
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void parseVariableUInt_8_16_32__Q27JGadget6binaryFPPCvPQ37JGadget6binary5TEBit(v
  * Address:	........
  * Size:	000054
  */
-void parseVariableUInt_8_16__Q27JGadget6binaryFPPCvPQ37JGadget6binary5TEBit(void)
+void JGadget::binary::parseVariableUInt_8_16( (void const **, JGadget::binary::TEBit *))
 {
 	// UNUSED FUNCTION
 }
@@ -35,7 +35,7 @@ void parseVariableUInt_8_16__Q27JGadget6binaryFPPCvPQ37JGadget6binary5TEBit(void
  * Address:	80027128
  * Size:	000068
  */
-void parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit(void)
+void JGadget::binary::parseVariableUInt_16_32_following( (void const *, unsigned long *, unsigned long *, JGadget::binary::TEBit *))
 {
 /*
 .loc_0x0:
@@ -79,7 +79,7 @@ void parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6b
  * Address:	80027190
  * Size:	000048
  */
-void __dt__Q37JGadget6binary19TParse_header_blockFv(void)
+void JGadget::binary::TParse_header_block::__dt(void)
 {
 /*
 .loc_0x0:
@@ -111,7 +111,7 @@ void __dt__Q37JGadget6binary19TParse_header_blockFv(void)
  * Address:	800271D8
  * Size:	00010C
  */
-void parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl(void)
+void JGadget::binary::TParse_header_block::parse_next( (void const **, unsigned long))
 {
 /*
 .loc_0x0:
