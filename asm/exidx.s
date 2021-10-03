@@ -23,9 +23,5 @@ lbl_8000569C:
 	.4byte lbl_8000569C
 	.4byte __destroy_new_array
 	.4byte 0x000003AC
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.skip 0x14
 	

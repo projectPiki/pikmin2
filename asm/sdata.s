@@ -113,17 +113,17 @@ SizeOfLoadColorChans:
 	.skip 4
 .global sNoUseDrawMtxPtr__12J3DMtxBuffer
 sNoUseDrawMtxPtr__12J3DMtxBuffer:
-	.4byte 0x80512108
+	.4byte sNoUseDrawMtx__12J3DMtxBuffer
 .global sNoUseNrmMtxPtr__12J3DMtxBuffer
 sNoUseNrmMtxPtr__12J3DMtxBuffer:
-	.4byte 0x8051215C
+	.4byte sNoUseNrmMtx__12J3DMtxBuffer
 .global J3DUnit01
 J3DUnit01:
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 .global maxStdHeaps__Q29JFWSystem11CSetUpParam
 maxStdHeaps__Q29JFWSystem11CSetUpParam:
-	.4byte 0x00000002
+	.4byte 2
 .global sysHeapSize__Q29JFWSystem11CSetUpParam
 sysHeapSize__Q29JFWSystem11CSetUpParam:
 	.4byte 0x00400000
@@ -150,19 +150,18 @@ systemFontRes__Q29JFWSystem11CSetUpParam:
 	.4byte 0x804742C0
 .global renderMode__Q29JFWSystem11CSetUpParam
 renderMode__Q29JFWSystem11CSetUpParam:
-	.4byte 0x804A8400
+	.4byte GXNtsc480IntDf
 .global exConsoleBufferSize__Q29JFWSystem11CSetUpParam
 exConsoleBufferSize__Q29JFWSystem11CSetUpParam:
 	.4byte 0x000024FC
 	.4byte 0x00000000
 .global p_dl
 p_dl:
-	.4byte 0x804A30A0
-	.4byte 0x804A30C0
+	.4byte jpa_dl
+	.4byte jpa_dl_x
 .global zz_80514788
 zz_80514788:
-	.4byte 0x3F800000
-	.4byte 0x00000000
+	.double 0.0078125
 .global MAX_MIXERLEVEL__9JASDriver
 MAX_MIXERLEVEL__9JASDriver:
 	.2byte 0x2ee0
@@ -204,13 +203,13 @@ SceneSetFlag__Q27JAInter8BankWave:
 	.4byte 0xFFFFFFFF
 .global initCallback__Q27JAInter8BankWave
 initCallback__Q27JAInter8BankWave:
-	.4byte 0x800ABE5C
+	.4byte init__Q27JAInter8BankWaveFv
 .global firstLoadCallback__Q27JAInter8BankWave
 firstLoadCallback__Q27JAInter8BankWave:
-	.4byte 0x800ABFA4
+	.4byte loadFirstStayWave__Q27JAInter8BankWaveFv
 .global secondLoadCallback__Q27JAInter8BankWave
 secondLoadCallback__Q27JAInter8BankWave:
-	.4byte 0x800AC038
+	.4byte loadSecondStayWave__Q27JAInter8BankWaveFv
 	.4byte 0x00000000
 .global msStopStatus__8JAIBasic
 msStopStatus__8JAIBasic:
@@ -291,7 +290,7 @@ inputGainDown__18JAIGlobalParameter:
 	.4byte 0x3F000000
 .global outputGainUp__18JAIGlobalParameter
 outputGainUp__18JAIGlobalParameter:
-	.4byte 0x3F99999A
+	.float 1.2
 .global distanceMax__18JAIGlobalParameter
 distanceMax__18JAIGlobalParameter:
 	.4byte 0x459C4000
@@ -445,7 +444,7 @@ __CARDPermMask:
 	.4byte 0x00000000
 .global __DSPVersion
 __DSPVersion:
-	.4byte 0x804A7938
+	.4byte lbl_804A7938
 	.4byte 0x00000000
 .global FirstRead
 FirstRead:
@@ -534,10 +533,10 @@ GX2HWFiltConv_1:
 .global Unit01_1
 Unit01_1:
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 .global __OSVersion
 __OSVersion:
-	.4byte 0x804A8900
+	.4byte lbl_804A8900
 .global lbl_805149CC
 lbl_805149CC:
 	.4byte 0x25303878
@@ -623,7 +622,7 @@ gEnemyInfoNum__4Game:
 	.4byte 0x00000000
 .global sStoneMdlName__27$$2unnamed$$2enemyStoneMgr_cpp$$2
 sStoneMdlName__27$$2unnamed$$2enemyStoneMgr_cpp$$2:
-	.4byte 0x8047BE58
+	.4byte lbl_8047BE58
 	.4byte 0x8047BE6C
 .global cChappyChangeTexName0__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2
 cChappyChangeTexName0__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2:
@@ -727,7 +726,7 @@ sTekiChappyFlag__Q24Game12BaseHIOParms:
 .global asArrayOtakara__4Game
 asArrayOtakara__4Game:
 	.4byte 0xFFFFFFFF
-	.4byte 0x3F800000
+	.float 1.0
 .global cCoin__13VsOtakaraName
 cCoin__13VsOtakaraName:
 	.4byte 0x80483EE8
@@ -866,7 +865,7 @@ mWaitScale__Q28Morimura12TDayEndCount:
 	.4byte 0x3E4CCCCD
 .global mStopScale__Q28Morimura12TDayEndCount
 mStopScale__Q28Morimura12TDayEndCount:
-	.4byte 0x3F800000
+	.float 1.0
 .global mScaleMax__Q28Morimura12TDayEndCount
 mScaleMax__Q28Morimura12TDayEndCount:
 	.4byte 0x40000000
@@ -900,7 +899,7 @@ mScaleRate__Q28Morimura10THurryUp2D:
 	.4byte 0x3F828F5C
 .global mColorUpSp__Q28Morimura10THurryUp2D
 mColorUpSp__Q28Morimura10THurryUp2D:
-	.4byte 0x3F800000
+	.float 1.0
 .global mRequestTimerMax__Q28Morimura10TZukanBase
 mRequestTimerMax__Q28Morimura10TZukanBase:
 	.byte 0x0
@@ -959,13 +958,13 @@ mFlashAnimInterval__Q28Morimura16TChallengeSelect:
 	.4byte 0x012C0000
 .global mTextFlashVal__Q28Morimura16TChallengeSelect
 mTextFlashVal__Q28Morimura16TChallengeSelect:
-	.4byte 0x3F800000
+	.float 1.0
 .global mConnect2p__Q28Morimura16TChallengeSelect
 mConnect2p__Q28Morimura16TChallengeSelect:
 	.4byte 0x01000000
 .global mPanelMoveVal__Q28Morimura16TChallengeSelect
 mPanelMoveVal__Q28Morimura16TChallengeSelect:
-	.4byte 0x3F800000
+	.float 1.0
 .global mPanelMoveRate__Q28Morimura16TChallengeSelect
 mPanelMoveRate__Q28Morimura16TChallengeSelect:
 	.4byte 0x3E800000
@@ -1040,13 +1039,13 @@ mAngUp__Q28Morimura9TVsSelect:
 	.4byte 0x3CF5C28F
 .global mWindowScale__Q28Morimura9TVsSelect
 mWindowScale__Q28Morimura9TVsSelect:
-	.4byte 0x3F800000
+	.float 1.0
 .global mDemoScaleMax__Q28Morimura9TVsSelect
 mDemoScaleMax__Q28Morimura9TVsSelect:
 	.4byte 0x400CCCCD
 .global mDemoScale__Q28Morimura9TVsSelect
 mDemoScale__Q28Morimura9TVsSelect:
-	.4byte 0x3F800000
+	.float 1.0
 .global mDemoOffsetMax__Q28Morimura9TVsSelect
 mDemoOffsetMax__Q28Morimura9TVsSelect:
 	.4byte 0x43910000
@@ -1087,7 +1086,7 @@ viewCalcMode__Q28SysShape5Model:
 	.4byte 0x00000000
 .global cFileName__Q24Game10MemoryCard
 cFileName__Q24Game10MemoryCard:
-	.4byte 0x8049ADB8
+	.4byte lbl_8049ADB8
 	.4byte 0x00000000
 .global sTinyPikminNum__13TinyPikminMgr
 sTinyPikminNum__13TinyPikminMgr:
@@ -1112,19 +1111,19 @@ sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2:
 	.4byte 0x00000000
 .global sTreasureLader_PitchDistance
 sTreasureLader_PitchDistance:
-	.4byte 0x3F451EB8
+	.float 0.77
 .global sTreasureLader_Pitch
 sTreasureLader_Pitch:
-	.4byte 0x3F851EB8
+	.float 1.04
 .global sTreasureLader_DistanceExp
 sTreasureLader_DistanceExp:
-	.4byte 0x40A00000
+	.float 5.0
 .global sTreasureLader_MinimumVolume
 sTreasureLader_MinimumVolume:
-	.4byte 0x3E99999A
+	.float 0.3
 .global sLaderNoiseVolumeExp
 sLaderNoiseVolumeExp:
-	.4byte 0x40E5C28F
+	.float 7.18
 .global sLaderNoiseFuefukiTimerCenter
 sLaderNoiseFuefukiTimerCenter:
 	.byte 0x0
@@ -1135,39 +1134,39 @@ sLaderNoiseFuefukiTimerRandam:
 	.byte 0x8
 .global sLaderNoiseFuefukiSensMax
 sLaderNoiseFuefukiSensMax:
-	.4byte 0x3E99999A
+	.float 0.3
 .global sLaderNoiseFuefukiVolumeMin
 sLaderNoiseFuefukiVolumeMin:
-	.4byte 0x3E800000
+	.float 0.25
 .global sLaderNoiseFuefukiVolumeMax
 sLaderNoiseFuefukiVolumeMax:
-	.4byte 0x3F000000
-	.4byte 0x00000000
+	.float 0.5
+	.skip 4
 .global cDol_0Rad__Q23PSM7SeSound
 cDol_0Rad__Q23PSM7SeSound:
-	.4byte 0x3F840B78
+	.float 1.0316
 .global cDol_HalfRad__Q23PSM7SeSound
 cDol_HalfRad__Q23PSM7SeSound:
-	.4byte 0x3FC90FF9
+	.float 1.5708
 .global cDol_FullRad__Q23PSM7SeSound
 cDol_FullRad__Q23PSM7SeSound:
-	.4byte 0x40070A3D
+	.float 2.11
 .global cPan_MaxAmp__Q23PSM7SeSound
 cPan_MaxAmp__Q23PSM7SeSound:
-	.4byte 0x3F7AE148
+	.float 0.98
 .global cCenterRad__Q23PSM7SeSound
 cCenterRad__Q23PSM7SeSound:
-	.4byte 0x3FC8F5C3
-	.4byte 0x00000000
+	.float 1.57
+	.skip 4
 .global sCamFov__3PSM
 sCamFov__3PSM:
-	.4byte 0x3E800000
+	.float 0.25
 .global sBoss_ViewDist__3PSM
 sBoss_ViewDist__3PSM:
-	.4byte 0x44A28000
+	.float 1300.0
 .global sBoss_ViewDistVol__3PSM
 sBoss_ViewDistVol__3PSM:
-	.4byte 0x3E99999A
+	.float 0.3
 .global sBoss_DistMax__3PSM
 sBoss_DistMax__3PSM:
-	.4byte 0x457A0000
+	.float 4000.0
