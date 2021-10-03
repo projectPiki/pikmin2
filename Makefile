@@ -21,7 +21,7 @@ SRC_DIRS := src src/Dolphin src/JSystem src/sysBootupU src/sysCommonU src/sysGCU
 			src/plugProjectEbisawaU src/plugProjectHikinoU src/plugProjectKandoU \
 			src/plugProjectKonoU src/plugProjectMorimuraU src/plugProjectNishimuraU \
 			src/plugProjectOgawaU src/plugProjectYamashitaU src/utilityU
-ASM_DIRS := asm asm/Dolphin asm/JSystem asm/sysBootupU asm/sysCommonU asm/sysGCU \
+ASM_DIRS := asm asm/Dolphin asm/JSystem asm/sysCommonU asm/sysGCU \
 			asm/plugProjectEbisawaU asm/plugProjectHikinoU asm/plugProjectKandoU \
 			asm/plugProjectKonoU asm/plugProjectMorimuraU asm/plugProjectNishimuraU \
 			asm/plugProjectOgawaU asm/plugProjectYamashitaU asm/utilityU
@@ -84,7 +84,7 @@ PROCFLAGS := -fprologue-fixup=old_stack
 SDATA_PDHR := 9
 SBSS_PDHR := 10
 
-$(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.0
+$(BUILD_DIR)/src/Dolphin/%.o: MWCC_VERSION := 1.0
 
 #-------------------------------------------------------------------------------
 # Recipes
