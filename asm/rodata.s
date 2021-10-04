@@ -42414,8 +42414,8 @@ lbl_804995B0:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-.global lbl_804995D0
-lbl_804995D0:
+.global gMainBootupStr
+gMainBootupStr:
 	.asciz "bootup -----------------------\n"
 .global lbl_804995F0
 lbl_804995F0:

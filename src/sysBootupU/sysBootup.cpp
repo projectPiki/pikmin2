@@ -1,18 +1,9 @@
 #include "System.h"
 
 extern "C" void OSReport(char*, ...);
-extern char lbl_804995D0[33];
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-    // UNUSED FUNCTION
-}
+// "bootup -----------------------\n"
+extern char gMainBootupStr[33];
 
 /*
  * --INFO--
@@ -21,9 +12,9 @@ void _Print(char*, ...)
  */
 int main(void)
 {
-  System *system;
-  OSReport(lbl_804995D0);
-  System::initialize();
-  system = new System();
-  return system->run();
+    OSReport(gMainBootupStr);
+
+    System::initialize();
+    System* sysInstance = new System();
+    return sysInstance->run();
 }
