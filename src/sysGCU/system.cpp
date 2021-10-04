@@ -38,33 +38,33 @@ extern char gStrSystem_InOnLine[23]; // %s in \"%s\" on line %d\n
  * Address:	80421F64
  * Size:	000188
  */
-void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
-{
-    va_list list;
-    va_start(list, r6);
-
-    char buffer[0xFF];
-    vsnprintf(buffer, sizeof(buffer), r6, list);
-
-    if (!JUTException::sConsole) {
-        OSPanic(r4, line, buffer);
-    }
-
-    char dest[4];
-    memcpy(dest, (void*)*(JFWSystem::mainThread + 0x2C), 0x2C8);
-
-    int unknown;
-    *(JUTException::sErrorManager + 0xa0) = unknown;
-    exCallbackObject.funcPtr              = (u32*)preUserCallback;
-
-    if (!JUTException::sErrorManager) {
-        OSReport(gStrSystem_InOnLine, buffer, r4, line);
-    }
-
-    OSSendMessage(&JUTException::sMessageQueue, (OSMessage*)&exCallbackObject,
-                  true);
-    OSSuspendThread(OSGetCurrentThread());
-}
+//void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
+//{
+//    va_list list;
+//    va_start(list, r6);
+//
+//    char buffer[0xFF];
+//    vsnprintf(buffer, sizeof(buffer), r6, list);
+//
+//    if (!JUTException::sConsole) {
+//        OSPanic(r4, line, buffer);
+//    }
+//
+//    char dest[4];
+//    memcpy(dest, (void*)*(JFWSystem::mainThread + 0x2C), 0x2C8);
+//
+//    int unknown;
+//    *(JUTException::sErrorManager + 0xa0) = unknown;
+//    exCallbackObject.funcPtr              = (u32*)preUserCallback;
+//
+//    if (!JUTException::sErrorManager) {
+//        OSReport(gStrSystem_InOnLine, buffer, r4, line);
+//    }
+//
+//    OSSendMessage(&JUTException::sMessageQueue, (OSMessage*)&exCallbackObject,
+//                  true);
+//    OSSuspendThread(OSGetCurrentThread());
+//}
 /*
 .loc_0x0:
   stwu      r1, -0x460(r1)
