@@ -16,7 +16,7 @@ void _Print(char *, ...)
  * Size:	00001C
 */
 
-bool ID32::isEof() { return this->m_rawID == '_eof'; }
+bool ID32::isEof() { return this->m_id.raw == '_eof'; }
 /*
  * --INFO--
  * Address:	80413270
@@ -38,7 +38,7 @@ ID32::ID32(unsigned long id) { this->setID(id); }
  */
 void ID32::setID(unsigned long set_id)
 {
-    this->m_rawID = set_id;
+    this->m_id.raw = set_id;
     this->updateString();
 }
 
@@ -50,7 +50,7 @@ void ID32::setID(unsigned long set_id)
 bool ID32::match(unsigned long _id, char exception)
 {
     char* p_id = reinterpret_cast<char*>(&_id);
-    char* m_id = reinterpret_cast<char*>(&this->m_rawID);
+    char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
 
     for (int i = 0; i < 4; i++) {
         if (p_id[i] != exception && p_id[i] != m_id[i]) {
@@ -67,7 +67,7 @@ bool ID32::match(unsigned long _id, char exception)
  */
 void ID32::updateID()
 {
-    char* m_id = reinterpret_cast<char*>(&this->m_rawID);
+    char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
 
     for (int i = 0; i < 4; i++)
         m_id[i] = this->m_str[i];
@@ -80,7 +80,7 @@ void ID32::updateID()
  */
 void ID32::updateString()
 {
-    char* m_id = reinterpret_cast<char*>(&this->m_rawID);
+    char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
 
     for (int i = 0; i < 4; i++)
         this->m_str[i] = m_id[i];
@@ -94,11 +94,11 @@ void ID32::updateString()
  */
 void ID32::operator=(unsigned long _id)
 {
-    this->m_rawID  = _id;
-    this->m_str[0] = *(char*)&this->m_rawID;
-    this->m_str[1] = *(char*)((int)&this->m_rawID + 1);
-    this->m_str[2] = *(char*)((int)&this->m_rawID + 2);
-    this->m_str[3] = *(char*)((int)&this->m_rawID + 3);
+    this->m_id.raw = _id;
+    this->m_str[0] = *(char*)&this->m_id.raw;
+    this->m_str[1] = *(char*)((int)&this->m_id.raw + 1);
+    this->m_str[2] = *(char*)((int)&this->m_id.raw + 2);
+    this->m_str[3] = *(char*)((int)&this->m_id.raw + 3);
     this->m_str[4] = '\0';
 }
 /*
@@ -108,7 +108,7 @@ void ID32::operator=(unsigned long _id)
  */
 bool ID32::operator==(unsigned long target)
 {
-    return (this->m_rawID == target);
+    return (this->m_id.raw == target);
 }
 
 /*
@@ -116,204 +116,107 @@ bool ID32::operator==(unsigned long target)
  * Address:	80413448
  * Size:	000018
  */
-bool ID32::operator!=(unsigned long _id) { return (this->m_rawID != _id); }
+bool ID32::operator!=(unsigned long _id) { return (this->m_id.raw != _id); }
+
+extern char lbl_805202C8[8]; // sd_StringSpecifier
 
 /*
  * --INFO--
  * Address:	80413460
  * Size:	000090
  */
-// void ID32::write(Stream&)
-//{
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  mr        r31, r4
-  stw       r30, 0x18(r1)
-  mr        r30, r3
-  lwz       r0, 0xC(r4)
-  cmpwi     r0, 0x1
-  bne-      .loc_0x48
-  addi      r4, r1, 0x8
-  bl        0x154
-  mr        r3, r31
-  addi      r5, r1, 0x8
-  addi      r4, r2, 0x1F68
-  crclr     6, 0x6
-  bl        0xC58
-  b         .loc_0x78
-
-.loc_0x48:
-  lbz       r4, 0xB(r30)
-  mr        r3, r31
-  bl        0x21C0
-  lbz       r4, 0xA(r30)
-  mr        r3, r31
-  bl        0x21B4
-  lbz       r4, 0x9(r30)
-  mr        r3, r31
-  bl        0x21A8
-  lbz       r4, 0x8(r30)
-  mr        r3, r31
-  bl        0x219C
-
-.loc_0x78:
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-*/
-//}
+void ID32::write(Stream& stream)
+{
+    if (stream.isTextMode == TRUE) {
+        char str[0x10];
+        sprint(str);
+        stream.printf(lbl_805202C8, str);
+    } else {
+        stream.writeByte(m_id.byteView.d);
+        stream.writeByte(m_id.byteView.c);
+        stream.writeByte(m_id.byteView.b);
+        stream.writeByte(m_id.byteView.a);
+    }
+}
 
 /*
  * --INFO--
  * Address:	804134F0
  * Size:	0000EC
  */
-// void ID32::read(Stream &)
-//{
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  lwz       r0, 0xC(r4)
-  cmpwi     r0, 0x1
-  bne-      .loc_0x7C
-  mr        r3, r31
-  bl        0x8D8
-  lbz       r4, 0x3(r3)
-  li        r0, 0
-  stb       r4, 0xB(r30)
-  lbz       r4, 0x2(r3)
-  stb       r4, 0xA(r30)
-  lbz       r4, 0x1(r3)
-  stb       r4, 0x9(r30)
-  lbz       r3, 0x0(r3)
-  stb       r3, 0x8(r30)
-  lbz       r3, 0x8(r30)
-  stb       r3, 0x0(r30)
-  lbz       r3, 0x9(r30)
-  stb       r3, 0x1(r30)
-  lbz       r3, 0xA(r30)
-  stb       r3, 0x2(r30)
-  lbz       r3, 0xB(r30)
-  stb       r3, 0x3(r30)
-  stb       r0, 0x4(r30)
-  b         .loc_0xD4
+void ID32::read(Stream& stream)
+{
+    if (stream.isTextMode == TRUE) {
+        char* token     = stream.getNextToken();
+        m_id.byteView.d = token[3];
+        m_id.byteView.c = token[2];
+        m_id.byteView.b = token[1];
+        m_id.byteView.a = token[0];
 
-.loc_0x7C:
-  mr        r3, r31
-  bl        0xF2C
-  stb       r3, 0xB(r30)
-  mr        r3, r31
-  bl        0xF20
-  stb       r3, 0xA(r30)
-  mr        r3, r31
-  bl        0xF14
-  stb       r3, 0x9(r30)
-  mr        r3, r31
-  bl        0xF08
-  stb       r3, 0x8(r30)
-  li        r0, 0
-  lbz       r3, 0x8(r30)
-  stb       r3, 0x0(r30)
-  lbz       r3, 0x9(r30)
-  stb       r3, 0x1(r30)
-  lbz       r3, 0xA(r30)
-  stb       r3, 0x2(r30)
-  lbz       r3, 0xB(r30)
-  stb       r3, 0x3(r30)
-  stb       r0, 0x4(r30)
+        m_str[0] = m_id.byteView.a;
+        m_str[1] = m_id.byteView.b;
+        m_str[2] = m_id.byteView.c;
+        m_str[3] = m_id.byteView.d;
+        m_str[4] = '\0';
+    } else {
+        m_id.byteView.d = stream.readByte();
+        m_id.byteView.c = stream.readByte();
+        m_id.byteView.b = stream.readByte();
+        m_id.byteView.a = stream.readByte();
 
-.loc_0xD4:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
-//}
+        m_str[0] = m_id.byteView.a;
+        m_str[1] = m_id.byteView.b;
+        m_str[2] = m_id.byteView.c;
+        m_str[3] = m_id.byteView.d;
+        m_str[4] = '\0';
+    }
+}
+
+// /*
+//  * --INFO--
+//  * Address:	804135DC
+//  * Size:	000004
+//  */
+void ID32::print() { return; }
 
 /*
- * --INFO--
- * Address:	804135DC
- * Size:	000004
- */
-// void ID32::print()
-//{
-//	return;
-/*
-.loc_0x0:
-blr
- */
-//}
-/*
-
  * --INFO--
  * Address:	804135E0
  * Size:	000038
  */
-// void ID32::sprint(char *str)
-//{
-//	str[0] = (this->m_rawID & 0xFF000000) >> 24;
-//	str[1] = (this->m_rawID & 0xFF0000) >> 16;
-//	str[2] = (this->m_rawID & 0xFF00) >> 8;
-//	str[3] = this->m_rawID;
-//	str[4] = '\0';
-/*
-.loc_0x0:
-  lwz       r5, 0x8(r3)
-  li        r0, 0
-  rlwinm    r5,r5,8,24,31
-  stb       r5, 0x0(r4)
-  lwz       r5, 0x8(r3)
-  rlwinm    r5,r5,16,24,31
-  stb       r5, 0x1(r4)
-  lwz       r5, 0x8(r3)
-  rlwinm    r5,r5,24,24,31
-  stb       r5, 0x2(r4)
-  lwz       r3, 0x8(r3)
-  stb       r3, 0x3(r4)
-  stb       r0, 0x4(r4)
-  blr
-  */
-//}
+void ID32::sprint(char* str)
+{
+    str[0] = m_id.raw >> 24;
+    str[1] = (u8)(m_id.raw >> 16);
+    str[2] = (u8)(m_id.raw >> 8);
+    str[3] = (u8)(m_id.raw);
+    str[4] = '\0';
+}
 
-/*
- * --INFO--
- * Address:	80413618
- * Size:	000040
- */
-// void __sinit_id32_cpp(void)
-//{
-/*
-.loc_0x0:
-  lis       r4, 0x5F65
-  lis       r3, 0x8051
-  addi      r4, r4, 0x6F66
-  li        r0, 0
-  addi      r7, r3, 0x41F0
-  stw       r4, 0x8(r7)
-  lbz       r6, 0x8(r7)
-  lbz       r5, 0x9(r7)
-  lbz       r4, 0xA(r7)
-  lbz       r3, 0xB(r7)
-  stb       r6, 0x0(r7)
-  stb       r5, 0x1(r7)
-  stb       r4, 0x2(r7)
-  stb       r3, 0x3(r7)
-  stb       r0, 0x4(r7)
-  blr
-*/
-//}
+// /*
+//  * --INFO--
+//  * Address:	80413618
+//  * Size:	000040
+//  */
+// // void __sinit_id32_cpp(void)
+// //{
+// /*
+// .loc_0x0:
+//   lis       r4, 0x5F65
+//   lis       r3, 0x8051
+//   addi      r4, r4, 0x6F66
+//   li        r0, 0
+//   addi      r7, r3, 0x41F0
+//   stw       r4, 0x8(r7)
+//   lbz       r6, 0x8(r7)
+//   lbz       r5, 0x9(r7)
+//   lbz       r4, 0xA(r7)
+//   lbz       r3, 0xB(r7)
+//   stb       r6, 0x0(r7)
+//   stb       r5, 0x1(r7)
+//   stb       r4, 0x2(r7)
+//   stb       r3, 0x3(r7)
+//   stb       r0, 0x4(r7)
+//   blr
+// */
+// //}
