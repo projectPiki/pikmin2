@@ -16,8 +16,8 @@ namespace Game {
         char filler[376];
         bool isStickTo();
         void endStick();
-        bool isTeki();
-        bool isNavi();
+        virtual bool isTeki();
+        virtual bool isNavi();
 
     };
     struct Navi {
