@@ -22,7 +22,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/dispatch.o\
 	$(BUILD_DIR)/asm/Dolphin/msghndlr.o\
 	$(BUILD_DIR)/asm/Dolphin/support.o\
-	$(BUILD_DIR)/asm/Dolphin/mutex_TRK.o\
+	$(BUILD_DIR)/src/Dolphin/mutex_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/notify.o\
 	$(BUILD_DIR)/asm/Dolphin/flush_cache.o\
 	$(BUILD_DIR)/asm/Dolphin/mem_TRK.o\
@@ -97,7 +97,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/w_atan2.o\
 	$(BUILD_DIR)/asm/Dolphin/w_exp.o\
 	$(BUILD_DIR)/asm/Dolphin/w_fmod.o\
-	$(BUILD_DIR)/asm/Dolphin/w_log10.o\
+	$(BUILD_DIR)/src/Dolphin/w_log10.o\
 	$(BUILD_DIR)/asm/Dolphin/w_pow.o\
 	$(BUILD_DIR)/asm/Dolphin/e_sqrt.o\
 	$(BUILD_DIR)/asm/Dolphin/math_ppc.o\
@@ -105,7 +105,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/extras.o\
 	$(BUILD_DIR)/asm/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/vi.o\
-	$(BUILD_DIR)/asm/Dolphin/AmcExi2Stubs.o\
+	$(BUILD_DIR)/src/Dolphin/AmcExi2Stubs.o\
 	$(BUILD_DIR)/asm/Dolphin/ar.o\
 	$(BUILD_DIR)/asm/Dolphin/arq.o\
 	$(BUILD_DIR)/asm/Dolphin/PPCArch.o\
