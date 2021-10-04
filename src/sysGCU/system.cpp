@@ -61,7 +61,7 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
         OSReport(gStrSystem_InOnLine, buffer, r4, line);
     }
 
-    OSSendMessage(JUTException::sMessageQueue, (OSMessage*)&exCallbackObject,
+    OSSendMessage(&JUTException::sMessageQueue, (OSMessage*)&exCallbackObject,
                   true);
     OSSuspendThread(OSGetCurrentThread());
 }

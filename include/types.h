@@ -119,7 +119,7 @@ struct JUTException {
 
     static u32* sConsole;
     static u32* sErrorManager;
-    static OSMessageQueue* sMessageQueue;
+    static OSMessageQueue sMessageQueue;
 };
 
 struct JFWSystem {
