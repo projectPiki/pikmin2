@@ -1,45 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game11TSoundEventFv
-__ct__Q24Game11TSoundEventFv:
-/* 8022EBCC 0022BB0C  38 80 00 00 */	li r4, 0
-/* 8022EBD0 0022BB10  38 00 00 1E */	li r0, 0x1e
-/* 8022EBD4 0022BB14  98 83 00 00 */	stb r4, 0(r3)
-/* 8022EBD8 0022BB18  98 83 00 00 */	stb r4, 0(r3)
-/* 8022EBDC 0022BB1C  90 83 00 08 */	stw r4, 8(r3)
-/* 8022EBE0 0022BB20  90 03 00 04 */	stw r0, 4(r3)
-/* 8022EBE4 0022BB24  4E 80 00 20 */	blr 
-
-.global event__Q24Game11TSoundEventFv
-event__Q24Game11TSoundEventFv:
-/* 8022EBE8 0022BB28  80 8D 93 E8 */	lwz r4, gameSystem__4Game@sda21(r13)
-/* 8022EBEC 0022BB2C  80 04 00 50 */	lwz r0, 0x50(r4)
-/* 8022EBF0 0022BB30  90 03 00 08 */	stw r0, 8(r3)
-/* 8022EBF4 0022BB34  88 83 00 00 */	lbz r4, 0(r3)
-/* 8022EBF8 0022BB38  54 80 07 FF */	clrlwi. r0, r4, 0x1f
-/* 8022EBFC 0022BB3C  40 82 00 14 */	bne lbl_8022EC10
-/* 8022EC00 0022BB40  60 80 00 01 */	ori r0, r4, 1
-/* 8022EC04 0022BB44  98 03 00 00 */	stb r0, 0(r3)
-/* 8022EC08 0022BB48  38 60 00 01 */	li r3, 1
-/* 8022EC0C 0022BB4C  4E 80 00 20 */	blr 
-lbl_8022EC10:
-/* 8022EC10 0022BB50  54 80 07 BD */	rlwinm. r0, r4, 0, 0x1e, 0x1e
-/* 8022EC14 0022BB54  41 82 00 14 */	beq lbl_8022EC28
-/* 8022EC18 0022BB58  54 80 07 FA */	rlwinm r0, r4, 0, 0x1f, 0x1d
-/* 8022EC1C 0022BB5C  98 03 00 00 */	stb r0, 0(r3)
-/* 8022EC20 0022BB60  38 60 00 03 */	li r3, 3
-/* 8022EC24 0022BB64  4E 80 00 20 */	blr 
-lbl_8022EC28:
-/* 8022EC28 0022BB68  38 60 00 00 */	li r3, 0
-/* 8022EC2C 0022BB6C  4E 80 00 20 */	blr 
-
-.global finish__Q24Game11TSoundEventFv
-finish__Q24Game11TSoundEventFv:
-/* 8022EC30 0022BB70  88 03 00 00 */	lbz r0, 0(r3)
-/* 8022EC34 0022BB74  60 00 00 04 */	ori r0, r0, 4
-/* 8022EC38 0022BB78  98 03 00 00 */	stb r0, 0(r3)
-/* 8022EC3C 0022BB7C  4E 80 00 20 */	blr 
 
 .global update__Q24Game11TSoundEventFv
 update__Q24Game11TSoundEventFv:

@@ -38,7 +38,7 @@ extern char gStrSystem_InOnLine[23]; // %s in \"%s\" on line %d\n
  * Address:	80421F64
  * Size:	000188
  */
-//void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
+// void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 //{
 //    va_list list;
 //    va_start(list, r6);

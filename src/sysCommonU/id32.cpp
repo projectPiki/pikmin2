@@ -195,14 +195,14 @@ void ID32::sprint(char* str)
     str[3] = static_cast<u8>(m_id.raw);
     str[4] = '\0';
 }
-//extern "C" void __sinit_id32_cpp(){
-//ID32::eof.m_id.str[0] = '_';
-//ID32::eof.m_id.str[1] = 'e';
-//ID32::eof.m_id.str[2] = 'o';
-//ID32::eof.m_id.str[3] = 'f';
-//ID32::eof.m_id.str[4] = '\0';
-//ID32::eof.m_id.raw = '_eof';
-//return;
+// extern "C" void __sinit_id32_cpp(){
+// ID32::eof.m_id.str[0] = '_';
+// ID32::eof.m_id.str[1] = 'e';
+// ID32::eof.m_id.str[2] = 'o';
+// ID32::eof.m_id.str[3] = 'f';
+// ID32::eof.m_id.str[4] = '\0';
+// ID32::eof.m_id.raw = '_eof';
+// return;
 //}
 /*
  * --INFO--
