@@ -1,7 +1,5 @@
 #include "System.h"
 
-extern "C" void OSReport(char*, ...);
-
 // "bootup -----------------------\n"
 extern char gMainBootupStr[33];
 
