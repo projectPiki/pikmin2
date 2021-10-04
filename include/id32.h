@@ -3,12 +3,10 @@
 
 #include "stream.h"
 
-class ID32
-{
+class ID32 {
 public:
     char m_str[5]; // _00
-    union
-    {
+    union {
         char str[4];
         u32 raw;
     } m_id; // _08
@@ -22,9 +20,9 @@ public:
     bool operator!=(unsigned long);  // done
     void setID(unsigned long);       // done
     void updateID();                 // done
-    void read(Stream &);             // done
-    void write(Stream &);            // done
-    void sprint(char *);             // done
+    void read(Stream&);              // done
+    void write(Stream&);             // done
+    void sprint(char*);              // done
     void print();                    // done
 private:
     void updateString(); // done

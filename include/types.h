@@ -33,8 +33,8 @@ typedef int BOOL;
 #define nullptr 0
 
 typedef struct {
-  int quot;
-  int rem;
+    int quot;
+    int rem;
 } div_t;
 
 #endif
