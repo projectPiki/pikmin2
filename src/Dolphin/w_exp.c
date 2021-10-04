@@ -1,12 +1,13 @@
-
+extern double __ieee754_exp();
 
 /*
  * --INFO--
  * Address:	800CF9AC
  * Size:	000020
  */
-void exp(void)
-{
+
+double exp(double __x) { return (double)__ieee754_exp(); }
+
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -18,4 +19,3 @@ void exp(void)
   addi      r1, r1, 0x10
   blr
 */
-}

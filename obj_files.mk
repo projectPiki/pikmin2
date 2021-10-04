@@ -93,15 +93,15 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/s_modf.o\
 	$(BUILD_DIR)/asm/Dolphin/s_sin.o\
 	$(BUILD_DIR)/asm/Dolphin/s_tan.o\
-	$(BUILD_DIR)/asm/Dolphin/w_asin.o\
-	$(BUILD_DIR)/asm/Dolphin/w_atan2.o\
-	$(BUILD_DIR)/asm/Dolphin/w_exp.o\
-	$(BUILD_DIR)/asm/Dolphin/w_fmod.o\
+	$(BUILD_DIR)/src/Dolphin/w_asin.o\
+	$(BUILD_DIR)/src/Dolphin/w_atan2.o\
+	$(BUILD_DIR)/src/Dolphin/w_exp.o\
+	$(BUILD_DIR)/src/Dolphin/w_fmod.o\
 	$(BUILD_DIR)/src/Dolphin/w_log10.o\
-	$(BUILD_DIR)/asm/Dolphin/w_pow.o\
+	$(BUILD_DIR)/src/Dolphin/w_pow.o\
 	$(BUILD_DIR)/asm/Dolphin/e_sqrt.o\
 	$(BUILD_DIR)/asm/Dolphin/math_ppc.o\
-	$(BUILD_DIR)/asm/Dolphin/w_sqrt.o\
+	$(BUILD_DIR)/src/Dolphin/w_sqrt.o\
 	$(BUILD_DIR)/asm/Dolphin/extras.o\
 	$(BUILD_DIR)/asm/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/vi.o\

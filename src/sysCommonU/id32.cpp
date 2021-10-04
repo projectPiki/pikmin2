@@ -175,11 +175,11 @@ void ID32::read(Stream& stream)
     }
 }
 
-// /*
-//  * --INFO--
-//  * Address:	804135DC
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	804135DC
+ * Size:	000004
+ */
 void ID32::print() { return; }
 
 /*

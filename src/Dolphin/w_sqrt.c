@@ -1,12 +1,13 @@
-
+extern double __ieee754_sqrt();
 
 /*
  * --INFO--
  * Address:	800CFCBC
  * Size:	000020
  */
-void sqrt(void)
-{
+
+double sqrt(double __x) { return (double)__ieee754_sqrt(); }
+
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -18,4 +19,3 @@ void sqrt(void)
   addi      r1, r1, 0x10
   blr
 */
-}
