@@ -5,9 +5,7 @@
 
 void Pikmin2DefaultMemoryErrorRoutine(void*, u32, s32);
 void kando_panic_f(bool, const char*, s32, const char*, ...);
-extern "C" {
-void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long);
-}
+extern void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long);
 
 struct System {
     // static void assert_fragmentation(char*);
