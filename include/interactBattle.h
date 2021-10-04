@@ -16,6 +16,8 @@ namespace Game {
         char filler[376];
         bool isStickTo();
         void endStick();
+        bool isTeki();
+        bool isNavi();
 
     };
     struct Navi {
@@ -47,6 +49,18 @@ namespace Game {
         bool actCommon(Creature*);
         bool actNavi(Navi*);
         bool actPiki(Piki*);
+    };
+    class InteractAttack {
+    public:
+        Interaction__vt* __vt;
+        Creature* pCreature;
+        float unk1;
+        float unk2;
+    private:
+        bool actCommon(Creature*);
+        bool actNavi(Navi*);
+        bool actEnemy(EnemyBase*);
+        bool actItem(BaseItem*);
     };
     //class Creature {
     //public:
