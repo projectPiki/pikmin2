@@ -69,8 +69,9 @@ void ID32::updateID()
 {
     char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++) {
         m_id[i] = this->m_str[i];
+    }
 }
 
 /*
@@ -82,8 +83,9 @@ void ID32::updateString()
 {
     char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++) {
         this->m_str[i] = m_id[i];
+    }
     m_str[4] = '\0';
 }
 
@@ -95,10 +97,11 @@ void ID32::updateString()
 void ID32::operator=(unsigned long _id)
 {
     this->m_id.raw = _id;
-    this->m_str[0] = *(char*)&this->m_id.raw;
-    this->m_str[1] = *(char*)((int)&this->m_id.raw + 1);
-    this->m_str[2] = *(char*)((int)&this->m_id.raw + 2);
-    this->m_str[3] = *(char*)((int)&this->m_id.raw + 3);
+
+    this->m_str[0] = this->m_id.str[0];
+    this->m_str[1] = this->m_id.str[1];
+    this->m_str[2] = this->m_id.str[2];
+    this->m_str[3] = this->m_id.str[3];
     this->m_str[4] = '\0';
 }
 /*
@@ -132,10 +135,10 @@ void ID32::write(Stream& stream)
         sprint(str);
         stream.printf(lbl_805202C8, str);
     } else {
-        stream.writeByte(m_id.byteView.d);
-        stream.writeByte(m_id.byteView.c);
-        stream.writeByte(m_id.byteView.b);
-        stream.writeByte(m_id.byteView.a);
+        stream.writeByte(m_id.str[3]);
+        stream.writeByte(m_id.str[2]);
+        stream.writeByte(m_id.str[1]);
+        stream.writeByte(m_id.str[0]);
     }
 }
 
@@ -147,27 +150,27 @@ void ID32::write(Stream& stream)
 void ID32::read(Stream& stream)
 {
     if (stream.isTextMode == TRUE) {
-        char* token     = stream.getNextToken();
-        m_id.byteView.d = token[3];
-        m_id.byteView.c = token[2];
-        m_id.byteView.b = token[1];
-        m_id.byteView.a = token[0];
+        char* token = stream.getNextToken();
+        m_id.str[3] = token[3];
+        m_id.str[2] = token[2];
+        m_id.str[1] = token[1];
+        m_id.str[0] = token[0];
 
-        m_str[0] = m_id.byteView.a;
-        m_str[1] = m_id.byteView.b;
-        m_str[2] = m_id.byteView.c;
-        m_str[3] = m_id.byteView.d;
+        m_str[0] = m_id.str[0];
+        m_str[1] = m_id.str[1];
+        m_str[2] = m_id.str[2];
+        m_str[3] = m_id.str[3];
         m_str[4] = '\0';
     } else {
-        m_id.byteView.d = stream.readByte();
-        m_id.byteView.c = stream.readByte();
-        m_id.byteView.b = stream.readByte();
-        m_id.byteView.a = stream.readByte();
+        m_id.str[3] = stream.readByte();
+        m_id.str[2] = stream.readByte();
+        m_id.str[1] = stream.readByte();
+        m_id.str[0] = stream.readByte();
 
-        m_str[0] = m_id.byteView.a;
-        m_str[1] = m_id.byteView.b;
-        m_str[2] = m_id.byteView.c;
-        m_str[3] = m_id.byteView.d;
+        m_str[0] = m_id.str[0];
+        m_str[1] = m_id.str[1];
+        m_str[2] = m_id.str[2];
+        m_str[3] = m_id.str[3];
         m_str[4] = '\0';
     }
 }
@@ -187,9 +190,9 @@ void ID32::print() { return; }
 void ID32::sprint(char* str)
 {
     str[0] = m_id.raw >> 24;
-    str[1] = (u8)(m_id.raw >> 16);
-    str[2] = (u8)(m_id.raw >> 8);
-    str[3] = (u8)(m_id.raw);
+    str[1] = static_cast<u8>(m_id.raw >> 16);
+    str[2] = static_cast<u8>(m_id.raw >> 8);
+    str[3] = static_cast<u8>(m_id.raw);
     str[4] = '\0';
 }
 
