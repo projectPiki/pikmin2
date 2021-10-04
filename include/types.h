@@ -8,6 +8,7 @@ typedef signed long long s64;
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned long u32;
+typedef unsigned long size_t;
 typedef unsigned long long u64;
 
 typedef volatile u8 vu8;
@@ -57,17 +58,40 @@ struct JUTException {
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 void OSReport(const char*, ...);
 void OSPanic(const char*, int, const char*, ...);
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
 
-typedef struct {
+// TODO
+typedef struct OSContext {
+    u8 filler[708];
 } OSContext;
 
-typedef struct {
+typedef struct div_t {
     int quot;
     int rem;
 } div_t;
+
+typedef struct __va_list_struct {
+    char gpr;
+    char fpr;
+    char* input_arg_area;
+    char* reg_save_area;
+} va_list[1];
+
+void* __va_arg(va_list, int);
+
+#define va_start(ARG, VA_LIST) ((void)ARG, __builtin_va_info(&VA_LIST))
+#define va_end(VA_LIST) ((void)VA_LIST)
+#define va_arg(VA_LIST, ARG_TYPE)                                              \
+    (*(ARG_TYPE*)) __va_arg(VA_LIST, _var_arg_typeof(ARG_TYPE))
+
+int printf(const char*, ...);
+int vprintf(const char*, va_list);
+int snprintf(char*, size_t, const char*, ...);
+int vsnprintf(char*, size_t, const char*, va_list);
+
 #ifdef __cplusplus
 };
 #endif
