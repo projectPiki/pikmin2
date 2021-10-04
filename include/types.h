@@ -1,6 +1,9 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
+// r2 is  8051e360
+// r13 is 8051C680
+
 typedef signed char s8;
 typedef signed short s16;
 typedef signed long s32;
@@ -29,44 +32,52 @@ typedef int BOOL;
 
 #ifndef TRUE
 #define TRUE 1
-#endif
+#endif // ifndef TRUE
+
 #ifndef FALSE
 #define FALSE 0
-#endif
+#endif // ifndef FALSE
 
 #ifndef NULL
 #define NULL ((void*)0)
-#endif
+#endif // ifndef NULL
+
 #ifndef nullptr
 #define nullptr 0
-#endif
-
-// ALL C++ FUNCTIONS AND DEFINITIONS
-#ifdef __cplusplus
-struct JKRHeap {
-    u32 getFreeSize();
-    u32 getTotalFreeSize();
-};
-
-struct JUTException {
-    static void panic_f(char const*, int, char const*, ...);
-};
-
-#endif
+#endif // ifndef nullptr
 
 // ALL C FUNCTIONS AND DEFINITIONS
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif // ifdef __cplusplus
 
 void OSReport(const char*, ...);
 void OSPanic(const char*, int, const char*, ...);
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
 
+__declspec(section ".init") void* memcpy(void*, const void*, size_t);
+__declspec(section ".init") void __fill_mem(void*, int, size_t);
+__declspec(section ".init") void* memset(void*, int, size_t);
+
 // TODO
 typedef struct OSContext {
     u8 filler[708];
 } OSContext;
+
+typedef struct OSThread {
+    u8 filler[708];
+    u8 filler2[68];
+} OSThread;
+
+OSThread* OSGetCurrentThread(void);
+s32 OSSuspendThread(OSThread* thread);
+
+typedef struct OSMessageQueue {
+    u8 filler[32];
+} OSMessageQueue;
+typedef void* OSMessage;
+
+BOOL OSSendMessage(OSMessageQueue* mq, OSMessage msg, s32 flags);
 
 typedef struct div_t {
     int quot;
@@ -94,6 +105,27 @@ int vsnprintf(char*, size_t, const char*, va_list);
 
 #ifdef __cplusplus
 };
-#endif
+#endif // ifdef __cplusplus
+
+// ALL C++ FUNCTIONS AND DEFINITIONS
+#ifdef __cplusplus
+struct JKRHeap {
+    u32 getFreeSize();
+    u32 getTotalFreeSize();
+};
+
+struct JUTException {
+    static void panic_f(char const*, int, char const*, ...);
+
+    static u32* sConsole;
+    static u32* sErrorManager;
+    static OSMessageQueue* sMessageQueue;
+};
+
+struct JFWSystem {
+    static u32* mainThread;
+};
+
+#endif // ifdef __cplusplus
 
 #endif

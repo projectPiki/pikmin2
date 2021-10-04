@@ -24,6 +24,9 @@ public:
     void write(Stream&);             // done
     void sprint(char*);              // done
     void print();                    // done
+
+    static ID32 eof;
+
 private:
     void updateString(); // done
 };

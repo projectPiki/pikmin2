@@ -42583,8 +42583,8 @@ gStrSystem_MemoryAllocError:
 	.4byte 0x46726565
 	.4byte 0x203D2564
 	.4byte 0x0A000000
-.global lbl_8049981C
-lbl_8049981C:
+.global gStrSystem_InOnLine
+gStrSystem_InOnLine:
 	.4byte 0x25732069
 	.4byte 0x6E202225
 	.4byte 0x7322206F
