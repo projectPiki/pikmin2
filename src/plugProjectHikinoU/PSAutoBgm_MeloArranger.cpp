@@ -1,22 +1,41 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
- */
+
 /* void PSAutoBgm::MeloArr_FixTipAvoid::avoidChk( (PSAutoBgm::MeloArrArg &))
 {
         // UNUSED FUNCTION
 } */
 
+// namespace PSAutoBgm {
+// struct MeloArrArg {
+// };
+
+// struct MeloArr_RandomAvoid {
+//     u8 filler[0x1C]; // _00
+//     f32 _1C;         // _1C
+
+//     bool avoidChk(MeloArrArg&);
+// };
+// } // namespace PSAutoBgm
+
+// struct JALCalc {
+//     static f32 getRandom_0_1();
+// };
+
+// /*
+//  * --INFO--
+//  * Address:	8033EE9C
+//  * Size:	00003C
+//  */
+// bool PSAutoBgm::MeloArr_RandomAvoid::avoidChk(PSAutoBgm::MeloArrArg& arg)
+// {
+//     return JALCalc::getRandom_0_1() < this->_1C;
+// }
 /*
- * --INFO--
- * Address:	8033EE9C
- * Size:	00003C
- */
-void PSAutoBgm::MeloArr_RandomAvoid::avoidChk((PSAutoBgm::MeloArrArg&)) {
-    /*
     .loc_0x0:
       stwu      r1, -0x10(r1)
       mflr      r0
@@ -33,25 +52,24 @@ void PSAutoBgm::MeloArr_RandomAvoid::avoidChk((PSAutoBgm::MeloArrArg&)) {
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
-}
+
 
     /*
      * --INFO--
      * Address:	........
      * Size:	000024
-     */
+
     /* void PSAutoBgm::MeloArr_AvoidOnCycleAll::avoidChk( (PSAutoBgm::MeloArrArg
     &))
     {
             // UNUSED FUNCTION
-    } */
+    }
 
     /*
      * --INFO--
      * Address:	........
      * Size:	000034
-     */
+
     * /
     // {
     //	UNUSED FUNCTION
@@ -61,7 +79,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::avoidChk((PSAutoBgm::MeloArrArg&)) {
      * --INFO--
      * Address:	........
      * Size:	000078
-     */
+
     * /
     // {
     // UNUSED FUNCTION
@@ -71,7 +89,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::avoidChk((PSAutoBgm::MeloArrArg&)) {
      * --INFO--
      * Address:	8033EED8
      * Size:	000138
-     */
+
     void PSAutoBgm::MeloArrMgr::isToAvoid((PSAutoBgm::MeloArrArg&))
 {
     /*
@@ -174,39 +192,39 @@ void PSAutoBgm::MeloArr_RandomAvoid::avoidChk((PSAutoBgm::MeloArrArg&)) {
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8033F010
  * Size:	000004
- */
+
 void PSAutoBgm::MeloArrBase::post((PSAutoBgm::MeloArrArg&))
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8033F014
  * Size:	000004
- */
+
 void PSAutoBgm::MeloArrBase::pre((PSAutoBgm::MeloArrArg&)) {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
     /*
      * --INFO--
      * Address:	........
      * Size:	000098
-     */
+
     * /
     // {
     // UNUSED FUNCTION
@@ -216,7 +234,7 @@ void PSAutoBgm::MeloArrBase::pre((PSAutoBgm::MeloArrArg&)) {
      * --INFO--
      * Address:	8033F018
      * Size:	00000C
-     */
+
     void PSAutoBgm::MeloArrBase::directOn((PSAutoBgm::Track*))
 {
     /*
@@ -224,14 +242,14 @@ void PSAutoBgm::MeloArrBase::pre((PSAutoBgm::MeloArrArg&)) {
       li        r0, 0x1
       stb       r0, 0x19(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8033F024
  * Size:	00000C
- */
+
 void PSAutoBgm::MeloArrBase::directOff((PSAutoBgm::Track*))
 {
     /*
@@ -239,14 +257,14 @@ void PSAutoBgm::MeloArrBase::directOff((PSAutoBgm::Track*))
       li        r0, 0
       stb       r0, 0x19(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8033F030
  * Size:	000080
- */
+
 void PSAutoBgm::MeloArrBase::__dt((void))
 {
     /*
@@ -287,14 +305,14 @@ void PSAutoBgm::MeloArrBase::__dt((void))
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8033F0B0
  * Size:	000098
- */
+
 void PSAutoBgm::MeloArr_RandomAvoid::__dt((void)) {
     /*
     .loc_0x0:
@@ -340,14 +358,14 @@ void PSAutoBgm::MeloArr_RandomAvoid::__dt((void)) {
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
     /*
      * --INFO--
      * Address:	........
      * Size:	000098
-     */
+
     * /
     // {
     // UNUSED FUNCTION
@@ -357,7 +375,7 @@ void PSAutoBgm::MeloArr_RandomAvoid::__dt((void)) {
      * --INFO--
      * Address:	........
      * Size:	000008
-     */
+
     * /
     // {
     // UNUSED FUNCTION
@@ -367,35 +385,36 @@ void PSAutoBgm::MeloArr_RandomAvoid::__dt((void)) {
      * --INFO--
      * Address:	8033F148
      * Size:	000008
-     */
+
     void @16 @PSAutoBgm::MeloArr_RandomAvoid::__dt((void))
 {
     /*
     .loc_0x0:
       subi      r3, r3, 0x10
       b         -0x9C
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8033F150
  * Size:	000008
- */
+
 void @16 @PSAutoBgm::MeloArrBase::__dt((void)) {
     /*
     .loc_0x0:
       subi      r3, r3, 0x10
       b         -0x124
-    */
+
 }
 
     /*
      * --INFO--
      * Address:	........
      * Size:	000008
-     */
+
     * /
     // {
     // UNUSED FUNCTION
     // }
+*/
