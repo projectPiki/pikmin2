@@ -22,7 +22,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/dispatch.o\
 	$(BUILD_DIR)/asm/Dolphin/msghndlr.o\
 	$(BUILD_DIR)/asm/Dolphin/support.o\
-	$(BUILD_DIR)/asm/Dolphin/mutex_TRK.o\
+	$(BUILD_DIR)/src/Dolphin/mutex_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/notify.o\
 	$(BUILD_DIR)/asm/Dolphin/flush_cache.o\
 	$(BUILD_DIR)/asm/Dolphin/mem_TRK.o\
@@ -35,7 +35,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/targcont.o\
 	$(BUILD_DIR)/asm/Dolphin/target_options.o\
 	$(BUILD_DIR)/asm/Dolphin/mslsupp.o\
-	$(BUILD_DIR)/asm/Dolphin/UDP_Stubs.o\
+	$(BUILD_DIR)/src/Dolphin/UDP_Stubs.o\
 	$(BUILD_DIR)/asm/mainblock.o\
 	$(BUILD_DIR)/asm/Dolphin/MWTrace.o\
 	$(BUILD_DIR)/asm/Dolphin/MWCriticalSection_gc.o\
@@ -54,7 +54,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/ansi_fp.o\
 	$(BUILD_DIR)/src/Dolphin/arith.o\
 	$(BUILD_DIR)/asm/Dolphin/buffer_io.o\
-	$(BUILD_DIR)/asm/Dolphin/critical_regions.gamecube.o\
+	$(BUILD_DIR)/src/Dolphin/critical_regions.gamecube.o\
 	$(BUILD_DIR)/asm/Dolphin/ctype.o\
 	$(BUILD_DIR)/asm/Dolphin/direct_io.o\
 	$(BUILD_DIR)/asm/Dolphin/file_io.o\
@@ -62,7 +62,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/mbstring.o\
 	$(BUILD_DIR)/asm/Dolphin/mem.o\
 	$(BUILD_DIR)/asm/Dolphin/mem_funcs.o\
-	$(BUILD_DIR)/asm/Dolphin/misc_io.o\
+	$(BUILD_DIR)/src/Dolphin/misc_io.o\
 	$(BUILD_DIR)/asm/Dolphin/printf.o\
 	$(BUILD_DIR)/src/Dolphin/rand.o\
 	$(BUILD_DIR)/asm/Dolphin/scanf.o\
@@ -97,7 +97,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/w_atan2.o\
 	$(BUILD_DIR)/asm/Dolphin/w_exp.o\
 	$(BUILD_DIR)/asm/Dolphin/w_fmod.o\
-	$(BUILD_DIR)/asm/Dolphin/w_log10.o\
+	$(BUILD_DIR)/src/Dolphin/w_log10.o\
 	$(BUILD_DIR)/asm/Dolphin/w_pow.o\
 	$(BUILD_DIR)/asm/Dolphin/e_sqrt.o\
 	$(BUILD_DIR)/asm/Dolphin/math_ppc.o\
@@ -105,7 +105,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/extras.o\
 	$(BUILD_DIR)/asm/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/vi.o\
-	$(BUILD_DIR)/asm/Dolphin/AmcExi2Stubs.o\
+	$(BUILD_DIR)/src/Dolphin/AmcExi2Stubs.o\
 	$(BUILD_DIR)/asm/Dolphin/ar.o\
 	$(BUILD_DIR)/asm/Dolphin/arq.o\
 	$(BUILD_DIR)/asm/Dolphin/PPCArch.o\
@@ -157,11 +157,11 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/mtxvec.o\
 	$(BUILD_DIR)/asm/Dolphin/mtx44.o\
 	$(BUILD_DIR)/asm/Dolphin/vec.o\
-	$(BUILD_DIR)/asm/Dolphin/odenotstub.o\
+	$(BUILD_DIR)/src/Dolphin/odenotstub.o\
 	$(BUILD_DIR)/asm/Dolphin/OS.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAlarm.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAlloc.o\
-	$(BUILD_DIR)/asm/Dolphin/OSArena.o\
+	$(BUILD_DIR)/src/Dolphin/OSArena.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAudioSystem.o\
 	$(BUILD_DIR)/asm/Dolphin/OSCache.o\
 	$(BUILD_DIR)/asm/Dolphin/OSContext.o\
@@ -826,7 +826,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
-	$(BUILD_DIR)/asm/sysBootupU/sysBootup.o\
+	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
 	$(BUILD_DIR)/asm/sysCommonU/node.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/src/sysCommonU/id32.o\
@@ -844,6 +844,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
+	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/section.o\
 	$(BUILD_DIR)/asm/sysGCU/gameflow.o\

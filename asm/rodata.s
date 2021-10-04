@@ -42414,8 +42414,8 @@ lbl_804995B0:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-.global lbl_804995D0
-lbl_804995D0:
+.global gMainBootupStr
+gMainBootupStr:
 	.asciz "bootup -----------------------\n"
 .global lbl_804995F0
 lbl_804995F0:
@@ -42558,13 +42558,13 @@ lbl_804997B8:
 	.4byte 0x2F25640D
 	.4byte 0x0A000000
 	.4byte 0x00000000
-.global lbl_804997C8
-lbl_804997C8:
+.global gStrSystem_CPP
+gStrSystem_CPP:
 	.4byte 0x73797374
 	.4byte 0x656D2E63
 	.4byte 0x70700000
-.global lbl_804997D4
-lbl_804997D4:
+.global gStrSystem_MemoryAllocError
+gStrSystem_MemoryAllocError:
 	.4byte 0x4D656D6F
 	.4byte 0x72792041
 	.4byte 0x6C6C6F63

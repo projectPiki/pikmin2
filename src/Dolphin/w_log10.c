@@ -1,12 +1,13 @@
-
+extern double __ieee754_log10();
 
 /*
  * --INFO--
  * Address:	800CF9EC
  * Size:	000020
  */
-void log10(void)
-{
+ 
+double log10(double __x) { return (double)__ieee754_log10(); }
+
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -18,4 +19,3 @@ void log10(void)
   addi      r1, r1, 0x10
   blr
 */
-}

@@ -26187,8 +26187,8 @@ lbl_805203F8:
 .global lbl_805203FC
 lbl_805203FC:
 	.4byte 0xC7000000
-.global lbl_80520400
-lbl_80520400:
+.global gStrSystem_Abort
+gStrSystem_Abort:
 	.4byte 0x61626F72
 	.4byte 0x740A0000
 .global lbl_80520408

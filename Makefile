@@ -21,7 +21,7 @@ SRC_DIRS := src src/Dolphin src/JSystem src/sysBootupU src/sysCommonU src/sysGCU
 			src/plugProjectEbisawaU src/plugProjectHikinoU src/plugProjectKandoU \
 			src/plugProjectKonoU src/plugProjectMorimuraU src/plugProjectNishimuraU \
 			src/plugProjectOgawaU src/plugProjectYamashitaU src/utilityU
-ASM_DIRS := asm asm/Dolphin asm/JSystem asm/sysBootupU asm/sysCommonU asm/sysGCU \
+ASM_DIRS := asm asm/Dolphin asm/JSystem asm/sysCommonU asm/sysGCU \
 			asm/plugProjectEbisawaU asm/plugProjectHikinoU asm/plugProjectKandoU \
 			asm/plugProjectKonoU asm/plugProjectMorimuraU asm/plugProjectNishimuraU \
 			asm/plugProjectOgawaU asm/plugProjectYamashitaU asm/utilityU
@@ -76,7 +76,7 @@ INCLUDES := -i include/
 
 ASFLAGS := -mgekko -I include/ 
 LDFLAGS := -map $(MAP) -fp hard -nodefaults
-CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -msgstyle gcc $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O4,p -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
 
 # for postprocess.py
 PROCFLAGS := -fprologue-fixup=old_stack
