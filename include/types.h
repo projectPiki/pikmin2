@@ -26,17 +26,22 @@ typedef volatile f64 vf64;
 
 typedef int BOOL;
 
+#ifndef TRUE
 #define TRUE 1
+#endif
+#ifndef FALSE
 #define FALSE 0
+#endif
 
+#ifndef NULL
 #define NULL ((void*)0)
+#endif
+#ifndef nullptr
 #define nullptr 0
+#endif
 
-typedef struct {
-    int quot;
-    int rem;
-} div_t;
-
+// ALL C++ FUNCTIONS AND DEFINITIONS
+#ifdef __cplusplus
 struct JKRHeap {
     u32 getFreeSize();
     u32 getTotalFreeSize();
@@ -46,10 +51,25 @@ struct JUTException {
     static void panic_f(char const*, int, char const*, ...);
 };
 
+#endif
+
+// ALL C FUNCTIONS AND DEFINITIONS
+#ifdef __cplusplus
 extern "C" {
+#endif
 void OSReport(const char*, ...);
 void OSPanic(const char*, int, const char*, ...);
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
+
+typedef struct {
+} OSContext;
+
+typedef struct {
+    int quot;
+    int rem;
+} div_t;
+#ifdef __cplusplus
 };
+#endif
 
 #endif
