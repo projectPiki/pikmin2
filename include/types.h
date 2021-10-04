@@ -126,17 +126,6 @@ struct JFWSystem {
     static u32* mainThread;
 };
 
-struct Vec {
-};
-
-namespace PSM {
-struct FrameCalcArg {
-};
-
-struct StartSoundArg {
-};
-} // namespace PSM
-
 #endif // ifdef __cplusplus
 
 #endif
