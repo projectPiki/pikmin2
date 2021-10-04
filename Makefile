@@ -30,6 +30,7 @@ S_FILES := $(wildcard asm/*.s)
 C_FILES := $(wildcard src/*.c)
 CPP_FILES := $(wildcard src/*.cpp)
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
+PATCHLINKER := patch_linker.sh
 
 # Outputs
 DOL     := $(BUILD_DIR)/main.dol
@@ -101,6 +102,8 @@ ALL_DIRS := build $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS)
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
 
+.PHONY: tools
+
 $(LDSCRIPT): ldscript.lcf
 	$(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
@@ -110,8 +113,13 @@ $(DOL): $(ELF) | tools
 
 clean:
 	rm -f -d -r build
+	$(MAKE) -C tools clean
+
+tools:
+	$(MAKE) -C tools
 
 $(ELF): $(O_FILES) $(LDSCRIPT)
+	./$(PATCHLINKER) $(LD) 117
 	@echo $(O_FILES) > build/o_files
 	$(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
 # The Metrowerks linker doesn't generate physical addresses in the ELF program headers. This fixes it somehow.
