@@ -35,7 +35,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/targcont.o\
 	$(BUILD_DIR)/asm/Dolphin/target_options.o\
 	$(BUILD_DIR)/asm/Dolphin/mslsupp.o\
-	$(BUILD_DIR)/asm/Dolphin/UDP_Stubs.o\
+	$(BUILD_DIR)/src/Dolphin/UDP_Stubs.o\
 	$(BUILD_DIR)/asm/mainblock.o\
 	$(BUILD_DIR)/asm/Dolphin/MWTrace.o\
 	$(BUILD_DIR)/asm/Dolphin/MWCriticalSection_gc.o\
@@ -54,7 +54,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/ansi_fp.o\
 	$(BUILD_DIR)/src/Dolphin/arith.o\
 	$(BUILD_DIR)/asm/Dolphin/buffer_io.o\
-	$(BUILD_DIR)/asm/Dolphin/critical_regions.gamecube.o\
+	$(BUILD_DIR)/src/Dolphin/critical_regions.gamecube.o\
 	$(BUILD_DIR)/asm/Dolphin/ctype.o\
 	$(BUILD_DIR)/asm/Dolphin/direct_io.o\
 	$(BUILD_DIR)/asm/Dolphin/file_io.o\
@@ -62,7 +62,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/mbstring.o\
 	$(BUILD_DIR)/asm/Dolphin/mem.o\
 	$(BUILD_DIR)/asm/Dolphin/mem_funcs.o\
-	$(BUILD_DIR)/asm/Dolphin/misc_io.o\
+	$(BUILD_DIR)/src/Dolphin/misc_io.o\
 	$(BUILD_DIR)/asm/Dolphin/printf.o\
 	$(BUILD_DIR)/src/Dolphin/rand.o\
 	$(BUILD_DIR)/asm/Dolphin/scanf.o\
@@ -157,11 +157,11 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/mtxvec.o\
 	$(BUILD_DIR)/asm/Dolphin/mtx44.o\
 	$(BUILD_DIR)/asm/Dolphin/vec.o\
-	$(BUILD_DIR)/asm/Dolphin/odenotstub.o\
+	$(BUILD_DIR)/src/Dolphin/odenotstub.o\
 	$(BUILD_DIR)/asm/Dolphin/OS.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAlarm.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAlloc.o\
-	$(BUILD_DIR)/asm/Dolphin/OSArena.o\
+	$(BUILD_DIR)/src/Dolphin/OSArena.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAudioSystem.o\
 	$(BUILD_DIR)/asm/Dolphin/OSCache.o\
 	$(BUILD_DIR)/asm/Dolphin/OSContext.o\

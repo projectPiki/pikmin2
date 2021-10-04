@@ -1,12 +1,15 @@
 
-
 /*
  * --INFO--
  * Address:	800C7428
  * Size:	000010
  */
-void __stdio_atexit(void)
-{
+extern void (*__stdio_exit)(void);
+
+extern void __close_all(void);
+
+void  __stdio_atexit(void) {__stdio_exit = __close_all;}
+
 /*
 .loc_0x0:
   lis       r3, 0x800C
@@ -14,7 +17,6 @@ void __stdio_atexit(void)
   stw       r0, -0x7350(r13)
   blr
 */
-}
 
 /*
  * --INFO--
