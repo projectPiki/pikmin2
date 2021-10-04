@@ -844,6 +844,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
+	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/section.o\
 	$(BUILD_DIR)/asm/sysGCU/gameflow.o\

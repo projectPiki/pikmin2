@@ -37,4 +37,19 @@ typedef struct {
     int rem;
 } div_t;
 
+struct JKRHeap {
+    u32 getFreeSize();
+    u32 getTotalFreeSize();
+};
+
+struct JUTException {
+    static void panic_f(char const*, int, char const*, ...);
+};
+
+extern "C" {
+void OSReport(const char*, ...);
+void OSPanic(const char*, int, const char*, ...);
+#define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
+};
+
 #endif

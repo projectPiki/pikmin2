@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+void Pikmin2DefaultMemoryErrorRoutine(void*, unsigned long, int);
+
 struct System {
     // static void assert_fragmentation(char*);
     // void enableCPULockDetector(int);
@@ -56,7 +58,9 @@ struct System {
     // bool dvdLoadSyncNoBlock(DvdThreadCommand*);
     // int dvdLoadSyncAllNoBlock();
 
-    u8 filler[0xE0];
+    u8 _00[0x3C];        // _00
+    u32* _3C;            // _3C
+    u8 _40[0xE0 - 0x40]; // _40
 };
 
 #endif

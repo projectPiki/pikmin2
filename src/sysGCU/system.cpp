@@ -1,62 +1,34 @@
+#include "System.h"
 
+extern char gStrSystem_CPP[11]; // system.cpp
+
+extern char
+    gStrSystem_MemoryAllocError[70]; // Memory Alloc Error!\n%x (size %d)
+                                     // align(%d)\nRestTotal=%d\nRestFree =%d\n
+
+extern char gStrSystem_Abort[7]; // abort\n
 
 /*
  * --INFO--
  * Address:	80421EC4
  * Size:	0000A0
  */
-void Pikmin2DefaultMemoryErrorRoutine(void*, unsigned long, int)
+void Pikmin2DefaultMemoryErrorRoutine(void* address, unsigned long size,
+                                      int alignment)
 {
-    /*
-    .loc_0x0:
-      stwu      r1, -0x20(r1)
-      mflr      r0
-      stw       r0, 0x24(r1)
-      stw       r31, 0x1C(r1)
-      stw       r30, 0x18(r1)
-      mr        r30, r5
-      stw       r29, 0x14(r1)
-      mr        r29, r4
-      stw       r28, 0x10(r1)
-      mr        r28, r3
-      bl        -0x3FE738
-      mr        r31, r3
-      mr        r3, r28
-      bl        -0x3FE718
-      lis       r5, 0x804A
-      lis       r4, 0x804A
-      mr        r9, r3
-      mr        r6, r28
-      subi      r3, r5, 0x6838
-      subi      r5, r4, 0x682C
-      mr        r7, r29
-      mr        r8, r30
-      mr        r10, r31
-      li        r4, 0x63
-      crclr     6, 0x6
-      bl        -0x3F78E8
-      lis       r3, 0x804A
-      li        r4, 0x65
-      subi      r3, r3, 0x6838
-      addi      r5, r2, 0x20A0
-      crclr     6, 0x6
-      bl        -0x3347D4
-      lwz       r0, 0x24(r1)
-      lwz       r31, 0x1C(r1)
-      lwz       r30, 0x18(r1)
-      lwz       r29, 0x14(r1)
-      lwz       r28, 0x10(r1)
-      mtlr      r0
-      addi      r1, r1, 0x20
-      blr
-    */
+    JUTException::panic_f(gStrSystem_CPP, 99, gStrSystem_MemoryAllocError,
+                          address, size, alignment,
+                          static_cast<JKRHeap*>(address)->getTotalFreeSize(),
+                          static_cast<JKRHeap*>(address)->getFreeSize());
+
+    OSPanic(gStrSystem_CPP, 101, gStrSystem_Abort);
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000128
- */
+
 void kando_panic_f_va(bool, const char*, int, const char*, __va_list_struct*)
 {
     // UNUSED FUNCTION
@@ -66,7 +38,7 @@ void kando_panic_f_va(bool, const char*, int, const char*, __va_list_struct*)
  * --INFO--
  * Address:	80421F64
  * Size:	000188
- */
+
 void kando_panic_f(bool, const char*, int, const char*, ...)
 {
     /*
@@ -179,14 +151,14 @@ void kando_panic_f(bool, const char*, int, const char*, ...)
       mtlr      r0
       addi      r1, r1, 0x460
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804220EC
  * Size:	000118
- */
+
 void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
 {
     /*
@@ -269,14 +241,14 @@ void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
       mtlr      r0
       addi      r1, r1, 0x40
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422204
  * Size:	00002C
- */
+
 void myTask(void*)
 {
     /*
@@ -292,14 +264,14 @@ void myTask(void*)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E0
- */
+
 void _Print(char*, ...)
 {
     // UNUSED FUNCTION
@@ -309,7 +281,7 @@ void _Print(char*, ...)
  * --INFO--
  * Address:	80422230
  * Size:	000054
- */
+
 void System::FragmentationChecker::__ct((char*, bool))
 {
     /*
@@ -335,14 +307,14 @@ void System::FragmentationChecker::__ct((char*, bool))
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422284
  * Size:	00005C
- */
+
 void System::FragmentationChecker::__dt(void)
 {
     /*
@@ -372,14 +344,14 @@ void System::FragmentationChecker::__dt(void)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804222E0
  * Size:	00003C
- */
+
 void System::assert_fragmentation(char*)
 {
     /*
@@ -399,14 +371,14 @@ void System::assert_fragmentation(char*)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8042231C
  * Size:	000010
- */
+
 void System::enableCPULockDetector(int)
 {
     /*
@@ -415,14 +387,14 @@ void System::enableCPULockDetector(int)
       stw       r0, 0x1C(r3)
       stw       r4, 0x20(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8042232C
  * Size:	000018
- */
+
 void System::disableCPULockDetector()
 {
     /*
@@ -433,14 +405,14 @@ void System::disableCPULockDetector()
       stw       r0, 0x1C(r3)
       mr        r3, r4
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422344
  * Size:	0000A4
- */
+
 void retraceCallback(unsigned long)
 {
     /*
@@ -490,14 +462,14 @@ void retraceCallback(unsigned long)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804223E8
  * Size:	00011C
- */
+
 void System::System()
 {
     /*
@@ -577,14 +549,14 @@ void System::System()
       blr
 
     .loc_0x11C:
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00006C
- */
+
 void System::~System()
 {
     // UNUSED FUNCTION
@@ -594,7 +566,7 @@ void System::~System()
  * --INFO--
  * Address:	80422504
  * Size:	000214
- */
+
 void System::construct()
 {
     /*
@@ -746,14 +718,14 @@ void System::construct()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422718
  * Size:	0000E8
- */
+
 void System::constructWithDvdAccessFirst()
 {
     /*
@@ -818,14 +790,14 @@ void System::constructWithDvdAccessFirst()
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422800
  * Size:	000120
- */
+
 void System::constructWithDvdAccessSecond()
 {
     /*
@@ -906,14 +878,14 @@ void System::constructWithDvdAccessSecond()
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422920
  * Size:	000054
- */
+
 void System::createRomFont(JKRHeap*)
 {
     /*
@@ -941,14 +913,14 @@ void System::createRomFont(JKRHeap*)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422974
  * Size:	000050
- */
+
 void System::destroyRomFont()
 {
     /*
@@ -975,14 +947,14 @@ void System::destroyRomFont()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804229C4
  * Size:	0001B8
- */
+
 void System::createSoundSystem()
 {
     /*
@@ -1109,14 +1081,14 @@ void System::createSoundSystem()
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422B7C
  * Size:	0000E8
- */
+
 void System::loadSoundResource()
 {
     /*
@@ -1185,14 +1157,14 @@ void System::loadSoundResource()
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000014
- */
+
 void System::GXVerifyArg::__ct(void)
 {
     // UNUSED FUNCTION
@@ -1202,7 +1174,7 @@ void System::GXVerifyArg::__ct(void)
  * --INFO--
  * Address:	........
  * Size:	000004
- */
+
 void System::setGXVerifyLevel(System::GXVerifyArg&)
 {
     // UNUSED FUNCTION
@@ -1212,7 +1184,7 @@ void System::setGXVerifyLevel(System::GXVerifyArg&)
  * --INFO--
  * Address:	........
  * Size:	000004
- */
+
 void System::clearGXVerifyLevel()
 {
     // UNUSED FUNCTION
@@ -1222,7 +1194,7 @@ void System::clearGXVerifyLevel()
  * --INFO--
  * Address:	80422C64
  * Size:	0000F8
- */
+
 void System::initialize()
 {
     /*
@@ -1293,14 +1265,14 @@ void System::initialize()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422D5C
  * Size:	000094
- */
+
 void System::loadResourceFirst()
 {
     /*
@@ -1344,14 +1316,14 @@ void System::loadResourceFirst()
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422DF0
  * Size:	000094
- */
+
 void System::loadResourceSecond()
 {
     /*
@@ -1395,14 +1367,14 @@ void System::loadResourceSecond()
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422E84
  * Size:	000034
- */
+
 void System::run()
 {
     /*
@@ -1420,14 +1392,14 @@ void System::run()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422EB8
  * Size:	000058
- */
+
 void System::getTime()
 {
     /*
@@ -1454,14 +1426,14 @@ void System::getTime()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
- */
+
 void System::checkOptionBlockSaveFlag()
 {
     // UNUSED FUNCTION
@@ -1471,7 +1443,7 @@ void System::checkOptionBlockSaveFlag()
  * --INFO--
  * Address:	80422F10
  * Size:	000010
- */
+
 void System::clearOptionBlockSaveFlag()
 {
     /*
@@ -1480,14 +1452,14 @@ void System::clearOptionBlockSaveFlag()
       li        r0, 0
       stb       r0, 0x42(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422F20
  * Size:	000010
- */
+
 void System::setOptionBlockSaveFlag()
 {
     /*
@@ -1496,28 +1468,28 @@ void System::setOptionBlockSaveFlag()
       li        r0, 0x1
       stb       r0, 0x42(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422F30
  * Size:	000008
- */
+
 void System::getPlayCommonData()
 {
     /*
     .loc_0x0:
       lwz       r3, 0x60(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422F38
  * Size:	000058
- */
+
 void System::dvdLoadUseCallBack(DvdThreadCommand*, IDelegate*)
 {
     /*
@@ -1546,14 +1518,14 @@ void System::dvdLoadUseCallBack(DvdThreadCommand*, IDelegate*)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000060
- */
+
 void System::dvdLoadArchive(DvdThreadCommand*, char*, JKRHeap*)
 {
     // UNUSED FUNCTION
@@ -1563,7 +1535,7 @@ void System::dvdLoadArchive(DvdThreadCommand*, char*, JKRHeap*)
  * --INFO--
  * Address:	........
  * Size:	000060
- */
+
 void System::dvdLoadArchiveTemporary(DvdThreadCommand*, char*, JKRHeap*)
 {
     // UNUSED FUNCTION
@@ -1573,7 +1545,7 @@ void System::dvdLoadArchiveTemporary(DvdThreadCommand*, char*, JKRHeap*)
  * --INFO--
  * Address:	........
  * Size:	000060
- */
+
 void System::dvdLoadFile(DvdThreadCommand*, char*, JKRHeap*)
 {
     // UNUSED FUNCTION
@@ -1583,7 +1555,7 @@ void System::dvdLoadFile(DvdThreadCommand*, char*, JKRHeap*)
  * --INFO--
  * Address:	........
  * Size:	000034
- */
+
 void System::dvdLoadSync(DvdThreadCommand*, DvdThread::ESyncBlockFlag)
 {
     // UNUSED FUNCTION
@@ -1593,7 +1565,7 @@ void System::dvdLoadSync(DvdThreadCommand*, DvdThread::ESyncBlockFlag)
  * --INFO--
  * Address:	........
  * Size:	000034
- */
+
 void System::dvdLoadSyncAll(DvdThread::ESyncBlockFlag)
 {
     // UNUSED FUNCTION
@@ -1603,7 +1575,7 @@ void System::dvdLoadSyncAll(DvdThread::ESyncBlockFlag)
  * --INFO--
  * Address:	80422F90
  * Size:	000054
- */
+
 void System::deleteThreads()
 {
     /*
@@ -1633,14 +1605,14 @@ void System::deleteThreads()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80422FE4
  * Size:	00008C
- */
+
 void DvdThread::~DvdThread()
 {
     /*
@@ -1686,14 +1658,14 @@ void DvdThread::~DvdThread()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423070
  * Size:	000010
- */
+
 void System::setCurrentDisplay(JFWDisplay*)
 {
     /*
@@ -1702,14 +1674,14 @@ void System::setCurrentDisplay(JFWDisplay*)
       stw       r4, 0x4C(r3)
       mr        r3, r0
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423080
  * Size:	00001C
- */
+
 void System::clearCurrentDisplay(JFWDisplay*)
 {
     /*
@@ -1723,14 +1695,14 @@ void System::clearCurrentDisplay(JFWDisplay*)
     .loc_0x14:
       li        r3, 0
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8042309C
  * Size:	00003C
- */
+
 void System::beginFrame()
 {
     /*
@@ -1750,14 +1722,14 @@ void System::beginFrame()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804230D8
  * Size:	00005C
- */
+
 void System::endFrame()
 {
     /*
@@ -1787,14 +1759,14 @@ void System::endFrame()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423134
  * Size:	000048
- */
+
 void System::beginRender()
 {
     /*
@@ -1817,14 +1789,14 @@ void System::beginRender()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8042317C
  * Size:	000098
- */
+
 void System::endRender()
 {
     /*
@@ -1869,14 +1841,14 @@ void System::endRender()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423214
  * Size:	000010
- */
+
 void System::setRenderMode(System::ERenderMode)
 {
     /*
@@ -1885,14 +1857,14 @@ void System::setRenderMode(System::ERenderMode)
       stw       r3, -0x6518(r13)
       mr        r3, r0
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423224
  * Size:	000018
- */
+
 void System::getRenderModeObj()
 {
     /*
@@ -1903,14 +1875,14 @@ void System::getRenderModeObj()
       rlwinm    r0,r0,2,0,29
       lwzx      r3, r3, r0
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8042323C
  * Size:	000120
- */
+
 void System::changeRenderMode(System::ERenderMode)
 {
     /*
@@ -2005,80 +1977,80 @@ void System::changeRenderMode(System::ERenderMode)
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8042335C
  * Size:	000008
- */
+
 void System::heapStatusStart(char*, JKRHeap*)
 {
     /*
     .loc_0x0:
       li        r3, 0
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423364
  * Size:	000004
- */
+
 void System::heapStatusEnd(char*)
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423368
  * Size:	000004
- */
+
 void System::heapStatusDump(bool)
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8042336C
  * Size:	000004
- */
+
 void System::heapStatusIndividual()
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423370
  * Size:	000004
- */
+
 void System::heapStatusNormal()
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
- */
+
 void System::heapStatusDumpNode()
 {
     // UNUSED FUNCTION
@@ -2088,7 +2060,7 @@ void System::heapStatusDumpNode()
  * --INFO--
  * Address:	80423374
  * Size:	000028
- */
+
 void System::resetOn(bool)
 {
     /*
@@ -2103,14 +2075,14 @@ void System::resetOn(bool)
       ori       r0, r0, 0x8
       stw       r0, 0xC(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000020
- */
+
 void System::resetOff()
 {
     // UNUSED FUNCTION
@@ -2120,7 +2092,7 @@ void System::resetOff()
  * --INFO--
  * Address:	8042339C
  * Size:	000014
- */
+
 void System::resetPermissionOn()
 {
     /*
@@ -2130,14 +2102,14 @@ void System::resetPermissionOn()
       oris      r0, r0, 0x1000
       stw       r0, 0xC(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804233B0
  * Size:	000018
- */
+
 void System::isResetActive()
 {
     /*
@@ -2148,14 +2120,14 @@ void System::isResetActive()
       or        r0, r0, r3
       rlwinm    r3,r0,1,31,31
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804233C8
  * Size:	000014
- */
+
 void System::activeGP()
 {
     /*
@@ -2165,14 +2137,14 @@ void System::activeGP()
       ori       r0, r0, 0x2
       stw       r0, 0xC(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804233DC
  * Size:	000014
- */
+
 void System::inactiveGP()
 {
     /*
@@ -2182,14 +2154,14 @@ void System::inactiveGP()
       rlwinm    r0,r0,0,31,29
       stw       r0, 0xC(r3)
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804233F0
  * Size:	000024
- */
+
 void System::isDvdErrorOccured()
 {
     /*
@@ -2203,14 +2175,14 @@ void System::isDvdErrorOccured()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423414
  * Size:	000034
- */
+
 void System::initCurrentHeapMutex()
 {
     /*
@@ -2228,14 +2200,14 @@ void System::initCurrentHeapMutex()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423448
  * Size:	000070
- */
+
 void System::startChangeCurrentHeap(JKRHeap*)
 {
     /*
@@ -2270,14 +2242,14 @@ void System::startChangeCurrentHeap(JKRHeap*)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804234B8
  * Size:	000068
- */
+
 void System::endChangeCurrentHeap()
 {
     /*
@@ -2310,53 +2282,53 @@ void System::endChangeCurrentHeap()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423520
  * Size:	000004
- */
+
 void System::addGenNode(CNode*)
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423524
  * Size:	000004
- */
+
 void System::initGenNode()
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423528
  * Size:	000004
- */
+
 void System::refreshGenNode()
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8042352C
  * Size:	0000A0
- */
+
 void System::setFrameRate(int)
 {
     /*
@@ -2403,14 +2375,14 @@ void System::setFrameRate(int)
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A0
- */
+
 void System::forceFinishSection()
 {
     // UNUSED FUNCTION
@@ -2420,21 +2392,21 @@ void System::forceFinishSection()
  * --INFO--
  * Address:	804235CC
  * Size:	000008
- */
+
 void ISectionMgr::getCurrentSection()
 {
     /*
     .loc_0x0:
       li        r3, 0
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804235D4
  * Size:	000060
- */
+
 void System::dvdLoadSyncNoBlock(DvdThreadCommand*)
 {
     /*
@@ -2469,14 +2441,14 @@ void System::dvdLoadSyncNoBlock(DvdThreadCommand*)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423634
  * Size:	00005C
- */
+
 void System::dvdLoadSyncAllNoBlock()
 {
     /*
@@ -2510,14 +2482,14 @@ void System::dvdLoadSyncAllNoBlock()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423690
  * Size:	000060
- */
+
 void AppThread::~AppThread()
 {
     /*
@@ -2548,14 +2520,14 @@ void AppThread::~AppThread()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	804236F0
  * Size:	000038
- */
+
 void PSM::Factory::newSceneMgr(void)
 {
     /*
@@ -2576,14 +2548,14 @@ void PSM::Factory::newSceneMgr(void)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423728
  * Size:	000030
- */
+
 void Delegate<System>::invoke()
 {
     /*
@@ -2600,14 +2572,14 @@ void Delegate<System>::invoke()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	80423758
  * Size:	000018
- */
+
 void __sinit_system_cpp(void)
 {
     /*
@@ -2618,5 +2590,6 @@ void __sinit_system_cpp(void)
       stw       r4, -0x6510(r13)
       stb       r0, 0x4(r3)
       blr
-    */
+
 }
+*/
