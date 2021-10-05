@@ -5,14 +5,14 @@ struct GameSystem {
     u8 filler[0x50];
     u32 _50; // _50
 
-    void calcFrameDist(int);
+    s32 calcFrameDist(int);
 };
 
 extern GameSystem* gameSystem;
 
 struct TSoundEvent {
     u8 _00;
-    u32 _04;
+    s32 _04;
     u32 _08;
 
     TSoundEvent();
@@ -62,14 +62,23 @@ u32 Game::TSoundEvent::event()
  * Address:	8022EC30
  * Size:	000010
  */
-void Game::TSoundEvent::finish(void) { _00 |= 0x4; }
+void Game::TSoundEvent::finish(void) { _00 |= 4; }
 
 /*
  * --INFO--
  * Address:	8022EC40
  * Size:	000074
  */
-// u32 Game::TSoundEvent::update() { }
+u32 Game::TSoundEvent::update()
+{
+    if (!(_00 & 4) && Game::gameSystem->calcFrameDist(_08) > _04 && _00 & 1
+        && !(_00 & 2)) {
+        _00 |= 2;
+        return 2;
+    }
+
+    return 0;
+}
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
