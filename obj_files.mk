@@ -888,7 +888,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/modelEffect.o\
 	$(BUILD_DIR)/asm/sysGCU/messageReference.o\
 	$(BUILD_DIR)/src/sysGCU/simpleMessage.o\
-	$(BUILD_DIR)/asm/sysGCU/simpleMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/sysShapeAnimation.o\
 	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
 	$(BUILD_DIR)/asm/sysGCU/windowMessage.o\
