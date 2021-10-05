@@ -1,12 +1,25 @@
-
+//nonmatching
 
 /*
  * --INFO--
  * Address:	800BDDB8
  * Size:	000038
- */
-void TRK_flush_cache(void)
+ */ 
+void TRK_flush_cache(unsigned int param_1, int param_2)
 {
+    unsigned int uVar1 = param_1 & 0xfffffff1;
+    param_2 = param_2 + (param_1 - uVar1);
+    do {
+        __dcbst(0, uVar1);
+        __dcbf(0, uVar1);
+        __sync();
+        asm {icbi 0, r5}
+        uVar1 = uVar1 + 8;
+        param_2 = param_2 + -8;
+    } while (-1 < param_2);
+    __isync();
+    return;
+}
 /*
 .loc_0x0:
   lis       r5, 0xFFFF
@@ -26,4 +39,3 @@ void TRK_flush_cache(void)
   isync     
   blr
 */
-}

@@ -1,7 +1,6 @@
 .include "macros.inc"
 
-.section .text, "ax"  # 0x800056C0 - 0x80472F00
-
+.section .text, "ax"  # 0x800056C0 - 0x80472F00 
 .global kando_panic_f__FbPCciPCce
 kando_panic_f__FbPCciPCce:
 /* 80421F64 0041EEA4  94 21 FB A0 */	stwu r1, -0x460(r1)
@@ -75,9 +74,9 @@ lbl_8042201C:
 /* 8042206C 0041EFAC  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80422070 0041EFB0  40 82 00 20 */	bne lbl_80422090
 lbl_80422074:
-/* 80422074 0041EFB4  3C 60 80 4A */	lis r3, lbl_8049981C@ha
+/* 80422074 0041EFB4  3C 60 80 4A */	lis r3, gStrSystem_InOnLine@ha
 /* 80422078 0041EFB8  7F A5 EB 78 */	mr r5, r29
-/* 8042207C 0041EFBC  38 63 98 1C */	addi r3, r3, lbl_8049981C@l
+/* 8042207C 0041EFBC  38 63 98 1C */	addi r3, r3, gStrSystem_InOnLine@l
 /* 80422080 0041EFC0  7F C6 F3 78 */	mr r6, r30
 /* 80422084 0041EFC4  38 81 00 74 */	addi r4, r1, 0x74
 /* 80422088 0041EFC8  4C C6 31 82 */	crclr 6

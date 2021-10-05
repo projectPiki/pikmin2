@@ -175,11 +175,11 @@ void ID32::read(Stream& stream)
     }
 }
 
-// /*
-//  * --INFO--
-//  * Address:	804135DC
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	804135DC
+ * Size:	000004
+ */
 void ID32::print() { return; }
 
 /*
@@ -195,31 +195,38 @@ void ID32::sprint(char* str)
     str[3] = static_cast<u8>(m_id.raw);
     str[4] = '\0';
 }
+// extern "C" void __sinit_id32_cpp(){
+// ID32::eof.m_id.str[0] = '_';
+// ID32::eof.m_id.str[1] = 'e';
+// ID32::eof.m_id.str[2] = 'o';
+// ID32::eof.m_id.str[3] = 'f';
+// ID32::eof.m_id.str[4] = '\0';
+// ID32::eof.m_id.raw = '_eof';
+// return;
+//}
+/*
+ * --INFO--
+ * Address:	80413618
+ * Size:	000040
+ */
+// void __sinit_id32_cpp(void)
 
-// /*
-//  * --INFO--
-//  * Address:	80413618
-//  * Size:	000040
-//  */
-// // void __sinit_id32_cpp(void)
-// //{
-// /*
-// .loc_0x0:
-//   lis       r4, 0x5F65
-//   lis       r3, 0x8051
-//   addi      r4, r4, 0x6F66
-//   li        r0, 0
-//   addi      r7, r3, 0x41F0
-//   stw       r4, 0x8(r7)
-//   lbz       r6, 0x8(r7)
-//   lbz       r5, 0x9(r7)
-//   lbz       r4, 0xA(r7)
-//   lbz       r3, 0xB(r7)
-//   stb       r6, 0x0(r7)
-//   stb       r5, 0x1(r7)
-//   stb       r4, 0x2(r7)
-//   stb       r3, 0x3(r7)
-//   stb       r0, 0x4(r7)
-//   blr
-// */
-// //}
+/*
+.loc_0x0:
+  lis       r4, 0x5F65
+  lis       r3, 0x8051
+  addi      r4, r4, 0x6F66
+  li        r0, 0
+  addi      r7, r3, 0x41F0
+  stw       r4, 0x8(r7)
+  lbz       r6, 0x8(r7)
+  lbz       r5, 0x9(r7)
+  lbz       r4, 0xA(r7)
+  lbz       r3, 0xB(r7)
+  stb       r6, 0x0(r7)
+  stb       r5, 0x1(r7)
+  stb       r4, 0x2(r7)
+  stb       r3, 0x3(r7)
+  stb       r0, 0x4(r7)
+  blr
+*/

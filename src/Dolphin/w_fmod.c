@@ -1,12 +1,13 @@
-
+extern double __ieee754_fmod();
 
 /*
  * --INFO--
  * Address:	800CF9CC
  * Size:	000020
  */
-void fmod(void)
-{
+
+double fmod(double __x, double __y) { return (double)__ieee754_fmod(); }
+
 /*
 .loc_0x0:
   stwu      r1, -0x10(r1)
@@ -18,4 +19,3 @@ void fmod(void)
   addi      r1, r1, 0x10
   blr
 */
-}

@@ -1,26 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global actCommon__Q24Game13InteractFlickFPQ24Game8Creature
-actCommon__Q24Game13InteractFlickFPQ24Game8Creature:
-/* 8019FE78 0019CDB8  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8019FE7C 0019CDBC  7C 08 02 A6 */	mflr r0
-/* 8019FE80 0019CDC0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8019FE84 0019CDC4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8019FE88 0019CDC8  7C 9F 23 78 */	mr r31, r4
-/* 8019FE8C 0019CDCC  7F E3 FB 78 */	mr r3, r31
-/* 8019FE90 0019CDD0  4B FF F6 E5 */	bl isStickTo__Q24Game8CreatureFv
-/* 8019FE94 0019CDD4  54 60 06 3F */	clrlwi. r0, r3, 0x18
-/* 8019FE98 0019CDD8  41 82 00 0C */	beq lbl_8019FEA4
-/* 8019FE9C 0019CDDC  7F E3 FB 78 */	mr r3, r31
-/* 8019FEA0 0019CDE0  4B FF F5 85 */	bl endStick__Q24Game8CreatureFv
-lbl_8019FEA4:
-/* 8019FEA4 0019CDE4  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8019FEA8 0019CDE8  38 60 00 01 */	li r3, 1
-/* 8019FEAC 0019CDEC  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 8019FEB0 0019CDF0  7C 08 03 A6 */	mtlr r0
-/* 8019FEB4 0019CDF4  38 21 00 10 */	addi r1, r1, 0x10
-/* 8019FEB8 0019CDF8  4E 80 00 20 */	blr 
 
 .global actCommon__Q24Game14InteractAttackFPQ24Game8Creature
 actCommon__Q24Game14InteractAttackFPQ24Game8Creature:

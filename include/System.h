@@ -3,7 +3,10 @@
 
 #include "types.h"
 
-void Pikmin2DefaultMemoryErrorRoutine(void*, unsigned long, int);
+void Pikmin2DefaultMemoryErrorRoutine(void*, u32, s32);
+void kando_panic_f(bool, const char*, s32, const char*, ...);
+extern void preUserCallback(unsigned short, struct OSContext*, unsigned long,
+                            unsigned long);
 
 struct System {
     // static void assert_fragmentation(char*);
