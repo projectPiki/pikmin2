@@ -851,7 +851,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/gameflow.o\
 	$(BUILD_DIR)/asm/sysGCU/menuSection.o\
 	$(BUILD_DIR)/asm/sysGCU/dvdThread.o\
-	$(BUILD_DIR)/asm/sysGCU/appThread.o\
+	$(BUILD_DIR)/src/sysGCU/appThread.o\
 	$(BUILD_DIR)/asm/sysGCU/controller.o\
 	$(BUILD_DIR)/asm/sysGCU/graphics.o\
 	$(BUILD_DIR)/asm/sysGCU/matMath.o\

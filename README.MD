@@ -19,6 +19,7 @@ Some of this progress may be outdated, or a branch other than main (workshop or 
 ### DONE
 - sysBootupU/sysBootup.cpp
 - sysCommonU/id32.cpp
+- sysGCU/appThread.cpp
 - plugProjectKandoU/TSoundEvent.cpp
 - plugProjectHikinoU/PSCreatureMgr.cpp
 
