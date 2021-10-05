@@ -852,7 +852,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/menuSection.o\
 	$(BUILD_DIR)/asm/sysGCU/dvdThread.o\
 	$(BUILD_DIR)/src/sysGCU/appThread.o\
-	$(BUILD_DIR)/asm/sysGCU/controller.o\
+	$(BUILD_DIR)/src/sysGCU/controller.o\
 	$(BUILD_DIR)/asm/sysGCU/graphics.o\
 	$(BUILD_DIR)/asm/sysGCU/matMath.o\
 	$(BUILD_DIR)/asm/sysGCU/sysShape.o\
@@ -887,6 +887,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/message.o\
 	$(BUILD_DIR)/asm/sysGCU/modelEffect.o\
 	$(BUILD_DIR)/asm/sysGCU/messageReference.o\
+	$(BUILD_DIR)/src/sysGCU/simpleMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/simpleMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/sysShapeAnimation.o\
 	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
