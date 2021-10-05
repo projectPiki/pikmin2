@@ -11,7 +11,7 @@ More specifically, you need to modify the v2.7 linker as follows:
 Change 0x74 to 0x75 (fixes the destructor issue)
 
 ## Project Organisation
-For each namespace that types and functions are contained within, create a folder. E.g. the structure `Game::GameSystem` will go in Game/GameSystem.h.
+For each namespace that types and functions are contained within, create a folder. E.g. the structure `Game::GameSystem` will go in include/Game/GameSystem.h.
 
 ## Progress Check (CPP Files)
 Some of this progress may be outdated, or a branch other than main (workshop or workshop-unfinished). In this list we will not include library code (Dolphin, JSystem) and game code only.
