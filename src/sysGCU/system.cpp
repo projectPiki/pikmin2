@@ -1,4 +1,7 @@
 #include "System.h"
+#include "Dolphin/os.h"
+#include "jsystem/JKRHeap.h"
+#include "jsystem/JUTException.h"
 
 extern char gStrSystem_CPP[11]; // system.cpp
 

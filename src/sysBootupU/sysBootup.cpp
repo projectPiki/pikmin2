@@ -1,3 +1,4 @@
+#include "Dolphin/os.h"
 #include "System.h"
 
 // "bootup -----------------------\n"

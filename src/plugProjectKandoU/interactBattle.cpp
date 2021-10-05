@@ -1,14 +1,5 @@
-#include "interactBattle.h"
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-// void _Print(char*, ...)
-//{
-//    // UNUSED FUNCTION
-//}
+#include "game/interactBattle.h"
+#include "game/Creature.h"
 
 /*
  * --INFO--
@@ -24,30 +15,6 @@ bool InteractFlick::actCommon(Creature* param_1)
 
     return true;
 };
-//{
-//    /*
-//    .loc_0x0:
-//      stwu      r1, -0x10(r1)
-//      mflr      r0
-//      stw       r0, 0x14(r1)
-//      stw       r31, 0xC(r1)
-//      mr        r31, r4
-//      mr        r3, r31
-//      bl        -0x91C
-//      rlwinm.   r0,r3,0,24,31
-//      beq-      .loc_0x2C
-//      mr        r3, r31
-//      bl        -0xA7C
-
-//    .loc_0x2C:
-//      lwz       r0, 0x14(r1)
-//      li        r3, 0x1
-//      lwz       r31, 0xC(r1)
-//      mtlr      r0
-//      addi      r1, r1, 0x10
-//      blr
-//    */
-//}
 
 ///*
 // * --INFO--

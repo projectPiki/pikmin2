@@ -1,5 +1,5 @@
-#ifndef _SOUNDCREATUREMGR_H
-#define _SOUNDCREATUREMGR_H
+#ifndef _JSYSTEM_J3DANM_H
+#define _JSYSTEM_J3DANM_H
 
 typedef enum J3DAnmKind {
     CLUSTER         = 3,
@@ -26,12 +26,5 @@ struct J3DAnmBase { /* PlaceHolder Class Structure */
     virtual ~J3DAnmBase();
     virtual J3DAnmKind getKind();
 };
-
-namespace PSGame {
-class SoundCreatureMgr {
-public:
-    void registerAnime(J3DAnmBase*, const char*);
-};
-} // namespace PSGame
 
 #endif
