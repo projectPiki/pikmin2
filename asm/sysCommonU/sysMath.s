@@ -1,37 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global pikmin2_sinf__Ff
-pikmin2_sinf__Ff:
-/* 80411730 0040E670  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
-/* 80411734 0040E674  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80411738 0040E678  FC 01 00 40 */	fcmpo cr0, f1, f0
-/* 8041173C 0040E67C  40 80 00 30 */	bge lbl_8041176C
-/* 80411740 0040E680  C0 02 1F 08 */	lfs f0, lbl_80520268@sda21(r2)
-/* 80411744 0040E684  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
-/* 80411748 0040E688  38 63 71 A0 */	addi r3, r3, sincosTable___5JMath@l
-/* 8041174C 0040E68C  EC 01 00 32 */	fmuls f0, f1, f0
-/* 80411750 0040E690  FC 00 00 1E */	fctiwz f0, f0
-/* 80411754 0040E694  D8 01 00 08 */	stfd f0, 8(r1)
-/* 80411758 0040E698  80 01 00 0C */	lwz r0, 0xc(r1)
-/* 8041175C 0040E69C  54 00 1C B8 */	rlwinm r0, r0, 3, 0x12, 0x1c
-/* 80411760 0040E6A0  7C 03 04 2E */	lfsx f0, r3, r0
-/* 80411764 0040E6A4  FC 20 00 50 */	fneg f1, f0
-/* 80411768 0040E6A8  48 00 00 28 */	b lbl_80411790
-lbl_8041176C:
-/* 8041176C 0040E6AC  C0 02 1F 0C */	lfs f0, lbl_8052026C@sda21(r2)
-/* 80411770 0040E6B0  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
-/* 80411774 0040E6B4  38 63 71 A0 */	addi r3, r3, sincosTable___5JMath@l
-/* 80411778 0040E6B8  EC 01 00 32 */	fmuls f0, f1, f0
-/* 8041177C 0040E6BC  FC 00 00 1E */	fctiwz f0, f0
-/* 80411780 0040E6C0  D8 01 00 10 */	stfd f0, 0x10(r1)
-/* 80411784 0040E6C4  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80411788 0040E6C8  54 00 1C B8 */	rlwinm r0, r0, 3, 0x12, 0x1c
-/* 8041178C 0040E6CC  7C 23 04 2E */	lfsx f1, r3, r0
-lbl_80411790:
-/* 80411790 0040E6D0  38 21 00 20 */	addi r1, r1, 0x20
-/* 80411794 0040E6D4  4E 80 00 20 */	blr 
-
 .global pikmin2_cosf__Ff
 pikmin2_cosf__Ff:
 /* 80411798 0040E6D8  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
