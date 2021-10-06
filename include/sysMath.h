@@ -1,12 +1,11 @@
-#ifndef _sysMath_H
-#define _sysMath_H
-namespace JMath {
-    template <int length, typename T>
-    struct TAtanTable {
-        T atan2_(T, T) const;
-        T mTable[length];
-    };
-    
-    template struct TAtanTable<1024, float>;
-}
+#ifndef _SYSMATH_H
+#define _SYSMATH_H
+
+#include "JSystem/JMath.h"
+
+float pikmin2_sinf(float x);
+float pikmin2_cosf(float x);
+float pikmin2_atan2f(float x, float y);
+float pikmin2_sqrtf(float x);
+
 #endif

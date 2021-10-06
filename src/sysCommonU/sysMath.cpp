@@ -1,24 +1,15 @@
 #include "sysMath.h"
-namespace JMath {
-    extern const float sincosTable_[1024];
-    extern const TAtanTable<1024, float> atanTable_;
-}
+
 extern const float lbl_80520268; //-325.9493f
 extern const float lbl_8052026C; // 325.9493f
 extern const float lbl_80520270; // 0.0f
 
-
-float pikmin2_sinf(float input)
+float pikmin2_sinf(float x)
 {
-    float result;
-
-    if (input < lbl_80520270) {
-        result = -JMath::sincosTable_[((int)(input * lbl_80520268) & 0x7ffU) * 2];
+    if (x < lbl_80520270) {
+        return -JMath::sincosTable_[((int)(x * lbl_80520268) & 0x7ffU) * 2];
     }
-    else {
-        result = JMath::sincosTable_[((int)(input * lbl_8052026C) & 0x7ffU) * 2];
-    }
-    return result;
+    return JMath::sincosTable_[((int)(x * lbl_8052026C) & 0x7ffU) * 2];
 }
 
 /*
@@ -26,43 +17,22 @@ float pikmin2_sinf(float input)
  * Address:	80411798
  * Size:	000044
  */
-float pikmin2_cosf(float f)
+float pikmin2_cosf(float x)
 {
-    if (f < lbl_80520270) {
-        f = -f;
+    if (x < lbl_80520270) {
+        x = -x;
     }
-    return JMath::sincosTable_[((int)(f * lbl_8052026C) & 0x7ffU) * 2 + 1];
+    return JMath::sincosTable_[((int)(x * lbl_8052026C) & 0x7ffU) * 2 + 1];
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
- */
-//void pikmin2_acosf(float)
-//{
-//    // UNUSED FUNCTION
-//}
-//
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	0000FC
-// */
-//void pikmin2_asinf(float)
-//{
-//    // UNUSED FUNCTION
-//}
-//
 /*
  * --INFO--
  * Address:	804117DC
  * Size:	000028
  */
-float pikmin2_atan2f(float f1, float f2)
+float pikmin2_atan2f(float x, float y)
 {
-    // return JMath::TAtanTable_.atan2(f1, f2, JMath::atanTable_);
-    return JMath::atanTable_.atan2_(f1, f2);
+    return JMath::atanTable_.atan2_(x, y);
 }
 
 /*
@@ -70,16 +40,17 @@ float pikmin2_atan2f(float f1, float f2)
  * Address:	80411804
  * Size:	000018
  */
-float pikmin2_sqrtf(float input) {
-    if (!(input > lbl_80520270)) {
-        return input;
+float pikmin2_sqrtf(float x)
+{
+    if (!(x > lbl_80520270)) { // if x <= 0
+        return x;
     }
 
-    register float reg1 = input;
+    register float reg1 = x;
     register float reg2 = lbl_80520270;
     register float result;
 
-    asm{
+    asm {
       frsqrte reg2, reg1
       fmuls result, reg2, reg1
     }
@@ -92,7 +63,7 @@ float pikmin2_sqrtf(float input) {
  * Address:	8041181C
  * Size:	00003C
  */
-//void qdist2(float, float, float, float)
+// void qdist2(float, float, float, float)
 //{
 //    /*
 //    .loc_0x0:
@@ -121,7 +92,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000044
 // */
-//void qdist3(float, float, float, float, float, float)
+// void qdist3(float, float, float, float, float, float)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -131,7 +102,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00010C
 // */
-//void CRSpline(float, Vector3<float>*)
+// void CRSpline(float, Vector3<float>*)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -141,7 +112,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411858
 // * Size:	0000F4
 // */
-//void CRSplineTangent(float, Vector3<float>*)
+// void CRSplineTangent(float, Vector3<float>*)
 //{
 //    /*
 //    .loc_0x0:
@@ -214,7 +185,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000044
 // */
-//void BoundBox::write(Stream&)
+// void BoundBox::write(Stream&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -224,7 +195,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000044
 // */
-//void BoundBox2d::write(Stream&)
+// void BoundBox2d::write(Stream&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -234,7 +205,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	8041194C
 // * Size:	000044
 // */
-//void BoundBox::read(Stream&)
+// void BoundBox::read(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -265,7 +236,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000044
 // */
-//void BoundBox2d::read(Stream&)
+// void BoundBox2d::read(Stream&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -275,7 +246,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00004C
 // */
-//void Vector2<float>::read(Stream&)
+// void Vector2<float>::read(Stream&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -285,7 +256,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00004C
 // */
-//void Vector2<float>::write(Stream&)
+// void Vector2<float>::write(Stream&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -295,7 +266,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411990
 // * Size:	000058
 // */
-//void Vector3<float>::read(Stream&)
+// void Vector3<float>::read(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -329,7 +300,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	804119E8
 // * Size:	000058
 // */
-//void Vector3<float>::write(Stream&)
+// void Vector3<float>::write(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -363,7 +334,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411A40
 // * Size:	000064
 // */
-//void Plane::write(Stream&)
+// void Plane::write(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -400,7 +371,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411AA4
 // * Size:	000064
 // */
-//void Plane::read(Stream&)
+// void Plane::read(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -437,7 +408,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411B08
 // * Size:	000064
 // */
-//void Color4::write(Stream&)
+// void Color4::write(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -474,7 +445,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411B6C
 // * Size:	000064
 // */
-//void Color4::read(Stream&)
+// void Color4::read(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -511,7 +482,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00005C
 // */
-//void isNan(float)
+// void isNan(float)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -521,7 +492,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411BD0
 // * Size:	00002C
 // */
-//void roundAng(float)
+// void roundAng(float)
 //{
 //    /*
 //    .loc_0x0:
@@ -546,7 +517,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411BFC
 // * Size:	000074
 // */
-//void angDist(float, float)
+// void angDist(float, float)
 //{
 //    /*
 //    .loc_0x0:
@@ -595,7 +566,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000084
 // */
-//void Matrix4f::transposeTo(Matrix4f&)
+// void Matrix4f::transposeTo(Matrix4f&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -605,7 +576,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	0000A4
 // */
-//void Matrix4f::fromMatrix3fAndVector(Matrix3f&, Vector3<float>&)
+// void Matrix4f::fromMatrix3fAndVector(Matrix3f&, Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -615,7 +586,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411C70
 // * Size:	000030
 // */
-//void Matrix3f::makeIdentity()
+// void Matrix3f::makeIdentity()
 //{
 //    /*
 //    .loc_0x0:
@@ -639,7 +610,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00002C
 // */
-//void Matrix3f::makeZero()
+// void Matrix3f::makeZero()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -649,7 +620,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000200
 // */
-//void Matrix3f::getInverse()
+// void Matrix3f::getInverse()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -659,7 +630,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000034
 // */
-//void Matrix3f::makeTranspose()
+// void Matrix3f::makeTranspose()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -669,7 +640,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	0000D0
 // */
-//void Matrix3f::isDiagonal(float)
+// void Matrix3f::isDiagonal(float)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -679,7 +650,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80411CA0
 // * Size:	000728
 // */
-//void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
+// void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
 //{
 //    /*
 //    .loc_0x0:
@@ -1199,7 +1170,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000004
 // */
-//void Matrix3f::print()
+// void Matrix3f::print()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1209,7 +1180,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000020
 // */
-//void Matrix4f::makePerspective(float, float, float, float)
+// void Matrix4f::makePerspective(float, float, float, float)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1219,7 +1190,8 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00016C
 // */
-//void Matrix4f::makeAccFrustum(float, float, float, float, float, float, float,
+// void Matrix4f::makeAccFrustum(float, float, float, float, float, float,
+// float,
 //                              float, float, float, float)
 //{
 //    // UNUSED FUNCTION
@@ -1230,7 +1202,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	0001A4
 // */
-//void Matrix4f::makeAccPerspective(float, float, float, float, float, float,
+// void Matrix4f::makeAccPerspective(float, float, float, float, float, float,
 //                                  float, float, float)
 //{
 //    // UNUSED FUNCTION
@@ -1241,7 +1213,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000020
 // */
-//void Matrix4f::makeOrtho(float, float, float, float, float, float)
+// void Matrix4f::makeOrtho(float, float, float, float, float, float)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1251,7 +1223,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000020
 // */
-//void Matrix4f::makeFrustum(float, float, float, float, float, float)
+// void Matrix4f::makeFrustum(float, float, float, float, float, float)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1261,7 +1233,8 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000028
 // */
-//void Matrix4f::makeLightFrustum(float, float, float, float, float, float, float,
+// void Matrix4f::makeLightFrustum(float, float, float, float, float, float,
+// float,
 //                                float, float)
 //{
 //    // UNUSED FUNCTION
@@ -1272,7 +1245,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00004C
 // */
-//void Matrix4f::makeIdentity()
+// void Matrix4f::makeIdentity()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1282,7 +1255,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00004C
 // */
-//void Matrix4f::makeZero()
+// void Matrix4f::makeZero()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1292,7 +1265,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000020
 // */
-//void Matrix4f::load(int)
+// void Matrix4f::load(int)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1302,7 +1275,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000020
 // */
-//void Matrix4f::loadNorm(int)
+// void Matrix4f::loadNorm(int)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1312,7 +1285,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00004C
 // */
-//void Matrix4f::setBase(Vector3<float>&, Vector3<float>&, Vector3<float>&)
+// void Matrix4f::setBase(Vector3<float>&, Vector3<float>&, Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1322,7 +1295,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	0001B4
 // */
-//void Matrix4f::makeLookAt(Vector3<float>&, Vector3<float>&, Vector3<float>&)
+// void Matrix4f::makeLookAt(Vector3<float>&, Vector3<float>&, Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1332,7 +1305,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	0002C0
 // */
-//void Matrix4f::makeSRT(Vector3<float>&, Vector3<float>&, Vector3<float>&)
+// void Matrix4f::makeSRT(Vector3<float>&, Vector3<float>&, Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1342,7 +1315,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000064
 // */
-//void Matrix4f::makeTranspose()
+// void Matrix4f::makeTranspose()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1352,7 +1325,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	00014C
 // */
-//void Matrix4f::makeSQT(Vector3<float>&, Quat&, Vector3<float>&)
+// void Matrix4f::makeSQT(Vector3<float>&, Quat&, Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1362,7 +1335,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000324
 // */
-//void Matrix4f::getInverse()
+// void Matrix4f::getInverse()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1372,7 +1345,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	804123C8
 // * Size:	000018
 // */
-//void Quat::Quat()
+// void Quat::Quat()
 //{
 //    /*
 //    .loc_0x0:
@@ -1390,7 +1363,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	0000C4
 // */
-//void Quat::setAxisRotation(Vector3<float>&, float)
+// void Quat::setAxisRotation(Vector3<float>&, float)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1400,7 +1373,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	804123E0
 // * Size:	000020
 // */
-//void Quat::Quat(float, Vector3<float>)
+// void Quat::Quat(float, Vector3<float>)
 //{
 //    /*
 //    .loc_0x0:
@@ -1420,7 +1393,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000268
 // */
-//void Quat::Quat(RPY&)
+// void Quat::Quat(RPY&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1430,7 +1403,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80412400
 // * Size:	0000FC
 // */
-//void operator*(Quat&, Quat&)
+// void operator*(Quat&, Quat&)
 //{
 //    /*
 //    .loc_0x0:
@@ -1505,7 +1478,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	804124FC
 // * Size:	000264
 // */
-//void Quat::set(Vector3<float>&)
+// void Quat::set(Vector3<float>&)
 //{
 //    /*
 //    .loc_0x0:
@@ -1682,7 +1655,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000264
 // */
-//void Quat::set(RPY&)
+// void Quat::set(RPY&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1692,7 +1665,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80412760
 // * Size:	000024
 // */
-//void Quat::Quat(Quat&)
+// void Quat::Quat(Quat&)
 //{
 //    /*
 //    .loc_0x0:
@@ -1713,7 +1686,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80412784
 // * Size:	000014
 // */
-//void Quat::set(float, float, float, float)
+// void Quat::set(float, float, float, float)
 //{
 //    /*
 //    .loc_0x0:
@@ -1730,7 +1703,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000020
 // */
-//void Quat::set(float, Vector3<float>&)
+// void Quat::set(float, Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1740,7 +1713,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000030
 // */
-//void Quat::norm()
+// void Quat::norm()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1750,7 +1723,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000034
 // */
-//void Quat::conjugate()
+// void Quat::conjugate()
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1760,7 +1733,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80412798
 // * Size:	0000B4
 // */
-//void Quat::inverse()
+// void Quat::inverse()
 //{
 //    /*
 //    .loc_0x0:
@@ -1821,7 +1794,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000128
 // */
-//void rotate(Quat&, Vector3<float>&)
+// void rotate(Quat&, Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -1831,7 +1804,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	8041284C
 // * Size:	0000A4
 // */
-//void Quat::normalise()
+// void Quat::normalise()
 //{
 //    /*
 //    .loc_0x0:
@@ -1886,7 +1859,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	804128F0
 // * Size:	000348
 // */
-//void Quat::slerp(Quat&, float, Quat&)
+// void Quat::slerp(Quat&, float, Quat&)
 //{
 //    /*
 //    .loc_0x0:
@@ -2146,7 +2119,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000150
 // */
-//void Quat::toMatrix(Matrix3f&)
+// void Quat::toMatrix(Matrix3f&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -2156,7 +2129,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80412C38
 // * Size:	00033C
 // */
-//void Quat::fromMatrixf(Matrixf&)
+// void Quat::fromMatrixf(Matrixf&)
 //{
 //    /*
 //    .loc_0x0:
@@ -2423,7 +2396,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000054
 // */
-//void Plane::calcProjection(Vector3<float>&)
+// void Plane::calcProjection(Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -2433,7 +2406,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000060
 // */
-//void Plane::intersectRay(Vector3<float>&, Vector3<float>&)
+// void Plane::intersectRay(Vector3<float>&, Vector3<float>&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -2443,7 +2416,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	........
 // * Size:	000300
 // */
-//void Matrix4f::inverse(Matrix4f*)
+// void Matrix4f::inverse(Matrix4f*)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -2453,7 +2426,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80412F74
 // * Size:	0000C8
 // */
-//void BoundBox::makeBoundSphere(Sys::Sphere&)
+// void BoundBox::makeBoundSphere(Sys::Sphere&)
 //{
 //    /*
 //    .loc_0x0:
@@ -2523,7 +2496,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	8041303C
 // * Size:	0001EC
 // */
-//void BoundBox::transform(Matrixf&)
+// void BoundBox::transform(Matrixf&)
 //{
 //    /*
 //    .loc_0x0:
@@ -2698,7 +2671,7 @@ float pikmin2_sqrtf(float input) {
 // * Address:	80413228
 // * Size:	00002C
 // */
-//void __sinit_sysMath_cpp(void)
+// void __sinit_sysMath_cpp(void)
 //{
 //    /*
 //    .loc_0x0:
