@@ -1222,7 +1222,7 @@ exec__Q34Game5Sarai11StateAttackFPQ24Game9EnemyBase:
 /* 802719CC 0026E90C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 802719D0 0026E910  EC 3D 08 28 */	fsubs f1, f29, f1
 /* 802719D4 0026E914  EC 5C 00 28 */	fsubs f2, f28, f0
-/* 802719D8 0026E918  4B DC 37 31 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802719D8 0026E918  4B DC 37 31 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802719DC 0026E91C  48 1A 01 F5 */	bl roundAng__Ff
 /* 802719E0 0026E920  81 9F 00 00 */	lwz r12, 0(r31)
 /* 802719E4 0026E924  FF A0 08 90 */	fmr f29, f1
@@ -1361,7 +1361,7 @@ lbl_80271B88:
 /* 80271BD8 0026EB18  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 80271BDC 0026EB1C  EC 3C 08 28 */	fsubs f1, f28, f1
 /* 80271BE0 0026EB20  EC 5D 00 28 */	fsubs f2, f29, f0
-/* 80271BE4 0026EB24  4B DC 35 25 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80271BE4 0026EB24  4B DC 35 25 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80271BE8 0026EB28  48 19 FF E9 */	bl roundAng__Ff
 /* 80271BEC 0026EB2C  81 9F 00 00 */	lwz r12, 0(r31)
 /* 80271BF0 0026EB30  FF A0 08 90 */	fmr f29, f1

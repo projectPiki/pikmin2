@@ -20,10 +20,13 @@ Some of this progress may be outdated, or a branch other than main (workshop or 
 - sysBootupU/sysBootup.cpp
 - sysCommonU/id32.cpp
 - sysGCU/appThread.cpp
+- sysGCU/controller.cpp
+- sysGCU/simpleMessage.cpp
 - plugProjectKandoU/TSoundEvent.cpp
 - plugProjectHikinoU/PSCreatureMgr.cpp
 
 ### WIP
 - sysGCU/system.cpp
+- sysGCU/sysMath.cpp
 - plugProjectKandoU/interactBattle.cpp
 - plugProjectMorimuraU/eggAnimator.cpp

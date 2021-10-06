@@ -434,7 +434,7 @@ startState__Q43ebi5title6Kogane5TUnitFQ53ebi5title6Kogane5TUnit9enumState:
 /* 803E795C 003E489C  80 9F 00 48 */	lwz r4, 0x48(r31)
 /* 803E7960 003E48A0  EC 42 00 28 */	fsubs f2, f2, f0
 /* 803E7964 003E48A4  C3 C4 00 E0 */	lfs f30, 0xe0(r4)
-/* 803E7968 003E48A8  4B C4 D7 A1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 803E7968 003E48A8  4B C4 D7 A1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 803E796C 003E48AC  FF E0 08 90 */	fmr f31, f1
 /* 803E7970 003E48B0  4B CE 1C 31 */	bl rand
 /* 803E7974 003E48B4  6C 63 80 00 */	xoris r3, r3, 0x8000

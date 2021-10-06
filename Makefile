@@ -67,7 +67,7 @@ CC      = $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
-PYTHON  := python3
+PYTHON  := python
 
 POSTPROC := tools/postprocess.py
 
@@ -79,7 +79,7 @@ LDFLAGS := -map $(MAP) -fp hard -nodefaults
 CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O4,p -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
 
 # for postprocess.py
-PROCFLAGS := -fprologue-fixup=old_stack
+PROCFLAGS := -fsymbol-fixup
 
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
@@ -127,7 +127,7 @@ $(ELF): $(O_FILES) $(LDSCRIPT)
 
 $(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
-
+	
 $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 	#$(PYTHON) $(POSTPROC) $(PROCFLAGS) $@

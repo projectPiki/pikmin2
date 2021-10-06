@@ -146,7 +146,7 @@ lbl_80112864:
 /* 80112900 0010F840  D0 A1 00 14 */	stfs f5, 0x14(r1)
 /* 80112904 0010F844  D0 81 00 18 */	stfs f4, 0x18(r1)
 /* 80112908 0010F848  D0 61 00 1C */	stfs f3, 0x1c(r1)
-/* 8011290C 0010F84C  4B F2 27 FD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8011290C 0010F84C  4B F2 27 FD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80112910 0010F850  48 2F F2 C1 */	bl roundAng__Ff
 /* 80112914 0010F854  81 9D 00 00 */	lwz r12, 0(r29)
 /* 80112918 0010F858  FF 60 08 90 */	fmr f27, f1
@@ -474,7 +474,7 @@ lbl_80112D54:
 /* 80112DC8 0010FD08  D0 A1 00 14 */	stfs f5, 0x14(r1)
 /* 80112DCC 0010FD0C  D0 81 00 18 */	stfs f4, 0x18(r1)
 /* 80112DD0 0010FD10  D0 61 00 1C */	stfs f3, 0x1c(r1)
-/* 80112DD4 0010FD14  4B F2 23 35 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80112DD4 0010FD14  4B F2 23 35 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80112DD8 0010FD18  48 2F ED F9 */	bl roundAng__Ff
 /* 80112DDC 0010FD1C  81 9D 00 00 */	lwz r12, 0(r29)
 /* 80112DE0 0010FD20  FF 60 08 90 */	fmr f27, f1
@@ -2005,7 +2005,7 @@ lbl_801143A0:
 /* 80114420 00111360  D0 A1 00 14 */	stfs f5, 0x14(r1)
 /* 80114424 00111364  D0 81 00 18 */	stfs f4, 0x18(r1)
 /* 80114428 00111368  D0 61 00 1C */	stfs f3, 0x1c(r1)
-/* 8011442C 0011136C  4B F2 0C DD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8011442C 0011136C  4B F2 0C DD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80114430 00111370  48 2F D7 A1 */	bl roundAng__Ff
 /* 80114434 00111374  81 9D 00 00 */	lwz r12, 0(r29)
 /* 80114438 00111378  FF 80 08 90 */	fmr f28, f1
@@ -3135,7 +3135,7 @@ walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBasePQ24Game8Creaturefff:
 /* 801154A8 001123E8  D0 A1 00 14 */	stfs f5, 0x14(r1)
 /* 801154AC 001123EC  D0 81 00 18 */	stfs f4, 0x18(r1)
 /* 801154B0 001123F0  D0 61 00 1C */	stfs f3, 0x1c(r1)
-/* 801154B4 001123F4  4B F1 FC 55 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 801154B4 001123F4  4B F1 FC 55 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 801154B8 001123F8  48 2F C7 19 */	bl roundAng__Ff
 /* 801154BC 001123FC  81 9F 00 00 */	lwz r12, 0(r31)
 /* 801154C0 00112400  FF C0 08 90 */	fmr f30, f1
@@ -3250,7 +3250,7 @@ walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff:
 /* 80115660 001125A0  D0 A1 00 08 */	stfs f5, 8(r1)
 /* 80115664 001125A4  D0 81 00 0C */	stfs f4, 0xc(r1)
 /* 80115668 001125A8  D0 61 00 10 */	stfs f3, 0x10(r1)
-/* 8011566C 001125AC  4B F1 FA 9D */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8011566C 001125AC  4B F1 FA 9D */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80115670 001125B0  48 2F C5 61 */	bl roundAng__Ff
 /* 80115674 001125B4  81 9E 00 00 */	lwz r12, 0(r30)
 /* 80115678 001125B8  FF C0 08 90 */	fmr f30, f1

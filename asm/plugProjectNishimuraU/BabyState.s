@@ -426,7 +426,7 @@ lbl_8028CAEC:
 /* 8028CB64 00289AA4  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8028CB68 00289AA8  EC 3A 08 28 */	fsubs f1, f26, f1
 /* 8028CB6C 00289AAC  EC 5B 00 28 */	fsubs f2, f27, f0
-/* 8028CB70 00289AB0  4B DA 85 99 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8028CB70 00289AB0  4B DA 85 99 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8028CB74 00289AB4  48 18 50 5D */	bl roundAng__Ff
 /* 8028CB78 00289AB8  81 9E 00 00 */	lwz r12, 0(r30)
 /* 8028CB7C 00289ABC  FF 40 08 90 */	fmr f26, f1

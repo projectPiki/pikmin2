@@ -1387,7 +1387,7 @@ lbl_8027E9BC:
 /* 8027E9EC 0027B92C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8027E9F0 0027B930  EC 3D 08 28 */	fsubs f1, f29, f1
 /* 8027E9F4 0027B934  EC 5C 00 28 */	fsubs f2, f28, f0
-/* 8027E9F8 0027B938  4B DB 67 11 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8027E9F8 0027B938  4B DB 67 11 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8027E9FC 0027B93C  48 19 31 D5 */	bl roundAng__Ff
 /* 8027EA00 0027B940  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8027EA04 0027B944  FF A0 08 90 */	fmr f29, f1
@@ -1556,7 +1556,7 @@ lbl_8027EC44:
 /* 8027EC74 0027BBB4  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8027EC78 0027BBB8  EC 3D 08 28 */	fsubs f1, f29, f1
 /* 8027EC7C 0027BBBC  EC 5C 00 28 */	fsubs f2, f28, f0
-/* 8027EC80 0027BBC0  4B DB 64 89 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8027EC80 0027BBC0  4B DB 64 89 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8027EC84 0027BBC4  48 19 2F 4D */	bl roundAng__Ff
 /* 8027EC88 0027BBC8  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8027EC8C 0027BBCC  FF A0 08 90 */	fmr f29, f1
@@ -1713,7 +1713,7 @@ lbl_8027EE98:
 /* 8027EEC8 0027BE08  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8027EECC 0027BE0C  EC 3F 08 28 */	fsubs f1, f31, f1
 /* 8027EED0 0027BE10  EC 5E 00 28 */	fsubs f2, f30, f0
-/* 8027EED4 0027BE14  4B DB 62 35 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8027EED4 0027BE14  4B DB 62 35 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8027EED8 0027BE18  48 19 2C F9 */	bl roundAng__Ff
 /* 8027EEDC 0027BE1C  81 9E 00 00 */	lwz r12, 0(r30)
 /* 8027EEE0 0027BE20  FF 60 08 90 */	fmr f27, f1

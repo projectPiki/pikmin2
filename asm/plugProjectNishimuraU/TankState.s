@@ -667,7 +667,7 @@ lbl_802746DC:
 /* 80274764 002716A4  D0 A1 00 14 */	stfs f5, 0x14(r1)
 /* 80274768 002716A8  D0 81 00 18 */	stfs f4, 0x18(r1)
 /* 8027476C 002716AC  D0 61 00 1C */	stfs f3, 0x1c(r1)
-/* 80274770 002716B0  4B DC 09 99 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80274770 002716B0  4B DC 09 99 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80274774 002716B4  48 19 D4 5D */	bl roundAng__Ff
 /* 80274778 002716B8  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8027477C 002716BC  FF 00 08 90 */	fmr f24, f1
@@ -938,7 +938,7 @@ exec__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase:
 /* 80274B58 00271A98  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 80274B5C 00271A9C  EC 3E 08 28 */	fsubs f1, f30, f1
 /* 80274B60 00271AA0  EC 5B 00 28 */	fsubs f2, f27, f0
-/* 80274B64 00271AA4  4B DC 05 A5 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80274B64 00271AA4  4B DC 05 A5 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80274B68 00271AA8  48 19 D0 69 */	bl roundAng__Ff
 /* 80274B6C 00271AAC  81 9F 00 00 */	lwz r12, 0(r31)
 /* 80274B70 00271AB0  FF C0 08 90 */	fmr f30, f1
@@ -1255,7 +1255,7 @@ lbl_80274F8C:
 /* 80274FF0 00271F30  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 80274FF4 00271F34  EC 38 08 28 */	fsubs f1, f24, f1
 /* 80274FF8 00271F38  EC 59 00 28 */	fsubs f2, f25, f0
-/* 80274FFC 00271F3C  4B DC 01 0D */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80274FFC 00271F3C  4B DC 01 0D */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80275000 00271F40  48 19 CB D1 */	bl roundAng__Ff
 /* 80275004 00271F44  81 9F 00 00 */	lwz r12, 0(r31)
 /* 80275008 00271F48  FF 00 08 90 */	fmr f24, f1
@@ -1412,7 +1412,7 @@ lbl_80275210:
 /* 80275248 00272188  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8027524C 0027218C  EC 3A 08 28 */	fsubs f1, f26, f1
 /* 80275250 00272190  EC 5B 00 28 */	fsubs f2, f27, f0
-/* 80275254 00272194  4B DB FE B5 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80275254 00272194  4B DB FE B5 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80275258 00272198  48 19 C9 79 */	bl roundAng__Ff
 /* 8027525C 0027219C  81 9F 00 00 */	lwz r12, 0(r31)
 /* 80275260 002721A0  FF 40 08 90 */	fmr f26, f1

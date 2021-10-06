@@ -1782,7 +1782,7 @@ lbl_8031107C:
 /* 803110C8 0030E008  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 803110CC 0030E00C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 803110D0 0030E010  FC 40 00 50 */	fneg f2, f0
-/* 803110D4 0030E014  4B D2 40 35 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 803110D4 0030E014  4B D2 40 35 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 803110D8 0030E018  C0 02 F4 6C */	lfs f0, lbl_8051D7CC@sda21(r2)
 /* 803110DC 0030E01C  C0 42 F4 68 */	lfs f2, lbl_8051D7C8@sda21(r2)
 /* 803110E0 0030E020  EC 01 00 24 */	fdivs f0, f1, f0

@@ -764,7 +764,7 @@ exec__Q34Game5Armor9StateMoveFPQ24Game9EnemyBase:
 /* 802869AC 002838EC  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 802869B0 002838F0  EC 3A 08 28 */	fsubs f1, f26, f1
 /* 802869B4 002838F4  EC 5B 00 28 */	fsubs f2, f27, f0
-/* 802869B8 002838F8  4B DA E7 51 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802869B8 002838F8  4B DA E7 51 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802869BC 002838FC  48 18 B2 15 */	bl roundAng__Ff
 /* 802869C0 00283900  81 9F 00 00 */	lwz r12, 0(r31)
 /* 802869C4 00283904  FF 40 08 90 */	fmr f26, f1

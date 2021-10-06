@@ -1021,7 +1021,7 @@ lbl_8029CF20:
 /* 8029CFAC 00299EEC  EC 23 08 28 */	fsubs f1, f3, f1
 /* 8029CFB0 00299EF0  EC 42 00 28 */	fsubs f2, f2, f0
 /* 8029CFB4 00299EF4  EF C5 20 24 */	fdivs f30, f5, f4
-/* 8029CFB8 00299EF8  4B D9 81 51 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8029CFB8 00299EF8  4B D9 81 51 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8029CFBC 00299EFC  EC 01 F0 2A */	fadds f0, f1, f30
 /* 8029CFC0 00299F00  C0 22 D9 6C */	lfs f1, lbl_8051BCCC@sda21(r2)
 /* 8029CFC4 00299F04  EF C1 00 2A */	fadds f30, f1, f0

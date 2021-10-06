@@ -3479,7 +3479,7 @@ lbl_803F4E28:
 /* 803F4EE4 003F1E24  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 803F4EE8 003F1E28  FC 20 08 50 */	fneg f1, f1
 /* 803F4EEC 003F1E2C  FC 40 00 50 */	fneg f2, f0
-/* 803F4EF0 003F1E30  4B C4 02 19 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 803F4EF0 003F1E30  4B C4 02 19 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 803F4EF4 003F1E34  C0 02 1B D4 */	lfs f0, lbl_8051FF34@sda21(r2)
 /* 803F4EF8 003F1E38  7F 63 DB 78 */	mr r3, r27
 /* 803F4EFC 003F1E3C  EC 01 00 32 */	fmuls f0, f1, f0
@@ -3532,7 +3532,7 @@ lbl_803F4F4C:
 /* 803F4FB4 003F1EF4  C0 1F 00 B0 */	lfs f0, 0xb0(r31)
 /* 803F4FB8 003F1EF8  FC 20 08 50 */	fneg f1, f1
 /* 803F4FBC 003F1EFC  FC 40 00 50 */	fneg f2, f0
-/* 803F4FC0 003F1F00  4B C4 01 49 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 803F4FC0 003F1F00  4B C4 01 49 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 803F4FC4 003F1F04  80 7F 00 F0 */	lwz r3, 0xf0(r31)
 /* 803F4FC8 003F1F08  EC 01 07 B2 */	fmuls f0, f1, f30
 /* 803F4FCC 003F1F0C  7C 63 D8 2E */	lwzx r3, r3, r27
@@ -4454,7 +4454,7 @@ rocketUpdate__Q32kh6Screen8WorldMapFP7J2DPane:
 /* 803F5D5C 003F2C9C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 803F5D60 003F2CA0  FC 20 08 50 */	fneg f1, f1
 /* 803F5D64 003F2CA4  FC 40 00 50 */	fneg f2, f0
-/* 803F5D68 003F2CA8  4B C3 F3 A1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 803F5D68 003F2CA8  4B C3 F3 A1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 803F5D6C 003F2CAC  C0 02 1B D4 */	lfs f0, lbl_8051FF34@sda21(r2)
 /* 803F5D70 003F2CB0  7F C3 F3 78 */	mr r3, r30
 /* 803F5D74 003F2CB4  EC 01 00 32 */	fmuls f0, f1, f0
@@ -6832,7 +6832,7 @@ update__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMap:
 /* 803F802C 003F4F6C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 803F8030 003F4F70  FC 20 08 50 */	fneg f1, f1
 /* 803F8034 003F4F74  FC 40 00 50 */	fneg f2, f0
-/* 803F8038 003F4F78  4B C3 D0 D1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 803F8038 003F4F78  4B C3 D0 D1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 803F803C 003F4F7C  C0 02 1B D4 */	lfs f0, lbl_8051FF34@sda21(r2)
 /* 803F8040 003F4F80  80 7F 00 00 */	lwz r3, 0(r31)
 /* 803F8044 003F4F84  EC 01 00 32 */	fmuls f0, f1, f0

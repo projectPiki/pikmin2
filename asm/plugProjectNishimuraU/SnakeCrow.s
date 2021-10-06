@@ -726,7 +726,7 @@ lbl_80293A0C:
 /* 80293A8C 002909CC  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 80293A90 002909D0  EC 5D 18 28 */	fsubs f2, f29, f3
 /* 80293A94 002909D4  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80293A98 002909D8  4B DA 16 71 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80293A98 002909D8  4B DA 16 71 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80293A9C 002909DC  FF 80 08 90 */	fmr f28, f1
 /* 80293AA0 002909E0  4B E3 5B 01 */	bl rand
 /* 80293AA4 002909E4  6C 63 80 00 */	xoris r3, r3, 0x8000

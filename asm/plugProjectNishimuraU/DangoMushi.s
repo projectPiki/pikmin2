@@ -853,7 +853,7 @@ setRandTarget__Q34Game10DangoMushi3ObjFv:
 /* 802FCF4C 002F9E8C  EC 66 28 24 */	fdivs f3, f6, f5
 /* 802FCF50 002F9E90  EF E4 18 2A */	fadds f31, f4, f3
 /* 802FCF54 002F9E94  EC 42 00 28 */	fsubs f2, f2, f0
-/* 802FCF58 002F9E98  4B D3 81 B1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802FCF58 002F9E98  4B D3 81 B1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802FCF5C 002F9E9C  FF C0 08 90 */	fmr f30, f1
 /* 802FCF60 002F9EA0  4B DC C6 41 */	bl rand
 /* 802FCF64 002F9EA4  6C 63 80 00 */	xoris r3, r3, 0x8000
@@ -1023,7 +1023,7 @@ lbl_802FD178:
 /* 802FD1B8 002FA0F8  D0 81 00 08 */	stfs f4, 8(r1)
 /* 802FD1BC 002FA0FC  D0 61 00 0C */	stfs f3, 0xc(r1)
 /* 802FD1C0 002FA100  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 802FD1C4 002FA104  4B D3 7F 45 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802FD1C4 002FA104  4B D3 7F 45 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802FD1C8 002FA108  48 11 4A 09 */	bl roundAng__Ff
 /* 802FD1CC 002FA10C  81 9F 00 00 */	lwz r12, 0(r31)
 /* 802FD1D0 002FA110  FF A0 08 90 */	fmr f29, f1
@@ -2020,7 +2020,7 @@ lbl_802FE00C:
 /* 802FE040 002FAF80  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 802FE044 002FAF84  EC 21 F8 28 */	fsubs f1, f1, f31
 /* 802FE048 002FAF88  EC 40 F0 28 */	fsubs f2, f0, f30
-/* 802FE04C 002FAF8C  4B D3 70 BD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802FE04C 002FAF8C  4B D3 70 BD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802FE050 002FAF90  80 DE 00 C0 */	lwz r6, 0xc0(r30)
 /* 802FE054 002FAF94  3C A0 80 4B */	lis r5, __vt__Q24Game11Interaction@ha
 /* 802FE058 002FAF98  3C 80 80 4B */	lis r4, __vt__Q24Game13InteractFlick@ha

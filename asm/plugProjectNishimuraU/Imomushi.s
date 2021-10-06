@@ -512,7 +512,7 @@ lbl_802BC870:
 /* 802BC874 002B97B4  C0 3F 02 D8 */	lfs f1, 0x2d8(r31)
 /* 802BC878 002B97B8  C0 5F 02 E0 */	lfs f2, 0x2e0(r31)
 /* 802BC87C 002B97BC  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 802BC880 002B97C0  4B D7 88 89 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802BC880 002B97C0  4B D7 88 89 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802BC884 002B97C4  D0 3F 01 FC */	stfs f1, 0x1fc(r31)
 /* 802BC888 002B97C8  C0 1F 01 FC */	lfs f0, 0x1fc(r31)
 /* 802BC88C 002B97CC  D0 1F 01 A8 */	stfs f0, 0x1a8(r31)
@@ -1456,7 +1456,7 @@ setZukanTargetPosition__Q34Game8Imomushi3ObjFv:
 /* 802BD558 002BA498  EC 66 28 24 */	fdivs f3, f6, f5
 /* 802BD55C 002BA49C  EF E4 18 2A */	fadds f31, f4, f3
 /* 802BD560 002BA4A0  EC 42 00 28 */	fsubs f2, f2, f0
-/* 802BD564 002BA4A4  4B D7 7B A5 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802BD564 002BA4A4  4B D7 7B A5 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802BD568 002BA4A8  FF C0 08 90 */	fmr f30, f1
 /* 802BD56C 002BA4AC  4B E0 C0 35 */	bl rand
 /* 802BD570 002BA4B0  6C 63 80 00 */	xoris r3, r3, 0x8000

@@ -535,7 +535,7 @@ lbl_80393A98:
 /* 80393A98 003909D8  FC 40 10 50 */	fneg f2, f2
 /* 80393A9C 003909DC  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 80393AA0 003909E0  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80393AA4 003909E4  4B CA 16 65 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80393AA4 003909E4  4B CA 16 65 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80393AA8 003909E8  48 07 E1 29 */	bl roundAng__Ff
 /* 80393AAC 003909EC  C0 5F 00 38 */	lfs f2, 0x38(r31)
 /* 80393AB0 003909F0  48 07 E1 4D */	bl angDist__Fff
@@ -613,7 +613,7 @@ lbl_80393BB8:
 /* 80393BB8 00390AF8  FC 40 10 50 */	fneg f2, f2
 /* 80393BBC 00390AFC  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 80393BC0 00390B00  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80393BC4 00390B04  4B CA 15 45 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80393BC4 00390B04  4B CA 15 45 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80393BC8 00390B08  48 07 E0 09 */	bl roundAng__Ff
 /* 80393BCC 00390B0C  C0 5E 00 38 */	lfs f2, 0x38(r30)
 /* 80393BD0 00390B10  48 07 E0 2D */	bl angDist__Fff
@@ -662,7 +662,7 @@ lbl_80393C6C:
 /* 80393C6C 00390BAC  FC 40 10 50 */	fneg f2, f2
 /* 80393C70 00390BB0  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 80393C74 00390BB4  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80393C78 00390BB8  4B CA 14 91 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80393C78 00390BB8  4B CA 14 91 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80393C7C 00390BBC  48 07 DF 55 */	bl roundAng__Ff
 /* 80393C80 00390BC0  C0 5E 00 38 */	lfs f2, 0x38(r30)
 /* 80393C84 00390BC4  48 07 DF 79 */	bl angDist__Fff
@@ -726,7 +726,7 @@ lbl_80393D48:
 /* 80393D48 00390C88  FC 40 10 50 */	fneg f2, f2
 /* 80393D4C 00390C8C  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 80393D50 00390C90  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80393D54 00390C94  4B CA 13 B5 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80393D54 00390C94  4B CA 13 B5 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80393D58 00390C98  48 07 DE 79 */	bl roundAng__Ff
 /* 80393D5C 00390C9C  C0 5F 00 38 */	lfs f2, 0x38(r31)
 /* 80393D60 00390CA0  48 07 DE 9D */	bl angDist__Fff
@@ -5017,7 +5017,7 @@ lbl_80397C60:
 /* 80397C60 00394BA0  FC 40 10 50 */	fneg f2, f2
 /* 80397C64 00394BA4  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 80397C68 00394BA8  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80397C6C 00394BAC  4B C9 D4 9D */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80397C6C 00394BAC  4B C9 D4 9D */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80397C70 00394BB0  48 07 9F 61 */	bl roundAng__Ff
 /* 80397C74 00394BB4  C0 5A 00 38 */	lfs f2, 0x38(r26)
 /* 80397C78 00394BB8  48 07 9F 85 */	bl angDist__Fff
@@ -5324,7 +5324,7 @@ lbl_803980D4:
 /* 803980D4 00395014  FC 40 10 50 */	fneg f2, f2
 /* 803980D8 00395018  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 803980DC 0039501C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 803980E0 00395020  4B C9 D0 29 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 803980E0 00395020  4B C9 D0 29 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 803980E4 00395024  48 07 9A ED */	bl roundAng__Ff
 /* 803980E8 00395028  C0 59 00 38 */	lfs f2, 0x38(r25)
 /* 803980EC 0039502C  48 07 9B 11 */	bl angDist__Fff
@@ -5477,7 +5477,7 @@ lbl_80398300:
 /* 80398300 00395240  FC 40 10 50 */	fneg f2, f2
 /* 80398304 00395244  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 80398308 00395248  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8039830C 0039524C  4B C9 CD FD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8039830C 0039524C  4B C9 CD FD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80398310 00395250  48 07 98 C1 */	bl roundAng__Ff
 /* 80398314 00395254  C0 5B 00 38 */	lfs f2, 0x38(r27)
 /* 80398318 00395258  48 07 98 E5 */	bl angDist__Fff

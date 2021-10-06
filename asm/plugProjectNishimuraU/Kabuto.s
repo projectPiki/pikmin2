@@ -482,7 +482,7 @@ setRandTarget__Q34Game6Kabuto3ObjFv:
 /* 802E47DC 002E171C  EC 66 28 24 */	fdivs f3, f6, f5
 /* 802E47E0 002E1720  EF E4 18 2A */	fadds f31, f4, f3
 /* 802E47E4 002E1724  EC 42 00 28 */	fsubs f2, f2, f0
-/* 802E47E8 002E1728  4B D5 09 21 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802E47E8 002E1728  4B D5 09 21 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802E47EC 002E172C  FF C0 08 90 */	fmr f30, f1
 /* 802E47F0 002E1730  4B DE 4D B1 */	bl rand
 /* 802E47F4 002E1734  6C 63 80 00 */	xoris r3, r3, 0x8000

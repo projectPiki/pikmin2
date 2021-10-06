@@ -198,7 +198,7 @@ lbl_8043004C:
 /* 8043006C 0042CFAC  38 04 D1 E0 */	addi r0, r4, atanTable___5JMath@l
 /* 80430070 0042CFB0  C0 43 00 28 */	lfs f2, 0x28(r3)
 /* 80430074 0042CFB4  7C 03 03 78 */	mr r3, r0
-/* 80430078 0042CFB8  4B C0 50 91 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80430078 0042CFB8  4B C0 50 91 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8043007C 0042CFBC  D0 3C 00 AC */	stfs f1, 0xac(r28)
 /* 80430080 0042CFC0  80 7C 00 70 */	lwz r3, 0x70(r28)
 /* 80430084 0042CFC4  81 83 00 00 */	lwz r12, 0(r3)

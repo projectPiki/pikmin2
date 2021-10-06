@@ -568,7 +568,7 @@ setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3$$0f$$1:
 /* 802CEF3C 002CBE7C  D0 A1 00 08 */	stfs f5, 8(r1)
 /* 802CEF40 002CBE80  D0 81 00 0C */	stfs f4, 0xc(r1)
 /* 802CEF44 002CBE84  D0 61 00 10 */	stfs f3, 0x10(r1)
-/* 802CEF48 002CBE88  4B D6 61 C1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802CEF48 002CBE88  4B D6 61 C1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802CEF4C 002CBE8C  48 14 2C 85 */	bl roundAng__Ff
 /* 802CEF50 002CBE90  81 9E 00 00 */	lwz r12, 0(r30)
 /* 802CEF54 002CBE94  FF E0 08 90 */	fmr f31, f1
@@ -909,7 +909,7 @@ lbl_802CF394:
 /* 802CF414 002CC354  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 802CF418 002CC358  EC 5D 18 28 */	fsubs f2, f29, f3
 /* 802CF41C 002CC35C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 802CF420 002CC360  4B D6 5C E9 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802CF420 002CC360  4B D6 5C E9 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802CF424 002CC364  FF 80 08 90 */	fmr f28, f1
 /* 802CF428 002CC368  4B DF A1 79 */	bl rand
 /* 802CF42C 002CC36C  6C 63 80 00 */	xoris r3, r3, 0x8000
@@ -1026,7 +1026,7 @@ lbl_802CF5C8:
 /* 802CF5D4 002CC514  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 802CF5D8 002CC518  EC 3F 08 28 */	fsubs f1, f31, f1
 /* 802CF5DC 002CC51C  EC 5D 00 28 */	fsubs f2, f29, f0
-/* 802CF5E0 002CC520  4B D6 5B 29 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802CF5E0 002CC520  4B D6 5B 29 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802CF5E4 002CC524  FC 40 08 90 */	fmr f2, f1
 /* 802CF5E8 002CC528  C0 02 E5 08 */	lfs f0, lbl_8051C868@sda21(r2)
 /* 802CF5EC 002CC52C  FF 80 08 90 */	fmr f28, f1

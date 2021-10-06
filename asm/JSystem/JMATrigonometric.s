@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
-atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff:
+.global "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+"atan2___Q25JMath18TAtanTable<1024,f>CFff":
 /* 80035108 00032048  C0 02 83 D8 */	lfs f0, lbl_80516738@sda21(r2)
 /* 8003510C 0003204C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80035110 00032050  FC 01 00 40 */	fcmpo cr0, f1, f0
