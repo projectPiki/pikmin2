@@ -27,5 +27,6 @@ Some of this progress may be outdated, or a branch other than main (workshop or 
 
 ### WIP
 - sysGCU/system.cpp
+- sysGCU/sysMath.cpp
 - plugProjectKandoU/interactBattle.cpp
 - plugProjectMorimuraU/eggAnimator.cpp
