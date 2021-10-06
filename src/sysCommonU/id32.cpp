@@ -2,19 +2,9 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
-
-void _Print(char *, ...)
-{
-        // UNUSED FUNCTION
-}
-
-
- * --INFO--
  * Address:	80413254
  * Size:	00001C
-*/
+ */
 
 bool ID32::isEof() { return this->m_id.raw == '_eof'; }
 /*
