@@ -1,12 +1,13 @@
-
+extern unsigned char bUseSerialIO;
 
 /*
  * --INFO--
  * Address:	800C09F0
  * Size:	000010
  */
-void GetUseSerialIO(void)
+unsigned char GetUseSerialIO(void)
 {
+	return bUseSerialIO;
 /*
 .loc_0x0:
   lis       r3, 0x804F
@@ -21,8 +22,10 @@ void GetUseSerialIO(void)
  * Address:	800C0A00
  * Size:	00000C
  */
-void SetUseSerialIO(void)
+void SetUseSerialIO(unsigned char sio)
 {
+	bUseSerialIO = sio;
+	return;
 /*
 .loc_0x0:
   lis       r4, 0x804F
