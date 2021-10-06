@@ -10,7 +10,31 @@ EXTABINDEX_O_FILES:=\
 	$(BUILD_DIR)/asm/exidx.o\
 
 TEXT_O_FILES:=\
-	$(BUILD_DIR)/asm/JSystem/object-particle.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-particle.o\
+	$(BUILD_DIR)/asm/JSystem/JPA/control.o\
+	$(BUILD_DIR)/asm/JSystem/resource.o\
+	$(BUILD_DIR)/asm/JSystem/processor.o\
+	$(BUILD_DIR)/asm/JSystem/control.o\
+	$(BUILD_DIR)/asm/JSystem/stb/stb-data-parse.o\
+	$(BUILD_DIR)/asm/JSystem/functionvalue.o\
+	$(BUILD_DIR)/asm/JSystem/fvb/fvb.o\
+	$(BUILD_DIR)/asm/JSystem/fvb/fvb-data-parse.o\
+	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-control.o\
+	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-object.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-id.o\
+	$(BUILD_DIR)/asm/JSystem/stb/stb.o\
+	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-math.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-light.o\
+	$(BUILD_DIR)/asm/JSystem/object/object.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-actor.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-ambientlight.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-camera.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-fog.o\
+	$(BUILD_DIR)/asm/JSystem/JSG/control.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-message.o\
+	$(BUILD_DIR)/asm/JSystem/object/control.o\
+	$(BUILD_DIR)/asm/JSystem/object/object-sound.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/control.o\
 	$(BUILD_DIR)/asm/JSystem.o\
 	$(BUILD_DIR)/asm/Dolphin/mainloop.o\
 	$(BUILD_DIR)/asm/Dolphin/nubevent.o\
