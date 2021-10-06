@@ -173,7 +173,66 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicInst.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicWaveBank.o\
-	$(BUILD_DIR)/asm/JSystem.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASBNKParser.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASDrumSet.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASInstEffect.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASInstRand.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASInstSense.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASSimpleWaveBank.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveArcLoader.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveBank.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveBankMgr.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASBank.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASTrackPort.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASOuterParam.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASPlayer_impl.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASRegisterParam.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASSeqCtrl.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASSeqParser.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASTrack.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASTrackInterrupt.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASOscillator.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASChannel.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASDriverIF.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASDSPChannel.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASDSPInterface.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASAudioThread.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASCalc.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASCallback.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASCmdStack.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASDvdThread.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASHeapCtrl.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASProbe.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASResArcLoader.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASReport.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASAiCtrl.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASChannelUpdater.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASTaskThread.o\
+	$(BUILD_DIR)/asm/JSystem/JAS/JASAramStream.o\
+	$(BUILD_DIR)/asm/JSystem/dsp/dspproc.o\
+	$(BUILD_DIR)/asm/JSystem/dsp/dsptask.o\
+	$(BUILD_DIR)/asm/JSystem/dsp/osdsp.o\
+	$(BUILD_DIR)/asm/JSystem/dsp/osdsp_task.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIAnimation.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIBankWave.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIBasic.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIConst.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIDummyObject.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIFx.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIGlobalParameter.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIInitData.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAISeMgr.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAISequenceHeap.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAISequenceMgr.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAISound.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAISoundTable.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIStreamMgr.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAISystemInterface.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIObject.o\
+	$(BUILD_DIR)/asm/JSystem/JAD/JADHioNode.o\
+	$(BUILD_DIR)/asm/JSystem/JAL/JALCalc.o\
+	$(BUILD_DIR)/asm/JSystem/JAU/JAUData.o\
+	$(BUILD_DIR)/asm/JSystem/JAU/JAUDataMgr.o\
 	$(BUILD_DIR)/asm/Dolphin/mainloop.o\
 	$(BUILD_DIR)/asm/Dolphin/nubevent.o\
 	$(BUILD_DIR)/asm/Dolphin/nubinit.o\
