@@ -1,12 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__8BitFlagsFv
-__ct__8BitFlagsFv:
-/* 8041C1A8 004190E8  38 00 00 00 */	li r0, 0
-/* 8041C1AC 004190EC  90 03 00 00 */	stw r0, 0(r3)
-/* 8041C1B0 004190F0  B0 03 00 06 */	sth r0, 6(r3)
-/* 8041C1B4 004190F4  4E 80 00 20 */	blr 
 
 .global dump__8BitFlagsFv
 dump__8BitFlagsFv:

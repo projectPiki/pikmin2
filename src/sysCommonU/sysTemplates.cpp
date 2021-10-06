@@ -1,36 +1,21 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-    // UNUSED FUNCTION
-}
+#include "BitFlags.h"
 
 /*
  * --INFO--
  * Address:	8041C1A8
  * Size:	000010
  */
-void BitFlags::BitFlags()
+BitFlags::BitFlags()
+    : _00(0)
+    , _06(0)
 {
-    /*
-    .loc_0x0:
-      li        r0, 0
-      stw       r0, 0x0(r3)
-      sth       r0, 0x6(r3)
-      blr
-    */
 }
 
 /*
  * --INFO--
  * Address:	8041C1B8
  * Size:	000050
- */
+ *
 void BitFlags::dump()
 {
     /*
@@ -62,13 +47,13 @@ void BitFlags::dump()
       bdnz-     .loc_0x48
       blr
     */
-}
+//}
 
 /*
  * --INFO--
  * Address:	8041C208
  * Size:	000064
- */
+
 void BitFlags::read(Stream&)
 {
     /*
@@ -102,14 +87,14 @@ void BitFlags::read(Stream&)
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8041C26C
  * Size:	000064
- */
+
 void BitFlags::write(Stream&)
 {
     /*
@@ -143,14 +128,14 @@ void BitFlags::write(Stream&)
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8041C2D0
  * Size:	000054
- */
+
 void BitFlags::create(unsigned short, unsigned char*)
 {
     /*
@@ -180,14 +165,14 @@ void BitFlags::create(unsigned short, unsigned char*)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8041C324
  * Size:	000028
- */
+
 void BitFlags::reset()
 {
     /*
@@ -206,14 +191,14 @@ void BitFlags::reset()
       cmpw      r6, r0
       blt+      .loc_0xC
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8041C34C
  * Size:	000028
- */
+
 void BitFlags::all_zero()
 {
     /*
@@ -232,14 +217,14 @@ void BitFlags::all_zero()
       cmpw      r6, r0
       blt+      .loc_0xC
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8041C374
  * Size:	000028
- */
+
 void BitFlags::all_one()
 {
     /*
@@ -258,14 +243,14 @@ void BitFlags::all_one()
       cmpw      r6, r0
       blt+      .loc_0xC
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8041C39C
  * Size:	000030
- */
+
 void BitFlags::setFlag(unsigned short)
 {
     /*
@@ -282,14 +267,14 @@ void BitFlags::setFlag(unsigned short)
       or        r0, r4, r0
       stbx      r0, r5, r6
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8041C3CC
  * Size:	000030
- */
+
 void BitFlags::resetFlag(unsigned short)
 {
     /*
@@ -306,14 +291,14 @@ void BitFlags::resetFlag(unsigned short)
       andc      r0, r4, r0
       stbx      r0, r5, r6
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	8041C3FC
  * Size:	000038
- */
+
 void BitFlags::isFlag(unsigned short)
 {
     /*
@@ -332,5 +317,6 @@ void BitFlags::isFlag(unsigned short)
       or        r0, r0, r3
       rlwinm    r3,r0,1,31,31
       blr
-    */
+
 }
+*/

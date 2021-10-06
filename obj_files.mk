@@ -839,6 +839,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/camera.o\
 	$(BUILD_DIR)/asm/sysCommonU/tagparams.o\
+	$(BUILD_DIR)/src/sysCommonU/sysTemplates.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysTemplates.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCode.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomIntersection.o\
