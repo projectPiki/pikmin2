@@ -63,30 +63,20 @@ float pikmin2_sqrtf(float x)
  * Address:	8041181C
  * Size:	00003C
  */
-// void qdist2(float, float, float, float)
-//{
-//    /*
-//    .loc_0x0:
-//      fsubs     f4, f4, f2
-//      lfs       f0, 0x1F10(r2)
-//      fsubs     f2, f3, f1
-//      stwu      r1, -0x10(r1)
-//      fmuls     f1, f4, f4
-//      fmadds    f1, f2, f2, f1
-//      fcmpo     cr0, f1, f0
-//      ble-      .loc_0x34
-//      fsqrte    f0, f1
-//      fmul      f0, f1, f0
-//      frsp      f0, f0
-//      stfs      f0, 0x8(r1)
-//      lfs       f1, 0x8(r1)
-//
-//    .loc_0x34:
-//      addi      r1, r1, 0x10
-//      blr
-//    */
-//}
-//
+
+// WIP qdist2 (good luck getting the stack crud to match)
+
+/* float qdist2(float x1, float y1, float x2, float y2)
+{
+
+    float xdiff = (x2 - x1);
+    float ydiff = (y2 - y1);
+
+    float dist = (xdiff * xdiff) + (ydiff * ydiff);
+    return 0.0f < dist ? dist * (__frsqrte(dist)) : dist;
+
+}
+ */
 ///*
 // * --INFO--
 // * Address:	........
