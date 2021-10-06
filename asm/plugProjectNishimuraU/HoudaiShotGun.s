@@ -1446,13 +1446,13 @@ searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C4DEC 002C1D2C  EF E2 00 28 */	fsubs f31, f2, f0
 /* 802C4DF0 002C1D30  C0 24 00 04 */	lfs f1, 4(r4)
 /* 802C4DF4 002C1D34  C0 44 00 24 */	lfs f2, 0x24(r4)
-/* 802C4DF8 002C1D38  4B D7 03 11 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802C4DF8 002C1D38  4B D7 03 11 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802C4DFC 002C1D3C  FF 80 08 90 */	fmr f28, f1
 /* 802C4E00 002C1D40  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 802C4E04 002C1D44  FC 20 F8 50 */	fneg f1, f31
 /* 802C4E08 002C1D48  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 802C4E0C 002C1D4C  FC 40 E8 50 */	fneg f2, f29
-/* 802C4E10 002C1D50  4B D7 02 F9 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802C4E10 002C1D50  4B D7 02 F9 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802C4E14 002C1D54  FC 40 08 90 */	fmr f2, f1
 /* 802C4E18 002C1D58  FC 20 E0 90 */	fmr f1, f28
 /* 802C4E1C 002C1D5C  48 14 CD E1 */	bl angDist__Fff
@@ -1507,7 +1507,7 @@ lbl_802C4EC0:
 /* 802C4EC0 002C1E00  FC 40 F0 90 */	fmr f2, f30
 /* 802C4EC4 002C1E04  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 802C4EC8 002C1E08  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 802C4ECC 002C1E0C  4B D7 02 3D */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802C4ECC 002C1E0C  4B D7 02 3D */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802C4ED0 002C1E10  C0 42 E2 80 */	lfs f2, lbl_8051C5E0@sda21(r2)
 /* 802C4ED4 002C1E14  C0 02 E2 28 */	lfs f0, lbl_8051C588@sda21(r2)
 /* 802C4ED8 002C1E18  EC 42 08 2A */	fadds f2, f2, f1

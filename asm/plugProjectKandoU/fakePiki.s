@@ -904,7 +904,7 @@ updateLook__Q24Game8FakePikiFv:
 /* 8013D8B8 0013A7F8  FC 40 E8 90 */	fmr f2, f29
 /* 8013D8BC 0013A7FC  EF C3 00 28 */	fsubs f30, f3, f0
 /* 8013D8C0 0013A800  FC 20 F8 90 */	fmr f1, f31
-/* 8013D8C4 0013A804  4B EF 78 45 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8013D8C4 0013A804  4B EF 78 45 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8013D8C8 0013A808  EC 5D 07 72 */	fmuls f2, f29, f29
 /* 8013D8CC 0013A80C  C0 02 9F 54 */	lfs f0, lbl_805182B4@sda21(r2)
 /* 8013D8D0 0013A810  FF A0 08 90 */	fmr f29, f1
@@ -921,7 +921,7 @@ lbl_8013D8F4:
 /* 8013D8F4 0013A834  FC 20 F0 90 */	fmr f1, f30
 /* 8013D8F8 0013A838  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 8013D8FC 0013A83C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8013D900 0013A840  4B EF 78 09 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8013D900 0013A840  4B EF 78 09 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8013D904 0013A844  FF E0 08 90 */	fmr f31, f1
 /* 8013D908 0013A848  48 00 00 8C */	b lbl_8013D994
 lbl_8013D90C:
@@ -1138,7 +1138,7 @@ turnTo__Q24Game8FakePikiFR10Vector3$$0f$$1:
 /* 8013DC08 0013AB48  41 82 00 18 */	beq lbl_8013DC20
 /* 8013DC0C 0013AB4C  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 8013DC10 0013AB50  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8013DC14 0013AB54  4B EF 74 F5 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8013DC14 0013AB54  4B EF 74 F5 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8013DC18 0013AB58  48 2D 3F B9 */	bl roundAng__Ff
 /* 8013DC1C 0013AB5C  D0 3F 01 FC */	stfs f1, 0x1fc(r31)
 lbl_8013DC20:
@@ -1427,7 +1427,7 @@ moveRotation__Q24Game8FakePikiFv:
 /* 8013E040 0013AF80  40 81 00 40 */	ble lbl_8013E080
 /* 8013E044 0013AF84  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 8013E048 0013AF88  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8013E04C 0013AF8C  4B EF 70 BD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8013E04C 0013AF8C  4B EF 70 BD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8013E050 0013AF90  C0 5F 01 FC */	lfs f2, 0x1fc(r31)
 /* 8013E054 0013AF94  48 2D 3B A9 */	bl angDist__Fff
 /* 8013E058 0013AF98  C0 02 9F B0 */	lfs f0, lbl_80518310@sda21(r2)
@@ -2214,7 +2214,7 @@ lbl_8013EB3C:
 /* 8013EB7C 0013BABC  40 81 00 40 */	ble lbl_8013EBBC
 /* 8013EB80 0013BAC0  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 8013EB84 0013BAC4  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8013EB88 0013BAC8  4B EF 65 81 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8013EB88 0013BAC8  4B EF 65 81 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8013EB8C 0013BACC  C0 5E 01 FC */	lfs f2, 0x1fc(r30)
 /* 8013EB90 0013BAD0  48 2D 30 6D */	bl angDist__Fff
 /* 8013EB94 0013BAD4  C0 02 9F B0 */	lfs f0, lbl_80518310@sda21(r2)

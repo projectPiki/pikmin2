@@ -824,7 +824,7 @@ lbl_8039A420:
 /* 8039A420 00397360  FC 40 10 50 */	fneg f2, f2
 /* 8039A424 00397364  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 8039A428 00397368  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8039A42C 0039736C  4B C9 AC DD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8039A42C 0039736C  4B C9 AC DD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8039A430 00397370  48 07 77 A1 */	bl roundAng__Ff
 /* 8039A434 00397374  C0 5F 00 2C */	lfs f2, 0x2c(r31)
 /* 8039A438 00397378  48 07 77 C5 */	bl angDist__Fff

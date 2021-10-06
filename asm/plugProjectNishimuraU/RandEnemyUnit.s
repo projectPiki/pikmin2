@@ -3293,7 +3293,7 @@ lbl_8024B77C:
 /* 8024B784 002486C4  C0 1D 00 08 */	lfs f0, 8(r29)
 /* 8024B788 002486C8  EC 21 D0 28 */	fsubs f1, f1, f26
 /* 8024B78C 002486CC  EC 40 C0 28 */	fsubs f2, f0, f24
-/* 8024B790 002486D0  4B DE 99 79 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8024B790 002486D0  4B DE 99 79 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8024B794 002486D4  7E C3 B3 78 */	mr r3, r22
 /* 8024B798 002486D8  7F A4 EB 78 */	mr r4, r29
 /* 8024B79C 002486DC  4B FF 8C 69 */	bl setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3$$0f$$1f

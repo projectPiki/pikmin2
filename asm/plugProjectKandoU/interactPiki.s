@@ -2276,7 +2276,7 @@ lbl_80194CF4:
 lbl_80194D10:
 /* 80194D10 00191C50  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 80194D14 00191C54  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80194D18 00191C58  4B EA 03 F1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80194D18 00191C58  4B EA 03 F1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80194D1C 00191C5C  80 BE 00 04 */	lwz r5, 4(r30)
 /* 80194D20 00191C60  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
 /* 80194D24 00191C64  38 83 A3 00 */	addi r4, r3, __vt__Q24Game11Interaction@l

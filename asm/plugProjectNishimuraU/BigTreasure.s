@@ -950,7 +950,7 @@ lbl_802DC868:
 /* 802DC8F0 002D9830  EC 66 28 24 */	fdivs f3, f6, f5
 /* 802DC8F4 002D9834  EF E4 18 2A */	fadds f31, f4, f3
 /* 802DC8F8 002D9838  EC 42 00 28 */	fsubs f2, f2, f0
-/* 802DC8FC 002D983C  4B D5 88 0D */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802DC8FC 002D983C  4B D5 88 0D */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802DC900 002D9840  FF C0 08 90 */	fmr f30, f1
 /* 802DC904 002D9844  4B DE CC 9D */	bl rand
 /* 802DC908 002D9848  6C 63 80 00 */	xoris r3, r3, 0x8000
@@ -2686,7 +2686,7 @@ getFireAttackAnimIndex__Q34Game11BigTreasure3ObjFv:
 /* 802DE0C0 002DB000  C0 1F 01 94 */	lfs f0, 0x194(r31)
 /* 802DE0C4 002DB004  EC 23 08 28 */	fsubs f1, f3, f1
 /* 802DE0C8 002DB008  EC 42 00 28 */	fsubs f2, f2, f0
-/* 802DE0CC 002DB00C  4B D5 70 3D */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802DE0CC 002DB00C  4B D5 70 3D */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802DE0D0 002DB010  C0 02 E8 D0 */	lfs f0, lbl_8051CC30@sda21(r2)
 /* 802DE0D4 002DB014  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802DE0D8 002DB018  40 80 00 10 */	bge lbl_802DE0E8

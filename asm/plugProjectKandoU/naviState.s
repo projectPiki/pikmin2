@@ -1240,7 +1240,7 @@ lbl_8017E570:
 /* 8017E630 0017B570  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 8017E634 0017B574  FC 40 F8 90 */	fmr f2, f31
 /* 8017E638 0017B578  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8017E63C 0017B57C  4B EB 6A CD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8017E63C 0017B57C  4B EB 6A CD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8017E640 0017B580  FF 80 08 90 */	fmr f28, f1
 /* 8017E644 0017B584  4B F4 AF 5D */	bl rand
 /* 8017E648 0017B588  6C 63 80 00 */	xoris r3, r3, 0x8000
@@ -2404,7 +2404,7 @@ lbl_8017F69C:
 lbl_8017F6B8:
 /* 8017F6B8 0017C5F8  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 8017F6BC 0017C5FC  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8017F6C0 0017C600  4B EB 5A 49 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8017F6C0 0017C600  4B EB 5A 49 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8017F6C4 0017C604  48 29 25 0D */	bl roundAng__Ff
 /* 8017F6C8 0017C608  C0 5F 01 FC */	lfs f2, 0x1fc(r31)
 /* 8017F6CC 0017C60C  48 29 25 31 */	bl angDist__Fff
@@ -5426,7 +5426,7 @@ lbl_8018210C:
 /* 801821A4 0017F0E4  FC 20 F0 90 */	fmr f1, f30
 /* 801821A8 0017F0E8  EF A2 00 28 */	fsubs f29, f2, f0
 /* 801821AC 0017F0EC  FC 40 F8 90 */	fmr f2, f31
-/* 801821B0 0017F0F0  4B EB 2F 59 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 801821B0 0017F0F0  4B EB 2F 59 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 801821B4 0017F0F4  EC 5D 07 72 */	fmuls f2, f29, f29
 /* 801821B8 0017F0F8  C0 02 A8 80 */	lfs f0, lbl_80518BE0@sda21(r2)
 /* 801821BC 0017F0FC  EC 7F 07 F2 */	fmuls f3, f31, f31
@@ -7288,7 +7288,7 @@ lbl_80183C1C:
 /* 80183C50 00180B90  D0 1F 02 04 */	stfs f0, 0x204(r31)
 /* 80183C54 00180B94  C0 3E 00 18 */	lfs f1, 0x18(r30)
 /* 80183C58 00180B98  C0 5E 00 20 */	lfs f2, 0x20(r30)
-/* 80183C5C 00180B9C  4B EB 14 AD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80183C5C 00180B9C  4B EB 14 AD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80183C60 00180BA0  C0 02 A9 44 */	lfs f0, lbl_80518CA4@sda21(r2)
 /* 80183C64 00180BA4  EC 20 08 2A */	fadds f1, f0, f1
 /* 80183C68 00180BA8  48 28 DF 69 */	bl roundAng__Ff

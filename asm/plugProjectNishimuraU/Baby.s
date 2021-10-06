@@ -569,7 +569,7 @@ moveNoTarget__Q34Game4Baby3ObjFv:
 /* 8028DBFC 0028AB3C  EC 66 28 24 */	fdivs f3, f6, f5
 /* 8028DC00 0028AB40  EF E4 18 2A */	fadds f31, f4, f3
 /* 8028DC04 0028AB44  EC 42 00 28 */	fsubs f2, f2, f0
-/* 8028DC08 0028AB48  4B DA 75 01 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8028DC08 0028AB48  4B DA 75 01 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8028DC0C 0028AB4C  FF C0 08 90 */	fmr f30, f1
 /* 8028DC10 0028AB50  4B E3 B9 91 */	bl rand
 /* 8028DC14 0028AB54  6C 63 80 00 */	xoris r3, r3, 0x8000

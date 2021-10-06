@@ -374,7 +374,7 @@ lbl_8043F664:
 /* 8043F66C 0043C5AC  FC 40 E0 90 */	fmr f2, f28
 /* 8043F670 0043C5B0  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8043F674 0043C5B4  FC 20 E8 90 */	fmr f1, f29
-/* 8043F678 0043C5B8  4B BF 5A 91 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8043F678 0043C5B8  4B BF 5A 91 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8043F67C 0043C5BC  C0 BD 01 40 */	lfs f5, 0x140(r29)
 /* 8043F680 0043C5C0  C0 82 25 D0 */	lfs f4, lbl_80520930@sda21(r2)
 /* 8043F684 0043C5C4  EC 7C 28 24 */	fdivs f3, f28, f5

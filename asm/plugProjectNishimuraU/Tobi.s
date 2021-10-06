@@ -1250,7 +1250,7 @@ lbl_8026A9B8:
 /* 8026A9E8 00267928  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8026A9EC 0026792C  EC 3D 08 28 */	fsubs f1, f29, f1
 /* 8026A9F0 00267930  EC 5C 00 28 */	fsubs f2, f28, f0
-/* 8026A9F4 00267934  4B DC A7 15 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8026A9F4 00267934  4B DC A7 15 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8026A9F8 00267938  48 1A 71 D9 */	bl roundAng__Ff
 /* 8026A9FC 0026793C  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8026AA00 00267940  FF A0 08 90 */	fmr f29, f1
@@ -1419,7 +1419,7 @@ lbl_8026AC40:
 /* 8026AC70 00267BB0  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8026AC74 00267BB4  EC 3D 08 28 */	fsubs f1, f29, f1
 /* 8026AC78 00267BB8  EC 5C 00 28 */	fsubs f2, f28, f0
-/* 8026AC7C 00267BBC  4B DC A4 8D */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8026AC7C 00267BBC  4B DC A4 8D */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8026AC80 00267BC0  48 1A 6F 51 */	bl roundAng__Ff
 /* 8026AC84 00267BC4  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8026AC88 00267BC8  FF A0 08 90 */	fmr f29, f1
@@ -1564,7 +1564,7 @@ lbl_8026AE68:
 /* 8026AE98 00267DD8  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 8026AE9C 00267DDC  EC 3F 08 28 */	fsubs f1, f31, f1
 /* 8026AEA0 00267DE0  EC 5E 00 28 */	fsubs f2, f30, f0
-/* 8026AEA4 00267DE4  4B DC A2 65 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8026AEA4 00267DE4  4B DC A2 65 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8026AEA8 00267DE8  48 1A 6D 29 */	bl roundAng__Ff
 /* 8026AEAC 00267DEC  81 9E 00 00 */	lwz r12, 0(r30)
 /* 8026AEB0 00267DF0  FF 60 08 90 */	fmr f27, f1

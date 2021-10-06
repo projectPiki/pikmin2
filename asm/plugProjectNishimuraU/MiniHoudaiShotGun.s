@@ -1641,7 +1641,7 @@ lbl_802EF40C:
 /* 802EF40C 002EC34C  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 802EF410 002EC350  D0 7F 00 08 */	stfs f3, 8(r31)
 /* 802EF414 002EC354  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 802EF418 002EC358  4B D4 5C F1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802EF418 002EC358  4B D4 5C F1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802EF41C 002EC35C  FC 40 08 90 */	fmr f2, f1
 /* 802EF420 002EC360  C0 02 ED 20 */	lfs f0, lbl_8051D080@sda21(r2)
 /* 802EF424 002EC364  C0 3F 00 0C */	lfs f1, 0xc(r31)

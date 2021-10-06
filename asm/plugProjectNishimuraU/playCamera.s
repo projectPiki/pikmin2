@@ -1084,7 +1084,7 @@ setTargetThetaToWhistle__Q24Game10PlayCameraFv:
 /* 8024030C 0023D24C  C0 04 00 14 */	lfs f0, 0x14(r4)
 /* 80240310 0023D250  EC 23 08 28 */	fsubs f1, f3, f1
 /* 80240314 0023D254  EC 42 00 28 */	fsubs f2, f2, f0
-/* 80240318 0023D258  4B DF 4D F1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80240318 0023D258  4B DF 4D F1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8024031C 0023D25C  D0 3F 01 B4 */	stfs f1, 0x1b4(r31)
 /* 80240320 0023D260  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80240324 0023D264  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -1162,7 +1162,7 @@ changeTargetTheta__Q24Game10PlayCameraFv:
 /* 80240414 0023D354  C0 04 00 14 */	lfs f0, 0x14(r4)
 /* 80240418 0023D358  EC 23 08 28 */	fsubs f1, f3, f1
 /* 8024041C 0023D35C  EC 42 00 28 */	fsubs f2, f2, f0
-/* 80240420 0023D360  4B DF 4C E9 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80240420 0023D360  4B DF 4C E9 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80240424 0023D364  D0 3F 01 B4 */	stfs f1, 0x1b4(r31)
 /* 80240428 0023D368  48 00 00 3C */	b lbl_80240464
 lbl_8024042C:
@@ -2055,7 +2055,7 @@ lbl_8024109C:
 /* 802410AC 0023DFEC  FC 40 A8 90 */	fmr f2, f21
 /* 802410B0 0023DFF0  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 802410B4 0023DFF4  EC 34 00 28 */	fsubs f1, f20, f0
-/* 802410B8 0023DFF8  4B DF 40 51 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802410B8 0023DFF8  4B DF 40 51 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802410BC 0023DFFC  FC 01 90 40 */	fcmpo cr0, f1, f18
 /* 802410C0 0023E000  40 81 00 08 */	ble lbl_802410C8
 /* 802410C4 0023E004  FE 40 08 90 */	fmr f18, f1

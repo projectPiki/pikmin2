@@ -1,9 +1,12 @@
+#include "sysMath.h"
 namespace JMath {
-    extern float sincosTable_[1024];
+    extern const float sincosTable_[1024];
+    extern const TAtanTable<1024, float> atanTable_;
 }
 extern const float lbl_80520268; //-325.9493f
 extern const float lbl_8052026C; // 325.9493f
 extern const float lbl_80520270; // 0.0f
+
 
 float pikmin2_sinf(float input)
 {
@@ -17,76 +20,25 @@ float pikmin2_sinf(float input)
     }
     return result;
 }
-//    /*
-//    .loc_0x0:
-//      lfs       f0, 0x1F10(r2)
-//      stwu      r1, -0x20(r1)
-//      fcmpo     cr0, f1, f0
-//      bge-      .loc_0x3C
-//      lfs       f0, 0x1F08(r2)
-//      lis       r3, 0x8050
-//      addi      r3, r3, 0x71A0
-//      fmuls     f0, f1, f0
-//      fctiwz    f0, f0
-//      stfd      f0, 0x8(r1)
-//      lwz       r0, 0xC(r1)
-//      rlwinm    r0,r0,3,18,28
-//      lfsx      f0, r3, r0
-//      fneg      f1, f0
-//      b         .loc_0x60
-//
-//    .loc_0x3C:
-//      lfs       f0, 0x1F0C(r2)
-//      lis       r3, 0x8050
-//      addi      r3, r3, 0x71A0
-//      fmuls     f0, f1, f0
-//      fctiwz    f0, f0
-//      stfd      f0, 0x10(r1)
-//      lwz       r0, 0x14(r1)
-//      rlwinm    r0,r0,3,18,28
-//      lfsx      f1, r3, r0
-//
-//    .loc_0x60:
-//      addi      r1, r1, 0x20
-//      blr
-//    */
-//
-///*
-// * --INFO--
-// * Address:	80411798
-// * Size:	000044
-// */
-//void pikmin2_cosf(float)
-//{
-//    /*
-//    .loc_0x0:
-//      lfs       f0, 0x1F10(r2)
-//      stwu      r1, -0x10(r1)
-//      fcmpo     cr0, f1, f0
-//      bge-      .loc_0x14
-//      fneg      f1, f1
-//
-//    .loc_0x14:
-//      lfs       f0, 0x1F0C(r2)
-//      lis       r3, 0x8050
-//      addi      r3, r3, 0x71A0
-//      fmuls     f0, f1, f0
-//      fctiwz    f0, f0
-//      stfd      f0, 0x8(r1)
-//      lwz       r0, 0xC(r1)
-//      rlwinm    r0,r0,3,18,28
-//      add       r3, r3, r0
-//      lfs       f1, 0x4(r3)
-//      addi      r1, r1, 0x10
-//      blr
-//    */
-//}
-//
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	0000F4
-// */
+
+/*
+ * --INFO--
+ * Address:	80411798
+ * Size:	000044
+ */
+float pikmin2_cosf(float f)
+{
+    if (f < lbl_80520270) {
+        f = -f;
+    }
+    return JMath::sincosTable_[((int)(f * lbl_8052026C) & 0x7ffU) * 2 + 1];
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000F4
+ */
 //void pikmin2_acosf(float)
 //{
 //    // UNUSED FUNCTION
@@ -102,51 +54,44 @@ float pikmin2_sinf(float input)
 //    // UNUSED FUNCTION
 //}
 //
-///*
-// * --INFO--
-// * Address:	804117DC
-// * Size:	000028
-// */
-//void pikmin2_atan2f(float, float)
-//{
-//    /*
-//    .loc_0x0:
-//      stwu      r1, -0x10(r1)
-//      mflr      r0
-//      lis       r3, 0x8051
-//      stw       r0, 0x14(r1)
-//      subi      r3, r3, 0x2E20
-//      bl        -0x3DC6E8
-//      lwz       r0, 0x14(r1)
-//      mtlr      r0
-//      addi      r1, r1, 0x10
-//      blr
-//    */
-//}
-//
-///*
-// * --INFO--
-// * Address:	80411804
-// * Size:	000018
-// */
-//void pikmin2_sqrtf(float)
-//{
-//    /*
-//    .loc_0x0:
-//      lfs       f0, 0x1F10(r2)
-//      fcmpo     cr0, f1, f0
-//      blelr-
-//      fsqrte    f0, f1
-//      fmuls     f1, f0, f1
-//      blr
-//    */
-//}
-//
-///*
-// * --INFO--
-// * Address:	8041181C
-// * Size:	00003C
-// */
+/*
+ * --INFO--
+ * Address:	804117DC
+ * Size:	000028
+ */
+float pikmin2_atan2f(float f1, float f2)
+{
+    // return JMath::TAtanTable_.atan2(f1, f2, JMath::atanTable_);
+    return JMath::atanTable_.atan2_(f1, f2);
+}
+
+/*
+ * --INFO--
+ * Address:	80411804
+ * Size:	000018
+ */
+float pikmin2_sqrtf(float input) {
+    if (!(input > lbl_80520270)) {
+        return input;
+    }
+
+    register float reg1 = input;
+    register float reg2 = lbl_80520270;
+    register float result;
+
+    asm{
+      frsqrte reg2, reg1
+      fmuls result, reg2, reg1
+    }
+
+    return result;
+}
+
+/*
+ * --INFO--
+ * Address:	8041181C
+ * Size:	00003C
+ */
 //void qdist2(float, float, float, float)
 //{
 //    /*

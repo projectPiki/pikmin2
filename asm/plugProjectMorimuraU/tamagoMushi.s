@@ -1455,7 +1455,7 @@ turnFunc__Q34Game11TamagoMushi3ObjFv:
 /* 80370074 0036CFB4  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 80370078 0036CFB8  EC 23 08 28 */	fsubs f1, f3, f1
 /* 8037007C 0036CFBC  EC 42 00 28 */	fsubs f2, f2, f0
-/* 80370080 0036CFC0  4B CC 50 89 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80370080 0036CFC0  4B CC 50 89 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80370084 0036CFC4  48 0A 1B 4D */	bl roundAng__Ff
 /* 80370088 0036CFC8  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8037008C 0036CFCC  FF E0 08 90 */	fmr f31, f1

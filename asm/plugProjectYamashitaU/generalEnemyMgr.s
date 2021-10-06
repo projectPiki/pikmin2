@@ -3091,7 +3091,7 @@ lbl_8010E790:
 /* 8010E7DC 0010B71C  EF A4 01 72 */	fmuls f29, f4, f5
 /* 8010E7E0 0010B720  EC 23 08 28 */	fsubs f1, f3, f1
 /* 8010E7E4 0010B724  EC 42 00 28 */	fsubs f2, f2, f0
-/* 8010E7E8 0010B728  4B F2 69 21 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8010E7E8 0010B728  4B F2 69 21 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8010E7EC 0010B72C  48 30 33 E5 */	bl roundAng__Ff
 /* 8010E7F0 0010B730  D0 21 00 A8 */	stfs f1, 0xa8(r1)
 /* 8010E7F4 0010B734  3C 60 80 4B */	lis r3, gEnemyInfo__4Game@ha
@@ -3308,7 +3308,7 @@ lbl_8010EAEC:
 /* 8010EB00 0010BA40  C0 01 00 A4 */	lfs f0, 0xa4(r1)
 /* 8010EB04 0010BA44  EC 23 08 28 */	fsubs f1, f3, f1
 /* 8010EB08 0010BA48  EC 42 00 28 */	fsubs f2, f2, f0
-/* 8010EB0C 0010BA4C  4B F2 65 FD */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8010EB0C 0010BA4C  4B F2 65 FD */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8010EB10 0010BA50  48 30 30 C1 */	bl roundAng__Ff
 /* 8010EB14 0010BA54  D0 21 00 A8 */	stfs f1, 0xa8(r1)
 /* 8010EB18 0010BA58  7F 03 C3 78 */	mr r3, r24
@@ -3540,7 +3540,7 @@ lbl_8010EE48:
 /* 8010EE5C 0010BD9C  C0 01 00 A4 */	lfs f0, 0xa4(r1)
 /* 8010EE60 0010BDA0  EC 23 08 28 */	fsubs f1, f3, f1
 /* 8010EE64 0010BDA4  EC 42 00 28 */	fsubs f2, f2, f0
-/* 8010EE68 0010BDA8  4B F2 62 A1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8010EE68 0010BDA8  4B F2 62 A1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8010EE6C 0010BDAC  48 30 2D 65 */	bl roundAng__Ff
 /* 8010EE70 0010BDB0  D0 21 00 A8 */	stfs f1, 0xa8(r1)
 /* 8010EE74 0010BDB4  7F 23 CB 78 */	mr r3, r25

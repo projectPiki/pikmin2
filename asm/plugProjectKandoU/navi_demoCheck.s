@@ -625,7 +625,7 @@ lbl_8021FC28:
 /* 8021FD04 0021CC44  C0 21 02 70 */	lfs f1, 0x270(r1)
 /* 8021FD08 0021CC48  C0 41 02 78 */	lfs f2, 0x278(r1)
 /* 8021FD0C 0021CC4C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8021FD10 0021CC50  4B E1 53 F9 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8021FD10 0021CC50  4B E1 53 F9 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8021FD14 0021CC54  D0 21 04 F8 */	stfs f1, 0x4f8(r1)
 /* 8021FD18 0021CC58  38 81 04 D4 */	addi r4, r1, 0x4d4
 /* 8021FD1C 0021CC5C  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
@@ -750,7 +750,7 @@ lbl_8021FE68:
 /* 8021FED8 0021CE18  C0 21 02 44 */	lfs f1, 0x244(r1)
 /* 8021FEDC 0021CE1C  C0 41 02 4C */	lfs f2, 0x24c(r1)
 /* 8021FEE0 0021CE20  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8021FEE4 0021CE24  4B E1 52 25 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8021FEE4 0021CE24  4B E1 52 25 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8021FEE8 0021CE28  D0 21 04 C4 */	stfs f1, 0x4c4(r1)
 /* 8021FEEC 0021CE2C  38 81 04 A0 */	addi r4, r1, 0x4a0
 /* 8021FEF0 0021CE30  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
@@ -862,7 +862,7 @@ lbl_8021FF94:
 /* 80220084 0021CFC4  C0 21 02 18 */	lfs f1, 0x218(r1)
 /* 80220088 0021CFC8  C0 41 02 20 */	lfs f2, 0x220(r1)
 /* 8022008C 0021CFCC  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80220090 0021CFD0  4B E1 50 79 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80220090 0021CFD0  4B E1 50 79 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80220094 0021CFD4  D0 21 04 90 */	stfs f1, 0x490(r1)
 /* 80220098 0021CFD8  38 81 04 6C */	addi r4, r1, 0x46c
 /* 8022009C 0021CFDC  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)

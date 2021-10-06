@@ -241,7 +241,7 @@ lbl_80435288:
 /* 804352B8 004321F8  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 804352BC 004321FC  EC 21 F8 28 */	fsubs f1, f1, f31
 /* 804352C0 00432200  EC 40 F0 28 */	fsubs f2, f0, f30
-/* 804352C4 00432204  4B BF FE 45 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 804352C4 00432204  4B BF FE 45 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 804352C8 00432208  FF C0 08 90 */	fmr f30, f1
 /* 804352CC 0043220C  C0 3F 00 34 */	lfs f1, 0x34(r31)
 /* 804352D0 00432210  4B FD C9 01 */	bl roundAng__Ff

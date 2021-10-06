@@ -562,7 +562,7 @@ setRandTarget__Q34Game6Kurage3ObjFv:
 /* 802ADE9C 002AADDC  EC 21 F8 28 */	fsubs f1, f1, f31
 /* 802ADEA0 002AADE0  C3 DF 01 9C */	lfs f30, 0x19c(r31)
 /* 802ADEA4 002AADE4  EC 40 E8 28 */	fsubs f2, f0, f29
-/* 802ADEA8 002AADE8  4B D8 72 61 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802ADEA8 002AADE8  4B D8 72 61 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802ADEAC 002AADEC  FF 60 08 90 */	fmr f27, f1
 /* 802ADEB0 002AADF0  4B E1 B6 F1 */	bl rand
 /* 802ADEB4 002AADF4  6C 63 80 00 */	xoris r3, r3, 0x8000
@@ -1341,7 +1341,7 @@ lbl_802AE974:
 /* 802AE9E8 002AB928  D0 A1 00 14 */	stfs f5, 0x14(r1)
 /* 802AE9EC 002AB92C  D0 81 00 18 */	stfs f4, 0x18(r1)
 /* 802AE9F0 002AB930  D0 61 00 1C */	stfs f3, 0x1c(r1)
-/* 802AE9F4 002AB934  4B D8 67 15 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802AE9F4 002AB934  4B D8 67 15 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802AE9F8 002AB938  48 16 31 D9 */	bl roundAng__Ff
 /* 802AE9FC 002AB93C  81 9E 00 00 */	lwz r12, 0(r30)
 /* 802AEA00 002AB940  FF 20 08 90 */	fmr f25, f1

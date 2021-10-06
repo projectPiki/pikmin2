@@ -590,7 +590,7 @@ lbl_802396E4:
 lbl_802396E8:
 /* 802396E8 00236628  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 802396EC 0023662C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 802396F0 00236630  4B DF BA 19 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802396F0 00236630  4B DF BA 19 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802396F4 00236634  FF E0 08 90 */	fmr f31, f1
 /* 802396F8 00236638  48 1D 84 D9 */	bl roundAng__Ff
 /* 802396FC 0023663C  80 7F 00 1C */	lwz r3, 0x1c(r31)

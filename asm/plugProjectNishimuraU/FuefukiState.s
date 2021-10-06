@@ -966,7 +966,7 @@ exec__Q34Game7Fuefuki9StateTurnFPQ24Game9EnemyBase:
 /* 8029B3FC 0029833C  D0 81 00 08 */	stfs f4, 8(r1)
 /* 8029B400 00298340  D0 61 00 0C */	stfs f3, 0xc(r1)
 /* 8029B404 00298344  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8029B408 00298348  4B D9 9D 01 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8029B408 00298348  4B D9 9D 01 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8029B40C 0029834C  48 17 67 C5 */	bl roundAng__Ff
 /* 8029B410 00298350  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8029B414 00298354  FF E0 08 90 */	fmr f31, f1

@@ -1235,7 +1235,7 @@ lbl_801B7540:
 /* 801B75FC 001B453C  D0 41 00 28 */	stfs f2, 0x28(r1)
 /* 801B7600 001B4540  C0 25 00 04 */	lfs f1, 4(r5)
 /* 801B7604 001B4544  C0 45 00 0C */	lfs f2, 0xc(r5)
-/* 801B7608 001B4548  4B E7 DB 01 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 801B7608 001B4548  4B E7 DB 01 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 801B760C 001B454C  3C 80 80 4B */	lis r4, __vt__Q24Game15CreatureInitArg@ha
 /* 801B7610 001B4550  3C 60 80 4B */	lis r3, __vt__Q24Game15ItemGateInitArg@ha
 /* 801B7614 001B4554  38 84 A2 F4 */	addi r4, r4, __vt__Q24Game15CreatureInitArg@l

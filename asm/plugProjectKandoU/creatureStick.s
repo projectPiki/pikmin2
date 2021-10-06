@@ -823,7 +823,7 @@ lbl_8019FA24:
 lbl_8019FA40:
 /* 8019FA40 0019C980  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 8019FA44 0019C984  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 8019FA48 0019C988  4B E9 56 C1 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8019FA48 0019C988  4B E9 56 C1 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8019FA4C 0019C98C  FF E0 08 90 */	fmr f31, f1
 /* 8019FA50 0019C990  7F E3 FB 78 */	mr r3, r31
 /* 8019FA54 0019C994  38 81 00 2C */	addi r4, r1, 0x2c

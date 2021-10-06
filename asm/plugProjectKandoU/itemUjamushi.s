@@ -1166,7 +1166,7 @@ lbl_80206A8C:
 /* 80206B08 00203A48  C0 21 02 98 */	lfs f1, 0x298(r1)
 /* 80206B0C 00203A4C  C0 41 02 A0 */	lfs f2, 0x2a0(r1)
 /* 80206B10 00203A50  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80206B14 00203A54  4B E2 E5 F5 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80206B14 00203A54  4B E2 E5 F5 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80206B18 00203A58  48 20 B0 B9 */	bl roundAng__Ff
 /* 80206B1C 00203A5C  C0 5D 00 5C */	lfs f2, 0x5c(r29)
 /* 80206B20 00203A60  48 20 B0 DD */	bl angDist__Fff
@@ -1396,7 +1396,7 @@ lbl_80206E04:
 /* 80206E74 00203DB4  C0 21 02 4C */	lfs f1, 0x24c(r1)
 /* 80206E78 00203DB8  C0 41 02 54 */	lfs f2, 0x254(r1)
 /* 80206E7C 00203DBC  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80206E80 00203DC0  4B E2 E2 89 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80206E80 00203DC0  4B E2 E2 89 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80206E84 00203DC4  C0 42 BB 0C */	lfs f2, lbl_80519E6C@sda21(r2)
 /* 80206E88 00203DC8  C0 02 BA 34 */	lfs f0, lbl_80519D94@sda21(r2)
 /* 80206E8C 00203DCC  EC 22 00 72 */	fmuls f1, f2, f1
@@ -1869,7 +1869,7 @@ lbl_80207590:
 /* 802075A0 002044E0  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 802075A4 002044E4  C0 21 02 F4 */	lfs f1, 0x2f4(r1)
 /* 802075A8 002044E8  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 802075AC 002044EC  4B E2 DB 5D */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 802075AC 002044EC  4B E2 DB 5D */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 802075B0 002044F0  48 20 A6 21 */	bl roundAng__Ff
 /* 802075B4 002044F4  C0 5D 00 5C */	lfs f2, 0x5c(r29)
 /* 802075B8 002044F8  48 20 A6 45 */	bl angDist__Fff
@@ -2123,7 +2123,7 @@ lbl_80207908:
 /* 8020796C 002048AC  C0 21 01 E8 */	lfs f1, 0x1e8(r1)
 /* 80207970 002048B0  C0 41 01 F0 */	lfs f2, 0x1f0(r1)
 /* 80207974 002048B4  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 80207978 002048B8  4B E2 D7 91 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80207978 002048B8  4B E2 D7 91 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8020797C 002048BC  C0 02 BA 40 */	lfs f0, lbl_80519DA0@sda21(r2)
 /* 80207980 002048C0  EE 0F 00 32 */	fmuls f16, f15, f0
 /* 80207984 002048C4  FC 11 80 40 */	fcmpo cr0, f17, f16

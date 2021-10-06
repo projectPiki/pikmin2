@@ -7740,7 +7740,7 @@ lbl_80190110:
 /* 8019017C 0018D0BC  D0 1F 02 04 */	stfs f0, 0x204(r31)
 /* 80190180 0018D0C0  C0 3E 00 18 */	lfs f1, 0x18(r30)
 /* 80190184 0018D0C4  C0 5E 00 20 */	lfs f2, 0x20(r30)
-/* 80190188 0018D0C8  4B EA 4F 81 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80190188 0018D0C8  4B EA 4F 81 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8019018C 0018D0CC  C0 02 AA DC */	lfs f0, lbl_80518E3C@sda21(r2)
 /* 80190190 0018D0D0  EC 20 08 2A */	fadds f1, f0, f1
 /* 80190194 0018D0D4  48 28 1A 3D */	bl roundAng__Ff
@@ -8663,7 +8663,7 @@ exec__Q24Game14PikiDrownStateFPQ24Game4Piki:
 /* 80190E24 0018DD64  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 80190E28 0018DD68  EC 3E 08 28 */	fsubs f1, f30, f1
 /* 80190E2C 0018DD6C  EC 5F 00 28 */	fsubs f2, f31, f0
-/* 80190E30 0018DD70  4B EA 42 D9 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 80190E30 0018DD70  4B EA 42 D9 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80190E34 0018DD74  D0 3F 01 FC */	stfs f1, 0x1fc(r31)
 lbl_80190E38:
 /* 80190E38 0018DD78  C0 BF 01 FC */	lfs f5, 0x1fc(r31)

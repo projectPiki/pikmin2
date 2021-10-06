@@ -777,7 +777,7 @@ lbl_80265198:
 /* 80265210 00262150  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
 /* 80265214 00262154  EC 39 08 28 */	fsubs f1, f25, f1
 /* 80265218 00262158  EC 5A 00 28 */	fsubs f2, f26, f0
-/* 8026521C 0026215C  4B DC FE ED */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
+/* 8026521C 0026215C  4B DC FE ED */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 80265220 00262160  48 1A C9 B1 */	bl roundAng__Ff
 /* 80265224 00262164  81 9F 00 00 */	lwz r12, 0(r31)
 /* 80265228 00262168  FF 20 08 90 */	fmr f25, f1

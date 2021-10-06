@@ -1,48 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global pikmin2_cosf__Ff
-pikmin2_cosf__Ff:
-/* 80411798 0040E6D8  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
-/* 8041179C 0040E6DC  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 804117A0 0040E6E0  FC 01 00 40 */	fcmpo cr0, f1, f0
-/* 804117A4 0040E6E4  40 80 00 08 */	bge lbl_804117AC
-/* 804117A8 0040E6E8  FC 20 08 50 */	fneg f1, f1
-lbl_804117AC:
-/* 804117AC 0040E6EC  C0 02 1F 0C */	lfs f0, lbl_8052026C@sda21(r2)
-/* 804117B0 0040E6F0  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
-/* 804117B4 0040E6F4  38 63 71 A0 */	addi r3, r3, sincosTable___5JMath@l
-/* 804117B8 0040E6F8  EC 01 00 32 */	fmuls f0, f1, f0
-/* 804117BC 0040E6FC  FC 00 00 1E */	fctiwz f0, f0
-/* 804117C0 0040E700  D8 01 00 08 */	stfd f0, 8(r1)
-/* 804117C4 0040E704  80 01 00 0C */	lwz r0, 0xc(r1)
-/* 804117C8 0040E708  54 00 1C B8 */	rlwinm r0, r0, 3, 0x12, 0x1c
-/* 804117CC 0040E70C  7C 63 02 14 */	add r3, r3, r0
-/* 804117D0 0040E710  C0 23 00 04 */	lfs f1, 4(r3)
-/* 804117D4 0040E714  38 21 00 10 */	addi r1, r1, 0x10
-/* 804117D8 0040E718  4E 80 00 20 */	blr 
-
-.global pikmin2_atan2f__Fff
-pikmin2_atan2f__Fff:
-/* 804117DC 0040E71C  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 804117E0 0040E720  7C 08 02 A6 */	mflr r0
-/* 804117E4 0040E724  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
-/* 804117E8 0040E728  90 01 00 14 */	stw r0, 0x14(r1)
-/* 804117EC 0040E72C  38 63 D1 E0 */	addi r3, r3, atanTable___5JMath@l
-/* 804117F0 0040E730  4B C2 39 19 */	bl atan2___Q25JMath18TAtanTable$$01024$$4f$$1CFff
-/* 804117F4 0040E734  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 804117F8 0040E738  7C 08 03 A6 */	mtlr r0
-/* 804117FC 0040E73C  38 21 00 10 */	addi r1, r1, 0x10
-/* 80411800 0040E740  4E 80 00 20 */	blr 
-
-.global pikmin2_sqrtf__Ff
-pikmin2_sqrtf__Ff:
-/* 80411804 0040E744  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
-/* 80411808 0040E748  FC 01 00 40 */	fcmpo cr0, f1, f0
-/* 8041180C 0040E74C  4C 81 00 20 */	blelr 
-/* 80411810 0040E750  FC 00 08 34 */	frsqrte f0, f1
-/* 80411814 0040E754  EC 20 00 72 */	fmuls f1, f0, f1
-/* 80411818 0040E758  4E 80 00 20 */	blr 
 
 .global qdist2__Fffff
 qdist2__Fffff:
