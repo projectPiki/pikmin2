@@ -36,7 +36,9 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/target_options.o\
 	$(BUILD_DIR)/asm/Dolphin/mslsupp.o\
 	$(BUILD_DIR)/src/Dolphin/UDP_Stubs.o\
-	$(BUILD_DIR)/asm/mainblock.o\
+	$(BUILD_DIR)/asm/Dolphin/ddh/main.o\
+	$(BUILD_DIR)/asm/Dolphin/CircleBuffer.o\
+	$(BUILD_DIR)/asm/Dolphin/main.o\
 	$(BUILD_DIR)/asm/Dolphin/MWTrace.o\
 	$(BUILD_DIR)/asm/Dolphin/MWCriticalSection_gc.o\
 	$(BUILD_DIR)/asm/Dolphin/__va_arg.o\
