@@ -50,10 +50,7 @@ MAP     := $(BUILD_DIR)/pikmin2.map
 
 include obj_files.mk
 
-O_FILES := $(INIT_O_FILES) $(EXTAB_O_FILES) $(EXTABINDEX_O_FILES) $(TEXT_O_FILES) \
-           $(CTORS_O_FILES) $(DTORS_O_FILES) $(RODATA_O_FILES) $(DATA_O_FILES)    \
-           $(BSS_O_FILES) $(SDATA_O_FILES) $(SBSS_O_FILES) $(SDATA2_O_FILES)      \
-		   $(SBSS2_O_FILES)														  \
+O_FILES := $(GROUP_0_FILES) $(TEXT_O_FILES) $(GROUP_1_FILES)
 
 #-------------------------------------------------------------------------------
 # Tools

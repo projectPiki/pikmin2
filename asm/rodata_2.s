@@ -1,5 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
 .global lbl_804796E4
 lbl_804796E4:
 	.asciz "Initialize NUB\n"
