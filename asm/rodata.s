@@ -6644,42 +6644,20 @@ lbl_804796B0:
 	.4byte 0x00000000
 .global lbl_804796C8
 lbl_804796C8:
-	.4byte 0x4D657472
-	.4byte 0x6F54524B
-	.4byte 0x20666F72
-	.4byte 0x2047414D
-	.4byte 0x45435542
-	.4byte 0x45207632
-	.4byte 0x2E360000
+	.asciz "MetroTRK for GAMECUBE v2.6"
+	.skip 1
 .global lbl_804796E4
 lbl_804796E4:
-	.4byte 0x496E6974
-	.4byte 0x69616C69
-	.4byte 0x7A65204E
-	.4byte 0x55420A00
-	.4byte 0x00000000
+	.asciz "Initialize NUB\n"
+	.skip 4
 .global lbl_804796F8
 lbl_804796F8:
-	.4byte 0x4D657373
-	.4byte 0x61676553
-	.4byte 0x656E6420
-	.4byte 0x3A206363
-	.4byte 0x5F777269
-	.4byte 0x74652072
-	.4byte 0x65747572
-	.4byte 0x6E656420
-	.4byte 0x256C640A
-	.4byte 0x00000000
+	.ascii "MessageSend : cc_write returned %ld\n"
+	.skip 4
 .global lbl_80479720
 lbl_80479720:
-	.4byte 0x4552524F
-	.4byte 0x52203A20
-	.4byte 0x4E6F2062
-	.4byte 0x75666665
-	.4byte 0x72206176
-	.4byte 0x61696C61
-	.4byte 0x626C650A
-	.4byte 0x00000000
+	.ascii "ERROR : No buffer available\n"
+	.skip 4
 .global lbl_80479740
 lbl_80479740:
 	.4byte 0x54524B5F

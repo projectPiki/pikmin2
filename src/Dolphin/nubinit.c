@@ -1,5 +1,4 @@
 
-
 /*
  * --INFO--
  * Address:	........
@@ -15,21 +14,13 @@ void TRKInitializeEndian(void)
  * Address:	800BB6B0
  * Size:	000028
  */
+extern char lbl_804796C8[27];
+extern void TRK_board_display(char*);
 void TRKNubWelcome(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  lis       r3, 0x8048
-  stw       r0, 0x14(r1)
-  subi      r3, r3, 0x6938
-  bl        0x4E84
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+
+	TRK_board_display(lbl_804796C8); //"MetroTRK for GAMECUBE v2.6"
+	return;
 }
 
 /*
@@ -37,20 +28,13 @@ void TRKNubWelcome(void)
  * Address:	800BB6D8
  * Size:	000024
  */
-void TRKTerminateNub(void)
+extern unsigned int TRKTerminateSerialHandler(void);
+unsigned int TRKTerminateNub(void)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  bl        0x9E4
-  lwz       r0, 0x14(r1)
-  li        r3, 0
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
+
+	TRKTerminateSerialHandler();
+	return 0;
+
 }
 
 /*
@@ -58,8 +42,8 @@ void TRKTerminateNub(void)
  * Address:	800BB6FC
  * Size:	00014C
  */
-void TRKInitializeNub(void)
-{
+//void TRKInitializeNub(void)
+//{
 /*
 .loc_0x0:
   stwu      r1, -0x20(r1)
@@ -166,4 +150,4 @@ void TRKInitializeNub(void)
   addi      r1, r1, 0x20
   blr
 */
-}
+//}

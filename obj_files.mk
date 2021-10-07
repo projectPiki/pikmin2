@@ -235,6 +235,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUDataMgr.o\
 	$(BUILD_DIR)/asm/Dolphin/mainloop.o\
 	$(BUILD_DIR)/asm/Dolphin/nubevent.o\
+	$(BUILD_DIR)/src/Dolphin/nubinit.o\
 	$(BUILD_DIR)/asm/Dolphin/nubinit.o\
 	$(BUILD_DIR)/asm/Dolphin/msg.o\
 	$(BUILD_DIR)/asm/Dolphin/msgbuf.o\

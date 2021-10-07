@@ -1,30 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global TRKNubWelcome
-TRKNubWelcome:
-/* 800BB6B0 000B85F0  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 800BB6B4 000B85F4  7C 08 02 A6 */	mflr r0
-/* 800BB6B8 000B85F8  3C 60 80 48 */	lis r3, lbl_804796C8@ha
-/* 800BB6BC 000B85FC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800BB6C0 000B8600  38 63 96 C8 */	addi r3, r3, lbl_804796C8@l
-/* 800BB6C4 000B8604  48 00 4E 85 */	bl TRK_board_display
-/* 800BB6C8 000B8608  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 800BB6CC 000B860C  7C 08 03 A6 */	mtlr r0
-/* 800BB6D0 000B8610  38 21 00 10 */	addi r1, r1, 0x10
-/* 800BB6D4 000B8614  4E 80 00 20 */	blr 
-
-.global TRKTerminateNub
-TRKTerminateNub:
-/* 800BB6D8 000B8618  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 800BB6DC 000B861C  7C 08 02 A6 */	mflr r0
-/* 800BB6E0 000B8620  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800BB6E4 000B8624  48 00 09 E5 */	bl TRKTerminateSerialHandler
-/* 800BB6E8 000B8628  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 800BB6EC 000B862C  38 60 00 00 */	li r3, 0
-/* 800BB6F0 000B8630  7C 08 03 A6 */	mtlr r0
-/* 800BB6F4 000B8634  38 21 00 10 */	addi r1, r1, 0x10
-/* 800BB6F8 000B8638  4E 80 00 20 */	blr 
 
 .global TRKInitializeNub
 TRKInitializeNub:
