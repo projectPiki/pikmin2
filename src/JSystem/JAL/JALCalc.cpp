@@ -1,39 +1,32 @@
 namespace JALCalc {
 /*
  * --INFO--
- * Address:	800BA244
- * Size:	000064
+ * Address:    800BA244
+ * Size:    000064
  */
-// WIP
-float linearTransform(float f1, float f2, float f3, float f4, float f5,
-                      bool flag)
-
+float linearTransform(float x, float xStart, float xEnd, float yStart,
+                      float yEnd, bool unbounded)
 {
-    float result = (f1 - f2) * ((f5 - f4) / (f3 - f2)) + f4;
-    if (flag != false) {
+    float result = (x - xStart) * ((yEnd - yStart) / (xEnd - xStart)) + yStart;
+
+    if (unbounded)
+        return result;
+
+    if (yStart < yEnd) {
+        if (result > yEnd)
+            return yEnd;
+        if (result < yStart)
+            result = yStart;
+        return result;
+    } else {
+        if (result > yStart)
+            return yStart;
+        if (result < yEnd)
+            result = yEnd;
         return result;
     }
-    if (f4 < f5) {
-
-        if (result <= f5) {
-            return result;
-        }
-        if (result > f4) {
-            return f4;
-        }
-
-        return f5;
-    }
-
-    if (result > f5) {
-        return f5;
-    }
-    if (result >= f4) {
-        return result;
-    }
-
-    return f4;
 }
+} // namespace JALCalc
 
 /*
  * --INFO--
@@ -335,4 +328,4 @@ float linearTransform(float f1, float f2, float f3, float f4, float f5,
 //{
 //    // UNUSED FUNCTION
 //}
-} // namespace JALCalc
+//} // namespace JALCalc

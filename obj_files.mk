@@ -230,6 +230,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAISystemInterface.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIObject.o\
 	$(BUILD_DIR)/asm/JSystem/JAD/JADHioNode.o\
+	$(BUILD_DIR)/src/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUData.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUDataMgr.o\
