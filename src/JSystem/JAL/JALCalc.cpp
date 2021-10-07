@@ -9,22 +9,35 @@ float linearTransform(float x, float xStart, float xEnd, float yStart,
 {
     float result = (x - xStart) * ((yEnd - yStart) / (xEnd - xStart)) + yStart;
 
+    // Quick exit as optimisation
     if (unbounded)
         return result;
 
+    // If the bounds given are valid
     if (yStart < yEnd) {
+        // If we overshoot the end, we clamp to the end
         if (result > yEnd)
             return yEnd;
+
+        // If we undershoot, we clamp to the start
         if (result < yStart)
-            result = yStart;
-        return result;
-    } else {
-        if (result > yStart)
             return yStart;
-        if (result < yEnd)
-            result = yEnd;
+
         return result;
     }
+
+    // From here, start is greater than end
+
+    // Clamp to the start
+    if (result > yStart)
+        return yStart;
+
+    // Clamp to the end
+    if (result < yEnd)
+        return yEnd;
+
+    // Unknown situation, bail with lerp result
+    return result;
 }
 } // namespace JALCalc
 
