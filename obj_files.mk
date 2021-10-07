@@ -1164,6 +1164,8 @@ DTORS_O_FILES:=\
 
 RODATA_O_FILES:=\
 	$(BUILD_DIR)/asm/rodata.o\
+	$(BUILD_DIR)/asm/rodata_1.o\
+	$(BUILD_DIR)/asm/rodata_2.o\
 
 DATA_O_FILES:=\
 	$(BUILD_DIR)/asm/data.o\
