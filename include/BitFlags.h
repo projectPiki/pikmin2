@@ -17,6 +17,18 @@ struct BitFlags {
 
     void reset();
     void all_zero();
+    void all_one();
+
+    inline void set_all(u8 value)
+    {
+        for (s32 i = 0; i < m_flagCnt; i++) {
+            m_flagArr[i] = value;
+        }
+    }
+
+    void setFlag(u16);
+    void resetFlag(u16);
+    bool isFlag(u16);
 };
 
 #endif
