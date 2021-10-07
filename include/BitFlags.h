@@ -12,6 +12,8 @@ struct BitFlags {
     BitFlags();
     void dump();
     void read(Stream&);
+    void write(Stream&);
+    void create(unsigned short, unsigned char*);
 };
 
 #endif

@@ -34,81 +34,32 @@ void BitFlags::read(Stream& stream)
 }
 
 /*
-* --INFO--
-* Address:	8041C26C
-* Size:	000064
-
-void BitFlags::write(Stream&)
+ * --INFO--
+ * Address:	8041C26C
+ * Size:	000064
+ */
+void BitFlags::write(Stream& stream)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  li        r31, 0
-  stw       r30, 0x18(r1)
-  mr        r30, r4
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  b         .loc_0x3C
-
-.loc_0x28:
-  lwz       r4, 0x0(r29)
-  mr        r3, r30
-  lbzx      r4, r4, r31
-  bl        -0x6C30
-  addi      r31, r31, 0x1
-
-.loc_0x3C:
-  lhz       r0, 0x6(r29)
-  cmpw      r31, r0
-  blt+      .loc_0x28
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-
+    for (s32 i = 0; i < m_flagCnt; i++) {
+        stream.writeByte(m_flagArr[i]);
+    }
 }
 
 /*
-* --INFO--
-* Address:	8041C2D0
-* Size:	000054
-
-void BitFlags::create(unsigned short, unsigned char*)
+ * --INFO--
+ * Address:	8041C2D0
+ * Size:	000054
+ */
+void BitFlags::create(unsigned short arg1, unsigned char* array)
 {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  cmplwi    r5, 0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  rlwinm    r3,r4,29,19,31
-  sth       r4, 0x4(r31)
-  addi      r0, r3, 0x1
-  sth       r0, 0x6(r31)
-  beq-      .loc_0x34
-  stw       r5, 0x0(r31)
-  b         .loc_0x40
+    _04       = arg1;
+    m_flagCnt = (arg1 >> 3) + 1;
 
-.loc_0x34:
-  lhz       r3, 0x6(r31)
-  bl        -0x3F835C
-  stw       r3, 0x0(r31)
-
-.loc_0x40:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-
+    if (array) {
+        m_flagArr = array;
+    } else {
+        m_flagArr = new u8[m_flagCnt];
+    }
 }
 
 /*
