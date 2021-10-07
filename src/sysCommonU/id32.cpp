@@ -99,17 +99,14 @@ void ID32::operator=(unsigned long _id)
  * Address:	80413434
  * Size:	000014
  */
-bool ID32::operator==(unsigned long target)
-{
-    return (this->m_id.raw == target);
-}
+bool ID32::operator==(unsigned long target) { return this->m_id.raw == target; }
 
 /*
  * --INFO--
  * Address:	80413448
  * Size:	000018
  */
-bool ID32::operator!=(unsigned long _id) { return (this->m_id.raw != _id); }
+bool ID32::operator!=(unsigned long _id) { return this->m_id.raw != _id; }
 
 extern char lbl_805202C8[8]; // sd_StringSpecifier
 
@@ -120,7 +117,7 @@ extern char lbl_805202C8[8]; // sd_StringSpecifier
  */
 void ID32::write(Stream& stream)
 {
-    if (stream.isTextMode == TRUE) {
+    if (stream.m_isTextMode == TRUE) {
         char str[0x10];
         sprint(str);
         stream.printf(lbl_805202C8, str);
@@ -139,7 +136,7 @@ void ID32::write(Stream& stream)
  */
 void ID32::read(Stream& stream)
 {
-    if (stream.isTextMode == TRUE) {
+    if (stream.m_isTextMode == TRUE) {
         char* token = stream.getNextToken();
         m_id.str[3] = token[3];
         m_id.str[2] = token[2];

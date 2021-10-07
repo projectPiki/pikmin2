@@ -5,14 +5,24 @@
 
 struct Stream {
     void printf(char*, ...);
-    void writeByte(u8 byte);
-    u8 readByte();
+    void skipReadingText();
     char* getNextToken();
 
-    u32 __vt;
-    u32 unknown_0x4;
-    int position;
-    int isTextMode;
+    void writeByte(u8 byte);
+    u8 readByte();
+    u16 readU16();
+
+    void skipReading(unsigned long);
+    void textBeginGroup(char*);
+    void textEndGroup();
+
+    void textWriteTab(int);
+    void textWriteText(char*, ...);
+
+    u32 m_vtbl;       // _00
+    u32 _04;          // _04
+    int m_position;   // _08
+    int m_isTextMode; // _0C
 };
 
 #endif
