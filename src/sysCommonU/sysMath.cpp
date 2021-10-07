@@ -64,19 +64,23 @@ float pikmin2_sqrtf(float x)
  * Size:	00003C
  */
 
-// WIP qdist2 (good luck getting the stack crud to match)
+// thanks to GibHaltmannKill for the volatile idea
 
-/* float qdist2(float x1, float y1, float x2, float y2)
+float qdist2(float x1, float y1, float x2, float y2)
 {
 
     float xdiff = (x2 - x1);
     float ydiff = (y2 - y1);
 
-    float dist = (xdiff * xdiff) + (ydiff * ydiff);
-    return 0.0f < dist ? dist * (__frsqrte(dist)) : dist;
-
+    float dist = ((xdiff * xdiff) + (ydiff * ydiff));
+    if (dist > lbl_80520270)
+    {
+        volatile float a = dist * (__frsqrte(dist));
+        dist = a;
+    }
+    return dist;
 }
- */
+ 
 
 ///*
 // * --INFO--
