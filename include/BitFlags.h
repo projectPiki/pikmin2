@@ -13,7 +13,7 @@ struct BitFlags {
     void dump();
     void read(Stream&);
     void write(Stream&);
-    void create(unsigned short, unsigned char*);
+    void create(u16, u8* flags);
 };
 
 #endif

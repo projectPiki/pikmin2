@@ -50,13 +50,13 @@ void BitFlags::write(Stream& stream)
  * Address:	8041C2D0
  * Size:	000054
  */
-void BitFlags::create(unsigned short arg1, unsigned char* array)
+void BitFlags::create(u16 arg1, u8* flags)
 {
     _04       = arg1;
     m_flagCnt = (arg1 >> 3) + 1;
 
-    if (array) {
-        m_flagArr = array;
+    if (flags) {
+        m_flagArr = flags;
     } else {
         m_flagArr = new u8[m_flagCnt];
     }
