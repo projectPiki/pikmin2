@@ -14,6 +14,9 @@ struct BitFlags {
     void read(Stream&);
     void write(Stream&);
     void create(u16, u8* flags);
+
+    void reset();
+    void all_zero();
 };
 
 #endif

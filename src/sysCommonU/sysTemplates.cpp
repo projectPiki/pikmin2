@@ -63,55 +63,27 @@ void BitFlags::create(u16 arg1, u8* flags)
 }
 
 /*
-* --INFO--
-* Address:	8041C324
-* Size:	000028
-
+ * --INFO--
+ * Address:	8041C324
+ * Size:	000028
+ */
 void BitFlags::reset()
 {
-/*
-.loc_0x0:
-  li        r6, 0
-  li        r5, 0
-  b         .loc_0x18
-
-.loc_0xC:
-  lwz       r4, 0x0(r3)
-  stbx      r5, r4, r6
-  addi      r6, r6, 0x1
-
-.loc_0x18:
-  lhz       r0, 0x6(r3)
-  cmpw      r6, r0
-  blt+      .loc_0xC
-  blr
-
+    for (s32 i = 0; i < m_flagCnt; i++) {
+        m_flagArr[i] = 0;
+    }
 }
 
 /*
-* --INFO--
-* Address:	8041C34C
-* Size:	000028
-
+ * --INFO--
+ * Address:	8041C34C
+ * Size:	000028
+ */
 void BitFlags::all_zero()
 {
-/*
-.loc_0x0:
-  li        r6, 0
-  mr        r5, r6
-  b         .loc_0x18
-
-.loc_0xC:
-  lwz       r4, 0x0(r3)
-  stbx      r5, r4, r6
-  addi      r6, r6, 0x1
-
-.loc_0x18:
-  lhz       r0, 0x6(r3)
-  cmpw      r6, r0
-  blt+      .loc_0xC
-  blr
-
+    for (s32 i = 0; i < m_flagCnt; i++) {
+        m_flagArr[i] = 0;
+    }
 }
 
 /*
