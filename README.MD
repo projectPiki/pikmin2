@@ -1,6 +1,18 @@
 # Pikmin 2
 Pikmin 2 disassembly/decompilation to C++/C
 
+## Credits
+- intns
+- EpochFlame
+- Revo
+- kiwi
+- GibHaltmannKill
+- wowjinxy
+- Nerduminer
+- Sodium
+- JHawk
+- Minty Meeo
+
 ## Modifying the CW compiler
 More specifically, you need to modify the v2.7 linker as follows:
 
