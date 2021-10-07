@@ -1,5 +1,5 @@
 
-
+extern unsigned char __lower_map[256];
 /*
  * --INFO--
  * Address:	........
@@ -25,22 +25,15 @@ void toupper(void)
  * Address:	800C6264
  * Size:	000024
  */
-void tolower(void)
+int tolower(int __c)
 {
-/*
-.loc_0x0:
-  cmpwi     r3, -0x1
-  bne-      .loc_0x10
-  li        r3, -0x1
-  blr       
+	{
+		if (__c == -1) {
+			return 0xffffffff;
+		}
+		return (unsigned int)__lower_map[__c & 0xff];
+	}
 
-.loc_0x10:
-  lis       r4, 0x804A
-  rlwinm    r0,r3,0,24,31
-  addi      r3, r4, 0x6CF0
-  lbzx      r3, r3, r0
-  blr
-*/
 }
 
 /*
