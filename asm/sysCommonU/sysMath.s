@@ -2,25 +2,6 @@
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
-.global qdist2__Fffff
-qdist2__Fffff:
-/* 8041181C 0040E75C  EC 84 10 28 */	fsubs f4, f4, f2
-/* 80411820 0040E760  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
-/* 80411824 0040E764  EC 43 08 28 */	fsubs f2, f3, f1
-/* 80411828 0040E768  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8041182C 0040E76C  EC 24 01 32 */	fmuls f1, f4, f4
-/* 80411830 0040E770  EC 22 08 BA */	fmadds f1, f2, f2, f1
-/* 80411834 0040E774  FC 01 00 40 */	fcmpo cr0, f1, f0
-/* 80411838 0040E778  40 81 00 18 */	ble lbl_80411850
-/* 8041183C 0040E77C  FC 00 08 34 */	frsqrte f0, f1
-/* 80411840 0040E780  FC 01 00 32 */	fmul f0, f1, f0
-/* 80411844 0040E784  FC 00 00 18 */	frsp f0, f0
-/* 80411848 0040E788  D0 01 00 08 */	stfs f0, 8(r1)
-/* 8041184C 0040E78C  C0 21 00 08 */	lfs f1, 8(r1)
-lbl_80411850:
-/* 80411850 0040E790  38 21 00 10 */	addi r1, r1, 0x10
-/* 80411854 0040E794  4E 80 00 20 */	blr 
-
 .global CRSplineTangent__FfP10Vector3$$0f$$1
 CRSplineTangent__FfP10Vector3$$0f$$1:
 /* 80411858 0040E798  94 21 FF E0 */	stwu r1, -0x20(r1)
