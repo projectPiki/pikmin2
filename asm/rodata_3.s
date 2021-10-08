@@ -7,527 +7,265 @@ lbl_804995F0:
 	.skip 0x3
 .global lbl_804995FC
 lbl_804995FC:
-	.4byte 0x434E6F64
-	.4byte 0x65206164
-	.4byte 0x64206572
-	.4byte 0x7220636F
-	.4byte 0x756E7420
-	.4byte 0x25640A00
+	.asciz "CNode add err count %d\n"
 .global lbl_80499614
 lbl_80499614:
-	.4byte 0x434E6F64
-	.4byte 0x6520636F
-	.4byte 0x6E636174
-	.4byte 0x204C6F6F
-	.4byte 0x70204572
-	.4byte 0x72210A00
+	.asciz "CNode concat Loop Err!\n"
 .global lbl_8049962C
 lbl_8049962C:
-	.4byte 0x25642063
-	.4byte 0x68696C64
-	.4byte 0x20287265
-	.4byte 0x616C6368
-	.4byte 0x696C6420
-	.4byte 0x3D202564
-	.4byte 0x29210A00
+	.asciz "%d child (realchild = %d)!\n"
 .global lbl_80499648
 lbl_80499648:
-	.4byte 0x7379734D
-	.4byte 0x6174682E
-	.4byte 0x63707000
+	.asciz "sysMath.cpp"
 .global lbl_80499654
 lbl_80499654:
-	.4byte 0x61636F73
-	.4byte 0x66202566
-	.4byte 0x0A000000
+	.asciz "acosf %f\n"
+	.skip 0x2
 .global lbl_80499660
 lbl_80499660:
-	.4byte 0x73747265
-	.4byte 0x616D2E63
-	.4byte 0x70700000
+	.asciz "stream.cpp"
+	.skip 0x1
 .global lbl_8049966C
 lbl_8049966C:
-	.4byte 0x52656163
-	.4byte 0x68656420
-	.4byte 0x454F460A
-	.4byte 0x00000000
-	.4byte 0x72656164
-	.4byte 0x42797465
-	.4byte 0x3A546F6B
-	.4byte 0x656E2045
-	.4byte 0x72726F72
-	.4byte 0x0A000000
-	.4byte 0x72656164
-	.4byte 0x53686F72
-	.4byte 0x743A546F
-	.4byte 0x6B656E20
-	.4byte 0x4572726F
-	.4byte 0x720A0000
-	.4byte 0x72656164
-	.4byte 0x496E743A
-	.4byte 0x546F6B65
-	.4byte 0x6E204572
-	.4byte 0x726F720A
-	.4byte 0x00000000
-	.4byte 0x72656164
-	.4byte 0x466C6F61
-	.4byte 0x743A546F
-	.4byte 0x6B656E20
-	.4byte 0x4572726F
-	.4byte 0x720A0000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x63616E20
-	.4byte 0x6E6F7420
-	.4byte 0x75736520
-	.4byte 0x72656164
-	.4byte 0x46697865
-	.4byte 0x64537472
-	.4byte 0x696E6720
-	.4byte 0x696E2074
-	.4byte 0x65787420
-	.4byte 0x6D6F6465
-	.4byte 0x0A000000
-	.4byte 0x63616E20
-	.4byte 0x6E6F7420
-	.4byte 0x75736520
-	.4byte 0x77726974
-	.4byte 0x65466978
-	.4byte 0x65645374
-	.4byte 0x72696E67
-	.4byte 0x20696E20
-	.4byte 0x74657874
-	.4byte 0x206D6F64
-	.4byte 0x650A0000
+	.asciz "Reached EOF\n"
+	.skip 0x3
+.global readByteTokErr
+readByteTokErr:
+	.asciz "readByte:Token Error\n"
+	.skip 0x2
+.global readShortTokErr
+readShortTokErr:
+	.asciz "readShort:Token Error\n"
+	.skip 0x1
+.global readIntTokErr
+readIntTokErr:
+	.asciz "readInt:Token Error\n"
+	.skip 0x3
+.global readFloatTokErr
+readFloatTokErr:
+	.asciz "readFloat:Token Error\n"
+	.skip 0x1
+.global "assert@3391"
+"assert@3391":
+	.asciz "P2Assert"
+	.skip 0x3
+	.asciz "can not use readFixedString in text mode\n"
+	.skip 0x2
+	.asciz "can not use writeFixedString in text mode\n"
+	.skip 0x1
 .global lbl_80499740
 lbl_80499740:
-	.4byte 0x52616D53
-	.4byte 0x74726561
-	.4byte 0x6D3A3A72
-	.4byte 0x65616420
-	.4byte 0x6F757420
-	.4byte 0x6F662062
-	.4byte 0x6F756E64
-	.4byte 0x73202870
-	.4byte 0x6F733D25
-	.4byte 0x642C626F
-	.4byte 0x756E643D
-	.4byte 0x2564290A
-	.4byte 0x00000000
+	.asciz "RamStream::read out of bounds (pos=%d,bound=%d)\n"
+	.skip 0x3
 .global lbl_80499774
 lbl_80499774:
-	.4byte 0x52616D53
-	.4byte 0x74726561
-	.4byte 0x6D3A3A77
-	.4byte 0x72697465
-	.4byte 0x206F7574
-	.4byte 0x206F6620
-	.4byte 0x626F756E
-	.4byte 0x64732028
-	.4byte 0x706F733D
-	.4byte 0x25642C62
-	.4byte 0x6F756E64
-	.4byte 0x3D256429
-	.4byte 0x0A000000
+	.asciz "RamStream::write out of bounds (pos=%d,bound=%d)\n"
+	.skip 0x2
 .global lbl_804997A8
 lbl_804997A8:
-	.4byte 0x23202564
-	.4byte 0x2F25640D
-	.4byte 0x0A000000
-	.4byte 0x00000000
+	.asciz "# %d/%d\r\n"
+	.skip 0x6
 .global lbl_804997B8
 lbl_804997B8:
-	.4byte 0x23202564
-	.4byte 0x2F25640D
-	.4byte 0x0A000000
-	.4byte 0x00000000
+	.asciz "# %d/%d\r\n"
+	.skip 0x6
 .global gStrSystem_CPP
 gStrSystem_CPP:
-	.4byte 0x73797374
-	.4byte 0x656D2E63
-	.4byte 0x70700000
+	.asciz "system.cpp"
+	.skip 0x1
 .global gStrSystem_MemoryAllocError
 gStrSystem_MemoryAllocError:
-	.4byte 0x4D656D6F
-	.4byte 0x72792041
-	.4byte 0x6C6C6F63
-	.4byte 0x20457272
-	.4byte 0x6F72210A
-	.4byte 0x25782028
-	.4byte 0x73697A65
-	.4byte 0x20256429
-	.4byte 0x20616C69
-	.4byte 0x676E2825
-	.4byte 0x64290A52
-	.4byte 0x65737454
-	.4byte 0x6F74616C
-	.4byte 0x3D25640A
-	.4byte 0x52657374
-	.4byte 0x46726565
-	.4byte 0x203D2564
-	.4byte 0x0A000000
+	.asciz "Memory Alloc Error!\n%x (size %d) align(%d)\nRestTotal=%d\nRestFree =%d\n"
+	.skip 0x2
 .global gStrSystem_InOnLine
 gStrSystem_InOnLine:
-	.4byte 0x25732069
-	.4byte 0x6E202225
-	.4byte 0x7322206F
-	.4byte 0x6E206C69
-	.4byte 0x6E652025
-	.4byte 0x640A0000
+	.asciz "%s in \"%s\" on line %d\n"
+	.skip 0x1
 .global lbl_80499834
 lbl_80499834:
-	.4byte 0x25732069
-	.4byte 0x6E202225
-	.4byte 0x7322206F
-	.4byte 0x6E0A206C
-	.4byte 0x696E6520
-	.4byte 0x25640A00
-	.4byte 0x01000200
-	.4byte 0x04000020
-	.4byte 0x00400001
-	.4byte 0x00040008
-	.4byte 0x00020010
-	.4byte 0x00000000
-	.4byte 0x2D2D2D20
-	.4byte 0x47616D65
-	.4byte 0x20646562
-	.4byte 0x75672069
-	.4byte 0x6E666F72
-	.4byte 0x6D617469
-	.4byte 0x6F6E202D
-	.4byte 0x2D2D0A00
+	.asciz "%s in \"%s\" on\n line %d\n"
+	.short 0x0100
+	.short 0x0200
+	.short 0x0400
+	.short 0x0020
+	.short 0x0040
+	.short 0x0001
+	.short 0x0004
+	.short 0x0008
+	.short 0x0002
+	.short 0x0010
+	.short 0x0000
+	.short 0x0000
+	.asciz "--- Game debug information ---\n"
 	.4byte 0x83528393
 	.4byte 0x835C815B
 	.4byte 0x838B82AA
 	.4byte 0x82A082E8
 	.4byte 0x82DC82B9
 	.4byte 0x82F10A00
-	.4byte 0x6172616D
-	.4byte 0x5374726D
-	.4byte 0x00000000
-	.4byte 0x6370754C
-	.4byte 0x6F636B43
-	.4byte 0x6F756E74
-	.4byte 0x20256420
-	.4byte 0x72657472
-	.4byte 0x61636543
-	.4byte 0x6F756E74
-	.4byte 0x2025640A
-	.4byte 0x00000000
-	.4byte 0x73797374
-	.4byte 0x656D2F72
-	.4byte 0x65747261
-	.4byte 0x63650000
-	.4byte 0x43505520
-	.4byte 0x4C4F434B
-	.4byte 0x45442100
-	.4byte 0x2F70696B
-	.4byte 0x6D696E32
-	.4byte 0x55502E6D
-	.4byte 0x61700000
-	.4byte 0x636F6E73
-	.4byte 0x74727563
-	.4byte 0x74000000
-	.4byte 0x44766454
-	.4byte 0x68726561
-	.4byte 0x64000000
-	.4byte 0x53797354
-	.4byte 0x696D6572
-	.4byte 0x73000000
-	.4byte 0x52657365
-	.4byte 0x744D616E
-	.4byte 0x61676572
-	.4byte 0x00000000
-	.4byte 0x5265736F
-	.4byte 0x75726365
-	.4byte 0x4D677232
-	.4byte 0x44000000
+	.asciz "aramStrm"
+	.skip 3
+	.asciz "cpuLockCount %d retraceCount %d\n"
+	.skip 3
+	.asciz "system/retrace"
+	.skip 1
+	.asciz "CPU LOCKED!"
+	.asciz "/pikmin2UP.map"
+	.skip 1
+	.asciz "construct"
+	.skip 2
+	.asciz "DvdThread"
+	.skip 2
+	.asciz "SysTimers"
+	.skip 2
+	.asciz "ResetManager"
+	.skip 3
+	.asciz "ResourceMgr2D"
+	.skip 2
 .global lbl_8049993C
 lbl_8049993C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x636F6E73
-	.4byte 0x74727563
-	.4byte 0x74576974
-	.4byte 0x68447664
-	.4byte 0x41636365
-	.4byte 0x73733173
-	.4byte 0x74000000
-	.4byte 0x67616D65
-	.4byte 0x436F6E66
-	.4byte 0x69672E69
-	.4byte 0x6E690000
-	.4byte 0x636F6E73
-	.4byte 0x74727563
-	.4byte 0x74576974
-	.4byte 0x68447664
-	.4byte 0x41636365
-	.4byte 0x7373326E
-	.4byte 0x64000000
-	.4byte 0x50324A4D
-	.4byte 0x453A3A4D
-	.4byte 0x67720000
-	.4byte 0x536F756E
-	.4byte 0x64537973
-	.4byte 0x74656D00
-	.4byte 0x2F417564
-	.4byte 0x696F5265
-	.4byte 0x73000000
-	.4byte 0x50536F75
-	.4byte 0x6E642E61
-	.4byte 0x61660000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x756E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x72656E64
-	.4byte 0x65724D6F
-	.4byte 0x64653A25
-	.4byte 0x64200A00
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "constructWithDvdAccess1st"
+	.skip 2
+	.asciz "gameConfig.ini"
+	.skip 1
+	.asciz "constructWithDvdAccess2nd"
+	.skip 2
+	.asciz "P2JME::Mgr"
+	.skip 1
+	.asciz "SoundSystem"
+	.asciz "/AudioRes"
+	.skip 2
+	.asciz "PSound.aaf"
+	.skip 1
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "unknown renderMode:%d \n"
 .global lbl_804999E4
 lbl_804999E4:
-	.4byte 0x6E6F2064
-	.4byte 0x6973706C
-	.4byte 0x61790000
+	.asciz "no display"
+	.skip 0x1
 .global lbl_804999F0
 lbl_804999F0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x73656374
-	.4byte 0x696F6E2E
-	.4byte 0x63707000
-	.4byte 0x6E6F2044
-	.4byte 0x6973706C
-	.4byte 0x6179206D
-	.4byte 0x616E6167
-	.4byte 0x65722E0A
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x526F6F74
-	.4byte 0x204D656E
-	.4byte 0x75000000
-	.4byte 0x4F626A65
-	.4byte 0x63742045
-	.4byte 0x6469746F
-	.4byte 0x72000000
-	.4byte 0x53696E67
-	.4byte 0x6C652047
-	.4byte 0x616D6500
-	.4byte 0x4368616C
-	.4byte 0x6C656E67
-	.4byte 0x65204761
-	.4byte 0x6D650000
-	.4byte 0x54657374
-	.4byte 0x20436861
-	.4byte 0x6C6C656E
-	.4byte 0x67650000
-	.4byte 0x54656B69
-	.4byte 0x20546573
-	.4byte 0x74000000
-	.4byte 0x416E696D
-	.4byte 0x20456469
-	.4byte 0x746F7200
-	.4byte 0x4D617020
-	.4byte 0x50617274
-	.4byte 0x73204564
-	.4byte 0x69746F72
-	.4byte 0x00000000
-	.4byte 0x54657820
-	.4byte 0x56696577
-	.4byte 0x65720000
-	.4byte 0x4F676177
-	.4byte 0x61205363
-	.4byte 0x7265656E
-	.4byte 0x20546573
-	.4byte 0x74000000
-	.4byte 0x59616D61
-	.4byte 0x73686974
-	.4byte 0x61000000
-	.4byte 0x4E697368
-	.4byte 0x696D7572
-	.4byte 0x61000000
-	.4byte 0x4E697368
-	.4byte 0x696D7572
-	.4byte 0x61320000
-	.4byte 0x4D6F7269
-	.4byte 0x6D757261
-	.4byte 0x00000000
-	.4byte 0x32442044
-	.4byte 0x65627567
-	.4byte 0x00000000
-	.4byte 0x43617665
-	.4byte 0x20456469
-	.4byte 0x746F7200
-	.4byte 0x4A537475
-	.4byte 0x64696F20
-	.4byte 0x43616D65
-	.4byte 0x72614564
-	.4byte 0x69746F72
-	.4byte 0x00000000
-	.4byte 0x4D6F7669
-	.4byte 0x65205465
-	.4byte 0x73740000
-	.4byte 0x4A537475
-	.4byte 0x64696F20
-	.4byte 0x4B616E64
-	.4byte 0x6F205465
-	.4byte 0x73740000
-	.4byte 0x50656C6C
-	.4byte 0x65742054
-	.4byte 0x65737400
-	.4byte 0x4D61696E
-	.4byte 0x20546974
-	.4byte 0x6C650000
-	.4byte 0x4D657373
-	.4byte 0x61676520
-	.4byte 0x50726576
-	.4byte 0x69657765
-	.4byte 0x72000000
-	.4byte 0x45626920
-	.4byte 0x4D61696E
-	.4byte 0x20546974
-	.4byte 0x6C650000
-	.4byte 0x45332054
-	.4byte 0x68616E6B
-	.4byte 0x73205365
-	.4byte 0x6374696F
-	.4byte 0x6E000000
-	.4byte 0x4562696D
-	.4byte 0x756E2045
-	.4byte 0x66666563
-	.4byte 0x74000000
-	.4byte 0x32442044
-	.4byte 0x65627567
-	.4byte 0x32000000
+	.skip 0xC
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "section.cpp"
+	.asciz "no Display manager.\n"
+	.skip 7
+	.asciz "Root Menu"
+	.skip 2
+	.asciz "Object Editor"
+	.skip 2
+	.asciz "Single Game"
+	.asciz "Challenge Game"
+	.skip 1
+	.asciz "Test Challenge"
+	.skip 1
+	.asciz "Teki Test"
+	.skip 2
+	.asciz "Anim Editor"
+	.asciz "Map Parts Editor"
+	.skip 3
+	.asciz "Tex Viewer"
+	.skip 1
+	.asciz "Ogawa Screen Test"
+	.skip 2
+	.asciz "Yamashita"
+	.skip 2
+	.asciz "Nishimura"
+	.skip 2
+	.asciz "Nishimura2"
+	.skip 1
+	.asciz "Morimura"
+	.skip 3
+	.asciz "2D Debug"
+	.skip 3
+	.asciz "Cave Editor"
+	.asciz "JStudio CameraEditor"
+	.skip 3
+	.asciz "Movie Test"
+	.skip 1
+	.asciz "JStudio Kando Test"
+	.skip 1
+	.asciz "Pellet Test"
+	.asciz "Main Title"
+	.skip 1
+	.asciz "Message Previewer"
+	.skip 2
+	.asciz "Ebi Main Title"
+	.skip 1
+	.asciz "E3 Thanks Section"
+	.skip 2
+	.asciz "Ebimun Effect"
+	.skip 2
+	.asciz "2D Debug2"
+	.skip 2
 .global lbl_80499BC8
 lbl_80499BC8:
-	.4byte 0x67616D65
-	.4byte 0x666C6F77
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "gameflow.cpp"
+	.skip 3
 .global lbl_80499BD8
 lbl_80499BD8:
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x53656374
-	.4byte 0x696F6E46
-	.4byte 0x6C61672E
-	.4byte 0x20256420
-	.4byte 0x0A000000
+	.asciz "Unknown SectionFlag. %d \n"
+	.skip 2
 .global lbl_80499BF4
 lbl_80499BF4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80499C00
 lbl_80499C00:
-	.4byte 0x4368696C
-	.4byte 0x64536563
-	.4byte 0x74696F6E
-	.4byte 0x3A3A696E
-	.4byte 0x69740000
-	.4byte 0x00000000
+	.asciz "ChildSection::init"
+	.skip 5
 .global lbl_80499C18
 lbl_80499C18:
-	.4byte 0x64766454
-	.4byte 0x68726561
-	.4byte 0x642E6370
-	.4byte 0x70000000
+	.asciz "dvdThread.cpp"
+	.skip 2
 .global lbl_80499C28
 lbl_80499C28:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_80499C38
 lbl_80499C38:
-	.4byte 0x696E6974
-	.4byte 0x5072696D
-	.4byte 0x44726177
-	.4byte 0x00000000
+	.asciz "initPrimDraw"
+	.skip 3
 .global lbl_80499C48
 lbl_80499C48:
-	.4byte 0x64726177
-	.4byte 0x20617869
-	.4byte 0x73000000
-	.4byte 0x00000000
+	.asciz "draw axis"
+	.skip 6
 .global lbl_80499C58
 lbl_80499C58:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x73797353
-	.4byte 0x68617065
-	.4byte 0x00000000
+	.skip 0xC
+	.asciz "sysShape"
+	.skip 3
 .global lbl_80499C70
 lbl_80499C70:
-	.4byte 0x73797353
-	.4byte 0x68617065
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "sysShape.cpp"
+	.skip 3
 .global lbl_80499C80
 lbl_80499C80:
-	.4byte 0x676F2074
-	.4byte 0x6F206865
-	.4byte 0x6C6C2021
-	.4byte 0x0A000000
+	.asciz "go to hell !\n"
+	.skip 2
 .global lbl_80499C90
 lbl_80499C90:
-	.4byte 0x45784D6F
-	.4byte 0x74696F6E
-	.4byte 0x4572723A
-	.4byte 0x3A736574
-	.4byte 0x4672616D
-	.4byte 0x6542794B
-	.4byte 0x65795479
-	.4byte 0x70652825
-	.4byte 0x64290A00
+	.asciz "ExMotionErr::setFrameByKeyType(%d)\n"
 .global lbl_80499CB4
 lbl_80499CB4:
-	.4byte 0x6D69736D
-	.4byte 0x61746368
-	.4byte 0x204C4F4F
-	.4byte 0x505F5354
-	.4byte 0x41525420
-	.4byte 0x2D204C4F
-	.4byte 0x4F505F45
-	.4byte 0x4E440A00
-	.4byte 0x426C656E
-	.4byte 0x64416E69
-	.4byte 0x6D61746F
-	.4byte 0x72203A20
-	.4byte 0x6174206C
-	.4byte 0x65617374
-	.4byte 0x2031206D
-	.4byte 0x6F74696F
-	.4byte 0x6E206973
-	.4byte 0x20726571
-	.4byte 0x75697265
-	.4byte 0x64210A00
+	.asciz "mismatch LOOP_START - LOOP_END\n"
+	.asciz "BlendAnimator : at least 1 motion is required!\n"
 .global lbl_80499D04
 lbl_80499D04:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80499D10
 lbl_80499D10:
-	.4byte 0x72656163
-	.4byte 0x68656420
-	.4byte 0x656F660A
-	.4byte 0x00000000
+	.asciz "reached eof\n"
+	.skip 3
 .global lbl_80499D20
 lbl_80499D20:
 	.4byte 0x09838183
