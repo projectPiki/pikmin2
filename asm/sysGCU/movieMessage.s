@@ -859,12 +859,12 @@ lbl_80435B64:
 /* 80435B94 00432AD4  C0 02 24 58 */	lfs f0, lbl_805207B8@sda21(r2)
 /* 80435B98 00432AD8  90 DC 00 18 */	stw r6, 0x18(r28)
 /* 80435B9C 00432ADC  38 04 C7 F0 */	addi r0, r4, __vt__Q35P2JME5Movie10WindowPane@l
-/* 80435BA0 00432AE0  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80435BA0 00432AE0  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80435BA4 00432AE4  90 BC 00 00 */	stw r5, 0(r28)
 /* 80435BA8 00432AE8  90 1C 00 00 */	stw r0, 0(r28)
 /* 80435BAC 00432AEC  90 DC 00 1C */	stw r6, 0x1c(r28)
 /* 80435BB0 00432AF0  D0 1C 00 20 */	stfs f0, 0x20(r28)
-/* 80435BB4 00432AF4  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 80435BB4 00432AF4  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 80435BB8 00432AF8  D0 1C 00 28 */	stfs f0, 0x28(r28)
 /* 80435BBC 00432AFC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80435BC0 00432B00  D0 1C 00 2C */	stfs f0, 0x2c(r28)

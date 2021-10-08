@@ -176,7 +176,7 @@ doRead__25PrimTagParm$$010Vector3$$0f$$1$$1FR6Stream:
 /* 8041BF4C 00418E8C  7C 08 02 A6 */	mflr r0
 /* 8041BF50 00418E90  38 63 00 0C */	addi r3, r3, 0xc
 /* 8041BF54 00418E94  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8041BF58 00418E98  4B FF 5A 39 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 8041BF58 00418E98  4B FF 5A 39 */	bl "read__10Vector3<f>FR6Stream"
 /* 8041BF5C 00418E9C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8041BF60 00418EA0  7C 08 03 A6 */	mtlr r0
 /* 8041BF64 00418EA4  38 21 00 10 */	addi r1, r1, 0x10
@@ -188,7 +188,7 @@ doWrite__25PrimTagParm$$010Vector3$$0f$$1$$1FR6Stream:
 /* 8041BF70 00418EB0  7C 08 02 A6 */	mflr r0
 /* 8041BF74 00418EB4  38 63 00 0C */	addi r3, r3, 0xc
 /* 8041BF78 00418EB8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8041BF7C 00418EBC  4B FF 5A 6D */	bl write__10Vector3$$0f$$1FR6Stream
+/* 8041BF7C 00418EBC  4B FF 5A 6D */	bl "write__10Vector3<f>FR6Stream"
 /* 8041BF80 00418EC0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8041BF84 00418EC4  7C 08 03 A6 */	mtlr r0
 /* 8041BF88 00418EC8  38 21 00 10 */	addi r1, r1, 0x10

@@ -344,9 +344,9 @@ viewMakeMatrix__Q24Game10PelletViewFR7Matrixf:
 /* 80165DBC 00162CFC  80 63 00 04 */	lwz r3, 4(r3)
 /* 80165DC0 00162D00  48 00 0C 15 */	bl getCylinderHeight__Q24Game6PelletFv
 /* 80165DC4 00162D04  C0 42 A5 C4 */	lfs f2, lbl_80518924@sda21(r2)
-/* 80165DC8 00162D08  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80165DC8 00162D08  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80165DCC 00162D0C  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
-/* 80165DD0 00162D10  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 80165DD0 00162D10  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 80165DD4 00162D14  EC 22 00 72 */	fmuls f1, f2, f1
 /* 80165DD8 00162D18  38 61 00 14 */	addi r3, r1, 0x14
 /* 80165DDC 00162D1C  D0 01 00 08 */	stfs f0, 8(r1)
@@ -355,7 +355,7 @@ viewMakeMatrix__Q24Game10PelletViewFR7Matrixf:
 /* 80165DE8 00162D28  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80165DEC 00162D2C  80 9E 00 04 */	lwz r4, 4(r30)
 /* 80165DF0 00162D30  38 84 01 68 */	addi r4, r4, 0x168
-/* 80165DF4 00162D34  48 2C 24 E5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80165DF4 00162D34  48 2C 24 E5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80165DF8 00162D38  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80165DFC 00162D3C  7F E5 FB 78 */	mr r5, r31
 /* 80165E00 00162D40  38 81 00 14 */	addi r4, r1, 0x14
@@ -1484,7 +1484,7 @@ lbl_80166D68:
 /* 80166D98 00163CD8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80166D9C 00163CDC  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80166DA0 00163CE0  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80166DA4 00163CE4  48 2C 15 35 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80166DA4 00163CE4  48 2C 15 35 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80166DA8 00163CE8  80 1F 01 74 */	lwz r0, 0x174(r31)
 /* 80166DAC 00163CEC  28 00 00 00 */	cmplwi r0, 0
 /* 80166DB0 00163CF0  41 82 00 80 */	beq lbl_80166E30
@@ -2910,9 +2910,9 @@ lbl_801681AC:
 /* 801681C0 00165100  4C C6 31 82 */	crclr 6
 /* 801681C4 00165104  4B EC 24 7D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_801681C8:
-/* 801681C8 00165108  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 801681C8 00165108  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 801681CC 0016510C  38 7F 01 7C */	addi r3, r31, 0x17c
-/* 801681D0 00165110  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
+/* 801681D0 00165110  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
 /* 801681D4 00165114  38 9F 03 AC */	addi r4, r31, 0x3ac
 /* 801681D8 00165118  4B FD 1F 01 */	bl initPosition__Q24Game5RigidFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801681DC 0016511C  80 9F 01 80 */	lwz r4, 0x180(r31)
@@ -3066,7 +3066,7 @@ lbl_801683DC:
 lbl_80168414:
 /* 80168414 00165354  38 61 00 14 */	addi r3, r1, 0x14
 /* 80168418 00165358  38 81 00 08 */	addi r4, r1, 8
-/* 8016841C 0016535C  48 2B FB 75 */	bl makeNaturalPosture__7MatrixfFR10Vector3$$0f$$1f
+/* 8016841C 0016535C  48 2B FB 75 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>"
 /* 80168420 00165360  80 A1 00 14 */	lwz r5, 0x14(r1)
 /* 80168424 00165364  38 7F 01 F8 */	addi r3, r31, 0x1f8
 /* 80168428 00165368  80 01 00 18 */	lwz r0, 0x18(r1)
@@ -3704,10 +3704,10 @@ lbl_80168D04:
 /* 80168D38 00165C78  28 00 00 00 */	cmplwi r0, 0
 /* 80168D3C 00165C7C  40 82 00 20 */	bne lbl_80168D5C
 /* 80168D40 00165C80  81 9E 00 00 */	lwz r12, 0(r30)
-/* 80168D44 00165C84  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 80168D44 00165C84  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 80168D48 00165C88  7F C3 F3 78 */	mr r3, r30
 /* 80168D4C 00165C8C  81 8C 00 68 */	lwz r12, 0x68(r12)
-/* 80168D50 00165C90  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 80168D50 00165C90  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 80168D54 00165C94  7D 89 03 A6 */	mtctr r12
 /* 80168D58 00165C98  4E 80 04 21 */	bctrl 
 lbl_80168D5C:
@@ -4686,7 +4686,7 @@ updateTrMatrix__Q24Game6PelletFv:
 /* 80169B70 00166AB0  D0 61 00 10 */	stfs f3, 0x10(r1)
 /* 80169B74 00166AB4  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80169B78 00166AB8  D0 21 00 0C */	stfs f1, 0xc(r1)
-/* 80169B7C 00166ABC  48 2B EC C5 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80169B7C 00166ABC  48 2B EC C5 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80169B80 00166AC0  38 61 00 44 */	addi r3, r1, 0x44
 /* 80169B84 00166AC4  38 9F 01 F8 */	addi r4, r31, 0x1f8
 /* 80169B88 00166AC8  48 2B F0 01 */	bl makeQ__7MatrixfFR4Quat
@@ -4848,7 +4848,7 @@ lbl_80169D94:
 /* 80169DD0 00166D10  D0 61 00 10 */	stfs f3, 0x10(r1)
 /* 80169DD4 00166D14  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80169DD8 00166D18  D0 21 00 0C */	stfs f1, 0xc(r1)
-/* 80169DDC 00166D1C  48 2B EA 65 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80169DDC 00166D1C  48 2B EA 65 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80169DE0 00166D20  38 61 00 50 */	addi r3, r1, 0x50
 /* 80169DE4 00166D24  38 9F 01 F8 */	addi r4, r31, 0x1f8
 /* 80169DE8 00166D28  48 2B ED A1 */	bl makeQ__7MatrixfFR4Quat
@@ -6741,7 +6741,7 @@ onStartCapture__Q24Game6PelletFv:
 /* 8016B784 001686C4  41 82 00 6C */	beq lbl_8016B7F0
 /* 8016B788 001686C8  38 7F 01 38 */	addi r3, r31, 0x138
 /* 8016B78C 001686CC  38 9F 03 AC */	addi r4, r31, 0x3ac
-/* 8016B790 001686D0  48 2B D0 B1 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 8016B790 001686D0  48 2B D0 B1 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 8016B794 001686D4  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 8016B798 001686D8  38 7F 01 38 */	addi r3, r31, 0x138
 /* 8016B79C 001686DC  80 84 00 08 */	lwz r4, 8(r4)
@@ -7928,8 +7928,8 @@ setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti:
 /* 8016C81C 0016975C  7D 89 03 A6 */	mtctr r12
 /* 8016C820 00169760  4E 80 04 21 */	bctrl 
 /* 8016C824 00169764  80 BE 03 5C */	lwz r5, 0x35c(r30)
-/* 8016C828 00169768  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 8016C82C 0016976C  C4 44 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r4)
+/* 8016C828 00169768  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 8016C82C 0016976C  C4 44 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r4)
 /* 8016C830 00169770  7C 7F 1B 78 */	mr r31, r3
 /* 8016C834 00169774  C0 65 00 B0 */	lfs f3, 0xb0(r5)
 /* 8016C838 00169778  C0 24 00 04 */	lfs f1, 4(r4)
@@ -7978,8 +7978,8 @@ lbl_8016C8C0:
 /* 8016C8E0 00169820  48 00 00 40 */	b lbl_8016C920
 lbl_8016C8E4:
 /* 8016C8E4 00169824  80 BE 03 5C */	lwz r5, 0x35c(r30)
-/* 8016C8E8 00169828  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8016C8EC 0016982C  C4 43 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r3)
+/* 8016C8E8 00169828  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8016C8EC 0016982C  C4 43 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r3)
 /* 8016C8F0 00169830  38 C1 00 14 */	addi r6, r1, 0x14
 /* 8016C8F4 00169834  C0 65 00 A0 */	lfs f3, 0xa0(r5)
 /* 8016C8F8 00169838  38 FD 00 18 */	addi r7, r29, 0x18

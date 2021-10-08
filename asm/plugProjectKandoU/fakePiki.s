@@ -2365,7 +2365,7 @@ updateTrMatrix__Q24Game8FakePikiFv:
 /* 8013EDA4 0013BCE4  38 DF 02 0C */	addi r6, r31, 0x20c
 /* 8013EDA8 0013BCE8  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8013EDAC 0013BCEC  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8013EDB0 0013BCF0  48 2E 95 29 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8013EDB0 0013BCF0  48 2E 95 29 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 lbl_8013EDB4:
 /* 8013EDB4 0013BCF4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8013EDB8 0013BCF8  83 E1 00 1C */	lwz r31, 0x1c(r1)

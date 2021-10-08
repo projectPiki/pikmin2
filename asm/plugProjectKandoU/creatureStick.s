@@ -550,10 +550,10 @@ updateStick__Q24Game8CreatureFR10Vector3$$0f$$1:
 /* 8019F628 0019C568  4B E8 B0 19 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8019F62C:
 /* 8019F62C 0019C56C  81 9F 00 00 */	lwz r12, 0(r31)
-/* 8019F630 0019C570  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 8019F630 0019C570  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 8019F634 0019C574  7F E3 FB 78 */	mr r3, r31
 /* 8019F638 0019C578  81 8C 00 68 */	lwz r12, 0x68(r12)
-/* 8019F63C 0019C57C  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 8019F63C 0019C57C  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 8019F640 0019C580  7D 89 03 A6 */	mtctr r12
 /* 8019F644 0019C584  4E 80 04 21 */	bctrl 
 /* 8019F648 0019C588  80 7F 00 F8 */	lwz r3, 0xf8(r31)
@@ -604,7 +604,7 @@ lbl_8019F6D0:
 /* 8019F6F4 0019C634  D0 01 00 7C */	stfs f0, 0x7c(r1)
 /* 8019F6F8 0019C638  80 DF 00 F8 */	lwz r6, 0xf8(r31)
 /* 8019F6FC 0019C63C  38 C6 00 20 */	addi r6, r6, 0x20
-/* 8019F700 0019C640  48 28 8B D9 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8019F700 0019C640  48 28 8B D9 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 8019F704 0019C644  48 00 00 34 */	b lbl_8019F738
 lbl_8019F708:
 /* 8019F708 0019C648  C0 22 AC EC */	lfs f1, lbl_8051904C@sda21(r2)
@@ -618,7 +618,7 @@ lbl_8019F708:
 /* 8019F728 0019C668  D0 21 00 5C */	stfs f1, 0x5c(r1)
 /* 8019F72C 0019C66C  D0 21 00 60 */	stfs f1, 0x60(r1)
 /* 8019F730 0019C670  D0 01 00 64 */	stfs f0, 0x64(r1)
-/* 8019F734 0019C674  48 28 8E 7D */	bl makeSR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8019F734 0019C674  48 28 8E 7D */	bl "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 lbl_8019F738:
 /* 8019F738 0019C678  38 61 00 BC */	addi r3, r1, 0xbc
 /* 8019F73C 0019C67C  38 81 00 8C */	addi r4, r1, 0x8c
@@ -836,7 +836,7 @@ lbl_8019FA40:
 /* 8019FA70 0019C9B0  38 A1 00 20 */	addi r5, r1, 0x20
 /* 8019FA74 0019C9B4  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 8019FA78 0019C9B8  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8019FA7C 0019C9BC  48 28 8E 0D */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8019FA7C 0019C9BC  48 28 8E 0D */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 lbl_8019FA80:
 /* 8019FA80 0019C9C0  E3 E1 01 08 */	psq_l f31, 264(r1), 0, qr0
 /* 8019FA84 0019C9C4  80 01 01 14 */	lwz r0, 0x114(r1)

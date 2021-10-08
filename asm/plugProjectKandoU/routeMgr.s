@@ -221,7 +221,7 @@ lbl_801727D4:
 .global reset__Q24Game8WayPointFv
 reset__Q24Game8WayPointFv:
 /* 801727F0 0016F730  38 A0 FF FF */	li r5, -1
-/* 801727F4 0016F734  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 801727F4 0016F734  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 801727F8 0016F738  B0 A3 00 3A */	sth r5, 0x3a(r3)
 /* 801727FC 0016F73C  38 00 00 00 */	li r0, 0
 /* 80172800 0016F740  C0 02 A6 A0 */	lfs f0, lbl_80518A00@sda21(r2)
@@ -240,7 +240,7 @@ reset__Q24Game8WayPointFv:
 /* 80172834 0016F774  B0 A3 00 6A */	sth r5, 0x6a(r3)
 /* 80172838 0016F778  B0 A3 00 48 */	sth r5, 0x48(r3)
 /* 8017283C 0016F77C  B0 A3 00 6C */	sth r5, 0x6c(r3)
-/* 80172840 0016F780  C4 24 41 E4 */	lfsu f1, zero__10Vector3$$0f$$1@l(r4)
+/* 80172840 0016F780  C4 24 41 E4 */	lfsu f1, "zero__10Vector3<f>"@l(r4)
 /* 80172844 0016F784  D0 23 00 4C */	stfs f1, 0x4c(r3)
 /* 80172848 0016F788  C0 24 00 04 */	lfs f1, 4(r4)
 /* 8017284C 0016F78C  D0 23 00 50 */	stfs f1, 0x50(r3)
@@ -2040,7 +2040,7 @@ lbl_8017415C:
 /* 80174170 001710B0  48 2A 02 C5 */	bl textWriteTab__6StreamFi
 /* 80174174 001710B4  7F C4 F3 78 */	mr r4, r30
 /* 80174178 001710B8  38 7C 00 4C */	addi r3, r28, 0x4c
-/* 8017417C 001710BC  48 29 D8 6D */	bl write__10Vector3$$0f$$1FR6Stream
+/* 8017417C 001710BC  48 29 D8 6D */	bl "write__10Vector3<f>FR6Stream"
 /* 80174180 001710C0  C0 3C 00 58 */	lfs f1, 0x58(r28)
 /* 80174184 001710C4  7F C3 F3 78 */	mr r3, r30
 /* 80174188 001710C8  48 2A 16 C1 */	bl writeFloat__6StreamFf
@@ -2252,7 +2252,7 @@ lbl_8017446C:
 /* 80174474 001713B4  41 80 FF E4 */	blt lbl_80174458
 /* 80174478 001713B8  7F 44 D3 78 */	mr r4, r26
 /* 8017447C 001713BC  38 7E 00 4C */	addi r3, r30, 0x4c
-/* 80174480 001713C0  48 29 D5 11 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80174480 001713C0  48 29 D5 11 */	bl "read__10Vector3<f>FR6Stream"
 /* 80174484 001713C4  7F 43 D3 78 */	mr r3, r26
 /* 80174488 001713C8  48 2A 09 25 */	bl readFloat__6StreamFv
 /* 8017448C 001713CC  D0 3E 00 58 */	stfs f1, 0x58(r30)
@@ -2434,10 +2434,10 @@ lbl_801746CC:
 /* 801746D4 00171614  7F E3 FB 78 */	mr r3, r31
 /* 801746D8 00171618  48 2A 00 8D */	bl readShort__6StreamFv
 /* 801746DC 0017161C  38 00 00 00 */	li r0, 0
-/* 801746E0 00171620  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 801746E0 00171620  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 801746E4 00171624  B0 1E 00 1C */	sth r0, 0x1c(r30)
 /* 801746E8 00171628  54 7A 04 3E */	clrlwi r26, r3, 0x10
-/* 801746EC 0017162C  3B A4 41 E4 */	addi r29, r4, zero__10Vector3$$0f$$1@l
+/* 801746EC 0017162C  3B A4 41 E4 */	addi r29, r4, "zero__10Vector3<f>"@l
 /* 801746F0 00171630  3B 00 00 00 */	li r24, 0
 /* 801746F4 00171634  48 00 01 30 */	b lbl_80174824
 lbl_801746F8:
@@ -2454,7 +2454,7 @@ lbl_801746F8:
 /* 80174720 00171660  7F 63 DB 78 */	mr r3, r27
 /* 80174724 00171664  48 29 CC 6D */	bl __ct__5CNodeFv
 /* 80174728 00171668  3C 80 80 4B */	lis r4, __vt__Q34Game8WayPoint8RoomList@ha
-/* 8017472C 0017166C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8017472C 0017166C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80174730 00171670  38 04 24 10 */	addi r0, r4, __vt__Q34Game8WayPoint8RoomList@l
 /* 80174734 00171674  C0 02 A6 A0 */	lfs f0, lbl_80518A00@sda21(r2)
 /* 80174738 00171678  90 1B 00 00 */	stw r0, 0(r27)
@@ -2477,7 +2477,7 @@ lbl_801746F8:
 /* 8017477C 001716BC  B0 99 00 6A */	sth r4, 0x6a(r25)
 /* 80174780 001716C0  B0 99 00 48 */	sth r4, 0x48(r25)
 /* 80174784 001716C4  B0 99 00 6C */	sth r4, 0x6c(r25)
-/* 80174788 001716C8  C0 23 41 E4 */	lfs f1, zero__10Vector3$$0f$$1@l(r3)
+/* 80174788 001716C8  C0 23 41 E4 */	lfs f1, "zero__10Vector3<f>"@l(r3)
 /* 8017478C 001716CC  D0 39 00 4C */	stfs f1, 0x4c(r25)
 /* 80174790 001716D0  C0 3D 00 04 */	lfs f1, 4(r29)
 /* 80174794 001716D4  D0 39 00 50 */	stfs f1, 0x50(r25)
@@ -2511,7 +2511,7 @@ lbl_801747F0:
 /* 801747F8 00171738  41 80 FF E4 */	blt lbl_801747DC
 /* 801747FC 0017173C  7F E4 FB 78 */	mr r4, r31
 /* 80174800 00171740  38 7C 00 4C */	addi r3, r28, 0x4c
-/* 80174804 00171744  48 29 D1 8D */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80174804 00171744  48 29 D1 8D */	bl "read__10Vector3<f>FR6Stream"
 /* 80174808 00171748  7F E3 FB 78 */	mr r3, r31
 /* 8017480C 0017174C  48 2A 05 A1 */	bl readFloat__6StreamFv
 /* 80174810 00171750  D0 3C 00 58 */	stfs f1, 0x58(r28)

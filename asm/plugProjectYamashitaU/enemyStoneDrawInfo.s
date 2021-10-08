@@ -985,7 +985,7 @@ lbl_80128FF8:
 /* 8012903C 00125F7C  EC 02 00 72 */	fmuls f0, f2, f1
 /* 80129040 00125F80  EC 03 00 32 */	fmuls f0, f3, f0
 /* 80129044 00125F84  D0 01 00 08 */	stfs f0, 8(r1)
-/* 80129048 00125F88  48 2F F8 41 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80129048 00125F88  48 2F F8 41 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 8012904C 00125F8C  E3 E1 00 48 */	psq_l f31, 72(r1), 0, qr0
 /* 80129050 00125F90  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80129054 00125F94  CB E1 00 40 */	lfd f31, 0x40(r1)
@@ -1064,7 +1064,7 @@ lbl_8012911C:
 /* 80129160 001260A0  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80129164 001260A4  EC 03 00 72 */	fmuls f0, f3, f1
 /* 80129168 001260A8  D0 01 00 08 */	stfs f0, 8(r1)
-/* 8012916C 001260AC  48 2F F7 1D */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8012916C 001260AC  48 2F F7 1D */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 80129170 001260B0  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80129174 001260B4  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 80129178 001260B8  7C 08 03 A6 */	mtlr r0

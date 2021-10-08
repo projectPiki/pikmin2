@@ -824,9 +824,9 @@ lbl_803ACE80:
 /* 803ACEB8 003A9DF8  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
 /* 803ACEBC 003A9DFC  3C A0 80 4B */	lis r5, __vt__Q24Game12InteractWind@ha
 /* 803ACEC0 003A9E00  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
-/* 803ACEC4 003A9E04  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 803ACEC4 003A9E04  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 803ACEC8 003A9E08  90 01 00 84 */	stw r0, 0x84(r1)
-/* 803ACECC 003A9E0C  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 803ACECC 003A9E0C  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 803ACED0 003A9E10  38 A5 49 74 */	addi r5, r5, __vt__Q24Game12InteractWind@l
 /* 803ACED4 003A9E14  C0 62 12 6C */	lfs f3, lbl_8051F5CC@sda21(r2)
 /* 803ACED8 003A9E18  C0 44 00 00 */	lfs f2, 0(r4)
@@ -1397,7 +1397,7 @@ lbl_803AD6B0:
 /* 803AD6C4 003AA604  38 A1 00 14 */	addi r5, r1, 0x14
 /* 803AD6C8 003AA608  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 803AD6CC 003AA60C  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 803AD6D0 003AA610  48 07 B1 B9 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 803AD6D0 003AA610  48 07 B1 B9 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 lbl_803AD6D4:
 /* 803AD6D4 003AA614  80 7F 01 74 */	lwz r3, 0x174(r31)
 /* 803AD6D8 003AA618  38 82 12 8C */	addi r4, r2, lbl_8051F5EC@sda21
@@ -1436,7 +1436,7 @@ lbl_803AD6D4:
 /* 803AD75C 003AA69C  38 A1 00 14 */	addi r5, r1, 0x14
 /* 803AD760 003AA6A0  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 803AD764 003AA6A4  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 803AD768 003AA6A8  48 07 B1 21 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 803AD768 003AA6A8  48 07 B1 21 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 803AD76C 003AA6AC  7F C3 F3 78 */	mr r3, r30
 /* 803AD770 003AA6B0  7F C5 F3 78 */	mr r5, r30
 /* 803AD774 003AA6B4  38 81 00 2C */	addi r4, r1, 0x2c
@@ -1676,7 +1676,7 @@ lbl_803ADAAC:
 /* 803ADAE8 003AAA28  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 803ADAEC 003AAA2C  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 803ADAF0 003AAA30  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 803ADAF4 003AAA34  48 07 AD 95 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 803ADAF4 003AAA34  48 07 AD 95 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 803ADAF8 003AAA38  7F E3 FB 78 */	mr r3, r31
 /* 803ADAFC 003AAA3C  7F E5 FB 78 */	mr r5, r31
 /* 803ADB00 003AAA40  38 81 00 7C */	addi r4, r1, 0x7c

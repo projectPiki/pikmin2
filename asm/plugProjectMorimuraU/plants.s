@@ -75,7 +75,7 @@ onInit__Q34Game6Plants3ObjFPQ24Game15CreatureInitArg:
 /* 803584C8 00355408  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 803584CC 0035540C  38 DF 01 8C */	addi r6, r31, 0x18c
 /* 803584D0 00355410  98 1F 02 BD */	stb r0, 0x2bd(r31)
-/* 803584D4 00355414  48 0C FE 05 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 803584D4 00355414  48 0C FE 05 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 803584D8 00355418  80 1F 01 74 */	lwz r0, 0x174(r31)
 /* 803584DC 0035541C  28 00 00 00 */	cmplwi r0, 0
 /* 803584E0 00355420  40 82 00 20 */	bne lbl_80358500
@@ -288,7 +288,7 @@ doAnimationCullingOff__Q34Game6Plants3ObjFv:
 /* 803587D0 00355710  38 9F 01 68 */	addi r4, r31, 0x168
 /* 803587D4 00355714  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 803587D8 00355718  38 DF 01 8C */	addi r6, r31, 0x18c
-/* 803587DC 0035571C  48 0C FA FD */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 803587DC 0035571C  48 0C FA FD */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 803587E0 00355720  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 803587E4 00355724  38 7F 01 38 */	addi r3, r31, 0x138
 /* 803587E8 00355728  80 84 00 08 */	lwz r4, 8(r4)

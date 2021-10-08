@@ -2340,11 +2340,11 @@ update__Q23efx11TEnemyHamonFR10Vector3$$0f$$1:
 /* 803C9A2C 003C696C  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 803C9A30 003C6970  40 80 00 9C */	bge lbl_803C9ACC
 /* 803C9A34 003C6974  80 FE 00 30 */	lwz r7, 0x30(r30)
-/* 803C9A38 003C6978  3C A0 80 51 */	lis r5, zero__10Vector3$$0f$$1@ha
+/* 803C9A38 003C6978  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
 /* 803C9A3C 003C697C  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 803C9A40 003C6980  3C 60 80 4B */	lis r3, __vt__Q23efx12ArgEnemyType@ha
 /* 803C9A44 003C6984  C0 5F 00 08 */	lfs f2, 8(r31)
-/* 803C9A48 003C6988  38 C5 41 E4 */	addi r6, r5, zero__10Vector3$$0f$$1@l
+/* 803C9A48 003C6988  38 C5 41 E4 */	addi r6, r5, "zero__10Vector3<f>"@l
 /* 803C9A4C 003C698C  C0 27 00 00 */	lfs f1, 0(r7)
 /* 803C9A50 003C6990  38 A4 A7 EC */	addi r5, r4, __vt__Q23efx3Arg@l
 /* 803C9A54 003C6994  C0 1F 00 00 */	lfs f0, 0(r31)

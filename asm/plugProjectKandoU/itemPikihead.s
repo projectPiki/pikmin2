@@ -1417,7 +1417,7 @@ cacheSave__Q34Game12ItemPikihead4ItemFR6Stream:
 /* 801D9E30 001D6D70  48 23 B8 41 */	bl writeByte__6StreamFUc
 /* 801D9E34 001D6D74  7F E4 FB 78 */	mr r4, r31
 /* 801D9E38 001D6D78  38 7E 01 9C */	addi r3, r30, 0x19c
-/* 801D9E3C 001D6D7C  48 23 7B AD */	bl write__10Vector3$$0f$$1FR6Stream
+/* 801D9E3C 001D6D7C  48 23 7B AD */	bl "write__10Vector3<f>FR6Stream"
 /* 801D9E40 001D6D80  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801D9E44 001D6D84  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801D9E48 001D6D88  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1453,7 +1453,7 @@ cacheLoad__Q34Game12ItemPikihead4ItemFR6Stream:
 /* 801D9EB4 001D6DF4  4E 80 04 21 */	bctrl 
 /* 801D9EB8 001D6DF8  7F E4 FB 78 */	mr r4, r31
 /* 801D9EBC 001D6DFC  38 7E 01 9C */	addi r3, r30, 0x19c
-/* 801D9EC0 001D6E00  48 23 7A D1 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 801D9EC0 001D6E00  48 23 7A D1 */	bl "read__10Vector3<f>FR6Stream"
 /* 801D9EC4 001D6E04  7F C3 F3 78 */	mr r3, r30
 /* 801D9EC8 001D6E08  38 9E 01 9C */	addi r4, r30, 0x19c
 /* 801D9ECC 001D6E0C  38 A0 00 00 */	li r5, 0

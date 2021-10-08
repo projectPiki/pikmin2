@@ -4065,7 +4065,7 @@ updateTrMatrix__Q24Game9EnemyBaseFv:
 /* 80102BB8 000FFAF8  D0 A1 00 10 */	stfs f5, 0x10(r1)
 /* 80102BBC 000FFAFC  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 80102BC0 000FFB00  D0 01 00 08 */	stfs f0, 8(r1)
-/* 80102BC4 000FFB04  48 32 5C C5 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80102BC4 000FFB04  48 32 5C C5 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 80102BC8 000FFB08  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80102BCC 000FFB0C  7C 08 03 A6 */	mtlr r0
 /* 80102BD0 000FFB10  38 21 00 20 */	addi r1, r1, 0x20
@@ -4492,7 +4492,7 @@ lbl_80103160:
 /* 801031AC 001000EC  EC 01 00 2A */	fadds f0, f1, f0
 /* 801031B0 001000F0  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 801031B4 001000F4  D0 01 00 08 */	stfs f0, 8(r1)
-/* 801031B8 001000F8  48 32 51 21 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801031B8 001000F8  48 32 51 21 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 lbl_801031BC:
 /* 801031BC 001000FC  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801031C0 00100100  38 82 94 C0 */	addi r4, r2, lbl_80517820@sda21
@@ -4586,7 +4586,7 @@ doAnimationStick__Q24Game9EnemyBaseFv:
 /* 801032F8 00100238  D0 A1 00 10 */	stfs f5, 0x10(r1)
 /* 801032FC 0010023C  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 80103300 00100240  D0 01 00 08 */	stfs f0, 8(r1)
-/* 80103304 00100244  48 32 4F D5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80103304 00100244  48 32 4F D5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80103308 00100248  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8010330C 0010024C  7C 08 03 A6 */	mtlr r0
 /* 80103310 00100250  38 21 00 20 */	addi r1, r1, 0x20
@@ -10199,8 +10199,8 @@ viewGetCollTreeJointIndex__Q24Game10PelletViewFv:
 
 .global viewGetCollTreeOffset__Q24Game10PelletViewFv
 viewGetCollTreeOffset__Q24Game10PelletViewFv:
-/* 80107EC4 00104E04  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 80107EC8 00104E08  C4 04 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r4)
+/* 80107EC4 00104E04  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 80107EC8 00104E08  C4 04 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r4)
 /* 80107ECC 00104E0C  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80107ED0 00104E10  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80107ED4 00104E14  D0 03 00 04 */	stfs f0, 4(r3)

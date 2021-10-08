@@ -209,9 +209,9 @@ calcMatrix__Q24Game12AABBWaterBoxFv:
 /* 801AE728 001AB668  28 00 00 00 */	cmplwi r0, 0
 /* 801AE72C 001AB66C  41 82 00 70 */	beq lbl_801AE79C
 /* 801AE730 001AB670  C0 5F 00 30 */	lfs f2, 0x30(r31)
-/* 801AE734 001AB674  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 801AE734 001AB674  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 801AE738 001AB678  C0 3F 00 0C */	lfs f1, 0xc(r31)
-/* 801AE73C 001AB67C  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 801AE73C 001AB67C  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 801AE740 001AB680  C0 02 AF D4 */	lfs f0, lbl_80519334@sda21(r2)
 /* 801AE744 001AB684  38 61 00 14 */	addi r3, r1, 0x14
 /* 801AE748 001AB688  EC 22 08 2A */	fadds f1, f2, f1
@@ -223,7 +223,7 @@ calcMatrix__Q24Game12AABBWaterBoxFv:
 /* 801AE760 001AB6A0  D0 21 00 08 */	stfs f1, 8(r1)
 /* 801AE764 001AB6A4  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 801AE768 001AB6A8  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 801AE76C 001AB6AC  48 27 9B 6D */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801AE76C 001AB6AC  48 27 9B 6D */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 801AE770 001AB6B0  80 9F 00 50 */	lwz r4, 0x50(r31)
 /* 801AE774 001AB6B4  38 61 00 14 */	addi r3, r1, 0x14
 /* 801AE778 001AB6B8  80 84 00 08 */	lwz r4, 8(r4)

@@ -1225,7 +1225,7 @@ doAnimationIKSystem__Q34Game6Houdai3ObjFv:
 /* 802C0DF8 002BDD38  D0 01 00 08 */	stfs f0, 8(r1)
 /* 802C0DFC 002BDD3C  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 802C0E00 002BDD40  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 802C0E04 002BDD44  48 16 74 D5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802C0E04 002BDD44  48 16 74 D5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 802C0E08 002BDD48  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802C0E0C 002BDD4C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802C0E10 002BDD50  7C 08 03 A6 */	mtlr r0
@@ -3585,22 +3585,22 @@ createDeadBombEffect__Q34Game6Houdai3ObjFv:
 /* 802C2ED8 002BFE18  81 8C 00 08 */	lwz r12, 8(r12)
 /* 802C2EDC 002BFE1C  7D 89 03 A6 */	mtctr r12
 /* 802C2EE0 002BFE20  4E 80 04 21 */	bctrl 
-/* 802C2EE4 002BFE24  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802C2EE4 002BFE24  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802C2EE8 002BFE28  7E BB AB 78 */	mr r27, r21
-/* 802C2EEC 002BFE2C  3B A3 41 E4 */	addi r29, r3, zero__10Vector3$$0f$$1@l
+/* 802C2EEC 002BFE2C  3B A3 41 E4 */	addi r29, r3, "zero__10Vector3<f>"@l
 /* 802C2EF0 002BFE30  3B 40 00 00 */	li r26, 0
 lbl_802C2EF4:
 /* 802C2EF4 002BFE34  2C 1A 00 00 */	cmpwi r26, 0
 /* 802C2EF8 002BFE38  40 82 01 04 */	bne lbl_802C2FFC
 /* 802C2EFC 002BFE3C  3D 00 80 4B */	lis r8, __vt__Q23efx3Arg@ha
-/* 802C2F00 002BFE40  3C E0 80 51 */	lis r7, zero__10Vector3$$0f$$1@ha
+/* 802C2F00 002BFE40  3C E0 80 51 */	lis r7, "zero__10Vector3<f>"@ha
 /* 802C2F04 002BFE44  3C C0 80 4D */	lis r6, __vt__Q23efx9ArgPosPos@ha
 /* 802C2F08 002BFE48  3C A0 80 4B */	lis r5, __vt__Q23efx5TBase@ha
 /* 802C2F0C 002BFE4C  3C 80 80 4E */	lis r4, __vt__Q23efx8TSimple2@ha
 /* 802C2F10 002BFE50  3C 60 80 4F */	lis r3, __vt__Q23efx16THdamaDeadHahen2@ha
 /* 802C2F14 002BFE54  7F 7C DB 78 */	mr r28, r27
 /* 802C2F18 002BFE58  3B C8 A7 EC */	addi r30, r8, __vt__Q23efx3Arg@l
-/* 802C2F1C 002BFE5C  3B E7 41 E4 */	addi r31, r7, zero__10Vector3$$0f$$1@l
+/* 802C2F1C 002BFE5C  3B E7 41 E4 */	addi r31, r7, "zero__10Vector3<f>"@l
 /* 802C2F20 002BFE60  3B 06 0E A4 */	addi r24, r6, __vt__Q23efx9ArgPosPos@l
 /* 802C2F24 002BFE64  3A E5 A7 F8 */	addi r23, r5, __vt__Q23efx5TBase@l
 /* 802C2F28 002BFE68  3A C4 6A 64 */	addi r22, r4, __vt__Q23efx8TSimple2@l
@@ -3659,14 +3659,14 @@ lbl_802C2F34:
 /* 802C2FF8 002BFF38  48 00 00 F4 */	b lbl_802C30EC
 lbl_802C2FFC:
 /* 802C2FFC 002BFF3C  3D 00 80 4B */	lis r8, __vt__Q23efx3Arg@ha
-/* 802C3000 002BFF40  3C E0 80 51 */	lis r7, zero__10Vector3$$0f$$1@ha
+/* 802C3000 002BFF40  3C E0 80 51 */	lis r7, "zero__10Vector3<f>"@ha
 /* 802C3004 002BFF44  3C C0 80 4D */	lis r6, __vt__Q23efx9ArgPosPos@ha
 /* 802C3008 002BFF48  3C A0 80 4B */	lis r5, __vt__Q23efx5TBase@ha
 /* 802C300C 002BFF4C  3C 80 80 4E */	lis r4, __vt__Q23efx8TSimple1@ha
 /* 802C3010 002BFF50  3C 60 80 4F */	lis r3, __vt__Q23efx16THdamaDeadHahen1@ha
 /* 802C3014 002BFF54  7F 7C DB 78 */	mr r28, r27
 /* 802C3018 002BFF58  3B E8 A7 EC */	addi r31, r8, __vt__Q23efx3Arg@l
-/* 802C301C 002BFF5C  3A A7 41 E4 */	addi r21, r7, zero__10Vector3$$0f$$1@l
+/* 802C301C 002BFF5C  3A A7 41 E4 */	addi r21, r7, "zero__10Vector3<f>"@l
 /* 802C3020 002BFF60  3A C6 0E A4 */	addi r22, r6, __vt__Q23efx9ArgPosPos@l
 /* 802C3024 002BFF64  3A E5 A7 F8 */	addi r23, r5, __vt__Q23efx5TBase@l
 /* 802C3028 002BFF68  3B 04 6A 78 */	addi r24, r4, __vt__Q23efx8TSimple1@l

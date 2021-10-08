@@ -450,7 +450,7 @@ lbl_8043F77C:
 /* 8043F784 0043C6C4  38 81 00 14 */	addi r4, r1, 0x14
 /* 8043F788 0043C6C8  D3 E1 00 18 */	stfs f31, 0x18(r1)
 /* 8043F78C 0043C6CC  D3 81 00 1C */	stfs f28, 0x1c(r1)
-/* 8043F790 0043C6D0  4B FE 90 B1 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 8043F790 0043C6D0  4B FE 90 B1 */	bl "makeT__7MatrixfFR10Vector3<f>"
 lbl_8043F794:
 /* 8043F794 0043C6D4  28 1F 00 00 */	cmplwi r31, 0
 /* 8043F798 0043C6D8  41 82 00 50 */	beq lbl_8043F7E8
@@ -603,7 +603,7 @@ lbl_8043F968:
 /* 8043F9AC 0043C8EC  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8043F9B0 0043C8F0  FC 00 00 50 */	fneg f0, f0
 /* 8043F9B4 0043C8F4  D0 01 00 40 */	stfs f0, 0x40(r1)
-/* 8043F9B8 0043C8F8  4B FE 89 21 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8043F9B8 0043C8F8  4B FE 89 21 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 8043F9BC 0043C8FC  48 00 01 5C */	b lbl_8043FB18
 lbl_8043F9C0:
 /* 8043F9C0 0043C900  C0 65 00 1C */	lfs f3, 0x1c(r5)
@@ -647,7 +647,7 @@ lbl_8043F9EC:
 /* 8043FA54 0043C994  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 8043FA58 0043C998  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 8043FA5C 0043C99C  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 8043FA60 0043C9A0  4B FE 88 79 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8043FA60 0043C9A0  4B FE 88 79 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 8043FA64 0043C9A4  48 00 00 B4 */	b lbl_8043FB18
 lbl_8043FA68:
 /* 8043FA68 0043C9A8  C0 65 00 1C */	lfs f3, 0x1c(r5)
@@ -694,7 +694,7 @@ lbl_8043FA94:
 /* 8043FB08 0043CA48  FC 20 08 18 */	frsp f1, f1
 /* 8043FB0C 0043CA4C  EC 02 00 7C */	fnmsubs f0, f2, f1, f0
 /* 8043FB10 0043CA50  D0 06 00 04 */	stfs f0, 4(r6)
-/* 8043FB14 0043CA54  4B FE 87 C5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8043FB14 0043CA54  4B FE 87 C5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 lbl_8043FB18:
 /* 8043FB18 0043CA58  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 8043FB1C 0043CA5C  7C 08 03 A6 */	mtlr r0
@@ -1327,7 +1327,7 @@ draw__Q35P2JME6Window8TControlFR8Graphics:
 /* 80440414 0043D354  D0 41 00 08 */	stfs f2, 8(r1)
 /* 80440418 0043D358  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8044041C 0043D35C  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80440420 0043D360  4B FE 84 21 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80440420 0043D360  4B FE 84 21 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80440424 0043D364  38 7F 01 90 */	addi r3, r31, 0x190
 /* 80440428 0043D368  81 9F 01 90 */	lwz r12, 0x190(r31)
 /* 8044042C 0043D36C  81 8C 00 14 */	lwz r12, 0x14(r12)

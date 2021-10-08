@@ -325,7 +325,7 @@ drawPos__8LightObjFR8GraphicsR7Matrixf:
 /* 8042B914 00428854  4B FF 9F 09 */	bl initPrimDraw__8GraphicsFP7Matrixf
 /* 8042B918 00428858  38 61 00 14 */	addi r3, r1, 0x14
 /* 8042B91C 0042885C  38 9E 00 1C */	addi r4, r30, 0x1c
-/* 8042B920 00428860  4B FF CF 21 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 8042B920 00428860  4B FF CF 21 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 8042B924 00428864  88 BE 00 37 */	lbz r5, 0x37(r30)
 /* 8042B928 00428868  88 9E 00 36 */	lbz r4, 0x36(r30)
 /* 8042B92C 0042886C  88 7E 00 35 */	lbz r3, 0x35(r30)
