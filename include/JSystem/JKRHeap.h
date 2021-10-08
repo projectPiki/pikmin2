@@ -4,6 +4,8 @@
 struct JKRHeap {
     u32 getFreeSize();
     u32 getTotalFreeSize();
+
+    void free(void*, JKRHeap*);
 };
 
 #endif

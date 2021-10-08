@@ -37502,8 +37502,8 @@ lbl_8049ADB8:
 	.4byte 0x53617665
 	.4byte 0x44617461
 	.4byte 0x00000000
-.global lbl_8049ADCC
-lbl_8049ADCC:
+.global gStrMemoryCardMgrCpp
+gStrMemoryCardMgrCpp:
 	.4byte 0x70696B6D
 	.4byte 0x696E324D
 	.4byte 0x656D6F72
@@ -37511,8 +37511,8 @@ lbl_8049ADCC:
 	.4byte 0x644D6772
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_8049ADE8
-lbl_8049ADE8:
+.global gStrMemoryCardMgrP2Assert
+gStrMemoryCardMgrP2Assert:
 	.4byte 0x50324173
 	.4byte 0x73657274
 	.4byte 0x00000000
