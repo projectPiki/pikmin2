@@ -25,27 +25,27 @@ struct Interaction__vt {
 };
 
 struct InteractFlick {
+    bool actCommon(Creature*);
+    bool actNavi(Navi*);
+    bool actPiki(Piki*);
+
     Interaction__vt* m_vtbl; // _00
     Creature* m_creature;    // _04
     f32 m_knockback;         // _08
     f32 m_damage;            // _0C
     f32 _10;                 // _10
-
-    bool actCommon(Creature*);
-    bool actNavi(Navi*);
-    bool actPiki(Piki*);
 };
 
 struct InteractAttack {
-    Interaction__vt* m_vtbl; // _00
-    Creature* m_creature;    // _04
-    f32 _08;                 // _08
-    f32 _0C;                 // _0C
-
     bool actCommon(Creature*);
     bool actNavi(Navi*);
     bool actEnemy(EnemyBase*);
     bool actItem(BaseItem*);
+
+    Interaction__vt* m_vtbl; // _00
+    Creature* m_creature;    // _04
+    f32 _08;                 // _08
+    f32 _0C;                 // _0C
 };
 } // namespace Game
 #endif

@@ -5,7 +5,7 @@
 
 namespace Game {
 struct Navi {
-    u8 _00[800]; // _00
+    u8 _00[0x320]; // _00
 };
 } // namespace Game
 
