@@ -3,6 +3,11 @@
 
 // r2 is  8051E360
 // r13 is 8051C680
+typedef unsigned char uchar;
+typedef unsigned short ushort;
+typedef unsigned int uint;
+typedef unsigned long ulong;
+typedef unsigned long long ulonglong;
 
 typedef signed char s8;
 typedef signed short s16;
