@@ -21,7 +21,7 @@ void _Print(char*, ...)
  * Address:	80411204
  * Size:	000004
  */
-// void Node::init() { return; }
+ Node Node::init() { return this; }
 
 /*
  * --INFO--
