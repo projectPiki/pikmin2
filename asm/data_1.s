@@ -3160,3 +3160,4 @@ __vt__Q23PSM18ObjCalc_SingleGame:
   .4byte 0
   .4byte 0
   .4byte 0
+.skip 4
