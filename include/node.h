@@ -3,18 +3,20 @@
 
 #include "types.h"
 #include "Graphics.h"
+
 class Node {
-public:
+protected:
 	float radius;
 	Node* pPrevious;
 	Node* pNext;
 	Node* pCurrent;
 	uint flags;
 
-    void init();
-    void displayInfo(int);
-    void update();
-    void draw(Graphics&);
+	Node* init();
+	void displayInfo(int);
+	void update();
+	void draw(Graphics&);
+
 };
 
 #endif
