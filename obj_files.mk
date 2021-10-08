@@ -234,7 +234,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIStreamMgr.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAISystemInterface.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIObject.o\
-	$(BUILD_DIR)/asm/JSystem/JAD/JADHioNode.o\
+	$(BUILD_DIR)/src/JSystem/JAD/JADHioNode.o\
 	$(BUILD_DIR)/src/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUData.o\
@@ -1061,6 +1061,7 @@ TEXT_O_FILES:=\
 
 GROUP_1_FILES:=\
 	$(BUILD_DIR)/asm/rodata_2.o\
+	$(BUILD_DIR)/asm/data_0.o\
 
 TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
