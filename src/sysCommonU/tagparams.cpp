@@ -3,16 +3,6 @@
 /*
  * --INFO--
  * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-    // UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	00002C
  */
 void TagParm::read(Stream&)
