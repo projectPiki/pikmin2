@@ -798,10 +798,10 @@ createNewControl__Q24Game16FieldVtxColorMgrFR10Vector3$$0f$$1ff:
 /* 80122F04 0011FE44  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80122F08 0011FE48  41 82 00 44 */	beq lbl_80122F4C
 /* 80122F0C 0011FE4C  38 00 00 00 */	li r0, 0
-/* 80122F10 0011FE50  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80122F10 0011FE50  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80122F14 0011FE54  90 1F 00 00 */	stw r0, 0(r31)
 /* 80122F18 0011FE58  C0 42 99 60 */	lfs f2, lbl_80517CC0@sda21(r2)
-/* 80122F1C 0011FE5C  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 80122F1C 0011FE5C  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 80122F20 0011FE60  C0 22 99 64 */	lfs f1, lbl_80517CC4@sda21(r2)
 /* 80122F24 0011FE64  D0 1F 00 04 */	stfs f0, 4(r31)
 /* 80122F28 0011FE68  C0 02 99 68 */	lfs f0, lbl_80517CC8@sda21(r2)

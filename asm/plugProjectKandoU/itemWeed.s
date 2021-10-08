@@ -62,7 +62,7 @@ makeMatrix__Q34Game8ItemWeed4WeedFv:
 /* 8020F348 0020C288  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8020F34C 0020C28C  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 8020F350 0020C290  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8020F354 0020C294  48 21 8F 85 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8020F354 0020C294  48 21 8F 85 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 8020F358 0020C298  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8020F35C 0020C29C  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 8020F360 0020C2A0  7C 08 03 A6 */	mtlr r0
@@ -394,7 +394,7 @@ onSetPosition__Q34Game8ItemWeed4ItemFv:
 /* 8020F7D8 0020C718  7C 7C 1B 78 */	mr r28, r3
 /* 8020F7DC 0020C71C  38 7C 01 38 */	addi r3, r28, 0x138
 /* 8020F7E0 0020C720  38 9C 01 9C */	addi r4, r28, 0x19c
-/* 8020F7E4 0020C724  48 21 90 5D */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 8020F7E4 0020C724  48 21 90 5D */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 8020F7E8 0020C728  C0 7C 01 D0 */	lfs f3, 0x1d0(r28)
 /* 8020F7EC 0020C72C  3B A0 00 00 */	li r29, 0
 /* 8020F7F0 0020C730  C0 3C 01 A0 */	lfs f1, 0x1a0(r28)

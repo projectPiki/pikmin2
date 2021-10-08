@@ -861,7 +861,7 @@ makeMatrix__Q34Game12ItemUjamushi3UjaFv:
 /* 80206688 002035C8  C0 08 00 B4 */	lfs f0, 0xb4(r8)
 /* 8020668C 002035CC  EC 01 00 2A */	fadds f0, f1, f0
 /* 80206690 002035D0  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 80206694 002035D4  48 22 1C 45 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80206694 002035D4  48 22 1C 45 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80206698 002035D8  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8020669C 002035DC  7C 08 03 A6 */	mtlr r0
 /* 802066A0 002035E0  38 21 00 30 */	addi r1, r1, 0x30
@@ -3606,7 +3606,7 @@ onSetPosition__Q34Game12ItemUjamushi4ItemFv:
 /* 80208E88 00205DC8  7C 7F 1B 78 */	mr r31, r3
 /* 80208E8C 00205DCC  38 7F 01 38 */	addi r3, r31, 0x138
 /* 80208E90 00205DD0  38 9F 01 9C */	addi r4, r31, 0x19c
-/* 80208E94 00205DD4  48 21 F9 AD */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80208E94 00205DD4  48 21 F9 AD */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80208E98 00205DD8  80 8D 95 40 */	lwz r4, mgr__Q24Game12ItemUjamushi@sda21(r13)
 /* 80208E9C 00205DDC  C0 7F 01 D0 */	lfs f3, 0x1d0(r31)
 /* 80208EA0 00205DE0  C0 3F 01 A0 */	lfs f1, 0x1a0(r31)

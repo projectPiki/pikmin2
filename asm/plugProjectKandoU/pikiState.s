@@ -1167,12 +1167,12 @@ lbl_8018A42C:
 /* 8018A45C 0018739C  D0 61 00 20 */	stfs f3, 0x20(r1)
 /* 8018A460 001873A0  D0 41 00 24 */	stfs f2, 0x24(r1)
 /* 8018A464 001873A4  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8018A468 001873A8  48 29 DB 29 */	bl makeNaturalPosture__7MatrixfFR10Vector3$$0f$$1f
-/* 8018A46C 001873AC  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 8018A468 001873A8  48 29 DB 29 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>"
+/* 8018A46C 001873AC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 8018A470 001873B0  38 61 00 A8 */	addi r3, r1, 0xa8
-/* 8018A474 001873B4  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
+/* 8018A474 001873B4  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
 /* 8018A478 001873B8  38 9F 01 68 */	addi r4, r31, 0x168
-/* 8018A47C 001873BC  48 29 E0 E5 */	bl makeST__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8018A47C 001873BC  48 29 E0 E5 */	bl "makeST__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 8018A480 001873C0  C0 22 AA 80 */	lfs f1, lbl_80518DE0@sda21(r2)
 /* 8018A484 001873C4  38 61 00 D8 */	addi r3, r1, 0xd8
 /* 8018A488 001873C8  C0 02 AA 8C */	lfs f0, lbl_80518DEC@sda21(r2)
@@ -3864,8 +3864,8 @@ exec__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki:
 /* 8018CA6C 001899AC  38 E0 00 00 */	li r7, 0
 /* 8018CA70 001899B0  38 03 A7 F8 */	addi r0, r3, __vt__Q23efx5TBase@l
 /* 8018CA74 001899B4  3C A0 80 4E */	lis r5, __vt__Q23efx8TSimple3@ha
-/* 8018CA78 001899B8  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8018CA7C 001899BC  C4 43 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r3)
+/* 8018CA78 001899B8  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8018CA7C 001899BC  C4 43 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r3)
 /* 8018CA80 001899C0  39 65 6A 50 */	addi r11, r5, __vt__Q23efx8TSimple3@l
 /* 8018CA84 001899C4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8018CA88 001899C8  C0 23 00 04 */	lfs f1, 4(r3)
@@ -3983,7 +3983,7 @@ init__Q24Game16PikiPressedStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018CC14 00189B54  D0 61 00 14 */	stfs f3, 0x14(r1)
 /* 8018CC18 00189B58  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 8018CC1C 00189B5C  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 8018CC20 00189B60  48 29 B6 B9 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8018CC20 00189B60  48 29 B6 B9 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 8018CC24 00189B64  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8018CC28 00189B68  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 8018CC2C 00189B6C  7C 08 03 A6 */	mtlr r0
@@ -4023,7 +4023,7 @@ exec__Q24Game16PikiPressedStateFPQ24Game4Piki:
 /* 8018CCA8 00189BE8  D0 61 00 14 */	stfs f3, 0x14(r1)
 /* 8018CCAC 00189BEC  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 8018CCB0 00189BF0  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 8018CCB4 00189BF4  48 29 B6 25 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8018CCB4 00189BF4  48 29 B6 25 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 8018CCB8 00189BF8  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 8018CCBC 00189BFC  C0 5E 00 10 */	lfs f2, 0x10(r30)
 /* 8018CCC0 00189C00  C0 23 00 54 */	lfs f1, 0x54(r3)
@@ -5911,9 +5911,9 @@ lbl_8018E738:
 /* 8018E73C 0018B67C  3C 60 80 4B */	lis r3, __vt__Q24Game15CreatureInitArg@ha
 /* 8018E740 0018B680  38 03 A2 F4 */	addi r0, r3, __vt__Q24Game15CreatureInitArg@l
 /* 8018E744 0018B684  3C A0 80 4B */	lis r5, __vt__Q24Game11ItemInitArg@ha
-/* 8018E748 0018B688  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8018E748 0018B688  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8018E74C 0018B68C  90 01 00 C8 */	stw r0, 0xc8(r1)
-/* 8018E750 0018B690  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 8018E750 0018B690  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 8018E754 0018B694  38 C5 2C 7C */	addi r6, r5, __vt__Q24Game11ItemInitArg@l
 /* 8018E758 0018B698  C0 64 00 00 */	lfs f3, 0(r4)
 /* 8018E75C 0018B69C  3C A0 80 4B */	lis r5, __vt__Q34Game12ItemPikihead7InitArg@ha
@@ -6079,9 +6079,9 @@ lbl_8018E9BC:
 /* 8018E9C0 0018B900  3C 60 80 4B */	lis r3, __vt__Q24Game15CreatureInitArg@ha
 /* 8018E9C4 0018B904  38 03 A2 F4 */	addi r0, r3, __vt__Q24Game15CreatureInitArg@l
 /* 8018E9C8 0018B908  3C A0 80 4B */	lis r5, __vt__Q24Game11ItemInitArg@ha
-/* 8018E9CC 0018B90C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8018E9CC 0018B90C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8018E9D0 0018B910  90 01 00 94 */	stw r0, 0x94(r1)
-/* 8018E9D4 0018B914  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 8018E9D4 0018B914  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 8018E9D8 0018B918  38 C5 2C 7C */	addi r6, r5, __vt__Q24Game11ItemInitArg@l
 /* 8018E9DC 0018B91C  C0 64 00 00 */	lfs f3, 0(r4)
 /* 8018E9E0 0018B920  3C A0 80 4B */	lis r5, __vt__Q34Game12ItemPikihead7InitArg@ha

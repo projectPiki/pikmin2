@@ -55,7 +55,7 @@ lbl_80451060:
 /* 80451074 0044DFB4  38 81 00 14 */	addi r4, r1, 0x14
 /* 80451078 0044DFB8  D3 C1 00 18 */	stfs f30, 0x18(r1)
 /* 8045107C 0044DFBC  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80451080 0044DFC0  4B FD 77 C1 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80451080 0044DFC0  4B FD 77 C1 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80451084 0044DFC4  C0 3F 00 1C */	lfs f1, 0x1c(r31)
 /* 80451088 0044DFC8  C0 1F 00 20 */	lfs f0, 0x20(r31)
 /* 8045108C 0044DFCC  EC 01 00 24 */	fdivs f0, f1, f0
@@ -68,7 +68,7 @@ lbl_80451098:
 /* 804510A4 0044DFE4  38 81 00 08 */	addi r4, r1, 8
 /* 804510A8 0044DFE8  D3 C1 00 0C */	stfs f30, 0xc(r1)
 /* 804510AC 0044DFEC  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 804510B0 0044DFF0  4B FD 77 91 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 804510B0 0044DFF0  4B FD 77 91 */	bl "makeT__7MatrixfFR10Vector3<f>"
 lbl_804510B4:
 /* 804510B4 0044DFF4  28 1E 00 00 */	cmplwi r30, 0
 /* 804510B8 0044DFF8  41 82 00 50 */	beq lbl_80451108
@@ -344,7 +344,7 @@ draw__Q35P2JME7Caption8TControlFR8Graphics:
 /* 80451488 0044E3C8  D0 21 00 08 */	stfs f1, 8(r1)
 /* 8045148C 0044E3CC  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80451490 0044E3D0  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80451494 0044E3D4  4B FD 73 AD */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80451494 0044E3D4  4B FD 73 AD */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80451498 0044E3D8  38 7F 01 90 */	addi r3, r31, 0x190
 /* 8045149C 0044E3DC  81 9F 01 90 */	lwz r12, 0x190(r31)
 /* 804514A0 0044E3E0  81 8C 00 14 */	lwz r12, 0x14(r12)

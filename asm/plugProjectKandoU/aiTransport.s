@@ -351,10 +351,10 @@ lbl_801A1DC0:
 /* 801A1DF0 0019ED30  7D 89 03 A6 */	mtctr r12
 /* 801A1DF4 0019ED34  4E 80 04 21 */	bctrl 
 /* 801A1DF8 0019ED38  81 9C 00 00 */	lwz r12, 0(r28)
-/* 801A1DFC 0019ED3C  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 801A1DFC 0019ED3C  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 801A1E00 0019ED40  7F 83 E3 78 */	mr r3, r28
 /* 801A1E04 0019ED44  81 8C 00 68 */	lwz r12, 0x68(r12)
-/* 801A1E08 0019ED48  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 801A1E08 0019ED48  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 801A1E0C 0019ED4C  7D 89 03 A6 */	mtctr r12
 /* 801A1E10 0019ED50  4E 80 04 21 */	bctrl 
 /* 801A1E14 0019ED54  9B FE 00 3A */	stb r31, 0x3a(r30)

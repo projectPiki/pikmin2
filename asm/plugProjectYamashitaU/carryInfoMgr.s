@@ -982,7 +982,7 @@ __ct__13PokoInfoOwnerFv:
 /* 8011BDFC 00118D3C  38 05 00 0C */	addi r0, r5, 0xc
 /* 8011BE00 00118D40  C0 02 98 00 */	lfs f0, lbl_80517B60@sda21(r2)
 /* 8011BE04 00118D44  90 E3 00 14 */	stw r7, 0x14(r3)
-/* 8011BE08 00118D48  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 8011BE08 00118D48  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 8011BE0C 00118D4C  90 E3 00 10 */	stw r7, 0x10(r3)
 /* 8011BE10 00118D50  90 E3 00 0C */	stw r7, 0xc(r3)
 /* 8011BE14 00118D54  90 E3 00 08 */	stw r7, 8(r3)
@@ -991,7 +991,7 @@ __ct__13PokoInfoOwnerFv:
 /* 8011BE20 00118D60  90 03 00 04 */	stw r0, 4(r3)
 /* 8011BE24 00118D64  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 8011BE28 00118D68  90 E3 00 20 */	stw r7, 0x20(r3)
-/* 8011BE2C 00118D6C  C4 04 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r4)
+/* 8011BE2C 00118D6C  C4 04 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r4)
 /* 8011BE30 00118D70  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 8011BE34 00118D74  C0 04 00 04 */	lfs f0, 4(r4)
 /* 8011BE38 00118D78  D0 03 00 28 */	stfs f0, 0x28(r3)
@@ -1873,8 +1873,8 @@ __ct__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fi:
 /* 8011C9E8 00119928  38 03 C4 04 */	addi r0, r3, __vt__13CarryInfoList@l
 /* 8011C9EC 0011992C  C0 22 98 88 */	lfs f1, lbl_80517BE8@sda21(r2)
 /* 8011C9F0 00119930  90 1A 00 00 */	stw r0, 0(r26)
-/* 8011C9F4 00119934  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8011C9F8 00119938  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
+/* 8011C9F4 00119934  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8011C9F8 00119938  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
 /* 8011C9FC 0011993C  3B 7C 00 5C */	addi r27, r28, 0x5c
 /* 8011CA00 00119940  90 BA 00 24 */	stw r5, 0x24(r26)
 /* 8011CA04 00119944  38 80 00 06 */	li r4, 6
@@ -1915,9 +1915,9 @@ __ct__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fi:
 /* 8011CA90 001199D0  3C 80 80 4B */	lis r4, __vt__13CarryInfoList@ha
 /* 8011CA94 001199D4  38 A0 00 00 */	li r5, 0
 /* 8011CA98 001199D8  38 04 C4 04 */	addi r0, r4, __vt__13CarryInfoList@l
-/* 8011CA9C 001199DC  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8011CA9C 001199DC  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8011CAA0 001199E0  90 1B 00 00 */	stw r0, 0(r27)
-/* 8011CAA4 001199E4  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 8011CAA4 001199E4  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 8011CAA8 001199E8  C0 22 98 88 */	lfs f1, lbl_80517BE8@sda21(r2)
 /* 8011CAAC 001199EC  38 60 00 06 */	li r3, 6
 /* 8011CAB0 001199F0  90 BB 00 24 */	stw r5, 0x24(r27)
@@ -1965,11 +1965,11 @@ lbl_8011CB14:
 /* 8011CB54 00119A94  7D 89 03 A6 */	mtctr r12
 /* 8011CB58 00119A98  4E 80 04 21 */	bctrl 
 /* 8011CB5C 00119A9C  3C 80 80 4B */	lis r4, __vt__13CarryInfoList@ha
-/* 8011CB60 00119AA0  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8011CB60 00119AA0  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8011CB64 00119AA4  38 04 C4 04 */	addi r0, r4, __vt__13CarryInfoList@l
 /* 8011CB68 00119AA8  38 A0 00 00 */	li r5, 0
 /* 8011CB6C 00119AAC  90 1E 00 00 */	stw r0, 0(r30)
-/* 8011CB70 00119AB0  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 8011CB70 00119AB0  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 8011CB74 00119AB4  C0 22 98 88 */	lfs f1, lbl_80517BE8@sda21(r2)
 /* 8011CB78 00119AB8  38 60 00 06 */	li r3, 6
 /* 8011CB7C 00119ABC  90 BE 00 24 */	stw r5, 0x24(r30)

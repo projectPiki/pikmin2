@@ -568,7 +568,7 @@ onSetPosition__Q34Game12ItemTreasure4ItemFv:
 /* 801F3980 001F08C0  4E 80 04 21 */	bctrl 
 /* 801F3984 001F08C4  38 7F 01 38 */	addi r3, r31, 0x138
 /* 801F3988 001F08C8  38 9F 01 9C */	addi r4, r31, 0x19c
-/* 801F398C 001F08CC  48 23 4E B5 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 801F398C 001F08CC  48 23 4E B5 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 801F3990 001F08D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801F3994 001F08D4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801F3998 001F08D8  7C 08 03 A6 */	mtlr r0
@@ -859,7 +859,7 @@ setTreasure__Q34Game12ItemTreasure4ItemFPQ24Game6Pellet:
 /* 801F3D90 001F0CD0  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 801F3D94 001F0CD4  C0 1E 01 A4 */	lfs f0, 0x1a4(r30)
 /* 801F3D98 001F0CD8  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 801F3D9C 001F0CDC  48 23 4A A5 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 801F3D9C 001F0CDC  48 23 4A A5 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 801F3DA0 001F0CE0  93 FE 01 FC */	stw r31, 0x1fc(r30)
 /* 801F3DA4 001F0CE4  80 7E 01 FC */	lwz r3, 0x1fc(r30)
 /* 801F3DA8 001F0CE8  28 03 00 00 */	cmplwi r3, 0

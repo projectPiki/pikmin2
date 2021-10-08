@@ -171,9 +171,9 @@ lbl_802179A0:
 /* 802179E8 00214928  7F E3 FB 78 */	mr r3, r31
 /* 802179EC 0021492C  4B F3 C5 AD */	bl clearCaveMenus__Q24Game17SingleGameSectionFv
 /* 802179F0 00214930  38 E0 00 00 */	li r7, 0
-/* 802179F4 00214934  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802179F4 00214934  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802179F8 00214938  98 FE 00 11 */	stb r7, 0x11(r30)
-/* 802179FC 0021493C  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 802179FC 0021493C  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 80217A00 00214940  C0 22 BC AC */	lfs f1, lbl_8051A00C@sda21(r2)
 /* 80217A04 00214944  38 A1 00 0C */	addi r5, r1, 0xc
 /* 80217A08 00214948  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)

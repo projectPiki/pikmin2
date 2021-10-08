@@ -540,7 +540,7 @@ lbl_80203580:
 /* 80203590 002004D0  7F A4 EB 78 */	mr r4, r29
 /* 80203594 002004D4  7F C5 F3 78 */	mr r5, r30
 /* 80203598 002004D8  38 61 00 08 */	addi r3, r1, 8
-/* 8020359C 002004DC  48 22 52 ED */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8020359C 002004DC  48 22 52 ED */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 802035A0 002004E0  7F E3 FB 78 */	mr r3, r31
 /* 802035A4 002004E4  38 81 00 08 */	addi r4, r1, 8
 /* 802035A8 002004E8  4B F6 4F 25 */	bl setOrientation__Q24Game6PelletFR7Matrixf

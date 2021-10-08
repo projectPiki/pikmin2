@@ -476,8 +476,8 @@ getOffsetForMapCollision__Q34Game7Sokkuri3ObjFv:
 /* 802F18D0 002EE810  4E 80 04 21 */	bctrl 
 /* 802F18D4 002EE814  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802F18D8 002EE818  41 82 00 24 */	beq lbl_802F18FC
-/* 802F18DC 002EE81C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 802F18E0 002EE820  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 802F18DC 002EE81C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 802F18E0 002EE820  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 802F18E4 002EE824  D0 1E 00 00 */	stfs f0, 0(r30)
 /* 802F18E8 002EE828  C0 03 00 04 */	lfs f0, 4(r3)
 /* 802F18EC 002EE82C  D0 1E 00 04 */	stfs f0, 4(r30)

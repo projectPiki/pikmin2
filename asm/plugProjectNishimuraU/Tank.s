@@ -457,8 +457,8 @@ getOffsetForMapCollision__Q34Game4Tank3ObjFv:
 /* 80276378 002732B8  4E 80 04 21 */	bctrl 
 /* 8027637C 002732BC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80276380 002732C0  41 82 00 24 */	beq lbl_802763A4
-/* 80276384 002732C4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 80276388 002732C8  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 80276384 002732C4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 80276388 002732C8  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 8027638C 002732CC  D0 1E 00 00 */	stfs f0, 0(r30)
 /* 80276390 002732D0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80276394 002732D4  D0 1E 00 04 */	stfs f0, 4(r30)

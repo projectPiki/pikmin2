@@ -557,12 +557,12 @@ loadPikiheads__Q24Game14GeneratorCacheFv:
 /* 801F2044 001EEF84  7C 80 3A 14 */	add r4, r0, r7
 /* 801F2048 001EEF88  7C 86 22 14 */	add r4, r6, r4
 /* 801F204C 001EEF8C  48 22 38 AD */	bl __ct__9RamStreamFPvi
-/* 801F2050 001EEF90  3C C0 80 51 */	lis r6, zero__10Vector3$$0f$$1@ha
+/* 801F2050 001EEF90  3C C0 80 51 */	lis r6, "zero__10Vector3<f>"@ha
 /* 801F2054 001EEF94  3C A0 80 4B */	lis r5, __vt__Q24Game15CreatureInitArg@ha
 /* 801F2058 001EEF98  3C 80 80 4B */	lis r4, __vt__Q24Game11ItemInitArg@ha
 /* 801F205C 001EEF9C  3C 60 80 4B */	lis r3, __vt__Q34Game12ItemPikihead7InitArg@ha
 /* 801F2060 001EEFA0  C3 E2 B8 68 */	lfs f31, lbl_80519BC8@sda21(r2)
-/* 801F2064 001EEFA4  3B 66 41 E4 */	addi r27, r6, zero__10Vector3$$0f$$1@l
+/* 801F2064 001EEFA4  3B 66 41 E4 */	addi r27, r6, "zero__10Vector3<f>"@l
 /* 801F2068 001EEFA8  3B 85 A2 F4 */	addi r28, r5, __vt__Q24Game15CreatureInitArg@l
 /* 801F206C 001EEFAC  3B A4 2C 7C */	addi r29, r4, __vt__Q24Game11ItemInitArg@l
 /* 801F2070 001EEFB0  3B C3 2C 70 */	addi r30, r3, __vt__Q34Game12ItemPikihead7InitArg@l

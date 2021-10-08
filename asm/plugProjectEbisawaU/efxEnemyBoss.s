@@ -67,8 +67,8 @@ lbl_803EB42C:
 /* 803EB448 003E8388  EF BD 00 32 */	fmuls f29, f29, f0
 lbl_803EB44C:
 /* 803EB44C 003E838C  C0 A2 1A E0 */	lfs f5, lbl_8051FE40@sda21(r2)
-/* 803EB450 003E8390  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 803EB454 003E8394  C4 63 41 E4 */	lfsu f3, zero__10Vector3$$0f$$1@l(r3)
+/* 803EB450 003E8390  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 803EB454 003E8394  C4 63 41 E4 */	lfsu f3, "zero__10Vector3<f>"@l(r3)
 /* 803EB458 003E8398  3B C0 00 00 */	li r30, 0
 /* 803EB45C 003E839C  EC 45 07 72 */	fmuls f2, f5, f29
 /* 803EB460 003E83A0  C0 C2 1A E4 */	lfs f6, lbl_8051FE44@sda21(r2)
@@ -1352,8 +1352,8 @@ lbl_803EC628:
 /* 803EC644 003E9584  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803EC648 003E9588  41 82 00 E4 */	beq lbl_803EC72C
 /* 803EC64C 003E958C  C0 82 1A E0 */	lfs f4, lbl_8051FE40@sda21(r2)
-/* 803EC650 003E9590  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 803EC654 003E9594  C4 23 41 E4 */	lfsu f1, zero__10Vector3$$0f$$1@l(r3)
+/* 803EC650 003E9590  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 803EC654 003E9594  C4 23 41 E4 */	lfsu f1, "zero__10Vector3<f>"@l(r3)
 /* 803EC658 003E9598  3B A0 00 00 */	li r29, 0
 /* 803EC65C 003E959C  EC 64 07 B2 */	fmuls f3, f4, f30
 /* 803EC660 003E95A0  C0 A2 1A E4 */	lfs f5, lbl_8051FE44@sda21(r2)

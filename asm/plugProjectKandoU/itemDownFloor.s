@@ -443,7 +443,7 @@ onSetPosition__Q34Game13ItemDownFloor4ItemFv:
 /* 801F5314 001F2254  D0 01 00 08 */	stfs f0, 8(r1)
 /* 801F5318 001F2258  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 801F531C 001F225C  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 801F5320 001F2260  48 23 35 69 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801F5320 001F2260  48 23 35 69 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 801F5324 001F2264  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 801F5328 001F2268  38 7F 01 38 */	addi r3, r31, 0x138
 /* 801F532C 001F226C  80 84 00 08 */	lwz r4, 8(r4)

@@ -1017,9 +1017,9 @@ getPosition__Q24Game11DynCreatureFv:
 onSetPosition__Q24Game11DynCreatureFR10Vector3$$0f$$1:
 /* 801A8D50 001A5C90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A8D54 001A5C94  7C 08 02 A6 */	mflr r0
-/* 801A8D58 001A5C98  3C A0 80 51 */	lis r5, zero__10Vector3$$0f$$1@ha
+/* 801A8D58 001A5C98  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
 /* 801A8D5C 001A5C9C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801A8D60 001A5CA0  38 A5 41 E4 */	addi r5, r5, zero__10Vector3$$0f$$1@l
+/* 801A8D60 001A5CA0  38 A5 41 E4 */	addi r5, r5, "zero__10Vector3<f>"@l
 /* 801A8D64 001A5CA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801A8D68 001A5CA8  7C 7F 1B 78 */	mr r31, r3
 /* 801A8D6C 001A5CAC  38 7F 01 7C */	addi r3, r31, 0x17c

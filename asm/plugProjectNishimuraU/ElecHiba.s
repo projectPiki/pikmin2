@@ -1291,9 +1291,9 @@ startChargeEffect__Q34Game8ElecHiba3ObjFPQ24Game8Creature:
 /* 8027044C 0026D38C  C0 41 00 20 */	lfs f2, 0x20(r1)
 /* 80270450 0026D390  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 80270454 0026D394  C0 21 00 24 */	lfs f1, 0x24(r1)
-/* 80270458 0026D398  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80270458 0026D398  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8027045C 0026D39C  C0 01 00 28 */	lfs f0, 0x28(r1)
-/* 80270460 0026D3A0  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 80270460 0026D3A0  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 80270464 0026D3A4  D0 41 00 2C */	stfs f2, 0x2c(r1)
 /* 80270468 0026D3A8  3C 60 80 4C */	lis r3, __vt__Q23efx12ArgDenkiHiba@ha
 /* 8027046C 0026D3AC  81 1F 01 8C */	lwz r8, 0x18c(r31)
