@@ -2,8 +2,8 @@
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
-.global CRSplineTangent__FfP10Vector3$$0f$$1
-CRSplineTangent__FfP10Vector3$$0f$$1:
+.global "CRSplineTangent__FfP10Vector3<f>"
+"CRSplineTangent__FfP10Vector3<f>":
 /* 80411858 0040E798  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041185C 0040E79C  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 80411860 0040E7A0  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
