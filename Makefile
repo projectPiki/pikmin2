@@ -31,7 +31,7 @@ ASM_DIRS := asm asm/Dolphin asm/JSystem asm/sysCommonU asm/sysGCU \
 			asm/plugProjectEbisawaU asm/plugProjectHikinoU asm/plugProjectKandoU \
 			asm/plugProjectKonoU asm/plugProjectMorimuraU asm/plugProjectNishimuraU \
 			asm/plugProjectOgawaU asm/plugProjectYamashitaU asm/utilityU asm/Dolphin/ddh \
-			asm/JSystem/dsp asm/JSystem/fvb asm/JSystem/J2D asm/JSystem/J3D asm/JSystem/JAD \
+			asm/JSystem/dsp asm/JSystem/fvb asm/JSystem/J2D asm/JSystem/J3D \
 			asm/JSystem/JAI asm/JSystem/JAL asm/JSystem/JAS asm/JSystem/JAU \
 			asm/JSystem/JFW asm/JSystem/JKR asm/JSystem/JMath asm/JSystem/JPA \
 			asm/JSystem/JSG asm/JSystem/jstudio asm/JSystem/JSU asm/JSystem/JUT \
