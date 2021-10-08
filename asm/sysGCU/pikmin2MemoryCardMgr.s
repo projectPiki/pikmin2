@@ -2,56 +2,6 @@
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
-
-.global __ct__Q34Game10MemoryCard3MgrFv
-__ct__Q34Game10MemoryCard3MgrFv:
-/* 80442B20 0043FA60  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80442B24 0043FA64  7C 08 02 A6 */	mflr r0
-/* 80442B28 0043FA68  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80442B2C 0043FA6C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80442B30 0043FA70  7C 7F 1B 78 */	mr r31, r3
-/* 80442B34 0043FA74  4B FF DA BD */	bl __ct__13MemoryCardMgrFv
-/* 80442B38 0043FA78  3C 80 80 4F */	lis r4, __vt__Q34Game10MemoryCard3Mgr@ha
-/* 80442B3C 0043FA7C  3C 60 80 4A */	lis r3, lbl_8049ADF4@ha
-/* 80442B40 0043FA80  38 04 CF AC */	addi r0, r4, __vt__Q34Game10MemoryCard3Mgr@l
-/* 80442B44 0043FA84  38 C0 00 3C */	li r6, 0x3c
-/* 80442B48 0043FA88  90 1F 00 00 */	stw r0, 0(r31)
-/* 80442B4C 0043FA8C  38 00 00 00 */	li r0, 0
-/* 80442B50 0043FA90  3C 80 00 01 */	lis r4, 0x0000C000@ha
-/* 80442B54 0043FA94  38 63 AD F4 */	addi r3, r3, lbl_8049ADF4@l
-/* 80442B58 0043FA98  90 1F 00 D8 */	stw r0, 0xd8(r31)
-/* 80442B5C 0043FA9C  38 84 C0 00 */	addi r4, r4, 0x0000C000@l
-/* 80442B60 0043FAA0  7C 85 23 78 */	mr r5, r4
-/* 80442B64 0043FAA4  90 1F 00 DC */	stw r0, 0xdc(r31)
-/* 80442B68 0043FAA8  90 1F 00 E0 */	stw r0, 0xe0(r31)
-/* 80442B6C 0043FAAC  98 1F 00 E4 */	stb r0, 0xe4(r31)
-/* 80442B70 0043FAB0  98 1F 00 E5 */	stb r0, 0xe5(r31)
-/* 80442B74 0043FAB4  98 1F 00 E6 */	stb r0, 0xe6(r31)
-/* 80442B78 0043FAB8  98 1F 00 E7 */	stb r0, 0xe7(r31)
-/* 80442B7C 0043FABC  4C C6 31 82 */	crclr 6
-/* 80442B80 0043FAC0  4B CA AB 6D */	bl OSReport
-/* 80442B84 0043FAC4  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80442B88 0043FAC8  7F E3 FB 78 */	mr r3, r31
-/* 80442B8C 0043FACC  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 80442B90 0043FAD0  7C 08 03 A6 */	mtlr r0
-/* 80442B94 0043FAD4  38 21 00 10 */	addi r1, r1, 0x10
-/* 80442B98 0043FAD8  4E 80 00 20 */	blr 
-
-.global isErrorOccured__Q34Game10MemoryCard3MgrFv
-isErrorOccured__Q34Game10MemoryCard3MgrFv:
-/* 80442B9C 0043FADC  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80442BA0 0043FAE0  7C 08 02 A6 */	mflr r0
-/* 80442BA4 0043FAE4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80442BA8 0043FAE8  48 00 2F 65 */	bl getCardStatus__Q34Game10MemoryCard3MgrFv
-/* 80442BAC 0043FAEC  20 83 00 02 */	subfic r4, r3, 2
-/* 80442BB0 0043FAF0  38 03 FF FE */	addi r0, r3, -2
-/* 80442BB4 0043FAF4  7C 80 03 78 */	or r0, r4, r0
-/* 80442BB8 0043FAF8  54 03 0F FE */	srwi r3, r0, 0x1f
-/* 80442BBC 0043FAFC  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80442BC0 0043FB00  7C 08 03 A6 */	mtlr r0
-/* 80442BC4 0043FB04  38 21 00 10 */	addi r1, r1, 0x10
-/* 80442BC8 0043FB08  4E 80 00 20 */	blr 
-
 .global loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap
 loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap:
 /* 80442BCC 0043FB0C  94 21 FF E0 */	stwu r1, -0x20(r1)
