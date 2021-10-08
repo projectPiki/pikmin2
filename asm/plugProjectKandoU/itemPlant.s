@@ -736,7 +736,7 @@ updateTrMatrix__Q34Game9ItemPlant4ItemFv:
 /* 801DD7A4 001DA6E4  D0 01 00 08 */	stfs f0, 8(r1)
 /* 801DD7A8 001DA6E8  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 801DD7AC 001DA6EC  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 801DD7B0 001DA6F0  48 24 B0 D9 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801DD7B0 001DA6F0  48 24 B0 D9 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 801DD7B4 001DA6F4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801DD7B8 001DA6F8  7C 08 03 A6 */	mtlr r0
 /* 801DD7BC 001DA6FC  38 21 00 20 */	addi r1, r1, 0x20
@@ -1404,14 +1404,14 @@ lbl_801DE0DC:
 /* 801DE0E8 001DB028  D0 1B 00 24 */	stfs f0, 0x24(r27)
 lbl_801DE0EC:
 /* 801DE0EC 001DB02C  C0 02 B4 A0 */	lfs f0, lbl_80519800@sda21(r2)
-/* 801DE0F0 001DB030  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 801DE0F4 001DB034  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 801DE0F0 001DB030  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 801DE0F4 001DB034  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 801DE0F8 001DB038  D3 81 00 84 */	stfs f28, 0x84(r1)
 /* 801DE0FC 001DB03C  38 61 00 BC */	addi r3, r1, 0xbc
 /* 801DE100 001DB040  38 A1 00 80 */	addi r5, r1, 0x80
 /* 801DE104 001DB044  D0 01 00 80 */	stfs f0, 0x80(r1)
 /* 801DE108 001DB048  D0 01 00 88 */	stfs f0, 0x88(r1)
-/* 801DE10C 001DB04C  48 24 A7 7D */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801DE10C 001DB04C  48 24 A7 7D */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 801DE110 001DB050  7F 63 DB 78 */	mr r3, r27
 /* 801DE114 001DB054  4B FF FC 15 */	bl calcAngles__Q34Game9ItemPlant12ProcAnimatorFv
 /* 801DE118 001DB058  80 7B 00 0C */	lwz r3, 0xc(r27)
@@ -1503,7 +1503,7 @@ lbl_801DE210:
 /* 801DE250 001DB190  D0 01 00 5C */	stfs f0, 0x5c(r1)
 /* 801DE254 001DB194  D3 81 00 60 */	stfs f28, 0x60(r1)
 /* 801DE258 001DB198  D3 C1 00 64 */	stfs f30, 0x64(r1)
-/* 801DE25C 001DB19C  48 24 A6 2D */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801DE25C 001DB19C  48 24 A6 2D */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 801DE260 001DB1A0  38 61 00 8C */	addi r3, r1, 0x8c
 /* 801DE264 001DB1A4  38 81 00 68 */	addi r4, r1, 0x68
 /* 801DE268 001DB1A8  38 A1 00 2C */	addi r5, r1, 0x2c
@@ -2887,10 +2887,10 @@ killFruits__Q34Game9ItemPlant5PlantFv:
 dropFruit__Q34Game9ItemPlant5PlantFi:
 /* 801DF668 001DC5A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801DF66C 001DC5AC  7C 08 02 A6 */	mflr r0
-/* 801DF670 001DC5B0  3C A0 80 51 */	lis r5, zero__10Vector3$$0f$$1@ha
+/* 801DF670 001DC5B0  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
 /* 801DF674 001DC5B4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801DF678 001DC5B8  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 801DF67C 001DC5BC  3B E5 41 E4 */	addi r31, r5, zero__10Vector3$$0f$$1@l
+/* 801DF67C 001DC5BC  3B E5 41 E4 */	addi r31, r5, "zero__10Vector3<f>"@l
 /* 801DF680 001DC5C0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 801DF684 001DC5C4  3B C0 00 00 */	li r30, 0
 /* 801DF688 001DC5C8  93 A1 00 14 */	stw r29, 0x14(r1)
@@ -3896,7 +3896,7 @@ lbl_801E03AC:
 /* 801E04E4 001DD424  D0 41 00 44 */	stfs f2, 0x44(r1)
 /* 801E04E8 001DD428  D0 21 00 48 */	stfs f1, 0x48(r1)
 /* 801E04EC 001DD42C  D0 01 00 4C */	stfs f0, 0x4c(r1)
-/* 801E04F0 001DD430  48 24 83 51 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 801E04F0 001DD430  48 24 83 51 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 801E04F4 001DD434  80 B8 00 08 */	lwz r5, 8(r24)
 /* 801E04F8 001DD438  7F 43 D3 78 */	mr r3, r26
 /* 801E04FC 001DD43C  7F 24 CB 78 */	mr r4, r25

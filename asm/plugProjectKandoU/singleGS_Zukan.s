@@ -13,11 +13,11 @@ __ct__Q34Game15IllustratedBook6CameraFP10Controller:
 /* 80221044 0021DF84  7C 7D 1B 78 */	mr r29, r3
 /* 80221048 0021DF88  48 1F A4 51 */	bl __ct__12LookAtCameraFv
 /* 8022104C 0021DF8C  3C 60 80 4C */	lis r3, __vt__Q34Game15IllustratedBook6Camera@ha
-/* 80221050 0021DF90  3C A0 80 51 */	lis r5, zero__10Vector3$$0f$$1@ha
+/* 80221050 0021DF90  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
 /* 80221054 0021DF94  38 03 0C 3C */	addi r0, r3, __vt__Q34Game15IllustratedBook6Camera@l
 /* 80221058 0021DF98  C0 62 BD C8 */	lfs f3, lbl_8051A128@sda21(r2)
 /* 8022105C 0021DF9C  90 1D 00 00 */	stw r0, 0(r29)
-/* 80221060 0021DFA0  3B E5 41 E4 */	addi r31, r5, zero__10Vector3$$0f$$1@l
+/* 80221060 0021DFA0  3B E5 41 E4 */	addi r31, r5, "zero__10Vector3<f>"@l
 /* 80221064 0021DFA4  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
 /* 80221068 0021DFA8  38 00 00 00 */	li r0, 0
 /* 8022106C 0021DFAC  93 DD 01 98 */	stw r30, 0x198(r29)
@@ -73,9 +73,9 @@ __ct__Q34Game15IllustratedBook6CameraFP10Controller:
 /* 80221134 0021E074  D0 1D 01 F8 */	stfs f0, 0x1f8(r29)
 /* 80221138 0021E078  4B EA 07 05 */	bl __construct_array
 /* 8022113C 0021E07C  38 00 00 00 */	li r0, 0
-/* 80221140 0021E080  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80221140 0021E080  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80221144 0021E084  90 1D 02 74 */	stw r0, 0x274(r29)
-/* 80221148 0021E088  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 80221148 0021E088  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 8022114C 0021E08C  C0 A2 BD C8 */	lfs f5, lbl_8051A128@sda21(r2)
 /* 80221150 0021E090  3C 60 80 48 */	lis r3, lbl_80482F0C@ha
 /* 80221154 0021E094  38 03 2F 0C */	addi r0, r3, lbl_80482F0C@l
@@ -373,9 +373,9 @@ setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature:
 /* 802215AC 0021E4EC  48 00 00 74 */	b lbl_80221620
 lbl_802215B0:
 /* 802215B0 0021E4F0  38 00 00 00 */	li r0, 0
-/* 802215B4 0021E4F4  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 802215B4 0021E4F4  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 802215B8 0021E4F8  90 1F 01 9C */	stw r0, 0x19c(r31)
-/* 802215BC 0021E4FC  C4 04 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r4)
+/* 802215BC 0021E4FC  C4 04 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r4)
 /* 802215C0 0021E500  D0 1F 01 D8 */	stfs f0, 0x1d8(r31)
 /* 802215C4 0021E504  C0 04 00 04 */	lfs f0, 4(r4)
 /* 802215C8 0021E508  D0 1F 01 DC */	stfs f0, 0x1dc(r31)
@@ -411,13 +411,13 @@ lbl_80221620:
 resetControl__Q34Game15IllustratedBook6CameraFv:
 /* 80221634 0021E574  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80221638 0021E578  7C 08 02 A6 */	mflr r0
-/* 8022163C 0021E57C  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 8022163C 0021E57C  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 80221640 0021E580  C0 02 BD C8 */	lfs f0, lbl_8051A128@sda21(r2)
 /* 80221644 0021E584  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80221648 0021E588  38 00 00 00 */	li r0, 0
 /* 8022164C 0021E58C  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80221650 0021E590  7C 7F 1B 78 */	mr r31, r3
-/* 80221654 0021E594  38 64 41 E4 */	addi r3, r4, zero__10Vector3$$0f$$1@l
+/* 80221654 0021E594  38 64 41 E4 */	addi r3, r4, "zero__10Vector3<f>"@l
 /* 80221658 0021E598  C0 23 00 00 */	lfs f1, 0(r3)
 /* 8022165C 0021E59C  D0 3F 01 F0 */	stfs f1, 0x1f0(r31)
 /* 80221660 0021E5A0  C0 23 00 04 */	lfs f1, 4(r3)
@@ -585,9 +585,9 @@ doUpdate__Q34Game15IllustratedBook6CameraFv:
 /* 802218CC 0021E80C  93 E1 00 EC */	stw r31, 0xec(r1)
 /* 802218D0 0021E810  93 C1 00 E8 */	stw r30, 0xe8(r1)
 /* 802218D4 0021E814  7C 7E 1B 78 */	mr r30, r3
-/* 802218D8 0021E818  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 802218D8 0021E818  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 802218DC 0021E81C  80 63 01 9C */	lwz r3, 0x19c(r3)
-/* 802218E0 0021E820  3B E4 41 E4 */	addi r31, r4, zero__10Vector3$$0f$$1@l
+/* 802218E0 0021E820  3B E4 41 E4 */	addi r31, r4, "zero__10Vector3<f>"@l
 /* 802218E4 0021E824  C3 FF 00 00 */	lfs f31, 0(r31)
 /* 802218E8 0021E828  28 03 00 00 */	cmplwi r3, 0
 /* 802218EC 0021E82C  C3 DF 00 04 */	lfs f30, 4(r31)
@@ -889,7 +889,7 @@ lbl_80221D34:
 /* 80221D5C 0021EC9C  4E 80 04 21 */	bctrl 
 /* 80221D60 0021ECA0  C0 1E 01 CC */	lfs f0, 0x1cc(r30)
 /* 80221D64 0021ECA4  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
-/* 80221D68 0021ECA8  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 80221D68 0021ECA8  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 80221D6C 0021ECAC  C0 C1 00 18 */	lfs f6, 0x18(r1)
 /* 80221D70 0021ECB0  EC E0 08 2A */	fadds f7, f0, f1
 /* 80221D74 0021ECB4  C0 A1 00 20 */	lfs f5, 0x20(r1)
@@ -898,7 +898,7 @@ lbl_80221D34:
 /* 80221D80 0021ECC0  C0 42 BD C8 */	lfs f2, lbl_8051A128@sda21(r2)
 /* 80221D84 0021ECC4  39 01 00 08 */	addi r8, r1, 8
 /* 80221D88 0021ECC8  D0 E1 00 1C */	stfs f7, 0x1c(r1)
-/* 80221D8C 0021ECCC  38 E4 41 E4 */	addi r7, r4, zero__10Vector3$$0f$$1@l
+/* 80221D8C 0021ECCC  38 E4 41 E4 */	addi r7, r4, "zero__10Vector3<f>"@l
 /* 80221D90 0021ECD0  C0 02 BE 3C */	lfs f0, lbl_8051A19C@sda21(r2)
 /* 80221D94 0021ECD4  38 C0 00 00 */	li r6, 0
 /* 80221D98 0021ECD8  C0 9E 01 A0 */	lfs f4, 0x1a0(r30)
@@ -1057,11 +1057,11 @@ lbl_80221F3C:
 /* 80221FE4 0021EF24  7F C3 F3 78 */	mr r3, r30
 /* 80221FE8 0021EF28  48 00 03 C9 */	bl updateFocus__Q34Game15IllustratedBook6CameraFv
 /* 80221FEC 0021EF2C  C0 62 BE 48 */	lfs f3, lbl_8051A1A8@sda21(r2)
-/* 80221FF0 0021EF30  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80221FF0 0021EF30  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80221FF4 0021EF34  C0 1E 03 14 */	lfs f0, 0x314(r30)
 /* 80221FF8 0021EF38  C0 3E 02 D0 */	lfs f1, 0x2d0(r30)
 /* 80221FFC 0021EF3C  EC 03 00 32 */	fmuls f0, f3, f0
-/* 80222000 0021EF40  C0 C3 41 E4 */	lfs f6, zero__10Vector3$$0f$$1@l(r3)
+/* 80222000 0021EF40  C0 C3 41 E4 */	lfs f6, "zero__10Vector3<f>"@l(r3)
 /* 80222004 0021EF44  C0 FF 00 04 */	lfs f7, 4(r31)
 /* 80222008 0021EF48  C1 1F 00 08 */	lfs f8, 8(r31)
 /* 8022200C 0021EF4C  EC 01 00 32 */	fmuls f0, f1, f0

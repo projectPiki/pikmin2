@@ -1834,14 +1834,14 @@ lbl_80413208:
 
 .global __sinit_sysMath_cpp
 __sinit_sysMath_cpp:
-/* 80413228 00410168  88 0D 9A C8 */	lbz r0, __init__zero__10Vector3$$0f$$1@sda21(r13)
+/* 80413228 00410168  88 0D 9A C8 */	lbz r0, "__init__zero__10Vector3<f>"@sda21(r13)
 /* 8041322C 0041016C  7C 00 07 75 */	extsb. r0, r0
 /* 80413230 00410170  4C 82 00 20 */	bnelr 
 /* 80413234 00410174  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
-/* 80413238 00410178  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80413238 00410178  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8041323C 0041017C  38 00 00 01 */	li r0, 1
-/* 80413240 00410180  D4 03 41 E4 */	stfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 80413240 00410180  D4 03 41 E4 */	stfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 80413244 00410184  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80413248 00410188  D0 03 00 08 */	stfs f0, 8(r3)
-/* 8041324C 0041018C  98 0D 9A C8 */	stb r0, __init__zero__10Vector3$$0f$$1@sda21(r13)
+/* 8041324C 0041018C  98 0D 9A C8 */	stb r0, "__init__zero__10Vector3<f>"@sda21(r13)
 /* 80413250 00410190  4E 80 00 20 */	blr 

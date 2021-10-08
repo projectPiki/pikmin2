@@ -1158,7 +1158,7 @@ makeTrMatrix__Q34Game9ItemHoney4ItemFv:
 /* 801D3C98 001D0BD8  D0 01 00 08 */	stfs f0, 8(r1)
 /* 801D3C9C 001D0BDC  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 801D3CA0 001D0BE0  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 801D3CA4 001D0BE4  48 25 48 BD */	bl makeST__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801D3CA4 001D0BE4  48 25 48 BD */	bl "makeST__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 801D3CA8 001D0BE8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801D3CAC 001D0BEC  7C 08 03 A6 */	mtlr r0
 /* 801D3CB0 001D0BF0  38 21 00 20 */	addi r1, r1, 0x20

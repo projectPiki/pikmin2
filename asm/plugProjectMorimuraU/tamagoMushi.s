@@ -417,7 +417,7 @@ lbl_8036F19C:
 /* 8036F19C 0036C0DC  38 7E 01 38 */	addi r3, r30, 0x138
 /* 8036F1A0 0036C0E0  38 9E 01 8C */	addi r4, r30, 0x18c
 /* 8036F1A4 0036C0E4  38 BE 01 A4 */	addi r5, r30, 0x1a4
-/* 8036F1A8 0036C0E8  48 0B 96 E1 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8036F1A8 0036C0E8  48 0B 96 E1 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 lbl_8036F1AC:
 /* 8036F1AC 0036C0EC  80 9E 01 74 */	lwz r4, 0x174(r30)
 /* 8036F1B0 0036C0F0  38 7E 01 38 */	addi r3, r30, 0x138

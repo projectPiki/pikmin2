@@ -574,9 +574,9 @@ create__Q23efx13TFueactCircleFPQ23efx3Arg:
 /* 803B6E74 003B3DB4  38 60 00 00 */	li r3, 0
 /* 803B6E78 003B3DB8  48 00 00 74 */	b lbl_803B6EEC
 lbl_803B6E7C:
-/* 803B6E7C 003B3DBC  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 803B6E7C 003B3DBC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 803B6E80 003B3DC0  80 6D 9A 18 */	lwz r3, particleMgr@sda21(r13)
-/* 803B6E84 003B3DC4  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
+/* 803B6E84 003B3DC4  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
 /* 803B6E88 003B3DC8  38 C0 00 00 */	li r6, 0
 /* 803B6E8C 003B3DCC  38 80 00 69 */	li r4, 0x69
 /* 803B6E90 003B3DD0  48 00 4A 25 */	bl create__11ParticleMgrFUsR10Vector3$$0f$$1Uc
@@ -2541,9 +2541,9 @@ lbl_803B8978:
 /* 803B89A0 003B58E0  4C C6 31 82 */	crclr 6
 /* 803B89A4 003B58E4  4B C7 1C 9D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_803B89A8:
-/* 803B89A8 003B58E8  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 803B89A8 003B58E8  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 803B89AC 003B58EC  80 DF 00 08 */	lwz r6, 8(r31)
-/* 803B89B0 003B58F0  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 803B89B0 003B58F0  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 803B89B4 003B58F4  3C 60 80 4B */	lis r3, __vt__Q23efx3Arg@ha
 /* 803B89B8 003B58F8  C0 04 00 00 */	lfs f0, 0(r4)
 /* 803B89BC 003B58FC  38 A3 A7 EC */	addi r5, r3, __vt__Q23efx3Arg@l

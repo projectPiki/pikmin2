@@ -1748,8 +1748,8 @@ lbl_8024FB58:
 /* 8024FB70 0024CAB0  38 A5 41 78 */	addi r5, r5, lbl_80484178@l
 /* 8024FB74 0024CAB4  4C C6 31 82 */	crclr 6
 /* 8024FB78 0024CAB8  4B DD AA C9 */	bl panic_f__12JUTExceptionFPCciPCce
-/* 8024FB7C 0024CABC  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8024FB80 0024CAC0  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 8024FB7C 0024CABC  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8024FB80 0024CAC0  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 8024FB84 0024CAC4  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 8024FB88 0024CAC8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8024FB8C 0024CACC  D0 1F 00 04 */	stfs f0, 4(r31)

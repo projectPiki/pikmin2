@@ -774,8 +774,8 @@ msVal__Q32kh6Screen10ObjWinLose:
 .global msVal__Q32kh6Screen16ObjWinLoseReason
 msVal__Q32kh6Screen16ObjWinLoseReason:
 	.skip 0x1C
-.global zero__10Vector3$$0f$$1
-zero__10Vector3$$0f$$1:
+.global "zero__10Vector3<f>"
+"zero__10Vector3<f>":
 	.skip 0xC
 .global eof__4ID32
 eof__4ID32:

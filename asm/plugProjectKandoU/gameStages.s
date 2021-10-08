@@ -345,7 +345,7 @@ lbl_801AD810:
 /* 801AD864 001AA7A4  EC 22 00 72 */	fmuls f1, f2, f1
 /* 801AD868 001AA7A8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 801AD86C 001AA7AC  D0 21 00 0C */	stfs f1, 0xc(r1)
-/* 801AD870 001AA7B0  48 27 B0 19 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801AD870 001AA7B0  48 27 B0 19 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 lbl_801AD874:
 /* 801AD874 001AA7B4  7F C3 F3 78 */	mr r3, r30
 /* 801AD878 001AA7B8  48 26 72 19 */	bl readInt__6StreamFv

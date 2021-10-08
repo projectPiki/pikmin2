@@ -2038,9 +2038,9 @@ lbl_802F5764:
 /* 802F5768 002F26A8  48 00 02 BD */	bl updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 /* 802F576C 002F26AC  7F E3 FB 78 */	mr r3, r31
 /* 802F5770 002F26B0  48 00 00 8D */	bl startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-/* 802F5774 002F26B4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802F5774 002F26B4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802F5778 002F26B8  81 3F 01 1C */	lwz r9, 0x11c(r31)
-/* 802F577C 002F26BC  39 03 41 E4 */	addi r8, r3, zero__10Vector3$$0f$$1@l
+/* 802F577C 002F26BC  39 03 41 E4 */	addi r8, r3, "zero__10Vector3<f>"@l
 /* 802F5780 002F26C0  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 802F5784 002F26C4  80 E8 00 00 */	lwz r7, 0(r8)
 /* 802F5788 002F26C8  3C 60 80 4B */	lis r3, __vt__Q23efx8ArgScale@ha
@@ -3915,9 +3915,9 @@ lbl_802F7220:
 /* 802F7284 002F41C4  C3 E3 00 0C */	lfs f31, 0xc(r3)
 /* 802F7288 002F41C8  41 82 00 98 */	beq lbl_802F7320
 /* 802F728C 002F41CC  38 00 00 00 */	li r0, 0
-/* 802F7290 002F41D0  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802F7290 002F41D0  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802F7294 002F41D4  90 1B 00 24 */	stw r0, 0x24(r27)
-/* 802F7298 002F41D8  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 802F7298 002F41D8  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 802F729C 002F41DC  D0 1B 00 28 */	stfs f0, 0x28(r27)
 /* 802F72A0 002F41E0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 802F72A4 002F41E4  D0 1B 00 2C */	stfs f0, 0x2c(r27)

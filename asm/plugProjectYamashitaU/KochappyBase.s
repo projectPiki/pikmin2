@@ -169,8 +169,8 @@ doUpdate__Q34Game12KochappyBase3ObjFv:
 /* 8012DD38 0012AC78  48 0B 96 A9 */	bl isDemoFlag__Q24Game8PlayDataFi
 /* 8012DD3C 0012AC7C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8012DD40 0012AC80  40 82 00 38 */	bne lbl_8012DD78
-/* 8012DD44 0012AC84  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8012DD48 0012AC88  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 8012DD44 0012AC84  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8012DD48 0012AC88  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 8012DD4C 0012AC8C  D0 1F 01 D4 */	stfs f0, 0x1d4(r31)
 /* 8012DD50 0012AC90  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8012DD54 0012AC94  D0 1F 01 D8 */	stfs f0, 0x1d8(r31)

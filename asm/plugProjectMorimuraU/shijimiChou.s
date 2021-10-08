@@ -538,7 +538,7 @@ lbl_80389DD8:
 /* 80389DD8 00386D18  38 7F 01 38 */	addi r3, r31, 0x138
 /* 80389DDC 00386D1C  38 9F 01 8C */	addi r4, r31, 0x18c
 /* 80389DE0 00386D20  38 BF 01 A4 */	addi r5, r31, 0x1a4
-/* 80389DE4 00386D24  48 09 EA A5 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80389DE4 00386D24  48 09 EA A5 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 lbl_80389DE8:
 /* 80389DE8 00386D28  7F E3 FB 78 */	mr r3, r31
 /* 80389DEC 00386D2C  4B D7 98 BD */	bl isCullingOff__Q24Game9EnemyBaseFv
@@ -722,8 +722,8 @@ doSimulation__Q34Game11ShijimiChou3ObjFf:
 /* 8038A074 00386FB4  4B CA 05 CD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8038A078:
 /* 8038A078 00386FB8  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
-/* 8038A07C 00386FBC  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8038A080 00386FC0  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 8038A07C 00386FBC  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8038A080 00386FC0  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 8038A084 00386FC4  3C 60 80 4E */	lis r3, __vt__Q23efx7ArgChou@ha
 /* 8038A088 00386FC8  38 A5 A7 EC */	addi r5, r5, __vt__Q23efx3Arg@l
 /* 8038A08C 00386FCC  C0 44 00 00 */	lfs f2, 0(r4)
@@ -3110,8 +3110,8 @@ createAppearEffect__Q34Game11ShijimiChou3ObjFv:
 /* 8038C290 003891D0  7C 00 18 40 */	cmplw r0, r3
 /* 8038C294 003891D4  41 82 00 84 */	beq lbl_8038C318
 /* 8038C298 003891D8  3C C0 80 4B */	lis r6, __vt__Q23efx3Arg@ha
-/* 8038C29C 003891DC  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 8038C2A0 003891E0  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
+/* 8038C29C 003891DC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 8038C2A0 003891E0  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
 /* 8038C2A4 003891E4  3C 80 80 4E */	lis r4, __vt__Q23efx7ArgChou@ha
 /* 8038C2A8 003891E8  38 C6 A7 EC */	addi r6, r6, __vt__Q23efx3Arg@l
 /* 8038C2AC 003891EC  C0 45 00 00 */	lfs f2, 0(r5)

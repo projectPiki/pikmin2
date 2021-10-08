@@ -1062,7 +1062,7 @@ doAnimationIKSystem__Q34Game8Damagumo3ObjFv:
 /* 802A667C 002A35BC  D0 01 00 08 */	stfs f0, 8(r1)
 /* 802A6680 002A35C0  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 802A6684 002A35C4  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 802A6688 002A35C8  48 18 1C 51 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802A6688 002A35C8  48 18 1C 51 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 802A668C 002A35CC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802A6690 002A35D0  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802A6694 002A35D4  7C 08 03 A6 */	mtlr r0

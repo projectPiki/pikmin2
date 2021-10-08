@@ -493,14 +493,14 @@ lbl_8034FCD8:
 /* 8034FCF0 0034CC30  38 84 02 BC */	addi r4, r4, 0x2bc
 /* 8034FCF4 0034CC34  4B E4 FD B5 */	bl startCapture__Q24Game8CreatureFP7Matrixf
 /* 8034FCF8 0034CC38  C0 02 01 58 */	lfs f0, lbl_8051E4B8@sda21(r2)
-/* 8034FCFC 0034CC3C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8034FD00 0034CC40  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 8034FCFC 0034CC3C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8034FD00 0034CC40  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 8034FD04 0034CC44  38 81 00 08 */	addi r4, r1, 8
 /* 8034FD08 0034CC48  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8034FD0C 0034CC4C  38 61 00 14 */	addi r3, r1, 0x14
 /* 8034FD10 0034CC50  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8034FD14 0034CC54  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8034FD18 0034CC58  48 0D 88 49 */	bl makeST__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8034FD18 0034CC58  48 0D 88 49 */	bl "makeST__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 8034FD1C 0034CC5C  80 7F 03 8C */	lwz r3, 0x38c(r31)
 /* 8034FD20 0034CC60  38 81 00 14 */	addi r4, r1, 0x14
 /* 8034FD24 0034CC64  4B E4 FD D9 */	bl updateCapture__Q24Game8CreatureFR7Matrixf
@@ -716,7 +716,7 @@ lbl_80350024:
 /* 80350028 0034CF68  38 9F 01 68 */	addi r4, r31, 0x168
 /* 8035002C 0034CF6C  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 80350030 0034CF70  38 DF 01 8C */	addi r6, r31, 0x18c
-/* 80350034 0034CF74  48 0D 82 A5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80350034 0034CF74  48 0D 82 A5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 lbl_80350038:
 /* 80350038 0034CF78  E3 E1 00 48 */	psq_l f31, 72(r1), 0, qr0
 /* 8035003C 0034CF7C  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -861,9 +861,9 @@ lbl_80350200:
 /* 80350250 0034D190  D0 1E 03 74 */	stfs f0, 0x374(r30)
 /* 80350254 0034D194  4B E4 F8 55 */	bl startCapture__Q24Game8CreatureFP7Matrixf
 /* 80350258 0034D198  C0 42 01 60 */	lfs f2, lbl_8051E4C0@sda21(r2)
-/* 8035025C 0034D19C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8035025C 0034D19C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80350260 0034D1A0  C0 1E 02 E0 */	lfs f0, 0x2e0(r30)
-/* 80350264 0034D1A4  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 80350264 0034D1A4  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 80350268 0034D1A8  C0 22 01 30 */	lfs f1, lbl_8051E490@sda21(r2)
 /* 8035026C 0034D1AC  38 61 00 50 */	addi r3, r1, 0x50
 /* 80350270 0034D1B0  EC 42 00 28 */	fsubs f2, f2, f0
@@ -872,7 +872,7 @@ lbl_80350200:
 /* 8035027C 0034D1BC  38 A1 00 38 */	addi r5, r1, 0x38
 /* 80350280 0034D1C0  D0 41 00 3C */	stfs f2, 0x3c(r1)
 /* 80350284 0034D1C4  D0 01 00 40 */	stfs f0, 0x40(r1)
-/* 80350288 0034D1C8  48 0D 86 01 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80350288 0034D1C8  48 0D 86 01 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 8035028C 0034D1CC  7F E3 FB 78 */	mr r3, r31
 /* 80350290 0034D1D0  38 81 00 50 */	addi r4, r1, 0x50
 /* 80350294 0034D1D4  4B E4 F8 69 */	bl updateCapture__Q24Game8CreatureFR7Matrixf

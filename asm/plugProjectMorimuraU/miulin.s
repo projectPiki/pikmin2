@@ -1840,9 +1840,9 @@ attackEffect__Q34Game6Miulin3ObjFR10Vector3$$0f$$1:
 /* 80365EA0 00362DE0  93 E1 00 6C */	stw r31, 0x6c(r1)
 /* 80365EA4 00362DE4  93 C1 00 68 */	stw r30, 0x68(r1)
 /* 80365EA8 00362DE8  7C 7E 1B 78 */	mr r30, r3
-/* 80365EAC 00362DEC  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80365EAC 00362DEC  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80365EB0 00362DF0  C3 FE 01 8C */	lfs f31, 0x18c(r30)
-/* 80365EB4 00362DF4  38 03 41 E4 */	addi r0, r3, zero__10Vector3$$0f$$1@l
+/* 80365EB4 00362DF4  38 03 41 E4 */	addi r0, r3, "zero__10Vector3<f>"@l
 /* 80365EB8 00362DF8  C3 DE 01 90 */	lfs f30, 0x190(r30)
 /* 80365EBC 00362DFC  7C 9F 23 78 */	mr r31, r4
 /* 80365EC0 00362E00  C3 BE 01 94 */	lfs f29, 0x194(r30)
@@ -1854,7 +1854,7 @@ attackEffect__Q34Game6Miulin3ObjFR10Vector3$$0f$$1:
 /* 80365ED8 00362E18  D0 21 00 2C */	stfs f1, 0x2c(r1)
 /* 80365EDC 00362E1C  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 80365EE0 00362E20  D0 01 00 30 */	stfs f0, 0x30(r1)
-/* 80365EE4 00362E24  48 0C 29 A5 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80365EE4 00362E24  48 0C 29 A5 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 80365EE8 00362E28  7F E4 FB 78 */	mr r4, r31
 /* 80365EEC 00362E2C  7F E5 FB 78 */	mr r5, r31
 /* 80365EF0 00362E30  38 61 00 34 */	addi r3, r1, 0x34
