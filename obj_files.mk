@@ -1057,6 +1057,11 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
+
+GROUP_1_FILES:=\
+	$(BUILD_DIR)/asm/rodata_2.o\
+
+TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
 	$(BUILD_DIR)/asm/sysCommonU/node.o\
 	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
@@ -1162,6 +1167,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
 
-GROUP_1_FILES:=\
-	$(BUILD_DIR)/asm/rodata_2.o\
+GROUP_2_FILES:=\
+	$(BUILD_DIR)/asm/rodata_3.o\
 	$(BUILD_DIR)/asm/data_1.o\
