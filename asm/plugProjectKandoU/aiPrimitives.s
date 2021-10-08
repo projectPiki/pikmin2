@@ -4589,7 +4589,7 @@ lbl_8019B378:
 /* 8019B3D8 00198318  B0 1F 00 1E */	sth r0, 0x1e(r31)
 /* 8019B3DC 0019831C  38 61 00 58 */	addi r3, r1, 0x58
 /* 8019B3E0 00198320  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019B3E4 00198324  48 27 64 75 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019B3E4 00198324  48 27 64 75 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019B3E8 00198328  C0 01 00 58 */	lfs f0, 0x58(r1)
 /* 8019B3EC 0019832C  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019B3F0 00198330  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -4642,7 +4642,7 @@ lbl_8019B48C:
 /* 8019B49C 001983DC  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019B4A0 001983E0  38 61 00 4C */	addi r3, r1, 0x4c
 /* 8019B4A4 001983E4  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019B4A8 001983E8  48 27 63 B1 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019B4A8 001983E8  48 27 63 B1 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019B4AC 001983EC  C0 01 00 4C */	lfs f0, 0x4c(r1)
 /* 8019B4B0 001983F0  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019B4B4 001983F4  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -5015,7 +5015,7 @@ lbl_8019B990:
 /* 8019B9BC 001988FC  B0 1F 00 1E */	sth r0, 0x1e(r31)
 /* 8019B9C0 00198900  38 61 00 40 */	addi r3, r1, 0x40
 /* 8019B9C4 00198904  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019B9C8 00198908  48 27 5E 91 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019B9C8 00198908  48 27 5E 91 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019B9CC 0019890C  C0 01 00 40 */	lfs f0, 0x40(r1)
 /* 8019B9D0 00198910  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019B9D4 00198914  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -5068,7 +5068,7 @@ lbl_8019BA70:
 /* 8019BA80 001989C0  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019BA84 001989C4  38 61 00 34 */	addi r3, r1, 0x34
 /* 8019BA88 001989C8  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019BA8C 001989CC  48 27 5D CD */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019BA8C 001989CC  48 27 5D CD */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019BA90 001989D0  C0 01 00 34 */	lfs f0, 0x34(r1)
 /* 8019BA94 001989D4  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019BA98 001989D8  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -5117,7 +5117,7 @@ lbl_8019BB34:
 /* 8019BB34 00198A74  FC 20 D8 90 */	fmr f1, f27
 /* 8019BB38 00198A78  38 61 00 28 */	addi r3, r1, 0x28
 /* 8019BB3C 00198A7C  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019BB40 00198A80  48 27 5D 19 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019BB40 00198A80  48 27 5D 19 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019BB44 00198A84  C0 01 00 28 */	lfs f0, 0x28(r1)
 /* 8019BB48 00198A88  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019BB4C 00198A8C  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
