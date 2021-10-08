@@ -1,0 +1,3162 @@
+.include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x4
+
+.global lbl_804ECFE8
+lbl_804ECFE8:
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000000
+.global lbl_804ECFF8
+lbl_804ECFF8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804ED004
+lbl_804ED004:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x804487B0
+.global lbl_804ED010
+lbl_804ED010:
+	.4byte 0x80448834
+	.4byte 0x80448834
+	.4byte 0x80448834
+	.4byte 0x80448834
+	.4byte 0x80448844
+	.4byte 0x8044884C
+	.4byte 0x80448978
+	.4byte 0x804488AC
+	.4byte 0x8044890C
+	.4byte 0x8044896C
+	.4byte 0x8044896C
+.global lbl_804ED03C
+lbl_804ED03C:
+	.4byte 0x8044907C
+	.4byte 0x80449088
+	.4byte 0x80449374
+	.4byte 0x804494C0
+	.4byte 0x80449094
+	.4byte 0x804490A0
+	.4byte 0x804490AC
+	.4byte 0x80449220
+	.4byte 0x804490B8
+	.4byte 0x8044959C
+	.4byte 0x8044962C
+.global lbl_804ED068
+lbl_804ED068:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x804483F4
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044813C
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x80449EA0
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x80449EA0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__11BootSection
+__vt__11BootSection:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__11BootSectionFv
+  .4byte run__11BootSectionFv
+  .4byte update__7SectionFv
+  .4byte draw__7SectionFR8Graphics
+  .4byte init__11BootSectionFv
+  .4byte drawInit__7SectionFR8Graphics
+  .4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+  .4byte doExit__7SectionFv
+  .4byte forceFinish__7SectionFv
+  .4byte forceReset__11BootSectionFv
+  .4byte getCurrentSection__7SectionFv
+  .4byte doLoadingStart__7SectionFv
+  .4byte doLoading__7SectionFv
+  .4byte doUpdate__11BootSectionFv
+  .4byte doDraw__11BootSectionFR8Graphics
+  .4byte isFinishable__7SectionFv
+  .4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+  .4byte refreshHIO__Q24Game14BaseHIOSectionFv
+.global __vt__23Delegate$$011BootSection$$1
+__vt__23Delegate$$011BootSection$$1:
+  .4byte 0
+  .4byte 0
+  .4byte invoke__23Delegate$$011BootSection$$1Fv
+  .4byte 0
+  .4byte 0
+  .4byte 0
+.global lbl_804ED1A8
+lbl_804ED1A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804ED1B4
+lbl_804ED1B4:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044A5C8
+.global lbl_804ED1C0
+lbl_804ED1C0:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044AB00
+.global lbl_804ED1CC
+lbl_804ED1CC:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044AB2C
+.global lbl_804ED1D8
+lbl_804ED1D8:
+	.4byte 0x8044B290
+	.4byte 0x8044AF78
+	.4byte 0x8044AF84
+	.4byte 0x8044AF90
+	.4byte 0x8044AF9C
+	.4byte 0x8044B088
+	.4byte 0x8044B1B4
+.global lbl_804ED1F4
+lbl_804ED1F4:
+	.4byte 0x00000000
+	.4byte 0x00000050
+	.4byte 0x00000000
+.global lbl_804ED200
+lbl_804ED200:
+	.4byte 0x8044C208
+	.4byte 0x8044C214
+	.4byte 0x8044C220
+	.4byte 0x8044C22C
+	.4byte 0x8044C238
+	.4byte 0x8044C244
+	.4byte 0x8044C250
+	.4byte 0x8044C25C
+	.4byte 0x8044C268
+	.4byte 0x8044C274
+	.4byte 0x8044C280
+	.4byte 0x8044C28C
+.global __vt__34Delegate1$$0Q25Title7Section$$4R4Menu$$1
+__vt__34Delegate1$$0Q25Title7Section$$4R4Menu$$1:
+  .4byte 0
+  .4byte 0
+  .4byte invoke__34Delegate1$$0Q25Title7Section$$4R4Menu$$1FR4Menu
+.global __vt__18IDelegate1$$0R4Menu$$1
+__vt__18IDelegate1$$0R4Menu$$1:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+.global __vt__11HIORootNode
+__vt__11HIORootNode:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__11HIORootNodeFv
+  .4byte getChildCount__5CNodeFv
+.global __vt__Q25Title7Section
+__vt__Q25Title7Section:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q25Title7SectionFv
+  .4byte run__Q25Title7SectionFv
+  .4byte update__7SectionFv
+  .4byte draw__7SectionFR8Graphics
+  .4byte init__Q25Title7SectionFv
+  .4byte drawInit__7SectionFR8Graphics
+  .4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+  .4byte doExit__Q25Title7SectionFv
+  .4byte forceFinish__7SectionFv
+  .4byte forceReset__Q25Title7SectionFv
+  .4byte getCurrentSection__7SectionFv
+  .4byte doLoadingStart__Q25Title7SectionFv
+  .4byte doLoading__Q25Title7SectionFv
+  .4byte doUpdate__Q25Title7SectionFv
+  .4byte doDraw__Q25Title7SectionFR8Graphics
+  .4byte isFinishable__Q25Title7SectionFv
+  .4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+  .4byte refreshHIO__Q24Game14BaseHIOSectionFv
+  .4byte loadResource__Q25Title7SectionFv
+.global __vt__26Delegate$$0Q25Title7Section$$1
+__vt__26Delegate$$0Q25Title7Section$$1:
+  .4byte 0
+  .4byte 0
+  .4byte invoke__26Delegate$$0Q25Title7Section$$1Fv
+.global __vt__Q212LoadResource4Node
+__vt__Q212LoadResource4Node:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q212LoadResource4NodeFv
+  .4byte getChildCount__5CNodeFv
+  .4byte 0
+  .4byte 0
+  .4byte $$224$$2__dt__Q212LoadResource4NodeFv
+  .4byte 0
+.global __vt__15RootMenuSection
+__vt__15RootMenuSection:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__15RootMenuSectionFv
+  .4byte run__11MenuSectionFv
+  .4byte update__7SectionFv
+  .4byte draw__7SectionFR8Graphics
+  .4byte init__7SectionFv
+  .4byte drawInit__15RootMenuSectionFR8Graphics
+  .4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+  .4byte doExit__7SectionFv
+  .4byte forceFinish__7SectionFv
+  .4byte forceReset__7SectionFv
+  .4byte getCurrentSection__11MenuSectionFv
+  .4byte doLoadingStart__7SectionFv
+  .4byte doLoading__7SectionFv
+  .4byte doUpdate__15RootMenuSectionFv
+  .4byte doDraw__15RootMenuSectionFR8Graphics
+  .4byte isFinishable__7SectionFv
+  .4byte setChildSection__15RootMenuSectionFP7JKRHeap
+  .4byte 0
+.global sLogoLocate__Q24Demo25$$2unnamed$$2demoSection_cpp$$2
+sLogoLocate__Q24Demo25$$2unnamed$$2demoSection_cpp$$2:
+	.4byte 0x0172000F
+	.4byte 0x0172000F
+	.4byte 0x0172000F
+	.4byte 0x01720028
+	.4byte 0x0172000F
+	.4byte 0x0172000F
+	.4byte 0x0172000F
+	.4byte 0x01720028
+.global lbl_804ED348
+lbl_804ED348:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044D154
+.global __vt__25Delegate$$0Q24Demo7Section$$1
+__vt__25Delegate$$0Q24Demo7Section$$1:
+  .4byte 0
+  .4byte 0
+  .4byte invoke__25Delegate$$0Q24Demo7Section$$1Fv
+.global __vt__Q24Demo11HIORootNode
+__vt__Q24Demo11HIORootNode:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q24Demo11HIORootNodeFv
+  .4byte getChildCount__5CNodeFv
+.global __vt__Q24Demo7Section
+__vt__Q24Demo7Section:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q24Demo7SectionFv
+  .4byte run__7SectionFv
+  .4byte update__7SectionFv
+  .4byte draw__7SectionFR8Graphics
+  .4byte init__Q24Demo7SectionFv
+  .4byte drawInit__7SectionFR8Graphics
+  .4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+  .4byte doExit__Q24Demo7SectionFv
+  .4byte forceFinish__7SectionFv
+  .4byte forceReset__Q24Demo7SectionFv
+  .4byte getCurrentSection__7SectionFv
+  .4byte doLoadingStart__Q24Demo7SectionFv
+  .4byte doLoading__Q24Demo7SectionFv
+  .4byte doUpdate__Q24Demo7SectionFv
+  .4byte doDraw__Q24Demo7SectionFR8Graphics
+  .4byte isFinishable__7SectionFv
+  .4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+  .4byte refreshHIO__Q24Game14BaseHIOSectionFv
+.global VolumeTable
+VolumeTable:
+	.4byte 0x00000002
+	.4byte 0x00080012
+	.4byte 0x00200032
+	.4byte 0x00490063
+	.4byte 0x008200A4
+	.4byte 0x00CB00F5
+	.4byte 0x01240157
+	.4byte 0x018E01C9
+	.4byte 0x0208024B
+	.4byte 0x029202DD
+	.4byte 0x032C037F
+	.4byte 0x03D70432
+	.4byte 0x049204F5
+	.4byte 0x055D05C9
+	.4byte 0x063806AC
+	.4byte 0x072407A0
+	.4byte 0x082008A4
+	.4byte 0x092C09B8
+	.4byte 0x0A480ADD
+	.4byte 0x0B750C12
+	.4byte 0x0CB20D57
+	.4byte 0x0DFF0EAC
+	.4byte 0x0F5D1012
+	.4byte 0x10CA1187
+	.4byte 0x1248130D
+	.4byte 0x13D714A4
+	.4byte 0x1575164A
+	.4byte 0x17241801
+	.4byte 0x18E319C8
+	.4byte 0x1AB21BA0
+	.4byte 0x1C911D87
+	.4byte 0x1E811F7F
+	.4byte 0x20812187
+	.4byte 0x2291239F
+	.4byte 0x24B225C8
+	.4byte 0x26E22801
+	.4byte 0x29232A4A
+	.4byte 0x2B752CA3
+	.4byte 0x2DD62F0D
+	.4byte 0x30483187
+	.4byte 0x32CA3411
+	.4byte 0x355C36AB
+	.4byte 0x37FF3956
+	.4byte 0x3AB13C11
+	.4byte 0x3D743EDC
+	.4byte 0x404841B7
+	.4byte 0x432B44A3
+	.4byte 0x461F479F
+	.4byte 0x49234AAB
+	.4byte 0x4C374DC7
+	.4byte 0x4F5C50F4
+	.4byte 0x52905431
+	.4byte 0x55D6577E
+	.4byte 0x592B5ADC
+	.4byte 0x5C905E49
+	.4byte 0x600661C7
+	.4byte 0x638C6555
+	.4byte 0x672268F4
+	.4byte 0x6AC96CA2
+	.4byte 0x6E807061
+	.4byte 0x72477430
+	.4byte 0x761E7810
+	.4byte 0x7A067C00
+	.4byte 0x7DFE8000
+.global lbl_804ED4C0
+lbl_804ED4C0:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x804500D8
+.global __vt__Q24Game9THPPlayer
+__vt__Q24Game9THPPlayer:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q24Game9THPPlayerFv
+  .4byte 0
+  .4byte 0
+  .4byte $$224$$2__dt__Q24Game9THPPlayerFv
+  .4byte getChildCount__5CNodeFv
+  .4byte update__Q24Game9THPPlayerFv
+  .4byte draw__Q24Game9THPPlayerFR8Graphics
+  .4byte draw__Q24Game9THPPlayerFR8GraphicsllUlUl
+  .4byte draw__Q24Game9THPPlayerFR8Graphicsllf
+.global __vt__27Delegate$$0Q24Game9THPPlayer$$1
+__vt__27Delegate$$0Q24Game9THPPlayer$$1:
+  .4byte 0
+  .4byte 0
+  .4byte invoke__27Delegate$$0Q24Game9THPPlayer$$1Fv
+  .4byte 0
+.global __vt__Q27Caption3Mgr
+__vt__Q27Caption3Mgr:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q27Caption3MgrFv
+  .4byte getChildCount__5CNodeFv
+  .4byte read__Q27Caption3MgrFR6Stream
+.global __vt__Q27Caption4Node
+__vt__Q27Caption4Node:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q27Caption4NodeFv
+  .4byte getChildCount__5CNodeFv
+  .4byte read__Q27Caption4NodeFR6Stream
+.global __vt__Q35P2JME7Caption8TControl
+__vt__Q35P2JME7Caption8TControl:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q35P2JME7Caption8TControlFv
+  .4byte reset__Q35P2JME7Caption8TControlFv
+  .4byte update__Q25P2JME8TControlFv
+  .4byte update__Q35P2JME6Window8TControlFP10ControllerP10Controller
+  .4byte draw__Q35P2JME7Caption8TControlFR8Graphics
+  .4byte draw__Q35P2JME6Window8TControlFPA4_fPA4_f
+  .4byte setMessageID__Q25P2JME8TControlFUlUl
+  .4byte setMessageID__Q25P2JME8TControlFPc
+  .4byte setMessageID__Q25P2JME8TControlFUx
+  .4byte setMessageCode__Q25P2JME8TControlFUsUs
+  .4byte setMessageCode__Q25P2JME8TControlFUl
+  .4byte onInit__Q35P2JME7Caption8TControlFv
+  .4byte createReference__Q25P2JME8TControlFv
+  .4byte createResourceContainer__Q25P2JME8TControlFv
+  .4byte createSequenceProcessor__Q35P2JME7Caption8TControlFv
+  .4byte createRenderingProcessor__Q35P2JME7Caption8TControlFv
+.global __vt__Q35P2JME7Caption18TSequenceProcessor
+__vt__Q35P2JME7Caption18TSequenceProcessor:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q35P2JME7Caption18TSequenceProcessorFv
+  .4byte do_reset__Q28JMessage10TProcessorFv
+  .4byte do_character__Q25P2JME18TSequenceProcessorFi
+  .4byte do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl
+  .4byte do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl
+  .4byte do_select_begin__Q28JMessage10TProcessorFUl
+  .4byte do_select_end__Q28JMessage10TProcessorFv
+  .4byte do_select_separate__Q28JMessage10TProcessorFv
+  .4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
+  .4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
+  .4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
+  .4byte do_end___Q28JMessage18TSequenceProcessorFv
+  .4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
+  .4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
+  .4byte do_begin__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte do_end__Q25P2JME18TSequenceProcessorFv
+  .4byte do_isReady__Q35P2JME7Caption18TSequenceProcessorFv
+  .4byte do_jump_isReady__Q25P2JME18TSequenceProcessorFv
+  .4byte do_jump__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte do_branch_query__Q25P2JME18TSequenceProcessorFUs
+  .4byte do_branch_queryResult__Q25P2JME18TSequenceProcessorFv
+  .4byte do_branch__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte doResetAbtnWaitSE__Q35P2JME7Caption18TSequenceProcessorFv
+  .4byte doCharacterSEStart__Q35P2JME7Caption18TSequenceProcessorFv
+  .4byte doCharacterSE__Q35P2JME7Caption18TSequenceProcessorFi
+  .4byte doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv
+  .4byte doFastForwardSE__Q35P2JME6Window18TSequenceProcessorFv
+  .4byte reset__Q25P2JME18TSequenceProcessorFv
+.global __vt__Q35P2JME7Caption19TRenderingProcessor
+__vt__Q35P2JME7Caption19TRenderingProcessor:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q35P2JME7Caption19TRenderingProcessorFv
+  .4byte do_reset__Q28JMessage10TProcessorFv
+  .4byte do_character__Q25P2JME19TRenderingProcessorFi
+  .4byte do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl
+  .4byte do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte do_select_begin__Q25P2JME19TRenderingProcessorFUl
+  .4byte do_select_end__Q25P2JME19TRenderingProcessorFv
+  .4byte do_select_separate__Q25P2JME19TRenderingProcessorFv
+  .4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+  .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+  .4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+  .4byte do_end___Q28JMessage19TRenderingProcessorFv
+  .4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+  .4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+  .4byte do_begin__Q25P2JME19TRenderingProcessorFPCvPCc
+  .4byte do_end__Q28JMessage19TRenderingProcessorFv
+  .4byte tagColor__Q25P2JME19TRenderingProcessorFPCvUl
+  .4byte tagSize__Q25P2JME19TRenderingProcessorFPCvUl
+  .4byte tagRuby__Q25P2JME19TRenderingProcessorFPCvUl
+  .4byte tagFont__Q25P2JME19TRenderingProcessorFPCvUl
+  .4byte tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte update__Q35P2JME6Window19TRenderingProcessorFv
+  .4byte reset__Q35P2JME6Window19TRenderingProcessorFv
+  .4byte newParagraph__Q25P2JME19TRenderingProcessorFv
+  .4byte doDrawImage__Q35P2JME6Window19TRenderingProcessorFP10JUTTextureffff
+  .4byte doDrawRuby__Q35P2JME6Window19TRenderingProcessorFffffib
+  .4byte doDrawLetter__Q35P2JME6Window19TRenderingProcessorFffffib
+  .4byte doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv
+  .4byte doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf
+  .4byte makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3$$0f$$1
+  .4byte doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
+.global lbl_804ED680
+lbl_804ED680:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x80451D1C
+.global __vt__Q26Screen9SceneBase
+__vt__Q26Screen9SceneBase:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+  .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+  .4byte 0
+  .4byte 0
+  .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+  .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+  .4byte doUpdateActive__Q26Screen9SceneBaseFv
+  .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+  .4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+  .4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+  .4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+  .4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+  .4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+  .4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+  .4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__55Delegate1$$0Q26Screen9SceneBase$$4PQ28Resource10MgrCommand$$1
+__vt__55Delegate1$$0Q26Screen9SceneBase$$4PQ28Resource10MgrCommand$$1:
+  .4byte 0
+  .4byte 0
+  .4byte invoke__55Delegate1$$0Q26Screen9SceneBase$$4PQ28Resource10MgrCommand$$1FPQ28Resource10MgrCommand
+.global __vt__36IDelegate1$$0PQ28Resource10MgrCommand$$1
+__vt__36IDelegate1$$0PQ28Resource10MgrCommand$$1:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+.global lbl_804ED6F8
+lbl_804ED6F8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q26Screen3Mgr
+__vt__Q26Screen3Mgr:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q26Screen3MgrFv
+  .4byte setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg
+  .4byte startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg
+  .4byte endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg
+  .4byte reset__Q26Screen3MgrFv
+  .4byte setColorBG__Q26Screen3MgrFRQ28JUtility6TColor
+  .4byte setBGMode__Q26Screen3MgrFi
+  .4byte doGetSceneBase__Q26Screen3MgrFl
+  .4byte drawBG__Q26Screen3MgrFR8Graphics
+  .4byte drawWipe__Q26Screen3MgrFR8Graphics
+.global __vt__Q26Screen10MgrCommand
+__vt__Q26Screen10MgrCommand:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q26Screen10MgrCommandFv
+  .4byte getChildCount__5CNodeFv
+.global __vt__Q26Screen13SceneInfoList
+__vt__Q26Screen13SceneInfoList:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q26Screen13SceneInfoListFv
+  .4byte getChildCount__5CNodeFv
+  .4byte 0
+.global __vt__Q26Screen7ObjBase
+__vt__Q26Screen7ObjBase:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q26Screen7ObjBaseFv
+  .4byte getChildCount__5CNodeFv
+  .4byte 0
+  .4byte 0
+  .4byte $$224$$2__dt__Q26Screen7ObjBaseFv
+  .4byte update__Q26Screen7ObjBaseFv
+  .4byte draw__Q26Screen7ObjBaseFR8Graphics
+  .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+  .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+  .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+  .4byte getOwner__Q26Screen7ObjBaseCFv
+  .4byte create__Q26Screen7ObjBaseFP10JKRArchive
+  .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+  .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+  .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+  .4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+  .4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+  .4byte doCreate__Q26Screen7ObjBaseFP10JKRArchive
+  .4byte doUpdateFadein__Q26Screen7ObjBaseFv
+  .4byte doUpdateFadeinFinish__Q26Screen7ObjBaseFv
+  .4byte doUpdate__Q26Screen7ObjBaseFv
+  .4byte doUpdateFinish__Q26Screen7ObjBaseFv
+  .4byte doUpdateFadeout__Q26Screen7ObjBaseFv
+  .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+  .4byte doDraw__Q26Screen7ObjBaseFR8Graphics
+  .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+  .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+  .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+.global lbl_804ED7D0
+lbl_804ED7D0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game5P2JST19ObjectParticleActor
+__vt__Q34Game5P2JST19ObjectParticleActor:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q34Game5P2JST19ObjectParticleActorFv
+  .4byte JSGFGetType__Q26JStage6TActorCFv
+  .4byte JSGGetName__Q34Game5P2JST11ObjectActorCFv
+  .4byte JSGUpdate__Q26JStage7TObjectFv
+  .4byte JSGGetFlag__Q34Game5P2JST11ObjectActorCFv
+  .4byte JSGSetFlag__Q34Game5P2JST11ObjectActorFUl
+  .4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+  .4byte JSGSetData__Q34Game5P2JST11ObjectActorFUlPCvUl
+  .4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+  .4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+  .4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+  .4byte JSGFindNodeID__Q34Game5P2JST11ObjectActorCFPCc
+  .4byte JSGGetNodeTransformation__Q34Game5P2JST11ObjectActorCFUlPA4_f
+  .4byte JSGGetTranslation__Q34Game5P2JST19ObjectParticleActorCFP3Vec
+  .4byte JSGSetTranslation__Q34Game5P2JST19ObjectParticleActorFRC3Vec
+  .4byte JSGGetScaling__Q34Game5P2JST11ObjectActorCFP3Vec
+  .4byte JSGSetScaling__Q34Game5P2JST11ObjectActorFRC3Vec
+  .4byte JSGGetRotation__Q34Game5P2JST11ObjectActorCFP3Vec
+  .4byte JSGSetRotation__Q34Game5P2JST11ObjectActorFRC3Vec
+  .4byte JSGGetShape__Q34Game5P2JST11ObjectActorCFv
+  .4byte JSGSetShape__Q34Game5P2JST19ObjectParticleActorFUl
+  .4byte JSGGetAnimation__Q34Game5P2JST11ObjectActorCFv
+  .4byte JSGSetAnimation__Q34Game5P2JST11ObjectActorFUl
+  .4byte JSGGetAnimationFrame__Q34Game5P2JST11ObjectActorCFv
+  .4byte JSGSetAnimationFrame__Q34Game5P2JST11ObjectActorFf
+  .4byte JSGGetAnimationFrameMax__Q34Game5P2JST11ObjectActorCFv
+  .4byte JSGGetAnimationTransition__Q26JStage6TActorCFv
+  .4byte JSGSetAnimationTransition__Q26JStage6TActorFf
+  .4byte JSGGetTextureAnimation__Q26JStage6TActorCFv
+  .4byte JSGSetTextureAnimation__Q26JStage6TActorFUl
+  .4byte JSGGetTextureAnimationFrame__Q26JStage6TActorCFv
+  .4byte JSGSetTextureAnimationFrame__Q26JStage6TActorFf
+  .4byte JSGGetTextureAnimationFrameMax__Q26JStage6TActorCFv
+  .4byte 0
+  .4byte 0
+  .4byte $$24$$2reset__Q34Game5P2JST19ObjectParticleActorFv
+  .4byte $$24$$2update__Q34Game5P2JST19ObjectParticleActorFv
+  .4byte $$24$$2start__Q34Game5P2JST11ObjectActorFv
+  .4byte $$24$$2stop__Q34Game5P2JST19ObjectParticleActorFv
+  .4byte $$24$$2parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv
+  .4byte reset__Q34Game5P2JST19ObjectParticleActorFv
+  .4byte update__Q34Game5P2JST19ObjectParticleActorFv
+  .4byte entry__Q34Game5P2JST11ObjectActorFv
+  .4byte start__Q34Game5P2JST11ObjectActorFv
+  .4byte stop__Q34Game5P2JST19ObjectParticleActorFv
+  .4byte setShape__Q34Game5P2JST11ObjectActorFv
+  .4byte setAnim__Q34Game5P2JST11ObjectActorFv
+  .4byte mountArchive__Q34Game5P2JST11ObjectActorFv
+  .4byte parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv
+  .4byte 0
+  .4byte 0
+  .4byte $$2112$$2__dt__Q34Game5P2JST19ObjectParticleActorFv
+  .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+  .4byte $$2112$$2executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
+  .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+  .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+  .4byte executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
+.global lbl_804ED8C8
+lbl_804ED8C8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__27Pikmin_TCreateObject_JAudio
+__vt__27Pikmin_TCreateObject_JAudio:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__27Pikmin_TCreateObject_JAudioFv
+  .4byte create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+  .4byte 0
+.global __vt__Q35P2JME15IllustratedBook8TControl
+__vt__Q35P2JME15IllustratedBook8TControl:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q35P2JME15IllustratedBook8TControlFv
+  .4byte reset__Q35P2JME15IllustratedBook8TControlFv
+  .4byte update__Q25P2JME8TControlFv
+  .4byte update__Q35P2JME15IllustratedBook8TControlFP10ControllerP10Controller
+  .4byte draw__Q35P2JME15IllustratedBook8TControlFR8Graphics
+  .4byte draw__Q35P2JME15IllustratedBook8TControlFPA4_fPA4_f
+  .4byte setMessageID__Q25P2JME8TControlFUlUl
+  .4byte setMessageID__Q25P2JME8TControlFPc
+  .4byte setMessageID__Q25P2JME8TControlFUx
+  .4byte setMessageCode__Q25P2JME8TControlFUsUs
+  .4byte setMessageCode__Q25P2JME8TControlFUl
+  .4byte onInit__Q35P2JME15IllustratedBook8TControlFv
+  .4byte createReference__Q25P2JME8TControlFv
+  .4byte createResourceContainer__Q25P2JME8TControlFv
+  .4byte createSequenceProcessor__Q35P2JME15IllustratedBook8TControlFv
+  .4byte createRenderingProcessor__Q35P2JME15IllustratedBook8TControlFv
+.global __vt__Q35P2JME15IllustratedBook19TRenderingProcessor
+__vt__Q35P2JME15IllustratedBook19TRenderingProcessor:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q35P2JME15IllustratedBook19TRenderingProcessorFv
+  .4byte do_reset__Q28JMessage10TProcessorFv
+  .4byte do_character__Q25P2JME19TRenderingProcessorFi
+  .4byte do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl
+  .4byte do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte do_select_begin__Q25P2JME19TRenderingProcessorFUl
+  .4byte do_select_end__Q25P2JME19TRenderingProcessorFv
+  .4byte do_select_separate__Q25P2JME19TRenderingProcessorFv
+  .4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+  .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+  .4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+  .4byte do_end___Q28JMessage19TRenderingProcessorFv
+  .4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+  .4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+  .4byte do_begin__Q25P2JME19TRenderingProcessorFPCvPCc
+  .4byte do_end__Q28JMessage19TRenderingProcessorFv
+  .4byte tagColor__Q25P2JME19TRenderingProcessorFPCvUl
+  .4byte tagSize__Q25P2JME19TRenderingProcessorFPCvUl
+  .4byte tagRuby__Q25P2JME19TRenderingProcessorFPCvUl
+  .4byte tagFont__Q25P2JME19TRenderingProcessorFPCvUl
+  .4byte tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl
+  .4byte update__Q35P2JME6Window19TRenderingProcessorFv
+  .4byte reset__Q35P2JME6Window19TRenderingProcessorFv
+  .4byte newParagraph__Q25P2JME19TRenderingProcessorFv
+  .4byte doDrawImage__Q35P2JME6Window19TRenderingProcessorFP10JUTTextureffff
+  .4byte doDrawRuby__Q35P2JME6Window19TRenderingProcessorFffffib
+  .4byte doDrawLetter__Q35P2JME6Window19TRenderingProcessorFffffib
+  .4byte doTagControlAbtnWait__Q35P2JME15IllustratedBook19TRenderingProcessorFv
+  .4byte doDrawCommon__Q35P2JME6Window19TRenderingProcessorFffP7MatrixfP7Matrixf
+  .4byte makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3$$0f$$1
+  .4byte doGetDrawInfo__Q35P2JME6Window19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
+.global __vt__Q35P2JME15IllustratedBook18TSequenceProcessor
+__vt__Q35P2JME15IllustratedBook18TSequenceProcessor:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q35P2JME15IllustratedBook18TSequenceProcessorFv
+  .4byte do_reset__Q28JMessage10TProcessorFv
+  .4byte do_character__Q25P2JME18TSequenceProcessorFi
+  .4byte do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl
+  .4byte do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl
+  .4byte do_select_begin__Q28JMessage10TProcessorFUl
+  .4byte do_select_end__Q28JMessage10TProcessorFv
+  .4byte do_select_separate__Q28JMessage10TProcessorFv
+  .4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
+  .4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
+  .4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
+  .4byte do_end___Q28JMessage18TSequenceProcessorFv
+  .4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
+  .4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
+  .4byte do_begin__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte do_end__Q25P2JME18TSequenceProcessorFv
+  .4byte do_isReady__Q25P2JME13TSeqProcNoSeqFv
+  .4byte do_jump_isReady__Q25P2JME18TSequenceProcessorFv
+  .4byte do_jump__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte do_branch_query__Q25P2JME18TSequenceProcessorFUs
+  .4byte do_branch_queryResult__Q25P2JME18TSequenceProcessorFv
+  .4byte do_branch__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte doResetAbtnWaitSE__Q25P2JME18TSequenceProcessorFv
+  .4byte doCharacterSEStart__Q25P2JME18TSequenceProcessorFv
+  .4byte doCharacterSE__Q25P2JME18TSequenceProcessorFi
+  .4byte doCharacterSEEnd__Q25P2JME18TSequenceProcessorFv
+  .4byte doFastForwardSE__Q25P2JME18TSequenceProcessorFv
+  .4byte reset__Q25P2JME18TSequenceProcessorFv
+.global __vt__Q25P2JME13TSeqProcNoSeq
+__vt__Q25P2JME13TSeqProcNoSeq:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q25P2JME13TSeqProcNoSeqFv
+  .4byte do_reset__Q28JMessage10TProcessorFv
+  .4byte do_character__Q25P2JME18TSequenceProcessorFi
+  .4byte do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl
+  .4byte do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl
+  .4byte do_select_begin__Q28JMessage10TProcessorFUl
+  .4byte do_select_end__Q28JMessage10TProcessorFv
+  .4byte do_select_separate__Q28JMessage10TProcessorFv
+  .4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
+  .4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
+  .4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
+  .4byte do_end___Q28JMessage18TSequenceProcessorFv
+  .4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
+  .4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
+  .4byte do_begin__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte do_end__Q25P2JME18TSequenceProcessorFv
+  .4byte do_isReady__Q25P2JME13TSeqProcNoSeqFv
+  .4byte do_jump_isReady__Q25P2JME18TSequenceProcessorFv
+  .4byte do_jump__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte do_branch_query__Q25P2JME18TSequenceProcessorFUs
+  .4byte do_branch_queryResult__Q25P2JME18TSequenceProcessorFv
+  .4byte do_branch__Q25P2JME18TSequenceProcessorFPCvPCc
+  .4byte doResetAbtnWaitSE__Q25P2JME18TSequenceProcessorFv
+  .4byte doCharacterSEStart__Q25P2JME18TSequenceProcessorFv
+  .4byte doCharacterSE__Q25P2JME18TSequenceProcessorFi
+  .4byte doCharacterSEEnd__Q25P2JME18TSequenceProcessorFv
+  .4byte doFastForwardSE__Q25P2JME18TSequenceProcessorFv
+  .4byte reset__Q25P2JME18TSequenceProcessorFv
+.global __vt__Q23Sys11DrawBuffers
+__vt__Q23Sys11DrawBuffers:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23Sys11DrawBuffersFv
+  .4byte getChildCount__5CNodeFv
+.global __vt__Q23Sys10DrawBuffer
+__vt__Q23Sys10DrawBuffer:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23Sys10DrawBufferFv
+  .4byte getChildCount__5CNodeFv
+.global gMessage_jpn__8DvdError
+gMessage_jpn__8DvdError:
+	.4byte 0x8049BB08
+	.4byte 0x8049BB1C
+	.4byte 0x8049BB94
+	.4byte 0x8049BBEC
+	.4byte 0x8049BC18
+	.4byte 0x8049BBEC
+.global gMessage_eng__8DvdError
+gMessage_eng__8DvdError:
+	.4byte 0x8049BC70
+	.4byte 0x8049BC80
+	.4byte 0x8049BD00
+	.4byte 0x8049BD70
+	.4byte 0x8049BD98
+	.4byte 0x8049BD70
+.global gMessage_ger__8DvdError
+gMessage_ger__8DvdError:
+	.4byte 0x8049BDF4
+	.4byte 0x8049BE04
+	.4byte 0x8049BE9C
+	.4byte 0x8049BF18
+	.4byte 0x8049BF44
+	.4byte 0x8049BF18
+.global gMessage_fra__8DvdError
+gMessage_fra__8DvdError:
+	.4byte 0x8049BC70
+	.4byte 0x8049BFA4
+	.4byte 0x8049C030
+	.4byte 0x8049C0B4
+	.4byte 0x8049C0DC
+	.4byte 0x8049C0B4
+.global gMessage_spa__8DvdError
+gMessage_spa__8DvdError:
+	.4byte 0x8049BC70
+	.4byte 0x8049C12C
+	.4byte 0x8049C1B0
+	.4byte 0x8049C224
+	.4byte 0x8049C244
+	.4byte 0x8049C224
+.global gMessage_ita__8DvdError
+gMessage_ita__8DvdError:
+	.4byte 0x8049BC70
+	.4byte 0x8049C28C
+	.4byte 0x8049C30C
+	.4byte 0x8049C388
+	.4byte 0x8049C3B0
+	.4byte 0x8049C388
+.global sAramResName2D__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2
+sAramResName2D__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2:
+	.4byte 0x8049C424
+	.4byte 0x8049C434
+	.4byte 0x8049C444
+	.4byte 0x8049C458
+	.4byte 0x8049C470
+	.4byte 0x8049C484
+	.4byte 0x8049C49C
+	.4byte 0x8049C4B4
+	.4byte 0x8049C4C0
+	.4byte 0x8049C4E0
+	.4byte 0x8049C4F8
+	.4byte 0x8049C50C
+	.4byte 0x8049C51C
+.global sAramResName2DCmn__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2
+sAramResName2DCmn__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2:
+	.4byte 0x8049C528
+	.4byte 0x8049C554
+	.4byte 0x8049C580
+	.4byte 0x8049C5AC
+.global sAramResDemo__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2
+sAramResDemo__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2:
+	.4byte 0x8049C5D4
+	.4byte 0x8049C5FC
+	.4byte 0x8049C628
+	.4byte 0x8049C650
+	.4byte 0x8049C67C
+	.4byte 0x8049C6AC
+	.4byte 0x8049C6DC
+	.4byte 0x8049C70C
+	.4byte 0x8049C740
+	.4byte 0x8049C770
+	.4byte 0x8049C798
+	.4byte 0x8049C7C8
+	.4byte 0x8049C7F4
+	.4byte 0x8049C824
+	.4byte 0x8049C850
+	.4byte 0x8049C884
+	.4byte 0x8049C8B0
+	.4byte 0x8049C8DC
+	.4byte 0x8049C908
+.global sAramResItem__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2
+sAramResItem__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2:
+	.4byte 0x8049C938
+	.4byte 0x8049C954
+	.4byte 0x8049C970
+	.4byte 0x8049C988
+	.4byte 0x8049C9A4
+	.4byte 0x8049C9C0
+	.4byte 0x8049C9E0
+	.4byte 0x8049C9F8
+	.4byte 0x8049CA14
+	.4byte 0x8049CA30
+	.4byte 0x8049CA50
+	.4byte 0x8049CA78
+	.4byte 0x8049CAA0
+	.4byte 0x8049CAC8
+	.4byte 0x8049CAF4
+	.4byte 0x8049CB1C
+	.4byte 0x8049CB48
+	.4byte 0x8049CB6C
+	.4byte 0x8049CB94
+	.4byte 0x8049CBB8
+	.4byte 0x8049CBE0
+	.4byte 0x8049CC04
+	.4byte 0x8049CC28
+	.4byte 0x8049CC4C
+.global __vt__Q211Pikmin2ARAM3Mgr
+__vt__Q211Pikmin2ARAM3Mgr:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q211Pikmin2ARAM3MgrFv
+  .4byte 0
+.global __vt__Q25P2JME8Analyzer
+__vt__Q25P2JME8Analyzer:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q25P2JME8AnalyzerFv
+  .4byte do_reset__Q28JMessage10TProcessorFv
+  .4byte do_character__Q25P2JME8AnalyzerFi
+  .4byte do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl
+  .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+  .4byte do_select_begin__Q28JMessage10TProcessorFUl
+  .4byte do_select_end__Q28JMessage10TProcessorFv
+  .4byte do_select_separate__Q28JMessage10TProcessorFv
+  .4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+  .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+  .4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+  .4byte do_end___Q28JMessage19TRenderingProcessorFv
+  .4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+  .4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+  .4byte do_begin__Q28JMessage19TRenderingProcessorFPCvPCc
+  .4byte do_end__Q28JMessage19TRenderingProcessorFv
+  .4byte tagColor__Q25P2JME8AnalyzerFPCvUl
+  .4byte tagSize__Q25P2JME8AnalyzerFPCvUl
+  .4byte tagRuby__Q25P2JME8AnalyzerFPCvUl
+  .4byte tagFont__Q25P2JME8AnalyzerFPCvUl
+  .4byte tagImage__Q25P2JME8AnalyzerFUsPCvUl
+  .4byte tagColorEX__Q25P2JME8AnalyzerFUsPCvUl
+  .4byte tagControl__Q25P2JME8AnalyzerFUsPCvUl
+  .4byte tagPosition__Q25P2JME8AnalyzerFUsPCvUl
+.global lbl_804EDCC8
+lbl_804EDCC8:
+	.4byte 0x80456ACC
+	.4byte 0x80456954
+	.4byte 0x80456970
+	.4byte 0x80456ACC
+	.4byte 0x8045698C
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x804569BC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x804569F4
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x80456ACC
+	.4byte 0x804569BC
+	.4byte 0x00000000
+.global __vt__Q23PSM13ExiteDirector
+__vt__Q23PSM13ExiteDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM13ExiteDirectorFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM17PikAttackDirector
+__vt__Q23PSM17PikAttackDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM17PikAttackDirectorFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM19ActorDirector_Kehai
+__vt__Q23PSM19ActorDirector_Kehai:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM19ActorDirector_KehaiFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+  .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
+  .4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
+  .4byte getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
+  .4byte getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
+.global __vt__Q23PSM20ActorDirector_Battle
+__vt__Q23PSM20ActorDirector_Battle:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM20ActorDirector_BattleFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+  .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
+  .4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
+  .4byte getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
+  .4byte getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
+.global __vt__Q23PSM19ActorDirector_Enemy
+__vt__Q23PSM19ActorDirector_Enemy:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM19ActorDirector_EnemyFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+  .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
+  .4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
+  .4byte 0
+  .4byte 0
+.global __vt__Q23PSM20ActorDirector_Scaled
+__vt__Q23PSM20ActorDirector_Scaled:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM20ActorDirector_ScaledFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM22TrackOnDirector_ScaledFv
+  .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
+  .4byte onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature
+.global __vt__Q23PSM21ActorDirector_TrackOn
+__vt__Q23PSM21ActorDirector_TrackOn:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM21ActorDirector_TrackOnFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM21ActorDirector_TrackOnFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM17ListDirectorActor
+__vt__Q23PSM17ListDirectorActor:
+  .4byte 0
+  .4byte 0
+  .4byte exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
+  .4byte onUpdateFromMasterD__Q23PSM17ListDirectorActorFv
+  .4byte onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv
+.global __vt__Q23PSM22TrackOnDirector_Scaled
+__vt__Q23PSM22TrackOnDirector_Scaled:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM22TrackOnDirector_ScaledFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM22TrackOnDirector_ScaledFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte 0
+.global __vt__Q23PSM22TrackOnDirector_Voting
+__vt__Q23PSM22TrackOnDirector_Voting:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM22TrackOnDirector_VotingFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM22TrackOnDirector_VotingFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM19TrackOnDirectorBase
+__vt__Q23PSM19TrackOnDirectorBase:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM19TrackOnDirectorBaseFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM28PikminNumberDirector_AutoBgm
+__vt__Q23PSM28PikminNumberDirector_AutoBgm:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM28PikminNumberDirector_AutoBgmFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM20PikminNumberDirectorFv
+  .4byte directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM20PikminNumberDirector
+__vt__Q23PSM20PikminNumberDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM20PikminNumberDirectorFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM20PikminNumberDirectorFv
+  .4byte directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM25ActorDirector_TempoChange
+__vt__Q23PSM25ActorDirector_TempoChange:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM25ActorDirector_TempoChangeFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM25ActorDirector_TempoChangeFv
+  .4byte directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM23TempoChangeDirectorBase
+__vt__Q23PSM23TempoChangeDirectorBase:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM23TempoChangeDirectorBaseFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM16SwitcherDirector
+__vt__Q23PSM16SwitcherDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM16SwitcherDirectorFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM14DamageDirector
+__vt__Q23PSM14DamageDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM14DamageDirectorFv
+  .4byte exec__Q28PSSystem15OneShotDirectorFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM14DamageDirectorFv
+  .4byte directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM15OneShotDirector
+__vt__Q23PSM15OneShotDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM15OneShotDirectorFv
+  .4byte exec__Q28PSSystem15OneShotDirectorFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte 0
+  .4byte directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global lbl_804EE158
+lbl_804EE158:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804EE164
+lbl_804EE164:
+	.4byte 0x8045A578
+	.4byte 0x8045A5CC
+	.4byte 0x8045A5CC
+	.4byte 0x8045A5CC
+	.4byte 0x8045A5CC
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A5F4
+	.4byte 0x8045A5F4
+	.4byte 0x8045A5A0
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A618
+	.4byte 0x8045A5CC
+.global lbl_804EE1B8
+lbl_804EE1B8:
+	.4byte 0x8045AB94
+	.4byte 0x8045AC24
+	.4byte 0x8045ACB4
+	.4byte 0x8045AD88
+	.4byte 0x8045AE5C
+	.4byte 0x8045AF30
+	.4byte 0x8045B004
+	.4byte 0x8045B0D8
+	.4byte 0x8045B1AC
+	.4byte 0x8045B280
+	.4byte 0x8045B354
+	.4byte 0x8045B428
+	.4byte 0x8045B4FC
+	.4byte 0x8045B5D0
+	.4byte 0x8045B6A4
+.global lbl_804EE1F4
+lbl_804EE1F4:
+	.4byte 0x8045C8C8
+	.4byte 0x8045C820
+	.4byte 0x8045C8C8
+	.4byte 0x8045C898
+	.4byte 0x8045C8C8
+	.4byte 0x8045C898
+	.4byte 0x8045C898
+	.4byte 0x8045C898
+	.4byte 0x8045C838
+	.4byte 0x8045C850
+	.4byte 0x8045C868
+	.4byte 0x8045C880
+	.4byte 0x8045C8C8
+.global __vt__Q23PSM10BigBossSeq
+__vt__Q23PSM10BigBossSeq:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM10BigBossSeqFv
+  .4byte init__Q28PSSystem11DirectedBgmFv
+  .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+  .4byte startSeq__Q28PSSystem10JumpBgmSeqFv
+  .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+  .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+  .4byte pauseOff__Q28PSSystem7SeqBaseFv
+  .4byte getCastType__Q28PSSystem10JumpBgmSeqFv
+  .4byte getSeqType__Q28PSSystem6BgmSeqFv
+  .4byte exec__Q23PSM13MiddleBossSeqFv
+  .4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
+  .4byte isPlaying__Q28PSSystem7SeqBaseFv
+  .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+  .4byte getHandleP__Q28PSSystem6BgmSeqFv
+  .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+  .4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
+  .4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+  .4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
+  .4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
+  .4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
+  .4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
+  .4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
+  .4byte onJump__Q23PSM10BigBossSeqFUs
+  .4byte jumpCheck__Q23PSM10BigBossSeqFUs
+.global __vt__Q23PSM13MiddleBossSeq
+__vt__Q23PSM13MiddleBossSeq:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM13MiddleBossSeqFv
+  .4byte init__Q28PSSystem11DirectedBgmFv
+  .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+  .4byte startSeq__Q28PSSystem10JumpBgmSeqFv
+  .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+  .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+  .4byte pauseOff__Q28PSSystem7SeqBaseFv
+  .4byte getCastType__Q28PSSystem10JumpBgmSeqFv
+  .4byte getSeqType__Q28PSSystem6BgmSeqFv
+  .4byte exec__Q23PSM13MiddleBossSeqFv
+  .4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
+  .4byte isPlaying__Q28PSSystem7SeqBaseFv
+  .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+  .4byte getHandleP__Q28PSSystem6BgmSeqFv
+  .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+  .4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
+  .4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+  .4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
+  .4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
+  .4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
+  .4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
+  .4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
+  .4byte onJump__Q23PSM13MiddleBossSeqFUs
+  .4byte jumpCheck__Q23PSM13MiddleBossSeqFUs
+.global __vt__Q23PSM8SceneMgr
+__vt__Q23PSM8SceneMgr:
+  .4byte 0
+  .4byte 0
+  .4byte exec__Q28PSSystem8SceneMgrFv
+  .4byte newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo
+  .4byte newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv
+  .4byte newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
+  .4byte newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
+  .4byte newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase
+  .4byte curSceneIsBigBossFloor__Q23PSM8SceneMgrFv
+  .4byte newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
+.global __vt__Q28PSSystem8SceneMgr
+__vt__Q28PSSystem8SceneMgr:
+  .4byte 0
+  .4byte 0
+  .4byte exec__Q28PSSystem8SceneMgrFv
+.global __vt__Q23PSM15EnvSeObjBuilder
+__vt__Q23PSM15EnvSeObjBuilder:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM15EnvSeObjBuilderFv
+  .4byte onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase
+  .4byte newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec
+.global __vt__Q23PSM24EnvSe_Perspective_AvoidY
+__vt__Q23PSM24EnvSe_Perspective_AvoidY:
+  .4byte 0
+  .4byte 0
+  .4byte exec__Q28PSSystem9EnvSeBaseFv
+  .4byte play__Q23PSM24EnvSe_Perspective_AvoidYFv
+  .4byte getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv
+  .4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
+.global __vt__Q23PSM12Env_Pollutin
+__vt__Q23PSM12Env_Pollutin:
+  .4byte 0
+  .4byte 0
+  .4byte exec__Q28PSSystem9EnvSeBaseFv
+  .4byte play__Q23PSM12Env_PollutinFv
+  .4byte getCastType__Q23PSM12Env_PollutinFv
+  .4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
+.global lbl_804EE370
+lbl_804EE370:
+	.4byte 0x804629F8
+	.4byte 0x80462A00
+	.4byte 0x80462A08
+	.4byte 0x80462A10
+	.4byte 0x80462AB4
+	.4byte 0x80462AB0
+	.4byte 0x80462A70
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462A18
+	.4byte 0x80462AB4
+	.4byte 0x80462A38
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462A20
+	.4byte 0x80462AB0
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462A50
+	.4byte 0x80462AA0
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462AB0
+	.4byte 0x80462A58
+	.4byte 0x80462A60
+	.4byte 0x80462A68
+	.4byte 0x80462A28
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB0
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462A30
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462A40
+	.4byte 0x80462A48
+	.4byte 0x80462AB4
+	.4byte 0x80462A30
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB0
+	.4byte 0x80462AB4
+	.4byte 0x80462A98
+	.4byte 0x80462AB4
+	.4byte 0x80462A78
+	.4byte 0x80462A80
+	.4byte 0x80462A88
+	.4byte 0x80462A90
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AB4
+	.4byte 0x80462AA8
+.global __vt__Q23PSM7Cluster
+__vt__Q23PSM7Cluster:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM7ClusterFv
+  .4byte __dt__Q23PSM7ClusterFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM11CreatureObjFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM11CreatureObjFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM7ClusterFv
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM11CreatureObjFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+.global __vt__Q23PSM4Navi
+__vt__Q23PSM4Navi:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM4NaviFv
+  .4byte __dt__Q23PSM4NaviFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM4NaviFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM11CreatureObjFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM4NaviFv
+  .4byte $$248$$2startSound__Q23PSM4NaviFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM4NaviFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+.global __vt__Q23PSM4Piki
+__vt__Q23PSM4Piki:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM4PikiFv
+  .4byte __dt__Q23PSM4PikiFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM4PikiFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM4PikiFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM4PikiFv
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM11CreatureObjFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+.global __vt__Q23PSM10PelletItem
+__vt__Q23PSM10PelletItem:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM10PelletItemFv
+  .4byte __dt__Q23PSM10PelletItemFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM10PelletItemFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM11CreatureObjFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM10PelletItemFv
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM11CreatureObjFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte otakaraEventStart__Q23PSM7OtakaraFv
+  .4byte otakaraEventRestart__Q23PSM7OtakaraFv
+  .4byte otakaraEventStop__Q23PSM7OtakaraFv
+  .4byte otakaraEventFinish__Q23PSM7OtakaraFv
+.global __vt__Q23PSM13PelletOtakara
+__vt__Q23PSM13PelletOtakara:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM13PelletOtakaraFv
+  .4byte __dt__Q23PSM13PelletOtakaraFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM13PelletOtakaraFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM11CreatureObjFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM13PelletOtakaraFv
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM11CreatureObjFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte otakaraEventStart__Q23PSM7OtakaraFv
+  .4byte otakaraEventRestart__Q23PSM7OtakaraFv
+  .4byte otakaraEventStop__Q23PSM7OtakaraFv
+  .4byte otakaraEventFinish__Q23PSM7OtakaraFv
+.global __vt__Q23PSM7Otakara
+__vt__Q23PSM7Otakara:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM7OtakaraFv
+  .4byte __dt__Q23PSM7OtakaraFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM7OtakaraFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM11CreatureObjFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM7OtakaraFv
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM11CreatureObjFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte otakaraEventStart__Q23PSM7OtakaraFv
+  .4byte otakaraEventRestart__Q23PSM7OtakaraFv
+  .4byte otakaraEventStop__Q23PSM7OtakaraFv
+  .4byte otakaraEventFinish__Q23PSM7OtakaraFv
+.global __vt__Q23PSM8WorkItem
+__vt__Q23PSM8WorkItem:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM8WorkItemFv
+  .4byte __dt__Q23PSM8WorkItemFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM8WorkItemFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM11CreatureObjFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM8WorkItemFv
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM11CreatureObjFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte eventStart__Q23PSM8WorkItemFv
+  .4byte eventRestart__Q23PSM8WorkItemFv
+  .4byte eventStop__Q23PSM8WorkItemFv
+  .4byte eventFinish__Q23PSM8WorkItemFv
+.global __vt__Q23PSM25OtakaraEventLink_2PBattle
+__vt__Q23PSM25OtakaraEventLink_2PBattle:
+  .4byte 0
+  .4byte 0
+  .4byte getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv
+  .4byte eventStart__Q23PSM25OtakaraEventLink_2PBattleFv
+  .4byte eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv
+  .4byte eventStop__Q23PSM25OtakaraEventLink_2PBattleFv
+  .4byte eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv
+  .4byte is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv
+.global __vt__Q23PSM16OtakaraEventLink
+__vt__Q23PSM16OtakaraEventLink:
+  .4byte 0
+  .4byte 0
+  .4byte getListDirectorActor__Q23PSM16OtakaraEventLinkFv
+  .4byte eventStart__Q23PSM12DirectorLinkFv
+  .4byte eventRestart__Q23PSM12DirectorLinkFv
+  .4byte eventStop__Q23PSM12DirectorLinkFv
+  .4byte eventFinish__Q23PSM16OtakaraEventLinkFv
+  .4byte is2PBattle__Q23PSM16OtakaraEventLinkFv
+.global __vt__Q23PSM9EventLink
+__vt__Q23PSM9EventLink:
+  .4byte 0
+  .4byte 0
+  .4byte getListDirectorActor__Q23PSM9EventLinkFv
+  .4byte eventStart__Q23PSM12DirectorLinkFv
+  .4byte eventRestart__Q23PSM12DirectorLinkFv
+  .4byte eventStop__Q23PSM12DirectorLinkFv
+  .4byte eventFinish__Q23PSM12DirectorLinkFv
+.global __vt__Q23PSM12DirectorLink
+__vt__Q23PSM12DirectorLink:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte eventStart__Q23PSM12DirectorLinkFv
+  .4byte eventRestart__Q23PSM12DirectorLinkFv
+  .4byte eventStop__Q23PSM12DirectorLinkFv
+  .4byte eventFinish__Q23PSM12DirectorLinkFv
+.global __vt__Q23PSM19Enemy_SpecialChappy
+__vt__Q23PSM19Enemy_SpecialChappy:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM19Enemy_SpecialChappyFv
+  .4byte __dt__Q23PSM19Enemy_SpecialChappyFv
+  .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+  .4byte getCastType__Q23PSM8EnemyBigFv
+  .4byte exec__Q23PSM13CreatureAnimeFv
+  .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+  .4byte onCalcOn__Q23PSM9EnemyBaseFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound
+  .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM19Enemy_SpecialChappyFv
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__13JAIAnimeSoundFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte $$248$$2playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte $$248$$2startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+  .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+  .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte battleOn__Q23PSM10BattleLinkFv
+  .4byte $$2184$$2battleOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte kehaiOn__Q23PSM9KehaiLinkFv
+  .4byte kehaiOff__Q23PSM9KehaiLinkFv
+  .4byte battleOff__Q23PSM9EnemyBaseFv
+  .4byte setKilled__Q23PSM9EnemyBaseFv
+  .4byte updateKehai__Q23PSM9EnemyBaseFv
+  .4byte updateBattle__Q23PSM9EnemyBaseFv
+.global __vt__Q23PSM12EnemyBigBoss
+__vt__Q23PSM12EnemyBigBoss:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM12EnemyBigBossFv
+  .4byte __dt__Q23PSM12EnemyBigBossFv
+  .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+  .4byte getCastType__Q23PSM12EnemyBigBossFv
+  .4byte exec__Q23PSM9EnemyBossFv
+  .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+  .4byte onCalcOn__Q23PSM12EnemyMidBossFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
+  .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM12EnemyBigBossFv
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__13JAIAnimeSoundFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte $$248$$2playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte $$248$$2startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+  .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+  .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte battleOn__Q23PSM10BattleLinkFv
+  .4byte $$2184$$2battleOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte kehaiOn__Q23PSM9KehaiLinkFv
+  .4byte kehaiOff__Q23PSM9KehaiLinkFv
+  .4byte battleOff__Q23PSM9EnemyBaseFv
+  .4byte setKilled__Q23PSM9EnemyBossFv
+  .4byte updateKehai__Q23PSM9EnemyBaseFv
+  .4byte updateBattle__Q23PSM9EnemyBaseFv
+  .4byte jumpRequest__Q23PSM12EnemyBigBossFUs
+  .4byte postPikiAttack__Q23PSM12EnemyMidBossFb
+  .4byte updateDisappearing__Q23PSM9EnemyBossFv
+  .4byte onDeathMotionTop__Q23PSM12EnemyBigBossFv
+  .4byte onAppear__Q23PSM9EnemyBossFv
+  .4byte onAppear1st__Q23PSM12EnemyBigBossFv
+  .4byte onDisappear__Q23PSM9EnemyBossFv
+.global __vt__Q23PSM12EnemyMidBoss
+__vt__Q23PSM12EnemyMidBoss:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM12EnemyMidBossFv
+  .4byte __dt__Q23PSM12EnemyMidBossFv
+  .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+  .4byte getCastType__Q23PSM12EnemyMidBossFv
+  .4byte exec__Q23PSM9EnemyBossFv
+  .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+  .4byte onCalcOn__Q23PSM12EnemyMidBossFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
+  .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM12EnemyMidBossFv
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__13JAIAnimeSoundFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte $$248$$2playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte $$248$$2startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+  .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+  .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte battleOn__Q23PSM10BattleLinkFv
+  .4byte $$2184$$2battleOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte kehaiOn__Q23PSM9KehaiLinkFv
+  .4byte kehaiOff__Q23PSM9KehaiLinkFv
+  .4byte battleOff__Q23PSM9EnemyBaseFv
+  .4byte setKilled__Q23PSM9EnemyBossFv
+  .4byte updateKehai__Q23PSM9EnemyBaseFv
+  .4byte updateBattle__Q23PSM9EnemyBaseFv
+  .4byte jumpRequest__Q23PSM12EnemyMidBossFUs
+  .4byte postPikiAttack__Q23PSM12EnemyMidBossFb
+  .4byte updateDisappearing__Q23PSM9EnemyBossFv
+  .4byte onDeathMotionTop__Q23PSM9EnemyBossFv
+  .4byte onAppear__Q23PSM9EnemyBossFv
+  .4byte onAppear1st__Q23PSM12EnemyMidBossFv
+  .4byte onDisappear__Q23PSM9EnemyBossFv
+.global __vt__Q23PSM9EnemyBoss
+__vt__Q23PSM9EnemyBoss:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM9EnemyBossFv
+  .4byte __dt__Q23PSM9EnemyBossFv
+  .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+  .4byte getCastType__Q23PSM9EnemyBossFv
+  .4byte exec__Q23PSM9EnemyBossFv
+  .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+  .4byte onCalcOn__Q23PSM9EnemyBossFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
+  .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM9EnemyBossFv
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__13JAIAnimeSoundFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte $$248$$2playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte $$248$$2startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+  .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+  .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte battleOn__Q23PSM10BattleLinkFv
+  .4byte $$2184$$2battleOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte kehaiOn__Q23PSM9KehaiLinkFv
+  .4byte kehaiOff__Q23PSM9KehaiLinkFv
+  .4byte battleOff__Q23PSM9EnemyBaseFv
+  .4byte setKilled__Q23PSM9EnemyBossFv
+  .4byte updateKehai__Q23PSM9EnemyBaseFv
+  .4byte updateBattle__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte updateDisappearing__Q23PSM9EnemyBossFv
+  .4byte onDeathMotionTop__Q23PSM9EnemyBossFv
+  .4byte onAppear__Q23PSM9EnemyBossFv
+  .4byte onAppear1st__Q23PSM9EnemyBossFv
+  .4byte onDisappear__Q23PSM9EnemyBossFv
+.global __vt__Q23PSM8EnemyBig
+__vt__Q23PSM8EnemyBig:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM8EnemyBigFv
+  .4byte __dt__Q23PSM8EnemyBigFv
+  .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+  .4byte getCastType__Q23PSM8EnemyBigFv
+  .4byte exec__Q23PSM13CreatureAnimeFv
+  .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+  .4byte onCalcOn__Q23PSM9EnemyBaseFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM8EnemyBigFv
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__13JAIAnimeSoundFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte $$248$$2playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte $$248$$2startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+  .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+  .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte battleOn__Q23PSM10BattleLinkFv
+  .4byte $$2184$$2battleOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte kehaiOn__Q23PSM9KehaiLinkFv
+  .4byte kehaiOff__Q23PSM9KehaiLinkFv
+  .4byte battleOff__Q23PSM9EnemyBaseFv
+  .4byte setKilled__Q23PSM9EnemyBaseFv
+  .4byte updateKehai__Q23PSM9EnemyBaseFv
+  .4byte updateBattle__Q23PSM9EnemyBaseFv
+.global __vt__Q23PSM9Tsuyukusa
+__vt__Q23PSM9Tsuyukusa:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM9TsuyukusaFv
+  .4byte __dt__Q23PSM9TsuyukusaFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM11CreatureObjFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM11CreatureObjFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM9TsuyukusaFv
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM11CreatureObjFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+.global __vt__Q23PSM18EnemyNotAggressive
+__vt__Q23PSM18EnemyNotAggressive:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM18EnemyNotAggressiveFv
+  .4byte __dt__Q23PSM18EnemyNotAggressiveFv
+  .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+  .4byte getCastType__Q23PSM18EnemyNotAggressiveFv
+  .4byte exec__Q23PSM13CreatureAnimeFv
+  .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+  .4byte onCalcOn__Q23PSM9EnemyBaseFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM18EnemyNotAggressiveFv
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__13JAIAnimeSoundFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte $$248$$2playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte $$248$$2startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+  .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+  .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte $$2184$$2battleOn__Q23PSM18EnemyNotAggressiveFv
+  .4byte $$2184$$2battleOff__Q23PSM18EnemyNotAggressiveFv
+  .4byte 0
+  .4byte 0
+  .4byte $$2204$$2kehaiOn__Q23PSM18EnemyNotAggressiveFv
+  .4byte $$2204$$2kehaiOff__Q23PSM18EnemyNotAggressiveFv
+  .4byte battleOff__Q23PSM18EnemyNotAggressiveFv
+  .4byte setKilled__Q23PSM9EnemyBaseFv
+  .4byte updateKehai__Q23PSM18EnemyNotAggressiveFv
+  .4byte updateBattle__Q23PSM18EnemyNotAggressiveFv
+  .4byte kehaiOn__Q23PSM18EnemyNotAggressiveFv
+  .4byte kehaiOff__Q23PSM18EnemyNotAggressiveFv
+  .4byte battleOn__Q23PSM18EnemyNotAggressiveFv
+.global __vt__Q23PSM9EnemyBase
+__vt__Q23PSM9EnemyBase:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM9EnemyBaseFv
+  .4byte __dt__Q23PSM9EnemyBaseFv
+  .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+  .4byte getCastType__Q23PSM9EnemyBaseFv
+  .4byte exec__Q23PSM13CreatureAnimeFv
+  .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+  .4byte onCalcOn__Q23PSM9EnemyBaseFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM9EnemyBaseFv
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__13JAIAnimeSoundFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte $$248$$2playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte $$248$$2startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+  .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+  .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte battleOn__Q23PSM10BattleLinkFv
+  .4byte $$2184$$2battleOff__Q23PSM9EnemyBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte kehaiOn__Q23PSM9KehaiLinkFv
+  .4byte kehaiOff__Q23PSM9KehaiLinkFv
+  .4byte battleOff__Q23PSM9EnemyBaseFv
+  .4byte setKilled__Q23PSM9EnemyBaseFv
+  .4byte updateKehai__Q23PSM9EnemyBaseFv
+  .4byte updateBattle__Q23PSM9EnemyBaseFv
+.global __vt__Q23PSM9KehaiLink
+__vt__Q23PSM9KehaiLink:
+  .4byte 0
+  .4byte 0
+  .4byte kehaiOn__Q23PSM9KehaiLinkFv
+  .4byte kehaiOff__Q23PSM9KehaiLinkFv
+.global __vt__Q23PSM10BattleLink
+__vt__Q23PSM10BattleLink:
+  .4byte 0
+  .4byte 0
+  .4byte battleOn__Q23PSM10BattleLinkFv
+  .4byte battleOff__Q23PSM10BattleLinkFv
+.global __vt__Q23PSM13CreatureAnime
+__vt__Q23PSM13CreatureAnime:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM13CreatureAnimeFv
+  .4byte __dt__Q23PSM13CreatureAnimeFv
+  .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+  .4byte getCastType__Q23PSM13CreatureAnimeFv
+  .4byte exec__Q23PSM13CreatureAnimeFv
+  .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+  .4byte onCalcOn__Q23PSM13CreatureAnimeFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM13CreatureAnimeFv
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__13JAIAnimeSoundFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte $$248$$2playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte $$248$$2startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+  .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+  .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+  .4byte startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc
+  .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+  .4byte onCalcTurnOn__Q23PSM13CreatureAnimeFv
+  .4byte onCalcTurnOff__Q23PSM13CreatureAnimeFv
+.global __vt__Q23PSM11CreatureObj
+__vt__Q23PSM11CreatureObj:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM11CreatureObjFv
+  .4byte __dt__Q23PSM11CreatureObjFv
+  .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+  .4byte getCastType__Q23PSM11CreatureObjFv
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte getJAIObject__Q23PSM11CreatureObjFv
+  .4byte onCalcOn__Q23PSM11CreatureObjFv
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte getHandleArea__Q23PSM11CreatureObjFUc
+  .4byte 0
+  .4byte 0
+  .4byte $$248$$2__dt__Q23PSM11CreatureObjFv
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+  .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+  .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+  .4byte enable__Q27JAInter10ObjectBaseFv
+  .4byte disable__Q27JAInter6ObjectFv
+  .4byte dispose__Q27JAInter10ObjectBaseFv
+  .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+  .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+  .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+  .4byte loop__Q27JAInter6ObjectFv
+  .4byte startSound__Q23PSM11CreatureObjFUlUl
+  .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+  .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+.global __vt__Q23PSM8Creature
+__vt__Q23PSM8Creature:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM8CreatureFv
+  .4byte __dt__Q23PSM8CreatureFv
+  .4byte 0
+  .4byte 0
+  .4byte exec__Q23PSM8CreatureFv
+  .4byte 0
+  .4byte 0
+  .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+  .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+  .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+  .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+  .4byte 0
+.global __vt__Q23PSM6ObjMgr
+__vt__Q23PSM6ObjMgr:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$212$$2__dt__Q23PSM6ObjMgrFv
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM6ObjMgrFv
+  .4byte __dt__Q23PSM6ObjMgrFv
+.global __vt__Q23PSM7ObjBase
+__vt__Q23PSM7ObjBase:
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte $$216$$2__dt__Q23PSM7ObjBaseFv
+  .4byte __dt__Q23PSM7ObjBaseFv
+  .4byte 0
+  .4byte 0
+.global __vt__Q23PSM4Demo
+__vt__Q23PSM4Demo:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM4DemoFv
+  .4byte init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg
+  .4byte initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc
+  .4byte initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo
+.global lbl_804EF268
+lbl_804EF268:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q23PSM15Scene_NoObjects
+__vt__Q23PSM15Scene_NoObjects:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q28PSSystem5SceneFv
+  .4byte __dt__Q23PSM15Scene_NoObjectsFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q28PSSystem5SceneFv
+  .4byte startMainSeq__Q28PSSystem5SceneFv
+  .4byte stopMainSeq__Q28PSSystem5SceneFUl
+  .4byte stopAllSound__Q28PSSystem5SceneFUl
+  .4byte getCamDistVol__Q23PSM15Scene_NoObjectsFUc
+  .4byte getEnvSe__Q23PSM9SceneBaseFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM9SceneBaseFv
+  .4byte getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM9SceneBaseFv
+  .4byte pauseOn_2D__Q23PSM9SceneBaseFUcUc
+  .4byte pauseOff_2D__Q23PSM9SceneBaseFv
+  .4byte pauseOn_Demo__Q23PSM9SceneBaseFv
+  .4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+.global __vt__Q23PSM14Scene_WorldMap
+__vt__Q23PSM14Scene_WorldMap:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q28PSSystem5SceneFv
+  .4byte __dt__Q23PSM14Scene_WorldMapFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q28PSSystem5SceneFv
+  .4byte startMainSeq__Q28PSSystem5SceneFv
+  .4byte stopMainSeq__Q28PSSystem5SceneFUl
+  .4byte stopAllSound__Q28PSSystem5SceneFUl
+  .4byte getCamDistVol__Q23PSM15Scene_NoObjectsFUc
+  .4byte getEnvSe__Q23PSM9SceneBaseFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM9SceneBaseFv
+  .4byte getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM9SceneBaseFv
+  .4byte pauseOn_2D__Q23PSM9SceneBaseFUcUc
+  .4byte pauseOff_2D__Q23PSM9SceneBaseFv
+  .4byte pauseOn_Demo__Q23PSM9SceneBaseFv
+  .4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+.global __vt__Q23PSM11Scene_Zukan
+__vt__Q23PSM11Scene_Zukan:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q28PSSystem5SceneFv
+  .4byte __dt__Q23PSM11Scene_ZukanFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q23PSM13Scene_ObjectsFv
+  .4byte startMainSeq__Q23PSM13Scene_ObjectsFv
+  .4byte stopMainSeq__Q28PSSystem5SceneFUl
+  .4byte stopAllSound__Q28PSSystem5SceneFUl
+  .4byte getCamDistVol__Q23PSM11Scene_ZukanFUc
+  .4byte getEnvSe__Q23PSM9SceneBaseFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM9SceneBaseFv
+  .4byte getSeSceneGate__Q23PSM11Scene_ZukanFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM9SceneBaseFv
+  .4byte pauseOn_2D__Q23PSM9SceneBaseFUcUc
+  .4byte pauseOff_2D__Q23PSM9SceneBaseFv
+  .4byte pauseOn_Demo__Q23PSM9SceneBaseFv
+  .4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+  .4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
+.global __vt__Q23PSM15Scene_Challenge
+__vt__Q23PSM15Scene_Challenge:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q23PSM15Scene_ChallengeFv
+  .4byte __dt__Q23PSM15Scene_ChallengeFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q23PSM10Scene_CaveFv
+  .4byte startMainSeq__Q23PSM15Scene_ChallengeFv
+  .4byte stopMainSeq__Q23PSM10Scene_GameFUl
+  .4byte stopAllSound__Q23PSM10Scene_GameFUl
+  .4byte getCamDistVol__Q23PSM13Scene_ObjectsFUc
+  .4byte getEnvSe__Q23PSM10Scene_GameFv
+  .4byte getSceneFx__Q23PSM10Scene_CaveFv
+  .4byte isDemoScene__Q23PSM10Scene_GameFv
+  .4byte getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM10Scene_GameFv
+  .4byte pauseOn_2D__Q23PSM10Scene_GameFUcUc
+  .4byte pauseOff_2D__Q23PSM10Scene_GameFv
+  .4byte pauseOn_Demo__Q23PSM10Scene_GameFv
+  .4byte pauseOff_Demo__Q23PSM10Scene_GameFv
+  .4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
+  .4byte isCave__Q23PSM10Scene_CaveFv
+  .4byte bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs
+  .4byte bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss
+  .4byte isBossFloor__Q23PSM10Scene_CaveFv
+  .4byte akubiOK__Q23PSM15Scene_ChallengeFv
+  .4byte isPollutUp__Q23PSM10Scene_CaveFv
+  .4byte getPollutUpTimer__Q23PSM10Scene_CaveCFv
+.global __vt__Q23PSM10Scene_Cave
+__vt__Q23PSM10Scene_Cave:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q23PSM10Scene_CaveFv
+  .4byte __dt__Q23PSM10Scene_CaveFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q23PSM10Scene_CaveFv
+  .4byte startMainSeq__Q23PSM10Scene_CaveFv
+  .4byte stopMainSeq__Q23PSM10Scene_GameFUl
+  .4byte stopAllSound__Q23PSM10Scene_GameFUl
+  .4byte getCamDistVol__Q23PSM13Scene_ObjectsFUc
+  .4byte getEnvSe__Q23PSM10Scene_GameFv
+  .4byte getSceneFx__Q23PSM10Scene_CaveFv
+  .4byte isDemoScene__Q23PSM10Scene_GameFv
+  .4byte getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM10Scene_GameFv
+  .4byte pauseOn_2D__Q23PSM10Scene_GameFUcUc
+  .4byte pauseOff_2D__Q23PSM10Scene_GameFv
+  .4byte pauseOn_Demo__Q23PSM10Scene_GameFv
+  .4byte pauseOff_Demo__Q23PSM10Scene_GameFv
+  .4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
+  .4byte isCave__Q23PSM10Scene_CaveFv
+  .4byte bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs
+  .4byte bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss
+  .4byte isBossFloor__Q23PSM10Scene_CaveFv
+  .4byte akubiOK__Q23PSM10Scene_CaveFv
+  .4byte isPollutUp__Q23PSM10Scene_CaveFv
+  .4byte getPollutUpTimer__Q23PSM10Scene_CaveCFv
+.global __vt__Q23PSM12Scene_Ground
+__vt__Q23PSM12Scene_Ground:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q23PSM10Scene_GameFv
+  .4byte __dt__Q23PSM12Scene_GroundFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q23PSM12Scene_GroundFv
+  .4byte startMainSeq__Q23PSM10Scene_GameFv
+  .4byte stopMainSeq__Q23PSM10Scene_GameFUl
+  .4byte stopAllSound__Q23PSM10Scene_GameFUl
+  .4byte getCamDistVol__Q23PSM13Scene_ObjectsFUc
+  .4byte getEnvSe__Q23PSM10Scene_GameFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM10Scene_GameFv
+  .4byte getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM10Scene_GameFv
+  .4byte pauseOn_2D__Q23PSM10Scene_GameFUcUc
+  .4byte pauseOff_2D__Q23PSM10Scene_GameFv
+  .4byte pauseOn_Demo__Q23PSM10Scene_GameFv
+  .4byte pauseOff_Demo__Q23PSM10Scene_GameFv
+  .4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
+  .4byte isCave__Q23PSM10Scene_GameFv
+  .4byte bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs
+  .4byte bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss
+  .4byte isBossFloor__Q23PSM10Scene_GameFv
+  .4byte akubiOK__Q23PSM10Scene_GameFv
+  .4byte isPollutUp__Q23PSM12Scene_GroundFv
+  .4byte getPollutUpTimer__Q23PSM12Scene_GroundCFv
+.global __vt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1
+__vt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1Fv
+.global __vt__Q33PSM12BossBgmFader3Mgr
+__vt__Q33PSM12BossBgmFader3Mgr:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q33PSM12BossBgmFader3MgrFv
+.global __vt__Q23PSM10Scene_Game
+__vt__Q23PSM10Scene_Game:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q23PSM10Scene_GameFv
+  .4byte __dt__Q23PSM10Scene_GameFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q23PSM10Scene_GameFv
+  .4byte startMainSeq__Q23PSM10Scene_GameFv
+  .4byte stopMainSeq__Q23PSM10Scene_GameFUl
+  .4byte stopAllSound__Q23PSM10Scene_GameFUl
+  .4byte getCamDistVol__Q23PSM13Scene_ObjectsFUc
+  .4byte getEnvSe__Q23PSM10Scene_GameFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM10Scene_GameFv
+  .4byte getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM10Scene_GameFv
+  .4byte pauseOn_2D__Q23PSM10Scene_GameFUcUc
+  .4byte pauseOff_2D__Q23PSM10Scene_GameFv
+  .4byte pauseOn_Demo__Q23PSM10Scene_GameFv
+  .4byte pauseOff_Demo__Q23PSM10Scene_GameFv
+  .4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
+  .4byte isCave__Q23PSM10Scene_GameFv
+  .4byte bossAppear__Q23PSM10Scene_GameFPQ23PSM9EnemyBossUs
+  .4byte bossKilled__Q23PSM10Scene_GameFPQ23PSM9EnemyBoss
+  .4byte isBossFloor__Q23PSM10Scene_GameFv
+  .4byte akubiOK__Q23PSM10Scene_GameFv
+  .4byte isPollutUp__Q23PSM10Scene_GameFv
+  .4byte getPollutUpTimer__Q23PSM10Scene_GameCFv
+.global __vt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1
+__vt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1Fv
+.global __vt__Q23PSM11ObjCalcBase
+__vt__Q23PSM11ObjCalcBase:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM11ObjCalcBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
+  .4byte is1PGame__Q23PSM11ObjCalcBaseFv
+.global __vt__Q23PSM13Scene_Objects
+__vt__Q23PSM13Scene_Objects:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q28PSSystem5SceneFv
+  .4byte __dt__Q23PSM13Scene_ObjectsFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q23PSM13Scene_ObjectsFv
+  .4byte startMainSeq__Q23PSM13Scene_ObjectsFv
+  .4byte stopMainSeq__Q28PSSystem5SceneFUl
+  .4byte stopAllSound__Q28PSSystem5SceneFUl
+  .4byte getCamDistVol__Q23PSM13Scene_ObjectsFUc
+  .4byte getEnvSe__Q23PSM9SceneBaseFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM9SceneBaseFv
+  .4byte getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM9SceneBaseFv
+  .4byte pauseOn_2D__Q23PSM9SceneBaseFUcUc
+  .4byte pauseOff_2D__Q23PSM9SceneBaseFv
+  .4byte pauseOn_Demo__Q23PSM9SceneBaseFv
+  .4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+  .4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
+.global __vt__Q23PSM10Scene_Demo
+__vt__Q23PSM10Scene_Demo:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q28PSSystem5SceneFv
+  .4byte __dt__Q23PSM10Scene_DemoFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q28PSSystem5SceneFv
+  .4byte startMainSeq__Q28PSSystem5SceneFv
+  .4byte stopMainSeq__Q28PSSystem5SceneFUl
+  .4byte stopAllSound__Q28PSSystem5SceneFUl
+  .4byte getCamDistVol__Q23PSM10Scene_DemoFUc
+  .4byte getEnvSe__Q23PSM9SceneBaseFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM10Scene_DemoFv
+  .4byte getSeSceneGate__Q23PSM10Scene_DemoFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM9SceneBaseFv
+  .4byte pauseOn_2D__Q23PSM9SceneBaseFUcUc
+  .4byte pauseOff_2D__Q23PSM9SceneBaseFv
+  .4byte pauseOn_Demo__Q23PSM9SceneBaseFv
+  .4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+.global __vt__Q23PSM12Scene_Global
+__vt__Q23PSM12Scene_Global:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q28PSSystem5SceneFv
+  .4byte __dt__Q23PSM12Scene_GlobalFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q28PSSystem5SceneFv
+  .4byte startMainSeq__Q28PSSystem5SceneFv
+  .4byte stopMainSeq__Q28PSSystem5SceneFUl
+  .4byte stopAllSound__Q28PSSystem5SceneFUl
+  .4byte getCamDistVol__Q23PSM12Scene_GlobalFUc
+  .4byte getEnvSe__Q23PSM9SceneBaseFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM9SceneBaseFv
+  .4byte getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM9SceneBaseFv
+  .4byte pauseOn_2D__Q23PSM9SceneBaseFUcUc
+  .4byte pauseOff_2D__Q23PSM9SceneBaseFv
+  .4byte pauseOn_Demo__Q23PSM9SceneBaseFv
+  .4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+.global __vt__Q23PSM9SceneBase
+__vt__Q23PSM9SceneBase:
+  .4byte 0
+  .4byte 0
+  .4byte init__Q28PSSystem5SceneFv
+  .4byte __dt__Q23PSM9SceneBaseFv
+  .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+  .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+  .4byte exec__Q28PSSystem5SceneFv
+  .4byte startMainSeq__Q28PSSystem5SceneFv
+  .4byte stopMainSeq__Q28PSSystem5SceneFUl
+  .4byte stopAllSound__Q28PSSystem5SceneFUl
+  .4byte 0
+  .4byte getEnvSe__Q23PSM9SceneBaseFv
+  .4byte getSceneFx__Q23PSM9SceneBaseFv
+  .4byte isDemoScene__Q23PSM9SceneBaseFv
+  .4byte getSeSceneGate__Q23PSM9SceneBaseFPQ23PSM7ObjBaseUl
+  .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+  .4byte isGameScene__Q23PSM9SceneBaseFv
+  .4byte pauseOn_2D__Q23PSM9SceneBaseFUcUc
+  .4byte pauseOff_2D__Q23PSM9SceneBaseFv
+  .4byte pauseOn_Demo__Q23PSM9SceneBaseFv
+  .4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+.global __vt__Q33PSM12BossBgmFader17TypedProc_MidBoss
+__vt__Q33PSM12BossBgmFader17TypedProc_MidBoss:
+  .4byte 0
+  .4byte 0
+  .4byte update__Q33PSM12BossBgmFader17TypedProc_MidBossFv
+.global __vt__Q33PSM12BossBgmFader9TypedProc
+__vt__Q33PSM12BossBgmFader9TypedProc:
+  .4byte 0
+  .4byte 0
+  .4byte update__Q33PSM12BossBgmFader9TypedProcFv
+.global lbl_804EF6F0
+lbl_804EF6F0:
+	.4byte 0x8046D858
+	.4byte 0x8046D5B8
+	.4byte 0x8046D62C
+	.4byte 0x8046D6A0
+	.4byte 0x8046D714
+	.4byte 0x8046D758
+	.4byte 0x8046D79C
+	.4byte 0x8046D7F0
+.global lbl_804EF710
+lbl_804EF710:
+	.4byte 0x8046E3A8
+	.4byte 0x8046E370
+	.4byte 0x8046E328
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E394
+	.4byte 0x8046E394
+	.4byte 0x8046E394
+	.4byte 0x8046E34C
+	.4byte 0x8046E394
+	.4byte 0x8046E358
+	.4byte 0x8046E358
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E364
+	.4byte 0x8046E358
+	.4byte 0x8046E358
+	.4byte 0x8046E34C
+	.4byte 0x8046E37C
+	.4byte 0x8046E364
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E37C
+	.4byte 0x8046E364
+	.4byte 0x8046E31C
+	.4byte 0x8046E340
+	.4byte 0x8046E31C
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E364
+	.4byte 0x8046E3A8
+	.4byte 0x8046E31C
+	.4byte 0x8046E364
+	.4byte 0x8046E328
+	.4byte 0x8046E328
+	.4byte 0x8046E370
+	.4byte 0x8046E370
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E310
+	.4byte 0x8046E34C
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E34C
+	.4byte 0x8046E388
+	.4byte 0x8046E388
+	.4byte 0x8046E388
+	.4byte 0x8046E388
+	.4byte 0x8046E364
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E364
+	.4byte 0x8046E394
+	.4byte 0x8046E3A8
+	.4byte 0x8046E340
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E340
+	.4byte 0x8046E370
+	.4byte 0x8046E3A0
+	.4byte 0x8046E334
+	.4byte 0x8046E370
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E340
+.global __vt__Q23PSM14ClusterFactory
+__vt__Q23PSM14ClusterFactory:
+  .4byte 0
+  .4byte 0
+  .4byte constructPart__Q38PSSystem9ClusterSe7FactoryFv
+  .4byte identifyPart__Q23PSM14ClusterFactoryFUc
+.global __vt__Q23PSM14WorldMapRocket
+__vt__Q23PSM14WorldMapRocket:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM14WorldMapRocketFv
+.global lbl_804EF880
+lbl_804EF880:
+	.4byte 0x8046F928
+	.4byte 0x8046FB60
+	.4byte 0x8046F9D8
+	.4byte 0x8046FA98
+	.4byte 0x8046FC0C
+	.4byte 0x8046FD34
+	.4byte 0x8046FEA8
+	.4byte 0x8046FF14
+.global lbl_804EF8A0
+lbl_804EF8A0:
+	.4byte 0x80470060
+	.4byte 0x80470068
+	.4byte 0x80470070
+	.4byte 0x80470078
+	.4byte 0x80470080
+	.4byte 0x80470088
+	.4byte 0x80470090
+	.4byte 0x80470098
+.global lbl_804EF8C0
+lbl_804EF8C0:
+	.4byte 0x80470518
+	.4byte 0x804705F8
+	.4byte 0x804706D4
+	.4byte 0x804707B0
+	.4byte 0x80470850
+	.4byte 0x804708F0
+	.4byte 0x804709C4
+	.4byte 0x80470A98
+.global __vt__Q23PSM20DirectorMgr_2PBattle
+__vt__Q23PSM20DirectorMgr_2PBattle:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM20DirectorMgr_2PBattleFv
+  .4byte newDirector__Q23PSM20DirectorMgr_2PBattleFUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+  .4byte 0
+  .4byte $$212$$2__dt__Q23PSM20DirectorMgr_2PBattleFv
+.global __vt__Q23PSM18DirectorMgr_Battle
+__vt__Q23PSM18DirectorMgr_Battle:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM18DirectorMgr_BattleFv
+  .4byte newDirector__Q23PSM18DirectorMgr_BattleFUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+  .4byte 0
+  .4byte $$212$$2__dt__Q23PSM18DirectorMgr_BattleFv
+.global __vt__Q23PSM25DirectorMgr_Scene_AutoBgm
+__vt__Q23PSM25DirectorMgr_Scene_AutoBgm:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
+  .4byte newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+  .4byte 0
+  .4byte $$212$$2__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
+  .4byte isSlave__Q23PSM17DirectorMgr_SceneFv
+  .4byte newPikminNumberDirector__Q23PSM25DirectorMgr_Scene_AutoBgmFiUcRQ28PSSystem11DirectedBgm
+.global __vt__Q23PSM19GroundDirector_Cave
+__vt__Q23PSM19GroundDirector_Cave:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM19GroundDirector_CaveFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q23PSM19GroundDirector_CaveFv
+  .4byte directOff__Q23PSM19GroundDirector_CaveFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM21ActorDirector_TrackOnFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1
+__vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1Fv
+.global __vt__Q23PSM17DirectorMgr_Scene
+__vt__Q23PSM17DirectorMgr_Scene:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM17DirectorMgr_SceneFv
+  .4byte newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+  .4byte 0
+  .4byte $$212$$2__dt__Q23PSM17DirectorMgr_SceneFv
+  .4byte isSlave__Q23PSM17DirectorMgr_SceneFv
+  .4byte newPikminNumberDirector__Q23PSM17DirectorMgr_SceneFiUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+.global lbl_804EF9A8
+lbl_804EF9A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q23PSM7SeSound
+__vt__Q23PSM7SeSound:
+  .4byte 0
+  .4byte 0
+  .4byte setPortData__5JAISeFUcUs
+  .4byte getPortData__5JAISeFUc
+  .4byte start__8JAISoundFUl
+  .4byte stop__5JAISeFUl
+  .4byte release__8JAISoundFv
+  .4byte setVolume__5JAISeFfUlUc
+  .4byte getVolume__5JAISeFUc
+  .4byte setPan__5JAISeFfUlUc
+  .4byte getPan__5JAISeFUc
+  .4byte setPitch__5JAISeFfUlUc
+  .4byte getPitch__5JAISeFUc
+  .4byte setFxmix__5JAISeFfUlUc
+  .4byte getFxmix__5JAISeFUc
+  .4byte setDolby__5JAISeFfUlUc
+  .4byte getDolby__5JAISeFUc
+  .4byte setTempoProportion__8JAISoundFfUl
+  .4byte getTempoProportion__8JAISoundFv
+  .4byte setVolumeU7__5JAISeFUcUlUc
+  .4byte getVolumeU7__5JAISeFUc
+  .4byte setPanU7__5JAISeFUcUlUc
+  .4byte getPanU7__5JAISeFUc
+  .4byte setFxmixU7__5JAISeFUcUlUc
+  .4byte getFxmixU7__5JAISeFUc
+  .4byte setDolbyU7__5JAISeFUcUlUc
+  .4byte getDolbyU7__5JAISeFUc
+  .4byte setDirectVolume__8JAISoundFfUl
+  .4byte setDirectPan__8JAISoundFfUl
+  .4byte setDirectPitch__8JAISoundFfUl
+  .4byte setDirectFxmix__8JAISoundFfUl
+  .4byte setDirectDolby__8JAISoundFfUl
+  .4byte setDemoVolume__8JAISoundFfUl
+  .4byte setDemoPan__8JAISoundFfUl
+  .4byte setDemoPitch__8JAISoundFfUl
+  .4byte setDemoFxmix__8JAISoundFfUl
+  .4byte setDemoDolby__8JAISoundFfUl
+  .4byte setDemoVolumeU7__8JAISoundFUcUl
+  .4byte setDemoPanU7__8JAISoundFUcUl
+  .4byte setDemoFxmixU7__8JAISoundFUcUl
+  .4byte setDemoDolbyU7__8JAISoundFUcUl
+  .4byte getFadeCounter__5JAISeFv
+  .4byte setPrepareFlag__8JAISoundFUc
+  .4byte checkReady__8JAISoundFv
+  .4byte setDistanceParameterMoveTime__8JAISoundFUc
+  .4byte setAdjustPriority__8JAISoundFs
+  .4byte setPositionDopplarCommon__8JAISoundFUl
+  .4byte setDistanceVolumeCommon__Q23PSM7SeSoundFfUc
+  .4byte setDistancePanCommon__8JAISoundFv
+  .4byte setDistanceDolbyCommon__8JAISoundFv
+  .4byte initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
+  .4byte onGet__Q23PSM7SeSoundFv
+  .4byte onRelease__Q23PSM7SeSoundFv
+  .4byte setSeDistanceParameters__5JAISeFv
+  .4byte setSeDistanceVolume__5JAISeFUc
+  .4byte setSeDistancePan__Q23PSM7SeSoundFUc
+  .4byte setSeDistancePitch__5JAISeFUc
+  .4byte setSeDistanceFxmix__5JAISeFUc
+  .4byte setSeDistanceFir__5JAISeFUc
+  .4byte setSeDistanceDolby__Q23PSM7SeSoundFUc
+  .4byte setSePositionDopplar__5JAISeFv
+.global __vt__Q23PSM15BgmTrackMapFile
+__vt__Q23PSM15BgmTrackMapFile:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM15BgmTrackMapFileFv
+  .4byte read__Q23PSM15BgmTrackMapFileFR6Stream
+  .4byte 0
+  .4byte 0
+  .4byte $$228$$2__dt__Q23PSM15BgmTrackMapFileFv
+  .4byte 0
+.global sThpDemoDinamics__3PSM
+sThpDemoDinamics__3PSM:
+	.4byte 0x3F4CCCCD
+	.4byte 0x3EC28F5C
+	.4byte 0x3F70A3D7
+	.4byte 0x01000000
+	.4byte 0x8049E0F0
+	.4byte 0x3F666666
+	.4byte 0x3E6147AE
+	.4byte 0x3F7AE148
+	.4byte 0x01000000
+	.4byte 0x8049E0FC
+	.4byte 0x3F333333
+	.4byte 0x3EC28F5C
+	.4byte 0x3F7AE148
+	.4byte 0x01000000
+	.4byte 0x80520DB8
+	.4byte 0x3F4CCCCD
+	.4byte 0x3EE147AE
+	.4byte 0x3F7D70A4
+	.4byte 0x01000000
+	.4byte 0x80520DC0
+	.4byte 0x3F11EB85
+	.4byte 0x3F800000
+	.4byte 0x3F800000
+	.4byte 0x00000000
+	.4byte 0x8049E108
+	.4byte 0x3F000000
+	.4byte 0x3F800000
+	.4byte 0x3F800000
+	.4byte 0x00000000
+	.4byte 0x80520DC8
+	.4byte 0x3F333333
+	.4byte 0x3F800000
+	.4byte 0x3F800000
+	.4byte 0x00000000
+	.4byte 0x80520DD0
+	.4byte 0x3F333333
+	.4byte 0x3F800000
+	.4byte 0x3F800000
+	.4byte 0x00000000
+	.4byte 0x80520DD8
+	.4byte 0x3F333333
+	.4byte 0x3F800000
+	.4byte 0x3F800000
+	.4byte 0x00000000
+	.4byte 0x80520DE0
+	.4byte 0x3F333333
+	.4byte 0x3F800000
+	.4byte 0x3F800000
+	.4byte 0x00000000
+	.4byte 0x80520DE8
+	.4byte 0x3F333333
+	.4byte 0x3F800000
+	.4byte 0x3F800000
+	.4byte 0x00000000
+	.4byte 0x80520DF0
+	.4byte 0x3F333333
+	.4byte 0x3F800000
+	.4byte 0x3F800000
+	.4byte 0x00000000
+	.4byte 0x80520DF8
+.global __vt__Q23PSM11CreaturePrm
+__vt__Q23PSM11CreaturePrm:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM11CreaturePrmFv
+.global __vt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1
+__vt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1Fv
+.global __vt__Q23PSM14ObjCalc_2PGame
+__vt__Q23PSM14ObjCalc_2PGame:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM14ObjCalc_2PGameFv
+  .4byte getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature
+  .4byte getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec
+  .4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
+  .4byte is1PGame__Q23PSM14ObjCalc_2PGameFv
+.global __vt__Q23PSM18ObjCalc_SingleGame
+__vt__Q23PSM18ObjCalc_SingleGame:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM18ObjCalc_SingleGameFv
+  .4byte getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature
+  .4byte getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec
+  .4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
+  .4byte is1PGame__Q23PSM11ObjCalcBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
