@@ -1,4 +1,10 @@
+#include "CNode.h"
+#include "JSystem/JUTException.h"
+// #include "Node.h"
 
+extern const char lbl_804995F0[12]; // node.cpp
+extern const char lbl_8049962C[28]; // %d child (realchild = %d)!\n
+extern const char lbl_80520260[8]; // CNode
 
 /*
  * --INFO--
@@ -15,21 +21,15 @@ void _Print(char*, ...)
  * Address:	80411204
  * Size:	000004
  */
-void Node::init()
-{
-    /*
-    .loc_0x0:
-      blr
-    */
-}
+// void Node::init() { return; }
 
 /*
  * --INFO--
  * Address:	80411208
  * Size:	0000B0
  */
-void Node::displayInfo(int)
-{
+// void Node::displayInfo(int)
+// {
     /*
     .loc_0x0:
       stwu      r1, -0x20(r1)
@@ -85,15 +85,15 @@ void Node::displayInfo(int)
       addi      r1, r1, 0x20
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	804112B8
  * Size:	000064
  */
-void Node::update()
-{
+// void Node::update()
+// {
     /*
     .loc_0x0:
       stwu      r1, -0x10(r1)
@@ -126,15 +126,15 @@ void Node::update()
       addi      r1, r1, 0x10
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	8041131C
  * Size:	000074
  */
-void Node::draw(Graphics&)
-{
+// void Node::draw(Graphics&)
+// {
     /*
     .loc_0x0:
       stwu      r1, -0x10(r1)
@@ -171,15 +171,15 @@ void Node::draw(Graphics&)
       addi      r1, r1, 0x10
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	80411390
  * Size:	000030
  */
-void CNode::CNode()
-{
+// CNode::CNode()
+// {
     /*
     .loc_0x0:
       lis       r5, 0x804F
@@ -195,15 +195,15 @@ void CNode::CNode()
       stw       r0, 0x14(r3)
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	804113C0
  * Size:	000048
  */
-void CNode::addHead(CNode*)
-{
+// void CNode::addHead(CNode*)
+// {
     /*
     .loc_0x0:
       stwu      r1, -0x10(r1)
@@ -231,15 +231,15 @@ void CNode::addHead(CNode*)
 
     .loc_0x48:
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	80411408
  * Size:	0000B0
  */
-void CNode::add(CNode*)
-{
+// void CNode::add(CNode*)
+// {
     /*
     .loc_0x0:
       stwu      r1, -0x20(r1)
@@ -303,15 +303,15 @@ void CNode::add(CNode*)
       addi      r1, r1, 0x20
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	804114B8
  * Size:	000020
  */
-void CNode::calcNextCount()
-{
+// int CNode::calcNextCount()
+// {
     /*
     .loc_0x0:
       li        r4, 0x1
@@ -327,15 +327,15 @@ void CNode::calcNextCount()
       mr        r3, r4
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	804114D8
  * Size:	0000B0
  */
-void CNode::concat(CNode*)
-{
+// void CNode::concat(CNode*)
+// {
     /*
     .loc_0x0:
       stwu      r1, -0x20(r1)
@@ -395,15 +395,15 @@ void CNode::concat(CNode*)
       addi      r1, r1, 0x20
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	80411588
  * Size:	000048
  */
-void CNode::~CNode()
-{
+// CNode::~CNode()
+// {
     /*
     .loc_0x0:
       stwu      r1, -0x10(r1)
@@ -427,15 +427,15 @@ void CNode::~CNode()
       addi      r1, r1, 0x10
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	804115D0
  * Size:	000098
  */
-void CNode::del()
-{
+// void CNode::del()
+// {
     /*
     .loc_0x0:
       lwz       r4, 0xC(r3)
@@ -489,15 +489,15 @@ void CNode::del()
       bne+      .loc_0x18
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	80411668
  * Size:	000034
  */
-void CNode::getChildCount()
-{
+// int CNode::getChildCount()
+// {
     /*
     .loc_0x0:
       lwz       r0, 0x10(r3)
@@ -520,15 +520,42 @@ void CNode::getChildCount()
       li        r3, 0
       blr
     */
-}
+// }
 
 /*
  * --INFO--
  * Address:	8041169C
  * Size:	000094
  */
-void CNode::getChildAt(int)
+CNode* CNode::getChildAt(int desiredIndex)
 {
+    const char* msg = lbl_8049962C;
+    const char* _FILE_ = lbl_804995F0;
+    int currentIndex = 0;
+    CNode* pNode = _10;
+
+    // for (; ; pNode = pNode->_04, currentIndex++) {
+    while (true) {
+        if (desiredIndex <= currentIndex) {
+            return pNode;
+        }
+        if (pNode == NULL) {
+            JUTException::panic_f(lbl_804995F0,0x15f,msg,desiredIndex, this->getChildCount());
+        }
+        pNode = pNode->_04;
+        currentIndex++;
+    }
+
+    // JUTException::panic_f(lbl_804995F0,0x15f,msg,desiredIndex, this->getChildCount());
+    // while( pNode != NULL ) {
+    //     if (desiredIndex <= currentIndex) {
+    //         return pNode;
+    //     }
+    //     pNode = pNode->_04;
+    //     currentIndex += 1;
+    // }
+    // childCount = this->getChildCount();
+    // JUTException::panic_f(lbl_804995F0,0x15f,lbl_8049962C,desiredIndex,childCount);
     /*
     .loc_0x0:
       stwu      r1, -0x20(r1)
