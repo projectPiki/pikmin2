@@ -75,10 +75,10 @@ read__8BoundBoxFR6Stream:
 /* 8041195C 0040E89C  7C 9F 23 78 */	mr r31, r4
 /* 80411960 0040E8A0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80411964 0040E8A4  7C 7E 1B 78 */	mr r30, r3
-/* 80411968 0040E8A8  48 00 00 29 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80411968 0040E8A8  48 00 00 29 */	bl "read__10Vector3<f>FR6Stream"
 /* 8041196C 0040E8AC  7F E4 FB 78 */	mr r4, r31
 /* 80411970 0040E8B0  38 7E 00 0C */	addi r3, r30, 0xc
-/* 80411974 0040E8B4  48 00 00 1D */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80411974 0040E8B4  48 00 00 1D */	bl "read__10Vector3<f>FR6Stream"
 /* 80411978 0040E8B8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8041197C 0040E8BC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80411980 0040E8C0  83 C1 00 08 */	lwz r30, 8(r1)
@@ -86,8 +86,8 @@ read__8BoundBoxFR6Stream:
 /* 80411988 0040E8C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041198C 0040E8CC  4E 80 00 20 */	blr 
 
-.global read__10Vector3$$0f$$1FR6Stream
-read__10Vector3$$0f$$1FR6Stream:
+.global "read__10Vector3<f>FR6Stream"
+"read__10Vector3<f>FR6Stream":
 /* 80411990 0040E8D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80411994 0040E8D4  7C 08 02 A6 */	mflr r0
 /* 80411998 0040E8D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -111,8 +111,8 @@ read__10Vector3$$0f$$1FR6Stream:
 /* 804119E0 0040E920  38 21 00 10 */	addi r1, r1, 0x10
 /* 804119E4 0040E924  4E 80 00 20 */	blr 
 
-.global write__10Vector3$$0f$$1FR6Stream
-write__10Vector3$$0f$$1FR6Stream:
+.global "write__10Vector3<f>FR6Stream"
+"write__10Vector3<f>FR6Stream":
 /* 804119E8 0040E928  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804119EC 0040E92C  7C 08 02 A6 */	mflr r0
 /* 804119F0 0040E930  90 01 00 14 */	stw r0, 0x14(r1)
@@ -809,8 +809,8 @@ __ct__4QuatFv:
 /* 804123D8 0040F318  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 804123DC 0040F31C  4E 80 00 20 */	blr 
 
-.global __ct__4QuatFf10Vector3$$0f$$1
-__ct__4QuatFf10Vector3$$0f$$1:
+.global "__ct__4QuatFf10Vector3<f>"
+"__ct__4QuatFf10Vector3<f>":
 /* 804123E0 0040F320  D0 23 00 00 */	stfs f1, 0(r3)
 /* 804123E4 0040F324  C0 04 00 00 */	lfs f0, 0(r4)
 /* 804123E8 0040F328  C0 24 00 04 */	lfs f1, 4(r4)
@@ -886,8 +886,8 @@ __ml__FR4QuatR4Quat:
 /* 804124F4 0040F434  38 21 00 50 */	addi r1, r1, 0x50
 /* 804124F8 0040F438  4E 80 00 20 */	blr 
 
-.global set__4QuatFR10Vector3$$0f$$1
-set__4QuatFR10Vector3$$0f$$1:
+.global "set__4QuatFR10Vector3<f>"
+"set__4QuatFR10Vector3<f>":
 /* 804124FC 0040F43C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80412500 0040F440  7C 08 02 A6 */	mflr r0
 /* 80412504 0040F444  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)

@@ -6293,7 +6293,7 @@ read__8CollPartFR6Streamb:
 /* 80138E50 00135D90  48 2D A6 A1 */	bl read__4ID32FR6Stream
 /* 80138E54 00135D94  7F C4 F3 78 */	mr r4, r30
 /* 80138E58 00135D98  38 78 00 20 */	addi r3, r24, 0x20
-/* 80138E5C 00135D9C  48 2D 8B 35 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80138E5C 00135D9C  48 2D 8B 35 */	bl "read__10Vector3<f>FR6Stream"
 /* 80138E60 00135DA0  7F C3 F3 78 */	mr r3, r30
 /* 80138E64 00135DA4  48 2D BC 2D */	bl readInt__6StreamFv
 /* 80138E68 00135DA8  90 78 00 2C */	stw r3, 0x2c(r24)
@@ -6376,7 +6376,7 @@ lbl_80138F54:
 /* 80138F88 00135EC8  48 2D A5 69 */	bl read__4ID32FR6Stream
 /* 80138F8C 00135ECC  7F C4 F3 78 */	mr r4, r30
 /* 80138F90 00135ED0  38 79 00 20 */	addi r3, r25, 0x20
-/* 80138F94 00135ED4  48 2D 89 FD */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80138F94 00135ED4  48 2D 89 FD */	bl "read__10Vector3<f>FR6Stream"
 /* 80138F98 00135ED8  7F C3 F3 78 */	mr r3, r30
 /* 80138F9C 00135EDC  48 2D BA F5 */	bl readInt__6StreamFv
 /* 80138FA0 00135EE0  90 79 00 2C */	stw r3, 0x2c(r25)
@@ -6435,7 +6435,7 @@ lbl_80139034:
 /* 80139068 00135FA8  48 2D A4 89 */	bl read__4ID32FR6Stream
 /* 8013906C 00135FAC  7F C4 F3 78 */	mr r4, r30
 /* 80139070 00135FB0  38 74 00 20 */	addi r3, r20, 0x20
-/* 80139074 00135FB4  48 2D 89 1D */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80139074 00135FB4  48 2D 89 1D */	bl "read__10Vector3<f>FR6Stream"
 /* 80139078 00135FB8  7F C3 F3 78 */	mr r3, r30
 /* 8013907C 00135FBC  48 2D BA 15 */	bl readInt__6StreamFv
 /* 80139080 00135FC0  90 74 00 2C */	stw r3, 0x2c(r20)
