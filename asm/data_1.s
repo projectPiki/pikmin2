@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x4
-.skip 4
+.balign 0x8
 .global lbl_804ECFE8
 lbl_804ECFE8:
 	.4byte 0x00000001
