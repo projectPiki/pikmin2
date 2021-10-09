@@ -77203,11 +77203,3 @@ __vt__11CullFrustum:
   .4byte getViewMatrix__11CullFrustumFb
   .4byte getPosition__11CullFrustumFv
   .4byte updatePlanes__11CullFrustumFv
-.global __vt__7TagParm
-__vt__7TagParm:
-  .4byte 0
-  .4byte 0
-  .4byte doWrite__7TagParmFR6Stream
-  .4byte doRead__7TagParmFR6Stream
-  .4byte flushValue__7TagParmFv
-  .4byte doDump__7TagParmFv
