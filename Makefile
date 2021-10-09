@@ -122,7 +122,6 @@ $(DOL): $(ELF) | tools
 
 clean:
 	rm -f -d -r build
-	$(MAKE) -C tools clean
 
 tools:
 	$(MAKE) -C tools
