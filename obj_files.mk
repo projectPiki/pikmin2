@@ -522,6 +522,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/data_tagparms.o\
 	
 TEXT_PT1:=\
+	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\

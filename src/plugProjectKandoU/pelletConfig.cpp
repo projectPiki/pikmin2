@@ -1,10 +1,10 @@
-
+#include "PrimTagParm.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E4
- */
+ *=
 void _Print(char*, ...)
 {
     // UNUSED FUNCTION
@@ -14,7 +14,7 @@ void _Print(char*, ...)
  * --INFO--
  * Address:	801B3EEC
  * Size:	000048
- */
+
 void Game::PelletConfigList::__ct(void)
 {
     /*
@@ -37,14 +37,14 @@ void Game::PelletConfigList::__ct(void)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B3F34
  * Size:	0000AC
- */
+
 void Game::PelletConfig::__ct(void)
 {
     /*
@@ -92,14 +92,14 @@ void Game::PelletConfig::__ct(void)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B3FE0
  * Size:	000070
- */
+
 void Game::PelletConfig::TParms::__dt(void)
 {
     /*
@@ -136,14 +136,14 @@ void Game::PelletConfig::TParms::__dt(void)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B4050
  * Size:	000374
- */
+
 void Game::PelletConfig::TParms::__ct(void)
 {
     /*
@@ -369,14 +369,14 @@ void Game::PelletConfig::TParms::__ct(void)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B43C4
  * Size:	000060
- */
+
 void TagParameters::~TagParameters()
 {
     /*
@@ -407,14 +407,14 @@ void TagParameters::~TagParameters()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B4424
  * Size:	000084
- */
+
 void Game::PelletConfigList::getPelletConfig((char*))
 {
     /*
@@ -460,14 +460,14 @@ void Game::PelletConfigList::getPelletConfig((char*))
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B44A8
  * Size:	00007C
- */
+
 void Game::PelletConfigList::getPelletConfig((int))
 {
     /*
@@ -507,14 +507,14 @@ void Game::PelletConfigList::getPelletConfig((int))
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B4524
  * Size:	000044
- */
+
 void Game::PelletConfigList::getPelletConfig_ByDictionaryNo((int))
 {
     /*
@@ -542,14 +542,14 @@ void Game::PelletConfigList::getPelletConfig_ByDictionaryNo((int))
     .loc_0x3C:
       li        r3, 0
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000068
- */
+
 void Game::PelletConfigList::dump(void)
 {
     // UNUSED FUNCTION
@@ -559,7 +559,7 @@ void Game::PelletConfigList::dump(void)
  * --INFO--
  * Address:	........
  * Size:	00009C
- */
+
 void Game::PelletConfigList::load((char*))
 {
     // UNUSED FUNCTION
@@ -569,7 +569,7 @@ void Game::PelletConfigList::load((char*))
  * --INFO--
  * Address:	801B4568
  * Size:	000130
- */
+
 void Game::PelletConfigList::read((Stream&))
 {
     /*
@@ -660,14 +660,14 @@ void Game::PelletConfigList::read((Stream&))
       mtlr      r0
       addi      r1, r1, 0x20
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B4698
  * Size:	000098
- */
+
 void Game::PelletConfig::__dt(void)
 {
     /*
@@ -714,14 +714,14 @@ void Game::PelletConfig::__dt(void)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
- */
+
 void Game::PelletConfigList::write((Stream&))
 {
     // UNUSED FUNCTION
@@ -731,20 +731,20 @@ void Game::PelletConfigList::write((Stream&))
  * --INFO--
  * Address:	801B4730
  * Size:	000004
- */
+
 void TagParm::flushValue()
 {
     /*
     .loc_0x0:
       blr
-    */
+
 }
 
 /*
  * --INFO--
  * Address:	801B4734
  * Size:	000060
- */
+
 void Game::PelletConfigList::__dt(void)
 {
     /*
@@ -775,5 +775,6 @@ void Game::PelletConfigList::__dt(void)
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-    */
+
 }
+*/
