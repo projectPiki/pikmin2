@@ -332,12 +332,12 @@ exec__Q34Game10MiniHoudai9StateDeadFPQ24Game9EnemyBase:
 /* 802E8420 002E5360  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 802E8424 002E5364  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802E8428 002E5368  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802E842C 002E536C  4B F6 9E 11 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802E842C 002E536C  4B F6 9E 11 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802E8430 002E5370  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802E8434 002E5374  38 A1 00 14 */	addi r5, r1, 0x14
 /* 802E8438 002E5378  38 80 00 0B */	li r4, 0xb
 /* 802E843C 002E537C  38 C0 00 02 */	li r6, 2
-/* 802E8440 002E5380  4B F6 B3 41 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802E8440 002E5380  4B F6 B3 41 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802E8444 002E5384  48 00 00 30 */	b lbl_802E8474
 lbl_802E8448:
 /* 802E8448 002E5388  28 00 00 03 */	cmplwi r0, 3
@@ -415,7 +415,7 @@ exec__Q34Game10MiniHoudai12StateRebirthFPQ24Game9EnemyBase:
 /* 802E853C 002E547C  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 802E8540 002E5480  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802E8544 002E5484  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802E8548 002E5488  4B E2 AB D5 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E8548 002E5488  4B E2 AB D5 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E854C 002E548C  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802E8550 002E5490  7F E3 FB 78 */	mr r3, r31
 /* 802E8554 002E5494  C0 82 EB F4 */	lfs f4, lbl_8051CF54@sda21(r2)
@@ -1562,7 +1562,7 @@ exec__Q34Game10MiniHoudai10StateFlickFPQ24Game9EnemyBase:
 /* 802E9610 002E6550  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 802E9614 002E6554  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802E9618 002E6558  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802E961C 002E655C  4B E2 9B 01 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E961C 002E655C  4B E2 9B 01 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E9620 002E6560  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802E9624 002E6564  7F E3 FB 78 */	mr r3, r31
 /* 802E9628 002E6568  C0 82 EB F4 */	lfs f4, lbl_8051CF54@sda21(r2)

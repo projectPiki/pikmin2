@@ -787,7 +787,7 @@ lbl_80364F5C:
 /* 80364F7C 00361EBC  80 DF 00 C0 */	lwz r6, 0xc0(r31)
 /* 80364F80 00361EC0  C0 26 04 9C */	lfs f1, 0x49c(r6)
 /* 80364F84 00361EC4  C0 46 04 4C */	lfs f2, 0x44c(r6)
-/* 80364F88 00361EC8  4B DA D7 6D */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
+/* 80364F88 00361EC8  4B DA D7 6D */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 /* 80364F8C 00361ECC  90 7F 02 30 */	stw r3, 0x230(r31)
 /* 80364F90 00361ED0  38 00 00 00 */	li r0, 0
 /* 80364F94 00361ED4  C3 C2 04 D4 */	lfs f30, lbl_8051E834@sda21(r2)

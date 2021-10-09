@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
-getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1:
+.global "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>":
 /* 801126F4 0010F634  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 801126F8 0010F638  7C 08 02 A6 */	mflr r0
 /* 801126FC 0010F63C  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -306,8 +306,8 @@ isDone__22Iterator$$0Q24Game4Navi$$1Fv:
 /* 80112B5C 0010FA9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80112B60 0010FAA0  4E 80 00 20 */	blr 
 
-.global getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
-getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1:
+.global "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
+"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>":
 /* 80112B64 0010FAA4  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80112B68 0010FAA8  7C 08 02 A6 */	mflr r0
 /* 80112B6C 0010FAAC  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -674,14 +674,14 @@ lbl_801130A4:
 /* 801130A8 0010FFE8  7F 83 E3 78 */	mr r3, r28
 /* 801130AC 0010FFEC  FC 40 F8 90 */	fmr f2, f31
 /* 801130B0 0010FFF0  7F A4 EB 78 */	mr r4, r29
-/* 801130B4 0010FFF4  4B FF F6 41 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
+/* 801130B4 0010FFF4  4B FF F6 41 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 /* 801130B8 0010FFF8  FC 20 F0 90 */	fmr f1, f30
 /* 801130BC 0010FFFC  7C 7F 1B 78 */	mr r31, r3
 /* 801130C0 00110000  FC 40 F8 90 */	fmr f2, f31
 /* 801130C4 00110004  7F 83 E3 78 */	mr r3, r28
 /* 801130C8 00110008  7F A4 EB 78 */	mr r4, r29
 /* 801130CC 0011000C  7F C5 F3 78 */	mr r5, r30
-/* 801130D0 00110010  4B FF FA 95 */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
+/* 801130D0 00110010  4B FF FA 95 */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
 /* 801130D4 00110014  28 03 00 00 */	cmplwi r3, 0
 /* 801130D8 00110018  41 82 00 08 */	beq lbl_801130E0
 /* 801130DC 0011001C  48 00 00 08 */	b lbl_801130E4
@@ -706,8 +706,8 @@ stimulate__Q24Game8CreatureFRQ24Game11Interaction:
 /* 80113114 00110054  38 60 00 00 */	li r3, 0
 /* 80113118 00110058  4E 80 00 20 */	blr 
 
-.global flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
-flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1:
+.global "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>":
 /* 8011311C 0011005C  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80113120 00110060  7C 08 02 A6 */	mflr r0
 /* 80113124 00110064  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -733,10 +733,10 @@ flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4
 /* 80113174 001100B4  48 08 CA E9 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80113178 001100B8  C0 02 97 18 */	lfs f0, lbl_80517A78@sda21(r2)
 /* 8011317C 001100BC  38 60 00 00 */	li r3, 0
-/* 80113180 001100C0  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 80113180 001100C0  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 80113184 001100C4  38 01 00 2C */	addi r0, r1, 0x2c
 /* 80113188 001100C8  EF FF 00 2A */	fadds f31, f31, f0
-/* 8011318C 001100CC  38 84 BC 84 */	addi r4, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8011318C 001100CC  38 84 BC 84 */	addi r4, r4, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80113190 001100D0  90 81 00 08 */	stw r4, 8(r1)
 /* 80113194 001100D4  FC 20 F8 90 */	fmr f1, f31
 /* 80113198 001100D8  90 61 00 14 */	stw r3, 0x14(r1)
@@ -1405,9 +1405,9 @@ eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition$$0Q24Game4Piki$$1:
 /* 80113B54 00110A94  81 8C 02 5C */	lwz r12, 0x25c(r12)
 /* 80113B58 00110A98  7D 89 03 A6 */	mtctr r12
 /* 80113B5C 00110A9C  4E 80 04 21 */	bctrl 
-/* 80113B60 00110AA0  3C A0 80 4B */	lis r5, __vt__23Condition$$0Q24Game4Piki$$1@ha
+/* 80113B60 00110AA0  3C A0 80 4B */	lis r5, "__vt__23Condition<Q24Game4Piki>"@ha
 /* 80113B64 00110AA4  3C 80 80 4B */	lis r4, __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition@ha
-/* 80113B68 00110AA8  38 05 BC 60 */	addi r0, r5, __vt__23Condition$$0Q24Game4Piki$$1@l
+/* 80113B68 00110AA8  38 05 BC 60 */	addi r0, r5, "__vt__23Condition<Q24Game4Piki>"@l
 /* 80113B6C 00110AAC  28 1A 00 00 */	cmplwi r26, 0
 /* 80113B70 00110AB0  90 01 00 08 */	stw r0, 8(r1)
 /* 80113B74 00110AB4  38 04 BC 54 */	addi r0, r4, __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition@l
@@ -1640,8 +1640,8 @@ swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$
 /* 80113EB4 00110DF4  7F C4 F3 78 */	mr r4, r30
 /* 80113EB8 00110DF8  48 08 BD A5 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80113EBC 00110DFC  38 00 00 00 */	li r0, 0
-/* 80113EC0 00110E00  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80113EC4 00110E04  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80113EC0 00110E00  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80113EC4 00110E04  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80113EC8 00110E08  38 61 00 30 */	addi r3, r1, 0x30
 /* 80113ECC 00110E0C  28 00 00 00 */	cmplwi r0, 0
 /* 80113ED0 00110E10  90 81 00 20 */	stw r4, 0x20(r1)
@@ -2942,8 +2942,8 @@ getStickPikminColorNum__Q24Game9EnemyFuncFPQ24Game8Creaturei:
 /* 801151D4 00112114  38 61 00 18 */	addi r3, r1, 0x18
 /* 801151D8 00112118  48 08 AA 85 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 801151DC 0011211C  38 00 00 00 */	li r0, 0
-/* 801151E0 00112120  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 801151E4 00112124  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801151E0 00112120  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 801151E4 00112124  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801151E8 00112128  38 61 00 18 */	addi r3, r1, 0x18
 /* 801151EC 0011212C  28 00 00 00 */	cmplwi r0, 0
 /* 801151F0 00112130  90 81 00 08 */	stw r4, 8(r1)

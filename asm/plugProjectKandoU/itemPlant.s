@@ -982,8 +982,8 @@ lbl_801DDAE8:
 /* 801DDAEC 001DAA2C  38 61 00 20 */	addi r3, r1, 0x20
 /* 801DDAF0 001DAA30  4B FC 21 6D */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 801DDAF4 001DAA34  38 00 00 00 */	li r0, 0
-/* 801DDAF8 001DAA38  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 801DDAFC 001DAA3C  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801DDAF8 001DAA38  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 801DDAFC 001DAA3C  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801DDB00 001DAA40  38 61 00 20 */	addi r3, r1, 0x20
 /* 801DDB04 001DAA44  28 00 00 00 */	cmplwi r0, 0
 /* 801DDB08 001DAA48  90 81 00 10 */	stw r4, 0x10(r1)

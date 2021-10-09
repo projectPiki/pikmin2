@@ -722,7 +722,7 @@ flickStatePikmin__Q34Game10ChappyBase3ObjFv:
 /* 8012B334 00128274  7F C3 F3 78 */	mr r3, r30
 /* 8012B338 00128278  C0 7F 04 EC */	lfs f3, 0x4ec(r31)
 /* 8012B33C 0012827C  38 80 00 00 */	li r4, 0
-/* 8012B340 00128280  4B FE 7D DD */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 8012B340 00128280  4B FE 7D DD */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 8012B344 00128284  7F C3 F3 78 */	mr r3, r30
 /* 8012B348 00128288  83 FE 00 C0 */	lwz r31, 0xc0(r30)
 /* 8012B34C 0012828C  81 9E 00 00 */	lwz r12, 0(r30)
@@ -860,7 +860,7 @@ lbl_8012B544:
 /* 8012B548 00128488  38 A1 00 34 */	addi r5, r1, 0x34
 /* 8012B54C 0012848C  38 80 00 0B */	li r4, 0xb
 /* 8012B550 00128490  38 C0 00 02 */	li r6, 2
-/* 8012B554 00128494  48 12 82 2D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 8012B554 00128494  48 12 82 2D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 8012B558 00128498  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 8012B55C 0012849C  7C 08 03 A6 */	mtlr r0
 /* 8012B560 001284A0  38 21 00 70 */	addi r1, r1, 0x70
@@ -885,7 +885,7 @@ flickAttackFail__Q34Game10ChappyBase3ObjFv:
 /* 8012B5A0 001284E0  7F C3 F3 78 */	mr r3, r30
 /* 8012B5A4 001284E4  C0 7F 04 EC */	lfs f3, 0x4ec(r31)
 /* 8012B5A8 001284E8  38 80 00 00 */	li r4, 0
-/* 8012B5AC 001284EC  4B FE 7B 71 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 8012B5AC 001284EC  4B FE 7B 71 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 8012B5B0 001284F0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8012B5B4 001284F4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8012B5B8 001284F8  83 C1 00 08 */	lwz r30, 8(r1)

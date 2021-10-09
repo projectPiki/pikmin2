@@ -1215,7 +1215,7 @@ lbl_802F0AB4:
 /* 802F0B0C 002EDA4C  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 802F0B10 002EDA50  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802F0B14 002EDA54  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802F0B18 002EDA58  4B E2 26 05 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802F0B18 002EDA58  4B E2 26 05 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802F0B1C 002EDA5C  C0 02 ED 60 */	lfs f0, lbl_8051D0C0@sda21(r2)
 /* 802F0B20 002EDA60  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 /* 802F0B24 002EDA64  48 00 00 44 */	b lbl_802F0B68

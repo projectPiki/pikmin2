@@ -23,10 +23,10 @@ lbl_802A8AA4:
 __ct__Q24Game11IKSystemMgrFv:
 /* 802A8AB8 002A59F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A8ABC 002A59FC  7C 08 02 A6 */	mflr r0
-/* 802A8AC0 002A5A00  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 802A8AC0 002A5A00  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 802A8AC4 002A5A04  38 A0 00 00 */	li r5, 0
 /* 802A8AC8 002A5A08  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802A8ACC 002A5A0C  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 802A8ACC 002A5A0C  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 802A8AD0 002A5A10  38 C0 00 0C */	li r6, 0xc
 /* 802A8AD4 002A5A14  38 E0 00 04 */	li r7, 4
 /* 802A8AD8 002A5A18  93 E1 00 0C */	stw r31, 0xc(r1)

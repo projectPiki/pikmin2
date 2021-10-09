@@ -1919,11 +1919,11 @@ lbl_801C910C:
 initDependency__Q24Game11ItemGateMgrFv:
 /* 801C9160 001C60A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C9164 001C60A4  7C 08 02 A6 */	mflr r0
-/* 801C9168 001C60A8  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801C9168 001C60A8  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801C916C 001C60AC  38 63 00 30 */	addi r3, r3, 0x30
 /* 801C9170 001C60B0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801C9174 001C60B4  38 00 00 00 */	li r0, 0
-/* 801C9178 001C60B8  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801C9178 001C60B8  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801C917C 001C60BC  28 00 00 00 */	cmplwi r0, 0
 /* 801C9180 001C60C0  90 81 00 08 */	stw r4, 8(r1)
 /* 801C9184 001C60C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3721,11 +3721,11 @@ lbl_801CA9C0:
 initDependency__Q24Game29NodeItemMgr$$0Q24Game8ItemGate$$1Fv:
 /* 801CAA04 001C7944  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CAA08 001C7948  7C 08 02 A6 */	mflr r0
-/* 801CAA0C 001C794C  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801CAA0C 001C794C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801CAA10 001C7950  38 63 00 4C */	addi r3, r3, 0x4c
 /* 801CAA14 001C7954  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801CAA18 001C7958  38 00 00 00 */	li r0, 0
-/* 801CAA1C 001C795C  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801CAA1C 001C795C  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801CAA20 001C7960  28 00 00 00 */	cmplwi r0, 0
 /* 801CAA24 001C7964  90 81 00 08 */	stw r4, 8(r1)
 /* 801CAA28 001C7968  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4114,10 +4114,10 @@ resetMgr__31NodeObjectMgr$$0Q24Game8ItemGate$$1Fv:
 doAnimation__27ObjectMgr$$0Q24Game8ItemGate$$1Fv:
 /* 801CAEA0 001C7DE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CAEA4 001C7DE4  7C 08 02 A6 */	mflr r0
-/* 801CAEA8 001C7DE8  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801CAEA8 001C7DE8  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801CAEAC 001C7DEC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801CAEB0 001C7DF0  38 00 00 00 */	li r0, 0
-/* 801CAEB4 001C7DF4  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801CAEB4 001C7DF4  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801CAEB8 001C7DF8  28 00 00 00 */	cmplwi r0, 0
 /* 801CAEBC 001C7DFC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801CAEC0 001C7E00  90 81 00 08 */	stw r4, 8(r1)
@@ -4246,10 +4246,10 @@ lbl_801CB054:
 doEntry__27ObjectMgr$$0Q24Game8ItemGate$$1Fv:
 /* 801CB084 001C7FC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB088 001C7FC8  7C 08 02 A6 */	mflr r0
-/* 801CB08C 001C7FCC  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801CB08C 001C7FCC  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801CB090 001C7FD0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801CB094 001C7FD4  38 00 00 00 */	li r0, 0
-/* 801CB098 001C7FD8  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801CB098 001C7FD8  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801CB09C 001C7FDC  28 00 00 00 */	cmplwi r0, 0
 /* 801CB0A0 001C7FE0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801CB0A4 001C7FE4  90 81 00 08 */	stw r4, 8(r1)
@@ -4378,10 +4378,10 @@ lbl_801CB238:
 doSetView__27ObjectMgr$$0Q24Game8ItemGate$$1Fi:
 /* 801CB268 001C81A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB26C 001C81AC  7C 08 02 A6 */	mflr r0
-/* 801CB270 001C81B0  3C A0 80 4B */	lis r5, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801CB270 001C81B0  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801CB274 001C81B4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801CB278 001C81B8  38 00 00 00 */	li r0, 0
-/* 801CB27C 001C81BC  38 A5 5A 7C */	addi r5, r5, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801CB27C 001C81BC  38 A5 5A 7C */	addi r5, r5, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801CB280 001C81C0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801CB284 001C81C4  28 00 00 00 */	cmplwi r0, 0
 /* 801CB288 001C81C8  7C 9F 23 78 */	mr r31, r4
@@ -4514,10 +4514,10 @@ lbl_801CB428:
 doViewCalc__27ObjectMgr$$0Q24Game8ItemGate$$1Fv:
 /* 801CB45C 001C839C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB460 001C83A0  7C 08 02 A6 */	mflr r0
-/* 801CB464 001C83A4  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801CB464 001C83A4  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801CB468 001C83A8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801CB46C 001C83AC  38 00 00 00 */	li r0, 0
-/* 801CB470 001C83B0  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801CB470 001C83B0  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801CB474 001C83B4  28 00 00 00 */	cmplwi r0, 0
 /* 801CB478 001C83B8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801CB47C 001C83BC  90 81 00 08 */	stw r4, 8(r1)
@@ -4646,10 +4646,10 @@ lbl_801CB610:
 doSimulation__27ObjectMgr$$0Q24Game8ItemGate$$1Ff:
 /* 801CB640 001C8580  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB644 001C8584  7C 08 02 A6 */	mflr r0
-/* 801CB648 001C8588  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801CB648 001C8588  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801CB64C 001C858C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801CB650 001C8590  38 00 00 00 */	li r0, 0
-/* 801CB654 001C8594  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801CB654 001C8594  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801CB658 001C8598  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 801CB65C 001C859C  FF E0 08 90 */	fmr f31, f1
 /* 801CB660 001C85A0  28 00 00 00 */	cmplwi r0, 0
@@ -4782,10 +4782,10 @@ lbl_801CB800:
 doDirectDraw__27ObjectMgr$$0Q24Game8ItemGate$$1FR8Graphics:
 /* 801CB834 001C8774  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB838 001C8778  7C 08 02 A6 */	mflr r0
-/* 801CB83C 001C877C  3C A0 80 4B */	lis r5, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801CB83C 001C877C  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801CB840 001C8780  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801CB844 001C8784  38 00 00 00 */	li r0, 0
-/* 801CB848 001C8788  38 A5 5A 7C */	addi r5, r5, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801CB848 001C8788  38 A5 5A 7C */	addi r5, r5, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801CB84C 001C878C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801CB850 001C8790  28 00 00 00 */	cmplwi r0, 0
 /* 801CB854 001C8794  7C 9F 23 78 */	mr r31, r4
@@ -5145,11 +5145,11 @@ get__Q24Game29NodeItemMgr$$0Q24Game8ItemGate$$1FPv:
 killAll__Q24Game29NodeItemMgr$$0Q24Game8ItemGate$$1Fv:
 /* 801CBD00 001C8C40  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801CBD04 001C8C44  7C 08 02 A6 */	mflr r0
-/* 801CBD08 001C8C48  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801CBD08 001C8C48  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801CBD0C 001C8C4C  38 63 00 4C */	addi r3, r3, 0x4c
 /* 801CBD10 001C8C50  90 01 00 34 */	stw r0, 0x34(r1)
 /* 801CBD14 001C8C54  38 00 00 00 */	li r0, 0
-/* 801CBD18 001C8C58  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801CBD18 001C8C58  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801CBD1C 001C8C5C  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 801CBD20 001C8C60  28 00 00 00 */	cmplwi r0, 0
 /* 801CBD24 001C8C64  93 C1 00 28 */	stw r30, 0x28(r1)

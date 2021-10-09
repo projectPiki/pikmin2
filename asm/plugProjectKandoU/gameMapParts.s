@@ -1662,8 +1662,8 @@ lbl_801B7B40:
 /* 801B7B84 001B4AC4  38 7D 00 AC */	addi r3, r29, 0xac
 /* 801B7B88 001B4AC8  48 00 90 81 */	bl __ct__30MonoObjectMgr$$0Q24Game7MapRoom$$1Fv
 /* 801B7B8C 001B4ACC  C0 22 B0 E4 */	lfs f1, lbl_80519444@sda21(r2)
-/* 801B7B90 001B4AD0  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
-/* 801B7B94 001B4AD4  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
+/* 801B7B90 001B4AD0  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
+/* 801B7B94 001B4AD4  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
 /* 801B7B98 001B4AD8  C0 02 B0 E8 */	lfs f0, lbl_80519448@sda21(r2)
 /* 801B7B9C 001B4ADC  D0 3D 00 DC */	stfs f1, 0xdc(r29)
 /* 801B7BA0 001B4AE0  38 7D 00 FC */	addi r3, r29, 0xfc
@@ -4461,15 +4461,15 @@ lbl_801BA364:
 /* 801BA378 001B72B8  41 82 00 74 */	beq lbl_801BA3EC
 /* 801BA37C 001B72BC  48 25 70 15 */	bl __ct__5CNodeFv
 /* 801BA380 001B72C0  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 801BA384 001B72C4  3C 60 80 4B */	lis r3, __vt__23Container$$010Vector3$$0f$$1$$1@ha
+/* 801BA384 001B72C4  3C 60 80 4B */	lis r3, "__vt__23Container<10Vector3<f>>"@ha
 /* 801BA388 001B72C8  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 801BA38C 001B72CC  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
+/* 801BA38C 001B72CC  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
 /* 801BA390 001B72D0  90 1D 00 00 */	stw r0, 0(r29)
-/* 801BA394 001B72D4  38 03 00 2C */	addi r0, r3, __vt__23Container$$010Vector3$$0f$$1$$1@l
+/* 801BA394 001B72D4  38 03 00 2C */	addi r0, r3, "__vt__23Container<10Vector3<f>>"@l
 /* 801BA398 001B72D8  3C 60 80 4F */	lis r3, __vt__Q23Sys11VertexTable@ha
 /* 801BA39C 001B72DC  38 C0 00 00 */	li r6, 0
 /* 801BA3A0 001B72E0  90 1D 00 00 */	stw r0, 0(r29)
-/* 801BA3A4 001B72E4  38 A4 FF E4 */	addi r5, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
+/* 801BA3A4 001B72E4  38 A4 FF E4 */	addi r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
 /* 801BA3A8 001B72E8  38 80 00 01 */	li r4, 1
 /* 801BA3AC 001B72EC  38 03 B5 C0 */	addi r0, r3, __vt__Q23Sys11VertexTable@l
 /* 801BA3B0 001B72F0  98 DD 00 18 */	stb r6, 0x18(r29)
@@ -5517,14 +5517,14 @@ lbl_801BB2BC:
 /* 801BB2EC 001B822C  7E 24 8B 78 */	mr r4, r17
 /* 801BB2F0 001B8230  7E 65 9B 78 */	mr r5, r19
 /* 801BB2F4 001B8234  38 CF 00 84 */	addi r6, r15, 0x84
-/* 801BB2F8 001B8238  48 25 C5 99 */	bl intersectHard__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3$$0f$$1
+/* 801BB2F8 001B8238  48 25 C5 99 */	bl "intersectHard__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<f>"
 /* 801BB2FC 001B823C  48 00 00 18 */	b lbl_801BB314
 lbl_801BB300:
 /* 801BB300 001B8240  7F C3 F3 78 */	mr r3, r30
 /* 801BB304 001B8244  7E 24 8B 78 */	mr r4, r17
 /* 801BB308 001B8248  7E 65 9B 78 */	mr r5, r19
 /* 801BB30C 001B824C  38 CF 00 84 */	addi r6, r15, 0x84
-/* 801BB310 001B8250  48 25 C2 89 */	bl intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3$$0f$$1
+/* 801BB310 001B8250  48 25 C2 89 */	bl "intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<f>"
 lbl_801BB314:
 /* 801BB314 001B8254  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801BB318 001B8258  41 82 01 80 */	beq lbl_801BB498
@@ -6055,7 +6055,7 @@ lbl_801BBA9C:
 /* 801BBAD0 001B8A10  7F 83 E3 78 */	mr r3, r28
 /* 801BBAD4 001B8A14  38 81 00 70 */	addi r4, r1, 0x70
 /* 801BBAD8 001B8A18  38 A1 00 2C */	addi r5, r1, 0x2c
-/* 801BBADC 001B8A1C  48 25 B1 6D */	bl intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3$$0f$$1
+/* 801BBADC 001B8A1C  48 25 B1 6D */	bl "intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>"
 /* 801BBAE0 001B8A20  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801BBAE4 001B8A24  41 82 00 5C */	beq lbl_801BBB40
 /* 801BBAE8 001B8A28  C0 21 00 30 */	lfs f1, 0x30(r1)
@@ -6231,10 +6231,10 @@ createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg:
 /* 801BBD58 001B8C98  13 E1 00 0E */	psq_stx f31, r1, r0, 0, qr0
 /* 801BBD5C 001B8C9C  BD C1 2C 78 */	stmw r14, 0x2c78(r1)
 /* 801BBD60 001B8CA0  7C 8F 23 78 */	mr r15, r4
-/* 801BBD64 001B8CA4  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 801BBD64 001B8CA4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 801BBD68 001B8CA8  C3 EF 00 0C */	lfs f31, 0xc(r15)
 /* 801BBD6C 001B8CAC  7C 6E 1B 78 */	mr r14, r3
-/* 801BBD70 001B8CB0  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 801BBD70 001B8CB0  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 801BBD74 001B8CB4  38 61 08 64 */	addi r3, r1, 0x864
 /* 801BBD78 001B8CB8  38 A0 00 00 */	li r5, 0
 /* 801BBD7C 001B8CBC  38 C0 00 0C */	li r6, 0xc
@@ -6597,9 +6597,9 @@ lbl_801BC294:
 /* 801BC2C0 001B9200  1C 6E 00 0C */	mulli r3, r14, 0xc
 /* 801BC2C4 001B9204  38 63 00 10 */	addi r3, r3, 0x10
 /* 801BC2C8 001B9208  4B E6 7C E5 */	bl __nwa__FUl
-/* 801BC2CC 001B920C  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 801BC2CC 001B920C  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 801BC2D0 001B9210  7D C7 73 78 */	mr r7, r14
-/* 801BC2D4 001B9214  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 801BC2D4 001B9214  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 801BC2D8 001B9218  38 A0 00 00 */	li r5, 0
 /* 801BC2DC 001B921C  38 C0 00 0C */	li r6, 0xc
 /* 801BC2E0 001B9220  4B F0 57 11 */	bl __construct_new_array
@@ -6845,7 +6845,7 @@ lbl_801BC654:
 /* 801BC66C 001B95AC  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801BC670 001B95B0  7F 03 02 14 */	add r24, r3, r0
 /* 801BC674 001B95B4  7F 03 C3 78 */	mr r3, r24
-/* 801BC678 001B95B8  48 25 B5 11 */	bl insideXZ__Q23Sys8TriangleFR10Vector3$$0f$$1
+/* 801BC678 001B95B8  48 25 B5 11 */	bl "insideXZ__Q23Sys8TriangleFR10Vector3<f>"
 /* 801BC67C 001B95BC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801BC680 001B95C0  41 82 01 38 */	beq lbl_801BC7B8
 /* 801BC684 001B95C4  C1 41 00 28 */	lfs f10, 0x28(r1)
@@ -7565,7 +7565,7 @@ lbl_801BD0A0:
 /* 801BD0FC 001BA03C  D0 41 00 A0 */	stfs f2, 0xa0(r1)
 /* 801BD100 001BA040  D0 81 00 A8 */	stfs f4, 0xa8(r1)
 /* 801BD104 001BA044  D0 01 00 A4 */	stfs f0, 0xa4(r1)
-/* 801BD108 001BA048  48 26 45 5D */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
+/* 801BD108 001BA048  48 26 45 5D */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
 /* 801BD10C 001BA04C  80 7D 00 10 */	lwz r3, 0x10(r29)
 /* 801BD110 001BA050  38 95 00 34 */	addi r4, r21, 0x34
 /* 801BD114 001BA054  38 A1 02 14 */	addi r5, r1, 0x214

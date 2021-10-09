@@ -794,8 +794,8 @@ lbl_8038A0E0:
 /* 8038A188 003870C8  38 61 00 34 */	addi r3, r1, 0x34
 /* 8038A18C 003870CC  4B E1 5A D1 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 8038A190 003870D0  38 00 00 00 */	li r0, 0
-/* 8038A194 003870D4  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 8038A198 003870D8  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8038A194 003870D4  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 8038A198 003870D8  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 8038A19C 003870DC  38 61 00 34 */	addi r3, r1, 0x34
 /* 8038A1A0 003870E0  28 00 00 00 */	cmplwi r0, 0
 /* 8038A1A4 003870E4  90 81 00 08 */	stw r4, 8(r1)

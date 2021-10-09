@@ -1235,12 +1235,12 @@ lbl_801B19D0:
 /* 801B19D4 001AE914  28 03 00 00 */	cmplwi r3, 0
 /* 801B19D8 001AE918  41 82 02 30 */	beq lbl_801B1C08
 /* 801B19DC 001AE91C  80 AD 92 F4 */	lwz r5, pikiMgr__4Game@sda21(r13)
-/* 801B19E0 001AE920  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801B19E0 001AE920  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801B19E4 001AE924  38 00 00 00 */	li r0, 0
 /* 801B19E8 001AE928  38 63 00 30 */	addi r3, r3, 0x30
 /* 801B19EC 001AE92C  80 A5 00 6C */	lwz r5, 0x6c(r5)
 /* 801B19F0 001AE930  28 00 00 00 */	cmplwi r0, 0
-/* 801B19F4 001AE934  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801B19F4 001AE934  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801B19F8 001AE938  3B 40 00 00 */	li r26, 0
 /* 801B19FC 001AE93C  C3 C5 09 F8 */	lfs f30, 0x9f8(r5)
 /* 801B1A00 001AE940  90 81 00 94 */	stw r4, 0x94(r1)
@@ -1394,8 +1394,8 @@ lbl_801B1C08:
 /* 801B1C28 001AEB68  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801B1C2C:
 /* 801B1C2C 001AEB6C  38 00 00 00 */	li r0, 0
-/* 801B1C30 001AEB70  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
-/* 801B1C34 001AEB74  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801B1C30 001AEB70  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
+/* 801B1C34 001AEB74  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801B1C38 001AEB78  90 01 00 90 */	stw r0, 0x90(r1)
 /* 801B1C3C 001AEB7C  28 00 00 00 */	cmplwi r0, 0
 /* 801B1C40 001AEB80  90 81 00 84 */	stw r4, 0x84(r1)
@@ -2581,8 +2581,8 @@ lbl_801B2D40:
 /* 801B2D5C 001AFC9C  38 21 01 20 */	addi r1, r1, 0x120
 /* 801B2D60 001AFCA0  4E 80 00 20 */	blr 
 
-.global isDone__26Iterator$$0Q24Game8ItemGate$$1Fv
-isDone__26Iterator$$0Q24Game8ItemGate$$1Fv:
+.global "isDone__26Iterator<Q24Game8ItemGate>Fv"
+"isDone__26Iterator<Q24Game8ItemGate>Fv":
 /* 801B2D64 001AFCA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B2D68 001AFCA8  7C 08 02 A6 */	mflr r0
 /* 801B2D6C 001AFCAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3661,8 +3661,8 @@ getName__Q26PikiAI10ActWeedArgFv:
 /* 801B3CC4 001B0C04  38 63 FA 9C */	addi r3, r3, lbl_8047FA9C@l
 /* 801B3CC8 001B0C08  4E 80 00 20 */	blr 
 
-.global __ml__26Iterator$$0Q24Game8ItemGate$$1Fv
-__ml__26Iterator$$0Q24Game8ItemGate$$1Fv:
+.global "__ml__26Iterator<Q24Game8ItemGate>Fv"
+"__ml__26Iterator<Q24Game8ItemGate>Fv":
 /* 801B3CCC 001B0C0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B3CD0 001B0C10  7C 08 02 A6 */	mflr r0
 /* 801B3CD4 001B0C14  7C 64 1B 78 */	mr r4, r3
@@ -3678,8 +3678,8 @@ __ml__26Iterator$$0Q24Game8ItemGate$$1Fv:
 /* 801B3CFC 001B0C3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B3D00 001B0C40  4E 80 00 20 */	blr 
 
-.global next__26Iterator$$0Q24Game8ItemGate$$1Fv
-next__26Iterator$$0Q24Game8ItemGate$$1Fv:
+.global "next__26Iterator<Q24Game8ItemGate>Fv"
+"next__26Iterator<Q24Game8ItemGate>Fv":
 /* 801B3D04 001B0C44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B3D08 001B0C48  7C 08 02 A6 */	mflr r0
 /* 801B3D0C 001B0C4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3742,8 +3742,8 @@ lbl_801B3DD4:
 /* 801B3DE0 001B0D20  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B3DE4 001B0D24  4E 80 00 20 */	blr 
 
-.global first__26Iterator$$0Q24Game8ItemGate$$1Fv
-first__26Iterator$$0Q24Game8ItemGate$$1Fv:
+.global "first__26Iterator<Q24Game8ItemGate>Fv"
+"first__26Iterator<Q24Game8ItemGate>Fv":
 /* 801B3DE8 001B0D28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B3DEC 001B0D2C  7C 08 02 A6 */	mflr r0
 /* 801B3DF0 001B0D30  90 01 00 14 */	stw r0, 0x14(r1)

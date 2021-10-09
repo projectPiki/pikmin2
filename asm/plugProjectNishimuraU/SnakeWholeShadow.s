@@ -432,9 +432,9 @@ update__Q34Game10SnakeWhole19SnakeWholeShadowMgrFv:
 /* 802F8FD4 002F5F14  7D 89 03 A6 */	mtctr r12
 /* 802F8FD8 002F5F18  4E 80 04 21 */	bctrl 
 /* 802F8FDC 002F5F1C  C0 22 EF 7C */	lfs f1, lbl_8051D2DC@sda21(r2)
-/* 802F8FE0 002F5F20  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
+/* 802F8FE0 002F5F20  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
 /* 802F8FE4 002F5F24  C0 81 00 08 */	lfs f4, 8(r1)
-/* 802F8FE8 002F5F28  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
+/* 802F8FE8 002F5F28  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
 /* 802F8FEC 002F5F2C  C0 61 00 0C */	lfs f3, 0xc(r1)
 /* 802F8FF0 002F5F30  38 61 00 60 */	addi r3, r1, 0x60
 /* 802F8FF4 002F5F34  C0 41 00 10 */	lfs f2, 0x10(r1)

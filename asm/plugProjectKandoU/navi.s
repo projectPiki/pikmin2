@@ -1802,9 +1802,9 @@ applyDopes__Q24Game4NaviFiR10Vector3$$0f$$1:
 lbl_8014104C:
 /* 8014104C 0013DF8C  80 7D 02 54 */	lwz r3, 0x254(r29)
 /* 80141050 0013DF90  38 00 00 00 */	li r0, 0
-/* 80141054 0013DF94  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 80141054 0013DF94  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 80141058 0013DF98  3B E0 00 00 */	li r31, 0
-/* 8014105C 0013DF9C  38 84 BC 84 */	addi r4, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8014105C 0013DF9C  38 84 BC 84 */	addi r4, r4, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80141060 0013DFA0  28 00 00 00 */	cmplwi r0, 0
 /* 80141064 0013DFA4  90 81 00 14 */	stw r4, 0x14(r1)
 /* 80141068 0013DFA8  90 01 00 20 */	stw r0, 0x20(r1)
@@ -6058,9 +6058,9 @@ holeinAllPikis__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 80144BE0 00141B20  48 01 66 ED */	bl getAliveOrima__Q24Game7NaviMgrFi
 /* 80144BE4 00141B24  80 7C 02 54 */	lwz r3, 0x254(r28)
 /* 80144BE8 00141B28  3B A0 00 00 */	li r29, 0
-/* 80144BEC 00141B2C  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 80144BEC 00141B2C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 80144BF0 00141B30  3B E0 00 00 */	li r31, 0
-/* 80144BF4 00141B34  38 04 BC 84 */	addi r0, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80144BF4 00141B34  38 04 BC 84 */	addi r0, r4, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80144BF8 00141B38  28 1D 00 00 */	cmplwi r29, 0
 /* 80144BFC 00141B3C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80144C00 00141B40  93 A1 00 20 */	stw r29, 0x20(r1)
@@ -6262,9 +6262,9 @@ transittable__Q24Game9PikiStateFi:
 fountainonAllPikis__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 80144EC0 00141E00  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 80144EC4 00141E04  7C 08 02 A6 */	mflr r0
-/* 80144EC8 00141E08  3C A0 80 4B */	lis r5, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 80144EC8 00141E08  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 80144ECC 00141E0C  90 01 01 D4 */	stw r0, 0x1d4(r1)
-/* 80144ED0 00141E10  38 05 BC 84 */	addi r0, r5, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80144ED0 00141E10  38 05 BC 84 */	addi r0, r5, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80144ED4 00141E14  93 E1 01 CC */	stw r31, 0x1cc(r1)
 /* 80144ED8 00141E18  3B E0 00 00 */	li r31, 0
 /* 80144EDC 00141E1C  93 C1 01 C8 */	stw r30, 0x1c8(r1)
@@ -6467,9 +6467,9 @@ lbl_80145190:
 demowaitAllPikis__Q24Game4NaviFv:
 /* 801451B8 001420F8  94 21 FE 40 */	stwu r1, -0x1c0(r1)
 /* 801451BC 001420FC  7C 08 02 A6 */	mflr r0
-/* 801451C0 00142100  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 801451C0 00142100  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 801451C4 00142104  90 01 01 C4 */	stw r0, 0x1c4(r1)
-/* 801451C8 00142108  38 04 BC 84 */	addi r0, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801451C8 00142108  38 04 BC 84 */	addi r0, r4, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801451CC 0014210C  93 E1 01 BC */	stw r31, 0x1bc(r1)
 /* 801451D0 00142110  3B E0 00 00 */	li r31, 0
 /* 801451D4 00142114  93 C1 01 B8 */	stw r30, 0x1b8(r1)
@@ -6713,9 +6713,9 @@ lbl_80145514:
 /* 80145540 00142480  4E 80 04 21 */	bctrl 
 /* 80145544 00142484  3B A0 00 00 */	li r29, 0
 /* 80145548 00142488  80 7E 02 54 */	lwz r3, 0x254(r30)
-/* 8014554C 0014248C  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 8014554C 0014248C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 80145550 00142490  3B E0 00 00 */	li r31, 0
-/* 80145554 00142494  38 04 BC 84 */	addi r0, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80145554 00142494  38 04 BC 84 */	addi r0, r4, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80145558 00142498  28 1D 00 00 */	cmplwi r29, 0
 /* 8014555C 0014249C  90 01 00 40 */	stw r0, 0x40(r1)
 /* 80145560 001424A0  93 A1 00 4C */	stw r29, 0x4c(r1)
@@ -7592,9 +7592,9 @@ lbl_801461FC:
 /* 80146208 00143148  48 04 FE F1 */	bl refresh__Q24Game6CPlateFif
 /* 8014620C 0014314C  80 7F 02 54 */	lwz r3, 0x254(r31)
 /* 80146210 00143150  38 00 00 00 */	li r0, 0
-/* 80146214 00143154  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 80146214 00143154  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 80146218 00143158  C2 C2 A0 9C */	lfs f22, lbl_805183FC@sda21(r2)
-/* 8014621C 0014315C  38 84 BC 84 */	addi r4, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8014621C 0014315C  38 84 BC 84 */	addi r4, r4, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80146220 00143160  28 00 00 00 */	cmplwi r0, 0
 /* 80146224 00143164  90 81 00 B0 */	stw r4, 0xb0(r1)
 /* 80146228 00143168  90 01 00 BC */	stw r0, 0xbc(r1)
@@ -7974,11 +7974,11 @@ findNextThrowPiki__Q24Game4NaviFv:
 /* 80146798 001436D8  38 A0 00 00 */	li r5, 0
 /* 8014679C 001436DC  7C 7F 1B 78 */	mr r31, r3
 /* 801467A0 001436E0  90 A3 02 A8 */	stw r5, 0x2a8(r3)
-/* 801467A4 001436E4  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 801467A4 001436E4  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 801467A8 001436E8  28 05 00 00 */	cmplwi r5, 0
 /* 801467AC 001436EC  C3 A2 A0 28 */	lfs f29, lbl_80518388@sda21(r2)
 /* 801467B0 001436F0  80 63 02 54 */	lwz r3, 0x254(r3)
-/* 801467B4 001436F4  38 04 BC 84 */	addi r0, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801467B4 001436F4  38 04 BC 84 */	addi r0, r4, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801467B8 001436F8  90 01 00 20 */	stw r0, 0x20(r1)
 /* 801467BC 001436FC  90 A1 00 2C */	stw r5, 0x2c(r1)
 /* 801467C0 00143700  90 A1 00 24 */	stw r5, 0x24(r1)

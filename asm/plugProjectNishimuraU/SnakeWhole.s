@@ -37,9 +37,9 @@ lbl_802CE7D8:
 /* 802CE810 002CB750  7C 04 00 50 */	subf r0, r4, r0
 /* 802CE814 002CB754  90 04 00 0C */	stw r0, 0xc(r4)
 /* 802CE818 002CB758  4B E6 9D 31 */	bl __ct__10MouthSlotsFv
-/* 802CE81C 002CB75C  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 802CE81C 002CB75C  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 802CE820 002CB760  38 7F 02 E8 */	addi r3, r31, 0x2e8
-/* 802CE824 002CB764  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 802CE824 002CB764  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 802CE828 002CB768  38 A0 00 00 */	li r5, 0
 /* 802CE82C 002CB76C  38 C0 00 0C */	li r6, 0xc
 /* 802CE830 002CB770  38 E0 00 05 */	li r7, 5
@@ -384,7 +384,7 @@ doFinishStoneState__Q34Game10SnakeWhole3ObjFv:
 /* 802CECC4 002CBC04  38 80 00 00 */	li r4, 0
 /* 802CECC8 002CBC08  C0 62 E5 08 */	lfs f3, lbl_8051C868@sda21(r2)
 /* 802CECCC 002CBC0C  C0 82 E5 28 */	lfs f4, lbl_8051C888@sda21(r2)
-/* 802CECD0 002CBC10  4B E4 44 4D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802CECD0 002CBC10  4B E4 44 4D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802CECD4 002CBC14  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802CECD8 002CBC18  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802CECDC 002CBC1C  7C 08 03 A6 */	mtlr r0
@@ -2179,8 +2179,8 @@ getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv:
 /* 802D06B8 002CD5F8  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 802D06BC 002CD5FC  4B EC F5 A1 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 802D06C0 002CD600  38 00 00 00 */	li r0, 0
-/* 802D06C4 002CD604  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 802D06C8 002CD608  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 802D06C4 002CD604  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 802D06C8 002CD608  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 802D06CC 002CD60C  38 61 00 18 */	addi r3, r1, 0x18
 /* 802D06D0 002CD610  28 00 00 00 */	cmplwi r0, 0
 /* 802D06D4 002CD614  90 81 00 08 */	stw r4, 8(r1)

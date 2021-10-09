@@ -443,7 +443,7 @@ startEnemyRumble__Q34Game10LeafChappy3ObjFv:
 /* 802C623C 002C317C  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 802C6240 002C3180  C0 1F 01 90 */	lfs f0, 0x190(r31)
 /* 802C6244 002C3184  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 802C6248 002C3188  4B F8 D5 39 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802C6248 002C3188  4B F8 D5 39 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802C624C 002C318C  C0 22 E2 FC */	lfs f1, lbl_8051C65C@sda21(r2)
 /* 802C6250 002C3190  7F E3 FB 78 */	mr r3, r31
 /* 802C6254 002C3194  38 81 00 08 */	addi r4, r1, 8

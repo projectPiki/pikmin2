@@ -409,12 +409,12 @@ lbl_802B0228:
 /* 802B0260 002AD1A0  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 802B0264 002AD1A4  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802B0268 002AD1A8  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802B026C 002AD1AC  4B FA 1F D1 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802B026C 002AD1AC  4B FA 1F D1 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802B0270 002AD1B0  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802B0274 002AD1B4  38 A1 00 14 */	addi r5, r1, 0x14
 /* 802B0278 002AD1B8  38 80 00 0B */	li r4, 0xb
 /* 802B027C 002AD1BC  38 C0 00 02 */	li r6, 2
-/* 802B0280 002AD1C0  4B FA 35 01 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802B0280 002AD1C0  4B FA 35 01 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802B0284 002AD1C4  C0 22 DE 14 */	lfs f1, lbl_8051C174@sda21(r2)
 /* 802B0288 002AD1C8  7F E3 FB 78 */	mr r3, r31
 /* 802B028C 002AD1CC  48 00 33 DD */	bl createDownEffect__Q34Game9BombSarai3ObjFf
@@ -476,7 +476,7 @@ init__Q34Game9BombSarai11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802B034C 002AD28C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802B0350 002AD290  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802B0354 002AD294  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802B0358 002AD298  4B FA 34 29 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802B0358 002AD298  4B FA 34 29 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802B035C 002AD29C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 802B0360 002AD2A0  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 802B0364 002AD2A4  7C 08 03 A6 */	mtlr r0
@@ -550,7 +550,7 @@ lbl_802B0408:
 /* 802B045C 002AD39C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802B0460 002AD3A0  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802B0464 002AD3A4  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802B0468 002AD3A8  4B FA 33 19 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802B0468 002AD3A8  4B FA 33 19 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802B046C 002AD3AC  48 00 00 A0 */	b lbl_802B050C
 lbl_802B0470:
 /* 802B0470 002AD3B0  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -1902,12 +1902,12 @@ init__Q34Game9BombSarai9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802B17D0 002AE710  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 802B17D4 002AE714  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802B17D8 002AE718  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802B17DC 002AE71C  4B FA 0A 61 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802B17DC 002AE71C  4B FA 0A 61 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802B17E0 002AE720  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802B17E4 002AE724  38 A1 00 14 */	addi r5, r1, 0x14
 /* 802B17E8 002AE728  38 80 00 0B */	li r4, 0xb
 /* 802B17EC 002AE72C  38 C0 00 02 */	li r6, 2
-/* 802B17F0 002AE730  4B FA 1F 91 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802B17F0 002AE730  4B FA 1F 91 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802B17F4 002AE734  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 802B17F8 002AE738  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 802B17FC 002AE73C  7C 08 03 A6 */	mtlr r0
@@ -2074,7 +2074,7 @@ lbl_802B1A0C:
 /* 802B1A48 002AE988  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802B1A4C 002AE98C  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 802B1A50 002AE990  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 802B1A54 002AE994  4B FA 1D 2D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802B1A54 002AE994  4B FA 1D 2D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802B1A58 002AE998  C0 22 DE 14 */	lfs f1, lbl_8051C174@sda21(r2)
 /* 802B1A5C 002AE99C  7F E3 FB 78 */	mr r3, r31
 /* 802B1A60 002AE9A0  48 00 1C 09 */	bl createDownEffect__Q34Game9BombSarai3ObjFf
@@ -2400,7 +2400,7 @@ exec__Q34Game9BombSarai10StateFlickFPQ24Game9EnemyBase:
 /* 802B1EC0 002AEE00  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 802B1EC4 002AEE04  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802B1EC8 002AEE08  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802B1ECC 002AEE0C  4B E6 12 51 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802B1ECC 002AEE0C  4B E6 12 51 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802B1ED0 002AEE10  C0 02 DE 10 */	lfs f0, lbl_8051C170@sda21(r2)
 /* 802B1ED4 002AEE14  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 /* 802B1ED8 002AEE18  48 00 00 5C */	b lbl_802B1F34
@@ -2512,7 +2512,7 @@ lbl_802B2020:
 /* 802B204C 002AEF8C  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 802B2050 002AEF90  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802B2054 002AEF94  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802B2058 002AEF98  4B E6 10 C5 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802B2058 002AEF98  4B E6 10 C5 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802B205C 002AEF9C  C0 02 DE 10 */	lfs f0, lbl_8051C170@sda21(r2)
 /* 802B2060 002AEFA0  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 /* 802B2064 002AEFA4  48 00 00 5C */	b lbl_802B20C0

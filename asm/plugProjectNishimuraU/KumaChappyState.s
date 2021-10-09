@@ -355,7 +355,7 @@ exec__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBase:
 /* 80296324 00293264  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 80296328 00293268  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 8029632C 0029326C  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 80296330 00293270  4B E7 CD ED */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 80296330 00293270  4B E7 CD ED */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 80296334 00293274  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 80296338 00293278  7F E3 FB 78 */	mr r3, r31
 /* 8029633C 0029327C  C0 82 D7 BC */	lfs f4, lbl_8051BB1C@sda21(r2)
@@ -1101,7 +1101,7 @@ exec__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBase:
 /* 80296E38 00293D78  7F E3 FB 78 */	mr r3, r31
 /* 80296E3C 00293D7C  C0 7E 04 EC */	lfs f3, 0x4ec(r30)
 /* 80296E40 00293D80  38 80 00 00 */	li r4, 0
-/* 80296E44 00293D84  4B E7 C2 D9 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 80296E44 00293D84  4B E7 C2 D9 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 80296E48 00293D88  2C 1D 00 00 */	cmpwi r29, 0
 /* 80296E4C 00293D8C  40 82 04 14 */	bne lbl_80297260
 /* 80296E50 00293D90  7F E3 FB 78 */	mr r3, r31
@@ -1484,7 +1484,7 @@ exec__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBase:
 /* 802973E4 00294324  7F C3 F3 78 */	mr r3, r30
 /* 802973E8 00294328  C0 7F 04 EC */	lfs f3, 0x4ec(r31)
 /* 802973EC 0029432C  38 80 00 00 */	li r4, 0
-/* 802973F0 00294330  4B E7 BD 2D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802973F0 00294330  4B E7 BD 2D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802973F4 00294334  7F C3 F3 78 */	mr r3, r30
 /* 802973F8 00294338  83 FE 00 C0 */	lwz r31, 0xc0(r30)
 /* 802973FC 0029433C  81 9E 00 00 */	lwz r12, 0(r30)

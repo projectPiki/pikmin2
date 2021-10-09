@@ -353,7 +353,7 @@ lbl_801EE384:
 /* 801EE454 001EB394  D0 A1 00 58 */	stfs f5, 0x58(r1)
 /* 801EE458 001EB398  D0 01 00 50 */	stfs f0, 0x50(r1)
 /* 801EE45C 001EB39C  D0 61 00 54 */	stfs f3, 0x54(r1)
-/* 801EE460 001EB3A0  48 23 32 05 */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
+/* 801EE460 001EB3A0  48 23 32 05 */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
 /* 801EE464 001EB3A4  80 01 00 A4 */	lwz r0, 0xa4(r1)
 /* 801EE468 001EB3A8  83 E1 00 9C */	lwz r31, 0x9c(r1)
 /* 801EE46C 001EB3AC  83 C1 00 98 */	lwz r30, 0x98(r1)

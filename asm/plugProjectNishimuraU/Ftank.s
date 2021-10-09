@@ -234,9 +234,9 @@ __ct__Q23efx11TTankEffectFPA4_f:
 /* 8029E7E0 0029B720  1C 7A 00 0C */	mulli r3, r26, 0xc
 /* 8029E7E4 0029B724  38 63 00 10 */	addi r3, r3, 0x10
 /* 8029E7E8 0029B728  4B D8 57 C5 */	bl __nwa__FUl
-/* 8029E7EC 0029B72C  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 8029E7EC 0029B72C  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 8029E7F0 0029B730  7F 47 D3 78 */	mr r7, r26
-/* 8029E7F4 0029B734  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 8029E7F4 0029B734  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 8029E7F8 0029B738  38 A0 00 00 */	li r5, 0
 /* 8029E7FC 0029B73C  38 C0 00 0C */	li r6, 0xc
 /* 8029E800 0029B740  4B E2 31 F1 */	bl __construct_new_array

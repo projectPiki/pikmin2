@@ -605,8 +605,8 @@ fallMeckGround__Q34Game5Sarai3ObjFv:
 /* 80273424 00270364  7F E4 FB 78 */	mr r4, r31
 /* 80273428 00270368  4B F2 C8 35 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 8027342C 0027036C  38 00 00 00 */	li r0, 0
-/* 80273430 00270370  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80273434 00270374  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80273430 00270370  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80273434 00270374  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80273438 00270378  38 61 00 30 */	addi r3, r1, 0x30
 /* 8027343C 0027037C  28 00 00 00 */	cmplwi r0, 0
 /* 80273440 00270380  90 81 00 20 */	stw r4, 0x20(r1)

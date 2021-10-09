@@ -223,12 +223,12 @@ exec__Q34Game5Queen9StateDeadFPQ24Game9EnemyBase:
 /* 80287EA0 00284DE0  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 80287EA4 00284DE4  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80287EA8 00284DE8  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80287EAC 00284DEC  4B FC A3 91 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 80287EAC 00284DEC  4B FC A3 91 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 80287EB0 00284DF0  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80287EB4 00284DF4  38 A1 00 14 */	addi r5, r1, 0x14
 /* 80287EB8 00284DF8  38 80 00 0E */	li r4, 0xe
 /* 80287EBC 00284DFC  38 C0 00 02 */	li r6, 2
-/* 80287EC0 00284E00  4B FC B8 C1 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 80287EC0 00284E00  4B FC B8 C1 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 80287EC4 00284E04  48 00 00 20 */	b lbl_80287EE4
 lbl_80287EC8:
 /* 80287EC8 00284E08  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -964,7 +964,7 @@ lbl_8028888C:
 /* 802888E8 00285828  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 802888EC 0028582C  D0 21 00 48 */	stfs f1, 0x48(r1)
 /* 802888F0 00285830  D0 01 00 4C */	stfs f0, 0x4c(r1)
-/* 802888F4 00285834  4B FC 99 49 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802888F4 00285834  4B FC 99 49 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802888F8 00285838  48 00 00 14 */	b lbl_8028890C
 lbl_802888FC:
 /* 802888FC 0028583C  C0 02 D4 70 */	lfs f0, lbl_8051B7D0@sda21(r2)
@@ -1098,12 +1098,12 @@ lbl_80288A8C:
 /* 80288ADC 00285A1C  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 80288AE0 00285A20  D0 21 00 3C */	stfs f1, 0x3c(r1)
 /* 80288AE4 00285A24  D0 01 00 40 */	stfs f0, 0x40(r1)
-/* 80288AE8 00285A28  4B FC 97 55 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 80288AE8 00285A28  4B FC 97 55 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 80288AEC 00285A2C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80288AF0 00285A30  38 A1 00 38 */	addi r5, r1, 0x38
 /* 80288AF4 00285A34  38 80 00 0F */	li r4, 0xf
 /* 80288AF8 00285A38  38 C0 00 02 */	li r6, 2
-/* 80288AFC 00285A3C  4B FC AC 85 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 80288AFC 00285A3C  4B FC AC 85 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 lbl_80288B00:
 /* 80288B00 00285A40  38 60 00 00 */	li r3, 0
 /* 80288B04 00285A44  38 00 00 05 */	li r0, 5
