@@ -21,10 +21,10 @@ struct TagParm {
 struct StringTagParm : public TagParm {
 	StringTagParm(struct TagParameters*, char*);
 
-	void doWrite(Stream&);	//virtual
-	void doRead(Stream&);	//virtual
-	void flushValue();		//virtual
-	void doDump();			//virtual
+	virtual void doWrite(Stream&);	//virtual
+	virtual void doRead(Stream&);	//virtual
+	virtual void flushValue();		//virtual
+	virtual void doDump();			//virtual
 
 	char* m_data; // _0C
 };
