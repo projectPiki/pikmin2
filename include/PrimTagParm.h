@@ -19,6 +19,8 @@ struct PrimTagParm<u16> : public TagParm {
     virtual void doWrite(Stream&);
     virtual void doRead(Stream&);
     virtual void doDump();
+
+    u16 m_data;
 };
 
 struct PrimTagParm<u64> : public TagParm {
@@ -34,18 +36,24 @@ struct PrimTagParm<Vector3f> : public TagParm {
     virtual void doWrite(Stream&);
     virtual void doRead(Stream&);
     virtual void doDump();
+
+    Vector3f m_data;
 };
 
 struct PrimTagParm<int> : public TagParm {
     virtual void doWrite(Stream&);
     virtual void doRead(Stream&);
     virtual void doDump();
+
+    int m_data;
 };
 
 struct PrimTagParm<float> : public TagParm {
     virtual void doWrite(Stream&);
     virtual void doRead(Stream&);
     virtual void doDump();
+
+    float m_data;
 };
 
 struct TagParameters : public CNode {
