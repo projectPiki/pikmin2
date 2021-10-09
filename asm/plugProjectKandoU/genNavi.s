@@ -34,9 +34,9 @@ makeObjectNavi__Fv:
 /* 801ACA78 001A99B8  38 A5 30 30 */	addi r5, r5, 0x70303030@l
 /* 801ACA7C 001A99BC  38 DF 00 1C */	addi r6, r31, 0x1c
 /* 801ACA80 001A99C0  48 26 6B D9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801ACA84 001A99C4  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801ACA84 001A99C4  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801ACA88 001A99C8  C0 22 AF 48 */	lfs f1, lbl_805192A8@sda21(r2)
-/* 801ACA8C 001A99CC  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801ACA8C 001A99CC  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801ACA90 001A99D0  C0 02 AF 4C */	lfs f0, lbl_805192AC@sda21(r2)
 /* 801ACA94 001A99D4  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 801ACA98 001A99D8  D0 3E 00 3C */	stfs f1, 0x3c(r30)
@@ -200,7 +200,7 @@ lbl_801ACCB8:
 /* 801ACCB8 001A9BF8  7F C3 F3 78 */	mr r3, r30
 /* 801ACCBC 001A9BFC  38 9D 00 04 */	addi r4, r29, 4
 /* 801ACCC0 001A9C00  38 A0 00 00 */	li r5, 0
-/* 801ACCC4 001A9C04  4B F8 E4 E5 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 801ACCC4 001A9C04  4B F8 E4 E5 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801ACCC8 001A9C08  C0 22 AF 54 */	lfs f1, lbl_805192B4@sda21(r2)
 /* 801ACCCC 001A9C0C  C0 1C 00 3C */	lfs f0, 0x3c(r28)
 /* 801ACCD0 001A9C10  C0 42 AF 50 */	lfs f2, lbl_805192B0@sda21(r2)

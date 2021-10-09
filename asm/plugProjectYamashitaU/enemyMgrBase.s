@@ -878,7 +878,7 @@ setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv:
 /* 8012F824 0012C764  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 8012F828 0012C768  38 84 FF FF */	addi r4, r4, 0x0000FFFF@l
 /* 8012F82C 0012C76C  4B FF 3A B1 */	bl getEnemyName__Q24Game13EnemyInfoFuncFii
-/* 8012F830 0012C770  80 0D 91 AC */	lwz r0, sInstance__Q28PSSystem24ArcMgr$$0Q26PSGame6BASARC$$1@sda21(r13)
+/* 8012F830 0012C770  80 0D 91 AC */	lwz r0, "sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"@sda21(r13)
 /* 8012F834 0012C774  7C 7D 1B 78 */	mr r29, r3
 /* 8012F838 0012C778  28 00 00 00 */	cmplwi r0, 0
 /* 8012F83C 0012C77C  40 82 00 20 */	bne lbl_8012F85C
@@ -890,7 +890,7 @@ setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv:
 /* 8012F854 0012C794  4C C6 31 82 */	crclr 6
 /* 8012F858 0012C798  4B EF AD E9 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8012F85C:
-/* 8012F85C 0012C79C  80 CD 91 AC */	lwz r6, sInstance__Q28PSSystem24ArcMgr$$0Q26PSGame6BASARC$$1@sda21(r13)
+/* 8012F85C 0012C79C  80 CD 91 AC */	lwz r6, "sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"@sda21(r13)
 /* 8012F860 0012C7A0  7F C4 F3 78 */	mr r4, r30
 /* 8012F864 0012C7A4  80 7F 00 20 */	lwz r3, 0x20(r31)
 /* 8012F868 0012C7A8  7F A5 EB 78 */	mr r5, r29
@@ -1935,7 +1935,7 @@ lbl_801306DC:
 /* 801306FC 0012D63C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80130700 0012D640  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q24Game12EnemyMgrBaseFv
-$$24$$2__dt__Q24Game12EnemyMgrBaseFv:
+.global "@4@__dt__Q24Game12EnemyMgrBaseFv"
+"@4@__dt__Q24Game12EnemyMgrBaseFv":
 /* 80130704 0012D644  38 63 FF FC */	addi r3, r3, -4
 /* 80130708 0012D648  4B FD 8E 9C */	b __dt__Q24Game12EnemyMgrBaseFv

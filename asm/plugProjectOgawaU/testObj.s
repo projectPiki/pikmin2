@@ -126,7 +126,7 @@ lbl_8030D9DC:
 /* 8030D9F0 0030A930  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030D9F4 0030A934  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q26Screen8IObjBaseFv
-$$224$$2__dt__Q26Screen8IObjBaseFv:
+.global "@24@__dt__Q26Screen8IObjBaseFv"
+"@24@__dt__Q26Screen8IObjBaseFv":
 /* 8030D9F8 0030A938  38 63 FF E8 */	addi r3, r3, -24
 /* 8030D9FC 0030A93C  4B FF FF 80 */	b __dt__Q26Screen8IObjBaseFv

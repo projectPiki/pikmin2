@@ -763,7 +763,7 @@ __sinit_khReadyGo_cpp:
 /* 80401D28 003FEC68  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 80401D2C 003FEC6C  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32kh6Screen10ObjReadyGoFv
-$$224$$2__dt__Q32kh6Screen10ObjReadyGoFv:
+.global "@24@__dt__Q32kh6Screen10ObjReadyGoFv"
+"@24@__dt__Q32kh6Screen10ObjReadyGoFv":
 /* 80401D30 003FEC70  38 63 FF E8 */	addi r3, r3, -24
 /* 80401D34 003FEC74  4B FF FE F4 */	b __dt__Q32kh6Screen10ObjReadyGoFv

@@ -706,7 +706,7 @@ __sinit_khWinLose_cpp:
 /* 80410704 0040D644  98 05 00 18 */	stb r0, 0x18(r5)
 /* 80410708 0040D648  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32kh6Screen10ObjWinLoseFv
-$$224$$2__dt__Q32kh6Screen10ObjWinLoseFv:
+.global "@24@__dt__Q32kh6Screen10ObjWinLoseFv"
+"@24@__dt__Q32kh6Screen10ObjWinLoseFv":
 /* 8041070C 0040D64C  38 63 FF E8 */	addi r3, r3, -24
 /* 80410710 0040D650  4B FF FF 0C */	b __dt__Q32kh6Screen10ObjWinLoseFv

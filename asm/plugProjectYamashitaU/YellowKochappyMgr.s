@@ -54,7 +54,7 @@ loadTexData__Q34Game14YellowKochappy3MgrFv:
 /* 8012D688 0012A5C8  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8012D68C 0012A5CC  7C 7F 1B 78 */	mr r31, r3
 /* 8012D690 0012A5D0  38 61 00 08 */	addi r3, r1, 8
-/* 8012D694 0012A5D4  80 8D 83 F8 */	lwz r4, cKochappyChangeTexName__Q34Game14YellowKochappy31$$2unnamed$$2YellowKochappyMgr_cpp$$2@sda21(r13)
+/* 8012D694 0012A5D4  80 8D 83 F8 */	lwz r4, "cKochappyChangeTexName__Q34Game14YellowKochappy31@unnamed@YellowKochappyMgr_cpp@"@sda21(r13)
 /* 8012D698 0012A5D8  48 31 EF 85 */	bl __ct__Q212LoadResource11ArgAramOnlyFPCc
 /* 8012D69C 0012A5DC  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 8012D6A0 0012A5E0  38 81 00 08 */	addi r4, r1, 8
@@ -161,7 +161,7 @@ getEnemy__Q34Game14YellowKochappy3MgrFi:
 /* 8012D7FC 0012A73C  7C 63 02 14 */	add r3, r3, r0
 /* 8012D800 0012A740  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game14YellowKochappy3MgrFv
-$$24$$2__dt__Q34Game14YellowKochappy3MgrFv:
+.global "@4@__dt__Q34Game14YellowKochappy3MgrFv"
+"@4@__dt__Q34Game14YellowKochappy3MgrFv":
 /* 8012D804 0012A744  38 63 FF FC */	addi r3, r3, -4
 /* 8012D808 0012A748  4B FF FE BC */	b __dt__Q34Game14YellowKochappy3MgrFv

@@ -292,11 +292,11 @@ lbl_800992FC:
 /* 80099318 00096258  38 60 00 00 */	li r3, 0
 /* 8009931C 0009625C  48 00 01 B0 */	b lbl_800994CC
 lbl_80099320:
-/* 80099320 00096260  80 0D 8A 24 */	lwz r0, sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1@sda21(r13)
+/* 80099320 00096260  80 0D 8A 24 */	lwz r0, "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 /* 80099324 00096264  28 00 00 00 */	cmplwi r0, 0
 /* 80099328 00096268  40 82 00 40 */	bne lbl_80099368
 /* 8009932C 0009626C  48 05 59 0D */	bl OSDisableInterrupts
-/* 80099330 00096270  80 0D 8A 24 */	lwz r0, sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1@sda21(r13)
+/* 80099330 00096270  80 0D 8A 24 */	lwz r0, "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 /* 80099334 00096274  90 61 00 08 */	stw r3, 8(r1)
 /* 80099338 00096278  28 00 00 00 */	cmplwi r0, 0
 /* 8009933C 0009627C  40 82 00 24 */	bne lbl_80099360
@@ -308,12 +308,12 @@ lbl_80099320:
 /* 80099354 00096294  41 82 00 08 */	beq lbl_8009935C
 /* 80099358 00096298  48 00 DE 2D */	bl __ct__17JASGenericMemPoolFv
 lbl_8009935C:
-/* 8009935C 0009629C  93 4D 8A 24 */	stw r26, sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1@sda21(r13)
+/* 8009935C 0009629C  93 4D 8A 24 */	stw r26, "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 lbl_80099360:
 /* 80099360 000962A0  80 61 00 08 */	lwz r3, 8(r1)
 /* 80099364 000962A4  48 05 58 FD */	bl OSRestoreInterrupts
 lbl_80099368:
-/* 80099368 000962A8  80 6D 8A 24 */	lwz r3, sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1@sda21(r13)
+/* 80099368 000962A8  80 6D 8A 24 */	lwz r3, "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 /* 8009936C 000962AC  38 80 01 18 */	li r4, 0x118
 /* 80099370 000962B0  48 00 DE BD */	bl alloc__17JASGenericMemPoolFUl
 /* 80099374 000962B4  7C 7A 1B 79 */	or. r26, r3, r3
@@ -427,11 +427,11 @@ noteOnOsc__10JASBankMgrFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
 /* 800994FC 0009643C  7C DC 33 78 */	mr r28, r6
 /* 80099500 00096440  7C FD 3B 78 */	mr r29, r7
 /* 80099504 00096444  7D 1E 43 78 */	mr r30, r8
-/* 80099508 00096448  80 0D 8A 24 */	lwz r0, sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1@sda21(r13)
+/* 80099508 00096448  80 0D 8A 24 */	lwz r0, "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 /* 8009950C 0009644C  28 00 00 00 */	cmplwi r0, 0
 /* 80099510 00096450  40 82 00 40 */	bne lbl_80099550
 /* 80099514 00096454  48 05 57 25 */	bl OSDisableInterrupts
-/* 80099518 00096458  80 0D 8A 24 */	lwz r0, sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1@sda21(r13)
+/* 80099518 00096458  80 0D 8A 24 */	lwz r0, "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 /* 8009951C 0009645C  90 61 00 08 */	stw r3, 8(r1)
 /* 80099520 00096460  28 00 00 00 */	cmplwi r0, 0
 /* 80099524 00096464  40 82 00 24 */	bne lbl_80099548
@@ -443,12 +443,12 @@ noteOnOsc__10JASBankMgrFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
 /* 8009953C 0009647C  41 82 00 08 */	beq lbl_80099544
 /* 80099540 00096480  48 00 DC 45 */	bl __ct__17JASGenericMemPoolFv
 lbl_80099544:
-/* 80099544 00096484  93 ED 8A 24 */	stw r31, sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1@sda21(r13)
+/* 80099544 00096484  93 ED 8A 24 */	stw r31, "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 lbl_80099548:
 /* 80099548 00096488  80 61 00 08 */	lwz r3, 8(r1)
 /* 8009954C 0009648C  48 05 57 15 */	bl OSRestoreInterrupts
 lbl_80099550:
-/* 80099550 00096490  80 6D 8A 24 */	lwz r3, sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1@sda21(r13)
+/* 80099550 00096490  80 6D 8A 24 */	lwz r3, "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 /* 80099554 00096494  38 80 01 18 */	li r4, 0x118
 /* 80099558 00096498  48 00 DC D5 */	bl alloc__17JASGenericMemPoolFUl
 /* 8009955C 0009649C  7C 7F 1B 79 */	or. r31, r3, r3

@@ -154,7 +154,7 @@ loadTexData__Q34Game11Koganemushi3MgrFv:
 /* 8029DBF8 0029AB38  7C 7F 1B 78 */	mr r31, r3
 /* 8029DBFC 0029AB3C  90 03 00 44 */	stw r0, 0x44(r3)
 /* 8029DC00 0029AB40  38 61 00 08 */	addi r3, r1, 8
-/* 8029DC04 0029AB44  80 8D 84 C0 */	lwz r4, cKoganeChangeTexName__Q34Game11Koganemushi28$$2unnamed$$2KoganemushiMgr_cpp$$2@sda21(r13)
+/* 8029DC04 0029AB44  80 8D 84 C0 */	lwz r4, "cKoganeChangeTexName__Q34Game11Koganemushi28@unnamed@KoganemushiMgr_cpp@"@sda21(r13)
 /* 8029DC08 0029AB48  48 1A E9 D1 */	bl __ct__Q212LoadResource3ArgFPCc
 /* 8029DC0C 0029AB4C  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 8029DC10 0029AB50  38 81 00 08 */	addi r4, r1, 8
@@ -246,7 +246,7 @@ getChangeTexture__Q34Game11Koganemushi3MgrFv:
 /* 8029DD34 0029AC74  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 8029DD38 0029AC78  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game11Koganemushi3MgrFv
-$$24$$2__dt__Q34Game11Koganemushi3MgrFv:
+.global "@4@__dt__Q34Game11Koganemushi3MgrFv"
+"@4@__dt__Q34Game11Koganemushi3MgrFv":
 /* 8029DD3C 0029AC7C  38 63 FF FC */	addi r3, r3, -4
 /* 8029DD40 0029AC80  4B FF FF 24 */	b __dt__Q34Game11Koganemushi3MgrFv

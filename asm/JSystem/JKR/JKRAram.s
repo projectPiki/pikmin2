@@ -1081,10 +1081,10 @@ __sinit_JKRAram_cpp:
 /* 800188D0 00015810  38 63 6D AC */	addi r3, r3, sAramCommandList__7JKRAram@l
 /* 800188D4 00015814  48 00 DF FD */	bl initiate__10JSUPtrListFv
 /* 800188D8 00015818  3C 60 80 50 */	lis r3, sAramCommandList__7JKRAram@ha
-/* 800188DC 0001581C  3C 80 80 02 */	lis r4, __dt__23JSUList$$012JKRAMCommand$$1Fv@ha
+/* 800188DC 0001581C  3C 80 80 02 */	lis r4, "__dt__23JSUList<12JKRAMCommand>Fv"@ha
 /* 800188E0 00015820  3C A0 80 4F */	lis r5, lbl_804EFEF8@ha
 /* 800188E4 00015824  38 63 6D AC */	addi r3, r3, sAramCommandList__7JKRAram@l
-/* 800188E8 00015828  38 84 89 04 */	addi r4, r4, __dt__23JSUList$$012JKRAMCommand$$1Fv@l
+/* 800188E8 00015828  38 84 89 04 */	addi r4, r4, "__dt__23JSUList<12JKRAMCommand>Fv"@l
 /* 800188EC 0001582C  38 A5 FE F8 */	addi r5, r5, lbl_804EFEF8@l
 /* 800188F0 00015830  48 0A 8E 11 */	bl __register_global_object
 /* 800188F4 00015834  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1092,8 +1092,8 @@ __sinit_JKRAram_cpp:
 /* 800188FC 0001583C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018900 00015840  4E 80 00 20 */	blr 
 
-.global __dt__23JSUList$$012JKRAMCommand$$1Fv
-__dt__23JSUList$$012JKRAMCommand$$1Fv:
+.global "__dt__23JSUList<12JKRAMCommand>Fv"
+"__dt__23JSUList<12JKRAMCommand>Fv":
 /* 80018904 00015844  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018908 00015848  7C 08 02 A6 */	mflr r0
 /* 8001890C 0001584C  90 01 00 14 */	stw r0, 0x14(r1)

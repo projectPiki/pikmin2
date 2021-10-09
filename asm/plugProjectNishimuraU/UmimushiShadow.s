@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3$$0f$$1R10Vector3$$0f$$1
-makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>"
+"makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>":
 /* 802F27DC 002EF71C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F27E0 002EF720  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 802F27E4 002EF724  F3 E1 00 28 */	psq_st f31, 40(r1), 0, qr0
@@ -126,8 +126,8 @@ lbl_802F291C:
 /* 802F29B0 002EF8F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802F29B4 002EF8F4  4E 80 00 20 */	blr 
 
-.global makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3$$0f$$1b
-makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3$$0f$$1b:
+.global "makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>b"
+"makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>b":
 /* 802F29B8 002EF8F8  54 E0 06 3F */	clrlwi. r0, r7, 0x18
 /* 802F29BC 002EF8FC  41 82 00 44 */	beq lbl_802F2A00
 /* 802F29C0 002EF900  C0 02 EE 30 */	lfs f0, lbl_8051D190@sda21(r2)
@@ -308,7 +308,7 @@ update__Q34Game8UmiMushi17UmimushiShadowMgrFv:
 /* 802F2C44 002EFB84  D0 61 00 50 */	stfs f3, 0x50(r1)
 /* 802F2C48 002EFB88  80 7F 00 10 */	lwz r3, 0x10(r31)
 /* 802F2C4C 002EFB8C  80 BF 00 04 */	lwz r5, 4(r31)
-/* 802F2C50 002EFB90  4B FF FB 8D */	bl makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802F2C50 002EFB90  4B FF FB 8D */	bl "makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>"
 /* 802F2C54 002EFB94  C0 42 EE 24 */	lfs f2, lbl_8051D184@sda21(r2)
 /* 802F2C58 002EFB98  C0 22 EE 3C */	lfs f1, lbl_8051D19C@sda21(r2)
 /* 802F2C5C 002EFB9C  C0 02 EE 34 */	lfs f0, lbl_8051D194@sda21(r2)
@@ -326,7 +326,7 @@ update__Q34Game8UmiMushi17UmimushiShadowMgrFv:
 /* 802F2C8C 002EFBCC  80 BF 00 04 */	lwz r5, 4(r31)
 /* 802F2C90 002EFBD0  38 81 00 2C */	addi r4, r1, 0x2c
 /* 802F2C94 002EFBD4  38 C1 00 14 */	addi r6, r1, 0x14
-/* 802F2C98 002EFBD8  4B FF FD 21 */	bl makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3$$0f$$1b
+/* 802F2C98 002EFBD8  4B FF FD 21 */	bl "makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>b"
 /* 802F2C9C 002EFBDC  80 7F 00 08 */	lwz r3, 8(r31)
 /* 802F2CA0 002EFBE0  80 63 01 7C */	lwz r3, 0x17c(r3)
 /* 802F2CA4 002EFBE4  80 63 00 04 */	lwz r3, 4(r3)

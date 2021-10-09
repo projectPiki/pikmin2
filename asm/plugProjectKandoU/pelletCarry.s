@@ -29,8 +29,8 @@ reset__Q24Game11PelletCarryFv:
 /* 80234F48 00231E88  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80234F4C 00231E8C  4E 80 00 20 */	blr 
 
-.global pull__Q24Game11PelletCarryFUsR10Vector3$$0f$$1f
-pull__Q24Game11PelletCarryFUsR10Vector3$$0f$$1f:
+.global "pull__Q24Game11PelletCarryFUsR10Vector3<f>f"
+"pull__Q24Game11PelletCarryFUsR10Vector3<f>f":
 /* 80234F50 00231E90  A0 C3 00 00 */	lhz r6, 0(r3)
 /* 80234F54 00231E94  28 06 FF FF */	cmplwi r6, 0xffff
 /* 80234F58 00231E98  41 82 00 10 */	beq lbl_80234F68
@@ -102,8 +102,8 @@ giveup__Q24Game11PelletCarryFUs:
 /* 80235034 00231F74  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80235038 00231F78  4E 80 00 20 */	blr 
 
-.global frameWork__Q24Game11PelletCarryFR10Vector3$$0f$$1
-frameWork__Q24Game11PelletCarryFR10Vector3$$0f$$1:
+.global "frameWork__Q24Game11PelletCarryFR10Vector3<f>"
+"frameWork__Q24Game11PelletCarryFR10Vector3<f>":
 /* 8023503C 00231F7C  A0 03 00 00 */	lhz r0, 0(r3)
 /* 80235040 00231F80  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80235044 00231F84  41 82 00 54 */	beq lbl_80235098

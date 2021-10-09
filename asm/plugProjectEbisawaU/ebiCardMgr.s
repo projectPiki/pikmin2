@@ -12,14 +12,14 @@ init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr:
 /* 803D111C 003CE05C  93 C1 00 08 */	stw r30, 8(r1)
 /* 803D1120 003CE060  3B C4 66 98 */	addi r30, r4, lbl_80496698@l
 /* 803D1124 003CE064  38 80 00 1B */	li r4, 0x1b
-/* 803D1128 003CE068  48 00 25 A5 */	bl create__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1Fi
+/* 803D1128 003CE068  48 00 25 A5 */	bl "create__Q24Game35StateMachine<Q33ebi9CardError4TMgr>Fi"
 /* 803D112C 003CE06C  38 60 00 10 */	li r3, 0x10
 /* 803D1130 003CE070  4B C5 2D 75 */	bl __nw__FUl
 /* 803D1134 003CE074  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1138 003CE078  41 82 00 30 */	beq lbl_803D1168
-/* 803D113C 003CE07C  3C A0 80 4F */	lis r5, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D113C 003CE07C  3C A0 80 4F */	lis r5, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D1140 003CE080  3C 60 80 4F */	lis r3, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1144 003CE084  38 05 8C 54 */	addi r0, r5, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1144 003CE084  38 05 8C 54 */	addi r0, r5, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1148 003CE088  38 A0 00 00 */	li r5, 0
 /* 803D114C 003CE08C  90 04 00 00 */	stw r0, 0(r4)
 /* 803D1150 003CE090  38 63 8C 2C */	addi r3, r3, __vt__Q33ebi9CardError8FSMState@l
@@ -30,14 +30,14 @@ init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr:
 /* 803D1164 003CE0A4  90 04 00 0C */	stw r0, 0xc(r4)
 lbl_803D1168:
 /* 803D1168 003CE0A8  7F E3 FB 78 */	mr r3, r31
-/* 803D116C 003CE0AC  48 00 26 61 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D116C 003CE0AC  48 00 26 61 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1170 003CE0B0  38 60 00 10 */	li r3, 0x10
 /* 803D1174 003CE0B4  4B C5 2D 31 */	bl __nw__FUl
 /* 803D1178 003CE0B8  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D117C 003CE0BC  41 82 00 34 */	beq lbl_803D11B0
-/* 803D1180 003CE0C0  3C A0 80 4F */	lis r5, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1180 003CE0C0  3C A0 80 4F */	lis r5, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D1184 003CE0C4  3C 60 80 4F */	lis r3, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1188 003CE0C8  38 05 8C 54 */	addi r0, r5, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1188 003CE0C8  38 05 8C 54 */	addi r0, r5, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D118C 003CE0CC  38 C0 00 01 */	li r6, 1
 /* 803D1190 003CE0D0  90 04 00 00 */	stw r0, 0(r4)
 /* 803D1194 003CE0D4  38 A0 00 00 */	li r5, 0
@@ -49,14 +49,14 @@ lbl_803D1168:
 /* 803D11AC 003CE0EC  90 04 00 0C */	stw r0, 0xc(r4)
 lbl_803D11B0:
 /* 803D11B0 003CE0F0  7F E3 FB 78 */	mr r3, r31
-/* 803D11B4 003CE0F4  48 00 26 19 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D11B4 003CE0F4  48 00 26 19 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D11B8 003CE0F8  38 60 00 14 */	li r3, 0x14
 /* 803D11BC 003CE0FC  4B C5 2C E9 */	bl __nw__FUl
 /* 803D11C0 003CE100  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D11C4 003CE104  41 82 00 4C */	beq lbl_803D1210
-/* 803D11C8 003CE108  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D11C8 003CE108  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D11CC 003CE10C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D11D0 003CE110  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D11D0 003CE110  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D11D4 003CE114  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError15FSMState_NoCard@ha
 /* 803D11D8 003CE118  90 04 00 00 */	stw r0, 0(r4)
 /* 803D11DC 003CE11C  38 E0 00 02 */	li r7, 2
@@ -74,14 +74,14 @@ lbl_803D11B0:
 /* 803D120C 003CE14C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1210:
 /* 803D1210 003CE150  7F E3 FB 78 */	mr r3, r31
-/* 803D1214 003CE154  48 00 25 B9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1214 003CE154  48 00 25 B9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1218 003CE158  38 60 00 14 */	li r3, 0x14
 /* 803D121C 003CE15C  4B C5 2C 89 */	bl __nw__FUl
 /* 803D1220 003CE160  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1224 003CE164  41 82 00 4C */	beq lbl_803D1270
-/* 803D1228 003CE168  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1228 003CE168  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D122C 003CE16C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1230 003CE170  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1230 003CE170  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1234 003CE174  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1238 003CE178  90 04 00 00 */	stw r0, 0(r4)
 /* 803D123C 003CE17C  38 E0 00 03 */	li r7, 3
@@ -99,14 +99,14 @@ lbl_803D1210:
 /* 803D126C 003CE1AC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1270:
 /* 803D1270 003CE1B0  7F E3 FB 78 */	mr r3, r31
-/* 803D1274 003CE1B4  48 00 25 59 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1274 003CE1B4  48 00 25 59 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1278 003CE1B8  38 60 00 14 */	li r3, 0x14
 /* 803D127C 003CE1BC  4B C5 2C 29 */	bl __nw__FUl
 /* 803D1280 003CE1C0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1284 003CE1C4  41 82 00 4C */	beq lbl_803D12D0
-/* 803D1288 003CE1C8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1288 003CE1C8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D128C 003CE1CC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1290 003CE1D0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1290 003CE1D0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1294 003CE1D4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1298 003CE1D8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D129C 003CE1DC  38 E0 00 04 */	li r7, 4
@@ -124,14 +124,14 @@ lbl_803D1270:
 /* 803D12CC 003CE20C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D12D0:
 /* 803D12D0 003CE210  7F E3 FB 78 */	mr r3, r31
-/* 803D12D4 003CE214  48 00 24 F9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D12D4 003CE214  48 00 24 F9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D12D8 003CE218  38 60 00 14 */	li r3, 0x14
 /* 803D12DC 003CE21C  4B C5 2B C9 */	bl __nw__FUl
 /* 803D12E0 003CE220  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D12E4 003CE224  41 82 00 4C */	beq lbl_803D1330
-/* 803D12E8 003CE228  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D12E8 003CE228  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D12EC 003CE22C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D12F0 003CE230  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D12F0 003CE230  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D12F4 003CE234  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D12F8 003CE238  90 04 00 00 */	stw r0, 0(r4)
 /* 803D12FC 003CE23C  38 E0 00 05 */	li r7, 5
@@ -149,14 +149,14 @@ lbl_803D12D0:
 /* 803D132C 003CE26C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1330:
 /* 803D1330 003CE270  7F E3 FB 78 */	mr r3, r31
-/* 803D1334 003CE274  48 00 24 99 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1334 003CE274  48 00 24 99 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1338 003CE278  38 60 00 14 */	li r3, 0x14
 /* 803D133C 003CE27C  4B C5 2B 69 */	bl __nw__FUl
 /* 803D1340 003CE280  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1344 003CE284  41 82 00 4C */	beq lbl_803D1390
-/* 803D1348 003CE288  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1348 003CE288  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D134C 003CE28C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1350 003CE290  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1350 003CE290  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1354 003CE294  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1358 003CE298  90 04 00 00 */	stw r0, 0(r4)
 /* 803D135C 003CE29C  38 E0 00 06 */	li r7, 6
@@ -174,14 +174,14 @@ lbl_803D1330:
 /* 803D138C 003CE2CC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1390:
 /* 803D1390 003CE2D0  7F E3 FB 78 */	mr r3, r31
-/* 803D1394 003CE2D4  48 00 24 39 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1394 003CE2D4  48 00 24 39 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1398 003CE2D8  38 60 00 14 */	li r3, 0x14
 /* 803D139C 003CE2DC  4B C5 2B 09 */	bl __nw__FUl
 /* 803D13A0 003CE2E0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D13A4 003CE2E4  41 82 00 4C */	beq lbl_803D13F0
-/* 803D13A8 003CE2E8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D13A8 003CE2E8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D13AC 003CE2EC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D13B0 003CE2F0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D13B0 003CE2F0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D13B4 003CE2F4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D13B8 003CE2F8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D13BC 003CE2FC  38 E0 00 07 */	li r7, 7
@@ -199,14 +199,14 @@ lbl_803D1390:
 /* 803D13EC 003CE32C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D13F0:
 /* 803D13F0 003CE330  7F E3 FB 78 */	mr r3, r31
-/* 803D13F4 003CE334  48 00 23 D9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D13F4 003CE334  48 00 23 D9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D13F8 003CE338  38 60 00 14 */	li r3, 0x14
 /* 803D13FC 003CE33C  4B C5 2A A9 */	bl __nw__FUl
 /* 803D1400 003CE340  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1404 003CE344  41 82 00 4C */	beq lbl_803D1450
-/* 803D1408 003CE348  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1408 003CE348  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D140C 003CE34C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1410 003CE350  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1410 003CE350  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1414 003CE354  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1418 003CE358  90 04 00 00 */	stw r0, 0(r4)
 /* 803D141C 003CE35C  38 E0 00 08 */	li r7, 8
@@ -224,14 +224,14 @@ lbl_803D13F0:
 /* 803D144C 003CE38C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1450:
 /* 803D1450 003CE390  7F E3 FB 78 */	mr r3, r31
-/* 803D1454 003CE394  48 00 23 79 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1454 003CE394  48 00 23 79 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1458 003CE398  38 60 00 14 */	li r3, 0x14
 /* 803D145C 003CE39C  4B C5 2A 49 */	bl __nw__FUl
 /* 803D1460 003CE3A0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1464 003CE3A4  41 82 00 4C */	beq lbl_803D14B0
-/* 803D1468 003CE3A8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1468 003CE3A8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D146C 003CE3AC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1470 003CE3B0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1470 003CE3B0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1474 003CE3B4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1478 003CE3B8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D147C 003CE3BC  38 E0 00 09 */	li r7, 9
@@ -249,14 +249,14 @@ lbl_803D1450:
 /* 803D14AC 003CE3EC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D14B0:
 /* 803D14B0 003CE3F0  7F E3 FB 78 */	mr r3, r31
-/* 803D14B4 003CE3F4  48 00 23 19 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D14B4 003CE3F4  48 00 23 19 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D14B8 003CE3F8  38 60 00 14 */	li r3, 0x14
 /* 803D14BC 003CE3FC  4B C5 29 E9 */	bl __nw__FUl
 /* 803D14C0 003CE400  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D14C4 003CE404  41 82 00 4C */	beq lbl_803D1510
-/* 803D14C8 003CE408  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D14C8 003CE408  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D14CC 003CE40C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D14D0 003CE410  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D14D0 003CE410  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D14D4 003CE414  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D14D8 003CE418  90 04 00 00 */	stw r0, 0(r4)
 /* 803D14DC 003CE41C  38 E0 00 0A */	li r7, 0xa
@@ -274,14 +274,14 @@ lbl_803D14B0:
 /* 803D150C 003CE44C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1510:
 /* 803D1510 003CE450  7F E3 FB 78 */	mr r3, r31
-/* 803D1514 003CE454  48 00 22 B9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1514 003CE454  48 00 22 B9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1518 003CE458  38 60 00 14 */	li r3, 0x14
 /* 803D151C 003CE45C  4B C5 29 89 */	bl __nw__FUl
 /* 803D1520 003CE460  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1524 003CE464  41 82 00 4C */	beq lbl_803D1570
-/* 803D1528 003CE468  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1528 003CE468  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D152C 003CE46C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1530 003CE470  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1530 003CE470  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1534 003CE474  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1538 003CE478  90 04 00 00 */	stw r0, 0(r4)
 /* 803D153C 003CE47C  38 E0 00 0B */	li r7, 0xb
@@ -299,14 +299,14 @@ lbl_803D1510:
 /* 803D156C 003CE4AC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1570:
 /* 803D1570 003CE4B0  7F E3 FB 78 */	mr r3, r31
-/* 803D1574 003CE4B4  48 00 22 59 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1574 003CE4B4  48 00 22 59 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1578 003CE4B8  38 60 00 14 */	li r3, 0x14
 /* 803D157C 003CE4BC  4B C5 29 29 */	bl __nw__FUl
 /* 803D1580 003CE4C0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1584 003CE4C4  41 82 00 4C */	beq lbl_803D15D0
-/* 803D1588 003CE4C8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1588 003CE4C8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D158C 003CE4CC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1590 003CE4D0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1590 003CE4D0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1594 003CE4D4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1598 003CE4D8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D159C 003CE4DC  38 E0 00 0C */	li r7, 0xc
@@ -324,14 +324,14 @@ lbl_803D1570:
 /* 803D15CC 003CE50C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D15D0:
 /* 803D15D0 003CE510  7F E3 FB 78 */	mr r3, r31
-/* 803D15D4 003CE514  48 00 21 F9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D15D4 003CE514  48 00 21 F9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D15D8 003CE518  38 60 00 14 */	li r3, 0x14
 /* 803D15DC 003CE51C  4B C5 28 C9 */	bl __nw__FUl
 /* 803D15E0 003CE520  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D15E4 003CE524  41 82 00 4C */	beq lbl_803D1630
-/* 803D15E8 003CE528  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D15E8 003CE528  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D15EC 003CE52C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D15F0 003CE530  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D15F0 003CE530  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D15F4 003CE534  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D15F8 003CE538  90 04 00 00 */	stw r0, 0(r4)
 /* 803D15FC 003CE53C  38 E0 00 0D */	li r7, 0xd
@@ -349,14 +349,14 @@ lbl_803D15D0:
 /* 803D162C 003CE56C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1630:
 /* 803D1630 003CE570  7F E3 FB 78 */	mr r3, r31
-/* 803D1634 003CE574  48 00 21 99 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1634 003CE574  48 00 21 99 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1638 003CE578  38 60 00 14 */	li r3, 0x14
 /* 803D163C 003CE57C  4B C5 28 69 */	bl __nw__FUl
 /* 803D1640 003CE580  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1644 003CE584  41 82 00 4C */	beq lbl_803D1690
-/* 803D1648 003CE588  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1648 003CE588  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D164C 003CE58C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1650 003CE590  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1650 003CE590  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1654 003CE594  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1658 003CE598  90 04 00 00 */	stw r0, 0(r4)
 /* 803D165C 003CE59C  38 E0 00 0E */	li r7, 0xe
@@ -374,14 +374,14 @@ lbl_803D1630:
 /* 803D168C 003CE5CC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1690:
 /* 803D1690 003CE5D0  7F E3 FB 78 */	mr r3, r31
-/* 803D1694 003CE5D4  48 00 21 39 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1694 003CE5D4  48 00 21 39 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1698 003CE5D8  38 60 00 14 */	li r3, 0x14
 /* 803D169C 003CE5DC  4B C5 28 09 */	bl __nw__FUl
 /* 803D16A0 003CE5E0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D16A4 003CE5E4  41 82 00 4C */	beq lbl_803D16F0
-/* 803D16A8 003CE5E8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D16A8 003CE5E8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D16AC 003CE5EC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D16B0 003CE5F0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D16B0 003CE5F0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D16B4 003CE5F4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D16B8 003CE5F8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D16BC 003CE5FC  38 E0 00 0F */	li r7, 0xf
@@ -399,14 +399,14 @@ lbl_803D1690:
 /* 803D16EC 003CE62C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D16F0:
 /* 803D16F0 003CE630  7F E3 FB 78 */	mr r3, r31
-/* 803D16F4 003CE634  48 00 20 D9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D16F4 003CE634  48 00 20 D9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D16F8 003CE638  38 60 00 14 */	li r3, 0x14
 /* 803D16FC 003CE63C  4B C5 27 A9 */	bl __nw__FUl
 /* 803D1700 003CE640  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1704 003CE644  41 82 00 4C */	beq lbl_803D1750
-/* 803D1708 003CE648  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1708 003CE648  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D170C 003CE64C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1710 003CE650  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1710 003CE650  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1714 003CE654  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1718 003CE658  90 04 00 00 */	stw r0, 0(r4)
 /* 803D171C 003CE65C  38 E0 00 10 */	li r7, 0x10
@@ -424,14 +424,14 @@ lbl_803D16F0:
 /* 803D174C 003CE68C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1750:
 /* 803D1750 003CE690  7F E3 FB 78 */	mr r3, r31
-/* 803D1754 003CE694  48 00 20 79 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1754 003CE694  48 00 20 79 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1758 003CE698  38 60 00 14 */	li r3, 0x14
 /* 803D175C 003CE69C  4B C5 27 49 */	bl __nw__FUl
 /* 803D1760 003CE6A0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1764 003CE6A4  41 82 00 4C */	beq lbl_803D17B0
-/* 803D1768 003CE6A8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1768 003CE6A8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D176C 003CE6AC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1770 003CE6B0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1770 003CE6B0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1774 003CE6B4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D1778 003CE6B8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D177C 003CE6BC  38 E0 00 11 */	li r7, 0x11
@@ -449,14 +449,14 @@ lbl_803D1750:
 /* 803D17AC 003CE6EC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D17B0:
 /* 803D17B0 003CE6F0  7F E3 FB 78 */	mr r3, r31
-/* 803D17B4 003CE6F4  48 00 20 19 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D17B4 003CE6F4  48 00 20 19 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D17B8 003CE6F8  38 60 00 14 */	li r3, 0x14
 /* 803D17BC 003CE6FC  4B C5 26 E9 */	bl __nw__FUl
 /* 803D17C0 003CE700  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D17C4 003CE704  41 82 00 4C */	beq lbl_803D1810
-/* 803D17C8 003CE708  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D17C8 003CE708  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D17CC 003CE70C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D17D0 003CE710  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D17D0 003CE710  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D17D4 003CE714  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError16FSMState_Warning@ha
 /* 803D17D8 003CE718  90 04 00 00 */	stw r0, 0(r4)
 /* 803D17DC 003CE71C  38 E0 00 12 */	li r7, 0x12
@@ -474,14 +474,14 @@ lbl_803D17B0:
 /* 803D180C 003CE74C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1810:
 /* 803D1810 003CE750  7F E3 FB 78 */	mr r3, r31
-/* 803D1814 003CE754  48 00 1F B9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1814 003CE754  48 00 1F B9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1818 003CE758  38 60 00 14 */	li r3, 0x14
 /* 803D181C 003CE75C  4B C5 26 89 */	bl __nw__FUl
 /* 803D1820 003CE760  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1824 003CE764  41 82 00 4C */	beq lbl_803D1870
-/* 803D1828 003CE768  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1828 003CE768  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D182C 003CE76C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1830 003CE770  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1830 003CE770  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1834 003CE774  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError17FSMState_Question@ha
 /* 803D1838 003CE778  90 04 00 00 */	stw r0, 0(r4)
 /* 803D183C 003CE77C  38 E0 00 13 */	li r7, 0x13
@@ -499,14 +499,14 @@ lbl_803D1810:
 /* 803D186C 003CE7AC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1870:
 /* 803D1870 003CE7B0  7F E3 FB 78 */	mr r3, r31
-/* 803D1874 003CE7B4  48 00 1F 59 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1874 003CE7B4  48 00 1F 59 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1878 003CE7B8  38 60 00 14 */	li r3, 0x14
 /* 803D187C 003CE7BC  4B C5 26 29 */	bl __nw__FUl
 /* 803D1880 003CE7C0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1884 003CE7C4  41 82 00 4C */	beq lbl_803D18D0
-/* 803D1888 003CE7C8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1888 003CE7C8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D188C 003CE7CC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1890 003CE7D0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1890 003CE7D0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1894 003CE7D4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError17FSMState_Question@ha
 /* 803D1898 003CE7D8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D189C 003CE7DC  38 E0 00 14 */	li r7, 0x14
@@ -524,14 +524,14 @@ lbl_803D1870:
 /* 803D18CC 003CE80C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D18D0:
 /* 803D18D0 003CE810  7F E3 FB 78 */	mr r3, r31
-/* 803D18D4 003CE814  48 00 1E F9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D18D4 003CE814  48 00 1E F9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D18D8 003CE818  38 60 00 14 */	li r3, 0x14
 /* 803D18DC 003CE81C  4B C5 25 C9 */	bl __nw__FUl
 /* 803D18E0 003CE820  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D18E4 003CE824  41 82 00 4C */	beq lbl_803D1930
-/* 803D18E8 003CE828  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D18E8 003CE828  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D18EC 003CE82C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D18F0 003CE830  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D18F0 003CE830  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D18F4 003CE834  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError17FSMState_Question@ha
 /* 803D18F8 003CE838  90 04 00 00 */	stw r0, 0(r4)
 /* 803D18FC 003CE83C  38 E0 00 15 */	li r7, 0x15
@@ -549,14 +549,14 @@ lbl_803D18D0:
 /* 803D192C 003CE86C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1930:
 /* 803D1930 003CE870  7F E3 FB 78 */	mr r3, r31
-/* 803D1934 003CE874  48 00 1E 99 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1934 003CE874  48 00 1E 99 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1938 003CE878  38 60 00 14 */	li r3, 0x14
 /* 803D193C 003CE87C  4B C5 25 69 */	bl __nw__FUl
 /* 803D1940 003CE880  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1944 003CE884  41 82 00 4C */	beq lbl_803D1990
-/* 803D1948 003CE888  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1948 003CE888  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D194C 003CE88C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1950 003CE890  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1950 003CE890  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1954 003CE894  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError17FSMState_Question@ha
 /* 803D1958 003CE898  90 04 00 00 */	stw r0, 0(r4)
 /* 803D195C 003CE89C  38 E0 00 16 */	li r7, 0x16
@@ -574,14 +574,14 @@ lbl_803D1930:
 /* 803D198C 003CE8CC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1990:
 /* 803D1990 003CE8D0  7F E3 FB 78 */	mr r3, r31
-/* 803D1994 003CE8D4  48 00 1E 39 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1994 003CE8D4  48 00 1E 39 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1998 003CE8D8  38 60 00 14 */	li r3, 0x14
 /* 803D199C 003CE8DC  4B C5 25 09 */	bl __nw__FUl
 /* 803D19A0 003CE8E0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D19A4 003CE8E4  41 82 00 4C */	beq lbl_803D19F0
-/* 803D19A8 003CE8E8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D19A8 003CE8E8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D19AC 003CE8EC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D19B0 003CE8F0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D19B0 003CE8F0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D19B4 003CE8F4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError17FSMState_Question@ha
 /* 803D19B8 003CE8F8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D19BC 003CE8FC  38 E0 00 17 */	li r7, 0x17
@@ -599,14 +599,14 @@ lbl_803D1990:
 /* 803D19EC 003CE92C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D19F0:
 /* 803D19F0 003CE930  7F E3 FB 78 */	mr r3, r31
-/* 803D19F4 003CE934  48 00 1D D9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D19F4 003CE934  48 00 1D D9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D19F8 003CE938  38 60 00 14 */	li r3, 0x14
 /* 803D19FC 003CE93C  4B C5 24 A9 */	bl __nw__FUl
 /* 803D1A00 003CE940  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1A04 003CE944  41 82 00 4C */	beq lbl_803D1A50
-/* 803D1A08 003CE948  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1A08 003CE948  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D1A0C 003CE94C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1A10 003CE950  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1A10 003CE950  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1A14 003CE954  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError17FSMState_Question@ha
 /* 803D1A18 003CE958  90 04 00 00 */	stw r0, 0(r4)
 /* 803D1A1C 003CE95C  38 E0 00 18 */	li r7, 0x18
@@ -624,14 +624,14 @@ lbl_803D19F0:
 /* 803D1A4C 003CE98C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1A50:
 /* 803D1A50 003CE990  7F E3 FB 78 */	mr r3, r31
-/* 803D1A54 003CE994  48 00 1D 79 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1A54 003CE994  48 00 1D 79 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1A58 003CE998  38 60 00 18 */	li r3, 0x18
 /* 803D1A5C 003CE99C  4B C5 24 49 */	bl __nw__FUl
 /* 803D1A60 003CE9A0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1A64 003CE9A4  41 82 00 4C */	beq lbl_803D1AB0
-/* 803D1A68 003CE9A8  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1A68 003CE9A8  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D1A6C 003CE9AC  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1A70 003CE9B0  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1A70 003CE9B0  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1A74 003CE9B4  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError20FSMState_CardRequest@ha
 /* 803D1A78 003CE9B8  90 04 00 00 */	stw r0, 0(r4)
 /* 803D1A7C 003CE9BC  38 E0 00 19 */	li r7, 0x19
@@ -649,14 +649,14 @@ lbl_803D1A50:
 /* 803D1AAC 003CE9EC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1AB0:
 /* 803D1AB0 003CE9F0  7F E3 FB 78 */	mr r3, r31
-/* 803D1AB4 003CE9F4  48 00 1D 19 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1AB4 003CE9F4  48 00 1D 19 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1AB8 003CE9F8  38 60 00 18 */	li r3, 0x18
 /* 803D1ABC 003CE9FC  4B C5 23 E9 */	bl __nw__FUl
 /* 803D1AC0 003CEA00  7C 64 1B 79 */	or. r4, r3, r3
 /* 803D1AC4 003CEA04  41 82 00 4C */	beq lbl_803D1B10
-/* 803D1AC8 003CEA08  3C 60 80 4F */	lis r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D1AC8 003CEA08  3C 60 80 4F */	lis r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@ha
 /* 803D1ACC 003CEA0C  3C C0 80 4F */	lis r6, __vt__Q33ebi9CardError8FSMState@ha
-/* 803D1AD0 003CEA10  38 03 8C 54 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D1AD0 003CEA10  38 03 8C 54 */	addi r0, r3, "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"@l
 /* 803D1AD4 003CEA14  3C A0 80 4F */	lis r5, __vt__Q33ebi9CardError20FSMState_CardRequest@ha
 /* 803D1AD8 003CEA18  90 04 00 00 */	stw r0, 0(r4)
 /* 803D1ADC 003CEA1C  38 E0 00 1A */	li r7, 0x1a
@@ -674,7 +674,7 @@ lbl_803D1AB0:
 /* 803D1B0C 003CEA4C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803D1B10:
 /* 803D1B10 003CEA50  7F E3 FB 78 */	mr r3, r31
-/* 803D1B14 003CEA54  48 00 1C B9 */	bl registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
+/* 803D1B14 003CEA54  48 00 1C B9 */	bl "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
 /* 803D1B18 003CEA58  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803D1B1C 003CEA5C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803D1B20 003CEA60  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1155,8 +1155,8 @@ lbl_803D21A4:
 /* 803D21AC 003CF0EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D21B0 003CF0F0  4E 80 00 20 */	blr 
 
-.global transit__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgriPQ24Game8StateArg
-transit__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgriPQ24Game8StateArg:
+.global "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+"transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg":
 /* 803D21B4 003CF0F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D21B8 003CF0F8  7C 08 02 A6 */	mflr r0
 /* 803D21BC 003CF0FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1516,10 +1516,10 @@ __ct__Q33ebi9CardError4TMgrFv:
 /* 803D2660 003CF5A0  7C 7F 1B 78 */	mr r31, r3
 /* 803D2664 003CF5A4  48 00 05 15 */	bl __ct__Q33ebi6Screen11TMemoryCardFv
 /* 803D2668 003CF5A8  38 00 00 00 */	li r0, 0
-/* 803D266C 003CF5AC  3C 80 80 4F */	lis r4, __vt__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1@ha
+/* 803D266C 003CF5AC  3C 80 80 4F */	lis r4, "__vt__Q24Game35StateMachine<Q33ebi9CardError4TMgr>"@ha
 /* 803D2670 003CF5B0  90 1F 02 98 */	stw r0, 0x298(r31)
 /* 803D2674 003CF5B4  3C 60 80 4F */	lis r3, __vt__Q33ebi9CardError15FSMStateMachine@ha
-/* 803D2678 003CF5B8  38 C4 8B 20 */	addi r6, r4, __vt__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1@l
+/* 803D2678 003CF5B8  38 C4 8B 20 */	addi r6, r4, "__vt__Q24Game35StateMachine<Q33ebi9CardError4TMgr>"@l
 /* 803D267C 003CF5BC  38 A0 FF FF */	li r5, -1
 /* 803D2680 003CF5C0  90 1F 02 9C */	stw r0, 0x29c(r31)
 /* 803D2684 003CF5C4  38 03 8C 74 */	addi r0, r3, __vt__Q33ebi9CardError15FSMStateMachine@l
@@ -1547,8 +1547,8 @@ __ct__Q33ebi9CardError4TMgrFv:
 /* 803D26DC 003CF61C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D26E0 003CF620  4E 80 00 20 */	blr 
 
-.global start__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgriPQ24Game8StateArg
-start__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgriPQ24Game8StateArg:
+.global "start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+"start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg":
 /* 803D26E4 003CF624  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D26E8 003CF628  7C 08 02 A6 */	mflr r0
 /* 803D26EC 003CF62C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2608,32 +2608,32 @@ lbl_803D3660:
 /* 803D3674 003D05B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D3678 003D05B8  4E 80 00 20 */	blr 
 
-.global init__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgrPQ24Game8StateArg
-init__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgrPQ24Game8StateArg:
+.global "init__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgrPQ24Game8StateArg"
+"init__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgrPQ24Game8StateArg":
 /* 803D367C 003D05BC  4E 80 00 20 */	blr 
 
-.global exec__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr
-exec__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr:
+.global "exec__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+"exec__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
 /* 803D3680 003D05C0  4E 80 00 20 */	blr 
 
-.global cleanup__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr
-cleanup__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr:
+.global "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+"cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
 /* 803D3684 003D05C4  4E 80 00 20 */	blr 
 
-.global resume__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr
-resume__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr:
+.global "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+"resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
 /* 803D3688 003D05C8  4E 80 00 20 */	blr 
 
-.global restart__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr
-restart__Q24Game31FSMState$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr:
+.global "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+"restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
 /* 803D368C 003D05CC  4E 80 00 20 */	blr 
 
-.global init__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr
-init__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr:
+.global "init__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+"init__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
 /* 803D3690 003D05D0  4E 80 00 20 */	blr 
 
-.global exec__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr
-exec__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgr:
+.global "exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+"exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr":
 /* 803D3694 003D05D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D3698 003D05D8  7C 08 02 A6 */	mflr r0
 /* 803D369C 003D05DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2650,8 +2650,8 @@ lbl_803D36BC:
 /* 803D36C4 003D0604  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D36C8 003D0608  4E 80 00 20 */	blr 
 
-.global create__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1Fi
-create__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1Fi:
+.global "create__Q24Game35StateMachine<Q33ebi9CardError4TMgr>Fi"
+"create__Q24Game35StateMachine<Q33ebi9CardError4TMgr>Fi":
 /* 803D36CC 003D060C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D36D0 003D0610  7C 08 02 A6 */	mflr r0
 /* 803D36D4 003D0614  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2678,8 +2678,8 @@ create__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1Fi:
 /* 803D3728 003D0668  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D372C 003D066C  4E 80 00 20 */	blr 
 
-.global transit__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgriPQ24Game8StateArg
-transit__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ33ebi9CardError4TMgriPQ24Game8StateArg:
+.global "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+"transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg":
 /* 803D3730 003D0670  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D3734 003D0674  7C 08 02 A6 */	mflr r0
 /* 803D3738 003D0678  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2723,8 +2723,8 @@ lbl_803D3790:
 /* 803D37C4 003D0704  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D37C8 003D0708  4E 80 00 20 */	blr 
 
-.global registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1
-registerState__Q24Game35StateMachine$$0Q33ebi9CardError4TMgr$$1FPQ24Game31FSMState$$0Q33ebi9CardError4TMgr$$1:
+.global "registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>"
+"registerState__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ24Game31FSMState<Q33ebi9CardError4TMgr>":
 /* 803D37CC 003D070C  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803D37D0 003D0710  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 803D37D4 003D0714  7C 06 00 00 */	cmpw r6, r0

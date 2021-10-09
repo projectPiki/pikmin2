@@ -282,8 +282,8 @@ lbl_801D7BB8:
 /* 801D7BDC 001D4B1C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 801D7BE0 001D4B20  4E 80 00 20 */	blr 
 
-.global drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3$$0f$$1
-drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3$$0f$$1:
+.global "drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>"
+"drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>":
 /* 801D7BE4 001D4B24  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801D7BE8 001D4B28  7C 08 02 A6 */	mflr r0
 /* 801D7BEC 001D4B2C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -404,7 +404,7 @@ lbl_801D7D94:
 /* 801D7D98 001D4CD8  39 41 00 24 */	addi r10, r1, 0x24
 /* 801D7D9C 001D4CDC  7D 4A 00 2E */	lwzx r10, r10, r0
 /* 801D7DA0 001D4CE0  4C C6 31 82 */	crclr 6
-/* 801D7DA4 001D4CE4  48 24 FD 39 */	bl perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3$$0f$$1Pce
+/* 801D7DA4 001D4CE4  48 24 FD 39 */	bl "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
 /* 801D7DA8 001D4CE8  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801D7DAC 001D4CEC  38 80 00 00 */	li r4, 0
 /* 801D7DB0 001D4CF0  80 63 00 24 */	lwz r3, 0x24(r3)
@@ -433,7 +433,7 @@ lbl_801D7D94:
 /* 801D7E0C 001D4D4C  38 A1 00 18 */	addi r5, r1, 0x18
 /* 801D7E10 001D4D50  38 C2 B4 20 */	addi r6, r2, lbl_80519780@sda21
 /* 801D7E14 001D4D54  4C C6 32 42 */	crset 6
-/* 801D7E18 001D4D58  48 24 FC C5 */	bl perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3$$0f$$1Pce
+/* 801D7E18 001D4D58  48 24 FC C5 */	bl "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
 lbl_801D7E1C:
 /* 801D7E1C 001D4D5C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 801D7E20 001D4D60  83 E1 00 5C */	lwz r31, 0x5c(r1)

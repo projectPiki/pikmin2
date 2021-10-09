@@ -118,8 +118,8 @@ lbl_80174E18:
 /* 80174E4C 00171D8C  38 63 00 30 */	addi r3, r3, 0x30
 lbl_80174E50:
 /* 80174E50 00171D90  38 00 00 00 */	li r0, 0
-/* 80174E54 00171D94  3C 80 80 4B */	lis r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@ha
-/* 80174E58 00171D98  38 84 05 A4 */	addi r4, r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@l
+/* 80174E54 00171D94  3C 80 80 4B */	lis r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+/* 80174E58 00171D98  38 84 05 A4 */	addi r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
 /* 80174E5C 00171D9C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80174E60 00171DA0  28 00 00 00 */	cmplwi r0, 0
 /* 80174E64 00171DA4  90 81 00 28 */	stw r4, 0x28(r1)
@@ -276,9 +276,9 @@ lbl_80175020:
 lbl_8017509C:
 /* 8017509C 00171FDC  38 00 00 00 */	li r0, 0
 /* 801750A0 00171FE0  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 801750A4 00171FE4  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 801750A4 00171FE4  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 801750A8 00171FE8  90 01 00 24 */	stw r0, 0x24(r1)
-/* 801750AC 00171FEC  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 801750AC 00171FEC  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 801750B0 00171FF0  28 00 00 00 */	cmplwi r0, 0
 /* 801750B4 00171FF4  90 81 00 18 */	stw r4, 0x18(r1)
 /* 801750B8 00171FF8  3B A0 00 00 */	li r29, 0
@@ -992,7 +992,7 @@ lbl_80175AD8:
 /* 80175AF0 00172A30  38 BF 02 28 */	addi r5, r31, 0x228
 /* 80175AF4 00172A34  38 C0 01 83 */	li r6, 0x183
 /* 80175AF8 00172A38  38 E0 01 84 */	li r7, 0x184
-/* 80175AFC 00172A3C  48 23 AE D1 */	bl __ct__Q23efx14TChasePosYRot2FP10Vector3$$0f$$1PfUsUs
+/* 80175AFC 00172A3C  48 23 AE D1 */	bl "__ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs"
 /* 80175B00 00172A40  3C 60 80 4B */	lis r3, __vt__Q23efx8TPodSpot@ha
 /* 80175B04 00172A44  38 03 2A 38 */	addi r0, r3, __vt__Q23efx8TPodSpot@l
 /* 80175B08 00172A48  90 1D 00 00 */	stw r0, 0(r29)
@@ -1580,7 +1580,7 @@ lbl_8017631C:
 /* 80176348 00173288  D0 61 00 B8 */	stfs f3, 0xb8(r1)
 /* 8017634C 0017328C  D0 21 00 BC */	stfs f1, 0xbc(r1)
 /* 80176350 00173290  D0 01 00 C0 */	stfs f0, 0xc0(r1)
-/* 80176354 00173294  4B FA 5D A5 */	bl appearPoko__12CarryInfoMgrFRC10Vector3$$0f$$1i
+/* 80176354 00173294  4B FA 5D A5 */	bl "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
 /* 80176358 00173298  48 00 01 F8 */	b lbl_80176550
 lbl_8017635C:
 /* 8017635C 0017329C  28 1E 00 00 */	cmplwi r30, 0
@@ -1711,7 +1711,7 @@ lbl_8017650C:
 /* 80176540 00173480  40 81 00 10 */	ble lbl_80176550
 /* 80176544 00173484  80 6D 92 18 */	lwz r3, carryInfoMgr@sda21(r13)
 /* 80176548 00173488  38 81 00 AC */	addi r4, r1, 0xac
-/* 8017654C 0017348C  4B FA 5B AD */	bl appearPoko__12CarryInfoMgrFRC10Vector3$$0f$$1i
+/* 8017654C 0017348C  4B FA 5B AD */	bl "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
 lbl_80176550:
 /* 80176550 00173490  A0 1E 02 2E */	lhz r0, 0x22e(r30)
 /* 80176554 00173494  B0 1E 02 30 */	sth r0, 0x230(r30)
@@ -1779,8 +1779,8 @@ lbl_801765F8:
 /* 80176640 00173580  38 63 00 30 */	addi r3, r3, 0x30
 lbl_80176644:
 /* 80176644 00173584  38 00 00 00 */	li r0, 0
-/* 80176648 00173588  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 8017664C 0017358C  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 80176648 00173588  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 8017664C 0017358C  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 80176650 00173590  90 01 00 A8 */	stw r0, 0xa8(r1)
 /* 80176654 00173594  28 00 00 00 */	cmplwi r0, 0
 /* 80176658 00173598  90 81 00 9C */	stw r4, 0x9c(r1)
@@ -1907,8 +1907,8 @@ lbl_801767F0:
 /* 8017681C 0017375C  38 63 00 30 */	addi r3, r3, 0x30
 lbl_80176820:
 /* 80176820 00173760  38 00 00 00 */	li r0, 0
-/* 80176824 00173764  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 80176828 00173768  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 80176824 00173764  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 80176828 00173768  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 8017682C 0017376C  90 01 00 98 */	stw r0, 0x98(r1)
 /* 80176830 00173770  28 00 00 00 */	cmplwi r0, 0
 /* 80176834 00173774  90 81 00 8C */	stw r4, 0x8c(r1)
@@ -2077,7 +2077,7 @@ lbl_80176A24:
 /* 80176A98 001739D8  EC 23 10 7A */	fmadds f1, f3, f1, f2
 /* 80176A9C 001739DC  EC 00 08 2A */	fadds f0, f0, f1
 /* 80176AA0 001739E0  D0 01 00 84 */	stfs f0, 0x84(r1)
-/* 80176AA4 001739E4  4B FC 47 05 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80176AA4 001739E4  4B FC 47 05 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 80176AA8 001739E8  C0 22 A6 CC */	lfs f1, lbl_80518A2C@sda21(r2)
 /* 80176AAC 001739EC  7F E3 FB 78 */	mr r3, r31
 /* 80176AB0 001739F0  C0 02 A7 20 */	lfs f0, lbl_80518A80@sda21(r2)
@@ -2389,7 +2389,7 @@ doDirectDraw__Q24Game5OnyonFR8Graphics:
 /* 80176F0C 00173E4C  98 1F 00 85 */	stb r0, 0x85(r31)
 /* 80176F10 00173E50  98 BF 00 86 */	stb r5, 0x86(r31)
 /* 80176F14 00173E54  98 1F 00 87 */	stb r0, 0x87(r31)
-/* 80176F18 00173E58  48 2A EB 95 */	bl drawSphere__8GraphicsFR10Vector3$$0f$$1f
+/* 80176F18 00173E58  48 2A EB 95 */	bl "drawSphere__8GraphicsFR10Vector3<f>f"
 /* 80176F1C 00173E5C  7F C4 F3 78 */	mr r4, r30
 /* 80176F20 00173E60  38 61 00 08 */	addi r3, r1, 8
 /* 80176F24 00173E64  48 00 31 89 */	bl getOutStart_UFO__Q24Game5OnyonFv
@@ -2409,7 +2409,7 @@ doDirectDraw__Q24Game5OnyonFR8Graphics:
 /* 80176F5C 00173E9C  98 BF 00 85 */	stb r5, 0x85(r31)
 /* 80176F60 00173EA0  98 1F 00 86 */	stb r0, 0x86(r31)
 /* 80176F64 00173EA4  98 BF 00 87 */	stb r5, 0x87(r31)
-/* 80176F68 00173EA8  48 2A EB 45 */	bl drawSphere__8GraphicsFR10Vector3$$0f$$1f
+/* 80176F68 00173EA8  48 2A EB 45 */	bl "drawSphere__8GraphicsFR10Vector3<f>f"
 /* 80176F6C 00173EAC  80 7E 01 74 */	lwz r3, 0x174(r30)
 /* 80176F70 00173EB0  38 82 A6 D4 */	addi r4, r2, lbl_80518A34@sda21
 /* 80176F74 00173EB4  48 2C 80 71 */	bl getJoint__Q28SysShape5ModelFPc
@@ -2430,7 +2430,7 @@ doDirectDraw__Q24Game5OnyonFR8Graphics:
 /* 80176FB0 00173EF0  98 BF 00 85 */	stb r5, 0x85(r31)
 /* 80176FB4 00173EF4  98 1F 00 86 */	stb r0, 0x86(r31)
 /* 80176FB8 00173EF8  98 BF 00 87 */	stb r5, 0x87(r31)
-/* 80176FBC 00173EFC  48 2A EA F1 */	bl drawSphere__8GraphicsFR10Vector3$$0f$$1f
+/* 80176FBC 00173EFC  48 2A EA F1 */	bl "drawSphere__8GraphicsFR10Vector3<f>f"
 lbl_80176FC0:
 /* 80176FC0 00173F00  C0 42 A7 30 */	lfs f2, lbl_80518A90@sda21(r2)
 /* 80176FC4 00173F04  7F C3 F3 78 */	mr r3, r30
@@ -2443,7 +2443,7 @@ lbl_80176FC0:
 /* 80176FE0 00173F20  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80176FE4 00173F24  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80176FE8 00173F28  D0 61 00 28 */	stfs f3, 0x28(r1)
-/* 80176FEC 00173F2C  48 06 0B F9 */	bl drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3$$0f$$1
+/* 80176FEC 00173F2C  48 06 0B F9 */	bl "drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>"
 /* 80176FF0 00173F30  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80176FF4 00173F34  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 80176FF8 00173F38  83 C1 00 38 */	lwz r30, 0x38(r1)
@@ -4250,7 +4250,7 @@ doEmit__Q24Game5OnyonFPQ24Game8Creatureb:
 /* 80178948 00175888  7F C3 F3 78 */	mr r3, r30
 /* 8017894C 0017588C  38 81 00 34 */	addi r4, r1, 0x34
 /* 80178950 00175890  38 A0 00 00 */	li r5, 0
-/* 80178954 00175894  4B FC 28 55 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80178954 00175894  4B FC 28 55 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 80178958 00175898  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
 /* 8017895C 0017589C  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 80178960 001758A0  2C 00 00 00 */	cmpwi r0, 0
@@ -5514,7 +5514,7 @@ lbl_80179AE8:
 /* 80179B40 00176A80  D0 41 00 3C */	stfs f2, 0x3c(r1)
 /* 80179B44 00176A84  D0 01 00 34 */	stfs f0, 0x34(r1)
 /* 80179B48 00176A88  D0 21 00 38 */	stfs f1, 0x38(r1)
-/* 80179B4C 00176A8C  4B FC 16 5D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80179B4C 00176A8C  4B FC 16 5D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 80179B50 00176A90  7F A3 EB 78 */	mr r3, r29
 /* 80179B54 00176A94  38 81 00 34 */	addi r4, r1, 0x34
 /* 80179B58 00176A98  81 9D 00 00 */	lwz r12, 0(r29)
@@ -5607,8 +5607,8 @@ lbl_80179C8C:
 /* 80179CA0 00176BE0  38 21 00 80 */	addi r1, r1, 0x80
 /* 80179CA4 00176BE4  4E 80 00 20 */	blr 
 
-.global insideAccessArea__Q24Game5OnyonFR10Vector3$$0f$$1
-insideAccessArea__Q24Game5OnyonFR10Vector3$$0f$$1:
+.global "insideAccessArea__Q24Game5OnyonFR10Vector3<f>"
+"insideAccessArea__Q24Game5OnyonFR10Vector3<f>":
 /* 80179CA8 00176BE8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80179CAC 00176BEC  7C 08 02 A6 */	mflr r0
 /* 80179CB0 00176BF0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5659,8 +5659,8 @@ lbl_80179D4C:
 /* 80179D58 00176C98  38 21 00 20 */	addi r1, r1, 0x20
 /* 80179D5C 00176C9C  4E 80 00 20 */	blr 
 
-.global generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm
-generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm:
+.global "generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
+"generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
 /* 80179D60 00176CA0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80179D64 00176CA4  7C 08 02 A6 */	mflr r0
 /* 80179D68 00176CA8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5734,7 +5734,7 @@ lbl_80179E3C:
 /* 80179E54 00176D94  7F 64 DB 78 */	mr r4, r27
 /* 80179E58 00176D98  38 A0 00 00 */	li r5, 0
 /* 80179E5C 00176D9C  D0 03 02 28 */	stfs f0, 0x228(r3)
-/* 80179E60 00176DA0  4B FC 13 49 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80179E60 00176DA0  4B FC 13 49 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 80179E64 00176DA4  7F C3 F3 78 */	mr r3, r30
 lbl_80179E68:
 /* 80179E68 00176DA8  BB 41 00 08 */	lmw r26, 8(r1)
@@ -6159,11 +6159,11 @@ lbl_8017A418:
 initDependency__Q34Game9ItemOnyon3MgrFv:
 /* 8017A434 00177374  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8017A438 00177378  7C 08 02 A6 */	mflr r0
-/* 8017A43C 0017737C  3C 80 80 4B */	lis r4, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
+/* 8017A43C 0017737C  3C 80 80 4B */	lis r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
 /* 8017A440 00177380  38 63 00 4C */	addi r3, r3, 0x4c
 /* 8017A444 00177384  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017A448 00177388  38 00 00 00 */	li r0, 0
-/* 8017A44C 0017738C  38 84 05 48 */	addi r4, r4, __vt__23Iterator$$0Q24Game5Onyon$$1@l
+/* 8017A44C 0017738C  38 84 05 48 */	addi r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
 /* 8017A450 00177390  28 00 00 00 */	cmplwi r0, 0
 /* 8017A454 00177394  90 81 00 08 */	stw r4, 8(r1)
 /* 8017A458 00177398  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6441,9 +6441,9 @@ lbl_8017A7F0:
 /* 8017A810 00177750  38 A0 00 00 */	li r5, 0
 /* 8017A814 00177754  38 03 AC DC */	addi r0, r3, __vt__16GenericContainer@l
 /* 8017A818 00177758  3B DF 00 4C */	addi r30, r31, 0x4c
-/* 8017A81C 0017775C  3C 60 80 4B */	lis r3, __vt__24Container$$0Q24Game5Onyon$$1@ha
+/* 8017A81C 0017775C  3C 60 80 4B */	lis r3, "__vt__24Container<Q24Game5Onyon>"@ha
 /* 8017A820 00177760  90 1D 00 00 */	stw r0, 0(r29)
-/* 8017A824 00177764  38 03 25 EC */	addi r0, r3, __vt__24Container$$0Q24Game5Onyon$$1@l
+/* 8017A824 00177764  38 03 25 EC */	addi r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
 /* 8017A828 00177768  90 1D 00 00 */	stw r0, 0(r29)
 /* 8017A82C 0017776C  3C 60 80 4B */	lis r3, __vt__Q34Game9ItemOnyon3Mgr@ha
 /* 8017A830 00177770  38 83 24 2C */	addi r4, r3, __vt__Q34Game9ItemOnyon3Mgr@l
@@ -6454,17 +6454,17 @@ lbl_8017A7F0:
 /* 8017A844 00177784  90 1F 00 30 */	stw r0, 0x30(r31)
 /* 8017A848 00177788  48 29 6B 49 */	bl __ct__5CNodeFv
 /* 8017A84C 0017778C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8017A850 00177790  3C 60 80 4B */	lis r3, __vt__24Container$$0Q24Game5Onyon$$1@ha
+/* 8017A850 00177790  3C 60 80 4B */	lis r3, "__vt__24Container<Q24Game5Onyon>"@ha
 /* 8017A854 00177794  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 8017A858 00177798  3C A0 80 4B */	lis r5, __vt__16GenericObjectMgr@ha
 /* 8017A85C 0017779C  90 1E 00 00 */	stw r0, 0(r30)
-/* 8017A860 001777A0  38 03 25 EC */	addi r0, r3, __vt__24Container$$0Q24Game5Onyon$$1@l
-/* 8017A864 001777A4  3C 80 80 4B */	lis r4, __vt__24ObjectMgr$$0Q24Game5Onyon$$1@ha
-/* 8017A868 001777A8  3C 60 80 4B */	lis r3, __vt__28NodeObjectMgr$$0Q24Game5Onyon$$1@ha
+/* 8017A860 001777A0  38 03 25 EC */	addi r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
+/* 8017A864 001777A4  3C 80 80 4B */	lis r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
+/* 8017A868 001777A8  3C 60 80 4B */	lis r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@ha
 /* 8017A86C 001777AC  90 1E 00 00 */	stw r0, 0(r30)
 /* 8017A870 001777B0  38 00 00 00 */	li r0, 0
-/* 8017A874 001777B4  38 C4 25 70 */	addi r6, r4, __vt__24ObjectMgr$$0Q24Game5Onyon$$1@l
-/* 8017A878 001777B8  38 83 24 F0 */	addi r4, r3, __vt__28NodeObjectMgr$$0Q24Game5Onyon$$1@l
+/* 8017A874 001777B4  38 C4 25 70 */	addi r6, r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
+/* 8017A878 001777B8  38 83 24 F0 */	addi r4, r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@l
 /* 8017A87C 001777BC  98 1E 00 18 */	stb r0, 0x18(r30)
 /* 8017A880 001777C0  38 05 B5 F0 */	addi r0, r5, __vt__16GenericObjectMgr@l
 /* 8017A884 001777C4  3B BE 00 20 */	addi r29, r30, 0x20
@@ -6477,9 +6477,9 @@ lbl_8017A7F0:
 /* 8017A8A0 001777E0  90 9E 00 00 */	stw r4, 0(r30)
 /* 8017A8A4 001777E4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8017A8A8 001777E8  48 29 6A E9 */	bl __ct__5CNodeFv
-/* 8017A8AC 001777EC  3C 60 80 4B */	lis r3, __vt__26TObjectNode$$0Q24Game5Onyon$$1@ha
+/* 8017A8AC 001777EC  3C 60 80 4B */	lis r3, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
 /* 8017A8B0 001777F0  3C 80 80 43 */	lis r4, __ct__Q23Sys18MatTevRegAnimationFv@ha
-/* 8017A8B4 001777F4  38 03 24 E0 */	addi r0, r3, __vt__26TObjectNode$$0Q24Game5Onyon$$1@l
+/* 8017A8B4 001777F4  38 03 24 E0 */	addi r0, r3, "__vt__26TObjectNode<Q24Game5Onyon>"@l
 /* 8017A8B8 001777F8  38 A0 00 00 */	li r5, 0
 /* 8017A8BC 001777FC  90 1D 00 00 */	stw r0, 0(r29)
 /* 8017A8C0 00177800  38 7F 00 B4 */	addi r3, r31, 0xb4
@@ -6518,8 +6518,8 @@ lbl_8017A7F0:
 /* 8017A944 00177884  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017A948 00177888  4E 80 00 20 */	blr 
 
-.global __dt__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv
-__dt__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "__dt__28NodeObjectMgr<Q24Game5Onyon>Fv"
+"__dt__28NodeObjectMgr<Q24Game5Onyon>Fv":
 /* 8017A94C 0017788C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017A950 00177890  7C 08 02 A6 */	mflr r0
 /* 8017A954 00177894  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6528,30 +6528,30 @@ __dt__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv:
 /* 8017A960 001778A0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8017A964 001778A4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8017A968 001778A8  41 82 00 90 */	beq lbl_8017A9F8
-/* 8017A96C 001778AC  3C 60 80 4B */	lis r3, __vt__28NodeObjectMgr$$0Q24Game5Onyon$$1@ha
+/* 8017A96C 001778AC  3C 60 80 4B */	lis r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@ha
 /* 8017A970 001778B0  34 1E 00 20 */	addic. r0, r30, 0x20
-/* 8017A974 001778B4  38 63 24 F0 */	addi r3, r3, __vt__28NodeObjectMgr$$0Q24Game5Onyon$$1@l
+/* 8017A974 001778B4  38 63 24 F0 */	addi r3, r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@l
 /* 8017A978 001778B8  90 7E 00 00 */	stw r3, 0(r30)
 /* 8017A97C 001778BC  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8017A980 001778C0  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8017A984 001778C4  41 82 00 1C */	beq lbl_8017A9A0
-/* 8017A988 001778C8  3C 80 80 4B */	lis r4, __vt__26TObjectNode$$0Q24Game5Onyon$$1@ha
+/* 8017A988 001778C8  3C 80 80 4B */	lis r4, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
 /* 8017A98C 001778CC  38 7E 00 20 */	addi r3, r30, 0x20
-/* 8017A990 001778D0  38 04 24 E0 */	addi r0, r4, __vt__26TObjectNode$$0Q24Game5Onyon$$1@l
+/* 8017A990 001778D0  38 04 24 E0 */	addi r0, r4, "__vt__26TObjectNode<Q24Game5Onyon>"@l
 /* 8017A994 001778D4  38 80 00 00 */	li r4, 0
 /* 8017A998 001778D8  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 8017A99C 001778DC  48 29 6B ED */	bl __dt__5CNodeFv
 lbl_8017A9A0:
 /* 8017A9A0 001778E0  28 1E 00 00 */	cmplwi r30, 0
 /* 8017A9A4 001778E4  41 82 00 44 */	beq lbl_8017A9E8
-/* 8017A9A8 001778E8  3C 60 80 4B */	lis r3, __vt__24ObjectMgr$$0Q24Game5Onyon$$1@ha
-/* 8017A9AC 001778EC  38 63 25 70 */	addi r3, r3, __vt__24ObjectMgr$$0Q24Game5Onyon$$1@l
+/* 8017A9A8 001778E8  3C 60 80 4B */	lis r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
+/* 8017A9AC 001778EC  38 63 25 70 */	addi r3, r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
 /* 8017A9B0 001778F0  90 7E 00 00 */	stw r3, 0(r30)
 /* 8017A9B4 001778F4  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8017A9B8 001778F8  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8017A9BC 001778FC  41 82 00 2C */	beq lbl_8017A9E8
-/* 8017A9C0 00177900  3C 60 80 4B */	lis r3, __vt__24Container$$0Q24Game5Onyon$$1@ha
-/* 8017A9C4 00177904  38 03 25 EC */	addi r0, r3, __vt__24Container$$0Q24Game5Onyon$$1@l
+/* 8017A9C0 00177900  3C 60 80 4B */	lis r3, "__vt__24Container<Q24Game5Onyon>"@ha
+/* 8017A9C4 00177904  38 03 25 EC */	addi r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
 /* 8017A9C8 00177908  90 1E 00 00 */	stw r0, 0(r30)
 /* 8017A9CC 0017790C  41 82 00 1C */	beq lbl_8017A9E8
 /* 8017A9D0 00177910  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -6574,8 +6574,8 @@ lbl_8017A9F8:
 /* 8017AA0C 0017794C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017AA10 00177950  4E 80 00 20 */	blr 
 
-.global __dt__26TObjectNode$$0Q24Game5Onyon$$1Fv
-__dt__26TObjectNode$$0Q24Game5Onyon$$1Fv:
+.global "__dt__26TObjectNode<Q24Game5Onyon>Fv"
+"__dt__26TObjectNode<Q24Game5Onyon>Fv":
 /* 8017AA14 00177954  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017AA18 00177958  7C 08 02 A6 */	mflr r0
 /* 8017AA1C 0017795C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6584,9 +6584,9 @@ __dt__26TObjectNode$$0Q24Game5Onyon$$1Fv:
 /* 8017AA28 00177968  93 C1 00 08 */	stw r30, 8(r1)
 /* 8017AA2C 0017796C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8017AA30 00177970  41 82 00 28 */	beq lbl_8017AA58
-/* 8017AA34 00177974  3C A0 80 4B */	lis r5, __vt__26TObjectNode$$0Q24Game5Onyon$$1@ha
+/* 8017AA34 00177974  3C A0 80 4B */	lis r5, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
 /* 8017AA38 00177978  38 80 00 00 */	li r4, 0
-/* 8017AA3C 0017797C  38 05 24 E0 */	addi r0, r5, __vt__26TObjectNode$$0Q24Game5Onyon$$1@l
+/* 8017AA3C 0017797C  38 05 24 E0 */	addi r0, r5, "__vt__26TObjectNode<Q24Game5Onyon>"@l
 /* 8017AA40 00177980  90 1E 00 00 */	stw r0, 0(r30)
 /* 8017AA44 00177984  48 29 6B 45 */	bl __dt__5CNodeFv
 /* 8017AA48 00177988  7F E0 07 35 */	extsh. r0, r31
@@ -6602,8 +6602,8 @@ lbl_8017AA58:
 /* 8017AA6C 001779AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017AA70 001779B0  4E 80 00 20 */	blr 
 
-.global __dt__24ObjectMgr$$0Q24Game5Onyon$$1Fv
-__dt__24ObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "__dt__24ObjectMgr<Q24Game5Onyon>Fv"
+"__dt__24ObjectMgr<Q24Game5Onyon>Fv":
 /* 8017AA74 001779B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017AA78 001779B8  7C 08 02 A6 */	mflr r0
 /* 8017AA7C 001779BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6612,14 +6612,14 @@ __dt__24ObjectMgr$$0Q24Game5Onyon$$1Fv:
 /* 8017AA88 001779C8  93 C1 00 08 */	stw r30, 8(r1)
 /* 8017AA8C 001779CC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8017AA90 001779D0  41 82 00 50 */	beq lbl_8017AAE0
-/* 8017AA94 001779D4  3C 80 80 4B */	lis r4, __vt__24ObjectMgr$$0Q24Game5Onyon$$1@ha
-/* 8017AA98 001779D8  38 84 25 70 */	addi r4, r4, __vt__24ObjectMgr$$0Q24Game5Onyon$$1@l
+/* 8017AA94 001779D4  3C 80 80 4B */	lis r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
+/* 8017AA98 001779D8  38 84 25 70 */	addi r4, r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
 /* 8017AA9C 001779DC  90 9E 00 00 */	stw r4, 0(r30)
 /* 8017AAA0 001779E0  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8017AAA4 001779E4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8017AAA8 001779E8  41 82 00 28 */	beq lbl_8017AAD0
-/* 8017AAAC 001779EC  3C 80 80 4B */	lis r4, __vt__24Container$$0Q24Game5Onyon$$1@ha
-/* 8017AAB0 001779F0  38 04 25 EC */	addi r0, r4, __vt__24Container$$0Q24Game5Onyon$$1@l
+/* 8017AAAC 001779EC  3C 80 80 4B */	lis r4, "__vt__24Container<Q24Game5Onyon>"@ha
+/* 8017AAB0 001779F0  38 04 25 EC */	addi r0, r4, "__vt__24Container<Q24Game5Onyon>"@l
 /* 8017AAB4 001779F4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8017AAB8 001779F8  41 82 00 18 */	beq lbl_8017AAD0
 /* 8017AABC 001779FC  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -6641,8 +6641,8 @@ lbl_8017AAE0:
 /* 8017AAF4 00177A34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017AAF8 00177A38  4E 80 00 20 */	blr 
 
-.global __dt__24Container$$0Q24Game5Onyon$$1Fv
-__dt__24Container$$0Q24Game5Onyon$$1Fv:
+.global "__dt__24Container<Q24Game5Onyon>Fv"
+"__dt__24Container<Q24Game5Onyon>Fv":
 /* 8017AAFC 00177A3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017AB00 00177A40  7C 08 02 A6 */	mflr r0
 /* 8017AB04 00177A44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6651,8 +6651,8 @@ __dt__24Container$$0Q24Game5Onyon$$1Fv:
 /* 8017AB10 00177A50  93 C1 00 08 */	stw r30, 8(r1)
 /* 8017AB14 00177A54  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8017AB18 00177A58  41 82 00 38 */	beq lbl_8017AB50
-/* 8017AB1C 00177A5C  3C 80 80 4B */	lis r4, __vt__24Container$$0Q24Game5Onyon$$1@ha
-/* 8017AB20 00177A60  38 04 25 EC */	addi r0, r4, __vt__24Container$$0Q24Game5Onyon$$1@l
+/* 8017AB1C 00177A5C  3C 80 80 4B */	lis r4, "__vt__24Container<Q24Game5Onyon>"@ha
+/* 8017AB20 00177A60  38 04 25 EC */	addi r0, r4, "__vt__24Container<Q24Game5Onyon>"@l
 /* 8017AB24 00177A64  90 1E 00 00 */	stw r0, 0(r30)
 /* 8017AB28 00177A68  41 82 00 18 */	beq lbl_8017AB40
 /* 8017AB2C 00177A6C  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -6691,31 +6691,31 @@ __dt__Q34Game9ItemOnyon3MgrFv:
 /* 8017AB9C 00177ADC  38 03 00 74 */	addi r0, r3, 0x74
 /* 8017ABA0 00177AE0  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 8017ABA4 00177AE4  41 82 00 84 */	beq lbl_8017AC28
-/* 8017ABA8 00177AE8  3C 80 80 4B */	lis r4, __vt__28NodeObjectMgr$$0Q24Game5Onyon$$1@ha
+/* 8017ABA8 00177AE8  3C 80 80 4B */	lis r4, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@ha
 /* 8017ABAC 00177AEC  34 7E 00 6C */	addic. r3, r30, 0x6c
-/* 8017ABB0 00177AF0  38 84 24 F0 */	addi r4, r4, __vt__28NodeObjectMgr$$0Q24Game5Onyon$$1@l
+/* 8017ABB0 00177AF0  38 84 24 F0 */	addi r4, r4, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@l
 /* 8017ABB4 00177AF4  90 9E 00 4C */	stw r4, 0x4c(r30)
 /* 8017ABB8 00177AF8  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8017ABBC 00177AFC  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 8017ABC0 00177B00  41 82 00 18 */	beq lbl_8017ABD8
-/* 8017ABC4 00177B04  3C 80 80 4B */	lis r4, __vt__26TObjectNode$$0Q24Game5Onyon$$1@ha
-/* 8017ABC8 00177B08  38 04 24 E0 */	addi r0, r4, __vt__26TObjectNode$$0Q24Game5Onyon$$1@l
+/* 8017ABC4 00177B04  3C 80 80 4B */	lis r4, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
+/* 8017ABC8 00177B08  38 04 24 E0 */	addi r0, r4, "__vt__26TObjectNode<Q24Game5Onyon>"@l
 /* 8017ABCC 00177B0C  90 1E 00 6C */	stw r0, 0x6c(r30)
 /* 8017ABD0 00177B10  38 80 00 00 */	li r4, 0
 /* 8017ABD4 00177B14  48 29 69 B5 */	bl __dt__5CNodeFv
 lbl_8017ABD8:
 /* 8017ABD8 00177B18  34 1E 00 4C */	addic. r0, r30, 0x4c
 /* 8017ABDC 00177B1C  41 82 00 4C */	beq lbl_8017AC28
-/* 8017ABE0 00177B20  3C 60 80 4B */	lis r3, __vt__24ObjectMgr$$0Q24Game5Onyon$$1@ha
+/* 8017ABE0 00177B20  3C 60 80 4B */	lis r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
 /* 8017ABE4 00177B24  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 8017ABE8 00177B28  38 63 25 70 */	addi r3, r3, __vt__24ObjectMgr$$0Q24Game5Onyon$$1@l
+/* 8017ABE8 00177B28  38 63 25 70 */	addi r3, r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
 /* 8017ABEC 00177B2C  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 8017ABF0 00177B30  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8017ABF4 00177B34  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 8017ABF8 00177B38  41 82 00 30 */	beq lbl_8017AC28
-/* 8017ABFC 00177B3C  3C 60 80 4B */	lis r3, __vt__24Container$$0Q24Game5Onyon$$1@ha
+/* 8017ABFC 00177B3C  3C 60 80 4B */	lis r3, "__vt__24Container<Q24Game5Onyon>"@ha
 /* 8017AC00 00177B40  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 8017AC04 00177B44  38 03 25 EC */	addi r0, r3, __vt__24Container$$0Q24Game5Onyon$$1@l
+/* 8017AC04 00177B44  38 03 25 EC */	addi r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
 /* 8017AC08 00177B48  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 8017AC0C 00177B4C  41 82 00 1C */	beq lbl_8017AC28
 /* 8017AC10 00177B50  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -6727,9 +6727,9 @@ lbl_8017ABD8:
 lbl_8017AC28:
 /* 8017AC28 00177B68  34 1E 00 30 */	addic. r0, r30, 0x30
 /* 8017AC2C 00177B6C  41 82 00 30 */	beq lbl_8017AC5C
-/* 8017AC30 00177B70  3C 60 80 4B */	lis r3, __vt__24Container$$0Q24Game5Onyon$$1@ha
+/* 8017AC30 00177B70  3C 60 80 4B */	lis r3, "__vt__24Container<Q24Game5Onyon>"@ha
 /* 8017AC34 00177B74  34 1E 00 30 */	addic. r0, r30, 0x30
-/* 8017AC38 00177B78  38 03 25 EC */	addi r0, r3, __vt__24Container$$0Q24Game5Onyon$$1@l
+/* 8017AC38 00177B78  38 03 25 EC */	addi r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
 /* 8017AC3C 00177B7C  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 8017AC40 00177B80  41 82 00 1C */	beq lbl_8017AC5C
 /* 8017AC44 00177B84  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -6940,8 +6940,8 @@ birth__Q34Game9ItemOnyon3MgrFii:
 /* 8017AF0C 00177E4C  7C 7D 1B 79 */	or. r29, r3, r3
 /* 8017AF10 00177E50  41 82 00 14 */	beq lbl_8017AF24
 /* 8017AF14 00177E54  48 29 64 7D */	bl __ct__5CNodeFv
-/* 8017AF18 00177E58  3C 60 80 4B */	lis r3, __vt__26TObjectNode$$0Q24Game5Onyon$$1@ha
-/* 8017AF1C 00177E5C  38 03 24 E0 */	addi r0, r3, __vt__26TObjectNode$$0Q24Game5Onyon$$1@l
+/* 8017AF18 00177E58  3C 60 80 4B */	lis r3, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
+/* 8017AF1C 00177E5C  38 03 24 E0 */	addi r0, r3, "__vt__26TObjectNode<Q24Game5Onyon>"@l
 /* 8017AF20 00177E60  90 1D 00 00 */	stw r0, 0(r29)
 lbl_8017AF24:
 /* 8017AF24 00177E64  2C 1C 00 01 */	cmpwi r28, 1
@@ -8282,8 +8282,8 @@ getEnd__Q34Game9ItemOnyon3MgrFv:
 /* 8017C1A0 001790E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017C1A4 001790E4  4E 80 00 20 */	blr 
 
-.global getEnd__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv
-getEnd__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "getEnd__28NodeObjectMgr<Q24Game5Onyon>Fv"
+"getEnd__28NodeObjectMgr<Q24Game5Onyon>Fv":
 /* 8017C1A8 001790E8  38 60 00 00 */	li r3, 0
 /* 8017C1AC 001790EC  4E 80 00 20 */	blr 
 
@@ -8301,8 +8301,8 @@ getStart__Q34Game9ItemOnyon3MgrFv:
 /* 8017C1D4 00179114  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017C1D8 00179118  4E 80 00 20 */	blr 
 
-.global getStart__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv
-getStart__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "getStart__28NodeObjectMgr<Q24Game5Onyon>Fv"
+"getStart__28NodeObjectMgr<Q24Game5Onyon>Fv":
 /* 8017C1DC 0017911C  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 8017C1E0 00179120  4E 80 00 20 */	blr 
 
@@ -8320,8 +8320,8 @@ getNext__Q34Game9ItemOnyon3MgrFPv:
 /* 8017C208 00179148  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017C20C 0017914C  4E 80 00 20 */	blr 
 
-.global getNext__28NodeObjectMgr$$0Q24Game5Onyon$$1FPv
-getNext__28NodeObjectMgr$$0Q24Game5Onyon$$1FPv:
+.global "getNext__28NodeObjectMgr<Q24Game5Onyon>FPv"
+"getNext__28NodeObjectMgr<Q24Game5Onyon>FPv":
 /* 8017C210 00179150  80 64 00 04 */	lwz r3, 4(r4)
 /* 8017C214 00179154  4E 80 00 20 */	blr 
 
@@ -8339,8 +8339,8 @@ get__Q34Game9ItemOnyon3MgrFPv:
 /* 8017C23C 0017917C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017C240 00179180  4E 80 00 20 */	blr 
 
-.global get__28NodeObjectMgr$$0Q24Game5Onyon$$1FPv
-get__28NodeObjectMgr$$0Q24Game5Onyon$$1FPv:
+.global "get__28NodeObjectMgr<Q24Game5Onyon>FPv"
+"get__28NodeObjectMgr<Q24Game5Onyon>FPv":
 /* 8017C244 00179184  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 8017C248 00179188  4E 80 00 20 */	blr 
 
@@ -8426,8 +8426,8 @@ interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey:
 /* 8017C2CC 0017920C  38 60 00 00 */	li r3, 0
 /* 8017C2D0 00179210  4E 80 00 20 */	blr 
 
-.global getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3$$0f$$1
-getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3$$0f$$1:
+.global "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>"
+"getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>":
 /* 8017C2D4 00179214  38 60 00 01 */	li r3, 1
 /* 8017C2D8 00179218  4E 80 00 20 */	blr 
 
@@ -8464,8 +8464,8 @@ getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere:
 /* 8017C310 00179250  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 8017C314 00179254  4E 80 00 20 */	blr 
 
-.global onSetPosition__Q24Game8BaseItemFR10Vector3$$0f$$1
-onSetPosition__Q24Game8BaseItemFR10Vector3$$0f$$1:
+.global "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
+"onSetPosition__Q24Game8BaseItemFR10Vector3<f>":
 /* 8017C318 00179258  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017C31C 0017925C  7C 08 02 A6 */	mflr r0
 /* 8017C320 00179260  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8498,8 +8498,8 @@ getVelocity__Q24Game8BaseItemFv:
 /* 8017C374 001792B4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8017C378 001792B8  4E 80 00 20 */	blr 
 
-.global getVelocityAt__Q24Game8BaseItemFR10Vector3$$0f$$1R10Vector3$$0f$$1
-getVelocityAt__Q24Game8BaseItemFR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
+"getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>":
 /* 8017C37C 001792BC  C0 02 A6 CC */	lfs f0, lbl_80518A2C@sda21(r2)
 /* 8017C380 001792C0  D0 05 00 00 */	stfs f0, 0(r5)
 /* 8017C384 001792C4  D0 05 00 04 */	stfs f0, 4(r5)
@@ -8786,8 +8786,8 @@ getName__Q24Game11ItemInitArgFv:
 /* 8017C74C 0017968C  38 63 EA 74 */	addi r3, r3, lbl_8047EA74@l
 /* 8017C750 00179690  4E 80 00 20 */	blr 
 
-.global resetMgr__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv
-resetMgr__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
+"resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv":
 /* 8017C754 00179694  38 00 00 00 */	li r0, 0
 /* 8017C758 00179698  90 03 00 30 */	stw r0, 0x30(r3)
 /* 8017C75C 0017969C  90 03 00 2C */	stw r0, 0x2c(r3)
@@ -8795,14 +8795,14 @@ resetMgr__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv:
 /* 8017C764 001796A4  90 03 00 24 */	stw r0, 0x24(r3)
 /* 8017C768 001796A8  4E 80 00 20 */	blr 
 
-.global doAnimation__24ObjectMgr$$0Q24Game5Onyon$$1Fv
-doAnimation__24ObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+"doAnimation__24ObjectMgr<Q24Game5Onyon>Fv":
 /* 8017C76C 001796AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8017C770 001796B0  7C 08 02 A6 */	mflr r0
-/* 8017C774 001796B4  3C 80 80 4B */	lis r4, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
+/* 8017C774 001796B4  3C 80 80 4B */	lis r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
 /* 8017C778 001796B8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017C77C 001796BC  38 00 00 00 */	li r0, 0
-/* 8017C780 001796C0  38 84 05 48 */	addi r4, r4, __vt__23Iterator$$0Q24Game5Onyon$$1@l
+/* 8017C780 001796C0  38 84 05 48 */	addi r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
 /* 8017C784 001796C4  28 00 00 00 */	cmplwi r0, 0
 /* 8017C788 001796C8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8017C78C 001796CC  90 81 00 08 */	stw r4, 8(r1)
@@ -8927,14 +8927,14 @@ lbl_8017C920:
 /* 8017C948 00179888  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017C94C 0017988C  4E 80 00 20 */	blr 
 
-.global doEntry__24ObjectMgr$$0Q24Game5Onyon$$1Fv
-doEntry__24ObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+"doEntry__24ObjectMgr<Q24Game5Onyon>Fv":
 /* 8017C950 00179890  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8017C954 00179894  7C 08 02 A6 */	mflr r0
-/* 8017C958 00179898  3C 80 80 4B */	lis r4, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
+/* 8017C958 00179898  3C 80 80 4B */	lis r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
 /* 8017C95C 0017989C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017C960 001798A0  38 00 00 00 */	li r0, 0
-/* 8017C964 001798A4  38 84 05 48 */	addi r4, r4, __vt__23Iterator$$0Q24Game5Onyon$$1@l
+/* 8017C964 001798A4  38 84 05 48 */	addi r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
 /* 8017C968 001798A8  28 00 00 00 */	cmplwi r0, 0
 /* 8017C96C 001798AC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8017C970 001798B0  90 81 00 08 */	stw r4, 8(r1)
@@ -9059,14 +9059,14 @@ lbl_8017CB04:
 /* 8017CB2C 00179A6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017CB30 00179A70  4E 80 00 20 */	blr 
 
-.global doSetView__24ObjectMgr$$0Q24Game5Onyon$$1Fi
-doSetView__24ObjectMgr$$0Q24Game5Onyon$$1Fi:
+.global "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+"doSetView__24ObjectMgr<Q24Game5Onyon>Fi":
 /* 8017CB34 00179A74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8017CB38 00179A78  7C 08 02 A6 */	mflr r0
-/* 8017CB3C 00179A7C  3C A0 80 4B */	lis r5, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
+/* 8017CB3C 00179A7C  3C A0 80 4B */	lis r5, "__vt__23Iterator<Q24Game5Onyon>"@ha
 /* 8017CB40 00179A80  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017CB44 00179A84  38 00 00 00 */	li r0, 0
-/* 8017CB48 00179A88  38 A5 05 48 */	addi r5, r5, __vt__23Iterator$$0Q24Game5Onyon$$1@l
+/* 8017CB48 00179A88  38 A5 05 48 */	addi r5, r5, "__vt__23Iterator<Q24Game5Onyon>"@l
 /* 8017CB4C 00179A8C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8017CB50 00179A90  28 00 00 00 */	cmplwi r0, 0
 /* 8017CB54 00179A94  7C 9F 23 78 */	mr r31, r4
@@ -9195,14 +9195,14 @@ lbl_8017CCF4:
 /* 8017CD20 00179C60  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017CD24 00179C64  4E 80 00 20 */	blr 
 
-.global doViewCalc__24ObjectMgr$$0Q24Game5Onyon$$1Fv
-doViewCalc__24ObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+"doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv":
 /* 8017CD28 00179C68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8017CD2C 00179C6C  7C 08 02 A6 */	mflr r0
-/* 8017CD30 00179C70  3C 80 80 4B */	lis r4, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
+/* 8017CD30 00179C70  3C 80 80 4B */	lis r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
 /* 8017CD34 00179C74  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017CD38 00179C78  38 00 00 00 */	li r0, 0
-/* 8017CD3C 00179C7C  38 84 05 48 */	addi r4, r4, __vt__23Iterator$$0Q24Game5Onyon$$1@l
+/* 8017CD3C 00179C7C  38 84 05 48 */	addi r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
 /* 8017CD40 00179C80  28 00 00 00 */	cmplwi r0, 0
 /* 8017CD44 00179C84  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8017CD48 00179C88  90 81 00 08 */	stw r4, 8(r1)
@@ -9327,14 +9327,14 @@ lbl_8017CEDC:
 /* 8017CF04 00179E44  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017CF08 00179E48  4E 80 00 20 */	blr 
 
-.global doSimulation__24ObjectMgr$$0Q24Game5Onyon$$1Ff
-doSimulation__24ObjectMgr$$0Q24Game5Onyon$$1Ff:
+.global "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+"doSimulation__24ObjectMgr<Q24Game5Onyon>Ff":
 /* 8017CF0C 00179E4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8017CF10 00179E50  7C 08 02 A6 */	mflr r0
-/* 8017CF14 00179E54  3C 80 80 4B */	lis r4, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
+/* 8017CF14 00179E54  3C 80 80 4B */	lis r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
 /* 8017CF18 00179E58  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017CF1C 00179E5C  38 00 00 00 */	li r0, 0
-/* 8017CF20 00179E60  38 84 05 48 */	addi r4, r4, __vt__23Iterator$$0Q24Game5Onyon$$1@l
+/* 8017CF20 00179E60  38 84 05 48 */	addi r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
 /* 8017CF24 00179E64  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 8017CF28 00179E68  FF E0 08 90 */	fmr f31, f1
 /* 8017CF2C 00179E6C  28 00 00 00 */	cmplwi r0, 0
@@ -9463,14 +9463,14 @@ lbl_8017D0CC:
 /* 8017D0F8 0017A038  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017D0FC 0017A03C  4E 80 00 20 */	blr 
 
-.global doDirectDraw__24ObjectMgr$$0Q24Game5Onyon$$1FR8Graphics
-doDirectDraw__24ObjectMgr$$0Q24Game5Onyon$$1FR8Graphics:
+.global "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+"doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics":
 /* 8017D100 0017A040  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8017D104 0017A044  7C 08 02 A6 */	mflr r0
-/* 8017D108 0017A048  3C A0 80 4B */	lis r5, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
+/* 8017D108 0017A048  3C A0 80 4B */	lis r5, "__vt__23Iterator<Q24Game5Onyon>"@ha
 /* 8017D10C 0017A04C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017D110 0017A050  38 00 00 00 */	li r0, 0
-/* 8017D114 0017A054  38 A5 05 48 */	addi r5, r5, __vt__23Iterator$$0Q24Game5Onyon$$1@l
+/* 8017D114 0017A054  38 A5 05 48 */	addi r5, r5, "__vt__23Iterator<Q24Game5Onyon>"@l
 /* 8017D118 0017A058  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8017D11C 0017A05C  28 00 00 00 */	cmplwi r0, 0
 /* 8017D120 0017A060  7C 9F 23 78 */	mr r31, r4
@@ -9599,8 +9599,8 @@ lbl_8017D2C0:
 /* 8017D2EC 0017A22C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017D2F0 0017A230  4E 80 00 20 */	blr 
 
-.global getObject__24Container$$0Q24Game5Onyon$$1FPv
-getObject__24Container$$0Q24Game5Onyon$$1FPv:
+.global "getObject__24Container<Q24Game5Onyon>FPv"
+"getObject__24Container<Q24Game5Onyon>FPv":
 /* 8017D2F4 0017A234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017D2F8 0017A238  7C 08 02 A6 */	mflr r0
 /* 8017D2FC 0017A23C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9613,13 +9613,13 @@ getObject__24Container$$0Q24Game5Onyon$$1FPv:
 /* 8017D318 0017A258  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017D31C 0017A25C  4E 80 00 20 */	blr 
 
-.global getAt__24Container$$0Q24Game5Onyon$$1Fi
-getAt__24Container$$0Q24Game5Onyon$$1Fi:
+.global "getAt__24Container<Q24Game5Onyon>Fi"
+"getAt__24Container<Q24Game5Onyon>Fi":
 /* 8017D320 0017A260  38 60 00 00 */	li r3, 0
 /* 8017D324 0017A264  4E 80 00 20 */	blr 
 
-.global getTo__24Container$$0Q24Game5Onyon$$1Fv
-getTo__24Container$$0Q24Game5Onyon$$1Fv:
+.global "getTo__24Container<Q24Game5Onyon>Fv"
+"getTo__24Container<Q24Game5Onyon>Fv":
 /* 8017D328 0017A268  38 60 00 00 */	li r3, 0
 /* 8017D32C 0017A26C  4E 80 00 20 */	blr 
 
@@ -9636,102 +9636,102 @@ __sinit_onyonMgr_cpp:
 /* 8017D350 0017A290  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8017D354 0017A294  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx8TForeverFv
-$$24$$2__dt__Q23efx8TForeverFv:
+.global "@4@__dt__Q23efx8TForeverFv"
+"@4@__dt__Q23efx8TForeverFv":
 /* 8017D358 0017A298  38 63 FF FC */	addi r3, r3, -4
 /* 8017D35C 0017A29C  4B FF 89 6C */	b __dt__Q23efx8TForeverFv
 
-.global $$24$$2__dt__Q23efx15TUfoPodOpenSuckFv
-$$24$$2__dt__Q23efx15TUfoPodOpenSuckFv:
+.global "@4@__dt__Q23efx15TUfoPodOpenSuckFv"
+"@4@__dt__Q23efx15TUfoPodOpenSuckFv":
 /* 8017D360 0017A2A0  38 63 FF FC */	addi r3, r3, -4
 /* 8017D364 0017A2A4  4B FF F3 3C */	b __dt__Q23efx15TUfoPodOpenSuckFv
 
-.global $$24$$2__dt__Q23efx9TUfoGasInFv
-$$24$$2__dt__Q23efx9TUfoGasInFv:
+.global "@4@__dt__Q23efx9TUfoGasInFv"
+"@4@__dt__Q23efx9TUfoGasInFv":
 /* 8017D368 0017A2A8  38 63 FF FC */	addi r3, r3, -4
 /* 8017D36C 0017A2AC  4B FF F2 98 */	b __dt__Q23efx9TUfoGasInFv
 
-.global $$24$$2__dt__Q23efx10TUfoGasOutFv
-$$24$$2__dt__Q23efx10TUfoGasOutFv:
+.global "@4@__dt__Q23efx10TUfoGasOutFv"
+"@4@__dt__Q23efx10TUfoGasOutFv":
 /* 8017D370 0017A2B0  38 63 FF FC */	addi r3, r3, -4
 /* 8017D374 0017A2B4  4B FF F1 F4 */	b __dt__Q23efx10TUfoGasOutFv
 
-.global $$24$$2__dt__Q23efx9TPodOpenAFv
-$$24$$2__dt__Q23efx9TPodOpenAFv:
+.global "@4@__dt__Q23efx9TPodOpenAFv"
+"@4@__dt__Q23efx9TPodOpenAFv":
 /* 8017D378 0017A2B8  38 63 FF FC */	addi r3, r3, -4
 /* 8017D37C 0017A2BC  4B FF F1 4C */	b __dt__Q23efx9TPodOpenAFv
 
-.global $$24$$2__dt__Q23efx9TPodOpenBFv
-$$24$$2__dt__Q23efx9TPodOpenBFv:
+.global "@4@__dt__Q23efx9TPodOpenBFv"
+"@4@__dt__Q23efx9TPodOpenBFv":
 /* 8017D380 0017A2C0  38 63 FF FC */	addi r3, r3, -4
 /* 8017D384 0017A2C4  4B FF F0 A8 */	b __dt__Q23efx9TPodOpenBFv
 
-.global $$24$$2__dt__Q23efx8TPodKiraFv
-$$24$$2__dt__Q23efx8TPodKiraFv:
+.global "@4@__dt__Q23efx8TPodKiraFv"
+"@4@__dt__Q23efx8TPodKiraFv":
 /* 8017D388 0017A2C8  38 63 FF FC */	addi r3, r3, -4
 /* 8017D38C 0017A2CC  4B FF F0 04 */	b __dt__Q23efx8TPodKiraFv
 
-.global $$2376$$2onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent
-$$2376$$2onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent:
+.global "@376@onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent"
+"@376@onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent":
 /* 8017D390 0017A2D0  38 63 FE 88 */	addi r3, r3, -376
 /* 8017D394 0017A2D4  4B FF AD AC */	b onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent
 
-.global $$228$$2resetMgr__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv
-$$228$$2resetMgr__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "@28@resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
+"@28@resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv":
 /* 8017D398 0017A2D8  38 63 FF E4 */	addi r3, r3, -28
-/* 8017D39C 0017A2DC  4B FF F3 B8 */	b resetMgr__28NodeObjectMgr$$0Q24Game5Onyon$$1Fv
+/* 8017D39C 0017A2DC  4B FF F3 B8 */	b "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
 
-.global $$228$$2doDirectDraw__24ObjectMgr$$0Q24Game5Onyon$$1FR8Graphics
-$$228$$2doDirectDraw__24ObjectMgr$$0Q24Game5Onyon$$1FR8Graphics:
+.global "@28@doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+"@28@doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics":
 /* 8017D3A0 0017A2E0  38 63 FF E4 */	addi r3, r3, -28
-/* 8017D3A4 0017A2E4  4B FF FD 5C */	b doDirectDraw__24ObjectMgr$$0Q24Game5Onyon$$1FR8Graphics
+/* 8017D3A4 0017A2E4  4B FF FD 5C */	b "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
 
-.global $$228$$2doSimulation__24ObjectMgr$$0Q24Game5Onyon$$1Ff
-$$228$$2doSimulation__24ObjectMgr$$0Q24Game5Onyon$$1Ff:
+.global "@28@doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+"@28@doSimulation__24ObjectMgr<Q24Game5Onyon>Ff":
 /* 8017D3A8 0017A2E8  38 63 FF E4 */	addi r3, r3, -28
-/* 8017D3AC 0017A2EC  4B FF FB 60 */	b doSimulation__24ObjectMgr$$0Q24Game5Onyon$$1Ff
+/* 8017D3AC 0017A2EC  4B FF FB 60 */	b "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
 
-.global $$228$$2doViewCalc__24ObjectMgr$$0Q24Game5Onyon$$1Fv
-$$228$$2doViewCalc__24ObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "@28@doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+"@28@doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv":
 /* 8017D3B0 0017A2F0  38 63 FF E4 */	addi r3, r3, -28
-/* 8017D3B4 0017A2F4  4B FF F9 74 */	b doViewCalc__24ObjectMgr$$0Q24Game5Onyon$$1Fv
+/* 8017D3B4 0017A2F4  4B FF F9 74 */	b "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
 
-.global $$228$$2doSetView__24ObjectMgr$$0Q24Game5Onyon$$1Fi
-$$228$$2doSetView__24ObjectMgr$$0Q24Game5Onyon$$1Fi:
+.global "@28@doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+"@28@doSetView__24ObjectMgr<Q24Game5Onyon>Fi":
 /* 8017D3B8 0017A2F8  38 63 FF E4 */	addi r3, r3, -28
-/* 8017D3BC 0017A2FC  4B FF F7 78 */	b doSetView__24ObjectMgr$$0Q24Game5Onyon$$1Fi
+/* 8017D3BC 0017A2FC  4B FF F7 78 */	b "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
 
-.global $$228$$2doEntry__24ObjectMgr$$0Q24Game5Onyon$$1Fv
-$$228$$2doEntry__24ObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "@28@doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+"@28@doEntry__24ObjectMgr<Q24Game5Onyon>Fv":
 /* 8017D3C0 0017A300  38 63 FF E4 */	addi r3, r3, -28
-/* 8017D3C4 0017A304  4B FF F5 8C */	b doEntry__24ObjectMgr$$0Q24Game5Onyon$$1Fv
+/* 8017D3C4 0017A304  4B FF F5 8C */	b "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
 
-.global $$228$$2doAnimation__24ObjectMgr$$0Q24Game5Onyon$$1Fv
-$$228$$2doAnimation__24ObjectMgr$$0Q24Game5Onyon$$1Fv:
+.global "@28@doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+"@28@doAnimation__24ObjectMgr<Q24Game5Onyon>Fv":
 /* 8017D3C8 0017A308  38 63 FF E4 */	addi r3, r3, -28
-/* 8017D3CC 0017A30C  4B FF F3 A0 */	b doAnimation__24ObjectMgr$$0Q24Game5Onyon$$1Fv
+/* 8017D3CC 0017A30C  4B FF F3 A0 */	b "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
 
-.global $$248$$2getEnd__Q34Game9ItemOnyon3MgrFv
-$$248$$2getEnd__Q34Game9ItemOnyon3MgrFv:
+.global "@48@getEnd__Q34Game9ItemOnyon3MgrFv"
+"@48@getEnd__Q34Game9ItemOnyon3MgrFv":
 /* 8017D3D0 0017A310  38 63 FF D0 */	addi r3, r3, -48
 /* 8017D3D4 0017A314  4B FF ED A8 */	b getEnd__Q34Game9ItemOnyon3MgrFv
 
-.global $$248$$2getStart__Q34Game9ItemOnyon3MgrFv
-$$248$$2getStart__Q34Game9ItemOnyon3MgrFv:
+.global "@48@getStart__Q34Game9ItemOnyon3MgrFv"
+"@48@getStart__Q34Game9ItemOnyon3MgrFv":
 /* 8017D3D8 0017A318  38 63 FF D0 */	addi r3, r3, -48
 /* 8017D3DC 0017A31C  4B FF ED D4 */	b getStart__Q34Game9ItemOnyon3MgrFv
 
-.global $$248$$2getNext__Q34Game9ItemOnyon3MgrFPv
-$$248$$2getNext__Q34Game9ItemOnyon3MgrFPv:
+.global "@48@getNext__Q34Game9ItemOnyon3MgrFPv"
+"@48@getNext__Q34Game9ItemOnyon3MgrFPv":
 /* 8017D3E0 0017A320  38 63 FF D0 */	addi r3, r3, -48
 /* 8017D3E4 0017A324  4B FF EE 00 */	b getNext__Q34Game9ItemOnyon3MgrFPv
 
-.global $$248$$2get__Q34Game9ItemOnyon3MgrFPv
-$$248$$2get__Q34Game9ItemOnyon3MgrFPv:
+.global "@48@get__Q34Game9ItemOnyon3MgrFPv"
+"@48@get__Q34Game9ItemOnyon3MgrFPv":
 /* 8017D3E8 0017A328  38 63 FF D0 */	addi r3, r3, -48
 /* 8017D3EC 0017A32C  4B FF EE 2C */	b get__Q34Game9ItemOnyon3MgrFPv
 
-.global $$248$$2__dt__Q34Game9ItemOnyon3MgrFv
-$$248$$2__dt__Q34Game9ItemOnyon3MgrFv:
+.global "@48@__dt__Q34Game9ItemOnyon3MgrFv"
+"@48@__dt__Q34Game9ItemOnyon3MgrFv":
 /* 8017D3F0 0017A330  38 63 FF D0 */	addi r3, r3, -48
 /* 8017D3F4 0017A334  4B FF D7 78 */	b __dt__Q34Game9ItemOnyon3MgrFv

@@ -209,9 +209,9 @@ load2D__Q211Pikmin2ARAM3MgrFv:
 /* 80455EF4 00452E34  80 8D 87 20 */	lwz r4, sAramObject__7JKRAram@sda21(r13)
 /* 80455EF8 00452E38  80 64 00 94 */	lwz r3, 0x94(r4)
 /* 80455EFC 00452E3C  4B BC 3A CD */	bl getFreeSize__11JKRAramHeapFv
-/* 80455F00 00452E40  3C 60 80 4F */	lis r3, sAramResName2D__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2@ha
+/* 80455F00 00452E40  3C 60 80 4F */	lis r3, "sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"@ha
 /* 80455F04 00452E44  3B C0 00 00 */	li r30, 0
-/* 80455F08 00452E48  3B E3 DB 60 */	addi r31, r3, sAramResName2D__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2@l
+/* 80455F08 00452E48  3B E3 DB 60 */	addi r31, r3, "sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"@l
 lbl_80455F0C:
 /* 80455F0C 00452E4C  80 9F 00 00 */	lwz r4, 0(r31)
 /* 80455F10 00452E50  38 61 00 08 */	addi r3, r1, 8
@@ -226,9 +226,9 @@ lbl_80455F0C:
 /* 80455F34 00452E74  3B FF 00 04 */	addi r31, r31, 4
 /* 80455F38 00452E78  28 1E 00 0D */	cmplwi r30, 0xd
 /* 80455F3C 00452E7C  41 80 FF D0 */	blt lbl_80455F0C
-/* 80455F40 00452E80  3C 60 80 4F */	lis r3, sAramResName2DCmn__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2@ha
+/* 80455F40 00452E80  3C 60 80 4F */	lis r3, "sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"@ha
 /* 80455F44 00452E84  3B C0 00 00 */	li r30, 0
-/* 80455F48 00452E88  3B E3 DB 94 */	addi r31, r3, sAramResName2DCmn__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2@l
+/* 80455F48 00452E88  3B E3 DB 94 */	addi r31, r3, "sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"@l
 lbl_80455F4C:
 /* 80455F4C 00452E8C  88 1D 00 04 */	lbz r0, 4(r29)
 /* 80455F50 00452E90  80 6D 9B A8 */	lwz r3, gAramMgr@sda21(r13)
@@ -260,9 +260,9 @@ loadDemo__Q211Pikmin2ARAM3MgrFv:
 /* 80455FAC 00452EEC  80 8D 87 20 */	lwz r4, sAramObject__7JKRAram@sda21(r13)
 /* 80455FB0 00452EF0  80 64 00 94 */	lwz r3, 0x94(r4)
 /* 80455FB4 00452EF4  4B BC 3A 15 */	bl getFreeSize__11JKRAramHeapFv
-/* 80455FB8 00452EF8  3C 60 80 4F */	lis r3, sAramResDemo__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2@ha
+/* 80455FB8 00452EF8  3C 60 80 4F */	lis r3, "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"@ha
 /* 80455FBC 00452EFC  3B C0 00 00 */	li r30, 0
-/* 80455FC0 00452F00  3B E3 DB A4 */	addi r31, r3, sAramResDemo__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2@l
+/* 80455FC0 00452F00  3B E3 DB A4 */	addi r31, r3, "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"@l
 lbl_80455FC4:
 /* 80455FC4 00452F04  88 1D 00 04 */	lbz r0, 4(r29)
 /* 80455FC8 00452F08  80 6D 9B A8 */	lwz r3, gAramMgr@sda21(r13)
@@ -294,9 +294,9 @@ loadItem__Q211Pikmin2ARAM3MgrFv:
 /* 80456024 00452F64  80 8D 87 20 */	lwz r4, sAramObject__7JKRAram@sda21(r13)
 /* 80456028 00452F68  80 64 00 94 */	lwz r3, 0x94(r4)
 /* 8045602C 00452F6C  4B BC 39 9D */	bl getFreeSize__11JKRAramHeapFv
-/* 80456030 00452F70  3C 60 80 4F */	lis r3, sAramResItem__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2@ha
+/* 80456030 00452F70  3C 60 80 4F */	lis r3, "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"@ha
 /* 80456034 00452F74  3B C0 00 00 */	li r30, 0
-/* 80456038 00452F78  3B E3 DB F0 */	addi r31, r3, sAramResItem__Q211Pikmin2ARAM28$$2unnamed$$2pikmin2AramMgr_cpp$$2@l
+/* 80456038 00452F78  3B E3 DB F0 */	addi r31, r3, "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"@l
 lbl_8045603C:
 /* 8045603C 00452F7C  88 1D 00 04 */	lbz r0, 4(r29)
 /* 80456040 00452F80  80 6D 9B A8 */	lwz r3, gAramMgr@sda21(r13)

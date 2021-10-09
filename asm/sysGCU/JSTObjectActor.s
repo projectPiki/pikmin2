@@ -986,27 +986,27 @@ __sinit_JSTObjectActor_cpp:
 /* 8042F6B4 0042C5F4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042F6B8 0042C5F8  4E 80 00 20 */	blr 
 
-.global $$24$$2parseUserData___Q34Game5P2JST11ObjectActorFUlPCv
-$$24$$2parseUserData___Q34Game5P2JST11ObjectActorFUlPCv:
+.global "@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv"
+"@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv":
 /* 8042F6BC 0042C5FC  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6C0 0042C600  4B FF FB 44 */	b parseUserData___Q34Game5P2JST11ObjectActorFUlPCv
 
-.global $$24$$2stop__Q34Game5P2JST11ObjectActorFv
-$$24$$2stop__Q34Game5P2JST11ObjectActorFv:
+.global "@4@stop__Q34Game5P2JST11ObjectActorFv"
+"@4@stop__Q34Game5P2JST11ObjectActorFv":
 /* 8042F6C4 0042C604  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6C8 0042C608  4B FF FF C0 */	b stop__Q34Game5P2JST11ObjectActorFv
 
-.global $$24$$2start__Q34Game5P2JST11ObjectActorFv
-$$24$$2start__Q34Game5P2JST11ObjectActorFv:
+.global "@4@start__Q34Game5P2JST11ObjectActorFv"
+"@4@start__Q34Game5P2JST11ObjectActorFv":
 /* 8042F6CC 0042C60C  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6D0 0042C610  4B FF FF BC */	b start__Q34Game5P2JST11ObjectActorFv
 
-.global $$24$$2update__Q34Game5P2JST11ObjectActorFv
-$$24$$2update__Q34Game5P2JST11ObjectActorFv:
+.global "@4@update__Q34Game5P2JST11ObjectActorFv"
+"@4@update__Q34Game5P2JST11ObjectActorFv":
 /* 8042F6D4 0042C614  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6D8 0042C618  4B FF F4 30 */	b update__Q34Game5P2JST11ObjectActorFv
 
-.global $$24$$2reset__Q34Game5P2JST11ObjectActorFv
-$$24$$2reset__Q34Game5P2JST11ObjectActorFv:
+.global "@4@reset__Q34Game5P2JST11ObjectActorFv"
+"@4@reset__Q34Game5P2JST11ObjectActorFv":
 /* 8042F6DC 0042C61C  38 63 FF FC */	addi r3, r3, -4
 /* 8042F6E0 0042C620  4B FF F3 B8 */	b reset__Q34Game5P2JST11ObjectActorFv

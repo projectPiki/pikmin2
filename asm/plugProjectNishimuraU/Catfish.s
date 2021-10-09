@@ -209,7 +209,7 @@ createDownEffect__Q34Game7Catfish3ObjFv:
 /* 802772C8 00274208  C0 22 D0 28 */	lfs f1, lbl_8051B388@sda21(r2)
 /* 802772CC 0027420C  38 83 01 8C */	addi r4, r3, 0x18c
 /* 802772D0 00274210  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802772D4 00274214  4B E8 C8 7D */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 802772D4 00274214  4B E8 C8 7D */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 802772D8 00274218  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802772DC 0027421C  7C 08 03 A6 */	mtlr r0
 /* 802772E0 00274220  38 21 00 10 */	addi r1, r1, 0x10

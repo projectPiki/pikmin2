@@ -5,12 +5,12 @@
 newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics:
 /* 802398D8 00236818  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802398DC 0023681C  7C 08 02 A6 */	mflr r0
-/* 802398E0 00236820  3C C0 80 4C */	lis r6, __vt__22IDelegate1$$0P8Viewport$$1@ha
+/* 802398E0 00236820  3C C0 80 4C */	lis r6, "__vt__22IDelegate1<P8Viewport>"@ha
 /* 802398E4 00236824  3C A0 80 4C */	lis r5, lbl_804C159C@ha
 /* 802398E8 00236828  90 01 00 34 */	stw r0, 0x34(r1)
 /* 802398EC 0023682C  38 E5 15 9C */	addi r7, r5, lbl_804C159C@l
-/* 802398F0 00236830  39 26 15 B4 */	addi r9, r6, __vt__22IDelegate1$$0P8Viewport$$1@l
-/* 802398F4 00236834  3D 00 80 4C */	lis r8, __vt__46Delegate1$$0Q24Game15BaseGameSection$$4P8Viewport$$1@ha
+/* 802398F0 00236830  39 26 15 B4 */	addi r9, r6, "__vt__22IDelegate1<P8Viewport>"@l
+/* 802398F4 00236834  3D 00 80 4C */	lis r8, "__vt__46Delegate1<Q24Game15BaseGameSection,P8Viewport>"@ha
 /* 802398F8 00236838  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 802398FC 0023683C  7C 9F 23 78 */	mr r31, r4
 /* 80239900 00236840  38 81 00 08 */	addi r4, r1, 8
@@ -21,14 +21,14 @@ newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics:
 /* 80239914 00236854  80 C7 00 00 */	lwz r6, 0(r7)
 /* 80239918 00236858  80 A7 00 04 */	lwz r5, 4(r7)
 /* 8023991C 0023685C  80 07 00 08 */	lwz r0, 8(r7)
-/* 80239920 00236860  38 E8 15 A8 */	addi r7, r8, __vt__46Delegate1$$0Q24Game15BaseGameSection$$4P8Viewport$$1@l
+/* 80239920 00236860  38 E8 15 A8 */	addi r7, r8, "__vt__46Delegate1<Q24Game15BaseGameSection,P8Viewport>"@l
 /* 80239924 00236864  91 21 00 08 */	stw r9, 8(r1)
 /* 80239928 00236868  90 E1 00 08 */	stw r7, 8(r1)
 /* 8023992C 0023686C  93 C1 00 0C */	stw r30, 0xc(r1)
 /* 80239930 00236870  90 C1 00 10 */	stw r6, 0x10(r1)
 /* 80239934 00236874  90 A1 00 14 */	stw r5, 0x14(r1)
 /* 80239938 00236878  90 01 00 18 */	stw r0, 0x18(r1)
-/* 8023993C 0023687C  48 1E BC C5 */	bl mapViewport__8GraphicsFP22IDelegate1$$0P8Viewport$$1
+/* 8023993C 0023687C  48 1E BC C5 */	bl "mapViewport__8GraphicsFP22IDelegate1<P8Viewport>"
 /* 80239940 00236880  80 7E 01 2C */	lwz r3, 0x12c(r30)
 /* 80239944 00236884  48 21 C2 0D */	bl frameInitAll__Q23Sys11DrawBuffersFv
 /* 80239948 00236888  80 7E 01 30 */	lwz r3, 0x130(r30)
@@ -354,8 +354,8 @@ lbl_80239D44:
 /* 80239E24 00236D64  38 21 00 20 */	addi r1, r1, 0x20
 /* 80239E28 00236D68  4E 80 00 20 */	blr 
 
-.global invoke__46Delegate1$$0Q24Game15BaseGameSection$$4P8Viewport$$1FP8Viewport
-invoke__46Delegate1$$0Q24Game15BaseGameSection$$4P8Viewport$$1FP8Viewport:
+.global "invoke__46Delegate1<Q24Game15BaseGameSection,P8Viewport>FP8Viewport"
+"invoke__46Delegate1<Q24Game15BaseGameSection,P8Viewport>FP8Viewport":
 /* 80239E2C 00236D6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80239E30 00236D70  7C 08 02 A6 */	mflr r0
 /* 80239E34 00236D74  7C 65 1B 78 */	mr r5, r3

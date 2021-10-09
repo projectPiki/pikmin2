@@ -263,7 +263,7 @@ doUpdateFadeout__Q32og9newScreen7ObjSaveFv:
 /* 80324DA4 00321CE4  38 60 00 01 */	li r3, 1
 /* 80324DA8 00321CE8  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen7ObjSaveFv
-$$224$$2__dt__Q32og9newScreen7ObjSaveFv:
+.global "@24@__dt__Q32og9newScreen7ObjSaveFv"
+"@24@__dt__Q32og9newScreen7ObjSaveFv":
 /* 80324DAC 00321CEC  38 63 FF E8 */	addi r3, r3, -24
 /* 80324DB0 00321CF0  4B FF FD 04 */	b __dt__Q32og9newScreen7ObjSaveFv

@@ -69,8 +69,8 @@ makeMatrix__Q34Game8ItemWeed4WeedFv:
 /* 8020F364 0020C2A4  38 21 00 40 */	addi r1, r1, 0x40
 /* 8020F368 0020C2A8  4E 80 00 20 */	blr 
 
-.global __dt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-__dt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+"__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 8020F36C 0020C2AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020F370 0020C2B0  7C 08 02 A6 */	mflr r0
 /* 8020F374 0020C2B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -79,30 +79,30 @@ __dt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 8020F380 0020C2C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8020F384 0020C2C4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8020F388 0020C2C8  41 82 00 C8 */	beq lbl_8020F450
-/* 8020F38C 0020C2CC  3C 60 80 4C */	lis r3, __vt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 8020F38C 0020C2CC  3C 60 80 4C */	lis r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@ha
 /* 8020F390 0020C2D0  34 1E 00 3C */	addic. r0, r30, 0x3c
-/* 8020F394 0020C2D4  38 63 03 60 */	addi r3, r3, __vt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F394 0020C2D4  38 63 03 60 */	addi r3, r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@l
 /* 8020F398 0020C2D8  90 7E 00 00 */	stw r3, 0(r30)
 /* 8020F39C 0020C2DC  38 03 00 30 */	addi r0, r3, 0x30
 /* 8020F3A0 0020C2E0  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 8020F3A4 0020C2E4  41 82 00 68 */	beq lbl_8020F40C
-/* 8020F3A8 0020C2E8  3C 60 80 4C */	lis r3, __vt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 8020F3A8 0020C2E8  3C 60 80 4C */	lis r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
 /* 8020F3AC 0020C2EC  34 1E 00 3C */	addic. r0, r30, 0x3c
-/* 8020F3B0 0020C2F0  38 63 02 D4 */	addi r3, r3, __vt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F3B0 0020C2F0  38 63 02 D4 */	addi r3, r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
 /* 8020F3B4 0020C2F4  90 7E 00 3C */	stw r3, 0x3c(r30)
 /* 8020F3B8 0020C2F8  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8020F3BC 0020C2FC  90 1E 00 58 */	stw r0, 0x58(r30)
 /* 8020F3C0 0020C300  41 82 00 4C */	beq lbl_8020F40C
-/* 8020F3C4 0020C304  3C 60 80 4C */	lis r3, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 8020F3C4 0020C304  3C 60 80 4C */	lis r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
 /* 8020F3C8 0020C308  34 1E 00 3C */	addic. r0, r30, 0x3c
-/* 8020F3CC 0020C30C  38 63 02 58 */	addi r3, r3, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F3CC 0020C30C  38 63 02 58 */	addi r3, r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
 /* 8020F3D0 0020C310  90 7E 00 3C */	stw r3, 0x3c(r30)
 /* 8020F3D4 0020C314  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8020F3D8 0020C318  90 1E 00 58 */	stw r0, 0x58(r30)
 /* 8020F3DC 0020C31C  41 82 00 30 */	beq lbl_8020F40C
-/* 8020F3E0 0020C320  3C 60 80 4C */	lis r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 8020F3E0 0020C320  3C 60 80 4C */	lis r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
 /* 8020F3E4 0020C324  34 1E 00 3C */	addic. r0, r30, 0x3c
-/* 8020F3E8 0020C328  38 03 03 D0 */	addi r0, r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F3E8 0020C328  38 03 03 D0 */	addi r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
 /* 8020F3EC 0020C32C  90 1E 00 3C */	stw r0, 0x3c(r30)
 /* 8020F3F0 0020C330  41 82 00 1C */	beq lbl_8020F40C
 /* 8020F3F4 0020C334  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -114,9 +114,9 @@ __dt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 lbl_8020F40C:
 /* 8020F40C 0020C34C  34 1E 00 20 */	addic. r0, r30, 0x20
 /* 8020F410 0020C350  41 82 00 30 */	beq lbl_8020F440
-/* 8020F414 0020C354  3C 60 80 4C */	lis r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 8020F414 0020C354  3C 60 80 4C */	lis r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
 /* 8020F418 0020C358  34 1E 00 20 */	addic. r0, r30, 0x20
-/* 8020F41C 0020C35C  38 03 03 D0 */	addi r0, r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F41C 0020C35C  38 03 03 D0 */	addi r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
 /* 8020F420 0020C360  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 8020F424 0020C364  41 82 00 1C */	beq lbl_8020F440
 /* 8020F428 0020C368  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -139,8 +139,8 @@ lbl_8020F450:
 /* 8020F464 0020C3A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020F468 0020C3A8  4E 80 00 20 */	blr 
 
-.global __dt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-__dt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "__dt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"__dt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 8020F46C 0020C3AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020F470 0020C3B0  7C 08 02 A6 */	mflr r0
 /* 8020F474 0020C3B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -149,20 +149,20 @@ __dt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 8020F480 0020C3C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8020F484 0020C3C4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8020F488 0020C3C8  41 82 00 68 */	beq lbl_8020F4F0
-/* 8020F48C 0020C3CC  3C 80 80 4C */	lis r4, __vt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
-/* 8020F490 0020C3D0  38 84 02 D4 */	addi r4, r4, __vt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F48C 0020C3CC  3C 80 80 4C */	lis r4, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+/* 8020F490 0020C3D0  38 84 02 D4 */	addi r4, r4, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
 /* 8020F494 0020C3D4  90 9E 00 00 */	stw r4, 0(r30)
 /* 8020F498 0020C3D8  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8020F49C 0020C3DC  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8020F4A0 0020C3E0  41 82 00 40 */	beq lbl_8020F4E0
-/* 8020F4A4 0020C3E4  3C 80 80 4C */	lis r4, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
-/* 8020F4A8 0020C3E8  38 84 02 58 */	addi r4, r4, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F4A4 0020C3E4  3C 80 80 4C */	lis r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+/* 8020F4A8 0020C3E8  38 84 02 58 */	addi r4, r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
 /* 8020F4AC 0020C3EC  90 9E 00 00 */	stw r4, 0(r30)
 /* 8020F4B0 0020C3F0  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8020F4B4 0020C3F4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8020F4B8 0020C3F8  41 82 00 28 */	beq lbl_8020F4E0
-/* 8020F4BC 0020C3FC  3C 80 80 4C */	lis r4, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
-/* 8020F4C0 0020C400  38 04 03 D0 */	addi r0, r4, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F4BC 0020C3FC  3C 80 80 4C */	lis r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
+/* 8020F4C0 0020C400  38 04 03 D0 */	addi r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
 /* 8020F4C4 0020C404  90 1E 00 00 */	stw r0, 0(r30)
 /* 8020F4C8 0020C408  41 82 00 18 */	beq lbl_8020F4E0
 /* 8020F4CC 0020C40C  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -184,8 +184,8 @@ lbl_8020F4F0:
 /* 8020F504 0020C444  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020F508 0020C448  4E 80 00 20 */	blr 
 
-.global __dt__32Container$$0Q34Game8ItemWeed4Weed$$1Fv
-__dt__32Container$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "__dt__32Container<Q34Game8ItemWeed4Weed>Fv"
+"__dt__32Container<Q34Game8ItemWeed4Weed>Fv":
 /* 8020F50C 0020C44C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020F510 0020C450  7C 08 02 A6 */	mflr r0
 /* 8020F514 0020C454  90 01 00 14 */	stw r0, 0x14(r1)
@@ -194,8 +194,8 @@ __dt__32Container$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 8020F520 0020C460  93 C1 00 08 */	stw r30, 8(r1)
 /* 8020F524 0020C464  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8020F528 0020C468  41 82 00 38 */	beq lbl_8020F560
-/* 8020F52C 0020C46C  3C 80 80 4C */	lis r4, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
-/* 8020F530 0020C470  38 04 03 D0 */	addi r0, r4, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F52C 0020C46C  3C 80 80 4C */	lis r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
+/* 8020F530 0020C470  38 04 03 D0 */	addi r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
 /* 8020F534 0020C474  90 1E 00 00 */	stw r0, 0(r30)
 /* 8020F538 0020C478  41 82 00 18 */	beq lbl_8020F550
 /* 8020F53C 0020C47C  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -217,8 +217,8 @@ lbl_8020F560:
 /* 8020F574 0020C4B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020F578 0020C4B8  4E 80 00 20 */	blr 
 
-.global getMaxObjects__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-getMaxObjects__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getMaxObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+"getMaxObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 8020F57C 0020C4BC  80 63 00 60 */	lwz r3, 0x60(r3)
 /* 8020F580 0020C4C0  4E 80 00 20 */	blr 
 
@@ -243,19 +243,19 @@ init__Q34Game8ItemWeed3FSMFPQ34Game8ItemWeed4Item:
 /* 8020F5AC 0020C4EC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8020F5B0 0020C4F0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8020F5B4 0020C4F4  7C 7F 1B 78 */	mr r31, r3
-/* 8020F5B8 0020C4F8  48 00 15 81 */	bl create__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1Fi
+/* 8020F5B8 0020C4F8  48 00 15 81 */	bl "create__Q24Game35StateMachine<Q34Game8ItemWeed4Item>Fi"
 /* 8020F5BC 0020C4FC  38 60 00 10 */	li r3, 0x10
 /* 8020F5C0 0020C500  4B E1 48 E5 */	bl __nw__FUl
 /* 8020F5C4 0020C504  7C 64 1B 79 */	or. r4, r3, r3
 /* 8020F5C8 0020C508  41 82 00 40 */	beq lbl_8020F608
-/* 8020F5CC 0020C50C  3C 60 80 4C */	lis r3, __vt__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1@ha
-/* 8020F5D0 0020C510  3C C0 80 4C */	lis r6, __vt__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1@ha
-/* 8020F5D4 0020C514  38 03 01 B0 */	addi r0, r3, __vt__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1@l
+/* 8020F5CC 0020C50C  3C 60 80 4C */	lis r3, "__vt__Q24Game31FSMState<Q34Game8ItemWeed4Item>"@ha
+/* 8020F5D0 0020C510  3C C0 80 4C */	lis r6, "__vt__Q24Game32ItemState<Q34Game8ItemWeed4Item>"@ha
+/* 8020F5D4 0020C514  38 03 01 B0 */	addi r0, r3, "__vt__Q24Game31FSMState<Q34Game8ItemWeed4Item>"@l
 /* 8020F5D8 0020C518  3C A0 80 4C */	lis r5, __vt__Q34Game8ItemWeed5State@ha
 /* 8020F5DC 0020C51C  90 04 00 00 */	stw r0, 0(r4)
 /* 8020F5E0 0020C520  38 E0 00 00 */	li r7, 0
 /* 8020F5E4 0020C524  3C 60 80 4C */	lis r3, __vt__Q34Game8ItemWeed9WaitState@ha
-/* 8020F5E8 0020C528  38 C6 01 7C */	addi r6, r6, __vt__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1@l
+/* 8020F5E8 0020C528  38 C6 01 7C */	addi r6, r6, "__vt__Q24Game32ItemState<Q34Game8ItemWeed4Item>"@l
 /* 8020F5EC 0020C52C  90 E4 00 04 */	stw r7, 4(r4)
 /* 8020F5F0 0020C530  38 A5 01 48 */	addi r5, r5, __vt__Q34Game8ItemWeed5State@l
 /* 8020F5F4 0020C534  38 03 FB C4 */	addi r0, r3, __vt__Q34Game8ItemWeed9WaitState@l
@@ -265,7 +265,7 @@ init__Q34Game8ItemWeed3FSMFPQ34Game8ItemWeed4Item:
 /* 8020F604 0020C544  90 04 00 00 */	stw r0, 0(r4)
 lbl_8020F608:
 /* 8020F608 0020C548  7F E3 FB 78 */	mr r3, r31
-/* 8020F60C 0020C54C  48 00 27 7D */	bl registerState__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ24Game31FSMState$$0Q34Game8ItemWeed4Item$$1
+/* 8020F60C 0020C54C  48 00 27 7D */	bl "registerState__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ24Game31FSMState<Q34Game8ItemWeed4Item>"
 /* 8020F610 0020C550  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8020F614 0020C554  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8020F618 0020C558  7C 08 03 A6 */	mtlr r0
@@ -326,12 +326,12 @@ lbl_8020F698:
 /* 8020F6E4 0020C624  90 1F 00 08 */	stw r0, 8(r31)
 /* 8020F6E8 0020C628  48 20 1C A9 */	bl __ct__5CNodeFv
 /* 8020F6EC 0020C62C  3C 60 80 4B */	lis r3, __vt__16GenericContainer@ha
-/* 8020F6F0 0020C630  3C 80 80 4C */	lis r4, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 8020F6F0 0020C630  3C 80 80 4C */	lis r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
 /* 8020F6F4 0020C634  38 03 AC DC */	addi r0, r3, __vt__16GenericContainer@l
-/* 8020F6F8 0020C638  3C 60 80 4C */	lis r3, __vt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 8020F6F8 0020C638  3C 60 80 4C */	lis r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@ha
 /* 8020F6FC 0020C63C  90 1C 00 00 */	stw r0, 0(r28)
-/* 8020F700 0020C640  38 04 03 D0 */	addi r0, r4, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
-/* 8020F704 0020C644  38 83 03 60 */	addi r4, r3, __vt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8020F700 0020C640  38 04 03 D0 */	addi r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
+/* 8020F704 0020C644  38 83 03 60 */	addi r4, r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@l
 /* 8020F708 0020C648  38 A0 00 00 */	li r5, 0
 /* 8020F70C 0020C64C  90 1C 00 00 */	stw r0, 0(r28)
 /* 8020F710 0020C650  38 04 00 30 */	addi r0, r4, 0x30
@@ -339,7 +339,7 @@ lbl_8020F698:
 /* 8020F718 0020C658  98 BC 00 18 */	stb r5, 0x18(r28)
 /* 8020F71C 0020C65C  90 9B 00 00 */	stw r4, 0(r27)
 /* 8020F720 0020C660  90 1B 00 20 */	stw r0, 0x20(r27)
-/* 8020F724 0020C664  48 00 25 2D */	bl __ct__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 8020F724 0020C664  48 00 25 2D */	bl "__ct__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 /* 8020F728 0020C668  3C 60 80 4C */	lis r3, __vt__Q34Game8ItemWeed7WeedMgr@ha
 /* 8020F72C 0020C66C  7F C4 F3 78 */	mr r4, r30
 /* 8020F730 0020C670  38 A3 01 E8 */	addi r5, r3, __vt__Q34Game8ItemWeed7WeedMgr@l
@@ -347,7 +347,7 @@ lbl_8020F698:
 /* 8020F738 0020C678  90 BF 00 00 */	stw r5, 0(r31)
 /* 8020F73C 0020C67C  38 05 00 30 */	addi r0, r5, 0x30
 /* 8020F740 0020C680  90 1F 00 20 */	stw r0, 0x20(r31)
-/* 8020F744 0020C684  48 00 23 85 */	bl alloc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
+/* 8020F744 0020C684  48 00 23 85 */	bl "alloc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
 /* 8020F748 0020C688  38 00 00 05 */	li r0, 5
 /* 8020F74C 0020C68C  90 1F 00 04 */	stw r0, 4(r31)
 lbl_8020F750:
@@ -364,8 +364,8 @@ lbl_8020F750:
 /* 8020F778 0020C6B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8020F77C 0020C6BC  4E 80 00 20 */	blr 
 
-.global start__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg
-start__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg:
+.global "start__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
+"start__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg":
 /* 8020F780 0020C6C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020F784 0020C6C4  7C 08 02 A6 */	mflr r0
 /* 8020F788 0020C6C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -664,7 +664,7 @@ lbl_8020FB40:
 /* 8020FBC0 0020CB00  2C 00 00 00 */	cmpwi r0, 0
 /* 8020FBC4 0020CB04  40 82 00 0C */	bne lbl_8020FBD0
 /* 8020FBC8 0020CB08  38 61 00 28 */	addi r3, r1, 0x28
-/* 8020FBCC 0020CB0C  48 1A 80 8D */	bl createSimpleStoneAttack__3efxFR10Vector3$$0f$$1
+/* 8020FBCC 0020CB0C  48 1A 80 8D */	bl "createSimpleStoneAttack__3efxFR10Vector3<f>"
 lbl_8020FBD0:
 /* 8020FBD0 0020CB10  4B EB 99 D1 */	bl rand
 /* 8020FBD4 0020CB14  6C 63 80 00 */	xoris r3, r3, 0x8000
@@ -766,7 +766,7 @@ lbl_8020FD34:
 /* 8020FD48 0020CC88  38 A0 00 00 */	li r5, 0
 /* 8020FD4C 0020CC8C  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 8020FD50 0020CC90  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 8020FD54 0020CC94  4B F2 B4 55 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8020FD54 0020CC94  4B F2 B4 55 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8020FD58 0020CC98  7F C3 F3 78 */	mr r3, r30
 /* 8020FD5C 0020CC9C  38 81 00 10 */	addi r4, r1, 0x10
 /* 8020FD60 0020CCA0  81 9E 00 00 */	lwz r12, 0(r30)
@@ -791,8 +791,8 @@ lbl_8020FD70:
 /* 8020FDA8 0020CCE8  38 21 00 70 */	addi r1, r1, 0x70
 /* 8020FDAC 0020CCEC  4E 80 00 20 */	blr 
 
-.global getFlock__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fi
-getFlock__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "getFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi"
+"getFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi":
 /* 8020FDB0 0020CCF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020FDB4 0020CCF4  7C 08 02 A6 */	mflr r0
 /* 8020FDB8 0020CCF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -805,8 +805,8 @@ getFlock__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
 /* 8020FDD4 0020CD14  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020FDD8 0020CD18  4E 80 00 20 */	blr 
 
-.global getAt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
-getAt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "getAt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
+"getAt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi":
 /* 8020FDDC 0020CD1C  1C 04 00 54 */	mulli r0, r4, 0x54
 /* 8020FDE0 0020CD20  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 8020FDE4 0020CD24  7C 63 02 14 */	add r3, r3, r0
@@ -849,8 +849,8 @@ lbl_8020FE5C:
 /* 8020FE68 0020CDA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020FE6C 0020CDAC  4E 80 00 20 */	blr 
 
-.global getNumObjects__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-getNumObjects__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getNumObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+"getNumObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 8020FE70 0020CDB0  80 63 00 5C */	lwz r3, 0x5c(r3)
 /* 8020FE74 0020CDB4  4E 80 00 20 */	blr 
 
@@ -968,8 +968,8 @@ doSimpleDraw__Q34Game8ItemWeed3MgrFP8Viewport:
 /* 8021000C 0020CF4C  38 63 00 30 */	addi r3, r3, 0x30
 lbl_80210010:
 /* 80210010 0020CF50  38 00 00 00 */	li r0, 0
-/* 80210014 0020CF54  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 80210018 0020CF58  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 80210014 0020CF54  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 80210018 0020CF58  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 8021001C 0020CF5C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80210020 0020CF60  28 00 00 00 */	cmplwi r0, 0
 /* 80210024 0020CF64  90 81 00 08 */	stw r4, 8(r1)
@@ -1252,8 +1252,8 @@ lbl_802103C8:
 /* 802103DC 0020D31C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802103E0 0020D320  4E 80 00 20 */	blr 
 
-.global generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm
-generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm:
+.global "generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
+"generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
 /* 802103E4 0020D324  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802103E8 0020D328  7C 08 02 A6 */	mflr r0
 /* 802103EC 0020D32C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1279,9 +1279,9 @@ lbl_8021042C:
 /* 80210438 0020D378  41 82 01 14 */	beq lbl_8021054C
 /* 8021043C 0020D37C  38 80 04 12 */	li r4, 0x412
 /* 80210440 0020D380  4B FB BB A9 */	bl __ct__Q24Game8BaseItemFi
-/* 80210444 0020D384  3C 60 80 4C */	lis r3, __vt__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1@ha
+/* 80210444 0020D384  3C 60 80 4C */	lis r3, "__vt__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>"@ha
 /* 80210448 0020D388  38 00 00 00 */	li r0, 0
-/* 8021044C 0020D38C  38 83 FF 24 */	addi r4, r3, __vt__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1@l
+/* 8021044C 0020D38C  38 83 FF 24 */	addi r4, r3, "__vt__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>"@l
 /* 80210450 0020D390  38 60 00 1C */	li r3, 0x1c
 /* 80210454 0020D394  90 9F 00 00 */	stw r4, 0(r31)
 /* 80210458 0020D398  38 84 01 B0 */	addi r4, r4, 0x1b0
@@ -1291,13 +1291,13 @@ lbl_8021042C:
 /* 80210468 0020D3A8  4B E1 3A 3D */	bl __nw__FUl
 /* 8021046C 0020D3AC  28 03 00 00 */	cmplwi r3, 0
 /* 80210470 0020D3B0  41 82 00 30 */	beq lbl_802104A0
-/* 80210474 0020D3B4  3C 80 80 4C */	lis r4, __vt__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1@ha
-/* 80210478 0020D3B8  3C A0 80 4C */	lis r5, __vt__Q24Game30ItemFSM$$0Q34Game8ItemWeed4Item$$1@ha
-/* 8021047C 0020D3BC  38 04 FF 0C */	addi r0, r4, __vt__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1@l
+/* 80210474 0020D3B4  3C 80 80 4C */	lis r4, "__vt__Q24Game35StateMachine<Q34Game8ItemWeed4Item>"@ha
+/* 80210478 0020D3B8  3C A0 80 4C */	lis r5, "__vt__Q24Game30ItemFSM<Q34Game8ItemWeed4Item>"@ha
+/* 8021047C 0020D3BC  38 04 FF 0C */	addi r0, r4, "__vt__Q24Game35StateMachine<Q34Game8ItemWeed4Item>"@l
 /* 80210480 0020D3C0  3C 80 80 4C */	lis r4, __vt__Q34Game8ItemWeed3FSM@ha
 /* 80210484 0020D3C4  90 03 00 00 */	stw r0, 0(r3)
 /* 80210488 0020D3C8  38 C0 FF FF */	li r6, -1
-/* 8021048C 0020D3CC  38 A5 FE F4 */	addi r5, r5, __vt__Q24Game30ItemFSM$$0Q34Game8ItemWeed4Item$$1@l
+/* 8021048C 0020D3CC  38 A5 FE F4 */	addi r5, r5, "__vt__Q24Game30ItemFSM<Q34Game8ItemWeed4Item>"@l
 /* 80210490 0020D3D0  38 04 01 D0 */	addi r0, r4, __vt__Q34Game8ItemWeed3FSM@l
 /* 80210494 0020D3D4  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 80210498 0020D3D8  90 A3 00 00 */	stw r5, 0(r3)
@@ -1367,7 +1367,7 @@ lbl_8021054C:
 /* 8021058C 0020D4CC  7F E3 FB 78 */	mr r3, r31
 /* 80210590 0020D4D0  7F A4 EB 78 */	mr r4, r29
 /* 80210594 0020D4D4  38 A0 00 00 */	li r5, 0
-/* 80210598 0020D4D8  4B F2 AC 11 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80210598 0020D4D8  4B F2 AC 11 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8021059C 0020D4DC  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 802105A0 0020D4E0  7F E3 FB 78 */	mr r3, r31
 /* 802105A4 0020D4E4  83 E1 00 2C */	lwz r31, 0x2c(r1)
@@ -1407,31 +1407,31 @@ __dt__Q34Game8ItemWeed3MgrFv:
 /* 80210614 0020D554  38 03 00 74 */	addi r0, r3, 0x74
 /* 80210618 0020D558  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 8021061C 0020D55C  41 82 00 84 */	beq lbl_802106A0
-/* 80210620 0020D560  3C 80 80 4B */	lis r4, __vt__31NodeObjectMgr$$0Q24Game8BaseItem$$1@ha
+/* 80210620 0020D560  3C 80 80 4B */	lis r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
 /* 80210624 0020D564  34 7E 00 6C */	addic. r3, r30, 0x6c
-/* 80210628 0020D568  38 84 72 4C */	addi r4, r4, __vt__31NodeObjectMgr$$0Q24Game8BaseItem$$1@l
+/* 80210628 0020D568  38 84 72 4C */	addi r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
 /* 8021062C 0020D56C  90 9E 00 4C */	stw r4, 0x4c(r30)
 /* 80210630 0020D570  38 04 00 2C */	addi r0, r4, 0x2c
 /* 80210634 0020D574  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 80210638 0020D578  41 82 00 18 */	beq lbl_80210650
-/* 8021063C 0020D57C  3C 80 80 4B */	lis r4, __vt__29TObjectNode$$0Q24Game8BaseItem$$1@ha
-/* 80210640 0020D580  38 04 72 3C */	addi r0, r4, __vt__29TObjectNode$$0Q24Game8BaseItem$$1@l
+/* 8021063C 0020D57C  3C 80 80 4B */	lis r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
+/* 80210640 0020D580  38 04 72 3C */	addi r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
 /* 80210644 0020D584  90 1E 00 6C */	stw r0, 0x6c(r30)
 /* 80210648 0020D588  38 80 00 00 */	li r4, 0
 /* 8021064C 0020D58C  48 20 0F 3D */	bl __dt__5CNodeFv
 lbl_80210650:
 /* 80210650 0020D590  34 1E 00 4C */	addic. r0, r30, 0x4c
 /* 80210654 0020D594  41 82 00 4C */	beq lbl_802106A0
-/* 80210658 0020D598  3C 60 80 4B */	lis r3, __vt__27ObjectMgr$$0Q24Game8BaseItem$$1@ha
+/* 80210658 0020D598  3C 60 80 4B */	lis r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
 /* 8021065C 0020D59C  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 80210660 0020D5A0  38 63 72 CC */	addi r3, r3, __vt__27ObjectMgr$$0Q24Game8BaseItem$$1@l
+/* 80210660 0020D5A0  38 63 72 CC */	addi r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
 /* 80210664 0020D5A4  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 80210668 0020D5A8  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8021066C 0020D5AC  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 80210670 0020D5B0  41 82 00 30 */	beq lbl_802106A0
-/* 80210674 0020D5B4  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8BaseItem$$1@ha
+/* 80210674 0020D5B4  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8BaseItem>"@ha
 /* 80210678 0020D5B8  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 8021067C 0020D5BC  38 03 73 48 */	addi r0, r3, __vt__27Container$$0Q24Game8BaseItem$$1@l
+/* 8021067C 0020D5BC  38 03 73 48 */	addi r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
 /* 80210680 0020D5C0  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 80210684 0020D5C4  41 82 00 1C */	beq lbl_802106A0
 /* 80210688 0020D5C8  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1443,9 +1443,9 @@ lbl_80210650:
 lbl_802106A0:
 /* 802106A0 0020D5E0  34 1E 00 30 */	addic. r0, r30, 0x30
 /* 802106A4 0020D5E4  41 82 00 30 */	beq lbl_802106D4
-/* 802106A8 0020D5E8  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8BaseItem$$1@ha
+/* 802106A8 0020D5E8  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8BaseItem>"@ha
 /* 802106AC 0020D5EC  34 1E 00 30 */	addic. r0, r30, 0x30
-/* 802106B0 0020D5F0  38 03 73 48 */	addi r0, r3, __vt__27Container$$0Q24Game8BaseItem$$1@l
+/* 802106B0 0020D5F0  38 03 73 48 */	addi r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
 /* 802106B4 0020D5F4  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 802106B8 0020D5F8  41 82 00 1C */	beq lbl_802106D4
 /* 802106BC 0020D5FC  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1480,9 +1480,9 @@ doNew__Q34Game8ItemWeed3MgrFv:
 /* 8021071C 0020D65C  41 82 01 14 */	beq lbl_80210830
 /* 80210720 0020D660  38 80 04 12 */	li r4, 0x412
 /* 80210724 0020D664  4B FB B8 C5 */	bl __ct__Q24Game8BaseItemFi
-/* 80210728 0020D668  3C 60 80 4C */	lis r3, __vt__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1@ha
+/* 80210728 0020D668  3C 60 80 4C */	lis r3, "__vt__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>"@ha
 /* 8021072C 0020D66C  38 00 00 00 */	li r0, 0
-/* 80210730 0020D670  38 83 FF 24 */	addi r4, r3, __vt__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1@l
+/* 80210730 0020D670  38 83 FF 24 */	addi r4, r3, "__vt__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>"@l
 /* 80210734 0020D674  38 60 00 1C */	li r3, 0x1c
 /* 80210738 0020D678  90 9F 00 00 */	stw r4, 0(r31)
 /* 8021073C 0020D67C  38 84 01 B0 */	addi r4, r4, 0x1b0
@@ -1492,13 +1492,13 @@ doNew__Q34Game8ItemWeed3MgrFv:
 /* 8021074C 0020D68C  4B E1 37 59 */	bl __nw__FUl
 /* 80210750 0020D690  28 03 00 00 */	cmplwi r3, 0
 /* 80210754 0020D694  41 82 00 30 */	beq lbl_80210784
-/* 80210758 0020D698  3C 80 80 4C */	lis r4, __vt__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1@ha
-/* 8021075C 0020D69C  3C A0 80 4C */	lis r5, __vt__Q24Game30ItemFSM$$0Q34Game8ItemWeed4Item$$1@ha
-/* 80210760 0020D6A0  38 04 FF 0C */	addi r0, r4, __vt__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1@l
+/* 80210758 0020D698  3C 80 80 4C */	lis r4, "__vt__Q24Game35StateMachine<Q34Game8ItemWeed4Item>"@ha
+/* 8021075C 0020D69C  3C A0 80 4C */	lis r5, "__vt__Q24Game30ItemFSM<Q34Game8ItemWeed4Item>"@ha
+/* 80210760 0020D6A0  38 04 FF 0C */	addi r0, r4, "__vt__Q24Game35StateMachine<Q34Game8ItemWeed4Item>"@l
 /* 80210764 0020D6A4  3C 80 80 4C */	lis r4, __vt__Q34Game8ItemWeed3FSM@ha
 /* 80210768 0020D6A8  90 03 00 00 */	stw r0, 0(r3)
 /* 8021076C 0020D6AC  38 C0 FF FF */	li r6, -1
-/* 80210770 0020D6B0  38 A5 FE F4 */	addi r5, r5, __vt__Q24Game30ItemFSM$$0Q34Game8ItemWeed4Item$$1@l
+/* 80210770 0020D6B0  38 A5 FE F4 */	addi r5, r5, "__vt__Q24Game30ItemFSM<Q34Game8ItemWeed4Item>"@l
 /* 80210774 0020D6B4  38 04 01 D0 */	addi r0, r4, __vt__Q34Game8ItemWeed3FSM@l
 /* 80210778 0020D6B8  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 8021077C 0020D6BC  90 A3 00 00 */	stw r5, 0(r3)
@@ -1587,8 +1587,8 @@ getMatrix__Q44Game8ItemWeed4Item10DummyShapeFi:
 /* 80210874 0020D7B4  80 63 00 04 */	lwz r3, 4(r3)
 /* 80210878 0020D7B8  4E 80 00 20 */	blr 
 
-.global doAI__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1Fv
-doAI__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1Fv:
+.global "doAI__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>Fv"
+"doAI__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>Fv":
 /* 8021087C 0020D7BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210880 0020D7C0  7C 08 02 A6 */	mflr r0
 /* 80210884 0020D7C4  7C 64 1B 78 */	mr r4, r3
@@ -1619,30 +1619,30 @@ __dt__Q34Game8ItemWeed7WeedMgrFv:
 /* 802108DC 0020D81C  38 03 00 30 */	addi r0, r3, 0x30
 /* 802108E0 0020D820  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 802108E4 0020D824  41 82 00 B8 */	beq lbl_8021099C
-/* 802108E8 0020D828  3C 60 80 4C */	lis r3, __vt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 802108E8 0020D828  3C 60 80 4C */	lis r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@ha
 /* 802108EC 0020D82C  34 1E 00 3C */	addic. r0, r30, 0x3c
-/* 802108F0 0020D830  38 63 03 60 */	addi r3, r3, __vt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 802108F0 0020D830  38 63 03 60 */	addi r3, r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@l
 /* 802108F4 0020D834  90 7E 00 00 */	stw r3, 0(r30)
 /* 802108F8 0020D838  38 03 00 30 */	addi r0, r3, 0x30
 /* 802108FC 0020D83C  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 80210900 0020D840  41 82 00 68 */	beq lbl_80210968
-/* 80210904 0020D844  3C 60 80 4C */	lis r3, __vt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80210904 0020D844  3C 60 80 4C */	lis r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
 /* 80210908 0020D848  34 1E 00 3C */	addic. r0, r30, 0x3c
-/* 8021090C 0020D84C  38 63 02 D4 */	addi r3, r3, __vt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8021090C 0020D84C  38 63 02 D4 */	addi r3, r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
 /* 80210910 0020D850  90 7E 00 3C */	stw r3, 0x3c(r30)
 /* 80210914 0020D854  38 03 00 2C */	addi r0, r3, 0x2c
 /* 80210918 0020D858  90 1E 00 58 */	stw r0, 0x58(r30)
 /* 8021091C 0020D85C  41 82 00 4C */	beq lbl_80210968
-/* 80210920 0020D860  3C 60 80 4C */	lis r3, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80210920 0020D860  3C 60 80 4C */	lis r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
 /* 80210924 0020D864  34 1E 00 3C */	addic. r0, r30, 0x3c
-/* 80210928 0020D868  38 63 02 58 */	addi r3, r3, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80210928 0020D868  38 63 02 58 */	addi r3, r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
 /* 8021092C 0020D86C  90 7E 00 3C */	stw r3, 0x3c(r30)
 /* 80210930 0020D870  38 03 00 2C */	addi r0, r3, 0x2c
 /* 80210934 0020D874  90 1E 00 58 */	stw r0, 0x58(r30)
 /* 80210938 0020D878  41 82 00 30 */	beq lbl_80210968
-/* 8021093C 0020D87C  3C 60 80 4C */	lis r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 8021093C 0020D87C  3C 60 80 4C */	lis r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
 /* 80210940 0020D880  34 1E 00 3C */	addic. r0, r30, 0x3c
-/* 80210944 0020D884  38 03 03 D0 */	addi r0, r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80210944 0020D884  38 03 03 D0 */	addi r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
 /* 80210948 0020D888  90 1E 00 3C */	stw r0, 0x3c(r30)
 /* 8021094C 0020D88C  41 82 00 1C */	beq lbl_80210968
 /* 80210950 0020D890  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1654,9 +1654,9 @@ __dt__Q34Game8ItemWeed7WeedMgrFv:
 lbl_80210968:
 /* 80210968 0020D8A8  34 1E 00 20 */	addic. r0, r30, 0x20
 /* 8021096C 0020D8AC  41 82 00 30 */	beq lbl_8021099C
-/* 80210970 0020D8B0  3C 60 80 4C */	lis r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80210970 0020D8B0  3C 60 80 4C */	lis r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
 /* 80210974 0020D8B4  34 1E 00 20 */	addic. r0, r30, 0x20
-/* 80210978 0020D8B8  38 03 03 D0 */	addi r0, r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80210978 0020D8B8  38 03 03 D0 */	addi r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
 /* 8021097C 0020D8BC  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 80210980 0020D8C0  41 82 00 1C */	beq lbl_8021099C
 /* 80210984 0020D8C4  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1679,8 +1679,8 @@ lbl_802109AC:
 /* 802109C0 0020D900  38 21 00 10 */	addi r1, r1, 0x10
 /* 802109C4 0020D904  4E 80 00 20 */	blr 
 
-.global __dt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-__dt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "__dt__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"__dt__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 802109C8 0020D908  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802109CC 0020D90C  7C 08 02 A6 */	mflr r0
 /* 802109D0 0020D910  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1689,14 +1689,14 @@ __dt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 802109DC 0020D91C  93 C1 00 08 */	stw r30, 8(r1)
 /* 802109E0 0020D920  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802109E4 0020D924  41 82 00 50 */	beq lbl_80210A34
-/* 802109E8 0020D928  3C 80 80 4C */	lis r4, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
-/* 802109EC 0020D92C  38 84 02 58 */	addi r4, r4, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 802109E8 0020D928  3C 80 80 4C */	lis r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+/* 802109EC 0020D92C  38 84 02 58 */	addi r4, r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
 /* 802109F0 0020D930  90 9E 00 00 */	stw r4, 0(r30)
 /* 802109F4 0020D934  38 04 00 2C */	addi r0, r4, 0x2c
 /* 802109F8 0020D938  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 802109FC 0020D93C  41 82 00 28 */	beq lbl_80210A24
-/* 80210A00 0020D940  3C 80 80 4C */	lis r4, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
-/* 80210A04 0020D944  38 04 03 D0 */	addi r0, r4, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80210A00 0020D940  3C 80 80 4C */	lis r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
+/* 80210A04 0020D944  38 04 03 D0 */	addi r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
 /* 80210A08 0020D948  90 1E 00 00 */	stw r0, 0(r30)
 /* 80210A0C 0020D94C  41 82 00 18 */	beq lbl_80210A24
 /* 80210A10 0020D950  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1725,8 +1725,8 @@ isWeed__Q34Game8ItemWeed4WeedFv:
 /* 80210A58 0020D998  54 03 D9 7E */	srwi r3, r0, 5
 /* 80210A5C 0020D99C  4E 80 00 20 */	blr 
 
-.global getNext__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv
-getNext__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv:
+.global "getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+"getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv":
 /* 80210A60 0020D9A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210A64 0020D9A4  7C 08 02 A6 */	mflr r0
 /* 80210A68 0020D9A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1739,8 +1739,8 @@ getNext__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv:
 /* 80210A84 0020D9C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80210A88 0020D9C8  4E 80 00 20 */	blr 
 
-.global getStart__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-getStart__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+"getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210A8C 0020D9CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210A90 0020D9D0  7C 08 02 A6 */	mflr r0
 /* 80210A94 0020D9D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1753,60 +1753,60 @@ getStart__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 80210AB0 0020D9F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80210AB4 0020D9F4  4E 80 00 20 */	blr 
 
-.global killFlock__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPQ24Game6TFlock
-killFlock__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPQ24Game6TFlock:
+.global "killFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPQ24Game6TFlock"
+"killFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPQ24Game6TFlock":
 /* 80210AB8 0020D9F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210ABC 0020D9FC  7C 08 02 A6 */	mflr r0
 /* 80210AC0 0020DA00  38 63 00 3C */	addi r3, r3, 0x3c
 /* 80210AC4 0020DA04  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80210AC8 0020DA08  48 00 01 35 */	bl kill__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FPQ34Game8ItemWeed4Weed
+/* 80210AC8 0020DA08  48 00 01 35 */	bl "kill__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPQ34Game8ItemWeed4Weed"
 /* 80210ACC 0020DA0C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80210AD0 0020DA10  7C 08 03 A6 */	mtlr r0
 /* 80210AD4 0020DA14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80210AD8 0020DA18  4E 80 00 20 */	blr 
 
-.global onDamage__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Itemf
-onDamage__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Itemf:
+.global "onDamage__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Itemf"
+"onDamage__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Itemf":
 /* 80210ADC 0020DA1C  4E 80 00 20 */	blr 
 
-.global onKeyEvent__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent:
+.global "onKeyEvent__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent"
+"onKeyEvent__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent":
 /* 80210AE0 0020DA20  4E 80 00 20 */	blr 
 
-.global onBounce__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle
-onBounce__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle:
+.global "onBounce__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle"
+"onBounce__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle":
 /* 80210AE4 0020DA24  4E 80 00 20 */	blr 
 
-.global onPlatCollision__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent
-onPlatCollision__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent:
+.global "onPlatCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent"
+"onPlatCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent":
 /* 80210AE8 0020DA28  4E 80 00 20 */	blr 
 
-.global onCollision__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent
-onCollision__Q24Game32ItemState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent:
+.global "onCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent"
+"onCollision__Q24Game32ItemState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent":
 /* 80210AEC 0020DA2C  4E 80 00 20 */	blr 
 
-.global init__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemPQ24Game8StateArg
-init__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemPQ24Game8StateArg:
+.global "init__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ24Game8StateArg"
+"init__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemPQ24Game8StateArg":
 /* 80210AF0 0020DA30  4E 80 00 20 */	blr 
 
-.global exec__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item
-exec__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item:
+.global "exec__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
+"exec__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item":
 /* 80210AF4 0020DA34  4E 80 00 20 */	blr 
 
-.global cleanup__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item
-cleanup__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item:
+.global "cleanup__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
+"cleanup__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item":
 /* 80210AF8 0020DA38  4E 80 00 20 */	blr 
 
-.global resume__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item
-resume__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item:
+.global "resume__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
+"resume__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item":
 /* 80210AFC 0020DA3C  4E 80 00 20 */	blr 
 
-.global restart__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item
-restart__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item:
+.global "restart__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
+"restart__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item":
 /* 80210B00 0020DA40  4E 80 00 20 */	blr 
 
-.global transit__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg
-transit__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg:
+.global "transit__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
+"transit__Q24Game31FSMState<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg":
 /* 80210B04 0020DA44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210B08 0020DA48  7C 08 02 A6 */	mflr r0
 /* 80210B0C 0020DA4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1820,12 +1820,12 @@ transit__Q24Game31FSMState$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemiPQ2
 /* 80210B2C 0020DA6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80210B30 0020DA70  4E 80 00 20 */	blr 
 
-.global init__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item
-init__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item:
+.global "init__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
+"init__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item":
 /* 80210B34 0020DA74  4E 80 00 20 */	blr 
 
-.global create__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1Fi
-create__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1Fi:
+.global "create__Q24Game35StateMachine<Q34Game8ItemWeed4Item>Fi"
+"create__Q24Game35StateMachine<Q34Game8ItemWeed4Item>Fi":
 /* 80210B38 0020DA78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210B3C 0020DA7C  7C 08 02 A6 */	mflr r0
 /* 80210B40 0020DA80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1852,14 +1852,14 @@ create__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1Fi:
 /* 80210B94 0020DAD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80210B98 0020DAD8  4E 80 00 20 */	blr 
 
-.global birth__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-birth__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "birth__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"birth__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210B9C 0020DADC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210BA0 0020DAE0  7C 08 02 A6 */	mflr r0
 /* 80210BA4 0020DAE4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80210BA8 0020DAE8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80210BAC 0020DAEC  7C 7F 1B 78 */	mr r31, r3
-/* 80210BB0 0020DAF0  48 00 03 4D */	bl getEmptyIndex__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 80210BB0 0020DAF0  48 00 03 4D */	bl "getEmptyIndex__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 /* 80210BB4 0020DAF4  2C 03 FF FF */	cmpwi r3, -1
 /* 80210BB8 0020DAF8  41 82 00 2C */	beq lbl_80210BE4
 /* 80210BBC 0020DAFC  80 DF 00 28 */	lwz r6, 0x28(r31)
@@ -1881,8 +1881,8 @@ lbl_80210BE8:
 /* 80210BF4 0020DB34  38 21 00 10 */	addi r1, r1, 0x10
 /* 80210BF8 0020DB38  4E 80 00 20 */	blr 
 
-.global kill__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FPQ34Game8ItemWeed4Weed
-kill__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FPQ34Game8ItemWeed4Weed:
+.global "kill__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPQ34Game8ItemWeed4Weed"
+"kill__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPQ34Game8ItemWeed4Weed":
 /* 80210BFC 0020DB3C  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 80210C00 0020DB40  38 C0 00 00 */	li r6, 0
 /* 80210C04 0020DB44  38 A0 00 00 */	li r5, 0
@@ -1907,8 +1907,8 @@ lbl_80210C40:
 /* 80210C48 0020DB88  42 00 FF CC */	bdnz lbl_80210C14
 /* 80210C4C 0020DB8C  4E 80 00 20 */	blr 
 
-.global getNext__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FPv
-getNext__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FPv:
+.global "getNext__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPv"
+"getNext__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPv":
 /* 80210C50 0020DB90  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 80210C54 0020DB94  38 C4 00 01 */	addi r6, r4, 1
 /* 80210C58 0020DB98  7C 06 28 50 */	subf r0, r6, r5
@@ -1929,8 +1929,8 @@ lbl_80210C88:
 /* 80210C88 0020DBC8  7C A3 2B 78 */	mr r3, r5
 /* 80210C8C 0020DBCC  4E 80 00 20 */	blr 
 
-.global getStart__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-getStart__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getStart__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"getStart__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210C90 0020DBD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210C94 0020DBD4  7C 08 02 A6 */	mflr r0
 /* 80210C98 0020DBD8  38 80 FF FF */	li r4, -1
@@ -1944,18 +1944,18 @@ getStart__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 80210CB8 0020DBF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80210CBC 0020DBFC  4E 80 00 20 */	blr 
 
-.global getEnd__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-getEnd__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getEnd__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"getEnd__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210CC0 0020DC00  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80210CC4 0020DC04  4E 80 00 20 */	blr 
 
-.global getTo__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-getTo__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getTo__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"getTo__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210CC8 0020DC08  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80210CCC 0020DC0C  4E 80 00 20 */	blr 
 
-.global doAnimation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-doAnimation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210CD0 0020DC10  80 83 00 24 */	lwz r4, 0x24(r3)
 /* 80210CD4 0020DC14  38 A0 00 00 */	li r5, 0
 /* 80210CD8 0020DC18  2C 04 00 00 */	cmpwi r4, 0
@@ -1980,8 +1980,8 @@ lbl_80210D18:
 /* 80210D18 0020DC58  42 00 00 00 */	bdnz lbl_80210D18
 /* 80210D1C 0020DC5C  4E 80 00 20 */	blr 
 
-.global doEntry__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-doEntry__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210D20 0020DC60  80 83 00 24 */	lwz r4, 0x24(r3)
 /* 80210D24 0020DC64  38 A0 00 00 */	li r5, 0
 /* 80210D28 0020DC68  2C 04 00 00 */	cmpwi r4, 0
@@ -2006,8 +2006,8 @@ lbl_80210D68:
 /* 80210D68 0020DCA8  42 00 00 00 */	bdnz lbl_80210D68
 /* 80210D6C 0020DCAC  4E 80 00 20 */	blr 
 
-.global doSetView__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
-doSetView__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
+"doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi":
 /* 80210D70 0020DCB0  80 83 00 24 */	lwz r4, 0x24(r3)
 /* 80210D74 0020DCB4  38 A0 00 00 */	li r5, 0
 /* 80210D78 0020DCB8  2C 04 00 00 */	cmpwi r4, 0
@@ -2032,8 +2032,8 @@ lbl_80210DB8:
 /* 80210DB8 0020DCF8  42 00 00 00 */	bdnz lbl_80210DB8
 /* 80210DBC 0020DCFC  4E 80 00 20 */	blr 
 
-.global doViewCalc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-doViewCalc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210DC0 0020DD00  80 83 00 24 */	lwz r4, 0x24(r3)
 /* 80210DC4 0020DD04  38 A0 00 00 */	li r5, 0
 /* 80210DC8 0020DD08  2C 04 00 00 */	cmpwi r4, 0
@@ -2058,8 +2058,8 @@ lbl_80210E08:
 /* 80210E08 0020DD48  42 00 00 00 */	bdnz lbl_80210E08
 /* 80210E0C 0020DD4C  4E 80 00 20 */	blr 
 
-.global doSimulation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff
-doSimulation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff:
+.global "doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff"
+"doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff":
 /* 80210E10 0020DD50  80 83 00 24 */	lwz r4, 0x24(r3)
 /* 80210E14 0020DD54  38 A0 00 00 */	li r5, 0
 /* 80210E18 0020DD58  2C 04 00 00 */	cmpwi r4, 0
@@ -2084,8 +2084,8 @@ lbl_80210E58:
 /* 80210E58 0020DD98  42 00 00 00 */	bdnz lbl_80210E58
 /* 80210E5C 0020DD9C  4E 80 00 20 */	blr 
 
-.global doDirectDraw__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics
-doDirectDraw__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics:
+.global "doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
+"doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics":
 /* 80210E60 0020DDA0  80 83 00 24 */	lwz r4, 0x24(r3)
 /* 80210E64 0020DDA4  38 A0 00 00 */	li r5, 0
 /* 80210E68 0020DDA8  2C 04 00 00 */	cmpwi r4, 0
@@ -2110,8 +2110,8 @@ lbl_80210EA8:
 /* 80210EA8 0020DDE8  42 00 00 00 */	bdnz lbl_80210EA8
 /* 80210EAC 0020DDEC  4E 80 00 20 */	blr 
 
-.global resetMgr__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-resetMgr__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210EB0 0020DDF0  38 00 00 00 */	li r0, 0
 /* 80210EB4 0020DDF4  90 03 00 28 */	stw r0, 0x28(r3)
 /* 80210EB8 0020DDF8  90 03 00 24 */	stw r0, 0x24(r3)
@@ -2119,8 +2119,8 @@ resetMgr__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 80210EC0 0020DE00  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 80210EC4 0020DE04  4E 80 00 20 */	blr 
 
-.global clearMgr__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-clearMgr__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "clearMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"clearMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210EC8 0020DE08  38 00 00 00 */	li r0, 0
 /* 80210ECC 0020DE0C  38 C0 00 00 */	li r6, 0
 /* 80210ED0 0020DE10  90 03 00 20 */	stw r0, 0x20(r3)
@@ -2136,12 +2136,12 @@ lbl_80210EE8:
 /* 80210EF0 0020DE30  41 80 FF EC */	blt lbl_80210EDC
 /* 80210EF4 0020DE34  4E 80 00 20 */	blr 
 
-.global onAlloc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-onAlloc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "onAlloc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"onAlloc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210EF8 0020DE38  4E 80 00 20 */	blr 
 
-.global getEmptyIndex__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-getEmptyIndex__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getEmptyIndex__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"getEmptyIndex__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80210EFC 0020DE3C  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 80210F00 0020DE40  38 A0 00 00 */	li r5, 0
 /* 80210F04 0020DE44  7C 09 03 A6 */	mtctr r0
@@ -2161,15 +2161,15 @@ lbl_80210F30:
 /* 80210F30 0020DE70  38 60 FF FF */	li r3, -1
 /* 80210F34 0020DE74  4E 80 00 20 */	blr 
 
-.global get__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FPv
-get__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FPv:
+.global "get__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPv"
+"get__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPv":
 /* 80210F38 0020DE78  1C 04 00 54 */	mulli r0, r4, 0x54
 /* 80210F3C 0020DE7C  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 80210F40 0020DE80  7C 63 02 14 */	add r3, r3, r0
 /* 80210F44 0020DE84  4E 80 00 20 */	blr 
 
-.global getObject__32Container$$0Q34Game8ItemWeed4Weed$$1FPv
-getObject__32Container$$0Q34Game8ItemWeed4Weed$$1FPv:
+.global "getObject__32Container<Q34Game8ItemWeed4Weed>FPv"
+"getObject__32Container<Q34Game8ItemWeed4Weed>FPv":
 /* 80210F48 0020DE88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80210F4C 0020DE8C  7C 08 02 A6 */	mflr r0
 /* 80210F50 0020DE90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2182,24 +2182,24 @@ getObject__32Container$$0Q34Game8ItemWeed4Weed$$1FPv:
 /* 80210F6C 0020DEAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80210F70 0020DEB0  4E 80 00 20 */	blr 
 
-.global getAt__32Container$$0Q34Game8ItemWeed4Weed$$1Fi
-getAt__32Container$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "getAt__32Container<Q34Game8ItemWeed4Weed>Fi"
+"getAt__32Container<Q34Game8ItemWeed4Weed>Fi":
 /* 80210F74 0020DEB4  38 60 00 00 */	li r3, 0
 /* 80210F78 0020DEB8  4E 80 00 20 */	blr 
 
-.global getTo__32Container$$0Q34Game8ItemWeed4Weed$$1Fv
-getTo__32Container$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getTo__32Container<Q34Game8ItemWeed4Weed>Fv"
+"getTo__32Container<Q34Game8ItemWeed4Weed>Fv":
 /* 80210F7C 0020DEBC  38 60 00 00 */	li r3, 0
 /* 80210F80 0020DEC0  4E 80 00 20 */	blr 
 
-.global doDirectDraw__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics
-doDirectDraw__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics:
+.global "doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
+"doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics":
 /* 80210F84 0020DEC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80210F88 0020DEC8  7C 08 02 A6 */	mflr r0
-/* 80210F8C 0020DECC  3C 80 80 4C */	lis r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80210F8C 0020DECC  3C 80 80 4C */	lis r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
 /* 80210F90 0020DED0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80210F94 0020DED4  38 00 00 00 */	li r0, 0
-/* 80210F98 0020DED8  38 84 04 20 */	addi r4, r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80210F98 0020DED8  38 84 04 20 */	addi r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
 /* 80210F9C 0020DEDC  28 00 00 00 */	cmplwi r0, 0
 /* 80210FA0 0020DEE0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80210FA4 0020DEE4  90 81 00 08 */	stw r4, 8(r1)
@@ -2320,8 +2320,8 @@ lbl_80211128:
 /* 80211150 0020E090  38 21 00 20 */	addi r1, r1, 0x20
 /* 80211154 0020E094  4E 80 00 20 */	blr 
 
-.global isDone__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv
-isDone__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "isDone__31Iterator<Q34Game8ItemWeed4Weed>Fv"
+"isDone__31Iterator<Q34Game8ItemWeed4Weed>Fv":
 /* 80211158 0020E098  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021115C 0020E09C  7C 08 02 A6 */	mflr r0
 /* 80211160 0020E0A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2342,14 +2342,14 @@ isDone__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 8021119C 0020E0DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802111A0 0020E0E0  4E 80 00 20 */	blr 
 
-.global doSimulation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff
-doSimulation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff:
+.global "doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff"
+"doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff":
 /* 802111A4 0020E0E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802111A8 0020E0E8  7C 08 02 A6 */	mflr r0
-/* 802111AC 0020E0EC  3C 80 80 4C */	lis r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 802111AC 0020E0EC  3C 80 80 4C */	lis r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
 /* 802111B0 0020E0F0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802111B4 0020E0F4  38 00 00 00 */	li r0, 0
-/* 802111B8 0020E0F8  38 84 04 20 */	addi r4, r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@l
+/* 802111B8 0020E0F8  38 84 04 20 */	addi r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
 /* 802111BC 0020E0FC  28 00 00 00 */	cmplwi r0, 0
 /* 802111C0 0020E100  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802111C4 0020E104  90 81 00 08 */	stw r4, 8(r1)
@@ -2470,14 +2470,14 @@ lbl_80211348:
 /* 80211370 0020E2B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80211374 0020E2B4  4E 80 00 20 */	blr 
 
-.global doViewCalc__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-doViewCalc__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80211378 0020E2B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021137C 0020E2BC  7C 08 02 A6 */	mflr r0
-/* 80211380 0020E2C0  3C 80 80 4C */	lis r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80211380 0020E2C0  3C 80 80 4C */	lis r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
 /* 80211384 0020E2C4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80211388 0020E2C8  38 00 00 00 */	li r0, 0
-/* 8021138C 0020E2CC  38 84 04 20 */	addi r4, r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@l
+/* 8021138C 0020E2CC  38 84 04 20 */	addi r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
 /* 80211390 0020E2D0  28 00 00 00 */	cmplwi r0, 0
 /* 80211394 0020E2D4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80211398 0020E2D8  90 81 00 08 */	stw r4, 8(r1)
@@ -2598,14 +2598,14 @@ lbl_8021151C:
 /* 80211544 0020E484  38 21 00 20 */	addi r1, r1, 0x20
 /* 80211548 0020E488  4E 80 00 20 */	blr 
 
-.global doSetView__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
-doSetView__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi"
+"doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi":
 /* 8021154C 0020E48C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80211550 0020E490  7C 08 02 A6 */	mflr r0
-/* 80211554 0020E494  3C 80 80 4C */	lis r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80211554 0020E494  3C 80 80 4C */	lis r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
 /* 80211558 0020E498  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8021155C 0020E49C  38 00 00 00 */	li r0, 0
-/* 80211560 0020E4A0  38 84 04 20 */	addi r4, r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80211560 0020E4A0  38 84 04 20 */	addi r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
 /* 80211564 0020E4A4  28 00 00 00 */	cmplwi r0, 0
 /* 80211568 0020E4A8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8021156C 0020E4AC  90 81 00 08 */	stw r4, 8(r1)
@@ -2726,14 +2726,14 @@ lbl_802116F0:
 /* 80211718 0020E658  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021171C 0020E65C  4E 80 00 20 */	blr 
 
-.global doEntry__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-doEntry__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80211720 0020E660  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80211724 0020E664  7C 08 02 A6 */	mflr r0
-/* 80211728 0020E668  3C 80 80 4C */	lis r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80211728 0020E668  3C 80 80 4C */	lis r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
 /* 8021172C 0020E66C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80211730 0020E670  38 00 00 00 */	li r0, 0
-/* 80211734 0020E674  38 84 04 20 */	addi r4, r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80211734 0020E674  38 84 04 20 */	addi r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
 /* 80211738 0020E678  28 00 00 00 */	cmplwi r0, 0
 /* 8021173C 0020E67C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80211740 0020E680  90 81 00 08 */	stw r4, 8(r1)
@@ -2854,14 +2854,14 @@ lbl_802118C4:
 /* 802118EC 0020E82C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802118F0 0020E830  4E 80 00 20 */	blr 
 
-.global doAnimation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-doAnimation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 802118F4 0020E834  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802118F8 0020E838  7C 08 02 A6 */	mflr r0
-/* 802118FC 0020E83C  3C 80 80 4C */	lis r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 802118FC 0020E83C  3C 80 80 4C */	lis r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
 /* 80211900 0020E840  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80211904 0020E844  38 00 00 00 */	li r0, 0
-/* 80211908 0020E848  38 84 04 20 */	addi r4, r4, __vt__31Iterator$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80211908 0020E848  38 84 04 20 */	addi r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
 /* 8021190C 0020E84C  28 00 00 00 */	cmplwi r0, 0
 /* 80211910 0020E850  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80211914 0020E854  90 81 00 08 */	stw r4, 8(r1)
@@ -2982,8 +2982,8 @@ lbl_80211A98:
 /* 80211AC0 0020EA00  38 21 00 20 */	addi r1, r1, 0x20
 /* 80211AC4 0020EA04  4E 80 00 20 */	blr 
 
-.global alloc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
-alloc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "alloc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
+"alloc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi":
 /* 80211AC8 0020EA08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80211ACC 0020EA0C  7C 08 02 A6 */	mflr r0
 /* 80211AD0 0020EA10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3089,8 +3089,8 @@ lbl_80211C28:
 /* 80211C48 0020EB88  38 21 00 20 */	addi r1, r1, 0x20
 /* 80211C4C 0020EB8C  4E 80 00 20 */	blr 
 
-.global __ct__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-__ct__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "__ct__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"__ct__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80211C50 0020EB90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211C54 0020EB94  7C 08 02 A6 */	mflr r0
 /* 80211C58 0020EB98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3098,17 +3098,17 @@ __ct__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 80211C60 0020EBA0  7C 7F 1B 78 */	mr r31, r3
 /* 80211C64 0020EBA4  48 1F F7 2D */	bl __ct__5CNodeFv
 /* 80211C68 0020EBA8  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 80211C6C 0020EBAC  3C 60 80 4C */	lis r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80211C6C 0020EBAC  3C 60 80 4C */	lis r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
 /* 80211C70 0020EBB0  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 80211C74 0020EBB4  3C C0 80 4B */	lis r6, __vt__16GenericObjectMgr@ha
 /* 80211C78 0020EBB8  90 1F 00 00 */	stw r0, 0(r31)
-/* 80211C7C 0020EBBC  38 03 03 D0 */	addi r0, r3, __vt__32Container$$0Q34Game8ItemWeed4Weed$$1@l
-/* 80211C80 0020EBC0  3C 80 80 4C */	lis r4, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
-/* 80211C84 0020EBC4  3C 60 80 4C */	lis r3, __vt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1@ha
+/* 80211C7C 0020EBBC  38 03 03 D0 */	addi r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
+/* 80211C80 0020EBC0  3C 80 80 4C */	lis r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+/* 80211C84 0020EBC4  3C 60 80 4C */	lis r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
 /* 80211C88 0020EBC8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80211C8C 0020EBCC  39 00 00 00 */	li r8, 0
-/* 80211C90 0020EBD0  38 E4 02 58 */	addi r7, r4, __vt__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
-/* 80211C94 0020EBD4  38 A3 02 D4 */	addi r5, r3, __vt__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1@l
+/* 80211C90 0020EBD0  38 E4 02 58 */	addi r7, r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
+/* 80211C94 0020EBD4  38 A3 02 D4 */	addi r5, r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
 /* 80211C98 0020EBD8  99 1F 00 18 */	stb r8, 0x18(r31)
 /* 80211C9C 0020EBDC  38 06 B5 F0 */	addi r0, r6, __vt__16GenericObjectMgr@l
 /* 80211CA0 0020EBE0  38 C7 00 2C */	addi r6, r7, 0x2c
@@ -3131,8 +3131,8 @@ __ct__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 80211CE4 0020EC24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211CE8 0020EC28  4E 80 00 20 */	blr 
 
-.global transit__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg
-transit__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg:
+.global "transit__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg"
+"transit__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg":
 /* 80211CEC 0020EC2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80211CF0 0020EC30  7C 08 02 A6 */	mflr r0
 /* 80211CF4 0020EC34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3176,8 +3176,8 @@ lbl_80211D4C:
 /* 80211D80 0020ECC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80211D84 0020ECC4  4E 80 00 20 */	blr 
 
-.global registerState__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ24Game31FSMState$$0Q34Game8ItemWeed4Item$$1
-registerState__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ24Game31FSMState$$0Q34Game8ItemWeed4Item$$1:
+.global "registerState__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ24Game31FSMState<Q34Game8ItemWeed4Item>"
+"registerState__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ24Game31FSMState<Q34Game8ItemWeed4Item>":
 /* 80211D88 0020ECC8  80 C3 00 08 */	lwz r6, 8(r3)
 /* 80211D8C 0020ECCC  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80211D90 0020ECD0  7C 06 00 00 */	cmpw r6, r0
@@ -3215,8 +3215,8 @@ lbl_80211DC8:
 /* 80211E04 0020ED44  90 03 00 08 */	stw r0, 8(r3)
 /* 80211E08 0020ED48  4E 80 00 20 */	blr 
 
-.global exec__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item
-exec__Q24Game35StateMachine$$0Q34Game8ItemWeed4Item$$1FPQ34Game8ItemWeed4Item:
+.global "exec__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item"
+"exec__Q24Game35StateMachine<Q34Game8ItemWeed4Item>FPQ34Game8ItemWeed4Item":
 /* 80211E0C 0020ED4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211E10 0020ED50  7C 08 02 A6 */	mflr r0
 /* 80211E14 0020ED54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3233,8 +3233,8 @@ lbl_80211E34:
 /* 80211E3C 0020ED7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211E40 0020ED80  4E 80 00 20 */	blr 
 
-.global onKeyEvent__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRCQ28SysShape8KeyEvent:
+.global "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent"
+"onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent":
 /* 80211E44 0020ED84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211E48 0020ED88  7C 08 02 A6 */	mflr r0
 /* 80211E4C 0020ED8C  7C 66 1B 78 */	mr r6, r3
@@ -3254,8 +3254,8 @@ lbl_80211E78:
 /* 80211E80 0020EDC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211E84 0020EDC4  4E 80 00 20 */	blr 
 
-.global platCallback__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRQ24Game9PlatEvent
-platCallback__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRQ24Game9PlatEvent:
+.global "platCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRQ24Game9PlatEvent"
+"platCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRQ24Game9PlatEvent":
 /* 80211E88 0020EDC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211E8C 0020EDCC  7C 08 02 A6 */	mflr r0
 /* 80211E90 0020EDD0  7C 66 1B 78 */	mr r6, r3
@@ -3275,8 +3275,8 @@ lbl_80211EBC:
 /* 80211EC4 0020EE04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211EC8 0020EE08  4E 80 00 20 */	blr 
 
-.global collisionCallback__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRQ24Game9CollEvent
-collisionCallback__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRQ24Game9CollEvent:
+.global "collisionCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRQ24Game9CollEvent"
+"collisionCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRQ24Game9CollEvent":
 /* 80211ECC 0020EE0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211ED0 0020EE10  7C 08 02 A6 */	mflr r0
 /* 80211ED4 0020EE14  7C 66 1B 78 */	mr r6, r3
@@ -3296,8 +3296,8 @@ lbl_80211F00:
 /* 80211F08 0020EE48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211F0C 0020EE4C  4E 80 00 20 */	blr 
 
-.global bounceCallback__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FPQ23Sys8Triangle
-bounceCallback__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FPQ23Sys8Triangle:
+.global "bounceCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FPQ23Sys8Triangle"
+"bounceCallback__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FPQ23Sys8Triangle":
 /* 80211F10 0020EE50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211F14 0020EE54  7C 08 02 A6 */	mflr r0
 /* 80211F18 0020EE58  7C 66 1B 78 */	mr r6, r3
@@ -3317,16 +3317,16 @@ lbl_80211F44:
 /* 80211F4C 0020EE8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211F50 0020EE90  4E 80 00 20 */	blr 
 
-.global isFlagAlive__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fi
-isFlagAlive__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "isFlagAlive__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi"
+"isFlagAlive__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi":
 /* 80211F54 0020EE94  80 63 00 68 */	lwz r3, 0x68(r3)
 /* 80211F58 0020EE98  7C 03 20 AE */	lbzx r0, r3, r4
 /* 80211F5C 0020EE9C  7C 00 00 34 */	cntlzw r0, r0
 /* 80211F60 0020EEA0  54 03 D9 7E */	srwi r3, r0, 5
 /* 80211F64 0020EEA4  4E 80 00 20 */	blr 
 
-.global getEnd__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-getEnd__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+"getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80211F68 0020EEA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211F6C 0020EEAC  7C 08 02 A6 */	mflr r0
 /* 80211F70 0020EEB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3339,8 +3339,8 @@ getEnd__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 80211F8C 0020EECC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211F90 0020EED0  4E 80 00 20 */	blr 
 
-.global get__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv
-get__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv:
+.global "get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+"get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv":
 /* 80211F94 0020EED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211F98 0020EED8  7C 08 02 A6 */	mflr r0
 /* 80211F9C 0020EEDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3353,8 +3353,8 @@ get__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv:
 /* 80211FB8 0020EEF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211FBC 0020EEFC  4E 80 00 20 */	blr 
 
-.global __ml__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv
-__ml__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "__ml__31Iterator<Q34Game8ItemWeed4Weed>Fv"
+"__ml__31Iterator<Q34Game8ItemWeed4Weed>Fv":
 /* 80211FC0 0020EF00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211FC4 0020EF04  7C 08 02 A6 */	mflr r0
 /* 80211FC8 0020EF08  7C 64 1B 78 */	mr r4, r3
@@ -3370,8 +3370,8 @@ __ml__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv:
 /* 80211FF0 0020EF30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80211FF4 0020EF34  4E 80 00 20 */	blr 
 
-.global next__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv
-next__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "next__31Iterator<Q34Game8ItemWeed4Weed>Fv"
+"next__31Iterator<Q34Game8ItemWeed4Weed>Fv":
 /* 80211FF8 0020EF38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80211FFC 0020EF3C  7C 08 02 A6 */	mflr r0
 /* 80212000 0020EF40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3434,8 +3434,8 @@ lbl_802120C8:
 /* 802120D4 0020F014  38 21 00 10 */	addi r1, r1, 0x10
 /* 802120D8 0020F018  4E 80 00 20 */	blr 
 
-.global first__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv
-first__31Iterator$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "first__31Iterator<Q34Game8ItemWeed4Weed>Fv"
+"first__31Iterator<Q34Game8ItemWeed4Weed>Fv":
 /* 802120DC 0020F01C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802120E0 0020F020  7C 08 02 A6 */	mflr r0
 /* 802120E4 0020F024  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3509,107 +3509,107 @@ __sinit_itemWeed_cpp:
 /* 802121D8 0020F118  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802121DC 0020F11C  4E 80 00 20 */	blr 
 
-.global $$232$$2__dt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$232$$2__dt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@32@__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+"@32@__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 802121E0 0020F120  38 63 FF E0 */	addi r3, r3, -32
-/* 802121E4 0020F124  4B FF D1 88 */	b __dt__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 802121E4 0020F124  4B FF D1 88 */	b "__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$228$$2resetMgr__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$228$$2resetMgr__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@28@resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"@28@resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 802121E8 0020F128  38 63 FF E4 */	addi r3, r3, -28
-/* 802121EC 0020F12C  4B FF EC C4 */	b resetMgr__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 802121EC 0020F12C  4B FF EC C4 */	b "resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$228$$2doDirectDraw__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics
-$$228$$2doDirectDraw__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics:
+.global "@28@doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
+"@28@doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics":
 /* 802121F0 0020F130  38 63 FF E4 */	addi r3, r3, -28
-/* 802121F4 0020F134  4B FF EC 6C */	b doDirectDraw__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics
+/* 802121F4 0020F134  4B FF EC 6C */	b "doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
 
-.global $$228$$2doSimulation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff
-$$228$$2doSimulation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff:
+.global "@28@doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff"
+"@28@doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff":
 /* 802121F8 0020F138  38 63 FF E4 */	addi r3, r3, -28
-/* 802121FC 0020F13C  4B FF EC 14 */	b doSimulation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff
+/* 802121FC 0020F13C  4B FF EC 14 */	b "doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff"
 
-.global $$228$$2doViewCalc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$228$$2doViewCalc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@28@doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"@28@doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80212200 0020F140  38 63 FF E4 */	addi r3, r3, -28
-/* 80212204 0020F144  4B FF EB BC */	b doViewCalc__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 80212204 0020F144  4B FF EB BC */	b "doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$228$$2doSetView__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
-$$228$$2doSetView__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "@28@doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
+"@28@doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi":
 /* 80212208 0020F148  38 63 FF E4 */	addi r3, r3, -28
-/* 8021220C 0020F14C  4B FF EB 64 */	b doSetView__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
+/* 8021220C 0020F14C  4B FF EB 64 */	b "doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
 
-.global $$228$$2doEntry__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$228$$2doEntry__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@28@doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"@28@doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80212210 0020F150  38 63 FF E4 */	addi r3, r3, -28
-/* 80212214 0020F154  4B FF EB 0C */	b doEntry__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 80212214 0020F154  4B FF EB 0C */	b "doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$228$$2doAnimation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$228$$2doAnimation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@28@doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"@28@doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80212218 0020F158  38 63 FF E4 */	addi r3, r3, -28
-/* 8021221C 0020F15C  4B FF EA B4 */	b doAnimation__36MonoObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 8021221C 0020F15C  4B FF EA B4 */	b "doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$228$$2doDirectDraw__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics
-$$228$$2doDirectDraw__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics:
+.global "@28@doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
+"@28@doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics":
 /* 80212220 0020F160  38 63 FF E4 */	addi r3, r3, -28
-/* 80212224 0020F164  4B FF ED 60 */	b doDirectDraw__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1FR8Graphics
+/* 80212224 0020F164  4B FF ED 60 */	b "doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
 
-.global $$228$$2doSimulation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff
-$$228$$2doSimulation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff:
+.global "@28@doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff"
+"@28@doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff":
 /* 80212228 0020F168  38 63 FF E4 */	addi r3, r3, -28
-/* 8021222C 0020F16C  4B FF EF 78 */	b doSimulation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Ff
+/* 8021222C 0020F16C  4B FF EF 78 */	b "doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff"
 
-.global $$228$$2doViewCalc__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$228$$2doViewCalc__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@28@doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"@28@doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80212230 0020F170  38 63 FF E4 */	addi r3, r3, -28
-/* 80212234 0020F174  4B FF F1 44 */	b doViewCalc__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 80212234 0020F174  4B FF F1 44 */	b "doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$228$$2doSetView__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
-$$228$$2doSetView__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi:
+.global "@28@doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi"
+"@28@doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi":
 /* 80212238 0020F178  38 63 FF E4 */	addi r3, r3, -28
-/* 8021223C 0020F17C  4B FF F3 10 */	b doSetView__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fi
+/* 8021223C 0020F17C  4B FF F3 10 */	b "doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi"
 
-.global $$228$$2doEntry__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$228$$2doEntry__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@28@doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"@28@doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80212240 0020F180  38 63 FF E4 */	addi r3, r3, -28
-/* 80212244 0020F184  4B FF F4 DC */	b doEntry__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 80212244 0020F184  4B FF F4 DC */	b "doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$228$$2doAnimation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$228$$2doAnimation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@28@doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+"@28@doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80212248 0020F188  38 63 FF E4 */	addi r3, r3, -28
-/* 8021224C 0020F18C  4B FF F6 A8 */	b doAnimation__32ObjectMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 8021224C 0020F18C  4B FF F6 A8 */	b "doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$232$$2getEnd__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$232$$2getEnd__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@32@getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+"@32@getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80212250 0020F190  38 63 FF E0 */	addi r3, r3, -32
-/* 80212254 0020F194  4B FF FD 14 */	b getEnd__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 80212254 0020F194  4B FF FD 14 */	b "getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$232$$2getStart__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
-$$232$$2getStart__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv:
+.global "@32@getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+"@32@getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv":
 /* 80212258 0020F198  38 63 FF E0 */	addi r3, r3, -32
-/* 8021225C 0020F19C  4B FF E8 30 */	b getStart__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1Fv
+/* 8021225C 0020F19C  4B FF E8 30 */	b "getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
 
-.global $$232$$2getNext__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv
-$$232$$2getNext__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv:
+.global "@32@getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+"@32@getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv":
 /* 80212260 0020F1A0  38 63 FF E0 */	addi r3, r3, -32
-/* 80212264 0020F1A4  4B FF E7 FC */	b getNext__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv
+/* 80212264 0020F1A4  4B FF E7 FC */	b "getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
 
-.global $$232$$2get__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv
-$$232$$2get__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv:
+.global "@32@get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+"@32@get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv":
 /* 80212268 0020F1A8  38 63 FF E0 */	addi r3, r3, -32
-/* 8021226C 0020F1AC  4B FF FD 28 */	b get__Q24Game32TFlockMgr$$0Q34Game8ItemWeed4Weed$$1FPv
+/* 8021226C 0020F1AC  4B FF FD 28 */	b "get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
 
-.global $$232$$2__dt__Q34Game8ItemWeed7WeedMgrFv
-$$232$$2__dt__Q34Game8ItemWeed7WeedMgrFv:
+.global "@32@__dt__Q34Game8ItemWeed7WeedMgrFv"
+"@32@__dt__Q34Game8ItemWeed7WeedMgrFv":
 /* 80212270 0020F1B0  38 63 FF E0 */	addi r3, r3, -32
 /* 80212274 0020F1B4  4B FF E6 3C */	b __dt__Q34Game8ItemWeed7WeedMgrFv
 
-.global $$2376$$2onKeyEvent__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRCQ28SysShape8KeyEvent
-$$2376$$2onKeyEvent__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRCQ28SysShape8KeyEvent:
+.global "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent"
+"@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent":
 /* 80212278 0020F1B8  38 63 FE 88 */	addi r3, r3, -376
-/* 8021227C 0020F1BC  4B FF FB C8 */	b onKeyEvent__Q24Game74FSMItem$$0Q34Game8ItemWeed4Item$$4Q34Game8ItemWeed3FSM$$4Q34Game8ItemWeed5State$$1FRCQ28SysShape8KeyEvent
+/* 8021227C 0020F1BC  4B FF FB C8 */	b "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemWeed4Item,Q34Game8ItemWeed3FSM,Q34Game8ItemWeed5State>FRCQ28SysShape8KeyEvent"
 
-.global $$248$$2__dt__Q34Game8ItemWeed3MgrFv
-$$248$$2__dt__Q34Game8ItemWeed3MgrFv:
+.global "@48@__dt__Q34Game8ItemWeed3MgrFv"
+"@48@__dt__Q34Game8ItemWeed3MgrFv":
 /* 80212280 0020F1C0  38 63 FF D0 */	addi r3, r3, -48
 /* 80212284 0020F1C4  4B FF E3 48 */	b __dt__Q34Game8ItemWeed3MgrFv

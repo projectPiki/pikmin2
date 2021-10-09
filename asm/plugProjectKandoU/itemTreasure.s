@@ -9,19 +9,19 @@ init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item:
 /* 801F3178 001F00B8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801F317C 001F00BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801F3180 001F00C0  7C 7F 1B 78 */	mr r31, r3
-/* 801F3184 001F00C4  48 00 18 8D */	bl create__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1Fi
+/* 801F3184 001F00C4  48 00 18 8D */	bl "create__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>Fi"
 /* 801F3188 001F00C8  38 60 00 10 */	li r3, 0x10
 /* 801F318C 001F00CC  4B E3 0D 19 */	bl __nw__FUl
 /* 801F3190 001F00D0  7C 64 1B 79 */	or. r4, r3, r3
 /* 801F3194 001F00D4  41 82 00 40 */	beq lbl_801F31D4
-/* 801F3198 001F00D8  3C 60 80 4C */	lis r3, __vt__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1@ha
-/* 801F319C 001F00DC  3C C0 80 4C */	lis r6, __vt__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1@ha
-/* 801F31A0 001F00E0  38 03 C4 48 */	addi r0, r3, __vt__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1@l
+/* 801F3198 001F00D8  3C 60 80 4C */	lis r3, "__vt__Q24Game36FSMState<Q34Game12ItemTreasure4Item>"@ha
+/* 801F319C 001F00DC  3C C0 80 4C */	lis r6, "__vt__Q24Game37ItemState<Q34Game12ItemTreasure4Item>"@ha
+/* 801F31A0 001F00E0  38 03 C4 48 */	addi r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemTreasure4Item>"@l
 /* 801F31A4 001F00E4  3C A0 80 4C */	lis r5, __vt__Q34Game12ItemTreasure5State@ha
 /* 801F31A8 001F00E8  90 04 00 00 */	stw r0, 0(r4)
 /* 801F31AC 001F00EC  38 E0 00 00 */	li r7, 0
 /* 801F31B0 001F00F0  3C 60 80 4C */	lis r3, __vt__Q34Game12ItemTreasure11NormalState@ha
-/* 801F31B4 001F00F4  38 C6 C4 14 */	addi r6, r6, __vt__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1@l
+/* 801F31B4 001F00F4  38 C6 C4 14 */	addi r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemTreasure4Item>"@l
 /* 801F31B8 001F00F8  90 E4 00 04 */	stw r7, 4(r4)
 /* 801F31BC 001F00FC  38 A5 C3 E0 */	addi r5, r5, __vt__Q34Game12ItemTreasure5State@l
 /* 801F31C0 001F0100  38 03 C3 AC */	addi r0, r3, __vt__Q34Game12ItemTreasure11NormalState@l
@@ -31,7 +31,7 @@ init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item:
 /* 801F31D0 001F0110  90 04 00 00 */	stw r0, 0(r4)
 lbl_801F31D4:
 /* 801F31D4 001F0114  7F E3 FB 78 */	mr r3, r31
-/* 801F31D8 001F0118  48 00 19 39 */	bl registerState__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1
+/* 801F31D8 001F0118  48 00 19 39 */	bl "registerState__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ24Game36FSMState<Q34Game12ItemTreasure4Item>"
 /* 801F31DC 001F011C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801F31E0 001F0120  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801F31E4 001F0124  7C 08 03 A6 */	mtlr r0
@@ -90,11 +90,11 @@ onDamage__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Itemf:
 /* 801F3288 001F01C8  C0 02 B8 70 */	lfs f0, lbl_80519BD0@sda21(r2)
 /* 801F328C 001F01CC  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 801F3290 001F01D0  3C C0 80 48 */	lis r6, lbl_804816D4@ha
-/* 801F3294 001F01D4  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 801F3294 001F01D4  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 801F3298 001F01D8  28 05 00 00 */	cmplwi r5, 0
 /* 801F329C 001F01DC  38 C6 16 D4 */	addi r6, r6, lbl_804816D4@l
 /* 801F32A0 001F01E0  90 A1 00 28 */	stw r5, 0x28(r1)
-/* 801F32A4 001F01E4  38 04 BC 9C */	addi r0, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 801F32A4 001F01E4  38 04 BC 9C */	addi r0, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 801F32A8 001F01E8  90 C1 00 24 */	stw r6, 0x24(r1)
 /* 801F32AC 001F01EC  90 A1 00 30 */	stw r5, 0x30(r1)
 /* 801F32B0 001F01F0  D0 01 00 3C */	stfs f0, 0x3c(r1)
@@ -539,8 +539,8 @@ onInit__Q34Game12ItemTreasure4ItemFPQ24Game15CreatureInitArg:
 /* 801F3924 001F0864  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F3928 001F0868  4E 80 00 20 */	blr 
 
-.global start__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg
-start__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg:
+.global "start__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg"
+"start__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg":
 /* 801F392C 001F086C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F3930 001F0870  7C 08 02 A6 */	mflr r0
 /* 801F3934 001F0874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -715,7 +715,7 @@ doDirectDraw__Q34Game12ItemTreasure4ItemFR8Graphics:
 /* 801F3B94 001F0AD4  C0 3E 01 D0 */	lfs f1, 0x1d0(r30)
 /* 801F3B98 001F0AD8  7F E3 FB 78 */	mr r3, r31
 /* 801F3B9C 001F0ADC  38 9E 01 C4 */	addi r4, r30, 0x1c4
-/* 801F3BA0 001F0AE0  48 23 1F 0D */	bl drawSphere__8GraphicsFR10Vector3$$0f$$1f
+/* 801F3BA0 001F0AE0  48 23 1F 0D */	bl "drawSphere__8GraphicsFR10Vector3<f>f"
 /* 801F3BA4 001F0AE4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801F3BA8 001F0AE8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801F3BAC 001F0AEC  83 C1 00 08 */	lwz r30, 8(r1)
@@ -723,8 +723,8 @@ doDirectDraw__Q34Game12ItemTreasure4ItemFR8Graphics:
 /* 801F3BB4 001F0AF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F3BB8 001F0AF8  4E 80 00 20 */	blr 
 
-.global getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3$$0f$$1
-getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3$$0f$$1:
+.global "getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3<f>"
+"getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3<f>":
 /* 801F3BBC 001F0AFC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801F3BC0 001F0B00  7C 08 02 A6 */	mflr r0
 /* 801F3BC4 001F0B04  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1259,9 +1259,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F42F0 001F1230  38 7E 00 0C */	addi r3, r30, 0xc
 /* 801F42F4 001F1234  90 1E 00 08 */	stw r0, 8(r30)
 /* 801F42F8 001F1238  48 21 F3 61 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F42FC 001F123C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801F42FC 001F123C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801F4300 001F1240  3C A0 73 30 */	lis r5, 0x73303031@ha
-/* 801F4304 001F1244  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801F4304 001F1244  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801F4308 001F1248  C0 02 B8 78 */	lfs f0, lbl_80519BD8@sda21(r2)
 /* 801F430C 001F124C  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 801F4310 001F1250  7F C4 F3 78 */	mr r4, r30
@@ -1274,9 +1274,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F432C 001F126C  D0 3E 00 2C */	stfs f1, 0x2c(r30)
 /* 801F4330 001F1270  D0 1E 00 30 */	stfs f0, 0x30(r30)
 /* 801F4334 001F1274  48 21 F3 25 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F4338 001F1278  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801F4338 001F1278  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801F433C 001F127C  3C A0 73 30 */	lis r5, 0x73303032@ha
-/* 801F4340 001F1280  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801F4340 001F1280  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801F4344 001F1284  C0 02 B8 78 */	lfs f0, lbl_80519BD8@sda21(r2)
 /* 801F4348 001F1288  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 801F434C 001F128C  7F C4 F3 78 */	mr r4, r30
@@ -1289,9 +1289,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F4368 001F12A8  D0 3E 00 54 */	stfs f1, 0x54(r30)
 /* 801F436C 001F12AC  D0 1E 00 58 */	stfs f0, 0x58(r30)
 /* 801F4370 001F12B0  48 21 F2 E9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F4374 001F12B4  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801F4374 001F12B4  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801F4378 001F12B8  3C A0 73 30 */	lis r5, 0x73303033@ha
-/* 801F437C 001F12BC  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801F437C 001F12BC  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801F4380 001F12C0  C0 02 B8 74 */	lfs f0, lbl_80519BD4@sda21(r2)
 /* 801F4384 001F12C4  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 801F4388 001F12C8  7F C4 F3 78 */	mr r4, r30
@@ -1304,9 +1304,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F43A4 001F12E4  D0 3E 00 7C */	stfs f1, 0x7c(r30)
 /* 801F43A8 001F12E8  D0 1E 00 80 */	stfs f0, 0x80(r30)
 /* 801F43AC 001F12EC  48 21 F2 AD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F43B0 001F12F0  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801F43B0 001F12F0  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801F43B4 001F12F4  3C A0 73 30 */	lis r5, 0x73303034@ha
-/* 801F43B8 001F12F8  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801F43B8 001F12F8  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801F43BC 001F12FC  C0 02 B8 B0 */	lfs f0, lbl_80519C10@sda21(r2)
 /* 801F43C0 001F1300  90 1E 00 84 */	stw r0, 0x84(r30)
 /* 801F43C4 001F1304  7F C4 F3 78 */	mr r4, r30
@@ -1319,9 +1319,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F43E0 001F1320  D0 3E 00 A4 */	stfs f1, 0xa4(r30)
 /* 801F43E4 001F1324  D0 1E 00 A8 */	stfs f0, 0xa8(r30)
 /* 801F43E8 001F1328  48 21 F2 71 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F43EC 001F132C  3C 80 80 4B */	lis r4, __vt__7Parm$$0f$$1@ha
+/* 801F43EC 001F132C  3C 80 80 4B */	lis r4, "__vt__7Parm<f>"@ha
 /* 801F43F0 001F1330  3C 60 80 4C */	lis r3, __vt__Q34Game12ItemTreasure13TreasureParms@ha
-/* 801F43F4 001F1334  38 04 AC BC */	addi r0, r4, __vt__7Parm$$0f$$1@l
+/* 801F43F4 001F1334  38 04 AC BC */	addi r0, r4, "__vt__7Parm<f>"@l
 /* 801F43F8 001F1338  3C A0 70 30 */	lis r5, 0x70303030@ha
 /* 801F43FC 001F133C  90 1E 00 AC */	stw r0, 0xac(r30)
 /* 801F4400 001F1340  39 23 BC E4 */	addi r9, r3, __vt__Q34Game12ItemTreasure13TreasureParms@l
@@ -1343,9 +1343,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F4440 001F1380  90 FE 00 E0 */	stw r7, 0xe0(r30)
 /* 801F4444 001F1384  90 1E 00 E4 */	stw r0, 0xe4(r30)
 /* 801F4448 001F1388  48 21 F2 11 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F444C 001F138C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801F444C 001F138C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801F4450 001F1390  3C A0 70 30 */	lis r5, 0x70303031@ha
-/* 801F4454 001F1394  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801F4454 001F1394  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801F4458 001F1398  C0 02 B8 C0 */	lfs f0, lbl_80519C20@sda21(r2)
 /* 801F445C 001F139C  90 1E 00 E8 */	stw r0, 0xe8(r30)
 /* 801F4460 001F13A0  38 7E 01 10 */	addi r3, r30, 0x110
@@ -1358,9 +1358,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F447C 001F13BC  D0 3E 01 08 */	stfs f1, 0x108(r30)
 /* 801F4480 001F13C0  D0 1E 01 0C */	stfs f0, 0x10c(r30)
 /* 801F4484 001F13C4  48 21 F1 D5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F4488 001F13C8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801F4488 001F13C8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801F448C 001F13CC  3C A0 70 30 */	lis r5, 0x70303032@ha
-/* 801F4490 001F13D0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801F4490 001F13D0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801F4494 001F13D4  C0 02 B8 C8 */	lfs f0, lbl_80519C28@sda21(r2)
 /* 801F4498 001F13D8  90 1E 01 10 */	stw r0, 0x110(r30)
 /* 801F449C 001F13DC  38 7E 01 38 */	addi r3, r30, 0x138
@@ -1373,9 +1373,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F44B8 001F13F8  D0 3E 01 30 */	stfs f1, 0x130(r30)
 /* 801F44BC 001F13FC  D0 1E 01 34 */	stfs f0, 0x134(r30)
 /* 801F44C0 001F1400  48 21 F1 99 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F44C4 001F1404  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801F44C4 001F1404  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801F44C8 001F1408  3C A0 70 30 */	lis r5, 0x70303033@ha
-/* 801F44CC 001F140C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801F44CC 001F140C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801F44D0 001F1410  C0 02 B8 CC */	lfs f0, lbl_80519C2C@sda21(r2)
 /* 801F44D4 001F1414  90 1E 01 38 */	stw r0, 0x138(r30)
 /* 801F44D8 001F1418  38 7E 01 60 */	addi r3, r30, 0x160
@@ -1388,9 +1388,9 @@ __ct__Q34Game12ItemTreasure13TreasureParmsFv:
 /* 801F44F4 001F1434  D0 3E 01 58 */	stfs f1, 0x158(r30)
 /* 801F44F8 001F1438  D0 1E 01 5C */	stfs f0, 0x15c(r30)
 /* 801F44FC 001F143C  48 21 F1 5D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801F4500 001F1440  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801F4500 001F1440  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801F4504 001F1444  C0 42 B8 D0 */	lfs f2, lbl_80519C30@sda21(r2)
-/* 801F4508 001F1448  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801F4508 001F1448  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801F450C 001F144C  C0 22 B8 98 */	lfs f1, lbl_80519BF8@sda21(r2)
 /* 801F4510 001F1450  90 1E 01 60 */	stw r0, 0x160(r30)
 /* 801F4514 001F1454  7F C3 F3 78 */	mr r3, r30
@@ -1419,9 +1419,9 @@ birth__Q34Game12ItemTreasure3MgrFv:
 /* 801F4564 001F14A4  41 82 00 E4 */	beq lbl_801F4648
 /* 801F4568 001F14A8  38 80 04 0E */	li r4, 0x40e
 /* 801F456C 001F14AC  4B FD 7A 7D */	bl __ct__Q24Game8BaseItemFi
-/* 801F4570 001F14B0  3C 60 80 4C */	lis r3, __vt__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1@ha
+/* 801F4570 001F14B0  3C 60 80 4C */	lis r3, "__vt__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>"@ha
 /* 801F4574 001F14B4  38 00 00 00 */	li r0, 0
-/* 801F4578 001F14B8  38 83 C1 88 */	addi r4, r3, __vt__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1@l
+/* 801F4578 001F14B8  38 83 C1 88 */	addi r4, r3, "__vt__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>"@l
 /* 801F457C 001F14BC  38 60 00 1C */	li r3, 0x1c
 /* 801F4580 001F14C0  90 9F 00 00 */	stw r4, 0(r31)
 /* 801F4584 001F14C4  38 84 01 B0 */	addi r4, r4, 0x1b0
@@ -1431,13 +1431,13 @@ birth__Q34Game12ItemTreasure3MgrFv:
 /* 801F4594 001F14D4  4B E2 F9 11 */	bl __nw__FUl
 /* 801F4598 001F14D8  28 03 00 00 */	cmplwi r3, 0
 /* 801F459C 001F14DC  41 82 00 30 */	beq lbl_801F45CC
-/* 801F45A0 001F14E0  3C 80 80 4C */	lis r4, __vt__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1@ha
-/* 801F45A4 001F14E4  3C A0 80 4C */	lis r5, __vt__Q24Game35ItemFSM$$0Q34Game12ItemTreasure4Item$$1@ha
-/* 801F45A8 001F14E8  38 04 C1 70 */	addi r0, r4, __vt__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1@l
+/* 801F45A0 001F14E0  3C 80 80 4C */	lis r4, "__vt__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>"@ha
+/* 801F45A4 001F14E4  3C A0 80 4C */	lis r5, "__vt__Q24Game35ItemFSM<Q34Game12ItemTreasure4Item>"@ha
+/* 801F45A8 001F14E8  38 04 C1 70 */	addi r0, r4, "__vt__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>"@l
 /* 801F45AC 001F14EC  3C 80 80 4C */	lis r4, __vt__Q34Game12ItemTreasure3FSM@ha
 /* 801F45B0 001F14F0  90 03 00 00 */	stw r0, 0(r3)
 /* 801F45B4 001F14F4  38 C0 FF FF */	li r6, -1
-/* 801F45B8 001F14F8  38 A5 C1 58 */	addi r5, r5, __vt__Q24Game35ItemFSM$$0Q34Game12ItemTreasure4Item$$1@l
+/* 801F45B8 001F14F8  38 A5 C1 58 */	addi r5, r5, "__vt__Q24Game35ItemFSM<Q34Game12ItemTreasure4Item>"@l
 /* 801F45BC 001F14FC  38 04 C4 68 */	addi r0, r4, __vt__Q34Game12ItemTreasure3FSM@l
 /* 801F45C0 001F1500  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 801F45C4 001F1504  90 A3 00 00 */	stw r5, 0(r3)
@@ -1450,9 +1450,9 @@ lbl_801F45CC:
 /* 801F45DC 001F151C  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801F45E0 001F1520  7D 89 03 A6 */	mtctr r12
 /* 801F45E4 001F1524  4E 80 04 21 */	bctrl 
-/* 801F45E8 001F1528  3C 80 80 4C */	lis r4, __vt__Q24Game90WorkItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1@ha
+/* 801F45E8 001F1528  3C 80 80 4C */	lis r4, "__vt__Q24Game90WorkItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>"@ha
 /* 801F45EC 001F152C  38 7F 01 E0 */	addi r3, r31, 0x1e0
-/* 801F45F0 001F1530  38 84 BF 34 */	addi r4, r4, __vt__Q24Game90WorkItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1@l
+/* 801F45F0 001F1530  38 84 BF 34 */	addi r4, r4, "__vt__Q24Game90WorkItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>"@l
 /* 801F45F4 001F1534  90 9F 00 00 */	stw r4, 0(r31)
 /* 801F45F8 001F1538  38 04 01 B0 */	addi r0, r4, 0x1b0
 /* 801F45FC 001F153C  90 1F 01 78 */	stw r0, 0x178(r31)
@@ -1486,8 +1486,8 @@ lbl_801F4648:
 /* 801F4668 001F15A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F466C 001F15AC  4E 80 00 20 */	blr 
 
-.global generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm
-generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm:
+.global "generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
+"generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
 /* 801F4670 001F15B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F4674 001F15B4  7C 08 02 A6 */	mflr r0
 /* 801F4678 001F15B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1504,7 +1504,7 @@ generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24
 /* 801F46A4 001F15E4  7F E3 FB 78 */	mr r3, r31
 /* 801F46A8 001F15E8  7F C4 F3 78 */	mr r4, r30
 /* 801F46AC 001F15EC  38 A0 00 00 */	li r5, 0
-/* 801F46B0 001F15F0  4B F4 6A F9 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 801F46B0 001F15F0  4B F4 6A F9 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801F46B4 001F15F4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801F46B8 001F15F8  7F E3 FB 78 */	mr r3, r31
 /* 801F46BC 001F15FC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1540,31 +1540,31 @@ __dt__Q34Game12ItemTreasure3MgrFv:
 /* 801F471C 001F165C  38 03 00 74 */	addi r0, r3, 0x74
 /* 801F4720 001F1660  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801F4724 001F1664  41 82 00 84 */	beq lbl_801F47A8
-/* 801F4728 001F1668  3C 80 80 4B */	lis r4, __vt__31NodeObjectMgr$$0Q24Game8BaseItem$$1@ha
+/* 801F4728 001F1668  3C 80 80 4B */	lis r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
 /* 801F472C 001F166C  34 7E 00 6C */	addic. r3, r30, 0x6c
-/* 801F4730 001F1670  38 84 72 4C */	addi r4, r4, __vt__31NodeObjectMgr$$0Q24Game8BaseItem$$1@l
+/* 801F4730 001F1670  38 84 72 4C */	addi r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
 /* 801F4734 001F1674  90 9E 00 4C */	stw r4, 0x4c(r30)
 /* 801F4738 001F1678  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801F473C 001F167C  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 801F4740 001F1680  41 82 00 18 */	beq lbl_801F4758
-/* 801F4744 001F1684  3C 80 80 4B */	lis r4, __vt__29TObjectNode$$0Q24Game8BaseItem$$1@ha
-/* 801F4748 001F1688  38 04 72 3C */	addi r0, r4, __vt__29TObjectNode$$0Q24Game8BaseItem$$1@l
+/* 801F4744 001F1684  3C 80 80 4B */	lis r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
+/* 801F4748 001F1688  38 04 72 3C */	addi r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
 /* 801F474C 001F168C  90 1E 00 6C */	stw r0, 0x6c(r30)
 /* 801F4750 001F1690  38 80 00 00 */	li r4, 0
 /* 801F4754 001F1694  48 21 CE 35 */	bl __dt__5CNodeFv
 lbl_801F4758:
 /* 801F4758 001F1698  34 1E 00 4C */	addic. r0, r30, 0x4c
 /* 801F475C 001F169C  41 82 00 4C */	beq lbl_801F47A8
-/* 801F4760 001F16A0  3C 60 80 4B */	lis r3, __vt__27ObjectMgr$$0Q24Game8BaseItem$$1@ha
+/* 801F4760 001F16A0  3C 60 80 4B */	lis r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
 /* 801F4764 001F16A4  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801F4768 001F16A8  38 63 72 CC */	addi r3, r3, __vt__27ObjectMgr$$0Q24Game8BaseItem$$1@l
+/* 801F4768 001F16A8  38 63 72 CC */	addi r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
 /* 801F476C 001F16AC  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 801F4770 001F16B0  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801F4774 001F16B4  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 801F4778 001F16B8  41 82 00 30 */	beq lbl_801F47A8
-/* 801F477C 001F16BC  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8BaseItem$$1@ha
+/* 801F477C 001F16BC  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8BaseItem>"@ha
 /* 801F4780 001F16C0  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801F4784 001F16C4  38 03 73 48 */	addi r0, r3, __vt__27Container$$0Q24Game8BaseItem$$1@l
+/* 801F4784 001F16C4  38 03 73 48 */	addi r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
 /* 801F4788 001F16C8  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 801F478C 001F16CC  41 82 00 1C */	beq lbl_801F47A8
 /* 801F4790 001F16D0  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1576,9 +1576,9 @@ lbl_801F4758:
 lbl_801F47A8:
 /* 801F47A8 001F16E8  34 1E 00 30 */	addic. r0, r30, 0x30
 /* 801F47AC 001F16EC  41 82 00 30 */	beq lbl_801F47DC
-/* 801F47B0 001F16F0  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8BaseItem$$1@ha
+/* 801F47B0 001F16F0  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8BaseItem>"@ha
 /* 801F47B4 001F16F4  34 1E 00 30 */	addic. r0, r30, 0x30
-/* 801F47B8 001F16F8  38 03 73 48 */	addi r0, r3, __vt__27Container$$0Q24Game8BaseItem$$1@l
+/* 801F47B8 001F16F8  38 03 73 48 */	addi r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
 /* 801F47BC 001F16FC  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801F47C0 001F1700  41 82 00 1C */	beq lbl_801F47DC
 /* 801F47C4 001F1704  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1613,9 +1613,9 @@ doNew__Q34Game12ItemTreasure3MgrFv:
 /* 801F4824 001F1764  41 82 00 E4 */	beq lbl_801F4908
 /* 801F4828 001F1768  38 80 04 0E */	li r4, 0x40e
 /* 801F482C 001F176C  4B FD 77 BD */	bl __ct__Q24Game8BaseItemFi
-/* 801F4830 001F1770  3C 60 80 4C */	lis r3, __vt__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1@ha
+/* 801F4830 001F1770  3C 60 80 4C */	lis r3, "__vt__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>"@ha
 /* 801F4834 001F1774  38 00 00 00 */	li r0, 0
-/* 801F4838 001F1778  38 83 C1 88 */	addi r4, r3, __vt__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1@l
+/* 801F4838 001F1778  38 83 C1 88 */	addi r4, r3, "__vt__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>"@l
 /* 801F483C 001F177C  38 60 00 1C */	li r3, 0x1c
 /* 801F4840 001F1780  90 9F 00 00 */	stw r4, 0(r31)
 /* 801F4844 001F1784  38 84 01 B0 */	addi r4, r4, 0x1b0
@@ -1625,13 +1625,13 @@ doNew__Q34Game12ItemTreasure3MgrFv:
 /* 801F4854 001F1794  4B E2 F6 51 */	bl __nw__FUl
 /* 801F4858 001F1798  28 03 00 00 */	cmplwi r3, 0
 /* 801F485C 001F179C  41 82 00 30 */	beq lbl_801F488C
-/* 801F4860 001F17A0  3C 80 80 4C */	lis r4, __vt__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1@ha
-/* 801F4864 001F17A4  3C A0 80 4C */	lis r5, __vt__Q24Game35ItemFSM$$0Q34Game12ItemTreasure4Item$$1@ha
-/* 801F4868 001F17A8  38 04 C1 70 */	addi r0, r4, __vt__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1@l
+/* 801F4860 001F17A0  3C 80 80 4C */	lis r4, "__vt__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>"@ha
+/* 801F4864 001F17A4  3C A0 80 4C */	lis r5, "__vt__Q24Game35ItemFSM<Q34Game12ItemTreasure4Item>"@ha
+/* 801F4868 001F17A8  38 04 C1 70 */	addi r0, r4, "__vt__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>"@l
 /* 801F486C 001F17AC  3C 80 80 4C */	lis r4, __vt__Q34Game12ItemTreasure3FSM@ha
 /* 801F4870 001F17B0  90 03 00 00 */	stw r0, 0(r3)
 /* 801F4874 001F17B4  38 C0 FF FF */	li r6, -1
-/* 801F4878 001F17B8  38 A5 C1 58 */	addi r5, r5, __vt__Q24Game35ItemFSM$$0Q34Game12ItemTreasure4Item$$1@l
+/* 801F4878 001F17B8  38 A5 C1 58 */	addi r5, r5, "__vt__Q24Game35ItemFSM<Q34Game12ItemTreasure4Item>"@l
 /* 801F487C 001F17BC  38 04 C4 68 */	addi r0, r4, __vt__Q34Game12ItemTreasure3FSM@l
 /* 801F4880 001F17C0  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 801F4884 001F17C4  90 A3 00 00 */	stw r5, 0(r3)
@@ -1644,9 +1644,9 @@ lbl_801F488C:
 /* 801F489C 001F17DC  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801F48A0 001F17E0  7D 89 03 A6 */	mtctr r12
 /* 801F48A4 001F17E4  4E 80 04 21 */	bctrl 
-/* 801F48A8 001F17E8  3C 80 80 4C */	lis r4, __vt__Q24Game90WorkItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1@ha
+/* 801F48A8 001F17E8  3C 80 80 4C */	lis r4, "__vt__Q24Game90WorkItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>"@ha
 /* 801F48AC 001F17EC  38 7F 01 E0 */	addi r3, r31, 0x1e0
-/* 801F48B0 001F17F0  38 84 BF 34 */	addi r4, r4, __vt__Q24Game90WorkItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1@l
+/* 801F48B0 001F17F0  38 84 BF 34 */	addi r4, r4, "__vt__Q24Game90WorkItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>"@l
 /* 801F48B4 001F17F4  90 9F 00 00 */	stw r4, 0(r31)
 /* 801F48B8 001F17F8  38 04 01 B0 */	addi r0, r4, 0x1b0
 /* 801F48BC 001F17FC  90 1F 01 78 */	stw r0, 0x178(r31)
@@ -1698,8 +1698,8 @@ isModel__Q28SysShape9MtxObjectFv:
 /* 801F4940 001F1880  38 60 00 00 */	li r3, 0
 /* 801F4944 001F1884  4E 80 00 20 */	blr 
 
-.global doAI__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1Fv
-doAI__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1Fv:
+.global "doAI__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>Fv"
+"doAI__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>Fv":
 /* 801F4948 001F1888  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F494C 001F188C  7C 08 02 A6 */	mflr r0
 /* 801F4950 001F1890  7C 64 1B 78 */	mr r4, r3
@@ -1714,48 +1714,48 @@ doAI__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$
 /* 801F4974 001F18B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F4978 001F18B8  4E 80 00 20 */	blr 
 
-.global onDamage__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Itemf
-onDamage__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Itemf:
+.global "onDamage__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Itemf"
+"onDamage__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Itemf":
 /* 801F497C 001F18BC  4E 80 00 20 */	blr 
 
-.global onKeyEvent__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent:
+.global "onKeyEvent__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent"
+"onKeyEvent__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent":
 /* 801F4980 001F18C0  4E 80 00 20 */	blr 
 
-.global onBounce__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle
-onBounce__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle:
+.global "onBounce__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle"
+"onBounce__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle":
 /* 801F4984 001F18C4  4E 80 00 20 */	blr 
 
-.global onPlatCollision__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent
-onPlatCollision__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent:
+.global "onPlatCollision__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent"
+"onPlatCollision__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent":
 /* 801F4988 001F18C8  4E 80 00 20 */	blr 
 
-.global onCollision__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent
-onCollision__Q24Game37ItemState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent:
+.global "onCollision__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent"
+"onCollision__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent":
 /* 801F498C 001F18CC  4E 80 00 20 */	blr 
 
-.global init__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg
-init__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg:
+.global "init__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg"
+"init__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg":
 /* 801F4990 001F18D0  4E 80 00 20 */	blr 
 
-.global exec__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item
-exec__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item:
+.global "exec__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
+"exec__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item":
 /* 801F4994 001F18D4  4E 80 00 20 */	blr 
 
-.global cleanup__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item
-cleanup__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item:
+.global "cleanup__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
+"cleanup__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item":
 /* 801F4998 001F18D8  4E 80 00 20 */	blr 
 
-.global resume__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item
-resume__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item:
+.global "resume__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
+"resume__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item":
 /* 801F499C 001F18DC  4E 80 00 20 */	blr 
 
-.global restart__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item
-restart__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item:
+.global "restart__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
+"restart__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item":
 /* 801F49A0 001F18E0  4E 80 00 20 */	blr 
 
-.global transit__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg
-transit__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg:
+.global "transit__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg"
+"transit__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg":
 /* 801F49A4 001F18E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F49A8 001F18E8  7C 08 02 A6 */	mflr r0
 /* 801F49AC 001F18EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1769,12 +1769,12 @@ transit__Q24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasur
 /* 801F49CC 001F190C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F49D0 001F1910  4E 80 00 20 */	blr 
 
-.global init__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item
-init__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item:
+.global "init__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
+"init__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item":
 /* 801F49D4 001F1914  4E 80 00 20 */	blr 
 
-.global exec__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item
-exec__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4Item:
+.global "exec__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
+"exec__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item":
 /* 801F49D8 001F1918  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F49DC 001F191C  7C 08 02 A6 */	mflr r0
 /* 801F49E0 001F1920  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1791,8 +1791,8 @@ lbl_801F4A00:
 /* 801F4A08 001F1948  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F4A0C 001F194C  4E 80 00 20 */	blr 
 
-.global create__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1Fi
-create__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1Fi:
+.global "create__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>Fi"
+"create__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>Fi":
 /* 801F4A10 001F1950  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F4A14 001F1954  7C 08 02 A6 */	mflr r0
 /* 801F4A18 001F1958  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1819,8 +1819,8 @@ create__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1Fi:
 /* 801F4A6C 001F19AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F4A70 001F19B0  4E 80 00 20 */	blr 
 
-.global transit__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg
-transit__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg:
+.global "transit__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg"
+"transit__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg":
 /* 801F4A74 001F19B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F4A78 001F19B8  7C 08 02 A6 */	mflr r0
 /* 801F4A7C 001F19BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1864,8 +1864,8 @@ lbl_801F4AD4:
 /* 801F4B08 001F1A48  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F4B0C 001F1A4C  4E 80 00 20 */	blr 
 
-.global registerState__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1
-registerState__Q24Game40StateMachine$$0Q34Game12ItemTreasure4Item$$1FPQ24Game36FSMState$$0Q34Game12ItemTreasure4Item$$1:
+.global "registerState__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ24Game36FSMState<Q34Game12ItemTreasure4Item>"
+"registerState__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ24Game36FSMState<Q34Game12ItemTreasure4Item>":
 /* 801F4B10 001F1A50  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801F4B14 001F1A54  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801F4B18 001F1A58  7C 06 00 00 */	cmpw r6, r0
@@ -1903,8 +1903,8 @@ lbl_801F4B50:
 /* 801F4B8C 001F1ACC  90 03 00 08 */	stw r0, 8(r3)
 /* 801F4B90 001F1AD0  4E 80 00 20 */	blr 
 
-.global onKeyEvent__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRCQ28SysShape8KeyEvent:
+.global "onKeyEvent__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRCQ28SysShape8KeyEvent"
+"onKeyEvent__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRCQ28SysShape8KeyEvent":
 /* 801F4B94 001F1AD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F4B98 001F1AD8  7C 08 02 A6 */	mflr r0
 /* 801F4B9C 001F1ADC  7C 66 1B 78 */	mr r6, r3
@@ -1924,8 +1924,8 @@ lbl_801F4BC8:
 /* 801F4BD0 001F1B10  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F4BD4 001F1B14  4E 80 00 20 */	blr 
 
-.global platCallback__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRQ24Game9PlatEvent
-platCallback__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRQ24Game9PlatEvent:
+.global "platCallback__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRQ24Game9PlatEvent"
+"platCallback__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRQ24Game9PlatEvent":
 /* 801F4BD8 001F1B18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F4BDC 001F1B1C  7C 08 02 A6 */	mflr r0
 /* 801F4BE0 001F1B20  7C 66 1B 78 */	mr r6, r3
@@ -1945,8 +1945,8 @@ lbl_801F4C0C:
 /* 801F4C14 001F1B54  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F4C18 001F1B58  4E 80 00 20 */	blr 
 
-.global collisionCallback__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRQ24Game9CollEvent
-collisionCallback__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRQ24Game9CollEvent:
+.global "collisionCallback__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRQ24Game9CollEvent"
+"collisionCallback__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRQ24Game9CollEvent":
 /* 801F4C1C 001F1B5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F4C20 001F1B60  7C 08 02 A6 */	mflr r0
 /* 801F4C24 001F1B64  7C 66 1B 78 */	mr r6, r3
@@ -1966,8 +1966,8 @@ lbl_801F4C50:
 /* 801F4C58 001F1B98  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F4C5C 001F1B9C  4E 80 00 20 */	blr 
 
-.global bounceCallback__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FPQ23Sys8Triangle
-bounceCallback__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FPQ23Sys8Triangle:
+.global "bounceCallback__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FPQ23Sys8Triangle"
+"bounceCallback__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FPQ23Sys8Triangle":
 /* 801F4C60 001F1BA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F4C64 001F1BA4  7C 08 02 A6 */	mflr r0
 /* 801F4C68 001F1BA8  7C 66 1B 78 */	mr r6, r3
@@ -2000,12 +2000,12 @@ __sinit_itemTreasure_cpp:
 /* 801F4CC4 001F1C04  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801F4CC8 001F1C08  4E 80 00 20 */	blr 
 
-.global $$2376$$2onKeyEvent__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRCQ28SysShape8KeyEvent
-$$2376$$2onKeyEvent__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRCQ28SysShape8KeyEvent:
+.global "@376@onKeyEvent__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRCQ28SysShape8KeyEvent"
+"@376@onKeyEvent__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRCQ28SysShape8KeyEvent":
 /* 801F4CCC 001F1C0C  38 63 FE 88 */	addi r3, r3, -376
-/* 801F4CD0 001F1C10  4B FF FE C4 */	b onKeyEvent__Q24Game89FSMItem$$0Q34Game12ItemTreasure4Item$$4Q34Game12ItemTreasure3FSM$$4Q34Game12ItemTreasure5State$$1FRCQ28SysShape8KeyEvent
+/* 801F4CD0 001F1C10  4B FF FE C4 */	b "onKeyEvent__Q24Game89FSMItem<Q34Game12ItemTreasure4Item,Q34Game12ItemTreasure3FSM,Q34Game12ItemTreasure5State>FRCQ28SysShape8KeyEvent"
 
-.global $$248$$2__dt__Q34Game12ItemTreasure3MgrFv
-$$248$$2__dt__Q34Game12ItemTreasure3MgrFv:
+.global "@48@__dt__Q34Game12ItemTreasure3MgrFv"
+"@48@__dt__Q34Game12ItemTreasure3MgrFv":
 /* 801F4CD4 001F1C14  38 63 FF D0 */	addi r3, r3, -48
 /* 801F4CD8 001F1C18  4B FF F9 FC */	b __dt__Q34Game12ItemTreasure3MgrFv

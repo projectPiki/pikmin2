@@ -344,8 +344,8 @@ setColor__Q24Game12CylinderBaseFP6Color4:
 /* 8023DF0C 0023AE4C  90 83 00 08 */	stw r4, 8(r3)
 /* 8023DF10 0023AE50  4E 80 00 20 */	blr 
 
-.global setShadowRect__Q24Game12CylinderBaseFR7Rect$$0f$$1
-setShadowRect__Q24Game12CylinderBaseFR7Rect$$0f$$1:
+.global "setShadowRect__Q24Game12CylinderBaseFR7Rect<f>"
+"setShadowRect__Q24Game12CylinderBaseFR7Rect<f>":
 /* 8023DF14 0023AE54  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8023DF18 0023AE58  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 8023DF1C 0023AE5C  C0 04 00 04 */	lfs f0, 4(r4)

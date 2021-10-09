@@ -252,8 +252,8 @@ lbl_802F9988:
 /* 802F99AC 002F68EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F99B0 002F68F0  4E 80 00 20 */	blr 
 
-.global bombCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreatureR10Vector3$$0f$$1f
-bombCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreatureR10Vector3$$0f$$1f:
+.global "bombCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreatureR10Vector3<f>f"
+"bombCallBack__Q34Game11BombOtakara3ObjFPQ24Game8CreatureR10Vector3<f>f":
 /* 802F99B4 002F68F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F99B8 002F68F8  7C 08 02 A6 */	mflr r0
 /* 802F99BC 002F68FC  38 A0 00 00 */	li r5, 0

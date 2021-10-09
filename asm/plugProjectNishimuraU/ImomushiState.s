@@ -691,7 +691,7 @@ exec__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBase:
 /* 802BAAA8 002B79E8  7F E3 FB 78 */	mr r3, r31
 /* 802BAAAC 002B79EC  38 80 00 00 */	li r4, 0
 /* 802BAAB0 002B79F0  C0 25 03 AC */	lfs f1, 0x3ac(r5)
-/* 802BAAB4 002B79F4  4B E5 9C 81 */	bl isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
+/* 802BAAB4 002B79F4  4B E5 9C 81 */	bl "isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
 /* 802BAAB8 002B79F8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802BAABC 002B79FC  40 82 00 38 */	bne lbl_802BAAF4
 /* 802BAAC0 002B7A00  7F E3 FB 78 */	mr r3, r31
@@ -1051,7 +1051,7 @@ lbl_802BAFAC:
 /* 802BAFB8 002B7EF8  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802BAFBC 002B7EFC  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802BAFC0 002B7F00  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802BAFC4 002B7F04  4B E5 A6 19 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 802BAFC4 002B7F04  4B E5 A6 19 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 /* 802BAFC8 002B7F08  48 00 00 14 */	b lbl_802BAFDC
 lbl_802BAFCC:
 /* 802BAFCC 002B7F0C  38 00 00 08 */	li r0, 8
@@ -1215,7 +1215,7 @@ lbl_802BB1F8:
 /* 802BB204 002B8144  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802BB208 002B8148  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802BB20C 002B814C  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802BB210 002B8150  4B E5 A3 CD */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 802BB210 002B8150  4B E5 A3 CD */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 lbl_802BB214:
 /* 802BB214 002B8154  80 7F 01 88 */	lwz r3, 0x188(r31)
 /* 802BB218 002B8158  88 03 00 24 */	lbz r0, 0x24(r3)
@@ -1916,7 +1916,7 @@ exec__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBase:
 /* 802BBBC0 002B8B00  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802BBBC4 002B8B04  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802BBBC8 002B8B08  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802BBBCC 002B8B0C  4B E5 9A 11 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 802BBBCC 002B8B0C  4B E5 9A 11 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 /* 802BBBD0 002B8B10  7F E3 FB 78 */	mr r3, r31
 /* 802BBBD4 002B8B14  48 00 1A 9D */	bl isInZukanTargetArea__Q34Game8Imomushi3ObjFv
 /* 802BBBD8 002B8B18  54 60 06 3F */	clrlwi. r0, r3, 0x18

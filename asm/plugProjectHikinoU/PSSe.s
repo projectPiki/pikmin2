@@ -5,9 +5,9 @@
 __ct__Q26PSGame5SeMgrFv:
 /* 8033F158 0033C098  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8033F15C 0033C09C  7C 08 02 A6 */	mflr r0
-/* 8033F160 0033C0A0  3C 80 80 4E */	lis r4, __vt__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@ha
+/* 8033F160 0033C0A0  3C 80 80 4E */	lis r4, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@ha
 /* 8033F164 0033C0A4  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8033F168 0033C0A8  38 04 AE B4 */	addi r0, r4, __vt__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@l
+/* 8033F168 0033C0A8  38 04 AE B4 */	addi r0, r4, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@l
 /* 8033F16C 0033C0AC  3C 80 80 49 */	lis r4, lbl_80490038@ha
 /* 8033F170 0033C0B0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8033F174 0033C0B4  3B E4 00 38 */	addi r31, r4, lbl_80490038@l
@@ -18,7 +18,7 @@ __ct__Q26PSGame5SeMgrFv:
 /* 8033F188 0033C0C8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8033F18C 0033C0CC  38 03 AE A8 */	addi r0, r3, __vt__Q26PSGame5SeMgr@l
 /* 8033F190 0033C0D0  38 7E 00 24 */	addi r3, r30, 0x24
-/* 8033F194 0033C0D4  93 CD 91 C8 */	stw r30, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8033F194 0033C0D4  93 CD 91 C8 */	stw r30, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8033F198 0033C0D8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8033F19C 0033C0DC  48 00 08 F9 */	bl __ct__Q26PSGame6RandIdFv
 /* 8033F1A0 0033C0E0  38 00 00 00 */	li r0, 0
@@ -1022,7 +1022,7 @@ play__Q26PSGame17EnvSe_PerspectiveFv:
 /* 8033FF38 0033CE78  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 8033FF3C 0033CE7C  38 DF 00 3C */	addi r6, r31, 0x3c
 /* 8033FF40 0033CE80  80 9F 00 24 */	lwz r4, 0x24(r31)
-/* 8033FF44 0033CE84  4B CD 59 29 */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
+/* 8033FF44 0033CE84  4B CD 59 29 */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
 /* 8033FF48 0033CE88  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8033FF4C 0033CE8C  80 7F 00 34 */	lwz r3, 0x34(r31)
 /* 8033FF50 0033CE90  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1151,8 +1151,8 @@ lbl_803400AC:
 /* 80340108 0033D048  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034010C 0033D04C  4E 80 00 20 */	blr 
 
-.global __ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3$$0f$$1
-__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3$$0f$$1:
+.global "__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<f>"
+"__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<f>":
 /* 80340110 0033D050  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80340114 0033D054  7C 08 02 A6 */	mflr r0
 /* 80340118 0033D058  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1602,20 +1602,20 @@ lbl_80340750:
 /* 80340768 0033D6A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8034076C 0033D6AC  4E 80 00 20 */	blr 
 
-.global __dt__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1Fv
-__dt__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1Fv:
+.global "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv"
+"__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv":
 /* 80340770 0033D6B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80340774 0033D6B4  7C 08 02 A6 */	mflr r0
 /* 80340778 0033D6B8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8034077C 0033D6BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80340780 0033D6C0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80340784 0033D6C4  41 82 00 24 */	beq lbl_803407A8
-/* 80340788 0033D6C8  3C A0 80 4E */	lis r5, __vt__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@ha
+/* 80340788 0033D6C8  3C A0 80 4E */	lis r5, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@ha
 /* 8034078C 0033D6CC  7C 80 07 35 */	extsh. r0, r4
-/* 80340790 0033D6D0  38 85 AE B4 */	addi r4, r5, __vt__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@l
+/* 80340790 0033D6D0  38 85 AE B4 */	addi r4, r5, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@l
 /* 80340794 0033D6D4  38 00 00 00 */	li r0, 0
 /* 80340798 0033D6D8  90 9F 00 00 */	stw r4, 0(r31)
-/* 8034079C 0033D6DC  90 0D 91 C8 */	stw r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8034079C 0033D6DC  90 0D 91 C8 */	stw r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 803407A0 0033D6E0  40 81 00 08 */	ble lbl_803407A8
 /* 803407A4 0033D6E4  4B CE 39 11 */	bl __dl__FPv
 lbl_803407A8:
@@ -1652,11 +1652,11 @@ __dt__Q26PSGame5SeMgrFv:
 /* 803407F0 0033D730  38 03 AE A8 */	addi r0, r3, __vt__Q26PSGame5SeMgr@l
 /* 803407F4 0033D734  90 1F 00 00 */	stw r0, 0(r31)
 /* 803407F8 0033D738  41 82 00 18 */	beq lbl_80340810
-/* 803407FC 0033D73C  3C 60 80 4E */	lis r3, __vt__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@ha
+/* 803407FC 0033D73C  3C 60 80 4E */	lis r3, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@ha
 /* 80340800 0033D740  38 00 00 00 */	li r0, 0
-/* 80340804 0033D744  38 63 AE B4 */	addi r3, r3, __vt__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@l
+/* 80340804 0033D744  38 63 AE B4 */	addi r3, r3, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@l
 /* 80340808 0033D748  90 7F 00 00 */	stw r3, 0(r31)
-/* 8034080C 0033D74C  90 0D 91 C8 */	stw r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8034080C 0033D74C  90 0D 91 C8 */	stw r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 lbl_80340810:
 /* 80340810 0033D750  7C 80 07 35 */	extsh. r0, r4
 /* 80340814 0033D754  40 81 00 0C */	ble lbl_80340820

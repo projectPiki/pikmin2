@@ -849,8 +849,8 @@ setNearestBridge__Q34Game4Tobi3ObjFv:
 /* 8026A430 00267370  38 63 00 30 */	addi r3, r3, 0x30
 lbl_8026A434:
 /* 8026A434 00267374  38 00 00 00 */	li r0, 0
-/* 8026A438 00267378  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 8026A43C 0026737C  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 8026A438 00267378  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 8026A43C 0026737C  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 8026A440 00267380  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8026A444 00267384  28 00 00 00 */	cmplwi r0, 0
 /* 8026A448 00267388  90 81 00 14 */	stw r4, 0x14(r1)

@@ -194,10 +194,10 @@ __sinit_JMATrigonometric_cpp:
 /* 80035390 000322D0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80035394 000322D4  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80035398 000322D8  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
-/* 8003539C 000322DC  3C 80 80 03 */	lis r4, __ct__Q23std9pair$$0f$$4f$$1Fv@ha
+/* 8003539C 000322DC  3C 80 80 03 */	lis r4, "__ct__Q23std9pair<f,f>Fv"@ha
 /* 800353A0 000322E0  38 63 71 A0 */	addi r3, r3, sincosTable___5JMath@l
 /* 800353A4 000322E4  38 A0 00 00 */	li r5, 0
-/* 800353A8 000322E8  38 84 55 20 */	addi r4, r4, __ct__Q23std9pair$$0f$$4f$$1Fv@l
+/* 800353A8 000322E8  38 84 55 20 */	addi r4, r4, "__ct__Q23std9pair<f,f>Fv"@l
 /* 800353AC 000322EC  38 C0 00 08 */	li r6, 8
 /* 800353B0 000322F0  38 E0 08 00 */	li r7, 0x800
 /* 800353B4 000322F4  48 08 C4 89 */	bl __construct_array
@@ -295,8 +295,8 @@ lbl_8003549C:
 /* 80035518 00032458  38 21 00 60 */	addi r1, r1, 0x60
 /* 8003551C 0003245C  4E 80 00 20 */	blr 
 
-.global __ct__Q23std9pair$$0f$$4f$$1Fv
-__ct__Q23std9pair$$0f$$4f$$1Fv:
+.global "__ct__Q23std9pair<f,f>Fv"
+"__ct__Q23std9pair<f,f>Fv":
 /* 80035520 00032460  C0 02 83 D8 */	lfs f0, lbl_80516738@sda21(r2)
 /* 80035524 00032464  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80035528 00032468  D0 03 00 04 */	stfs f0, 4(r3)

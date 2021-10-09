@@ -189,7 +189,7 @@ decideTarget__Q26PikiAI7ActWeedFv:
 /* 8020DA14 0020A954  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8020DA18 0020A958  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 8020DA1C 0020A95C  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8020DA20 0020A960  48 00 11 9D */	bl getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+/* 8020DA20 0020A960  48 00 11 9D */	bl "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
 /* 8020DA24 0020A964  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 8020DA28 0020A968  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8020DA2C 0020A96C  83 E1 00 2C */	lwz r31, 0x2c(r1)
@@ -425,7 +425,7 @@ lbl_8020DD48:
 /* 8020DD74 0020ACB4  D0 21 00 3C */	stfs f1, 0x3c(r1)
 /* 8020DD78 0020ACB8  D0 01 00 40 */	stfs f0, 0x40(r1)
 /* 8020DD7C 0020ACBC  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8020DD80 0020ACC0  48 00 0E 3D */	bl getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+/* 8020DD80 0020ACC0  48 00 0E 3D */	bl "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
 /* 8020DD84 0020ACC4  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 8020DD88 0020ACC8  83 BF 00 24 */	lwz r29, 0x24(r31)
 /* 8020DD8C 0020ACCC  2C 1D FF FF */	cmpwi r29, -1
@@ -558,7 +558,7 @@ lbl_8020DF38:
 /* 8020DF6C 0020AEAC  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 8020DF70 0020AEB0  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8020DF74 0020AEB4  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8020DF78 0020AEB8  48 00 0C 45 */	bl getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+/* 8020DF78 0020AEB8  48 00 0C 45 */	bl "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
 /* 8020DF7C 0020AEBC  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 8020DF80 0020AEC0  83 BF 00 24 */	lwz r29, 0x24(r31)
 /* 8020DF84 0020AEC4  2C 1D FF FF */	cmpwi r29, -1
@@ -692,7 +692,7 @@ lbl_8020E130:
 /* 8020E168 0020B0A8  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8020E16C 0020B0AC  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8020E170 0020B0B0  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8020E174 0020B0B4  48 00 0A 49 */	bl getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+/* 8020E174 0020B0B4  48 00 0A 49 */	bl "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
 /* 8020E178 0020B0B8  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 8020E17C 0020B0BC  83 BF 00 24 */	lwz r29, 0x24(r31)
 /* 8020E180 0020B0C0  2C 1D FF FF */	cmpwi r29, -1
@@ -1353,8 +1353,8 @@ __sinit_aiWeed_cpp:
 /* 8020EAC0 0020BA00  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8020EAC4 0020BA04  4E 80 00 20 */	blr 
 
-.global $$240$$24$$2onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent
-$$240$$24$$2onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent:
+.global "@40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent"
+"@40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent":
 /* 8020EAC8 0020BA08  39 60 00 04 */	li r11, 4
 /* 8020EACC 0020BA0C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8020EAD0 0020BA10  7C 63 5A 14 */	add r3, r3, r11

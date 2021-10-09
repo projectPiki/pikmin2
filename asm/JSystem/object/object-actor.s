@@ -865,14 +865,14 @@ lbl_80012D10:
 /* 80012D24 0000FC64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80012D28 0000FC68  4E 80 00 20 */	blr 
 
-.global __sinit_object$$5actor_cpp
-__sinit_object$$5actor_cpp:
+.global "__sinit_object-actor_cpp"
+"__sinit_object-actor_cpp":
 /* 80012D2C 0000FC6C  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80012D30 0000FC70  7C 08 02 A6 */	mflr r0
 /* 80012D34 0000FC74  3C 60 80 4A */	lis r3, lbl_8049F5B0@ha
 /* 80012D38 0000FC78  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
 /* 80012D3C 0000FC7C  90 01 01 14 */	stw r0, 0x114(r1)
-/* 80012D40 0000FC80  3C A0 80 4A */	lis r5, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@ha
+/* 80012D40 0000FC80  3C A0 80 4A */	lis r5, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
 /* 80012D44 0000FC84  3D 80 80 4F */	lis r12, lbl_804EFDE8@ha
 /* 80012D48 0000FC88  39 60 00 01 */	li r11, 1
 /* 80012D4C 0000FC8C  BF 21 00 F4 */	stmw r25, 0xf4(r1)
@@ -880,9 +880,9 @@ __sinit_object$$5actor_cpp:
 /* 80012D54 0000FC94  3B 24 F4 98 */	addi r25, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 80012D58 0000FC98  3C 60 80 50 */	lis r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
 /* 80012D5C 0000FC9C  3B CC FD E8 */	addi r30, r12, lbl_804EFDE8@l
-/* 80012D60 0000FCA0  39 85 F6 E4 */	addi r12, r5, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@l
-/* 80012D64 0000FCA4  3C 80 80 01 */	lis r4, __dt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1Fv@ha
-/* 80012D68 0000FCA8  38 84 30 FC */	addi r4, r4, __dt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1Fv@l
+/* 80012D60 0000FCA0  39 85 F6 E4 */	addi r12, r5, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+/* 80012D64 0000FCA4  3C 80 80 01 */	lis r4, "__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@ha
+/* 80012D68 0000FCA8  38 84 30 FC */	addi r4, r4, "__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@l
 /* 80012D6C 0000FCAC  38 BE 00 00 */	addi r5, r30, 0
 /* 80012D70 0000FCB0  97 23 6A D4 */	stwu r25, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l(r3)
 /* 80012D74 0000FCB4  81 5F 00 24 */	lwz r10, 0x24(r31)
@@ -909,27 +909,27 @@ __sinit_object$$5actor_cpp:
 /* 80012DC8 0000FD08  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 80012DCC 0000FD0C  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 80012DD0 0000FD10  48 0A E9 31 */	bl __register_global_object
-/* 80012DD4 0000FD14  3C 80 80 4A */	lis r4, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@ha
+/* 80012DD4 0000FD14  3C 80 80 4A */	lis r4, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
 /* 80012DD8 0000FD18  38 61 00 34 */	addi r3, r1, 0x34
-/* 80012DDC 0000FD1C  38 04 F6 E4 */	addi r0, r4, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@l
+/* 80012DDC 0000FD1C  38 04 F6 E4 */	addi r0, r4, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
 /* 80012DE0 0000FD20  38 80 00 00 */	li r4, 0
 /* 80012DE4 0000FD24  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80012DE8 0000FD28  4B FF A2 81 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 80012DEC 0000FD2C  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 80012DF0 0000FD30  3C 60 80 4A */	lis r3, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@ha
+/* 80012DF0 0000FD30  3C 60 80 4A */	lis r3, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
 /* 80012DF4 0000FD34  39 64 F4 98 */	addi r11, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 80012DF8 0000FD38  39 20 FF FF */	li r9, -1
 /* 80012DFC 0000FD3C  91 61 00 14 */	stw r11, 0x14(r1)
-/* 80012E00 0000FD40  39 43 F6 E4 */	addi r10, r3, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@l
+/* 80012E00 0000FD40  39 43 F6 E4 */	addi r10, r3, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
 /* 80012E04 0000FD44  3C 80 80 48 */	lis r4, __ptmf_null@ha
 /* 80012E08 0000FD48  3C 60 80 50 */	lis r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
 /* 80012E0C 0000FD4C  91 41 00 14 */	stw r10, 0x14(r1)
 /* 80012E10 0000FD50  39 04 9F 10 */	addi r8, r4, __ptmf_null@l
-/* 80012E14 0000FD54  3C 80 80 01 */	lis r4, __dt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1Fv@ha
+/* 80012E14 0000FD54  3C 80 80 01 */	lis r4, "__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@ha
 /* 80012E18 0000FD58  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80012E1C 0000FD5C  91 21 00 18 */	stw r9, 0x18(r1)
 /* 80012E20 0000FD60  38 63 6A D4 */	addi r3, r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
-/* 80012E24 0000FD64  38 84 30 FC */	addi r4, r4, __dt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1Fv@l
+/* 80012E24 0000FD64  38 84 30 FC */	addi r4, r4, "__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@l
 /* 80012E28 0000FD68  38 BE 00 0C */	addi r5, r30, 0xc
 /* 80012E2C 0000FD6C  80 C8 00 04 */	lwz r6, 4(r8)
 /* 80012E30 0000FD70  90 E1 00 1C */	stw r7, 0x1c(r1)
@@ -949,9 +949,9 @@ __sinit_object$$5actor_cpp:
 /* 80012E68 0000FDA8  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 80012E6C 0000FDAC  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 80012E70 0000FDB0  48 0A E8 91 */	bl __register_global_object
-/* 80012E74 0000FDB4  3C 80 80 4A */	lis r4, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@ha
+/* 80012E74 0000FDB4  3C 80 80 4A */	lis r4, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
 /* 80012E78 0000FDB8  38 61 00 14 */	addi r3, r1, 0x14
-/* 80012E7C 0000FDBC  38 04 F6 E4 */	addi r0, r4, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@l
+/* 80012E7C 0000FDBC  38 04 F6 E4 */	addi r0, r4, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
 /* 80012E80 0000FDC0  38 80 00 00 */	li r4, 0
 /* 80012E84 0000FDC4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80012E88 0000FDC8  4B FF A1 E1 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
@@ -1112,8 +1112,8 @@ __sinit_object$$5actor_cpp:
 /* 800130F4 00010034  38 21 01 10 */	addi r1, r1, 0x110
 /* 800130F8 00010038  4E 80 00 20 */	blr 
 
-.global __dt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1Fv
-__dt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1Fv:
+.global "__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"
+"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv":
 /* 800130FC 0001003C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80013100 00010040  7C 08 02 A6 */	mflr r0
 /* 80013104 00010044  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1122,9 +1122,9 @@ __dt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAd
 /* 80013110 00010050  93 C1 00 08 */	stw r30, 8(r1)
 /* 80013114 00010054  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80013118 00010058  41 82 00 28 */	beq lbl_80013140
-/* 8001311C 0001005C  3C A0 80 4A */	lis r5, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@ha
+/* 8001311C 0001005C  3C A0 80 4A */	lis r5, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
 /* 80013120 00010060  38 80 00 00 */	li r4, 0
-/* 80013124 00010064  38 05 F6 E4 */	addi r0, r5, __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1@l
+/* 80013124 00010064  38 05 F6 E4 */	addi r0, r5, "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
 /* 80013128 00010068  90 1E 00 00 */	stw r0, 0(r30)
 /* 8001312C 0001006C  4B FF 9F 3D */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 80013130 00010070  7F E0 07 35 */	extsh. r0, r31
@@ -1140,8 +1140,8 @@ lbl_80013140:
 /* 80013154 00010094  38 21 00 10 */	addi r1, r1, 0x10
 /* 80013158 00010098  4E 80 00 20 */	blr 
 
-.global __cl__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1CFfPQ27JStudio8TAdaptor
-__cl__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1CFfPQ27JStudio8TAdaptor:
+.global "__cl__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>CFfPQ27JStudio8TAdaptor"
+"__cl__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>CFfPQ27JStudio8TAdaptor":
 /* 8001315C 0001009C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80013160 000100A0  7C 08 02 A6 */	mflr r0
 /* 80013164 000100A4  7C 65 1B 78 */	mr r5, r3

@@ -442,7 +442,7 @@ init__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 8025D38C 0025A2CC  48 00 15 41 */	bl resetMoveTimer__Q34Game6Kogane3ObjFff
 /* 8025D390 0025A2D0  7F E3 FB 78 */	mr r3, r31
 /* 8025D394 0025A2D4  38 80 00 00 */	li r4, 0
-/* 8025D398 0025A2D8  48 00 12 91 */	bl setTargetPosition__Q34Game6Kogane3ObjFP10Vector3$$0f$$1
+/* 8025D398 0025A2D8  48 00 12 91 */	bl "setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>"
 /* 8025D39C 0025A2DC  7F E3 FB 78 */	mr r3, r31
 /* 8025D3A0 0025A2E0  38 80 00 00 */	li r4, 0
 /* 8025D3A4 0025A2E4  38 A0 00 00 */	li r5, 0
@@ -485,7 +485,7 @@ exec__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase:
 /* 8025D420 0025A360  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 8025D424 0025A364  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 8025D428 0025A368  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 8025D42C 0025A36C  4B EB 81 B1 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 8025D42C 0025A36C  4B EB 81 B1 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 /* 8025D430 0025A370  80 7F 00 C0 */	lwz r3, 0xc0(r31)
 /* 8025D434 0025A374  C0 3F 02 C4 */	lfs f1, 0x2c4(r31)
 /* 8025D438 0025A378  C0 03 08 44 */	lfs f0, 0x844(r3)

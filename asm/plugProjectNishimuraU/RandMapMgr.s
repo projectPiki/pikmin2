@@ -403,8 +403,8 @@ lbl_80244A98:
 /* 80244AAC 002419EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80244AB0 002419F0  4E 80 00 20 */	blr 
 
-.global getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1i
-getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1i:
+.global "getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>i"
+"getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>i":
 /* 80244AB4 002419F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80244AB8 002419F8  7C 08 02 A6 */	mflr r0
 /* 80244ABC 002419FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -419,19 +419,19 @@ getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1i:
 /* 80244AE0 00241A20  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80244AE4 00241A24  7F E5 FB 78 */	mr r5, r31
 /* 80244AE8 00241A28  38 80 00 03 */	li r4, 3
-/* 80244AEC 00241A2C  48 00 80 DD */	bl getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3$$0f$$1
+/* 80244AEC 00241A2C  48 00 80 DD */	bl "getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<f>"
 /* 80244AF0 00241A30  48 00 00 28 */	b lbl_80244B18
 lbl_80244AF4:
 /* 80244AF4 00241A34  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80244AF8 00241A38  7F E5 FB 78 */	mr r5, r31
 /* 80244AFC 00241A3C  38 80 00 04 */	li r4, 4
-/* 80244B00 00241A40  48 00 80 C9 */	bl getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3$$0f$$1
+/* 80244B00 00241A40  48 00 80 C9 */	bl "getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<f>"
 /* 80244B04 00241A44  48 00 00 14 */	b lbl_80244B18
 lbl_80244B08:
 /* 80244B08 00241A48  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80244B0C 00241A4C  7F E5 FB 78 */	mr r5, r31
 /* 80244B10 00241A50  38 80 00 00 */	li r4, 0
-/* 80244B14 00241A54  48 00 80 B5 */	bl getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3$$0f$$1
+/* 80244B14 00241A54  48 00 80 B5 */	bl "getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<f>"
 lbl_80244B18:
 /* 80244B18 00241A58  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 80244B1C 00241A5C  C0 02 C3 C8 */	lfs f0, lbl_8051A728@sda21(r2)
@@ -443,8 +443,8 @@ lbl_80244B18:
 /* 80244B34 00241A74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80244B38 00241A78  4E 80 00 20 */	blr 
 
-.global getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1ff
-getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1ff:
+.global "getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>ff"
+"getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>ff":
 /* 80244B3C 00241A7C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80244B40 00241A80  7C 08 02 A6 */	mflr r0
 /* 80244B44 00241A84  90 01 00 44 */	stw r0, 0x44(r1)
@@ -474,7 +474,7 @@ getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1ff:
 /* 80244BA4 00241AE4  EC 21 00 B2 */	fmuls f1, f1, f2
 /* 80244BA8 00241AE8  EC 01 00 24 */	fdivs f0, f1, f0
 /* 80244BAC 00241AEC  EC 3E 00 2A */	fadds f1, f30, f0
-/* 80244BB0 00241AF0  48 00 9C 21 */	bl getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3$$0f$$1fi
+/* 80244BB0 00241AF0  48 00 9C 21 */	bl "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi"
 /* 80244BB4 00241AF4  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
 /* 80244BB8 00241AF8  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80244BBC 00241AFC  E3 C1 00 28 */	psq_l f30, 40(r1), 0, qr0
@@ -486,8 +486,8 @@ getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1ff:
 /* 80244BD4 00241B14  38 21 00 40 */	addi r1, r1, 0x40
 /* 80244BD8 00241B18  4E 80 00 20 */	blr 
 
-.global getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3$$0f$$1iff
-getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3$$0f$$1iff:
+.global "getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<f>iff"
+"getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<f>iff":
 /* 80244BDC 00241B1C  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80244BE0 00241B20  7C 08 02 A6 */	mflr r0
 /* 80244BE4 00241B24  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -577,7 +577,7 @@ lbl_80244D20:
 /* 80244D20 00241C60  80 7E 00 30 */	lwz r3, 0x30(r30)
 /* 80244D24 00241C64  7F 84 E3 78 */	mr r4, r28
 /* 80244D28 00241C68  7F 45 D3 78 */	mr r5, r26
-/* 80244D2C 00241C6C  48 00 9A A5 */	bl getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3$$0f$$1fi
+/* 80244D2C 00241C6C  48 00 9A A5 */	bl "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi"
 /* 80244D30 00241C70  3B 9C 00 0C */	addi r28, r28, 0xc
 /* 80244D34 00241C74  3B 5A 00 01 */	addi r26, r26, 1
 lbl_80244D38:
@@ -701,20 +701,20 @@ getRadarMapTexture__Q34Game4Cave10RandMapMgrFv:
 /* 80244EB8 00241DF8  80 63 00 40 */	lwz r3, 0x40(r3)
 /* 80244EBC 00241DFC  4E 80 00 20 */	blr 
 
-.global radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1
-radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1:
+.global "radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<f>"
+"radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<f>":
 /* 80244EC0 00241E00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80244EC4 00241E04  7C 08 02 A6 */	mflr r0
 /* 80244EC8 00241E08  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80244ECC 00241E0C  80 63 00 38 */	lwz r3, 0x38(r3)
-/* 80244ED0 00241E10  48 00 05 51 */	bl radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3$$0f$$1
+/* 80244ED0 00241E10  48 00 05 51 */	bl "radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3<f>"
 /* 80244ED4 00241E14  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80244ED8 00241E18  7C 08 03 A6 */	mtlr r0
 /* 80244EDC 00241E1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80244EE0 00241E20  4E 80 00 20 */	blr 
 
-.global getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1RfRf
-getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1RfRf:
+.global "getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<f>RfRf"
+"getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<f>RfRf":
 /* 80244EE4 00241E24  C0 22 C3 E8 */	lfs f1, lbl_8051A748@sda21(r2)
 /* 80244EE8 00241E28  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80244EEC 00241E2C  EC 01 00 32 */	fmuls f0, f1, f0
@@ -724,8 +724,8 @@ getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1RfRf:
 /* 80244EFC 00241E3C  D0 06 00 00 */	stfs f0, 0(r6)
 /* 80244F00 00241E40  4E 80 00 20 */	blr 
 
-.global getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3$$0f$$1Pf
-getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3$$0f$$1Pf:
+.global "getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<f>Pf"
+"getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<f>Pf":
 /* 80244F04 00241E44  94 21 E7 60 */	stwu r1, -0x18a0(r1)
 /* 80244F08 00241E48  7C 08 02 A6 */	mflr r0
 /* 80244F0C 00241E4C  90 01 18 A4 */	stw r0, 0x18a4(r1)

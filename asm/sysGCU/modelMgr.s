@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1$$0PQ28SysShape5Model$$1
-__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1$$0PQ28SysShape5Model$$1:
+.global "__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"
+"__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>":
 /* 8042AB00 00427A40  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8042AB04 00427A44  7C 08 02 A6 */	mflr r0
 /* 8042AB08 00427A48  90 01 00 34 */	stw r0, 0x34(r1)

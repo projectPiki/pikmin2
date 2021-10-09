@@ -2193,7 +2193,7 @@ __sinit_ogObjContena_cpp:
 /* 80321EF8 0031EE38  38 21 00 20 */	addi r1, r1, 0x20
 /* 80321EFC 0031EE3C  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen10ObjContenaFv
-$$224$$2__dt__Q32og9newScreen10ObjContenaFv:
+.global "@24@__dt__Q32og9newScreen10ObjContenaFv"
+"@24@__dt__Q32og9newScreen10ObjContenaFv":
 /* 80321F00 0031EE40  38 63 FF E8 */	addi r3, r3, -24
 /* 80321F04 0031EE44  4B FF E2 00 */	b __dt__Q32og9newScreen10ObjContenaFv

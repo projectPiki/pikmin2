@@ -36,13 +36,13 @@ __ct__Q24Game15BaseGameSectionFP7JKRHeap:
 /* 8014AE18 00147D58  28 03 00 00 */	cmplwi r3, 0
 /* 8014AE1C 00147D5C  41 82 00 4C */	beq lbl_8014AE68
 /* 8014AE20 00147D60  3C 80 80 4B */	lis r4, lbl_804B0C8C@ha
-/* 8014AE24 00147D64  3C A0 80 4B */	lis r5, __vt__21IDelegate1$$0R7Rect$$0f$$1$$1@ha
+/* 8014AE24 00147D64  3C A0 80 4B */	lis r5, "__vt__21IDelegate1<R7Rect<f>>"@ha
 /* 8014AE28 00147D68  39 04 0C 8C */	addi r8, r4, lbl_804B0C8C@l
-/* 8014AE2C 00147D6C  3C 80 80 4B */	lis r4, __vt__45Delegate1$$0Q24Game15BaseGameSection$$4R7Rect$$0f$$1$$1@ha
+/* 8014AE2C 00147D6C  3C 80 80 4B */	lis r4, "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"@ha
 /* 8014AE30 00147D70  80 E8 00 00 */	lwz r7, 0(r8)
-/* 8014AE34 00147D74  38 A5 10 64 */	addi r5, r5, __vt__21IDelegate1$$0R7Rect$$0f$$1$$1@l
+/* 8014AE34 00147D74  38 A5 10 64 */	addi r5, r5, "__vt__21IDelegate1<R7Rect<f>>"@l
 /* 8014AE38 00147D78  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8014AE3C 00147D7C  38 04 10 58 */	addi r0, r4, __vt__45Delegate1$$0Q24Game15BaseGameSection$$4R7Rect$$0f$$1$$1@l
+/* 8014AE3C 00147D7C  38 04 10 58 */	addi r0, r4, "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"@l
 /* 8014AE40 00147D80  80 88 00 08 */	lwz r4, 8(r8)
 /* 8014AE44 00147D84  90 E1 00 14 */	stw r7, 0x14(r1)
 /* 8014AE48 00147D88  90 A3 00 00 */	stw r5, 0(r3)
@@ -60,13 +60,13 @@ lbl_8014AE68:
 /* 8014AE74 00147DB4  28 03 00 00 */	cmplwi r3, 0
 /* 8014AE78 00147DB8  41 82 00 4C */	beq lbl_8014AEC4
 /* 8014AE7C 00147DBC  3C 80 80 4B */	lis r4, lbl_804B0C98@ha
-/* 8014AE80 00147DC0  3C A0 80 4B */	lis r5, __vt__30IDelegate1$$0PQ24Game9CameraArg$$1@ha
+/* 8014AE80 00147DC0  3C A0 80 4B */	lis r5, "__vt__30IDelegate1<PQ24Game9CameraArg>"@ha
 /* 8014AE84 00147DC4  39 04 0C 98 */	addi r8, r4, lbl_804B0C98@l
-/* 8014AE88 00147DC8  3C 80 80 4B */	lis r4, __vt__54Delegate1$$0Q24Game15BaseGameSection$$4PQ24Game9CameraArg$$1@ha
+/* 8014AE88 00147DC8  3C 80 80 4B */	lis r4, "__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>"@ha
 /* 8014AE8C 00147DCC  80 E8 00 00 */	lwz r7, 0(r8)
-/* 8014AE90 00147DD0  38 A5 10 4C */	addi r5, r5, __vt__30IDelegate1$$0PQ24Game9CameraArg$$1@l
+/* 8014AE90 00147DD0  38 A5 10 4C */	addi r5, r5, "__vt__30IDelegate1<PQ24Game9CameraArg>"@l
 /* 8014AE94 00147DD4  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8014AE98 00147DD8  38 04 10 40 */	addi r0, r4, __vt__54Delegate1$$0Q24Game15BaseGameSection$$4PQ24Game9CameraArg$$1@l
+/* 8014AE98 00147DD8  38 04 10 40 */	addi r0, r4, "__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>"@l
 /* 8014AE9C 00147DDC  80 88 00 08 */	lwz r4, 8(r8)
 /* 8014AEA0 00147DE0  90 E1 00 08 */	stw r7, 8(r1)
 /* 8014AEA4 00147DE4  90 A3 00 00 */	stw r5, 0(r3)
@@ -547,9 +547,9 @@ init__Q24Game15BaseGameSectionFv:
 /* 8014B540 00148480  38 C3 0F 00 */	addi r6, r3, __vt__9IDelegate@l
 /* 8014B544 00148484  80 9E 00 38 */	lwz r4, 0x38(r30)
 /* 8014B548 00148488  80 1E 00 3C */	lwz r0, 0x3c(r30)
-/* 8014B54C 0014848C  3C 60 80 4B */	lis r3, __vt__34Delegate$$0Q24Game15BaseGameSection$$1@ha
+/* 8014B54C 0014848C  3C 60 80 4B */	lis r3, "__vt__34Delegate<Q24Game15BaseGameSection>"@ha
 /* 8014B550 00148490  90 C1 00 30 */	stw r6, 0x30(r1)
-/* 8014B554 00148494  38 C3 0E F4 */	addi r6, r3, __vt__34Delegate$$0Q24Game15BaseGameSection$$1@l
+/* 8014B554 00148494  38 C3 0E F4 */	addi r6, r3, "__vt__34Delegate<Q24Game15BaseGameSection>"@l
 /* 8014B558 00148498  7F A3 EB 78 */	mr r3, r29
 /* 8014B55C 0014849C  90 C1 00 30 */	stw r6, 0x30(r1)
 /* 8014B560 001484A0  93 A1 00 34 */	stw r29, 0x34(r1)
@@ -654,12 +654,12 @@ lbl_8014B6CC:
 /* 8014B6D8 00148618  28 03 00 00 */	cmplwi r3, 0
 /* 8014B6DC 0014861C  41 82 00 44 */	beq lbl_8014B720
 /* 8014B6E0 00148620  81 1E 00 40 */	lwz r8, 0x40(r30)
-/* 8014B6E4 00148624  3C 80 80 4B */	lis r4, __vt__39IDelegate3$$0PQ24Game11MovieConfig$$4Ul$$4Ul$$1@ha
+/* 8014B6E4 00148624  3C 80 80 4B */	lis r4, "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"@ha
 /* 8014B6E8 00148628  80 FE 00 44 */	lwz r7, 0x44(r30)
-/* 8014B6EC 0014862C  38 A4 0E E8 */	addi r5, r4, __vt__39IDelegate3$$0PQ24Game11MovieConfig$$4Ul$$4Ul$$1@l
+/* 8014B6EC 0014862C  38 A4 0E E8 */	addi r5, r4, "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"@l
 /* 8014B6F0 00148630  80 DE 00 48 */	lwz r6, 0x48(r30)
-/* 8014B6F4 00148634  3C 80 80 4B */	lis r4, __vt__63Delegate3$$0Q24Game15BaseGameSection$$4PQ24Game11MovieConfig$$4Ul$$4Ul$$1@ha
-/* 8014B6F8 00148638  38 04 0E DC */	addi r0, r4, __vt__63Delegate3$$0Q24Game15BaseGameSection$$4PQ24Game11MovieConfig$$4Ul$$4Ul$$1@l
+/* 8014B6F4 00148634  3C 80 80 4B */	lis r4, "__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"@ha
+/* 8014B6F8 00148638  38 04 0E DC */	addi r0, r4, "__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"@l
 /* 8014B6FC 0014863C  91 01 00 24 */	stw r8, 0x24(r1)
 /* 8014B700 00148640  90 A3 00 00 */	stw r5, 0(r3)
 /* 8014B704 00148644  90 03 00 00 */	stw r0, 0(r3)
@@ -676,12 +676,12 @@ lbl_8014B720:
 /* 8014B72C 0014866C  28 03 00 00 */	cmplwi r3, 0
 /* 8014B730 00148670  41 82 00 44 */	beq lbl_8014B774
 /* 8014B734 00148674  81 1E 00 4C */	lwz r8, 0x4c(r30)
-/* 8014B738 00148678  3C 80 80 4B */	lis r4, __vt__39IDelegate3$$0PQ24Game11MovieConfig$$4Ul$$4Ul$$1@ha
+/* 8014B738 00148678  3C 80 80 4B */	lis r4, "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"@ha
 /* 8014B73C 0014867C  80 FE 00 50 */	lwz r7, 0x50(r30)
-/* 8014B740 00148680  38 A4 0E E8 */	addi r5, r4, __vt__39IDelegate3$$0PQ24Game11MovieConfig$$4Ul$$4Ul$$1@l
+/* 8014B740 00148680  38 A4 0E E8 */	addi r5, r4, "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"@l
 /* 8014B744 00148684  80 DE 00 54 */	lwz r6, 0x54(r30)
-/* 8014B748 00148688  3C 80 80 4B */	lis r4, __vt__63Delegate3$$0Q24Game15BaseGameSection$$4PQ24Game11MovieConfig$$4Ul$$4Ul$$1@ha
-/* 8014B74C 0014868C  38 04 0E DC */	addi r0, r4, __vt__63Delegate3$$0Q24Game15BaseGameSection$$4PQ24Game11MovieConfig$$4Ul$$4Ul$$1@l
+/* 8014B748 00148688  3C 80 80 4B */	lis r4, "__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"@ha
+/* 8014B74C 0014868C  38 04 0E DC */	addi r0, r4, "__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"@l
 /* 8014B750 00148690  91 01 00 18 */	stw r8, 0x18(r1)
 /* 8014B754 00148694  90 A3 00 00 */	stw r5, 0(r3)
 /* 8014B758 00148698  90 03 00 00 */	stw r0, 0(r3)
@@ -1624,7 +1624,7 @@ lbl_8014C45C:
 /* 8014C4D0 00149410  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 8014C4D4 00149414  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8014C4D8 00149418  80 7F 01 38 */	lwz r3, 0x138(r31)
-/* 8014C4DC 0014941C  48 2D 8E A5 */	bl setRect__8ViewportFR7Rect$$0f$$1
+/* 8014C4DC 0014941C  48 2D 8E A5 */	bl "setRect__8ViewportFR7Rect<f>"
 /* 8014C4E0 00149420  80 7F 01 38 */	lwz r3, 0x138(r31)
 /* 8014C4E4 00149424  80 1F 01 4C */	lwz r0, 0x14c(r31)
 /* 8014C4E8 00149428  90 03 00 44 */	stw r0, 0x44(r3)
@@ -1778,13 +1778,13 @@ lbl_8014C6E4:
 /* 8014C704 00149644  28 03 00 00 */	cmplwi r3, 0
 /* 8014C708 00149648  41 82 00 4C */	beq lbl_8014C754
 /* 8014C70C 0014964C  3C 80 80 4B */	lis r4, lbl_804B0CC8@ha
-/* 8014C710 00149650  3C A0 80 4B */	lis r5, __vt__25IDelegate1$$0R10Vector3$$0f$$1$$1@ha
+/* 8014C710 00149650  3C A0 80 4B */	lis r5, "__vt__25IDelegate1<R10Vector3<f>>"@ha
 /* 8014C714 00149654  39 04 0C C8 */	addi r8, r4, lbl_804B0CC8@l
-/* 8014C718 00149658  3C 80 80 4B */	lis r4, __vt__49Delegate1$$0Q24Game15BaseGameSection$$4R10Vector3$$0f$$1$$1@ha
+/* 8014C718 00149658  3C 80 80 4B */	lis r4, "__vt__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>"@ha
 /* 8014C71C 0014965C  80 E8 00 00 */	lwz r7, 0(r8)
-/* 8014C720 00149660  38 A5 0D F4 */	addi r5, r5, __vt__25IDelegate1$$0R10Vector3$$0f$$1$$1@l
+/* 8014C720 00149660  38 A5 0D F4 */	addi r5, r5, "__vt__25IDelegate1<R10Vector3<f>>"@l
 /* 8014C724 00149664  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8014C728 00149668  38 04 0D E8 */	addi r0, r4, __vt__49Delegate1$$0Q24Game15BaseGameSection$$4R10Vector3$$0f$$1$$1@l
+/* 8014C728 00149668  38 04 0D E8 */	addi r0, r4, "__vt__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>"@l
 /* 8014C72C 0014966C  80 88 00 08 */	lwz r4, 8(r8)
 /* 8014C730 00149670  90 E1 00 4C */	stw r7, 0x4c(r1)
 /* 8014C734 00149674  90 A3 00 00 */	stw r5, 0(r3)
@@ -2296,9 +2296,9 @@ lbl_8014CEB8:
 /* 8014CEB8 00149DF8  48 0F 06 61 */	bl birthAll__Q24Game17PelletBirthBufferFv
 /* 8014CEBC 00149DFC  38 00 00 00 */	li r0, 0
 /* 8014CEC0 00149E00  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 8014CEC4 00149E04  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
+/* 8014CEC4 00149E04  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
 /* 8014CEC8 00149E08  90 01 00 94 */	stw r0, 0x94(r1)
-/* 8014CECC 00149E0C  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
+/* 8014CECC 00149E0C  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
 /* 8014CED0 00149E10  28 00 00 00 */	cmplwi r0, 0
 /* 8014CED4 00149E14  90 81 00 88 */	stw r4, 0x88(r1)
 /* 8014CED8 00149E18  3A 60 00 00 */	li r19, 0
@@ -2541,7 +2541,7 @@ lbl_8014D210:
 /* 8014D254 0014A194  80 1E 01 0C */	lwz r0, 0x10c(r30)
 /* 8014D258 0014A198  90 14 02 78 */	stw r0, 0x278(r20)
 /* 8014D25C 0014A19C  90 14 02 7C */	stw r0, 0x27c(r20)
-/* 8014D260 0014A1A0  4B FE DF 49 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8014D260 0014A1A0  4B FE DF 49 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8014D264 0014A1A4  7E 83 A3 78 */	mr r3, r20
 /* 8014D268 0014A1A8  38 81 00 70 */	addi r4, r1, 0x70
 /* 8014D26C 0014A1AC  81 94 00 00 */	lwz r12, 0(r20)
@@ -2677,7 +2677,7 @@ lbl_8014D418:
 /* 8014D45C 0014A39C  7E A3 AB 78 */	mr r3, r21
 /* 8014D460 0014A3A0  38 81 00 7C */	addi r4, r1, 0x7c
 /* 8014D464 0014A3A4  38 A0 00 00 */	li r5, 0
-/* 8014D468 0014A3A8  4B FE DD 41 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8014D468 0014A3A8  4B FE DD 41 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8014D46C 0014A3AC  7E A3 AB 78 */	mr r3, r21
 /* 8014D470 0014A3B0  38 81 00 70 */	addi r4, r1, 0x70
 /* 8014D474 0014A3B4  81 95 00 00 */	lwz r12, 0(r21)
@@ -2810,7 +2810,7 @@ lbl_8014D594:
 /* 8014D658 0014A598  80 1E 01 10 */	lwz r0, 0x110(r30)
 /* 8014D65C 0014A59C  90 13 02 78 */	stw r0, 0x278(r19)
 /* 8014D660 0014A5A0  90 13 02 7C */	stw r0, 0x27c(r19)
-/* 8014D664 0014A5A4  4B FE DB 45 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8014D664 0014A5A4  4B FE DB 45 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8014D668 0014A5A8  48 00 00 64 */	b lbl_8014D6CC
 lbl_8014D66C:
 /* 8014D66C 0014A5AC  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
@@ -3075,7 +3075,7 @@ lbl_8014D9A8:
 /* 8014D9F8 0014A938  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 8014D9FC 0014A93C  38 80 00 00 */	li r4, 0
 /* 8014DA00 0014A940  80 AD 92 B0 */	lwz r5, cameraMgrCallback@sda21(r13)
-/* 8014DA04 0014A944  48 10 4C 55 */	bl changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1$$0PQ24Game9CameraArg$$1
+/* 8014DA04 0014A944  48 10 4C 55 */	bl "changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<PQ24Game9CameraArg>"
 /* 8014DA08 0014A948  80 1E 01 14 */	lwz r0, 0x114(r30)
 /* 8014DA0C 0014A94C  2C 00 00 01 */	cmpwi r0, 1
 /* 8014DA10 0014A950  40 82 00 3C */	bne lbl_8014DA4C
@@ -3158,7 +3158,7 @@ lbl_8014DB00:
 /* 8014DB34 0014AA74  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 8014DB38 0014AA78  38 80 00 01 */	li r4, 1
 /* 8014DB3C 0014AA7C  80 AD 92 B0 */	lwz r5, cameraMgrCallback@sda21(r13)
-/* 8014DB40 0014AA80  48 10 4B 19 */	bl changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1$$0PQ24Game9CameraArg$$1
+/* 8014DB40 0014AA80  48 10 4B 19 */	bl "changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<PQ24Game9CameraArg>"
 /* 8014DB44 0014AA84  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 8014DB48 0014AA88  38 80 00 01 */	li r4, 1
 /* 8014DB4C 0014AA8C  80 63 00 24 */	lwz r3, 0x24(r3)
@@ -3185,7 +3185,7 @@ lbl_8014DB78:
 /* 8014DB9C 0014AADC  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 8014DBA0 0014AAE0  38 80 00 02 */	li r4, 2
 /* 8014DBA4 0014AAE4  80 AD 92 B0 */	lwz r5, cameraMgrCallback@sda21(r13)
-/* 8014DBA8 0014AAE8  48 10 4A B1 */	bl changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1$$0PQ24Game9CameraArg$$1
+/* 8014DBA8 0014AAE8  48 10 4A B1 */	bl "changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<PQ24Game9CameraArg>"
 lbl_8014DBAC:
 /* 8014DBAC 0014AAEC  93 FE 00 E4 */	stw r31, 0xe4(r30)
 /* 8014DBB0 0014AAF0  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -3578,8 +3578,8 @@ getSoundPositionPtr__6CameraFv:
 /* 8014E128 0014B068  38 63 00 78 */	addi r3, r3, 0x78
 /* 8014E12C 0014B06C  4E 80 00 20 */	blr 
 
-.global prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3$$0f$$1b
-prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3$$0f$$1b:
+.global "prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3<f>b"
+"prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3<f>b":
 /* 8014E130 0014B070  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8014E134 0014B074  7C 08 02 A6 */	mflr r0
 /* 8014E138 0014B078  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3606,8 +3606,8 @@ prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3$$0f$$1b:
 /* 8014E18C 0014B0CC  38 63 00 30 */	addi r3, r3, 0x30
 lbl_8014E190:
 /* 8014E190 0014B0D0  38 00 00 00 */	li r0, 0
-/* 8014E194 0014B0D4  3C 80 80 4B */	lis r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@ha
-/* 8014E198 0014B0D8  38 84 05 A4 */	addi r4, r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@l
+/* 8014E194 0014B0D4  3C 80 80 4B */	lis r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+/* 8014E198 0014B0D8  38 84 05 A4 */	addi r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
 /* 8014E19C 0014B0DC  90 01 00 40 */	stw r0, 0x40(r1)
 /* 8014E1A0 0014B0E0  28 00 00 00 */	cmplwi r0, 0
 /* 8014E1A4 0014B0E4  90 81 00 34 */	stw r4, 0x34(r1)
@@ -3761,9 +3761,9 @@ lbl_8014E3A8:
 lbl_8014E3C8:
 /* 8014E3C8 0014B308  38 00 00 00 */	li r0, 0
 /* 8014E3CC 0014B30C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 8014E3D0 0014B310  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 8014E3D0 0014B310  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 8014E3D4 0014B314  90 01 00 30 */	stw r0, 0x30(r1)
-/* 8014E3D8 0014B318  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 8014E3D8 0014B318  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 8014E3DC 0014B31C  28 00 00 00 */	cmplwi r0, 0
 /* 8014E3E0 0014B320  90 81 00 24 */	stw r4, 0x24(r1)
 /* 8014E3E4 0014B324  90 01 00 28 */	stw r0, 0x28(r1)
@@ -3932,7 +3932,7 @@ lbl_8014E5F8:
 /* 8014E64C 0014B58C  7F E3 FB 78 */	mr r3, r31
 /* 8014E650 0014B590  38 81 00 18 */	addi r4, r1, 0x18
 /* 8014E654 0014B594  38 A0 00 00 */	li r5, 0
-/* 8014E658 0014B598  4B FE CB 51 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8014E658 0014B598  4B FE CB 51 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8014E65C 0014B59C  3C 80 80 4B */	lis r4, __vt__Q26PikiAI9ActionArg@ha
 /* 8014E660 0014B5A0  38 60 00 00 */	li r3, 0
 /* 8014E664 0014B5A4  38 04 05 30 */	addi r0, r4, __vt__Q26PikiAI9ActionArg@l
@@ -4028,8 +4028,8 @@ lbl_8014E7A0:
 /* 8014E7B4 0014B6F4  38 21 00 80 */	addi r1, r1, 0x80
 /* 8014E7B8 0014B6F8  4E 80 00 20 */	blr 
 
-.global prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3$$0f$$1
-prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3$$0f$$1:
+.global "prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<f>"
+"prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<f>":
 /* 8014E7BC 0014B6FC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8014E7C0 0014B700  7C 08 02 A6 */	mflr r0
 /* 8014E7C4 0014B704  90 01 00 64 */	stw r0, 0x64(r1)
@@ -4043,8 +4043,8 @@ prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3$$0f$$1:
 /* 8014E7E4 0014B724  38 63 00 30 */	addi r3, r3, 0x30
 lbl_8014E7E8:
 /* 8014E7E8 0014B728  38 00 00 00 */	li r0, 0
-/* 8014E7EC 0014B72C  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 8014E7F0 0014B730  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 8014E7EC 0014B72C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 8014E7F0 0014B730  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 8014E7F4 0014B734  90 01 00 48 */	stw r0, 0x48(r1)
 /* 8014E7F8 0014B738  28 00 00 00 */	cmplwi r0, 0
 /* 8014E7FC 0014B73C  90 81 00 3C */	stw r4, 0x3c(r1)
@@ -4178,8 +4178,8 @@ lbl_8014E9A4:
 /* 8014E9D8 0014B918  38 84 00 30 */	addi r4, r4, 0x30
 lbl_8014E9DC:
 /* 8014E9DC 0014B91C  38 00 00 00 */	li r0, 0
-/* 8014E9E0 0014B920  3C 60 80 4B */	lis r3, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@ha
-/* 8014E9E4 0014B924  38 63 05 A4 */	addi r3, r3, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@l
+/* 8014E9E0 0014B920  3C 60 80 4B */	lis r3, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+/* 8014E9E4 0014B924  38 63 05 A4 */	addi r3, r3, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
 /* 8014E9E8 0014B928  90 01 00 38 */	stw r0, 0x38(r1)
 /* 8014E9EC 0014B92C  28 00 00 00 */	cmplwi r0, 0
 /* 8014E9F0 0014B930  90 61 00 2C */	stw r3, 0x2c(r1)
@@ -4342,12 +4342,12 @@ lbl_8014EBFC:
 /* 8014EC38 0014BB78  7F C4 F3 78 */	mr r4, r30
 /* 8014EC3C 0014BB7C  90 01 00 08 */	stw r0, 8(r1)
 /* 8014EC40 0014BB80  38 A1 00 08 */	addi r5, r1, 8
-/* 8014EC44 0014BB84  48 01 0D 25 */	bl moveAllPikmins__Q24Game7PikiMgrFR10Vector3$$0f$$1fP23Condition$$0Q24Game4Piki$$1
+/* 8014EC44 0014BB84  48 01 0D 25 */	bl "moveAllPikmins__Q24Game7PikiMgrFR10Vector3<f>fP23Condition<Q24Game4Piki>"
 /* 8014EC48 0014BB88  38 00 00 00 */	li r0, 0
 /* 8014EC4C 0014BB8C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 8014EC50 0014BB90  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 8014EC50 0014BB90  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 8014EC54 0014BB94  90 01 00 28 */	stw r0, 0x28(r1)
-/* 8014EC58 0014BB98  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 8014EC58 0014BB98  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 8014EC5C 0014BB9C  28 00 00 00 */	cmplwi r0, 0
 /* 8014EC60 0014BBA0  90 81 00 1C */	stw r4, 0x1c(r1)
 /* 8014EC64 0014BBA4  90 01 00 20 */	stw r0, 0x20(r1)
@@ -5026,19 +5026,19 @@ doAnimation__Q24Game15BaseGameSectionFv:
 /* 8014F5F0 0014C530  80 6D 93 A8 */	lwz r3, generatorMgr__4Game@sda21(r13)
 /* 8014F5F4 0014C534  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8014F5F8 0014C538  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8014F5FC 0014C53C  48 05 C1 C5 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
+/* 8014F5FC 0014C53C  48 05 C1 C5 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
 /* 8014F600 0014C540  80 6D 93 AC */	lwz r3, onceGeneratorMgr__4Game@sda21(r13)
 /* 8014F604 0014C544  38 81 00 14 */	addi r4, r1, 0x14
-/* 8014F608 0014C548  48 05 C1 B9 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
+/* 8014F608 0014C548  48 05 C1 B9 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
 /* 8014F60C 0014C54C  80 6D 93 B0 */	lwz r3, limitGeneratorMgr__4Game@sda21(r13)
 /* 8014F610 0014C550  38 81 00 14 */	addi r4, r1, 0x14
-/* 8014F614 0014C554  48 05 C1 AD */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
+/* 8014F614 0014C554  48 05 C1 AD */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
 /* 8014F618 0014C558  80 6D 93 B4 */	lwz r3, plantsGeneratorMgr__4Game@sda21(r13)
 /* 8014F61C 0014C55C  38 81 00 14 */	addi r4, r1, 0x14
-/* 8014F620 0014C560  48 05 C1 A1 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
+/* 8014F620 0014C560  48 05 C1 A1 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
 /* 8014F624 0014C564  80 6D 93 B8 */	lwz r3, dayGeneratorMgr__4Game@sda21(r13)
 /* 8014F628 0014C568  38 81 00 14 */	addi r4, r1, 0x14
-/* 8014F62C 0014C56C  48 05 C1 95 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
+/* 8014F62C 0014C56C  48 05 C1 95 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
 lbl_8014F630:
 /* 8014F630 0014C570  80 6D 93 80 */	lwz r3, testPathfinder__4Game@sda21(r13)
 /* 8014F634 0014C574  28 03 00 00 */	cmplwi r3, 0
@@ -5118,8 +5118,8 @@ lbl_8014F740:
 /* 8014F74C 0014C68C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014F750 0014C690  4E 80 00 20 */	blr 
 
-.global changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3$$0f$$1
-changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3$$0f$$1:
+.global "changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>"
+"changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>":
 /* 8014F754 0014C694  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F758 0014C698  7C 08 02 A6 */	mflr r0
 /* 8014F75C 0014C69C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5133,7 +5133,7 @@ changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3$$0f$$1:
 /* 8014F77C 0014C6BC  4E 80 04 21 */	bctrl 
 /* 8014F780 0014C6C0  7F E4 FB 78 */	mr r4, r31
 /* 8014F784 0014C6C4  38 A0 00 00 */	li r5, 0
-/* 8014F788 0014C6C8  4B FE BA 21 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8014F788 0014C6C8  4B FE BA 21 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8014F78C 0014C6CC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8014F790 0014C6D0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8014F794 0014C6D4  7C 08 03 A6 */	mtlr r0
@@ -5878,11 +5878,11 @@ setupFixMemory__Q24Game15BaseGameSectionFv:
 /* 801501D4 0014D114  3C 60 80 4B */	lis r3, lbl_804B0CD4@ha
 /* 801501D8 0014D118  3C 80 80 4B */	lis r4, __vt__9IDelegate@ha
 /* 801501DC 0014D11C  38 E3 0C D4 */	addi r7, r3, lbl_804B0CD4@l
-/* 801501E0 0014D120  3C 60 80 4B */	lis r3, __vt__34Delegate$$0Q24Game15BaseGameSection$$1@ha
+/* 801501E0 0014D120  3C 60 80 4B */	lis r3, "__vt__34Delegate<Q24Game15BaseGameSection>"@ha
 /* 801501E4 0014D124  80 C7 00 00 */	lwz r6, 0(r7)
 /* 801501E8 0014D128  38 84 0F 00 */	addi r4, r4, __vt__9IDelegate@l
 /* 801501EC 0014D12C  80 A7 00 04 */	lwz r5, 4(r7)
-/* 801501F0 0014D130  38 03 0E F4 */	addi r0, r3, __vt__34Delegate$$0Q24Game15BaseGameSection$$1@l
+/* 801501F0 0014D130  38 03 0E F4 */	addi r0, r3, "__vt__34Delegate<Q24Game15BaseGameSection>"@l
 /* 801501F4 0014D134  80 67 00 08 */	lwz r3, 8(r7)
 /* 801501F8 0014D138  90 C1 00 08 */	stw r6, 8(r1)
 /* 801501FC 0014D13C  90 9E 00 00 */	stw r4, 0(r30)
@@ -6255,7 +6255,7 @@ setupFloatMemory__Q24Game15BaseGameSectionFv:
 /* 8015073C 0014D67C  3B C5 C9 48 */	addi r30, r5, lbl_8047C948@l
 /* 80150740 0014D680  54 00 06 3C */	rlwinm r0, r0, 0, 0x18, 0x1e
 /* 80150744 0014D684  98 04 00 3C */	stb r0, 0x3c(r4)
-/* 80150748 0014D688  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
+/* 80150748 0014D688  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
 /* 8015074C 0014D68C  28 00 00 00 */	cmplwi r0, 0
 /* 80150750 0014D690  41 82 00 18 */	beq lbl_80150768
 /* 80150754 0014D694  38 7E 03 80 */	addi r3, r30, 0x380
@@ -6264,7 +6264,7 @@ setupFloatMemory__Q24Game15BaseGameSectionFv:
 /* 80150760 0014D6A0  4C C6 31 82 */	crclr 6
 /* 80150764 0014D6A4  4B ED 9E DD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80150768:
-/* 80150768 0014D6A8  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
+/* 80150768 0014D6A8  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
 /* 8015076C 0014D6AC  28 00 00 00 */	cmplwi r0, 0
 /* 80150770 0014D6B0  40 82 00 6C */	bne lbl_801507DC
 /* 80150774 0014D6B4  38 60 00 30 */	li r3, 0x30
@@ -6273,14 +6273,14 @@ lbl_80150768:
 /* 80150780 0014D6C0  41 82 00 58 */	beq lbl_801507D8
 /* 80150784 0014D6C4  7C BB 2B 78 */	mr r27, r5
 /* 80150788 0014D6C8  4B ED 61 49 */	bl initiate__10JSUPtrListFv
-/* 8015078C 0014D6CC  3C 60 80 4B */	lis r3, __vt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@ha
+/* 8015078C 0014D6CC  3C 60 80 4B */	lis r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@ha
 /* 80150790 0014D6D0  34 9B 00 0C */	addic. r4, r27, 0xc
-/* 80150794 0014D6D4  38 03 0C E0 */	addi r0, r3, __vt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@l
+/* 80150794 0014D6D4  38 03 0C E0 */	addi r0, r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@l
 /* 80150798 0014D6D8  90 1B 00 0C */	stw r0, 0xc(r27)
 /* 8015079C 0014D6DC  41 82 00 08 */	beq lbl_801507A4
 /* 801507A0 0014D6E0  38 84 FF F4 */	addi r4, r4, -12
 lbl_801507A4:
-/* 801507A4 0014D6E4  90 8D 91 BC */	stw r4, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
+/* 801507A4 0014D6E4  90 8D 91 BC */	stw r4, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
 /* 801507A8 0014D6E8  38 7B 00 10 */	addi r3, r27, 0x10
 /* 801507AC 0014D6EC  4B EC C8 21 */	bl __ct__11JKRDisposerFv
 /* 801507B0 0014D6F0  3C 60 80 4F */	lis r3, __vt__Q23PSM6ObjMgr@ha
@@ -6294,9 +6294,9 @@ lbl_801507A4:
 /* 801507D0 0014D710  90 7B 00 10 */	stw r3, 0x10(r27)
 /* 801507D4 0014D714  90 1B 00 2C */	stw r0, 0x2c(r27)
 lbl_801507D8:
-/* 801507D8 0014D718  90 AD 91 BC */	stw r5, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
+/* 801507D8 0014D718  90 AD 91 BC */	stw r5, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
 lbl_801507DC:
-/* 801507DC 0014D71C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
+/* 801507DC 0014D71C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
 /* 801507E0 0014D720  28 00 00 00 */	cmplwi r0, 0
 /* 801507E4 0014D724  40 82 00 18 */	bne lbl_801507FC
 /* 801507E8 0014D728  38 7E 03 80 */	addi r3, r30, 0x380
@@ -6305,7 +6305,7 @@ lbl_801507DC:
 /* 801507F4 0014D734  4C C6 31 82 */	crclr 6
 /* 801507F8 0014D738  4B ED 9E 49 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_801507FC:
-/* 801507FC 0014D73C  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
+/* 801507FC 0014D73C  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
 /* 80150800 0014D740  28 00 00 00 */	cmplwi r0, 0
 /* 80150804 0014D744  41 82 00 18 */	beq lbl_8015081C
 /* 80150808 0014D748  38 7E 03 80 */	addi r3, r30, 0x380
@@ -6314,7 +6314,7 @@ lbl_801507FC:
 /* 80150814 0014D754  4C C6 31 82 */	crclr 6
 /* 80150818 0014D758  4B ED 9E 29 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8015081C:
-/* 8015081C 0014D75C  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
+/* 8015081C 0014D75C  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
 /* 80150820 0014D760  28 00 00 00 */	cmplwi r0, 0
 /* 80150824 0014D764  40 82 00 20 */	bne lbl_80150844
 /* 80150828 0014D768  38 60 00 3C */	li r3, 0x3c
@@ -6324,9 +6324,9 @@ lbl_8015081C:
 /* 80150838 0014D778  48 31 C0 95 */	bl __ct__Q33PSM12BossBgmFader3MgrFv
 /* 8015083C 0014D77C  7C 60 1B 78 */	mr r0, r3
 lbl_80150840:
-/* 80150840 0014D780  90 0D 91 B0 */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
+/* 80150840 0014D780  90 0D 91 B0 */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
 lbl_80150844:
-/* 80150844 0014D784  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
+/* 80150844 0014D784  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
 /* 80150848 0014D788  28 00 00 00 */	cmplwi r0, 0
 /* 8015084C 0014D78C  40 82 00 18 */	bne lbl_80150864
 /* 80150850 0014D790  38 7E 03 80 */	addi r3, r30, 0x380
@@ -6424,7 +6424,7 @@ lbl_80150984:
 /* 801509A0 0014D8E0  4E 80 04 21 */	bctrl 
 /* 801509A4 0014D8E4  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
 /* 801509A8 0014D8E8  38 80 00 02 */	li r4, 2
-/* 801509AC 0014D8EC  48 00 13 89 */	bl alloc__27MonoObjectMgr$$0Q24Game4Navi$$1Fi
+/* 801509AC 0014D8EC  48 00 13 89 */	bl "alloc__27MonoObjectMgr<Q24Game4Navi>Fi"
 /* 801509B0 0014D8F0  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
 /* 801509B4 0014D8F4  38 80 00 00 */	li r4, 0
 /* 801509B8 0014D8F8  81 83 00 00 */	lwz r12, 0(r3)
@@ -6589,7 +6589,7 @@ lbl_80150BD4:
 /* 80150C00 0014DB40  48 2D 27 5D */	bl heapStatusStart__6SystemFPcP7JKRHeap
 /* 80150C04 0014DB44  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 80150C08 0014DB48  38 80 00 64 */	li r4, 0x64
-/* 80150C0C 0014DB4C  48 00 12 B5 */	bl alloc__27MonoObjectMgr$$0Q24Game4Piki$$1Fi
+/* 80150C0C 0014DB4C  48 00 12 B5 */	bl "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
 /* 80150C10 0014DB50  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 80150C14 0014DB54  38 9E 03 A0 */	addi r4, r30, 0x3a0
 /* 80150C18 0014DB58  48 2D 27 4D */	bl heapStatusEnd__6SystemFPc
@@ -7148,20 +7148,20 @@ isDevelopSection__Q24Game15BaseGameSectionFv:
 /* 80151404 0014E344  38 60 00 01 */	li r3, 1
 /* 80151408 0014E348  4E 80 00 20 */	blr 
 
-.global __dt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1Fv
-__dt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1Fv:
+.global "__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv"
+"__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv":
 /* 8015140C 0014E34C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151410 0014E350  7C 08 02 A6 */	mflr r0
 /* 80151414 0014E354  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80151418 0014E358  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015141C 0014E35C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80151420 0014E360  41 82 00 24 */	beq lbl_80151444
-/* 80151424 0014E364  3C A0 80 4B */	lis r5, __vt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@ha
+/* 80151424 0014E364  3C A0 80 4B */	lis r5, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@ha
 /* 80151428 0014E368  7C 80 07 35 */	extsh. r0, r4
-/* 8015142C 0014E36C  38 85 0C E0 */	addi r4, r5, __vt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@l
+/* 8015142C 0014E36C  38 85 0C E0 */	addi r4, r5, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@l
 /* 80151430 0014E370  38 00 00 00 */	li r0, 0
 /* 80151434 0014E374  90 9F 00 00 */	stw r4, 0(r31)
-/* 80151438 0014E378  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
+/* 80151438 0014E378  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
 /* 8015143C 0014E37C  40 81 00 08 */	ble lbl_80151444
 /* 80151440 0014E380  4B ED 2C 75 */	bl __dl__FPv
 lbl_80151444:
@@ -7241,10 +7241,10 @@ setupJUTTextures__Q24Game6MapMgrFv:
 createFallPikminSound__Q24Game15BaseGameSectionFv:
 /* 80151534 0014E474  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80151538 0014E478  7C 08 02 A6 */	mflr r0
-/* 8015153C 0014E47C  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 8015153C 0014E47C  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 80151540 0014E480  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80151544 0014E484  38 00 00 00 */	li r0, 0
-/* 80151548 0014E488  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 80151548 0014E488  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 8015154C 0014E48C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80151550 0014E490  28 00 00 00 */	cmplwi r0, 0
 /* 80151554 0014E494  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
@@ -7389,8 +7389,8 @@ satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki:
 /* 80151748 0014E688  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8015174C 0014E68C  4E 80 00 20 */	blr 
 
-.global __dt__17Container$$05Plane$$1Fv
-__dt__17Container$$05Plane$$1Fv:
+.global "__dt__17Container<5Plane>Fv"
+"__dt__17Container<5Plane>Fv":
 /* 80151750 0014E690  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151754 0014E694  7C 08 02 A6 */	mflr r0
 /* 80151758 0014E698  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7422,8 +7422,8 @@ lbl_801517A4:
 /* 801517B8 0014E6F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801517BC 0014E6FC  4E 80 00 20 */	blr 
 
-.global __dt__22ArrayContainer$$05Plane$$1Fv
-__dt__22ArrayContainer$$05Plane$$1Fv:
+.global "__dt__22ArrayContainer<5Plane>Fv"
+"__dt__22ArrayContainer<5Plane>Fv":
 /* 801517C0 0014E700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801517C4 0014E704  7C 08 02 A6 */	mflr r0
 /* 801517C8 0014E708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7614,16 +7614,16 @@ isFinishable__7SectionFv:
 /* 80151958 0014E898  38 60 00 01 */	li r3, 1
 /* 8015195C 0014E89C  4E 80 00 20 */	blr 
 
-.global writeObject__22ArrayContainer$$05Plane$$1FR6StreamR5Plane
-writeObject__22ArrayContainer$$05Plane$$1FR6StreamR5Plane:
+.global "writeObject__22ArrayContainer<5Plane>FR6StreamR5Plane"
+"writeObject__22ArrayContainer<5Plane>FR6StreamR5Plane":
 /* 80151960 0014E8A0  4E 80 00 20 */	blr 
 
-.global readObject__22ArrayContainer$$05Plane$$1FR6StreamR5Plane
-readObject__22ArrayContainer$$05Plane$$1FR6StreamR5Plane:
+.global "readObject__22ArrayContainer<5Plane>FR6StreamR5Plane"
+"readObject__22ArrayContainer<5Plane>FR6StreamR5Plane":
 /* 80151964 0014E8A4  4E 80 00 20 */	blr 
 
-.global write__22ArrayContainer$$05Plane$$1FR6Stream
-write__22ArrayContainer$$05Plane$$1FR6Stream:
+.global "write__22ArrayContainer<5Plane>FR6Stream"
+"write__22ArrayContainer<5Plane>FR6Stream":
 /* 80151968 0014E8A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015196C 0014E8AC  7C 08 02 A6 */	mflr r0
 /* 80151970 0014E8B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7680,8 +7680,8 @@ lbl_80151A14:
 /* 80151A34 0014E974  38 21 00 20 */	addi r1, r1, 0x20
 /* 80151A38 0014E978  4E 80 00 20 */	blr 
 
-.global alloc__22ArrayContainer$$05Plane$$1Fi
-alloc__22ArrayContainer$$05Plane$$1Fi:
+.global "alloc__22ArrayContainer<5Plane>Fi"
+"alloc__22ArrayContainer<5Plane>Fi":
 /* 80151A3C 0014E97C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151A40 0014E980  7C 08 02 A6 */	mflr r0
 /* 80151A44 0014E984  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7709,49 +7709,49 @@ alloc__22ArrayContainer$$05Plane$$1Fi:
 /* 80151A9C 0014E9DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151AA0 0014E9E0  4E 80 00 20 */	blr 
 
-.global setArray__22ArrayContainer$$05Plane$$1FP5Planei
-setArray__22ArrayContainer$$05Plane$$1FP5Planei:
+.global "setArray__22ArrayContainer<5Plane>FP5Planei"
+"setArray__22ArrayContainer<5Plane>FP5Planei":
 /* 80151AA4 0014E9E4  90 83 00 24 */	stw r4, 0x24(r3)
 /* 80151AA8 0014E9E8  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 80151AAC 0014E9EC  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 80151AB0 0014E9F0  4E 80 00 20 */	blr 
 
-.global get__22ArrayContainer$$05Plane$$1FPv
-get__22ArrayContainer$$05Plane$$1FPv:
+.global "get__22ArrayContainer<5Plane>FPv"
+"get__22ArrayContainer<5Plane>FPv":
 /* 80151AB4 0014E9F4  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80151AB8 0014E9F8  54 80 20 36 */	slwi r0, r4, 4
 /* 80151ABC 0014E9FC  7C 63 02 14 */	add r3, r3, r0
 /* 80151AC0 0014EA00  4E 80 00 20 */	blr 
 
-.global getNext__22ArrayContainer$$05Plane$$1FPv
-getNext__22ArrayContainer$$05Plane$$1FPv:
+.global "getNext__22ArrayContainer<5Plane>FPv"
+"getNext__22ArrayContainer<5Plane>FPv":
 /* 80151AC4 0014EA04  38 64 00 01 */	addi r3, r4, 1
 /* 80151AC8 0014EA08  4E 80 00 20 */	blr 
 
-.global getStart__22ArrayContainer$$05Plane$$1Fv
-getStart__22ArrayContainer$$05Plane$$1Fv:
+.global "getStart__22ArrayContainer<5Plane>Fv"
+"getStart__22ArrayContainer<5Plane>Fv":
 /* 80151ACC 0014EA0C  38 60 00 00 */	li r3, 0
 /* 80151AD0 0014EA10  4E 80 00 20 */	blr 
 
-.global getEnd__22ArrayContainer$$05Plane$$1Fv
-getEnd__22ArrayContainer$$05Plane$$1Fv:
+.global "getEnd__22ArrayContainer<5Plane>Fv"
+"getEnd__22ArrayContainer<5Plane>Fv":
 /* 80151AD4 0014EA14  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80151AD8 0014EA18  4E 80 00 20 */	blr 
 
-.global getAt__22ArrayContainer$$05Plane$$1Fi
-getAt__22ArrayContainer$$05Plane$$1Fi:
+.global "getAt__22ArrayContainer<5Plane>Fi"
+"getAt__22ArrayContainer<5Plane>Fi":
 /* 80151ADC 0014EA1C  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80151AE0 0014EA20  54 80 20 36 */	slwi r0, r4, 4
 /* 80151AE4 0014EA24  7C 63 02 14 */	add r3, r3, r0
 /* 80151AE8 0014EA28  4E 80 00 20 */	blr 
 
-.global getTo__22ArrayContainer$$05Plane$$1Fv
-getTo__22ArrayContainer$$05Plane$$1Fv:
+.global "getTo__22ArrayContainer<5Plane>Fv"
+"getTo__22ArrayContainer<5Plane>Fv":
 /* 80151AEC 0014EA2C  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 80151AF0 0014EA30  4E 80 00 20 */	blr 
 
-.global getObject__17Container$$05Plane$$1FPv
-getObject__17Container$$05Plane$$1FPv:
+.global "getObject__17Container<5Plane>FPv"
+"getObject__17Container<5Plane>FPv":
 /* 80151AF4 0014EA34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151AF8 0014EA38  7C 08 02 A6 */	mflr r0
 /* 80151AFC 0014EA3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7764,18 +7764,18 @@ getObject__17Container$$05Plane$$1FPv:
 /* 80151B18 0014EA58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151B1C 0014EA5C  4E 80 00 20 */	blr 
 
-.global getAt__17Container$$05Plane$$1Fi
-getAt__17Container$$05Plane$$1Fi:
+.global "getAt__17Container<5Plane>Fi"
+"getAt__17Container<5Plane>Fi":
 /* 80151B20 0014EA60  38 60 00 00 */	li r3, 0
 /* 80151B24 0014EA64  4E 80 00 20 */	blr 
 
-.global getTo__17Container$$05Plane$$1Fv
-getTo__17Container$$05Plane$$1Fv:
+.global "getTo__17Container<5Plane>Fv"
+"getTo__17Container<5Plane>Fv":
 /* 80151B28 0014EA68  38 60 00 00 */	li r3, 0
 /* 80151B2C 0014EA6C  4E 80 00 20 */	blr 
 
-.global invoke__63Delegate3$$0Q24Game15BaseGameSection$$4PQ24Game11MovieConfig$$4Ul$$4Ul$$1FPQ24Game11MovieConfigUlUl
-invoke__63Delegate3$$0Q24Game15BaseGameSection$$4PQ24Game11MovieConfig$$4Ul$$4Ul$$1FPQ24Game11MovieConfigUlUl:
+.global "invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl"
+"invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl":
 /* 80151B30 0014EA70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151B34 0014EA74  7C 08 02 A6 */	mflr r0
 /* 80151B38 0014EA78  7C 67 1B 78 */	mr r7, r3
@@ -7789,8 +7789,8 @@ invoke__63Delegate3$$0Q24Game15BaseGameSection$$4PQ24Game11MovieConfig$$4Ul$$4Ul
 /* 80151B58 0014EA98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151B5C 0014EA9C  4E 80 00 20 */	blr 
 
-.global invoke__49Delegate1$$0Q24Game15BaseGameSection$$4R10Vector3$$0f$$1$$1FR10Vector3$$0f$$1
-invoke__49Delegate1$$0Q24Game15BaseGameSection$$4R10Vector3$$0f$$1$$1FR10Vector3$$0f$$1:
+.global "invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>"
+"invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>":
 /* 80151B60 0014EAA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151B64 0014EAA4  7C 08 02 A6 */	mflr r0
 /* 80151B68 0014EAA8  7C 65 1B 78 */	mr r5, r3
@@ -7804,8 +7804,8 @@ invoke__49Delegate1$$0Q24Game15BaseGameSection$$4R10Vector3$$0f$$1$$1FR10Vector3
 /* 80151B88 0014EAC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151B8C 0014EACC  4E 80 00 20 */	blr 
 
-.global invoke__54Delegate1$$0Q24Game15BaseGameSection$$4PQ24Game9CameraArg$$1FPQ24Game9CameraArg
-invoke__54Delegate1$$0Q24Game15BaseGameSection$$4PQ24Game9CameraArg$$1FPQ24Game9CameraArg:
+.global "invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg"
+"invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg":
 /* 80151B90 0014EAD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151B94 0014EAD4  7C 08 02 A6 */	mflr r0
 /* 80151B98 0014EAD8  7C 65 1B 78 */	mr r5, r3
@@ -7819,8 +7819,8 @@ invoke__54Delegate1$$0Q24Game15BaseGameSection$$4PQ24Game9CameraArg$$1FPQ24Game9
 /* 80151BB8 0014EAF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151BBC 0014EAFC  4E 80 00 20 */	blr 
 
-.global invoke__45Delegate1$$0Q24Game15BaseGameSection$$4R7Rect$$0f$$1$$1FR7Rect$$0f$$1
-invoke__45Delegate1$$0Q24Game15BaseGameSection$$4R7Rect$$0f$$1$$1FR7Rect$$0f$$1:
+.global "invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>"
+"invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>":
 /* 80151BC0 0014EB00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151BC4 0014EB04  7C 08 02 A6 */	mflr r0
 /* 80151BC8 0014EB08  7C 65 1B 78 */	mr r5, r3
@@ -7834,8 +7834,8 @@ invoke__45Delegate1$$0Q24Game15BaseGameSection$$4R7Rect$$0f$$1$$1FR7Rect$$0f$$1:
 /* 80151BE8 0014EB28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151BEC 0014EB2C  4E 80 00 20 */	blr 
 
-.global invoke__34Delegate$$0Q24Game15BaseGameSection$$1Fv
-invoke__34Delegate$$0Q24Game15BaseGameSection$$1Fv:
+.global "invoke__34Delegate<Q24Game15BaseGameSection>Fv"
+"invoke__34Delegate<Q24Game15BaseGameSection>Fv":
 /* 80151BF0 0014EB30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151BF4 0014EB34  7C 08 02 A6 */	mflr r0
 /* 80151BF8 0014EB38  7C 64 1B 78 */	mr r4, r3
@@ -7849,8 +7849,8 @@ invoke__34Delegate$$0Q24Game15BaseGameSection$$1Fv:
 /* 80151C18 0014EB58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151C1C 0014EB5C  4E 80 00 20 */	blr 
 
-.global addOne__22ArrayContainer$$05Plane$$1FR5Plane
-addOne__22ArrayContainer$$05Plane$$1FR5Plane:
+.global "addOne__22ArrayContainer<5Plane>FR5Plane"
+"addOne__22ArrayContainer<5Plane>FR5Plane":
 /* 80151C20 0014EB60  80 E3 00 1C */	lwz r7, 0x1c(r3)
 /* 80151C24 0014EB64  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 80151C28 0014EB68  7C 07 00 00 */	cmpw r7, r0
@@ -7880,8 +7880,8 @@ __ct__5PlaneFv:
 /* 80151C7C 0014EBBC  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 80151C80 0014EBC0  4E 80 00 20 */	blr 
 
-.global read__22ArrayContainer$$05Plane$$1FR6Stream
-read__22ArrayContainer$$05Plane$$1FR6Stream:
+.global "read__22ArrayContainer<5Plane>FR6Stream"
+"read__22ArrayContainer<5Plane>FR6Stream":
 /* 80151C84 0014EBC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80151C88 0014EBC8  7C 08 02 A6 */	mflr r0
 /* 80151C8C 0014EBCC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7929,8 +7929,8 @@ lbl_80151D08:
 /* 80151D2C 0014EC6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80151D30 0014EC70  4E 80 00 20 */	blr 
 
-.global alloc__27MonoObjectMgr$$0Q24Game4Navi$$1Fi
-alloc__27MonoObjectMgr$$0Q24Game4Navi$$1Fi:
+.global "alloc__27MonoObjectMgr<Q24Game4Navi>Fi"
+"alloc__27MonoObjectMgr<Q24Game4Navi>Fi":
 /* 80151D34 0014EC74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80151D38 0014EC78  7C 08 02 A6 */	mflr r0
 /* 80151D3C 0014EC7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8036,12 +8036,12 @@ lbl_80151E94:
 /* 80151EB4 0014EDF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80151EB8 0014EDF8  4E 80 00 20 */	blr 
 
-.global onAlloc__27MonoObjectMgr$$0Q24Game4Navi$$1Fv
-onAlloc__27MonoObjectMgr$$0Q24Game4Navi$$1Fv:
+.global "onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv"
+"onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv":
 /* 80151EBC 0014EDFC  4E 80 00 20 */	blr 
 
-.global alloc__27MonoObjectMgr$$0Q24Game4Piki$$1Fi
-alloc__27MonoObjectMgr$$0Q24Game4Piki$$1Fi:
+.global "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
+"alloc__27MonoObjectMgr<Q24Game4Piki>Fi":
 /* 80151EC0 0014EE00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80151EC4 0014EE04  7C 08 02 A6 */	mflr r0
 /* 80151EC8 0014EE08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8147,8 +8147,8 @@ lbl_80152020:
 /* 80152040 0014EF80  38 21 00 20 */	addi r1, r1, 0x20
 /* 80152044 0014EF84  4E 80 00 20 */	blr 
 
-.global onAlloc__27MonoObjectMgr$$0Q24Game4Piki$$1Fv
-onAlloc__27MonoObjectMgr$$0Q24Game4Piki$$1Fv:
+.global "onAlloc__27MonoObjectMgr<Q24Game4Piki>Fv"
+"onAlloc__27MonoObjectMgr<Q24Game4Piki>Fv":
 /* 80152048 0014EF88  4E 80 00 20 */	blr 
 
 .global __sinit_baseGameSection_cpp

@@ -5,10 +5,10 @@
 __ct__Q34Game6VsGame10TitleStateFv:
 /* 80228328 00225268  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022832C 0022526C  7C 08 02 A6 */	mflr r0
-/* 80228330 00225270  3C 80 80 4C */	lis r4, __vt__Q24Game32FSMState$$0Q24Game13VsGameSection$$1@ha
+/* 80228330 00225270  3C 80 80 4C */	lis r4, "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"@ha
 /* 80228334 00225274  38 A0 00 00 */	li r5, 0
 /* 80228338 00225278  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8022833C 0022527C  38 04 0E E4 */	addi r0, r4, __vt__Q24Game32FSMState$$0Q24Game13VsGameSection$$1@l
+/* 8022833C 0022527C  38 04 0E E4 */	addi r0, r4, "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"@l
 /* 80228340 00225280  3C 80 80 4C */	lis r4, __vt__Q34Game6VsGame5State@ha
 /* 80228344 00225284  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80228348 00225288  7C 7F 1B 78 */	mr r31, r3
@@ -36,11 +36,11 @@ lbl_80228388:
 /* 8022839C 002252DC  3C 80 80 4C */	lis r4, lbl_804C0E04@ha
 /* 802283A0 002252E0  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 802283A4 002252E4  39 04 0E 04 */	addi r8, r4, lbl_804C0E04@l
-/* 802283A8 002252E8  3C 80 80 4C */	lis r4, __vt__36Delegate$$0Q34Game6VsGame10TitleState$$1@ha
+/* 802283A8 002252E8  3C 80 80 4C */	lis r4, "__vt__36Delegate<Q34Game6VsGame10TitleState>"@ha
 /* 802283AC 002252EC  80 E8 00 00 */	lwz r7, 0(r8)
 /* 802283B0 002252F0  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 802283B4 002252F4  80 C8 00 04 */	lwz r6, 4(r8)
-/* 802283B8 002252F8  38 04 0E 8C */	addi r0, r4, __vt__36Delegate$$0Q34Game6VsGame10TitleState$$1@l
+/* 802283B8 002252F8  38 04 0E 8C */	addi r0, r4, "__vt__36Delegate<Q34Game6VsGame10TitleState>"@l
 /* 802283BC 002252FC  80 88 00 08 */	lwz r4, 8(r8)
 /* 802283C0 00225300  90 E1 00 08 */	stw r7, 8(r1)
 /* 802283C4 00225304  90 A3 00 00 */	stw r5, 0(r3)
@@ -103,10 +103,10 @@ init__Q34Game6VsGame10TitleStateFPQ24Game13VsGameSectionPQ24Game8StateArg:
 /* 80228494 002253D4  4B F2 79 11 */	bl clearHeap__Q24Game15BaseGameSectionFv
 lbl_80228498:
 /* 80228498 002253D8  38 00 00 01 */	li r0, 1
-/* 8022849C 002253DC  3C 60 80 4C */	lis r3, cMaps__24$$2unnamed$$2vsGS_Title_cpp$$2@ha
+/* 8022849C 002253DC  3C 60 80 4C */	lis r3, "cMaps__24@unnamed@vsGS_Title_cpp@"@ha
 /* 802284A0 002253E0  98 1E 02 05 */	stb r0, 0x205(r30)
 /* 802284A4 002253E4  38 00 00 00 */	li r0, 0
-/* 802284A8 002253E8  38 83 0D F4 */	addi r4, r3, cMaps__24$$2unnamed$$2vsGS_Title_cpp$$2@l
+/* 802284A8 002253E8  38 83 0D F4 */	addi r4, r3, "cMaps__24@unnamed@vsGS_Title_cpp@"@l
 /* 802284AC 002253EC  38 7E 02 24 */	addi r3, r30, 0x224
 /* 802284B0 002253F0  90 1E 02 08 */	stw r0, 0x208(r30)
 /* 802284B4 002253F4  90 1D 00 18 */	stw r0, 0x18(r29)
@@ -648,8 +648,8 @@ lbl_80228C3C:
 /* 80228C54 00225B94  38 21 00 50 */	addi r1, r1, 0x50
 /* 80228C58 00225B98  4E 80 00 20 */	blr 
 
-.global transit__Q24Game32FSMState$$0Q24Game13VsGameSection$$1FPQ24Game13VsGameSectioniPQ24Game8StateArg
-transit__Q24Game32FSMState$$0Q24Game13VsGameSection$$1FPQ24Game13VsGameSectioniPQ24Game8StateArg:
+.global "transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
+"transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg":
 /* 80228C5C 00225B9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228C60 00225BA0  7C 08 02 A6 */	mflr r0
 /* 80228C64 00225BA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1076,16 +1076,16 @@ getMemberID__Q28Morimura25DispMemberChallengeSelectFv:
 /* 8022923C 0022617C  38 63 53 45 */	addi r3, r3, 0x43485345@l
 /* 80229240 00226180  4E 80 00 20 */	blr 
 
-.global resume__Q24Game32FSMState$$0Q24Game13VsGameSection$$1FPQ24Game13VsGameSection
-resume__Q24Game32FSMState$$0Q24Game13VsGameSection$$1FPQ24Game13VsGameSection:
+.global "resume__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+"resume__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection":
 /* 80229244 00226184  4E 80 00 20 */	blr 
 
-.global restart__Q24Game32FSMState$$0Q24Game13VsGameSection$$1FPQ24Game13VsGameSection
-restart__Q24Game32FSMState$$0Q24Game13VsGameSection$$1FPQ24Game13VsGameSection:
+.global "restart__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+"restart__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection":
 /* 80229248 00226188  4E 80 00 20 */	blr 
 
-.global invoke__36Delegate$$0Q34Game6VsGame10TitleState$$1Fv
-invoke__36Delegate$$0Q34Game6VsGame10TitleState$$1Fv:
+.global "invoke__36Delegate<Q34Game6VsGame10TitleState>Fv"
+"invoke__36Delegate<Q34Game6VsGame10TitleState>Fv":
 /* 8022924C 0022618C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80229250 00226190  7C 08 02 A6 */	mflr r0
 /* 80229254 00226194  7C 64 1B 78 */	mr r4, r3

@@ -6,14 +6,14 @@ lbl_804732E0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2
-gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2:
+.global "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@":
 	.4byte 0x80008A80
 	.4byte 0x80008A84
 	.4byte 0x80008B7C
 	.4byte 0x80008AC0
-.global saCompositeOperation___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2
-saCompositeOperation___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2:
+.global "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"
+"saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@":
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x80008D00

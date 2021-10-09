@@ -32,9 +32,9 @@ loadTexData__Q34Game10BlueChappy3MgrFv:
 /* 8012B908 00128848  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8012B90C 0012884C  7C 7F 1B 78 */	mr r31, r3
 /* 8012B910 00128850  38 61 00 08 */	addi r3, r1, 8
-/* 8012B914 00128854  80 8D 83 E0 */	lwz r4, cChappyChangeTexName0__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2@sda21(r13)
+/* 8012B914 00128854  80 8D 83 E0 */	lwz r4, "cChappyChangeTexName0__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@"@sda21(r13)
 /* 8012B918 00128858  48 32 0D 05 */	bl __ct__Q212LoadResource11ArgAramOnlyFPCc
-/* 8012B91C 0012885C  80 0D 83 E0 */	lwz r0, cChappyChangeTexName0__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2@sda21(r13)
+/* 8012B91C 0012885C  80 0D 83 E0 */	lwz r0, "cChappyChangeTexName0__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@"@sda21(r13)
 /* 8012B920 00128860  38 81 00 08 */	addi r4, r1, 8
 /* 8012B924 00128864  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 8012B928 00128868  90 01 00 08 */	stw r0, 8(r1)
@@ -42,7 +42,7 @@ loadTexData__Q34Game10BlueChappy3MgrFv:
 /* 8012B930 00128870  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 8012B934 00128874  38 81 00 08 */	addi r4, r1, 8
 /* 8012B938 00128878  90 1F 00 44 */	stw r0, 0x44(r31)
-/* 8012B93C 0012887C  80 0D 83 E4 */	lwz r0, cChappyChangeTexName1__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2@sda21(r13)
+/* 8012B93C 0012887C  80 0D 83 E4 */	lwz r0, "cChappyChangeTexName1__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@"@sda21(r13)
 /* 8012B940 00128880  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 8012B944 00128884  90 01 00 08 */	stw r0, 8(r1)
 /* 8012B948 00128888  48 32 0E 59 */	bl load__Q212LoadResource3MgrFRQ212LoadResource3Arg
@@ -244,7 +244,7 @@ getEnemy__Q34Game10BlueChappy3MgrFi:
 /* 8012BBE4 00128B24  7C 63 02 14 */	add r3, r3, r0
 /* 8012BBE8 00128B28  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game10BlueChappy3MgrFv
-$$24$$2__dt__Q34Game10BlueChappy3MgrFv:
+.global "@4@__dt__Q34Game10BlueChappy3MgrFv"
+"@4@__dt__Q34Game10BlueChappy3MgrFv":
 /* 8012BBEC 00128B2C  38 63 FF FC */	addi r3, r3, -4
 /* 8012BBF0 00128B30  4B FF FD C0 */	b __dt__Q34Game10BlueChappy3MgrFv

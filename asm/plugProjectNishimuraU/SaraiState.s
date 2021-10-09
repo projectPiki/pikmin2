@@ -1060,7 +1060,7 @@ lbl_80271770:
 /* 8027177C 0026E6BC  C0 25 08 94 */	lfs f1, 0x894(r5)
 /* 80271780 0026E6C0  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 80271784 0026E6C4  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 80271788 0026E6C8  4B EA 3E 55 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 80271788 0026E6C8  4B EA 3E 55 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 lbl_8027178C:
 /* 8027178C 0026E6CC  80 7E 00 C0 */	lwz r3, 0xc0(r30)
 /* 80271790 0026E6D0  C0 03 08 6C */	lfs f0, 0x86c(r3)
@@ -1783,7 +1783,7 @@ lbl_802721D8:
 /* 802721E4 0026F124  C0 25 08 BC */	lfs f1, 0x8bc(r5)
 /* 802721E8 0026F128  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802721EC 0026F12C  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802721F0 0026F130  4B EA 33 ED */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 802721F0 0026F130  4B EA 33 ED */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 lbl_802721F4:
 /* 802721F4 0026F134  7F E3 FB 78 */	mr r3, r31
 /* 802721F8 0026F138  48 00 14 A5 */	bl getCatchTargetNum__Q34Game5Sarai3ObjFv

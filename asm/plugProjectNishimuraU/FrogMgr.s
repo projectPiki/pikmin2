@@ -72,9 +72,9 @@ __ct__Q34Game4Frog5ParmsFv:
 /* 8025820C 0025514C  90 FF 07 FC */	stw r7, 0x7fc(r31)
 /* 80258210 00255150  90 1F 08 00 */	stw r0, 0x800(r31)
 /* 80258214 00255154  48 1B B4 45 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80258218 00255158  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80258218 00255158  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8025821C 0025515C  3C A0 66 70 */	lis r5, 0x66703032@ha
-/* 80258220 00255160  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80258220 00255160  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80258224 00255164  C0 02 C7 40 */	lfs f0, lbl_8051AAA0@sda21(r2)
 /* 80258228 00255168  90 1F 08 04 */	stw r0, 0x804(r31)
 /* 8025822C 0025516C  38 7F 08 2C */	addi r3, r31, 0x82c
@@ -87,9 +87,9 @@ __ct__Q34Game4Frog5ParmsFv:
 /* 80258248 00255188  D0 3F 08 24 */	stfs f1, 0x824(r31)
 /* 8025824C 0025518C  D0 1F 08 28 */	stfs f0, 0x828(r31)
 /* 80258250 00255190  48 1B B4 09 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80258254 00255194  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80258254 00255194  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80258258 00255198  3C A0 66 70 */	lis r5, 0x66703033@ha
-/* 8025825C 0025519C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8025825C 0025519C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80258260 002551A0  C0 02 C7 4C */	lfs f0, lbl_8051AAAC@sda21(r2)
 /* 80258264 002551A4  90 1F 08 2C */	stw r0, 0x82c(r31)
 /* 80258268 002551A8  38 7F 08 54 */	addi r3, r31, 0x854
@@ -102,9 +102,9 @@ __ct__Q34Game4Frog5ParmsFv:
 /* 80258284 002551C4  D0 3F 08 4C */	stfs f1, 0x84c(r31)
 /* 80258288 002551C8  D0 1F 08 50 */	stfs f0, 0x850(r31)
 /* 8025828C 002551CC  48 1B B3 CD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80258290 002551D0  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80258290 002551D0  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80258294 002551D4  3C A0 66 70 */	lis r5, 0x66703034@ha
-/* 80258298 002551D8  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80258298 002551D8  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8025829C 002551DC  C0 02 C7 54 */	lfs f0, lbl_8051AAB4@sda21(r2)
 /* 802582A0 002551E0  90 1F 08 54 */	stw r0, 0x854(r31)
 /* 802582A4 002551E4  38 7F 08 7C */	addi r3, r31, 0x87c
@@ -117,9 +117,9 @@ __ct__Q34Game4Frog5ParmsFv:
 /* 802582C0 00255200  D0 3F 08 74 */	stfs f1, 0x874(r31)
 /* 802582C4 00255204  D0 1F 08 78 */	stfs f0, 0x878(r31)
 /* 802582C8 00255208  48 1B B3 91 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802582CC 0025520C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 802582CC 0025520C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 802582D0 00255210  C0 42 C7 5C */	lfs f2, lbl_8051AABC@sda21(r2)
-/* 802582D4 00255214  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 802582D4 00255214  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 802582D8 00255218  C0 22 C7 44 */	lfs f1, lbl_8051AAA4@sda21(r2)
 /* 802582DC 0025521C  90 1F 08 7C */	stw r0, 0x87c(r31)
 /* 802582E0 00255220  7F E3 FB 78 */	mr r3, r31
@@ -297,7 +297,7 @@ getEnemyTypeID__Q34Game4Frog3MgrFv:
 /* 80258538 00255478  38 60 00 11 */	li r3, 0x11
 /* 8025853C 0025547C  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game4Frog3MgrFv
-$$24$$2__dt__Q34Game4Frog3MgrFv:
+.global "@4@__dt__Q34Game4Frog3MgrFv"
+"@4@__dt__Q34Game4Frog3MgrFv":
 /* 80258540 00255480  38 63 FF FC */	addi r3, r3, -4
 /* 80258544 00255484  4B FF FF 44 */	b __dt__Q34Game4Frog3MgrFv

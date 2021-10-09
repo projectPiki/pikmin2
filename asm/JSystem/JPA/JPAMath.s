@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global JPAGetDirMtx__FRCQ29JGeometry8TVec3$$0f$$1PA4_f
-JPAGetDirMtx__FRCQ29JGeometry8TVec3$$0f$$1PA4_f:
+.global "JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f"
+"JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f":
 /* 80093AE4 00090A24  C0 03 00 00 */	lfs f0, 0(r3)
 /* 80093AE8 00090A28  C0 63 00 04 */	lfs f3, 4(r3)
 /* 80093AEC 00090A2C  FC 80 00 50 */	fneg f4, f0
@@ -153,27 +153,27 @@ JPASetRMtxfromMtx__FPA4_CfPA4_f:
 /* 80093CFC 00090C3C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80093D00 00090C40  38 A1 00 14 */	addi r5, r1, 0x14
 /* 80093D04 00090C44  38 C1 00 08 */	addi r6, r1, 8
-/* 80093D08 00090C48  48 00 00 3D */	bl JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1PQ29JGeometry8TVec3$$0f$$1
+/* 80093D08 00090C48  48 00 00 3D */	bl "JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>"
 /* 80093D0C 00090C4C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80093D10 00090C50  7C 08 03 A6 */	mtlr r0
 /* 80093D14 00090C54  38 21 00 20 */	addi r1, r1, 0x20
 /* 80093D18 00090C58  4E 80 00 20 */	blr 
 
-.global JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
-JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1:
+.global "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
+"JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>":
 /* 80093D1C 00090C5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80093D20 00090C60  7C 08 02 A6 */	mflr r0
 /* 80093D24 00090C64  7C A6 2B 78 */	mr r6, r5
 /* 80093D28 00090C68  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80093D2C 00090C6C  38 A1 00 08 */	addi r5, r1, 8
-/* 80093D30 00090C70  48 00 00 15 */	bl JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1PQ29JGeometry8TVec3$$0f$$1
+/* 80093D30 00090C70  48 00 00 15 */	bl "JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>"
 /* 80093D34 00090C74  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80093D38 00090C78  7C 08 03 A6 */	mtlr r0
 /* 80093D3C 00090C7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80093D40 00090C80  4E 80 00 20 */	blr 
 
-.global JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1PQ29JGeometry8TVec3$$0f$$1
-JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1PQ29JGeometry8TVec3$$0f$$1:
+.global "JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>"
+"JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>":
 /* 80093D44 00090C84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80093D48 00090C88  7C 08 02 A6 */	mflr r0
 /* 80093D4C 00090C8C  C0 23 00 10 */	lfs f1, 0x10(r3)

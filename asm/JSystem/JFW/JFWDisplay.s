@@ -1541,10 +1541,10 @@ __sinit_JFWDisplay_cpp:
 /* 8008B08C 00087FCC  38 63 21 80 */	addi r3, r3, sList__8JFWAlarm@l
 /* 8008B090 00087FD0  4B F9 B7 A1 */	bl __ct__10JSUPtrListFb
 /* 8008B094 00087FD4  3C 60 80 51 */	lis r3, sList__8JFWAlarm@ha
-/* 8008B098 00087FD8  3C 80 80 09 */	lis r4, __dt__18JSUList$$08JFWAlarm$$1Fv@ha
+/* 8008B098 00087FD8  3C 80 80 09 */	lis r4, "__dt__18JSUList<8JFWAlarm>Fv"@ha
 /* 8008B09C 00087FDC  3C A0 80 4F */	lis r5, lbl_804F0520@ha
 /* 8008B0A0 00087FE0  38 63 21 80 */	addi r3, r3, sList__8JFWAlarm@l
-/* 8008B0A4 00087FE4  38 84 B0 C0 */	addi r4, r4, __dt__18JSUList$$08JFWAlarm$$1Fv@l
+/* 8008B0A4 00087FE4  38 84 B0 C0 */	addi r4, r4, "__dt__18JSUList<8JFWAlarm>Fv"@l
 /* 8008B0A8 00087FE8  38 A5 05 20 */	addi r5, r5, lbl_804F0520@l
 /* 8008B0AC 00087FEC  48 03 66 55 */	bl __register_global_object
 /* 8008B0B0 00087FF0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1552,8 +1552,8 @@ __sinit_JFWDisplay_cpp:
 /* 8008B0B8 00087FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008B0BC 00087FFC  4E 80 00 20 */	blr 
 
-.global __dt__18JSUList$$08JFWAlarm$$1Fv
-__dt__18JSUList$$08JFWAlarm$$1Fv:
+.global "__dt__18JSUList<8JFWAlarm>Fv"
+"__dt__18JSUList<8JFWAlarm>Fv":
 /* 8008B0C0 00088000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8008B0C4 00088004  7C 08 02 A6 */	mflr r0
 /* 8008B0C8 00088008  90 01 00 14 */	stw r0, 0x14(r1)

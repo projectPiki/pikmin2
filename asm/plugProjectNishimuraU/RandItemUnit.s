@@ -330,8 +330,8 @@ setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34G
 /* 8024E7C8 0024B708  90 A3 00 14 */	stw r5, 0x14(r3)
 /* 8024E7CC 0024B70C  4E 80 00 20 */	blr 
 
-.global getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3$$0f$$1fi
-getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3$$0f$$1fi:
+.global "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi"
+"getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi":
 /* 8024E7D0 0024B710  94 21 F7 70 */	stwu r1, -0x890(r1)
 /* 8024E7D4 0024B714  7C 08 02 A6 */	mflr r0
 /* 8024E7D8 0024B718  90 01 08 94 */	stw r0, 0x894(r1)

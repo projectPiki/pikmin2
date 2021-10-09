@@ -156,18 +156,18 @@ lbl_8042439C:
 /* 804243B8 004212F8  4C C6 31 82 */	crclr 6
 /* 804243BC 004212FC  4B C0 62 85 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804243C0:
-/* 804243C0 00421300  3C 60 80 4F */	lis r3, sSectionInfo__22$$2unnamed$$2gameflow_cpp$$2@ha
+/* 804243C0 00421300  3C 60 80 4F */	lis r3, "sSectionInfo__22@unnamed@gameflow_cpp@"@ha
 /* 804243C4 00421304  38 00 00 23 */	li r0, 0x23
-/* 804243C8 00421308  38 63 BB FC */	addi r3, r3, sSectionInfo__22$$2unnamed$$2gameflow_cpp$$2@l
+/* 804243C8 00421308  38 63 BB FC */	addi r3, r3, "sSectionInfo__22@unnamed@gameflow_cpp@"@l
 /* 804243CC 0042130C  38 80 00 00 */	li r4, 0
 /* 804243D0 00421310  7C 09 03 A6 */	mtctr r0
 lbl_804243D4:
 /* 804243D4 00421314  88 03 00 04 */	lbz r0, 4(r3)
 /* 804243D8 00421318  7C 1E 00 00 */	cmpw r30, r0
 /* 804243DC 0042131C  40 82 00 18 */	bne lbl_804243F4
-/* 804243E0 00421320  3C 60 80 4F */	lis r3, sSectionInfo__22$$2unnamed$$2gameflow_cpp$$2@ha
+/* 804243E0 00421320  3C 60 80 4F */	lis r3, "sSectionInfo__22@unnamed@gameflow_cpp@"@ha
 /* 804243E4 00421324  54 84 18 38 */	slwi r4, r4, 3
-/* 804243E8 00421328  38 03 BB FC */	addi r0, r3, sSectionInfo__22$$2unnamed$$2gameflow_cpp$$2@l
+/* 804243E8 00421328  38 03 BB FC */	addi r0, r3, "sSectionInfo__22@unnamed@gameflow_cpp@"@l
 /* 804243EC 0042132C  7F E0 22 14 */	add r31, r0, r4
 /* 804243F0 00421330  48 00 00 10 */	b lbl_80424400
 lbl_804243F4:

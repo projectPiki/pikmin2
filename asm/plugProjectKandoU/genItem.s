@@ -131,8 +131,8 @@ lbl_801ACED8:
 /* 801ACEE4 001A9E24  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ACEE8 001A9E28  4E 80 00 20 */	blr 
 
-.global generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3$$0f$$1
-generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3$$0f$$1:
+.global "generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3<f>"
+"generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3<f>":
 /* 801ACEEC 001A9E2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801ACEF0 001A9E30  7C 08 02 A6 */	mflr r0
 /* 801ACEF4 001A9E34  C0 62 AF 60 */	lfs f3, lbl_805192C0@sda21(r2)

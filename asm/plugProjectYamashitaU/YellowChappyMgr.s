@@ -34,9 +34,9 @@ loadTexData__Q34Game12YellowChappy3MgrFv:
 /* 8012C054 00128F94  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8012C058 00128F98  7C 7F 1B 78 */	mr r31, r3
 /* 8012C05C 00128F9C  38 61 00 08 */	addi r3, r1, 8
-/* 8012C060 00128FA0  80 8D 83 E8 */	lwz r4, cChappyChangeTexName0__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2@sda21(r13)
+/* 8012C060 00128FA0  80 8D 83 E8 */	lwz r4, "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"@sda21(r13)
 /* 8012C064 00128FA4  48 32 05 B9 */	bl __ct__Q212LoadResource11ArgAramOnlyFPCc
-/* 8012C068 00128FA8  80 0D 83 E8 */	lwz r0, cChappyChangeTexName0__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2@sda21(r13)
+/* 8012C068 00128FA8  80 0D 83 E8 */	lwz r0, "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"@sda21(r13)
 /* 8012C06C 00128FAC  38 81 00 08 */	addi r4, r1, 8
 /* 8012C070 00128FB0  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 8012C074 00128FB4  90 01 00 08 */	stw r0, 8(r1)
@@ -44,7 +44,7 @@ loadTexData__Q34Game12YellowChappy3MgrFv:
 /* 8012C07C 00128FBC  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 8012C080 00128FC0  38 81 00 08 */	addi r4, r1, 8
 /* 8012C084 00128FC4  90 1F 00 44 */	stw r0, 0x44(r31)
-/* 8012C088 00128FC8  80 0D 83 EC */	lwz r0, cChappyChangeTexName1__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2@sda21(r13)
+/* 8012C088 00128FC8  80 0D 83 EC */	lwz r0, "cChappyChangeTexName1__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"@sda21(r13)
 /* 8012C08C 00128FCC  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 8012C090 00128FD0  90 01 00 08 */	stw r0, 8(r1)
 /* 8012C094 00128FD4  48 32 07 0D */	bl load__Q212LoadResource3MgrFRQ212LoadResource3Arg
@@ -263,7 +263,7 @@ getEnemy__Q34Game12YellowChappy3MgrFi:
 /* 8012C368 001292A8  7C 63 02 14 */	add r3, r3, r0
 /* 8012C36C 001292AC  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game12YellowChappy3MgrFv
-$$24$$2__dt__Q34Game12YellowChappy3MgrFv:
+.global "@4@__dt__Q34Game12YellowChappy3MgrFv"
+"@4@__dt__Q34Game12YellowChappy3MgrFv":
 /* 8012C370 001292B0  38 63 FF FC */	addi r3, r3, -4
 /* 8012C374 001292B4  4B FF FD BC */	b __dt__Q34Game12YellowChappy3MgrFv

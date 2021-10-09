@@ -505,8 +505,8 @@ lbl_802B68D8:
 /* 802B6900 002B3840  38 21 00 20 */	addi r1, r1, 0x20
 /* 802B6904 002B3844  4E 80 00 20 */	blr 
 
-.global bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3$$0f$$1f
-bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3$$0f$$1f:
+.global "bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3<f>f"
+"bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3<f>f":
 /* 802B6908 002B3848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B690C 002B384C  7C 08 02 A6 */	mflr r0
 /* 802B6910 002B3850  90 01 00 14 */	stw r0, 0x14(r1)
@@ -808,7 +808,7 @@ lbl_802B6CB8:
 /* 802B6CEC 002B3C2C  80 FE 00 C0 */	lwz r7, 0xc0(r30)
 /* 802B6CF0 002B3C30  C0 27 04 24 */	lfs f1, 0x424(r7)
 /* 802B6CF4 002B3C34  C0 47 03 D4 */	lfs f2, 0x3d4(r7)
-/* 802B6CF8 002B3C38  4B E5 C3 59 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
+/* 802B6CF8 002B3C38  4B E5 C3 59 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
 /* 802B6CFC 002B3C3C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802B6D00 002B3C40  41 82 00 2C */	beq lbl_802B6D2C
 /* 802B6D04 002B3C44  7F C4 F3 78 */	mr r4, r30
@@ -1819,7 +1819,7 @@ getChaseTargetCreature__Q34Game11OtakaraBase3ObjFv:
 /* 802B7B40 002B4A80  80 E3 00 C0 */	lwz r7, 0xc0(r3)
 /* 802B7B44 002B4A84  C0 27 04 24 */	lfs f1, 0x424(r7)
 /* 802B7B48 002B4A88  C0 47 03 D4 */	lfs f2, 0x3d4(r7)
-/* 802B7B4C 002B4A8C  4B E5 B5 05 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
+/* 802B7B4C 002B4A8C  4B E5 B5 05 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
 /* 802B7B50 002B4A90  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802B7B54 002B4A94  7C 08 03 A6 */	mtlr r0
 /* 802B7B58 002B4A98  38 21 00 10 */	addi r1, r1, 0x10

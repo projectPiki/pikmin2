@@ -619,7 +619,7 @@ lbl_80005F20:
 /* 80005F24 00002E64  38 9F 00 68 */	addi r4, r31, 0x68
 /* 80005F28 00002E68  38 BF 00 98 */	addi r5, r31, 0x98
 /* 80005F2C 00002E6C  38 DF 00 A4 */	addi r6, r31, 0xa4
-/* 80005F30 00002E70  48 08 DE 15 */	bl JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1PQ29JGeometry8TVec3$$0f$$1
+/* 80005F30 00002E70  48 08 DE 15 */	bl "JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>"
 /* 80005F34 00002E74  C0 3F 00 9C */	lfs f1, 0x9c(r31)
 /* 80005F38 00002E78  C0 1F 00 98 */	lfs f0, 0x98(r31)
 /* 80005F3C 00002E7C  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -717,7 +717,7 @@ lbl_80006044:
 /* 80006090 00002FD0  54 06 46 3E */	srwi r6, r0, 0x18
 /* 80006094 00002FD4  54 05 04 3E */	clrlwi r5, r0, 0x10
 /* 80006098 00002FD8  54 07 86 3E */	rlwinm r7, r0, 0x10, 0x18, 0x1f
-/* 8000609C 00002FDC  48 08 A8 21 */	bl createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3$$0f$$1UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
+/* 8000609C 00002FDC  48 08 A8 21 */	bl "createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
 /* 800060A0 00002FE0  90 7E 01 78 */	stw r3, 0x178(r30)
 /* 800060A4 00002FE4  80 9E 01 78 */	lwz r4, 0x178(r30)
 /* 800060A8 00002FE8  28 04 00 00 */	cmplwi r4, 0

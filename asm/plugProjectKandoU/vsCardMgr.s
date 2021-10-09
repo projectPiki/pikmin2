@@ -139,9 +139,9 @@ lbl_802356F8:
 /* 80235700 00232640  80 1D 00 00 */	lwz r0, 0(r29)
 /* 80235704 00232644  54 03 10 3A */	slwi r3, r0, 2
 /* 80235708 00232648  4B DE E8 A5 */	bl __nwa__FUl
-/* 8023570C 0023264C  3C 80 80 4C */	lis r4, tex_names__Q34Game6VsGame23$$2unnamed$$2vsCardMgr_cpp$$2@ha
+/* 8023570C 0023264C  3C 80 80 4C */	lis r4, "tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"@ha
 /* 80235710 00232650  90 7D 00 04 */	stw r3, 4(r29)
-/* 80235714 00232654  3B 64 14 7C */	addi r27, r4, tex_names__Q34Game6VsGame23$$2unnamed$$2vsCardMgr_cpp$$2@l
+/* 80235714 00232654  3B 64 14 7C */	addi r27, r4, "tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"@l
 /* 80235718 00232658  3B 20 00 00 */	li r25, 0
 /* 8023571C 0023265C  3B 40 00 00 */	li r26, 0
 /* 80235720 00232660  48 00 00 84 */	b lbl_802357A4
@@ -353,7 +353,7 @@ draw__Q34Game6VsGame7CardMgrFR8Graphics:
 /* 80235A08 00232948  41 82 00 10 */	beq lbl_80235A18
 /* 80235A0C 0023294C  38 A1 00 14 */	addi r5, r1, 0x14
 /* 80235A10 00232950  38 DE 00 18 */	addi r6, r30, 0x18
-/* 80235A14 00232954  48 00 22 A9 */	bl drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3$$0f$$1RQ44Game6VsGame7CardMgr11SlotMachine
+/* 80235A14 00232954  48 00 22 A9 */	bl "drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<f>RQ44Game6VsGame7CardMgr11SlotMachine"
 lbl_80235A18:
 /* 80235A18 00232958  80 1E 00 A8 */	lwz r0, 0xa8(r30)
 /* 80235A1C 0023295C  2C 00 00 00 */	cmpwi r0, 0
@@ -362,7 +362,7 @@ lbl_80235A18:
 /* 80235A28 00232968  7F E4 FB 78 */	mr r4, r31
 /* 80235A2C 0023296C  38 A1 00 08 */	addi r5, r1, 8
 /* 80235A30 00232970  38 DE 00 88 */	addi r6, r30, 0x88
-/* 80235A34 00232974  48 00 22 89 */	bl drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3$$0f$$1RQ44Game6VsGame7CardMgr11SlotMachine
+/* 80235A34 00232974  48 00 22 89 */	bl "drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<f>RQ44Game6VsGame7CardMgr11SlotMachine"
 lbl_80235A38:
 /* 80235A38 00232978  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80235A3C 0023297C  83 E1 00 2C */	lwz r31, 0x2c(r1)
@@ -563,9 +563,9 @@ lbl_80235CE0:
 lbl_80235CF8:
 /* 80235CF8 00232C38  38 00 00 00 */	li r0, 0
 /* 80235CFC 00232C3C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80235D00 00232C40  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 80235D00 00232C40  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 80235D04 00232C44  90 01 00 C0 */	stw r0, 0xc0(r1)
-/* 80235D08 00232C48  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 80235D08 00232C48  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 80235D0C 00232C4C  28 00 00 00 */	cmplwi r0, 0
 /* 80235D10 00232C50  90 81 00 B4 */	stw r4, 0xb4(r1)
 /* 80235D14 00232C54  90 01 00 B8 */	stw r0, 0xb8(r1)
@@ -1049,7 +1049,7 @@ lbl_80236410:
 /* 80236414 00233354  7F 44 D3 78 */	mr r4, r26
 /* 80236418 00233358  38 A1 00 5C */	addi r5, r1, 0x5c
 /* 8023641C 0023335C  38 C0 00 01 */	li r6, 1
-/* 80236420 00233360  4B FF F0 15 */	bl birth__Q34Game6VsGame7TekiMgrFiR10Vector3$$0f$$1b
+/* 80236420 00233360  4B FF F0 15 */	bl "birth__Q34Game6VsGame7TekiMgrFiR10Vector3<f>b"
 /* 80236424 00233364  48 00 03 3C */	b lbl_80236760
 lbl_80236428:
 /* 80236428 00233368  C3 E2 C0 F4 */	lfs f31, lbl_8051A454@sda21(r2)
@@ -1169,7 +1169,7 @@ lbl_802365D0:
 /* 802365D4 00233514  7F 64 DB 78 */	mr r4, r27
 /* 802365D8 00233518  38 A1 00 50 */	addi r5, r1, 0x50
 /* 802365DC 0023351C  38 C0 00 01 */	li r6, 1
-/* 802365E0 00233520  4B FF EE 55 */	bl birth__Q34Game6VsGame7TekiMgrFiR10Vector3$$0f$$1b
+/* 802365E0 00233520  4B FF EE 55 */	bl "birth__Q34Game6VsGame7TekiMgrFiR10Vector3<f>b"
 /* 802365E4 00233524  3B 18 00 01 */	addi r24, r24, 1
 lbl_802365E8:
 /* 802365E8 00233528  7C 18 D0 00 */	cmpw r24, r26
@@ -1270,7 +1270,7 @@ lbl_8023674C:
 /* 80236750 00233690  7F 04 C3 78 */	mr r4, r24
 /* 80236754 00233694  38 A1 00 44 */	addi r5, r1, 0x44
 /* 80236758 00233698  38 C0 00 01 */	li r6, 1
-/* 8023675C 0023369C  4B FF EC D9 */	bl birth__Q34Game6VsGame7TekiMgrFiR10Vector3$$0f$$1b
+/* 8023675C 0023369C  4B FF EC D9 */	bl "birth__Q34Game6VsGame7TekiMgrFiR10Vector3<f>b"
 lbl_80236760:
 /* 80236760 002336A0  57 80 06 3F */	clrlwi. r0, r28, 0x18
 /* 80236764 002336A4  41 82 00 78 */	beq lbl_802367DC
@@ -2734,8 +2734,8 @@ lbl_80237C78:
 /* 80237CB4 00234BF4  38 21 00 70 */	addi r1, r1, 0x70
 /* 80237CB8 00234BF8  4E 80 00 20 */	blr 
 
-.global drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3$$0f$$1RQ44Game6VsGame7CardMgr11SlotMachine
-drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3$$0f$$1RQ44Game6VsGame7CardMgr11SlotMachine:
+.global "drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<f>RQ44Game6VsGame7CardMgr11SlotMachine"
+"drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<f>RQ44Game6VsGame7CardMgr11SlotMachine":
 /* 80237CBC 00234BFC  94 21 FD D0 */	stwu r1, -0x230(r1)
 /* 80237CC0 00234C00  7C 08 02 A6 */	mflr r0
 /* 80237CC4 00234C04  90 01 02 34 */	stw r0, 0x234(r1)

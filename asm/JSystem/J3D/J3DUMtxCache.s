@@ -55,7 +55,7 @@ __ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform:
 /* 8001789C 000147DC  7F C3 F3 78 */	mr r3, r30
 /* 800178A0 000147E0  7F E4 FB 78 */	mr r4, r31
 /* 800178A4 000147E4  7F A5 EB 78 */	mr r5, r29
-/* 800178A8 000147E8  48 00 00 25 */	bl init$$020J3DUMtxAnmCacheTable$$1__26$$2unnamed$$2J3DUMtxCache_cpp$$2FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable
+/* 800178A8 000147E8  48 00 00 25 */	bl "init<20J3DUMtxAnmCacheTable>__26@unnamed@J3DUMtxCache_cpp@FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable"
 /* 800178AC 000147EC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 800178B0 000147F0  7F A3 EB 78 */	mr r3, r29
 /* 800178B4 000147F4  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -65,8 +65,8 @@ __ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform:
 /* 800178C4 00014804  38 21 00 20 */	addi r1, r1, 0x20
 /* 800178C8 00014808  4E 80 00 20 */	blr 
 
-.global init$$020J3DUMtxAnmCacheTable$$1__26$$2unnamed$$2J3DUMtxCache_cpp$$2FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable
-init$$020J3DUMtxAnmCacheTable$$1__26$$2unnamed$$2J3DUMtxCache_cpp$$2FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable:
+.global "init<20J3DUMtxAnmCacheTable>__26@unnamed@J3DUMtxCache_cpp@FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable"
+"init<20J3DUMtxAnmCacheTable>__26@unnamed@J3DUMtxCache_cpp@FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable":
 /* 800178CC 0001480C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800178D0 00014810  7C 08 02 A6 */	mflr r0
 /* 800178D4 00014814  90 01 00 64 */	stw r0, 0x64(r1)

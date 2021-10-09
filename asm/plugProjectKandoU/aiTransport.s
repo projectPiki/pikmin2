@@ -995,8 +995,8 @@ getName__Q26PikiAI11GotoSlotArgFv:
 /* 801A2704 0019F644  38 63 F3 B0 */	addi r3, r3, lbl_8047F3B0@l
 /* 801A2708 0019F648  4E 80 00 20 */	blr 
 
-.global $$260$$24$$2onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent
-$$260$$24$$2onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent:
+.global "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent"
+"@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent":
 /* 801A270C 0019F64C  39 60 00 04 */	li r11, 4
 /* 801A2710 0019F650  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801A2714 0019F654  7C 63 5A 14 */	add r3, r3, r11

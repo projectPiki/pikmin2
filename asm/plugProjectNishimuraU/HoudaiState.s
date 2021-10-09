@@ -325,7 +325,7 @@ exec__Q34Game6Houdai9StateStayFPQ24Game9EnemyBase:
 /* 802BDF50 002BAE90  38 80 00 00 */	li r4, 0
 /* 802BDF54 002BAE94  C3 E5 03 AC */	lfs f31, 0x3ac(r5)
 /* 802BDF58 002BAE98  FC 20 F8 90 */	fmr f1, f31
-/* 802BDF5C 002BAE9C  4B E5 6B 65 */	bl isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Navi$$1
+/* 802BDF5C 002BAE9C  4B E5 6B 65 */	bl "isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
 /* 802BDF60 002BAEA0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802BDF64 002BAEA4  41 82 00 0C */	beq lbl_802BDF70
 /* 802BDF68 002BAEA8  38 00 00 01 */	li r0, 1
@@ -334,7 +334,7 @@ lbl_802BDF70:
 /* 802BDF70 002BAEB0  FC 20 F8 90 */	fmr f1, f31
 /* 802BDF74 002BAEB4  7F E3 FB 78 */	mr r3, r31
 /* 802BDF78 002BAEB8  38 80 00 00 */	li r4, 0
-/* 802BDF7C 002BAEBC  4B E5 67 B9 */	bl isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
+/* 802BDF7C 002BAEBC  4B E5 67 B9 */	bl "isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
 /* 802BDF80 002BAEC0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802BDF84 002BAEC4  41 82 00 0C */	beq lbl_802BDF90
 /* 802BDF88 002BAEC8  38 00 00 01 */	li r0, 1
@@ -447,7 +447,7 @@ exec__Q34Game6Houdai9StateLandFPQ24Game9EnemyBase:
 /* 802BE100 002BB040  38 80 00 00 */	li r4, 0
 /* 802BE104 002BB044  C3 E5 03 AC */	lfs f31, 0x3ac(r5)
 /* 802BE108 002BB048  FC 20 F8 90 */	fmr f1, f31
-/* 802BE10C 002BB04C  4B E5 69 B5 */	bl isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Navi$$1
+/* 802BE10C 002BB04C  4B E5 69 B5 */	bl "isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
 /* 802BE110 002BB050  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802BE114 002BB054  41 82 00 0C */	beq lbl_802BE120
 /* 802BE118 002BB058  38 00 00 01 */	li r0, 1
@@ -456,7 +456,7 @@ lbl_802BE120:
 /* 802BE120 002BB060  FC 20 F8 90 */	fmr f1, f31
 /* 802BE124 002BB064  7F E3 FB 78 */	mr r3, r31
 /* 802BE128 002BB068  38 80 00 00 */	li r4, 0
-/* 802BE12C 002BB06C  4B E5 66 09 */	bl isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
+/* 802BE12C 002BB06C  4B E5 66 09 */	bl "isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
 /* 802BE130 002BB070  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802BE134 002BB074  41 82 00 0C */	beq lbl_802BE140
 /* 802BE138 002BB078  38 00 00 01 */	li r0, 1

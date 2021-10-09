@@ -209,7 +209,7 @@ playSystemSe__Q28PSSystem5SysIFFUlUl:
 /* 8033864C 0033558C  38 C0 00 00 */	li r6, 0
 /* 80338650 00335590  90 01 00 08 */	stw r0, 8(r1)
 /* 80338654 00335594  39 00 00 04 */	li r8, 4
-/* 80338658 00335598  48 00 06 5D */	bl startSoundActorReturnHandleT$$05JAISe$$1__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc
+/* 80338658 00335598  48 00 06 5D */	bl "startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc"
 /* 8033865C 0033559C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80338660 003355A0  80 61 00 08 */	lwz r3, 8(r1)
 /* 80338664 003355A4  7C 08 03 A6 */	mtlr r0
@@ -224,7 +224,7 @@ playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl:
 /* 8033867C 003355BC  38 C0 00 00 */	li r6, 0
 /* 80338680 003355C0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80338684 003355C4  39 00 00 04 */	li r8, 4
-/* 80338688 003355C8  4B CD D2 45 */	bl startSoundActorT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc
+/* 80338688 003355C8  4B CD D2 45 */	bl "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
 /* 8033868C 003355CC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80338690 003355D0  7C 08 03 A6 */	mtlr r0
 /* 80338694 003355D4  38 21 00 10 */	addi r1, r1, 0x10
@@ -312,7 +312,7 @@ lbl_8033879C:
 /* 803387A4 003356E4  81 8C 00 08 */	lwz r12, 8(r12)
 /* 803387A8 003356E8  7D 89 03 A6 */	mtctr r12
 /* 803387AC 003356EC  4E 80 04 21 */	bctrl 
-/* 803387B0 003356F0  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 803387B0 003356F0  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 803387B4 003356F4  28 00 00 00 */	cmplwi r0, 0
 /* 803387B8 003356F8  40 82 00 20 */	bne lbl_803387D8
 /* 803387BC 003356FC  3C 60 80 49 */	lis r3, lbl_8048FE44@ha
@@ -323,7 +323,7 @@ lbl_8033879C:
 /* 803387D0 00335710  4C C6 31 82 */	crclr 6
 /* 803387D4 00335714  4B CF 1E 6D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_803387D8:
-/* 803387D8 00335718  83 CD 91 C8 */	lwz r30, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 803387D8 00335718  83 CD 91 C8 */	lwz r30, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 803387DC 0033571C  3B E0 00 00 */	li r31, 0
 /* 803387E0 00335720  48 00 00 18 */	b lbl_803387F8
 lbl_803387E4:
@@ -692,8 +692,8 @@ __ct__Q28PSSystem11StreamSoundFv:
 /* 80338CAC 00335BEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80338CB0 00335BF0  4E 80 00 20 */	blr 
 
-.global startSoundActorReturnHandleT$$05JAISe$$1__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc
-startSoundActorReturnHandleT$$05JAISe$$1__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc:
+.global "startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc"
+"startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc":
 /* 80338CB4 00335BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338CB8 00335BF8  7C 08 02 A6 */	mflr r0
 /* 80338CBC 00335BFC  39 20 00 00 */	li r9, 0
@@ -708,7 +708,7 @@ startSoundActorReturnHandleT$$05JAISe$$1__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorU
 lbl_80338CE0:
 /* 80338CE0 00335C20  7C A4 2B 78 */	mr r4, r5
 /* 80338CE4 00335C24  38 A1 00 08 */	addi r5, r1, 8
-/* 80338CE8 00335C28  48 00 00 3D */	bl startSoundActorT$$05JAISe$$1__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc
+/* 80338CE8 00335C28  48 00 00 3D */	bl "startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc"
 /* 80338CEC 00335C2C  80 01 00 08 */	lwz r0, 8(r1)
 /* 80338CF0 00335C30  90 1F 00 00 */	stw r0, 0(r31)
 /* 80338CF4 00335C34  80 61 00 08 */	lwz r3, 8(r1)
@@ -725,8 +725,8 @@ lbl_80338D10:
 /* 80338D1C 00335C5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80338D20 00335C60  4E 80 00 20 */	blr 
 
-.global startSoundActorT$$05JAISe$$1__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc
-startSoundActorT$$05JAISe$$1__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc:
+.global "startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc"
+"startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc":
 /* 80338D24 00335C64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338D28 00335C68  7C 08 02 A6 */	mflr r0
 /* 80338D2C 00335C6C  90 01 00 24 */	stw r0, 0x24(r1)

@@ -650,7 +650,7 @@ lbl_803A43E8:
 /* 803A43F8 003A1338  EC 03 01 78 */	fmsubs f0, f3, f5, f0
 /* 803A43FC 003A133C  EC 04 00 2A */	fadds f0, f4, f0
 /* 803A4400 003A1340  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 803A4404 003A1344  4B D5 F7 4D */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 803A4404 003A1344  4B D5 F7 4D */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 803A4408 003A1348  48 00 00 54 */	b lbl_803A445C
 lbl_803A440C:
 /* 803A440C 003A134C  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -1106,7 +1106,7 @@ lbl_803A4A4C:
 /* 803A4A5C 003A199C  EC 03 01 78 */	fmsubs f0, f3, f5, f0
 /* 803A4A60 003A19A0  EC 04 00 2A */	fadds f0, f4, f0
 /* 803A4A64 003A19A4  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 803A4A68 003A19A8  4B D5 F0 E9 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 803A4A68 003A19A8  4B D5 F0 E9 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 803A4A6C 003A19AC  48 00 00 74 */	b lbl_803A4AE0
 lbl_803A4A70:
 /* 803A4A70 003A19B0  81 84 00 00 */	lwz r12, 0(r4)

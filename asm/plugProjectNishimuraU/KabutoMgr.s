@@ -296,7 +296,7 @@ doLoadBmd__Q34Game6Kabuto3MgrFPv:
 /* 802E4168 002E10A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E416C 002E10AC  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game6Kabuto3MgrFv
-$$24$$2__dt__Q34Game6Kabuto3MgrFv:
+.global "@4@__dt__Q34Game6Kabuto3MgrFv"
+"@4@__dt__Q34Game6Kabuto3MgrFv":
 /* 802E4170 002E10B0  38 63 FF FC */	addi r3, r3, -4
 /* 802E4174 002E10B4  4B FF FF 18 */	b __dt__Q34Game6Kabuto3MgrFv

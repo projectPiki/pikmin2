@@ -606,7 +606,7 @@ lbl_8030FF0C:
 /* 8030FFB4 0030CEF4  38 81 00 70 */	addi r4, r1, 0x70
 /* 8030FFB8 0030CEF8  38 A1 00 08 */	addi r5, r1, 8
 /* 8030FFBC 0030CEFC  38 C1 00 0C */	addi r6, r1, 0xc
-/* 8030FFC0 0030CF00  4B F3 4F 25 */	bl getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1RfRf
+/* 8030FFC0 0030CF00  4B F3 4F 25 */	bl "getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<f>RfRf"
 /* 8030FFC4 0030CF04  C0 42 F3 E8 */	lfs f2, lbl_8051D748@sda21(r2)
 /* 8030FFC8 0030CF08  C0 01 00 08 */	lfs f0, 8(r1)
 /* 8030FFCC 0030CF0C  C0 22 F3 F0 */	lfs f1, lbl_8051D750@sda21(r2)
@@ -858,9 +858,9 @@ lbl_80310358:
 lbl_80310364:
 /* 80310364 0030D2A4  38 00 00 00 */	li r0, 0
 /* 80310368 0030D2A8  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 8031036C 0030D2AC  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
+/* 8031036C 0030D2AC  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
 /* 80310370 0030D2B0  90 01 00 6C */	stw r0, 0x6c(r1)
-/* 80310374 0030D2B4  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
+/* 80310374 0030D2B4  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
 /* 80310378 0030D2B8  28 00 00 00 */	cmplwi r0, 0
 /* 8031037C 0030D2BC  90 81 00 60 */	stw r4, 0x60(r1)
 /* 80310380 0030D2C0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1022,9 +1022,9 @@ lbl_80310550:
 lbl_803105C8:
 /* 803105C8 0030D508  38 00 00 00 */	li r0, 0
 /* 803105CC 0030D50C  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 803105D0 0030D510  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
+/* 803105D0 0030D510  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
 /* 803105D4 0030D514  90 01 00 5C */	stw r0, 0x5c(r1)
-/* 803105D8 0030D518  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
+/* 803105D8 0030D518  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
 /* 803105DC 0030D51C  28 00 00 00 */	cmplwi r0, 0
 /* 803105E0 0030D520  90 81 00 50 */	stw r4, 0x50(r1)
 /* 803105E4 0030D524  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1353,7 +1353,7 @@ appendCaveName__Q32og9newScreen11ObjSMenuMapFP7J2DPaneUsUx:
 /* 80310AA0 0030D9E0  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80310AA4 0030D9E4  39 22 F4 24 */	addi r9, r2, lbl_8051D784@sda21
 /* 80310AA8 0030D9E8  39 40 FF FF */	li r10, -1
-/* 80310AAC 0030D9EC  4B D3 0A 41 */	bl __ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2$$0f$$1PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
+/* 80310AAC 0030D9EC  4B D3 0A 41 */	bl "__ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding"
 /* 80310AB0 0030D9F0  7C 7F 1B 78 */	mr r31, r3
 lbl_80310AB4:
 /* 80310AB4 0030D9F4  39 00 00 FF */	li r8, 0xff
@@ -3071,7 +3071,7 @@ lbl_80312338:
 /* 803123C4 0030F304  98 E1 00 0D */	stb r7, 0xd(r1)
 /* 803123C8 0030F308  99 01 00 0E */	stb r8, 0xe(r1)
 /* 803123CC 0030F30C  98 01 00 0F */	stb r0, 0xf(r1)
-/* 803123D0 0030F310  48 00 01 49 */	bl drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect$$0f$$1R6Color4f
+/* 803123D0 0030F310  48 00 01 49 */	bl "drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect<f>R6Color4f"
 /* 803123D4 0030F314  80 9D 00 B4 */	lwz r4, 0xb4(r29)
 /* 803123D8 0030F318  38 61 00 34 */	addi r3, r1, 0x34
 /* 803123DC 0030F31C  38 A0 00 00 */	li r5, 0
@@ -3154,8 +3154,8 @@ lbl_80312338:
 /* 80312510 0030F450  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80312514 0030F454  4E 80 00 20 */	blr 
 
-.global drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect$$0f$$1R6Color4f
-drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect$$0f$$1R6Color4f:
+.global "drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect<f>R6Color4f"
+"drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect<f>R6Color4f":
 /* 80312518 0030F458  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8031251C 0030F45C  7C 08 02 A6 */	mflr r0
 /* 80312520 0030F460  90 01 00 94 */	stw r0, 0x94(r1)
@@ -3641,7 +3641,7 @@ __sinit_ogObjSMenuMap_cpp:
 /* 80312BEC 0030FB2C  98 A9 00 4F */	stb r5, 0x4f(r9)
 /* 80312BF0 0030FB30  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen11ObjSMenuMapFv
-$$224$$2__dt__Q32og9newScreen11ObjSMenuMapFv:
+.global "@24@__dt__Q32og9newScreen11ObjSMenuMapFv"
+"@24@__dt__Q32og9newScreen11ObjSMenuMapFv":
 /* 80312BF4 0030FB34  38 63 FF E8 */	addi r3, r3, -24
 /* 80312BF8 0030FB38  4B FF CC B8 */	b __dt__Q32og9newScreen11ObjSMenuMapFv

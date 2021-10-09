@@ -24,12 +24,12 @@ setParameters__Q34Game6Plants3ObjFv:
 /* 80358414 00355354  38 21 00 10 */	addi r1, r1, 0x10
 /* 80358418 00355358  4E 80 00 20 */	blr 
 
-.global birth__Q34Game6Plants3ObjFR10Vector3$$0f$$1f
-birth__Q34Game6Plants3ObjFR10Vector3$$0f$$1f:
+.global "birth__Q34Game6Plants3ObjFR10Vector3<f>f"
+"birth__Q34Game6Plants3ObjFR10Vector3<f>f":
 /* 8035841C 0035535C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80358420 00355360  7C 08 02 A6 */	mflr r0
 /* 80358424 00355364  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80358428 00355368  4B DA A5 D9 */	bl birth__Q24Game9EnemyBaseFR10Vector3$$0f$$1f
+/* 80358428 00355368  4B DA A5 D9 */	bl "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
 /* 8035842C 0035536C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80358430 00355370  7C 08 03 A6 */	mtlr r0
 /* 80358434 00355374  38 21 00 10 */	addi r1, r1, 0x10

@@ -112,7 +112,7 @@ lbl_8019EFCC:
 /* 8019F008 0019BF48  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8019F00C 0019BF4C  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 8019F010 0019BF50  80 7D 00 F8 */	lwz r3, 0xf8(r29)
-/* 8019F014 0019BF54  4B F9 85 9D */	bl calcStickLocal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8019F014 0019BF54  4B F9 85 9D */	bl "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
 lbl_8019F018:
 /* 8019F018 0019BF58  80 7D 00 F4 */	lwz r3, 0xf4(r29)
 /* 8019F01C 0019BF5C  7F A4 EB 78 */	mr r4, r29
@@ -231,7 +231,7 @@ lbl_8019F17C:
 /* 8019F1B8 0019C0F8  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8019F1BC 0019C0FC  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8019F1C0 0019C100  80 7F 00 F8 */	lwz r3, 0xf8(r31)
-/* 8019F1C4 0019C104  4B F9 83 ED */	bl calcStickLocal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8019F1C4 0019C104  4B F9 83 ED */	bl "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
 lbl_8019F1C8:
 /* 8019F1C8 0019C108  80 7F 00 F4 */	lwz r3, 0xf4(r31)
 /* 8019F1CC 0019C10C  7F E4 FB 78 */	mr r4, r31
@@ -342,7 +342,7 @@ lbl_8019F30C:
 /* 8019F348 0019C288  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8019F34C 0019C28C  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8019F350 0019C290  80 7D 00 F8 */	lwz r3, 0xf8(r29)
-/* 8019F354 0019C294  4B F9 82 5D */	bl calcStickLocal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8019F354 0019C294  4B F9 82 5D */	bl "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
 lbl_8019F358:
 /* 8019F358 0019C298  80 7D 00 F4 */	lwz r3, 0xf4(r29)
 /* 8019F35C 0019C29C  7F A4 EB 78 */	mr r4, r29
@@ -529,8 +529,8 @@ lbl_8019F5D0:
 /* 8019F5E0 0019C520  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019F5E4 0019C524  4E 80 00 20 */	blr 
 
-.global updateStick__Q24Game8CreatureFR10Vector3$$0f$$1
-updateStick__Q24Game8CreatureFR10Vector3$$0f$$1:
+.global "updateStick__Q24Game8CreatureFR10Vector3<f>"
+"updateStick__Q24Game8CreatureFR10Vector3<f>":
 /* 8019F5E8 0019C528  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 8019F5EC 0019C52C  7C 08 02 A6 */	mflr r0
 /* 8019F5F0 0019C530  90 01 01 14 */	stw r0, 0x114(r1)
@@ -633,7 +633,7 @@ lbl_8019F738:
 /* 8019F760 0019C6A0  D0 01 00 54 */	stfs f0, 0x54(r1)
 /* 8019F764 0019C6A4  C0 1F 01 64 */	lfs f0, 0x164(r31)
 /* 8019F768 0019C6A8  D0 01 00 58 */	stfs f0, 0x58(r1)
-/* 8019F76C 0019C6AC  4B F9 BA 3D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8019F76C 0019C6AC  4B F9 BA 3D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8019F770 0019C6B0  48 00 03 10 */	b lbl_8019FA80
 lbl_8019F774:
 /* 8019F774 0019C6B4  80 1F 00 F8 */	lwz r0, 0xf8(r31)
@@ -654,7 +654,7 @@ lbl_8019F774:
 /* 8019F7B0 0019C6F0  D0 21 00 48 */	stfs f1, 0x48(r1)
 /* 8019F7B4 0019C6F4  D0 01 00 4C */	stfs f0, 0x4c(r1)
 /* 8019F7B8 0019C6F8  80 7F 00 F8 */	lwz r3, 0xf8(r31)
-/* 8019F7BC 0019C6FC  4B F9 80 21 */	bl calcStickGlobal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8019F7BC 0019C6FC  4B F9 80 21 */	bl "calcStickGlobal__8CollPartFR10Vector3<f>R10Vector3<f>"
 /* 8019F7C0 0019C700  80 7F 00 F8 */	lwz r3, 0xf8(r31)
 /* 8019F7C4 0019C704  88 03 00 58 */	lbz r0, 0x58(r3)
 /* 8019F7C8 0019C708  28 00 00 02 */	cmplwi r0, 2
@@ -670,7 +670,7 @@ lbl_8019F774:
 /* 8019F7F0 0019C730  C0 1F 01 08 */	lfs f0, 0x108(r31)
 /* 8019F7F4 0019C734  D0 01 00 3C */	stfs f0, 0x3c(r1)
 /* 8019F7F8 0019C738  80 7F 00 F8 */	lwz r3, 0xf8(r31)
-/* 8019F7FC 0019C73C  4B F9 81 49 */	bl calcPoseMatrix__8CollPartFR10Vector3$$0f$$1R7Matrixf
+/* 8019F7FC 0019C73C  4B F9 81 49 */	bl "calcPoseMatrix__8CollPartFR10Vector3<f>R7Matrixf"
 /* 8019F800 0019C740  7F E3 FB 78 */	mr r3, r31
 /* 8019F804 0019C744  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8019F808 0019C748  81 8C 00 18 */	lwz r12, 0x18(r12)
@@ -718,7 +718,7 @@ lbl_8019F774:
 lbl_8019F8B0:
 /* 8019F8B0 0019C7F0  38 81 00 44 */	addi r4, r1, 0x44
 /* 8019F8B4 0019C7F4  38 BF 01 38 */	addi r5, r31, 0x138
-/* 8019F8B8 0019C7F8  4B F9 80 8D */	bl calcPoseMatrix__8CollPartFR10Vector3$$0f$$1R7Matrixf
+/* 8019F8B8 0019C7F8  4B F9 80 8D */	bl "calcPoseMatrix__8CollPartFR10Vector3<f>R7Matrixf"
 /* 8019F8BC 0019C7FC  7F E3 FB 78 */	mr r3, r31
 /* 8019F8C0 0019C800  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8019F8C4 0019C804  81 8C 00 18 */	lwz r12, 0x18(r12)
@@ -766,7 +766,7 @@ lbl_8019F968:
 /* 8019F968 0019C8A8  7F E3 FB 78 */	mr r3, r31
 /* 8019F96C 0019C8AC  38 81 00 44 */	addi r4, r1, 0x44
 /* 8019F970 0019C8B0  38 A0 00 01 */	li r5, 1
-/* 8019F974 0019C8B4  4B F9 B8 35 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8019F974 0019C8B4  4B F9 B8 35 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8019F978 0019C8B8  C0 01 00 44 */	lfs f0, 0x44(r1)
 /* 8019F97C 0019C8BC  D0 1F 01 44 */	stfs f0, 0x144(r31)
 /* 8019F980 0019C8C0  C0 01 00 48 */	lfs f0, 0x48(r1)
@@ -828,7 +828,7 @@ lbl_8019FA40:
 /* 8019FA50 0019C990  7F E3 FB 78 */	mr r3, r31
 /* 8019FA54 0019C994  38 81 00 2C */	addi r4, r1, 0x2c
 /* 8019FA58 0019C998  38 A0 00 01 */	li r5, 1
-/* 8019FA5C 0019C99C  4B F9 B7 4D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8019FA5C 0019C99C  4B F9 B7 4D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8019FA60 0019C9A0  C0 02 AC EC */	lfs f0, lbl_8051904C@sda21(r2)
 /* 8019FA64 0019C9A4  38 7F 01 38 */	addi r3, r31, 0x138
 /* 8019FA68 0019C9A8  D3 E1 00 24 */	stfs f31, 0x24(r1)
@@ -902,7 +902,7 @@ updateCapture__Q24Game8CreatureFR7Matrixf:
 /* 8019FB50 0019CA90  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8019FB54 0019CA94  C0 1E 01 64 */	lfs f0, 0x164(r30)
 /* 8019FB58 0019CA98  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8019FB5C 0019CA9C  4B F9 B6 4D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8019FB5C 0019CA9C  4B F9 B6 4D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8019FB60 0019CAA0  38 61 00 14 */	addi r3, r1, 0x14
 /* 8019FB64 0019CAA4  38 9E 01 38 */	addi r4, r30, 0x138
 /* 8019FB68 0019CAA8  4B F4 A7 65 */	bl PSMTXCopy

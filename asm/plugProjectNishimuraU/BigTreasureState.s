@@ -532,7 +532,7 @@ exec__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBase:
 /* 802D7A60 002D49A0  38 80 00 00 */	li r4, 0
 /* 802D7A64 002D49A4  C3 E5 03 AC */	lfs f31, 0x3ac(r5)
 /* 802D7A68 002D49A8  FC 20 F8 90 */	fmr f1, f31
-/* 802D7A6C 002D49AC  4B E3 D0 55 */	bl isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Navi$$1
+/* 802D7A6C 002D49AC  4B E3 D0 55 */	bl "isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
 /* 802D7A70 002D49B0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802D7A74 002D49B4  41 82 00 0C */	beq lbl_802D7A80
 /* 802D7A78 002D49B8  38 00 00 01 */	li r0, 1
@@ -541,7 +541,7 @@ lbl_802D7A80:
 /* 802D7A80 002D49C0  FC 20 F8 90 */	fmr f1, f31
 /* 802D7A84 002D49C4  7F E3 FB 78 */	mr r3, r31
 /* 802D7A88 002D49C8  38 80 00 00 */	li r4, 0
-/* 802D7A8C 002D49CC  4B E3 CC A9 */	bl isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
+/* 802D7A8C 002D49CC  4B E3 CC A9 */	bl "isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
 /* 802D7A90 002D49D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802D7A94 002D49D4  41 82 00 0C */	beq lbl_802D7AA0
 /* 802D7A98 002D49D8  38 00 00 01 */	li r0, 1
