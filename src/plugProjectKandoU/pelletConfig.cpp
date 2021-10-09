@@ -731,20 +731,18 @@ void Game::PelletConfigList::write((Stream&))
  * --INFO--
  * Address:	801B4730
  * Size:	000004
-
+ */
 void TagParm::flushValue()
 {
-    /*
-    .loc_0x0:
-      blr
-
+    return;
 }
 
 /*
  * --INFO--
  * Address:	801B4734
  * Size:	000060
-
+ */
+/*
 void Game::PelletConfigList::__dt(void)
 {
     /*
