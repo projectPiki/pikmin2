@@ -518,6 +518,10 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
+	$(BUILD_DIR)/asm/data_0.o\
+	$(BUILD_DIR)/asm/data_tagparms.o\
+	
+TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
@@ -1061,7 +1065,7 @@ TEXT_O_FILES:=\
 
 GROUP_1_FILES:=\
 	$(BUILD_DIR)/asm/rodata_2.o\
-	$(BUILD_DIR)/asm/data_0.o\
+	$(BUILD_DIR)/asm/data_0a.o\
 
 TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
