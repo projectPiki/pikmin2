@@ -519,7 +519,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
 	$(BUILD_DIR)/asm/data_0.o\
-	$(BUILD_DIR)/asm/data_tagparms.o\
 	
 TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\

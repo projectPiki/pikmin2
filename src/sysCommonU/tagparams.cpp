@@ -1,3 +1,4 @@
+#include "PrimTagParm.h"
 #include "TagParm.h"
 #include "Vector3.h"
 
