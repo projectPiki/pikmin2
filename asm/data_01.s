@@ -2,14 +2,6 @@
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 
-.global __vt__13StringTagParm
-__vt__13StringTagParm:
-  .4byte 0
-  .4byte 0
-  .4byte doWrite__13StringTagParmFR6Stream
-  .4byte doRead__13StringTagParmFR6Stream
-  .4byte flushValue__13StringTagParmFv
-  .4byte doDump__13StringTagParmFv
 .global __vt__Q37MapCode3Mgr9CodeArray
 __vt__Q37MapCode3Mgr9CodeArray:
   .4byte 0
