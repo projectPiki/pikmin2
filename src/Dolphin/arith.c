@@ -1,4 +1,4 @@
-#include "dolphin/arith.h"
+#include "dolphin.h"
 
 /*
  * --INFO--
@@ -145,7 +145,7 @@ void ldiv(void)
  * Address:	800C60F8
  * Size:	000058
  */
-div_t div(s32 __numer, s32 __denom)
+div_t div(int __numer, int __denom)
 {
     int iVar1;
     int iVar2;
