@@ -2,6 +2,90 @@
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
+.global __ct__13StringTagParmFP13TagParametersPc
+__ct__13StringTagParmFP13TagParametersPc:
+/* 8041BF94 00418ED4  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8041BF98 00418ED8  7C 08 02 A6 */	mflr r0
+/* 8041BF9C 00418EDC  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8041BFA0 00418EE0  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 8041BFA4 00418EE4  7C 7F 1B 78 */	mr r31, r3
+/* 8041BFA8 00418EE8  48 00 00 F5 */	bl __ct__7TagParmFP13TagParametersPc
+/* 8041BFAC 00418EEC  3C 60 80 4F */	lis r3, __vt__13StringTagParm@ha
+/* 8041BFB0 00418EF0  38 00 00 00 */	li r0, 0
+/* 8041BFB4 00418EF4  38 83 B9 08 */	addi r4, r3, __vt__13StringTagParm@l
+/* 8041BFB8 00418EF8  7F E3 FB 78 */	mr r3, r31
+/* 8041BFBC 00418EFC  90 9F 00 00 */	stw r4, 0(r31)
+/* 8041BFC0 00418F00  90 1F 00 0C */	stw r0, 0xc(r31)
+/* 8041BFC4 00418F04  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 8041BFC8 00418F08  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8041BFCC 00418F0C  7C 08 03 A6 */	mtlr r0
+/* 8041BFD0 00418F10  38 21 00 10 */	addi r1, r1, 0x10
+/* 8041BFD4 00418F14  4E 80 00 20 */	blr 
+
+.global flushValue__13StringTagParmFv
+flushValue__13StringTagParmFv:
+/* 8041BFD8 00418F18  4E 80 00 20 */	blr 
+
+.global doRead__13StringTagParmFR6Stream
+doRead__13StringTagParmFR6Stream:
+/* 8041BFDC 00418F1C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8041BFE0 00418F20  7C 08 02 A6 */	mflr r0
+/* 8041BFE4 00418F24  38 A0 00 00 */	li r5, 0
+/* 8041BFE8 00418F28  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8041BFEC 00418F2C  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 8041BFF0 00418F30  7C 7F 1B 78 */	mr r31, r3
+/* 8041BFF4 00418F34  7C 83 23 78 */	mr r3, r4
+/* 8041BFF8 00418F38  38 80 00 00 */	li r4, 0
+/* 8041BFFC 00418F3C  4B FF 90 D9 */	bl readString__6StreamFPci
+/* 8041C000 00418F40  90 7F 00 0C */	stw r3, 0xc(r31)
+/* 8041C004 00418F44  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8041C008 00418F48  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 8041C00C 00418F4C  7C 08 03 A6 */	mtlr r0
+/* 8041C010 00418F50  38 21 00 10 */	addi r1, r1, 0x10
+/* 8041C014 00418F54  4E 80 00 20 */	blr 
+
+.global doWrite__13StringTagParmFR6Stream
+doWrite__13StringTagParmFR6Stream:
+/* 8041C018 00418F58  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8041C01C 00418F5C  7C 08 02 A6 */	mflr r0
+/* 8041C020 00418F60  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8041C024 00418F64  7C 80 23 78 */	mr r0, r4
+/* 8041C028 00418F68  80 83 00 0C */	lwz r4, 0xc(r3)
+/* 8041C02C 00418F6C  7C 03 03 78 */	mr r3, r0
+/* 8041C030 00418F70  4B FF 95 9D */	bl writeString__6StreamFPc
+/* 8041C034 00418F74  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8041C038 00418F78  7C 08 03 A6 */	mtlr r0
+/* 8041C03C 00418F7C  38 21 00 10 */	addi r1, r1, 0x10
+/* 8041C040 00418F80  4E 80 00 20 */	blr 
+
+.global doDump__13StringTagParmFv
+doDump__13StringTagParmFv:
+/* 8041C044 00418F84  4E 80 00 20 */	blr 
+
+.global __ct__13TagParametersFPc
+__ct__13TagParametersFPc:
+/* 8041C048 00418F88  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8041C04C 00418F8C  7C 08 02 A6 */	mflr r0
+/* 8041C050 00418F90  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8041C054 00418F94  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 8041C058 00418F98  7C 9F 23 78 */	mr r31, r4
+/* 8041C05C 00418F9C  93 C1 00 08 */	stw r30, 8(r1)
+/* 8041C060 00418FA0  7C 7E 1B 78 */	mr r30, r3
+/* 8041C064 00418FA4  4B FF 53 2D */	bl __ct__5CNodeFv
+/* 8041C068 00418FA8  3C 60 80 4B */	lis r3, __vt__13TagParameters@ha
+/* 8041C06C 00418FAC  38 00 00 00 */	li r0, 0
+/* 8041C070 00418FB0  38 83 5B 10 */	addi r4, r3, __vt__13TagParameters@l
+/* 8041C074 00418FB4  7F C3 F3 78 */	mr r3, r30
+/* 8041C078 00418FB8  90 9E 00 00 */	stw r4, 0(r30)
+/* 8041C07C 00418FBC  90 1E 00 18 */	stw r0, 0x18(r30)
+/* 8041C080 00418FC0  93 FE 00 14 */	stw r31, 0x14(r30)
+/* 8041C084 00418FC4  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 8041C088 00418FC8  83 C1 00 08 */	lwz r30, 8(r1)
+/* 8041C08C 00418FCC  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8041C090 00418FD0  7C 08 03 A6 */	mtlr r0
+/* 8041C094 00418FD4  38 21 00 10 */	addi r1, r1, 0x10
+/* 8041C098 00418FD8  4E 80 00 20 */	blr 
+
 .global __ct__7TagParmFP13TagParametersPc
 __ct__7TagParmFP13TagParametersPc:
 /* 8041C09C 00418FDC  3C C0 80 4F */	lis r6, __vt__7TagParm@ha

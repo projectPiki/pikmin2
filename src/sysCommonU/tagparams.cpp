@@ -145,54 +145,141 @@ void PrimTagParm<Vector3f>::doDump() { }
  * Address:	8041BF94
  * Size:	000044
  */
-StringTagParm::StringTagParm(TagParameters* params, char* name)
-    : TagParm(params, name)
-{
-    m_next = nullptr;
-}
-
-/*
- * --INFO--
- * Address:	8041BFD8
- * Size:	000004
- */
-void StringTagParm::flushValue() { }
-
-/*
- * --INFO--
- * Address:	8041BFDC
- * Size:	00003C
- */
-void StringTagParm::doRead(Stream& stream)
-{
-    m_data = stream.readString(nullptr, 0);
-}
-
-/*
- * --INFO--
- * Address:	8041C018
- * Size:	00002C
- */
-void StringTagParm::doWrite(Stream& stream) { stream.writeString(m_data); }
-
-/*
- * --INFO--
- * Address:	8041C044
- * Size:	000004
- */
-void StringTagParm::doDump() { }
-
-/*
- * --INFO--
- * Address:	8041C048
- * Size:	000054
- */
-TagParameters::TagParameters(char* name)
-{
-    m_name = name;
-    _18    = 0;
-}
-
+//StringTagParm::StringTagParm(TagParameters* params, char* name)
+//    : TagParm(params, name)
+//{
+//    m_next = nullptr;
+//}
+//
+///*
+// * --INFO--
+// * Address:	8041BFD8
+// * Size:	000004
+// */
+// void StringTagParm::flushValue()
+//{
+//    /*
+//    .loc_0x0:
+//      blr
+//    */
+//}
+//
+///*
+// * --INFO--
+// * Address:	8041BFDC
+// * Size:	00003C
+// */
+// void StringTagParm::doRead(Stream&)
+//{
+//    /*
+//    .loc_0x0:
+//      stwu      r1, -0x10(r1)
+//      mflr      r0
+//      li        r5, 0
+//      stw       r0, 0x14(r1)
+//      stw       r31, 0xC(r1)
+//      mr        r31, r3
+//      mr        r3, r4
+//      li        r4, 0
+//      bl        -0x6F28
+//      stw       r3, 0xC(r31)
+//      lwz       r0, 0x14(r1)
+//      lwz       r31, 0xC(r1)
+//      mtlr      r0
+//      addi      r1, r1, 0x10
+//      blr
+//    */
+//}
+//
+///*
+// * --INFO--
+// * Address:	8041C018
+// * Size:	00002C
+// */
+// void StringTagParm::doWrite(Stream&)
+//{
+//    /*
+//    .loc_0x0:
+//      stwu      r1, -0x10(r1)
+//      mflr      r0
+//      stw       r0, 0x14(r1)
+//      mr        r0, r4
+//      lwz       r4, 0xC(r3)
+//      mr        r3, r0
+//      bl        -0x6A64
+//      lwz       r0, 0x14(r1)
+//      mtlr      r0
+//      addi      r1, r1, 0x10
+//      blr
+//    */
+//}
+//
+///*
+// * --INFO--
+// * Address:	8041C044
+// * Size:	000004
+// */
+// void StringTagParm::doDump()
+//{
+//    /*
+//    .loc_0x0:
+//      blr
+//    */
+//}
+//
+///*
+// * --INFO--
+// * Address:	8041C048
+// * Size:	000054
+// */
+// void TagParameters::TagParameters(char*)
+//{
+//    /*
+//    .loc_0x0:
+//      stwu      r1, -0x10(r1)
+//      mflr      r0
+//      stw       r0, 0x14(r1)
+//      stw       r31, 0xC(r1)
+//      mr        r31, r4
+//      stw       r30, 0x8(r1)
+//      mr        r30, r3
+//      bl        -0xACD4
+//      lis       r3, 0x804B
+//      li        r0, 0
+//      addi      r4, r3, 0x5B10
+//      mr        r3, r30
+//      stw       r4, 0x0(r30)
+//      stw       r0, 0x18(r30)
+//      stw       r31, 0x14(r30)
+//      lwz       r31, 0xC(r1)
+//      lwz       r30, 0x8(r1)
+//      lwz       r0, 0x14(r1)
+//      mtlr      r0
+//      addi      r1, r1, 0x10
+//      blr
+//    */
+//}
+//
+///*
+// * --INFO--
+// * Address:	........
+// * Size:	000048
+// */
+// void TagParameters::isEndToken(char*)
+//{
+//    // UNUSED FUNCTION
+//}
+//
+///*
+// * --INFO--
+// * Address:	........
+// * Size:	000020
+// */
+// void TagParameters::add(TagParm*)
+//{
+//    // UNUSED FUNCTION
+//}
+//
 ///*
 // * --INFO--
 // * Address:	8041C09C
