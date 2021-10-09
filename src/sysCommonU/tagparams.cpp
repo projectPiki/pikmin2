@@ -189,8 +189,8 @@ void StringTagParm::doDump() { }
  */
 TagParameters::TagParameters(char* name)
 {
-    m_name = name;
     _18    = 0;
+    m_name = name;
 }
 
 ///*
