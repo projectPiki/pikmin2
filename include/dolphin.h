@@ -4,10 +4,6 @@
 #include "types.h"
 
 
-typedef struct {
-    int quot; /* quotient */
-    int rem;  /* remainder */
-} div_t;
 
 
 // predeclare unknown types

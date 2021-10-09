@@ -47,6 +47,12 @@ typedef int BOOL;
 #endif // ifndef nullptr
 
 
+typedef struct {
+    int quot; /* quotient */
+    int rem;  /* remainder */
+} div_t;
+
+
 // For ghidra decomp stuff. Will replace later.
 typedef unsigned char   undefined;
 typedef unsigned char    byte;
