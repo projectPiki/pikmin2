@@ -73,34 +73,13 @@ float qdist2(float x1, float y1, float x2, float y2)
     float ydiff = (y2 - y1);
 
     float dist = ((xdiff * xdiff) + (ydiff * ydiff));
-    if (dist > lbl_80520270)
-    {
+    if (dist > lbl_80520270) {
         volatile float a = dist * (__frsqrte(dist));
-        dist = a;
+        dist             = a;
     }
     return dist;
 }
- 
 
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	000044
-// */
-// void qdist3(float, float, float, float, float, float)
-//{
-//    // UNUSED FUNCTION
-//}
-//
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	00010C
-// */
-// void CRSpline(float, Vector3<float>*)
-//{
-//    // UNUSED FUNCTION
-//}
 //
 ///*
 // * --INFO--
