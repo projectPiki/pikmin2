@@ -140,34 +140,16 @@ void PrimTagParm<Vector3f>::doWrite(Stream& stream) { m_data.write(stream); }
  */
 void PrimTagParm<Vector3f>::doDump() { }
 
-///*
-// * --INFO--
-// * Address:	8041BF94
-// * Size:	000044
-// */
-// void StringTagParm::StringTagParm(TagParameters*, char*)
-//{
-//    /*
-//    .loc_0x0:
-//      stwu      r1, -0x10(r1)
-//      mflr      r0
-//      stw       r0, 0x14(r1)
-//      stw       r31, 0xC(r1)
-//      mr        r31, r3
-//      bl        0xF4
-//      lis       r3, 0x804F
-//      li        r0, 0
-//      subi      r4, r3, 0x46F8
-//      mr        r3, r31
-//      stw       r4, 0x0(r31)
-//      stw       r0, 0xC(r31)
-//      lwz       r31, 0xC(r1)
-//      lwz       r0, 0x14(r1)
-//      mtlr      r0
-//      addi      r1, r1, 0x10
-//      blr
-//    */
-//}
+/*
+ * --INFO--
+ * Address:	8041BF94
+ * Size:	000044
+ */
+StringTagParm::StringTagParm(TagParameters* params, char* name)
+    : TagParm(params, name)
+{
+    m_next = nullptr;
+}
 //
 ///*
 // * --INFO--
