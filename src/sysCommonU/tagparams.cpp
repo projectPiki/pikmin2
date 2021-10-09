@@ -148,7 +148,7 @@ void PrimTagParm<Vector3f>::doDump() { }
 StringTagParm::StringTagParm(TagParameters* params, char* name)
     : TagParm(params, name)
 {
-    m_next = nullptr;
+    m_data = nullptr;
 }
 
 /*
