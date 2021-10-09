@@ -2,6 +2,25 @@
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
+.global __ct__13StringTagParmFP13TagParametersPc
+__ct__13StringTagParmFP13TagParametersPc:
+/* 8041BF94 00418ED4  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8041BF98 00418ED8  7C 08 02 A6 */	mflr r0
+/* 8041BF9C 00418EDC  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8041BFA0 00418EE0  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 8041BFA4 00418EE4  7C 7F 1B 78 */	mr r31, r3
+/* 8041BFA8 00418EE8  48 00 00 F5 */	bl __ct__7TagParmFP13TagParametersPc
+/* 8041BFAC 00418EEC  3C 60 80 4F */	lis r3, __vt__13StringTagParm@ha
+/* 8041BFB0 00418EF0  38 00 00 00 */	li r0, 0
+/* 8041BFB4 00418EF4  38 83 B9 08 */	addi r4, r3, __vt__13StringTagParm@l
+/* 8041BFB8 00418EF8  7F E3 FB 78 */	mr r3, r31
+/* 8041BFBC 00418EFC  90 9F 00 00 */	stw r4, 0(r31)
+/* 8041BFC0 00418F00  90 1F 00 0C */	stw r0, 0xc(r31)
+/* 8041BFC4 00418F04  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 8041BFC8 00418F08  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8041BFCC 00418F0C  7C 08 03 A6 */	mtlr r0
+/* 8041BFD0 00418F10  38 21 00 10 */	addi r1, r1, 0x10
+/* 8041BFD4 00418F14  4E 80 00 20 */	blr 
 
 .global flushValue__13StringTagParmFv
 flushValue__13StringTagParmFv:

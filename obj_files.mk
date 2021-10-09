@@ -1085,6 +1085,9 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
+
+TEXT_PT3:=\
+	$(BUILD_DIR)/asm/data_01.o\
 	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/section.o\

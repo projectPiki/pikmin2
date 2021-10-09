@@ -145,11 +145,11 @@ void PrimTagParm<Vector3f>::doDump() { }
  * Address:	8041BF94
  * Size:	000044
  */
-StringTagParm::StringTagParm(TagParameters* params, char* name)
-    : TagParm(params, name)
-{
-    m_next = nullptr;
-}
+//StringTagParm::StringTagParm(TagParameters* params, char* name)
+//    : TagParm(params, name)
+//{
+//    m_next = nullptr;
+//}
 //
 ///*
 // * --INFO--
