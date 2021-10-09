@@ -1,9 +1,12 @@
 #include "Game/MemoryCard/Player.h"
 #include "Game/MemoryCard/PlayerFileInfo.h"
 #include "Game/MemoryCard/Resource.h"
+#include "JSystem/JKRArchive.h"
 
-extern char
+extern const char
     lbl_8049ADF4[49]; // "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
+
+extern const char lbl_8049AE28[33]; // "/memoryCard/memoryCardHeader.szs"
 
 namespace Game {
 namespace MemoryCard {
@@ -102,16 +105,39 @@ namespace MemoryCard {
      * Size:	000030
      */
     u32 Mgr::isErrorOccured() { return !(getCardStatus() == MCS_Error); }
+
+    /*
+     * --INFO--
+     * Address:	80442BCC
+     * Size:	000120
+     */
+    // void Mgr::loadResource(JKRHeap* heap)
+    // {
+    //     Resource* resource = new (heap, 0) Resource(this);
+    //     if (!resource) {
+    //         JUTException::panic_f(gStrMemoryCardMgrCpp, 533,
+    //                               gStrMemoryCardMgrP2Assert);
+    //     }
+
+    //     u32* file = JKRArchive::mount(lbl_8049AE28,
+    //     (JKRArchive::EMountMode)1,
+    //                                   heap, (JKRArchive::EMountDirection)1);
+    //     if (!file) {
+    //         JUTException::panic_f(gStrMemoryCardMgrCpp, 540,
+    //                               gStrMemoryCardMgrP2Assert);
+    //     }
+    // }
+
 } // namespace MemoryCard
 } // namespace Game
 
 /*
-* --INFO--
-* Address:	80442BCC
-* Size:	000120
-
-void Game::MemoryCard::Mgr::loadResource((JKRHeap*))
-{
+ * --INFO--
+ * Address:	80442BCC
+ * Size:	000120
+ */
+// void Game::MemoryCard::Mgr::loadResource((JKRHeap*))
+// {
 /*
 .loc_0x0:
   stwu      r1, -0x20(r1)
