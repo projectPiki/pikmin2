@@ -8,14 +8,21 @@ struct Stream {
     void skipReadingText();
     char* getNextToken();
 
-    void writeByte(u8 byte);
+    void writeByte(unsigned char);
+    void writeShort(short);
     void writeInt(int);
+    void writeFloat(float);
+    void writeString(char*);
 
     u8 readByte();
     u16 readU16();
-    int readInt();
+    float readFloat();
 
-    void skipReading(unsigned long);
+    int readInt();
+    short readShort();
+    char* readString(char*, int);
+
+    void skipReading(u32);
     void textBeginGroup(char*);
     void textEndGroup();
 
