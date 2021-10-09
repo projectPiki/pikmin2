@@ -1001,11 +1001,11 @@ loadResourceFirst__6SystemFv:
 /* 80422D88 0041FCC8  3C 60 80 4F */	lis r3, lbl_804EBB40@ha
 /* 80422D8C 0041FCCC  3C 80 80 4B */	lis r4, __vt__9IDelegate@ha
 /* 80422D90 0041FCD0  39 03 BB 40 */	addi r8, r3, lbl_804EBB40@l
-/* 80422D94 0041FCD4  3C 60 80 4F */	lis r3, __vt__17Delegate$$06System$$1@ha
+/* 80422D94 0041FCD4  3C 60 80 4F */	lis r3, "__vt__17Delegate<6System>"@ha
 /* 80422D98 0041FCD8  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80422D9C 0041FCDC  38 84 0F 00 */	addi r4, r4, __vt__9IDelegate@l
 /* 80422DA0 0041FCE0  80 C8 00 04 */	lwz r6, 4(r8)
-/* 80422DA4 0041FCE4  38 03 BB 68 */	addi r0, r3, __vt__17Delegate$$06System$$1@l
+/* 80422DA4 0041FCE4  38 03 BB 68 */	addi r0, r3, "__vt__17Delegate<6System>"@l
 /* 80422DA8 0041FCE8  80 68 00 08 */	lwz r3, 8(r8)
 /* 80422DAC 0041FCEC  90 E1 00 08 */	stw r7, 8(r1)
 /* 80422DB0 0041FCF0  90 85 00 00 */	stw r4, 0(r5)
@@ -1042,11 +1042,11 @@ loadResourceSecond__6SystemFv:
 /* 80422E1C 0041FD5C  3C 60 80 4F */	lis r3, lbl_804EBB4C@ha
 /* 80422E20 0041FD60  3C 80 80 4B */	lis r4, __vt__9IDelegate@ha
 /* 80422E24 0041FD64  39 03 BB 4C */	addi r8, r3, lbl_804EBB4C@l
-/* 80422E28 0041FD68  3C 60 80 4F */	lis r3, __vt__17Delegate$$06System$$1@ha
+/* 80422E28 0041FD68  3C 60 80 4F */	lis r3, "__vt__17Delegate<6System>"@ha
 /* 80422E2C 0041FD6C  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80422E30 0041FD70  38 84 0F 00 */	addi r4, r4, __vt__9IDelegate@l
 /* 80422E34 0041FD74  80 C8 00 04 */	lwz r6, 4(r8)
-/* 80422E38 0041FD78  38 03 BB 68 */	addi r0, r3, __vt__17Delegate$$06System$$1@l
+/* 80422E38 0041FD78  38 03 BB 68 */	addi r0, r3, "__vt__17Delegate<6System>"@l
 /* 80422E3C 0041FD7C  80 68 00 08 */	lwz r3, 8(r8)
 /* 80422E40 0041FD80  90 E1 00 08 */	stw r7, 8(r1)
 /* 80422E44 0041FD84  90 85 00 00 */	stw r4, 0(r5)
@@ -1769,8 +1769,8 @@ lbl_80423714:
 /* 80423720 00420660  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423724 00420664  4E 80 00 20 */	blr 
 
-.global invoke__17Delegate$$06System$$1Fv
-invoke__17Delegate$$06System$$1Fv:
+.global "invoke__17Delegate<6System>Fv"
+"invoke__17Delegate<6System>Fv":
 /* 80423728 00420668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042372C 0042066C  7C 08 02 A6 */	mflr r0
 /* 80423730 00420670  7C 64 1B 78 */	mr r4, r3

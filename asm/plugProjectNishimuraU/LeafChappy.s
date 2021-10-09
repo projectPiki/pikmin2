@@ -391,7 +391,7 @@ lbl_802C60D0:
 /* 802C617C 002C30BC  7F 43 D3 78 */	mr r3, r26
 /* 802C6180 002C30C0  38 81 00 14 */	addi r4, r1, 0x14
 /* 802C6184 002C30C4  38 A0 00 00 */	li r5, 0
-/* 802C6188 002C30C8  4B E7 50 21 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 802C6188 002C30C8  4B E7 50 21 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 lbl_802C618C:
 /* 802C618C 002C30CC  3B 7B 00 01 */	addi r27, r27, 1
 /* 802C6190 002C30D0  2C 1B 00 0A */	cmpwi r27, 0xa
@@ -447,7 +447,7 @@ startEnemyRumble__Q34Game10LeafChappy3ObjFv:
 /* 802C624C 002C318C  C0 22 E2 FC */	lfs f1, lbl_8051C65C@sda21(r2)
 /* 802C6250 002C3190  7F E3 FB 78 */	mr r3, r31
 /* 802C6254 002C3194  38 81 00 08 */	addi r4, r1, 8
-/* 802C6258 002C3198  4B E3 D8 F9 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 802C6258 002C3198  4B E3 D8 F9 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 802C625C 002C319C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802C6260 002C31A0  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802C6264 002C31A4  7C 08 03 A6 */	mtlr r0

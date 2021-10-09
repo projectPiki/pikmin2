@@ -273,13 +273,13 @@ lbl_8011B388:
 /* 8011B394 001182D4  C3 C2 98 30 */	lfs f30, lbl_80517B90@sda21(r2)
 lbl_8011B398:
 /* 8011B398 001182D8  88 1F 00 15 */	lbz r0, 0x15(r31)
-/* 8011B39C 001182DC  3C 80 80 4B */	lis r4, sColorTableNumerator__26$$2unnamed$$2carryInfoMgr_cpp$$2@ha
-/* 8011B3A0 001182E0  3C 60 80 4B */	lis r3, sColorTableDenominator__26$$2unnamed$$2carryInfoMgr_cpp$$2@ha
+/* 8011B39C 001182DC  3C 80 80 4B */	lis r4, "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@"@ha
+/* 8011B3A0 001182E0  3C 60 80 4B */	lis r3, "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@"@ha
 /* 8011B3A4 001182E4  89 5D 00 0D */	lbz r10, 0xd(r29)
 /* 8011B3A8 001182E8  54 05 10 3A */	slwi r5, r0, 2
-/* 8011B3AC 001182EC  38 04 C3 2C */	addi r0, r4, sColorTableNumerator__26$$2unnamed$$2carryInfoMgr_cpp$$2@l
+/* 8011B3AC 001182EC  38 04 C3 2C */	addi r0, r4, "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@"@l
 /* 8011B3B0 001182F0  7C 80 2A 14 */	add r4, r0, r5
-/* 8011B3B4 001182F4  38 03 C3 48 */	addi r0, r3, sColorTableDenominator__26$$2unnamed$$2carryInfoMgr_cpp$$2@l
+/* 8011B3B4 001182F4  38 03 C3 48 */	addi r0, r3, "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@"@l
 /* 8011B3B8 001182F8  7C A0 2A 14 */	add r5, r0, r5
 /* 8011B3BC 001182FC  C0 22 98 00 */	lfs f1, lbl_80517B60@sda21(r2)
 /* 8011B3C0 00118300  89 24 00 02 */	lbz r9, 2(r4)
@@ -887,7 +887,7 @@ __ct__12CarryInfoMgrFi:
 /* 8011BCA4 00118BE4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8011BCA8 00118BE8  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 8011BCAC 00118BEC  7C 7D 1B 78 */	mr r29, r3
-/* 8011BCB0 00118BF0  48 00 0C C5 */	bl __ct__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fi
+/* 8011BCB0 00118BF0  48 00 0C C5 */	bl "__ct__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fi"
 /* 8011BCB4 00118BF4  3C 80 80 4B */	lis r4, __vt__12CarryInfoMgr@ha
 /* 8011BCB8 00118BF8  38 7D 00 BC */	addi r3, r29, 0xbc
 /* 8011BCBC 00118BFC  38 04 C3 64 */	addi r0, r4, __vt__12CarryInfoMgr@l
@@ -1000,8 +1000,8 @@ __ct__13PokoInfoOwnerFv:
 /* 8011BE44 00118D84  90 E3 00 30 */	stw r7, 0x30(r3)
 /* 8011BE48 00118D88  4E 80 00 20 */	blr 
 
-.global __dt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fv
-__dt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fv:
+.global "__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
+"__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv":
 /* 8011BE4C 00118D8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011BE50 00118D90  7C 08 02 A6 */	mflr r0
 /* 8011BE54 00118D94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1010,9 +1010,9 @@ __dt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fv:
 /* 8011BE60 00118DA0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8011BE64 00118DA4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8011BE68 00118DA8  41 82 01 04 */	beq lbl_8011BF6C
-/* 8011BE6C 00118DAC  3C 60 80 4B */	lis r3, __vt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1@ha
+/* 8011BE6C 00118DAC  3C 60 80 4B */	lis r3, "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"@ha
 /* 8011BE70 00118DB0  34 1E 00 5C */	addic. r0, r30, 0x5c
-/* 8011BE74 00118DB4  38 03 C3 B8 */	addi r0, r3, __vt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011BE74 00118DB4  38 03 C3 B8 */	addi r0, r3, "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011BE78 00118DB8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8011BE7C 00118DBC  41 82 00 64 */	beq lbl_8011BEE0
 /* 8011BE80 00118DC0  3C 60 80 4B */	lis r3, __vt__13CarryInfoList@ha
@@ -1020,8 +1020,8 @@ __dt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fv:
 /* 8011BE88 00118DC8  38 03 C4 04 */	addi r0, r3, __vt__13CarryInfoList@l
 /* 8011BE8C 00118DCC  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 8011BE90 00118DD0  41 82 00 50 */	beq lbl_8011BEE0
-/* 8011BE94 00118DD4  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
-/* 8011BE98 00118DD8  38 03 C3 9C */	addi r0, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011BE94 00118DD4  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
+/* 8011BE98 00118DD8  38 03 C3 9C */	addi r0, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011BE9C 00118DDC  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 8011BEA0 00118DE0  80 7E 00 74 */	lwz r3, 0x74(r30)
 /* 8011BEA4 00118DE4  28 03 00 00 */	cmplwi r3, 0
@@ -1049,8 +1049,8 @@ lbl_8011BEE0:
 /* 8011BEF0 00118E30  38 03 C4 04 */	addi r0, r3, __vt__13CarryInfoList@l
 /* 8011BEF4 00118E34  90 1E 00 04 */	stw r0, 4(r30)
 /* 8011BEF8 00118E38  41 82 00 50 */	beq lbl_8011BF48
-/* 8011BEFC 00118E3C  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
-/* 8011BF00 00118E40  38 03 C3 9C */	addi r0, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011BEFC 00118E3C  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
+/* 8011BF00 00118E40  38 03 C3 9C */	addi r0, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011BF04 00118E44  90 1E 00 04 */	stw r0, 4(r30)
 /* 8011BF08 00118E48  80 7E 00 1C */	lwz r3, 0x1c(r30)
 /* 8011BF0C 00118E4C  28 03 00 00 */	cmplwi r3, 0
@@ -1113,9 +1113,9 @@ __dt__12CarryInfoMgrFv:
 /* 8011BFD0 00118F10  48 2F 55 B9 */	bl __dt__5CNodeFv
 /* 8011BFD4 00118F14  28 1E 00 00 */	cmplwi r30, 0
 /* 8011BFD8 00118F18  41 82 00 F4 */	beq lbl_8011C0CC
-/* 8011BFDC 00118F1C  3C 60 80 4B */	lis r3, __vt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1@ha
+/* 8011BFDC 00118F1C  3C 60 80 4B */	lis r3, "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"@ha
 /* 8011BFE0 00118F20  34 1E 00 5C */	addic. r0, r30, 0x5c
-/* 8011BFE4 00118F24  38 03 C3 B8 */	addi r0, r3, __vt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011BFE4 00118F24  38 03 C3 B8 */	addi r0, r3, "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011BFE8 00118F28  90 1E 00 00 */	stw r0, 0(r30)
 /* 8011BFEC 00118F2C  41 82 00 64 */	beq lbl_8011C050
 /* 8011BFF0 00118F30  3C 60 80 4B */	lis r3, __vt__13CarryInfoList@ha
@@ -1123,8 +1123,8 @@ __dt__12CarryInfoMgrFv:
 /* 8011BFF8 00118F38  38 03 C4 04 */	addi r0, r3, __vt__13CarryInfoList@l
 /* 8011BFFC 00118F3C  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 8011C000 00118F40  41 82 00 50 */	beq lbl_8011C050
-/* 8011C004 00118F44  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
-/* 8011C008 00118F48  38 03 C3 9C */	addi r0, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011C004 00118F44  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
+/* 8011C008 00118F48  38 03 C3 9C */	addi r0, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011C00C 00118F4C  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 8011C010 00118F50  80 7E 00 74 */	lwz r3, 0x74(r30)
 /* 8011C014 00118F54  28 03 00 00 */	cmplwi r3, 0
@@ -1152,8 +1152,8 @@ lbl_8011C050:
 /* 8011C060 00118FA0  38 03 C4 04 */	addi r0, r3, __vt__13CarryInfoList@l
 /* 8011C064 00118FA4  90 1E 00 04 */	stw r0, 4(r30)
 /* 8011C068 00118FA8  41 82 00 50 */	beq lbl_8011C0B8
-/* 8011C06C 00118FAC  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
-/* 8011C070 00118FB0  38 03 C3 9C */	addi r0, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011C06C 00118FAC  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
+/* 8011C070 00118FB0  38 03 C3 9C */	addi r0, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011C074 00118FB4  90 1E 00 04 */	stw r0, 4(r30)
 /* 8011C078 00118FB8  80 7E 00 1C */	lwz r3, 0x1c(r30)
 /* 8011C07C 00118FBC  28 03 00 00 */	cmplwi r3, 0
@@ -1193,8 +1193,8 @@ lbl_8011C0DC:
 /* 8011C0F0 00119030  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C0F4 00119034  4E 80 00 20 */	blr 
 
-.global appearPoko__12CarryInfoMgrFRC10Vector3$$0f$$1i
-appearPoko__12CarryInfoMgrFRC10Vector3$$0f$$1i:
+.global "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
+"appearPoko__12CarryInfoMgrFRC10Vector3<f>i":
 /* 8011C0F8 00119038  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011C0FC 0011903C  7C 08 02 A6 */	mflr r0
 /* 8011C100 00119040  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1252,7 +1252,7 @@ regist__12CarryInfoMgrFP14CarryInfoOwner:
 /* 8011C1B8 001190F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C1BC 001190FC  7C 08 02 A6 */	mflr r0
 /* 8011C1C0 00119100  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8011C1C4 00119104  48 00 07 3D */	bl regist__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP14CarryInfoOwner
+/* 8011C1C4 00119104  48 00 07 3D */	bl "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
 /* 8011C1C8 00119108  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8011C1CC 0011910C  7C 08 03 A6 */	mtlr r0
 /* 8011C1D0 00119110  38 21 00 10 */	addi r1, r1, 0x10
@@ -1418,7 +1418,7 @@ lbl_8011C2E4:
 /* 8011C420 00119360  4B F1 72 11 */	bl load__10JUTTextureF11_GXTexMapID
 /* 8011C424 00119364  7F C3 F3 78 */	mr r3, r30
 /* 8011C428 00119368  7F E4 FB 78 */	mr r4, r31
-/* 8011C42C 0011936C  48 00 03 D5 */	bl draw__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FR8Graphics
+/* 8011C42C 0011936C  48 00 03 D5 */	bl "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
 lbl_8011C430:
 /* 8011C430 00119370  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8011C434 00119374  83 E1 00 3C */	lwz r31, 0x3c(r1)
@@ -1436,7 +1436,7 @@ update__12CarryInfoMgrFv:
 /* 8011C458 00119398  7C 7F 1B 78 */	mr r31, r3
 /* 8011C45C 0011939C  48 00 00 21 */	bl updatePokoInfoOwners__12CarryInfoMgrFv
 /* 8011C460 001193A0  7F E3 FB 78 */	mr r3, r31
-/* 8011C464 001193A4  48 00 03 11 */	bl update__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fv
+/* 8011C464 001193A4  48 00 03 11 */	bl "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
 /* 8011C468 001193A8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8011C46C 001193AC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8011C470 001193B0  7C 08 03 A6 */	mtlr r0
@@ -1526,7 +1526,7 @@ scratch__12CarryInfoMgrFP14CarryInfoOwner:
 /* 8011C584 001194C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C588 001194C8  7C 08 02 A6 */	mflr r0
 /* 8011C58C 001194CC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8011C590 001194D0  48 00 01 A1 */	bl scratch__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP14CarryInfoOwner
+/* 8011C590 001194D0  48 00 01 A1 */	bl "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
 /* 8011C594 001194D4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8011C598 001194D8  7C 08 03 A6 */	mtlr r0
 /* 8011C59C 001194DC  38 21 00 10 */	addi r1, r1, 0x10
@@ -1554,12 +1554,12 @@ lbl_8011C5D4:
 /* 8011C5E4 00119524  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C5E8 00119528  4E 80 00 20 */	blr 
 
-.global init__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1Fv
-init__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1Fv:
+.global "init__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
+"init__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv":
 /* 8011C5EC 0011952C  4E 80 00 20 */	blr 
 
-.global __dt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1Fv
-__dt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1Fv:
+.global "__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
+"__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv":
 /* 8011C5F0 00119530  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C5F4 00119534  7C 08 02 A6 */	mflr r0
 /* 8011C5F8 00119538  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1568,8 +1568,8 @@ __dt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1Fv:
 /* 8011C604 00119544  93 C1 00 08 */	stw r30, 8(r1)
 /* 8011C608 00119548  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8011C60C 0011954C  41 82 00 60 */	beq lbl_8011C66C
-/* 8011C610 00119550  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
-/* 8011C614 00119554  38 03 C3 9C */	addi r0, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011C610 00119550  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
+/* 8011C614 00119554  38 03 C3 9C */	addi r0, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011C618 00119558  90 1E 00 00 */	stw r0, 0(r30)
 /* 8011C61C 0011955C  80 7E 00 18 */	lwz r3, 0x18(r30)
 /* 8011C620 00119560  28 03 00 00 */	cmplwi r3, 0
@@ -1616,8 +1616,8 @@ __dt__13CarryInfoListFv:
 /* 8011C6AC 001195EC  38 03 C4 04 */	addi r0, r3, __vt__13CarryInfoList@l
 /* 8011C6B0 001195F0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8011C6B4 001195F4  41 82 00 50 */	beq lbl_8011C704
-/* 8011C6B8 001195F8  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
-/* 8011C6BC 001195FC  38 03 C3 9C */	addi r0, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011C6B8 001195F8  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
+/* 8011C6BC 001195FC  38 03 C3 9C */	addi r0, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011C6C0 00119600  90 1E 00 00 */	stw r0, 0(r30)
 /* 8011C6C4 00119604  80 7E 00 18 */	lwz r3, 0x18(r30)
 /* 8011C6C8 00119608  28 03 00 00 */	cmplwi r3, 0
@@ -1651,8 +1651,8 @@ lbl_8011C714:
 /* 8011C728 00119668  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C72C 0011966C  4E 80 00 20 */	blr 
 
-.global scratch__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP14CarryInfoOwner
-scratch__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP14CarryInfoOwner:
+.global "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
+"scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner":
 /* 8011C730 00119670  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C734 00119674  7C 08 02 A6 */	mflr r0
 /* 8011C738 00119678  7C 85 23 78 */	mr r5, r4
@@ -1660,11 +1660,11 @@ scratch__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP14CarryInfoOwner:
 /* 8011C740 00119680  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8011C744 00119684  7C 7F 1B 78 */	mr r31, r3
 /* 8011C748 00119688  80 83 00 20 */	lwz r4, 0x20(r3)
-/* 8011C74C 0011968C  48 00 01 1D */	bl search__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoListP14CarryInfoOwner
+/* 8011C74C 0011968C  48 00 01 1D */	bl "search__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoListP14CarryInfoOwner"
 /* 8011C750 00119690  7C 64 1B 79 */	or. r4, r3, r3
 /* 8011C754 00119694  41 82 00 0C */	beq lbl_8011C760
 /* 8011C758 00119698  7F E3 FB 78 */	mr r3, r31
-/* 8011C75C 0011969C  48 00 01 41 */	bl addInactiveList__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoList
+/* 8011C75C 0011969C  48 00 01 41 */	bl "addInactiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
 lbl_8011C760:
 /* 8011C760 001196A0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8011C764 001196A4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1672,8 +1672,8 @@ lbl_8011C760:
 /* 8011C76C 001196AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C770 001196B0  4E 80 00 20 */	blr 
 
-.global update__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fv
-update__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fv:
+.global "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
+"update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv":
 /* 8011C774 001196B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011C778 001196B8  7C 08 02 A6 */	mflr r0
 /* 8011C77C 001196BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1699,7 +1699,7 @@ lbl_8011C798:
 /* 8011C7C8 00119708  41 82 00 10 */	beq lbl_8011C7D8
 /* 8011C7CC 0011970C  7F A3 EB 78 */	mr r3, r29
 /* 8011C7D0 00119710  7F E4 FB 78 */	mr r4, r31
-/* 8011C7D4 00119714  48 00 00 C9 */	bl addInactiveList__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoList
+/* 8011C7D4 00119714  48 00 00 C9 */	bl "addInactiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
 lbl_8011C7D8:
 /* 8011C7D8 00119718  7F DF F3 78 */	mr r31, r30
 lbl_8011C7DC:
@@ -1713,8 +1713,8 @@ lbl_8011C7DC:
 /* 8011C7F8 00119738  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011C7FC 0011973C  4E 80 00 20 */	blr 
 
-.global draw__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FR8Graphics
-draw__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FR8Graphics:
+.global "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
+"draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics":
 /* 8011C800 00119740  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C804 00119744  7C 08 02 A6 */	mflr r0
 /* 8011C808 00119748  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1745,8 +1745,8 @@ lbl_8011C850:
 /* 8011C860 001197A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C864 001197A4  4E 80 00 20 */	blr 
 
-.global search__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoListP14CarryInfoOwner
-search__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoListP14CarryInfoOwner:
+.global "search__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoListP14CarryInfoOwner"
+"search__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoListP14CarryInfoOwner":
 /* 8011C868 001197A8  48 00 00 1C */	b lbl_8011C884
 lbl_8011C86C:
 /* 8011C86C 001197AC  80 04 00 20 */	lwz r0, 0x20(r4)
@@ -1762,16 +1762,16 @@ lbl_8011C884:
 /* 8011C88C 001197CC  38 60 00 00 */	li r3, 0
 /* 8011C890 001197D0  4E 80 00 20 */	blr 
 
-.global update__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1Fv
-update__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1Fv:
+.global "update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
+"update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv":
 /* 8011C894 001197D4  4E 80 00 20 */	blr 
 
-.global draw__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1FR8Graphics
-draw__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1FR8Graphics:
+.global "draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
+"draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics":
 /* 8011C898 001197D8  4E 80 00 20 */	blr 
 
-.global addInactiveList__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoList
-addInactiveList__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoList:
+.global "addInactiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
+"addInactiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList":
 /* 8011C89C 001197DC  38 00 00 00 */	li r0, 0
 /* 8011C8A0 001197E0  90 04 00 20 */	stw r0, 0x20(r4)
 /* 8011C8A4 001197E4  80 A4 00 18 */	lwz r5, 0x18(r4)
@@ -1801,8 +1801,8 @@ lbl_8011C8F8:
 /* 8011C8F8 00119838  90 83 00 78 */	stw r4, 0x78(r3)
 /* 8011C8FC 0011983C  4E 80 00 20 */	blr 
 
-.global regist__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP14CarryInfoOwner
-regist__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP14CarryInfoOwner:
+.global "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
+"regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner":
 /* 8011C900 00119840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011C904 00119844  7C 08 02 A6 */	mflr r0
 /* 8011C908 00119848  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1830,7 +1830,7 @@ lbl_8011C948:
 /* 8011C94C 0011988C  41 82 00 10 */	beq lbl_8011C95C
 /* 8011C950 00119890  90 9F 00 20 */	stw r4, 0x20(r31)
 /* 8011C954 00119894  7F E4 FB 78 */	mr r4, r31
-/* 8011C958 00119898  48 00 02 FD */	bl addActiveList__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoList
+/* 8011C958 00119898  48 00 02 FD */	bl "addActiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
 lbl_8011C95C:
 /* 8011C95C 0011989C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8011C960 001198A0  7F E3 FB 78 */	mr r3, r31
@@ -1839,8 +1839,8 @@ lbl_8011C95C:
 /* 8011C96C 001198AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8011C970 001198B0  4E 80 00 20 */	blr 
 
-.global __ct__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fi
-__ct__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fi:
+.global "__ct__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fi"
+"__ct__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fi":
 /* 8011C974 001198B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8011C978 001198B8  7C 08 02 A6 */	mflr r0
 /* 8011C97C 001198BC  3C A0 80 4B */	lis r5, __vt__11InfoMgrBase@ha
@@ -1848,17 +1848,17 @@ __ct__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fi:
 /* 8011C984 001198C4  38 05 C3 84 */	addi r0, r5, __vt__11InfoMgrBase@l
 /* 8011C988 001198C8  BF 41 00 08 */	stmw r26, 8(r1)
 /* 8011C98C 001198CC  7C 7C 1B 78 */	mr r28, r3
-/* 8011C990 001198D0  3C 60 80 4B */	lis r3, __vt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1@ha
+/* 8011C990 001198D0  3C 60 80 4B */	lis r3, "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"@ha
 /* 8011C994 001198D4  7C 9E 23 78 */	mr r30, r4
 /* 8011C998 001198D8  3B 5C 00 04 */	addi r26, r28, 4
 /* 8011C99C 001198DC  90 1C 00 00 */	stw r0, 0(r28)
-/* 8011C9A0 001198E0  38 03 C3 B8 */	addi r0, r3, __vt__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011C9A0 001198E0  38 03 C3 B8 */	addi r0, r3, "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011C9A4 001198E4  7F 43 D3 78 */	mr r3, r26
 /* 8011C9A8 001198E8  90 1C 00 00 */	stw r0, 0(r28)
 /* 8011C9AC 001198EC  4B F0 06 21 */	bl __ct__11JKRDisposerFv
-/* 8011C9B0 001198F0  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
+/* 8011C9B0 001198F0  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
 /* 8011C9B4 001198F4  38 00 00 00 */	li r0, 0
-/* 8011C9B8 001198F8  38 83 C3 9C */	addi r4, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011C9B8 001198F8  38 83 C3 9C */	addi r4, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011C9BC 001198FC  7F 43 D3 78 */	mr r3, r26
 /* 8011C9C0 00119900  90 9A 00 00 */	stw r4, 0(r26)
 /* 8011C9C4 00119904  90 1A 00 20 */	stw r0, 0x20(r26)
@@ -1900,9 +1900,9 @@ __ct__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1Fi:
 /* 8011CA54 00119994  98 BA 00 55 */	stb r5, 0x55(r26)
 /* 8011CA58 00119998  98 BA 00 56 */	stb r5, 0x56(r26)
 /* 8011CA5C 0011999C  4B F0 05 71 */	bl __ct__11JKRDisposerFv
-/* 8011CA60 001199A0  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
+/* 8011CA60 001199A0  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
 /* 8011CA64 001199A4  38 00 00 00 */	li r0, 0
-/* 8011CA68 001199A8  38 83 C3 9C */	addi r4, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011CA68 001199A8  38 83 C3 9C */	addi r4, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011CA6C 001199AC  7F 63 DB 78 */	mr r3, r27
 /* 8011CA70 001199B0  90 9B 00 00 */	stw r4, 0(r27)
 /* 8011CA74 001199B4  90 1B 00 20 */	stw r0, 0x20(r27)
@@ -1952,9 +1952,9 @@ lbl_8011CB14:
 /* 8011CB20 00119A60  41 82 00 B0 */	beq lbl_8011CBD0
 /* 8011CB24 00119A64  7F DB F3 78 */	mr r27, r30
 /* 8011CB28 00119A68  4B F0 04 A5 */	bl __ct__11JKRDisposerFv
-/* 8011CB2C 00119A6C  3C 60 80 4B */	lis r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@ha
+/* 8011CB2C 00119A6C  3C 60 80 4B */	lis r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@ha
 /* 8011CB30 00119A70  38 00 00 00 */	li r0, 0
-/* 8011CB34 00119A74  38 83 C3 9C */	addi r4, r3, __vt__46InfoListBase$$014CarryInfoOwner$$413CarryInfoList$$1@l
+/* 8011CB34 00119A74  38 83 C3 9C */	addi r4, r3, "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"@l
 /* 8011CB38 00119A78  7F 63 DB 78 */	mr r3, r27
 /* 8011CB3C 00119A7C  90 9B 00 00 */	stw r4, 0(r27)
 /* 8011CB40 00119A80  90 1B 00 20 */	stw r0, 0x20(r27)
@@ -2032,8 +2032,8 @@ lbl_8011CC30:
 /* 8011CC4C 00119B8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8011CC50 00119B90  4E 80 00 20 */	blr 
 
-.global addActiveList__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoList
-addActiveList__41InfoMgr$$014CarryInfoOwner$$413CarryInfoList$$1FP13CarryInfoList:
+.global "addActiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList"
+"addActiveList__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP13CarryInfoList":
 /* 8011CC54 00119B94  80 A4 00 18 */	lwz r5, 0x18(r4)
 /* 8011CC58 00119B98  28 05 00 00 */	cmplwi r5, 0
 /* 8011CC5C 00119B9C  41 82 00 0C */	beq lbl_8011CC68
@@ -2074,7 +2074,7 @@ __sinit_carryInfoMgr_cpp:
 /* 8011CCD0 00119C10  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8011CCD4 00119C14  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__13PokoInfoOwnerFv
-$$24$$2__dt__13PokoInfoOwnerFv:
+.global "@4@__dt__13PokoInfoOwnerFv"
+"@4@__dt__13PokoInfoOwnerFv":
 /* 8011CCD8 00119C18  38 63 FF FC */	addi r3, r3, -4
 /* 8011CCDC 00119C1C  4B FF F0 8C */	b __dt__13PokoInfoOwnerFv

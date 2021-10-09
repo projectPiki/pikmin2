@@ -1409,8 +1409,8 @@ getNextAIType__Q26PikiAI9ActAttackFv:
 /* 801A18F8 0019E838  38 60 00 01 */	li r3, 1
 /* 801A18FC 0019E83C  4E 80 00 20 */	blr 
 
-.global $$256$$24$$2onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent
-$$256$$24$$2onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent:
+.global "@56@4@onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent"
+"@56@4@onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent":
 /* 801A1900 0019E840  39 60 00 04 */	li r11, 4
 /* 801A1904 0019E844  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801A1908 0019E848  7C 63 5A 14 */	add r3, r3, r11

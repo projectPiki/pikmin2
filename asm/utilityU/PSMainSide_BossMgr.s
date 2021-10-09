@@ -158,9 +158,9 @@ lbl_8046C8B8:
 __ct__Q33PSM12BossBgmFader3MgrFv:
 /* 8046C8CC 0046980C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C8D0 00469810  7C 08 02 A6 */	mflr r0
-/* 8046C8D4 00469814  3C 80 80 4F */	lis r4, __vt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@ha
+/* 8046C8D4 00469814  3C 80 80 4F */	lis r4, "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@ha
 /* 8046C8D8 00469818  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8046C8DC 0046981C  38 04 F4 D0 */	addi r0, r4, __vt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@l
+/* 8046C8DC 0046981C  38 04 F4 D0 */	addi r0, r4, "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@l
 /* 8046C8E0 00469820  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8046C8E4 00469824  7C 7F 1B 78 */	mr r31, r3
 /* 8046C8E8 00469828  3C 60 80 4F */	lis r3, __vt__Q33PSM12BossBgmFader3Mgr@ha
@@ -169,7 +169,7 @@ __ct__Q33PSM12BossBgmFader3MgrFv:
 /* 8046C8F4 00469834  90 1F 00 00 */	stw r0, 0(r31)
 /* 8046C8F8 00469838  38 03 F4 DC */	addi r0, r3, __vt__Q33PSM12BossBgmFader3Mgr@l
 /* 8046C8FC 0046983C  7F C3 F3 78 */	mr r3, r30
-/* 8046C900 00469840  93 ED 91 B0 */	stw r31, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
+/* 8046C900 00469840  93 ED 91 B0 */	stw r31, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
 /* 8046C904 00469844  90 1F 00 00 */	stw r0, 0(r31)
 /* 8046C908 00469848  4B BB 9F C9 */	bl initiate__10JSUPtrListFv
 /* 8046C90C 0046984C  3C 60 80 4F */	lis r3, __vt__Q33PSM12BossBgmFader9TypedProc@ha
@@ -217,8 +217,8 @@ lbl_8046C984:
 /* 8046C9B0 004698F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C9B4 004698F4  4E 80 00 20 */	blr 
 
-.global appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink$$0Q23PSM9EnemyBoss$$1
-appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink$$0Q23PSM9EnemyBoss$$1:
+.global "appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<Q23PSM9EnemyBoss>"
+"appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<Q23PSM9EnemyBoss>":
 /* 8046C9B8 004698F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C9BC 004698FC  7C 08 02 A6 */	mflr r0
 /* 8046C9C0 00469900  38 63 00 04 */	addi r3, r3, 4

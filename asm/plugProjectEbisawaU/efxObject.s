@@ -126,7 +126,7 @@ lbl_803B5940:
 /* 803B5980 003B28C0  38 61 00 08 */	addi r3, r1, 8
 /* 803B5984 003B28C4  38 85 00 68 */	addi r4, r5, 0x68
 /* 803B5988 003B28C8  38 A5 00 A4 */	addi r5, r5, 0xa4
-/* 803B598C 003B28CC  4B CD E3 91 */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
+/* 803B598C 003B28CC  4B CD E3 91 */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
 /* 803B5990 003B28D0  38 60 00 01 */	li r3, 1
 /* 803B5994 003B28D4  48 00 00 08 */	b lbl_803B599C
 lbl_803B5998:
@@ -532,7 +532,7 @@ lbl_803B5F44:
 /* 803B5F68 003B2EA8  7F C4 F3 78 */	mr r4, r30
 /* 803B5F6C 003B2EAC  D3 C1 00 24 */	stfs f30, 0x24(r1)
 /* 803B5F70 003B2EB0  D3 A1 00 34 */	stfs f29, 0x34(r1)
-/* 803B5F74 003B2EB4  4B FF CB 81 */	bl create__Q23efx28TSyncGroup2$$0Q23efx8TForever$$1FPQ23efx3Arg
+/* 803B5F74 003B2EB4  4B FF CB 81 */	bl "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
 /* 803B5F78 003B2EB8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803B5F7C 003B2EBC  41 82 00 3C */	beq lbl_803B5FB8
 /* 803B5F80 003B2EC0  3B C0 00 00 */	li r30, 0
@@ -543,7 +543,7 @@ lbl_803B5F84:
 /* 803B5F90 003B2ED0  38 61 00 08 */	addi r3, r1, 8
 /* 803B5F94 003B2ED4  38 85 00 68 */	addi r4, r5, 0x68
 /* 803B5F98 003B2ED8  38 A5 00 A4 */	addi r5, r5, 0xa4
-/* 803B5F9C 003B2EDC  4B CD DD 81 */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
+/* 803B5F9C 003B2EDC  4B CD DD 81 */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
 lbl_803B5FA0:
 /* 803B5FA0 003B2EE0  3B DE 00 01 */	addi r30, r30, 1
 /* 803B5FA4 003B2EE4  3B FF 00 10 */	addi r31, r31, 0x10
@@ -839,7 +839,7 @@ lbl_803B6380:
 /* 803B638C 003B32CC  B0 1E 00 20 */	sth r0, 0x20(r30)
 lbl_803B6390:
 /* 803B6390 003B32D0  7F C3 F3 78 */	mr r3, r30
-/* 803B6394 003B32D4  4B FF C7 61 */	bl create__Q23efx28TSyncGroup2$$0Q23efx8TForever$$1FPQ23efx3Arg
+/* 803B6394 003B32D4  4B FF C7 61 */	bl "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
 /* 803B6398 003B32D8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B639C 003B32DC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B63A0 003B32E0  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1062,12 +1062,12 @@ forceKill__Q23efx10TOtakaraApFv:
 fade__Q23efx10TOtakaraApFv:
 /* 803B669C 003B35DC  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx14TPelkira_ver01Fv
-$$24$$2__dt__Q23efx14TPelkira_ver01Fv:
+.global "@4@__dt__Q23efx14TPelkira_ver01Fv"
+"@4@__dt__Q23efx14TPelkira_ver01Fv":
 /* 803B66A0 003B35E0  38 63 FF FC */	addi r3, r3, -4
 /* 803B66A4 003B35E4  4B FF FF 58 */	b __dt__Q23efx14TPelkira_ver01Fv
 
-.global $$24$$2__dt__Q23efx9ContainerFv
-$$24$$2__dt__Q23efx9ContainerFv:
+.global "@4@__dt__Q23efx9ContainerFv"
+"@4@__dt__Q23efx9ContainerFv":
 /* 803B66A8 003B35E8  38 63 FF FC */	addi r3, r3, -4
 /* 803B66AC 003B35EC  4B FF FE B4 */	b __dt__Q23efx9ContainerFv

@@ -198,7 +198,7 @@ getEnemyTypeID__Q34Game7Catfish3MgrFv:
 /* 80276FF8 00273F38  38 60 00 1A */	li r3, 0x1a
 /* 80276FFC 00273F3C  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game7Catfish3MgrFv
-$$24$$2__dt__Q34Game7Catfish3MgrFv:
+.global "@4@__dt__Q34Game7Catfish3MgrFv"
+"@4@__dt__Q34Game7Catfish3MgrFv":
 /* 80277000 00273F40  38 63 FF FC */	addi r3, r3, -4
 /* 80277004 00273F44  4B FF FF 44 */	b __dt__Q34Game7Catfish3MgrFv

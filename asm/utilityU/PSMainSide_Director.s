@@ -536,7 +536,7 @@ getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase:
 /* 80457224 00454164  80 63 03 08 */	lwz r3, 0x308(r3)
 /* 80457228 00454168  54 00 07 3E */	clrlwi r0, r0, 0x1c
 /* 8045722C 0045416C  7C 1F 03 78 */	mr r31, r0
-/* 80457230 00454170  4B EE 58 E5 */	bl getChildNum__Q210JADUtility28PrmSetRc$$0Q29PSAutoBgm5Track$$1Fv
+/* 80457230 00454170  4B EE 58 E5 */	bl "getChildNum__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
 /* 80457234 00454174  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 80457238 00454178  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 8045723C 0045417C  7C 00 18 40 */	cmplw r0, r3
@@ -552,7 +552,7 @@ lbl_80457260:
 /* 80457260 004541A0  80 7E 00 50 */	lwz r3, 0x50(r30)
 /* 80457264 004541A4  7F E4 FB 78 */	mr r4, r31
 /* 80457268 004541A8  80 63 03 08 */	lwz r3, 0x308(r3)
-/* 8045726C 004541AC  4B EE 5C 91 */	bl getChild__Q210JADUtility28PrmSetRc$$0Q29PSAutoBgm5Track$$1FUc
+/* 8045726C 004541AC  4B EE 5C 91 */	bl "getChild__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FUc"
 /* 80457270 004541B0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80457274 004541B4  40 82 00 20 */	bne lbl_80457294
 /* 80457278 004541B8  3C 60 80 4A */	lis r3, lbl_8049CDBC@ha
@@ -1065,7 +1065,7 @@ getNearestDistance__Q23PSM20ActorDirector_ScaledFv:
 /* 80457978 004548B8  93 C1 01 48 */	stw r30, 0x148(r1)
 /* 8045797C 004548BC  93 A1 01 44 */	stw r29, 0x144(r1)
 /* 80457980 004548C0  93 81 01 40 */	stw r28, 0x140(r1)
-/* 80457984 004548C4  80 0D 91 B4 */	lwz r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
+/* 80457984 004548C4  80 0D 91 B4 */	lwz r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
 /* 80457988 004548C8  3C 80 80 4A */	lis r4, lbl_8049CD98@ha
 /* 8045798C 004548CC  7C 7E 1B 78 */	mr r30, r3
 /* 80457990 004548D0  28 00 00 00 */	cmplwi r0, 0
@@ -1077,7 +1077,7 @@ getNearestDistance__Q23PSM20ActorDirector_ScaledFv:
 /* 804579A8 004548E8  4C C6 31 82 */	crclr 6
 /* 804579AC 004548EC  4B BD 2C 95 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804579B0:
-/* 804579B0 004548F0  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
+/* 804579B0 004548F0  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
 /* 804579B4 004548F4  81 83 00 00 */	lwz r12, 0(r3)
 /* 804579B8 004548F8  81 8C 00 18 */	lwz r12, 0x18(r12)
 /* 804579BC 004548FC  7D 89 03 A6 */	mtctr r12
@@ -1308,7 +1308,7 @@ lbl_80457D14:
 /* 80457D18 00454C58  4B D0 2F 09 */	bl getActiveNavi__Q24Game7NaviMgrFv
 /* 80457D1C 00454C5C  28 03 00 00 */	cmplwi r3, 0
 /* 80457D20 00454C60  40 82 00 40 */	bne lbl_80457D60
-/* 80457D24 00454C64  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
+/* 80457D24 00454C64  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
 /* 80457D28 00454C68  38 80 00 00 */	li r4, 0
 /* 80457D2C 00454C6C  81 83 00 00 */	lwz r12, 0(r3)
 /* 80457D30 00454C70  81 8C 00 0C */	lwz r12, 0xc(r12)

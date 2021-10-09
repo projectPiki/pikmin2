@@ -34,9 +34,9 @@ makeObjectPiki__Fv:
 /* 801AC430 001A9370  38 A5 30 30 */	addi r5, r5, 0x70303030@l
 /* 801AC434 001A9374  38 C2 AF 18 */	addi r6, r2, lbl_80519278@sda21
 /* 801AC438 001A9378  48 26 72 21 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801AC43C 001A937C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
+/* 801AC43C 001A937C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
 /* 801AC440 001A9380  3C A0 70 30 */	lis r5, 0x70303031@ha
-/* 801AC444 001A9384  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
+/* 801AC444 001A9384  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
 /* 801AC448 001A9388  38 E0 00 00 */	li r7, 0
 /* 801AC44C 001A938C  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 801AC450 001A9390  38 00 00 07 */	li r0, 7
@@ -48,9 +48,9 @@ makeObjectPiki__Fv:
 /* 801AC468 001A93A8  90 FE 00 44 */	stw r7, 0x44(r30)
 /* 801AC46C 001A93AC  90 1E 00 48 */	stw r0, 0x48(r30)
 /* 801AC470 001A93B0  48 26 71 E9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801AC474 001A93B4  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
+/* 801AC474 001A93B4  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
 /* 801AC478 001A93B8  3C A0 70 30 */	lis r5, 0x70303032@ha
-/* 801AC47C 001A93BC  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
+/* 801AC47C 001A93BC  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
 /* 801AC480 001A93C0  38 E0 00 01 */	li r7, 1
 /* 801AC484 001A93C4  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 801AC488 001A93C8  38 00 00 64 */	li r0, 0x64
@@ -62,9 +62,9 @@ makeObjectPiki__Fv:
 /* 801AC4A0 001A93E0  90 FE 00 6C */	stw r7, 0x6c(r30)
 /* 801AC4A4 001A93E4  90 1E 00 70 */	stw r0, 0x70(r30)
 /* 801AC4A8 001A93E8  48 26 71 B1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801AC4AC 001A93EC  3C 80 80 4B */	lis r4, __vt__7Parm$$0i$$1@ha
+/* 801AC4AC 001A93EC  3C 80 80 4B */	lis r4, "__vt__7Parm<i>"@ha
 /* 801AC4B0 001A93F0  38 60 00 00 */	li r3, 0
-/* 801AC4B4 001A93F4  38 84 AC 90 */	addi r4, r4, __vt__7Parm$$0i$$1@l
+/* 801AC4B4 001A93F4  38 84 AC 90 */	addi r4, r4, "__vt__7Parm<i>"@l
 /* 801AC4B8 001A93F8  38 00 00 01 */	li r0, 1
 /* 801AC4BC 001A93FC  90 9E 00 74 */	stw r4, 0x74(r30)
 /* 801AC4C0 001A9400  90 7E 00 8C */	stw r3, 0x8c(r30)
@@ -349,7 +349,7 @@ lbl_801AC898:
 /* 801AC8BC 001A97FC  7F C3 F3 78 */	mr r3, r30
 /* 801AC8C0 001A9800  38 9D 00 04 */	addi r4, r29, 4
 /* 801AC8C4 001A9804  38 A0 00 00 */	li r5, 0
-/* 801AC8C8 001A9808  4B F8 E8 E1 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 801AC8C8 001A9808  4B F8 E8 E1 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801AC8CC 001A980C  7F C3 F3 78 */	mr r3, r30
 /* 801AC8D0 001A9810  7F E4 FB 78 */	mr r4, r31
 /* 801AC8D4 001A9814  4B F9 DC ED */	bl changeShape__Q24Game4PikiFi
@@ -394,7 +394,7 @@ lbl_801AC92C:
 /* 801AC964 001A98A4  7F E3 FB 78 */	mr r3, r31
 /* 801AC968 001A98A8  38 9D 00 04 */	addi r4, r29, 4
 /* 801AC96C 001A98AC  38 A0 00 00 */	li r5, 0
-/* 801AC970 001A98B0  4B F8 E8 39 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 801AC970 001A98B0  4B F8 E8 39 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801AC974 001A98B4  7F E3 FB 78 */	mr r3, r31
 /* 801AC978 001A98B8  7F C4 F3 78 */	mr r4, r30
 /* 801AC97C 001A98BC  4B F9 DC 45 */	bl changeShape__Q24Game4PikiFi

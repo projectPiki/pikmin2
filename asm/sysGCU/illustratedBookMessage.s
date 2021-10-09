@@ -34,8 +34,8 @@ lbl_80454FDC:
 /* 80454FF0 00451F30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454FF4 00451F34  4E 80 00 20 */	blr 
 
-.global makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3$$0f$$1
-makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3$$0f$$1:
+.global "makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
+"makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>":
 /* 80454FF8 00451F38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80454FFC 00451F3C  7C 08 02 A6 */	mflr r0
 /* 80455000 00451F40  7C 83 23 78 */	mr r3, r4

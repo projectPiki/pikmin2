@@ -410,7 +410,7 @@ lbl_8044CAAC:
 /* 8044CABC 004499FC  38 21 00 40 */	addi r1, r1, 0x40
 /* 8044CAC0 00449A00  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q212LoadResource4NodeFv
-$$224$$2__dt__Q212LoadResource4NodeFv:
+.global "@24@__dt__Q212LoadResource4NodeFv"
+"@24@__dt__Q212LoadResource4NodeFv":
 /* 8044CAC4 00449A04  38 63 FF E8 */	addi r3, r3, -24
 /* 8044CAC8 00449A08  4B FF FA 58 */	b __dt__Q212LoadResource4NodeFv

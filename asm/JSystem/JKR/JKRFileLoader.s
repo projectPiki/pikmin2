@@ -280,10 +280,10 @@ __sinit_JKRFileLoader_cpp:
 /* 8002322C 0002016C  38 63 6E 24 */	addi r3, r3, sVolumeList__13JKRFileLoader@l
 /* 80023230 00020170  48 00 36 A1 */	bl initiate__10JSUPtrListFv
 /* 80023234 00020174  3C 60 80 50 */	lis r3, sVolumeList__13JKRFileLoader@ha
-/* 80023238 00020178  3C 80 80 02 */	lis r4, __dt__24JSUList$$013JKRFileLoader$$1Fv@ha
+/* 80023238 00020178  3C 80 80 02 */	lis r4, "__dt__24JSUList<13JKRFileLoader>Fv"@ha
 /* 8002323C 0002017C  3C A0 80 4F */	lis r5, lbl_804EFFA0@ha
 /* 80023240 00020180  38 63 6E 24 */	addi r3, r3, sVolumeList__13JKRFileLoader@l
-/* 80023244 00020184  38 84 32 60 */	addi r4, r4, __dt__24JSUList$$013JKRFileLoader$$1Fv@l
+/* 80023244 00020184  38 84 32 60 */	addi r4, r4, "__dt__24JSUList<13JKRFileLoader>Fv"@l
 /* 80023248 00020188  38 A5 FF A0 */	addi r5, r5, lbl_804EFFA0@l
 /* 8002324C 0002018C  48 09 E4 B5 */	bl __register_global_object
 /* 80023250 00020190  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -291,8 +291,8 @@ __sinit_JKRFileLoader_cpp:
 /* 80023258 00020198  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002325C 0002019C  4E 80 00 20 */	blr 
 
-.global __dt__24JSUList$$013JKRFileLoader$$1Fv
-__dt__24JSUList$$013JKRFileLoader$$1Fv:
+.global "__dt__24JSUList<13JKRFileLoader>Fv"
+"__dt__24JSUList<13JKRFileLoader>Fv":
 /* 80023260 000201A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023264 000201A4  7C 08 02 A6 */	mflr r0
 /* 80023268 000201A8  90 01 00 14 */	stw r0, 0x14(r1)

@@ -918,8 +918,8 @@ getNextAIType__Q26PikiAI7ActCropFv:
 /* 801E4B7C 001E1ABC  38 60 00 01 */	li r3, 1
 /* 801E4B80 001E1AC0  4E 80 00 20 */	blr 
 
-.global $$264$$24$$2onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent
-$$264$$24$$2onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent:
+.global "@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent"
+"@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent":
 /* 801E4B84 001E1AC4  39 60 00 04 */	li r11, 4
 /* 801E4B88 001E1AC8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801E4B8C 001E1ACC  7C 63 5A 14 */	add r3, r3, r11

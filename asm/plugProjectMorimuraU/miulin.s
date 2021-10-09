@@ -12,8 +12,8 @@ setParameters__Q34Game6Miulin3ObjFv:
 /* 8036446C 003613AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80364470 003613B0  4E 80 00 20 */	blr 
 
-.global birth__Q34Game6Miulin3ObjFR10Vector3$$0f$$1f
-birth__Q34Game6Miulin3ObjFR10Vector3$$0f$$1f:
+.global "birth__Q34Game6Miulin3ObjFR10Vector3<f>f"
+"birth__Q34Game6Miulin3ObjFR10Vector3<f>f":
 /* 80364474 003613B4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80364478 003613B8  7C 08 02 A6 */	mflr r0
 /* 8036447C 003613BC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -25,7 +25,7 @@ birth__Q34Game6Miulin3ObjFR10Vector3$$0f$$1f:
 /* 80364494 003613D4  FF E0 08 90 */	fmr f31, f1
 /* 80364498 003613D8  7C 7D 1B 78 */	mr r29, r3
 /* 8036449C 003613DC  7C 9E 23 78 */	mr r30, r4
-/* 803644A0 003613E0  4B D9 E5 61 */	bl birth__Q24Game9EnemyBaseFR10Vector3$$0f$$1f
+/* 803644A0 003613E0  4B D9 E5 61 */	bl "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
 /* 803644A4 003613E4  80 6D 91 E0 */	lwz r3, generalEnemyMgr__4Game@sda21(r13)
 /* 803644A8 003613E8  38 80 00 4D */	li r4, 0x4d
 /* 803644AC 003613EC  4B DA 97 F9 */	bl getEnemyMgr__Q24Game15GeneralEnemyMgrFi
@@ -497,9 +497,9 @@ isAttackStart__Q34Game6Miulin3ObjFv:
 lbl_80364B3C:
 /* 80364B3C 00361A7C  38 00 00 00 */	li r0, 0
 /* 80364B40 00361A80  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80364B44 00361A84  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 80364B44 00361A84  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 80364B48 00361A88  90 01 00 A4 */	stw r0, 0xa4(r1)
-/* 80364B4C 00361A8C  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 80364B4C 00361A8C  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 80364B50 00361A90  28 00 00 00 */	cmplwi r0, 0
 /* 80364B54 00361A94  90 81 00 98 */	stw r4, 0x98(r1)
 /* 80364B58 00361A98  90 01 00 9C */	stw r0, 0x9c(r1)
@@ -791,9 +791,9 @@ lbl_80364F5C:
 /* 80364F8C 00361ECC  90 7F 02 30 */	stw r3, 0x230(r31)
 /* 80364F90 00361ED0  38 00 00 00 */	li r0, 0
 /* 80364F94 00361ED4  C3 C2 04 D4 */	lfs f30, lbl_8051E834@sda21(r2)
-/* 80364F98 00361ED8  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 80364F98 00361ED8  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 80364F9C 00361EDC  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80364FA0 00361EE0  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 80364FA0 00361EE0  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 80364FA4 00361EE4  28 00 00 00 */	cmplwi r0, 0
 /* 80364FA8 00361EE8  EF DE 07 B2 */	fmuls f30, f30, f30
 /* 80364FAC 00361EEC  90 81 00 60 */	stw r4, 0x60(r1)
@@ -1130,7 +1130,7 @@ lbl_80365468:
 /* 80365474 003623B4  38 C0 00 00 */	li r6, 0
 /* 80365478 003623B8  C0 45 04 4C */	lfs f2, 0x44c(r5)
 /* 8036547C 003623BC  38 A0 00 00 */	li r5, 0
-/* 80365480 003623C0  4B DA DB D1 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
+/* 80365480 003623C0  4B DA DB D1 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
 /* 80365484 003623C4  90 7F 02 30 */	stw r3, 0x230(r31)
 /* 80365488 003623C8  80 9F 02 30 */	lwz r4, 0x230(r31)
 /* 8036548C 003623CC  28 04 00 00 */	cmplwi r4, 0
@@ -1765,7 +1765,7 @@ isNowCaution__Q34Game6Miulin3ObjFv:
 /* 80365DA4 00362CE4  80 A3 00 C0 */	lwz r5, 0xc0(r3)
 /* 80365DA8 00362CE8  C3 E5 03 AC */	lfs f31, 0x3ac(r5)
 /* 80365DAC 00362CEC  FC 20 F8 90 */	fmr f1, f31
-/* 80365DB0 00362CF0  4B DA ED 11 */	bl isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Navi$$1
+/* 80365DB0 00362CF0  4B DA ED 11 */	bl "isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
 /* 80365DB4 00362CF4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80365DB8 00362CF8  41 82 00 0C */	beq lbl_80365DC4
 /* 80365DBC 00362CFC  38 60 00 01 */	li r3, 1
@@ -1774,7 +1774,7 @@ lbl_80365DC4:
 /* 80365DC4 00362D04  FC 20 F8 90 */	fmr f1, f31
 /* 80365DC8 00362D08  7F E3 FB 78 */	mr r3, r31
 /* 80365DCC 00362D0C  38 80 00 00 */	li r4, 0
-/* 80365DD0 00362D10  4B DA E9 65 */	bl isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
+/* 80365DD0 00362D10  4B DA E9 65 */	bl "isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
 /* 80365DD4 00362D14  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80365DD8 00362D18  41 82 00 0C */	beq lbl_80365DE4
 /* 80365DDC 00362D1C  38 60 00 01 */	li r3, 1
@@ -1820,14 +1820,14 @@ landEffect__Q34Game6Miulin3ObjFv:
 /* 80365E5C 00362D9C  C0 22 05 04 */	lfs f1, lbl_8051E864@sda21(r2)
 /* 80365E60 00362DA0  38 83 01 8C */	addi r4, r3, 0x18c
 /* 80365E64 00362DA4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80365E68 00362DA8  4B D9 DC E9 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 80365E68 00362DA8  4B D9 DC E9 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 80365E6C 00362DAC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80365E70 00362DB0  7C 08 03 A6 */	mtlr r0
 /* 80365E74 00362DB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80365E78 00362DB8  4E 80 00 20 */	blr 
 
-.global attackEffect__Q34Game6Miulin3ObjFR10Vector3$$0f$$1
-attackEffect__Q34Game6Miulin3ObjFR10Vector3$$0f$$1:
+.global "attackEffect__Q34Game6Miulin3ObjFR10Vector3<f>"
+"attackEffect__Q34Game6Miulin3ObjFR10Vector3<f>":
 /* 80365E7C 00362DBC  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80365E80 00362DC0  7C 08 02 A6 */	mflr r0
 /* 80365E84 00362DC4  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1896,7 +1896,7 @@ attackEffect__Q34Game6Miulin3ObjFR10Vector3$$0f$$1:
 /* 80365F80 00362EC0  C0 22 05 08 */	lfs f1, lbl_8051E868@sda21(r2)
 /* 80365F84 00362EC4  7F C3 F3 78 */	mr r3, r30
 /* 80365F88 00362EC8  38 9E 01 8C */	addi r4, r30, 0x18c
-/* 80365F8C 00362ECC  4B D9 DB C5 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 80365F8C 00362ECC  4B D9 DB C5 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 lbl_80365F90:
 /* 80365F90 00362ED0  E3 E1 00 98 */	psq_l f31, 152(r1), 0, qr0
 /* 80365F94 00362ED4  CB E1 00 90 */	lfd f31, 0x90(r1)
@@ -1915,8 +1915,8 @@ lbl_80365F90:
 setInitialSetting__Q34Game6Miulin3ObjFPQ24Game21EnemyInitialParamBase:
 /* 80365FC0 00362F00  4E 80 00 20 */	blr 
 
-.global applyImpulse__Q34Game6Miulin3ObjFR10Vector3$$0f$$1R10Vector3$$0f$$1
-applyImpulse__Q34Game6Miulin3ObjFR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "applyImpulse__Q34Game6Miulin3ObjFR10Vector3<f>R10Vector3<f>"
+"applyImpulse__Q34Game6Miulin3ObjFR10Vector3<f>R10Vector3<f>":
 /* 80365FC4 00362F04  4E 80 00 20 */	blr 
 
 .global getEnemyTypeID__Q34Game6Miulin3ObjFv

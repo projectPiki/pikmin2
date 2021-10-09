@@ -455,7 +455,7 @@ getEnemyTypeID__Q34Game7Wealthy3ObjFv:
 /* 802850E0 00282020  38 60 00 0A */	li r3, 0xa
 /* 802850E4 00282024  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx11TOoganeKiraFv
-$$24$$2__dt__Q23efx11TOoganeKiraFv:
+.global "@4@__dt__Q23efx11TOoganeKiraFv"
+"@4@__dt__Q23efx11TOoganeKiraFv":
 /* 802850E8 00282028  38 63 FF FC */	addi r3, r3, -4
 /* 802850EC 0028202C  4B FF FF 58 */	b __dt__Q23efx11TOoganeKiraFv

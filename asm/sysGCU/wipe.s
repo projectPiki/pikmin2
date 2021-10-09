@@ -243,7 +243,7 @@ lbl_8042BF94:
 /* 8042C044 00428F84  EC 03 00 2A */	fadds f0, f3, f0
 /* 8042C048 00428F88  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 8042C04C 00428F8C  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8042C050 00428F90  4B C0 A7 85 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 8042C050 00428F90  4B C0 A7 85 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 8042C054 00428F94  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 8042C058 00428F98  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 8042C05C 00428F9C  CB E1 00 50 */	lfd f31, 0x50(r1)
@@ -381,7 +381,7 @@ lbl_8042C15C:
 /* 8042C228 00429168  EC 03 00 2A */	fadds f0, f3, f0
 /* 8042C22C 0042916C  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 8042C230 00429170  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8042C234 00429174  4B C0 A5 A1 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 8042C234 00429174  4B C0 A5 A1 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 8042C238 00429178  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 8042C23C 0042917C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 8042C240 00429180  CB E1 00 50 */	lfd f31, 0x50(r1)
@@ -612,7 +612,7 @@ lbl_8042C4D0:
 /* 8042C550 00429490  EC 03 00 2A */	fadds f0, f3, f0
 /* 8042C554 00429494  D0 21 00 28 */	stfs f1, 0x28(r1)
 /* 8042C558 00429498  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 8042C55C 0042949C  4B C0 A2 79 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 8042C55C 0042949C  4B C0 A2 79 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 8042C560 004294A0  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8042C564 004294A4  83 E1 00 4C */	lwz r31, 0x4c(r1)
 /* 8042C568 004294A8  83 C1 00 48 */	lwz r30, 0x48(r1)

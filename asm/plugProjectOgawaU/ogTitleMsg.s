@@ -1723,7 +1723,7 @@ tagPosition__Q25P2JME8AnalyzerFUsPCvUl:
 /* 8033027C 0032D1BC  38 60 00 01 */	li r3, 1
 /* 80330280 0032D1C0  4E 80 00 20 */	blr 
 
-.global $$28$$2__dt__Q25efx2d13T2DCvnameChalFv
-$$28$$2__dt__Q25efx2d13T2DCvnameChalFv:
+.global "@8@__dt__Q25efx2d13T2DCvnameChalFv"
+"@8@__dt__Q25efx2d13T2DCvnameChalFv":
 /* 80330284 0032D1C4  38 63 FF F8 */	addi r3, r3, -8
 /* 80330288 0032D1C8  4B FF FF 38 */	b __dt__Q25efx2d13T2DCvnameChalFv

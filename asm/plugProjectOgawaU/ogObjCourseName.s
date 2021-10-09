@@ -438,7 +438,7 @@ doDraw__Q32og9newScreen13ObjCourseNameFR8Graphics:
 /* 80317A68 003149A8  EC 03 00 2A */	fadds f0, f3, f0
 /* 80317A6C 003149AC  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80317A70 003149B0  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80317A74 003149B4  4B D1 ED 61 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 80317A74 003149B4  4B D1 ED 61 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 80317A78 003149B8  38 60 00 01 */	li r3, 1
 /* 80317A7C 003149BC  4B DD 16 B1 */	bl GXSetColorUpdate
 /* 80317A80 003149C0  7F E3 FB 78 */	mr r3, r31
@@ -752,7 +752,7 @@ lbl_80317E20:
 /* 80317EC8 00314E08  EC 03 00 2A */	fadds f0, f3, f0
 /* 80317ECC 00314E0C  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80317ED0 00314E10  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80317ED4 00314E14  4B D1 E9 01 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 80317ED4 00314E14  4B D1 E9 01 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 lbl_80317ED8:
 /* 80317ED8 00314E18  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80317EDC 00314E1C  83 E1 00 4C */	lwz r31, 0x4c(r1)
@@ -776,7 +776,7 @@ __sinit_ogObjCourseName_cpp:
 /* 80317F18 00314E58  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80317F1C 00314E5C  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen13ObjCourseNameFv
-$$224$$2__dt__Q32og9newScreen13ObjCourseNameFv:
+.global "@24@__dt__Q32og9newScreen13ObjCourseNameFv"
+"@24@__dt__Q32og9newScreen13ObjCourseNameFv":
 /* 80317F20 00314E60  38 63 FF E8 */	addi r3, r3, -24
 /* 80317F24 00314E64  4B FF F5 A0 */	b __dt__Q32og9newScreen13ObjCourseNameFv

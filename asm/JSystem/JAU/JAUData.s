@@ -26,9 +26,9 @@ __ct__Q210JADUtility10PrmSetBaseFb:
 /* 800BA5B4 000B74F4  7F C4 F3 78 */	mr r4, r30
 /* 800BA5B8 000B74F8  38 7F 00 0C */	addi r3, r31, 0xc
 /* 800BA5BC 000B74FC  4B F6 C1 FD */	bl __ct__10JSUPtrLinkFPv
-/* 800BA5C0 000B7500  3C 80 80 4A */	lis r4, __vt__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1@ha
+/* 800BA5C0 000B7500  3C 80 80 4A */	lis r4, "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"@ha
 /* 800BA5C4 000B7504  3C 60 80 4A */	lis r3, __vt__Q210JADUtility10PrmSetTree@ha
-/* 800BA5C8 000B7508  38 04 67 1C */	addi r0, r4, __vt__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1@l
+/* 800BA5C8 000B7508  38 04 67 1C */	addi r0, r4, "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"@l
 /* 800BA5CC 000B750C  38 80 00 00 */	li r4, 0
 /* 800BA5D0 000B7510  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 800BA5D4 000B7514  38 03 67 04 */	addi r0, r3, __vt__Q210JADUtility10PrmSetTree@l
@@ -138,9 +138,9 @@ lbl_800BA720:
 /* 800BA73C 000B767C  38 03 67 04 */	addi r0, r3, __vt__Q210JADUtility10PrmSetTree@l
 /* 800BA740 000B7680  90 1E 00 48 */	stw r0, 0x48(r30)
 /* 800BA744 000B7684  41 82 00 40 */	beq lbl_800BA784
-/* 800BA748 000B7688  3C 60 80 4A */	lis r3, __vt__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1@ha
+/* 800BA748 000B7688  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"@ha
 /* 800BA74C 000B768C  34 1E 00 2C */	addic. r0, r30, 0x2c
-/* 800BA750 000B7690  38 03 67 1C */	addi r0, r3, __vt__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1@l
+/* 800BA750 000B7690  38 03 67 1C */	addi r0, r3, "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"@l
 /* 800BA754 000B7694  90 1E 00 48 */	stw r0, 0x48(r30)
 /* 800BA758 000B7698  41 82 00 2C */	beq lbl_800BA784
 /* 800BA75C 000B769C  34 1E 00 38 */	addic. r0, r30, 0x38
@@ -198,18 +198,18 @@ getEraseLink__Q210JADUtility10PrmSetBaseFv:
 afterGetFromFree__Q210JADUtility10PrmSetBaseFv:
 /* 800BA7E4 000B7724  4E 80 00 20 */	blr 
 
-.global beforeRemovingChild__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1FPQ210JADUtility10PrmSetBase
-beforeRemovingChild__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1FPQ210JADUtility10PrmSetBase:
+.global "beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+"beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase":
 /* 800BA7E8 000B7728  4E 80 00 20 */	blr 
 
-.global beforeRemovingThis__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1FPQ210JADUtility10PrmSetBase
-beforeRemovingThis__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1FPQ210JADUtility10PrmSetBase:
+.global "beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+"beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase":
 /* 800BA7EC 000B772C  4E 80 00 20 */	blr 
 
-.global afterRemovingChildButton__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1FPQ210JADUtility10PrmSetBase
-afterRemovingChildButton__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1FPQ210JADUtility10PrmSetBase:
+.global "afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+"afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase":
 /* 800BA7F0 000B7730  4E 80 00 20 */	blr 
 
-.global afterRemovingThisButton__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase
-afterRemovingThisButton__Q210JADUtility36NodeTree$$0Q210JADUtility10PrmSetBase$$1FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase:
+.global "afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase"
+"afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase":
 /* 800BA7F4 000B7734  4E 80 00 20 */	blr 

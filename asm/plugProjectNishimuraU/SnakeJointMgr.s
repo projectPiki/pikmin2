@@ -168,11 +168,11 @@ makeMatrix__Q24Game13SnakeJointMgrFv:
 /* 802D1848 002CE788  80 03 00 1C */	lwz r0, 0x1c(r3)
 /* 802D184C 002CE78C  2C 00 00 00 */	cmpwi r0, 0
 /* 802D1850 002CE790  41 82 02 78 */	beq lbl_802D1AC8
-/* 802D1854 002CE794  3C 80 80 49 */	lis r4, cJointModRatio__Q24Game27$$2unnamed$$2SnakeJointMgr_cpp$$2@ha
+/* 802D1854 002CE794  3C 80 80 49 */	lis r4, "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@"@ha
 /* 802D1858 002CE798  39 01 00 08 */	addi r8, r1, 8
 /* 802D185C 002CE79C  38 00 00 06 */	li r0, 6
 /* 802D1860 002CE7A0  7C 65 1B 78 */	mr r5, r3
-/* 802D1864 002CE7A4  38 E4 BC C0 */	addi r7, r4, cJointModRatio__Q24Game27$$2unnamed$$2SnakeJointMgr_cpp$$2@l
+/* 802D1864 002CE7A4  38 E4 BC C0 */	addi r7, r4, "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@"@l
 /* 802D1868 002CE7A8  7D 06 43 78 */	mr r6, r8
 /* 802D186C 002CE7AC  39 20 00 00 */	li r9, 0
 /* 802D1870 002CE7B0  7C 09 03 A6 */	mtctr r0

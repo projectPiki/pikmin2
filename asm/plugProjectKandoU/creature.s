@@ -225,8 +225,8 @@ lbl_8013B18C:
 onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg:
 /* 8013B1A4 001380E4  4E 80 00 20 */	blr 
 
-.global setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
-setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b:
+.global "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+"setPosition__Q24Game8CreatureFR10Vector3<f>b":
 /* 8013B1A8 001380E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8013B1AC 001380EC  7C 08 02 A6 */	mflr r0
 /* 8013B1B0 001380F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -280,12 +280,12 @@ lbl_8013B254:
 /* 8013B268 001381A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8013B26C 001381AC  4E 80 00 20 */	blr 
 
-.global onSetPositionPost__Q24Game8CreatureFR10Vector3$$0f$$1
-onSetPositionPost__Q24Game8CreatureFR10Vector3$$0f$$1:
+.global "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
+"onSetPositionPost__Q24Game8CreatureFR10Vector3<f>":
 /* 8013B270 001381B0  4E 80 00 20 */	blr 
 
-.global initPosition__Q24Game8CreatureFR10Vector3$$0f$$1
-initPosition__Q24Game8CreatureFR10Vector3$$0f$$1:
+.global "initPosition__Q24Game8CreatureFR10Vector3<f>"
+"initPosition__Q24Game8CreatureFR10Vector3<f>":
 /* 8013B274 001381B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013B278 001381B8  7C 08 02 A6 */	mflr r0
 /* 8013B27C 001381BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -339,8 +339,8 @@ lbl_8013B2F8:
 /* 8013B338 00138278  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013B33C 0013827C  4E 80 00 20 */	blr 
 
-.global getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
-getYVector__Q24Game8CreatureFR10Vector3$$0f$$1:
+.global "getYVector__Q24Game8CreatureFR10Vector3<f>"
+"getYVector__Q24Game8CreatureFR10Vector3<f>":
 /* 8013B340 00138280  C0 03 01 3C */	lfs f0, 0x13c(r3)
 /* 8013B344 00138284  C0 22 9F 28 */	lfs f1, lbl_80518288@sda21(r2)
 /* 8013B348 00138288  D0 04 00 00 */	stfs f0, 0(r4)
@@ -1182,7 +1182,7 @@ lbl_8013BE3C:
 /* 8013BEB4 00138DF4  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8013BEB8 00138DF8  38 DD 00 DC */	addi r6, r29, 0xdc
 /* 8013BEBC 00138DFC  38 FD 00 E0 */	addi r7, r29, 0xe0
-/* 8013BEC0 00138E00  48 01 C6 95 */	bl entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect$$0i$$1
+/* 8013BEC0 00138E00  48 01 C6 95 */	bl "entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<i>"
 lbl_8013BEC4:
 /* 8013BEC4 00138E04  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8013BEC8 00138E08  83 E1 00 3C */	lwz r31, 0x3c(r1)
@@ -1209,7 +1209,7 @@ getCellPikiCount__Q24Game8CreatureFv:
 /* 8013BF04 00138E44  80 85 00 DC */	lwz r4, 0xdc(r5)
 /* 8013BF08 00138E48  7C 03 03 78 */	mr r3, r0
 /* 8013BF0C 00138E4C  38 A5 00 E0 */	addi r5, r5, 0xe0
-/* 8013BF10 00138E50  48 01 CE 25 */	bl getPikiCount__Q24Game11CellPyramidFiR7Rect$$0i$$1
+/* 8013BF10 00138E50  48 01 CE 25 */	bl "getPikiCount__Q24Game11CellPyramidFiR7Rect<i>"
 /* 8013BF14 00138E54  48 00 00 08 */	b lbl_8013BF1C
 lbl_8013BF18:
 /* 8013BF18 00138E58  38 60 00 00 */	li r3, 0
@@ -1219,8 +1219,8 @@ lbl_8013BF1C:
 /* 8013BF24 00138E64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013BF28 00138E68  4E 80 00 20 */	blr 
 
-.global applyImpulse__Q24Game8CreatureFR10Vector3$$0f$$1R10Vector3$$0f$$1
-applyImpulse__Q24Game8CreatureFR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+"applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>":
 /* 8013BF2C 00138E6C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8013BF30 00138E70  7C 08 02 A6 */	mflr r0
 /* 8013BF34 00138E74  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1363,13 +1363,13 @@ lbl_8013C128:
 /* 8013C134 00139074  7D 89 03 A6 */	mtctr r12
 /* 8013C138 00139078  4E 80 04 21 */	bctrl 
 /* 8013C13C 0013907C  3C 60 80 4B */	lis r3, lbl_804B00A4@ha
-/* 8013C140 00139080  3C 80 80 4B */	lis r4, __vt__47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1@ha
+/* 8013C140 00139080  3C 80 80 4B */	lis r4, "__vt__47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"@ha
 /* 8013C144 00139084  38 A3 00 A4 */	addi r5, r3, lbl_804B00A4@l
-/* 8013C148 00139088  3C 60 80 4B */	lis r3, __vt__63Delegate3$$0Q24Game8Creature$$4P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1@ha
+/* 8013C148 00139088  3C 60 80 4B */	lis r3, "__vt__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>"@ha
 /* 8013C14C 0013908C  80 E5 00 00 */	lwz r7, 0(r5)
-/* 8013C150 00139090  38 84 00 BC */	addi r4, r4, __vt__47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1@l
+/* 8013C150 00139090  38 84 00 BC */	addi r4, r4, "__vt__47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"@l
 /* 8013C154 00139094  80 C5 00 04 */	lwz r6, 4(r5)
-/* 8013C158 00139098  38 03 00 B0 */	addi r0, r3, __vt__63Delegate3$$0Q24Game8Creature$$4P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1@l
+/* 8013C158 00139098  38 03 00 B0 */	addi r0, r3, "__vt__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>"@l
 /* 8013C15C 0013909C  80 A5 00 08 */	lwz r5, 8(r5)
 /* 8013C160 001390A0  7F A3 EB 78 */	mr r3, r29
 /* 8013C164 001390A4  90 81 00 30 */	stw r4, 0x30(r1)
@@ -1441,7 +1441,7 @@ lbl_8013C250:
 /* 8013C258 00139198  80 9E 01 14 */	lwz r4, 0x114(r30)
 /* 8013C25C 0013919C  38 C1 00 08 */	addi r6, r1, 8
 /* 8013C260 001391A0  38 E1 00 10 */	addi r7, r1, 0x10
-/* 8013C264 001391A4  4B FF 82 ED */	bl checkCollision__8CollTreeFP8CollTreePP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 8013C264 001391A4  4B FF 82 ED */	bl "checkCollision__8CollTreeFP8CollTreePP8CollPartPP8CollPartR10Vector3<f>"
 /* 8013C268 001391A8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8013C26C 001391AC  41 82 00 34 */	beq lbl_8013C2A0
 /* 8013C270 001391B0  80 61 00 34 */	lwz r3, 0x34(r1)
@@ -1456,7 +1456,7 @@ lbl_8013C290:
 /* 8013C290 001391D0  80 7D 01 14 */	lwz r3, 0x114(r29)
 /* 8013C294 001391D4  38 A1 00 30 */	addi r5, r1, 0x30
 /* 8013C298 001391D8  80 9E 01 14 */	lwz r4, 0x114(r30)
-/* 8013C29C 001391DC  4B FF 92 C9 */	bl checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 8013C29C 001391DC  4B FF 92 C9 */	bl "checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 lbl_8013C2A0:
 /* 8013C2A0 001391E0  38 00 00 00 */	li r0, 0
 /* 8013C2A4 001391E4  98 0D 92 60 */	stb r0, mDebug__8CollTree@sda21(r13)
@@ -1468,8 +1468,8 @@ lbl_8013C2AC:
 /* 8013C2B8 001391F8  38 21 00 60 */	addi r1, r1, 0x60
 /* 8013C2BC 001391FC  4E 80 00 20 */	blr 
 
-.global resolveOneColl__Q24Game8CreatureFP8CollPartP8CollPartR10Vector3$$0f$$1
-resolveOneColl__Q24Game8CreatureFP8CollPartP8CollPartR10Vector3$$0f$$1:
+.global "resolveOneColl__Q24Game8CreatureFP8CollPartP8CollPartR10Vector3<f>"
+"resolveOneColl__Q24Game8CreatureFP8CollPartP8CollPartR10Vector3<f>":
 /* 8013C2C0 00139200  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8013C2C4 00139204  7C 08 02 A6 */	mflr r0
 /* 8013C2C8 00139208  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -2066,8 +2066,8 @@ lbl_8013CB60:
 collisionCallback__Q24Game8CreatureFRQ24Game9CollEvent:
 /* 8013CB8C 00139ACC  4E 80 00 20 */	blr 
 
-.global invoke__63Delegate3$$0Q24Game8Creature$$4P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1FP8CollPartP8CollPartR10Vector3$$0f$$1
-invoke__63Delegate3$$0Q24Game8Creature$$4P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1FP8CollPartP8CollPartR10Vector3$$0f$$1:
+.global "invoke__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>FP8CollPartP8CollPartR10Vector3<f>"
+"invoke__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>FP8CollPartP8CollPartR10Vector3<f>":
 /* 8013CB90 00139AD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013CB94 00139AD4  7C 08 02 A6 */	mflr r0
 /* 8013CB98 00139AD8  7C 67 1B 78 */	mr r7, r3

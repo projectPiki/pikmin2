@@ -595,7 +595,7 @@ lbl_80249150:
 /* 80249150 00246090  FC 20 F8 90 */	fmr f1, f31
 /* 80249154 00246094  7F A3 EB 78 */	mr r3, r29
 /* 80249158 00246098  38 81 00 14 */	addi r4, r1, 0x14
-/* 8024915C 0024609C  4B FF B2 A9 */	bl setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3$$0f$$1f
+/* 8024915C 0024609C  4B FF B2 A9 */	bl "setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3<f>f"
 /* 80249160 002460A0  7F A3 EB 78 */	mr r3, r29
 /* 80249164 002460A4  7F 64 DB 78 */	mr r4, r27
 /* 80249168 002460A8  4B FF B2 BD */	bl setBirthDoorIndex__Q34Game4Cave9EnemyNodeFi
@@ -1103,7 +1103,7 @@ lbl_80249864:
 /* 80249864 002467A4  FC 20 F8 90 */	fmr f1, f31
 /* 80249868 002467A8  7F E3 FB 78 */	mr r3, r31
 /* 8024986C 002467AC  38 81 00 14 */	addi r4, r1, 0x14
-/* 80249870 002467B0  4B FF AB 95 */	bl setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3$$0f$$1f
+/* 80249870 002467B0  4B FF AB 95 */	bl "setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3<f>f"
 /* 80249874 002467B4  7F E3 FB 78 */	mr r3, r31
 /* 80249878 002467B8  7F A4 EB 78 */	mr r4, r29
 /* 8024987C 002467BC  4B FF AB A9 */	bl setBirthDoorIndex__Q34Game4Cave9EnemyNodeFi
@@ -3296,7 +3296,7 @@ lbl_8024B77C:
 /* 8024B790 002486D0  4B DE 99 79 */	bl "atan2___Q25JMath18TAtanTable<1024,f>CFff"
 /* 8024B794 002486D4  7E C3 B3 78 */	mr r3, r22
 /* 8024B798 002486D8  7F A4 EB 78 */	mr r4, r29
-/* 8024B79C 002486DC  4B FF 8C 69 */	bl setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3$$0f$$1f
+/* 8024B79C 002486DC  4B FF 8C 69 */	bl "setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3<f>f"
 /* 8024B7A0 002486E0  80 78 00 1C */	lwz r3, 0x1c(r24)
 /* 8024B7A4 002486E4  7E C4 B3 78 */	mr r4, r22
 /* 8024B7A8 002486E8  48 1C 5C 61 */	bl add__5CNodeFP5CNode

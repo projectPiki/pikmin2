@@ -499,7 +499,7 @@ __sinit_ogObjSMenuCont_cpp:
 /* 80330D10 0032DC50  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80330D14 0032DC54  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen12ObjSMenuContFv
-$$224$$2__dt__Q32og9newScreen12ObjSMenuContFv:
+.global "@24@__dt__Q32og9newScreen12ObjSMenuContFv"
+"@24@__dt__Q32og9newScreen12ObjSMenuContFv":
 /* 80330D18 0032DC58  38 63 FF E8 */	addi r3, r3, -24
 /* 80330D1C 0032DC5C  4B FF F9 A0 */	b __dt__Q32og9newScreen12ObjSMenuContFv

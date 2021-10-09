@@ -1196,7 +1196,7 @@ getSearchedTarget__Q34Game6Kurage3ObjFf:
 /* 802AE7B8 002AB6F8  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 802AE7BC 002AB6FC  40 80 03 68 */	bge lbl_802AEB24
 /* 802AE7C0 002AB700  C3 DE 01 90 */	lfs f30, 0x190(r30)
-/* 802AE7C4 002AB704  3C 60 80 4B */	lis r3, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 802AE7C4 002AB704  3C 60 80 4B */	lis r3, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 802AE7C8 002AB708  C0 42 DD A8 */	lfs f2, lbl_8051C108@sda21(r2)
 /* 802AE7CC 002AB70C  38 00 00 00 */	li r0, 0
 /* 802AE7D0 002AB710  C0 04 04 24 */	lfs f0, 0x424(r4)
@@ -1207,7 +1207,7 @@ getSearchedTarget__Q34Game6Kurage3ObjFf:
 /* 802AE7E4 002AB724  EC 42 00 32 */	fmuls f2, f2, f0
 /* 802AE7E8 002AB728  C0 04 05 64 */	lfs f0, 0x564(r4)
 /* 802AE7EC 002AB72C  C0 62 DD 88 */	lfs f3, lbl_8051C0E8@sda21(r2)
-/* 802AE7F0 002AB730  38 83 BC 9C */	addi r4, r3, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 802AE7F0 002AB730  38 83 BC 9C */	addi r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 802AE7F4 002AB734  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 802AE7F8 002AB738  EF A5 20 28 */	fsubs f29, f5, f4
 /* 802AE7FC 002AB73C  EF 83 00 B2 */	fmuls f28, f3, f2
@@ -1497,9 +1497,9 @@ isSuck__Q34Game6Kurage3ObjFfPQ24Game8Creature:
 lbl_802AEC28:
 /* 802AEC28 002ABB68  38 00 00 00 */	li r0, 0
 /* 802AEC2C 002ABB6C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 802AEC30 002ABB70  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 802AEC30 002ABB70  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 802AEC34 002ABB74  90 01 00 2C */	stw r0, 0x2c(r1)
-/* 802AEC38 002ABB78  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 802AEC38 002ABB78  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 802AEC3C 002ABB7C  28 00 00 00 */	cmplwi r0, 0
 /* 802AEC40 002ABB80  90 81 00 20 */	stw r4, 0x20(r1)
 /* 802AEC44 002ABB84  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1705,13 +1705,13 @@ suckPikmin__Q34Game6Kurage3ObjFf:
 /* 802AEF2C 002ABE6C  EF 40 00 32 */	fmuls f26, f0, f0
 /* 802AEF30 002ABE70  4B E8 6F 15 */	bl getCollPart__8CollTreeFUl
 /* 802AEF34 002ABE74  7C 7F 1B 78 */	mr r31, r3
-/* 802AEF38 002ABE78  3C 60 80 4B */	lis r3, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 802AEF38 002ABE78  3C 60 80 4B */	lis r3, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 802AEF3C 002ABE7C  38 00 00 00 */	li r0, 0
 /* 802AEF40 002ABE80  C3 FF 00 4C */	lfs f31, 0x4c(r31)
 /* 802AEF44 002ABE84  C3 DF 00 50 */	lfs f30, 0x50(r31)
 /* 802AEF48 002ABE88  28 00 00 00 */	cmplwi r0, 0
 /* 802AEF4C 002ABE8C  C3 BF 00 54 */	lfs f29, 0x54(r31)
-/* 802AEF50 002ABE90  38 83 BC 9C */	addi r4, r3, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 802AEF50 002ABE90  38 83 BC 9C */	addi r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 802AEF54 002ABE94  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 802AEF58 002ABE98  90 81 00 14 */	stw r4, 0x14(r1)
 /* 802AEF5C 002ABE9C  90 01 00 20 */	stw r0, 0x20(r1)
@@ -2278,8 +2278,8 @@ finishHireEffect__Q34Game6Kurage3ObjFv:
 /* 802AF79C 002AC6DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802AF7A0 002AC6E0  4E 80 00 20 */	blr 
 
-.global startSuckEffect__Q34Game6Kurage3ObjFR10Vector3$$0f$$1
-startSuckEffect__Q34Game6Kurage3ObjFR10Vector3$$0f$$1:
+.global "startSuckEffect__Q34Game6Kurage3ObjFR10Vector3<f>"
+"startSuckEffect__Q34Game6Kurage3ObjFR10Vector3<f>":
 /* 802AF7A4 002AC6E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802AF7A8 002AC6E8  7C 08 02 A6 */	mflr r0
 /* 802AF7AC 002AC6EC  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
@@ -2303,13 +2303,13 @@ startSuckEffect__Q34Game6Kurage3ObjFR10Vector3$$0f$$1:
 /* 802AF7F4 002AC734  38 21 00 20 */	addi r1, r1, 0x20
 /* 802AF7F8 002AC738  4E 80 00 20 */	blr 
 
-.global updateSuckEffect__Q34Game6Kurage3ObjFR10Vector3$$0f$$1
-updateSuckEffect__Q34Game6Kurage3ObjFR10Vector3$$0f$$1:
+.global "updateSuckEffect__Q34Game6Kurage3ObjFR10Vector3<f>"
+"updateSuckEffect__Q34Game6Kurage3ObjFR10Vector3<f>":
 /* 802AF7FC 002AC73C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802AF800 002AC740  7C 08 02 A6 */	mflr r0
 /* 802AF804 002AC744  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802AF808 002AC748  80 63 02 F4 */	lwz r3, 0x2f4(r3)
-/* 802AF80C 002AC74C  48 10 41 91 */	bl setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3$$0f$$1
+/* 802AF80C 002AC74C  48 10 41 91 */	bl "setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3<f>"
 /* 802AF810 002AC750  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802AF814 002AC754  7C 08 03 A6 */	mtlr r0
 /* 802AF818 002AC758  38 21 00 10 */	addi r1, r1, 0x10
@@ -2385,7 +2385,7 @@ createDownEffect__Q34Game6Kurage3ObjFv:
 /* 802AF90C 002AC84C  4E 80 04 21 */	bctrl 
 /* 802AF910 002AC850  7F E3 FB 78 */	mr r3, r31
 /* 802AF914 002AC854  38 9F 01 8C */	addi r4, r31, 0x18c
-/* 802AF918 002AC858  4B E5 42 39 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 802AF918 002AC858  4B E5 42 39 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 802AF91C 002AC85C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802AF920 002AC860  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802AF924 002AC864  7C 08 03 A6 */	mtlr r0
@@ -2628,17 +2628,17 @@ getEnemyTypeID__Q34Game6Kurage3ObjFv:
 /* 802AFC54 002ACB94  38 60 00 39 */	li r3, 0x39
 /* 802AFC58 002ACB98  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx13TNewkurageEyeFv
-$$24$$2__dt__Q23efx13TNewkurageEyeFv:
+.global "@4@__dt__Q23efx13TNewkurageEyeFv"
+"@4@__dt__Q23efx13TNewkurageEyeFv":
 /* 802AFC5C 002ACB9C  38 63 FF FC */	addi r3, r3, -4
 /* 802AFC60 002ACBA0  4B FF FF 50 */	b __dt__Q23efx13TNewkurageEyeFv
 
-.global $$24$$2__dt__Q23efx14TNewkurageKiraFv
-$$24$$2__dt__Q23efx14TNewkurageKiraFv:
+.global "@4@__dt__Q23efx14TNewkurageKiraFv"
+"@4@__dt__Q23efx14TNewkurageKiraFv":
 /* 802AFC64 002ACBA4  38 63 FF FC */	addi r3, r3, -4
 /* 802AFC68 002ACBA8  4B FF FE AC */	b __dt__Q23efx14TNewkurageKiraFv
 
-.global $$24$$2__dt__Q23efx17TNewkurageDeadrunFv
-$$24$$2__dt__Q23efx17TNewkurageDeadrunFv:
+.global "@4@__dt__Q23efx17TNewkurageDeadrunFv"
+"@4@__dt__Q23efx17TNewkurageDeadrunFv":
 /* 802AFC6C 002ACBAC  38 63 FF FC */	addi r3, r3, -4
 /* 802AFC70 002ACBB0  4B FF FE 08 */	b __dt__Q23efx17TNewkurageDeadrunFv

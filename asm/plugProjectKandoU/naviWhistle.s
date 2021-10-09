@@ -467,8 +467,8 @@ lbl_80165704:
 /* 80165710 00162650  38 21 00 30 */	addi r1, r1, 0x30
 /* 80165714 00162654  4E 80 00 20 */	blr 
 
-.global update__Q24Game11NaviWhistleFR10Vector3$$0f$$1b
-update__Q24Game11NaviWhistleFR10Vector3$$0f$$1b:
+.global "update__Q24Game11NaviWhistleFR10Vector3<f>b"
+"update__Q24Game11NaviWhistleFR10Vector3<f>b":
 /* 80165718 00162658  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016571C 0016265C  7C 08 02 A6 */	mflr r0
 /* 80165720 00162660  90 01 00 24 */	stw r0, 0x24(r1)

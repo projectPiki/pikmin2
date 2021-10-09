@@ -1173,7 +1173,7 @@ lbl_802B0D48:
 /* 802B0D54 002ADC94  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802B0D58 002ADC98  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802B0D5C 002ADC9C  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802B0D60 002ADCA0  4B E6 48 7D */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 802B0D60 002ADCA0  4B E6 48 7D */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 /* 802B0D64 002ADCA4  48 00 00 14 */	b lbl_802B0D78
 lbl_802B0D68:
 /* 802B0D68 002ADCA8  C0 02 DE 10 */	lfs f0, lbl_8051C170@sda21(r2)
@@ -1505,7 +1505,7 @@ lbl_802B1224:
 /* 802B1230 002AE170  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802B1234 002AE174  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802B1238 002AE178  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802B123C 002AE17C  4B E6 43 A1 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 802B123C 002AE17C  4B E6 43 A1 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 lbl_802B1240:
 /* 802B1240 002AE180  80 1F 01 E0 */	lwz r0, 0x1e0(r31)
 /* 802B1244 002AE184  54 00 02 D7 */	rlwinm. r0, r0, 0, 0xb, 0xb
@@ -1810,7 +1810,7 @@ lbl_802B1674:
 /* 802B1684 002AE5C4  38 81 00 08 */	addi r4, r1, 8
 /* 802B1688 002AE5C8  D0 21 00 08 */	stfs f1, 8(r1)
 /* 802B168C 002AE5CC  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 802B1690 002AE5D0  48 00 1B 69 */	bl throwBomb__Q34Game9BombSarai3ObjFR10Vector3$$0f$$1
+/* 802B1690 002AE5D0  48 00 1B 69 */	bl "throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>"
 /* 802B1694 002AE5D4  80 1F 01 E0 */	lwz r0, 0x1e0(r31)
 /* 802B1698 002AE5D8  54 00 02 D2 */	rlwinm r0, r0, 0, 0xb, 9
 /* 802B169C 002AE5DC  90 1F 01 E0 */	stw r0, 0x1e0(r31)
@@ -2015,7 +2015,7 @@ lbl_802B1964:
 /* 802B1974 002AE8B4  38 81 00 2C */	addi r4, r1, 0x2c
 /* 802B1978 002AE8B8  D0 21 00 2C */	stfs f1, 0x2c(r1)
 /* 802B197C 002AE8BC  D0 01 00 30 */	stfs f0, 0x30(r1)
-/* 802B1980 002AE8C0  48 00 18 79 */	bl throwBomb__Q34Game9BombSarai3ObjFR10Vector3$$0f$$1
+/* 802B1980 002AE8C0  48 00 18 79 */	bl "throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>"
 /* 802B1984 002AE8C4  80 1F 01 E0 */	lwz r0, 0x1e0(r31)
 /* 802B1988 002AE8C8  54 00 02 D2 */	rlwinm r0, r0, 0, 0xb, 9
 /* 802B198C 002AE8CC  90 1F 01 E0 */	stw r0, 0x1e0(r31)

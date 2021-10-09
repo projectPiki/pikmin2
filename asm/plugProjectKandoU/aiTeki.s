@@ -665,13 +665,13 @@ lbl_80213288:
 /* 802132C8 00210208  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 802132CC 0021020C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 802132D0 00210210  C0 3F 00 24 */	lfs f1, 0x24(r31)
-/* 802132D4 00210214  4B F3 5D 45 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 802132D4 00210214  4B F3 5D 45 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 802132D8 00210218  48 00 00 14 */	b lbl_802132EC
 lbl_802132DC:
 /* 802132DC 0021021C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 802132E0 00210220  38 81 00 38 */	addi r4, r1, 0x38
 /* 802132E4 00210224  C0 3F 00 24 */	lfs f1, 0x24(r31)
-/* 802132E8 00210228  4B F3 5D 31 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 802132E8 00210228  4B F3 5D 31 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 lbl_802132EC:
 /* 802132EC 0021022C  E3 E1 00 78 */	psq_l f31, 120(r1), 0, qr0
 /* 802132F0 00210230  CB E1 00 70 */	lfd f31, 0x70(r1)
@@ -704,7 +704,7 @@ doDirectDraw__Q26PikiAI7ActTekiFR8Graphics:
 /* 80213350 00210290  98 04 00 86 */	stb r0, 0x86(r4)
 /* 80213354 00210294  98 C4 00 87 */	stb r6, 0x87(r4)
 /* 80213358 00210298  80 87 00 18 */	lwz r4, 0x18(r7)
-/* 8021335C 0021029C  48 21 27 51 */	bl drawSphere__8GraphicsFR10Vector3$$0f$$1f
+/* 8021335C 0021029C  48 21 27 51 */	bl "drawSphere__8GraphicsFR10Vector3<f>f"
 lbl_80213360:
 /* 80213360 002102A0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80213364 002102A4  7C 08 03 A6 */	mtlr r0
@@ -870,8 +870,8 @@ getNextAIType__Q26PikiAI7ActTekiFv:
 /* 80213590 002104D0  38 60 00 01 */	li r3, 1
 /* 80213594 002104D4  4E 80 00 20 */	blr 
 
-.global $$272$$24$$2onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent
-$$272$$24$$2onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent:
+.global "@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent"
+"@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent":
 /* 80213598 002104D8  39 60 00 04 */	li r11, 4
 /* 8021359C 002104DC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802135A0 002104E0  7C 63 5A 14 */	add r3, r3, r11

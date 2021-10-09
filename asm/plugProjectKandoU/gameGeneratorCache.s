@@ -1037,8 +1037,8 @@ savePikiheads__Q24Game14GeneratorCacheFv:
 /* 801F26D0 001EF610  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801F26D4:
 /* 801F26D4 001EF614  38 00 00 00 */	li r0, 0
-/* 801F26D8 001EF618  3C 80 80 4B */	lis r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@ha
-/* 801F26DC 001EF61C  38 84 05 A4 */	addi r4, r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@l
+/* 801F26D8 001EF618  3C 80 80 4B */	lis r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+/* 801F26DC 001EF61C  38 84 05 A4 */	addi r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
 /* 801F26E0 001EF620  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801F26E4 001EF624  28 00 00 00 */	cmplwi r0, 0
 /* 801F26E8 001EF628  90 81 00 08 */	stw r4, 8(r1)

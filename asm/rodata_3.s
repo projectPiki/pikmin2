@@ -2068,8 +2068,8 @@ lbl_8049B510:
 	.4byte 0x2F637269
 	.4byte 0x6D652E69
 	.4byte 0x6E690000
-.global sTHPFileSettingTable__Q24Game30$$2unnamed$$2pikmin2THPPlayer_cpp$$2
-sTHPFileSettingTable__Q24Game30$$2unnamed$$2pikmin2THPPlayer_cpp$$2:
+.global "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@"
+"sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@":
 	.4byte 0x8049B510
 	.4byte 0x8049B524
 	.4byte 0x00000000

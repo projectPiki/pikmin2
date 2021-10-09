@@ -428,7 +428,7 @@ lbl_8031A278:
 /* 8031A290 003171D0  7C 03 03 78 */	mr r3, r0
 /* 8031A294 003171D4  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen14ObjSpecialItemFv
-$$224$$2__dt__Q32og9newScreen14ObjSpecialItemFv:
+.global "@24@__dt__Q32og9newScreen14ObjSpecialItemFv"
+"@24@__dt__Q32og9newScreen14ObjSpecialItemFv":
 /* 8031A298 003171D8  38 63 FF E8 */	addi r3, r3, -24
 /* 8031A29C 003171DC  4B FF FA B0 */	b __dt__Q32og9newScreen14ObjSpecialItemFv

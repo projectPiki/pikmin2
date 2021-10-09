@@ -265,12 +265,12 @@ lbl_800BAB40:
 /* 800BAB88 000B7AC8  38 7E 00 1C */	addi r3, r30, 0x1c
 /* 800BAB8C 000B7ACC  98 1E 00 18 */	stb r0, 0x18(r30)
 /* 800BAB90 000B7AD0  4B F6 BC 29 */	bl __ct__10JSUPtrLinkFPv
-/* 800BAB94 000B7AD4  3C 60 80 4A */	lis r3, __vt__Q210JADUtility7Prm$$0Pc$$1@ha
-/* 800BAB98 000B7AD8  3C 80 80 4A */	lis r4, __vt__Q210JADUtility10PrmHio$$0Pc$$1@ha
-/* 800BAB9C 000B7ADC  38 03 67 60 */	addi r0, r3, __vt__Q210JADUtility7Prm$$0Pc$$1@l
+/* 800BAB94 000B7AD4  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+/* 800BAB98 000B7AD8  3C 80 80 4A */	lis r4, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
+/* 800BAB9C 000B7ADC  38 03 67 60 */	addi r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
 /* 800BABA0 000B7AE0  3C 60 80 4A */	lis r3, __vt__Q210JADUtility6StrPrm@ha
 /* 800BABA4 000B7AE4  90 1E 00 00 */	stw r0, 0(r30)
-/* 800BABA8 000B7AE8  38 A4 67 4C */	addi r5, r4, __vt__Q210JADUtility10PrmHio$$0Pc$$1@l
+/* 800BABA8 000B7AE8  38 A4 67 4C */	addi r5, r4, "__vt__Q210JADUtility10PrmHio<Pc>"@l
 /* 800BABAC 000B7AEC  38 83 67 38 */	addi r4, r3, __vt__Q210JADUtility6StrPrm@l
 /* 800BABB0 000B7AF0  38 00 00 00 */	li r0, 0
 /* 800BABB4 000B7AF4  90 BE 00 00 */	stw r5, 0(r30)
@@ -300,12 +300,12 @@ __dt__Q210JADUtility6StrPrmFv:
 /* 800BAC08 000B7B48  38 03 67 38 */	addi r0, r3, __vt__Q210JADUtility6StrPrm@l
 /* 800BAC0C 000B7B4C  90 1E 00 00 */	stw r0, 0(r30)
 /* 800BAC10 000B7B50  41 82 00 50 */	beq lbl_800BAC60
-/* 800BAC14 000B7B54  3C 60 80 4A */	lis r3, __vt__Q210JADUtility10PrmHio$$0Pc$$1@ha
-/* 800BAC18 000B7B58  38 03 67 4C */	addi r0, r3, __vt__Q210JADUtility10PrmHio$$0Pc$$1@l
+/* 800BAC14 000B7B54  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
+/* 800BAC18 000B7B58  38 03 67 4C */	addi r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
 /* 800BAC1C 000B7B5C  90 1E 00 00 */	stw r0, 0(r30)
 /* 800BAC20 000B7B60  41 82 00 40 */	beq lbl_800BAC60
-/* 800BAC24 000B7B64  3C 60 80 4A */	lis r3, __vt__Q210JADUtility7Prm$$0Pc$$1@ha
-/* 800BAC28 000B7B68  38 03 67 60 */	addi r0, r3, __vt__Q210JADUtility7Prm$$0Pc$$1@l
+/* 800BAC24 000B7B64  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+/* 800BAC28 000B7B68  38 03 67 60 */	addi r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
 /* 800BAC2C 000B7B6C  90 1E 00 00 */	stw r0, 0(r30)
 /* 800BAC30 000B7B70  41 82 00 30 */	beq lbl_800BAC60
 /* 800BAC34 000B7B74  3C 60 80 4A */	lis r3, __vt__Q210JADUtility7PrmBase@ha
@@ -334,8 +334,8 @@ lbl_800BAC70:
 /* 800BAC84 000B7BC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BAC88 000B7BC8  4E 80 00 20 */	blr 
 
-.global __dt__Q210JADUtility10PrmHio$$0Pc$$1Fv
-__dt__Q210JADUtility10PrmHio$$0Pc$$1Fv:
+.global "__dt__Q210JADUtility10PrmHio<Pc>Fv"
+"__dt__Q210JADUtility10PrmHio<Pc>Fv":
 /* 800BAC8C 000B7BCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAC90 000B7BD0  7C 08 02 A6 */	mflr r0
 /* 800BAC94 000B7BD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -344,12 +344,12 @@ __dt__Q210JADUtility10PrmHio$$0Pc$$1Fv:
 /* 800BACA0 000B7BE0  93 C1 00 08 */	stw r30, 8(r1)
 /* 800BACA4 000B7BE4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800BACA8 000B7BE8  41 82 00 60 */	beq lbl_800BAD08
-/* 800BACAC 000B7BEC  3C 60 80 4A */	lis r3, __vt__Q210JADUtility10PrmHio$$0Pc$$1@ha
-/* 800BACB0 000B7BF0  38 03 67 4C */	addi r0, r3, __vt__Q210JADUtility10PrmHio$$0Pc$$1@l
+/* 800BACAC 000B7BEC  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
+/* 800BACB0 000B7BF0  38 03 67 4C */	addi r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
 /* 800BACB4 000B7BF4  90 1E 00 00 */	stw r0, 0(r30)
 /* 800BACB8 000B7BF8  41 82 00 40 */	beq lbl_800BACF8
-/* 800BACBC 000B7BFC  3C 60 80 4A */	lis r3, __vt__Q210JADUtility7Prm$$0Pc$$1@ha
-/* 800BACC0 000B7C00  38 03 67 60 */	addi r0, r3, __vt__Q210JADUtility7Prm$$0Pc$$1@l
+/* 800BACBC 000B7BFC  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+/* 800BACC0 000B7C00  38 03 67 60 */	addi r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
 /* 800BACC4 000B7C04  90 1E 00 00 */	stw r0, 0(r30)
 /* 800BACC8 000B7C08  41 82 00 30 */	beq lbl_800BACF8
 /* 800BACCC 000B7C0C  3C 60 80 4A */	lis r3, __vt__Q210JADUtility7PrmBase@ha
@@ -378,8 +378,8 @@ lbl_800BAD08:
 /* 800BAD1C 000B7C5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BAD20 000B7C60  4E 80 00 20 */	blr 
 
-.global __dt__Q210JADUtility7Prm$$0Pc$$1Fv
-__dt__Q210JADUtility7Prm$$0Pc$$1Fv:
+.global "__dt__Q210JADUtility7Prm<Pc>Fv"
+"__dt__Q210JADUtility7Prm<Pc>Fv":
 /* 800BAD24 000B7C64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAD28 000B7C68  7C 08 02 A6 */	mflr r0
 /* 800BAD2C 000B7C6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -388,8 +388,8 @@ __dt__Q210JADUtility7Prm$$0Pc$$1Fv:
 /* 800BAD38 000B7C78  93 C1 00 08 */	stw r30, 8(r1)
 /* 800BAD3C 000B7C7C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800BAD40 000B7C80  41 82 00 50 */	beq lbl_800BAD90
-/* 800BAD44 000B7C84  3C 60 80 4A */	lis r3, __vt__Q210JADUtility7Prm$$0Pc$$1@ha
-/* 800BAD48 000B7C88  38 03 67 60 */	addi r0, r3, __vt__Q210JADUtility7Prm$$0Pc$$1@l
+/* 800BAD44 000B7C84  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+/* 800BAD48 000B7C88  38 03 67 60 */	addi r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
 /* 800BAD4C 000B7C8C  90 1E 00 00 */	stw r0, 0(r30)
 /* 800BAD50 000B7C90  41 82 00 30 */	beq lbl_800BAD80
 /* 800BAD54 000B7C94  3C 60 80 4A */	lis r3, __vt__Q210JADUtility7PrmBase@ha
@@ -609,14 +609,14 @@ __dt__Q210JADUtility11DataMgrNodeFv:
 /* 800BB034 000B7F74  38 03 67 38 */	addi r0, r3, __vt__Q210JADUtility6StrPrm@l
 /* 800BB038 000B7F78  90 1E 02 14 */	stw r0, 0x214(r30)
 /* 800BB03C 000B7F7C  41 82 00 54 */	beq lbl_800BB090
-/* 800BB040 000B7F80  3C 60 80 4A */	lis r3, __vt__Q210JADUtility10PrmHio$$0Pc$$1@ha
+/* 800BB040 000B7F80  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
 /* 800BB044 000B7F84  34 1E 02 14 */	addic. r0, r30, 0x214
-/* 800BB048 000B7F88  38 03 67 4C */	addi r0, r3, __vt__Q210JADUtility10PrmHio$$0Pc$$1@l
+/* 800BB048 000B7F88  38 03 67 4C */	addi r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
 /* 800BB04C 000B7F8C  90 1E 02 14 */	stw r0, 0x214(r30)
 /* 800BB050 000B7F90  41 82 00 40 */	beq lbl_800BB090
-/* 800BB054 000B7F94  3C 60 80 4A */	lis r3, __vt__Q210JADUtility7Prm$$0Pc$$1@ha
+/* 800BB054 000B7F94  3C 60 80 4A */	lis r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
 /* 800BB058 000B7F98  34 1E 02 14 */	addic. r0, r30, 0x214
-/* 800BB05C 000B7F9C  38 03 67 60 */	addi r0, r3, __vt__Q210JADUtility7Prm$$0Pc$$1@l
+/* 800BB05C 000B7F9C  38 03 67 60 */	addi r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
 /* 800BB060 000B7FA0  90 1E 02 14 */	stw r0, 0x214(r30)
 /* 800BB064 000B7FA4  41 82 00 2C */	beq lbl_800BB090
 /* 800BB068 000B7FA8  3C 80 80 4A */	lis r4, __vt__Q210JADUtility7PrmBase@ha
@@ -767,8 +767,8 @@ init__Q210JADUtility11DataMgrBaseFv:
 /* 800BB254 000B8194  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BB258 000B8198  4E 80 00 20 */	blr 
 
-.global save__Q210JADUtility7Prm$$0Pc$$1FR21JSUMemoryOutputStream
-save__Q210JADUtility7Prm$$0Pc$$1FR21JSUMemoryOutputStream:
+.global "save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream"
+"save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream":
 /* 800BB25C 000B819C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BB260 000B81A0  7C 08 02 A6 */	mflr r0
 /* 800BB264 000B81A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -805,8 +805,8 @@ lbl_800BB2B0:
 /* 800BB2D8 000B8218  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BB2DC 000B821C  4E 80 00 20 */	blr 
 
-.global load__Q210JADUtility7Prm$$0Pc$$1FR20JSUMemoryInputStream
-load__Q210JADUtility7Prm$$0Pc$$1FR20JSUMemoryInputStream:
+.global "load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream"
+"load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream":
 /* 800BB2E0 000B8220  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB2E4 000B8224  7C 08 02 A6 */	mflr r0
 /* 800BB2E8 000B8228  90 01 00 14 */	stw r0, 0x14(r1)
@@ -833,32 +833,32 @@ lbl_800BB328:
 /* 800BB338 000B8278  38 21 00 10 */	addi r1, r1, 0x10
 /* 800BB33C 000B827C  4E 80 00 20 */	blr 
 
-.global $$2532$$228$$2init__Q210JADUtility15DataLoadMgrNodeFv
-$$2532$$228$$2init__Q210JADUtility15DataLoadMgrNodeFv:
+.global "@532@28@init__Q210JADUtility15DataLoadMgrNodeFv"
+"@532@28@init__Q210JADUtility15DataLoadMgrNodeFv":
 /* 800BB340 000B8280  39 60 00 1C */	li r11, 0x1c
 /* 800BB344 000B8284  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB348 000B8288  7C 63 5A 14 */	add r3, r3, r11
 /* 800BB34C 000B828C  38 63 FD EC */	addi r3, r3, -532
 /* 800BB350 000B8290  4B FF FE 8C */	b init__Q210JADUtility15DataLoadMgrNodeFv
 
-.global $$2532$$228$$2__dt__Q210JADUtility15DataLoadMgrNodeFv
-$$2532$$228$$2__dt__Q210JADUtility15DataLoadMgrNodeFv:
+.global "@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv"
+"@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv":
 /* 800BB354 000B8294  39 60 00 1C */	li r11, 0x1c
 /* 800BB358 000B8298  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB35C 000B829C  7C 63 5A 14 */	add r3, r3, r11
 /* 800BB360 000B82A0  38 63 FD EC */	addi r3, r3, -532
 /* 800BB364 000B82A4  4B FF F5 50 */	b __dt__Q210JADUtility15DataLoadMgrNodeFv
 
-.global $$2592$$228$$2init__Q210JADUtility11DataMgrNodeFv
-$$2592$$228$$2init__Q210JADUtility11DataMgrNodeFv:
+.global "@592@28@init__Q210JADUtility11DataMgrNodeFv"
+"@592@28@init__Q210JADUtility11DataMgrNodeFv":
 /* 800BB368 000B82A8  39 60 00 1C */	li r11, 0x1c
 /* 800BB36C 000B82AC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB370 000B82B0  7C 63 5A 14 */	add r3, r3, r11
 /* 800BB374 000B82B4  38 63 FD B0 */	addi r3, r3, -592
 /* 800BB378 000B82B8  4B FF FE 20 */	b init__Q210JADUtility11DataMgrNodeFv
 
-.global $$2592$$228$$2__dt__Q210JADUtility11DataMgrNodeFv
-$$2592$$228$$2__dt__Q210JADUtility11DataMgrNodeFv:
+.global "@592@28@__dt__Q210JADUtility11DataMgrNodeFv"
+"@592@28@__dt__Q210JADUtility11DataMgrNodeFv":
 /* 800BB37C 000B82BC  39 60 00 1C */	li r11, 0x1c
 /* 800BB380 000B82C0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB384 000B82C4  7C 63 5A 14 */	add r3, r3, r11

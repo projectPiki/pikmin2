@@ -567,7 +567,7 @@ __sinit_farmMgr_cpp:
 /* 80124768 001216A8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8012476C 001216AC  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game4Farm7FarmMgrFv
-$$24$$2__dt__Q34Game4Farm7FarmMgrFv:
+.global "@4@__dt__Q34Game4Farm7FarmMgrFv"
+"@4@__dt__Q34Game4Farm7FarmMgrFv":
 /* 80124770 001216B0  38 63 FF FC */	addi r3, r3, -4
 /* 80124774 001216B4  4B FF FF 5C */	b __dt__Q34Game4Farm7FarmMgrFv

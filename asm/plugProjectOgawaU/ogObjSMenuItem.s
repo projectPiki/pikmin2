@@ -218,7 +218,7 @@ lbl_80313150:
 /* 80313214 00310154  4B D2 51 0D */	bl getBounds__7J2DPaneFv
 /* 80313218 00310158  7C 64 1B 78 */	mr r4, r3
 /* 8031321C 0031015C  7E 43 93 78 */	mr r3, r18
-/* 80313220 00310160  4B D2 4D 19 */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
+/* 80313220 00310160  4B D2 4D 19 */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
 /* 80313224 00310164  3B 7B 00 01 */	addi r27, r27, 1
 /* 80313228 00310168  2C 1B 00 0C */	cmpwi r27, 0xc
 /* 8031322C 0031016C  41 80 FF 24 */	blt lbl_80313150
@@ -1124,7 +1124,7 @@ __sinit_ogObjSMenuItem_cpp:
 /* 80313F3C 00310E7C  D0 07 00 1C */	stfs f0, 0x1c(r7)
 /* 80313F40 00310E80  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen12ObjSMenuItemFv
-$$224$$2__dt__Q32og9newScreen12ObjSMenuItemFv:
+.global "@24@__dt__Q32og9newScreen12ObjSMenuItemFv"
+"@24@__dt__Q32og9newScreen12ObjSMenuItemFv":
 /* 80313F44 00310E84  38 63 FF E8 */	addi r3, r3, -24
 /* 80313F48 00310E88  4B FF F0 2C */	b __dt__Q32og9newScreen12ObjSMenuItemFv

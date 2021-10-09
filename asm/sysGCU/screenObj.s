@@ -748,7 +748,7 @@ lbl_804544AC:
 /* 804544C4 00451404  38 21 00 20 */	addi r1, r1, 0x20
 /* 804544C8 00451408  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q26Screen7ObjBaseFv
-$$224$$2__dt__Q26Screen7ObjBaseFv:
+.global "@24@__dt__Q26Screen7ObjBaseFv"
+"@24@__dt__Q26Screen7ObjBaseFv":
 /* 804544CC 0045140C  38 63 FF E8 */	addi r3, r3, -24
 /* 804544D0 00451410  4B EB 93 98 */	b __dt__Q26Screen7ObjBaseFv

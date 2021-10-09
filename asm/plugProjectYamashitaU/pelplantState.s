@@ -434,7 +434,7 @@ lbl_8010B0CC:
 /* 8010B11C 0010805C  38 81 00 14 */	addi r4, r1, 0x14
 /* 8010B120 00108060  38 A0 00 00 */	li r5, 0
 /* 8010B124 00108064  93 ED 91 DC */	stw r31, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-/* 8010B128 00108068  48 03 00 81 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8010B128 00108068  48 03 00 81 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8010B12C 0010806C  38 00 00 00 */	li r0, 0
 /* 8010B130 00108070  90 0D 91 DC */	stw r0, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
 /* 8010B134 00108074  80 01 00 34 */	lwz r0, 0x34(r1)

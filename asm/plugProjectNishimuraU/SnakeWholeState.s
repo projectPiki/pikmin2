@@ -537,13 +537,13 @@ exec__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase:
 /* 802CC118 002C9058  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802CC11C 002C905C  40 81 04 E0 */	ble lbl_802CC5FC
 /* 802CC120 002C9060  C0 03 03 5C */	lfs f0, 0x35c(r3)
-/* 802CC124 002C9064  3C 60 80 4B */	lis r3, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 802CC124 002C9064  3C 60 80 4B */	lis r3, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 802CC128 002C9068  38 00 00 00 */	li r0, 0
 /* 802CC12C 002C906C  C3 FF 01 98 */	lfs f31, 0x198(r31)
 /* 802CC130 002C9070  C3 DF 01 9C */	lfs f30, 0x19c(r31)
 /* 802CC134 002C9074  28 00 00 00 */	cmplwi r0, 0
 /* 802CC138 002C9078  C3 BF 01 A0 */	lfs f29, 0x1a0(r31)
-/* 802CC13C 002C907C  38 83 BC 9C */	addi r4, r3, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 802CC13C 002C907C  38 83 BC 9C */	addi r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 802CC140 002C9080  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 802CC144 002C9084  EF 80 00 32 */	fmuls f28, f0, f0
 /* 802CC148 002C9088  90 81 00 30 */	stw r4, 0x30(r1)
@@ -712,9 +712,9 @@ lbl_802CC3A4:
 /* 802CC3A8 002C92E8  40 82 02 44 */	bne lbl_802CC5EC
 /* 802CC3AC 002C92EC  38 00 00 00 */	li r0, 0
 /* 802CC3B0 002C92F0  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 802CC3B4 002C92F4  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
+/* 802CC3B4 002C92F4  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
 /* 802CC3B8 002C92F8  90 01 00 2C */	stw r0, 0x2c(r1)
-/* 802CC3BC 002C92FC  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
+/* 802CC3BC 002C92FC  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
 /* 802CC3C0 002C9300  28 00 00 00 */	cmplwi r0, 0
 /* 802CC3C4 002C9304  90 81 00 20 */	stw r4, 0x20(r1)
 /* 802CC3C8 002C9308  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1611,7 +1611,7 @@ exec__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase:
 /* 802CD0AC 002C9FEC  C0 25 05 14 */	lfs f1, 0x514(r5)
 /* 802CD0B0 002C9FF0  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802CD0B4 002C9FF4  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802CD0B8 002C9FF8  4B E4 66 D9 */	bl flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Navi$$1
+/* 802CD0B8 002C9FF8  4B E4 66 D9 */	bl "flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
 /* 802CD0BC 002C9FFC  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802CD0C0 002CA000  7F E3 FB 78 */	mr r3, r31
 /* 802CD0C4 002CA004  C0 82 E4 D8 */	lfs f4, lbl_8051C838@sda21(r2)
@@ -1619,7 +1619,7 @@ exec__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase:
 /* 802CD0CC 002CA00C  C0 25 05 14 */	lfs f1, 0x514(r5)
 /* 802CD0D0 002CA010  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802CD0D4 002CA014  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802CD0D8 002CA018  4B E4 63 FD */	bl flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802CD0D8 002CA018  4B E4 63 FD */	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802CD0DC 002CA01C  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802CD0E0 002CA020  7F E3 FB 78 */	mr r3, r31
 /* 802CD0E4 002CA024  C0 82 E4 D8 */	lfs f4, lbl_8051C838@sda21(r2)
@@ -2036,7 +2036,7 @@ lbl_802CD63C:
 /* 802CD6B0 002CA5F0  D0 41 00 2C */	stfs f2, 0x2c(r1)
 /* 802CD6B4 002CA5F4  D0 21 00 30 */	stfs f1, 0x30(r1)
 /* 802CD6B8 002CA5F8  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 802CD6BC 002CA5FC  48 00 18 21 */	bl setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3$$0f$$1
+/* 802CD6BC 002CA5FC  48 00 18 21 */	bl "setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3<f>"
 /* 802CD6C0 002CA600  48 00 00 14 */	b lbl_802CD6D4
 lbl_802CD6C4:
 /* 802CD6C4 002CA604  38 00 00 05 */	li r0, 5
@@ -2219,7 +2219,7 @@ lbl_802CD8F0:
 /* 802CD93C 002CA87C  D0 01 00 08 */	stfs f0, 8(r1)
 /* 802CD940 002CA880  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 802CD944 002CA884  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 802CD948 002CA888  48 00 15 95 */	bl setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3$$0f$$1
+/* 802CD948 002CA888  48 00 15 95 */	bl "setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3<f>"
 /* 802CD94C 002CA88C  C0 22 E4 BC */	lfs f1, lbl_8051C81C@sda21(r2)
 /* 802CD950 002CA890  7F E3 FB 78 */	mr r3, r31
 /* 802CD954 002CA894  48 00 3A F9 */	bl createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf
@@ -2596,7 +2596,7 @@ exec__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase:
 /* 802CDE7C 002CADBC  7F E3 FB 78 */	mr r3, r31
 /* 802CDE80 002CADC0  38 80 00 00 */	li r4, 0
 /* 802CDE84 002CADC4  C0 25 08 94 */	lfs f1, 0x894(r5)
-/* 802CDE88 002CADC8  4B E4 5F FD */	bl swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
+/* 802CDE88 002CADC8  4B E4 5F FD */	bl "swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
 /* 802CDE8C 002CADCC  48 00 01 8C */	b lbl_802CE018
 lbl_802CDE90:
 /* 802CDE90 002CADD0  28 00 03 E8 */	cmplwi r0, 0x3e8

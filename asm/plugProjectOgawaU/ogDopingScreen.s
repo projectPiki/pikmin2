@@ -660,7 +660,7 @@ effStart__Q32og6Screen11DopingCheckFP7J2DPane:
 /* 80303F58 00300E98  7C 7F 1B 78 */	mr r31, r3
 /* 80303F5C 00300E9C  7C 83 23 78 */	mr r3, r4
 /* 80303F60 00300EA0  38 81 00 10 */	addi r4, r1, 0x10
-/* 80303F64 00300EA4  4B FF E8 01 */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
+/* 80303F64 00300EA4  4B FF E8 01 */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
 /* 80303F68 00300EA8  80 81 00 10 */	lwz r4, 0x10(r1)
 /* 80303F6C 00300EAC  3C 60 80 4C */	lis r3, __vt__Q25efx2d3Arg@ha
 /* 80303F70 00300EB0  80 A1 00 14 */	lwz r5, 0x14(r1)
@@ -695,7 +695,7 @@ startGetEff_Up__Q32og6Screen11DopingCheckFv:
 /* 80303FD8 00300F18  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80303FDC 00300F1C  7C 7F 1B 78 */	mr r31, r3
 /* 80303FE0 00300F20  80 63 00 00 */	lwz r3, 0(r3)
-/* 80303FE4 00300F24  4B FF E7 81 */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
+/* 80303FE4 00300F24  4B FF E7 81 */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
 /* 80303FE8 00300F28  C0 21 00 08 */	lfs f1, 8(r1)
 /* 80303FEC 00300F2C  3C 60 80 4C */	lis r3, __vt__Q25efx2d7TBaseIF@ha
 /* 80303FF0 00300F30  C0 1F 00 3C */	lfs f0, 0x3c(r31)
@@ -750,7 +750,7 @@ startGetEff_Down__Q32og6Screen11DopingCheckFv:
 /* 803040A8 00300FE8  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 803040AC 00300FEC  7C 7F 1B 78 */	mr r31, r3
 /* 803040B0 00300FF0  80 63 00 04 */	lwz r3, 4(r3)
-/* 803040B4 00300FF4  4B FF E6 B1 */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
+/* 803040B4 00300FF4  4B FF E6 B1 */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
 /* 803040B8 00300FF8  C0 21 00 08 */	lfs f1, 8(r1)
 /* 803040BC 00300FFC  3C 60 80 4C */	lis r3, __vt__Q25efx2d7TBaseIF@ha
 /* 803040C0 00301000  C0 1F 00 3C */	lfs f0, 0x3c(r31)

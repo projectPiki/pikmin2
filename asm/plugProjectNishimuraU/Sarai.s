@@ -1014,11 +1014,11 @@ getAttackableTarget__Q34Game5Sarai3ObjFv:
 /* 802739E8 00270928  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802739EC 0027092C  40 80 03 3C */	bge lbl_80273D28
 /* 802739F0 00270930  C0 42 CE FC */	lfs f2, lbl_8051B25C@sda21(r2)
-/* 802739F4 00270934  3C 60 80 4B */	lis r3, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 802739F4 00270934  3C 60 80 4B */	lis r3, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 802739F8 00270938  C0 24 04 24 */	lfs f1, 0x424(r4)
 /* 802739FC 0027093C  38 00 00 00 */	li r0, 0
 /* 80273A00 00270940  C0 04 03 D4 */	lfs f0, 0x3d4(r4)
-/* 80273A04 00270944  38 83 BC 9C */	addi r4, r3, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 80273A04 00270944  38 83 BC 9C */	addi r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 80273A08 00270948  EC 22 00 72 */	fmuls f1, f2, f1
 /* 80273A0C 0027094C  C0 42 CE DC */	lfs f2, lbl_8051B23C@sda21(r2)
 /* 80273A10 00270950  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
@@ -1250,7 +1250,7 @@ catchTarget__Q34Game5Sarai3ObjFv:
 /* 80273D60 00270CA0  7C 08 02 A6 */	mflr r0
 /* 80273D64 00270CA4  38 80 00 00 */	li r4, 0
 /* 80273D68 00270CA8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80273D6C 00270CAC  4B E9 FD C9 */	bl eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition$$0Q24Game4Piki$$1
+/* 80273D6C 00270CAC  4B E9 FD C9 */	bl "eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Q24Game4Piki>"
 /* 80273D70 00270CB0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80273D74 00270CB4  7C 08 03 A6 */	mtlr r0
 /* 80273D78 00270CB8  38 21 00 10 */	addi r1, r1, 0x10
@@ -1269,7 +1269,7 @@ createDownEffect__Q34Game5Sarai3ObjFv:
 /* 80273DA0 00270CE0  4E 80 04 21 */	bctrl 
 /* 80273DA4 00270CE4  7F E3 FB 78 */	mr r3, r31
 /* 80273DA8 00270CE8  38 9F 01 8C */	addi r4, r31, 0x18c
-/* 80273DAC 00270CEC  4B E8 FD A5 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 80273DAC 00270CEC  4B E8 FD A5 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 80273DB0 00270CF0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80273DB4 00270CF4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80273DB8 00270CF8  7C 08 03 A6 */	mtlr r0

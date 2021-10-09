@@ -163,7 +163,7 @@ lbl_803493DC:
 /* 803493E8 00346328  38 21 00 20 */	addi r1, r1, 0x20
 /* 803493EC 0034632C  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q28Morimura9TTestBaseFv
-$$224$$2__dt__Q28Morimura9TTestBaseFv:
+.global "@24@__dt__Q28Morimura9TTestBaseFv"
+"@24@__dt__Q28Morimura9TTestBaseFv":
 /* 803493F0 00346330  38 63 FF E8 */	addi r3, r3, -24
 /* 803493F4 00346334  4B FF AD 74 */	b __dt__Q28Morimura9TTestBaseFv

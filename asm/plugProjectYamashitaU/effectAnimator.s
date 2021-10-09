@@ -262,9 +262,9 @@ setup__Q214EffectAnimator3MgrFv:
 /* 8013302C 0012FF6C  7C 7B 1B 78 */	mr r27, r3
 /* 80133030 0012FF70  38 60 00 24 */	li r3, 0x24
 /* 80133034 0012FF74  4B EF 0F 79 */	bl __nwa__FUl
-/* 80133038 0012FF78  3C 80 80 4B */	lis r4, sEffectAnimData__Q214EffectAnimator28$$2unnamed$$2effectAnimator_cpp$$2@ha
+/* 80133038 0012FF78  3C 80 80 4B */	lis r4, "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"@ha
 /* 8013303C 0012FF7C  90 7B 00 00 */	stw r3, 0(r27)
-/* 80133040 0012FF80  3B C4 FD 8C */	addi r30, r4, sEffectAnimData__Q214EffectAnimator28$$2unnamed$$2effectAnimator_cpp$$2@l
+/* 80133040 0012FF80  3B C4 FD 8C */	addi r30, r4, "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"@l
 /* 80133044 0012FF84  3B 80 00 00 */	li r28, 0
 /* 80133048 0012FF88  3B A0 00 00 */	li r29, 0
 lbl_8013304C:

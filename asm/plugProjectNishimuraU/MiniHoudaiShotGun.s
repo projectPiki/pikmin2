@@ -1114,8 +1114,8 @@ isFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EEC98 002EBBD8  88 63 00 06 */	lbz r3, 6(r3)
 /* 802EEC9C 002EBBDC  4E 80 00 20 */	blr 
 
-.global setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3$$0f$$1
-setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3$$0f$$1:
+.global "setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>"
+"setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>":
 /* 802EECA0 002EBBE0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 802EECA4 002EBBE4  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 802EECA8 002EBBE8  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2088,7 +2088,7 @@ __sinit_MiniHoudaiShotGun_cpp:
 /* 802EFA14 002EC954  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802EFA18 002EC958  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx11TChibiShellFv
-$$24$$2__dt__Q23efx11TChibiShellFv:
+.global "@4@__dt__Q23efx11TChibiShellFv"
+"@4@__dt__Q23efx11TChibiShellFv":
 /* 802EFA1C 002EC95C  38 63 FF FC */	addi r3, r3, -4
 /* 802EFA20 002EC960  4B FF FE D8 */	b __dt__Q23efx11TChibiShellFv

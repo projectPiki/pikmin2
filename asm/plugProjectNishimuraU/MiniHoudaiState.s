@@ -423,7 +423,7 @@ exec__Q34Game10MiniHoudai12StateRebirthFPQ24Game9EnemyBase:
 /* 802E855C 002E549C  C0 25 05 14 */	lfs f1, 0x514(r5)
 /* 802E8560 002E54A0  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802E8564 002E54A4  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802E8568 002E54A8  4B E2 AF 6D */	bl flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E8568 002E54A8  4B E2 AF 6D */	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E856C 002E54AC  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802E8570 002E54B0  7F E3 FB 78 */	mr r3, r31
 /* 802E8574 002E54B4  C0 82 EB F4 */	lfs f4, lbl_8051CF54@sda21(r2)
@@ -431,7 +431,7 @@ exec__Q34Game10MiniHoudai12StateRebirthFPQ24Game9EnemyBase:
 /* 802E857C 002E54BC  C0 25 05 14 */	lfs f1, 0x514(r5)
 /* 802E8580 002E54C0  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802E8584 002E54C4  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802E8588 002E54C8  4B E2 B2 09 */	bl flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Navi$$1
+/* 802E8588 002E54C8  4B E2 B2 09 */	bl "flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
 /* 802E858C 002E54CC  C0 02 EB E8 */	lfs f0, lbl_8051CF48@sda21(r2)
 /* 802E8590 002E54D0  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 /* 802E8594 002E54D4  80 1F 01 E0 */	lwz r0, 0x1e0(r31)
@@ -1570,7 +1570,7 @@ exec__Q34Game10MiniHoudai10StateFlickFPQ24Game9EnemyBase:
 /* 802E9630 002E6570  C0 25 05 14 */	lfs f1, 0x514(r5)
 /* 802E9634 002E6574  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802E9638 002E6578  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802E963C 002E657C  4B E2 9E 99 */	bl flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E963C 002E657C  4B E2 9E 99 */	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E9640 002E6580  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802E9644 002E6584  7F E3 FB 78 */	mr r3, r31
 /* 802E9648 002E6588  C0 82 EB F4 */	lfs f4, lbl_8051CF54@sda21(r2)
@@ -1578,7 +1578,7 @@ exec__Q34Game10MiniHoudai10StateFlickFPQ24Game9EnemyBase:
 /* 802E9650 002E6590  C0 25 05 14 */	lfs f1, 0x514(r5)
 /* 802E9654 002E6594  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802E9658 002E6598  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802E965C 002E659C  4B E2 A1 35 */	bl flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Navi$$1
+/* 802E965C 002E659C  4B E2 A1 35 */	bl "flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
 /* 802E9660 002E65A0  C0 02 EB E8 */	lfs f0, lbl_8051CF48@sda21(r2)
 /* 802E9664 002E65A4  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 /* 802E9668 002E65A8  48 00 04 5C */	b lbl_802E9AC4

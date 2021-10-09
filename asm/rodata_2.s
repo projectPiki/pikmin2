@@ -623,8 +623,8 @@ fix_pool_sizes:
 	.4byte 0x00000024
 	.4byte 0x00000034
 	.4byte 0x00000044
-.global $$2stringBase0_1
-$$2stringBase0_1:
+.global "@stringBase0_1"
+"@stringBase0_1":
 	.4byte 0x31373937
 	.4byte 0x36393331
 	.4byte 0x33343836
@@ -681,12 +681,12 @@ $$2stringBase0_1:
 	.4byte 0x00313238
 	.4byte 0x00323536
 	.4byte 0x00000000
-.global $$2stringBase0_2
-$$2stringBase0_2:
+.global "@stringBase0_2"
+"@stringBase0_2":
 	.4byte 0x2E000043
 	.4byte 0x00000000
-.global $$2stringBase0_3
-$$2stringBase0_3:
+.global "@stringBase0_3"
+"@stringBase0_3":
 	.4byte 0x002D494E
 	.4byte 0x46002D69
 	.4byte 0x6E660049
@@ -8643,8 +8643,8 @@ lbl_80480F30:
 	.4byte 0x82A282DC
 	.4byte 0x82B982F1
 	.4byte 0x0A000000
-.global repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2
-repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2:
+.global "repay_levs__26@unnamed@gamePlayData_cpp@"
+"repay_levs__26@unnamed@gamePlayData_cpp@":
 	.4byte 0x41200000
 	.4byte 0x41A00000
 	.4byte 0x41F00000
@@ -11855,8 +11855,8 @@ lbl_80483AD0:
 	.4byte 0x5F74616E
 	.4byte 0x6B2E6274
 	.4byte 0x69000000
-.global cardData__Q34Game6VsGame23$$2unnamed$$2vsCardMgr_cpp$$2
-cardData__Q34Game6VsGame23$$2unnamed$$2vsCardMgr_cpp$$2:
+.global "cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"
+"cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@":
 	.4byte 0x80483AE8
 	.4byte 0x00000001
 	.4byte 0x80483AF8
@@ -20671,8 +20671,8 @@ lbl_8048BCB4:
 	.4byte 0x666F6F74
 	.4byte 0x5F6A6F69
 	.4byte 0x6E743100
-.global cJointModRatio__Q24Game27$$2unnamed$$2SnakeJointMgr_cpp$$2
-cJointModRatio__Q24Game27$$2unnamed$$2SnakeJointMgr_cpp$$2:
+.global "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@"
+"cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@":
 	.4byte 0x00000000
 	.4byte 0x3E4CCCCD
 	.4byte 0x3ECCCCCD
@@ -22143,8 +22143,8 @@ lbl_8048D228:
 	.4byte 0x725F6566
 	.4byte 0x66000000
 	.4byte 0x00000000
-.global cSphereShadowRadius__Q34Game9SnakeCrow29$$2unnamed$$2SnakeCrowShadow_cpp$$2
-cSphereShadowRadius__Q34Game9SnakeCrow29$$2unnamed$$2SnakeCrowShadow_cpp$$2:
+.global "cSphereShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@"
+"cSphereShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@":
 	.4byte 0x418C0000
 	.4byte 0x418C0000
 	.4byte 0x41700000
@@ -22153,8 +22153,8 @@ cSphereShadowRadius__Q34Game9SnakeCrow29$$2unnamed$$2SnakeCrowShadow_cpp$$2:
 	.4byte 0x40F00000
 	.4byte 0x40D00000
 	.4byte 0x418C0000
-.global cTubeShadowRadius__Q34Game9SnakeCrow29$$2unnamed$$2SnakeCrowShadow_cpp$$2
-cTubeShadowRadius__Q34Game9SnakeCrow29$$2unnamed$$2SnakeCrowShadow_cpp$$2:
+.global "cTubeShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@"
+"cTubeShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@":
 	.4byte 0x418C0000
 	.4byte 0x41840000
 	.4byte 0x41580000
@@ -22197,8 +22197,8 @@ lbl_8048D2E0:
 	.4byte 0x8048D2BC
 	.4byte 0x8048D2C8
 	.4byte 0x8048D2D4
-.global cSphereShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2
-cSphereShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2:
+.global "cSphereShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"
+"cSphereShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@":
 	.4byte 0x40F00000
 	.4byte 0x40F00000
 	.4byte 0x41A00000
@@ -22208,8 +22208,8 @@ cSphereShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2:
 	.4byte 0x41300000
 	.4byte 0x41000000
 	.4byte 0x41B40000
-.global cTubeShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2
-cTubeShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2:
+.global "cTubeShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"
+"cTubeShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@":
 	.4byte 0x40F00000
 	.4byte 0x40F00000
 	.4byte 0x41A00000

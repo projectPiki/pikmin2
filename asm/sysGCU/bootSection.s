@@ -738,11 +738,11 @@ lbl_80447E00:
 /* 80447E5C 00444D9C  3C 80 80 4F */	lis r4, lbl_804ED004@ha
 /* 80447E60 00444DA0  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 80447E64 00444DA4  39 04 D0 04 */	addi r8, r4, lbl_804ED004@l
-/* 80447E68 00444DA8  3C 80 80 4F */	lis r4, __vt__23Delegate$$011BootSection$$1@ha
+/* 80447E68 00444DA8  3C 80 80 4F */	lis r4, "__vt__23Delegate<11BootSection>"@ha
 /* 80447E6C 00444DAC  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80447E70 00444DB0  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 80447E74 00444DB4  80 C8 00 04 */	lwz r6, 4(r8)
-/* 80447E78 00444DB8  38 04 D1 90 */	addi r0, r4, __vt__23Delegate$$011BootSection$$1@l
+/* 80447E78 00444DB8  38 04 D1 90 */	addi r0, r4, "__vt__23Delegate<11BootSection>"@l
 /* 80447E7C 00444DBC  80 88 00 08 */	lwz r4, 8(r8)
 /* 80447E80 00444DC0  90 E1 00 08 */	stw r7, 8(r1)
 /* 80447E84 00444DC4  90 A3 00 00 */	stw r5, 0(r3)
@@ -2599,11 +2599,11 @@ lbl_804498FC:
 /* 80449938 00446878  3C 60 80 4F */	lis r3, lbl_804ED068@ha
 /* 8044993C 0044687C  3C 80 80 4B */	lis r4, __vt__9IDelegate@ha
 /* 80449940 00446880  39 03 D0 68 */	addi r8, r3, lbl_804ED068@l
-/* 80449944 00446884  3C 60 80 4F */	lis r3, __vt__23Delegate$$011BootSection$$1@ha
+/* 80449944 00446884  3C 60 80 4F */	lis r3, "__vt__23Delegate<11BootSection>"@ha
 /* 80449948 00446888  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8044994C 0044688C  38 84 0F 00 */	addi r4, r4, __vt__9IDelegate@l
 /* 80449950 00446890  80 C8 00 04 */	lwz r6, 4(r8)
-/* 80449954 00446894  38 03 D1 90 */	addi r0, r3, __vt__23Delegate$$011BootSection$$1@l
+/* 80449954 00446894  38 03 D1 90 */	addi r0, r3, "__vt__23Delegate<11BootSection>"@l
 /* 80449958 00446898  80 68 00 08 */	lwz r3, 8(r8)
 /* 8044995C 0044689C  90 E1 00 08 */	stw r7, 8(r1)
 /* 80449960 004468A0  90 85 00 00 */	stw r4, 0(r5)
@@ -2882,8 +2882,8 @@ run__11BootSectionFv:
 /* 80449D24 00446C64  80 FE 00 90 */	lwz r7, 0x90(r30)
 /* 80449D28 00446C68  38 83 0F 00 */	addi r4, r3, __vt__9IDelegate@l
 /* 80449D2C 00446C6C  80 DE 00 94 */	lwz r6, 0x94(r30)
-/* 80449D30 00446C70  3C 60 80 4F */	lis r3, __vt__23Delegate$$011BootSection$$1@ha
-/* 80449D34 00446C74  38 03 D1 90 */	addi r0, r3, __vt__23Delegate$$011BootSection$$1@l
+/* 80449D30 00446C70  3C 60 80 4F */	lis r3, "__vt__23Delegate<11BootSection>"@ha
+/* 80449D34 00446C74  38 03 D1 90 */	addi r0, r3, "__vt__23Delegate<11BootSection>"@l
 /* 80449D38 00446C78  91 01 00 20 */	stw r8, 0x20(r1)
 /* 80449D3C 00446C7C  90 85 00 00 */	stw r4, 0(r5)
 /* 80449D40 00446C80  90 05 00 00 */	stw r0, 0(r5)
@@ -3078,8 +3078,8 @@ forceReset__11BootSectionFv:
 /* 80449FDC 00446F1C  38 60 00 00 */	li r3, 0
 /* 80449FE0 00446F20  4E 80 00 20 */	blr 
 
-.global invoke__23Delegate$$011BootSection$$1Fv
-invoke__23Delegate$$011BootSection$$1Fv:
+.global "invoke__23Delegate<11BootSection>Fv"
+"invoke__23Delegate<11BootSection>Fv":
 /* 80449FE4 00446F24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80449FE8 00446F28  7C 08 02 A6 */	mflr r0
 /* 80449FEC 00446F2C  7C 64 1B 78 */	mr r4, r3

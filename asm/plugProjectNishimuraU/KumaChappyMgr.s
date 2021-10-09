@@ -72,9 +72,9 @@ __ct__Q34Game10KumaChappy5ParmsFv:
 /* 802993A0 002962E0  90 FE 07 FC */	stw r7, 0x7fc(r30)
 /* 802993A4 002962E4  90 1E 08 00 */	stw r0, 0x800(r30)
 /* 802993A8 002962E8  48 17 A2 B1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802993AC 002962EC  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 802993AC 002962EC  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 802993B0 002962F0  3C A0 66 70 */	lis r5, 0x66703131@ha
-/* 802993B4 002962F4  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 802993B4 002962F4  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 802993B8 002962F8  C0 02 D7 E8 */	lfs f0, lbl_8051BB48@sda21(r2)
 /* 802993BC 002962FC  90 1E 08 04 */	stw r0, 0x804(r30)
 /* 802993C0 00296300  38 7E 08 2C */	addi r3, r30, 0x82c
@@ -87,9 +87,9 @@ __ct__Q34Game10KumaChappy5ParmsFv:
 /* 802993DC 0029631C  D0 3E 08 24 */	stfs f1, 0x824(r30)
 /* 802993E0 00296320  D0 1E 08 28 */	stfs f0, 0x828(r30)
 /* 802993E4 00296324  48 17 A2 75 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802993E8 00296328  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 802993E8 00296328  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 802993EC 0029632C  3C A0 66 70 */	lis r5, 0x66703132@ha
-/* 802993F0 00296330  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 802993F0 00296330  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 802993F4 00296334  C0 02 D7 F4 */	lfs f0, lbl_8051BB54@sda21(r2)
 /* 802993F8 00296338  90 1E 08 2C */	stw r0, 0x82c(r30)
 /* 802993FC 0029633C  38 7E 08 54 */	addi r3, r30, 0x854
@@ -102,9 +102,9 @@ __ct__Q34Game10KumaChappy5ParmsFv:
 /* 80299418 00296358  D0 3E 08 4C */	stfs f1, 0x84c(r30)
 /* 8029941C 0029635C  D0 1E 08 50 */	stfs f0, 0x850(r30)
 /* 80299420 00296360  48 17 A2 39 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80299424 00296364  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80299424 00296364  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80299428 00296368  C0 42 D8 00 */	lfs f2, lbl_8051BB60@sda21(r2)
-/* 8029942C 0029636C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8029942C 0029636C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80299430 00296370  C0 22 D7 F8 */	lfs f1, lbl_8051BB58@sda21(r2)
 /* 80299434 00296374  90 1E 08 54 */	stw r0, 0x854(r30)
 /* 80299438 00296378  7F C3 F3 78 */	mr r3, r30
@@ -282,7 +282,7 @@ getEnemyTypeID__Q34Game10KumaChappy3MgrFv:
 /* 80299690 002965D0  38 60 00 23 */	li r3, 0x23
 /* 80299694 002965D4  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game10KumaChappy3MgrFv
-$$24$$2__dt__Q34Game10KumaChappy3MgrFv:
+.global "@4@__dt__Q34Game10KumaChappy3MgrFv"
+"@4@__dt__Q34Game10KumaChappy3MgrFv":
 /* 80299698 002965D8  38 63 FF FC */	addi r3, r3, -4
 /* 8029969C 002965DC  4B FF FF 44 */	b __dt__Q34Game10KumaChappy3MgrFv

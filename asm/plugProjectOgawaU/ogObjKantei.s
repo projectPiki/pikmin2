@@ -727,7 +727,7 @@ lbl_80318C94:
 /* 80318CF4 00315C34  38 00 00 0A */	li r0, 0xa
 /* 80318CF8 00315C38  D0 1F 00 E8 */	stfs f0, 0xe8(r31)
 /* 80318CFC 00315C3C  90 1F 00 EC */	stw r0, 0xec(r31)
-/* 80318D00 00315C40  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80318D00 00315C40  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80318D04 00315C44  28 00 00 00 */	cmplwi r0, 0
 /* 80318D08 00315C48  40 82 00 20 */	bne lbl_80318D28
 /* 80318D0C 00315C4C  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -738,7 +738,7 @@ lbl_80318C94:
 /* 80318D20 00315C60  4C C6 31 82 */	crclr 6
 /* 80318D24 00315C64  4B D1 19 1D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80318D28:
-/* 80318D28 00315C68  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80318D28 00315C68  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80318D2C 00315C6C  38 80 18 46 */	li r4, 0x1846
 /* 80318D30 00315C70  38 A0 00 00 */	li r5, 0
 /* 80318D34 00315C74  48 02 66 35 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
@@ -843,7 +843,7 @@ commonUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 80318EA4 00315DE4  41 81 00 48 */	bgt lbl_80318EEC
 /* 80318EA8 00315DE8  38 00 00 00 */	li r0, 0
 /* 80318EAC 00315DEC  98 1F 00 E4 */	stb r0, 0xe4(r31)
-/* 80318EB0 00315DF0  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80318EB0 00315DF0  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80318EB4 00315DF4  28 00 00 00 */	cmplwi r0, 0
 /* 80318EB8 00315DF8  40 82 00 20 */	bne lbl_80318ED8
 /* 80318EBC 00315DFC  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -854,13 +854,13 @@ commonUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 80318ED0 00315E10  4C C6 31 82 */	crclr 6
 /* 80318ED4 00315E14  4B D1 17 6D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80318ED8:
-/* 80318ED8 00315E18  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80318ED8 00315E18  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80318EDC 00315E1C  38 80 18 5F */	li r4, 0x185f
 /* 80318EE0 00315E20  38 A0 00 00 */	li r5, 0
 /* 80318EE4 00315E24  48 02 64 85 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
 /* 80318EE8 00315E28  48 00 00 3C */	b lbl_80318F24
 lbl_80318EEC:
-/* 80318EEC 00315E2C  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80318EEC 00315E2C  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80318EF0 00315E30  28 00 00 00 */	cmplwi r0, 0
 /* 80318EF4 00315E34  40 82 00 20 */	bne lbl_80318F14
 /* 80318EF8 00315E38  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -871,7 +871,7 @@ lbl_80318EEC:
 /* 80318F0C 00315E4C  4C C6 31 82 */	crclr 6
 /* 80318F10 00315E50  4B D1 17 31 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80318F14:
-/* 80318F14 00315E54  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80318F14 00315E54  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80318F18 00315E58  38 80 18 50 */	li r4, 0x1850
 /* 80318F1C 00315E5C  38 A0 00 00 */	li r5, 0
 /* 80318F20 00315E60  48 02 64 49 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
@@ -1114,7 +1114,7 @@ lbl_8031924C:
 /* 803192AC 003161EC  41 81 00 48 */	bgt lbl_803192F4
 /* 803192B0 003161F0  38 00 00 00 */	li r0, 0
 /* 803192B4 003161F4  98 1F 00 E4 */	stb r0, 0xe4(r31)
-/* 803192B8 003161F8  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 803192B8 003161F8  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 803192BC 003161FC  28 00 00 00 */	cmplwi r0, 0
 /* 803192C0 00316200  40 82 00 20 */	bne lbl_803192E0
 /* 803192C4 00316204  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -1125,13 +1125,13 @@ lbl_8031924C:
 /* 803192D8 00316218  4C C6 31 82 */	crclr 6
 /* 803192DC 0031621C  4B D1 13 65 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_803192E0:
-/* 803192E0 00316220  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 803192E0 00316220  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 803192E4 00316224  38 80 18 5F */	li r4, 0x185f
 /* 803192E8 00316228  38 A0 00 00 */	li r5, 0
 /* 803192EC 0031622C  48 02 60 7D */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
 /* 803192F0 00316230  48 00 00 3C */	b lbl_8031932C
 lbl_803192F4:
-/* 803192F4 00316234  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 803192F4 00316234  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 803192F8 00316238  28 00 00 00 */	cmplwi r0, 0
 /* 803192FC 0031623C  40 82 00 20 */	bne lbl_8031931C
 /* 80319300 00316240  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -1142,7 +1142,7 @@ lbl_803192F4:
 /* 80319314 00316254  4C C6 31 82 */	crclr 6
 /* 80319318 00316258  4B D1 13 29 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8031931C:
-/* 8031931C 0031625C  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8031931C 0031625C  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80319320 00316260  38 80 18 50 */	li r4, 0x1850
 /* 80319324 00316264  38 A0 00 00 */	li r5, 0
 /* 80319328 00316268  48 02 60 41 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
@@ -1548,7 +1548,7 @@ lbl_8031984C:
 /* 803198BC 003167FC  41 81 00 48 */	bgt lbl_80319904
 /* 803198C0 00316800  38 00 00 00 */	li r0, 0
 /* 803198C4 00316804  98 1E 00 E4 */	stb r0, 0xe4(r30)
-/* 803198C8 00316808  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 803198C8 00316808  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 803198CC 0031680C  28 00 00 00 */	cmplwi r0, 0
 /* 803198D0 00316810  40 82 00 20 */	bne lbl_803198F0
 /* 803198D4 00316814  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -1559,13 +1559,13 @@ lbl_8031984C:
 /* 803198E8 00316828  4C C6 31 82 */	crclr 6
 /* 803198EC 0031682C  4B D1 0D 55 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_803198F0:
-/* 803198F0 00316830  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 803198F0 00316830  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 803198F4 00316834  38 80 18 5F */	li r4, 0x185f
 /* 803198F8 00316838  38 A0 00 00 */	li r5, 0
 /* 803198FC 0031683C  48 02 5A 6D */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
 /* 80319900 00316840  48 00 00 3C */	b lbl_8031993C
 lbl_80319904:
-/* 80319904 00316844  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80319904 00316844  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80319908 00316848  28 00 00 00 */	cmplwi r0, 0
 /* 8031990C 0031684C  40 82 00 20 */	bne lbl_8031992C
 /* 80319910 00316850  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -1576,7 +1576,7 @@ lbl_80319904:
 /* 80319924 00316864  4C C6 31 82 */	crclr 6
 /* 80319928 00316868  4B D1 0D 19 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8031992C:
-/* 8031992C 0031686C  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8031992C 0031686C  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80319930 00316870  38 80 18 50 */	li r4, 0x1850
 /* 80319934 00316874  38 A0 00 00 */	li r5, 0
 /* 80319938 00316878  48 02 5A 31 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
@@ -1663,7 +1663,7 @@ lbl_803199F0:
 /* 80319A68 003169A8  41 81 00 48 */	bgt lbl_80319AB0
 /* 80319A6C 003169AC  38 00 00 00 */	li r0, 0
 /* 80319A70 003169B0  98 1E 00 E4 */	stb r0, 0xe4(r30)
-/* 80319A74 003169B4  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80319A74 003169B4  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80319A78 003169B8  28 00 00 00 */	cmplwi r0, 0
 /* 80319A7C 003169BC  40 82 00 20 */	bne lbl_80319A9C
 /* 80319A80 003169C0  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -1674,13 +1674,13 @@ lbl_803199F0:
 /* 80319A94 003169D4  4C C6 31 82 */	crclr 6
 /* 80319A98 003169D8  4B D1 0B A9 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80319A9C:
-/* 80319A9C 003169DC  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80319A9C 003169DC  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80319AA0 003169E0  38 80 18 5F */	li r4, 0x185f
 /* 80319AA4 003169E4  38 A0 00 00 */	li r5, 0
 /* 80319AA8 003169E8  48 02 58 C1 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
 /* 80319AAC 003169EC  48 00 00 3C */	b lbl_80319AE8
 lbl_80319AB0:
-/* 80319AB0 003169F0  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80319AB0 003169F0  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80319AB4 003169F4  28 00 00 00 */	cmplwi r0, 0
 /* 80319AB8 003169F8  40 82 00 20 */	bne lbl_80319AD8
 /* 80319ABC 003169FC  3C 60 80 49 */	lis r3, lbl_8048EA64@ha
@@ -1691,7 +1691,7 @@ lbl_80319AB0:
 /* 80319AD0 00316A10  4C C6 31 82 */	crclr 6
 /* 80319AD4 00316A14  4B D1 0B 6D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80319AD8:
-/* 80319AD8 00316A18  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 80319AD8 00316A18  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 80319ADC 00316A1C  38 80 18 50 */	li r4, 0x1850
 /* 80319AE0 00316A20  38 A0 00 00 */	li r5, 0
 /* 80319AE4 00316A24  48 02 58 85 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
@@ -1759,7 +1759,7 @@ __sinit_ogObjKantei_cpp:
 /* 80319BCC 00316B0C  D0 03 00 3C */	stfs f0, 0x3c(r3)
 /* 80319BD0 00316B10  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen9ObjKanteiFv
-$$224$$2__dt__Q32og9newScreen9ObjKanteiFv:
+.global "@24@__dt__Q32og9newScreen9ObjKanteiFv"
+"@24@__dt__Q32og9newScreen9ObjKanteiFv":
 /* 80319BD4 00316B14  38 63 FF E8 */	addi r3, r3, -24
 /* 80319BD8 00316B18  4B FF E7 8C */	b __dt__Q32og9newScreen9ObjKanteiFv

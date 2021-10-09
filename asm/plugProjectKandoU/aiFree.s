@@ -395,8 +395,8 @@ getNextAIType__Q26PikiAI7ActFreeFv:
 /* 801A04B0 0019D3F0  38 60 00 02 */	li r3, 2
 /* 801A04B4 0019D3F4  4E 80 00 20 */	blr 
 
-.global $$232$$24$$2onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent
-$$232$$24$$2onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent:
+.global "@32@4@onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent"
+"@32@4@onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent":
 /* 801A04B8 0019D3F8  39 60 00 04 */	li r11, 4
 /* 801A04BC 0019D3FC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801A04C0 0019D400  7C 63 5A 14 */	add r3, r3, r11

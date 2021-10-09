@@ -69,9 +69,9 @@ globalInstance__12CellMgrParmsFv:
 /* 8022E274 0022B1B4  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 8022E278 0022B1B8  38 DF 00 10 */	addi r6, r31, 0x10
 /* 8022E27C 0022B1BC  48 1E 53 DD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8022E280 0022B1C0  3C 60 80 4B */	lis r3, __vt__7Parm$$0b$$1@ha
+/* 8022E280 0022B1C0  3C 60 80 4B */	lis r3, "__vt__7Parm<b>"@ha
 /* 8022E284 0022B1C4  3C A0 70 30 */	lis r5, 0x70303031@ha
-/* 8022E288 0022B1C8  38 03 00 80 */	addi r0, r3, __vt__7Parm$$0b$$1@l
+/* 8022E288 0022B1C8  38 03 00 80 */	addi r0, r3, "__vt__7Parm<b>"@l
 /* 8022E28C 0022B1CC  38 E0 00 00 */	li r7, 0
 /* 8022E290 0022B1D0  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 8022E294 0022B1D4  38 00 00 01 */	li r0, 1
@@ -83,9 +83,9 @@ globalInstance__12CellMgrParmsFv:
 /* 8022E2AC 0022B1EC  98 FE 00 3E */	stb r7, 0x3e(r30)
 /* 8022E2B0 0022B1F0  98 1E 00 3F */	stb r0, 0x3f(r30)
 /* 8022E2B4 0022B1F4  48 1E 53 A5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8022E2B8 0022B1F8  3C 60 80 4B */	lis r3, __vt__7Parm$$0b$$1@ha
+/* 8022E2B8 0022B1F8  3C 60 80 4B */	lis r3, "__vt__7Parm<b>"@ha
 /* 8022E2BC 0022B1FC  3C A0 70 30 */	lis r5, 0x70303032@ha
-/* 8022E2C0 0022B200  38 03 00 80 */	addi r0, r3, __vt__7Parm$$0b$$1@l
+/* 8022E2C0 0022B200  38 03 00 80 */	addi r0, r3, "__vt__7Parm<b>"@l
 /* 8022E2C4 0022B204  38 E0 00 01 */	li r7, 1
 /* 8022E2C8 0022B208  90 1E 00 40 */	stw r0, 0x40(r30)
 /* 8022E2CC 0022B20C  38 00 00 00 */	li r0, 0
@@ -97,9 +97,9 @@ globalInstance__12CellMgrParmsFv:
 /* 8022E2E4 0022B224  98 1E 00 5A */	stb r0, 0x5a(r30)
 /* 8022E2E8 0022B228  98 FE 00 5B */	stb r7, 0x5b(r30)
 /* 8022E2EC 0022B22C  48 1E 53 6D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8022E2F0 0022B230  3C 60 80 4B */	lis r3, __vt__7Parm$$0b$$1@ha
+/* 8022E2F0 0022B230  3C 60 80 4B */	lis r3, "__vt__7Parm<b>"@ha
 /* 8022E2F4 0022B234  3C A0 70 30 */	lis r5, 0x70303033@ha
-/* 8022E2F8 0022B238  38 03 00 80 */	addi r0, r3, __vt__7Parm$$0b$$1@l
+/* 8022E2F8 0022B238  38 03 00 80 */	addi r0, r3, "__vt__7Parm<b>"@l
 /* 8022E2FC 0022B23C  38 E0 00 00 */	li r7, 0
 /* 8022E300 0022B240  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 8022E304 0022B244  38 00 00 01 */	li r0, 1
@@ -111,9 +111,9 @@ globalInstance__12CellMgrParmsFv:
 /* 8022E31C 0022B25C  98 FE 00 76 */	stb r7, 0x76(r30)
 /* 8022E320 0022B260  98 1E 00 77 */	stb r0, 0x77(r30)
 /* 8022E324 0022B264  48 1E 53 35 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8022E328 0022B268  3C 80 80 4B */	lis r4, __vt__7Parm$$0b$$1@ha
+/* 8022E328 0022B268  3C 80 80 4B */	lis r4, "__vt__7Parm<b>"@ha
 /* 8022E32C 0022B26C  38 60 00 00 */	li r3, 0
-/* 8022E330 0022B270  38 84 00 80 */	addi r4, r4, __vt__7Parm$$0b$$1@l
+/* 8022E330 0022B270  38 84 00 80 */	addi r4, r4, "__vt__7Parm<b>"@l
 /* 8022E334 0022B274  38 00 00 01 */	li r0, 1
 /* 8022E338 0022B278  90 9E 00 78 */	stw r4, 0x78(r30)
 /* 8022E33C 0022B27C  98 7E 00 90 */	stb r3, 0x90(r30)
@@ -129,7 +129,7 @@ lbl_8022E34C:
 /* 8022E35C 0022B29C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022E360 0022B2A0  4E 80 00 20 */	blr 
 
-.global $$212$$2__dt__12CellMgrParmsFv
-$$212$$2__dt__12CellMgrParmsFv:
+.global "@12@__dt__12CellMgrParmsFv"
+"@12@__dt__12CellMgrParmsFv":
 /* 8022E364 0022B2A4  38 63 FF F4 */	addi r3, r3, -12
 /* 8022E368 0022B2A8  4B FF FE 20 */	b __dt__12CellMgrParmsFv

@@ -352,7 +352,7 @@ createNewObstacle__Q34Game4Farm4FarmFPQ24Game8Creatureff:
 /* 801239D4 00120914  D0 61 00 0C */	stfs f3, 0xc(r1)
 /* 801239D8 00120918  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 801239DC 0012091C  93 BF 00 1C */	stw r29, 0x1c(r31)
-/* 801239E0 00120920  4B FF F4 E5 */	bl createNewControl__Q24Game16FieldVtxColorMgrFR10Vector3$$0f$$1ff
+/* 801239E0 00120920  4B FF F4 E5 */	bl "createNewControl__Q24Game16FieldVtxColorMgrFR10Vector3<f>ff"
 /* 801239E4 00120924  90 7F 00 20 */	stw r3, 0x20(r31)
 lbl_801239E8:
 /* 801239E8 00120928  7F E4 FB 78 */	mr r4, r31
@@ -612,7 +612,7 @@ lbl_80123D38:
 /* 80123D80 00120CC0  98 1E 00 87 */	stb r0, 0x87(r30)
 /* 80123D84 00120CC4  80 BF 00 20 */	lwz r5, 0x20(r31)
 /* 80123D88 00120CC8  C0 25 00 10 */	lfs f1, 0x10(r5)
-/* 80123D8C 00120CCC  48 30 1D 21 */	bl drawSphere__8GraphicsFR10Vector3$$0f$$1f
+/* 80123D8C 00120CCC  48 30 1D 21 */	bl "drawSphere__8GraphicsFR10Vector3<f>f"
 /* 80123D90 00120CD0  38 A0 00 FF */	li r5, 0xff
 /* 80123D94 00120CD4  38 00 00 37 */	li r0, 0x37
 /* 80123D98 00120CD8  98 BE 00 84 */	stb r5, 0x84(r30)
@@ -625,7 +625,7 @@ lbl_80123D38:
 /* 80123DB4 00120CF4  C0 25 00 14 */	lfs f1, 0x14(r5)
 /* 80123DB8 00120CF8  C0 05 00 10 */	lfs f0, 0x10(r5)
 /* 80123DBC 00120CFC  EC 20 00 72 */	fmuls f1, f0, f1
-/* 80123DC0 00120D00  48 30 1C ED */	bl drawSphere__8GraphicsFR10Vector3$$0f$$1f
+/* 80123DC0 00120D00  48 30 1C ED */	bl "drawSphere__8GraphicsFR10Vector3<f>f"
 /* 80123DC4 00120D04  83 FF 00 04 */	lwz r31, 4(r31)
 lbl_80123DC8:
 /* 80123DC8 00120D08  28 1F 00 00 */	cmplwi r31, 0

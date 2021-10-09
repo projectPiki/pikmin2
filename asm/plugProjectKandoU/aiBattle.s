@@ -926,8 +926,8 @@ lbl_8022F9BC:
 /* 8022F9E0 0022C920  38 21 00 40 */	addi r1, r1, 0x40
 /* 8022F9E4 0022C924  4E 80 00 20 */	blr 
 
-.global $$232$$24$$2onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent
-$$232$$24$$2onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent:
+.global "@32@4@onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent"
+"@32@4@onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent":
 /* 8022F9E8 0022C928  39 60 00 04 */	li r11, 4
 /* 8022F9EC 0022C92C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8022F9F0 0022C930  7C 63 5A 14 */	add r3, r3, r11

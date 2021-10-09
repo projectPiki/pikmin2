@@ -72,9 +72,9 @@ __ct__Q34Game9SnakeCrow5ParmsFv:
 /* 80292C88 0028FBC8  90 FE 07 FC */	stw r7, 0x7fc(r30)
 /* 80292C8C 0028FBCC  90 1E 08 00 */	stw r0, 0x800(r30)
 /* 80292C90 0028FBD0  48 18 09 C9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80292C94 0028FBD4  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80292C94 0028FBD4  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80292C98 0028FBD8  3C A0 66 70 */	lis r5, 0x66703131@ha
-/* 80292C9C 0028FBDC  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80292C9C 0028FBDC  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80292CA0 0028FBE0  C0 02 D7 08 */	lfs f0, lbl_8051BA68@sda21(r2)
 /* 80292CA4 0028FBE4  90 1E 08 04 */	stw r0, 0x804(r30)
 /* 80292CA8 0028FBE8  38 7E 08 2C */	addi r3, r30, 0x82c
@@ -87,9 +87,9 @@ __ct__Q34Game9SnakeCrow5ParmsFv:
 /* 80292CC4 0028FC04  D0 3E 08 24 */	stfs f1, 0x824(r30)
 /* 80292CC8 0028FC08  D0 1E 08 28 */	stfs f0, 0x828(r30)
 /* 80292CCC 0028FC0C  48 18 09 8D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80292CD0 0028FC10  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80292CD0 0028FC10  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80292CD4 0028FC14  3C A0 66 70 */	lis r5, 0x66703132@ha
-/* 80292CD8 0028FC18  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80292CD8 0028FC18  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80292CDC 0028FC1C  C0 02 D7 14 */	lfs f0, lbl_8051BA74@sda21(r2)
 /* 80292CE0 0028FC20  90 1E 08 2C */	stw r0, 0x82c(r30)
 /* 80292CE4 0028FC24  38 7E 08 54 */	addi r3, r30, 0x854
@@ -102,9 +102,9 @@ __ct__Q34Game9SnakeCrow5ParmsFv:
 /* 80292D00 0028FC40  D0 3E 08 4C */	stfs f1, 0x84c(r30)
 /* 80292D04 0028FC44  D0 1E 08 50 */	stfs f0, 0x850(r30)
 /* 80292D08 0028FC48  48 18 09 51 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80292D0C 0028FC4C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80292D0C 0028FC4C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80292D10 0028FC50  3C A0 66 70 */	lis r5, 0x66703231@ha
-/* 80292D14 0028FC54  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80292D14 0028FC54  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80292D18 0028FC58  C0 02 D7 10 */	lfs f0, lbl_8051BA70@sda21(r2)
 /* 80292D1C 0028FC5C  90 1E 08 54 */	stw r0, 0x854(r30)
 /* 80292D20 0028FC60  38 7E 08 7C */	addi r3, r30, 0x87c
@@ -117,9 +117,9 @@ __ct__Q34Game9SnakeCrow5ParmsFv:
 /* 80292D3C 0028FC7C  D0 3E 08 74 */	stfs f1, 0x874(r30)
 /* 80292D40 0028FC80  D0 1E 08 78 */	stfs f0, 0x878(r30)
 /* 80292D44 0028FC84  48 18 09 15 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80292D48 0028FC88  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80292D48 0028FC88  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80292D4C 0028FC8C  3C A0 66 70 */	lis r5, 0x66703331@ha
-/* 80292D50 0028FC90  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80292D50 0028FC90  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80292D54 0028FC94  C0 02 D7 1C */	lfs f0, lbl_8051BA7C@sda21(r2)
 /* 80292D58 0028FC98  90 1E 08 7C */	stw r0, 0x87c(r30)
 /* 80292D5C 0028FC9C  38 7E 08 A4 */	addi r3, r30, 0x8a4
@@ -132,9 +132,9 @@ __ct__Q34Game9SnakeCrow5ParmsFv:
 /* 80292D78 0028FCB8  D0 3E 08 9C */	stfs f1, 0x89c(r30)
 /* 80292D7C 0028FCBC  D0 1E 08 A0 */	stfs f0, 0x8a0(r30)
 /* 80292D80 0028FCC0  48 18 08 D9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80292D84 0028FCC4  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80292D84 0028FCC4  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80292D88 0028FCC8  C0 42 D7 24 */	lfs f2, lbl_8051BA84@sda21(r2)
-/* 80292D8C 0028FCCC  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80292D8C 0028FCCC  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80292D90 0028FCD0  C0 22 D7 0C */	lfs f1, lbl_8051BA6C@sda21(r2)
 /* 80292D94 0028FCD4  90 1E 08 A4 */	stw r0, 0x8a4(r30)
 /* 80292D98 0028FCD8  7F C3 F3 78 */	mr r3, r30
@@ -357,7 +357,7 @@ read__Q34Game9SnakeCrow5ParmsFR6Stream:
 /* 80293084 0028FFC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80293088 0028FFC8  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game9SnakeCrow3MgrFv
-$$24$$2__dt__Q34Game9SnakeCrow3MgrFv:
+.global "@4@__dt__Q34Game9SnakeCrow3MgrFv"
+"@4@__dt__Q34Game9SnakeCrow3MgrFv":
 /* 8029308C 0028FFCC  38 63 FF FC */	addi r3, r3, -4
 /* 80293090 0028FFD0  4B FF FE C8 */	b __dt__Q34Game9SnakeCrow3MgrFv

@@ -72,9 +72,9 @@ __ct__Q34Game10DangoMushi5ParmsFv:
 /* 802FBE08 002F8D48  90 FF 07 FC */	stw r7, 0x7fc(r31)
 /* 802FBE0C 002F8D4C  90 1F 08 00 */	stw r0, 0x800(r31)
 /* 802FBE10 002F8D50  48 11 78 49 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802FBE14 002F8D54  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 802FBE14 002F8D54  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 802FBE18 002F8D58  3C A0 66 70 */	lis r5, 0x66703032@ha
-/* 802FBE1C 002F8D5C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 802FBE1C 002F8D5C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 802FBE20 002F8D60  C0 02 F0 18 */	lfs f0, lbl_8051D378@sda21(r2)
 /* 802FBE24 002F8D64  90 1F 08 04 */	stw r0, 0x804(r31)
 /* 802FBE28 002F8D68  38 7F 08 2C */	addi r3, r31, 0x82c
@@ -87,9 +87,9 @@ __ct__Q34Game10DangoMushi5ParmsFv:
 /* 802FBE44 002F8D84  D0 3F 08 24 */	stfs f1, 0x824(r31)
 /* 802FBE48 002F8D88  D0 1F 08 28 */	stfs f0, 0x828(r31)
 /* 802FBE4C 002F8D8C  48 11 78 0D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802FBE50 002F8D90  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 802FBE50 002F8D90  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 802FBE54 002F8D94  3C A0 66 70 */	lis r5, 0x66703033@ha
-/* 802FBE58 002F8D98  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 802FBE58 002F8D98  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 802FBE5C 002F8D9C  C0 02 F0 24 */	lfs f0, lbl_8051D384@sda21(r2)
 /* 802FBE60 002F8DA0  90 1F 08 2C */	stw r0, 0x82c(r31)
 /* 802FBE64 002F8DA4  38 7F 08 54 */	addi r3, r31, 0x854
@@ -102,9 +102,9 @@ __ct__Q34Game10DangoMushi5ParmsFv:
 /* 802FBE80 002F8DC0  D0 3F 08 4C */	stfs f1, 0x84c(r31)
 /* 802FBE84 002F8DC4  D0 1F 08 50 */	stfs f0, 0x850(r31)
 /* 802FBE88 002F8DC8  48 11 77 D1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802FBE8C 002F8DCC  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 802FBE8C 002F8DCC  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 802FBE90 002F8DD0  3C A0 66 70 */	lis r5, 0x66703130@ha
-/* 802FBE94 002F8DD4  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 802FBE94 002F8DD4  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 802FBE98 002F8DD8  C0 02 F0 2C */	lfs f0, lbl_8051D38C@sda21(r2)
 /* 802FBE9C 002F8DDC  90 1F 08 54 */	stw r0, 0x854(r31)
 /* 802FBEA0 002F8DE0  38 7F 08 7C */	addi r3, r31, 0x87c
@@ -117,9 +117,9 @@ __ct__Q34Game10DangoMushi5ParmsFv:
 /* 802FBEBC 002F8DFC  D0 3F 08 74 */	stfs f1, 0x874(r31)
 /* 802FBEC0 002F8E00  D0 1F 08 78 */	stfs f0, 0x878(r31)
 /* 802FBEC4 002F8E04  48 11 77 95 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802FBEC8 002F8E08  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 802FBEC8 002F8E08  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 802FBECC 002F8E0C  C0 42 F0 34 */	lfs f2, lbl_8051D394@sda21(r2)
-/* 802FBED0 002F8E10  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 802FBED0 002F8E10  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 802FBED4 002F8E14  C0 22 F0 1C */	lfs f1, lbl_8051D37C@sda21(r2)
 /* 802FBED8 002F8E18  90 1F 08 7C */	stw r0, 0x87c(r31)
 /* 802FBEDC 002F8E1C  7F E3 FB 78 */	mr r3, r31
@@ -262,7 +262,7 @@ loadTexData__Q34Game10DangoMushi3MgrFv:
 /* 802FC0B4 002F8FF4  7C 7E 1B 78 */	mr r30, r3
 /* 802FC0B8 002F8FF8  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 802FC0BC 002F8FFC  48 14 21 E1 */	bl enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-/* 802FC0C0 002F9000  80 8D 85 10 */	lwz r4, cMatAnimBrkTexName__Q34Game10DangoMushi27$$2unnamed$$2DangoMushiMgr_cpp$$2@sda21(r13)
+/* 802FC0C0 002F9000  80 8D 85 10 */	lwz r4, "cMatAnimBrkTexName__Q34Game10DangoMushi27@unnamed@DangoMushiMgr_cpp@"@sda21(r13)
 /* 802FC0C4 002F9004  38 61 00 08 */	addi r3, r1, 8
 /* 802FC0C8 002F9008  3B E0 00 00 */	li r31, 0
 /* 802FC0CC 002F900C  48 15 05 0D */	bl __ct__Q212LoadResource3ArgFPCc
@@ -477,7 +477,7 @@ read__Q34Game10DangoMushi5ParmsFR6Stream:
 /* 802FC3AC 002F92EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802FC3B0 002F92F0  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game10DangoMushi3MgrFv
-$$24$$2__dt__Q34Game10DangoMushi3MgrFv:
+.global "@4@__dt__Q34Game10DangoMushi3MgrFv"
+"@4@__dt__Q34Game10DangoMushi3MgrFv":
 /* 802FC3B4 002F92F4  38 63 FF FC */	addi r3, r3, -4
 /* 802FC3B8 002F92F8  4B FF FE C8 */	b __dt__Q34Game10DangoMushi3MgrFv

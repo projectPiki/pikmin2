@@ -787,7 +787,7 @@ lbl_80363130:
 /* 80363130 00360070  EC A4 00 32 */	fmuls f5, f4, f0
 /* 80363134 00360074  C0 82 04 28 */	lfs f4, lbl_8051E788@sda21(r2)
 /* 80363138 00360078  C0 41 00 70 */	lfs f2, 0x70(r1)
-/* 8036313C 0036007C  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 8036313C 0036007C  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 80363140 00360080  C0 01 00 74 */	lfs f0, 0x74(r1)
 /* 80363144 00360084  38 00 00 00 */	li r0, 0
 /* 80363148 00360088  C0 21 00 78 */	lfs f1, 0x78(r1)
@@ -802,7 +802,7 @@ lbl_80363130:
 /* 8036316C 003600AC  EF E0 10 2A */	fadds f31, f0, f2
 /* 80363170 003600B0  D0 C1 00 6C */	stfs f6, 0x6c(r1)
 /* 80363174 003600B4  EF C2 00 28 */	fsubs f30, f2, f0
-/* 80363178 003600B8  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 80363178 003600B8  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 8036317C 003600BC  D0 61 00 70 */	stfs f3, 0x70(r1)
 /* 80363180 003600C0  D0 41 00 74 */	stfs f2, 0x74(r1)
 /* 80363184 003600C4  D0 21 00 78 */	stfs f1, 0x78(r1)
@@ -978,9 +978,9 @@ lbl_803633E8:
 /* 80363404 00360344  40 82 FE 48 */	bne lbl_8036324C
 /* 80363408 00360348  38 00 00 00 */	li r0, 0
 /* 8036340C 0036034C  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 80363410 00360350  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
+/* 80363410 00360350  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
 /* 80363414 00360354  90 01 00 44 */	stw r0, 0x44(r1)
-/* 80363418 00360358  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
+/* 80363418 00360358  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
 /* 8036341C 0036035C  28 00 00 00 */	cmplwi r0, 0
 /* 80363420 00360360  90 81 00 38 */	stw r4, 0x38(r1)
 /* 80363424 00360364  90 01 00 3C */	stw r0, 0x3c(r1)
@@ -1156,7 +1156,7 @@ lbl_80363664:
 /* 803636A4 003605E4  FC 60 F8 90 */	fmr f3, f31
 /* 803636A8 003605E8  C3 A5 05 3C */	lfs f29, 0x53c(r5)
 /* 803636AC 003605EC  FC 20 E0 90 */	fmr f1, f28
-/* 803636B0 003605F0  4B DA FE 25 */	bl flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 803636B0 003605F0  4B DA FE 25 */	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 803636B4 003605F4  FC 20 E8 90 */	fmr f1, f29
 /* 803636B8 003605F8  C0 82 04 60 */	lfs f4, lbl_8051E7C0@sda21(r2)
 /* 803636BC 003605FC  FC 40 F0 90 */	fmr f2, f30
@@ -1170,7 +1170,7 @@ lbl_80363664:
 /* 803636DC 0036061C  7F E3 FB 78 */	mr r3, r31
 /* 803636E0 00360620  FC 60 F8 90 */	fmr f3, f31
 /* 803636E4 00360624  38 80 00 00 */	li r4, 0
-/* 803636E8 00360628  4B DB 00 A9 */	bl flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Navi$$1
+/* 803636E8 00360628  4B DB 00 A9 */	bl "flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
 /* 803636EC 0036062C  C0 42 04 28 */	lfs f2, lbl_8051E788@sda21(r2)
 /* 803636F0 00360630  7F E3 FB 78 */	mr r3, r31
 /* 803636F4 00360634  C0 22 04 64 */	lfs f1, lbl_8051E7C4@sda21(r2)
@@ -1180,7 +1180,7 @@ lbl_80363664:
 /* 80363704 00360644  D0 21 00 64 */	stfs f1, 0x64(r1)
 /* 80363708 00360648  D0 41 00 68 */	stfs f2, 0x68(r1)
 /* 8036370C 0036064C  D0 01 00 6C */	stfs f0, 0x6c(r1)
-/* 80363710 00360650  48 00 27 6D */	bl attackEffect__Q34Game6Miulin3ObjFR10Vector3$$0f$$1
+/* 80363710 00360650  48 00 27 6D */	bl "attackEffect__Q34Game6Miulin3ObjFR10Vector3<f>"
 /* 80363714 00360654  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80363718 00360658  38 A1 00 70 */	addi r5, r1, 0x70
 /* 8036371C 0036065C  38 80 00 0C */	li r4, 0xc
@@ -1196,7 +1196,7 @@ lbl_8036372C:
 /* 80363740 00360680  D0 41 00 64 */	stfs f2, 0x64(r1)
 /* 80363744 00360684  D0 21 00 68 */	stfs f1, 0x68(r1)
 /* 80363748 00360688  D0 01 00 6C */	stfs f0, 0x6c(r1)
-/* 8036374C 0036068C  48 00 27 31 */	bl attackEffect__Q34Game6Miulin3ObjFR10Vector3$$0f$$1
+/* 8036374C 0036068C  48 00 27 31 */	bl "attackEffect__Q34Game6Miulin3ObjFR10Vector3<f>"
 /* 80363750 00360690  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80363754 00360694  38 A1 00 70 */	addi r5, r1, 0x70
 /* 80363758 00360698  38 80 00 0C */	li r4, 0xc
@@ -1600,7 +1600,7 @@ exec__Q34Game6Miulin10StateFlickFPQ24Game9EnemyBase:
 /* 80363CDC 00360C1C  FC 60 E8 90 */	fmr f3, f29
 /* 80363CE0 00360C20  C3 E5 05 3C */	lfs f31, 0x53c(r5)
 /* 80363CE4 00360C24  FC 20 E0 90 */	fmr f1, f28
-/* 80363CE8 00360C28  4B DA F7 ED */	bl flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 80363CE8 00360C28  4B DA F7 ED */	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 80363CEC 00360C2C  FC 20 F8 90 */	fmr f1, f31
 /* 80363CF0 00360C30  C0 82 04 60 */	lfs f4, lbl_8051E7C0@sda21(r2)
 /* 80363CF4 00360C34  FC 40 F0 90 */	fmr f2, f30
@@ -1614,7 +1614,7 @@ exec__Q34Game6Miulin10StateFlickFPQ24Game9EnemyBase:
 /* 80363D14 00360C54  7F E3 FB 78 */	mr r3, r31
 /* 80363D18 00360C58  FC 60 E8 90 */	fmr f3, f29
 /* 80363D1C 00360C5C  38 80 00 00 */	li r4, 0
-/* 80363D20 00360C60  4B DA FA 71 */	bl flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Navi$$1
+/* 80363D20 00360C60  4B DA FA 71 */	bl "flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
 /* 80363D24 00360C64  C0 02 04 28 */	lfs f0, lbl_8051E788@sda21(r2)
 /* 80363D28 00360C68  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 /* 80363D2C 00360C6C  48 00 00 90 */	b lbl_80363DBC

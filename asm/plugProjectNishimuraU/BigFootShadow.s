@@ -230,8 +230,8 @@ init__Q34Game7BigFoot16BigFootShadowMgrFv:
 /* 802C7B60 002C4AA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802C7B64 002C4AA4  4E 80 00 20 */	blr 
 
-.global setJointPosPtr__Q34Game7BigFoot16BigFootShadowMgrFiiP10Vector3$$0f$$1
-setJointPosPtr__Q34Game7BigFoot16BigFootShadowMgrFiiP10Vector3$$0f$$1:
+.global "setJointPosPtr__Q34Game7BigFoot16BigFootShadowMgrFiiP10Vector3<f>"
+"setJointPosPtr__Q34Game7BigFoot16BigFootShadowMgrFiiP10Vector3<f>":
 /* 802C7B68 002C4AA8  54 84 20 36 */	slwi r4, r4, 4
 /* 802C7B6C 002C4AAC  54 A0 10 3A */	slwi r0, r5, 2
 /* 802C7B70 002C4AB0  7C 63 22 14 */	add r3, r3, r4
@@ -335,7 +335,7 @@ lbl_802C7C80:
 /* 802C7CE0 002C4C20  D0 21 00 70 */	stfs f1, 0x70(r1)
 /* 802C7CE4 002C4C24  D0 01 00 74 */	stfs f0, 0x74(r1)
 /* 802C7CE8 002C4C28  80 7A 00 4C */	lwz r3, 0x4c(r26)
-/* 802C7CEC 002C4C2C  48 02 A9 F1 */	bl makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1
+/* 802C7CEC 002C4C2C  48 02 A9 F1 */	bl "makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>"
 /* 802C7CF0 002C4C30  C3 42 E3 B4 */	lfs f26, lbl_8051C714@sda21(r2)
 /* 802C7CF4 002C4C34  7F 5F D3 78 */	mr r31, r26
 /* 802C7CF8 002C4C38  C3 62 E3 B0 */	lfs f27, lbl_8051C710@sda21(r2)
@@ -357,7 +357,7 @@ lbl_802C7D20:
 /* 802C7D34 002C4C74  D3 21 00 70 */	stfs f25, 0x70(r1)
 /* 802C7D38 002C4C78  D3 81 00 74 */	stfs f28, 0x74(r1)
 /* 802C7D3C 002C4C7C  80 7F 00 50 */	lwz r3, 0x50(r31)
-/* 802C7D40 002C4C80  48 02 A3 01 */	bl makeShadowSRT__Q24Game19TubeShadowTransNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802C7D40 002C4C80  48 02 A3 01 */	bl "makeShadowSRT__Q24Game19TubeShadowTransNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"
 /* 802C7D44 002C4C84  D3 A1 00 68 */	stfs f29, 0x68(r1)
 /* 802C7D48 002C4C88  7F A5 EB 78 */	mr r5, r29
 /* 802C7D4C 002C4C8C  7F 86 E3 78 */	mr r6, r28
@@ -366,7 +366,7 @@ lbl_802C7D20:
 /* 802C7D58 002C4C98  D3 21 00 70 */	stfs f25, 0x70(r1)
 /* 802C7D5C 002C4C9C  D3 81 00 74 */	stfs f28, 0x74(r1)
 /* 802C7D60 002C4CA0  80 7F 00 60 */	lwz r3, 0x60(r31)
-/* 802C7D64 002C4CA4  48 02 A5 55 */	bl makeShadowSRT__Q24Game17TubeShadowSetNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802C7D64 002C4CA4  48 02 A5 55 */	bl "makeShadowSRT__Q24Game17TubeShadowSetNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"
 /* 802C7D68 002C4CA8  D3 C1 00 68 */	stfs f30, 0x68(r1)
 /* 802C7D6C 002C4CAC  7F 85 E3 78 */	mr r5, r28
 /* 802C7D70 002C4CB0  7F 66 DB 78 */	mr r6, r27
@@ -375,7 +375,7 @@ lbl_802C7D20:
 /* 802C7D7C 002C4CBC  D3 21 00 70 */	stfs f25, 0x70(r1)
 /* 802C7D80 002C4CC0  D3 81 00 74 */	stfs f28, 0x74(r1)
 /* 802C7D84 002C4CC4  80 7F 00 70 */	lwz r3, 0x70(r31)
-/* 802C7D88 002C4CC8  48 02 A5 31 */	bl makeShadowSRT__Q24Game17TubeShadowSetNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802C7D88 002C4CC8  48 02 A5 31 */	bl "makeShadowSRT__Q24Game17TubeShadowSetNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"
 /* 802C7D8C 002C4CCC  D3 A1 00 68 */	stfs f29, 0x68(r1)
 /* 802C7D90 002C4CD0  7F A5 EB 78 */	mr r5, r29
 /* 802C7D94 002C4CD4  38 81 00 50 */	addi r4, r1, 0x50
@@ -383,18 +383,18 @@ lbl_802C7D20:
 /* 802C7D9C 002C4CDC  D3 21 00 70 */	stfs f25, 0x70(r1)
 /* 802C7DA0 002C4CE0  D3 C1 00 74 */	stfs f30, 0x74(r1)
 /* 802C7DA4 002C4CE4  80 7F 00 80 */	lwz r3, 0x80(r31)
-/* 802C7DA8 002C4CE8  48 02 A9 35 */	bl makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1
+/* 802C7DA8 002C4CE8  48 02 A9 35 */	bl "makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>"
 /* 802C7DAC 002C4CEC  D3 E1 00 74 */	stfs f31, 0x74(r1)
 /* 802C7DB0 002C4CF0  7F 85 E3 78 */	mr r5, r28
 /* 802C7DB4 002C4CF4  38 81 00 50 */	addi r4, r1, 0x50
 /* 802C7DB8 002C4CF8  80 7F 00 90 */	lwz r3, 0x90(r31)
-/* 802C7DBC 002C4CFC  48 02 A9 21 */	bl makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1
+/* 802C7DBC 002C4CFC  48 02 A9 21 */	bl "makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>"
 /* 802C7DC0 002C4D00  D3 01 00 70 */	stfs f24, 0x70(r1)
 /* 802C7DC4 002C4D04  7F 65 DB 78 */	mr r5, r27
 /* 802C7DC8 002C4D08  38 81 00 50 */	addi r4, r1, 0x50
 /* 802C7DCC 002C4D0C  D3 C1 00 74 */	stfs f30, 0x74(r1)
 /* 802C7DD0 002C4D10  80 7F 00 A0 */	lwz r3, 0xa0(r31)
-/* 802C7DD4 002C4D14  48 02 A9 09 */	bl makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1
+/* 802C7DD4 002C4D14  48 02 A9 09 */	bl "makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>"
 /* 802C7DD8 002C4D18  80 7E 00 08 */	lwz r3, 8(r30)
 /* 802C7DDC 002C4D1C  28 03 00 00 */	cmplwi r3, 0
 /* 802C7DE0 002C4D20  41 82 00 24 */	beq lbl_802C7E04

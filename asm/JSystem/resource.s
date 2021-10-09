@@ -110,7 +110,7 @@ lbl_800064F8:
 /* 80006518 00003458  7F E3 FB 78 */	mr r3, r31
 /* 8000651C 0000345C  7F C4 F3 78 */	mr r4, r30
 /* 80006520 00003460  38 A1 00 08 */	addi r5, r1, 8
-/* 80006524 00003464  48 00 07 95 */	bl lower_bound$$0PCUl$$4Ul$$1__3stdFPCUlPCUlRCUl
+/* 80006524 00003464  48 00 07 95 */	bl "lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl"
 /* 80006528 00003468  7C 03 F0 40 */	cmplw r3, r30
 /* 8000652C 0000346C  41 82 00 14 */	beq lbl_80006540
 /* 80006530 00003470  80 83 00 00 */	lwz r4, 0(r3)
@@ -165,8 +165,8 @@ __dt__Q38JMessage18TResourceContainer10TCResourceFv:
 /* 800065CC 0000350C  38 04 E3 34 */	addi r0, r4, __vt__Q38JMessage18TResourceContainer10TCResource@l
 /* 800065D0 00003510  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 800065D4 00003514  41 82 00 1C */	beq lbl_800065F0
-/* 800065D8 00003518  3C 80 80 4A */	lis r4, __vt__Q27JGadget42TLinkList_factory$$0Q28JMessage9TResource$$40$$1@ha
-/* 800065DC 0000351C  38 04 E3 48 */	addi r0, r4, __vt__Q27JGadget42TLinkList_factory$$0Q28JMessage9TResource$$40$$1@l
+/* 800065D8 00003518  3C 80 80 4A */	lis r4, "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@ha
+/* 800065DC 0000351C  38 04 E3 48 */	addi r0, r4, "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@l
 /* 800065E0 00003520  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 800065E4 00003524  41 82 00 0C */	beq lbl_800065F0
 /* 800065E8 00003528  38 80 00 00 */	li r4, 0
@@ -263,11 +263,11 @@ Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource:
 .global __ct__Q28JMessage18TResourceContainerFv
 __ct__Q28JMessage18TResourceContainerFv:
 /* 80006710 00003650  38 E0 00 00 */	li r7, 0
-/* 80006714 00003654  3C A0 80 4A */	lis r5, __vt__Q27JGadget42TLinkList_factory$$0Q28JMessage9TResource$$40$$1@ha
+/* 80006714 00003654  3C A0 80 4A */	lis r5, "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@ha
 /* 80006718 00003658  98 E3 00 00 */	stb r7, 0(r3)
 /* 8000671C 0000365C  3C 80 80 4A */	lis r4, __vt__Q38JMessage18TResourceContainer10TCResource@ha
 /* 80006720 00003660  38 C3 00 0C */	addi r6, r3, 0xc
-/* 80006724 00003664  38 A5 E3 48 */	addi r5, r5, __vt__Q27JGadget42TLinkList_factory$$0Q28JMessage9TResource$$40$$1@l
+/* 80006724 00003664  38 A5 E3 48 */	addi r5, r5, "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@l
 /* 80006728 00003668  90 E3 00 04 */	stw r7, 4(r3)
 /* 8000672C 0000366C  38 04 E3 34 */	addi r0, r4, __vt__Q38JMessage18TResourceContainer10TCResource@l
 /* 80006730 00003670  90 E3 00 0C */	stw r7, 0xc(r3)
@@ -692,8 +692,8 @@ lbl_80006CB0:
 /* 80006CB0 00003BF0  38 60 00 01 */	li r3, 1
 /* 80006CB4 00003BF4  4E 80 00 20 */	blr 
 
-.global lower_bound$$0PCUl$$4Ul$$1__3stdFPCUlPCUlRCUl
-lower_bound$$0PCUl$$4Ul$$1__3stdFPCUlPCUlRCUl:
+.global "lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl"
+"lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl":
 /* 80006CB8 00003BF8  7C 03 20 50 */	subf r0, r3, r4
 /* 80006CBC 00003BFC  80 A5 00 00 */	lwz r5, 0(r5)
 /* 80006CC0 00003C00  7C 00 16 70 */	srawi r0, r0, 2

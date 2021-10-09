@@ -9,14 +9,14 @@ init__Q24Game9PelletFSMFPQ24Game6Pellet:
 /* 801A431C 001A125C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801A4320 001A1260  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801A4324 001A1264  7C 7F 1B 78 */	mr r31, r3
-/* 801A4328 001A1268  48 00 3B 05 */	bl create__Q24Game28StateMachine$$0Q24Game6Pellet$$1Fi
+/* 801A4328 001A1268  48 00 3B 05 */	bl "create__Q24Game28StateMachine<Q24Game6Pellet>Fi"
 /* 801A432C 001A126C  38 60 00 10 */	li r3, 0x10
 /* 801A4330 001A1270  4B E7 FB 75 */	bl __nw__FUl
 /* 801A4334 001A1274  7C 64 1B 79 */	or. r4, r3, r3
 /* 801A4338 001A1278  41 82 00 34 */	beq lbl_801A436C
-/* 801A433C 001A127C  3C 60 80 4B */	lis r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A433C 001A127C  3C 60 80 4B */	lis r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A4340 001A1280  3C A0 80 4B */	lis r5, __vt__Q24Game11PelletState@ha
-/* 801A4344 001A1284  38 03 51 E0 */	addi r0, r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A4344 001A1284  38 03 51 E0 */	addi r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A4348 001A1288  3C 60 80 4B */	lis r3, __vt__Q24Game17PelletNormalState@ha
 /* 801A434C 001A128C  90 04 00 00 */	stw r0, 0(r4)
 /* 801A4350 001A1290  38 C0 00 00 */	li r6, 0
@@ -28,14 +28,14 @@ init__Q24Game9PelletFSMFPQ24Game6Pellet:
 /* 801A4368 001A12A8  90 04 00 00 */	stw r0, 0(r4)
 lbl_801A436C:
 /* 801A436C 001A12AC  7F E3 FB 78 */	mr r3, r31
-/* 801A4370 001A12B0  48 00 3B 21 */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A4370 001A12B0  48 00 3B 21 */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A4374 001A12B4  38 60 00 40 */	li r3, 0x40
 /* 801A4378 001A12B8  4B E7 FB 2D */	bl __nw__FUl
 /* 801A437C 001A12BC  7C 64 1B 79 */	or. r4, r3, r3
 /* 801A4380 001A12C0  41 82 00 38 */	beq lbl_801A43B8
-/* 801A4384 001A12C4  3C 60 80 4B */	lis r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A4384 001A12C4  3C 60 80 4B */	lis r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A4388 001A12C8  3C A0 80 4B */	lis r5, __vt__Q24Game11PelletState@ha
-/* 801A438C 001A12CC  38 03 51 E0 */	addi r0, r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A438C 001A12CC  38 03 51 E0 */	addi r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A4390 001A12D0  3C 60 80 4B */	lis r3, __vt__Q24Game15PelletGoalState@ha
 /* 801A4394 001A12D4  90 04 00 00 */	stw r0, 0(r4)
 /* 801A4398 001A12D8  38 00 00 01 */	li r0, 1
@@ -48,14 +48,14 @@ lbl_801A436C:
 /* 801A43B4 001A12F4  90 04 00 00 */	stw r0, 0(r4)
 lbl_801A43B8:
 /* 801A43B8 001A12F8  7F E3 FB 78 */	mr r3, r31
-/* 801A43BC 001A12FC  48 00 3A D5 */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A43BC 001A12FC  48 00 3A D5 */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A43C0 001A1300  38 60 00 10 */	li r3, 0x10
 /* 801A43C4 001A1304  4B E7 FA E1 */	bl __nw__FUl
 /* 801A43C8 001A1308  7C 64 1B 79 */	or. r4, r3, r3
 /* 801A43CC 001A130C  41 82 00 38 */	beq lbl_801A4404
-/* 801A43D0 001A1310  3C 60 80 4B */	lis r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A43D0 001A1310  3C 60 80 4B */	lis r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A43D4 001A1314  3C A0 80 4B */	lis r5, __vt__Q24Game11PelletState@ha
-/* 801A43D8 001A1318  38 03 51 E0 */	addi r0, r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A43D8 001A1318  38 03 51 E0 */	addi r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A43DC 001A131C  3C 60 80 4B */	lis r3, __vt__Q24Game15PelletBuryState@ha
 /* 801A43E0 001A1320  90 04 00 00 */	stw r0, 0(r4)
 /* 801A43E4 001A1324  38 00 00 02 */	li r0, 2
@@ -68,14 +68,14 @@ lbl_801A43B8:
 /* 801A4400 001A1340  90 04 00 00 */	stw r0, 0(r4)
 lbl_801A4404:
 /* 801A4404 001A1344  7F E3 FB 78 */	mr r3, r31
-/* 801A4408 001A1348  48 00 3A 89 */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A4408 001A1348  48 00 3A 89 */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A440C 001A134C  38 60 00 10 */	li r3, 0x10
 /* 801A4410 001A1350  4B E7 FA 95 */	bl __nw__FUl
 /* 801A4414 001A1354  7C 64 1B 79 */	or. r4, r3, r3
 /* 801A4418 001A1358  41 82 00 38 */	beq lbl_801A4450
-/* 801A441C 001A135C  3C 60 80 4B */	lis r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A441C 001A135C  3C 60 80 4B */	lis r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A4420 001A1360  3C A0 80 4B */	lis r5, __vt__Q24Game11PelletState@ha
-/* 801A4424 001A1364  38 03 51 E0 */	addi r0, r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A4424 001A1364  38 03 51 E0 */	addi r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A4428 001A1368  3C 60 80 4B */	lis r3, __vt__Q24Game13PelletUpState@ha
 /* 801A442C 001A136C  90 04 00 00 */	stw r0, 0(r4)
 /* 801A4430 001A1370  38 00 00 03 */	li r0, 3
@@ -88,14 +88,14 @@ lbl_801A4404:
 /* 801A444C 001A138C  90 04 00 00 */	stw r0, 0(r4)
 lbl_801A4450:
 /* 801A4450 001A1390  7F E3 FB 78 */	mr r3, r31
-/* 801A4454 001A1394  48 00 3A 3D */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A4454 001A1394  48 00 3A 3D */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A4458 001A1398  38 60 00 30 */	li r3, 0x30
 /* 801A445C 001A139C  4B E7 FA 49 */	bl __nw__FUl
 /* 801A4460 001A13A0  7C 64 1B 79 */	or. r4, r3, r3
 /* 801A4464 001A13A4  41 82 00 38 */	beq lbl_801A449C
-/* 801A4468 001A13A8  3C 60 80 4B */	lis r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A4468 001A13A8  3C 60 80 4B */	lis r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A446C 001A13AC  3C A0 80 4B */	lis r5, __vt__Q24Game11PelletState@ha
-/* 801A4470 001A13B0  38 03 51 E0 */	addi r0, r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A4470 001A13B0  38 03 51 E0 */	addi r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A4474 001A13B4  3C 60 80 4B */	lis r3, __vt__Q24Game17PelletAppearState@ha
 /* 801A4478 001A13B8  90 04 00 00 */	stw r0, 0(r4)
 /* 801A447C 001A13BC  38 00 00 04 */	li r0, 4
@@ -108,14 +108,14 @@ lbl_801A4450:
 /* 801A4498 001A13D8  90 04 00 00 */	stw r0, 0(r4)
 lbl_801A449C:
 /* 801A449C 001A13DC  7F E3 FB 78 */	mr r3, r31
-/* 801A44A0 001A13E0  48 00 39 F1 */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A44A0 001A13E0  48 00 39 F1 */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A44A4 001A13E4  38 60 00 30 */	li r3, 0x30
 /* 801A44A8 001A13E8  4B E7 F9 FD */	bl __nw__FUl
 /* 801A44AC 001A13EC  7C 64 1B 79 */	or. r4, r3, r3
 /* 801A44B0 001A13F0  41 82 00 38 */	beq lbl_801A44E8
-/* 801A44B4 001A13F4  3C 60 80 4B */	lis r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A44B4 001A13F4  3C 60 80 4B */	lis r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A44B8 001A13F8  3C A0 80 4B */	lis r5, __vt__Q24Game11PelletState@ha
-/* 801A44BC 001A13FC  38 03 51 E0 */	addi r0, r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A44BC 001A13FC  38 03 51 E0 */	addi r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A44C0 001A1400  3C 60 80 4B */	lis r3, __vt__Q24Game22PelletScaleAppearState@ha
 /* 801A44C4 001A1404  90 04 00 00 */	stw r0, 0(r4)
 /* 801A44C8 001A1408  38 00 00 05 */	li r0, 5
@@ -128,14 +128,14 @@ lbl_801A449C:
 /* 801A44E4 001A1424  90 04 00 00 */	stw r0, 0(r4)
 lbl_801A44E8:
 /* 801A44E8 001A1428  7F E3 FB 78 */	mr r3, r31
-/* 801A44EC 001A142C  48 00 39 A5 */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A44EC 001A142C  48 00 39 A5 */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A44F0 001A1430  38 60 00 14 */	li r3, 0x14
 /* 801A44F4 001A1434  4B E7 F9 B1 */	bl __nw__FUl
 /* 801A44F8 001A1438  7C 64 1B 79 */	or. r4, r3, r3
 /* 801A44FC 001A143C  41 82 00 38 */	beq lbl_801A4534
-/* 801A4500 001A1440  3C 60 80 4B */	lis r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A4500 001A1440  3C 60 80 4B */	lis r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A4504 001A1444  3C A0 80 4B */	lis r5, __vt__Q24Game11PelletState@ha
-/* 801A4508 001A1448  38 03 51 E0 */	addi r0, r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A4508 001A1448  38 03 51 E0 */	addi r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A450C 001A144C  3C 60 80 4B */	lis r3, __vt__Q24Game16PelletZukanState@ha
 /* 801A4510 001A1450  90 04 00 00 */	stw r0, 0(r4)
 /* 801A4514 001A1454  38 00 00 06 */	li r0, 6
@@ -148,14 +148,14 @@ lbl_801A44E8:
 /* 801A4530 001A1470  90 04 00 00 */	stw r0, 0(r4)
 lbl_801A4534:
 /* 801A4534 001A1474  7F E3 FB 78 */	mr r3, r31
-/* 801A4538 001A1478  48 00 39 59 */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A4538 001A1478  48 00 39 59 */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A453C 001A147C  38 60 00 14 */	li r3, 0x14
 /* 801A4540 001A1480  4B E7 F9 65 */	bl __nw__FUl
 /* 801A4544 001A1484  7C 64 1B 79 */	or. r4, r3, r3
 /* 801A4548 001A1488  41 82 00 38 */	beq lbl_801A4580
-/* 801A454C 001A148C  3C 60 80 4B */	lis r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A454C 001A148C  3C 60 80 4B */	lis r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A4550 001A1490  3C A0 80 4B */	lis r5, __vt__Q24Game11PelletState@ha
-/* 801A4554 001A1494  38 03 51 E0 */	addi r0, r3, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A4554 001A1494  38 03 51 E0 */	addi r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A4558 001A1498  3C 60 80 4B */	lis r3, __vt__Q24Game19PelletGoalWaitState@ha
 /* 801A455C 001A149C  90 04 00 00 */	stw r0, 0(r4)
 /* 801A4560 001A14A0  38 00 00 07 */	li r0, 7
@@ -168,7 +168,7 @@ lbl_801A4534:
 /* 801A457C 001A14BC  90 04 00 00 */	stw r0, 0(r4)
 lbl_801A4580:
 /* 801A4580 001A14C0  7F E3 FB 78 */	mr r3, r31
-/* 801A4584 001A14C4  48 00 39 0D */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A4584 001A14C4  48 00 39 0D */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A4588 001A14C8  38 60 00 40 */	li r3, 0x40
 /* 801A458C 001A14CC  4B E7 F9 19 */	bl __nw__FUl
 /* 801A4590 001A14D0  7C 64 1B 79 */	or. r4, r3, r3
@@ -177,7 +177,7 @@ lbl_801A4580:
 /* 801A459C 001A14DC  7C 64 1B 78 */	mr r4, r3
 lbl_801A45A0:
 /* 801A45A0 001A14E0  7F E3 FB 78 */	mr r3, r31
-/* 801A45A4 001A14E4  48 00 38 ED */	bl registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
+/* 801A45A4 001A14E4  48 00 38 ED */	bl "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
 /* 801A45A8 001A14E8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801A45AC 001A14EC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801A45B0 001A14F0  7C 08 03 A6 */	mtlr r0
@@ -539,8 +539,8 @@ lbl_801A4A8C:
 /* 801A4A9C 001A19DC  28 00 00 00 */	cmplwi r0, 0
 /* 801A4AA0 001A19E0  40 82 02 24 */	bne lbl_801A4CC4
 /* 801A4AA4 001A19E4  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 801A4AA8 001A19E8  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
-/* 801A4AAC 001A19EC  38 04 BC 9C */	addi r0, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 801A4AA8 001A19E8  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 801A4AAC 001A19EC  38 04 BC 9C */	addi r0, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 801A4AB0 001A19F0  28 05 00 00 */	cmplwi r5, 0
 /* 801A4AB4 001A19F4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 801A4AB8 001A19F8  90 A1 00 50 */	stw r5, 0x50(r1)
@@ -669,7 +669,7 @@ lbl_801A4C74:
 /* 801A4C80 001A1BC0  90 01 00 40 */	stw r0, 0x40(r1)
 /* 801A4C84 001A1BC4  90 01 00 34 */	stw r0, 0x34(r1)
 /* 801A4C88 001A1BC8  90 01 00 38 */	stw r0, 0x38(r1)
-/* 801A4C8C 001A1BCC  4B F6 98 05 */	bl first__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
+/* 801A4C8C 001A1BCC  4B F6 98 05 */	bl "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
 /* 801A4C90 001A1BD0  48 00 00 28 */	b lbl_801A4CB8
 lbl_801A4C94:
 /* 801A4C94 001A1BD4  81 83 00 00 */	lwz r12, 0(r3)
@@ -680,7 +680,7 @@ lbl_801A4C94:
 /* 801A4CA8 001A1BE8  38 80 00 00 */	li r4, 0
 /* 801A4CAC 001A1BEC  4B F9 6E 41 */	bl movie_end__Q24Game8CreatureFb
 /* 801A4CB0 001A1BF0  38 61 00 34 */	addi r3, r1, 0x34
-/* 801A4CB4 001A1BF4  4B F6 92 3D */	bl next__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
+/* 801A4CB4 001A1BF4  4B F6 92 3D */	bl "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
 lbl_801A4CB8:
 /* 801A4CB8 001A1BF8  80 61 00 34 */	lwz r3, 0x34(r1)
 /* 801A4CBC 001A1BFC  28 03 00 00 */	cmplwi r3, 0
@@ -967,7 +967,7 @@ lbl_801A503C:
 /* 801A50D4 001A2014  38 A0 00 00 */	li r5, 0
 /* 801A50D8 001A2018  D0 01 00 58 */	stfs f0, 0x58(r1)
 /* 801A50DC 001A201C  D0 21 00 5C */	stfs f1, 0x5c(r1)
-/* 801A50E0 001A2020  4B F9 60 C9 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 801A50E0 001A2020  4B F9 60 C9 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801A50E4 001A2024  7F 43 D3 78 */	mr r3, r26
 /* 801A50E8 001A2028  38 80 00 00 */	li r4, 0
 /* 801A50EC 001A202C  4B F9 69 65 */	bl movie_begin__Q24Game8CreatureFb
@@ -1111,7 +1111,7 @@ lbl_801A5270:
 /* 801A530C 001A224C  38 A0 00 00 */	li r5, 0
 /* 801A5310 001A2250  D0 01 00 4C */	stfs f0, 0x4c(r1)
 /* 801A5314 001A2254  D0 21 00 50 */	stfs f1, 0x50(r1)
-/* 801A5318 001A2258  4B F9 5E 91 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 801A5318 001A2258  4B F9 5E 91 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801A531C 001A225C  7F 43 D3 78 */	mr r3, r26
 /* 801A5320 001A2260  38 80 00 00 */	li r4, 0
 /* 801A5324 001A2264  4B F9 67 2D */	bl movie_begin__Q24Game8CreatureFb
@@ -2956,9 +2956,9 @@ __ct__Q24Game17PelletReturnStateFv:
 /* 801A6DCC 001A3D0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A6DD0 001A3D10  7C 08 02 A6 */	mflr r0
 /* 801A6DD4 001A3D14  3C 80 80 4B */	lis r4, __vt__Q24Game11PelletState@ha
-/* 801A6DD8 001A3D18  3C A0 80 4B */	lis r5, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@ha
+/* 801A6DD8 001A3D18  3C A0 80 4B */	lis r5, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
 /* 801A6DDC 001A3D1C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801A6DE0 001A3D20  38 05 51 E0 */	addi r0, r5, __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1@l
+/* 801A6DE0 001A3D20  38 05 51 E0 */	addi r0, r5, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
 /* 801A6DE4 001A3D24  38 C0 00 08 */	li r6, 8
 /* 801A6DE8 001A3D28  38 A0 00 00 */	li r5, 0
 /* 801A6DEC 001A3D2C  93 E1 00 0C */	stw r31, 0xc(r1)
@@ -4031,7 +4031,7 @@ lbl_801A7C68:
 /* 801A7D4C 001A4C8C  38 A0 00 00 */	li r5, 0
 /* 801A7D50 001A4C90  EC 1B 00 2A */	fadds f0, f27, f0
 /* 801A7D54 001A4C94  D0 01 00 4C */	stfs f0, 0x4c(r1)
-/* 801A7D58 001A4C98  4B F9 34 51 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 801A7D58 001A4C98  4B F9 34 51 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801A7D5C 001A4C9C  C0 3E 00 14 */	lfs f1, 0x14(r30)
 /* 801A7D60 001A4CA0  7F E3 FB 78 */	mr r3, r31
 /* 801A7D64 001A4CA4  C0 02 AE 30 */	lfs f0, lbl_80519190@sda21(r2)
@@ -4116,8 +4116,8 @@ isPickable__Q24Game17PelletNormalStateFv:
 "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 801A7E28 001A4D68  4E 80 00 20 */	blr 
 
-.global create__Q24Game28StateMachine$$0Q24Game6Pellet$$1Fi
-create__Q24Game28StateMachine$$0Q24Game6Pellet$$1Fi:
+.global "create__Q24Game28StateMachine<Q24Game6Pellet>Fi"
+"create__Q24Game28StateMachine<Q24Game6Pellet>Fi":
 /* 801A7E2C 001A4D6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A7E30 001A4D70  7C 08 02 A6 */	mflr r0
 /* 801A7E34 001A4D74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4144,8 +4144,8 @@ create__Q24Game28StateMachine$$0Q24Game6Pellet$$1Fi:
 /* 801A7E88 001A4DC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A7E8C 001A4DCC  4E 80 00 20 */	blr 
 
-.global registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1
-registerState__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game24FSMState$$0Q24Game6Pellet$$1:
+.global "registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
+"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>":
 /* 801A7E90 001A4DD0  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801A7E94 001A4DD4  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801A7E98 001A4DD8  7C 06 00 00 */	cmpw r6, r0

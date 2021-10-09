@@ -161,16 +161,16 @@ lbl_8042B1F0:
 /* 8042B20C 0042814C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042B210 00428150  4E 80 00 20 */	blr 
 
-.global getNextChild__18JSUTree$$08CoreNode$$1CFv
-getNextChild__18JSUTree$$08CoreNode$$1CFv:
+.global "getNextChild__18JSUTree<8CoreNode>CFv"
+"getNextChild__18JSUTree<8CoreNode>CFv":
 /* 8042B214 00428154  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 8042B218 00428158  28 03 00 00 */	cmplwi r3, 0
 /* 8042B21C 0042815C  4D 82 00 20 */	beqlr 
 /* 8042B220 00428160  38 63 FF F4 */	addi r3, r3, -12
 /* 8042B224 00428164  4E 80 00 20 */	blr 
 
-.global __ne__26JSUTreeIterator$$08CoreNode$$1CFPC18JSUTree$$08CoreNode$$1
-__ne__26JSUTreeIterator$$08CoreNode$$1CFPC18JSUTree$$08CoreNode$$1:
+.global "__ne__26JSUTreeIterator<8CoreNode>CFPC18JSUTree<8CoreNode>"
+"__ne__26JSUTreeIterator<8CoreNode>CFPC18JSUTree<8CoreNode>":
 /* 8042B228 00428168  80 03 00 00 */	lwz r0, 0(r3)
 /* 8042B22C 0042816C  7C 60 20 50 */	subf r3, r0, r4
 /* 8042B230 00428170  7C 04 00 50 */	subf r0, r4, r0
@@ -178,13 +178,13 @@ __ne__26JSUTreeIterator$$08CoreNode$$1CFPC18JSUTree$$08CoreNode$$1:
 /* 8042B238 00428178  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8042B23C 0042817C  4E 80 00 20 */	blr 
 
-.global getEndChild__18JSUTree$$08CoreNode$$1CFv
-getEndChild__18JSUTree$$08CoreNode$$1CFv:
+.global "getEndChild__18JSUTree<8CoreNode>CFv"
+"getEndChild__18JSUTree<8CoreNode>CFv":
 /* 8042B240 00428180  38 60 00 00 */	li r3, 0
 /* 8042B244 00428184  4E 80 00 20 */	blr 
 
-.global __pp__26JSUTreeIterator$$08CoreNode$$1Fv
-__pp__26JSUTreeIterator$$08CoreNode$$1Fv:
+.global "__pp__26JSUTreeIterator<8CoreNode>Fv"
+"__pp__26JSUTreeIterator<8CoreNode>Fv":
 /* 8042B248 00428188  80 83 00 00 */	lwz r4, 0(r3)
 /* 8042B24C 0042818C  80 84 00 18 */	lwz r4, 0x18(r4)
 /* 8042B250 00428190  28 04 00 00 */	cmplwi r4, 0
@@ -194,19 +194,19 @@ lbl_8042B25C:
 /* 8042B25C 0042819C  90 83 00 00 */	stw r4, 0(r3)
 /* 8042B260 004281A0  4E 80 00 20 */	blr 
 
-.global getObject__26JSUTreeIterator$$08CoreNode$$1CFv
-getObject__26JSUTreeIterator$$08CoreNode$$1CFv:
+.global "getObject__26JSUTreeIterator<8CoreNode>CFv"
+"getObject__26JSUTreeIterator<8CoreNode>CFv":
 /* 8042B264 004281A4  80 63 00 00 */	lwz r3, 0(r3)
 /* 8042B268 004281A8  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8042B26C 004281AC  4E 80 00 20 */	blr 
 
-.global __ct__26JSUTreeIterator$$08CoreNode$$1FP18JSUTree$$08CoreNode$$1
-__ct__26JSUTreeIterator$$08CoreNode$$1FP18JSUTree$$08CoreNode$$1:
+.global "__ct__26JSUTreeIterator<8CoreNode>FP18JSUTree<8CoreNode>"
+"__ct__26JSUTreeIterator<8CoreNode>FP18JSUTree<8CoreNode>":
 /* 8042B270 004281B0  90 83 00 00 */	stw r4, 0(r3)
 /* 8042B274 004281B4  4E 80 00 20 */	blr 
 
-.global getFirstChild__18JSUTree$$08CoreNode$$1CFv
-getFirstChild__18JSUTree$$08CoreNode$$1CFv:
+.global "getFirstChild__18JSUTree<8CoreNode>CFv"
+"getFirstChild__18JSUTree<8CoreNode>CFv":
 /* 8042B278 004281B8  80 63 00 00 */	lwz r3, 0(r3)
 /* 8042B27C 004281BC  28 03 00 00 */	cmplwi r3, 0
 /* 8042B280 004281C0  4D 82 00 20 */	beqlr 
@@ -270,7 +270,7 @@ lbl_8042B328:
 lbl_8042B340:
 /* 8042B340 00428280  3B 23 00 04 */	addi r25, r3, 4
 /* 8042B344 00428284  7F 23 CB 78 */	mr r3, r25
-/* 8042B348 00428288  4B FF FF 31 */	bl getFirstChild__18JSUTree$$08CoreNode$$1CFv
+/* 8042B348 00428288  4B FF FF 31 */	bl "getFirstChild__18JSUTree<8CoreNode>CFv"
 /* 8042B34C 0042828C  7C 7A 1B 78 */	mr r26, r3
 /* 8042B350 00428290  48 00 00 88 */	b lbl_8042B3D8
 lbl_8042B354:
@@ -283,37 +283,37 @@ lbl_8042B354:
 lbl_8042B36C:
 /* 8042B36C 004282AC  3B 03 00 04 */	addi r24, r3, 4
 /* 8042B370 004282B0  7F 03 C3 78 */	mr r3, r24
-/* 8042B374 004282B4  4B FF FF 05 */	bl getFirstChild__18JSUTree$$08CoreNode$$1CFv
+/* 8042B374 004282B4  4B FF FF 05 */	bl "getFirstChild__18JSUTree<8CoreNode>CFv"
 /* 8042B378 004282B8  7C 64 1B 78 */	mr r4, r3
 /* 8042B37C 004282BC  38 61 00 08 */	addi r3, r1, 8
-/* 8042B380 004282C0  4B FF FE F1 */	bl __ct__26JSUTreeIterator$$08CoreNode$$1FP18JSUTree$$08CoreNode$$1
+/* 8042B380 004282C0  4B FF FE F1 */	bl "__ct__26JSUTreeIterator<8CoreNode>FP18JSUTree<8CoreNode>"
 /* 8042B384 004282C4  48 00 00 24 */	b lbl_8042B3A8
 lbl_8042B388:
 /* 8042B388 004282C8  38 61 00 08 */	addi r3, r1, 8
-/* 8042B38C 004282CC  4B FF FE D9 */	bl getObject__26JSUTreeIterator$$08CoreNode$$1CFv
+/* 8042B38C 004282CC  4B FF FE D9 */	bl "getObject__26JSUTreeIterator<8CoreNode>CFv"
 /* 8042B390 004282D0  7F E4 FB 78 */	mr r4, r31
 /* 8042B394 004282D4  4B FF FE F9 */	bl search__8HeapInfoFP8HeapInfo
 /* 8042B398 004282D8  7C 7C 1B 79 */	or. r28, r3, r3
 /* 8042B39C 004282DC  40 82 00 28 */	bne lbl_8042B3C4
 /* 8042B3A0 004282E0  38 61 00 08 */	addi r3, r1, 8
-/* 8042B3A4 004282E4  4B FF FE A5 */	bl __pp__26JSUTreeIterator$$08CoreNode$$1Fv
+/* 8042B3A4 004282E4  4B FF FE A5 */	bl "__pp__26JSUTreeIterator<8CoreNode>Fv"
 lbl_8042B3A8:
 /* 8042B3A8 004282E8  7F 03 C3 78 */	mr r3, r24
-/* 8042B3AC 004282EC  4B FF FE 95 */	bl getEndChild__18JSUTree$$08CoreNode$$1CFv
+/* 8042B3AC 004282EC  4B FF FE 95 */	bl "getEndChild__18JSUTree<8CoreNode>CFv"
 /* 8042B3B0 004282F0  7C 64 1B 78 */	mr r4, r3
 /* 8042B3B4 004282F4  38 61 00 08 */	addi r3, r1, 8
-/* 8042B3B8 004282F8  4B FF FE 71 */	bl __ne__26JSUTreeIterator$$08CoreNode$$1CFPC18JSUTree$$08CoreNode$$1
+/* 8042B3B8 004282F8  4B FF FE 71 */	bl "__ne__26JSUTreeIterator<8CoreNode>CFPC18JSUTree<8CoreNode>"
 /* 8042B3BC 004282FC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8042B3C0 00428300  40 82 FF C8 */	bne lbl_8042B388
 lbl_8042B3C4:
 /* 8042B3C4 00428304  28 1C 00 00 */	cmplwi r28, 0
 /* 8042B3C8 00428308  40 82 00 20 */	bne lbl_8042B3E8
 /* 8042B3CC 0042830C  7F 43 D3 78 */	mr r3, r26
-/* 8042B3D0 00428310  4B FF FE 45 */	bl getNextChild__18JSUTree$$08CoreNode$$1CFv
+/* 8042B3D0 00428310  4B FF FE 45 */	bl "getNextChild__18JSUTree<8CoreNode>CFv"
 /* 8042B3D4 00428314  7C 7A 1B 78 */	mr r26, r3
 lbl_8042B3D8:
 /* 8042B3D8 00428318  7F 23 CB 78 */	mr r3, r25
-/* 8042B3DC 0042831C  4B FF FE 65 */	bl getEndChild__18JSUTree$$08CoreNode$$1CFv
+/* 8042B3DC 0042831C  4B FF FE 65 */	bl "getEndChild__18JSUTree<8CoreNode>CFv"
 /* 8042B3E0 00428320  7C 1A 18 40 */	cmplw r26, r3
 /* 8042B3E4 00428324  40 82 FF 70 */	bne lbl_8042B354
 lbl_8042B3E8:
@@ -355,7 +355,7 @@ lbl_8042B44C:
 /* 8042B45C 0042839C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8042B460 004283A0  4E 80 00 20 */	blr 
 
-.global $$236$$2__dt__8HeapInfoFv
-$$236$$2__dt__8HeapInfoFv:
+.global "@36@__dt__8HeapInfoFv"
+"@36@__dt__8HeapInfoFv":
 /* 8042B464 004283A4  38 63 FF DC */	addi r3, r3, -36
 /* 8042B468 004283A8  4B FF FC 0C */	b __dt__8HeapInfoFv

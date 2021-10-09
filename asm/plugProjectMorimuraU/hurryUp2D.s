@@ -431,7 +431,7 @@ lbl_80346778:
 /* 803467C4 00343704  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 803467C8 00343708  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 803467CC 0034370C  D0 61 00 14 */	stfs f3, 0x14(r1)
-/* 803467D0 00343710  4B D0 E9 6D */	bl __ct__12J2DPictureExFUxRCQ29JGeometry8TBox2$$0f$$1PCcUl
+/* 803467D0 00343710  4B D0 E9 6D */	bl "__ct__12J2DPictureExFUxRCQ29JGeometry8TBox2<f>PCcUl"
 /* 803467D4 00343714  3C 60 80 4E */	lis r3, __vt__Q28Morimura15THuWhitePaneSet@ha
 /* 803467D8 00343718  C0 02 FE F8 */	lfs f0, lbl_8051E258@sda21(r2)
 /* 803467DC 0034371C  38 03 B3 70 */	addi r0, r3, __vt__Q28Morimura15THuWhitePaneSet@l
@@ -2025,7 +2025,7 @@ __sinit_hurryUp2D_cpp:
 /* 80347F38 00344E78  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80347F3C 00344E7C  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q28Morimura10THurryUp2DFv
-$$224$$2__dt__Q28Morimura10THurryUp2DFv:
+.global "@24@__dt__Q28Morimura10THurryUp2DFv"
+"@24@__dt__Q28Morimura10THurryUp2DFv":
 /* 80347F40 00344E80  38 63 FF E8 */	addi r3, r3, -24
 /* 80347F44 00344E84  4B FF FE B0 */	b __dt__Q28Morimura10THurryUp2DFv

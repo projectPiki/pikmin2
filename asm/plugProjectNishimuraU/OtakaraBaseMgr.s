@@ -267,7 +267,7 @@ getEnemyTypeID__Q34Game11OtakaraBase3MgrFv:
 /* 802B623C 002B317C  38 60 00 3B */	li r3, 0x3b
 /* 802B6240 002B3180  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game11OtakaraBase3MgrFv
-$$24$$2__dt__Q34Game11OtakaraBase3MgrFv:
+.global "@4@__dt__Q34Game11OtakaraBase3MgrFv"
+"@4@__dt__Q34Game11OtakaraBase3MgrFv":
 /* 802B6244 002B3184  38 63 FF FC */	addi r3, r3, -4
 /* 802B6248 002B3188  4B FF FF 44 */	b __dt__Q34Game11OtakaraBase3MgrFv

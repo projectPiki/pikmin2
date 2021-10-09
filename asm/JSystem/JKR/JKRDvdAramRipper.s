@@ -1026,10 +1026,10 @@ __sinit_JKRDvdAramRipper_cpp:
 /* 8001E4F4 0001B434  38 63 6E 0C */	addi r3, r3, sDvdAramAsyncList__16JKRDvdAramRipper@l
 /* 8001E4F8 0001B438  48 00 83 D9 */	bl initiate__10JSUPtrListFv
 /* 8001E4FC 0001B43C  3C 60 80 50 */	lis r3, sDvdAramAsyncList__16JKRDvdAramRipper@ha
-/* 8001E500 0001B440  3C 80 80 02 */	lis r4, __dt__23JSUList$$012JKRADCommand$$1Fv@ha
+/* 8001E500 0001B440  3C 80 80 02 */	lis r4, "__dt__23JSUList<12JKRADCommand>Fv"@ha
 /* 8001E504 0001B444  3C A0 80 4F */	lis r5, lbl_804EFF50@ha
 /* 8001E508 0001B448  38 63 6E 0C */	addi r3, r3, sDvdAramAsyncList__16JKRDvdAramRipper@l
-/* 8001E50C 0001B44C  38 84 E5 28 */	addi r4, r4, __dt__23JSUList$$012JKRADCommand$$1Fv@l
+/* 8001E50C 0001B44C  38 84 E5 28 */	addi r4, r4, "__dt__23JSUList<12JKRADCommand>Fv"@l
 /* 8001E510 0001B450  38 A5 FF 50 */	addi r5, r5, lbl_804EFF50@l
 /* 8001E514 0001B454  48 0A 31 ED */	bl __register_global_object
 /* 8001E518 0001B458  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1037,8 +1037,8 @@ __sinit_JKRDvdAramRipper_cpp:
 /* 8001E520 0001B460  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001E524 0001B464  4E 80 00 20 */	blr 
 
-.global __dt__23JSUList$$012JKRADCommand$$1Fv
-__dt__23JSUList$$012JKRADCommand$$1Fv:
+.global "__dt__23JSUList<12JKRADCommand>Fv"
+"__dt__23JSUList<12JKRADCommand>Fv":
 /* 8001E528 0001B468  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001E52C 0001B46C  7C 08 02 A6 */	mflr r0
 /* 8001E530 0001B470  90 01 00 14 */	stw r0, 0x14(r1)

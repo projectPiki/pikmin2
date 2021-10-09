@@ -57,7 +57,7 @@ lbl_8038C51C:
 /* 8038C538 00389478  C0 02 0C 28 */	lfs f0, lbl_8051EF88@sda21(r2)
 /* 8038C53C 0038947C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8038C540 00389480  40 81 00 64 */	ble lbl_8038C5A4
-/* 8038C544 00389484  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8038C544 00389484  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8038C548 00389488  28 00 00 00 */	cmplwi r0, 0
 /* 8038C54C 0038948C  40 82 00 20 */	bne lbl_8038C56C
 /* 8038C550 00389490  3C 60 80 49 */	lis r3, lbl_80493FF8@ha
@@ -68,7 +68,7 @@ lbl_8038C51C:
 /* 8038C564 003894A4  4C C6 31 82 */	crclr 6
 /* 8038C568 003894A8  4B C9 E0 D9 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8038C56C:
-/* 8038C56C 003894AC  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8038C56C 003894AC  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8038C570 003894B0  38 80 28 2F */	li r4, 0x282f
 /* 8038C574 003894B4  38 A0 00 00 */	li r5, 0
 /* 8038C578 003894B8  80 63 00 18 */	lwz r3, 0x18(r3)
@@ -271,7 +271,7 @@ lbl_8038C824:
 /* 8038C844 00389784  D0 1F 00 34 */	stfs f0, 0x34(r31)
 /* 8038C848 00389788  48 00 00 80 */	b lbl_8038C8C8
 lbl_8038C84C:
-/* 8038C84C 0038978C  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8038C84C 0038978C  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8038C850 00389790  28 00 00 00 */	cmplwi r0, 0
 /* 8038C854 00389794  40 82 00 20 */	bne lbl_8038C874
 /* 8038C858 00389798  3C 60 80 49 */	lis r3, lbl_80493FF8@ha
@@ -282,7 +282,7 @@ lbl_8038C84C:
 /* 8038C86C 003897AC  4C C6 31 82 */	crclr 6
 /* 8038C870 003897B0  4B C9 DD D1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8038C874:
-/* 8038C874 003897B4  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8038C874 003897B4  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8038C878 003897B8  38 80 28 17 */	li r4, 0x2817
 /* 8038C87C 003897BC  38 A0 00 00 */	li r5, 0
 /* 8038C880 003897C0  80 63 00 18 */	lwz r3, 0x18(r3)
@@ -3387,9 +3387,9 @@ lbl_8038F4FC:
 /* 8038F628 0038C568  38 A4 72 5F */	addi r5, r4, 0x0050725F@l
 /* 8038F62C 0038C56C  7D 89 03 A6 */	mtctr r12
 /* 8038F630 0038C570  4E 80 04 21 */	bctrl 
-/* 8038F634 0038C574  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8038F634 0038C574  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8038F638 0038C578  7C 75 1B 78 */	mr r21, r3
-/* 8038F63C 0038C57C  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8038F63C 0038C57C  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8038F640 0038C580  38 7A 00 14 */	addi r3, r26, 0x14
 /* 8038F644 0038C584  38 A0 00 00 */	li r5, 0
 /* 8038F648 0038C588  38 C0 00 08 */	li r6, 8
@@ -3519,9 +3519,9 @@ lbl_8038F7B0:
 /* 8038F828 0038C768  38 A4 79 5F */	addi r5, r4, 0x0050795F@l
 /* 8038F82C 0038C76C  7D 89 03 A6 */	mtctr r12
 /* 8038F830 0038C770  4E 80 04 21 */	bctrl 
-/* 8038F834 0038C774  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8038F834 0038C774  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8038F838 0038C778  7C 75 1B 78 */	mr r21, r3
-/* 8038F83C 0038C77C  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8038F83C 0038C77C  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8038F840 0038C780  38 7A 00 14 */	addi r3, r26, 0x14
 /* 8038F844 0038C784  38 A0 00 00 */	li r5, 0
 /* 8038F848 0038C788  38 C0 00 08 */	li r6, 8
@@ -3651,9 +3651,9 @@ lbl_8038F9B0:
 /* 8038FA28 0038C968  38 A4 62 5F */	addi r5, r4, 0x0050625F@l
 /* 8038FA2C 0038C96C  7D 89 03 A6 */	mtctr r12
 /* 8038FA30 0038C970  4E 80 04 21 */	bctrl 
-/* 8038FA34 0038C974  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8038FA34 0038C974  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8038FA38 0038C978  7C 75 1B 78 */	mr r21, r3
-/* 8038FA3C 0038C97C  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8038FA3C 0038C97C  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8038FA40 0038C980  38 7A 00 14 */	addi r3, r26, 0x14
 /* 8038FA44 0038C984  38 A0 00 00 */	li r5, 0
 /* 8038FA48 0038C988  38 C0 00 08 */	li r6, 8
@@ -3783,9 +3783,9 @@ lbl_8038FBB0:
 /* 8038FC28 0038CB68  38 A4 77 5F */	addi r5, r4, 0x0050775F@l
 /* 8038FC2C 0038CB6C  7D 89 03 A6 */	mtctr r12
 /* 8038FC30 0038CB70  4E 80 04 21 */	bctrl 
-/* 8038FC34 0038CB74  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8038FC34 0038CB74  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8038FC38 0038CB78  7C 75 1B 78 */	mr r21, r3
-/* 8038FC3C 0038CB7C  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8038FC3C 0038CB7C  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8038FC40 0038CB80  38 7A 00 14 */	addi r3, r26, 0x14
 /* 8038FC44 0038CB84  38 A0 00 00 */	li r5, 0
 /* 8038FC48 0038CB88  38 C0 00 08 */	li r6, 8
@@ -3915,9 +3915,9 @@ lbl_8038FDB0:
 /* 8038FE28 0038CD68  38 A4 6C 5F */	addi r5, r4, 0x50626C5F@l
 /* 8038FE2C 0038CD6C  7D 89 03 A6 */	mtctr r12
 /* 8038FE30 0038CD70  4E 80 04 21 */	bctrl 
-/* 8038FE34 0038CD74  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8038FE34 0038CD74  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8038FE38 0038CD78  7C 75 1B 78 */	mr r21, r3
-/* 8038FE3C 0038CD7C  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8038FE3C 0038CD7C  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8038FE40 0038CD80  38 7A 00 14 */	addi r3, r26, 0x14
 /* 8038FE44 0038CD84  38 A0 00 00 */	li r5, 0
 /* 8038FE48 0038CD88  38 C0 00 08 */	li r6, 8
@@ -6269,7 +6269,7 @@ lbl_80391F6C:
 /* 80392038 0038EF78  EC 03 00 2A */	fadds f0, f3, f0
 /* 8039203C 0038EF7C  D0 21 00 50 */	stfs f1, 0x50(r1)
 /* 80392040 0038EF80  D0 01 00 54 */	stfs f0, 0x54(r1)
-/* 80392044 0038EF84  4B CA 47 91 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 80392044 0038EF84  4B CA 47 91 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 80392048 0038EF88  38 60 00 01 */	li r3, 1
 /* 8039204C 0038EF8C  4B D5 71 0D */	bl GXSetAlphaUpdate
 lbl_80392050:
@@ -6333,7 +6333,7 @@ lbl_80392050:
 /* 80392134 0038F074  EC 03 00 2A */	fadds f0, f3, f0
 /* 80392138 0038F078  D0 21 00 40 */	stfs f1, 0x40(r1)
 /* 8039213C 0038F07C  D0 01 00 44 */	stfs f0, 0x44(r1)
-/* 80392140 0038F080  4B CA 46 95 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 80392140 0038F080  4B CA 46 95 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 80392144 0038F084  38 60 00 01 */	li r3, 1
 /* 80392148 0038F088  4B D5 70 11 */	bl GXSetAlphaUpdate
 /* 8039214C 0038F08C  BA E1 00 6C */	lmw r23, 0x6c(r1)
@@ -7621,12 +7621,12 @@ __sinit_challengeSelect2D_cpp:
 /* 80393330 00390270  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80393334 00390274  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q28Morimura16TChallengeSelectFv
-$$224$$2__dt__Q28Morimura16TChallengeSelectFv:
+.global "@24@__dt__Q28Morimura16TChallengeSelectFv"
+"@24@__dt__Q28Morimura16TChallengeSelectFv":
 /* 80393338 00390278  38 63 FF E8 */	addi r3, r3, -24
 /* 8039333C 0039027C  4B FF B7 B8 */	b __dt__Q28Morimura16TChallengeSelectFv
 
-.global $$28$$2__dt__Q25efx2d11T2DChalDiveFv
-$$28$$2__dt__Q25efx2d11T2DChalDiveFv:
+.global "@8@__dt__Q25efx2d11T2DChalDiveFv"
+"@8@__dt__Q25efx2d11T2DChalDiveFv":
 /* 80393340 00390280  38 63 FF F8 */	addi r3, r3, -8
 /* 80393344 00390284  4B FF FF 28 */	b __dt__Q25efx2d11T2DChalDiveFv
