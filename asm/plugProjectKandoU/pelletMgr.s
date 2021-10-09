@@ -408,8 +408,8 @@ updateClaim__Q24Game6PelletFv:
 /* 80165E98 00162DD8  FF A0 F8 90 */	fmr f29, f31
 /* 80165E9C 00162DDC  48 03 9D C1 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80165EA0 00162DE0  38 00 00 00 */	li r0, 0
-/* 80165EA4 00162DE4  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80165EA8 00162DE8  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80165EA4 00162DE4  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80165EA8 00162DE8  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80165EAC 00162DEC  38 61 00 48 */	addi r3, r1, 0x48
 /* 80165EB0 00162DF0  28 00 00 00 */	cmplwi r0, 0
 /* 80165EB4 00162DF4  90 81 00 38 */	stw r4, 0x38(r1)
@@ -1592,8 +1592,8 @@ lbl_80166F1C:
 /* 80166F2C 00163E6C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80166F30 00163E70  4E 80 00 20 */	blr 
 
-.global start__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
-start__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg:
+.global "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+"start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg":
 /* 80166F34 00163E74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80166F38 00163E78  7C 08 02 A6 */	mflr r0
 /* 80166F3C 00163E7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14246,8 +14246,8 @@ __ct__24MonoObjectMgr$$08CollPart$$1Fv:
 /* 80171EE4 0016EE24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171EE8 0016EE28  4E 80 00 20 */	blr 
 
-.global transit__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
-transit__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg:
+.global "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+"transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg":
 /* 80171EEC 0016EE2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171EF0 0016EE30  7C 08 02 A6 */	mflr r0
 /* 80171EF4 0016EE34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14310,8 +14310,8 @@ lbl_80171FA4:
 /* 80171FA4 0016EEE4  38 60 FF FF */	li r3, -1
 /* 80171FA8 0016EEE8  4E 80 00 20 */	blr 
 
-.global exec__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-exec__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet:
+.global "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
+"exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 80171FAC 0016EEEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171FB0 0016EEF0  7C 08 02 A6 */	mflr r0
 /* 80171FB4 0016EEF4  90 01 00 14 */	stw r0, 0x14(r1)

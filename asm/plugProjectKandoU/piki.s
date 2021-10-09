@@ -2605,8 +2605,8 @@ lbl_80149A18:
 /* 80149A28 00146968  38 21 00 10 */	addi r1, r1, 0x10
 /* 80149A2C 0014696C  4E 80 00 20 */	blr 
 
-.global wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
-wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1:
+.global "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+"wallCallback__Q26PikiAI6ActionFR10Vector3<f>":
 /* 80149A30 00146970  4E 80 00 20 */	blr 
 
 .global wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3$$0f$$1

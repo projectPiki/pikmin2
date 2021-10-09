@@ -1878,8 +1878,8 @@ __ct__Q23efx9TForever4FUsUsUsUs:
 /* 803B0238 003AD178  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B023C 003AD17C  4E 80 00 20 */	blr 
 
-.global __ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs
-__ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs:
+.global "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
+"__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs":
 /* 803B0240 003AD180  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B0244 003AD184  7C 08 02 A6 */	mflr r0
 /* 803B0248 003AD188  3C E0 80 4B */	lis r7, __vt__Q23efx5TBase@ha
@@ -1949,8 +1949,8 @@ __ct__Q23efx9TChasePosFv:
 /* 803B033C 003AD27C  90 03 00 04 */	stw r0, 4(r3)
 /* 803B0340 003AD280  4E 80 00 20 */	blr 
 
-.global setPosptr__Q23efx10TChasePos2FP10Vector3$$0f$$1
-setPosptr__Q23efx10TChasePos2FP10Vector3$$0f$$1:
+.global "setPosptr__Q23efx10TChasePos2FP10Vector3<f>"
+"setPosptr__Q23efx10TChasePos2FP10Vector3<f>":
 /* 803B0344 003AD284  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B0348 003AD288  90 83 00 28 */	stw r4, 0x28(r3)
 /* 803B034C 003AD28C  4E 80 00 20 */	blr 
@@ -2558,8 +2558,8 @@ __ct__Q23efx23TChasePosPosLocalYScaleFv:
 /* 803B0BC4 003ADB04  90 03 00 04 */	stw r0, 4(r3)
 /* 803B0BC8 003ADB08  4E 80 00 20 */	blr 
 
-.global __ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1fUsUsUs
-__ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1fUsUsUs:
+.global "__ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>fUsUsUs"
+"__ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>fUsUsUs":
 /* 803B0BCC 003ADB0C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B0BD0 003ADB10  7C 08 02 A6 */	mflr r0
 /* 803B0BD4 003ADB14  3D 20 80 4B */	lis r9, __vt__Q23efx5TBase@ha
@@ -2611,8 +2611,8 @@ __ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1fUsUsUs
 /* 803B0C8C 003ADBCC  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B0C90 003ADBD0  4E 80 00 20 */	blr 
 
-.global setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1
-setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1:
+.global "setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>"
+"setPosptr__Q23efx24TChasePosPosLocalYScale3FP10Vector3<f>P10Vector3<f>":
 /* 803B0C94 003ADBD4  90 83 00 14 */	stw r4, 0x14(r3)
 /* 803B0C98 003ADBD8  90 A3 00 18 */	stw r5, 0x18(r3)
 /* 803B0C9C 003ADBDC  90 83 00 30 */	stw r4, 0x30(r3)

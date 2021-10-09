@@ -18,10 +18,10 @@ __ct__Q34Game15IllustratedBook6CameraFP10Controller:
 /* 80221058 0021DF98  C0 62 BD C8 */	lfs f3, lbl_8051A128@sda21(r2)
 /* 8022105C 0021DF9C  90 1D 00 00 */	stw r0, 0(r29)
 /* 80221060 0021DFA0  3B E5 41 E4 */	addi r31, r5, "zero__10Vector3<f>"@l
-/* 80221064 0021DFA4  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
+/* 80221064 0021DFA4  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
 /* 80221068 0021DFA8  38 00 00 00 */	li r0, 0
 /* 8022106C 0021DFAC  93 DD 01 98 */	stw r30, 0x198(r29)
-/* 80221070 0021DFB0  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
+/* 80221070 0021DFB0  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
 /* 80221074 0021DFB4  C0 42 BD CC */	lfs f2, lbl_8051A12C@sda21(r2)
 /* 80221078 0021DFB8  38 7D 01 FC */	addi r3, r29, 0x1fc
 /* 8022107C 0021DFBC  90 1D 01 9C */	stw r0, 0x19c(r29)
@@ -4957,9 +4957,9 @@ lbl_802258FC:
 /* 802258FC 0022283C  1C 79 00 0C */	mulli r3, r25, 0xc
 /* 80225900 00222840  38 63 00 10 */	addi r3, r3, 0x10
 /* 80225904 00222844  4B DF E6 A9 */	bl __nwa__FUl
-/* 80225908 00222848  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 80225908 00222848  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 8022590C 0022284C  7F 27 CB 78 */	mr r7, r25
-/* 80225910 00222850  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 80225910 00222850  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 80225914 00222854  38 A0 00 00 */	li r5, 0
 /* 80225918 00222858  38 C0 00 0C */	li r6, 0xc
 /* 8022591C 0022285C  4B E9 C0 D5 */	bl __construct_new_array
@@ -4967,9 +4967,9 @@ lbl_802258FC:
 /* 80225924 00222864  7C 7D 1B 78 */	mr r29, r3
 /* 80225928 00222868  38 64 00 10 */	addi r3, r4, 0x10
 /* 8022592C 0022286C  4B DF E6 81 */	bl __nwa__FUl
-/* 80225930 00222870  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 80225930 00222870  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 80225934 00222874  7F 27 CB 78 */	mr r7, r25
-/* 80225938 00222878  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 80225938 00222878  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 8022593C 0022287C  38 A0 00 00 */	li r5, 0
 /* 80225940 00222880  38 C0 00 0C */	li r6, 0xc
 /* 80225944 00222884  4B E9 C0 AD */	bl __construct_new_array
@@ -6728,12 +6728,12 @@ __dt__Q34Game15IllustratedBook6CameraFv:
 /* 80227250 00224190  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 80227254 00224194  90 1F 00 00 */	stw r0, 0(r31)
 /* 80227258 00224198  41 82 00 38 */	beq lbl_80227290
-/* 8022725C 0022419C  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
-/* 80227260 002241A0  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 8022725C 0022419C  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
+/* 80227260 002241A0  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 80227264 002241A4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80227268 002241A8  41 82 00 28 */	beq lbl_80227290
-/* 8022726C 002241AC  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 80227270 002241B0  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 8022726C 002241AC  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 80227270 002241B0  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 80227274 002241B4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80227278 002241B8  41 82 00 18 */	beq lbl_80227290
 /* 8022727C 002241BC  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha

@@ -50,11 +50,11 @@ lbl_802C7F78:
 /* 802C7F84 002C4EC4  3C 80 80 4D */	lis r4, __vt__Q34Game7BigFoot3Obj@ha
 /* 802C7F88 002C4EC8  38 1F 04 AC */	addi r0, r31, 0x4ac
 /* 802C7F8C 002C4ECC  38 C4 1E 10 */	addi r6, r4, __vt__Q34Game7BigFoot3Obj@l
-/* 802C7F90 002C4ED0  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
+/* 802C7F90 002C4ED0  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
 /* 802C7F94 002C4ED4  90 DF 00 00 */	stw r6, 0(r31)
 /* 802C7F98 002C4ED8  38 A6 01 B0 */	addi r5, r6, 0x1b0
 /* 802C7F9C 002C4EDC  39 26 02 FC */	addi r9, r6, 0x2fc
-/* 802C7FA0 002C4EE0  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
+/* 802C7FA0 002C4EE0  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
 /* 802C7FA4 002C4EE4  90 BF 01 78 */	stw r5, 0x178(r31)
 /* 802C7FA8 002C4EE8  38 7F 02 F0 */	addi r3, r31, 0x2f0
 /* 802C7FAC 002C4EEC  38 A0 00 00 */	li r5, 0
@@ -584,7 +584,7 @@ doFinishStoneState__Q34Game7BigFoot3ObjFv:
 /* 802C86FC 002C563C  38 80 00 00 */	li r4, 0
 /* 802C8700 002C5640  C0 62 E3 C8 */	lfs f3, lbl_8051C728@sda21(r2)
 /* 802C8704 002C5644  C0 82 E3 DC */	lfs f4, lbl_8051C73C@sda21(r2)
-/* 802C8708 002C5648  4B E4 AA 15 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802C8708 002C5648  4B E4 AA 15 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802C870C 002C564C  88 1F 02 DD */	lbz r0, 0x2dd(r31)
 /* 802C8710 002C5650  28 00 00 00 */	cmplwi r0, 0
 /* 802C8714 002C5654  41 82 00 0C */	beq lbl_802C8720
@@ -839,9 +839,9 @@ lbl_802C8A60:
 /* 802C8A94 002C59D4  D0 1F 02 D0 */	stfs f0, 0x2d0(r31)
 /* 802C8A98 002C59D8  48 00 02 38 */	b lbl_802C8CD0
 lbl_802C8A9C:
-/* 802C8A9C 002C59DC  3C A0 80 4B */	lis r5, __vt__23Condition$$0Q24Game4Piki$$1@ha
+/* 802C8A9C 002C59DC  3C A0 80 4B */	lis r5, "__vt__23Condition<Q24Game4Piki>"@ha
 /* 802C8AA0 002C59E0  3C 80 80 4D */	lis r4, __vt__Q24Game23ConditionNotStickClient@ha
-/* 802C8AA4 002C59E4  38 C5 BC 60 */	addi r6, r5, __vt__23Condition$$0Q24Game4Piki$$1@l
+/* 802C8AA4 002C59E4  38 C5 BC 60 */	addi r6, r5, "__vt__23Condition<Q24Game4Piki>"@l
 /* 802C8AA8 002C59E8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802C8AAC 002C59EC  38 04 DB 70 */	addi r0, r4, __vt__Q24Game23ConditionNotStickClient@l
 /* 802C8AB0 002C59F0  38 A1 00 08 */	addi r5, r1, 8
@@ -850,7 +850,7 @@ lbl_802C8A9C:
 /* 802C8ABC 002C59FC  90 01 00 08 */	stw r0, 8(r1)
 /* 802C8AC0 002C5A00  C0 27 04 24 */	lfs f1, 0x424(r7)
 /* 802C8AC4 002C5A04  C0 47 03 D4 */	lfs f2, 0x3d4(r7)
-/* 802C8AC8 002C5A08  4B E4 A0 9D */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
+/* 802C8AC8 002C5A08  4B E4 A0 9D */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
 /* 802C8ACC 002C5A0C  28 03 00 00 */	cmplwi r3, 0
 /* 802C8AD0 002C5A10  41 82 00 38 */	beq lbl_802C8B08
 /* 802C8AD4 002C5A14  7C 64 1B 78 */	mr r4, r3
@@ -2193,7 +2193,7 @@ lbl_802C9D48:
 /* 802C9D58 002C6C98  38 80 00 00 */	li r4, 0
 /* 802C9D5C 002C6C9C  38 A0 00 F1 */	li r5, 0xf1
 /* 802C9D60 002C6CA0  38 C0 00 25 */	li r6, 0x25
-/* 802C9D64 002C6CA4  48 0E 64 DD */	bl __ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs
+/* 802C9D64 002C6CA4  48 0E 64 DD */	bl "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
 /* 802C9D68 002C6CA8  3C 60 80 4D */	lis r3, __vt__Q23efx10TOdamaFoot@ha
 /* 802C9D6C 002C6CAC  38 03 1D F4 */	addi r0, r3, __vt__Q23efx10TOdamaFoot@l
 /* 802C9D70 002C6CB0  90 0F 00 00 */	stw r0, 0(r15)
@@ -2620,7 +2620,7 @@ setupEffect__Q34Game7BigFoot3ObjFv:
 lbl_802CA3BC:
 /* 802CA3BC 002C72FC  80 7E 03 B0 */	lwz r3, 0x3b0(r30)
 /* 802CA3C0 002C7300  38 9F 03 14 */	addi r4, r31, 0x314
-/* 802CA3C4 002C7304  48 0E 5F 81 */	bl setPosptr__Q23efx10TChasePos2FP10Vector3$$0f$$1
+/* 802CA3C4 002C7304  48 0E 5F 81 */	bl "setPosptr__Q23efx10TChasePos2FP10Vector3<f>"
 /* 802CA3C8 002C7308  80 7E 03 C0 */	lwz r3, 0x3c0(r30)
 /* 802CA3CC 002C730C  39 5F 03 14 */	addi r10, r31, 0x314
 /* 802CA3D0 002C7310  39 00 00 01 */	li r8, 1
@@ -2849,12 +2849,12 @@ lbl_802CA718:
 /* 802CA730 002C7670  38 A1 00 44 */	addi r5, r1, 0x44
 /* 802CA734 002C7674  38 80 00 06 */	li r4, 6
 /* 802CA738 002C7678  38 C0 00 02 */	li r6, 2
-/* 802CA73C 002C767C  4B F8 7B 01 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802CA73C 002C767C  4B F8 7B 01 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802CA740 002C7680  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802CA744 002C7684  38 A1 00 44 */	addi r5, r1, 0x44
 /* 802CA748 002C7688  38 80 00 0E */	li r4, 0xe
 /* 802CA74C 002C768C  38 C0 00 02 */	li r6, 2
-/* 802CA750 002C7690  4B F8 90 31 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802CA750 002C7690  4B F8 90 31 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802CA754 002C7694  80 01 00 84 */	lwz r0, 0x84(r1)
 /* 802CA758 002C7698  83 E1 00 7C */	lwz r31, 0x7c(r1)
 /* 802CA75C 002C769C  83 C1 00 78 */	lwz r30, 0x78(r1)

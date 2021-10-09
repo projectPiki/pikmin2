@@ -343,8 +343,8 @@ doStartStoneState__Q34Game5Armor3ObjFv:
 /* 8027DB38 0027AA78  38 61 00 2C */	addi r3, r1, 0x2c
 /* 8027DB3C 0027AA7C  4B F2 21 21 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 8027DB40 0027AA80  38 00 00 00 */	li r0, 0
-/* 8027DB44 0027AA84  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 8027DB48 0027AA88  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8027DB44 0027AA84  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 8027DB48 0027AA88  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 8027DB4C 0027AA8C  38 61 00 2C */	addi r3, r1, 0x2c
 /* 8027DB50 0027AA90  28 00 00 00 */	cmplwi r0, 0
 /* 8027DB54 0027AA94  90 81 00 08 */	stw r4, 8(r1)

@@ -257,7 +257,7 @@ init__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 8010AEB4 00107DF4  90 1F 01 E0 */	stw r0, 0x1e0(r31)
 /* 8010AEB8 00107DF8  C0 62 96 0C */	lfs f3, lbl_8051796C@sda21(r2)
 /* 8010AEBC 00107DFC  C0 82 96 10 */	lfs f4, lbl_80517970@sda21(r2)
-/* 8010AEC0 00107E00  48 00 82 5D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 8010AEC0 00107E00  48 00 82 5D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 8010AEC4 00107E04  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8010AEC8 00107E08  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8010AECC 00107E0C  7C 08 03 A6 */	mtlr r0

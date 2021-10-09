@@ -1350,12 +1350,12 @@ __dt__Q33ebi5title15TTitleCameraMgrFv:
 /* 803BE170 003BB0B0  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 803BE174 003BB0B4  90 1F 00 00 */	stw r0, 0(r31)
 /* 803BE178 003BB0B8  41 82 00 38 */	beq lbl_803BE1B0
-/* 803BE17C 003BB0BC  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
-/* 803BE180 003BB0C0  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 803BE17C 003BB0BC  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
+/* 803BE180 003BB0C0  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 803BE184 003BB0C4  90 1F 00 00 */	stw r0, 0(r31)
 /* 803BE188 003BB0C8  41 82 00 28 */	beq lbl_803BE1B0
-/* 803BE18C 003BB0CC  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 803BE190 003BB0D0  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 803BE18C 003BB0CC  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 803BE190 003BB0D0  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 803BE194 003BB0D4  90 1F 00 00 */	stw r0, 0(r31)
 /* 803BE198 003BB0D8  41 82 00 18 */	beq lbl_803BE1B0
 /* 803BE19C 003BB0DC  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1649,14 +1649,14 @@ lbl_803BE530:
 /* 803BE590 003BB4D0  38 03 0E 94 */	addi r0, r3, __vt__9CullPlane@l
 /* 803BE594 003BB4D4  90 1E 40 78 */	stw r0, 0x4078(r30)
 /* 803BE598 003BB4D8  41 82 00 44 */	beq lbl_803BE5DC
-/* 803BE59C 003BB4DC  3C 60 80 4B */	lis r3, __vt__22ArrayContainer$$05Plane$$1@ha
+/* 803BE59C 003BB4DC  3C 60 80 4B */	lis r3, "__vt__22ArrayContainer<5Plane>"@ha
 /* 803BE5A0 003BB4E0  34 1E 40 78 */	addic. r0, r30, 0x4078
-/* 803BE5A4 003BB4E4  38 03 0E 4C */	addi r0, r3, __vt__22ArrayContainer$$05Plane$$1@l
+/* 803BE5A4 003BB4E4  38 03 0E 4C */	addi r0, r3, "__vt__22ArrayContainer<5Plane>"@l
 /* 803BE5A8 003BB4E8  90 1E 40 78 */	stw r0, 0x4078(r30)
 /* 803BE5AC 003BB4EC  41 82 00 30 */	beq lbl_803BE5DC
-/* 803BE5B0 003BB4F0  3C 60 80 4B */	lis r3, __vt__17Container$$05Plane$$1@ha
+/* 803BE5B0 003BB4F0  3C 60 80 4B */	lis r3, "__vt__17Container<5Plane>"@ha
 /* 803BE5B4 003BB4F4  34 1E 40 78 */	addic. r0, r30, 0x4078
-/* 803BE5B8 003BB4F8  38 03 0E 20 */	addi r0, r3, __vt__17Container$$05Plane$$1@l
+/* 803BE5B8 003BB4F8  38 03 0E 20 */	addi r0, r3, "__vt__17Container<5Plane>"@l
 /* 803BE5BC 003BB4FC  90 1E 40 78 */	stw r0, 0x4078(r30)
 /* 803BE5C0 003BB500  41 82 00 1C */	beq lbl_803BE5DC
 /* 803BE5C4 003BB504  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha

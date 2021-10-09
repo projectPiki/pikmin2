@@ -1663,12 +1663,12 @@ __dt__12LookAtCameraFv:
 /* 8014C560 001494A0  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 8014C564 001494A4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8014C568 001494A8  41 82 00 38 */	beq lbl_8014C5A0
-/* 8014C56C 001494AC  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
-/* 8014C570 001494B0  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 8014C56C 001494AC  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
+/* 8014C570 001494B0  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 8014C574 001494B4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8014C578 001494B8  41 82 00 28 */	beq lbl_8014C5A0
-/* 8014C57C 001494BC  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 8014C580 001494C0  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 8014C57C 001494BC  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 8014C580 001494C0  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 8014C584 001494C4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8014C588 001494C8  41 82 00 18 */	beq lbl_8014C5A0
 /* 8014C58C 001494CC  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -4332,9 +4332,9 @@ lbl_8014EBFC:
 /* 8014EC10 0014BB50  80 81 00 30 */	lwz r4, 0x30(r1)
 /* 8014EC14 0014BB54  7C 04 18 40 */	cmplw r4, r3
 /* 8014EC18 0014BB58  40 82 FE 94 */	bne lbl_8014EAAC
-/* 8014EC1C 0014BB5C  3C 60 80 4B */	lis r3, __vt__23Condition$$0Q24Game4Piki$$1@ha
+/* 8014EC1C 0014BB5C  3C 60 80 4B */	lis r3, "__vt__23Condition<Q24Game4Piki>"@ha
 /* 8014EC20 0014BB60  3C 80 80 4B */	lis r4, __vt__27PikiCond_ExceptChappyPikmin@ha
-/* 8014EC24 0014BB64  38 03 BC 60 */	addi r0, r3, __vt__23Condition$$0Q24Game4Piki$$1@l
+/* 8014EC24 0014BB64  38 03 BC 60 */	addi r0, r3, "__vt__23Condition<Q24Game4Piki>"@l
 /* 8014EC28 0014BB68  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 8014EC2C 0014BB6C  90 01 00 08 */	stw r0, 8(r1)
 /* 8014EC30 0014BB70  38 04 0D 14 */	addi r0, r4, __vt__27PikiCond_ExceptChappyPikmin@l
@@ -7399,8 +7399,8 @@ __dt__17Container$$05Plane$$1Fv:
 /* 80151764 0014E6A4  93 C1 00 08 */	stw r30, 8(r1)
 /* 80151768 0014E6A8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8015176C 0014E6AC  41 82 00 38 */	beq lbl_801517A4
-/* 80151770 0014E6B0  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 80151774 0014E6B4  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 80151770 0014E6B0  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 80151774 0014E6B4  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 80151778 0014E6B8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8015177C 0014E6BC  41 82 00 18 */	beq lbl_80151794
 /* 80151780 0014E6C0  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -7432,12 +7432,12 @@ __dt__22ArrayContainer$$05Plane$$1Fv:
 /* 801517D4 0014E714  93 C1 00 08 */	stw r30, 8(r1)
 /* 801517D8 0014E718  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801517DC 0014E71C  41 82 00 48 */	beq lbl_80151824
-/* 801517E0 0014E720  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
-/* 801517E4 0014E724  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 801517E0 0014E720  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
+/* 801517E4 0014E724  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 801517E8 0014E728  90 1E 00 00 */	stw r0, 0(r30)
 /* 801517EC 0014E72C  41 82 00 28 */	beq lbl_80151814
-/* 801517F0 0014E730  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 801517F4 0014E734  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 801517F0 0014E730  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 801517F4 0014E734  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 801517F8 0014E738  90 1E 00 00 */	stw r0, 0(r30)
 /* 801517FC 0014E73C  41 82 00 18 */	beq lbl_80151814
 /* 80151800 0014E740  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -7481,12 +7481,12 @@ __dt__9CullPlaneFv:
 /* 8015186C 0014E7AC  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 80151870 0014E7B0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80151874 0014E7B4  41 82 00 38 */	beq lbl_801518AC
-/* 80151878 0014E7B8  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
-/* 8015187C 0014E7BC  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 80151878 0014E7B8  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
+/* 8015187C 0014E7BC  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 80151880 0014E7C0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80151884 0014E7C4  41 82 00 28 */	beq lbl_801518AC
-/* 80151888 0014E7C8  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 8015188C 0014E7CC  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 80151888 0014E7C8  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 8015188C 0014E7CC  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 80151890 0014E7D0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80151894 0014E7D4  41 82 00 18 */	beq lbl_801518AC
 /* 80151898 0014E7D8  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha

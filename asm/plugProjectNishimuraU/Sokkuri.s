@@ -524,7 +524,7 @@ isAppear__Q34Game7Sokkuri3ObjFv:
 /* 802F197C 002EE8BC  38 A0 00 00 */	li r5, 0
 /* 802F1980 002EE8C0  C0 26 04 24 */	lfs f1, 0x424(r6)
 /* 802F1984 002EE8C4  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
-/* 802F1988 002EE8C8  4B E2 11 DD */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
+/* 802F1988 002EE8C8  4B E2 11 DD */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
 /* 802F198C 002EE8CC  48 00 00 1C */	b lbl_802F19A8
 lbl_802F1990:
 /* 802F1990 002EE8D0  80 C3 00 C0 */	lwz r6, 0xc0(r3)
@@ -532,7 +532,7 @@ lbl_802F1990:
 /* 802F1998 002EE8D8  38 A0 00 00 */	li r5, 0
 /* 802F199C 002EE8DC  C0 26 04 24 */	lfs f1, 0x424(r6)
 /* 802F19A0 002EE8E0  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
-/* 802F19A4 002EE8E4  4B E2 0D 51 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
+/* 802F19A4 002EE8E4  4B E2 0D 51 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 lbl_802F19A8:
 /* 802F19A8 002EE8E8  28 03 00 00 */	cmplwi r3, 0
 /* 802F19AC 002EE8EC  41 82 00 0C */	beq lbl_802F19B8
@@ -574,14 +574,14 @@ isDisappear__Q34Game7Sokkuri3ObjFv:
 /* 802F1A28 002EE968  38 80 00 00 */	li r4, 0
 /* 802F1A2C 002EE96C  C0 45 03 D4 */	lfs f2, 0x3d4(r5)
 /* 802F1A30 002EE970  38 A0 00 00 */	li r5, 0
-/* 802F1A34 002EE974  4B E2 11 31 */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
+/* 802F1A34 002EE974  4B E2 11 31 */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
 /* 802F1A38 002EE978  48 00 00 18 */	b lbl_802F1A50
 lbl_802F1A3C:
 /* 802F1A3C 002EE97C  C0 25 04 24 */	lfs f1, 0x424(r5)
 /* 802F1A40 002EE980  38 80 00 00 */	li r4, 0
 /* 802F1A44 002EE984  C0 45 03 D4 */	lfs f2, 0x3d4(r5)
 /* 802F1A48 002EE988  38 A0 00 00 */	li r5, 0
-/* 802F1A4C 002EE98C  4B E2 0C A9 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
+/* 802F1A4C 002EE98C  4B E2 0C A9 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 lbl_802F1A50:
 /* 802F1A50 002EE990  28 03 00 00 */	cmplwi r3, 0
 /* 802F1A54 002EE994  40 82 00 0C */	bne lbl_802F1A60

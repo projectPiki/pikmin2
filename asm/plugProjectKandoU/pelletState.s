@@ -259,8 +259,8 @@ lbl_801A4694:
 /* 801A469C 001A15DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A46A0 001A15E0  4E 80 00 20 */	blr 
 
-.global transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
-transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg:
+.global "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+"transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg":
 /* 801A46A4 001A15E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A46A8 001A15E8  7C 08 02 A6 */	mflr r0
 /* 801A46AC 001A15EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1899,10 +1899,10 @@ lbl_801A5E6C:
 /* 801A5EE0 001A2E20  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
 /* 801A5EE4 001A2E24  38 A0 00 00 */	li r5, 0
 /* 801A5EE8 001A2E28  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
-/* 801A5EEC 001A2E2C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 801A5EEC 001A2E2C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
 /* 801A5EF0 001A2E30  3C 80 80 4E */	lis r4, __vt__Q24Game18InteractSuckFinish@ha
 /* 801A5EF4 001A2E34  90 01 00 08 */	stw r0, 8(r1)
-/* 801A5EF8 001A2E38  38 C3 BC 84 */	addi r6, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801A5EF8 001A2E38  38 C3 BC 84 */	addi r6, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801A5EFC 001A2E3C  38 61 00 70 */	addi r3, r1, 0x70
 /* 801A5F00 001A2E40  38 04 D1 50 */	addi r0, r4, __vt__Q24Game18InteractSuckFinish@l
 /* 801A5F04 001A2E44  28 05 00 00 */	cmplwi r5, 0
@@ -3099,8 +3099,8 @@ lbl_801A6FB4:
 /* 801A6FE4 001A3F24  38 61 00 18 */	addi r3, r1, 0x18
 /* 801A6FE8 001A3F28  4B FF 8C 75 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 801A6FEC 001A3F2C  38 00 00 00 */	li r0, 0
-/* 801A6FF0 001A3F30  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 801A6FF4 001A3F34  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801A6FF0 001A3F30  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 801A6FF4 001A3F34  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801A6FF8 001A3F38  38 61 00 18 */	addi r3, r1, 0x18
 /* 801A6FFC 001A3F3C  28 00 00 00 */	cmplwi r0, 0
 /* 801A7000 001A3F40  90 81 00 08 */	stw r4, 8(r1)
@@ -3653,8 +3653,8 @@ lbl_801A7774:
 /* 801A77B4 001A46F4  38 61 00 80 */	addi r3, r1, 0x80
 /* 801A77B8 001A46F8  4B FF 84 A5 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 801A77BC 001A46FC  38 00 00 00 */	li r0, 0
-/* 801A77C0 001A4700  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 801A77C4 001A4704  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801A77C0 001A4700  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 801A77C4 001A4704  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801A77C8 001A4708  38 61 00 80 */	addi r3, r1, 0x80
 /* 801A77CC 001A470C  28 00 00 00 */	cmplwi r0, 0
 /* 801A77D0 001A4710  90 81 00 08 */	stw r4, 8(r1)
@@ -4108,12 +4108,12 @@ isPickable__Q24Game17PelletNormalStateFv:
 /* 801A7E1C 001A4D5C  38 60 00 01 */	li r3, 1
 /* 801A7E20 001A4D60  4E 80 00 20 */	blr 
 
-.global resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet:
+.global "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+"resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 801A7E24 001A4D64  4E 80 00 20 */	blr 
 
-.global restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet:
+.global "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+"restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 801A7E28 001A4D68  4E 80 00 20 */	blr 
 
 .global create__Q24Game28StateMachine$$0Q24Game6Pellet$$1Fi

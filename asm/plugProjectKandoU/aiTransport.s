@@ -721,8 +721,8 @@ lbl_801A2318:
 /* 801A2320 0019F260  3B E0 00 00 */	li r31, 0
 /* 801A2324 0019F264  4B FF D9 39 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 801A2328 0019F268  38 00 00 00 */	li r0, 0
-/* 801A232C 0019F26C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 801A2330 0019F270  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801A232C 0019F26C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 801A2330 0019F270  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801A2334 0019F274  38 61 00 34 */	addi r3, r1, 0x34
 /* 801A2338 0019F278  28 00 00 00 */	cmplwi r0, 0
 /* 801A233C 0019F27C  90 81 00 08 */	stw r4, 8(r1)

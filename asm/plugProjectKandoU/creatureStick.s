@@ -993,11 +993,11 @@ __ct__Q24Game8StickersFPQ24Game8Creature:
 /* 8019FC8C 0019CBCC  7C 1C 03 78 */	mr r28, r0
 /* 8019FC90 0019CBD0  48 27 17 01 */	bl __ct__5CNodeFv
 /* 8019FC94 0019CBD4  3C 60 80 4B */	lis r3, __vt__16GenericContainer@ha
-/* 8019FC98 0019CBD8  3C 80 80 4B */	lis r4, __vt__27Container$$0Q24Game8Creature$$1@ha
+/* 8019FC98 0019CBD8  3C 80 80 4B */	lis r4, "__vt__27Container<Q24Game8Creature>"@ha
 /* 8019FC9C 0019CBDC  38 03 AC DC */	addi r0, r3, __vt__16GenericContainer@l
 /* 8019FCA0 0019CBE0  3C 60 80 4B */	lis r3, __vt__Q24Game8Stickers@ha
 /* 8019FCA4 0019CBE4  90 1C 00 00 */	stw r0, 0(r28)
-/* 8019FCA8 0019CBE8  38 A4 4A 08 */	addi r5, r4, __vt__27Container$$0Q24Game8Creature$$1@l
+/* 8019FCA8 0019CBE8  38 A4 4A 08 */	addi r5, r4, "__vt__27Container<Q24Game8Creature>"@l
 /* 8019FCAC 0019CBEC  38 80 00 00 */	li r4, 0
 /* 8019FCB0 0019CBF0  38 03 4D 68 */	addi r0, r3, __vt__Q24Game8Stickers@l
 /* 8019FCB4 0019CBF4  90 BC 00 00 */	stw r5, 0(r28)
@@ -1066,8 +1066,8 @@ __dt__Q24Game8StickersFv:
 /* 8019FD94 0019CCD4  98 0D 93 74 */	stb r0, mutex__Q24Game8Stickers@sda21(r13)
 /* 8019FD98 0019CCD8  90 0D 93 70 */	stw r0, numBuffer__Q24Game8Stickers@sda21(r13)
 /* 8019FD9C 0019CCDC  41 82 00 28 */	beq lbl_8019FDC4
-/* 8019FDA0 0019CCE0  3C 80 80 4B */	lis r4, __vt__27Container$$0Q24Game8Creature$$1@ha
-/* 8019FDA4 0019CCE4  38 04 4A 08 */	addi r0, r4, __vt__27Container$$0Q24Game8Creature$$1@l
+/* 8019FDA0 0019CCE0  3C 80 80 4B */	lis r4, "__vt__27Container<Q24Game8Creature>"@ha
+/* 8019FDA4 0019CCE4  38 04 4A 08 */	addi r0, r4, "__vt__27Container<Q24Game8Creature>"@l
 /* 8019FDA8 0019CCE8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8019FDAC 0019CCEC  41 82 00 18 */	beq lbl_8019FDC4
 /* 8019FDB0 0019CCF0  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha

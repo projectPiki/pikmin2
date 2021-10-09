@@ -906,8 +906,8 @@ shotPikmin__Q34Game3Pom3ObjFv:
 /* 80255410 00252350  7F C5 01 D6 */	mullw r30, r5, r0
 /* 80255414 00252354  4B F4 A8 49 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80255418 00252358  38 00 00 00 */	li r0, 0
-/* 8025541C 0025235C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80255420 00252360  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8025541C 0025235C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80255420 00252360  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80255424 00252364  38 61 00 64 */	addi r3, r1, 0x64
 /* 80255428 00252368  28 00 00 00 */	cmplwi r0, 0
 /* 8025542C 0025236C  90 81 00 28 */	stw r4, 0x28(r1)

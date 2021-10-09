@@ -1152,7 +1152,7 @@ startClimbPlant__Q34Game8Imomushi3ObjFP8CollPart:
 /* 802BD108 002BA048  4B E7 B1 71 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 802BD10C 002BA04C  38 61 00 08 */	addi r3, r1, 8
 /* 802BD110 002BA050  38 9E 02 CC */	addi r4, r30, 0x2cc
-/* 802BD114 002BA054  48 15 89 91 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
+/* 802BD114 002BA054  48 15 89 91 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
 /* 802BD118 002BA058  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 802BD11C 002BA05C  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 802BD120 002BA060  C0 61 00 08 */	lfs f3, 8(r1)

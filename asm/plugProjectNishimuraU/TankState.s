@@ -1881,7 +1881,7 @@ lbl_80275850:
 /* 802758E4 00272824  7F C3 F3 78 */	mr r3, r30
 /* 802758E8 00272828  C0 7F 04 EC */	lfs f3, 0x4ec(r31)
 /* 802758EC 0027282C  38 80 00 00 */	li r4, 0
-/* 802758F0 00272830  4B E9 D8 2D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802758F0 00272830  4B E9 D8 2D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802758F4 00272834  C0 02 CF 30 */	lfs f0, lbl_8051B290@sda21(r2)
 /* 802758F8 00272838  D0 1E 02 0C */	stfs f0, 0x20c(r30)
 lbl_802758FC:

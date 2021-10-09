@@ -211,9 +211,9 @@ createEffect__Q34Game5Wtank3ObjFv:
 /* 8027CB1C 00279A5C  1C 7C 00 0C */	mulli r3, r28, 0xc
 /* 8027CB20 00279A60  38 63 00 10 */	addi r3, r3, 0x10
 /* 8027CB24 00279A64  4B DA 74 89 */	bl __nwa__FUl
-/* 8027CB28 00279A68  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 8027CB28 00279A68  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 8027CB2C 00279A6C  7F 87 E3 78 */	mr r7, r28
-/* 8027CB30 00279A70  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 8027CB30 00279A70  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 8027CB34 00279A74  38 A0 00 00 */	li r5, 0
 /* 8027CB38 00279A78  38 C0 00 0C */	li r6, 0xc
 /* 8027CB3C 00279A7C  4B E4 4E B5 */	bl __construct_new_array

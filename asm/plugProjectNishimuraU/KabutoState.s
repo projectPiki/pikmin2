@@ -1113,7 +1113,7 @@ exec__Q34Game6Kabuto10StateFlickFPQ24Game9EnemyBase:
 /* 802E2818 002DF758  7F C3 F3 78 */	mr r3, r30
 /* 802E281C 002DF75C  C0 7F 04 EC */	lfs f3, 0x4ec(r31)
 /* 802E2820 002DF760  38 80 00 00 */	li r4, 0
-/* 802E2824 002DF764  4B E3 08 F9 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E2824 002DF764  4B E3 08 F9 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E2828 002DF768  C0 22 EA 48 */	lfs f1, lbl_8051CDA8@sda21(r2)
 /* 802E282C 002DF76C  D0 3E 02 0C */	stfs f1, 0x20c(r30)
 /* 802E2830 002DF770  C0 1E 02 00 */	lfs f0, 0x200(r30)
@@ -1554,7 +1554,7 @@ init__Q34Game6Kabuto14StateFixAppearFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802E2E78 002DFDB8  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 802E2E7C 002DFDBC  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802E2E80 002DFDC0  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802E2E84 002DFDC4  4B E3 02 99 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E2E84 002DFDC4  4B E3 02 99 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E2E88 002DFDC8  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 802E2E8C 002DFDCC  83 E1 00 4C */	lwz r31, 0x4c(r1)
 /* 802E2E90 002DFDD0  7C 08 03 A6 */	mtlr r0
@@ -1817,7 +1817,7 @@ exec__Q34Game6Kabuto12StateFixHideFPQ24Game9EnemyBase:
 /* 802E324C 002E018C  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 802E3250 002E0190  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802E3254 002E0194  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802E3258 002E0198  4B E2 FE C5 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E3258 002E0198  4B E2 FE C5 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E325C 002E019C  80 7F 01 88 */	lwz r3, 0x188(r31)
 /* 802E3260 002E01A0  88 03 00 24 */	lbz r0, 0x24(r3)
 /* 802E3264 002E01A4  28 00 00 00 */	cmplwi r0, 0
@@ -2521,7 +2521,7 @@ exec__Q34Game6Kabuto13StateFixFlickFPQ24Game9EnemyBase:
 /* 802E3C38 002E0B78  7F C3 F3 78 */	mr r3, r30
 /* 802E3C3C 002E0B7C  C0 7F 04 EC */	lfs f3, 0x4ec(r31)
 /* 802E3C40 002E0B80  38 80 00 00 */	li r4, 0
-/* 802E3C44 002E0B84  4B E2 F4 D9 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E3C44 002E0B84  4B E2 F4 D9 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E3C48 002E0B88  C0 22 EA 48 */	lfs f1, lbl_8051CDA8@sda21(r2)
 /* 802E3C4C 002E0B8C  D0 3E 02 0C */	stfs f1, 0x20c(r30)
 /* 802E3C50 002E0B90  C0 1E 02 00 */	lfs f0, 0x200(r30)

@@ -5,10 +5,10 @@
 __ct__Q24Game12IKSystemBaseFv:
 /* 802A9E5C 002A6D9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A9E60 002A6DA0  7C 08 02 A6 */	mflr r0
-/* 802A9E64 002A6DA4  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 802A9E64 002A6DA4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 802A9E68 002A6DA8  38 A0 00 00 */	li r5, 0
 /* 802A9E6C 002A6DAC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802A9E70 002A6DB0  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 802A9E70 002A6DB0  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 802A9E74 002A6DB4  38 C0 00 0C */	li r6, 0xc
 /* 802A9E78 002A6DB8  38 E0 00 03 */	li r7, 3
 /* 802A9E7C 002A6DBC  93 E1 00 0C */	stw r31, 0xc(r1)

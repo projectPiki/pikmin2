@@ -320,8 +320,8 @@ lbl_80253760:
 /* 80253778 002506B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025377C 002506BC  4E 80 00 20 */	blr 
 
-.global startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
-startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i:
+.global "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+"startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i":
 /* 80253780 002506C0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80253784 002506C4  7C 08 02 A6 */	mflr r0
 /* 80253788 002506C8  90 01 00 44 */	stw r0, 0x44(r1)

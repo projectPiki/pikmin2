@@ -585,8 +585,8 @@ lbl_80197AE4:
 /* 80197B0C 00194A4C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80197B10 00194A50  4E 80 00 20 */	blr 
 
-.global wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3$$0f$$1
-wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3$$0f$$1:
+.global "wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>"
+"wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>":
 /* 80197B14 00194A54  88 83 00 1C */	lbz r4, 0x1c(r3)
 /* 80197B18 00194A58  28 04 00 64 */	cmplwi r4, 0x64
 /* 80197B1C 00194A5C  4C 80 00 20 */	bgelr 
@@ -1348,12 +1348,12 @@ __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki:
 /* 801985E8 00195528  7C 7F 1B 78 */	mr r31, r3
 /* 801985EC 0019552C  4B FF E4 2D */	bl __ct__Q26PikiAI6ActionFPQ24Game4Piki
 /* 801985F0 00195530  3C 60 80 4B */	lis r3, __vt__Q26PikiAI11ActPathMove@ha
-/* 801985F4 00195534  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 801985F4 00195534  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 801985F8 00195538  38 03 4B FC */	addi r0, r3, __vt__Q26PikiAI11ActPathMove@l
 /* 801985FC 0019553C  38 A0 00 00 */	li r5, 0
 /* 80198600 00195540  90 1F 00 00 */	stw r0, 0(r31)
 /* 80198604 00195544  38 7F 00 74 */	addi r3, r31, 0x74
-/* 80198608 00195548  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 80198608 00195548  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 8019860C 0019554C  38 C0 00 0C */	li r6, 0xc
 /* 80198610 00195550  38 E0 00 04 */	li r7, 4
 /* 80198614 00195554  4B F2 92 29 */	bl __construct_array
@@ -2135,8 +2135,8 @@ lbl_801990FC:
 /* 8019910C 0019604C  38 61 00 5C */	addi r3, r1, 0x5c
 /* 80199110 00196050  48 00 6B 4D */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80199114 00196054  38 00 00 00 */	li r0, 0
-/* 80199118 00196058  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 8019911C 0019605C  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80199118 00196058  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 8019911C 0019605C  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80199120 00196060  38 61 00 5C */	addi r3, r1, 0x5c
 /* 80199124 00196064  28 00 00 00 */	cmplwi r0, 0
 /* 80199128 00196068  90 81 00 24 */	stw r4, 0x24(r1)
@@ -2266,8 +2266,8 @@ lbl_801992B8:
 /* 801992F8 00196238  38 61 00 40 */	addi r3, r1, 0x40
 /* 801992FC 0019623C  48 00 69 61 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80199300 00196240  38 00 00 00 */	li r0, 0
-/* 80199304 00196244  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80199308 00196248  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80199304 00196244  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80199308 00196248  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 8019930C 0019624C  38 61 00 40 */	addi r3, r1, 0x40
 /* 80199310 00196250  28 00 00 00 */	cmplwi r0, 0
 /* 80199314 00196254  90 81 00 14 */	stw r4, 0x14(r1)
@@ -3646,7 +3646,7 @@ lbl_8019A634:
 /* 8019A6B0 001975F0  D3 41 00 8C */	stfs f26, 0x8c(r1)
 /* 8019A6B4 001975F4  D3 C1 00 90 */	stfs f30, 0x90(r1)
 /* 8019A6B8 001975F8  D3 E1 00 94 */	stfs f31, 0x94(r1)
-/* 8019A6BC 001975FC  48 27 B4 9D */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 8019A6BC 001975FC  48 27 B4 9D */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 8019A6C0 00197600  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8019A6C4 00197604  41 82 00 0C */	beq lbl_8019A6D0
 /* 8019A6C8 00197608  38 60 00 01 */	li r3, 1
@@ -4045,7 +4045,7 @@ lbl_8019AC10:
 /* 8019AC3C 00197B7C  38 81 00 8C */	addi r4, r1, 0x8c
 /* 8019AC40 00197B80  38 A1 00 9C */	addi r5, r1, 0x9c
 /* 8019AC44 00197B84  38 C1 00 08 */	addi r6, r1, 8
-/* 8019AC48 00197B88  48 27 AF 11 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 8019AC48 00197B88  48 27 AF 11 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 8019AC4C 00197B8C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8019AC50 00197B90  41 82 01 90 */	beq lbl_8019ADE0
 /* 8019AC54 00197B94  80 7E 00 70 */	lwz r3, 0x70(r30)
@@ -6019,7 +6019,7 @@ lbl_8019C83C:
 /* 8019C844 00199784  4B F9 BA 35 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 8019C848 00199788  38 61 00 08 */	addi r3, r1, 8
 /* 8019C84C 0019978C  38 9E 00 14 */	addi r4, r30, 0x14
-/* 8019C850 00199790  48 27 92 55 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
+/* 8019C850 00199790  48 27 92 55 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
 /* 8019C854 00199794  C0 1E 00 14 */	lfs f0, 0x14(r30)
 /* 8019C858 00199798  FC 00 00 50 */	fneg f0, f0
 /* 8019C85C 0019979C  D0 1E 00 14 */	stfs f0, 0x14(r30)

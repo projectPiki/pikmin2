@@ -429,7 +429,7 @@ lbl_80270E80:
 /* 80270EBC 0026DDFC  38 A1 00 14 */	addi r5, r1, 0x14
 /* 80270EC0 0026DE00  38 80 00 0B */	li r4, 0xb
 /* 80270EC4 0026DE04  38 C0 00 02 */	li r6, 2
-/* 80270EC8 0026DE08  4B FE 28 B9 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 80270EC8 0026DE08  4B FE 28 B9 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 80270ECC 0026DE0C  48 00 00 64 */	b lbl_80270F30
 lbl_80270ED0:
 /* 80270ED0 0026DE10  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -749,7 +749,7 @@ exec__Q34Game5Sarai10StateFlickFPQ24Game9EnemyBase:
 /* 80271320 0026E260  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 80271324 0026E264  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 80271328 0026E268  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 8027132C 0026E26C  4B EA 1D F1 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 8027132C 0026E26C  4B EA 1D F1 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 80271330 0026E270  C0 02 CD F8 */	lfs f0, lbl_8051B158@sda21(r2)
 /* 80271334 0026E274  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 /* 80271338 0026E278  48 00 00 98 */	b lbl_802713D0

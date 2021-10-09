@@ -206,7 +206,7 @@ lbl_803879D8:
 /* 803879EC 0038492C  C0 42 0A CC */	lfs f2, lbl_8051EE2C@sda21(r2)
 /* 803879F0 00384930  38 80 00 00 */	li r4, 0
 /* 803879F4 00384934  38 A0 00 00 */	li r5, 0
-/* 803879F8 00384938  4B D8 B1 6D */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
+/* 803879F8 00384938  4B D8 B1 6D */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
 /* 803879FC 0038493C  28 03 00 00 */	cmplwi r3, 0
 /* 80387A00 00384940  41 82 00 3C */	beq lbl_80387A3C
 lbl_80387A04:

@@ -3493,9 +3493,9 @@ lbl_801C3E74:
 /* 801C3EB4 001C0DF4  4C C6 31 82 */	crclr 6
 /* 801C3EB8 001C0DF8  4B E6 67 89 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_801C3EBC:
-/* 801C3EBC 001C0DFC  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 801C3EBC 001C0DFC  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 801C3EC0 001C0E00  38 61 00 40 */	addi r3, r1, 0x40
-/* 801C3EC4 001C0E04  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 801C3EC4 001C0E04  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 801C3EC8 001C0E08  38 A0 00 00 */	li r5, 0
 /* 801C3ECC 001C0E0C  38 C0 00 0C */	li r6, 0xc
 /* 801C3ED0 001C0E10  38 E0 00 32 */	li r7, 0x32

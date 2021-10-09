@@ -484,7 +484,7 @@ doFinishStoneState__Q34Game5Queen3ObjFv:
 /* 80289B60 00286AA0  38 80 00 00 */	li r4, 0
 /* 80289B64 00286AA4  C0 62 D4 B8 */	lfs f3, lbl_8051B818@sda21(r2)
 /* 80289B68 00286AA8  C0 82 D4 DC */	lfs f4, lbl_8051B83C@sda21(r2)
-/* 80289B6C 00286AAC  4B E8 95 B1 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 80289B6C 00286AAC  4B E8 95 B1 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 80289B70 00286AB0  7F E3 FB 78 */	mr r3, r31
 /* 80289B74 00286AB4  4B E7 D8 81 */	bl getStateID__Q24Game9EnemyBaseFv
 /* 80289B78 00286AB8  2C 03 00 03 */	cmpwi r3, 3
@@ -805,8 +805,8 @@ flickPikmin__Q34Game5Queen3ObjFf:
 /* 80289FD8 00286F18  EF E0 F0 2A */	fadds f31, f0, f30
 /* 80289FDC 00286F1C  4B F1 5C 81 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80289FE0 00286F20  38 00 00 00 */	li r0, 0
-/* 80289FE4 00286F24  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80289FE8 00286F28  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80289FE4 00286F24  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80289FE8 00286F28  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80289FEC 00286F2C  38 61 00 54 */	addi r3, r1, 0x54
 /* 80289FF0 00286F30  28 00 00 00 */	cmplwi r0, 0
 /* 80289FF4 00286F34  90 81 00 08 */	stw r4, 8(r1)
