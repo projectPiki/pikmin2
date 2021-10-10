@@ -4,7 +4,6 @@
 #include "Stream.h"
 #include "types.h"
 
-// TODO
 struct BitFlags {
     u8* m_flagArr; // _00 flag array
     u16 _04;       // _04

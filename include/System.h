@@ -8,7 +8,6 @@ void kando_panic_f(bool, const char*, s32, const char*, ...);
 extern void preUserCallback(unsigned short, struct OSContext*, unsigned long,
                             unsigned long);
 
-// TODO: define each function
 struct System {
     // static void assert_fragmentation(char*);
     // void enableCPULockDetector(int);
