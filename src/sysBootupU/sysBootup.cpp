@@ -1,6 +1,9 @@
 #include "Dolphin/os.h"
 #include "System.h"
 
+// "bootup -----------------------\n"
+extern char gMainBootupStr[33];
+
 /*
  * --INFO--
  * Address:	804111B4
@@ -8,7 +11,7 @@
  */
 int main(void)
 {
-    OSReport("bootup -----------------------\n");
+    OSReport(gMainBootupStr);
 
     System::initialize();
     System* sysInstance = new System();
