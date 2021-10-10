@@ -27,7 +27,7 @@ namespace MemoryCard {
         u8 isBrokenFile(int idx);
         bool isNewFile(int idx);
 
-        Player m_players[3]; // _00
+        Player m_players[3];
     };
 } // namespace MemoryCard
 } // namespace Game

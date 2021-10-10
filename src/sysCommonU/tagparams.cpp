@@ -1,32 +1,84 @@
-#include "TagParm.h"
+#include "tagparams.h"
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00002C
+ */
+void TagParm::read(Stream&)
+{
+    // UNUSED FUNCTION
+}
 
 /*
  * --INFO--
  * Address:	8041BD2C
  * Size:	000004
  */
-void TagParm::doRead(Stream&) { }
+void TagParm::doRead(Stream&)
+{
+    return;
+    /*
+    .loc_0x0:
+      blr
+    */
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000084
+ */
+void TagParm::write(Stream&)
+{
+    // UNUSED FUNCTION
+}
 
 /*
  * --INFO--
  * Address:	8041BD30
  * Size:	000004
  */
-void TagParm::doWrite(Stream&) { }
+void TagParm::doWrite(Stream&)
+{
+    return;
+
+    /*
+    .loc_0x0:
+      blr
+    */
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00002C
+ */
+void TagParm::dump()
+{
+    // UNUSED FUNCTION
+}
 
 /*
  * --INFO--
  * Address:	8041BD34
  * Size:	000004
  */
-void TagParm::doDump() { }
+void TagParm::doDump()
+{
+    return;
+    /*
+    .loc_0x0:
+      blr
+    */
+}
 
 /*
  * --INFO--
  * Address:	8041BD38
  * Size:	000034
  */
-// void PrimTagParm<int>::doRead(Stream&)
+//void PrimTagParm<int>::doRead(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -51,7 +103,7 @@ void TagParm::doDump() { }
 // * Address:	8041BD6C
 // * Size:	00002C
 // */
-// void PrimTagParm<int>::doWrite(Stream&)
+//void PrimTagParm<int>::doWrite(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -74,7 +126,7 @@ void TagParm::doDump() { }
 // * Address:	8041BD98
 // * Size:	000004
 // */
-// void PrimTagParm<int>::doDump()
+//void PrimTagParm<int>::doDump()
 //{
 //    /*
 //    .loc_0x0:
@@ -87,7 +139,7 @@ void TagParm::doDump() { }
 // * Address:	8041BD9C
 // * Size:	000034
 // */
-// void PrimTagParm<unsigned short>::doRead(Stream&)
+//void PrimTagParm<unsigned short>::doRead(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -112,7 +164,7 @@ void TagParm::doDump() { }
 // * Address:	8041BDD0
 // * Size:	00002C
 // */
-// void PrimTagParm<unsigned short>::doWrite(Stream&)
+//void PrimTagParm<unsigned short>::doWrite(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -135,7 +187,7 @@ void TagParm::doDump() { }
 // * Address:	8041BDFC
 // * Size:	000004
 // */
-// void PrimTagParm<unsigned short>::doDump()
+//void PrimTagParm<unsigned short>::doDump()
 //{
 //    /*
 //    .loc_0x0:
@@ -148,7 +200,7 @@ void TagParm::doDump() { }
 // * Address:	8041BE00
 // * Size:	000078
 // */
-// void PrimTagParm<unsigned long long>::doRead(Stream&)
+//void PrimTagParm<unsigned long long>::doRead(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -190,7 +242,7 @@ void TagParm::doDump() { }
 // * Address:	8041BE78
 // * Size:	00006C
 // */
-// void PrimTagParm<unsigned long long>::doWrite(Stream&)
+//void PrimTagParm<unsigned long long>::doWrite(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -229,7 +281,7 @@ void TagParm::doDump() { }
 // * Address:	8041BEE4
 // * Size:	000004
 // */
-// void PrimTagParm<unsigned long long>::doDump()
+//void PrimTagParm<unsigned long long>::doDump()
 //{
 //    /*
 //    .loc_0x0:
@@ -242,7 +294,7 @@ void TagParm::doDump() { }
 // * Address:	8041BEE8
 // * Size:	000034
 // */
-// void PrimTagParm<float>::doRead(Stream&)
+//void PrimTagParm<float>::doRead(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -267,7 +319,7 @@ void TagParm::doDump() { }
 // * Address:	8041BF1C
 // * Size:	000028
 // */
-// void PrimTagParm<float>::doWrite(Stream&)
+//void PrimTagParm<float>::doWrite(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -289,7 +341,7 @@ void TagParm::doDump() { }
 // * Address:	8041BF44
 // * Size:	000004
 // */
-// void PrimTagParm<float>::doDump()
+//void PrimTagParm<float>::doDump()
 //{
 //    /*
 //    .loc_0x0:
@@ -302,7 +354,7 @@ void TagParm::doDump() { }
 // * Address:	8041BF48
 // * Size:	000024
 // */
-// void PrimTagParm<Vector3<float>>::doRead(Stream&)
+//void PrimTagParm<Vector3<float>>::doRead(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -323,7 +375,7 @@ void TagParm::doDump() { }
 // * Address:	8041BF6C
 // * Size:	000024
 // */
-// void PrimTagParm<Vector3<float>>::doWrite(Stream&)
+//void PrimTagParm<Vector3<float>>::doWrite(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -344,7 +396,7 @@ void TagParm::doDump() { }
 // * Address:	8041BF90
 // * Size:	000004
 // */
-// void PrimTagParm<Vector3<float>>::doDump()
+//void PrimTagParm<Vector3<float>>::doDump()
 //{
 //    /*
 //    .loc_0x0:
@@ -357,7 +409,7 @@ void TagParm::doDump() { }
 // * Address:	8041BF94
 // * Size:	000044
 // */
-// void StringTagParm::StringTagParm(TagParameters*, char*)
+//void StringTagParm::StringTagParm(TagParameters*, char*)
 //{
 //    /*
 //    .loc_0x0:
@@ -386,7 +438,7 @@ void TagParm::doDump() { }
 // * Address:	8041BFD8
 // * Size:	000004
 // */
-// void StringTagParm::flushValue()
+//void StringTagParm::flushValue()
 //{
 //    /*
 //    .loc_0x0:
@@ -399,7 +451,7 @@ void TagParm::doDump() { }
 // * Address:	8041BFDC
 // * Size:	00003C
 // */
-// void StringTagParm::doRead(Stream&)
+//void StringTagParm::doRead(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -426,7 +478,7 @@ void TagParm::doDump() { }
 // * Address:	8041C018
 // * Size:	00002C
 // */
-// void StringTagParm::doWrite(Stream&)
+//void StringTagParm::doWrite(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -449,7 +501,7 @@ void TagParm::doDump() { }
 // * Address:	8041C044
 // * Size:	000004
 // */
-// void StringTagParm::doDump()
+//void StringTagParm::doDump()
 //{
 //    /*
 //    .loc_0x0:
@@ -462,7 +514,7 @@ void TagParm::doDump() { }
 // * Address:	8041C048
 // * Size:	000054
 // */
-// void TagParameters::TagParameters(char*)
+//void TagParameters::TagParameters(char*)
 //{
 //    /*
 //    .loc_0x0:
@@ -495,7 +547,7 @@ void TagParm::doDump() { }
 // * Address:	........
 // * Size:	000048
 // */
-// void TagParameters::isEndToken(char*)
+//void TagParameters::isEndToken(char*)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -505,7 +557,7 @@ void TagParm::doDump() { }
 // * Address:	........
 // * Size:	000020
 // */
-// void TagParameters::add(TagParm*)
+//void TagParameters::add(TagParm*)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -515,7 +567,7 @@ void TagParm::doDump() { }
 // * Address:	8041C09C
 // * Size:	000038
 // */
-// void TagParm::TagParm(TagParameters*, char*)
+//void TagParm::TagParm(TagParameters*, char*)
 //{
 //    /*
 //    .loc_0x0:
@@ -543,7 +595,7 @@ void TagParm::doDump() { }
 // * Address:	8041C0D4
 // * Size:	0000D4
 // */
-// void TagParameters::read(Stream&)
+//void TagParameters::read(Stream&)
 //{
 //    /*
 //    .loc_0x0:
@@ -618,7 +670,7 @@ void TagParm::doDump() { }
 // * Address:	........
 // * Size:	0000C8
 // */
-// void TagParameters::write(Stream&)
+//void TagParameters::write(Stream&)
 //{
 //    // UNUSED FUNCTION
 //}
@@ -628,7 +680,7 @@ void TagParm::doDump() { }
 // * Address:	........
 // * Size:	00004C
 // */
-// void TagParameters::dump()
+//void TagParameters::dump()
 //{
 //    // UNUSED FUNCTION
 //}

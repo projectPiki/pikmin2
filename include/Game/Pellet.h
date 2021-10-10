@@ -5,7 +5,7 @@
 
 namespace Game {
 struct Pellet {
-    u8 _00[0x458]; // _00
+    u8 _00[1112]; // _00
 };
 } // namespace Game
 

@@ -10,7 +10,6 @@ namespace MemoryCard {
     struct Resource : public JKRDisposer {
         virtual ~Resource();
 
-        // _00 vtbl
         u8 _04[0x14]; // _04
         Mgr* m_mgr;   // _18
     };
