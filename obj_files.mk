@@ -333,7 +333,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/math_ppc.o\
 	$(BUILD_DIR)/src/Dolphin/w_sqrt.o\
 	$(BUILD_DIR)/asm/Dolphin/extras.o\
-	$(BUILD_DIR)/src/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/vi.o\
 	$(BUILD_DIR)/src/Dolphin/AmcExi2Stubs.o\
