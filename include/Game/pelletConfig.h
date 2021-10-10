@@ -46,8 +46,8 @@ struct PelletConfig : public CNode {
 		unsigned char field_0x207;
 		PrimTagParm<unsigned long long> message;
 		PrimTagParm<unsigned short> code;
-		unsigned char field_0x22e;
-		unsigned char field_0x22f;
+		//unsigned char field_0x22e;
+		//unsigned char field_0x22f;
 		PrimTagParm<unsigned short> dictionary;
 	}; // struct TParms
 	TParms parms;

@@ -3,216 +3,189 @@
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	801B3EEC
- * Size:	000048
- */
+    /*
+     * --INFO--
+     * Address:	801B3EEC
+     * Size:	000048
+     */
 
-PelletConfigList::PelletConfigList()
-{
-	this->pelletConfigArray = nullptr;
-	this->count             = 0;
+    PelletConfigList::PelletConfigList()
+    {
+        this->pelletConfigArray = nullptr;
+        this->count = 0;
+    }
+
+    /*
+     * --INFO--
+     * Address:	801B3F34
+     * Size:	0000AC
+     */
+
+    PelletConfig::PelletConfig()
+    {
+        this->short_0x258 = -1;
+        this->parms.unique.m_data = "no";
+        this->parms.indirect.m_data = "no";
+        this->parms.txtArchive.m_data = nullptr;
+        this->parms.depth.m_data = 0.0f;
+        this->parms.depthA.m_data = 10.0f;
+        this->parms.depthB.m_data = 20.0f;
+        this->parms.depthC.m_data = 30.0f;
+        this->parms.depthD.m_data = 40.0f;
+        this->parms.numPMotions.m_data = 0;
+        this->parms.message.m_data.intView.b = 0;
+        this->parms.message.m_data.intView.a = 0;
+        this->parms.offset.m_data.x = 0.0f;
+        this->parms.offset.m_data.y = 0.0f;
+        this->parms.offset.m_data.z = 0.0f;
+        this->parms.code.m_data = 0;
+        this->parms.dictionary.m_data = 0;
+        this->indirect = 0;
+        /*
+        .loc_0x0:
+          stwu      r1, -0x10(r1)
+          mflr      r0
+          stw       r0, 0x14(r1)
+          stw       r31, 0xC(r1)
+          mr        r31, r3
+          bl        0x25D448
+          lis       r4, 0x804B
+          addi      r3, r31, 0x18
+          addi      r0, r4, 0x5B30
+          stw       r0, 0x0(r31)
+          bl        0xF4
+          li        r0, -0x1
+          subi      r4, r2, 0x4FF0
+          sth       r0, 0x258(r31)
+          li        r0, 0
+          lfs       f4, -0x4FEC(r2)
+          mr        r3, r31
+          stw       r4, 0x180(r31)
+          lfs       f3, -0x4FE8(r2)
+          stw       r4, 0x190(r31)
+          lfs       f2, -0x4FE4(r2)
+          stw       r0, 0x60(r31)
+          lfs       f1, -0x4FE0(r2)
+          stfs      f4, 0x1B0(r31)
+          lfs       f0, -0x4FDC(r2)
+          stfs      f3, 0x1D0(r31)
+          stfs      f2, 0x1E0(r31)
+          stfs      f1, 0x1F0(r31)
+          stfs      f0, 0x200(r31)
+          stw       r0, 0x1A0(r31)
+          stw       r0, 0x234(r31)
+          stw       r0, 0x230(r31)
+          stfs      f4, 0x210(r31)
+          stfs      f4, 0x214(r31)
+          stfs      f4, 0x218(r31)
+          sth       r0, 0x244(r31)
+          sth       r0, 0x254(r31)
+          stb       r0, 0x25A(r31)
+          lwz       r31, 0xC(r1)
+          lwz       r0, 0x14(r1)
+          mtlr      r0
+          addi      r1, r1, 0x10
+          blr
+          */
+    }
+
+    /*
+     * --INFO--
+     * Address:	801B3FE0
+     * Size:	000070
+     */
+
+    PelletConfig::TParms::~TParms()
+    {
+        /*
+        .loc_0x0:
+          stwu      r1, -0x10(r1)
+          mflr      r0
+          stw       r0, 0x14(r1)
+          stw       r31, 0xC(r1)
+          mr        r31, r4
+          stw       r30, 0x8(r1)
+          mr.       r30, r3
+          beq-      .loc_0x54
+          lis       r4, 0x804B
+          addi      r0, r4, 0x5B20
+          stw       r0, 0x0(r30)
+          beq-      .loc_0x44
+          lis       r5, 0x804B
+          li        r4, 0
+          addi      r0, r5, 0x5B10
+          stw       r0, 0x0(r30)
+          bl        0x25D568
+
+        .loc_0x44:
+          extsh.    r0, r31
+          ble-      .loc_0x54
+          mr        r3, r30
+          bl        -0x18FF7C
+
+        .loc_0x54:
+          lwz       r0, 0x14(r1)
+          mr        r3, r30
+          lwz       r31, 0xC(r1)
+          lwz       r30, 0x8(r1)
+          mtlr      r0
+          addi      r1, r1, 0x10
+          blr
+        */
+    }
+
+    /*
+     * --INFO--
+     * Address:	801B4050
+     * Size:	000374
+     */
+
+    PelletConfig::TParms::TParms()
+        : TagParameters("PelletConfig")
+        , name(this, "name")
+        , archive(this, "archive")
+        , txtArchive(this, "txt_archive")
+        , bmd(this, "bmd")
+        , animMgr(this, "animmgr")
+        , colltree(this, "colltree")
+        , radius(this, "radius")
+        , pRadius(this, "p_radius")
+        , height(this, "height")
+        , inertiaScaling(this, "inertiascaling")
+        , particleType(this, "particletype")
+        , numParticles(this, "numparticles")
+        , particleSize(this, "particlesize")
+        , friction(this, "friction")
+        , min(this, "min")
+        , max(this, "max")
+        , pikiCountMax(this, "pikicountmax")
+        , pikiCountMin(this, "pikicountmin")
+        , dynamics(this, "dynamics")
+        , money(this, "money")
+        , unique(this, "unique")
+        , indirect(this, "indirect")
+        , numPMotions(this, "num_pmotions")
+        , depth(this, "depth")
+        , depthMax(this, "depth_max")
+        , depthA(this, "depth_a")
+        , depthB(this, "depth_b")
+        , depthC(this, "depth_c")
+        , depthD(this, "depth_d")
+        , offset(this, "offset")
+        , message(this, "message")
+        , code(this, "code")
+        , dictionary(this, "dictionary")
+    {
+    }
 }
-
-/*
- * --INFO--
- * Address:	801B3F34
- * Size:	0000AC
- */
-
-PelletConfig::PelletConfig()
-{
-	this->short_0x258              = -1;
-	this->parms.unique.m_data      = "no";
-	this->parms.indirect.m_data    = "no";
-	this->parms.txtArchive.m_data  = nullptr;
-	this->parms.depth.m_data       = 0.0f;
-	this->parms.depthA.m_data      = 10.0f;
-	this->parms.depthB.m_data      = 20.0f;
-	this->parms.depthC.m_data      = 30.0f;
-	this->parms.depthD.m_data      = 40.0f;
-	this->parms.numPMotions.m_data = 0;
-	this->parms.message.m_data_2   = 0;
-	this->parms.message.m_data_1   = 0;
-	this->parms.offset.m_data.x    = 0.0f;
-	this->parms.offset.m_data.y    = 0.0f;
-	this->parms.offset.m_data.z    = 0.0f;
-	this->parms.code.m_data        = 0;
-	this->parms.dictionary.m_data  = 0;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x25D448
-	  lis       r4, 0x804B
-	  addi      r3, r31, 0x18
-	  addi      r0, r4, 0x5B30
-	  stw       r0, 0x0(r31)
-	  bl        0xF4
-	  li        r0, -0x1
-	  subi      r4, r2, 0x4FF0
-	  sth       r0, 0x258(r31)
-	  li        r0, 0
-	  lfs       f4, -0x4FEC(r2)
-	  mr        r3, r31
-	  stw       r4, 0x180(r31)
-	  lfs       f3, -0x4FE8(r2)
-	  stw       r4, 0x190(r31)
-	  lfs       f2, -0x4FE4(r2)
-	  stw       r0, 0x60(r31)
-	  lfs       f1, -0x4FE0(r2)
-	  stfs      f4, 0x1B0(r31)
-	  lfs       f0, -0x4FDC(r2)
-	  stfs      f3, 0x1D0(r31)
-	  stfs      f2, 0x1E0(r31)
-	  stfs      f1, 0x1F0(r31)
-	  stfs      f0, 0x200(r31)
-	  stw       r0, 0x1A0(r31)
-	  stw       r0, 0x234(r31)
-	  stw       r0, 0x230(r31)
-	  stfs      f4, 0x210(r31)
-	  stfs      f4, 0x214(r31)
-	  stfs      f4, 0x218(r31)
-	  sth       r0, 0x244(r31)
-	  sth       r0, 0x254(r31)
-	  stb       r0, 0x25A(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	  */
-}
-
-/*
- * --INFO--
- * Address:	801B3FE0
- * Size:	000070
- */
-
-PelletConfig::TParms::~TParms()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  addi      r0, r4, 0x5B20
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  addi      r0, r5, 0x5B10
-	  stw       r0, 0x0(r30)
-	  bl        0x25D568
-
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x18FF7C
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801B4050
- * Size:	000374
- */
-
-PelletConfig::TParms::TParms()
-    : TagParameters("PelletConfig")
-    , name(this, "name")
-    , archive(this, "archive")
-    , txtArchive(this, "txt_archive")
-    , bmd(this, "bmd")
-    , animMgr(this, "animmgr")
-    , colltree(this, "colltree")
-    , radius(this, "radius")
-    , pRadius(this, "p_radius")
-    , height(this, "height")
-    , inertiaScaling(this, "inertiascaling")
-    , particleType(this, "particletype")
-    , numParticles(this, "numparticles")
-    , particleSize(this, "particlesize")
-    , friction(this, "friction")
-    , min(this, "min")
-    , max(this, "max")
-    , pikiCountMax(this, "pikicountmax")
-    , pikiCountMin(this, "pikicountmin")
-    , dynamics(this, "dynamics")
-    , money(this, "money")
-    , unique(this, "unique")
-    , indirect(this, "indirect")
-    , numPMotions(this, "num_pmotions")
-    , depth(this, "depth")
-    , depthMax(this, "depth_max")
-    , depthA(this, "depth_a")
-    , depthB(this, "depth_b")
-    , depthC(this, "depth_c")
-    , depthD(this, "depth_d")
-    , offset(this, "offset")
-    , message(this, "message")
-    , code(this, "code")
-    , dictionary(this, "dictionary")
-{
-}
-
 /*
  * --INFO--
  * Address:	801B43C4
  * Size:	000060
-
+ */
 
 TagParameters::~TagParameters()
 {
-    /*
-    .loc_0x0:
-      stwu      r1, -0x10(r1)
-      mflr      r0
-      stw       r0, 0x14(r1)
-      stw       r31, 0xC(r1)
-      mr        r31, r4
-      stw       r30, 0x8(r1)
-      mr.       r30, r3
-      beq-      .loc_0x44
-      lis       r5, 0x804B
-      li        r4, 0
-      addi      r0, r5, 0x5B10
-      stw       r0, 0x0(r30)
-      bl        0x25D194
-      extsh.    r0, r31
-      ble-      .loc_0x44
-      mr        r3, r30
-      bl        -0x190350
-
-    .loc_0x44:
-      lwz       r0, 0x14(r1)
-      mr        r3, r30
-      lwz       r31, 0xC(r1)
-      lwz       r30, 0x8(r1)
-      mtlr      r0
-      addi      r1, r1, 0x10
-      blr
 
 }
 
@@ -220,7 +193,7 @@ TagParameters::~TagParameters()
  * --INFO--
  * Address:	801B4424
  * Size:	000084
-
+ 
 
 namespace Game {
     void PelletConfigList::getPelletConfig(char*)
@@ -268,6 +241,7 @@ namespace Game {
           mtlr      r0
           addi      r1, r1, 0x20
           blr
+          
 
     }
 
@@ -557,4 +531,4 @@ namespace Game {
           blr
           */
 //}
-} // namespace Game
+//} // namespace Game
