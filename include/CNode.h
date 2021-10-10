@@ -2,7 +2,6 @@
 #define __CNODE_H
 
 class CNode {
-protected:
     CNode* _04;
     CNode* _08;
     CNode* _0C;
