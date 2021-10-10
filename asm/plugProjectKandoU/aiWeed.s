@@ -1170,10 +1170,10 @@ lbl_8020E784:
 /* 8020E83C 0020B77C  38 E0 00 00 */	li r7, 0
 /* 8020E840 0020B780  90 81 00 44 */	stw r4, 0x44(r1)
 /* 8020E844 0020B784  38 C3 4B 9C */	addi r6, r3, __vt__Q23efx11TPkAttackDP@l
-/* 8020E848 0020B788  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8020E848 0020B788  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 8020E84C 0020B78C  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 8020E850 0020B790  B0 01 00 48 */	sth r0, 0x48(r1)
-/* 8020E854 0020B794  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 8020E854 0020B794  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 8020E858 0020B798  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8020E85C 0020B79C  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 8020E860 0020B7A0  90 E1 00 4C */	stw r7, 0x4c(r1)
@@ -1206,10 +1206,10 @@ lbl_8020E8AC:
 /* 8020E8C8 0020B808  38 E0 00 00 */	li r7, 0
 /* 8020E8CC 0020B80C  90 81 00 28 */	stw r4, 0x28(r1)
 /* 8020E8D0 0020B810  38 C3 4B 88 */	addi r6, r3, __vt__Q23efx10PikiDamage@l
-/* 8020E8D4 0020B814  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8020E8D4 0020B814  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 8020E8D8 0020B818  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 8020E8DC 0020B81C  B0 01 00 2C */	sth r0, 0x2c(r1)
-/* 8020E8E0 0020B820  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 8020E8E0 0020B820  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 8020E8E4 0020B824  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8020E8E8 0020B828  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 8020E8EC 0020B82C  90 E1 00 30 */	stw r7, 0x30(r1)
@@ -1232,9 +1232,9 @@ lbl_8020E8AC:
 /* 8020E930 0020B870  48 1A 06 55 */	bl create__Q23efx8TSimple1FPQ23efx3Arg
 /* 8020E934 0020B874  48 00 00 B4 */	b lbl_8020E9E8
 lbl_8020E938:
-/* 8020E938 0020B878  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 8020E938 0020B878  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 8020E93C 0020B87C  3C 60 80 4B */	lis r3, __vt__Q23efx5TBase@ha
-/* 8020E940 0020B880  38 C4 41 E4 */	addi r6, r4, "zero__10Vector3<f>"@l
+/* 8020E940 0020B880  38 C4 41 E4 */	addi r6, r4, zero__10Vector3$$0f$$1@l
 /* 8020E944 0020B884  38 A0 00 00 */	li r5, 0
 /* 8020E948 0020B888  38 03 A7 F8 */	addi r0, r3, __vt__Q23efx5TBase@l
 /* 8020E94C 0020B88C  C0 26 00 00 */	lfs f1, 0(r6)

@@ -297,7 +297,7 @@ onSetPosition__Q24Game8ItemGateFv:
 /* 801C7A24 001C4964  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 801C7A28 001C4968  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 801C7A2C 001C496C  D0 01 00 20 */	stfs f0, 0x20(r1)
-/* 801C7A30 001C4970  48 26 0E 59 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801C7A30 001C4970  48 26 0E 59 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801C7A34 001C4974  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 801C7A38 001C4978  38 7F 01 38 */	addi r3, r31, 0x138
 /* 801C7A3C 001C497C  80 84 00 08 */	lwz r4, 8(r4)

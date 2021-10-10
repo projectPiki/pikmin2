@@ -402,7 +402,7 @@ lbl_80454A1C:
 /* 80454A4C 0045198C  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80454A50 00451990  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80454A54 00451994  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80454A58 00451998  4B FD 3E 31 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80454A58 00451998  4B FD 3E 31 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80454A5C 0045199C  48 00 00 4C */	b lbl_80454AA8
 lbl_80454A60:
 /* 80454A60 004519A0  A8 1F 00 84 */	lha r0, 0x84(r31)
@@ -422,7 +422,7 @@ lbl_80454A60:
 /* 80454A98 004519D8  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80454A9C 004519DC  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80454AA0 004519E0  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 80454AA4 004519E4  4B FD 3D E5 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80454AA4 004519E4  4B FD 3D E5 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 lbl_80454AA8:
 /* 80454AA8 004519E8  80 1F 00 74 */	lwz r0, 0x74(r31)
 /* 80454AAC 004519EC  38 A1 00 2C */	addi r5, r1, 0x2c
@@ -500,7 +500,7 @@ lbl_80454B98:
 /* 80454BB0 00451AF0  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80454BB4 00451AF4  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80454BB8 00451AF8  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80454BBC 00451AFC  4B FD 3C CD */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80454BBC 00451AFC  4B FD 3C CD */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80454BC0 00451B00  48 00 00 2C */	b lbl_80454BEC
 lbl_80454BC4:
 /* 80454BC4 00451B04  80 AD 9B 54 */	lwz r5, moviePlayer__4Game@sda21(r13)
@@ -512,7 +512,7 @@ lbl_80454BC4:
 /* 80454BDC 00451B1C  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80454BE0 00451B20  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 80454BE4 00451B24  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80454BE8 00451B28  4B FD 3C A1 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80454BE8 00451B28  4B FD 3C A1 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 lbl_80454BEC:
 /* 80454BEC 00451B2C  38 7E 00 88 */	addi r3, r30, 0x88
 /* 80454BF0 00451B30  38 9F 00 68 */	addi r4, r31, 0x68

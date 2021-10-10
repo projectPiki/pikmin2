@@ -310,7 +310,7 @@ lbl_801EE384:
 /* 801EE3A8 001EB2E8  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 801EE3AC 001EB2EC  D0 21 00 30 */	stfs f1, 0x30(r1)
 /* 801EE3B0 001EB2F0  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 801EE3B4 001EB2F4  48 23 A1 FD */	bl "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801EE3B4 001EB2F4  48 23 A1 FD */	bl makeSR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801EE3B8 001EB2F8  38 61 00 5C */	addi r3, r1, 0x5c
 /* 801EE3BC 001EB2FC  38 81 00 44 */	addi r4, r1, 0x44
 /* 801EE3C0 001EB300  38 A1 00 08 */	addi r5, r1, 8
@@ -526,7 +526,7 @@ onSetPosition__Q34Game10ItemBridge4ItemFv:
 /* 801EE6A4 001EB5E4  D0 01 00 08 */	stfs f0, 8(r1)
 /* 801EE6A8 001EB5E8  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 801EE6AC 001EB5EC  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 801EE6B0 001EB5F0  48 23 A1 D9 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801EE6B0 001EB5F0  48 23 A1 D9 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801EE6B4 001EB5F4  7F E3 FB 78 */	mr r3, r31
 /* 801EE6B8 001EB5F8  81 9F 00 00 */	lwz r12, 0(r31)
 /* 801EE6BC 001EB5FC  81 8C 00 3C */	lwz r12, 0x3c(r12)
@@ -2062,7 +2062,7 @@ lbl_801EFC48:
 /* 801EFC68 001ECBA8  D0 01 00 58 */	stfs f0, 0x58(r1)
 /* 801EFC6C 001ECBAC  D0 21 00 5C */	stfs f1, 0x5c(r1)
 /* 801EFC70 001ECBB0  D0 01 00 60 */	stfs f0, 0x60(r1)
-/* 801EFC74 001ECBB4  48 23 8C 15 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801EFC74 001ECBB4  48 23 8C 15 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801EFC78 001ECBB8  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 801EFC7C 001ECBBC  3C 60 80 4E */	lis r3, __vt__Q23efx8TSimple1@ha
 /* 801EFC80 001ECBC0  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l
@@ -2152,7 +2152,7 @@ lbl_801EFDA8:
 /* 801EFDC8 001ECD08  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 801EFDCC 001ECD0C  D0 21 00 34 */	stfs f1, 0x34(r1)
 /* 801EFDD0 001ECD10  D0 01 00 38 */	stfs f0, 0x38(r1)
-/* 801EFDD4 001ECD14  48 23 8A B5 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801EFDD4 001ECD14  48 23 8A B5 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801EFDD8 001ECD18  3C 80 80 4B */	lis r4, __vt__Q23efx5TBase@ha
 /* 801EFDDC 001ECD1C  3C 60 80 4E */	lis r3, __vt__Q23efx8TSimple1@ha
 /* 801EFDE0 001ECD20  38 04 A7 F8 */	addi r0, r4, __vt__Q23efx5TBase@l

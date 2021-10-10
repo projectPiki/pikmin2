@@ -14,9 +14,9 @@ create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg:
 /* 803C4E2C 003C1D6C  38 60 00 00 */	li r3, 0
 /* 803C4E30 003C1D70  48 00 00 7C */	b lbl_803C4EAC
 lbl_803C4E34:
-/* 803C4E34 003C1D74  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 803C4E34 003C1D74  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 803C4E38 003C1D78  80 6D 9A 18 */	lwz r3, particleMgr@sda21(r13)
-/* 803C4E3C 003C1D7C  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
+/* 803C4E3C 003C1D7C  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
 /* 803C4E40 003C1D80  A0 9F 00 0C */	lhz r4, 0xc(r31)
 /* 803C4E44 003C1D84  38 C0 00 00 */	li r6, 0
 /* 803C4E48 003C1D88  4B FF 6A 6D */	bl create__11ParticleMgrFUsR10Vector3$$0f$$1Uc

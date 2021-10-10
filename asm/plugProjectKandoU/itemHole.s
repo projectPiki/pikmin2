@@ -160,9 +160,9 @@ exec__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItem:
 /* 801D1958 001CE898  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 801D195C 001CE89C  4C 40 13 82 */	cror 2, 0, 2
 /* 801D1960 001CE8A0  40 82 00 98 */	bne lbl_801D19F8
-/* 801D1964 001CE8A4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 801D1964 001CE8A4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 801D1968 001CE8A8  3C C0 80 4B */	lis r6, __vt__Q23efx3Arg@ha
-/* 801D196C 001CE8AC  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 801D196C 001CE8AC  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 801D1970 001CE8B0  FF E0 00 90 */	fmr f31, f0
 /* 801D1974 001CE8B4  C0 45 00 00 */	lfs f2, 0(r5)
 /* 801D1978 001CE8B8  38 06 A7 EC */	addi r0, r6, __vt__Q23efx3Arg@l
@@ -379,8 +379,8 @@ lbl_801D1C44:
 /* 801D1C5C 001CEB9C  38 A0 00 00 */	li r5, 0
 /* 801D1C60 001CEBA0  48 16 69 D1 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 lbl_801D1C64:
-/* 801D1C64 001CEBA4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 801D1C68 001CEBA8  C4 43 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r3)
+/* 801D1C64 001CEBA4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 801D1C68 001CEBA8  C4 43 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r3)
 /* 801D1C6C 001CEBAC  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
 /* 801D1C70 001CEBB0  38 81 00 20 */	addi r4, r1, 0x20
 /* 801D1C74 001CEBB4  C0 23 00 04 */	lfs f1, 4(r3)
@@ -912,8 +912,8 @@ lbl_801D23E8:
 /* 801D240C 001CF34C  4B FF A6 31 */	bl getStateID__Q24Game8CFSMItemFv
 /* 801D2410 001CF350  2C 03 00 00 */	cmpwi r3, 0
 /* 801D2414 001CF354  40 82 00 5C */	bne lbl_801D2470
-/* 801D2418 001CF358  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 801D241C 001CF35C  C4 43 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r3)
+/* 801D2418 001CF358  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 801D241C 001CF35C  C4 43 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r3)
 /* 801D2420 001CF360  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
 /* 801D2424 001CF364  38 81 00 20 */	addi r4, r1, 0x20
 /* 801D2428 001CF368  C0 23 00 04 */	lfs f1, 4(r3)
@@ -968,7 +968,7 @@ makeTrMatrix__Q34Game8ItemHole4ItemFv:
 /* 801D24D8 001CF418  C0 06 01 EC */	lfs f0, 0x1ec(r6)
 /* 801D24DC 001CF41C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 801D24E0 001CF420  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 801D24E4 001CF424  48 25 63 A5 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801D24E4 001CF424  48 25 63 A5 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801D24E8 001CF428  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801D24EC 001CF42C  7C 08 03 A6 */	mtlr r0
 /* 801D24F0 001CF430  38 21 00 20 */	addi r1, r1, 0x20
@@ -1031,12 +1031,12 @@ doAI__Q34Game8ItemHole4ItemFv:
 /* 801D2598 001CF4D8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801D259C 001CF4DC  40 82 00 80 */	bne lbl_801D261C
 /* 801D25A0 001CF4E0  38 00 00 00 */	li r0, 0
-/* 801D25A4 001CF4E4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 801D25A4 001CF4E4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 801D25A8 001CF4E8  90 1F 01 E4 */	stw r0, 0x1e4(r31)
 /* 801D25AC 001CF4EC  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
 /* 801D25B0 001CF4F0  38 05 A7 EC */	addi r0, r5, __vt__Q23efx3Arg@l
 /* 801D25B4 001CF4F4  38 81 00 08 */	addi r4, r1, 8
-/* 801D25B8 001CF4F8  C4 43 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r3)
+/* 801D25B8 001CF4F8  C4 43 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r3)
 /* 801D25BC 001CF4FC  90 01 00 08 */	stw r0, 8(r1)
 /* 801D25C0 001CF500  C0 23 00 04 */	lfs f1, 4(r3)
 /* 801D25C4 001CF504  C0 03 00 08 */	lfs f0, 8(r3)

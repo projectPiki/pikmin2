@@ -561,8 +561,8 @@ lbl_802C4138:
 /* 802C4168 002C10A8  38 61 01 68 */	addi r3, r1, 0x168
 /* 802C416C 002C10AC  4B F6 A2 F1 */	bl first__Q24Game12CellIteratorFv
 /* 802C4170 002C10B0  FE 80 F8 50 */	fneg f20, f31
-/* 802C4174 002C10B4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 802C4178 002C10B8  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
+/* 802C4174 002C10B4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802C4178 002C10B8  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
 /* 802C417C 002C10BC  48 00 02 94 */	b lbl_802C4410
 lbl_802C4180:
 /* 802C4180 002C10C0  38 61 01 68 */	addi r3, r1, 0x168
@@ -717,9 +717,9 @@ lbl_802C437C:
 /* 802C43AC 002C12EC  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
 /* 802C43B0 002C12F0  C0 62 E2 4C */	lfs f3, lbl_8051C5AC@sda21(r2)
 /* 802C43B4 002C12F4  90 01 00 88 */	stw r0, 0x88(r1)
-/* 802C43B8 002C12F8  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 802C43B8 002C12F8  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 802C43BC 002C12FC  38 84 49 74 */	addi r4, r4, __vt__Q24Game12InteractWind@l
-/* 802C43C0 002C1300  C0 43 41 E4 */	lfs f2, "zero__10Vector3<f>"@l(r3)
+/* 802C43C0 002C1300  C0 43 41 E4 */	lfs f2, zero__10Vector3$$0f$$1@l(r3)
 /* 802C43C4 002C1304  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBomb@ha
 /* 802C43C8 002C1308  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 802C43CC 002C130C  90 81 00 88 */	stw r4, 0x88(r1)
@@ -833,7 +833,7 @@ lbl_802C455C:
 /* 802C455C 002C149C  3C C0 80 4E */	lis r6, __vt__Q23efx5TSync@ha
 /* 802C4560 002C14A0  3C A0 80 4E */	lis r5, __vt__Q23efx9TChasePos@ha
 /* 802C4564 002C14A4  3C 80 80 4F */	lis r4, __vt__Q23efx11THdamaShell@ha
-/* 802C4568 002C14A8  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 802C4568 002C14A8  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 802C456C 002C14AC  38 C6 69 8C */	addi r6, r6, __vt__Q23efx5TSync@l
 /* 802C4570 002C14B0  38 A5 69 40 */	addi r5, r5, __vt__Q23efx9TChasePos@l
 /* 802C4574 002C14B4  38 84 A0 08 */	addi r4, r4, __vt__Q23efx11THdamaShell@l
@@ -841,7 +841,7 @@ lbl_802C455C:
 /* 802C457C 002C14BC  3B 66 00 14 */	addi r27, r6, 0x14
 /* 802C4580 002C14C0  3B A5 00 14 */	addi r29, r5, 0x14
 /* 802C4584 002C14C4  3B 84 00 14 */	addi r28, r4, 0x14
-/* 802C4588 002C14C8  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
+/* 802C4588 002C14C8  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
 /* 802C458C 002C14CC  3B 40 00 00 */	li r26, 0
 lbl_802C4590:
 /* 802C4590 002C14D0  38 60 00 38 */	li r3, 0x38

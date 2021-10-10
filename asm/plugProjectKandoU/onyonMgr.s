@@ -70,8 +70,8 @@ lbl_80174D64:
 /* 80174D90 00171CD0  3C 80 80 4B */	lis r4, __vt__Q24Game15CreatureInitArg@ha
 /* 80174D94 00171CD4  38 C4 A2 F4 */	addi r6, r4, __vt__Q24Game15CreatureInitArg@l
 /* 80174D98 00171CD8  38 00 00 00 */	li r0, 0
-/* 80174D9C 00171CDC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
-/* 80174DA0 00171CE0  C4 64 41 E4 */	lfsu f3, "zero__10Vector3<f>"@l(r4)
+/* 80174D9C 00171CDC  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 80174DA0 00171CE0  C4 64 41 E4 */	lfsu f3, zero__10Vector3$$0f$$1@l(r4)
 /* 80174DA4 00171CE4  3C A0 80 4B */	lis r5, __vt__Q24Game11ItemInitArg@ha
 /* 80174DA8 00171CE8  90 C1 00 58 */	stw r6, 0x58(r1)
 /* 80174DAC 00171CEC  38 C5 2C 7C */	addi r6, r5, __vt__Q24Game11ItemInitArg@l
@@ -446,8 +446,8 @@ lbl_801752F8:
 /* 80175318 00172258  3C 80 80 4B */	lis r4, __vt__Q24Game15CreatureInitArg@ha
 /* 8017531C 0017225C  38 C4 A2 F4 */	addi r6, r4, __vt__Q24Game15CreatureInitArg@l
 /* 80175320 00172260  38 00 00 00 */	li r0, 0
-/* 80175324 00172264  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
-/* 80175328 00172268  C4 64 41 E4 */	lfsu f3, "zero__10Vector3<f>"@l(r4)
+/* 80175324 00172264  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 80175328 00172268  C4 64 41 E4 */	lfsu f3, zero__10Vector3$$0f$$1@l(r4)
 /* 8017532C 0017226C  3C A0 80 4B */	lis r5, __vt__Q24Game11ItemInitArg@ha
 /* 80175330 00172270  90 C1 00 38 */	stw r6, 0x38(r1)
 /* 80175334 00172274  38 C5 2C 7C */	addi r6, r5, __vt__Q24Game11ItemInitArg@l
@@ -2688,16 +2688,16 @@ lbl_80177328:
 /* 80177338 00174278  48 00 1B A5 */	bl setSpotEffect__Q24Game5OnyonFb
 lbl_8017733C:
 /* 8017733C 0017427C  C0 3F 02 20 */	lfs f1, 0x220(r31)
-/* 80177340 00174280  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 80177340 00174280  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 80177344 00174284  C0 02 A6 F8 */	lfs f0, lbl_80518A58@sda21(r2)
-/* 80177348 00174288  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 80177348 00174288  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 8017734C 0017428C  D0 21 00 08 */	stfs f1, 8(r1)
 /* 80177350 00174290  38 61 00 14 */	addi r3, r1, 0x14
 /* 80177354 00174294  38 81 00 08 */	addi r4, r1, 8
 /* 80177358 00174298  38 DF 01 9C */	addi r6, r31, 0x19c
 /* 8017735C 0017429C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80177360 001742A0  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80177364 001742A4  48 2B 0F 75 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80177364 001742A4  48 2B 0F 75 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80177368 001742A8  80 9F 01 F4 */	lwz r4, 0x1f4(r31)
 /* 8017736C 001742AC  38 61 00 14 */	addi r3, r1, 0x14
 /* 80177370 001742B0  38 84 00 08 */	addi r4, r4, 8
@@ -2902,16 +2902,16 @@ lbl_801775F8:
 /* 80177638 00174578  48 00 18 A5 */	bl setSpotEffect__Q24Game5OnyonFb
 lbl_8017763C:
 /* 8017763C 0017457C  C0 3F 02 20 */	lfs f1, 0x220(r31)
-/* 80177640 00174580  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 80177640 00174580  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 80177644 00174584  C0 02 A6 F8 */	lfs f0, lbl_80518A58@sda21(r2)
-/* 80177648 00174588  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 80177648 00174588  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 8017764C 0017458C  D0 21 00 08 */	stfs f1, 8(r1)
 /* 80177650 00174590  38 61 00 38 */	addi r3, r1, 0x38
 /* 80177654 00174594  38 81 00 08 */	addi r4, r1, 8
 /* 80177658 00174598  38 DF 01 9C */	addi r6, r31, 0x19c
 /* 8017765C 0017459C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80177660 001745A0  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80177664 001745A4  48 2B 0C 75 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80177664 001745A4  48 2B 0C 75 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80177668 001745A8  80 9F 01 F4 */	lwz r4, 0x1f4(r31)
 /* 8017766C 001745AC  38 61 00 38 */	addi r3, r1, 0x38
 /* 80177670 001745B0  38 84 00 08 */	addi r4, r4, 8
@@ -2937,16 +2937,16 @@ lbl_8017767C:
 /* 801776BC 001745FC  48 00 18 21 */	bl setSpotEffect__Q24Game5OnyonFb
 lbl_801776C0:
 /* 801776C0 00174600  C0 3F 02 20 */	lfs f1, 0x220(r31)
-/* 801776C4 00174604  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 801776C4 00174604  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 801776C8 00174608  C0 02 A6 F8 */	lfs f0, lbl_80518A58@sda21(r2)
-/* 801776CC 0017460C  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 801776CC 0017460C  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 801776D0 00174610  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 801776D4 00174614  38 61 00 68 */	addi r3, r1, 0x68
 /* 801776D8 00174618  38 81 00 14 */	addi r4, r1, 0x14
 /* 801776DC 0017461C  38 DF 01 9C */	addi r6, r31, 0x19c
 /* 801776E0 00174620  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 801776E4 00174624  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 801776E8 00174628  48 2B 0B F1 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 801776E8 00174628  48 2B 0B F1 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801776EC 0017462C  80 9F 01 F4 */	lwz r4, 0x1f4(r31)
 /* 801776F0 00174630  38 61 00 68 */	addi r3, r1, 0x68
 /* 801776F4 00174634  38 84 00 08 */	addi r4, r4, 8
@@ -3917,9 +3917,9 @@ lbl_80178464:
 /* 80178474 001753B4  41 81 00 08 */	bgt lbl_8017847C
 /* 80178478 001753B8  3B C0 00 01 */	li r30, 1
 lbl_8017847C:
-/* 8017847C 001753BC  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8017847C 001753BC  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 80178480 001753C0  3B A0 00 00 */	li r29, 0
-/* 80178484 001753C4  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
+/* 80178484 001753C4  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
 /* 80178488 001753C8  48 00 02 68 */	b lbl_801786F0
 lbl_8017848C:
 /* 8017848C 001753CC  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
@@ -3964,12 +3964,12 @@ lbl_801784FC:
 /* 80178520 00175460  3C C0 80 4B */	lis r6, __vt__Q24Game11ItemInitArg@ha
 /* 80178524 00175464  3C A0 80 4B */	lis r5, __vt__Q34Game12ItemPikihead7InitArg@ha
 /* 80178528 00175468  B0 1B 02 30 */	sth r0, 0x230(r27)
-/* 8017852C 0017546C  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 8017852C 0017546C  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 80178530 00175470  38 E7 A2 F4 */	addi r7, r7, __vt__Q24Game15CreatureInitArg@l
 /* 80178534 00175474  38 C6 2C 7C */	addi r6, r6, __vt__Q24Game11ItemInitArg@l
 /* 80178538 00175478  A1 1B 02 30 */	lhz r8, 0x230(r27)
 /* 8017853C 0017547C  38 00 00 00 */	li r0, 0
-/* 80178540 00175480  C0 64 41 E4 */	lfs f3, "zero__10Vector3<f>"@l(r4)
+/* 80178540 00175480  C0 64 41 E4 */	lfs f3, zero__10Vector3$$0f$$1@l(r4)
 /* 80178544 00175484  38 A5 2C 70 */	addi r5, r5, __vt__Q34Game12ItemPikihead7InitArg@l
 /* 80178548 00175488  90 E1 00 14 */	stw r7, 0x14(r1)
 /* 8017854C 0017548C  38 81 00 14 */	addi r4, r1, 0x14
@@ -4485,7 +4485,7 @@ makeTrMatrix__Q24Game5OnyonFv:
 /* 80178CA0 00175BE0  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80178CA4 00175BE4  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 80178CA8 00175BE8  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80178CAC 00175BEC  48 2A FB DD */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80178CAC 00175BEC  48 2A FB DD */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80178CB0 00175BF0  7F E3 FB 78 */	mr r3, r31
 /* 80178CB4 00175BF4  48 05 39 59 */	bl updateCollTree__Q24Game8BaseItemFv
 /* 80178CB8 00175BF8  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
@@ -4732,8 +4732,8 @@ lbl_8017900C:
 /* 80179010 00175F50  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 80179014 00175F54  41 82 00 74 */	beq lbl_80179088
 /* 80179018 00175F58  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
-/* 8017901C 00175F5C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 80179020 00175F60  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 8017901C 00175F5C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80179020 00175F60  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 80179024 00175F64  3C 60 80 4B */	lis r3, __vt__Q23efx7ArgType@ha
 /* 80179028 00175F68  38 84 A7 EC */	addi r4, r4, __vt__Q23efx3Arg@l
 /* 8017902C 00175F6C  C0 45 00 00 */	lfs f2, 0(r5)
@@ -4816,8 +4816,8 @@ lbl_80179134:
 /* 80179140 00176080  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 80179144 00176084  41 82 00 74 */	beq lbl_801791B8
 /* 80179148 00176088  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
-/* 8017914C 0017608C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 80179150 00176090  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 8017914C 0017608C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80179150 00176090  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 80179154 00176094  3C 60 80 4B */	lis r3, __vt__Q23efx7ArgType@ha
 /* 80179158 00176098  38 84 A7 EC */	addi r4, r4, __vt__Q23efx3Arg@l
 /* 8017915C 0017609C  C0 45 00 00 */	lfs f2, 0(r5)
@@ -5787,8 +5787,8 @@ lbl_80179EF8:
 /* 80179F08 00176E48  38 A5 E7 BC */	addi r5, r5, lbl_8047E7BC@l
 /* 80179F0C 00176E4C  4C C6 31 82 */	crclr 6
 /* 80179F10 00176E50  4B EB 07 31 */	bl panic_f__12JUTExceptionFPCciPCce
-/* 80179F14 00176E54  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 80179F18 00176E58  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
+/* 80179F14 00176E54  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80179F18 00176E58  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
 /* 80179F1C 00176E5C  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 80179F20 00176E60  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80179F24 00176E64  D0 1F 00 04 */	stfs f0, 4(r31)
@@ -5841,8 +5841,8 @@ lbl_80179FBC:
 /* 80179FCC 00176F0C  38 A5 E7 BC */	addi r5, r5, lbl_8047E7BC@l
 /* 80179FD0 00176F10  4C C6 31 82 */	crclr 6
 /* 80179FD4 00176F14  4B EB 06 6D */	bl panic_f__12JUTExceptionFPCciPCce
-/* 80179FD8 00176F18  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 80179FDC 00176F1C  C7 E3 41 E4 */	lfsu f31, "zero__10Vector3<f>"@l(r3)
+/* 80179FD8 00176F18  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80179FDC 00176F1C  C7 E3 41 E4 */	lfsu f31, zero__10Vector3$$0f$$1@l(r3)
 /* 80179FE0 00176F20  C3 C3 00 08 */	lfs f30, 8(r3)
 lbl_80179FE4:
 /* 80179FE4 00176F24  7F E4 FB 78 */	mr r4, r31
@@ -5939,8 +5939,8 @@ lbl_8017A124:
 /* 8017A134 00177074  38 A5 E7 C8 */	addi r5, r5, lbl_8047E7C8@l
 /* 8017A138 00177078  4C C6 31 82 */	crclr 6
 /* 8017A13C 0017707C  4B EB 05 05 */	bl panic_f__12JUTExceptionFPCciPCce
-/* 8017A140 00177080  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 8017A144 00177084  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
+/* 8017A140 00177080  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8017A144 00177084  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
 /* 8017A148 00177088  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 8017A14C 0017708C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8017A150 00177090  D0 1F 00 04 */	stfs f0, 4(r31)

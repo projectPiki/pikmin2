@@ -110,9 +110,9 @@ create__Q23efx11TOneEmitterFPQ23efx3Arg:
 /* 803AEA14 003AB954  38 60 00 00 */	li r3, 0
 /* 803AEA18 003AB958  48 00 00 70 */	b lbl_803AEA88
 lbl_803AEA1C:
-/* 803AEA1C 003AB95C  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 803AEA1C 003AB95C  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 803AEA20 003AB960  80 6D 9A 18 */	lwz r3, particleMgr@sda21(r13)
-/* 803AEA24 003AB964  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
+/* 803AEA24 003AB964  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
 /* 803AEA28 003AB968  A0 9F 00 0C */	lhz r4, 0xc(r31)
 /* 803AEA2C 003AB96C  38 C0 00 00 */	li r6, 0
 /* 803AEA30 003AB970  48 00 CE 85 */	bl create__11ParticleMgrFUsR10Vector3$$0f$$1Uc
@@ -244,9 +244,9 @@ create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg:
 /* 803AEBD8 003ABB18  38 60 00 00 */	li r3, 0
 /* 803AEBDC 003ABB1C  48 00 00 70 */	b lbl_803AEC4C
 lbl_803AEBE0:
-/* 803AEBE0 003ABB20  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 803AEBE0 003ABB20  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 803AEBE4 003ABB24  80 6D 9A 18 */	lwz r3, particleMgr@sda21(r13)
-/* 803AEBE8 003ABB28  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
+/* 803AEBE8 003ABB28  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
 /* 803AEBEC 003ABB2C  A0 9F 00 28 */	lhz r4, 0x28(r31)
 /* 803AEBF0 003ABB30  38 C0 00 00 */	li r6, 0
 /* 803AEBF4 003ABB34  48 00 CC C1 */	bl create__11ParticleMgrFUsR10Vector3$$0f$$1Uc
@@ -399,9 +399,9 @@ create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg:
 /* 803AEDE4 003ABD24  38 60 00 00 */	li r3, 0
 /* 803AEDE8 003ABD28  48 00 00 7C */	b lbl_803AEE64
 lbl_803AEDEC:
-/* 803AEDEC 003ABD2C  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 803AEDEC 003ABD2C  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 803AEDF0 003ABD30  80 6D 9A 18 */	lwz r3, particleMgr@sda21(r13)
-/* 803AEDF4 003ABD34  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
+/* 803AEDF4 003ABD34  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
 /* 803AEDF8 003ABD38  A0 9F 00 0C */	lhz r4, 0xc(r31)
 /* 803AEDFC 003ABD3C  38 C0 00 00 */	li r6, 0
 /* 803AEE00 003ABD40  48 00 CA B5 */	bl create__11ParticleMgrFUsR10Vector3$$0f$$1Uc
@@ -762,7 +762,7 @@ lbl_803AF2A0:
 create__Q23efx11TSimpleMtx1FPQ23efx3Arg:
 /* 803AF2B4 003AC1F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803AF2B8 003AC1F8  7C 08 02 A6 */	mflr r0
-/* 803AF2BC 003AC1FC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 803AF2BC 003AC1FC  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 803AF2C0 003AC200  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
 /* 803AF2C4 003AC204  90 01 00 24 */	stw r0, 0x24(r1)
 /* 803AF2C8 003AC208  38 05 A7 EC */	addi r0, r5, __vt__Q23efx3Arg@l
@@ -772,7 +772,7 @@ create__Q23efx11TSimpleMtx1FPQ23efx3Arg:
 /* 803AF2D8 003AC218  3B ED 99 F8 */	addi r31, r13, mCallBack_StaticClipping__Q23efx5TBase@sda21
 /* 803AF2DC 003AC21C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 803AF2E0 003AC220  7C 7E 1B 78 */	mr r30, r3
-/* 803AF2E4 003AC224  C4 44 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r4)
+/* 803AF2E4 003AC224  C4 44 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r4)
 /* 803AF2E8 003AC228  90 01 00 08 */	stw r0, 8(r1)
 /* 803AF2EC 003AC22C  C0 24 00 04 */	lfs f1, 4(r4)
 /* 803AF2F0 003AC230  C0 04 00 08 */	lfs f0, 8(r4)
@@ -828,11 +828,11 @@ lbl_803AF380:
 create__Q23efx11TSimpleMtx2FPQ23efx3Arg:
 /* 803AF398 003AC2D8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803AF39C 003AC2DC  7C 08 02 A6 */	mflr r0
-/* 803AF3A0 003AC2E0  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 803AF3A0 003AC2E0  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 803AF3A4 003AC2E4  90 01 00 34 */	stw r0, 0x34(r1)
 /* 803AF3A8 003AC2E8  BF 41 00 18 */	stmw r26, 0x18(r1)
 /* 803AF3AC 003AC2EC  7C 7F 1B 78 */	mr r31, r3
-/* 803AF3B0 003AC2F0  38 64 41 E4 */	addi r3, r4, "zero__10Vector3<f>"@l
+/* 803AF3B0 003AC2F0  38 64 41 E4 */	addi r3, r4, zero__10Vector3$$0f$$1@l
 /* 803AF3B4 003AC2F4  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 803AF3B8 003AC2F8  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 803AF3BC 003AC2FC  3B 41 00 0C */	addi r26, r1, 0xc
@@ -910,11 +910,11 @@ lbl_803AF4A0:
 create__Q23efx11TSimpleMtx3FPQ23efx3Arg:
 /* 803AF4B4 003AC3F4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803AF4B8 003AC3F8  7C 08 02 A6 */	mflr r0
-/* 803AF4BC 003AC3FC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 803AF4BC 003AC3FC  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 803AF4C0 003AC400  90 01 00 34 */	stw r0, 0x34(r1)
 /* 803AF4C4 003AC404  BF 41 00 18 */	stmw r26, 0x18(r1)
 /* 803AF4C8 003AC408  7C 7F 1B 78 */	mr r31, r3
-/* 803AF4CC 003AC40C  38 64 41 E4 */	addi r3, r4, "zero__10Vector3<f>"@l
+/* 803AF4CC 003AC40C  38 64 41 E4 */	addi r3, r4, zero__10Vector3$$0f$$1@l
 /* 803AF4D0 003AC410  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 803AF4D4 003AC414  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 803AF4D8 003AC418  3B 41 00 0C */	addi r26, r1, 0xc
@@ -992,11 +992,11 @@ lbl_803AF5BC:
 create__Q23efx11TSimpleMtx4FPQ23efx3Arg:
 /* 803AF5D0 003AC510  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803AF5D4 003AC514  7C 08 02 A6 */	mflr r0
-/* 803AF5D8 003AC518  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 803AF5D8 003AC518  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 803AF5DC 003AC51C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 803AF5E0 003AC520  BF 41 00 18 */	stmw r26, 0x18(r1)
 /* 803AF5E4 003AC524  7C 7F 1B 78 */	mr r31, r3
-/* 803AF5E8 003AC528  38 64 41 E4 */	addi r3, r4, "zero__10Vector3<f>"@l
+/* 803AF5E8 003AC528  38 64 41 E4 */	addi r3, r4, zero__10Vector3$$0f$$1@l
 /* 803AF5EC 003AC52C  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 803AF5F0 003AC530  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 803AF5F4 003AC534  3B 41 00 0C */	addi r26, r1, 0xc
@@ -1093,8 +1093,8 @@ lbl_803AF714:
 /* 803AF730 003AC670  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 803AF734 003AC674  48 00 00 20 */	b lbl_803AF754
 lbl_803AF738:
-/* 803AF738 003AC678  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 803AF73C 003AC67C  C4 43 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r3)
+/* 803AF738 003AC678  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 803AF73C 003AC67C  C4 43 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r3)
 /* 803AF740 003AC680  C0 23 00 04 */	lfs f1, 4(r3)
 /* 803AF744 003AC684  C0 03 00 08 */	lfs f0, 8(r3)
 /* 803AF748 003AC688  D0 41 00 08 */	stfs f2, 8(r1)

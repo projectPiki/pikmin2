@@ -969,7 +969,7 @@ makeTrMatrix__Q34Game15ItemBigFountain4ItemFv:
 /* 801ECEE8 001E9E28  C0 06 01 F0 */	lfs f0, 0x1f0(r6)
 /* 801ECEEC 001E9E2C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 801ECEF0 001E9E30  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 801ECEF4 001E9E34  48 23 B9 95 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801ECEF4 001E9E34  48 23 B9 95 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801ECEF8 001E9E38  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801ECEFC 001E9E3C  7C 08 03 A6 */	mtlr r0
 /* 801ECF00 001E9E40  38 21 00 20 */	addi r1, r1, 0x20

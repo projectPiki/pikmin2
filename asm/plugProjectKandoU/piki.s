@@ -2738,9 +2738,9 @@ lbl_80149B78:
 /* 80149BE4 00146B24  B0 1F 02 A4 */	sth r0, 0x2a4(r31)
 /* 80149BE8 00146B28  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
 /* 80149BEC 00146B2C  3C A0 80 4B */	lis r5, __vt__Q24Game12InteractWind@ha
-/* 80149BF0 00146B30  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 80149BF0 00146B30  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 80149BF4 00146B34  90 01 00 08 */	stw r0, 8(r1)
-/* 80149BF8 00146B38  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
+/* 80149BF8 00146B38  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
 /* 80149BFC 00146B3C  38 A5 49 74 */	addi r5, r5, __vt__Q24Game12InteractWind@l
 /* 80149C00 00146B40  C0 62 A0 BC */	lfs f3, lbl_8051841C@sda21(r2)
 /* 80149C04 00146B44  C0 44 00 00 */	lfs f2, 0(r4)

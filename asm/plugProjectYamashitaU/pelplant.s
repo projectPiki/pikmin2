@@ -787,7 +787,7 @@ lbl_80108DC4:
 /* 80108E00 00105D40  D0 61 00 08 */	stfs f3, 8(r1)
 /* 80108E04 00105D44  D0 61 00 0C */	stfs f3, 0xc(r1)
 /* 80108E08 00105D48  D0 61 00 10 */	stfs f3, 0x10(r1)
-/* 80108E0C 00105D4C  48 31 F4 CD */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80108E0C 00105D4C  48 31 F4 CD */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80108E10 00105D50  80 7F 02 CC */	lwz r3, 0x2cc(r31)
 /* 80108E14 00105D54  38 81 00 2C */	addi r4, r1, 0x2c
 /* 80108E18 00105D58  48 09 6C E5 */	bl updateCapture__Q24Game8CreatureFR7Matrixf

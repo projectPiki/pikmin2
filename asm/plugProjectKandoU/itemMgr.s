@@ -50,9 +50,9 @@ __ct__Q24Game8BaseItemFi:
 /* 801CC098 001C8FD8  4B F6 7F C5 */	bl __ct__8CollTreeFv
 /* 801CC09C 001C8FDC  7C 60 1B 78 */	mr r0, r3
 lbl_801CC0A0:
-/* 801CC0A0 001C8FE0  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 801CC0A0 001C8FE0  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 801CC0A4 001C8FE4  90 1E 01 14 */	stw r0, 0x114(r30)
-/* 801CC0A8 001C8FE8  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
+/* 801CC0A8 001C8FE8  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
 /* 801CC0AC 001C8FEC  C0 02 B2 BC */	lfs f0, lbl_8051961C@sda21(r2)
 /* 801CC0B0 001C8FF0  C0 24 00 00 */	lfs f1, 0(r4)
 /* 801CC0B4 001C8FF4  7F C3 F3 78 */	mr r3, r30
@@ -352,7 +352,7 @@ makeTrMatrix__Q24Game8BaseItemFv:
 /* 801CC490 001C93D0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801CC494 001C93D4  38 64 01 38 */	addi r3, r4, 0x138
 /* 801CC498 001C93D8  38 84 01 9C */	addi r4, r4, 0x19c
-/* 801CC49C 001C93DC  48 25 C3 A5 */	bl "makeT__7MatrixfFR10Vector3<f>"
+/* 801CC49C 001C93DC  48 25 C3 A5 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
 /* 801CC4A0 001C93E0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801CC4A4 001C93E4  7C 08 03 A6 */	mtlr r0
 /* 801CC4A8 001C93E8  38 21 00 10 */	addi r1, r1, 0x10

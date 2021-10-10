@@ -2421,9 +2421,9 @@ createHiba__Q23efx13TDenkiHibaMgrFi:
 /* 803B4F18 003B1E58  93 E1 00 7C */	stw r31, 0x7c(r1)
 /* 803B4F1C 003B1E5C  7C 7F 1B 78 */	mr r31, r3
 /* 803B4F20 003B1E60  81 83 00 AC */	lwz r12, 0xac(r3)
-/* 803B4F24 003B1E64  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 803B4F24 003B1E64  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 803B4F28 003B1E68  81 7F 00 B0 */	lwz r11, 0xb0(r31)
-/* 803B4F2C 003B1E6C  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 803B4F2C 003B1E6C  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 803B4F30 003B1E70  81 5F 00 B4 */	lwz r10, 0xb4(r31)
 /* 803B4F34 003B1E74  3C 60 80 4C */	lis r3, __vt__Q23efx12ArgDenkiHiba@ha
 /* 803B4F38 003B1E78  81 3F 00 A0 */	lwz r9, 0xa0(r31)

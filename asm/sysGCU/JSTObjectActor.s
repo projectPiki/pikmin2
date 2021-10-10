@@ -306,7 +306,7 @@ lbl_8042ED84:
 /* 8042EDD4 0042BD14  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8042EDD8 0042BD18  EC 02 00 32 */	fmuls f0, f2, f0
 /* 8042EDDC 0042BD1C  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8042EDE0 0042BD20  4B FF 9A A9 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 8042EDE0 0042BD20  4B FF 9A A9 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 8042EDE4 0042BD24  80 9F 00 24 */	lwz r4, 0x24(r31)
 /* 8042EDE8 0042BD28  38 61 00 38 */	addi r3, r1, 0x38
 /* 8042EDEC 0042BD2C  38 84 00 24 */	addi r4, r4, 0x24

@@ -1662,7 +1662,7 @@ lbl_8035E508:
 /* 8035E50C 0035B44C  38 9F 01 68 */	addi r4, r31, 0x168
 /* 8035E510 0035B450  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 8035E514 0035B454  38 DF 01 8C */	addi r6, r31, 0x18c
-/* 8035E518 0035B458  48 0C 9D C1 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 8035E518 0035B458  48 0C 9D C1 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 lbl_8035E51C:
 /* 8035E51C 0035B45C  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 8035E520 0035B460  38 7F 01 38 */	addi r3, r31, 0x138

@@ -154,7 +154,7 @@ generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3$$0f$$1:
 /* 801ACF34 001A9E74  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 801ACF38 001A9E78  D0 01 00 08 */	stfs f0, 8(r1)
 /* 801ACF3C 001A9E7C  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 801ACF40 001A9E80  48 27 B9 49 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801ACF40 001A9E80  48 27 B9 49 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801ACF44 001A9E84  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801ACF48 001A9E88  7C 08 03 A6 */	mtlr r0
 /* 801ACF4C 001A9E8C  38 21 00 20 */	addi r1, r1, 0x20

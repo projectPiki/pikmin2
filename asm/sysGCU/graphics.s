@@ -943,7 +943,7 @@ lbl_80425B40:
 /* 80425B74 00422AB4  D3 81 00 20 */	stfs f28, 0x20(r1)
 /* 80425B78 00422AB8  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 80425B7C 00422ABC  D3 81 00 28 */	stfs f28, 0x28(r1)
-/* 80425B80 00422AC0  48 00 27 59 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80425B80 00422AC0  48 00 27 59 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80425B84 00422AC4  38 7A 00 8C */	addi r3, r26, 0x8c
 /* 80425B88 00422AC8  38 81 00 68 */	addi r4, r1, 0x68
 /* 80425B8C 00422ACC  38 A1 00 98 */	addi r5, r1, 0x98
@@ -1104,7 +1104,7 @@ lbl_80425DA4:
 /* 80425DD8 00422D18  D3 C1 00 0C */	stfs f30, 0xc(r1)
 /* 80425DDC 00422D1C  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80425DE0 00422D20  D3 C1 00 10 */	stfs f30, 0x10(r1)
-/* 80425DE4 00422D24  48 00 24 F5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80425DE4 00422D24  48 00 24 F5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80425DE8 00422D28  38 7A 00 8C */	addi r3, r26, 0x8c
 /* 80425DEC 00422D2C  38 81 00 38 */	addi r4, r1, 0x38
 /* 80425DF0 00422D30  38 A1 00 98 */	addi r5, r1, 0x98
@@ -1292,7 +1292,7 @@ drawSphere__8GraphicsFfP7Matrixf:
 /* 804260A0 00422FE0  BF 01 01 10 */	stmw r24, 0x110(r1)
 /* 804260A4 00422FE4  FF 20 08 90 */	fmr f25, f1
 /* 804260A8 00422FE8  3C A0 80 50 */	lis r5, sincosTable___5JMath@ha
-/* 804260AC 00422FEC  3C C0 80 51 */	lis r6, "zero__10Vector3<f>"@ha
+/* 804260AC 00422FEC  3C C0 80 51 */	lis r6, zero__10Vector3$$0f$$1@ha
 /* 804260B0 00422FF0  C3 C2 21 78 */	lfs f30, lbl_805204D8@sda21(r2)
 /* 804260B4 00422FF4  CB A2 21 70 */	lfd f29, lbl_805204D0@sda21(r2)
 /* 804260B8 00422FF8  7C 79 1B 78 */	mr r25, r3
@@ -1301,7 +1301,7 @@ drawSphere__8GraphicsFfP7Matrixf:
 /* 804260C4 00423004  C3 62 21 7C */	lfs f27, lbl_805204DC@sda21(r2)
 /* 804260C8 00423008  3B A5 71 A0 */	addi r29, r5, sincosTable___5JMath@l
 /* 804260CC 0042300C  C3 E2 21 68 */	lfs f31, lbl_805204C8@sda21(r2)
-/* 804260D0 00423010  3B E6 41 E4 */	addi r31, r6, "zero__10Vector3<f>"@l
+/* 804260D0 00423010  3B E6 41 E4 */	addi r31, r6, zero__10Vector3$$0f$$1@l
 /* 804260D4 00423014  3B 80 00 00 */	li r28, 0
 /* 804260D8 00423018  3F C0 43 30 */	lis r30, 0x4330
 /* 804260DC 0042301C  3F 00 CC 01 */	lis r24, 0xcc01
@@ -1322,7 +1322,7 @@ lbl_804260E0:
 /* 80426114 00423054  D3 81 00 20 */	stfs f28, 0x20(r1)
 /* 80426118 00423058  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 8042611C 0042305C  D3 81 00 28 */	stfs f28, 0x28(r1)
-/* 80426120 00423060  48 00 21 B9 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80426120 00423060  48 00 21 B9 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80426124 00423064  38 81 00 68 */	addi r4, r1, 0x68
 /* 80426128 00423068  7F 43 D3 78 */	mr r3, r26
 /* 8042612C 0042306C  7C 85 23 78 */	mr r5, r4
@@ -1461,11 +1461,11 @@ lbl_804262A8:
 /* 80426324 00423264  2C 1C 00 10 */	cmpwi r28, 0x10
 /* 80426328 00423268  41 80 FD B8 */	blt lbl_804260E0
 /* 8042632C 0042326C  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
-/* 80426330 00423270  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 80426330 00423270  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 80426334 00423274  C3 82 21 78 */	lfs f28, lbl_805204D8@sda21(r2)
 /* 80426338 00423278  3B E3 71 A0 */	addi r31, r3, sincosTable___5JMath@l
 /* 8042633C 0042327C  CB A2 21 70 */	lfd f29, lbl_805204D0@sda21(r2)
-/* 80426340 00423280  3B A4 41 E4 */	addi r29, r4, "zero__10Vector3<f>"@l
+/* 80426340 00423280  3B A4 41 E4 */	addi r29, r4, zero__10Vector3$$0f$$1@l
 /* 80426344 00423284  C3 C2 21 58 */	lfs f30, lbl_805204B8@sda21(r2)
 /* 80426348 00423288  3B 60 00 00 */	li r27, 0
 /* 8042634C 0042328C  C3 E2 21 7C */	lfs f31, lbl_805204DC@sda21(r2)
@@ -1489,7 +1489,7 @@ lbl_8042635C:
 /* 80426390 004232D0  D3 C1 00 0C */	stfs f30, 0xc(r1)
 /* 80426394 004232D4  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80426398 004232D8  D3 C1 00 10 */	stfs f30, 0x10(r1)
-/* 8042639C 004232DC  48 00 1F 3D */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 8042639C 004232DC  48 00 1F 3D */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 804263A0 004232E0  38 81 00 38 */	addi r4, r1, 0x38
 /* 804263A4 004232E4  7F 43 D3 78 */	mr r3, r26
 /* 804263A8 004232E8  7C 85 23 78 */	mr r5, r4
@@ -2352,10 +2352,10 @@ lbl_80426FF8:
 /* 80427044 00423F84  38 61 00 08 */	addi r3, r1, 8
 /* 80427048 00423F88  38 80 00 00 */	li r4, 0
 /* 8042704C 00423F8C  4B CC 25 2D */	bl GXLoadPosMtxImm
-/* 80427050 00423F90  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 80427050 00423F90  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 80427054 00423F94  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
 /* 80427058 00423F98  C3 22 21 94 */	lfs f25, lbl_805204F4@sda21(r2)
-/* 8042705C 00423F9C  3B 64 41 E4 */	addi r27, r4, "zero__10Vector3<f>"@l
+/* 8042705C 00423F9C  3B 64 41 E4 */	addi r27, r4, zero__10Vector3$$0f$$1@l
 /* 80427060 00423FA0  CB 42 21 70 */	lfd f26, lbl_805204D0@sda21(r2)
 /* 80427064 00423FA4  6F 3D 80 00 */	xoris r29, r25, 0x8000
 /* 80427068 00423FA8  C3 62 21 5C */	lfs f27, lbl_805204BC@sda21(r2)

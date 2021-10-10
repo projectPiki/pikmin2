@@ -2347,7 +2347,7 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 801268F4 00123834  D0 01 00 34 */	stfs f0, 0x34(r1)
 /* 801268F8 00123838  EC 03 00 72 */	fmuls f0, f3, f1
 /* 801268FC 0012383C  D0 01 00 30 */	stfs f0, 0x30(r1)
-/* 80126900 00123840  48 30 1F 89 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80126900 00123840  48 30 1F 89 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80126904 00123844  80 7E 02 5C */	lwz r3, 0x25c(r30)
 /* 80126908 00123848  38 80 00 00 */	li r4, 0
 /* 8012690C 0012384C  48 2F E8 51 */	bl getMatrix__8ViewportFb
@@ -2398,7 +2398,7 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 801269C0 00123900  4B FB F1 21 */	bl GXSetLineWidth
 /* 801269C4 00123904  38 61 00 90 */	addi r3, r1, 0x90
 /* 801269C8 00123908  38 81 00 38 */	addi r4, r1, 0x38
-/* 801269CC 0012390C  48 30 1E 75 */	bl "makeT__7MatrixfFR10Vector3<f>"
+/* 801269CC 0012390C  48 30 1E 75 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
 /* 801269D0 00123910  88 1D 00 28 */	lbz r0, 0x28(r29)
 /* 801269D4 00123914  28 00 00 02 */	cmplwi r0, 2
 /* 801269D8 00123918  40 82 00 2C */	bne lbl_80126A04
@@ -2553,7 +2553,7 @@ generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1:
 /* 80126BD8 00123B18  7C 83 23 78 */	mr r3, r4
 /* 80126BDC 00123B1C  7C A4 2B 78 */	mr r4, r5
 /* 80126BE0 00123B20  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80126BE4 00123B24  48 30 1C 5D */	bl "makeT__7MatrixfFR10Vector3<f>"
+/* 80126BE4 00123B24  48 30 1C 5D */	bl makeT__7MatrixfFR10Vector3$$0f$$1
 /* 80126BE8 00123B28  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80126BEC 00123B2C  7C 08 03 A6 */	mtlr r0
 /* 80126BF0 00123B30  38 21 00 10 */	addi r1, r1, 0x10

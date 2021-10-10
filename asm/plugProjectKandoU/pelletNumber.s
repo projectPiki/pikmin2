@@ -557,7 +557,7 @@ lbl_801F9898:
 /* 801F98A8 001F67E8  7F A4 EB 78 */	mr r4, r29
 /* 801F98AC 001F67EC  7F C5 F3 78 */	mr r5, r30
 /* 801F98B0 001F67F0  38 61 00 08 */	addi r3, r1, 8
-/* 801F98B4 001F67F4  48 22 EF D5 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801F98B4 001F67F4  48 22 EF D5 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801F98B8 001F67F8  7F E3 FB 78 */	mr r3, r31
 /* 801F98BC 001F67FC  38 81 00 08 */	addi r4, r1, 8
 /* 801F98C0 001F6800  4B F6 EC 0D */	bl setOrientation__Q24Game6PelletFR7Matrixf

@@ -1457,8 +1457,8 @@ lbl_801940B8:
 /* 80194170 001910B0  3C 60 80 4B */	lis r3, __vt__Q24Game15CreatureInitArg@ha
 /* 80194174 001910B4  38 03 A2 F4 */	addi r0, r3, __vt__Q24Game15CreatureInitArg@l
 /* 80194178 001910B8  3C 80 80 4B */	lis r4, __vt__Q24Game11ItemInitArg@ha
-/* 8019417C 001910BC  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 80194180 001910C0  C4 63 41 E4 */	lfsu f3, "zero__10Vector3<f>"@l(r3)
+/* 8019417C 001910BC  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80194180 001910C0  C4 63 41 E4 */	lfsu f3, zero__10Vector3$$0f$$1@l(r3)
 /* 80194184 001910C4  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80194188 001910C8  38 E4 2C 7C */	addi r7, r4, __vt__Q24Game11ItemInitArg@l
 /* 8019418C 001910CC  3C 80 80 4B */	lis r4, __vt__Q34Game12ItemPikihead7InitArg@ha

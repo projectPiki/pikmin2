@@ -296,8 +296,8 @@ getOffsetForMapCollision__Q34Game10KumaChappy3ObjFv:
 /* 80299A94 002969D4  4E 80 04 21 */	bctrl 
 /* 80299A98 002969D8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80299A9C 002969DC  41 82 00 24 */	beq lbl_80299AC0
-/* 80299AA0 002969E0  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 80299AA4 002969E4  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
+/* 80299AA0 002969E0  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80299AA4 002969E4  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
 /* 80299AA8 002969E8  D0 1E 00 00 */	stfs f0, 0(r30)
 /* 80299AAC 002969EC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80299AB0 002969F0  D0 1E 00 04 */	stfs f0, 4(r30)

@@ -50,7 +50,7 @@ makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Wi
 /* 80455024 00451F64  D0 21 00 08 */	stfs f1, 8(r1)
 /* 80455028 00451F68  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8045502C 00451F6C  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80455030 00451F70  4B FD 32 A9 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80455030 00451F70  4B FD 32 A9 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80455034 00451F74  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80455038 00451F78  7C 08 03 A6 */	mtlr r0
 /* 8045503C 00451F7C  38 21 00 20 */	addi r1, r1, 0x20

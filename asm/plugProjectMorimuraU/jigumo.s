@@ -2454,7 +2454,7 @@ calcBaseTrMatrix__Q34Game6Jigumo3ObjFv:
 /* 8036B188 003680C8  38 DF 01 8C */	addi r6, r31, 0x18c
 /* 8036B18C 003680CC  D0 01 00 5C */	stfs f0, 0x5c(r1)
 /* 8036B190 003680D0  D0 01 00 60 */	stfs f0, 0x60(r1)
-/* 8036B194 003680D4  48 0B D1 45 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 8036B194 003680D4  48 0B D1 45 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 8036B198 003680D8  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 8036B19C 003680DC  38 7F 01 38 */	addi r3, r31, 0x138
 /* 8036B1A0 003680E0  80 84 00 08 */	lwz r4, 8(r4)

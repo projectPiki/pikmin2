@@ -2369,8 +2369,8 @@ __ct__Q24Game12GameLightMgrFPc:
 /* 8011EFC8 0011BF08  38 C0 00 0C */	li r6, 0xc
 /* 8011EFCC 0011BF0C  38 E0 00 02 */	li r7, 2
 /* 8011EFD0 0011BF10  4B FA 28 6D */	bl __construct_array
-/* 8011EFD4 0011BF14  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
-/* 8011EFD8 0011BF18  C4 04 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r4)
+/* 8011EFD4 0011BF14  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 8011EFD8 0011BF18  C4 04 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r4)
 /* 8011EFDC 0011BF1C  7F C3 F3 78 */	mr r3, r30
 /* 8011EFE0 0011BF20  D0 1E 23 8C */	stfs f0, 0x238c(r30)
 /* 8011EFE4 0011BF24  C0 04 00 04 */	lfs f0, 4(r4)

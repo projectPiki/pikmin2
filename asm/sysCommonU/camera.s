@@ -678,8 +678,8 @@ lbl_8041AB2C:
 
 .global getLookAtPosition___6CameraFv
 getLookAtPosition___6CameraFv:
-/* 8041AB48 00417A88  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
-/* 8041AB4C 00417A8C  C4 04 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r4)
+/* 8041AB48 00417A88  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 8041AB4C 00417A8C  C4 04 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r4)
 /* 8041AB50 00417A90  D0 03 00 00 */	stfs f0, 0(r3)
 /* 8041AB54 00417A94  C0 04 00 04 */	lfs f0, 4(r4)
 /* 8041AB58 00417A98  D0 03 00 04 */	stfs f0, 4(r3)
@@ -1850,7 +1850,7 @@ lbl_8041BA14:
 /* 8041BBF0 00418B30  D0 81 00 20 */	stfs f4, 0x20(r1)
 /* 8041BBF4 00418B34  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 8041BBF8 00418B38  D0 41 00 28 */	stfs f2, 0x28(r1)
-/* 8041BBFC 00418B3C  48 00 CE BD */	bl "makeTQ__7MatrixfFR10Vector3<f>R4Quat"
+/* 8041BBFC 00418B3C  48 00 CE BD */	bl makeTQ__7MatrixfFR10Vector3$$0f$$1R4Quat
 /* 8041BC00 00418B40  E3 E1 01 18 */	psq_l f31, 280(r1), 0, qr0
 /* 8041BC04 00418B44  CB E1 01 10 */	lfd f31, 0x110(r1)
 /* 8041BC08 00418B48  E3 C1 01 08 */	psq_l f30, 264(r1), 0, qr0

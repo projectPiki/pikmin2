@@ -1284,7 +1284,7 @@ doAnimationIKSystem__Q34Game7BigFoot3ObjFv:
 /* 802C9110 002C6050  D0 01 00 08 */	stfs f0, 8(r1)
 /* 802C9114 002C6054  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 802C9118 002C6058  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 802C911C 002C605C  48 15 F1 BD */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 802C911C 002C605C  48 15 F1 BD */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 802C9120 002C6060  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802C9124 002C6064  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802C9128 002C6068  7C 08 03 A6 */	mtlr r0

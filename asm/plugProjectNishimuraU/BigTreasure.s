@@ -1279,7 +1279,7 @@ doAnimationIKSystem__Q34Game11BigTreasure3ObjFv:
 /* 802DCDAC 002D9CEC  D0 01 00 08 */	stfs f0, 8(r1)
 /* 802DCDB0 002D9CF0  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 802DCDB4 002D9CF4  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 802DCDB8 002D9CF8  48 14 B5 21 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 802DCDB8 002D9CF8  48 14 B5 21 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 802DCDBC 002D9CFC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802DCDC0 002D9D00  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802DCDC4 002D9D04  7C 08 03 A6 */	mtlr r0
@@ -5550,14 +5550,14 @@ createDeadBombLegEffect__Q34Game11BigTreasure3ObjFi:
 /* 802E0808 002DD748  7C 7D 1B 78 */	mr r29, r3
 /* 802E080C 002DD74C  40 82 00 FC */	bne lbl_802E0908
 /* 802E0810 002DD750  1C 04 00 0C */	mulli r0, r4, 0xc
-/* 802E0814 002DD754  3D 00 80 51 */	lis r8, "zero__10Vector3<f>"@ha
+/* 802E0814 002DD754  3D 00 80 51 */	lis r8, zero__10Vector3$$0f$$1@ha
 /* 802E0818 002DD758  3C E0 80 4B */	lis r7, __vt__Q23efx3Arg@ha
 /* 802E081C 002DD75C  3C C0 80 4D */	lis r6, __vt__Q23efx9ArgPosPos@ha
 /* 802E0820 002DD760  3C A0 80 4B */	lis r5, __vt__Q23efx5TBase@ha
 /* 802E0824 002DD764  3C 80 80 4E */	lis r4, __vt__Q23efx8TSimple1@ha
 /* 802E0828 002DD768  3C 60 80 4F */	lis r3, __vt__Q23efx13TOootaBombLeg@ha
 /* 802E082C 002DD76C  7F DD 02 14 */	add r30, r29, r0
-/* 802E0830 002DD770  3B E8 41 E4 */	addi r31, r8, "zero__10Vector3<f>"@l
+/* 802E0830 002DD770  3B E8 41 E4 */	addi r31, r8, zero__10Vector3$$0f$$1@l
 /* 802E0834 002DD774  3B 07 A7 EC */	addi r24, r7, __vt__Q23efx3Arg@l
 /* 802E0838 002DD778  3B 86 0E A4 */	addi r28, r6, __vt__Q23efx9ArgPosPos@l
 /* 802E083C 002DD77C  3B 65 A7 F8 */	addi r27, r5, __vt__Q23efx5TBase@l
@@ -5614,14 +5614,14 @@ lbl_802E084C:
 /* 802E0904 002DD844  48 00 00 F8 */	b lbl_802E09FC
 lbl_802E0908:
 /* 802E0908 002DD848  1C 04 00 0C */	mulli r0, r4, 0xc
-/* 802E090C 002DD84C  3D 00 80 51 */	lis r8, "zero__10Vector3<f>"@ha
+/* 802E090C 002DD84C  3D 00 80 51 */	lis r8, zero__10Vector3$$0f$$1@ha
 /* 802E0910 002DD850  3C E0 80 4B */	lis r7, __vt__Q23efx3Arg@ha
 /* 802E0914 002DD854  3C C0 80 4D */	lis r6, __vt__Q23efx9ArgPosPos@ha
 /* 802E0918 002DD858  3C A0 80 4B */	lis r5, __vt__Q23efx5TBase@ha
 /* 802E091C 002DD85C  3C 80 80 4E */	lis r4, __vt__Q23efx8TSimple1@ha
 /* 802E0920 002DD860  3C 60 80 4F */	lis r3, __vt__Q23efx13TOootaBombLeg@ha
 /* 802E0924 002DD864  7F DD 02 14 */	add r30, r29, r0
-/* 802E0928 002DD868  3B E8 41 E4 */	addi r31, r8, "zero__10Vector3<f>"@l
+/* 802E0928 002DD868  3B E8 41 E4 */	addi r31, r8, zero__10Vector3$$0f$$1@l
 /* 802E092C 002DD86C  3B 27 A7 EC */	addi r25, r7, __vt__Q23efx3Arg@l
 /* 802E0930 002DD870  3B 46 0E A4 */	addi r26, r6, __vt__Q23efx9ArgPosPos@l
 /* 802E0934 002DD874  3B 65 A7 F8 */	addi r27, r5, __vt__Q23efx5TBase@l

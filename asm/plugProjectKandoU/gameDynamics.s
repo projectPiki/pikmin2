@@ -393,7 +393,7 @@ updateMatrix__Q24Game5RigidFi:
 /* 8013A208 00137148  38 84 00 34 */	addi r4, r4, 0x34
 /* 8013A20C 0013714C  7C 85 22 14 */	add r4, r5, r4
 /* 8013A210 00137150  38 A4 00 48 */	addi r5, r4, 0x48
-/* 8013A214 00137154  48 2E E8 A5 */	bl "makeTQ__7MatrixfFR10Vector3<f>R4Quat"
+/* 8013A214 00137154  48 2E E8 A5 */	bl makeTQ__7MatrixfFR10Vector3$$0f$$1R4Quat
 /* 8013A218 00137158  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8013A21C 0013715C  7C 08 03 A6 */	mtlr r0
 /* 8013A220 00137160  38 21 00 10 */	addi r1, r1, 0x10
@@ -993,7 +993,7 @@ lbl_8013AB2C:
 /* 8013AB34 00137A74  7F E4 FB 78 */	mr r4, r31
 /* 8013AB38 00137A78  38 7E 00 04 */	addi r3, r30, 4
 /* 8013AB3C 00137A7C  38 BF 00 48 */	addi r5, r31, 0x48
-/* 8013AB40 00137A80  48 2E DF 79 */	bl "makeTQ__7MatrixfFR10Vector3<f>R4Quat"
+/* 8013AB40 00137A80  48 2E DF 79 */	bl makeTQ__7MatrixfFR10Vector3$$0f$$1R4Quat
 /* 8013AB44 00137A84  E3 E1 02 38 */	psq_l f31, 568(r1), 0, qr0
 /* 8013AB48 00137A88  CB E1 02 30 */	lfd f31, 0x230(r1)
 /* 8013AB4C 00137A8C  E3 C1 02 28 */	psq_l f30, 552(r1), 0, qr0

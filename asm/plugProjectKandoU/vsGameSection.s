@@ -3369,9 +3369,9 @@ lbl_801C3C40:
 /* 801C3CE8 001C0C28  6C 63 80 00 */	xoris r3, r3, 0x8000
 /* 801C3CEC 001C0C2C  3C 00 43 30 */	lis r0, 0x4330
 /* 801C3CF0 001C0C30  90 61 00 CC */	stw r3, 0xcc(r1)
-/* 801C3CF4 001C0C34  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 801C3CF4 001C0C34  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 801C3CF8 001C0C38  C0 22 B1 48 */	lfs f1, lbl_805194A8@sda21(r2)
-/* 801C3CFC 001C0C3C  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
+/* 801C3CFC 001C0C3C  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
 /* 801C3D00 001C0C40  90 01 00 C8 */	stw r0, 0xc8(r1)
 /* 801C3D04 001C0C44  38 61 00 74 */	addi r3, r1, 0x74
 /* 801C3D08 001C0C48  C8 62 B1 68 */	lfd f3, lbl_805194C8@sda21(r2)
@@ -3385,7 +3385,7 @@ lbl_801C3C40:
 /* 801C3D28 001C0C68  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 801C3D2C 001C0C6C  EC 00 00 B2 */	fmuls f0, f0, f2
 /* 801C3D30 001C0C70  D0 01 00 20 */	stfs f0, 0x20(r1)
-/* 801C3D34 001C0C74  48 26 4B 55 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 801C3D34 001C0C74  48 26 4B 55 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801C3D38 001C0C78  7F E3 FB 78 */	mr r3, r31
 /* 801C3D3C 001C0C7C  38 81 00 74 */	addi r4, r1, 0x74
 /* 801C3D40 001C0C80  4B FA 47 8D */	bl setOrientation__Q24Game6PelletFR7Matrixf

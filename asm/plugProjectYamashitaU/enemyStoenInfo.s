@@ -75,7 +75,7 @@ lbl_80128184:
 /* 80128218 00125158  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8012821C 0012515C  7C 60 1A 14 */	add r3, r0, r3
 /* 80128220 00125160  38 C1 00 20 */	addi r6, r1, 0x20
-/* 80128224 00125164  48 30 00 B5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80128224 00125164  48 30 00 B5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80128228 00125168  3B DE 00 01 */	addi r30, r30, 1
 lbl_8012822C:
 /* 8012822C 0012516C  88 1C 00 00 */	lbz r0, 0(r28)

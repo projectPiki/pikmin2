@@ -470,10 +470,10 @@ lbl_8022F314:
 /* 8022F340 0022C280  38 E0 00 00 */	li r7, 0
 /* 8022F344 0022C284  90 81 00 44 */	stw r4, 0x44(r1)
 /* 8022F348 0022C288  38 C3 4B 9C */	addi r6, r3, __vt__Q23efx11TPkAttackDP@l
-/* 8022F34C 0022C28C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8022F34C 0022C28C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 8022F350 0022C290  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 8022F354 0022C294  B0 01 00 48 */	sth r0, 0x48(r1)
-/* 8022F358 0022C298  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 8022F358 0022C298  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 8022F35C 0022C29C  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8022F360 0022C2A0  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 8022F364 0022C2A4  90 E1 00 4C */	stw r7, 0x4c(r1)
@@ -506,10 +506,10 @@ lbl_8022F3B0:
 /* 8022F3CC 0022C30C  38 E0 00 00 */	li r7, 0
 /* 8022F3D0 0022C310  90 81 00 28 */	stw r4, 0x28(r1)
 /* 8022F3D4 0022C314  38 C3 4B 88 */	addi r6, r3, __vt__Q23efx10PikiDamage@l
-/* 8022F3D8 0022C318  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8022F3D8 0022C318  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 8022F3DC 0022C31C  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 8022F3E0 0022C320  B0 01 00 2C */	sth r0, 0x2c(r1)
-/* 8022F3E4 0022C324  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
+/* 8022F3E4 0022C324  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
 /* 8022F3E8 0022C328  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8022F3EC 0022C32C  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 8022F3F0 0022C330  90 E1 00 30 */	stw r7, 0x30(r1)

@@ -998,7 +998,7 @@ lbl_80200C5C:
 /* 80200C6C 001FDBAC  7F A4 EB 78 */	mr r4, r29
 /* 80200C70 001FDBB0  7F C5 F3 78 */	mr r5, r30
 /* 80200C74 001FDBB4  38 61 00 08 */	addi r3, r1, 8
-/* 80200C78 001FDBB8  48 22 7C 11 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80200C78 001FDBB8  48 22 7C 11 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80200C7C 001FDBBC  7F E3 FB 78 */	mr r3, r31
 /* 80200C80 001FDBC0  38 81 00 08 */	addi r4, r1, 8
 /* 80200C84 001FDBC4  4B F6 78 49 */	bl setOrientation__Q24Game6PelletFR7Matrixf

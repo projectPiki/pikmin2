@@ -748,7 +748,7 @@ lbl_8017DEF4:
 /* 8017DF1C 0017AE5C  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8017DF20 0017AE60  D0 61 00 20 */	stfs f3, 0x20(r1)
 /* 8017DF24 0017AE64  D0 21 00 24 */	stfs f1, 0x24(r1)
-/* 8017DF28 0017AE68  48 2A A9 61 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 8017DF28 0017AE68  48 2A A9 61 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 8017DF2C 0017AE6C  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8017DF30 0017AE70  83 E1 00 4C */	lwz r31, 0x4c(r1)
 /* 8017DF34 0017AE74  83 C1 00 48 */	lwz r30, 0x48(r1)
@@ -839,7 +839,7 @@ lbl_8017E048:
 /* 8017E070 0017AFB0  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8017E074 0017AFB4  D0 61 00 08 */	stfs f3, 8(r1)
 /* 8017E078 0017AFB8  D0 21 00 0C */	stfs f1, 0xc(r1)
-/* 8017E07C 0017AFBC  48 2A A8 0D */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 8017E07C 0017AFBC  48 2A A8 0D */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 8017E080 0017AFC0  80 1E 00 10 */	lwz r0, 0x10(r30)
 /* 8017E084 0017AFC4  28 00 00 00 */	cmplwi r0, 0
 /* 8017E088 0017AFC8  41 82 00 48 */	beq lbl_8017E0D0
@@ -849,14 +849,14 @@ lbl_8017E048:
 /* 8017E098 0017AFD8  7D 89 03 A6 */	mtctr r12
 /* 8017E09C 0017AFDC  4E 80 04 21 */	bctrl 
 /* 8017E0A0 0017AFE0  C0 02 A8 80 */	lfs f0, lbl_80518BE0@sda21(r2)
-/* 8017E0A4 0017AFE4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 8017E0A8 0017AFE8  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
+/* 8017E0A4 0017AFE4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8017E0A8 0017AFE8  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
 /* 8017E0AC 0017AFEC  D0 21 00 30 */	stfs f1, 0x30(r1)
 /* 8017E0B0 0017AFF0  38 61 00 38 */	addi r3, r1, 0x38
 /* 8017E0B4 0017AFF4  38 A1 00 2C */	addi r5, r1, 0x2c
 /* 8017E0B8 0017AFF8  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 8017E0BC 0017AFFC  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 8017E0C0 0017B000  48 2A A7 C9 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 8017E0C0 0017B000  48 2A A7 C9 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 8017E0C4 0017B004  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 8017E0C8 0017B008  38 81 00 38 */	addi r4, r1, 0x38
 /* 8017E0CC 0017B00C  48 02 1A 31 */	bl updateCapture__Q24Game8CreatureFR7Matrixf
@@ -2316,9 +2316,9 @@ execAI_wait__Q24Game13NaviWalkStateFPQ24Game4Navi:
 /* 8017F568 0017C4A8  F3 C1 00 38 */	psq_st f30, 56(r1), 0, qr0
 /* 8017F56C 0017C4AC  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8017F570 0017C4B0  93 C1 00 28 */	stw r30, 0x28(r1)
-/* 8017F574 0017C4B4  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
+/* 8017F574 0017C4B4  3C A0 80 51 */	lis r5, zero__10Vector3$$0f$$1@ha
 /* 8017F578 0017C4B8  7C 7E 1B 78 */	mr r30, r3
-/* 8017F57C 0017C4BC  38 A5 41 E4 */	addi r5, r5, "zero__10Vector3<f>"@l
+/* 8017F57C 0017C4BC  38 A5 41 E4 */	addi r5, r5, zero__10Vector3$$0f$$1@l
 /* 8017F580 0017C4C0  7C 9F 23 78 */	mr r31, r4
 /* 8017F584 0017C4C4  48 00 09 FD */	bl blendVelocity__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3$$0f$$1
 /* 8017F588 0017C4C8  80 6D 9A EC */	lwz r3, sys@sda21(r13)
@@ -2601,9 +2601,9 @@ lbl_8017F96C:
 execAI_animation__Q24Game13NaviWalkStateFPQ24Game4Navi:
 /* 8017F980 0017C8C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017F984 0017C8C4  7C 08 02 A6 */	mflr r0
-/* 8017F988 0017C8C8  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
+/* 8017F988 0017C8C8  3C A0 80 51 */	lis r5, zero__10Vector3$$0f$$1@ha
 /* 8017F98C 0017C8CC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8017F990 0017C8D0  38 A5 41 E4 */	addi r5, r5, "zero__10Vector3<f>"@l
+/* 8017F990 0017C8D0  38 A5 41 E4 */	addi r5, r5, zero__10Vector3$$0f$$1@l
 /* 8017F994 0017C8D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8017F998 0017C8D8  7C 9F 23 78 */	mr r31, r4
 /* 8017F99C 0017C8DC  93 C1 00 08 */	stw r30, 8(r1)
@@ -12939,7 +12939,7 @@ init__Q24Game16NaviPressedStateFPQ24Game4NaviPQ24Game8StateArg:
 /* 80188CA4 00185BE4  D0 61 00 14 */	stfs f3, 0x14(r1)
 /* 80188CA8 00185BE8  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 80188CAC 00185BEC  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80188CB0 00185BF0  48 29 F6 29 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80188CB0 00185BF0  48 29 F6 29 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80188CB4 00185BF4  7F E3 FB 78 */	mr r3, r31
 /* 80188CB8 00185BF8  38 80 00 00 */	li r4, 0
 /* 80188CBC 00185BFC  81 9F 00 00 */	lwz r12, 0(r31)
@@ -13031,7 +13031,7 @@ lbl_80188DE8:
 /* 80188DFC 00185D3C  38 C1 00 14 */	addi r6, r1, 0x14
 /* 80188E00 00185D40  EC 01 00 2A */	fadds f0, f1, f0
 /* 80188E04 00185D44  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80188E08 00185D48  48 29 F4 D1 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80188E08 00185D48  48 29 F4 D1 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80188E0C 00185D4C  C0 3E 00 10 */	lfs f1, 0x10(r30)
 /* 80188E10 00185D50  C0 02 A8 80 */	lfs f0, lbl_80518BE0@sda21(r2)
 /* 80188E14 00185D54  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -13107,7 +13107,7 @@ lbl_80188ED4:
 /* 80188F1C 00185E5C  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 80188F20 00185E60  EC 01 00 2A */	fadds f0, f1, f0
 /* 80188F24 00185E64  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80188F28 00185E68  48 29 F3 B1 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 80188F28 00185E68  48 29 F3 B1 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80188F2C 00185E6C  C0 3E 00 10 */	lfs f1, 0x10(r30)
 /* 80188F30 00185E70  C0 02 A8 80 */	lfs f0, lbl_80518BE0@sda21(r2)
 /* 80188F34 00185E74  FC 01 00 40 */	fcmpo cr0, f1, f0

@@ -137,7 +137,7 @@ generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3$$0f$$1:
 /* 80202968 001FF8A8  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 8020296C 001FF8AC  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80202970 001FF8B0  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80202974 001FF8B4  48 22 5F 15 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80202974 001FF8B4  48 22 5F 15 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80202978 001FF8B8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8020297C 001FF8BC  7C 08 03 A6 */	mtlr r0
 /* 80202980 001FF8C0  38 21 00 20 */	addi r1, r1, 0x20

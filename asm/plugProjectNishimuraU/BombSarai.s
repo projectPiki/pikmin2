@@ -135,9 +135,9 @@ lbl_802B2944:
 onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg:
 /* 802B29A0 002AF8E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B29A4 002AF8E4  7C 08 02 A6 */	mflr r0
-/* 802B29A8 002AF8E8  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
+/* 802B29A8 002AF8E8  3C A0 80 51 */	lis r5, zero__10Vector3$$0f$$1@ha
 /* 802B29AC 002AF8EC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802B29B0 002AF8F0  38 05 41 E4 */	addi r0, r5, "zero__10Vector3<f>"@l
+/* 802B29B0 002AF8F0  38 05 41 E4 */	addi r0, r5, zero__10Vector3$$0f$$1@l
 /* 802B29B4 002AF8F4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802B29B8 002AF8F8  7C 9F 23 78 */	mr r31, r4
 /* 802B29BC 002AF8FC  7C 04 03 78 */	mr r4, r0

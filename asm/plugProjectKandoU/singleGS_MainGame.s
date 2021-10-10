@@ -519,9 +519,9 @@ lbl_80213CFC:
 /* 80213D2C 00210C6C  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
 /* 80213D30 00210C70  48 1E 82 DD */	bl initInCourse__Q26Screen9Game2DMgrFv
 /* 80213D34 00210C74  38 00 00 00 */	li r0, 0
-/* 80213D38 00210C78  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 80213D38 00210C78  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 80213D3C 00210C7C  98 1C 02 3D */	stb r0, 0x23d(r28)
-/* 80213D40 00210C80  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
+/* 80213D40 00210C80  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
 /* 80213D44 00210C84  C0 22 BC 50 */	lfs f1, lbl_80519FB0@sda21(r2)
 /* 80213D48 00210C88  38 A1 00 10 */	addi r5, r1, 0x10
 /* 80213D4C 00210C8C  80 6D 95 B0 */	lwz r3, mgr__5Radar@sda21(r13)

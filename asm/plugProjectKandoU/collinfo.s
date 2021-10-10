@@ -5041,7 +5041,7 @@ lbl_80137C8C:
 /* 80137C8C 00134BCC  C0 3E 00 00 */	lfs f1, 0(r30)
 /* 80137C90 00134BD0  7F E3 FB 78 */	mr r3, r31
 /* 80137C94 00134BD4  38 81 00 20 */	addi r4, r1, 0x20
-/* 80137C98 00134BD8  48 2F 02 F9 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>"
+/* 80137C98 00134BD8  48 2F 02 F9 */	bl makeNaturalPosture__7MatrixfFR10Vector3$$0f$$1f
 /* 80137C9C 00134BDC  48 00 01 54 */	b lbl_80137DF0
 lbl_80137CA0:
 /* 80137CA0 00134BE0  38 81 00 2C */	addi r4, r1, 0x2c
@@ -5786,9 +5786,9 @@ lbl_801386F8:
 /* 80138708 00135648  93 DF 00 5C */	stw r30, 0x5c(r31)
 /* 8013870C 0013564C  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 80138710 00135650  48 30 68 D5 */	bl getJoint__Q28SysShape5ModelFPc
-/* 80138714 00135654  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 80138714 00135654  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 80138718 00135658  90 7F 00 68 */	stw r3, 0x68(r31)
-/* 8013871C 0013565C  38 64 41 E4 */	addi r3, r4, "zero__10Vector3<f>"@l
+/* 8013871C 0013565C  38 64 41 E4 */	addi r3, r4, zero__10Vector3$$0f$$1@l
 /* 80138720 00135660  C0 02 9E B0 */	lfs f0, lbl_80518210@sda21(r2)
 /* 80138724 00135664  C0 23 00 00 */	lfs f1, 0(r3)
 /* 80138728 00135668  38 00 00 00 */	li r0, 0

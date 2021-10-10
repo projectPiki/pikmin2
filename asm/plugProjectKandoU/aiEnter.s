@@ -866,9 +866,9 @@ lbl_801A3294:
 /* 801A338C 001A02CC  80 9F 00 04 */	lwz r4, 4(r31)
 /* 801A3390 001A02D0  38 C0 00 01 */	li r6, 1
 /* 801A3394 001A02D4  4B FA 55 C1 */	bl startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-/* 801A3398 001A02D8  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 801A3398 001A02D8  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
 /* 801A339C 001A02DC  80 9E 00 04 */	lwz r4, 4(r30)
-/* 801A33A0 001A02E0  C4 23 41 E4 */	lfsu f1, "zero__10Vector3<f>"@l(r3)
+/* 801A33A0 001A02E0  C4 23 41 E4 */	lfsu f1, zero__10Vector3$$0f$$1@l(r3)
 /* 801A33A4 001A02E4  C0 02 AD B8 */	lfs f0, lbl_80519118@sda21(r2)
 /* 801A33A8 001A02E8  D0 24 01 68 */	stfs f1, 0x168(r4)
 /* 801A33AC 001A02EC  C0 23 00 04 */	lfs f1, 4(r3)

@@ -704,14 +704,14 @@ lbl_802CF0D0:
 /* 802CF12C 002CC06C  48 00 00 3C */	b lbl_802CF168
 lbl_802CF130:
 /* 802CF130 002CC070  81 9E 00 00 */	lwz r12, 0(r30)
-/* 802CF134 002CC074  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 802CF134 002CC074  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
 /* 802CF138 002CC078  7F C3 F3 78 */	mr r3, r30
 /* 802CF13C 002CC07C  81 8C 00 68 */	lwz r12, 0x68(r12)
-/* 802CF140 002CC080  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
+/* 802CF140 002CC080  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
 /* 802CF144 002CC084  7D 89 03 A6 */	mtctr r12
 /* 802CF148 002CC088  4E 80 04 21 */	bctrl 
-/* 802CF14C 002CC08C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 802CF150 002CC090  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
+/* 802CF14C 002CC08C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802CF150 002CC090  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
 /* 802CF154 002CC094  D0 1E 01 D4 */	stfs f0, 0x1d4(r30)
 /* 802CF158 002CC098  C0 03 00 04 */	lfs f0, 4(r3)
 /* 802CF15C 002CC09C  D0 1E 01 D8 */	stfs f0, 0x1d8(r30)

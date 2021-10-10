@@ -1376,7 +1376,7 @@ refreshSlot__Q24Game6CPlateFf:
 /* 80196348 00193288  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 8019634C 0019328C  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 80196350 00193290  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 80196354 00193294  48 29 22 5D */	bl "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80196354 00193294  48 29 22 5D */	bl makeSR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80196358 00193298  88 1D 01 00 */	lbz r0, 0x100(r29)
 /* 8019635C 0019329C  C0 5D 00 90 */	lfs f2, 0x90(r29)
 /* 80196360 001932A0  28 00 00 00 */	cmplwi r0, 0

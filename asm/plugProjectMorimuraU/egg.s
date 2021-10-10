@@ -93,7 +93,7 @@ lbl_8034BC4C:
 /* 8034BC70 00348BB0  38 9F 01 68 */	addi r4, r31, 0x168
 /* 8034BC74 00348BB4  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 8034BC78 00348BB8  38 DF 01 8C */	addi r6, r31, 0x18c
-/* 8034BC7C 00348BBC  48 0D C6 5D */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 8034BC7C 00348BBC  48 0D C6 5D */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 8034BC80 00348BC0  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 8034BC84 00348BC4  38 7F 01 38 */	addi r3, r31, 0x138
 /* 8034BC88 00348BC8  80 84 00 08 */	lwz r4, 8(r4)
@@ -342,7 +342,7 @@ lbl_8034BFCC:
 /* 8034BFD4 00348F14  38 BE 01 A4 */	addi r5, r30, 0x1a4
 /* 8034BFD8 00348F18  38 DE 01 8C */	addi r6, r30, 0x18c
 /* 8034BFDC 00348F1C  3B E0 00 01 */	li r31, 1
-/* 8034BFE0 00348F20  48 0D C2 F9 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+/* 8034BFE0 00348F20  48 0D C2 F9 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
 lbl_8034BFE4:
 /* 8034BFE4 00348F24  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 8034BFE8 00348F28  40 82 00 14 */	bne lbl_8034BFFC

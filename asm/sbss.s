@@ -3168,8 +3168,8 @@ msVal__Q32kh6Screen19ObjDayEndResultTitl:
 .global msVal__Q32kh6Screen10ObjPayDept
 msVal__Q32kh6Screen10ObjPayDept:
 	.skip 0x8
-.global "__init__zero__10Vector3<f>"
-"__init__zero__10Vector3<f>":
+.global __init__zero__10Vector3$$0f$$1
+__init__zero__10Vector3$$0f$$1:
 	.skip 0x8
 .global debug__Q23Sys8Triangle
 debug__Q23Sys8Triangle:

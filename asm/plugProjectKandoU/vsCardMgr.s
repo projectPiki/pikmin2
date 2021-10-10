@@ -2815,7 +2815,7 @@ drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3$$0f$$1RQ44Game6VsGame7Card
 /* 80237DEC 00234D2C  38 A1 00 38 */	addi r5, r1, 0x38
 /* 80237DF0 00234D30  D0 21 00 38 */	stfs f1, 0x38(r1)
 /* 80237DF4 00234D34  D0 01 00 40 */	stfs f0, 0x40(r1)
-/* 80237DF8 00234D38  48 1F 0A 91 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80237DF8 00234D38  48 1F 0A 91 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80237DFC 00234D3C  7F 43 D3 78 */	mr r3, r26
 /* 80237E00 00234D40  38 81 00 80 */	addi r4, r1, 0x80
 /* 80237E04 00234D44  38 A1 00 B0 */	addi r5, r1, 0xb0
@@ -3164,7 +3164,7 @@ lbl_80238314:
 /* 8023834C 0023528C  38 A1 00 20 */	addi r5, r1, 0x20
 /* 80238350 00235290  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80238354 00235294  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 80238358 00235298  48 1F 05 31 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+/* 80238358 00235298  48 1F 05 31 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 8023835C 0023529C  7F 43 D3 78 */	mr r3, r26
 /* 80238360 002352A0  38 81 00 50 */	addi r4, r1, 0x50
 /* 80238364 002352A4  38 A1 00 B0 */	addi r5, r1, 0xb0
