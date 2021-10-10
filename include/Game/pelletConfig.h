@@ -7,10 +7,9 @@
 
 namespace Game {
 	struct PelletConfig : public CNode {
-		struct TParms {
+		struct TParms : public TagParameters {
 			TParms();
 			~TParms();
-			TagParameters tagParameters;
 			StringTagParm name;
 			StringTagParm archive;
 			StringTagParm txtArchive;
@@ -51,6 +50,7 @@ namespace Game {
 			unsigned char field_0x22f;
 			PrimTagParm<unsigned short> dictionary;
 		}; //struct TParms
+		TParms parms;
 		short short_0x256;
 		short short_0x258;
 		unsigned char indirect;

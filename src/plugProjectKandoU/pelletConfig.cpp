@@ -1,22 +1,13 @@
 #include "Game/pelletConfig.h"
 //#include "pelletConfig.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
- //void _Print(char*, ...)
- //{
- //    // UNUSED FUNCTION
- //}
-
- /*
-  * --INFO--
-  * Address:	801B3EEC
-  * Size:	000048
-  */
 namespace Game {
+
+	/*
+	 * --INFO--
+	 * Address:	801B3EEC
+	 * Size:	000048
+	 */
 
 	PelletConfigList::PelletConfigList()
 	{
@@ -29,341 +20,134 @@ namespace Game {
 	 * Address:	801B3F34
 	 * Size:	0000AC
 	 */
-	 //void Game::PelletConfig::__ct(void)
-	 //{
-		 /*
-		 .loc_0x0:
-		   stwu      r1, -0x10(r1)
-		   mflr      r0
-		   stw       r0, 0x14(r1)
-		   stw       r31, 0xC(r1)
-		   mr        r31, r3
-		   bl        0x25D448
-		   lis       r4, 0x804B
-		   addi      r3, r31, 0x18
-		   addi      r0, r4, 0x5B30
-		   stw       r0, 0x0(r31)
-		   bl        0xF4
-		   li        r0, -0x1
-		   subi      r4, r2, 0x4FF0
-		   sth       r0, 0x258(r31)
-		   li        r0, 0
-		   lfs       f4, -0x4FEC(r2)
-		   mr        r3, r31
-		   stw       r4, 0x180(r31)
-		   lfs       f3, -0x4FE8(r2)
-		   stw       r4, 0x190(r31)
-		   lfs       f2, -0x4FE4(r2)
-		   stw       r0, 0x60(r31)
-		   lfs       f1, -0x4FE0(r2)
-		   stfs      f4, 0x1B0(r31)
-		   lfs       f0, -0x4FDC(r2)
-		   stfs      f3, 0x1D0(r31)
-		   stfs      f2, 0x1E0(r31)
-		   stfs      f1, 0x1F0(r31)
-		   stfs      f0, 0x200(r31)
-		   stw       r0, 0x1A0(r31)
-		   stw       r0, 0x234(r31)
-		   stw       r0, 0x230(r31)
-		   stfs      f4, 0x210(r31)
-		   stfs      f4, 0x214(r31)
-		   stfs      f4, 0x218(r31)
-		   sth       r0, 0x244(r31)
-		   sth       r0, 0x254(r31)
-		   stb       r0, 0x25A(r31)
-		   lwz       r31, 0xC(r1)
-		   lwz       r0, 0x14(r1)
-		   mtlr      r0
-		   addi      r1, r1, 0x10
-		   blr
-		   */
-		   //}
 
-		   /*
-			* --INFO--
-			* Address:	801B3FE0
-			* Size:	000070
-			*/
-			//void Game::PelletConfig::TParms::__dt(void)
-			//{
-				/*
-				.loc_0x0:
-				  stwu      r1, -0x10(r1)
-				  mflr      r0
-				  stw       r0, 0x14(r1)
-				  stw       r31, 0xC(r1)
-				  mr        r31, r4
-				  stw       r30, 0x8(r1)
-				  mr.       r30, r3
-				  beq-      .loc_0x54
-				  lis       r4, 0x804B
-				  addi      r0, r4, 0x5B20
-				  stw       r0, 0x0(r30)
-				  beq-      .loc_0x44
-				  lis       r5, 0x804B
-				  li        r4, 0
-				  addi      r0, r5, 0x5B10
-				  stw       r0, 0x0(r30)
-				  bl        0x25D568
+	PelletConfig::PelletConfig()
+	{
+		this->short_0x258 = -1;
+		this->parms.unique.m_data = "no";
+		this->parms.indirect.m_data = "no";
+		this->parms.txtArchive.m_data = nullptr;
+		this->parms.depth.m_data = 0.0f;
+		this->parms.depthA.m_data = 10.0f;
+		this->parms.depthB.m_data = 20.0f;
+		this->parms.depthC.m_data = 30.0f;
+		this->parms.depthD.m_data = 40.0f;
+		this->parms.numPMotions.m_data = 0;
+		this->parms.message.m_data_2 = 0;
+		this->parms.message.m_data_1 = 0;
+		this->parms.offset.m_data.x = 0.0f;
+		this->parms.offset.m_data.y = 0.0f;
+		this->parms.offset.m_data.z = 0.0f;
+		this->parms.code.m_data = 0;
+		this->parms.dictionary.m_data = 0;
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r3
+		  bl        0x25D448
+		  lis       r4, 0x804B
+		  addi      r3, r31, 0x18
+		  addi      r0, r4, 0x5B30
+		  stw       r0, 0x0(r31)
+		  bl        0xF4
+		  li        r0, -0x1
+		  subi      r4, r2, 0x4FF0
+		  sth       r0, 0x258(r31)
+		  li        r0, 0
+		  lfs       f4, -0x4FEC(r2)
+		  mr        r3, r31
+		  stw       r4, 0x180(r31)
+		  lfs       f3, -0x4FE8(r2)
+		  stw       r4, 0x190(r31)
+		  lfs       f2, -0x4FE4(r2)
+		  stw       r0, 0x60(r31)
+		  lfs       f1, -0x4FE0(r2)
+		  stfs      f4, 0x1B0(r31)
+		  lfs       f0, -0x4FDC(r2)
+		  stfs      f3, 0x1D0(r31)
+		  stfs      f2, 0x1E0(r31)
+		  stfs      f1, 0x1F0(r31)
+		  stfs      f0, 0x200(r31)
+		  stw       r0, 0x1A0(r31)
+		  stw       r0, 0x234(r31)
+		  stw       r0, 0x230(r31)
+		  stfs      f4, 0x210(r31)
+		  stfs      f4, 0x214(r31)
+		  stfs      f4, 0x218(r31)
+		  sth       r0, 0x244(r31)
+		  sth       r0, 0x254(r31)
+		  stb       r0, 0x25A(r31)
+		  lwz       r31, 0xC(r1)
+		  lwz       r0, 0x14(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		  */
+	}
 
-				.loc_0x44:
-				  extsh.    r0, r31
-				  ble-      .loc_0x54
-				  mr        r3, r30
-				  bl        -0x18FF7C
+	/*
+	 * --INFO--
+	 * Address:	801B3FE0
+	 * Size:	000070
+	 */
 
-				.loc_0x54:
-				  lwz       r0, 0x14(r1)
-				  mr        r3, r30
-				  lwz       r31, 0xC(r1)
-				  lwz       r30, 0x8(r1)
-				  mtlr      r0
-				  addi      r1, r1, 0x10
-				  blr
-				  */
+	PelletConfig::TParms::~TParms()
+	{
+		/*
+		.loc_0x0:
+		  stwu      r1, -0x10(r1)
+		  mflr      r0
+		  stw       r0, 0x14(r1)
+		  stw       r31, 0xC(r1)
+		  mr        r31, r4
+		  stw       r30, 0x8(r1)
+		  mr.       r30, r3
+		  beq-      .loc_0x54
+		  lis       r4, 0x804B
+		  addi      r0, r4, 0x5B20
+		  stw       r0, 0x0(r30)
+		  beq-      .loc_0x44
+		  lis       r5, 0x804B
+		  li        r4, 0
+		  addi      r0, r5, 0x5B10
+		  stw       r0, 0x0(r30)
+		  bl        0x25D568
 
-				  //}
+		.loc_0x44:
+		  extsh.    r0, r31
+		  ble-      .loc_0x54
+		  mr        r3, r30
+		  bl        -0x18FF7C
 
-				  /*
-				   * --INFO--
-				   * Address:	801B4050
-				   * Size:	000374
-				   */
+		.loc_0x54:
+		  lwz       r0, 0x14(r1)
+		  mr        r3, r30
+		  lwz       r31, 0xC(r1)
+		  lwz       r30, 0x8(r1)
+		  mtlr      r0
+		  addi      r1, r1, 0x10
+		  blr
+		*/
 
-				   //void Game::PelletConfig::TParms::__ct(void)
-				   //{
-					   /*
-					   .loc_0x0:
-						 stwu      r1, -0x10(r1)
-						 mflr      r0
-						 lis       r4, 0x8048
-						 stw       r0, 0x14(r1)
-						 stw       r31, 0xC(r1)
-						 subi      r31, r4, 0x558
-						 addi      r4, r31, 0x10
-						 stw       r30, 0x8(r1)
-						 mr        r30, r3
-						 bl        0x267FD4
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5B20
-						 addi      r3, r30, 0x1C
-						 stw       r0, 0x0(r30)
-						 subi      r5, r2, 0x4FD8
-						 bl        0x267F04
-						 mr        r4, r30
-						 addi      r3, r30, 0x2C
-						 subi      r5, r2, 0x4FD0
-						 bl        0x267EF4
-						 mr        r4, r30
-						 addi      r3, r30, 0x3C
-						 addi      r5, r31, 0x20
-						 bl        0x267EE4
-						 mr        r4, r30
-						 addi      r3, r30, 0x4C
-						 subi      r5, r2, 0x4FC8
-						 bl        0x267ED4
-						 mr        r4, r30
-						 addi      r3, r30, 0x5C
-						 subi      r5, r2, 0x4FC4
-						 bl        0x267EC4
-						 mr        r4, r30
-						 addi      r3, r30, 0x6C
-						 addi      r5, r31, 0x2C
-						 bl        0x267EB4
-						 mr        r4, r30
-						 addi      r3, r30, 0x7C
-						 subi      r5, r2, 0x4FBC
-						 bl        0x267FAC
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0x8C
-						 stw       r0, 0x7C(r30)
-						 addi      r5, r31, 0x38
-						 bl        0x267F90
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0x9C
-						 stw       r0, 0x8C(r30)
-						 subi      r5, r2, 0x4FB4
-						 bl        0x267F74
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0xAC
-						 stw       r0, 0x9C(r30)
-						 addi      r5, r31, 0x44
-						 bl        0x267F58
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0xBC
-						 stw       r0, 0xAC(r30)
-						 addi      r5, r31, 0x54
-						 bl        0x267E34
-						 mr        r4, r30
-						 addi      r3, r30, 0xCC
-						 addi      r5, r31, 0x64
-						 bl        0x267F2C
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AE0
-						 addi      r3, r30, 0xDC
-						 stw       r0, 0xCC(r30)
-						 addi      r5, r31, 0x74
-						 bl        0x267F10
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0xEC
-						 stw       r0, 0xDC(r30)
-						 addi      r5, r31, 0x84
-						 bl        0x267EF4
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0xFC
-						 stw       r0, 0xEC(r30)
-						 subi      r5, r2, 0x4FAC
-						 bl        0x267ED8
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AE0
-						 addi      r3, r30, 0x10C
-						 stw       r0, 0xFC(r30)
-						 subi      r5, r2, 0x4FA8
-						 bl        0x267EBC
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AE0
-						 addi      r3, r30, 0x11C
-						 stw       r0, 0x10C(r30)
-						 addi      r5, r31, 0x90
-						 bl        0x267EA0
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AE0
-						 addi      r3, r30, 0x12C
-						 stw       r0, 0x11C(r30)
-						 addi      r5, r31, 0xA0
-						 bl        0x267E84
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AE0
-						 addi      r3, r30, 0x13C
-						 stw       r0, 0x12C(r30)
-						 addi      r5, r31, 0xB0
-						 bl        0x267D60
-						 mr        r4, r30
-						 addi      r3, r30, 0x14C
-						 subi      r5, r2, 0x4FA4
-						 bl        0x267E58
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AE0
-						 addi      r3, r30, 0x15C
-						 stw       r0, 0x14C(r30)
-						 subi      r5, r2, 0x4F9C
-						 bl        0x267D34
-						 mr        r4, r30
-						 addi      r3, r30, 0x16C
-						 addi      r5, r31, 0xBC
-						 bl        0x267D24
-						 mr        r4, r30
-						 addi      r3, r30, 0x17C
-						 addi      r5, r31, 0xC8
-						 bl        0x267E1C
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AE0
-						 addi      r3, r30, 0x18C
-						 stw       r0, 0x17C(r30)
-						 subi      r5, r2, 0x4F94
-						 bl        0x267E00
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0x19C
-						 stw       r0, 0x18C(r30)
-						 addi      r5, r31, 0xD8
-						 bl        0x267DE4
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0x1AC
-						 stw       r0, 0x19C(r30)
-						 subi      r5, r2, 0x4F8C
-						 bl        0x267DC8
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0x1BC
-						 stw       r0, 0x1AC(r30)
-						 subi      r5, r2, 0x4F84
-						 bl        0x267DAC
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0x1CC
-						 stw       r0, 0x1BC(r30)
-						 subi      r5, r2, 0x4F7C
-						 bl        0x267D90
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0x1DC
-						 stw       r0, 0x1CC(r30)
-						 subi      r5, r2, 0x4F74
-						 bl        0x267D74
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AF8
-						 addi      r3, r30, 0x1EC
-						 stw       r0, 0x1DC(r30)
-						 subi      r5, r2, 0x4F6C
-						 bl        0x267D58
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AC8
-						 addi      r3, r30, 0x208
-						 stw       r0, 0x1EC(r30)
-						 subi      r5, r2, 0x4F64
-						 bl        0x267D3C
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5AB0
-						 addi      r3, r30, 0x220
-						 stw       r0, 0x208(r30)
-						 subi      r5, r2, 0x4F5C
-						 bl        0x267D20
-						 lis       r3, 0x804B
-						 mr        r4, r30
-						 addi      r0, r3, 0x5A98
-						 addi      r3, r30, 0x230
-						 stw       r0, 0x220(r30)
-						 addi      r5, r31, 0xE4
-						 bl        0x267D04
-						 lis       r4, 0x804B
-						 mr        r3, r30
-						 addi      r0, r4, 0x5A98
-						 stw       r0, 0x230(r30)
-						 lwz       r31, 0xC(r1)
-						 lwz       r30, 0x8(r1)
-						 lwz       r0, 0x14(r1)
-						 mtlr      r0
-						 addi      r1, r1, 0x10
-						 blr
-						 */
+	}
 
+	/*
+	 * --INFO--
+	 * Address:	801B4050
+	 * Size:	000374
+	 */
 
-						 /*
-						  * --INFO--
-						  * Address:	801B43C4
-						  * Size:	000060
-						  */
-}
+	PelletConfig::TParms::TParms() : TagParameters("PelletConfig"), name("name"), archive("archive") {}
+
+/*
+ * --INFO--
+ * Address:	801B43C4
+ * Size:	000060
+ */
+
 TagParameters::~TagParameters()
 {
 	/*
@@ -664,7 +448,7 @@ namespace Game {
 	 * Address:	801B4698
 	 * Size:	000098
 	 */
-	PelletConfig::__dt(void)
+	PelletConfig::~PelletConfig()
 	{
 		/*
 		.loc_0x0:
@@ -742,7 +526,7 @@ void TagParm::flushValue()
  * Size:	000060
  */
 namespace Game {
-	PelletConfigList::__dt(void)
+	PelletConfigList::~PelletConfigList()
 	{
 		/*
 		.loc_0x0:
