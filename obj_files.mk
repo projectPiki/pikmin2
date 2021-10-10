@@ -1075,7 +1075,6 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/camera.o\
-	$(BUILD_DIR)/src/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/asm/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/src/sysCommonU/sysTemplates.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCode.o\

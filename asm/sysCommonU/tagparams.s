@@ -1,6 +1,17 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global doRead__7TagParmFR6Stream
+doRead__7TagParmFR6Stream:
+/* 8041BD2C 00418C6C  4E 80 00 20 */	blr 
+
+.global doWrite__7TagParmFR6Stream
+doWrite__7TagParmFR6Stream:
+/* 8041BD30 00418C70  4E 80 00 20 */	blr 
+
+.global doDump__7TagParmFv
+doDump__7TagParmFv:
+/* 8041BD34 00418C74  4E 80 00 20 */	blr 
 
 .global doRead__14PrimTagParm$$0i$$1FR6Stream
 doRead__14PrimTagParm$$0i$$1FR6Stream:
