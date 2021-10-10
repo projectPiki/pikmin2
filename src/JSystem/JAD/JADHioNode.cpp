@@ -1,11 +1,11 @@
-#include "JSystem/JADHioNode.h"
+
 
 /*
  * --INFO--
  * Address:	800BA1EC
  * Size:	000010
  */
-JADHioNode::JADHioNode(const char*)
+void JADHioNode::JADHioNode(const char*)
 {
     /*
     .loc_0x0:
@@ -21,7 +21,7 @@ JADHioNode::JADHioNode(const char*)
  * Address:	800BA1FC
  * Size:	000048
  */
-JADHioNode::~JADHioNode()
+void JADHioNode::~JADHioNode()
 {
     /*
     .loc_0x0:
