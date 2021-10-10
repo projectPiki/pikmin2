@@ -1065,7 +1065,6 @@ GROUP_1_FILES:=\
 
 TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
-	$(BUILD_DIR)/src/sysCommonU/node.o\
 	$(BUILD_DIR)/asm/sysCommonU/node.o\
 	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\

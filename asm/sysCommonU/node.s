@@ -1,5 +1,10 @@
 .include "macros.inc"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global init__4NodeFv
+init__4NodeFv:
+/* 80411204 0040E144  4E 80 00 20 */	blr 
+
 .global displayInfo__4NodeFi
 displayInfo__4NodeFi:
 /* 80411208 0040E148  94 21 FF E0 */	stwu r1, -0x20(r1)

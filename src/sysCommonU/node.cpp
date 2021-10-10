@@ -1,6 +1,6 @@
 #include "CNode.h"
 #include "JSystem/JUTException.h"
-#include "Node.h"
+// #include "Node.h"
 
 extern const char lbl_804995F0[12]; // node.cpp
 extern const char lbl_8049962C[28]; // %d child (realchild = %d)!\n
@@ -8,10 +8,20 @@ extern const char lbl_80520260[8]; // CNode
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000E0
+ */
+void _Print(char*, ...)
+{
+    // UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	80411204
  * Size:	000004
  */
- Node* Node::init() { return this; }
+ Node Node::init() { return this; }
 
 /*
  * --INFO--
@@ -517,24 +527,24 @@ extern const char lbl_80520260[8]; // CNode
  * Address:	8041169C
  * Size:	000094
  */
-//CNode* CNode::getChildAt(int desiredIndex)
-//{
-//    const char* msg = lbl_8049962C;
-//    const char* _FILE_ = lbl_804995F0;
-//    int currentIndex = 0;
-//    CNode* pNode = _10;
-//
-//    // for (; ; pNode = pNode->_04, currentIndex++) {
-//    while (true) {
-//        if (desiredIndex <= currentIndex) {
-//            return pNode;
-//        }
-//        if (pNode == NULL) {
-//            JUTException::panic_f(lbl_804995F0,0x15f,msg,desiredIndex, this->getChildCount());
-//        }
-//        pNode = pNode->_04;
-//        currentIndex++;
-//    }
+CNode* CNode::getChildAt(int desiredIndex)
+{
+    const char* msg = lbl_8049962C;
+    const char* _FILE_ = lbl_804995F0;
+    int currentIndex = 0;
+    CNode* pNode = _10;
+
+    // for (; ; pNode = pNode->_04, currentIndex++) {
+    while (true) {
+        if (desiredIndex <= currentIndex) {
+            return pNode;
+        }
+        if (pNode == NULL) {
+            JUTException::panic_f(lbl_804995F0,0x15f,msg,desiredIndex, this->getChildCount());
+        }
+        pNode = pNode->_04;
+        currentIndex++;
+    }
 
     // JUTException::panic_f(lbl_804995F0,0x15f,msg,desiredIndex, this->getChildCount());
     // while( pNode != NULL ) {
@@ -592,4 +602,4 @@ extern const char lbl_80520260[8]; // CNode
       addi      r1, r1, 0x20
       blr
     */
-//}
+}
