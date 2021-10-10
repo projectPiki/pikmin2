@@ -18,7 +18,7 @@ BitFlags::BitFlags()
  */
 void BitFlags::dump()
 {
-    for (s32 i = 0; i < m_flagCnt; i++) { }
+	for (s32 i = 0; i < m_flagCnt; i++) { }
 }
 
 /*
@@ -28,9 +28,9 @@ void BitFlags::dump()
  */
 void BitFlags::read(Stream& stream)
 {
-    for (s32 i = 0; i < m_flagCnt; i++) {
-        m_flagArr[i] = stream.readByte();
-    }
+	for (s32 i = 0; i < m_flagCnt; i++) {
+		m_flagArr[i] = stream.readByte();
+	}
 }
 
 /*
@@ -40,9 +40,9 @@ void BitFlags::read(Stream& stream)
  */
 void BitFlags::write(Stream& stream)
 {
-    for (s32 i = 0; i < m_flagCnt; i++) {
-        stream.writeByte(m_flagArr[i]);
-    }
+	for (s32 i = 0; i < m_flagCnt; i++) {
+		stream.writeByte(m_flagArr[i]);
+	}
 }
 
 /*
@@ -52,14 +52,14 @@ void BitFlags::write(Stream& stream)
  */
 void BitFlags::create(u16 arg1, u8* flags)
 {
-    _04       = arg1;
-    m_flagCnt = (arg1 >> 3) + 1;
+	_04       = arg1;
+	m_flagCnt = (arg1 >> 3) + 1;
 
-    if (flags) {
-        m_flagArr = flags;
-    } else {
-        m_flagArr = new u8[m_flagCnt];
-    }
+	if (flags) {
+		m_flagArr = flags;
+	} else {
+		m_flagArr = new u8[m_flagCnt];
+	}
 }
 
 /*
@@ -69,9 +69,9 @@ void BitFlags::create(u16 arg1, u8* flags)
  */
 void BitFlags::reset()
 {
-    for (s32 i = 0; i < m_flagCnt; i++) {
-        m_flagArr[i] = 0;
-    }
+	for (s32 i = 0; i < m_flagCnt; i++) {
+		m_flagArr[i] = 0;
+	}
 }
 
 /*

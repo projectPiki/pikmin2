@@ -13,19 +13,19 @@ void OSPanic(const char*, int, const char*, ...);
 
 // TODO
 typedef struct OSContext {
-    char filler[708];
+	char filler[708];
 } OSContext;
 
 typedef struct OSThread {
-    char filler[708];
-    char filler2[68];
+	char filler[708];
+	char filler2[68];
 } OSThread;
 
 OSThread* OSGetCurrentThread(void);
 int OSSuspendThread(OSThread* thread);
 
 typedef struct OSMessageQueue {
-    char filler[32];
+	char filler[32];
 } OSMessageQueue;
 typedef void* OSMessage;
 

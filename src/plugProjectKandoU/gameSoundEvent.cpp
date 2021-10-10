@@ -9,9 +9,9 @@
 Game::TSoundEvent::TSoundEvent()
     : _00(0)
 {
-    _00 = 0;
-    _08 = 0;
-    _04 = 30;
+	_00 = 0;
+	_08 = 0;
+	_04 = 30;
 }
 
 /*
@@ -21,18 +21,18 @@ Game::TSoundEvent::TSoundEvent()
  */
 u32 Game::TSoundEvent::event()
 {
-    _08 = Game::gameSystem->_50;
-    if (!(_00 & 1)) {
-        _00 |= 1;
-        return 1;
-    }
+	_08 = Game::gameSystem->_50;
+	if (!(_00 & 1)) {
+		_00 |= 1;
+		return 1;
+	}
 
-    if (_00 & 2) {
-        _00 &= ~2;
-        return 3;
-    }
+	if (_00 & 2) {
+		_00 &= ~2;
+		return 3;
+	}
 
-    return 0;
+	return 0;
 }
 
 /*
@@ -49,11 +49,11 @@ void Game::TSoundEvent::finish(void) { _00 |= 4; }
  */
 u32 Game::TSoundEvent::update()
 {
-    if (!(_00 & 4) && Game::gameSystem->calcFrameDist(_08) > _04 && _00 & 1
-        && !(_00 & 2)) {
-        _00 |= 2;
-        return 2;
-    }
+	if (!(_00 & 4) && Game::gameSystem->calcFrameDist(_08) > _04 && _00 & 1
+	    && !(_00 & 2)) {
+		_00 |= 2;
+		return 2;
+	}
 
-    return 0;
+	return 0;
 }

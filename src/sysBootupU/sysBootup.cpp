@@ -8,9 +8,9 @@
  */
 int main(void)
 {
-    OSReport("bootup -----------------------\n");
+	OSReport("bootup -----------------------\n");
 
-    System::initialize();
-    System* sysInstance = new System();
-    return sysInstance->run();
+	System::initialize();
+	System* sysInstance = new System();
+	return sysInstance->run();
 }

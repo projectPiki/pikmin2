@@ -7,7 +7,7 @@
  */
 void _Print(char*, ...)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -17,32 +17,32 @@ void _Print(char*, ...)
  */
 void Game::Cave::GateNode::__ct(void)
 {
-    /*
-    .loc_0x0:
-      stwu      r1, -0x10(r1)
-      mflr      r0
-      stw       r0, 0x14(r1)
-      stw       r31, 0xC(r1)
-      mr        r31, r3
-      bl        0x1C16B4
-      lis       r4, 0x804C
-      lis       r3, 0x804C
-      addi      r4, r4, 0x1AA8
-      li        r0, 0
-      stw       r4, 0x0(r31)
-      addi      r4, r3, 0x1B78
-      lfs       f0, -0x3AF8(r2)
-      mr        r3, r31
-      stw       r4, 0x0(r31)
-      stw       r0, 0x18(r31)
-      stw       r0, 0x20(r31)
-      stfs      f0, 0x1C(r31)
-      lwz       r31, 0xC(r1)
-      lwz       r0, 0x14(r1)
-      mtlr      r0
-      addi      r1, r1, 0x10
-      blr
-    */
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  stw       r0, 0x14(r1)
+	  stw       r31, 0xC(r1)
+	  mr        r31, r3
+	  bl        0x1C16B4
+	  lis       r4, 0x804C
+	  lis       r3, 0x804C
+	  addi      r4, r4, 0x1AA8
+	  li        r0, 0
+	  stw       r4, 0x0(r31)
+	  addi      r4, r3, 0x1B78
+	  lfs       f0, -0x3AF8(r2)
+	  mr        r3, r31
+	  stw       r4, 0x0(r31)
+	  stw       r0, 0x18(r31)
+	  stw       r0, 0x20(r31)
+	  stfs      f0, 0x1C(r31)
+	  lwz       r31, 0xC(r1)
+	  lwz       r0, 0x14(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	*/
 }
 
 /*
@@ -52,48 +52,48 @@ void Game::Cave::GateNode::__ct(void)
  */
 void Game::Cave::GateNode::__ct((Game::Cave::GateUnit*, int, int))
 {
-    /*
-    .loc_0x0:
-      stwu      r1, -0x20(r1)
-      mflr      r0
-      stw       r0, 0x24(r1)
-      stw       r31, 0x1C(r1)
-      mr        r31, r6
-      stw       r30, 0x18(r1)
-      mr        r30, r5
-      stw       r29, 0x14(r1)
-      mr        r29, r4
-      stw       r28, 0x10(r1)
-      mr        r28, r3
-      bl        0x1C1640
-      xoris     r3, r31, 0x8000
-      lis       r0, 0x4330
-      lis       r4, 0x804C
-      stw       r3, 0xC(r1)
-      addi      r4, r4, 0x1AA8
-      lis       r3, 0x804C
-      stw       r0, 0x8(r1)
-      addi      r0, r3, 0x1B78
-      lfd       f1, -0x3AF0(r2)
-      mr        r3, r28
-      stw       r4, 0x0(r28)
-      lfd       f0, 0x8(r1)
-      stw       r0, 0x0(r28)
-      fsubs     f0, f0, f1
-      lfs       f1, -0x3AF4(r2)
-      stw       r29, 0x18(r28)
-      fmuls     f0, f1, f0
-      stw       r30, 0x20(r28)
-      stfs      f0, 0x1C(r28)
-      lwz       r31, 0x1C(r1)
-      lwz       r30, 0x18(r1)
-      lwz       r29, 0x14(r1)
-      lwz       r28, 0x10(r1)
-      lwz       r0, 0x24(r1)
-      mtlr      r0
-      addi      r1, r1, 0x20
-      blr
-    */
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x20(r1)
+	  mflr      r0
+	  stw       r0, 0x24(r1)
+	  stw       r31, 0x1C(r1)
+	  mr        r31, r6
+	  stw       r30, 0x18(r1)
+	  mr        r30, r5
+	  stw       r29, 0x14(r1)
+	  mr        r29, r4
+	  stw       r28, 0x10(r1)
+	  mr        r28, r3
+	  bl        0x1C1640
+	  xoris     r3, r31, 0x8000
+	  lis       r0, 0x4330
+	  lis       r4, 0x804C
+	  stw       r3, 0xC(r1)
+	  addi      r4, r4, 0x1AA8
+	  lis       r3, 0x804C
+	  stw       r0, 0x8(r1)
+	  addi      r0, r3, 0x1B78
+	  lfd       f1, -0x3AF0(r2)
+	  mr        r3, r28
+	  stw       r4, 0x0(r28)
+	  lfd       f0, 0x8(r1)
+	  stw       r0, 0x0(r28)
+	  fsubs     f0, f0, f1
+	  lfs       f1, -0x3AF4(r2)
+	  stw       r29, 0x18(r28)
+	  fmuls     f0, f1, f0
+	  stw       r30, 0x20(r28)
+	  stfs      f0, 0x1C(r28)
+	  lwz       r31, 0x1C(r1)
+	  lwz       r30, 0x18(r1)
+	  lwz       r29, 0x14(r1)
+	  lwz       r28, 0x10(r1)
+	  lwz       r0, 0x24(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x20
+	  blr
+	*/
 }
 
 /*
@@ -103,19 +103,19 @@ void Game::Cave::GateNode::__ct((Game::Cave::GateUnit*, int, int))
  */
 void Game::Cave::GateNode::getObjectId(void)
 {
-    /*
-    .loc_0x0:
-      lwz       r3, 0x18(r3)
-      lwz       r3, 0x0(r3)
-      cmplwi    r3, 0
-      beq-      .loc_0x18
-      lwz       r3, 0x18(r3)
-      blr
+	/*
+	.loc_0x0:
+	  lwz       r3, 0x18(r3)
+	  lwz       r3, 0x0(r3)
+	  cmplwi    r3, 0
+	  beq-      .loc_0x18
+	  lwz       r3, 0x18(r3)
+	  blr
 
-    .loc_0x18:
-      li        r3, -0x1
-      blr
-    */
+	.loc_0x18:
+	  li        r3, -0x1
+	  blr
+	*/
 }
 
 /*
@@ -125,11 +125,11 @@ void Game::Cave::GateNode::getObjectId(void)
  */
 void Game::Cave::GateNode::getObjectType(void)
 {
-    /*
-    .loc_0x0:
-      li        r3, 0x2
-      blr
-    */
+	/*
+	.loc_0x0:
+	  li        r3, 0x2
+	  blr
+	*/
 }
 
 /*
@@ -139,11 +139,11 @@ void Game::Cave::GateNode::getObjectType(void)
  */
 void Game::Cave::GateNode::getBirthCount(void)
 {
-    /*
-    .loc_0x0:
-      li        r3, 0x1
-      blr
-    */
+	/*
+	.loc_0x0:
+	  li        r3, 0x1
+	  blr
+	*/
 }
 
 /*
@@ -153,11 +153,11 @@ void Game::Cave::GateNode::getBirthCount(void)
  */
 void Game::Cave::GateNode::getDirection(void)
 {
-    /*
-    .loc_0x0:
-      lfs       f1, 0x1C(r3)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lfs       f1, 0x1C(r3)
+	  blr
+	*/
 }
 
 /*
@@ -167,11 +167,11 @@ void Game::Cave::GateNode::getDirection(void)
  */
 void Game::Cave::GateNode::getBirthDoorIndex(void)
 {
-    /*
-    .loc_0x0:
-      lwz       r3, 0x20(r3)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lwz       r3, 0x20(r3)
+	  blr
+	*/
 }
 
 /*
@@ -181,39 +181,39 @@ void Game::Cave::GateNode::getBirthDoorIndex(void)
  */
 void Game::Cave::GateNode::__dt(void)
 {
-    /*
-    .loc_0x0:
-      stwu      r1, -0x10(r1)
-      mflr      r0
-      stw       r0, 0x14(r1)
-      stw       r31, 0xC(r1)
-      mr        r31, r4
-      stw       r30, 0x8(r1)
-      mr.       r30, r3
-      beq-      .loc_0x54
-      lis       r4, 0x804C
-      addi      r0, r4, 0x1B78
-      stw       r0, 0x0(r30)
-      beq-      .loc_0x44
-      lis       r5, 0x804C
-      li        r4, 0
-      addi      r0, r5, 0x1AA8
-      stw       r0, 0x0(r30)
-      bl        0x1C1748
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  stw       r0, 0x14(r1)
+	  stw       r31, 0xC(r1)
+	  mr        r31, r4
+	  stw       r30, 0x8(r1)
+	  mr.       r30, r3
+	  beq-      .loc_0x54
+	  lis       r4, 0x804C
+	  addi      r0, r4, 0x1B78
+	  stw       r0, 0x0(r30)
+	  beq-      .loc_0x44
+	  lis       r5, 0x804C
+	  li        r4, 0
+	  addi      r0, r5, 0x1AA8
+	  stw       r0, 0x0(r30)
+	  bl        0x1C1748
 
-    .loc_0x44:
-      extsh.    r0, r31
-      ble-      .loc_0x54
-      mr        r3, r30
-      bl        -0x22BD9C
+	.loc_0x44:
+	  extsh.    r0, r31
+	  ble-      .loc_0x54
+	  mr        r3, r30
+	  bl        -0x22BD9C
 
-    .loc_0x54:
-      lwz       r0, 0x14(r1)
-      mr        r3, r30
-      lwz       r31, 0xC(r1)
-      lwz       r30, 0x8(r1)
-      mtlr      r0
-      addi      r1, r1, 0x10
-      blr
-    */
+	.loc_0x54:
+	  lwz       r0, 0x14(r1)
+	  mr        r3, r30
+	  lwz       r31, 0xC(r1)
+	  lwz       r30, 0x8(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	*/
 }

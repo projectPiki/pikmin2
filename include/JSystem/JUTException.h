@@ -5,11 +5,11 @@
 #include "types.h"
 
 struct JUTException {
-    static void panic_f(char const*, int, char const*, ...);
+	static void panic_f(char const*, int, char const*, ...);
 
-    static u32* sConsole;
-    static u32* sErrorManager;
-    static OSMessageQueue sMessageQueue;
+	static u32* sConsole;
+	static u32* sErrorManager;
+	static OSMessageQueue sMessageQueue;
 };
 
 #endif

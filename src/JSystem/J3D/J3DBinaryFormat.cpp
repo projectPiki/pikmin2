@@ -7,7 +7,7 @@
  */
 void matchingCullModeTable(_GXCullMode)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -17,7 +17,7 @@ void matchingCullModeTable(_GXCullMode)
  */
 void matchingZCompLocTable(unsigned char)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -27,7 +27,7 @@ void matchingZCompLocTable(unsigned char)
  */
 void J3DMaterialInitData::operator=(const J3DMaterialInitData&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -37,7 +37,7 @@ void J3DMaterialInitData::operator=(const J3DMaterialInitData&)
  */
 void J3DMaterialInitData::operator==(const J3DMaterialInitData&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -47,7 +47,7 @@ void J3DMaterialInitData::operator==(const J3DMaterialInitData&)
  */
 void J3DGraphBinaryHeader::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -57,7 +57,7 @@ void J3DGraphBinaryHeader::write_InSaver(unsigned char**)
  */
 void J3DIndInitData::init()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -67,7 +67,7 @@ void J3DIndInitData::init()
  */
 void checkIndData(J3DMaterial*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -77,7 +77,7 @@ void checkIndData(J3DMaterial*)
  */
 void J3DIndInitData::J3DIndInitData(J3DMaterial*, J3DMaterial_SaveBlock*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -87,7 +87,7 @@ void J3DIndInitData::J3DIndInitData(J3DMaterial*, J3DMaterial_SaveBlock*)
  */
 void J3DIndInitData::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -97,7 +97,7 @@ void J3DIndInitData::write_InSaver(unsigned char**)
  */
 void J3DMaterialInitData::init()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -108,7 +108,7 @@ void J3DMaterialInitData::init()
 void J3DMaterialInitData::J3DMaterialInitData(J3DMaterial*,
                                               J3DMaterial_SaveBlock*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -118,7 +118,7 @@ void J3DMaterialInitData::J3DMaterialInitData(J3DMaterial*,
  */
 void J3DMaterialInitData::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -128,7 +128,7 @@ void J3DMaterialInitData::write_InSaver(unsigned char**)
  */
 void J3DMaterial_SaveBlock::countParts(J3DModelData*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -138,7 +138,7 @@ void J3DMaterial_SaveBlock::countParts(J3DModelData*)
  */
 void J3DMaterial_SaveBlock::setOffset(J3DModelData*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -148,7 +148,7 @@ void J3DMaterial_SaveBlock::setOffset(J3DModelData*)
  */
 void J3DMaterial_SaveBlock::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -158,7 +158,7 @@ void J3DMaterial_SaveBlock::write_InSaver(unsigned char**)
  */
 void J3DShapeInitData::J3DShapeInitData()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -168,7 +168,7 @@ void J3DShapeInitData::J3DShapeInitData()
  */
 void getShapeMtxType(J3DShape*, J3DShapeMtx*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -178,12 +178,12 @@ void getShapeMtxType(J3DShape*, J3DShapeMtx*)
  */
 void J3DShapeMtx::getType() const
 {
-    /*
-    .loc_0x0:
-      lis       r3, 0x534D
-      addi      r3, r3, 0x5458
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lis       r3, 0x534D
+	  addi      r3, r3, 0x5458
+	  blr
+	*/
 }
 
 /*
@@ -193,7 +193,7 @@ void J3DShapeMtx::getType() const
  */
 void J3DShapeInitData::init(J3DShape*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -203,7 +203,7 @@ void J3DShapeInitData::init(J3DShape*)
  */
 void J3DShapeInitData::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -213,7 +213,7 @@ void J3DShapeInitData::write_InSaver(unsigned char**)
  */
 void J3DShape_SaveBlock::countParts(J3DModelData*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -223,7 +223,7 @@ void J3DShape_SaveBlock::countParts(J3DModelData*)
  */
 void J3DShape_SaveBlock::setOffset(J3DModelData*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -233,7 +233,7 @@ void J3DShape_SaveBlock::setOffset(J3DModelData*)
  */
 void J3DShape_SaveBlock::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -243,7 +243,7 @@ void J3DShape_SaveBlock::write_InSaver(unsigned char**)
  */
 void J3DTexture_SaveBlock::J3DTexture_SaveBlock()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -253,7 +253,7 @@ void J3DTexture_SaveBlock::J3DTexture_SaveBlock()
  */
 void J3DTexture_SaveBlock::~J3DTexture_SaveBlock()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -263,7 +263,7 @@ void J3DTexture_SaveBlock::~J3DTexture_SaveBlock()
  */
 void J3DTexture_SaveBlock::setOffset()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -273,7 +273,7 @@ void J3DTexture_SaveBlock::setOffset()
  */
 void J3DTexture_SaveBlock::setTIMGOffset()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -283,7 +283,7 @@ void J3DTexture_SaveBlock::setTIMGOffset()
  */
 void J3DTexture_SaveBlock::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -293,7 +293,7 @@ void J3DTexture_SaveBlock::write_InSaver(unsigned char**)
  */
 void J3DTexture_SaveBlock::countParts(J3DModelData*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -303,7 +303,7 @@ void J3DTexture_SaveBlock::countParts(J3DModelData*)
  */
 void J3DMaterialDL_SaveBlock::setOffset(J3DModel*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -313,7 +313,7 @@ void J3DMaterialDL_SaveBlock::setOffset(J3DModel*)
  */
 void J3DMaterialDL_SaveBlock::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -323,7 +323,7 @@ void J3DMaterialDL_SaveBlock::write_InSaver(unsigned char**)
  */
 void J3DAnmTextureSRTKey_SaveData::J3DAnmTextureSRTKey_SaveData()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -333,7 +333,7 @@ void J3DAnmTextureSRTKey_SaveData::J3DAnmTextureSRTKey_SaveData()
  */
 void J3DAnmTextureSRTKey_SaveData::~J3DAnmTextureSRTKey_SaveData()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -343,7 +343,7 @@ void J3DAnmTextureSRTKey_SaveData::~J3DAnmTextureSRTKey_SaveData()
  */
 void J3DAnmTextureSRTKey_SaveData::setOffset(J3DAnmTextureSRTKey*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -353,7 +353,7 @@ void J3DAnmTextureSRTKey_SaveData::setOffset(J3DAnmTextureSRTKey*)
  */
 void J3DAnmTextureSRTKey_SaveData::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -363,7 +363,7 @@ void J3DAnmTextureSRTKey_SaveData::write_InSaver(unsigned char**)
  */
 void J3DAnmColorKey_SaveData::J3DAnmColorKey_SaveData()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -373,7 +373,7 @@ void J3DAnmColorKey_SaveData::J3DAnmColorKey_SaveData()
  */
 void J3DAnmColorKey_SaveData::~J3DAnmColorKey_SaveData()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -383,7 +383,7 @@ void J3DAnmColorKey_SaveData::~J3DAnmColorKey_SaveData()
  */
 void J3DAnmColorKey_SaveData::setOffset(J3DAnmColorKey*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -393,7 +393,7 @@ void J3DAnmColorKey_SaveData::setOffset(J3DAnmColorKey*)
  */
 void J3DAnmColorKey_SaveData::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -403,7 +403,7 @@ void J3DAnmColorKey_SaveData::write_InSaver(unsigned char**)
  */
 void J3DAnmTevRegKey_SaveData::J3DAnmTevRegKey_SaveData()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -413,7 +413,7 @@ void J3DAnmTevRegKey_SaveData::J3DAnmTevRegKey_SaveData()
  */
 void J3DAnmTevRegKey_SaveData::~J3DAnmTevRegKey_SaveData()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -423,7 +423,7 @@ void J3DAnmTevRegKey_SaveData::~J3DAnmTevRegKey_SaveData()
  */
 void J3DAnmTevRegKey_SaveData::setOffset(J3DAnmTevRegKey*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -433,7 +433,7 @@ void J3DAnmTevRegKey_SaveData::setOffset(J3DAnmTevRegKey*)
  */
 void J3DAnmTevRegKey_SaveData::write_InSaver(unsigned char**)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -443,7 +443,7 @@ void J3DAnmTevRegKey_SaveData::write_InSaver(unsigned char**)
  */
 void J3DSaverList<long>::J3DSaverList()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -453,7 +453,7 @@ void J3DSaverList<long>::J3DSaverList()
  */
 void J3DSaverList<long>::uniqueAppend(long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -463,7 +463,7 @@ void J3DSaverList<long>::uniqueAppend(long)
  */
 void J3DSaverList<J3DNBTScaleInfo>::uniqueAppend(J3DNBTScaleInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -473,7 +473,7 @@ void J3DSaverList<J3DNBTScaleInfo>::uniqueAppend(J3DNBTScaleInfo)
  */
 void J3DSaverList<J3DZMode>::uniqueAppend(J3DZMode)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -483,7 +483,7 @@ void J3DSaverList<J3DZMode>::uniqueAppend(J3DZMode)
  */
 void J3DSaverList<J3DFogInfo>::uniqueAppend(J3DFogInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -493,7 +493,7 @@ void J3DSaverList<J3DFogInfo>::uniqueAppend(J3DFogInfo)
  */
 void J3DSaverList<J3DBlend>::uniqueAppend(J3DBlend)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -503,7 +503,7 @@ void J3DSaverList<J3DBlend>::uniqueAppend(J3DBlend)
  */
 void J3DSaverList<J3DAlphaComp>::uniqueAppend(J3DAlphaComp)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -513,7 +513,7 @@ void J3DSaverList<J3DAlphaComp>::uniqueAppend(J3DAlphaComp)
  */
 void J3DSaverList<J3DTevSwapModeTable>::uniqueAppend(J3DTevSwapModeTable)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -523,7 +523,7 @@ void J3DSaverList<J3DTevSwapModeTable>::uniqueAppend(J3DTevSwapModeTable)
  */
 void J3DSaverList<J3DTevStage>::uniqueAppend(J3DTevStage)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -533,7 +533,7 @@ void J3DSaverList<J3DTevStage>::uniqueAppend(J3DTevStage)
  */
 void J3DSaverList<J3DGXColorS10>::uniqueAppend(J3DGXColorS10)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -543,7 +543,7 @@ void J3DSaverList<J3DGXColorS10>::uniqueAppend(J3DGXColorS10)
  */
 void J3DSaverList<J3DTevOrderInfo>::uniqueAppend(J3DTevOrderInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -553,7 +553,7 @@ void J3DSaverList<J3DTevOrderInfo>::uniqueAppend(J3DTevOrderInfo)
  */
 void J3DSaverList<J3DTexMtxInfo>::uniqueAppend(J3DTexMtxInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -563,7 +563,7 @@ void J3DSaverList<J3DTexMtxInfo>::uniqueAppend(J3DTexMtxInfo)
  */
 void J3DSaverList<J3DTexCoord>::uniqueAppend(J3DTexCoord)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -573,7 +573,7 @@ void J3DSaverList<J3DTexCoord>::uniqueAppend(J3DTexCoord)
  */
 void J3DSaverList<unsigned long>::uniqueAppend(unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -583,7 +583,7 @@ void J3DSaverList<unsigned long>::uniqueAppend(unsigned long)
  */
 void J3DSaverList<J3DLightInfo>::uniqueAppend(J3DLightInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -593,7 +593,7 @@ void J3DSaverList<J3DLightInfo>::uniqueAppend(J3DLightInfo)
  */
 void J3DSaverList<unsigned short>::uniqueAppend(unsigned short)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -603,7 +603,7 @@ void J3DSaverList<unsigned short>::uniqueAppend(unsigned short)
  */
 void J3DSaverList<unsigned char>::uniqueAppend(unsigned char)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -613,7 +613,7 @@ void J3DSaverList<unsigned char>::uniqueAppend(unsigned char)
  */
 void J3DSaverList<J3DGXColor>::uniqueAppend(J3DGXColor)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -623,7 +623,7 @@ void J3DSaverList<J3DGXColor>::uniqueAppend(J3DGXColor)
  */
 void J3DSaverList<J3DGXColor>::searchID(J3DGXColor&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -633,7 +633,7 @@ void J3DSaverList<J3DGXColor>::searchID(J3DGXColor&)
  */
 void J3DSaverList<J3DGXColor>::search(J3DGXColor&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -643,7 +643,7 @@ void J3DSaverList<J3DGXColor>::search(J3DGXColor&)
  */
 void J3DSaverList<unsigned char>::searchID(unsigned char&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -653,7 +653,7 @@ void J3DSaverList<unsigned char>::searchID(unsigned char&)
  */
 void J3DSaverList<unsigned char>::search(unsigned char&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -663,7 +663,7 @@ void J3DSaverList<unsigned char>::search(unsigned char&)
  */
 void J3DSaverList<unsigned short>::searchID(unsigned short&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -673,7 +673,7 @@ void J3DSaverList<unsigned short>::searchID(unsigned short&)
  */
 void J3DSaverList<unsigned short>::search(unsigned short&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -683,7 +683,7 @@ void J3DSaverList<unsigned short>::search(unsigned short&)
  */
 void J3DSaverList<J3DLightInfo>::searchID(J3DLightInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -693,7 +693,7 @@ void J3DSaverList<J3DLightInfo>::searchID(J3DLightInfo&)
  */
 void J3DSaverList<J3DLightInfo>::search(J3DLightInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -703,7 +703,7 @@ void J3DSaverList<J3DLightInfo>::search(J3DLightInfo&)
  */
 void J3DSaverList<unsigned long>::searchID(unsigned long&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -713,7 +713,7 @@ void J3DSaverList<unsigned long>::searchID(unsigned long&)
  */
 void J3DSaverList<unsigned long>::search(unsigned long&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -723,7 +723,7 @@ void J3DSaverList<unsigned long>::search(unsigned long&)
  */
 void J3DSaverList<J3DTexCoord>::searchID(J3DTexCoord&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -733,7 +733,7 @@ void J3DSaverList<J3DTexCoord>::searchID(J3DTexCoord&)
  */
 void J3DSaverList<J3DTexCoord>::search(J3DTexCoord&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -743,7 +743,7 @@ void J3DSaverList<J3DTexCoord>::search(J3DTexCoord&)
  */
 void J3DSaverList<J3DTexMtxInfo>::searchID(J3DTexMtxInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -753,7 +753,7 @@ void J3DSaverList<J3DTexMtxInfo>::searchID(J3DTexMtxInfo&)
  */
 void J3DSaverList<J3DTexMtxInfo>::search(J3DTexMtxInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -763,7 +763,7 @@ void J3DSaverList<J3DTexMtxInfo>::search(J3DTexMtxInfo&)
  */
 void J3DSaverList<J3DTevOrderInfo>::searchID(J3DTevOrderInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -773,7 +773,7 @@ void J3DSaverList<J3DTevOrderInfo>::searchID(J3DTevOrderInfo&)
  */
 void J3DSaverList<J3DTevOrderInfo>::search(J3DTevOrderInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -783,7 +783,7 @@ void J3DSaverList<J3DTevOrderInfo>::search(J3DTevOrderInfo&)
  */
 void J3DSaverList<J3DGXColorS10>::searchID(J3DGXColorS10&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -793,7 +793,7 @@ void J3DSaverList<J3DGXColorS10>::searchID(J3DGXColorS10&)
  */
 void J3DSaverList<J3DGXColorS10>::search(J3DGXColorS10&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -803,7 +803,7 @@ void J3DSaverList<J3DGXColorS10>::search(J3DGXColorS10&)
  */
 void J3DSaverList<J3DTevStage>::searchID(J3DTevStage&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -813,7 +813,7 @@ void J3DSaverList<J3DTevStage>::searchID(J3DTevStage&)
  */
 void J3DSaverList<J3DTevStage>::search(J3DTevStage&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -823,7 +823,7 @@ void J3DSaverList<J3DTevStage>::search(J3DTevStage&)
  */
 void J3DSaverList<J3DTevSwapModeTable>::searchID(J3DTevSwapModeTable&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -833,7 +833,7 @@ void J3DSaverList<J3DTevSwapModeTable>::searchID(J3DTevSwapModeTable&)
  */
 void J3DSaverList<J3DTevSwapModeTable>::search(J3DTevSwapModeTable&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -843,7 +843,7 @@ void J3DSaverList<J3DTevSwapModeTable>::search(J3DTevSwapModeTable&)
  */
 void J3DSaverList<J3DAlphaComp>::searchID(J3DAlphaComp&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -853,7 +853,7 @@ void J3DSaverList<J3DAlphaComp>::searchID(J3DAlphaComp&)
  */
 void J3DSaverList<J3DAlphaComp>::search(J3DAlphaComp&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -863,7 +863,7 @@ void J3DSaverList<J3DAlphaComp>::search(J3DAlphaComp&)
  */
 void J3DSaverList<J3DBlend>::searchID(J3DBlend&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -873,7 +873,7 @@ void J3DSaverList<J3DBlend>::searchID(J3DBlend&)
  */
 void J3DSaverList<J3DBlend>::search(J3DBlend&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -883,7 +883,7 @@ void J3DSaverList<J3DBlend>::search(J3DBlend&)
  */
 void J3DSaverList<J3DFogInfo>::searchID(J3DFogInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -893,7 +893,7 @@ void J3DSaverList<J3DFogInfo>::searchID(J3DFogInfo&)
  */
 void J3DSaverList<J3DFogInfo>::search(J3DFogInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -903,7 +903,7 @@ void J3DSaverList<J3DFogInfo>::search(J3DFogInfo&)
  */
 void J3DSaverList<J3DZMode>::searchID(J3DZMode&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -913,7 +913,7 @@ void J3DSaverList<J3DZMode>::searchID(J3DZMode&)
  */
 void J3DSaverList<J3DZMode>::search(J3DZMode&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -923,7 +923,7 @@ void J3DSaverList<J3DZMode>::search(J3DZMode&)
  */
 void J3DSaverList<J3DNBTScaleInfo>::searchID(J3DNBTScaleInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -933,7 +933,7 @@ void J3DSaverList<J3DNBTScaleInfo>::searchID(J3DNBTScaleInfo&)
  */
 void J3DSaverList<J3DNBTScaleInfo>::search(J3DNBTScaleInfo&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -943,7 +943,7 @@ void J3DSaverList<J3DNBTScaleInfo>::search(J3DNBTScaleInfo&)
  */
 void J3DSaverList<long>::search(long&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -953,7 +953,7 @@ void J3DSaverList<long>::search(long&)
  */
 void J3DSaverList<long>::~J3DSaverList()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -963,7 +963,7 @@ void J3DSaverList<long>::~J3DSaverList()
  */
 void J3DSaverLink<long>::J3DSaverLink(long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -973,7 +973,7 @@ void J3DSaverLink<long>::J3DSaverLink(long)
  */
 void J3DSaverLink<J3DNBTScaleInfo>::J3DSaverLink(J3DNBTScaleInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -983,7 +983,7 @@ void J3DSaverLink<J3DNBTScaleInfo>::J3DSaverLink(J3DNBTScaleInfo)
  */
 void J3DSaverLink<J3DZMode>::J3DSaverLink(J3DZMode)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -993,7 +993,7 @@ void J3DSaverLink<J3DZMode>::J3DSaverLink(J3DZMode)
  */
 void J3DSaverLink<J3DFogInfo>::J3DSaverLink(J3DFogInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1003,7 +1003,7 @@ void J3DSaverLink<J3DFogInfo>::J3DSaverLink(J3DFogInfo)
  */
 void J3DSaverLink<J3DBlend>::J3DSaverLink(J3DBlend)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1013,7 +1013,7 @@ void J3DSaverLink<J3DBlend>::J3DSaverLink(J3DBlend)
  */
 void J3DSaverLink<J3DAlphaComp>::J3DSaverLink(J3DAlphaComp)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1023,7 +1023,7 @@ void J3DSaverLink<J3DAlphaComp>::J3DSaverLink(J3DAlphaComp)
  */
 void J3DSaverLink<J3DTevSwapModeTable>::J3DSaverLink(J3DTevSwapModeTable)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1033,7 +1033,7 @@ void J3DSaverLink<J3DTevSwapModeTable>::J3DSaverLink(J3DTevSwapModeTable)
  */
 void J3DSaverLink<J3DTevStage>::J3DSaverLink(J3DTevStage)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1043,7 +1043,7 @@ void J3DSaverLink<J3DTevStage>::J3DSaverLink(J3DTevStage)
  */
 void J3DSaverLink<J3DGXColorS10>::J3DSaverLink(J3DGXColorS10)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1053,7 +1053,7 @@ void J3DSaverLink<J3DGXColorS10>::J3DSaverLink(J3DGXColorS10)
  */
 void J3DSaverLink<J3DTevOrderInfo>::J3DSaverLink(J3DTevOrderInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1063,7 +1063,7 @@ void J3DSaverLink<J3DTevOrderInfo>::J3DSaverLink(J3DTevOrderInfo)
  */
 void J3DSaverLink<J3DTexMtxInfo>::J3DSaverLink(J3DTexMtxInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1073,7 +1073,7 @@ void J3DSaverLink<J3DTexMtxInfo>::J3DSaverLink(J3DTexMtxInfo)
  */
 void J3DSaverLink<J3DTexCoord>::J3DSaverLink(J3DTexCoord)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1083,7 +1083,7 @@ void J3DSaverLink<J3DTexCoord>::J3DSaverLink(J3DTexCoord)
  */
 void J3DSaverLink<unsigned long>::J3DSaverLink(unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1093,7 +1093,7 @@ void J3DSaverLink<unsigned long>::J3DSaverLink(unsigned long)
  */
 void J3DSaverLink<J3DLightInfo>::J3DSaverLink(J3DLightInfo)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1103,7 +1103,7 @@ void J3DSaverLink<J3DLightInfo>::J3DSaverLink(J3DLightInfo)
  */
 void J3DSaverLink<unsigned short>::J3DSaverLink(unsigned short)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1113,7 +1113,7 @@ void J3DSaverLink<unsigned short>::J3DSaverLink(unsigned short)
  */
 void J3DSaverLink<unsigned char>::J3DSaverLink(unsigned char)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1123,7 +1123,7 @@ void J3DSaverLink<unsigned char>::J3DSaverLink(unsigned char)
  */
 void J3DSaverLink<J3DGXColor>::J3DSaverLink(J3DGXColor)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1133,7 +1133,7 @@ void J3DSaverLink<J3DGXColor>::J3DSaverLink(J3DGXColor)
  */
 void J3DSaverList<J3DGXColor>::append(J3DSaverLink<J3DGXColor>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1143,7 +1143,7 @@ void J3DSaverList<J3DGXColor>::append(J3DSaverLink<J3DGXColor>*)
  */
 void J3DSaverList<unsigned char>::append(J3DSaverLink<unsigned char>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1153,7 +1153,7 @@ void J3DSaverList<unsigned char>::append(J3DSaverLink<unsigned char>*)
  */
 void J3DSaverList<unsigned short>::append(J3DSaverLink<unsigned short>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1163,7 +1163,7 @@ void J3DSaverList<unsigned short>::append(J3DSaverLink<unsigned short>*)
  */
 void J3DSaverList<J3DLightInfo>::append(J3DSaverLink<J3DLightInfo>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1173,7 +1173,7 @@ void J3DSaverList<J3DLightInfo>::append(J3DSaverLink<J3DLightInfo>*)
  */
 void J3DSaverList<unsigned long>::append(J3DSaverLink<unsigned long>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1183,7 +1183,7 @@ void J3DSaverList<unsigned long>::append(J3DSaverLink<unsigned long>*)
  */
 void J3DSaverList<J3DTexCoord>::append(J3DSaverLink<J3DTexCoord>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1193,7 +1193,7 @@ void J3DSaverList<J3DTexCoord>::append(J3DSaverLink<J3DTexCoord>*)
  */
 void J3DSaverList<J3DTexMtxInfo>::append(J3DSaverLink<J3DTexMtxInfo>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1203,7 +1203,7 @@ void J3DSaverList<J3DTexMtxInfo>::append(J3DSaverLink<J3DTexMtxInfo>*)
  */
 void J3DSaverList<J3DTevOrderInfo>::append(J3DSaverLink<J3DTevOrderInfo>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1213,7 +1213,7 @@ void J3DSaverList<J3DTevOrderInfo>::append(J3DSaverLink<J3DTevOrderInfo>*)
  */
 void J3DSaverList<J3DGXColorS10>::append(J3DSaverLink<J3DGXColorS10>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1223,7 +1223,7 @@ void J3DSaverList<J3DGXColorS10>::append(J3DSaverLink<J3DGXColorS10>*)
  */
 void J3DSaverList<J3DTevStage>::append(J3DSaverLink<J3DTevStage>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1234,7 +1234,7 @@ void J3DSaverList<J3DTevStage>::append(J3DSaverLink<J3DTevStage>*)
 void J3DSaverList<J3DTevSwapModeTable>::append(
     J3DSaverLink<J3DTevSwapModeTable>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1244,7 +1244,7 @@ void J3DSaverList<J3DTevSwapModeTable>::append(
  */
 void J3DSaverList<J3DAlphaComp>::append(J3DSaverLink<J3DAlphaComp>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1254,7 +1254,7 @@ void J3DSaverList<J3DAlphaComp>::append(J3DSaverLink<J3DAlphaComp>*)
  */
 void J3DSaverList<J3DBlend>::append(J3DSaverLink<J3DBlend>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1264,7 +1264,7 @@ void J3DSaverList<J3DBlend>::append(J3DSaverLink<J3DBlend>*)
  */
 void J3DSaverList<J3DFogInfo>::append(J3DSaverLink<J3DFogInfo>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1274,7 +1274,7 @@ void J3DSaverList<J3DFogInfo>::append(J3DSaverLink<J3DFogInfo>*)
  */
 void J3DSaverList<J3DZMode>::append(J3DSaverLink<J3DZMode>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1284,7 +1284,7 @@ void J3DSaverList<J3DZMode>::append(J3DSaverLink<J3DZMode>*)
  */
 void J3DSaverList<J3DNBTScaleInfo>::append(J3DSaverLink<J3DNBTScaleInfo>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1294,5 +1294,5 @@ void J3DSaverList<J3DNBTScaleInfo>::append(J3DSaverLink<J3DNBTScaleInfo>*)
  */
 void J3DSaverList<long>::append(J3DSaverLink<long>*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }

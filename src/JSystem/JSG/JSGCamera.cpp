@@ -7,35 +7,35 @@
  */
 void JStage::TCamera::__dt(void)
 {
-    /*
-    .loc_0x0:
-      stwu      r1, -0x10(r1)
-      mflr      r0
-      stw       r0, 0x14(r1)
-      stw       r31, 0xC(r1)
-      mr        r31, r4
-      stw       r30, 0x8(r1)
-      mr.       r30, r3
-      beq-      .loc_0x44
-      lis       r5, 0x804A
-      li        r4, 0
-      addi      r0, r5, 0x35E8
-      stw       r0, 0x0(r30)
-      bl        0xB0
-      extsh.    r0, r31
-      ble-      .loc_0x44
-      mr        r3, r30
-      bl        -0x74780
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  stw       r0, 0x14(r1)
+	  stw       r31, 0xC(r1)
+	  mr        r31, r4
+	  stw       r30, 0x8(r1)
+	  mr.       r30, r3
+	  beq-      .loc_0x44
+	  lis       r5, 0x804A
+	  li        r4, 0
+	  addi      r0, r5, 0x35E8
+	  stw       r0, 0x0(r30)
+	  bl        0xB0
+	  extsh.    r0, r31
+	  ble-      .loc_0x44
+	  mr        r3, r30
+	  bl        -0x74780
 
-    .loc_0x44:
-      lwz       r0, 0x14(r1)
-      mr        r3, r30
-      lwz       r31, 0xC(r1)
-      lwz       r30, 0x8(r1)
-      mtlr      r0
-      addi      r1, r1, 0x10
-      blr
-    */
+	.loc_0x44:
+	  lwz       r0, 0x14(r1)
+	  mr        r3, r30
+	  lwz       r31, 0xC(r1)
+	  lwz       r30, 0x8(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	*/
 }
 
 /*
@@ -45,11 +45,11 @@ void JStage::TCamera::__dt(void)
  */
 void JStage::TCamera::JSGFGetType( const
 {
-    /*
-    .loc_0x0:
-      li        r3, 0x3
-      blr
-    */
+	/*
+	.loc_0x0:
+	  li        r3, 0x3
+	  blr
+	*/
 }
 
 /*
@@ -59,11 +59,11 @@ void JStage::TCamera::JSGFGetType( const
  */
 void JStage::TCamera::JSGGetProjectionType( const
 {
-    /*
-    .loc_0x0:
-      li        r3, 0x1
-      blr
-    */
+	/*
+	.loc_0x0:
+	  li        r3, 0x1
+	  blr
+	*/
 }
 
 /*
@@ -73,10 +73,10 @@ void JStage::TCamera::JSGGetProjectionType( const
  */
 void JStage::TCamera::JSGSetProjectionType( (JStage::TECameraProjection))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -86,11 +86,11 @@ void JStage::TCamera::JSGSetProjectionType( (JStage::TECameraProjection))
  */
 void JStage::TCamera::JSGGetProjectionNear( const
 {
-    /*
-    .loc_0x0:
-      lfs       f1, -0x76F0(r2)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lfs       f1, -0x76F0(r2)
+	  blr
+	*/
 }
 
 /*
@@ -100,10 +100,10 @@ void JStage::TCamera::JSGGetProjectionNear( const
  */
 void JStage::TCamera::JSGSetProjectionNear( (float))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -113,12 +113,12 @@ void JStage::TCamera::JSGSetProjectionNear( (float))
  */
 void JStage::TCamera::JSGGetProjectionFar( const
 {
-    /*
-    .loc_0x0:
-      lis       r3, 0x8051
-      lfs       f1, 0x48D8(r3)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lis       r3, 0x8051
+	  lfs       f1, 0x48D8(r3)
+	  blr
+	*/
 }
 
 /*
@@ -128,10 +128,10 @@ void JStage::TCamera::JSGGetProjectionFar( const
  */
 void JStage::TCamera::JSGSetProjectionFar( (float))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -141,11 +141,11 @@ void JStage::TCamera::JSGSetProjectionFar( (float))
  */
 void JStage::TCamera::JSGGetProjectionFovy( const
 {
-    /*
-    .loc_0x0:
-      lfs       f1, -0x76F0(r2)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lfs       f1, -0x76F0(r2)
+	  blr
+	*/
 }
 
 /*
@@ -155,10 +155,10 @@ void JStage::TCamera::JSGGetProjectionFovy( const
  */
 void JStage::TCamera::JSGSetProjectionFovy( (float))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -168,11 +168,11 @@ void JStage::TCamera::JSGSetProjectionFovy( (float))
  */
 void JStage::TCamera::JSGGetProjectionAspect( const
 {
-    /*
-    .loc_0x0:
-      lfs       f1, -0x76F0(r2)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lfs       f1, -0x76F0(r2)
+	  blr
+	*/
 }
 
 /*
@@ -182,10 +182,10 @@ void JStage::TCamera::JSGGetProjectionAspect( const
  */
 void JStage::TCamera::JSGSetProjectionAspect( (float))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -195,10 +195,10 @@ void JStage::TCamera::JSGSetProjectionAspect( (float))
  */
 void JStage::TCamera::JSGGetProjectionField( const(float *))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -208,10 +208,10 @@ void JStage::TCamera::JSGGetProjectionField( const(float *))
  */
 void JStage::TCamera::JSGSetProjectionField( (float const *))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -221,11 +221,11 @@ void JStage::TCamera::JSGSetProjectionField( (float const *))
  */
 void JStage::TCamera::JSGGetViewType( const
 {
-    /*
-    .loc_0x0:
-      li        r3, 0x1
-      blr
-    */
+	/*
+	.loc_0x0:
+	  li        r3, 0x1
+	  blr
+	*/
 }
 
 /*
@@ -235,10 +235,10 @@ void JStage::TCamera::JSGGetViewType( const
  */
 void JStage::TCamera::JSGSetViewType( (JStage::TECameraView))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -248,10 +248,10 @@ void JStage::TCamera::JSGSetViewType( (JStage::TECameraView))
  */
 void JStage::TCamera::JSGGetViewPosition( const(Vec *))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -261,10 +261,10 @@ void JStage::TCamera::JSGGetViewPosition( const(Vec *))
  */
 void JStage::TCamera::JSGSetViewPosition( (Vec const &))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -274,10 +274,10 @@ void JStage::TCamera::JSGSetViewPosition( (Vec const &))
  */
 void JStage::TCamera::JSGGetViewUpVector( const(Vec *))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -287,10 +287,10 @@ void JStage::TCamera::JSGGetViewUpVector( const(Vec *))
  */
 void JStage::TCamera::JSGSetViewUpVector( (Vec const &))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -300,10 +300,10 @@ void JStage::TCamera::JSGSetViewUpVector( (Vec const &))
  */
 void JStage::TCamera::JSGGetViewTargetPosition( const(Vec *))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -313,10 +313,10 @@ void JStage::TCamera::JSGGetViewTargetPosition( const(Vec *))
  */
 void JStage::TCamera::JSGSetViewTargetPosition( (Vec const &))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }
 
 /*
@@ -326,11 +326,11 @@ void JStage::TCamera::JSGSetViewTargetPosition( (Vec const &))
  */
 void JStage::TCamera::JSGGetViewRoll( const
 {
-    /*
-    .loc_0x0:
-      lfs       f1, -0x76F0(r2)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lfs       f1, -0x76F0(r2)
+	  blr
+	*/
 }
 
 /*
@@ -340,8 +340,8 @@ void JStage::TCamera::JSGGetViewRoll( const
  */
 void JStage::TCamera::JSGSetViewRoll( (float))
 {
-    /*
-    .loc_0x0:
-      blr
-    */
+	/*
+	.loc_0x0:
+	  blr
+	*/
 }

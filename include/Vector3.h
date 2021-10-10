@@ -4,10 +4,10 @@
 #include "Stream.h"
 
 template <typename T> struct Vector3 {
-    T x, y, z;
+	T x, y, z;
 
-    void read(Stream&);
-    void write(Stream&);
+	void read(Stream&);
+	void write(Stream&);
 };
 
 // Use instead of Vector3<float> or Vector3<f32>

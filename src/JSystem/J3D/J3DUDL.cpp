@@ -7,7 +7,7 @@
  */
 void J3DUReportVCD(J3DShape*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -17,7 +17,7 @@ void J3DUReportVCD(J3DShape*)
  */
 void J3DUCountMtxGroupNum(J3DModelData*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -27,7 +27,7 @@ void J3DUCountMtxGroupNum(J3DModelData*)
  */
 void J3DUCountUseMtxNum(J3DModelData*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -37,11 +37,11 @@ void J3DUCountUseMtxNum(J3DModelData*)
  */
 void J3DShapeMtx::getUseMtxNum() const
 {
-    /*
-    .loc_0x0:
-      li        r3, 0x1
-      blr
-    */
+	/*
+	.loc_0x0:
+	  li        r3, 0x1
+	  blr
+	*/
 }
 
 /*
@@ -51,7 +51,7 @@ void J3DShapeMtx::getUseMtxNum() const
  */
 void J3DUCountEdge(J3DShape*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -61,7 +61,7 @@ void J3DUCountEdge(J3DShape*)
  */
 void createEdgeListFromStrip(void*, int, int, int, __J3DUEdge*, unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -71,7 +71,7 @@ void createEdgeListFromStrip(void*, int, int, int, __J3DUEdge*, unsigned long)
  */
 void createEdgeListFromFan(void*, int, int, int, __J3DUEdge*, unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -81,7 +81,7 @@ void createEdgeListFromFan(void*, int, int, int, __J3DUEdge*, unsigned long)
  */
 void J3DUCreateEdgeList(J3DShape*, __J3DUEdge*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -92,7 +92,7 @@ void J3DUCreateEdgeList(J3DShape*, __J3DUEdge*)
 void createTriangleListFromStrip(void*, int, int, int, __J3DUTriangle*,
                                  unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -103,7 +103,7 @@ void createTriangleListFromStrip(void*, int, int, int, __J3DUTriangle*,
 void createTriangleListFromFan(void*, int, int, int, __J3DUTriangle*,
                                unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -113,7 +113,7 @@ void createTriangleListFromFan(void*, int, int, int, __J3DUTriangle*,
  */
 void J3DUCreateTriangleList(J3DShape*, __J3DUTriangle*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -124,7 +124,7 @@ void J3DUCreateTriangleList(J3DShape*, __J3DUTriangle*)
 void drawWireLineSkin(unsigned short, unsigned char, unsigned short,
                       unsigned char)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -134,7 +134,7 @@ void drawWireLineSkin(unsigned short, unsigned char, unsigned short,
  */
 void drawWireLine(unsigned short, unsigned short)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -145,7 +145,7 @@ void drawWireLine(unsigned short, unsigned short)
 void drawWireTriangle(unsigned short, unsigned char, unsigned short,
                       unsigned char, unsigned short, unsigned char, int)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -155,7 +155,7 @@ void drawWireTriangle(unsigned short, unsigned char, unsigned short,
  */
 void J3DUDrawWireFromStrip(void*, int, int, int, unsigned short)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -165,7 +165,7 @@ void J3DUDrawWireFromStrip(void*, int, int, int, unsigned short)
  */
 void J3DUDrawWireFromFan(void*, int, int, int, unsigned short)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -176,7 +176,7 @@ void J3DUDrawWireFromFan(void*, int, int, int, unsigned short)
 void J3DUDrawWireShapeDL(J3DShapeDraw*, _GXVtxDescList*, _GXCompType,
                          unsigned char)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -186,7 +186,7 @@ void J3DUDrawWireShapeDL(J3DShapeDraw*, _GXVtxDescList*, _GXCompType,
  */
 void J3DUDrawWireShape(J3DShapePacket*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -196,7 +196,7 @@ void J3DUDrawWireShape(J3DShapePacket*)
  */
 void J3DUDrawWireShape(J3DShape*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -206,7 +206,7 @@ void J3DUDrawWireShape(J3DShape*)
  */
 void drawVertexSkin(unsigned short, unsigned char, unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -216,7 +216,7 @@ void drawVertexSkin(unsigned short, unsigned char, unsigned long)
  */
 void drawVertex(unsigned short, unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -226,7 +226,7 @@ void drawVertex(unsigned short, unsigned long)
  */
 void drawStripVertex(unsigned short, unsigned char, int, unsigned long)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -236,7 +236,7 @@ void drawStripVertex(unsigned short, unsigned char, int, unsigned long)
  */
 void J3DUDrawStripFromStrip(void*, int, int, int, unsigned short)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -246,7 +246,7 @@ void J3DUDrawStripFromStrip(void*, int, int, int, unsigned short)
  */
 void J3DUDrawStripFromFan(void*, int, int, int, unsigned short)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -257,7 +257,7 @@ void J3DUDrawStripFromFan(void*, int, int, int, unsigned short)
 void J3DUDrawStripShapeDL(J3DShapeDraw*, _GXVtxDescList*, _GXCompType,
                           unsigned char)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -267,7 +267,7 @@ void J3DUDrawStripShapeDL(J3DShapeDraw*, _GXVtxDescList*, _GXCompType,
  */
 void J3DUDrawStripShape(J3DShapePacket*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -277,7 +277,7 @@ void J3DUDrawStripShape(J3DShapePacket*)
  */
 void J3DUDrawStripShape(J3DShape*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -287,7 +287,7 @@ void J3DUDrawStripShape(J3DShape*)
  */
 void vecToRGB(Vec*, _GXColor*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -299,7 +299,7 @@ void drawVertexAttributeTriangle(unsigned short, Vec*, unsigned char,
                                  unsigned short, Vec*, unsigned char,
                                  unsigned short, Vec*, unsigned char, int)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -309,7 +309,7 @@ void drawVertexAttributeTriangle(unsigned short, Vec*, unsigned char,
  */
 void J3DUDrawVertexAttributeFromStrip(void*, int, int, int, int, unsigned short)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -320,5 +320,5 @@ void J3DUDrawVertexAttributeFromStrip(void*, int, int, int, int, unsigned short)
 void J3DUDrawVertexAttributeShapeDL(J3DShapeDraw*, _GXVtxDescList*, _GXCompType,
                                     unsigned char)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }

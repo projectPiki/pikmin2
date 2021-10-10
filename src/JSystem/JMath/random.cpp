@@ -7,11 +7,11 @@
  */
 void JMath::TRandom_fast_::__ct((unsigned long))
 {
-    /*
-    .loc_0x0:
-      stw       r4, 0x0(r3)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  stw       r4, 0x0(r3)
+	  blr
+	*/
 }
 
 /*
@@ -21,7 +21,7 @@ void JMath::TRandom_fast_::__ct((unsigned long))
  */
 void JMath::TRandom_enough_::setSeed((unsigned long))
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -31,5 +31,5 @@ void JMath::TRandom_enough_::setSeed((unsigned long))
  */
 void JMath::TRandom_enough_::get(void)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }

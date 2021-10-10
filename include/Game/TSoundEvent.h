@@ -5,15 +5,15 @@
 
 namespace Game {
 struct TSoundEvent {
-    TSoundEvent();
+	TSoundEvent();
 
-    u32 event();
-    void finish();
-    u32 update();
+	u32 event();
+	void finish();
+	u32 update();
 
-    u8 _00;
-    s32 _04;
-    u32 _08;
+	u8 _00;
+	s32 _04;
+	u32 _08;
 };
 } // namespace Game
 

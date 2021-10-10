@@ -7,4 +7,4 @@ AllowShortFunctionsOnASingleLine: true
 FixNamespaceComments: true
 IndentWidth: 4
 TabWidth: 4
-UseTag: Always
+UseTab: ForIndentation

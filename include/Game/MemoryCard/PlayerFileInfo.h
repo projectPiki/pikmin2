@@ -10,25 +10,25 @@ extern char gStrMemoryCardMgrP2Assert[9];
 
 namespace Game {
 namespace MemoryCard {
-    struct PlayerFileInfo {
-        PlayerFileInfo();
+	struct PlayerFileInfo {
+		PlayerFileInfo();
 
-        inline void checkValidity(int idx)
-        {
-            bool valid = idx >= 0 && idx < 3;
-            if (!valid) {
-                JUTException::panic_f(gStrMemoryCardMgrCpp, 396,
-                                      gStrMemoryCardMgrP2Assert);
-            }
-        }
+		inline void checkValidity(int idx)
+		{
+			bool valid = idx >= 0 && idx < 3;
+			if (!valid) {
+				JUTException::panic_f(gStrMemoryCardMgrCpp, 396,
+				                      gStrMemoryCardMgrP2Assert);
+			}
+		}
 
-        Player* getPlayer(int idx);
+		Player* getPlayer(int idx);
 
-        u8 isBrokenFile(int idx);
-        bool isNewFile(int idx);
+		u8 isBrokenFile(int idx);
+		bool isNewFile(int idx);
 
-        Player m_players[3]; // _00
-    };
+		Player m_players[3]; // _00
+	};
 } // namespace MemoryCard
 } // namespace Game
 

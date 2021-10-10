@@ -4,8 +4,8 @@
 #include "JSystem/JUTGamePad.h"
 
 struct Controller : public JUTGamePad {
-    Controller(JUTGamePad::EPadPort);
-    virtual ~Controller();
+	Controller(JUTGamePad::EPadPort);
+	virtual ~Controller();
 };
 
 #endif

@@ -2,7 +2,7 @@
 #define _JSYSTEM_JFWSYSTEM_H
 
 struct JFWSystem {
-    static u32* mainThread;
+	static u32* mainThread;
 };
 
 #endif

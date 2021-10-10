@@ -2,10 +2,10 @@
 #define _JSYSTEM_JKRHEAP_H
 
 struct JKRHeap {
-    u32 getFreeSize();
-    u32 getTotalFreeSize();
+	u32 getFreeSize();
+	u32 getTotalFreeSize();
 
-    void free(void*, JKRHeap*);
+	void free(void*, JKRHeap*);
 };
 
 void* operator new(size_t, JKRHeap*, int);

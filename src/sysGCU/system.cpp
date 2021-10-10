@@ -12,8 +12,8 @@ extern char
 extern char gStrSystem_Abort[7]; // abort\n
 
 struct CallbackObject {
-    u32* funcPtr;
-    u8 filler[14 - 4];
+	u32* funcPtr;
+	u8 filler[14 - 4];
 };
 
 extern CallbackObject exCallbackObject;
@@ -26,12 +26,12 @@ extern CallbackObject exCallbackObject;
 void Pikmin2DefaultMemoryErrorRoutine(void* address, unsigned long size,
                                       int alignment)
 {
-    JUTException::panic_f(gStrSystem_CPP, 99, gStrSystem_MemoryAllocError,
-                          address, size, alignment,
-                          static_cast<JKRHeap*>(address)->getTotalFreeSize(),
-                          static_cast<JKRHeap*>(address)->getFreeSize());
+	JUTException::panic_f(gStrSystem_CPP, 99, gStrSystem_MemoryAllocError,
+	                      address, size, alignment,
+	                      static_cast<JKRHeap*>(address)->getTotalFreeSize(),
+	                      static_cast<JKRHeap*>(address)->getFreeSize());
 
-    OSPanic(gStrSystem_CPP, 101, gStrSystem_Abort);
+	OSPanic(gStrSystem_CPP, 101, gStrSystem_Abort);
 }
 
 extern char gStrSystem_InOnLine[23]; // %s in \"%s\" on line %d\n

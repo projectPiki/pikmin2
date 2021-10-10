@@ -5,12 +5,12 @@
 #include "types.h"
 
 struct JKRArchive {
-    enum EMountMode { EMM_Unk0 = 0, EMM_Unk1, EMM_Unk2 };
-    enum EMountDirection { EMD_Unk0 = 0, EMD_Unk1, EMD_Unk2 };
+	enum EMountMode { EMM_Unk0 = 0, EMM_Unk1, EMM_Unk2 };
+	enum EMountDirection { EMD_Unk0 = 0, EMD_Unk1, EMD_Unk2 };
 
-    // TODO: determine return type
-    static u32* mount(char const*, JKRArchive::EMountMode, JKRHeap*,
-                      JKRArchive::EMountDirection);
+	// TODO: determine return type
+	static u32* mount(char const*, JKRArchive::EMountMode, JKRHeap*,
+	                  JKRArchive::EMountDirection);
 };
 
 #endif

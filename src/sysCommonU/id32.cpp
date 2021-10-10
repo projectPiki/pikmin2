@@ -28,8 +28,8 @@ ID32::ID32(unsigned long id) { this->setID(id); }
  */
 void ID32::setID(unsigned long set_id)
 {
-    this->m_id.raw = set_id;
-    this->updateString();
+	this->m_id.raw = set_id;
+	this->updateString();
 }
 
 /*
@@ -39,15 +39,15 @@ void ID32::setID(unsigned long set_id)
  */
 bool ID32::match(unsigned long _id, char exception)
 {
-    char* p_id = reinterpret_cast<char*>(&_id);
-    char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
+	char* p_id = reinterpret_cast<char*>(&_id);
+	char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
 
-    for (int i = 0; i < 4; i++) {
-        if (p_id[i] != exception && p_id[i] != m_id[i]) {
-            return false;
-        }
-    }
-    return true;
+	for (int i = 0; i < 4; i++) {
+		if (p_id[i] != exception && p_id[i] != m_id[i]) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /*
@@ -57,11 +57,11 @@ bool ID32::match(unsigned long _id, char exception)
  */
 void ID32::updateID()
 {
-    char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
+	char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
 
-    for (int i = 0; i < 4; i++) {
-        m_id[i] = this->m_str[i];
-    }
+	for (int i = 0; i < 4; i++) {
+		m_id[i] = this->m_str[i];
+	}
 }
 
 /*
@@ -71,12 +71,12 @@ void ID32::updateID()
  */
 void ID32::updateString()
 {
-    char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
+	char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
 
-    for (int i = 0; i < 4; i++) {
-        this->m_str[i] = m_id[i];
-    }
-    m_str[4] = '\0';
+	for (int i = 0; i < 4; i++) {
+		this->m_str[i] = m_id[i];
+	}
+	m_str[4] = '\0';
 }
 
 /*
@@ -86,13 +86,13 @@ void ID32::updateString()
  */
 void ID32::operator=(unsigned long _id)
 {
-    this->m_id.raw = _id;
+	this->m_id.raw = _id;
 
-    this->m_str[0] = this->m_id.str[0];
-    this->m_str[1] = this->m_id.str[1];
-    this->m_str[2] = this->m_id.str[2];
-    this->m_str[3] = this->m_id.str[3];
-    this->m_str[4] = '\0';
+	this->m_str[0] = this->m_id.str[0];
+	this->m_str[1] = this->m_id.str[1];
+	this->m_str[2] = this->m_id.str[2];
+	this->m_str[3] = this->m_id.str[3];
+	this->m_str[4] = '\0';
 }
 /*
  * --INFO--
@@ -117,16 +117,16 @@ extern char lbl_805202C8[8]; // sd_StringSpecifier
  */
 void ID32::write(Stream& stream)
 {
-    if (stream.m_isTextMode == TRUE) {
-        char str[0x10];
-        sprint(str);
-        stream.printf(lbl_805202C8, str);
-    } else {
-        stream.writeByte(m_id.str[3]);
-        stream.writeByte(m_id.str[2]);
-        stream.writeByte(m_id.str[1]);
-        stream.writeByte(m_id.str[0]);
-    }
+	if (stream.m_isTextMode == TRUE) {
+		char str[0x10];
+		sprint(str);
+		stream.printf(lbl_805202C8, str);
+	} else {
+		stream.writeByte(m_id.str[3]);
+		stream.writeByte(m_id.str[2]);
+		stream.writeByte(m_id.str[1]);
+		stream.writeByte(m_id.str[0]);
+	}
 }
 
 /*
@@ -136,30 +136,30 @@ void ID32::write(Stream& stream)
  */
 void ID32::read(Stream& stream)
 {
-    if (stream.m_isTextMode == TRUE) {
-        char* token = stream.getNextToken();
-        m_id.str[3] = token[3];
-        m_id.str[2] = token[2];
-        m_id.str[1] = token[1];
-        m_id.str[0] = token[0];
+	if (stream.m_isTextMode == TRUE) {
+		char* token = stream.getNextToken();
+		m_id.str[3] = token[3];
+		m_id.str[2] = token[2];
+		m_id.str[1] = token[1];
+		m_id.str[0] = token[0];
 
-        m_str[0] = m_id.str[0];
-        m_str[1] = m_id.str[1];
-        m_str[2] = m_id.str[2];
-        m_str[3] = m_id.str[3];
-        m_str[4] = '\0';
-    } else {
-        m_id.str[3] = stream.readByte();
-        m_id.str[2] = stream.readByte();
-        m_id.str[1] = stream.readByte();
-        m_id.str[0] = stream.readByte();
+		m_str[0] = m_id.str[0];
+		m_str[1] = m_id.str[1];
+		m_str[2] = m_id.str[2];
+		m_str[3] = m_id.str[3];
+		m_str[4] = '\0';
+	} else {
+		m_id.str[3] = stream.readByte();
+		m_id.str[2] = stream.readByte();
+		m_id.str[1] = stream.readByte();
+		m_id.str[0] = stream.readByte();
 
-        m_str[0] = m_id.str[0];
-        m_str[1] = m_id.str[1];
-        m_str[2] = m_id.str[2];
-        m_str[3] = m_id.str[3];
-        m_str[4] = '\0';
-    }
+		m_str[0] = m_id.str[0];
+		m_str[1] = m_id.str[1];
+		m_str[2] = m_id.str[2];
+		m_str[3] = m_id.str[3];
+		m_str[4] = '\0';
+	}
 }
 
 /*
@@ -176,11 +176,11 @@ void ID32::print() { return; }
  */
 void ID32::sprint(char* str)
 {
-    str[0] = m_id.raw >> 24;
-    str[1] = static_cast<u8>(m_id.raw >> 16);
-    str[2] = static_cast<u8>(m_id.raw >> 8);
-    str[3] = static_cast<u8>(m_id.raw);
-    str[4] = '\0';
+	str[0] = m_id.raw >> 24;
+	str[1] = static_cast<u8>(m_id.raw >> 16);
+	str[2] = static_cast<u8>(m_id.raw >> 8);
+	str[3] = static_cast<u8>(m_id.raw);
+	str[4] = '\0';
 }
 // extern "C" void __sinit_id32_cpp(){
 // ID32::eof.m_id.str[0] = '_';

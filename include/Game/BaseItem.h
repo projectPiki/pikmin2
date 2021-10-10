@@ -5,7 +5,7 @@
 
 namespace Game {
 struct BaseItem {
-    u8 _00[0x1D8]; // _00
+	u8 _00[0x1D8]; // _00
 };
 } // namespace Game
 

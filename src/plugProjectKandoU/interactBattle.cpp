@@ -9,11 +9,11 @@
 namespace Game {
 bool InteractFlick::actCommon(Creature* param_1)
 {
-    if (param_1->isStickTo()) {
-        param_1->endStick();
-    }
+	if (param_1->isStickTo()) {
+		param_1->endStick();
+	}
 
-    return true;
+	return true;
 };
 
 ///*
