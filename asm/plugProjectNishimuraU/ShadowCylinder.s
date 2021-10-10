@@ -26,8 +26,8 @@ __ct__Q24Game12CylinderBaseFv:
 /* 8023DA80 0023A9C0  3C 80 80 4C */	lis r4, __vt__Q24Game12CylinderBase@ha
 /* 8023DA84 0023A9C4  7C 78 1B 78 */	mr r24, r3
 /* 8023DA88 0023A9C8  38 04 19 40 */	addi r0, r4, __vt__Q24Game12CylinderBase@l
-/* 8023DA8C 0023A9CC  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
-/* 8023DA90 0023A9D0  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
+/* 8023DA8C 0023A9CC  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
+/* 8023DA90 0023A9D0  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
 /* 8023DA94 0023A9D4  90 18 00 00 */	stw r0, 0(r24)
 /* 8023DA98 0023A9D8  3C 60 80 4C */	lis r3, lbl_804C1780@ha
 /* 8023DA9C 0023A9DC  38 A0 00 00 */	li r5, 0
@@ -36,9 +36,9 @@ __ct__Q24Game12CylinderBaseFv:
 /* 8023DAA8 0023A9E8  38 78 00 20 */	addi r3, r24, 0x20
 /* 8023DAAC 0023A9EC  38 E0 00 02 */	li r7, 2
 /* 8023DAB0 0023A9F0  4B E8 3D 8D */	bl __construct_array
-/* 8023DAB4 0023A9F4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8023DAB4 0023A9F4  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8023DAB8 0023A9F8  38 78 00 38 */	addi r3, r24, 0x38
-/* 8023DABC 0023A9FC  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8023DABC 0023A9FC  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8023DAC0 0023AA00  38 A0 00 00 */	li r5, 0
 /* 8023DAC4 0023AA04  38 C0 00 0C */	li r6, 0xc
 /* 8023DAC8 0023AA08  38 E0 00 02 */	li r7, 2

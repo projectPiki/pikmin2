@@ -5877,8 +5877,8 @@ __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition:
   .4byte 0
   .4byte 0
   .4byte satisfy__Q34Game9EnemyFunc25EatPikminDefaultConditionFPQ24Game4Piki
-.global "__vt__23Condition<Q24Game4Piki>"
-"__vt__23Condition<Q24Game4Piki>":
+.global __vt__23Condition$$0Q24Game4Piki$$1
+__vt__23Condition$$0Q24Game4Piki$$1:
   .4byte 0
   .4byte 0
   .4byte 0
@@ -5892,8 +5892,8 @@ __vt__27Condition$$0Q24Game8Creature$$1:
   .4byte 0
   .4byte 0
   .4byte 0
-.global "__vt__26Iterator<Q24Game8Creature>"
-"__vt__26Iterator<Q24Game8Creature>":
+.global __vt__26Iterator$$0Q24Game8Creature$$1
+__vt__26Iterator$$0Q24Game8Creature$$1:
   .4byte 0
   .4byte 0
   .4byte first__26Iterator$$0Q24Game8Creature$$1Fv
@@ -8029,7 +8029,7 @@ __vt__Q24Game14GenObjectEnemy:
   .4byte updateUseList__Q24Game14GenObjectEnemyFPQ24Game9Generatori
   .4byte generate__Q24Game14GenObjectEnemyFPQ24Game9Generator
   .4byte birth__Q24Game14GenObjectEnemyFPQ24Game6GenArg
-  .4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
+  .4byte generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1
   .4byte getDebugInfo__Q24Game9GenObjectFPc
 .global __vt__Q24Game7TimeMgr
 __vt__Q24Game7TimeMgr:
@@ -10423,8 +10423,8 @@ __vt__Q23Sys3OBB:
   .4byte 0
   .4byte __dt__Q23Sys3OBBFv
   .4byte getChildCount__5CNodeFv
-.global "__vt__12Container<i>"
-"__vt__12Container<i>":
+.global __vt__12Container$$0i$$1
+__vt__12Container$$0i$$1:
   .4byte 0
   .4byte 0
   .4byte __dt__12Container$$0i$$1Fv
@@ -10436,8 +10436,8 @@ __vt__Q23Sys3OBB:
   .4byte 0
   .4byte getAt__12Container$$0i$$1Fi
   .4byte getTo__12Container$$0i$$1Fv
-.global "__vt__17ArrayContainer<i>"
-"__vt__17ArrayContainer<i>":
+.global __vt__17ArrayContainer$$0i$$1
+__vt__17ArrayContainer$$0i$$1:
   .4byte 0
   .4byte 0
   .4byte __dt__17ArrayContainer$$0i$$1Fv
@@ -10496,8 +10496,8 @@ __vt__Q23Sys12TriIndexList:
   .4byte alloc__17ArrayContainer$$0i$$1Fi
   .4byte addOne__17ArrayContainer$$0i$$1FRi
   .4byte setArray__17ArrayContainer$$0i$$1FPii
-.global "__vt__28ArrayContainer<10Vector3<f>>"
-"__vt__28ArrayContainer<10Vector3<f>>":
+.global __vt__28ArrayContainer$$010Vector3$$0f$$1$$1
+__vt__28ArrayContainer$$010Vector3$$0f$$1$$1:
   .4byte 0
   .4byte 0
   .4byte __dt__28ArrayContainer$$010Vector3$$0f$$1$$1Fv
@@ -10518,8 +10518,8 @@ lbl_804B0004:
 	.4byte 0x80133B7C
 	.4byte 0x8013984C
 	.4byte 0x8013983C
-.global "__vt__23Container<10Vector3<f>>"
-"__vt__23Container<10Vector3<f>>":
+.global __vt__23Container$$010Vector3$$0f$$1$$1
+__vt__23Container$$010Vector3$$0f$$1$$1:
   .4byte 0
   .4byte 0
   .4byte __dt__23Container$$010Vector3$$0f$$1$$1Fv
@@ -11521,8 +11521,8 @@ __vt__25IDelegate1$$0R10Vector3$$0f$$1$$1:
   .4byte 0
   .4byte 0
   .4byte 0
-.global "__vt__17Container<5Plane>"
-"__vt__17Container<5Plane>":
+.global __vt__17Container$$05Plane$$1
+__vt__17Container$$05Plane$$1:
   .4byte 0
   .4byte 0
   .4byte __dt__17Container$$05Plane$$1Fv
@@ -11534,8 +11534,8 @@ __vt__25IDelegate1$$0R10Vector3$$0f$$1$$1:
   .4byte 0
   .4byte getAt__17Container$$05Plane$$1Fi
   .4byte getTo__17Container$$05Plane$$1Fv
-.global "__vt__22ArrayContainer<5Plane>"
-"__vt__22ArrayContainer<5Plane>":
+.global __vt__22ArrayContainer$$05Plane$$1
+__vt__22ArrayContainer$$05Plane$$1:
   .4byte 0
   .4byte 0
   .4byte __dt__22ArrayContainer$$05Plane$$1Fv
@@ -12979,9 +12979,9 @@ __vt__Q24Game28StateMachine$$0Q24Game6Pellet$$1:
   .4byte 0
   .4byte 0
   .4byte init__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-  .4byte "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
-  .4byte "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte start__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
+  .4byte exec__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
 .global __vt__Q24Game18PelletGoalStateArg
 __vt__Q24Game18PelletGoalStateArg:
   .4byte 0
@@ -15851,32 +15851,32 @@ __vt__Q24Game15InteractFueFuki:
   .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
   .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
   .4byte 0
-.global "__vt__27Container<Q24Game8Creature>"
-"__vt__27Container<Q24Game8Creature>":
+.global __vt__27Container$$0Q24Game8Creature$$1
+__vt__27Container$$0Q24Game8Creature$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__27Container<Q24Game8Creature>Fv"
+  .4byte __dt__27Container$$0Q24Game8Creature$$1Fv
   .4byte getChildCount__5CNodeFv
-  .4byte "getObject__27Container<Q24Game8Creature>FPv"
+  .4byte getObject__27Container$$0Q24Game8Creature$$1FPv
   .4byte 0
   .4byte 0
   .4byte 0
   .4byte 0
-  .4byte "getAt__27Container<Q24Game8Creature>Fi"
-  .4byte "getTo__27Container<Q24Game8Creature>Fv"
+  .4byte getAt__27Container$$0Q24Game8Creature$$1Fi
+  .4byte getTo__27Container$$0Q24Game8Creature$$1Fv
 .global __vt__Q24Game6CPlate
 __vt__Q24Game6CPlate:
   .4byte 0
   .4byte 0
   .4byte __dt__Q24Game6CPlateFv
   .4byte getChildCount__5CNodeFv
-  .4byte "getObject__27Container<Q24Game8Creature>FPv"
+  .4byte getObject__27Container$$0Q24Game8Creature$$1FPv
   .4byte getNext__Q24Game6CPlateFPv
   .4byte getStart__Q24Game6CPlateFv
   .4byte getEnd__Q24Game6CPlateFv
   .4byte get__Q24Game6CPlateFPv
-  .4byte "getAt__27Container<Q24Game8Creature>Fi"
-  .4byte "getTo__27Container<Q24Game8Creature>Fv"
+  .4byte getAt__27Container$$0Q24Game8Creature$$1Fi
+  .4byte getTo__27Container$$0Q24Game8Creature$$1Fv
 .global lbl_804B4A60
 lbl_804B4A60:
 	.4byte 0x00000000
@@ -15897,7 +15897,7 @@ __vt__Q26PikiAI6Action:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
 .global lbl_804B4AA8
 lbl_804B4AA8:
@@ -15929,7 +15929,7 @@ __vt__Q26PikiAI20ActFollowVectorField:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
 .global __vt__Q26PikiAI9ActGather
 __vt__Q26PikiAI9ActGather:
@@ -15946,7 +15946,7 @@ __vt__Q26PikiAI9ActGather:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
 .global __vt__Q26PikiAI8ActClimb
 __vt__Q26PikiAI8ActClimb:
@@ -15963,7 +15963,7 @@ __vt__Q26PikiAI8ActClimb:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
 .global __vt__Q23efx10PikiDamage
 __vt__Q23efx10PikiDamage:
@@ -15994,7 +15994,7 @@ __vt__Q26PikiAI14ActStickAttack:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -16015,7 +16015,7 @@ __vt__Q26PikiAI11ActPathMove:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
 .global __vt__Q26PikiAI11ActGotoSlot
 __vt__Q26PikiAI11ActGotoSlot:
@@ -16032,7 +16032,7 @@ __vt__Q26PikiAI11ActGotoSlot:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
 .global __vt__Q26PikiAI14ActApproachPos
 __vt__Q26PikiAI14ActApproachPos:
@@ -16049,7 +16049,7 @@ __vt__Q26PikiAI14ActApproachPos:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
 .global __vt__Q26PikiAI10ActGotoPos
 __vt__Q26PikiAI10ActGotoPos:
@@ -16066,7 +16066,7 @@ __vt__Q26PikiAI10ActGotoPos:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte 0
 .global lbl_804B4CF0
@@ -16089,7 +16089,7 @@ __vt__Q26PikiAI12ActFormation:
   .4byte collisionCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI12ActFormationFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI12ActFormationFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte resumable__Q26PikiAI12ActFormationFv
   .4byte inform__Q26PikiAI12ActFormationFi
@@ -16111,13 +16111,13 @@ __vt__Q24Game8Stickers:
   .4byte 0
   .4byte __dt__Q24Game8StickersFv
   .4byte getChildCount__5CNodeFv
-  .4byte "getObject__27Container<Q24Game8Creature>FPv"
+  .4byte getObject__27Container$$0Q24Game8Creature$$1FPv
   .4byte getNext__Q24Game8StickersFPv
   .4byte getStart__Q24Game8StickersFv
   .4byte getEnd__Q24Game8StickersFv
   .4byte get__Q24Game8StickersFPv
-  .4byte "getAt__27Container<Q24Game8Creature>Fi"
-  .4byte "getTo__27Container<Q24Game8Creature>Fv"
+  .4byte getAt__27Container$$0Q24Game8Creature$$1Fi
+  .4byte getTo__27Container$$0Q24Game8Creature$$1Fv
   .4byte 0
 .global __vt__Q24Game12InteractKill
 __vt__Q24Game12InteractKill:
@@ -16183,7 +16183,7 @@ __vt__Q26PikiAI7ActFree:
   .4byte collisionCallback__Q26PikiAI7ActFreeFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -16194,8 +16194,8 @@ __vt__13FindCondition:
   .4byte 0
   .4byte 0
   .4byte satisfy__13FindConditionFP8CollPart
-.global "__vt__20Condition<8CollPart>"
-"__vt__20Condition<8CollPart>":
+.global __vt__20Condition$$08CollPart$$1
+__vt__20Condition$$08CollPart$$1:
   .4byte 0
   .4byte 0
   .4byte 0
@@ -16224,7 +16224,7 @@ __vt__Q26PikiAI9ActAttack:
   .4byte collisionCallback__Q26PikiAI9ActAttackFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI9ActAttackFPc
   .4byte onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -16256,7 +16256,7 @@ __vt__Q26PikiAI12ActTransport:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI12ActTransportFPc
   .4byte onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -16278,7 +16278,7 @@ __vt__Q26PikiAI7ActExit:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
 .global __vt__Q26PikiAI14ClimbActionArg
 __vt__Q26PikiAI14ClimbActionArg:
@@ -16305,7 +16305,7 @@ __vt__Q26PikiAI8ActEnter:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -16323,9 +16323,9 @@ __vt__Q24Game17PelletReturnState:
   .4byte init__Q24Game17PelletReturnStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game17PelletReturnStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game17PelletReturnStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game11PelletStateFv
   .4byte appeared__Q24Game11PelletStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16336,9 +16336,9 @@ __vt__Q24Game13PelletUpState:
   .4byte init__Q24Game13PelletUpStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game13PelletUpStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game13PelletUpStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game13PelletUpStateFv
   .4byte appeared__Q24Game11PelletStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16349,9 +16349,9 @@ __vt__Q24Game16PelletZukanState:
   .4byte init__Q24Game16PelletZukanStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game16PelletZukanStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game16PelletZukanStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game11PelletStateFv
   .4byte appeared__Q24Game11PelletStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16362,9 +16362,9 @@ __vt__Q24Game15PelletBuryState:
   .4byte init__Q24Game15PelletBuryStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game15PelletBuryStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game15PelletBuryStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game15PelletBuryStateFv
   .4byte appeared__Q24Game11PelletStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16375,9 +16375,9 @@ __vt__Q24Game22PelletScaleAppearState:
   .4byte init__Q24Game22PelletScaleAppearStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game22PelletScaleAppearStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game22PelletScaleAppearStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game11PelletStateFv
   .4byte appeared__Q24Game22PelletScaleAppearStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16395,9 +16395,9 @@ __vt__Q24Game17PelletAppearState:
   .4byte init__Q24Game17PelletAppearStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game17PelletAppearStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game17PelletAppearStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game11PelletStateFv
   .4byte appeared__Q24Game17PelletAppearStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16408,9 +16408,9 @@ __vt__Q24Game15PelletGoalState:
   .4byte init__Q24Game15PelletGoalStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game15PelletGoalStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game15PelletGoalStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game11PelletStateFv
   .4byte appeared__Q24Game11PelletStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16421,9 +16421,9 @@ __vt__Q24Game19PelletGoalWaitState:
   .4byte init__Q24Game19PelletGoalWaitStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game19PelletGoalWaitStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game19PelletGoalWaitStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game11PelletStateFv
   .4byte appeared__Q24Game11PelletStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16434,9 +16434,9 @@ __vt__Q24Game17PelletNormalState:
   .4byte init__Q24Game17PelletNormalStateFPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game17PelletNormalStateFPQ24Game6Pellet
   .4byte cleanup__Q24Game17PelletNormalStateFPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game11PelletStateFv
   .4byte appeared__Q24Game11PelletStateFv
   .4byte isPickable__Q24Game17PelletNormalStateFv
@@ -16447,9 +16447,9 @@ __vt__Q24Game11PelletState:
   .4byte init__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
   .4byte cleanup__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
   .4byte isBuried__Q24Game11PelletStateFv
   .4byte appeared__Q24Game11PelletStateFv
   .4byte isPickable__Q24Game11PelletStateFv
@@ -16460,17 +16460,17 @@ __vt__Q24Game24FSMState$$0Q24Game6Pellet$$1:
   .4byte init__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletPQ24Game8StateArg
   .4byte exec__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
   .4byte cleanup__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-  .4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte resume__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte restart__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
 .global __vt__Q24Game9PelletFSM
 __vt__Q24Game9PelletFSM:
   .4byte 0
   .4byte 0
   .4byte init__Q24Game9PelletFSMFPQ24Game6Pellet
-  .4byte "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
-  .4byte "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
-  .4byte "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+  .4byte start__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
+  .4byte exec__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+  .4byte transit__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
 .global lbl_804B5218
 lbl_804B5218:
 	.4byte 0x00000000
@@ -16504,7 +16504,7 @@ __vt__Q24Game11DynCreature:
   .4byte initPosition__Q24Game8CreatureFR10Vector3$$0f$$1
   .4byte onInitPosition__Q24Game8CreatureFR10Vector3$$0f$$1
   .4byte 0
-  .4byte "setVelocity__Q24Game11DynCreatureFR10Vector3<f>"
+  .4byte setVelocity__Q24Game11DynCreatureFR10Vector3$$0f$$1
   .4byte getVelocity__Q24Game11DynCreatureFv
   .4byte onSetPosition__Q24Game11DynCreatureFR10Vector3$$0f$$1
   .4byte onSetPositionPost__Q24Game8CreatureFR10Vector3$$0f$$1
@@ -16603,7 +16603,7 @@ __vt__Q24Game14DynParticleMgr:
   .4byte 0
   .4byte __dt__Q24Game14DynParticleMgrFv
   .4byte getChildCount__5CNodeFv
-  .4byte "getObject__31Container<Q24Game11DynParticle>FPv"
+  .4byte getObject__31Container$$0Q24Game11DynParticle$$1FPv
   .4byte getNext__35MonoObjectMgr$$0Q24Game11DynParticle$$1FPv
   .4byte getStart__35MonoObjectMgr$$0Q24Game11DynParticle$$1Fv
   .4byte getEnd__35MonoObjectMgr$$0Q24Game11DynParticle$$1Fv
@@ -16640,7 +16640,7 @@ __vt__31Container$$0Q24Game11DynParticle$$1:
   .4byte 0
   .4byte __dt__31Container$$0Q24Game11DynParticle$$1Fv
   .4byte getChildCount__5CNodeFv
-  .4byte "getObject__31Container<Q24Game11DynParticle>FPv"
+  .4byte getObject__31Container$$0Q24Game11DynParticle$$1FPv
   .4byte 0
   .4byte 0
   .4byte 0
@@ -16653,7 +16653,7 @@ __vt__31ObjectMgr$$0Q24Game11DynParticle$$1:
   .4byte 0
   .4byte __dt__31ObjectMgr$$0Q24Game11DynParticle$$1Fv
   .4byte getChildCount__5CNodeFv
-  .4byte "getObject__31Container<Q24Game11DynParticle>FPv"
+  .4byte getObject__31Container$$0Q24Game11DynParticle$$1FPv
   .4byte 0
   .4byte 0
   .4byte 0
@@ -16686,7 +16686,7 @@ __vt__35MonoObjectMgr$$0Q24Game11DynParticle$$1:
   .4byte 0
   .4byte __dt__35MonoObjectMgr$$0Q24Game11DynParticle$$1Fv
   .4byte getChildCount__5CNodeFv
-  .4byte "getObject__31Container<Q24Game11DynParticle>FPv"
+  .4byte getObject__31Container$$0Q24Game11DynParticle$$1FPv
   .4byte getNext__35MonoObjectMgr$$0Q24Game11DynParticle$$1FPv
   .4byte getStart__35MonoObjectMgr$$0Q24Game11DynParticle$$1Fv
   .4byte getEnd__35MonoObjectMgr$$0Q24Game11DynParticle$$1Fv
@@ -16778,7 +16778,7 @@ __vt__Q24Game9GenObject:
   .4byte updateUseList__Q24Game9GenObjectFPQ24Game9Generatori
   .4byte generate__Q24Game9GenObjectFPQ24Game9Generator
   .4byte 0
-  .4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
+  .4byte generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1
   .4byte getDebugInfo__Q24Game9GenObjectFPc
 .global __vt__Q24Game7GenBase
 __vt__Q24Game7GenBase:
@@ -16814,7 +16814,7 @@ __vt__Q24Game13GenObjectPiki:
   .4byte updateUseList__Q24Game9GenObjectFPQ24Game9Generatori
   .4byte generate__Q24Game13GenObjectPikiFPQ24Game9Generator
   .4byte birth__Q24Game13GenObjectPikiFPQ24Game6GenArg
-  .4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
+  .4byte generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1
   .4byte getDebugInfo__Q24Game9GenObjectFPc
   .4byte 0
 .global __vt__Q24Game13GenObjectNavi
@@ -16833,7 +16833,7 @@ __vt__Q24Game13GenObjectNavi:
   .4byte updateUseList__Q24Game9GenObjectFPQ24Game9Generatori
   .4byte generate__Q24Game13GenObjectNaviFPQ24Game9Generator
   .4byte birth__Q24Game13GenObjectNaviFPQ24Game6GenArg
-  .4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
+  .4byte generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1
   .4byte getDebugInfo__Q24Game9GenObjectFPc
 .global __vt__Q24Game7GenItem
 __vt__Q24Game7GenItem:
@@ -16950,11 +16950,11 @@ __vt__31NodeObjectMgr$$0Q24Game8WaterBox$$1:
   .4byte doSimulation__27ObjectMgr$$0Q24Game8WaterBox$$1Ff
   .4byte doDirectDraw__27ObjectMgr$$0Q24Game8WaterBox$$1FR8Graphics
   .4byte resetMgr__31NodeObjectMgr$$0Q24Game8WaterBox$$1Fv
-.global "__vt__27ObjectMgr<Q24Game8WaterBox>"
-"__vt__27ObjectMgr<Q24Game8WaterBox>":
+.global __vt__27ObjectMgr$$0Q24Game8WaterBox$$1
+__vt__27ObjectMgr$$0Q24Game8WaterBox$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__27ObjectMgr<Q24Game8WaterBox>Fv"
+  .4byte __dt__27ObjectMgr$$0Q24Game8WaterBox$$1Fv
   .4byte getChildCount__5CNodeFv
   .4byte getObject__27Container$$0Q24Game8WaterBox$$1FPv
   .4byte 0
@@ -17084,55 +17084,55 @@ __vt__Q26PikiAI10ActWeedArg:
   .4byte 0
   .4byte 0
   .4byte getName__Q26PikiAI10ActWeedArgFv
-.global "__vt__26Iterator<Q24Game8ItemGate>"
-"__vt__26Iterator<Q24Game8ItemGate>":
+.global __vt__26Iterator$$0Q24Game8ItemGate$$1
+__vt__26Iterator$$0Q24Game8ItemGate$$1:
   .4byte 0
   .4byte 0
-  .4byte "first__26Iterator<Q24Game8ItemGate>Fv"
-  .4byte "next__26Iterator<Q24Game8ItemGate>Fv"
-  .4byte "isDone__26Iterator<Q24Game8ItemGate>Fv"
-  .4byte "__ml__26Iterator<Q24Game8ItemGate>Fv"
+  .4byte first__26Iterator$$0Q24Game8ItemGate$$1Fv
+  .4byte next__26Iterator$$0Q24Game8ItemGate$$1Fv
+  .4byte isDone__26Iterator$$0Q24Game8ItemGate$$1Fv
+  .4byte __ml__26Iterator$$0Q24Game8ItemGate$$1Fv
   .4byte 0
-.global "__vt__15PrimTagParm<Us>"
-"__vt__15PrimTagParm<Us>":
+.global __vt__15PrimTagParm$$0Us$$1
+__vt__15PrimTagParm$$0Us$$1:
   .4byte 0
   .4byte 0
-  .4byte "doWrite__15PrimTagParm<Us>FR6Stream"
-  .4byte "doRead__15PrimTagParm<Us>FR6Stream"
+  .4byte doWrite__15PrimTagParm$$0Us$$1FR6Stream
+  .4byte doRead__15PrimTagParm$$0Us$$1FR6Stream
   .4byte flushValue__7TagParmFv
-  .4byte "doDump__15PrimTagParm<Us>Fv"
-.global "__vt__15PrimTagParm<Ux>"
-"__vt__15PrimTagParm<Ux>":
+  .4byte doDump__15PrimTagParm$$0Us$$1Fv
+.global __vt__15PrimTagParm$$0Ux$$1
+__vt__15PrimTagParm$$0Ux$$1:
   .4byte 0
   .4byte 0
-  .4byte "doWrite__15PrimTagParm<Ux>FR6Stream"
-  .4byte "doRead__15PrimTagParm<Ux>FR6Stream"
+  .4byte doWrite__15PrimTagParm$$0Ux$$1FR6Stream
+  .4byte doRead__15PrimTagParm$$0Ux$$1FR6Stream
   .4byte flushValue__7TagParmFv
-  .4byte "doDump__15PrimTagParm<Ux>Fv"
-.global "__vt__25PrimTagParm<10Vector3<f>>"
-"__vt__25PrimTagParm<10Vector3<f>>":
+  .4byte doDump__15PrimTagParm$$0Ux$$1Fv
+.global __vt__25PrimTagParm$$010Vector3$$0f$$1$$1
+__vt__25PrimTagParm$$010Vector3$$0f$$1$$1:
   .4byte 0
   .4byte 0
-  .4byte "doWrite__25PrimTagParm<10Vector3<f>>FR6Stream"
-  .4byte "doRead__25PrimTagParm<10Vector3<f>>FR6Stream"
+  .4byte doWrite__25PrimTagParm$$010Vector3$$0f$$1$$1FR6Stream
+  .4byte doRead__25PrimTagParm$$010Vector3$$0f$$1$$1FR6Stream
   .4byte flushValue__7TagParmFv
-  .4byte "doDump__25PrimTagParm<10Vector3<f>>Fv"
-.global "__vt__14PrimTagParm<i>"
-"__vt__14PrimTagParm<i>":
+  .4byte doDump__25PrimTagParm$$010Vector3$$0f$$1$$1Fv
+.global __vt__14PrimTagParm$$0i$$1
+__vt__14PrimTagParm$$0i$$1:
   .4byte 0
   .4byte 0
-  .4byte "doWrite__14PrimTagParm<i>FR6Stream"
-  .4byte "doRead__14PrimTagParm<i>FR6Stream"
+  .4byte doWrite__14PrimTagParm$$0i$$1FR6Stream
+  .4byte doRead__14PrimTagParm$$0i$$1FR6Stream
   .4byte flushValue__7TagParmFv
-  .4byte "doDump__14PrimTagParm<i>Fv"
-.global "__vt__14PrimTagParm<f>"
-"__vt__14PrimTagParm<f>":
+  .4byte doDump__14PrimTagParm$$0i$$1Fv
+.global __vt__14PrimTagParm$$0f$$1
+__vt__14PrimTagParm$$0f$$1:
   .4byte 0
   .4byte 0
-  .4byte "doWrite__14PrimTagParm<f>FR6Stream"
-  .4byte "doRead__14PrimTagParm<f>FR6Stream"
+  .4byte doWrite__14PrimTagParm$$0f$$1FR6Stream
+  .4byte doRead__14PrimTagParm$$0f$$1FR6Stream
   .4byte flushValue__7TagParmFv
-  .4byte "doDump__14PrimTagParm<f>Fv"
+  .4byte doDump__14PrimTagParm$$0f$$1Fv
 .global __vt__13TagParameters
 __vt__13TagParameters:
   .4byte 0
@@ -19253,7 +19253,7 @@ __vt__Q26PikiAI12ActBreakGate:
   .4byte collisionCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI12ActBreakGateFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -22142,7 +22142,7 @@ __vt__Q26PikiAI12ActBreakRock:
   .4byte collisionCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -22164,7 +22164,7 @@ __vt__Q26PikiAI7ActCrop:
   .4byte collisionCallback__Q26PikiAI7ActCropFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -28162,7 +28162,7 @@ __vt__Q26PikiAI14ActFlockAttack:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -28188,7 +28188,7 @@ __vt__Q26PikiAI7ActWeed:
   .4byte collisionCallback__Q26PikiAI7ActWeedFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI7ActWeedFPc
   .4byte 0
 .global lbl_804BFB60
@@ -28818,7 +28818,7 @@ __vt__Q26PikiAI9ActBridge:
   .4byte collisionCallback__Q26PikiAI9ActBridgeFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI9ActBridgeFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI9ActBridgeFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -28840,7 +28840,7 @@ __vt__Q26PikiAI7ActTeki:
   .4byte collisionCallback__Q26PikiAI7ActTekiFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI7ActTekiFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -29868,7 +29868,7 @@ __vt__Q26PikiAI9ActBattle:
   .4byte collisionCallback__Q26PikiAI9ActBattleFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -29890,7 +29890,7 @@ __vt__Q26PikiAI10ActOneshot:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte finish__Q26PikiAI10ActOneshotFv
   .4byte onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent
@@ -29912,7 +29912,7 @@ __vt__Q26PikiAI7ActRest:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte finish__Q26PikiAI7ActRestFv
   .4byte onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent
@@ -29934,7 +29934,7 @@ __vt__Q26PikiAI11ActBoreBase:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte 0
   .4byte 0
@@ -29960,7 +29960,7 @@ __vt__Q26PikiAI7ActBore:
   .4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte 0
 .global __vt__Q24Game9PartsView
@@ -30149,7 +30149,7 @@ __vt__Q26PikiAI9ActRescue:
   .4byte collisionCallback__Q26PikiAI9ActRescueFPQ24Game4PikiRQ24Game9CollEvent
   .4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
   .4byte doDirectDraw__Q26PikiAI9ActRescueFR8Graphics
-  .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+  .4byte wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
   .4byte getInfo__Q26PikiAI6ActionFPc
   .4byte onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent
   .4byte 0
@@ -50291,8 +50291,8 @@ __vt__Q34Game11BigTreasure3Obj:
   .4byte getMouthSlots__Q24Game9EnemyBaseFv
   .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
   .4byte throwupItem__Q24Game9EnemyBaseFv
-  .4byte "getThrowupItemPosition__Q34Game11BigTreasure3ObjFP10Vector3<f>"
-  .4byte "getThrowupItemVelocity__Q34Game11BigTreasure3ObjFP10Vector3<f>"
+  .4byte getThrowupItemPosition__Q34Game11BigTreasure3ObjFP10Vector3$$0f$$1
+  .4byte getThrowupItemVelocity__Q34Game11BigTreasure3ObjFP10Vector3$$0f$$1
   .4byte throwupItemInDeathProcedure__Q34Game11BigTreasure3ObjFv
   .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
   .4byte damageCallBack__Q34Game11BigTreasure3ObjFPQ24Game8CreaturefP8CollPart
@@ -76990,8 +76990,8 @@ __vt__Q23Sys11VertexTable:
   .4byte get__28ArrayContainer$$010Vector3$$0f$$1$$1FPv
   .4byte getAt__28ArrayContainer$$010Vector3$$0f$$1$$1Fi
   .4byte getTo__28ArrayContainer$$010Vector3$$0f$$1$$1Fv
-  .4byte "writeObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>"
-  .4byte "readObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>"
+  .4byte writeObject__Q23Sys11VertexTableFR6StreamR10Vector3$$0f$$1
+  .4byte readObject__Q23Sys11VertexTableFR6StreamR10Vector3$$0f$$1
   .4byte write__Q23Sys11VertexTableFR6Stream
   .4byte read__28ArrayContainer$$010Vector3$$0f$$1$$1FR6Stream
   .4byte alloc__28ArrayContainer$$010Vector3$$0f$$1$$1Fi
@@ -77012,16 +77012,16 @@ __vt__Q23Sys13TriangleTable:
   .4byte getTo__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
   .4byte writeObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle
   .4byte readObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle
-  .4byte "write__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
-  .4byte "read__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+  .4byte write__31ArrayContainer$$0Q23Sys8Triangle$$1FR6Stream
+  .4byte read__31ArrayContainer$$0Q23Sys8Triangle$$1FR6Stream
   .4byte alloc__31ArrayContainer$$0Q23Sys8Triangle$$1Fi
   .4byte addOne__31ArrayContainer$$0Q23Sys8Triangle$$1FRQ23Sys8Triangle
   .4byte setArray__31ArrayContainer$$0Q23Sys8Triangle$$1FPQ23Sys8Trianglei
-.global "__vt__31ArrayContainer<Q23Sys8Triangle>"
-"__vt__31ArrayContainer<Q23Sys8Triangle>":
+.global __vt__31ArrayContainer$$0Q23Sys8Triangle$$1
+__vt__31ArrayContainer$$0Q23Sys8Triangle$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__31ArrayContainer<Q23Sys8Triangle>Fv"
+  .4byte __dt__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
   .4byte getChildCount__5CNodeFv
   .4byte getObject__26Container$$0Q23Sys8Triangle$$1FPv
   .4byte getNext__31ArrayContainer$$0Q23Sys8Triangle$$1FPv
@@ -77030,33 +77030,33 @@ __vt__Q23Sys13TriangleTable:
   .4byte get__31ArrayContainer$$0Q23Sys8Triangle$$1FPv
   .4byte getAt__31ArrayContainer$$0Q23Sys8Triangle$$1Fi
   .4byte getTo__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
-  .4byte "writeObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle"
-  .4byte "readObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle"
-  .4byte "write__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
-  .4byte "read__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+  .4byte writeObject__31ArrayContainer$$0Q23Sys8Triangle$$1FR6StreamRQ23Sys8Triangle
+  .4byte readObject__31ArrayContainer$$0Q23Sys8Triangle$$1FR6StreamRQ23Sys8Triangle
+  .4byte write__31ArrayContainer$$0Q23Sys8Triangle$$1FR6Stream
+  .4byte read__31ArrayContainer$$0Q23Sys8Triangle$$1FR6Stream
   .4byte alloc__31ArrayContainer$$0Q23Sys8Triangle$$1Fi
   .4byte addOne__31ArrayContainer$$0Q23Sys8Triangle$$1FRQ23Sys8Triangle
   .4byte setArray__31ArrayContainer$$0Q23Sys8Triangle$$1FPQ23Sys8Trianglei
-.global "__vt__26Container<Q23Sys8Triangle>"
-"__vt__26Container<Q23Sys8Triangle>":
+.global __vt__26Container$$0Q23Sys8Triangle$$1
+__vt__26Container$$0Q23Sys8Triangle$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__26Container<Q23Sys8Triangle>Fv"
+  .4byte __dt__26Container$$0Q23Sys8Triangle$$1Fv
   .4byte getChildCount__5CNodeFv
   .4byte getObject__26Container$$0Q23Sys8Triangle$$1FPv
   .4byte 0
   .4byte 0
   .4byte 0
   .4byte 0
-  .4byte "getAt__26Container<Q23Sys8Triangle>Fi"
-  .4byte "getTo__26Container<Q23Sys8Triangle>Fv"
+  .4byte getAt__26Container$$0Q23Sys8Triangle$$1Fi
+  .4byte getTo__26Container$$0Q23Sys8Triangle$$1Fv
 .global __vt__Q23Sys11GridDivider
 __vt__Q23Sys11GridDivider:
   .4byte 0
   .4byte 0
   .4byte __dt__Q23Sys11GridDividerFv
   .4byte getChildCount__5CNodeFv
-  .4byte "getMinY__Q23Sys11GridDividerFR10Vector3<f>"
+  .4byte getMinY__Q23Sys11GridDividerFR10Vector3$$0f$$1
   .4byte findTriLists__Q23Sys11GridDividerFRQ23Sys6Sphere
   .4byte read__Q23Sys11GridDividerFR6Stream
   .4byte getCurrTri__Q23Sys11GridDividerFRQ24Game11CurrTriInfo
@@ -77279,7 +77279,7 @@ __vt__Q23Sys7OBBTree:
   .4byte 0
   .4byte __dt__Q23Sys7OBBTreeFv
   .4byte getChildCount__5CNodeFv
-  .4byte "getMinY__Q23Sys7OBBTreeFR10Vector3<f>"
+  .4byte getMinY__Q23Sys7OBBTreeFR10Vector3$$0f$$1
   .4byte findTriLists__Q23Sys7OBBTreeFRQ23Sys6Sphere
   .4byte read__Q23Sys7OBBTreeFR6Stream
   .4byte getCurrTri__Q23Sys7OBBTreeFRQ24Game11CurrTriInfo

@@ -145,11 +145,11 @@ generate__Q24Game14GenObjectEnemyFPQ24Game9Generator:
 /* 80124960 001218A0  C0 04 00 A0 */	lfs f0, 0xa0(r4)
 /* 80124964 001218A4  7C 7A 1B 78 */	mr r26, r3
 /* 80124968 001218A8  C0 7B 00 98 */	lfs f3, 0x98(r27)
-/* 8012496C 001218AC  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
+/* 8012496C 001218AC  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
 /* 80124970 001218B0  EF E1 00 2A */	fadds f31, f1, f0
 /* 80124974 001218B4  C0 5B 00 A4 */	lfs f2, 0xa4(r27)
 /* 80124978 001218B8  C0 3B 00 9C */	lfs f1, 0x9c(r27)
-/* 8012497C 001218BC  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
+/* 8012497C 001218BC  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
 /* 80124980 001218C0  C0 1B 00 A8 */	lfs f0, 0xa8(r27)
 /* 80124984 001218C4  EF C3 10 2A */	fadds f30, f3, f2
 /* 80124988 001218C8  80 FB 00 74 */	lwz r7, 0x74(r27)
@@ -161,9 +161,9 @@ generate__Q24Game14GenObjectEnemyFPQ24Game9Generator:
 /* 801249A0 001218E0  7F A7 00 50 */	subf r29, r7, r0
 /* 801249A4 001218E4  38 E0 00 0A */	li r7, 0xa
 /* 801249A8 001218E8  4B F9 CE 95 */	bl __construct_array
-/* 801249AC 001218EC  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 801249AC 001218EC  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 801249B0 001218F0  38 61 00 18 */	addi r3, r1, 0x18
-/* 801249B4 001218F4  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 801249B4 001218F4  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 801249B8 001218F8  38 A0 00 00 */	li r5, 0
 /* 801249BC 001218FC  38 C0 00 0C */	li r6, 0xc
 /* 801249C0 00121900  38 E0 00 0A */	li r7, 0xa
@@ -2546,8 +2546,8 @@ getName__Q24Game6GenArgFv:
 update__Q24Game9GenObjectFPQ24Game9Generator:
 /* 80126BCC 00123B0C  4E 80 00 20 */	blr 
 
-.global "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
-"generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>":
+.global generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1
+generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1:
 /* 80126BD0 00123B10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80126BD4 00123B14  7C 08 02 A6 */	mflr r0
 /* 80126BD8 00123B18  7C 83 23 78 */	mr r3, r4

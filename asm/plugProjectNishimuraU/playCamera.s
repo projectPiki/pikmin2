@@ -1223,11 +1223,11 @@ changeTargetAtPosition__Q24Game10PlayCameraFv:
 /* 802404EC 0023D42C  7D 89 03 A6 */	mtctr r12
 /* 802404F0 0023D430  4E 80 04 21 */	bctrl 
 /* 802404F4 0023D434  80 7F 01 98 */	lwz r3, 0x198(r31)
-/* 802404F8 0023D438  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 802404F8 0023D438  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
 /* 802404FC 0023D43C  C3 A1 00 14 */	lfs f29, 0x14(r1)
 /* 80240500 0023D440  38 00 00 00 */	li r0, 0
 /* 80240504 0023D444  80 63 02 54 */	lwz r3, 0x254(r3)
-/* 80240508 0023D448  38 84 BC 84 */	addi r4, r4, "__vt__26Iterator<Q24Game8Creature>"@l
+/* 80240508 0023D448  38 84 BC 84 */	addi r4, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
 /* 8024050C 0023D44C  C3 E1 00 18 */	lfs f31, 0x18(r1)
 /* 80240510 0023D450  28 00 00 00 */	cmplwi r0, 0
 /* 80240514 0023D454  C3 C1 00 1C */	lfs f30, 0x1c(r1)
@@ -2130,12 +2130,12 @@ __dt__Q24Game10PlayCameraFv:
 /* 802411C8 0023E108  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 802411CC 0023E10C  90 1F 00 00 */	stw r0, 0(r31)
 /* 802411D0 0023E110  41 82 00 38 */	beq lbl_80241208
-/* 802411D4 0023E114  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
-/* 802411D8 0023E118  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
+/* 802411D4 0023E114  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
+/* 802411D8 0023E118  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
 /* 802411DC 0023E11C  90 1F 00 00 */	stw r0, 0(r31)
 /* 802411E0 0023E120  41 82 00 28 */	beq lbl_80241208
-/* 802411E4 0023E124  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
-/* 802411E8 0023E128  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
+/* 802411E4 0023E124  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
+/* 802411E8 0023E128  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
 /* 802411EC 0023E12C  90 1F 00 00 */	stw r0, 0(r31)
 /* 802411F0 0023E130  41 82 00 18 */	beq lbl_80241208
 /* 802411F4 0023E134  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha

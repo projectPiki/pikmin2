@@ -2434,12 +2434,12 @@ lbl_802D6204:
 /* 802D6238 002D3178  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 802D623C 002D317C  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802D6240 002D3180  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802D6244 002D3184  4B F7 BF F9 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 802D6244 002D3184  4B F7 BF F9 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 802D6248 002D3188  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802D624C 002D318C  38 A1 00 14 */	addi r5, r1, 0x14
 /* 802D6250 002D3190  38 80 00 0A */	li r4, 0xa
 /* 802D6254 002D3194  38 C0 00 02 */	li r6, 2
-/* 802D6258 002D3198  4B F7 D5 29 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 802D6258 002D3198  4B F7 D5 29 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 lbl_802D625C:
 /* 802D625C 002D319C  3B FF 00 04 */	addi r31, r31, 4
 /* 802D6260 002D31A0  3B DE 00 04 */	addi r30, r30, 4
@@ -2793,12 +2793,12 @@ lbl_802D66D0:
 /* 802D670C 002D364C  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 802D6710 002D3650  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802D6714 002D3654  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802D6718 002D3658  4B F7 BB 25 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 802D6718 002D3658  4B F7 BB 25 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 802D671C 002D365C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802D6720 002D3660  38 A1 00 14 */	addi r5, r1, 0x14
 /* 802D6724 002D3664  38 80 00 0A */	li r4, 0xa
 /* 802D6728 002D3668  38 C0 00 02 */	li r6, 2
-/* 802D672C 002D366C  4B F7 D0 55 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 802D672C 002D366C  4B F7 D0 55 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 802D6730 002D3670  80 7F 02 EC */	lwz r3, 0x2ec(r31)
 /* 802D6734 002D3674  38 80 08 16 */	li r4, 0x816
 /* 802D6738 002D3678  38 A0 00 00 */	li r5, 0

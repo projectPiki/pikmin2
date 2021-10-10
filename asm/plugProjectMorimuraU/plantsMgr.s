@@ -1342,7 +1342,7 @@ getLODCylinder__Q34Game6Zenmai3ObjFRQ23Sys8Cylinder:
 /* 80354EFC 00351E3C  EC 01 00 2A */	fadds f0, f1, f0
 /* 80354F00 00351E40  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80354F04 00351E44  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 80354F08 00351E48  48 0C C7 5D */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+/* 80354F08 00351E48  48 0C C7 5D */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
 /* 80354F0C 00351E4C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80354F10 00351E50  7C 08 03 A6 */	mtlr r0
 /* 80354F14 00351E54  38 21 00 20 */	addi r1, r1, 0x20
@@ -1650,7 +1650,7 @@ getLODCylinder__Q34Game9Chiyogami3ObjFRQ23Sys8Cylinder:
 /* 803552F0 00352230  EC 01 00 2A */	fadds f0, f1, f0
 /* 803552F4 00352234  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 803552F8 00352238  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 803552FC 0035223C  48 0C C3 69 */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+/* 803552FC 0035223C  48 0C C3 69 */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
 /* 80355300 00352240  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80355304 00352244  7C 08 03 A6 */	mtlr r0
 /* 80355308 00352248  38 21 00 20 */	addi r1, r1, 0x20
@@ -3086,7 +3086,7 @@ getLODCylinder__Q34Game7Tukushi3ObjFRQ23Sys8Cylinder:
 /* 80356688 003535C8  EC 01 00 2A */	fadds f0, f1, f0
 /* 8035668C 003535CC  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80356690 003535D0  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 80356694 003535D4  48 0C AF D1 */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+/* 80356694 003535D4  48 0C AF D1 */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
 /* 80356698 003535D8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8035669C 003535DC  7C 08 03 A6 */	mtlr r0
 /* 803566A0 003535E0  38 21 00 20 */	addi r1, r1, 0x20
@@ -3349,7 +3349,7 @@ getLODCylinder__Q34Game8Wakame_l3ObjFRQ23Sys8Cylinder:
 /* 80356A18 00353958  EC 01 00 2A */	fadds f0, f1, f0
 /* 80356A1C 0035395C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80356A20 00353960  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 80356A24 00353964  48 0C AC 41 */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+/* 80356A24 00353964  48 0C AC 41 */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
 /* 80356A28 00353968  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80356A2C 0035396C  7C 08 03 A6 */	mtlr r0
 /* 80356A30 00353970  38 21 00 20 */	addi r1, r1, 0x20
@@ -3612,7 +3612,7 @@ getLODCylinder__Q34Game8Wakame_s3ObjFRQ23Sys8Cylinder:
 /* 80356DA8 00353CE8  EC 01 00 2A */	fadds f0, f1, f0
 /* 80356DAC 00353CEC  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80356DB0 00353CF0  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 80356DB4 00353CF4  48 0C A8 B1 */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+/* 80356DB4 00353CF4  48 0C A8 B1 */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
 /* 80356DB8 00353CF8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80356DBC 00353CFC  7C 08 03 A6 */	mtlr r0
 /* 80356DC0 00353D00  38 21 00 20 */	addi r1, r1, 0x20

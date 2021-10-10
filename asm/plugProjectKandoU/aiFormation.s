@@ -197,8 +197,8 @@ lbl_8019D014:
 /* 8019D028 00199F68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019D02C 00199F6C  4E 80 00 20 */	blr 
 
-.global "wallCallback__Q26PikiAI12ActFormationFR10Vector3<f>"
-"wallCallback__Q26PikiAI12ActFormationFR10Vector3<f>":
+.global wallCallback__Q26PikiAI12ActFormationFR10Vector3$$0f$$1
+wallCallback__Q26PikiAI12ActFormationFR10Vector3$$0f$$1:
 /* 8019D030 00199F70  80 8D 93 E8 */	lwz r4, gameSystem__4Game@sda21(r13)
 /* 8019D034 00199F74  80 04 00 50 */	lwz r0, 0x50(r4)
 /* 8019D038 00199F78  90 03 00 44 */	stw r0, 0x44(r3)
@@ -1180,10 +1180,10 @@ lbl_8019DE54:
 /* 8019DE58 0019AD98  28 00 00 00 */	cmplwi r0, 0
 /* 8019DE5C 0019AD9C  40 82 03 88 */	bne lbl_8019E1E4
 /* 8019DE60 0019ADA0  38 80 00 00 */	li r4, 0
-/* 8019DE64 0019ADA4  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 8019DE64 0019ADA4  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
 /* 8019DE68 0019ADA8  B0 9F 00 2A */	sth r4, 0x2a(r31)
 /* 8019DE6C 0019ADAC  28 04 00 00 */	cmplwi r4, 0
-/* 8019DE70 0019ADB0  38 03 BC 84 */	addi r0, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+/* 8019DE70 0019ADB0  38 03 BC 84 */	addi r0, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
 /* 8019DE74 0019ADB4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019DE78 0019ADB8  80 63 02 C4 */	lwz r3, 0x2c4(r3)
 /* 8019DE7C 0019ADBC  80 63 02 54 */	lwz r3, 0x254(r3)

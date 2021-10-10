@@ -20,30 +20,30 @@ __ct__Q24Game11AIConstantsFv:
 /* 801B62E8 001B3228  90 1F 00 00 */	stw r0, 0(r31)
 /* 801B62EC 001B322C  38 A2 B0 C8 */	addi r5, r2, lbl_80519428@sda21
 /* 801B62F0 001B3230  48 26 5D AD */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B62F4 001B3234  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B62F4 001B3234  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B62F8 001B3238  7F E4 FB 78 */	mr r4, r31
-/* 801B62FC 001B323C  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B62FC 001B323C  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B6300 001B3240  38 7F 00 2C */	addi r3, r31, 0x2c
 /* 801B6304 001B3244  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 801B6308 001B3248  38 BE 00 0C */	addi r5, r30, 0xc
 /* 801B630C 001B324C  48 26 5D 91 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B6310 001B3250  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B6310 001B3250  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B6314 001B3254  7F E4 FB 78 */	mr r4, r31
-/* 801B6318 001B3258  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B6318 001B3258  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B631C 001B325C  38 7F 00 3C */	addi r3, r31, 0x3c
 /* 801B6320 001B3260  90 1F 00 2C */	stw r0, 0x2c(r31)
 /* 801B6324 001B3264  38 A2 B0 D0 */	addi r5, r2, lbl_80519430@sda21
 /* 801B6328 001B3268  48 26 5D 75 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B632C 001B326C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B632C 001B326C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B6330 001B3270  7F E4 FB 78 */	mr r4, r31
-/* 801B6334 001B3274  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B6334 001B3274  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B6338 001B3278  38 7F 00 4C */	addi r3, r31, 0x4c
 /* 801B633C 001B327C  90 1F 00 3C */	stw r0, 0x3c(r31)
 /* 801B6340 001B3280  38 BE 00 18 */	addi r5, r30, 0x18
 /* 801B6344 001B3284  48 26 5D 59 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B6348 001B3288  3C 80 80 4B */	lis r4, "__vt__14PrimTagParm<f>"@ha
+/* 801B6348 001B3288  3C 80 80 4B */	lis r4, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B634C 001B328C  38 C0 27 10 */	li r6, 0x2710
-/* 801B6350 001B3290  38 04 5A F8 */	addi r0, r4, "__vt__14PrimTagParm<f>"@l
+/* 801B6350 001B3290  38 04 5A F8 */	addi r0, r4, __vt__14PrimTagParm$$0f$$1@l
 /* 801B6354 001B3294  C0 02 B0 D8 */	lfs f0, lbl_80519438@sda21(r2)
 /* 801B6358 001B3298  90 1F 00 4C */	stw r0, 0x4c(r31)
 /* 801B635C 001B329C  38 80 00 02 */	li r4, 2

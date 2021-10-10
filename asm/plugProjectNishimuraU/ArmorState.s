@@ -379,7 +379,7 @@ exec__Q34Game5Armor9StateDeadFPQ24Game9EnemyBase:
 /* 8028645C 0028339C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80286460 002833A0  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80286464 002833A4  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80286468 002833A8  4B FC D3 19 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80286468 002833A8  4B FC D3 19 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 8028646C 002833AC  48 00 00 14 */	b lbl_80286480
 lbl_80286470:
 /* 80286470 002833B0  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -532,7 +532,7 @@ init__Q34Game5Armor11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 80286674 002835B4  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80286678 002835B8  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8028667C 002835BC  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80286680 002835C0  4B FC D1 01 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80286680 002835C0  4B FC D1 01 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80286684 002835C4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80286688 002835C8  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 8028668C 002835CC  7C 08 03 A6 */	mtlr r0
@@ -566,7 +566,7 @@ exec__Q34Game5Armor11StateAppearFPQ24Game9EnemyBase:
 /* 802866F0 00283630  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802866F4 00283634  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802866F8 00283638  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802866FC 0028363C  4B FC D0 85 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 802866FC 0028363C  4B FC D0 85 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80286700 00283640  48 00 00 54 */	b lbl_80286754
 lbl_80286704:
 /* 80286704 00283644  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -662,7 +662,7 @@ exec__Q34Game5Armor9StateDiveFPQ24Game9EnemyBase:
 /* 80286840 00283780  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80286844 00283784  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80286848 00283788  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8028684C 0028378C  4B FC CF 35 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 8028684C 0028378C  4B FC CF 35 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80286850 00283790  48 00 00 24 */	b lbl_80286874
 lbl_80286854:
 /* 80286854 00283794  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -1723,7 +1723,7 @@ lbl_802876C0:
 /* 8028771C 0028465C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80287720 00284660  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80287724 00284664  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80287728 00284668  4B FC C0 59 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80287728 00284668  4B FC C0 59 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 8028772C 0028466C  48 00 00 98 */	b lbl_802877C4
 lbl_80287730:
 /* 80287730 00284670  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -1927,7 +1927,7 @@ lbl_8028793C:
 /* 802879E4 00284924  7F C3 F3 78 */	mr r3, r30
 /* 802879E8 00284928  C0 7F 04 EC */	lfs f3, 0x4ec(r31)
 /* 802879EC 0028492C  38 80 00 00 */	li r4, 0
-/* 802879F0 00284930  4B E8 B7 2D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 802879F0 00284930  4B E8 B7 2D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 802879F4 00284934  C0 02 D4 24 */	lfs f0, lbl_8051B784@sda21(r2)
 /* 802879F8 00284938  D0 1E 02 0C */	stfs f0, 0x20c(r30)
 /* 802879FC 0028493C  48 00 00 24 */	b lbl_80287A20

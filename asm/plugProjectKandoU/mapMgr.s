@@ -1926,7 +1926,7 @@ lbl_80163ED0:
 /* 80163F04 00160E44  7F E3 FB 78 */	mr r3, r31
 /* 80163F08 00160E48  7F 44 D3 78 */	mr r4, r26
 /* 80163F0C 00160E4C  38 A1 00 08 */	addi r5, r1, 8
-/* 80163F10 00160E50  48 2B 2D 39 */	bl "intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>"
+/* 80163F10 00160E50  48 2B 2D 39 */	bl intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3$$0f$$1
 /* 80163F14 00160E54  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80163F18 00160E58  41 82 00 4C */	beq lbl_80163F64
 /* 80163F1C 00160E5C  C0 81 00 0C */	lfs f4, 0xc(r1)

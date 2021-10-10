@@ -5421,12 +5421,12 @@ collisionCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9CollEvent:
 /* 8018E038 0018AF78  38 A1 00 4C */	addi r5, r1, 0x4c
 /* 8018E03C 0018AF7C  38 80 00 0B */	li r4, 0xb
 /* 8018E040 0018AF80  38 C0 00 02 */	li r6, 2
-/* 8018E044 0018AF84  48 0C 57 3D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 8018E044 0018AF84  48 0C 57 3D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 8018E048 0018AF88  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 8018E04C 0018AF8C  38 A1 00 4C */	addi r5, r1, 0x4c
 /* 8018E050 0018AF90  38 80 00 06 */	li r4, 6
 /* 8018E054 0018AF94  38 C0 00 02 */	li r6, 2
-/* 8018E058 0018AF98  48 0C 41 E5 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 8018E058 0018AF98  48 0C 41 E5 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 8018E05C 0018AF9C  80 7F 00 00 */	lwz r3, 0(r31)
 /* 8018E060 0018AFA0  81 83 00 00 */	lwz r12, 0(r3)
 /* 8018E064 0018AFA4  81 8C 00 7C */	lwz r12, 0x7c(r12)
@@ -5617,12 +5617,12 @@ dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki:
 /* 8018E318 0018B258  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8018E31C 0018B25C  38 80 00 0B */	li r4, 0xb
 /* 8018E320 0018B260  38 C0 00 02 */	li r6, 2
-/* 8018E324 0018B264  48 0C 54 5D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 8018E324 0018B264  48 0C 54 5D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 8018E328 0018B268  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 8018E32C 0018B26C  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8018E330 0018B270  38 80 00 06 */	li r4, 6
 /* 8018E334 0018B274  38 C0 00 02 */	li r6, 2
-/* 8018E338 0018B278  48 0C 3F 05 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 8018E338 0018B278  48 0C 3F 05 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 8018E33C 0018B27C  7F E3 FB 78 */	mr r3, r31
 /* 8018E340 0018B280  38 80 28 4E */	li r4, 0x284e
 /* 8018E344 0018B284  38 A0 00 00 */	li r5, 0
@@ -6432,7 +6432,7 @@ execString__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
 /* 8018EEB4 0018BDF4  4B FA 93 C5 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 8018EEB8 0018BDF8  38 61 00 14 */	addi r3, r1, 0x14
 /* 8018EEBC 0018BDFC  38 81 00 08 */	addi r4, r1, 8
-/* 8018EEC0 0018BE00  48 28 6B E5 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
+/* 8018EEC0 0018BE00  48 28 6B E5 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
 /* 8018EEC4 0018BE04  C0 41 00 08 */	lfs f2, 8(r1)
 /* 8018EEC8 0018BE08  7F E3 FB 78 */	mr r3, r31
 /* 8018EECC 0018BE0C  C0 62 AB 0C */	lfs f3, lbl_80518E6C@sda21(r2)

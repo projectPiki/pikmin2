@@ -1633,8 +1633,8 @@ lbl_80252220:
 /* 80252234 0024F174  38 21 00 80 */	addi r1, r1, 0x80
 /* 80252238 0024F178  4E 80 00 20 */	blr 
 
-.global "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-"startVibration__Q24Game9CameraMgrFiR10Vector3<f>i":
+.global startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i:
 /* 8025223C 0024F17C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80252240 0024F180  7C 08 02 A6 */	mflr r0
 /* 80252244 0024F184  90 01 00 44 */	stw r0, 0x44(r1)

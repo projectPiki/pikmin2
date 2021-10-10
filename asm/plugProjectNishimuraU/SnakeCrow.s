@@ -37,9 +37,9 @@ lbl_802930D4:
 /* 8029310C 0029004C  7C 04 00 50 */	subf r0, r4, r0
 /* 80293110 00290050  90 04 00 0C */	stw r0, 0xc(r4)
 /* 80293114 00290054  4B EA 54 35 */	bl __ct__10MouthSlotsFv
-/* 80293118 00290058  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 80293118 00290058  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8029311C 0029005C  38 7F 02 D8 */	addi r3, r31, 0x2d8
-/* 80293120 00290060  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 80293120 00290060  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 80293124 00290064  38 A0 00 00 */	li r5, 0
 /* 80293128 00290068  38 C0 00 0C */	li r6, 0xc
 /* 8029312C 0029006C  38 E0 00 05 */	li r7, 5
@@ -466,7 +466,7 @@ doFinishStoneState__Q34Game9SnakeCrow3ObjFv:
 /* 802936E8 00290628  38 80 00 00 */	li r4, 0
 /* 802936EC 0029062C  C0 62 D7 30 */	lfs f3, lbl_8051BA90@sda21(r2)
 /* 802936F0 00290630  C0 82 D7 4C */	lfs f4, lbl_8051BAAC@sda21(r2)
-/* 802936F4 00290634  4B E7 FA 29 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 802936F4 00290634  4B E7 FA 29 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 802936F8 00290638  7F E3 FB 78 */	mr r3, r31
 /* 802936FC 0029063C  4B E7 3C F9 */	bl getStateID__Q24Game9EnemyBaseFv
 /* 80293700 00290640  2C 03 00 05 */	cmpwi r3, 5
@@ -1839,8 +1839,8 @@ getStickHeadPikmin__Q34Game9SnakeCrow3ObjFv:
 /* 80294AE8 00291A28  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 80294AEC 00291A2C  4B F0 B1 71 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80294AF0 00291A30  38 00 00 00 */	li r0, 0
-/* 80294AF4 00291A34  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-/* 80294AF8 00291A38  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+/* 80294AF4 00291A34  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 80294AF8 00291A38  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
 /* 80294AFC 00291A3C  38 61 00 18 */	addi r3, r1, 0x18
 /* 80294B00 00291A40  28 00 00 00 */	cmplwi r0, 0
 /* 80294B04 00291A44  90 81 00 08 */	stw r4, 8(r1)
@@ -2985,12 +2985,12 @@ createDownHeadEffect__Q34Game9SnakeCrow3ObjFf:
 /* 80295AC4 00292A04  38 A1 00 08 */	addi r5, r1, 8
 /* 80295AC8 00292A08  38 80 00 03 */	li r4, 3
 /* 80295ACC 00292A0C  38 C0 00 02 */	li r6, 2
-/* 80295AD0 00292A10  4B FB C7 6D */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 80295AD0 00292A10  4B FB C7 6D */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 80295AD4 00292A14  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80295AD8 00292A18  38 A1 00 08 */	addi r5, r1, 8
 /* 80295ADC 00292A1C  38 80 00 08 */	li r4, 8
 /* 80295AE0 00292A20  38 C0 00 02 */	li r6, 2
-/* 80295AE4 00292A24  4B FB DC 9D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80295AE4 00292A24  4B FB DC 9D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80295AE8 00292A28  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0
 /* 80295AEC 00292A2C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80295AF0 00292A30  CB E1 00 20 */	lfd f31, 0x20(r1)

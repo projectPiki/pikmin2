@@ -1047,7 +1047,7 @@ startEnemyRumble__Q34Game10KumaChappy3ObjFv:
 /* 8029A518 00297458  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 8029A51C 0029745C  C0 1F 01 90 */	lfs f0, 0x190(r31)
 /* 8029A520 00297460  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 8029A524 00297464  4B FB 92 5D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 8029A524 00297464  4B FB 92 5D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 8029A528 00297468  C0 22 D8 88 */	lfs f1, lbl_8051BBE8@sda21(r2)
 /* 8029A52C 0029746C  7F E3 FB 78 */	mr r3, r31
 /* 8029A530 00297470  38 81 00 08 */	addi r4, r1, 8

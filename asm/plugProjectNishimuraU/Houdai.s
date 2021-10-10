@@ -50,11 +50,11 @@ lbl_802BFD38:
 /* 802BFD44 002BCC84  3C 80 80 4D */	lis r4, __vt__Q34Game6Houdai3Obj@ha
 /* 802BFD48 002BCC88  38 1F 04 20 */	addi r0, r31, 0x420
 /* 802BFD4C 002BCC8C  38 C4 11 60 */	addi r6, r4, __vt__Q34Game6Houdai3Obj@l
-/* 802BFD50 002BCC90  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
+/* 802BFD50 002BCC90  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
 /* 802BFD54 002BCC94  90 DF 00 00 */	stw r6, 0(r31)
 /* 802BFD58 002BCC98  38 A6 01 B0 */	addi r5, r6, 0x1b0
 /* 802BFD5C 002BCC9C  39 26 02 FC */	addi r9, r6, 0x2fc
-/* 802BFD60 002BCCA0  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
+/* 802BFD60 002BCCA0  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
 /* 802BFD64 002BCCA4  90 BF 01 78 */	stw r5, 0x178(r31)
 /* 802BFD68 002BCCA8  38 7F 03 04 */	addi r3, r31, 0x304
 /* 802BFD6C 002BCCAC  38 A0 00 00 */	li r5, 0
@@ -526,7 +526,7 @@ doFinishStoneState__Q34Game6Houdai3ObjFv:
 /* 802C03F0 002BD330  38 80 00 00 */	li r4, 0
 /* 802C03F4 002BD334  C0 62 E1 98 */	lfs f3, lbl_8051C4F8@sda21(r2)
 /* 802C03F8 002BD338  C0 82 E1 AC */	lfs f4, lbl_8051C50C@sda21(r2)
-/* 802C03FC 002BD33C  4B E5 2D 21 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 802C03FC 002BD33C  4B E5 2D 21 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 802C0400 002BD340  88 1F 02 EC */	lbz r0, 0x2ec(r31)
 /* 802C0404 002BD344  28 00 00 00 */	cmplwi r0, 0
 /* 802C0408 002BD348  41 82 00 0C */	beq lbl_802C0414
@@ -677,9 +677,9 @@ getTargetPosition__Q34Game6Houdai3ObjFv:
 /* 802C05FC 002BD53C  EC 23 08 FA */	fmadds f1, f3, f3, f1
 /* 802C0600 002BD540  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802C0604 002BD544  40 80 02 00 */	bge lbl_802C0804
-/* 802C0608 002BD548  3C A0 80 4B */	lis r5, "__vt__23Condition<Q24Game4Piki>"@ha
+/* 802C0608 002BD548  3C A0 80 4B */	lis r5, __vt__23Condition$$0Q24Game4Piki$$1@ha
 /* 802C060C 002BD54C  3C 80 80 4D */	lis r4, __vt__Q24Game23ConditionNotStickClient@ha
-/* 802C0610 002BD550  38 C5 BC 60 */	addi r6, r5, "__vt__23Condition<Q24Game4Piki>"@l
+/* 802C0610 002BD550  38 C5 BC 60 */	addi r6, r5, __vt__23Condition$$0Q24Game4Piki$$1@l
 /* 802C0614 002BD554  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802C0618 002BD558  38 04 DB 70 */	addi r0, r4, __vt__Q24Game23ConditionNotStickClient@l
 /* 802C061C 002BD55C  38 A1 00 08 */	addi r5, r1, 8
@@ -688,7 +688,7 @@ getTargetPosition__Q34Game6Houdai3ObjFv:
 /* 802C0628 002BD568  90 01 00 08 */	stw r0, 8(r1)
 /* 802C062C 002BD56C  C0 27 04 24 */	lfs f1, 0x424(r7)
 /* 802C0630 002BD570  C0 47 03 D4 */	lfs f2, 0x3d4(r7)
-/* 802C0634 002BD574  4B E5 25 31 */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
+/* 802C0634 002BD574  4B E5 25 31 */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
 /* 802C0638 002BD578  28 03 00 00 */	cmplwi r3, 0
 /* 802C063C 002BD57C  41 82 00 38 */	beq lbl_802C0674
 /* 802C0640 002BD580  7C 64 1B 78 */	mr r4, r3
@@ -838,9 +838,9 @@ setShotGunTargetPosition__Q34Game6Houdai3ObjFv:
 /* 802C085C 002BD79C  DB C1 00 50 */	stfd f30, 0x50(r1)
 /* 802C0860 002BD7A0  F3 C1 00 58 */	psq_st f30, 88(r1), 0, qr0
 /* 802C0864 002BD7A4  93 E1 00 4C */	stw r31, 0x4c(r1)
-/* 802C0868 002BD7A8  3C A0 80 4B */	lis r5, "__vt__23Condition<Q24Game4Piki>"@ha
+/* 802C0868 002BD7A8  3C A0 80 4B */	lis r5, __vt__23Condition$$0Q24Game4Piki$$1@ha
 /* 802C086C 002BD7AC  3C 80 80 4D */	lis r4, __vt__Q24Game23ConditionNotStickClient@ha
-/* 802C0870 002BD7B0  38 05 BC 60 */	addi r0, r5, "__vt__23Condition<Q24Game4Piki>"@l
+/* 802C0870 002BD7B0  38 05 BC 60 */	addi r0, r5, __vt__23Condition$$0Q24Game4Piki$$1@l
 /* 802C0874 002BD7B4  7C 7F 1B 78 */	mr r31, r3
 /* 802C0878 002BD7B8  90 01 00 08 */	stw r0, 8(r1)
 /* 802C087C 002BD7BC  38 04 DB 70 */	addi r0, r4, __vt__Q24Game23ConditionNotStickClient@l
@@ -864,7 +864,7 @@ lbl_802C08B8:
 /* 802C08C0 002BD800  C0 22 E1 DC */	lfs f1, lbl_8051C53C@sda21(r2)
 /* 802C08C4 002BD804  38 A0 00 00 */	li r5, 0
 /* 802C08C8 002BD808  C0 46 04 4C */	lfs f2, 0x44c(r6)
-/* 802C08CC 002BD80C  4B E5 1E 29 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 802C08CC 002BD80C  4B E5 1E 29 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 802C08D0 002BD810  7C 64 1B 79 */	or. r4, r3, r3
 /* 802C08D4 002BD814  41 82 00 20 */	beq lbl_802C08F4
 /* 802C08D8 002BD818  80 DF 00 C0 */	lwz r6, 0xc0(r31)
@@ -872,7 +872,7 @@ lbl_802C08B8:
 /* 802C08E0 002BD820  C0 22 E1 DC */	lfs f1, lbl_8051C53C@sda21(r2)
 /* 802C08E4 002BD824  38 80 00 00 */	li r4, 0
 /* 802C08E8 002BD828  C0 46 04 4C */	lfs f2, 0x44c(r6)
-/* 802C08EC 002BD82C  4B E5 22 79 */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
+/* 802C08EC 002BD82C  4B E5 22 79 */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
 /* 802C08F0 002BD830  7C 64 1B 78 */	mr r4, r3
 lbl_802C08F4:
 /* 802C08F4 002BD834  28 04 00 00 */	cmplwi r4, 0

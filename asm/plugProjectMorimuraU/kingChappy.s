@@ -536,7 +536,7 @@ lbl_8035D484:
 /* 8035D498 0035A3D8  38 9F 01 8C */	addi r4, r31, 0x18c
 /* 8035D49C 0035A3DC  38 A0 02 17 */	li r5, 0x217
 /* 8035D4A0 0035A3E0  38 C0 02 18 */	li r6, 0x218
-/* 8035D4A4 0035A3E4  48 05 2D 9D */	bl "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
+/* 8035D4A4 0035A3E4  48 05 2D 9D */	bl __ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs
 /* 8035D4A8 0035A3E8  3C 60 80 4E */	lis r3, __vt__Q23efx9TKchCryAB@ha
 /* 8035D4AC 0035A3EC  38 03 1F A0 */	addi r0, r3, __vt__Q23efx9TKchCryAB@l
 /* 8035D4B0 0035A3F0  90 1C 00 00 */	stw r0, 0(r28)
@@ -824,9 +824,9 @@ __ct__Q23efx14TKchDeadYodareFPA4_f:
 /* 8035D8EC 0035A82C  1C 7A 00 0C */	mulli r3, r26, 0xc
 /* 8035D8F0 0035A830  38 63 00 10 */	addi r3, r3, 0x10
 /* 8035D8F4 0035A834  4B CC 66 B9 */	bl __nwa__FUl
-/* 8035D8F8 0035A838  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8035D8F8 0035A838  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8035D8FC 0035A83C  7F 47 D3 78 */	mr r7, r26
-/* 8035D900 0035A840  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8035D900 0035A840  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8035D904 0035A844  38 A0 00 00 */	li r5, 0
 /* 8035D908 0035A848  38 C0 00 0C */	li r6, 0xc
 /* 8035D90C 0035A84C  4B D6 40 E5 */	bl __construct_new_array
@@ -859,9 +859,9 @@ __ct__Q23efx14TKchDeadYodareFPA4_f:
 /* 8035D978 0035A8B8  1C 7A 00 0C */	mulli r3, r26, 0xc
 /* 8035D97C 0035A8BC  38 63 00 10 */	addi r3, r3, 0x10
 /* 8035D980 0035A8C0  4B CC 66 2D */	bl __nwa__FUl
-/* 8035D984 0035A8C4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8035D984 0035A8C4  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8035D988 0035A8C8  7F 47 D3 78 */	mr r7, r26
-/* 8035D98C 0035A8CC  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8035D98C 0035A8CC  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8035D990 0035A8D0  38 A0 00 00 */	li r5, 0
 /* 8035D994 0035A8D4  38 C0 00 0C */	li r6, 0xc
 /* 8035D998 0035A8D8  4B D6 40 59 */	bl __construct_new_array
@@ -1176,9 +1176,9 @@ __ct__Q23efx16TKchAttackYodareFPA4_f:
 /* 8035DE00 0035AD40  1C 7A 00 0C */	mulli r3, r26, 0xc
 /* 8035DE04 0035AD44  38 63 00 10 */	addi r3, r3, 0x10
 /* 8035DE08 0035AD48  4B CC 61 A5 */	bl __nwa__FUl
-/* 8035DE0C 0035AD4C  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8035DE0C 0035AD4C  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8035DE10 0035AD50  7F 47 D3 78 */	mr r7, r26
-/* 8035DE14 0035AD54  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8035DE14 0035AD54  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8035DE18 0035AD58  38 A0 00 00 */	li r5, 0
 /* 8035DE1C 0035AD5C  38 C0 00 0C */	li r6, 0xc
 /* 8035DE20 0035AD60  4B D6 3B D1 */	bl __construct_new_array
@@ -1211,9 +1211,9 @@ __ct__Q23efx16TKchAttackYodareFPA4_f:
 /* 8035DE8C 0035ADCC  1C 7A 00 0C */	mulli r3, r26, 0xc
 /* 8035DE90 0035ADD0  38 63 00 10 */	addi r3, r3, 0x10
 /* 8035DE94 0035ADD4  4B CC 61 19 */	bl __nwa__FUl
-/* 8035DE98 0035ADD8  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8035DE98 0035ADD8  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8035DE9C 0035ADDC  7F 47 D3 78 */	mr r7, r26
-/* 8035DEA0 0035ADE0  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8035DEA0 0035ADE0  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8035DEA4 0035ADE4  38 A0 00 00 */	li r5, 0
 /* 8035DEA8 0035ADE8  38 C0 00 0C */	li r6, 0xc
 /* 8035DEAC 0035ADEC  4B D6 3B 45 */	bl __construct_new_array
@@ -1297,9 +1297,9 @@ __ct__Q23efx10TKchYodareFPA4_f:
 /* 8035DFD8 0035AF18  1C 7A 00 0C */	mulli r3, r26, 0xc
 /* 8035DFDC 0035AF1C  38 63 00 10 */	addi r3, r3, 0x10
 /* 8035DFE0 0035AF20  4B CC 5F CD */	bl __nwa__FUl
-/* 8035DFE4 0035AF24  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8035DFE4 0035AF24  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8035DFE8 0035AF28  7F 47 D3 78 */	mr r7, r26
-/* 8035DFEC 0035AF2C  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8035DFEC 0035AF2C  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8035DFF0 0035AF30  38 A0 00 00 */	li r5, 0
 /* 8035DFF4 0035AF34  38 C0 00 0C */	li r6, 0xc
 /* 8035DFF8 0035AF38  4B D6 39 F9 */	bl __construct_new_array
@@ -1332,9 +1332,9 @@ __ct__Q23efx10TKchYodareFPA4_f:
 /* 8035E064 0035AFA4  1C 7A 00 0C */	mulli r3, r26, 0xc
 /* 8035E068 0035AFA8  38 63 00 10 */	addi r3, r3, 0x10
 /* 8035E06C 0035AFAC  4B CC 5F 41 */	bl __nwa__FUl
-/* 8035E070 0035AFB0  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8035E070 0035AFB0  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8035E074 0035AFB4  7F 47 D3 78 */	mr r7, r26
-/* 8035E078 0035AFB8  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8035E078 0035AFB8  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8035E07C 0035AFBC  38 A0 00 00 */	li r5, 0
 /* 8035E080 0035AFC0  38 C0 00 0C */	li r6, 0xc
 /* 8035E084 0035AFC4  4B D6 39 6D */	bl __construct_new_array
@@ -2286,7 +2286,7 @@ doFinishStoneState__Q34Game10KingChappy3ObjFv:
 /* 8035EDCC 0035BD0C  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 8035EDD0 0035BD10  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 8035EDD4 0035BD14  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 8035EDD8 0035BD18  4B DB 43 45 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 8035EDD8 0035BD18  4B DB 43 45 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 8035EDDC 0035BD1C  C0 02 03 2C */	lfs f0, lbl_8051E68C@sda21(r2)
 /* 8035EDE0 0035BD20  7F E3 FB 78 */	mr r3, r31
 /* 8035EDE4 0035BD24  38 80 00 00 */	li r4, 0
@@ -2734,8 +2734,8 @@ getPikminInMouth__Q34Game10KingChappy3ObjFb:
 /* 8035F440 0035C380  93 81 00 40 */	stw r28, 0x40(r1)
 /* 8035F444 0035C384  4B E4 08 19 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 8035F448 0035C388  38 00 00 00 */	li r0, 0
-/* 8035F44C 0035C38C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-/* 8035F450 0035C390  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+/* 8035F44C 0035C38C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 8035F450 0035C390  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
 /* 8035F454 0035C394  38 61 00 24 */	addi r3, r1, 0x24
 /* 8035F458 0035C398  28 00 00 00 */	cmplwi r0, 0
 /* 8035F45C 0035C39C  90 81 00 14 */	stw r4, 0x14(r1)
@@ -3182,7 +3182,7 @@ lbl_8035FA94:
 /* 8035FAC8 0035CA08  80 DF 00 C0 */	lwz r6, 0xc0(r31)
 /* 8035FACC 0035CA0C  C0 26 04 9C */	lfs f1, 0x49c(r6)
 /* 8035FAD0 0035CA10  C0 46 04 4C */	lfs f2, 0x44c(r6)
-/* 8035FAD4 0035CA14  4B DB 2C 21 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 8035FAD4 0035CA14  4B DB 2C 21 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 8035FAD8 0035CA18  90 7F 02 30 */	stw r3, 0x230(r31)
 /* 8035FADC 0035CA1C  3C 60 80 4B */	lis r3, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 8035FAE0 0035CA20  38 00 00 00 */	li r0, 0
@@ -4985,12 +4985,12 @@ lbl_803614F4:
 /* 80361520 0035E460  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 80361524 0035E464  38 80 00 06 */	li r4, 6
 /* 80361528 0035E468  38 C0 00 02 */	li r6, 2
-/* 8036152C 0035E46C  4B EF 0D 11 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 8036152C 0035E46C  4B EF 0D 11 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 80361530 0035E470  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80361534 0035E474  7F C5 F3 78 */	mr r5, r30
 /* 80361538 0035E478  38 80 00 0B */	li r4, 0xb
 /* 8036153C 0035E47C  38 C0 00 02 */	li r6, 2
-/* 80361540 0035E480  4B EF 22 41 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80361540 0035E480  4B EF 22 41 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 lbl_80361544:
 /* 80361544 0035E484  C0 02 03 2C */	lfs f0, lbl_8051E68C@sda21(r2)
 /* 80361548 0035E488  D0 1F 00 00 */	stfs f0, 0(r31)

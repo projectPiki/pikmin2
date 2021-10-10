@@ -670,8 +670,8 @@ lbl_8026DA88:
 /* 8026DA98 0026A9D8  28 00 00 00 */	cmplwi r0, 0
 /* 8026DA9C 0026A9DC  40 82 02 68 */	bne lbl_8026DD04
 /* 8026DAA0 0026A9E0  38 00 00 00 */	li r0, 0
-/* 8026DAA4 0026A9E4  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8ItemGate>"@ha
-/* 8026DAA8 0026A9E8  38 83 5A 7C */	addi r4, r3, "__vt__26Iterator<Q24Game8ItemGate>"@l
+/* 8026DAA4 0026A9E4  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 8026DAA8 0026A9E8  38 83 5A 7C */	addi r4, r3, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
 /* 8026DAAC 0026A9EC  38 65 00 30 */	addi r3, r5, 0x30
 /* 8026DAB0 0026A9F0  28 00 00 00 */	cmplwi r0, 0
 /* 8026DAB4 0026A9F4  90 81 00 20 */	stw r4, 0x20(r1)

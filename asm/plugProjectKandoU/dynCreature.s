@@ -1073,8 +1073,8 @@ getVelocity__Q24Game11DynCreatureFv:
 /* 801A8E14 001A5D54  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801A8E18 001A5D58  4E 80 00 20 */	blr 
 
-.global "setVelocity__Q24Game11DynCreatureFR10Vector3<f>"
-"setVelocity__Q24Game11DynCreatureFR10Vector3<f>":
+.global setVelocity__Q24Game11DynCreatureFR10Vector3$$0f$$1
+setVelocity__Q24Game11DynCreatureFR10Vector3$$0f$$1:
 /* 801A8E1C 001A5D5C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 801A8E20 001A5D60  D0 03 01 BC */	stfs f0, 0x1bc(r3)
 /* 801A8E24 001A5D64  C0 04 00 04 */	lfs f0, 4(r4)
@@ -1675,8 +1675,8 @@ get__35MonoObjectMgr$$0Q24Game11DynParticle$$1FPv:
 /* 801A95C0 001A6500  7C 63 02 14 */	add r3, r3, r0
 /* 801A95C4 001A6504  4E 80 00 20 */	blr 
 
-.global "getObject__31Container<Q24Game11DynParticle>FPv"
-"getObject__31Container<Q24Game11DynParticle>FPv":
+.global getObject__31Container$$0Q24Game11DynParticle$$1FPv
+getObject__31Container$$0Q24Game11DynParticle$$1FPv:
 /* 801A95C8 001A6508  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A95CC 001A650C  7C 08 02 A6 */	mflr r0
 /* 801A95D0 001A6510  90 01 00 14 */	stw r0, 0x14(r1)

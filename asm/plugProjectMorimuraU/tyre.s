@@ -186,11 +186,11 @@ lbl_803AC568:
 /* 803AC574 003A94B4  3C 80 80 4E */	lis r4, __vt__Q34Game4Tyre3Obj@ha
 /* 803AC578 003A94B8  39 3F 03 44 */	addi r9, r31, 0x344
 /* 803AC57C 003A94BC  38 A4 64 48 */	addi r5, r4, __vt__Q34Game4Tyre3Obj@l
-/* 803AC580 003A94C0  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
+/* 803AC580 003A94C0  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
 /* 803AC584 003A94C4  90 BF 00 00 */	stw r5, 0(r31)
 /* 803AC588 003A94C8  38 05 01 B0 */	addi r0, r5, 0x1b0
 /* 803AC58C 003A94CC  39 45 02 FC */	addi r10, r5, 0x2fc
-/* 803AC590 003A94D0  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
+/* 803AC590 003A94D0  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
 /* 803AC594 003A94D4  90 1F 01 78 */	stw r0, 0x178(r31)
 /* 803AC598 003A94D8  39 00 00 00 */	li r8, 0
 /* 803AC59C 003A94DC  38 00 00 01 */	li r0, 1
@@ -711,7 +711,7 @@ doFinishStoneState__Q34Game4Tyre3ObjFv:
 /* 803ACD14 003A9C54  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 803ACD18 003A9C58  C0 62 12 58 */	lfs f3, lbl_8051F5B8@sda21(r2)
 /* 803ACD1C 003A9C5C  C0 82 12 68 */	lfs f4, lbl_8051F5C8@sda21(r2)
-/* 803ACD20 003A9C60  4B D6 63 FD */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 803ACD20 003A9C60  4B D6 63 FD */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 803ACD24 003A9C64  7F E3 FB 78 */	mr r3, r31
 /* 803ACD28 003A9C68  4B D5 A6 CD */	bl getStateID__Q24Game9EnemyBaseFv
 /* 803ACD2C 003A9C6C  2C 03 00 00 */	cmpwi r3, 0
@@ -883,8 +883,8 @@ lbl_803ACF98:
 /* 803ACF9C 003A9EDC  38 61 00 68 */	addi r3, r1, 0x68
 /* 803ACFA0 003A9EE0  4B DF 2C BD */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 803ACFA4 003A9EE4  38 00 00 00 */	li r0, 0
-/* 803ACFA8 003A9EE8  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-/* 803ACFAC 003A9EEC  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+/* 803ACFA8 003A9EE8  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 803ACFAC 003A9EEC  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
 /* 803ACFB0 003A9EF0  38 61 00 68 */	addi r3, r1, 0x68
 /* 803ACFB4 003A9EF4  28 00 00 00 */	cmplwi r0, 0
 /* 803ACFB8 003A9EF8  90 81 00 48 */	stw r4, 0x48(r1)
@@ -1866,7 +1866,7 @@ collisionStOff__Q34Game4Tyre3ObjFv:
 /* 803ADDA0 003AACE0  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 803ADDA4 003AACE4  C0 62 12 58 */	lfs f3, lbl_8051F5B8@sda21(r2)
 /* 803ADDA8 003AACE8  C0 82 12 68 */	lfs f4, lbl_8051F5C8@sda21(r2)
-/* 803ADDAC 003AACEC  4B D6 53 71 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 803ADDAC 003AACEC  4B D6 53 71 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 803ADDB0 003AACF0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803ADDB4 003AACF4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803ADDB8 003AACF8  7C 08 03 A6 */	mtlr r0
@@ -1893,12 +1893,12 @@ flick__Q34Game4Tyre3ObjFv:
 /* 803ADE00 003AAD40  38 BF 01 8C */	addi r5, r31, 0x18c
 /* 803ADE04 003AAD44  38 80 00 0F */	li r4, 0xf
 /* 803ADE08 003AAD48  38 C0 00 02 */	li r6, 2
-/* 803ADE0C 003AAD4C  4B EA 44 31 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 803ADE0C 003AAD4C  4B EA 44 31 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 803ADE10 003AAD50  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 803ADE14 003AAD54  38 BF 01 8C */	addi r5, r31, 0x18c
 /* 803ADE18 003AAD58  38 80 00 0D */	li r4, 0xd
 /* 803ADE1C 003AAD5C  38 C0 00 02 */	li r6, 2
-/* 803ADE20 003AAD60  4B EA 59 61 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 803ADE20 003AAD60  4B EA 59 61 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 803ADE24 003AAD64  38 00 00 00 */	li r0, 0
 /* 803ADE28 003AAD68  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 803ADE2C 003AAD6C  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
@@ -2250,7 +2250,7 @@ lbl_803AE2F0:
 /* 803AE348 003AB288  7F E3 FB 78 */	mr r3, r31
 /* 803AE34C 003AB28C  FC 60 F0 90 */	fmr f3, f30
 /* 803AE350 003AB290  38 80 00 00 */	li r4, 0
-/* 803AE354 003AB294  4B D6 4D C9 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 803AE354 003AB294  4B D6 4D C9 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 803AE358 003AB298  E3 E1 00 B8 */	psq_l f31, 184(r1), 0, qr0
 /* 803AE35C 003AB29C  CB E1 00 B0 */	lfd f31, 0xb0(r1)
 /* 803AE360 003AB2A0  E3 C1 00 A8 */	psq_l f30, 168(r1), 0, qr0

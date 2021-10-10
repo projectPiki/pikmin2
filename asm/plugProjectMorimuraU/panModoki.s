@@ -1184,12 +1184,12 @@ damageRumble__Q34Game13PanModokiBase3ObjFv:
 /* 8035069C 0034D5DC  7C 7F 1B 78 */	mr r31, r3
 /* 803506A0 0034D5E0  38 BF 01 8C */	addi r5, r31, 0x18c
 /* 803506A4 0034D5E4  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
-/* 803506A8 0034D5E8  4B F0 1B 95 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 803506A8 0034D5E8  4B F0 1B 95 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 803506AC 0034D5EC  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 803506B0 0034D5F0  38 BF 01 8C */	addi r5, r31, 0x18c
 /* 803506B4 0034D5F4  38 80 00 0B */	li r4, 0xb
 /* 803506B8 0034D5F8  38 C0 00 02 */	li r6, 2
-/* 803506BC 0034D5FC  4B F0 30 C5 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 803506BC 0034D5FC  4B F0 30 C5 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 803506C0 0034D600  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803506C4 0034D604  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803506C8 0034D608  7C 08 03 A6 */	mtlr r0
@@ -1574,7 +1574,7 @@ doFinishStoneState__Q34Game13PanModokiBase3ObjFv:
 /* 80350C04 0034DB44  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 80350C08 0034DB48  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 80350C0C 0034DB4C  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 80350C10 0034DB50  4B DC 25 0D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 80350C10 0034DB50  4B DC 25 0D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 80350C14 0034DB54  C0 02 01 30 */	lfs f0, lbl_8051E490@sda21(r2)
 /* 80350C18 0034DB58  7F E3 FB 78 */	mr r3, r31
 /* 80350C1C 0034DB5C  D0 1F 02 0C */	stfs f0, 0x20c(r31)
@@ -3550,8 +3550,8 @@ lbl_8035284C:
 /* 80352860 0034F7A0  38 61 00 30 */	addi r3, r1, 0x30
 /* 80352864 0034F7A4  4B E4 D3 F9 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80352868 0034F7A8  38 00 00 00 */	li r0, 0
-/* 8035286C 0034F7AC  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-/* 80352870 0034F7B0  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+/* 8035286C 0034F7AC  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 80352870 0034F7B0  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
 /* 80352874 0034F7B4  38 61 00 30 */	addi r3, r1, 0x30
 /* 80352878 0034F7B8  28 00 00 00 */	cmplwi r0, 0
 /* 8035287C 0034F7BC  90 81 00 20 */	stw r4, 0x20(r1)
@@ -4209,8 +4209,8 @@ lbl_803531A4:
 /* 803531A8 003500E8  38 61 00 18 */	addi r3, r1, 0x18
 /* 803531AC 003500EC  4B E4 CA B1 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 803531B0 003500F0  38 00 00 00 */	li r0, 0
-/* 803531B4 003500F4  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-/* 803531B8 003500F8  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+/* 803531B4 003500F4  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 803531B8 003500F8  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
 /* 803531BC 003500FC  38 61 00 18 */	addi r3, r1, 0x18
 /* 803531C0 00350100  28 00 00 00 */	cmplwi r0, 0
 /* 803531C4 00350104  90 81 00 08 */	stw r4, 8(r1)
@@ -4938,7 +4938,7 @@ appearRumble__Q34Game11OoPanModoki3ObjFv:
 /* 80353C14 00350B54  38 A4 01 8C */	addi r5, r4, 0x18c
 /* 80353C18 00350B58  38 80 00 0B */	li r4, 0xb
 /* 80353C1C 00350B5C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
-/* 80353C20 00350B60  4B EF FB 61 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80353C20 00350B60  4B EF FB 61 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80353C24 00350B64  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80353C28 00350B68  7C 08 03 A6 */	mtlr r0
 /* 80353C2C 00350B6C  38 21 00 10 */	addi r1, r1, 0x10
@@ -4954,7 +4954,7 @@ hideRumble__Q34Game11OoPanModoki3ObjFv:
 /* 80353C48 00350B88  38 A4 01 8C */	addi r5, r4, 0x18c
 /* 80353C4C 00350B8C  38 80 00 0A */	li r4, 0xa
 /* 80353C50 00350B90  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
-/* 80353C54 00350B94  4B EF FB 2D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80353C54 00350B94  4B EF FB 2D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80353C58 00350B98  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80353C5C 00350B9C  7C 08 03 A6 */	mtlr r0
 /* 80353C60 00350BA0  38 21 00 10 */	addi r1, r1, 0x10

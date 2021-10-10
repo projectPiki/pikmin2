@@ -1083,12 +1083,12 @@ __dt__Q34Game15BaseGameSection10ZoomCameraFv:
 /* 8023C4CC 0023940C  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 8023C4D0 00239410  90 1F 00 00 */	stw r0, 0(r31)
 /* 8023C4D4 00239414  41 82 00 38 */	beq lbl_8023C50C
-/* 8023C4D8 00239418  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
-/* 8023C4DC 0023941C  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
+/* 8023C4D8 00239418  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
+/* 8023C4DC 0023941C  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
 /* 8023C4E0 00239420  90 1F 00 00 */	stw r0, 0(r31)
 /* 8023C4E4 00239424  41 82 00 28 */	beq lbl_8023C50C
-/* 8023C4E8 00239428  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
-/* 8023C4EC 0023942C  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
+/* 8023C4E8 00239428  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
+/* 8023C4EC 0023942C  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
 /* 8023C4F0 00239430  90 1F 00 00 */	stw r0, 0(r31)
 /* 8023C4F4 00239434  41 82 00 18 */	beq lbl_8023C50C
 /* 8023C4F8 00239438  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha

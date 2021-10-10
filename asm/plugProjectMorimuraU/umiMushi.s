@@ -619,7 +619,7 @@ lbl_803839C4:
 /* 803839D8 00380918  38 9F 03 8C */	addi r4, r31, 0x38c
 /* 803839DC 0038091C  38 A0 01 DE */	li r5, 0x1de
 /* 803839E0 00380920  38 C0 01 DF */	li r6, 0x1df
-/* 803839E4 00380924  48 02 C8 5D */	bl "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
+/* 803839E4 00380924  48 02 C8 5D */	bl __ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs
 /* 803839E8 00380928  3C 60 80 4E */	lis r3, __vt__Q23efx9TUmiHamon@ha
 /* 803839EC 0038092C  38 03 47 60 */	addi r0, r3, __vt__Q23efx9TUmiHamon@l
 /* 803839F0 00380930  90 1E 00 00 */	stw r0, 0(r30)
@@ -1840,7 +1840,7 @@ doFinishStoneState__Q34Game8UmiMushi3ObjFv:
 /* 80384B3C 00381A7C  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 80384B40 00381A80  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 80384B44 00381A84  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 80384B48 00381A88  4B D8 E5 D5 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 80384B48 00381A88  4B D8 E5 D5 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 80384B4C 00381A8C  C0 02 0A 40 */	lfs f0, lbl_8051EDA0@sda21(r2)
 /* 80384B50 00381A90  7F E3 FB 78 */	mr r3, r31
 /* 80384B54 00381A94  D0 1F 02 0C */	stfs f0, 0x20c(r31)
@@ -3043,7 +3043,7 @@ lbl_80385CCC:
 /* 80385CEC 00382C2C  C0 22 0A 68 */	lfs f1, lbl_8051EDC8@sda21(r2)
 /* 80385CF0 00382C30  38 A0 00 00 */	li r5, 0
 /* 80385CF4 00382C34  C0 46 04 4C */	lfs f2, 0x44c(r6)
-/* 80385CF8 00382C38  4B D8 C9 FD */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 80385CF8 00382C38  4B D8 C9 FD */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 80385CFC 00382C3C  7C 7E 1B 78 */	mr r30, r3
 /* 80385D00 00382C40  48 00 00 10 */	b lbl_80385D10
 lbl_80385D04:
@@ -3248,7 +3248,7 @@ lbl_80385FE0:
 /* 80385FEC 00382F2C  38 A0 00 00 */	li r5, 0
 /* 80385FF0 00382F30  C0 26 04 9C */	lfs f1, 0x49c(r6)
 /* 80385FF4 00382F34  C0 46 04 4C */	lfs f2, 0x44c(r6)
-/* 80385FF8 00382F38  4B D8 C6 FD */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 80385FF8 00382F38  4B D8 C6 FD */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 80385FFC 00382F3C  90 7F 02 30 */	stw r3, 0x230(r31)
 /* 80386000 00382F40  7F E3 FB 78 */	mr r3, r31
 /* 80386004 00382F44  38 81 00 08 */	addi r4, r1, 8
@@ -3257,7 +3257,7 @@ lbl_80385FE0:
 /* 80386010 00382F50  C3 81 00 08 */	lfs f28, 8(r1)
 /* 80386014 00382F54  C0 26 04 9C */	lfs f1, 0x49c(r6)
 /* 80386018 00382F58  C0 46 04 4C */	lfs f2, 0x44c(r6)
-/* 8038601C 00382F5C  4B D8 CB 49 */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
+/* 8038601C 00382F5C  4B D8 CB 49 */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
 /* 80386020 00382F60  C0 01 00 08 */	lfs f0, 8(r1)
 /* 80386024 00382F64  FC 00 E0 40 */	fcmpo cr0, f0, f28
 /* 80386028 00382F68  40 80 00 08 */	bge lbl_80386030
@@ -3407,7 +3407,7 @@ lbl_80386240:
 /* 8038624C 0038318C  38 80 00 00 */	li r4, 0
 /* 80386250 00383190  C0 45 05 B4 */	lfs f2, 0x5b4(r5)
 /* 80386254 00383194  38 A0 00 00 */	li r5, 0
-/* 80386258 00383198  4B D8 C9 0D */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
+/* 80386258 00383198  4B D8 C9 0D */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
 /* 8038625C 0038319C  28 03 00 00 */	cmplwi r3, 0
 /* 80386260 003831A0  41 82 00 10 */	beq lbl_80386270
 /* 80386264 003831A4  90 7F 02 30 */	stw r3, 0x230(r31)
@@ -3423,7 +3423,7 @@ lbl_80386270:
 /* 80386288 003831C8  38 80 00 00 */	li r4, 0
 /* 8038628C 003831CC  C0 45 05 B4 */	lfs f2, 0x5b4(r5)
 /* 80386290 003831D0  38 A0 00 00 */	li r5, 0
-/* 80386294 003831D4  4B D8 C4 61 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 80386294 003831D4  4B D8 C4 61 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 80386298 003831D8  28 03 00 00 */	cmplwi r3, 0
 /* 8038629C 003831DC  41 82 00 0C */	beq lbl_803862A8
 /* 803862A0 003831E0  38 60 00 01 */	li r3, 1

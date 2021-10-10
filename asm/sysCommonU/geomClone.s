@@ -18,15 +18,15 @@ clone__Q23Sys10TriDividerFR7Matrixf:
 /* 80421AFC 0041EA3C  41 82 00 74 */	beq lbl_80421B70
 /* 80421B00 0041EA40  4B FE F8 91 */	bl __ct__5CNodeFv
 /* 80421B04 0041EA44  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 80421B08 0041EA48  3C 60 80 4B */	lis r3, "__vt__23Container<10Vector3<f>>"@ha
+/* 80421B08 0041EA48  3C 60 80 4B */	lis r3, __vt__23Container$$010Vector3$$0f$$1$$1@ha
 /* 80421B0C 0041EA4C  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 80421B10 0041EA50  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
+/* 80421B10 0041EA50  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
 /* 80421B14 0041EA54  90 1F 00 00 */	stw r0, 0(r31)
-/* 80421B18 0041EA58  38 03 00 2C */	addi r0, r3, "__vt__23Container<10Vector3<f>>"@l
+/* 80421B18 0041EA58  38 03 00 2C */	addi r0, r3, __vt__23Container$$010Vector3$$0f$$1$$1@l
 /* 80421B1C 0041EA5C  3C 60 80 4F */	lis r3, __vt__Q23Sys11VertexTable@ha
 /* 80421B20 0041EA60  38 C0 00 00 */	li r6, 0
 /* 80421B24 0041EA64  90 1F 00 00 */	stw r0, 0(r31)
-/* 80421B28 0041EA68  38 A4 FF E4 */	addi r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
+/* 80421B28 0041EA68  38 A4 FF E4 */	addi r5, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
 /* 80421B2C 0041EA6C  38 80 00 01 */	li r4, 1
 /* 80421B30 0041EA70  38 03 B5 C0 */	addi r0, r3, __vt__Q23Sys11VertexTable@l
 /* 80421B34 0041EA74  98 DF 00 18 */	stb r6, 0x18(r31)

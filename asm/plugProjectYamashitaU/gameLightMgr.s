@@ -2362,9 +2362,9 @@ __ct__Q24Game12GameLightMgrFPc:
 /* 8011EFAC 0011BEEC  48 2F 23 E5 */	bl __ct__5CNodeFv
 /* 8011EFB0 0011BEF0  38 7E 23 74 */	addi r3, r30, 0x2374
 /* 8011EFB4 0011BEF4  48 2F 23 DD */	bl __ct__5CNodeFv
-/* 8011EFB8 0011BEF8  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8011EFB8 0011BEF8  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8011EFBC 0011BEFC  38 7E 23 8C */	addi r3, r30, 0x238c
-/* 8011EFC0 0011BF00  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8011EFC0 0011BF00  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8011EFC4 0011BF04  38 A0 00 00 */	li r5, 0
 /* 8011EFC8 0011BF08  38 C0 00 0C */	li r6, 0xc
 /* 8011EFCC 0011BF0C  38 E0 00 02 */	li r7, 2
@@ -2604,8 +2604,8 @@ __ct__Q24Game18GameLightEventNodeFv:
 /* 8011F340 0011C280  D0 03 00 3C */	stfs f0, 0x3c(r3)
 /* 8011F344 0011C284  4E 80 00 20 */	blr 
 
-.global "__ct__10Vector3<f>Fv"
-"__ct__10Vector3<f>Fv":
+.global __ct__10Vector3$$0f$$1Fv
+__ct__10Vector3$$0f$$1Fv:
 /* 8011F348 0011C288  4E 80 00 20 */	blr 
 
 .global __dt__Q24Game19GameLightMgrSettingFv

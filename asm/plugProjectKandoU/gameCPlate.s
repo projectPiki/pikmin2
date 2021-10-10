@@ -63,9 +63,9 @@ __ct__Q24Game6CPlateFi:
 /* 8019509C 00191FDC  3C A0 70 30 */	lis r5, 0x70303030@ha
 /* 801950A0 00191FE0  38 03 AC DC */	addi r0, r3, __vt__16GenericContainer@l
 /* 801950A4 00191FE4  39 00 00 00 */	li r8, 0
-/* 801950A8 00191FE8  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8Creature>"@ha
+/* 801950A8 00191FE8  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8Creature$$1@ha
 /* 801950AC 00191FEC  90 1C 00 00 */	stw r0, 0(r28)
-/* 801950B0 00191FF0  38 03 4A 08 */	addi r0, r3, "__vt__27Container<Q24Game8Creature>"@l
+/* 801950B0 00191FF0  38 03 4A 08 */	addi r0, r3, __vt__27Container$$0Q24Game8Creature$$1@l
 /* 801950B4 00191FF4  38 FD 00 A0 */	addi r7, r29, 0xa0
 /* 801950B8 00191FF8  90 1C 00 00 */	stw r0, 0(r28)
 /* 801950BC 00191FFC  3C 60 80 4B */	lis r3, __vt__Q24Game6CPlate@ha
@@ -184,8 +184,8 @@ __ct__Q34Game6CPlate4SlotFv:
 /* 80195274 001921B4  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 80195278 001921B8  4E 80 00 20 */	blr 
 
-.global "__dt__27Container<Q24Game8Creature>Fv"
-"__dt__27Container<Q24Game8Creature>Fv":
+.global __dt__27Container$$0Q24Game8Creature$$1Fv
+__dt__27Container$$0Q24Game8Creature$$1Fv:
 /* 8019527C 001921BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80195280 001921C0  7C 08 02 A6 */	mflr r0
 /* 80195284 001921C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -194,8 +194,8 @@ __ct__Q34Game6CPlate4SlotFv:
 /* 80195290 001921D0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80195294 001921D4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80195298 001921D8  41 82 00 38 */	beq lbl_801952D0
-/* 8019529C 001921DC  3C 80 80 4B */	lis r4, "__vt__27Container<Q24Game8Creature>"@ha
-/* 801952A0 001921E0  38 04 4A 08 */	addi r0, r4, "__vt__27Container<Q24Game8Creature>"@l
+/* 8019529C 001921DC  3C 80 80 4B */	lis r4, __vt__27Container$$0Q24Game8Creature$$1@ha
+/* 801952A0 001921E0  38 04 4A 08 */	addi r0, r4, __vt__27Container$$0Q24Game8Creature$$1@l
 /* 801952A4 001921E4  90 1E 00 00 */	stw r0, 0(r30)
 /* 801952A8 001921E8  41 82 00 18 */	beq lbl_801952C0
 /* 801952AC 001921EC  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1557,8 +1557,8 @@ __dt__Q24Game6CPlateFv:
 /* 801965D8 00193518  38 04 4A 34 */	addi r0, r4, __vt__Q24Game6CPlate@l
 /* 801965DC 0019351C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801965E0 00193520  41 82 00 28 */	beq lbl_80196608
-/* 801965E4 00193524  3C 80 80 4B */	lis r4, "__vt__27Container<Q24Game8Creature>"@ha
-/* 801965E8 00193528  38 04 4A 08 */	addi r0, r4, "__vt__27Container<Q24Game8Creature>"@l
+/* 801965E4 00193524  3C 80 80 4B */	lis r4, __vt__27Container$$0Q24Game8Creature$$1@ha
+/* 801965E8 00193528  38 04 4A 08 */	addi r0, r4, __vt__27Container$$0Q24Game8Creature$$1@l
 /* 801965EC 0019352C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801965F0 00193530  41 82 00 18 */	beq lbl_80196608
 /* 801965F4 00193534  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1580,8 +1580,8 @@ lbl_80196618:
 /* 8019662C 0019356C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80196630 00193570  4E 80 00 20 */	blr 
 
-.global "getObject__27Container<Q24Game8Creature>FPv"
-"getObject__27Container<Q24Game8Creature>FPv":
+.global getObject__27Container$$0Q24Game8Creature$$1FPv
+getObject__27Container$$0Q24Game8Creature$$1FPv:
 /* 80196634 00193574  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80196638 00193578  7C 08 02 A6 */	mflr r0
 /* 8019663C 0019357C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1594,12 +1594,12 @@ lbl_80196618:
 /* 80196658 00193598  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019665C 0019359C  4E 80 00 20 */	blr 
 
-.global "getAt__27Container<Q24Game8Creature>Fi"
-"getAt__27Container<Q24Game8Creature>Fi":
+.global getAt__27Container$$0Q24Game8Creature$$1Fi
+getAt__27Container$$0Q24Game8Creature$$1Fi:
 /* 80196660 001935A0  38 60 00 00 */	li r3, 0
 /* 80196664 001935A4  4E 80 00 20 */	blr 
 
-.global "getTo__27Container<Q24Game8Creature>Fv"
-"getTo__27Container<Q24Game8Creature>Fv":
+.global getTo__27Container$$0Q24Game8Creature$$1Fv
+getTo__27Container$$0Q24Game8Creature$$1Fv:
 /* 80196668 001935A8  38 60 00 00 */	li r3, 0
 /* 8019666C 001935AC  4E 80 00 20 */	blr 

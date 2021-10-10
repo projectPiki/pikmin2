@@ -24,15 +24,15 @@ lbl_8041CEEC:
 /* 8041CF00 00419E40  41 82 00 74 */	beq lbl_8041CF74
 /* 8041CF04 00419E44  4B FF 44 8D */	bl __ct__5CNodeFv
 /* 8041CF08 00419E48  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041CF0C 00419E4C  3C 60 80 4B */	lis r3, "__vt__23Container<10Vector3<f>>"@ha
+/* 8041CF0C 00419E4C  3C 60 80 4B */	lis r3, __vt__23Container$$010Vector3$$0f$$1$$1@ha
 /* 8041CF10 00419E50  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041CF14 00419E54  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
+/* 8041CF14 00419E54  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
 /* 8041CF18 00419E58  90 1D 00 00 */	stw r0, 0(r29)
-/* 8041CF1C 00419E5C  38 03 00 2C */	addi r0, r3, "__vt__23Container<10Vector3<f>>"@l
+/* 8041CF1C 00419E5C  38 03 00 2C */	addi r0, r3, __vt__23Container$$010Vector3$$0f$$1$$1@l
 /* 8041CF20 00419E60  3C 60 80 4F */	lis r3, __vt__Q23Sys11VertexTable@ha
 /* 8041CF24 00419E64  38 C0 00 00 */	li r6, 0
 /* 8041CF28 00419E68  90 1D 00 00 */	stw r0, 0(r29)
-/* 8041CF2C 00419E6C  38 A4 FF E4 */	addi r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
+/* 8041CF2C 00419E6C  38 A4 FF E4 */	addi r5, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
 /* 8041CF30 00419E70  38 80 00 01 */	li r4, 1
 /* 8041CF34 00419E74  38 03 B5 C0 */	addi r0, r3, __vt__Q23Sys11VertexTable@l
 /* 8041CF38 00419E78  98 DD 00 18 */	stb r6, 0x18(r29)
@@ -100,8 +100,8 @@ lbl_8041CFE0:
 /* 8041D024 00419F64  38 21 00 30 */	addi r1, r1, 0x30
 /* 8041D028 00419F68  4E 80 00 20 */	blr 
 
-.global "create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<f>"
-"create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<f>":
+.global create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3$$0f$$1
+create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3$$0f$$1:
 /* 8041D02C 00419F6C  94 21 FE B0 */	stwu r1, -0x150(r1)
 /* 8041D030 00419F70  7C 08 02 A6 */	mflr r0
 /* 8041D034 00419F74  90 01 01 54 */	stw r0, 0x154(r1)
@@ -158,7 +158,7 @@ lbl_8041CFE0:
 /* 8041D100 0041A040  C0 07 00 20 */	lfs f0, 0x20(r7)
 /* 8041D104 0041A044  38 FF 00 78 */	addi r7, r31, 0x78
 /* 8041D108 0041A048  D0 01 00 90 */	stfs f0, 0x90(r1)
-/* 8041D10C 0041A04C  4B FF C4 89 */	bl "getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3<f>R10Vector3<f>RfRf"
+/* 8041D10C 0041A04C  4B FF C4 89 */	bl getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3$$0f$$1R10Vector3$$0f$$1RfRf
 /* 8041D110 0041A050  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 8041D114 0041A054  7F A4 EB 78 */	mr r4, r29
 /* 8041D118 0041A058  7F C5 F3 78 */	mr r5, r30
@@ -170,7 +170,7 @@ lbl_8041CFE0:
 /* 8041D130 0041A070  C0 01 00 08 */	lfs f0, 8(r1)
 /* 8041D134 0041A074  39 21 00 08 */	addi r9, r1, 8
 /* 8041D138 0041A078  D0 1F 00 B4 */	stfs f0, 0xb4(r31)
-/* 8041D13C 0041A07C  4B FF C4 59 */	bl "getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3<f>R10Vector3<f>RfRf"
+/* 8041D13C 0041A07C  4B FF C4 59 */	bl getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3$$0f$$1R10Vector3$$0f$$1RfRf
 /* 8041D140 0041A080  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 8041D144 0041A084  7F A4 EB 78 */	mr r4, r29
 /* 8041D148 0041A088  7F C5 F3 78 */	mr r5, r30
@@ -182,7 +182,7 @@ lbl_8041CFE0:
 /* 8041D160 0041A0A0  C0 01 00 08 */	lfs f0, 8(r1)
 /* 8041D164 0041A0A4  39 21 00 08 */	addi r9, r1, 8
 /* 8041D168 0041A0A8  D0 1F 00 B8 */	stfs f0, 0xb8(r31)
-/* 8041D16C 0041A0AC  4B FF C4 29 */	bl "getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3<f>R10Vector3<f>RfRf"
+/* 8041D16C 0041A0AC  4B FF C4 29 */	bl getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3$$0f$$1R10Vector3$$0f$$1RfRf
 /* 8041D170 0041A0B0  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 8041D174 0041A0B4  C0 42 20 6C */	lfs f2, lbl_805203CC@sda21(r2)
 /* 8041D178 0041A0B8  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -590,13 +590,13 @@ autoDivide__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableii:
 /* 8041D7B0 0041A6F0  28 19 00 00 */	cmplwi r25, 0
 /* 8041D7B4 0041A6F4  41 82 00 7C */	beq lbl_8041D830
 /* 8041D7B8 0041A6F8  38 79 00 D8 */	addi r3, r25, 0xd8
-/* 8041D7BC 0041A6FC  48 00 02 4D */	bl "getNum__17ArrayContainer<i>Fv"
+/* 8041D7BC 0041A6FC  48 00 02 4D */	bl getNum__17ArrayContainer$$0i$$1Fv
 /* 8041D7C0 0041A700  7C 03 F0 00 */	cmpw r3, r30
 /* 8041D7C4 0041A704  40 81 00 6C */	ble lbl_8041D830
 /* 8041D7C8 0041A708  34 1F FF FE */	addic. r0, r31, -2
 /* 8041D7CC 0041A70C  40 81 00 64 */	ble lbl_8041D830
 /* 8041D7D0 0041A710  38 79 00 D8 */	addi r3, r25, 0xd8
-/* 8041D7D4 0041A714  48 00 02 35 */	bl "getNum__17ArrayContainer<i>Fv"
+/* 8041D7D4 0041A714  48 00 02 35 */	bl getNum__17ArrayContainer$$0i$$1Fv
 /* 8041D7D8 0041A718  7F 23 CB 78 */	mr r3, r25
 /* 8041D7DC 0041A71C  7F 84 E3 78 */	mr r4, r28
 /* 8041D7E0 0041A720  7F A5 EB 78 */	mr r5, r29
@@ -625,13 +625,13 @@ lbl_8041D830:
 /* 8041D834 0041A774  28 19 00 00 */	cmplwi r25, 0
 /* 8041D838 0041A778  41 82 00 7C */	beq lbl_8041D8B4
 /* 8041D83C 0041A77C  38 79 00 D8 */	addi r3, r25, 0xd8
-/* 8041D840 0041A780  48 00 01 C9 */	bl "getNum__17ArrayContainer<i>Fv"
+/* 8041D840 0041A780  48 00 01 C9 */	bl getNum__17ArrayContainer$$0i$$1Fv
 /* 8041D844 0041A784  7C 03 F0 00 */	cmpw r3, r30
 /* 8041D848 0041A788  40 81 00 6C */	ble lbl_8041D8B4
 /* 8041D84C 0041A78C  34 1F FF FE */	addic. r0, r31, -2
 /* 8041D850 0041A790  40 81 00 64 */	ble lbl_8041D8B4
 /* 8041D854 0041A794  38 79 00 D8 */	addi r3, r25, 0xd8
-/* 8041D858 0041A798  48 00 01 B1 */	bl "getNum__17ArrayContainer<i>Fv"
+/* 8041D858 0041A798  48 00 01 B1 */	bl getNum__17ArrayContainer$$0i$$1Fv
 /* 8041D85C 0041A79C  7F 23 CB 78 */	mr r3, r25
 /* 8041D860 0041A7A0  7F 84 E3 78 */	mr r4, r28
 /* 8041D864 0041A7A4  7F A5 EB 78 */	mr r5, r29
@@ -674,13 +674,13 @@ lbl_8041D8B4:
 /* 8041D8F0 0041A830  28 1A 00 00 */	cmplwi r26, 0
 /* 8041D8F4 0041A834  41 82 00 7C */	beq lbl_8041D970
 /* 8041D8F8 0041A838  38 7A 00 D8 */	addi r3, r26, 0xd8
-/* 8041D8FC 0041A83C  48 00 01 0D */	bl "getNum__17ArrayContainer<i>Fv"
+/* 8041D8FC 0041A83C  48 00 01 0D */	bl getNum__17ArrayContainer$$0i$$1Fv
 /* 8041D900 0041A840  7C 03 F0 00 */	cmpw r3, r30
 /* 8041D904 0041A844  40 81 00 6C */	ble lbl_8041D970
 /* 8041D908 0041A848  34 1F FF FE */	addic. r0, r31, -2
 /* 8041D90C 0041A84C  40 81 00 64 */	ble lbl_8041D970
 /* 8041D910 0041A850  38 7A 00 D8 */	addi r3, r26, 0xd8
-/* 8041D914 0041A854  48 00 00 F5 */	bl "getNum__17ArrayContainer<i>Fv"
+/* 8041D914 0041A854  48 00 00 F5 */	bl getNum__17ArrayContainer$$0i$$1Fv
 /* 8041D918 0041A858  7F 43 D3 78 */	mr r3, r26
 /* 8041D91C 0041A85C  7F 84 E3 78 */	mr r4, r28
 /* 8041D920 0041A860  7F A5 EB 78 */	mr r5, r29
@@ -709,13 +709,13 @@ lbl_8041D970:
 /* 8041D974 0041A8B4  28 19 00 00 */	cmplwi r25, 0
 /* 8041D978 0041A8B8  41 82 00 7C */	beq lbl_8041D9F4
 /* 8041D97C 0041A8BC  38 79 00 D8 */	addi r3, r25, 0xd8
-/* 8041D980 0041A8C0  48 00 00 89 */	bl "getNum__17ArrayContainer<i>Fv"
+/* 8041D980 0041A8C0  48 00 00 89 */	bl getNum__17ArrayContainer$$0i$$1Fv
 /* 8041D984 0041A8C4  7C 03 F0 00 */	cmpw r3, r30
 /* 8041D988 0041A8C8  40 81 00 6C */	ble lbl_8041D9F4
 /* 8041D98C 0041A8CC  34 1F FF FE */	addic. r0, r31, -2
 /* 8041D990 0041A8D0  40 81 00 64 */	ble lbl_8041D9F4
 /* 8041D994 0041A8D4  38 79 00 D8 */	addi r3, r25, 0xd8
-/* 8041D998 0041A8D8  48 00 00 71 */	bl "getNum__17ArrayContainer<i>Fv"
+/* 8041D998 0041A8D8  48 00 00 71 */	bl getNum__17ArrayContainer$$0i$$1Fv
 /* 8041D99C 0041A8DC  7F 23 CB 78 */	mr r3, r25
 /* 8041D9A0 0041A8E0  7F 84 E3 78 */	mr r4, r28
 /* 8041D9A4 0041A8E4  7F A5 EB 78 */	mr r5, r29
@@ -746,8 +746,8 @@ lbl_8041D9F4:
 /* 8041DA00 0041A940  38 21 00 30 */	addi r1, r1, 0x30
 /* 8041DA04 0041A944  4E 80 00 20 */	blr 
 
-.global "getNum__17ArrayContainer<i>Fv"
-"getNum__17ArrayContainer<i>Fv":
+.global getNum__17ArrayContainer$$0i$$1Fv
+getNum__17ArrayContainer$$0i$$1Fv:
 /* 8041DA08 0041A948  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8041DA0C 0041A94C  4E 80 00 20 */	blr 
 
@@ -961,9 +961,9 @@ lbl_8041DCBC:
 /* 8041DCEC 0041AC2C  38 C0 00 10 */	li r6, 0x10
 /* 8041DCF0 0041AC30  38 E0 00 06 */	li r7, 6
 /* 8041DCF4 0041AC34  4B CA 3B 49 */	bl __construct_array
-/* 8041DCF8 0041AC38  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8041DCF8 0041AC38  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8041DCFC 0041AC3C  38 7F 00 84 */	addi r3, r31, 0x84
-/* 8041DD00 0041AC40  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8041DD00 0041AC40  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8041DD04 0041AC44  38 A0 00 00 */	li r5, 0
 /* 8041DD08 0041AC48  38 C0 00 0C */	li r6, 0xc
 /* 8041DD0C 0041AC4C  38 E0 00 03 */	li r7, 3
@@ -978,16 +978,16 @@ lbl_8041DCBC:
 /* 8041DD30 0041AC70  D0 3F 00 D4 */	stfs f1, 0xd4(r31)
 /* 8041DD34 0041AC74  4B FF 36 5D */	bl __ct__5CNodeFv
 /* 8041DD38 0041AC78  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041DD3C 0041AC7C  3C 60 80 4B */	lis r3, "__vt__12Container<i>"@ha
+/* 8041DD3C 0041AC7C  3C 60 80 4B */	lis r3, __vt__12Container$$0i$$1@ha
 /* 8041DD40 0041AC80  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041DD44 0041AC84  3C A0 80 4B */	lis r5, "__vt__17ArrayContainer<i>"@ha
+/* 8041DD44 0041AC84  3C A0 80 4B */	lis r5, __vt__17ArrayContainer$$0i$$1@ha
 /* 8041DD48 0041AC88  90 19 00 00 */	stw r0, 0(r25)
-/* 8041DD4C 0041AC8C  38 03 FE E0 */	addi r0, r3, "__vt__12Container<i>"@l
+/* 8041DD4C 0041AC8C  38 03 FE E0 */	addi r0, r3, __vt__12Container$$0i$$1@l
 /* 8041DD50 0041AC90  3C 80 80 4B */	lis r4, __vt__Q23Sys9IndexList@ha
 /* 8041DD54 0041AC94  3C 60 80 4B */	lis r3, __vt__Q23Sys12TriIndexList@ha
 /* 8041DD58 0041AC98  90 19 00 00 */	stw r0, 0(r25)
 /* 8041DD5C 0041AC9C  38 E0 00 00 */	li r7, 0
-/* 8041DD60 0041ACA0  38 C5 FF 0C */	addi r6, r5, "__vt__17ArrayContainer<i>"@l
+/* 8041DD60 0041ACA0  38 C5 FF 0C */	addi r6, r5, __vt__17ArrayContainer$$0i$$1@l
 /* 8041DD64 0041ACA4  38 A0 00 01 */	li r5, 1
 /* 8041DD68 0041ACA8  98 F9 00 18 */	stb r7, 0x18(r25)
 /* 8041DD6C 0041ACAC  38 84 FF 54 */	addi r4, r4, __vt__Q23Sys9IndexList@l
@@ -1024,9 +1024,9 @@ lbl_8041DDA0:
 /* 8041DDE4 0041AD24  38 C0 00 10 */	li r6, 0x10
 /* 8041DDE8 0041AD28  38 E0 00 06 */	li r7, 6
 /* 8041DDEC 0041AD2C  4B CA 3A 51 */	bl __construct_array
-/* 8041DDF0 0041AD30  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8041DDF0 0041AD30  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8041DDF4 0041AD34  38 79 00 84 */	addi r3, r25, 0x84
-/* 8041DDF8 0041AD38  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8041DDF8 0041AD38  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8041DDFC 0041AD3C  38 A0 00 00 */	li r5, 0
 /* 8041DE00 0041AD40  38 C0 00 0C */	li r6, 0xc
 /* 8041DE04 0041AD44  38 E0 00 03 */	li r7, 3
@@ -1041,16 +1041,16 @@ lbl_8041DDA0:
 /* 8041DE28 0041AD68  D0 39 00 D4 */	stfs f1, 0xd4(r25)
 /* 8041DE2C 0041AD6C  4B FF 35 65 */	bl __ct__5CNodeFv
 /* 8041DE30 0041AD70  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041DE34 0041AD74  3C 60 80 4B */	lis r3, "__vt__12Container<i>"@ha
+/* 8041DE34 0041AD74  3C 60 80 4B */	lis r3, __vt__12Container$$0i$$1@ha
 /* 8041DE38 0041AD78  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041DE3C 0041AD7C  3C A0 80 4B */	lis r5, "__vt__17ArrayContainer<i>"@ha
+/* 8041DE3C 0041AD7C  3C A0 80 4B */	lis r5, __vt__17ArrayContainer$$0i$$1@ha
 /* 8041DE40 0041AD80  90 18 00 00 */	stw r0, 0(r24)
-/* 8041DE44 0041AD84  38 03 FE E0 */	addi r0, r3, "__vt__12Container<i>"@l
+/* 8041DE44 0041AD84  38 03 FE E0 */	addi r0, r3, __vt__12Container$$0i$$1@l
 /* 8041DE48 0041AD88  3C 80 80 4B */	lis r4, __vt__Q23Sys9IndexList@ha
 /* 8041DE4C 0041AD8C  3C 60 80 4B */	lis r3, __vt__Q23Sys12TriIndexList@ha
 /* 8041DE50 0041AD90  90 18 00 00 */	stw r0, 0(r24)
 /* 8041DE54 0041AD94  38 E0 00 00 */	li r7, 0
-/* 8041DE58 0041AD98  38 C5 FF 0C */	addi r6, r5, "__vt__17ArrayContainer<i>"@l
+/* 8041DE58 0041AD98  38 C5 FF 0C */	addi r6, r5, __vt__17ArrayContainer$$0i$$1@l
 /* 8041DE5C 0041AD9C  38 A0 00 01 */	li r5, 1
 /* 8041DE60 0041ADA0  98 F8 00 18 */	stb r7, 0x18(r24)
 /* 8041DE64 0041ADA4  38 84 FF 54 */	addi r4, r4, __vt__Q23Sys9IndexList@l
@@ -1141,7 +1141,7 @@ lbl_8041DF88:
 /* 8041DFA0 0041AEE0  38 C1 00 90 */	addi r6, r1, 0x90
 /* 8041DFA4 0041AEE4  38 78 00 D8 */	addi r3, r24, 0xd8
 /* 8041DFA8 0041AEE8  38 E1 00 18 */	addi r7, r1, 0x18
-/* 8041DFAC 0041AEEC  4B FF B7 39 */	bl "makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3<f>"
+/* 8041DFAC 0041AEEC  4B FF B7 39 */	bl makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3$$0f$$1
 /* 8041DFB0 0041AEF0  38 61 00 B4 */	addi r3, r1, 0xb4
 /* 8041DFB4 0041AEF4  4B FF 3C BD */	bl makeIdentity__8Matrix3fFv
 /* 8041DFB8 0041AEF8  38 61 00 90 */	addi r3, r1, 0x90
@@ -1154,14 +1154,14 @@ lbl_8041DF88:
 /* 8041DFD4 0041AF14  38 C1 00 D8 */	addi r6, r1, 0xd8
 /* 8041DFD8 0041AF18  38 E1 00 B4 */	addi r7, r1, 0xb4
 /* 8041DFDC 0041AF1C  39 01 00 18 */	addi r8, r1, 0x18
-/* 8041DFE0 0041AF20  4B FF F0 4D */	bl "create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<f>"
+/* 8041DFE0 0041AF20  4B FF F0 4D */	bl create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3$$0f$$1
 /* 8041DFE4 0041AF24  83 1A 00 C4 */	lwz r24, 0xc4(r26)
 /* 8041DFE8 0041AF28  7F 64 DB 78 */	mr r4, r27
 /* 8041DFEC 0041AF2C  7F 85 E3 78 */	mr r5, r28
 /* 8041DFF0 0041AF30  38 C1 00 24 */	addi r6, r1, 0x24
 /* 8041DFF4 0041AF34  38 78 00 D8 */	addi r3, r24, 0xd8
 /* 8041DFF8 0041AF38  38 E1 00 0C */	addi r7, r1, 0xc
-/* 8041DFFC 0041AF3C  4B FF B6 E9 */	bl "makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3<f>"
+/* 8041DFFC 0041AF3C  4B FF B6 E9 */	bl makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3$$0f$$1
 /* 8041E000 0041AF40  38 61 00 48 */	addi r3, r1, 0x48
 /* 8041E004 0041AF44  4B FF 3C 6D */	bl makeIdentity__8Matrix3fFv
 /* 8041E008 0041AF48  38 61 00 24 */	addi r3, r1, 0x24
@@ -1174,7 +1174,7 @@ lbl_8041DF88:
 /* 8041E024 0041AF64  38 C1 00 6C */	addi r6, r1, 0x6c
 /* 8041E028 0041AF68  38 E1 00 48 */	addi r7, r1, 0x48
 /* 8041E02C 0041AF6C  39 01 00 0C */	addi r8, r1, 0xc
-/* 8041E030 0041AF70  4B FF EF FD */	bl "create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<f>"
+/* 8041E030 0041AF70  4B FF EF FD */	bl create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3$$0f$$1
 /* 8041E034 0041AF74  38 60 00 01 */	li r3, 1
 lbl_8041E038:
 /* 8041E038 0041AF78  E3 E1 01 38 */	psq_l f31, 312(r1), 0, qr0
@@ -1216,9 +1216,9 @@ __ct__Q23Sys7OBBTreeFv:
 /* 8041E0BC 0041AFFC  38 C0 00 10 */	li r6, 0x10
 /* 8041E0C0 0041B000  38 E0 00 06 */	li r7, 6
 /* 8041E0C4 0041B004  4B CA 37 79 */	bl __construct_array
-/* 8041E0C8 0041B008  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8041E0C8 0041B008  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8041E0CC 0041B00C  38 7E 00 84 */	addi r3, r30, 0x84
-/* 8041E0D0 0041B010  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8041E0D0 0041B010  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8041E0D4 0041B014  38 A0 00 00 */	li r5, 0
 /* 8041E0D8 0041B018  38 C0 00 0C */	li r6, 0xc
 /* 8041E0DC 0041B01C  38 E0 00 03 */	li r7, 3
@@ -1233,16 +1233,16 @@ __ct__Q23Sys7OBBTreeFv:
 /* 8041E100 0041B040  D0 3E 00 D4 */	stfs f1, 0xd4(r30)
 /* 8041E104 0041B044  4B FF 32 8D */	bl __ct__5CNodeFv
 /* 8041E108 0041B048  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041E10C 0041B04C  3C 60 80 4B */	lis r3, "__vt__12Container<i>"@ha
+/* 8041E10C 0041B04C  3C 60 80 4B */	lis r3, __vt__12Container$$0i$$1@ha
 /* 8041E110 0041B050  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041E114 0041B054  3C A0 80 4B */	lis r5, "__vt__17ArrayContainer<i>"@ha
+/* 8041E114 0041B054  3C A0 80 4B */	lis r5, __vt__17ArrayContainer$$0i$$1@ha
 /* 8041E118 0041B058  90 1D 00 00 */	stw r0, 0(r29)
-/* 8041E11C 0041B05C  38 03 FE E0 */	addi r0, r3, "__vt__12Container<i>"@l
+/* 8041E11C 0041B05C  38 03 FE E0 */	addi r0, r3, __vt__12Container$$0i$$1@l
 /* 8041E120 0041B060  3C 80 80 4B */	lis r4, __vt__Q23Sys9IndexList@ha
 /* 8041E124 0041B064  3C 60 80 4B */	lis r3, __vt__Q23Sys12TriIndexList@ha
 /* 8041E128 0041B068  90 1D 00 00 */	stw r0, 0(r29)
 /* 8041E12C 0041B06C  39 00 00 00 */	li r8, 0
-/* 8041E130 0041B070  38 E5 FF 0C */	addi r7, r5, "__vt__17ArrayContainer<i>"@l
+/* 8041E130 0041B070  38 E5 FF 0C */	addi r7, r5, __vt__17ArrayContainer$$0i$$1@l
 /* 8041E134 0041B074  38 C0 00 01 */	li r6, 1
 /* 8041E138 0041B078  99 1D 00 18 */	stb r8, 0x18(r29)
 /* 8041E13C 0041B07C  38 A4 FF 54 */	addi r5, r4, __vt__Q23Sys9IndexList@l
@@ -1358,12 +1358,12 @@ lbl_8041E2BC:
 /* 8041E2C8 0041B208  40 82 00 14 */	bne lbl_8041E2DC
 /* 8041E2CC 0041B20C  7F E4 FB 78 */	mr r4, r31
 /* 8041E2D0 0041B210  38 7E 00 C8 */	addi r3, r30, 0xc8
-/* 8041E2D4 0041B214  48 00 03 89 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041E2D4 0041B214  48 00 03 89 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041E2D8 0041B218  48 00 00 44 */	b lbl_8041E31C
 lbl_8041E2DC:
 /* 8041E2DC 0041B21C  7F E4 FB 78 */	mr r4, r31
 /* 8041E2E0 0041B220  38 61 00 2C */	addi r3, r1, 0x2c
-/* 8041E2E4 0041B224  4B D1 72 3D */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 8041E2E4 0041B224  4B D1 72 3D */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8041E2E8 0041B228  C0 5E 00 C8 */	lfs f2, 0xc8(r30)
 /* 8041E2EC 0041B22C  38 7E 00 C8 */	addi r3, r30, 0xc8
 /* 8041E2F0 0041B230  C0 3F 00 00 */	lfs f1, 0(r31)
@@ -1376,7 +1376,7 @@ lbl_8041E2DC:
 /* 8041E30C 0041B24C  EC 23 08 BC */	fnmsubs f1, f3, f2, f1
 /* 8041E310 0041B250  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8041E314 0041B254  D0 01 00 30 */	stfs f0, 0x30(r1)
-/* 8041E318 0041B258  48 00 03 45 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041E318 0041B258  48 00 03 45 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 lbl_8041E31C:
 /* 8041E31C 0041B25C  C0 02 20 70 */	lfs f0, lbl_805203D0@sda21(r2)
 /* 8041E320 0041B260  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -1427,12 +1427,12 @@ lbl_8041E3B8:
 /* 8041E3C4 0041B304  40 82 00 14 */	bne lbl_8041E3D8
 /* 8041E3C8 0041B308  7F E4 FB 78 */	mr r4, r31
 /* 8041E3CC 0041B30C  38 7E 00 C8 */	addi r3, r30, 0xc8
-/* 8041E3D0 0041B310  48 00 02 8D */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041E3D0 0041B310  48 00 02 8D */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041E3D4 0041B314  48 00 00 44 */	b lbl_8041E418
 lbl_8041E3D8:
 /* 8041E3D8 0041B318  7F E4 FB 78 */	mr r4, r31
 /* 8041E3DC 0041B31C  38 61 00 20 */	addi r3, r1, 0x20
-/* 8041E3E0 0041B320  4B D1 71 41 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 8041E3E0 0041B320  4B D1 71 41 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8041E3E4 0041B324  C0 5E 00 C8 */	lfs f2, 0xc8(r30)
 /* 8041E3E8 0041B328  38 7E 00 C8 */	addi r3, r30, 0xc8
 /* 8041E3EC 0041B32C  C0 3F 00 00 */	lfs f1, 0(r31)
@@ -1445,7 +1445,7 @@ lbl_8041E3D8:
 /* 8041E408 0041B348  EC 23 08 BC */	fnmsubs f1, f3, f2, f1
 /* 8041E40C 0041B34C  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8041E410 0041B350  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 8041E414 0041B354  48 00 02 49 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041E414 0041B354  48 00 02 49 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 lbl_8041E418:
 /* 8041E418 0041B358  C0 02 20 70 */	lfs f0, lbl_805203D0@sda21(r2)
 /* 8041E41C 0041B35C  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -1490,12 +1490,12 @@ lbl_8041E49C:
 /* 8041E4A8 0041B3E8  40 82 00 14 */	bne lbl_8041E4BC
 /* 8041E4AC 0041B3EC  7F E4 FB 78 */	mr r4, r31
 /* 8041E4B0 0041B3F0  38 7E 00 C8 */	addi r3, r30, 0xc8
-/* 8041E4B4 0041B3F4  48 00 01 A9 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041E4B4 0041B3F4  48 00 01 A9 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041E4B8 0041B3F8  48 00 00 44 */	b lbl_8041E4FC
 lbl_8041E4BC:
 /* 8041E4BC 0041B3FC  7F E4 FB 78 */	mr r4, r31
 /* 8041E4C0 0041B400  38 61 00 14 */	addi r3, r1, 0x14
-/* 8041E4C4 0041B404  4B D1 70 5D */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 8041E4C4 0041B404  4B D1 70 5D */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8041E4C8 0041B408  C0 5E 00 C8 */	lfs f2, 0xc8(r30)
 /* 8041E4CC 0041B40C  38 7E 00 C8 */	addi r3, r30, 0xc8
 /* 8041E4D0 0041B410  C0 3F 00 00 */	lfs f1, 0(r31)
@@ -1508,7 +1508,7 @@ lbl_8041E4BC:
 /* 8041E4EC 0041B42C  EC 23 08 BC */	fnmsubs f1, f3, f2, f1
 /* 8041E4F0 0041B430  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8041E4F4 0041B434  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 8041E4F8 0041B438  48 00 01 65 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041E4F8 0041B438  48 00 01 65 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 lbl_8041E4FC:
 /* 8041E4FC 0041B43C  C0 02 20 70 */	lfs f0, lbl_805203D0@sda21(r2)
 /* 8041E500 0041B440  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -1553,12 +1553,12 @@ lbl_8041E580:
 /* 8041E58C 0041B4CC  40 82 00 14 */	bne lbl_8041E5A0
 /* 8041E590 0041B4D0  7F E4 FB 78 */	mr r4, r31
 /* 8041E594 0041B4D4  38 7E 00 C8 */	addi r3, r30, 0xc8
-/* 8041E598 0041B4D8  48 00 00 C5 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041E598 0041B4D8  48 00 00 C5 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041E59C 0041B4DC  48 00 00 44 */	b lbl_8041E5E0
 lbl_8041E5A0:
 /* 8041E5A0 0041B4E0  7F E4 FB 78 */	mr r4, r31
 /* 8041E5A4 0041B4E4  38 61 00 08 */	addi r3, r1, 8
-/* 8041E5A8 0041B4E8  4B D1 6F 79 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 8041E5A8 0041B4E8  4B D1 6F 79 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8041E5AC 0041B4EC  C0 5E 00 C8 */	lfs f2, 0xc8(r30)
 /* 8041E5B0 0041B4F0  38 7E 00 C8 */	addi r3, r30, 0xc8
 /* 8041E5B4 0041B4F4  C0 3F 00 00 */	lfs f1, 0(r31)
@@ -1571,7 +1571,7 @@ lbl_8041E5A0:
 /* 8041E5D0 0041B510  EC 23 08 BC */	fnmsubs f1, f3, f2, f1
 /* 8041E5D4 0041B514  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8041E5D8 0041B518  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 8041E5DC 0041B51C  48 00 00 81 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041E5DC 0041B51C  48 00 00 81 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 lbl_8041E5E0:
 /* 8041E5E0 0041B520  C0 02 20 70 */	lfs f0, lbl_805203D0@sda21(r2)
 /* 8041E5E4 0041B524  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -1608,8 +1608,8 @@ lbl_8041E640:
 /* 8041E654 0041B594  38 21 00 50 */	addi r1, r1, 0x50
 /* 8041E658 0041B598  4E 80 00 20 */	blr 
 
-.global "calcDist__5PlaneCFRC10Vector3<f>"
-"calcDist__5PlaneCFRC10Vector3<f>":
+.global calcDist__5PlaneCFRC10Vector3$$0f$$1
+calcDist__5PlaneCFRC10Vector3$$0f$$1:
 /* 8041E65C 0041B59C  C0 24 00 04 */	lfs f1, 4(r4)
 /* 8041E660 0041B5A0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8041E664 0041B5A4  C0 44 00 00 */	lfs f2, 0(r4)
@@ -1663,7 +1663,7 @@ lbl_8041E6D8:
 /* 8041E704 0041B644  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8041E708 0041B648  C0 1C 00 08 */	lfs f0, 8(r28)
 /* 8041E70C 0041B64C  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8041E710 0041B650  4B FF 94 79 */	bl "insideXZ__Q23Sys8TriangleFR10Vector3<f>"
+/* 8041E710 0041B650  4B FF 94 79 */	bl insideXZ__Q23Sys8TriangleFR10Vector3$$0f$$1
 /* 8041E714 0041B654  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8041E718 0041B658  41 82 00 8C */	beq lbl_8041E7A4
 /* 8041E71C 0041B65C  C0 1C 00 18 */	lfs f0, 0x18(r28)
@@ -1736,7 +1736,7 @@ construct__Q23Sys7OBBTreeFPQ23Sys11VertexTablePQ23Sys13TriangleTableii:
 /* 8041E810 0041B750  38 C1 00 14 */	addi r6, r1, 0x14
 /* 8041E814 0041B754  7F C4 F3 78 */	mr r4, r30
 /* 8041E818 0041B758  38 E1 00 08 */	addi r7, r1, 8
-/* 8041E81C 0041B75C  4B FF AE C9 */	bl "makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3<f>"
+/* 8041E81C 0041B75C  4B FF AE C9 */	bl makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3$$0f$$1
 /* 8041E820 0041B760  38 61 00 38 */	addi r3, r1, 0x38
 /* 8041E824 0041B764  4B FF 34 4D */	bl makeIdentity__8Matrix3fFv
 /* 8041E828 0041B768  38 61 00 14 */	addi r3, r1, 0x14
@@ -1749,7 +1749,7 @@ construct__Q23Sys7OBBTreeFPQ23Sys11VertexTablePQ23Sys13TriangleTableii:
 /* 8041E844 0041B784  38 C1 00 5C */	addi r6, r1, 0x5c
 /* 8041E848 0041B788  38 E1 00 38 */	addi r7, r1, 0x38
 /* 8041E84C 0041B78C  39 01 00 08 */	addi r8, r1, 8
-/* 8041E850 0041B790  4B FF E7 DD */	bl "create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<f>"
+/* 8041E850 0041B790  4B FF E7 DD */	bl create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3$$0f$$1
 /* 8041E854 0041B794  80 9A 00 18 */	lwz r4, 0x18(r26)
 /* 8041E858 0041B798  7F 66 DB 78 */	mr r6, r27
 /* 8041E85C 0041B79C  80 BA 00 1C */	lwz r5, 0x1c(r26)
@@ -1778,15 +1778,15 @@ read__Q23Sys7OBBTreeFR6Stream:
 /* 8041E8AC 0041B7EC  41 82 00 74 */	beq lbl_8041E920
 /* 8041E8B0 0041B7F0  4B FF 2A E1 */	bl __ct__5CNodeFv
 /* 8041E8B4 0041B7F4  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041E8B8 0041B7F8  3C 60 80 4B */	lis r3, "__vt__23Container<10Vector3<f>>"@ha
+/* 8041E8B8 0041B7F8  3C 60 80 4B */	lis r3, __vt__23Container$$010Vector3$$0f$$1$$1@ha
 /* 8041E8BC 0041B7FC  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041E8C0 0041B800  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
+/* 8041E8C0 0041B800  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
 /* 8041E8C4 0041B804  90 1F 00 00 */	stw r0, 0(r31)
-/* 8041E8C8 0041B808  38 03 00 2C */	addi r0, r3, "__vt__23Container<10Vector3<f>>"@l
+/* 8041E8C8 0041B808  38 03 00 2C */	addi r0, r3, __vt__23Container$$010Vector3$$0f$$1$$1@l
 /* 8041E8CC 0041B80C  3C 60 80 4F */	lis r3, __vt__Q23Sys11VertexTable@ha
 /* 8041E8D0 0041B810  38 C0 00 00 */	li r6, 0
 /* 8041E8D4 0041B814  90 1F 00 00 */	stw r0, 0(r31)
-/* 8041E8D8 0041B818  38 A4 FF E4 */	addi r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
+/* 8041E8D8 0041B818  38 A4 FF E4 */	addi r5, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
 /* 8041E8DC 0041B81C  38 80 00 01 */	li r4, 1
 /* 8041E8E0 0041B820  38 03 B5 C0 */	addi r0, r3, __vt__Q23Sys11VertexTable@l
 /* 8041E8E4 0041B824  98 DF 00 18 */	stb r6, 0x18(r31)
@@ -2091,7 +2091,7 @@ lbl_8041ECCC:
 lbl_8041ED38:
 /* 8041ED38 0041BC78  7F 64 DB 78 */	mr r4, r27
 /* 8041ED3C 0041BC7C  38 7A 00 C8 */	addi r3, r26, 0xc8
-/* 8041ED40 0041BC80  4B FF F9 1D */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041ED40 0041BC80  4B FF F9 1D */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041ED44 0041BC84  C0 1B 00 0C */	lfs f0, 0xc(r27)
 /* 8041ED48 0041BC88  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8041ED4C 0041BC8C  40 81 00 3C */	ble lbl_8041ED88
@@ -2186,7 +2186,7 @@ lbl_8041EE48:
 lbl_8041EE8C:
 /* 8041EE8C 0041BDCC  7F 44 D3 78 */	mr r4, r26
 /* 8041EE90 0041BDD0  38 7C 00 C8 */	addi r3, r28, 0xc8
-/* 8041EE94 0041BDD4  4B FF F7 C9 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041EE94 0041BDD4  4B FF F7 C9 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041EE98 0041BDD8  C0 1A 00 0C */	lfs f0, 0xc(r26)
 /* 8041EE9C 0041BDDC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8041EEA0 0041BDE0  40 81 00 3C */	ble lbl_8041EEDC
@@ -2278,7 +2278,7 @@ lbl_8041EF9C:
 lbl_8041EFD4:
 /* 8041EFD4 0041BF14  7F 84 E3 78 */	mr r4, r28
 /* 8041EFD8 0041BF18  38 7A 00 C8 */	addi r3, r26, 0xc8
-/* 8041EFDC 0041BF1C  4B FF F6 81 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041EFDC 0041BF1C  4B FF F6 81 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041EFE0 0041BF20  C0 1C 00 0C */	lfs f0, 0xc(r28)
 /* 8041EFE4 0041BF24  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8041EFE8 0041BF28  40 81 00 3C */	ble lbl_8041F024
@@ -2365,7 +2365,7 @@ lbl_8041F0CC:
 lbl_8041F108:
 /* 8041F108 0041C048  7F 44 D3 78 */	mr r4, r26
 /* 8041F10C 0041C04C  38 7B 00 C8 */	addi r3, r27, 0xc8
-/* 8041F110 0041C050  4B FF F5 4D */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041F110 0041C050  4B FF F5 4D */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041F114 0041C054  C0 1A 00 0C */	lfs f0, 0xc(r26)
 /* 8041F118 0041C058  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8041F11C 0041C05C  40 81 00 3C */	ble lbl_8041F158
@@ -2477,7 +2477,7 @@ lbl_8041F258:
 /* 8041F288 0041C1C8  7F E3 FB 78 */	mr r3, r31
 /* 8041F28C 0041C1CC  7F 44 D3 78 */	mr r4, r26
 /* 8041F290 0041C1D0  38 A1 00 14 */	addi r5, r1, 0x14
-/* 8041F294 0041C1D4  4B FF 79 B5 */	bl "intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>"
+/* 8041F294 0041C1D4  4B FF 79 B5 */	bl intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3$$0f$$1
 /* 8041F298 0041C1D8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8041F29C 0041C1DC  41 82 00 78 */	beq lbl_8041F314
 /* 8041F2A0 0041C1E0  C0 41 00 18 */	lfs f2, 0x18(r1)
@@ -2632,22 +2632,22 @@ lbl_8041F49C:
 /* 8041F4B0 0041C3F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041F4B4 0041C3F4  4E 80 00 20 */	blr 
 
-.global "getMinY__Q23Sys7OBBTreeFR10Vector3<f>"
-"getMinY__Q23Sys7OBBTreeFR10Vector3<f>":
+.global getMinY__Q23Sys7OBBTreeFR10Vector3$$0f$$1
+getMinY__Q23Sys7OBBTreeFR10Vector3$$0f$$1:
 /* 8041F4B8 0041C3F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041F4BC 0041C3FC  7C 08 02 A6 */	mflr r0
 /* 8041F4C0 0041C400  C0 22 20 78 */	lfs f1, lbl_805203D8@sda21(r2)
 /* 8041F4C4 0041C404  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8041F4C8 0041C408  80 A3 00 1C */	lwz r5, 0x1c(r3)
 /* 8041F4CC 0041C40C  38 63 00 20 */	addi r3, r3, 0x20
-/* 8041F4D0 0041C410  48 00 00 15 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F4D0 0041C410  48 00 00 15 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F4D4 0041C414  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8041F4D8 0041C418  7C 08 03 A6 */	mtlr r0
 /* 8041F4DC 0041C41C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041F4E0 0041C420  4E 80 00 20 */	blr 
 
-.global "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
-"getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef":
+.global getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
+getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef:
 /* 8041F4E4 0041C424  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8041F4E8 0041C428  7C 08 02 A6 */	mflr r0
 /* 8041F4EC 0041C42C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2677,7 +2677,7 @@ lbl_8041F540:
 /* 8041F548 0041C488  7F 83 E3 78 */	mr r3, r28
 /* 8041F54C 0041C48C  7F C4 F3 78 */	mr r4, r30
 /* 8041F550 0041C490  7F E5 FB 78 */	mr r5, r31
-/* 8041F554 0041C494  48 00 06 51 */	bl "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
+/* 8041F554 0041C494  48 00 06 51 */	bl getMinYTriList__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTable
 /* 8041F558 0041C498  48 00 06 1C */	b lbl_8041FB74
 lbl_8041F55C:
 /* 8041F55C 0041C49C  C0 02 20 60 */	lfs f0, lbl_805203C0@sda21(r2)
@@ -2722,7 +2722,7 @@ lbl_8041F5C8:
 /* 8041F5F0 0041C530  7F A3 EB 78 */	mr r3, r29
 /* 8041F5F4 0041C534  7F C4 F3 78 */	mr r4, r30
 /* 8041F5F8 0041C538  7F E5 FB 78 */	mr r5, r31
-/* 8041F5FC 0041C53C  48 00 05 A9 */	bl "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
+/* 8041F5FC 0041C53C  48 00 05 A9 */	bl getMinYTriList__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTable
 /* 8041F600 0041C540  48 00 01 28 */	b lbl_8041F728
 lbl_8041F604:
 /* 8041F604 0041C544  C0 22 20 60 */	lfs f1, lbl_805203C0@sda21(r2)
@@ -2731,12 +2731,12 @@ lbl_8041F604:
 /* 8041F610 0041C550  40 82 00 14 */	bne lbl_8041F624
 /* 8041F614 0041C554  7F C4 F3 78 */	mr r4, r30
 /* 8041F618 0041C558  38 7D 00 C8 */	addi r3, r29, 0xc8
-/* 8041F61C 0041C55C  4B FF F0 41 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041F61C 0041C55C  4B FF F0 41 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041F620 0041C560  48 00 00 44 */	b lbl_8041F664
 lbl_8041F624:
 /* 8041F624 0041C564  7F C4 F3 78 */	mr r4, r30
 /* 8041F628 0041C568  38 61 00 2C */	addi r3, r1, 0x2c
-/* 8041F62C 0041C56C  4B D1 5E F5 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 8041F62C 0041C56C  4B D1 5E F5 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8041F630 0041C570  C0 5D 00 C8 */	lfs f2, 0xc8(r29)
 /* 8041F634 0041C574  38 7D 00 C8 */	addi r3, r29, 0xc8
 /* 8041F638 0041C578  C0 3E 00 00 */	lfs f1, 0(r30)
@@ -2749,7 +2749,7 @@ lbl_8041F624:
 /* 8041F654 0041C594  EC 23 08 BC */	fnmsubs f1, f3, f2, f1
 /* 8041F658 0041C598  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8041F65C 0041C59C  D0 01 00 30 */	stfs f0, 0x30(r1)
-/* 8041F660 0041C5A0  4B FF EF FD */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041F660 0041C5A0  4B FF EF FD */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 lbl_8041F664:
 /* 8041F664 0041C5A4  C0 02 20 70 */	lfs f0, lbl_805203D0@sda21(r2)
 /* 8041F668 0041C5A8  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -2760,7 +2760,7 @@ lbl_8041F664:
 /* 8041F67C 0041C5BC  FC 20 F8 90 */	fmr f1, f31
 /* 8041F680 0041C5C0  7F C4 F3 78 */	mr r4, r30
 /* 8041F684 0041C5C4  7F E5 FB 78 */	mr r5, r31
-/* 8041F688 0041C5C8  4B FF FE 5D */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F688 0041C5C8  4B FF FE 5D */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F68C 0041C5CC  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F690 0041C5D0  40 81 00 08 */	ble lbl_8041F698
 /* 8041F694 0041C5D4  48 00 00 94 */	b lbl_8041F728
@@ -2777,7 +2777,7 @@ lbl_8041F6A0:
 /* 8041F6B8 0041C5F8  FC 20 F8 90 */	fmr f1, f31
 /* 8041F6BC 0041C5FC  7F C4 F3 78 */	mr r4, r30
 /* 8041F6C0 0041C600  7F E5 FB 78 */	mr r5, r31
-/* 8041F6C4 0041C604  4B FF FE 21 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F6C4 0041C604  4B FF FE 21 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F6C8 0041C608  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F6CC 0041C60C  40 81 00 08 */	ble lbl_8041F6D4
 /* 8041F6D0 0041C610  48 00 00 58 */	b lbl_8041F728
@@ -2789,7 +2789,7 @@ lbl_8041F6DC:
 /* 8041F6E0 0041C620  80 7D 00 C0 */	lwz r3, 0xc0(r29)
 /* 8041F6E4 0041C624  7F C4 F3 78 */	mr r4, r30
 /* 8041F6E8 0041C628  7F E5 FB 78 */	mr r5, r31
-/* 8041F6EC 0041C62C  4B FF FD F9 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F6EC 0041C62C  4B FF FD F9 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F6F0 0041C630  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F6F4 0041C634  40 81 00 08 */	ble lbl_8041F6FC
 /* 8041F6F8 0041C638  FF C0 08 90 */	fmr f30, f1
@@ -2798,7 +2798,7 @@ lbl_8041F6FC:
 /* 8041F700 0041C640  80 7D 00 C4 */	lwz r3, 0xc4(r29)
 /* 8041F704 0041C644  7F C4 F3 78 */	mr r4, r30
 /* 8041F708 0041C648  7F E5 FB 78 */	mr r5, r31
-/* 8041F70C 0041C64C  4B FF FD D9 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F70C 0041C64C  4B FF FD D9 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F710 0041C650  FC 01 F0 40 */	fcmpo cr0, f1, f30
 /* 8041F714 0041C654  40 81 00 08 */	ble lbl_8041F71C
 /* 8041F718 0041C658  FF C0 08 90 */	fmr f30, f1
@@ -2829,7 +2829,7 @@ lbl_8041F73C:
 /* 8041F768 0041C6A8  7F A3 EB 78 */	mr r3, r29
 /* 8041F76C 0041C6AC  7F C4 F3 78 */	mr r4, r30
 /* 8041F770 0041C6B0  7F E5 FB 78 */	mr r5, r31
-/* 8041F774 0041C6B4  48 00 04 31 */	bl "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
+/* 8041F774 0041C6B4  48 00 04 31 */	bl getMinYTriList__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTable
 /* 8041F778 0041C6B8  48 00 01 28 */	b lbl_8041F8A0
 lbl_8041F77C:
 /* 8041F77C 0041C6BC  C0 22 20 60 */	lfs f1, lbl_805203C0@sda21(r2)
@@ -2838,12 +2838,12 @@ lbl_8041F77C:
 /* 8041F788 0041C6C8  40 82 00 14 */	bne lbl_8041F79C
 /* 8041F78C 0041C6CC  7F C4 F3 78 */	mr r4, r30
 /* 8041F790 0041C6D0  38 7D 00 C8 */	addi r3, r29, 0xc8
-/* 8041F794 0041C6D4  4B FF EE C9 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041F794 0041C6D4  4B FF EE C9 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041F798 0041C6D8  48 00 00 44 */	b lbl_8041F7DC
 lbl_8041F79C:
 /* 8041F79C 0041C6DC  7F C4 F3 78 */	mr r4, r30
 /* 8041F7A0 0041C6E0  38 61 00 20 */	addi r3, r1, 0x20
-/* 8041F7A4 0041C6E4  4B D1 5D 7D */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 8041F7A4 0041C6E4  4B D1 5D 7D */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8041F7A8 0041C6E8  C0 5D 00 C8 */	lfs f2, 0xc8(r29)
 /* 8041F7AC 0041C6EC  38 7D 00 C8 */	addi r3, r29, 0xc8
 /* 8041F7B0 0041C6F0  C0 3E 00 00 */	lfs f1, 0(r30)
@@ -2856,7 +2856,7 @@ lbl_8041F79C:
 /* 8041F7CC 0041C70C  EC 23 08 BC */	fnmsubs f1, f3, f2, f1
 /* 8041F7D0 0041C710  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8041F7D4 0041C714  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 8041F7D8 0041C718  4B FF EE 85 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041F7D8 0041C718  4B FF EE 85 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 lbl_8041F7DC:
 /* 8041F7DC 0041C71C  C0 02 20 70 */	lfs f0, lbl_805203D0@sda21(r2)
 /* 8041F7E0 0041C720  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -2867,7 +2867,7 @@ lbl_8041F7DC:
 /* 8041F7F4 0041C734  FC 20 F8 90 */	fmr f1, f31
 /* 8041F7F8 0041C738  7F C4 F3 78 */	mr r4, r30
 /* 8041F7FC 0041C73C  7F E5 FB 78 */	mr r5, r31
-/* 8041F800 0041C740  4B FF FC E5 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F800 0041C740  4B FF FC E5 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F804 0041C744  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F808 0041C748  40 81 00 08 */	ble lbl_8041F810
 /* 8041F80C 0041C74C  48 00 00 94 */	b lbl_8041F8A0
@@ -2884,7 +2884,7 @@ lbl_8041F818:
 /* 8041F830 0041C770  FC 20 F8 90 */	fmr f1, f31
 /* 8041F834 0041C774  7F C4 F3 78 */	mr r4, r30
 /* 8041F838 0041C778  7F E5 FB 78 */	mr r5, r31
-/* 8041F83C 0041C77C  4B FF FC A9 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F83C 0041C77C  4B FF FC A9 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F840 0041C780  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F844 0041C784  40 81 00 08 */	ble lbl_8041F84C
 /* 8041F848 0041C788  48 00 00 58 */	b lbl_8041F8A0
@@ -2896,7 +2896,7 @@ lbl_8041F854:
 /* 8041F858 0041C798  80 7D 00 C0 */	lwz r3, 0xc0(r29)
 /* 8041F85C 0041C79C  7F C4 F3 78 */	mr r4, r30
 /* 8041F860 0041C7A0  7F E5 FB 78 */	mr r5, r31
-/* 8041F864 0041C7A4  4B FF FC 81 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F864 0041C7A4  4B FF FC 81 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F868 0041C7A8  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F86C 0041C7AC  40 81 00 08 */	ble lbl_8041F874
 /* 8041F870 0041C7B0  FF C0 08 90 */	fmr f30, f1
@@ -2905,7 +2905,7 @@ lbl_8041F874:
 /* 8041F878 0041C7B8  80 7D 00 C4 */	lwz r3, 0xc4(r29)
 /* 8041F87C 0041C7BC  7F C4 F3 78 */	mr r4, r30
 /* 8041F880 0041C7C0  7F E5 FB 78 */	mr r5, r31
-/* 8041F884 0041C7C4  4B FF FC 61 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F884 0041C7C4  4B FF FC 61 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F888 0041C7C8  FC 01 F0 40 */	fcmpo cr0, f1, f30
 /* 8041F88C 0041C7CC  40 81 00 08 */	ble lbl_8041F894
 /* 8041F890 0041C7D0  FF C0 08 90 */	fmr f30, f1
@@ -2930,7 +2930,7 @@ lbl_8041F8B4:
 /* 8041F8C8 0041C808  7F A3 EB 78 */	mr r3, r29
 /* 8041F8CC 0041C80C  7F C4 F3 78 */	mr r4, r30
 /* 8041F8D0 0041C810  7F E5 FB 78 */	mr r5, r31
-/* 8041F8D4 0041C814  48 00 02 D1 */	bl "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
+/* 8041F8D4 0041C814  48 00 02 D1 */	bl getMinYTriList__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTable
 /* 8041F8D8 0041C818  48 00 01 28 */	b lbl_8041FA00
 lbl_8041F8DC:
 /* 8041F8DC 0041C81C  C0 22 20 60 */	lfs f1, lbl_805203C0@sda21(r2)
@@ -2939,12 +2939,12 @@ lbl_8041F8DC:
 /* 8041F8E8 0041C828  40 82 00 14 */	bne lbl_8041F8FC
 /* 8041F8EC 0041C82C  7F C4 F3 78 */	mr r4, r30
 /* 8041F8F0 0041C830  38 7D 00 C8 */	addi r3, r29, 0xc8
-/* 8041F8F4 0041C834  4B FF ED 69 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041F8F4 0041C834  4B FF ED 69 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041F8F8 0041C838  48 00 00 44 */	b lbl_8041F93C
 lbl_8041F8FC:
 /* 8041F8FC 0041C83C  7F C4 F3 78 */	mr r4, r30
 /* 8041F900 0041C840  38 61 00 14 */	addi r3, r1, 0x14
-/* 8041F904 0041C844  4B D1 5C 1D */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 8041F904 0041C844  4B D1 5C 1D */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8041F908 0041C848  C0 5D 00 C8 */	lfs f2, 0xc8(r29)
 /* 8041F90C 0041C84C  38 7D 00 C8 */	addi r3, r29, 0xc8
 /* 8041F910 0041C850  C0 3E 00 00 */	lfs f1, 0(r30)
@@ -2957,7 +2957,7 @@ lbl_8041F8FC:
 /* 8041F92C 0041C86C  EC 23 08 BC */	fnmsubs f1, f3, f2, f1
 /* 8041F930 0041C870  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8041F934 0041C874  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 8041F938 0041C878  4B FF ED 25 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041F938 0041C878  4B FF ED 25 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 lbl_8041F93C:
 /* 8041F93C 0041C87C  C0 02 20 70 */	lfs f0, lbl_805203D0@sda21(r2)
 /* 8041F940 0041C880  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -2968,7 +2968,7 @@ lbl_8041F93C:
 /* 8041F954 0041C894  FC 20 F8 90 */	fmr f1, f31
 /* 8041F958 0041C898  7F C4 F3 78 */	mr r4, r30
 /* 8041F95C 0041C89C  7F E5 FB 78 */	mr r5, r31
-/* 8041F960 0041C8A0  4B FF FB 85 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F960 0041C8A0  4B FF FB 85 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F964 0041C8A4  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F968 0041C8A8  40 81 00 08 */	ble lbl_8041F970
 /* 8041F96C 0041C8AC  48 00 00 94 */	b lbl_8041FA00
@@ -2985,7 +2985,7 @@ lbl_8041F978:
 /* 8041F990 0041C8D0  FC 20 F8 90 */	fmr f1, f31
 /* 8041F994 0041C8D4  7F C4 F3 78 */	mr r4, r30
 /* 8041F998 0041C8D8  7F E5 FB 78 */	mr r5, r31
-/* 8041F99C 0041C8DC  4B FF FB 49 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F99C 0041C8DC  4B FF FB 49 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F9A0 0041C8E0  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F9A4 0041C8E4  40 81 00 08 */	ble lbl_8041F9AC
 /* 8041F9A8 0041C8E8  48 00 00 58 */	b lbl_8041FA00
@@ -2997,7 +2997,7 @@ lbl_8041F9B4:
 /* 8041F9B8 0041C8F8  80 7D 00 C0 */	lwz r3, 0xc0(r29)
 /* 8041F9BC 0041C8FC  7F C4 F3 78 */	mr r4, r30
 /* 8041F9C0 0041C900  7F E5 FB 78 */	mr r5, r31
-/* 8041F9C4 0041C904  4B FF FB 21 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F9C4 0041C904  4B FF FB 21 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F9C8 0041C908  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041F9CC 0041C90C  40 81 00 08 */	ble lbl_8041F9D4
 /* 8041F9D0 0041C910  FF C0 08 90 */	fmr f30, f1
@@ -3006,7 +3006,7 @@ lbl_8041F9D4:
 /* 8041F9D8 0041C918  80 7D 00 C4 */	lwz r3, 0xc4(r29)
 /* 8041F9DC 0041C91C  7F C4 F3 78 */	mr r4, r30
 /* 8041F9E0 0041C920  7F E5 FB 78 */	mr r5, r31
-/* 8041F9E4 0041C924  4B FF FB 01 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041F9E4 0041C924  4B FF FB 01 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041F9E8 0041C928  FC 01 F0 40 */	fcmpo cr0, f1, f30
 /* 8041F9EC 0041C92C  40 81 00 08 */	ble lbl_8041F9F4
 /* 8041F9F0 0041C930  FF C0 08 90 */	fmr f30, f1
@@ -3029,7 +3029,7 @@ lbl_8041FA0C:
 /* 8041FA24 0041C964  7F A3 EB 78 */	mr r3, r29
 /* 8041FA28 0041C968  7F C4 F3 78 */	mr r4, r30
 /* 8041FA2C 0041C96C  7F E5 FB 78 */	mr r5, r31
-/* 8041FA30 0041C970  48 00 01 75 */	bl "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
+/* 8041FA30 0041C970  48 00 01 75 */	bl getMinYTriList__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTable
 /* 8041FA34 0041C974  48 00 01 28 */	b lbl_8041FB5C
 lbl_8041FA38:
 /* 8041FA38 0041C978  C0 22 20 60 */	lfs f1, lbl_805203C0@sda21(r2)
@@ -3038,12 +3038,12 @@ lbl_8041FA38:
 /* 8041FA44 0041C984  40 82 00 14 */	bne lbl_8041FA58
 /* 8041FA48 0041C988  7F C4 F3 78 */	mr r4, r30
 /* 8041FA4C 0041C98C  38 7D 00 C8 */	addi r3, r29, 0xc8
-/* 8041FA50 0041C990  4B FF EC 0D */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041FA50 0041C990  4B FF EC 0D */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 /* 8041FA54 0041C994  48 00 00 44 */	b lbl_8041FA98
 lbl_8041FA58:
 /* 8041FA58 0041C998  7F C4 F3 78 */	mr r4, r30
 /* 8041FA5C 0041C99C  38 61 00 08 */	addi r3, r1, 8
-/* 8041FA60 0041C9A0  4B D1 5A C1 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 8041FA60 0041C9A0  4B D1 5A C1 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8041FA64 0041C9A4  C0 5D 00 C8 */	lfs f2, 0xc8(r29)
 /* 8041FA68 0041C9A8  38 7D 00 C8 */	addi r3, r29, 0xc8
 /* 8041FA6C 0041C9AC  C0 3E 00 00 */	lfs f1, 0(r30)
@@ -3056,7 +3056,7 @@ lbl_8041FA58:
 /* 8041FA88 0041C9C8  EC 23 08 BC */	fnmsubs f1, f3, f2, f1
 /* 8041FA8C 0041C9CC  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8041FA90 0041C9D0  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 8041FA94 0041C9D4  4B FF EB C9 */	bl "calcDist__5PlaneCFRC10Vector3<f>"
+/* 8041FA94 0041C9D4  4B FF EB C9 */	bl calcDist__5PlaneCFRC10Vector3$$0f$$1
 lbl_8041FA98:
 /* 8041FA98 0041C9D8  C0 02 20 70 */	lfs f0, lbl_805203D0@sda21(r2)
 /* 8041FA9C 0041C9DC  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -3067,7 +3067,7 @@ lbl_8041FA98:
 /* 8041FAB0 0041C9F0  FC 20 F8 90 */	fmr f1, f31
 /* 8041FAB4 0041C9F4  7F C4 F3 78 */	mr r4, r30
 /* 8041FAB8 0041C9F8  7F E5 FB 78 */	mr r5, r31
-/* 8041FABC 0041C9FC  4B FF FA 29 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041FABC 0041C9FC  4B FF FA 29 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041FAC0 0041CA00  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041FAC4 0041CA04  40 81 00 08 */	ble lbl_8041FACC
 /* 8041FAC8 0041CA08  48 00 00 94 */	b lbl_8041FB5C
@@ -3084,7 +3084,7 @@ lbl_8041FAD4:
 /* 8041FAEC 0041CA2C  FC 20 F8 90 */	fmr f1, f31
 /* 8041FAF0 0041CA30  7F C4 F3 78 */	mr r4, r30
 /* 8041FAF4 0041CA34  7F E5 FB 78 */	mr r5, r31
-/* 8041FAF8 0041CA38  4B FF F9 ED */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041FAF8 0041CA38  4B FF F9 ED */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041FAFC 0041CA3C  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041FB00 0041CA40  40 81 00 08 */	ble lbl_8041FB08
 /* 8041FB04 0041CA44  48 00 00 58 */	b lbl_8041FB5C
@@ -3096,7 +3096,7 @@ lbl_8041FB10:
 /* 8041FB14 0041CA54  80 7D 00 C0 */	lwz r3, 0xc0(r29)
 /* 8041FB18 0041CA58  7F C4 F3 78 */	mr r4, r30
 /* 8041FB1C 0041CA5C  7F E5 FB 78 */	mr r5, r31
-/* 8041FB20 0041CA60  4B FF F9 C5 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041FB20 0041CA60  4B FF F9 C5 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041FB24 0041CA64  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8041FB28 0041CA68  40 81 00 08 */	ble lbl_8041FB30
 /* 8041FB2C 0041CA6C  FF C0 08 90 */	fmr f30, f1
@@ -3105,7 +3105,7 @@ lbl_8041FB30:
 /* 8041FB34 0041CA74  80 7D 00 C4 */	lwz r3, 0xc4(r29)
 /* 8041FB38 0041CA78  7F C4 F3 78 */	mr r4, r30
 /* 8041FB3C 0041CA7C  7F E5 FB 78 */	mr r5, r31
-/* 8041FB40 0041CA80  4B FF F9 A5 */	bl "getMinY__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTablef"
+/* 8041FB40 0041CA80  4B FF F9 A5 */	bl getMinY__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTablef
 /* 8041FB44 0041CA84  FC 01 F0 40 */	fcmpo cr0, f1, f30
 /* 8041FB48 0041CA88  40 81 00 08 */	ble lbl_8041FB50
 /* 8041FB4C 0041CA8C  FF C0 08 90 */	fmr f30, f1
@@ -3137,8 +3137,8 @@ lbl_8041FB74:
 /* 8041FB9C 0041CADC  38 21 00 70 */	addi r1, r1, 0x70
 /* 8041FBA0 0041CAE0  4E 80 00 20 */	blr 
 
-.global "getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable"
-"getMinYTriList__Q23Sys3OBBFR10Vector3<f>RQ23Sys13TriangleTable":
+.global getMinYTriList__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTable
+getMinYTriList__Q23Sys3OBBFR10Vector3$$0f$$1RQ23Sys13TriangleTable:
 /* 8041FBA4 0041CAE4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8041FBA8 0041CAE8  7C 08 02 A6 */	mflr r0
 /* 8041FBAC 0041CAEC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3165,7 +3165,7 @@ lbl_8041FBD8:
 /* 8041FBFC 0041CB3C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8041FC00 0041CB40  C0 1C 00 08 */	lfs f0, 8(r28)
 /* 8041FC04 0041CB44  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8041FC08 0041CB48  4B FF 7F 81 */	bl "insideXZ__Q23Sys8TriangleFR10Vector3<f>"
+/* 8041FC08 0041CB48  4B FF 7F 81 */	bl insideXZ__Q23Sys8TriangleFR10Vector3$$0f$$1
 /* 8041FC0C 0041CB4C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8041FC10 0041CB50  41 82 00 14 */	beq lbl_8041FC24
 /* 8041FC14 0041CB54  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -3273,9 +3273,9 @@ lbl_8041FD44:
 /* 8041FD88 0041CCC8  38 C0 00 10 */	li r6, 0x10
 /* 8041FD8C 0041CCCC  38 E0 00 06 */	li r7, 6
 /* 8041FD90 0041CCD0  4B CA 1A AD */	bl __construct_array
-/* 8041FD94 0041CCD4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8041FD94 0041CCD4  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8041FD98 0041CCD8  38 7F 00 84 */	addi r3, r31, 0x84
-/* 8041FD9C 0041CCDC  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8041FD9C 0041CCDC  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8041FDA0 0041CCE0  38 A0 00 00 */	li r5, 0
 /* 8041FDA4 0041CCE4  38 C0 00 0C */	li r6, 0xc
 /* 8041FDA8 0041CCE8  38 E0 00 03 */	li r7, 3
@@ -3290,16 +3290,16 @@ lbl_8041FD44:
 /* 8041FDCC 0041CD0C  D0 3F 00 D4 */	stfs f1, 0xd4(r31)
 /* 8041FDD0 0041CD10  4B FF 15 C1 */	bl __ct__5CNodeFv
 /* 8041FDD4 0041CD14  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041FDD8 0041CD18  3C 60 80 4B */	lis r3, "__vt__12Container<i>"@ha
+/* 8041FDD8 0041CD18  3C 60 80 4B */	lis r3, __vt__12Container$$0i$$1@ha
 /* 8041FDDC 0041CD1C  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041FDE0 0041CD20  3C A0 80 4B */	lis r5, "__vt__17ArrayContainer<i>"@ha
+/* 8041FDE0 0041CD20  3C A0 80 4B */	lis r5, __vt__17ArrayContainer$$0i$$1@ha
 /* 8041FDE4 0041CD24  90 1B 00 00 */	stw r0, 0(r27)
-/* 8041FDE8 0041CD28  38 03 FE E0 */	addi r0, r3, "__vt__12Container<i>"@l
+/* 8041FDE8 0041CD28  38 03 FE E0 */	addi r0, r3, __vt__12Container$$0i$$1@l
 /* 8041FDEC 0041CD2C  3C 80 80 4B */	lis r4, __vt__Q23Sys9IndexList@ha
 /* 8041FDF0 0041CD30  3C 60 80 4B */	lis r3, __vt__Q23Sys12TriIndexList@ha
 /* 8041FDF4 0041CD34  90 1B 00 00 */	stw r0, 0(r27)
 /* 8041FDF8 0041CD38  38 E0 00 00 */	li r7, 0
-/* 8041FDFC 0041CD3C  38 C5 FF 0C */	addi r6, r5, "__vt__17ArrayContainer<i>"@l
+/* 8041FDFC 0041CD3C  38 C5 FF 0C */	addi r6, r5, __vt__17ArrayContainer$$0i$$1@l
 /* 8041FE00 0041CD40  38 A0 00 01 */	li r5, 1
 /* 8041FE04 0041CD44  98 FB 00 18 */	stb r7, 0x18(r27)
 /* 8041FE08 0041CD48  38 84 FF 54 */	addi r4, r4, __vt__Q23Sys9IndexList@l
@@ -3343,9 +3343,9 @@ lbl_8041FE58:
 /* 8041FE94 0041CDD4  38 C0 00 10 */	li r6, 0x10
 /* 8041FE98 0041CDD8  38 E0 00 06 */	li r7, 6
 /* 8041FE9C 0041CDDC  4B CA 19 A1 */	bl __construct_array
-/* 8041FEA0 0041CDE0  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 8041FEA0 0041CDE0  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 8041FEA4 0041CDE4  38 7B 00 84 */	addi r3, r27, 0x84
-/* 8041FEA8 0041CDE8  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 8041FEA8 0041CDE8  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 8041FEAC 0041CDEC  38 A0 00 00 */	li r5, 0
 /* 8041FEB0 0041CDF0  38 C0 00 0C */	li r6, 0xc
 /* 8041FEB4 0041CDF4  38 E0 00 03 */	li r7, 3
@@ -3360,16 +3360,16 @@ lbl_8041FE58:
 /* 8041FED8 0041CE18  D0 3B 00 D4 */	stfs f1, 0xd4(r27)
 /* 8041FEDC 0041CE1C  4B FF 14 B5 */	bl __ct__5CNodeFv
 /* 8041FEE0 0041CE20  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041FEE4 0041CE24  3C 60 80 4B */	lis r3, "__vt__12Container<i>"@ha
+/* 8041FEE4 0041CE24  3C 60 80 4B */	lis r3, __vt__12Container$$0i$$1@ha
 /* 8041FEE8 0041CE28  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041FEEC 0041CE2C  3C A0 80 4B */	lis r5, "__vt__17ArrayContainer<i>"@ha
+/* 8041FEEC 0041CE2C  3C A0 80 4B */	lis r5, __vt__17ArrayContainer$$0i$$1@ha
 /* 8041FEF0 0041CE30  90 1E 00 00 */	stw r0, 0(r30)
-/* 8041FEF4 0041CE34  38 03 FE E0 */	addi r0, r3, "__vt__12Container<i>"@l
+/* 8041FEF4 0041CE34  38 03 FE E0 */	addi r0, r3, __vt__12Container$$0i$$1@l
 /* 8041FEF8 0041CE38  3C 80 80 4B */	lis r4, __vt__Q23Sys9IndexList@ha
 /* 8041FEFC 0041CE3C  3C 60 80 4B */	lis r3, __vt__Q23Sys12TriIndexList@ha
 /* 8041FF00 0041CE40  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041FF04 0041CE44  38 E0 00 00 */	li r7, 0
-/* 8041FF08 0041CE48  38 C5 FF 0C */	addi r6, r5, "__vt__17ArrayContainer<i>"@l
+/* 8041FF08 0041CE48  38 C5 FF 0C */	addi r6, r5, __vt__17ArrayContainer$$0i$$1@l
 /* 8041FF0C 0041CE4C  38 A0 00 01 */	li r5, 1
 /* 8041FF10 0041CE50  98 FE 00 18 */	stb r7, 0x18(r30)
 /* 8041FF14 0041CE54  38 84 FF 54 */	addi r4, r4, __vt__Q23Sys9IndexList@l

@@ -317,7 +317,7 @@ doFinishStoneState__Q34Game6Kabuto3ObjFv:
 /* 802E45B0 002E14F0  38 80 00 00 */	li r4, 0
 /* 802E45B4 002E14F4  C0 62 EA 6C */	lfs f3, lbl_8051CDCC@sda21(r2)
 /* 802E45B8 002E14F8  C0 82 EA 8C */	lfs f4, lbl_8051CDEC@sda21(r2)
-/* 802E45BC 002E14FC  4B E2 EB 61 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 802E45BC 002E14FC  4B E2 EB 61 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 802E45C0 002E1500  7F C3 F3 78 */	mr r3, r30
 /* 802E45C4 002E1504  81 9E 00 00 */	lwz r12, 0(r30)
 /* 802E45C8 002E1508  81 8C 02 58 */	lwz r12, 0x258(r12)

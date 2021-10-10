@@ -1082,11 +1082,11 @@ __ct__Q24Game6SeaMgrFv:
 /* 801AF38C 001AC2CC  3C A0 80 4B */	lis r5, __vt__16GenericObjectMgr@ha
 /* 801AF390 001AC2D0  90 1C 00 00 */	stw r0, 0(r28)
 /* 801AF394 001AC2D4  38 03 59 40 */	addi r0, r3, __vt__27Container$$0Q24Game8WaterBox$$1@l
-/* 801AF398 001AC2D8  3C 80 80 4B */	lis r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
+/* 801AF398 001AC2D8  3C 80 80 4B */	lis r4, __vt__27ObjectMgr$$0Q24Game8WaterBox$$1@ha
 /* 801AF39C 001AC2DC  3C 60 80 4B */	lis r3, __vt__31NodeObjectMgr$$0Q24Game8WaterBox$$1@ha
 /* 801AF3A0 001AC2E0  90 1C 00 00 */	stw r0, 0(r28)
 /* 801AF3A4 001AC2E4  38 00 00 00 */	li r0, 0
-/* 801AF3A8 001AC2E8  38 C4 58 C4 */	addi r6, r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
+/* 801AF3A8 001AC2E8  38 C4 58 C4 */	addi r6, r4, __vt__27ObjectMgr$$0Q24Game8WaterBox$$1@l
 /* 801AF3AC 001AC2EC  38 83 58 44 */	addi r4, r3, __vt__31NodeObjectMgr$$0Q24Game8WaterBox$$1@l
 /* 801AF3B0 001AC2F0  98 1C 00 18 */	stb r0, 0x18(r28)
 /* 801AF3B4 001AC2F4  38 05 B5 F0 */	addi r0, r5, __vt__16GenericObjectMgr@l
@@ -1299,8 +1299,8 @@ __dt__31NodeObjectMgr$$0Q24Game8WaterBox$$1Fv:
 lbl_801AF69C:
 /* 801AF69C 001AC5DC  28 1E 00 00 */	cmplwi r30, 0
 /* 801AF6A0 001AC5E0  41 82 00 44 */	beq lbl_801AF6E4
-/* 801AF6A4 001AC5E4  3C 60 80 4B */	lis r3, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
-/* 801AF6A8 001AC5E8  38 63 58 C4 */	addi r3, r3, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
+/* 801AF6A4 001AC5E4  3C 60 80 4B */	lis r3, __vt__27ObjectMgr$$0Q24Game8WaterBox$$1@ha
+/* 801AF6A8 001AC5E8  38 63 58 C4 */	addi r3, r3, __vt__27ObjectMgr$$0Q24Game8WaterBox$$1@l
 /* 801AF6AC 001AC5EC  90 7E 00 00 */	stw r3, 0(r30)
 /* 801AF6B0 001AC5F0  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801AF6B4 001AC5F4  90 1E 00 1C */	stw r0, 0x1c(r30)
@@ -1357,8 +1357,8 @@ lbl_801AF754:
 /* 801AF768 001AC6A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AF76C 001AC6AC  4E 80 00 20 */	blr 
 
-.global "__dt__27ObjectMgr<Q24Game8WaterBox>Fv"
-"__dt__27ObjectMgr<Q24Game8WaterBox>Fv":
+.global __dt__27ObjectMgr$$0Q24Game8WaterBox$$1Fv
+__dt__27ObjectMgr$$0Q24Game8WaterBox$$1Fv:
 /* 801AF770 001AC6B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AF774 001AC6B4  7C 08 02 A6 */	mflr r0
 /* 801AF778 001AC6B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1367,8 +1367,8 @@ lbl_801AF754:
 /* 801AF784 001AC6C4  93 C1 00 08 */	stw r30, 8(r1)
 /* 801AF788 001AC6C8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801AF78C 001AC6CC  41 82 00 50 */	beq lbl_801AF7DC
-/* 801AF790 001AC6D0  3C 80 80 4B */	lis r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
-/* 801AF794 001AC6D4  38 84 58 C4 */	addi r4, r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
+/* 801AF790 001AC6D0  3C 80 80 4B */	lis r4, __vt__27ObjectMgr$$0Q24Game8WaterBox$$1@ha
+/* 801AF794 001AC6D4  38 84 58 C4 */	addi r4, r4, __vt__27ObjectMgr$$0Q24Game8WaterBox$$1@l
 /* 801AF798 001AC6D8  90 9E 00 00 */	stw r4, 0(r30)
 /* 801AF79C 001AC6DC  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801AF7A0 001AC6E0  90 1E 00 1C */	stw r0, 0x1c(r30)
@@ -2107,8 +2107,8 @@ __dt__Q24Game6SeaMgrFv:
 lbl_801B021C:
 /* 801B021C 001AD15C  28 1F 00 00 */	cmplwi r31, 0
 /* 801B0220 001AD160  41 82 00 44 */	beq lbl_801B0264
-/* 801B0224 001AD164  3C 60 80 4B */	lis r3, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
-/* 801B0228 001AD168  38 63 58 C4 */	addi r3, r3, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
+/* 801B0224 001AD164  3C 60 80 4B */	lis r3, __vt__27ObjectMgr$$0Q24Game8WaterBox$$1@ha
+/* 801B0228 001AD168  38 63 58 C4 */	addi r3, r3, __vt__27ObjectMgr$$0Q24Game8WaterBox$$1@l
 /* 801B022C 001AD16C  90 7F 00 00 */	stw r3, 0(r31)
 /* 801B0230 001AD170  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801B0234 001AD174  90 1F 00 1C */	stw r0, 0x1c(r31)

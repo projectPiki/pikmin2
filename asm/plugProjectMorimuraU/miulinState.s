@@ -1163,7 +1163,7 @@ lbl_80363664:
 /* 803636C0 00360600  7F E3 FB 78 */	mr r3, r31
 /* 803636C4 00360604  FC 60 F8 90 */	fmr f3, f31
 /* 803636C8 00360608  38 80 00 00 */	li r4, 0
-/* 803636CC 0036060C  4B DA FA 51 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 803636CC 0036060C  4B DA FA 51 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 803636D0 00360610  FC 20 E0 90 */	fmr f1, f28
 /* 803636D4 00360614  C0 82 04 60 */	lfs f4, lbl_8051E7C0@sda21(r2)
 /* 803636D8 00360618  FC 40 F0 90 */	fmr f2, f30
@@ -1185,7 +1185,7 @@ lbl_80363664:
 /* 80363718 00360658  38 A1 00 70 */	addi r5, r1, 0x70
 /* 8036371C 0036065C  38 80 00 0C */	li r4, 0xc
 /* 80363720 00360660  38 C0 00 02 */	li r6, 2
-/* 80363724 00360664  4B EF 00 5D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80363724 00360664  4B EF 00 5D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80363728 00360668  48 00 00 94 */	b lbl_803637BC
 lbl_8036372C:
 /* 8036372C 0036066C  C0 42 04 6C */	lfs f2, lbl_8051E7CC@sda21(r2)
@@ -1201,7 +1201,7 @@ lbl_8036372C:
 /* 80363754 00360694  38 A1 00 70 */	addi r5, r1, 0x70
 /* 80363758 00360698  38 80 00 0C */	li r4, 0xc
 /* 8036375C 0036069C  38 C0 00 02 */	li r6, 2
-/* 80363760 003606A0  4B EF 00 21 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80363760 003606A0  4B EF 00 21 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80363764 003606A4  48 00 00 58 */	b lbl_803637BC
 lbl_80363768:
 /* 80363768 003606A8  38 00 00 04 */	li r0, 4
@@ -1607,7 +1607,7 @@ exec__Q34Game6Miulin10StateFlickFPQ24Game9EnemyBase:
 /* 80363CF8 00360C38  7F E3 FB 78 */	mr r3, r31
 /* 80363CFC 00360C3C  FC 60 E8 90 */	fmr f3, f29
 /* 80363D00 00360C40  38 80 00 00 */	li r4, 0
-/* 80363D04 00360C44  4B DA F4 19 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 80363D04 00360C44  4B DA F4 19 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 80363D08 00360C48  FC 20 E0 90 */	fmr f1, f28
 /* 80363D0C 00360C4C  C0 82 04 60 */	lfs f4, lbl_8051E7C0@sda21(r2)
 /* 80363D10 00360C50  FC 40 F0 90 */	fmr f2, f30

@@ -26,11 +26,11 @@ lbl_802601B8:
 /* 802601C4 0025D104  3C 80 80 4C */	lis r4, __vt__Q34Game7Qurione3Obj@ha
 /* 802601C8 0025D108  38 1F 02 FC */	addi r0, r31, 0x2fc
 /* 802601CC 0025D10C  38 C4 37 48 */	addi r6, r4, __vt__Q34Game7Qurione3Obj@l
-/* 802601D0 0025D110  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
+/* 802601D0 0025D110  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
 /* 802601D4 0025D114  90 DF 00 00 */	stw r6, 0(r31)
 /* 802601D8 0025D118  38 A6 01 B0 */	addi r5, r6, 0x1b0
 /* 802601DC 0025D11C  39 26 02 FC */	addi r9, r6, 0x2fc
-/* 802601E0 0025D120  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
+/* 802601E0 0025D120  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
 /* 802601E4 0025D124  90 BF 01 78 */	stw r5, 0x178(r31)
 /* 802601E8 0025D128  38 7F 02 D4 */	addi r3, r31, 0x2d4
 /* 802601EC 0025D12C  38 A0 00 00 */	li r5, 0

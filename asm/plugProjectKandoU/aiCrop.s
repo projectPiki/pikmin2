@@ -197,7 +197,7 @@ execClimb__Q26PikiAI7ActCropFv:
 /* 801E4118 001E1058  4B F5 41 61 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 801E411C 001E105C  38 61 00 28 */	addi r3, r1, 0x28
 /* 801E4120 001E1060  38 9F 00 18 */	addi r4, r31, 0x18
-/* 801E4124 001E1064  48 23 19 81 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
+/* 801E4124 001E1064  48 23 19 81 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
 /* 801E4128 001E1068  C0 21 00 2C */	lfs f1, 0x2c(r1)
 /* 801E412C 001E106C  C0 01 00 38 */	lfs f0, 0x38(r1)
 /* 801E4130 001E1070  C0 61 00 28 */	lfs f3, 0x28(r1)
@@ -272,7 +272,7 @@ lbl_801E41C0:
 /* 801E4230 001E1170  4B F5 40 49 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 801E4234 001E1174  38 61 00 08 */	addi r3, r1, 8
 /* 801E4238 001E1178  38 9F 00 18 */	addi r4, r31, 0x18
-/* 801E423C 001E117C  48 23 18 69 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
+/* 801E423C 001E117C  48 23 18 69 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
 /* 801E4240 001E1180  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 801E4244 001E1184  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 801E4248 001E1188  C0 61 00 08 */	lfs f3, 8(r1)
@@ -828,7 +828,7 @@ lbl_801E49DC:
 /* 801E4A58 001E1998  4B F5 38 21 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 801E4A5C 001E199C  38 61 00 14 */	addi r3, r1, 0x14
 /* 801E4A60 001E19A0  38 9F 00 18 */	addi r4, r31, 0x18
-/* 801E4A64 001E19A4  48 23 10 41 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
+/* 801E4A64 001E19A4  48 23 10 41 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
 /* 801E4A68 001E19A8  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 801E4A6C 001E19AC  C0 01 00 24 */	lfs f0, 0x24(r1)
 /* 801E4A70 001E19B0  C0 61 00 14 */	lfs f3, 0x14(r1)

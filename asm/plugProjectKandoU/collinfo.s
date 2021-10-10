@@ -246,15 +246,15 @@ lbl_80133990:
 /* 801339D4 00130914  41 82 00 74 */	beq lbl_80133A48
 /* 801339D8 00130918  48 2D D9 B9 */	bl __ct__5CNodeFv
 /* 801339DC 0013091C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 801339E0 00130920  3C 60 80 4B */	lis r3, "__vt__23Container<10Vector3<f>>"@ha
+/* 801339E0 00130920  3C 60 80 4B */	lis r3, __vt__23Container$$010Vector3$$0f$$1$$1@ha
 /* 801339E4 00130924  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 801339E8 00130928  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
+/* 801339E8 00130928  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
 /* 801339EC 0013092C  90 1D 00 00 */	stw r0, 0(r29)
-/* 801339F0 00130930  38 03 00 2C */	addi r0, r3, "__vt__23Container<10Vector3<f>>"@l
+/* 801339F0 00130930  38 03 00 2C */	addi r0, r3, __vt__23Container$$010Vector3$$0f$$1$$1@l
 /* 801339F4 00130934  3C 60 80 4F */	lis r3, __vt__Q23Sys11VertexTable@ha
 /* 801339F8 00130938  38 C0 00 00 */	li r6, 0
 /* 801339FC 0013093C  90 1D 00 00 */	stw r0, 0(r29)
-/* 80133A00 00130940  38 A4 FF E4 */	addi r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
+/* 80133A00 00130940  38 A4 FF E4 */	addi r5, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
 /* 80133A04 00130944  38 80 00 01 */	li r4, 1
 /* 80133A08 00130948  38 03 B5 C0 */	addi r0, r3, __vt__Q23Sys11VertexTable@l
 /* 80133A0C 0013094C  98 DD 00 18 */	stb r6, 0x18(r29)
@@ -374,9 +374,9 @@ alloc__28ArrayContainer$$010Vector3$$0f$$1$$1Fi:
 /* 80133B98 00130AD8  1C 7F 00 0C */	mulli r3, r31, 0xc
 /* 80133B9C 00130ADC  38 63 00 10 */	addi r3, r3, 0x10
 /* 80133BA0 00130AE0  4B EF 04 0D */	bl __nwa__FUl
-/* 80133BA4 00130AE4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 80133BA4 00130AE4  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 80133BA8 00130AE8  7F E7 FB 78 */	mr r7, r31
-/* 80133BAC 00130AEC  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 80133BAC 00130AEC  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 80133BB0 00130AF0  38 A0 00 00 */	li r5, 0
 /* 80133BB4 00130AF4  38 C0 00 0C */	li r6, 0xc
 /* 80133BB8 00130AF8  4B F8 DE 39 */	bl __construct_new_array
@@ -401,12 +401,12 @@ __dt__28ArrayContainer$$010Vector3$$0f$$1$$1Fv:
 /* 80133BF8 00130B38  93 C1 00 08 */	stw r30, 8(r1)
 /* 80133BFC 00130B3C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80133C00 00130B40  41 82 00 48 */	beq lbl_80133C48
-/* 80133C04 00130B44  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
-/* 80133C08 00130B48  38 04 FF E4 */	addi r0, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
+/* 80133C04 00130B44  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
+/* 80133C08 00130B48  38 04 FF E4 */	addi r0, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
 /* 80133C0C 00130B4C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133C10 00130B50  41 82 00 28 */	beq lbl_80133C38
-/* 80133C14 00130B54  3C 80 80 4B */	lis r4, "__vt__23Container<10Vector3<f>>"@ha
-/* 80133C18 00130B58  38 04 00 2C */	addi r0, r4, "__vt__23Container<10Vector3<f>>"@l
+/* 80133C14 00130B54  3C 80 80 4B */	lis r4, __vt__23Container$$010Vector3$$0f$$1$$1@ha
+/* 80133C18 00130B58  38 04 00 2C */	addi r0, r4, __vt__23Container$$010Vector3$$0f$$1$$1@l
 /* 80133C1C 00130B5C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133C20 00130B60  41 82 00 18 */	beq lbl_80133C38
 /* 80133C24 00130B64  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -438,8 +438,8 @@ __dt__23Container$$010Vector3$$0f$$1$$1Fv:
 /* 80133C78 00130BB8  93 C1 00 08 */	stw r30, 8(r1)
 /* 80133C7C 00130BBC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80133C80 00130BC0  41 82 00 38 */	beq lbl_80133CB8
-/* 80133C84 00130BC4  3C 80 80 4B */	lis r4, "__vt__23Container<10Vector3<f>>"@ha
-/* 80133C88 00130BC8  38 04 00 2C */	addi r0, r4, "__vt__23Container<10Vector3<f>>"@l
+/* 80133C84 00130BC4  3C 80 80 4B */	lis r4, __vt__23Container$$010Vector3$$0f$$1$$1@ha
+/* 80133C88 00130BC8  38 04 00 2C */	addi r0, r4, __vt__23Container$$010Vector3$$0f$$1$$1@l
 /* 80133C8C 00130BCC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133C90 00130BD0  41 82 00 18 */	beq lbl_80133CA8
 /* 80133C94 00130BD4  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -598,12 +598,12 @@ __dt__Q23Sys12TriIndexListFv:
 /* 80133E98 00130DD8  38 04 FF 54 */	addi r0, r4, __vt__Q23Sys9IndexList@l
 /* 80133E9C 00130DDC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133EA0 00130DE0  41 82 00 38 */	beq lbl_80133ED8
-/* 80133EA4 00130DE4  3C 80 80 4B */	lis r4, "__vt__17ArrayContainer<i>"@ha
-/* 80133EA8 00130DE8  38 04 FF 0C */	addi r0, r4, "__vt__17ArrayContainer<i>"@l
+/* 80133EA4 00130DE4  3C 80 80 4B */	lis r4, __vt__17ArrayContainer$$0i$$1@ha
+/* 80133EA8 00130DE8  38 04 FF 0C */	addi r0, r4, __vt__17ArrayContainer$$0i$$1@l
 /* 80133EAC 00130DEC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133EB0 00130DF0  41 82 00 28 */	beq lbl_80133ED8
-/* 80133EB4 00130DF4  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
-/* 80133EB8 00130DF8  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
+/* 80133EB4 00130DF4  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
+/* 80133EB8 00130DF8  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
 /* 80133EBC 00130DFC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133EC0 00130E00  41 82 00 18 */	beq lbl_80133ED8
 /* 80133EC4 00130E04  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -682,12 +682,12 @@ __dt__Q23Sys7OBBTreeFv:
 /* 80133FC4 00130F04  38 04 FF 54 */	addi r0, r4, __vt__Q23Sys9IndexList@l
 /* 80133FC8 00130F08  90 1E 00 F8 */	stw r0, 0xf8(r30)
 /* 80133FCC 00130F0C  41 82 00 38 */	beq lbl_80134004
-/* 80133FD0 00130F10  3C 80 80 4B */	lis r4, "__vt__17ArrayContainer<i>"@ha
-/* 80133FD4 00130F14  38 04 FF 0C */	addi r0, r4, "__vt__17ArrayContainer<i>"@l
+/* 80133FD0 00130F10  3C 80 80 4B */	lis r4, __vt__17ArrayContainer$$0i$$1@ha
+/* 80133FD4 00130F14  38 04 FF 0C */	addi r0, r4, __vt__17ArrayContainer$$0i$$1@l
 /* 80133FD8 00130F18  90 1E 00 F8 */	stw r0, 0xf8(r30)
 /* 80133FDC 00130F1C  41 82 00 28 */	beq lbl_80134004
-/* 80133FE0 00130F20  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
-/* 80133FE4 00130F24  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
+/* 80133FE0 00130F20  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
+/* 80133FE4 00130F24  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
 /* 80133FE8 00130F28  90 1E 00 F8 */	stw r0, 0xf8(r30)
 /* 80133FEC 00130F2C  41 82 00 18 */	beq lbl_80134004
 /* 80133FF0 00130F30  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1642,7 +1642,7 @@ lbl_80134CC4:
 /* 80134D08 00131C48  D0 01 01 BC */	stfs f0, 0x1bc(r1)
 /* 80134D0C 00131C4C  D0 21 01 C0 */	stfs f1, 0x1c0(r1)
 /* 80134D10 00131C50  D0 41 01 C4 */	stfs f2, 0x1c4(r1)
-/* 80134D14 00131C54  48 2E 0E 45 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 80134D14 00131C54  48 2E 0E 45 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 80134D18 00131C58  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80134D1C 00131C5C  41 82 00 1C */	beq lbl_80134D38
 /* 80134D20 00131C60  7F C3 F3 78 */	mr r3, r30
@@ -1679,7 +1679,7 @@ lbl_80134D7C:
 /* 80134D90 00131CD0  C3 FF 00 1C */	lfs f31, 0x1c(r31)
 /* 80134D94 00131CD4  38 61 00 B0 */	addi r3, r1, 0xb0
 /* 80134D98 00131CD8  38 9F 00 4C */	addi r4, r31, 0x4c
-/* 80134D9C 00131CDC  48 00 07 85 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 80134D9C 00131CDC  48 00 07 85 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 80134DA0 00131CE0  D3 E1 00 BC */	stfs f31, 0xbc(r1)
 /* 80134DA4 00131CE4  7F A4 EB 78 */	mr r4, r29
 /* 80134DA8 00131CE8  38 61 00 B0 */	addi r3, r1, 0xb0
@@ -1708,17 +1708,17 @@ lbl_80134DE4:
 /* 80134DFC 00131D3C  3B 63 00 4C */	addi r27, r3, 0x4c
 /* 80134E00 00131D40  38 61 01 88 */	addi r3, r1, 0x188
 /* 80134E04 00131D44  38 9F 00 4C */	addi r4, r31, 0x4c
-/* 80134E08 00131D48  48 00 07 19 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 80134E08 00131D48  48 00 07 19 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 80134E0C 00131D4C  7F 64 DB 78 */	mr r4, r27
 /* 80134E10 00131D50  38 61 01 94 */	addi r3, r1, 0x194
-/* 80134E14 00131D54  48 00 07 0D */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 80134E14 00131D54  48 00 07 0D */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 80134E18 00131D58  D3 E1 01 A0 */	stfs f31, 0x1a0(r1)
 /* 80134E1C 00131D5C  7F A4 EB 78 */	mr r4, r29
 /* 80134E20 00131D60  38 61 01 88 */	addi r3, r1, 0x188
 /* 80134E24 00131D64  38 A1 00 C0 */	addi r5, r1, 0xc0
 /* 80134E28 00131D68  D3 C1 01 A4 */	stfs f30, 0x1a4(r1)
 /* 80134E2C 00131D6C  38 C1 00 1C */	addi r6, r1, 0x1c
-/* 80134E30 00131D70  48 2E 0D 29 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 80134E30 00131D70  48 2E 0D 29 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 80134E34 00131D74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80134E38 00131D78  41 82 00 1C */	beq lbl_80134E54
 /* 80134E3C 00131D7C  7F C3 F3 78 */	mr r3, r30
@@ -1780,12 +1780,12 @@ lbl_80134EE8:
 /* 80134F10 00131E50  38 A5 00 4C */	addi r5, r5, 0x4c
 /* 80134F14 00131E54  48 00 05 A1 */	bl __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
 /* 80134F18 00131E58  38 61 00 88 */	addi r3, r1, 0x88
-/* 80134F1C 00131E5C  4B FE A4 2D */	bl "__ct__10Vector3<f>Fv"
+/* 80134F1C 00131E5C  4B FE A4 2D */	bl __ct__10Vector3$$0f$$1Fv
 /* 80134F20 00131E60  7F A4 EB 78 */	mr r4, r29
 /* 80134F24 00131E64  38 61 01 48 */	addi r3, r1, 0x148
 /* 80134F28 00131E68  38 A1 00 88 */	addi r5, r1, 0x88
 /* 80134F2C 00131E6C  38 C1 00 14 */	addi r6, r1, 0x14
-/* 80134F30 00131E70  48 2E 0C 29 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 80134F30 00131E70  48 2E 0C 29 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 80134F34 00131E74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80134F38 00131E78  41 82 00 1C */	beq lbl_80134F54
 /* 80134F3C 00131E7C  7F C3 F3 78 */	mr r3, r30
@@ -1867,12 +1867,12 @@ lbl_80135030:
 /* 80135058 00131F98  38 A5 00 4C */	addi r5, r5, 0x4c
 /* 8013505C 00131F9C  48 00 04 59 */	bl __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
 /* 80135060 00131FA0  38 61 00 6C */	addi r3, r1, 0x6c
-/* 80135064 00131FA4  4B FE A2 E5 */	bl "__ct__10Vector3<f>Fv"
+/* 80135064 00131FA4  4B FE A2 E5 */	bl __ct__10Vector3$$0f$$1Fv
 /* 80135068 00131FA8  7F A4 EB 78 */	mr r4, r29
 /* 8013506C 00131FAC  38 61 01 28 */	addi r3, r1, 0x128
 /* 80135070 00131FB0  38 A1 00 6C */	addi r5, r1, 0x6c
 /* 80135074 00131FB4  38 C1 00 10 */	addi r6, r1, 0x10
-/* 80135078 00131FB8  48 2E 0A E1 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 80135078 00131FB8  48 2E 0A E1 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 8013507C 00131FBC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80135080 00131FC0  41 82 00 1C */	beq lbl_8013509C
 /* 80135084 00131FC4  7F C3 F3 78 */	mr r3, r30
@@ -1929,7 +1929,7 @@ lbl_80135128:
 /* 8013513C 0013207C  C3 DF 00 1C */	lfs f30, 0x1c(r31)
 /* 80135140 00132080  38 61 00 94 */	addi r3, r1, 0x94
 /* 80135144 00132084  38 9F 00 4C */	addi r4, r31, 0x4c
-/* 80135148 00132088  48 00 03 D9 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 80135148 00132088  48 00 03 D9 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 8013514C 0013208C  D3 C1 00 A0 */	stfs f30, 0xa0(r1)
 /* 80135150 00132090  7F A4 EB 78 */	mr r4, r29
 /* 80135154 00132094  38 61 00 94 */	addi r3, r1, 0x94
@@ -1958,17 +1958,17 @@ lbl_80135190:
 /* 801351A8 001320E8  3B 43 00 4C */	addi r26, r3, 0x4c
 /* 801351AC 001320EC  38 61 01 68 */	addi r3, r1, 0x168
 /* 801351B0 001320F0  38 9F 00 4C */	addi r4, r31, 0x4c
-/* 801351B4 001320F4  48 00 03 6D */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 801351B4 001320F4  48 00 03 6D */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801351B8 001320F8  7F 44 D3 78 */	mr r4, r26
 /* 801351BC 001320FC  38 61 01 74 */	addi r3, r1, 0x174
-/* 801351C0 00132100  48 00 03 61 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
+/* 801351C0 00132100  48 00 03 61 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801351C4 00132104  D3 C1 01 80 */	stfs f30, 0x180(r1)
 /* 801351C8 00132108  7F A4 EB 78 */	mr r4, r29
 /* 801351CC 0013210C  38 61 01 68 */	addi r3, r1, 0x168
 /* 801351D0 00132110  38 A1 00 A4 */	addi r5, r1, 0xa4
 /* 801351D4 00132114  D3 E1 01 84 */	stfs f31, 0x184(r1)
 /* 801351D8 00132118  38 C1 00 18 */	addi r6, r1, 0x18
-/* 801351DC 0013211C  48 2E 09 7D */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 801351DC 0013211C  48 2E 09 7D */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 801351E0 00132120  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801351E4 00132124  41 82 00 1C */	beq lbl_80135200
 /* 801351E8 00132128  7F C3 F3 78 */	mr r3, r30
@@ -2030,12 +2030,12 @@ lbl_80135294:
 /* 801352BC 001321FC  38 A5 00 4C */	addi r5, r5, 0x4c
 /* 801352C0 00132200  48 00 01 F5 */	bl __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
 /* 801352C4 00132204  38 61 00 50 */	addi r3, r1, 0x50
-/* 801352C8 00132208  4B FE A0 81 */	bl "__ct__10Vector3<f>Fv"
+/* 801352C8 00132208  4B FE A0 81 */	bl __ct__10Vector3$$0f$$1Fv
 /* 801352CC 0013220C  7F A4 EB 78 */	mr r4, r29
 /* 801352D0 00132210  38 61 01 08 */	addi r3, r1, 0x108
 /* 801352D4 00132214  38 A1 00 50 */	addi r5, r1, 0x50
 /* 801352D8 00132218  38 C1 00 0C */	addi r6, r1, 0xc
-/* 801352DC 0013221C  48 2E 08 7D */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 801352DC 0013221C  48 2E 08 7D */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 801352E0 00132220  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801352E4 00132224  41 82 00 1C */	beq lbl_80135300
 /* 801352E8 00132228  7F C3 F3 78 */	mr r3, r30
@@ -2117,12 +2117,12 @@ lbl_801353DC:
 /* 80135404 00132344  38 A5 00 4C */	addi r5, r5, 0x4c
 /* 80135408 00132348  48 00 00 AD */	bl __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
 /* 8013540C 0013234C  38 61 00 34 */	addi r3, r1, 0x34
-/* 80135410 00132350  4B FE 9F 39 */	bl "__ct__10Vector3<f>Fv"
+/* 80135410 00132350  4B FE 9F 39 */	bl __ct__10Vector3$$0f$$1Fv
 /* 80135414 00132354  7F A4 EB 78 */	mr r4, r29
 /* 80135418 00132358  38 61 00 E8 */	addi r3, r1, 0xe8
 /* 8013541C 0013235C  38 A1 00 34 */	addi r5, r1, 0x34
 /* 80135420 00132360  38 C1 00 08 */	addi r6, r1, 8
-/* 80135424 00132364  48 2E 07 35 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 80135424 00132364  48 2E 07 35 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 80135428 00132368  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8013542C 0013236C  41 82 00 1C */	beq lbl_80135448
 /* 80135430 00132370  7F C3 F3 78 */	mr r3, r30
@@ -2198,8 +2198,8 @@ isSphere__8CollPartFv:
 /* 80135518 00132458  54 03 D9 7E */	srwi r3, r0, 5
 /* 8013551C 0013245C  4E 80 00 20 */	blr 
 
-.global "__ct__10Vector3<f>FRC10Vector3<f>"
-"__ct__10Vector3<f>FRC10Vector3<f>":
+.global __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
+__ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1:
 /* 80135520 00132460  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80135524 00132464  C0 24 00 04 */	lfs f1, 4(r4)
 /* 80135528 00132468  D0 03 00 00 */	stfs f0, 0(r3)
@@ -2517,7 +2517,7 @@ collide__8CollPartFP8CollPartR10Vector3$$0f$$1:
 /* 8013594C 0013288C  38 81 00 30 */	addi r4, r1, 0x30
 /* 80135950 00132890  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 80135954 00132894  D0 21 00 3C */	stfs f1, 0x3c(r1)
-/* 80135958 00132898  48 2E 06 15 */	bl "intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3<f>"
+/* 80135958 00132898  48 2E 06 15 */	bl intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3$$0f$$1
 /* 8013595C 0013289C  48 00 01 30 */	b lbl_80135A8C
 lbl_80135960:
 /* 80135960 001328A0  28 06 00 00 */	cmplwi r6, 0
@@ -2556,7 +2556,7 @@ lbl_8013597C:
 /* 801359E0 00132920  D0 01 00 84 */	stfs f0, 0x84(r1)
 /* 801359E4 00132924  D0 21 00 88 */	stfs f1, 0x88(r1)
 /* 801359E8 00132928  D0 41 00 8C */	stfs f2, 0x8c(r1)
-/* 801359EC 0013292C  48 2E 01 6D */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 801359EC 0013292C  48 2E 01 6D */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 801359F0 00132930  48 00 00 9C */	b lbl_80135A8C
 lbl_801359F4:
 /* 801359F4 00132934  28 06 00 01 */	cmplwi r6, 1
@@ -2595,7 +2595,7 @@ lbl_80135A04:
 /* 80135A74 001329B4  38 81 00 10 */	addi r4, r1, 0x10
 /* 80135A78 001329B8  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80135A7C 001329BC  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 80135A80 001329C0  48 2E 00 D9 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+/* 80135A80 001329C0  48 2E 00 D9 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
 /* 80135A84 001329C4  48 00 00 08 */	b lbl_80135A8C
 lbl_80135A88:
 /* 80135A88 001329C8  38 60 00 00 */	li r3, 0
@@ -4695,7 +4695,7 @@ lbl_801377A0:
 /* 801377A4 001346E4  48 00 0A D5 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 801377A8 001346E8  7F C4 F3 78 */	mr r4, r30
 /* 801377AC 001346EC  38 61 00 14 */	addi r3, r1, 0x14
-/* 801377B0 001346F0  48 2D E6 25 */	bl "getPosRatio__Q23Sys4TubeFRC10Vector3<f>"
+/* 801377B0 001346F0  48 2D E6 25 */	bl getPosRatio__Q23Sys4TubeFRC10Vector3$$0f$$1
 /* 801377B4 001346F4  D0 3F 00 04 */	stfs f1, 4(r31)
 lbl_801377B8:
 /* 801377B8 001346F8  E3 E1 00 E8 */	psq_l f31, 232(r1), 0, qr0
@@ -5048,7 +5048,7 @@ lbl_80137CA0:
 /* 80137CA4 00134BE4  48 00 05 D5 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 80137CA8 00134BE8  38 61 00 2C */	addi r3, r1, 0x2c
 /* 80137CAC 00134BEC  38 81 00 14 */	addi r4, r1, 0x14
-/* 80137CB0 00134BF0  48 2D DD F5 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
+/* 80137CB0 00134BF0  48 2D DD F5 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
 /* 80137CB4 00134BF4  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80137CB8 00134BF8  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 80137CBC 00134BFC  FC 60 00 50 */	fneg f3, f0
@@ -6408,13 +6408,13 @@ lbl_80138FE0:
 /* 80139000 00135F40  38 72 00 20 */	addi r3, r18, 0x20
 /* 80139004 00135F44  38 04 FE 9C */	addi r0, r4, __vt__8CollPart@l
 /* 80139008 00135F48  90 12 00 00 */	stw r0, 0(r18)
-/* 8013900C 00135F4C  4B FE 63 3D */	bl "__ct__10Vector3<f>Fv"
+/* 8013900C 00135F4C  4B FE 63 3D */	bl __ct__10Vector3$$0f$$1Fv
 /* 80139010 00135F50  38 72 00 30 */	addi r3, r18, 0x30
 /* 80139014 00135F54  48 2D A2 5D */	bl __ct__4ID32Fv
 /* 80139018 00135F58  38 72 00 3C */	addi r3, r18, 0x3c
 /* 8013901C 00135F5C  48 2D A2 55 */	bl __ct__4ID32Fv
 /* 80139020 00135F60  38 72 00 4C */	addi r3, r18, 0x4c
-/* 80139024 00135F64  4B FE 63 25 */	bl "__ct__10Vector3<f>Fv"
+/* 80139024 00135F64  4B FE 63 25 */	bl __ct__10Vector3$$0f$$1Fv
 /* 80139028 00135F68  7E 43 93 78 */	mr r3, r18
 /* 8013902C 00135F6C  7E A4 AB 78 */	mr r4, r21
 /* 80139030 00135F70  4B FF DD 01 */	bl init__8CollPartFPQ28SysShape9MtxObject
@@ -6784,14 +6784,14 @@ __dt__Q23Sys3OBBFv:
 /* 801394DC 0013641C  38 03 FF 54 */	addi r0, r3, __vt__Q23Sys9IndexList@l
 /* 801394E0 00136420  90 1E 00 D8 */	stw r0, 0xd8(r30)
 /* 801394E4 00136424  41 82 00 44 */	beq lbl_80139528
-/* 801394E8 00136428  3C 60 80 4B */	lis r3, "__vt__17ArrayContainer<i>"@ha
+/* 801394E8 00136428  3C 60 80 4B */	lis r3, __vt__17ArrayContainer$$0i$$1@ha
 /* 801394EC 0013642C  34 1E 00 D8 */	addic. r0, r30, 0xd8
-/* 801394F0 00136430  38 03 FF 0C */	addi r0, r3, "__vt__17ArrayContainer<i>"@l
+/* 801394F0 00136430  38 03 FF 0C */	addi r0, r3, __vt__17ArrayContainer$$0i$$1@l
 /* 801394F4 00136434  90 1E 00 D8 */	stw r0, 0xd8(r30)
 /* 801394F8 00136438  41 82 00 30 */	beq lbl_80139528
-/* 801394FC 0013643C  3C 60 80 4B */	lis r3, "__vt__12Container<i>"@ha
+/* 801394FC 0013643C  3C 60 80 4B */	lis r3, __vt__12Container$$0i$$1@ha
 /* 80139500 00136440  34 1E 00 D8 */	addic. r0, r30, 0xd8
-/* 80139504 00136444  38 03 FE E0 */	addi r0, r3, "__vt__12Container<i>"@l
+/* 80139504 00136444  38 03 FE E0 */	addi r0, r3, __vt__12Container$$0i$$1@l
 /* 80139508 00136448  90 1E 00 D8 */	stw r0, 0xd8(r30)
 /* 8013950C 0013644C  41 82 00 1C */	beq lbl_80139528
 /* 80139510 00136450  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -6827,8 +6827,8 @@ __dt__12Container$$0i$$1Fv:
 /* 80139574 001364B4  93 C1 00 08 */	stw r30, 8(r1)
 /* 80139578 001364B8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8013957C 001364BC  41 82 00 38 */	beq lbl_801395B4
-/* 80139580 001364C0  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
-/* 80139584 001364C4  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
+/* 80139580 001364C0  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
+/* 80139584 001364C4  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
 /* 80139588 001364C8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8013958C 001364CC  41 82 00 18 */	beq lbl_801395A4
 /* 80139590 001364D0  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -6860,12 +6860,12 @@ __dt__17ArrayContainer$$0i$$1Fv:
 /* 801395E4 00136524  93 C1 00 08 */	stw r30, 8(r1)
 /* 801395E8 00136528  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801395EC 0013652C  41 82 00 48 */	beq lbl_80139634
-/* 801395F0 00136530  3C 80 80 4B */	lis r4, "__vt__17ArrayContainer<i>"@ha
-/* 801395F4 00136534  38 04 FF 0C */	addi r0, r4, "__vt__17ArrayContainer<i>"@l
+/* 801395F0 00136530  3C 80 80 4B */	lis r4, __vt__17ArrayContainer$$0i$$1@ha
+/* 801395F4 00136534  38 04 FF 0C */	addi r0, r4, __vt__17ArrayContainer$$0i$$1@l
 /* 801395F8 00136538  90 1E 00 00 */	stw r0, 0(r30)
 /* 801395FC 0013653C  41 82 00 28 */	beq lbl_80139624
-/* 80139600 00136540  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
-/* 80139604 00136544  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
+/* 80139600 00136540  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
+/* 80139604 00136544  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
 /* 80139608 00136548  90 1E 00 00 */	stw r0, 0(r30)
 /* 8013960C 0013654C  41 82 00 18 */	beq lbl_80139624
 /* 80139610 00136550  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -7005,12 +7005,12 @@ __dt__Q23Sys9IndexListFv:
 /* 801397D0 00136710  38 04 FF 54 */	addi r0, r4, __vt__Q23Sys9IndexList@l
 /* 801397D4 00136714  90 1E 00 00 */	stw r0, 0(r30)
 /* 801397D8 00136718  41 82 00 38 */	beq lbl_80139810
-/* 801397DC 0013671C  3C 80 80 4B */	lis r4, "__vt__17ArrayContainer<i>"@ha
-/* 801397E0 00136720  38 04 FF 0C */	addi r0, r4, "__vt__17ArrayContainer<i>"@l
+/* 801397DC 0013671C  3C 80 80 4B */	lis r4, __vt__17ArrayContainer$$0i$$1@ha
+/* 801397E0 00136720  38 04 FF 0C */	addi r0, r4, __vt__17ArrayContainer$$0i$$1@l
 /* 801397E4 00136724  90 1E 00 00 */	stw r0, 0(r30)
 /* 801397E8 00136728  41 82 00 28 */	beq lbl_80139810
-/* 801397EC 0013672C  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
-/* 801397F0 00136730  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
+/* 801397EC 0013672C  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
+/* 801397F0 00136730  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
 /* 801397F4 00136734  90 1E 00 00 */	stw r0, 0(r30)
 /* 801397F8 00136738  41 82 00 18 */	beq lbl_80139810
 /* 801397FC 0013673C  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha

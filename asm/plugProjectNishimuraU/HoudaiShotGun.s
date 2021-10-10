@@ -370,7 +370,7 @@ lbl_802C3EB8:
 /* 802C3EBC 002C0DFC  38 A1 00 60 */	addi r5, r1, 0x60
 /* 802C3EC0 002C0E00  38 80 00 0B */	li r4, 0xb
 /* 802C3EC4 002C0E04  38 C0 00 02 */	li r6, 2
-/* 802C3EC8 002C0E08  4B F8 F8 B9 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 802C3EC8 002C0E08  4B F8 F8 B9 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 802C3ECC 002C0E0C  48 00 00 B8 */	b lbl_802C3F84
 lbl_802C3ED0:
 /* 802C3ED0 002C0E10  80 9C 00 18 */	lwz r4, 0x18(r28)

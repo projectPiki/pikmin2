@@ -144,30 +144,30 @@ __ct__Q34Game12PelletConfig6TParmsFv:
 /* 801B40E8 001B1028  38 7E 00 7C */	addi r3, r30, 0x7c
 /* 801B40EC 001B102C  38 A2 B0 44 */	addi r5, r2, lbl_805193A4@sda21
 /* 801B40F0 001B1030  48 26 7F AD */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B40F4 001B1034  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B40F4 001B1034  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B40F8 001B1038  7F C4 F3 78 */	mr r4, r30
-/* 801B40FC 001B103C  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B40FC 001B103C  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B4100 001B1040  38 7E 00 8C */	addi r3, r30, 0x8c
 /* 801B4104 001B1044  90 1E 00 7C */	stw r0, 0x7c(r30)
 /* 801B4108 001B1048  38 BF 00 38 */	addi r5, r31, 0x38
 /* 801B410C 001B104C  48 26 7F 91 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4110 001B1050  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B4110 001B1050  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B4114 001B1054  7F C4 F3 78 */	mr r4, r30
-/* 801B4118 001B1058  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B4118 001B1058  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B411C 001B105C  38 7E 00 9C */	addi r3, r30, 0x9c
 /* 801B4120 001B1060  90 1E 00 8C */	stw r0, 0x8c(r30)
 /* 801B4124 001B1064  38 A2 B0 4C */	addi r5, r2, lbl_805193AC@sda21
 /* 801B4128 001B1068  48 26 7F 75 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B412C 001B106C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B412C 001B106C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B4130 001B1070  7F C4 F3 78 */	mr r4, r30
-/* 801B4134 001B1074  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B4134 001B1074  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B4138 001B1078  38 7E 00 AC */	addi r3, r30, 0xac
 /* 801B413C 001B107C  90 1E 00 9C */	stw r0, 0x9c(r30)
 /* 801B4140 001B1080  38 BF 00 44 */	addi r5, r31, 0x44
 /* 801B4144 001B1084  48 26 7F 59 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4148 001B1088  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B4148 001B1088  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B414C 001B108C  7F C4 F3 78 */	mr r4, r30
-/* 801B4150 001B1090  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B4150 001B1090  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B4154 001B1094  38 7E 00 BC */	addi r3, r30, 0xbc
 /* 801B4158 001B1098  90 1E 00 AC */	stw r0, 0xac(r30)
 /* 801B415C 001B109C  38 BF 00 54 */	addi r5, r31, 0x54
@@ -176,51 +176,51 @@ __ct__Q34Game12PelletConfig6TParmsFv:
 /* 801B4168 001B10A8  38 7E 00 CC */	addi r3, r30, 0xcc
 /* 801B416C 001B10AC  38 BF 00 64 */	addi r5, r31, 0x64
 /* 801B4170 001B10B0  48 26 7F 2D */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4174 001B10B4  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B4174 001B10B4  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B4178 001B10B8  7F C4 F3 78 */	mr r4, r30
-/* 801B417C 001B10BC  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B417C 001B10BC  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B4180 001B10C0  38 7E 00 DC */	addi r3, r30, 0xdc
 /* 801B4184 001B10C4  90 1E 00 CC */	stw r0, 0xcc(r30)
 /* 801B4188 001B10C8  38 BF 00 74 */	addi r5, r31, 0x74
 /* 801B418C 001B10CC  48 26 7F 11 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4190 001B10D0  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B4190 001B10D0  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B4194 001B10D4  7F C4 F3 78 */	mr r4, r30
-/* 801B4198 001B10D8  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B4198 001B10D8  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B419C 001B10DC  38 7E 00 EC */	addi r3, r30, 0xec
 /* 801B41A0 001B10E0  90 1E 00 DC */	stw r0, 0xdc(r30)
 /* 801B41A4 001B10E4  38 BF 00 84 */	addi r5, r31, 0x84
 /* 801B41A8 001B10E8  48 26 7E F5 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B41AC 001B10EC  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B41AC 001B10EC  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B41B0 001B10F0  7F C4 F3 78 */	mr r4, r30
-/* 801B41B4 001B10F4  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B41B4 001B10F4  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B41B8 001B10F8  38 7E 00 FC */	addi r3, r30, 0xfc
 /* 801B41BC 001B10FC  90 1E 00 EC */	stw r0, 0xec(r30)
 /* 801B41C0 001B1100  38 A2 B0 54 */	addi r5, r2, lbl_805193B4@sda21
 /* 801B41C4 001B1104  48 26 7E D9 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B41C8 001B1108  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B41C8 001B1108  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B41CC 001B110C  7F C4 F3 78 */	mr r4, r30
-/* 801B41D0 001B1110  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B41D0 001B1110  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B41D4 001B1114  38 7E 01 0C */	addi r3, r30, 0x10c
 /* 801B41D8 001B1118  90 1E 00 FC */	stw r0, 0xfc(r30)
 /* 801B41DC 001B111C  38 A2 B0 58 */	addi r5, r2, lbl_805193B8@sda21
 /* 801B41E0 001B1120  48 26 7E BD */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B41E4 001B1124  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B41E4 001B1124  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B41E8 001B1128  7F C4 F3 78 */	mr r4, r30
-/* 801B41EC 001B112C  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B41EC 001B112C  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B41F0 001B1130  38 7E 01 1C */	addi r3, r30, 0x11c
 /* 801B41F4 001B1134  90 1E 01 0C */	stw r0, 0x10c(r30)
 /* 801B41F8 001B1138  38 BF 00 90 */	addi r5, r31, 0x90
 /* 801B41FC 001B113C  48 26 7E A1 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4200 001B1140  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B4200 001B1140  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B4204 001B1144  7F C4 F3 78 */	mr r4, r30
-/* 801B4208 001B1148  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B4208 001B1148  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B420C 001B114C  38 7E 01 2C */	addi r3, r30, 0x12c
 /* 801B4210 001B1150  90 1E 01 1C */	stw r0, 0x11c(r30)
 /* 801B4214 001B1154  38 BF 00 A0 */	addi r5, r31, 0xa0
 /* 801B4218 001B1158  48 26 7E 85 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B421C 001B115C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B421C 001B115C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B4220 001B1160  7F C4 F3 78 */	mr r4, r30
-/* 801B4224 001B1164  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B4224 001B1164  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B4228 001B1168  38 7E 01 3C */	addi r3, r30, 0x13c
 /* 801B422C 001B116C  90 1E 01 2C */	stw r0, 0x12c(r30)
 /* 801B4230 001B1170  38 BF 00 B0 */	addi r5, r31, 0xb0
@@ -229,9 +229,9 @@ __ct__Q34Game12PelletConfig6TParmsFv:
 /* 801B423C 001B117C  38 7E 01 4C */	addi r3, r30, 0x14c
 /* 801B4240 001B1180  38 A2 B0 5C */	addi r5, r2, lbl_805193BC@sda21
 /* 801B4244 001B1184  48 26 7E 59 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4248 001B1188  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B4248 001B1188  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B424C 001B118C  7F C4 F3 78 */	mr r4, r30
-/* 801B4250 001B1190  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B4250 001B1190  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B4254 001B1194  38 7E 01 5C */	addi r3, r30, 0x15c
 /* 801B4258 001B1198  90 1E 01 4C */	stw r0, 0x14c(r30)
 /* 801B425C 001B119C  38 A2 B0 64 */	addi r5, r2, lbl_805193C4@sda21
@@ -244,79 +244,79 @@ __ct__Q34Game12PelletConfig6TParmsFv:
 /* 801B4278 001B11B8  38 7E 01 7C */	addi r3, r30, 0x17c
 /* 801B427C 001B11BC  38 BF 00 C8 */	addi r5, r31, 0xc8
 /* 801B4280 001B11C0  48 26 7E 1D */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4284 001B11C4  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
+/* 801B4284 001B11C4  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
 /* 801B4288 001B11C8  7F C4 F3 78 */	mr r4, r30
-/* 801B428C 001B11CC  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
+/* 801B428C 001B11CC  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
 /* 801B4290 001B11D0  38 7E 01 8C */	addi r3, r30, 0x18c
 /* 801B4294 001B11D4  90 1E 01 7C */	stw r0, 0x17c(r30)
 /* 801B4298 001B11D8  38 A2 B0 6C */	addi r5, r2, lbl_805193CC@sda21
 /* 801B429C 001B11DC  48 26 7E 01 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B42A0 001B11E0  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B42A0 001B11E0  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B42A4 001B11E4  7F C4 F3 78 */	mr r4, r30
-/* 801B42A8 001B11E8  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B42A8 001B11E8  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B42AC 001B11EC  38 7E 01 9C */	addi r3, r30, 0x19c
 /* 801B42B0 001B11F0  90 1E 01 8C */	stw r0, 0x18c(r30)
 /* 801B42B4 001B11F4  38 BF 00 D8 */	addi r5, r31, 0xd8
 /* 801B42B8 001B11F8  48 26 7D E5 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B42BC 001B11FC  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B42BC 001B11FC  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B42C0 001B1200  7F C4 F3 78 */	mr r4, r30
-/* 801B42C4 001B1204  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B42C4 001B1204  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B42C8 001B1208  38 7E 01 AC */	addi r3, r30, 0x1ac
 /* 801B42CC 001B120C  90 1E 01 9C */	stw r0, 0x19c(r30)
 /* 801B42D0 001B1210  38 A2 B0 74 */	addi r5, r2, lbl_805193D4@sda21
 /* 801B42D4 001B1214  48 26 7D C9 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B42D8 001B1218  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B42D8 001B1218  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B42DC 001B121C  7F C4 F3 78 */	mr r4, r30
-/* 801B42E0 001B1220  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B42E0 001B1220  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B42E4 001B1224  38 7E 01 BC */	addi r3, r30, 0x1bc
 /* 801B42E8 001B1228  90 1E 01 AC */	stw r0, 0x1ac(r30)
 /* 801B42EC 001B122C  38 A2 B0 7C */	addi r5, r2, lbl_805193DC@sda21
 /* 801B42F0 001B1230  48 26 7D AD */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B42F4 001B1234  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B42F4 001B1234  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B42F8 001B1238  7F C4 F3 78 */	mr r4, r30
-/* 801B42FC 001B123C  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B42FC 001B123C  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B4300 001B1240  38 7E 01 CC */	addi r3, r30, 0x1cc
 /* 801B4304 001B1244  90 1E 01 BC */	stw r0, 0x1bc(r30)
 /* 801B4308 001B1248  38 A2 B0 84 */	addi r5, r2, lbl_805193E4@sda21
 /* 801B430C 001B124C  48 26 7D 91 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4310 001B1250  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B4310 001B1250  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B4314 001B1254  7F C4 F3 78 */	mr r4, r30
-/* 801B4318 001B1258  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B4318 001B1258  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B431C 001B125C  38 7E 01 DC */	addi r3, r30, 0x1dc
 /* 801B4320 001B1260  90 1E 01 CC */	stw r0, 0x1cc(r30)
 /* 801B4324 001B1264  38 A2 B0 8C */	addi r5, r2, lbl_805193EC@sda21
 /* 801B4328 001B1268  48 26 7D 75 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B432C 001B126C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<f>"@ha
+/* 801B432C 001B126C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0f$$1@ha
 /* 801B4330 001B1270  7F C4 F3 78 */	mr r4, r30
-/* 801B4334 001B1274  38 03 5A F8 */	addi r0, r3, "__vt__14PrimTagParm<f>"@l
+/* 801B4334 001B1274  38 03 5A F8 */	addi r0, r3, __vt__14PrimTagParm$$0f$$1@l
 /* 801B4338 001B1278  38 7E 01 EC */	addi r3, r30, 0x1ec
 /* 801B433C 001B127C  90 1E 01 DC */	stw r0, 0x1dc(r30)
 /* 801B4340 001B1280  38 A2 B0 94 */	addi r5, r2, lbl_805193F4@sda21
 /* 801B4344 001B1284  48 26 7D 59 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4348 001B1288  3C 60 80 4B */	lis r3, "__vt__25PrimTagParm<10Vector3<f>>"@ha
+/* 801B4348 001B1288  3C 60 80 4B */	lis r3, __vt__25PrimTagParm$$010Vector3$$0f$$1$$1@ha
 /* 801B434C 001B128C  7F C4 F3 78 */	mr r4, r30
-/* 801B4350 001B1290  38 03 5A C8 */	addi r0, r3, "__vt__25PrimTagParm<10Vector3<f>>"@l
+/* 801B4350 001B1290  38 03 5A C8 */	addi r0, r3, __vt__25PrimTagParm$$010Vector3$$0f$$1$$1@l
 /* 801B4354 001B1294  38 7E 02 08 */	addi r3, r30, 0x208
 /* 801B4358 001B1298  90 1E 01 EC */	stw r0, 0x1ec(r30)
 /* 801B435C 001B129C  38 A2 B0 9C */	addi r5, r2, lbl_805193FC@sda21
 /* 801B4360 001B12A0  48 26 7D 3D */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4364 001B12A4  3C 60 80 4B */	lis r3, "__vt__15PrimTagParm<Ux>"@ha
+/* 801B4364 001B12A4  3C 60 80 4B */	lis r3, __vt__15PrimTagParm$$0Ux$$1@ha
 /* 801B4368 001B12A8  7F C4 F3 78 */	mr r4, r30
-/* 801B436C 001B12AC  38 03 5A B0 */	addi r0, r3, "__vt__15PrimTagParm<Ux>"@l
+/* 801B436C 001B12AC  38 03 5A B0 */	addi r0, r3, __vt__15PrimTagParm$$0Ux$$1@l
 /* 801B4370 001B12B0  38 7E 02 20 */	addi r3, r30, 0x220
 /* 801B4374 001B12B4  90 1E 02 08 */	stw r0, 0x208(r30)
 /* 801B4378 001B12B8  38 A2 B0 A4 */	addi r5, r2, lbl_80519404@sda21
 /* 801B437C 001B12BC  48 26 7D 21 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B4380 001B12C0  3C 60 80 4B */	lis r3, "__vt__15PrimTagParm<Us>"@ha
+/* 801B4380 001B12C0  3C 60 80 4B */	lis r3, __vt__15PrimTagParm$$0Us$$1@ha
 /* 801B4384 001B12C4  7F C4 F3 78 */	mr r4, r30
-/* 801B4388 001B12C8  38 03 5A 98 */	addi r0, r3, "__vt__15PrimTagParm<Us>"@l
+/* 801B4388 001B12C8  38 03 5A 98 */	addi r0, r3, __vt__15PrimTagParm$$0Us$$1@l
 /* 801B438C 001B12CC  38 7E 02 30 */	addi r3, r30, 0x230
 /* 801B4390 001B12D0  90 1E 02 20 */	stw r0, 0x220(r30)
 /* 801B4394 001B12D4  38 BF 00 E4 */	addi r5, r31, 0xe4
 /* 801B4398 001B12D8  48 26 7D 05 */	bl __ct__7TagParmFP13TagParametersPc
-/* 801B439C 001B12DC  3C 80 80 4B */	lis r4, "__vt__15PrimTagParm<Us>"@ha
+/* 801B439C 001B12DC  3C 80 80 4B */	lis r4, __vt__15PrimTagParm$$0Us$$1@ha
 /* 801B43A0 001B12E0  7F C3 F3 78 */	mr r3, r30
-/* 801B43A4 001B12E4  38 04 5A 98 */	addi r0, r4, "__vt__15PrimTagParm<Us>"@l
+/* 801B43A4 001B12E4  38 04 5A 98 */	addi r0, r4, __vt__15PrimTagParm$$0Us$$1@l
 /* 801B43A8 001B12E8  90 1E 02 30 */	stw r0, 0x230(r30)
 /* 801B43AC 001B12EC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801B43B0 001B12F0  83 C1 00 08 */	lwz r30, 8(r1)

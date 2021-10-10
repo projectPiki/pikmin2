@@ -464,13 +464,13 @@ init__Q34Game11BigTreasure20BigTreasureShadowMgrFv:
 /* 802DAC8C 002D7BCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DAC90 002D7BD0  4E 80 00 20 */	blr 
 
-.global "setKosiJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFP10Vector3<f>"
-"setKosiJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFP10Vector3<f>":
+.global setKosiJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFP10Vector3$$0f$$1
+setKosiJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFP10Vector3$$0f$$1:
 /* 802DAC94 002D7BD4  90 83 00 40 */	stw r4, 0x40(r3)
 /* 802DAC98 002D7BD8  4E 80 00 20 */	blr 
 
-.global "setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3<f>"
-"setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3<f>":
+.global setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3$$0f$$1
+setJointPosPtr__Q34Game11BigTreasure20BigTreasureShadowMgrFiiP10Vector3$$0f$$1:
 /* 802DAC9C 002D7BDC  54 84 20 36 */	slwi r4, r4, 4
 /* 802DACA0 002D7BE0  54 A0 10 3A */	slwi r0, r5, 2
 /* 802DACA4 002D7BE4  7C 63 22 14 */	add r3, r3, r4

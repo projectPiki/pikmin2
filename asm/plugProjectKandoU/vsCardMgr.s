@@ -779,8 +779,8 @@ lbl_80235FF0:
 /* 80236018 00232F58  38 61 00 C4 */	addi r3, r1, 0xc4
 /* 8023601C 00232F5C  4B F6 9C 41 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80236020 00232F60  38 00 00 00 */	li r0, 0
-/* 80236024 00232F64  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-/* 80236028 00232F68  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+/* 80236024 00232F64  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
+/* 80236028 00232F68  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
 /* 8023602C 00232F6C  38 61 00 C4 */	addi r3, r1, 0xc4
 /* 80236030 00232F70  28 00 00 00 */	cmplwi r0, 0
 /* 80236034 00232F74  90 81 00 74 */	stw r4, 0x74(r1)
@@ -2522,9 +2522,9 @@ initDraw__Q34Game6VsGame7CardMgrFv:
 /* 80237994 002348D4  1C 7E 00 0C */	mulli r3, r30, 0xc
 /* 80237998 002348D8  38 63 00 10 */	addi r3, r3, 0x10
 /* 8023799C 002348DC  4B DE C6 11 */	bl __nwa__FUl
-/* 802379A0 002348E0  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 802379A0 002348E0  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 802379A4 002348E4  7F C7 F3 78 */	mr r7, r30
-/* 802379A8 002348E8  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 802379A8 002348E8  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 802379AC 002348EC  38 A0 00 00 */	li r5, 0
 /* 802379B0 002348F0  38 C0 00 0C */	li r6, 0xc
 /* 802379B4 002348F4  4B E8 A0 3D */	bl __construct_new_array
@@ -2533,9 +2533,9 @@ initDraw__Q34Game6VsGame7CardMgrFv:
 /* 802379C0 00234900  1C 7E 00 0C */	mulli r3, r30, 0xc
 /* 802379C4 00234904  38 63 00 10 */	addi r3, r3, 0x10
 /* 802379C8 00234908  4B DE C5 E5 */	bl __nwa__FUl
-/* 802379CC 0023490C  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
+/* 802379CC 0023490C  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
 /* 802379D0 00234910  7F C7 F3 78 */	mr r7, r30
-/* 802379D4 00234914  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
+/* 802379D4 00234914  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
 /* 802379D8 00234918  38 A0 00 00 */	li r5, 0
 /* 802379DC 0023491C  38 C0 00 0C */	li r6, 0xc
 /* 802379E0 00234920  4B E8 A0 11 */	bl __construct_new_array

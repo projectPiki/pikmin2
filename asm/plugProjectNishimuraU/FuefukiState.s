@@ -638,7 +638,7 @@ lbl_8029AED4:
 /* 8029AF4C 00297E8C  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 8029AF50 00297E90  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 8029AF54 00297E94  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 8029AF58 00297E98  4B E7 81 C5 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 8029AF58 00297E98  4B E7 81 C5 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 lbl_8029AF5C:
 /* 8029AF5C 00297E9C  80 7F 00 C0 */	lwz r3, 0xc0(r31)
 /* 8029AF60 00297EA0  C0 3F 02 C8 */	lfs f1, 0x2c8(r31)
@@ -739,7 +739,7 @@ lbl_8029AFB8:
 /* 8029B0D4 00298014  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 8029B0D8 00298018  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 8029B0DC 0029801C  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 8029B0E0 00298020  4B E7 80 3D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 8029B0E0 00298020  4B E7 80 3D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 8029B0E4 00298024  C0 02 D8 D0 */	lfs f0, lbl_8051BC30@sda21(r2)
 /* 8029B0E8 00298028  7F E3 FB 78 */	mr r3, r31
 /* 8029B0EC 0029802C  C0 22 D8 F4 */	lfs f1, lbl_8051BC54@sda21(r2)

@@ -401,9 +401,9 @@ lbl_801A0A68:
 lbl_801A0A6C:
 /* 801A0A6C 0019D9AC  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 801A0A70 0019D9B0  41 82 00 C4 */	beq lbl_801A0B34
-/* 801A0A74 0019D9B4  3C 80 80 4B */	lis r4, "__vt__20Condition<8CollPart>"@ha
+/* 801A0A74 0019D9B4  3C 80 80 4B */	lis r4, __vt__20Condition$$08CollPart$$1@ha
 /* 801A0A78 0019D9B8  3C 60 80 4B */	lis r3, __vt__13FindCondition@ha
-/* 801A0A7C 0019D9BC  38 84 4E 8C */	addi r4, r4, "__vt__20Condition<8CollPart>"@l
+/* 801A0A7C 0019D9BC  38 84 4E 8C */	addi r4, r4, __vt__20Condition$$08CollPart$$1@l
 /* 801A0A80 0019D9C0  38 01 00 08 */	addi r0, r1, 8
 /* 801A0A84 0019D9C4  90 81 00 08 */	stw r4, 8(r1)
 /* 801A0A88 0019D9C8  38 63 4E 80 */	addi r3, r3, __vt__13FindCondition@l
@@ -639,9 +639,9 @@ lbl_801A0DD8:
 lbl_801A0DDC:
 /* 801A0DDC 0019DD1C  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 801A0DE0 0019DD20  41 82 00 C4 */	beq lbl_801A0EA4
-/* 801A0DE4 0019DD24  3C 80 80 4B */	lis r4, "__vt__20Condition<8CollPart>"@ha
+/* 801A0DE4 0019DD24  3C 80 80 4B */	lis r4, __vt__20Condition$$08CollPart$$1@ha
 /* 801A0DE8 0019DD28  3C 60 80 4B */	lis r3, __vt__13FindCondition@ha
-/* 801A0DEC 0019DD2C  38 84 4E 8C */	addi r4, r4, "__vt__20Condition<8CollPart>"@l
+/* 801A0DEC 0019DD2C  38 84 4E 8C */	addi r4, r4, __vt__20Condition$$08CollPart$$1@l
 /* 801A0DF0 0019DD30  38 01 00 0C */	addi r0, r1, 0xc
 /* 801A0DF4 0019DD34  90 81 00 0C */	stw r4, 0xc(r1)
 /* 801A0DF8 0019DD38  38 63 4E 80 */	addi r3, r3, __vt__13FindCondition@l
@@ -777,9 +777,9 @@ lbl_801A0FE8:
 lbl_801A0FEC:
 /* 801A0FEC 0019DF2C  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 801A0FF0 0019DF30  41 82 00 C4 */	beq lbl_801A10B4
-/* 801A0FF4 0019DF34  3C 80 80 4B */	lis r4, "__vt__20Condition<8CollPart>"@ha
+/* 801A0FF4 0019DF34  3C 80 80 4B */	lis r4, __vt__20Condition$$08CollPart$$1@ha
 /* 801A0FF8 0019DF38  3C 60 80 4B */	lis r3, __vt__13FindCondition@ha
-/* 801A0FFC 0019DF3C  38 84 4E 8C */	addi r4, r4, "__vt__20Condition<8CollPart>"@l
+/* 801A0FFC 0019DF3C  38 84 4E 8C */	addi r4, r4, __vt__20Condition$$08CollPart$$1@l
 /* 801A1000 0019DF40  38 01 00 10 */	addi r0, r1, 0x10
 /* 801A1004 0019DF44  90 81 00 10 */	stw r4, 0x10(r1)
 /* 801A1008 0019DF48  38 63 4E 80 */	addi r3, r3, __vt__13FindCondition@l
@@ -981,9 +981,9 @@ lbl_801A12EC:
 lbl_801A12F0:
 /* 801A12F0 0019E230  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 801A12F4 0019E234  41 82 00 C4 */	beq lbl_801A13B8
-/* 801A12F8 0019E238  3C 80 80 4B */	lis r4, "__vt__20Condition<8CollPart>"@ha
+/* 801A12F8 0019E238  3C 80 80 4B */	lis r4, __vt__20Condition$$08CollPart$$1@ha
 /* 801A12FC 0019E23C  3C 60 80 4B */	lis r3, __vt__13FindCondition@ha
-/* 801A1300 0019E240  38 84 4E 8C */	addi r4, r4, "__vt__20Condition<8CollPart>"@l
+/* 801A1300 0019E240  38 84 4E 8C */	addi r4, r4, __vt__20Condition$$08CollPart$$1@l
 /* 801A1304 0019E244  38 01 00 08 */	addi r0, r1, 8
 /* 801A1308 0019E248  90 81 00 08 */	stw r4, 8(r1)
 /* 801A130C 0019E24C  38 63 4E 80 */	addi r3, r3, __vt__13FindCondition@l
@@ -1245,9 +1245,9 @@ lbl_801A16B8:
 lbl_801A16BC:
 /* 801A16BC 0019E5FC  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 801A16C0 0019E600  41 82 00 C4 */	beq lbl_801A1784
-/* 801A16C4 0019E604  3C 80 80 4B */	lis r4, "__vt__20Condition<8CollPart>"@ha
+/* 801A16C4 0019E604  3C 80 80 4B */	lis r4, __vt__20Condition$$08CollPart$$1@ha
 /* 801A16C8 0019E608  3C 60 80 4B */	lis r3, __vt__13FindCondition@ha
-/* 801A16CC 0019E60C  38 84 4E 8C */	addi r4, r4, "__vt__20Condition<8CollPart>"@l
+/* 801A16CC 0019E60C  38 84 4E 8C */	addi r4, r4, __vt__20Condition$$08CollPart$$1@l
 /* 801A16D0 0019E610  38 01 00 08 */	addi r0, r1, 8
 /* 801A16D4 0019E614  90 81 00 08 */	stw r4, 8(r1)
 /* 801A16D8 0019E618  38 63 4E 80 */	addi r3, r3, __vt__13FindCondition@l

@@ -247,7 +247,7 @@ lbl_80277664:
 /* 80277670 002745B0  38 A0 00 00 */	li r5, 0
 /* 80277674 002745B4  C0 26 04 24 */	lfs f1, 0x424(r6)
 /* 80277678 002745B8  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
-/* 8027767C 002745BC  4B E9 B0 79 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 8027767C 002745BC  4B E9 B0 79 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 80277680 002745C0  28 03 00 00 */	cmplwi r3, 0
 /* 80277684 002745C4  41 82 00 3C */	beq lbl_802776C0
 /* 80277688 002745C8  7F E4 FB 78 */	mr r4, r31
@@ -408,7 +408,7 @@ lbl_802778AC:
 /* 802778B8 002747F8  38 A0 00 00 */	li r5, 0
 /* 802778BC 002747FC  C0 26 04 24 */	lfs f1, 0x424(r6)
 /* 802778C0 00274800  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
-/* 802778C4 00274804  4B E9 AE 31 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 802778C4 00274804  4B E9 AE 31 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 802778C8 00274808  28 03 00 00 */	cmplwi r3, 0
 /* 802778CC 0027480C  41 82 00 4C */	beq lbl_80277918
 /* 802778D0 00274810  7F E4 FB 78 */	mr r4, r31
@@ -620,7 +620,7 @@ exec__Q34Game7Tadpole11StateEscapeFPQ24Game9EnemyBase:
 /* 80277BA4 00274AE4  80 DF 00 C0 */	lwz r6, 0xc0(r31)
 /* 80277BA8 00274AE8  C0 26 04 24 */	lfs f1, 0x424(r6)
 /* 80277BAC 00274AEC  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
-/* 80277BB0 00274AF0  4B E9 AB 45 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 80277BB0 00274AF0  4B E9 AB 45 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 80277BB4 00274AF4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80277BB8 00274AF8  41 82 00 64 */	beq lbl_80277C1C
 /* 80277BBC 00274AFC  7F E4 FB 78 */	mr r4, r31
@@ -1012,7 +1012,7 @@ lbl_80278124:
 /* 80278138 00275078  38 A0 00 00 */	li r5, 0
 /* 8027813C 0027507C  C0 26 04 24 */	lfs f1, 0x424(r6)
 /* 80278140 00275080  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
-/* 80278144 00275084  4B E9 A5 B1 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
+/* 80278144 00275084  4B E9 A5 B1 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
 /* 80278148 00275088  28 03 00 00 */	cmplwi r3, 0
 /* 8027814C 0027508C  41 82 00 34 */	beq lbl_80278180
 /* 80278150 00275090  7F E4 FB 78 */	mr r4, r31

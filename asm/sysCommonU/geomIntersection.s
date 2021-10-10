@@ -91,7 +91,7 @@ lbl_8041CB00:
 /* 8041CB08 00419A48  7F 85 E3 78 */	mr r5, r28
 /* 8041CB0C 00419A4C  38 81 00 40 */	addi r4, r1, 0x40
 /* 8041CB10 00419A50  38 DF 00 2C */	addi r6, r31, 0x2c
-/* 8041CB14 00419A54  4B FF A4 69 */	bl "intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>Rf"
+/* 8041CB14 00419A54  4B FF A4 69 */	bl intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3$$0f$$1Rf
 /* 8041CB18 00419A58  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8041CB1C 00419A5C  41 82 03 78 */	beq lbl_8041CE94
 /* 8041CB20 00419A60  C0 1D 00 0C */	lfs f0, 0xc(r29)
@@ -205,7 +205,7 @@ lbl_8041CC54:
 /* 8041CCC8 00419C08  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 8041CCCC 00419C0C  C0 08 00 08 */	lfs f0, 8(r8)
 /* 8041CCD0 00419C10  D0 01 00 3C */	stfs f0, 0x3c(r1)
-/* 8041CCD4 00419C14  4B FF 98 49 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>Rf"
+/* 8041CCD4 00419C14  4B FF 98 49 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1Rf
 /* 8041CCD8 00419C18  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8041CCDC 00419C1C  41 82 00 4C */	beq lbl_8041CD28
 /* 8041CCE0 00419C20  C0 DF 00 18 */	lfs f6, 0x18(r31)
@@ -251,7 +251,7 @@ lbl_8041CD28:
 /* 8041CD7C 00419CBC  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 8041CD80 00419CC0  C0 08 00 08 */	lfs f0, 8(r8)
 /* 8041CD84 00419CC4  D0 01 00 3C */	stfs f0, 0x3c(r1)
-/* 8041CD88 00419CC8  4B FF 97 95 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>Rf"
+/* 8041CD88 00419CC8  4B FF 97 95 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1Rf
 /* 8041CD8C 00419CCC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8041CD90 00419CD0  41 82 00 4C */	beq lbl_8041CDDC
 /* 8041CD94 00419CD4  C0 DF 00 18 */	lfs f6, 0x18(r31)
@@ -297,7 +297,7 @@ lbl_8041CDDC:
 /* 8041CE30 00419D70  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 8041CE34 00419D74  C0 08 00 08 */	lfs f0, 8(r8)
 /* 8041CE38 00419D78  D0 01 00 3C */	stfs f0, 0x3c(r1)
-/* 8041CE3C 00419D7C  4B FF 96 E1 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>Rf"
+/* 8041CE3C 00419D7C  4B FF 96 E1 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1Rf
 /* 8041CE40 00419D80  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8041CE44 00419D84  41 82 00 4C */	beq lbl_8041CE90
 /* 8041CE48 00419D88  C0 DF 00 18 */	lfs f6, 0x18(r31)

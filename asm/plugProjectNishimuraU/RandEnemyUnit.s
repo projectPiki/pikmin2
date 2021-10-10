@@ -3077,9 +3077,9 @@ makeSetEnemyTypeA__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cav
 /* 8024B46C 002483AC  DA C1 01 30 */	stfd f22, 0x130(r1)
 /* 8024B470 002483B0  F2 C1 01 38 */	psq_st f22, 312(r1), 0, qr0
 /* 8024B474 002483B4  BE C1 01 08 */	stmw r22, 0x108(r1)
-/* 8024B478 002483B8  3D 00 80 12 */	lis r8, "__ct__10Vector3<f>Fv"@ha
+/* 8024B478 002483B8  3D 00 80 12 */	lis r8, __ct__10Vector3$$0f$$1Fv@ha
 /* 8024B47C 002483BC  7C 77 1B 78 */	mr r23, r3
-/* 8024B480 002483C0  38 08 F3 48 */	addi r0, r8, "__ct__10Vector3<f>Fv"@l
+/* 8024B480 002483C0  38 08 F3 48 */	addi r0, r8, __ct__10Vector3$$0f$$1Fv@l
 /* 8024B484 002483C4  7C 98 23 78 */	mr r24, r4
 /* 8024B488 002483C8  7C B9 2B 78 */	mr r25, r5
 /* 8024B48C 002483CC  7C DA 33 78 */	mr r26, r6

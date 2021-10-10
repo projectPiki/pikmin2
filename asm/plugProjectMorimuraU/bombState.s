@@ -381,12 +381,12 @@ lbl_80349960:
 /* 80349964 003468A4  38 A1 00 48 */	addi r5, r1, 0x48
 /* 80349968 003468A8  38 80 00 0C */	li r4, 0xc
 /* 8034996C 003468AC  38 C0 00 02 */	li r6, 2
-/* 80349970 003468B0  4B F0 88 CD */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+/* 80349970 003468B0  4B F0 88 CD */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
 /* 80349974 003468B4  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80349978 003468B8  38 A1 00 48 */	addi r5, r1, 0x48
 /* 8034997C 003468BC  38 80 00 0F */	li r4, 0xf
 /* 80349980 003468C0  38 C0 00 02 */	li r6, 2
-/* 80349984 003468C4  4B F0 9D FD */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+/* 80349984 003468C4  4B F0 9D FD */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
 /* 80349988 003468C8  7F A4 EB 78 */	mr r4, r29
 /* 8034998C 003468CC  38 61 00 20 */	addi r3, r1, 0x20
 /* 80349990 003468D0  81 9D 00 00 */	lwz r12, 0(r29)

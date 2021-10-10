@@ -3123,7 +3123,7 @@ getLODCylinder__Q24Game5OnyonFRQ23Sys8Cylinder:
 /* 8017795C 0017489C  D0 81 00 08 */	stfs f4, 8(r1)
 /* 80177960 001748A0  D0 61 00 0C */	stfs f3, 0xc(r1)
 /* 80177964 001748A4  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 80177968 001748A8  48 2A 9C FD */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+/* 80177968 001748A8  48 2A 9C FD */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
 /* 8017796C 001748AC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80177970 001748B0  7C 08 03 A6 */	mtlr r0
 /* 80177974 001748B4  38 21 00 20 */	addi r1, r1, 0x20
