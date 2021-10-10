@@ -4998,7 +4998,7 @@ lbl_80137BEC:
 /* 80137BEC 00134B2C  C0 3E 00 04 */	lfs f1, 4(r30)
 /* 80137BF0 00134B30  38 61 00 08 */	addi r3, r1, 8
 /* 80137BF4 00134B34  38 81 00 7C */	addi r4, r1, 0x7c
-/* 80137BF8 00134B38  48 2D 9C 61 */	bl "CRSplineTangent__FfP10Vector3<f>"
+/* 80137BF8 00134B38  48 2D 9C 61 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
 /* 80137BFC 00134B3C  C0 81 00 08 */	lfs f4, 8(r1)
 /* 80137C00 00134B40  C0 61 00 0C */	lfs f3, 0xc(r1)
 /* 80137C04 00134B44  EC 04 01 32 */	fmuls f0, f4, f4
