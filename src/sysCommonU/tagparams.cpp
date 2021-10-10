@@ -21,29 +21,54 @@ void TagParm::doWrite(Stream&) { }
  */
 void TagParm::doDump() { }
 
-template <typename T> struct PrimTagParm : public TagParm {
-    T m_tag; // _0C
-
-    void doRead(Stream&);
-    void doWrite(Stream&);
-    void doDump();
-};
-
 /*
  * --INFO--
  * Address:	8041BD38
  * Size:	000034
  */
-void PrimTagParm<int>::doRead(Stream& stream) { m_tag = stream.readInt(); }
-
-/*
- * --INFO--
- * Address:	8041BD6C
- * Size:	00002C
- */
-void PrimTagParm<int>::doWrite(Stream& stream) { stream.writeInt(m_tag); }
-
-void PrimTagParm<int>::doDump() { }
+// void PrimTagParm<int>::doRead(Stream&)
+//{
+//    /*
+//    .loc_0x0:
+//      stwu      r1, -0x10(r1)
+//      mflr      r0
+//      stw       r0, 0x14(r1)
+//      stw       r31, 0xC(r1)
+//      mr        r31, r3
+//      mr        r3, r4
+//      bl        -0x72C0
+//      stw       r3, 0xC(r31)
+//      lwz       r0, 0x14(r1)
+//      lwz       r31, 0xC(r1)
+//      mtlr      r0
+//      addi      r1, r1, 0x10
+//      blr
+//    */
+//}
+//
+///*
+// * --INFO--
+// * Address:	8041BD6C
+// * Size:	00002C
+// */
+// void PrimTagParm<int>::doWrite(Stream&)
+//{
+//    /*
+//    .loc_0x0:
+//      stwu      r1, -0x10(r1)
+//      mflr      r0
+//      stw       r0, 0x14(r1)
+//      mr        r0, r4
+//      lwz       r4, 0xC(r3)
+//      mr        r3, r0
+//      bl        -0x65C4
+//      lwz       r0, 0x14(r1)
+//      mtlr      r0
+//      addi      r1, r1, 0x10
+//      blr
+//    */
+//}
+//
 ///*
 // * --INFO--
 // * Address:	8041BD98

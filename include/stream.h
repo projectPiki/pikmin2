@@ -9,11 +9,8 @@ struct Stream {
     char* getNextToken();
 
     void writeByte(u8 byte);
-    void writeInt(int);
-
     u8 readByte();
     u16 readU16();
-    int readInt();
 
     void skipReading(unsigned long);
     void textBeginGroup(char*);
