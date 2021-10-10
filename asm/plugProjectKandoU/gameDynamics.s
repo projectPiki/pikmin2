@@ -376,7 +376,7 @@ initPositionIndex__Q24Game5RigidFR10Vector3$$0f$$1iR10Vector3$$0f$$1:
 /* 8013A1D0 00137110  D0 05 00 3C */	stfs f0, 0x3c(r5)
 /* 8013A1D4 00137114  D0 05 00 40 */	stfs f0, 0x40(r5)
 /* 8013A1D8 00137118  D0 05 00 44 */	stfs f0, 0x44(r5)
-/* 8013A1DC 0013711C  48 2D 83 21 */	bl "set__4QuatFR10Vector3<f>"
+/* 8013A1DC 0013711C  48 2D 83 21 */	bl set__4QuatFR10Vector3$$0f$$1
 /* 8013A1E0 00137120  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8013A1E4 00137124  7C 08 03 A6 */	mtlr r0
 /* 8013A1E8 00137128  38 21 00 10 */	addi r1, r1, 0x10
@@ -451,7 +451,7 @@ getYDegree__FR4QuatR10Vector3$$0f$$1:
 /* 8013A2D8 00137218  90 C1 00 70 */	stw r6, 0x70(r1)
 /* 8013A2DC 0013721C  90 A1 00 74 */	stw r5, 0x74(r1)
 /* 8013A2E0 00137220  90 01 00 78 */	stw r0, 0x78(r1)
-/* 8013A2E4 00137224  48 2D 80 FD */	bl "__ct__4QuatFf10Vector3<f>"
+/* 8013A2E4 00137224  48 2D 80 FD */	bl __ct__4QuatFf10Vector3$$0f$$1
 /* 8013A2E8 00137228  38 61 00 8C */	addi r3, r1, 0x8c
 /* 8013A2EC 0013722C  48 2D 80 DD */	bl __ct__4QuatFv
 /* 8013A2F0 00137230  38 61 00 7C */	addi r3, r1, 0x7c
@@ -511,7 +511,7 @@ getYDegree__FR4QuatR10Vector3$$0f$$1:
 /* 8013A3C8 00137308  90 A1 00 38 */	stw r5, 0x38(r1)
 /* 8013A3CC 0013730C  90 C1 00 34 */	stw r6, 0x34(r1)
 /* 8013A3D0 00137310  90 01 00 3C */	stw r0, 0x3c(r1)
-/* 8013A3D4 00137314  48 2D 80 0D */	bl "__ct__4QuatFf10Vector3<f>"
+/* 8013A3D4 00137314  48 2D 80 0D */	bl __ct__4QuatFf10Vector3$$0f$$1
 /* 8013A3D8 00137318  C0 61 00 50 */	lfs f3, 0x50(r1)
 /* 8013A3DC 0013731C  38 61 00 08 */	addi r3, r1, 8
 /* 8013A3E0 00137320  C0 41 00 54 */	lfs f2, 0x54(r1)
@@ -564,7 +564,7 @@ getYDegree__FR4QuatR10Vector3$$0f$$1:
 /* 8013A49C 001373DC  90 C1 00 18 */	stw r6, 0x18(r1)
 /* 8013A4A0 001373E0  90 A1 00 1C */	stw r5, 0x1c(r1)
 /* 8013A4A4 001373E4  90 01 00 20 */	stw r0, 0x20(r1)
-/* 8013A4A8 001373E8  48 2D 7F 39 */	bl "__ct__4QuatFf10Vector3<f>"
+/* 8013A4A8 001373E8  48 2D 7F 39 */	bl __ct__4QuatFf10Vector3$$0f$$1
 /* 8013A4AC 001373EC  C0 61 00 40 */	lfs f3, 0x40(r1)
 /* 8013A4B0 001373F0  C0 41 00 44 */	lfs f2, 0x44(r1)
 /* 8013A4B4 001373F4  C0 21 00 48 */	lfs f1, 0x48(r1)
@@ -704,7 +704,7 @@ integrate__Q24Game5RigidFfi:
 /* 8013A6C0 00137600  90 01 01 00 */	stw r0, 0x100(r1)
 /* 8013A6C4 00137604  80 1F 00 2C */	lwz r0, 0x2c(r31)
 /* 8013A6C8 00137608  90 01 01 04 */	stw r0, 0x104(r1)
-/* 8013A6CC 0013760C  48 2D 7D 15 */	bl "__ct__4QuatFf10Vector3<f>"
+/* 8013A6CC 0013760C  48 2D 7D 15 */	bl __ct__4QuatFf10Vector3$$0f$$1
 /* 8013A6D0 00137610  38 61 00 74 */	addi r3, r1, 0x74
 /* 8013A6D4 00137614  48 2D 7C F5 */	bl __ct__4QuatFv
 /* 8013A6D8 00137618  C0 BF 00 50 */	lfs f5, 0x50(r31)
@@ -749,7 +749,7 @@ integrate__Q24Game5RigidFfi:
 /* 8013A774 001376B4  90 C1 00 84 */	stw r6, 0x84(r1)
 /* 8013A778 001376B8  90 A1 00 88 */	stw r5, 0x88(r1)
 /* 8013A77C 001376BC  90 01 00 8C */	stw r0, 0x8c(r1)
-/* 8013A780 001376C0  48 2D 7C 61 */	bl "__ct__4QuatFf10Vector3<f>"
+/* 8013A780 001376C0  48 2D 7C 61 */	bl __ct__4QuatFf10Vector3$$0f$$1
 /* 8013A784 001376C4  C0 61 00 EC */	lfs f3, 0xec(r1)
 /* 8013A788 001376C8  C0 41 00 F0 */	lfs f2, 0xf0(r1)
 /* 8013A78C 001376CC  C0 21 00 F4 */	lfs f1, 0xf4(r1)
@@ -784,7 +784,7 @@ integrate__Q24Game5RigidFfi:
 /* 8013A800 00137740  90 C1 00 5C */	stw r6, 0x5c(r1)
 /* 8013A804 00137744  90 A1 00 60 */	stw r5, 0x60(r1)
 /* 8013A808 00137748  90 01 00 64 */	stw r0, 0x64(r1)
-/* 8013A80C 0013774C  48 2D 7B D5 */	bl "__ct__4QuatFf10Vector3<f>"
+/* 8013A80C 0013774C  48 2D 7B D5 */	bl __ct__4QuatFf10Vector3$$0f$$1
 /* 8013A810 00137750  C0 61 00 DC */	lfs f3, 0xdc(r1)
 /* 8013A814 00137754  38 61 01 30 */	addi r3, r1, 0x130
 /* 8013A818 00137758  C0 41 00 E0 */	lfs f2, 0xe0(r1)
@@ -949,7 +949,7 @@ lbl_8013AA38:
 /* 8013AA88 001379C8  90 C1 00 18 */	stw r6, 0x18(r1)
 /* 8013AA8C 001379CC  90 A1 00 1C */	stw r5, 0x1c(r1)
 /* 8013AA90 001379D0  90 01 00 20 */	stw r0, 0x20(r1)
-/* 8013AA94 001379D4  48 2D 79 4D */	bl "__ct__4QuatFf10Vector3<f>"
+/* 8013AA94 001379D4  48 2D 79 4D */	bl __ct__4QuatFf10Vector3$$0f$$1
 /* 8013AA98 001379D8  C0 61 00 AC */	lfs f3, 0xac(r1)
 /* 8013AA9C 001379DC  38 61 00 08 */	addi r3, r1, 8
 /* 8013AAA0 001379E0  C0 41 00 B0 */	lfs f2, 0xb0(r1)

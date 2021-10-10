@@ -528,7 +528,7 @@ save__Q24Game8CreatureFR6StreamUc:
 /* 8013B5C4 00138504  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 8013B5C8 00138508  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8013B5CC 0013850C  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8013B5D0 00138510  48 2D 64 19 */	bl "write__10Vector3<f>FR6Stream"
+/* 8013B5D0 00138510  48 2D 64 19 */	bl write__10Vector3$$0f$$1FR6Stream
 lbl_8013B5D4:
 /* 8013B5D4 00138514  7F C3 F3 78 */	mr r3, r30
 /* 8013B5D8 00138518  7F E4 FB 78 */	mr r4, r31
@@ -555,7 +555,7 @@ load__Q24Game8CreatureFR6StreamUc:
 /* 8013B620 00138560  7C 7E 1B 78 */	mr r30, r3
 /* 8013B624 00138564  41 82 00 94 */	beq lbl_8013B6B8
 /* 8013B628 00138568  38 61 00 08 */	addi r3, r1, 8
-/* 8013B62C 0013856C  48 2D 63 65 */	bl "read__10Vector3<f>FR6Stream"
+/* 8013B62C 0013856C  48 2D 63 65 */	bl read__10Vector3$$0f$$1FR6Stream
 /* 8013B630 00138570  7F C3 F3 78 */	mr r3, r30
 /* 8013B634 00138574  38 81 00 08 */	addi r4, r1, 8
 /* 8013B638 00138578  81 9E 00 00 */	lwz r12, 0(r30)

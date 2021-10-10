@@ -4624,7 +4624,7 @@ writeObject__Q23Sys11VertexTableFR6StreamR10Vector3$$0f$$1:
 /* 80419CFC 00416C3C  7C 08 02 A6 */	mflr r0
 /* 80419D00 00416C40  7C A3 2B 78 */	mr r3, r5
 /* 80419D04 00416C44  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80419D08 00416C48  4B FF 7C E1 */	bl "write__10Vector3<f>FR6Stream"
+/* 80419D08 00416C48  4B FF 7C E1 */	bl write__10Vector3$$0f$$1FR6Stream
 /* 80419D0C 00416C4C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80419D10 00416C50  7C 08 03 A6 */	mtlr r0
 /* 80419D14 00416C54  38 21 00 10 */	addi r1, r1, 0x10
@@ -4677,7 +4677,7 @@ readObject__Q23Sys11VertexTableFR6StreamR10Vector3$$0f$$1:
 /* 80419DB0 00416CF0  7C 08 02 A6 */	mflr r0
 /* 80419DB4 00416CF4  7C A3 2B 78 */	mr r3, r5
 /* 80419DB8 00416CF8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80419DBC 00416CFC  4B FF 7B D5 */	bl "read__10Vector3<f>FR6Stream"
+/* 80419DBC 00416CFC  4B FF 7B D5 */	bl read__10Vector3$$0f$$1FR6Stream
 /* 80419DC0 00416D00  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80419DC4 00416D04  7C 08 03 A6 */	mtlr r0
 /* 80419DC8 00416D08  38 21 00 10 */	addi r1, r1, 0x10

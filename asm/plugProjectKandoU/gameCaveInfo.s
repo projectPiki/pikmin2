@@ -73,7 +73,7 @@ lbl_801D6194:
 /* 801D619C 001D30DC  90 7E 00 18 */	stw r3, 0x18(r30)
 /* 801D61A0 001D30E0  7F 84 E3 78 */	mr r4, r28
 /* 801D61A4 001D30E4  38 7E 00 1C */	addi r3, r30, 0x1c
-/* 801D61A8 001D30E8  48 23 B7 E9 */	bl "read__10Vector3<f>FR6Stream"
+/* 801D61A8 001D30E8  48 23 B7 E9 */	bl read__10Vector3$$0f$$1FR6Stream
 /* 801D61AC 001D30EC  7F 83 E3 78 */	mr r3, r28
 /* 801D61B0 001D30F0  48 23 EB FD */	bl readFloat__6StreamFv
 /* 801D61B4 001D30F4  D0 3E 00 28 */	stfs f1, 0x28(r30)

@@ -2040,7 +2040,7 @@ lbl_8017415C:
 /* 80174170 001710B0  48 2A 02 C5 */	bl textWriteTab__6StreamFi
 /* 80174174 001710B4  7F C4 F3 78 */	mr r4, r30
 /* 80174178 001710B8  38 7C 00 4C */	addi r3, r28, 0x4c
-/* 8017417C 001710BC  48 29 D8 6D */	bl "write__10Vector3<f>FR6Stream"
+/* 8017417C 001710BC  48 29 D8 6D */	bl write__10Vector3$$0f$$1FR6Stream
 /* 80174180 001710C0  C0 3C 00 58 */	lfs f1, 0x58(r28)
 /* 80174184 001710C4  7F C3 F3 78 */	mr r3, r30
 /* 80174188 001710C8  48 2A 16 C1 */	bl writeFloat__6StreamFf
@@ -2252,7 +2252,7 @@ lbl_8017446C:
 /* 80174474 001713B4  41 80 FF E4 */	blt lbl_80174458
 /* 80174478 001713B8  7F 44 D3 78 */	mr r4, r26
 /* 8017447C 001713BC  38 7E 00 4C */	addi r3, r30, 0x4c
-/* 80174480 001713C0  48 29 D5 11 */	bl "read__10Vector3<f>FR6Stream"
+/* 80174480 001713C0  48 29 D5 11 */	bl read__10Vector3$$0f$$1FR6Stream
 /* 80174484 001713C4  7F 43 D3 78 */	mr r3, r26
 /* 80174488 001713C8  48 2A 09 25 */	bl readFloat__6StreamFv
 /* 8017448C 001713CC  D0 3E 00 58 */	stfs f1, 0x58(r30)
@@ -2511,7 +2511,7 @@ lbl_801747F0:
 /* 801747F8 00171738  41 80 FF E4 */	blt lbl_801747DC
 /* 801747FC 0017173C  7F E4 FB 78 */	mr r4, r31
 /* 80174800 00171740  38 7C 00 4C */	addi r3, r28, 0x4c
-/* 80174804 00171744  48 29 D1 8D */	bl "read__10Vector3<f>FR6Stream"
+/* 80174804 00171744  48 29 D1 8D */	bl read__10Vector3$$0f$$1FR6Stream
 /* 80174808 00171748  7F E3 FB 78 */	mr r3, r31
 /* 8017480C 0017174C  48 2A 05 A1 */	bl readFloat__6StreamFv
 /* 80174810 00171750  D0 3C 00 58 */	stfs f1, 0x58(r28)

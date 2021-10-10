@@ -190,7 +190,7 @@ lbl_80431AAC:
 /* 80431AB4 0042E9F4  98 7E 00 24 */	stb r3, 0x24(r30)
 /* 80431AB8 0042E9F8  7F E4 FB 78 */	mr r4, r31
 /* 80431ABC 0042E9FC  38 7E 00 A4 */	addi r3, r30, 0xa4
-/* 80431AC0 0042EA00  4B FD FE D1 */	bl "read__10Vector3<f>FR6Stream"
+/* 80431AC0 0042EA00  4B FD FE D1 */	bl read__10Vector3$$0f$$1FR6Stream
 /* 80431AC4 0042EA04  7F E3 FB 78 */	mr r3, r31
 /* 80431AC8 0042EA08  4B FE 32 E5 */	bl readFloat__6StreamFv
 /* 80431ACC 0042EA0C  D0 3E 00 B0 */	stfs f1, 0xb0(r30)
