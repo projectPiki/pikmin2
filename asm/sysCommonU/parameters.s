@@ -212,8 +212,8 @@ lbl_8041390C:
 /* 8041391C 0041085C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80413920 00410860  4E 80 00 20 */	blr 
 
-.global "read__7Parm<i>FR6Stream"
-"read__7Parm<i>FR6Stream":
+.global read__7Parm$$0i$$1FR6Stream
+read__7Parm$$0i$$1FR6Stream:
 /* 80413924 00410864  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80413928 00410868  7C 08 02 A6 */	mflr r0
 /* 8041392C 0041086C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -228,8 +228,8 @@ lbl_8041390C:
 /* 80413950 00410890  38 21 00 10 */	addi r1, r1, 0x10
 /* 80413954 00410894  4E 80 00 20 */	blr 
 
-.global "write__7Parm<i>FR6Stream"
-"write__7Parm<i>FR6Stream":
+.global write__7Parm$$0i$$1FR6Stream
+write__7Parm$$0i$$1FR6Stream:
 /* 80413958 00410898  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041395C 0041089C  7C 08 02 A6 */	mflr r0
 /* 80413960 004108A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -242,8 +242,8 @@ lbl_8041390C:
 /* 8041397C 004108BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80413980 004108C0  4E 80 00 20 */	blr 
 
-.global "read__8Parm<Uc>FR6Stream"
-"read__8Parm<Uc>FR6Stream":
+.global read__8Parm$$0Uc$$1FR6Stream
+read__8Parm$$0Uc$$1FR6Stream:
 /* 80413984 004108C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80413988 004108C8  7C 08 02 A6 */	mflr r0
 /* 8041398C 004108CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -258,8 +258,8 @@ lbl_8041390C:
 /* 804139B0 004108F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 804139B4 004108F4  4E 80 00 20 */	blr 
 
-.global "write__8Parm<Uc>FR6Stream"
-"write__8Parm<Uc>FR6Stream":
+.global write__8Parm$$0Uc$$1FR6Stream
+write__8Parm$$0Uc$$1FR6Stream:
 /* 804139B8 004108F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804139BC 004108FC  7C 08 02 A6 */	mflr r0
 /* 804139C0 00410900  90 01 00 14 */	stw r0, 0x14(r1)
@@ -272,8 +272,8 @@ lbl_8041390C:
 /* 804139DC 0041091C  38 21 00 10 */	addi r1, r1, 0x10
 /* 804139E0 00410920  4E 80 00 20 */	blr 
 
-.global "read__7Parm<b>FR6Stream"
-"read__7Parm<b>FR6Stream":
+.global read__7Parm$$0b$$1FR6Stream
+read__7Parm$$0b$$1FR6Stream:
 /* 804139E4 00410924  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804139E8 00410928  7C 08 02 A6 */	mflr r0
 /* 804139EC 0041092C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -292,8 +292,8 @@ lbl_8041390C:
 /* 80413A20 00410960  38 21 00 10 */	addi r1, r1, 0x10
 /* 80413A24 00410964  4E 80 00 20 */	blr 
 
-.global "write__7Parm<b>FR6Stream"
-"write__7Parm<b>FR6Stream":
+.global write__7Parm$$0b$$1FR6Stream
+write__7Parm$$0b$$1FR6Stream:
 /* 80413A28 00410968  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80413A2C 0041096C  7C 08 02 A6 */	mflr r0
 /* 80413A30 00410970  90 01 00 14 */	stw r0, 0x14(r1)
@@ -308,8 +308,8 @@ lbl_8041390C:
 /* 80413A54 00410994  38 21 00 10 */	addi r1, r1, 0x10
 /* 80413A58 00410998  4E 80 00 20 */	blr 
 
-.global "read__7Parm<f>FR6Stream"
-"read__7Parm<f>FR6Stream":
+.global read__7Parm$$0f$$1FR6Stream
+read__7Parm$$0f$$1FR6Stream:
 /* 80413A5C 0041099C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80413A60 004109A0  7C 08 02 A6 */	mflr r0
 /* 80413A64 004109A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -324,8 +324,8 @@ lbl_8041390C:
 /* 80413A88 004109C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80413A8C 004109CC  4E 80 00 20 */	blr 
 
-.global "write__7Parm<f>FR6Stream"
-"write__7Parm<f>FR6Stream":
+.global write__7Parm$$0f$$1FR6Stream
+write__7Parm$$0f$$1FR6Stream:
 /* 80413A90 004109D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80413A94 004109D4  7C 08 02 A6 */	mflr r0
 /* 80413A98 004109D8  90 01 00 14 */	stw r0, 0x14(r1)

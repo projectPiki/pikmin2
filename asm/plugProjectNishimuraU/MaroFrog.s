@@ -65,9 +65,9 @@ attackNaviPosition__Q34Game8MaroFrog3ObjFv:
 /* 802618BC 0025E7FC  93 A1 00 A4 */	stw r29, 0xa4(r1)
 /* 802618C0 0025E800  38 80 00 00 */	li r4, 0
 /* 802618C4 0025E804  80 0D 92 E0 */	lwz r0, naviMgr__4Game@sda21(r13)
-/* 802618C8 0025E808  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Navi>"@ha
+/* 802618C8 0025E808  3C A0 80 4B */	lis r5, __vt__22Iterator$$0Q24Game4Navi$$1@ha
 /* 802618CC 0025E80C  90 81 00 98 */	stw r4, 0x98(r1)
-/* 802618D0 0025E810  38 A5 BC B4 */	addi r5, r5, "__vt__22Iterator<Q24Game4Navi>"@l
+/* 802618D0 0025E810  38 A5 BC B4 */	addi r5, r5, __vt__22Iterator$$0Q24Game4Navi$$1@l
 /* 802618D4 0025E814  28 04 00 00 */	cmplwi r4, 0
 /* 802618D8 0025E818  90 A1 00 8C */	stw r5, 0x8c(r1)
 /* 802618DC 0025E81C  7C 7F 1B 78 */	mr r31, r3

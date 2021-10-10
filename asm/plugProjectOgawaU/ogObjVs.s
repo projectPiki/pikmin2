@@ -756,7 +756,7 @@ lbl_80326490:
 /* 80326564 003234A4  41 82 01 0C */	beq lbl_80326670
 /* 80326568 003234A8  80 7F 00 74 */	lwz r3, 0x74(r31)
 /* 8032656C 003234AC  38 81 00 80 */	addi r4, r1, 0x80
-/* 80326570 003234B0  4B FD C1 F5 */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
+/* 80326570 003234B0  4B FD C1 F5 */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
 /* 80326574 003234B4  3C 60 80 4C */	lis r3, __vt__Q25efx2d7TBaseIF@ha
 /* 80326578 003234B8  3A A0 00 FF */	li r21, 0xff
 /* 8032657C 003234BC  38 03 14 F0 */	addi r0, r3, __vt__Q25efx2d7TBaseIF@l
@@ -851,7 +851,7 @@ lbl_80326670:
 /* 803266DC 0032361C  41 82 01 04 */	beq lbl_803267E0
 /* 803266E0 00323620  80 7F 00 A4 */	lwz r3, 0xa4(r31)
 /* 803266E4 00323624  38 81 00 78 */	addi r4, r1, 0x78
-/* 803266E8 00323628  4B FD C0 7D */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
+/* 803266E8 00323628  4B FD C0 7D */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
 /* 803266EC 0032362C  3C 60 80 4C */	lis r3, __vt__Q25efx2d7TBaseIF@ha
 /* 803266F0 00323630  39 60 00 00 */	li r11, 0
 /* 803266F4 00323634  38 03 14 F0 */	addi r0, r3, __vt__Q25efx2d7TBaseIF@l
@@ -958,7 +958,7 @@ lbl_80326860:
 /* 80326880 003237C0  4B FE 67 3D */	bl setBdamaGet__Q22og5SoundFv
 /* 80326884 003237C4  7E A3 AB 78 */	mr r3, r21
 /* 80326888 003237C8  38 81 00 70 */	addi r4, r1, 0x70
-/* 8032688C 003237CC  4B FD BE D9 */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
+/* 8032688C 003237CC  4B FD BE D9 */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
 /* 80326890 003237D0  3C 60 80 4C */	lis r3, __vt__Q25efx2d7TBaseIF@ha
 /* 80326894 003237D4  38 00 00 00 */	li r0, 0
 /* 80326898 003237D8  39 83 14 F0 */	addi r12, r3, __vt__Q25efx2d7TBaseIF@l
@@ -1078,7 +1078,7 @@ lbl_80326A2C:
 /* 80326A4C 0032398C  4B FE 65 71 */	bl setBdamaGet__Q22og5SoundFv
 /* 80326A50 00323990  7E A3 AB 78 */	mr r3, r21
 /* 80326A54 00323994  38 81 00 68 */	addi r4, r1, 0x68
-/* 80326A58 00323998  4B FD BD 0D */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
+/* 80326A58 00323998  4B FD BD 0D */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
 /* 80326A5C 0032399C  3C 60 80 4C */	lis r3, __vt__Q25efx2d7TBaseIF@ha
 /* 80326A60 003239A0  38 00 00 00 */	li r0, 0
 /* 80326A64 003239A4  39 83 14 F0 */	addi r12, r3, __vt__Q25efx2d7TBaseIF@l
@@ -1203,7 +1203,7 @@ lbl_80326C28:
 /* 80326C2C 00323B6C  48 00 22 1D */	bl up__Q32og6Screen8ScaleMgrFv
 /* 80326C30 00323B70  80 79 00 54 */	lwz r3, 0x54(r25)
 /* 80326C34 00323B74  38 81 00 60 */	addi r4, r1, 0x60
-/* 80326C38 00323B78  4B FD BB 2D */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
+/* 80326C38 00323B78  4B FD BB 2D */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
 /* 80326C3C 00323B7C  92 A1 00 BC */	stw r21, 0xbc(r1)
 /* 80326C40 00323B80  38 C0 00 00 */	li r6, 0
 /* 80326C44 00323B84  80 61 00 60 */	lwz r3, 0x60(r1)
@@ -1276,7 +1276,7 @@ lbl_80326D44:
 /* 80326D48 00323C88  48 00 21 01 */	bl up__Q32og6Screen8ScaleMgrFv
 /* 80326D4C 00323C8C  80 79 00 84 */	lwz r3, 0x84(r25)
 /* 80326D50 00323C90  38 81 00 58 */	addi r4, r1, 0x58
-/* 80326D54 00323C94  4B FD BA 11 */	bl "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
+/* 80326D54 00323C94  4B FD BA 11 */	bl calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
 /* 80326D58 00323C98  92 E1 00 A8 */	stw r23, 0xa8(r1)
 /* 80326D5C 00323C9C  38 C0 00 00 */	li r6, 0
 /* 80326D60 00323CA0  80 61 00 58 */	lwz r3, 0x58(r1)
@@ -2173,7 +2173,7 @@ doDraw__Q32og9newScreen5ObjVsFR8Graphics:
 /* 80327A80 003249C0  EC 04 00 2A */	fadds f0, f4, f0
 /* 80327A84 003249C4  D0 21 00 28 */	stfs f1, 0x28(r1)
 /* 80327A88 003249C8  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 80327A8C 003249CC  4B D0 ED 49 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 80327A8C 003249CC  4B D0 ED 49 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 80327A90 003249D0  80 7E 00 3C */	lwz r3, 0x3c(r30)
 /* 80327A94 003249D4  7F E4 FB 78 */	mr r4, r31
 /* 80327A98 003249D8  4B FE 77 81 */	bl draw__Q32og6Screen8BloGroupFP13J2DPerspGraph
@@ -2317,7 +2317,7 @@ __sinit_ogObjVs_cpp:
 /* 80327C4C 00324B8C  D0 03 00 30 */	stfs f0, 0x30(r3)
 /* 80327C50 00324B90  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen5ObjVsFv"
-"@24@__dt__Q32og9newScreen5ObjVsFv":
+.global $$224$$2__dt__Q32og9newScreen5ObjVsFv
+$$224$$2__dt__Q32og9newScreen5ObjVsFv:
 /* 80327C54 00324B94  38 63 FF E8 */	addi r3, r3, -24
 /* 80327C58 00324B98  4B FF DF 44 */	b __dt__Q32og9newScreen5ObjVsFv

@@ -880,7 +880,7 @@ __sinit_ogObjCave_cpp:
 /* 8031CC80 00319BC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8031CC84 00319BC4  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen7ObjCaveFv"
-"@24@__dt__Q32og9newScreen7ObjCaveFv":
+.global $$224$$2__dt__Q32og9newScreen7ObjCaveFv
+$$224$$2__dt__Q32og9newScreen7ObjCaveFv:
 /* 8031CC88 00319BC8  38 63 FF E8 */	addi r3, r3, -24
 /* 8031CC8C 00319BCC  4B FF F4 18 */	b __dt__Q32og9newScreen7ObjCaveFv

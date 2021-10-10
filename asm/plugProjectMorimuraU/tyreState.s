@@ -228,7 +228,7 @@ exec__Q34Game4Tyre9StateLandFPQ24Game9EnemyBase:
 /* 803ABB68 003A8AA8  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 803ABB6C 003A8AAC  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 803ABB70 003A8AB0  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 803ABB74 003A8AB4  48 00 29 D1 */	bl "landEffect__Q34Game4Tyre3ObjFR10Vector3<f>"
+/* 803ABB74 003A8AB4  48 00 29 D1 */	bl landEffect__Q34Game4Tyre3ObjFR10Vector3$$0f$$1
 /* 803ABB78 003A8AB8  80 6D 96 80 */	lwz r3, shadowMgr__4Game@sda21(r13)
 /* 803ABB7C 003A8ABC  7F E4 FB 78 */	mr r4, r31
 /* 803ABB80 003A8AC0  38 A0 00 00 */	li r5, 0

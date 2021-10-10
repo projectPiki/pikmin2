@@ -9,14 +9,14 @@ init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem:
 /* 801D2D78 001CFCB8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801D2D7C 001CFCBC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801D2D80 001CFCC0  7C 7F 1B 78 */	mr r31, r3
-/* 801D2D84 001CFCC4  4B FF FE 25 */	bl "create__Q24Game30StateMachine<Q24Game8CFSMItem>Fi"
+/* 801D2D84 001CFCC4  4B FF FE 25 */	bl create__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1Fi
 /* 801D2D88 001CFCC8  38 60 00 10 */	li r3, 0x10
 /* 801D2D8C 001CFCCC  4B E5 11 19 */	bl __nw__FUl
 /* 801D2D90 001CFCD0  7C 64 1B 79 */	or. r4, r3, r3
 /* 801D2D94 001CFCD4  41 82 00 40 */	beq lbl_801D2DD4
-/* 801D2D98 001CFCD8  3C 60 80 4B */	lis r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
+/* 801D2D98 001CFCD8  3C 60 80 4B */	lis r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@ha
 /* 801D2D9C 001CFCDC  3C C0 80 4B */	lis r6, __vt__Q24Game10CItemState@ha
-/* 801D2DA0 001CFCE0  38 03 7D F8 */	addi r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
+/* 801D2DA0 001CFCE0  38 03 7D F8 */	addi r0, r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@l
 /* 801D2DA4 001CFCE4  3C A0 80 4C */	lis r5, __vt__Q34Game9ItemHoney5State@ha
 /* 801D2DA8 001CFCE8  90 04 00 00 */	stw r0, 0(r4)
 /* 801D2DAC 001CFCEC  38 E0 00 00 */	li r7, 0
@@ -31,14 +31,14 @@ init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem:
 /* 801D2DD0 001CFD10  90 04 00 00 */	stw r0, 0(r4)
 lbl_801D2DD4:
 /* 801D2DD4 001CFD14  7F E3 FB 78 */	mr r3, r31
-/* 801D2DD8 001CFD18  4B FF FE E1 */	bl "registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
+/* 801D2DD8 001CFD18  4B FF FE E1 */	bl registerState__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1FPQ24Game26FSMState$$0Q24Game8CFSMItem$$1
 /* 801D2DDC 001CFD1C  38 60 00 10 */	li r3, 0x10
 /* 801D2DE0 001CFD20  4B E5 10 C5 */	bl __nw__FUl
 /* 801D2DE4 001CFD24  7C 64 1B 79 */	or. r4, r3, r3
 /* 801D2DE8 001CFD28  41 82 00 44 */	beq lbl_801D2E2C
-/* 801D2DEC 001CFD2C  3C 60 80 4B */	lis r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
+/* 801D2DEC 001CFD2C  3C 60 80 4B */	lis r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@ha
 /* 801D2DF0 001CFD30  3C C0 80 4B */	lis r6, __vt__Q24Game10CItemState@ha
-/* 801D2DF4 001CFD34  38 03 7D F8 */	addi r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
+/* 801D2DF4 001CFD34  38 03 7D F8 */	addi r0, r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@l
 /* 801D2DF8 001CFD38  3C A0 80 4C */	lis r5, __vt__Q34Game9ItemHoney5State@ha
 /* 801D2DFC 001CFD3C  90 04 00 00 */	stw r0, 0(r4)
 /* 801D2E00 001CFD40  38 00 00 01 */	li r0, 1
@@ -54,14 +54,14 @@ lbl_801D2DD4:
 /* 801D2E28 001CFD68  90 04 00 00 */	stw r0, 0(r4)
 lbl_801D2E2C:
 /* 801D2E2C 001CFD6C  7F E3 FB 78 */	mr r3, r31
-/* 801D2E30 001CFD70  4B FF FE 89 */	bl "registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
+/* 801D2E30 001CFD70  4B FF FE 89 */	bl registerState__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1FPQ24Game26FSMState$$0Q24Game8CFSMItem$$1
 /* 801D2E34 001CFD74  38 60 00 10 */	li r3, 0x10
 /* 801D2E38 001CFD78  4B E5 10 6D */	bl __nw__FUl
 /* 801D2E3C 001CFD7C  7C 64 1B 79 */	or. r4, r3, r3
 /* 801D2E40 001CFD80  41 82 00 44 */	beq lbl_801D2E84
-/* 801D2E44 001CFD84  3C 60 80 4B */	lis r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
+/* 801D2E44 001CFD84  3C 60 80 4B */	lis r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@ha
 /* 801D2E48 001CFD88  3C C0 80 4B */	lis r6, __vt__Q24Game10CItemState@ha
-/* 801D2E4C 001CFD8C  38 03 7D F8 */	addi r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
+/* 801D2E4C 001CFD8C  38 03 7D F8 */	addi r0, r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@l
 /* 801D2E50 001CFD90  3C A0 80 4C */	lis r5, __vt__Q34Game9ItemHoney5State@ha
 /* 801D2E54 001CFD94  90 04 00 00 */	stw r0, 0(r4)
 /* 801D2E58 001CFD98  38 00 00 02 */	li r0, 2
@@ -77,14 +77,14 @@ lbl_801D2E2C:
 /* 801D2E80 001CFDC0  90 04 00 00 */	stw r0, 0(r4)
 lbl_801D2E84:
 /* 801D2E84 001CFDC4  7F E3 FB 78 */	mr r3, r31
-/* 801D2E88 001CFDC8  4B FF FE 31 */	bl "registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
+/* 801D2E88 001CFDC8  4B FF FE 31 */	bl registerState__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1FPQ24Game26FSMState$$0Q24Game8CFSMItem$$1
 /* 801D2E8C 001CFDCC  38 60 00 10 */	li r3, 0x10
 /* 801D2E90 001CFDD0  4B E5 10 15 */	bl __nw__FUl
 /* 801D2E94 001CFDD4  7C 64 1B 79 */	or. r4, r3, r3
 /* 801D2E98 001CFDD8  41 82 00 44 */	beq lbl_801D2EDC
-/* 801D2E9C 001CFDDC  3C 60 80 4B */	lis r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
+/* 801D2E9C 001CFDDC  3C 60 80 4B */	lis r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@ha
 /* 801D2EA0 001CFDE0  3C C0 80 4B */	lis r6, __vt__Q24Game10CItemState@ha
-/* 801D2EA4 001CFDE4  38 03 7D F8 */	addi r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
+/* 801D2EA4 001CFDE4  38 03 7D F8 */	addi r0, r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@l
 /* 801D2EA8 001CFDE8  3C A0 80 4C */	lis r5, __vt__Q34Game9ItemHoney5State@ha
 /* 801D2EAC 001CFDEC  90 04 00 00 */	stw r0, 0(r4)
 /* 801D2EB0 001CFDF0  38 00 00 03 */	li r0, 3
@@ -100,14 +100,14 @@ lbl_801D2E84:
 /* 801D2ED8 001CFE18  90 04 00 00 */	stw r0, 0(r4)
 lbl_801D2EDC:
 /* 801D2EDC 001CFE1C  7F E3 FB 78 */	mr r3, r31
-/* 801D2EE0 001CFE20  4B FF FD D9 */	bl "registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
+/* 801D2EE0 001CFE20  4B FF FD D9 */	bl registerState__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1FPQ24Game26FSMState$$0Q24Game8CFSMItem$$1
 /* 801D2EE4 001CFE24  38 60 00 14 */	li r3, 0x14
 /* 801D2EE8 001CFE28  4B E5 0F BD */	bl __nw__FUl
 /* 801D2EEC 001CFE2C  7C 64 1B 79 */	or. r4, r3, r3
 /* 801D2EF0 001CFE30  41 82 00 44 */	beq lbl_801D2F34
-/* 801D2EF4 001CFE34  3C 60 80 4B */	lis r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
+/* 801D2EF4 001CFE34  3C 60 80 4B */	lis r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@ha
 /* 801D2EF8 001CFE38  3C C0 80 4B */	lis r6, __vt__Q24Game10CItemState@ha
-/* 801D2EFC 001CFE3C  38 03 7D F8 */	addi r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
+/* 801D2EFC 001CFE3C  38 03 7D F8 */	addi r0, r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@l
 /* 801D2F00 001CFE40  3C A0 80 4C */	lis r5, __vt__Q34Game9ItemHoney5State@ha
 /* 801D2F04 001CFE44  90 04 00 00 */	stw r0, 0(r4)
 /* 801D2F08 001CFE48  38 00 00 04 */	li r0, 4
@@ -123,14 +123,14 @@ lbl_801D2EDC:
 /* 801D2F30 001CFE70  90 04 00 00 */	stw r0, 0(r4)
 lbl_801D2F34:
 /* 801D2F34 001CFE74  7F E3 FB 78 */	mr r3, r31
-/* 801D2F38 001CFE78  4B FF FD 81 */	bl "registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
+/* 801D2F38 001CFE78  4B FF FD 81 */	bl registerState__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1FPQ24Game26FSMState$$0Q24Game8CFSMItem$$1
 /* 801D2F3C 001CFE7C  38 60 00 10 */	li r3, 0x10
 /* 801D2F40 001CFE80  4B E5 0F 65 */	bl __nw__FUl
 /* 801D2F44 001CFE84  7C 64 1B 79 */	or. r4, r3, r3
 /* 801D2F48 001CFE88  41 82 00 44 */	beq lbl_801D2F8C
-/* 801D2F4C 001CFE8C  3C 60 80 4B */	lis r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
+/* 801D2F4C 001CFE8C  3C 60 80 4B */	lis r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@ha
 /* 801D2F50 001CFE90  3C C0 80 4B */	lis r6, __vt__Q24Game10CItemState@ha
-/* 801D2F54 001CFE94  38 03 7D F8 */	addi r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
+/* 801D2F54 001CFE94  38 03 7D F8 */	addi r0, r3, __vt__Q24Game26FSMState$$0Q24Game8CFSMItem$$1@l
 /* 801D2F58 001CFE98  3C A0 80 4C */	lis r5, __vt__Q34Game9ItemHoney5State@ha
 /* 801D2F5C 001CFE9C  90 04 00 00 */	stw r0, 0(r4)
 /* 801D2F60 001CFEA0  38 00 00 05 */	li r0, 5
@@ -146,7 +146,7 @@ lbl_801D2F34:
 /* 801D2F88 001CFEC8  90 04 00 00 */	stw r0, 0(r4)
 lbl_801D2F8C:
 /* 801D2F8C 001CFECC  7F E3 FB 78 */	mr r3, r31
-/* 801D2F90 001CFED0  4B FF FD 29 */	bl "registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
+/* 801D2F90 001CFED0  4B FF FD 29 */	bl registerState__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1FPQ24Game26FSMState$$0Q24Game8CFSMItem$$1
 /* 801D2F94 001CFED4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801D2F98 001CFED8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801D2F9C 001CFEDC  7C 08 03 A6 */	mtlr r0
@@ -500,13 +500,13 @@ onKeyEvent__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEve
 /* 801D3418 001D0358  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D341C 001D035C  4E 80 00 20 */	blr 
 
-.global "kill__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item"
-"kill__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item":
+.global kill__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ34Game9ItemHoney4Item
+kill__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ34Game9ItemHoney4Item:
 /* 801D3420 001D0360  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D3424 001D0364  7C 08 02 A6 */	mflr r0
 /* 801D3428 001D0368  38 63 00 4C */	addi r3, r3, 0x4c
 /* 801D342C 001D036C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801D3430 001D0370  48 00 12 39 */	bl "kill__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item"
+/* 801D3430 001D0370  48 00 12 39 */	bl kill__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FPQ34Game9ItemHoney4Item
 /* 801D3434 001D0374  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801D3438 001D0378  7C 08 03 A6 */	mtlr r0
 /* 801D343C 001D037C  38 21 00 10 */	addi r1, r1, 0x10
@@ -722,9 +722,9 @@ createFSM__Q34Game9ItemHoney4ItemFv:
 /* 801D36D0 001D0610  4B E5 07 D5 */	bl __nw__FUl
 /* 801D36D4 001D0614  28 03 00 00 */	cmplwi r3, 0
 /* 801D36D8 001D0618  41 82 00 30 */	beq lbl_801D3708
-/* 801D36DC 001D061C  3C 80 80 4B */	lis r4, "__vt__Q24Game30StateMachine<Q24Game8CFSMItem>"@ha
+/* 801D36DC 001D061C  3C 80 80 4B */	lis r4, __vt__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1@ha
 /* 801D36E0 001D0620  3C A0 80 4B */	lis r5, __vt__Q24Game8CItemFSM@ha
-/* 801D36E4 001D0624  38 04 7A 50 */	addi r0, r4, "__vt__Q24Game30StateMachine<Q24Game8CFSMItem>"@l
+/* 801D36E4 001D0624  38 04 7A 50 */	addi r0, r4, __vt__Q24Game30StateMachine$$0Q24Game8CFSMItem$$1@l
 /* 801D36E8 001D0628  3C 80 80 4C */	lis r4, __vt__Q34Game9ItemHoney3FSM@ha
 /* 801D36EC 001D062C  90 03 00 00 */	stw r0, 0(r3)
 /* 801D36F0 001D0630  38 C0 FF FF */	li r6, -1
@@ -769,7 +769,7 @@ onInit__Q34Game9ItemHoney4ItemFPQ24Game15CreatureInitArg:
 /* 801D3770 001D06B0  7C 7E 1B 78 */	mr r30, r3
 /* 801D3774 001D06B4  7F C4 F3 78 */	mr r4, r30
 /* 801D3778 001D06B8  80 6D 94 50 */	lwz r3, mgr__Q24Game9ItemHoney@sda21(r13)
-/* 801D377C 001D06BC  48 00 0E 5D */	bl "createModel__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item"
+/* 801D377C 001D06BC  48 00 0E 5D */	bl createModel__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ34Game9ItemHoney4Item
 /* 801D3780 001D06C0  28 1F 00 00 */	cmplwi r31, 0
 /* 801D3784 001D06C4  90 7E 01 74 */	stw r3, 0x174(r30)
 /* 801D3788 001D06C8  41 82 00 10 */	beq lbl_801D3798
@@ -1213,7 +1213,7 @@ onEndCapture__Q34Game9ItemHoney4ItemFv:
 /* 801D3D50 001D0C90  38 83 01 9C */	addi r4, r3, 0x19c
 /* 801D3D54 001D0C94  38 A0 00 00 */	li r5, 0
 /* 801D3D58 001D0C98  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801D3D5C 001D0C9C  4B F6 74 4D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 801D3D5C 001D0C9C  4B F6 74 4D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 801D3D60 001D0CA0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801D3D64 001D0CA4  7C 08 03 A6 */	mtlr r0
 /* 801D3D68 001D0CA8  38 21 00 10 */	addi r1, r1, 0x10
@@ -1268,12 +1268,12 @@ lbl_801D3DF0:
 /* 801D3E04 001D0D44  7F E3 FB 78 */	mr r3, r31
 /* 801D3E08 001D0D48  48 23 D5 89 */	bl __ct__5CNodeFv
 /* 801D3E0C 001D0D4C  3C 60 80 4B */	lis r3, __vt__16GenericContainer@ha
-/* 801D3E10 001D0D50  3C 80 80 4C */	lis r4, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
+/* 801D3E10 001D0D50  3C 80 80 4C */	lis r4, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D3E14 001D0D54  38 03 AC DC */	addi r0, r3, __vt__16GenericContainer@l
-/* 801D3E18 001D0D58  3C 60 80 4B */	lis r3, "__vt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>"@ha
+/* 801D3E18 001D0D58  3C 60 80 4B */	lis r3, __vt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D3E1C 001D0D5C  90 1F 00 00 */	stw r0, 0(r31)
-/* 801D3E20 001D0D60  38 04 80 B8 */	addi r0, r4, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
-/* 801D3E24 001D0D64  38 83 7F F8 */	addi r4, r3, "__vt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D3E20 001D0D60  38 04 80 B8 */	addi r0, r4, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
+/* 801D3E24 001D0D64  38 83 7F F8 */	addi r4, r3, __vt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3E28 001D0D68  38 A0 00 00 */	li r5, 0
 /* 801D3E2C 001D0D6C  90 1F 00 00 */	stw r0, 0(r31)
 /* 801D3E30 001D0D70  38 04 00 74 */	addi r0, r4, 0x74
@@ -1281,7 +1281,7 @@ lbl_801D3DF0:
 /* 801D3E38 001D0D78  98 BF 00 18 */	stb r5, 0x18(r31)
 /* 801D3E3C 001D0D7C  90 9E 00 00 */	stw r4, 0(r30)
 /* 801D3E40 001D0D80  90 1E 00 30 */	stw r0, 0x30(r30)
-/* 801D3E44 001D0D84  48 00 18 E1 */	bl "__ct__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D3E44 001D0D84  48 00 18 E1 */	bl __ct__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 /* 801D3E48 001D0D88  3C 80 80 4B */	lis r4, __vt__Q34Game9ItemHoney3Mgr@ha
 /* 801D3E4C 001D0D8C  7F C3 F3 78 */	mr r3, r30
 /* 801D3E50 001D0D90  38 A4 7E 30 */	addi r5, r4, __vt__Q34Game9ItemHoney3Mgr@l
@@ -1303,8 +1303,8 @@ lbl_801D3DF0:
 /* 801D3E90 001D0DD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D3E94 001D0DD4  4E 80 00 20 */	blr 
 
-.global "__dt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"__dt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global __dt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+__dt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D3E98 001D0DD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D3E9C 001D0DDC  7C 08 02 A6 */	mflr r0
 /* 801D3EA0 001D0DE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1313,30 +1313,30 @@ lbl_801D3DF0:
 /* 801D3EAC 001D0DEC  93 C1 00 08 */	stw r30, 8(r1)
 /* 801D3EB0 001D0DF0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801D3EB4 001D0DF4  41 82 00 C8 */	beq lbl_801D3F7C
-/* 801D3EB8 001D0DF8  3C 60 80 4B */	lis r3, "__vt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>"@ha
+/* 801D3EB8 001D0DF8  3C 60 80 4B */	lis r3, __vt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D3EBC 001D0DFC  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801D3EC0 001D0E00  38 63 7F F8 */	addi r3, r3, "__vt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D3EC0 001D0E00  38 63 7F F8 */	addi r3, r3, __vt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3EC4 001D0E04  90 7E 00 00 */	stw r3, 0(r30)
 /* 801D3EC8 001D0E08  38 03 00 74 */	addi r0, r3, 0x74
 /* 801D3ECC 001D0E0C  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801D3ED0 001D0E10  41 82 00 68 */	beq lbl_801D3F38
-/* 801D3ED4 001D0E14  3C 60 80 4B */	lis r3, "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"@ha
+/* 801D3ED4 001D0E14  3C 60 80 4B */	lis r3, __vt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D3ED8 001D0E18  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801D3EDC 001D0E1C  38 63 7F 6C */	addi r3, r3, "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D3EDC 001D0E1C  38 63 7F 6C */	addi r3, r3, __vt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3EE0 001D0E20  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 801D3EE4 001D0E24  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801D3EE8 001D0E28  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 801D3EEC 001D0E2C  41 82 00 4C */	beq lbl_801D3F38
-/* 801D3EF0 001D0E30  3C 60 80 4B */	lis r3, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@ha
+/* 801D3EF0 001D0E30  3C 60 80 4B */	lis r3, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D3EF4 001D0E34  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801D3EF8 001D0E38  38 63 7E F0 */	addi r3, r3, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D3EF8 001D0E38  38 63 7E F0 */	addi r3, r3, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3EFC 001D0E3C  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 801D3F00 001D0E40  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801D3F04 001D0E44  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 801D3F08 001D0E48  41 82 00 30 */	beq lbl_801D3F38
-/* 801D3F0C 001D0E4C  3C 60 80 4C */	lis r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
+/* 801D3F0C 001D0E4C  3C 60 80 4C */	lis r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D3F10 001D0E50  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801D3F14 001D0E54  38 03 80 B8 */	addi r0, r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
+/* 801D3F14 001D0E54  38 03 80 B8 */	addi r0, r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3F18 001D0E58  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 801D3F1C 001D0E5C  41 82 00 1C */	beq lbl_801D3F38
 /* 801D3F20 001D0E60  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1348,9 +1348,9 @@ lbl_801D3DF0:
 lbl_801D3F38:
 /* 801D3F38 001D0E78  34 1E 00 30 */	addic. r0, r30, 0x30
 /* 801D3F3C 001D0E7C  41 82 00 30 */	beq lbl_801D3F6C
-/* 801D3F40 001D0E80  3C 60 80 4C */	lis r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
+/* 801D3F40 001D0E80  3C 60 80 4C */	lis r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D3F44 001D0E84  34 1E 00 30 */	addic. r0, r30, 0x30
-/* 801D3F48 001D0E88  38 03 80 B8 */	addi r0, r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
+/* 801D3F48 001D0E88  38 03 80 B8 */	addi r0, r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3F4C 001D0E8C  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801D3F50 001D0E90  41 82 00 1C */	beq lbl_801D3F6C
 /* 801D3F54 001D0E94  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1373,8 +1373,8 @@ lbl_801D3F7C:
 /* 801D3F90 001D0ED0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D3F94 001D0ED4  4E 80 00 20 */	blr 
 
-.global "__dt__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"__dt__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global __dt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+__dt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D3F98 001D0ED8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D3F9C 001D0EDC  7C 08 02 A6 */	mflr r0
 /* 801D3FA0 001D0EE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1383,20 +1383,20 @@ lbl_801D3F7C:
 /* 801D3FAC 001D0EEC  93 C1 00 08 */	stw r30, 8(r1)
 /* 801D3FB0 001D0EF0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801D3FB4 001D0EF4  41 82 00 68 */	beq lbl_801D401C
-/* 801D3FB8 001D0EF8  3C 80 80 4B */	lis r4, "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"@ha
-/* 801D3FBC 001D0EFC  38 84 7F 6C */	addi r4, r4, "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D3FB8 001D0EF8  3C 80 80 4B */	lis r4, __vt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
+/* 801D3FBC 001D0EFC  38 84 7F 6C */	addi r4, r4, __vt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3FC0 001D0F00  90 9E 00 00 */	stw r4, 0(r30)
 /* 801D3FC4 001D0F04  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801D3FC8 001D0F08  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801D3FCC 001D0F0C  41 82 00 40 */	beq lbl_801D400C
-/* 801D3FD0 001D0F10  3C 80 80 4B */	lis r4, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@ha
-/* 801D3FD4 001D0F14  38 84 7E F0 */	addi r4, r4, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D3FD0 001D0F10  3C 80 80 4B */	lis r4, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
+/* 801D3FD4 001D0F14  38 84 7E F0 */	addi r4, r4, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3FD8 001D0F18  90 9E 00 00 */	stw r4, 0(r30)
 /* 801D3FDC 001D0F1C  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801D3FE0 001D0F20  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801D3FE4 001D0F24  41 82 00 28 */	beq lbl_801D400C
-/* 801D3FE8 001D0F28  3C 80 80 4C */	lis r4, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
-/* 801D3FEC 001D0F2C  38 04 80 B8 */	addi r0, r4, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
+/* 801D3FE8 001D0F28  3C 80 80 4C */	lis r4, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
+/* 801D3FEC 001D0F2C  38 04 80 B8 */	addi r0, r4, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D3FF0 001D0F30  90 1E 00 00 */	stw r0, 0(r30)
 /* 801D3FF4 001D0F34  41 82 00 18 */	beq lbl_801D400C
 /* 801D3FF8 001D0F38  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1418,8 +1418,8 @@ lbl_801D401C:
 /* 801D4030 001D0F70  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4034 001D0F74  4E 80 00 20 */	blr 
 
-.global "__dt__33Container<Q34Game9ItemHoney4Item>Fv"
-"__dt__33Container<Q34Game9ItemHoney4Item>Fv":
+.global __dt__33Container$$0Q34Game9ItemHoney4Item$$1Fv
+__dt__33Container$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4038 001D0F78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D403C 001D0F7C  7C 08 02 A6 */	mflr r0
 /* 801D4040 001D0F80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1428,8 +1428,8 @@ lbl_801D401C:
 /* 801D404C 001D0F8C  93 C1 00 08 */	stw r30, 8(r1)
 /* 801D4050 001D0F90  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801D4054 001D0F94  41 82 00 38 */	beq lbl_801D408C
-/* 801D4058 001D0F98  3C 80 80 4C */	lis r4, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
-/* 801D405C 001D0F9C  38 04 80 B8 */	addi r0, r4, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
+/* 801D4058 001D0F98  3C 80 80 4C */	lis r4, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
+/* 801D405C 001D0F9C  38 04 80 B8 */	addi r0, r4, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D4060 001D0FA0  90 1E 00 00 */	stw r0, 0(r30)
 /* 801D4064 001D0FA4  41 82 00 18 */	beq lbl_801D407C
 /* 801D4068 001D0FA8  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1524,7 +1524,7 @@ onLoadResources__Q34Game9ItemHoney3MgrFv:
 /* 801D41AC 001D10EC  7F A3 EB 78 */	mr r3, r29
 /* 801D41B0 001D10F0  38 80 00 18 */	li r4, 0x18
 /* 801D41B4 001D10F4  3C A0 00 08 */	lis r5, 8
-/* 801D41B8 001D10F8  48 00 19 55 */	bl "createMgr__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FiUl"
+/* 801D41B8 001D10F8  48 00 19 55 */	bl createMgr__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FiUl
 /* 801D41BC 001D10FC  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801D41C0 001D1100  38 9F 00 00 */	addi r4, r31, 0
 /* 801D41C4 001D1104  48 24 F1 A1 */	bl heapStatusEnd__6SystemFPc
@@ -1550,8 +1550,8 @@ birth__Q34Game9ItemHoney3MgrFv:
 /* 801D4208 001D1148  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D420C 001D114C  4E 80 00 20 */	blr 
 
-.global "generatorBirth__Q34Game9ItemHoney3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-"generatorBirth__Q34Game9ItemHoney3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
+.global generatorBirth__Q34Game9ItemHoney3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm
+generatorBirth__Q34Game9ItemHoney3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm:
 /* 801D4210 001D1150  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4214 001D1154  7C 08 02 A6 */	mflr r0
 /* 801D4218 001D1158  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1568,7 +1568,7 @@ birth__Q34Game9ItemHoney3MgrFv:
 /* 801D4244 001D1184  7F E3 FB 78 */	mr r3, r31
 /* 801D4248 001D1188  7F C4 F3 78 */	mr r4, r30
 /* 801D424C 001D118C  38 A0 00 00 */	li r5, 0
-/* 801D4250 001D1190  4B F6 6F 59 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 801D4250 001D1190  4B F6 6F 59 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 801D4254 001D1194  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801D4258 001D1198  7F E3 FB 78 */	mr r3, r31
 /* 801D425C 001D119C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1593,30 +1593,30 @@ __dt__Q34Game9ItemHoney3MgrFv:
 /* 801D429C 001D11DC  38 03 00 74 */	addi r0, r3, 0x74
 /* 801D42A0 001D11E0  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801D42A4 001D11E4  41 82 00 B8 */	beq lbl_801D435C
-/* 801D42A8 001D11E8  3C 60 80 4B */	lis r3, "__vt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>"@ha
+/* 801D42A8 001D11E8  3C 60 80 4B */	lis r3, __vt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D42AC 001D11EC  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801D42B0 001D11F0  38 63 7F F8 */	addi r3, r3, "__vt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D42B0 001D11F0  38 63 7F F8 */	addi r3, r3, __vt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D42B4 001D11F4  90 7E 00 00 */	stw r3, 0(r30)
 /* 801D42B8 001D11F8  38 03 00 74 */	addi r0, r3, 0x74
 /* 801D42BC 001D11FC  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801D42C0 001D1200  41 82 00 68 */	beq lbl_801D4328
-/* 801D42C4 001D1204  3C 60 80 4B */	lis r3, "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"@ha
+/* 801D42C4 001D1204  3C 60 80 4B */	lis r3, __vt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D42C8 001D1208  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801D42CC 001D120C  38 63 7F 6C */	addi r3, r3, "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D42CC 001D120C  38 63 7F 6C */	addi r3, r3, __vt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D42D0 001D1210  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 801D42D4 001D1214  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801D42D8 001D1218  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 801D42DC 001D121C  41 82 00 4C */	beq lbl_801D4328
-/* 801D42E0 001D1220  3C 60 80 4B */	lis r3, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@ha
+/* 801D42E0 001D1220  3C 60 80 4B */	lis r3, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D42E4 001D1224  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801D42E8 001D1228  38 63 7E F0 */	addi r3, r3, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D42E8 001D1228  38 63 7E F0 */	addi r3, r3, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D42EC 001D122C  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 801D42F0 001D1230  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801D42F4 001D1234  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 801D42F8 001D1238  41 82 00 30 */	beq lbl_801D4328
-/* 801D42FC 001D123C  3C 60 80 4C */	lis r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
+/* 801D42FC 001D123C  3C 60 80 4C */	lis r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D4300 001D1240  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801D4304 001D1244  38 03 80 B8 */	addi r0, r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
+/* 801D4304 001D1244  38 03 80 B8 */	addi r0, r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D4308 001D1248  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 801D430C 001D124C  41 82 00 1C */	beq lbl_801D4328
 /* 801D4310 001D1250  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1628,9 +1628,9 @@ __dt__Q34Game9ItemHoney3MgrFv:
 lbl_801D4328:
 /* 801D4328 001D1268  34 1E 00 30 */	addic. r0, r30, 0x30
 /* 801D432C 001D126C  41 82 00 30 */	beq lbl_801D435C
-/* 801D4330 001D1270  3C 60 80 4C */	lis r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
+/* 801D4330 001D1270  3C 60 80 4C */	lis r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D4334 001D1274  34 1E 00 30 */	addic. r0, r30, 0x30
-/* 801D4338 001D1278  38 03 80 B8 */	addi r0, r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
+/* 801D4338 001D1278  38 03 80 B8 */	addi r0, r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D433C 001D127C  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801D4340 001D1280  41 82 00 1C */	beq lbl_801D435C
 /* 801D4344 001D1284  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1659,8 +1659,8 @@ generatorGetID__Q34Game9ItemHoney3MgrFv:
 /* 801D438C 001D12CC  38 63 74 75 */	addi r3, r3, 0x6D697475@l
 /* 801D4390 001D12D0  4E 80 00 20 */	blr 
 
-.global "__dt__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"__dt__33ObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global __dt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+__dt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4394 001D12D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4398 001D12D8  7C 08 02 A6 */	mflr r0
 /* 801D439C 001D12DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1669,14 +1669,14 @@ generatorGetID__Q34Game9ItemHoney3MgrFv:
 /* 801D43A8 001D12E8  93 C1 00 08 */	stw r30, 8(r1)
 /* 801D43AC 001D12EC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801D43B0 001D12F0  41 82 00 50 */	beq lbl_801D4400
-/* 801D43B4 001D12F4  3C 80 80 4B */	lis r4, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@ha
-/* 801D43B8 001D12F8  38 84 7E F0 */	addi r4, r4, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D43B4 001D12F4  3C 80 80 4B */	lis r4, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
+/* 801D43B8 001D12F8  38 84 7E F0 */	addi r4, r4, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D43BC 001D12FC  90 9E 00 00 */	stw r4, 0(r30)
 /* 801D43C0 001D1300  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801D43C4 001D1304  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801D43C8 001D1308  41 82 00 28 */	beq lbl_801D43F0
-/* 801D43CC 001D130C  3C 80 80 4C */	lis r4, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
-/* 801D43D0 001D1310  38 04 80 B8 */	addi r0, r4, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
+/* 801D43CC 001D130C  3C 80 80 4C */	lis r4, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
+/* 801D43D0 001D1310  38 04 80 B8 */	addi r0, r4, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D43D4 001D1314  90 1E 00 00 */	stw r0, 0(r30)
 /* 801D43D8 001D1318  41 82 00 18 */	beq lbl_801D43F0
 /* 801D43DC 001D131C  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1698,8 +1698,8 @@ lbl_801D4400:
 /* 801D4414 001D1354  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4418 001D1358  4E 80 00 20 */	blr 
 
-.global "birth__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"birth__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global birth__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+birth__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D441C 001D135C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4420 001D1360  7C 08 02 A6 */	mflr r0
 /* 801D4424 001D1364  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1741,12 +1741,12 @@ absorbable__Q34Game9ItemHoney9WaitStateFv:
 onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D4470 001D13B0  4E 80 00 20 */	blr 
 
-.global "onCreateModel__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ28SysShape5Model"
-"onCreateModel__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ28SysShape5Model":
+.global onCreateModel__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ28SysShape5Model
+onCreateModel__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ28SysShape5Model:
 /* 801D4474 001D13B4  4E 80 00 20 */	blr 
 
-.global "doAnimation__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"doAnimation__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global doAnimation__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doAnimation__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4478 001D13B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D447C 001D13BC  7C 08 02 A6 */	mflr r0
 /* 801D4480 001D13C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1759,8 +1759,8 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D449C 001D13DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D44A0 001D13E0  4E 80 00 20 */	blr 
 
-.global "doEntry__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"doEntry__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global doEntry__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doEntry__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D44A4 001D13E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D44A8 001D13E8  7C 08 02 A6 */	mflr r0
 /* 801D44AC 001D13EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1773,8 +1773,8 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D44C8 001D1408  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D44CC 001D140C  4E 80 00 20 */	blr 
 
-.global "doSetView__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fi"
-"doSetView__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fi":
+.global doSetView__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fi
+doSetView__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fi:
 /* 801D44D0 001D1410  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D44D4 001D1414  7C 08 02 A6 */	mflr r0
 /* 801D44D8 001D1418  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1787,8 +1787,8 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D44F4 001D1434  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D44F8 001D1438  4E 80 00 20 */	blr 
 
-.global "doViewCalc__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"doViewCalc__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global doViewCalc__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doViewCalc__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D44FC 001D143C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4500 001D1440  7C 08 02 A6 */	mflr r0
 /* 801D4504 001D1444  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1801,8 +1801,8 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D4520 001D1460  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4524 001D1464  4E 80 00 20 */	blr 
 
-.global "doSimulation__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Ff"
-"doSimulation__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Ff":
+.global doSimulation__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Ff
+doSimulation__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Ff:
 /* 801D4528 001D1468  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D452C 001D146C  7C 08 02 A6 */	mflr r0
 /* 801D4530 001D1470  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1815,8 +1815,8 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D454C 001D148C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4550 001D1490  4E 80 00 20 */	blr 
 
-.global "doDirectDraw__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FR8Graphics"
-"doDirectDraw__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FR8Graphics":
+.global doDirectDraw__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics
+doDirectDraw__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics:
 /* 801D4554 001D1494  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4558 001D1498  7C 08 02 A6 */	mflr r0
 /* 801D455C 001D149C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1829,8 +1829,8 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D4578 001D14B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D457C 001D14BC  4E 80 00 20 */	blr 
 
-.global "getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
-"getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv":
+.global getNext__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv
+getNext__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv:
 /* 801D4580 001D14C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4584 001D14C4  7C 08 02 A6 */	mflr r0
 /* 801D4588 001D14C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1843,8 +1843,8 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D45A4 001D14E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D45A8 001D14E8  4E 80 00 20 */	blr 
 
-.global "getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global getStart__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+getStart__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D45AC 001D14EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D45B0 001D14F0  7C 08 02 A6 */	mflr r0
 /* 801D45B4 001D14F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1857,8 +1857,8 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D45D0 001D1510  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D45D4 001D1514  4E 80 00 20 */	blr 
 
-.global "createModel__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item"
-"createModel__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item":
+.global createModel__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ34Game9ItemHoney4Item
+createModel__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ34Game9ItemHoney4Item:
 /* 801D45D8 001D1518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D45DC 001D151C  7C 08 02 A6 */	mflr r0
 /* 801D45E0 001D1520  7C 85 23 78 */	mr r5, r4
@@ -1872,14 +1872,14 @@ onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent:
 /* 801D4600 001D1540  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4604 001D1544  4E 80 00 20 */	blr 
 
-.global "birth__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"birth__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global birth__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+birth__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4608 001D1548  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D460C 001D154C  7C 08 02 A6 */	mflr r0
 /* 801D4610 001D1550  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801D4614 001D1554  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801D4618 001D1558  7C 7F 1B 78 */	mr r31, r3
-/* 801D461C 001D155C  48 00 04 AD */	bl "getEmptyIndex__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D461C 001D155C  48 00 04 AD */	bl getEmptyIndex__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 /* 801D4620 001D1560  2C 03 FF FF */	cmpwi r3, -1
 /* 801D4624 001D1564  41 82 00 2C */	beq lbl_801D4650
 /* 801D4628 001D1568  80 DF 00 28 */	lwz r6, 0x28(r31)
@@ -1901,8 +1901,8 @@ lbl_801D4654:
 /* 801D4660 001D15A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4664 001D15A4  4E 80 00 20 */	blr 
 
-.global "kill__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item"
-"kill__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item":
+.global kill__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FPQ34Game9ItemHoney4Item
+kill__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FPQ34Game9ItemHoney4Item:
 /* 801D4668 001D15A8  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801D466C 001D15AC  38 C0 00 00 */	li r6, 0
 /* 801D4670 001D15B0  38 A0 00 00 */	li r5, 0
@@ -1927,8 +1927,8 @@ lbl_801D46AC:
 /* 801D46B4 001D15F4  42 00 FF CC */	bdnz lbl_801D4680
 /* 801D46B8 001D15F8  4E 80 00 20 */	blr 
 
-.global "getNext__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPv"
-"getNext__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPv":
+.global getNext__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FPv
+getNext__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FPv:
 /* 801D46BC 001D15FC  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 801D46C0 001D1600  38 C4 00 01 */	addi r6, r4, 1
 /* 801D46C4 001D1604  7C 06 28 50 */	subf r0, r6, r5
@@ -1949,8 +1949,8 @@ lbl_801D46F4:
 /* 801D46F4 001D1634  7C A3 2B 78 */	mr r3, r5
 /* 801D46F8 001D1638  4E 80 00 20 */	blr 
 
-.global "getStart__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"getStart__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global getStart__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+getStart__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D46FC 001D163C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4700 001D1640  7C 08 02 A6 */	mflr r0
 /* 801D4704 001D1644  38 80 FF FF */	li r4, -1
@@ -1964,25 +1964,25 @@ lbl_801D46F4:
 /* 801D4724 001D1664  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4728 001D1668  4E 80 00 20 */	blr 
 
-.global "getEnd__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"getEnd__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global getEnd__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+getEnd__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D472C 001D166C  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801D4730 001D1670  4E 80 00 20 */	blr 
 
-.global "getAt__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
-"getAt__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi":
+.global getAt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
+getAt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi:
 /* 801D4734 001D1674  1C 04 01 E4 */	mulli r0, r4, 0x1e4
 /* 801D4738 001D1678  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801D473C 001D167C  7C 63 02 14 */	add r3, r3, r0
 /* 801D4740 001D1680  4E 80 00 20 */	blr 
 
-.global "getTo__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"getTo__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global getTo__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+getTo__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4744 001D1684  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801D4748 001D1688  4E 80 00 20 */	blr 
 
-.global "doAnimation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"doAnimation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global doAnimation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doAnimation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D474C 001D168C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D4750 001D1690  7C 08 02 A6 */	mflr r0
 /* 801D4754 001D1694  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2019,8 +2019,8 @@ lbl_801D47A4:
 /* 801D47C4 001D1704  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D47C8 001D1708  4E 80 00 20 */	blr 
 
-.global "doEntry__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"doEntry__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global doEntry__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doEntry__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D47CC 001D170C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D47D0 001D1710  7C 08 02 A6 */	mflr r0
 /* 801D47D4 001D1714  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2057,8 +2057,8 @@ lbl_801D4824:
 /* 801D4844 001D1784  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D4848 001D1788  4E 80 00 20 */	blr 
 
-.global "doSetView__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
-"doSetView__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi":
+.global doSetView__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
+doSetView__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi:
 /* 801D484C 001D178C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D4850 001D1790  7C 08 02 A6 */	mflr r0
 /* 801D4854 001D1794  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2099,8 +2099,8 @@ lbl_801D48B0:
 /* 801D48D4 001D1814  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D48D8 001D1818  4E 80 00 20 */	blr 
 
-.global "doViewCalc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"doViewCalc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global doViewCalc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doViewCalc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D48DC 001D181C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D48E0 001D1820  7C 08 02 A6 */	mflr r0
 /* 801D48E4 001D1824  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2137,8 +2137,8 @@ lbl_801D4934:
 /* 801D4954 001D1894  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D4958 001D1898  4E 80 00 20 */	blr 
 
-.global "doSimulation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Ff"
-"doSimulation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Ff":
+.global doSimulation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff
+doSimulation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff:
 /* 801D495C 001D189C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D4960 001D18A0  7C 08 02 A6 */	mflr r0
 /* 801D4964 001D18A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2179,8 +2179,8 @@ lbl_801D49C0:
 /* 801D49E4 001D1924  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D49E8 001D1928  4E 80 00 20 */	blr 
 
-.global "doDirectDraw__37MonoObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
-"doDirectDraw__37MonoObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics":
+.global doDirectDraw__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics
+doDirectDraw__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics:
 /* 801D49EC 001D192C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D49F0 001D1930  7C 08 02 A6 */	mflr r0
 /* 801D49F4 001D1934  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2221,8 +2221,8 @@ lbl_801D4A50:
 /* 801D4A74 001D19B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D4A78 001D19B8  4E 80 00 20 */	blr 
 
-.global "resetMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"resetMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global resetMgr__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+resetMgr__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4A7C 001D19BC  38 00 00 00 */	li r0, 0
 /* 801D4A80 001D19C0  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801D4A84 001D19C4  90 03 00 24 */	stw r0, 0x24(r3)
@@ -2230,8 +2230,8 @@ lbl_801D4A50:
 /* 801D4A8C 001D19CC  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801D4A90 001D19D0  4E 80 00 20 */	blr 
 
-.global "clearMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"clearMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global clearMgr__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+clearMgr__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4A94 001D19D4  38 00 00 00 */	li r0, 0
 /* 801D4A98 001D19D8  38 C0 00 00 */	li r6, 0
 /* 801D4A9C 001D19DC  90 03 00 20 */	stw r0, 0x20(r3)
@@ -2247,12 +2247,12 @@ lbl_801D4AB4:
 /* 801D4ABC 001D19FC  41 80 FF EC */	blt lbl_801D4AA8
 /* 801D4AC0 001D1A00  4E 80 00 20 */	blr 
 
-.global "onAlloc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"onAlloc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global onAlloc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+onAlloc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4AC4 001D1A04  4E 80 00 20 */	blr 
 
-.global "getEmptyIndex__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"getEmptyIndex__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global getEmptyIndex__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+getEmptyIndex__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4AC8 001D1A08  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801D4ACC 001D1A0C  38 A0 00 00 */	li r5, 0
 /* 801D4AD0 001D1A10  7C 09 03 A6 */	mtctr r0
@@ -2272,15 +2272,15 @@ lbl_801D4AFC:
 /* 801D4AFC 001D1A3C  38 60 FF FF */	li r3, -1
 /* 801D4B00 001D1A40  4E 80 00 20 */	blr 
 
-.global "get__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPv"
-"get__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPv":
+.global get__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FPv
+get__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FPv:
 /* 801D4B04 001D1A44  1C 04 01 E4 */	mulli r0, r4, 0x1e4
 /* 801D4B08 001D1A48  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801D4B0C 001D1A4C  7C 63 02 14 */	add r3, r3, r0
 /* 801D4B10 001D1A50  4E 80 00 20 */	blr 
 
-.global "getObject__33Container<Q34Game9ItemHoney4Item>FPv"
-"getObject__33Container<Q34Game9ItemHoney4Item>FPv":
+.global getObject__33Container$$0Q34Game9ItemHoney4Item$$1FPv
+getObject__33Container$$0Q34Game9ItemHoney4Item$$1FPv:
 /* 801D4B14 001D1A54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4B18 001D1A58  7C 08 02 A6 */	mflr r0
 /* 801D4B1C 001D1A5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2293,24 +2293,24 @@ lbl_801D4AFC:
 /* 801D4B38 001D1A78  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4B3C 001D1A7C  4E 80 00 20 */	blr 
 
-.global "getAt__33Container<Q34Game9ItemHoney4Item>Fi"
-"getAt__33Container<Q34Game9ItemHoney4Item>Fi":
+.global getAt__33Container$$0Q34Game9ItemHoney4Item$$1Fi
+getAt__33Container$$0Q34Game9ItemHoney4Item$$1Fi:
 /* 801D4B40 001D1A80  38 60 00 00 */	li r3, 0
 /* 801D4B44 001D1A84  4E 80 00 20 */	blr 
 
-.global "getTo__33Container<Q34Game9ItemHoney4Item>Fv"
-"getTo__33Container<Q34Game9ItemHoney4Item>Fv":
+.global getTo__33Container$$0Q34Game9ItemHoney4Item$$1Fv
+getTo__33Container$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4B48 001D1A88  38 60 00 00 */	li r3, 0
 /* 801D4B4C 001D1A8C  4E 80 00 20 */	blr 
 
-.global "doDirectDraw__33ObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
-"doDirectDraw__33ObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics":
+.global doDirectDraw__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics
+doDirectDraw__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics:
 /* 801D4B50 001D1A90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D4B54 001D1A94  7C 08 02 A6 */	mflr r0
-/* 801D4B58 001D1A98  3C A0 80 4C */	lis r5, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@ha
+/* 801D4B58 001D1A98  3C A0 80 4C */	lis r5, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D4B5C 001D1A9C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801D4B60 001D1AA0  38 00 00 00 */	li r0, 0
-/* 801D4B64 001D1AA4  38 A5 85 40 */	addi r5, r5, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@l
+/* 801D4B64 001D1AA4  38 A5 85 40 */	addi r5, r5, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D4B68 001D1AA8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801D4B6C 001D1AAC  28 00 00 00 */	cmplwi r0, 0
 /* 801D4B70 001D1AB0  7C 9F 23 78 */	mr r31, r4
@@ -2439,8 +2439,8 @@ lbl_801D4D10:
 /* 801D4D3C 001D1C7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D4D40 001D1C80  4E 80 00 20 */	blr 
 
-.global "isDone__32Iterator<Q34Game9ItemHoney4Item>Fv"
-"isDone__32Iterator<Q34Game9ItemHoney4Item>Fv":
+.global isDone__32Iterator$$0Q34Game9ItemHoney4Item$$1Fv
+isDone__32Iterator$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4D44 001D1C84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D4D48 001D1C88  7C 08 02 A6 */	mflr r0
 /* 801D4D4C 001D1C8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2461,14 +2461,14 @@ lbl_801D4D10:
 /* 801D4D88 001D1CC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D4D8C 001D1CCC  4E 80 00 20 */	blr 
 
-.global "doSimulation__33ObjectMgr<Q34Game9ItemHoney4Item>Ff"
-"doSimulation__33ObjectMgr<Q34Game9ItemHoney4Item>Ff":
+.global doSimulation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff
+doSimulation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff:
 /* 801D4D90 001D1CD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D4D94 001D1CD4  7C 08 02 A6 */	mflr r0
-/* 801D4D98 001D1CD8  3C 80 80 4C */	lis r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@ha
+/* 801D4D98 001D1CD8  3C 80 80 4C */	lis r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D4D9C 001D1CDC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801D4DA0 001D1CE0  38 00 00 00 */	li r0, 0
-/* 801D4DA4 001D1CE4  38 84 85 40 */	addi r4, r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@l
+/* 801D4DA4 001D1CE4  38 84 85 40 */	addi r4, r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D4DA8 001D1CE8  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 801D4DAC 001D1CEC  FF E0 08 90 */	fmr f31, f1
 /* 801D4DB0 001D1CF0  28 00 00 00 */	cmplwi r0, 0
@@ -2597,14 +2597,14 @@ lbl_801D4F50:
 /* 801D4F7C 001D1EBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D4F80 001D1EC0  4E 80 00 20 */	blr 
 
-.global "doViewCalc__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"doViewCalc__33ObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global doViewCalc__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doViewCalc__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D4F84 001D1EC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D4F88 001D1EC8  7C 08 02 A6 */	mflr r0
-/* 801D4F8C 001D1ECC  3C 80 80 4C */	lis r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@ha
+/* 801D4F8C 001D1ECC  3C 80 80 4C */	lis r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D4F90 001D1ED0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801D4F94 001D1ED4  38 00 00 00 */	li r0, 0
-/* 801D4F98 001D1ED8  38 84 85 40 */	addi r4, r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@l
+/* 801D4F98 001D1ED8  38 84 85 40 */	addi r4, r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D4F9C 001D1EDC  28 00 00 00 */	cmplwi r0, 0
 /* 801D4FA0 001D1EE0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801D4FA4 001D1EE4  90 81 00 08 */	stw r4, 8(r1)
@@ -2729,14 +2729,14 @@ lbl_801D5138:
 /* 801D5160 001D20A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D5164 001D20A4  4E 80 00 20 */	blr 
 
-.global "doSetView__33ObjectMgr<Q34Game9ItemHoney4Item>Fi"
-"doSetView__33ObjectMgr<Q34Game9ItemHoney4Item>Fi":
+.global doSetView__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
+doSetView__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi:
 /* 801D5168 001D20A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D516C 001D20AC  7C 08 02 A6 */	mflr r0
-/* 801D5170 001D20B0  3C A0 80 4C */	lis r5, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@ha
+/* 801D5170 001D20B0  3C A0 80 4C */	lis r5, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D5174 001D20B4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801D5178 001D20B8  38 00 00 00 */	li r0, 0
-/* 801D517C 001D20BC  38 A5 85 40 */	addi r5, r5, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@l
+/* 801D517C 001D20BC  38 A5 85 40 */	addi r5, r5, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D5180 001D20C0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801D5184 001D20C4  28 00 00 00 */	cmplwi r0, 0
 /* 801D5188 001D20C8  7C 9F 23 78 */	mr r31, r4
@@ -2865,14 +2865,14 @@ lbl_801D5328:
 /* 801D5354 001D2294  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D5358 001D2298  4E 80 00 20 */	blr 
 
-.global "doEntry__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"doEntry__33ObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global doEntry__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doEntry__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D535C 001D229C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D5360 001D22A0  7C 08 02 A6 */	mflr r0
-/* 801D5364 001D22A4  3C 80 80 4C */	lis r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@ha
+/* 801D5364 001D22A4  3C 80 80 4C */	lis r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D5368 001D22A8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801D536C 001D22AC  38 00 00 00 */	li r0, 0
-/* 801D5370 001D22B0  38 84 85 40 */	addi r4, r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@l
+/* 801D5370 001D22B0  38 84 85 40 */	addi r4, r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D5374 001D22B4  28 00 00 00 */	cmplwi r0, 0
 /* 801D5378 001D22B8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801D537C 001D22BC  90 81 00 08 */	stw r4, 8(r1)
@@ -2997,14 +2997,14 @@ lbl_801D5510:
 /* 801D5538 001D2478  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D553C 001D247C  4E 80 00 20 */	blr 
 
-.global "doAnimation__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"doAnimation__33ObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global doAnimation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+doAnimation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D5540 001D2480  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D5544 001D2484  7C 08 02 A6 */	mflr r0
-/* 801D5548 001D2488  3C 80 80 4C */	lis r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@ha
+/* 801D5548 001D2488  3C 80 80 4C */	lis r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D554C 001D248C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801D5550 001D2490  38 00 00 00 */	li r0, 0
-/* 801D5554 001D2494  38 84 85 40 */	addi r4, r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@l
+/* 801D5554 001D2494  38 84 85 40 */	addi r4, r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D5558 001D2498  28 00 00 00 */	cmplwi r0, 0
 /* 801D555C 001D249C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801D5560 001D24A0  90 81 00 08 */	stw r4, 8(r1)
@@ -3129,8 +3129,8 @@ lbl_801D56F4:
 /* 801D571C 001D265C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D5720 001D2660  4E 80 00 20 */	blr 
 
-.global "__ct__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"__ct__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global __ct__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+__ct__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D5724 001D2664  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D5728 001D2668  7C 08 02 A6 */	mflr r0
 /* 801D572C 001D266C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3138,17 +3138,17 @@ lbl_801D56F4:
 /* 801D5734 001D2674  7C 7F 1B 78 */	mr r31, r3
 /* 801D5738 001D2678  48 23 BC 59 */	bl __ct__5CNodeFv
 /* 801D573C 001D267C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 801D5740 001D2680  3C 60 80 4C */	lis r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@ha
+/* 801D5740 001D2680  3C 60 80 4C */	lis r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D5744 001D2684  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 801D5748 001D2688  3C C0 80 4B */	lis r6, __vt__16GenericObjectMgr@ha
 /* 801D574C 001D268C  90 1F 00 00 */	stw r0, 0(r31)
-/* 801D5750 001D2690  38 03 80 B8 */	addi r0, r3, "__vt__33Container<Q34Game9ItemHoney4Item>"@l
-/* 801D5754 001D2694  3C 80 80 4B */	lis r4, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@ha
-/* 801D5758 001D2698  3C 60 80 4B */	lis r3, "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"@ha
+/* 801D5750 001D2690  38 03 80 B8 */	addi r0, r3, __vt__33Container$$0Q34Game9ItemHoney4Item$$1@l
+/* 801D5754 001D2694  3C 80 80 4B */	lis r4, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
+/* 801D5758 001D2698  3C 60 80 4B */	lis r3, __vt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D575C 001D269C  90 1F 00 00 */	stw r0, 0(r31)
 /* 801D5760 001D26A0  39 00 00 00 */	li r8, 0
-/* 801D5764 001D26A4  38 E4 7E F0 */	addi r7, r4, "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"@l
-/* 801D5768 001D26A8  38 A3 7F 6C */	addi r5, r3, "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"@l
+/* 801D5764 001D26A4  38 E4 7E F0 */	addi r7, r4, __vt__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
+/* 801D5768 001D26A8  38 A3 7F 6C */	addi r5, r3, __vt__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D576C 001D26AC  99 1F 00 18 */	stb r8, 0x18(r31)
 /* 801D5770 001D26B0  38 06 B5 F0 */	addi r0, r6, __vt__16GenericObjectMgr@l
 /* 801D5774 001D26B4  38 C7 00 2C */	addi r6, r7, 0x2c
@@ -3171,8 +3171,8 @@ lbl_801D56F4:
 /* 801D57B8 001D26F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D57BC 001D26FC  4E 80 00 20 */	blr 
 
-.global "getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global getEnd__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+getEnd__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D57C0 001D2700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D57C4 001D2704  7C 08 02 A6 */	mflr r0
 /* 801D57C8 001D2708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3185,8 +3185,8 @@ lbl_801D56F4:
 /* 801D57E4 001D2724  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D57E8 001D2728  4E 80 00 20 */	blr 
 
-.global "get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
-"get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv":
+.global get__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv
+get__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv:
 /* 801D57EC 001D272C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D57F0 001D2730  7C 08 02 A6 */	mflr r0
 /* 801D57F4 001D2734  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3199,15 +3199,15 @@ lbl_801D56F4:
 /* 801D5810 001D2750  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D5814 001D2754  4E 80 00 20 */	blr 
 
-.global "initDependency__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"initDependency__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global initDependency__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+initDependency__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D5818 001D2758  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D581C 001D275C  7C 08 02 A6 */	mflr r0
-/* 801D5820 001D2760  3C 80 80 4C */	lis r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@ha
+/* 801D5820 001D2760  3C 80 80 4C */	lis r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@ha
 /* 801D5824 001D2764  38 63 00 4C */	addi r3, r3, 0x4c
 /* 801D5828 001D2768  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801D582C 001D276C  38 00 00 00 */	li r0, 0
-/* 801D5830 001D2770  38 84 85 40 */	addi r4, r4, "__vt__32Iterator<Q34Game9ItemHoney4Item>"@l
+/* 801D5830 001D2770  38 84 85 40 */	addi r4, r4, __vt__32Iterator$$0Q34Game9ItemHoney4Item$$1@l
 /* 801D5834 001D2774  28 00 00 00 */	cmplwi r0, 0
 /* 801D5838 001D2778  90 81 00 08 */	stw r4, 8(r1)
 /* 801D583C 001D277C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3332,8 +3332,8 @@ lbl_801D59D0:
 /* 801D59F8 001D2938  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D59FC 001D293C  4E 80 00 20 */	blr 
 
-.global "killAll__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"killAll__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global killAll__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+killAll__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D5A00 001D2940  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801D5A04 001D2944  7C 08 02 A6 */	mflr r0
 /* 801D5A08 001D2948  3C 80 80 4B */	lis r4, __vt__Q24Game15CreatureKillArg@ha
@@ -3371,7 +3371,7 @@ lbl_801D5A70:
 /* 801D5A80 001D29C0  4E 80 04 21 */	bctrl 
 /* 801D5A84 001D29C4  28 03 00 00 */	cmplwi r3, 0
 /* 801D5A88 001D29C8  41 82 00 34 */	beq lbl_801D5ABC
-/* 801D5A8C 001D29CC  83 CD 91 BC */	lwz r30, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 801D5A8C 001D29CC  83 CD 91 BC */	lwz r30, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 801D5A90 001D29D0  28 1E 00 00 */	cmplwi r30, 0
 /* 801D5A94 001D29D4  41 82 00 28 */	beq lbl_801D5ABC
 /* 801D5A98 001D29D8  7F 83 E3 78 */	mr r3, r28
@@ -3395,8 +3395,8 @@ lbl_801D5AC0:
 /* 801D5AD8 001D2A18  38 21 00 30 */	addi r1, r1, 0x30
 /* 801D5ADC 001D2A1C  4E 80 00 20 */	blr 
 
-.global "createModelCallback__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ28SysShape5Model"
-"createModelCallback__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ28SysShape5Model":
+.global createModelCallback__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ28SysShape5Model
+createModelCallback__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPQ28SysShape5Model:
 /* 801D5AE0 001D2A20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D5AE4 001D2A24  7C 08 02 A6 */	mflr r0
 /* 801D5AE8 001D2A28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3409,8 +3409,8 @@ lbl_801D5AC0:
 /* 801D5B04 001D2A44  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D5B08 001D2A48  4E 80 00 20 */	blr 
 
-.global "createMgr__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FiUl"
-"createMgr__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FiUl":
+.global createMgr__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FiUl
+createMgr__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FiUl:
 /* 801D5B0C 001D2A4C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801D5B10 001D2A50  7C 08 02 A6 */	mflr r0
 /* 801D5B14 001D2A54  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3422,9 +3422,9 @@ lbl_801D5AC0:
 /* 801D5B2C 001D2A6C  93 81 00 20 */	stw r28, 0x20(r1)
 /* 801D5B30 001D2A70  7C 7C 1B 78 */	mr r28, r3
 /* 801D5B34 001D2A74  38 7C 00 4C */	addi r3, r28, 0x4c
-/* 801D5B38 001D2A78  48 00 03 15 */	bl "alloc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
+/* 801D5B38 001D2A78  48 00 03 15 */	bl alloc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
 /* 801D5B3C 001D2A7C  7F 83 E3 78 */	mr r3, r28
-/* 801D5B40 001D2A80  48 00 02 A9 */	bl "onAlloc__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D5B40 001D2A80  48 00 02 A9 */	bl onAlloc__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
 /* 801D5B44 001D2A84  38 60 00 1C */	li r3, 0x1c
 /* 801D5B48 001D2A88  4B E4 E3 5D */	bl __nw__FUl
 /* 801D5B4C 001D2A8C  7C 7F 1B 79 */	or. r31, r3, r3
@@ -3434,13 +3434,13 @@ lbl_801D5AC0:
 /* 801D5B5C 001D2A9C  7C 69 1B 79 */	or. r9, r3, r3
 /* 801D5B60 001D2AA0  41 82 00 4C */	beq lbl_801D5BAC
 /* 801D5B64 001D2AA4  3C 60 80 4C */	lis r3, lbl_804B8528@ha
-/* 801D5B68 001D2AA8  3C 80 80 4B */	lis r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@ha
+/* 801D5B68 001D2AA8  3C 80 80 4B */	lis r4, __vt__30IDelegate1$$0PQ28SysShape5Model$$1@ha
 /* 801D5B6C 001D2AAC  38 E3 85 28 */	addi r7, r3, lbl_804B8528@l
-/* 801D5B70 001D2AB0  3C 60 80 4C */	lis r3, "__vt__79Delegate1<Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>,PQ28SysShape5Model>"@ha
+/* 801D5B70 001D2AB0  3C 60 80 4C */	lis r3, __vt__79Delegate1$$0Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1$$4PQ28SysShape5Model$$1@ha
 /* 801D5B74 001D2AB4  80 C7 00 00 */	lwz r6, 0(r7)
-/* 801D5B78 001D2AB8  38 84 16 BC */	addi r4, r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@l
+/* 801D5B78 001D2AB8  38 84 16 BC */	addi r4, r4, __vt__30IDelegate1$$0PQ28SysShape5Model$$1@l
 /* 801D5B7C 001D2ABC  80 A7 00 04 */	lwz r5, 4(r7)
-/* 801D5B80 001D2AC0  38 03 85 34 */	addi r0, r3, "__vt__79Delegate1<Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>,PQ28SysShape5Model>"@l
+/* 801D5B80 001D2AC0  38 03 85 34 */	addi r0, r3, __vt__79Delegate1$$0Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1$$4PQ28SysShape5Model$$1@l
 /* 801D5B84 001D2AC4  80 67 00 08 */	lwz r3, 8(r7)
 /* 801D5B88 001D2AC8  90 C1 00 08 */	stw r6, 8(r1)
 /* 801D5B8C 001D2ACC  90 89 00 00 */	stw r4, 0(r9)
@@ -3458,7 +3458,7 @@ lbl_801D5BAC:
 /* 801D5BB8 001D2AF8  7F A6 EB 78 */	mr r6, r29
 /* 801D5BBC 001D2AFC  7F C7 F3 78 */	mr r7, r30
 /* 801D5BC0 001D2B00  39 00 00 02 */	li r8, 2
-/* 801D5BC4 001D2B04  48 25 4F 3D */	bl "__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"
+/* 801D5BC4 001D2B04  48 25 4F 3D */	bl __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1$$0PQ28SysShape5Model$$1
 /* 801D5BC8 001D2B08  7C 7F 1B 78 */	mr r31, r3
 lbl_801D5BCC:
 /* 801D5BCC 001D2B0C  93 FC 00 7C */	stw r31, 0x7c(r28)
@@ -3471,8 +3471,8 @@ lbl_801D5BCC:
 /* 801D5BE8 001D2B28  38 21 00 30 */	addi r1, r1, 0x30
 /* 801D5BEC 001D2B2C  4E 80 00 20 */	blr 
 
-.global "__ml__32Iterator<Q34Game9ItemHoney4Item>Fv"
-"__ml__32Iterator<Q34Game9ItemHoney4Item>Fv":
+.global __ml__32Iterator$$0Q34Game9ItemHoney4Item$$1Fv
+__ml__32Iterator$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D5BF0 001D2B30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D5BF4 001D2B34  7C 08 02 A6 */	mflr r0
 /* 801D5BF8 001D2B38  7C 64 1B 78 */	mr r4, r3
@@ -3488,8 +3488,8 @@ lbl_801D5BCC:
 /* 801D5C20 001D2B60  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D5C24 001D2B64  4E 80 00 20 */	blr 
 
-.global "next__32Iterator<Q34Game9ItemHoney4Item>Fv"
-"next__32Iterator<Q34Game9ItemHoney4Item>Fv":
+.global next__32Iterator$$0Q34Game9ItemHoney4Item$$1Fv
+next__32Iterator$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D5C28 001D2B68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D5C2C 001D2B6C  7C 08 02 A6 */	mflr r0
 /* 801D5C30 001D2B70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3552,8 +3552,8 @@ lbl_801D5CF8:
 /* 801D5D04 001D2C44  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D5D08 001D2C48  4E 80 00 20 */	blr 
 
-.global "first__32Iterator<Q34Game9ItemHoney4Item>Fv"
-"first__32Iterator<Q34Game9ItemHoney4Item>Fv":
+.global first__32Iterator$$0Q34Game9ItemHoney4Item$$1Fv
+first__32Iterator$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D5D0C 001D2C4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D5D10 001D2C50  7C 08 02 A6 */	mflr r0
 /* 801D5D14 001D2C54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3614,8 +3614,8 @@ lbl_801D5DD4:
 /* 801D5DE0 001D2D20  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D5DE4 001D2D24  4E 80 00 20 */	blr 
 
-.global "onAlloc__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"onAlloc__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global onAlloc__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+onAlloc__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D5DE8 001D2D28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D5DEC 001D2D2C  7C 08 02 A6 */	mflr r0
 /* 801D5DF0 001D2D30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3644,8 +3644,8 @@ lbl_801D5E28:
 /* 801D5E44 001D2D84  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D5E48 001D2D88  4E 80 00 20 */	blr 
 
-.global "alloc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
-"alloc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi":
+.global alloc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
+alloc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi:
 /* 801D5E4C 001D2D8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D5E50 001D2D90  7C 08 02 A6 */	mflr r0
 /* 801D5E54 001D2D94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3751,8 +3751,8 @@ lbl_801D5FAC:
 /* 801D5FCC 001D2F0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D5FD0 001D2F10  4E 80 00 20 */	blr 
 
-.global "invoke__79Delegate1<Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>,PQ28SysShape5Model>FPQ28SysShape5Model"
-"invoke__79Delegate1<Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>,PQ28SysShape5Model>FPQ28SysShape5Model":
+.global invoke__79Delegate1$$0Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1$$4PQ28SysShape5Model$$1FPQ28SysShape5Model
+invoke__79Delegate1$$0Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1$$4PQ28SysShape5Model$$1FPQ28SysShape5Model:
 /* 801D5FD4 001D2F14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D5FD8 001D2F18  7C 08 02 A6 */	mflr r0
 /* 801D5FDC 001D2F1C  7C 65 1B 78 */	mr r5, r3
@@ -3766,102 +3766,102 @@ lbl_801D5FAC:
 /* 801D5FFC 001D2F3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D6000 001D2F40  4E 80 00 20 */	blr 
 
-.global "@376@onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent":
+.global $$2376$$2onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent
+$$2376$$2onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent:
 /* 801D6004 001D2F44  38 63 FE 88 */	addi r3, r3, -376
 /* 801D6008 001D2F48  4B FF DB 0C */	b onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent
 
-.global "@48@__dt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"@48@__dt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$248$$2__dt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$248$$2__dt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D600C 001D2F4C  38 63 FF D0 */	addi r3, r3, -48
-/* 801D6010 001D2F50  4B FF DE 88 */	b "__dt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6010 001D2F50  4B FF DE 88 */	b __dt__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@28@resetMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"@28@resetMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$228$$2resetMgr__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$228$$2resetMgr__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D6014 001D2F54  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6018 001D2F58  4B FF EA 64 */	b "resetMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6018 001D2F58  4B FF EA 64 */	b resetMgr__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@28@doDirectDraw__37MonoObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
-"@28@doDirectDraw__37MonoObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics":
+.global $$228$$2doDirectDraw__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics
+$$228$$2doDirectDraw__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics:
 /* 801D601C 001D2F5C  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6020 001D2F60  4B FF E9 CC */	b "doDirectDraw__37MonoObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
+/* 801D6020 001D2F60  4B FF E9 CC */	b doDirectDraw__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics
 
-.global "@28@doSimulation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Ff"
-"@28@doSimulation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Ff":
+.global $$228$$2doSimulation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff
+$$228$$2doSimulation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff:
 /* 801D6024 001D2F64  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6028 001D2F68  4B FF E9 34 */	b "doSimulation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Ff"
+/* 801D6028 001D2F68  4B FF E9 34 */	b doSimulation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff
 
-.global "@28@doViewCalc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"@28@doViewCalc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$228$$2doViewCalc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$228$$2doViewCalc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D602C 001D2F6C  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6030 001D2F70  4B FF E8 AC */	b "doViewCalc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6030 001D2F70  4B FF E8 AC */	b doViewCalc__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@28@doSetView__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
-"@28@doSetView__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi":
+.global $$228$$2doSetView__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
+$$228$$2doSetView__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi:
 /* 801D6034 001D2F74  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6038 001D2F78  4B FF E8 14 */	b "doSetView__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
+/* 801D6038 001D2F78  4B FF E8 14 */	b doSetView__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
 
-.global "@28@doEntry__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"@28@doEntry__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$228$$2doEntry__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$228$$2doEntry__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D603C 001D2F7C  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6040 001D2F80  4B FF E7 8C */	b "doEntry__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6040 001D2F80  4B FF E7 8C */	b doEntry__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@28@doAnimation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"@28@doAnimation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$228$$2doAnimation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$228$$2doAnimation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D6044 001D2F84  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6048 001D2F88  4B FF E7 04 */	b "doAnimation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6048 001D2F88  4B FF E7 04 */	b doAnimation__37MonoObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@28@doDirectDraw__33ObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
-"@28@doDirectDraw__33ObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics":
+.global $$228$$2doDirectDraw__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics
+$$228$$2doDirectDraw__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics:
 /* 801D604C 001D2F8C  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6050 001D2F90  4B FF EB 00 */	b "doDirectDraw__33ObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
+/* 801D6050 001D2F90  4B FF EB 00 */	b doDirectDraw__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1FR8Graphics
 
-.global "@28@doSimulation__33ObjectMgr<Q34Game9ItemHoney4Item>Ff"
-"@28@doSimulation__33ObjectMgr<Q34Game9ItemHoney4Item>Ff":
+.global $$228$$2doSimulation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff
+$$228$$2doSimulation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff:
 /* 801D6054 001D2F94  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6058 001D2F98  4B FF ED 38 */	b "doSimulation__33ObjectMgr<Q34Game9ItemHoney4Item>Ff"
+/* 801D6058 001D2F98  4B FF ED 38 */	b doSimulation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Ff
 
-.global "@28@doViewCalc__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"@28@doViewCalc__33ObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$228$$2doViewCalc__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$228$$2doViewCalc__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D605C 001D2F9C  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6060 001D2FA0  4B FF EF 24 */	b "doViewCalc__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6060 001D2FA0  4B FF EF 24 */	b doViewCalc__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@28@doSetView__33ObjectMgr<Q34Game9ItemHoney4Item>Fi"
-"@28@doSetView__33ObjectMgr<Q34Game9ItemHoney4Item>Fi":
+.global $$228$$2doSetView__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
+$$228$$2doSetView__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi:
 /* 801D6064 001D2FA4  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6068 001D2FA8  4B FF F1 00 */	b "doSetView__33ObjectMgr<Q34Game9ItemHoney4Item>Fi"
+/* 801D6068 001D2FA8  4B FF F1 00 */	b doSetView__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fi
 
-.global "@28@doEntry__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"@28@doEntry__33ObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$228$$2doEntry__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$228$$2doEntry__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D606C 001D2FAC  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6070 001D2FB0  4B FF F2 EC */	b "doEntry__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6070 001D2FB0  4B FF F2 EC */	b doEntry__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@28@doAnimation__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
-"@28@doAnimation__33ObjectMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$228$$2doAnimation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$228$$2doAnimation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D6074 001D2FB4  38 63 FF E4 */	addi r3, r3, -28
-/* 801D6078 001D2FB8  4B FF F4 C8 */	b "doAnimation__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6078 001D2FB8  4B FF F4 C8 */	b doAnimation__33ObjectMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@48@getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"@48@getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$248$$2getEnd__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$248$$2getEnd__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D607C 001D2FBC  38 63 FF D0 */	addi r3, r3, -48
-/* 801D6080 001D2FC0  4B FF F7 40 */	b "getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6080 001D2FC0  4B FF F7 40 */	b getEnd__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@48@getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
-"@48@getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv":
+.global $$248$$2getStart__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
+$$248$$2getStart__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv:
 /* 801D6084 001D2FC4  38 63 FF D0 */	addi r3, r3, -48
-/* 801D6088 001D2FC8  4B FF E5 24 */	b "getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+/* 801D6088 001D2FC8  4B FF E5 24 */	b getStart__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1Fv
 
-.global "@48@getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
-"@48@getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv":
+.global $$248$$2getNext__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv
+$$248$$2getNext__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv:
 /* 801D608C 001D2FCC  38 63 FF D0 */	addi r3, r3, -48
-/* 801D6090 001D2FD0  4B FF E4 F0 */	b "getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+/* 801D6090 001D2FD0  4B FF E4 F0 */	b getNext__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv
 
-.global "@48@get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
-"@48@get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv":
+.global $$248$$2get__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv
+$$248$$2get__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv:
 /* 801D6094 001D2FD4  38 63 FF D0 */	addi r3, r3, -48
-/* 801D6098 001D2FD8  4B FF F7 54 */	b "get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+/* 801D6098 001D2FD8  4B FF F7 54 */	b get__Q24Game40FixedSizeItemMgr$$0Q34Game9ItemHoney4Item$$1FPv
 
-.global "@48@__dt__Q34Game9ItemHoney3MgrFv"
-"@48@__dt__Q34Game9ItemHoney3MgrFv":
+.global $$248$$2__dt__Q34Game9ItemHoney3MgrFv
+$$248$$2__dt__Q34Game9ItemHoney3MgrFv:
 /* 801D609C 001D2FDC  38 63 FF D0 */	addi r3, r3, -48
 /* 801D60A0 001D2FE0  4B FF E1 D0 */	b __dt__Q34Game9ItemHoney3MgrFv

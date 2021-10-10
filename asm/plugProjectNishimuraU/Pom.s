@@ -1167,7 +1167,7 @@ lbl_80255760:
 /* 802557EC 0025272C  7F A3 EB 78 */	mr r3, r29
 /* 802557F0 00252730  38 81 00 38 */	addi r4, r1, 0x38
 /* 802557F4 00252734  38 A0 00 00 */	li r5, 0
-/* 802557F8 00252738  4B EE 59 B1 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 802557F8 00252738  4B EE 59 B1 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 802557FC 0025273C  80 7C 02 D8 */	lwz r3, 0x2d8(r28)
 /* 80255800 00252740  4B FD A2 65 */	bl inc__Q24Game8BirthMgrFi
 lbl_80255804:

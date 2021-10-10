@@ -373,8 +373,8 @@ getFont__11J2DTevBlockFv:
 /* 800414E4 0003E424  38 60 00 00 */	li r3, 0
 /* 800414E8 0003E428  4E 80 00 20 */	blr 
 
-.global "__ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding"
-"__ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding":
+.global __ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2$$0f$$1PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
+__ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2$$0f$$1PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding:
 /* 800414EC 0003E42C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800414F0 0003E430  7C 08 02 A6 */	mflr r0
 /* 800414F4 0003E434  90 01 00 24 */	stw r0, 0x24(r1)
@@ -385,7 +385,7 @@ getFont__11J2DTevBlockFv:
 /* 80041508 0003E448  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 8004150C 0003E44C  7D 3C 4B 78 */	mr r28, r9
 /* 80041510 0003E450  7D 5D 53 78 */	mr r29, r10
-/* 80041514 0003E454  4B FF 59 49 */	bl "__ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
+/* 80041514 0003E454  4B FF 59 49 */	bl __ct__7J2DPaneFUxRCQ29JGeometry8TBox2$$0f$$1
 /* 80041518 0003E458  3C 60 80 4A */	lis r3, __vt__10J2DTextBox@ha
 /* 8004151C 0003E45C  39 20 00 00 */	li r9, 0
 /* 80041520 0003E460  38 63 09 90 */	addi r3, r3, __vt__10J2DTextBox@l

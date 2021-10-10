@@ -1488,7 +1488,7 @@ lbl_802F4F18:
 /* 802F4F80 002F1EC0  38 C0 01 18 */	li r6, 0x118
 /* 802F4F84 002F1EC4  38 E0 01 19 */	li r7, 0x119
 /* 802F4F88 002F1EC8  39 00 01 1A */	li r8, 0x11a
-/* 802F4F8C 002F1ECC  48 0B B4 65 */	bl "__ct__Q23efx10TChasePos4FP10Vector3<f>UsUsUsUs"
+/* 802F4F8C 002F1ECC  48 0B B4 65 */	bl __ct__Q23efx10TChasePos4FP10Vector3$$0f$$1UsUsUsUs
 /* 802F4F90 002F1ED0  3C 60 80 4D */	lis r3, __vt__Q23efx11TOootaWbomb@ha
 /* 802F4F94 002F1ED4  38 03 59 80 */	addi r0, r3, __vt__Q23efx11TOootaWbomb@l
 /* 802F4F98 002F1ED8  90 16 00 00 */	stw r0, 0(r22)
@@ -1563,7 +1563,7 @@ lbl_802F5018:
 /* 802F5098 002F1FD8  38 C0 01 08 */	li r6, 0x108
 /* 802F509C 002F1FDC  38 E0 01 09 */	li r7, 0x109
 /* 802F50A0 002F1FE0  39 00 01 0A */	li r8, 0x10a
-/* 802F50A4 002F1FE4  48 0B BC 65 */	bl "__ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>fUsUsUs"
+/* 802F50A4 002F1FE4  48 0B BC 65 */	bl __ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1fUsUsUs
 /* 802F50A8 002F1FE8  3C 60 80 4D */	lis r3, __vt__Q23efx10TOootaElec@ha
 /* 802F50AC 002F1FEC  38 03 59 08 */	addi r0, r3, __vt__Q23efx10TOootaElec@l
 /* 802F50B0 002F1FF0  90 17 00 00 */	stw r0, 0(r23)
@@ -1657,7 +1657,7 @@ lbl_802F51E4:
 /* 802F51F8 002F2138  38 BD 00 54 */	addi r5, r29, 0x54
 /* 802F51FC 002F213C  38 C0 01 13 */	li r6, 0x113
 /* 802F5200 002F2140  38 E0 01 14 */	li r7, 0x114
-/* 802F5204 002F2144  48 0B B7 C9 */	bl "__ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs"
+/* 802F5204 002F2144  48 0B B7 C9 */	bl __ct__Q23efx14TChasePosYRot2FP10Vector3$$0f$$1PfUsUs
 /* 802F5208 002F2148  3C 60 80 4D */	lis r3, __vt__Q23efx9TOootaGas@ha
 /* 802F520C 002F214C  38 03 58 38 */	addi r0, r3, __vt__Q23efx9TOootaGas@l
 /* 802F5210 002F2150  90 16 00 00 */	stw r0, 0(r22)
@@ -3387,9 +3387,9 @@ getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F6AC4 002F3A04  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 802F6AC8 002F3A08  7C 08 02 A6 */	mflr r0
 /* 802F6ACC 002F3A0C  38 80 00 00 */	li r4, 0
-/* 802F6AD0 002F3A10  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 802F6AD0 002F3A10  3C A0 80 4B */	lis r5, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 802F6AD4 002F3A14  90 01 04 44 */	stw r0, 0x444(r1)
-/* 802F6AD8 002F3A18  38 A5 BC 9C */	addi r5, r5, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 802F6AD8 002F3A18  38 A5 BC 9C */	addi r5, r5, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 802F6ADC 002F3A1C  28 04 00 00 */	cmplwi r4, 0
 /* 802F6AE0 002F3A20  93 E1 04 3C */	stw r31, 0x43c(r1)
 /* 802F6AE4 002F3A24  3B E0 00 00 */	li r31, 0
@@ -4275,7 +4275,7 @@ lbl_802F7700:
 /* 802F77D4 002F4714  38 9E 00 34 */	addi r4, r30, 0x34
 /* 802F77D8 002F4718  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 802F77DC 002F471C  38 A5 00 34 */	addi r5, r5, 0x34
-/* 802F77E0 002F4720  48 0B 95 F1 */	bl "setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>"
+/* 802F77E0 002F4720  48 0B 95 F1 */	bl setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1
 /* 802F77E4 002F4724  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 802F77E8 002F4728  38 80 00 00 */	li r4, 0
 /* 802F77EC 002F472C  81 83 00 00 */	lwz r12, 0(r3)
@@ -4306,7 +4306,7 @@ lbl_802F7804:
 /* 802F7848 002F4788  38 9D 00 34 */	addi r4, r29, 0x34
 /* 802F784C 002F478C  80 7D 00 44 */	lwz r3, 0x44(r29)
 /* 802F7850 002F4790  38 A5 00 34 */	addi r5, r5, 0x34
-/* 802F7854 002F4794  48 0B 95 7D */	bl "setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>"
+/* 802F7854 002F4794  48 0B 95 7D */	bl setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1
 /* 802F7858 002F4798  80 7D 00 44 */	lwz r3, 0x44(r29)
 /* 802F785C 002F479C  38 80 00 00 */	li r4, 0
 /* 802F7860 002F47A0  81 83 00 00 */	lwz r12, 0(r3)
@@ -4904,17 +4904,17 @@ lbl_802F805C:
 /* 802F8070 002F4FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F8074 002F4FB4  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx15TOootaElecpartsFv"
-"@4@__dt__Q23efx15TOootaElecpartsFv":
+.global $$24$$2__dt__Q23efx15TOootaElecpartsFv
+$$24$$2__dt__Q23efx15TOootaElecpartsFv:
 /* 802F8078 002F4FB8  38 63 FF FC */	addi r3, r3, -4
 /* 802F807C 002F4FBC  4B FF FD 70 */	b __dt__Q23efx15TOootaElecpartsFv
 
-.global "@4@__dt__Q23efx13TOootaElecLegFv"
-"@4@__dt__Q23efx13TOootaElecLegFv":
+.global $$24$$2__dt__Q23efx13TOootaElecLegFv
+$$24$$2__dt__Q23efx13TOootaElecLegFv:
 /* 802F8080 002F4FC0  38 63 FF FC */	addi r3, r3, -4
 /* 802F8084 002F4FC4  4B FF FC CC */	b __dt__Q23efx13TOootaElecLegFv
 
-.global "@4@__dt__Q23efx17TOootaElecAttack1Fv"
-"@4@__dt__Q23efx17TOootaElecAttack1Fv":
+.global $$24$$2__dt__Q23efx17TOootaElecAttack1Fv
+$$24$$2__dt__Q23efx17TOootaElecAttack1Fv:
 /* 802F8088 002F4FC8  38 63 FF FC */	addi r3, r3, -4
 /* 802F808C 002F4FCC  4B FF FC 28 */	b __dt__Q23efx17TOootaElecAttack1Fv

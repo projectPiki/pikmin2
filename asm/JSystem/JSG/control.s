@@ -71,33 +71,33 @@ lbl_80014804:
 /* 80014824 00011764  41 82 00 58 */	beq lbl_8001487C
 /* 80014828 00011768  48 00 00 68 */	b lbl_80014890
 lbl_8001482C:
-/* 8001482C 0001176C  3C 60 80 01 */	lis r3, "createObject_JSG_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@ha
+/* 8001482C 0001176C  3C 60 80 01 */	lis r3, createObject_JSG_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@ha
 /* 80014830 00011770  38 C0 00 02 */	li r6, 2
-/* 80014834 00011774  38 03 49 28 */	addi r0, r3, "createObject_JSG_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@l
+/* 80014834 00011774  38 03 49 28 */	addi r0, r3, createObject_JSG_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@l
 /* 80014838 00011778  7C 1C 03 78 */	mr r28, r0
 /* 8001483C 0001177C  48 00 00 5C */	b lbl_80014898
 lbl_80014840:
-/* 80014840 00011780  3C 60 80 01 */	lis r3, "createObject_JSG_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@ha
+/* 80014840 00011780  3C 60 80 01 */	lis r3, createObject_JSG_$$0Q214JStudio_JStage15TAdaptor_camera$$4Q26JStage7TCamera$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@ha
 /* 80014844 00011784  38 C0 00 03 */	li r6, 3
-/* 80014848 00011788  38 03 49 F4 */	addi r0, r3, "createObject_JSG_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@l
+/* 80014848 00011788  38 03 49 F4 */	addi r0, r3, createObject_JSG_$$0Q214JStudio_JStage15TAdaptor_camera$$4Q26JStage7TCamera$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@l
 /* 8001484C 0001178C  7C 1C 03 78 */	mr r28, r0
 /* 80014850 00011790  48 00 00 48 */	b lbl_80014898
 lbl_80014854:
-/* 80014854 00011794  3C 60 80 01 */	lis r3, "createObject_JSG_<Q214JStudio_JStage21TAdaptor_ambientLight,Q26JStage13TAmbientLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@ha
+/* 80014854 00011794  3C 60 80 01 */	lis r3, createObject_JSG_$$0Q214JStudio_JStage21TAdaptor_ambientLight$$4Q26JStage13TAmbientLight$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@ha
 /* 80014858 00011798  38 C0 00 04 */	li r6, 4
-/* 8001485C 0001179C  38 03 4A C0 */	addi r0, r3, "createObject_JSG_<Q214JStudio_JStage21TAdaptor_ambientLight,Q26JStage13TAmbientLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@l
+/* 8001485C 0001179C  38 03 4A C0 */	addi r0, r3, createObject_JSG_$$0Q214JStudio_JStage21TAdaptor_ambientLight$$4Q26JStage13TAmbientLight$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@l
 /* 80014860 000117A0  7C 1C 03 78 */	mr r28, r0
 /* 80014864 000117A4  48 00 00 34 */	b lbl_80014898
 lbl_80014868:
-/* 80014868 000117A8  3C 60 80 01 */	lis r3, "createObject_JSG_<Q214JStudio_JStage14TAdaptor_light,Q26JStage6TLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@ha
+/* 80014868 000117A8  3C 60 80 01 */	lis r3, createObject_JSG_$$0Q214JStudio_JStage14TAdaptor_light$$4Q26JStage6TLight$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@ha
 /* 8001486C 000117AC  38 C0 00 05 */	li r6, 5
-/* 80014870 000117B0  38 03 4B 8C */	addi r0, r3, "createObject_JSG_<Q214JStudio_JStage14TAdaptor_light,Q26JStage6TLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@l
+/* 80014870 000117B0  38 03 4B 8C */	addi r0, r3, createObject_JSG_$$0Q214JStudio_JStage14TAdaptor_light$$4Q26JStage6TLight$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@l
 /* 80014874 000117B4  7C 1C 03 78 */	mr r28, r0
 /* 80014878 000117B8  48 00 00 20 */	b lbl_80014898
 lbl_8001487C:
-/* 8001487C 000117BC  3C 60 80 01 */	lis r3, "createObject_JSG_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@ha
+/* 8001487C 000117BC  3C 60 80 01 */	lis r3, createObject_JSG_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@ha
 /* 80014880 000117C0  38 C0 00 06 */	li r6, 6
-/* 80014884 000117C4  38 03 4C 58 */	addi r0, r3, "createObject_JSG_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"@l
+/* 80014884 000117C4  38 03 4C 58 */	addi r0, r3, createObject_JSG_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem@l
 /* 80014888 000117C8  7C 1C 03 78 */	mr r28, r0
 /* 8001488C 000117CC  48 00 00 0C */	b lbl_80014898
 lbl_80014890:
@@ -146,8 +146,8 @@ lbl_80014908:
 /* 80014920 00011860  38 21 00 20 */	addi r1, r1, 0x20
 /* 80014924 00011864  4E 80 00 20 */	blr 
 
-.global "createObject_JSG_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"
-"createObject_JSG_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem":
+.global createObject_JSG_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
+createObject_JSG_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem:
 /* 80014928 00011868  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001492C 0001186C  7C 08 02 A6 */	mflr r0
 /* 80014930 00011870  90 01 00 24 */	stw r0, 0x24(r1)
@@ -206,8 +206,8 @@ lbl_800149D4:
 /* 800149EC 0001192C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800149F0 00011930  4E 80 00 20 */	blr 
 
-.global "createObject_JSG_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"
-"createObject_JSG_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem":
+.global createObject_JSG_$$0Q214JStudio_JStage15TAdaptor_camera$$4Q26JStage7TCamera$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
+createObject_JSG_$$0Q214JStudio_JStage15TAdaptor_camera$$4Q26JStage7TCamera$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem:
 /* 800149F4 00011934  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800149F8 00011938  7C 08 02 A6 */	mflr r0
 /* 800149FC 0001193C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -266,8 +266,8 @@ lbl_80014AA0:
 /* 80014AB8 000119F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80014ABC 000119FC  4E 80 00 20 */	blr 
 
-.global "createObject_JSG_<Q214JStudio_JStage21TAdaptor_ambientLight,Q26JStage13TAmbientLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"
-"createObject_JSG_<Q214JStudio_JStage21TAdaptor_ambientLight,Q26JStage13TAmbientLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem":
+.global createObject_JSG_$$0Q214JStudio_JStage21TAdaptor_ambientLight$$4Q26JStage13TAmbientLight$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
+createObject_JSG_$$0Q214JStudio_JStage21TAdaptor_ambientLight$$4Q26JStage13TAmbientLight$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem:
 /* 80014AC0 00011A00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80014AC4 00011A04  7C 08 02 A6 */	mflr r0
 /* 80014AC8 00011A08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -326,8 +326,8 @@ lbl_80014B6C:
 /* 80014B84 00011AC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80014B88 00011AC8  4E 80 00 20 */	blr 
 
-.global "createObject_JSG_<Q214JStudio_JStage14TAdaptor_light,Q26JStage6TLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"
-"createObject_JSG_<Q214JStudio_JStage14TAdaptor_light,Q26JStage6TLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem":
+.global createObject_JSG_$$0Q214JStudio_JStage14TAdaptor_light$$4Q26JStage6TLight$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
+createObject_JSG_$$0Q214JStudio_JStage14TAdaptor_light$$4Q26JStage6TLight$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem:
 /* 80014B8C 00011ACC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80014B90 00011AD0  7C 08 02 A6 */	mflr r0
 /* 80014B94 00011AD4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -386,8 +386,8 @@ lbl_80014C38:
 /* 80014C50 00011B90  38 21 00 20 */	addi r1, r1, 0x20
 /* 80014C54 00011B94  4E 80 00 20 */	blr 
 
-.global "createObject_JSG_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem"
-"createObject_JSG_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem":
+.global createObject_JSG_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
+createObject_JSG_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1__Q214JStudio_JStage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem:
 /* 80014C58 00011B98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80014C5C 00011B9C  7C 08 02 A6 */	mflr r0
 /* 80014C60 00011BA0  90 01 00 24 */	stw r0, 0x24(r1)

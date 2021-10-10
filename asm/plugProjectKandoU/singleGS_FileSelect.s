@@ -5,10 +5,10 @@
 __ct__Q34Game10SingleGame9FileStateFv:
 /* 8021C718 00219658  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021C71C 0021965C  7C 08 02 A6 */	mflr r0
-/* 8021C720 00219660  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 8021C720 00219660  3C 80 80 4B */	lis r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 8021C724 00219664  38 A0 00 00 */	li r5, 0
 /* 8021C728 00219668  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8021C72C 0021966C  38 04 13 18 */	addi r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 8021C72C 0021966C  38 04 13 18 */	addi r0, r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 8021C730 00219670  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame5State@ha
 /* 8021C734 00219674  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8021C738 00219678  7C 7F 1B 78 */	mr r31, r3
@@ -232,11 +232,11 @@ exec__Q34Game10SingleGame9FileStateFPQ24Game17SingleGameSection:
 /* 8021CA60 002199A0  3C 80 80 4C */	lis r4, lbl_804C07EC@ha
 /* 8021CA64 002199A4  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 8021CA68 002199A8  39 04 07 EC */	addi r8, r4, lbl_804C07EC@l
-/* 8021CA6C 002199AC  3C 80 80 4C */	lis r4, "__vt__39Delegate<Q34Game10SingleGame9FileState>"@ha
+/* 8021CA6C 002199AC  3C 80 80 4C */	lis r4, __vt__39Delegate$$0Q34Game10SingleGame9FileState$$1@ha
 /* 8021CA70 002199B0  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8021CA74 002199B4  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 8021CA78 002199B8  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8021CA7C 002199BC  38 04 07 F8 */	addi r0, r4, "__vt__39Delegate<Q34Game10SingleGame9FileState>"@l
+/* 8021CA7C 002199BC  38 04 07 F8 */	addi r0, r4, __vt__39Delegate$$0Q34Game10SingleGame9FileState$$1@l
 /* 8021CA80 002199C0  80 88 00 08 */	lwz r4, 8(r8)
 /* 8021CA84 002199C4  90 E1 00 08 */	stw r7, 8(r1)
 /* 8021CA88 002199C8  90 A3 00 00 */	stw r5, 0(r3)
@@ -596,8 +596,8 @@ lbl_8021CF30:
 /* 8021CF94 00219ED4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021CF98 00219ED8  4E 80 00 20 */	blr 
 
-.global "invoke__39Delegate<Q34Game10SingleGame9FileState>Fv"
-"invoke__39Delegate<Q34Game10SingleGame9FileState>Fv":
+.global invoke__39Delegate$$0Q34Game10SingleGame9FileState$$1Fv
+invoke__39Delegate$$0Q34Game10SingleGame9FileState$$1Fv:
 /* 8021CF9C 00219EDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021CFA0 00219EE0  7C 08 02 A6 */	mflr r0
 /* 8021CFA4 00219EE4  7C 64 1B 78 */	mr r4, r3

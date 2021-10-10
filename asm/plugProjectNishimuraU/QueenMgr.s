@@ -72,9 +72,9 @@ __ct__Q34Game5Queen5ParmsFv:
 /* 80288FA0 00285EE0  90 FE 07 FC */	stw r7, 0x7fc(r30)
 /* 80288FA4 00285EE4  90 1E 08 00 */	stw r0, 0x800(r30)
 /* 80288FA8 00285EE8  48 18 A6 B1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80288FAC 00285EEC  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 80288FAC 00285EEC  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 80288FB0 00285EF0  3C A0 66 70 */	lis r5, 0x66703032@ha
-/* 80288FB4 00285EF4  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 80288FB4 00285EF4  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 80288FB8 00285EF8  C0 02 D4 A0 */	lfs f0, lbl_8051B800@sda21(r2)
 /* 80288FBC 00285EFC  90 1E 08 04 */	stw r0, 0x804(r30)
 /* 80288FC0 00285F00  38 7E 08 2C */	addi r3, r30, 0x82c
@@ -87,9 +87,9 @@ __ct__Q34Game5Queen5ParmsFv:
 /* 80288FDC 00285F1C  D0 3E 08 24 */	stfs f1, 0x824(r30)
 /* 80288FE0 00285F20  D0 1E 08 28 */	stfs f0, 0x828(r30)
 /* 80288FE4 00285F24  48 18 A6 75 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80288FE8 00285F28  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 80288FE8 00285F28  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 80288FEC 00285F2C  3C A0 66 70 */	lis r5, 0x66703131@ha
-/* 80288FF0 00285F30  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 80288FF0 00285F30  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 80288FF4 00285F34  C0 22 D4 A4 */	lfs f1, lbl_8051B804@sda21(r2)
 /* 80288FF8 00285F38  90 1E 08 2C */	stw r0, 0x82c(r30)
 /* 80288FFC 00285F3C  38 7E 08 54 */	addi r3, r30, 0x854
@@ -101,9 +101,9 @@ __ct__Q34Game5Queen5ParmsFv:
 /* 80289014 00285F54  D0 3E 08 4C */	stfs f1, 0x84c(r30)
 /* 80289018 00285F58  D0 1E 08 50 */	stfs f0, 0x850(r30)
 /* 8028901C 00285F5C  48 18 A6 3D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80289020 00285F60  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 80289020 00285F60  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 80289024 00285F64  3C A0 69 70 */	lis r5, 0x69703031@ha
-/* 80289028 00285F68  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 80289028 00285F68  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8028902C 00285F6C  C0 02 D4 AC */	lfs f0, lbl_8051B80C@sda21(r2)
 /* 80289030 00285F70  90 1E 08 54 */	stw r0, 0x854(r30)
 /* 80289034 00285F74  38 7E 08 7C */	addi r3, r30, 0x87c
@@ -116,9 +116,9 @@ __ct__Q34Game5Queen5ParmsFv:
 /* 80289050 00285F90  D0 3E 08 74 */	stfs f1, 0x874(r30)
 /* 80289054 00285F94  D0 1E 08 78 */	stfs f0, 0x878(r30)
 /* 80289058 00285F98  48 18 A6 01 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8028905C 00285F9C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8028905C 00285F9C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 80289060 00285FA0  3C A0 69 70 */	lis r5, 0x69703032@ha
-/* 80289064 00285FA4  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 80289064 00285FA4  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 80289068 00285FA8  38 E0 00 32 */	li r7, 0x32
 /* 8028906C 00285FAC  90 1E 08 7C */	stw r0, 0x87c(r30)
 /* 80289070 00285FB0  38 00 00 00 */	li r0, 0
@@ -130,9 +130,9 @@ __ct__Q34Game5Queen5ParmsFv:
 /* 80289088 00285FC8  90 1E 08 9C */	stw r0, 0x89c(r30)
 /* 8028908C 00285FCC  90 FE 08 A0 */	stw r7, 0x8a0(r30)
 /* 80289090 00285FD0  48 18 A5 C9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80289094 00285FD4  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 80289094 00285FD4  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 80289098 00285FD8  38 A0 00 19 */	li r5, 0x19
-/* 8028909C 00285FDC  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8028909C 00285FDC  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 802890A0 00285FE0  38 80 00 00 */	li r4, 0
 /* 802890A4 00285FE4  90 1E 08 A4 */	stw r0, 0x8a4(r30)
 /* 802890A8 00285FE8  38 00 00 32 */	li r0, 0x32
@@ -275,7 +275,7 @@ loadTexData__Q34Game5Queen3MgrFv:
 /* 80289280 002861C0  7C 7E 1B 78 */	mr r30, r3
 /* 80289284 002861C4  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80289288 002861C8  48 1B 50 15 */	bl enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-/* 8028928C 002861CC  80 8D 84 B0 */	lwz r4, "cMatAnimBtkTexName__Q34Game5Queen22@unnamed@QueenMgr_cpp@"@sda21(r13)
+/* 8028928C 002861CC  80 8D 84 B0 */	lwz r4, cMatAnimBtkTexName__Q34Game5Queen22$$2unnamed$$2QueenMgr_cpp$$2@sda21(r13)
 /* 80289290 002861D0  38 61 00 08 */	addi r3, r1, 8
 /* 80289294 002861D4  3B E0 00 00 */	li r31, 0
 /* 80289298 002861D8  48 1C 33 41 */	bl __ct__Q212LoadResource3ArgFPCc
@@ -442,7 +442,7 @@ read__Q34Game5Queen5ParmsFR6Stream:
 /* 802894C4 00286404  38 21 00 10 */	addi r1, r1, 0x10
 /* 802894C8 00286408  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game5Queen3MgrFv"
-"@4@__dt__Q34Game5Queen3MgrFv":
+.global $$24$$2__dt__Q34Game5Queen3MgrFv
+$$24$$2__dt__Q34Game5Queen3MgrFv:
 /* 802894CC 0028640C  38 63 FF FC */	addi r3, r3, -4
 /* 802894D0 00286410  4B FF FE C8 */	b __dt__Q34Game5Queen3MgrFv

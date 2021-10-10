@@ -99,7 +99,7 @@ lbl_804200F0:
 /* 80420114 0041D054  39 41 00 88 */	addi r10, r1, 0x88
 /* 80420118 0041D058  80 BB 00 18 */	lwz r5, 0x18(r27)
 /* 8042011C 0041D05C  80 DB 00 1C */	lwz r6, 0x1c(r27)
-/* 80420120 0041D060  48 00 03 45 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420120 0041D060  48 00 03 45 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420124 0041D064  7F 83 E3 78 */	mr r3, r28
 /* 80420128 0041D068  7F E4 FB 78 */	mr r4, r31
 /* 8042012C 0041D06C  38 A1 00 14 */	addi r5, r1, 0x14
@@ -119,8 +119,8 @@ lbl_8042014C:
 /* 80420160 0041D0A0  38 21 01 30 */	addi r1, r1, 0x130
 /* 80420164 0041D0A4  4E 80 00 20 */	blr 
 
-.global "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
-"traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>":
+.global traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
+traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1:
 /* 80420168 0041D0A8  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8042016C 0041D0AC  7C 08 02 A6 */	mflr r0
 /* 80420170 0041D0B0  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -322,8 +322,8 @@ lbl_8042042C:
 /* 8042045C 0041D39C  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80420460 0041D3A0  4E 80 00 20 */	blr 
 
-.global "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
-"traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>":
+.global traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
+traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1:
 /* 80420464 0041D3A4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80420468 0041D3A8  7C 08 02 A6 */	mflr r0
 /* 8042046C 0041D3AC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -360,7 +360,7 @@ lbl_804204C0:
 /* 804204E4 0041D424  7F A8 EB 78 */	mr r8, r29
 /* 804204E8 0041D428  7F 89 E3 78 */	mr r9, r28
 /* 804204EC 0041D42C  7F 6A DB 78 */	mr r10, r27
-/* 804204F0 0041D430  4B FF FC 79 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804204F0 0041D430  4B FF FC 79 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804204F4 0041D434  48 00 07 4C */	b lbl_80420C40
 lbl_804204F8:
 /* 804204F8 0041D438  C0 35 00 04 */	lfs f1, 4(r21)
@@ -393,7 +393,7 @@ lbl_804204F8:
 /* 80420564 0041D4A4  7F A8 EB 78 */	mr r8, r29
 /* 80420568 0041D4A8  7F 89 E3 78 */	mr r9, r28
 /* 8042056C 0041D4AC  7F 6A DB 78 */	mr r10, r27
-/* 80420570 0041D4B0  4B FF FB F9 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420570 0041D4B0  4B FF FB F9 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420574 0041D4B4  48 00 06 CC */	b lbl_80420C40
 lbl_80420578:
 /* 80420578 0041D4B8  7E A4 AB 78 */	mr r4, r21
@@ -414,7 +414,7 @@ lbl_80420578:
 /* 804205B4 0041D4F4  7F A8 EB 78 */	mr r8, r29
 /* 804205B8 0041D4F8  7F 89 E3 78 */	mr r9, r28
 /* 804205BC 0041D4FC  7F 6A DB 78 */	mr r10, r27
-/* 804205C0 0041D500  4B FF FE A5 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804205C0 0041D500  4B FF FE A5 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804205C4 0041D504  48 00 06 7C */	b lbl_80420C40
 lbl_804205C8:
 /* 804205C8 0041D508  92 E1 00 08 */	stw r23, 8(r1)
@@ -427,7 +427,7 @@ lbl_804205C8:
 /* 804205E4 0041D524  7F A8 EB 78 */	mr r8, r29
 /* 804205E8 0041D528  7F 89 E3 78 */	mr r9, r28
 /* 804205EC 0041D52C  7F 6A DB 78 */	mr r10, r27
-/* 804205F0 0041D530  4B FF FB 79 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804205F0 0041D530  4B FF FB 79 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804205F4 0041D534  48 00 06 4C */	b lbl_80420C40
 lbl_804205F8:
 /* 804205F8 0041D538  FC 00 00 50 */	fneg f0, f0
@@ -445,7 +445,7 @@ lbl_804205F8:
 /* 80420628 0041D568  7F A8 EB 78 */	mr r8, r29
 /* 8042062C 0041D56C  7F 89 E3 78 */	mr r9, r28
 /* 80420630 0041D570  7F 6A DB 78 */	mr r10, r27
-/* 80420634 0041D574  4B FF FE 31 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420634 0041D574  4B FF FE 31 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420638 0041D578  48 00 06 08 */	b lbl_80420C40
 lbl_8042063C:
 /* 8042063C 0041D57C  92 E1 00 08 */	stw r23, 8(r1)
@@ -458,7 +458,7 @@ lbl_8042063C:
 /* 80420658 0041D598  7F A8 EB 78 */	mr r8, r29
 /* 8042065C 0041D59C  7F 89 E3 78 */	mr r9, r28
 /* 80420660 0041D5A0  7F 6A DB 78 */	mr r10, r27
-/* 80420664 0041D5A4  4B FF FB 05 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420664 0041D5A4  4B FF FB 05 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420668 0041D5A8  48 00 05 D8 */	b lbl_80420C40
 lbl_8042066C:
 /* 8042066C 0041D5AC  80 76 00 C0 */	lwz r3, 0xc0(r22)
@@ -473,7 +473,7 @@ lbl_8042066C:
 /* 80420690 0041D5D0  7F A8 EB 78 */	mr r8, r29
 /* 80420694 0041D5D4  7F 89 E3 78 */	mr r9, r28
 /* 80420698 0041D5D8  7F 6A DB 78 */	mr r10, r27
-/* 8042069C 0041D5DC  4B FF FD C9 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042069C 0041D5DC  4B FF FD C9 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_804206A0:
 /* 804206A0 0041D5E0  80 76 00 C4 */	lwz r3, 0xc4(r22)
 /* 804206A4 0041D5E4  28 03 00 00 */	cmplwi r3, 0
@@ -487,7 +487,7 @@ lbl_804206A0:
 /* 804206C4 0041D604  7F A8 EB 78 */	mr r8, r29
 /* 804206C8 0041D608  7F 89 E3 78 */	mr r9, r28
 /* 804206CC 0041D60C  7F 6A DB 78 */	mr r10, r27
-/* 804206D0 0041D610  4B FF FD 95 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804206D0 0041D610  4B FF FD 95 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804206D4 0041D614  48 00 05 6C */	b lbl_80420C40
 lbl_804206D8:
 /* 804206D8 0041D618  92 E1 00 08 */	stw r23, 8(r1)
@@ -500,7 +500,7 @@ lbl_804206D8:
 /* 804206F4 0041D634  7F A8 EB 78 */	mr r8, r29
 /* 804206F8 0041D638  7F 89 E3 78 */	mr r9, r28
 /* 804206FC 0041D63C  7F 6A DB 78 */	mr r10, r27
-/* 80420700 0041D640  4B FF FA 69 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420700 0041D640  4B FF FA 69 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420704 0041D644  48 00 05 3C */	b lbl_80420C40
 lbl_80420708:
 /* 80420708 0041D648  FC 00 10 50 */	fneg f0, f2
@@ -523,7 +523,7 @@ lbl_80420708:
 /* 8042074C 0041D68C  7F A8 EB 78 */	mr r8, r29
 /* 80420750 0041D690  7F 89 E3 78 */	mr r9, r28
 /* 80420754 0041D694  7F 6A DB 78 */	mr r10, r27
-/* 80420758 0041D698  4B FF FA 11 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420758 0041D698  4B FF FA 11 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 8042075C 0041D69C  48 00 04 E4 */	b lbl_80420C40
 lbl_80420760:
 /* 80420760 0041D6A0  7E A4 AB 78 */	mr r4, r21
@@ -544,7 +544,7 @@ lbl_80420760:
 /* 8042079C 0041D6DC  7F A8 EB 78 */	mr r8, r29
 /* 804207A0 0041D6E0  7F 89 E3 78 */	mr r9, r28
 /* 804207A4 0041D6E4  7F 6A DB 78 */	mr r10, r27
-/* 804207A8 0041D6E8  4B FF FC BD */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804207A8 0041D6E8  4B FF FC BD */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804207AC 0041D6EC  48 00 04 94 */	b lbl_80420C40
 lbl_804207B0:
 /* 804207B0 0041D6F0  92 E1 00 08 */	stw r23, 8(r1)
@@ -557,7 +557,7 @@ lbl_804207B0:
 /* 804207CC 0041D70C  7F A8 EB 78 */	mr r8, r29
 /* 804207D0 0041D710  7F 89 E3 78 */	mr r9, r28
 /* 804207D4 0041D714  7F 6A DB 78 */	mr r10, r27
-/* 804207D8 0041D718  4B FF F9 91 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804207D8 0041D718  4B FF F9 91 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804207DC 0041D71C  48 00 04 64 */	b lbl_80420C40
 lbl_804207E0:
 /* 804207E0 0041D720  FC 00 00 50 */	fneg f0, f0
@@ -575,7 +575,7 @@ lbl_804207E0:
 /* 80420810 0041D750  7F A8 EB 78 */	mr r8, r29
 /* 80420814 0041D754  7F 89 E3 78 */	mr r9, r28
 /* 80420818 0041D758  7F 6A DB 78 */	mr r10, r27
-/* 8042081C 0041D75C  4B FF FC 49 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042081C 0041D75C  4B FF FC 49 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420820 0041D760  48 00 04 20 */	b lbl_80420C40
 lbl_80420824:
 /* 80420824 0041D764  92 E1 00 08 */	stw r23, 8(r1)
@@ -588,7 +588,7 @@ lbl_80420824:
 /* 80420840 0041D780  7F A8 EB 78 */	mr r8, r29
 /* 80420844 0041D784  7F 89 E3 78 */	mr r9, r28
 /* 80420848 0041D788  7F 6A DB 78 */	mr r10, r27
-/* 8042084C 0041D78C  4B FF F9 1D */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042084C 0041D78C  4B FF F9 1D */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420850 0041D790  48 00 03 F0 */	b lbl_80420C40
 lbl_80420854:
 /* 80420854 0041D794  80 76 00 C0 */	lwz r3, 0xc0(r22)
@@ -603,7 +603,7 @@ lbl_80420854:
 /* 80420878 0041D7B8  7F A8 EB 78 */	mr r8, r29
 /* 8042087C 0041D7BC  7F 89 E3 78 */	mr r9, r28
 /* 80420880 0041D7C0  7F 6A DB 78 */	mr r10, r27
-/* 80420884 0041D7C4  4B FF FB E1 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420884 0041D7C4  4B FF FB E1 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80420888:
 /* 80420888 0041D7C8  80 76 00 C4 */	lwz r3, 0xc4(r22)
 /* 8042088C 0041D7CC  28 03 00 00 */	cmplwi r3, 0
@@ -617,7 +617,7 @@ lbl_80420888:
 /* 804208AC 0041D7EC  7F A8 EB 78 */	mr r8, r29
 /* 804208B0 0041D7F0  7F 89 E3 78 */	mr r9, r28
 /* 804208B4 0041D7F4  7F 6A DB 78 */	mr r10, r27
-/* 804208B8 0041D7F8  4B FF FB AD */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804208B8 0041D7F8  4B FF FB AD */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804208BC 0041D7FC  48 00 03 84 */	b lbl_80420C40
 lbl_804208C0:
 /* 804208C0 0041D800  92 E1 00 08 */	stw r23, 8(r1)
@@ -630,7 +630,7 @@ lbl_804208C0:
 /* 804208DC 0041D81C  7F A8 EB 78 */	mr r8, r29
 /* 804208E0 0041D820  7F 89 E3 78 */	mr r9, r28
 /* 804208E4 0041D824  7F 6A DB 78 */	mr r10, r27
-/* 804208E8 0041D828  4B FF F8 81 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804208E8 0041D828  4B FF F8 81 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804208EC 0041D82C  48 00 03 54 */	b lbl_80420C40
 lbl_804208F0:
 /* 804208F0 0041D830  28 16 00 00 */	cmplwi r22, 0
@@ -649,7 +649,7 @@ lbl_804208F0:
 /* 80420924 0041D864  7F A8 EB 78 */	mr r8, r29
 /* 80420928 0041D868  7F 89 E3 78 */	mr r9, r28
 /* 8042092C 0041D86C  7F 6A DB 78 */	mr r10, r27
-/* 80420930 0041D870  4B FF F8 39 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420930 0041D870  4B FF F8 39 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420934 0041D874  48 00 01 60 */	b lbl_80420A94
 lbl_80420938:
 /* 80420938 0041D878  7E A4 AB 78 */	mr r4, r21
@@ -670,7 +670,7 @@ lbl_80420938:
 /* 80420974 0041D8B4  7F A8 EB 78 */	mr r8, r29
 /* 80420978 0041D8B8  7F 89 E3 78 */	mr r9, r28
 /* 8042097C 0041D8BC  7F 6A DB 78 */	mr r10, r27
-/* 80420980 0041D8C0  4B FF FA E5 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420980 0041D8C0  4B FF FA E5 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420984 0041D8C4  48 00 01 10 */	b lbl_80420A94
 lbl_80420988:
 /* 80420988 0041D8C8  92 E1 00 08 */	stw r23, 8(r1)
@@ -683,7 +683,7 @@ lbl_80420988:
 /* 804209A4 0041D8E4  7F A8 EB 78 */	mr r8, r29
 /* 804209A8 0041D8E8  7F 89 E3 78 */	mr r9, r28
 /* 804209AC 0041D8EC  7F 6A DB 78 */	mr r10, r27
-/* 804209B0 0041D8F0  4B FF F7 B9 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804209B0 0041D8F0  4B FF F7 B9 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804209B4 0041D8F4  48 00 00 E0 */	b lbl_80420A94
 lbl_804209B8:
 /* 804209B8 0041D8F8  FC 00 00 50 */	fneg f0, f0
@@ -701,7 +701,7 @@ lbl_804209B8:
 /* 804209E8 0041D928  7F A8 EB 78 */	mr r8, r29
 /* 804209EC 0041D92C  7F 89 E3 78 */	mr r9, r28
 /* 804209F0 0041D930  7F 6A DB 78 */	mr r10, r27
-/* 804209F4 0041D934  4B FF FA 71 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804209F4 0041D934  4B FF FA 71 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804209F8 0041D938  48 00 00 9C */	b lbl_80420A94
 lbl_804209FC:
 /* 804209FC 0041D93C  92 E1 00 08 */	stw r23, 8(r1)
@@ -714,7 +714,7 @@ lbl_804209FC:
 /* 80420A18 0041D958  7F A8 EB 78 */	mr r8, r29
 /* 80420A1C 0041D95C  7F 89 E3 78 */	mr r9, r28
 /* 80420A20 0041D960  7F 6A DB 78 */	mr r10, r27
-/* 80420A24 0041D964  4B FF F7 45 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420A24 0041D964  4B FF F7 45 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420A28 0041D968  48 00 00 6C */	b lbl_80420A94
 lbl_80420A2C:
 /* 80420A2C 0041D96C  80 76 00 C0 */	lwz r3, 0xc0(r22)
@@ -729,7 +729,7 @@ lbl_80420A2C:
 /* 80420A50 0041D990  7F A8 EB 78 */	mr r8, r29
 /* 80420A54 0041D994  7F 89 E3 78 */	mr r9, r28
 /* 80420A58 0041D998  7F 6A DB 78 */	mr r10, r27
-/* 80420A5C 0041D99C  4B FF FA 09 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420A5C 0041D99C  4B FF FA 09 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80420A60:
 /* 80420A60 0041D9A0  80 76 00 C4 */	lwz r3, 0xc4(r22)
 /* 80420A64 0041D9A4  28 03 00 00 */	cmplwi r3, 0
@@ -743,7 +743,7 @@ lbl_80420A60:
 /* 80420A84 0041D9C4  7F A8 EB 78 */	mr r8, r29
 /* 80420A88 0041D9C8  7F 89 E3 78 */	mr r9, r28
 /* 80420A8C 0041D9CC  7F 6A DB 78 */	mr r10, r27
-/* 80420A90 0041D9D0  4B FF F9 D5 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420A90 0041D9D0  4B FF F9 D5 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80420A94:
 /* 80420A94 0041D9D4  82 B4 00 C4 */	lwz r21, 0xc4(r20)
 /* 80420A98 0041D9D8  28 15 00 00 */	cmplwi r21, 0
@@ -763,7 +763,7 @@ lbl_80420A94:
 /* 80420AD0 0041DA10  7F A8 EB 78 */	mr r8, r29
 /* 80420AD4 0041DA14  7F 89 E3 78 */	mr r9, r28
 /* 80420AD8 0041DA18  7F 6A DB 78 */	mr r10, r27
-/* 80420ADC 0041DA1C  4B FF F6 8D */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420ADC 0041DA1C  4B FF F6 8D */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420AE0 0041DA20  48 00 01 60 */	b lbl_80420C40
 lbl_80420AE4:
 /* 80420AE4 0041DA24  7E 84 A3 78 */	mr r4, r20
@@ -784,7 +784,7 @@ lbl_80420AE4:
 /* 80420B20 0041DA60  7F A8 EB 78 */	mr r8, r29
 /* 80420B24 0041DA64  7F 89 E3 78 */	mr r9, r28
 /* 80420B28 0041DA68  7F 6A DB 78 */	mr r10, r27
-/* 80420B2C 0041DA6C  4B FF F9 39 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420B2C 0041DA6C  4B FF F9 39 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420B30 0041DA70  48 00 01 10 */	b lbl_80420C40
 lbl_80420B34:
 /* 80420B34 0041DA74  92 E1 00 08 */	stw r23, 8(r1)
@@ -797,7 +797,7 @@ lbl_80420B34:
 /* 80420B50 0041DA90  7F A8 EB 78 */	mr r8, r29
 /* 80420B54 0041DA94  7F 89 E3 78 */	mr r9, r28
 /* 80420B58 0041DA98  7F 6A DB 78 */	mr r10, r27
-/* 80420B5C 0041DA9C  4B FF F6 0D */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420B5C 0041DA9C  4B FF F6 0D */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420B60 0041DAA0  48 00 00 E0 */	b lbl_80420C40
 lbl_80420B64:
 /* 80420B64 0041DAA4  FC 00 00 50 */	fneg f0, f0
@@ -815,7 +815,7 @@ lbl_80420B64:
 /* 80420B94 0041DAD4  7F A8 EB 78 */	mr r8, r29
 /* 80420B98 0041DAD8  7F 89 E3 78 */	mr r9, r28
 /* 80420B9C 0041DADC  7F 6A DB 78 */	mr r10, r27
-/* 80420BA0 0041DAE0  4B FF F8 C5 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420BA0 0041DAE0  4B FF F8 C5 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420BA4 0041DAE4  48 00 00 9C */	b lbl_80420C40
 lbl_80420BA8:
 /* 80420BA8 0041DAE8  92 E1 00 08 */	stw r23, 8(r1)
@@ -828,7 +828,7 @@ lbl_80420BA8:
 /* 80420BC4 0041DB04  7F A8 EB 78 */	mr r8, r29
 /* 80420BC8 0041DB08  7F 89 E3 78 */	mr r9, r28
 /* 80420BCC 0041DB0C  7F 6A DB 78 */	mr r10, r27
-/* 80420BD0 0041DB10  4B FF F5 99 */	bl "traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420BD0 0041DB10  4B FF F5 99 */	bl traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420BD4 0041DB14  48 00 00 6C */	b lbl_80420C40
 lbl_80420BD8:
 /* 80420BD8 0041DB18  80 75 00 C0 */	lwz r3, 0xc0(r21)
@@ -843,7 +843,7 @@ lbl_80420BD8:
 /* 80420BFC 0041DB3C  7F A8 EB 78 */	mr r8, r29
 /* 80420C00 0041DB40  7F 89 E3 78 */	mr r9, r28
 /* 80420C04 0041DB44  7F 6A DB 78 */	mr r10, r27
-/* 80420C08 0041DB48  4B FF F8 5D */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420C08 0041DB48  4B FF F8 5D */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80420C0C:
 /* 80420C0C 0041DB4C  80 75 00 C4 */	lwz r3, 0xc4(r21)
 /* 80420C10 0041DB50  28 03 00 00 */	cmplwi r3, 0
@@ -857,7 +857,7 @@ lbl_80420C0C:
 /* 80420C30 0041DB70  7F A8 EB 78 */	mr r8, r29
 /* 80420C34 0041DB74  7F 89 E3 78 */	mr r9, r28
 /* 80420C38 0041DB78  7F 6A DB 78 */	mr r10, r27
-/* 80420C3C 0041DB7C  4B FF F8 29 */	bl "traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420C3C 0041DB7C  4B FF F8 29 */	bl traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80420C40:
 /* 80420C40 0041DB80  BA 81 00 10 */	lmw r20, 0x10(r1)
 /* 80420C44 0041DB84  80 01 00 44 */	lwz r0, 0x44(r1)
@@ -898,7 +898,7 @@ traceMove_new_global__Q23Sys7OBBTreeFRQ24Game8MoveInfof:
 /* 80420CC4 0041DC04  39 01 00 3C */	addi r8, r1, 0x3c
 /* 80420CC8 0041DC08  39 21 00 1C */	addi r9, r1, 0x1c
 /* 80420CCC 0041DC0C  39 41 00 5C */	addi r10, r1, 0x5c
-/* 80420CD0 0041DC10  48 00 02 69 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420CD0 0041DC10  48 00 02 69 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80420CD4:
 /* 80420CD4 0041DC14  80 01 00 D4 */	lwz r0, 0xd4(r1)
 /* 80420CD8 0041DC18  83 E1 00 CC */	lwz r31, 0xcc(r1)
@@ -907,8 +907,8 @@ lbl_80420CD4:
 /* 80420CE4 0041DC24  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80420CE8 0041DC28  4E 80 00 20 */	blr 
 
-.global "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
-"traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>":
+.global traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
+traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1:
 /* 80420CEC 0041DC2C  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80420CF0 0041DC30  7C 08 02 A6 */	mflr r0
 /* 80420CF4 0041DC34  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -1065,8 +1065,8 @@ lbl_80420F00:
 /* 80420F30 0041DE70  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80420F34 0041DE74  4E 80 00 20 */	blr 
 
-.global "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
-"traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>":
+.global traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
+traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1:
 /* 80420F38 0041DE78  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80420F3C 0041DE7C  7C 08 02 A6 */	mflr r0
 /* 80420F40 0041DE80  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1099,7 +1099,7 @@ lbl_80420F8C:
 /* 80420FA8 0041DEE8  7F 68 DB 78 */	mr r8, r27
 /* 80420FAC 0041DEEC  7F 49 D3 78 */	mr r9, r26
 /* 80420FB0 0041DEF0  7F 2A CB 78 */	mr r10, r25
-/* 80420FB4 0041DEF4  4B FF FD 39 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80420FB4 0041DEF4  4B FF FD 39 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80420FB8 0041DEF8  48 00 06 5C */	b lbl_80421614
 lbl_80420FBC:
 /* 80420FBC 0041DEFC  C0 36 00 04 */	lfs f1, 4(r22)
@@ -1130,7 +1130,7 @@ lbl_80420FBC:
 /* 80421020 0041DF60  7F 68 DB 78 */	mr r8, r27
 /* 80421024 0041DF64  7F 49 D3 78 */	mr r9, r26
 /* 80421028 0041DF68  7F 2A CB 78 */	mr r10, r25
-/* 8042102C 0041DF6C  4B FF FC C1 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042102C 0041DF6C  4B FF FC C1 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421030 0041DF70  48 00 05 E4 */	b lbl_80421614
 lbl_80421034:
 /* 80421034 0041DF74  7E C4 B3 78 */	mr r4, r22
@@ -1149,7 +1149,7 @@ lbl_80421034:
 /* 80421068 0041DFA8  7F 68 DB 78 */	mr r8, r27
 /* 8042106C 0041DFAC  7F 49 D3 78 */	mr r9, r26
 /* 80421070 0041DFB0  7F 2A CB 78 */	mr r10, r25
-/* 80421074 0041DFB4  4B FF FE C5 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421074 0041DFB4  4B FF FE C5 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421078 0041DFB8  48 00 05 9C */	b lbl_80421614
 lbl_8042107C:
 /* 8042107C 0041DFBC  7F 03 C3 78 */	mr r3, r24
@@ -1160,7 +1160,7 @@ lbl_8042107C:
 /* 80421090 0041DFD0  7F 68 DB 78 */	mr r8, r27
 /* 80421094 0041DFD4  7F 49 D3 78 */	mr r9, r26
 /* 80421098 0041DFD8  7F 2A CB 78 */	mr r10, r25
-/* 8042109C 0041DFDC  4B FF FC 51 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042109C 0041DFDC  4B FF FC 51 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804210A0 0041DFE0  48 00 05 74 */	b lbl_80421614
 lbl_804210A4:
 /* 804210A4 0041DFE4  FC 00 00 50 */	fneg f0, f0
@@ -1176,7 +1176,7 @@ lbl_804210A4:
 /* 804210CC 0041E00C  7F 68 DB 78 */	mr r8, r27
 /* 804210D0 0041E010  7F 49 D3 78 */	mr r9, r26
 /* 804210D4 0041E014  7F 2A CB 78 */	mr r10, r25
-/* 804210D8 0041E018  4B FF FE 61 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804210D8 0041E018  4B FF FE 61 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804210DC 0041E01C  48 00 05 38 */	b lbl_80421614
 lbl_804210E0:
 /* 804210E0 0041E020  7F 03 C3 78 */	mr r3, r24
@@ -1187,7 +1187,7 @@ lbl_804210E0:
 /* 804210F4 0041E034  7F 68 DB 78 */	mr r8, r27
 /* 804210F8 0041E038  7F 49 D3 78 */	mr r9, r26
 /* 804210FC 0041E03C  7F 2A CB 78 */	mr r10, r25
-/* 80421100 0041E040  4B FF FB ED */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421100 0041E040  4B FF FB ED */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421104 0041E044  48 00 05 10 */	b lbl_80421614
 lbl_80421108:
 /* 80421108 0041E048  80 78 00 C0 */	lwz r3, 0xc0(r24)
@@ -1200,7 +1200,7 @@ lbl_80421108:
 /* 80421124 0041E064  7F 68 DB 78 */	mr r8, r27
 /* 80421128 0041E068  7F 49 D3 78 */	mr r9, r26
 /* 8042112C 0041E06C  7F 2A CB 78 */	mr r10, r25
-/* 80421130 0041E070  4B FF FE 09 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421130 0041E070  4B FF FE 09 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80421134:
 /* 80421134 0041E074  80 78 00 C4 */	lwz r3, 0xc4(r24)
 /* 80421138 0041E078  28 03 00 00 */	cmplwi r3, 0
@@ -1212,7 +1212,7 @@ lbl_80421134:
 /* 80421150 0041E090  7F 68 DB 78 */	mr r8, r27
 /* 80421154 0041E094  7F 49 D3 78 */	mr r9, r26
 /* 80421158 0041E098  7F 2A CB 78 */	mr r10, r25
-/* 8042115C 0041E09C  4B FF FD DD */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042115C 0041E09C  4B FF FD DD */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421160 0041E0A0  48 00 04 B4 */	b lbl_80421614
 lbl_80421164:
 /* 80421164 0041E0A4  7E E3 BB 78 */	mr r3, r23
@@ -1223,7 +1223,7 @@ lbl_80421164:
 /* 80421178 0041E0B8  7F 68 DB 78 */	mr r8, r27
 /* 8042117C 0041E0BC  7F 49 D3 78 */	mr r9, r26
 /* 80421180 0041E0C0  7F 2A CB 78 */	mr r10, r25
-/* 80421184 0041E0C4  4B FF FB 69 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421184 0041E0C4  4B FF FB 69 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421188 0041E0C8  48 00 04 8C */	b lbl_80421614
 lbl_8042118C:
 /* 8042118C 0041E0CC  FC 00 10 50 */	fneg f0, f2
@@ -1244,7 +1244,7 @@ lbl_8042118C:
 /* 804211C8 0041E108  7F 68 DB 78 */	mr r8, r27
 /* 804211CC 0041E10C  7F 49 D3 78 */	mr r9, r26
 /* 804211D0 0041E110  7F 2A CB 78 */	mr r10, r25
-/* 804211D4 0041E114  4B FF FB 19 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804211D4 0041E114  4B FF FB 19 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804211D8 0041E118  48 00 04 3C */	b lbl_80421614
 lbl_804211DC:
 /* 804211DC 0041E11C  7E C4 B3 78 */	mr r4, r22
@@ -1263,7 +1263,7 @@ lbl_804211DC:
 /* 80421210 0041E150  7F 68 DB 78 */	mr r8, r27
 /* 80421214 0041E154  7F 49 D3 78 */	mr r9, r26
 /* 80421218 0041E158  7F 2A CB 78 */	mr r10, r25
-/* 8042121C 0041E15C  4B FF FD 1D */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042121C 0041E15C  4B FF FD 1D */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421220 0041E160  48 00 03 F4 */	b lbl_80421614
 lbl_80421224:
 /* 80421224 0041E164  7F 03 C3 78 */	mr r3, r24
@@ -1274,7 +1274,7 @@ lbl_80421224:
 /* 80421238 0041E178  7F 68 DB 78 */	mr r8, r27
 /* 8042123C 0041E17C  7F 49 D3 78 */	mr r9, r26
 /* 80421240 0041E180  7F 2A CB 78 */	mr r10, r25
-/* 80421244 0041E184  4B FF FA A9 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421244 0041E184  4B FF FA A9 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421248 0041E188  48 00 03 CC */	b lbl_80421614
 lbl_8042124C:
 /* 8042124C 0041E18C  FC 00 00 50 */	fneg f0, f0
@@ -1290,7 +1290,7 @@ lbl_8042124C:
 /* 80421274 0041E1B4  7F 68 DB 78 */	mr r8, r27
 /* 80421278 0041E1B8  7F 49 D3 78 */	mr r9, r26
 /* 8042127C 0041E1BC  7F 2A CB 78 */	mr r10, r25
-/* 80421280 0041E1C0  4B FF FC B9 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421280 0041E1C0  4B FF FC B9 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421284 0041E1C4  48 00 03 90 */	b lbl_80421614
 lbl_80421288:
 /* 80421288 0041E1C8  7F 03 C3 78 */	mr r3, r24
@@ -1301,7 +1301,7 @@ lbl_80421288:
 /* 8042129C 0041E1DC  7F 68 DB 78 */	mr r8, r27
 /* 804212A0 0041E1E0  7F 49 D3 78 */	mr r9, r26
 /* 804212A4 0041E1E4  7F 2A CB 78 */	mr r10, r25
-/* 804212A8 0041E1E8  4B FF FA 45 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804212A8 0041E1E8  4B FF FA 45 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804212AC 0041E1EC  48 00 03 68 */	b lbl_80421614
 lbl_804212B0:
 /* 804212B0 0041E1F0  80 78 00 C0 */	lwz r3, 0xc0(r24)
@@ -1314,7 +1314,7 @@ lbl_804212B0:
 /* 804212CC 0041E20C  7F 68 DB 78 */	mr r8, r27
 /* 804212D0 0041E210  7F 49 D3 78 */	mr r9, r26
 /* 804212D4 0041E214  7F 2A CB 78 */	mr r10, r25
-/* 804212D8 0041E218  4B FF FC 61 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804212D8 0041E218  4B FF FC 61 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_804212DC:
 /* 804212DC 0041E21C  80 78 00 C4 */	lwz r3, 0xc4(r24)
 /* 804212E0 0041E220  28 03 00 00 */	cmplwi r3, 0
@@ -1326,7 +1326,7 @@ lbl_804212DC:
 /* 804212F8 0041E238  7F 68 DB 78 */	mr r8, r27
 /* 804212FC 0041E23C  7F 49 D3 78 */	mr r9, r26
 /* 80421300 0041E240  7F 2A CB 78 */	mr r10, r25
-/* 80421304 0041E244  4B FF FC 35 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421304 0041E244  4B FF FC 35 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421308 0041E248  48 00 03 0C */	b lbl_80421614
 lbl_8042130C:
 /* 8042130C 0041E24C  7E E3 BB 78 */	mr r3, r23
@@ -1337,7 +1337,7 @@ lbl_8042130C:
 /* 80421320 0041E260  7F 68 DB 78 */	mr r8, r27
 /* 80421324 0041E264  7F 49 D3 78 */	mr r9, r26
 /* 80421328 0041E268  7F 2A CB 78 */	mr r10, r25
-/* 8042132C 0041E26C  4B FF F9 C1 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042132C 0041E26C  4B FF F9 C1 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421330 0041E270  48 00 02 E4 */	b lbl_80421614
 lbl_80421334:
 /* 80421334 0041E274  28 18 00 00 */	cmplwi r24, 0
@@ -1354,7 +1354,7 @@ lbl_80421334:
 /* 80421360 0041E2A0  7F 68 DB 78 */	mr r8, r27
 /* 80421364 0041E2A4  7F 49 D3 78 */	mr r9, r26
 /* 80421368 0041E2A8  7F 2A CB 78 */	mr r10, r25
-/* 8042136C 0041E2AC  4B FF F9 81 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042136C 0041E2AC  4B FF F9 81 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421370 0041E2B0  48 00 01 30 */	b lbl_804214A0
 lbl_80421374:
 /* 80421374 0041E2B4  7E C4 B3 78 */	mr r4, r22
@@ -1373,7 +1373,7 @@ lbl_80421374:
 /* 804213A8 0041E2E8  7F 68 DB 78 */	mr r8, r27
 /* 804213AC 0041E2EC  7F 49 D3 78 */	mr r9, r26
 /* 804213B0 0041E2F0  7F 2A CB 78 */	mr r10, r25
-/* 804213B4 0041E2F4  4B FF FB 85 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804213B4 0041E2F4  4B FF FB 85 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804213B8 0041E2F8  48 00 00 E8 */	b lbl_804214A0
 lbl_804213BC:
 /* 804213BC 0041E2FC  7F 03 C3 78 */	mr r3, r24
@@ -1384,7 +1384,7 @@ lbl_804213BC:
 /* 804213D0 0041E310  7F 68 DB 78 */	mr r8, r27
 /* 804213D4 0041E314  7F 49 D3 78 */	mr r9, r26
 /* 804213D8 0041E318  7F 2A CB 78 */	mr r10, r25
-/* 804213DC 0041E31C  4B FF F9 11 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804213DC 0041E31C  4B FF F9 11 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804213E0 0041E320  48 00 00 C0 */	b lbl_804214A0
 lbl_804213E4:
 /* 804213E4 0041E324  FC 00 00 50 */	fneg f0, f0
@@ -1400,7 +1400,7 @@ lbl_804213E4:
 /* 8042140C 0041E34C  7F 68 DB 78 */	mr r8, r27
 /* 80421410 0041E350  7F 49 D3 78 */	mr r9, r26
 /* 80421414 0041E354  7F 2A CB 78 */	mr r10, r25
-/* 80421418 0041E358  4B FF FB 21 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421418 0041E358  4B FF FB 21 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 8042141C 0041E35C  48 00 00 84 */	b lbl_804214A0
 lbl_80421420:
 /* 80421420 0041E360  7F 03 C3 78 */	mr r3, r24
@@ -1411,7 +1411,7 @@ lbl_80421420:
 /* 80421434 0041E374  7F 68 DB 78 */	mr r8, r27
 /* 80421438 0041E378  7F 49 D3 78 */	mr r9, r26
 /* 8042143C 0041E37C  7F 2A CB 78 */	mr r10, r25
-/* 80421440 0041E380  4B FF F8 AD */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421440 0041E380  4B FF F8 AD */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421444 0041E384  48 00 00 5C */	b lbl_804214A0
 lbl_80421448:
 /* 80421448 0041E388  80 78 00 C0 */	lwz r3, 0xc0(r24)
@@ -1424,7 +1424,7 @@ lbl_80421448:
 /* 80421464 0041E3A4  7F 68 DB 78 */	mr r8, r27
 /* 80421468 0041E3A8  7F 49 D3 78 */	mr r9, r26
 /* 8042146C 0041E3AC  7F 2A CB 78 */	mr r10, r25
-/* 80421470 0041E3B0  4B FF FA C9 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421470 0041E3B0  4B FF FA C9 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80421474:
 /* 80421474 0041E3B4  80 78 00 C4 */	lwz r3, 0xc4(r24)
 /* 80421478 0041E3B8  28 03 00 00 */	cmplwi r3, 0
@@ -1436,7 +1436,7 @@ lbl_80421474:
 /* 80421490 0041E3D0  7F 68 DB 78 */	mr r8, r27
 /* 80421494 0041E3D4  7F 49 D3 78 */	mr r9, r26
 /* 80421498 0041E3D8  7F 2A CB 78 */	mr r10, r25
-/* 8042149C 0041E3DC  4B FF FA 9D */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042149C 0041E3DC  4B FF FA 9D */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_804214A0:
 /* 804214A0 0041E3E0  82 D7 00 C4 */	lwz r22, 0xc4(r23)
 /* 804214A4 0041E3E4  28 16 00 00 */	cmplwi r22, 0
@@ -1454,7 +1454,7 @@ lbl_804214A0:
 /* 804214D4 0041E414  7F 68 DB 78 */	mr r8, r27
 /* 804214D8 0041E418  7F 49 D3 78 */	mr r9, r26
 /* 804214DC 0041E41C  7F 2A CB 78 */	mr r10, r25
-/* 804214E0 0041E420  4B FF F8 0D */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804214E0 0041E420  4B FF F8 0D */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804214E4 0041E424  48 00 01 30 */	b lbl_80421614
 lbl_804214E8:
 /* 804214E8 0041E428  7E E4 BB 78 */	mr r4, r23
@@ -1473,7 +1473,7 @@ lbl_804214E8:
 /* 8042151C 0041E45C  7F 68 DB 78 */	mr r8, r27
 /* 80421520 0041E460  7F 49 D3 78 */	mr r9, r26
 /* 80421524 0041E464  7F 2A CB 78 */	mr r10, r25
-/* 80421528 0041E468  4B FF FA 11 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421528 0041E468  4B FF FA 11 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 8042152C 0041E46C  48 00 00 E8 */	b lbl_80421614
 lbl_80421530:
 /* 80421530 0041E470  7E C3 B3 78 */	mr r3, r22
@@ -1484,7 +1484,7 @@ lbl_80421530:
 /* 80421544 0041E484  7F 68 DB 78 */	mr r8, r27
 /* 80421548 0041E488  7F 49 D3 78 */	mr r9, r26
 /* 8042154C 0041E48C  7F 2A CB 78 */	mr r10, r25
-/* 80421550 0041E490  4B FF F7 9D */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421550 0041E490  4B FF F7 9D */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421554 0041E494  48 00 00 C0 */	b lbl_80421614
 lbl_80421558:
 /* 80421558 0041E498  FC 00 00 50 */	fneg f0, f0
@@ -1500,7 +1500,7 @@ lbl_80421558:
 /* 80421580 0041E4C0  7F 68 DB 78 */	mr r8, r27
 /* 80421584 0041E4C4  7F 49 D3 78 */	mr r9, r26
 /* 80421588 0041E4C8  7F 2A CB 78 */	mr r10, r25
-/* 8042158C 0041E4CC  4B FF F9 AD */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 8042158C 0041E4CC  4B FF F9 AD */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 80421590 0041E4D0  48 00 00 84 */	b lbl_80421614
 lbl_80421594:
 /* 80421594 0041E4D4  7E C3 B3 78 */	mr r3, r22
@@ -1511,7 +1511,7 @@ lbl_80421594:
 /* 804215A8 0041E4E8  7F 68 DB 78 */	mr r8, r27
 /* 804215AC 0041E4EC  7F 49 D3 78 */	mr r9, r26
 /* 804215B0 0041E4F0  7F 2A CB 78 */	mr r10, r25
-/* 804215B4 0041E4F4  4B FF F7 39 */	bl "traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804215B4 0041E4F4  4B FF F7 39 */	bl traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 /* 804215B8 0041E4F8  48 00 00 5C */	b lbl_80421614
 lbl_804215BC:
 /* 804215BC 0041E4FC  80 76 00 C0 */	lwz r3, 0xc0(r22)
@@ -1524,7 +1524,7 @@ lbl_804215BC:
 /* 804215D8 0041E518  7F 68 DB 78 */	mr r8, r27
 /* 804215DC 0041E51C  7F 49 D3 78 */	mr r9, r26
 /* 804215E0 0041E520  7F 2A CB 78 */	mr r10, r25
-/* 804215E4 0041E524  4B FF F9 55 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 804215E4 0041E524  4B FF F9 55 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_804215E8:
 /* 804215E8 0041E528  80 76 00 C4 */	lwz r3, 0xc4(r22)
 /* 804215EC 0041E52C  28 03 00 00 */	cmplwi r3, 0
@@ -1536,7 +1536,7 @@ lbl_804215E8:
 /* 80421604 0041E544  7F 68 DB 78 */	mr r8, r27
 /* 80421608 0041E548  7F 49 D3 78 */	mr r9, r26
 /* 8042160C 0041E54C  7F 2A CB 78 */	mr r10, r25
-/* 80421610 0041E550  4B FF F9 29 */	bl "traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
+/* 80421610 0041E550  4B FF F9 29 */	bl traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3$$0f$$1
 lbl_80421614:
 /* 80421614 0041E554  BA C1 00 08 */	lmw r22, 8(r1)
 /* 80421618 0041E558  80 01 00 34 */	lwz r0, 0x34(r1)

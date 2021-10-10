@@ -752,7 +752,7 @@ __sinit_ogObjGround_cpp:
 /* 8030E948 0030B888  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 8030E94C 0030B88C  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen9ObjGroundFv"
-"@24@__dt__Q32og9newScreen9ObjGroundFv":
+.global $$224$$2__dt__Q32og9newScreen9ObjGroundFv
+$$224$$2__dt__Q32og9newScreen9ObjGroundFv:
 /* 8030E950 0030B890  38 63 FF E8 */	addi r3, r3, -24
 /* 8030E954 0030B894  4B FF F5 F8 */	b __dt__Q32og9newScreen9ObjGroundFv

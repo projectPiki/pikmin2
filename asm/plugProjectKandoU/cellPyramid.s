@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>"
-"mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>":
+.global mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1$$0PQ24Game10CellObject$$1
+mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1$$0PQ24Game10CellObject$$1:
 /* 801565C8 00153508  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801565CC 0015350C  7C 08 02 A6 */	mflr r0
 /* 801565D0 00153510  90 01 00 44 */	stw r0, 0x44(r1)
@@ -11,7 +11,7 @@
 /* 801565DC 0015351C  7C BB 2B 78 */	mr r27, r5
 /* 801565E0 00153520  7C 7C 1B 78 */	mr r28, r3
 /* 801565E4 00153524  38 A1 00 08 */	addi r5, r1, 8
-/* 801565E8 00153528  48 00 1D A9 */	bl "calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>"
+/* 801565E8 00153528  48 00 1D A9 */	bl calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect$$0i$$1
 /* 801565EC 0015352C  80 7C 00 44 */	lwz r3, 0x44(r28)
 /* 801565F0 00153530  3C 00 04 00 */	lis r0, 0x400
 /* 801565F4 00153534  38 63 00 01 */	addi r3, r3, 1
@@ -41,7 +41,7 @@ lbl_80156634:
 /* 80156648 00153588  41 82 00 10 */	beq lbl_80156658
 /* 8015664C 0015358C  7F 64 DB 78 */	mr r4, r27
 /* 80156650 00153590  7F E5 FB 78 */	mr r5, r31
-/* 80156654 00153594  48 00 01 29 */	bl "mapSearch__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
+/* 80156654 00153594  48 00 01 29 */	bl mapSearch__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul
 lbl_80156658:
 /* 80156658 00153598  3B 9C 00 01 */	addi r28, r28, 1
 lbl_8015665C:
@@ -128,8 +128,8 @@ __ct__Q24Game4CellFv:
 /* 80156774 001536B4  B0 03 00 28 */	sth r0, 0x28(r3)
 /* 80156778 001536B8  4E 80 00 20 */	blr 
 
-.global "mapSearch__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
-"mapSearch__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul":
+.global mapSearch__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul
+mapSearch__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul:
 /* 8015677C 001536BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80156780 001536C0  7C 08 02 A6 */	mflr r0
 /* 80156784 001536C4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -162,7 +162,7 @@ lbl_801567E0:
 /* 801567E0 00153720  7F E3 FB 78 */	mr r3, r31
 /* 801567E4 00153724  7F 84 E3 78 */	mr r4, r28
 /* 801567E8 00153728  7F A5 EB 78 */	mr r5, r29
-/* 801567EC 0015372C  48 00 00 55 */	bl "mapSearchUp__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
+/* 801567EC 0015372C  48 00 00 55 */	bl mapSearchUp__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul
 /* 801567F0 00153730  83 FF 00 10 */	lwz r31, 0x10(r31)
 lbl_801567F4:
 /* 801567F4 00153734  28 1F 00 00 */	cmplwi r31, 0
@@ -175,7 +175,7 @@ lbl_80156804:
 /* 8015680C 0015374C  41 82 00 10 */	beq lbl_8015681C
 /* 80156810 00153750  7F 84 E3 78 */	mr r4, r28
 /* 80156814 00153754  7F A5 EB 78 */	mr r5, r29
-/* 80156818 00153758  48 00 02 61 */	bl "mapSearchDown__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
+/* 80156818 00153758  48 00 02 61 */	bl mapSearchDown__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul
 lbl_8015681C:
 /* 8015681C 0015375C  3B DE 00 01 */	addi r30, r30, 1
 /* 80156820 00153760  3B FF 00 04 */	addi r31, r31, 4
@@ -187,8 +187,8 @@ lbl_8015681C:
 /* 80156838 00153778  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015683C 0015377C  4E 80 00 20 */	blr 
 
-.global "mapSearchUp__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
-"mapSearchUp__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul":
+.global mapSearchUp__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul
+mapSearchUp__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul:
 /* 80156840 00153780  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80156844 00153784  7C 08 02 A6 */	mflr r0
 /* 80156848 00153788  90 01 00 34 */	stw r0, 0x34(r1)
@@ -331,7 +331,7 @@ lbl_80156A0C:
 /* 80156A0C 0015394C  7F 03 C3 78 */	mr r3, r24
 /* 80156A10 00153950  7F A4 EB 78 */	mr r4, r29
 /* 80156A14 00153954  7F C5 F3 78 */	mr r5, r30
-/* 80156A18 00153958  4B FF FE 29 */	bl "mapSearchUp__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
+/* 80156A18 00153958  4B FF FE 29 */	bl mapSearchUp__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul
 /* 80156A1C 0015395C  83 18 00 10 */	lwz r24, 0x10(r24)
 lbl_80156A20:
 /* 80156A20 00153960  28 18 00 00 */	cmplwi r24, 0
@@ -362,8 +362,8 @@ lbl_80156A5C:
 /* 80156A70 001539B0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80156A74 001539B4  4E 80 00 20 */	blr 
 
-.global "mapSearchDown__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
-"mapSearchDown__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul":
+.global mapSearchDown__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul
+mapSearchDown__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul:
 /* 80156A78 001539B8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80156A7C 001539BC  7C 08 02 A6 */	mflr r0
 /* 80156A80 001539C0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -518,7 +518,7 @@ lbl_80156C6C:
 /* 80156C74 00153BB4  41 82 00 10 */	beq lbl_80156C84
 /* 80156C78 00153BB8  7F A4 EB 78 */	mr r4, r29
 /* 80156C7C 00153BBC  7F C5 F3 78 */	mr r5, r30
-/* 80156C80 00153BC0  4B FF FD F9 */	bl "mapSearchDown__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
+/* 80156C80 00153BC0  4B FF FD F9 */	bl mapSearchDown__Q24Game4CellFP32IDelegate1$$0PQ24Game10CellObject$$1Ul
 lbl_80156C84:
 /* 80156C84 00153BC4  3B 18 00 01 */	addi r24, r24, 1
 /* 80156C88 00153BC8  3A 73 00 04 */	addi r19, r19, 4
@@ -1248,7 +1248,7 @@ lbl_80157628:
 /* 80157634 00154574  41 80 FF A0 */	blt lbl_801575D4
 /* 80157638 00154578  48 00 01 9D */	bl getInstance__12CellMgrParmsFv
 /* 8015763C 0015457C  38 63 00 24 */	addi r3, r3, 0x24
-/* 80157640 00154580  48 00 01 8D */	bl "__cl__7Parm<b>Fv"
+/* 80157640 00154580  48 00 01 8D */	bl __cl__7Parm$$0b$$1Fv
 /* 80157644 00154584  88 03 00 00 */	lbz r0, 0(r3)
 /* 80157648 00154588  28 00 00 00 */	cmplwi r0, 0
 /* 8015764C 0015458C  41 82 00 10 */	beq lbl_8015765C
@@ -1258,7 +1258,7 @@ lbl_80157628:
 lbl_8015765C:
 /* 8015765C 0015459C  48 00 01 79 */	bl getInstance__12CellMgrParmsFv
 /* 80157660 001545A0  38 63 00 40 */	addi r3, r3, 0x40
-/* 80157664 001545A4  48 00 01 69 */	bl "__cl__7Parm<b>Fv"
+/* 80157664 001545A4  48 00 01 69 */	bl __cl__7Parm$$0b$$1Fv
 /* 80157668 001545A8  88 03 00 00 */	lbz r0, 0(r3)
 /* 8015766C 001545AC  28 00 00 00 */	cmplwi r0, 0
 /* 80157670 001545B0  41 82 00 10 */	beq lbl_80157680
@@ -1363,8 +1363,8 @@ lbl_801577B8:
 /* 801577C4 00154704  38 21 00 50 */	addi r1, r1, 0x50
 /* 801577C8 00154708  4E 80 00 20 */	blr 
 
-.global "__cl__7Parm<b>Fv"
-"__cl__7Parm<b>Fv":
+.global __cl__7Parm$$0b$$1Fv
+__cl__7Parm$$0b$$1Fv:
 /* 801577CC 0015470C  38 63 00 18 */	addi r3, r3, 0x18
 /* 801577D0 00154710  4E 80 00 20 */	blr 
 
@@ -2246,8 +2246,8 @@ lbl_80158368:
 /* 80158388 001552C8  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8015838C 001552CC  4E 80 00 20 */	blr 
 
-.global "calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>"
-"calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>":
+.global calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect$$0i$$1
+calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect$$0i$$1:
 /* 80158390 001552D0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80158394 001552D4  7C 08 02 A6 */	mflr r0
 /* 80158398 001552D8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2359,7 +2359,7 @@ entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere:
 /* 8015852C 0015546C  38 C1 00 08 */	addi r6, r1, 8
 /* 80158530 00155470  38 E1 00 0C */	addi r7, r1, 0xc
 /* 80158534 00155474  90 6D 92 D8 */	stw r3, sCurrCellMgr__Q24Game4Cell@sda21(r13)
-/* 80158538 00155478  48 00 00 1D */	bl "entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<i>"
+/* 80158538 00155478  48 00 00 1D */	bl entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect$$0i$$1
 /* 8015853C 0015547C  38 00 00 00 */	li r0, 0
 /* 80158540 00155480  90 0D 92 D8 */	stw r0, sCurrCellMgr__Q24Game4Cell@sda21(r13)
 /* 80158544 00155484  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -2367,8 +2367,8 @@ entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere:
 /* 8015854C 0015548C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80158550 00155490  4E 80 00 20 */	blr 
 
-.global "entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<i>"
-"entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<i>":
+.global entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect$$0i$$1
+entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect$$0i$$1:
 /* 80158554 00155494  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80158558 00155498  7C 08 02 A6 */	mflr r0
 /* 8015855C 0015549C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2921,8 +2921,8 @@ __ct__Q24Game9CellLayerFv:
 /* 80158D2C 00155C6C  B0 03 00 34 */	sth r0, 0x34(r3)
 /* 80158D30 00155C70  4E 80 00 20 */	blr 
 
-.global "getPikiCount__Q24Game11CellPyramidFiR7Rect<i>"
-"getPikiCount__Q24Game11CellPyramidFiR7Rect<i>":
+.global getPikiCount__Q24Game11CellPyramidFiR7Rect$$0i$$1
+getPikiCount__Q24Game11CellPyramidFiR7Rect$$0i$$1:
 /* 80158D34 00155C74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80158D38 00155C78  7C 08 02 A6 */	mflr r0
 /* 80158D3C 00155C7C  90 01 00 24 */	stw r0, 0x24(r1)

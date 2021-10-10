@@ -947,7 +947,7 @@ doDraw__Q32og9newScreen14ObjChallenge2PFR8Graphics:
 /* 8031F9E4 0031C924  EC 04 00 2A */	fadds f0, f4, f0
 /* 8031F9E8 0031C928  D0 21 00 38 */	stfs f1, 0x38(r1)
 /* 8031F9EC 0031C92C  D0 01 00 3C */	stfs f0, 0x3c(r1)
-/* 8031F9F0 0031C930  4B D1 6D E5 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 8031F9F0 0031C930  4B D1 6D E5 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 8031F9F4 0031C934  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen14ObjChallenge2P@ha
 /* 8031F9F8 0031C938  3C E0 43 30 */	lis r7, 0x4330
 /* 8031F9FC 0031C93C  38 83 3E 38 */	addi r4, r3, msVal__Q32og9newScreen14ObjChallenge2P@l
@@ -984,7 +984,7 @@ doDraw__Q32og9newScreen14ObjChallenge2PFR8Graphics:
 /* 8031FA78 0031C9B8  EC 04 00 2A */	fadds f0, f4, f0
 /* 8031FA7C 0031C9BC  D0 21 00 28 */	stfs f1, 0x28(r1)
 /* 8031FA80 0031C9C0  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 8031FA84 0031C9C4  4B D1 6D 51 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 8031FA84 0031C9C4  4B D1 6D 51 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 8031FA88 0031C9C8  80 7D 00 64 */	lwz r3, 0x64(r29)
 /* 8031FA8C 0031C9CC  7F C4 F3 78 */	mr r4, r30
 /* 8031FA90 0031C9D0  4B FE F7 89 */	bl draw__Q32og6Screen8BloGroupFP13J2DPerspGraph
@@ -1168,7 +1168,7 @@ __sinit_ogObjChallenge2P_cpp:
 /* 8031FCF4 0031CC34  98 07 00 23 */	stb r0, 0x23(r7)
 /* 8031FCF8 0031CC38  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen14ObjChallenge2PFv"
-"@24@__dt__Q32og9newScreen14ObjChallenge2PFv":
+.global $$224$$2__dt__Q32og9newScreen14ObjChallenge2PFv
+$$224$$2__dt__Q32og9newScreen14ObjChallenge2PFv:
 /* 8031FCFC 0031CC3C  38 63 FF E8 */	addi r3, r3, -24
 /* 8031FD00 0031CC40  4B FF EF 4C */	b __dt__Q32og9newScreen14ObjChallenge2PFv

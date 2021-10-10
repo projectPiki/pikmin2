@@ -1583,7 +1583,7 @@ lbl_803F9D50:
 /* 803F9E0C 003F6D4C  EC 03 00 2A */	fadds f0, f3, f0
 /* 803F9E10 003F6D50  D0 21 00 3C */	stfs f1, 0x3c(r1)
 /* 803F9E14 003F6D54  D0 01 00 40 */	stfs f0, 0x40(r1)
-/* 803F9E18 003F6D58  4B C3 C9 BD */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 803F9E18 003F6D58  4B C3 C9 BD */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 lbl_803F9E1C:
 /* 803F9E1C 003F6D5C  88 14 01 04 */	lbz r0, 0x104(r20)
 /* 803F9E20 003F6D60  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
@@ -2145,7 +2145,7 @@ lbl_803FA5BC:
 /* 803FA5F4 003F7534  7C 05 00 D0 */	neg r0, r5
 /* 803FA5F8 003F7538  7C 00 2B 78 */	or r0, r0, r5
 /* 803FA5FC 003F753C  54 05 0F FE */	srwi r5, r0, 0x1f
-/* 803FA600 003F7540  48 00 0C 41 */	bl "init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2<f>b"
+/* 803FA600 003F7540  48 00 0C 41 */	bl init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2$$0f$$1b
 lbl_803FA604:
 /* 803FA604 003F7544  83 BD 00 18 */	lwz r29, 0x18(r29)
 /* 803FA608 003F7548  3B DE 00 01 */	addi r30, r30, 1
@@ -2343,7 +2343,7 @@ lbl_803FA844:
 /* 803FA8B0 003F77F0  54 05 0F FE */	srwi r5, r0, 0x1f
 /* 803FA8B4 003F77F4  EC 03 00 7A */	fmadds f0, f3, f1, f0
 /* 803FA8B8 003F77F8  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 803FA8BC 003F77FC  48 00 09 85 */	bl "init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2<f>b"
+/* 803FA8BC 003F77FC  48 00 09 85 */	bl init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2$$0f$$1b
 /* 803FA8C0 003F7800  80 1F 00 E0 */	lwz r0, 0xe0(r31)
 /* 803FA8C4 003F7804  90 1F 00 F4 */	stw r0, 0xf4(r31)
 /* 803FA8C8 003F7808  48 00 00 38 */	b lbl_803FA900
@@ -2993,8 +2993,8 @@ lbl_803FB21C:
 /* 803FB238 003F8178  38 21 00 10 */	addi r1, r1, 0x10
 /* 803FB23C 003F817C  4E 80 00 20 */	blr 
 
-.global "init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2<f>b"
-"init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2<f>b":
+.global init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2$$0f$$1b
+init__Q32kh6Screen11LostItemMgrFRCQ29JGeometry8TVec2$$0f$$1b:
 /* 803FB240 003F8180  94 21 FE 40 */	stwu r1, -0x1c0(r1)
 /* 803FB244 003F8184  7C 08 02 A6 */	mflr r0
 /* 803FB248 003F8188  90 01 01 C4 */	stw r0, 0x1c4(r1)
@@ -3602,7 +3602,7 @@ __sinit_khCaveResult_cpp:
 /* 803FBAC4 003F8A04  D0 08 00 34 */	stfs f0, 0x34(r8)
 /* 803FBAC8 003F8A08  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32kh6Screen13ObjCaveResultFv"
-"@24@__dt__Q32kh6Screen13ObjCaveResultFv":
+.global $$224$$2__dt__Q32kh6Screen13ObjCaveResultFv
+$$224$$2__dt__Q32kh6Screen13ObjCaveResultFv:
 /* 803FBACC 003F8A0C  38 63 FF E8 */	addi r3, r3, -24
 /* 803FBAD0 003F8A10  4B FF FE A4 */	b __dt__Q32kh6Screen13ObjCaveResultFv

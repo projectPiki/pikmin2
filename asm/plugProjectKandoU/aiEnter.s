@@ -486,7 +486,7 @@ initStay__Q26PikiAI8ActEnterFv:
 /* 801A2E10 0019FD50  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 801A2E14 0019FD54  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 801A2E18 0019FD58  80 7F 00 04 */	lwz r3, 4(r31)
-/* 801A2E1C 0019FD5C  4B F9 AD B9 */	bl "turnTo__Q24Game8FakePikiFR10Vector3<f>"
+/* 801A2E1C 0019FD5C  4B F9 AD B9 */	bl turnTo__Q24Game8FakePikiFR10Vector3$$0f$$1
 /* 801A2E20 0019FD60  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801A2E24 0019FD64  38 80 00 00 */	li r4, 0
 /* 801A2E28 0019FD68  81 83 00 00 */	lwz r12, 0(r3)
@@ -652,7 +652,7 @@ execSuck__Q26PikiAI8ActEnterFv:
 /* 801A3070 0019FFB0  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801A3074 0019FFB4  38 9F 00 50 */	addi r4, r31, 0x50
 /* 801A3078 0019FFB8  38 A0 00 00 */	li r5, 0
-/* 801A307C 0019FFBC  4B F9 81 2D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 801A307C 0019FFBC  4B F9 81 2D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 801A3080 0019FFC0  38 60 00 00 */	li r3, 0
 /* 801A3084 0019FFC4  48 00 01 44 */	b lbl_801A31C8
 lbl_801A3088:
@@ -684,7 +684,7 @@ lbl_801A3088:
 /* 801A30EC 001A002C  D0 21 00 08 */	stfs f1, 8(r1)
 /* 801A30F0 001A0030  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 801A30F4 001A0034  80 7F 00 04 */	lwz r3, 4(r31)
-/* 801A30F8 001A0038  4B F9 80 B1 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 801A30F8 001A0038  4B F9 80 B1 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 801A30FC 001A003C  C0 1F 00 5C */	lfs f0, 0x5c(r31)
 /* 801A3100 001A0040  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801A3104 001A0044  C0 62 AD F8 */	lfs f3, lbl_80519158@sda21(r2)
@@ -850,7 +850,7 @@ lbl_801A3294:
 /* 801A334C 001A028C  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 801A3350 001A0290  98 01 00 14 */	stb r0, 0x14(r1)
 /* 801A3354 001A0294  80 7E 00 04 */	lwz r3, 4(r30)
-/* 801A3358 001A0298  4B F9 7E 51 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 801A3358 001A0298  4B F9 7E 51 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 801A335C 001A029C  80 7E 00 04 */	lwz r3, 4(r30)
 /* 801A3360 001A02A0  80 9E 00 14 */	lwz r4, 0x14(r30)
 /* 801A3364 001A02A4  80 BE 00 10 */	lwz r5, 0x10(r30)
@@ -1026,8 +1026,8 @@ getName__Q26PikiAI16GotoPosActionArgFv:
 /* 801A35D0 001A0510  38 63 F3 E8 */	addi r3, r3, lbl_8047F3E8@l
 /* 801A35D4 001A0514  4E 80 00 20 */	blr 
 
-.global "@96@4@onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent"
-"@96@4@onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent":
+.global $$296$$24$$2onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent
+$$296$$24$$2onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent:
 /* 801A35D8 001A0518  39 60 00 04 */	li r11, 4
 /* 801A35DC 001A051C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801A35E0 001A0520  7C 63 5A 14 */	add r3, r3, r11

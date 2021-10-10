@@ -5,10 +5,10 @@
 __ct__Q34Game10SingleGame10MovieStateFv:
 /* 8021EED8 0021BE18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021EEDC 0021BE1C  7C 08 02 A6 */	mflr r0
-/* 8021EEE0 0021BE20  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 8021EEE0 0021BE20  3C 80 80 4B */	lis r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 8021EEE4 0021BE24  38 A0 00 00 */	li r5, 0
 /* 8021EEE8 0021BE28  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8021EEEC 0021BE2C  38 04 13 18 */	addi r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 8021EEEC 0021BE2C  38 04 13 18 */	addi r0, r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 8021EEF0 0021BE30  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame5State@ha
 /* 8021EEF4 0021BE34  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8021EEF8 0021BE38  7C 7F 1B 78 */	mr r31, r3

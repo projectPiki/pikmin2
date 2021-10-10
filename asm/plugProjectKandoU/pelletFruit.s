@@ -231,12 +231,12 @@ lbl_801FDCEC:
 /* 801FDD00 001FAC40  7F E3 FB 78 */	mr r3, r31
 /* 801FDD04 001FAC44  48 21 36 8D */	bl __ct__5CNodeFv
 /* 801FDD08 001FAC48  3C 60 80 4B */	lis r3, __vt__16GenericContainer@ha
-/* 801FDD0C 001FAC4C  3C 80 80 4C */	lis r4, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
+/* 801FDD0C 001FAC4C  3C 80 80 4C */	lis r4, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FDD10 001FAC50  38 03 AC DC */	addi r0, r3, __vt__16GenericContainer@l
-/* 801FDD14 001FAC54  3C 60 80 4C */	lis r3, "__vt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>"@ha
+/* 801FDD14 001FAC54  3C 60 80 4C */	lis r3, __vt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FDD18 001FAC58  90 1F 00 00 */	stw r0, 0(r31)
-/* 801FDD1C 001FAC5C  38 04 E2 7C */	addi r0, r4, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
-/* 801FDD20 001FAC60  38 83 E1 B0 */	addi r4, r3, "__vt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FDD1C 001FAC5C  38 04 E2 7C */	addi r0, r4, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
+/* 801FDD20 001FAC60  38 83 E1 B0 */	addi r4, r3, __vt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDD24 001FAC64  38 A0 00 00 */	li r5, 0
 /* 801FDD28 001FAC68  90 1F 00 00 */	stw r0, 0(r31)
 /* 801FDD2C 001FAC6C  38 04 00 98 */	addi r0, r4, 0x98
@@ -244,7 +244,7 @@ lbl_801FDCEC:
 /* 801FDD34 001FAC74  98 BF 00 18 */	stb r5, 0x18(r31)
 /* 801FDD38 001FAC78  90 9E 00 00 */	stw r4, 0(r30)
 /* 801FDD3C 001FAC7C  90 1E 00 54 */	stw r0, 0x54(r30)
-/* 801FDD40 001FAC80  48 00 19 81 */	bl "__ct__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FDD40 001FAC80  48 00 19 81 */	bl __ct__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 /* 801FDD44 001FAC84  3C 80 80 4C */	lis r4, __vt__Q34Game11PelletFruit3Mgr@ha
 /* 801FDD48 001FAC88  7F C3 F3 78 */	mr r3, r30
 /* 801FDD4C 001FAC8C  38 84 DF DC */	addi r4, r4, __vt__Q34Game11PelletFruit3Mgr@l
@@ -258,8 +258,8 @@ lbl_801FDCEC:
 /* 801FDD6C 001FACAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FDD70 001FACB0  4E 80 00 20 */	blr 
 
-.global "__dt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"__dt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global __dt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+__dt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FDD74 001FACB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FDD78 001FACB8  7C 08 02 A6 */	mflr r0
 /* 801FDD7C 001FACBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -268,30 +268,30 @@ lbl_801FDCEC:
 /* 801FDD88 001FACC8  93 C1 00 08 */	stw r30, 8(r1)
 /* 801FDD8C 001FACCC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801FDD90 001FACD0  41 82 01 64 */	beq lbl_801FDEF4
-/* 801FDD94 001FACD4  3C 60 80 4C */	lis r3, "__vt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>"@ha
+/* 801FDD94 001FACD4  3C 60 80 4C */	lis r3, __vt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FDD98 001FACD8  34 1E 00 70 */	addic. r0, r30, 0x70
-/* 801FDD9C 001FACDC  38 63 E1 B0 */	addi r3, r3, "__vt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FDD9C 001FACDC  38 63 E1 B0 */	addi r3, r3, __vt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDDA0 001FACE0  90 7E 00 00 */	stw r3, 0(r30)
 /* 801FDDA4 001FACE4  38 03 00 98 */	addi r0, r3, 0x98
 /* 801FDDA8 001FACE8  90 1E 00 54 */	stw r0, 0x54(r30)
 /* 801FDDAC 001FACEC  41 82 00 68 */	beq lbl_801FDE14
-/* 801FDDB0 001FACF0  3C 60 80 4C */	lis r3, "__vt__42MonoObjectMgr<Q34Game11PelletFruit6Object>"@ha
+/* 801FDDB0 001FACF0  3C 60 80 4C */	lis r3, __vt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FDDB4 001FACF4  34 1E 00 70 */	addic. r0, r30, 0x70
-/* 801FDDB8 001FACF8  38 63 E1 24 */	addi r3, r3, "__vt__42MonoObjectMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FDDB8 001FACF8  38 63 E1 24 */	addi r3, r3, __vt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDDBC 001FACFC  90 7E 00 70 */	stw r3, 0x70(r30)
 /* 801FDDC0 001FAD00  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FDDC4 001FAD04  90 1E 00 8C */	stw r0, 0x8c(r30)
 /* 801FDDC8 001FAD08  41 82 00 4C */	beq lbl_801FDE14
-/* 801FDDCC 001FAD0C  3C 60 80 4C */	lis r3, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@ha
+/* 801FDDCC 001FAD0C  3C 60 80 4C */	lis r3, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FDDD0 001FAD10  34 1E 00 70 */	addic. r0, r30, 0x70
-/* 801FDDD4 001FAD14  38 63 E0 A8 */	addi r3, r3, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FDDD4 001FAD14  38 63 E0 A8 */	addi r3, r3, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDDD8 001FAD18  90 7E 00 70 */	stw r3, 0x70(r30)
 /* 801FDDDC 001FAD1C  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FDDE0 001FAD20  90 1E 00 8C */	stw r0, 0x8c(r30)
 /* 801FDDE4 001FAD24  41 82 00 30 */	beq lbl_801FDE14
-/* 801FDDE8 001FAD28  3C 60 80 4C */	lis r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
+/* 801FDDE8 001FAD28  3C 60 80 4C */	lis r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FDDEC 001FAD2C  34 1E 00 70 */	addic. r0, r30, 0x70
-/* 801FDDF0 001FAD30  38 03 E2 7C */	addi r0, r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
+/* 801FDDF0 001FAD30  38 03 E2 7C */	addi r0, r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDDF4 001FAD34  90 1E 00 70 */	stw r0, 0x70(r30)
 /* 801FDDF8 001FAD38  41 82 00 1C */	beq lbl_801FDE14
 /* 801FDDFC 001FAD3C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -303,9 +303,9 @@ lbl_801FDCEC:
 lbl_801FDE14:
 /* 801FDE14 001FAD54  34 1E 00 54 */	addic. r0, r30, 0x54
 /* 801FDE18 001FAD58  41 82 00 30 */	beq lbl_801FDE48
-/* 801FDE1C 001FAD5C  3C 60 80 4C */	lis r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
+/* 801FDE1C 001FAD5C  3C 60 80 4C */	lis r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FDE20 001FAD60  34 1E 00 54 */	addic. r0, r30, 0x54
-/* 801FDE24 001FAD64  38 03 E2 7C */	addi r0, r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
+/* 801FDE24 001FAD64  38 03 E2 7C */	addi r0, r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDE28 001FAD68  90 1E 00 54 */	stw r0, 0x54(r30)
 /* 801FDE2C 001FAD6C  41 82 00 1C */	beq lbl_801FDE48
 /* 801FDE30 001FAD70  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -329,23 +329,23 @@ lbl_801FDE48:
 /* 801FDE74 001FADB4  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FDE78 001FADB8  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 801FDE7C 001FADBC  41 82 00 68 */	beq lbl_801FDEE4
-/* 801FDE80 001FADC0  3C 60 80 4B */	lis r3, "__vt__24MonoObjectMgr<8CollPart>"@ha
+/* 801FDE80 001FADC0  3C 60 80 4B */	lis r3, __vt__24MonoObjectMgr$$08CollPart$$1@ha
 /* 801FDE84 001FADC4  34 1E 00 18 */	addic. r0, r30, 0x18
-/* 801FDE88 001FADC8  38 63 1E 28 */	addi r3, r3, "__vt__24MonoObjectMgr<8CollPart>"@l
+/* 801FDE88 001FADC8  38 63 1E 28 */	addi r3, r3, __vt__24MonoObjectMgr$$08CollPart$$1@l
 /* 801FDE8C 001FADCC  90 7E 00 18 */	stw r3, 0x18(r30)
 /* 801FDE90 001FADD0  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FDE94 001FADD4  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 801FDE98 001FADD8  41 82 00 4C */	beq lbl_801FDEE4
-/* 801FDE9C 001FADDC  3C 60 80 4B */	lis r3, "__vt__20ObjectMgr<8CollPart>"@ha
+/* 801FDE9C 001FADDC  3C 60 80 4B */	lis r3, __vt__20ObjectMgr$$08CollPart$$1@ha
 /* 801FDEA0 001FADE0  34 1E 00 18 */	addic. r0, r30, 0x18
-/* 801FDEA4 001FADE4  38 63 1D AC */	addi r3, r3, "__vt__20ObjectMgr<8CollPart>"@l
+/* 801FDEA4 001FADE4  38 63 1D AC */	addi r3, r3, __vt__20ObjectMgr$$08CollPart$$1@l
 /* 801FDEA8 001FADE8  90 7E 00 18 */	stw r3, 0x18(r30)
 /* 801FDEAC 001FADEC  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FDEB0 001FADF0  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 801FDEB4 001FADF4  41 82 00 30 */	beq lbl_801FDEE4
-/* 801FDEB8 001FADF8  3C 60 80 4B */	lis r3, "__vt__20Container<8CollPart>"@ha
+/* 801FDEB8 001FADF8  3C 60 80 4B */	lis r3, __vt__20Container$$08CollPart$$1@ha
 /* 801FDEBC 001FADFC  34 1E 00 18 */	addic. r0, r30, 0x18
-/* 801FDEC0 001FAE00  38 03 1D 80 */	addi r0, r3, "__vt__20Container<8CollPart>"@l
+/* 801FDEC0 001FAE00  38 03 1D 80 */	addi r0, r3, __vt__20Container$$08CollPart$$1@l
 /* 801FDEC4 001FAE04  90 1E 00 18 */	stw r0, 0x18(r30)
 /* 801FDEC8 001FAE08  41 82 00 1C */	beq lbl_801FDEE4
 /* 801FDECC 001FAE0C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -368,8 +368,8 @@ lbl_801FDEF4:
 /* 801FDF08 001FAE48  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FDF0C 001FAE4C  4E 80 00 20 */	blr 
 
-.global "__dt__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"__dt__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global __dt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+__dt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FDF10 001FAE50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FDF14 001FAE54  7C 08 02 A6 */	mflr r0
 /* 801FDF18 001FAE58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -378,20 +378,20 @@ lbl_801FDEF4:
 /* 801FDF24 001FAE64  93 C1 00 08 */	stw r30, 8(r1)
 /* 801FDF28 001FAE68  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801FDF2C 001FAE6C  41 82 00 68 */	beq lbl_801FDF94
-/* 801FDF30 001FAE70  3C 80 80 4C */	lis r4, "__vt__42MonoObjectMgr<Q34Game11PelletFruit6Object>"@ha
-/* 801FDF34 001FAE74  38 84 E1 24 */	addi r4, r4, "__vt__42MonoObjectMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FDF30 001FAE70  3C 80 80 4C */	lis r4, __vt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
+/* 801FDF34 001FAE74  38 84 E1 24 */	addi r4, r4, __vt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDF38 001FAE78  90 9E 00 00 */	stw r4, 0(r30)
 /* 801FDF3C 001FAE7C  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801FDF40 001FAE80  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801FDF44 001FAE84  41 82 00 40 */	beq lbl_801FDF84
-/* 801FDF48 001FAE88  3C 80 80 4C */	lis r4, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@ha
-/* 801FDF4C 001FAE8C  38 84 E0 A8 */	addi r4, r4, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FDF48 001FAE88  3C 80 80 4C */	lis r4, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
+/* 801FDF4C 001FAE8C  38 84 E0 A8 */	addi r4, r4, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDF50 001FAE90  90 9E 00 00 */	stw r4, 0(r30)
 /* 801FDF54 001FAE94  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801FDF58 001FAE98  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801FDF5C 001FAE9C  41 82 00 28 */	beq lbl_801FDF84
-/* 801FDF60 001FAEA0  3C 80 80 4C */	lis r4, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
-/* 801FDF64 001FAEA4  38 04 E2 7C */	addi r0, r4, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
+/* 801FDF60 001FAEA0  3C 80 80 4C */	lis r4, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
+/* 801FDF64 001FAEA4  38 04 E2 7C */	addi r0, r4, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDF68 001FAEA8  90 1E 00 00 */	stw r0, 0(r30)
 /* 801FDF6C 001FAEAC  41 82 00 18 */	beq lbl_801FDF84
 /* 801FDF70 001FAEB0  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -413,8 +413,8 @@ lbl_801FDF94:
 /* 801FDFA8 001FAEE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FDFAC 001FAEEC  4E 80 00 20 */	blr 
 
-.global "__dt__38Container<Q34Game11PelletFruit6Object>Fv"
-"__dt__38Container<Q34Game11PelletFruit6Object>Fv":
+.global __dt__38Container$$0Q34Game11PelletFruit6Object$$1Fv
+__dt__38Container$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FDFB0 001FAEF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FDFB4 001FAEF4  7C 08 02 A6 */	mflr r0
 /* 801FDFB8 001FAEF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -423,8 +423,8 @@ lbl_801FDF94:
 /* 801FDFC4 001FAF04  93 C1 00 08 */	stw r30, 8(r1)
 /* 801FDFC8 001FAF08  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801FDFCC 001FAF0C  41 82 00 38 */	beq lbl_801FE004
-/* 801FDFD0 001FAF10  3C 80 80 4C */	lis r4, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
-/* 801FDFD4 001FAF14  38 04 E2 7C */	addi r0, r4, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
+/* 801FDFD0 001FAF10  3C 80 80 4C */	lis r4, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
+/* 801FDFD4 001FAF14  38 04 E2 7C */	addi r0, r4, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FDFD8 001FAF18  90 1E 00 00 */	stw r0, 0(r30)
 /* 801FDFDC 001FAF1C  41 82 00 18 */	beq lbl_801FDFF4
 /* 801FDFE0 001FAF20  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -460,7 +460,7 @@ setupResources__Q34Game11PelletFruit3MgrFv:
 /* 801FE044 001FAF84  48 22 53 19 */	bl heapStatusStart__6SystemFPcP7JKRHeap
 /* 801FE048 001FAF88  7F E3 FB 78 */	mr r3, r31
 /* 801FE04C 001FAF8C  38 80 00 40 */	li r4, 0x40
-/* 801FE050 001FAF90  48 00 18 A5 */	bl "alloc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fi"
+/* 801FE050 001FAF90  48 00 18 A5 */	bl alloc__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fi
 /* 801FE054 001FAF94  7F E3 FB 78 */	mr r3, r31
 /* 801FE058 001FAF98  4B F6 DD DD */	bl load__Q24Game13BasePelletMgrFv
 /* 801FE05C 001FAF9C  80 7F 00 0C */	lwz r3, 0xc(r31)
@@ -473,7 +473,7 @@ setupResources__Q34Game11PelletFruit3MgrFv:
 /* 801FE078 001FAFB8  4B F6 E5 75 */	bl useModelMgr__Q24Game13BasePelletMgrFiUl
 /* 801FE07C 001FAFBC  38 7F 00 18 */	addi r3, r31, 0x18
 /* 801FE080 001FAFC0  38 80 00 80 */	li r4, 0x80
-/* 801FE084 001FAFC4  4B FF CF 41 */	bl "alloc__24MonoObjectMgr<8CollPart>Fi"
+/* 801FE084 001FAFC4  4B FF CF 41 */	bl alloc__24MonoObjectMgr$$08CollPart$$1Fi
 /* 801FE088 001FAFC8  3C 80 80 48 */	lis r4, lbl_80481B40@ha
 /* 801FE08C 001FAFCC  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801FE090 001FAFD0  38 84 1B 40 */	addi r4, r4, lbl_80481B40@l
@@ -530,30 +530,30 @@ __dt__Q34Game11PelletFruit3MgrFv:
 /* 801FE144 001FB084  38 03 00 98 */	addi r0, r3, 0x98
 /* 801FE148 001FB088  90 1E 00 54 */	stw r0, 0x54(r30)
 /* 801FE14C 001FB08C  41 82 01 54 */	beq lbl_801FE2A0
-/* 801FE150 001FB090  3C 60 80 4C */	lis r3, "__vt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>"@ha
+/* 801FE150 001FB090  3C 60 80 4C */	lis r3, __vt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FE154 001FB094  34 1E 00 70 */	addic. r0, r30, 0x70
-/* 801FE158 001FB098  38 63 E1 B0 */	addi r3, r3, "__vt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FE158 001FB098  38 63 E1 B0 */	addi r3, r3, __vt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FE15C 001FB09C  90 7E 00 00 */	stw r3, 0(r30)
 /* 801FE160 001FB0A0  38 03 00 98 */	addi r0, r3, 0x98
 /* 801FE164 001FB0A4  90 1E 00 54 */	stw r0, 0x54(r30)
 /* 801FE168 001FB0A8  41 82 00 68 */	beq lbl_801FE1D0
-/* 801FE16C 001FB0AC  3C 60 80 4C */	lis r3, "__vt__42MonoObjectMgr<Q34Game11PelletFruit6Object>"@ha
+/* 801FE16C 001FB0AC  3C 60 80 4C */	lis r3, __vt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FE170 001FB0B0  34 1E 00 70 */	addic. r0, r30, 0x70
-/* 801FE174 001FB0B4  38 63 E1 24 */	addi r3, r3, "__vt__42MonoObjectMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FE174 001FB0B4  38 63 E1 24 */	addi r3, r3, __vt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FE178 001FB0B8  90 7E 00 70 */	stw r3, 0x70(r30)
 /* 801FE17C 001FB0BC  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FE180 001FB0C0  90 1E 00 8C */	stw r0, 0x8c(r30)
 /* 801FE184 001FB0C4  41 82 00 4C */	beq lbl_801FE1D0
-/* 801FE188 001FB0C8  3C 60 80 4C */	lis r3, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@ha
+/* 801FE188 001FB0C8  3C 60 80 4C */	lis r3, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FE18C 001FB0CC  34 1E 00 70 */	addic. r0, r30, 0x70
-/* 801FE190 001FB0D0  38 63 E0 A8 */	addi r3, r3, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FE190 001FB0D0  38 63 E0 A8 */	addi r3, r3, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FE194 001FB0D4  90 7E 00 70 */	stw r3, 0x70(r30)
 /* 801FE198 001FB0D8  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FE19C 001FB0DC  90 1E 00 8C */	stw r0, 0x8c(r30)
 /* 801FE1A0 001FB0E0  41 82 00 30 */	beq lbl_801FE1D0
-/* 801FE1A4 001FB0E4  3C 60 80 4C */	lis r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
+/* 801FE1A4 001FB0E4  3C 60 80 4C */	lis r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FE1A8 001FB0E8  34 1E 00 70 */	addic. r0, r30, 0x70
-/* 801FE1AC 001FB0EC  38 03 E2 7C */	addi r0, r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
+/* 801FE1AC 001FB0EC  38 03 E2 7C */	addi r0, r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FE1B0 001FB0F0  90 1E 00 70 */	stw r0, 0x70(r30)
 /* 801FE1B4 001FB0F4  41 82 00 1C */	beq lbl_801FE1D0
 /* 801FE1B8 001FB0F8  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -565,9 +565,9 @@ __dt__Q34Game11PelletFruit3MgrFv:
 lbl_801FE1D0:
 /* 801FE1D0 001FB110  34 1E 00 54 */	addic. r0, r30, 0x54
 /* 801FE1D4 001FB114  41 82 00 30 */	beq lbl_801FE204
-/* 801FE1D8 001FB118  3C 60 80 4C */	lis r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
+/* 801FE1D8 001FB118  3C 60 80 4C */	lis r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FE1DC 001FB11C  34 1E 00 54 */	addic. r0, r30, 0x54
-/* 801FE1E0 001FB120  38 03 E2 7C */	addi r0, r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
+/* 801FE1E0 001FB120  38 03 E2 7C */	addi r0, r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FE1E4 001FB124  90 1E 00 54 */	stw r0, 0x54(r30)
 /* 801FE1E8 001FB128  41 82 00 1C */	beq lbl_801FE204
 /* 801FE1EC 001FB12C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -591,23 +591,23 @@ lbl_801FE204:
 /* 801FE230 001FB170  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FE234 001FB174  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 801FE238 001FB178  41 82 00 68 */	beq lbl_801FE2A0
-/* 801FE23C 001FB17C  3C 60 80 4B */	lis r3, "__vt__24MonoObjectMgr<8CollPart>"@ha
+/* 801FE23C 001FB17C  3C 60 80 4B */	lis r3, __vt__24MonoObjectMgr$$08CollPart$$1@ha
 /* 801FE240 001FB180  34 1E 00 18 */	addic. r0, r30, 0x18
-/* 801FE244 001FB184  38 63 1E 28 */	addi r3, r3, "__vt__24MonoObjectMgr<8CollPart>"@l
+/* 801FE244 001FB184  38 63 1E 28 */	addi r3, r3, __vt__24MonoObjectMgr$$08CollPart$$1@l
 /* 801FE248 001FB188  90 7E 00 18 */	stw r3, 0x18(r30)
 /* 801FE24C 001FB18C  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FE250 001FB190  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 801FE254 001FB194  41 82 00 4C */	beq lbl_801FE2A0
-/* 801FE258 001FB198  3C 60 80 4B */	lis r3, "__vt__20ObjectMgr<8CollPart>"@ha
+/* 801FE258 001FB198  3C 60 80 4B */	lis r3, __vt__20ObjectMgr$$08CollPart$$1@ha
 /* 801FE25C 001FB19C  34 1E 00 18 */	addic. r0, r30, 0x18
-/* 801FE260 001FB1A0  38 63 1D AC */	addi r3, r3, "__vt__20ObjectMgr<8CollPart>"@l
+/* 801FE260 001FB1A0  38 63 1D AC */	addi r3, r3, __vt__20ObjectMgr$$08CollPart$$1@l
 /* 801FE264 001FB1A4  90 7E 00 18 */	stw r3, 0x18(r30)
 /* 801FE268 001FB1A8  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801FE26C 001FB1AC  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 801FE270 001FB1B0  41 82 00 30 */	beq lbl_801FE2A0
-/* 801FE274 001FB1B4  3C 60 80 4B */	lis r3, "__vt__20Container<8CollPart>"@ha
+/* 801FE274 001FB1B4  3C 60 80 4B */	lis r3, __vt__20Container$$08CollPart$$1@ha
 /* 801FE278 001FB1B8  34 1E 00 18 */	addic. r0, r30, 0x18
-/* 801FE27C 001FB1BC  38 03 1D 80 */	addi r0, r3, "__vt__20Container<8CollPart>"@l
+/* 801FE27C 001FB1BC  38 03 1D 80 */	addi r0, r3, __vt__20Container$$08CollPart$$1@l
 /* 801FE280 001FB1C0  90 1E 00 18 */	stw r0, 0x18(r30)
 /* 801FE284 001FB1C4  41 82 00 1C */	beq lbl_801FE2A0
 /* 801FE288 001FB1C8  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -640,8 +640,8 @@ getMgrID__Q34Game11PelletFruit3MgrFv:
 /* 801FE2D4 001FB214  38 60 00 02 */	li r3, 2
 /* 801FE2D8 001FB218  4E 80 00 20 */	blr 
 
-.global "__dt__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"__dt__38ObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global __dt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+__dt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE2DC 001FB21C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE2E0 001FB220  7C 08 02 A6 */	mflr r0
 /* 801FE2E4 001FB224  90 01 00 14 */	stw r0, 0x14(r1)
@@ -650,14 +650,14 @@ getMgrID__Q34Game11PelletFruit3MgrFv:
 /* 801FE2F0 001FB230  93 C1 00 08 */	stw r30, 8(r1)
 /* 801FE2F4 001FB234  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801FE2F8 001FB238  41 82 00 50 */	beq lbl_801FE348
-/* 801FE2FC 001FB23C  3C 80 80 4C */	lis r4, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@ha
-/* 801FE300 001FB240  38 84 E0 A8 */	addi r4, r4, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FE2FC 001FB23C  3C 80 80 4C */	lis r4, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
+/* 801FE300 001FB240  38 84 E0 A8 */	addi r4, r4, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FE304 001FB244  90 9E 00 00 */	stw r4, 0(r30)
 /* 801FE308 001FB248  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801FE30C 001FB24C  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801FE310 001FB250  41 82 00 28 */	beq lbl_801FE338
-/* 801FE314 001FB254  3C 80 80 4C */	lis r4, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
-/* 801FE318 001FB258  38 04 E2 7C */	addi r0, r4, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
+/* 801FE314 001FB254  3C 80 80 4C */	lis r4, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
+/* 801FE318 001FB258  38 04 E2 7C */	addi r0, r4, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FE31C 001FB25C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801FE320 001FB260  41 82 00 18 */	beq lbl_801FE338
 /* 801FE324 001FB264  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -684,8 +684,8 @@ getKind__Q34Game11PelletFruit6ObjectFv:
 /* 801FE364 001FB2A4  38 60 00 02 */	li r3, 2
 /* 801FE368 001FB2A8  4E 80 00 20 */	blr 
 
-.global "resetMgrAndResources__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"resetMgrAndResources__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global resetMgrAndResources__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+resetMgrAndResources__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE36C 001FB2AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE370 001FB2B0  7C 08 02 A6 */	mflr r0
 /* 801FE374 001FB2B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -729,12 +729,12 @@ lbl_801FE3F4:
 /* 801FE400 001FB340  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE404 001FB344  4E 80 00 20 */	blr 
 
-.global "onCreateModel__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ28SysShape5Model"
-"onCreateModel__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ28SysShape5Model":
+.global onCreateModel__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ28SysShape5Model
+onCreateModel__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ28SysShape5Model:
 /* 801FE408 001FB348  4E 80 00 20 */	blr 
 
-.global "birth__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"birth__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global birth__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+birth__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE40C 001FB34C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE410 001FB350  7C 08 02 A6 */	mflr r0
 /* 801FE414 001FB354  90 01 00 14 */	stw r0, 0x14(r1)
@@ -747,8 +747,8 @@ lbl_801FE3F4:
 /* 801FE430 001FB370  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE434 001FB374  4E 80 00 20 */	blr 
 
-.global "doAnimation__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"doAnimation__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global doAnimation__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doAnimation__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE438 001FB378  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE43C 001FB37C  7C 08 02 A6 */	mflr r0
 /* 801FE440 001FB380  90 01 00 14 */	stw r0, 0x14(r1)
@@ -761,8 +761,8 @@ lbl_801FE3F4:
 /* 801FE45C 001FB39C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE460 001FB3A0  4E 80 00 20 */	blr 
 
-.global "doEntry__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"doEntry__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global doEntry__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doEntry__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE464 001FB3A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE468 001FB3A8  7C 08 02 A6 */	mflr r0
 /* 801FE46C 001FB3AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -775,8 +775,8 @@ lbl_801FE3F4:
 /* 801FE488 001FB3C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE48C 001FB3CC  4E 80 00 20 */	blr 
 
-.global "doSetView__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fi"
-"doSetView__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fi":
+.global doSetView__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fi
+doSetView__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FE490 001FB3D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE494 001FB3D4  7C 08 02 A6 */	mflr r0
 /* 801FE498 001FB3D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -789,8 +789,8 @@ lbl_801FE3F4:
 /* 801FE4B4 001FB3F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE4B8 001FB3F8  4E 80 00 20 */	blr 
 
-.global "doViewCalc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"doViewCalc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global doViewCalc__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doViewCalc__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE4BC 001FB3FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE4C0 001FB400  7C 08 02 A6 */	mflr r0
 /* 801FE4C4 001FB404  90 01 00 14 */	stw r0, 0x14(r1)
@@ -803,8 +803,8 @@ lbl_801FE3F4:
 /* 801FE4E0 001FB420  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE4E4 001FB424  4E 80 00 20 */	blr 
 
-.global "doSimulation__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Ff"
-"doSimulation__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Ff":
+.global doSimulation__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Ff
+doSimulation__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Ff:
 /* 801FE4E8 001FB428  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE4EC 001FB42C  7C 08 02 A6 */	mflr r0
 /* 801FE4F0 001FB430  90 01 00 14 */	stw r0, 0x14(r1)
@@ -817,8 +817,8 @@ lbl_801FE3F4:
 /* 801FE50C 001FB44C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE510 001FB450  4E 80 00 20 */	blr 
 
-.global "doDirectDraw__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FR8Graphics"
-"doDirectDraw__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FR8Graphics":
+.global doDirectDraw__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics
+doDirectDraw__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics:
 /* 801FE514 001FB454  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE518 001FB458  7C 08 02 A6 */	mflr r0
 /* 801FE51C 001FB45C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -831,20 +831,20 @@ lbl_801FE3F4:
 /* 801FE538 001FB478  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE53C 001FB47C  4E 80 00 20 */	blr 
 
-.global "kill__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet"
-"kill__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet":
+.global kill__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet
+kill__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet:
 /* 801FE540 001FB480  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE544 001FB484  7C 08 02 A6 */	mflr r0
 /* 801FE548 001FB488  38 63 00 70 */	addi r3, r3, 0x70
 /* 801FE54C 001FB48C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801FE550 001FB490  48 00 00 CD */	bl "kill__42MonoObjectMgr<Q34Game11PelletFruit6Object>FPQ34Game11PelletFruit6Object"
+/* 801FE550 001FB490  48 00 00 CD */	bl kill__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FPQ34Game11PelletFruit6Object
 /* 801FE554 001FB494  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801FE558 001FB498  7C 08 03 A6 */	mtlr r0
 /* 801FE55C 001FB49C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE560 001FB4A0  4E 80 00 20 */	blr 
 
-.global "getNext__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv"
-"getNext__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv":
+.global getNext__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv
+getNext__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv:
 /* 801FE564 001FB4A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE568 001FB4A8  7C 08 02 A6 */	mflr r0
 /* 801FE56C 001FB4AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -857,8 +857,8 @@ lbl_801FE3F4:
 /* 801FE588 001FB4C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE58C 001FB4CC  4E 80 00 20 */	blr 
 
-.global "getStart__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"getStart__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global getStart__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+getStart__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE590 001FB4D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE594 001FB4D4  7C 08 02 A6 */	mflr r0
 /* 801FE598 001FB4D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -871,14 +871,14 @@ lbl_801FE3F4:
 /* 801FE5B4 001FB4F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE5B8 001FB4F8  4E 80 00 20 */	blr 
 
-.global "birth__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"birth__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global birth__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+birth__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE5BC 001FB4FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE5C0 001FB500  7C 08 02 A6 */	mflr r0
 /* 801FE5C4 001FB504  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801FE5C8 001FB508  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801FE5CC 001FB50C  7C 7F 1B 78 */	mr r31, r3
-/* 801FE5D0 001FB510  48 00 04 95 */	bl "getEmptyIndex__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FE5D0 001FB510  48 00 04 95 */	bl getEmptyIndex__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 /* 801FE5D4 001FB514  2C 03 FF FF */	cmpwi r3, -1
 /* 801FE5D8 001FB518  41 82 00 2C */	beq lbl_801FE604
 /* 801FE5DC 001FB51C  80 DF 00 28 */	lwz r6, 0x28(r31)
@@ -900,8 +900,8 @@ lbl_801FE608:
 /* 801FE614 001FB554  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE618 001FB558  4E 80 00 20 */	blr 
 
-.global "kill__42MonoObjectMgr<Q34Game11PelletFruit6Object>FPQ34Game11PelletFruit6Object"
-"kill__42MonoObjectMgr<Q34Game11PelletFruit6Object>FPQ34Game11PelletFruit6Object":
+.global kill__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FPQ34Game11PelletFruit6Object
+kill__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FPQ34Game11PelletFruit6Object:
 /* 801FE61C 001FB55C  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801FE620 001FB560  38 C0 00 00 */	li r6, 0
 /* 801FE624 001FB564  38 A0 00 00 */	li r5, 0
@@ -926,8 +926,8 @@ lbl_801FE660:
 /* 801FE668 001FB5A8  42 00 FF CC */	bdnz lbl_801FE634
 /* 801FE66C 001FB5AC  4E 80 00 20 */	blr 
 
-.global "getNext__42MonoObjectMgr<Q34Game11PelletFruit6Object>FPv"
-"getNext__42MonoObjectMgr<Q34Game11PelletFruit6Object>FPv":
+.global getNext__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FPv
+getNext__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FPv:
 /* 801FE670 001FB5B0  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 801FE674 001FB5B4  38 C4 00 01 */	addi r6, r4, 1
 /* 801FE678 001FB5B8  7C 06 28 50 */	subf r0, r6, r5
@@ -948,8 +948,8 @@ lbl_801FE6A8:
 /* 801FE6A8 001FB5E8  7C A3 2B 78 */	mr r3, r5
 /* 801FE6AC 001FB5EC  4E 80 00 20 */	blr 
 
-.global "getStart__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"getStart__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global getStart__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+getStart__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE6B0 001FB5F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FE6B4 001FB5F4  7C 08 02 A6 */	mflr r0
 /* 801FE6B8 001FB5F8  38 80 FF FF */	li r4, -1
@@ -963,25 +963,25 @@ lbl_801FE6A8:
 /* 801FE6D8 001FB618  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FE6DC 001FB61C  4E 80 00 20 */	blr 
 
-.global "getEnd__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"getEnd__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global getEnd__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+getEnd__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE6E0 001FB620  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801FE6E4 001FB624  4E 80 00 20 */	blr 
 
-.global "getAt__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi"
-"getAt__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi":
+.global getAt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
+getAt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FE6E8 001FB628  1C 04 04 5C */	mulli r0, r4, 0x45c
 /* 801FE6EC 001FB62C  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801FE6F0 001FB630  7C 63 02 14 */	add r3, r3, r0
 /* 801FE6F4 001FB634  4E 80 00 20 */	blr 
 
-.global "getTo__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"getTo__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global getTo__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+getTo__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE6F8 001FB638  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801FE6FC 001FB63C  4E 80 00 20 */	blr 
 
-.global "doAnimation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"doAnimation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global doAnimation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doAnimation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE700 001FB640  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FE704 001FB644  7C 08 02 A6 */	mflr r0
 /* 801FE708 001FB648  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1018,8 +1018,8 @@ lbl_801FE758:
 /* 801FE778 001FB6B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FE77C 001FB6BC  4E 80 00 20 */	blr 
 
-.global "doEntry__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"doEntry__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global doEntry__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doEntry__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE780 001FB6C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FE784 001FB6C4  7C 08 02 A6 */	mflr r0
 /* 801FE788 001FB6C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1056,8 +1056,8 @@ lbl_801FE7D8:
 /* 801FE7F8 001FB738  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FE7FC 001FB73C  4E 80 00 20 */	blr 
 
-.global "doSetView__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi"
-"doSetView__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi":
+.global doSetView__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
+doSetView__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FE800 001FB740  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FE804 001FB744  7C 08 02 A6 */	mflr r0
 /* 801FE808 001FB748  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1098,8 +1098,8 @@ lbl_801FE864:
 /* 801FE888 001FB7C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FE88C 001FB7CC  4E 80 00 20 */	blr 
 
-.global "doViewCalc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"doViewCalc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global doViewCalc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doViewCalc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FE890 001FB7D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FE894 001FB7D4  7C 08 02 A6 */	mflr r0
 /* 801FE898 001FB7D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1136,8 +1136,8 @@ lbl_801FE8E8:
 /* 801FE908 001FB848  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FE90C 001FB84C  4E 80 00 20 */	blr 
 
-.global "doSimulation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Ff"
-"doSimulation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Ff":
+.global doSimulation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff
+doSimulation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff:
 /* 801FE910 001FB850  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FE914 001FB854  7C 08 02 A6 */	mflr r0
 /* 801FE918 001FB858  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1178,8 +1178,8 @@ lbl_801FE974:
 /* 801FE998 001FB8D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FE99C 001FB8DC  4E 80 00 20 */	blr 
 
-.global "doDirectDraw__42MonoObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics"
-"doDirectDraw__42MonoObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics":
+.global doDirectDraw__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics
+doDirectDraw__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics:
 /* 801FE9A0 001FB8E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FE9A4 001FB8E4  7C 08 02 A6 */	mflr r0
 /* 801FE9A8 001FB8E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1220,8 +1220,8 @@ lbl_801FEA04:
 /* 801FEA28 001FB968  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FEA2C 001FB96C  4E 80 00 20 */	blr 
 
-.global "clearMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"clearMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global clearMgr__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+clearMgr__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FEA30 001FB970  38 00 00 00 */	li r0, 0
 /* 801FEA34 001FB974  38 C0 00 00 */	li r6, 0
 /* 801FEA38 001FB978  90 03 00 20 */	stw r0, 0x20(r3)
@@ -1237,12 +1237,12 @@ lbl_801FEA50:
 /* 801FEA58 001FB998  41 80 FF EC */	blt lbl_801FEA44
 /* 801FEA5C 001FB99C  4E 80 00 20 */	blr 
 
-.global "onAlloc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"onAlloc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global onAlloc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+onAlloc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FEA60 001FB9A0  4E 80 00 20 */	blr 
 
-.global "getEmptyIndex__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"getEmptyIndex__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global getEmptyIndex__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+getEmptyIndex__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FEA64 001FB9A4  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801FEA68 001FB9A8  38 A0 00 00 */	li r5, 0
 /* 801FEA6C 001FB9AC  7C 09 03 A6 */	mtctr r0
@@ -1262,15 +1262,15 @@ lbl_801FEA98:
 /* 801FEA98 001FB9D8  38 60 FF FF */	li r3, -1
 /* 801FEA9C 001FB9DC  4E 80 00 20 */	blr 
 
-.global "get__42MonoObjectMgr<Q34Game11PelletFruit6Object>FPv"
-"get__42MonoObjectMgr<Q34Game11PelletFruit6Object>FPv":
+.global get__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FPv
+get__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FPv:
 /* 801FEAA0 001FB9E0  1C 04 04 5C */	mulli r0, r4, 0x45c
 /* 801FEAA4 001FB9E4  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801FEAA8 001FB9E8  7C 63 02 14 */	add r3, r3, r0
 /* 801FEAAC 001FB9EC  4E 80 00 20 */	blr 
 
-.global "getObject__38Container<Q34Game11PelletFruit6Object>FPv"
-"getObject__38Container<Q34Game11PelletFruit6Object>FPv":
+.global getObject__38Container$$0Q34Game11PelletFruit6Object$$1FPv
+getObject__38Container$$0Q34Game11PelletFruit6Object$$1FPv:
 /* 801FEAB0 001FB9F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FEAB4 001FB9F4  7C 08 02 A6 */	mflr r0
 /* 801FEAB8 001FB9F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1283,24 +1283,24 @@ lbl_801FEA98:
 /* 801FEAD4 001FBA14  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FEAD8 001FBA18  4E 80 00 20 */	blr 
 
-.global "getAt__38Container<Q34Game11PelletFruit6Object>Fi"
-"getAt__38Container<Q34Game11PelletFruit6Object>Fi":
+.global getAt__38Container$$0Q34Game11PelletFruit6Object$$1Fi
+getAt__38Container$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FEADC 001FBA1C  38 60 00 00 */	li r3, 0
 /* 801FEAE0 001FBA20  4E 80 00 20 */	blr 
 
-.global "getTo__38Container<Q34Game11PelletFruit6Object>Fv"
-"getTo__38Container<Q34Game11PelletFruit6Object>Fv":
+.global getTo__38Container$$0Q34Game11PelletFruit6Object$$1Fv
+getTo__38Container$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FEAE4 001FBA24  38 60 00 00 */	li r3, 0
 /* 801FEAE8 001FBA28  4E 80 00 20 */	blr 
 
-.global "doDirectDraw__38ObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics"
-"doDirectDraw__38ObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics":
+.global doDirectDraw__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics
+doDirectDraw__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics:
 /* 801FEAEC 001FBA2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FEAF0 001FBA30  7C 08 02 A6 */	mflr r0
-/* 801FEAF4 001FBA34  3C A0 80 4C */	lis r5, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@ha
+/* 801FEAF4 001FBA34  3C A0 80 4C */	lis r5, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FEAF8 001FBA38  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801FEAFC 001FBA3C  38 00 00 00 */	li r0, 0
-/* 801FEB00 001FBA40  38 A5 E4 C4 */	addi r5, r5, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@l
+/* 801FEB00 001FBA40  38 A5 E4 C4 */	addi r5, r5, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FEB04 001FBA44  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801FEB08 001FBA48  28 00 00 00 */	cmplwi r0, 0
 /* 801FEB0C 001FBA4C  7C 9F 23 78 */	mr r31, r4
@@ -1429,8 +1429,8 @@ lbl_801FECAC:
 /* 801FECD8 001FBC18  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FECDC 001FBC1C  4E 80 00 20 */	blr 
 
-.global "isDone__37Iterator<Q34Game11PelletFruit6Object>Fv"
-"isDone__37Iterator<Q34Game11PelletFruit6Object>Fv":
+.global isDone__37Iterator$$0Q34Game11PelletFruit6Object$$1Fv
+isDone__37Iterator$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FECE0 001FBC20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FECE4 001FBC24  7C 08 02 A6 */	mflr r0
 /* 801FECE8 001FBC28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1451,14 +1451,14 @@ lbl_801FECAC:
 /* 801FED24 001FBC64  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FED28 001FBC68  4E 80 00 20 */	blr 
 
-.global "doSimulation__38ObjectMgr<Q34Game11PelletFruit6Object>Ff"
-"doSimulation__38ObjectMgr<Q34Game11PelletFruit6Object>Ff":
+.global doSimulation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff
+doSimulation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff:
 /* 801FED2C 001FBC6C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FED30 001FBC70  7C 08 02 A6 */	mflr r0
-/* 801FED34 001FBC74  3C 80 80 4C */	lis r4, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@ha
+/* 801FED34 001FBC74  3C 80 80 4C */	lis r4, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FED38 001FBC78  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801FED3C 001FBC7C  38 00 00 00 */	li r0, 0
-/* 801FED40 001FBC80  38 84 E4 C4 */	addi r4, r4, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@l
+/* 801FED40 001FBC80  38 84 E4 C4 */	addi r4, r4, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FED44 001FBC84  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 801FED48 001FBC88  FF E0 08 90 */	fmr f31, f1
 /* 801FED4C 001FBC8C  28 00 00 00 */	cmplwi r0, 0
@@ -1587,14 +1587,14 @@ lbl_801FEEEC:
 /* 801FEF18 001FBE58  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FEF1C 001FBE5C  4E 80 00 20 */	blr 
 
-.global "doViewCalc__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"doViewCalc__38ObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global doViewCalc__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doViewCalc__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FEF20 001FBE60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FEF24 001FBE64  7C 08 02 A6 */	mflr r0
-/* 801FEF28 001FBE68  3C 80 80 4C */	lis r4, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@ha
+/* 801FEF28 001FBE68  3C 80 80 4C */	lis r4, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FEF2C 001FBE6C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801FEF30 001FBE70  38 00 00 00 */	li r0, 0
-/* 801FEF34 001FBE74  38 84 E4 C4 */	addi r4, r4, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@l
+/* 801FEF34 001FBE74  38 84 E4 C4 */	addi r4, r4, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FEF38 001FBE78  28 00 00 00 */	cmplwi r0, 0
 /* 801FEF3C 001FBE7C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801FEF40 001FBE80  90 81 00 08 */	stw r4, 8(r1)
@@ -1719,14 +1719,14 @@ lbl_801FF0D4:
 /* 801FF0FC 001FC03C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FF100 001FC040  4E 80 00 20 */	blr 
 
-.global "doSetView__38ObjectMgr<Q34Game11PelletFruit6Object>Fi"
-"doSetView__38ObjectMgr<Q34Game11PelletFruit6Object>Fi":
+.global doSetView__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
+doSetView__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FF104 001FC044  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FF108 001FC048  7C 08 02 A6 */	mflr r0
-/* 801FF10C 001FC04C  3C A0 80 4C */	lis r5, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@ha
+/* 801FF10C 001FC04C  3C A0 80 4C */	lis r5, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FF110 001FC050  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801FF114 001FC054  38 00 00 00 */	li r0, 0
-/* 801FF118 001FC058  38 A5 E4 C4 */	addi r5, r5, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@l
+/* 801FF118 001FC058  38 A5 E4 C4 */	addi r5, r5, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FF11C 001FC05C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801FF120 001FC060  28 00 00 00 */	cmplwi r0, 0
 /* 801FF124 001FC064  7C 9F 23 78 */	mr r31, r4
@@ -1855,14 +1855,14 @@ lbl_801FF2C4:
 /* 801FF2F0 001FC230  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FF2F4 001FC234  4E 80 00 20 */	blr 
 
-.global "doEntry__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"doEntry__38ObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global doEntry__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doEntry__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FF2F8 001FC238  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FF2FC 001FC23C  7C 08 02 A6 */	mflr r0
-/* 801FF300 001FC240  3C 80 80 4C */	lis r4, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@ha
+/* 801FF300 001FC240  3C 80 80 4C */	lis r4, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FF304 001FC244  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801FF308 001FC248  38 00 00 00 */	li r0, 0
-/* 801FF30C 001FC24C  38 84 E4 C4 */	addi r4, r4, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@l
+/* 801FF30C 001FC24C  38 84 E4 C4 */	addi r4, r4, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FF310 001FC250  28 00 00 00 */	cmplwi r0, 0
 /* 801FF314 001FC254  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801FF318 001FC258  90 81 00 08 */	stw r4, 8(r1)
@@ -1987,14 +1987,14 @@ lbl_801FF4AC:
 /* 801FF4D4 001FC414  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FF4D8 001FC418  4E 80 00 20 */	blr 
 
-.global "doAnimation__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"doAnimation__38ObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global doAnimation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+doAnimation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FF4DC 001FC41C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FF4E0 001FC420  7C 08 02 A6 */	mflr r0
-/* 801FF4E4 001FC424  3C 80 80 4C */	lis r4, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@ha
+/* 801FF4E4 001FC424  3C 80 80 4C */	lis r4, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FF4E8 001FC428  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801FF4EC 001FC42C  38 00 00 00 */	li r0, 0
-/* 801FF4F0 001FC430  38 84 E4 C4 */	addi r4, r4, "__vt__37Iterator<Q34Game11PelletFruit6Object>"@l
+/* 801FF4F0 001FC430  38 84 E4 C4 */	addi r4, r4, __vt__37Iterator$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FF4F4 001FC434  28 00 00 00 */	cmplwi r0, 0
 /* 801FF4F8 001FC438  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801FF4FC 001FC43C  90 81 00 08 */	stw r4, 8(r1)
@@ -2119,8 +2119,8 @@ lbl_801FF690:
 /* 801FF6B8 001FC5F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FF6BC 001FC5FC  4E 80 00 20 */	blr 
 
-.global "__ct__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"__ct__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global __ct__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+__ct__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FF6C0 001FC600  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FF6C4 001FC604  7C 08 02 A6 */	mflr r0
 /* 801FF6C8 001FC608  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2128,17 +2128,17 @@ lbl_801FF690:
 /* 801FF6D0 001FC610  7C 7F 1B 78 */	mr r31, r3
 /* 801FF6D4 001FC614  48 21 1C BD */	bl __ct__5CNodeFv
 /* 801FF6D8 001FC618  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 801FF6DC 001FC61C  3C 60 80 4C */	lis r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@ha
+/* 801FF6DC 001FC61C  3C 60 80 4C */	lis r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FF6E0 001FC620  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 801FF6E4 001FC624  3C C0 80 4B */	lis r6, __vt__16GenericObjectMgr@ha
 /* 801FF6E8 001FC628  90 1F 00 00 */	stw r0, 0(r31)
-/* 801FF6EC 001FC62C  38 03 E2 7C */	addi r0, r3, "__vt__38Container<Q34Game11PelletFruit6Object>"@l
-/* 801FF6F0 001FC630  3C 80 80 4C */	lis r4, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@ha
-/* 801FF6F4 001FC634  3C 60 80 4C */	lis r3, "__vt__42MonoObjectMgr<Q34Game11PelletFruit6Object>"@ha
+/* 801FF6EC 001FC62C  38 03 E2 7C */	addi r0, r3, __vt__38Container$$0Q34Game11PelletFruit6Object$$1@l
+/* 801FF6F0 001FC630  3C 80 80 4C */	lis r4, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
+/* 801FF6F4 001FC634  3C 60 80 4C */	lis r3, __vt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1@ha
 /* 801FF6F8 001FC638  90 1F 00 00 */	stw r0, 0(r31)
 /* 801FF6FC 001FC63C  39 00 00 00 */	li r8, 0
-/* 801FF700 001FC640  38 E4 E0 A8 */	addi r7, r4, "__vt__38ObjectMgr<Q34Game11PelletFruit6Object>"@l
-/* 801FF704 001FC644  38 A3 E1 24 */	addi r5, r3, "__vt__42MonoObjectMgr<Q34Game11PelletFruit6Object>"@l
+/* 801FF700 001FC640  38 E4 E0 A8 */	addi r7, r4, __vt__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
+/* 801FF704 001FC644  38 A3 E1 24 */	addi r5, r3, __vt__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1@l
 /* 801FF708 001FC648  99 1F 00 18 */	stb r8, 0x18(r31)
 /* 801FF70C 001FC64C  38 06 B5 F0 */	addi r0, r6, __vt__16GenericObjectMgr@l
 /* 801FF710 001FC650  38 C7 00 2C */	addi r6, r7, 0x2c
@@ -2161,8 +2161,8 @@ lbl_801FF690:
 /* 801FF754 001FC694  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FF758 001FC698  4E 80 00 20 */	blr 
 
-.global "getFlag__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet"
-"getFlag__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet":
+.global getFlag__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet
+getFlag__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet:
 /* 801FF75C 001FC69C  28 04 00 00 */	cmplwi r4, 0
 /* 801FF760 001FC6A0  41 82 00 14 */	beq lbl_801FF774
 /* 801FF764 001FC6A4  80 63 00 9C */	lwz r3, 0x9c(r3)
@@ -2173,8 +2173,8 @@ lbl_801FF774:
 /* 801FF774 001FC6B4  38 60 FF FF */	li r3, -1
 /* 801FF778 001FC6B8  4E 80 00 20 */	blr 
 
-.global "setFromTeki__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet"
-"setFromTeki__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet":
+.global setFromTeki__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet
+setFromTeki__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet:
 /* 801FF77C 001FC6BC  28 04 00 00 */	cmplwi r4, 0
 /* 801FF780 001FC6C0  4D 82 00 20 */	beqlr 
 /* 801FF784 001FC6C4  80 63 00 9C */	lwz r3, 0x9c(r3)
@@ -2183,8 +2183,8 @@ lbl_801FF774:
 /* 801FF790 001FC6D0  7C A3 01 AE */	stbx r5, r3, r0
 /* 801FF794 001FC6D4  4E 80 00 20 */	blr 
 
-.global "setRevival__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet"
-"setRevival__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet":
+.global setRevival__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet
+setRevival__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet:
 /* 801FF798 001FC6D8  28 04 00 00 */	cmplwi r4, 0
 /* 801FF79C 001FC6DC  4D 82 00 20 */	beqlr 
 /* 801FF7A0 001FC6E0  80 63 00 9C */	lwz r3, 0x9c(r3)
@@ -2193,8 +2193,8 @@ lbl_801FF774:
 /* 801FF7AC 001FC6EC  7C A3 01 AE */	stbx r5, r3, r0
 /* 801FF7B0 001FC6F0  4E 80 00 20 */	blr 
 
-.global "setComeAlive__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet"
-"setComeAlive__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game6Pellet":
+.global setComeAlive__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet
+setComeAlive__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game6Pellet:
 /* 801FF7B4 001FC6F4  28 04 00 00 */	cmplwi r4, 0
 /* 801FF7B8 001FC6F8  4D 82 00 20 */	beqlr 
 /* 801FF7BC 001FC6FC  80 63 00 9C */	lwz r3, 0x9c(r3)
@@ -2203,15 +2203,15 @@ lbl_801FF774:
 /* 801FF7C8 001FC708  7C A3 01 AE */	stbx r5, r3, r0
 /* 801FF7CC 001FC70C  4E 80 00 20 */	blr 
 
-.global "setComeAlive__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fi"
-"setComeAlive__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fi":
+.global setComeAlive__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fi
+setComeAlive__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FF7D0 001FC710  80 63 00 9C */	lwz r3, 0x9c(r3)
 /* 801FF7D4 001FC714  38 00 00 00 */	li r0, 0
 /* 801FF7D8 001FC718  7C 03 21 AE */	stbx r0, r3, r4
 /* 801FF7DC 001FC71C  4E 80 00 20 */	blr 
 
-.global "getEnd__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"getEnd__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global getEnd__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+getEnd__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FF7E0 001FC720  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FF7E4 001FC724  7C 08 02 A6 */	mflr r0
 /* 801FF7E8 001FC728  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2224,8 +2224,8 @@ lbl_801FF774:
 /* 801FF804 001FC744  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FF808 001FC748  4E 80 00 20 */	blr 
 
-.global "get__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv"
-"get__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv":
+.global get__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv
+get__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv:
 /* 801FF80C 001FC74C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FF810 001FC750  7C 08 02 A6 */	mflr r0
 /* 801FF814 001FC754  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2238,8 +2238,8 @@ lbl_801FF774:
 /* 801FF830 001FC770  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FF834 001FC774  4E 80 00 20 */	blr 
 
-.global "getObjectPtr__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv"
-"getObjectPtr__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv":
+.global getObjectPtr__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv
+getObjectPtr__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv:
 /* 801FF838 001FC778  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FF83C 001FC77C  7C 08 02 A6 */	mflr r0
 /* 801FF840 001FC780  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2252,8 +2252,8 @@ lbl_801FF774:
 /* 801FF85C 001FC79C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FF860 001FC7A0  4E 80 00 20 */	blr 
 
-.global "birthFromTeki__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game12PelletConfig"
-"birthFromTeki__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPQ24Game12PelletConfig":
+.global birthFromTeki__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game12PelletConfig
+birthFromTeki__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPQ24Game12PelletConfig:
 /* 801FF864 001FC7A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FF868 001FC7A8  7C 08 02 A6 */	mflr r0
 /* 801FF86C 001FC7AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2295,8 +2295,8 @@ lbl_801FF8D8:
 /* 801FF8EC 001FC82C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FF8F0 001FC830  4E 80 00 20 */	blr 
 
-.global "alloc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fi"
-"alloc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fi":
+.global alloc__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fi
+alloc__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FF8F4 001FC834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FF8F8 001FC838  7C 08 02 A6 */	mflr r0
 /* 801FF8FC 001FC83C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2304,9 +2304,9 @@ lbl_801FF8D8:
 /* 801FF904 001FC844  93 C1 00 08 */	stw r30, 8(r1)
 /* 801FF908 001FC848  7C 7E 1B 78 */	mr r30, r3
 /* 801FF90C 001FC84C  38 7E 00 70 */	addi r3, r30, 0x70
-/* 801FF910 001FC850  48 00 02 C1 */	bl "alloc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi"
+/* 801FF910 001FC850  48 00 02 C1 */	bl alloc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
 /* 801FF914 001FC854  7F C3 F3 78 */	mr r3, r30
-/* 801FF918 001FC858  48 00 02 55 */	bl "onAlloc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FF918 001FC858  48 00 02 55 */	bl onAlloc__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
 /* 801FF91C 001FC85C  3B E0 00 00 */	li r31, 0
 /* 801FF920 001FC860  48 00 00 30 */	b lbl_801FF950
 lbl_801FF924:
@@ -2332,8 +2332,8 @@ lbl_801FF950:
 /* 801FF96C 001FC8AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FF970 001FC8B0  4E 80 00 20 */	blr 
 
-.global "__ml__37Iterator<Q34Game11PelletFruit6Object>Fv"
-"__ml__37Iterator<Q34Game11PelletFruit6Object>Fv":
+.global __ml__37Iterator$$0Q34Game11PelletFruit6Object$$1Fv
+__ml__37Iterator$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FF974 001FC8B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FF978 001FC8B8  7C 08 02 A6 */	mflr r0
 /* 801FF97C 001FC8BC  7C 64 1B 78 */	mr r4, r3
@@ -2349,8 +2349,8 @@ lbl_801FF950:
 /* 801FF9A4 001FC8E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FF9A8 001FC8E8  4E 80 00 20 */	blr 
 
-.global "next__37Iterator<Q34Game11PelletFruit6Object>Fv"
-"next__37Iterator<Q34Game11PelletFruit6Object>Fv":
+.global next__37Iterator$$0Q34Game11PelletFruit6Object$$1Fv
+next__37Iterator$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FF9AC 001FC8EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FF9B0 001FC8F0  7C 08 02 A6 */	mflr r0
 /* 801FF9B4 001FC8F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2413,8 +2413,8 @@ lbl_801FFA7C:
 /* 801FFA88 001FC9C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FFA8C 001FC9CC  4E 80 00 20 */	blr 
 
-.global "first__37Iterator<Q34Game11PelletFruit6Object>Fv"
-"first__37Iterator<Q34Game11PelletFruit6Object>Fv":
+.global first__37Iterator$$0Q34Game11PelletFruit6Object$$1Fv
+first__37Iterator$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFA90 001FC9D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FFA94 001FC9D4  7C 08 02 A6 */	mflr r0
 /* 801FFA98 001FC9D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2475,8 +2475,8 @@ lbl_801FFB58:
 /* 801FFB64 001FCAA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FFB68 001FCAA8  4E 80 00 20 */	blr 
 
-.global "onAlloc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"onAlloc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global onAlloc__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+onAlloc__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFB6C 001FCAAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FFB70 001FCAB0  7C 08 02 A6 */	mflr r0
 /* 801FFB74 001FCAB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2505,8 +2505,8 @@ lbl_801FFBAC:
 /* 801FFBC8 001FCB08  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FFBCC 001FCB0C  4E 80 00 20 */	blr 
 
-.global "alloc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi"
-"alloc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi":
+.global alloc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
+alloc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FFBD0 001FCB10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FFBD4 001FCB14  7C 08 02 A6 */	mflr r0
 /* 801FFBD8 001FCB18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2647,97 +2647,97 @@ __sinit_pelletFruit_cpp:
 /* 801FFDC4 001FCD04  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801FFDC8 001FCD08  4E 80 00 20 */	blr 
 
-.global "@84@__dt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"@84@__dt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$284$$2__dt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$284$$2__dt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFDCC 001FCD0C  38 63 FF AC */	addi r3, r3, -84
-/* 801FFDD0 001FCD10  4B FF DF A4 */	b "__dt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFDD0 001FCD10  4B FF DF A4 */	b __dt__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@28@resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"@28@resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$228$$2resetMgr__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$228$$2resetMgr__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFDD4 001FCD14  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFDD8 001FCD18  4B F7 04 10 */	b "resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFDD8 001FCD18  4B F7 04 10 */	b resetMgr__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@28@doDirectDraw__42MonoObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics"
-"@28@doDirectDraw__42MonoObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics":
+.global $$228$$2doDirectDraw__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics
+$$228$$2doDirectDraw__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics:
 /* 801FFDDC 001FCD1C  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFDE0 001FCD20  4B FF EB C0 */	b "doDirectDraw__42MonoObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics"
+/* 801FFDE0 001FCD20  4B FF EB C0 */	b doDirectDraw__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics
 
-.global "@28@doSimulation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Ff"
-"@28@doSimulation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Ff":
+.global $$228$$2doSimulation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff
+$$228$$2doSimulation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff:
 /* 801FFDE4 001FCD24  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFDE8 001FCD28  4B FF EB 28 */	b "doSimulation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Ff"
+/* 801FFDE8 001FCD28  4B FF EB 28 */	b doSimulation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff
 
-.global "@28@doViewCalc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"@28@doViewCalc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$228$$2doViewCalc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$228$$2doViewCalc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFDEC 001FCD2C  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFDF0 001FCD30  4B FF EA A0 */	b "doViewCalc__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFDF0 001FCD30  4B FF EA A0 */	b doViewCalc__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@28@doSetView__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi"
-"@28@doSetView__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi":
+.global $$228$$2doSetView__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
+$$228$$2doSetView__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FFDF4 001FCD34  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFDF8 001FCD38  4B FF EA 08 */	b "doSetView__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fi"
+/* 801FFDF8 001FCD38  4B FF EA 08 */	b doSetView__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
 
-.global "@28@doEntry__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"@28@doEntry__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$228$$2doEntry__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$228$$2doEntry__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFDFC 001FCD3C  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFE00 001FCD40  4B FF E9 80 */	b "doEntry__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFE00 001FCD40  4B FF E9 80 */	b doEntry__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@28@doAnimation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"@28@doAnimation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$228$$2doAnimation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$228$$2doAnimation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFE04 001FCD44  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFE08 001FCD48  4B FF E8 F8 */	b "doAnimation__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFE08 001FCD48  4B FF E8 F8 */	b doAnimation__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@28@doDirectDraw__38ObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics"
-"@28@doDirectDraw__38ObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics":
+.global $$228$$2doDirectDraw__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics
+$$228$$2doDirectDraw__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics:
 /* 801FFE0C 001FCD4C  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFE10 001FCD50  4B FF EC DC */	b "doDirectDraw__38ObjectMgr<Q34Game11PelletFruit6Object>FR8Graphics"
+/* 801FFE10 001FCD50  4B FF EC DC */	b doDirectDraw__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1FR8Graphics
 
-.global "@28@doSimulation__38ObjectMgr<Q34Game11PelletFruit6Object>Ff"
-"@28@doSimulation__38ObjectMgr<Q34Game11PelletFruit6Object>Ff":
+.global $$228$$2doSimulation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff
+$$228$$2doSimulation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff:
 /* 801FFE14 001FCD54  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFE18 001FCD58  4B FF EF 14 */	b "doSimulation__38ObjectMgr<Q34Game11PelletFruit6Object>Ff"
+/* 801FFE18 001FCD58  4B FF EF 14 */	b doSimulation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Ff
 
-.global "@28@doViewCalc__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"@28@doViewCalc__38ObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$228$$2doViewCalc__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$228$$2doViewCalc__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFE1C 001FCD5C  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFE20 001FCD60  4B FF F1 00 */	b "doViewCalc__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFE20 001FCD60  4B FF F1 00 */	b doViewCalc__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@28@doSetView__38ObjectMgr<Q34Game11PelletFruit6Object>Fi"
-"@28@doSetView__38ObjectMgr<Q34Game11PelletFruit6Object>Fi":
+.global $$228$$2doSetView__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
+$$228$$2doSetView__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi:
 /* 801FFE24 001FCD64  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFE28 001FCD68  4B FF F2 DC */	b "doSetView__38ObjectMgr<Q34Game11PelletFruit6Object>Fi"
+/* 801FFE28 001FCD68  4B FF F2 DC */	b doSetView__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fi
 
-.global "@28@doEntry__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"@28@doEntry__38ObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$228$$2doEntry__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$228$$2doEntry__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFE2C 001FCD6C  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFE30 001FCD70  4B FF F4 C8 */	b "doEntry__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFE30 001FCD70  4B FF F4 C8 */	b doEntry__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@28@doAnimation__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"@28@doAnimation__38ObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$228$$2doAnimation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$228$$2doAnimation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFE34 001FCD74  38 63 FF E4 */	addi r3, r3, -28
-/* 801FFE38 001FCD78  4B FF F6 A4 */	b "doAnimation__38ObjectMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFE38 001FCD78  4B FF F6 A4 */	b doAnimation__38ObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@84@getEnd__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"@84@getEnd__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$284$$2getEnd__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$284$$2getEnd__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFE3C 001FCD7C  38 63 FF AC */	addi r3, r3, -84
-/* 801FFE40 001FCD80  4B FF F9 A0 */	b "getEnd__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFE40 001FCD80  4B FF F9 A0 */	b getEnd__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@84@getStart__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"@84@getStart__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.global $$284$$2getStart__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
+$$284$$2getStart__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801FFE44 001FCD84  38 63 FF AC */	addi r3, r3, -84
-/* 801FFE48 001FCD88  4B FF E7 48 */	b "getStart__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
+/* 801FFE48 001FCD88  4B FF E7 48 */	b getStart__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
 
-.global "@84@getNext__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv"
-"@84@getNext__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv":
+.global $$284$$2getNext__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv
+$$284$$2getNext__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv:
 /* 801FFE4C 001FCD8C  38 63 FF AC */	addi r3, r3, -84
-/* 801FFE50 001FCD90  4B FF E7 14 */	b "getNext__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv"
+/* 801FFE50 001FCD90  4B FF E7 14 */	b getNext__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv
 
-.global "@84@get__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv"
-"@84@get__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv":
+.global $$284$$2get__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv
+$$284$$2get__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv:
 /* 801FFE54 001FCD94  38 63 FF AC */	addi r3, r3, -84
-/* 801FFE58 001FCD98  4B FF F9 B4 */	b "get__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>FPv"
+/* 801FFE58 001FCD98  4B FF F9 B4 */	b get__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1FPv
 
-.global "@84@__dt__Q34Game11PelletFruit3MgrFv"
-"@84@__dt__Q34Game11PelletFruit3MgrFv":
+.global $$284$$2__dt__Q34Game11PelletFruit3MgrFv
+$$284$$2__dt__Q34Game11PelletFruit3MgrFv:
 /* 801FFE5C 001FCD9C  38 63 FF AC */	addi r3, r3, -84
 /* 801FFE60 001FCDA0  4B FF E2 B8 */	b __dt__Q34Game11PelletFruit3MgrFv

@@ -34,11 +34,11 @@ __ct__Q24Game9THPPlayerFv:
 /* 8044FE60 0044CDA0  3C 60 80 4F */	lis r3, lbl_804ED4C0@ha
 /* 8044FE64 0044CDA4  3C 80 80 4B */	lis r4, __vt__9IDelegate@ha
 /* 8044FE68 0044CDA8  38 E3 D4 C0 */	addi r7, r3, lbl_804ED4C0@l
-/* 8044FE6C 0044CDAC  3C 60 80 4F */	lis r3, "__vt__27Delegate<Q24Game9THPPlayer>"@ha
+/* 8044FE6C 0044CDAC  3C 60 80 4F */	lis r3, __vt__27Delegate$$0Q24Game9THPPlayer$$1@ha
 /* 8044FE70 0044CDB0  81 27 00 00 */	lwz r9, 0(r7)
 /* 8044FE74 0044CDB4  38 C4 0F 00 */	addi r6, r4, __vt__9IDelegate@l
 /* 8044FE78 0044CDB8  81 07 00 04 */	lwz r8, 4(r7)
-/* 8044FE7C 0044CDBC  38 A3 D4 F8 */	addi r5, r3, "__vt__27Delegate<Q24Game9THPPlayer>"@l
+/* 8044FE7C 0044CDBC  38 A3 D4 F8 */	addi r5, r3, __vt__27Delegate$$0Q24Game9THPPlayer$$1@l
 /* 8044FE80 0044CDC0  80 E7 00 08 */	lwz r7, 8(r7)
 /* 8044FE84 0044CDC4  38 80 00 00 */	li r4, 0
 /* 8044FE88 0044CDC8  38 00 00 01 */	li r0, 1
@@ -775,8 +775,8 @@ isFinishPlaying__Q24Game9THPPlayerFv:
 /* 804508A8 0044D7E8  54 03 D9 7E */	srwi r3, r0, 5
 /* 804508AC 0044D7EC  4E 80 00 20 */	blr 
 
-.global "invoke__27Delegate<Q24Game9THPPlayer>Fv"
-"invoke__27Delegate<Q24Game9THPPlayer>Fv":
+.global invoke__27Delegate$$0Q24Game9THPPlayer$$1Fv
+invoke__27Delegate$$0Q24Game9THPPlayer$$1Fv:
 /* 804508B0 0044D7F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804508B4 0044D7F4  7C 08 02 A6 */	mflr r0
 /* 804508B8 0044D7F8  7C 64 1B 78 */	mr r4, r3
@@ -790,7 +790,7 @@ isFinishPlaying__Q24Game9THPPlayerFv:
 /* 804508D8 0044D818  38 21 00 10 */	addi r1, r1, 0x10
 /* 804508DC 0044D81C  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q24Game9THPPlayerFv"
-"@24@__dt__Q24Game9THPPlayerFv":
+.global $$224$$2__dt__Q24Game9THPPlayerFv
+$$224$$2__dt__Q24Game9THPPlayerFv:
 /* 804508E0 0044D820  38 63 FF E8 */	addi r3, r3, -24
 /* 804508E4 0044D824  4B FF F6 24 */	b __dt__Q24Game9THPPlayerFv

@@ -777,8 +777,8 @@ lbl_80122EB0:
 /* 80122EBC 0011FDFC  38 21 00 40 */	addi r1, r1, 0x40
 /* 80122EC0 0011FE00  4E 80 00 20 */	blr 
 
-.global "createNewControl__Q24Game16FieldVtxColorMgrFR10Vector3<f>ff"
-"createNewControl__Q24Game16FieldVtxColorMgrFR10Vector3<f>ff":
+.global createNewControl__Q24Game16FieldVtxColorMgrFR10Vector3$$0f$$1ff
+createNewControl__Q24Game16FieldVtxColorMgrFR10Vector3$$0f$$1ff:
 /* 80122EC4 0011FE04  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80122EC8 0011FE08  7C 08 02 A6 */	mflr r0
 /* 80122ECC 0011FE0C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -821,7 +821,7 @@ lbl_80122F4C:
 /* 80122F5C 0011FE9C  FC 40 F8 90 */	fmr f2, f31
 /* 80122F60 0011FEA0  7F E4 FB 78 */	mr r4, r31
 /* 80122F64 0011FEA4  7F C5 F3 78 */	mr r5, r30
-/* 80122F68 0011FEA8  48 00 00 85 */	bl "setupFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColorControlR10Vector3<f>ff"
+/* 80122F68 0011FEA8  48 00 00 85 */	bl setupFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColorControlR10Vector3$$0f$$1ff
 /* 80122F6C 0011FEAC  80 7D 00 30 */	lwz r3, 0x30(r29)
 /* 80122F70 0011FEB0  28 03 00 00 */	cmplwi r3, 0
 /* 80122F74 0011FEB4  40 82 00 0C */	bne lbl_80122F80
@@ -860,8 +860,8 @@ lbl_80122FBC:
 /* 80122FE4 0011FF24  38 21 00 40 */	addi r1, r1, 0x40
 /* 80122FE8 0011FF28  4E 80 00 20 */	blr 
 
-.global "setupFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColorControlR10Vector3<f>ff"
-"setupFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColorControlR10Vector3<f>ff":
+.global setupFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColorControlR10Vector3$$0f$$1ff
+setupFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColorControlR10Vector3$$0f$$1ff:
 /* 80122FEC 0011FF2C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80122FF0 0011FF30  7C 08 02 A6 */	mflr r0
 /* 80122FF4 0011FF34  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1044,7 +1044,7 @@ lbl_80123254:
 /* 80123268 001201A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8012326C 001201AC  4E 80 00 20 */	blr 
 
-.global "@12@__dt__Q24Game16FieldVtxColorMgrFv"
-"@12@__dt__Q24Game16FieldVtxColorMgrFv":
+.global $$212$$2__dt__Q24Game16FieldVtxColorMgrFv
+$$212$$2__dt__Q24Game16FieldVtxColorMgrFv:
 /* 80123270 001201B0  38 63 FF F4 */	addi r3, r3, -12
 /* 80123274 001201B4  4B FF FF 7C */	b __dt__Q24Game16FieldVtxColorMgrFv

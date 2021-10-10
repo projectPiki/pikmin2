@@ -698,7 +698,7 @@ lbl_802A93CC:
 /* 802A93D8 002A6318  48 00 02 31 */	bl setNextCentrePosition__Q24Game11IKSystemMgrFv
 /* 802A93DC 002A631C  80 7C 00 8C */	lwz r3, 0x8c(r28)
 /* 802A93E0 002A6320  38 9C 00 5C */	addi r4, r28, 0x5c
-/* 802A93E4 002A6324  48 00 0C 21 */	bl "startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>"
+/* 802A93E4 002A6324  48 00 0C 21 */	bl startMovePosition__Q24Game12IKSystemBaseFR10Vector3$$0f$$1
 /* 802A93E8 002A6328  38 00 00 01 */	li r0, 1
 /* 802A93EC 002A632C  90 1C 00 1C */	stw r0, 0x1c(r28)
 /* 802A93F0 002A6330  80 1C 00 94 */	lwz r0, 0x94(r28)
@@ -800,7 +800,7 @@ lbl_802A9538:
 /* 802A9558 002A6498  38 83 00 5C */	addi r4, r3, 0x5c
 /* 802A955C 002A649C  7C 60 D2 14 */	add r3, r0, r26
 /* 802A9560 002A64A0  7C 9C 22 14 */	add r4, r28, r4
-/* 802A9564 002A64A4  48 00 0A A1 */	bl "startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>"
+/* 802A9564 002A64A4  48 00 0A A1 */	bl startMovePosition__Q24Game12IKSystemBaseFR10Vector3$$0f$$1
 /* 802A9568 002A64A8  57 63 10 3A */	slwi r3, r27, 2
 /* 802A956C 002A64AC  38 80 00 01 */	li r4, 1
 /* 802A9570 002A64B0  38 03 00 1C */	addi r0, r3, 0x1c

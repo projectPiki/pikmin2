@@ -65,8 +65,8 @@ lbl_8020EB7C:
 /* 8020EBB4 0020BAF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8020EBB8 0020BAF8  4E 80 00 20 */	blr 
 
-.global "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
-"getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>":
+.global getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1:
 /* 8020EBBC 0020BAFC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8020EBC0 0020BB00  7C 08 02 A6 */	mflr r0
 /* 8020EBC4 0020BB04  90 01 00 34 */	stw r0, 0x34(r1)

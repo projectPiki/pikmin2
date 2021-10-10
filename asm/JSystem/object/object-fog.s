@@ -239,14 +239,14 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 80014474 000113B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80014478 000113B8  4E 80 00 20 */	blr 
 
-.global "__sinit_object-fog_cpp"
-"__sinit_object-fog_cpp":
+.global __sinit_object$$5fog_cpp
+__sinit_object$$5fog_cpp:
 /* 8001447C 000113BC  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80014480 000113C0  7C 08 02 A6 */	mflr r0
 /* 80014484 000113C4  3C 60 80 4A */	lis r3, lbl_8049F820@ha
 /* 80014488 000113C8  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
 /* 8001448C 000113CC  90 01 00 84 */	stw r0, 0x84(r1)
-/* 80014490 000113D0  3C A0 80 4A */	lis r5, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@ha
+/* 80014490 000113D0  3C A0 80 4A */	lis r5, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@ha
 /* 80014494 000113D4  3D 80 80 4F */	lis r12, lbl_804EFE68@ha
 /* 80014498 000113D8  39 60 00 04 */	li r11, 4
 /* 8001449C 000113DC  93 E1 00 7C */	stw r31, 0x7c(r1)
@@ -254,13 +254,13 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 800144A4 000113E4  3C 60 80 50 */	lis r3, saoVVOutput___Q214JStudio_JStage12TAdaptor_fog@ha
 /* 800144A8 000113E8  93 C1 00 78 */	stw r30, 0x78(r1)
 /* 800144AC 000113EC  3B CC FE 68 */	addi r30, r12, lbl_804EFE68@l
-/* 800144B0 000113F0  39 85 F8 90 */	addi r12, r5, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@l
+/* 800144B0 000113F0  39 85 F8 90 */	addi r12, r5, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@l
 /* 800144B4 000113F4  93 A1 00 74 */	stw r29, 0x74(r1)
 /* 800144B8 000113F8  3B A4 F4 98 */	addi r29, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-/* 800144BC 000113FC  3C 80 80 01 */	lis r4, "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"@ha
+/* 800144BC 000113FC  3C 80 80 01 */	lis r4, __dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv@ha
 /* 800144C0 00011400  38 BE 00 00 */	addi r5, r30, 0
 /* 800144C4 00011404  97 A3 6C D4 */	stwu r29, saoVVOutput___Q214JStudio_JStage12TAdaptor_fog@l(r3)
-/* 800144C8 00011408  38 84 46 A4 */	addi r4, r4, "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"@l
+/* 800144C8 00011408  38 84 46 A4 */	addi r4, r4, __dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv@l
 /* 800144CC 0001140C  81 5F 00 00 */	lwz r10, 0(r31)
 /* 800144D0 00011410  81 3F 00 04 */	lwz r9, 4(r31)
 /* 800144D4 00011414  81 1F 00 08 */	lwz r8, 8(r31)
@@ -285,9 +285,9 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 80014520 00011460  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 80014524 00011464  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 80014528 00011468  48 0A D1 D9 */	bl __register_global_object
-/* 8001452C 0001146C  3C 80 80 4A */	lis r4, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@ha
+/* 8001452C 0001146C  3C 80 80 4A */	lis r4, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@ha
 /* 80014530 00011470  38 61 00 48 */	addi r3, r1, 0x48
-/* 80014534 00011474  38 04 F8 90 */	addi r0, r4, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@l
+/* 80014534 00011474  38 04 F8 90 */	addi r0, r4, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@l
 /* 80014538 00011478  38 80 00 00 */	li r4, 0
 /* 8001453C 0001147C  90 01 00 48 */	stw r0, 0x48(r1)
 /* 80014540 00011480  4B FF 8B 29 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
@@ -300,13 +300,13 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 8001455C 0001149C  97 A3 00 20 */	stwu r29, 0x20(r3)
 /* 80014560 000114A0  39 60 00 05 */	li r11, 5
 /* 80014564 000114A4  81 1F 00 20 */	lwz r8, 0x20(r31)
-/* 80014568 000114A8  3C A0 80 4A */	lis r5, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@ha
+/* 80014568 000114A8  3C A0 80 4A */	lis r5, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@ha
 /* 8001456C 000114AC  80 FF 00 24 */	lwz r7, 0x24(r31)
-/* 80014570 000114B0  39 85 F8 90 */	addi r12, r5, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@l
+/* 80014570 000114B0  39 85 F8 90 */	addi r12, r5, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@l
 /* 80014574 000114B4  80 DF 00 28 */	lwz r6, 0x28(r31)
-/* 80014578 000114B8  3C 80 80 01 */	lis r4, "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"@ha
+/* 80014578 000114B8  3C 80 80 01 */	lis r4, __dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv@ha
 /* 8001457C 000114BC  80 1F 00 2C */	lwz r0, 0x2c(r31)
-/* 80014580 000114C0  38 84 46 A4 */	addi r4, r4, "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"@l
+/* 80014580 000114C0  38 84 46 A4 */	addi r4, r4, __dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv@l
 /* 80014584 000114C4  93 A1 00 28 */	stw r29, 0x28(r1)
 /* 80014588 000114C8  38 BE 00 0C */	addi r5, r30, 0xc
 /* 8001458C 000114CC  91 81 00 28 */	stw r12, 0x28(r1)
@@ -326,27 +326,27 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 800145C4 00011504  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 800145C8 00011508  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 800145CC 0001150C  48 0A D1 35 */	bl __register_global_object
-/* 800145D0 00011510  3C 80 80 4A */	lis r4, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@ha
+/* 800145D0 00011510  3C 80 80 4A */	lis r4, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@ha
 /* 800145D4 00011514  38 61 00 28 */	addi r3, r1, 0x28
-/* 800145D8 00011518  38 04 F8 90 */	addi r0, r4, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@l
+/* 800145D8 00011518  38 04 F8 90 */	addi r0, r4, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@l
 /* 800145DC 0001151C  38 80 00 00 */	li r4, 0
 /* 800145E0 00011520  90 01 00 28 */	stw r0, 0x28(r1)
 /* 800145E4 00011524  4B FF 8A 85 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 800145E8 00011528  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 800145EC 0001152C  3C 60 80 4A */	lis r3, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@ha
+/* 800145EC 0001152C  3C 60 80 4A */	lis r3, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@ha
 /* 800145F0 00011530  39 64 F4 98 */	addi r11, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 800145F4 00011534  39 20 FF FF */	li r9, -1
 /* 800145F8 00011538  91 61 00 08 */	stw r11, 8(r1)
-/* 800145FC 0001153C  39 43 F8 90 */	addi r10, r3, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@l
+/* 800145FC 0001153C  39 43 F8 90 */	addi r10, r3, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@l
 /* 80014600 00011540  3C 80 80 48 */	lis r4, __ptmf_null@ha
 /* 80014604 00011544  3C 60 80 50 */	lis r3, saoVVOutput___Q214JStudio_JStage12TAdaptor_fog@ha
 /* 80014608 00011548  91 41 00 08 */	stw r10, 8(r1)
 /* 8001460C 0001154C  39 04 9F 10 */	addi r8, r4, __ptmf_null@l
-/* 80014610 00011550  3C 80 80 01 */	lis r4, "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"@ha
+/* 80014610 00011550  3C 80 80 01 */	lis r4, __dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv@ha
 /* 80014614 00011554  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80014618 00011558  91 21 00 0C */	stw r9, 0xc(r1)
 /* 8001461C 0001155C  38 63 6C D4 */	addi r3, r3, saoVVOutput___Q214JStudio_JStage12TAdaptor_fog@l
-/* 80014620 00011560  38 84 46 A4 */	addi r4, r4, "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"@l
+/* 80014620 00011560  38 84 46 A4 */	addi r4, r4, __dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv@l
 /* 80014624 00011564  38 BE 00 18 */	addi r5, r30, 0x18
 /* 80014628 00011568  80 C8 00 04 */	lwz r6, 4(r8)
 /* 8001462C 0001156C  90 E1 00 10 */	stw r7, 0x10(r1)
@@ -366,9 +366,9 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 80014664 000115A4  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 80014668 000115A8  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 8001466C 000115AC  48 0A D0 95 */	bl __register_global_object
-/* 80014670 000115B0  3C 80 80 4A */	lis r4, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@ha
+/* 80014670 000115B0  3C 80 80 4A */	lis r4, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@ha
 /* 80014674 000115B4  38 61 00 08 */	addi r3, r1, 8
-/* 80014678 000115B8  38 04 F8 90 */	addi r0, r4, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@l
+/* 80014678 000115B8  38 04 F8 90 */	addi r0, r4, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@l
 /* 8001467C 000115BC  38 80 00 00 */	li r4, 0
 /* 80014680 000115C0  90 01 00 08 */	stw r0, 8(r1)
 /* 80014684 000115C4  4B FF 89 E5 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
@@ -380,8 +380,8 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 8001469C 000115DC  38 21 00 80 */	addi r1, r1, 0x80
 /* 800146A0 000115E0  4E 80 00 20 */	blr 
 
-.global "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"
-"__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv":
+.global __dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv
+__dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv:
 /* 800146A4 000115E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800146A8 000115E8  7C 08 02 A6 */	mflr r0
 /* 800146AC 000115EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -390,9 +390,9 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 800146B8 000115F8  93 C1 00 08 */	stw r30, 8(r1)
 /* 800146BC 000115FC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800146C0 00011600  41 82 00 28 */	beq lbl_800146E8
-/* 800146C4 00011604  3C A0 80 4A */	lis r5, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@ha
+/* 800146C4 00011604  3C A0 80 4A */	lis r5, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@ha
 /* 800146C8 00011608  38 80 00 00 */	li r4, 0
-/* 800146CC 0001160C  38 05 F8 90 */	addi r0, r5, "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"@l
+/* 800146CC 0001160C  38 05 F8 90 */	addi r0, r5, __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1@l
 /* 800146D0 00011610  90 1E 00 00 */	stw r0, 0(r30)
 /* 800146D4 00011614  4B FF 89 95 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 800146D8 00011618  7F E0 07 35 */	extsh. r0, r31
@@ -408,8 +408,8 @@ lbl_800146E8:
 /* 800146FC 0001163C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80014700 00011640  4E 80 00 20 */	blr 
 
-.global "__cl__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>CFfPQ27JStudio8TAdaptor"
-"__cl__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>CFfPQ27JStudio8TAdaptor":
+.global __cl__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1CFfPQ27JStudio8TAdaptor
+__cl__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1CFfPQ27JStudio8TAdaptor:
 /* 80014704 00011644  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80014708 00011648  7C 08 02 A6 */	mflr r0
 /* 8001470C 0001164C  7C 65 1B 78 */	mr r5, r3

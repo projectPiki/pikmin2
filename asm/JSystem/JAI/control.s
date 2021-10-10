@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem"
-"createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem":
+.global createObject_SOUND_JAI___Q214JStudio_JAudio21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem
+createObject_SOUND_JAI___Q214JStudio_JAudio21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem:
 /* 80015C44 00012B84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80015C48 00012B88  7C 08 02 A6 */	mflr r0
 /* 80015C4C 00012B8C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -105,8 +105,8 @@ create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4d
 /* 80015D9C 00012CDC  41 82 00 08 */	beq lbl_80015DA4
 /* 80015DA0 00012CE0  48 00 00 10 */	b lbl_80015DB0
 lbl_80015DA4:
-/* 80015DA4 00012CE4  3C 60 80 01 */	lis r3, "createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem"@ha
-/* 80015DA8 00012CE8  39 83 5C 44 */	addi r12, r3, "createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem"@l
+/* 80015DA4 00012CE4  3C 60 80 01 */	lis r3, createObject_SOUND_JAI___Q214JStudio_JAudio21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem@ha
+/* 80015DA8 00012CE8  39 83 5C 44 */	addi r12, r3, createObject_SOUND_JAI___Q214JStudio_JAudio21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem@l
 /* 80015DAC 00012CEC  48 00 00 0C */	b lbl_80015DB8
 lbl_80015DB0:
 /* 80015DB0 00012CF0  38 60 00 00 */	li r3, 0

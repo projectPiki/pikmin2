@@ -410,29 +410,29 @@ readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code:
 /* 8041C964 004198A4  38 64 00 01 */	addi r3, r4, 1
 /* 8041C968 004198A8  4E 80 00 20 */	blr 
 
-.global "getStart__31ArrayContainer<Q27MapCode4Code>Fv"
-"getStart__31ArrayContainer<Q27MapCode4Code>Fv":
+.global getStart__31ArrayContainer$$0Q27MapCode4Code$$1Fv
+getStart__31ArrayContainer$$0Q27MapCode4Code$$1Fv:
 /* 8041C96C 004198AC  38 60 00 00 */	li r3, 0
 /* 8041C970 004198B0  4E 80 00 20 */	blr 
 
-.global "getEnd__31ArrayContainer<Q27MapCode4Code>Fv"
-"getEnd__31ArrayContainer<Q27MapCode4Code>Fv":
+.global getEnd__31ArrayContainer$$0Q27MapCode4Code$$1Fv
+getEnd__31ArrayContainer$$0Q27MapCode4Code$$1Fv:
 /* 8041C974 004198B4  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8041C978 004198B8  4E 80 00 20 */	blr 
 
-.global "getAt__31ArrayContainer<Q27MapCode4Code>Fi"
-"getAt__31ArrayContainer<Q27MapCode4Code>Fi":
+.global getAt__31ArrayContainer$$0Q27MapCode4Code$$1Fi
+getAt__31ArrayContainer$$0Q27MapCode4Code$$1Fi:
 /* 8041C97C 004198BC  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 8041C980 004198C0  7C 60 22 14 */	add r3, r0, r4
 /* 8041C984 004198C4  4E 80 00 20 */	blr 
 
-.global "getTo__31ArrayContainer<Q27MapCode4Code>Fv"
-"getTo__31ArrayContainer<Q27MapCode4Code>Fv":
+.global getTo__31ArrayContainer$$0Q27MapCode4Code$$1Fv
+getTo__31ArrayContainer$$0Q27MapCode4Code$$1Fv:
 /* 8041C988 004198C8  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 8041C98C 004198CC  4E 80 00 20 */	blr 
 
-.global "getObject__26Container<Q27MapCode4Code>FPv"
-"getObject__26Container<Q27MapCode4Code>FPv":
+.global getObject__26Container$$0Q27MapCode4Code$$1FPv
+getObject__26Container$$0Q27MapCode4Code$$1FPv:
 /* 8041C990 004198D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041C994 004198D4  7C 08 02 A6 */	mflr r0
 /* 8041C998 004198D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -445,8 +445,8 @@ readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code:
 /* 8041C9B4 004198F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041C9B8 004198F8  4E 80 00 20 */	blr 
 
-.global "getAt__26Container<Q27MapCode4Code>Fi"
-"getAt__26Container<Q27MapCode4Code>Fi":
+.global getAt__26Container$$0Q27MapCode4Code$$1Fi
+getAt__26Container$$0Q27MapCode4Code$$1Fi:
 /* 8041C9BC 004198FC  38 60 00 00 */	li r3, 0
 /* 8041C9C0 00419900  4E 80 00 20 */	blr 
 

@@ -80,8 +80,8 @@ lbl_80456204:
 /* 804562A8 004531E8  38 21 00 30 */	addi r1, r1, 0x30
 /* 804562AC 004531EC  4E 80 00 20 */	blr 
 
-.global "addOption__4MenuFiPcP18IDelegate1<R4Menu>b"
-"addOption__4MenuFiPcP18IDelegate1<R4Menu>b":
+.global addOption__4MenuFiPcP18IDelegate1$$0R4Menu$$1b
+addOption__4MenuFiPcP18IDelegate1$$0R4Menu$$1b:
 /* 804562B0 004531F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804562B4 004531F4  7C 08 02 A6 */	mflr r0
 /* 804562B8 004531F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -114,7 +114,7 @@ lbl_804562F8:
 /* 80456320 00453260  7F 63 DB 78 */	mr r3, r27
 /* 80456324 00453264  7F C6 F3 78 */	mr r6, r30
 /* 80456328 00453268  38 80 00 10 */	li r4, 0x10
-/* 8045632C 0045326C  48 00 00 45 */	bl "addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>"
+/* 8045632C 0045326C  48 00 00 45 */	bl addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1$$0R4Menu$$1
 lbl_80456330:
 /* 80456330 00453270  80 1B 00 24 */	lwz r0, 0x24(r27)
 /* 80456334 00453274  28 00 00 00 */	cmplwi r0, 0
@@ -134,8 +134,8 @@ lbl_80456350:
 /* 80456368 004532A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045636C 004532AC  4E 80 00 20 */	blr 
 
-.global "addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>"
-"addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>":
+.global addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1$$0R4Menu$$1
+addKeyEvent__4MenuFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1$$0R4Menu$$1:
 /* 80456370 004532B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80456374 004532B4  7C 08 02 A6 */	mflr r0
 /* 80456378 004532B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -154,7 +154,7 @@ lbl_80456350:
 /* 804563AC 004532EC  7F A4 EB 78 */	mr r4, r29
 /* 804563B0 004532F0  7F C5 F3 78 */	mr r5, r30
 /* 804563B4 004532F4  7F E6 FB 78 */	mr r6, r31
-/* 804563B8 004532F8  48 00 04 21 */	bl "__ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>"
+/* 804563B8 004532F8  48 00 04 21 */	bl __ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1$$0R4Menu$$1
 /* 804563BC 004532FC  7C 64 1B 78 */	mr r4, r3
 lbl_804563C0:
 /* 804563C0 00453300  80 7C 00 28 */	lwz r3, 0x28(r28)
@@ -448,8 +448,8 @@ lbl_804567B8:
 /* 804567D0 00453710  38 21 00 20 */	addi r1, r1, 0x20
 /* 804567D4 00453714  4E 80 00 20 */	blr 
 
-.global "__ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>"
-"__ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1<R4Menu>":
+.global __ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1$$0R4Menu$$1
+__ct__Q24Menu8KeyEventFQ34Menu8KeyEvent9cTypeFlagUlP18IDelegate1$$0R4Menu$$1:
 /* 804567D8 00453718  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804567DC 0045371C  7C 08 02 A6 */	mflr r0
 /* 804567E0 00453720  90 01 00 24 */	stw r0, 0x24(r1)

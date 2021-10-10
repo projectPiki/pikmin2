@@ -907,10 +907,10 @@ __sinit_JKRDvdRipper_cpp:
 /* 8001FDC0 0001CD00  38 63 6E 18 */	addi r3, r3, sDvdAsyncList__12JKRDvdRipper@l
 /* 8001FDC4 0001CD04  48 00 6B 0D */	bl initiate__10JSUPtrListFv
 /* 8001FDC8 0001CD08  3C 60 80 50 */	lis r3, sDvdAsyncList__12JKRDvdRipper@ha
-/* 8001FDCC 0001CD0C  3C 80 80 02 */	lis r4, "__dt__23JSUList<12JKRDMCommand>Fv"@ha
+/* 8001FDCC 0001CD0C  3C 80 80 02 */	lis r4, __dt__23JSUList$$012JKRDMCommand$$1Fv@ha
 /* 8001FDD0 0001CD10  3C A0 80 4F */	lis r5, lbl_804EFF78@ha
 /* 8001FDD4 0001CD14  38 63 6E 18 */	addi r3, r3, sDvdAsyncList__12JKRDvdRipper@l
-/* 8001FDD8 0001CD18  38 84 FD F4 */	addi r4, r4, "__dt__23JSUList<12JKRDMCommand>Fv"@l
+/* 8001FDD8 0001CD18  38 84 FD F4 */	addi r4, r4, __dt__23JSUList$$012JKRDMCommand$$1Fv@l
 /* 8001FDDC 0001CD1C  38 A5 FF 78 */	addi r5, r5, lbl_804EFF78@l
 /* 8001FDE0 0001CD20  48 0A 19 21 */	bl __register_global_object
 /* 8001FDE4 0001CD24  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -918,8 +918,8 @@ __sinit_JKRDvdRipper_cpp:
 /* 8001FDEC 0001CD2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001FDF0 0001CD30  4E 80 00 20 */	blr 
 
-.global "__dt__23JSUList<12JKRDMCommand>Fv"
-"__dt__23JSUList<12JKRDMCommand>Fv":
+.global __dt__23JSUList$$012JKRDMCommand$$1Fv
+__dt__23JSUList$$012JKRDMCommand$$1Fv:
 /* 8001FDF4 0001CD34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001FDF8 0001CD38  7C 08 02 A6 */	mflr r0
 /* 8001FDFC 0001CD3C  90 01 00 14 */	stw r0, 0x14(r1)

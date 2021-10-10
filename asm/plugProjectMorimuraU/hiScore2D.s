@@ -363,10 +363,10 @@ __ct__Q28Morimura8THiScoreFv:
 /* 8037CF14 00379E54  C0 82 08 E4 */	lfs f4, lbl_8051EC44@sda21(r2)
 /* 8037CF18 00379E58  90 9F 00 00 */	stw r4, 0(r31)
 /* 8037CF1C 00379E5C  38 A4 00 10 */	addi r5, r4, 0x10
-/* 8037CF20 00379E60  3C 60 80 38 */	lis r3, "__ct__10Vector2<f>Fv"@ha
+/* 8037CF20 00379E60  3C 60 80 38 */	lis r3, __ct__10Vector2$$0f$$1Fv@ha
 /* 8037CF24 00379E64  C0 62 08 B8 */	lfs f3, lbl_8051EC18@sda21(r2)
 /* 8037CF28 00379E68  90 BF 00 18 */	stw r5, 0x18(r31)
-/* 8037CF2C 00379E6C  38 83 D0 B8 */	addi r4, r3, "__ct__10Vector2<f>Fv"@l
+/* 8037CF2C 00379E6C  38 83 D0 B8 */	addi r4, r3, __ct__10Vector2$$0f$$1Fv@l
 /* 8037CF30 00379E70  C0 42 08 E8 */	lfs f2, lbl_8051EC48@sda21(r2)
 /* 8037CF34 00379E74  38 7F 01 A4 */	addi r3, r31, 0x1a4
 /* 8037CF38 00379E78  90 1F 00 B4 */	stw r0, 0xb4(r31)
@@ -466,8 +466,8 @@ __ct__Q28Morimura8THiScoreFv:
 /* 8037D0B0 00379FF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037D0B4 00379FF4  4E 80 00 20 */	blr 
 
-.global "__ct__10Vector2<f>Fv"
-"__ct__10Vector2<f>Fv":
+.global __ct__10Vector2$$0f$$1Fv
+__ct__10Vector2$$0f$$1Fv:
 /* 8037D0B8 00379FF8  4E 80 00 20 */	blr 
 
 .global doCreate__Q28Morimura8THiScoreFP10JKRArchive
@@ -2410,7 +2410,7 @@ lbl_8037EC44:
 /* 8037ED28 0037BC68  EC 03 00 2A */	fadds f0, f3, f0
 /* 8037ED2C 0037BC6C  D0 21 00 28 */	stfs f1, 0x28(r1)
 /* 8037ED30 0037BC70  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 8037ED34 0037BC74  4B CB 7A A1 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 8037ED34 0037BC74  4B CB 7A A1 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 8037ED38 0037BC78  38 60 00 01 */	li r3, 1
 /* 8037ED3C 0037BC7C  4B D6 A4 1D */	bl GXSetAlphaUpdate
 /* 8037ED40 0037BC80  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -4431,7 +4431,7 @@ __sinit_hiScore2D_cpp:
 /* 80380A1C 0037D95C  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 80380A20 0037D960  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q28Morimura8THiScoreFv"
-"@24@__dt__Q28Morimura8THiScoreFv":
+.global $$224$$2__dt__Q28Morimura8THiScoreFv
+$$224$$2__dt__Q28Morimura8THiScoreFv:
 /* 80380A24 0037D964  38 63 FF E8 */	addi r3, r3, -24
 /* 80380A28 0037D968  4B FF FE 80 */	b __dt__Q28Morimura8THiScoreFv

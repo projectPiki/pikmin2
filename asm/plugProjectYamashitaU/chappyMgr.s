@@ -81,9 +81,9 @@ loadTexData__Q34Game6Chappy3MgrFv:
 /* 80119890 001167D0  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80119894 001167D4  7C 7F 1B 78 */	mr r31, r3
 /* 80119898 001167D8  38 61 00 08 */	addi r3, r1, 8
-/* 8011989C 001167DC  80 8D 83 C8 */	lwz r4, "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"@sda21(r13)
+/* 8011989C 001167DC  80 8D 83 C8 */	lwz r4, cChappyChangeTexName0__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2@sda21(r13)
 /* 801198A0 001167E0  48 33 2D 7D */	bl __ct__Q212LoadResource11ArgAramOnlyFPCc
-/* 801198A4 001167E4  80 0D 83 C8 */	lwz r0, "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"@sda21(r13)
+/* 801198A4 001167E4  80 0D 83 C8 */	lwz r0, cChappyChangeTexName0__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2@sda21(r13)
 /* 801198A8 001167E8  38 81 00 08 */	addi r4, r1, 8
 /* 801198AC 001167EC  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 801198B0 001167F0  90 01 00 08 */	stw r0, 8(r1)
@@ -91,7 +91,7 @@ loadTexData__Q34Game6Chappy3MgrFv:
 /* 801198B8 001167F8  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 801198BC 001167FC  38 81 00 08 */	addi r4, r1, 8
 /* 801198C0 00116800  90 1F 00 44 */	stw r0, 0x44(r31)
-/* 801198C4 00116804  80 0D 83 CC */	lwz r0, "cChappyChangeTexName1__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"@sda21(r13)
+/* 801198C4 00116804  80 0D 83 CC */	lwz r0, cChappyChangeTexName1__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2@sda21(r13)
 /* 801198C8 00116808  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 801198CC 0011680C  90 01 00 08 */	stw r0, 8(r1)
 /* 801198D0 00116810  48 33 2E D1 */	bl load__Q212LoadResource3MgrFRQ212LoadResource3Arg
@@ -153,9 +153,9 @@ __ct__Q34Game10ChappyBase5ParmsFv:
 /* 80119994 001168D4  91 1E 08 00 */	stw r8, 0x800(r30)
 /* 80119998 001168D8  90 1E 08 04 */	stw r0, 0x804(r30)
 /* 8011999C 001168DC  48 2F 9C BD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801199A0 001168E0  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 801199A0 001168E0  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 801199A4 001168E4  3C A0 66 70 */	lis r5, 0x66703032@ha
-/* 801199A8 001168E8  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 801199A8 001168E8  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 801199AC 001168EC  C0 02 97 B0 */	lfs f0, lbl_80517B10@sda21(r2)
 /* 801199B0 001168F0  90 1E 08 08 */	stw r0, 0x808(r30)
 /* 801199B4 001168F4  38 7E 08 30 */	addi r3, r30, 0x830
@@ -168,9 +168,9 @@ __ct__Q34Game10ChappyBase5ParmsFv:
 /* 801199D0 00116910  D0 3E 08 28 */	stfs f1, 0x828(r30)
 /* 801199D4 00116914  D0 1E 08 2C */	stfs f0, 0x82c(r30)
 /* 801199D8 00116918  48 2F 9C 81 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801199DC 0011691C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 801199DC 0011691C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 801199E0 00116920  3C A0 66 70 */	lis r5, 0x66703033@ha
-/* 801199E4 00116924  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 801199E4 00116924  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 801199E8 00116928  C0 02 97 BC */	lfs f0, lbl_80517B1C@sda21(r2)
 /* 801199EC 0011692C  90 1E 08 30 */	stw r0, 0x830(r30)
 /* 801199F0 00116930  38 7E 08 58 */	addi r3, r30, 0x858
@@ -183,9 +183,9 @@ __ct__Q34Game10ChappyBase5ParmsFv:
 /* 80119A0C 0011694C  D0 3E 08 50 */	stfs f1, 0x850(r30)
 /* 80119A10 00116950  D0 1E 08 54 */	stfs f0, 0x854(r30)
 /* 80119A14 00116954  48 2F 9C 45 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80119A18 00116958  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 80119A18 00116958  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 80119A1C 0011695C  C0 42 97 C4 */	lfs f2, lbl_80517B24@sda21(r2)
-/* 80119A20 00116960  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 80119A20 00116960  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 80119A24 00116964  C0 22 97 B4 */	lfs f1, lbl_80517B14@sda21(r2)
 /* 80119A28 00116968  90 1E 08 58 */	stw r0, 0x858(r30)
 /* 80119A2C 0011696C  38 00 00 00 */	li r0, 0
@@ -320,7 +320,7 @@ getEnemy__Q34Game6Chappy3MgrFi:
 /* 80119BEC 00116B2C  7C 63 02 14 */	add r3, r3, r0
 /* 80119BF0 00116B30  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game6Chappy3MgrFv"
-"@4@__dt__Q34Game6Chappy3MgrFv":
+.global $$24$$2__dt__Q34Game6Chappy3MgrFv
+$$24$$2__dt__Q34Game6Chappy3MgrFv:
 /* 80119BF4 00116B34  38 63 FF FC */	addi r3, r3, -4
 /* 80119BF8 00116B38  4B FF FE BC */	b __dt__Q34Game6Chappy3MgrFv

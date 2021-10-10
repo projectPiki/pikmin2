@@ -617,9 +617,9 @@ attackPikmin__Q34Game5Armor3ObjFv:
 /* 8027DF00 0027AE40  93 81 00 60 */	stw r28, 0x60(r1)
 /* 8027DF04 0027AE44  38 80 00 00 */	li r4, 0
 /* 8027DF08 0027AE48  80 0D 92 F4 */	lwz r0, pikiMgr__4Game@sda21(r13)
-/* 8027DF0C 0027AE4C  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 8027DF0C 0027AE4C  3C A0 80 4B */	lis r5, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 8027DF10 0027AE50  90 81 00 48 */	stw r4, 0x48(r1)
-/* 8027DF14 0027AE54  38 A5 BC 9C */	addi r5, r5, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 8027DF14 0027AE54  38 A5 BC 9C */	addi r5, r5, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 8027DF18 0027AE58  28 04 00 00 */	cmplwi r4, 0
 /* 8027DF1C 0027AE5C  90 A1 00 3C */	stw r5, 0x3c(r1)
 /* 8027DF20 0027AE60  7C 7F 1B 78 */	mr r31, r3
@@ -706,7 +706,7 @@ lbl_8027E03C:
 /* 8027E050 0027AF90  28 00 00 00 */	cmplwi r0, 0
 /* 8027E054 0027AF94  40 82 01 44 */	bne lbl_8027E198
 /* 8027E058 0027AF98  38 81 00 30 */	addi r4, r1, 0x30
-/* 8027E05C 0027AF9C  4B EB A4 6D */	bl "getPosition__13MouthCollPartFR10Vector3<f>"
+/* 8027E05C 0027AF9C  4B EB A4 6D */	bl getPosition__13MouthCollPartFR10Vector3$$0f$$1
 /* 8027E060 0027AFA0  7F A4 EB 78 */	mr r4, r29
 /* 8027E064 0027AFA4  38 61 00 08 */	addi r3, r1, 8
 /* 8027E068 0027AFA8  81 9D 00 00 */	lwz r12, 0(r29)
@@ -922,7 +922,7 @@ killSlotPiki__Q34Game5Armor3ObjFv:
 /* 8027E35C 0027B29C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8027E360 0027B2A0  80 A3 00 C0 */	lwz r5, 0xc0(r3)
 /* 8027E364 0027B2A4  C0 25 08 1C */	lfs f1, 0x81c(r5)
-/* 8027E368 0027B2A8  4B E9 5B 1D */	bl "swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
+/* 8027E368 0027B2A8  4B E9 5B 1D */	bl swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
 /* 8027E36C 0027B2AC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8027E370 0027B2B0  7C 08 03 A6 */	mtlr r0
 /* 8027E374 0027B2B4  38 21 00 10 */	addi r1, r1, 0x10
@@ -986,8 +986,8 @@ setNearestBridge__Q34Game5Armor3ObjFv:
 /* 8027E434 0027B374  38 63 00 30 */	addi r3, r3, 0x30
 lbl_8027E438:
 /* 8027E438 0027B378  38 00 00 00 */	li r0, 0
-/* 8027E43C 0027B37C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-/* 8027E440 0027B380  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
+/* 8027E43C 0027B37C  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
+/* 8027E440 0027B380  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
 /* 8027E444 0027B384  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8027E448 0027B388  28 00 00 00 */	cmplwi r0, 0
 /* 8027E44C 0027B38C  90 81 00 14 */	stw r4, 0x14(r1)
@@ -2154,7 +2154,7 @@ getEnemyTypeID__Q34Game5Armor3ObjFv:
 /* 8027F4FC 0027C43C  38 60 00 0F */	li r3, 0xf
 /* 8027F500 0027C440  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx12TYoroiAttackFv"
-"@4@__dt__Q23efx12TYoroiAttackFv":
+.global $$24$$2__dt__Q23efx12TYoroiAttackFv
+$$24$$2__dt__Q23efx12TYoroiAttackFv:
 /* 8027F504 0027C444  38 63 FF FC */	addi r3, r3, -4
 /* 8027F508 0027C448  4B FF FF 50 */	b __dt__Q23efx12TYoroiAttackFv

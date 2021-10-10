@@ -845,7 +845,7 @@ exec__Q34Game11OtakaraBase9StateMoveFPQ24Game9EnemyBase:
 /* 802B43AC 002B12EC  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802B43B0 002B12F0  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802B43B4 002B12F4  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802B43B8 002B12F8  4B E6 12 25 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+/* 802B43B8 002B12F8  4B E6 12 25 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
 /* 802B43BC 002B12FC  7F E3 FB 78 */	mr r3, r31
 /* 802B43C0 002B1300  48 00 2D 45 */	bl isTakeTreasure__Q34Game11OtakaraBase3ObjFv
 /* 802B43C4 002B1304  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -1192,7 +1192,7 @@ exec__Q34Game11OtakaraBase9StateTakeFPQ24Game9EnemyBase:
 /* 802B489C 002B17DC  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802B48A0 002B17E0  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802B48A4 002B17E4  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802B48A8 002B17E8  4B E6 0D 35 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+/* 802B48A8 002B17E8  4B E6 0D 35 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
 /* 802B48AC 002B17EC  80 7F 01 88 */	lwz r3, 0x188(r31)
 /* 802B48B0 002B17F0  88 03 00 24 */	lbz r0, 0x24(r3)
 /* 802B48B4 002B17F4  28 00 00 00 */	cmplwi r0, 0
@@ -1512,7 +1512,7 @@ exec__Q34Game11OtakaraBase13StateItemMoveFPQ24Game9EnemyBase:
 /* 802B4D28 002B1C68  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802B4D2C 002B1C6C  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802B4D30 002B1C70  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802B4D34 002B1C74  4B E6 08 A9 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+/* 802B4D34 002B1C74  4B E6 08 A9 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
 /* 802B4D38 002B1C78  48 00 00 48 */	b lbl_802B4D80
 lbl_802B4D3C:
 /* 802B4D3C 002B1C7C  38 00 00 08 */	li r0, 8
@@ -2451,7 +2451,7 @@ lbl_802B59B8:
 /* 802B5A98 002B29D8  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 802B5A9C 002B29DC  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802B5AA0 002B29E0  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802B5AA4 002B29E4  4B E5 FB 39 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+/* 802B5AA4 002B29E4  4B E5 FB 39 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
 /* 802B5AA8 002B29E8  48 00 00 48 */	b lbl_802B5AF0
 lbl_802B5AAC:
 /* 802B5AAC 002B29EC  38 00 00 0D */	li r0, 0xd

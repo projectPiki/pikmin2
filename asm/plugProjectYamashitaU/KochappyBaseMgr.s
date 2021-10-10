@@ -207,7 +207,7 @@ getEnemyTypeID__Q34Game12KochappyBase3MgrFv:
 /* 8012DAD8 0012AA18  38 60 00 01 */	li r3, 1
 /* 8012DADC 0012AA1C  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game12KochappyBase3MgrFv"
-"@4@__dt__Q34Game12KochappyBase3MgrFv":
+.global $$24$$2__dt__Q34Game12KochappyBase3MgrFv
+$$24$$2__dt__Q34Game12KochappyBase3MgrFv:
 /* 8012DAE0 0012AA20  38 63 FF FC */	addi r3, r3, -4
 /* 8012DAE4 0012AA24  4B FE 48 20 */	b __dt__Q34Game12KochappyBase3MgrFv

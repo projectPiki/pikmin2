@@ -154,7 +154,7 @@ loadTexData__Q34Game9RedKabuto3MgrFv:
 /* 8030000C 002FCF4C  7C 7F 1B 78 */	mr r31, r3
 /* 80300010 002FCF50  90 03 00 44 */	stw r0, 0x44(r3)
 /* 80300014 002FCF54  38 61 00 08 */	addi r3, r1, 8
-/* 80300018 002FCF58  80 8D 85 20 */	lwz r4, "cKabutoChangeTexName__Q34Game9RedKabuto26@unnamed@RedKabutoMgr_cpp@"@sda21(r13)
+/* 80300018 002FCF58  80 8D 85 20 */	lwz r4, cKabutoChangeTexName__Q34Game9RedKabuto26$$2unnamed$$2RedKabutoMgr_cpp$$2@sda21(r13)
 /* 8030001C 002FCF5C  48 14 C5 BD */	bl __ct__Q212LoadResource3ArgFPCc
 /* 80300020 002FCF60  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 80300024 002FCF64  38 81 00 08 */	addi r4, r1, 8
@@ -246,7 +246,7 @@ getChangeTexture__Q34Game9RedKabuto3MgrFv:
 /* 80300148 002FD088  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 8030014C 002FD08C  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game9RedKabuto3MgrFv"
-"@4@__dt__Q34Game9RedKabuto3MgrFv":
+.global $$24$$2__dt__Q34Game9RedKabuto3MgrFv
+$$24$$2__dt__Q34Game9RedKabuto3MgrFv:
 /* 80300150 002FD090  38 63 FF FC */	addi r3, r3, -4
 /* 80300154 002FD094  4B FF FF 24 */	b __dt__Q34Game9RedKabuto3MgrFv

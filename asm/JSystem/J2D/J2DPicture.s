@@ -10,12 +10,12 @@ __ct__10J2DPictureFv:
 /* 80039AEC 00036A2C  7C 7F 1B 78 */	mr r31, r3
 /* 80039AF0 00036A30  4B FF D0 01 */	bl __ct__7J2DPaneFv
 /* 80039AF4 00036A34  3C 60 80 4A */	lis r3, __vt__10J2DPicture@ha
-/* 80039AF8 00036A38  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80039AF8 00036A38  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80039AFC 00036A3C  38 03 07 30 */	addi r0, r3, __vt__10J2DPicture@l
 /* 80039B00 00036A40  38 A0 00 00 */	li r5, 0
 /* 80039B04 00036A44  90 1F 00 00 */	stw r0, 0(r31)
 /* 80039B08 00036A48  38 7F 01 12 */	addi r3, r31, 0x112
-/* 80039B0C 00036A4C  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80039B0C 00036A4C  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80039B10 00036A50  38 C0 00 04 */	li r6, 4
 /* 80039B14 00036A54  38 E0 00 04 */	li r7, 4
 /* 80039B18 00036A58  48 08 7D 25 */	bl __construct_array
@@ -56,8 +56,8 @@ __ct__Q28JUtility6TColorFv:
 /* 80039B98 00036AD8  90 03 00 00 */	stw r0, 0(r3)
 /* 80039B9C 00036ADC  4E 80 00 20 */	blr 
 
-.global "__ct__Q29JGeometry8TVec2<s>Fv"
-"__ct__Q29JGeometry8TVec2<s>Fv":
+.global __ct__Q29JGeometry8TVec2$$0s$$1Fv
+__ct__Q29JGeometry8TVec2$$0s$$1Fv:
 /* 80039BA0 00036AE0  4E 80 00 20 */	blr 
 
 .global __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
@@ -75,12 +75,12 @@ __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 80039BCC 00036B0C  7C 7C 1B 78 */	mr r28, r3
 /* 80039BD0 00036B10  4B FF CF 21 */	bl __ct__7J2DPaneFv
 /* 80039BD4 00036B14  3C 60 80 4A */	lis r3, __vt__10J2DPicture@ha
-/* 80039BD8 00036B18  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80039BD8 00036B18  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80039BDC 00036B1C  38 03 07 30 */	addi r0, r3, __vt__10J2DPicture@l
 /* 80039BE0 00036B20  38 A0 00 00 */	li r5, 0
 /* 80039BE4 00036B24  90 1C 00 00 */	stw r0, 0(r28)
 /* 80039BE8 00036B28  38 7C 01 12 */	addi r3, r28, 0x112
-/* 80039BEC 00036B2C  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80039BEC 00036B2C  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80039BF0 00036B30  38 C0 00 04 */	li r6, 4
 /* 80039BF4 00036B34  38 E0 00 04 */	li r7, 4
 /* 80039BF8 00036B38  48 08 7C 45 */	bl __construct_array
@@ -126,12 +126,12 @@ __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial:
 /* 80039C8C 00036BCC  7C DC 33 78 */	mr r28, r6
 /* 80039C90 00036BD0  4B FF CE 61 */	bl __ct__7J2DPaneFv
 /* 80039C94 00036BD4  3C 60 80 4A */	lis r3, __vt__10J2DPicture@ha
-/* 80039C98 00036BD8  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80039C98 00036BD8  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80039C9C 00036BDC  38 03 07 30 */	addi r0, r3, __vt__10J2DPicture@l
 /* 80039CA0 00036BE0  38 A0 00 00 */	li r5, 0
 /* 80039CA4 00036BE4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80039CA8 00036BE8  38 7F 01 12 */	addi r3, r31, 0x112
-/* 80039CAC 00036BEC  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80039CAC 00036BEC  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80039CB0 00036BF0  38 C0 00 04 */	li r6, 4
 /* 80039CB4 00036BF4  38 E0 00 04 */	li r7, 4
 /* 80039CB8 00036BF8  48 08 7B 85 */	bl __construct_array
@@ -182,9 +182,9 @@ __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial:
 /* 80039D6C 00036CAC  38 A0 00 00 */	li r5, 0
 /* 80039D70 00036CB0  7C 9D 02 14 */	add r4, r29, r0
 /* 80039D74 00036CB4  4B FE C9 95 */	bl seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
-/* 80039D78 00036CB8  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80039D78 00036CB8  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80039D7C 00036CBC  38 61 00 44 */	addi r3, r1, 0x44
-/* 80039D80 00036CC0  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80039D80 00036CC0  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80039D84 00036CC4  38 A0 00 00 */	li r5, 0
 /* 80039D88 00036CC8  38 C0 00 04 */	li r6, 4
 /* 80039D8C 00036CCC  38 E0 00 04 */	li r7, 4
@@ -538,12 +538,12 @@ __ct__10J2DPictureFPC7ResTIMG:
 /* 8003A290 000371D0  7C 7E 1B 78 */	mr r30, r3
 /* 8003A294 000371D4  4B FF C8 5D */	bl __ct__7J2DPaneFv
 /* 8003A298 000371D8  3C 60 80 4A */	lis r3, __vt__10J2DPicture@ha
-/* 8003A29C 000371DC  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 8003A29C 000371DC  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 8003A2A0 000371E0  38 03 07 30 */	addi r0, r3, __vt__10J2DPicture@l
 /* 8003A2A4 000371E4  38 A0 00 00 */	li r5, 0
 /* 8003A2A8 000371E8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8003A2AC 000371EC  38 7E 01 12 */	addi r3, r30, 0x112
-/* 8003A2B0 000371F0  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 8003A2B0 000371F0  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 8003A2B4 000371F4  38 C0 00 04 */	li r6, 4
 /* 8003A2B8 000371F8  38 E0 00 04 */	li r7, 4
 /* 8003A2BC 000371FC  48 08 75 81 */	bl __construct_array
@@ -631,12 +631,12 @@ __ct__10J2DPictureFPCc:
 /* 8003A3DC 0003731C  7C 7E 1B 78 */	mr r30, r3
 /* 8003A3E0 00037320  4B FF C7 11 */	bl __ct__7J2DPaneFv
 /* 8003A3E4 00037324  3C 60 80 4A */	lis r3, __vt__10J2DPicture@ha
-/* 8003A3E8 00037328  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 8003A3E8 00037328  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 8003A3EC 0003732C  38 03 07 30 */	addi r0, r3, __vt__10J2DPicture@l
 /* 8003A3F0 00037330  38 A0 00 00 */	li r5, 0
 /* 8003A3F4 00037334  90 1E 00 00 */	stw r0, 0(r30)
 /* 8003A3F8 00037338  38 7E 01 12 */	addi r3, r30, 0x112
-/* 8003A3FC 0003733C  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 8003A3FC 0003733C  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 8003A400 00037340  38 C0 00 04 */	li r6, 4
 /* 8003A404 00037344  38 E0 00 04 */	li r7, 4
 /* 8003A408 00037348  48 08 74 35 */	bl __construct_array
@@ -724,12 +724,12 @@ __ct__10J2DPictureFP10JUTTexture:
 /* 8003A528 00037468  7C 7E 1B 78 */	mr r30, r3
 /* 8003A52C 0003746C  4B FF C5 C5 */	bl __ct__7J2DPaneFv
 /* 8003A530 00037470  3C 60 80 4A */	lis r3, __vt__10J2DPicture@ha
-/* 8003A534 00037474  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 8003A534 00037474  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 8003A538 00037478  38 03 07 30 */	addi r0, r3, __vt__10J2DPicture@l
 /* 8003A53C 0003747C  38 A0 00 00 */	li r5, 0
 /* 8003A540 00037480  90 1E 00 00 */	stw r0, 0(r30)
 /* 8003A544 00037484  38 7E 01 12 */	addi r3, r30, 0x112
-/* 8003A548 00037488  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 8003A548 00037488  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 8003A54C 0003748C  38 C0 00 04 */	li r6, 4
 /* 8003A550 00037490  38 E0 00 04 */	li r7, 4
 /* 8003A554 00037494  48 08 72 E9 */	bl __construct_array
@@ -790,21 +790,21 @@ append__10J2DPictureFP10JUTTexturef:
 /* 8003A620 00037560  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A624 00037564  4E 80 00 20 */	blr 
 
-.global "__ct__10J2DPictureFUxRCQ29JGeometry8TBox2<f>"
-"__ct__10J2DPictureFUxRCQ29JGeometry8TBox2<f>":
+.global __ct__10J2DPictureFUxRCQ29JGeometry8TBox2$$0f$$1
+__ct__10J2DPictureFUxRCQ29JGeometry8TBox2$$0f$$1:
 /* 8003A628 00037568  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A62C 0003756C  7C 08 02 A6 */	mflr r0
 /* 8003A630 00037570  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003A634 00037574  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8003A638 00037578  7C 7F 1B 78 */	mr r31, r3
-/* 8003A63C 0003757C  4B FF C8 21 */	bl "__ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
+/* 8003A63C 0003757C  4B FF C8 21 */	bl __ct__7J2DPaneFUxRCQ29JGeometry8TBox2$$0f$$1
 /* 8003A640 00037580  3C 60 80 4A */	lis r3, __vt__10J2DPicture@ha
-/* 8003A644 00037584  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 8003A644 00037584  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 8003A648 00037588  38 03 07 30 */	addi r0, r3, __vt__10J2DPicture@l
 /* 8003A64C 0003758C  38 A0 00 00 */	li r5, 0
 /* 8003A650 00037590  90 1F 00 00 */	stw r0, 0(r31)
 /* 8003A654 00037594  38 7F 01 12 */	addi r3, r31, 0x112
-/* 8003A658 00037598  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 8003A658 00037598  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 8003A65C 0003759C  38 C0 00 04 */	li r6, 4
 /* 8003A660 000375A0  38 E0 00 04 */	li r7, 4
 /* 8003A664 000375A4  48 08 71 D9 */	bl __construct_array
@@ -1194,7 +1194,7 @@ initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT:
 /* 8003AC14 00037B54  D0 61 00 0C */	stfs f3, 0xc(r1)
 /* 8003AC18 00037B58  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 8003AC1C 00037B5C  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 8003AC20 00037B60  4B FF D3 19 */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 8003AC20 00037B60  4B FF D3 19 */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 lbl_8003AC24:
 /* 8003AC24 00037B64  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8003AC28 00037B68  83 E1 00 2C */	lwz r31, 0x2c(r1)
@@ -1693,7 +1693,7 @@ lbl_8003B2AC:
 /* 8003B324 00038264  D0 61 00 10 */	stfs f3, 0x10(r1)
 /* 8003B328 00038268  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 8003B32C 0003826C  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 8003B330 00038270  4B FF CC 09 */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 8003B330 00038270  4B FF CC 09 */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 /* 8003B334 00038274  7F 63 DB 78 */	mr r3, r27
 /* 8003B338 00038278  38 80 00 00 */	li r4, 0
 /* 8003B33C 0003827C  38 A0 00 0F */	li r5, 0xf
@@ -1852,7 +1852,7 @@ lbl_8003B4B8:
 /* 8003B56C 000384AC  D0 61 00 0C */	stfs f3, 0xc(r1)
 /* 8003B570 000384B0  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 8003B574 000384B4  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 8003B578 000384B8  4B FF C9 C1 */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 8003B578 000384B8  4B FF C9 C1 */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 /* 8003B57C 000384BC  7F C3 F3 78 */	mr r3, r30
 /* 8003B580 000384C0  38 80 00 00 */	li r4, 0
 /* 8003B584 000384C4  38 A0 00 0F */	li r5, 0xf
@@ -2406,7 +2406,7 @@ lbl_8003BC4C:
 /* 8003BD1C 00038C5C  7F C8 F3 78 */	mr r8, r30
 /* 8003BD20 00038C60  38 81 00 08 */	addi r4, r1, 8
 /* 8003BD24 00038C64  38 C0 00 0F */	li r6, 0xf
-/* 8003BD28 00038C68  48 00 11 7D */	bl "setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb"
+/* 8003BD28 00038C68  48 00 11 7D */	bl setTexCoord__10J2DPictureFPQ29JGeometry8TVec2$$0s$$1PC10JUTTexture10J2DBinding9J2DMirrorb
 /* 8003BD2C 00038C6C  38 60 00 00 */	li r3, 0
 /* 8003BD30 00038C70  38 80 00 0D */	li r4, 0xd
 /* 8003BD34 00038C74  38 A0 00 01 */	li r5, 1
@@ -2543,8 +2543,8 @@ lbl_8003BF18:
 /* 8003BF20 00038E60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003BF24 00038E64  4E 80 00 20 */	blr 
 
-.global "drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-"drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>":
+.global drawOut__10J2DPictureFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
+drawOut__10J2DPictureFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1:
 /* 8003BF28 00038E68  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8003BF2C 00038E6C  7C 08 02 A6 */	mflr r0
 /* 8003BF30 00038E70  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -3567,8 +3567,8 @@ getNewColor__10J2DPictureFPQ28JUtility6TColor:
 /* 8003CE1C 00039D5C  98 04 00 0F */	stb r0, 0xf(r4)
 /* 8003CE20 00039D60  4E 80 00 20 */	blr 
 
-.global "setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2<s>"
-"setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2<s>":
+.global setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2$$0s$$1
+setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2$$0s$$1:
 /* 8003CE24 00039D64  A8 A4 00 00 */	lha r5, 0(r4)
 /* 8003CE28 00039D68  A8 04 00 02 */	lha r0, 2(r4)
 /* 8003CE2C 00039D6C  B0 A3 01 12 */	sth r5, 0x112(r3)
@@ -3599,14 +3599,14 @@ setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb:
 /* 8003CE84 00039DC4  7D 26 4B 78 */	mr r6, r9
 /* 8003CE88 00039DC8  7C 07 03 78 */	mr r7, r0
 /* 8003CE8C 00039DCC  38 83 01 12 */	addi r4, r3, 0x112
-/* 8003CE90 00039DD0  48 00 00 15 */	bl "setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb"
+/* 8003CE90 00039DD0  48 00 00 15 */	bl setTexCoord__10J2DPictureFPQ29JGeometry8TVec2$$0s$$1PC10JUTTexture10J2DBinding9J2DMirrorb
 /* 8003CE94 00039DD4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003CE98 00039DD8  7C 08 03 A6 */	mtlr r0
 /* 8003CE9C 00039DDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003CEA0 00039DE0  4E 80 00 20 */	blr 
 
-.global "setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb"
-"setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb":
+.global setTexCoord__10J2DPictureFPQ29JGeometry8TVec2$$0s$$1PC10JUTTexture10J2DBinding9J2DMirrorb
+setTexCoord__10J2DPictureFPQ29JGeometry8TVec2$$0s$$1PC10JUTTexture10J2DBinding9J2DMirrorb:
 /* 8003CEA4 00039DE4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8003CEA8 00039DE8  7C 08 02 A6 */	mflr r0
 /* 8003CEAC 00039DEC  90 01 00 64 */	stw r0, 0x64(r1)

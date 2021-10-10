@@ -2612,7 +2612,7 @@ lbl_803F4200:
 /* 803F4200 003F1140  C0 22 1B 94 */	lfs f1, lbl_8051FEF4@sda21(r2)
 /* 803F4204 003F1144  7F E3 FB 78 */	mr r3, r31
 /* 803F4208 003F1148  38 81 00 40 */	addi r4, r1, 0x40
-/* 803F420C 003F114C  48 00 26 E9 */	bl "getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f"
+/* 803F420C 003F114C  48 00 26 E9 */	bl getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2$$0f$$1f
 /* 803F4210 003F1150  3C 60 80 51 */	lis r3, msVal__Q32kh6Screen8WorldMap@ha
 /* 803F4214 003F1154  C0 5F 00 AC */	lfs f2, 0xac(r31)
 /* 803F4218 003F1158  38 83 40 58 */	addi r4, r3, msVal__Q32kh6Screen8WorldMap@l
@@ -4098,7 +4098,7 @@ draw3rd__Q32kh6Screen8WorldMapFR8Graphics:
 /* 803F5834 003F2774  EC 03 00 2A */	fadds f0, f3, f0
 /* 803F5838 003F2778  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 803F583C 003F277C  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 803F5840 003F2780  4B C4 0F 95 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 803F5840 003F2780  4B C4 0F 95 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 lbl_803F5844:
 /* 803F5844 003F2784  38 7F 01 90 */	addi r3, r31, 0x190
 /* 803F5848 003F2788  81 9F 01 90 */	lwz r12, 0x190(r31)
@@ -4180,7 +4180,7 @@ draw4th__Q32kh6Screen8WorldMapFR8Graphics:
 /* 803F596C 003F28AC  EC 03 00 2A */	fadds f0, f3, f0
 /* 803F5970 003F28B0  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 803F5974 003F28B4  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 803F5978 003F28B8  4B C4 0E 5D */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 803F5978 003F28B8  4B C4 0E 5D */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 lbl_803F597C:
 /* 803F597C 003F28BC  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
 /* 803F5980 003F28C0  7F C4 F3 78 */	mr r4, r30
@@ -4367,7 +4367,7 @@ lbl_803F5BF8:
 /* 803F5C14 003F2B54  C0 22 1B F8 */	lfs f1, lbl_8051FF58@sda21(r2)
 /* 803F5C18 003F2B58  38 81 00 08 */	addi r4, r1, 8
 /* 803F5C1C 003F2B5C  D3 7F 00 B0 */	stfs f27, 0xb0(r31)
-/* 803F5C20 003F2B60  48 00 0C D5 */	bl "getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f"
+/* 803F5C20 003F2B60  48 00 0C D5 */	bl getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2$$0f$$1f
 /* 803F5C24 003F2B64  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 803F5C28 003F2B68  FC 80 E8 90 */	fmr f4, f29
 /* 803F5C2C 003F2B6C  40 82 00 10 */	bne lbl_803F5C3C
@@ -4696,7 +4696,7 @@ lbl_803F610C:
 /* 803F6114 003F3054  38 61 00 08 */	addi r3, r1, 8
 /* 803F6118 003F3058  38 C1 00 10 */	addi r6, r1, 0x10
 /* 803F611C 003F305C  7C 80 FA 14 */	add r4, r0, r31
-/* 803F6120 003F3060  48 00 1A 21 */	bl "move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<f>"
+/* 803F6120 003F3060  48 00 1A 21 */	bl move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2$$0f$$1
 /* 803F6124 003F3064  C0 21 00 08 */	lfs f1, 8(r1)
 /* 803F6128 003F3068  3B FF 00 34 */	addi r31, r31, 0x34
 /* 803F612C 003F306C  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -5252,8 +5252,8 @@ lbl_803F68EC:
 /* 803F68EC 003F382C  7C 03 03 78 */	mr r3, r0
 /* 803F68F0 003F3830  4E 80 00 20 */	blr 
 
-.global "getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f"
-"getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2<f>f":
+.global getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2$$0f$$1f
+getRotDir__Q32kh6Screen8WorldMapFRCQ29JGeometry8TVec2$$0f$$1f:
 /* 803F68F4 003F3834  C0 64 00 00 */	lfs f3, 0(r4)
 /* 803F68F8 003F3838  C0 42 1B 94 */	lfs f2, lbl_8051FEF4@sda21(r2)
 /* 803F68FC 003F383C  FC 03 10 40 */	fcmpo cr0, f3, f2
@@ -6491,8 +6491,8 @@ lbl_803F7AF8:
 /* 803F7B38 003F4A78  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F7B3C 003F4A7C  4E 80 00 20 */	blr 
 
-.global "move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<f>"
-"move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2<f>":
+.global move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2$$0f$$1
+move__Q42kh6Screen8WorldMap13OnyonDynamicsFPQ32kh6Screen8WorldMapRCQ29JGeometry8TVec2$$0f$$1:
 /* 803F7B40 003F4A80  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803F7B44 003F4A84  7C 08 02 A6 */	mflr r0
 /* 803F7B48 003F4A88  90 01 00 64 */	stw r0, 0x64(r1)
@@ -7189,12 +7189,12 @@ __sinit_khWorldMap_cpp:
 /* 803F84F8 003F5438  F3 81 00 18 */	psq_st f28, 24(r1), 0, qr0
 /* 803F84FC 003F543C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803F8500 003F5440  3C 80 80 51 */	lis r4, msVal__Q32kh6Screen8WorldMap@ha
-/* 803F8504 003F5444  3C 60 80 40 */	lis r3, "__ct__Q29JGeometry8TVec2<f>Fv"@ha
+/* 803F8504 003F5444  3C 60 80 40 */	lis r3, __ct__Q29JGeometry8TVec2$$0f$$1Fv@ha
 /* 803F8508 003F5448  38 84 40 58 */	addi r4, r4, msVal__Q32kh6Screen8WorldMap@l
 /* 803F850C 003F544C  38 A0 00 00 */	li r5, 0
 /* 803F8510 003F5450  3B E4 00 50 */	addi r31, r4, 0x50
 /* 803F8514 003F5454  38 C0 00 08 */	li r6, 8
-/* 803F8518 003F5458  38 83 86 78 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<f>Fv"@l
+/* 803F8518 003F5458  38 83 86 78 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0f$$1Fv@l
 /* 803F851C 003F545C  38 E0 00 02 */	li r7, 2
 /* 803F8520 003F5460  7F E3 FB 78 */	mr r3, r31
 /* 803F8524 003F5464  4B CC 93 19 */	bl __construct_array
@@ -7283,21 +7283,21 @@ __sinit_khWorldMap_cpp:
 /* 803F8670 003F55B0  38 21 00 50 */	addi r1, r1, 0x50
 /* 803F8674 003F55B4  4E 80 00 20 */	blr 
 
-.global "__ct__Q29JGeometry8TVec2<f>Fv"
-"__ct__Q29JGeometry8TVec2<f>Fv":
+.global __ct__Q29JGeometry8TVec2$$0f$$1Fv
+__ct__Q29JGeometry8TVec2$$0f$$1Fv:
 /* 803F8678 003F55B8  4E 80 00 20 */	blr 
 
-.global "@8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv"
-"@8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv":
+.global $$28$$2__dt__Q35efx2d8WorldMap13T2DRocketGlowFv
+$$28$$2__dt__Q35efx2d8WorldMap13T2DRocketGlowFv:
 /* 803F867C 003F55BC  38 63 FF F8 */	addi r3, r3, -8
 /* 803F8680 003F55C0  4B FF FB B8 */	b __dt__Q35efx2d8WorldMap13T2DRocketGlowFv
 
-.global "@8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv"
-"@8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv":
+.global $$28$$2__dt__Q35efx2d8WorldMap11T2DMapFlareFv
+$$28$$2__dt__Q35efx2d8WorldMap11T2DMapFlareFv:
 /* 803F8684 003F55C4  38 63 FF F8 */	addi r3, r3, -8
 /* 803F8688 003F55C8  4B FF FB 14 */	b __dt__Q35efx2d8WorldMap11T2DMapFlareFv
 
-.global "@8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv"
-"@8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv":
+.global $$28$$2__dt__Q35efx2d8WorldMap10T2DShstar1Fv
+$$28$$2__dt__Q35efx2d8WorldMap10T2DShstar1Fv:
 /* 803F868C 003F55CC  38 63 FF F8 */	addi r3, r3, -8
 /* 803F8690 003F55D0  4B FF FA 70 */	b __dt__Q35efx2d8WorldMap10T2DShstar1Fv

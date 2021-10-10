@@ -145,7 +145,7 @@ lbl_8044CD84:
 /* 8044CDBC 00449CFC  98 03 01 0C */	stb r0, 0x10c(r3)
 /* 8044CDC0 00449D00  80 6D 88 F8 */	lwz r3, sManager__10JUTProcBar@sda21(r13)
 /* 8044CDC4 00449D04  98 03 01 30 */	stb r0, 0x130(r3)
-/* 8044CDC8 00449D08  88 0D 86 A8 */	lbz r0, "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"@sda21(r13)
+/* 8044CDC8 00449D08  88 0D 86 A8 */	lbz r0, sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@sda21(r13)
 /* 8044CDCC 00449D0C  7C 00 07 74 */	extsb r0, r0
 /* 8044CDD0 00449D10  2C 00 FF FF */	cmpwi r0, -1
 /* 8044CDD4 00449D14  40 82 00 44 */	bne lbl_8044CE18
@@ -164,7 +164,7 @@ lbl_8044CD84:
 /* 8044CE08 00449D48  FC 00 00 1E */	fctiwz f0, f0
 /* 8044CE0C 00449D4C  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 8044CE10 00449D50  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8044CE14 00449D54  98 0D 86 A8 */	stb r0, "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"@sda21(r13)
+/* 8044CE14 00449D54  98 0D 86 A8 */	stb r0, sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@sda21(r13)
 lbl_8044CE18:
 /* 8044CE18 00449D58  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8044CE1C 00449D5C  83 E1 00 2C */	lwz r31, 0x2c(r1)
@@ -196,14 +196,14 @@ doDraw__Q24Demo7SectionFR8Graphics:
 /* 8044CE78 00449DB8  80 9E 01 AC */	lwz r4, 0x1ac(r30)
 /* 8044CE7C 00449DBC  38 61 00 08 */	addi r3, r1, 8
 /* 8044CE80 00449DC0  4B BE D6 91 */	bl __ct__10J2DPictureFP10JUTTexture
-/* 8044CE84 00449DC4  88 8D 86 A8 */	lbz r4, "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"@sda21(r13)
+/* 8044CE84 00449DC4  88 8D 86 A8 */	lbz r4, sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@sda21(r13)
 /* 8044CE88 00449DC8  3C 00 43 30 */	lis r0, 0x4330
-/* 8044CE8C 00449DCC  3C 60 80 4F */	lis r3, "sLogoLocate__Q24Demo25@unnamed@demoSection_cpp@"@ha
+/* 8044CE8C 00449DCC  3C 60 80 4F */	lis r3, sLogoLocate__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@ha
 /* 8044CE90 00449DD0  90 01 01 70 */	stw r0, 0x170(r1)
 /* 8044CE94 00449DD4  7C 84 07 74 */	extsb r4, r4
 /* 8044CE98 00449DD8  C8 42 27 68 */	lfd f2, lbl_80520AC8@sda21(r2)
 /* 8044CE9C 00449DDC  54 84 10 3A */	slwi r4, r4, 2
-/* 8044CEA0 00449DE0  38 63 D3 28 */	addi r3, r3, "sLogoLocate__Q24Demo25@unnamed@demoSection_cpp@"@l
+/* 8044CEA0 00449DE0  38 63 D3 28 */	addi r3, r3, sLogoLocate__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@l
 /* 8044CEA4 00449DE4  7C 83 22 14 */	add r4, r3, r4
 /* 8044CEA8 00449DE8  90 01 01 78 */	stw r0, 0x178(r1)
 /* 8044CEAC 00449DEC  A0 A4 00 00 */	lhz r5, 0(r4)
@@ -315,14 +315,14 @@ lbl_8044D008:
 lbl_8044D030:
 /* 8044D030 00449F70  7F E3 FB 78 */	mr r3, r31
 /* 8044D034 00449F74  4B EF 51 AD */	bl deleteCurrentScene__Q28PSSystem8SceneMgrFv
-/* 8044D038 00449F78  88 6D 86 A8 */	lbz r3, "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"@sda21(r13)
+/* 8044D038 00449F78  88 6D 86 A8 */	lbz r3, sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@sda21(r13)
 /* 8044D03C 00449F7C  38 63 00 01 */	addi r3, r3, 1
 /* 8044D040 00449F80  7C 60 07 74 */	extsb r0, r3
-/* 8044D044 00449F84  98 6D 86 A8 */	stb r3, "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"@sda21(r13)
+/* 8044D044 00449F84  98 6D 86 A8 */	stb r3, sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@sda21(r13)
 /* 8044D048 00449F88  28 00 00 08 */	cmplwi r0, 8
 /* 8044D04C 00449F8C  41 80 00 0C */	blt lbl_8044D058
 /* 8044D050 00449F90  38 00 00 00 */	li r0, 0
-/* 8044D054 00449F94  98 0D 86 A8 */	stb r0, "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"@sda21(r13)
+/* 8044D054 00449F94  98 0D 86 A8 */	stb r0, sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@sda21(r13)
 lbl_8044D058:
 /* 8044D058 00449F98  38 7E 00 C0 */	addi r3, r30, 0xc0
 /* 8044D05C 00449F9C  48 00 35 01 */	bl stop__Q24Game9THPPlayerFv
@@ -337,12 +337,12 @@ lbl_8044D058:
 doLoadingStart__Q24Demo7SectionFv:
 /* 8044D078 00449FB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044D07C 00449FBC  7C 08 02 A6 */	mflr r0
-/* 8044D080 00449FC0  38 8D 86 A0 */	addi r4, r13, "sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@"@sda21
+/* 8044D080 00449FC0  38 8D 86 A0 */	addi r4, r13, sMovieIndexTable__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@sda21
 /* 8044D084 00449FC4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8044D088 00449FC8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8044D08C 00449FCC  7C 7F 1B 78 */	mr r31, r3
 /* 8044D090 00449FD0  38 7F 00 C0 */	addi r3, r31, 0xc0
-/* 8044D094 00449FD4  88 0D 86 A8 */	lbz r0, "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"@sda21(r13)
+/* 8044D094 00449FD4  88 0D 86 A8 */	lbz r0, sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2@sda21(r13)
 /* 8044D098 00449FD8  7C 00 07 74 */	extsb r0, r0
 /* 8044D09C 00449FDC  7C 84 00 AE */	lbzx r4, r4, r0
 /* 8044D0A0 00449FE0  48 00 2F 01 */	bl load__Q24Game9THPPlayerFQ34Game9THPPlayer11EMovieIndex
@@ -353,11 +353,11 @@ doLoadingStart__Q24Demo7SectionFv:
 /* 8044D0B4 00449FF4  3C 60 80 4F */	lis r3, lbl_804ED348@ha
 /* 8044D0B8 00449FF8  3C 80 80 4B */	lis r4, __vt__9IDelegate@ha
 /* 8044D0BC 00449FFC  39 03 D3 48 */	addi r8, r3, lbl_804ED348@l
-/* 8044D0C0 0044A000  3C 60 80 4F */	lis r3, "__vt__25Delegate<Q24Demo7Section>"@ha
+/* 8044D0C0 0044A000  3C 60 80 4F */	lis r3, __vt__25Delegate$$0Q24Demo7Section$$1@ha
 /* 8044D0C4 0044A004  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8044D0C8 0044A008  38 84 0F 00 */	addi r4, r4, __vt__9IDelegate@l
 /* 8044D0CC 0044A00C  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8044D0D0 0044A010  38 03 D3 54 */	addi r0, r3, "__vt__25Delegate<Q24Demo7Section>"@l
+/* 8044D0D0 0044A010  38 03 D3 54 */	addi r0, r3, __vt__25Delegate$$0Q24Demo7Section$$1@l
 /* 8044D0D4 0044A014  80 68 00 08 */	lwz r3, 8(r8)
 /* 8044D0D8 0044A018  90 E1 00 08 */	stw r7, 8(r1)
 /* 8044D0DC 0044A01C  90 85 00 00 */	stw r4, 0(r5)
@@ -489,8 +489,8 @@ forceReset__Q24Demo7SectionFv:
 /* 8044D28C 0044A1CC  38 60 00 00 */	li r3, 0
 /* 8044D290 0044A1D0  4E 80 00 20 */	blr 
 
-.global "invoke__25Delegate<Q24Demo7Section>Fv"
-"invoke__25Delegate<Q24Demo7Section>Fv":
+.global invoke__25Delegate$$0Q24Demo7Section$$1Fv
+invoke__25Delegate$$0Q24Demo7Section$$1Fv:
 /* 8044D294 0044A1D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D298 0044A1D8  7C 08 02 A6 */	mflr r0
 /* 8044D29C 0044A1DC  7C 64 1B 78 */	mr r4, r3

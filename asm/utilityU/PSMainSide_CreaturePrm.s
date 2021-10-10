@@ -211,11 +211,11 @@ __dt__Q23PSM11CreaturePrmFv:
 /* 8047276C 0046F6AC  38 03 FB B8 */	addi r0, r3, __vt__Q23PSM11CreaturePrm@l
 /* 80472770 0046F6B0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80472774 0046F6B4  41 82 00 18 */	beq lbl_8047278C
-/* 80472778 0046F6B8  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@ha
+/* 80472778 0046F6B8  3C 60 80 4F */	lis r3, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@ha
 /* 8047277C 0046F6BC  38 00 00 00 */	li r0, 0
-/* 80472780 0046F6C0  38 63 FB C4 */	addi r3, r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@l
+/* 80472780 0046F6C0  38 63 FB C4 */	addi r3, r3, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@l
 /* 80472784 0046F6C4  90 7F 00 00 */	stw r3, 0(r31)
-/* 80472788 0046F6C8  90 0D 91 B8 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@sda21(r13)
+/* 80472788 0046F6C8  90 0D 91 B8 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@sda21(r13)
 lbl_8047278C:
 /* 8047278C 0046F6CC  7C 80 07 35 */	extsh. r0, r4
 /* 80472790 0046F6D0  40 81 00 0C */	ble lbl_8047279C
@@ -229,20 +229,20 @@ lbl_8047279C:
 /* 804727AC 0046F6EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804727B0 0046F6F0  4E 80 00 20 */	blr 
 
-.global "__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv"
-"__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv":
+.global __dt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1Fv
+__dt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1Fv:
 /* 804727B4 0046F6F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804727B8 0046F6F8  7C 08 02 A6 */	mflr r0
 /* 804727BC 0046F6FC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 804727C0 0046F700  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804727C4 0046F704  7C 7F 1B 79 */	or. r31, r3, r3
 /* 804727C8 0046F708  41 82 00 24 */	beq lbl_804727EC
-/* 804727CC 0046F70C  3C A0 80 4F */	lis r5, "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@ha
+/* 804727CC 0046F70C  3C A0 80 4F */	lis r5, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@ha
 /* 804727D0 0046F710  7C 80 07 35 */	extsh. r0, r4
-/* 804727D4 0046F714  38 85 FB C4 */	addi r4, r5, "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@l
+/* 804727D4 0046F714  38 85 FB C4 */	addi r4, r5, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@l
 /* 804727D8 0046F718  38 00 00 00 */	li r0, 0
 /* 804727DC 0046F71C  90 9F 00 00 */	stw r4, 0(r31)
-/* 804727E0 0046F720  90 0D 91 B8 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@sda21(r13)
+/* 804727E0 0046F720  90 0D 91 B8 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@sda21(r13)
 /* 804727E4 0046F724  40 81 00 08 */	ble lbl_804727EC
 /* 804727E8 0046F728  4B BB 18 CD */	bl __dl__FPv
 lbl_804727EC:
@@ -257,10 +257,10 @@ lbl_804727EC:
 __sinit_PSMainSide_CreaturePrm_cpp:
 /* 80472804 0046F744  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472808 0046F748  7C 08 02 A6 */	mflr r0
-/* 8047280C 0046F74C  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@ha
+/* 8047280C 0046F74C  3C 60 80 4F */	lis r3, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@ha
 /* 80472810 0046F750  3C 80 80 51 */	lis r4, sInsReal__3PSM@ha
 /* 80472814 0046F754  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80472818 0046F758  38 03 FB C4 */	addi r0, r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@l
+/* 80472818 0046F758  38 03 FB C4 */	addi r0, r3, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@l
 /* 8047281C 0046F75C  C0 A2 2A A0 */	lfs f5, lbl_80520E00@sda21(r2)
 /* 80472820 0046F760  3C 60 80 4F */	lis r3, __vt__Q23PSM11CreaturePrm@ha
 /* 80472824 0046F764  93 E1 00 0C */	stw r31, 0xc(r1)
@@ -273,7 +273,7 @@ __sinit_PSMainSide_CreaturePrm_cpp:
 /* 80472840 0046F780  7C 9F 23 78 */	mr r31, r4
 /* 80472844 0046F784  C0 62 2A B0 */	lfs f3, lbl_80520E10@sda21(r2)
 /* 80472848 0046F788  38 64 00 04 */	addi r3, r4, 4
-/* 8047284C 0046F78C  90 8D 91 B8 */	stw r4, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@sda21(r13)
+/* 8047284C 0046F78C  90 8D 91 B8 */	stw r4, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1@sda21(r13)
 /* 80472850 0046F790  C0 82 2A B4 */	lfs f4, lbl_80520E14@sda21(r2)
 /* 80472854 0046F794  90 04 00 00 */	stw r0, 0(r4)
 /* 80472858 0046F798  D0 24 00 04 */	stfs f1, 4(r4)

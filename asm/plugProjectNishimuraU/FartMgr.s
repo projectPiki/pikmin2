@@ -155,7 +155,7 @@ loadTexData__Q34Game4Fart3MgrFv:
 /* 802852FC 0028223C  7C 7F 1B 78 */	mr r31, r3
 /* 80285300 00282240  90 03 00 44 */	stw r0, 0x44(r3)
 /* 80285304 00282244  38 61 00 08 */	addi r3, r1, 8
-/* 80285308 00282248  80 8D 84 A8 */	lwz r4, "cKoganeChangeTexName__Q34Game4Fart21@unnamed@FartMgr_cpp@"@sda21(r13)
+/* 80285308 00282248  80 8D 84 A8 */	lwz r4, cKoganeChangeTexName__Q34Game4Fart21$$2unnamed$$2FartMgr_cpp$$2@sda21(r13)
 /* 8028530C 0028224C  48 1C 72 CD */	bl __ct__Q212LoadResource3ArgFPCc
 /* 80285310 00282250  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 80285314 00282254  38 81 00 08 */	addi r4, r1, 8
@@ -247,7 +247,7 @@ getChangeTexture__Q34Game4Fart3MgrFv:
 /* 80285438 00282378  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 8028543C 0028237C  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game4Fart3MgrFv"
-"@4@__dt__Q34Game4Fart3MgrFv":
+.global $$24$$2__dt__Q34Game4Fart3MgrFv
+$$24$$2__dt__Q34Game4Fart3MgrFv:
 /* 80285440 00282380  38 63 FF FC */	addi r3, r3, -4
 /* 80285444 00282384  4B FF FF 24 */	b __dt__Q34Game4Fart3MgrFv

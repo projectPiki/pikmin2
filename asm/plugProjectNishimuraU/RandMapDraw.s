@@ -6,8 +6,8 @@ __ct__Q34Game4Cave11RandMapDrawFPQ34Game4Cave16MapUnitGenerator:
 /* 80245418 00242358  90 83 00 00 */	stw r4, 0(r3)
 /* 8024541C 0024235C  4E 80 00 20 */	blr 
 
-.global "radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3<f>"
-"radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3<f>":
+.global radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3$$0f$$1
+radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3$$0f$$1:
 /* 80245420 00242360  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80245424 00242364  7C 08 02 A6 */	mflr r0
 /* 80245428 00242368  90 01 00 64 */	stw r0, 0x64(r1)

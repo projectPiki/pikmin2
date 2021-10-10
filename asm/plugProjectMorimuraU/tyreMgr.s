@@ -71,9 +71,9 @@ __ct__Q34Game4Tyre5ParmsFv:
 /* 803ABF48 003A8E88  38 9F 07 F8 */	addi r4, r31, 0x7f8
 /* 803ABF4C 003A8E8C  90 1F 08 00 */	stw r0, 0x800(r31)
 /* 803ABF50 003A8E90  48 06 77 09 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 803ABF54 003A8E94  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 803ABF54 003A8E94  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 803ABF58 003A8E98  C0 A2 12 38 */	lfs f5, lbl_8051F598@sda21(r2)
-/* 803ABF5C 003A8E9C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 803ABF5C 003A8E9C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 803ABF60 003A8EA0  C0 82 12 3C */	lfs f4, lbl_8051F59C@sda21(r2)
 /* 803ABF64 003A8EA4  90 1F 08 04 */	stw r0, 0x804(r31)
 /* 803ABF68 003A8EA8  38 A0 00 00 */	li r5, 0
@@ -335,7 +335,7 @@ read__Q34Game4Tyre5ParmsFR6Stream:
 /* 803AC2E0 003A9220  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AC2E4 003A9224  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game4Tyre3MgrFv"
-"@4@__dt__Q34Game4Tyre3MgrFv":
+.global $$24$$2__dt__Q34Game4Tyre3MgrFv
+$$24$$2__dt__Q34Game4Tyre3MgrFv:
 /* 803AC2E8 003A9228  38 63 FF FC */	addi r3, r3, -4
 /* 803AC2EC 003A922C  4B FF FD C8 */	b __dt__Q34Game4Tyre3MgrFv

@@ -71,9 +71,9 @@ __ct__Q34Game7Tadpole5ParmsFv:
 /* 8027834C 0027528C  38 9F 07 F8 */	addi r4, r31, 0x7f8
 /* 80278350 00275290  90 1F 08 00 */	stw r0, 0x800(r31)
 /* 80278354 00275294  48 19 B3 05 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80278358 00275298  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 80278358 00275298  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8027835C 0027529C  C0 42 D0 A0 */	lfs f2, lbl_8051B400@sda21(r2)
-/* 80278360 002752A0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 80278360 002752A0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 80278364 002752A4  C0 22 D0 A4 */	lfs f1, lbl_8051B404@sda21(r2)
 /* 80278368 002752A8  90 1F 08 04 */	stw r0, 0x804(r31)
 /* 8027836C 002752AC  7F E3 FB 78 */	mr r3, r31
@@ -250,7 +250,7 @@ getEnemyTypeID__Q34Game7Tadpole3MgrFv:
 /* 802785C0 00275500  38 60 00 1B */	li r3, 0x1b
 /* 802785C4 00275504  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game7Tadpole3MgrFv"
-"@4@__dt__Q34Game7Tadpole3MgrFv":
+.global $$24$$2__dt__Q34Game7Tadpole3MgrFv
+$$24$$2__dt__Q34Game7Tadpole3MgrFv:
 /* 802785C8 00275508  38 63 FF FC */	addi r3, r3, -4
 /* 802785CC 0027550C  4B FF FF 44 */	b __dt__Q34Game7Tadpole3MgrFv

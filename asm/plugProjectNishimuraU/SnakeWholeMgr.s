@@ -72,9 +72,9 @@ __ct__Q34Game10SnakeWhole5ParmsFv:
 /* 802CE3C8 002CB308  90 FF 07 FC */	stw r7, 0x7fc(r31)
 /* 802CE3CC 002CB30C  90 1F 08 00 */	stw r0, 0x800(r31)
 /* 802CE3D0 002CB310  48 14 52 89 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802CE3D4 002CB314  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802CE3D4 002CB314  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802CE3D8 002CB318  3C A0 66 70 */	lis r5, 0x66703131@ha
-/* 802CE3DC 002CB31C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802CE3DC 002CB31C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802CE3E0 002CB320  C0 02 E4 E8 */	lfs f0, lbl_8051C848@sda21(r2)
 /* 802CE3E4 002CB324  90 1F 08 04 */	stw r0, 0x804(r31)
 /* 802CE3E8 002CB328  38 7F 08 2C */	addi r3, r31, 0x82c
@@ -87,9 +87,9 @@ __ct__Q34Game10SnakeWhole5ParmsFv:
 /* 802CE404 002CB344  D0 3F 08 24 */	stfs f1, 0x824(r31)
 /* 802CE408 002CB348  D0 1F 08 28 */	stfs f0, 0x828(r31)
 /* 802CE40C 002CB34C  48 14 52 4D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802CE410 002CB350  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802CE410 002CB350  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802CE414 002CB354  3C A0 66 70 */	lis r5, 0x66703132@ha
-/* 802CE418 002CB358  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802CE418 002CB358  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802CE41C 002CB35C  C0 02 E4 F4 */	lfs f0, lbl_8051C854@sda21(r2)
 /* 802CE420 002CB360  90 1F 08 2C */	stw r0, 0x82c(r31)
 /* 802CE424 002CB364  38 7F 08 54 */	addi r3, r31, 0x854
@@ -102,9 +102,9 @@ __ct__Q34Game10SnakeWhole5ParmsFv:
 /* 802CE440 002CB380  D0 3F 08 4C */	stfs f1, 0x84c(r31)
 /* 802CE444 002CB384  D0 1F 08 50 */	stfs f0, 0x850(r31)
 /* 802CE448 002CB388  48 14 52 11 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802CE44C 002CB38C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802CE44C 002CB38C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802CE450 002CB390  3C A0 66 70 */	lis r5, 0x66703231@ha
-/* 802CE454 002CB394  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802CE454 002CB394  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802CE458 002CB398  C0 02 E4 F0 */	lfs f0, lbl_8051C850@sda21(r2)
 /* 802CE45C 002CB39C  90 1F 08 54 */	stw r0, 0x854(r31)
 /* 802CE460 002CB3A0  38 7F 08 7C */	addi r3, r31, 0x87c
@@ -117,9 +117,9 @@ __ct__Q34Game10SnakeWhole5ParmsFv:
 /* 802CE47C 002CB3BC  D0 3F 08 74 */	stfs f1, 0x874(r31)
 /* 802CE480 002CB3C0  D0 1F 08 78 */	stfs f0, 0x878(r31)
 /* 802CE484 002CB3C4  48 14 51 D5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802CE488 002CB3C8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802CE488 002CB3C8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802CE48C 002CB3CC  C0 42 E4 FC */	lfs f2, lbl_8051C85C@sda21(r2)
-/* 802CE490 002CB3D0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802CE490 002CB3D0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802CE494 002CB3D4  C0 22 E4 EC */	lfs f1, lbl_8051C84C@sda21(r2)
 /* 802CE498 002CB3D8  90 1F 08 7C */	stw r0, 0x87c(r31)
 /* 802CE49C 002CB3DC  7F E3 FB 78 */	mr r3, r31
@@ -342,7 +342,7 @@ read__Q34Game10SnakeWhole5ParmsFR6Stream:
 /* 802CE788 002CB6C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CE78C 002CB6CC  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game10SnakeWhole3MgrFv"
-"@4@__dt__Q34Game10SnakeWhole3MgrFv":
+.global $$24$$2__dt__Q34Game10SnakeWhole3MgrFv
+$$24$$2__dt__Q34Game10SnakeWhole3MgrFv:
 /* 802CE790 002CB6D0  38 63 FF FC */	addi r3, r3, -4
 /* 802CE794 002CB6D4  4B FF FE C8 */	b __dt__Q34Game10SnakeWhole3MgrFv

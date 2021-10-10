@@ -242,7 +242,7 @@ lbl_80119E8C:
 /* 80119F60 00116EA0  EC 3B 08 BA */	fmadds f1, f27, f2, f1
 /* 80119F64 00116EA4  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 80119F68 00116EA8  D0 21 00 24 */	stfs f1, 0x24(r1)
-/* 80119F6C 00116EAC  48 00 01 71 */	bl "drawOneTri__9LifeGaugeFP10Vector3<f>R6Color4"
+/* 80119F6C 00116EAC  48 00 01 71 */	bl drawOneTri__9LifeGaugeFP10Vector3$$0f$$1R6Color4
 /* 80119F70 00116EB0  3B DE 00 01 */	addi r30, r30, 1
 lbl_80119F74:
 /* 80119F74 00116EB4  88 1D 00 08 */	lbz r0, 8(r29)
@@ -339,8 +339,8 @@ initLifeGaugeDraw__9LifeGaugeFv:
 /* 8011A0D4 00117014  38 21 00 40 */	addi r1, r1, 0x40
 /* 8011A0D8 00117018  4E 80 00 20 */	blr 
 
-.global "drawOneTri__9LifeGaugeFP10Vector3<f>R6Color4"
-"drawOneTri__9LifeGaugeFP10Vector3<f>R6Color4":
+.global drawOneTri__9LifeGaugeFP10Vector3$$0f$$1R6Color4
+drawOneTri__9LifeGaugeFP10Vector3$$0f$$1R6Color4:
 /* 8011A0DC 0011701C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011A0E0 00117020  7C 08 02 A6 */	mflr r0
 /* 8011A0E4 00117024  38 60 00 A0 */	li r3, 0xa0

@@ -400,7 +400,7 @@ lbl_8028CAEC:
 /* 8028CAFC 00289A3C  C0 27 04 24 */	lfs f1, 0x424(r7)
 /* 8028CB00 00289A40  38 C0 00 00 */	li r6, 0
 /* 8028CB04 00289A44  C0 47 03 D4 */	lfs f2, 0x3d4(r7)
-/* 8028CB08 00289A48  4B E8 65 49 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+/* 8028CB08 00289A48  4B E8 65 49 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
 /* 8028CB0C 00289A4C  7C 7D 1B 79 */	or. r29, r3, r3
 /* 8028CB10 00289A50  41 82 03 2C */	beq lbl_8028CE3C
 /* 8028CB14 00289A54  7F A4 EB 78 */	mr r4, r29
@@ -699,10 +699,10 @@ exec__Q34Game4Baby11StateAttackFPQ24Game9EnemyBase:
 /* 8028CF64 00289EA4  C0 26 05 B4 */	lfs f1, 0x5b4(r6)
 /* 8028CF68 00289EA8  C0 46 05 DC */	lfs f2, 0x5dc(r6)
 /* 8028CF6C 00289EAC  C0 66 06 04 */	lfs f3, 0x604(r6)
-/* 8028CF70 00289EB0  4B E8 72 F1 */	bl "attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition<Q24Game4Navi>"
+/* 8028CF70 00289EB0  4B E8 72 F1 */	bl attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition$$0Q24Game4Navi$$1
 /* 8028CF74 00289EB4  7F E3 FB 78 */	mr r3, r31
 /* 8028CF78 00289EB8  38 80 00 00 */	li r4, 0
-/* 8028CF7C 00289EBC  4B E8 6B B9 */	bl "eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Q24Game4Piki>"
+/* 8028CF7C 00289EBC  4B E8 6B B9 */	bl eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition$$0Q24Game4Piki$$1
 /* 8028CF80 00289EC0  7F E3 FB 78 */	mr r3, r31
 /* 8028CF84 00289EC4  48 00 0A A1 */	bl getSlotPikiNum__Q34Game4Baby3ObjFv
 /* 8028CF88 00289EC8  2C 03 00 00 */	cmpwi r3, 0
@@ -719,7 +719,7 @@ lbl_8028CFA4:
 /* 8028CFB0 00289EF0  7F E3 FB 78 */	mr r3, r31
 /* 8028CFB4 00289EF4  38 80 00 00 */	li r4, 0
 /* 8028CFB8 00289EF8  C0 25 08 1C */	lfs f1, 0x81c(r5)
-/* 8028CFBC 00289EFC  4B E8 6E C9 */	bl "swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
+/* 8028CFBC 00289EFC  4B E8 6E C9 */	bl swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
 /* 8028CFC0 00289F00  48 00 00 54 */	b lbl_8028D014
 lbl_8028CFC4:
 /* 8028CFC4 00289F04  28 00 03 E8 */	cmplwi r0, 0x3e8

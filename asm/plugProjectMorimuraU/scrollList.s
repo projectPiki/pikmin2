@@ -1501,7 +1501,7 @@ changeIndex__Q28Morimura11TScrollListFv:
 /* 803A3634 003A0574  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A3638 003A0578  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q28Morimura11TScrollListFv"
-"@24@__dt__Q28Morimura11TScrollListFv":
+.global $$224$$2__dt__Q28Morimura11TScrollListFv
+$$224$$2__dt__Q28Morimura11TScrollListFv:
 /* 803A363C 003A057C  38 63 FF E8 */	addi r3, r3, -24
 /* 803A3640 003A0580  4B FC D7 CC */	b __dt__Q28Morimura11TScrollListFv

@@ -912,7 +912,7 @@ lbl_802F06B0:
 /* 802F06D0 002ED610  C0 3F 02 CC */	lfs f1, 0x2cc(r31)
 /* 802F06D4 002ED614  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802F06D8 002ED618  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802F06DC 002ED61C  4B E2 4F 01 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+/* 802F06DC 002ED61C  4B E2 4F 01 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
 lbl_802F06E0:
 /* 802F06E0 002ED620  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 802F06E4 002ED624  C0 3F 02 C4 */	lfs f1, 0x2c4(r31)
@@ -1069,7 +1069,7 @@ lbl_802F08E0:
 /* 802F0900 002ED840  C0 3F 02 CC */	lfs f1, 0x2cc(r31)
 /* 802F0904 002ED844  C0 45 09 5C */	lfs f2, 0x95c(r5)
 /* 802F0908 002ED848  C0 65 09 84 */	lfs f3, 0x984(r5)
-/* 802F090C 002ED84C  4B E2 4C D1 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+/* 802F090C 002ED84C  4B E2 4C D1 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
 lbl_802F0910:
 /* 802F0910 002ED850  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 802F0914 002ED854  C0 3F 02 C4 */	lfs f1, 0x2c4(r31)
@@ -1199,7 +1199,7 @@ lbl_802F0AB4:
 /* 802F0ACC 002EDA0C  C0 25 05 14 */	lfs f1, 0x514(r5)
 /* 802F0AD0 002EDA10  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802F0AD4 002EDA14  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802F0AD8 002EDA18  4B E2 2C B9 */	bl "flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
+/* 802F0AD8 002EDA18  4B E2 2C B9 */	bl flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Navi$$1
 /* 802F0ADC 002EDA1C  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802F0AE0 002EDA20  7F E3 FB 78 */	mr r3, r31
 /* 802F0AE4 002EDA24  C0 82 ED 8C */	lfs f4, lbl_8051D0EC@sda21(r2)
@@ -1207,7 +1207,7 @@ lbl_802F0AB4:
 /* 802F0AEC 002EDA2C  C0 25 05 14 */	lfs f1, 0x514(r5)
 /* 802F0AF0 002EDA30  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802F0AF4 002EDA34  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802F0AF8 002EDA38  4B E2 29 DD */	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 802F0AF8 002EDA38  4B E2 29 DD */	bl flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
 /* 802F0AFC 002EDA3C  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802F0B00 002EDA40  7F E3 FB 78 */	mr r3, r31
 /* 802F0B04 002EDA44  C0 82 ED 8C */	lfs f4, lbl_8051D0EC@sda21(r2)

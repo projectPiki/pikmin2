@@ -148,44 +148,44 @@ lbl_8000BD34:
 /* 8000BD5C 00008C9C  38 21 00 60 */	addi r1, r1, 0x60
 /* 8000BD60 00008CA0  4E 80 00 20 */	blr 
 
-.global "getCompositeData_raw___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-"getCompositeData_raw___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv":
+.global getCompositeData_raw___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv
+getCompositeData_raw___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv:
 /* 8000BD64 00008CA4  80 04 00 00 */	lwz r0, 0(r4)
 /* 8000BD68 00008CA8  90 03 00 00 */	stw r0, 0(r3)
 /* 8000BD6C 00008CAC  4E 80 00 20 */	blr 
 
-.global "getCompositeData_index___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-"getCompositeData_index___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv":
+.global getCompositeData_index___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv
+getCompositeData_index___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv:
 /* 8000BD70 00008CB0  80 04 00 00 */	lwz r0, 0(r4)
 /* 8000BD74 00008CB4  90 03 00 00 */	stw r0, 0(r3)
 /* 8000BD78 00008CB8  4E 80 00 20 */	blr 
 
-.global "getCompositeData_parameter___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-"getCompositeData_parameter___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv":
+.global getCompositeData_parameter___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv
+getCompositeData_parameter___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv:
 /* 8000BD7C 00008CBC  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8000BD80 00008CC0  D8 03 00 00 */	stfd f0, 0(r3)
 /* 8000BD84 00008CC4  4E 80 00 20 */	blr 
 
-.global "getCompositeData_add___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-"getCompositeData_add___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv":
+.global getCompositeData_add___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv
+getCompositeData_add___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv:
 /* 8000BD88 00008CC8  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8000BD8C 00008CCC  D8 03 00 00 */	stfd f0, 0(r3)
 /* 8000BD90 00008CD0  4E 80 00 20 */	blr 
 
-.global "getCompositeData_subtract___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-"getCompositeData_subtract___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv":
+.global getCompositeData_subtract___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv
+getCompositeData_subtract___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv:
 /* 8000BD94 00008CD4  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8000BD98 00008CD8  D8 03 00 00 */	stfd f0, 0(r3)
 /* 8000BD9C 00008CDC  4E 80 00 20 */	blr 
 
-.global "getCompositeData_multiply___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-"getCompositeData_multiply___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv":
+.global getCompositeData_multiply___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv
+getCompositeData_multiply___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv:
 /* 8000BDA0 00008CE0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8000BDA4 00008CE4  D8 03 00 00 */	stfd f0, 0(r3)
 /* 8000BDA8 00008CE8  4E 80 00 20 */	blr 
 
-.global "getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
-"getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv":
+.global getCompositeData_divide___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv
+getCompositeData_divide___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2FPCv:
 /* 8000BDAC 00008CEC  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8000BDB0 00008CF0  D8 03 00 00 */	stfd f0, 0(r3)
 /* 8000BDB4 00008CF4  4E 80 00 20 */	blr 
@@ -195,9 +195,9 @@ prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_T
 /* 8000BDB8 00008CF8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8000BDBC 00008CFC  7C 08 02 A6 */	mflr r0
 /* 8000BDC0 00008D00  80 A4 00 08 */	lwz r5, 8(r4)
-/* 8000BDC4 00008D04  3C 80 80 47 */	lis r4, "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"@ha
+/* 8000BDC4 00008D04  3C 80 80 47 */	lis r4, saCompositeOperation___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2@ha
 /* 8000BDC8 00008D08  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8000BDCC 00008D0C  38 04 33 00 */	addi r0, r4, "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"@l
+/* 8000BDCC 00008D0C  38 04 33 00 */	addi r0, r4, saCompositeOperation___Q37JStudio3fvb17$$2unnamed$$2fvb_cpp$$2@l
 /* 8000BDD0 00008D10  38 85 00 04 */	addi r4, r5, 4
 /* 8000BDD4 00008D14  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8000BDD8 00008D18  93 C1 00 18 */	stw r30, 0x18(r1)
@@ -347,7 +347,7 @@ getObject__Q37JStudio3fvb8TControlFPCvUl:
 /* 8000BFB0 00008EF0  90 01 00 38 */	stw r0, 0x38(r1)
 /* 8000BFB4 00008EF4  90 01 00 28 */	stw r0, 0x28(r1)
 /* 8000BFB8 00008EF8  90 E1 00 2C */	stw r7, 0x2c(r1)
-/* 8000BFBC 00008EFC  48 00 00 49 */	bl "find_if<Q37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal"
+/* 8000BFBC 00008EFC  48 00 00 49 */	bl find_if$$0Q37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iterator$$4Q37JStudio6object18TPRObject_ID_equal$$1__3stdFQ37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iteratorQ37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iteratorQ37JStudio6object18TPRObject_ID_equal
 /* 8000BFC0 00008F00  80 C1 00 30 */	lwz r6, 0x30(r1)
 /* 8000BFC4 00008F04  80 A1 00 38 */	lwz r5, 0x38(r1)
 /* 8000BFC8 00008F08  90 C1 00 34 */	stw r6, 0x34(r1)
@@ -366,8 +366,8 @@ getObject__Q37JStudio3fvb8TControlFPCvUl:
 /* 8000BFFC 00008F3C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8000C000 00008F40  4E 80 00 20 */	blr 
 
-.global "find_if<Q37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal"
-"find_if<Q37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal":
+.global find_if$$0Q37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iterator$$4Q37JStudio6object18TPRObject_ID_equal$$1__3stdFQ37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iteratorQ37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iteratorQ37JStudio6object18TPRObject_ID_equal
+find_if$$0Q37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iterator$$4Q37JStudio6object18TPRObject_ID_equal$$1__3stdFQ37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iteratorQ37JGadget37TLinkList$$0Q37JStudio3fvb7TObject$$4$$512$$18iteratorQ37JStudio6object18TPRObject_ID_equal:
 /* 8000C004 00008F44  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8000C008 00008F48  7C 08 02 A6 */	mflr r0
 /* 8000C00C 00008F4C  90 01 00 34 */	stw r0, 0x34(r1)

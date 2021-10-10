@@ -516,22 +516,22 @@ __sinit_JSTObjectCamera_cpp:
 /* 8042FD80 0042CCC0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042FD84 0042CCC4  4E 80 00 20 */	blr 
 
-.global "@4@stop__Q34Game5P2JST12ObjectCameraFv"
-"@4@stop__Q34Game5P2JST12ObjectCameraFv":
+.global $$24$$2stop__Q34Game5P2JST12ObjectCameraFv
+$$24$$2stop__Q34Game5P2JST12ObjectCameraFv:
 /* 8042FD88 0042CCC8  38 63 FF FC */	addi r3, r3, -4
 /* 8042FD8C 0042CCCC  4B FF FF 84 */	b stop__Q34Game5P2JST12ObjectCameraFv
 
-.global "@4@start__Q34Game5P2JST12ObjectCameraFv"
-"@4@start__Q34Game5P2JST12ObjectCameraFv":
+.global $$24$$2start__Q34Game5P2JST12ObjectCameraFv
+$$24$$2start__Q34Game5P2JST12ObjectCameraFv:
 /* 8042FD90 0042CCD0  38 63 FF FC */	addi r3, r3, -4
 /* 8042FD94 0042CCD4  4B FF FF 44 */	b start__Q34Game5P2JST12ObjectCameraFv
 
-.global "@4@update__Q34Game5P2JST12ObjectCameraFv"
-"@4@update__Q34Game5P2JST12ObjectCameraFv":
+.global $$24$$2update__Q34Game5P2JST12ObjectCameraFv
+$$24$$2update__Q34Game5P2JST12ObjectCameraFv:
 /* 8042FD98 0042CCD8  38 63 FF FC */	addi r3, r3, -4
 /* 8042FD9C 0042CCDC  4B FF FB 48 */	b update__Q34Game5P2JST12ObjectCameraFv
 
-.global "@4@reset__Q34Game5P2JST12ObjectCameraFv"
-"@4@reset__Q34Game5P2JST12ObjectCameraFv":
+.global $$24$$2reset__Q34Game5P2JST12ObjectCameraFv
+$$24$$2reset__Q34Game5P2JST12ObjectCameraFv:
 /* 8042FDA0 0042CCE0  38 63 FF FC */	addi r3, r3, -4
 /* 8042FDA4 0042CCE4  4B FF FA 98 */	b reset__Q34Game5P2JST12ObjectCameraFv

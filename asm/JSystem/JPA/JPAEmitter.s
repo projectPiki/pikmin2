@@ -572,8 +572,8 @@ lbl_800904A0:
 /* 800904A0 0008D3E0  38 60 00 00 */	li r3, 0
 /* 800904A4 0008D3E4  4E 80 00 20 */	blr 
 
-.global "calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f>"
-"calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f>":
+.global calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3$$0f$$1
+calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3$$0f$$1:
 /* 800904A8 0008D3E8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800904AC 0008D3EC  7C 08 02 A6 */	mflr r0
 /* 800904B0 0008D3F0  C0 23 00 98 */	lfs f1, 0x98(r3)

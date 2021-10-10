@@ -1,14 +1,14 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "birth__Q34Game4Nest3ObjFR10Vector3<f>f"
-"birth__Q34Game4Nest3ObjFR10Vector3<f>f":
+.global birth__Q34Game4Nest3ObjFR10Vector3$$0f$$1f
+birth__Q34Game4Nest3ObjFR10Vector3$$0f$$1f:
 /* 8036CA94 003699D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036CA98 003699D8  7C 08 02 A6 */	mflr r0
 /* 8036CA9C 003699DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8036CAA0 003699E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8036CAA4 003699E4  7C 7F 1B 78 */	mr r31, r3
-/* 8036CAA8 003699E8  4B D9 5F 59 */	bl "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
+/* 8036CAA8 003699E8  4B D9 5F 59 */	bl birth__Q24Game9EnemyBaseFR10Vector3$$0f$$1f
 /* 8036CAAC 003699EC  38 00 00 01 */	li r0, 1
 /* 8036CAB0 003699F0  98 1F 02 EC */	stb r0, 0x2ec(r31)
 /* 8036CAB4 003699F4  80 01 00 14 */	lwz r0, 0x14(r1)

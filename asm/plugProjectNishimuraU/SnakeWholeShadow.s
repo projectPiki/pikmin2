@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"
-"makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>":
+.global makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1R10Vector3$$0f$$1
+makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1R10Vector3$$0f$$1:
 /* 802F89AC 002F58EC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802F89B0 002F58F0  7C 08 02 A6 */	mflr r0
 /* 802F89B4 002F58F4  C0 42 EF 78 */	lfs f2, lbl_8051D2D8@sda21(r2)
@@ -147,8 +147,8 @@ lbl_802F8B50:
 /* 802F8BD0 002F5B10  38 21 00 40 */	addi r1, r1, 0x40
 /* 802F8BD4 002F5B14  4E 80 00 20 */	blr 
 
-.global "makeShadowSRT__Q24Game26SnakeWholeSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>"
-"makeShadowSRT__Q24Game26SnakeWholeSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>":
+.global makeShadowSRT__Q24Game26SnakeWholeSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1
+makeShadowSRT__Q24Game26SnakeWholeSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1:
 /* 802F8BD8 002F5B18  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802F8BDC 002F5B1C  7C 08 02 A6 */	mflr r0
 /* 802F8BE0 002F5B20  C0 22 EF 7C */	lfs f1, lbl_8051D2DC@sda21(r2)
@@ -481,12 +481,12 @@ lbl_802F9040:
 /* 802F9094 002F5FD4  D0 45 00 20 */	stfs f2, 0x20(r5)
 /* 802F9098 002F5FD8  38 A5 00 24 */	addi r5, r5, 0x24
 /* 802F909C 002F5FDC  42 00 FF A4 */	bdnz lbl_802F9040
-/* 802F90A0 002F5FE0  3C 80 80 49 */	lis r4, "cTubeShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"@ha
-/* 802F90A4 002F5FE4  3C 60 80 49 */	lis r3, "cSphereShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"@ha
+/* 802F90A0 002F5FE0  3C 80 80 49 */	lis r4, cTubeShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2@ha
+/* 802F90A4 002F5FE4  3C 60 80 49 */	lis r3, cSphereShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2@ha
 /* 802F90A8 002F5FE8  7F 7E DB 78 */	mr r30, r27
 /* 802F90AC 002F5FEC  3B 60 00 00 */	li r27, 0
-/* 802F90B0 002F5FF0  3B E4 D3 24 */	addi r31, r4, "cTubeShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"@l
-/* 802F90B4 002F5FF4  3B A3 D3 00 */	addi r29, r3, "cSphereShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"@l
+/* 802F90B0 002F5FF0  3B E4 D3 24 */	addi r31, r4, cTubeShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2@l
+/* 802F90B4 002F5FF4  3B A3 D3 00 */	addi r29, r3, cSphereShadowRadius__Q34Game10SnakeWhole30$$2unnamed$$2SnakeWholeShadow_cpp$$2@l
 lbl_802F90B8:
 /* 802F90B8 002F5FF8  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 802F90BC 002F5FFC  2C 1B 00 08 */	cmpwi r27, 8
@@ -499,7 +499,7 @@ lbl_802F90B8:
 /* 802F90D8 002F6018  7F 85 E3 78 */	mr r5, r28
 /* 802F90DC 002F601C  38 81 00 38 */	addi r4, r1, 0x38
 /* 802F90E0 002F6020  7C C6 02 14 */	add r6, r6, r0
-/* 802F90E4 002F6024  4B FF F8 C9 */	bl "makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"
+/* 802F90E4 002F6024  4B FF F8 C9 */	bl makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 802F90E8 002F6028  48 00 00 A4 */	b lbl_802F918C
 lbl_802F90EC:
 /* 802F90EC 002F602C  80 7E 00 00 */	lwz r3, 0(r30)
@@ -541,7 +541,7 @@ lbl_802F90EC:
 /* 802F917C 002F60BC  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 802F9180 002F60C0  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 802F9184 002F60C4  80 7E 00 2C */	lwz r3, 0x2c(r30)
-/* 802F9188 002F60C8  4B FF F8 25 */	bl "makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"
+/* 802F9188 002F60C8  4B FF F8 25 */	bl makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1R10Vector3$$0f$$1
 lbl_802F918C:
 /* 802F918C 002F60CC  C0 1D 00 00 */	lfs f0, 0(r29)
 /* 802F9190 002F60D0  38 81 00 38 */	addi r4, r1, 0x38
@@ -555,7 +555,7 @@ lbl_802F918C:
 /* 802F91B0 002F60F0  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802F91B4 002F60F4  D0 41 00 1C */	stfs f2, 0x1c(r1)
 /* 802F91B8 002F60F8  80 7E 00 50 */	lwz r3, 0x50(r30)
-/* 802F91BC 002F60FC  4B FF FA 1D */	bl "makeShadowSRT__Q24Game26SnakeWholeSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>"
+/* 802F91BC 002F60FC  4B FF FA 1D */	bl makeShadowSRT__Q24Game26SnakeWholeSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3$$0f$$1
 /* 802F91C0 002F6100  3B 7B 00 01 */	addi r27, r27, 1
 /* 802F91C4 002F6104  3B 9C 00 0C */	addi r28, r28, 0xc
 /* 802F91C8 002F6108  2C 1B 00 09 */	cmpwi r27, 9

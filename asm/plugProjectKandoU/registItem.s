@@ -485,7 +485,7 @@ killAllExceptOnyonMgr__Q24Game7ItemMgrFv:
 /* 801E527C 001E21BC  4B FD 0D 39 */	bl detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
 /* 801E5280 001E21C0  80 6D 94 38 */	lwz r3, itemMgr__4Game@sda21(r13)
 /* 801E5284 001E21C4  80 8D 94 78 */	lwz r4, mgr__Q24Game9ItemPlant@sda21(r13)
-/* 801E5288 001E21C8  4B FD 0F 85 */	bl "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr"
+/* 801E5288 001E21C8  4B FD 0F 85 */	bl delNode__33NodeObjectMgr$$016GenericObjectMgr$$1FP16GenericObjectMgr
 lbl_801E528C:
 /* 801E528C 001E21CC  38 00 00 00 */	li r0, 0
 /* 801E5290 001E21D0  90 0D 94 78 */	stw r0, mgr__Q24Game9ItemPlant@sda21(r13)
@@ -504,7 +504,7 @@ lbl_801E5294:
 /* 801E52C0 001E2200  4B FD 0C F5 */	bl detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
 /* 801E52C4 001E2204  80 6D 94 38 */	lwz r3, itemMgr__4Game@sda21(r13)
 /* 801E52C8 001E2208  80 8D 94 80 */	lwz r4, mgr__Q24Game8ItemRock@sda21(r13)
-/* 801E52CC 001E220C  4B FD 0F 41 */	bl "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr"
+/* 801E52CC 001E220C  4B FD 0F 41 */	bl delNode__33NodeObjectMgr$$016GenericObjectMgr$$1FP16GenericObjectMgr
 lbl_801E52D0:
 /* 801E52D0 001E2210  38 00 00 00 */	li r0, 0
 /* 801E52D4 001E2214  90 0D 94 80 */	stw r0, mgr__Q24Game8ItemRock@sda21(r13)
@@ -523,7 +523,7 @@ lbl_801E52D8:
 /* 801E5304 001E2244  4B FD 0C B1 */	bl detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
 /* 801E5308 001E2248  80 6D 94 38 */	lwz r3, itemMgr__4Game@sda21(r13)
 /* 801E530C 001E224C  80 8D 94 50 */	lwz r4, mgr__Q24Game9ItemHoney@sda21(r13)
-/* 801E5310 001E2250  4B FD 0E FD */	bl "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr"
+/* 801E5310 001E2250  4B FD 0E FD */	bl delNode__33NodeObjectMgr$$016GenericObjectMgr$$1FP16GenericObjectMgr
 lbl_801E5314:
 /* 801E5314 001E2254  38 00 00 00 */	li r0, 0
 /* 801E5318 001E2258  90 0D 94 50 */	stw r0, mgr__Q24Game9ItemHoney@sda21(r13)

@@ -68,7 +68,7 @@ loadResource__Q34Game10EnemyStone3MgrFv:
 /* 80127CEC 00124C2C  83 83 00 34 */	lwz r28, 0x34(r3)
 /* 80127CF0 00124C30  3B C4 88 6C */	addi r30, r4, j3dDefaultMtx@l
 /* 80127CF4 00124C34  3B 20 00 00 */	li r25, 0
-/* 80127CF8 00124C38  3B 6D 83 D8 */	addi r27, r13, "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@"@sda21
+/* 80127CF8 00124C38  3B 6D 83 D8 */	addi r27, r13, sStoneMdlName__27$$2unnamed$$2enemyStoneMgr_cpp$$2@sda21
 /* 80127CFC 00124C3C  3B 40 00 00 */	li r26, 0
 lbl_80127D00:
 /* 80127D00 00124C40  7F 83 E3 78 */	mr r3, r28

@@ -31,14 +31,14 @@ init__Q24Game7PikiFSMFPQ24Game4Piki:
 /* 801893C4 00186304  93 C1 00 08 */	stw r30, 8(r1)
 /* 801893C8 00186308  3B C4 EB E8 */	addi r30, r4, lbl_8047EBE8@l
 /* 801893CC 0018630C  38 80 00 21 */	li r4, 0x21
-/* 801893D0 00186310  48 00 97 55 */	bl "create__Q24Game26StateMachine<Q24Game4Piki>Fi"
+/* 801893D0 00186310  48 00 97 55 */	bl create__Q24Game26StateMachine$$0Q24Game4Piki$$1Fi
 /* 801893D4 00186314  38 60 00 10 */	li r3, 0x10
 /* 801893D8 00186318  4B E9 AA CD */	bl __nw__FUl
 /* 801893DC 0018631C  7C 64 1B 79 */	or. r4, r3, r3
 /* 801893E0 00186320  41 82 00 3C */	beq lbl_8018941C
-/* 801893E4 00186324  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 801893E4 00186324  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 801893E8 00186328  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 801893EC 0018632C  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 801893EC 0018632C  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 801893F0 00186330  3C 60 80 4B */	lis r3, __vt__Q24Game13PikiWalkState@ha
 /* 801893F4 00186334  90 04 00 00 */	stw r0, 0(r4)
 /* 801893F8 00186338  38 E0 00 00 */	li r7, 0
@@ -52,14 +52,14 @@ init__Q24Game7PikiFSMFPQ24Game4Piki:
 /* 80189418 00186358  90 04 00 00 */	stw r0, 0(r4)
 lbl_8018941C:
 /* 8018941C 0018635C  7F E3 FB 78 */	mr r3, r31
-/* 80189420 00186360  48 00 97 69 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189420 00186360  48 00 97 69 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189424 00186364  38 60 00 10 */	li r3, 0x10
 /* 80189428 00186368  4B E9 AA 7D */	bl __nw__FUl
 /* 8018942C 0018636C  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189430 00186370  41 82 00 40 */	beq lbl_80189470
-/* 80189434 00186374  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189434 00186374  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189438 00186378  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 8018943C 0018637C  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 8018943C 0018637C  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189440 00186380  3C 60 80 4B */	lis r3, __vt__Q24Game17PikiDemoWaitState@ha
 /* 80189444 00186384  90 04 00 00 */	stw r0, 0(r4)
 /* 80189448 00186388  38 00 00 01 */	li r0, 1
@@ -74,7 +74,7 @@ lbl_8018941C:
 /* 8018946C 001863AC  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189470:
 /* 80189470 001863B0  7F E3 FB 78 */	mr r3, r31
-/* 80189474 001863B4  48 00 97 15 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189474 001863B4  48 00 97 15 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189478 001863B8  38 60 00 24 */	li r3, 0x24
 /* 8018947C 001863BC  4B E9 AA 29 */	bl __nw__FUl
 /* 80189480 001863C0  7C 64 1B 79 */	or. r4, r3, r3
@@ -83,10 +83,10 @@ lbl_80189470:
 /* 8018948C 001863CC  3C 60 80 4B */	lis r3, __vt__Q28SysShape14MotionListener@ha
 /* 80189490 001863D0  91 04 00 10 */	stw r8, 0x10(r4)
 /* 80189494 001863D4  38 03 A6 6C */	addi r0, r3, __vt__Q28SysShape14MotionListener@l
-/* 80189498 001863D8  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189498 001863D8  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 8018949C 001863DC  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
 /* 801894A0 001863E0  90 04 00 1C */	stw r0, 0x1c(r4)
-/* 801894A4 001863E4  38 C3 47 24 */	addi r6, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 801894A4 001863E4  38 C3 47 24 */	addi r6, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 801894A8 001863E8  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiLookAtState@ha
 /* 801894AC 001863EC  38 00 00 02 */	li r0, 2
 /* 801894B0 001863F0  90 C4 00 00 */	stw r6, 0(r4)
@@ -107,14 +107,14 @@ lbl_80189470:
 /* 801894EC 0018642C  90 03 00 04 */	stw r0, 4(r3)
 lbl_801894F0:
 /* 801894F0 00186430  7F E3 FB 78 */	mr r3, r31
-/* 801894F4 00186434  48 00 96 95 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 801894F4 00186434  48 00 96 95 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 801894F8 00186438  38 60 00 10 */	li r3, 0x10
 /* 801894FC 0018643C  4B E9 A9 A9 */	bl __nw__FUl
 /* 80189500 00186440  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189504 00186444  41 82 00 40 */	beq lbl_80189544
-/* 80189508 00186448  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189508 00186448  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 8018950C 0018644C  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189510 00186450  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189510 00186450  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189514 00186454  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiGoHangState@ha
 /* 80189518 00186458  90 04 00 00 */	stw r0, 0(r4)
 /* 8018951C 0018645C  38 00 00 03 */	li r0, 3
@@ -129,7 +129,7 @@ lbl_801894F0:
 /* 80189540 00186480  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189544:
 /* 80189544 00186484  7F E3 FB 78 */	mr r3, r31
-/* 80189548 00186488  48 00 96 41 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189548 00186488  48 00 96 41 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 8018954C 0018648C  38 60 00 1C */	li r3, 0x1c
 /* 80189550 00186490  4B E9 A9 55 */	bl __nw__FUl
 /* 80189554 00186494  7C 64 1B 79 */	or. r4, r3, r3
@@ -138,10 +138,10 @@ lbl_80189544:
 /* 80189560 001864A0  3C 60 80 4B */	lis r3, __vt__Q28SysShape14MotionListener@ha
 /* 80189564 001864A4  91 04 00 10 */	stw r8, 0x10(r4)
 /* 80189568 001864A8  38 03 A6 6C */	addi r0, r3, __vt__Q28SysShape14MotionListener@l
-/* 8018956C 001864AC  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 8018956C 001864AC  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189570 001864B0  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
 /* 80189574 001864B4  90 04 00 14 */	stw r0, 0x14(r4)
-/* 80189578 001864B8  38 C3 47 24 */	addi r6, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189578 001864B8  38 C3 47 24 */	addi r6, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 8018957C 001864BC  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiHangedState@ha
 /* 80189580 001864C0  38 00 00 04 */	li r0, 4
 /* 80189584 001864C4  90 C4 00 00 */	stw r6, 0(r4)
@@ -162,7 +162,7 @@ lbl_80189544:
 /* 801895C0 00186500  90 03 00 04 */	stw r0, 4(r3)
 lbl_801895C4:
 /* 801895C4 00186504  7F E3 FB 78 */	mr r3, r31
-/* 801895C8 00186508  48 00 95 C1 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 801895C8 00186508  48 00 95 C1 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 801895CC 0018650C  38 60 00 20 */	li r3, 0x20
 /* 801895D0 00186510  4B E9 A8 D5 */	bl __nw__FUl
 /* 801895D4 00186514  7C 64 1B 79 */	or. r4, r3, r3
@@ -171,10 +171,10 @@ lbl_801895C4:
 /* 801895E0 00186520  3C 60 80 4B */	lis r3, __vt__Q28SysShape14MotionListener@ha
 /* 801895E4 00186524  91 04 00 10 */	stw r8, 0x10(r4)
 /* 801895E8 00186528  38 03 A6 6C */	addi r0, r3, __vt__Q28SysShape14MotionListener@l
-/* 801895EC 0018652C  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 801895EC 0018652C  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 801895F0 00186530  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
 /* 801895F4 00186534  90 04 00 18 */	stw r0, 0x18(r4)
-/* 801895F8 00186538  38 C3 47 24 */	addi r6, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 801895F8 00186538  38 C3 47 24 */	addi r6, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 801895FC 0018653C  3C 60 80 4B */	lis r3, __vt__Q24Game20PikiWaterHangedState@ha
 /* 80189600 00186540  38 00 00 05 */	li r0, 5
 /* 80189604 00186544  90 C4 00 00 */	stw r6, 0(r4)
@@ -195,14 +195,14 @@ lbl_801895C4:
 /* 80189640 00186580  90 03 00 04 */	stw r0, 4(r3)
 lbl_80189644:
 /* 80189644 00186584  7F E3 FB 78 */	mr r3, r31
-/* 80189648 00186588  48 00 95 41 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189648 00186588  48 00 95 41 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 8018964C 0018658C  38 60 00 34 */	li r3, 0x34
 /* 80189650 00186590  4B E9 A8 55 */	bl __nw__FUl
 /* 80189654 00186594  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189658 00186598  41 82 00 40 */	beq lbl_80189698
-/* 8018965C 0018659C  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 8018965C 0018659C  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189660 001865A0  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189664 001865A4  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189664 001865A4  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189668 001865A8  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiFlyingState@ha
 /* 8018966C 001865AC  90 04 00 00 */	stw r0, 0(r4)
 /* 80189670 001865B0  38 00 00 06 */	li r0, 6
@@ -217,14 +217,14 @@ lbl_80189644:
 /* 80189694 001865D4  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189698:
 /* 80189698 001865D8  7F E3 FB 78 */	mr r3, r31
-/* 8018969C 001865DC  48 00 94 ED */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 8018969C 001865DC  48 00 94 ED */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 801896A0 001865E0  38 60 00 1C */	li r3, 0x1c
 /* 801896A4 001865E4  4B E9 A8 01 */	bl __nw__FUl
 /* 801896A8 001865E8  7C 64 1B 79 */	or. r4, r3, r3
 /* 801896AC 001865EC  41 82 00 40 */	beq lbl_801896EC
-/* 801896B0 001865F0  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 801896B0 001865F0  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 801896B4 001865F4  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 801896B8 001865F8  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 801896B8 001865F8  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 801896BC 001865FC  3C 60 80 4B */	lis r3, __vt__Q24Game19PikiKokeDamageState@ha
 /* 801896C0 00186600  90 04 00 00 */	stw r0, 0(r4)
 /* 801896C4 00186604  38 00 00 07 */	li r0, 7
@@ -239,14 +239,14 @@ lbl_80189698:
 /* 801896E8 00186628  90 04 00 00 */	stw r0, 0(r4)
 lbl_801896EC:
 /* 801896EC 0018662C  7F E3 FB 78 */	mr r3, r31
-/* 801896F0 00186630  48 00 94 99 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 801896F0 00186630  48 00 94 99 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 801896F4 00186634  38 60 00 2C */	li r3, 0x2c
 /* 801896F8 00186638  4B E9 A7 AD */	bl __nw__FUl
 /* 801896FC 0018663C  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189700 00186640  41 82 00 40 */	beq lbl_80189740
-/* 80189704 00186644  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189704 00186644  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189708 00186648  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 8018970C 0018664C  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 8018970C 0018664C  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189710 00186650  3C 60 80 4B */	lis r3, __vt__Q24Game13PikiBlowState@ha
 /* 80189714 00186654  90 04 00 00 */	stw r0, 0(r4)
 /* 80189718 00186658  38 00 00 08 */	li r0, 8
@@ -261,7 +261,7 @@ lbl_801896EC:
 /* 8018973C 0018667C  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189740:
 /* 80189740 00186680  7F E3 FB 78 */	mr r3, r31
-/* 80189744 00186684  48 00 94 45 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189744 00186684  48 00 94 45 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189748 00186688  38 60 00 38 */	li r3, 0x38
 /* 8018974C 0018668C  4B E9 A7 59 */	bl __nw__FUl
 /* 80189750 00186690  7C 64 1B 79 */	or. r4, r3, r3
@@ -270,10 +270,10 @@ lbl_80189740:
 /* 8018975C 0018669C  3C 60 80 4B */	lis r3, __vt__Q28SysShape14MotionListener@ha
 /* 80189760 001866A0  91 04 00 10 */	stw r8, 0x10(r4)
 /* 80189764 001866A4  38 03 A6 6C */	addi r0, r3, __vt__Q28SysShape14MotionListener@l
-/* 80189768 001866A8  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189768 001866A8  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 8018976C 001866AC  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
 /* 80189770 001866B0  90 04 00 30 */	stw r0, 0x30(r4)
-/* 80189774 001866B4  38 C3 47 24 */	addi r6, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189774 001866B4  38 C3 47 24 */	addi r6, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189778 001866B8  3C 60 80 4B */	lis r3, __vt__Q24Game14PikiFlickState@ha
 /* 8018977C 001866BC  38 00 00 09 */	li r0, 9
 /* 80189780 001866C0  90 C4 00 00 */	stw r6, 0(r4)
@@ -294,14 +294,14 @@ lbl_80189740:
 /* 801897BC 001866FC  90 03 00 04 */	stw r0, 4(r3)
 lbl_801897C0:
 /* 801897C0 00186700  7F E3 FB 78 */	mr r3, r31
-/* 801897C4 00186704  48 00 93 C5 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 801897C4 00186704  48 00 93 C5 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 801897C8 00186708  38 60 00 34 */	li r3, 0x34
 /* 801897CC 0018670C  4B E9 A6 D9 */	bl __nw__FUl
 /* 801897D0 00186710  7C 64 1B 79 */	or. r4, r3, r3
 /* 801897D4 00186714  41 82 00 40 */	beq lbl_80189814
-/* 801897D8 00186718  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 801897D8 00186718  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 801897DC 0018671C  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 801897E0 00186720  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 801897E0 00186720  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 801897E4 00186724  3C 60 80 4B */	lis r3, __vt__Q24Game14PikiDrownState@ha
 /* 801897E8 00186728  90 04 00 00 */	stw r0, 0(r4)
 /* 801897EC 0018672C  38 00 00 0A */	li r0, 0xa
@@ -316,14 +316,14 @@ lbl_801897C0:
 /* 80189810 00186750  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189814:
 /* 80189814 00186754  7F E3 FB 78 */	mr r3, r31
-/* 80189818 00186758  48 00 93 71 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189818 00186758  48 00 93 71 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 8018981C 0018675C  38 60 00 10 */	li r3, 0x10
 /* 80189820 00186760  4B E9 A6 85 */	bl __nw__FUl
 /* 80189824 00186764  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189828 00186768  41 82 00 40 */	beq lbl_80189868
-/* 8018982C 0018676C  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 8018982C 0018676C  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189830 00186770  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189834 00186774  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189834 00186774  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189838 00186778  3C 60 80 4B */	lis r3, __vt__Q24Game18PikiSwallowedState@ha
 /* 8018983C 0018677C  90 04 00 00 */	stw r0, 0(r4)
 /* 80189840 00186780  38 00 00 0B */	li r0, 0xb
@@ -338,14 +338,14 @@ lbl_80189814:
 /* 80189864 001867A4  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189868:
 /* 80189868 001867A8  7F E3 FB 78 */	mr r3, r31
-/* 8018986C 001867AC  48 00 93 1D */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 8018986C 001867AC  48 00 93 1D */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189870 001867B0  38 60 00 18 */	li r3, 0x18
 /* 80189874 001867B4  4B E9 A6 31 */	bl __nw__FUl
 /* 80189878 001867B8  7C 64 1B 79 */	or. r4, r3, r3
 /* 8018987C 001867BC  41 82 00 40 */	beq lbl_801898BC
-/* 80189880 001867C0  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189880 001867C0  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189884 001867C4  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189888 001867C8  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189888 001867C8  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 8018988C 001867CC  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiNukareState@ha
 /* 80189890 001867D0  90 04 00 00 */	stw r0, 0(r4)
 /* 80189894 001867D4  38 00 00 0C */	li r0, 0xc
@@ -360,14 +360,14 @@ lbl_80189868:
 /* 801898B8 001867F8  90 04 00 00 */	stw r0, 0(r4)
 lbl_801898BC:
 /* 801898BC 001867FC  7F E3 FB 78 */	mr r3, r31
-/* 801898C0 00186800  48 00 92 C9 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 801898C0 00186800  48 00 92 C9 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 801898C4 00186804  38 60 00 1C */	li r3, 0x1c
 /* 801898C8 00186808  4B E9 A5 DD */	bl __nw__FUl
 /* 801898CC 0018680C  7C 64 1B 79 */	or. r4, r3, r3
 /* 801898D0 00186810  41 82 00 40 */	beq lbl_80189910
-/* 801898D4 00186814  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 801898D4 00186814  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 801898D8 00186818  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 801898DC 0018681C  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 801898DC 0018681C  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 801898E0 00186820  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiAbsorbState@ha
 /* 801898E4 00186824  90 04 00 00 */	stw r0, 0(r4)
 /* 801898E8 00186828  38 00 00 0D */	li r0, 0xd
@@ -382,14 +382,14 @@ lbl_801898BC:
 /* 8018990C 0018684C  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189910:
 /* 80189910 00186850  7F E3 FB 78 */	mr r3, r31
-/* 80189914 00186854  48 00 92 75 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189914 00186854  48 00 92 75 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189918 00186858  38 60 00 14 */	li r3, 0x14
 /* 8018991C 0018685C  4B E9 A5 89 */	bl __nw__FUl
 /* 80189920 00186860  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189924 00186864  41 82 00 40 */	beq lbl_80189964
-/* 80189928 00186868  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189928 00186868  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 8018992C 0018686C  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189930 00186870  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189930 00186870  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189934 00186874  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiGrowupState@ha
 /* 80189938 00186878  90 04 00 00 */	stw r0, 0(r4)
 /* 8018993C 0018687C  38 00 00 0E */	li r0, 0xe
@@ -404,14 +404,14 @@ lbl_80189910:
 /* 80189960 001868A0  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189964:
 /* 80189964 001868A4  7F E3 FB 78 */	mr r3, r31
-/* 80189968 001868A8  48 00 92 21 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189968 001868A8  48 00 92 21 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 8018996C 001868AC  38 60 00 18 */	li r3, 0x18
 /* 80189970 001868B0  4B E9 A5 35 */	bl __nw__FUl
 /* 80189974 001868B4  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189978 001868B8  41 82 00 40 */	beq lbl_801899B8
-/* 8018997C 001868BC  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 8018997C 001868BC  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189980 001868C0  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189984 001868C4  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189984 001868C4  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189988 001868C8  3C 60 80 4B */	lis r3, __vt__Q24Game13PikiTaneState@ha
 /* 8018998C 001868CC  90 04 00 00 */	stw r0, 0(r4)
 /* 80189990 001868D0  38 00 00 0F */	li r0, 0xf
@@ -426,14 +426,14 @@ lbl_80189964:
 /* 801899B4 001868F4  90 04 00 00 */	stw r0, 0(r4)
 lbl_801899B8:
 /* 801899B8 001868F8  7F E3 FB 78 */	mr r3, r31
-/* 801899BC 001868FC  48 00 91 CD */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 801899BC 001868FC  48 00 91 CD */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 801899C0 00186900  38 60 00 20 */	li r3, 0x20
 /* 801899C4 00186904  4B E9 A4 E1 */	bl __nw__FUl
 /* 801899C8 00186908  7C 64 1B 79 */	or. r4, r3, r3
 /* 801899CC 0018690C  41 82 00 40 */	beq lbl_80189A0C
-/* 801899D0 00186910  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 801899D0 00186910  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 801899D4 00186914  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 801899D8 00186918  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 801899D8 00186918  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 801899DC 0018691C  3C 60 80 4B */	lis r3, __vt__Q24Game13PikiDopeState@ha
 /* 801899E0 00186920  90 04 00 00 */	stw r0, 0(r4)
 /* 801899E4 00186924  38 00 00 10 */	li r0, 0x10
@@ -448,14 +448,14 @@ lbl_801899B8:
 /* 80189A08 00186948  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189A0C:
 /* 80189A0C 0018694C  7F E3 FB 78 */	mr r3, r31
-/* 80189A10 00186950  48 00 91 79 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189A10 00186950  48 00 91 79 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189A14 00186954  38 60 00 18 */	li r3, 0x18
 /* 80189A18 00186958  4B E9 A4 8D */	bl __nw__FUl
 /* 80189A1C 0018695C  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189A20 00186960  41 82 00 40 */	beq lbl_80189A60
-/* 80189A24 00186964  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189A24 00186964  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189A28 00186968  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189A2C 0018696C  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189A2C 0018696C  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189A30 00186970  3C 60 80 4B */	lis r3, __vt__Q24Game17PikiAutoNukiState@ha
 /* 80189A34 00186974  90 04 00 00 */	stw r0, 0(r4)
 /* 80189A38 00186978  38 00 00 11 */	li r0, 0x11
@@ -470,14 +470,14 @@ lbl_80189A0C:
 /* 80189A5C 0018699C  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189A60:
 /* 80189A60 001869A0  7F E3 FB 78 */	mr r3, r31
-/* 80189A64 001869A4  48 00 91 25 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189A64 001869A4  48 00 91 25 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189A68 001869A8  38 60 00 18 */	li r3, 0x18
 /* 80189A6C 001869AC  4B E9 A4 39 */	bl __nw__FUl
 /* 80189A70 001869B0  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189A74 001869B4  41 82 00 40 */	beq lbl_80189AB4
-/* 80189A78 001869B8  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189A78 001869B8  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189A7C 001869BC  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189A80 001869C0  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189A80 001869C0  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189A84 001869C4  3C 60 80 4B */	lis r3, __vt__Q24Game16PikiHipDropState@ha
 /* 80189A88 001869C8  90 04 00 00 */	stw r0, 0(r4)
 /* 80189A8C 001869CC  38 00 00 12 */	li r0, 0x12
@@ -492,14 +492,14 @@ lbl_80189A60:
 /* 80189AB0 001869F0  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189AB4:
 /* 80189AB4 001869F4  7F E3 FB 78 */	mr r3, r31
-/* 80189AB8 001869F8  48 00 90 D1 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189AB8 001869F8  48 00 90 D1 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189ABC 001869FC  38 60 00 28 */	li r3, 0x28
 /* 80189AC0 00186A00  4B E9 A3 E5 */	bl __nw__FUl
 /* 80189AC4 00186A04  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189AC8 00186A08  41 82 00 40 */	beq lbl_80189B08
-/* 80189ACC 00186A0C  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189ACC 00186A0C  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189AD0 00186A10  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189AD4 00186A14  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189AD4 00186A14  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189AD8 00186A18  3C 60 80 4B */	lis r3, __vt__Q24Game16PikiEmotionState@ha
 /* 80189ADC 00186A1C  90 04 00 00 */	stw r0, 0(r4)
 /* 80189AE0 00186A20  38 00 00 13 */	li r0, 0x13
@@ -514,14 +514,14 @@ lbl_80189AB4:
 /* 80189B04 00186A44  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189B08:
 /* 80189B08 00186A48  7F E3 FB 78 */	mr r3, r31
-/* 80189B0C 00186A4C  48 00 90 7D */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189B0C 00186A4C  48 00 90 7D */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189B10 00186A50  38 60 00 14 */	li r3, 0x14
 /* 80189B14 00186A54  4B E9 A3 91 */	bl __nw__FUl
 /* 80189B18 00186A58  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189B1C 00186A5C  41 82 00 40 */	beq lbl_80189B5C
-/* 80189B20 00186A60  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189B20 00186A60  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189B24 00186A64  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189B28 00186A68  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189B28 00186A68  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189B2C 00186A6C  3C 60 80 4B */	lis r3, __vt__Q24Game16PikiPressedState@ha
 /* 80189B30 00186A70  90 04 00 00 */	stw r0, 0(r4)
 /* 80189B34 00186A74  38 00 00 14 */	li r0, 0x14
@@ -536,14 +536,14 @@ lbl_80189B08:
 /* 80189B58 00186A98  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189B5C:
 /* 80189B5C 00186A9C  7F E3 FB 78 */	mr r3, r31
-/* 80189B60 00186AA0  48 00 90 29 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189B60 00186AA0  48 00 90 29 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189B64 00186AA4  38 60 00 2C */	li r3, 0x2c
 /* 80189B68 00186AA8  4B E9 A3 3D */	bl __nw__FUl
 /* 80189B6C 00186AAC  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189B70 00186AB0  41 82 00 40 */	beq lbl_80189BB0
-/* 80189B74 00186AB4  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189B74 00186AB4  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189B78 00186AB8  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189B7C 00186ABC  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189B7C 00186ABC  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189B80 00186AC0  3C 60 80 4B */	lis r3, __vt__Q24Game14PikiPanicState@ha
 /* 80189B84 00186AC4  90 04 00 00 */	stw r0, 0(r4)
 /* 80189B88 00186AC8  38 00 00 15 */	li r0, 0x15
@@ -558,14 +558,14 @@ lbl_80189B5C:
 /* 80189BAC 00186AEC  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189BB0:
 /* 80189BB0 00186AF0  7F E3 FB 78 */	mr r3, r31
-/* 80189BB4 00186AF4  48 00 8F D5 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189BB4 00186AF4  48 00 8F D5 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189BB8 00186AF8  38 60 00 14 */	li r3, 0x14
 /* 80189BBC 00186AFC  4B E9 A2 E9 */	bl __nw__FUl
 /* 80189BC0 00186B00  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189BC4 00186B04  41 82 00 40 */	beq lbl_80189C04
-/* 80189BC8 00186B08  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189BC8 00186B08  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189BCC 00186B0C  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189BD0 00186B10  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189BD0 00186B10  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189BD4 00186B14  3C 60 80 4B */	lis r3, __vt__Q24Game19PikiDenkiDyingState@ha
 /* 80189BD8 00186B18  90 04 00 00 */	stw r0, 0(r4)
 /* 80189BDC 00186B1C  38 00 00 16 */	li r0, 0x16
@@ -580,14 +580,14 @@ lbl_80189BB0:
 /* 80189C00 00186B40  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189C04:
 /* 80189C04 00186B44  7F E3 FB 78 */	mr r3, r31
-/* 80189C08 00186B48  48 00 8F 81 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189C08 00186B48  48 00 8F 81 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189C0C 00186B4C  38 60 00 14 */	li r3, 0x14
 /* 80189C10 00186B50  4B E9 A2 95 */	bl __nw__FUl
 /* 80189C14 00186B54  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189C18 00186B58  41 82 00 40 */	beq lbl_80189C58
-/* 80189C1C 00186B5C  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189C1C 00186B5C  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189C20 00186B60  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189C24 00186B64  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189C24 00186B64  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189C28 00186B68  3C 60 80 4B */	lis r3, __vt__Q24Game17PikiFallMeckState@ha
 /* 80189C2C 00186B6C  90 04 00 00 */	stw r0, 0(r4)
 /* 80189C30 00186B70  38 00 00 17 */	li r0, 0x17
@@ -602,14 +602,14 @@ lbl_80189C04:
 /* 80189C54 00186B94  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189C58:
 /* 80189C58 00186B98  7F E3 FB 78 */	mr r3, r31
-/* 80189C5C 00186B9C  48 00 8F 2D */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189C5C 00186B9C  48 00 8F 2D */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189C60 00186BA0  38 60 00 18 */	li r3, 0x18
 /* 80189C64 00186BA4  4B E9 A2 41 */	bl __nw__FUl
 /* 80189C68 00186BA8  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189C6C 00186BAC  41 82 00 40 */	beq lbl_80189CAC
-/* 80189C70 00186BB0  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189C70 00186BB0  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189C74 00186BB4  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189C78 00186BB8  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189C78 00186BB8  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189C7C 00186BBC  3C 60 80 4B */	lis r3, __vt__Q24Game14PikiDyingState@ha
 /* 80189C80 00186BC0  90 04 00 00 */	stw r0, 0(r4)
 /* 80189C84 00186BC4  38 00 00 18 */	li r0, 0x18
@@ -624,14 +624,14 @@ lbl_80189C58:
 /* 80189CA8 00186BE8  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189CAC:
 /* 80189CAC 00186BEC  7F E3 FB 78 */	mr r3, r31
-/* 80189CB0 00186BF0  48 00 8E D9 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189CB0 00186BF0  48 00 8E D9 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189CB4 00186BF4  38 60 00 10 */	li r3, 0x10
 /* 80189CB8 00186BF8  4B E9 A1 ED */	bl __nw__FUl
 /* 80189CBC 00186BFC  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189CC0 00186C00  41 82 00 40 */	beq lbl_80189D00
-/* 80189CC4 00186C04  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189CC4 00186C04  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189CC8 00186C08  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189CCC 00186C0C  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189CCC 00186C0C  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189CD0 00186C10  3C 60 80 4B */	lis r3, __vt__Q24Game13PikiDeadState@ha
 /* 80189CD4 00186C14  90 04 00 00 */	stw r0, 0(r4)
 /* 80189CD8 00186C18  38 00 00 19 */	li r0, 0x19
@@ -646,14 +646,14 @@ lbl_80189CAC:
 /* 80189CFC 00186C3C  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189D00:
 /* 80189D00 00186C40  7F E3 FB 78 */	mr r3, r31
-/* 80189D04 00186C44  48 00 8E 85 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189D04 00186C44  48 00 8E 85 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189D08 00186C48  38 60 00 24 */	li r3, 0x24
 /* 80189D0C 00186C4C  4B E9 A1 99 */	bl __nw__FUl
 /* 80189D10 00186C50  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189D14 00186C54  41 82 00 40 */	beq lbl_80189D54
-/* 80189D18 00186C58  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189D18 00186C58  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189D1C 00186C5C  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189D20 00186C60  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189D20 00186C60  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189D24 00186C64  3C 60 80 4B */	lis r3, __vt__Q24Game16PikiSuikomiState@ha
 /* 80189D28 00186C68  90 04 00 00 */	stw r0, 0(r4)
 /* 80189D2C 00186C6C  38 00 00 1A */	li r0, 0x1a
@@ -668,14 +668,14 @@ lbl_80189D00:
 /* 80189D50 00186C90  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189D54:
 /* 80189D54 00186C94  7F E3 FB 78 */	mr r3, r31
-/* 80189D58 00186C98  48 00 8E 31 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189D58 00186C98  48 00 8E 31 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189D5C 00186C9C  38 60 00 4C */	li r3, 0x4c
 /* 80189D60 00186CA0  4B E9 A1 45 */	bl __nw__FUl
 /* 80189D64 00186CA4  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189D68 00186CA8  41 82 00 40 */	beq lbl_80189DA8
-/* 80189D6C 00186CAC  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189D6C 00186CAC  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189D70 00186CB0  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189D74 00186CB4  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189D74 00186CB4  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189D78 00186CB8  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiHoleinState@ha
 /* 80189D7C 00186CBC  90 04 00 00 */	stw r0, 0(r4)
 /* 80189D80 00186CC0  38 00 00 1B */	li r0, 0x1b
@@ -690,14 +690,14 @@ lbl_80189D54:
 /* 80189DA4 00186CE4  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189DA8:
 /* 80189DA8 00186CE8  7F E3 FB 78 */	mr r3, r31
-/* 80189DAC 00186CEC  48 00 8D DD */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189DAC 00186CEC  48 00 8D DD */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189DB0 00186CF0  38 60 00 34 */	li r3, 0x34
 /* 80189DB4 00186CF4  4B E9 A0 F1 */	bl __nw__FUl
 /* 80189DB8 00186CF8  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189DBC 00186CFC  41 82 00 40 */	beq lbl_80189DFC
-/* 80189DC0 00186D00  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189DC0 00186D00  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189DC4 00186D04  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189DC8 00186D08  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189DC8 00186D08  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189DCC 00186D0C  3C 60 80 4B */	lis r3, __vt__Q24Game19PikiFountainonState@ha
 /* 80189DD0 00186D10  90 04 00 00 */	stw r0, 0(r4)
 /* 80189DD4 00186D14  38 00 00 1C */	li r0, 0x1c
@@ -712,14 +712,14 @@ lbl_80189DA8:
 /* 80189DF8 00186D38  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189DFC:
 /* 80189DFC 00186D3C  7F E3 FB 78 */	mr r3, r31
-/* 80189E00 00186D40  48 00 8D 89 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189E00 00186D40  48 00 8D 89 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189E04 00186D44  38 60 00 14 */	li r3, 0x14
 /* 80189E08 00186D48  4B E9 A0 9D */	bl __nw__FUl
 /* 80189E0C 00186D4C  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189E10 00186D50  41 82 00 40 */	beq lbl_80189E50
-/* 80189E14 00186D54  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189E14 00186D54  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189E18 00186D58  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189E1C 00186D5C  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189E1C 00186D5C  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189E20 00186D60  3C 60 80 4B */	lis r3, __vt__Q24Game13PikiKokeState@ha
 /* 80189E24 00186D64  90 04 00 00 */	stw r0, 0(r4)
 /* 80189E28 00186D68  38 00 00 1E */	li r0, 0x1e
@@ -734,14 +734,14 @@ lbl_80189DFC:
 /* 80189E4C 00186D8C  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189E50:
 /* 80189E50 00186D90  7F E3 FB 78 */	mr r3, r31
-/* 80189E54 00186D94  48 00 8D 35 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189E54 00186D94  48 00 8D 35 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189E58 00186D98  38 60 00 14 */	li r3, 0x14
 /* 80189E5C 00186D9C  4B E9 A0 49 */	bl __nw__FUl
 /* 80189E60 00186DA0  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189E64 00186DA4  41 82 00 40 */	beq lbl_80189EA4
-/* 80189E68 00186DA8  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189E68 00186DA8  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189E6C 00186DAC  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189E70 00186DB0  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189E70 00186DB0  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189E74 00186DB4  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiEscapeState@ha
 /* 80189E78 00186DB8  90 04 00 00 */	stw r0, 0(r4)
 /* 80189E7C 00186DBC  38 00 00 1F */	li r0, 0x1f
@@ -756,14 +756,14 @@ lbl_80189E50:
 /* 80189EA0 00186DE0  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189EA4:
 /* 80189EA4 00186DE4  7F E3 FB 78 */	mr r3, r31
-/* 80189EA8 00186DE8  48 00 8C E1 */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189EA8 00186DE8  48 00 8C E1 */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189EAC 00186DEC  38 60 00 24 */	li r3, 0x24
 /* 80189EB0 00186DF0  4B E9 9F F5 */	bl __nw__FUl
 /* 80189EB4 00186DF4  7C 64 1B 79 */	or. r4, r3, r3
 /* 80189EB8 00186DF8  41 82 00 40 */	beq lbl_80189EF8
-/* 80189EBC 00186DFC  3C 60 80 4B */	lis r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
+/* 80189EBC 00186DFC  3C 60 80 4B */	lis r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@ha
 /* 80189EC0 00186E00  3C A0 80 4B */	lis r5, __vt__Q24Game9PikiState@ha
-/* 80189EC4 00186E04  38 03 47 24 */	addi r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
+/* 80189EC4 00186E04  38 03 47 24 */	addi r0, r3, __vt__Q24Game22FSMState$$0Q24Game4Piki$$1@l
 /* 80189EC8 00186E08  3C 60 80 4B */	lis r3, __vt__Q24Game15PikiCarrotState@ha
 /* 80189ECC 00186E0C  90 04 00 00 */	stw r0, 0(r4)
 /* 80189ED0 00186E10  38 00 00 20 */	li r0, 0x20
@@ -778,7 +778,7 @@ lbl_80189EA4:
 /* 80189EF4 00186E34  90 04 00 00 */	stw r0, 0(r4)
 lbl_80189EF8:
 /* 80189EF8 00186E38  7F E3 FB 78 */	mr r3, r31
-/* 80189EFC 00186E3C  48 00 8C 8D */	bl "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
+/* 80189EFC 00186E3C  48 00 8C 8D */	bl registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
 /* 80189F00 00186E40  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80189F04 00186E44  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80189F08 00186E48  83 C1 00 08 */	lwz r30, 8(r1)
@@ -854,7 +854,7 @@ lbl_8018A004:
 /* 8018A00C 00186F4C  7F 64 DB 78 */	mr r4, r27
 /* 8018A010 00186F50  7F 85 E3 78 */	mr r5, r28
 /* 8018A014 00186F54  7F A6 EB 78 */	mr r6, r29
-/* 8018A018 00186F58  4B FC 0B 21 */	bl "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+/* 8018A018 00186F58  4B FC 0B 21 */	bl transit__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4PikiiPQ24Game8StateArg
 lbl_8018A01C:
 /* 8018A01C 00186F5C  BB 41 00 08 */	lmw r26, 8(r1)
 /* 8018A020 00186F60  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -880,7 +880,7 @@ transitForce__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg:
 /* 8018A064 00186FA4  4E 80 04 21 */	bctrl 
 /* 8018A068 00186FA8  48 00 00 08 */	b lbl_8018A070
 lbl_8018A06C:
-/* 8018A06C 00186FAC  4B FC 0A CD */	bl "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+/* 8018A06C 00186FAC  4B FC 0A CD */	bl transit__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4PikiiPQ24Game8StateArg
 lbl_8018A070:
 /* 8018A070 00186FB0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8018A074 00186FB4  7C 08 03 A6 */	mtlr r0
@@ -1052,7 +1052,7 @@ exec__Q24Game15PikiCarrotStateFPQ24Game4Piki:
 /* 8018A2AC 001871EC  7F E3 FB 78 */	mr r3, r31
 /* 8018A2B0 001871F0  38 9C 00 18 */	addi r4, r28, 0x18
 /* 8018A2B4 001871F4  38 A0 00 00 */	li r5, 0
-/* 8018A2B8 001871F8  4B FB 0E F1 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8018A2B8 001871F8  4B FB 0E F1 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8018A2BC 001871FC  C0 02 AA 80 */	lfs f0, lbl_80518DE0@sda21(r2)
 /* 8018A2C0 00187200  D0 1F 02 00 */	stfs f0, 0x200(r31)
 /* 8018A2C4 00187204  D0 1F 02 04 */	stfs f0, 0x204(r31)
@@ -1472,8 +1472,8 @@ lbl_8018A8B8:
 /* 8018A8C8 00187808  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A8CC 0018780C  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-"transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg":
+.global transit__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4PikiiPQ24Game8StateArg
+transit__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4PikiiPQ24Game8StateArg:
 /* 8018A8D0 00187810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A8D4 00187814  7C 08 02 A6 */	mflr r0
 /* 8018A8D8 00187818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1671,7 +1671,7 @@ exec__Q24Game15PikiHoleinStateFPQ24Game4Piki:
 /* 8018ABA0 00187AE0  7F E3 FB 78 */	mr r3, r31
 /* 8018ABA4 00187AE4  38 9E 00 38 */	addi r4, r30, 0x38
 /* 8018ABA8 00187AE8  38 A0 00 00 */	li r5, 0
-/* 8018ABAC 00187AEC  4B FB 05 FD */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8018ABAC 00187AEC  4B FB 05 FD */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8018ABB0 00187AF0  48 00 01 58 */	b lbl_8018AD08
 lbl_8018ABB4:
 /* 8018ABB4 00187AF4  C0 3E 00 30 */	lfs f1, 0x30(r30)
@@ -1723,7 +1723,7 @@ lbl_8018ABFC:
 /* 8018AC64 00187BA4  D0 61 00 10 */	stfs f3, 0x10(r1)
 /* 8018AC68 00187BA8  D0 21 00 08 */	stfs f1, 8(r1)
 /* 8018AC6C 00187BAC  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 8018AC70 00187BB0  4B FB 05 39 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8018AC70 00187BB0  4B FB 05 39 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8018AC74 00187BB4  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 8018AC78 00187BB8  C0 62 AA A0 */	lfs f3, lbl_80518E00@sda21(r2)
 /* 8018AC7C 00187BBC  C0 43 00 54 */	lfs f2, 0x54(r3)
@@ -2010,7 +2010,7 @@ lbl_8018B094:
 /* 8018B094 00187FD4  7F E3 FB 78 */	mr r3, r31
 /* 8018B098 00187FD8  38 81 00 08 */	addi r4, r1, 8
 /* 8018B09C 00187FDC  38 A0 00 00 */	li r5, 0
-/* 8018B0A0 00187FE0  4B FB 01 09 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8018B0A0 00187FE0  4B FB 01 09 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 lbl_8018B0A4:
 /* 8018B0A4 00187FE4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8018B0A8 00187FE8  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -2265,7 +2265,7 @@ lbl_8018B3AC:
 /* 8018B414 00188354  7F E3 FB 78 */	mr r3, r31
 /* 8018B418 00188358  38 81 00 14 */	addi r4, r1, 0x14
 /* 8018B41C 0018835C  38 A0 00 00 */	li r5, 0
-/* 8018B420 00188360  4B FA FD 89 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8018B420 00188360  4B FA FD 89 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8018B424 00188364  80 DF 02 C4 */	lwz r6, 0x2c4(r31)
 /* 8018B428 00188368  3C 60 80 4B */	lis r3, __vt__Q26PikiAI9ActionArg@ha
 /* 8018B42C 0018836C  38 83 05 30 */	addi r4, r3, __vt__Q26PikiAI9ActionArg@l
@@ -2430,7 +2430,7 @@ lbl_8018B670:
 /* 8018B68C 001885CC  4B E9 EF B5 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8018B690:
 /* 8018B690 001885D0  38 61 00 40 */	addi r3, r1, 0x40
-/* 8018B694 001885D4  48 22 C1 19 */	bl "createSimplePkAp__3efxFR10Vector3<f>"
+/* 8018B694 001885D4  48 22 C1 19 */	bl createSimplePkAp__3efxFR10Vector3$$0f$$1
 /* 8018B698 001885D8  80 9E 02 C4 */	lwz r4, 0x2c4(r30)
 /* 8018B69C 001885DC  7F C3 F3 78 */	mr r3, r30
 /* 8018B6A0 001885E0  38 A0 28 21 */	li r5, 0x2821
@@ -2804,7 +2804,7 @@ lbl_8018BBA0:
 /* 8018BBA8 00188AE8  60 00 00 10 */	ori r0, r0, 0x10
 /* 8018BBAC 00188AEC  90 03 00 00 */	stw r0, 0(r3)
 /* 8018BBB0 00188AF0  80 83 00 14 */	lwz r4, 0x14(r3)
-/* 8018BBB4 00188AF4  48 22 D1 21 */	bl "createWater___Q23efx9TPkEffectFP10Vector3<f>"
+/* 8018BBB4 00188AF4  48 22 D1 21 */	bl createWater___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 8018BBB8 00188AF8  7F E3 FB 78 */	mr r3, r31
 /* 8018BBBC 00188AFC  38 80 00 1E */	li r4, 0x1e
 /* 8018BBC0 00188B00  81 9F 00 00 */	lwz r12, 0(r31)
@@ -2821,7 +2821,7 @@ lbl_8018BBE0:
 /* 8018BBE8 00188B28  60 00 00 08 */	ori r0, r0, 8
 /* 8018BBEC 00188B2C  90 03 00 00 */	stw r0, 0(r3)
 /* 8018BBF0 00188B30  80 83 00 0C */	lwz r4, 0xc(r3)
-/* 8018BBF4 00188B34  48 22 CF 3D */	bl "createChudoku___Q23efx9TPkEffectFP10Vector3<f>"
+/* 8018BBF4 00188B34  48 22 CF 3D */	bl createChudoku___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 8018BBF8 00188B38  7F E3 FB 78 */	mr r3, r31
 /* 8018BBFC 00188B3C  38 80 00 3D */	li r4, 0x3d
 /* 8018BC00 00188B40  81 9F 00 00 */	lwz r12, 0(r31)
@@ -2853,7 +2853,7 @@ lbl_8018BC38:
 /* 8018BC64 00188BA4  60 00 00 04 */	ori r0, r0, 4
 /* 8018BC68 00188BA8  90 03 00 00 */	stw r0, 0(r3)
 /* 8018BC6C 00188BAC  80 83 00 0C */	lwz r4, 0xc(r3)
-/* 8018BC70 00188BB0  48 22 CE 01 */	bl "createMoe___Q23efx9TPkEffectFP10Vector3<f>"
+/* 8018BC70 00188BB0  48 22 CE 01 */	bl createMoe___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 8018BC74 00188BB4  48 00 00 40 */	b lbl_8018BCB4
 lbl_8018BC78:
 /* 8018BC78 00188BB8  38 00 00 00 */	li r0, 0
@@ -3142,7 +3142,7 @@ lbl_8018C068:
 /* 8018C078 00188FB8  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8018C07C 00188FBC  D0 61 00 10 */	stfs f3, 0x10(r1)
 /* 8018C080 00188FC0  C0 3E 00 1C */	lfs f1, 0x1c(r30)
-/* 8018C084 00188FC4  4B FB CF 95 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
+/* 8018C084 00188FC4  4B FB CF 95 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
 /* 8018C088 00188FC8  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 8018C08C 00188FCC  C0 5E 00 10 */	lfs f2, 0x10(r30)
 /* 8018C090 00188FD0  C0 03 00 54 */	lfs f0, 0x54(r3)
@@ -3506,11 +3506,11 @@ cleanup__Q24Game14PikiPanicStateFPQ24Game4Piki:
 /* 8018C5B0 001894F0  7F E3 FB 78 */	mr r3, r31
 /* 8018C5B4 001894F4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8018C5B8 001894F8  80 9F 00 0C */	lwz r4, 0xc(r31)
-/* 8018C5BC 001894FC  48 22 C5 F9 */	bl "createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>"
+/* 8018C5BC 001894FC  48 22 C5 F9 */	bl createMoeSmoke___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 8018C5C0 00189500  38 00 00 3C */	li r0, 0x3c
 /* 8018C5C4 00189504  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 8018C5C8 00189508  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 8018C5CC 0018950C  48 22 B0 05 */	bl "createSimpleChinka__3efxFR10Vector3<f>"
+/* 8018C5CC 0018950C  48 22 B0 05 */	bl createSimpleChinka__3efxFR10Vector3$$0f$$1
 lbl_8018C5D0:
 /* 8018C5D0 00189510  83 FE 02 58 */	lwz r31, 0x258(r30)
 /* 8018C5D4 00189514  7F E3 FB 78 */	mr r3, r31
@@ -3521,7 +3521,7 @@ lbl_8018C5D0:
 /* 8018C5E8 00189528  54 60 07 34 */	rlwinm r0, r3, 0, 0x1c, 0x1a
 /* 8018C5EC 0018952C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8018C5F0 00189530  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 8018C5F4 00189534  48 22 B2 45 */	bl "createSimpleWaterOff__3efxFR10Vector3<f>"
+/* 8018C5F4 00189534  48 22 B2 45 */	bl createSimpleWaterOff__3efxFR10Vector3$$0f$$1
 lbl_8018C5F8:
 /* 8018C5F8 00189538  83 FE 02 58 */	lwz r31, 0x258(r30)
 /* 8018C5FC 0018953C  7F E3 FB 78 */	mr r3, r31
@@ -3532,7 +3532,7 @@ lbl_8018C5F8:
 /* 8018C610 00189550  54 60 07 76 */	rlwinm r0, r3, 0, 0x1d, 0x1b
 /* 8018C614 00189554  90 1F 00 00 */	stw r0, 0(r31)
 /* 8018C618 00189558  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 8018C61C 0018955C  48 22 B0 11 */	bl "createSimpleGedoku__3efxFR10Vector3<f>"
+/* 8018C61C 0018955C  48 22 B0 11 */	bl createSimpleGedoku__3efxFR10Vector3$$0f$$1
 lbl_8018C620:
 /* 8018C620 00189560  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8018C624 00189564  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -3586,11 +3586,11 @@ lbl_8018C6A8:
 /* 8018C6C4 00189604  7F E3 FB 78 */	mr r3, r31
 /* 8018C6C8 00189608  90 1F 00 00 */	stw r0, 0(r31)
 /* 8018C6CC 0018960C  80 9F 00 0C */	lwz r4, 0xc(r31)
-/* 8018C6D0 00189610  48 22 C4 E5 */	bl "createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>"
+/* 8018C6D0 00189610  48 22 C4 E5 */	bl createMoeSmoke___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 8018C6D4 00189614  38 00 00 3C */	li r0, 0x3c
 /* 8018C6D8 00189618  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 8018C6DC 0018961C  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 8018C6E0 00189620  48 22 AE F1 */	bl "createSimpleChinka__3efxFR10Vector3<f>"
+/* 8018C6E0 00189620  48 22 AE F1 */	bl createSimpleChinka__3efxFR10Vector3$$0f$$1
 /* 8018C6E4 00189624  48 00 00 64 */	b lbl_8018C748
 lbl_8018C6E8:
 /* 8018C6E8 00189628  83 FF 02 58 */	lwz r31, 0x258(r31)
@@ -3602,7 +3602,7 @@ lbl_8018C6E8:
 /* 8018C700 00189640  54 60 07 34 */	rlwinm r0, r3, 0, 0x1c, 0x1a
 /* 8018C704 00189644  90 1F 00 00 */	stw r0, 0(r31)
 /* 8018C708 00189648  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 8018C70C 0018964C  48 22 B1 2D */	bl "createSimpleWaterOff__3efxFR10Vector3<f>"
+/* 8018C70C 0018964C  48 22 B1 2D */	bl createSimpleWaterOff__3efxFR10Vector3$$0f$$1
 /* 8018C710 00189650  48 00 00 38 */	b lbl_8018C748
 lbl_8018C714:
 /* 8018C714 00189654  7F E3 FB 78 */	mr r3, r31
@@ -3617,7 +3617,7 @@ lbl_8018C714:
 /* 8018C738 00189678  54 60 07 76 */	rlwinm r0, r3, 0, 0x1d, 0x1b
 /* 8018C73C 0018967C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8018C740 00189680  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 8018C744 00189684  48 22 AE E9 */	bl "createSimpleGedoku__3efxFR10Vector3<f>"
+/* 8018C744 00189684  48 22 AE E9 */	bl createSimpleGedoku__3efxFR10Vector3$$0f$$1
 lbl_8018C748:
 /* 8018C748 00189688  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8018C74C 0018968C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -4361,7 +4361,7 @@ lbl_8018D168:
 /* 8018D16C 0018A0AC  28 00 00 00 */	cmplwi r0, 0
 /* 8018D170 0018A0B0  41 82 00 20 */	beq lbl_8018D190
 /* 8018D174 0018A0B4  38 61 00 40 */	addi r3, r1, 0x40
-/* 8018D178 0018A0B8  48 22 A6 35 */	bl "createSimplePkAp__3efxFR10Vector3<f>"
+/* 8018D178 0018A0B8  48 22 A6 35 */	bl createSimplePkAp__3efxFR10Vector3$$0f$$1
 /* 8018D17C 0018A0BC  80 9F 02 C4 */	lwz r4, 0x2c4(r31)
 /* 8018D180 0018A0C0  7F E3 FB 78 */	mr r3, r31
 /* 8018D184 0018A0C4  38 A0 28 21 */	li r5, 0x2821
@@ -4501,7 +4501,7 @@ lbl_8018D378:
 /* 8018D37C 0018A2BC  28 00 00 00 */	cmplwi r0, 0
 /* 8018D380 0018A2C0  41 82 01 10 */	beq lbl_8018D490
 /* 8018D384 0018A2C4  38 61 00 4C */	addi r3, r1, 0x4c
-/* 8018D388 0018A2C8  48 22 A4 25 */	bl "createSimplePkAp__3efxFR10Vector3<f>"
+/* 8018D388 0018A2C8  48 22 A4 25 */	bl createSimplePkAp__3efxFR10Vector3$$0f$$1
 /* 8018D38C 0018A2CC  80 9F 02 C4 */	lwz r4, 0x2c4(r31)
 /* 8018D390 0018A2D0  7F E3 FB 78 */	mr r3, r31
 /* 8018D394 0018A2D4  38 A0 28 21 */	li r5, 0x2821
@@ -5082,7 +5082,7 @@ init__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018DB58 0018AA98  48 22 AE D5 */	bl killNage___Q23efx9TPkEffectFv
 /* 8018DB5C 0018AA9C  80 9F 00 10 */	lwz r4, 0x10(r31)
 /* 8018DB60 0018AAA0  7F E3 FB 78 */	mr r3, r31
-/* 8018DB64 0018AAA4  48 22 B0 D5 */	bl "createBlackDown___Q23efx9TPkEffectFP10Vector3<f>"
+/* 8018DB64 0018AAA4  48 22 B0 D5 */	bl createBlackDown___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 8018DB68 0018AAA8  38 00 00 01 */	li r0, 1
 /* 8018DB6C 0018AAAC  98 1E 01 35 */	stb r0, 0x135(r30)
 /* 8018DB70 0018AAB0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -5416,7 +5416,7 @@ collisionCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9CollEvent:
 /* 8018E024 0018AF64  D0 41 00 4C */	stfs f2, 0x4c(r1)
 /* 8018E028 0018AF68  D0 21 00 50 */	stfs f1, 0x50(r1)
 /* 8018E02C 0018AF6C  D0 01 00 54 */	stfs f0, 0x54(r1)
-/* 8018E030 0018AF70  48 22 96 59 */	bl "createSimpleBlackDrop__3efxFR10Vector3<f>"
+/* 8018E030 0018AF70  48 22 96 59 */	bl createSimpleBlackDrop__3efxFR10Vector3$$0f$$1
 /* 8018E034 0018AF74  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 8018E038 0018AF78  38 A1 00 4C */	addi r5, r1, 0x4c
 /* 8018E03C 0018AF7C  38 80 00 0B */	li r4, 0xb
@@ -5612,7 +5612,7 @@ dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki:
 /* 8018E304 0018B244  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 8018E308 0018B248  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8018E30C 0018B24C  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8018E310 0018B250  48 22 93 79 */	bl "createSimpleBlackDrop__3efxFR10Vector3<f>"
+/* 8018E310 0018B250  48 22 93 79 */	bl createSimpleBlackDrop__3efxFR10Vector3$$0f$$1
 /* 8018E314 0018B254  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 8018E318 0018B258  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8018E31C 0018B25C  38 80 00 0B */	li r4, 0xb
@@ -5901,7 +5901,7 @@ lbl_8018E5E8:
 /* 8018E71C 0018B65C  48 00 00 1C */	b lbl_8018E738
 lbl_8018E720:
 /* 8018E720 0018B660  38 61 00 4C */	addi r3, r1, 0x4c
-/* 8018E724 0018B664  48 22 90 89 */	bl "createSimplePkAp__3efxFR10Vector3<f>"
+/* 8018E724 0018B664  48 22 90 89 */	bl createSimplePkAp__3efxFR10Vector3$$0f$$1
 /* 8018E728 0018B668  7F C3 F3 78 */	mr r3, r30
 /* 8018E72C 0018B66C  38 80 28 17 */	li r4, 0x2817
 /* 8018E730 0018B670  38 A0 00 01 */	li r5, 1
@@ -5948,7 +5948,7 @@ lbl_8018E7C0:
 /* 8018E7CC 0018B70C  7F E3 FB 78 */	mr r3, r31
 /* 8018E7D0 0018B710  38 81 00 4C */	addi r4, r1, 0x4c
 /* 8018E7D4 0018B714  38 A0 00 00 */	li r5, 0
-/* 8018E7D8 0018B718  4B FA C9 D1 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8018E7D8 0018B718  4B FA C9 D1 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8018E7DC 0018B71C  3C 60 80 4B */	lis r3, __vt__Q24Game15CreatureKillArg@ha
 /* 8018E7E0 0018B720  38 00 00 01 */	li r0, 1
 /* 8018E7E4 0018B724  38 A3 A2 D0 */	addi r5, r3, __vt__Q24Game15CreatureKillArg@l
@@ -6069,7 +6069,7 @@ lbl_8018E86C:
 /* 8018E9A0 0018B8E0  48 00 00 1C */	b lbl_8018E9BC
 lbl_8018E9A4:
 /* 8018E9A4 0018B8E4  38 61 00 18 */	addi r3, r1, 0x18
-/* 8018E9A8 0018B8E8  48 22 8E 05 */	bl "createSimplePkAp__3efxFR10Vector3<f>"
+/* 8018E9A8 0018B8E8  48 22 8E 05 */	bl createSimplePkAp__3efxFR10Vector3$$0f$$1
 /* 8018E9AC 0018B8EC  7F C3 F3 78 */	mr r3, r30
 /* 8018E9B0 0018B8F0  38 80 28 17 */	li r4, 0x2817
 /* 8018E9B4 0018B8F4  38 A0 00 01 */	li r5, 1
@@ -6116,7 +6116,7 @@ lbl_8018EA44:
 /* 8018EA50 0018B990  7F E3 FB 78 */	mr r3, r31
 /* 8018EA54 0018B994  38 81 00 18 */	addi r4, r1, 0x18
 /* 8018EA58 0018B998  38 A0 00 00 */	li r5, 0
-/* 8018EA5C 0018B99C  4B FA C7 4D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8018EA5C 0018B99C  4B FA C7 4D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8018EA60 0018B9A0  3C 60 80 4B */	lis r3, __vt__Q24Game15CreatureKillArg@ha
 /* 8018EA64 0018B9A4  38 00 00 01 */	li r0, 1
 /* 8018EA68 0018B9A8  38 A3 A2 D0 */	addi r5, r3, __vt__Q24Game15CreatureKillArg@l
@@ -6705,7 +6705,7 @@ lbl_8018F250:
 /* 8018F28C 0018C1CC  80 7F 02 58 */	lwz r3, 0x258(r31)
 /* 8018F290 0018C1D0  80 83 00 10 */	lwz r4, 0x10(r3)
 /* 8018F294 0018C1D4  80 A3 00 1C */	lwz r5, 0x1c(r3)
-/* 8018F298 0018C1D8  48 22 96 9D */	bl "createNage___Q23efx9TPkEffectFP10Vector3<f>PA4_f"
+/* 8018F298 0018C1D8  48 22 96 9D */	bl createNage___Q23efx9TPkEffectFP10Vector3$$0f$$1PA4_f
 /* 8018F29C 0018C1DC  38 00 00 01 */	li r0, 1
 /* 8018F2A0 0018C1E0  98 1F 01 35 */	stb r0, 0x135(r31)
 /* 8018F2A4 0018C1E4  88 0D 92 F0 */	lbz r0, throwPikiDebug__Q24Game7PikiMgr@sda21(r13)
@@ -6883,7 +6883,7 @@ lbl_8018F4FC:
 /* 8018F524 0018C464  D0 41 00 28 */	stfs f2, 0x28(r1)
 /* 8018F528 0018C468  D0 21 00 2C */	stfs f1, 0x2c(r1)
 /* 8018F52C 0018C46C  D0 01 00 30 */	stfs f0, 0x30(r1)
-/* 8018F530 0018C470  48 22 84 B5 */	bl "createSimpleInstick__3efxFR10Vector3<f>"
+/* 8018F530 0018C470  48 22 84 B5 */	bl createSimpleInstick__3efxFR10Vector3$$0f$$1
 lbl_8018F534:
 /* 8018F534 0018C474  A0 1F 01 28 */	lhz r0, 0x128(r31)
 /* 8018F538 0018C478  28 00 04 08 */	cmplwi r0, 0x408
@@ -7754,7 +7754,7 @@ lbl_80190110:
 /* 801901B4 0018D0F4  80 9F 02 58 */	lwz r4, 0x258(r31)
 /* 801901B8 0018D0F8  80 64 00 0C */	lwz r3, 0xc(r4)
 /* 801901BC 0018D0FC  80 84 00 08 */	lwz r4, 8(r4)
-/* 801901C0 0018D100  48 22 77 31 */	bl "createSimpleChiru__3efxFR10Vector3<f>l"
+/* 801901C0 0018D100  48 22 77 31 */	bl createSimpleChiru__3efxFR10Vector3$$0f$$1l
 /* 801901C4 0018D104  7F E3 FB 78 */	mr r3, r31
 /* 801901C8 0018D108  38 80 28 46 */	li r4, 0x2846
 /* 801901CC 0018D10C  38 A0 00 01 */	li r5, 1
@@ -7951,7 +7951,7 @@ bounceCallback__Q24Game13PikiBlowStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 80190464 0018D3A4  80 9F 02 58 */	lwz r4, 0x258(r31)
 /* 80190468 0018D3A8  80 64 00 0C */	lwz r3, 0xc(r4)
 /* 8019046C 0018D3AC  80 84 00 08 */	lwz r4, 8(r4)
-/* 80190470 0018D3B0  48 22 74 81 */	bl "createSimpleChiru__3efxFR10Vector3<f>l"
+/* 80190470 0018D3B0  48 22 74 81 */	bl createSimpleChiru__3efxFR10Vector3$$0f$$1l
 /* 80190474 0018D3B4  38 00 00 00 */	li r0, 0
 /* 80190478 0018D3B8  98 1F 02 B9 */	stb r0, 0x2b9(r31)
 lbl_8019047C:
@@ -8556,11 +8556,11 @@ lbl_80190C80:
 /* 80190CB8 0018DBF8  7F C3 F3 78 */	mr r3, r30
 /* 80190CBC 0018DBFC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80190CC0 0018DC00  80 9E 00 0C */	lwz r4, 0xc(r30)
-/* 80190CC4 0018DC04  48 22 7E F1 */	bl "createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>"
+/* 80190CC4 0018DC04  48 22 7E F1 */	bl createMoeSmoke___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 80190CC8 0018DC08  38 00 00 3C */	li r0, 0x3c
 /* 80190CCC 0018DC0C  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 80190CD0 0018DC10  80 7E 00 0C */	lwz r3, 0xc(r30)
-/* 80190CD4 0018DC14  48 22 68 FD */	bl "createSimpleChinka__3efxFR10Vector3<f>"
+/* 80190CD4 0018DC14  48 22 68 FD */	bl createSimpleChinka__3efxFR10Vector3$$0f$$1
 lbl_80190CD8:
 /* 80190CD8 0018DC18  83 DF 02 58 */	lwz r30, 0x258(r31)
 /* 80190CDC 0018DC1C  7F C3 F3 78 */	mr r3, r30
@@ -8571,7 +8571,7 @@ lbl_80190CD8:
 /* 80190CF0 0018DC30  54 60 07 34 */	rlwinm r0, r3, 0, 0x1c, 0x1a
 /* 80190CF4 0018DC34  90 1E 00 00 */	stw r0, 0(r30)
 /* 80190CF8 0018DC38  80 7E 00 14 */	lwz r3, 0x14(r30)
-/* 80190CFC 0018DC3C  48 22 6B 3D */	bl "createSimpleWaterOff__3efxFR10Vector3<f>"
+/* 80190CFC 0018DC3C  48 22 6B 3D */	bl createSimpleWaterOff__3efxFR10Vector3$$0f$$1
 lbl_80190D00:
 /* 80190D00 0018DC40  83 DF 02 58 */	lwz r30, 0x258(r31)
 /* 80190D04 0018DC44  7F C3 F3 78 */	mr r3, r30
@@ -8582,7 +8582,7 @@ lbl_80190D00:
 /* 80190D18 0018DC58  54 60 07 76 */	rlwinm r0, r3, 0, 0x1d, 0x1b
 /* 80190D1C 0018DC5C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80190D20 0018DC60  80 7E 00 0C */	lwz r3, 0xc(r30)
-/* 80190D24 0018DC64  48 22 69 09 */	bl "createSimpleGedoku__3efxFR10Vector3<f>"
+/* 80190D24 0018DC64  48 22 69 09 */	bl createSimpleGedoku__3efxFR10Vector3$$0f$$1
 lbl_80190D28:
 /* 80190D28 0018DC68  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80190D2C 0018DC6C  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -9614,7 +9614,7 @@ lbl_80191B54:
 /* 80191BAC 0018EAEC  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 80191BB0 0018EAF0  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80191BB4 0018EAF4  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80191BB8 0018EAF8  4B FA C0 1D */	bl "turnTo__Q24Game8FakePikiFR10Vector3<f>"
+/* 80191BB8 0018EAF8  4B FA C0 1D */	bl turnTo__Q24Game8FakePikiFR10Vector3$$0f$$1
 /* 80191BBC 0018EAFC  80 7E 00 14 */	lwz r3, 0x14(r30)
 /* 80191BC0 0018EB00  81 83 00 00 */	lwz r12, 0(r3)
 /* 80191BC4 0018EB04  81 8C 00 F4 */	lwz r12, 0xf4(r12)
@@ -10353,13 +10353,13 @@ lbl_801925C8:
 /* 8019261C 0018F55C  C0 22 AA B0 */	lfs f1, lbl_80518E10@sda21(r2)
 /* 80192620 0018F560  7F E3 FB 78 */	mr r3, r31
 /* 80192624 0018F564  38 81 00 54 */	addi r4, r1, 0x54
-/* 80192628 0018F568  4B FB 69 F1 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
+/* 80192628 0018F568  4B FB 69 F1 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
 /* 8019262C 0018F56C  48 00 00 14 */	b lbl_80192640
 lbl_80192630:
 /* 80192630 0018F570  C0 22 AA B0 */	lfs f1, lbl_80518E10@sda21(r2)
 /* 80192634 0018F574  7F E3 FB 78 */	mr r3, r31
 /* 80192638 0018F578  38 81 00 48 */	addi r4, r1, 0x48
-/* 8019263C 0018F57C  4B FB 69 DD */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
+/* 8019263C 0018F57C  4B FB 69 DD */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
 lbl_80192640:
 /* 80192640 0018F580  4B F3 6F 61 */	bl rand
 /* 80192644 0018F584  6C 63 80 00 */	xoris r3, r3, 0x8000
@@ -10844,16 +10844,16 @@ throwable__Q24Game13PikiWalkStateFv:
 /* 80192B14 0018FA54  38 60 00 01 */	li r3, 1
 /* 80192B18 0018FA58  4E 80 00 20 */	blr 
 
-.global "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-"resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
+.global resume__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4Piki
+resume__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4Piki:
 /* 80192B1C 0018FA5C  4E 80 00 20 */	blr 
 
-.global "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-"restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
+.global restart__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4Piki
+restart__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4Piki:
 /* 80192B20 0018FA60  4E 80 00 20 */	blr 
 
-.global "create__Q24Game26StateMachine<Q24Game4Piki>Fi"
-"create__Q24Game26StateMachine<Q24Game4Piki>Fi":
+.global create__Q24Game26StateMachine$$0Q24Game4Piki$$1Fi
+create__Q24Game26StateMachine$$0Q24Game4Piki$$1Fi:
 /* 80192B24 0018FA64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80192B28 0018FA68  7C 08 02 A6 */	mflr r0
 /* 80192B2C 0018FA6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10880,8 +10880,8 @@ throwable__Q24Game13PikiWalkStateFv:
 /* 80192B80 0018FAC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80192B84 0018FAC4  4E 80 00 20 */	blr 
 
-.global "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>":
+.global registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1
+registerState__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game22FSMState$$0Q24Game4Piki$$1:
 /* 80192B88 0018FAC8  80 C3 00 08 */	lwz r6, 8(r3)
 /* 80192B8C 0018FACC  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80192B90 0018FAD0  7C 06 00 00 */	cmpw r6, r0
@@ -10932,32 +10932,32 @@ __sinit_pikiState_cpp:
 /* 80192C2C 0018FB6C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80192C30 0018FB70  4E 80 00 20 */	blr 
 
-.global "@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent"
-"@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent":
+.global $$228$$24$$2onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent
+$$228$$24$$2onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent:
 /* 80192C34 0018FB74  39 60 00 04 */	li r11, 4
 /* 80192C38 0018FB78  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80192C3C 0018FB7C  7C 63 5A 14 */	add r3, r3, r11
 /* 80192C40 0018FB80  38 63 FF E4 */	addi r3, r3, -28
 /* 80192C44 0018FB84  4B FF A3 3C */	b onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent
 
-.global "@20@4@onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent"
-"@20@4@onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent":
+.global $$220$$24$$2onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent
+$$220$$24$$2onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent:
 /* 80192C48 0018FB88  39 60 00 04 */	li r11, 4
 /* 80192C4C 0018FB8C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80192C50 0018FB90  7C 63 5A 14 */	add r3, r3, r11
 /* 80192C54 0018FB94  38 63 FF EC */	addi r3, r3, -20
 /* 80192C58 0018FB98  4B FF AA DC */	b onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent
 
-.global "@24@4@onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent"
-"@24@4@onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent":
+.global $$224$$24$$2onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent
+$$224$$24$$2onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent:
 /* 80192C5C 0018FB9C  39 60 00 04 */	li r11, 4
 /* 80192C60 0018FBA0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80192C64 0018FBA4  7C 63 5A 14 */	add r3, r3, r11
 /* 80192C68 0018FBA8  38 63 FF E8 */	addi r3, r3, -24
 /* 80192C6C 0018FBAC  4B FF AC 9C */	b onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent
 
-.global "@48@4@onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent"
-"@48@4@onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent":
+.global $$248$$24$$2onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent
+$$248$$24$$2onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent:
 /* 80192C70 0018FBB0  39 60 00 04 */	li r11, 4
 /* 80192C74 0018FBB4  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80192C78 0018FBB8  7C 63 5A 14 */	add r3, r3, r11

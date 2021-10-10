@@ -104,16 +104,16 @@ lbl_8045CFB4:
 /* 8045CFBC 00459EFC  40 82 FF C8 */	bne lbl_8045CF84
 /* 8045CFC0 00459F00  38 00 00 00 */	li r0, 0
 /* 8045CFC4 00459F04  38 7D 00 10 */	addi r3, r29, 0x10
-/* 8045CFC8 00459F08  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8045CFC8 00459F08  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8045CFCC 00459F0C  38 80 00 00 */	li r4, 0
 /* 8045CFD0 00459F10  4B BC 00 65 */	bl __dt__11JKRDisposerFv
 /* 8045CFD4 00459F14  34 1D 00 0C */	addic. r0, r29, 0xc
 /* 8045CFD8 00459F18  41 82 00 18 */	beq lbl_8045CFF0
-/* 8045CFDC 00459F1C  3C 60 80 4B */	lis r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@ha
+/* 8045CFDC 00459F1C  3C 60 80 4B */	lis r3, __vt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@ha
 /* 8045CFE0 00459F20  38 00 00 00 */	li r0, 0
-/* 8045CFE4 00459F24  38 63 0C E0 */	addi r3, r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@l
+/* 8045CFE4 00459F24  38 63 0C E0 */	addi r3, r3, __vt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@l
 /* 8045CFE8 00459F28  90 7D 00 0C */	stw r3, 0xc(r29)
-/* 8045CFEC 00459F2C  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8045CFEC 00459F2C  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 lbl_8045CFF0:
 /* 8045CFF0 00459F30  28 1D 00 00 */	cmplwi r29, 0
 /* 8045CFF4 00459F34  41 82 00 10 */	beq lbl_8045D004
@@ -352,7 +352,7 @@ loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg:
 /* 8045D31C 0045A25C  4C C6 31 82 */	crclr 6
 /* 8045D320 0045A260  4B BC D3 21 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8045D324:
-/* 8045D324 0045A264  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045D324 0045A264  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045D328 0045A268  7F 64 DB 78 */	mr r4, r27
 /* 8045D32C 0045A26C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8045D330 0045A270  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -520,7 +520,7 @@ lbl_8045D578:
 /* 8045D57C 0045A4BC  38 A0 00 00 */	li r5, 0
 /* 8045D580 0045A4C0  38 00 00 01 */	li r0, 1
 /* 8045D584 0045A4C4  90 61 00 1C */	stw r3, 0x1c(r1)
-/* 8045D588 0045A4C8  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045D588 0045A4C8  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045D58C 0045A4CC  7F 24 CB 78 */	mr r4, r25
 /* 8045D590 0045A4D0  90 E1 00 20 */	stw r7, 0x20(r1)
 /* 8045D594 0045A4D4  90 C1 00 24 */	stw r6, 0x24(r1)
@@ -536,7 +536,7 @@ lbl_8045D578:
 /* 8045D5BC 0045A4FC  7F 45 D3 78 */	mr r5, r26
 /* 8045D5C0 0045A500  7F C7 F3 78 */	mr r7, r30
 /* 8045D5C4 0045A504  38 C1 00 1C */	addi r6, r1, 0x1c
-/* 8045D5C8 0045A508  4B BB 83 05 */	bl "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
+/* 8045D5C8 0045A508  4B BB 83 05 */	bl startSoundActorT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc
 /* 8045D5CC 0045A50C  7F 23 CB 78 */	mr r3, r25
 /* 8045D5D0 0045A510  7F E4 FB 78 */	mr r4, r31
 /* 8045D5D4 0045A514  81 99 00 28 */	lwz r12, 0x28(r25)
@@ -609,7 +609,7 @@ lbl_8045D6C0:
 /* 8045D6C4 0045A604  38 A0 00 00 */	li r5, 0
 /* 8045D6C8 0045A608  38 00 00 01 */	li r0, 1
 /* 8045D6CC 0045A60C  90 61 00 08 */	stw r3, 8(r1)
-/* 8045D6D0 0045A610  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045D6D0 0045A610  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045D6D4 0045A614  7F 24 CB 78 */	mr r4, r25
 /* 8045D6D8 0045A618  90 E1 00 0C */	stw r7, 0xc(r1)
 /* 8045D6DC 0045A61C  90 C1 00 10 */	stw r6, 0x10(r1)
@@ -632,7 +632,7 @@ lbl_8045D6C0:
 /* 8045D720 0045A660  7F C7 F3 78 */	mr r7, r30
 /* 8045D724 0045A664  7F 68 DB 78 */	mr r8, r27
 /* 8045D728 0045A668  38 C1 00 08 */	addi r6, r1, 8
-/* 8045D72C 0045A66C  4B BB 81 A1 */	bl "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
+/* 8045D72C 0045A66C  4B BB 81 A1 */	bl startSoundActorT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc
 /* 8045D730 0045A670  7F 23 CB 78 */	mr r3, r25
 /* 8045D734 0045A674  7F 44 D3 78 */	mr r4, r26
 /* 8045D738 0045A678  81 99 00 28 */	lwz r12, 0x28(r25)
@@ -704,7 +704,7 @@ __ct__Q23PSM11CreatureObjFPQ24Game8CreatureUc:
 /* 8045D820 0045A760  4C C6 31 82 */	crclr 6
 /* 8045D824 0045A764  4B BC CE 1D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8045D828:
-/* 8045D828 0045A768  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8045D828 0045A768  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8045D82C 0045A76C  28 00 00 00 */	cmplwi r0, 0
 /* 8045D830 0045A770  40 82 00 20 */	bne lbl_8045D850
 /* 8045D834 0045A774  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -815,7 +815,7 @@ startSound__Q23PSM11CreatureObjFUcUlUl:
 /* 8045D9A8 0045A8E8  93 81 00 10 */	stw r28, 0x10(r1)
 /* 8045D9AC 0045A8EC  7C 7C 1B 78 */	mr r28, r3
 /* 8045D9B0 0045A8F0  7F 84 E3 78 */	mr r4, r28
-/* 8045D9B4 0045A8F4  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045D9B4 0045A8F4  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045D9B8 0045A8F8  81 83 00 00 */	lwz r12, 0(r3)
 /* 8045D9BC 0045A8FC  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8045D9C0 0045A900  7D 89 03 A6 */	mtctr r12
@@ -829,7 +829,7 @@ startSound__Q23PSM11CreatureObjFUcUlUl:
 /* 8045D9E0 0045A920  7F E7 FB 78 */	mr r7, r31
 /* 8045D9E4 0045A924  7C A5 02 14 */	add r5, r5, r0
 /* 8045D9E8 0045A928  39 00 00 00 */	li r8, 0
-/* 8045D9EC 0045A92C  4B BB 7E 81 */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 8045D9EC 0045A92C  4B BB 7E 81 */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 8045D9F0 0045A930  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8045D9F4 0045A934  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8045D9F8 0045A938  83 C1 00 18 */	lwz r30, 0x18(r1)
@@ -861,7 +861,7 @@ startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl:
 /* 8045DA54 0045A994  7D 03 43 78 */	mr r3, r8
 /* 8045DA58 0045A998  4C C6 31 82 */	crclr 6
 /* 8045DA5C 0045A99C  4B BC CB E5 */	bl panic_f__12JUTExceptionFPCciPCce
-/* 8045DA60 0045A9A0  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045DA60 0045A9A0  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045DA64 0045A9A4  7F 84 E3 78 */	mr r4, r28
 /* 8045DA68 0045A9A8  81 83 00 00 */	lwz r12, 0(r3)
 /* 8045DA6C 0045A9AC  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -874,7 +874,7 @@ startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl:
 /* 8045DA88 0045A9C8  7F A5 EB 78 */	mr r5, r29
 /* 8045DA8C 0045A9CC  7F E7 FB 78 */	mr r7, r31
 /* 8045DA90 0045A9D0  39 00 00 00 */	li r8, 0
-/* 8045DA94 0045A9D4  4B BB 7D D9 */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 8045DA94 0045A9D4  4B BB 7D D9 */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 8045DA98 0045A9D8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8045DA9C 0045A9DC  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8045DAA0 0045A9E0  83 C1 00 18 */	lwz r30, 0x18(r1)
@@ -963,7 +963,7 @@ lbl_8045DBA8:
 /* 8045DBC8 0045AB08  41 82 00 70 */	beq lbl_8045DC38
 /* 8045DBCC 0045AB0C  93 5D 00 00 */	stw r26, 0(r29)
 /* 8045DBD0 0045AB10  7F 44 D3 78 */	mr r4, r26
-/* 8045DBD4 0045AB14  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045DBD4 0045AB14  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045DBD8 0045AB18  81 83 00 00 */	lwz r12, 0(r3)
 /* 8045DBDC 0045AB1C  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8045DBE0 0045AB20  7D 89 03 A6 */	mtctr r12
@@ -1036,7 +1036,7 @@ startSound__Q23PSM13CreatureAnimeFUcUlUl:
 /* 8045DCCC 0045AC0C  7D 03 43 78 */	mr r3, r8
 /* 8045DCD0 0045AC10  4C C6 31 82 */	crclr 6
 /* 8045DCD4 0045AC14  4B BC C9 6D */	bl panic_f__12JUTExceptionFPCciPCce
-/* 8045DCD8 0045AC18  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045DCD8 0045AC18  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045DCDC 0045AC1C  7F 84 E3 78 */	mr r4, r28
 /* 8045DCE0 0045AC20  81 83 00 00 */	lwz r12, 0(r3)
 /* 8045DCE4 0045AC24  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -1051,7 +1051,7 @@ startSound__Q23PSM13CreatureAnimeFUcUlUl:
 /* 8045DD08 0045AC48  7F E7 FB 78 */	mr r7, r31
 /* 8045DD0C 0045AC4C  7C A5 02 14 */	add r5, r5, r0
 /* 8045DD10 0045AC50  39 00 00 00 */	li r8, 0
-/* 8045DD14 0045AC54  4B BB 7B 59 */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 8045DD14 0045AC54  4B BB 7B 59 */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 8045DD18 0045AC58  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8045DD1C 0045AC5C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8045DD20 0045AC60  83 C1 00 18 */	lwz r30, 0x18(r1)
@@ -1083,7 +1083,7 @@ startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl:
 /* 8045DD7C 0045ACBC  7D 03 43 78 */	mr r3, r8
 /* 8045DD80 0045ACC0  4C C6 31 82 */	crclr 6
 /* 8045DD84 0045ACC4  4B BC C8 BD */	bl panic_f__12JUTExceptionFPCciPCce
-/* 8045DD88 0045ACC8  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045DD88 0045ACC8  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045DD8C 0045ACCC  7F 84 E3 78 */	mr r4, r28
 /* 8045DD90 0045ACD0  81 83 00 00 */	lwz r12, 0(r3)
 /* 8045DD94 0045ACD4  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -1096,7 +1096,7 @@ startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl:
 /* 8045DDB0 0045ACF0  7F A5 EB 78 */	mr r5, r29
 /* 8045DDB4 0045ACF4  7F E7 FB 78 */	mr r7, r31
 /* 8045DDB8 0045ACF8  39 00 00 00 */	li r8, 0
-/* 8045DDBC 0045ACFC  4B BB 7A B1 */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 8045DDBC 0045ACFC  4B BB 7A B1 */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 8045DDC0 0045AD00  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8045DDC4 0045AD04  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8045DDC8 0045AD08  83 C1 00 18 */	lwz r30, 0x18(r1)
@@ -1411,7 +1411,7 @@ lbl_8045E208:
 /* 8045E20C 0045B14C  38 A0 00 00 */	li r5, 0
 /* 8045E210 0045B150  38 00 00 01 */	li r0, 1
 /* 8045E214 0045B154  90 81 00 08 */	stw r4, 8(r1)
-/* 8045E218 0045B158  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045E218 0045B158  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045E21C 0045B15C  7F C4 F3 78 */	mr r4, r30
 /* 8045E220 0045B160  90 E1 00 0C */	stw r7, 0xc(r1)
 /* 8045E224 0045B164  90 C1 00 10 */	stw r6, 0x10(r1)
@@ -1613,7 +1613,7 @@ __ct__Q23PSM9EnemyBaseFPQ24Game9EnemyBaseUc:
 /* 8045E4C4 0045B404  4C C6 31 82 */	crclr 6
 /* 8045E4C8 0045B408  4B BC C1 79 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8045E4CC:
-/* 8045E4CC 0045B40C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8045E4CC 0045B40C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8045E4D0 0045B410  28 00 00 00 */	cmplwi r0, 0
 /* 8045E4D4 0045B414  40 82 00 20 */	bne lbl_8045E4F4
 /* 8045E4D8 0045B418  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -1807,7 +1807,7 @@ lbl_8045E770:
 /* 8045E790 0045B6D0  41 82 00 70 */	beq lbl_8045E800
 /* 8045E794 0045B6D4  93 5D 00 00 */	stw r26, 0(r29)
 /* 8045E798 0045B6D8  7F 44 D3 78 */	mr r4, r26
-/* 8045E79C 0045B6DC  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045E79C 0045B6DC  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045E7A0 0045B6E0  81 83 00 00 */	lwz r12, 0(r3)
 /* 8045E7A4 0045B6E4  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8045E7A8 0045B6E8  7D 89 03 A6 */	mtctr r12
@@ -1930,7 +1930,7 @@ lbl_8045E930:
 /* 8045E934 0045B874  38 A0 00 00 */	li r5, 0
 /* 8045E938 0045B878  38 00 00 01 */	li r0, 1
 /* 8045E93C 0045B87C  90 81 00 08 */	stw r4, 8(r1)
-/* 8045E940 0045B880  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045E940 0045B880  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045E944 0045B884  7F C4 F3 78 */	mr r4, r30
 /* 8045E948 0045B888  90 E1 00 0C */	stw r7, 0xc(r1)
 /* 8045E94C 0045B88C  90 C1 00 10 */	stw r6, 0x10(r1)
@@ -2134,9 +2134,9 @@ lbl_8045EC04:
 /* 8045EC14 0045BB54  4E 80 04 21 */	bctrl 
 /* 8045EC18 0045BB58  38 80 00 00 */	li r4, 0
 /* 8045EC1C 0045BB5C  80 0D 92 E0 */	lwz r0, naviMgr__4Game@sda21(r13)
-/* 8045EC20 0045BB60  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Navi>"@ha
+/* 8045EC20 0045BB60  3C A0 80 4B */	lis r5, __vt__22Iterator$$0Q24Game4Navi$$1@ha
 /* 8045EC24 0045BB64  90 81 00 38 */	stw r4, 0x38(r1)
-/* 8045EC28 0045BB68  38 A5 BC B4 */	addi r5, r5, "__vt__22Iterator<Q24Game4Navi>"@l
+/* 8045EC28 0045BB68  38 A5 BC B4 */	addi r5, r5, __vt__22Iterator$$0Q24Game4Navi$$1@l
 /* 8045EC2C 0045BB6C  28 04 00 00 */	cmplwi r4, 0
 /* 8045EC30 0045BB70  90 A1 00 2C */	stw r5, 0x2c(r1)
 /* 8045EC34 0045BB74  7C 7F 1B 78 */	mr r31, r3
@@ -2403,7 +2403,7 @@ __ct__Q23PSM18EnemyNotAggressiveFPQ24Game9EnemyBaseUc:
 /* 8045EFEC 0045BF2C  4C C6 31 82 */	crclr 6
 /* 8045EFF0 0045BF30  4B BC B6 51 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8045EFF4:
-/* 8045EFF4 0045BF34  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8045EFF4 0045BF34  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8045EFF8 0045BF38  28 00 00 00 */	cmplwi r0, 0
 /* 8045EFFC 0045BF3C  40 82 00 20 */	bne lbl_8045F01C
 /* 8045F000 0045BF40  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -2514,7 +2514,7 @@ __ct__Q23PSM9TsuyukusaFPQ24Game8Creature:
 /* 8045F194 0045C0D4  4C C6 31 82 */	crclr 6
 /* 8045F198 0045C0D8  4B BC B4 A9 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8045F19C:
-/* 8045F19C 0045C0DC  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8045F19C 0045C0DC  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8045F1A0 0045C0E0  28 00 00 00 */	cmplwi r0, 0
 /* 8045F1A4 0045C0E4  40 82 00 20 */	bne lbl_8045F1C4
 /* 8045F1A8 0045C0E8  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -2825,7 +2825,7 @@ lbl_8045F5CC:
 /* 8045F5D0 0045C510  38 A0 00 00 */	li r5, 0
 /* 8045F5D4 0045C514  38 00 00 01 */	li r0, 1
 /* 8045F5D8 0045C518  90 81 00 08 */	stw r4, 8(r1)
-/* 8045F5DC 0045C51C  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045F5DC 0045C51C  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045F5E0 0045C520  7F C4 F3 78 */	mr r4, r30
 /* 8045F5E4 0045C524  90 E1 00 0C */	stw r7, 0xc(r1)
 /* 8045F5E8 0045C528  90 C1 00 10 */	stw r6, 0x10(r1)
@@ -2881,9 +2881,9 @@ calcDistance__Q23PSM9EnemyBossFv:
 /* 8045F6A4 0045C5E4  93 C1 00 88 */	stw r30, 0x88(r1)
 /* 8045F6A8 0045C5E8  38 80 00 00 */	li r4, 0
 /* 8045F6AC 0045C5EC  80 0D 92 E0 */	lwz r0, naviMgr__4Game@sda21(r13)
-/* 8045F6B0 0045C5F0  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Navi>"@ha
+/* 8045F6B0 0045C5F0  3C A0 80 4B */	lis r5, __vt__22Iterator$$0Q24Game4Navi$$1@ha
 /* 8045F6B4 0045C5F4  90 81 00 80 */	stw r4, 0x80(r1)
-/* 8045F6B8 0045C5F8  38 A5 BC B4 */	addi r5, r5, "__vt__22Iterator<Q24Game4Navi>"@l
+/* 8045F6B8 0045C5F8  38 A5 BC B4 */	addi r5, r5, __vt__22Iterator$$0Q24Game4Navi$$1@l
 /* 8045F6BC 0045C5FC  28 04 00 00 */	cmplwi r4, 0
 /* 8045F6C0 0045C600  90 A1 00 74 */	stw r5, 0x74(r1)
 /* 8045F6C4 0045C604  7C 7F 1B 78 */	mr r31, r3
@@ -3334,7 +3334,7 @@ lbl_8045FD18:
 lbl_8045FD1C:
 /* 8045FD1C 0045CC5C  28 1D 00 00 */	cmplwi r29, 0
 /* 8045FD20 0045CC60  41 82 00 84 */	beq lbl_8045FDA4
-/* 8045FD24 0045CC64  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8045FD24 0045CC64  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8045FD28 0045CC68  3B A0 00 01 */	li r29, 1
 /* 8045FD2C 0045CC6C  28 00 00 00 */	cmplwi r0, 0
 /* 8045FD30 0045CC70  40 82 00 18 */	bne lbl_8045FD48
@@ -3344,7 +3344,7 @@ lbl_8045FD1C:
 /* 8045FD40 0045CC80  4C C6 31 82 */	crclr 6
 /* 8045FD44 0045CC84  4B BC A8 FD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8045FD48:
-/* 8045FD48 0045CC88  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8045FD48 0045CC88  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8045FD4C 0045CC8C  80 83 00 04 */	lwz r4, 4(r3)
 /* 8045FD50 0045CC90  48 00 00 2C */	b lbl_8045FD7C
 lbl_8045FD54:
@@ -3544,7 +3544,7 @@ __ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase:
 /* 8045FFF4 0045CF34  4C C6 31 82 */	crclr 6
 /* 8045FFF8 0045CF38  4B BC A6 49 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8045FFFC:
-/* 8045FFFC 0045CF3C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8045FFFC 0045CF3C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80460000 0045CF40  28 00 00 00 */	cmplwi r0, 0
 /* 80460004 0045CF44  40 82 00 20 */	bne lbl_80460024
 /* 80460008 0045CF48  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -3649,13 +3649,13 @@ lbl_80460024:
 /* 80460190 0045D0D0  4B BC 66 29 */	bl __ct__10JSUPtrLinkFPv
 /* 80460194 0045D0D4  38 00 00 00 */	li r0, 0
 /* 80460198 0045D0D8  98 1B 01 18 */	stb r0, 0x118(r27)
-/* 8046019C 0045D0DC  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046019C 0045D0DC  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 804601A0 0045D0E0  28 03 00 00 */	cmplwi r3, 0
 /* 804601A4 0045D0E4  41 82 00 14 */	beq lbl_804601B8
 /* 804601A8 0045D0E8  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 804601AC 0045D0EC  38 9B 01 08 */	addi r4, r27, 0x108
 /* 804601B0 0045D0F0  90 1B 01 00 */	stw r0, 0x100(r27)
-/* 804601B4 0045D0F4  48 00 C8 05 */	bl "appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<Q23PSM9EnemyBoss>"
+/* 804601B4 0045D0F4  48 00 C8 05 */	bl appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink$$0Q23PSM9EnemyBoss$$1
 lbl_804601B8:
 /* 804601B8 0045D0F8  7F 63 DB 78 */	mr r3, r27
 /* 804601BC 0045D0FC  BB 21 00 14 */	lmw r25, 0x14(r1)
@@ -4079,7 +4079,7 @@ postPikiAttack__Q23PSM12EnemyMidBossFb:
 /* 8046078C 0045D6CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80460790 0045D6D0  7C 08 02 A6 */	mflr r0
 /* 80460794 0045D6D4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80460798 0045D6D8  80 AD 91 B0 */	lwz r5, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 80460798 0045D6D8  80 AD 91 B0 */	lwz r5, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046079C 0045D6DC  28 05 00 00 */	cmplwi r5, 0
 /* 804607A0 0045D6E0  41 82 00 3C */	beq lbl_804607DC
 /* 804607A4 0045D6E4  80 A5 00 34 */	lwz r5, 0x34(r5)
@@ -5187,7 +5187,7 @@ __ct__Q23PSM8WorkItemFPQ24Game8BaseItem:
 /* 804616A0 0045E5E0  4C C6 31 82 */	crclr 6
 /* 804616A4 0045E5E4  4B BC 8F 9D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804616A8:
-/* 804616A8 0045E5E8  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 804616A8 0045E5E8  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 804616AC 0045E5EC  28 00 00 00 */	cmplwi r0, 0
 /* 804616B0 0045E5F0  40 82 00 20 */	bne lbl_804616D0
 /* 804616B4 0045E5F4  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -5712,7 +5712,7 @@ __ct__Q23PSM13PelletOtakaraFPQ34Game13PelletOtakara6Objectb:
 /* 80461DE4 0045ED24  4C C6 31 82 */	crclr 6
 /* 80461DE8 0045ED28  4B BC 88 59 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80461DEC:
-/* 80461DEC 0045ED2C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80461DEC 0045ED2C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80461DF0 0045ED30  28 00 00 00 */	cmplwi r0, 0
 /* 80461DF4 0045ED34  40 82 00 20 */	bne lbl_80461E14
 /* 80461DF8 0045ED38  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -5945,7 +5945,7 @@ __ct__Q23PSM10PelletItemFPQ34Game10PelletItem6Object:
 /* 8046214C 0045F08C  4C C6 31 82 */	crclr 6
 /* 80462150 0045F090  4B BC 84 F1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80462154:
-/* 80462154 0045F094  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80462154 0045F094  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80462158 0045F098  28 00 00 00 */	cmplwi r0, 0
 /* 8046215C 0045F09C  40 82 00 20 */	bne lbl_8046217C
 /* 80462160 0045F0A0  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -6069,7 +6069,7 @@ __ct__Q23PSM4PikiFPQ24Game4Piki:
 /* 80462324 0045F264  4C C6 31 82 */	crclr 6
 /* 80462328 0045F268  4B BC 83 19 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8046232C:
-/* 8046232C 0045F26C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046232C 0045F26C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80462330 0045F270  28 00 00 00 */	cmplwi r0, 0
 /* 80462334 0045F274  40 82 00 20 */	bne lbl_80462354
 /* 80462338 0045F278  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -6388,7 +6388,7 @@ startPikiSetSound__Q23PSM4PikiFPQ27JAInter6ObjectUlQ36PSGame5SeMgr7SetSeIdUl:
 /* 80462778 0045F6B8  38 60 00 00 */	li r3, 0
 /* 8046277C 0045F6BC  48 00 00 4C */	b lbl_804627C8
 lbl_80462780:
-/* 80462780 0045F6C0  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
+/* 80462780 0045F6C0  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
 /* 80462784 0045F6C4  28 00 00 00 */	cmplwi r0, 0
 /* 80462788 0045F6C8  40 82 00 20 */	bne lbl_804627A8
 /* 8046278C 0045F6CC  3C 60 80 4A */	lis r3, lbl_8049CFD0@ha
@@ -6399,7 +6399,7 @@ lbl_80462780:
 /* 804627A0 0045F6E0  4C C6 31 82 */	crclr 6
 /* 804627A4 0045F6E4  4B BC 7E 9D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804627A8:
-/* 804627A8 0045F6E8  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
+/* 804627A8 0045F6E8  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
 /* 804627AC 0045F6EC  57 C0 15 BA */	rlwinm r0, r30, 2, 0x16, 0x1d
 /* 804627B0 0045F6F0  7F 84 E3 78 */	mr r4, r28
 /* 804627B4 0045F6F4  7F A5 EB 78 */	mr r5, r29
@@ -6487,7 +6487,7 @@ lbl_804628BC:
 /* 804628D8 0045F818  38 60 00 00 */	li r3, 0
 /* 804628DC 0045F81C  48 00 00 CC */	b lbl_804629A8
 lbl_804628E0:
-/* 804628E0 0045F820  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
+/* 804628E0 0045F820  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
 /* 804628E4 0045F824  28 00 00 00 */	cmplwi r0, 0
 /* 804628E8 0045F828  40 82 00 18 */	bne lbl_80462900
 /* 804628EC 0045F82C  38 7D 00 30 */	addi r3, r29, 0x30
@@ -6496,7 +6496,7 @@ lbl_804628E0:
 /* 804628F8 0045F838  4C C6 31 82 */	crclr 6
 /* 804628FC 0045F83C  4B BC 7D 45 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80462900:
-/* 80462900 0045F840  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
+/* 80462900 0045F840  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
 /* 80462904 0045F844  57 C0 15 BA */	rlwinm r0, r30, 2, 0x16, 0x1d
 /* 80462908 0045F848  7F 84 E3 78 */	mr r4, r28
 /* 8046290C 0045F84C  7F 65 DB 78 */	mr r5, r27
@@ -6523,7 +6523,7 @@ lbl_8046293C:
 /* 80462958 0045F898  38 60 00 00 */	li r3, 0
 /* 8046295C 0045F89C  48 00 00 4C */	b lbl_804629A8
 lbl_80462960:
-/* 80462960 0045F8A0  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
+/* 80462960 0045F8A0  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
 /* 80462964 0045F8A4  28 00 00 00 */	cmplwi r0, 0
 /* 80462968 0045F8A8  40 82 00 18 */	bne lbl_80462980
 /* 8046296C 0045F8AC  38 7D 00 30 */	addi r3, r29, 0x30
@@ -6532,7 +6532,7 @@ lbl_80462960:
 /* 80462978 0045F8B8  4C C6 31 82 */	crclr 6
 /* 8046297C 0045F8BC  4B BC 7C C5 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80462980:
-/* 80462980 0045F8C0  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
+/* 80462980 0045F8C0  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
 /* 80462984 0045F8C4  57 C0 15 BA */	rlwinm r0, r30, 2, 0x16, 0x1d
 /* 80462988 0045F8C8  7F 64 DB 78 */	mr r4, r27
 /* 8046298C 0045F8CC  7F 85 E3 78 */	mr r5, r28
@@ -6657,7 +6657,7 @@ __ct__Q23PSM4NaviFPQ24Game4Navi:
 /* 80462B3C 0045FA7C  4C C6 31 82 */	crclr 6
 /* 80462B40 0045FA80  4B BC 7B 01 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80462B44:
-/* 80462B44 0045FA84  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80462B44 0045FA84  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80462B48 0045FA88  28 00 00 00 */	cmplwi r0, 0
 /* 80462B4C 0045FA8C  40 82 00 20 */	bne lbl_80462B6C
 /* 80462B50 0045FA90  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -6955,7 +6955,7 @@ playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei:
 /* 80462F1C 0045FE5C  7F C4 2A 14 */	add r30, r4, r5
 /* 80462F20 0045FE60  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80462F24 0045FE64  7C 7D 1B 78 */	mr r29, r3
-/* 80462F28 0045FE68  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
+/* 80462F28 0045FE68  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
 /* 80462F2C 0045FE6C  28 00 00 00 */	cmplwi r0, 0
 /* 80462F30 0045FE70  40 82 00 20 */	bne lbl_80462F50
 /* 80462F34 0045FE74  3C 60 80 4A */	lis r3, lbl_8049CFD0@ha
@@ -6967,7 +6967,7 @@ playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei:
 /* 80462F4C 0045FE8C  4B BC 76 F5 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80462F50:
 /* 80462F50 0045FE90  80 7D 00 2C */	lwz r3, 0x2c(r29)
-/* 80462F54 0045FE94  80 8D 91 C8 */	lwz r4, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
+/* 80462F54 0045FE94  80 8D 91 C8 */	lwz r4, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
 /* 80462F58 0045FE98  81 83 00 00 */	lwz r12, 0(r3)
 /* 80462F5C 0045FE9C  3B E4 00 24 */	addi r31, r4, 0x24
 /* 80462F60 0045FEA0  81 8C 02 1C */	lwz r12, 0x21c(r12)
@@ -7067,7 +7067,7 @@ __ct__Q23PSM7ClusterFPQ24Game8CreatureRQ38PSSystem9ClusterSe7Factory:
 /* 804630B4 0045FFF4  4C C6 31 82 */	crclr 6
 /* 804630B8 0045FFF8  4B BC 75 89 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804630BC:
-/* 804630BC 0045FFFC  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 804630BC 0045FFFC  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 804630C0 00460000  28 00 00 00 */	cmplwi r0, 0
 /* 804630C4 00460004  40 82 00 20 */	bne lbl_804630E4
 /* 804630C8 00460008  3C 60 80 4A */	lis r3, lbl_8049CFA0@ha
@@ -7157,7 +7157,7 @@ PSSetCurCameraNo__FUc:
 /* 804631F4 00460134  90 01 00 14 */	stw r0, 0x14(r1)
 /* 804631F8 00460138  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804631FC 0046013C  7C 7F 1B 78 */	mr r31, r3
-/* 80463200 00460140  80 0D 91 B4 */	lwz r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80463200 00460140  80 0D 91 B4 */	lwz r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 80463204 00460144  28 00 00 00 */	cmplwi r0, 0
 /* 80463208 00460148  40 82 00 20 */	bne lbl_80463228
 /* 8046320C 0046014C  3C 60 80 4A */	lis r3, lbl_8049D05C@ha
@@ -7168,7 +7168,7 @@ PSSetCurCameraNo__FUc:
 /* 80463220 00460160  4C C6 31 82 */	crclr 6
 /* 80463224 00460164  4B BC 74 1D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80463228:
-/* 80463228 00460168  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80463228 00460168  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046322C 0046016C  9B E3 00 08 */	stb r31, 8(r3)
 /* 80463230 00460170  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80463234 00460174  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -8098,222 +8098,222 @@ lbl_80463E6C:
 /* 80463E80 00460DC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80463E84 00460DC4  4E 80 00 20 */	blr 
 
-.global "@16@__dt__Q23PSM7ObjBaseFv"
-"@16@__dt__Q23PSM7ObjBaseFv":
+.global $$216$$2__dt__Q23PSM7ObjBaseFv
+$$216$$2__dt__Q23PSM7ObjBaseFv:
 /* 80463E88 00460DC8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463E8C 00460DCC  4B FF 8F D8 */	b __dt__Q23PSM7ObjBaseFv
 
-.global "@12@__dt__Q23PSM6ObjMgrFv"
-"@12@__dt__Q23PSM6ObjMgrFv":
+.global $$212$$2__dt__Q23PSM6ObjMgrFv
+$$212$$2__dt__Q23PSM6ObjMgrFv:
 /* 80463E90 00460DD0  38 63 FF F4 */	addi r3, r3, -12
 /* 80463E94 00460DD4  4B FF 90 9C */	b __dt__Q23PSM6ObjMgrFv
 
-.global "@16@__dt__Q23PSM6ObjMgrFv"
-"@16@__dt__Q23PSM6ObjMgrFv":
+.global $$216$$2__dt__Q23PSM6ObjMgrFv
+$$216$$2__dt__Q23PSM6ObjMgrFv:
 /* 80463E98 00460DD8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463E9C 00460DDC  4B FF 90 94 */	b __dt__Q23PSM6ObjMgrFv
 
-.global "@16@__dt__Q23PSM8CreatureFv"
-"@16@__dt__Q23PSM8CreatureFv":
+.global $$216$$2__dt__Q23PSM8CreatureFv
+$$216$$2__dt__Q23PSM8CreatureFv:
 /* 80463EA0 00460DE0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463EA4 00460DE4  4B FF 9A 0C */	b __dt__Q23PSM8CreatureFv
 
-.global "@16@__dt__Q23PSM11CreatureObjFv"
-"@16@__dt__Q23PSM11CreatureObjFv":
+.global $$216$$2__dt__Q23PSM11CreatureObjFv
+$$216$$2__dt__Q23PSM11CreatureObjFv:
 /* 80463EA8 00460DE8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463EAC 00460DEC  4B D0 29 F0 */	b __dt__Q23PSM11CreatureObjFv
 
-.global "@48@__dt__Q23PSM11CreatureObjFv"
-"@48@__dt__Q23PSM11CreatureObjFv":
+.global $$248$$2__dt__Q23PSM11CreatureObjFv
+$$248$$2__dt__Q23PSM11CreatureObjFv:
 /* 80463EB0 00460DF0  38 63 FF D0 */	addi r3, r3, -48
 /* 80463EB4 00460DF4  4B D0 29 E8 */	b __dt__Q23PSM11CreatureObjFv
 
-.global "@16@__dt__Q23PSM13CreatureAnimeFv"
-"@16@__dt__Q23PSM13CreatureAnimeFv":
+.global $$216$$2__dt__Q23PSM13CreatureAnimeFv
+$$216$$2__dt__Q23PSM13CreatureAnimeFv:
 /* 80463EB8 00460DF8  38 63 FF F0 */	addi r3, r3, -16
 /* 80463EBC 00460DFC  4B FF A7 08 */	b __dt__Q23PSM13CreatureAnimeFv
 
-.global "@48@__dt__Q23PSM13CreatureAnimeFv"
-"@48@__dt__Q23PSM13CreatureAnimeFv":
+.global $$248$$2__dt__Q23PSM13CreatureAnimeFv
+$$248$$2__dt__Q23PSM13CreatureAnimeFv:
 /* 80463EC0 00460E00  38 63 FF D0 */	addi r3, r3, -48
 /* 80463EC4 00460E04  4B FF A7 00 */	b __dt__Q23PSM13CreatureAnimeFv
 
-.global "@48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc"
-"@48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc":
+.global $$248$$2startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc
+$$248$$2startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc:
 /* 80463EC8 00460E08  38 63 FF D0 */	addi r3, r3, -48
 /* 80463ECC 00460E0C  4B FF 9C 38 */	b startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc
 
-.global "@16@__dt__Q23PSM9EnemyBaseFv"
-"@16@__dt__Q23PSM9EnemyBaseFv":
+.global $$216$$2__dt__Q23PSM9EnemyBaseFv
+$$216$$2__dt__Q23PSM9EnemyBaseFv:
 /* 80463ED0 00460E10  38 63 FF F0 */	addi r3, r3, -16
 /* 80463ED4 00460E14  4B CA 31 FC */	b __dt__Q23PSM9EnemyBaseFv
 
-.global "@48@__dt__Q23PSM9EnemyBaseFv"
-"@48@__dt__Q23PSM9EnemyBaseFv":
+.global $$248$$2__dt__Q23PSM9EnemyBaseFv
+$$248$$2__dt__Q23PSM9EnemyBaseFv:
 /* 80463ED8 00460E18  38 63 FF D0 */	addi r3, r3, -48
 /* 80463EDC 00460E1C  4B CA 31 F4 */	b __dt__Q23PSM9EnemyBaseFv
 
-.global "@16@__dt__Q23PSM18EnemyNotAggressiveFv"
-"@16@__dt__Q23PSM18EnemyNotAggressiveFv":
+.global $$216$$2__dt__Q23PSM18EnemyNotAggressiveFv
+$$216$$2__dt__Q23PSM18EnemyNotAggressiveFv:
 /* 80463EE0 00460E20  38 63 FF F0 */	addi r3, r3, -16
 /* 80463EE4 00460E24  4B FF FC F4 */	b __dt__Q23PSM18EnemyNotAggressiveFv
 
-.global "@48@__dt__Q23PSM18EnemyNotAggressiveFv"
-"@48@__dt__Q23PSM18EnemyNotAggressiveFv":
+.global $$248$$2__dt__Q23PSM18EnemyNotAggressiveFv
+$$248$$2__dt__Q23PSM18EnemyNotAggressiveFv:
 /* 80463EE8 00460E28  38 63 FF D0 */	addi r3, r3, -48
 /* 80463EEC 00460E2C  4B FF FC EC */	b __dt__Q23PSM18EnemyNotAggressiveFv
 
-.global "@184@battleOff__Q23PSM18EnemyNotAggressiveFv"
-"@184@battleOff__Q23PSM18EnemyNotAggressiveFv":
+.global $$2184$$2battleOff__Q23PSM18EnemyNotAggressiveFv
+$$2184$$2battleOff__Q23PSM18EnemyNotAggressiveFv:
 /* 80463EF0 00460E30  38 63 FF 48 */	addi r3, r3, -184
 /* 80463EF4 00460E34  4B FF FE 84 */	b battleOff__Q23PSM18EnemyNotAggressiveFv
 
-.global "@184@battleOn__Q23PSM18EnemyNotAggressiveFv"
-"@184@battleOn__Q23PSM18EnemyNotAggressiveFv":
+.global $$2184$$2battleOn__Q23PSM18EnemyNotAggressiveFv
+$$2184$$2battleOn__Q23PSM18EnemyNotAggressiveFv:
 /* 80463EF8 00460E38  38 63 FF 48 */	addi r3, r3, -184
 /* 80463EFC 00460E3C  4B FF FE 80 */	b battleOn__Q23PSM18EnemyNotAggressiveFv
 
-.global "@204@kehaiOff__Q23PSM18EnemyNotAggressiveFv"
-"@204@kehaiOff__Q23PSM18EnemyNotAggressiveFv":
+.global $$2204$$2kehaiOff__Q23PSM18EnemyNotAggressiveFv
+$$2204$$2kehaiOff__Q23PSM18EnemyNotAggressiveFv:
 /* 80463F00 00460E40  38 63 FF 34 */	addi r3, r3, -204
 /* 80463F04 00460E44  4B FF FE 7C */	b kehaiOff__Q23PSM18EnemyNotAggressiveFv
 
-.global "@204@kehaiOn__Q23PSM18EnemyNotAggressiveFv"
-"@204@kehaiOn__Q23PSM18EnemyNotAggressiveFv":
+.global $$2204$$2kehaiOn__Q23PSM18EnemyNotAggressiveFv
+$$2204$$2kehaiOn__Q23PSM18EnemyNotAggressiveFv:
 /* 80463F08 00460E48  38 63 FF 34 */	addi r3, r3, -204
 /* 80463F0C 00460E4C  4B FF FE 78 */	b kehaiOn__Q23PSM18EnemyNotAggressiveFv
 
-.global "@16@__dt__Q23PSM9TsuyukusaFv"
-"@16@__dt__Q23PSM9TsuyukusaFv":
+.global $$216$$2__dt__Q23PSM9TsuyukusaFv
+$$216$$2__dt__Q23PSM9TsuyukusaFv:
 /* 80463F10 00460E50  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F14 00460E54  4B FF FB C4 */	b __dt__Q23PSM9TsuyukusaFv
 
-.global "@48@__dt__Q23PSM9TsuyukusaFv"
-"@48@__dt__Q23PSM9TsuyukusaFv":
+.global $$248$$2__dt__Q23PSM9TsuyukusaFv
+$$248$$2__dt__Q23PSM9TsuyukusaFv:
 /* 80463F18 00460E58  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F1C 00460E5C  4B FF FB BC */	b __dt__Q23PSM9TsuyukusaFv
 
-.global "@16@__dt__Q23PSM8EnemyBigFv"
-"@16@__dt__Q23PSM8EnemyBigFv":
+.global $$216$$2__dt__Q23PSM8EnemyBigFv
+$$216$$2__dt__Q23PSM8EnemyBigFv:
 /* 80463F20 00460E60  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F24 00460E64  4B CA 30 48 */	b __dt__Q23PSM8EnemyBigFv
 
-.global "@48@__dt__Q23PSM8EnemyBigFv"
-"@48@__dt__Q23PSM8EnemyBigFv":
+.global $$248$$2__dt__Q23PSM8EnemyBigFv
+$$248$$2__dt__Q23PSM8EnemyBigFv:
 /* 80463F28 00460E68  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F2C 00460E6C  4B CA 30 40 */	b __dt__Q23PSM8EnemyBigFv
 
-.global "@16@__dt__Q23PSM9EnemyBossFv"
-"@16@__dt__Q23PSM9EnemyBossFv":
+.global $$216$$2__dt__Q23PSM9EnemyBossFv
+$$216$$2__dt__Q23PSM9EnemyBossFv:
 /* 80463F30 00460E70  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F34 00460E74  4B FF C2 9C */	b __dt__Q23PSM9EnemyBossFv
 
-.global "@48@__dt__Q23PSM9EnemyBossFv"
-"@48@__dt__Q23PSM9EnemyBossFv":
+.global $$248$$2__dt__Q23PSM9EnemyBossFv
+$$248$$2__dt__Q23PSM9EnemyBossFv:
 /* 80463F38 00460E78  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F3C 00460E7C  4B FF C2 94 */	b __dt__Q23PSM9EnemyBossFv
 
-.global "@16@__dt__Q23PSM12EnemyMidBossFv"
-"@16@__dt__Q23PSM12EnemyMidBossFv":
+.global $$216$$2__dt__Q23PSM12EnemyMidBossFv
+$$216$$2__dt__Q23PSM12EnemyMidBossFv:
 /* 80463F40 00460E80  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F44 00460E84  4B FF C9 10 */	b __dt__Q23PSM12EnemyMidBossFv
 
-.global "@48@__dt__Q23PSM12EnemyMidBossFv"
-"@48@__dt__Q23PSM12EnemyMidBossFv":
+.global $$248$$2__dt__Q23PSM12EnemyMidBossFv
+$$248$$2__dt__Q23PSM12EnemyMidBossFv:
 /* 80463F48 00460E88  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F4C 00460E8C  4B FF C9 08 */	b __dt__Q23PSM12EnemyMidBossFv
 
-.global "@16@__dt__Q23PSM12EnemyBigBossFv"
-"@16@__dt__Q23PSM12EnemyBigBossFv":
+.global $$216$$2__dt__Q23PSM12EnemyBigBossFv
+$$216$$2__dt__Q23PSM12EnemyBigBossFv:
 /* 80463F50 00460E90  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F54 00460E94  4B FF CA F0 */	b __dt__Q23PSM12EnemyBigBossFv
 
-.global "@48@__dt__Q23PSM12EnemyBigBossFv"
-"@48@__dt__Q23PSM12EnemyBigBossFv":
+.global $$248$$2__dt__Q23PSM12EnemyBigBossFv
+$$248$$2__dt__Q23PSM12EnemyBigBossFv:
 /* 80463F58 00460E98  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F5C 00460E9C  4B FF CA E8 */	b __dt__Q23PSM12EnemyBigBossFv
 
-.global "@16@__dt__Q23PSM19Enemy_SpecialChappyFv"
-"@16@__dt__Q23PSM19Enemy_SpecialChappyFv":
+.global $$216$$2__dt__Q23PSM19Enemy_SpecialChappyFv
+$$216$$2__dt__Q23PSM19Enemy_SpecialChappyFv:
 /* 80463F60 00460EA0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F64 00460EA4  4B FF F9 94 */	b __dt__Q23PSM19Enemy_SpecialChappyFv
 
-.global "@48@__dt__Q23PSM19Enemy_SpecialChappyFv"
-"@48@__dt__Q23PSM19Enemy_SpecialChappyFv":
+.global $$248$$2__dt__Q23PSM19Enemy_SpecialChappyFv
+$$248$$2__dt__Q23PSM19Enemy_SpecialChappyFv:
 /* 80463F68 00460EA8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F6C 00460EAC  4B FF F9 8C */	b __dt__Q23PSM19Enemy_SpecialChappyFv
 
-.global "@16@__dt__Q23PSM8WorkItemFv"
-"@16@__dt__Q23PSM8WorkItemFv":
+.global $$216$$2__dt__Q23PSM8WorkItemFv
+$$216$$2__dt__Q23PSM8WorkItemFv:
 /* 80463F70 00460EB0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F74 00460EB4  4B FF F8 2C */	b __dt__Q23PSM8WorkItemFv
 
-.global "@48@__dt__Q23PSM8WorkItemFv"
-"@48@__dt__Q23PSM8WorkItemFv":
+.global $$248$$2__dt__Q23PSM8WorkItemFv
+$$248$$2__dt__Q23PSM8WorkItemFv:
 /* 80463F78 00460EB8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F7C 00460EBC  4B FF F8 24 */	b __dt__Q23PSM8WorkItemFv
 
-.global "@16@__dt__Q23PSM7OtakaraFv"
-"@16@__dt__Q23PSM7OtakaraFv":
+.global $$216$$2__dt__Q23PSM7OtakaraFv
+$$216$$2__dt__Q23PSM7OtakaraFv:
 /* 80463F80 00460EC0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F84 00460EC4  4B FF E0 00 */	b __dt__Q23PSM7OtakaraFv
 
-.global "@48@__dt__Q23PSM7OtakaraFv"
-"@48@__dt__Q23PSM7OtakaraFv":
+.global $$248$$2__dt__Q23PSM7OtakaraFv
+$$248$$2__dt__Q23PSM7OtakaraFv:
 /* 80463F88 00460EC8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F8C 00460ECC  4B FF DF F8 */	b __dt__Q23PSM7OtakaraFv
 
-.global "@16@__dt__Q23PSM13PelletOtakaraFv"
-"@16@__dt__Q23PSM13PelletOtakaraFv":
+.global $$216$$2__dt__Q23PSM13PelletOtakaraFv
+$$216$$2__dt__Q23PSM13PelletOtakaraFv:
 /* 80463F90 00460ED0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463F94 00460ED4  4B FF F6 94 */	b __dt__Q23PSM13PelletOtakaraFv
 
-.global "@48@__dt__Q23PSM13PelletOtakaraFv"
-"@48@__dt__Q23PSM13PelletOtakaraFv":
+.global $$248$$2__dt__Q23PSM13PelletOtakaraFv
+$$248$$2__dt__Q23PSM13PelletOtakaraFv:
 /* 80463F98 00460ED8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463F9C 00460EDC  4B FF F6 8C */	b __dt__Q23PSM13PelletOtakaraFv
 
-.global "@16@__dt__Q23PSM10PelletItemFv"
-"@16@__dt__Q23PSM10PelletItemFv":
+.global $$216$$2__dt__Q23PSM10PelletItemFv
+$$216$$2__dt__Q23PSM10PelletItemFv:
 /* 80463FA0 00460EE0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463FA4 00460EE4  4B FF F5 14 */	b __dt__Q23PSM10PelletItemFv
 
-.global "@48@__dt__Q23PSM10PelletItemFv"
-"@48@__dt__Q23PSM10PelletItemFv":
+.global $$248$$2__dt__Q23PSM10PelletItemFv
+$$248$$2__dt__Q23PSM10PelletItemFv:
 /* 80463FA8 00460EE8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FAC 00460EEC  4B FF F5 0C */	b __dt__Q23PSM10PelletItemFv
 
-.global "@16@__dt__Q23PSM4PikiFv"
-"@16@__dt__Q23PSM4PikiFv":
+.global $$216$$2__dt__Q23PSM4PikiFv
+$$216$$2__dt__Q23PSM4PikiFv:
 /* 80463FB0 00460EF0  38 63 FF F0 */	addi r3, r3, -16
 /* 80463FB4 00460EF4  4B FF F4 14 */	b __dt__Q23PSM4PikiFv
 
-.global "@48@__dt__Q23PSM4PikiFv"
-"@48@__dt__Q23PSM4PikiFv":
+.global $$248$$2__dt__Q23PSM4PikiFv
+$$248$$2__dt__Q23PSM4PikiFv:
 /* 80463FB8 00460EF8  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FBC 00460EFC  4B FF F4 0C */	b __dt__Q23PSM4PikiFv
 
-.global "@16@__dt__Q23PSM4NaviFv"
-"@16@__dt__Q23PSM4NaviFv":
+.global $$216$$2__dt__Q23PSM4NaviFv
+$$216$$2__dt__Q23PSM4NaviFv:
 /* 80463FC0 00460F00  38 63 FF F0 */	addi r3, r3, -16
 /* 80463FC4 00460F04  4B FF FD CC */	b __dt__Q23PSM4NaviFv
 
-.global "@48@startSound__Q23PSM4NaviFUlUl"
-"@48@startSound__Q23PSM4NaviFUlUl":
+.global $$248$$2startSound__Q23PSM4NaviFUlUl
+$$248$$2startSound__Q23PSM4NaviFUlUl:
 /* 80463FC8 00460F08  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FCC 00460F0C  4B FF EC C8 */	b startSound__Q23PSM4NaviFUlUl
 
-.global "@48@__dt__Q23PSM4NaviFv"
-"@48@__dt__Q23PSM4NaviFv":
+.global $$248$$2__dt__Q23PSM4NaviFv
+$$248$$2__dt__Q23PSM4NaviFv:
 /* 80463FD0 00460F10  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FD4 00460F14  4B FF FD BC */	b __dt__Q23PSM4NaviFv
 
-.global "@16@__dt__Q23PSM7ClusterFv"
-"@16@__dt__Q23PSM7ClusterFv":
+.global $$216$$2__dt__Q23PSM7ClusterFv
+$$216$$2__dt__Q23PSM7ClusterFv:
 /* 80463FD8 00460F18  38 63 FF F0 */	addi r3, r3, -16
 /* 80463FDC 00460F1C  4B FF F2 E0 */	b __dt__Q23PSM7ClusterFv
 
-.global "@48@__dt__Q23PSM7ClusterFv"
-"@48@__dt__Q23PSM7ClusterFv":
+.global $$248$$2__dt__Q23PSM7ClusterFv
+$$248$$2__dt__Q23PSM7ClusterFv:
 /* 80463FE0 00460F20  38 63 FF D0 */	addi r3, r3, -48
 /* 80463FE4 00460F24  4B FF F2 D8 */	b __dt__Q23PSM7ClusterFv

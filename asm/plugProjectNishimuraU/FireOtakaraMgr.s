@@ -72,9 +72,9 @@ __ct__Q34Game11OtakaraBase5ParmsFv:
 /* 802B7DB8 002B4CF8  90 FF 07 FC */	stw r7, 0x7fc(r31)
 /* 802B7DBC 002B4CFC  90 1F 08 00 */	stw r0, 0x800(r31)
 /* 802B7DC0 002B4D00  48 15 B8 99 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802B7DC4 002B4D04  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802B7DC4 002B4D04  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802B7DC8 002B4D08  3C A0 66 70 */	lis r5, 0x66703130@ha
-/* 802B7DCC 002B4D0C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802B7DCC 002B4D0C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802B7DD0 002B4D10  C0 02 DF 88 */	lfs f0, lbl_8051C2E8@sda21(r2)
 /* 802B7DD4 002B4D14  90 1F 08 04 */	stw r0, 0x804(r31)
 /* 802B7DD8 002B4D18  38 7F 08 2C */	addi r3, r31, 0x82c
@@ -87,9 +87,9 @@ __ct__Q34Game11OtakaraBase5ParmsFv:
 /* 802B7DF4 002B4D34  D0 3F 08 24 */	stfs f1, 0x824(r31)
 /* 802B7DF8 002B4D38  D0 1F 08 28 */	stfs f0, 0x828(r31)
 /* 802B7DFC 002B4D3C  48 15 B8 5D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802B7E00 002B4D40  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802B7E00 002B4D40  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802B7E04 002B4D44  3C A0 66 70 */	lis r5, 0x66703131@ha
-/* 802B7E08 002B4D48  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802B7E08 002B4D48  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802B7E0C 002B4D4C  C0 02 DF 94 */	lfs f0, lbl_8051C2F4@sda21(r2)
 /* 802B7E10 002B4D50  90 1F 08 2C */	stw r0, 0x82c(r31)
 /* 802B7E14 002B4D54  38 7F 08 54 */	addi r3, r31, 0x854
@@ -102,9 +102,9 @@ __ct__Q34Game11OtakaraBase5ParmsFv:
 /* 802B7E30 002B4D70  D0 3F 08 4C */	stfs f1, 0x84c(r31)
 /* 802B7E34 002B4D74  D0 1F 08 50 */	stfs f0, 0x850(r31)
 /* 802B7E38 002B4D78  48 15 B8 21 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802B7E3C 002B4D7C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802B7E3C 002B4D7C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802B7E40 002B4D80  3C A0 66 70 */	lis r5, 0x66703231@ha
-/* 802B7E44 002B4D84  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802B7E44 002B4D84  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802B7E48 002B4D88  C0 02 DF 9C */	lfs f0, lbl_8051C2FC@sda21(r2)
 /* 802B7E4C 002B4D8C  90 1F 08 54 */	stw r0, 0x854(r31)
 /* 802B7E50 002B4D90  38 7F 08 7C */	addi r3, r31, 0x87c
@@ -117,9 +117,9 @@ __ct__Q34Game11OtakaraBase5ParmsFv:
 /* 802B7E6C 002B4DAC  D0 3F 08 74 */	stfs f1, 0x874(r31)
 /* 802B7E70 002B4DB0  D0 1F 08 78 */	stfs f0, 0x878(r31)
 /* 802B7E74 002B4DB4  48 15 B7 E5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802B7E78 002B4DB8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802B7E78 002B4DB8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802B7E7C 002B4DBC  C0 42 DF A0 */	lfs f2, lbl_8051C300@sda21(r2)
-/* 802B7E80 002B4DC0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802B7E80 002B4DC0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802B7E84 002B4DC4  C0 22 DF 8C */	lfs f1, lbl_8051C2EC@sda21(r2)
 /* 802B7E88 002B4DC8  90 1F 08 7C */	stw r0, 0x87c(r31)
 /* 802B7E8C 002B4DCC  7F E3 FB 78 */	mr r3, r31
@@ -243,7 +243,7 @@ loadTexData__Q34Game11FireOtakara3MgrFv:
 /* 802B802C 002B4F6C  7C 7F 1B 78 */	mr r31, r3
 /* 802B8030 002B4F70  90 03 00 44 */	stw r0, 0x44(r3)
 /* 802B8034 002B4F74  38 61 00 08 */	addi r3, r1, 8
-/* 802B8038 002B4F78  80 8D 84 E0 */	lwz r4, "cOtakaraChangeTexName__Q34Game11FireOtakara28@unnamed@FireOtakaraMgr_cpp@"@sda21(r13)
+/* 802B8038 002B4F78  80 8D 84 E0 */	lwz r4, cOtakaraChangeTexName__Q34Game11FireOtakara28$$2unnamed$$2FireOtakaraMgr_cpp$$2@sda21(r13)
 /* 802B803C 002B4F7C  48 19 45 9D */	bl __ct__Q212LoadResource3ArgFPCc
 /* 802B8040 002B4F80  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 802B8044 002B4F84  38 81 00 08 */	addi r4, r1, 8
@@ -358,7 +358,7 @@ read__Q34Game11OtakaraBase5ParmsFR6Stream:
 /* 802B81B8 002B50F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B81BC 002B50FC  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game11FireOtakara3MgrFv"
-"@4@__dt__Q34Game11FireOtakara3MgrFv":
+.global $$24$$2__dt__Q34Game11FireOtakara3MgrFv
+$$24$$2__dt__Q34Game11FireOtakara3MgrFv:
 /* 802B81C0 002B5100  38 63 FF FC */	addi r3, r3, -4
 /* 802B81C4 002B5104  4B FF FE D4 */	b __dt__Q34Game11FireOtakara3MgrFv

@@ -260,7 +260,7 @@ lbl_80015348:
 /* 80015364 000122A4  80 DF 00 E8 */	lwz r6, 0xe8(r31)
 /* 80015368 000122A8  39 20 00 04 */	li r9, 4
 /* 8001536C 000122AC  80 FF 00 E4 */	lwz r7, 0xe4(r31)
-/* 80015370 000122B0  48 00 04 FD */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 80015370 000122B0  48 00 04 FD */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 80015374 000122B4  38 00 00 00 */	li r0, 0
 /* 80015378 000122B8  90 1F 00 E4 */	stw r0, 0xe4(r31)
 lbl_8001537C:
@@ -305,7 +305,7 @@ lbl_800153F0:
 /* 80015400 00012340  80 DF 00 E8 */	lwz r6, 0xe8(r31)
 /* 80015404 00012344  39 00 00 00 */	li r8, 0
 /* 80015408 00012348  39 20 00 04 */	li r9, 4
-/* 8001540C 0001234C  48 00 04 15 */	bl "prepareSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 8001540C 0001234C  48 00 04 15 */	bl prepareSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 80015410 00012350  80 1F 00 D8 */	lwz r0, 0xd8(r31)
 /* 80015414 00012354  28 00 00 00 */	cmplwi r0, 0
 /* 80015418 00012358  41 82 00 0C */	beq lbl_80015424
@@ -557,7 +557,7 @@ lbl_80015714:
 /* 80015734 00012674  38 BE 00 D8 */	addi r5, r30, 0xd8
 /* 80015738 00012678  39 00 00 00 */	li r8, 0
 /* 8001573C 0001267C  39 20 00 04 */	li r9, 4
-/* 80015740 00012680  48 00 01 2D */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 80015740 00012680  48 00 01 2D */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 80015744 00012684  80 1E 00 D8 */	lwz r0, 0xd8(r30)
 /* 80015748 00012688  28 00 00 00 */	cmplwi r0, 0
 /* 8001574C 0001268C  41 82 00 0C */	beq lbl_80015758
@@ -624,14 +624,14 @@ lbl_80015804:
 /* 80015818 00012758  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001581C 0001275C  4E 80 00 20 */	blr 
 
-.global "prepareSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-"prepareSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc":
+.global prepareSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
+prepareSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc:
 /* 80015820 00012760  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80015824 00012764  7C 08 02 A6 */	mflr r0
 /* 80015828 00012768  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8001582C 0001276C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80015830 00012770  7C BF 2B 78 */	mr r31, r5
-/* 80015834 00012774  48 00 00 39 */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 80015834 00012774  48 00 00 39 */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 80015838 00012778  80 7F 00 00 */	lwz r3, 0(r31)
 /* 8001583C 0001277C  28 03 00 00 */	cmplwi r3, 0
 /* 80015840 00012780  41 82 00 18 */	beq lbl_80015858
@@ -647,8 +647,8 @@ lbl_80015858:
 /* 80015864 000127A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015868 000127A8  4E 80 00 20 */	blr 
 
-.global "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-"startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc":
+.global startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
+startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc:
 /* 8001586C 000127AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80015870 000127B0  7C 08 02 A6 */	mflr r0
 /* 80015874 000127B4  28 06 00 00 */	cmplwi r6, 0
@@ -671,14 +671,14 @@ lbl_800158A8:
 lbl_800158B0:
 /* 800158B0 000127F0  7D 28 4B 78 */	mr r8, r9
 /* 800158B4 000127F4  38 C1 00 08 */	addi r6, r1, 8
-/* 800158B8 000127F8  48 00 00 15 */	bl "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
+/* 800158B8 000127F8  48 00 00 15 */	bl startSoundActorT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc
 /* 800158BC 000127FC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 800158C0 00012800  7C 08 03 A6 */	mtlr r0
 /* 800158C4 00012804  38 21 00 20 */	addi r1, r1, 0x20
 /* 800158C8 00012808  4E 80 00 20 */	blr 
 
-.global "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
-"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc":
+.global startSoundActorT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc
+startSoundActorT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc:
 /* 800158CC 0001280C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800158D0 00012810  7C 08 02 A6 */	mflr r0
 /* 800158D4 00012814  90 01 00 24 */	stw r0, 0x24(r1)
@@ -707,8 +707,8 @@ lbl_80015920:
 /* 8001592C 0001286C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80015930 00012870  4E 80 00 20 */	blr 
 
-.global "__sinit_object-sound_cpp"
-"__sinit_object-sound_cpp":
+.global __sinit_object$$5sound_cpp
+__sinit_object$$5sound_cpp:
 /* 80015934 00012874  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80015938 00012878  7C 08 02 A6 */	mflr r0
 /* 8001593C 0001287C  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha

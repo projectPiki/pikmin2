@@ -538,7 +538,7 @@ fade__Q23efx12TTankFireABCFv:
 /* 8029EC24 0029BB64  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029EC28 0029BB68  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029EC2C 0029BB6C  7C 7F 1B 78 */	mr r31, r3
-/* 8029EC30 0029BB70  48 11 32 3D */	bl "fade__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
+/* 8029EC30 0029BB70  48 11 32 3D */	bl fade__Q23efx29TSyncGroup3$$0Q23efx9TChaseMtx$$1Fv
 /* 8029EC34 0029BB74  80 7F 00 48 */	lwz r3, 0x48(r31)
 /* 8029EC38 0029BB78  28 03 00 00 */	cmplwi r3, 0
 /* 8029EC3C 0029BB7C  41 82 00 14 */	beq lbl_8029EC50
@@ -611,7 +611,7 @@ endDemoDrawOn__Q23efx12TTankFireABCFv:
 /* 8029ED20 0029BC60  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029ED24 0029BC64  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029ED28 0029BC68  7C 7F 1B 78 */	mr r31, r3
-/* 8029ED2C 0029BC6C  48 11 32 49 */	bl "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
+/* 8029ED2C 0029BC6C  48 11 32 49 */	bl endDemoDrawOn__Q23efx29TSyncGroup3$$0Q23efx9TChaseMtx$$1Fv
 /* 8029ED30 0029BC70  38 7F 00 4C */	addi r3, r31, 0x4c
 /* 8029ED34 0029BC74  81 9F 00 4C */	lwz r12, 0x4c(r31)
 /* 8029ED38 0029BC78  81 8C 00 38 */	lwz r12, 0x38(r12)
@@ -658,7 +658,7 @@ startDemoDrawOff__Q23efx12TTankFireABCFv:
 /* 8029EDC4 0029BD04  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029EDC8 0029BD08  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029EDCC 0029BD0C  7C 7F 1B 78 */	mr r31, r3
-/* 8029EDD0 0029BD10  48 11 31 4D */	bl "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
+/* 8029EDD0 0029BD10  48 11 31 4D */	bl startDemoDrawOff__Q23efx29TSyncGroup3$$0Q23efx9TChaseMtx$$1Fv
 /* 8029EDD4 0029BD14  38 7F 00 4C */	addi r3, r31, 0x4c
 /* 8029EDD8 0029BD18  81 9F 00 4C */	lwz r12, 0x4c(r31)
 /* 8029EDDC 0029BD1C  81 8C 00 34 */	lwz r12, 0x34(r12)
@@ -749,12 +749,12 @@ getEnemyTypeID__Q34Game5Ftank3ObjFv:
 /* 8029EEF4 0029BE34  38 60 00 18 */	li r3, 0x18
 /* 8029EEF8 0029BE38  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx12TTankFireHitFv"
-"@4@__dt__Q23efx12TTankFireHitFv":
+.global $$24$$2__dt__Q23efx12TTankFireHitFv
+$$24$$2__dt__Q23efx12TTankFireHitFv:
 /* 8029EEFC 0029BE3C  38 63 FF FC */	addi r3, r3, -4
 /* 8029EF00 0029BE40  4B FF FB 6C */	b __dt__Q23efx12TTankFireHitFv
 
-.global "@4@__dt__Q23efx15TTankFireYodareFv"
-"@4@__dt__Q23efx15TTankFireYodareFv":
+.global $$24$$2__dt__Q23efx15TTankFireYodareFv
+$$24$$2__dt__Q23efx15TTankFireYodareFv:
 /* 8029EF04 0029BE44  38 63 FF FC */	addi r3, r3, -4
 /* 8029EF08 0029BE48  4B FF FA 08 */	b __dt__Q23efx15TTankFireYodareFv

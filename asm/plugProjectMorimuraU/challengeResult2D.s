@@ -1140,10 +1140,10 @@ __ct__Q28Morimura16TChallengeResultFv:
 /* 80394330 00391270  3C 80 80 4E */	lis r4, __vt__Q28Morimura16TChallengeResult@ha
 /* 80394334 00391274  38 00 00 00 */	li r0, 0
 /* 80394338 00391278  38 84 52 10 */	addi r4, r4, __vt__Q28Morimura16TChallengeResult@l
-/* 8039433C 0039127C  3C 60 80 38 */	lis r3, "__ct__10Vector2<f>Fv"@ha
+/* 8039433C 0039127C  3C 60 80 38 */	lis r3, __ct__10Vector2$$0f$$1Fv@ha
 /* 80394340 00391280  90 9F 00 00 */	stw r4, 0(r31)
 /* 80394344 00391284  38 A4 00 10 */	addi r5, r4, 0x10
-/* 80394348 00391288  38 83 D0 B8 */	addi r4, r3, "__ct__10Vector2<f>Fv"@l
+/* 80394348 00391288  38 83 D0 B8 */	addi r4, r3, __ct__10Vector2$$0f$$1Fv@l
 /* 8039434C 0039128C  38 7F 00 F0 */	addi r3, r31, 0xf0
 /* 80394350 00391290  90 BF 00 18 */	stw r5, 0x18(r31)
 /* 80394354 00391294  38 A0 00 00 */	li r5, 0
@@ -1167,9 +1167,9 @@ __ct__Q28Morimura16TChallengeResultFv:
 /* 8039439C 003912DC  90 1F 00 D0 */	stw r0, 0xd0(r31)
 /* 803943A0 003912E0  90 1F 00 D4 */	stw r0, 0xd4(r31)
 /* 803943A4 003912E4  4B D2 D4 99 */	bl __construct_array
-/* 803943A8 003912E8  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
+/* 803943A8 003912E8  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
 /* 803943AC 003912EC  38 7F 01 08 */	addi r3, r31, 0x108
-/* 803943B0 003912F0  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
+/* 803943B0 003912F0  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
 /* 803943B4 003912F4  38 A0 00 00 */	li r5, 0
 /* 803943B8 003912F8  38 C0 00 08 */	li r6, 8
 /* 803943BC 003912FC  38 E0 00 03 */	li r7, 3
@@ -3771,7 +3771,7 @@ lbl_80396978:
 /* 80396A38 00393978  EC 03 00 2A */	fadds f0, f3, f0
 /* 80396A3C 0039397C  D0 21 00 28 */	stfs f1, 0x28(r1)
 /* 80396A40 00393980  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 80396A44 00393984  4B C9 FD 91 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 80396A44 00393984  4B C9 FD 91 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 80396A48 00393988  38 60 00 01 */	li r3, 1
 /* 80396A4C 0039398C  4B D5 27 0D */	bl GXSetAlphaUpdate
 /* 80396A50 00393990  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -6937,12 +6937,12 @@ lbl_80399800:
 /* 80399814 00396754  38 21 00 10 */	addi r1, r1, 0x10
 /* 80399818 00396758  4E 80 00 20 */	blr 
 
-.global "@8@__dt__Q25efx2d15T2DCavecompLoopFv"
-"@8@__dt__Q25efx2d15T2DCavecompLoopFv":
+.global $$28$$2__dt__Q25efx2d15T2DCavecompLoopFv
+$$28$$2__dt__Q25efx2d15T2DCavecompLoopFv:
 /* 8039981C 0039675C  38 63 FF F8 */	addi r3, r3, -8
 /* 80399820 00396760  4B FF FE E8 */	b __dt__Q25efx2d15T2DCavecompLoopFv
 
-.global "@24@__dt__Q28Morimura16TChallengeResultFv"
-"@24@__dt__Q28Morimura16TChallengeResultFv":
+.global $$224$$2__dt__Q28Morimura16TChallengeResultFv
+$$224$$2__dt__Q28Morimura16TChallengeResultFv:
 /* 80399824 00396764  38 63 FF E8 */	addi r3, r3, -24
 /* 80399828 00396768  4B FF AD DC */	b __dt__Q28Morimura16TChallengeResultFv

@@ -36,7 +36,7 @@ __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer:
 /* 804309CC 0042D90C  90 1F 00 04 */	stw r0, 4(r31)
 /* 804309D0 0042D910  88 0D 9B 78 */	lbz r0, lbl_805161F8@sda21(r13)
 /* 804309D4 0042D914  98 01 00 08 */	stb r0, 8(r1)
-/* 804309D8 0042D918  4B BF 6A AD */	bl "__ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<Pv>"
+/* 804309D8 0042D918  4B BF 6A AD */	bl __ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator$$0Pv$$1
 /* 804309DC 0042D91C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 804309E0 0042D920  7F E3 FB 78 */	mr r3, r31
 /* 804309E4 0042D924  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -116,7 +116,7 @@ lbl_80430AD4:
 /* 80430AE4 0042DA24  80 1D 00 04 */	lwz r0, 4(r29)
 /* 80430AE8 0042DA28  90 01 00 08 */	stw r0, 8(r1)
 /* 80430AEC 0042DA2C  90 01 00 18 */	stw r0, 0x18(r1)
-/* 80430AF0 0042DA30  4B BF 6B 0D */	bl "erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iterator"
+/* 80430AF0 0042DA30  4B BF 6B 0D */	bl erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$18iterator
 lbl_80430AF4:
 /* 80430AF4 0042DA34  80 1C 00 24 */	lwz r0, 0x24(r28)
 /* 80430AF8 0042DA38  28 00 00 00 */	cmplwi r0, 0
@@ -714,7 +714,7 @@ lbl_804312E0:
 /* 80431304 0042E244  93 E1 00 54 */	stw r31, 0x54(r1)
 /* 80431308 0042E248  93 E1 00 50 */	stw r31, 0x50(r1)
 /* 8043130C 0042E24C  93 E1 00 34 */	stw r31, 0x34(r1)
-/* 80431310 0042E250  4B BF 62 55 */	bl "insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iteratorRCPv"
+/* 80431310 0042E250  4B BF 62 55 */	bl insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$18iteratorRCPv
 lbl_80431314:
 /* 80431314 0042E254  80 01 00 80 */	lwz r0, 0x80(r1)
 /* 80431318 0042E258  90 1D 00 00 */	stw r0, 0(r29)
@@ -767,22 +767,22 @@ __sinit_JSTObjectSystem_cpp:
 /* 80431390 0042E2D0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80431394 0042E2D4  4E 80 00 20 */	blr 
 
-.global "@4@stop__Q34Game5P2JST12ObjectSystemFv"
-"@4@stop__Q34Game5P2JST12ObjectSystemFv":
+.global $$24$$2stop__Q34Game5P2JST12ObjectSystemFv
+$$24$$2stop__Q34Game5P2JST12ObjectSystemFv:
 /* 80431398 0042E2D8  38 63 FF FC */	addi r3, r3, -4
 /* 8043139C 0042E2DC  4B FF FA CC */	b stop__Q34Game5P2JST12ObjectSystemFv
 
-.global "@4@start__Q34Game5P2JST12ObjectSystemFv"
-"@4@start__Q34Game5P2JST12ObjectSystemFv":
+.global $$24$$2start__Q34Game5P2JST12ObjectSystemFv
+$$24$$2start__Q34Game5P2JST12ObjectSystemFv:
 /* 804313A0 0042E2E0  38 63 FF FC */	addi r3, r3, -4
 /* 804313A4 0042E2E4  4B FF F9 F0 */	b start__Q34Game5P2JST12ObjectSystemFv
 
-.global "@4@update__Q34Game5P2JST12ObjectSystemFv"
-"@4@update__Q34Game5P2JST12ObjectSystemFv":
+.global $$24$$2update__Q34Game5P2JST12ObjectSystemFv
+$$24$$2update__Q34Game5P2JST12ObjectSystemFv:
 /* 804313A8 0042E2E8  38 63 FF FC */	addi r3, r3, -4
 /* 804313AC 0042E2EC  4B FF F9 14 */	b update__Q34Game5P2JST12ObjectSystemFv
 
-.global "@4@reset__Q34Game5P2JST12ObjectSystemFv"
-"@4@reset__Q34Game5P2JST12ObjectSystemFv":
+.global $$24$$2reset__Q34Game5P2JST12ObjectSystemFv
+$$24$$2reset__Q34Game5P2JST12ObjectSystemFv:
 /* 804313B0 0042E2F0  38 63 FF FC */	addi r3, r3, -4
 /* 804313B4 0042E2F4  4B FF F7 6C */	b reset__Q34Game5P2JST12ObjectSystemFv

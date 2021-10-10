@@ -24,8 +24,8 @@ rootPath$2747:
 sDefaultFillFlag__7JKRHeap:
 	.byte 1
 	.skip 7
-.global "sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
-"sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
+.global sVisible__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2
+sVisible__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2:
 	.byte 1
 	.skip 7
 .global sMessageBuffer__12JUTException
@@ -369,8 +369,8 @@ decodedBufferBlocks__Q27JAInter9StreamMgr:
 fragmentID:
 	.4byte 0xFFFFFFFE
 	.4byte 0x00000000
-.global "@wstringBase0"
-"@wstringBase0":
+.global $$2wstringBase0
+$$2wstringBase0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 .global next
@@ -606,42 +606,42 @@ __THPVersion:
 __GBAVersion:
 	.4byte 0x804AA0F8
 	.4byte 0x00000000
-.global "cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@"
-"cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@":
+.global cKochappyChangeTexName__Q34Game8Kochappy25$$2unnamed$$2kochappyMgr_cpp$$2
+cKochappyChangeTexName__Q34Game8Kochappy25$$2unnamed$$2kochappyMgr_cpp$$2:
 	.4byte 0x8047AB44
 	.4byte 0x00000000
-.global "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"
-"cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@":
+.global cChappyChangeTexName0__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2
+cChappyChangeTexName0__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2:
 	.4byte 0x8047AED4
-.global "cChappyChangeTexName1__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"
-"cChappyChangeTexName1__Q34Game6Chappy23@unnamed@chappyMgr_cpp@":
+.global cChappyChangeTexName1__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2
+cChappyChangeTexName1__Q34Game6Chappy23$$2unnamed$$2chappyMgr_cpp$$2:
 	.4byte 0x8047AEF8
 .global gEnemyInfoNum__4Game
 gEnemyInfoNum__4Game:
 	.4byte 0x00000064
 	.4byte 0x00000000
-.global "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@"
-"sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@":
+.global sStoneMdlName__27$$2unnamed$$2enemyStoneMgr_cpp$$2
+sStoneMdlName__27$$2unnamed$$2enemyStoneMgr_cpp$$2:
 	.4byte lbl_8047BE58
 	.4byte 0x8047BE6C
-.global "cChappyChangeTexName0__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@"
-"cChappyChangeTexName0__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@":
+.global cChappyChangeTexName0__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2
+cChappyChangeTexName0__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2:
 	.4byte 0x8047BFC0
-.global "cChappyChangeTexName1__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@"
-"cChappyChangeTexName1__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@":
+.global cChappyChangeTexName1__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2
+cChappyChangeTexName1__Q34Game10BlueChappy27$$2unnamed$$2BlueChappyMgr_cpp$$2:
 	.4byte 0x8047BFE8
-.global "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"
-"cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@":
+.global cChappyChangeTexName0__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2
+cChappyChangeTexName0__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2:
 	.4byte 0x8047C030
-.global "cChappyChangeTexName1__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"
-"cChappyChangeTexName1__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@":
+.global cChappyChangeTexName1__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2
+cChappyChangeTexName1__Q34Game12YellowChappy29$$2unnamed$$2YellowChappyMgr_cpp$$2:
 	.4byte 0x8047C05C
-.global "cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@"
-"cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@":
+.global cKochappyChangeTexName__Q34Game12BlueKochappy29$$2unnamed$$2BlueKochappyMgr_cpp$$2
+cKochappyChangeTexName__Q34Game12BlueKochappy29$$2unnamed$$2BlueKochappyMgr_cpp$$2:
 	.4byte 0x8047C0C0
 	.4byte 0x00000000
-.global "cKochappyChangeTexName__Q34Game14YellowKochappy31@unnamed@YellowKochappyMgr_cpp@"
-"cKochappyChangeTexName__Q34Game14YellowKochappy31@unnamed@YellowKochappyMgr_cpp@":
+.global cKochappyChangeTexName__Q34Game14YellowKochappy31$$2unnamed$$2YellowKochappyMgr_cpp$$2
+cKochappyChangeTexName__Q34Game14YellowKochappy31$$2unnamed$$2YellowKochappyMgr_cpp$$2:
 	.4byte 0x8047C110
 	.4byte 0x00000000
 .global usePacketCulling__Q24Game8Creature
@@ -691,8 +691,8 @@ mUseCellMgr__Q24Game7PlatMgr:
 	.byte 0x0
 	.byte 0x0
 	.4byte 0x00000000
-.global "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"
-"enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@":
+.global enum_floor_hiddens__26$$2unnamed$$2gameCaveInfo_cpp$$2
+enum_floor_hiddens__26$$2unnamed$$2gameCaveInfo_cpp$$2:
 	.4byte 0x805196F0
 	.4byte 0x805196F8
 .global mTraceMoveOptLevel__Q24Game6MapMgr
@@ -743,92 +743,92 @@ cBedamaYellow__13VsOtakaraName:
 cBedamaYellowDepth__13VsOtakaraName:
 	.4byte 0x41A00000
 	.4byte 0x00000000
-.global "cTankChangeTexName__Q34Game5Wtank22@unnamed@WtankMgr_cpp@"
-"cTankChangeTexName__Q34Game5Wtank22@unnamed@WtankMgr_cpp@":
+.global cTankChangeTexName__Q34Game5Wtank22$$2unnamed$$2WtankMgr_cpp$$2
+cTankChangeTexName__Q34Game5Wtank22$$2unnamed$$2WtankMgr_cpp$$2:
 	.4byte 0x80487080
 	.4byte 0x00000000
-.global "cMatAnimBtkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@"
-"cMatAnimBtkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@":
+.global cMatAnimBtkTexName__Q34Game3Mar20$$2unnamed$$2MarMgr_cpp$$2
+cMatAnimBtkTexName__Q34Game3Mar20$$2unnamed$$2MarMgr_cpp$$2:
 	.4byte 0x80487434
-.global "cMatAnimBrkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@"
-"cMatAnimBrkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@":
+.global cMatAnimBrkTexName__Q34Game3Mar20$$2unnamed$$2MarMgr_cpp$$2
+cMatAnimBrkTexName__Q34Game3Mar20$$2unnamed$$2MarMgr_cpp$$2:
 	.4byte 0x80487458
-.global "cKoganeChangeTexName__Q34Game7Wealthy24@unnamed@WealthyMgr_cpp@"
-"cKoganeChangeTexName__Q34Game7Wealthy24@unnamed@WealthyMgr_cpp@":
+.global cKoganeChangeTexName__Q34Game7Wealthy24$$2unnamed$$2WealthyMgr_cpp$$2
+cKoganeChangeTexName__Q34Game7Wealthy24$$2unnamed$$2WealthyMgr_cpp$$2:
 	.4byte 0x80487848
 	.4byte 0x00000000
-.global "cKoganeChangeTexName__Q34Game4Fart21@unnamed@FartMgr_cpp@"
-"cKoganeChangeTexName__Q34Game4Fart21@unnamed@FartMgr_cpp@":
+.global cKoganeChangeTexName__Q34Game4Fart21$$2unnamed$$2FartMgr_cpp$$2
+cKoganeChangeTexName__Q34Game4Fart21$$2unnamed$$2FartMgr_cpp$$2:
 	.4byte 0x80487BE8
 	.4byte 0x00000000
-.global "cMatAnimBtkTexName__Q34Game5Queen22@unnamed@QueenMgr_cpp@"
-"cMatAnimBtkTexName__Q34Game5Queen22@unnamed@QueenMgr_cpp@":
+.global cMatAnimBtkTexName__Q34Game5Queen22$$2unnamed$$2QueenMgr_cpp$$2
+cMatAnimBtkTexName__Q34Game5Queen22$$2unnamed$$2QueenMgr_cpp$$2:
 	.4byte 0x80487C68
 	.4byte 0x00000000
-.global "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"
-"cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@":
+.global cMatAnimBtkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2
+cMatAnimBtkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2:
 	.4byte 0x80488348
-.global "cMatAnimBrkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"
-"cMatAnimBrkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@":
+.global cMatAnimBrkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2
+cMatAnimBrkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2:
 	.4byte 0x80488370
-.global "cKoganeChangeTexName__Q34Game11Koganemushi28@unnamed@KoganemushiMgr_cpp@"
-"cKoganeChangeTexName__Q34Game11Koganemushi28@unnamed@KoganemushiMgr_cpp@":
+.global cKoganeChangeTexName__Q34Game11Koganemushi28$$2unnamed$$2KoganemushiMgr_cpp$$2
+cKoganeChangeTexName__Q34Game11Koganemushi28$$2unnamed$$2KoganemushiMgr_cpp$$2:
 	.4byte 0x80488FB8
 	.4byte 0x00000000
-.global "cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@"
-"cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@":
+.global cTankChangeTexName__Q34Game5Ftank22$$2unnamed$$2FtankMgr_cpp$$2
+cTankChangeTexName__Q34Game5Ftank22$$2unnamed$$2FtankMgr_cpp$$2:
 	.4byte 0x80489010
 	.4byte 0x00000000
-.global "cMatAnimBtkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@"
-"cMatAnimBtkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@":
+.global cMatAnimBtkTexName__Q34Game12Hanachirashi29$$2unnamed$$2HanachirashiMgr_cpp$$2
+cMatAnimBtkTexName__Q34Game12Hanachirashi29$$2unnamed$$2HanachirashiMgr_cpp$$2:
 	.4byte 0x804890CC
-.global "cMatAnimBrkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@"
-"cMatAnimBrkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@":
+.global cMatAnimBrkTexName__Q34Game12Hanachirashi29$$2unnamed$$2HanachirashiMgr_cpp$$2
+cMatAnimBrkTexName__Q34Game12Hanachirashi29$$2unnamed$$2HanachirashiMgr_cpp$$2:
 	.4byte 0x804890FC
-.global "cMatAnimBtkTexName__Q34Game8Damagumo25@unnamed@DamagumoMgr_cpp@"
-"cMatAnimBtkTexName__Q34Game8Damagumo25@unnamed@DamagumoMgr_cpp@":
+.global cMatAnimBtkTexName__Q34Game8Damagumo25$$2unnamed$$2DamagumoMgr_cpp$$2
+cMatAnimBtkTexName__Q34Game8Damagumo25$$2unnamed$$2DamagumoMgr_cpp$$2:
 	.4byte 0x804894C8
-.global "cMatAnimBrkTexName__Q34Game8Damagumo25@unnamed@DamagumoMgr_cpp@"
-"cMatAnimBrkTexName__Q34Game8Damagumo25@unnamed@DamagumoMgr_cpp@":
+.global cMatAnimBrkTexName__Q34Game8Damagumo25$$2unnamed$$2DamagumoMgr_cpp$$2
+cMatAnimBrkTexName__Q34Game8Damagumo25$$2unnamed$$2DamagumoMgr_cpp$$2:
 	.4byte 0x804894F0
-.global "cOtakaraChangeTexName__Q34Game11FireOtakara28@unnamed@FireOtakaraMgr_cpp@"
-"cOtakaraChangeTexName__Q34Game11FireOtakara28@unnamed@FireOtakaraMgr_cpp@":
+.global cOtakaraChangeTexName__Q34Game11FireOtakara28$$2unnamed$$2FireOtakaraMgr_cpp$$2
+cOtakaraChangeTexName__Q34Game11FireOtakara28$$2unnamed$$2FireOtakaraMgr_cpp$$2:
 	.4byte 0x8048A3CC
 	.4byte 0x00000000
-.global "cOtakaraChangeTexName__Q34Game12WaterOtakara29@unnamed@WaterOtakaraMgr_cpp@"
-"cOtakaraChangeTexName__Q34Game12WaterOtakara29@unnamed@WaterOtakaraMgr_cpp@":
+.global cOtakaraChangeTexName__Q34Game12WaterOtakara29$$2unnamed$$2WaterOtakaraMgr_cpp$$2
+cOtakaraChangeTexName__Q34Game12WaterOtakara29$$2unnamed$$2WaterOtakaraMgr_cpp$$2:
 	.4byte 0x8048A760
 	.4byte 0x00000000
-.global "cOtakaraChangeTexName__Q34Game10GasOtakara27@unnamed@GasOtakaraMgr_cpp@"
-"cOtakaraChangeTexName__Q34Game10GasOtakara27@unnamed@GasOtakaraMgr_cpp@":
+.global cOtakaraChangeTexName__Q34Game10GasOtakara27$$2unnamed$$2GasOtakaraMgr_cpp$$2
+cOtakaraChangeTexName__Q34Game10GasOtakara27$$2unnamed$$2GasOtakaraMgr_cpp$$2:
 	.4byte 0x8048A7D0
 	.4byte 0x00000000
-.global "cOtakaraChangeTexName__Q34Game11ElecOtakara28@unnamed@ElecOtakaraMgr_cpp@"
-"cOtakaraChangeTexName__Q34Game11ElecOtakara28@unnamed@ElecOtakaraMgr_cpp@":
+.global cOtakaraChangeTexName__Q34Game11ElecOtakara28$$2unnamed$$2ElecOtakaraMgr_cpp$$2
+cOtakaraChangeTexName__Q34Game11ElecOtakara28$$2unnamed$$2ElecOtakaraMgr_cpp$$2:
 	.4byte 0x8048A840
 	.4byte 0x00000000
-.global "cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@"
-"cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@":
+.global cMatAnimBrkTexName__Q34Game7BigFoot24$$2unnamed$$2BigFootMgr_cpp$$2
+cMatAnimBrkTexName__Q34Game7BigFoot24$$2unnamed$$2BigFootMgr_cpp$$2:
 	.4byte 0x8048B228
 	.4byte 0x00000000
-.global "cOtakaraChangeTexName__Q34Game11BombOtakara28@unnamed@BombOtakaraMgr_cpp@"
-"cOtakaraChangeTexName__Q34Game11BombOtakara28@unnamed@BombOtakaraMgr_cpp@":
+.global cOtakaraChangeTexName__Q34Game11BombOtakara28$$2unnamed$$2BombOtakaraMgr_cpp$$2
+cOtakaraChangeTexName__Q34Game11BombOtakara28$$2unnamed$$2BombOtakaraMgr_cpp$$2:
 	.4byte 0x8048D3D8
 	.4byte 0x00000000
-.global "cMatAnimBrkTexName__Q34Game10DangoMushi27@unnamed@DangoMushiMgr_cpp@"
-"cMatAnimBrkTexName__Q34Game10DangoMushi27@unnamed@DangoMushiMgr_cpp@":
+.global cMatAnimBrkTexName__Q34Game10DangoMushi27$$2unnamed$$2DangoMushiMgr_cpp$$2
+cMatAnimBrkTexName__Q34Game10DangoMushi27$$2unnamed$$2DangoMushiMgr_cpp$$2:
 	.4byte 0x8048D45C
 	.4byte 0x00000000
-.global "cKabutoChangeTexName__Q34Game11GreenKabuto28@unnamed@GreenKabutoMgr_cpp@"
-"cKabutoChangeTexName__Q34Game11GreenKabuto28@unnamed@GreenKabutoMgr_cpp@":
+.global cKabutoChangeTexName__Q34Game11GreenKabuto28$$2unnamed$$2GreenKabutoMgr_cpp$$2
+cKabutoChangeTexName__Q34Game11GreenKabuto28$$2unnamed$$2GreenKabutoMgr_cpp$$2:
 	.4byte 0x8048D810
 	.4byte 0x00000000
-.global "cKabutoChangeTexName__Q34Game9RedKabuto26@unnamed@RedKabutoMgr_cpp@"
-"cKabutoChangeTexName__Q34Game9RedKabuto26@unnamed@RedKabutoMgr_cpp@":
+.global cKabutoChangeTexName__Q34Game9RedKabuto26$$2unnamed$$2RedKabutoMgr_cpp$$2
+cKabutoChangeTexName__Q34Game9RedKabuto26$$2unnamed$$2RedKabutoMgr_cpp$$2:
 	.4byte 0x8048D890
 	.4byte 0x00000000
-.global "cKabutoChangeTexName__Q34Game9FixKabuto26@unnamed@FixKabutoMgr_cpp@"
-"cKabutoChangeTexName__Q34Game9FixKabuto26@unnamed@FixKabutoMgr_cpp@":
+.global cKabutoChangeTexName__Q34Game9FixKabuto26$$2unnamed$$2FixKabutoMgr_cpp$$2
+cKabutoChangeTexName__Q34Game9FixKabuto26$$2unnamed$$2FixKabutoMgr_cpp$$2:
 	.4byte 0x8048D8F8
 	.4byte 0x00000000
 .global sDistanceParameterMoveTime__8PSSystem
@@ -1092,21 +1092,21 @@ cFileName__Q24Game10MemoryCard:
 sTinyPikminNum__13TinyPikminMgr:
 	.4byte 0x0000000A
 	.4byte 0x00000000
-.global "sMovieIndex__26@unnamed@titleSection_cpp@"
-"sMovieIndex__26@unnamed@titleSection_cpp@":
+.global sMovieIndex__26$$2unnamed$$2titleSection_cpp$$2
+sMovieIndex__26$$2unnamed$$2titleSection_cpp$$2:
 	.byte 0x0
 	.byte 0x2
 	.byte 0x4
 	.4byte 0x01030B0B
-.global "sSeasonIndex__26@unnamed@titleSection_cpp@"
-"sSeasonIndex__26@unnamed@titleSection_cpp@":
+.global sSeasonIndex__26$$2unnamed$$2titleSection_cpp$$2
+sSeasonIndex__26$$2unnamed$$2titleSection_cpp$$2:
 	.byte 0xFF
-.global "sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@"
-"sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@":
+.global sMovieIndexTable__Q24Demo25$$2unnamed$$2demoSection_cpp$$2
+sMovieIndexTable__Q24Demo25$$2unnamed$$2demoSection_cpp$$2:
 	.4byte 0x05060700
 	.4byte 0x08090A00
-.global "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"
-"sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@":
+.global sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2
+sMovieIndex__Q24Demo25$$2unnamed$$2demoSection_cpp$$2:
 	.4byte 0xFF000000
 	.4byte 0x00000000
 .global sTreasureLader_PitchDistance

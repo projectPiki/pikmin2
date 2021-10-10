@@ -4326,7 +4326,7 @@ getRepayLevel__Q24Game8PlayDataFv:
 /* 801E8E64 001E5DA4  C8 62 B6 78 */	lfd f3, lbl_805199D8@sda21(r2)
 /* 801E8E68 001E5DA8  80 8D 93 F0 */	lwz r4, _aiConstants__4Game@sda21(r13)
 /* 801E8E6C 001E5DAC  80 C3 00 E8 */	lwz r6, 0xe8(r3)
-/* 801E8E70 001E5DB0  3C 60 80 48 */	lis r3, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
+/* 801E8E70 001E5DB0  3C 60 80 48 */	lis r3, repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2@ha
 /* 801E8E74 001E5DB4  80 04 00 48 */	lwz r0, 0x48(r4)
 /* 801E8E78 001E5DB8  6C C4 80 00 */	xoris r4, r6, 0x8000
 /* 801E8E7C 001E5DBC  90 A1 00 08 */	stw r5, 8(r1)
@@ -4336,7 +4336,7 @@ getRepayLevel__Q24Game8PlayDataFv:
 /* 801E8E8C 001E5DCC  C8 01 00 08 */	lfd f0, 8(r1)
 /* 801E8E90 001E5DD0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801E8E94 001E5DD4  EC 40 18 28 */	fsubs f2, f0, f3
-/* 801E8E98 001E5DD8  C4 03 0F 58 */	lfsu f0, "repay_levs__26@unnamed@gamePlayData_cpp@"@l(r3)
+/* 801E8E98 001E5DD8  C4 03 0F 58 */	lfsu f0, repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2@l(r3)
 /* 801E8E9C 001E5DDC  90 A1 00 10 */	stw r5, 0x10(r1)
 /* 801E8EA0 001E5DE0  C8 21 00 10 */	lfd f1, 0x10(r1)
 /* 801E8EA4 001E5DE4  EC 21 18 28 */	fsubs f1, f1, f3
@@ -4411,9 +4411,9 @@ getRepayLevelPercent__Q24Game8PlayDataFi:
 /* 801E8F80 001E5EC0  2C 04 00 00 */	cmpwi r4, 0
 /* 801E8F84 001E5EC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E8F88 001E5EC8  41 80 00 18 */	blt lbl_801E8FA0
-/* 801E8F8C 001E5ECC  3C 60 80 48 */	lis r3, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
+/* 801E8F8C 001E5ECC  3C 60 80 48 */	lis r3, repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2@ha
 /* 801E8F90 001E5ED0  54 80 10 3A */	slwi r0, r4, 2
-/* 801E8F94 001E5ED4  38 63 0F 58 */	addi r3, r3, "repay_levs__26@unnamed@gamePlayData_cpp@"@l
+/* 801E8F94 001E5ED4  38 63 0F 58 */	addi r3, r3, repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2@l
 /* 801E8F98 001E5ED8  7C 23 04 2E */	lfsx f1, r3, r0
 /* 801E8F9C 001E5EDC  48 00 00 20 */	b lbl_801E8FBC
 lbl_801E8FA0:
@@ -4433,7 +4433,7 @@ checkRepayLevelFirstClear__Q24Game8PlayDataFv:
 /* 801E8FC4 001E5F04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E8FC8 001E5F08  3C C0 43 30 */	lis r6, 0x4330
 /* 801E8FCC 001E5F0C  C8 62 B6 78 */	lfd f3, lbl_805199D8@sda21(r2)
-/* 801E8FD0 001E5F10  3C 80 80 48 */	lis r4, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
+/* 801E8FD0 001E5F10  3C 80 80 48 */	lis r4, repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2@ha
 /* 801E8FD4 001E5F14  80 AD 93 F0 */	lwz r5, _aiConstants__4Game@sda21(r13)
 /* 801E8FD8 001E5F18  80 E3 00 E8 */	lwz r7, 0xe8(r3)
 /* 801E8FDC 001E5F1C  80 05 00 48 */	lwz r0, 0x48(r5)
@@ -4445,7 +4445,7 @@ checkRepayLevelFirstClear__Q24Game8PlayDataFv:
 /* 801E8FF4 001E5F34  C8 01 00 08 */	lfd f0, 8(r1)
 /* 801E8FF8 001E5F38  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801E8FFC 001E5F3C  EC 40 18 28 */	fsubs f2, f0, f3
-/* 801E9000 001E5F40  C4 04 0F 58 */	lfsu f0, "repay_levs__26@unnamed@gamePlayData_cpp@"@l(r4)
+/* 801E9000 001E5F40  C4 04 0F 58 */	lfsu f0, repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2@l(r4)
 /* 801E9004 001E5F44  90 C1 00 10 */	stw r6, 0x10(r1)
 /* 801E9008 001E5F48  C8 21 00 10 */	lfd f1, 0x10(r1)
 /* 801E900C 001E5F4C  EC 21 18 28 */	fsubs f1, f1, f3
@@ -4537,7 +4537,7 @@ experienceRepayLevelFirstClear__Q24Game8PlayDataFv:
 /* 801E9124 001E6064  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E9128 001E6068  3C C0 43 30 */	lis r6, 0x4330
 /* 801E912C 001E606C  C8 62 B6 78 */	lfd f3, lbl_805199D8@sda21(r2)
-/* 801E9130 001E6070  3C 80 80 48 */	lis r4, "repay_levs__26@unnamed@gamePlayData_cpp@"@ha
+/* 801E9130 001E6070  3C 80 80 48 */	lis r4, repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2@ha
 /* 801E9134 001E6074  80 AD 93 F0 */	lwz r5, _aiConstants__4Game@sda21(r13)
 /* 801E9138 001E6078  80 E3 00 E8 */	lwz r7, 0xe8(r3)
 /* 801E913C 001E607C  80 05 00 48 */	lwz r0, 0x48(r5)
@@ -4549,7 +4549,7 @@ experienceRepayLevelFirstClear__Q24Game8PlayDataFv:
 /* 801E9154 001E6094  C8 01 00 08 */	lfd f0, 8(r1)
 /* 801E9158 001E6098  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801E915C 001E609C  EC 40 18 28 */	fsubs f2, f0, f3
-/* 801E9160 001E60A0  C4 04 0F 58 */	lfsu f0, "repay_levs__26@unnamed@gamePlayData_cpp@"@l(r4)
+/* 801E9160 001E60A0  C4 04 0F 58 */	lfsu f0, repay_levs__26$$2unnamed$$2gamePlayData_cpp$$2@l(r4)
 /* 801E9164 001E60A4  90 C1 00 10 */	stw r6, 0x10(r1)
 /* 801E9168 001E60A8  C8 21 00 10 */	lfd f1, 0x10(r1)
 /* 801E916C 001E60AC  EC 21 18 28 */	fsubs f1, f1, f3

@@ -12,14 +12,14 @@ init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr:
 /* 803EEC00 003EBB40  38 80 00 05 */	li r4, 5
 /* 803EEC04 003EBB44  93 C1 00 08 */	stw r30, 8(r1)
 /* 803EEC08 003EBB48  7C 7E 1B 78 */	mr r30, r3
-/* 803EEC0C 003EBB4C  48 00 15 09 */	bl "create__Q24Game31StateMachine<Q33ebi5Omake4TMgr>Fi"
+/* 803EEC0C 003EBB4C  48 00 15 09 */	bl create__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1Fi
 /* 803EEC10 003EBB50  38 60 00 10 */	li r3, 0x10
 /* 803EEC14 003EBB54  4B C3 52 91 */	bl __nw__FUl
 /* 803EEC18 003EBB58  7C 64 1B 79 */	or. r4, r3, r3
 /* 803EEC1C 003EBB5C  41 82 00 30 */	beq lbl_803EEC4C
-/* 803EEC20 003EBB60  3C A0 80 4F */	lis r5, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@ha
+/* 803EEC20 003EBB60  3C A0 80 4F */	lis r5, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@ha
 /* 803EEC24 003EBB64  3C 60 80 4F */	lis r3, __vt__Q33ebi5Omake8FSMState@ha
-/* 803EEC28 003EBB68  38 05 A2 C4 */	addi r0, r5, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@l
+/* 803EEC28 003EBB68  38 05 A2 C4 */	addi r0, r5, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@l
 /* 803EEC2C 003EBB6C  38 A0 00 00 */	li r5, 0
 /* 803EEC30 003EBB70  90 04 00 00 */	stw r0, 0(r4)
 /* 803EEC34 003EBB74  38 63 A2 9C */	addi r3, r3, __vt__Q33ebi5Omake8FSMState@l
@@ -30,14 +30,14 @@ init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr:
 /* 803EEC48 003EBB88  90 04 00 0C */	stw r0, 0xc(r4)
 lbl_803EEC4C:
 /* 803EEC4C 003EBB8C  7F C3 F3 78 */	mr r3, r30
-/* 803EEC50 003EBB90  48 00 15 C5 */	bl "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
+/* 803EEC50 003EBB90  48 00 15 C5 */	bl registerState__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ24Game27FSMState$$0Q33ebi5Omake4TMgr$$1
 /* 803EEC54 003EBB94  38 60 00 10 */	li r3, 0x10
 /* 803EEC58 003EBB98  4B C3 52 4D */	bl __nw__FUl
 /* 803EEC5C 003EBB9C  7C 64 1B 79 */	or. r4, r3, r3
 /* 803EEC60 003EBBA0  41 82 00 40 */	beq lbl_803EECA0
-/* 803EEC64 003EBBA4  3C 60 80 4F */	lis r3, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@ha
+/* 803EEC64 003EBBA4  3C 60 80 4F */	lis r3, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@ha
 /* 803EEC68 003EBBA8  3C A0 80 4F */	lis r5, __vt__Q33ebi5Omake8FSMState@ha
-/* 803EEC6C 003EBBAC  38 03 A2 C4 */	addi r0, r3, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@l
+/* 803EEC6C 003EBBAC  38 03 A2 C4 */	addi r0, r3, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@l
 /* 803EEC70 003EBBB0  3C 60 80 4F */	lis r3, __vt__Q33ebi5Omake20FSMState_OmakeScreen@ha
 /* 803EEC74 003EBBB4  90 04 00 00 */	stw r0, 0(r4)
 /* 803EEC78 003EBBB8  38 00 00 01 */	li r0, 1
@@ -52,14 +52,14 @@ lbl_803EEC4C:
 /* 803EEC9C 003EBBDC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803EECA0:
 /* 803EECA0 003EBBE0  7F C3 F3 78 */	mr r3, r30
-/* 803EECA4 003EBBE4  48 00 15 71 */	bl "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
+/* 803EECA4 003EBBE4  48 00 15 71 */	bl registerState__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ24Game27FSMState$$0Q33ebi5Omake4TMgr$$1
 /* 803EECA8 003EBBE8  38 60 00 10 */	li r3, 0x10
 /* 803EECAC 003EBBEC  4B C3 51 F9 */	bl __nw__FUl
 /* 803EECB0 003EBBF0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803EECB4 003EBBF4  41 82 00 40 */	beq lbl_803EECF4
-/* 803EECB8 003EBBF8  3C 60 80 4F */	lis r3, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@ha
+/* 803EECB8 003EBBF8  3C 60 80 4F */	lis r3, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@ha
 /* 803EECBC 003EBBFC  3C A0 80 4F */	lis r5, __vt__Q33ebi5Omake8FSMState@ha
-/* 803EECC0 003EBC00  38 03 A2 C4 */	addi r0, r3, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@l
+/* 803EECC0 003EBC00  38 03 A2 C4 */	addi r0, r3, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@l
 /* 803EECC4 003EBC04  3C 60 80 4F */	lis r3, __vt__Q33ebi5Omake20FSMState_CardEScreen@ha
 /* 803EECC8 003EBC08  90 04 00 00 */	stw r0, 0(r4)
 /* 803EECCC 003EBC0C  38 00 00 02 */	li r0, 2
@@ -74,14 +74,14 @@ lbl_803EECA0:
 /* 803EECF0 003EBC30  90 04 00 00 */	stw r0, 0(r4)
 lbl_803EECF4:
 /* 803EECF4 003EBC34  7F C3 F3 78 */	mr r3, r30
-/* 803EECF8 003EBC38  48 00 15 1D */	bl "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
+/* 803EECF8 003EBC38  48 00 15 1D */	bl registerState__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ24Game27FSMState$$0Q33ebi5Omake4TMgr$$1
 /* 803EECFC 003EBC3C  38 60 00 1C */	li r3, 0x1c
 /* 803EED00 003EBC40  4B C3 51 A5 */	bl __nw__FUl
 /* 803EED04 003EBC44  7C 64 1B 79 */	or. r4, r3, r3
 /* 803EED08 003EBC48  41 82 00 48 */	beq lbl_803EED50
-/* 803EED0C 003EBC4C  3C 60 80 4F */	lis r3, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@ha
+/* 803EED0C 003EBC4C  3C 60 80 4F */	lis r3, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@ha
 /* 803EED10 003EBC50  3C A0 80 4F */	lis r5, __vt__Q33ebi5Omake8FSMState@ha
-/* 803EED14 003EBC54  38 03 A2 C4 */	addi r0, r3, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@l
+/* 803EED14 003EBC54  38 03 A2 C4 */	addi r0, r3, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@l
 /* 803EED18 003EBC58  3C 60 80 4F */	lis r3, __vt__Q33ebi5Omake19FSMState_SelectGame@ha
 /* 803EED1C 003EBC5C  90 04 00 00 */	stw r0, 0(r4)
 /* 803EED20 003EBC60  38 00 00 03 */	li r0, 3
@@ -98,14 +98,14 @@ lbl_803EECF4:
 /* 803EED4C 003EBC8C  90 E4 00 18 */	stw r7, 0x18(r4)
 lbl_803EED50:
 /* 803EED50 003EBC90  7F C3 F3 78 */	mr r3, r30
-/* 803EED54 003EBC94  48 00 14 C1 */	bl "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
+/* 803EED54 003EBC94  48 00 14 C1 */	bl registerState__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ24Game27FSMState$$0Q33ebi5Omake4TMgr$$1
 /* 803EED58 003EBC98  38 60 00 10 */	li r3, 0x10
 /* 803EED5C 003EBC9C  4B C3 51 49 */	bl __nw__FUl
 /* 803EED60 003EBCA0  7C 64 1B 79 */	or. r4, r3, r3
 /* 803EED64 003EBCA4  41 82 00 34 */	beq lbl_803EED98
-/* 803EED68 003EBCA8  3C A0 80 4F */	lis r5, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@ha
+/* 803EED68 003EBCA8  3C A0 80 4F */	lis r5, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@ha
 /* 803EED6C 003EBCAC  3C 60 80 4F */	lis r3, __vt__Q33ebi5Omake8FSMState@ha
-/* 803EED70 003EBCB0  38 05 A2 C4 */	addi r0, r5, "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"@l
+/* 803EED70 003EBCB0  38 05 A2 C4 */	addi r0, r5, __vt__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1@l
 /* 803EED74 003EBCB4  38 C0 00 04 */	li r6, 4
 /* 803EED78 003EBCB8  90 04 00 00 */	stw r0, 0(r4)
 /* 803EED7C 003EBCBC  38 A0 00 00 */	li r5, 0
@@ -117,7 +117,7 @@ lbl_803EED50:
 /* 803EED94 003EBCD4  90 04 00 0C */	stw r0, 0xc(r4)
 lbl_803EED98:
 /* 803EED98 003EBCD8  7F C3 F3 78 */	mr r3, r30
-/* 803EED9C 003EBCDC  48 00 14 79 */	bl "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
+/* 803EED9C 003EBCDC  48 00 14 79 */	bl registerState__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ24Game27FSMState$$0Q33ebi5Omake4TMgr$$1
 /* 803EEDA0 003EBCE0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803EEDA4 003EBCE4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803EEDA8 003EBCE8  83 C1 00 08 */	lwz r30, 8(r1)
@@ -602,10 +602,10 @@ __ct__Q33ebi5Omake4TMgrFv:
 /* 803EF454 003EC394  38 7F 05 DC */	addi r3, r31, 0x5dc
 /* 803EF458 003EC398  48 00 18 9D */	bl __ct__Q33ebi6Screen10TOmakeGameFv
 /* 803EF45C 003EC39C  38 E0 00 00 */	li r7, 0
-/* 803EF460 003EC3A0  3C 80 80 4F */	lis r4, "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>"@ha
+/* 803EF460 003EC3A0  3C 80 80 4F */	lis r4, __vt__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1@ha
 /* 803EF464 003EC3A4  98 FF 08 90 */	stb r7, 0x890(r31)
 /* 803EF468 003EC3A8  3C 60 80 4F */	lis r3, __vt__Q33ebi5Omake15FSMStateMachine@ha
-/* 803EF46C 003EC3AC  38 C4 A2 00 */	addi r6, r4, "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>"@l
+/* 803EF46C 003EC3AC  38 C4 A2 00 */	addi r6, r4, __vt__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1@l
 /* 803EF470 003EC3B0  38 A0 FF FF */	li r5, -1
 /* 803EF474 003EC3B4  90 FF 08 94 */	stw r7, 0x894(r31)
 /* 803EF478 003EC3B8  38 03 A2 E4 */	addi r0, r3, __vt__Q33ebi5Omake15FSMStateMachine@l
@@ -942,8 +942,8 @@ do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
 do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr:
 /* 803EF8F8 003EC838  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-"transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg":
+.global transit__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgriPQ24Game8StateArg
+transit__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgriPQ24Game8StateArg:
 /* 803EF8FC 003EC83C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF900 003EC840  7C 08 02 A6 */	mflr r0
 /* 803EF904 003EC844  90 01 00 14 */	stw r0, 0x14(r1)
@@ -957,8 +957,8 @@ do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr:
 /* 803EF924 003EC864  38 21 00 10 */	addi r1, r1, 0x10
 /* 803EF928 003EC868  4E 80 00 20 */	blr 
 
-.global "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-"start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg":
+.global start__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgriPQ24Game8StateArg
+start__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgriPQ24Game8StateArg:
 /* 803EF92C 003EC86C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803EF930 003EC870  7C 08 02 A6 */	mflr r0
 /* 803EF934 003EC874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1483,32 +1483,32 @@ lbl_803F00A8:
 /* 803F00BC 003ECFFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F00C0 003ED000  4E 80 00 20 */	blr 
 
-.global "init__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgrPQ24Game8StateArg"
-"init__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgrPQ24Game8StateArg":
+.global init__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgrPQ24Game8StateArg
+init__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgrPQ24Game8StateArg:
 /* 803F00C4 003ED004  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"exec__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.global exec__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr
+exec__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr:
 /* 803F00C8 003ED008  4E 80 00 20 */	blr 
 
-.global "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.global cleanup__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr
+cleanup__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr:
 /* 803F00CC 003ED00C  4E 80 00 20 */	blr 
 
-.global "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.global resume__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr
+resume__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr:
 /* 803F00D0 003ED010  4E 80 00 20 */	blr 
 
-.global "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.global restart__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr
+restart__Q24Game27FSMState$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr:
 /* 803F00D4 003ED014  4E 80 00 20 */	blr 
 
-.global "init__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"init__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.global init__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr
+init__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr:
 /* 803F00D8 003ED018  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
-"exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr":
+.global exec__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr
+exec__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgr:
 /* 803F00DC 003ED01C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F00E0 003ED020  7C 08 02 A6 */	mflr r0
 /* 803F00E4 003ED024  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1525,8 +1525,8 @@ lbl_803F0104:
 /* 803F010C 003ED04C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F0110 003ED050  4E 80 00 20 */	blr 
 
-.global "create__Q24Game31StateMachine<Q33ebi5Omake4TMgr>Fi"
-"create__Q24Game31StateMachine<Q33ebi5Omake4TMgr>Fi":
+.global create__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1Fi
+create__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1Fi:
 /* 803F0114 003ED054  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F0118 003ED058  7C 08 02 A6 */	mflr r0
 /* 803F011C 003ED05C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1553,8 +1553,8 @@ lbl_803F0104:
 /* 803F0170 003ED0B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803F0174 003ED0B4  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-"transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg":
+.global transit__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgriPQ24Game8StateArg
+transit__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ33ebi5Omake4TMgriPQ24Game8StateArg:
 /* 803F0178 003ED0B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803F017C 003ED0BC  7C 08 02 A6 */	mflr r0
 /* 803F0180 003ED0C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1598,8 +1598,8 @@ lbl_803F01D8:
 /* 803F020C 003ED14C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803F0210 003ED150  4E 80 00 20 */	blr 
 
-.global "registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>"
-"registerState__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ24Game27FSMState<Q33ebi5Omake4TMgr>":
+.global registerState__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ24Game27FSMState$$0Q33ebi5Omake4TMgr$$1
+registerState__Q24Game31StateMachine$$0Q33ebi5Omake4TMgr$$1FPQ24Game27FSMState$$0Q33ebi5Omake4TMgr$$1:
 /* 803F0214 003ED154  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803F0218 003ED158  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 803F021C 003ED15C  7C 06 00 00 */	cmpw r6, r0

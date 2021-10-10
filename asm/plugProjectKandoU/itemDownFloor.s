@@ -9,19 +9,19 @@ init__Q34Game13ItemDownFloor3FSMFPQ34Game13ItemDownFloor4Item:
 /* 801F4CE8 001F1C28  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801F4CEC 001F1C2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801F4CF0 001F1C30  7C 7F 1B 78 */	mr r31, r3
-/* 801F4CF4 001F1C34  48 00 29 3D */	bl "create__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>Fi"
+/* 801F4CF4 001F1C34  48 00 29 3D */	bl create__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1Fi
 /* 801F4CF8 001F1C38  38 60 00 10 */	li r3, 0x10
 /* 801F4CFC 001F1C3C  4B E2 F1 A9 */	bl __nw__FUl
 /* 801F4D00 001F1C40  7C 64 1B 79 */	or. r4, r3, r3
 /* 801F4D04 001F1C44  41 82 00 40 */	beq lbl_801F4D44
-/* 801F4D08 001F1C48  3C 60 80 4C */	lis r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4D0C 001F1C4C  3C C0 80 4C */	lis r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4D10 001F1C50  38 03 CC 6C */	addi r0, r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4D08 001F1C48  3C 60 80 4C */	lis r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4D0C 001F1C4C  3C C0 80 4C */	lis r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4D10 001F1C50  38 03 CC 6C */	addi r0, r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4D14 001F1C54  3C A0 80 4C */	lis r5, __vt__Q34Game13ItemDownFloor5State@ha
 /* 801F4D18 001F1C58  90 04 00 00 */	stw r0, 0(r4)
 /* 801F4D1C 001F1C5C  38 E0 00 00 */	li r7, 0
 /* 801F4D20 001F1C60  3C 60 80 4C */	lis r3, __vt__Q34Game13ItemDownFloor9WaitState@ha
-/* 801F4D24 001F1C64  38 C6 CC 38 */	addi r6, r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4D24 001F1C64  38 C6 CC 38 */	addi r6, r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4D28 001F1C68  90 E4 00 04 */	stw r7, 4(r4)
 /* 801F4D2C 001F1C6C  38 A5 CC 00 */	addi r5, r5, __vt__Q34Game13ItemDownFloor5State@l
 /* 801F4D30 001F1C70  38 03 C5 40 */	addi r0, r3, __vt__Q34Game13ItemDownFloor9WaitState@l
@@ -31,21 +31,21 @@ init__Q34Game13ItemDownFloor3FSMFPQ34Game13ItemDownFloor4Item:
 /* 801F4D40 001F1C80  90 04 00 00 */	stw r0, 0(r4)
 lbl_801F4D44:
 /* 801F4D44 001F1C84  7F E3 FB 78 */	mr r3, r31
-/* 801F4D48 001F1C88  48 00 29 E9 */	bl "registerState__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ24Game37FSMState<Q34Game13ItemDownFloor4Item>"
+/* 801F4D48 001F1C88  48 00 29 E9 */	bl registerState__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1
 /* 801F4D4C 001F1C8C  38 60 00 14 */	li r3, 0x14
 /* 801F4D50 001F1C90  4B E2 F1 55 */	bl __nw__FUl
 /* 801F4D54 001F1C94  7C 64 1B 79 */	or. r4, r3, r3
 /* 801F4D58 001F1C98  41 82 00 44 */	beq lbl_801F4D9C
-/* 801F4D5C 001F1C9C  3C 60 80 4C */	lis r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4D60 001F1CA0  3C C0 80 4C */	lis r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4D64 001F1CA4  38 03 CC 6C */	addi r0, r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4D5C 001F1C9C  3C 60 80 4C */	lis r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4D60 001F1CA0  3C C0 80 4C */	lis r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4D64 001F1CA4  38 03 CC 6C */	addi r0, r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4D68 001F1CA8  3C A0 80 4C */	lis r5, __vt__Q34Game13ItemDownFloor5State@ha
 /* 801F4D6C 001F1CAC  90 04 00 00 */	stw r0, 0(r4)
 /* 801F4D70 001F1CB0  38 00 00 01 */	li r0, 1
 /* 801F4D74 001F1CB4  3C 60 80 4C */	lis r3, __vt__Q34Game13ItemDownFloor12DamagedState@ha
 /* 801F4D78 001F1CB8  38 E0 00 00 */	li r7, 0
 /* 801F4D7C 001F1CBC  90 04 00 04 */	stw r0, 4(r4)
-/* 801F4D80 001F1CC0  38 C6 CC 38 */	addi r6, r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4D80 001F1CC0  38 C6 CC 38 */	addi r6, r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4D84 001F1CC4  38 A5 CC 00 */	addi r5, r5, __vt__Q34Game13ItemDownFloor5State@l
 /* 801F4D88 001F1CC8  38 03 C5 08 */	addi r0, r3, __vt__Q34Game13ItemDownFloor12DamagedState@l
 /* 801F4D8C 001F1CCC  90 E4 00 08 */	stw r7, 8(r4)
@@ -54,21 +54,21 @@ lbl_801F4D44:
 /* 801F4D98 001F1CD8  90 04 00 00 */	stw r0, 0(r4)
 lbl_801F4D9C:
 /* 801F4D9C 001F1CDC  7F E3 FB 78 */	mr r3, r31
-/* 801F4DA0 001F1CE0  48 00 29 91 */	bl "registerState__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ24Game37FSMState<Q34Game13ItemDownFloor4Item>"
+/* 801F4DA0 001F1CE0  48 00 29 91 */	bl registerState__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1
 /* 801F4DA4 001F1CE4  38 60 00 10 */	li r3, 0x10
 /* 801F4DA8 001F1CE8  4B E2 F0 FD */	bl __nw__FUl
 /* 801F4DAC 001F1CEC  7C 64 1B 79 */	or. r4, r3, r3
 /* 801F4DB0 001F1CF0  41 82 00 44 */	beq lbl_801F4DF4
-/* 801F4DB4 001F1CF4  3C 60 80 4C */	lis r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4DB8 001F1CF8  3C C0 80 4C */	lis r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4DBC 001F1CFC  38 03 CC 6C */	addi r0, r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4DB4 001F1CF4  3C 60 80 4C */	lis r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4DB8 001F1CF8  3C C0 80 4C */	lis r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4DBC 001F1CFC  38 03 CC 6C */	addi r0, r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4DC0 001F1D00  3C A0 80 4C */	lis r5, __vt__Q34Game13ItemDownFloor5State@ha
 /* 801F4DC4 001F1D04  90 04 00 00 */	stw r0, 0(r4)
 /* 801F4DC8 001F1D08  38 00 00 02 */	li r0, 2
 /* 801F4DCC 001F1D0C  3C 60 80 4C */	lis r3, __vt__Q34Game13ItemDownFloor9DownState@ha
 /* 801F4DD0 001F1D10  38 E0 00 00 */	li r7, 0
 /* 801F4DD4 001F1D14  90 04 00 04 */	stw r0, 4(r4)
-/* 801F4DD8 001F1D18  38 C6 CC 38 */	addi r6, r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4DD8 001F1D18  38 C6 CC 38 */	addi r6, r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4DDC 001F1D1C  38 A5 CC 00 */	addi r5, r5, __vt__Q34Game13ItemDownFloor5State@l
 /* 801F4DE0 001F1D20  38 03 C4 D0 */	addi r0, r3, __vt__Q34Game13ItemDownFloor9DownState@l
 /* 801F4DE4 001F1D24  90 E4 00 08 */	stw r7, 8(r4)
@@ -77,21 +77,21 @@ lbl_801F4D9C:
 /* 801F4DF0 001F1D30  90 04 00 00 */	stw r0, 0(r4)
 lbl_801F4DF4:
 /* 801F4DF4 001F1D34  7F E3 FB 78 */	mr r3, r31
-/* 801F4DF8 001F1D38  48 00 29 39 */	bl "registerState__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ24Game37FSMState<Q34Game13ItemDownFloor4Item>"
+/* 801F4DF8 001F1D38  48 00 29 39 */	bl registerState__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1
 /* 801F4DFC 001F1D3C  38 60 00 10 */	li r3, 0x10
 /* 801F4E00 001F1D40  4B E2 F0 A5 */	bl __nw__FUl
 /* 801F4E04 001F1D44  7C 64 1B 79 */	or. r4, r3, r3
 /* 801F4E08 001F1D48  41 82 00 44 */	beq lbl_801F4E4C
-/* 801F4E0C 001F1D4C  3C 60 80 4C */	lis r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4E10 001F1D50  3C C0 80 4C */	lis r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4E14 001F1D54  38 03 CC 6C */	addi r0, r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4E0C 001F1D4C  3C 60 80 4C */	lis r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4E10 001F1D50  3C C0 80 4C */	lis r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4E14 001F1D54  38 03 CC 6C */	addi r0, r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4E18 001F1D58  3C A0 80 4C */	lis r5, __vt__Q34Game13ItemDownFloor5State@ha
 /* 801F4E1C 001F1D5C  90 04 00 00 */	stw r0, 0(r4)
 /* 801F4E20 001F1D60  38 00 00 03 */	li r0, 3
 /* 801F4E24 001F1D64  3C 60 80 4C */	lis r3, __vt__Q34Game13ItemDownFloor7UpState@ha
 /* 801F4E28 001F1D68  38 E0 00 00 */	li r7, 0
 /* 801F4E2C 001F1D6C  90 04 00 04 */	stw r0, 4(r4)
-/* 801F4E30 001F1D70  38 C6 CC 38 */	addi r6, r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4E30 001F1D70  38 C6 CC 38 */	addi r6, r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4E34 001F1D74  38 A5 CC 00 */	addi r5, r5, __vt__Q34Game13ItemDownFloor5State@l
 /* 801F4E38 001F1D78  38 03 C4 98 */	addi r0, r3, __vt__Q34Game13ItemDownFloor7UpState@l
 /* 801F4E3C 001F1D7C  90 E4 00 08 */	stw r7, 8(r4)
@@ -100,21 +100,21 @@ lbl_801F4DF4:
 /* 801F4E48 001F1D88  90 04 00 00 */	stw r0, 0(r4)
 lbl_801F4E4C:
 /* 801F4E4C 001F1D8C  7F E3 FB 78 */	mr r3, r31
-/* 801F4E50 001F1D90  48 00 28 E1 */	bl "registerState__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ24Game37FSMState<Q34Game13ItemDownFloor4Item>"
+/* 801F4E50 001F1D90  48 00 28 E1 */	bl registerState__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1
 /* 801F4E54 001F1D94  38 60 00 10 */	li r3, 0x10
 /* 801F4E58 001F1D98  4B E2 F0 4D */	bl __nw__FUl
 /* 801F4E5C 001F1D9C  7C 64 1B 79 */	or. r4, r3, r3
 /* 801F4E60 001F1DA0  41 82 00 44 */	beq lbl_801F4EA4
-/* 801F4E64 001F1DA4  3C 60 80 4C */	lis r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4E68 001F1DA8  3C C0 80 4C */	lis r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F4E6C 001F1DAC  38 03 CC 6C */	addi r0, r3, "__vt__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4E64 001F1DA4  3C 60 80 4C */	lis r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4E68 001F1DA8  3C C0 80 4C */	lis r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F4E6C 001F1DAC  38 03 CC 6C */	addi r0, r3, __vt__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4E70 001F1DB0  3C A0 80 4C */	lis r5, __vt__Q34Game13ItemDownFloor5State@ha
 /* 801F4E74 001F1DB4  90 04 00 00 */	stw r0, 0(r4)
 /* 801F4E78 001F1DB8  38 00 00 04 */	li r0, 4
 /* 801F4E7C 001F1DBC  3C 60 80 4C */	lis r3, __vt__Q34Game13ItemDownFloor9DeadState@ha
 /* 801F4E80 001F1DC0  38 E0 00 00 */	li r7, 0
 /* 801F4E84 001F1DC4  90 04 00 04 */	stw r0, 4(r4)
-/* 801F4E88 001F1DC8  38 C6 CC 38 */	addi r6, r6, "__vt__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>"@l
+/* 801F4E88 001F1DC8  38 C6 CC 38 */	addi r6, r6, __vt__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F4E8C 001F1DCC  38 A5 CC 00 */	addi r5, r5, __vt__Q34Game13ItemDownFloor5State@l
 /* 801F4E90 001F1DD0  38 03 CB C8 */	addi r0, r3, __vt__Q34Game13ItemDownFloor9DeadState@l
 /* 801F4E94 001F1DD4  90 E4 00 08 */	stw r7, 8(r4)
@@ -123,7 +123,7 @@ lbl_801F4E4C:
 /* 801F4EA0 001F1DE0  90 04 00 00 */	stw r0, 0(r4)
 lbl_801F4EA4:
 /* 801F4EA4 001F1DE4  7F E3 FB 78 */	mr r3, r31
-/* 801F4EA8 001F1DE8  48 00 28 89 */	bl "registerState__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ24Game37FSMState<Q34Game13ItemDownFloor4Item>"
+/* 801F4EA8 001F1DE8  48 00 28 89 */	bl registerState__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1
 /* 801F4EAC 001F1DEC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801F4EB0 001F1DF0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801F4EB4 001F1DF4  7C 08 03 A6 */	mtlr r0
@@ -221,8 +221,8 @@ lbl_801F4FE0:
 /* 801F4FFC 001F1F3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F5000 001F1F40  4E 80 00 20 */	blr 
 
-.global "start__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg"
-"start__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg":
+.global start__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg
+start__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg:
 /* 801F5004 001F1F44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F5008 001F1F48  7C 08 02 A6 */	mflr r0
 /* 801F500C 001F1F4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -256,8 +256,8 @@ initDependency__Q34Game13ItemDownFloor4ItemFv:
 /* 801F5070 001F1FB0  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801F5074:
 /* 801F5074 001F1FB4  38 00 00 00 */	li r0, 0
-/* 801F5078 001F1FB8  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-/* 801F507C 001F1FBC  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
+/* 801F5078 001F1FB8  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
+/* 801F507C 001F1FBC  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
 /* 801F5080 001F1FC0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801F5084 001F1FC4  28 00 00 00 */	cmplwi r0, 0
 /* 801F5088 001F1FC8  90 81 00 08 */	stw r4, 8(r1)
@@ -1820,9 +1820,9 @@ birth__Q34Game13ItemDownFloor3MgrFv:
 /* 801F66BC 001F35FC  41 82 01 0C */	beq lbl_801F67C8
 /* 801F66C0 001F3600  38 80 04 0F */	li r4, 0x40f
 /* 801F66C4 001F3604  4B FD 59 25 */	bl __ct__Q24Game8BaseItemFi
-/* 801F66C8 001F3608  3C 60 80 4C */	lis r3, "__vt__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>"@ha
+/* 801F66C8 001F3608  3C 60 80 4C */	lis r3, __vt__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1@ha
 /* 801F66CC 001F360C  38 00 00 00 */	li r0, 0
-/* 801F66D0 001F3610  38 83 C9 A4 */	addi r4, r3, "__vt__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>"@l
+/* 801F66D0 001F3610  38 83 C9 A4 */	addi r4, r3, __vt__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1@l
 /* 801F66D4 001F3614  38 60 00 1C */	li r3, 0x1c
 /* 801F66D8 001F3618  90 9F 00 00 */	stw r4, 0(r31)
 /* 801F66DC 001F361C  38 84 01 B0 */	addi r4, r4, 0x1b0
@@ -1832,13 +1832,13 @@ birth__Q34Game13ItemDownFloor3MgrFv:
 /* 801F66EC 001F362C  4B E2 D7 B9 */	bl __nw__FUl
 /* 801F66F0 001F3630  28 03 00 00 */	cmplwi r3, 0
 /* 801F66F4 001F3634  41 82 00 30 */	beq lbl_801F6724
-/* 801F66F8 001F3638  3C 80 80 4C */	lis r4, "__vt__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F66FC 001F363C  3C A0 80 4C */	lis r5, "__vt__Q24Game36ItemFSM<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F6700 001F3640  38 04 C9 8C */	addi r0, r4, "__vt__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>"@l
+/* 801F66F8 001F3638  3C 80 80 4C */	lis r4, __vt__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F66FC 001F363C  3C A0 80 4C */	lis r5, __vt__Q24Game36ItemFSM$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F6700 001F3640  38 04 C9 8C */	addi r0, r4, __vt__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F6704 001F3644  3C 80 80 4C */	lis r4, __vt__Q34Game13ItemDownFloor3FSM@ha
 /* 801F6708 001F3648  90 03 00 00 */	stw r0, 0(r3)
 /* 801F670C 001F364C  38 C0 FF FF */	li r6, -1
-/* 801F6710 001F3650  38 A5 C9 74 */	addi r5, r5, "__vt__Q24Game36ItemFSM<Q34Game13ItemDownFloor4Item>"@l
+/* 801F6710 001F3650  38 A5 C9 74 */	addi r5, r5, __vt__Q24Game36ItemFSM$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F6714 001F3654  38 04 CC 8C */	addi r0, r4, __vt__Q34Game13ItemDownFloor3FSM@l
 /* 801F6718 001F3658  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 801F671C 001F365C  90 A3 00 00 */	stw r5, 0(r3)
@@ -2031,8 +2031,8 @@ lbl_801F69A4:
 /* 801F69AC 001F38EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F69B0 001F38F0  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg"
-"transit__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg":
+.global transit__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg
+transit__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg:
 /* 801F69B4 001F38F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F69B8 001F38F8  7C 08 02 A6 */	mflr r0
 /* 801F69BC 001F38FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2567,8 +2567,8 @@ lbl_801F70A0:
 /* 801F70B4 001F3FF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F70B8 001F3FF8  4E 80 00 20 */	blr 
 
-.global "generatorBirth__Q34Game13ItemDownFloor3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-"generatorBirth__Q34Game13ItemDownFloor3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
+.global generatorBirth__Q34Game13ItemDownFloor3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm
+generatorBirth__Q34Game13ItemDownFloor3MgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game11GenItemParm:
 /* 801F70BC 001F3FFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F70C0 001F4000  7C 08 02 A6 */	mflr r0
 /* 801F70C4 001F4004  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2596,9 +2596,9 @@ lbl_801F70FC:
 /* 801F7118 001F4058  41 82 01 0C */	beq lbl_801F7224
 /* 801F711C 001F405C  38 80 04 0F */	li r4, 0x40f
 /* 801F7120 001F4060  4B FD 4E C9 */	bl __ct__Q24Game8BaseItemFi
-/* 801F7124 001F4064  3C 60 80 4C */	lis r3, "__vt__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>"@ha
+/* 801F7124 001F4064  3C 60 80 4C */	lis r3, __vt__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1@ha
 /* 801F7128 001F4068  38 00 00 00 */	li r0, 0
-/* 801F712C 001F406C  38 83 C9 A4 */	addi r4, r3, "__vt__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>"@l
+/* 801F712C 001F406C  38 83 C9 A4 */	addi r4, r3, __vt__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1@l
 /* 801F7130 001F4070  38 60 00 1C */	li r3, 0x1c
 /* 801F7134 001F4074  90 9E 00 00 */	stw r4, 0(r30)
 /* 801F7138 001F4078  38 84 01 B0 */	addi r4, r4, 0x1b0
@@ -2608,13 +2608,13 @@ lbl_801F70FC:
 /* 801F7148 001F4088  4B E2 CD 5D */	bl __nw__FUl
 /* 801F714C 001F408C  28 03 00 00 */	cmplwi r3, 0
 /* 801F7150 001F4090  41 82 00 30 */	beq lbl_801F7180
-/* 801F7154 001F4094  3C 80 80 4C */	lis r4, "__vt__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F7158 001F4098  3C A0 80 4C */	lis r5, "__vt__Q24Game36ItemFSM<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F715C 001F409C  38 04 C9 8C */	addi r0, r4, "__vt__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>"@l
+/* 801F7154 001F4094  3C 80 80 4C */	lis r4, __vt__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F7158 001F4098  3C A0 80 4C */	lis r5, __vt__Q24Game36ItemFSM$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F715C 001F409C  38 04 C9 8C */	addi r0, r4, __vt__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F7160 001F40A0  3C 80 80 4C */	lis r4, __vt__Q34Game13ItemDownFloor3FSM@ha
 /* 801F7164 001F40A4  90 03 00 00 */	stw r0, 0(r3)
 /* 801F7168 001F40A8  38 C0 FF FF */	li r6, -1
-/* 801F716C 001F40AC  38 A5 C9 74 */	addi r5, r5, "__vt__Q24Game36ItemFSM<Q34Game13ItemDownFloor4Item>"@l
+/* 801F716C 001F40AC  38 A5 C9 74 */	addi r5, r5, __vt__Q24Game36ItemFSM$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F7170 001F40B0  38 04 CC 8C */	addi r0, r4, __vt__Q34Game13ItemDownFloor3FSM@l
 /* 801F7174 001F40B4  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 801F7178 001F40B8  90 A3 00 00 */	stw r5, 0(r3)
@@ -2687,7 +2687,7 @@ lbl_801F7224:
 /* 801F7278 001F41B8  7F C3 F3 78 */	mr r3, r30
 /* 801F727C 001F41BC  7F 64 DB 78 */	mr r4, r27
 /* 801F7280 001F41C0  38 A0 00 00 */	li r5, 0
-/* 801F7284 001F41C4  4B F4 3F 25 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 801F7284 001F41C4  4B F4 3F 25 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 801F7288 001F41C8  7F C3 F3 78 */	mr r3, r30
 /* 801F728C 001F41CC  BB 41 00 08 */	lmw r26, 8(r1)
 /* 801F7290 001F41D0  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -2718,31 +2718,31 @@ __dt__Q34Game13ItemDownFloor3MgrFv:
 /* 801F72E8 001F4228  38 03 00 74 */	addi r0, r3, 0x74
 /* 801F72EC 001F422C  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801F72F0 001F4230  41 82 00 84 */	beq lbl_801F7374
-/* 801F72F4 001F4234  3C 80 80 4B */	lis r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
+/* 801F72F4 001F4234  3C 80 80 4B */	lis r4, __vt__31NodeObjectMgr$$0Q24Game8BaseItem$$1@ha
 /* 801F72F8 001F4238  34 7E 00 6C */	addic. r3, r30, 0x6c
-/* 801F72FC 001F423C  38 84 72 4C */	addi r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
+/* 801F72FC 001F423C  38 84 72 4C */	addi r4, r4, __vt__31NodeObjectMgr$$0Q24Game8BaseItem$$1@l
 /* 801F7300 001F4240  90 9E 00 4C */	stw r4, 0x4c(r30)
 /* 801F7304 001F4244  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801F7308 001F4248  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 801F730C 001F424C  41 82 00 18 */	beq lbl_801F7324
-/* 801F7310 001F4250  3C 80 80 4B */	lis r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
-/* 801F7314 001F4254  38 04 72 3C */	addi r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
+/* 801F7310 001F4250  3C 80 80 4B */	lis r4, __vt__29TObjectNode$$0Q24Game8BaseItem$$1@ha
+/* 801F7314 001F4254  38 04 72 3C */	addi r0, r4, __vt__29TObjectNode$$0Q24Game8BaseItem$$1@l
 /* 801F7318 001F4258  90 1E 00 6C */	stw r0, 0x6c(r30)
 /* 801F731C 001F425C  38 80 00 00 */	li r4, 0
 /* 801F7320 001F4260  48 21 A2 69 */	bl __dt__5CNodeFv
 lbl_801F7324:
 /* 801F7324 001F4264  34 1E 00 4C */	addic. r0, r30, 0x4c
 /* 801F7328 001F4268  41 82 00 4C */	beq lbl_801F7374
-/* 801F732C 001F426C  3C 60 80 4B */	lis r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
+/* 801F732C 001F426C  3C 60 80 4B */	lis r3, __vt__27ObjectMgr$$0Q24Game8BaseItem$$1@ha
 /* 801F7330 001F4270  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801F7334 001F4274  38 63 72 CC */	addi r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
+/* 801F7334 001F4274  38 63 72 CC */	addi r3, r3, __vt__27ObjectMgr$$0Q24Game8BaseItem$$1@l
 /* 801F7338 001F4278  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 801F733C 001F427C  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801F7340 001F4280  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 801F7344 001F4284  41 82 00 30 */	beq lbl_801F7374
-/* 801F7348 001F4288  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8BaseItem>"@ha
+/* 801F7348 001F4288  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8BaseItem$$1@ha
 /* 801F734C 001F428C  34 1E 00 4C */	addic. r0, r30, 0x4c
-/* 801F7350 001F4290  38 03 73 48 */	addi r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
+/* 801F7350 001F4290  38 03 73 48 */	addi r0, r3, __vt__27Container$$0Q24Game8BaseItem$$1@l
 /* 801F7354 001F4294  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 801F7358 001F4298  41 82 00 1C */	beq lbl_801F7374
 /* 801F735C 001F429C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -2754,9 +2754,9 @@ lbl_801F7324:
 lbl_801F7374:
 /* 801F7374 001F42B4  34 1E 00 30 */	addic. r0, r30, 0x30
 /* 801F7378 001F42B8  41 82 00 30 */	beq lbl_801F73A8
-/* 801F737C 001F42BC  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8BaseItem>"@ha
+/* 801F737C 001F42BC  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8BaseItem$$1@ha
 /* 801F7380 001F42C0  34 1E 00 30 */	addic. r0, r30, 0x30
-/* 801F7384 001F42C4  38 03 73 48 */	addi r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
+/* 801F7384 001F42C4  38 03 73 48 */	addi r0, r3, __vt__27Container$$0Q24Game8BaseItem$$1@l
 /* 801F7388 001F42C8  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 801F738C 001F42CC  41 82 00 1C */	beq lbl_801F73A8
 /* 801F7390 001F42D0  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -2791,9 +2791,9 @@ doNew__Q34Game13ItemDownFloor3MgrFv:
 /* 801F73F0 001F4330  41 82 01 0C */	beq lbl_801F74FC
 /* 801F73F4 001F4334  38 80 04 0F */	li r4, 0x40f
 /* 801F73F8 001F4338  4B FD 4B F1 */	bl __ct__Q24Game8BaseItemFi
-/* 801F73FC 001F433C  3C 60 80 4C */	lis r3, "__vt__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>"@ha
+/* 801F73FC 001F433C  3C 60 80 4C */	lis r3, __vt__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1@ha
 /* 801F7400 001F4340  38 00 00 00 */	li r0, 0
-/* 801F7404 001F4344  38 83 C9 A4 */	addi r4, r3, "__vt__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>"@l
+/* 801F7404 001F4344  38 83 C9 A4 */	addi r4, r3, __vt__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1@l
 /* 801F7408 001F4348  38 60 00 1C */	li r3, 0x1c
 /* 801F740C 001F434C  90 9F 00 00 */	stw r4, 0(r31)
 /* 801F7410 001F4350  38 84 01 B0 */	addi r4, r4, 0x1b0
@@ -2803,13 +2803,13 @@ doNew__Q34Game13ItemDownFloor3MgrFv:
 /* 801F7420 001F4360  4B E2 CA 85 */	bl __nw__FUl
 /* 801F7424 001F4364  28 03 00 00 */	cmplwi r3, 0
 /* 801F7428 001F4368  41 82 00 30 */	beq lbl_801F7458
-/* 801F742C 001F436C  3C 80 80 4C */	lis r4, "__vt__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F7430 001F4370  3C A0 80 4C */	lis r5, "__vt__Q24Game36ItemFSM<Q34Game13ItemDownFloor4Item>"@ha
-/* 801F7434 001F4374  38 04 C9 8C */	addi r0, r4, "__vt__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>"@l
+/* 801F742C 001F436C  3C 80 80 4C */	lis r4, __vt__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F7430 001F4370  3C A0 80 4C */	lis r5, __vt__Q24Game36ItemFSM$$0Q34Game13ItemDownFloor4Item$$1@ha
+/* 801F7434 001F4374  38 04 C9 8C */	addi r0, r4, __vt__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F7438 001F4378  3C 80 80 4C */	lis r4, __vt__Q34Game13ItemDownFloor3FSM@ha
 /* 801F743C 001F437C  90 03 00 00 */	stw r0, 0(r3)
 /* 801F7440 001F4380  38 C0 FF FF */	li r6, -1
-/* 801F7444 001F4384  38 A5 C9 74 */	addi r5, r5, "__vt__Q24Game36ItemFSM<Q34Game13ItemDownFloor4Item>"@l
+/* 801F7444 001F4384  38 A5 C9 74 */	addi r5, r5, __vt__Q24Game36ItemFSM$$0Q34Game13ItemDownFloor4Item$$1@l
 /* 801F7448 001F4388  38 04 CC 8C */	addi r0, r4, __vt__Q34Game13ItemDownFloor3FSM@l
 /* 801F744C 001F438C  90 C3 00 18 */	stw r6, 0x18(r3)
 /* 801F7450 001F4390  90 A3 00 00 */	stw r5, 0(r3)
@@ -2892,8 +2892,8 @@ getCreatureName__Q34Game13ItemDownFloor4ItemFv:
 /* 801F753C 001F447C  38 63 19 B8 */	addi r3, r3, lbl_804819B8@l
 /* 801F7540 001F4480  4E 80 00 20 */	blr 
 
-.global "doAI__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>Fv"
-"doAI__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>Fv":
+.global doAI__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1Fv
+doAI__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1Fv:
 /* 801F7544 001F4484  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F7548 001F4488  7C 08 02 A6 */	mflr r0
 /* 801F754C 001F448C  7C 64 1B 78 */	mr r4, r3
@@ -2924,8 +2924,8 @@ cleanup__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4Item:
 onPlat__Q34Game13ItemDownFloor9DeadStateFPQ34Game13ItemDownFloor4Item:
 /* 801F7584 001F44C4  4E 80 00 20 */	blr 
 
-.global "onKeyEvent__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRCQ28SysShape8KeyEvent":
+.global onKeyEvent__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRCQ28SysShape8KeyEvent
+onKeyEvent__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRCQ28SysShape8KeyEvent:
 /* 801F7588 001F44C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F758C 001F44CC  7C 08 02 A6 */	mflr r0
 /* 801F7590 001F44D0  7C 66 1B 78 */	mr r6, r3
@@ -2945,52 +2945,52 @@ lbl_801F75BC:
 /* 801F75C4 001F4504  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F75C8 001F4508  4E 80 00 20 */	blr 
 
-.global "onDamage__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Itemf"
-"onDamage__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Itemf":
+.global onDamage__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Itemf
+onDamage__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Itemf:
 /* 801F75CC 001F450C  4E 80 00 20 */	blr 
 
-.global "onKeyEvent__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent":
+.global onKeyEvent__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent
+onKeyEvent__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent:
 /* 801F75D0 001F4510  4E 80 00 20 */	blr 
 
-.global "onBounce__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemPQ23Sys8Triangle"
-"onBounce__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemPQ23Sys8Triangle":
+.global onBounce__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemPQ23Sys8Triangle
+onBounce__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemPQ23Sys8Triangle:
 /* 801F75D4 001F4514  4E 80 00 20 */	blr 
 
-.global "onPlatCollision__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemRQ24Game9PlatEvent"
-"onPlatCollision__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemRQ24Game9PlatEvent":
+.global onPlatCollision__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemRQ24Game9PlatEvent
+onPlatCollision__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemRQ24Game9PlatEvent:
 /* 801F75D8 001F4518  4E 80 00 20 */	blr 
 
-.global "onCollision__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemRQ24Game9CollEvent"
-"onCollision__Q24Game38ItemState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemRQ24Game9CollEvent":
+.global onCollision__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemRQ24Game9CollEvent
+onCollision__Q24Game38ItemState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemRQ24Game9CollEvent:
 /* 801F75DC 001F451C  4E 80 00 20 */	blr 
 
-.global "init__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg"
-"init__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg":
+.global init__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg
+init__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg:
 /* 801F75E0 001F4520  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item"
-"exec__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item":
+.global exec__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item
+exec__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item:
 /* 801F75E4 001F4524  4E 80 00 20 */	blr 
 
-.global "cleanup__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item"
-"cleanup__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item":
+.global cleanup__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item
+cleanup__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item:
 /* 801F75E8 001F4528  4E 80 00 20 */	blr 
 
-.global "resume__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item"
-"resume__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item":
+.global resume__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item
+resume__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item:
 /* 801F75EC 001F452C  4E 80 00 20 */	blr 
 
-.global "restart__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item"
-"restart__Q24Game37FSMState<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item":
+.global restart__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item
+restart__Q24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item:
 /* 801F75F0 001F4530  4E 80 00 20 */	blr 
 
-.global "init__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item"
-"init__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item":
+.global init__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item
+init__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item:
 /* 801F75F4 001F4534  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item"
-"exec__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item":
+.global exec__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item
+exec__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4Item:
 /* 801F75F8 001F4538  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F75FC 001F453C  7C 08 02 A6 */	mflr r0
 /* 801F7600 001F4540  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3007,8 +3007,8 @@ lbl_801F7620:
 /* 801F7628 001F4568  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F762C 001F456C  4E 80 00 20 */	blr 
 
-.global "create__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>Fi"
-"create__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>Fi":
+.global create__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1Fi
+create__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1Fi:
 /* 801F7630 001F4570  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F7634 001F4574  7C 08 02 A6 */	mflr r0
 /* 801F7638 001F4578  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3035,8 +3035,8 @@ lbl_801F7620:
 /* 801F768C 001F45CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F7690 001F45D0  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg"
-"transit__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg":
+.global transit__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg
+transit__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg:
 /* 801F7694 001F45D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F7698 001F45D8  7C 08 02 A6 */	mflr r0
 /* 801F769C 001F45DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3080,8 +3080,8 @@ lbl_801F76F4:
 /* 801F7728 001F4668  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F772C 001F466C  4E 80 00 20 */	blr 
 
-.global "registerState__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ24Game37FSMState<Q34Game13ItemDownFloor4Item>"
-"registerState__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ24Game37FSMState<Q34Game13ItemDownFloor4Item>":
+.global registerState__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1
+registerState__Q24Game41StateMachine$$0Q34Game13ItemDownFloor4Item$$1FPQ24Game37FSMState$$0Q34Game13ItemDownFloor4Item$$1:
 /* 801F7730 001F4670  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801F7734 001F4674  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801F7738 001F4678  7C 06 00 00 */	cmpw r6, r0
@@ -3119,8 +3119,8 @@ lbl_801F7770:
 /* 801F77AC 001F46EC  90 03 00 08 */	stw r0, 8(r3)
 /* 801F77B0 001F46F0  4E 80 00 20 */	blr 
 
-.global "platCallback__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRQ24Game9PlatEvent"
-"platCallback__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRQ24Game9PlatEvent":
+.global platCallback__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRQ24Game9PlatEvent
+platCallback__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRQ24Game9PlatEvent:
 /* 801F77B4 001F46F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F77B8 001F46F8  7C 08 02 A6 */	mflr r0
 /* 801F77BC 001F46FC  7C 66 1B 78 */	mr r6, r3
@@ -3140,8 +3140,8 @@ lbl_801F77E8:
 /* 801F77F0 001F4730  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F77F4 001F4734  4E 80 00 20 */	blr 
 
-.global "collisionCallback__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRQ24Game9CollEvent"
-"collisionCallback__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRQ24Game9CollEvent":
+.global collisionCallback__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRQ24Game9CollEvent
+collisionCallback__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRQ24Game9CollEvent:
 /* 801F77F8 001F4738  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F77FC 001F473C  7C 08 02 A6 */	mflr r0
 /* 801F7800 001F4740  7C 66 1B 78 */	mr r6, r3
@@ -3161,8 +3161,8 @@ lbl_801F782C:
 /* 801F7834 001F4774  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F7838 001F4778  4E 80 00 20 */	blr 
 
-.global "bounceCallback__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FPQ23Sys8Triangle"
-"bounceCallback__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FPQ23Sys8Triangle":
+.global bounceCallback__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FPQ23Sys8Triangle
+bounceCallback__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FPQ23Sys8Triangle:
 /* 801F783C 001F477C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F7840 001F4780  7C 08 02 A6 */	mflr r0
 /* 801F7844 001F4784  7C 66 1B 78 */	mr r6, r3
@@ -3195,22 +3195,22 @@ __sinit_itemDownFloor_cpp:
 /* 801F78A0 001F47E0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801F78A4 001F47E4  4E 80 00 20 */	blr 
 
-.global "@376@onKeyEvent__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRCQ28SysShape8KeyEvent":
+.global $$2376$$2onKeyEvent__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRCQ28SysShape8KeyEvent
+$$2376$$2onKeyEvent__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRCQ28SysShape8KeyEvent:
 /* 801F78A8 001F47E8  38 63 FE 88 */	addi r3, r3, -376
-/* 801F78AC 001F47EC  4B FF FC DC */	b "onKeyEvent__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRCQ28SysShape8KeyEvent"
+/* 801F78AC 001F47EC  4B FF FC DC */	b onKeyEvent__Q24Game92FSMItem$$0Q34Game13ItemDownFloor4Item$$4Q34Game13ItemDownFloor3FSM$$4Q34Game13ItemDownFloor5State$$1FRCQ28SysShape8KeyEvent
 
-.global "@376@onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent":
+.global $$2376$$2onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent
+$$2376$$2onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent:
 /* 801F78B0 001F47F0  38 63 FE 88 */	addi r3, r3, -376
 /* 801F78B4 001F47F4  4B FF DB 8C */	b onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent
 
-.global "@480@getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam"
-"@480@getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam":
+.global $$2480$$2getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam
+$$2480$$2getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam:
 /* 801F78B8 001F47F8  38 63 FE 20 */	addi r3, r3, -480
 /* 801F78BC 001F47FC  4B FF E9 90 */	b getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam
 
-.global "@48@__dt__Q34Game13ItemDownFloor3MgrFv"
-"@48@__dt__Q34Game13ItemDownFloor3MgrFv":
+.global $$248$$2__dt__Q34Game13ItemDownFloor3MgrFv
+$$248$$2__dt__Q34Game13ItemDownFloor3MgrFv:
 /* 801F78C0 001F4800  38 63 FF D0 */	addi r3, r3, -48
 /* 801F78C4 001F4804  4B FF F9 DC */	b __dt__Q34Game13ItemDownFloor3MgrFv

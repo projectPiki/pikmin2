@@ -92,9 +92,9 @@ lbl_8029BD48:
 /* 8029BD64 00298CA4  38 A5 30 31 */	addi r5, r5, 0x66703031@l
 /* 8029BD68 00298CA8  38 DF 00 38 */	addi r6, r31, 0x38
 /* 8029BD6C 00298CAC  48 17 78 ED */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BD70 00298CB0  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BD70 00298CB0  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BD74 00298CB4  3C A0 66 70 */	lis r5, 0x66703032@ha
-/* 8029BD78 00298CB8  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BD78 00298CB8  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BD7C 00298CBC  C0 02 D9 10 */	lfs f0, lbl_8051BC70@sda21(r2)
 /* 8029BD80 00298CC0  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 8029BD84 00298CC4  7F C4 F3 78 */	mr r4, r30
@@ -107,9 +107,9 @@ lbl_8029BD48:
 /* 8029BDA0 00298CE0  D0 3E 00 2C */	stfs f1, 0x2c(r30)
 /* 8029BDA4 00298CE4  D0 1E 00 30 */	stfs f0, 0x30(r30)
 /* 8029BDA8 00298CE8  48 17 78 B1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BDAC 00298CEC  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BDAC 00298CEC  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BDB0 00298CF0  3C A0 66 70 */	lis r5, 0x66703033@ha
-/* 8029BDB4 00298CF4  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BDB4 00298CF4  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BDB8 00298CF8  C0 02 D9 1C */	lfs f0, lbl_8051BC7C@sda21(r2)
 /* 8029BDBC 00298CFC  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 8029BDC0 00298D00  7F C4 F3 78 */	mr r4, r30
@@ -122,9 +122,9 @@ lbl_8029BD48:
 /* 8029BDDC 00298D1C  D0 3E 00 54 */	stfs f1, 0x54(r30)
 /* 8029BDE0 00298D20  D0 1E 00 58 */	stfs f0, 0x58(r30)
 /* 8029BDE4 00298D24  48 17 78 75 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BDE8 00298D28  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BDE8 00298D28  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BDEC 00298D2C  3C A0 66 70 */	lis r5, 0x66703131@ha
-/* 8029BDF0 00298D30  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BDF0 00298D30  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BDF4 00298D34  C0 02 D9 20 */	lfs f0, lbl_8051BC80@sda21(r2)
 /* 8029BDF8 00298D38  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 8029BDFC 00298D3C  7F C4 F3 78 */	mr r4, r30
@@ -137,9 +137,9 @@ lbl_8029BD48:
 /* 8029BE18 00298D58  D0 3E 00 7C */	stfs f1, 0x7c(r30)
 /* 8029BE1C 00298D5C  D0 1E 00 80 */	stfs f0, 0x80(r30)
 /* 8029BE20 00298D60  48 17 78 39 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BE24 00298D64  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BE24 00298D64  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BE28 00298D68  3C A0 66 70 */	lis r5, 0x66703132@ha
-/* 8029BE2C 00298D6C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BE2C 00298D6C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BE30 00298D70  C0 22 D9 14 */	lfs f1, lbl_8051BC74@sda21(r2)
 /* 8029BE34 00298D74  90 1E 00 84 */	stw r0, 0x84(r30)
 /* 8029BE38 00298D78  7F C4 F3 78 */	mr r4, r30
@@ -151,9 +151,9 @@ lbl_8029BD48:
 /* 8029BE50 00298D90  D0 3E 00 A4 */	stfs f1, 0xa4(r30)
 /* 8029BE54 00298D94  D0 1E 00 A8 */	stfs f0, 0xa8(r30)
 /* 8029BE58 00298D98  48 17 78 01 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BE5C 00298D9C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BE5C 00298D9C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BE60 00298DA0  3C A0 66 70 */	lis r5, 0x66703133@ha
-/* 8029BE64 00298DA4  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BE64 00298DA4  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BE68 00298DA8  C0 02 D9 24 */	lfs f0, lbl_8051BC84@sda21(r2)
 /* 8029BE6C 00298DAC  90 1E 00 AC */	stw r0, 0xac(r30)
 /* 8029BE70 00298DB0  7F C4 F3 78 */	mr r4, r30
@@ -166,9 +166,9 @@ lbl_8029BD48:
 /* 8029BE8C 00298DCC  D0 3E 00 CC */	stfs f1, 0xcc(r30)
 /* 8029BE90 00298DD0  D0 1E 00 D0 */	stfs f0, 0xd0(r30)
 /* 8029BE94 00298DD4  48 17 77 C5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BE98 00298DD8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BE98 00298DD8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BE9C 00298DDC  3C A0 66 70 */	lis r5, 0x66703231@ha
-/* 8029BEA0 00298DE0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BEA0 00298DE0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BEA4 00298DE4  C0 02 D9 28 */	lfs f0, lbl_8051BC88@sda21(r2)
 /* 8029BEA8 00298DE8  90 1E 00 D4 */	stw r0, 0xd4(r30)
 /* 8029BEAC 00298DEC  7F C4 F3 78 */	mr r4, r30
@@ -181,9 +181,9 @@ lbl_8029BD48:
 /* 8029BEC8 00298E08  D0 3E 00 F4 */	stfs f1, 0xf4(r30)
 /* 8029BECC 00298E0C  D0 1E 00 F8 */	stfs f0, 0xf8(r30)
 /* 8029BED0 00298E10  48 17 77 89 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BED4 00298E14  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BED4 00298E14  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BED8 00298E18  3C A0 66 70 */	lis r5, 0x66703232@ha
-/* 8029BEDC 00298E1C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BEDC 00298E1C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BEE0 00298E20  C0 02 D9 20 */	lfs f0, lbl_8051BC80@sda21(r2)
 /* 8029BEE4 00298E24  90 1E 00 FC */	stw r0, 0xfc(r30)
 /* 8029BEE8 00298E28  7F C4 F3 78 */	mr r4, r30
@@ -196,9 +196,9 @@ lbl_8029BD48:
 /* 8029BF04 00298E44  D0 3E 01 1C */	stfs f1, 0x11c(r30)
 /* 8029BF08 00298E48  D0 1E 01 20 */	stfs f0, 0x120(r30)
 /* 8029BF0C 00298E4C  48 17 77 4D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BF10 00298E50  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BF10 00298E50  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BF14 00298E54  3C A0 66 70 */	lis r5, 0x66703331@ha
-/* 8029BF18 00298E58  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BF18 00298E58  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BF1C 00298E5C  C0 22 D9 14 */	lfs f1, lbl_8051BC74@sda21(r2)
 /* 8029BF20 00298E60  90 1E 01 24 */	stw r0, 0x124(r30)
 /* 8029BF24 00298E64  7F C4 F3 78 */	mr r4, r30
@@ -210,9 +210,9 @@ lbl_8029BD48:
 /* 8029BF3C 00298E7C  D0 3E 01 44 */	stfs f1, 0x144(r30)
 /* 8029BF40 00298E80  D0 1E 01 48 */	stfs f0, 0x148(r30)
 /* 8029BF44 00298E84  48 17 77 15 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8029BF48 00298E88  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8029BF48 00298E88  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8029BF4C 00298E8C  C0 42 D9 2C */	lfs f2, lbl_8051BC8C@sda21(r2)
-/* 8029BF50 00298E90  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8029BF50 00298E90  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8029BF54 00298E94  C0 22 D9 14 */	lfs f1, lbl_8051BC74@sda21(r2)
 /* 8029BF58 00298E98  90 1E 01 4C */	stw r0, 0x14c(r30)
 /* 8029BF5C 00298E9C  7F C3 F3 78 */	mr r3, r30
@@ -390,7 +390,7 @@ getEnemyTypeID__Q34Game7Fuefuki3MgrFv:
 /* 8029C1B4 002990F4  38 60 00 29 */	li r3, 0x29
 /* 8029C1B8 002990F8  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game7Fuefuki3MgrFv"
-"@4@__dt__Q34Game7Fuefuki3MgrFv":
+.global $$24$$2__dt__Q34Game7Fuefuki3MgrFv
+$$24$$2__dt__Q34Game7Fuefuki3MgrFv:
 /* 8029C1BC 002990FC  38 63 FF FC */	addi r3, r3, -4
 /* 8029C1C0 00299100  4B FF FF 44 */	b __dt__Q34Game7Fuefuki3MgrFv

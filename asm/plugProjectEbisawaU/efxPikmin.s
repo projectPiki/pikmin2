@@ -178,7 +178,7 @@ lbl_803B68E8:
 /* 803B6914 003B3854  38 BE 00 04 */	addi r5, r30, 4
 /* 803B6918 003B3858  38 80 00 44 */	li r4, 0x44
 /* 803B691C 003B385C  38 C0 00 00 */	li r6, 0
-/* 803B6920 003B3860  48 00 4F 95 */	bl "create__11ParticleMgrFUsR10Vector3<f>Uc"
+/* 803B6920 003B3860  48 00 4F 95 */	bl create__11ParticleMgrFUsR10Vector3$$0f$$1Uc
 /* 803B6924 003B3864  28 03 00 00 */	cmplwi r3, 0
 /* 803B6928 003B3868  41 82 00 28 */	beq lbl_803B6950
 /* 803B692C 003B386C  38 0D 99 F8 */	addi r0, r13, mCallBack_StaticClipping__Q23efx5TBase@sda21
@@ -231,7 +231,7 @@ lbl_803B69BC:
 /* 803B69C4 003B3904  B0 A3 00 10 */	sth r5, 0x10(r3)
 /* 803B69C8 003B3908  B0 03 00 24 */	sth r0, 0x24(r3)
 lbl_803B69CC:
-/* 803B69CC 003B390C  4B FF BD 71 */	bl "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+/* 803B69CC 003B390C  4B FF BD 71 */	bl create__Q23efx29TSyncGroup2$$0Q23efx9TChaseMtx$$1FPQ23efx3Arg
 /* 803B69D0 003B3910  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B69D4 003B3914  7C 08 03 A6 */	mtlr r0
 /* 803B69D8 003B3918  38 21 00 10 */	addi r1, r1, 0x10
@@ -261,7 +261,7 @@ lbl_803B6A1C:
 /* 803B6A24 003B3964  B0 A3 00 10 */	sth r5, 0x10(r3)
 /* 803B6A28 003B3968  B0 03 00 24 */	sth r0, 0x24(r3)
 lbl_803B6A2C:
-/* 803B6A2C 003B396C  4B FF BD 11 */	bl "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+/* 803B6A2C 003B396C  4B FF BD 11 */	bl create__Q23efx29TSyncGroup2$$0Q23efx9TChaseMtx$$1FPQ23efx3Arg
 /* 803B6A30 003B3970  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B6A34 003B3974  7C 08 03 A6 */	mtlr r0
 /* 803B6A38 003B3978  38 21 00 10 */	addi r1, r1, 0x10
@@ -356,7 +356,7 @@ lbl_803B6B5C:
 /* 803B6B60 003B3AA0  7F 83 E3 78 */	mr r3, r28
 /* 803B6B64 003B3AA4  7F C5 F3 78 */	mr r5, r30
 /* 803B6B68 003B3AA8  38 81 00 08 */	addi r4, r1, 8
-/* 803B6B6C 003B3AAC  48 00 01 A1 */	bl "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
+/* 803B6B6C 003B3AAC  48 00 01 A1 */	bl calcPos___Q23efx7TCursorFP10Vector3$$0f$$1fl
 /* 803B6B70 003B3AB0  C0 01 00 08 */	lfs f0, 8(r1)
 /* 803B6B74 003B3AB4  3B DE 00 01 */	addi r30, r30, 1
 /* 803B6B78 003B3AB8  D0 1F 00 54 */	stfs f0, 0x54(r31)
@@ -448,7 +448,7 @@ lbl_803B6CA8:
 /* 803B6CAC 003B3BEC  7F A3 EB 78 */	mr r3, r29
 /* 803B6CB0 003B3BF0  7F C5 F3 78 */	mr r5, r30
 /* 803B6CB4 003B3BF4  38 81 00 08 */	addi r4, r1, 8
-/* 803B6CB8 003B3BF8  48 00 00 55 */	bl "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
+/* 803B6CB8 003B3BF8  48 00 00 55 */	bl calcPos___Q23efx7TCursorFP10Vector3$$0f$$1fl
 /* 803B6CBC 003B3BFC  C0 01 00 08 */	lfs f0, 8(r1)
 /* 803B6CC0 003B3C00  3B DE 00 01 */	addi r30, r30, 1
 /* 803B6CC4 003B3C04  D0 1F 00 54 */	stfs f0, 0x54(r31)
@@ -471,8 +471,8 @@ lbl_803B6CDC:
 /* 803B6D04 003B3C44  38 21 00 40 */	addi r1, r1, 0x40
 /* 803B6D08 003B3C48  4E 80 00 20 */	blr 
 
-.global "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
-"calcPos___Q23efx7TCursorFP10Vector3<f>fl":
+.global calcPos___Q23efx7TCursorFP10Vector3$$0f$$1fl
+calcPos___Q23efx7TCursorFP10Vector3$$0f$$1fl:
 /* 803B6D0C 003B3C4C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803B6D10 003B3C50  7C 08 02 A6 */	mflr r0
 /* 803B6D14 003B3C54  3C C0 43 30 */	lis r6, 0x4330
@@ -579,7 +579,7 @@ lbl_803B6E7C:
 /* 803B6E84 003B3DC4  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
 /* 803B6E88 003B3DC8  38 C0 00 00 */	li r6, 0
 /* 803B6E8C 003B3DCC  38 80 00 69 */	li r4, 0x69
-/* 803B6E90 003B3DD0  48 00 4A 25 */	bl "create__11ParticleMgrFUsR10Vector3<f>Uc"
+/* 803B6E90 003B3DD0  48 00 4A 25 */	bl create__11ParticleMgrFUsR10Vector3$$0f$$1Uc
 /* 803B6E94 003B3DD4  90 7F 00 14 */	stw r3, 0x14(r31)
 /* 803B6E98 003B3DD8  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 803B6E9C 003B3DDC  28 03 00 00 */	cmplwi r3, 0
@@ -992,7 +992,7 @@ lbl_803B740C:
 /* 803B7470 003B43B0  D0 61 00 2C */	stfs f3, 0x2c(r1)
 /* 803B7474 003B43B4  D0 21 00 30 */	stfs f1, 0x30(r1)
 /* 803B7478 003B43B8  D0 41 00 34 */	stfs f2, 0x34(r1)
-/* 803B747C 003B43BC  4B CD C8 A1 */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
+/* 803B747C 003B43BC  4B CD C8 A1 */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
 /* 803B7480 003B43C0  C0 02 13 4C */	lfs f0, lbl_8051F6AC@sda21(r2)
 /* 803B7484 003B43C4  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 803B7488 003B43C8  40 81 00 08 */	ble lbl_803B7490
@@ -1012,8 +1012,8 @@ lbl_803B7490:
 /* 803B74BC 003B43FC  38 21 00 50 */	addi r1, r1, 0x50
 /* 803B74C0 003B4400  4E 80 00 20 */	blr 
 
-.global "createSimpleDead__3efxFR10Vector3<f>l"
-"createSimpleDead__3efxFR10Vector3<f>l":
+.global createSimpleDead__3efxFR10Vector3$$0f$$1l
+createSimpleDead__3efxFR10Vector3$$0f$$1l:
 /* 803B74C4 003B4404  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803B74C8 003B4408  7C 08 02 A6 */	mflr r0
 /* 803B74CC 003B440C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1077,7 +1077,7 @@ lbl_803B75A8:
 /* 803B75A8 003B44E8  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B75AC 003B44EC  7F E4 FB 78 */	mr r4, r31
 /* 803B75B0 003B44F0  7F C5 F3 78 */	mr r5, r30
-/* 803B75B4 003B44F4  48 00 F1 E5 */	bl "createS_Dead__Q23efx12TPkEffectMgrFR10Vector3<f>l"
+/* 803B75B4 003B44F4  48 00 F1 E5 */	bl createS_Dead__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1l
 lbl_803B75B8:
 /* 803B75B8 003B44F8  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 803B75BC 003B44FC  83 E1 00 3C */	lwz r31, 0x3c(r1)
@@ -1086,8 +1086,8 @@ lbl_803B75B8:
 /* 803B75C8 003B4508  38 21 00 40 */	addi r1, r1, 0x40
 /* 803B75CC 003B450C  4E 80 00 20 */	blr 
 
-.global "createSimpleChinka__3efxFR10Vector3<f>"
-"createSimpleChinka__3efxFR10Vector3<f>":
+.global createSimpleChinka__3efxFR10Vector3$$0f$$1
+createSimpleChinka__3efxFR10Vector3$$0f$$1:
 /* 803B75D0 003B4510  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B75D4 003B4514  7C 08 02 A6 */	mflr r0
 /* 803B75D8 003B4518  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1106,15 +1106,15 @@ lbl_803B75B8:
 lbl_803B760C:
 /* 803B760C 003B454C  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B7610 003B4550  7F E4 FB 78 */	mr r4, r31
-/* 803B7614 003B4554  48 00 F3 A1 */	bl "createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B7614 003B4554  48 00 F3 A1 */	bl createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B7618 003B4558  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B761C 003B455C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B7620 003B4560  7C 08 03 A6 */	mtlr r0
 /* 803B7624 003B4564  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7628 003B4568  4E 80 00 20 */	blr 
 
-.global "createSimpleGedoku__3efxFR10Vector3<f>"
-"createSimpleGedoku__3efxFR10Vector3<f>":
+.global createSimpleGedoku__3efxFR10Vector3$$0f$$1
+createSimpleGedoku__3efxFR10Vector3$$0f$$1:
 /* 803B762C 003B456C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7630 003B4570  7C 08 02 A6 */	mflr r0
 /* 803B7634 003B4574  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1133,15 +1133,15 @@ lbl_803B760C:
 lbl_803B7668:
 /* 803B7668 003B45A8  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B766C 003B45AC  7F E4 FB 78 */	mr r4, r31
-/* 803B7670 003B45B0  48 00 F4 0D */	bl "createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B7670 003B45B0  48 00 F4 0D */	bl createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B7674 003B45B4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B7678 003B45B8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B767C 003B45BC  7C 08 03 A6 */	mtlr r0
 /* 803B7680 003B45C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7684 003B45C4  4E 80 00 20 */	blr 
 
-.global "createSimpleBlackDrop__3efxFR10Vector3<f>"
-"createSimpleBlackDrop__3efxFR10Vector3<f>":
+.global createSimpleBlackDrop__3efxFR10Vector3$$0f$$1
+createSimpleBlackDrop__3efxFR10Vector3$$0f$$1:
 /* 803B7688 003B45C8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B768C 003B45CC  7C 08 02 A6 */	mflr r0
 /* 803B7690 003B45D0  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1181,8 +1181,8 @@ lbl_803B7668:
 /* 803B7718 003B4658  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B771C 003B465C  4E 80 00 20 */	blr 
 
-.global "createSimpleGate1Attack__3efxFR10Vector3<f>"
-"createSimpleGate1Attack__3efxFR10Vector3<f>":
+.global createSimpleGate1Attack__3efxFR10Vector3$$0f$$1
+createSimpleGate1Attack__3efxFR10Vector3$$0f$$1:
 /* 803B7720 003B4660  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7724 003B4664  7C 08 02 A6 */	mflr r0
 /* 803B7728 003B4668  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1219,8 +1219,8 @@ lbl_803B7668:
 /* 803B77A4 003B46E4  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B77A8 003B46E8  4E 80 00 20 */	blr 
 
-.global "createSimplePkAp__3efxFR10Vector3<f>"
-"createSimplePkAp__3efxFR10Vector3<f>":
+.global createSimplePkAp__3efxFR10Vector3$$0f$$1
+createSimplePkAp__3efxFR10Vector3$$0f$$1:
 /* 803B77AC 003B46EC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B77B0 003B46F0  7C 08 02 A6 */	mflr r0
 /* 803B77B4 003B46F4  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1257,8 +1257,8 @@ lbl_803B7668:
 /* 803B7830 003B4770  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7834 003B4774  4E 80 00 20 */	blr 
 
-.global "createSimpleWaterOff__3efxFR10Vector3<f>"
-"createSimpleWaterOff__3efxFR10Vector3<f>":
+.global createSimpleWaterOff__3efxFR10Vector3$$0f$$1
+createSimpleWaterOff__3efxFR10Vector3$$0f$$1:
 /* 803B7838 003B4778  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B783C 003B477C  7C 08 02 A6 */	mflr r0
 /* 803B7840 003B4780  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1277,15 +1277,15 @@ lbl_803B7668:
 lbl_803B7874:
 /* 803B7874 003B47B4  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B7878 003B47B8  7F E4 FB 78 */	mr r4, r31
-/* 803B787C 003B47BC  48 00 F2 C9 */	bl "createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B787C 003B47BC  48 00 F2 C9 */	bl createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B7880 003B47C0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B7884 003B47C4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B7888 003B47C8  7C 08 03 A6 */	mtlr r0
 /* 803B788C 003B47CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7890 003B47D0  4E 80 00 20 */	blr 
 
-.global "createSimpleDive__3efxFR10Vector3<f>"
-"createSimpleDive__3efxFR10Vector3<f>":
+.global createSimpleDive__3efxFR10Vector3$$0f$$1
+createSimpleDive__3efxFR10Vector3$$0f$$1:
 /* 803B7894 003B47D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7898 003B47D8  7C 08 02 A6 */	mflr r0
 /* 803B789C 003B47DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1304,15 +1304,15 @@ lbl_803B7874:
 lbl_803B78D0:
 /* 803B78D0 003B4810  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B78D4 003B4814  7F E4 FB 78 */	mr r4, r31
-/* 803B78D8 003B4818  48 00 F3 35 */	bl "createS_Dive__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B78D8 003B4818  48 00 F3 35 */	bl createS_Dive__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B78DC 003B481C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B78E0 003B4820  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B78E4 003B4824  7C 08 03 A6 */	mtlr r0
 /* 803B78E8 003B4828  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B78EC 003B482C  4E 80 00 20 */	blr 
 
-.global "createSimpleChiru__3efxFR10Vector3<f>l"
-"createSimpleChiru__3efxFR10Vector3<f>l":
+.global createSimpleChiru__3efxFR10Vector3$$0f$$1l
+createSimpleChiru__3efxFR10Vector3$$0f$$1l:
 /* 803B78F0 003B4830  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B78F4 003B4834  7C 08 02 A6 */	mflr r0
 /* 803B78F8 003B4838  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1343,12 +1343,12 @@ lbl_803B7948:
 lbl_803B7954:
 /* 803B7954 003B4894  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B7958 003B4898  7F C4 F3 78 */	mr r4, r30
-/* 803B795C 003B489C  48 00 F3 79 */	bl "createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B795C 003B489C  48 00 F3 79 */	bl createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B7960 003B48A0  48 00 00 10 */	b lbl_803B7970
 lbl_803B7964:
 /* 803B7964 003B48A4  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B7968 003B48A8  7F C4 F3 78 */	mr r4, r30
-/* 803B796C 003B48AC  48 00 F5 39 */	bl "createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B796C 003B48AC  48 00 F5 39 */	bl createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 lbl_803B7970:
 /* 803B7970 003B48B0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B7974 003B48B4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1357,8 +1357,8 @@ lbl_803B7970:
 /* 803B7980 003B48C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7984 003B48C4  4E 80 00 20 */	blr 
 
-.global "createSimpleInattack__3efxFR10Vector3<f>"
-"createSimpleInattack__3efxFR10Vector3<f>":
+.global createSimpleInattack__3efxFR10Vector3$$0f$$1
+createSimpleInattack__3efxFR10Vector3$$0f$$1:
 /* 803B7988 003B48C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B798C 003B48CC  7C 08 02 A6 */	mflr r0
 /* 803B7990 003B48D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1377,15 +1377,15 @@ lbl_803B7970:
 lbl_803B79C4:
 /* 803B79C4 003B4904  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B79C8 003B4908  7F E4 FB 78 */	mr r4, r31
-/* 803B79CC 003B490C  48 00 F3 7D */	bl "createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B79CC 003B490C  48 00 F3 7D */	bl createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B79D0 003B4910  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B79D4 003B4914  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B79D8 003B4918  7C 08 03 A6 */	mtlr r0
 /* 803B79DC 003B491C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B79E0 003B4920  4E 80 00 20 */	blr 
 
-.global "createSimpleInstick__3efxFR10Vector3<f>"
-"createSimpleInstick__3efxFR10Vector3<f>":
+.global createSimpleInstick__3efxFR10Vector3$$0f$$1
+createSimpleInstick__3efxFR10Vector3$$0f$$1:
 /* 803B79E4 003B4924  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B79E8 003B4928  7C 08 02 A6 */	mflr r0
 /* 803B79EC 003B492C  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1419,8 +1419,8 @@ lbl_803B79C4:
 /* 803B7A5C 003B499C  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7A60 003B49A0  4E 80 00 20 */	blr 
 
-.global "createSimpleGate2Attack__3efxFR10Vector3<f>"
-"createSimpleGate2Attack__3efxFR10Vector3<f>":
+.global createSimpleGate2Attack__3efxFR10Vector3$$0f$$1
+createSimpleGate2Attack__3efxFR10Vector3$$0f$$1:
 /* 803B7A64 003B49A4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7A68 003B49A8  7C 08 02 A6 */	mflr r0
 /* 803B7A6C 003B49AC  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1457,8 +1457,8 @@ lbl_803B79C4:
 /* 803B7AE8 003B4A28  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7AEC 003B4A2C  4E 80 00 20 */	blr 
 
-.global "createSimpleBridgeAttack__3efxFR10Vector3<f>"
-"createSimpleBridgeAttack__3efxFR10Vector3<f>":
+.global createSimpleBridgeAttack__3efxFR10Vector3$$0f$$1
+createSimpleBridgeAttack__3efxFR10Vector3$$0f$$1:
 /* 803B7AF0 003B4A30  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7AF4 003B4A34  7C 08 02 A6 */	mflr r0
 /* 803B7AF8 003B4A38  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1492,8 +1492,8 @@ lbl_803B79C4:
 /* 803B7B68 003B4AA8  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7B6C 003B4AAC  4E 80 00 20 */	blr 
 
-.global "createSimpleWalksmoke__3efxFR10Vector3<f>"
-"createSimpleWalksmoke__3efxFR10Vector3<f>":
+.global createSimpleWalksmoke__3efxFR10Vector3$$0f$$1
+createSimpleWalksmoke__3efxFR10Vector3$$0f$$1:
 /* 803B7B70 003B4AB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7B74 003B4AB4  7C 08 02 A6 */	mflr r0
 /* 803B7B78 003B4AB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1512,15 +1512,15 @@ lbl_803B79C4:
 lbl_803B7BAC:
 /* 803B7BAC 003B4AEC  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B7BB0 003B4AF0  7F E4 FB 78 */	mr r4, r31
-/* 803B7BB4 003B4AF4  48 00 F2 09 */	bl "createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B7BB4 003B4AF4  48 00 F2 09 */	bl createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B7BB8 003B4AF8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B7BBC 003B4AFC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B7BC0 003B4B00  7C 08 03 A6 */	mtlr r0
 /* 803B7BC4 003B4B04  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7BC8 003B4B08  4E 80 00 20 */	blr 
 
-.global "createSimpleGlow2__3efxFR10Vector3<f>"
-"createSimpleGlow2__3efxFR10Vector3<f>":
+.global createSimpleGlow2__3efxFR10Vector3$$0f$$1
+createSimpleGlow2__3efxFR10Vector3$$0f$$1:
 /* 803B7BCC 003B4B0C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7BD0 003B4B10  7C 08 02 A6 */	mflr r0
 /* 803B7BD4 003B4B14  3C A0 80 4C */	lis r5, __vt__Q23efx8TPkGlow2@ha
@@ -1557,8 +1557,8 @@ lbl_803B7BAC:
 /* 803B7C50 003B4B90  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7C54 003B4B94  4E 80 00 20 */	blr 
 
-.global "createSimpleStoneAttack__3efxFR10Vector3<f>"
-"createSimpleStoneAttack__3efxFR10Vector3<f>":
+.global createSimpleStoneAttack__3efxFR10Vector3$$0f$$1
+createSimpleStoneAttack__3efxFR10Vector3$$0f$$1:
 /* 803B7C58 003B4B98  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B7C5C 003B4B9C  7C 08 02 A6 */	mflr r0
 /* 803B7C60 003B4BA0  3C A0 80 4B */	lis r5, __vt__Q23efx5TBase@ha
@@ -1592,8 +1592,8 @@ lbl_803B7BAC:
 /* 803B7CD0 003B4C10  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B7CD4 003B4C14  4E 80 00 20 */	blr 
 
-.global "createSimpleDig__3efxFR10Vector3<f>"
-"createSimpleDig__3efxFR10Vector3<f>":
+.global createSimpleDig__3efxFR10Vector3$$0f$$1
+createSimpleDig__3efxFR10Vector3$$0f$$1:
 /* 803B7CD8 003B4C18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7CDC 003B4C1C  7C 08 02 A6 */	mflr r0
 /* 803B7CE0 003B4C20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1612,15 +1612,15 @@ lbl_803B7BAC:
 lbl_803B7D14:
 /* 803B7D14 003B4C54  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B7D18 003B4C58  7F E4 FB 78 */	mr r4, r31
-/* 803B7D1C 003B4C5C  48 00 F1 15 */	bl "createS_Dig__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B7D1C 003B4C5C  48 00 F1 15 */	bl createS_Dig__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B7D20 003B4C60  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B7D24 003B4C64  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B7D28 003B4C68  7C 08 03 A6 */	mtlr r0
 /* 803B7D2C 003B4C6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7D30 003B4C70  4E 80 00 20 */	blr 
 
-.global "createSimpleGate3Attack__3efxFR10Vector3<f>"
-"createSimpleGate3Attack__3efxFR10Vector3<f>":
+.global createSimpleGate3Attack__3efxFR10Vector3$$0f$$1
+createSimpleGate3Attack__3efxFR10Vector3$$0f$$1:
 /* 803B7D34 003B4C74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7D38 003B4C78  7C 08 02 A6 */	mflr r0
 /* 803B7D3C 003B4C7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1639,15 +1639,15 @@ lbl_803B7D14:
 lbl_803B7D70:
 /* 803B7D70 003B4CB0  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B7D74 003B4CB4  7F E4 FB 78 */	mr r4, r31
-/* 803B7D78 003B4CB8  48 00 F1 A1 */	bl "createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B7D78 003B4CB8  48 00 F1 A1 */	bl createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B7D7C 003B4CBC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B7D80 003B4CC0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B7D84 003B4CC4  7C 08 03 A6 */	mtlr r0
 /* 803B7D88 003B4CC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7D8C 003B4CCC  4E 80 00 20 */	blr 
 
-.global "createSimpleWalkwater__3efxFR10Vector3<f>"
-"createSimpleWalkwater__3efxFR10Vector3<f>":
+.global createSimpleWalkwater__3efxFR10Vector3$$0f$$1
+createSimpleWalkwater__3efxFR10Vector3$$0f$$1:
 /* 803B7D90 003B4CD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7D94 003B4CD4  7C 08 02 A6 */	mflr r0
 /* 803B7D98 003B4CD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1666,15 +1666,15 @@ lbl_803B7D70:
 lbl_803B7DCC:
 /* 803B7DCC 003B4D0C  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803B7DD0 003B4D10  7F E4 FB 78 */	mr r4, r31
-/* 803B7DD4 003B4D14  48 00 F1 B9 */	bl "createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3<f>"
+/* 803B7DD4 003B4D14  48 00 F1 B9 */	bl createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3$$0f$$1
 /* 803B7DD8 003B4D18  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B7DDC 003B4D1C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B7DE0 003B4D20  7C 08 03 A6 */	mtlr r0
 /* 803B7DE4 003B4D24  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B7DE8 003B4D28  4E 80 00 20 */	blr 
 
-.global "init__Q23efx11TNaviEffectFP10Vector3<f>PA4_fP10Vector3<f>Q33efx11TNaviEffect12enumNaviType"
-"init__Q23efx11TNaviEffectFP10Vector3<f>PA4_fP10Vector3<f>Q33efx11TNaviEffect12enumNaviType":
+.global init__Q23efx11TNaviEffectFP10Vector3$$0f$$1PA4_fP10Vector3$$0f$$1Q33efx11TNaviEffect12enumNaviType
+init__Q23efx11TNaviEffectFP10Vector3$$0f$$1PA4_fP10Vector3$$0f$$1Q33efx11TNaviEffect12enumNaviType:
 /* 803B7DEC 003B4D2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7DF0 003B4D30  7C 08 02 A6 */	mflr r0
 /* 803B7DF4 003B4D34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1801,7 +1801,7 @@ lbl_803B7F84:
 /* 803B7F9C 003B4EDC  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 803B7FA0 003B4EE0  40 80 00 10 */	bge lbl_803B7FB0
 /* 803B7FA4 003B4EE4  38 9F 00 1C */	addi r4, r31, 0x1c
-/* 803B7FA8 003B4EE8  48 00 00 4D */	bl "createHamonA___Q23efx11TNaviEffectFP10Vector3<f>"
+/* 803B7FA8 003B4EE8  48 00 00 4D */	bl createHamonA___Q23efx11TNaviEffectFP10Vector3$$0f$$1
 /* 803B7FAC 003B4EEC  48 00 00 08 */	b lbl_803B7FB4
 lbl_803B7FB0:
 /* 803B7FB0 003B4EF0  48 00 00 A5 */	bl killHamonA___Q23efx11TNaviEffectFv
@@ -1811,7 +1811,7 @@ lbl_803B7FB4:
 /* 803B7FBC 003B4EFC  40 80 00 14 */	bge lbl_803B7FD0
 /* 803B7FC0 003B4F00  7F E3 FB 78 */	mr r3, r31
 /* 803B7FC4 003B4F04  38 9F 00 1C */	addi r4, r31, 0x1c
-/* 803B7FC8 003B4F08  48 00 00 B1 */	bl "createHamonB___Q23efx11TNaviEffectFP10Vector3<f>"
+/* 803B7FC8 003B4F08  48 00 00 B1 */	bl createHamonB___Q23efx11TNaviEffectFP10Vector3$$0f$$1
 /* 803B7FCC 003B4F0C  48 00 00 0C */	b lbl_803B7FD8
 lbl_803B7FD0:
 /* 803B7FD0 003B4F10  7F E3 FB 78 */	mr r3, r31
@@ -1825,8 +1825,8 @@ lbl_803B7FD8:
 /* 803B7FEC 003B4F2C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B7FF0 003B4F30  4E 80 00 20 */	blr 
 
-.global "createHamonA___Q23efx11TNaviEffectFP10Vector3<f>"
-"createHamonA___Q23efx11TNaviEffectFP10Vector3<f>":
+.global createHamonA___Q23efx11TNaviEffectFP10Vector3$$0f$$1
+createHamonA___Q23efx11TNaviEffectFP10Vector3$$0f$$1:
 /* 803B7FF4 003B4F34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B7FF8 003B4F38  7C 08 02 A6 */	mflr r0
 /* 803B7FFC 003B4F3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1845,7 +1845,7 @@ lbl_803B7FD8:
 lbl_803B8030:
 /* 803B8030 003B4F70  7F E4 FB 78 */	mr r4, r31
 /* 803B8034 003B4F74  38 7E 00 28 */	addi r3, r30, 0x28
-/* 803B8038 003B4F78  48 00 F5 41 */	bl "create__Q23efx9ToeHamonAFP10Vector3<f>"
+/* 803B8038 003B4F78  48 00 F5 41 */	bl create__Q23efx9ToeHamonAFP10Vector3$$0f$$1
 /* 803B803C 003B4F7C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8040 003B4F80  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8044 003B4F84  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1865,8 +1865,8 @@ killHamonA___Q23efx11TNaviEffectFv:
 /* 803B8070 003B4FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8074 003B4FB4  4E 80 00 20 */	blr 
 
-.global "createHamonB___Q23efx11TNaviEffectFP10Vector3<f>"
-"createHamonB___Q23efx11TNaviEffectFP10Vector3<f>":
+.global createHamonB___Q23efx11TNaviEffectFP10Vector3$$0f$$1
+createHamonB___Q23efx11TNaviEffectFP10Vector3$$0f$$1:
 /* 803B8078 003B4FB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B807C 003B4FBC  7C 08 02 A6 */	mflr r0
 /* 803B8080 003B4FC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1885,7 +1885,7 @@ killHamonA___Q23efx11TNaviEffectFv:
 lbl_803B80B4:
 /* 803B80B4 003B4FF4  7F E4 FB 78 */	mr r4, r31
 /* 803B80B8 003B4FF8  38 7E 00 44 */	addi r3, r30, 0x44
-/* 803B80BC 003B4FFC  48 00 F5 5D */	bl "create__Q23efx9ToeHamonBFP10Vector3<f>"
+/* 803B80BC 003B4FFC  48 00 F5 5D */	bl create__Q23efx9ToeHamonBFP10Vector3$$0f$$1
 /* 803B80C0 003B5000  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B80C4 003B5004  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B80C8 003B5008  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2001,8 +2001,8 @@ killLightAct___Q23efx11TNaviEffectFv:
 /* 803B823C 003B517C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8240 003B5180  4E 80 00 20 */	blr 
 
-.global "createCursor___Q23efx11TNaviEffectF10Vector3<f>f"
-"createCursor___Q23efx11TNaviEffectF10Vector3<f>f":
+.global createCursor___Q23efx11TNaviEffectF10Vector3$$0f$$1f
+createCursor___Q23efx11TNaviEffectF10Vector3$$0f$$1f:
 /* 803B8244 003B5184  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B8248 003B5188  7C 08 02 A6 */	mflr r0
 /* 803B824C 003B518C  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
@@ -2043,8 +2043,8 @@ killCursor___Q23efx11TNaviEffectFv:
 /* 803B82CC 003B520C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B82D0 003B5210  4E 80 00 20 */	blr 
 
-.global "updateCursor___Q23efx11TNaviEffectF10Vector3<f>f"
-"updateCursor___Q23efx11TNaviEffectF10Vector3<f>f":
+.global updateCursor___Q23efx11TNaviEffectF10Vector3$$0f$$1f
+updateCursor___Q23efx11TNaviEffectF10Vector3$$0f$$1f:
 /* 803B82D4 003B5214  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 803B82D8 003B5218  7C 08 02 A6 */	mflr r0
 /* 803B82DC 003B521C  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -2216,8 +2216,8 @@ lbl_803B8508:
 /* 803B8550 003B5490  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 803B8554 003B5494  4E 80 00 20 */	blr 
 
-.global "createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<f>"
-"createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3<f>":
+.global createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3$$0f$$1
+createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3$$0f$$1:
 /* 803B8558 003B5498  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B855C 003B549C  7C 08 02 A6 */	mflr r0
 /* 803B8560 003B54A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2403,7 +2403,7 @@ lbl_803B87B8:
 /* 803B87D0 003B5710  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 803B87D4 003B5714  40 80 00 10 */	bge lbl_803B87E4
 /* 803B87D8 003B5718  38 9F 00 28 */	addi r4, r31, 0x28
-/* 803B87DC 003B571C  48 00 05 7D */	bl "createHamonA___Q23efx9TPkEffectFP10Vector3<f>"
+/* 803B87DC 003B571C  48 00 05 7D */	bl createHamonA___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 803B87E0 003B5720  48 00 00 08 */	b lbl_803B87E8
 lbl_803B87E4:
 /* 803B87E4 003B5724  48 00 05 D5 */	bl killHamonA___Q23efx9TPkEffectFv
@@ -2413,7 +2413,7 @@ lbl_803B87E8:
 /* 803B87F0 003B5730  40 80 00 14 */	bge lbl_803B8804
 /* 803B87F4 003B5734  7F E3 FB 78 */	mr r3, r31
 /* 803B87F8 003B5738  38 9F 00 28 */	addi r4, r31, 0x28
-/* 803B87FC 003B573C  48 00 05 E1 */	bl "createHamonB___Q23efx9TPkEffectFP10Vector3<f>"
+/* 803B87FC 003B573C  48 00 05 E1 */	bl createHamonB___Q23efx9TPkEffectFP10Vector3$$0f$$1
 /* 803B8800 003B5740  48 00 00 0C */	b lbl_803B880C
 lbl_803B8804:
 /* 803B8804 003B5744  7F E3 FB 78 */	mr r3, r31
@@ -2427,8 +2427,8 @@ lbl_803B880C:
 /* 803B8820 003B5760  38 21 00 20 */	addi r1, r1, 0x20
 /* 803B8824 003B5764  4E 80 00 20 */	blr 
 
-.global "createKourin___Q23efx9TPkEffectFP10Vector3<f>"
-"createKourin___Q23efx9TPkEffectFP10Vector3<f>":
+.global createKourin___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createKourin___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B8828 003B5768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B882C 003B576C  7C 08 02 A6 */	mflr r0
 /* 803B8830 003B5770  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2448,7 +2448,7 @@ lbl_803B8864:
 /* 803B8864 003B57A4  80 BE 00 08 */	lwz r5, 8(r30)
 /* 803B8868 003B57A8  7F E4 FB 78 */	mr r4, r31
 /* 803B886C 003B57AC  38 7E 00 70 */	addi r3, r30, 0x70
-/* 803B8870 003B57B0  48 00 E7 E5 */	bl "create__Q23efx9ToeKourinFP10Vector3<f>l"
+/* 803B8870 003B57B0  48 00 E7 E5 */	bl create__Q23efx9ToeKourinFP10Vector3$$0f$$1l
 /* 803B8874 003B57B4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8878 003B57B8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B887C 003B57BC  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2468,8 +2468,8 @@ killKourin___Q23efx9TPkEffectFv:
 /* 803B88A8 003B57E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B88AC 003B57EC  4E 80 00 20 */	blr 
 
-.global "createDoping___Q23efx9TPkEffectFP10Vector3<f>"
-"createDoping___Q23efx9TPkEffectFP10Vector3<f>":
+.global createDoping___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createDoping___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B88B0 003B57F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B88B4 003B57F4  7C 08 02 A6 */	mflr r0
 /* 803B88B8 003B57F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2488,7 +2488,7 @@ killKourin___Q23efx9TPkEffectFv:
 lbl_803B88EC:
 /* 803B88EC 003B582C  7F E4 FB 78 */	mr r4, r31
 /* 803B88F0 003B5830  38 7E 00 90 */	addi r3, r30, 0x90
-/* 803B88F4 003B5834  48 00 E9 41 */	bl "create__Q23efx9ToeDopingFP10Vector3<f>"
+/* 803B88F4 003B5834  48 00 E9 41 */	bl create__Q23efx9ToeDopingFP10Vector3$$0f$$1
 /* 803B88F8 003B5838  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B88FC 003B583C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8900 003B5840  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2508,8 +2508,8 @@ killDoping___Q23efx9TPkEffectFv:
 /* 803B892C 003B586C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8930 003B5870  4E 80 00 20 */	blr 
 
-.global "createNage___Q23efx9TPkEffectFP10Vector3<f>PA4_f"
-"createNage___Q23efx9TPkEffectFP10Vector3<f>PA4_f":
+.global createNage___Q23efx9TPkEffectFP10Vector3$$0f$$1PA4_f
+createNage___Q23efx9TPkEffectFP10Vector3$$0f$$1PA4_f:
 /* 803B8934 003B5874  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803B8938 003B5878  7C 08 02 A6 */	mflr r0
 /* 803B893C 003B587C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2530,7 +2530,7 @@ killDoping___Q23efx9TPkEffectFv:
 lbl_803B8978:
 /* 803B8978 003B58B8  7F A4 EB 78 */	mr r4, r29
 /* 803B897C 003B58BC  38 7F 00 AC */	addi r3, r31, 0xac
-/* 803B8980 003B58C0  48 00 E9 49 */	bl "create__Q23efx11ToeNagekiraFP10Vector3<f>"
+/* 803B8980 003B58C0  48 00 E9 49 */	bl create__Q23efx11ToeNagekiraFP10Vector3$$0f$$1
 /* 803B8984 003B58C4  28 1E 00 00 */	cmplwi r30, 0
 /* 803B8988 003B58C8  40 82 00 20 */	bne lbl_803B89A8
 /* 803B898C 003B58CC  3C 60 80 49 */	lis r3, lbl_80495A28@ha
@@ -2595,8 +2595,8 @@ killNage___Q23efx9TPkEffectFv:
 /* 803B8A68 003B59A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8A6C 003B59AC  4E 80 00 20 */	blr 
 
-.global "createMoe___Q23efx9TPkEffectFP10Vector3<f>"
-"createMoe___Q23efx9TPkEffectFP10Vector3<f>":
+.global createMoe___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createMoe___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B8A70 003B59B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8A74 003B59B4  7C 08 02 A6 */	mflr r0
 /* 803B8A78 003B59B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2615,7 +2615,7 @@ killNage___Q23efx9TPkEffectFv:
 lbl_803B8AAC:
 /* 803B8AAC 003B59EC  7F E4 FB 78 */	mr r4, r31
 /* 803B8AB0 003B59F0  38 7E 00 C8 */	addi r3, r30, 0xc8
-/* 803B8AB4 003B59F4  48 00 E8 A9 */	bl "create__Q23efx8ToeMoeBCFP10Vector3<f>"
+/* 803B8AB4 003B59F4  48 00 E8 A9 */	bl create__Q23efx8ToeMoeBCFP10Vector3$$0f$$1
 /* 803B8AB8 003B59F8  93 FE 00 58 */	stw r31, 0x58(r30)
 /* 803B8ABC 003B59FC  38 7E 00 48 */	addi r3, r30, 0x48
 /* 803B8AC0 003B5A00  38 80 00 00 */	li r4, 0
@@ -2650,8 +2650,8 @@ killMoe___Q23efx9TPkEffectFv:
 /* 803B8B28 003B5A68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8B2C 003B5A6C  4E 80 00 20 */	blr 
 
-.global "createChudoku___Q23efx9TPkEffectFP10Vector3<f>"
-"createChudoku___Q23efx9TPkEffectFP10Vector3<f>":
+.global createChudoku___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createChudoku___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B8B30 003B5A70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8B34 003B5A74  7C 08 02 A6 */	mflr r0
 /* 803B8B38 003B5A78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2670,7 +2670,7 @@ killMoe___Q23efx9TPkEffectFv:
 lbl_803B8B6C:
 /* 803B8B6C 003B5AAC  7F E4 FB 78 */	mr r4, r31
 /* 803B8B70 003B5AB0  38 7E 01 00 */	addi r3, r30, 0x100
-/* 803B8B74 003B5AB4  48 00 E8 AD */	bl "create__Q23efx10ToeChudokuFP10Vector3<f>"
+/* 803B8B74 003B5AB4  48 00 E8 AD */	bl create__Q23efx10ToeChudokuFP10Vector3$$0f$$1
 /* 803B8B78 003B5AB8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8B7C 003B5ABC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8B80 003B5AC0  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2690,8 +2690,8 @@ killChudoku___Q23efx9TPkEffectFv:
 /* 803B8BAC 003B5AEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8BB0 003B5AF0  4E 80 00 20 */	blr 
 
-.global "createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>"
-"createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>":
+.global createMoeSmoke___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createMoeSmoke___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B8BB4 003B5AF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8BB8 003B5AF8  7C 08 02 A6 */	mflr r0
 /* 803B8BBC 003B5AFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2710,7 +2710,7 @@ killChudoku___Q23efx9TPkEffectFv:
 lbl_803B8BF0:
 /* 803B8BF0 003B5B30  7F E4 FB 78 */	mr r4, r31
 /* 803B8BF4 003B5B34  38 7E 01 8C */	addi r3, r30, 0x18c
-/* 803B8BF8 003B5B38  48 00 EA C1 */	bl "create__Q23efx11ToeMoeSmokeFP10Vector3<f>"
+/* 803B8BF8 003B5B38  48 00 EA C1 */	bl create__Q23efx11ToeMoeSmokeFP10Vector3$$0f$$1
 /* 803B8BFC 003B5B3C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8C00 003B5B40  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8C04 003B5B44  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2730,8 +2730,8 @@ killMoeSmoke___Q23efx9TPkEffectFv:
 /* 803B8C30 003B5B70  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8C34 003B5B74  4E 80 00 20 */	blr 
 
-.global "createBlackDown___Q23efx9TPkEffectFP10Vector3<f>"
-"createBlackDown___Q23efx9TPkEffectFP10Vector3<f>":
+.global createBlackDown___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createBlackDown___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B8C38 003B5B78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8C3C 003B5B7C  7C 08 02 A6 */	mflr r0
 /* 803B8C40 003B5B80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2776,8 +2776,8 @@ killBlackDown___Q23efx9TPkEffectFv:
 /* 803B8CCC 003B5C0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8CD0 003B5C10  4E 80 00 20 */	blr 
 
-.global "createWater___Q23efx9TPkEffectFP10Vector3<f>"
-"createWater___Q23efx9TPkEffectFP10Vector3<f>":
+.global createWater___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createWater___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B8CD4 003B5C14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8CD8 003B5C18  7C 08 02 A6 */	mflr r0
 /* 803B8CDC 003B5C1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2796,7 +2796,7 @@ killBlackDown___Q23efx9TPkEffectFv:
 lbl_803B8D10:
 /* 803B8D10 003B5C50  7F E4 FB 78 */	mr r4, r31
 /* 803B8D14 003B5C54  38 7E 01 1C */	addi r3, r30, 0x11c
-/* 803B8D18 003B5C58  48 00 E7 9D */	bl "create__Q23efx8ToeWaterFP10Vector3<f>"
+/* 803B8D18 003B5C58  48 00 E7 9D */	bl create__Q23efx8ToeWaterFP10Vector3$$0f$$1
 /* 803B8D1C 003B5C5C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8D20 003B5C60  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8D24 003B5C64  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2816,8 +2816,8 @@ killWater___Q23efx9TPkEffectFv:
 /* 803B8D50 003B5C90  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8D54 003B5C94  4E 80 00 20 */	blr 
 
-.global "createHamonA___Q23efx9TPkEffectFP10Vector3<f>"
-"createHamonA___Q23efx9TPkEffectFP10Vector3<f>":
+.global createHamonA___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createHamonA___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B8D58 003B5C98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8D5C 003B5C9C  7C 08 02 A6 */	mflr r0
 /* 803B8D60 003B5CA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2836,7 +2836,7 @@ killWater___Q23efx9TPkEffectFv:
 lbl_803B8D94:
 /* 803B8D94 003B5CD4  7F E4 FB 78 */	mr r4, r31
 /* 803B8D98 003B5CD8  38 7E 01 54 */	addi r3, r30, 0x154
-/* 803B8D9C 003B5CDC  48 00 E7 DD */	bl "create__Q23efx9ToeHamonAFP10Vector3<f>"
+/* 803B8D9C 003B5CDC  48 00 E7 DD */	bl create__Q23efx9ToeHamonAFP10Vector3$$0f$$1
 /* 803B8DA0 003B5CE0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8DA4 003B5CE4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8DA8 003B5CE8  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2856,8 +2856,8 @@ killHamonA___Q23efx9TPkEffectFv:
 /* 803B8DD4 003B5D14  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8DD8 003B5D18  4E 80 00 20 */	blr 
 
-.global "createHamonB___Q23efx9TPkEffectFP10Vector3<f>"
-"createHamonB___Q23efx9TPkEffectFP10Vector3<f>":
+.global createHamonB___Q23efx9TPkEffectFP10Vector3$$0f$$1
+createHamonB___Q23efx9TPkEffectFP10Vector3$$0f$$1:
 /* 803B8DDC 003B5D1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8DE0 003B5D20  7C 08 02 A6 */	mflr r0
 /* 803B8DE4 003B5D24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2876,7 +2876,7 @@ killHamonA___Q23efx9TPkEffectFv:
 lbl_803B8E18:
 /* 803B8E18 003B5D58  7F E4 FB 78 */	mr r4, r31
 /* 803B8E1C 003B5D5C  38 7E 01 70 */	addi r3, r30, 0x170
-/* 803B8E20 003B5D60  48 00 E7 F9 */	bl "create__Q23efx9ToeHamonBFP10Vector3<f>"
+/* 803B8E20 003B5D60  48 00 E7 F9 */	bl create__Q23efx9ToeHamonBFP10Vector3$$0f$$1
 /* 803B8E24 003B5D64  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8E28 003B5D68  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8E2C 003B5D6C  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2907,8 +2907,8 @@ init__Q23efx13TPkEffectTaneFv:
 /* 803B8E78 003B5DB8  90 03 00 10 */	stw r0, 0x10(r3)
 /* 803B8E7C 003B5DBC  4E 80 00 20 */	blr 
 
-.global "createTanekira___Q23efx13TPkEffectTaneFP10Vector3<f>"
-"createTanekira___Q23efx13TPkEffectTaneFP10Vector3<f>":
+.global createTanekira___Q23efx13TPkEffectTaneFP10Vector3$$0f$$1
+createTanekira___Q23efx13TPkEffectTaneFP10Vector3$$0f$$1:
 /* 803B8E80 003B5DC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8E84 003B5DC4  7C 08 02 A6 */	mflr r0
 /* 803B8E88 003B5DC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2927,7 +2927,7 @@ init__Q23efx13TPkEffectTaneFv:
 lbl_803B8EBC:
 /* 803B8EBC 003B5DFC  7F E4 FB 78 */	mr r4, r31
 /* 803B8EC0 003B5E00  38 7E 00 28 */	addi r3, r30, 0x28
-/* 803B8EC4 003B5E04  48 00 E8 89 */	bl "create__Q23efx11ToeTanekiraFP10Vector3<f>"
+/* 803B8EC4 003B5E04  48 00 E8 89 */	bl create__Q23efx11ToeTanekiraFP10Vector3$$0f$$1
 /* 803B8EC8 003B5E08  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8ECC 003B5E0C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8ED0 003B5E10  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2947,8 +2947,8 @@ killTanekira___Q23efx13TPkEffectTaneFv:
 /* 803B8EFC 003B5E3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8F00 003B5E40  4E 80 00 20 */	blr 
 
-.global "createKourin___Q23efx13TPkEffectTaneFP10Vector3<f>"
-"createKourin___Q23efx13TPkEffectTaneFP10Vector3<f>":
+.global createKourin___Q23efx13TPkEffectTaneFP10Vector3$$0f$$1
+createKourin___Q23efx13TPkEffectTaneFP10Vector3$$0f$$1:
 /* 803B8F04 003B5E44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8F08 003B5E48  7C 08 02 A6 */	mflr r0
 /* 803B8F0C 003B5E4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2968,7 +2968,7 @@ lbl_803B8F40:
 /* 803B8F40 003B5E80  80 BE 00 00 */	lwz r5, 0(r30)
 /* 803B8F44 003B5E84  7F E4 FB 78 */	mr r4, r31
 /* 803B8F48 003B5E88  38 7E 00 44 */	addi r3, r30, 0x44
-/* 803B8F4C 003B5E8C  48 00 E1 09 */	bl "create__Q23efx9ToeKourinFP10Vector3<f>l"
+/* 803B8F4C 003B5E8C  48 00 E1 09 */	bl create__Q23efx9ToeKourinFP10Vector3$$0f$$1l
 /* 803B8F50 003B5E90  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803B8F54 003B5E94  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803B8F58 003B5E98  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2988,8 +2988,8 @@ killKourin___Q23efx13TPkEffectTaneFv:
 /* 803B8F84 003B5EC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B8F88 003B5EC8  4E 80 00 20 */	blr 
 
-.global "createGlow1___Q23efx13TPkEffectTaneFP10Vector3<f>"
-"createGlow1___Q23efx13TPkEffectTaneFP10Vector3<f>":
+.global createGlow1___Q23efx13TPkEffectTaneFP10Vector3$$0f$$1
+createGlow1___Q23efx13TPkEffectTaneFP10Vector3$$0f$$1:
 /* 803B8F8C 003B5ECC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B8F90 003B5ED0  7C 08 02 A6 */	mflr r0
 /* 803B8F94 003B5ED4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3038,37 +3038,37 @@ forceKill__Q23efx7TCursorFv:
 /* 803B9024 003B5F64  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B9028 003B5F68  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx11TPkNageBlurFv"
-"@4@__dt__Q23efx11TPkNageBlurFv":
+.global $$24$$2__dt__Q23efx11TPkNageBlurFv
+$$24$$2__dt__Q23efx11TPkNageBlurFv:
 /* 803B902C 003B5F6C  38 63 FF FC */	addi r3, r3, -4
 /* 803B9030 003B5F70  4B D8 EC 44 */	b __dt__Q23efx11TPkNageBlurFv
 
-.global "@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter"
-"@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter":
+.global $$24$$2executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
+$$24$$2executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter:
 /* 803B9034 003B5F74  38 63 FF FC */	addi r3, r3, -4
 /* 803B9038 003B5F78  4B FF FF C4 */	b executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
 
-.global "@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter"
-"@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter":
+.global $$24$$2execute__Q23efx13TFueactCircleFP14JPABaseEmitter
+$$24$$2execute__Q23efx13TFueactCircleFP14JPABaseEmitter:
 /* 803B903C 003B5F7C  38 63 FF FC */	addi r3, r3, -4
 /* 803B9040 003B5F80  4B FF DE C0 */	b execute__Q23efx13TFueactCircleFP14JPABaseEmitter
 
-.global "@4@__dt__Q23efx13TFueactCircleFv"
-"@4@__dt__Q23efx13TFueactCircleFv":
+.global $$24$$2__dt__Q23efx13TFueactCircleFv
+$$24$$2__dt__Q23efx13TFueactCircleFv:
 /* 803B9044 003B5F84  38 63 FF FC */	addi r3, r3, -4
 /* 803B9048 003B5F88  4B D8 6F 34 */	b __dt__Q23efx13TFueactCircleFv
 
-.global "@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle"
-"@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle":
+.global $$28$$2execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
+$$28$$2execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle:
 /* 803B904C 003B5F8C  38 63 FF F8 */	addi r3, r3, -8
 /* 803B9050 003B5F90  4B FF DF D4 */	b execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
 
-.global "@8@__dt__Q23efx13TFueactCircleFv"
-"@8@__dt__Q23efx13TFueactCircleFv":
+.global $$28$$2__dt__Q23efx13TFueactCircleFv
+$$28$$2__dt__Q23efx13TFueactCircleFv:
 /* 803B9054 003B5F94  38 63 FF F8 */	addi r3, r3, -8
 /* 803B9058 003B5F98  4B D8 6F 24 */	b __dt__Q23efx13TFueactCircleFv
 
-.global "@4@__dt__Q23efx15TFueactBiriBaseFv"
-"@4@__dt__Q23efx15TFueactBiriBaseFv":
+.global $$24$$2__dt__Q23efx15TFueactBiriBaseFv
+$$24$$2__dt__Q23efx15TFueactBiriBaseFv:
 /* 803B905C 003B5F9C  38 63 FF FC */	addi r3, r3, -4
 /* 803B9060 003B5FA0  4B D8 6E 98 */	b __dt__Q23efx15TFueactBiriBaseFv

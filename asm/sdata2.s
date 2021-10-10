@@ -16312,12 +16312,12 @@ lbl_8051C988:
 .global lbl_8051C98C
 lbl_8051C98C:
 	.4byte 0x3CCCCCCD
-.global "cDefaultKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@"
-"cDefaultKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@":
+.global cDefaultKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2
+cDefaultKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2:
 	.4byte 0x40F00000
 	.4byte 0xC0F00000
-.global "cFlickKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@"
-"cFlickKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@":
+.global cFlickKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2
+cFlickKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2:
 	.4byte 0x41200000
 	.4byte 0xC1200000
 .global lbl_8051C9A0

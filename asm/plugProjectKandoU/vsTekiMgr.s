@@ -93,8 +93,8 @@ lbl_802353DC:
 /* 8023542C 0023236C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80235430 00232370  4E 80 00 20 */	blr 
 
-.global "birth__Q34Game6VsGame7TekiMgrFiR10Vector3<f>b"
-"birth__Q34Game6VsGame7TekiMgrFiR10Vector3<f>b":
+.global birth__Q34Game6VsGame7TekiMgrFiR10Vector3$$0f$$1b
+birth__Q34Game6VsGame7TekiMgrFiR10Vector3$$0f$$1b:
 /* 80235434 00232374  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80235438 00232378  7C 08 02 A6 */	mflr r0
 /* 8023543C 0023237C  90 01 00 64 */	stw r0, 0x64(r1)

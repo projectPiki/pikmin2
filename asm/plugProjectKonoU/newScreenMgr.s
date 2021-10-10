@@ -721,7 +721,7 @@ lbl_80400BA8:
 /* 80400BF8 003FDB38  D0 41 00 1C */	stfs f2, 0x1c(r1)
 /* 80400BFC 003FDB3C  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80400C00 003FDB40  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80400C04 003FDB44  4B C3 5B D1 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 80400C04 003FDB44  4B C3 5B D1 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 lbl_80400C08:
 /* 80400C08 003FDB48  E3 E1 00 78 */	psq_l f31, 120(r1), 0, qr0
 /* 80400C0C 003FDB4C  CB E1 00 70 */	lfd f31, 0x70(r1)

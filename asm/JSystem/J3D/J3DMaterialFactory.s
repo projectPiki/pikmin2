@@ -14,11 +14,11 @@ __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock:
 /* 8006C3C4 00069304  7C 7E 1B 78 */	mr r30, r3
 /* 8006C3C8 00069308  7F E3 FB 78 */	mr r3, r31
 /* 8006C3CC 0006930C  B0 1E 00 00 */	sth r0, 0(r30)
-/* 8006C3D0 00069310  48 00 34 A1 */	bl "JSUConvertOffsetToPtr<19J3DMaterialInitData>__FPCvPCv"
+/* 8006C3D0 00069310  48 00 34 A1 */	bl JSUConvertOffsetToPtr$$019J3DMaterialInitData$$1__FPCvPCv
 /* 8006C3D4 00069314  90 7E 00 04 */	stw r3, 4(r30)
 /* 8006C3D8 00069318  7F E3 FB 78 */	mr r3, r31
 /* 8006C3DC 0006931C  80 9F 00 10 */	lwz r4, 0x10(r31)
-/* 8006C3E0 00069320  4B FD D0 A5 */	bl "JSUConvertOffsetToPtr<Us>__FPCvPCv"
+/* 8006C3E0 00069320  4B FD D0 A5 */	bl JSUConvertOffsetToPtr$$0Us$$1__FPCvPCv
 /* 8006C3E4 00069324  80 9F 00 18 */	lwz r4, 0x18(r31)
 /* 8006C3E8 00069328  90 7E 00 08 */	stw r3, 8(r30)
 /* 8006C3EC 0006932C  28 04 00 00 */	cmplwi r4, 0
@@ -28,7 +28,7 @@ __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock:
 /* 8006C3FC 0006933C  28 00 00 04 */	cmplwi r0, 4
 /* 8006C400 00069340  40 81 00 14 */	ble lbl_8006C414
 /* 8006C404 00069344  7F E3 FB 78 */	mr r3, r31
-/* 8006C408 00069348  48 00 34 51 */	bl "JSUConvertOffsetToPtr<14J3DIndInitData>__FPCvPCv"
+/* 8006C408 00069348  48 00 34 51 */	bl JSUConvertOffsetToPtr$$014J3DIndInitData$$1__FPCvPCv
 /* 8006C40C 0006934C  90 7E 00 0C */	stw r3, 0xc(r30)
 /* 8006C410 00069350  48 00 00 0C */	b lbl_8006C41C
 lbl_8006C414:
@@ -37,107 +37,107 @@ lbl_8006C414:
 lbl_8006C41C:
 /* 8006C41C 0006935C  80 9F 00 1C */	lwz r4, 0x1c(r31)
 /* 8006C420 00069360  7F E3 FB 78 */	mr r3, r31
-/* 8006C424 00069364  4B FE 86 85 */	bl "JSUConvertOffsetToPtr<11_GXCullMode>__FPCvPCv"
+/* 8006C424 00069364  4B FE 86 85 */	bl JSUConvertOffsetToPtr$$011_GXCullMode$$1__FPCvPCv
 /* 8006C428 00069368  90 7E 00 3C */	stw r3, 0x3c(r30)
 /* 8006C42C 0006936C  7F E3 FB 78 */	mr r3, r31
 /* 8006C430 00069370  80 9F 00 20 */	lwz r4, 0x20(r31)
-/* 8006C434 00069374  4B FE 86 5D */	bl "JSUConvertOffsetToPtr<8_GXColor>__FPCvPCv"
+/* 8006C434 00069374  4B FE 86 5D */	bl JSUConvertOffsetToPtr$$08_GXColor$$1__FPCvPCv
 /* 8006C438 00069378  90 7E 00 10 */	stw r3, 0x10(r30)
 /* 8006C43C 0006937C  7F E3 FB 78 */	mr r3, r31
 /* 8006C440 00069380  80 9F 00 24 */	lwz r4, 0x24(r31)
-/* 8006C444 00069384  4B FD D0 11 */	bl "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
+/* 8006C444 00069384  4B FD D0 11 */	bl JSUConvertOffsetToPtr$$0Uc$$1__FPCvPCv
 /* 8006C448 00069388  90 7E 00 14 */	stw r3, 0x14(r30)
 /* 8006C44C 0006938C  7F E3 FB 78 */	mr r3, r31
 /* 8006C450 00069390  80 9F 00 28 */	lwz r4, 0x28(r31)
-/* 8006C454 00069394  48 00 33 ED */	bl "JSUConvertOffsetToPtr<16J3DColorChanInfo>__FPCvPCv"
+/* 8006C454 00069394  48 00 33 ED */	bl JSUConvertOffsetToPtr$$016J3DColorChanInfo$$1__FPCvPCv
 /* 8006C458 00069398  90 7E 00 18 */	stw r3, 0x18(r30)
 /* 8006C45C 0006939C  7F E3 FB 78 */	mr r3, r31
 /* 8006C460 000693A0  80 9F 00 2C */	lwz r4, 0x2c(r31)
-/* 8006C464 000693A4  4B FE 86 2D */	bl "JSUConvertOffsetToPtr<8_GXColor>__FPCvPCv"
+/* 8006C464 000693A4  4B FE 86 2D */	bl JSUConvertOffsetToPtr$$08_GXColor$$1__FPCvPCv
 /* 8006C468 000693A8  90 7E 00 1C */	stw r3, 0x1c(r30)
 /* 8006C46C 000693AC  7F E3 FB 78 */	mr r3, r31
 /* 8006C470 000693B0  80 9F 00 30 */	lwz r4, 0x30(r31)
-/* 8006C474 000693B4  48 00 33 B5 */	bl "JSUConvertOffsetToPtr<12J3DLightInfo>__FPCvPCv"
+/* 8006C474 000693B4  48 00 33 B5 */	bl JSUConvertOffsetToPtr$$012J3DLightInfo$$1__FPCvPCv
 /* 8006C478 000693B8  90 7E 00 20 */	stw r3, 0x20(r30)
 /* 8006C47C 000693BC  7F E3 FB 78 */	mr r3, r31
 /* 8006C480 000693C0  80 9F 00 34 */	lwz r4, 0x34(r31)
-/* 8006C484 000693C4  4B FD CF D1 */	bl "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
+/* 8006C484 000693C4  4B FD CF D1 */	bl JSUConvertOffsetToPtr$$0Uc$$1__FPCvPCv
 /* 8006C488 000693C8  90 7E 00 24 */	stw r3, 0x24(r30)
 /* 8006C48C 000693CC  7F E3 FB 78 */	mr r3, r31
 /* 8006C490 000693D0  80 9F 00 38 */	lwz r4, 0x38(r31)
-/* 8006C494 000693D4  48 00 33 7D */	bl "JSUConvertOffsetToPtr<15J3DTexCoordInfo>__FPCvPCv"
+/* 8006C494 000693D4  48 00 33 7D */	bl JSUConvertOffsetToPtr$$015J3DTexCoordInfo$$1__FPCvPCv
 /* 8006C498 000693D8  90 7E 00 28 */	stw r3, 0x28(r30)
 /* 8006C49C 000693DC  7F E3 FB 78 */	mr r3, r31
 /* 8006C4A0 000693E0  80 9F 00 3C */	lwz r4, 0x3c(r31)
-/* 8006C4A4 000693E4  48 00 33 55 */	bl "JSUConvertOffsetToPtr<16J3DTexCoord2Info>__FPCvPCv"
+/* 8006C4A4 000693E4  48 00 33 55 */	bl JSUConvertOffsetToPtr$$016J3DTexCoord2Info$$1__FPCvPCv
 /* 8006C4A8 000693E8  90 7E 00 2C */	stw r3, 0x2c(r30)
 /* 8006C4AC 000693EC  7F E3 FB 78 */	mr r3, r31
 /* 8006C4B0 000693F0  80 9F 00 40 */	lwz r4, 0x40(r31)
-/* 8006C4B4 000693F4  48 00 33 2D */	bl "JSUConvertOffsetToPtr<13J3DTexMtxInfo>__FPCvPCv"
+/* 8006C4B4 000693F4  48 00 33 2D */	bl JSUConvertOffsetToPtr$$013J3DTexMtxInfo$$1__FPCvPCv
 /* 8006C4B8 000693F8  90 7E 00 30 */	stw r3, 0x30(r30)
 /* 8006C4BC 000693FC  7F E3 FB 78 */	mr r3, r31
 /* 8006C4C0 00069400  80 9F 00 44 */	lwz r4, 0x44(r31)
-/* 8006C4C4 00069404  48 00 33 1D */	bl "JSUConvertOffsetToPtr<13J3DTexMtxInfo>__FPCvPCv"
+/* 8006C4C4 00069404  48 00 33 1D */	bl JSUConvertOffsetToPtr$$013J3DTexMtxInfo$$1__FPCvPCv
 /* 8006C4C8 00069408  90 7E 00 34 */	stw r3, 0x34(r30)
 /* 8006C4CC 0006940C  7F E3 FB 78 */	mr r3, r31
 /* 8006C4D0 00069410  80 9F 00 48 */	lwz r4, 0x48(r31)
-/* 8006C4D4 00069414  4B FD CF B1 */	bl "JSUConvertOffsetToPtr<Us>__FPCvPCv"
+/* 8006C4D4 00069414  4B FD CF B1 */	bl JSUConvertOffsetToPtr$$0Us$$1__FPCvPCv
 /* 8006C4D8 00069418  90 7E 00 38 */	stw r3, 0x38(r30)
 /* 8006C4DC 0006941C  7F E3 FB 78 */	mr r3, r31
 /* 8006C4E0 00069420  80 9F 00 4C */	lwz r4, 0x4c(r31)
-/* 8006C4E4 00069424  48 00 32 E5 */	bl "JSUConvertOffsetToPtr<15J3DTevOrderInfo>__FPCvPCv"
+/* 8006C4E4 00069424  48 00 32 E5 */	bl JSUConvertOffsetToPtr$$015J3DTevOrderInfo$$1__FPCvPCv
 /* 8006C4E8 00069428  90 7E 00 40 */	stw r3, 0x40(r30)
 /* 8006C4EC 0006942C  7F E3 FB 78 */	mr r3, r31
 /* 8006C4F0 00069430  80 9F 00 50 */	lwz r4, 0x50(r31)
-/* 8006C4F4 00069434  4B FE 85 25 */	bl "JSUConvertOffsetToPtr<11_GXColorS10>__FPCvPCv"
+/* 8006C4F4 00069434  4B FE 85 25 */	bl JSUConvertOffsetToPtr$$011_GXColorS10$$1__FPCvPCv
 /* 8006C4F8 00069438  90 7E 00 44 */	stw r3, 0x44(r30)
 /* 8006C4FC 0006943C  7F E3 FB 78 */	mr r3, r31
 /* 8006C500 00069440  80 9F 00 54 */	lwz r4, 0x54(r31)
-/* 8006C504 00069444  4B FE 85 8D */	bl "JSUConvertOffsetToPtr<8_GXColor>__FPCvPCv"
+/* 8006C504 00069444  4B FE 85 8D */	bl JSUConvertOffsetToPtr$$08_GXColor$$1__FPCvPCv
 /* 8006C508 00069448  90 7E 00 48 */	stw r3, 0x48(r30)
 /* 8006C50C 0006944C  7F E3 FB 78 */	mr r3, r31
 /* 8006C510 00069450  80 9F 00 58 */	lwz r4, 0x58(r31)
-/* 8006C514 00069454  4B FD CF 41 */	bl "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
+/* 8006C514 00069454  4B FD CF 41 */	bl JSUConvertOffsetToPtr$$0Uc$$1__FPCvPCv
 /* 8006C518 00069458  90 7E 00 4C */	stw r3, 0x4c(r30)
 /* 8006C51C 0006945C  7F E3 FB 78 */	mr r3, r31
 /* 8006C520 00069460  80 9F 00 5C */	lwz r4, 0x5c(r31)
-/* 8006C524 00069464  48 00 32 8D */	bl "JSUConvertOffsetToPtr<15J3DTevStageInfo>__FPCvPCv"
+/* 8006C524 00069464  48 00 32 8D */	bl JSUConvertOffsetToPtr$$015J3DTevStageInfo$$1__FPCvPCv
 /* 8006C528 00069468  90 7E 00 50 */	stw r3, 0x50(r30)
 /* 8006C52C 0006946C  7F E3 FB 78 */	mr r3, r31
 /* 8006C530 00069470  80 9F 00 60 */	lwz r4, 0x60(r31)
-/* 8006C534 00069474  48 00 32 65 */	bl "JSUConvertOffsetToPtr<18J3DTevSwapModeInfo>__FPCvPCv"
+/* 8006C534 00069474  48 00 32 65 */	bl JSUConvertOffsetToPtr$$018J3DTevSwapModeInfo$$1__FPCvPCv
 /* 8006C538 00069478  90 7E 00 54 */	stw r3, 0x54(r30)
 /* 8006C53C 0006947C  7F E3 FB 78 */	mr r3, r31
 /* 8006C540 00069480  80 9F 00 64 */	lwz r4, 0x64(r31)
-/* 8006C544 00069484  48 00 32 3D */	bl "JSUConvertOffsetToPtr<23J3DTevSwapModeTableInfo>__FPCvPCv"
+/* 8006C544 00069484  48 00 32 3D */	bl JSUConvertOffsetToPtr$$023J3DTevSwapModeTableInfo$$1__FPCvPCv
 /* 8006C548 00069488  90 7E 00 58 */	stw r3, 0x58(r30)
 /* 8006C54C 0006948C  7F E3 FB 78 */	mr r3, r31
 /* 8006C550 00069490  80 9F 00 68 */	lwz r4, 0x68(r31)
-/* 8006C554 00069494  48 00 32 15 */	bl "JSUConvertOffsetToPtr<10J3DFogInfo>__FPCvPCv"
+/* 8006C554 00069494  48 00 32 15 */	bl JSUConvertOffsetToPtr$$010J3DFogInfo$$1__FPCvPCv
 /* 8006C558 00069498  90 7E 00 5C */	stw r3, 0x5c(r30)
 /* 8006C55C 0006949C  7F E3 FB 78 */	mr r3, r31
 /* 8006C560 000694A0  80 9F 00 6C */	lwz r4, 0x6c(r31)
-/* 8006C564 000694A4  48 00 31 ED */	bl "JSUConvertOffsetToPtr<16J3DAlphaCompInfo>__FPCvPCv"
+/* 8006C564 000694A4  48 00 31 ED */	bl JSUConvertOffsetToPtr$$016J3DAlphaCompInfo$$1__FPCvPCv
 /* 8006C568 000694A8  90 7E 00 60 */	stw r3, 0x60(r30)
 /* 8006C56C 000694AC  7F E3 FB 78 */	mr r3, r31
 /* 8006C570 000694B0  80 9F 00 70 */	lwz r4, 0x70(r31)
-/* 8006C574 000694B4  48 00 31 C5 */	bl "JSUConvertOffsetToPtr<12J3DBlendInfo>__FPCvPCv"
+/* 8006C574 000694B4  48 00 31 C5 */	bl JSUConvertOffsetToPtr$$012J3DBlendInfo$$1__FPCvPCv
 /* 8006C578 000694B8  90 7E 00 64 */	stw r3, 0x64(r30)
 /* 8006C57C 000694BC  7F E3 FB 78 */	mr r3, r31
 /* 8006C580 000694C0  80 9F 00 74 */	lwz r4, 0x74(r31)
-/* 8006C584 000694C4  48 00 31 9D */	bl "JSUConvertOffsetToPtr<12J3DZModeInfo>__FPCvPCv"
+/* 8006C584 000694C4  48 00 31 9D */	bl JSUConvertOffsetToPtr$$012J3DZModeInfo$$1__FPCvPCv
 /* 8006C588 000694C8  90 7E 00 68 */	stw r3, 0x68(r30)
 /* 8006C58C 000694CC  7F E3 FB 78 */	mr r3, r31
 /* 8006C590 000694D0  80 9F 00 78 */	lwz r4, 0x78(r31)
-/* 8006C594 000694D4  4B FD CE C1 */	bl "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
+/* 8006C594 000694D4  4B FD CE C1 */	bl JSUConvertOffsetToPtr$$0Uc$$1__FPCvPCv
 /* 8006C598 000694D8  90 7E 00 6C */	stw r3, 0x6c(r30)
 /* 8006C59C 000694DC  7F E3 FB 78 */	mr r3, r31
 /* 8006C5A0 000694E0  80 9F 00 7C */	lwz r4, 0x7c(r31)
-/* 8006C5A4 000694E4  4B FD CE B1 */	bl "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
+/* 8006C5A4 000694E4  4B FD CE B1 */	bl JSUConvertOffsetToPtr$$0Uc$$1__FPCvPCv
 /* 8006C5A8 000694E8  90 7E 00 70 */	stw r3, 0x70(r30)
 /* 8006C5AC 000694EC  7F E3 FB 78 */	mr r3, r31
 /* 8006C5B0 000694F0  80 9F 00 80 */	lwz r4, 0x80(r31)
-/* 8006C5B4 000694F4  48 00 31 55 */	bl "JSUConvertOffsetToPtr<15J3DNBTScaleInfo>__FPCvPCv"
+/* 8006C5B4 000694F4  48 00 31 55 */	bl JSUConvertOffsetToPtr$$015J3DNBTScaleInfo$$1__FPCvPCv
 /* 8006C5B8 000694F8  90 7E 00 74 */	stw r3, 0x74(r30)
 /* 8006C5BC 000694FC  38 00 00 00 */	li r0, 0
 /* 8006C5C0 00069500  7F C3 F3 78 */	mr r3, r30
@@ -167,19 +167,19 @@ __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock:
 /* 8006C614 00069554  7F E3 FB 78 */	mr r3, r31
 /* 8006C618 00069558  B0 BE 00 00 */	sth r5, 0(r30)
 /* 8006C61C 0006955C  90 1E 00 04 */	stw r0, 4(r30)
-/* 8006C620 00069560  48 00 30 D1 */	bl "JSUConvertOffsetToPtr<18J3DDisplayListInit>__FPCvPCv"
+/* 8006C620 00069560  48 00 30 D1 */	bl JSUConvertOffsetToPtr$$018J3DDisplayListInit$$1__FPCvPCv
 /* 8006C624 00069564  90 7E 00 78 */	stw r3, 0x78(r30)
 /* 8006C628 00069568  7F E3 FB 78 */	mr r3, r31
 /* 8006C62C 0006956C  80 9F 00 10 */	lwz r4, 0x10(r31)
-/* 8006C630 00069570  48 00 30 A9 */	bl "JSUConvertOffsetToPtr<15J3DPatchingInfo>__FPCvPCv"
+/* 8006C630 00069570  48 00 30 A9 */	bl JSUConvertOffsetToPtr$$015J3DPatchingInfo$$1__FPCvPCv
 /* 8006C634 00069574  90 7E 00 7C */	stw r3, 0x7c(r30)
 /* 8006C638 00069578  7F E3 FB 78 */	mr r3, r31
 /* 8006C63C 0006957C  80 9F 00 14 */	lwz r4, 0x14(r31)
-/* 8006C640 00069580  48 00 30 81 */	bl "JSUConvertOffsetToPtr<17J3DCurrentMtxInfo>__FPCvPCv"
+/* 8006C640 00069580  48 00 30 81 */	bl JSUConvertOffsetToPtr$$017J3DCurrentMtxInfo$$1__FPCvPCv
 /* 8006C644 00069584  90 7E 00 80 */	stw r3, 0x80(r30)
 /* 8006C648 00069588  7F E3 FB 78 */	mr r3, r31
 /* 8006C64C 0006958C  80 9F 00 18 */	lwz r4, 0x18(r31)
-/* 8006C650 00069590  4B FD CE 05 */	bl "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
+/* 8006C650 00069590  4B FD CE 05 */	bl JSUConvertOffsetToPtr$$0Uc$$1__FPCvPCv
 /* 8006C654 00069594  90 7E 00 84 */	stw r3, 0x84(r30)
 /* 8006C658 00069598  7F C3 F3 78 */	mr r3, r30
 /* 8006C65C 0006959C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3779,8 +3779,8 @@ lbl_8006F6A8:
 /* 8006F6B8 0006C5F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006F6BC 0006C5FC  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<17J3DCurrentMtxInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<17J3DCurrentMtxInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$017J3DCurrentMtxInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$017J3DCurrentMtxInfo$$1__FPCvPCv:
 /* 8006F6C0 0006C600  28 04 00 00 */	cmplwi r4, 0
 /* 8006F6C4 0006C604  40 82 00 0C */	bne lbl_8006F6D0
 /* 8006F6C8 0006C608  38 60 00 00 */	li r3, 0
@@ -3789,8 +3789,8 @@ lbl_8006F6D0:
 /* 8006F6D0 0006C610  7C 63 22 14 */	add r3, r3, r4
 /* 8006F6D4 0006C614  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<15J3DPatchingInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<15J3DPatchingInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$015J3DPatchingInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$015J3DPatchingInfo$$1__FPCvPCv:
 /* 8006F6D8 0006C618  28 04 00 00 */	cmplwi r4, 0
 /* 8006F6DC 0006C61C  40 82 00 0C */	bne lbl_8006F6E8
 /* 8006F6E0 0006C620  38 60 00 00 */	li r3, 0
@@ -3799,8 +3799,8 @@ lbl_8006F6E8:
 /* 8006F6E8 0006C628  7C 63 22 14 */	add r3, r3, r4
 /* 8006F6EC 0006C62C  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<18J3DDisplayListInit>__FPCvPCv"
-"JSUConvertOffsetToPtr<18J3DDisplayListInit>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$018J3DDisplayListInit$$1__FPCvPCv
+JSUConvertOffsetToPtr$$018J3DDisplayListInit$$1__FPCvPCv:
 /* 8006F6F0 0006C630  28 04 00 00 */	cmplwi r4, 0
 /* 8006F6F4 0006C634  40 82 00 0C */	bne lbl_8006F700
 /* 8006F6F8 0006C638  38 60 00 00 */	li r3, 0
@@ -3809,8 +3809,8 @@ lbl_8006F700:
 /* 8006F700 0006C640  7C 63 22 14 */	add r3, r3, r4
 /* 8006F704 0006C644  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<15J3DNBTScaleInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<15J3DNBTScaleInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$015J3DNBTScaleInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$015J3DNBTScaleInfo$$1__FPCvPCv:
 /* 8006F708 0006C648  28 04 00 00 */	cmplwi r4, 0
 /* 8006F70C 0006C64C  40 82 00 0C */	bne lbl_8006F718
 /* 8006F710 0006C650  38 60 00 00 */	li r3, 0
@@ -3819,8 +3819,8 @@ lbl_8006F718:
 /* 8006F718 0006C658  7C 63 22 14 */	add r3, r3, r4
 /* 8006F71C 0006C65C  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<12J3DZModeInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<12J3DZModeInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$012J3DZModeInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$012J3DZModeInfo$$1__FPCvPCv:
 /* 8006F720 0006C660  28 04 00 00 */	cmplwi r4, 0
 /* 8006F724 0006C664  40 82 00 0C */	bne lbl_8006F730
 /* 8006F728 0006C668  38 60 00 00 */	li r3, 0
@@ -3829,8 +3829,8 @@ lbl_8006F730:
 /* 8006F730 0006C670  7C 63 22 14 */	add r3, r3, r4
 /* 8006F734 0006C674  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<12J3DBlendInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<12J3DBlendInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$012J3DBlendInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$012J3DBlendInfo$$1__FPCvPCv:
 /* 8006F738 0006C678  28 04 00 00 */	cmplwi r4, 0
 /* 8006F73C 0006C67C  40 82 00 0C */	bne lbl_8006F748
 /* 8006F740 0006C680  38 60 00 00 */	li r3, 0
@@ -3839,8 +3839,8 @@ lbl_8006F748:
 /* 8006F748 0006C688  7C 63 22 14 */	add r3, r3, r4
 /* 8006F74C 0006C68C  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<16J3DAlphaCompInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<16J3DAlphaCompInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$016J3DAlphaCompInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$016J3DAlphaCompInfo$$1__FPCvPCv:
 /* 8006F750 0006C690  28 04 00 00 */	cmplwi r4, 0
 /* 8006F754 0006C694  40 82 00 0C */	bne lbl_8006F760
 /* 8006F758 0006C698  38 60 00 00 */	li r3, 0
@@ -3849,8 +3849,8 @@ lbl_8006F760:
 /* 8006F760 0006C6A0  7C 63 22 14 */	add r3, r3, r4
 /* 8006F764 0006C6A4  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<10J3DFogInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<10J3DFogInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$010J3DFogInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$010J3DFogInfo$$1__FPCvPCv:
 /* 8006F768 0006C6A8  28 04 00 00 */	cmplwi r4, 0
 /* 8006F76C 0006C6AC  40 82 00 0C */	bne lbl_8006F778
 /* 8006F770 0006C6B0  38 60 00 00 */	li r3, 0
@@ -3859,8 +3859,8 @@ lbl_8006F778:
 /* 8006F778 0006C6B8  7C 63 22 14 */	add r3, r3, r4
 /* 8006F77C 0006C6BC  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<23J3DTevSwapModeTableInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<23J3DTevSwapModeTableInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$023J3DTevSwapModeTableInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$023J3DTevSwapModeTableInfo$$1__FPCvPCv:
 /* 8006F780 0006C6C0  28 04 00 00 */	cmplwi r4, 0
 /* 8006F784 0006C6C4  40 82 00 0C */	bne lbl_8006F790
 /* 8006F788 0006C6C8  38 60 00 00 */	li r3, 0
@@ -3869,8 +3869,8 @@ lbl_8006F790:
 /* 8006F790 0006C6D0  7C 63 22 14 */	add r3, r3, r4
 /* 8006F794 0006C6D4  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<18J3DTevSwapModeInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<18J3DTevSwapModeInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$018J3DTevSwapModeInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$018J3DTevSwapModeInfo$$1__FPCvPCv:
 /* 8006F798 0006C6D8  28 04 00 00 */	cmplwi r4, 0
 /* 8006F79C 0006C6DC  40 82 00 0C */	bne lbl_8006F7A8
 /* 8006F7A0 0006C6E0  38 60 00 00 */	li r3, 0
@@ -3879,8 +3879,8 @@ lbl_8006F7A8:
 /* 8006F7A8 0006C6E8  7C 63 22 14 */	add r3, r3, r4
 /* 8006F7AC 0006C6EC  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<15J3DTevStageInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<15J3DTevStageInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$015J3DTevStageInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$015J3DTevStageInfo$$1__FPCvPCv:
 /* 8006F7B0 0006C6F0  28 04 00 00 */	cmplwi r4, 0
 /* 8006F7B4 0006C6F4  40 82 00 0C */	bne lbl_8006F7C0
 /* 8006F7B8 0006C6F8  38 60 00 00 */	li r3, 0
@@ -3889,8 +3889,8 @@ lbl_8006F7C0:
 /* 8006F7C0 0006C700  7C 63 22 14 */	add r3, r3, r4
 /* 8006F7C4 0006C704  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<15J3DTevOrderInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<15J3DTevOrderInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$015J3DTevOrderInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$015J3DTevOrderInfo$$1__FPCvPCv:
 /* 8006F7C8 0006C708  28 04 00 00 */	cmplwi r4, 0
 /* 8006F7CC 0006C70C  40 82 00 0C */	bne lbl_8006F7D8
 /* 8006F7D0 0006C710  38 60 00 00 */	li r3, 0
@@ -3899,8 +3899,8 @@ lbl_8006F7D8:
 /* 8006F7D8 0006C718  7C 63 22 14 */	add r3, r3, r4
 /* 8006F7DC 0006C71C  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<13J3DTexMtxInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<13J3DTexMtxInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$013J3DTexMtxInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$013J3DTexMtxInfo$$1__FPCvPCv:
 /* 8006F7E0 0006C720  28 04 00 00 */	cmplwi r4, 0
 /* 8006F7E4 0006C724  40 82 00 0C */	bne lbl_8006F7F0
 /* 8006F7E8 0006C728  38 60 00 00 */	li r3, 0
@@ -3909,8 +3909,8 @@ lbl_8006F7F0:
 /* 8006F7F0 0006C730  7C 63 22 14 */	add r3, r3, r4
 /* 8006F7F4 0006C734  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<16J3DTexCoord2Info>__FPCvPCv"
-"JSUConvertOffsetToPtr<16J3DTexCoord2Info>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$016J3DTexCoord2Info$$1__FPCvPCv
+JSUConvertOffsetToPtr$$016J3DTexCoord2Info$$1__FPCvPCv:
 /* 8006F7F8 0006C738  28 04 00 00 */	cmplwi r4, 0
 /* 8006F7FC 0006C73C  40 82 00 0C */	bne lbl_8006F808
 /* 8006F800 0006C740  38 60 00 00 */	li r3, 0
@@ -3919,8 +3919,8 @@ lbl_8006F808:
 /* 8006F808 0006C748  7C 63 22 14 */	add r3, r3, r4
 /* 8006F80C 0006C74C  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<15J3DTexCoordInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<15J3DTexCoordInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$015J3DTexCoordInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$015J3DTexCoordInfo$$1__FPCvPCv:
 /* 8006F810 0006C750  28 04 00 00 */	cmplwi r4, 0
 /* 8006F814 0006C754  40 82 00 0C */	bne lbl_8006F820
 /* 8006F818 0006C758  38 60 00 00 */	li r3, 0
@@ -3929,8 +3929,8 @@ lbl_8006F820:
 /* 8006F820 0006C760  7C 63 22 14 */	add r3, r3, r4
 /* 8006F824 0006C764  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<12J3DLightInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<12J3DLightInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$012J3DLightInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$012J3DLightInfo$$1__FPCvPCv:
 /* 8006F828 0006C768  28 04 00 00 */	cmplwi r4, 0
 /* 8006F82C 0006C76C  40 82 00 0C */	bne lbl_8006F838
 /* 8006F830 0006C770  38 60 00 00 */	li r3, 0
@@ -3939,8 +3939,8 @@ lbl_8006F838:
 /* 8006F838 0006C778  7C 63 22 14 */	add r3, r3, r4
 /* 8006F83C 0006C77C  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<16J3DColorChanInfo>__FPCvPCv"
-"JSUConvertOffsetToPtr<16J3DColorChanInfo>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$016J3DColorChanInfo$$1__FPCvPCv
+JSUConvertOffsetToPtr$$016J3DColorChanInfo$$1__FPCvPCv:
 /* 8006F840 0006C780  28 04 00 00 */	cmplwi r4, 0
 /* 8006F844 0006C784  40 82 00 0C */	bne lbl_8006F850
 /* 8006F848 0006C788  38 60 00 00 */	li r3, 0
@@ -3949,8 +3949,8 @@ lbl_8006F850:
 /* 8006F850 0006C790  7C 63 22 14 */	add r3, r3, r4
 /* 8006F854 0006C794  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<14J3DIndInitData>__FPCvPCv"
-"JSUConvertOffsetToPtr<14J3DIndInitData>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$014J3DIndInitData$$1__FPCvPCv
+JSUConvertOffsetToPtr$$014J3DIndInitData$$1__FPCvPCv:
 /* 8006F858 0006C798  28 04 00 00 */	cmplwi r4, 0
 /* 8006F85C 0006C79C  40 82 00 0C */	bne lbl_8006F868
 /* 8006F860 0006C7A0  38 60 00 00 */	li r3, 0
@@ -3959,8 +3959,8 @@ lbl_8006F868:
 /* 8006F868 0006C7A8  7C 63 22 14 */	add r3, r3, r4
 /* 8006F86C 0006C7AC  4E 80 00 20 */	blr 
 
-.global "JSUConvertOffsetToPtr<19J3DMaterialInitData>__FPCvPCv"
-"JSUConvertOffsetToPtr<19J3DMaterialInitData>__FPCvPCv":
+.global JSUConvertOffsetToPtr$$019J3DMaterialInitData$$1__FPCvPCv
+JSUConvertOffsetToPtr$$019J3DMaterialInitData$$1__FPCvPCv:
 /* 8006F870 0006C7B0  28 04 00 00 */	cmplwi r4, 0
 /* 8006F874 0006C7B4  40 82 00 0C */	bne lbl_8006F880
 /* 8006F878 0006C7B8  38 60 00 00 */	li r3, 0

@@ -557,8 +557,8 @@ bounceCallback__Q26PikiAI12ActBreakRockFPQ24Game4PikiPQ23Sys8Triangle:
 onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent:
 /* 801E3E38 001E0D78  4E 80 00 20 */	blr 
 
-.global "@48@4@onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent"
-"@48@4@onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent":
+.global $$248$$24$$2onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent
+$$248$$24$$2onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent:
 /* 801E3E3C 001E0D7C  39 60 00 04 */	li r11, 4
 /* 801E3E40 001E0D80  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801E3E44 001E0D84  7C 63 5A 14 */	add r3, r3, r11

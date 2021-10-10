@@ -94,8 +94,8 @@ __vt__Q38JMessage18TResourceContainer10TCResource:
   .4byte __dt__Q38JMessage18TResourceContainer10TCResourceFv
   .4byte Do_create__Q38JMessage18TResourceContainer10TCResourceFv
   .4byte Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource
-.global "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"
-"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>":
+.global __vt__Q27JGadget42TLinkList_factory$$0Q28JMessage9TResource$$40$$1
+__vt__Q27JGadget42TLinkList_factory$$0Q28JMessage9TResource$$40$$1:
   .4byte 0
   .4byte 0
   .4byte 0
@@ -1523,12 +1523,12 @@ __vt__Q214JStudio_JStage14TAdaptor_actor:
   .4byte 0
   .4byte 0
   .4byte 0
-.global "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"
-"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>":
+.global __vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1
+__vt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1:
   .4byte 0
   .4byte 0
-  .4byte "__cl__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>CFfPQ27JStudio8TAdaptor"
-  .4byte "__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"
+  .4byte __cl__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1CFfPQ27JStudio8TAdaptor
+  .4byte __dt__Q214JStudio_JStage81TVariableValueOutput_object_$$0Q214JStudio_JStage14TAdaptor_actor$$4Q26JStage6TActor$$1Fv
   .4byte 0
   .4byte 0
   .4byte 0
@@ -1602,12 +1602,12 @@ __vt__Q214JStudio_JStage15TAdaptor_camera:
   .4byte 0
   .4byte 0
   .4byte 0
-.global "__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>"
-"__vt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>":
+.global __vt__Q214JStudio_JStage83TVariableValueOutput_object_$$0Q214JStudio_JStage15TAdaptor_camera$$4Q26JStage7TCamera$$1
+__vt__Q214JStudio_JStage83TVariableValueOutput_object_$$0Q214JStudio_JStage15TAdaptor_camera$$4Q26JStage7TCamera$$1:
   .4byte 0
   .4byte 0
-  .4byte "__cl__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>CFfPQ27JStudio8TAdaptor"
-  .4byte "__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"
+  .4byte __cl__Q214JStudio_JStage83TVariableValueOutput_object_$$0Q214JStudio_JStage15TAdaptor_camera$$4Q26JStage7TCamera$$1CFfPQ27JStudio8TAdaptor
+  .4byte __dt__Q214JStudio_JStage83TVariableValueOutput_object_$$0Q214JStudio_JStage15TAdaptor_camera$$4Q26JStage7TCamera$$1Fv
   .4byte 0
   .4byte 0
   .4byte 0
@@ -1644,12 +1644,12 @@ __vt__Q214JStudio_JStage12TAdaptor_fog:
   .4byte 0
   .4byte 0
   .4byte 0
-.global "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"
-"__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>":
+.global __vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1
+__vt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1:
   .4byte 0
   .4byte 0
-  .4byte "__cl__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>CFfPQ27JStudio8TAdaptor"
-  .4byte "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"
+  .4byte __cl__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1CFfPQ27JStudio8TAdaptor
+  .4byte __dt__Q214JStudio_JStage77TVariableValueOutput_object_$$0Q214JStudio_JStage12TAdaptor_fog$$4Q26JStage4TFog$$1Fv
   .4byte 0
   .4byte 0
   .4byte 0
@@ -1756,84 +1756,84 @@ __vt__Q214JStudio_JAudio13TCreateObject:
   .4byte 0
   .4byte __dt__Q214JStudio_JAudio13TCreateObjectFv
   .4byte create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
-.global "__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-"__vt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>":
+.global __vt__137J3DMtxCalcBlendAnm$$088J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1
+__vt__137J3DMtxCalcBlendAnm$$088J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
+  .4byte __dt__137J3DMtxCalcBlendAnm$$088J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1Fv
   .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-  .4byte "setAnmTransform__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FUcP15J3DAnmTransform"
+  .4byte setAnmTransform__137J3DMtxCalcBlendAnm$$088J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1FUcP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-  .4byte "setWeight__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FUcf"
+  .4byte setWeight__137J3DMtxCalcBlendAnm$$088J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1FUcf
   .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-  .4byte "init__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
-  .4byte "calc__137J3DMtxCalcBlendAnm<88J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-.global "__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-"__vt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>":
+  .4byte init__137J3DMtxCalcBlendAnm$$088J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1FRC3VecRA3_A4_Cf
+  .4byte calc__137J3DMtxCalcBlendAnm$$088J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1Fv
+.global __vt__124J3DMtxCalcBlendAnm$$075J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1
+__vt__124J3DMtxCalcBlendAnm$$075J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
+  .4byte __dt__124J3DMtxCalcBlendAnm$$075J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1Fv
   .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-  .4byte "setAnmTransform__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FUcP15J3DAnmTransform"
+  .4byte setAnmTransform__124J3DMtxCalcBlendAnm$$075J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1FUcP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-  .4byte "setWeight__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FUcf"
+  .4byte setWeight__124J3DMtxCalcBlendAnm$$075J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1FUcf
   .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-  .4byte "init__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
-  .4byte "calc__124J3DMtxCalcBlendAnm<75J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,24J3DMtxCalcScaleBlendMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-.global "__vt__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
-"__vt__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
+  .4byte init__124J3DMtxCalcBlendAnm$$075J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1FRC3VecRA3_A4_Cf
+  .4byte calc__124J3DMtxCalcBlendAnm$$075J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$424J3DMtxCalcScaleBlendMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1Fv
+.global __vt__147J3DMtxCalcBlendAnm$$093J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1
+__vt__147J3DMtxCalcBlendAnm$$093J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+  .4byte __dt__147J3DMtxCalcBlendAnm$$093J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1Fv
   .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-  .4byte "setAnmTransform__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FUcP15J3DAnmTransform"
+  .4byte setAnmTransform__147J3DMtxCalcBlendAnm$$093J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1FUcP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-  .4byte "setWeight__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FUcf"
+  .4byte setWeight__147J3DMtxCalcBlendAnm$$093J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1FUcf
   .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-  .4byte "init__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
-  .4byte "calc__147J3DMtxCalcBlendAnm<93J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-.global "__vt__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
-"__vt__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
+  .4byte init__147J3DMtxCalcBlendAnm$$093J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1FRC3VecRA3_A4_Cf
+  .4byte calc__147J3DMtxCalcBlendAnm$$093J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1Fv
+.global __vt__134J3DMtxCalcBlendAnm$$080J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1
+__vt__134J3DMtxCalcBlendAnm$$080J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+  .4byte __dt__134J3DMtxCalcBlendAnm$$080J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1Fv
   .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-  .4byte "setAnmTransform__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FUcP15J3DAnmTransform"
+  .4byte setAnmTransform__134J3DMtxCalcBlendAnm$$080J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1FUcP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-  .4byte "setWeight__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FUcf"
+  .4byte setWeight__134J3DMtxCalcBlendAnm$$080J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1FUcf
   .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-  .4byte "init__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
-  .4byte "calc__134J3DMtxCalcBlendAnm<80J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,29J3DMtxCalcScaleBlendSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-.global "__vt__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>"
-"__vt__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>":
+  .4byte init__134J3DMtxCalcBlendAnm$$080J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1FRC3VecRA3_A4_Cf
+  .4byte calc__134J3DMtxCalcBlendAnm$$080J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$429J3DMtxCalcScaleBlendSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1Fv
+.global __vt__139J3DMtxCalcBlendAnm$$089J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1
+__vt__139J3DMtxCalcBlendAnm$$089J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
+  .4byte __dt__139J3DMtxCalcBlendAnm$$089J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1Fv
   .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-  .4byte "setAnmTransform__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FUcP15J3DAnmTransform"
+  .4byte setAnmTransform__139J3DMtxCalcBlendAnm$$089J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1FUcP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-  .4byte "setWeight__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FUcf"
+  .4byte setWeight__139J3DMtxCalcBlendAnm$$089J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1FUcf
   .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-  .4byte "init__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
-  .4byte "calc__139J3DMtxCalcBlendAnm<89J3DMtxCalcBlendAdaptorDefault<28J3DMtxCalcBlendSharedMotionT,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-.global "__vt__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>"
-"__vt__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>":
+  .4byte init__139J3DMtxCalcBlendAnm$$089J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1FRC3VecRA3_A4_Cf
+  .4byte calc__139J3DMtxCalcBlendAnm$$089J3DMtxCalcBlendAdaptorDefault$$028J3DMtxCalcBlendSharedMotionT$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1Fv
+.global __vt__126J3DMtxCalcBlendAnm$$076J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1
+__vt__126J3DMtxCalcBlendAnm$$076J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
+  .4byte __dt__126J3DMtxCalcBlendAnm$$076J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1Fv
   .4byte setAnmTransform__22J3DMtxCalcBlendAnmBaseFP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFv
-  .4byte "setAnmTransform__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FUcP15J3DAnmTransform"
+  .4byte setAnmTransform__126J3DMtxCalcBlendAnm$$076J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1FUcP15J3DAnmTransform
   .4byte getAnmTransform__22J3DMtxCalcBlendAnmBaseFUc
-  .4byte "setWeight__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FUcf"
+  .4byte setWeight__126J3DMtxCalcBlendAnm$$076J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1FUcf
   .4byte getWeight__22J3DMtxCalcBlendAnmBaseCFUc
-  .4byte "init__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
-  .4byte "calc__126J3DMtxCalcBlendAnm<76J3DMtxCalcBlendAdaptorDefault<15J3DMtxCalcBlend,25J3DMtxCalcScaleBlendBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
+  .4byte init__126J3DMtxCalcBlendAnm$$076J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1FRC3VecRA3_A4_Cf
+  .4byte calc__126J3DMtxCalcBlendAnm$$076J3DMtxCalcBlendAdaptorDefault$$015J3DMtxCalcBlend$$425J3DMtxCalcScaleBlendBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1Fv
 .global __vt__22J3DMtxCalcBlendAnmBase
 __vt__22J3DMtxCalcBlendAnmBase:
   .4byte 0
@@ -2653,7 +2653,7 @@ __vt__13J2DOrthoGraph:
   .4byte 0
   .4byte 0
   .4byte __dt__13J2DOrthoGraphFv
-  .4byte "place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+  .4byte place__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
   .4byte place__14J2DGrafContextFffff
   .4byte setPort__13J2DOrthoGraphFv
   .4byte setup2D__14J2DGrafContextFv
@@ -2665,7 +2665,7 @@ __vt__13J2DPerspGraph:
   .4byte 0
   .4byte 0
   .4byte __dt__13J2DPerspGraphFv
-  .4byte "place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+  .4byte place__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
   .4byte place__14J2DGrafContextFffff
   .4byte setPort__13J2DPerspGraphFv
   .4byte setup2D__14J2DGrafContextFv
@@ -2677,7 +2677,7 @@ __vt__14J2DGrafContext:
   .4byte 0
   .4byte 0
   .4byte __dt__14J2DGrafContextFv
-  .4byte "place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+  .4byte place__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
   .4byte place__14J2DGrafContextFffff
   .4byte setPort__14J2DGrafContextFv
   .4byte setup2D__14J2DGrafContextFv
@@ -2798,7 +2798,7 @@ __vt__10J2DPicture:
   .4byte draw__10J2DPictureFffffbbb
   .4byte drawOut__10J2DPictureFffffff
   .4byte drawOut__10J2DPictureFffffffff
-  .4byte "drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+  .4byte drawOut__10J2DPictureFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
   .4byte load__10J2DPictureF11_GXTexMapIDUc
   .4byte load__10J2DPictureFUc
   .4byte setBlendRatio__10J2DPictureFffffffff
@@ -2983,8 +2983,8 @@ __vt__9J2DWindow:
   .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
   .4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
   .4byte animationPane__7J2DPaneFPC15J2DAnmTransform
-  .4byte "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>"
-  .4byte "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+  .4byte draw__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1
+  .4byte draw__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
   .4byte draw__9J2DWindowFffff
   .4byte setBlack__9J2DWindowFQ28JUtility6TColor
   .4byte setWhite__9J2DWindowFQ28JUtility6TColor
@@ -2996,7 +2996,7 @@ __vt__9J2DWindow:
   .4byte getMaterial__9J2DWindowCFRQ29J2DWindow9TMaterial
   .4byte getFrameMaterial__9J2DWindowCFUc
   .4byte getContentsMaterial__9J2DWindowCFv
-  .4byte "drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>"
+  .4byte drawContents__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1
   .4byte 0
 .global __vt__11J2DWindowEx
 __vt__11J2DWindowEx:
@@ -3037,8 +3037,8 @@ __vt__11J2DWindowEx:
   .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
   .4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
   .4byte animationPane__11J2DWindowExFPC15J2DAnmTransform
-  .4byte "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
-  .4byte "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+  .4byte draw__11J2DWindowExFRCQ29JGeometry8TBox2$$0f$$1
+  .4byte draw__11J2DWindowExFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
   .4byte draw__11J2DWindowExFffff
   .4byte setBlack__11J2DWindowExFQ28JUtility6TColor
   .4byte setWhite__11J2DWindowExFQ28JUtility6TColor
@@ -3050,7 +3050,7 @@ __vt__11J2DWindowEx:
   .4byte getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial
   .4byte getFrameMaterial__11J2DWindowExCFUc
   .4byte getContentsMaterial__11J2DWindowExCFv
-  .4byte "drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
+  .4byte drawContents__11J2DWindowExFRCQ29JGeometry8TBox2$$0f$$1
   .4byte 0
 .global __vt__20J2DAnmFullLoader_v15
 __vt__20J2DAnmFullLoader_v15:
@@ -3522,7 +3522,7 @@ __vt__12J2DPictureEx:
   .4byte draw__12J2DPictureExFffffbbb
   .4byte drawOut__12J2DPictureExFffffff
   .4byte drawOut__12J2DPictureExFffffffff
-  .4byte "drawOut__12J2DPictureExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+  .4byte drawOut__12J2DPictureExFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
   .4byte load__12J2DPictureExF11_GXTexMapIDUc
   .4byte load__12J2DPictureExFUc
   .4byte setBlendRatio__10J2DPictureFffffffff
@@ -4176,45 +4176,45 @@ __vt__11J3DTexNoAnm:
   .4byte 0
   .4byte calc__11J3DTexNoAnmCFPUs
   .4byte 0
-.global "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-"__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>":
+.global __vt__114J3DMtxCalcAnimation$$064J3DMtxCalcAnimationAdaptorDefault$$027J3DMtxCalcCalcTransformMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1
+__vt__114J3DMtxCalcAnimation$$064J3DMtxCalcAnimationAdaptorDefault$$027J3DMtxCalcCalcTransformMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-  .4byte "setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform"
+  .4byte __dt__114J3DMtxCalcAnimation$$064J3DMtxCalcAnimationAdaptorDefault$$027J3DMtxCalcCalcTransformMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1Fv
+  .4byte setAnmTransform__114J3DMtxCalcAnimation$$064J3DMtxCalcAnimationAdaptorDefault$$027J3DMtxCalcCalcTransformMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1FP15J3DAnmTransform
   .4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
   .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFUc
   .4byte setWeight__10J3DMtxCalcFUcf
   .4byte getWeight__10J3DMtxCalcCFUc
-  .4byte "init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
-  .4byte "calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-.global "__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
-"__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
+  .4byte init__114J3DMtxCalcAnimation$$064J3DMtxCalcAnimationAdaptorDefault$$027J3DMtxCalcCalcTransformMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1FRC3VecRA3_A4_Cf
+  .4byte calc__114J3DMtxCalcAnimation$$064J3DMtxCalcAnimationAdaptorDefault$$027J3DMtxCalcCalcTransformMaya$$1$$424J3DMtxCalcJ3DSysInitMaya$$1Fv
+.global __vt__124J3DMtxCalcAnimation$$069J3DMtxCalcAnimationAdaptorDefault$$032J3DMtxCalcCalcTransformSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1
+__vt__124J3DMtxCalcAnimation$$069J3DMtxCalcAnimationAdaptorDefault$$032J3DMtxCalcCalcTransformSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-  .4byte "setAnmTransform__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FP15J3DAnmTransform"
+  .4byte __dt__124J3DMtxCalcAnimation$$069J3DMtxCalcAnimationAdaptorDefault$$032J3DMtxCalcCalcTransformSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1Fv
+  .4byte setAnmTransform__124J3DMtxCalcAnimation$$069J3DMtxCalcAnimationAdaptorDefault$$032J3DMtxCalcCalcTransformSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1FP15J3DAnmTransform
   .4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
   .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFUc
   .4byte setWeight__10J3DMtxCalcFUcf
   .4byte getWeight__10J3DMtxCalcCFUc
-  .4byte "init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
-  .4byte "calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-.global "__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>"
-"__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>":
+  .4byte init__124J3DMtxCalcAnimation$$069J3DMtxCalcAnimationAdaptorDefault$$032J3DMtxCalcCalcTransformSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1FRC3VecRA3_A4_Cf
+  .4byte calc__124J3DMtxCalcAnimation$$069J3DMtxCalcAnimationAdaptorDefault$$032J3DMtxCalcCalcTransformSoftimage$$1$$429J3DMtxCalcJ3DSysInitSoftimage$$1Fv
+.global __vt__116J3DMtxCalcAnimation$$065J3DMtxCalcAnimationAdaptorDefault$$028J3DMtxCalcCalcTransformBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1
+__vt__116J3DMtxCalcAnimation$$065J3DMtxCalcAnimationAdaptorDefault$$028J3DMtxCalcCalcTransformBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-  .4byte "setAnmTransform__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FP15J3DAnmTransform"
+  .4byte __dt__116J3DMtxCalcAnimation$$065J3DMtxCalcAnimationAdaptorDefault$$028J3DMtxCalcCalcTransformBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1Fv
+  .4byte setAnmTransform__116J3DMtxCalcAnimation$$065J3DMtxCalcAnimationAdaptorDefault$$028J3DMtxCalcCalcTransformBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1FP15J3DAnmTransform
   .4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
   .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFUc
   .4byte setWeight__10J3DMtxCalcFUcf
   .4byte getWeight__10J3DMtxCalcCFUc
-  .4byte "init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
-  .4byte "calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
+  .4byte init__116J3DMtxCalcAnimation$$065J3DMtxCalcAnimationAdaptorDefault$$028J3DMtxCalcCalcTransformBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1FRC3VecRA3_A4_Cf
+  .4byte calc__116J3DMtxCalcAnimation$$065J3DMtxCalcAnimationAdaptorDefault$$028J3DMtxCalcCalcTransformBasic$$1$$425J3DMtxCalcJ3DSysInitBasic$$1Fv
 .global __vt__17J3DMtxCalcAnmBase
 __vt__17J3DMtxCalcAnmBase:
   .4byte 0
@@ -4422,45 +4422,45 @@ __vt__18J3DModelLoader_v26:
   .4byte readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul
   .4byte calcSizeMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
   .4byte calcSizeMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
-.global "__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>"
-"__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>":
+.global __vt__73J3DMtxCalcNoAnm$$027J3DMtxCalcCalcTransformMaya$$424J3DMtxCalcJ3DSysInitMaya$$1
+__vt__73J3DMtxCalcNoAnm$$027J3DMtxCalcCalcTransformMaya$$424J3DMtxCalcJ3DSysInitMaya$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv"
+  .4byte __dt__73J3DMtxCalcNoAnm$$027J3DMtxCalcCalcTransformMaya$$424J3DMtxCalcJ3DSysInitMaya$$1Fv
   .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFv
   .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFUc
   .4byte setWeight__10J3DMtxCalcFUcf
   .4byte getWeight__10J3DMtxCalcCFUc
-  .4byte "init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
-  .4byte "calc__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv"
-.global "__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>"
-"__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>":
+  .4byte init__73J3DMtxCalcNoAnm$$027J3DMtxCalcCalcTransformMaya$$424J3DMtxCalcJ3DSysInitMaya$$1FRC3VecRA3_A4_Cf
+  .4byte calc__73J3DMtxCalcNoAnm$$027J3DMtxCalcCalcTransformMaya$$424J3DMtxCalcJ3DSysInitMaya$$1Fv
+.global __vt__83J3DMtxCalcNoAnm$$032J3DMtxCalcCalcTransformSoftimage$$429J3DMtxCalcJ3DSysInitSoftimage$$1
+__vt__83J3DMtxCalcNoAnm$$032J3DMtxCalcCalcTransformSoftimage$$429J3DMtxCalcJ3DSysInitSoftimage$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+  .4byte __dt__83J3DMtxCalcNoAnm$$032J3DMtxCalcCalcTransformSoftimage$$429J3DMtxCalcJ3DSysInitSoftimage$$1Fv
   .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFv
   .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFUc
   .4byte setWeight__10J3DMtxCalcFUcf
   .4byte getWeight__10J3DMtxCalcCFUc
-  .4byte "init__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
-  .4byte "calc__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-.global "__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>"
-"__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>":
+  .4byte init__83J3DMtxCalcNoAnm$$032J3DMtxCalcCalcTransformSoftimage$$429J3DMtxCalcJ3DSysInitSoftimage$$1FRC3VecRA3_A4_Cf
+  .4byte calc__83J3DMtxCalcNoAnm$$032J3DMtxCalcCalcTransformSoftimage$$429J3DMtxCalcJ3DSysInitSoftimage$$1Fv
+.global __vt__75J3DMtxCalcNoAnm$$028J3DMtxCalcCalcTransformBasic$$425J3DMtxCalcJ3DSysInitBasic$$1
+__vt__75J3DMtxCalcNoAnm$$028J3DMtxCalcCalcTransformBasic$$425J3DMtxCalcJ3DSysInitBasic$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>Fv"
+  .4byte __dt__75J3DMtxCalcNoAnm$$028J3DMtxCalcCalcTransformBasic$$425J3DMtxCalcJ3DSysInitBasic$$1Fv
   .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFv
   .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
   .4byte getAnmTransform__10J3DMtxCalcFUc
   .4byte setWeight__10J3DMtxCalcFUcf
   .4byte getWeight__10J3DMtxCalcCFUc
-  .4byte "init__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
-  .4byte "calc__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>Fv"
+  .4byte init__75J3DMtxCalcNoAnm$$028J3DMtxCalcCalcTransformBasic$$425J3DMtxCalcJ3DSysInitBasic$$1FRC3VecRA3_A4_Cf
+  .4byte calc__75J3DMtxCalcNoAnm$$028J3DMtxCalcCalcTransformBasic$$425J3DMtxCalcJ3DSysInitBasic$$1Fv
 .global __vt__19J3DMtxCalcNoAnmBase
 __vt__19J3DMtxCalcNoAnmBase:
   .4byte 0
@@ -7082,13 +7082,13 @@ __vt__10JASChannel:
   .4byte 0
   .4byte 0
   .4byte 0
-  .4byte "@16@__dt__10JASChannelFv"
+  .4byte $$216$$2__dt__10JASChannelFv
   .4byte __dt__10JASChannelFv
-.global "__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>"
-"__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>":
+.global __vt__109JASPoolAllocObject$$010JASChannel$$4Q217JASCreationPolicy15NewFromRootHeap$$4Q217JASThreadingModel14SingleThreaded$$1
+__vt__109JASPoolAllocObject$$010JASChannel$$4Q217JASCreationPolicy15NewFromRootHeap$$4Q217JASThreadingModel14SingleThreaded$$1:
   .4byte 0
   .4byte 0
-  .4byte "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv"
+  .4byte __dt__109JASPoolAllocObject$$010JASChannel$$4Q217JASCreationPolicy15NewFromRootHeap$$4Q217JASThreadingModel14SingleThreaded$$1Fv
   .4byte 0
 .global SEND_TABLE__6JASDsp
 SEND_TABLE__6JASDsp:

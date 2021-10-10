@@ -401,7 +401,7 @@ update__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase:
 /* 8012EAA0 0012B9E0  4E 80 04 21 */	bctrl 
 /* 8012EAA4 0012B9E4  38 7F 00 18 */	addi r3, r31, 0x18
 /* 8012EAA8 0012B9E8  38 81 00 08 */	addi r4, r1, 8
-/* 8012EAAC 0012B9EC  48 29 AF 1D */	bl "update__Q23efx11TEnemyHamonFR10Vector3<f>"
+/* 8012EAAC 0012B9EC  48 29 AF 1D */	bl update__Q23efx11TEnemyHamonFR10Vector3$$0f$$1
 /* 8012EAB0 0012B9F0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8012EAB4 0012B9F4  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8012EAB8 0012B9F8  7C 08 03 A6 */	mtlr r0

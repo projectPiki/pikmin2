@@ -5,10 +5,10 @@
 __ct__Q34Game10SingleGame11EndingStateFv:
 /* 802326A8 0022F5E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802326AC 0022F5EC  7C 08 02 A6 */	mflr r0
-/* 802326B0 0022F5F0  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 802326B0 0022F5F0  3C 80 80 4B */	lis r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 802326B4 0022F5F4  38 A0 00 00 */	li r5, 0
 /* 802326B8 0022F5F8  90 01 00 24 */	stw r0, 0x24(r1)
-/* 802326BC 0022F5FC  38 04 13 18 */	addi r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 802326BC 0022F5FC  38 04 13 18 */	addi r0, r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 802326C0 0022F600  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame5State@ha
 /* 802326C4 0022F604  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 802326C8 0022F608  7C 7F 1B 78 */	mr r31, r3
@@ -38,11 +38,11 @@ lbl_80232710:
 /* 80232724 0022F664  3C 80 80 4C */	lis r4, lbl_804C137C@ha
 /* 80232728 0022F668  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 8023272C 0022F66C  39 04 13 7C */	addi r8, r4, lbl_804C137C@l
-/* 80232730 0022F670  3C 80 80 4C */	lis r4, "__vt__42Delegate<Q34Game10SingleGame11EndingState>"@ha
+/* 80232730 0022F670  3C 80 80 4C */	lis r4, __vt__42Delegate$$0Q34Game10SingleGame11EndingState$$1@ha
 /* 80232734 0022F674  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80232738 0022F678  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 8023273C 0022F67C  80 C8 00 04 */	lwz r6, 4(r8)
-/* 80232740 0022F680  38 04 14 18 */	addi r0, r4, "__vt__42Delegate<Q34Game10SingleGame11EndingState>"@l
+/* 80232740 0022F680  38 04 14 18 */	addi r0, r4, __vt__42Delegate$$0Q34Game10SingleGame11EndingState$$1@l
 /* 80232744 0022F684  80 88 00 08 */	lwz r4, 8(r8)
 /* 80232748 0022F688  90 E1 00 08 */	stw r7, 8(r1)
 /* 8023274C 0022F68C  90 A3 00 00 */	stw r5, 0(r3)
@@ -935,8 +935,8 @@ getMemberID__Q32og6Screen22DispMemberFinalMessageFv:
 /* 80233424 00230364  38 63 4E 41 */	addi r3, r3, 0x46494E41@l
 /* 80233428 00230368  4E 80 00 20 */	blr 
 
-.global "invoke__42Delegate<Q34Game10SingleGame11EndingState>Fv"
-"invoke__42Delegate<Q34Game10SingleGame11EndingState>Fv":
+.global invoke__42Delegate$$0Q34Game10SingleGame11EndingState$$1Fv
+invoke__42Delegate$$0Q34Game10SingleGame11EndingState$$1Fv:
 /* 8023342C 0023036C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80233430 00230370  7C 08 02 A6 */	mflr r0
 /* 80233434 00230374  7C 64 1B 78 */	mr r4, r3

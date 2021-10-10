@@ -2440,7 +2440,7 @@ lbl_8010DE84:
 /* 8010DE90 0010ADD0  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 8010DE94 0010ADD4  90 01 00 10 */	stw r0, 0x10(r1)
 /* 8010DE98 0010ADD8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8010DE9C 0010ADDC  48 00 05 F5 */	bl "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 8010DE9C 0010ADDC  48 00 05 F5 */	bl first__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 /* 8010DEA0 0010ADE0  3B E0 00 00 */	li r31, 0
 /* 8010DEA4 0010ADE4  48 00 00 24 */	b lbl_8010DEC8
 lbl_8010DEA8:
@@ -2451,7 +2451,7 @@ lbl_8010DEA8:
 /* 8010DEB8 0010ADF8  4E 80 04 21 */	bctrl 
 /* 8010DEBC 0010ADFC  9B E3 01 F3 */	stb r31, 0x1f3(r3)
 /* 8010DEC0 0010AE00  38 61 00 10 */	addi r3, r1, 0x10
-/* 8010DEC4 0010AE04  48 00 00 2D */	bl "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 8010DEC4 0010AE04  48 00 00 2D */	bl next__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 lbl_8010DEC8:
 /* 8010DEC8 0010AE08  80 61 00 10 */	lwz r3, 0x10(r1)
 /* 8010DECC 0010AE0C  28 03 00 00 */	cmplwi r3, 0
@@ -2464,8 +2464,8 @@ lbl_8010DEC8:
 /* 8010DEE8 0010AE28  38 21 00 30 */	addi r1, r1, 0x30
 /* 8010DEEC 0010AE2C  4E 80 00 20 */	blr 
 
-.global "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-"next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv":
+.global next__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
+next__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv:
 /* 8010DEF0 0010AE30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010DEF4 0010AE34  7C 08 02 A6 */	mflr r0
 /* 8010DEF8 0010AE38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2532,7 +2532,7 @@ lbl_8010DFB8:
 /* 8010DFDC 0010AF1C  7F E3 FB 78 */	mr r3, r31
 /* 8010DFE0 0010AF20  80 04 00 04 */	lwz r0, 4(r4)
 /* 8010DFE4 0010AF24  90 1F 00 00 */	stw r0, 0(r31)
-/* 8010DFE8 0010AF28  48 00 00 19 */	bl "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 8010DFE8 0010AF28  48 00 00 19 */	bl setFirst__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 lbl_8010DFEC:
 /* 8010DFEC 0010AF2C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8010DFF0 0010AF30  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -2540,8 +2540,8 @@ lbl_8010DFEC:
 /* 8010DFF8 0010AF38  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010DFFC 0010AF3C  4E 80 00 20 */	blr 
 
-.global "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-"setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv":
+.global setFirst__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
+setFirst__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv:
 /* 8010E000 0010AF40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010E004 0010AF44  7C 08 02 A6 */	mflr r0
 /* 8010E008 0010AF48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2848,7 +2848,7 @@ lbl_8010E448:
 /* 8010E46C 0010B3AC  7F E3 FB 78 */	mr r3, r31
 /* 8010E470 0010B3B0  80 04 00 04 */	lwz r0, 4(r4)
 /* 8010E474 0010B3B4  90 1F 00 00 */	stw r0, 0(r31)
-/* 8010E478 0010B3B8  4B FF FB 89 */	bl "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 8010E478 0010B3B8  4B FF FB 89 */	bl setFirst__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 lbl_8010E47C:
 /* 8010E47C 0010B3BC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8010E480 0010B3C0  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -2856,15 +2856,15 @@ lbl_8010E47C:
 /* 8010E488 0010B3C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8010E48C 0010B3CC  4E 80 00 20 */	blr 
 
-.global "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-"first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv":
+.global first__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
+first__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv:
 /* 8010E490 0010B3D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010E494 0010B3D4  7C 08 02 A6 */	mflr r0
 /* 8010E498 0010B3D8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8010E49C 0010B3DC  80 83 00 08 */	lwz r4, 8(r3)
 /* 8010E4A0 0010B3E0  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 8010E4A4 0010B3E4  90 03 00 00 */	stw r0, 0(r3)
-/* 8010E4A8 0010B3E8  4B FF FB 59 */	bl "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 8010E4A8 0010B3E8  4B FF FB 59 */	bl setFirst__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 /* 8010E4AC 0010B3EC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8010E4B0 0010B3F0  7C 08 03 A6 */	mtlr r0
 /* 8010E4B4 0010B3F4  38 21 00 10 */	addi r1, r1, 0x10
@@ -3213,7 +3213,7 @@ lbl_8010E960:
 /* 8010E994 0010B8D4  7F 03 C3 78 */	mr r3, r24
 /* 8010E998 0010B8D8  38 81 00 70 */	addi r4, r1, 0x70
 /* 8010E99C 0010B8DC  38 A0 00 00 */	li r5, 0
-/* 8010E9A0 0010B8E0  48 02 C8 09 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8010E9A0 0010B8E0  48 02 C8 09 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8010E9A4 0010B8E4  C0 01 00 70 */	lfs f0, 0x70(r1)
 /* 8010E9A8 0010B8E8  7F 03 C3 78 */	mr r3, r24
 /* 8010E9AC 0010B8EC  38 80 00 00 */	li r4, 0
@@ -3442,7 +3442,7 @@ lbl_8010ECB4:
 /* 8010ECE8 0010BC28  7E E3 BB 78 */	mr r3, r23
 /* 8010ECEC 0010BC2C  38 81 00 44 */	addi r4, r1, 0x44
 /* 8010ECF0 0010BC30  38 A0 00 00 */	li r5, 0
-/* 8010ECF4 0010BC34  48 02 C4 B5 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8010ECF4 0010BC34  48 02 C4 B5 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8010ECF8 0010BC38  C0 01 00 44 */	lfs f0, 0x44(r1)
 /* 8010ECFC 0010BC3C  7E E3 BB 78 */	mr r3, r23
 /* 8010ED00 0010BC40  38 80 00 00 */	li r4, 0
@@ -3674,7 +3674,7 @@ lbl_8010F010:
 /* 8010F044 0010BF84  7E E3 BB 78 */	mr r3, r23
 /* 8010F048 0010BF88  38 81 00 18 */	addi r4, r1, 0x18
 /* 8010F04C 0010BF8C  38 A0 00 00 */	li r5, 0
-/* 8010F050 0010BF90  48 02 C1 59 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8010F050 0010BF90  48 02 C1 59 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8010F054 0010BF94  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 8010F058 0010BF98  7E E3 BB 78 */	mr r3, r23
 /* 8010F05C 0010BF9C  38 80 00 00 */	li r4, 0
@@ -3831,47 +3831,47 @@ getMatrixLoadType__Q24Game12EnemyMgrNodeFv:
 doEntry__16GenericObjectMgrFv:
 /* 8010F25C 0010C19C  4E 80 00 20 */	blr 
 
-.global "@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv"
-"@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv":
+.global $$224$$2getMatrixLoadType__Q24Game12EnemyMgrNodeFv
+$$224$$2getMatrixLoadType__Q24Game12EnemyMgrNodeFv:
 /* 8010F260 0010C1A0  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F264 0010C1A4  4B FF FF F0 */	b getMatrixLoadType__Q24Game12EnemyMgrNodeFv
 
-.global "@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport"
-"@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport":
+.global $$224$$2doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
+$$224$$2doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport:
 /* 8010F268 0010C1A8  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F26C 0010C1AC  4B FF E1 D8 */	b doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
 
-.global "@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics"
-"@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics":
+.global $$224$$2doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
+$$224$$2doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics:
 /* 8010F270 0010C1B0  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F274 0010C1B4  4B FF E1 20 */	b doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
 
-.global "@24@doSimulation__Q24Game12EnemyMgrNodeFf"
-"@24@doSimulation__Q24Game12EnemyMgrNodeFf":
+.global $$224$$2doSimulation__Q24Game12EnemyMgrNodeFf
+$$224$$2doSimulation__Q24Game12EnemyMgrNodeFf:
 /* 8010F278 0010C1B8  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F27C 0010C1BC  4B FF E0 80 */	b doSimulation__Q24Game12EnemyMgrNodeFf
 
-.global "@24@doViewCalc__Q24Game12EnemyMgrNodeFv"
-"@24@doViewCalc__Q24Game12EnemyMgrNodeFv":
+.global $$224$$2doViewCalc__Q24Game12EnemyMgrNodeFv
+$$224$$2doViewCalc__Q24Game12EnemyMgrNodeFv:
 /* 8010F280 0010C1C0  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F284 0010C1C4  4B FF DF E0 */	b doViewCalc__Q24Game12EnemyMgrNodeFv
 
-.global "@24@doSetView__Q24Game12EnemyMgrNodeFi"
-"@24@doSetView__Q24Game12EnemyMgrNodeFi":
+.global $$224$$2doSetView__Q24Game12EnemyMgrNodeFi
+$$224$$2doSetView__Q24Game12EnemyMgrNodeFi:
 /* 8010F288 0010C1C8  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F28C 0010C1CC  4B FF DF 50 */	b doSetView__Q24Game12EnemyMgrNodeFi
 
-.global "@24@doEntry__Q24Game12EnemyMgrNodeFv"
-"@24@doEntry__Q24Game12EnemyMgrNodeFv":
+.global $$224$$2doEntry__Q24Game12EnemyMgrNodeFv
+$$224$$2doEntry__Q24Game12EnemyMgrNodeFv:
 /* 8010F290 0010C1D0  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F294 0010C1D4  4B FF DE B0 */	b doEntry__Q24Game12EnemyMgrNodeFv
 
-.global "@24@doAnimation__Q24Game12EnemyMgrNodeFv"
-"@24@doAnimation__Q24Game12EnemyMgrNodeFv":
+.global $$224$$2doAnimation__Q24Game12EnemyMgrNodeFv
+$$224$$2doAnimation__Q24Game12EnemyMgrNodeFv:
 /* 8010F298 0010C1D8  38 63 FF E8 */	addi r3, r3, -24
 /* 8010F29C 0010C1DC  4B FF DE 20 */	b doAnimation__Q24Game12EnemyMgrNodeFv
 
-.global "@4@__dt__Q24Game15GeneralEnemyMgrFv"
-"@4@__dt__Q24Game15GeneralEnemyMgrFv":
+.global $$24$$2__dt__Q24Game15GeneralEnemyMgrFv
+$$24$$2__dt__Q24Game15GeneralEnemyMgrFv:
 /* 8010F2A0 0010C1E0  38 63 FF FC */	addi r3, r3, -4
 /* 8010F2A4 0010C1E4  4B FF FE FC */	b __dt__Q24Game15GeneralEnemyMgrFv

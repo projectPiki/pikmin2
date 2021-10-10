@@ -143,7 +143,7 @@ onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg:
 /* 802B29BC 002AF8FC  7C 04 03 78 */	mr r4, r0
 /* 802B29C0 002AF900  93 C1 00 08 */	stw r30, 8(r1)
 /* 802B29C4 002AF904  7C 7E 1B 78 */	mr r30, r3
-/* 802B29C8 002AF908  48 00 08 31 */	bl "throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>"
+/* 802B29C8 002AF908  48 00 08 31 */	bl throwBomb__Q34Game9BombSarai3ObjFR10Vector3$$0f$$1
 /* 802B29CC 002AF90C  7F C3 F3 78 */	mr r3, r30
 /* 802B29D0 002AF910  7F E4 FB 78 */	mr r4, r31
 /* 802B29D4 002AF914  4B E4 F5 15 */	bl onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
@@ -294,8 +294,8 @@ lbl_802B2B90:
 /* 802B2BD0 002AFB10  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2BD4 002AFB14  4E 80 00 20 */	blr 
 
-.global "bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3<f>f"
-"bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3<f>f":
+.global bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3$$0f$$1f
+bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3$$0f$$1f:
 /* 802B2BD8 002AFB18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2BDC 002AFB1C  7C 08 02 A6 */	mflr r0
 /* 802B2BE0 002AFB20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -735,8 +735,8 @@ lbl_802B31E0:
 /* 802B31F0 002B0130  38 21 00 50 */	addi r1, r1, 0x50
 /* 802B31F4 002B0134  4E 80 00 20 */	blr 
 
-.global "throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>"
-"throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>":
+.global throwBomb__Q34Game9BombSarai3ObjFR10Vector3$$0f$$1
+throwBomb__Q34Game9BombSarai3ObjFR10Vector3$$0f$$1:
 /* 802B31F8 002B0138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B31FC 002B013C  7C 08 02 A6 */	mflr r0
 /* 802B3200 002B0140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -792,7 +792,7 @@ getAttackablePikmin__Q34Game9BombSarai3ObjFv:
 /* 802B32B8 002B01F8  C0 45 03 D4 */	lfs f2, 0x3d4(r5)
 /* 802B32BC 002B01FC  38 A0 00 00 */	li r5, 0
 /* 802B32C0 002B0200  38 C0 00 00 */	li r6, 0
-/* 802B32C4 002B0204  4B E5 FD 8D */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+/* 802B32C4 002B0204  4B E5 FD 8D */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
 /* 802B32C8 002B0208  48 00 00 08 */	b lbl_802B32D0
 lbl_802B32CC:
 /* 802B32CC 002B020C  38 60 00 00 */	li r3, 0
@@ -1063,7 +1063,7 @@ createDownEffect__Q34Game9BombSarai3ObjFf:
 /* 802B366C 002B05AC  7C 08 02 A6 */	mflr r0
 /* 802B3670 002B05B0  38 83 01 8C */	addi r4, r3, 0x18c
 /* 802B3674 002B05B4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802B3678 002B05B8  4B E5 04 D9 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+/* 802B3678 002B05B8  4B E5 04 D9 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
 /* 802B367C 002B05BC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802B3680 002B05C0  7C 08 03 A6 */	mtlr r0
 /* 802B3684 002B05C4  38 21 00 10 */	addi r1, r1, 0x10
@@ -1161,7 +1161,7 @@ getEnemyTypeID__Q34Game9BombSarai3ObjFv:
 /* 802B3798 002B06D8  38 60 00 3A */	li r3, 0x3a
 /* 802B379C 002B06DC  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx12TBsaraiSupliFv"
-"@4@__dt__Q23efx12TBsaraiSupliFv":
+.global $$24$$2__dt__Q23efx12TBsaraiSupliFv
+$$24$$2__dt__Q23efx12TBsaraiSupliFv:
 /* 802B37A0 002B06E0  38 63 FF FC */	addi r3, r3, -4
 /* 802B37A4 002B06E4  4B FF FF 48 */	b __dt__Q23efx12TBsaraiSupliFv

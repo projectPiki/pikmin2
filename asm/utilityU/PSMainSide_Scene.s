@@ -180,7 +180,7 @@ __dt__Q23PSM12Scene_GlobalFv:
 /* 8046786C 004647AC  3C 60 80 4F */	lis r3, __vt__Q23PSM12Scene_Global@ha
 /* 80467870 004647B0  38 03 F6 30 */	addi r0, r3, __vt__Q23PSM12Scene_Global@l
 /* 80467874 004647B4  90 1E 00 00 */	stw r0, 0(r30)
-/* 80467878 004647B8  80 6D 91 D0 */	lwz r3, "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
+/* 80467878 004647B8  80 6D 91 D0 */	lwz r3, sInstance__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@sda21(r13)
 /* 8046787C 004647BC  28 03 00 00 */	cmplwi r3, 0
 /* 80467880 004647C0  41 82 00 18 */	beq lbl_80467898
 /* 80467884 004647C4  81 83 00 00 */	lwz r12, 0(r3)
@@ -189,9 +189,9 @@ __dt__Q23PSM12Scene_GlobalFv:
 /* 80467890 004647D0  7D 89 03 A6 */	mtctr r12
 /* 80467894 004647D4  4E 80 04 21 */	bctrl 
 lbl_80467898:
-/* 80467898 004647D8  80 6D 91 CC */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
+/* 80467898 004647D8  80 6D 91 CC */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@sda21(r13)
 /* 8046789C 004647DC  38 00 00 00 */	li r0, 0
-/* 804678A0 004647E0  90 0D 91 D0 */	stw r0, "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
+/* 804678A0 004647E0  90 0D 91 D0 */	stw r0, sInstance__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@sda21(r13)
 /* 804678A4 004647E4  28 03 00 00 */	cmplwi r3, 0
 /* 804678A8 004647E8  41 82 00 18 */	beq lbl_804678C0
 /* 804678AC 004647EC  81 83 00 00 */	lwz r12, 0(r3)
@@ -202,7 +202,7 @@ lbl_80467898:
 lbl_804678C0:
 /* 804678C0 00464800  38 00 00 00 */	li r0, 0
 /* 804678C4 00464804  28 1E 00 00 */	cmplwi r30, 0
-/* 804678C8 00464808  90 0D 91 CC */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
+/* 804678C8 00464808  90 0D 91 CC */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@sda21(r13)
 /* 804678CC 0046480C  41 82 00 1C */	beq lbl_804678E8
 /* 804678D0 00464810  3C 80 80 4F */	lis r4, __vt__Q23PSM9SceneBase@ha
 /* 804678D4 00464814  7F C3 F3 78 */	mr r3, r30
@@ -472,7 +472,7 @@ lbl_80467C40:
 lbl_80467C6C:
 /* 80467C6C 00464BAC  48 00 AC A9 */	bl newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv
 lbl_80467C70:
-/* 80467C70 00464BB0  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80467C70 00464BB0  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80467C74 00464BB4  28 00 00 00 */	cmplwi r0, 0
 /* 80467C78 00464BB8  41 82 00 0C */	beq lbl_80467C84
 /* 80467C7C 00464BBC  7F E3 FB 78 */	mr r3, r31
@@ -500,7 +500,7 @@ __dt__Q23PSM13Scene_ObjectsFv:
 /* 80467CC4 00464C04  3C 60 80 4F */	lis r3, __vt__Q23PSM13Scene_Objects@ha
 /* 80467CC8 00464C08  38 03 F5 84 */	addi r0, r3, __vt__Q23PSM13Scene_Objects@l
 /* 80467CCC 00464C0C  90 1E 00 00 */	stw r0, 0(r30)
-/* 80467CD0 00464C10  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80467CD0 00464C10  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80467CD4 00464C14  28 03 00 00 */	cmplwi r3, 0
 /* 80467CD8 00464C18  41 82 00 18 */	beq lbl_80467CF0
 /* 80467CDC 00464C1C  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -509,9 +509,9 @@ __dt__Q23PSM13Scene_ObjectsFv:
 /* 80467CE8 00464C28  7D 89 03 A6 */	mtctr r12
 /* 80467CEC 00464C2C  4E 80 04 21 */	bctrl 
 lbl_80467CF0:
-/* 80467CF0 00464C30  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80467CF0 00464C30  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 80467CF4 00464C34  38 00 00 00 */	li r0, 0
-/* 80467CF8 00464C38  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80467CF8 00464C38  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80467CFC 00464C3C  28 03 00 00 */	cmplwi r3, 0
 /* 80467D00 00464C40  41 82 00 18 */	beq lbl_80467D18
 /* 80467D04 00464C44  81 83 00 00 */	lwz r12, 0(r3)
@@ -522,9 +522,9 @@ lbl_80467CF0:
 lbl_80467D18:
 /* 80467D18 00464C58  38 00 00 00 */	li r0, 0
 /* 80467D1C 00464C5C  7F C3 F3 78 */	mr r3, r30
-/* 80467D20 00464C60  90 0D 91 B4 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80467D20 00464C60  90 0D 91 B4 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 80467D24 00464C64  48 00 01 3D */	bl detachObjMgr__Q23PSM13Scene_ObjectsFv
-/* 80467D28 00464C68  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80467D28 00464C68  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80467D2C 00464C6C  28 03 00 00 */	cmplwi r3, 0
 /* 80467D30 00464C70  41 82 00 18 */	beq lbl_80467D48
 /* 80467D34 00464C74  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -535,7 +535,7 @@ lbl_80467D18:
 lbl_80467D48:
 /* 80467D48 00464C88  38 00 00 00 */	li r0, 0
 /* 80467D4C 00464C8C  28 1E 00 00 */	cmplwi r30, 0
-/* 80467D50 00464C90  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80467D50 00464C90  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80467D54 00464C94  41 82 00 1C */	beq lbl_80467D70
 /* 80467D58 00464C98  3C 80 80 4F */	lis r4, __vt__Q23PSM9SceneBase@ha
 /* 80467D5C 00464C9C  7F C3 F3 78 */	mr r3, r30
@@ -569,11 +569,11 @@ __dt__Q23PSM11ObjCalcBaseFv:
 /* 80467DB8 00464CF8  38 03 F5 68 */	addi r0, r3, __vt__Q23PSM11ObjCalcBase@l
 /* 80467DBC 00464CFC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80467DC0 00464D00  41 82 00 18 */	beq lbl_80467DD8
-/* 80467DC4 00464D04  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@ha
+/* 80467DC4 00464D04  3C 60 80 4F */	lis r3, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@ha
 /* 80467DC8 00464D08  38 00 00 00 */	li r0, 0
-/* 80467DCC 00464D0C  38 63 F5 5C */	addi r3, r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@l
+/* 80467DCC 00464D0C  38 63 F5 5C */	addi r3, r3, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@l
 /* 80467DD0 00464D10  90 7F 00 00 */	stw r3, 0(r31)
-/* 80467DD4 00464D14  90 0D 91 B4 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80467DD4 00464D14  90 0D 91 B4 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 lbl_80467DD8:
 /* 80467DD8 00464D18  7C 80 07 35 */	extsh. r0, r4
 /* 80467DDC 00464D1C  40 81 00 0C */	ble lbl_80467DE8
@@ -594,7 +594,7 @@ adaptObjMgr__Q23PSM13Scene_ObjectsFv:
 /* 80467E08 00464D48  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80467E0C 00464D4C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80467E10 00464D50  7C 7F 1B 78 */	mr r31, r3
-/* 80467E14 00464D54  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80467E14 00464D54  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80467E18 00464D58  28 00 00 00 */	cmplwi r0, 0
 /* 80467E1C 00464D5C  40 82 00 20 */	bne lbl_80467E3C
 /* 80467E20 00464D60  3C 60 80 4A */	lis r3, lbl_8049D938@ha
@@ -605,7 +605,7 @@ adaptObjMgr__Q23PSM13Scene_ObjectsFv:
 /* 80467E34 00464D74  4C C6 31 82 */	crclr 6
 /* 80467E38 00464D78  4B BC 28 09 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80467E3C:
-/* 80467E3C 00464D7C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80467E3C 00464D7C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80467E40 00464D80  90 1F 00 2C */	stw r0, 0x2c(r31)
 /* 80467E44 00464D84  80 7F 00 2C */	lwz r3, 0x2c(r31)
 /* 80467E48 00464D88  93 E3 00 2C */	stw r31, 0x2c(r3)
@@ -908,7 +908,7 @@ __dt__Q23PSM10Scene_GameFv:
 /* 8046825C 0046519C  3C 60 80 4F */	lis r3, __vt__Q23PSM10Scene_Game@ha
 /* 80468260 004651A0  38 03 F4 E8 */	addi r0, r3, __vt__Q23PSM10Scene_Game@l
 /* 80468264 004651A4  90 1E 00 00 */	stw r0, 0(r30)
-/* 80468268 004651A8  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 80468268 004651A8  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046826C 004651AC  28 03 00 00 */	cmplwi r3, 0
 /* 80468270 004651B0  41 82 00 18 */	beq lbl_80468288
 /* 80468274 004651B4  81 83 00 00 */	lwz r12, 0(r3)
@@ -918,7 +918,7 @@ __dt__Q23PSM10Scene_GameFv:
 /* 80468284 004651C4  4E 80 04 21 */	bctrl 
 lbl_80468288:
 /* 80468288 004651C8  38 00 00 00 */	li r0, 0
-/* 8046828C 004651CC  90 0D 91 B0 */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046828C 004651CC  90 0D 91 B0 */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 80468290 004651D0  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 80468294 004651D4  28 03 00 00 */	cmplwi r3, 0
 /* 80468298 004651D8  41 82 00 0C */	beq lbl_804682A4
@@ -936,7 +936,7 @@ lbl_804682B8:
 /* 804682C0 00465200  3C 60 80 4F */	lis r3, __vt__Q23PSM13Scene_Objects@ha
 /* 804682C4 00465204  38 03 F5 84 */	addi r0, r3, __vt__Q23PSM13Scene_Objects@l
 /* 804682C8 00465208  90 1E 00 00 */	stw r0, 0(r30)
-/* 804682CC 0046520C  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 804682CC 0046520C  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 804682D0 00465210  28 03 00 00 */	cmplwi r3, 0
 /* 804682D4 00465214  41 82 00 18 */	beq lbl_804682EC
 /* 804682D8 00465218  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -945,9 +945,9 @@ lbl_804682B8:
 /* 804682E4 00465224  7D 89 03 A6 */	mtctr r12
 /* 804682E8 00465228  4E 80 04 21 */	bctrl 
 lbl_804682EC:
-/* 804682EC 0046522C  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 804682EC 0046522C  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 804682F0 00465230  38 00 00 00 */	li r0, 0
-/* 804682F4 00465234  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 804682F4 00465234  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 804682F8 00465238  28 03 00 00 */	cmplwi r3, 0
 /* 804682FC 0046523C  41 82 00 18 */	beq lbl_80468314
 /* 80468300 00465240  81 83 00 00 */	lwz r12, 0(r3)
@@ -957,14 +957,14 @@ lbl_804682EC:
 /* 80468310 00465250  4E 80 04 21 */	bctrl 
 lbl_80468314:
 /* 80468314 00465254  38 00 00 00 */	li r0, 0
-/* 80468318 00465258  90 0D 91 B4 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80468318 00465258  90 0D 91 B4 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046831C 0046525C  80 7E 00 2C */	lwz r3, 0x2c(r30)
 /* 80468320 00465260  28 03 00 00 */	cmplwi r3, 0
 /* 80468324 00465264  41 82 00 0C */	beq lbl_80468330
 /* 80468328 00465268  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8046832C 0046526C  90 1E 00 2C */	stw r0, 0x2c(r30)
 lbl_80468330:
-/* 80468330 00465270  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80468330 00465270  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80468334 00465274  28 03 00 00 */	cmplwi r3, 0
 /* 80468338 00465278  41 82 00 18 */	beq lbl_80468350
 /* 8046833C 0046527C  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -975,7 +975,7 @@ lbl_80468330:
 lbl_80468350:
 /* 80468350 00465290  38 00 00 00 */	li r0, 0
 /* 80468354 00465294  28 1E 00 00 */	cmplwi r30, 0
-/* 80468358 00465298  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80468358 00465298  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046835C 0046529C  41 82 00 1C */	beq lbl_80468378
 /* 80468360 004652A0  3C 80 80 4F */	lis r4, __vt__Q23PSM9SceneBase@ha
 /* 80468364 004652A4  7F C3 F3 78 */	mr r3, r30
@@ -1028,11 +1028,11 @@ __dt__Q33PSM12BossBgmFader3MgrFv:
 lbl_8046840C:
 /* 8046840C 0046534C  28 1E 00 00 */	cmplwi r30, 0
 /* 80468410 00465350  41 82 00 18 */	beq lbl_80468428
-/* 80468414 00465354  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@ha
+/* 80468414 00465354  3C 60 80 4F */	lis r3, __vt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@ha
 /* 80468418 00465358  38 00 00 00 */	li r0, 0
-/* 8046841C 0046535C  38 63 F4 D0 */	addi r3, r3, "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@l
+/* 8046841C 0046535C  38 63 F4 D0 */	addi r3, r3, __vt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@l
 /* 80468420 00465360  90 7E 00 00 */	stw r3, 0(r30)
-/* 80468424 00465364  90 0D 91 B0 */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 80468424 00465364  90 0D 91 B0 */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 lbl_80468428:
 /* 80468428 00465368  7F E0 07 35 */	extsh. r0, r31
 /* 8046842C 0046536C  40 81 00 0C */	ble lbl_80468438
@@ -1054,7 +1054,7 @@ attachBossFaderMgr__Q23PSM10Scene_GameFv:
 /* 8046845C 0046539C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80468460 004653A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80468464 004653A4  7C 7F 1B 78 */	mr r31, r3
-/* 80468468 004653A8  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 80468468 004653A8  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046846C 004653AC  28 00 00 00 */	cmplwi r0, 0
 /* 80468470 004653B0  40 82 00 20 */	bne lbl_80468490
 /* 80468474 004653B4  3C 60 80 4A */	lis r3, lbl_8049D938@ha
@@ -1065,7 +1065,7 @@ attachBossFaderMgr__Q23PSM10Scene_GameFv:
 /* 80468488 004653C8  4C C6 31 82 */	crclr 6
 /* 8046848C 004653CC  4B BC 21 B5 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80468490:
-/* 80468490 004653D0  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 80468490 004653D0  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 80468494 004653D4  90 1F 00 50 */	stw r0, 0x50(r31)
 /* 80468498 004653D8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8046849C 004653DC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1122,7 +1122,7 @@ lbl_8046854C:
 /* 8046854C 0046548C  4B EC D1 35 */	bl getMiddleBossBgm__Q26PSGame8PikSceneFv
 /* 80468550 00465490  7C 7E 1B 78 */	mr r30, r3
 lbl_80468554:
-/* 80468554 00465494  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 80468554 00465494  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 80468558 00465498  3B 80 00 01 */	li r28, 1
 /* 8046855C 0046549C  28 00 00 00 */	cmplwi r0, 0
 /* 80468560 004654A0  40 82 00 18 */	bne lbl_80468578
@@ -1132,7 +1132,7 @@ lbl_80468554:
 /* 80468570 004654B0  4C C6 31 82 */	crclr 6
 /* 80468574 004654B4  4B BC 20 CD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80468578:
-/* 80468578 004654B8  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 80468578 004654B8  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046857C 004654BC  80 83 00 04 */	lwz r4, 4(r3)
 /* 80468580 004654C0  48 00 00 1C */	b lbl_8046859C
 lbl_80468584:
@@ -1526,7 +1526,7 @@ lbl_80468AC8:
 lbl_80468AD8:
 /* 80468AD8 00465A18  28 1C 00 00 */	cmplwi r28, 0
 /* 80468ADC 00465A1C  40 82 FF EC */	bne lbl_80468AC8
-/* 80468AE0 00465A20  80 0D 91 B4 */	lwz r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80468AE0 00465A20  80 0D 91 B4 */	lwz r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 80468AE4 00465A24  28 00 00 00 */	cmplwi r0, 0
 /* 80468AE8 00465A28  40 82 00 18 */	bne lbl_80468B00
 /* 80468AEC 00465A2C  38 7F 00 30 */	addi r3, r31, 0x30
@@ -1535,7 +1535,7 @@ lbl_80468AD8:
 /* 80468AF8 00465A38  4C C6 31 82 */	crclr 6
 /* 80468AFC 00465A3C  4B BC 1B 45 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80468B00:
-/* 80468B00 00465A40  83 8D 91 B4 */	lwz r28, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80468B00 00465A40  83 8D 91 B4 */	lwz r28, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 80468B04 00465A44  7F 83 E3 78 */	mr r3, r28
 /* 80468B08 00465A48  81 9C 00 00 */	lwz r12, 0(r28)
 /* 80468B0C 00465A4C  81 8C 00 18 */	lwz r12, 0x18(r12)
@@ -1746,9 +1746,9 @@ pauseOn_2D__Q23PSM10Scene_GameFUcUc:
 lbl_80468DD0:
 /* 80468DD0 00465D10  38 00 00 00 */	li r0, 0
 /* 80468DD4 00465D14  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 80468DD8 00465D18  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
+/* 80468DD8 00465D18  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
 /* 80468DDC 00465D1C  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80468DE0 00465D20  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
+/* 80468DE0 00465D20  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
 /* 80468DE4 00465D24  28 00 00 00 */	cmplwi r0, 0
 /* 80468DE8 00465D28  90 81 00 18 */	stw r4, 0x18(r1)
 /* 80468DEC 00465D2C  90 01 00 1C */	stw r0, 0x1c(r1)
@@ -1909,9 +1909,9 @@ lbl_80469024:
 /* 80469028 00465F68  40 82 FF A0 */	bne lbl_80468FC8
 /* 8046902C 00465F6C  38 00 00 00 */	li r0, 0
 /* 80469030 00465F70  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80469034 00465F74  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 80469034 00465F74  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 80469038 00465F78  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8046903C 00465F7C  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 8046903C 00465F7C  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 80469040 00465F80  28 00 00 00 */	cmplwi r0, 0
 /* 80469044 00465F84  90 81 00 08 */	stw r4, 8(r1)
 /* 80469048 00465F88  90 01 00 0C */	stw r0, 0xc(r1)
@@ -2169,9 +2169,9 @@ lbl_804693E8:
 /* 804693EC 0046632C  40 82 FF A0 */	bne lbl_8046938C
 /* 804693F0 00466330  38 00 00 00 */	li r0, 0
 /* 804693F4 00466334  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 804693F8 00466338  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
+/* 804693F8 00466338  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
 /* 804693FC 0046633C  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80469400 00466340  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
+/* 80469400 00466340  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
 /* 80469404 00466344  28 00 00 00 */	cmplwi r0, 0
 /* 80469408 00466348  90 81 00 18 */	stw r4, 0x18(r1)
 /* 8046940C 0046634C  90 01 00 1C */	stw r0, 0x1c(r1)
@@ -2290,9 +2290,9 @@ lbl_80469594:
 /* 804695B0 004664F0  40 82 FF 0C */	bne lbl_804694BC
 /* 804695B4 004664F4  38 00 00 00 */	li r0, 0
 /* 804695B8 004664F8  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 804695BC 004664FC  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 804695BC 004664FC  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 804695C0 00466500  90 01 00 14 */	stw r0, 0x14(r1)
-/* 804695C4 00466504  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 804695C4 00466504  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 804695C8 00466508  28 00 00 00 */	cmplwi r0, 0
 /* 804695CC 0046650C  90 81 00 08 */	stw r4, 8(r1)
 /* 804695D0 00466510  90 01 00 0C */	stw r0, 0xc(r1)
@@ -2594,7 +2594,7 @@ lbl_804699E8:
 lbl_80469A14:
 /* 80469A14 00466954  48 00 8F 01 */	bl newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv
 lbl_80469A18:
-/* 80469A18 00466958  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80469A18 00466958  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80469A1C 0046695C  28 00 00 00 */	cmplwi r0, 0
 /* 80469A20 00466960  41 82 00 2C */	beq lbl_80469A4C
 /* 80469A24 00466964  40 82 00 18 */	bne lbl_80469A3C
@@ -2604,7 +2604,7 @@ lbl_80469A18:
 /* 80469A34 00466974  4C C6 31 82 */	crclr 6
 /* 80469A38 00466978  4B BC 0C 09 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80469A3C:
-/* 80469A3C 0046697C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80469A3C 0046697C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80469A40 00466980  90 1F 00 2C */	stw r0, 0x2c(r31)
 /* 80469A44 00466984  80 7F 00 2C */	lwz r3, 0x2c(r31)
 /* 80469A48 00466988  93 E3 00 2C */	stw r31, 0x2c(r3)
@@ -2987,7 +2987,7 @@ lbl_80469F44:
 lbl_80469F70:
 /* 80469F70 00466EB0  48 00 89 A5 */	bl newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv
 lbl_80469F74:
-/* 80469F74 00466EB4  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80469F74 00466EB4  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80469F78 00466EB8  28 00 00 00 */	cmplwi r0, 0
 /* 80469F7C 00466EBC  41 82 00 2C */	beq lbl_80469FA8
 /* 80469F80 00466EC0  40 82 00 18 */	bne lbl_80469F98
@@ -2997,7 +2997,7 @@ lbl_80469F74:
 /* 80469F90 00466ED0  4C C6 31 82 */	crclr 6
 /* 80469F94 00466ED4  4B BC 06 AD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80469F98:
-/* 80469F98 00466ED8  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80469F98 00466ED8  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80469F9C 00466EDC  90 1D 00 2C */	stw r0, 0x2c(r29)
 /* 80469FA0 00466EE0  80 7D 00 2C */	lwz r3, 0x2c(r29)
 /* 80469FA4 00466EE4  93 A3 00 2C */	stw r29, 0x2c(r3)
@@ -3361,7 +3361,7 @@ lbl_8046A478:
 lbl_8046A47C:
 /* 8046A47C 004673BC  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 8046A480 004673C0  41 82 00 2C */	beq lbl_8046A4AC
-/* 8046A484 004673C4  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046A484 004673C4  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046A488 004673C8  28 00 00 00 */	cmplwi r0, 0
 /* 8046A48C 004673CC  40 82 00 18 */	bne lbl_8046A4A4
 /* 8046A490 004673D0  38 7F 00 30 */	addi r3, r31, 0x30
@@ -3370,7 +3370,7 @@ lbl_8046A47C:
 /* 8046A49C 004673DC  4C C6 31 82 */	crclr 6
 /* 8046A4A0 004673E0  4B BC 01 A1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8046A4A4:
-/* 8046A4A4 004673E4  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046A4A4 004673E4  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046A4A8 004673E8  90 1E 00 50 */	stw r0, 0x50(r30)
 lbl_8046A4AC:
 /* 8046A4AC 004673EC  38 00 00 00 */	li r0, 0
@@ -3432,7 +3432,7 @@ lbl_8046A578:
 lbl_8046A57C:
 /* 8046A57C 004674BC  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 8046A580 004674C0  41 82 00 2C */	beq lbl_8046A5AC
-/* 8046A584 004674C4  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046A584 004674C4  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046A588 004674C8  28 00 00 00 */	cmplwi r0, 0
 /* 8046A58C 004674CC  40 82 00 18 */	bne lbl_8046A5A4
 /* 8046A590 004674D0  38 7F 00 30 */	addi r3, r31, 0x30
@@ -3441,7 +3441,7 @@ lbl_8046A57C:
 /* 8046A59C 004674DC  4C C6 31 82 */	crclr 6
 /* 8046A5A0 004674E0  4B BC 00 A1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8046A5A4:
-/* 8046A5A4 004674E4  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046A5A4 004674E4  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046A5A8 004674E8  90 1E 00 50 */	stw r0, 0x50(r30)
 lbl_8046A5AC:
 /* 8046A5AC 004674EC  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -3603,7 +3603,7 @@ bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss:
 /* 8046A7CC 0046770C  4E 80 04 21 */	bctrl 
 /* 8046A7D0 00467710  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8046A7D4 00467714  41 82 01 2C */	beq lbl_8046A900
-/* 8046A7D8 00467718  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046A7D8 00467718  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046A7DC 0046771C  3B A0 00 00 */	li r29, 0
 /* 8046A7E0 00467720  28 00 00 00 */	cmplwi r0, 0
 /* 8046A7E4 00467724  40 82 00 18 */	bne lbl_8046A7FC
@@ -3613,7 +3613,7 @@ bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss:
 /* 8046A7F4 00467734  4C C6 31 82 */	crclr 6
 /* 8046A7F8 00467738  4B BB FE 49 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8046A7FC:
-/* 8046A7FC 0046773C  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046A7FC 0046773C  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046A800 00467740  80 83 00 04 */	lwz r4, 4(r3)
 /* 8046A804 00467744  48 00 00 1C */	b lbl_8046A820
 lbl_8046A808:
@@ -3726,7 +3726,7 @@ lbl_8046A978:
 /* 8046A978 004678B8  4B EC AD 09 */	bl getMiddleBossBgm__Q26PSGame8PikSceneFv
 /* 8046A97C 004678BC  7C 7D 1B 78 */	mr r29, r3
 lbl_8046A980:
-/* 8046A980 004678C0  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046A980 004678C0  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046A984 004678C4  3B 80 00 01 */	li r28, 1
 /* 8046A988 004678C8  28 00 00 00 */	cmplwi r0, 0
 /* 8046A98C 004678CC  40 82 00 18 */	bne lbl_8046A9A4
@@ -3736,7 +3736,7 @@ lbl_8046A980:
 /* 8046A99C 004678DC  4C C6 31 82 */	crclr 6
 /* 8046A9A0 004678E0  4B BB FC A1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8046A9A4:
-/* 8046A9A4 004678E4  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046A9A4 004678E4  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046A9A8 004678E8  80 83 00 04 */	lwz r4, 4(r3)
 /* 8046A9AC 004678EC  48 00 00 1C */	b lbl_8046A9C8
 lbl_8046A9B0:
@@ -3937,7 +3937,7 @@ lbl_8046AC30:
 lbl_8046AC5C:
 /* 8046AC5C 00467B9C  48 00 7C B9 */	bl newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv
 lbl_8046AC60:
-/* 8046AC60 00467BA0  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046AC60 00467BA0  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046AC64 00467BA4  28 00 00 00 */	cmplwi r0, 0
 /* 8046AC68 00467BA8  41 82 00 2C */	beq lbl_8046AC94
 /* 8046AC6C 00467BAC  40 82 00 18 */	bne lbl_8046AC84
@@ -3947,7 +3947,7 @@ lbl_8046AC60:
 /* 8046AC7C 00467BBC  4C C6 31 82 */	crclr 6
 /* 8046AC80 00467BC0  4B BB F9 C1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8046AC84:
-/* 8046AC84 00467BC4  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046AC84 00467BC4  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046AC88 00467BC8  90 1D 00 2C */	stw r0, 0x2c(r29)
 /* 8046AC8C 00467BCC  80 7D 00 2C */	lwz r3, 0x2c(r29)
 /* 8046AC90 00467BD0  93 A3 00 2C */	stw r29, 0x2c(r3)
@@ -4031,7 +4031,7 @@ __dt__Q23PSM10Scene_CaveFv:
 /* 8046ADA0 00467CE0  3C 60 80 4F */	lis r3, __vt__Q23PSM10Scene_Game@ha
 /* 8046ADA4 00467CE4  38 03 F4 E8 */	addi r0, r3, __vt__Q23PSM10Scene_Game@l
 /* 8046ADA8 00467CE8  90 1E 00 00 */	stw r0, 0(r30)
-/* 8046ADAC 00467CEC  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046ADAC 00467CEC  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046ADB0 00467CF0  28 03 00 00 */	cmplwi r3, 0
 /* 8046ADB4 00467CF4  41 82 00 18 */	beq lbl_8046ADCC
 /* 8046ADB8 00467CF8  81 83 00 00 */	lwz r12, 0(r3)
@@ -4041,7 +4041,7 @@ __dt__Q23PSM10Scene_CaveFv:
 /* 8046ADC8 00467D08  4E 80 04 21 */	bctrl 
 lbl_8046ADCC:
 /* 8046ADCC 00467D0C  38 00 00 00 */	li r0, 0
-/* 8046ADD0 00467D10  90 0D 91 B0 */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046ADD0 00467D10  90 0D 91 B0 */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046ADD4 00467D14  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 8046ADD8 00467D18  28 03 00 00 */	cmplwi r3, 0
 /* 8046ADDC 00467D1C  41 82 00 0C */	beq lbl_8046ADE8
@@ -4059,7 +4059,7 @@ lbl_8046ADFC:
 /* 8046AE04 00467D44  3C 60 80 4F */	lis r3, __vt__Q23PSM13Scene_Objects@ha
 /* 8046AE08 00467D48  38 03 F5 84 */	addi r0, r3, __vt__Q23PSM13Scene_Objects@l
 /* 8046AE0C 00467D4C  90 1E 00 00 */	stw r0, 0(r30)
-/* 8046AE10 00467D50  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046AE10 00467D50  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046AE14 00467D54  28 03 00 00 */	cmplwi r3, 0
 /* 8046AE18 00467D58  41 82 00 18 */	beq lbl_8046AE30
 /* 8046AE1C 00467D5C  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -4068,9 +4068,9 @@ lbl_8046ADFC:
 /* 8046AE28 00467D68  7D 89 03 A6 */	mtctr r12
 /* 8046AE2C 00467D6C  4E 80 04 21 */	bctrl 
 lbl_8046AE30:
-/* 8046AE30 00467D70  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046AE30 00467D70  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046AE34 00467D74  38 00 00 00 */	li r0, 0
-/* 8046AE38 00467D78  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046AE38 00467D78  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046AE3C 00467D7C  28 03 00 00 */	cmplwi r3, 0
 /* 8046AE40 00467D80  41 82 00 18 */	beq lbl_8046AE58
 /* 8046AE44 00467D84  81 83 00 00 */	lwz r12, 0(r3)
@@ -4080,14 +4080,14 @@ lbl_8046AE30:
 /* 8046AE54 00467D94  4E 80 04 21 */	bctrl 
 lbl_8046AE58:
 /* 8046AE58 00467D98  38 00 00 00 */	li r0, 0
-/* 8046AE5C 00467D9C  90 0D 91 B4 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046AE5C 00467D9C  90 0D 91 B4 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046AE60 00467DA0  80 7E 00 2C */	lwz r3, 0x2c(r30)
 /* 8046AE64 00467DA4  28 03 00 00 */	cmplwi r3, 0
 /* 8046AE68 00467DA8  41 82 00 0C */	beq lbl_8046AE74
 /* 8046AE6C 00467DAC  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8046AE70 00467DB0  90 1E 00 2C */	stw r0, 0x2c(r30)
 lbl_8046AE74:
-/* 8046AE74 00467DB4  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046AE74 00467DB4  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046AE78 00467DB8  28 03 00 00 */	cmplwi r3, 0
 /* 8046AE7C 00467DBC  41 82 00 18 */	beq lbl_8046AE94
 /* 8046AE80 00467DC0  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -4098,7 +4098,7 @@ lbl_8046AE74:
 lbl_8046AE94:
 /* 8046AE94 00467DD4  38 00 00 00 */	li r0, 0
 /* 8046AE98 00467DD8  28 1E 00 00 */	cmplwi r30, 0
-/* 8046AE9C 00467DDC  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046AE9C 00467DDC  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046AEA0 00467DE0  41 82 00 1C */	beq lbl_8046AEBC
 /* 8046AEA4 00467DE4  3C 80 80 4F */	lis r4, __vt__Q23PSM9SceneBase@ha
 /* 8046AEA8 00467DE8  7F C3 F3 78 */	mr r3, r30
@@ -4192,7 +4192,7 @@ lbl_8046AFE4:
 lbl_8046AFE8:
 /* 8046AFE8 00467F28  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 8046AFEC 00467F2C  41 82 00 2C */	beq lbl_8046B018
-/* 8046AFF0 00467F30  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046AFF0 00467F30  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046AFF4 00467F34  28 00 00 00 */	cmplwi r0, 0
 /* 8046AFF8 00467F38  40 82 00 18 */	bne lbl_8046B010
 /* 8046AFFC 00467F3C  38 7F 00 30 */	addi r3, r31, 0x30
@@ -4201,7 +4201,7 @@ lbl_8046AFE8:
 /* 8046B008 00467F48  4C C6 31 82 */	crclr 6
 /* 8046B00C 00467F4C  4B BB F6 35 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8046B010:
-/* 8046B010 00467F50  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046B010 00467F50  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046B014 00467F54  90 1E 00 50 */	stw r0, 0x50(r30)
 lbl_8046B018:
 /* 8046B018 00467F58  38 00 00 00 */	li r0, 0
@@ -4263,7 +4263,7 @@ lbl_8046B0E4:
 lbl_8046B0E8:
 /* 8046B0E8 00468028  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 8046B0EC 0046802C  41 82 00 2C */	beq lbl_8046B118
-/* 8046B0F0 00468030  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046B0F0 00468030  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046B0F4 00468034  28 00 00 00 */	cmplwi r0, 0
 /* 8046B0F8 00468038  40 82 00 18 */	bne lbl_8046B110
 /* 8046B0FC 0046803C  38 7F 00 30 */	addi r3, r31, 0x30
@@ -4272,7 +4272,7 @@ lbl_8046B0E8:
 /* 8046B108 00468048  4C C6 31 82 */	crclr 6
 /* 8046B10C 0046804C  4B BB F5 35 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8046B110:
-/* 8046B110 00468050  80 0D 91 B0 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046B110 00468050  80 0D 91 B0 */	lwz r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046B114 00468054  90 1E 00 50 */	stw r0, 0x50(r30)
 lbl_8046B118:
 /* 8046B118 00468058  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -4889,9 +4889,9 @@ PSPause_StartMenuOn__Fv:
 /* 8046B970 004688B0  48 00 01 F9 */	bl PSPauseOn__FUcUc
 /* 8046B974 004688B4  38 00 00 00 */	li r0, 0
 /* 8046B978 004688B8  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 8046B97C 004688BC  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
+/* 8046B97C 004688BC  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
 /* 8046B980 004688C0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8046B984 004688C4  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
+/* 8046B984 004688C4  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
 /* 8046B988 004688C8  28 00 00 00 */	cmplwi r0, 0
 /* 8046B98C 004688CC  90 81 00 08 */	stw r4, 8(r1)
 /* 8046B990 004688D0  90 01 00 0C */	stw r0, 0xc(r1)
@@ -5444,7 +5444,7 @@ __dt__Q23PSM12Scene_GroundFv:
 /* 8046C110 00469050  3C 60 80 4F */	lis r3, __vt__Q23PSM10Scene_Game@ha
 /* 8046C114 00469054  38 03 F4 E8 */	addi r0, r3, __vt__Q23PSM10Scene_Game@l
 /* 8046C118 00469058  90 1E 00 00 */	stw r0, 0(r30)
-/* 8046C11C 0046905C  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046C11C 0046905C  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046C120 00469060  28 03 00 00 */	cmplwi r3, 0
 /* 8046C124 00469064  41 82 00 18 */	beq lbl_8046C13C
 /* 8046C128 00469068  81 83 00 00 */	lwz r12, 0(r3)
@@ -5454,7 +5454,7 @@ __dt__Q23PSM12Scene_GroundFv:
 /* 8046C138 00469078  4E 80 04 21 */	bctrl 
 lbl_8046C13C:
 /* 8046C13C 0046907C  38 00 00 00 */	li r0, 0
-/* 8046C140 00469080  90 0D 91 B0 */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046C140 00469080  90 0D 91 B0 */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046C144 00469084  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 8046C148 00469088  28 03 00 00 */	cmplwi r3, 0
 /* 8046C14C 0046908C  41 82 00 0C */	beq lbl_8046C158
@@ -5472,7 +5472,7 @@ lbl_8046C16C:
 /* 8046C174 004690B4  3C 60 80 4F */	lis r3, __vt__Q23PSM13Scene_Objects@ha
 /* 8046C178 004690B8  38 03 F5 84 */	addi r0, r3, __vt__Q23PSM13Scene_Objects@l
 /* 8046C17C 004690BC  90 1E 00 00 */	stw r0, 0(r30)
-/* 8046C180 004690C0  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C180 004690C0  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C184 004690C4  28 03 00 00 */	cmplwi r3, 0
 /* 8046C188 004690C8  41 82 00 18 */	beq lbl_8046C1A0
 /* 8046C18C 004690CC  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -5481,9 +5481,9 @@ lbl_8046C16C:
 /* 8046C198 004690D8  7D 89 03 A6 */	mtctr r12
 /* 8046C19C 004690DC  4E 80 04 21 */	bctrl 
 lbl_8046C1A0:
-/* 8046C1A0 004690E0  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046C1A0 004690E0  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046C1A4 004690E4  38 00 00 00 */	li r0, 0
-/* 8046C1A8 004690E8  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C1A8 004690E8  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C1AC 004690EC  28 03 00 00 */	cmplwi r3, 0
 /* 8046C1B0 004690F0  41 82 00 18 */	beq lbl_8046C1C8
 /* 8046C1B4 004690F4  81 83 00 00 */	lwz r12, 0(r3)
@@ -5493,14 +5493,14 @@ lbl_8046C1A0:
 /* 8046C1C4 00469104  4E 80 04 21 */	bctrl 
 lbl_8046C1C8:
 /* 8046C1C8 00469108  38 00 00 00 */	li r0, 0
-/* 8046C1CC 0046910C  90 0D 91 B4 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046C1CC 0046910C  90 0D 91 B4 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046C1D0 00469110  80 7E 00 2C */	lwz r3, 0x2c(r30)
 /* 8046C1D4 00469114  28 03 00 00 */	cmplwi r3, 0
 /* 8046C1D8 00469118  41 82 00 0C */	beq lbl_8046C1E4
 /* 8046C1DC 0046911C  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8046C1E0 00469120  90 1E 00 2C */	stw r0, 0x2c(r30)
 lbl_8046C1E4:
-/* 8046C1E4 00469124  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C1E4 00469124  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C1E8 00469128  28 03 00 00 */	cmplwi r3, 0
 /* 8046C1EC 0046912C  41 82 00 18 */	beq lbl_8046C204
 /* 8046C1F0 00469130  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -5511,7 +5511,7 @@ lbl_8046C1E4:
 lbl_8046C204:
 /* 8046C204 00469144  38 00 00 00 */	li r0, 0
 /* 8046C208 00469148  28 1E 00 00 */	cmplwi r30, 0
-/* 8046C20C 0046914C  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C20C 0046914C  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C210 00469150  41 82 00 1C */	beq lbl_8046C22C
 /* 8046C214 00469154  3C 80 80 4F */	lis r4, __vt__Q23PSM9SceneBase@ha
 /* 8046C218 00469158  7F C3 F3 78 */	mr r3, r30
@@ -5639,7 +5639,7 @@ __dt__Q23PSM11Scene_ZukanFv:
 /* 8046C384 004692C4  3C 60 80 4F */	lis r3, __vt__Q23PSM13Scene_Objects@ha
 /* 8046C388 004692C8  38 03 F5 84 */	addi r0, r3, __vt__Q23PSM13Scene_Objects@l
 /* 8046C38C 004692CC  90 1E 00 00 */	stw r0, 0(r30)
-/* 8046C390 004692D0  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C390 004692D0  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C394 004692D4  28 03 00 00 */	cmplwi r3, 0
 /* 8046C398 004692D8  41 82 00 18 */	beq lbl_8046C3B0
 /* 8046C39C 004692DC  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -5648,9 +5648,9 @@ __dt__Q23PSM11Scene_ZukanFv:
 /* 8046C3A8 004692E8  7D 89 03 A6 */	mtctr r12
 /* 8046C3AC 004692EC  4E 80 04 21 */	bctrl 
 lbl_8046C3B0:
-/* 8046C3B0 004692F0  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046C3B0 004692F0  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046C3B4 004692F4  38 00 00 00 */	li r0, 0
-/* 8046C3B8 004692F8  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C3B8 004692F8  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C3BC 004692FC  28 03 00 00 */	cmplwi r3, 0
 /* 8046C3C0 00469300  41 82 00 18 */	beq lbl_8046C3D8
 /* 8046C3C4 00469304  81 83 00 00 */	lwz r12, 0(r3)
@@ -5660,14 +5660,14 @@ lbl_8046C3B0:
 /* 8046C3D4 00469314  4E 80 04 21 */	bctrl 
 lbl_8046C3D8:
 /* 8046C3D8 00469318  38 00 00 00 */	li r0, 0
-/* 8046C3DC 0046931C  90 0D 91 B4 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046C3DC 0046931C  90 0D 91 B4 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046C3E0 00469320  80 7E 00 2C */	lwz r3, 0x2c(r30)
 /* 8046C3E4 00469324  28 03 00 00 */	cmplwi r3, 0
 /* 8046C3E8 00469328  41 82 00 0C */	beq lbl_8046C3F4
 /* 8046C3EC 0046932C  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8046C3F0 00469330  90 1E 00 2C */	stw r0, 0x2c(r30)
 lbl_8046C3F4:
-/* 8046C3F4 00469334  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C3F4 00469334  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C3F8 00469338  28 03 00 00 */	cmplwi r3, 0
 /* 8046C3FC 0046933C  41 82 00 18 */	beq lbl_8046C414
 /* 8046C400 00469340  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -5678,7 +5678,7 @@ lbl_8046C3F4:
 lbl_8046C414:
 /* 8046C414 00469354  38 00 00 00 */	li r0, 0
 /* 8046C418 00469358  28 1E 00 00 */	cmplwi r30, 0
-/* 8046C41C 0046935C  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C41C 0046935C  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C420 00469360  41 82 00 1C */	beq lbl_8046C43C
 /* 8046C424 00469364  3C 80 80 4F */	lis r4, __vt__Q23PSM9SceneBase@ha
 /* 8046C428 00469368  7F C3 F3 78 */	mr r3, r30
@@ -5721,7 +5721,7 @@ __dt__Q23PSM15Scene_ChallengeFv:
 /* 8046C4A8 004693E8  3C 60 80 4F */	lis r3, __vt__Q23PSM10Scene_Game@ha
 /* 8046C4AC 004693EC  38 03 F4 E8 */	addi r0, r3, __vt__Q23PSM10Scene_Game@l
 /* 8046C4B0 004693F0  90 1E 00 00 */	stw r0, 0(r30)
-/* 8046C4B4 004693F4  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046C4B4 004693F4  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046C4B8 004693F8  28 03 00 00 */	cmplwi r3, 0
 /* 8046C4BC 004693FC  41 82 00 18 */	beq lbl_8046C4D4
 /* 8046C4C0 00469400  81 83 00 00 */	lwz r12, 0(r3)
@@ -5731,7 +5731,7 @@ __dt__Q23PSM15Scene_ChallengeFv:
 /* 8046C4D0 00469410  4E 80 04 21 */	bctrl 
 lbl_8046C4D4:
 /* 8046C4D4 00469414  38 00 00 00 */	li r0, 0
-/* 8046C4D8 00469418  90 0D 91 B0 */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046C4D8 00469418  90 0D 91 B0 */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046C4DC 0046941C  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 8046C4E0 00469420  28 03 00 00 */	cmplwi r3, 0
 /* 8046C4E4 00469424  41 82 00 0C */	beq lbl_8046C4F0
@@ -5749,7 +5749,7 @@ lbl_8046C504:
 /* 8046C50C 0046944C  3C 60 80 4F */	lis r3, __vt__Q23PSM13Scene_Objects@ha
 /* 8046C510 00469450  38 03 F5 84 */	addi r0, r3, __vt__Q23PSM13Scene_Objects@l
 /* 8046C514 00469454  90 1E 00 00 */	stw r0, 0(r30)
-/* 8046C518 00469458  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C518 00469458  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C51C 0046945C  28 03 00 00 */	cmplwi r3, 0
 /* 8046C520 00469460  41 82 00 18 */	beq lbl_8046C538
 /* 8046C524 00469464  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -5758,9 +5758,9 @@ lbl_8046C504:
 /* 8046C530 00469470  7D 89 03 A6 */	mtctr r12
 /* 8046C534 00469474  4E 80 04 21 */	bctrl 
 lbl_8046C538:
-/* 8046C538 00469478  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046C538 00469478  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046C53C 0046947C  38 00 00 00 */	li r0, 0
-/* 8046C540 00469480  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C540 00469480  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C544 00469484  28 03 00 00 */	cmplwi r3, 0
 /* 8046C548 00469488  41 82 00 18 */	beq lbl_8046C560
 /* 8046C54C 0046948C  81 83 00 00 */	lwz r12, 0(r3)
@@ -5770,14 +5770,14 @@ lbl_8046C538:
 /* 8046C55C 0046949C  4E 80 04 21 */	bctrl 
 lbl_8046C560:
 /* 8046C560 004694A0  38 00 00 00 */	li r0, 0
-/* 8046C564 004694A4  90 0D 91 B4 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046C564 004694A4  90 0D 91 B4 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046C568 004694A8  80 7E 00 2C */	lwz r3, 0x2c(r30)
 /* 8046C56C 004694AC  28 03 00 00 */	cmplwi r3, 0
 /* 8046C570 004694B0  41 82 00 0C */	beq lbl_8046C57C
 /* 8046C574 004694B4  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8046C578 004694B8  90 1E 00 2C */	stw r0, 0x2c(r30)
 lbl_8046C57C:
-/* 8046C57C 004694BC  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C57C 004694BC  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C580 004694C0  28 03 00 00 */	cmplwi r3, 0
 /* 8046C584 004694C4  41 82 00 18 */	beq lbl_8046C59C
 /* 8046C588 004694C8  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -5788,7 +5788,7 @@ lbl_8046C57C:
 lbl_8046C59C:
 /* 8046C59C 004694DC  38 00 00 00 */	li r0, 0
 /* 8046C5A0 004694E0  28 1E 00 00 */	cmplwi r30, 0
-/* 8046C5A4 004694E4  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 8046C5A4 004694E4  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8046C5A8 004694E8  41 82 00 1C */	beq lbl_8046C5C4
 /* 8046C5AC 004694EC  3C 80 80 4F */	lis r4, __vt__Q23PSM9SceneBase@ha
 /* 8046C5B0 004694F0  7F C3 F3 78 */	mr r3, r30
@@ -5810,20 +5810,20 @@ lbl_8046C5D4:
 /* 8046C5E8 00469528  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C5EC 0046952C  4E 80 00 20 */	blr 
 
-.global "__dt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>Fv"
-"__dt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>Fv":
+.global __dt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1Fv
+__dt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1Fv:
 /* 8046C5F0 00469530  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C5F4 00469534  7C 08 02 A6 */	mflr r0
 /* 8046C5F8 00469538  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8046C5FC 0046953C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8046C600 00469540  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8046C604 00469544  41 82 00 24 */	beq lbl_8046C628
-/* 8046C608 00469548  3C A0 80 4F */	lis r5, "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@ha
+/* 8046C608 00469548  3C A0 80 4F */	lis r5, __vt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@ha
 /* 8046C60C 0046954C  7C 80 07 35 */	extsh. r0, r4
-/* 8046C610 00469550  38 85 F4 D0 */	addi r4, r5, "__vt__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@l
+/* 8046C610 00469550  38 85 F4 D0 */	addi r4, r5, __vt__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@l
 /* 8046C614 00469554  38 00 00 00 */	li r0, 0
 /* 8046C618 00469558  90 9F 00 00 */	stw r4, 0(r31)
-/* 8046C61C 0046955C  90 0D 91 B0 */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8046C61C 0046955C  90 0D 91 B0 */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 8046C620 00469560  40 81 00 08 */	ble lbl_8046C628
 /* 8046C624 00469564  4B BB 7A 91 */	bl __dl__FPv
 lbl_8046C628:
@@ -5834,20 +5834,20 @@ lbl_8046C628:
 /* 8046C638 00469578  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C63C 0046957C  4E 80 00 20 */	blr 
 
-.global "__dt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>Fv"
-"__dt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>Fv":
+.global __dt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1Fv
+__dt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1Fv:
 /* 8046C640 00469580  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8046C644 00469584  7C 08 02 A6 */	mflr r0
 /* 8046C648 00469588  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8046C64C 0046958C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8046C650 00469590  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8046C654 00469594  41 82 00 24 */	beq lbl_8046C678
-/* 8046C658 00469598  3C A0 80 4F */	lis r5, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@ha
+/* 8046C658 00469598  3C A0 80 4F */	lis r5, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@ha
 /* 8046C65C 0046959C  7C 80 07 35 */	extsh. r0, r4
-/* 8046C660 004695A0  38 85 F5 5C */	addi r4, r5, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@l
+/* 8046C660 004695A0  38 85 F5 5C */	addi r4, r5, __vt__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@l
 /* 8046C664 004695A4  38 00 00 00 */	li r0, 0
 /* 8046C668 004695A8  90 9F 00 00 */	stw r4, 0(r31)
-/* 8046C66C 004695AC  90 0D 91 B4 */	stw r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8046C66C 004695AC  90 0D 91 B4 */	stw r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8046C670 004695B0  40 81 00 08 */	ble lbl_8046C678
 /* 8046C674 004695B4  4B BB 7A 41 */	bl __dl__FPv
 lbl_8046C678:

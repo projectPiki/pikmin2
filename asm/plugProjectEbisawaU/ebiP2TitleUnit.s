@@ -120,7 +120,7 @@ pushOut__Q33ebi5title8TObjBaseFPQ33ebi5title8TObjBase:
 /* 803C0C9C 003BDBDC  D0 01 00 08 */	stfs f0, 8(r1)
 /* 803C0CA0 003BDBE0  C0 1E 00 08 */	lfs f0, 8(r30)
 /* 803C0CA4 003BDBE4  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 803C0CA8 003BDBE8  48 00 95 F5 */	bl "out__Q23ebi11EGECircle2fFP10Vector2<f>"
+/* 803C0CA8 003BDBE8  48 00 95 F5 */	bl out__Q23ebi11EGECircle2fFP10Vector2$$0f$$1
 lbl_803C0CAC:
 /* 803C0CAC 003BDBEC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 803C0CB0 003BDBF0  83 E1 00 1C */	lwz r31, 0x1c(r1)

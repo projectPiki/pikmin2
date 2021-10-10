@@ -1179,7 +1179,7 @@ __sinit_ogObjUfo_cpp:
 /* 803248E4 00321824  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 803248E8 00321828  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen10ObjUfoMenuFv"
-"@24@__dt__Q32og9newScreen10ObjUfoMenuFv":
+.global $$224$$2__dt__Q32og9newScreen10ObjUfoMenuFv
+$$224$$2__dt__Q32og9newScreen10ObjUfoMenuFv:
 /* 803248EC 0032182C  38 63 FF E8 */	addi r3, r3, -24
 /* 803248F0 00321830  4B FF EF 58 */	b __dt__Q32og9newScreen10ObjUfoMenuFv

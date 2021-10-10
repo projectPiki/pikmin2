@@ -209,7 +209,7 @@ getEnemyTypeID__Q34Game13FixMiniHoudai3MgrFv:
 /* 8030194C 002FE88C  38 60 00 61 */	li r3, 0x61
 /* 80301950 002FE890  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game13FixMiniHoudai3MgrFv"
-"@4@__dt__Q34Game13FixMiniHoudai3MgrFv":
+.global $$24$$2__dt__Q34Game13FixMiniHoudai3MgrFv
+$$24$$2__dt__Q34Game13FixMiniHoudai3MgrFv:
 /* 80301954 002FE894  38 63 FF FC */	addi r3, r3, -4
 /* 80301958 002FE898  4B FF FF 2C */	b __dt__Q34Game13FixMiniHoudai3MgrFv

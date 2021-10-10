@@ -340,7 +340,7 @@ __sinit_ogObjChallengeBase_cpp:
 /* 8032CD20 00329C60  90 67 00 18 */	stw r3, 0x18(r7)
 /* 8032CD24 00329C64  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen16ObjChallengeBaseFv"
-"@24@__dt__Q32og9newScreen16ObjChallengeBaseFv":
+.global $$224$$2__dt__Q32og9newScreen16ObjChallengeBaseFv
+$$224$$2__dt__Q32og9newScreen16ObjChallengeBaseFv:
 /* 8032CD28 00329C68  38 63 FF E8 */	addi r3, r3, -24
 /* 8032CD2C 00329C6C  4B FF FC 0C */	b __dt__Q32og9newScreen16ObjChallengeBaseFv

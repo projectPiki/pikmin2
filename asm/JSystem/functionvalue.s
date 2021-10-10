@@ -44,10 +44,10 @@ toFunction_outside__Q27JStudio14TFunctionValueFi:
 /* 80008AEC 00005A2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008AF0 00005A30  38 00 00 00 */	li r0, 0
 /* 80008AF4 00005A34  28 03 00 04 */	cmplwi r3, 4
-/* 80008AF8 00005A38  3C 80 80 47 */	lis r4, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80008AF8 00005A38  3C 80 80 47 */	lis r4, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80008AFC 00005A3C  90 01 00 08 */	stw r0, 8(r1)
 /* 80008B00 00005A40  54 63 10 3A */	slwi r3, r3, 2
-/* 80008B04 00005A44  38 04 32 F0 */	addi r0, r4, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80008B04 00005A44  38 04 32 F0 */	addi r0, r4, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80008B08 00005A48  7C 60 1A 14 */	add r3, r0, r3
 /* 80008B0C 00005A4C  41 80 00 08 */	blt lbl_80008B14
 /* 80008B10 00005A50  38 61 00 08 */	addi r3, r1, 8
@@ -55,8 +55,8 @@ lbl_80008B14:
 /* 80008B14 00005A54  80 63 00 00 */	lwz r3, 0(r3)
 /* 80008B18 00005A58  28 03 00 00 */	cmplwi r3, 0
 /* 80008B1C 00005A5C  40 82 00 10 */	bne lbl_80008B2C
-/* 80008B20 00005A60  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80008B24 00005A64  38 63 32 F0 */	addi r3, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80008B20 00005A60  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80008B24 00005A64  38 63 32 F0 */	addi r3, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80008B28 00005A68  80 63 00 00 */	lwz r3, 0(r3)
 lbl_80008B2C:
 /* 80008B2C 00005A6C  38 21 00 10 */	addi r1, r1, 0x10
@@ -135,7 +135,7 @@ __ct__Q27JStudio24TFunctionValue_compositeFv:
 /* 80008C14 00005B54  38 7F 00 04 */	addi r3, r31, 4
 /* 80008C18 00005B58  88 0D 87 08 */	lbz r0, lbl_80514D88@sda21(r13)
 /* 80008C1C 00005B5C  98 01 00 08 */	stb r0, 8(r1)
-/* 80008C20 00005B60  48 01 EA 55 */	bl "__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>"
+/* 80008C20 00005B60  48 01 EA 55 */	bl __ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator$$0Pv$$1
 /* 80008C24 00005B64  3C 60 80 4A */	lis r3, __vt__Q27JStudio24TFunctionValue_composite@ha
 /* 80008C28 00005B68  38 00 00 00 */	li r0, 0
 /* 80008C2C 00005B6C  38 83 E5 08 */	addi r4, r3, __vt__Q27JStudio24TFunctionValue_composite@l
@@ -208,8 +208,8 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 80008CF8 00005C38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008CFC 00005C3C  4E 80 00 20 */	blr 
 
-.global "composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.global composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad
+composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad:
 /* 80008D00 00005C40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008D04 00005C44  7C 08 02 A6 */	mflr r0
 /* 80008D08 00005C48  80 A3 00 04 */	lwz r5, 4(r3)
@@ -242,8 +242,8 @@ lbl_80008D5C:
 /* 80008D64 00005CA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008D68 00005CA8  4E 80 00 20 */	blr 
 
-.global "composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.global composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad
+composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad:
 /* 80008D6C 00005CAC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80008D70 00005CB0  7C 08 02 A6 */	mflr r0
 /* 80008D74 00005CB4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -347,8 +347,8 @@ lbl_80008EB8:
 /* 80008ED0 00005E10  38 21 00 40 */	addi r1, r1, 0x40
 /* 80008ED4 00005E14  4E 80 00 20 */	blr 
 
-.global "composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.global composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad
+composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad:
 /* 80008ED8 00005E18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008EDC 00005E1C  7C 08 02 A6 */	mflr r0
 /* 80008EE0 00005E20  C8 04 00 00 */	lfd f0, 0(r4)
@@ -378,8 +378,8 @@ lbl_80008F20:
 /* 80008F38 00005E78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008F3C 00005E7C  4E 80 00 20 */	blr 
 
-.global "composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.global composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad
+composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad:
 /* 80008F40 00005E80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008F44 00005E84  7C 08 02 A6 */	mflr r0
 /* 80008F48 00005E88  80 A3 00 08 */	lwz r5, 8(r3)
@@ -416,8 +416,8 @@ lbl_80008F98:
 /* 80008FBC 00005EFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008FC0 00005F00  4E 80 00 20 */	blr 
 
-.global "composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.global composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad
+composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad:
 /* 80008FC4 00005F04  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80008FC8 00005F08  7C 08 02 A6 */	mflr r0
 /* 80008FCC 00005F0C  80 A3 00 04 */	lwz r5, 4(r3)
@@ -483,8 +483,8 @@ lbl_80009090:
 /* 800090A4 00005FE4  38 21 00 30 */	addi r1, r1, 0x30
 /* 800090A8 00005FE8  4E 80 00 20 */	blr 
 
-.global "composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.global composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad
+composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad:
 /* 800090AC 00005FEC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800090B0 00005FF0  7C 08 02 A6 */	mflr r0
 /* 800090B4 00005FF4  80 A3 00 08 */	lwz r5, 8(r3)
@@ -521,8 +521,8 @@ lbl_80009104:
 /* 80009128 00006068  38 21 00 20 */	addi r1, r1, 0x20
 /* 8000912C 0000606C  4E 80 00 20 */	blr 
 
-.global "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.global composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad
+composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer$$0PQ27JStudio14TFunctionValue$$1RCQ37JStudio24TFunctionValue_composite5TDatad:
 /* 80009130 00006070  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80009134 00006074  7C 08 02 A6 */	mflr r0
 /* 80009138 00006078  80 A3 00 04 */	lwz r5, 4(r3)
@@ -774,11 +774,11 @@ getValue__Q27JStudio25TFunctionValue_transitionFd:
 /* 80009448 00006388  40 80 00 50 */	bge lbl_80009498
 /* 8000944C 0000638C  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 80009450 00006390  38 00 00 00 */	li r0, 0
-/* 80009454 00006394  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009454 00006394  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009458 00006398  28 04 00 04 */	cmplwi r4, 4
 /* 8000945C 0000639C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80009460 000063A0  54 84 10 3A */	slwi r4, r4, 2
-/* 80009464 000063A4  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009464 000063A4  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009468 000063A8  7C 60 22 14 */	add r3, r0, r4
 /* 8000946C 000063AC  41 80 00 08 */	blt lbl_80009474
 /* 80009470 000063B0  38 61 00 0C */	addi r3, r1, 0xc
@@ -786,8 +786,8 @@ lbl_80009474:
 /* 80009474 000063B4  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009478 000063B8  28 0C 00 00 */	cmplwi r12, 0
 /* 8000947C 000063BC  40 82 00 0C */	bne lbl_80009488
-/* 80009480 000063C0  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009484 000063C4  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009480 000063C0  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009484 000063C4  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009488:
 /* 80009488 000063C8  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000948C 000063CC  7D 89 03 A6 */	mtctr r12
@@ -800,11 +800,11 @@ lbl_80009498:
 /* 800094A4 000063E4  40 82 00 4C */	bne lbl_800094F0
 /* 800094A8 000063E8  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 800094AC 000063EC  38 00 00 00 */	li r0, 0
-/* 800094B0 000063F0  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 800094B0 000063F0  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 800094B4 000063F4  28 04 00 04 */	cmplwi r4, 4
 /* 800094B8 000063F8  90 01 00 08 */	stw r0, 8(r1)
 /* 800094BC 000063FC  54 84 10 3A */	slwi r4, r4, 2
-/* 800094C0 00006400  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 800094C0 00006400  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 800094C4 00006404  7C 60 22 14 */	add r3, r0, r4
 /* 800094C8 00006408  41 80 00 08 */	blt lbl_800094D0
 /* 800094CC 0000640C  38 61 00 08 */	addi r3, r1, 8
@@ -812,8 +812,8 @@ lbl_800094D0:
 /* 800094D0 00006410  81 83 00 00 */	lwz r12, 0(r3)
 /* 800094D4 00006414  28 0C 00 00 */	cmplwi r12, 0
 /* 800094D8 00006418  40 82 00 0C */	bne lbl_800094E4
-/* 800094DC 0000641C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 800094E0 00006420  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 800094DC 0000641C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 800094E0 00006420  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_800094E4:
 /* 800094E4 00006424  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 800094E8 00006428  7D 89 03 A6 */	mtctr r12
@@ -1137,11 +1137,11 @@ lbl_8000990C:
 /* 8000991C 0000685C  40 80 00 50 */	bge lbl_8000996C
 /* 80009920 00006860  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 80009924 00006864  38 00 00 00 */	li r0, 0
-/* 80009928 00006868  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009928 00006868  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000992C 0000686C  28 04 00 04 */	cmplwi r4, 4
 /* 80009930 00006870  90 01 00 2C */	stw r0, 0x2c(r1)
 /* 80009934 00006874  54 84 10 3A */	slwi r4, r4, 2
-/* 80009938 00006878  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009938 00006878  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000993C 0000687C  7C 60 22 14 */	add r3, r0, r4
 /* 80009940 00006880  41 80 00 08 */	blt lbl_80009948
 /* 80009944 00006884  38 61 00 2C */	addi r3, r1, 0x2c
@@ -1149,8 +1149,8 @@ lbl_80009948:
 /* 80009948 00006888  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000994C 0000688C  28 0C 00 00 */	cmplwi r12, 0
 /* 80009950 00006890  40 82 00 0C */	bne lbl_8000995C
-/* 80009954 00006894  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009958 00006898  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009954 00006894  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009958 00006898  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000995C:
 /* 8000995C 0000689C  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009960 000068A0  7D 89 03 A6 */	mtctr r12
@@ -1163,11 +1163,11 @@ lbl_8000996C:
 /* 80009978 000068B8  40 82 00 4C */	bne lbl_800099C4
 /* 8000997C 000068BC  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 80009980 000068C0  38 00 00 00 */	li r0, 0
-/* 80009984 000068C4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009984 000068C4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009988 000068C8  28 04 00 04 */	cmplwi r4, 4
 /* 8000998C 000068CC  90 01 00 28 */	stw r0, 0x28(r1)
 /* 80009990 000068D0  54 84 10 3A */	slwi r4, r4, 2
-/* 80009994 000068D4  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009994 000068D4  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009998 000068D8  7C 60 22 14 */	add r3, r0, r4
 /* 8000999C 000068DC  41 80 00 08 */	blt lbl_800099A4
 /* 800099A0 000068E0  38 61 00 28 */	addi r3, r1, 0x28
@@ -1175,8 +1175,8 @@ lbl_800099A4:
 /* 800099A4 000068E4  81 83 00 00 */	lwz r12, 0(r3)
 /* 800099A8 000068E8  28 0C 00 00 */	cmplwi r12, 0
 /* 800099AC 000068EC  40 82 00 0C */	bne lbl_800099B8
-/* 800099B0 000068F0  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 800099B4 000068F4  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 800099B0 000068F0  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 800099B4 000068F4  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_800099B8:
 /* 800099B8 000068F8  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 800099BC 000068FC  7D 89 03 A6 */	mtctr r12
@@ -1197,11 +1197,11 @@ lbl_800099DC:
 /* 800099F0 00006930  40 80 00 50 */	bge lbl_80009A40
 /* 800099F4 00006934  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 800099F8 00006938  38 00 00 00 */	li r0, 0
-/* 800099FC 0000693C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 800099FC 0000693C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009A00 00006940  28 04 00 04 */	cmplwi r4, 4
 /* 80009A04 00006944  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80009A08 00006948  54 84 10 3A */	slwi r4, r4, 2
-/* 80009A0C 0000694C  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009A0C 0000694C  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009A10 00006950  7C 60 22 14 */	add r3, r0, r4
 /* 80009A14 00006954  41 80 00 08 */	blt lbl_80009A1C
 /* 80009A18 00006958  38 61 00 24 */	addi r3, r1, 0x24
@@ -1209,8 +1209,8 @@ lbl_80009A1C:
 /* 80009A1C 0000695C  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009A20 00006960  28 0C 00 00 */	cmplwi r12, 0
 /* 80009A24 00006964  40 82 00 0C */	bne lbl_80009A30
-/* 80009A28 00006968  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009A2C 0000696C  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009A28 00006968  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009A2C 0000696C  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009A30:
 /* 80009A30 00006970  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009A34 00006974  7D 89 03 A6 */	mtctr r12
@@ -1223,11 +1223,11 @@ lbl_80009A40:
 /* 80009A4C 0000698C  40 82 00 4C */	bne lbl_80009A98
 /* 80009A50 00006990  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 80009A54 00006994  38 00 00 00 */	li r0, 0
-/* 80009A58 00006998  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009A58 00006998  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009A5C 0000699C  28 04 00 04 */	cmplwi r4, 4
 /* 80009A60 000069A0  90 01 00 20 */	stw r0, 0x20(r1)
 /* 80009A64 000069A4  54 84 10 3A */	slwi r4, r4, 2
-/* 80009A68 000069A8  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009A68 000069A8  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009A6C 000069AC  7C 60 22 14 */	add r3, r0, r4
 /* 80009A70 000069B0  41 80 00 08 */	blt lbl_80009A78
 /* 80009A74 000069B4  38 61 00 20 */	addi r3, r1, 0x20
@@ -1235,8 +1235,8 @@ lbl_80009A78:
 /* 80009A78 000069B8  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009A7C 000069BC  28 0C 00 00 */	cmplwi r12, 0
 /* 80009A80 000069C0  40 82 00 0C */	bne lbl_80009A8C
-/* 80009A84 000069C4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009A88 000069C8  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009A84 000069C4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009A88 000069C8  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009A8C:
 /* 80009A8C 000069CC  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009A90 000069D0  7D 89 03 A6 */	mtctr r12
@@ -1258,11 +1258,11 @@ lbl_80009AB0:
 /* 80009AC8 00006A08  40 80 00 50 */	bge lbl_80009B18
 /* 80009ACC 00006A0C  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 80009AD0 00006A10  38 00 00 00 */	li r0, 0
-/* 80009AD4 00006A14  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009AD4 00006A14  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009AD8 00006A18  28 04 00 04 */	cmplwi r4, 4
 /* 80009ADC 00006A1C  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 80009AE0 00006A20  54 84 10 3A */	slwi r4, r4, 2
-/* 80009AE4 00006A24  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009AE4 00006A24  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009AE8 00006A28  7C 60 22 14 */	add r3, r0, r4
 /* 80009AEC 00006A2C  41 80 00 08 */	blt lbl_80009AF4
 /* 80009AF0 00006A30  38 61 00 1C */	addi r3, r1, 0x1c
@@ -1270,8 +1270,8 @@ lbl_80009AF4:
 /* 80009AF4 00006A34  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009AF8 00006A38  28 0C 00 00 */	cmplwi r12, 0
 /* 80009AFC 00006A3C  40 82 00 0C */	bne lbl_80009B08
-/* 80009B00 00006A40  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009B04 00006A44  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009B00 00006A40  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009B04 00006A44  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009B08:
 /* 80009B08 00006A48  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009B0C 00006A4C  7D 89 03 A6 */	mtctr r12
@@ -1284,11 +1284,11 @@ lbl_80009B18:
 /* 80009B24 00006A64  40 82 00 4C */	bne lbl_80009B70
 /* 80009B28 00006A68  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 80009B2C 00006A6C  38 00 00 00 */	li r0, 0
-/* 80009B30 00006A70  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009B30 00006A70  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009B34 00006A74  28 04 00 04 */	cmplwi r4, 4
 /* 80009B38 00006A78  90 01 00 18 */	stw r0, 0x18(r1)
 /* 80009B3C 00006A7C  54 84 10 3A */	slwi r4, r4, 2
-/* 80009B40 00006A80  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009B40 00006A80  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009B44 00006A84  7C 60 22 14 */	add r3, r0, r4
 /* 80009B48 00006A88  41 80 00 08 */	blt lbl_80009B50
 /* 80009B4C 00006A8C  38 61 00 18 */	addi r3, r1, 0x18
@@ -1296,8 +1296,8 @@ lbl_80009B50:
 /* 80009B50 00006A90  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009B54 00006A94  28 0C 00 00 */	cmplwi r12, 0
 /* 80009B58 00006A98  40 82 00 0C */	bne lbl_80009B64
-/* 80009B5C 00006A9C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009B60 00006AA0  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009B5C 00006A9C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009B60 00006AA0  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009B64:
 /* 80009B64 00006AA4  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009B68 00006AA8  7D 89 03 A6 */	mtctr r12
@@ -1321,11 +1321,11 @@ lbl_80009B88:
 /* 80009BA8 00006AE8  40 80 00 50 */	bge lbl_80009BF8
 /* 80009BAC 00006AEC  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 80009BB0 00006AF0  38 00 00 00 */	li r0, 0
-/* 80009BB4 00006AF4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009BB4 00006AF4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009BB8 00006AF8  28 04 00 04 */	cmplwi r4, 4
 /* 80009BBC 00006AFC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80009BC0 00006B00  54 84 10 3A */	slwi r4, r4, 2
-/* 80009BC4 00006B04  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009BC4 00006B04  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009BC8 00006B08  7C 60 22 14 */	add r3, r0, r4
 /* 80009BCC 00006B0C  41 80 00 08 */	blt lbl_80009BD4
 /* 80009BD0 00006B10  38 61 00 14 */	addi r3, r1, 0x14
@@ -1333,8 +1333,8 @@ lbl_80009BD4:
 /* 80009BD4 00006B14  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009BD8 00006B18  28 0C 00 00 */	cmplwi r12, 0
 /* 80009BDC 00006B1C  40 82 00 0C */	bne lbl_80009BE8
-/* 80009BE0 00006B20  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009BE4 00006B24  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009BE0 00006B20  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009BE4 00006B24  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009BE8:
 /* 80009BE8 00006B28  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009BEC 00006B2C  7D 89 03 A6 */	mtctr r12
@@ -1347,11 +1347,11 @@ lbl_80009BF8:
 /* 80009C04 00006B44  40 82 00 4C */	bne lbl_80009C50
 /* 80009C08 00006B48  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 80009C0C 00006B4C  38 00 00 00 */	li r0, 0
-/* 80009C10 00006B50  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009C10 00006B50  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009C14 00006B54  28 04 00 04 */	cmplwi r4, 4
 /* 80009C18 00006B58  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80009C1C 00006B5C  54 84 10 3A */	slwi r4, r4, 2
-/* 80009C20 00006B60  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009C20 00006B60  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009C24 00006B64  7C 60 22 14 */	add r3, r0, r4
 /* 80009C28 00006B68  41 80 00 08 */	blt lbl_80009C30
 /* 80009C2C 00006B6C  38 61 00 10 */	addi r3, r1, 0x10
@@ -1359,8 +1359,8 @@ lbl_80009C30:
 /* 80009C30 00006B70  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009C34 00006B74  28 0C 00 00 */	cmplwi r12, 0
 /* 80009C38 00006B78  40 82 00 0C */	bne lbl_80009C44
-/* 80009C3C 00006B7C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009C40 00006B80  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009C3C 00006B7C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009C40 00006B80  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009C44:
 /* 80009C44 00006B84  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009C48 00006B88  7D 89 03 A6 */	mtctr r12
@@ -1380,11 +1380,11 @@ lbl_80009C68:
 /* 80009C78 00006BB8  40 80 00 50 */	bge lbl_80009CC8
 /* 80009C7C 00006BBC  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 80009C80 00006BC0  38 00 00 00 */	li r0, 0
-/* 80009C84 00006BC4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009C84 00006BC4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009C88 00006BC8  28 04 00 04 */	cmplwi r4, 4
 /* 80009C8C 00006BCC  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80009C90 00006BD0  54 84 10 3A */	slwi r4, r4, 2
-/* 80009C94 00006BD4  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009C94 00006BD4  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009C98 00006BD8  7C 60 22 14 */	add r3, r0, r4
 /* 80009C9C 00006BDC  41 80 00 08 */	blt lbl_80009CA4
 /* 80009CA0 00006BE0  38 61 00 0C */	addi r3, r1, 0xc
@@ -1392,8 +1392,8 @@ lbl_80009CA4:
 /* 80009CA4 00006BE4  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009CA8 00006BE8  28 0C 00 00 */	cmplwi r12, 0
 /* 80009CAC 00006BEC  40 82 00 0C */	bne lbl_80009CB8
-/* 80009CB0 00006BF0  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009CB4 00006BF4  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009CB0 00006BF0  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009CB4 00006BF4  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009CB8:
 /* 80009CB8 00006BF8  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009CBC 00006BFC  7D 89 03 A6 */	mtctr r12
@@ -1406,11 +1406,11 @@ lbl_80009CC8:
 /* 80009CD4 00006C14  40 82 00 4C */	bne lbl_80009D20
 /* 80009CD8 00006C18  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 80009CDC 00006C1C  38 00 00 00 */	li r0, 0
-/* 80009CE0 00006C20  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 80009CE0 00006C20  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 80009CE4 00006C24  28 04 00 04 */	cmplwi r4, 4
 /* 80009CE8 00006C28  90 01 00 08 */	stw r0, 8(r1)
 /* 80009CEC 00006C2C  54 84 10 3A */	slwi r4, r4, 2
-/* 80009CF0 00006C30  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 80009CF0 00006C30  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 80009CF4 00006C34  7C 60 22 14 */	add r3, r0, r4
 /* 80009CF8 00006C38  41 80 00 08 */	blt lbl_80009D00
 /* 80009CFC 00006C3C  38 61 00 08 */	addi r3, r1, 8
@@ -1418,8 +1418,8 @@ lbl_80009D00:
 /* 80009D00 00006C40  81 83 00 00 */	lwz r12, 0(r3)
 /* 80009D04 00006C44  28 0C 00 00 */	cmplwi r12, 0
 /* 80009D08 00006C48  40 82 00 0C */	bne lbl_80009D14
-/* 80009D0C 00006C4C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 80009D10 00006C50  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 80009D0C 00006C4C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 80009D10 00006C50  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_80009D14:
 /* 80009D14 00006C54  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 80009D18 00006C58  7D 89 03 A6 */	mtctr r12
@@ -1807,11 +1807,11 @@ lbl_8000A21C:
 /* 8000A22C 0000716C  40 80 00 50 */	bge lbl_8000A27C
 /* 8000A230 00007170  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000A234 00007174  38 00 00 00 */	li r0, 0
-/* 8000A238 00007178  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A238 00007178  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A23C 0000717C  28 04 00 04 */	cmplwi r4, 4
 /* 8000A240 00007180  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8000A244 00007184  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A248 00007188  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A248 00007188  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A24C 0000718C  7C 60 22 14 */	add r3, r0, r4
 /* 8000A250 00007190  41 80 00 08 */	blt lbl_8000A258
 /* 8000A254 00007194  38 61 00 34 */	addi r3, r1, 0x34
@@ -1819,8 +1819,8 @@ lbl_8000A258:
 /* 8000A258 00007198  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A25C 0000719C  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A260 000071A0  40 82 00 0C */	bne lbl_8000A26C
-/* 8000A264 000071A4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A268 000071A8  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A264 000071A4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A268 000071A8  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A26C:
 /* 8000A26C 000071AC  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A270 000071B0  7D 89 03 A6 */	mtctr r12
@@ -1833,11 +1833,11 @@ lbl_8000A27C:
 /* 8000A288 000071C8  40 82 00 4C */	bne lbl_8000A2D4
 /* 8000A28C 000071CC  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000A290 000071D0  38 00 00 00 */	li r0, 0
-/* 8000A294 000071D4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A294 000071D4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A298 000071D8  28 04 00 04 */	cmplwi r4, 4
 /* 8000A29C 000071DC  90 01 00 30 */	stw r0, 0x30(r1)
 /* 8000A2A0 000071E0  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A2A4 000071E4  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A2A4 000071E4  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A2A8 000071E8  7C 60 22 14 */	add r3, r0, r4
 /* 8000A2AC 000071EC  41 80 00 08 */	blt lbl_8000A2B4
 /* 8000A2B0 000071F0  38 61 00 30 */	addi r3, r1, 0x30
@@ -1845,8 +1845,8 @@ lbl_8000A2B4:
 /* 8000A2B4 000071F4  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A2B8 000071F8  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A2BC 000071FC  40 82 00 0C */	bne lbl_8000A2C8
-/* 8000A2C0 00007200  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A2C4 00007204  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A2C0 00007200  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A2C4 00007204  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A2C8:
 /* 8000A2C8 00007208  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A2CC 0000720C  7D 89 03 A6 */	mtctr r12
@@ -1864,11 +1864,11 @@ lbl_8000A2E0:
 /* 8000A2F4 00007234  40 80 00 50 */	bge lbl_8000A344
 /* 8000A2F8 00007238  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000A2FC 0000723C  38 00 00 00 */	li r0, 0
-/* 8000A300 00007240  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A300 00007240  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A304 00007244  28 04 00 04 */	cmplwi r4, 4
 /* 8000A308 00007248  90 01 00 2C */	stw r0, 0x2c(r1)
 /* 8000A30C 0000724C  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A310 00007250  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A310 00007250  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A314 00007254  7C 60 22 14 */	add r3, r0, r4
 /* 8000A318 00007258  41 80 00 08 */	blt lbl_8000A320
 /* 8000A31C 0000725C  38 61 00 2C */	addi r3, r1, 0x2c
@@ -1876,8 +1876,8 @@ lbl_8000A320:
 /* 8000A320 00007260  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A324 00007264  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A328 00007268  40 82 00 0C */	bne lbl_8000A334
-/* 8000A32C 0000726C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A330 00007270  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A32C 0000726C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A330 00007270  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A334:
 /* 8000A334 00007274  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A338 00007278  7D 89 03 A6 */	mtctr r12
@@ -1890,11 +1890,11 @@ lbl_8000A344:
 /* 8000A350 00007290  40 82 00 4C */	bne lbl_8000A39C
 /* 8000A354 00007294  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000A358 00007298  38 00 00 00 */	li r0, 0
-/* 8000A35C 0000729C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A35C 0000729C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A360 000072A0  28 04 00 04 */	cmplwi r4, 4
 /* 8000A364 000072A4  90 01 00 28 */	stw r0, 0x28(r1)
 /* 8000A368 000072A8  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A36C 000072AC  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A36C 000072AC  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A370 000072B0  7C 60 22 14 */	add r3, r0, r4
 /* 8000A374 000072B4  41 80 00 08 */	blt lbl_8000A37C
 /* 8000A378 000072B8  38 61 00 28 */	addi r3, r1, 0x28
@@ -1902,8 +1902,8 @@ lbl_8000A37C:
 /* 8000A37C 000072BC  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A380 000072C0  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A384 000072C4  40 82 00 0C */	bne lbl_8000A390
-/* 8000A388 000072C8  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A38C 000072CC  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A388 000072C8  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A38C 000072CC  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A390:
 /* 8000A390 000072D0  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A394 000072D4  7D 89 03 A6 */	mtctr r12
@@ -1922,11 +1922,11 @@ lbl_8000A3A8:
 /* 8000A3C0 00007300  40 80 00 50 */	bge lbl_8000A410
 /* 8000A3C4 00007304  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000A3C8 00007308  38 00 00 00 */	li r0, 0
-/* 8000A3CC 0000730C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A3CC 0000730C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A3D0 00007310  28 04 00 04 */	cmplwi r4, 4
 /* 8000A3D4 00007314  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8000A3D8 00007318  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A3DC 0000731C  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A3DC 0000731C  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A3E0 00007320  7C 60 22 14 */	add r3, r0, r4
 /* 8000A3E4 00007324  41 80 00 08 */	blt lbl_8000A3EC
 /* 8000A3E8 00007328  38 61 00 24 */	addi r3, r1, 0x24
@@ -1934,8 +1934,8 @@ lbl_8000A3EC:
 /* 8000A3EC 0000732C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A3F0 00007330  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A3F4 00007334  40 82 00 0C */	bne lbl_8000A400
-/* 8000A3F8 00007338  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A3FC 0000733C  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A3F8 00007338  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A3FC 0000733C  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A400:
 /* 8000A400 00007340  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A404 00007344  7D 89 03 A6 */	mtctr r12
@@ -1948,11 +1948,11 @@ lbl_8000A410:
 /* 8000A41C 0000735C  40 82 00 4C */	bne lbl_8000A468
 /* 8000A420 00007360  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000A424 00007364  38 00 00 00 */	li r0, 0
-/* 8000A428 00007368  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A428 00007368  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A42C 0000736C  28 04 00 04 */	cmplwi r4, 4
 /* 8000A430 00007370  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8000A434 00007374  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A438 00007378  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A438 00007378  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A43C 0000737C  7C 60 22 14 */	add r3, r0, r4
 /* 8000A440 00007380  41 80 00 08 */	blt lbl_8000A448
 /* 8000A444 00007384  38 61 00 20 */	addi r3, r1, 0x20
@@ -1960,8 +1960,8 @@ lbl_8000A448:
 /* 8000A448 00007388  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A44C 0000738C  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A450 00007390  40 82 00 0C */	bne lbl_8000A45C
-/* 8000A454 00007394  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A458 00007398  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A454 00007394  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A458 00007398  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A45C:
 /* 8000A45C 0000739C  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A460 000073A0  7D 89 03 A6 */	mtctr r12
@@ -1982,11 +1982,11 @@ lbl_8000A474:
 /* 8000A494 000073D4  40 80 00 50 */	bge lbl_8000A4E4
 /* 8000A498 000073D8  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000A49C 000073DC  38 00 00 00 */	li r0, 0
-/* 8000A4A0 000073E0  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A4A0 000073E0  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A4A4 000073E4  28 04 00 04 */	cmplwi r4, 4
 /* 8000A4A8 000073E8  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 8000A4AC 000073EC  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A4B0 000073F0  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A4B0 000073F0  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A4B4 000073F4  7C 60 22 14 */	add r3, r0, r4
 /* 8000A4B8 000073F8  41 80 00 08 */	blt lbl_8000A4C0
 /* 8000A4BC 000073FC  38 61 00 1C */	addi r3, r1, 0x1c
@@ -1994,8 +1994,8 @@ lbl_8000A4C0:
 /* 8000A4C0 00007400  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A4C4 00007404  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A4C8 00007408  40 82 00 0C */	bne lbl_8000A4D4
-/* 8000A4CC 0000740C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A4D0 00007410  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A4CC 0000740C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A4D0 00007410  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A4D4:
 /* 8000A4D4 00007414  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A4D8 00007418  7D 89 03 A6 */	mtctr r12
@@ -2008,11 +2008,11 @@ lbl_8000A4E4:
 /* 8000A4F0 00007430  40 82 00 4C */	bne lbl_8000A53C
 /* 8000A4F4 00007434  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000A4F8 00007438  38 00 00 00 */	li r0, 0
-/* 8000A4FC 0000743C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A4FC 0000743C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A500 00007440  28 04 00 04 */	cmplwi r4, 4
 /* 8000A504 00007444  90 01 00 18 */	stw r0, 0x18(r1)
 /* 8000A508 00007448  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A50C 0000744C  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A50C 0000744C  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A510 00007450  7C 60 22 14 */	add r3, r0, r4
 /* 8000A514 00007454  41 80 00 08 */	blt lbl_8000A51C
 /* 8000A518 00007458  38 61 00 18 */	addi r3, r1, 0x18
@@ -2020,8 +2020,8 @@ lbl_8000A51C:
 /* 8000A51C 0000745C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A520 00007460  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A524 00007464  40 82 00 0C */	bne lbl_8000A530
-/* 8000A528 00007468  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A52C 0000746C  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A528 00007468  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A52C 0000746C  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A530:
 /* 8000A530 00007470  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A534 00007474  7D 89 03 A6 */	mtctr r12
@@ -2038,11 +2038,11 @@ lbl_8000A548:
 /* 8000A558 00007498  40 80 00 50 */	bge lbl_8000A5A8
 /* 8000A55C 0000749C  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000A560 000074A0  38 00 00 00 */	li r0, 0
-/* 8000A564 000074A4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A564 000074A4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A568 000074A8  28 04 00 04 */	cmplwi r4, 4
 /* 8000A56C 000074AC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8000A570 000074B0  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A574 000074B4  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A574 000074B4  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A578 000074B8  7C 60 22 14 */	add r3, r0, r4
 /* 8000A57C 000074BC  41 80 00 08 */	blt lbl_8000A584
 /* 8000A580 000074C0  38 61 00 14 */	addi r3, r1, 0x14
@@ -2050,8 +2050,8 @@ lbl_8000A584:
 /* 8000A584 000074C4  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A588 000074C8  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A58C 000074CC  40 82 00 0C */	bne lbl_8000A598
-/* 8000A590 000074D0  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A594 000074D4  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A590 000074D0  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A594 000074D4  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A598:
 /* 8000A598 000074D8  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A59C 000074DC  7D 89 03 A6 */	mtctr r12
@@ -2064,11 +2064,11 @@ lbl_8000A5A8:
 /* 8000A5B4 000074F4  40 82 00 4C */	bne lbl_8000A600
 /* 8000A5B8 000074F8  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000A5BC 000074FC  38 00 00 00 */	li r0, 0
-/* 8000A5C0 00007500  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000A5C0 00007500  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000A5C4 00007504  28 04 00 04 */	cmplwi r4, 4
 /* 8000A5C8 00007508  90 01 00 10 */	stw r0, 0x10(r1)
 /* 8000A5CC 0000750C  54 84 10 3A */	slwi r4, r4, 2
-/* 8000A5D0 00007510  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000A5D0 00007510  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000A5D4 00007514  7C 60 22 14 */	add r3, r0, r4
 /* 8000A5D8 00007518  41 80 00 08 */	blt lbl_8000A5E0
 /* 8000A5DC 0000751C  38 61 00 10 */	addi r3, r1, 0x10
@@ -2076,8 +2076,8 @@ lbl_8000A5E0:
 /* 8000A5E0 00007520  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000A5E4 00007524  28 0C 00 00 */	cmplwi r12, 0
 /* 8000A5E8 00007528  40 82 00 0C */	bne lbl_8000A5F4
-/* 8000A5EC 0000752C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000A5F0 00007530  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000A5EC 0000752C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000A5F0 00007530  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000A5F4:
 /* 8000A5F4 00007534  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000A5F8 00007538  7D 89 03 A6 */	mtctr r12
@@ -2104,7 +2104,7 @@ lbl_8000A620:
 /* 8000A644 00007584  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 8000A648 00007588  80 1F 00 4C */	lwz r0, 0x4c(r31)
 /* 8000A64C 0000758C  90 01 00 40 */	stw r0, 0x40(r1)
-/* 8000A650 00007590  48 00 00 81 */	bl "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd"
+/* 8000A650 00007590  48 00 00 81 */	bl findUpperBound_binary_current$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$1__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd
 /* 8000A654 00007594  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8000A658 00007598  90 1F 00 54 */	stw r0, 0x54(r31)
 /* 8000A65C 0000759C  80 7F 00 54 */	lwz r3, 0x54(r31)
@@ -2140,8 +2140,8 @@ lbl_8000A6AC:
 /* 8000A6C8 00007608  38 21 00 70 */	addi r1, r1, 0x70
 /* 8000A6CC 0000760C  4E 80 00 20 */	blr 
 
-.global "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd"
-"findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd":
+.global findUpperBound_binary_current$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$1__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd
+findUpperBound_binary_current$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$1__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd:
 /* 8000A6D0 00007610  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8000A6D4 00007614  7C 08 02 A6 */	mflr r0
 /* 8000A6D8 00007618  81 06 00 00 */	lwz r8, 0(r6)
@@ -2159,15 +2159,15 @@ lbl_8000A6AC:
 /* 8000A708 00007648  99 41 00 0C */	stb r10, 0xc(r1)
 /* 8000A70C 0000764C  91 21 00 14 */	stw r9, 0x14(r1)
 /* 8000A710 00007650  90 01 00 18 */	stw r0, 0x18(r1)
-/* 8000A714 00007654  48 00 00 19 */	bl "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
+/* 8000A714 00007654  48 00 00 19 */	bl findUpperBound_binary_current$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less$$0d$$1
 /* 8000A718 00007658  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8000A71C 0000765C  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 8000A720 00007660  7C 08 03 A6 */	mtlr r0
 /* 8000A724 00007664  38 21 00 30 */	addi r1, r1, 0x30
 /* 8000A728 00007668  4E 80 00 20 */	blr 
 
-.global "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
-"findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>":
+.global findUpperBound_binary_current$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less$$0d$$1
+findUpperBound_binary_current$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less$$0d$$1:
 /* 8000A72C 0000766C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8000A730 00007670  7C 08 02 A6 */	mflr r0
 /* 8000A734 00007674  81 26 00 00 */	lwz r9, 0(r6)
@@ -2250,7 +2250,7 @@ lbl_8000A828:
 /* 8000A850 00007790  99 01 00 0C */	stb r8, 0xc(r1)
 /* 8000A854 00007794  91 21 00 2C */	stw r9, 0x2c(r1)
 /* 8000A858 00007798  90 01 00 28 */	stw r0, 0x28(r1)
-/* 8000A85C 0000779C  48 00 11 B5 */	bl "upper_bound<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
+/* 8000A85C 0000779C  48 00 11 B5 */	bl upper_bound$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less$$0d$$1
 /* 8000A860 000077A0  38 61 00 4C */	addi r3, r1, 0x4c
 /* 8000A864 000077A4  48 00 00 D8 */	b lbl_8000A93C
 lbl_8000A868:
@@ -2310,7 +2310,7 @@ lbl_8000A908:
 /* 8000A928 00007868  38 E1 00 08 */	addi r7, r1, 8
 /* 8000A92C 0000786C  91 01 00 1C */	stw r8, 0x1c(r1)
 /* 8000A930 00007870  90 01 00 18 */	stw r0, 0x18(r1)
-/* 8000A934 00007874  48 00 10 DD */	bl "upper_bound<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
+/* 8000A934 00007874  48 00 10 DD */	bl upper_bound$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less$$0d$$1
 /* 8000A938 00007878  38 61 00 40 */	addi r3, r1, 0x40
 lbl_8000A93C:
 /* 8000A93C 0000787C  80 03 00 00 */	lwz r0, 0(r3)
@@ -2751,11 +2751,11 @@ lbl_8000AF10:
 /* 8000AF20 00007E60  40 80 00 50 */	bge lbl_8000AF70
 /* 8000AF24 00007E64  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000AF28 00007E68  38 00 00 00 */	li r0, 0
-/* 8000AF2C 00007E6C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000AF2C 00007E6C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000AF30 00007E70  28 04 00 04 */	cmplwi r4, 4
 /* 8000AF34 00007E74  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8000AF38 00007E78  54 84 10 3A */	slwi r4, r4, 2
-/* 8000AF3C 00007E7C  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000AF3C 00007E7C  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000AF40 00007E80  7C 60 22 14 */	add r3, r0, r4
 /* 8000AF44 00007E84  41 80 00 08 */	blt lbl_8000AF4C
 /* 8000AF48 00007E88  38 61 00 34 */	addi r3, r1, 0x34
@@ -2763,8 +2763,8 @@ lbl_8000AF4C:
 /* 8000AF4C 00007E8C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000AF50 00007E90  28 0C 00 00 */	cmplwi r12, 0
 /* 8000AF54 00007E94  40 82 00 0C */	bne lbl_8000AF60
-/* 8000AF58 00007E98  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000AF5C 00007E9C  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000AF58 00007E98  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000AF5C 00007E9C  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000AF60:
 /* 8000AF60 00007EA0  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000AF64 00007EA4  7D 89 03 A6 */	mtctr r12
@@ -2777,11 +2777,11 @@ lbl_8000AF70:
 /* 8000AF7C 00007EBC  40 82 00 4C */	bne lbl_8000AFC8
 /* 8000AF80 00007EC0  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000AF84 00007EC4  38 00 00 00 */	li r0, 0
-/* 8000AF88 00007EC8  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000AF88 00007EC8  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000AF8C 00007ECC  28 04 00 04 */	cmplwi r4, 4
 /* 8000AF90 00007ED0  90 01 00 30 */	stw r0, 0x30(r1)
 /* 8000AF94 00007ED4  54 84 10 3A */	slwi r4, r4, 2
-/* 8000AF98 00007ED8  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000AF98 00007ED8  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000AF9C 00007EDC  7C 60 22 14 */	add r3, r0, r4
 /* 8000AFA0 00007EE0  41 80 00 08 */	blt lbl_8000AFA8
 /* 8000AFA4 00007EE4  38 61 00 30 */	addi r3, r1, 0x30
@@ -2789,8 +2789,8 @@ lbl_8000AFA8:
 /* 8000AFA8 00007EE8  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000AFAC 00007EEC  28 0C 00 00 */	cmplwi r12, 0
 /* 8000AFB0 00007EF0  40 82 00 0C */	bne lbl_8000AFBC
-/* 8000AFB4 00007EF4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000AFB8 00007EF8  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000AFB4 00007EF4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000AFB8 00007EF8  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000AFBC:
 /* 8000AFBC 00007EFC  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000AFC0 00007F00  7D 89 03 A6 */	mtctr r12
@@ -2808,11 +2808,11 @@ lbl_8000AFD4:
 /* 8000AFE8 00007F28  40 80 00 50 */	bge lbl_8000B038
 /* 8000AFEC 00007F2C  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000AFF0 00007F30  38 00 00 00 */	li r0, 0
-/* 8000AFF4 00007F34  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000AFF4 00007F34  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000AFF8 00007F38  28 04 00 04 */	cmplwi r4, 4
 /* 8000AFFC 00007F3C  90 01 00 2C */	stw r0, 0x2c(r1)
 /* 8000B000 00007F40  54 84 10 3A */	slwi r4, r4, 2
-/* 8000B004 00007F44  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000B004 00007F44  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000B008 00007F48  7C 60 22 14 */	add r3, r0, r4
 /* 8000B00C 00007F4C  41 80 00 08 */	blt lbl_8000B014
 /* 8000B010 00007F50  38 61 00 2C */	addi r3, r1, 0x2c
@@ -2820,8 +2820,8 @@ lbl_8000B014:
 /* 8000B014 00007F54  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B018 00007F58  28 0C 00 00 */	cmplwi r12, 0
 /* 8000B01C 00007F5C  40 82 00 0C */	bne lbl_8000B028
-/* 8000B020 00007F60  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000B024 00007F64  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000B020 00007F60  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000B024 00007F64  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000B028:
 /* 8000B028 00007F68  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000B02C 00007F6C  7D 89 03 A6 */	mtctr r12
@@ -2834,11 +2834,11 @@ lbl_8000B038:
 /* 8000B044 00007F84  40 82 00 4C */	bne lbl_8000B090
 /* 8000B048 00007F88  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000B04C 00007F8C  38 00 00 00 */	li r0, 0
-/* 8000B050 00007F90  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000B050 00007F90  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000B054 00007F94  28 04 00 04 */	cmplwi r4, 4
 /* 8000B058 00007F98  90 01 00 28 */	stw r0, 0x28(r1)
 /* 8000B05C 00007F9C  54 84 10 3A */	slwi r4, r4, 2
-/* 8000B060 00007FA0  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000B060 00007FA0  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000B064 00007FA4  7C 60 22 14 */	add r3, r0, r4
 /* 8000B068 00007FA8  41 80 00 08 */	blt lbl_8000B070
 /* 8000B06C 00007FAC  38 61 00 28 */	addi r3, r1, 0x28
@@ -2846,8 +2846,8 @@ lbl_8000B070:
 /* 8000B070 00007FB0  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B074 00007FB4  28 0C 00 00 */	cmplwi r12, 0
 /* 8000B078 00007FB8  40 82 00 0C */	bne lbl_8000B084
-/* 8000B07C 00007FBC  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000B080 00007FC0  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000B07C 00007FBC  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000B080 00007FC0  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000B084:
 /* 8000B084 00007FC4  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000B088 00007FC8  7D 89 03 A6 */	mtctr r12
@@ -2866,11 +2866,11 @@ lbl_8000B09C:
 /* 8000B0B4 00007FF4  40 80 00 50 */	bge lbl_8000B104
 /* 8000B0B8 00007FF8  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000B0BC 00007FFC  38 00 00 00 */	li r0, 0
-/* 8000B0C0 00008000  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000B0C0 00008000  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000B0C4 00008004  28 04 00 04 */	cmplwi r4, 4
 /* 8000B0C8 00008008  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8000B0CC 0000800C  54 84 10 3A */	slwi r4, r4, 2
-/* 8000B0D0 00008010  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000B0D0 00008010  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000B0D4 00008014  7C 60 22 14 */	add r3, r0, r4
 /* 8000B0D8 00008018  41 80 00 08 */	blt lbl_8000B0E0
 /* 8000B0DC 0000801C  38 61 00 24 */	addi r3, r1, 0x24
@@ -2878,8 +2878,8 @@ lbl_8000B0E0:
 /* 8000B0E0 00008020  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B0E4 00008024  28 0C 00 00 */	cmplwi r12, 0
 /* 8000B0E8 00008028  40 82 00 0C */	bne lbl_8000B0F4
-/* 8000B0EC 0000802C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000B0F0 00008030  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000B0EC 0000802C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000B0F0 00008030  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000B0F4:
 /* 8000B0F4 00008034  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000B0F8 00008038  7D 89 03 A6 */	mtctr r12
@@ -2892,11 +2892,11 @@ lbl_8000B104:
 /* 8000B110 00008050  40 82 00 4C */	bne lbl_8000B15C
 /* 8000B114 00008054  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000B118 00008058  38 00 00 00 */	li r0, 0
-/* 8000B11C 0000805C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000B11C 0000805C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000B120 00008060  28 04 00 04 */	cmplwi r4, 4
 /* 8000B124 00008064  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8000B128 00008068  54 84 10 3A */	slwi r4, r4, 2
-/* 8000B12C 0000806C  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000B12C 0000806C  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000B130 00008070  7C 60 22 14 */	add r3, r0, r4
 /* 8000B134 00008074  41 80 00 08 */	blt lbl_8000B13C
 /* 8000B138 00008078  38 61 00 20 */	addi r3, r1, 0x20
@@ -2904,8 +2904,8 @@ lbl_8000B13C:
 /* 8000B13C 0000807C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B140 00008080  28 0C 00 00 */	cmplwi r12, 0
 /* 8000B144 00008084  40 82 00 0C */	bne lbl_8000B150
-/* 8000B148 00008088  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000B14C 0000808C  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000B148 00008088  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000B14C 0000808C  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000B150:
 /* 8000B150 00008090  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000B154 00008094  7D 89 03 A6 */	mtctr r12
@@ -2926,11 +2926,11 @@ lbl_8000B168:
 /* 8000B188 000080C8  40 80 00 50 */	bge lbl_8000B1D8
 /* 8000B18C 000080CC  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000B190 000080D0  38 00 00 00 */	li r0, 0
-/* 8000B194 000080D4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000B194 000080D4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000B198 000080D8  28 04 00 04 */	cmplwi r4, 4
 /* 8000B19C 000080DC  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 8000B1A0 000080E0  54 84 10 3A */	slwi r4, r4, 2
-/* 8000B1A4 000080E4  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000B1A4 000080E4  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000B1A8 000080E8  7C 60 22 14 */	add r3, r0, r4
 /* 8000B1AC 000080EC  41 80 00 08 */	blt lbl_8000B1B4
 /* 8000B1B0 000080F0  38 61 00 1C */	addi r3, r1, 0x1c
@@ -2938,8 +2938,8 @@ lbl_8000B1B4:
 /* 8000B1B4 000080F4  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B1B8 000080F8  28 0C 00 00 */	cmplwi r12, 0
 /* 8000B1BC 000080FC  40 82 00 0C */	bne lbl_8000B1C8
-/* 8000B1C0 00008100  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000B1C4 00008104  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000B1C0 00008100  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000B1C4 00008104  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000B1C8:
 /* 8000B1C8 00008108  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000B1CC 0000810C  7D 89 03 A6 */	mtctr r12
@@ -2952,11 +2952,11 @@ lbl_8000B1D8:
 /* 8000B1E4 00008124  40 82 00 4C */	bne lbl_8000B230
 /* 8000B1E8 00008128  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000B1EC 0000812C  38 00 00 00 */	li r0, 0
-/* 8000B1F0 00008130  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000B1F0 00008130  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000B1F4 00008134  28 04 00 04 */	cmplwi r4, 4
 /* 8000B1F8 00008138  90 01 00 18 */	stw r0, 0x18(r1)
 /* 8000B1FC 0000813C  54 84 10 3A */	slwi r4, r4, 2
-/* 8000B200 00008140  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000B200 00008140  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000B204 00008144  7C 60 22 14 */	add r3, r0, r4
 /* 8000B208 00008148  41 80 00 08 */	blt lbl_8000B210
 /* 8000B20C 0000814C  38 61 00 18 */	addi r3, r1, 0x18
@@ -2964,8 +2964,8 @@ lbl_8000B210:
 /* 8000B210 00008150  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B214 00008154  28 0C 00 00 */	cmplwi r12, 0
 /* 8000B218 00008158  40 82 00 0C */	bne lbl_8000B224
-/* 8000B21C 0000815C  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000B220 00008160  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000B21C 0000815C  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000B220 00008160  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000B224:
 /* 8000B224 00008164  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000B228 00008168  7D 89 03 A6 */	mtctr r12
@@ -2982,11 +2982,11 @@ lbl_8000B23C:
 /* 8000B24C 0000818C  40 80 00 50 */	bge lbl_8000B29C
 /* 8000B250 00008190  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8000B254 00008194  38 00 00 00 */	li r0, 0
-/* 8000B258 00008198  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000B258 00008198  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000B25C 0000819C  28 04 00 04 */	cmplwi r4, 4
 /* 8000B260 000081A0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8000B264 000081A4  54 84 10 3A */	slwi r4, r4, 2
-/* 8000B268 000081A8  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000B268 000081A8  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000B26C 000081AC  7C 60 22 14 */	add r3, r0, r4
 /* 8000B270 000081B0  41 80 00 08 */	blt lbl_8000B278
 /* 8000B274 000081B4  38 61 00 14 */	addi r3, r1, 0x14
@@ -2994,8 +2994,8 @@ lbl_8000B278:
 /* 8000B278 000081B8  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B27C 000081BC  28 0C 00 00 */	cmplwi r12, 0
 /* 8000B280 000081C0  40 82 00 0C */	bne lbl_8000B28C
-/* 8000B284 000081C4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000B288 000081C8  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000B284 000081C4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000B288 000081C8  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000B28C:
 /* 8000B28C 000081CC  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000B290 000081D0  7D 89 03 A6 */	mtctr r12
@@ -3008,11 +3008,11 @@ lbl_8000B29C:
 /* 8000B2A8 000081E8  40 82 00 4C */	bne lbl_8000B2F4
 /* 8000B2AC 000081EC  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 8000B2B0 000081F0  38 00 00 00 */	li r0, 0
-/* 8000B2B4 000081F4  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
+/* 8000B2B4 000081F4  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
 /* 8000B2B8 000081F8  28 04 00 04 */	cmplwi r4, 4
 /* 8000B2BC 000081FC  90 01 00 10 */	stw r0, 0x10(r1)
 /* 8000B2C0 00008200  54 84 10 3A */	slwi r4, r4, 2
-/* 8000B2C4 00008204  38 03 32 F0 */	addi r0, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+/* 8000B2C4 00008204  38 03 32 F0 */	addi r0, r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l
 /* 8000B2C8 00008208  7C 60 22 14 */	add r3, r0, r4
 /* 8000B2CC 0000820C  41 80 00 08 */	blt lbl_8000B2D4
 /* 8000B2D0 00008210  38 61 00 10 */	addi r3, r1, 0x10
@@ -3020,8 +3020,8 @@ lbl_8000B2D4:
 /* 8000B2D4 00008214  81 83 00 00 */	lwz r12, 0(r3)
 /* 8000B2D8 00008218  28 0C 00 00 */	cmplwi r12, 0
 /* 8000B2DC 0000821C  40 82 00 0C */	bne lbl_8000B2E8
-/* 8000B2E0 00008220  3C 60 80 47 */	lis r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha
-/* 8000B2E4 00008224  81 83 32 F0 */	lwz r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
+/* 8000B2E0 00008220  3C 60 80 47 */	lis r3, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@ha
+/* 8000B2E4 00008224  81 83 32 F0 */	lwz r12, gapfnExtrapolateParameter___Q27JStudio27$$2unnamed$$2functionvalue_cpp$$2@l(r3)
 lbl_8000B2E8:
 /* 8000B2E8 00008228  C8 5F 00 18 */	lfd f2, 0x18(r31)
 /* 8000B2EC 0000822C  7D 89 03 A6 */	mtctr r12
@@ -3054,7 +3054,7 @@ lbl_8000B314:
 /* 8000B350 00008290  80 1F 00 50 */	lwz r0, 0x50(r31)
 /* 8000B354 00008294  91 01 00 48 */	stw r8, 0x48(r1)
 /* 8000B358 00008298  90 01 00 4C */	stw r0, 0x4c(r1)
-/* 8000B35C 0000829C  48 00 00 F9 */	bl "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd"
+/* 8000B35C 0000829C  48 00 00 F9 */	bl findUpperBound_binary_current$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$1__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd
 /* 8000B360 000082A0  80 01 00 50 */	lwz r0, 0x50(r1)
 /* 8000B364 000082A4  90 1F 00 5C */	stw r0, 0x5c(r31)
 /* 8000B368 000082A8  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -3120,8 +3120,8 @@ lbl_8000B430:
 /* 8000B44C 0000838C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8000B450 00008390  4E 80 00 20 */	blr 
 
-.global "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd"
-"findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd":
+.global findUpperBound_binary_current$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$1__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd
+findUpperBound_binary_current$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$1__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd:
 /* 8000B454 00008394  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8000B458 00008398  7C 08 02 A6 */	mflr r0
 /* 8000B45C 0000839C  81 86 00 04 */	lwz r12, 4(r6)
@@ -3147,7 +3147,7 @@ lbl_8000B430:
 /* 8000B4AC 000083EC  91 41 00 1C */	stw r10, 0x1c(r1)
 /* 8000B4B0 000083F0  91 21 00 20 */	stw r9, 0x20(r1)
 /* 8000B4B4 000083F4  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8000B4B8 000083F8  48 00 00 21 */	bl "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
+/* 8000B4B8 000083F8  48 00 00 21 */	bl findUpperBound_binary_current$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less$$0d$$1
 /* 8000B4BC 000083FC  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8000B4C0 00008400  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 8000B4C4 00008404  83 C1 00 38 */	lwz r30, 0x38(r1)
@@ -3156,8 +3156,8 @@ lbl_8000B430:
 /* 8000B4D0 00008410  38 21 00 40 */	addi r1, r1, 0x40
 /* 8000B4D4 00008414  4E 80 00 20 */	blr 
 
-.global "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
-"findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>":
+.global findUpperBound_binary_current$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less$$0d$$1
+findUpperBound_binary_current$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less$$0d$$1:
 /* 8000B4D8 00008418  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8000B4DC 0000841C  7C 08 02 A6 */	mflr r0
 /* 8000B4E0 00008420  81 26 00 00 */	lwz r9, 0(r6)
@@ -3264,7 +3264,7 @@ lbl_8000B620:
 /* 8000B65C 0000859C  91 61 00 44 */	stw r11, 0x44(r1)
 /* 8000B660 000085A0  91 01 00 38 */	stw r8, 0x38(r1)
 /* 8000B664 000085A4  90 01 00 3C */	stw r0, 0x3c(r1)
-/* 8000B668 000085A8  48 00 04 29 */	bl "upper_bound<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
+/* 8000B668 000085A8  48 00 04 29 */	bl upper_bound$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less$$0d$$1
 /* 8000B66C 000085AC  38 A1 00 80 */	addi r5, r1, 0x80
 /* 8000B670 000085B0  48 00 01 28 */	b lbl_8000B798
 lbl_8000B674:
@@ -3344,7 +3344,7 @@ lbl_8000B754:
 /* 8000B784 000086C4  91 21 00 24 */	stw r9, 0x24(r1)
 /* 8000B788 000086C8  91 01 00 18 */	stw r8, 0x18(r1)
 /* 8000B78C 000086CC  90 01 00 1C */	stw r0, 0x1c(r1)
-/* 8000B790 000086D0  48 00 03 01 */	bl "upper_bound<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
+/* 8000B790 000086D0  48 00 03 01 */	bl upper_bound$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less$$0d$$1
 /* 8000B794 000086D4  38 A1 00 68 */	addi r5, r1, 0x68
 lbl_8000B798:
 /* 8000B798 000086D8  80 05 00 00 */	lwz r0, 0(r5)
@@ -3537,8 +3537,8 @@ lbl_8000B9F4:
 /* 8000BA08 00008948  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000BA0C 0000894C  4E 80 00 20 */	blr 
 
-.global "upper_bound<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
-"upper_bound<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>":
+.global upper_bound$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less$$0d$$1
+upper_bound$$0Q37JStudio29TFunctionValue_list_parameter15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less$$0d$$1:
 /* 8000BA10 00008950  80 05 00 00 */	lwz r0, 0(r5)
 /* 8000BA14 00008954  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000BA18 00008958  80 A4 00 00 */	lwz r5, 0(r4)
@@ -3575,8 +3575,8 @@ lbl_8000BA78:
 /* 8000BA88 000089C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000BA8C 000089CC  4E 80 00 20 */	blr 
 
-.global "upper_bound<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
-"upper_bound<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>":
+.global upper_bound$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less$$0d$$1
+upper_bound$$0Q37JStudio22TFunctionValue_hermite15TIterator_data_$$4d$$4Q23std7less$$0d$$1$$1__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less$$0d$$1:
 /* 8000BA90 000089D0  81 25 00 00 */	lwz r9, 0(r5)
 /* 8000BA94 000089D4  80 E4 00 00 */	lwz r7, 0(r4)
 /* 8000BA98 000089D8  94 21 FF E0 */	stwu r1, -0x20(r1)

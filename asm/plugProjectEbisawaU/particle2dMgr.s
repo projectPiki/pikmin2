@@ -484,8 +484,8 @@ lbl_803B9700:
 /* 803B9714 003B6654  38 21 01 30 */	addi r1, r1, 0x130
 /* 803B9718 003B6658  4E 80 00 20 */	blr 
 
-.global "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
-"create__14TParticle2dMgrFUsR10Vector2<f>UcUc":
+.global create__14TParticle2dMgrFUsR10Vector2$$0f$$1UcUc
+create__14TParticle2dMgrFUsR10Vector2$$0f$$1UcUc:
 /* 803B971C 003B665C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803B9720 003B6660  7C 08 02 A6 */	mflr r0
 /* 803B9724 003B6664  C0 02 13 60 */	lfs f0, lbl_8051F6C0@sda21(r2)
@@ -500,7 +500,7 @@ lbl_803B9700:
 /* 803B9748 003B6688  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 803B974C 003B668C  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 803B9750 003B6690  80 63 00 30 */	lwz r3, 0x30(r3)
-/* 803B9754 003B6694  4B CD 71 69 */	bl "createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
+/* 803B9754 003B6694  4B CD 71 69 */	bl createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3$$0f$$1UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
 /* 803B9758 003B6698  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 803B975C 003B669C  7C 08 03 A6 */	mtlr r0
 /* 803B9760 003B66A0  38 21 00 20 */	addi r1, r1, 0x20
@@ -570,7 +570,7 @@ __sinit_particle2dMgr_cpp:
 /* 803B9820 003B6760  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803B9824 003B6764  4E 80 00 20 */	blr 
 
-.global "@24@__dt__14TParticle2dMgrFv"
-"@24@__dt__14TParticle2dMgrFv":
+.global $$224$$2__dt__14TParticle2dMgrFv
+$$224$$2__dt__14TParticle2dMgrFv:
 /* 803B9828 003B6768  38 63 FF E8 */	addi r3, r3, -24
 /* 803B982C 003B676C  4B FF F8 38 */	b __dt__14TParticle2dMgrFv

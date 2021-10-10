@@ -135,8 +135,8 @@ setPort__13J2DOrthoGraphFv:
 /* 8003570C 0003264C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80035710 00032650  4E 80 00 20 */	blr 
 
-.global "setOrtho__13J2DOrthoGraphFRCQ29JGeometry8TBox2<f>ff"
-"setOrtho__13J2DOrthoGraphFRCQ29JGeometry8TBox2<f>ff":
+.global setOrtho__13J2DOrthoGraphFRCQ29JGeometry8TBox2$$0f$$1ff
+setOrtho__13J2DOrthoGraphFRCQ29JGeometry8TBox2$$0f$$1ff:
 /* 80035714 00032654  80 A4 00 00 */	lwz r5, 0(r4)
 /* 80035718 00032658  FC 40 10 50 */	fneg f2, f2
 /* 8003571C 0003265C  80 04 00 04 */	lwz r0, 4(r4)
@@ -169,8 +169,8 @@ setLookat__13J2DOrthoGraphFv:
 /* 8003577C 000326BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80035780 000326C0  4E 80 00 20 */	blr 
 
-.global "scissorBounds__13J2DOrthoGraphFPQ29JGeometry8TBox2<f>PCQ29JGeometry8TBox2<f>"
-"scissorBounds__13J2DOrthoGraphFPQ29JGeometry8TBox2<f>PCQ29JGeometry8TBox2<f>":
+.global scissorBounds__13J2DOrthoGraphFPQ29JGeometry8TBox2$$0f$$1PCQ29JGeometry8TBox2$$0f$$1
+scissorBounds__13J2DOrthoGraphFPQ29JGeometry8TBox2$$0f$$1PCQ29JGeometry8TBox2$$0f$$1:
 /* 80035784 000326C4  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 80035788 000326C8  C0 C3 00 04 */	lfs f6, 4(r3)
 /* 8003578C 000326CC  C0 23 00 C4 */	lfs f1, 0xc4(r3)
@@ -316,7 +316,7 @@ J2DDrawLine__FffffQ28JUtility6TColori:
 /* 80035994 000328D4  D0 01 00 78 */	stfs f0, 0x78(r1)
 /* 80035998 000328D8  90 A1 00 1C */	stw r5, 0x1c(r1)
 /* 8003599C 000328DC  90 01 00 20 */	stw r0, 0x20(r1)
-/* 800359A0 000328E0  48 00 10 41 */	bl "lineTo__14J2DGrafContextFQ29JGeometry8TVec2<f>"
+/* 800359A0 000328E0  48 00 10 41 */	bl lineTo__14J2DGrafContextFQ29JGeometry8TVec2$$0f$$1
 /* 800359A4 000328E4  3C 80 80 4A */	lis r4, __vt__13J2DOrthoGraph@ha
 /* 800359A8 000328E8  3C 60 80 4A */	lis r3, __vt__14J2DGrafContext@ha
 /* 800359AC 000328EC  38 04 06 00 */	addi r0, r4, __vt__13J2DOrthoGraph@l
@@ -354,14 +354,14 @@ J2DFillBox__FffffQ28JUtility6TColor:
 /* 80035A20 00032960  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 80035A24 00032964  D0 61 00 14 */	stfs f3, 0x14(r1)
 /* 80035A28 00032968  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80035A2C 0003296C  48 00 00 15 */	bl "J2DFillBox__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColor"
+/* 80035A2C 0003296C  48 00 00 15 */	bl J2DFillBox__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColor
 /* 80035A30 00032970  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80035A34 00032974  7C 08 03 A6 */	mtlr r0
 /* 80035A38 00032978  38 21 00 20 */	addi r1, r1, 0x20
 /* 80035A3C 0003297C  4E 80 00 20 */	blr 
 
-.global "J2DFillBox__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColor"
-"J2DFillBox__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColor":
+.global J2DFillBox__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColor
+J2DFillBox__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColor:
 /* 80035A40 00032980  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 80035A44 00032984  7C 08 02 A6 */	mflr r0
 /* 80035A48 00032988  C0 22 84 20 */	lfs f1, lbl_80516780@sda21(r2)
@@ -399,7 +399,7 @@ J2DFillBox__FffffQ28JUtility6TColor:
 /* 80035AC8 00032A08  48 00 0B C5 */	bl setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 80035ACC 00032A0C  7F C4 F3 78 */	mr r4, r30
 /* 80035AD0 00032A10  7F A3 EB 78 */	mr r3, r29
-/* 80035AD4 00032A14  48 00 0D 01 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 80035AD4 00032A14  48 00 0D 01 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 80035AD8 00032A18  3C 80 80 4A */	lis r4, __vt__13J2DOrthoGraph@ha
 /* 80035ADC 00032A1C  3C 60 80 4A */	lis r3, __vt__14J2DGrafContext@ha
 /* 80035AE0 00032A20  38 04 06 00 */	addi r0, r4, __vt__13J2DOrthoGraph@l
@@ -438,14 +438,14 @@ J2DFillBox__FffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtili
 /* 80035B58 00032A98  D0 41 00 1C */	stfs f2, 0x1c(r1)
 /* 80035B5C 00032A9C  D0 61 00 20 */	stfs f3, 0x20(r1)
 /* 80035B60 00032AA0  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 80035B64 00032AA4  48 00 00 15 */	bl "J2DFillBox__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor"
+/* 80035B64 00032AA4  48 00 00 15 */	bl J2DFillBox__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 80035B68 00032AA8  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80035B6C 00032AAC  7C 08 03 A6 */	mtlr r0
 /* 80035B70 00032AB0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80035B74 00032AB4  4E 80 00 20 */	blr 
 
-.global "J2DFillBox__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor"
-"J2DFillBox__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor":
+.global J2DFillBox__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+J2DFillBox__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor:
 /* 80035B78 00032AB8  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80035B7C 00032ABC  7C 08 02 A6 */	mflr r0
 /* 80035B80 00032AC0  C0 22 84 20 */	lfs f1, lbl_80516780@sda21(r2)
@@ -486,7 +486,7 @@ J2DFillBox__FffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtili
 /* 80035C0C 00032B4C  48 00 0A 81 */	bl setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 80035C10 00032B50  7F 64 DB 78 */	mr r4, r27
 /* 80035C14 00032B54  7F 43 D3 78 */	mr r3, r26
-/* 80035C18 00032B58  48 00 0B BD */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 80035C18 00032B58  48 00 0B BD */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 80035C1C 00032B5C  3C 80 80 4A */	lis r4, __vt__13J2DOrthoGraph@ha
 /* 80035C20 00032B60  3C 60 80 4A */	lis r3, __vt__14J2DGrafContext@ha
 /* 80035C24 00032B64  38 04 06 00 */	addi r0, r4, __vt__13J2DOrthoGraph@l
@@ -515,14 +515,14 @@ J2DDrawFrame__FffffQ28JUtility6TColorUc:
 /* 80035C74 00032BB4  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 80035C78 00032BB8  D0 61 00 14 */	stfs f3, 0x14(r1)
 /* 80035C7C 00032BBC  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80035C80 00032BC0  48 00 00 15 */	bl "J2DDrawFrame__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColorUc"
+/* 80035C80 00032BC0  48 00 00 15 */	bl J2DDrawFrame__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColorUc
 /* 80035C84 00032BC4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80035C88 00032BC8  7C 08 03 A6 */	mtlr r0
 /* 80035C8C 00032BCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80035C90 00032BD0  4E 80 00 20 */	blr 
 
-.global "J2DDrawFrame__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColorUc"
-"J2DDrawFrame__FRCQ29JGeometry8TBox2<f>Q28JUtility6TColorUc":
+.global J2DDrawFrame__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColorUc
+J2DDrawFrame__FRCQ29JGeometry8TBox2$$0f$$1Q28JUtility6TColorUc:
 /* 80035C94 00032BD4  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 80035C98 00032BD8  7C 08 02 A6 */	mflr r0
 /* 80035C9C 00032BDC  C0 22 84 20 */	lfs f1, lbl_80516780@sda21(r2)
@@ -565,7 +565,7 @@ J2DDrawFrame__FffffQ28JUtility6TColorUc:
 /* 80035D30 00032C70  48 00 0A 79 */	bl setLineWidth__14J2DGrafContextFUc
 /* 80035D34 00032C74  7F A4 EB 78 */	mr r4, r29
 /* 80035D38 00032C78  7F 83 E3 78 */	mr r3, r28
-/* 80035D3C 00032C7C  48 00 0B 95 */	bl "drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 80035D3C 00032C7C  48 00 0B 95 */	bl drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 80035D40 00032C80  3C 80 80 4A */	lis r4, __vt__13J2DOrthoGraph@ha
 /* 80035D44 00032C84  3C 60 80 4A */	lis r3, __vt__14J2DGrafContext@ha
 /* 80035D48 00032C88  38 04 06 00 */	addi r0, r4, __vt__13J2DOrthoGraph@l

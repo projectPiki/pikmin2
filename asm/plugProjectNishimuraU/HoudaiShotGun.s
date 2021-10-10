@@ -1039,8 +1039,8 @@ isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C4824 002C1764  88 63 00 06 */	lbz r3, 6(r3)
 /* 802C4828 002C1768  4E 80 00 20 */	blr 
 
-.global "setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>"
-"setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>":
+.global setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3$$0f$$1
+setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3$$0f$$1:
 /* 802C482C 002C176C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 802C4830 002C1770  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 802C4834 002C1774  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2036,7 +2036,7 @@ lbl_802C5594:
 /* 802C560C 002C254C  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 802C5610 002C2550  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 802C5614 002C2554  80 7D 00 30 */	lwz r3, 0x30(r29)
-/* 802C5618 002C2558  48 12 6D B9 */	bl "setPosNrm__Q23efx11THdamaSightFR10Vector3<f>R10Vector3<f>"
+/* 802C5618 002C2558  48 12 6D B9 */	bl setPosNrm__Q23efx11THdamaSightFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 802C561C 002C255C  48 00 00 18 */	b lbl_802C5634
 lbl_802C5620:
 /* 802C5620 002C2560  80 7D 00 30 */	lwz r3, 0x30(r29)
@@ -2261,7 +2261,7 @@ lbl_802C58F4:
 /* 802C5908 002C2848  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C590C 002C284C  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx11THdamaSightFv"
-"@4@__dt__Q23efx11THdamaSightFv":
+.global $$24$$2__dt__Q23efx11THdamaSightFv
+$$24$$2__dt__Q23efx11THdamaSightFv:
 /* 802C5910 002C2850  38 63 FF FC */	addi r3, r3, -4
 /* 802C5914 002C2854  4B FF FE F8 */	b __dt__Q23efx11THdamaSightFv

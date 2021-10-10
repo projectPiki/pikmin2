@@ -1507,10 +1507,10 @@ __sinit_JUTGamePad_cpp:
 /* 8002E938 0002B878  38 63 6E 80 */	addi r3, r3, mPadList__10JUTGamePad@l
 /* 8002E93C 0002B87C  4B FF 7E F5 */	bl __ct__10JSUPtrListFb
 /* 8002E940 0002B880  3C 60 80 50 */	lis r3, mPadList__10JUTGamePad@ha
-/* 8002E944 0002B884  3C 80 80 03 */	lis r4, "__dt__21JSUList<10JUTGamePad>Fv"@ha
+/* 8002E944 0002B884  3C 80 80 03 */	lis r4, __dt__21JSUList$$010JUTGamePad$$1Fv@ha
 /* 8002E948 0002B888  3C A0 80 4F */	lis r5, lbl_804F03F0@ha
 /* 8002E94C 0002B88C  38 63 6E 80 */	addi r3, r3, mPadList__10JUTGamePad@l
-/* 8002E950 0002B890  38 84 EA E0 */	addi r4, r4, "__dt__21JSUList<10JUTGamePad>Fv"@l
+/* 8002E950 0002B890  38 84 EA E0 */	addi r4, r4, __dt__21JSUList$$010JUTGamePad$$1Fv@l
 /* 8002E954 0002B894  38 A5 03 F0 */	addi r5, r5, lbl_804F03F0@l
 /* 8002E958 0002B898  48 09 2D A9 */	bl __register_global_object
 /* 8002E95C 0002B89C  3C 60 80 50 */	lis r3, mPadButton__10JUTGamePad@ha
@@ -1557,10 +1557,10 @@ __sinit_JUTGamePad_cpp:
 /* 8002EA00 0002B940  90 CD 88 DC */	stw r6, lbl_80514F5C@sda21(r13)
 /* 8002EA04 0002B944  4B FF 7E 2D */	bl __ct__10JSUPtrListFb
 /* 8002EA08 0002B948  3C 60 80 50 */	lis r3, sPatternList__19JUTGamePadLongPress@ha
-/* 8002EA0C 0002B94C  3C 80 80 03 */	lis r4, "__dt__30JSUList<19JUTGamePadLongPress>Fv"@ha
+/* 8002EA0C 0002B94C  3C 80 80 03 */	lis r4, __dt__30JSUList$$019JUTGamePadLongPress$$1Fv@ha
 /* 8002EA10 0002B950  3C A0 80 4F */	lis r5, lbl_804F03FC@ha
 /* 8002EA14 0002B954  38 63 71 78 */	addi r3, r3, sPatternList__19JUTGamePadLongPress@l
-/* 8002EA18 0002B958  38 84 EA 34 */	addi r4, r4, "__dt__30JSUList<19JUTGamePadLongPress>Fv"@l
+/* 8002EA18 0002B958  38 84 EA 34 */	addi r4, r4, __dt__30JSUList$$019JUTGamePadLongPress$$1Fv@l
 /* 8002EA1C 0002B95C  38 A5 03 FC */	addi r5, r5, lbl_804F03FC@l
 /* 8002EA20 0002B960  48 09 2C E1 */	bl __register_global_object
 /* 8002EA24 0002B964  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1568,8 +1568,8 @@ __sinit_JUTGamePad_cpp:
 /* 8002EA2C 0002B96C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002EA30 0002B970  4E 80 00 20 */	blr 
 
-.global "__dt__30JSUList<19JUTGamePadLongPress>Fv"
-"__dt__30JSUList<19JUTGamePadLongPress>Fv":
+.global __dt__30JSUList$$019JUTGamePadLongPress$$1Fv
+__dt__30JSUList$$019JUTGamePadLongPress$$1Fv:
 /* 8002EA34 0002B974  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002EA38 0002B978  7C 08 02 A6 */	mflr r0
 /* 8002EA3C 0002B97C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1621,8 +1621,8 @@ __ct__Q210JUTGamePad7CButtonFv:
 /* 8002EAD8 0002BA18  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8002EADC 0002BA1C  4E 80 00 20 */	blr 
 
-.global "__dt__21JSUList<10JUTGamePad>Fv"
-"__dt__21JSUList<10JUTGamePad>Fv":
+.global __dt__21JSUList$$010JUTGamePad$$1Fv
+__dt__21JSUList$$010JUTGamePad$$1Fv:
 /* 8002EAE0 0002BA20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002EAE4 0002BA24  7C 08 02 A6 */	mflr r0
 /* 8002EAE8 0002BA28  90 01 00 14 */	stw r0, 0x14(r1)

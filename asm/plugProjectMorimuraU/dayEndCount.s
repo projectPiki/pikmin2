@@ -17,10 +17,10 @@ __ct__Q28Morimura12TDayEndCountFv:
 /* 803440B4 00340FF4  38 00 FF FF */	li r0, -1
 /* 803440B8 00340FF8  90 9F 00 00 */	stw r4, 0(r31)
 /* 803440BC 00340FFC  38 A4 00 10 */	addi r5, r4, 0x10
-/* 803440C0 00341000  3C 60 80 04 */	lis r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 803440C0 00341000  3C 60 80 04 */	lis r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 803440C4 00341004  38 C0 00 04 */	li r6, 4
 /* 803440C8 00341008  90 BF 00 18 */	stw r5, 0x18(r31)
-/* 803440CC 0034100C  38 83 9B A0 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 803440CC 0034100C  38 83 9B A0 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 803440D0 00341010  38 7F 00 96 */	addi r3, r31, 0x96
 /* 803440D4 00341014  38 A0 00 00 */	li r5, 0
 /* 803440D8 00341018  91 1F 00 80 */	stw r8, 0x80(r31)
@@ -31,9 +31,9 @@ __ct__Q28Morimura12TDayEndCountFv:
 /* 803440EC 0034102C  90 1F 00 90 */	stw r0, 0x90(r31)
 /* 803440F0 00341030  99 1F 00 94 */	stb r8, 0x94(r31)
 /* 803440F4 00341034  4B D7 D7 49 */	bl __construct_array
-/* 803440F8 00341038  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 803440F8 00341038  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 803440FC 0034103C  38 7F 00 A6 */	addi r3, r31, 0xa6
-/* 80344100 00341040  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80344100 00341040  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80344104 00341044  38 A0 00 00 */	li r5, 0
 /* 80344108 00341048  38 C0 00 04 */	li r6, 4
 /* 8034410C 0034104C  38 E0 00 04 */	li r7, 4
@@ -883,7 +883,7 @@ lbl_80344BD8:
 /* 80344D6C 00341CAC  80 01 00 D4 */	lwz r0, 0xd4(r1)
 /* 80344D70 00341CB0  B0 1C 00 A2 */	sth r0, 0xa2(r28)
 /* 80344D74 00341CB4  B0 DC 00 A4 */	sth r6, 0xa4(r28)
-/* 80344D78 00341CB8  4B CF 80 AD */	bl "setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2<s>"
+/* 80344D78 00341CB8  4B CF 80 AD */	bl setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2$$0s$$1
 /* 80344D7C 00341CBC  88 1C 00 94 */	lbz r0, 0x94(r28)
 /* 80344D80 00341CC0  28 00 00 00 */	cmplwi r0, 0
 /* 80344D84 00341CC4  41 82 00 70 */	beq lbl_80344DF4
@@ -1346,10 +1346,10 @@ __ct__Q28Morimura18TChallengeEndCountFv:
 /* 80345440 00342380  38 00 FF FF */	li r0, -1
 /* 80345444 00342384  90 9F 00 00 */	stw r4, 0(r31)
 /* 80345448 00342388  38 A4 00 10 */	addi r5, r4, 0x10
-/* 8034544C 0034238C  3C 60 80 04 */	lis r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 8034544C 0034238C  3C 60 80 04 */	lis r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345450 00342390  38 C0 00 04 */	li r6, 4
 /* 80345454 00342394  90 BF 00 18 */	stw r5, 0x18(r31)
-/* 80345458 00342398  38 83 9B A0 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345458 00342398  38 83 9B A0 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 8034545C 0034239C  38 7F 00 96 */	addi r3, r31, 0x96
 /* 80345460 003423A0  38 A0 00 00 */	li r5, 0
 /* 80345464 003423A4  91 1F 00 80 */	stw r8, 0x80(r31)
@@ -1360,9 +1360,9 @@ __ct__Q28Morimura18TChallengeEndCountFv:
 /* 80345478 003423B8  90 1F 00 90 */	stw r0, 0x90(r31)
 /* 8034547C 003423BC  99 1F 00 94 */	stb r8, 0x94(r31)
 /* 80345480 003423C0  4B D7 C3 BD */	bl __construct_array
-/* 80345484 003423C4  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345484 003423C4  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345488 003423C8  38 7F 00 A6 */	addi r3, r31, 0xa6
-/* 8034548C 003423CC  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 8034548C 003423CC  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345490 003423D0  38 A0 00 00 */	li r5, 0
 /* 80345494 003423D4  38 C0 00 04 */	li r6, 4
 /* 80345498 003423D8  38 E0 00 04 */	li r7, 4
@@ -1489,10 +1489,10 @@ __ct__Q28Morimura20TChallengeEndCount1pFv:
 /* 80345650 00342590  38 00 FF FF */	li r0, -1
 /* 80345654 00342594  90 9E 00 00 */	stw r4, 0(r30)
 /* 80345658 00342598  38 A4 00 10 */	addi r5, r4, 0x10
-/* 8034565C 0034259C  3C 60 80 04 */	lis r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 8034565C 0034259C  3C 60 80 04 */	lis r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345660 003425A0  38 C0 00 04 */	li r6, 4
 /* 80345664 003425A4  90 BE 00 18 */	stw r5, 0x18(r30)
-/* 80345668 003425A8  38 83 9B A0 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345668 003425A8  38 83 9B A0 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 8034566C 003425AC  38 7E 00 96 */	addi r3, r30, 0x96
 /* 80345670 003425B0  38 A0 00 00 */	li r5, 0
 /* 80345674 003425B4  91 1E 00 80 */	stw r8, 0x80(r30)
@@ -1503,9 +1503,9 @@ __ct__Q28Morimura20TChallengeEndCount1pFv:
 /* 80345688 003425C8  90 1E 00 90 */	stw r0, 0x90(r30)
 /* 8034568C 003425CC  99 1E 00 94 */	stb r8, 0x94(r30)
 /* 80345690 003425D0  4B D7 C1 AD */	bl __construct_array
-/* 80345694 003425D4  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345694 003425D4  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345698 003425D8  38 7E 00 A6 */	addi r3, r30, 0xa6
-/* 8034569C 003425DC  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 8034569C 003425DC  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 803456A0 003425E0  38 A0 00 00 */	li r5, 0
 /* 803456A4 003425E4  38 C0 00 04 */	li r6, 4
 /* 803456A8 003425E8  38 E0 00 04 */	li r7, 4
@@ -1647,10 +1647,10 @@ __ct__Q28Morimura20TChallengeEndCount2pFv:
 /* 8034589C 003427DC  38 00 FF FF */	li r0, -1
 /* 803458A0 003427E0  90 9E 00 00 */	stw r4, 0(r30)
 /* 803458A4 003427E4  38 A4 00 10 */	addi r5, r4, 0x10
-/* 803458A8 003427E8  3C 60 80 04 */	lis r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 803458A8 003427E8  3C 60 80 04 */	lis r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 803458AC 003427EC  38 C0 00 04 */	li r6, 4
 /* 803458B0 003427F0  90 BE 00 18 */	stw r5, 0x18(r30)
-/* 803458B4 003427F4  38 83 9B A0 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 803458B4 003427F4  38 83 9B A0 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 803458B8 003427F8  38 7E 00 96 */	addi r3, r30, 0x96
 /* 803458BC 003427FC  38 A0 00 00 */	li r5, 0
 /* 803458C0 00342800  91 1E 00 80 */	stw r8, 0x80(r30)
@@ -1661,9 +1661,9 @@ __ct__Q28Morimura20TChallengeEndCount2pFv:
 /* 803458D4 00342814  90 1E 00 90 */	stw r0, 0x90(r30)
 /* 803458D8 00342818  99 1E 00 94 */	stb r8, 0x94(r30)
 /* 803458DC 0034281C  4B D7 BF 61 */	bl __construct_array
-/* 803458E0 00342820  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 803458E0 00342820  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 803458E4 00342824  38 7E 00 A6 */	addi r3, r30, 0xa6
-/* 803458E8 00342828  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 803458E8 00342828  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 803458EC 0034282C  38 A0 00 00 */	li r5, 0
 /* 803458F0 00342830  38 C0 00 04 */	li r6, 4
 /* 803458F4 00342834  38 E0 00 04 */	li r7, 4
@@ -1763,10 +1763,10 @@ lbl_80345A28:
 /* 80345A4C 0034298C  38 00 FF FF */	li r0, -1
 /* 80345A50 00342990  90 9E 00 00 */	stw r4, 0(r30)
 /* 80345A54 00342994  38 A4 00 10 */	addi r5, r4, 0x10
-/* 80345A58 00342998  3C 60 80 04 */	lis r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345A58 00342998  3C 60 80 04 */	lis r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345A5C 0034299C  38 C0 00 04 */	li r6, 4
 /* 80345A60 003429A0  90 BE 00 18 */	stw r5, 0x18(r30)
-/* 80345A64 003429A4  38 83 9B A0 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345A64 003429A4  38 83 9B A0 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345A68 003429A8  38 7E 00 96 */	addi r3, r30, 0x96
 /* 80345A6C 003429AC  38 A0 00 00 */	li r5, 0
 /* 80345A70 003429B0  91 1E 00 80 */	stw r8, 0x80(r30)
@@ -1777,9 +1777,9 @@ lbl_80345A28:
 /* 80345A84 003429C4  90 1E 00 90 */	stw r0, 0x90(r30)
 /* 80345A88 003429C8  99 1E 00 94 */	stb r8, 0x94(r30)
 /* 80345A8C 003429CC  4B D7 BD B1 */	bl __construct_array
-/* 80345A90 003429D0  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345A90 003429D0  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345A94 003429D4  38 7E 00 A6 */	addi r3, r30, 0xa6
-/* 80345A98 003429D8  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345A98 003429D8  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345A9C 003429DC  38 A0 00 00 */	li r5, 0
 /* 80345AA0 003429E0  38 C0 00 04 */	li r6, 4
 /* 80345AA4 003429E4  38 E0 00 04 */	li r7, 4
@@ -1819,10 +1819,10 @@ lbl_80345B00:
 /* 80345B24 00342A64  38 00 FF FF */	li r0, -1
 /* 80345B28 00342A68  90 9E 00 00 */	stw r4, 0(r30)
 /* 80345B2C 00342A6C  38 A4 00 10 */	addi r5, r4, 0x10
-/* 80345B30 00342A70  3C 60 80 04 */	lis r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345B30 00342A70  3C 60 80 04 */	lis r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345B34 00342A74  38 C0 00 04 */	li r6, 4
 /* 80345B38 00342A78  90 BE 00 18 */	stw r5, 0x18(r30)
-/* 80345B3C 00342A7C  38 83 9B A0 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345B3C 00342A7C  38 83 9B A0 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345B40 00342A80  38 7E 00 96 */	addi r3, r30, 0x96
 /* 80345B44 00342A84  38 A0 00 00 */	li r5, 0
 /* 80345B48 00342A88  91 1E 00 80 */	stw r8, 0x80(r30)
@@ -1833,9 +1833,9 @@ lbl_80345B00:
 /* 80345B5C 00342A9C  90 1E 00 90 */	stw r0, 0x90(r30)
 /* 80345B60 00342AA0  99 1E 00 94 */	stb r8, 0x94(r30)
 /* 80345B64 00342AA4  4B D7 BC D9 */	bl __construct_array
-/* 80345B68 00342AA8  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345B68 00342AA8  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345B6C 00342AAC  38 7E 00 A6 */	addi r3, r30, 0xa6
-/* 80345B70 00342AB0  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345B70 00342AB0  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345B74 00342AB4  38 A0 00 00 */	li r5, 0
 /* 80345B78 00342AB8  38 C0 00 04 */	li r6, 4
 /* 80345B7C 00342ABC  38 E0 00 04 */	li r7, 4
@@ -1883,10 +1883,10 @@ lbl_80345BF8:
 /* 80345C1C 00342B5C  38 00 FF FF */	li r0, -1
 /* 80345C20 00342B60  90 9E 00 00 */	stw r4, 0(r30)
 /* 80345C24 00342B64  38 A4 00 10 */	addi r5, r4, 0x10
-/* 80345C28 00342B68  3C 60 80 04 */	lis r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345C28 00342B68  3C 60 80 04 */	lis r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345C2C 00342B6C  38 C0 00 04 */	li r6, 4
 /* 80345C30 00342B70  90 BE 00 18 */	stw r5, 0x18(r30)
-/* 80345C34 00342B74  38 83 9B A0 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345C34 00342B74  38 83 9B A0 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345C38 00342B78  38 7E 00 96 */	addi r3, r30, 0x96
 /* 80345C3C 00342B7C  38 A0 00 00 */	li r5, 0
 /* 80345C40 00342B80  91 1E 00 80 */	stw r8, 0x80(r30)
@@ -1897,9 +1897,9 @@ lbl_80345BF8:
 /* 80345C54 00342B94  90 1E 00 90 */	stw r0, 0x90(r30)
 /* 80345C58 00342B98  99 1E 00 94 */	stb r8, 0x94(r30)
 /* 80345C5C 00342B9C  4B D7 BB E1 */	bl __construct_array
-/* 80345C60 00342BA0  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345C60 00342BA0  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345C64 00342BA4  38 7E 00 A6 */	addi r3, r30, 0xa6
-/* 80345C68 00342BA8  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345C68 00342BA8  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345C6C 00342BAC  38 A0 00 00 */	li r5, 0
 /* 80345C70 00342BB0  38 C0 00 04 */	li r6, 4
 /* 80345C74 00342BB4  38 E0 00 04 */	li r7, 4
@@ -1957,10 +1957,10 @@ lbl_80345D08:
 /* 80345D40 00342C80  38 00 FF FF */	li r0, -1
 /* 80345D44 00342C84  90 9E 00 00 */	stw r4, 0(r30)
 /* 80345D48 00342C88  38 A4 00 10 */	addi r5, r4, 0x10
-/* 80345D4C 00342C8C  3C 60 80 04 */	lis r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345D4C 00342C8C  3C 60 80 04 */	lis r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345D50 00342C90  38 C0 00 04 */	li r6, 4
 /* 80345D54 00342C94  90 BE 00 18 */	stw r5, 0x18(r30)
-/* 80345D58 00342C98  38 83 9B A0 */	addi r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345D58 00342C98  38 83 9B A0 */	addi r4, r3, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345D5C 00342C9C  38 7E 00 96 */	addi r3, r30, 0x96
 /* 80345D60 00342CA0  38 A0 00 00 */	li r5, 0
 /* 80345D64 00342CA4  91 1E 00 80 */	stw r8, 0x80(r30)
@@ -1971,9 +1971,9 @@ lbl_80345D08:
 /* 80345D78 00342CB8  90 1E 00 90 */	stw r0, 0x90(r30)
 /* 80345D7C 00342CBC  99 1E 00 94 */	stb r8, 0x94(r30)
 /* 80345D80 00342CC0  4B D7 BA BD */	bl __construct_array
-/* 80345D84 00342CC4  3C 80 80 04 */	lis r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+/* 80345D84 00342CC4  3C 80 80 04 */	lis r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@ha
 /* 80345D88 00342CC8  38 7E 00 A6 */	addi r3, r30, 0xa6
-/* 80345D8C 00342CCC  38 84 9B A0 */	addi r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+/* 80345D8C 00342CCC  38 84 9B A0 */	addi r4, r4, __ct__Q29JGeometry8TVec2$$0s$$1Fv@l
 /* 80345D90 00342CD0  38 A0 00 00 */	li r5, 0
 /* 80345D94 00342CD4  38 C0 00 04 */	li r6, 4
 /* 80345D98 00342CD8  38 E0 00 04 */	li r7, 4
@@ -2256,22 +2256,22 @@ lbl_8034613C:
 /* 80346150 00343090  38 21 00 10 */	addi r1, r1, 0x10
 /* 80346154 00343094  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q28Morimura12TDayEndCountFv"
-"@24@__dt__Q28Morimura12TDayEndCountFv":
+.global $$224$$2__dt__Q28Morimura12TDayEndCountFv
+$$224$$2__dt__Q28Morimura12TDayEndCountFv:
 /* 80346158 00343098  38 63 FF E8 */	addi r3, r3, -24
 /* 8034615C 0034309C  4B FF F3 BC */	b __dt__Q28Morimura12TDayEndCountFv
 
-.global "@24@__dt__Q28Morimura18TChallengeEndCountFv"
-"@24@__dt__Q28Morimura18TChallengeEndCountFv":
+.global $$224$$2__dt__Q28Morimura18TChallengeEndCountFv
+$$224$$2__dt__Q28Morimura18TChallengeEndCountFv:
 /* 80346160 003430A0  38 63 FF E8 */	addi r3, r3, -24
 /* 80346164 003430A4  4B FF F5 F4 */	b __dt__Q28Morimura18TChallengeEndCountFv
 
-.global "@24@__dt__Q28Morimura20TChallengeEndCount1pFv"
-"@24@__dt__Q28Morimura20TChallengeEndCount1pFv":
+.global $$224$$2__dt__Q28Morimura20TChallengeEndCount1pFv
+$$224$$2__dt__Q28Morimura20TChallengeEndCount1pFv:
 /* 80346168 003430A8  38 63 FF E8 */	addi r3, r3, -24
 /* 8034616C 003430AC  4B FF FE F8 */	b __dt__Q28Morimura20TChallengeEndCount1pFv
 
-.global "@24@__dt__Q28Morimura20TChallengeEndCount2pFv"
-"@24@__dt__Q28Morimura20TChallengeEndCount2pFv":
+.global $$224$$2__dt__Q28Morimura20TChallengeEndCount2pFv
+$$224$$2__dt__Q28Morimura20TChallengeEndCount2pFv:
 /* 80346170 003430B0  38 63 FF E8 */	addi r3, r3, -24
 /* 80346174 003430B4  4B FF FD FC */	b __dt__Q28Morimura20TChallengeEndCount2pFv

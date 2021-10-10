@@ -638,7 +638,7 @@ lbl_8026E89C:
 /* 8026E8D8 0026B818  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 8026E8DC 0026B81C  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8026E8E0 0026B820  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8026E8E4 0026B824  48 00 11 E1 */	bl "interactDenkiAttack__Q34Game8ElecHiba3ObjFR10Vector3<f>"
+/* 8026E8E4 0026B824  48 00 11 E1 */	bl interactDenkiAttack__Q34Game8ElecHiba3ObjFR10Vector3$$0f$$1
 /* 8026E8E8 0026B828  7F E3 FB 78 */	mr r3, r31
 /* 8026E8EC 0026B82C  48 00 18 3D */	bl updateEfxLod__Q34Game8ElecHiba3ObjFv
 lbl_8026E8F0:

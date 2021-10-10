@@ -835,7 +835,7 @@ in_R__Q32og9newScreen15ObjSMenuPauseVSFv:
 out_R__Q32og9newScreen15ObjSMenuPauseVSFv:
 /* 80329CF0 00326C30  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen15ObjSMenuPauseVSFv"
-"@24@__dt__Q32og9newScreen15ObjSMenuPauseVSFv":
+.global $$224$$2__dt__Q32og9newScreen15ObjSMenuPauseVSFv
+$$224$$2__dt__Q32og9newScreen15ObjSMenuPauseVSFv:
 /* 80329CF4 00326C34  38 63 FF E8 */	addi r3, r3, -24
 /* 80329CF8 00326C38  4B FF F5 18 */	b __dt__Q32og9newScreen15ObjSMenuPauseVSFv

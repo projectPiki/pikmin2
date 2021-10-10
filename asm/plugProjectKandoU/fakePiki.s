@@ -1120,8 +1120,8 @@ lbl_8013DBA8:
 /* 8013DBCC 0013AB0C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8013DBD0 0013AB10  4E 80 00 20 */	blr 
 
-.global "turnTo__Q24Game8FakePikiFR10Vector3<f>"
-"turnTo__Q24Game8FakePikiFR10Vector3<f>":
+.global turnTo__Q24Game8FakePikiFR10Vector3$$0f$$1
+turnTo__Q24Game8FakePikiFR10Vector3$$0f$$1:
 /* 8013DBD4 0013AB14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013DBD8 0013AB18  7C 08 02 A6 */	mflr r0
 /* 8013DBDC 0013AB1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1884,11 +1884,11 @@ lbl_8013E6BC:
 /* 8013E6F8 0013B638  28 00 00 08 */	cmplwi r0, 8
 /* 8013E6FC 0013B63C  40 82 00 10 */	bne lbl_8013E70C
 /* 8013E700 0013B640  38 7F 02 0C */	addi r3, r31, 0x20c
-/* 8013E704 0013B644  48 27 96 8D */	bl "createSimpleWalkwater__3efxFR10Vector3<f>"
+/* 8013E704 0013B644  48 27 96 8D */	bl createSimpleWalkwater__3efxFR10Vector3$$0f$$1
 /* 8013E708 0013B648  48 00 00 0C */	b lbl_8013E714
 lbl_8013E70C:
 /* 8013E70C 0013B64C  38 7F 02 0C */	addi r3, r31, 0x20c
-/* 8013E710 0013B650  48 27 94 61 */	bl "createSimpleWalksmoke__3efxFR10Vector3<f>"
+/* 8013E710 0013B650  48 27 94 61 */	bl createSimpleWalksmoke__3efxFR10Vector3$$0f$$1
 lbl_8013E714:
 /* 8013E714 0013B654  E3 E1 01 28 */	psq_l f31, 296(r1), 0, qr0
 /* 8013E718 0013B658  CB E1 01 20 */	lfd f31, 0x120(r1)
@@ -1933,8 +1933,8 @@ inWater__Q24Game8FakePikiFv:
 /* 8013E79C 0013B6DC  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8013E7A0 0013B6E0  4E 80 00 20 */	blr 
 
-.global "wallCallback__Q24Game8FakePikiFR10Vector3<f>"
-"wallCallback__Q24Game8FakePikiFR10Vector3<f>":
+.global wallCallback__Q24Game8FakePikiFR10Vector3$$0f$$1
+wallCallback__Q24Game8FakePikiFR10Vector3$$0f$$1:
 /* 8013E7A4 0013B6E4  4E 80 00 20 */	blr 
 
 .global useMapCollision__Q24Game8FakePikiFv
@@ -2542,7 +2542,7 @@ lbl_8013F024:
 /* 8013F030 0013BF70  38 81 00 24 */	addi r4, r1, 0x24
 /* 8013F034 0013BF74  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8013F038 0013BF78  D0 61 00 2C */	stfs f3, 0x2c(r1)
-/* 8013F03C 0013BF7C  48 06 05 AD */	bl "updateStick__Q24Game8CreatureFR10Vector3<f>"
+/* 8013F03C 0013BF7C  48 06 05 AD */	bl updateStick__Q24Game8CreatureFR10Vector3$$0f$$1
 /* 8013F040 0013BF80  7F E3 FB 78 */	mr r3, r31
 /* 8013F044 0013BF84  4B FF CD 25 */	bl updateCell__Q24Game8CreatureFv
 /* 8013F048 0013BF88  C0 02 9F 58 */	lfs f0, lbl_805182B8@sda21(r2)
@@ -2740,7 +2740,7 @@ lbl_8013F2D0:
 /* 8013F30C 0013C24C  D0 61 00 18 */	stfs f3, 0x18(r1)
 /* 8013F310 0013C250  D0 21 00 20 */	stfs f1, 0x20(r1)
 /* 8013F314 0013C254  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8013F318 0013C258  4B FF BE 91 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8013F318 0013C258  4B FF BE 91 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 lbl_8013F31C:
 /* 8013F31C 0013C25C  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 8013F320 0013C260  80 01 00 64 */	lwz r0, 0x64(r1)
@@ -2994,8 +2994,8 @@ outWaterCallback__Q24Game8FakePikiFv:
 onSetPosition__Q24Game8FakePikiFv:
 /* 8013F5EC 0013C52C  4E 80 00 20 */	blr 
 
-.global "onSetPosition__Q24Game8FakePikiFR10Vector3<f>"
-"onSetPosition__Q24Game8FakePikiFR10Vector3<f>":
+.global onSetPosition__Q24Game8FakePikiFR10Vector3$$0f$$1
+onSetPosition__Q24Game8FakePikiFR10Vector3$$0f$$1:
 /* 8013F5F0 0013C530  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013F5F4 0013C534  7C 08 02 A6 */	mflr r0
 /* 8013F5F8 0013C538  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3029,8 +3029,8 @@ getVelocity__Q24Game8FakePikiFv:
 /* 8013F650 0013C590  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8013F654 0013C594  4E 80 00 20 */	blr 
 
-.global "setVelocity__Q24Game8FakePikiFR10Vector3<f>"
-"setVelocity__Q24Game8FakePikiFR10Vector3<f>":
+.global setVelocity__Q24Game8FakePikiFR10Vector3$$0f$$1
+setVelocity__Q24Game8FakePikiFR10Vector3$$0f$$1:
 /* 8013F658 0013C598  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8013F65C 0013C59C  D0 03 02 00 */	stfs f0, 0x200(r3)
 /* 8013F660 0013C5A0  C0 04 00 04 */	lfs f0, 4(r4)
@@ -3039,8 +3039,8 @@ getVelocity__Q24Game8FakePikiFv:
 /* 8013F66C 0013C5AC  D0 03 02 08 */	stfs f0, 0x208(r3)
 /* 8013F670 0013C5B0  4E 80 00 20 */	blr 
 
-.global "getVelocityAt__Q24Game8FakePikiFR10Vector3<f>R10Vector3<f>"
-"getVelocityAt__Q24Game8FakePikiFR10Vector3<f>R10Vector3<f>":
+.global getVelocityAt__Q24Game8FakePikiFR10Vector3$$0f$$1R10Vector3$$0f$$1
+getVelocityAt__Q24Game8FakePikiFR10Vector3$$0f$$1R10Vector3$$0f$$1:
 /* 8013F674 0013C5B4  C0 03 02 00 */	lfs f0, 0x200(r3)
 /* 8013F678 0013C5B8  D0 05 00 00 */	stfs f0, 0(r5)
 /* 8013F67C 0013C5BC  C0 03 02 04 */	lfs f0, 0x204(r3)
@@ -3076,7 +3076,7 @@ __sinit_fakePiki_cpp:
 /* 8013F6C4 0013C604  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8013F6C8 0013C608  4E 80 00 20 */	blr 
 
-.global "@376@onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent":
+.global $$2376$$2onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent
+$$2376$$2onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent:
 /* 8013F6CC 0013C60C  38 63 FE 88 */	addi r3, r3, -376
 /* 8013F6D0 0013C610  4B FF FF D0 */	b onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent

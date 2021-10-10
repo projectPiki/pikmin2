@@ -1804,7 +1804,7 @@ lbl_8031BBE4:
 /* 8031BC8C 00318BCC  EC 03 00 2A */	fadds f0, f3, f0
 /* 8031BC90 00318BD0  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 8031BC94 00318BD4  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8031BC98 00318BD8  4B D1 AB 3D */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 8031BC98 00318BD8  4B D1 AB 3D */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 lbl_8031BC9C:
 /* 8031BC9C 00318BDC  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8031BCA0 00318BE0  83 E1 00 4C */	lwz r31, 0x4c(r1)
@@ -1921,7 +1921,7 @@ __sinit_ogObjFloor_cpp:
 /* 8031BE50 00318D90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8031BE54 00318D94  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen8ObjFloorFv"
-"@24@__dt__Q32og9newScreen8ObjFloorFv":
+.global $$224$$2__dt__Q32og9newScreen8ObjFloorFv
+$$224$$2__dt__Q32og9newScreen8ObjFloorFv:
 /* 8031BE58 00318D98  38 63 FF E8 */	addi r3, r3, -24
 /* 8031BE5C 00318D9C  4B FF E6 54 */	b __dt__Q32og9newScreen8ObjFloorFv

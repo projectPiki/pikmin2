@@ -11,15 +11,15 @@ __ct__Q23PSM15BgmTrackMapFileFb:
 /* 804718E4 0046E824  93 C1 00 08 */	stw r30, 8(r1)
 /* 804718E8 0046E828  7C 7E 1B 78 */	mr r30, r3
 /* 804718EC 0046E82C  4B EC 70 95 */	bl __ct__Q28PSSystem12TextDataBaseFv
-/* 804718F0 0046E830  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
+/* 804718F0 0046E830  3C 60 80 4F */	lis r3, __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@ha
 /* 804718F4 0046E834  34 9E 00 1C */	addic. r4, r30, 0x1c
-/* 804718F8 0046E838  38 03 F9 74 */	addi r0, r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l
+/* 804718F8 0046E838  38 03 F9 74 */	addi r0, r3, __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@l
 /* 804718FC 0046E83C  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 80471900 0046E840  41 82 00 08 */	beq lbl_80471908
 /* 80471904 0046E844  38 84 FF E4 */	addi r4, r4, -28
 lbl_80471908:
 /* 80471908 0046E848  3C 60 80 4F */	lis r3, __vt__Q23PSM15BgmTrackMapFile@ha
-/* 8047190C 0046E84C  90 8D 91 C0 */	stw r4, "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13)
+/* 8047190C 0046E84C  90 8D 91 C0 */	stw r4, sInstance__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@sda21(r13)
 /* 80471910 0046E850  38 63 FA A8 */	addi r3, r3, __vt__Q23PSM15BgmTrackMapFile@l
 /* 80471914 0046E854  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 80471918 0046E858  90 7E 00 00 */	stw r3, 0(r30)
@@ -815,7 +815,7 @@ lbl_80472444:
 /* 80472490 0046F3D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472494 0046F3D4  4E 80 00 20 */	blr 
 
-.global "@28@__dt__Q23PSM15BgmTrackMapFileFv"
-"@28@__dt__Q23PSM15BgmTrackMapFileFv":
+.global $$228$$2__dt__Q23PSM15BgmTrackMapFileFv
+$$228$$2__dt__Q23PSM15BgmTrackMapFileFv:
 /* 80472498 0046F3D8  38 63 FF E4 */	addi r3, r3, -28
 /* 8047249C 0046F3DC  4B FF E8 C0 */	b __dt__Q23PSM15BgmTrackMapFileFv

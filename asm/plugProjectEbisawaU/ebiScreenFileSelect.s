@@ -856,8 +856,8 @@ __ct__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D4F68 003D1EA8  3B 23 8E 50 */	addi r25, r3, __vt__Q35efx2d10FileSelect16T2DFiledeletingM@l
 /* 803D4F6C 003D1EAC  3A 40 00 01 */	li r18, 1
 /* 803D4F70 003D1EB0  91 9F 0A 5C */	stw r12, 0xa5c(r31)
-/* 803D4F74 003D1EB4  3C 60 80 38 */	lis r3, "__ct__10Vector2<f>Fv"@ha
-/* 803D4F78 003D1EB8  38 83 D0 B8 */	addi r4, r3, "__ct__10Vector2<f>Fv"@l
+/* 803D4F74 003D1EB4  3C 60 80 38 */	lis r3, __ct__10Vector2$$0f$$1Fv@ha
+/* 803D4F78 003D1EB8  38 83 D0 B8 */	addi r4, r3, __ct__10Vector2$$0f$$1Fv@l
 /* 803D4F7C 003D1EBC  3A 68 00 18 */	addi r19, r8, 0x18
 /* 803D4F80 003D1EC0  99 7F 0A 60 */	stb r11, 0xa60(r31)
 /* 803D4F84 003D1EC4  3A B4 00 18 */	addi r21, r20, 0x18
@@ -921,9 +921,9 @@ __ct__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D506C 003D1FAC  93 1F 0A B8 */	stw r24, 0xab8(r31)
 /* 803D5070 003D1FB0  9A 5F 0A B4 */	stb r18, 0xab4(r31)
 /* 803D5074 003D1FB4  4B CE C7 C9 */	bl __construct_array
-/* 803D5078 003D1FB8  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
+/* 803D5078 003D1FB8  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
 /* 803D507C 003D1FBC  38 7F 0A DC */	addi r3, r31, 0xadc
-/* 803D5080 003D1FC0  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
+/* 803D5080 003D1FC0  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
 /* 803D5084 003D1FC4  38 A0 00 00 */	li r5, 0
 /* 803D5088 003D1FC8  38 C0 00 08 */	li r6, 8
 /* 803D508C 003D1FCC  38 E0 00 03 */	li r7, 3
@@ -3305,7 +3305,7 @@ lbl_803D73E4:
 /* 803D7460 003D43A0  EC 03 00 2A */	fadds f0, f3, f0
 /* 803D7464 003D43A4  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 803D7468 003D43A8  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 803D746C 003D43AC  4B C5 F3 69 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 803D746C 003D43AC  4B C5 F3 69 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 lbl_803D7470:
 /* 803D7470 003D43B0  80 01 05 A4 */	lwz r0, 0x5a4(r1)
 /* 803D7474 003D43B4  83 E1 05 9C */	lwz r31, 0x59c(r1)
@@ -6112,32 +6112,32 @@ lbl_803D9C94:
 /* 803D9CA8 003D6BE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D9CAC 003D6BEC  4E 80 00 20 */	blr 
 
-.global "@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv"
-"@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv":
+.global $$28$$2__dt__Q35efx2d10FileSelect11T2DFilecopyFv
+$$28$$2__dt__Q35efx2d10FileSelect11T2DFilecopyFv:
 /* 803D9CB0 003D6BF0  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CB4 003D6BF4  4B FF FD 14 */	b __dt__Q35efx2d10FileSelect11T2DFilecopyFv
 
-.global "@8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv"
-"@8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv":
+.global $$28$$2__dt__Q35efx2d10FileSelect12T2DFilecopyMFv
+$$28$$2__dt__Q35efx2d10FileSelect12T2DFilecopyMFv:
 /* 803D9CB8 003D6BF8  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CBC 003D6BFC  4B FF FC 70 */	b __dt__Q35efx2d10FileSelect12T2DFilecopyMFv
 
-.global "@8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv"
-"@8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv":
+.global $$28$$2__dt__Q35efx2d10FileSelect15T2DFiledeletingFv
+$$28$$2__dt__Q35efx2d10FileSelect15T2DFiledeletingFv:
 /* 803D9CC0 003D6C00  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CC4 003D6C04  4B FF FB E4 */	b __dt__Q35efx2d10FileSelect15T2DFiledeletingFv
 
-.global "@8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv"
-"@8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv":
+.global $$28$$2__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
+$$28$$2__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv:
 /* 803D9CC8 003D6C08  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CCC 003D6C0C  4B FF FB 58 */	b __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
 
-.global "@8@__dt__Q35efx2d10FileSelect10T2DFileselFv"
-"@8@__dt__Q35efx2d10FileSelect10T2DFileselFv":
+.global $$28$$2__dt__Q35efx2d10FileSelect10T2DFileselFv
+$$28$$2__dt__Q35efx2d10FileSelect10T2DFileselFv:
 /* 803D9CD0 003D6C10  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CD4 003D6C14  4B FF FF 40 */	b __dt__Q35efx2d10FileSelect10T2DFileselFv
 
-.global "@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv"
-"@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv":
+.global $$28$$2__dt__Q35efx2d10FileSelect11T2DFileselMFv
+$$28$$2__dt__Q35efx2d10FileSelect11T2DFileselMFv:
 /* 803D9CD8 003D6C18  38 63 FF F8 */	addi r3, r3, -8
 /* 803D9CDC 003D6C1C  4B FF FA AC */	b __dt__Q35efx2d10FileSelect11T2DFileselMFv

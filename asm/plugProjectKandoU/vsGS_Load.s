@@ -5,10 +5,10 @@
 __ct__Q34Game6VsGame9LoadStateFv:
 /* 8022D0E8 0022A028  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022D0EC 0022A02C  7C 08 02 A6 */	mflr r0
-/* 8022D0F0 0022A030  3C 80 80 4C */	lis r4, "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"@ha
+/* 8022D0F0 0022A030  3C 80 80 4C */	lis r4, __vt__Q24Game32FSMState$$0Q24Game13VsGameSection$$1@ha
 /* 8022D0F4 0022A034  38 A0 00 00 */	li r5, 0
 /* 8022D0F8 0022A038  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8022D0FC 0022A03C  38 04 0E E4 */	addi r0, r4, "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"@l
+/* 8022D0FC 0022A03C  38 04 0E E4 */	addi r0, r4, __vt__Q24Game32FSMState$$0Q24Game13VsGameSection$$1@l
 /* 8022D100 0022A040  3C 80 80 4C */	lis r4, __vt__Q34Game6VsGame5State@ha
 /* 8022D104 0022A044  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8022D108 0022A048  7C 7F 1B 78 */	mr r31, r3
@@ -42,11 +42,11 @@ lbl_8022D160:
 /* 8022D174 0022A0B4  3C 80 80 4C */	lis r4, lbl_804C1074@ha
 /* 8022D178 0022A0B8  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 8022D17C 0022A0BC  39 04 10 74 */	addi r8, r4, lbl_804C1074@l
-/* 8022D180 0022A0C0  3C 80 80 4C */	lis r4, "__vt__34Delegate<Q34Game6VsGame9LoadState>"@ha
+/* 8022D180 0022A0C0  3C 80 80 4C */	lis r4, __vt__34Delegate$$0Q34Game6VsGame9LoadState$$1@ha
 /* 8022D184 0022A0C4  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8022D188 0022A0C8  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 8022D18C 0022A0CC  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8022D190 0022A0D0  38 04 10 E4 */	addi r0, r4, "__vt__34Delegate<Q34Game6VsGame9LoadState>"@l
+/* 8022D190 0022A0D0  38 04 10 E4 */	addi r0, r4, __vt__34Delegate$$0Q34Game6VsGame9LoadState$$1@l
 /* 8022D194 0022A0D4  80 88 00 08 */	lwz r4, 8(r8)
 /* 8022D198 0022A0D8  90 E1 00 08 */	stw r7, 8(r1)
 /* 8022D19C 0022A0DC  90 A3 00 00 */	stw r5, 0(r3)
@@ -384,8 +384,8 @@ getMemberID__Q32og6Screen15DispMemberFloorFv:
 /* 8022D62C 0022A56C  38 84 4F 52 */	addi r4, r4, 0x4C4F4F52@l
 /* 8022D630 0022A570  4E 80 00 20 */	blr 
 
-.global "invoke__34Delegate<Q34Game6VsGame9LoadState>Fv"
-"invoke__34Delegate<Q34Game6VsGame9LoadState>Fv":
+.global invoke__34Delegate$$0Q34Game6VsGame9LoadState$$1Fv
+invoke__34Delegate$$0Q34Game6VsGame9LoadState$$1Fv:
 /* 8022D634 0022A574  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022D638 0022A578  7C 08 02 A6 */	mflr r0
 /* 8022D63C 0022A57C  7C 64 1B 78 */	mr r4, r3

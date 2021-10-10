@@ -36,9 +36,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CD58 00119C98  91 7F 00 1C */	stw r11, 0x1c(r31)
 /* 8011CD5C 00119C9C  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 8011CD60 00119CA0  48 2F 68 F9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CD64 00119CA4  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CD64 00119CA4  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CD68 00119CA8  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011CD6C 00119CAC  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CD6C 00119CAC  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CD70 00119CB0  38 C0 00 00 */	li r6, 0
 /* 8011CD74 00119CB4  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 8011CD78 00119CB8  38 60 00 7F */	li r3, 0x7f
@@ -51,9 +51,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CD94 00119CD4  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011CD98 00119CD8  90 1F 00 48 */	stw r0, 0x48(r31)
 /* 8011CD9C 00119CDC  48 2F 68 BD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CDA0 00119CE0  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CDA0 00119CE0  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CDA4 00119CE4  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011CDA8 00119CE8  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CDA8 00119CE8  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CDAC 00119CEC  38 C0 00 00 */	li r6, 0
 /* 8011CDB0 00119CF0  90 1F 00 4C */	stw r0, 0x4c(r31)
 /* 8011CDB4 00119CF4  38 60 00 7F */	li r3, 0x7f
@@ -66,9 +66,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CDD0 00119D10  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011CDD4 00119D14  90 1F 00 70 */	stw r0, 0x70(r31)
 /* 8011CDD8 00119D18  48 2F 68 81 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CDDC 00119D1C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CDDC 00119D1C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CDE0 00119D20  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011CDE4 00119D24  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CDE4 00119D24  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CDE8 00119D28  38 9F 00 18 */	addi r4, r31, 0x18
 /* 8011CDEC 00119D2C  90 1F 00 74 */	stw r0, 0x74(r31)
 /* 8011CDF0 00119D30  38 00 00 7F */	li r0, 0x7f
@@ -82,9 +82,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CE10 00119D50  38 64 00 84 */	addi r3, r4, 0x84
 /* 8011CE14 00119D54  90 1F 00 98 */	stw r0, 0x98(r31)
 /* 8011CE18 00119D58  48 2F 68 41 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CE1C 00119D5C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CE1C 00119D5C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CE20 00119D60  3C E0 80 4B */	lis r7, __vt__Q24Game23GameDiffuseLightSetting@ha
-/* 8011CE24 00119D64  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CE24 00119D64  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CE28 00119D68  3C C0 80 4B */	lis r6, __vt__Q24Game20GameLightSettingBase@ha
 /* 8011CE2C 00119D6C  90 1F 00 9C */	stw r0, 0x9c(r31)
 /* 8011CE30 00119D70  38 00 00 FF */	li r0, 0xff
@@ -112,9 +112,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CE88 00119DC8  91 7F 00 D0 */	stw r11, 0xd0(r31)
 /* 8011CE8C 00119DCC  90 1F 00 D4 */	stw r0, 0xd4(r31)
 /* 8011CE90 00119DD0  48 2F 67 C9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CE94 00119DD4  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CE94 00119DD4  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CE98 00119DD8  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011CE9C 00119DDC  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CE9C 00119DDC  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CEA0 00119DE0  38 C0 00 00 */	li r6, 0
 /* 8011CEA4 00119DE4  90 1F 00 D8 */	stw r0, 0xd8(r31)
 /* 8011CEA8 00119DE8  38 60 00 7F */	li r3, 0x7f
@@ -127,9 +127,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CEC4 00119E04  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011CEC8 00119E08  90 1F 00 FC */	stw r0, 0xfc(r31)
 /* 8011CECC 00119E0C  48 2F 67 8D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CED0 00119E10  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CED0 00119E10  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CED4 00119E14  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011CED8 00119E18  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CED8 00119E18  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CEDC 00119E1C  38 C0 00 00 */	li r6, 0
 /* 8011CEE0 00119E20  90 1F 01 00 */	stw r0, 0x100(r31)
 /* 8011CEE4 00119E24  38 60 00 7F */	li r3, 0x7f
@@ -142,9 +142,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CF00 00119E40  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011CF04 00119E44  90 1F 01 24 */	stw r0, 0x124(r31)
 /* 8011CF08 00119E48  48 2F 67 51 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CF0C 00119E4C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CF0C 00119E4C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CF10 00119E50  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011CF14 00119E54  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CF14 00119E54  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CF18 00119E58  38 9F 00 CC */	addi r4, r31, 0xcc
 /* 8011CF1C 00119E5C  90 1F 01 28 */	stw r0, 0x128(r31)
 /* 8011CF20 00119E60  38 00 00 7F */	li r0, 0x7f
@@ -158,9 +158,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CF40 00119E80  38 64 00 84 */	addi r3, r4, 0x84
 /* 8011CF44 00119E84  90 1F 01 4C */	stw r0, 0x14c(r31)
 /* 8011CF48 00119E88  48 2F 67 11 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CF4C 00119E8C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CF4C 00119E8C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CF50 00119E90  3C E0 80 4B */	lis r7, __vt__Q24Game23GameDiffuseLightSetting@ha
-/* 8011CF54 00119E94  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CF54 00119E94  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CF58 00119E98  3C C0 80 4B */	lis r6, __vt__Q24Game20GameLightSettingBase@ha
 /* 8011CF5C 00119E9C  90 1F 01 50 */	stw r0, 0x150(r31)
 /* 8011CF60 00119EA0  38 00 00 FF */	li r0, 0xff
@@ -188,9 +188,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CFB8 00119EF8  91 7F 01 84 */	stw r11, 0x184(r31)
 /* 8011CFBC 00119EFC  90 1F 01 88 */	stw r0, 0x188(r31)
 /* 8011CFC0 00119F00  48 2F 66 99 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011CFC4 00119F04  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011CFC4 00119F04  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011CFC8 00119F08  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011CFCC 00119F0C  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011CFCC 00119F0C  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011CFD0 00119F10  38 C0 00 00 */	li r6, 0
 /* 8011CFD4 00119F14  90 1F 01 8C */	stw r0, 0x18c(r31)
 /* 8011CFD8 00119F18  38 60 00 7F */	li r3, 0x7f
@@ -203,9 +203,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011CFF4 00119F34  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011CFF8 00119F38  90 1F 01 B0 */	stw r0, 0x1b0(r31)
 /* 8011CFFC 00119F3C  48 2F 66 5D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D000 00119F40  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D000 00119F40  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D004 00119F44  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011D008 00119F48  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D008 00119F48  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D00C 00119F4C  38 C0 00 00 */	li r6, 0
 /* 8011D010 00119F50  90 1F 01 B4 */	stw r0, 0x1b4(r31)
 /* 8011D014 00119F54  38 60 00 7F */	li r3, 0x7f
@@ -218,9 +218,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D030 00119F70  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011D034 00119F74  90 1F 01 D8 */	stw r0, 0x1d8(r31)
 /* 8011D038 00119F78  48 2F 66 21 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D03C 00119F7C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D03C 00119F7C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D040 00119F80  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011D044 00119F84  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D044 00119F84  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D048 00119F88  38 9F 01 80 */	addi r4, r31, 0x180
 /* 8011D04C 00119F8C  90 1F 01 DC */	stw r0, 0x1dc(r31)
 /* 8011D050 00119F90  38 00 00 7F */	li r0, 0x7f
@@ -234,9 +234,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D070 00119FB0  38 64 00 84 */	addi r3, r4, 0x84
 /* 8011D074 00119FB4  90 1F 02 00 */	stw r0, 0x200(r31)
 /* 8011D078 00119FB8  48 2F 65 E1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D07C 00119FBC  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D07C 00119FBC  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D080 00119FC0  3C E0 80 4B */	lis r7, __vt__Q24Game20GameSpecLightSetting@ha
-/* 8011D084 00119FC4  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D084 00119FC4  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D088 00119FC8  3C C0 80 4B */	lis r6, __vt__Q24Game20GameLightSettingBase@ha
 /* 8011D08C 00119FCC  90 1F 02 04 */	stw r0, 0x204(r31)
 /* 8011D090 00119FD0  39 60 00 FF */	li r11, 0xff
@@ -263,9 +263,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D0E4 0011A024  91 5F 02 38 */	stw r10, 0x238(r31)
 /* 8011D0E8 0011A028  90 1F 02 3C */	stw r0, 0x23c(r31)
 /* 8011D0EC 0011A02C  48 2F 65 6D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D0F0 0011A030  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D0F0 0011A030  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D0F4 0011A034  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011D0F8 0011A038  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D0F8 0011A038  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D0FC 0011A03C  38 C0 00 00 */	li r6, 0
 /* 8011D100 0011A040  90 1F 02 40 */	stw r0, 0x240(r31)
 /* 8011D104 0011A044  38 60 00 7F */	li r3, 0x7f
@@ -278,9 +278,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D120 0011A060  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011D124 0011A064  90 1F 02 64 */	stw r0, 0x264(r31)
 /* 8011D128 0011A068  48 2F 65 31 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D12C 0011A06C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D12C 0011A06C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D130 0011A070  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011D134 0011A074  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D134 0011A074  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D138 0011A078  38 C0 00 00 */	li r6, 0
 /* 8011D13C 0011A07C  90 1F 02 68 */	stw r0, 0x268(r31)
 /* 8011D140 0011A080  38 60 00 7F */	li r3, 0x7f
@@ -293,9 +293,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D15C 0011A09C  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011D160 0011A0A0  90 1F 02 8C */	stw r0, 0x28c(r31)
 /* 8011D164 0011A0A4  48 2F 64 F5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D168 0011A0A8  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D168 0011A0A8  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D16C 0011A0AC  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011D170 0011A0B0  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D170 0011A0B0  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D174 0011A0B4  38 9F 02 34 */	addi r4, r31, 0x234
 /* 8011D178 0011A0B8  90 1F 02 90 */	stw r0, 0x290(r31)
 /* 8011D17C 0011A0BC  38 00 00 7F */	li r0, 0x7f
@@ -309,9 +309,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D19C 0011A0DC  38 64 00 84 */	addi r3, r4, 0x84
 /* 8011D1A0 0011A0E0  90 1F 02 B4 */	stw r0, 0x2b4(r31)
 /* 8011D1A4 0011A0E4  48 2F 64 B5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D1A8 0011A0E8  3C 80 80 4B */	lis r4, "__vt__7Parm<i>"@ha
+/* 8011D1A8 0011A0E8  3C 80 80 4B */	lis r4, __vt__7Parm$$0i$$1@ha
 /* 8011D1AC 0011A0EC  3C 60 80 4B */	lis r3, __vt__Q24Game23GameLightAmbientSetting@ha
-/* 8011D1B0 0011A0F0  38 04 AC 90 */	addi r0, r4, "__vt__7Parm<i>"@l
+/* 8011D1B0 0011A0F0  38 04 AC 90 */	addi r0, r4, __vt__7Parm$$0i$$1@l
 /* 8011D1B4 0011A0F4  38 C0 00 FF */	li r6, 0xff
 /* 8011D1B8 0011A0F8  90 1F 02 B8 */	stw r0, 0x2b8(r31)
 /* 8011D1BC 0011A0FC  38 A0 00 00 */	li r5, 0
@@ -342,9 +342,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D220 0011A160  38 C2 98 BC */	addi r6, r2, lbl_80517C1C@sda21
 /* 8011D224 0011A164  90 1F 04 04 */	stw r0, 0x404(r31)
 /* 8011D228 0011A168  48 2F 64 31 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D22C 0011A16C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D22C 0011A16C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D230 0011A170  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011D234 0011A174  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D234 0011A174  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D238 0011A178  38 C0 00 00 */	li r6, 0
 /* 8011D23C 0011A17C  90 1F 04 08 */	stw r0, 0x408(r31)
 /* 8011D240 0011A180  38 60 00 7F */	li r3, 0x7f
@@ -357,9 +357,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D25C 0011A19C  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011D260 0011A1A0  90 1F 04 2C */	stw r0, 0x42c(r31)
 /* 8011D264 0011A1A4  48 2F 63 F5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D268 0011A1A8  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D268 0011A1A8  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D26C 0011A1AC  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011D270 0011A1B0  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D270 0011A1B0  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D274 0011A1B4  38 C0 00 00 */	li r6, 0
 /* 8011D278 0011A1B8  90 1F 04 30 */	stw r0, 0x430(r31)
 /* 8011D27C 0011A1BC  38 60 00 7F */	li r3, 0x7f
@@ -372,9 +372,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D298 0011A1D8  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011D29C 0011A1DC  90 1F 04 54 */	stw r0, 0x454(r31)
 /* 8011D2A0 0011A1E0  48 2F 63 B9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D2A4 0011A1E4  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D2A4 0011A1E4  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D2A8 0011A1E8  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011D2AC 0011A1EC  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D2AC 0011A1EC  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D2B0 0011A1F0  38 9F 03 FC */	addi r4, r31, 0x3fc
 /* 8011D2B4 0011A1F4  90 1F 04 58 */	stw r0, 0x458(r31)
 /* 8011D2B8 0011A1F8  38 00 00 7F */	li r0, 0x7f
@@ -388,9 +388,9 @@ __ct__Q24Game20GameLightTimeSettingFv:
 /* 8011D2D8 0011A218  38 64 00 84 */	addi r3, r4, 0x84
 /* 8011D2DC 0011A21C  90 1F 04 7C */	stw r0, 0x47c(r31)
 /* 8011D2E0 0011A220  48 2F 63 79 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D2E4 0011A224  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D2E4 0011A224  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D2E8 0011A228  38 C0 00 FF */	li r6, 0xff
-/* 8011D2EC 0011A22C  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D2EC 0011A22C  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D2F0 0011A230  38 A0 00 00 */	li r5, 0
 /* 8011D2F4 0011A234  90 1F 04 80 */	stw r0, 0x480(r31)
 /* 8011D2F8 0011A238  38 80 00 20 */	li r4, 0x20
@@ -434,9 +434,9 @@ __ct__Q24Game14GameFogSettingFv:
 /* 8011D384 0011A2C4  38 7E 00 0C */	addi r3, r30, 0xc
 /* 8011D388 0011A2C8  90 1E 00 08 */	stw r0, 8(r30)
 /* 8011D38C 0011A2CC  48 2F 62 CD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D390 0011A2D0  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D390 0011A2D0  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D394 0011A2D4  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011D398 0011A2D8  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D398 0011A2D8  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D39C 0011A2DC  38 60 00 7F */	li r3, 0x7f
 /* 8011D3A0 0011A2E0  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 8011D3A4 0011A2E4  38 E0 00 00 */	li r7, 0
@@ -449,9 +449,9 @@ __ct__Q24Game14GameFogSettingFv:
 /* 8011D3C0 0011A300  90 FE 00 2C */	stw r7, 0x2c(r30)
 /* 8011D3C4 0011A304  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 8011D3C8 0011A308  48 2F 62 91 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D3CC 0011A30C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D3CC 0011A30C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D3D0 0011A310  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011D3D4 0011A314  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D3D4 0011A314  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D3D8 0011A318  38 60 00 7F */	li r3, 0x7f
 /* 8011D3DC 0011A31C  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 8011D3E0 0011A320  38 E0 00 00 */	li r7, 0
@@ -464,9 +464,9 @@ __ct__Q24Game14GameFogSettingFv:
 /* 8011D3FC 0011A33C  90 FE 00 54 */	stw r7, 0x54(r30)
 /* 8011D400 0011A340  90 1E 00 58 */	stw r0, 0x58(r30)
 /* 8011D404 0011A344  48 2F 62 55 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D408 0011A348  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D408 0011A348  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D40C 0011A34C  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011D410 0011A350  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D410 0011A350  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D414 0011A354  38 60 00 7F */	li r3, 0x7f
 /* 8011D418 0011A358  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 8011D41C 0011A35C  38 E0 00 00 */	li r7, 0
@@ -479,9 +479,9 @@ __ct__Q24Game14GameFogSettingFv:
 /* 8011D438 0011A378  90 FE 00 7C */	stw r7, 0x7c(r30)
 /* 8011D43C 0011A37C  90 1E 00 80 */	stw r0, 0x80(r30)
 /* 8011D440 0011A380  48 2F 62 19 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D444 0011A384  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D444 0011A384  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D448 0011A388  3C A0 66 30 */	lis r5, 0x66303030@ha
-/* 8011D44C 0011A38C  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D44C 0011A38C  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D450 0011A390  39 20 00 FF */	li r9, 0xff
 /* 8011D454 0011A394  90 1E 00 84 */	stw r0, 0x84(r30)
 /* 8011D458 0011A398  39 00 00 00 */	li r8, 0
@@ -498,9 +498,9 @@ __ct__Q24Game14GameFogSettingFv:
 /* 8011D484 0011A3C4  91 1E 00 B4 */	stw r8, 0xb4(r30)
 /* 8011D488 0011A3C8  90 1E 00 B8 */	stw r0, 0xb8(r30)
 /* 8011D48C 0011A3CC  48 2F 61 CD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D490 0011A3D0  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8011D490 0011A3D0  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8011D494 0011A3D4  3C A0 66 30 */	lis r5, 0x66303031@ha
-/* 8011D498 0011A3D8  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8011D498 0011A3D8  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8011D49C 0011A3DC  C0 02 98 D0 */	lfs f0, lbl_80517C30@sda21(r2)
 /* 8011D4A0 0011A3E0  90 1E 00 BC */	stw r0, 0xbc(r30)
 /* 8011D4A4 0011A3E4  38 7E 00 E4 */	addi r3, r30, 0xe4
@@ -513,9 +513,9 @@ __ct__Q24Game14GameFogSettingFv:
 /* 8011D4C0 0011A400  D0 3E 00 DC */	stfs f1, 0xdc(r30)
 /* 8011D4C4 0011A404  D0 1E 00 E0 */	stfs f0, 0xe0(r30)
 /* 8011D4C8 0011A408  48 2F 61 91 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D4CC 0011A40C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8011D4CC 0011A40C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8011D4D0 0011A410  C0 22 98 D4 */	lfs f1, lbl_80517C34@sda21(r2)
-/* 8011D4D4 0011A414  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8011D4D4 0011A414  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8011D4D8 0011A418  C0 02 98 94 */	lfs f0, lbl_80517BF4@sda21(r2)
 /* 8011D4DC 0011A41C  90 1E 00 E4 */	stw r0, 0xe4(r30)
 /* 8011D4E0 0011A420  7F C3 F3 78 */	mr r3, r30
@@ -633,9 +633,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D660 0011A5A0  91 3F 00 1C */	stw r9, 0x1c(r31)
 /* 8011D664 0011A5A4  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 8011D668 0011A5A8  48 2F 5F F1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D66C 0011A5AC  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8011D66C 0011A5AC  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8011D670 0011A5B0  3C A0 75 38 */	lis r5, 0x75383030@ha
-/* 8011D674 0011A5B4  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8011D674 0011A5B4  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8011D678 0011A5B8  C0 02 98 D0 */	lfs f0, lbl_80517C30@sda21(r2)
 /* 8011D67C 0011A5BC  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 8011D680 0011A5C0  3C 60 80 4B */	lis r3, __vt__Q24Game20GameLightSettingBase@ha
@@ -657,9 +657,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D6C0 0011A600  90 FF 00 54 */	stw r7, 0x54(r31)
 /* 8011D6C4 0011A604  90 1F 00 58 */	stw r0, 0x58(r31)
 /* 8011D6C8 0011A608  48 2F 5F 91 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D6CC 0011A60C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D6CC 0011A60C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D6D0 0011A610  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011D6D4 0011A614  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D6D4 0011A614  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D6D8 0011A618  38 C0 00 00 */	li r6, 0
 /* 8011D6DC 0011A61C  90 1F 00 5C */	stw r0, 0x5c(r31)
 /* 8011D6E0 0011A620  38 60 00 7F */	li r3, 0x7f
@@ -672,9 +672,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D6FC 0011A63C  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011D700 0011A640  90 1F 00 80 */	stw r0, 0x80(r31)
 /* 8011D704 0011A644  48 2F 5F 55 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D708 0011A648  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D708 0011A648  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D70C 0011A64C  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011D710 0011A650  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D710 0011A650  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D714 0011A654  38 C0 00 00 */	li r6, 0
 /* 8011D718 0011A658  90 1F 00 84 */	stw r0, 0x84(r31)
 /* 8011D71C 0011A65C  38 60 00 7F */	li r3, 0x7f
@@ -687,9 +687,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D738 0011A678  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011D73C 0011A67C  90 1F 00 A8 */	stw r0, 0xa8(r31)
 /* 8011D740 0011A680  48 2F 5F 19 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D744 0011A684  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D744 0011A684  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D748 0011A688  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011D74C 0011A68C  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D74C 0011A68C  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D750 0011A690  38 C0 00 00 */	li r6, 0
 /* 8011D754 0011A694  90 1F 00 AC */	stw r0, 0xac(r31)
 /* 8011D758 0011A698  38 60 00 7F */	li r3, 0x7f
@@ -702,9 +702,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D774 0011A6B4  38 DE 00 28 */	addi r6, r30, 0x28
 /* 8011D778 0011A6B8  90 1F 00 D0 */	stw r0, 0xd0(r31)
 /* 8011D77C 0011A6BC  48 2F 5E DD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D780 0011A6C0  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D780 0011A6C0  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D784 0011A6C4  3C A0 66 30 */	lis r5, 0x66303030@ha
-/* 8011D788 0011A6C8  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D788 0011A6C8  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D78C 0011A6CC  38 C0 00 FF */	li r6, 0xff
 /* 8011D790 0011A6D0  90 1F 00 D4 */	stw r0, 0xd4(r31)
 /* 8011D794 0011A6D4  3C 60 80 4B */	lis r3, __vt__Q24Game20GameSpotLightSetting@ha
@@ -724,9 +724,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D7CC 0011A70C  91 3F 01 08 */	stw r9, 0x108(r31)
 /* 8011D7D0 0011A710  90 1F 01 0C */	stw r0, 0x10c(r31)
 /* 8011D7D4 0011A714  48 2F 5E 85 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D7D8 0011A718  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8011D7D8 0011A718  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8011D7DC 0011A71C  3C A0 75 38 */	lis r5, 0x75383030@ha
-/* 8011D7E0 0011A720  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8011D7E0 0011A720  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8011D7E4 0011A724  C0 02 98 F4 */	lfs f0, lbl_80517C54@sda21(r2)
 /* 8011D7E8 0011A728  90 1F 01 10 */	stw r0, 0x110(r31)
 /* 8011D7EC 0011A72C  3C 60 80 4B */	lis r3, __vt__Q24Game20GameLightSettingBase@ha
@@ -752,9 +752,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D83C 0011A77C  90 FF 01 40 */	stw r7, 0x140(r31)
 /* 8011D840 0011A780  90 1F 01 44 */	stw r0, 0x144(r31)
 /* 8011D844 0011A784  48 2F 5E 15 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D848 0011A788  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D848 0011A788  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D84C 0011A78C  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011D850 0011A790  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D850 0011A790  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D854 0011A794  38 C0 00 00 */	li r6, 0
 /* 8011D858 0011A798  90 1F 01 48 */	stw r0, 0x148(r31)
 /* 8011D85C 0011A79C  38 60 00 7F */	li r3, 0x7f
@@ -767,9 +767,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D878 0011A7B8  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011D87C 0011A7BC  90 1F 01 6C */	stw r0, 0x16c(r31)
 /* 8011D880 0011A7C0  48 2F 5D D9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D884 0011A7C4  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D884 0011A7C4  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D888 0011A7C8  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011D88C 0011A7CC  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D88C 0011A7CC  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D890 0011A7D0  38 C0 00 00 */	li r6, 0
 /* 8011D894 0011A7D4  90 1F 01 70 */	stw r0, 0x170(r31)
 /* 8011D898 0011A7D8  38 60 00 7F */	li r3, 0x7f
@@ -782,9 +782,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D8B4 0011A7F4  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011D8B8 0011A7F8  90 1F 01 94 */	stw r0, 0x194(r31)
 /* 8011D8BC 0011A7FC  48 2F 5D 9D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D8C0 0011A800  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D8C0 0011A800  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D8C4 0011A804  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011D8C8 0011A808  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D8C8 0011A808  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D8CC 0011A80C  38 C0 00 00 */	li r6, 0
 /* 8011D8D0 0011A810  90 1F 01 98 */	stw r0, 0x198(r31)
 /* 8011D8D4 0011A814  38 60 00 7F */	li r3, 0x7f
@@ -797,9 +797,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D8F0 0011A830  38 DE 00 28 */	addi r6, r30, 0x28
 /* 8011D8F4 0011A834  90 1F 01 BC */	stw r0, 0x1bc(r31)
 /* 8011D8F8 0011A838  48 2F 5D 61 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D8FC 0011A83C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D8FC 0011A83C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D900 0011A840  3C A0 66 30 */	lis r5, 0x66303030@ha
-/* 8011D904 0011A844  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D904 0011A844  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D908 0011A848  38 C0 00 FF */	li r6, 0xff
 /* 8011D90C 0011A84C  90 1F 01 C0 */	stw r0, 0x1c0(r31)
 /* 8011D910 0011A850  3C 60 80 4B */	lis r3, __vt__Q24Game20GameSpotLightSetting@ha
@@ -819,9 +819,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D948 0011A888  91 3F 01 F4 */	stw r9, 0x1f4(r31)
 /* 8011D94C 0011A88C  90 1F 01 F8 */	stw r0, 0x1f8(r31)
 /* 8011D950 0011A890  48 2F 5D 09 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D954 0011A894  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8011D954 0011A894  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8011D958 0011A898  3C A0 75 38 */	lis r5, 0x75383030@ha
-/* 8011D95C 0011A89C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8011D95C 0011A89C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8011D960 0011A8A0  C0 02 98 F4 */	lfs f0, lbl_80517C54@sda21(r2)
 /* 8011D964 0011A8A4  90 1F 01 FC */	stw r0, 0x1fc(r31)
 /* 8011D968 0011A8A8  3C 60 80 4B */	lis r3, __vt__Q24Game20GameLightSettingBase@ha
@@ -847,9 +847,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D9B8 0011A8F8  90 FF 02 2C */	stw r7, 0x22c(r31)
 /* 8011D9BC 0011A8FC  90 1F 02 30 */	stw r0, 0x230(r31)
 /* 8011D9C0 0011A900  48 2F 5C 99 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011D9C4 0011A904  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011D9C4 0011A904  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011D9C8 0011A908  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011D9CC 0011A90C  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011D9CC 0011A90C  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011D9D0 0011A910  38 C0 00 00 */	li r6, 0
 /* 8011D9D4 0011A914  90 1F 02 34 */	stw r0, 0x234(r31)
 /* 8011D9D8 0011A918  38 60 00 7F */	li r3, 0x7f
@@ -862,9 +862,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011D9F4 0011A934  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011D9F8 0011A938  90 1F 02 58 */	stw r0, 0x258(r31)
 /* 8011D9FC 0011A93C  48 2F 5C 5D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DA00 0011A940  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DA00 0011A940  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DA04 0011A944  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011DA08 0011A948  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DA08 0011A948  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DA0C 0011A94C  38 C0 00 00 */	li r6, 0
 /* 8011DA10 0011A950  90 1F 02 5C */	stw r0, 0x25c(r31)
 /* 8011DA14 0011A954  38 60 00 7F */	li r3, 0x7f
@@ -877,9 +877,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DA30 0011A970  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011DA34 0011A974  90 1F 02 80 */	stw r0, 0x280(r31)
 /* 8011DA38 0011A978  48 2F 5C 21 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DA3C 0011A97C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DA3C 0011A97C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DA40 0011A980  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011DA44 0011A984  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DA44 0011A984  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DA48 0011A988  38 C0 00 00 */	li r6, 0
 /* 8011DA4C 0011A98C  90 1F 02 84 */	stw r0, 0x284(r31)
 /* 8011DA50 0011A990  38 60 00 7F */	li r3, 0x7f
@@ -892,9 +892,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DA6C 0011A9AC  38 DE 00 28 */	addi r6, r30, 0x28
 /* 8011DA70 0011A9B0  90 1F 02 A8 */	stw r0, 0x2a8(r31)
 /* 8011DA74 0011A9B4  48 2F 5B E5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DA78 0011A9B8  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DA78 0011A9B8  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DA7C 0011A9BC  3C C0 80 4B */	lis r6, __vt__Q24Game20GameSpecLightSetting@ha
-/* 8011DA80 0011A9C0  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DA80 0011A9C0  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DA84 0011A9C4  3C A0 75 38 */	lis r5, 0x75383030@ha
 /* 8011DA88 0011A9C8  90 1F 02 AC */	stw r0, 0x2ac(r31)
 /* 8011DA8C 0011A9CC  39 60 00 FF */	li r11, 0xff
@@ -920,9 +920,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DADC 0011AA1C  91 5F 02 E0 */	stw r10, 0x2e0(r31)
 /* 8011DAE0 0011AA20  90 1F 02 E4 */	stw r0, 0x2e4(r31)
 /* 8011DAE4 0011AA24  48 2F 5B 75 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DAE8 0011AA28  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DAE8 0011AA28  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DAEC 0011AA2C  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011DAF0 0011AA30  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DAF0 0011AA30  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DAF4 0011AA34  38 C0 00 00 */	li r6, 0
 /* 8011DAF8 0011AA38  90 1F 02 E8 */	stw r0, 0x2e8(r31)
 /* 8011DAFC 0011AA3C  38 60 00 7F */	li r3, 0x7f
@@ -935,9 +935,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DB18 0011AA58  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011DB1C 0011AA5C  90 1F 03 0C */	stw r0, 0x30c(r31)
 /* 8011DB20 0011AA60  48 2F 5B 39 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DB24 0011AA64  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DB24 0011AA64  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DB28 0011AA68  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011DB2C 0011AA6C  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DB2C 0011AA6C  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DB30 0011AA70  38 C0 00 00 */	li r6, 0
 /* 8011DB34 0011AA74  90 1F 03 10 */	stw r0, 0x310(r31)
 /* 8011DB38 0011AA78  38 60 00 7F */	li r3, 0x7f
@@ -950,9 +950,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DB54 0011AA94  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011DB58 0011AA98  90 1F 03 34 */	stw r0, 0x334(r31)
 /* 8011DB5C 0011AA9C  48 2F 5A FD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DB60 0011AAA0  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DB60 0011AAA0  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DB64 0011AAA4  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011DB68 0011AAA8  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DB68 0011AAA8  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DB6C 0011AAAC  38 C0 00 00 */	li r6, 0
 /* 8011DB70 0011AAB0  90 1F 03 38 */	stw r0, 0x338(r31)
 /* 8011DB74 0011AAB4  38 60 00 7F */	li r3, 0x7f
@@ -965,9 +965,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DB90 0011AAD0  38 DE 00 28 */	addi r6, r30, 0x28
 /* 8011DB94 0011AAD4  90 1F 03 5C */	stw r0, 0x35c(r31)
 /* 8011DB98 0011AAD8  48 2F 5A C1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DB9C 0011AADC  3C 80 80 4B */	lis r4, "__vt__7Parm<i>"@ha
+/* 8011DB9C 0011AADC  3C 80 80 4B */	lis r4, __vt__7Parm$$0i$$1@ha
 /* 8011DBA0 0011AAE0  3C 60 80 4B */	lis r3, __vt__Q24Game23GameLightAmbientSetting@ha
-/* 8011DBA4 0011AAE4  38 04 AC 90 */	addi r0, r4, "__vt__7Parm<i>"@l
+/* 8011DBA4 0011AAE4  38 04 AC 90 */	addi r0, r4, __vt__7Parm$$0i$$1@l
 /* 8011DBA8 0011AAE8  38 C0 00 FF */	li r6, 0xff
 /* 8011DBAC 0011AAEC  90 1F 03 60 */	stw r0, 0x360(r31)
 /* 8011DBB0 0011AAF0  38 A0 00 00 */	li r5, 0
@@ -997,9 +997,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DC10 0011AB50  38 C2 98 BC */	addi r6, r2, lbl_80517C1C@sda21
 /* 8011DC14 0011AB54  90 1F 04 AC */	stw r0, 0x4ac(r31)
 /* 8011DC18 0011AB58  48 2F 5A 41 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DC1C 0011AB5C  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DC1C 0011AB5C  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DC20 0011AB60  3C A0 75 38 */	lis r5, 0x75383031@ha
-/* 8011DC24 0011AB64  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DC24 0011AB64  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DC28 0011AB68  38 C0 00 00 */	li r6, 0
 /* 8011DC2C 0011AB6C  90 1F 04 B0 */	stw r0, 0x4b0(r31)
 /* 8011DC30 0011AB70  38 60 00 7F */	li r3, 0x7f
@@ -1012,9 +1012,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DC4C 0011AB8C  38 C2 98 C0 */	addi r6, r2, lbl_80517C20@sda21
 /* 8011DC50 0011AB90  90 1F 04 D4 */	stw r0, 0x4d4(r31)
 /* 8011DC54 0011AB94  48 2F 5A 05 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DC58 0011AB98  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DC58 0011AB98  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DC5C 0011AB9C  3C A0 75 38 */	lis r5, 0x75383032@ha
-/* 8011DC60 0011ABA0  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DC60 0011ABA0  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DC64 0011ABA4  38 C0 00 00 */	li r6, 0
 /* 8011DC68 0011ABA8  90 1F 04 D8 */	stw r0, 0x4d8(r31)
 /* 8011DC6C 0011ABAC  38 60 00 7F */	li r3, 0x7f
@@ -1027,9 +1027,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DC88 0011ABC8  38 C2 98 C4 */	addi r6, r2, lbl_80517C24@sda21
 /* 8011DC8C 0011ABCC  90 1F 04 FC */	stw r0, 0x4fc(r31)
 /* 8011DC90 0011ABD0  48 2F 59 C9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DC94 0011ABD4  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DC94 0011ABD4  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DC98 0011ABD8  3C A0 75 38 */	lis r5, 0x75383033@ha
-/* 8011DC9C 0011ABDC  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DC9C 0011ABDC  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DCA0 0011ABE0  38 C0 00 00 */	li r6, 0
 /* 8011DCA4 0011ABE4  90 1F 05 00 */	stw r0, 0x500(r31)
 /* 8011DCA8 0011ABE8  38 60 00 7F */	li r3, 0x7f
@@ -1042,9 +1042,9 @@ __ct__Q24Game20GameLightSpotSettingFPc:
 /* 8011DCC4 0011AC04  38 DE 00 28 */	addi r6, r30, 0x28
 /* 8011DCC8 0011AC08  90 1F 05 24 */	stw r0, 0x524(r31)
 /* 8011DCCC 0011AC0C  48 2F 59 8D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DCD0 0011AC10  3C 60 80 4B */	lis r3, "__vt__7Parm<i>"@ha
+/* 8011DCD0 0011AC10  3C 60 80 4B */	lis r3, __vt__7Parm$$0i$$1@ha
 /* 8011DCD4 0011AC14  38 C0 00 FF */	li r6, 0xff
-/* 8011DCD8 0011AC18  38 03 AC 90 */	addi r0, r3, "__vt__7Parm<i>"@l
+/* 8011DCD8 0011AC18  38 03 AC 90 */	addi r0, r3, __vt__7Parm$$0i$$1@l
 /* 8011DCDC 0011AC1C  38 A0 00 00 */	li r5, 0
 /* 8011DCE0 0011AC20  90 1F 05 28 */	stw r0, 0x528(r31)
 /* 8011DCE4 0011AC24  38 80 00 20 */	li r4, 0x20
@@ -1129,9 +1129,9 @@ __ct__Q24Game19GameLightMgrSettingFv:
 /* 8011DE08 0011AD48  91 9E 00 38 */	stw r12, 0x38(r30)
 /* 8011DE0C 0011AD4C  90 1E 00 3C */	stw r0, 0x3c(r30)
 /* 8011DE10 0011AD50  48 2F 58 49 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DE14 0011AD54  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8011DE14 0011AD54  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8011DE18 0011AD58  3C A0 66 30 */	lis r5, 0x66303031@ha
-/* 8011DE1C 0011AD5C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8011DE1C 0011AD5C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8011DE20 0011AD60  38 9D 00 18 */	addi r4, r29, 0x18
 /* 8011DE24 0011AD64  90 1D 00 24 */	stw r0, 0x24(r29)
 /* 8011DE28 0011AD68  38 64 00 34 */	addi r3, r4, 0x34
@@ -1144,9 +1144,9 @@ __ct__Q24Game19GameLightMgrSettingFv:
 /* 8011DE44 0011AD84  D0 3D 00 44 */	stfs f1, 0x44(r29)
 /* 8011DE48 0011AD88  D0 1D 00 48 */	stfs f0, 0x48(r29)
 /* 8011DE4C 0011AD8C  48 2F 58 0D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DE50 0011AD90  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8011DE50 0011AD90  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8011DE54 0011AD94  3C A0 66 30 */	lis r5, 0x66303032@ha
-/* 8011DE58 0011AD98  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8011DE58 0011AD98  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8011DE5C 0011AD9C  38 9D 00 18 */	addi r4, r29, 0x18
 /* 8011DE60 0011ADA0  90 1D 00 4C */	stw r0, 0x4c(r29)
 /* 8011DE64 0011ADA4  38 64 00 5C */	addi r3, r4, 0x5c
@@ -1159,9 +1159,9 @@ __ct__Q24Game19GameLightMgrSettingFv:
 /* 8011DE80 0011ADC0  D0 3D 00 6C */	stfs f1, 0x6c(r29)
 /* 8011DE84 0011ADC4  D0 1D 00 70 */	stfs f0, 0x70(r29)
 /* 8011DE88 0011ADC8  48 2F 57 D1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8011DE8C 0011ADCC  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8011DE8C 0011ADCC  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8011DE90 0011ADD0  3C 80 80 12 */	lis r4, __ct__Q24Game20GameLightTimeSettingFv@ha
-/* 8011DE94 0011ADD4  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8011DE94 0011ADD4  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8011DE98 0011ADD8  C0 02 98 F0 */	lfs f0, lbl_80517C50@sda21(r2)
 /* 8011DE9C 0011ADDC  90 1D 00 74 */	stw r0, 0x74(r29)
 /* 8011DEA0 0011ADE0  3C 60 80 12 */	lis r3, __dt__Q24Game20GameLightTimeSettingFv@ha
@@ -1176,9 +1176,9 @@ __ct__Q24Game19GameLightMgrSettingFv:
 /* 8011DEC4 0011AE04  38 E0 00 05 */	li r7, 5
 /* 8011DEC8 0011AE08  D0 1D 00 98 */	stfs f0, 0x98(r29)
 /* 8011DECC 0011AE0C  4B FA 39 71 */	bl __construct_array
-/* 8011DED0 0011AE10  3C 60 80 4B */	lis r3, "GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@"@ha
+/* 8011DED0 0011AE10  3C 60 80 4B */	lis r3, GameLightMgrSettinglabel__Q24Game26$$2unnamed$$2gameLightMgr_cpp$$2@ha
 /* 8011DED4 0011AE14  3B 80 00 00 */	li r28, 0
-/* 8011DED8 0011AE18  3B 63 C4 2C */	addi r27, r3, "GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@"@l
+/* 8011DED8 0011AE18  3B 63 C4 2C */	addi r27, r3, GameLightMgrSettinglabel__Q24Game26$$2unnamed$$2gameLightMgr_cpp$$2@l
 /* 8011DEDC 0011AE1C  7F 9A E3 78 */	mr r26, r28
 lbl_8011DEE0:
 /* 8011DEE0 0011AE20  80 BB 00 00 */	lwz r5, 0(r27)
@@ -1962,14 +1962,14 @@ lbl_8011E9F8:
 /* 8011EA2C 0011B96C  C0 5E 00 30 */	lfs f2, 0x30(r30)
 /* 8011EA30 0011B970  C0 23 00 1C */	lfs f1, 0x1c(r3)
 /* 8011EA34 0011B974  C0 7E 00 44 */	lfs f3, 0x44(r30)
-/* 8011EA38 0011B978  48 00 39 E5 */	bl "complement<f>__4GameFfff"
+/* 8011EA38 0011B978  48 00 39 E5 */	bl complement$$0f$$1__4GameFfff
 /* 8011EA3C 0011B97C  80 7F 23 44 */	lwz r3, 0x2344(r31)
 /* 8011EA40 0011B980  D0 23 00 1C */	stfs f1, 0x1c(r3)
 /* 8011EA44 0011B984  80 7F 23 44 */	lwz r3, 0x2344(r31)
 /* 8011EA48 0011B988  C0 5E 00 34 */	lfs f2, 0x34(r30)
 /* 8011EA4C 0011B98C  C0 23 00 20 */	lfs f1, 0x20(r3)
 /* 8011EA50 0011B990  C0 7E 00 44 */	lfs f3, 0x44(r30)
-/* 8011EA54 0011B994  48 00 39 C9 */	bl "complement<f>__4GameFfff"
+/* 8011EA54 0011B994  48 00 39 C9 */	bl complement$$0f$$1__4GameFfff
 /* 8011EA58 0011B998  80 7F 23 44 */	lwz r3, 0x2344(r31)
 /* 8011EA5C 0011B99C  D0 23 00 20 */	stfs f1, 0x20(r3)
 lbl_8011EA60:
@@ -4950,7 +4950,7 @@ lbl_80121558:
 /* 80121588 0011E4C8  C0 3F 1F 08 */	lfs f1, 0x1f08(r31)
 /* 8012158C 0011E4CC  C0 5F 19 B0 */	lfs f2, 0x19b0(r31)
 /* 80121590 0011E4D0  C0 7F 23 54 */	lfs f3, 0x2354(r31)
-/* 80121594 0011E4D4  48 00 0E 89 */	bl "complement<f>__4GameFfff"
+/* 80121594 0011E4D4  48 00 0E 89 */	bl complement$$0f$$1__4GameFfff
 /* 80121598 0011E4D8  80 7F 00 50 */	lwz r3, 0x50(r31)
 /* 8012159C 0011E4DC  3C 00 43 30 */	lis r0, 0x4330
 /* 801215A0 0011E4E0  90 01 00 90 */	stw r0, 0x90(r1)
@@ -5547,13 +5547,13 @@ lbl_80121E40:
 /* 80121E5C 0011ED9C  C0 3F 22 44 */	lfs f1, 0x2244(r31)
 /* 80121E60 0011EDA0  C0 5F 1C EC */	lfs f2, 0x1cec(r31)
 /* 80121E64 0011EDA4  C0 7F 23 54 */	lfs f3, 0x2354(r31)
-/* 80121E68 0011EDA8  48 00 05 B5 */	bl "complement<f>__4GameFfff"
+/* 80121E68 0011EDA8  48 00 05 B5 */	bl complement$$0f$$1__4GameFfff
 /* 80121E6C 0011EDAC  80 7F 23 44 */	lwz r3, 0x2344(r31)
 /* 80121E70 0011EDB0  D0 23 00 1C */	stfs f1, 0x1c(r3)
 /* 80121E74 0011EDB4  C0 3F 22 6C */	lfs f1, 0x226c(r31)
 /* 80121E78 0011EDB8  C0 5F 1D 14 */	lfs f2, 0x1d14(r31)
 /* 80121E7C 0011EDBC  C0 7F 23 54 */	lfs f3, 0x2354(r31)
-/* 80121E80 0011EDC0  48 00 05 9D */	bl "complement<f>__4GameFfff"
+/* 80121E80 0011EDC0  48 00 05 9D */	bl complement$$0f$$1__4GameFfff
 /* 80121E84 0011EDC4  80 7F 23 44 */	lwz r3, 0x2344(r31)
 /* 80121E88 0011EDC8  D0 23 00 20 */	stfs f1, 0x20(r3)
 /* 80121E8C 0011EDCC  80 1F 1D 50 */	lwz r0, 0x1d50(r31)
@@ -5736,7 +5736,7 @@ lbl_80122104:
 /* 80122110 0011F050  C0 3E 1F 08 */	lfs f1, 0x1f08(r30)
 /* 80122114 0011F054  C0 5E 19 B0 */	lfs f2, 0x19b0(r30)
 /* 80122118 0011F058  C0 7E 23 54 */	lfs f3, 0x2354(r30)
-/* 8012211C 0011F05C  48 00 03 01 */	bl "complement<f>__4GameFfff"
+/* 8012211C 0011F05C  48 00 03 01 */	bl complement$$0f$$1__4GameFfff
 /* 80122120 0011F060  80 7E 00 50 */	lwz r3, 0x50(r30)
 /* 80122124 0011F064  38 00 00 03 */	li r0, 3
 /* 80122128 0011F068  D0 23 00 44 */	stfs f1, 0x44(r3)
@@ -5745,7 +5745,7 @@ lbl_80122104:
 /* 80122134 0011F074  C0 3E 1F F4 */	lfs f1, 0x1ff4(r30)
 /* 80122138 0011F078  C0 5E 1A 9C */	lfs f2, 0x1a9c(r30)
 /* 8012213C 0011F07C  C0 7E 23 54 */	lfs f3, 0x2354(r30)
-/* 80122140 0011F080  48 00 02 DD */	bl "complement<f>__4GameFfff"
+/* 80122140 0011F080  48 00 02 DD */	bl complement$$0f$$1__4GameFfff
 /* 80122144 0011F084  80 7E 00 54 */	lwz r3, 0x54(r30)
 /* 80122148 0011F088  D0 23 00 44 */	stfs f1, 0x44(r3)
 /* 8012214C 0011F08C  A3 BF 00 18 */	lhz r29, 0x18(r31)
@@ -5766,7 +5766,7 @@ lbl_80122180:
 /* 80122180 0011F0C0  C0 3E 1E 1C */	lfs f1, 0x1e1c(r30)
 /* 80122184 0011F0C4  C0 5E 18 C4 */	lfs f2, 0x18c4(r30)
 /* 80122188 0011F0C8  C0 7E 23 54 */	lfs f3, 0x2354(r30)
-/* 8012218C 0011F0CC  48 00 02 91 */	bl "complement<f>__4GameFfff"
+/* 8012218C 0011F0CC  48 00 02 91 */	bl complement$$0f$$1__4GameFfff
 /* 80122190 0011F0D0  1C 1D 00 0C */	mulli r0, r29, 0xc
 /* 80122194 0011F0D4  C0 62 99 38 */	lfs f3, lbl_80517C98@sda21(r2)
 /* 80122198 0011F0D8  38 61 00 08 */	addi r3, r1, 8
@@ -5946,8 +5946,8 @@ lbl_80122400:
 /* 80122414 0011F354  38 21 00 10 */	addi r1, r1, 0x10
 /* 80122418 0011F358  4E 80 00 20 */	blr 
 
-.global "complement<f>__4GameFfff"
-"complement<f>__4GameFfff":
+.global complement$$0f$$1__4GameFfff
+complement$$0f$$1__4GameFfff:
 /* 8012241C 0011F35C  EC 02 08 28 */	fsubs f0, f2, f1
 /* 80122420 0011F360  EC 23 08 3A */	fmadds f1, f3, f0, f1
 /* 80122424 0011F364  4E 80 00 20 */	blr 

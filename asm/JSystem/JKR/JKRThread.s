@@ -768,20 +768,20 @@ __sinit_JKRThread_cpp:
 /* 800260DC 0002301C  38 63 6E 30 */	addi r3, r3, sThreadList__9JKRThread@l
 /* 800260E0 00023020  48 00 07 51 */	bl __ct__10JSUPtrListFb
 /* 800260E4 00023024  3C 60 80 50 */	lis r3, sThreadList__9JKRThread@ha
-/* 800260E8 00023028  3C 80 80 02 */	lis r4, "__dt__19JSUList<9JKRThread>Fv"@ha
+/* 800260E8 00023028  3C 80 80 02 */	lis r4, __dt__19JSUList$$09JKRThread$$1Fv@ha
 /* 800260EC 0002302C  3C A0 80 4F */	lis r5, lbl_804EFFB0@ha
 /* 800260F0 00023030  38 63 6E 30 */	addi r3, r3, sThreadList__9JKRThread@l
-/* 800260F4 00023034  38 84 61 8C */	addi r4, r4, "__dt__19JSUList<9JKRThread>Fv"@l
+/* 800260F4 00023034  38 84 61 8C */	addi r4, r4, __dt__19JSUList$$09JKRThread$$1Fv@l
 /* 800260F8 00023038  38 A5 FF B0 */	addi r5, r5, lbl_804EFFB0@l
 /* 800260FC 0002303C  48 09 B6 05 */	bl __register_global_object
 /* 80026100 00023040  3C 60 80 50 */	lis r3, sTaskList__7JKRTask@ha
 /* 80026104 00023044  38 63 6E 68 */	addi r3, r3, sTaskList__7JKRTask@l
 /* 80026108 00023048  48 00 07 C9 */	bl initiate__10JSUPtrListFv
 /* 8002610C 0002304C  3C 60 80 50 */	lis r3, sTaskList__7JKRTask@ha
-/* 80026110 00023050  3C 80 80 02 */	lis r4, "__dt__17JSUList<7JKRTask>Fv"@ha
+/* 80026110 00023050  3C 80 80 02 */	lis r4, __dt__17JSUList$$07JKRTask$$1Fv@ha
 /* 80026114 00023054  3C A0 80 4F */	lis r5, lbl_804EFFBC@ha
 /* 80026118 00023058  38 63 6E 68 */	addi r3, r3, sTaskList__7JKRTask@l
-/* 8002611C 0002305C  38 84 61 38 */	addi r4, r4, "__dt__17JSUList<7JKRTask>Fv"@l
+/* 8002611C 0002305C  38 84 61 38 */	addi r4, r4, __dt__17JSUList$$07JKRTask$$1Fv@l
 /* 80026120 00023060  38 A5 FF BC */	addi r5, r5, lbl_804EFFBC@l
 /* 80026124 00023064  48 09 B5 DD */	bl __register_global_object
 /* 80026128 00023068  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -789,8 +789,8 @@ __sinit_JKRThread_cpp:
 /* 80026130 00023070  38 21 00 10 */	addi r1, r1, 0x10
 /* 80026134 00023074  4E 80 00 20 */	blr 
 
-.global "__dt__17JSUList<7JKRTask>Fv"
-"__dt__17JSUList<7JKRTask>Fv":
+.global __dt__17JSUList$$07JKRTask$$1Fv
+__dt__17JSUList$$07JKRTask$$1Fv:
 /* 80026138 00023078  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002613C 0002307C  7C 08 02 A6 */	mflr r0
 /* 80026140 00023080  90 01 00 14 */	stw r0, 0x14(r1)
@@ -814,8 +814,8 @@ lbl_80026170:
 /* 80026184 000230C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80026188 000230C8  4E 80 00 20 */	blr 
 
-.global "__dt__19JSUList<9JKRThread>Fv"
-"__dt__19JSUList<9JKRThread>Fv":
+.global __dt__19JSUList$$09JKRThread$$1Fv
+__dt__19JSUList$$09JKRThread$$1Fv:
 /* 8002618C 000230CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80026190 000230D0  7C 08 02 A6 */	mflr r0
 /* 80026194 000230D4  90 01 00 14 */	stw r0, 0x14(r1)

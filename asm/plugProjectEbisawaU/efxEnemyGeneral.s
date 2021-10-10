@@ -2310,8 +2310,8 @@ lbl_803C99A4:
 /* 803C99C0 003C6900  38 21 00 60 */	addi r1, r1, 0x60
 /* 803C99C4 003C6904  4E 80 00 20 */	blr 
 
-.global "update__Q23efx11TEnemyHamonFR10Vector3<f>"
-"update__Q23efx11TEnemyHamonFR10Vector3<f>":
+.global update__Q23efx11TEnemyHamonFR10Vector3$$0f$$1
+update__Q23efx11TEnemyHamonFR10Vector3$$0f$$1:
 /* 803C99C8 003C6908  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803C99CC 003C690C  7C 08 02 A6 */	mflr r0
 /* 803C99D0 003C6910  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2544,17 +2544,17 @@ forceKill__Q23efx15TEnemyWalkSmokeFv:
 fade__Q23efx15TEnemyWalkSmokeFv:
 /* 803C9CF4 003C6C34  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx10TEnemyPiyoFv"
-"@4@__dt__Q23efx10TEnemyPiyoFv":
+.global $$24$$2__dt__Q23efx10TEnemyPiyoFv
+$$24$$2__dt__Q23efx10TEnemyPiyoFv:
 /* 803C9CF8 003C6C38  38 63 FF FC */	addi r3, r3, -4
 /* 803C9CFC 003C6C3C  4B D3 74 7C */	b __dt__Q23efx10TEnemyPiyoFv
 
-.global "@4@__dt__Q23efx12TEnemyHamonMFv"
-"@4@__dt__Q23efx12TEnemyHamonMFv":
+.global $$24$$2__dt__Q23efx12TEnemyHamonMFv
+$$24$$2__dt__Q23efx12TEnemyHamonMFv:
 /* 803C9D00 003C6C40  38 63 FF FC */	addi r3, r3, -4
 /* 803C9D04 003C6C44  4B D6 49 DC */	b __dt__Q23efx12TEnemyHamonMFv
 
-.global "@4@__dt__Q23efx15TEnemyHamonMIndFv"
-"@4@__dt__Q23efx15TEnemyHamonMIndFv":
+.global $$24$$2__dt__Q23efx15TEnemyHamonMIndFv
+$$24$$2__dt__Q23efx15TEnemyHamonMIndFv:
 /* 803C9D08 003C6C48  38 63 FF FC */	addi r3, r3, -4
 /* 803C9D0C 003C6C4C  4B D6 49 38 */	b __dt__Q23efx15TEnemyHamonMIndFv

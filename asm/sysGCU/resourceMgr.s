@@ -93,11 +93,11 @@ __ct__Q28Resource10MgrCommandFPc:
 /* 8043321C 0043015C  38 00 00 00 */	li r0, 0
 /* 80433220 00430160  3C 60 80 4B */	lis r3, __vt__9IDelegate@ha
 /* 80433224 00430164  90 1E 00 AC */	stw r0, 0xac(r30)
-/* 80433228 00430168  3C 80 80 4F */	lis r4, "__vt__33Delegate<Q28Resource10MgrCommand>"@ha
+/* 80433228 00430168  3C 80 80 4F */	lis r4, __vt__33Delegate$$0Q28Resource10MgrCommand$$1@ha
 /* 8043322C 0043016C  39 43 0F 00 */	addi r10, r3, __vt__9IDelegate@l
 /* 80433230 00430170  7F C3 F3 78 */	mr r3, r30
 /* 80433234 00430174  90 1E 00 B0 */	stw r0, 0xb0(r30)
-/* 80433238 00430178  39 24 C4 30 */	addi r9, r4, "__vt__33Delegate<Q28Resource10MgrCommand>"@l
+/* 80433238 00430178  39 24 C4 30 */	addi r9, r4, __vt__33Delegate$$0Q28Resource10MgrCommand$$1@l
 /* 8043323C 0043017C  80 9F 00 00 */	lwz r4, 0(r31)
 /* 80433240 00430180  80 1F 00 04 */	lwz r0, 4(r31)
 /* 80433244 00430184  81 7F 00 08 */	lwz r11, 8(r31)
@@ -1054,8 +1054,8 @@ lbl_80433F24:
 /* 80433F28 00430E68  40 82 FF E4 */	bne lbl_80433F0C
 /* 80433F2C 00430E6C  4E 80 00 20 */	blr 
 
-.global "invoke__33Delegate<Q28Resource10MgrCommand>Fv"
-"invoke__33Delegate<Q28Resource10MgrCommand>Fv":
+.global invoke__33Delegate$$0Q28Resource10MgrCommand$$1Fv
+invoke__33Delegate$$0Q28Resource10MgrCommand$$1Fv:
 /* 80433F30 00430E70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80433F34 00430E74  7C 08 02 A6 */	mflr r0
 /* 80433F38 00430E78  7C 64 1B 78 */	mr r4, r3
@@ -1069,12 +1069,12 @@ lbl_80433F24:
 /* 80433F58 00430E98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80433F5C 00430E9C  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q28Resource4NodeFv"
-"@24@__dt__Q28Resource4NodeFv":
+.global $$224$$2__dt__Q28Resource4NodeFv
+$$224$$2__dt__Q28Resource4NodeFv:
 /* 80433F60 00430EA0  38 63 FF E8 */	addi r3, r3, -24
 /* 80433F64 00430EA4  4B FF F1 74 */	b __dt__Q28Resource4NodeFv
 
-.global "@24@__dt__Q28Resource10MgrCommandFv"
-"@24@__dt__Q28Resource10MgrCommandFv":
+.global $$224$$2__dt__Q28Resource10MgrCommandFv
+$$224$$2__dt__Q28Resource10MgrCommandFv:
 /* 80433F68 00430EA8  38 63 FF E8 */	addi r3, r3, -24
 /* 80433F6C 00430EAC  4B FF F3 80 */	b __dt__Q28Resource10MgrCommandFv

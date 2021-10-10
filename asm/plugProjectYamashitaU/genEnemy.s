@@ -2372,7 +2372,7 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 80126958 00123898  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 8012695C 0012389C  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80126960 001238A0  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80126964 001238A4  48 2F F0 85 */	bl "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
+/* 80126964 001238A4  48 2F F0 85 */	bl drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80126968 001238A8  C0 42 9B D4 */	lfs f2, lbl_80517F34@sda21(r2)
 /* 8012696C 001238AC  7F C3 F3 78 */	mr r3, r30
 /* 80126970 001238B0  C0 22 9B 48 */	lfs f1, lbl_80517EA8@sda21(r2)
@@ -2382,7 +2382,7 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 80126980 001238C0  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 80126984 001238C4  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80126988 001238C8  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8012698C 001238CC  48 2F F0 5D */	bl "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
+/* 8012698C 001238CC  48 2F F0 5D */	bl drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 80126990 001238D0  C0 42 9B DC */	lfs f2, lbl_80517F3C@sda21(r2)
 /* 80126994 001238D4  7F C3 F3 78 */	mr r3, r30
 /* 80126998 001238D8  C0 22 9B 48 */	lfs f1, lbl_80517EA8@sda21(r2)
@@ -2392,7 +2392,7 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 801269A8 001238E8  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 801269AC 001238EC  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 801269B0 001238F0  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 801269B4 001238F4  48 2F F0 35 */	bl "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
+/* 801269B4 001238F4  48 2F F0 35 */	bl drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 801269B8 001238F8  38 60 00 06 */	li r3, 6
 /* 801269BC 001238FC  38 80 00 00 */	li r4, 0
 /* 801269C0 00123900  4B FB F1 21 */	bl GXSetLineWidth
@@ -2481,7 +2481,7 @@ lbl_80126A04:
 /* 80126B08 00123A48  1C 00 00 34 */	mulli r0, r0, 0x34
 /* 80126B0C 00123A4C  7C E7 00 2E */	lwzx r7, r7, r0
 /* 80126B10 00123A50  4C C6 31 82 */	crclr 6
-/* 80126B14 00123A54  48 30 0F C9 */	bl "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
+/* 80126B14 00123A54  48 30 0F C9 */	bl perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3$$0f$$1Pce
 /* 80126B18 00123A58  80 7D 00 48 */	lwz r3, 0x48(r29)
 /* 80126B1C 00123A5C  28 03 00 00 */	cmplwi r3, 0
 /* 80126B20 00123A60  41 82 00 1C */	beq lbl_80126B3C

@@ -161,7 +161,7 @@ init__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSection:
 /* 80152294 0014F1D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80152298 0014F1D8  7C 7F 1B 78 */	mr r31, r3
 /* 8015229C 0014F1DC  93 C1 00 08 */	stw r30, 8(r1)
-/* 801522A0 0014F1E0  48 00 41 35 */	bl "create__Q24Game40StateMachine<Q24Game17SingleGameSection>Fi"
+/* 801522A0 0014F1E0  48 00 41 35 */	bl create__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1Fi
 /* 801522A4 0014F1E4  38 60 00 38 */	li r3, 0x38
 /* 801522A8 0014F1E8  4B ED 1B FD */	bl __nw__FUl
 /* 801522AC 0014F1EC  7C 64 1B 79 */	or. r4, r3, r3
@@ -170,7 +170,7 @@ init__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSection:
 /* 801522B8 0014F1F8  7C 64 1B 78 */	mr r4, r3
 lbl_801522BC:
 /* 801522BC 0014F1FC  7F E3 FB 78 */	mr r3, r31
-/* 801522C0 0014F200  48 00 42 45 */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 801522C0 0014F200  48 00 42 45 */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 801522C4 0014F204  38 60 00 30 */	li r3, 0x30
 /* 801522C8 0014F208  4B ED 1B DD */	bl __nw__FUl
 /* 801522CC 0014F20C  7C 64 1B 79 */	or. r4, r3, r3
@@ -179,14 +179,14 @@ lbl_801522BC:
 /* 801522D8 0014F218  7C 64 1B 78 */	mr r4, r3
 lbl_801522DC:
 /* 801522DC 0014F21C  7F E3 FB 78 */	mr r3, r31
-/* 801522E0 0014F220  48 00 42 25 */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 801522E0 0014F220  48 00 42 25 */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 801522E4 0014F224  38 60 00 2C */	li r3, 0x2c
 /* 801522E8 0014F228  4B ED 1B BD */	bl __nw__FUl
 /* 801522EC 0014F22C  7C 64 1B 79 */	or. r4, r3, r3
 /* 801522F0 0014F230  41 82 00 38 */	beq lbl_80152328
-/* 801522F4 0014F234  3C 60 80 4B */	lis r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 801522F4 0014F234  3C 60 80 4B */	lis r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 801522F8 0014F238  3C A0 80 4B */	lis r5, __vt__Q34Game10SingleGame5State@ha
-/* 801522FC 0014F23C  38 03 13 18 */	addi r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 801522FC 0014F23C  38 03 13 18 */	addi r0, r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 80152300 0014F240  3C 60 80 4C */	lis r3, __vt__Q34Game10SingleGame9LoadState@ha
 /* 80152304 0014F244  90 04 00 00 */	stw r0, 0(r4)
 /* 80152308 0014F248  38 00 00 02 */	li r0, 2
@@ -199,14 +199,14 @@ lbl_801522DC:
 /* 80152324 0014F264  90 04 00 00 */	stw r0, 0(r4)
 lbl_80152328:
 /* 80152328 0014F268  7F E3 FB 78 */	mr r3, r31
-/* 8015232C 0014F26C  48 00 41 D9 */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 8015232C 0014F26C  48 00 41 D9 */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 80152330 0014F270  38 60 00 24 */	li r3, 0x24
 /* 80152334 0014F274  4B ED 1B 71 */	bl __nw__FUl
 /* 80152338 0014F278  7C 64 1B 79 */	or. r4, r3, r3
 /* 8015233C 0014F27C  41 82 00 38 */	beq lbl_80152374
-/* 80152340 0014F280  3C 60 80 4B */	lis r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 80152340 0014F280  3C 60 80 4B */	lis r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 80152344 0014F284  3C A0 80 4B */	lis r5, __vt__Q34Game10SingleGame5State@ha
-/* 80152348 0014F288  38 03 13 18 */	addi r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 80152348 0014F288  38 03 13 18 */	addi r0, r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 8015234C 0014F28C  3C 60 80 4C */	lis r3, __vt__Q34Game10SingleGame9GameState@ha
 /* 80152350 0014F290  90 04 00 00 */	stw r0, 0(r4)
 /* 80152354 0014F294  38 00 00 03 */	li r0, 3
@@ -219,14 +219,14 @@ lbl_80152328:
 /* 80152370 0014F2B0  90 04 00 00 */	stw r0, 0(r4)
 lbl_80152374:
 /* 80152374 0014F2B4  7F E3 FB 78 */	mr r3, r31
-/* 80152378 0014F2B8  48 00 41 8D */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 80152378 0014F2B8  48 00 41 8D */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 8015237C 0014F2BC  38 60 00 1C */	li r3, 0x1c
 /* 80152380 0014F2C0  4B ED 1B 25 */	bl __nw__FUl
 /* 80152384 0014F2C4  7C 64 1B 79 */	or. r4, r3, r3
 /* 80152388 0014F2C8  41 82 00 38 */	beq lbl_801523C0
-/* 8015238C 0014F2CC  3C 60 80 4B */	lis r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 8015238C 0014F2CC  3C 60 80 4B */	lis r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 80152390 0014F2D0  3C A0 80 4B */	lis r5, __vt__Q34Game10SingleGame5State@ha
-/* 80152394 0014F2D4  38 03 13 18 */	addi r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 80152394 0014F2D4  38 03 13 18 */	addi r0, r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 80152398 0014F2D8  3C 60 80 4C */	lis r3, __vt__Q34Game10SingleGame9CaveState@ha
 /* 8015239C 0014F2DC  90 04 00 00 */	stw r0, 0(r4)
 /* 801523A0 0014F2E0  38 00 00 04 */	li r0, 4
@@ -239,14 +239,14 @@ lbl_80152374:
 /* 801523BC 0014F2FC  90 04 00 00 */	stw r0, 0(r4)
 lbl_801523C0:
 /* 801523C0 0014F300  7F E3 FB 78 */	mr r3, r31
-/* 801523C4 0014F304  48 00 41 41 */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 801523C4 0014F304  48 00 41 41 */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 801523C8 0014F308  38 60 00 20 */	li r3, 0x20
 /* 801523CC 0014F30C  4B ED 1A D9 */	bl __nw__FUl
 /* 801523D0 0014F310  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801523D4 0014F314  41 82 00 40 */	beq lbl_80152414
-/* 801523D8 0014F318  3C 60 80 4B */	lis r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 801523D8 0014F318  3C 60 80 4B */	lis r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 801523DC 0014F31C  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame5State@ha
-/* 801523E0 0014F320  38 03 13 18 */	addi r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 801523E0 0014F320  38 03 13 18 */	addi r0, r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 801523E4 0014F324  3C 60 80 4C */	lis r3, __vt__Q34Game10SingleGame11DayEndState@ha
 /* 801523E8 0014F328  90 1E 00 00 */	stw r0, 0(r30)
 /* 801523EC 0014F32C  38 00 00 05 */	li r0, 5
@@ -262,14 +262,14 @@ lbl_801523C0:
 lbl_80152414:
 /* 80152414 0014F354  7F E3 FB 78 */	mr r3, r31
 /* 80152418 0014F358  7F C4 F3 78 */	mr r4, r30
-/* 8015241C 0014F35C  48 00 40 E9 */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 8015241C 0014F35C  48 00 40 E9 */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 80152420 0014F360  38 60 00 14 */	li r3, 0x14
 /* 80152424 0014F364  4B ED 1A 81 */	bl __nw__FUl
 /* 80152428 0014F368  7C 64 1B 79 */	or. r4, r3, r3
 /* 8015242C 0014F36C  41 82 00 38 */	beq lbl_80152464
-/* 80152430 0014F370  3C 60 80 4B */	lis r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 80152430 0014F370  3C 60 80 4B */	lis r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 80152434 0014F374  3C A0 80 4B */	lis r5, __vt__Q34Game10SingleGame5State@ha
-/* 80152438 0014F378  38 03 13 18 */	addi r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 80152438 0014F378  38 03 13 18 */	addi r0, r3, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 8015243C 0014F37C  3C 60 80 4B */	lis r3, __vt__Q34Game10SingleGame15CaveDayEndState@ha
 /* 80152440 0014F380  90 04 00 00 */	stw r0, 0(r4)
 /* 80152444 0014F384  38 00 00 06 */	li r0, 6
@@ -282,7 +282,7 @@ lbl_80152414:
 /* 80152460 0014F3A0  90 04 00 00 */	stw r0, 0(r4)
 lbl_80152464:
 /* 80152464 0014F3A4  7F E3 FB 78 */	mr r3, r31
-/* 80152468 0014F3A8  48 00 40 9D */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 80152468 0014F3A8  48 00 40 9D */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 8015246C 0014F3AC  38 60 01 40 */	li r3, 0x140
 /* 80152470 0014F3B0  4B ED 1A 35 */	bl __nw__FUl
 /* 80152474 0014F3B4  7C 64 1B 79 */	or. r4, r3, r3
@@ -291,7 +291,7 @@ lbl_80152464:
 /* 80152480 0014F3C0  7C 64 1B 78 */	mr r4, r3
 lbl_80152484:
 /* 80152484 0014F3C4  7F E3 FB 78 */	mr r3, r31
-/* 80152488 0014F3C8  48 00 40 7D */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 80152488 0014F3C8  48 00 40 7D */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 8015248C 0014F3CC  38 60 01 00 */	li r3, 0x100
 /* 80152490 0014F3D0  4B ED 1A 15 */	bl __nw__FUl
 /* 80152494 0014F3D4  7C 64 1B 79 */	or. r4, r3, r3
@@ -300,7 +300,7 @@ lbl_80152484:
 /* 801524A0 0014F3E0  7C 64 1B 78 */	mr r4, r3
 lbl_801524A4:
 /* 801524A4 0014F3E4  7F E3 FB 78 */	mr r3, r31
-/* 801524A8 0014F3E8  48 00 40 5D */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 801524A8 0014F3E8  48 00 40 5D */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 801524AC 0014F3EC  38 60 00 28 */	li r3, 0x28
 /* 801524B0 0014F3F0  4B ED 19 F5 */	bl __nw__FUl
 /* 801524B4 0014F3F4  7C 64 1B 79 */	or. r4, r3, r3
@@ -309,7 +309,7 @@ lbl_801524A4:
 /* 801524C0 0014F400  7C 64 1B 78 */	mr r4, r3
 lbl_801524C4:
 /* 801524C4 0014F404  7F E3 FB 78 */	mr r3, r31
-/* 801524C8 0014F408  48 00 40 3D */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 801524C8 0014F408  48 00 40 3D */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 801524CC 0014F40C  38 60 01 18 */	li r3, 0x118
 /* 801524D0 0014F410  4B ED 19 D5 */	bl __nw__FUl
 /* 801524D4 0014F414  7C 64 1B 79 */	or. r4, r3, r3
@@ -318,7 +318,7 @@ lbl_801524C4:
 /* 801524E0 0014F420  7C 64 1B 78 */	mr r4, r3
 lbl_801524E4:
 /* 801524E4 0014F424  7F E3 FB 78 */	mr r3, r31
-/* 801524E8 0014F428  48 00 40 1D */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 801524E8 0014F428  48 00 40 1D */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 801524EC 0014F42C  38 60 00 30 */	li r3, 0x30
 /* 801524F0 0014F430  4B ED 19 B5 */	bl __nw__FUl
 /* 801524F4 0014F434  7C 64 1B 79 */	or. r4, r3, r3
@@ -327,7 +327,7 @@ lbl_801524E4:
 /* 80152500 0014F440  7C 64 1B 78 */	mr r4, r3
 lbl_80152504:
 /* 80152504 0014F444  7F E3 FB 78 */	mr r3, r31
-/* 80152508 0014F448  48 00 3F FD */	bl "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
+/* 80152508 0014F448  48 00 3F FD */	bl registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
 /* 8015250C 0014F44C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80152510 0014F450  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80152514 0014F454  83 C1 00 08 */	lwz r30, 8(r1)
@@ -344,7 +344,7 @@ transit__Q34Game10SingleGame3FSMFPQ24Game17SingleGameSectioniPQ24Game8StateArg:
 /* 80152528 0014F468  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015252C 0014F46C  7C 08 02 A6 */	mflr r0
 /* 80152530 0014F470  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80152534 0014F474  48 00 3F 35 */	bl "transit__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
+/* 80152534 0014F474  48 00 3F 35 */	bl transit__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectioniPQ24Game8StateArg
 /* 80152538 0014F478  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015253C 0014F47C  7C 08 03 A6 */	mtlr r0
 /* 80152540 0014F480  38 21 00 10 */	addi r1, r1, 0x10
@@ -660,8 +660,8 @@ lbl_80152984:
 /* 80152994 0014F8D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80152998 0014F8D8  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-"transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg":
+.global transit__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectioniPQ24Game8StateArg
+transit__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectioniPQ24Game8StateArg:
 /* 8015299C 0014F8DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801529A0 0014F8E0  7C 08 02 A6 */	mflr r0
 /* 801529A4 0014F8E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -743,11 +743,11 @@ __ct__Q24Game17SingleGameSectionFP7JKRHeap:
 /* 80152AB0 0014F9F0  3C 80 80 4B */	lis r4, lbl_804B107C@ha
 /* 80152AB4 0014F9F4  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 80152AB8 0014F9F8  39 04 10 7C */	addi r8, r4, lbl_804B107C@l
-/* 80152ABC 0014F9FC  3C 80 80 4B */	lis r4, "__vt__36Delegate<Q24Game17SingleGameSection>"@ha
+/* 80152ABC 0014F9FC  3C 80 80 4B */	lis r4, __vt__36Delegate$$0Q24Game17SingleGameSection$$1@ha
 /* 80152AC0 0014FA00  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80152AC4 0014FA04  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 80152AC8 0014FA08  80 C8 00 04 */	lwz r6, 4(r8)
-/* 80152ACC 0014FA0C  38 04 12 7C */	addi r0, r4, "__vt__36Delegate<Q24Game17SingleGameSection>"@l
+/* 80152ACC 0014FA0C  38 04 12 7C */	addi r0, r4, __vt__36Delegate$$0Q24Game17SingleGameSection$$1@l
 /* 80152AD0 0014FA10  80 88 00 08 */	lwz r4, 8(r8)
 /* 80152AD4 0014FA14  90 E1 00 08 */	stw r7, 8(r1)
 /* 80152AD8 0014FA18  90 A3 00 00 */	stw r5, 0(r3)
@@ -825,11 +825,11 @@ onInit__Q24Game17SingleGameSectionFv:
 /* 80152BC4 0014FB04  3C 80 80 4B */	lis r4, lbl_804B1088@ha
 /* 80152BC8 0014FB08  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 80152BCC 0014FB0C  39 04 10 88 */	addi r8, r4, lbl_804B1088@l
-/* 80152BD0 0014FB10  3C 80 80 4B */	lis r4, "__vt__36Delegate<Q24Game17SingleGameSection>"@ha
+/* 80152BD0 0014FB10  3C 80 80 4B */	lis r4, __vt__36Delegate$$0Q24Game17SingleGameSection$$1@ha
 /* 80152BD4 0014FB14  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80152BD8 0014FB18  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 80152BDC 0014FB1C  80 C8 00 04 */	lwz r6, 4(r8)
-/* 80152BE0 0014FB20  38 04 12 7C */	addi r0, r4, "__vt__36Delegate<Q24Game17SingleGameSection>"@l
+/* 80152BE0 0014FB20  38 04 12 7C */	addi r0, r4, __vt__36Delegate$$0Q24Game17SingleGameSection$$1@l
 /* 80152BE4 0014FB24  80 88 00 08 */	lwz r4, 8(r8)
 /* 80152BE8 0014FB28  90 E1 00 08 */	stw r7, 8(r1)
 /* 80152BEC 0014FB2C  90 A3 00 00 */	stw r5, 0(r3)
@@ -846,9 +846,9 @@ lbl_80152C0C:
 /* 80152C14 0014FB54  4B ED 12 91 */	bl __nw__FUl
 /* 80152C18 0014FB58  28 03 00 00 */	cmplwi r3, 0
 /* 80152C1C 0014FB5C  41 82 00 24 */	beq lbl_80152C40
-/* 80152C20 0014FB60  3C A0 80 4B */	lis r5, "__vt__Q24Game40StateMachine<Q24Game17SingleGameSection>"@ha
+/* 80152C20 0014FB60  3C A0 80 4B */	lis r5, __vt__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1@ha
 /* 80152C24 0014FB64  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame3FSM@ha
-/* 80152C28 0014FB68  38 05 12 64 */	addi r0, r5, "__vt__Q24Game40StateMachine<Q24Game17SingleGameSection>"@l
+/* 80152C28 0014FB68  38 05 12 64 */	addi r0, r5, __vt__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1@l
 /* 80152C2C 0014FB6C  38 A0 FF FF */	li r5, -1
 /* 80152C30 0014FB70  90 03 00 00 */	stw r0, 0(r3)
 /* 80152C34 0014FB74  38 04 13 38 */	addi r0, r4, __vt__Q34Game10SingleGame3FSM@l
@@ -899,8 +899,8 @@ lbl_80152CB4:
 /* 80152CE0 0014FC20  38 21 00 20 */	addi r1, r1, 0x20
 /* 80152CE4 0014FC24  4E 80 00 20 */	blr 
 
-.global "start__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-"start__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg":
+.global start__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectioniPQ24Game8StateArg
+start__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectioniPQ24Game8StateArg:
 /* 80152CE8 0014FC28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80152CEC 0014FC2C  7C 08 02 A6 */	mflr r0
 /* 80152CF0 0014FC30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2052,9 +2052,9 @@ saveMainMapSituation__Q24Game17SingleGameSectionFb:
 /* 80153CE4 00150C24  41 82 02 34 */	beq lbl_80153F18
 /* 80153CE8 00150C28  38 00 00 00 */	li r0, 0
 /* 80153CEC 00150C2C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80153CF0 00150C30  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 80153CF0 00150C30  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 80153CF4 00150C34  90 01 00 1C */	stw r0, 0x1c(r1)
-/* 80153CF8 00150C38  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 80153CF8 00150C38  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 80153CFC 00150C3C  28 00 00 00 */	cmplwi r0, 0
 /* 80153D00 00150C40  90 81 00 10 */	stw r4, 0x10(r1)
 /* 80153D04 00150C44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2308,9 +2308,9 @@ lbl_80153FE4:
 /* 80154094 00150FD4  48 07 CE 59 */	bl getZikatuPikmins__Q24Game8GameStatFi
 /* 80154098 00150FD8  38 80 00 00 */	li r4, 0
 /* 8015409C 00150FDC  80 0D 92 F4 */	lwz r0, pikiMgr__4Game@sda21(r13)
-/* 801540A0 00150FE0  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 801540A0 00150FE0  3C A0 80 4B */	lis r5, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 801540A4 00150FE4  7C C3 F0 50 */	subf r6, r3, r30
-/* 801540A8 00150FE8  38 65 BC 9C */	addi r3, r5, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 801540A8 00150FE8  38 65 BC 9C */	addi r3, r5, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 801540AC 00150FEC  28 04 00 00 */	cmplwi r4, 0
 /* 801540B0 00150FF0  90 C1 00 2C */	stw r6, 0x2c(r1)
 /* 801540B4 00150FF4  3B C0 00 00 */	li r30, 0
@@ -3262,7 +3262,7 @@ lbl_80154D9C:
 /* 80154E34 00151D74  7F 43 D3 78 */	mr r3, r26
 /* 80154E38 00151D78  38 81 00 2C */	addi r4, r1, 0x2c
 /* 80154E3C 00151D7C  38 A0 00 00 */	li r5, 0
-/* 80154E40 00151D80  4B FE 63 69 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 80154E40 00151D80  4B FE 63 69 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 80154E44 00151D84  4B F7 47 5D */	bl rand
 /* 80154E48 00151D88  6C 63 80 00 */	xoris r3, r3, 0x8000
 /* 80154E4C 00151D8C  3C 00 43 30 */	lis r0, 0x4330
@@ -3813,7 +3813,7 @@ updateMainMapScreen__Q24Game17SingleGameSectionFv:
 /* 80155654 00152594  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 80155658 00152598  C0 22 A2 B8 */	lfs f1, lbl_80518618@sda21(r2)
 /* 8015565C 0015259C  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 80155660 001525A0  48 0C 91 15 */	bl "calcNearestTreasure__Q25Radar3MgrFR10Vector3<f>fR10Vector3<f>Rf"
+/* 80155660 001525A0  48 0C 91 15 */	bl calcNearestTreasure__Q25Radar3MgrFR10Vector3$$0f$$1fR10Vector3$$0f$$1Rf
 /* 80155664 001525A4  7C 7D 1B 78 */	mr r29, r3
 /* 80155668 001525A8  2C 1D 00 02 */	cmpwi r29, 2
 /* 8015566C 001525AC  40 82 00 28 */	bne lbl_80155694
@@ -4178,7 +4178,7 @@ updateCaveScreen__Q24Game17SingleGameSectionFv:
 /* 80155BA4 00152AE4  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 80155BA8 00152AE8  C0 22 A2 B8 */	lfs f1, lbl_80518618@sda21(r2)
 /* 80155BAC 00152AEC  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 80155BB0 00152AF0  48 0C 8B C5 */	bl "calcNearestTreasure__Q25Radar3MgrFR10Vector3<f>fR10Vector3<f>Rf"
+/* 80155BB0 00152AF0  48 0C 8B C5 */	bl calcNearestTreasure__Q25Radar3MgrFR10Vector3$$0f$$1fR10Vector3$$0f$$1Rf
 /* 80155BB4 00152AF4  7C 7E 1B 78 */	mr r30, r3
 /* 80155BB8 00152AF8  2C 1E 00 02 */	cmpwi r30, 2
 /* 80155BBC 00152AFC  40 82 00 28 */	bne lbl_80155BE4
@@ -4810,32 +4810,32 @@ getCaveFilename__Q24Game17SingleGameSectionFv:
 /* 8015637C 001532BC  38 63 01 95 */	addi r3, r3, 0x195
 /* 80156380 001532C0  4E 80 00 20 */	blr 
 
-.global "init__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectionPQ24Game8StateArg"
-"init__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectionPQ24Game8StateArg":
+.global init__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectionPQ24Game8StateArg
+init__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectionPQ24Game8StateArg:
 /* 80156384 001532C4  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-"exec__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection":
+.global exec__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection
+exec__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection:
 /* 80156388 001532C8  4E 80 00 20 */	blr 
 
-.global "cleanup__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-"cleanup__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection":
+.global cleanup__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection
+cleanup__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection:
 /* 8015638C 001532CC  4E 80 00 20 */	blr 
 
-.global "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-"resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection":
+.global resume__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection
+resume__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection:
 /* 80156390 001532D0  4E 80 00 20 */	blr 
 
-.global "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-"restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection":
+.global restart__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection
+restart__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection:
 /* 80156394 001532D4  4E 80 00 20 */	blr 
 
-.global "init__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-"init__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection":
+.global init__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection
+init__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection:
 /* 80156398 001532D8  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-"exec__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection":
+.global exec__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection
+exec__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSection:
 /* 8015639C 001532DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801563A0 001532E0  7C 08 02 A6 */	mflr r0
 /* 801563A4 001532E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4852,8 +4852,8 @@ lbl_801563C4:
 /* 801563CC 0015330C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801563D0 00153310  4E 80 00 20 */	blr 
 
-.global "create__Q24Game40StateMachine<Q24Game17SingleGameSection>Fi"
-"create__Q24Game40StateMachine<Q24Game17SingleGameSection>Fi":
+.global create__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1Fi
+create__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1Fi:
 /* 801563D4 00153314  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801563D8 00153318  7C 08 02 A6 */	mflr r0
 /* 801563DC 0015331C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4880,8 +4880,8 @@ lbl_801563C4:
 /* 80156430 00153370  38 21 00 10 */	addi r1, r1, 0x10
 /* 80156434 00153374  4E 80 00 20 */	blr 
 
-.global "invoke__36Delegate<Q24Game17SingleGameSection>Fv"
-"invoke__36Delegate<Q24Game17SingleGameSection>Fv":
+.global invoke__36Delegate$$0Q24Game17SingleGameSection$$1Fv
+invoke__36Delegate$$0Q24Game17SingleGameSection$$1Fv:
 /* 80156438 00153378  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015643C 0015337C  7C 08 02 A6 */	mflr r0
 /* 80156440 00153380  7C 64 1B 78 */	mr r4, r3
@@ -4895,8 +4895,8 @@ lbl_801563C4:
 /* 80156460 001533A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80156464 001533A4  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-"transit__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg":
+.global transit__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectioniPQ24Game8StateArg
+transit__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game17SingleGameSectioniPQ24Game8StateArg:
 /* 80156468 001533A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015646C 001533AC  7C 08 02 A6 */	mflr r0
 /* 80156470 001533B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4940,8 +4940,8 @@ lbl_801564C8:
 /* 801564FC 0015343C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80156500 00153440  4E 80 00 20 */	blr 
 
-.global "registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>":
+.global registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1
+registerState__Q24Game40StateMachine$$0Q24Game17SingleGameSection$$1FPQ24Game36FSMState$$0Q24Game17SingleGameSection$$1:
 /* 80156504 00153444  80 C3 00 08 */	lwz r6, 8(r3)
 /* 80156508 00153448  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 8015650C 0015344C  7C 06 00 00 */	cmpw r6, r0
@@ -4992,17 +4992,17 @@ __sinit_singleGameSection_cpp:
 /* 801565A8 001534E8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801565AC 001534EC  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx13TTutorialSnowFv"
-"@4@__dt__Q23efx13TTutorialSnowFv":
+.global $$24$$2__dt__Q23efx13TTutorialSnowFv
+$$24$$2__dt__Q23efx13TTutorialSnowFv:
 /* 801565B0 001534F0  38 63 FF FC */	addi r3, r3, -4
 /* 801565B4 001534F4  4B FF FC EC */	b __dt__Q23efx13TTutorialSnowFv
 
-.global "@4@__dt__Q23efx13TForestSakuraFv"
-"@4@__dt__Q23efx13TForestSakuraFv":
+.global $$24$$2__dt__Q23efx13TForestSakuraFv
+$$24$$2__dt__Q23efx13TForestSakuraFv:
 /* 801565B8 001534F8  38 63 FF FC */	addi r3, r3, -4
 /* 801565BC 001534FC  4B FF FC 48 */	b __dt__Q23efx13TForestSakuraFv
 
-.global "@4@__dt__Q23efx11TLastMomijiFv"
-"@4@__dt__Q23efx11TLastMomijiFv":
+.global $$24$$2__dt__Q23efx11TLastMomijiFv
+$$24$$2__dt__Q23efx11TLastMomijiFv:
 /* 801565C0 00153500  38 63 FF FC */	addi r3, r3, -4
 /* 801565C4 00153504  4B FF FB A4 */	b __dt__Q23efx11TLastMomijiFv

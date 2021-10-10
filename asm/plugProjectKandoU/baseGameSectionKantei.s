@@ -191,7 +191,7 @@ lbl_8023B7BC:
 /* 8023B7DC 0023871C  D0 61 00 1C */	stfs f3, 0x1c(r1)
 /* 8023B7E0 00238720  80 7E 01 4C */	lwz r3, 0x14c(r30)
 /* 8023B7E4 00238724  80 BE 01 0C */	lwz r5, 0x10c(r30)
-/* 8023B7E8 00238728  48 00 03 49 */	bl "init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<f>P10Controller"
+/* 8023B7E8 00238728  48 00 03 49 */	bl init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3$$0f$$1P10Controller
 /* 8023B7EC 0023872C  E3 E1 00 48 */	psq_l f31, 72(r1), 0, qr0
 /* 8023B7F0 00238730  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8023B7F4 00238734  CB E1 00 40 */	lfd f31, 0x40(r1)
@@ -362,8 +362,8 @@ lbl_8023BA44:
 /* 8023BA5C 0023899C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8023BA60 002389A0  4E 80 00 20 */	blr 
 
-.global "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>"
-"onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>":
+.global onKanteiDone__Q24Game15BaseGameSectionFR7Rect$$0f$$1
+onKanteiDone__Q24Game15BaseGameSectionFR7Rect$$0f$$1:
 /* 8023BA64 002389A4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8023BA68 002389A8  7C 08 02 A6 */	mflr r0
 /* 8023BA6C 002389AC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -408,7 +408,7 @@ lbl_8023BA44:
 /* 8023BB08 00238A48  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 8023BB0C 00238A4C  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8023BB10 00238A50  80 7E 01 38 */	lwz r3, 0x138(r30)
-/* 8023BB14 00238A54  48 1E 98 6D */	bl "setRect__8ViewportFR7Rect<f>"
+/* 8023BB14 00238A54  48 1E 98 6D */	bl setRect__8ViewportFR7Rect$$0f$$1
 /* 8023BB18 00238A58  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8023BB1C 00238A5C  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 8023BB20 00238A60  83 C1 00 38 */	lwz r30, 0x38(r1)
@@ -416,8 +416,8 @@ lbl_8023BA44:
 /* 8023BB28 00238A68  38 21 00 40 */	addi r1, r1, 0x40
 /* 8023BB2C 00238A6C  4E 80 00 20 */	blr 
 
-.global "init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<f>P10Controller"
-"init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<f>P10Controller":
+.global init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3$$0f$$1P10Controller
+init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3$$0f$$1P10Controller:
 /* 8023BB30 00238A70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023BB34 00238A74  7C 08 02 A6 */	mflr r0
 /* 8023BB38 00238A78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -925,7 +925,7 @@ lbl_8023C1E4:
 /* 8023C268 002391A8  D0 61 00 18 */	stfs f3, 0x18(r1)
 /* 8023C26C 002391AC  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 8023C270 002391B0  D0 01 00 20 */	stfs f0, 0x20(r1)
-/* 8023C274 002391B4  48 1E A6 51 */	bl "clearZBuffer__8GraphicsFR7Rect<f>"
+/* 8023C274 002391B4  48 1E A6 51 */	bl clearZBuffer__8GraphicsFR7Rect$$0f$$1
 /* 8023C278 002391B8  3C 60 80 51 */	lis r3, j3dSys@ha
 /* 8023C27C 002391BC  38 81 00 54 */	addi r4, r1, 0x54
 /* 8023C280 002391C0  38 63 F2 30 */	addi r3, r3, j3dSys@l

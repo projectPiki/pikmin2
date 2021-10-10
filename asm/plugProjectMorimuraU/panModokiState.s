@@ -1855,7 +1855,7 @@ lbl_8034E34C:
 /* 8034E360 0034B2A0  C0 45 08 6C */	lfs f2, 0x86c(r5)
 /* 8034E364 0034B2A4  EC 21 00 32 */	fmuls f1, f1, f0
 /* 8034E368 0034B2A8  C0 65 08 94 */	lfs f3, 0x894(r5)
-/* 8034E36C 0034B2AC  4B DC 72 71 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+/* 8034E36C 0034B2AC  4B DC 72 71 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
 /* 8034E370 0034B2B0  7F C4 F3 78 */	mr r4, r30
 /* 8034E374 0034B2B4  80 BE 00 C0 */	lwz r5, 0xc0(r30)
 /* 8034E378 0034B2B8  81 9E 00 00 */	lwz r12, 0(r30)

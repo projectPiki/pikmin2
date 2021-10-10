@@ -2218,7 +2218,7 @@ __ct__Q42og9newScreen13ObjSMenuPause9ObjHIOValFv:
 /* 80316200 00313140  38 21 00 30 */	addi r1, r1, 0x30
 /* 80316204 00313144  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen13ObjSMenuPauseFv"
-"@24@__dt__Q32og9newScreen13ObjSMenuPauseFv":
+.global $$224$$2__dt__Q32og9newScreen13ObjSMenuPauseFv
+$$224$$2__dt__Q32og9newScreen13ObjSMenuPauseFv:
 /* 80316208 00313148  38 63 FF E8 */	addi r3, r3, -24
 /* 8031620C 0031314C  4B FF E2 F0 */	b __dt__Q32og9newScreen13ObjSMenuPauseFv

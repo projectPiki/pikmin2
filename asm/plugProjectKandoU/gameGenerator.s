@@ -1248,8 +1248,8 @@ getChild__Q24Game12GeneratorMgrFv:
 /* 801AB7B8 001A86F8  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 801AB7BC 001A86FC  4E 80 00 20 */	blr 
 
-.global "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-"updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>":
+.global updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
+updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1:
 /* 801AB7C0 001A8700  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AB7C4 001A8704  7C 08 02 A6 */	mflr r0
 /* 801AB7C8 001A8708  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1288,7 +1288,7 @@ getChild__Q24Game12GeneratorMgrFv:
 /* 801AB84C 001A878C  7C 7E 1B 78 */	mr r30, r3
 /* 801AB850 001A8790  7F E4 FB 78 */	mr r4, r31
 /* 801AB854 001A8794  38 7E 00 24 */	addi r3, r30, 0x24
-/* 801AB858 001A8798  48 00 03 A5 */	bl "__as__10Vector3<f>FRC10Vector3<f>"
+/* 801AB858 001A8798  48 00 03 A5 */	bl __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801AB85C 001A879C  7F C3 F3 78 */	mr r3, r30
 /* 801AB860 001A87A0  4B FF FF 59 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801AB864 001A87A4  28 03 00 00 */	cmplwi r3, 0
@@ -1296,7 +1296,7 @@ getChild__Q24Game12GeneratorMgrFv:
 /* 801AB86C 001A87AC  7F C3 F3 78 */	mr r3, r30
 /* 801AB870 001A87B0  4B FF FF 49 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801AB874 001A87B4  7F E4 FB 78 */	mr r4, r31
-/* 801AB878 001A87B8  4B FF FF 49 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801AB878 001A87B8  4B FF FF 49 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801AB87C:
 /* 801AB87C 001A87BC  7F C3 F3 78 */	mr r3, r30
 /* 801AB880 001A87C0  4B FF FF 31 */	bl getNext__Q24Game12GeneratorMgrFv
@@ -1305,7 +1305,7 @@ lbl_801AB87C:
 /* 801AB88C 001A87CC  7F C3 F3 78 */	mr r3, r30
 /* 801AB890 001A87D0  4B FF FF 21 */	bl getNext__Q24Game12GeneratorMgrFv
 /* 801AB894 001A87D4  7F E4 FB 78 */	mr r4, r31
-/* 801AB898 001A87D8  4B FF FF 29 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801AB898 001A87D8  4B FF FF 29 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801AB89C:
 /* 801AB89C 001A87DC  80 1C 00 18 */	lwz r0, 0x18(r28)
 /* 801AB8A0 001A87E0  28 00 00 00 */	cmplwi r0, 0
@@ -1315,7 +1315,7 @@ lbl_801AB89C:
 /* 801AB8B0 001A87F0  7C 7E 1B 78 */	mr r30, r3
 /* 801AB8B4 001A87F4  7F E4 FB 78 */	mr r4, r31
 /* 801AB8B8 001A87F8  38 7E 00 24 */	addi r3, r30, 0x24
-/* 801AB8BC 001A87FC  48 00 03 41 */	bl "__as__10Vector3<f>FRC10Vector3<f>"
+/* 801AB8BC 001A87FC  48 00 03 41 */	bl __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801AB8C0 001A8800  7F C3 F3 78 */	mr r3, r30
 /* 801AB8C4 001A8804  4B FF FE F5 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801AB8C8 001A8808  28 03 00 00 */	cmplwi r3, 0
@@ -1323,7 +1323,7 @@ lbl_801AB89C:
 /* 801AB8D0 001A8810  7F C3 F3 78 */	mr r3, r30
 /* 801AB8D4 001A8814  4B FF FE E5 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801AB8D8 001A8818  7F E4 FB 78 */	mr r4, r31
-/* 801AB8DC 001A881C  4B FF FE E5 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801AB8DC 001A881C  4B FF FE E5 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801AB8E0:
 /* 801AB8E0 001A8820  7F C3 F3 78 */	mr r3, r30
 /* 801AB8E4 001A8824  4B FF FE CD */	bl getNext__Q24Game12GeneratorMgrFv
@@ -1332,7 +1332,7 @@ lbl_801AB8E0:
 /* 801AB8F0 001A8830  7F C3 F3 78 */	mr r3, r30
 /* 801AB8F4 001A8834  4B FF FE BD */	bl getNext__Q24Game12GeneratorMgrFv
 /* 801AB8F8 001A8838  7F E4 FB 78 */	mr r4, r31
-/* 801AB8FC 001A883C  4B FF FE C5 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801AB8FC 001A883C  4B FF FE C5 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801AB900:
 /* 801AB900 001A8840  83 9D 00 18 */	lwz r28, 0x18(r29)
 /* 801AB904 001A8844  28 1C 00 00 */	cmplwi r28, 0
@@ -1351,7 +1351,7 @@ lbl_801AB900:
 /* 801AB938 001A8878  7C 7E 1B 78 */	mr r30, r3
 /* 801AB93C 001A887C  7F E4 FB 78 */	mr r4, r31
 /* 801AB940 001A8880  38 7E 00 24 */	addi r3, r30, 0x24
-/* 801AB944 001A8884  48 00 02 B9 */	bl "__as__10Vector3<f>FRC10Vector3<f>"
+/* 801AB944 001A8884  48 00 02 B9 */	bl __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801AB948 001A8888  7F C3 F3 78 */	mr r3, r30
 /* 801AB94C 001A888C  4B FF FE 6D */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801AB950 001A8890  28 03 00 00 */	cmplwi r3, 0
@@ -1359,7 +1359,7 @@ lbl_801AB900:
 /* 801AB958 001A8898  7F C3 F3 78 */	mr r3, r30
 /* 801AB95C 001A889C  4B FF FE 5D */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801AB960 001A88A0  7F E4 FB 78 */	mr r4, r31
-/* 801AB964 001A88A4  4B FF FE 5D */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801AB964 001A88A4  4B FF FE 5D */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801AB968:
 /* 801AB968 001A88A8  7F C3 F3 78 */	mr r3, r30
 /* 801AB96C 001A88AC  4B FF FE 45 */	bl getNext__Q24Game12GeneratorMgrFv
@@ -1368,7 +1368,7 @@ lbl_801AB968:
 /* 801AB978 001A88B8  7F C3 F3 78 */	mr r3, r30
 /* 801AB97C 001A88BC  4B FF FE 35 */	bl getNext__Q24Game12GeneratorMgrFv
 /* 801AB980 001A88C0  7F E4 FB 78 */	mr r4, r31
-/* 801AB984 001A88C4  4B FF FE 3D */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801AB984 001A88C4  4B FF FE 3D */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801AB988:
 /* 801AB988 001A88C8  80 1C 00 18 */	lwz r0, 0x18(r28)
 /* 801AB98C 001A88CC  28 00 00 00 */	cmplwi r0, 0
@@ -1378,7 +1378,7 @@ lbl_801AB988:
 /* 801AB99C 001A88DC  7C 7E 1B 78 */	mr r30, r3
 /* 801AB9A0 001A88E0  7F E4 FB 78 */	mr r4, r31
 /* 801AB9A4 001A88E4  38 7E 00 24 */	addi r3, r30, 0x24
-/* 801AB9A8 001A88E8  48 00 02 55 */	bl "__as__10Vector3<f>FRC10Vector3<f>"
+/* 801AB9A8 001A88E8  48 00 02 55 */	bl __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801AB9AC 001A88EC  7F C3 F3 78 */	mr r3, r30
 /* 801AB9B0 001A88F0  4B FF FE 09 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801AB9B4 001A88F4  28 03 00 00 */	cmplwi r3, 0
@@ -1386,7 +1386,7 @@ lbl_801AB988:
 /* 801AB9BC 001A88FC  7F C3 F3 78 */	mr r3, r30
 /* 801AB9C0 001A8900  4B FF FD F9 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801AB9C4 001A8904  7F E4 FB 78 */	mr r4, r31
-/* 801AB9C8 001A8908  4B FF FD F9 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801AB9C8 001A8908  4B FF FD F9 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801AB9CC:
 /* 801AB9CC 001A890C  7F C3 F3 78 */	mr r3, r30
 /* 801AB9D0 001A8910  4B FF FD E1 */	bl getNext__Q24Game12GeneratorMgrFv
@@ -1395,7 +1395,7 @@ lbl_801AB9CC:
 /* 801AB9DC 001A891C  7F C3 F3 78 */	mr r3, r30
 /* 801AB9E0 001A8920  4B FF FD D1 */	bl getNext__Q24Game12GeneratorMgrFv
 /* 801AB9E4 001A8924  7F E4 FB 78 */	mr r4, r31
-/* 801AB9E8 001A8928  4B FF FD D9 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801AB9E8 001A8928  4B FF FD D9 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801AB9EC:
 /* 801AB9EC 001A892C  83 9B 00 18 */	lwz r28, 0x18(r27)
 /* 801AB9F0 001A8930  28 1C 00 00 */	cmplwi r28, 0
@@ -1423,7 +1423,7 @@ lbl_801AB9EC:
 /* 801ABA48 001A8988  7C 7E 1B 78 */	mr r30, r3
 /* 801ABA4C 001A898C  7F E4 FB 78 */	mr r4, r31
 /* 801ABA50 001A8990  38 7E 00 24 */	addi r3, r30, 0x24
-/* 801ABA54 001A8994  48 00 01 A9 */	bl "__as__10Vector3<f>FRC10Vector3<f>"
+/* 801ABA54 001A8994  48 00 01 A9 */	bl __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801ABA58 001A8998  7F C3 F3 78 */	mr r3, r30
 /* 801ABA5C 001A899C  4B FF FD 5D */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801ABA60 001A89A0  28 03 00 00 */	cmplwi r3, 0
@@ -1431,7 +1431,7 @@ lbl_801AB9EC:
 /* 801ABA68 001A89A8  7F C3 F3 78 */	mr r3, r30
 /* 801ABA6C 001A89AC  4B FF FD 4D */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801ABA70 001A89B0  7F E4 FB 78 */	mr r4, r31
-/* 801ABA74 001A89B4  4B FF FD 4D */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801ABA74 001A89B4  4B FF FD 4D */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801ABA78:
 /* 801ABA78 001A89B8  7F C3 F3 78 */	mr r3, r30
 /* 801ABA7C 001A89BC  4B FF FD 35 */	bl getNext__Q24Game12GeneratorMgrFv
@@ -1440,7 +1440,7 @@ lbl_801ABA78:
 /* 801ABA88 001A89C8  7F C3 F3 78 */	mr r3, r30
 /* 801ABA8C 001A89CC  4B FF FD 25 */	bl getNext__Q24Game12GeneratorMgrFv
 /* 801ABA90 001A89D0  7F E4 FB 78 */	mr r4, r31
-/* 801ABA94 001A89D4  4B FF FD 2D */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801ABA94 001A89D4  4B FF FD 2D */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801ABA98:
 /* 801ABA98 001A89D8  80 1D 00 18 */	lwz r0, 0x18(r29)
 /* 801ABA9C 001A89DC  28 00 00 00 */	cmplwi r0, 0
@@ -1450,7 +1450,7 @@ lbl_801ABA98:
 /* 801ABAAC 001A89EC  7C 7E 1B 78 */	mr r30, r3
 /* 801ABAB0 001A89F0  7F E4 FB 78 */	mr r4, r31
 /* 801ABAB4 001A89F4  38 7E 00 24 */	addi r3, r30, 0x24
-/* 801ABAB8 001A89F8  48 00 01 45 */	bl "__as__10Vector3<f>FRC10Vector3<f>"
+/* 801ABAB8 001A89F8  48 00 01 45 */	bl __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801ABABC 001A89FC  7F C3 F3 78 */	mr r3, r30
 /* 801ABAC0 001A8A00  4B FF FC F9 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801ABAC4 001A8A04  28 03 00 00 */	cmplwi r3, 0
@@ -1458,7 +1458,7 @@ lbl_801ABA98:
 /* 801ABACC 001A8A0C  7F C3 F3 78 */	mr r3, r30
 /* 801ABAD0 001A8A10  4B FF FC E9 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801ABAD4 001A8A14  7F E4 FB 78 */	mr r4, r31
-/* 801ABAD8 001A8A18  4B FF FC E9 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801ABAD8 001A8A18  4B FF FC E9 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801ABADC:
 /* 801ABADC 001A8A1C  7F C3 F3 78 */	mr r3, r30
 /* 801ABAE0 001A8A20  4B FF FC D1 */	bl getNext__Q24Game12GeneratorMgrFv
@@ -1467,7 +1467,7 @@ lbl_801ABADC:
 /* 801ABAEC 001A8A2C  7F C3 F3 78 */	mr r3, r30
 /* 801ABAF0 001A8A30  4B FF FC C1 */	bl getNext__Q24Game12GeneratorMgrFv
 /* 801ABAF4 001A8A34  7F E4 FB 78 */	mr r4, r31
-/* 801ABAF8 001A8A38  4B FF FC C9 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801ABAF8 001A8A38  4B FF FC C9 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801ABAFC:
 /* 801ABAFC 001A8A3C  83 9C 00 18 */	lwz r28, 0x18(r28)
 /* 801ABB00 001A8A40  28 1C 00 00 */	cmplwi r28, 0
@@ -1486,7 +1486,7 @@ lbl_801ABAFC:
 /* 801ABB34 001A8A74  7C 7E 1B 78 */	mr r30, r3
 /* 801ABB38 001A8A78  7F E4 FB 78 */	mr r4, r31
 /* 801ABB3C 001A8A7C  38 7E 00 24 */	addi r3, r30, 0x24
-/* 801ABB40 001A8A80  48 00 00 BD */	bl "__as__10Vector3<f>FRC10Vector3<f>"
+/* 801ABB40 001A8A80  48 00 00 BD */	bl __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801ABB44 001A8A84  7F C3 F3 78 */	mr r3, r30
 /* 801ABB48 001A8A88  4B FF FC 71 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801ABB4C 001A8A8C  28 03 00 00 */	cmplwi r3, 0
@@ -1494,7 +1494,7 @@ lbl_801ABAFC:
 /* 801ABB54 001A8A94  7F C3 F3 78 */	mr r3, r30
 /* 801ABB58 001A8A98  4B FF FC 61 */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801ABB5C 001A8A9C  7F E4 FB 78 */	mr r4, r31
-/* 801ABB60 001A8AA0  4B FF FC 61 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801ABB60 001A8AA0  4B FF FC 61 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801ABB64:
 /* 801ABB64 001A8AA4  7F C3 F3 78 */	mr r3, r30
 /* 801ABB68 001A8AA8  4B FF FC 49 */	bl getNext__Q24Game12GeneratorMgrFv
@@ -1503,7 +1503,7 @@ lbl_801ABB64:
 /* 801ABB74 001A8AB4  7F C3 F3 78 */	mr r3, r30
 /* 801ABB78 001A8AB8  4B FF FC 39 */	bl getNext__Q24Game12GeneratorMgrFv
 /* 801ABB7C 001A8ABC  7F E4 FB 78 */	mr r4, r31
-/* 801ABB80 001A8AC0  4B FF FC 41 */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801ABB80 001A8AC0  4B FF FC 41 */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801ABB84:
 /* 801ABB84 001A8AC4  80 1C 00 18 */	lwz r0, 0x18(r28)
 /* 801ABB88 001A8AC8  28 00 00 00 */	cmplwi r0, 0
@@ -1513,7 +1513,7 @@ lbl_801ABB84:
 /* 801ABB98 001A8AD8  7C 7E 1B 78 */	mr r30, r3
 /* 801ABB9C 001A8ADC  7F E4 FB 78 */	mr r4, r31
 /* 801ABBA0 001A8AE0  38 7E 00 24 */	addi r3, r30, 0x24
-/* 801ABBA4 001A8AE4  48 00 00 59 */	bl "__as__10Vector3<f>FRC10Vector3<f>"
+/* 801ABBA4 001A8AE4  48 00 00 59 */	bl __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
 /* 801ABBA8 001A8AE8  7F C3 F3 78 */	mr r3, r30
 /* 801ABBAC 001A8AEC  4B FF FC 0D */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801ABBB0 001A8AF0  28 03 00 00 */	cmplwi r3, 0
@@ -1521,7 +1521,7 @@ lbl_801ABB84:
 /* 801ABBB8 001A8AF8  7F C3 F3 78 */	mr r3, r30
 /* 801ABBBC 001A8AFC  4B FF FB FD */	bl getChild__Q24Game12GeneratorMgrFv
 /* 801ABBC0 001A8B00  7F E4 FB 78 */	mr r4, r31
-/* 801ABBC4 001A8B04  4B FF FB FD */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801ABBC4 001A8B04  4B FF FB FD */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801ABBC8:
 /* 801ABBC8 001A8B08  7F C3 F3 78 */	mr r3, r30
 /* 801ABBCC 001A8B0C  4B FF FB E5 */	bl getNext__Q24Game12GeneratorMgrFv
@@ -1530,7 +1530,7 @@ lbl_801ABBC8:
 /* 801ABBD8 001A8B18  7F C3 F3 78 */	mr r3, r30
 /* 801ABBDC 001A8B1C  4B FF FB D5 */	bl getNext__Q24Game12GeneratorMgrFv
 /* 801ABBE0 001A8B20  7F E4 FB 78 */	mr r4, r31
-/* 801ABBE4 001A8B24  4B FF FB DD */	bl "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
+/* 801ABBE4 001A8B24  4B FF FB DD */	bl updateCursorPos__Q24Game12GeneratorMgrFR10Vector3$$0f$$1
 lbl_801ABBE8:
 /* 801ABBE8 001A8B28  BB 61 00 0C */	lmw r27, 0xc(r1)
 /* 801ABBEC 001A8B2C  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -1538,8 +1538,8 @@ lbl_801ABBE8:
 /* 801ABBF4 001A8B34  38 21 00 20 */	addi r1, r1, 0x20
 /* 801ABBF8 001A8B38  4E 80 00 20 */	blr 
 
-.global "__as__10Vector3<f>FRC10Vector3<f>"
-"__as__10Vector3<f>FRC10Vector3<f>":
+.global __as__10Vector3$$0f$$1FRC10Vector3$$0f$$1
+__as__10Vector3$$0f$$1FRC10Vector3$$0f$$1:
 /* 801ABBFC 001A8B3C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 801ABC00 001A8B40  C0 24 00 04 */	lfs f1, 4(r4)
 /* 801ABC04 001A8B44  D0 03 00 00 */	stfs f0, 0(r3)

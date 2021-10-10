@@ -408,10 +408,10 @@ lbl_8046F7A4:
 /* 8046F874 0046C7B4  90 61 00 48 */	stw r3, 0x48(r1)
 /* 8046F878 0046C7B8  90 01 00 64 */	stw r0, 0x64(r1)
 /* 8046F87C 0046C7BC  41 82 00 18 */	beq lbl_8046F894
-/* 8046F880 0046C7C0  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
+/* 8046F880 0046C7C0  3C 60 80 4F */	lis r3, __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@ha
 /* 8046F884 0046C7C4  38 00 00 00 */	li r0, 0
-/* 8046F888 0046C7C8  38 63 F9 74 */	addi r3, r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l
-/* 8046F88C 0046C7CC  90 0D 91 C0 */	stw r0, "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13)
+/* 8046F888 0046C7C8  38 63 F9 74 */	addi r3, r3, __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@l
+/* 8046F88C 0046C7CC  90 0D 91 C0 */	stw r0, sInstance__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@sda21(r13)
 /* 8046F890 0046C7D0  90 61 00 64 */	stw r3, 0x64(r1)
 lbl_8046F894:
 /* 8046F894 0046C7D4  38 61 00 48 */	addi r3, r1, 0x48
@@ -1171,7 +1171,7 @@ lbl_804702F8:
 /* 8047030C 0046D24C  4B FE 80 AD */	bl __ct__Q23PSM17PikAttackDirectorFi
 /* 80470310 0046D250  7C 60 1B 78 */	mr r0, r3
 lbl_80470314:
-/* 80470314 0046D254  83 4D 91 B0 */	lwz r26, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 80470314 0046D254  83 4D 91 B0 */	lwz r26, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 80470318 0046D258  7C 1E 03 78 */	mr r30, r0
 /* 8047031C 0046D25C  28 1A 00 00 */	cmplwi r26, 0
 /* 80470320 0046D260  41 82 00 94 */	beq lbl_804703B4
@@ -1182,7 +1182,7 @@ lbl_80470314:
 /* 80470334 0046D274  4C C6 31 82 */	crclr 6
 /* 80470338 0046D278  4B BB A3 09 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8047033C:
-/* 8047033C 0046D27C  80 6D 91 B0 */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+/* 8047033C 0046D27C  80 6D 91 B0 */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1@sda21(r13)
 /* 80470340 0046D280  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80470344 0046D284  54 19 06 3F */	clrlwi. r25, r0, 0x18
 /* 80470348 0046D288  41 82 00 6C */	beq lbl_804703B4
@@ -1932,11 +1932,11 @@ __dt__Q23PSM15BgmTrackMapFileFv:
 /* 80470D8C 0046DCCC  38 03 00 10 */	addi r0, r3, 0x10
 /* 80470D90 0046DCD0  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 80470D94 0046DCD4  41 82 00 18 */	beq lbl_80470DAC
-/* 80470D98 0046DCD8  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
+/* 80470D98 0046DCD8  3C 60 80 4F */	lis r3, __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@ha
 /* 80470D9C 0046DCDC  38 00 00 00 */	li r0, 0
-/* 80470DA0 0046DCE0  38 63 F9 74 */	addi r3, r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l
+/* 80470DA0 0046DCE0  38 63 F9 74 */	addi r3, r3, __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@l
 /* 80470DA4 0046DCE4  90 7E 00 1C */	stw r3, 0x1c(r30)
-/* 80470DA8 0046DCE8  90 0D 91 C0 */	stw r0, "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13)
+/* 80470DA8 0046DCE8  90 0D 91 C0 */	stw r0, sInstance__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@sda21(r13)
 lbl_80470DAC:
 /* 80470DAC 0046DCEC  7F C3 F3 78 */	mr r3, r30
 /* 80470DB0 0046DCF0  38 80 00 00 */	li r4, 0
@@ -2011,20 +2011,20 @@ directOn__Q23PSM19GroundDirector_CaveFv:
 directOff__Q23PSM19GroundDirector_CaveFv:
 /* 80470E98 0046DDD8  4E 80 00 20 */	blr 
 
-.global "__dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv"
-"__dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv":
+.global __dt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1Fv
+__dt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1Fv:
 /* 80470E9C 0046DDDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80470EA0 0046DDE0  7C 08 02 A6 */	mflr r0
 /* 80470EA4 0046DDE4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80470EA8 0046DDE8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80470EAC 0046DDEC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80470EB0 0046DDF0  41 82 00 24 */	beq lbl_80470ED4
-/* 80470EB4 0046DDF4  3C A0 80 4F */	lis r5, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
+/* 80470EB4 0046DDF4  3C A0 80 4F */	lis r5, __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@ha
 /* 80470EB8 0046DDF8  7C 80 07 35 */	extsh. r0, r4
-/* 80470EBC 0046DDFC  38 85 F9 74 */	addi r4, r5, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l
+/* 80470EBC 0046DDFC  38 85 F9 74 */	addi r4, r5, __vt__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@l
 /* 80470EC0 0046DE00  38 00 00 00 */	li r0, 0
 /* 80470EC4 0046DE04  90 9F 00 00 */	stw r4, 0(r31)
-/* 80470EC8 0046DE08  90 0D 91 C0 */	stw r0, "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13)
+/* 80470EC8 0046DE08  90 0D 91 C0 */	stw r0, sInstance__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1@sda21(r13)
 /* 80470ECC 0046DE0C  40 81 00 08 */	ble lbl_80470ED4
 /* 80470ED0 0046DE10  4B BB 31 E5 */	bl __dl__FPv
 lbl_80470ED4:
@@ -2035,22 +2035,22 @@ lbl_80470ED4:
 /* 80470EE4 0046DE24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80470EE8 0046DE28  4E 80 00 20 */	blr 
 
-.global "@12@__dt__Q23PSM17DirectorMgr_SceneFv"
-"@12@__dt__Q23PSM17DirectorMgr_SceneFv":
+.global $$212$$2__dt__Q23PSM17DirectorMgr_SceneFv
+$$212$$2__dt__Q23PSM17DirectorMgr_SceneFv:
 /* 80470EEC 0046DE2C  38 63 FF F4 */	addi r3, r3, -12
 /* 80470EF0 0046DE30  4B FF E6 A4 */	b __dt__Q23PSM17DirectorMgr_SceneFv
 
-.global "@12@__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv"
-"@12@__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv":
+.global $$212$$2__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
+$$212$$2__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv:
 /* 80470EF4 0046DE34  38 63 FF F4 */	addi r3, r3, -12
 /* 80470EF8 0046DE38  4B FF FD AC */	b __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
 
-.global "@12@__dt__Q23PSM18DirectorMgr_BattleFv"
-"@12@__dt__Q23PSM18DirectorMgr_BattleFv":
+.global $$212$$2__dt__Q23PSM18DirectorMgr_BattleFv
+$$212$$2__dt__Q23PSM18DirectorMgr_BattleFv:
 /* 80470EFC 0046DE3C  38 63 FF F4 */	addi r3, r3, -12
 /* 80470F00 0046DE40  4B FF FD 18 */	b __dt__Q23PSM18DirectorMgr_BattleFv
 
-.global "@12@__dt__Q23PSM20DirectorMgr_2PBattleFv"
-"@12@__dt__Q23PSM20DirectorMgr_2PBattleFv":
+.global $$212$$2__dt__Q23PSM20DirectorMgr_2PBattleFv
+$$212$$2__dt__Q23PSM20DirectorMgr_2PBattleFv:
 /* 80470F04 0046DE44  38 63 FF F4 */	addi r3, r3, -12
 /* 80470F08 0046DE48  4B FF FC 84 */	b __dt__Q23PSM20DirectorMgr_2PBattleFv

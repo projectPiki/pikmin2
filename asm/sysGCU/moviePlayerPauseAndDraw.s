@@ -55,9 +55,9 @@ clearPauseAndDraw__Q24Game11MoviePlayerFv:
 lbl_80436F84:
 /* 80436F84 00433EC4  38 00 00 00 */	li r0, 0
 /* 80436F88 00433EC8  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80436F8C 00433ECC  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 80436F8C 00433ECC  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 80436F90 00433ED0  90 01 00 44 */	stw r0, 0x44(r1)
-/* 80436F94 00433ED4  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 80436F94 00433ED4  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 80436F98 00433ED8  28 00 00 00 */	cmplwi r0, 0
 /* 80436F9C 00433EDC  90 81 00 38 */	stw r4, 0x38(r1)
 /* 80436FA0 00433EE0  90 01 00 3C */	stw r0, 0x3c(r1)
@@ -186,7 +186,7 @@ lbl_8043715C:
 /* 80437168 004340A8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8043716C 004340AC  90 01 00 28 */	stw r0, 0x28(r1)
 /* 80437170 004340B0  90 01 00 2C */	stw r0, 0x2c(r1)
-/* 80437174 004340B4  4B CD 73 1D */	bl "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 80437174 004340B4  4B CD 73 1D */	bl first__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 /* 80437178 004340B8  48 00 00 28 */	b lbl_804371A0
 lbl_8043717C:
 /* 8043717C 004340BC  81 83 00 00 */	lwz r12, 0(r3)
@@ -197,7 +197,7 @@ lbl_8043717C:
 /* 80437190 004340D0  38 80 00 00 */	li r4, 0
 /* 80437194 004340D4  4B D0 49 59 */	bl movie_end__Q24Game8CreatureFb
 /* 80437198 004340D8  38 61 00 28 */	addi r3, r1, 0x28
-/* 8043719C 004340DC  4B CD 6D 55 */	bl "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 8043719C 004340DC  4B CD 6D 55 */	bl next__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 lbl_804371A0:
 /* 804371A0 004340E0  80 61 00 28 */	lwz r3, 0x28(r1)
 /* 804371A4 004340E4  28 03 00 00 */	cmplwi r3, 0
@@ -210,8 +210,8 @@ lbl_804371AC:
 /* 804371BC 004340FC  38 63 00 30 */	addi r3, r3, 0x30
 lbl_804371C0:
 /* 804371C0 00434100  38 00 00 00 */	li r0, 0
-/* 804371C4 00434104  3C 80 80 4B */	lis r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
-/* 804371C8 00434108  38 84 05 48 */	addi r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
+/* 804371C4 00434104  3C 80 80 4B */	lis r4, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
+/* 804371C8 00434108  38 84 05 48 */	addi r4, r4, __vt__23Iterator$$0Q24Game5Onyon$$1@l
 /* 804371CC 0043410C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 804371D0 00434110  28 00 00 00 */	cmplwi r0, 0
 /* 804371D4 00434114  90 81 00 18 */	stw r4, 0x18(r1)

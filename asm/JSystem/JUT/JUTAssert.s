@@ -11,7 +11,7 @@ flushMessage__12JUTAssertionFv:
 /* 80027DC8 00024D08  7C 08 02 A6 */	mflr r0
 /* 80027DCC 00024D0C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80027DD0 00024D10  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 80027DD4 00024D14  80 6D 88 68 */	lwz r3, "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 80027DD4 00024D14  80 6D 88 68 */	lwz r3, sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 /* 80027DD8 00024D18  28 03 00 00 */	cmplwi r3, 0
 /* 80027DDC 00024D1C  40 82 00 0C */	bne lbl_80027DE8
 /* 80027DE0 00024D20  38 00 00 00 */	li r0, 0
@@ -21,16 +21,16 @@ lbl_80027DE8:
 /* 80027DEC 00024D2C  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80027DF0 00024D30  41 82 00 0C */	beq lbl_80027DFC
 /* 80027DF4 00024D34  38 03 FF FF */	addi r0, r3, -1
-/* 80027DF8 00024D38  90 0D 88 68 */	stw r0, "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 80027DF8 00024D38  90 0D 88 68 */	stw r0, sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 lbl_80027DFC:
-/* 80027DFC 00024D3C  80 0D 88 68 */	lwz r0, "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 80027DFC 00024D3C  80 0D 88 68 */	lwz r0, sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 /* 80027E00 00024D40  28 00 00 05 */	cmplwi r0, 5
 /* 80027E04 00024D44  40 80 00 08 */	bge lbl_80027E0C
 /* 80027E08 00024D48  38 00 00 00 */	li r0, 0
 lbl_80027E0C:
 /* 80027E0C 00024D4C  28 00 00 00 */	cmplwi r0, 0
 /* 80027E10 00024D50  41 82 00 8C */	beq lbl_80027E9C
-/* 80027E14 00024D54  88 0D 80 28 */	lbz r0, "sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 80027E14 00024D54  88 0D 80 28 */	lbz r0, sVisible__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 /* 80027E18 00024D58  28 00 00 01 */	cmplwi r0, 1
 /* 80027E1C 00024D5C  40 82 00 80 */	bne lbl_80027E9C
 /* 80027E20 00024D60  38 A0 00 FF */	li r5, 0xff
@@ -47,15 +47,15 @@ lbl_80027E0C:
 /* 80027E4C 00024D8C  90 C1 00 14 */	stw r6, 0x14(r1)
 /* 80027E50 00024D90  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80027E54 00024D94  48 00 23 0D */	bl setCharColor__14JUTDirectPrintFQ28JUtility6TColor
-/* 80027E58 00024D98  3C 80 80 4F */	lis r4, "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@ha
+/* 80027E58 00024D98  3C 80 80 4F */	lis r4, sMessageFileLine__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@ha
 /* 80027E5C 00024D9C  7F E3 FB 78 */	mr r3, r31
-/* 80027E60 00024DA0  38 C4 FF C8 */	addi r6, r4, "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@l
+/* 80027E60 00024DA0  38 C4 FF C8 */	addi r6, r4, sMessageFileLine__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@l
 /* 80027E64 00024DA4  38 A0 00 10 */	li r5, 0x10
 /* 80027E68 00024DA8  38 80 00 10 */	li r4, 0x10
 /* 80027E6C 00024DAC  48 00 21 55 */	bl drawString__14JUTDirectPrintFUsUsPc
-/* 80027E70 00024DB0  3C 80 80 4F */	lis r4, "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@ha
+/* 80027E70 00024DB0  3C 80 80 4F */	lis r4, sMessageString__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@ha
 /* 80027E74 00024DB4  7F E3 FB 78 */	mr r3, r31
-/* 80027E78 00024DB8  38 C4 00 08 */	addi r6, r4, "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@l
+/* 80027E78 00024DB8  38 C4 00 08 */	addi r6, r4, sMessageString__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@l
 /* 80027E7C 00024DBC  38 A0 00 18 */	li r5, 0x18
 /* 80027E80 00024DC0  38 80 00 10 */	li r4, 0x10
 /* 80027E84 00024DC4  48 00 21 3D */	bl drawString__14JUTDirectPrintFUsUsPc
@@ -80,7 +80,7 @@ flushMessage_dbPrint__12JUTAssertionFv:
 /* 80027EC0 00024E00  F3 E1 00 48 */	psq_st f31, 72(r1), 0, qr0
 /* 80027EC4 00024E04  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80027EC8 00024E08  93 C1 00 38 */	stw r30, 0x38(r1)
-/* 80027ECC 00024E0C  80 6D 88 68 */	lwz r3, "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 80027ECC 00024E0C  80 6D 88 68 */	lwz r3, sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 /* 80027ED0 00024E10  28 03 00 00 */	cmplwi r3, 0
 /* 80027ED4 00024E14  40 82 00 0C */	bne lbl_80027EE0
 /* 80027ED8 00024E18  38 00 00 00 */	li r0, 0
@@ -90,16 +90,16 @@ lbl_80027EE0:
 /* 80027EE4 00024E24  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80027EE8 00024E28  41 82 00 0C */	beq lbl_80027EF4
 /* 80027EEC 00024E2C  38 03 FF FF */	addi r0, r3, -1
-/* 80027EF0 00024E30  90 0D 88 68 */	stw r0, "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 80027EF0 00024E30  90 0D 88 68 */	stw r0, sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 lbl_80027EF4:
-/* 80027EF4 00024E34  80 0D 88 68 */	lwz r0, "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 80027EF4 00024E34  80 0D 88 68 */	lwz r0, sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 /* 80027EF8 00024E38  28 00 00 05 */	cmplwi r0, 5
 /* 80027EFC 00024E3C  40 80 00 08 */	bge lbl_80027F04
 /* 80027F00 00024E40  38 00 00 00 */	li r0, 0
 lbl_80027F04:
 /* 80027F04 00024E44  28 00 00 00 */	cmplwi r0, 0
 /* 80027F08 00024E48  41 82 01 9C */	beq lbl_800280A4
-/* 80027F0C 00024E4C  88 0D 80 28 */	lbz r0, "sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 80027F0C 00024E4C  88 0D 80 28 */	lbz r0, sVisible__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 /* 80027F10 00024E50  28 00 00 01 */	cmplwi r0, 1
 /* 80027F14 00024E54  40 82 01 90 */	bne lbl_800280A4
 /* 80027F18 00024E58  80 6D 88 80 */	lwz r3, sDebugPrint__10JUTDbPrint@sda21(r13)
@@ -127,8 +127,8 @@ lbl_80027F04:
 /* 80027F70 00024EB0  80 01 00 08 */	lwz r0, 8(r1)
 /* 80027F74 00024EB4  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80027F78 00024EB8  48 00 52 45 */	bl setCharColor__7JUTFontFQ28JUtility6TColor
-/* 80027F7C 00024EBC  3C 60 80 4F */	lis r3, "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@ha
-/* 80027F80 00024EC0  38 63 FF C8 */	addi r3, r3, "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@l
+/* 80027F7C 00024EBC  3C 60 80 4F */	lis r3, sMessageFileLine__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@ha
+/* 80027F80 00024EC0  38 63 FF C8 */	addi r3, r3, sMessageFileLine__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@l
 /* 80027F84 00024EC4  48 0A 29 8D */	bl strlen
 /* 80027F88 00024EC8  81 9F 00 00 */	lwz r12, 0(r31)
 /* 80027F8C 00024ECC  7C 7E 1B 78 */	mr r30, r3
@@ -151,8 +151,8 @@ lbl_80027F04:
 /* 80027FD0 00024F10  6C 63 80 00 */	xoris r3, r3, 0x8000
 /* 80027FD4 00024F14  3C 00 43 30 */	lis r0, 0x4330
 /* 80027FD8 00024F18  90 61 00 1C */	stw r3, 0x1c(r1)
-/* 80027FDC 00024F1C  3C 60 80 4F */	lis r3, "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@ha
-/* 80027FE0 00024F20  38 83 FF C8 */	addi r4, r3, "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@l
+/* 80027FDC 00024F1C  3C 60 80 4F */	lis r3, sMessageFileLine__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@ha
+/* 80027FE0 00024F20  38 83 FF C8 */	addi r4, r3, sMessageFileLine__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@l
 /* 80027FE4 00024F24  C8 62 82 00 */	lfd f3, lbl_80516560@sda21(r2)
 /* 80027FE8 00024F28  90 01 00 18 */	stw r0, 0x18(r1)
 /* 80027FEC 00024F2C  FC 80 F8 90 */	fmr f4, f31
@@ -164,8 +164,8 @@ lbl_80027F04:
 /* 80028004 00024F44  EC 60 18 28 */	fsubs f3, f0, f3
 /* 80028008 00024F48  38 C0 00 01 */	li r6, 1
 /* 8002800C 00024F4C  48 00 52 69 */	bl drawString_size_scale__7JUTFontFffffPCcUlb
-/* 80028010 00024F50  3C 60 80 4F */	lis r3, "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@ha
-/* 80028014 00024F54  38 63 00 08 */	addi r3, r3, "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@l
+/* 80028010 00024F50  3C 60 80 4F */	lis r3, sMessageString__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@ha
+/* 80028014 00024F54  38 63 00 08 */	addi r3, r3, sMessageString__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@l
 /* 80028018 00024F58  48 0A 28 F9 */	bl strlen
 /* 8002801C 00024F5C  81 9F 00 00 */	lwz r12, 0(r31)
 /* 80028020 00024F60  7C 7E 1B 78 */	mr r30, r3
@@ -188,8 +188,8 @@ lbl_80027F04:
 /* 80028064 00024FA4  6C 63 80 00 */	xoris r3, r3, 0x8000
 /* 80028068 00024FA8  3C 00 43 30 */	lis r0, 0x4330
 /* 8002806C 00024FAC  90 61 00 2C */	stw r3, 0x2c(r1)
-/* 80028070 00024FB0  3C 60 80 4F */	lis r3, "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@ha
-/* 80028074 00024FB4  38 83 00 08 */	addi r4, r3, "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@l
+/* 80028070 00024FB0  3C 60 80 4F */	lis r3, sMessageString__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@ha
+/* 80028074 00024FB4  38 83 00 08 */	addi r4, r3, sMessageString__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@l
 /* 80028078 00024FB8  C8 62 82 00 */	lfd f3, lbl_80516560@sda21(r2)
 /* 8002807C 00024FBC  90 01 00 28 */	stw r0, 0x28(r1)
 /* 80028080 00024FC0  FC 80 F8 90 */	fmr f4, f31
@@ -217,5 +217,5 @@ setMessageCount__12JUTAssertionFi:
 /* 800280C8 00025008  7C 60 03 38 */	orc r0, r3, r0
 /* 800280CC 0002500C  7C 00 FE 70 */	srawi r0, r0, 0x1f
 /* 800280D0 00025010  7C 60 00 78 */	andc r0, r3, r0
-/* 800280D4 00025014  90 0D 88 68 */	stw r0, "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
+/* 800280D4 00025014  90 0D 88 68 */	stw r0, sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2@sda21(r13)
 /* 800280D8 00025018  4E 80 00 20 */	blr 

@@ -371,8 +371,8 @@ lbl_8021E758:
 /* 8021E76C 0021B6AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021E770 0021B6B0  4E 80 00 20 */	blr 
 
-.global "calcNearestTreasure__Q25Radar3MgrFR10Vector3<f>fR10Vector3<f>Rf"
-"calcNearestTreasure__Q25Radar3MgrFR10Vector3<f>fR10Vector3<f>Rf":
+.global calcNearestTreasure__Q25Radar3MgrFR10Vector3$$0f$$1fR10Vector3$$0f$$1Rf
+calcNearestTreasure__Q25Radar3MgrFR10Vector3$$0f$$1fR10Vector3$$0f$$1Rf:
 /* 8021E774 0021B6B4  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8021E778 0021B6B8  7C 08 02 A6 */	mflr r0
 /* 8021E77C 0021B6BC  90 01 00 84 */	stw r0, 0x84(r1)

@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl"
-"createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl":
+.global createObject_MESSAGE_JMS___Q216JStudio_JMessage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl
+createObject_MESSAGE_JMS___Q216JStudio_JMessage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl:
 /* 80014DF8 00011D38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80014DFC 00011D3C  7C 08 02 A6 */	mflr r0
 /* 80014E00 00011D40  90 01 00 24 */	stw r0, 0x24(r1)
@@ -75,8 +75,8 @@ create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudi
 /* 80014EE8 00011E28  41 82 00 08 */	beq lbl_80014EF0
 /* 80014EEC 00011E2C  48 00 00 14 */	b lbl_80014F00
 lbl_80014EF0:
-/* 80014EF0 00011E30  3C 80 80 01 */	lis r4, "createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl"@ha
-/* 80014EF4 00011E34  38 04 4D F8 */	addi r0, r4, "createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl"@l
+/* 80014EF0 00011E30  3C 80 80 01 */	lis r4, createObject_MESSAGE_JMS___Q216JStudio_JMessage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl@ha
+/* 80014EF4 00011E34  38 04 4D F8 */	addi r0, r4, createObject_MESSAGE_JMS___Q216JStudio_JMessage21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl@l
 /* 80014EF8 00011E38  7C 1F 03 78 */	mr r31, r0
 /* 80014EFC 00011E3C  48 00 00 0C */	b lbl_80014F08
 lbl_80014F00:

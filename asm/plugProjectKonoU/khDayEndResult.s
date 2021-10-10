@@ -8089,7 +8089,7 @@ lbl_80409F40:
 /* 80409F44 00406E84  48 00 01 FC */	b lbl_8040A140
 lbl_80409F48:
 /* 80409F48 00406E88  7F 83 E3 78 */	mr r3, r28
-/* 80409F4C 00406E8C  4B C2 E9 F1 */	bl "getObject__17JSUTree<7J2DPane>CFv"
+/* 80409F4C 00406E8C  4B C2 E9 F1 */	bl getObject__17JSUTree$$07J2DPane$$1CFv
 /* 80409F50 00406E90  81 83 00 00 */	lwz r12, 0(r3)
 /* 80409F54 00406E94  7C 7B 1B 78 */	mr r27, r3
 /* 80409F58 00406E98  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -8134,12 +8134,12 @@ lbl_80409FA4:
 lbl_80409FF0:
 /* 80409FF0 00406F30  3B 5B 00 DC */	addi r26, r27, 0xdc
 /* 80409FF4 00406F34  7F 43 D3 78 */	mr r3, r26
-/* 80409FF8 00406F38  4B C2 E9 31 */	bl "getFirstChild__17JSUTree<7J2DPane>CFv"
+/* 80409FF8 00406F38  4B C2 E9 31 */	bl getFirstChild__17JSUTree$$07J2DPane$$1CFv
 /* 80409FFC 00406F3C  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8040A000 00406F40  48 00 01 1C */	b lbl_8040A11C
 lbl_8040A004:
 /* 8040A004 00406F44  38 61 00 0C */	addi r3, r1, 0xc
-/* 8040A008 00406F48  4B EF 94 E1 */	bl "getObject__25JSUTreeIterator<7J2DPane>CFv"
+/* 8040A008 00406F48  4B EF 94 E1 */	bl getObject__25JSUTreeIterator$$07J2DPane$$1CFv
 /* 8040A00C 00406F4C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8040A010 00406F50  7C 7B 1B 78 */	mr r27, r3
 /* 8040A014 00406F54  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -8187,34 +8187,34 @@ lbl_8040A0B4:
 /* 8040A0B4 00406FF4  7F 63 DB 78 */	mr r3, r27
 /* 8040A0B8 00406FF8  4B EF 94 3D */	bl getPaneTree__7J2DPaneFv
 /* 8040A0BC 00406FFC  7C 7B 1B 78 */	mr r27, r3
-/* 8040A0C0 00407000  4B C2 E8 69 */	bl "getFirstChild__17JSUTree<7J2DPane>CFv"
+/* 8040A0C0 00407000  4B C2 E8 69 */	bl getFirstChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040A0C4 00407004  7C 64 1B 78 */	mr r4, r3
 /* 8040A0C8 00407008  38 61 00 08 */	addi r3, r1, 8
-/* 8040A0CC 0040700C  4B C2 E8 49 */	bl "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
+/* 8040A0CC 0040700C  4B C2 E8 49 */	bl __ct__25JSUTreeIterator$$07J2DPane$$1FP17JSUTree$$07J2DPane$$1
 /* 8040A0D0 00407010  48 00 00 24 */	b lbl_8040A0F4
 lbl_8040A0D4:
 /* 8040A0D4 00407014  38 61 00 08 */	addi r3, r1, 8
-/* 8040A0D8 00407018  4B EF 94 11 */	bl "getObject__25JSUTreeIterator<7J2DPane>CFv"
+/* 8040A0D8 00407018  4B EF 94 11 */	bl getObject__25JSUTreeIterator$$07J2DPane$$1CFv
 /* 8040A0DC 0040701C  7C 65 1B 78 */	mr r5, r3
 /* 8040A0E0 00407020  7F E3 FB 78 */	mr r3, r31
 /* 8040A0E4 00407024  7F C4 F3 78 */	mr r4, r30
 /* 8040A0E8 00407028  4B FF FC D1 */	bl setCallBackMessage__Q32kh6Screen19ObjDayEndResultMailFPQ29P2DScreen3MgrP7J2DPane
 /* 8040A0EC 0040702C  38 61 00 08 */	addi r3, r1, 8
-/* 8040A0F0 00407030  4B C2 E8 09 */	bl "__pp__25JSUTreeIterator<7J2DPane>Fv"
+/* 8040A0F0 00407030  4B C2 E8 09 */	bl __pp__25JSUTreeIterator$$07J2DPane$$1Fv
 lbl_8040A0F4:
 /* 8040A0F4 00407034  7F 63 DB 78 */	mr r3, r27
-/* 8040A0F8 00407038  4B C2 E7 F9 */	bl "getEndChild__17JSUTree<7J2DPane>CFv"
+/* 8040A0F8 00407038  4B C2 E7 F9 */	bl getEndChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040A0FC 0040703C  7C 64 1B 78 */	mr r4, r3
 /* 8040A100 00407040  38 61 00 08 */	addi r3, r1, 8
-/* 8040A104 00407044  4B C2 E7 D5 */	bl "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
+/* 8040A104 00407044  4B C2 E7 D5 */	bl __ne__25JSUTreeIterator$$07J2DPane$$1CFPC17JSUTree$$07J2DPane$$1
 /* 8040A108 00407048  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8040A10C 0040704C  40 82 FF C8 */	bne lbl_8040A0D4
 /* 8040A110 00407050  80 61 00 0C */	lwz r3, 0xc(r1)
-/* 8040A114 00407054  4B C2 E7 B1 */	bl "getNextChild__17JSUTree<7J2DPane>CFv"
+/* 8040A114 00407054  4B C2 E7 B1 */	bl getNextChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040A118 00407058  90 61 00 0C */	stw r3, 0xc(r1)
 lbl_8040A11C:
 /* 8040A11C 0040705C  7F 43 D3 78 */	mr r3, r26
-/* 8040A120 00407060  4B C2 E7 D1 */	bl "getEndChild__17JSUTree<7J2DPane>CFv"
+/* 8040A120 00407060  4B C2 E7 D1 */	bl getEndChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040A124 00407064  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 8040A128 00407068  7C 00 18 40 */	cmplw r0, r3
 /* 8040A12C 0040706C  40 82 FE D8 */	bne lbl_8040A004
@@ -8637,7 +8637,7 @@ doDraw__Q32kh6Screen19ObjDayEndResultTitlFR8Graphics:
 /* 8040A710 00407650  EC 03 00 2A */	fadds f0, f3, f0
 /* 8040A714 00407654  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 8040A718 00407658  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8040A71C 0040765C  4B C2 C0 B9 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 8040A71C 0040765C  4B C2 C0 B9 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 8040A720 00407660  38 60 00 01 */	li r3, 1
 /* 8040A724 00407664  4B CD EA 09 */	bl GXSetColorUpdate
 /* 8040A728 00407668  7F E3 FB 78 */	mr r3, r31
@@ -9672,27 +9672,27 @@ __sinit_khDayEndResult_cpp:
 /* 8040B3C4 00408304  98 03 00 04 */	stb r0, 4(r3)
 /* 8040B3C8 00408308  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32kh6Screen19ObjDayEndResultBaseFv"
-"@24@__dt__Q32kh6Screen19ObjDayEndResultBaseFv":
+.global $$224$$2__dt__Q32kh6Screen19ObjDayEndResultBaseFv
+$$224$$2__dt__Q32kh6Screen19ObjDayEndResultBaseFv:
 /* 8040B3CC 0040830C  38 63 FF E8 */	addi r3, r3, -24
 /* 8040B3D0 00408310  4B FF 82 00 */	b __dt__Q32kh6Screen19ObjDayEndResultBaseFv
 
-.global "@24@__dt__Q32kh6Screen19ObjDayEndResultItemFv"
-"@24@__dt__Q32kh6Screen19ObjDayEndResultItemFv":
+.global $$224$$2__dt__Q32kh6Screen19ObjDayEndResultItemFv
+$$224$$2__dt__Q32kh6Screen19ObjDayEndResultItemFv:
 /* 8040B3D4 00408314  38 63 FF E8 */	addi r3, r3, -24
 /* 8040B3D8 00408318  4B FF FD A0 */	b __dt__Q32kh6Screen19ObjDayEndResultItemFv
 
-.global "@24@__dt__Q32kh6Screen19ObjDayEndResultIncPFv"
-"@24@__dt__Q32kh6Screen19ObjDayEndResultIncPFv":
+.global $$224$$2__dt__Q32kh6Screen19ObjDayEndResultIncPFv
+$$224$$2__dt__Q32kh6Screen19ObjDayEndResultIncPFv:
 /* 8040B3DC 0040831C  38 63 FF E8 */	addi r3, r3, -24
 /* 8040B3E0 00408320  4B FF FC 64 */	b __dt__Q32kh6Screen19ObjDayEndResultIncPFv
 
-.global "@24@__dt__Q32kh6Screen19ObjDayEndResultMailFv"
-"@24@__dt__Q32kh6Screen19ObjDayEndResultMailFv":
+.global $$224$$2__dt__Q32kh6Screen19ObjDayEndResultMailFv
+$$224$$2__dt__Q32kh6Screen19ObjDayEndResultMailFv:
 /* 8040B3E4 00408324  38 63 FF E8 */	addi r3, r3, -24
 /* 8040B3E8 00408328  4B FF FB 20 */	b __dt__Q32kh6Screen19ObjDayEndResultMailFv
 
-.global "@24@__dt__Q32kh6Screen19ObjDayEndResultTitlFv"
-"@24@__dt__Q32kh6Screen19ObjDayEndResultTitlFv":
+.global $$224$$2__dt__Q32kh6Screen19ObjDayEndResultTitlFv
+$$224$$2__dt__Q32kh6Screen19ObjDayEndResultTitlFv:
 /* 8040B3EC 0040832C  38 63 FF E8 */	addi r3, r3, -24
 /* 8040B3F0 00408330  4B FF FA 6C */	b __dt__Q32kh6Screen19ObjDayEndResultTitlFv

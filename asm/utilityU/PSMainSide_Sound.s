@@ -66,7 +66,7 @@ lbl_80470FD8:
 /* 80470FDC 0046DF1C  4B FE C2 79 */	bl getPlayingHandleNum__Q23PSM8CreatureFv
 /* 80470FE0 0046DF20  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80470FE4 0046DF24  40 82 00 30 */	bne lbl_80471014
-/* 80470FE8 0046DF28  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80470FE8 0046DF28  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80470FEC 0046DF2C  28 00 00 00 */	cmplwi r0, 0
 /* 80470FF0 0046DF30  40 82 00 18 */	bne lbl_80471008
 /* 80470FF4 0046DF34  38 7F 01 C4 */	addi r3, r31, 0x1c4
@@ -75,7 +75,7 @@ lbl_80470FD8:
 /* 80471000 0046DF40  4C C6 31 82 */	crclr 6
 /* 80471004 0046DF44  4B BB 96 3D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80471008:
-/* 80471008 0046DF48  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80471008 0046DF48  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 8047100C 0046DF4C  7F C4 F3 78 */	mr r4, r30
 /* 80471010 0046DF50  4B BB 5C 15 */	bl remove__10JSUPtrListFP10JSUPtrLink
 lbl_80471014:
@@ -120,7 +120,7 @@ lbl_80471098:
 /* 8047109C 0046DFDC  4B FE C1 B9 */	bl getPlayingHandleNum__Q23PSM8CreatureFv
 /* 804710A0 0046DFE0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804710A4 0046DFE4  40 82 00 30 */	bne lbl_804710D4
-/* 804710A8 0046DFE8  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 804710A8 0046DFE8  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 804710AC 0046DFEC  28 00 00 00 */	cmplwi r0, 0
 /* 804710B0 0046DFF0  40 82 00 18 */	bne lbl_804710C8
 /* 804710B4 0046DFF4  38 7F 01 C4 */	addi r3, r31, 0x1c4
@@ -129,7 +129,7 @@ lbl_80471098:
 /* 804710C0 0046E000  4C C6 31 82 */	crclr 6
 /* 804710C4 0046E004  4B BB 95 7D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804710C8:
-/* 804710C8 0046E008  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 804710C8 0046E008  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 804710CC 0046E00C  7F C4 F3 78 */	mr r4, r30
 /* 804710D0 0046E010  4B BB 58 15 */	bl append__10JSUPtrListFP10JSUPtrLink
 lbl_804710D4:
@@ -451,7 +451,7 @@ calcVolume__Q23PSM7SeSoundFfUcUc:
 /* 80471524 0046E464  54 9E 15 BA */	rlwinm r30, r4, 2, 0x16, 0x1d
 /* 80471528 0046E468  93 A1 00 0C */	stw r29, 0xc(r1)
 /* 8047152C 0046E46C  7C 7D 1B 78 */	mr r29, r3
-/* 80471530 0046E470  83 ED 91 C4 */	lwz r31, "sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
+/* 80471530 0046E470  83 ED 91 C4 */	lwz r31, sInstance__Q28PSSystem49SingletonBase$$0Q36PSGame10SoundTable11CategoryMgr$$1@sda21(r13)
 /* 80471534 0046E474  7C 7F F2 14 */	add r3, r31, r30
 /* 80471538 0046E478  80 03 00 04 */	lwz r0, 4(r3)
 /* 8047153C 0046E47C  28 00 00 00 */	cmplwi r0, 0

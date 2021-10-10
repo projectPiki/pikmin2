@@ -688,7 +688,7 @@ wait__Q32og9newScreen11ObjFinalMsgFv:
 /* 803258D8 00322818  38 21 00 10 */	addi r1, r1, 0x10
 /* 803258DC 0032281C  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen11ObjFinalMsgFv"
-"@24@__dt__Q32og9newScreen11ObjFinalMsgFv":
+.global $$224$$2__dt__Q32og9newScreen11ObjFinalMsgFv
+$$224$$2__dt__Q32og9newScreen11ObjFinalMsgFv:
 /* 803258E0 00322820  38 63 FF E8 */	addi r3, r3, -24
 /* 803258E4 00322824  4B FF F6 C8 */	b __dt__Q32og9newScreen11ObjFinalMsgFv

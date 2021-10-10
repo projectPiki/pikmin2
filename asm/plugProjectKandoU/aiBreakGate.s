@@ -631,8 +631,8 @@ getName__Q26PikiAI26FollowVectorFieldActionArgFv:
 /* 801D0D9C 001CDCDC  38 63 04 E0 */	addi r3, r3, lbl_804804E0@l
 /* 801D0DA0 001CDCE0  4E 80 00 20 */	blr 
 
-.global "@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent"
-"@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent":
+.global $$252$$24$$2onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent
+$$252$$24$$2onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent:
 /* 801D0DA4 001CDCE4  39 60 00 04 */	li r11, 4
 /* 801D0DA8 001CDCE8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801D0DAC 001CDCEC  7C 63 5A 14 */	add r3, r3, r11

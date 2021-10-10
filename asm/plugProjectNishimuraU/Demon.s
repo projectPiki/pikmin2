@@ -88,11 +88,11 @@ getAttackableTarget__Q34Game5Demon3ObjFv:
 /* 8028E4CC 0028B40C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8028E4D0 0028B410  40 80 03 00 */	bge lbl_8028E7D0
 /* 8028E4D4 0028B414  C0 42 D5 D8 */	lfs f2, lbl_8051B938@sda21(r2)
-/* 8028E4D8 0028B418  3C 60 80 4B */	lis r3, "__vt__22Iterator<Q24Game4Navi>"@ha
+/* 8028E4D8 0028B418  3C 60 80 4B */	lis r3, __vt__22Iterator$$0Q24Game4Navi$$1@ha
 /* 8028E4DC 0028B41C  C0 24 04 24 */	lfs f1, 0x424(r4)
 /* 8028E4E0 0028B420  38 00 00 00 */	li r0, 0
 /* 8028E4E4 0028B424  C0 04 03 D4 */	lfs f0, 0x3d4(r4)
-/* 8028E4E8 0028B428  38 83 BC B4 */	addi r4, r3, "__vt__22Iterator<Q24Game4Navi>"@l
+/* 8028E4E8 0028B428  38 83 BC B4 */	addi r4, r3, __vt__22Iterator$$0Q24Game4Navi$$1@l
 /* 8028E4EC 0028B42C  EC 22 00 72 */	fmuls f1, f2, f1
 /* 8028E4F0 0028B430  C0 42 D5 D4 */	lfs f2, lbl_8051B934@sda21(r2)
 /* 8028E4F4 0028B434  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
@@ -312,9 +312,9 @@ catchTarget__Q34Game5Demon3ObjFv:
 /* 8028E814 0028B754  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8028E818 0028B758  7C 08 02 A6 */	mflr r0
 /* 8028E81C 0028B75C  38 80 00 00 */	li r4, 0
-/* 8028E820 0028B760  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Navi>"@ha
+/* 8028E820 0028B760  3C A0 80 4B */	lis r5, __vt__22Iterator$$0Q24Game4Navi$$1@ha
 /* 8028E824 0028B764  90 01 00 64 */	stw r0, 0x64(r1)
-/* 8028E828 0028B768  38 A5 BC B4 */	addi r5, r5, "__vt__22Iterator<Q24Game4Navi>"@l
+/* 8028E828 0028B768  38 A5 BC B4 */	addi r5, r5, __vt__22Iterator$$0Q24Game4Navi$$1@l
 /* 8028E82C 0028B76C  28 04 00 00 */	cmplwi r4, 0
 /* 8028E830 0028B770  BF 61 00 4C */	stmw r27, 0x4c(r1)
 /* 8028E834 0028B774  7C 7E 1B 78 */	mr r30, r3
@@ -399,7 +399,7 @@ lbl_8028E948:
 /* 8028E95C 0028B89C  28 00 00 00 */	cmplwi r0, 0
 /* 8028E960 0028B8A0  40 82 00 EC */	bne lbl_8028EA4C
 /* 8028E964 0028B8A4  38 81 00 14 */	addi r4, r1, 0x14
-/* 8028E968 0028B8A8  4B EA 9B 61 */	bl "getPosition__13MouthCollPartFR10Vector3<f>"
+/* 8028E968 0028B8A8  4B EA 9B 61 */	bl getPosition__13MouthCollPartFR10Vector3$$0f$$1
 /* 8028E96C 0028B8AC  7F 84 E3 78 */	mr r4, r28
 /* 8028E970 0028B8B0  38 61 00 08 */	addi r3, r1, 8
 /* 8028E974 0028B8B4  81 9C 00 00 */	lwz r12, 0(r28)

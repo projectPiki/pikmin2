@@ -304,8 +304,8 @@ directDraw__Q24Game8WayPointFR8Graphics:
 directDraw_Simple__Q24Game8WayPointFR8Graphics:
 /* 801728F0 0016F830  4E 80 00 20 */	blr 
 
-.global "__dt__27Container<Q24Game8WayPoint>Fv"
-"__dt__27Container<Q24Game8WayPoint>Fv":
+.global __dt__27Container$$0Q24Game8WayPoint$$1Fv
+__dt__27Container$$0Q24Game8WayPoint$$1Fv:
 /* 801728F4 0016F834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801728F8 0016F838  7C 08 02 A6 */	mflr r0
 /* 801728FC 0016F83C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -314,8 +314,8 @@ directDraw_Simple__Q24Game8WayPointFR8Graphics:
 /* 80172908 0016F848  93 C1 00 08 */	stw r30, 8(r1)
 /* 8017290C 0016F84C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80172910 0016F850  41 82 00 38 */	beq lbl_80172948
-/* 80172914 0016F854  3C 80 80 4B */	lis r4, "__vt__27Container<Q24Game8WayPoint>"@ha
-/* 80172918 0016F858  38 04 23 D0 */	addi r0, r4, "__vt__27Container<Q24Game8WayPoint>"@l
+/* 80172914 0016F854  3C 80 80 4B */	lis r4, __vt__27Container$$0Q24Game8WayPoint$$1@ha
+/* 80172918 0016F858  38 04 23 D0 */	addi r0, r4, __vt__27Container$$0Q24Game8WayPoint$$1@l
 /* 8017291C 0016F85C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80172920 0016F860  41 82 00 18 */	beq lbl_80172938
 /* 80172924 0016F864  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -351,8 +351,8 @@ __dt__Q24Game8RouteMgrFv:
 /* 80172988 0016F8C8  38 04 23 98 */	addi r0, r4, __vt__Q24Game8RouteMgr@l
 /* 8017298C 0016F8CC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80172990 0016F8D0  41 82 00 28 */	beq lbl_801729B8
-/* 80172994 0016F8D4  3C 80 80 4B */	lis r4, "__vt__27Container<Q24Game8WayPoint>"@ha
-/* 80172998 0016F8D8  38 04 23 D0 */	addi r0, r4, "__vt__27Container<Q24Game8WayPoint>"@l
+/* 80172994 0016F8D4  3C 80 80 4B */	lis r4, __vt__27Container$$0Q24Game8WayPoint$$1@ha
+/* 80172998 0016F8D8  38 04 23 D0 */	addi r0, r4, __vt__27Container$$0Q24Game8WayPoint$$1@l
 /* 8017299C 0016F8DC  90 1E 00 00 */	stw r0, 0(r30)
 /* 801729A0 0016F8E0  41 82 00 18 */	beq lbl_801729B8
 /* 801729A4 0016F8E4  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -601,10 +601,10 @@ lbl_80172C98:
 refreshWater__Q24Game8RouteMgrFv:
 /* 80172D10 0016FC50  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80172D14 0016FC54  7C 08 02 A6 */	mflr r0
-/* 80172D18 0016FC58  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8WayPoint>"@ha
+/* 80172D18 0016FC58  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8WayPoint$$1@ha
 /* 80172D1C 0016FC5C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80172D20 0016FC60  38 00 00 00 */	li r0, 0
-/* 80172D24 0016FC64  38 84 23 80 */	addi r4, r4, "__vt__26Iterator<Q24Game8WayPoint>"@l
+/* 80172D24 0016FC64  38 84 23 80 */	addi r4, r4, __vt__26Iterator$$0Q24Game8WayPoint$$1@l
 /* 80172D28 0016FC68  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80172D2C 0016FC6C  28 00 00 00 */	cmplwi r0, 0
 /* 80172D30 0016FC70  90 01 00 24 */	stw r0, 0x24(r1)
@@ -764,8 +764,8 @@ lbl_80172F44:
 /* 80172F70 0016FEB0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80172F74 0016FEB4  4E 80 00 20 */	blr 
 
-.global "isDone__26Iterator<Q24Game8WayPoint>Fv"
-"isDone__26Iterator<Q24Game8WayPoint>Fv":
+.global isDone__26Iterator$$0Q24Game8WayPoint$$1Fv
+isDone__26Iterator$$0Q24Game8WayPoint$$1Fv:
 /* 80172F78 0016FEB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172F7C 0016FEBC  7C 08 02 A6 */	mflr r0
 /* 80172F80 0016FEC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -799,8 +799,8 @@ getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg:
 /* 80172FE4 0016FF24  93 C1 00 C8 */	stw r30, 0xc8(r1)
 /* 80172FE8 0016FF28  93 A1 00 C4 */	stw r29, 0xc4(r1)
 /* 80172FEC 0016FF2C  38 00 00 00 */	li r0, 0
-/* 80172FF0 0016FF30  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8WayPoint>"@ha
-/* 80172FF4 0016FF34  38 A5 23 80 */	addi r5, r5, "__vt__26Iterator<Q24Game8WayPoint>"@l
+/* 80172FF0 0016FF30  3C A0 80 4B */	lis r5, __vt__26Iterator$$0Q24Game8WayPoint$$1@ha
+/* 80172FF4 0016FF34  38 A5 23 80 */	addi r5, r5, __vt__26Iterator$$0Q24Game8WayPoint$$1@l
 /* 80172FF8 0016FF38  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80172FFC 0016FF3C  28 00 00 00 */	cmplwi r0, 0
 /* 80173000 0016FF40  C3 C2 A6 C0 */	lfs f30, lbl_80518A20@sda21(r2)
@@ -1058,11 +1058,11 @@ getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg:
 /* 801733AC 001702EC  38 A0 00 00 */	li r5, 0
 /* 801733B0 001702F0  7C 9E 23 78 */	mr r30, r4
 /* 801733B4 001702F4  90 A4 00 1C */	stw r5, 0x1c(r4)
-/* 801733B8 001702F8  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8WayPoint>"@ha
+/* 801733B8 001702F8  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8WayPoint$$1@ha
 /* 801733BC 001702FC  7C 7D 1B 78 */	mr r29, r3
 /* 801733C0 00170300  28 05 00 00 */	cmplwi r5, 0
 /* 801733C4 00170304  90 BE 00 18 */	stw r5, 0x18(r30)
-/* 801733C8 00170308  38 04 23 80 */	addi r0, r4, "__vt__26Iterator<Q24Game8WayPoint>"@l
+/* 801733C8 00170308  38 04 23 80 */	addi r0, r4, __vt__26Iterator$$0Q24Game8WayPoint$$1@l
 /* 801733CC 0017030C  C3 E2 A6 AC */	lfs f31, lbl_80518A0C@sda21(r2)
 /* 801733D0 00170310  3B E0 00 00 */	li r31, 0
 /* 801733D4 00170314  90 01 00 20 */	stw r0, 0x20(r1)
@@ -1629,10 +1629,10 @@ lbl_80173B20:
 setCloseAll__Q24Game8RouteMgrFv:
 /* 80173B88 00170AC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80173B8C 00170ACC  7C 08 02 A6 */	mflr r0
-/* 80173B90 00170AD0  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8WayPoint>"@ha
+/* 80173B90 00170AD0  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8WayPoint$$1@ha
 /* 80173B94 00170AD4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80173B98 00170AD8  38 00 00 00 */	li r0, 0
-/* 80173B9C 00170ADC  38 84 23 80 */	addi r4, r4, "__vt__26Iterator<Q24Game8WayPoint>"@l
+/* 80173B9C 00170ADC  38 84 23 80 */	addi r4, r4, __vt__26Iterator$$0Q24Game8WayPoint$$1@l
 /* 80173BA0 00170AE0  28 00 00 00 */	cmplwi r0, 0
 /* 80173BA4 00170AE4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80173BA8 00170AE8  90 81 00 08 */	stw r4, 8(r1)
@@ -1760,10 +1760,10 @@ lbl_80173D38:
 openRoom__Q24Game8RouteMgrFs:
 /* 80173D68 00170CA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80173D6C 00170CAC  7C 08 02 A6 */	mflr r0
-/* 80173D70 00170CB0  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8WayPoint>"@ha
+/* 80173D70 00170CB0  3C A0 80 4B */	lis r5, __vt__26Iterator$$0Q24Game8WayPoint$$1@ha
 /* 80173D74 00170CB4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80173D78 00170CB8  38 00 00 00 */	li r0, 0
-/* 80173D7C 00170CBC  38 A5 23 80 */	addi r5, r5, "__vt__26Iterator<Q24Game8WayPoint>"@l
+/* 80173D7C 00170CBC  38 A5 23 80 */	addi r5, r5, __vt__26Iterator$$0Q24Game8WayPoint$$1@l
 /* 80173D80 00170CC0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80173D84 00170CC4  28 00 00 00 */	cmplwi r0, 0
 /* 80173D88 00170CC8  7C 9F 23 78 */	mr r31, r4
@@ -1925,8 +1925,8 @@ write__Q24Game8RouteMgrFR6Stream:
 /* 80173FBC 00170EFC  4C C6 31 82 */	crclr 6
 /* 80173FC0 00170F00  48 2A 02 1D */	bl textWriteText__6StreamFPce
 /* 80173FC4 00170F04  38 00 00 00 */	li r0, 0
-/* 80173FC8 00170F08  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8WayPoint>"@ha
-/* 80173FCC 00170F0C  38 63 23 80 */	addi r3, r3, "__vt__26Iterator<Q24Game8WayPoint>"@l
+/* 80173FC8 00170F08  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8WayPoint$$1@ha
+/* 80173FCC 00170F0C  38 63 23 80 */	addi r3, r3, __vt__26Iterator$$0Q24Game8WayPoint$$1@l
 /* 80173FD0 00170F10  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80173FD4 00170F14  28 00 00 00 */	cmplwi r0, 0
 /* 80173FD8 00170F18  90 61 00 08 */	stw r3, 8(r1)
@@ -2124,11 +2124,11 @@ __ct__Q24Game12GameRouteMgrFv:
 /* 801742A4 001711E4  7C 7F 1B 78 */	mr r31, r3
 /* 801742A8 001711E8  48 29 D0 E9 */	bl __ct__5CNodeFv
 /* 801742AC 001711EC  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 801742B0 001711F0  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8WayPoint>"@ha
+/* 801742B0 001711F0  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8WayPoint$$1@ha
 /* 801742B4 001711F4  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 801742B8 001711F8  3C A0 80 4B */	lis r5, __vt__Q24Game8RouteMgr@ha
 /* 801742BC 001711FC  90 1F 00 00 */	stw r0, 0(r31)
-/* 801742C0 00171200  38 03 23 D0 */	addi r0, r3, "__vt__27Container<Q24Game8WayPoint>"@l
+/* 801742C0 00171200  38 03 23 D0 */	addi r0, r3, __vt__27Container$$0Q24Game8WayPoint$$1@l
 /* 801742C4 00171204  3C 80 80 48 */	lis r4, lbl_8047E5A8@ha
 /* 801742C8 00171208  3C 60 80 4B */	lis r3, __vt__Q24Game12GameRouteMgr@ha
 /* 801742CC 0017120C  90 1F 00 00 */	stw r0, 0(r31)
@@ -2178,8 +2178,8 @@ lbl_80174360:
 /* 8017436C 001712AC  38 03 23 98 */	addi r0, r3, __vt__Q24Game8RouteMgr@l
 /* 80174370 001712B0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80174374 001712B4  41 82 00 2C */	beq lbl_801743A0
-/* 80174378 001712B8  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8WayPoint>"@ha
-/* 8017437C 001712BC  38 03 23 D0 */	addi r0, r3, "__vt__27Container<Q24Game8WayPoint>"@l
+/* 80174378 001712B8  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8WayPoint$$1@ha
+/* 8017437C 001712BC  38 03 23 D0 */	addi r0, r3, __vt__27Container$$0Q24Game8WayPoint$$1@l
 /* 80174380 001712C0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80174384 001712C4  41 82 00 1C */	beq lbl_801743A0
 /* 80174388 001712C8  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -2351,11 +2351,11 @@ __ct__Q24Game14EditorRouteMgrFv:
 /* 801745AC 001714EC  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 801745B0 001714F0  48 29 CD E1 */	bl __ct__5CNodeFv
 /* 801745B4 001714F4  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 801745B8 001714F8  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8WayPoint>"@ha
+/* 801745B8 001714F8  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8WayPoint$$1@ha
 /* 801745BC 001714FC  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 801745C0 00171500  3C A0 80 4B */	lis r5, __vt__Q24Game8RouteMgr@ha
 /* 801745C4 00171504  90 1F 00 00 */	stw r0, 0(r31)
-/* 801745C8 00171508  38 03 23 D0 */	addi r0, r3, "__vt__27Container<Q24Game8WayPoint>"@l
+/* 801745C8 00171508  38 03 23 D0 */	addi r0, r3, __vt__27Container$$0Q24Game8WayPoint$$1@l
 /* 801745CC 0017150C  3C 80 80 48 */	lis r4, lbl_8047E5A8@ha
 /* 801745D0 00171510  3C 60 80 4B */	lis r3, __vt__Q24Game14EditorRouteMgr@ha
 /* 801745D4 00171514  90 1F 00 00 */	stw r0, 0(r31)
@@ -2679,8 +2679,8 @@ lbl_80174A00:
 /* 80174A0C 0017194C  38 03 23 98 */	addi r0, r3, __vt__Q24Game8RouteMgr@l
 /* 80174A10 00171950  90 1E 00 00 */	stw r0, 0(r30)
 /* 80174A14 00171954  41 82 00 2C */	beq lbl_80174A40
-/* 80174A18 00171958  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8WayPoint>"@ha
-/* 80174A1C 0017195C  38 03 23 D0 */	addi r0, r3, "__vt__27Container<Q24Game8WayPoint>"@l
+/* 80174A18 00171958  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8WayPoint$$1@ha
+/* 80174A1C 0017195C  38 03 23 D0 */	addi r0, r3, __vt__27Container$$0Q24Game8WayPoint$$1@l
 /* 80174A20 00171960  90 1E 00 00 */	stw r0, 0(r30)
 /* 80174A24 00171964  41 82 00 1C */	beq lbl_80174A40
 /* 80174A28 00171968  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -2703,8 +2703,8 @@ lbl_80174A50:
 /* 80174A64 001719A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174A68 001719A8  4E 80 00 20 */	blr 
 
-.global "__ml__26Iterator<Q24Game8WayPoint>Fv"
-"__ml__26Iterator<Q24Game8WayPoint>Fv":
+.global __ml__26Iterator$$0Q24Game8WayPoint$$1Fv
+__ml__26Iterator$$0Q24Game8WayPoint$$1Fv:
 /* 80174A6C 001719AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174A70 001719B0  7C 08 02 A6 */	mflr r0
 /* 80174A74 001719B4  7C 64 1B 78 */	mr r4, r3
@@ -2720,8 +2720,8 @@ lbl_80174A50:
 /* 80174A9C 001719DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174AA0 001719E0  4E 80 00 20 */	blr 
 
-.global "next__26Iterator<Q24Game8WayPoint>Fv"
-"next__26Iterator<Q24Game8WayPoint>Fv":
+.global next__26Iterator$$0Q24Game8WayPoint$$1Fv
+next__26Iterator$$0Q24Game8WayPoint$$1Fv:
 /* 80174AA4 001719E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174AA8 001719E8  7C 08 02 A6 */	mflr r0
 /* 80174AAC 001719EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2784,8 +2784,8 @@ lbl_80174B74:
 /* 80174B80 00171AC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174B84 00171AC4  4E 80 00 20 */	blr 
 
-.global "first__26Iterator<Q24Game8WayPoint>Fv"
-"first__26Iterator<Q24Game8WayPoint>Fv":
+.global first__26Iterator$$0Q24Game8WayPoint$$1Fv
+first__26Iterator$$0Q24Game8WayPoint$$1Fv:
 /* 80174B88 00171AC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174B8C 00171ACC  7C 08 02 A6 */	mflr r0
 /* 80174B90 00171AD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2846,8 +2846,8 @@ lbl_80174C50:
 /* 80174C5C 00171B9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174C60 00171BA0  4E 80 00 20 */	blr 
 
-.global "getObject__27Container<Q24Game8WayPoint>FPv"
-"getObject__27Container<Q24Game8WayPoint>FPv":
+.global getObject__27Container$$0Q24Game8WayPoint$$1FPv
+getObject__27Container$$0Q24Game8WayPoint$$1FPv:
 /* 80174C64 00171BA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174C68 00171BA8  7C 08 02 A6 */	mflr r0
 /* 80174C6C 00171BAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2860,12 +2860,12 @@ lbl_80174C50:
 /* 80174C88 00171BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174C8C 00171BCC  4E 80 00 20 */	blr 
 
-.global "getAt__27Container<Q24Game8WayPoint>Fi"
-"getAt__27Container<Q24Game8WayPoint>Fi":
+.global getAt__27Container$$0Q24Game8WayPoint$$1Fi
+getAt__27Container$$0Q24Game8WayPoint$$1Fi:
 /* 80174C90 00171BD0  38 60 00 00 */	li r3, 0
 /* 80174C94 00171BD4  4E 80 00 20 */	blr 
 
-.global "getTo__27Container<Q24Game8WayPoint>Fv"
-"getTo__27Container<Q24Game8WayPoint>Fv":
+.global getTo__27Container$$0Q24Game8WayPoint$$1Fv
+getTo__27Container$$0Q24Game8WayPoint$$1Fv:
 /* 80174C98 00171BD8  38 60 00 00 */	li r3, 0
 /* 80174C9C 00171BDC  4E 80 00 20 */	blr 

@@ -589,7 +589,7 @@ getObject__Q37JStudio3stb8TControlFPCvUl:
 /* 80010A28 0000D968  90 01 00 38 */	stw r0, 0x38(r1)
 /* 80010A2C 0000D96C  90 01 00 28 */	stw r0, 0x28(r1)
 /* 80010A30 0000D970  90 E1 00 2C */	stw r7, 0x2c(r1)
-/* 80010A34 0000D974  48 00 00 49 */	bl "find_if<Q37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal"
+/* 80010A34 0000D974  48 00 00 49 */	bl find_if$$0Q37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iterator$$4Q37JStudio6object18TPRObject_ID_equal$$1__3stdFQ37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iteratorQ37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iteratorQ37JStudio6object18TPRObject_ID_equal
 /* 80010A38 0000D978  80 C1 00 30 */	lwz r6, 0x30(r1)
 /* 80010A3C 0000D97C  80 A1 00 38 */	lwz r5, 0x38(r1)
 /* 80010A40 0000D980  90 C1 00 34 */	stw r6, 0x34(r1)
@@ -608,8 +608,8 @@ getObject__Q37JStudio3stb8TControlFPCvUl:
 /* 80010A74 0000D9B4  38 21 00 50 */	addi r1, r1, 0x50
 /* 80010A78 0000D9B8  4E 80 00 20 */	blr 
 
-.global "find_if<Q37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal"
-"find_if<Q37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal":
+.global find_if$$0Q37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iterator$$4Q37JStudio6object18TPRObject_ID_equal$$1__3stdFQ37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iteratorQ37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iteratorQ37JStudio6object18TPRObject_ID_equal
+find_if$$0Q37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iterator$$4Q37JStudio6object18TPRObject_ID_equal$$1__3stdFQ37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iteratorQ37JGadget37TLinkList$$0Q37JStudio3stb7TObject$$4$$512$$18iteratorQ37JStudio6object18TPRObject_ID_equal:
 /* 80010A7C 0000D9BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80010A80 0000D9C0  7C 08 02 A6 */	mflr r0
 /* 80010A84 0000D9C4  90 01 00 34 */	stw r0, 0x34(r1)

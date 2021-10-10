@@ -92,7 +92,7 @@ lbl_8013F800:
 /* 8013F80C 0013C74C  38 C0 00 00 */	li r6, 0
 /* 8013F810 0013C750  80 7F 02 D0 */	lwz r3, 0x2d0(r31)
 /* 8013F814 0013C754  38 E0 00 00 */	li r7, 0
-/* 8013F818 0013C758  48 27 85 D5 */	bl "init__Q23efx11TNaviEffectFP10Vector3<f>PA4_fP10Vector3<f>Q33efx11TNaviEffect12enumNaviType"
+/* 8013F818 0013C758  48 27 85 D5 */	bl init__Q23efx11TNaviEffectFP10Vector3$$0f$$1PA4_fP10Vector3$$0f$$1Q33efx11TNaviEffect12enumNaviType
 /* 8013F81C 0013C75C  80 9F 02 D0 */	lwz r4, 0x2d0(r31)
 /* 8013F820 0013C760  38 1F 02 0C */	addi r0, r31, 0x20c
 /* 8013F824 0013C764  38 60 00 20 */	li r3, 0x20
@@ -100,9 +100,9 @@ lbl_8013F800:
 /* 8013F82C 0013C76C  4B EE 46 79 */	bl __nw__FUl
 /* 8013F830 0013C770  28 03 00 00 */	cmplwi r3, 0
 /* 8013F834 0013C774  41 82 00 24 */	beq lbl_8013F858
-/* 8013F838 0013C778  3C A0 80 4B */	lis r5, "__vt__Q24Game26StateMachine<Q24Game4Navi>"@ha
+/* 8013F838 0013C778  3C A0 80 4B */	lis r5, __vt__Q24Game26StateMachine$$0Q24Game4Navi$$1@ha
 /* 8013F83C 0013C77C  3C 80 80 4B */	lis r4, __vt__Q24Game7NaviFSM@ha
-/* 8013F840 0013C780  38 05 09 74 */	addi r0, r5, "__vt__Q24Game26StateMachine<Q24Game4Navi>"@l
+/* 8013F840 0013C780  38 05 09 74 */	addi r0, r5, __vt__Q24Game26StateMachine$$0Q24Game4Navi$$1@l
 /* 8013F844 0013C784  38 A0 FF FF */	li r5, -1
 /* 8013F848 0013C788  90 03 00 00 */	stw r0, 0(r3)
 /* 8013F84C 0013C78C  38 04 37 6C */	addi r0, r4, __vt__Q24Game7NaviFSM@l
@@ -870,8 +870,8 @@ getCreatureID__Q24Game4NaviFv:
 /* 80140340 0013D280  A0 63 02 DC */	lhz r3, 0x2dc(r3)
 /* 80140344 0013D284  4E 80 00 20 */	blr 
 
-.global "start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
-"start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg":
+.global start__Q24Game26StateMachine$$0Q24Game4Navi$$1FPQ24Game4NaviiPQ24Game8StateArg
+start__Q24Game26StateMachine$$0Q24Game4Navi$$1FPQ24Game4NaviiPQ24Game8StateArg:
 /* 80140348 0013D288  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014034C 0013D28C  7C 08 02 A6 */	mflr r0
 /* 80140350 0013D290  90 01 00 14 */	stw r0, 0x14(r1)
@@ -886,8 +886,8 @@ getCreatureID__Q24Game4NaviFv:
 /* 80140374 0013D2B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140378 0013D2B8  4E 80 00 20 */	blr 
 
-.global "onSetPosition__Q24Game4NaviFR10Vector3<f>"
-"onSetPosition__Q24Game4NaviFR10Vector3<f>":
+.global onSetPosition__Q24Game4NaviFR10Vector3$$0f$$1
+onSetPosition__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 8014037C 0013D2BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140380 0013D2C0  7C 08 02 A6 */	mflr r0
 /* 80140384 0013D2C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1128,8 +1128,8 @@ lbl_801406A0:
 /* 801406AC 0013D5EC  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801406B0:
 /* 801406B0 0013D5F0  38 00 00 00 */	li r0, 0
-/* 801406B4 0013D5F4  3C 80 80 4B */	lis r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-/* 801406B8 0013D5F8  38 84 05 A4 */	addi r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+/* 801406B4 0013D5F4  3C 80 80 4B */	lis r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@ha
+/* 801406B8 0013D5F8  38 84 05 A4 */	addi r4, r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@l
 /* 801406BC 0013D5FC  EF 9C 07 32 */	fmuls f28, f28, f28
 /* 801406C0 0013D600  28 00 00 00 */	cmplwi r0, 0
 /* 801406C4 0013D604  90 81 00 38 */	stw r4, 0x38(r1)
@@ -1528,15 +1528,15 @@ lbl_80140C64:
 /* 80140C90 0013DBD0  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80140C94 0013DBD4  4E 80 00 20 */	blr 
 
-.global "getAt__27MonoObjectMgr<Q24Game4Navi>Fi"
-"getAt__27MonoObjectMgr<Q24Game4Navi>Fi":
+.global getAt__27MonoObjectMgr$$0Q24Game4Navi$$1Fi
+getAt__27MonoObjectMgr$$0Q24Game4Navi$$1Fi:
 /* 80140C98 0013DBD8  1C 04 03 20 */	mulli r0, r4, 0x320
 /* 80140C9C 0013DBDC  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 80140CA0 0013DBE0  7C 63 02 14 */	add r3, r3, r0
 /* 80140CA4 0013DBE4  4E 80 00 20 */	blr 
 
-.global "isDone__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-"isDone__36Iterator<Q34Game12ItemPikihead4Item>Fv":
+.global isDone__36Iterator$$0Q34Game12ItemPikihead4Item$$1Fv
+isDone__36Iterator$$0Q34Game12ItemPikihead4Item$$1Fv:
 /* 80140CA8 0013DBE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140CAC 0013DBEC  7C 08 02 A6 */	mflr r0
 /* 80140CB0 0013DBF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1759,8 +1759,8 @@ sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage:
 /* 80140FAC 0013DEEC  38 60 00 00 */	li r3, 0
 /* 80140FB0 0013DEF0  4E 80 00 20 */	blr 
 
-.global "applyDopes__Q24Game4NaviFiR10Vector3<f>"
-"applyDopes__Q24Game4NaviFiR10Vector3<f>":
+.global applyDopes__Q24Game4NaviFiR10Vector3$$0f$$1
+applyDopes__Q24Game4NaviFiR10Vector3$$0f$$1:
 /* 80140FB4 0013DEF4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80140FB8 0013DEF8  7C 08 02 A6 */	mflr r0
 /* 80140FBC 0013DEFC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1773,15 +1773,15 @@ sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage:
 /* 80140FD8 0013DF18  93 81 00 50 */	stw r28, 0x50(r1)
 /* 80140FDC 0013DF1C  40 82 00 70 */	bne lbl_8014104C
 /* 80140FE0 0013DF20  C0 05 00 00 */	lfs f0, 0(r5)
-/* 80140FE4 0013DF24  3C C0 80 4B */	lis r6, "__vt__32IDelegate1<PQ24Game10CellObject>"@ha
+/* 80140FE4 0013DF24  3C C0 80 4B */	lis r6, __vt__32IDelegate1$$0PQ24Game10CellObject$$1@ha
 /* 80140FE8 0013DF28  3C 60 80 4B */	lis r3, lbl_804B0004@ha
 /* 80140FEC 0013DF2C  84 E3 04 EC */	lwzu r7, 0x4ec(r3)
 /* 80140FF0 0013DF30  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 80140FF4 0013DF34  39 26 05 84 */	addi r9, r6, "__vt__32IDelegate1<PQ24Game10CellObject>"@l
-/* 80140FF8 0013DF38  3C 80 80 4B */	lis r4, "__vt__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>"@ha
+/* 80140FF4 0013DF34  39 26 05 84 */	addi r9, r6, __vt__32IDelegate1$$0PQ24Game10CellObject$$1@l
+/* 80140FF8 0013DF38  3C 80 80 4B */	lis r4, __vt__44Delegate1$$0Q24Game4Navi$$4PQ24Game10CellObject$$1@ha
 /* 80140FFC 0013DF3C  C0 02 A0 1C */	lfs f0, lbl_8051837C@sda21(r2)
 /* 80141000 0013DF40  C0 25 00 04 */	lfs f1, 4(r5)
-/* 80141004 0013DF44  39 04 05 78 */	addi r8, r4, "__vt__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>"@l
+/* 80141004 0013DF44  39 04 05 78 */	addi r8, r4, __vt__44Delegate1$$0Q24Game4Navi$$4PQ24Game10CellObject$$1@l
 /* 80141008 0013DF48  80 C3 00 04 */	lwz r6, lbl_804B0004@l(r3)
 /* 8014100C 0013DF4C  38 81 00 24 */	addi r4, r1, 0x24
 /* 80141010 0013DF50  D0 21 00 28 */	stfs f1, 0x28(r1)
@@ -1797,7 +1797,7 @@ sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage:
 /* 80141038 0013DF78  90 E1 00 3C */	stw r7, 0x3c(r1)
 /* 8014103C 0013DF7C  90 C1 00 40 */	stw r6, 0x40(r1)
 /* 80141040 0013DF80  90 01 00 44 */	stw r0, 0x44(r1)
-/* 80141044 0013DF84  48 01 55 85 */	bl "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>"
+/* 80141044 0013DF84  48 01 55 85 */	bl mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1$$0PQ24Game10CellObject$$1
 /* 80141048 0013DF88  48 00 02 2C */	b lbl_80141274
 lbl_8014104C:
 /* 8014104C 0013DF8C  80 7D 02 54 */	lwz r3, 0x254(r29)
@@ -2120,8 +2120,8 @@ getPSCreature__Q24Game4NaviFv:
 /* 801414C4 0013E404  80 63 02 6C */	lwz r3, 0x26c(r3)
 /* 801414C8 0013E408  4E 80 00 20 */	blr 
 
-.global "wallCallback__Q24Game4NaviFR10Vector3<f>"
-"wallCallback__Q24Game4NaviFR10Vector3<f>":
+.global wallCallback__Q24Game4NaviFR10Vector3$$0f$$1
+wallCallback__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 801414CC 0013E40C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801414D0 0013E410  7C 08 02 A6 */	mflr r0
 /* 801414D4 0013E414  7C 66 1B 78 */	mr r6, r3
@@ -2141,8 +2141,8 @@ lbl_80141500:
 /* 80141508 0013E448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014150C 0013E44C  4E 80 00 20 */	blr 
 
-.global "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
-"wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>":
+.global wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3$$0f$$1
+wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3$$0f$$1:
 /* 80141510 0013E450  4E 80 00 20 */	blr 
 
 .global bounceCallback__Q24Game4NaviFPQ23Sys8Triangle
@@ -2302,8 +2302,8 @@ lbl_80141704:
 /* 80141730 0013E670  38 21 00 70 */	addi r1, r1, 0x70
 /* 80141734 0013E674  4E 80 00 20 */	blr 
 
-.global "viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
-"viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>":
+.global viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3$$0f$$1
+viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3$$0f$$1:
 /* 80141738 0013E678  4E 80 00 20 */	blr 
 
 .global viewGetShape__Q24Game4NaviFv
@@ -2622,7 +2622,7 @@ lbl_80141B4C:
 /* 80141BB8 0013EAF8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80141BBC 0013EAFC  80 06 00 08 */	lwz r0, 8(r6)
 /* 80141BC0 0013EB00  90 01 00 28 */	stw r0, 0x28(r1)
-/* 80141BC4 0013EB04  48 27 67 11 */	bl "updateCursor___Q23efx11TNaviEffectF10Vector3<f>f"
+/* 80141BC4 0013EB04  48 27 67 11 */	bl updateCursor___Q23efx11TNaviEffectF10Vector3$$0f$$1f
 /* 80141BC8 0013EB08  48 00 00 2C */	b lbl_80141BF4
 lbl_80141BCC:
 /* 80141BCC 0013EB0C  80 7F 02 D0 */	lwz r3, 0x2d0(r31)
@@ -2634,7 +2634,7 @@ lbl_80141BCC:
 /* 80141BE4 0013EB24  90 01 00 18 */	stw r0, 0x18(r1)
 /* 80141BE8 0013EB28  80 06 00 08 */	lwz r0, 8(r6)
 /* 80141BEC 0013EB2C  90 01 00 1C */	stw r0, 0x1c(r1)
-/* 80141BF0 0013EB30  48 27 66 E5 */	bl "updateCursor___Q23efx11TNaviEffectF10Vector3<f>f"
+/* 80141BF0 0013EB30  48 27 66 E5 */	bl updateCursor___Q23efx11TNaviEffectF10Vector3$$0f$$1f
 lbl_80141BF4:
 /* 80141BF4 0013EB34  7F E3 FB 78 */	mr r3, r31
 /* 80141BF8 0013EB38  48 00 00 25 */	bl updateCursor__Q24Game4NaviFv
@@ -3206,7 +3206,7 @@ inWaterCallback__Q24Game4NaviFPQ24Game8WaterBox:
 /* 801423D4 0013F314  28 1F 00 00 */	cmplwi r31, 0
 /* 801423D8 0013F318  40 82 00 0C */	bne lbl_801423E4
 /* 801423DC 0013F31C  38 7E 00 1C */	addi r3, r30, 0x1c
-/* 801423E0 0013F320  48 27 54 B5 */	bl "createSimpleDive__3efxFR10Vector3<f>"
+/* 801423E0 0013F320  48 27 54 B5 */	bl createSimpleDive__3efxFR10Vector3$$0f$$1
 lbl_801423E4:
 /* 801423E4 0013F324  80 7D 02 6C */	lwz r3, 0x26c(r29)
 /* 801423E8 0013F328  38 80 08 14 */	li r4, 0x814
@@ -3393,7 +3393,7 @@ lbl_80142638:
 /* 80142664 0013F5A4  D0 41 00 2C */	stfs f2, 0x2c(r1)
 /* 80142668 0013F5A8  D0 21 00 30 */	stfs f1, 0x30(r1)
 /* 8014266C 0013F5AC  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 80142670 0013F5B0  48 00 25 45 */	bl "holeinAllPikis__Q24Game4NaviFR10Vector3<f>"
+/* 80142670 0013F5B0  48 00 25 45 */	bl holeinAllPikis__Q24Game4NaviFR10Vector3$$0f$$1
 /* 80142674 0013F5B4  48 00 01 98 */	b lbl_8014280C
 /* 80142678 0013F5B8  83 FE 01 94 */	lwz r31, 0x194(r30)
 /* 8014267C 0013F5BC  28 1F 00 00 */	cmplwi r31, 0
@@ -3418,7 +3418,7 @@ lbl_80142698:
 /* 801426C4 0013F604  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 801426C8 0013F608  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 801426CC 0013F60C  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 801426D0 0013F610  48 00 27 F1 */	bl "fountainonAllPikis__Q24Game4NaviFR10Vector3<f>"
+/* 801426D0 0013F610  48 00 27 F1 */	bl fountainonAllPikis__Q24Game4NaviFR10Vector3$$0f$$1
 /* 801426D4 0013F614  48 00 01 38 */	b lbl_8014280C
 /* 801426D8 0013F618  80 6D 96 80 */	lwz r3, shadowMgr__4Game@sda21(r13)
 /* 801426DC 0013F61C  7F A4 EB 78 */	mr r4, r29
@@ -3490,7 +3490,7 @@ lbl_801427C0:
 /* 801427DC 0013F71C  28 1E 00 00 */	cmplwi r30, 0
 /* 801427E0 0013F720  40 82 00 0C */	bne lbl_801427EC
 /* 801427E4 0013F724  38 7F 00 1C */	addi r3, r31, 0x1c
-/* 801427E8 0013F728  48 27 50 AD */	bl "createSimpleDive__3efxFR10Vector3<f>"
+/* 801427E8 0013F728  48 27 50 AD */	bl createSimpleDive__3efxFR10Vector3$$0f$$1
 lbl_801427EC:
 /* 801427EC 0013F72C  80 7F 00 00 */	lwz r3, 0(r31)
 /* 801427F0 0013F730  54 60 07 BD */	rlwinm. r0, r3, 0, 0x1e, 0x1e
@@ -3604,8 +3604,8 @@ lbl_8014292C:
 /* 80142970 0013F8B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80142974 0013F8B4  4E 80 00 20 */	blr 
 
-.global "movieSetTranslation__Q24Game4NaviFR10Vector3<f>f"
-"movieSetTranslation__Q24Game4NaviFR10Vector3<f>f":
+.global movieSetTranslation__Q24Game4NaviFR10Vector3$$0f$$1f
+movieSetTranslation__Q24Game4NaviFR10Vector3$$0f$$1f:
 /* 80142978 0013F8B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014297C 0013F8BC  7C 08 02 A6 */	mflr r0
 /* 80142980 0013F8C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3631,7 +3631,7 @@ lbl_8014292C:
 /* 801429D0 0013F910  D0 03 02 3C */	stfs f0, 0x23c(r3)
 /* 801429D4 0013F914  C0 03 02 14 */	lfs f0, 0x214(r3)
 /* 801429D8 0013F918  D0 03 02 40 */	stfs f0, 0x240(r3)
-/* 801429DC 0013F91C  4B FF 87 CD */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 801429DC 0013F91C  4B FF 87 CD */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 801429E0 0013F920  D3 FF 01 FC */	stfs f31, 0x1fc(r31)
 /* 801429E4 0013F924  E3 E1 00 18 */	psq_l f31, 24(r1), 0, qr0
 /* 801429E8 0013F928  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -3641,8 +3641,8 @@ lbl_8014292C:
 /* 801429F8 0013F938  38 21 00 20 */	addi r1, r1, 0x20
 /* 801429FC 0013F93C  4E 80 00 20 */	blr 
 
-.global "movieGotoPosition__Q24Game4NaviFR10Vector3<f>"
-"movieGotoPosition__Q24Game4NaviFR10Vector3<f>":
+.global movieGotoPosition__Q24Game4NaviFR10Vector3$$0f$$1
+movieGotoPosition__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 80142A00 0013F940  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80142A04 0013F944  7C 08 02 A6 */	mflr r0
 /* 80142A08 0013F948  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3766,7 +3766,7 @@ lbl_80142BA8:
 /* 80142BC4 0013FB04  28 1E 00 00 */	cmplwi r30, 0
 /* 80142BC8 0013FB08  40 82 00 0C */	bne lbl_80142BD4
 /* 80142BCC 0013FB0C  38 7F 00 1C */	addi r3, r31, 0x1c
-/* 80142BD0 0013FB10  48 27 4C C5 */	bl "createSimpleDive__3efxFR10Vector3<f>"
+/* 80142BD0 0013FB10  48 27 4C C5 */	bl createSimpleDive__3efxFR10Vector3$$0f$$1
 lbl_80142BD4:
 /* 80142BD4 0013FB14  80 7F 00 00 */	lwz r3, 0(r31)
 /* 80142BD8 0013FB18  54 60 07 BD */	rlwinm. r0, r3, 0, 0x1e, 0x1e
@@ -3923,7 +3923,7 @@ lbl_80142DB0:
 /* 80142E04 0013FD44  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 80142E08 0013FD48  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80142E0C 0013FD4C  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80142E10 0013FD50  4B FF 83 99 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 80142E10 0013FD50  4B FF 83 99 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 80142E14 0013FD54  7F C3 F3 78 */	mr r3, r30
 /* 80142E18 0013FD58  38 80 00 05 */	li r4, 5
 /* 80142E1C 0013FD5C  81 9E 00 00 */	lwz r12, 0(r30)
@@ -3997,8 +3997,8 @@ lbl_80142EFC:
 /* 80142F04 0013FE44  38 84 00 30 */	addi r4, r4, 0x30
 lbl_80142F08:
 /* 80142F08 0013FE48  38 00 00 00 */	li r0, 0
-/* 80142F0C 0013FE4C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-/* 80142F10 0013FE50  38 63 05 60 */	addi r3, r3, "__vt__26Iterator<Q24Game8BaseItem>"@l
+/* 80142F0C 0013FE4C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
+/* 80142F10 0013FE50  38 63 05 60 */	addi r3, r3, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
 /* 80142F14 0013FE54  90 01 00 20 */	stw r0, 0x20(r1)
 /* 80142F18 0013FE58  28 00 00 00 */	cmplwi r0, 0
 /* 80142F1C 0013FE5C  90 61 00 14 */	stw r3, 0x14(r1)
@@ -4160,8 +4160,8 @@ lbl_80143154:
 /* 80143164 001400A4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80143168 001400A8  4E 80 00 20 */	blr 
 
-.global "isDone__26Iterator<Q24Game8BaseItem>Fv"
-"isDone__26Iterator<Q24Game8BaseItem>Fv":
+.global isDone__26Iterator$$0Q24Game8BaseItem$$1Fv
+isDone__26Iterator$$0Q24Game8BaseItem$$1Fv:
 /* 8014316C 001400AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80143170 001400B0  7C 08 02 A6 */	mflr r0
 /* 80143174 001400B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4221,8 +4221,8 @@ lbl_80143224:
 /* 8014322C 0014016C  38 84 00 30 */	addi r4, r4, 0x30
 lbl_80143230:
 /* 80143230 00140170  38 00 00 00 */	li r0, 0
-/* 80143234 00140174  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-/* 80143238 00140178  38 63 05 60 */	addi r3, r3, "__vt__26Iterator<Q24Game8BaseItem>"@l
+/* 80143234 00140174  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
+/* 80143238 00140178  38 63 05 60 */	addi r3, r3, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
 /* 8014323C 0014017C  90 01 00 20 */	stw r0, 0x20(r1)
 /* 80143240 00140180  28 00 00 00 */	cmplwi r0, 0
 /* 80143244 00140184  90 61 00 14 */	stw r3, 0x14(r1)
@@ -4419,8 +4419,8 @@ lbl_801434F0:
 /* 801434F8 00140438  38 84 00 30 */	addi r4, r4, 0x30
 lbl_801434FC:
 /* 801434FC 0014043C  38 00 00 00 */	li r0, 0
-/* 80143500 00140440  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-/* 80143504 00140444  38 63 05 60 */	addi r3, r3, "__vt__26Iterator<Q24Game8BaseItem>"@l
+/* 80143500 00140440  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
+/* 80143504 00140444  38 63 05 60 */	addi r3, r3, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
 /* 80143508 00140448  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8014350C 0014044C  28 00 00 00 */	cmplwi r0, 0
 /* 80143510 00140450  90 61 00 14 */	stw r3, 0x14(r1)
@@ -4627,9 +4627,9 @@ lbl_801437E0:
 /* 801437E4 00140724  41 82 00 08 */	beq lbl_801437EC
 /* 801437E8 00140728  38 C6 00 30 */	addi r6, r6, 0x30
 lbl_801437EC:
-/* 801437EC 0014072C  3C 60 80 4B */	lis r3, "__vt__23Iterator<Q24Game5Onyon>"@ha
+/* 801437EC 0014072C  3C 60 80 4B */	lis r3, __vt__23Iterator$$0Q24Game5Onyon$$1@ha
 /* 801437F0 00140730  38 00 00 00 */	li r0, 0
-/* 801437F4 00140734  38 A3 05 48 */	addi r5, r3, "__vt__23Iterator<Q24Game5Onyon>"@l
+/* 801437F4 00140734  38 A3 05 48 */	addi r5, r3, __vt__23Iterator$$0Q24Game5Onyon$$1@l
 /* 801437F8 00140738  90 01 00 2C */	stw r0, 0x2c(r1)
 /* 801437FC 0014073C  7F C4 F3 78 */	mr r4, r30
 /* 80143800 00140740  38 61 00 08 */	addi r3, r1, 8
@@ -4721,7 +4721,7 @@ lbl_801438F4:
 lbl_80143948:
 /* 80143948 00140888  7F A3 EB 78 */	mr r3, r29
 /* 8014394C 0014088C  38 81 00 14 */	addi r4, r1, 0x14
-/* 80143950 00140890  48 03 63 59 */	bl "insideAccessArea__Q24Game5OnyonFR10Vector3<f>"
+/* 80143950 00140890  48 03 63 59 */	bl insideAccessArea__Q24Game5OnyonFR10Vector3$$0f$$1
 /* 80143954 00140894  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80143958 00140898  41 82 00 34 */	beq lbl_8014398C
 /* 8014395C 0014089C  7F A3 EB 78 */	mr r3, r29
@@ -4813,8 +4813,8 @@ lbl_80143A84:
 /* 80143A98 001409D8  38 21 00 40 */	addi r1, r1, 0x40
 /* 80143A9C 001409DC  4E 80 00 20 */	blr 
 
-.global "isDone__23Iterator<Q24Game5Onyon>Fv"
-"isDone__23Iterator<Q24Game5Onyon>Fv":
+.global isDone__23Iterator$$0Q24Game5Onyon$$1Fv
+isDone__23Iterator$$0Q24Game5Onyon$$1Fv:
 /* 80143AA0 001409E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80143AA4 001409E4  7C 08 02 A6 */	mflr r0
 /* 80143AA8 001409E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4993,7 +4993,7 @@ lbl_80143CF0:
 /* 80143CFC 00140C3C  38 81 00 38 */	addi r4, r1, 0x38
 /* 80143D00 00140C40  D0 01 00 3C */	stfs f0, 0x3c(r1)
 /* 80143D04 00140C44  D0 41 00 40 */	stfs f2, 0x40(r1)
-/* 80143D08 00140C48  48 00 02 ED */	bl "reviseController__Q24Game4NaviFR10Vector3<f>"
+/* 80143D08 00140C48  48 00 02 ED */	bl reviseController__Q24Game4NaviFR10Vector3$$0f$$1
 /* 80143D0C 00140C4C  C2 C1 00 38 */	lfs f22, 0x38(r1)
 /* 80143D10 00140C50  38 61 00 20 */	addi r3, r1, 0x20
 /* 80143D14 00140C54  C2 A1 00 40 */	lfs f21, 0x40(r1)
@@ -5163,7 +5163,7 @@ lbl_80143F78:
 /* 80143F78 00140EB8  80 7F 02 8C */	lwz r3, 0x28c(r31)
 /* 80143F7C 00140EBC  38 81 00 2C */	addi r4, r1, 0x2c
 /* 80143F80 00140EC0  38 A0 00 00 */	li r5, 0
-/* 80143F84 00140EC4  48 02 17 95 */	bl "update__Q24Game11NaviWhistleFR10Vector3<f>b"
+/* 80143F84 00140EC4  48 02 17 95 */	bl update__Q24Game11NaviWhistleFR10Vector3$$0f$$1b
 /* 80143F88 00140EC8  E3 E1 00 F8 */	psq_l f31, 248(r1), 0, qr0
 /* 80143F8C 00140ECC  CB E1 00 F0 */	lfd f31, 0xf0(r1)
 /* 80143F90 00140ED0  E3 C1 00 E8 */	psq_l f30, 232(r1), 0, qr0
@@ -5192,8 +5192,8 @@ lbl_80143F78:
 /* 80143FEC 00140F2C  38 21 01 00 */	addi r1, r1, 0x100
 /* 80143FF0 00140F30  4E 80 00 20 */	blr 
 
-.global "reviseController__Q24Game4NaviFR10Vector3<f>"
-"reviseController__Q24Game4NaviFR10Vector3<f>":
+.global reviseController__Q24Game4NaviFR10Vector3$$0f$$1
+reviseController__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 80143FF4 00140F34  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80143FF8 00140F38  7C 08 02 A6 */	mflr r0
 /* 80143FFC 00140F3C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -5778,9 +5778,9 @@ lbl_80144804:
 enterAllPikis__Q24Game4NaviFv:
 /* 80144824 00141764  94 21 FE 40 */	stwu r1, -0x1c0(r1)
 /* 80144828 00141768  7C 08 02 A6 */	mflr r0
-/* 8014482C 0014176C  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 8014482C 0014176C  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 80144830 00141770  90 01 01 C4 */	stw r0, 0x1c4(r1)
-/* 80144834 00141774  38 04 BC 9C */	addi r0, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 80144834 00141774  38 04 BC 9C */	addi r0, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 80144838 00141778  93 E1 01 BC */	stw r31, 0x1bc(r1)
 /* 8014483C 0014177C  3B E0 00 00 */	li r31, 0
 /* 80144840 00141780  93 C1 01 B8 */	stw r30, 0x1b8(r1)
@@ -6042,8 +6042,8 @@ clearThrowDisable__Q24Game4NaviFv:
 /* 80144BAC 00141AEC  98 03 02 BC */	stb r0, 0x2bc(r3)
 /* 80144BB0 00141AF0  4E 80 00 20 */	blr 
 
-.global "holeinAllPikis__Q24Game4NaviFR10Vector3<f>"
-"holeinAllPikis__Q24Game4NaviFR10Vector3<f>":
+.global holeinAllPikis__Q24Game4NaviFR10Vector3$$0f$$1
+holeinAllPikis__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 80144BB4 00141AF4  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 80144BB8 00141AF8  7C 08 02 A6 */	mflr r0
 /* 80144BBC 00141AFC  90 01 01 D4 */	stw r0, 0x1d4(r1)
@@ -6258,8 +6258,8 @@ transittable__Q24Game9PikiStateFi:
 /* 80144EB8 00141DF8  38 60 00 01 */	li r3, 1
 /* 80144EBC 00141DFC  4E 80 00 20 */	blr 
 
-.global "fountainonAllPikis__Q24Game4NaviFR10Vector3<f>"
-"fountainonAllPikis__Q24Game4NaviFR10Vector3<f>":
+.global fountainonAllPikis__Q24Game4NaviFR10Vector3$$0f$$1
+fountainonAllPikis__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 80144EC0 00141E00  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 80144EC4 00141E04  7C 08 02 A6 */	mflr r0
 /* 80144EC8 00141E08  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8Creature>"@ha
@@ -7520,7 +7520,7 @@ lbl_801460B4:
 lbl_80146108:
 /* 80146108 00143048  C0 42 9F F8 */	lfs f2, lbl_80518358@sda21(r2)
 lbl_8014610C:
-/* 8014610C 0014304C  48 04 F1 E1 */	bl "setPos__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>f"
+/* 8014610C 0014304C  48 04 F1 E1 */	bl setPos__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1f
 /* 80146110 00143050  38 00 00 00 */	li r0, 0
 /* 80146114 00143054  98 1F 02 FC */	stb r0, 0x2fc(r31)
 /* 80146118 00143058  98 1F 03 0C */	stb r0, 0x30c(r31)
@@ -7580,7 +7580,7 @@ lbl_8014619C:
 /* 801461E0 00143120  D0 61 00 C4 */	stfs f3, 0xc4(r1)
 /* 801461E4 00143124  D0 01 00 C8 */	stfs f0, 0xc8(r1)
 /* 801461E8 00143128  80 7F 02 54 */	lwz r3, 0x254(r31)
-/* 801461EC 0014312C  48 04 F1 01 */	bl "setPos__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>f"
+/* 801461EC 0014312C  48 04 F1 01 */	bl setPos__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1f
 /* 801461F0 00143130  48 00 00 0C */	b lbl_801461FC
 lbl_801461F4:
 /* 801461F4 00143134  38 00 00 01 */	li r0, 1
@@ -7849,7 +7849,7 @@ lbl_80146580:
 /* 801465C8 00143508  D0 61 00 A8 */	stfs f3, 0xa8(r1)
 /* 801465CC 0014350C  D0 01 00 AC */	stfs f0, 0xac(r1)
 /* 801465D0 00143510  80 7F 02 54 */	lwz r3, 0x254(r31)
-/* 801465D4 00143514  48 04 EF 29 */	bl "setPosGray__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>f"
+/* 801465D4 00143514  48 04 EF 29 */	bl setPosGray__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1f
 /* 801465D8 00143518  48 00 00 B4 */	b lbl_8014668C
 lbl_801465DC:
 /* 801465DC 0014351C  2C 00 00 02 */	cmpwi r0, 2
@@ -7875,7 +7875,7 @@ lbl_801465DC:
 /* 8014662C 0014356C  D0 41 00 9C */	stfs f2, 0x9c(r1)
 /* 80146630 00143570  D0 01 00 A0 */	stfs f0, 0xa0(r1)
 /* 80146634 00143574  80 7F 02 54 */	lwz r3, 0x254(r31)
-/* 80146638 00143578  48 04 F8 1D */	bl "rearrangeSlot__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>"
+/* 80146638 00143578  48 04 F8 1D */	bl rearrangeSlot__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1
 /* 8014663C 0014357C  38 00 00 00 */	li r0, 0
 /* 80146640 00143580  98 1F 02 FD */	stb r0, 0x2fd(r31)
 lbl_80146644:
@@ -7896,7 +7896,7 @@ lbl_80146644:
 /* 8014667C 001435BC  D0 61 00 90 */	stfs f3, 0x90(r1)
 /* 80146680 001435C0  D0 01 00 94 */	stfs f0, 0x94(r1)
 /* 80146684 001435C4  80 7F 02 54 */	lwz r3, 0x254(r31)
-/* 80146688 001435C8  48 04 EC 65 */	bl "setPos__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>f"
+/* 80146688 001435C8  48 04 EC 65 */	bl setPos__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1f
 lbl_8014668C:
 /* 8014668C 001435CC  D2 FF 02 E0 */	stfs f23, 0x2e0(r31)
 /* 80146690 001435D0  D3 1F 02 E4 */	stfs f24, 0x2e4(r31)
@@ -8160,8 +8160,8 @@ lbl_80146A3C:
 /* 80146A4C 0014398C  38 63 00 01 */	addi r3, r3, 1
 /* 80146A50 00143990  4E 80 00 20 */	blr 
 
-.global "throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3<f>"
-"throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3<f>":
+.global throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3$$0f$$1
+throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3$$0f$$1:
 /* 80146A54 00143994  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80146A58 00143998  7C 08 02 A6 */	mflr r0
 /* 80146A5C 0014399C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -8223,7 +8223,7 @@ lbl_80146A3C:
 /* 80146B3C 00143A7C  38 A0 00 00 */	li r5, 0
 /* 80146B40 00143A80  D0 21 00 20 */	stfs f1, 0x20(r1)
 /* 80146B44 00143A84  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 80146B48 00143A88  4B FF 46 61 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 80146B48 00143A88  4B FF 46 61 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 80146B4C 00143A8C  7F C4 F3 78 */	mr r4, r30
 /* 80146B50 00143A90  38 61 00 08 */	addi r3, r1, 8
 /* 80146B54 00143A94  81 9E 00 00 */	lwz r12, 0(r30)
@@ -8373,8 +8373,8 @@ getName__Q24Game13NaviDamageArgFv:
 /* 80146D44 00143C84  38 63 C8 6C */	addi r3, r3, lbl_8047C86C@l
 /* 80146D48 00143C88  4E 80 00 20 */	blr 
 
-.global "__ml__23Iterator<Q24Game5Onyon>Fv"
-"__ml__23Iterator<Q24Game5Onyon>Fv":
+.global __ml__23Iterator$$0Q24Game5Onyon$$1Fv
+__ml__23Iterator$$0Q24Game5Onyon$$1Fv:
 /* 80146D4C 00143C8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146D50 00143C90  7C 08 02 A6 */	mflr r0
 /* 80146D54 00143C94  7C 64 1B 78 */	mr r4, r3
@@ -8390,8 +8390,8 @@ getName__Q24Game13NaviDamageArgFv:
 /* 80146D7C 00143CBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146D80 00143CC0  4E 80 00 20 */	blr 
 
-.global "next__23Iterator<Q24Game5Onyon>Fv"
-"next__23Iterator<Q24Game5Onyon>Fv":
+.global next__23Iterator$$0Q24Game5Onyon$$1Fv
+next__23Iterator$$0Q24Game5Onyon$$1Fv:
 /* 80146D84 00143CC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146D88 00143CC8  7C 08 02 A6 */	mflr r0
 /* 80146D8C 00143CCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8454,8 +8454,8 @@ lbl_80146E54:
 /* 80146E60 00143DA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146E64 00143DA4  4E 80 00 20 */	blr 
 
-.global "first__23Iterator<Q24Game5Onyon>Fv"
-"first__23Iterator<Q24Game5Onyon>Fv":
+.global first__23Iterator$$0Q24Game5Onyon$$1Fv
+first__23Iterator$$0Q24Game5Onyon$$1Fv:
 /* 80146E68 00143DA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146E6C 00143DAC  7C 08 02 A6 */	mflr r0
 /* 80146E70 00143DB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8516,8 +8516,8 @@ lbl_80146F30:
 /* 80146F3C 00143E7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146F40 00143E80  4E 80 00 20 */	blr 
 
-.global "__ml__26Iterator<Q24Game8BaseItem>Fv"
-"__ml__26Iterator<Q24Game8BaseItem>Fv":
+.global __ml__26Iterator$$0Q24Game8BaseItem$$1Fv
+__ml__26Iterator$$0Q24Game8BaseItem$$1Fv:
 /* 80146F44 00143E84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146F48 00143E88  7C 08 02 A6 */	mflr r0
 /* 80146F4C 00143E8C  7C 64 1B 78 */	mr r4, r3
@@ -8533,8 +8533,8 @@ lbl_80146F30:
 /* 80146F74 00143EB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146F78 00143EB8  4E 80 00 20 */	blr 
 
-.global "next__26Iterator<Q24Game8BaseItem>Fv"
-"next__26Iterator<Q24Game8BaseItem>Fv":
+.global next__26Iterator$$0Q24Game8BaseItem$$1Fv
+next__26Iterator$$0Q24Game8BaseItem$$1Fv:
 /* 80146F7C 00143EBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146F80 00143EC0  7C 08 02 A6 */	mflr r0
 /* 80146F84 00143EC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8597,8 +8597,8 @@ lbl_8014704C:
 /* 80147058 00143F98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014705C 00143F9C  4E 80 00 20 */	blr 
 
-.global "first__26Iterator<Q24Game8BaseItem>Fv"
-"first__26Iterator<Q24Game8BaseItem>Fv":
+.global first__26Iterator$$0Q24Game8BaseItem$$1Fv
+first__26Iterator$$0Q24Game8BaseItem$$1Fv:
 /* 80147060 00143FA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147064 00143FA4  7C 08 02 A6 */	mflr r0
 /* 80147068 00143FA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8674,8 +8674,8 @@ actVs__Q24Game11GameMessageFPQ24Game13VsGameSection:
 /* 8014714C 0014408C  38 60 00 01 */	li r3, 1
 /* 80147150 00144090  4E 80 00 20 */	blr 
 
-.global "__ml__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-"__ml__36Iterator<Q34Game12ItemPikihead4Item>Fv":
+.global __ml__36Iterator$$0Q34Game12ItemPikihead4Item$$1Fv
+__ml__36Iterator$$0Q34Game12ItemPikihead4Item$$1Fv:
 /* 80147154 00144094  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147158 00144098  7C 08 02 A6 */	mflr r0
 /* 8014715C 0014409C  7C 64 1B 78 */	mr r4, r3
@@ -8691,8 +8691,8 @@ actVs__Q24Game11GameMessageFPQ24Game13VsGameSection:
 /* 80147184 001440C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147188 001440C8  4E 80 00 20 */	blr 
 
-.global "next__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-"next__36Iterator<Q34Game12ItemPikihead4Item>Fv":
+.global next__36Iterator$$0Q34Game12ItemPikihead4Item$$1Fv
+next__36Iterator$$0Q34Game12ItemPikihead4Item$$1Fv:
 /* 8014718C 001440CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147190 001440D0  7C 08 02 A6 */	mflr r0
 /* 80147194 001440D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8755,8 +8755,8 @@ lbl_8014725C:
 /* 80147268 001441A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014726C 001441AC  4E 80 00 20 */	blr 
 
-.global "first__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-"first__36Iterator<Q34Game12ItemPikihead4Item>Fv":
+.global first__36Iterator$$0Q34Game12ItemPikihead4Item$$1Fv
+first__36Iterator$$0Q34Game12ItemPikihead4Item$$1Fv:
 /* 80147270 001441B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147274 001441B4  7C 08 02 A6 */	mflr r0
 /* 80147278 001441B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8817,8 +8817,8 @@ lbl_80147338:
 /* 80147344 00144284  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147348 00144288  4E 80 00 20 */	blr 
 
-.global "setVelocity__Q24Game4NaviFR10Vector3<f>"
-"setVelocity__Q24Game4NaviFR10Vector3<f>":
+.global setVelocity__Q24Game4NaviFR10Vector3$$0f$$1
+setVelocity__Q24Game4NaviFR10Vector3$$0f$$1:
 /* 8014734C 0014428C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80147350 00144290  D0 03 01 E4 */	stfs f0, 0x1e4(r3)
 /* 80147354 00144294  C0 04 00 04 */	lfs f0, 4(r4)
@@ -8967,12 +8967,12 @@ forceKill__Q23efx13TFueactCircleFv:
 /* 80147544 00144484  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147548 00144488  4E 80 00 20 */	blr 
 
-.global "init__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
-"init__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi":
+.global init__Q24Game26StateMachine$$0Q24Game4Navi$$1FPQ24Game4Navi
+init__Q24Game26StateMachine$$0Q24Game4Navi$$1FPQ24Game4Navi:
 /* 8014754C 0014448C  4E 80 00 20 */	blr 
 
-.global "invoke__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>FPQ24Game10CellObject"
-"invoke__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>FPQ24Game10CellObject":
+.global invoke__44Delegate1$$0Q24Game4Navi$$4PQ24Game10CellObject$$1FPQ24Game10CellObject
+invoke__44Delegate1$$0Q24Game4Navi$$4PQ24Game10CellObject$$1FPQ24Game10CellObject:
 /* 80147550 00144490  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147554 00144494  7C 08 02 A6 */	mflr r0
 /* 80147558 00144498  7C 65 1B 78 */	mr r5, r3
@@ -8986,8 +8986,8 @@ forceKill__Q23efx13TFueactCircleFv:
 /* 80147578 001444B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014757C 001444BC  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
-"transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg":
+.global transit__Q24Game26StateMachine$$0Q24Game4Navi$$1FPQ24Game4NaviiPQ24Game8StateArg
+transit__Q24Game26StateMachine$$0Q24Game4Navi$$1FPQ24Game4NaviiPQ24Game8StateArg:
 /* 80147580 001444C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80147584 001444C4  7C 08 02 A6 */	mflr r0
 /* 80147588 001444C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9031,16 +9031,16 @@ lbl_801475E0:
 /* 80147614 00144554  38 21 00 20 */	addi r1, r1, 0x20
 /* 80147618 00144558  4E 80 00 20 */	blr 
 
-.global "init__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviPQ24Game8StateArg"
-"init__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviPQ24Game8StateArg":
+.global init__Q24Game22FSMState$$0Q24Game4Navi$$1FPQ24Game4NaviPQ24Game8StateArg
+init__Q24Game22FSMState$$0Q24Game4Navi$$1FPQ24Game4NaviPQ24Game8StateArg:
 /* 8014761C 0014455C  4E 80 00 20 */	blr 
 
-.global "cleanup__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
-"cleanup__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi":
+.global cleanup__Q24Game22FSMState$$0Q24Game4Navi$$1FPQ24Game4Navi
+cleanup__Q24Game22FSMState$$0Q24Game4Navi$$1FPQ24Game4Navi:
 /* 80147620 00144560  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
-"exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi":
+.global exec__Q24Game26StateMachine$$0Q24Game4Navi$$1FPQ24Game4Navi
+exec__Q24Game26StateMachine$$0Q24Game4Navi$$1FPQ24Game4Navi:
 /* 80147624 00144564  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147628 00144568  7C 08 02 A6 */	mflr r0
 /* 8014762C 0014456C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9057,8 +9057,8 @@ lbl_8014764C:
 /* 80147654 00144594  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147658 00144598  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
-"exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi":
+.global exec__Q24Game22FSMState$$0Q24Game4Navi$$1FPQ24Game4Navi
+exec__Q24Game22FSMState$$0Q24Game4Navi$$1FPQ24Game4Navi:
 /* 8014765C 0014459C  4E 80 00 20 */	blr 
 
 .global __sinit_navi_cpp
@@ -9074,39 +9074,39 @@ __sinit_navi_cpp:
 /* 80147680 001445C0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80147684 001445C4  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx12TFueactBiri1Fv"
-"@4@__dt__Q23efx12TFueactBiri1Fv":
+.global $$24$$2__dt__Q23efx12TFueactBiri1Fv
+$$24$$2__dt__Q23efx12TFueactBiri1Fv:
 /* 80147688 001445C8  38 63 FF FC */	addi r3, r3, -4
 /* 8014768C 001445CC  4B FF 87 D0 */	b __dt__Q23efx12TFueactBiri1Fv
 
-.global "@4@__dt__Q23efx12TFueactBiri2Fv"
-"@4@__dt__Q23efx12TFueactBiri2Fv":
+.global $$24$$2__dt__Q23efx12TFueactBiri2Fv
+$$24$$2__dt__Q23efx12TFueactBiri2Fv:
 /* 80147690 001445D0  38 63 FF FC */	addi r3, r3, -4
 /* 80147694 001445D4  4B FF 87 2C */	b __dt__Q23efx12TFueactBiri2Fv
 
-.global "@376@onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent":
+.global $$2376$$2onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent
+$$2376$$2onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent:
 /* 80147698 001445D8  38 63 FE 88 */	addi r3, r3, -376
 /* 8014769C 001445DC  4B FF 8D A8 */	b onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent
 
-.global "@784@12@viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
-"@784@12@viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>":
+.global $$2784$$212$$2viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3$$0f$$1
+$$2784$$212$$2viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3$$0f$$1:
 /* 801476A0 001445E0  39 60 00 0C */	li r11, 0xc
 /* 801476A4 001445E4  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801476A8 001445E8  7C 63 5A 14 */	add r3, r3, r11
 /* 801476AC 001445EC  38 63 FC F0 */	addi r3, r3, -784
-/* 801476B0 001445F0  4B FF A0 88 */	b "viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
+/* 801476B0 001445F0  4B FF A0 88 */	b viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3$$0f$$1
 
-.global "@784@12@viewGetShape__Q24Game4NaviFv"
-"@784@12@viewGetShape__Q24Game4NaviFv":
+.global $$2784$$212$$2viewGetShape__Q24Game4NaviFv
+$$2784$$212$$2viewGetShape__Q24Game4NaviFv:
 /* 801476B4 001445F4  39 60 00 0C */	li r11, 0xc
 /* 801476B8 001445F8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801476BC 001445FC  7C 63 5A 14 */	add r3, r3, r11
 /* 801476C0 00144600  38 63 FC F0 */	addi r3, r3, -784
 /* 801476C4 00144604  4B FF A0 78 */	b viewGetShape__Q24Game4NaviFv
 
-.global "@784@12@viewGetBaseScale__Q24Game4NaviFv"
-"@784@12@viewGetBaseScale__Q24Game4NaviFv":
+.global $$2784$$212$$2viewGetBaseScale__Q24Game4NaviFv
+$$2784$$212$$2viewGetBaseScale__Q24Game4NaviFv:
 /* 801476C8 00144608  39 60 00 0C */	li r11, 0xc
 /* 801476CC 0014460C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801476D0 00144610  7C 63 5A 14 */	add r3, r3, r11

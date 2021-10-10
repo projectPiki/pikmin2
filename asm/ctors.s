@@ -3,12 +3,12 @@
 .global __init_cpp_exceptions_reference
 __init_cpp_exceptions_reference:
 	#.4byte 0x800c2300
-    .4byte "__sinit_jstudio-object_cpp"
-    .4byte "__sinit_object-light_cpp"
-    .4byte "__sinit_object-actor_cpp"
-    .4byte "__sinit_object-camera_cpp"
-    .4byte "__sinit_object-fog_cpp"
-    .4byte "__sinit_object-sound_cpp"
+    .4byte __sinit_jstudio$$5object_cpp
+    .4byte __sinit_object$$5light_cpp
+    .4byte __sinit_object$$5actor_cpp
+    .4byte __sinit_object$$5camera_cpp
+    .4byte __sinit_object$$5fog_cpp
+    .4byte __sinit_object$$5sound_cpp
     .4byte __sinit_JKRAram_cpp
     .4byte __sinit_JKRAramHeap_cpp
     .4byte __sinit_JKRAramPiece_cpp

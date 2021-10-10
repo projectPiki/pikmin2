@@ -1676,12 +1676,12 @@ getEnemyTypeID__Q34Game7ElecBug3ObjFv:
 /* 8027C3F4 00279334  38 60 00 1C */	li r3, 0x1c
 /* 8027C3F8 00279338  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx13TDnkmsHoudenAFv"
-"@4@__dt__Q23efx13TDnkmsHoudenAFv":
+.global $$24$$2__dt__Q23efx13TDnkmsHoudenAFv
+$$24$$2__dt__Q23efx13TDnkmsHoudenAFv:
 /* 8027C3FC 0027933C  38 63 FF FC */	addi r3, r3, -4
 /* 8027C400 00279340  4B FF F7 B4 */	b __dt__Q23efx13TDnkmsHoudenAFv
 
-.global "@4@__dt__Q23efx13TDnkmsHoudenBFv"
-"@4@__dt__Q23efx13TDnkmsHoudenBFv":
+.global $$24$$2__dt__Q23efx13TDnkmsHoudenBFv
+$$24$$2__dt__Q23efx13TDnkmsHoudenBFv:
 /* 8027C404 00279344  38 63 FF FC */	addi r3, r3, -4
 /* 8027C408 00279348  4B FF F7 10 */	b __dt__Q23efx13TDnkmsHoudenBFv

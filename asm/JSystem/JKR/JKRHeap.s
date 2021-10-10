@@ -579,7 +579,7 @@ lbl_80023A00:
 /* 80023A20 00020960  28 00 00 00 */	cmplwi r0, 0
 /* 80023A24 00020964  41 82 00 CC */	beq lbl_80023AF0
 /* 80023A28 00020968  38 79 00 40 */	addi r3, r25, 0x40
-/* 80023A2C 0002096C  48 00 01 E1 */	bl "getFirstChild__17JSUTree<7JKRHeap>CFv"
+/* 80023A2C 0002096C  48 00 01 E1 */	bl getFirstChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80023A30 00020970  7C 77 1B 78 */	mr r23, r3
 /* 80023A34 00020974  48 00 00 AC */	b lbl_80023AE0
 lbl_80023A38:
@@ -591,18 +591,18 @@ lbl_80023A38:
 /* 80023A4C 0002098C  7C 1F 00 40 */	cmplw r31, r0
 /* 80023A50 00020990  40 80 00 74 */	bge lbl_80023AC4
 /* 80023A54 00020994  38 76 00 40 */	addi r3, r22, 0x40
-/* 80023A58 00020998  48 00 01 AD */	bl "getNumChildren__17JSUTree<7JKRHeap>CFv"
+/* 80023A58 00020998  48 00 01 AD */	bl getNumChildren__17JSUTree$$07JKRHeap$$1CFv
 /* 80023A5C 0002099C  28 03 00 00 */	cmplwi r3, 0
 /* 80023A60 000209A0  41 82 00 5C */	beq lbl_80023ABC
 /* 80023A64 000209A4  38 76 00 40 */	addi r3, r22, 0x40
-/* 80023A68 000209A8  48 00 01 A5 */	bl "getFirstChild__17JSUTree<7JKRHeap>CFv"
+/* 80023A68 000209A8  48 00 01 A5 */	bl getFirstChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80023A6C 000209AC  7C 64 1B 78 */	mr r4, r3
 /* 80023A70 000209B0  38 61 00 08 */	addi r3, r1, 8
-/* 80023A74 000209B4  48 00 01 89 */	bl "__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>"
+/* 80023A74 000209B4  48 00 01 89 */	bl __ct__25JSUTreeIterator$$07JKRHeap$$1FP17JSUTree$$07JKRHeap$$1
 /* 80023A78 000209B8  48 00 00 28 */	b lbl_80023AA0
 lbl_80023A7C:
 /* 80023A7C 000209BC  38 61 00 08 */	addi r3, r1, 8
-/* 80023A80 000209C0  48 00 01 71 */	bl "__rf__25JSUTreeIterator<7JKRHeap>CFv"
+/* 80023A80 000209C0  48 00 01 71 */	bl __rf__25JSUTreeIterator$$07JKRHeap$$1CFv
 /* 80023A84 000209C4  7F E4 FB 78 */	mr r4, r31
 /* 80023A88 000209C8  4B FF FE A9 */	bl find__7JKRHeapCFPv
 /* 80023A8C 000209CC  28 03 00 00 */	cmplwi r3, 0
@@ -610,13 +610,13 @@ lbl_80023A7C:
 /* 80023A94 000209D4  48 00 00 34 */	b lbl_80023AC8
 lbl_80023A98:
 /* 80023A98 000209D8  38 61 00 08 */	addi r3, r1, 8
-/* 80023A9C 000209DC  48 00 01 39 */	bl "__pp__25JSUTreeIterator<7JKRHeap>Fv"
+/* 80023A9C 000209DC  48 00 01 39 */	bl __pp__25JSUTreeIterator$$07JKRHeap$$1Fv
 lbl_80023AA0:
 /* 80023AA0 000209E0  38 76 00 40 */	addi r3, r22, 0x40
-/* 80023AA4 000209E4  48 00 01 29 */	bl "getEndChild__17JSUTree<7JKRHeap>CFv"
+/* 80023AA4 000209E4  48 00 01 29 */	bl getEndChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80023AA8 000209E8  7C 64 1B 78 */	mr r4, r3
 /* 80023AAC 000209EC  38 61 00 08 */	addi r3, r1, 8
-/* 80023AB0 000209F0  48 00 01 05 */	bl "__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>"
+/* 80023AB0 000209F0  48 00 01 05 */	bl __ne__25JSUTreeIterator$$07JKRHeap$$1CFPC17JSUTree$$07JKRHeap$$1
 /* 80023AB4 000209F4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80023AB8 000209F8  40 82 FF C4 */	bne lbl_80023A7C
 lbl_80023ABC:
@@ -630,11 +630,11 @@ lbl_80023AC8:
 /* 80023AD0 00020A10  48 00 00 2C */	b lbl_80023AFC
 lbl_80023AD4:
 /* 80023AD4 00020A14  7E E3 BB 78 */	mr r3, r23
-/* 80023AD8 00020A18  48 00 00 C9 */	bl "getNextChild__17JSUTree<7JKRHeap>CFv"
+/* 80023AD8 00020A18  48 00 00 C9 */	bl getNextChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80023ADC 00020A1C  7C 77 1B 78 */	mr r23, r3
 lbl_80023AE0:
 /* 80023AE0 00020A20  38 79 00 40 */	addi r3, r25, 0x40
-/* 80023AE4 00020A24  48 00 00 E9 */	bl "getEndChild__17JSUTree<7JKRHeap>CFv"
+/* 80023AE4 00020A24  48 00 00 E9 */	bl getEndChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80023AE8 00020A28  7C 17 18 40 */	cmplw r23, r3
 /* 80023AEC 00020A2C  40 82 FF 4C */	bne lbl_80023A38
 lbl_80023AF0:
@@ -700,16 +700,16 @@ lbl_80023B8C:
 /* 80023B98 00020AD8  38 21 00 40 */	addi r1, r1, 0x40
 /* 80023B9C 00020ADC  4E 80 00 20 */	blr 
 
-.global "getNextChild__17JSUTree<7JKRHeap>CFv"
-"getNextChild__17JSUTree<7JKRHeap>CFv":
+.global getNextChild__17JSUTree$$07JKRHeap$$1CFv
+getNextChild__17JSUTree$$07JKRHeap$$1CFv:
 /* 80023BA0 00020AE0  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 80023BA4 00020AE4  28 03 00 00 */	cmplwi r3, 0
 /* 80023BA8 00020AE8  4D 82 00 20 */	beqlr 
 /* 80023BAC 00020AEC  38 63 FF F4 */	addi r3, r3, -12
 /* 80023BB0 00020AF0  4E 80 00 20 */	blr 
 
-.global "__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>"
-"__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>":
+.global __ne__25JSUTreeIterator$$07JKRHeap$$1CFPC17JSUTree$$07JKRHeap$$1
+__ne__25JSUTreeIterator$$07JKRHeap$$1CFPC17JSUTree$$07JKRHeap$$1:
 /* 80023BB4 00020AF4  80 03 00 00 */	lwz r0, 0(r3)
 /* 80023BB8 00020AF8  7C 60 20 50 */	subf r3, r0, r4
 /* 80023BBC 00020AFC  7C 04 00 50 */	subf r0, r4, r0
@@ -717,13 +717,13 @@ lbl_80023B8C:
 /* 80023BC4 00020B04  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80023BC8 00020B08  4E 80 00 20 */	blr 
 
-.global "getEndChild__17JSUTree<7JKRHeap>CFv"
-"getEndChild__17JSUTree<7JKRHeap>CFv":
+.global getEndChild__17JSUTree$$07JKRHeap$$1CFv
+getEndChild__17JSUTree$$07JKRHeap$$1CFv:
 /* 80023BCC 00020B0C  38 60 00 00 */	li r3, 0
 /* 80023BD0 00020B10  4E 80 00 20 */	blr 
 
-.global "__pp__25JSUTreeIterator<7JKRHeap>Fv"
-"__pp__25JSUTreeIterator<7JKRHeap>Fv":
+.global __pp__25JSUTreeIterator$$07JKRHeap$$1Fv
+__pp__25JSUTreeIterator$$07JKRHeap$$1Fv:
 /* 80023BD4 00020B14  80 83 00 00 */	lwz r4, 0(r3)
 /* 80023BD8 00020B18  80 84 00 18 */	lwz r4, 0x18(r4)
 /* 80023BDC 00020B1C  28 04 00 00 */	cmplwi r4, 0
@@ -733,24 +733,24 @@ lbl_80023BE8:
 /* 80023BE8 00020B28  90 83 00 00 */	stw r4, 0(r3)
 /* 80023BEC 00020B2C  4E 80 00 20 */	blr 
 
-.global "__rf__25JSUTreeIterator<7JKRHeap>CFv"
-"__rf__25JSUTreeIterator<7JKRHeap>CFv":
+.global __rf__25JSUTreeIterator$$07JKRHeap$$1CFv
+__rf__25JSUTreeIterator$$07JKRHeap$$1CFv:
 /* 80023BF0 00020B30  80 63 00 00 */	lwz r3, 0(r3)
 /* 80023BF4 00020B34  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80023BF8 00020B38  4E 80 00 20 */	blr 
 
-.global "__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>"
-"__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>":
+.global __ct__25JSUTreeIterator$$07JKRHeap$$1FP17JSUTree$$07JKRHeap$$1
+__ct__25JSUTreeIterator$$07JKRHeap$$1FP17JSUTree$$07JKRHeap$$1:
 /* 80023BFC 00020B3C  90 83 00 00 */	stw r4, 0(r3)
 /* 80023C00 00020B40  4E 80 00 20 */	blr 
 
-.global "getNumChildren__17JSUTree<7JKRHeap>CFv"
-"getNumChildren__17JSUTree<7JKRHeap>CFv":
+.global getNumChildren__17JSUTree$$07JKRHeap$$1CFv
+getNumChildren__17JSUTree$$07JKRHeap$$1CFv:
 /* 80023C04 00020B44  80 63 00 08 */	lwz r3, 8(r3)
 /* 80023C08 00020B48  4E 80 00 20 */	blr 
 
-.global "getFirstChild__17JSUTree<7JKRHeap>CFv"
-"getFirstChild__17JSUTree<7JKRHeap>CFv":
+.global getFirstChild__17JSUTree$$07JKRHeap$$1CFv
+getFirstChild__17JSUTree$$07JKRHeap$$1CFv:
 /* 80023C0C 00020B4C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80023C10 00020B50  28 03 00 00 */	cmplwi r3, 0
 /* 80023C14 00020B54  4D 82 00 20 */	beqlr 
@@ -1336,7 +1336,7 @@ lbl_800243A8:
 /* 800243C8 00021308  28 00 00 00 */	cmplwi r0, 0
 /* 800243CC 0002130C  41 82 00 CC */	beq lbl_80024498
 /* 800243D0 00021310  38 7E 00 40 */	addi r3, r30, 0x40
-/* 800243D4 00021314  4B FF F8 39 */	bl "getFirstChild__17JSUTree<7JKRHeap>CFv"
+/* 800243D4 00021314  4B FF F8 39 */	bl getFirstChild__17JSUTree$$07JKRHeap$$1CFv
 /* 800243D8 00021318  7C 7A 1B 78 */	mr r26, r3
 /* 800243DC 0002131C  48 00 00 AC */	b lbl_80024488
 lbl_800243E0:
@@ -1348,18 +1348,18 @@ lbl_800243E0:
 /* 800243F4 00021334  7C 1F 00 40 */	cmplw r31, r0
 /* 800243F8 00021338  40 80 00 74 */	bge lbl_8002446C
 /* 800243FC 0002133C  38 7B 00 40 */	addi r3, r27, 0x40
-/* 80024400 00021340  4B FF F8 05 */	bl "getNumChildren__17JSUTree<7JKRHeap>CFv"
+/* 80024400 00021340  4B FF F8 05 */	bl getNumChildren__17JSUTree$$07JKRHeap$$1CFv
 /* 80024404 00021344  28 03 00 00 */	cmplwi r3, 0
 /* 80024408 00021348  41 82 00 5C */	beq lbl_80024464
 /* 8002440C 0002134C  38 7B 00 40 */	addi r3, r27, 0x40
-/* 80024410 00021350  4B FF F7 FD */	bl "getFirstChild__17JSUTree<7JKRHeap>CFv"
+/* 80024410 00021350  4B FF F7 FD */	bl getFirstChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80024414 00021354  7C 64 1B 78 */	mr r4, r3
 /* 80024418 00021358  38 61 00 08 */	addi r3, r1, 8
-/* 8002441C 0002135C  4B FF F7 E1 */	bl "__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>"
+/* 8002441C 0002135C  4B FF F7 E1 */	bl __ct__25JSUTreeIterator$$07JKRHeap$$1FP17JSUTree$$07JKRHeap$$1
 /* 80024420 00021360  48 00 00 28 */	b lbl_80024448
 lbl_80024424:
 /* 80024424 00021364  38 61 00 08 */	addi r3, r1, 8
-/* 80024428 00021368  4B FF F7 C9 */	bl "__rf__25JSUTreeIterator<7JKRHeap>CFv"
+/* 80024428 00021368  4B FF F7 C9 */	bl __rf__25JSUTreeIterator$$07JKRHeap$$1CFv
 /* 8002442C 0002136C  7F E4 FB 78 */	mr r4, r31
 /* 80024430 00021370  4B FF F5 01 */	bl find__7JKRHeapCFPv
 /* 80024434 00021374  28 03 00 00 */	cmplwi r3, 0
@@ -1367,13 +1367,13 @@ lbl_80024424:
 /* 8002443C 0002137C  48 00 00 34 */	b lbl_80024470
 lbl_80024440:
 /* 80024440 00021380  38 61 00 08 */	addi r3, r1, 8
-/* 80024444 00021384  4B FF F7 91 */	bl "__pp__25JSUTreeIterator<7JKRHeap>Fv"
+/* 80024444 00021384  4B FF F7 91 */	bl __pp__25JSUTreeIterator$$07JKRHeap$$1Fv
 lbl_80024448:
 /* 80024448 00021388  38 7B 00 40 */	addi r3, r27, 0x40
-/* 8002444C 0002138C  4B FF F7 81 */	bl "getEndChild__17JSUTree<7JKRHeap>CFv"
+/* 8002444C 0002138C  4B FF F7 81 */	bl getEndChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80024450 00021390  7C 64 1B 78 */	mr r4, r3
 /* 80024454 00021394  38 61 00 08 */	addi r3, r1, 8
-/* 80024458 00021398  4B FF F7 5D */	bl "__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>"
+/* 80024458 00021398  4B FF F7 5D */	bl __ne__25JSUTreeIterator$$07JKRHeap$$1CFPC17JSUTree$$07JKRHeap$$1
 /* 8002445C 0002139C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80024460 000213A0  40 82 FF C4 */	bne lbl_80024424
 lbl_80024464:
@@ -1387,11 +1387,11 @@ lbl_80024470:
 /* 80024478 000213B8  48 00 00 2C */	b lbl_800244A4
 lbl_8002447C:
 /* 8002447C 000213BC  7F 43 D3 78 */	mr r3, r26
-/* 80024480 000213C0  4B FF F7 21 */	bl "getNextChild__17JSUTree<7JKRHeap>CFv"
+/* 80024480 000213C0  4B FF F7 21 */	bl getNextChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80024484 000213C4  7C 7A 1B 78 */	mr r26, r3
 lbl_80024488:
 /* 80024488 000213C8  38 7E 00 40 */	addi r3, r30, 0x40
-/* 8002448C 000213CC  4B FF F7 41 */	bl "getEndChild__17JSUTree<7JKRHeap>CFv"
+/* 8002448C 000213CC  4B FF F7 41 */	bl getEndChild__17JSUTree$$07JKRHeap$$1CFv
 /* 80024490 000213D0  7C 1A 18 40 */	cmplw r26, r3
 /* 80024494 000213D4  40 82 FF 4C */	bne lbl_800243E0
 lbl_80024498:

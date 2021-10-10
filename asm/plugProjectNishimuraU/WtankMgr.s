@@ -180,7 +180,7 @@ loadTexData__Q34Game5Wtank3MgrFv:
 /* 8027C670 002795B0  7C 7F 1B 78 */	mr r31, r3
 /* 8027C674 002795B4  90 03 00 44 */	stw r0, 0x44(r3)
 /* 8027C678 002795B8  38 61 00 08 */	addi r3, r1, 8
-/* 8027C67C 002795BC  80 8D 84 90 */	lwz r4, "cTankChangeTexName__Q34Game5Wtank22@unnamed@WtankMgr_cpp@"@sda21(r13)
+/* 8027C67C 002795BC  80 8D 84 90 */	lwz r4, cTankChangeTexName__Q34Game5Wtank22$$2unnamed$$2WtankMgr_cpp$$2@sda21(r13)
 /* 8027C680 002795C0  48 1C FF 59 */	bl __ct__Q212LoadResource3ArgFPCc
 /* 8027C684 002795C4  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 8027C688 002795C8  38 81 00 08 */	addi r4, r1, 8
@@ -295,7 +295,7 @@ read__Q34Game4Tank5ParmsFR6Stream:
 /* 8027C7FC 0027973C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027C800 00279740  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game5Wtank3MgrFv"
-"@4@__dt__Q34Game5Wtank3MgrFv":
+.global $$24$$2__dt__Q34Game5Wtank3MgrFv
+$$24$$2__dt__Q34Game5Wtank3MgrFv:
 /* 8027C804 00279744  38 63 FF FC */	addi r3, r3, -4
 /* 8027C808 00279748  4B FF FE D4 */	b __dt__Q34Game5Wtank3MgrFv

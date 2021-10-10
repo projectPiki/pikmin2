@@ -641,7 +641,7 @@ lbl_8028DD00:
 /* 8028DD0C 0028AC4C  C0 25 02 E4 */	lfs f1, 0x2e4(r5)
 /* 8028DD10 0028AC50  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 8028DD14 0028AC54  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 8028DD18 0028AC58  4B E8 78 C5 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+/* 8028DD18 0028AC58  4B E8 78 C5 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
 /* 8028DD1C 0028AC5C  48 00 00 14 */	b lbl_8028DD30
 lbl_8028DD20:
 /* 8028DD20 0028AC60  C0 02 D5 84 */	lfs f0, lbl_8051B8E4@sda21(r2)
@@ -704,7 +704,7 @@ createHoney__Q34Game4Baby3ObjFv:
 /* 8028DDF4 0028AD34  7F E3 FB 78 */	mr r3, r31
 /* 8028DDF8 0028AD38  38 9E 01 8C */	addi r4, r30, 0x18c
 /* 8028DDFC 0028AD3C  38 A0 00 00 */	li r5, 0
-/* 8028DE00 0028AD40  4B EA D3 A9 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 8028DE00 0028AD40  4B EA D3 A9 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8028DE04 0028AD44  C0 22 D5 84 */	lfs f1, lbl_8051B8E4@sda21(r2)
 /* 8028DE08 0028AD48  7F E3 FB 78 */	mr r3, r31
 /* 8028DE0C 0028AD4C  C0 02 D5 C8 */	lfs f0, lbl_8051B928@sda21(r2)
@@ -880,7 +880,7 @@ getEnemyTypeID__Q34Game4Baby3ObjFv:
 /* 8028E038 0028AF78  38 60 00 1F */	li r3, 0x1f
 /* 8028E03C 0028AF7C  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx9TBabyBornFv"
-"@4@__dt__Q23efx9TBabyBornFv":
+.global $$24$$2__dt__Q23efx9TBabyBornFv
+$$24$$2__dt__Q23efx9TBabyBornFv:
 /* 8028E040 0028AF80  38 63 FF FC */	addi r3, r3, -4
 /* 8028E044 0028AF84  4B FF FF 50 */	b __dt__Q23efx9TBabyBornFv

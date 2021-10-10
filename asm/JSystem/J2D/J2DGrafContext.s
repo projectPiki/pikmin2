@@ -402,8 +402,8 @@ lbl_800365F8:
 /* 8003662C 0003356C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80036630 00033570  4E 80 00 20 */	blr 
 
-.global "scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-"scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>":
+.global scissor__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+scissor__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1:
 /* 80036634 00033574  80 A4 00 00 */	lwz r5, 0(r4)
 /* 80036638 00033578  80 04 00 04 */	lwz r0, 4(r4)
 /* 8003663C 0003357C  90 A3 00 14 */	stw r5, 0x14(r3)
@@ -414,8 +414,8 @@ lbl_800365F8:
 /* 80036650 00033590  90 03 00 20 */	stw r0, 0x20(r3)
 /* 80036654 00033594  4E 80 00 20 */	blr 
 
-.global "place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-"place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>":
+.global place__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+place__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1:
 /* 80036658 00033598  80 E4 00 00 */	lwz r7, 0(r4)
 /* 8003665C 0003359C  80 C4 00 04 */	lwz r6, 4(r4)
 /* 80036660 000335A0  90 E3 00 04 */	stw r7, 4(r3)
@@ -518,8 +518,8 @@ setLineWidth__14J2DGrafContextFUc:
 /* 800367CC 0003370C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800367D0 00033710  4E 80 00 20 */	blr 
 
-.global "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-"fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>":
+.global fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1:
 /* 800367D4 00033714  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800367D8 00033718  7C 08 02 A6 */	mflr r0
 /* 800367DC 0003371C  38 C0 00 0F */	li r6, 0xf
@@ -584,8 +584,8 @@ setLineWidth__14J2DGrafContextFUc:
 /* 800368C8 00033808  38 21 00 10 */	addi r1, r1, 0x10
 /* 800368CC 0003380C  4E 80 00 20 */	blr 
 
-.global "drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-"drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2<f>":
+.global drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+drawFrame__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1:
 /* 800368D0 00033810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800368D4 00033814  7C 08 02 A6 */	mflr r0
 /* 800368D8 00033818  38 C0 00 0F */	li r6, 0xf
@@ -655,8 +655,8 @@ setLineWidth__14J2DGrafContextFUc:
 /* 800369D8 00033918  38 21 00 10 */	addi r1, r1, 0x10
 /* 800369DC 0003391C  4E 80 00 20 */	blr 
 
-.global "lineTo__14J2DGrafContextFQ29JGeometry8TVec2<f>"
-"lineTo__14J2DGrafContextFQ29JGeometry8TVec2<f>":
+.global lineTo__14J2DGrafContextFQ29JGeometry8TVec2$$0f$$1
+lineTo__14J2DGrafContextFQ29JGeometry8TVec2$$0f$$1:
 /* 800369E0 00033920  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800369E4 00033924  7C 08 02 A6 */	mflr r0
 /* 800369E8 00033928  38 C0 00 0F */	li r6, 0xf

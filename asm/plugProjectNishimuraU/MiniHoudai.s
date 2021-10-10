@@ -952,7 +952,7 @@ lbl_802ECCD0:
 /* 802ECCD4 002E9C14  38 80 00 00 */	li r4, 0
 /* 802ECCD8 002E9C18  38 A0 00 00 */	li r5, 0
 /* 802ECCDC 002E9C1C  38 C0 00 00 */	li r6, 0
-/* 802ECCE0 002E9C20  4B E2 63 71 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+/* 802ECCE0 002E9C20  4B E2 63 71 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
 /* 802ECCE4 002E9C24  28 03 00 00 */	cmplwi r3, 0
 /* 802ECCE8 002E9C28  41 82 00 0C */	beq lbl_802ECCF4
 /* 802ECCEC 002E9C2C  C0 02 EC 2C */	lfs f0, lbl_8051CF8C@sda21(r2)
@@ -1480,7 +1480,7 @@ setShotGunTargetPosition__Q34Game10MiniHoudai3ObjFv:
 /* 802ED3F8 002EA338  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802ED3FC 002EA33C  38 84 02 D8 */	addi r4, r4, 0x2d8
 /* 802ED400 002EA340  80 63 02 F8 */	lwz r3, 0x2f8(r3)
-/* 802ED404 002EA344  48 00 18 9D */	bl "setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>"
+/* 802ED404 002EA344  48 00 18 9D */	bl setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3$$0f$$1
 /* 802ED408 002EA348  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802ED40C 002EA34C  7C 08 03 A6 */	mtlr r0
 /* 802ED410 002EA350  38 21 00 10 */	addi r1, r1, 0x10
@@ -1718,7 +1718,7 @@ createDownEffect__Q34Game10MiniHoudai3ObjFf:
 /* 802ED758 002EA698  7C 08 02 A6 */	mflr r0
 /* 802ED75C 002EA69C  38 83 01 8C */	addi r4, r3, 0x18c
 /* 802ED760 002EA6A0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802ED764 002EA6A4  4B E1 63 ED */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+/* 802ED764 002EA6A4  4B E1 63 ED */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
 /* 802ED768 002EA6A8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802ED76C 002EA6AC  7C 08 03 A6 */	mtlr r0
 /* 802ED770 002EA6B0  38 21 00 10 */	addi r1, r1, 0x10
@@ -2086,12 +2086,12 @@ getDownSmokeScale__Q34Game10MiniHoudai3ObjFv:
 /* 802EDC88 002EABC8  C0 22 EC B8 */	lfs f1, lbl_8051D018@sda21(r2)
 /* 802EDC8C 002EABCC  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx12TChibiChargeFv"
-"@4@__dt__Q23efx12TChibiChargeFv":
+.global $$24$$2__dt__Q23efx12TChibiChargeFv
+$$24$$2__dt__Q23efx12TChibiChargeFv:
 /* 802EDC90 002EABD0  38 63 FF FC */	addi r3, r3, -4
 /* 802EDC94 002EABD4  4B FF FE 9C */	b __dt__Q23efx12TChibiChargeFv
 
-.global "@4@__dt__Q23efx15TChibiDeadLightFv"
-"@4@__dt__Q23efx15TChibiDeadLightFv":
+.global $$24$$2__dt__Q23efx15TChibiDeadLightFv
+$$24$$2__dt__Q23efx15TChibiDeadLightFv:
 /* 802EDC98 002EABD8  38 63 FF FC */	addi r3, r3, -4
 /* 802EDC9C 002EABDC  4B FF FD F8 */	b __dt__Q23efx15TChibiDeadLightFv

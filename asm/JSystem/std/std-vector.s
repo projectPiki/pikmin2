@@ -6,8 +6,8 @@ extend_default__Q27JGadget6vectorFUlUlUl:
 /* 8002766C 000245AC  54 83 08 3C */	slwi r3, r4, 1
 /* 80027670 000245B0  4E 80 00 20 */	blr 
 
-.global "__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>"
-"__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>":
+.global __ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator$$0Pv$$1
+__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator$$0Pv$$1:
 /* 80027674 000245B4  88 04 00 00 */	lbz r0, 0(r4)
 /* 80027678 000245B8  38 A0 00 00 */	li r5, 0
 /* 8002767C 000245BC  3C 80 80 02 */	lis r4, extend_default__Q27JGadget6vectorFUlUlUl@ha
@@ -20,8 +20,8 @@ extend_default__Q27JGadget6vectorFUlUlUl:
 /* 80027698 000245D8  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8002769C 000245DC  4E 80 00 20 */	blr 
 
-.global "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUlRCPv"
-"insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUlRCPv":
+.global insert__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvUlRCPv
+insert__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvUlRCPv:
 /* 800276A0 000245E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800276A4 000245E4  7C 08 02 A6 */	mflr r0
 /* 800276A8 000245E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -32,7 +32,7 @@ extend_default__Q27JGadget6vectorFUlUlUl:
 /* 800276BC 000245FC  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 800276C0 00024600  7C 7D 1B 78 */	mr r29, r3
 /* 800276C4 00024604  41 82 00 38 */	beq lbl_800276FC
-/* 800276C8 00024608  48 00 00 51 */	bl "Insert_raw__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUl"
+/* 800276C8 00024608  48 00 00 51 */	bl Insert_raw__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvUl
 /* 800276CC 0002460C  80 1D 00 08 */	lwz r0, 8(r29)
 /* 800276D0 00024610  7C 03 00 40 */	cmplw r3, r0
 /* 800276D4 00024614  41 82 00 28 */	beq lbl_800276FC
@@ -56,8 +56,8 @@ lbl_800276FC:
 /* 80027710 00024650  38 21 00 20 */	addi r1, r1, 0x20
 /* 80027714 00024654  4E 80 00 20 */	blr 
 
-.global "Insert_raw__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUl"
-"Insert_raw__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUl":
+.global Insert_raw__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvUl
+Insert_raw__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvUl:
 /* 80027718 00024658  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8002771C 0002465C  7C 08 02 A6 */	mflr r0
 /* 80027720 00024660  90 01 00 34 */	stw r0, 0x34(r1)
@@ -461,14 +461,14 @@ insert__Q27JGadget20TVector_pointer_voidFPPvRCPv:
 /* 80027C90 00024BD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027C94 00024BD4  7C 08 02 A6 */	mflr r0
 /* 80027C98 00024BD8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80027C9C 00024BDC  48 00 00 15 */	bl "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv"
+/* 80027C9C 00024BDC  48 00 00 15 */	bl insert__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvRCPv
 /* 80027CA0 00024BE0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80027CA4 00024BE4  7C 08 03 A6 */	mtlr r0
 /* 80027CA8 00024BE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80027CAC 00024BEC  4E 80 00 20 */	blr 
 
-.global "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv"
-"insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv":
+.global insert__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvRCPv
+insert__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvRCPv:
 /* 80027CB0 00024BF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027CB4 00024BF4  7C 08 02 A6 */	mflr r0
 /* 80027CB8 00024BF8  7C A6 2B 78 */	mr r6, r5
@@ -481,7 +481,7 @@ insert__Q27JGadget20TVector_pointer_voidFPPvRCPv:
 /* 80027CD4 00024C14  7C 00 20 50 */	subf r0, r0, r4
 /* 80027CD8 00024C18  7C 00 16 70 */	srawi r0, r0, 2
 /* 80027CDC 00024C1C  7F E0 01 94 */	addze r31, r0
-/* 80027CE0 00024C20  4B FF F9 C1 */	bl "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUlRCPv"
+/* 80027CE0 00024C20  4B FF F9 C1 */	bl insert__Q27JGadget38TVector$$0Pv$$4Q27JGadget14TAllocator$$0Pv$$1$$1FPPvUlRCPv
 /* 80027CE4 00024C24  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80027CE8 00024C28  57 E0 10 3A */	slwi r0, r31, 2
 /* 80027CEC 00024C2C  7C 63 02 14 */	add r3, r3, r0

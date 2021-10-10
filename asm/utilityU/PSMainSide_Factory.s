@@ -292,7 +292,7 @@ lbl_80459F2C:
 /* 80459FF0 00456F30  FC 00 F8 34 */	frsqrte f0, f31
 /* 80459FF4 00456F34  EF E0 07 F2 */	fmuls f31, f0, f31
 lbl_80459FF8:
-/* 80459FF8 00456F38  80 0D 91 B4 */	lwz r0, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 80459FF8 00456F38  80 0D 91 B4 */	lwz r0, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 80459FFC 00456F3C  28 00 00 00 */	cmplwi r0, 0
 /* 8045A000 00456F40  40 82 00 18 */	bne lbl_8045A018
 /* 8045A004 00456F44  38 7E 00 90 */	addi r3, r30, 0x90
@@ -301,7 +301,7 @@ lbl_80459FF8:
 /* 8045A010 00456F50  4C C6 31 82 */	crclr 6
 /* 8045A014 00456F54  4B BD 06 2D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8045A018:
-/* 8045A018 00456F58  80 6D 91 B4 */	lwz r3, "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
+/* 8045A018 00456F58  80 6D 91 B4 */	lwz r3, sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1@sda21(r13)
 /* 8045A01C 00456F5C  38 9F 00 3C */	addi r4, r31, 0x3c
 /* 8045A020 00456F60  81 83 00 00 */	lwz r12, 0(r3)
 /* 8045A024 00456F64  81 8C 00 10 */	lwz r12, 0x10(r12)
@@ -314,7 +314,7 @@ lbl_8045A018:
 /* 8045A040 00456F80  38 DF 00 3C */	addi r6, r31, 0x3c
 /* 8045A044 00456F84  38 E0 00 00 */	li r7, 0
 /* 8045A048 00456F88  39 00 00 00 */	li r8, 0
-/* 8045A04C 00456F8C  4B BB B8 21 */	bl "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+/* 8045A04C 00456F8C  4B BB B8 21 */	bl startSoundVecT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundP3VecUlUlUc
 /* 8045A050 00456F90  C0 7F 00 54 */	lfs f3, 0x54(r31)
 /* 8045A054 00456F94  FC 1F 18 40 */	fcmpo cr0, f31, f3
 /* 8045A058 00456F98  40 80 00 20 */	bge lbl_8045A078
@@ -789,10 +789,10 @@ initEnvironmentSe__Q23PSM8SceneMgrFPQ23PSM10Scene_Game:
 /* 8045A6D0 00457610  3B A0 00 00 */	li r29, 0
 /* 8045A6D4 00457614  8B 3C 00 06 */	lbz r25, 6(r28)
 /* 8045A6D8 00457618  38 9C 00 20 */	addi r4, r28, 0x20
-/* 8045A6DC 0045761C  48 00 1A 1D */	bl "__ct__Q29JGeometry8TBox3<f>FRCQ29JGeometry8TBox3<f>"
+/* 8045A6DC 0045761C  48 00 1A 1D */	bl __ct__Q29JGeometry8TBox3$$0f$$1FRCQ29JGeometry8TBox3$$0f$$1
 /* 8045A6E0 00457620  7C 64 1B 78 */	mr r4, r3
 /* 8045A6E4 00457624  38 61 00 E8 */	addi r3, r1, 0xe8
-/* 8045A6E8 00457628  48 00 19 A1 */	bl "__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3<f>"
+/* 8045A6E8 00457628  48 00 19 A1 */	bl __ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3$$0f$$1
 /* 8045A6EC 0045762C  57 3E 06 3E */	clrlwi r30, r25, 0x18
 /* 8045A6F0 00457630  2C 1E 00 07 */	cmpwi r30, 7
 /* 8045A6F4 00457634  41 82 04 00 */	beq lbl_8045AAF4
@@ -2611,8 +2611,8 @@ setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo:
 /* 8045C080 00458FC0  D0 03 00 60 */	stfs f0, 0x60(r3)
 /* 8045C084 00458FC4  4E 80 00 20 */	blr 
 
-.global "__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3<f>"
-"__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3<f>":
+.global __ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3$$0f$$1
+__ct__Q23PSM15EnvSeObjBuilderFQ29JGeometry8TBox3$$0f$$1:
 /* 8045C088 00458FC8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8045C08C 00458FCC  7C 08 02 A6 */	mflr r0
 /* 8045C090 00458FD0  C0 A4 00 00 */	lfs f5, 0(r4)
@@ -2631,7 +2631,7 @@ setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo:
 /* 8045C0C4 00459004  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 8045C0C8 00459008  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8045C0CC 0045900C  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8045C0D0 00459010  4B EE 40 41 */	bl "__ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3<f>"
+/* 8045C0D0 00459010  4B EE 40 41 */	bl __ct__Q26PSGame25Builder_EvnSe_PerspectiveFQ29JGeometry8TBox3$$0f$$1
 /* 8045C0D4 00459014  3C 80 80 4F */	lis r4, __vt__Q23PSM15EnvSeObjBuilder@ha
 /* 8045C0D8 00459018  7F E3 FB 78 */	mr r3, r31
 /* 8045C0DC 0045901C  38 04 E3 2C */	addi r0, r4, __vt__Q23PSM15EnvSeObjBuilder@l
@@ -2642,8 +2642,8 @@ setInfo__Q23PSM15EnvSeObjBuilderFQ23PSM11PersEnvInfo:
 /* 8045C0F0 00459030  38 21 00 30 */	addi r1, r1, 0x30
 /* 8045C0F4 00459034  4E 80 00 20 */	blr 
 
-.global "__ct__Q29JGeometry8TBox3<f>FRCQ29JGeometry8TBox3<f>"
-"__ct__Q29JGeometry8TBox3<f>FRCQ29JGeometry8TBox3<f>":
+.global __ct__Q29JGeometry8TBox3$$0f$$1FRCQ29JGeometry8TBox3$$0f$$1
+__ct__Q29JGeometry8TBox3$$0f$$1FRCQ29JGeometry8TBox3$$0f$$1:
 /* 8045C0F8 00459038  C0 24 00 00 */	lfs f1, 0(r4)
 /* 8045C0FC 0045903C  C0 04 00 04 */	lfs f0, 4(r4)
 /* 8045C100 00459040  D0 23 00 00 */	stfs f1, 0(r3)

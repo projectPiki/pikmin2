@@ -251,7 +251,7 @@ getEnemyTypeID__Q34Game4Tank3MgrFv:
 /* 80275D7C 00272CBC  38 60 00 18 */	li r3, 0x18
 /* 80275D80 00272CC0  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game4Tank3MgrFv"
-"@4@__dt__Q34Game4Tank3MgrFv":
+.global $$24$$2__dt__Q34Game4Tank3MgrFv
+$$24$$2__dt__Q34Game4Tank3MgrFv:
 /* 80275D84 00272CC4  38 63 FF FC */	addi r3, r3, -4
 /* 80275D88 00272CC8  4B FF FF 44 */	b __dt__Q34Game4Tank3MgrFv

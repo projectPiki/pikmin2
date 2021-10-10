@@ -221,7 +221,7 @@ getEnemyTypeID__Q34Game10LeafChappy3MgrFv:
 /* 802C5C08 002C2B48  38 60 00 43 */	li r3, 0x43
 /* 802C5C0C 002C2B4C  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game10LeafChappy3MgrFv"
-"@4@__dt__Q34Game10LeafChappy3MgrFv":
+.global $$24$$2__dt__Q34Game10LeafChappy3MgrFv
+$$24$$2__dt__Q34Game10LeafChappy3MgrFv:
 /* 802C5C10 002C2B50  38 63 FF FC */	addi r3, r3, -4
 /* 802C5C14 002C2B54  4B FF FF 44 */	b __dt__Q34Game10LeafChappy3MgrFv

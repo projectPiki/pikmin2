@@ -423,10 +423,10 @@ __sinit_JKRDvdFile_cpp:
 /* 8001D668 0001A5A8  38 63 6E 00 */	addi r3, r3, sDvdList__10JKRDvdFile@l
 /* 8001D66C 0001A5AC  48 00 92 65 */	bl initiate__10JSUPtrListFv
 /* 8001D670 0001A5B0  3C 60 80 50 */	lis r3, sDvdList__10JKRDvdFile@ha
-/* 8001D674 0001A5B4  3C 80 80 02 */	lis r4, "__dt__21JSUList<10JKRDvdFile>Fv"@ha
+/* 8001D674 0001A5B4  3C 80 80 02 */	lis r4, __dt__21JSUList$$010JKRDvdFile$$1Fv@ha
 /* 8001D678 0001A5B8  3C A0 80 4F */	lis r5, lbl_804EFF40@ha
 /* 8001D67C 0001A5BC  38 63 6E 00 */	addi r3, r3, sDvdList__10JKRDvdFile@l
-/* 8001D680 0001A5C0  38 84 D6 9C */	addi r4, r4, "__dt__21JSUList<10JKRDvdFile>Fv"@l
+/* 8001D680 0001A5C0  38 84 D6 9C */	addi r4, r4, __dt__21JSUList$$010JKRDvdFile$$1Fv@l
 /* 8001D684 0001A5C4  38 A5 FF 40 */	addi r5, r5, lbl_804EFF40@l
 /* 8001D688 0001A5C8  48 0A 40 79 */	bl __register_global_object
 /* 8001D68C 0001A5CC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -434,8 +434,8 @@ __sinit_JKRDvdFile_cpp:
 /* 8001D694 0001A5D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001D698 0001A5D8  4E 80 00 20 */	blr 
 
-.global "__dt__21JSUList<10JKRDvdFile>Fv"
-"__dt__21JSUList<10JKRDvdFile>Fv":
+.global __dt__21JSUList$$010JKRDvdFile$$1Fv
+__dt__21JSUList$$010JKRDvdFile$$1Fv:
 /* 8001D69C 0001A5DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001D6A0 0001A5E0  7C 08 02 A6 */	mflr r0
 /* 8001D6A4 0001A5E4  90 01 00 14 */	stw r0, 0x14(r1)

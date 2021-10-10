@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "isOut__Q23ebi8EGEBox2fFR10Vector2<f>"
-"isOut__Q23ebi8EGEBox2fFR10Vector2<f>":
+.global isOut__Q23ebi8EGEBox2fFR10Vector2$$0f$$1
+isOut__Q23ebi8EGEBox2fFR10Vector2$$0f$$1:
 /* 803C9FF4 003C6F34  C0 24 00 00 */	lfs f1, 0(r4)
 /* 803C9FF8 003C6F38  C0 03 00 00 */	lfs f0, 0(r3)
 /* 803C9FFC 003C6F3C  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -29,8 +29,8 @@ lbl_803CA038:
 /* 803CA044 003C6F84  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 803CA048 003C6F88  4E 80 00 20 */	blr 
 
-.global "isIn__Q23ebi8EGEBox2fFR10Vector2<f>f"
-"isIn__Q23ebi8EGEBox2fFR10Vector2<f>f":
+.global isIn__Q23ebi8EGEBox2fFR10Vector2$$0f$$1f
+isIn__Q23ebi8EGEBox2fFR10Vector2$$0f$$1f:
 /* 803CA04C 003C6F8C  C0 64 00 00 */	lfs f3, 0(r4)
 /* 803CA050 003C6F90  C0 03 00 00 */	lfs f0, 0(r3)
 /* 803CA054 003C6F94  EC 43 08 28 */	fsubs f2, f3, f1
@@ -63,8 +63,8 @@ lbl_803CA09C:
 /* 803CA0B4 003C6FF4  54 03 D9 7E */	srwi r3, r0, 5
 /* 803CA0B8 003C6FF8  4E 80 00 20 */	blr 
 
-.global "isOut__Q23ebi8EGEBox2fFR10Vector2<f>f"
-"isOut__Q23ebi8EGEBox2fFR10Vector2<f>f":
+.global isOut__Q23ebi8EGEBox2fFR10Vector2$$0f$$1f
+isOut__Q23ebi8EGEBox2fFR10Vector2$$0f$$1f:
 /* 803CA0BC 003C6FFC  C0 64 00 00 */	lfs f3, 0(r4)
 /* 803CA0C0 003C7000  C0 03 00 00 */	lfs f0, 0(r3)
 /* 803CA0C4 003C7004  EC 43 08 2A */	fadds f2, f3, f1
@@ -95,8 +95,8 @@ lbl_803CA10C:
 /* 803CA11C 003C705C  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 803CA120 003C7060  4E 80 00 20 */	blr 
 
-.global "in__Q23ebi8EGEBox2fFP10Vector2<f>f"
-"in__Q23ebi8EGEBox2fFP10Vector2<f>f":
+.global in__Q23ebi8EGEBox2fFP10Vector2$$0f$$1f
+in__Q23ebi8EGEBox2fFP10Vector2$$0f$$1f:
 /* 803CA124 003C7064  C0 03 00 00 */	lfs f0, 0(r3)
 /* 803CA128 003C7068  C0 44 00 00 */	lfs f2, 0(r4)
 /* 803CA12C 003C706C  EC 00 08 2A */	fadds f0, f0, f1
@@ -126,8 +126,8 @@ lbl_803CA170:
 /* 803CA180 003C70C0  D0 04 00 04 */	stfs f0, 4(r4)
 /* 803CA184 003C70C4  4E 80 00 20 */	blr 
 
-.global "isOut__Q23ebi11EGECircle2fFR10Vector2<f>"
-"isOut__Q23ebi11EGECircle2fFR10Vector2<f>":
+.global isOut__Q23ebi11EGECircle2fFR10Vector2$$0f$$1
+isOut__Q23ebi11EGECircle2fFR10Vector2$$0f$$1:
 /* 803CA188 003C70C8  C0 24 00 04 */	lfs f1, 4(r4)
 /* 803CA18C 003C70CC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 803CA190 003C70D0  C0 44 00 00 */	lfs f2, 0(r4)
@@ -155,8 +155,8 @@ lbl_803CA1DC:
 /* 803CA1DC 003C711C  38 60 00 00 */	li r3, 0
 /* 803CA1E0 003C7120  4E 80 00 20 */	blr 
 
-.global "in__Q23ebi11EGECircle2fFP10Vector2<f>"
-"in__Q23ebi11EGECircle2fFP10Vector2<f>":
+.global in__Q23ebi11EGECircle2fFP10Vector2$$0f$$1
+in__Q23ebi11EGECircle2fFP10Vector2$$0f$$1:
 /* 803CA1E4 003C7124  C0 E3 00 04 */	lfs f7, 4(r3)
 /* 803CA1E8 003C7128  C0 04 00 04 */	lfs f0, 4(r4)
 /* 803CA1EC 003C712C  C1 03 00 00 */	lfs f8, 0(r3)
@@ -210,8 +210,8 @@ lbl_803CA294:
 /* 803CA294 003C71D4  38 60 00 00 */	li r3, 0
 /* 803CA298 003C71D8  4E 80 00 20 */	blr 
 
-.global "out__Q23ebi11EGECircle2fFP10Vector2<f>"
-"out__Q23ebi11EGECircle2fFP10Vector2<f>":
+.global out__Q23ebi11EGECircle2fFP10Vector2$$0f$$1
+out__Q23ebi11EGECircle2fFP10Vector2$$0f$$1:
 /* 803CA29C 003C71DC  C0 E3 00 04 */	lfs f7, 4(r3)
 /* 803CA2A0 003C71E0  C0 04 00 04 */	lfs f0, 4(r4)
 /* 803CA2A4 003C71E4  C1 03 00 00 */	lfs f8, 0(r3)

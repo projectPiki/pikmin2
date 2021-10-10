@@ -17,10 +17,10 @@ __ct__Q33ebi5title9TCoordMgrFv:
 /* 803E3998 003E08D8  38 C0 00 08 */	li r6, 8
 /* 803E399C 003E08DC  90 03 00 00 */	stw r0, 0(r3)
 /* 803E39A0 003E08E0  38 05 78 AC */	addi r0, r5, __vt__Q33ebi5title9TCoordMgr@l
-/* 803E39A4 003E08E4  3C 60 80 38 */	lis r3, "__ct__10Vector2<f>Fv"@ha
+/* 803E39A4 003E08E4  3C 60 80 38 */	lis r3, __ct__10Vector2$$0f$$1Fv@ha
 /* 803E39A8 003E08E8  38 A0 00 00 */	li r5, 0
 /* 803E39AC 003E08EC  91 3F 00 10 */	stw r9, 0x10(r31)
-/* 803E39B0 003E08F0  38 83 D0 B8 */	addi r4, r3, "__ct__10Vector2<f>Fv"@l
+/* 803E39B0 003E08F0  38 83 D0 B8 */	addi r4, r3, __ct__10Vector2$$0f$$1Fv@l
 /* 803E39B4 003E08F4  38 7F 00 2C */	addi r3, r31, 0x2c
 /* 803E39B8 003E08F8  38 E0 01 F4 */	li r7, 0x1f4
 /* 803E39BC 003E08FC  91 3F 00 0C */	stw r9, 0xc(r31)
@@ -42,9 +42,9 @@ __ct__Q33ebi5title9TCoordMgrFv:
 /* 803E39FC 003E093C  90 1F 0F D4 */	stw r0, 0xfd4(r31)
 /* 803E3A00 003E0940  38 C2 18 C0 */	addi r6, r2, lbl_8051FC20@sda21
 /* 803E3A04 003E0944  48 02 FC 55 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 803E3A08 003E0948  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 803E3A08 003E0948  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 803E3A0C 003E094C  3C A0 74 67 */	lis r5, 0x74676131@ha
-/* 803E3A10 003E0950  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 803E3A10 003E0950  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 803E3A14 003E0954  38 9F 0F CC */	addi r4, r31, 0xfcc
 /* 803E3A18 003E0958  90 1F 0F D8 */	stw r0, 0xfd8(r31)
 /* 803E3A1C 003E095C  38 64 00 34 */	addi r3, r4, 0x34
@@ -57,9 +57,9 @@ __ct__Q33ebi5title9TCoordMgrFv:
 /* 803E3A38 003E0978  D0 3F 0F F8 */	stfs f1, 0xff8(r31)
 /* 803E3A3C 003E097C  D0 1F 0F FC */	stfs f0, 0xffc(r31)
 /* 803E3A40 003E0980  48 02 FC 19 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 803E3A44 003E0984  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 803E3A44 003E0984  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 803E3A48 003E0988  3C A0 74 67 */	lis r5, 0x74676132@ha
-/* 803E3A4C 003E098C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 803E3A4C 003E098C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 803E3A50 003E0990  38 9F 0F CC */	addi r4, r31, 0xfcc
 /* 803E3A54 003E0994  90 1F 10 00 */	stw r0, 0x1000(r31)
 /* 803E3A58 003E0998  38 64 00 5C */	addi r3, r4, 0x5c
@@ -72,9 +72,9 @@ __ct__Q33ebi5title9TCoordMgrFv:
 /* 803E3A74 003E09B4  D0 3F 10 20 */	stfs f1, 0x1020(r31)
 /* 803E3A78 003E09B8  D0 1F 10 24 */	stfs f0, 0x1024(r31)
 /* 803E3A7C 003E09BC  48 02 FB DD */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 803E3A80 003E09C0  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 803E3A80 003E09C0  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 803E3A84 003E09C4  3C A0 74 67 */	lis r5, 0x74676133@ha
-/* 803E3A88 003E09C8  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 803E3A88 003E09C8  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 803E3A8C 003E09CC  38 9F 0F CC */	addi r4, r31, 0xfcc
 /* 803E3A90 003E09D0  90 1F 10 28 */	stw r0, 0x1028(r31)
 /* 803E3A94 003E09D4  38 64 00 84 */	addi r3, r4, 0x84
@@ -87,9 +87,9 @@ __ct__Q33ebi5title9TCoordMgrFv:
 /* 803E3AB0 003E09F0  D0 3F 10 48 */	stfs f1, 0x1048(r31)
 /* 803E3AB4 003E09F4  D0 1F 10 4C */	stfs f0, 0x104c(r31)
 /* 803E3AB8 003E09F8  48 02 FB A1 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 803E3ABC 003E09FC  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 803E3ABC 003E09FC  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 803E3AC0 003E0A00  C0 42 18 E8 */	lfs f2, lbl_8051FC48@sda21(r2)
-/* 803E3AC4 003E0A04  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 803E3AC4 003E0A04  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 803E3AC8 003E0A08  C0 22 18 EC */	lfs f1, lbl_8051FC4C@sda21(r2)
 /* 803E3ACC 003E0A0C  90 1F 10 50 */	stw r0, 0x1050(r31)
 /* 803E3AD0 003E0A10  38 00 00 00 */	li r0, 0
@@ -109,8 +109,8 @@ __ct__Q33ebi5title9TCoordMgrFv:
 /* 803E3B08 003E0A48  38 21 00 10 */	addi r1, r1, 0x10
 /* 803E3B0C 003E0A4C  4E 80 00 20 */	blr 
 
-.global "copyCoordinate__Q33ebi5title9TCoordMgrFP10Vector2<f>"
-"copyCoordinate__Q33ebi5title9TCoordMgrFP10Vector2<f>":
+.global copyCoordinate__Q33ebi5title9TCoordMgrFP10Vector2$$0f$$1
+copyCoordinate__Q33ebi5title9TCoordMgrFP10Vector2$$0f$$1:
 /* 803E3B10 003E0A50  7C 65 1B 78 */	mr r5, r3
 /* 803E3B14 003E0A54  38 E0 00 00 */	li r7, 0
 /* 803E3B18 003E0A58  7C 86 23 78 */	mr r6, r4

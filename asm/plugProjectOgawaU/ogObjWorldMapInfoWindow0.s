@@ -529,7 +529,7 @@ getMemberID__Q32og6Screen26DispMemberWorldMapInfoWin0Fv:
 /* 8032BA94 003289D4  38 63 61 70 */	addi r3, r3, 0x574D6170@l
 /* 8032BA98 003289D8  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv"
-"@24@__dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv":
+.global $$224$$2__dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+$$224$$2__dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv:
 /* 8032BA9C 003289DC  38 63 FF E8 */	addi r3, r3, -24
 /* 8032BAA0 003289E0  4B FF FF 6C */	b __dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv

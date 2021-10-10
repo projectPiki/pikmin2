@@ -156,9 +156,9 @@ loadResource__Q24Game9ShadowMgrFv:
 /* 8024149C 0023E3DC  38 DF 00 34 */	addi r6, r31, 0x34
 /* 802414A0 0023E3E0  90 1D 00 08 */	stw r0, 8(r29)
 /* 802414A4 0023E3E4  48 1D 21 B5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802414A8 0023E3E8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802414A8 0023E3E8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802414AC 0023E3EC  3C A0 6C 6F */	lis r5, 0x6C6F6466@ha
-/* 802414B0 0023E3F0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802414B0 0023E3F0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802414B4 0023E3F4  C0 02 C3 60 */	lfs f0, lbl_8051A6C0@sda21(r2)
 /* 802414B8 0023E3F8  90 1D 00 0C */	stw r0, 0xc(r29)
 /* 802414BC 0023E3FC  7F A4 EB 78 */	mr r4, r29
@@ -171,9 +171,9 @@ loadResource__Q24Game9ShadowMgrFv:
 /* 802414D8 0023E418  D0 3D 00 2C */	stfs f1, 0x2c(r29)
 /* 802414DC 0023E41C  D0 1D 00 30 */	stfs f0, 0x30(r29)
 /* 802414E0 0023E420  48 1D 21 79 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802414E4 0023E424  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802414E4 0023E424  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802414E8 0023E428  C0 42 C3 6C */	lfs f2, lbl_8051A6CC@sda21(r2)
-/* 802414EC 0023E42C  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802414EC 0023E42C  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802414F0 0023E430  C0 22 C3 64 */	lfs f1, lbl_8051A6C4@sda21(r2)
 /* 802414F4 0023E434  90 1D 00 34 */	stw r0, 0x34(r29)
 /* 802414F8 0023E438  C0 02 C3 68 */	lfs f0, lbl_8051A6C8@sda21(r2)
@@ -513,7 +513,7 @@ draw__Q24Game9ShadowMgrFR8Graphicsi:
 /* 80241990 0023E8D0  54 00 10 3A */	slwi r0, r0, 2
 /* 80241994 0023E8D4  7C 7D 02 14 */	add r3, r29, r0
 /* 80241998 0023E8D8  80 63 00 28 */	lwz r3, 0x28(r3)
-/* 8024199C 0023E8DC  4B FF C5 79 */	bl "setShadowRect__Q24Game12CylinderBaseFR7Rect<f>"
+/* 8024199C 0023E8DC  4B FF C5 79 */	bl setShadowRect__Q24Game12CylinderBaseFR7Rect$$0f$$1
 /* 802419A0 0023E8E0  80 1D 00 40 */	lwz r0, 0x40(r29)
 /* 802419A4 0023E8E4  7F C4 F3 78 */	mr r4, r30
 /* 802419A8 0023E8E8  54 00 10 3A */	slwi r0, r0, 2

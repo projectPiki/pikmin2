@@ -213,9 +213,9 @@ __ct__Q34Game7Qurione5ParmsFv:
 /* 8025FD5C 0025CC9C  90 FE 07 FC */	stw r7, 0x7fc(r30)
 /* 8025FD60 0025CCA0  90 1E 08 00 */	stw r0, 0x800(r30)
 /* 8025FD64 0025CCA4  48 1B 38 F5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8025FD68 0025CCA8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8025FD68 0025CCA8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8025FD6C 0025CCAC  3C A0 66 70 */	lis r5, 0x66703032@ha
-/* 8025FD70 0025CCB0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8025FD70 0025CCB0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8025FD74 0025CCB4  C0 02 C9 68 */	lfs f0, lbl_8051ACC8@sda21(r2)
 /* 8025FD78 0025CCB8  90 1E 08 04 */	stw r0, 0x804(r30)
 /* 8025FD7C 0025CCBC  38 7E 08 2C */	addi r3, r30, 0x82c
@@ -228,9 +228,9 @@ __ct__Q34Game7Qurione5ParmsFv:
 /* 8025FD98 0025CCD8  D0 3E 08 24 */	stfs f1, 0x824(r30)
 /* 8025FD9C 0025CCDC  D0 1E 08 28 */	stfs f0, 0x828(r30)
 /* 8025FDA0 0025CCE0  48 1B 38 B9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8025FDA4 0025CCE4  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8025FDA4 0025CCE4  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8025FDA8 0025CCE8  3C A0 66 70 */	lis r5, 0x66703033@ha
-/* 8025FDAC 0025CCEC  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8025FDAC 0025CCEC  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8025FDB0 0025CCF0  C0 02 C9 74 */	lfs f0, lbl_8051ACD4@sda21(r2)
 /* 8025FDB4 0025CCF4  90 1E 08 2C */	stw r0, 0x82c(r30)
 /* 8025FDB8 0025CCF8  38 7E 08 54 */	addi r3, r30, 0x854
@@ -243,9 +243,9 @@ __ct__Q34Game7Qurione5ParmsFv:
 /* 8025FDD4 0025CD14  D0 3E 08 4C */	stfs f1, 0x84c(r30)
 /* 8025FDD8 0025CD18  D0 1E 08 50 */	stfs f0, 0x850(r30)
 /* 8025FDDC 0025CD1C  48 1B 38 7D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8025FDE0 0025CD20  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8025FDE0 0025CD20  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8025FDE4 0025CD24  3C A0 66 70 */	lis r5, 0x66703034@ha
-/* 8025FDE8 0025CD28  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8025FDE8 0025CD28  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8025FDEC 0025CD2C  C0 02 C9 7C */	lfs f0, lbl_8051ACDC@sda21(r2)
 /* 8025FDF0 0025CD30  90 1E 08 54 */	stw r0, 0x854(r30)
 /* 8025FDF4 0025CD34  38 7E 08 7C */	addi r3, r30, 0x87c
@@ -258,9 +258,9 @@ __ct__Q34Game7Qurione5ParmsFv:
 /* 8025FE10 0025CD50  D0 3E 08 74 */	stfs f1, 0x874(r30)
 /* 8025FE14 0025CD54  D0 1E 08 78 */	stfs f0, 0x878(r30)
 /* 8025FE18 0025CD58  48 1B 38 41 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8025FE1C 0025CD5C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8025FE1C 0025CD5C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8025FE20 0025CD60  3C A0 66 70 */	lis r5, 0x66703035@ha
-/* 8025FE24 0025CD64  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8025FE24 0025CD64  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8025FE28 0025CD68  C0 02 C9 84 */	lfs f0, lbl_8051ACE4@sda21(r2)
 /* 8025FE2C 0025CD6C  90 1E 08 7C */	stw r0, 0x87c(r30)
 /* 8025FE30 0025CD70  38 7E 08 A4 */	addi r3, r30, 0x8a4
@@ -273,9 +273,9 @@ __ct__Q34Game7Qurione5ParmsFv:
 /* 8025FE4C 0025CD8C  D0 3E 08 9C */	stfs f1, 0x89c(r30)
 /* 8025FE50 0025CD90  D0 1E 08 A0 */	stfs f0, 0x8a0(r30)
 /* 8025FE54 0025CD94  48 1B 38 05 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8025FE58 0025CD98  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 8025FE58 0025CD98  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 8025FE5C 0025CD9C  C0 42 C9 8C */	lfs f2, lbl_8051ACEC@sda21(r2)
-/* 8025FE60 0025CDA0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 8025FE60 0025CDA0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 8025FE64 0025CDA4  C0 22 C9 6C */	lfs f1, lbl_8051ACCC@sda21(r2)
 /* 8025FE68 0025CDA8  90 1E 08 A4 */	stw r0, 0x8a4(r30)
 /* 8025FE6C 0025CDAC  7F C3 F3 78 */	mr r3, r30
@@ -505,7 +505,7 @@ getInitialParam__Q34Game7Qurione9GeneratorFv:
 /* 80260168 0025D0A8  38 63 00 24 */	addi r3, r3, 0x24
 /* 8026016C 0025D0AC  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game7Qurione3MgrFv"
-"@4@__dt__Q34Game7Qurione3MgrFv":
+.global $$24$$2__dt__Q34Game7Qurione3MgrFv
+$$24$$2__dt__Q34Game7Qurione3MgrFv:
 /* 80260170 0025D0B0  38 63 FF FC */	addi r3, r3, -4
 /* 80260174 0025D0B4  4B FF FE A0 */	b __dt__Q34Game7Qurione3MgrFv

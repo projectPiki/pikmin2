@@ -6,29 +6,29 @@ aoData$1232:
 .global lbl_804EFCB0
 lbl_804EFCB0:
 	.skip 0xC
-.global "soovv_actor_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"
-"soovv_actor_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+.global soovv_actor_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2
+soovv_actor_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2:
 	.skip 0x1C
-.global "soovv_actor_RELATION_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"
-"soovv_actor_RELATION_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+.global soovv_actor_RELATION_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2
+soovv_actor_RELATION_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2:
 	.skip 0x1C
-.global "soovv_camera_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"
-"soovv_camera_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+.global soovv_camera_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2
+soovv_camera_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2:
 	.skip 0x1C
-.global "soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"
-"soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+.global soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2
+soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2:
 	.skip 0x1C
-.global "soovv_light_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"
-"soovv_light_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+.global soovv_light_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2
+soovv_light_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2:
 	.skip 0x1C
-.global "soovv_particle_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"
-"soovv_particle_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+.global soovv_particle_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2
+soovv_particle_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2:
 	.skip 0x1C
-.global "soovv_sound_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"
-"soovv_sound_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+.global soovv_sound_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2
+soovv_sound_PARENT_ENABLE___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2:
 	.skip 0x1C
-.global "soovv_sound_LOCATED___Q27JStudio28@unnamed@jstudio_object_cpp@"
-"soovv_sound_LOCATED___Q27JStudio28@unnamed@jstudio_object_cpp@":
+.global soovv_sound_LOCATED___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2
+soovv_sound_LOCATED___Q27JStudio28$$2unnamed$$2jstudio_object_cpp$$2:
 	.skip 0x20
 .global lbl_804EFDA0
 lbl_804EFDA0:
@@ -81,11 +81,11 @@ lbl_804EFFB0:
 .global lbl_804EFFBC
 lbl_804EFFBC:
 	.skip 0xC
-.global "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
-"sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
+.global sMessageFileLine__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2
+sMessageFileLine__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2:
 	.skip 0x40
-.global "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
-"sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
+.global sMessageString__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2
+sMessageString__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2:
 	.skip 0x100
 .global exCallbackObject
 exCallbackObject:

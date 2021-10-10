@@ -450,8 +450,8 @@ setNearestParent__Q34Game12KumaKochappy3ObjFv:
 /* 802E7658 002E4598  38 63 00 04 */	addi r3, r3, 4
 lbl_802E765C:
 /* 802E765C 002E459C  38 00 00 00 */	li r0, 0
-/* 802E7660 002E45A0  3C 80 80 4D */	lis r4, "__vt__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>"@ha
-/* 802E7664 002E45A4  38 84 42 00 */	addi r4, r4, "__vt__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>"@l
+/* 802E7660 002E45A0  3C 80 80 4D */	lis r4, __vt__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1@ha
+/* 802E7664 002E45A4  38 84 42 00 */	addi r4, r4, __vt__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1@l
 /* 802E7668 002E45A8  90 01 00 50 */	stw r0, 0x50(r1)
 /* 802E766C 002E45AC  28 00 00 00 */	cmplwi r0, 0
 /* 802E7670 002E45B0  90 81 00 44 */	stw r4, 0x44(r1)
@@ -659,8 +659,8 @@ lbl_802E7934:
 /* 802E7970 002E48B0  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 802E7974 002E48B4  4E 80 00 20 */	blr 
 
-.global "isDone__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-"isDone__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv":
+.global isDone__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1Fv
+isDone__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1Fv:
 /* 802E7978 002E48B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E797C 002E48BC  7C 08 02 A6 */	mflr r0
 /* 802E7980 002E48C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -816,7 +816,7 @@ getSearchedTarget__Q34Game12KumaKochappy3ObjFv:
 /* 802E7BA0 002E4AE0  80 E3 00 C0 */	lwz r7, 0xc0(r3)
 /* 802E7BA4 002E4AE4  C0 27 04 24 */	lfs f1, 0x424(r7)
 /* 802E7BA8 002E4AE8  C0 47 03 D4 */	lfs f2, 0x3d4(r7)
-/* 802E7BAC 002E4AEC  4B E2 B4 A5 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+/* 802E7BAC 002E4AEC  4B E2 B4 A5 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
 /* 802E7BB0 002E4AF0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E7BB4 002E4AF4  7C 08 03 A6 */	mtlr r0
 /* 802E7BB8 002E4AF8  38 21 00 10 */	addi r1, r1, 0x10
@@ -938,8 +938,8 @@ lbl_802E7D20:
 /* 802E7D34 002E4C74  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E7D38 002E4C78  4E 80 00 20 */	blr 
 
-.global "__ml__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-"__ml__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv":
+.global __ml__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1Fv
+__ml__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1Fv:
 /* 802E7D3C 002E4C7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7D40 002E4C80  7C 08 02 A6 */	mflr r0
 /* 802E7D44 002E4C84  7C 64 1B 78 */	mr r4, r3
@@ -955,8 +955,8 @@ lbl_802E7D20:
 /* 802E7D6C 002E4CAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7D70 002E4CB0  4E 80 00 20 */	blr 
 
-.global "next__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-"next__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv":
+.global next__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1Fv
+next__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1Fv:
 /* 802E7D74 002E4CB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7D78 002E4CB8  7C 08 02 A6 */	mflr r0
 /* 802E7D7C 002E4CBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1019,8 +1019,8 @@ lbl_802E7E44:
 /* 802E7E50 002E4D90  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7E54 002E4D94  4E 80 00 20 */	blr 
 
-.global "first__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-"first__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv":
+.global first__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1Fv
+first__Q24Game38EnemyIterator$$0Q34Game10KumaChappy3Obj$$1Fv:
 /* 802E7E58 002E4D98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7E5C 002E4D9C  7C 08 02 A6 */	mflr r0
 /* 802E7E60 002E4DA0  90 01 00 14 */	stw r0, 0x14(r1)

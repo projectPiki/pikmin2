@@ -490,7 +490,7 @@ lbl_8040F89C:
 /* 8040F8A0 0040C7E0  48 00 01 9C */	b lbl_8040FA3C
 lbl_8040F8A4:
 /* 8040F8A4 0040C7E4  7F 03 C3 78 */	mr r3, r24
-/* 8040F8A8 0040C7E8  4B C2 90 95 */	bl "getObject__17JSUTree<7J2DPane>CFv"
+/* 8040F8A8 0040C7E8  4B C2 90 95 */	bl getObject__17JSUTree$$07J2DPane$$1CFv
 /* 8040F8AC 0040C7EC  80 83 00 18 */	lwz r4, 0x18(r3)
 /* 8040F8B0 0040C7F0  38 00 00 32 */	li r0, 0x32
 /* 8040F8B4 0040C7F4  80 A3 00 1C */	lwz r5, 0x1c(r3)
@@ -521,12 +521,12 @@ lbl_8040F8E4:
 lbl_8040F914:
 /* 8040F914 0040C854  3B 36 00 DC */	addi r25, r22, 0xdc
 /* 8040F918 0040C858  7F 23 CB 78 */	mr r3, r25
-/* 8040F91C 0040C85C  4B C2 90 0D */	bl "getFirstChild__17JSUTree<7J2DPane>CFv"
+/* 8040F91C 0040C85C  4B C2 90 0D */	bl getFirstChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040F920 0040C860  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8040F924 0040C864  48 00 00 F4 */	b lbl_8040FA18
 lbl_8040F928:
 /* 8040F928 0040C868  38 61 00 0C */	addi r3, r1, 0xc
-/* 8040F92C 0040C86C  4B EF 3B BD */	bl "getObject__25JSUTreeIterator<7J2DPane>CFv"
+/* 8040F92C 0040C86C  4B EF 3B BD */	bl getObject__25JSUTreeIterator$$07J2DPane$$1CFv
 /* 8040F930 0040C870  7C 76 1B 78 */	mr r22, r3
 /* 8040F934 0040C874  4B EF A4 65 */	bl getUserInfo__7J2DPaneCFv
 /* 8040F938 0040C878  38 00 00 32 */	li r0, 0x32
@@ -563,35 +563,35 @@ lbl_8040F9AC:
 /* 8040F9AC 0040C8EC  7E C3 B3 78 */	mr r3, r22
 /* 8040F9B0 0040C8F0  4B EF 3B 45 */	bl getPaneTree__7J2DPaneFv
 /* 8040F9B4 0040C8F4  7C 76 1B 78 */	mr r22, r3
-/* 8040F9B8 0040C8F8  4B C2 8F 71 */	bl "getFirstChild__17JSUTree<7J2DPane>CFv"
+/* 8040F9B8 0040C8F8  4B C2 8F 71 */	bl getFirstChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040F9BC 0040C8FC  7C 64 1B 78 */	mr r4, r3
 /* 8040F9C0 0040C900  38 61 00 08 */	addi r3, r1, 8
-/* 8040F9C4 0040C904  4B C2 8F 51 */	bl "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
+/* 8040F9C4 0040C904  4B C2 8F 51 */	bl __ct__25JSUTreeIterator$$07J2DPane$$1FP17JSUTree$$07J2DPane$$1
 /* 8040F9C8 0040C908  48 00 00 28 */	b lbl_8040F9F0
 lbl_8040F9CC:
 /* 8040F9CC 0040C90C  38 61 00 08 */	addi r3, r1, 8
-/* 8040F9D0 0040C910  4B EF 3B 19 */	bl "getObject__25JSUTreeIterator<7J2DPane>CFv"
+/* 8040F9D0 0040C910  4B EF 3B 19 */	bl getObject__25JSUTreeIterator$$07J2DPane$$1CFv
 /* 8040F9D4 0040C914  7C 64 1B 78 */	mr r4, r3
 /* 8040F9D8 0040C918  7F C3 F3 78 */	mr r3, r30
 /* 8040F9DC 0040C91C  7F E5 FB 78 */	mr r5, r31
 /* 8040F9E0 0040C920  7F A6 EB 78 */	mr r6, r29
 /* 8040F9E4 0040C924  4B FF FD 71 */	bl searchNumPane__Q32kh6Screen10ObjPayDeptFP7J2DPaneii
 /* 8040F9E8 0040C928  38 61 00 08 */	addi r3, r1, 8
-/* 8040F9EC 0040C92C  4B C2 8F 0D */	bl "__pp__25JSUTreeIterator<7J2DPane>Fv"
+/* 8040F9EC 0040C92C  4B C2 8F 0D */	bl __pp__25JSUTreeIterator$$07J2DPane$$1Fv
 lbl_8040F9F0:
 /* 8040F9F0 0040C930  7E C3 B3 78 */	mr r3, r22
-/* 8040F9F4 0040C934  4B C2 8E FD */	bl "getEndChild__17JSUTree<7J2DPane>CFv"
+/* 8040F9F4 0040C934  4B C2 8E FD */	bl getEndChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040F9F8 0040C938  7C 64 1B 78 */	mr r4, r3
 /* 8040F9FC 0040C93C  38 61 00 08 */	addi r3, r1, 8
-/* 8040FA00 0040C940  4B C2 8E D9 */	bl "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
+/* 8040FA00 0040C940  4B C2 8E D9 */	bl __ne__25JSUTreeIterator$$07J2DPane$$1CFPC17JSUTree$$07J2DPane$$1
 /* 8040FA04 0040C944  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8040FA08 0040C948  40 82 FF C4 */	bne lbl_8040F9CC
 /* 8040FA0C 0040C94C  80 61 00 0C */	lwz r3, 0xc(r1)
-/* 8040FA10 0040C950  4B C2 8E B5 */	bl "getNextChild__17JSUTree<7J2DPane>CFv"
+/* 8040FA10 0040C950  4B C2 8E B5 */	bl getNextChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040FA14 0040C954  90 61 00 0C */	stw r3, 0xc(r1)
 lbl_8040FA18:
 /* 8040FA18 0040C958  7F 23 CB 78 */	mr r3, r25
-/* 8040FA1C 0040C95C  4B C2 8E D5 */	bl "getEndChild__17JSUTree<7J2DPane>CFv"
+/* 8040FA1C 0040C95C  4B C2 8E D5 */	bl getEndChild__17JSUTree$$07J2DPane$$1CFv
 /* 8040FA20 0040C960  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 8040FA24 0040C964  7C 00 18 40 */	cmplw r0, r3
 /* 8040FA28 0040C968  40 82 FF 00 */	bne lbl_8040F928
@@ -818,7 +818,7 @@ __sinit_khPayDept_cpp:
 /* 8040FCD8 0040CC18  D0 0D 9A C0 */	stfs f0, msVal__Q32kh6Screen10ObjPayDept@sda21(r13)
 /* 8040FCDC 0040CC1C  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32kh6Screen10ObjPayDeptFv"
-"@24@__dt__Q32kh6Screen10ObjPayDeptFv":
+.global $$224$$2__dt__Q32kh6Screen10ObjPayDeptFv
+$$224$$2__dt__Q32kh6Screen10ObjPayDeptFv:
 /* 8040FCE0 0040CC20  38 63 FF E8 */	addi r3, r3, -24
 /* 8040FCE4 0040CC24  4B FF FF 20 */	b __dt__Q32kh6Screen10ObjPayDeptFv

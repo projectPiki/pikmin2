@@ -50,9 +50,9 @@ loadResource__Q24Game9RumbleMgrFv:
 /* 802533A8 002502E8  38 DE 00 28 */	addi r6, r30, 0x28
 /* 802533AC 002502EC  90 1D 00 08 */	stw r0, 8(r29)
 /* 802533B0 002502F0  48 1C 02 A9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 802533B4 002502F4  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
+/* 802533B4 002502F4  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
 /* 802533B8 002502F8  C0 42 C6 18 */	lfs f2, lbl_8051A978@sda21(r2)
-/* 802533BC 002502FC  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
+/* 802533BC 002502FC  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
 /* 802533C0 00250300  C0 22 C6 1C */	lfs f1, lbl_8051A97C@sda21(r2)
 /* 802533C4 00250304  90 1D 00 0C */	stw r0, 0xc(r29)
 /* 802533C8 00250308  C0 02 C6 20 */	lfs f0, lbl_8051A980@sda21(r2)
@@ -610,8 +610,8 @@ lbl_80253B60:
 /* 80253B6C 00250AAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80253B70 00250AB0  4E 80 00 20 */	blr 
 
-.global "setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<f>"
-"setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<f>":
+.global setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3$$0f$$1
+setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3$$0f$$1:
 /* 80253B74 00250AB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80253B78 00250AB8  7C 08 02 A6 */	mflr r0
 /* 80253B7C 00250ABC  90 01 00 14 */	stw r0, 0x14(r1)

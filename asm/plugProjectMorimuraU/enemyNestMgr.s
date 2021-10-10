@@ -643,7 +643,7 @@ lbl_8036CA6C:
 __sinit_enemyNestMgr_cpp:
 /* 8036CA88 003699C8  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game4Nest3MgrFv"
-"@4@__dt__Q34Game4Nest3MgrFv":
+.global $$24$$2__dt__Q34Game4Nest3MgrFv
+$$24$$2__dt__Q34Game4Nest3MgrFv:
 /* 8036CA8C 003699CC  38 63 FF FC */	addi r3, r3, -4
 /* 8036CA90 003699D0  4B FF FE 28 */	b __dt__Q34Game4Nest3MgrFv

@@ -12,12 +12,12 @@ __ct__Q26Screen9SceneBaseFv:
 /* 804517A8 0044E6E8  39 20 00 00 */	li r9, 0
 /* 804517AC 0044E6EC  38 C5 D6 80 */	addi r6, r5, lbl_804ED680@l
 /* 804517B0 0044E6F0  93 E1 00 2C */	stw r31, 0x2c(r1)
-/* 804517B4 0044E6F4  3C 80 80 4F */	lis r4, "__vt__36IDelegate1<PQ28Resource10MgrCommand>"@ha
-/* 804517B8 0044E6F8  38 A4 D6 E8 */	addi r5, r4, "__vt__36IDelegate1<PQ28Resource10MgrCommand>"@l
+/* 804517B4 0044E6F4  3C 80 80 4F */	lis r4, __vt__36IDelegate1$$0PQ28Resource10MgrCommand$$1@ha
+/* 804517B8 0044E6F8  38 A4 D6 E8 */	addi r5, r4, __vt__36IDelegate1$$0PQ28Resource10MgrCommand$$1@l
 /* 804517BC 0044E6FC  7C 7F 1B 78 */	mr r31, r3
 /* 804517C0 0044E700  90 03 00 00 */	stw r0, 0(r3)
-/* 804517C4 0044E704  3C 60 80 4F */	lis r3, "__vt__55Delegate1<Q26Screen9SceneBase,PQ28Resource10MgrCommand>"@ha
-/* 804517C8 0044E708  38 03 D6 DC */	addi r0, r3, "__vt__55Delegate1<Q26Screen9SceneBase,PQ28Resource10MgrCommand>"@l
+/* 804517C4 0044E704  3C 60 80 4F */	lis r3, __vt__55Delegate1$$0Q26Screen9SceneBase$$4PQ28Resource10MgrCommand$$1@ha
+/* 804517C8 0044E708  38 03 D6 DC */	addi r0, r3, __vt__55Delegate1$$0Q26Screen9SceneBase$$4PQ28Resource10MgrCommand$$1@l
 /* 804517CC 0044E70C  38 82 28 10 */	addi r4, r2, lbl_80520B70@sda21
 /* 804517D0 0044E710  91 3F 01 04 */	stw r9, 0x104(r31)
 /* 804517D4 0044E714  38 7F 01 28 */	addi r3, r31, 0x128
@@ -839,8 +839,8 @@ setColorBG__Q26Screen3MgrFRQ28JUtility6TColor:
 setBGMode__Q26Screen3MgrFi:
 /* 804522CC 0044F20C  4E 80 00 20 */	blr 
 
-.global "invoke__55Delegate1<Q26Screen9SceneBase,PQ28Resource10MgrCommand>FPQ28Resource10MgrCommand"
-"invoke__55Delegate1<Q26Screen9SceneBase,PQ28Resource10MgrCommand>FPQ28Resource10MgrCommand":
+.global invoke__55Delegate1$$0Q26Screen9SceneBase$$4PQ28Resource10MgrCommand$$1FPQ28Resource10MgrCommand
+invoke__55Delegate1$$0Q26Screen9SceneBase$$4PQ28Resource10MgrCommand$$1FPQ28Resource10MgrCommand:
 /* 804522D0 0044F210  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804522D4 0044F214  7C 08 02 A6 */	mflr r0
 /* 804522D8 0044F218  7C 65 1B 78 */	mr r5, r3

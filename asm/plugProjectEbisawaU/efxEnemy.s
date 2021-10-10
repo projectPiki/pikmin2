@@ -410,7 +410,7 @@ lbl_803B3324:
 /* 803B3324 003B0264  C3 FE 00 10 */	lfs f31, 0x10(r30)
 /* 803B3328 003B0268  7F A3 EB 78 */	mr r3, r29
 /* 803B332C 003B026C  7F C4 F3 78 */	mr r4, r30
-/* 803B3330 003B0270  4B FF F5 E9 */	bl "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
+/* 803B3330 003B0270  4B FF F5 E9 */	bl create__Q23efx29TSyncGroup2$$0Q23efx9TChasePos$$1FPQ23efx3Arg
 /* 803B3334 003B0274  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803B3338 003B0278  41 82 00 3C */	beq lbl_803B3374
 /* 803B333C 003B027C  80 9D 00 0C */	lwz r4, 0xc(r29)
@@ -474,7 +474,7 @@ lbl_803B340C:
 /* 803B340C 003B034C  C3 FE 00 10 */	lfs f31, 0x10(r30)
 /* 803B3410 003B0350  7F A3 EB 78 */	mr r3, r29
 /* 803B3414 003B0354  7F C4 F3 78 */	mr r4, r30
-/* 803B3418 003B0358  4B FF E7 FD */	bl "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+/* 803B3418 003B0358  4B FF E7 FD */	bl create__Q23efx34TSyncGroup3$$0Q23efx13TChasePosYRot$$1FPQ23efx3Arg
 /* 803B341C 003B035C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803B3420 003B0360  41 82 00 54 */	beq lbl_803B3474
 /* 803B3424 003B0364  80 9D 00 0C */	lwz r4, 0xc(r29)
@@ -602,7 +602,7 @@ lbl_803B35DC:
 /* 803B35DC 003B051C  C3 FE 00 10 */	lfs f31, 0x10(r30)
 /* 803B35E0 003B0520  7F A3 EB 78 */	mr r3, r29
 /* 803B35E4 003B0524  7F C4 F3 78 */	mr r4, r30
-/* 803B35E8 003B0528  4B FF ED 9D */	bl "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+/* 803B35E8 003B0528  4B FF ED 9D */	bl create__Q23efx34TSyncGroup2$$0Q23efx13TChasePosYRot$$1FPQ23efx3Arg
 /* 803B35EC 003B052C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803B35F0 003B0530  41 82 00 3C */	beq lbl_803B362C
 /* 803B35F4 003B0534  80 9D 00 0C */	lwz r4, 0xc(r29)
@@ -871,8 +871,8 @@ lbl_803B3978:
 /* 803B3994 003B08D4  38 21 00 30 */	addi r1, r1, 0x30
 /* 803B3998 003B08D8  4E 80 00 20 */	blr 
 
-.global "setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3<f>"
-"setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3<f>":
+.global setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3$$0f$$1
+setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3$$0f$$1:
 /* 803B399C 003B08DC  80 A3 00 0C */	lwz r5, 0xc(r3)
 /* 803B39A0 003B08E0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 803B39A4 003B08E4  28 05 00 00 */	cmplwi r5, 0
@@ -909,8 +909,8 @@ lbl_803B39FC:
 /* 803B3A08 003B0948  B0 85 00 52 */	sth r4, 0x52(r5)
 /* 803B3A0C 003B094C  4E 80 00 20 */	blr 
 
-.global "setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3<f>"
-"setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3<f>":
+.global setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3$$0f$$1
+setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3$$0f$$1:
 /* 803B3A10 003B0950  80 A3 00 0C */	lwz r5, 0xc(r3)
 /* 803B3A14 003B0954  C0 04 00 00 */	lfs f0, 0(r4)
 /* 803B3A18 003B0958  28 05 00 00 */	cmplwi r5, 0
@@ -1063,8 +1063,8 @@ lbl_803B3BD8:
 /* 803B3BE4 003B0B24  D0 24 00 40 */	stfs f1, 0x40(r4)
 /* 803B3BE8 003B0B28  4E 80 00 20 */	blr 
 
-.global "setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3<f>"
-"setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3<f>":
+.global setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3$$0f$$1
+setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3$$0f$$1:
 /* 803B3BEC 003B0B2C  80 A3 00 20 */	lwz r5, 0x20(r3)
 /* 803B3BF0 003B0B30  28 05 00 00 */	cmplwi r5, 0
 /* 803B3BF4 003B0B34  41 82 00 1C */	beq lbl_803B3C10
@@ -1437,7 +1437,7 @@ lbl_803B4118:
 /* 803B411C 003B105C  38 61 00 14 */	addi r3, r1, 0x14
 /* 803B4120 003B1060  38 85 00 68 */	addi r4, r5, 0x68
 /* 803B4124 003B1064  38 A5 00 A4 */	addi r5, r5, 0xa4
-/* 803B4128 003B1068  4B CD FB F5 */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
+/* 803B4128 003B1068  4B CD FB F5 */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
 /* 803B412C 003B106C  3B DE 00 01 */	addi r30, r30, 1
 /* 803B4130 003B1070  3B FF 00 04 */	addi r31, r31, 4
 /* 803B4134 003B1074  2C 1E 00 02 */	cmpwi r30, 2
@@ -1724,7 +1724,7 @@ create__Q23efx12TTankFireABCFPQ23efx3Arg:
 /* 803B4530 003B1470  7F C3 F3 78 */	mr r3, r30
 /* 803B4534 003B1474  7F E4 FB 78 */	mr r4, r31
 /* 803B4538 003B1478  D0 1E 00 44 */	stfs f0, 0x44(r30)
-/* 803B453C 003B147C  4B FF D8 B5 */	bl "create__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>FPQ23efx3Arg"
+/* 803B453C 003B147C  4B FF D8 B5 */	bl create__Q23efx29TSyncGroup3$$0Q23efx9TChaseMtx$$1FPQ23efx3Arg
 /* 803B4540 003B1480  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803B4544 003B1484  41 82 00 20 */	beq lbl_803B4564
 /* 803B4548 003B1488  80 7E 00 0C */	lwz r3, 0xc(r30)
@@ -1822,7 +1822,7 @@ create__Q23efx8TTankWatFPQ23efx3Arg:
 /* 803B4688 003B15C8  7F C3 F3 78 */	mr r3, r30
 /* 803B468C 003B15CC  7F E4 FB 78 */	mr r4, r31
 /* 803B4690 003B15D0  D0 1E 00 58 */	stfs f0, 0x58(r30)
-/* 803B4694 003B15D4  4B FF CC 35 */	bl "create__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>FPQ23efx3Arg"
+/* 803B4694 003B15D4  4B FF CC 35 */	bl create__Q23efx29TSyncGroup4$$0Q23efx9TChaseMtx$$1FPQ23efx3Arg
 /* 803B4698 003B15D8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803B469C 003B15DC  41 82 00 28 */	beq lbl_803B46C4
 /* 803B46A0 003B15E0  80 7E 00 0C */	lwz r3, 0xc(r30)
@@ -1891,11 +1891,11 @@ lbl_803B474C:
 /* 803B4784 003B16C4  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 803B4788 003B16C8  C0 06 00 08 */	lfs f0, 8(r6)
 /* 803B478C 003B16CC  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 803B4790 003B16D0  4B FF B4 F1 */	bl "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
+/* 803B4790 003B16D0  4B FF B4 F1 */	bl makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 803B4794 003B16D4  38 61 00 2C */	addi r3, r1, 0x2c
 /* 803B4798 003B16D8  38 9F 00 68 */	addi r4, r31, 0x68
 /* 803B479C 003B16DC  38 BF 00 A4 */	addi r5, r31, 0xa4
-/* 803B47A0 003B16E0  4B CD F5 7D */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
+/* 803B47A0 003B16E0  4B CD F5 7D */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
 /* 803B47A4 003B16E4  80 9E 00 14 */	lwz r4, 0x14(r30)
 /* 803B47A8 003B16E8  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 803B47AC 003B16EC  C0 04 00 04 */	lfs f0, 4(r4)
@@ -1988,11 +1988,11 @@ lbl_803B48B4:
 /* 803B48EC 003B182C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 803B48F0 003B1830  C0 06 00 08 */	lfs f0, 8(r6)
 /* 803B48F4 003B1834  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 803B48F8 003B1838  4B FF B3 89 */	bl "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
+/* 803B48F8 003B1838  4B FF B3 89 */	bl makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 803B48FC 003B183C  38 61 00 2C */	addi r3, r1, 0x2c
 /* 803B4900 003B1840  38 9F 00 68 */	addi r4, r31, 0x68
 /* 803B4904 003B1844  38 BF 00 A4 */	addi r5, r31, 0xa4
-/* 803B4908 003B1848  4B CD F4 15 */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
+/* 803B4908 003B1848  4B CD F4 15 */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
 /* 803B490C 003B184C  80 9E 00 14 */	lwz r4, 0x14(r30)
 /* 803B4910 003B1850  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 803B4914 003B1854  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2144,7 +2144,7 @@ lbl_803B4B18:
 /* 803B4B24 003B1A64  B0 1D 00 20 */	sth r0, 0x20(r29)
 lbl_803B4B28:
 /* 803B4B28 003B1A68  7F A3 EB 78 */	mr r3, r29
-/* 803B4B2C 003B1A6C  4B FF DF C9 */	bl "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
+/* 803B4B2C 003B1A6C  4B FF DF C9 */	bl create__Q23efx28TSyncGroup2$$0Q23efx8TForever$$1FPQ23efx3Arg
 /* 803B4B30 003B1A70  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 803B4B34 003B1A74  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 803B4B38 003B1A78  83 C1 00 18 */	lwz r30, 0x18(r1)
@@ -2229,13 +2229,13 @@ lbl_803B4C24:
 /* 803B4C50 003B1B90  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 803B4C54 003B1B94  C0 1B 00 24 */	lfs f0, 0x24(r27)
 /* 803B4C58 003B1B98  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 803B4C5C 003B1B9C  4B FF D5 4D */	bl "create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg"
+/* 803B4C5C 003B1B9C  4B FF D5 4D */	bl create__Q23efx28TSyncGroup3$$0Q23efx8TForever$$1FPQ23efx3Arg
 /* 803B4C60 003B1BA0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803B4C64 003B1BA4  41 82 01 60 */	beq lbl_803B4DC4
 /* 803B4C68 003B1BA8  38 61 00 38 */	addi r3, r1, 0x38
 /* 803B4C6C 003B1BAC  38 81 00 2C */	addi r4, r1, 0x2c
 /* 803B4C70 003B1BB0  38 A1 00 20 */	addi r5, r1, 0x20
-/* 803B4C74 003B1BB4  4B FF B0 0D */	bl "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
+/* 803B4C74 003B1BB4  4B FF B0 0D */	bl makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3$$0f$$1R10Vector3$$0f$$1
 /* 803B4C78 003B1BB8  3B 80 00 00 */	li r28, 0
 /* 803B4C7C 003B1BBC  7F FD FB 78 */	mr r29, r31
 lbl_803B4C80:
@@ -2245,7 +2245,7 @@ lbl_803B4C80:
 /* 803B4C8C 003B1BCC  38 61 00 38 */	addi r3, r1, 0x38
 /* 803B4C90 003B1BD0  38 9E 00 68 */	addi r4, r30, 0x68
 /* 803B4C94 003B1BD4  38 BE 00 A4 */	addi r5, r30, 0xa4
-/* 803B4C98 003B1BD8  4B CD F0 85 */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
+/* 803B4C98 003B1BD8  4B CD F0 85 */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
 /* 803B4C9C 003B1BDC  80 1B 00 28 */	lwz r0, 0x28(r27)
 /* 803B4CA0 003B1BE0  2C 00 00 01 */	cmpwi r0, 1
 /* 803B4CA4 003B1BE4  40 82 00 28 */	bne lbl_803B4CCC
@@ -2642,7 +2642,7 @@ forceKill__Q23efx8TTankWatFv:
 /* 803B5250 003B2190  90 01 00 14 */	stw r0, 0x14(r1)
 /* 803B5254 003B2194  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803B5258 003B2198  7C 7F 1B 78 */	mr r31, r3
-/* 803B525C 003B219C  4B FF C1 41 */	bl "forceKill__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
+/* 803B525C 003B219C  4B FF C1 41 */	bl forceKill__Q23efx29TSyncGroup4$$0Q23efx9TChaseMtx$$1Fv
 /* 803B5260 003B21A0  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 803B5264 003B21A4  28 03 00 00 */	cmplwi r3, 0
 /* 803B5268 003B21A8  41 82 00 14 */	beq lbl_803B527C
@@ -2687,7 +2687,7 @@ forceKill__Q23efx12TTankFireABCFv:
 /* 803B52E8 003B2228  90 01 00 14 */	stw r0, 0x14(r1)
 /* 803B52EC 003B222C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803B52F0 003B2230  7C 7F 1B 78 */	mr r31, r3
-/* 803B52F4 003B2234  4B FF CB D1 */	bl "forceKill__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
+/* 803B52F4 003B2234  4B FF CB D1 */	bl forceKill__Q23efx29TSyncGroup3$$0Q23efx9TChaseMtx$$1Fv
 /* 803B52F8 003B2238  80 7F 00 48 */	lwz r3, 0x48(r31)
 /* 803B52FC 003B223C  28 03 00 00 */	cmplwi r3, 0
 /* 803B5300 003B2240  41 82 00 14 */	beq lbl_803B5314
@@ -3010,52 +3010,52 @@ lbl_803B5750:
 /* 803B5764 003B26A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B5768 003B26A8  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q23efx9TChouDownFv"
-"@4@__dt__Q23efx9TChouDownFv":
+.global $$24$$2__dt__Q23efx9TChouDownFv
+$$24$$2__dt__Q23efx9TChouDownFv:
 /* 803B576C 003B26AC  38 63 FF FC */	addi r3, r3, -4
 /* 803B5770 003B26B0  4B FF FF 60 */	b __dt__Q23efx9TChouDownFv
 
-.global "@4@__dt__Q23efx8TJgmBackFv"
-"@4@__dt__Q23efx8TJgmBackFv":
+.global $$24$$2__dt__Q23efx8TJgmBackFv
+$$24$$2__dt__Q23efx8TJgmBackFv:
 /* 803B5774 003B26B4  38 63 FF FC */	addi r3, r3, -4
 /* 803B5778 003B26B8  4B FF FE BC */	b __dt__Q23efx8TJgmBackFv
 
-.global "@4@__dt__Q23efx7TImoEatFv"
-"@4@__dt__Q23efx7TImoEatFv":
+.global $$24$$2__dt__Q23efx7TImoEatFv
+$$24$$2__dt__Q23efx7TImoEatFv:
 /* 803B577C 003B26BC  38 63 FF FC */	addi r3, r3, -4
 /* 803B5780 003B26C0  4B FF FE 18 */	b __dt__Q23efx7TImoEatFv
 
-.global "@4@__dt__Q23efx9TImoSmokeFv"
-"@4@__dt__Q23efx9TImoSmokeFv":
+.global $$24$$2__dt__Q23efx9TImoSmokeFv
+$$24$$2__dt__Q23efx9TImoSmokeFv:
 /* 803B5784 003B26C4  38 63 FF FC */	addi r3, r3, -4
 /* 803B5788 003B26C8  4B FF FD 74 */	b __dt__Q23efx9TImoSmokeFv
 
-.global "@4@__dt__Q23efx8TPanHideFv"
-"@4@__dt__Q23efx8TPanHideFv":
+.global $$24$$2__dt__Q23efx8TPanHideFv
+$$24$$2__dt__Q23efx8TPanHideFv:
 /* 803B578C 003B26CC  38 63 FF FC */	addi r3, r3, -4
 /* 803B5790 003B26D0  4B FF FC D0 */	b __dt__Q23efx8TPanHideFv
 
-.global "@4@__dt__Q23efx9TPanSmokeFv"
-"@4@__dt__Q23efx9TPanSmokeFv":
+.global $$24$$2__dt__Q23efx9TPanSmokeFv
+$$24$$2__dt__Q23efx9TPanSmokeFv:
 /* 803B5794 003B26D4  38 63 FF FC */	addi r3, r3, -4
 /* 803B5798 003B26D8  4B FF FC 2C */	b __dt__Q23efx9TPanSmokeFv
 
-.global "@4@__dt__Q23efx14TBabaFly_ver01Fv"
-"@4@__dt__Q23efx14TBabaFly_ver01Fv":
+.global $$24$$2__dt__Q23efx14TBabaFly_ver01Fv
+$$24$$2__dt__Q23efx14TBabaFly_ver01Fv:
 /* 803B579C 003B26DC  38 63 FF FC */	addi r3, r3, -4
 /* 803B57A0 003B26E0  4B FF FB 88 */	b __dt__Q23efx14TBabaFly_ver01Fv
 
-.global "@4@__dt__Q23efx12TTankFireINDFv"
-"@4@__dt__Q23efx12TTankFireINDFv":
+.global $$24$$2__dt__Q23efx12TTankFireINDFv
+$$24$$2__dt__Q23efx12TTankFireINDFv:
 /* 803B57A4 003B26E4  38 63 FF FC */	addi r3, r3, -4
 /* 803B57A8 003B26E8  4B EE 92 04 */	b __dt__Q23efx12TTankFireINDFv
 
-.global "@4@__dt__Q23efx14TDnkmsThunderAFv"
-"@4@__dt__Q23efx14TDnkmsThunderAFv":
+.global $$24$$2__dt__Q23efx14TDnkmsThunderAFv
+$$24$$2__dt__Q23efx14TDnkmsThunderAFv:
 /* 803B57AC 003B26EC  38 63 FF FC */	addi r3, r3, -4
 /* 803B57B0 003B26F0  4B EC 62 E4 */	b __dt__Q23efx14TDnkmsThunderAFv
 
-.global "@4@__dt__Q23efx14TDnkmsThunderBFv"
-"@4@__dt__Q23efx14TDnkmsThunderBFv":
+.global $$24$$2__dt__Q23efx14TDnkmsThunderBFv
+$$24$$2__dt__Q23efx14TDnkmsThunderBFv:
 /* 803B57B4 003B26F4  38 63 FF FC */	addi r3, r3, -4
 /* 803B57B8 003B26F8  4B EC 62 58 */	b __dt__Q23efx14TDnkmsThunderBFv

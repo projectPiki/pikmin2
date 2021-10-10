@@ -63,17 +63,17 @@ __ct__11ParticleMgrFv:
 /* 803BB02C 003B7F6C  7F C3 F3 78 */	mr r3, r30
 /* 803BB030 003B7F70  48 05 63 61 */	bl __ct__5CNodeFv
 /* 803BB034 003B7F74  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 803BB038 003B7F78  3C 60 80 4E */	lis r3, "__vt__24Container<11ModelEffect>"@ha
+/* 803BB038 003B7F78  3C 60 80 4E */	lis r3, __vt__24Container$$011ModelEffect$$1@ha
 /* 803BB03C 003B7F7C  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 803BB040 003B7F80  3C A0 80 4B */	lis r5, __vt__16GenericObjectMgr@ha
 /* 803BB044 003B7F84  90 1E 00 00 */	stw r0, 0(r30)
-/* 803BB048 003B7F88  38 03 77 E4 */	addi r0, r3, "__vt__24Container<11ModelEffect>"@l
-/* 803BB04C 003B7F8C  3C 80 80 4E */	lis r4, "__vt__24ObjectMgr<11ModelEffect>"@ha
-/* 803BB050 003B7F90  3C 60 80 4E */	lis r3, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
+/* 803BB048 003B7F88  38 03 77 E4 */	addi r0, r3, __vt__24Container$$011ModelEffect$$1@l
+/* 803BB04C 003B7F8C  3C 80 80 4E */	lis r4, __vt__24ObjectMgr$$011ModelEffect$$1@ha
+/* 803BB050 003B7F90  3C 60 80 4E */	lis r3, __vt__28NodeObjectMgr$$011ModelEffect$$1@ha
 /* 803BB054 003B7F94  90 1E 00 00 */	stw r0, 0(r30)
 /* 803BB058 003B7F98  38 00 00 00 */	li r0, 0
-/* 803BB05C 003B7F9C  38 C4 77 68 */	addi r6, r4, "__vt__24ObjectMgr<11ModelEffect>"@l
-/* 803BB060 003B7FA0  38 83 76 E8 */	addi r4, r3, "__vt__28NodeObjectMgr<11ModelEffect>"@l
+/* 803BB05C 003B7F9C  38 C4 77 68 */	addi r6, r4, __vt__24ObjectMgr$$011ModelEffect$$1@l
+/* 803BB060 003B7FA0  38 83 76 E8 */	addi r4, r3, __vt__28NodeObjectMgr$$011ModelEffect$$1@l
 /* 803BB064 003B7FA4  98 1E 00 18 */	stb r0, 0x18(r30)
 /* 803BB068 003B7FA8  38 05 B5 F0 */	addi r0, r5, __vt__16GenericObjectMgr@l
 /* 803BB06C 003B7FAC  3B BE 00 20 */	addi r29, r30, 0x20
@@ -86,9 +86,9 @@ __ct__11ParticleMgrFv:
 /* 803BB088 003B7FC8  90 9E 00 00 */	stw r4, 0(r30)
 /* 803BB08C 003B7FCC  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 803BB090 003B7FD0  48 05 63 01 */	bl __ct__5CNodeFv
-/* 803BB094 003B7FD4  3C 60 80 4E */	lis r3, "__vt__26TObjectNode<11ModelEffect>"@ha
+/* 803BB094 003B7FD4  3C 60 80 4E */	lis r3, __vt__26TObjectNode$$011ModelEffect$$1@ha
 /* 803BB098 003B7FD8  3B DF 00 60 */	addi r30, r31, 0x60
-/* 803BB09C 003B7FDC  38 03 76 D8 */	addi r0, r3, "__vt__26TObjectNode<11ModelEffect>"@l
+/* 803BB09C 003B7FDC  38 03 76 D8 */	addi r0, r3, __vt__26TObjectNode$$011ModelEffect$$1@l
 /* 803BB0A0 003B7FE0  90 1D 00 00 */	stw r0, 0(r29)
 /* 803BB0A4 003B7FE4  7F C3 F3 78 */	mr r3, r30
 /* 803BB0A8 003B7FE8  48 05 62 E9 */	bl __ct__5CNodeFv
@@ -151,8 +151,8 @@ lbl_803BB164:
 /* 803BB178 003B80B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB17C 003B80BC  4E 80 00 20 */	blr 
 
-.global "__dt__28NodeObjectMgr<11ModelEffect>Fv"
-"__dt__28NodeObjectMgr<11ModelEffect>Fv":
+.global __dt__28NodeObjectMgr$$011ModelEffect$$1Fv
+__dt__28NodeObjectMgr$$011ModelEffect$$1Fv:
 /* 803BB180 003B80C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB184 003B80C4  7C 08 02 A6 */	mflr r0
 /* 803BB188 003B80C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -161,30 +161,30 @@ lbl_803BB164:
 /* 803BB194 003B80D4  93 C1 00 08 */	stw r30, 8(r1)
 /* 803BB198 003B80D8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 803BB19C 003B80DC  41 82 00 90 */	beq lbl_803BB22C
-/* 803BB1A0 003B80E0  3C 60 80 4E */	lis r3, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
+/* 803BB1A0 003B80E0  3C 60 80 4E */	lis r3, __vt__28NodeObjectMgr$$011ModelEffect$$1@ha
 /* 803BB1A4 003B80E4  34 1E 00 20 */	addic. r0, r30, 0x20
-/* 803BB1A8 003B80E8  38 63 76 E8 */	addi r3, r3, "__vt__28NodeObjectMgr<11ModelEffect>"@l
+/* 803BB1A8 003B80E8  38 63 76 E8 */	addi r3, r3, __vt__28NodeObjectMgr$$011ModelEffect$$1@l
 /* 803BB1AC 003B80EC  90 7E 00 00 */	stw r3, 0(r30)
 /* 803BB1B0 003B80F0  38 03 00 2C */	addi r0, r3, 0x2c
 /* 803BB1B4 003B80F4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 803BB1B8 003B80F8  41 82 00 1C */	beq lbl_803BB1D4
-/* 803BB1BC 003B80FC  3C 80 80 4E */	lis r4, "__vt__26TObjectNode<11ModelEffect>"@ha
+/* 803BB1BC 003B80FC  3C 80 80 4E */	lis r4, __vt__26TObjectNode$$011ModelEffect$$1@ha
 /* 803BB1C0 003B8100  38 7E 00 20 */	addi r3, r30, 0x20
-/* 803BB1C4 003B8104  38 04 76 D8 */	addi r0, r4, "__vt__26TObjectNode<11ModelEffect>"@l
+/* 803BB1C4 003B8104  38 04 76 D8 */	addi r0, r4, __vt__26TObjectNode$$011ModelEffect$$1@l
 /* 803BB1C8 003B8108  38 80 00 00 */	li r4, 0
 /* 803BB1CC 003B810C  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 803BB1D0 003B8110  48 05 63 B9 */	bl __dt__5CNodeFv
 lbl_803BB1D4:
 /* 803BB1D4 003B8114  28 1E 00 00 */	cmplwi r30, 0
 /* 803BB1D8 003B8118  41 82 00 44 */	beq lbl_803BB21C
-/* 803BB1DC 003B811C  3C 60 80 4E */	lis r3, "__vt__24ObjectMgr<11ModelEffect>"@ha
-/* 803BB1E0 003B8120  38 63 77 68 */	addi r3, r3, "__vt__24ObjectMgr<11ModelEffect>"@l
+/* 803BB1DC 003B811C  3C 60 80 4E */	lis r3, __vt__24ObjectMgr$$011ModelEffect$$1@ha
+/* 803BB1E0 003B8120  38 63 77 68 */	addi r3, r3, __vt__24ObjectMgr$$011ModelEffect$$1@l
 /* 803BB1E4 003B8124  90 7E 00 00 */	stw r3, 0(r30)
 /* 803BB1E8 003B8128  38 03 00 2C */	addi r0, r3, 0x2c
 /* 803BB1EC 003B812C  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 803BB1F0 003B8130  41 82 00 2C */	beq lbl_803BB21C
-/* 803BB1F4 003B8134  3C 60 80 4E */	lis r3, "__vt__24Container<11ModelEffect>"@ha
-/* 803BB1F8 003B8138  38 03 77 E4 */	addi r0, r3, "__vt__24Container<11ModelEffect>"@l
+/* 803BB1F4 003B8134  3C 60 80 4E */	lis r3, __vt__24Container$$011ModelEffect$$1@ha
+/* 803BB1F8 003B8138  38 03 77 E4 */	addi r0, r3, __vt__24Container$$011ModelEffect$$1@l
 /* 803BB1FC 003B813C  90 1E 00 00 */	stw r0, 0(r30)
 /* 803BB200 003B8140  41 82 00 1C */	beq lbl_803BB21C
 /* 803BB204 003B8144  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -207,8 +207,8 @@ lbl_803BB22C:
 /* 803BB240 003B8180  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB244 003B8184  4E 80 00 20 */	blr 
 
-.global "__dt__26TObjectNode<11ModelEffect>Fv"
-"__dt__26TObjectNode<11ModelEffect>Fv":
+.global __dt__26TObjectNode$$011ModelEffect$$1Fv
+__dt__26TObjectNode$$011ModelEffect$$1Fv:
 /* 803BB248 003B8188  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB24C 003B818C  7C 08 02 A6 */	mflr r0
 /* 803BB250 003B8190  90 01 00 14 */	stw r0, 0x14(r1)
@@ -217,9 +217,9 @@ lbl_803BB22C:
 /* 803BB25C 003B819C  93 C1 00 08 */	stw r30, 8(r1)
 /* 803BB260 003B81A0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 803BB264 003B81A4  41 82 00 28 */	beq lbl_803BB28C
-/* 803BB268 003B81A8  3C A0 80 4E */	lis r5, "__vt__26TObjectNode<11ModelEffect>"@ha
+/* 803BB268 003B81A8  3C A0 80 4E */	lis r5, __vt__26TObjectNode$$011ModelEffect$$1@ha
 /* 803BB26C 003B81AC  38 80 00 00 */	li r4, 0
-/* 803BB270 003B81B0  38 05 76 D8 */	addi r0, r5, "__vt__26TObjectNode<11ModelEffect>"@l
+/* 803BB270 003B81B0  38 05 76 D8 */	addi r0, r5, __vt__26TObjectNode$$011ModelEffect$$1@l
 /* 803BB274 003B81B4  90 1E 00 00 */	stw r0, 0(r30)
 /* 803BB278 003B81B8  48 05 63 11 */	bl __dt__5CNodeFv
 /* 803BB27C 003B81BC  7F E0 07 35 */	extsh. r0, r31
@@ -235,8 +235,8 @@ lbl_803BB28C:
 /* 803BB2A0 003B81E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB2A4 003B81E4  4E 80 00 20 */	blr 
 
-.global "__dt__24ObjectMgr<11ModelEffect>Fv"
-"__dt__24ObjectMgr<11ModelEffect>Fv":
+.global __dt__24ObjectMgr$$011ModelEffect$$1Fv
+__dt__24ObjectMgr$$011ModelEffect$$1Fv:
 /* 803BB2A8 003B81E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB2AC 003B81EC  7C 08 02 A6 */	mflr r0
 /* 803BB2B0 003B81F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -245,14 +245,14 @@ lbl_803BB28C:
 /* 803BB2BC 003B81FC  93 C1 00 08 */	stw r30, 8(r1)
 /* 803BB2C0 003B8200  7C 7E 1B 79 */	or. r30, r3, r3
 /* 803BB2C4 003B8204  41 82 00 50 */	beq lbl_803BB314
-/* 803BB2C8 003B8208  3C 80 80 4E */	lis r4, "__vt__24ObjectMgr<11ModelEffect>"@ha
-/* 803BB2CC 003B820C  38 84 77 68 */	addi r4, r4, "__vt__24ObjectMgr<11ModelEffect>"@l
+/* 803BB2C8 003B8208  3C 80 80 4E */	lis r4, __vt__24ObjectMgr$$011ModelEffect$$1@ha
+/* 803BB2CC 003B820C  38 84 77 68 */	addi r4, r4, __vt__24ObjectMgr$$011ModelEffect$$1@l
 /* 803BB2D0 003B8210  90 9E 00 00 */	stw r4, 0(r30)
 /* 803BB2D4 003B8214  38 04 00 2C */	addi r0, r4, 0x2c
 /* 803BB2D8 003B8218  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 803BB2DC 003B821C  41 82 00 28 */	beq lbl_803BB304
-/* 803BB2E0 003B8220  3C 80 80 4E */	lis r4, "__vt__24Container<11ModelEffect>"@ha
-/* 803BB2E4 003B8224  38 04 77 E4 */	addi r0, r4, "__vt__24Container<11ModelEffect>"@l
+/* 803BB2E0 003B8220  3C 80 80 4E */	lis r4, __vt__24Container$$011ModelEffect$$1@ha
+/* 803BB2E4 003B8224  38 04 77 E4 */	addi r0, r4, __vt__24Container$$011ModelEffect$$1@l
 /* 803BB2E8 003B8228  90 1E 00 00 */	stw r0, 0(r30)
 /* 803BB2EC 003B822C  41 82 00 18 */	beq lbl_803BB304
 /* 803BB2F0 003B8230  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -274,8 +274,8 @@ lbl_803BB314:
 /* 803BB328 003B8268  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BB32C 003B826C  4E 80 00 20 */	blr 
 
-.global "__dt__24Container<11ModelEffect>Fv"
-"__dt__24Container<11ModelEffect>Fv":
+.global __dt__24Container$$011ModelEffect$$1Fv
+__dt__24Container$$011ModelEffect$$1Fv:
 /* 803BB330 003B8270  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB334 003B8274  7C 08 02 A6 */	mflr r0
 /* 803BB338 003B8278  90 01 00 14 */	stw r0, 0x14(r1)
@@ -284,8 +284,8 @@ lbl_803BB314:
 /* 803BB344 003B8284  93 C1 00 08 */	stw r30, 8(r1)
 /* 803BB348 003B8288  7C 7E 1B 79 */	or. r30, r3, r3
 /* 803BB34C 003B828C  41 82 00 38 */	beq lbl_803BB384
-/* 803BB350 003B8290  3C 80 80 4E */	lis r4, "__vt__24Container<11ModelEffect>"@ha
-/* 803BB354 003B8294  38 04 77 E4 */	addi r0, r4, "__vt__24Container<11ModelEffect>"@l
+/* 803BB350 003B8290  3C 80 80 4E */	lis r4, __vt__24Container$$011ModelEffect$$1@ha
+/* 803BB354 003B8294  38 04 77 E4 */	addi r0, r4, __vt__24Container$$011ModelEffect$$1@l
 /* 803BB358 003B8298  90 1E 00 00 */	stw r0, 0(r30)
 /* 803BB35C 003B829C  41 82 00 18 */	beq lbl_803BB374
 /* 803BB360 003B82A0  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -339,31 +339,31 @@ __dt__11ParticleMgrFv:
 lbl_803BB40C:
 /* 803BB40C 003B834C  34 1E 00 1C */	addic. r0, r30, 0x1c
 /* 803BB410 003B8350  41 82 00 84 */	beq lbl_803BB494
-/* 803BB414 003B8354  3C 80 80 4E */	lis r4, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
+/* 803BB414 003B8354  3C 80 80 4E */	lis r4, __vt__28NodeObjectMgr$$011ModelEffect$$1@ha
 /* 803BB418 003B8358  34 7E 00 3C */	addic. r3, r30, 0x3c
-/* 803BB41C 003B835C  38 84 76 E8 */	addi r4, r4, "__vt__28NodeObjectMgr<11ModelEffect>"@l
+/* 803BB41C 003B835C  38 84 76 E8 */	addi r4, r4, __vt__28NodeObjectMgr$$011ModelEffect$$1@l
 /* 803BB420 003B8360  90 9E 00 1C */	stw r4, 0x1c(r30)
 /* 803BB424 003B8364  38 04 00 2C */	addi r0, r4, 0x2c
 /* 803BB428 003B8368  90 1E 00 38 */	stw r0, 0x38(r30)
 /* 803BB42C 003B836C  41 82 00 18 */	beq lbl_803BB444
-/* 803BB430 003B8370  3C 80 80 4E */	lis r4, "__vt__26TObjectNode<11ModelEffect>"@ha
-/* 803BB434 003B8374  38 04 76 D8 */	addi r0, r4, "__vt__26TObjectNode<11ModelEffect>"@l
+/* 803BB430 003B8370  3C 80 80 4E */	lis r4, __vt__26TObjectNode$$011ModelEffect$$1@ha
+/* 803BB434 003B8374  38 04 76 D8 */	addi r0, r4, __vt__26TObjectNode$$011ModelEffect$$1@l
 /* 803BB438 003B8378  90 1E 00 3C */	stw r0, 0x3c(r30)
 /* 803BB43C 003B837C  38 80 00 00 */	li r4, 0
 /* 803BB440 003B8380  48 05 61 49 */	bl __dt__5CNodeFv
 lbl_803BB444:
 /* 803BB444 003B8384  34 1E 00 1C */	addic. r0, r30, 0x1c
 /* 803BB448 003B8388  41 82 00 4C */	beq lbl_803BB494
-/* 803BB44C 003B838C  3C 60 80 4E */	lis r3, "__vt__24ObjectMgr<11ModelEffect>"@ha
+/* 803BB44C 003B838C  3C 60 80 4E */	lis r3, __vt__24ObjectMgr$$011ModelEffect$$1@ha
 /* 803BB450 003B8390  34 1E 00 1C */	addic. r0, r30, 0x1c
-/* 803BB454 003B8394  38 63 77 68 */	addi r3, r3, "__vt__24ObjectMgr<11ModelEffect>"@l
+/* 803BB454 003B8394  38 63 77 68 */	addi r3, r3, __vt__24ObjectMgr$$011ModelEffect$$1@l
 /* 803BB458 003B8398  90 7E 00 1C */	stw r3, 0x1c(r30)
 /* 803BB45C 003B839C  38 03 00 2C */	addi r0, r3, 0x2c
 /* 803BB460 003B83A0  90 1E 00 38 */	stw r0, 0x38(r30)
 /* 803BB464 003B83A4  41 82 00 30 */	beq lbl_803BB494
-/* 803BB468 003B83A8  3C 60 80 4E */	lis r3, "__vt__24Container<11ModelEffect>"@ha
+/* 803BB468 003B83A8  3C 60 80 4E */	lis r3, __vt__24Container$$011ModelEffect$$1@ha
 /* 803BB46C 003B83AC  34 1E 00 1C */	addic. r0, r30, 0x1c
-/* 803BB470 003B83B0  38 03 77 E4 */	addi r0, r3, "__vt__24Container<11ModelEffect>"@l
+/* 803BB470 003B83B0  38 03 77 E4 */	addi r0, r3, __vt__24Container$$011ModelEffect$$1@l
 /* 803BB474 003B83B4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 803BB478 003B83B8  41 82 00 1C */	beq lbl_803BB494
 /* 803BB47C 003B83BC  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -681,8 +681,8 @@ draw__11ParticleMgrFP8ViewportUc:
 /* 803BB8AC 003B87EC  38 21 00 90 */	addi r1, r1, 0x90
 /* 803BB8B0 003B87F0  4E 80 00 20 */	blr 
 
-.global "create__11ParticleMgrFUsR10Vector3<f>Uc"
-"create__11ParticleMgrFUsR10Vector3<f>Uc":
+.global create__11ParticleMgrFUsR10Vector3$$0f$$1Uc
+create__11ParticleMgrFUsR10Vector3$$0f$$1Uc:
 /* 803BB8B4 003B87F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BB8B8 003B87F8  7C 08 02 A6 */	mflr r0
 /* 803BB8BC 003B87FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -722,7 +722,7 @@ lbl_803BB928:
 /* 803BB934 003B8874  7F E7 FB 78 */	mr r7, r31
 /* 803BB938 003B8878  39 00 00 00 */	li r8, 0
 /* 803BB93C 003B887C  39 20 00 00 */	li r9, 0
-/* 803BB940 003B8880  4B CD 4F 7D */	bl "createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
+/* 803BB940 003B8880  4B CD 4F 7D */	bl createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3$$0f$$1UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
 /* 803BB944 003B8884  7C 60 1B 78 */	mr r0, r3
 /* 803BB948 003B8888  7F 83 E3 78 */	mr r3, r28
 /* 803BB94C 003B888C  7C 1F 03 78 */	mr r31, r0
@@ -739,8 +739,8 @@ lbl_803BB95C:
 /* 803BB974 003B88B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BB978 003B88B8  4E 80 00 20 */	blr 
 
-.global "createDemo__11ParticleMgrFUsR10Vector3<f>UcUc"
-"createDemo__11ParticleMgrFUsR10Vector3<f>UcUc":
+.global createDemo__11ParticleMgrFUsR10Vector3$$0f$$1UcUc
+createDemo__11ParticleMgrFUsR10Vector3$$0f$$1UcUc:
 /* 803BB97C 003B88BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BB980 003B88C0  7C 08 02 A6 */	mflr r0
 /* 803BB984 003B88C4  39 00 00 00 */	li r8, 0
@@ -752,7 +752,7 @@ lbl_803BB95C:
 /* 803BB99C 003B88DC  7C 7F 1B 78 */	mr r31, r3
 /* 803BB9A0 003B88E0  7C 05 03 78 */	mr r5, r0
 /* 803BB9A4 003B88E4  80 63 00 98 */	lwz r3, 0x98(r3)
-/* 803BB9A8 003B88E8  4B CD 4F 15 */	bl "createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
+/* 803BB9A8 003B88E8  4B CD 4F 15 */	bl createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3$$0f$$1UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
 /* 803BB9AC 003B88EC  7C 60 1B 78 */	mr r0, r3
 /* 803BB9B0 003B88F0  7F E3 FB 78 */	mr r3, r31
 /* 803BB9B4 003B88F4  7C 1F 03 78 */	mr r31, r0
@@ -917,8 +917,8 @@ lbl_803BBBA8:
 /* 803BBBC8 003B8B08  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BBBCC 003B8B0C  4E 80 00 20 */	blr 
 
-.global "cullByResFlg__11ParticleMgrFR10Vector3<f>Us"
-"cullByResFlg__11ParticleMgrFR10Vector3<f>Us":
+.global cullByResFlg__11ParticleMgrFR10Vector3$$0f$$1Us
+cullByResFlg__11ParticleMgrFR10Vector3$$0f$$1Us:
 /* 803BBBD0 003B8B10  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803BBBD4 003B8B14  7C 08 02 A6 */	mflr r0
 /* 803BBBD8 003B8B18  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1127,28 +1127,28 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BBE70 003B8DB0  38 60 00 00 */	li r3, 0
 /* 803BBE74 003B8DB4  4E 80 00 20 */	blr 
 
-.global "get__28NodeObjectMgr<11ModelEffect>FPv"
-"get__28NodeObjectMgr<11ModelEffect>FPv":
+.global get__28NodeObjectMgr$$011ModelEffect$$1FPv
+get__28NodeObjectMgr$$011ModelEffect$$1FPv:
 /* 803BBE78 003B8DB8  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 803BBE7C 003B8DBC  4E 80 00 20 */	blr 
 
-.global "getNext__28NodeObjectMgr<11ModelEffect>FPv"
-"getNext__28NodeObjectMgr<11ModelEffect>FPv":
+.global getNext__28NodeObjectMgr$$011ModelEffect$$1FPv
+getNext__28NodeObjectMgr$$011ModelEffect$$1FPv:
 /* 803BBE80 003B8DC0  80 64 00 04 */	lwz r3, 4(r4)
 /* 803BBE84 003B8DC4  4E 80 00 20 */	blr 
 
-.global "getStart__28NodeObjectMgr<11ModelEffect>Fv"
-"getStart__28NodeObjectMgr<11ModelEffect>Fv":
+.global getStart__28NodeObjectMgr$$011ModelEffect$$1Fv
+getStart__28NodeObjectMgr$$011ModelEffect$$1Fv:
 /* 803BBE88 003B8DC8  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 803BBE8C 003B8DCC  4E 80 00 20 */	blr 
 
-.global "getEnd__28NodeObjectMgr<11ModelEffect>Fv"
-"getEnd__28NodeObjectMgr<11ModelEffect>Fv":
+.global getEnd__28NodeObjectMgr$$011ModelEffect$$1Fv
+getEnd__28NodeObjectMgr$$011ModelEffect$$1Fv:
 /* 803BBE90 003B8DD0  38 60 00 00 */	li r3, 0
 /* 803BBE94 003B8DD4  4E 80 00 20 */	blr 
 
-.global "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
-"resetMgr__28NodeObjectMgr<11ModelEffect>Fv":
+.global resetMgr__28NodeObjectMgr$$011ModelEffect$$1Fv
+resetMgr__28NodeObjectMgr$$011ModelEffect$$1Fv:
 /* 803BBE98 003B8DD8  38 00 00 00 */	li r0, 0
 /* 803BBE9C 003B8DDC  90 03 00 30 */	stw r0, 0x30(r3)
 /* 803BBEA0 003B8DE0  90 03 00 2C */	stw r0, 0x2c(r3)
@@ -1156,8 +1156,8 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BBEA8 003B8DE8  90 03 00 24 */	stw r0, 0x24(r3)
 /* 803BBEAC 003B8DEC  4E 80 00 20 */	blr 
 
-.global "getObject__24Container<11ModelEffect>FPv"
-"getObject__24Container<11ModelEffect>FPv":
+.global getObject__24Container$$011ModelEffect$$1FPv
+getObject__24Container$$011ModelEffect$$1FPv:
 /* 803BBEB0 003B8DF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BBEB4 003B8DF4  7C 08 02 A6 */	mflr r0
 /* 803BBEB8 003B8DF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1170,24 +1170,24 @@ onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg:
 /* 803BBED4 003B8E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BBED8 003B8E18  4E 80 00 20 */	blr 
 
-.global "getAt__24Container<11ModelEffect>Fi"
-"getAt__24Container<11ModelEffect>Fi":
+.global getAt__24Container$$011ModelEffect$$1Fi
+getAt__24Container$$011ModelEffect$$1Fi:
 /* 803BBEDC 003B8E1C  38 60 00 00 */	li r3, 0
 /* 803BBEE0 003B8E20  4E 80 00 20 */	blr 
 
-.global "getTo__24Container<11ModelEffect>Fv"
-"getTo__24Container<11ModelEffect>Fv":
+.global getTo__24Container$$011ModelEffect$$1Fv
+getTo__24Container$$011ModelEffect$$1Fv:
 /* 803BBEE4 003B8E24  38 60 00 00 */	li r3, 0
 /* 803BBEE8 003B8E28  4E 80 00 20 */	blr 
 
-.global "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
-"doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics":
+.global doDirectDraw__24ObjectMgr$$011ModelEffect$$1FR8Graphics
+doDirectDraw__24ObjectMgr$$011ModelEffect$$1FR8Graphics:
 /* 803BBEEC 003B8E2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BBEF0 003B8E30  7C 08 02 A6 */	mflr r0
-/* 803BBEF4 003B8E34  3C A0 80 4E */	lis r5, "__vt__23Iterator<11ModelEffect>"@ha
+/* 803BBEF4 003B8E34  3C A0 80 4E */	lis r5, __vt__23Iterator$$011ModelEffect$$1@ha
 /* 803BBEF8 003B8E38  90 01 00 24 */	stw r0, 0x24(r1)
 /* 803BBEFC 003B8E3C  38 00 00 00 */	li r0, 0
-/* 803BBF00 003B8E40  38 A5 78 10 */	addi r5, r5, "__vt__23Iterator<11ModelEffect>"@l
+/* 803BBF00 003B8E40  38 A5 78 10 */	addi r5, r5, __vt__23Iterator$$011ModelEffect$$1@l
 /* 803BBF04 003B8E44  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 803BBF08 003B8E48  28 00 00 00 */	cmplwi r0, 0
 /* 803BBF0C 003B8E4C  7C 9F 23 78 */	mr r31, r4
@@ -1316,8 +1316,8 @@ lbl_803BC0AC:
 /* 803BC0D8 003B9018  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC0DC 003B901C  4E 80 00 20 */	blr 
 
-.global "isDone__23Iterator<11ModelEffect>Fv"
-"isDone__23Iterator<11ModelEffect>Fv":
+.global isDone__23Iterator$$011ModelEffect$$1Fv
+isDone__23Iterator$$011ModelEffect$$1Fv:
 /* 803BC0E0 003B9020  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BC0E4 003B9024  7C 08 02 A6 */	mflr r0
 /* 803BC0E8 003B9028  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1338,14 +1338,14 @@ lbl_803BC0AC:
 /* 803BC124 003B9064  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BC128 003B9068  4E 80 00 20 */	blr 
 
-.global "doSimulation__24ObjectMgr<11ModelEffect>Ff"
-"doSimulation__24ObjectMgr<11ModelEffect>Ff":
+.global doSimulation__24ObjectMgr$$011ModelEffect$$1Ff
+doSimulation__24ObjectMgr$$011ModelEffect$$1Ff:
 /* 803BC12C 003B906C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC130 003B9070  7C 08 02 A6 */	mflr r0
-/* 803BC134 003B9074  3C 80 80 4E */	lis r4, "__vt__23Iterator<11ModelEffect>"@ha
+/* 803BC134 003B9074  3C 80 80 4E */	lis r4, __vt__23Iterator$$011ModelEffect$$1@ha
 /* 803BC138 003B9078  90 01 00 24 */	stw r0, 0x24(r1)
 /* 803BC13C 003B907C  38 00 00 00 */	li r0, 0
-/* 803BC140 003B9080  38 84 78 10 */	addi r4, r4, "__vt__23Iterator<11ModelEffect>"@l
+/* 803BC140 003B9080  38 84 78 10 */	addi r4, r4, __vt__23Iterator$$011ModelEffect$$1@l
 /* 803BC144 003B9084  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 803BC148 003B9088  FF E0 08 90 */	fmr f31, f1
 /* 803BC14C 003B908C  28 00 00 00 */	cmplwi r0, 0
@@ -1474,14 +1474,14 @@ lbl_803BC2EC:
 /* 803BC318 003B9258  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC31C 003B925C  4E 80 00 20 */	blr 
 
-.global "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
-"doViewCalc__24ObjectMgr<11ModelEffect>Fv":
+.global doViewCalc__24ObjectMgr$$011ModelEffect$$1Fv
+doViewCalc__24ObjectMgr$$011ModelEffect$$1Fv:
 /* 803BC320 003B9260  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC324 003B9264  7C 08 02 A6 */	mflr r0
-/* 803BC328 003B9268  3C 80 80 4E */	lis r4, "__vt__23Iterator<11ModelEffect>"@ha
+/* 803BC328 003B9268  3C 80 80 4E */	lis r4, __vt__23Iterator$$011ModelEffect$$1@ha
 /* 803BC32C 003B926C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 803BC330 003B9270  38 00 00 00 */	li r0, 0
-/* 803BC334 003B9274  38 84 78 10 */	addi r4, r4, "__vt__23Iterator<11ModelEffect>"@l
+/* 803BC334 003B9274  38 84 78 10 */	addi r4, r4, __vt__23Iterator$$011ModelEffect$$1@l
 /* 803BC338 003B9278  28 00 00 00 */	cmplwi r0, 0
 /* 803BC33C 003B927C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 803BC340 003B9280  90 81 00 08 */	stw r4, 8(r1)
@@ -1606,14 +1606,14 @@ lbl_803BC4D4:
 /* 803BC4FC 003B943C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC500 003B9440  4E 80 00 20 */	blr 
 
-.global "doSetView__24ObjectMgr<11ModelEffect>Fi"
-"doSetView__24ObjectMgr<11ModelEffect>Fi":
+.global doSetView__24ObjectMgr$$011ModelEffect$$1Fi
+doSetView__24ObjectMgr$$011ModelEffect$$1Fi:
 /* 803BC504 003B9444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC508 003B9448  7C 08 02 A6 */	mflr r0
-/* 803BC50C 003B944C  3C A0 80 4E */	lis r5, "__vt__23Iterator<11ModelEffect>"@ha
+/* 803BC50C 003B944C  3C A0 80 4E */	lis r5, __vt__23Iterator$$011ModelEffect$$1@ha
 /* 803BC510 003B9450  90 01 00 24 */	stw r0, 0x24(r1)
 /* 803BC514 003B9454  38 00 00 00 */	li r0, 0
-/* 803BC518 003B9458  38 A5 78 10 */	addi r5, r5, "__vt__23Iterator<11ModelEffect>"@l
+/* 803BC518 003B9458  38 A5 78 10 */	addi r5, r5, __vt__23Iterator$$011ModelEffect$$1@l
 /* 803BC51C 003B945C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 803BC520 003B9460  28 00 00 00 */	cmplwi r0, 0
 /* 803BC524 003B9464  7C 9F 23 78 */	mr r31, r4
@@ -1742,14 +1742,14 @@ lbl_803BC6C4:
 /* 803BC6F0 003B9630  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC6F4 003B9634  4E 80 00 20 */	blr 
 
-.global "doEntry__24ObjectMgr<11ModelEffect>Fv"
-"doEntry__24ObjectMgr<11ModelEffect>Fv":
+.global doEntry__24ObjectMgr$$011ModelEffect$$1Fv
+doEntry__24ObjectMgr$$011ModelEffect$$1Fv:
 /* 803BC6F8 003B9638  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC6FC 003B963C  7C 08 02 A6 */	mflr r0
-/* 803BC700 003B9640  3C 80 80 4E */	lis r4, "__vt__23Iterator<11ModelEffect>"@ha
+/* 803BC700 003B9640  3C 80 80 4E */	lis r4, __vt__23Iterator$$011ModelEffect$$1@ha
 /* 803BC704 003B9644  90 01 00 24 */	stw r0, 0x24(r1)
 /* 803BC708 003B9648  38 00 00 00 */	li r0, 0
-/* 803BC70C 003B964C  38 84 78 10 */	addi r4, r4, "__vt__23Iterator<11ModelEffect>"@l
+/* 803BC70C 003B964C  38 84 78 10 */	addi r4, r4, __vt__23Iterator$$011ModelEffect$$1@l
 /* 803BC710 003B9650  28 00 00 00 */	cmplwi r0, 0
 /* 803BC714 003B9654  90 01 00 14 */	stw r0, 0x14(r1)
 /* 803BC718 003B9658  90 81 00 08 */	stw r4, 8(r1)
@@ -1874,14 +1874,14 @@ lbl_803BC8AC:
 /* 803BC8D4 003B9814  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BC8D8 003B9818  4E 80 00 20 */	blr 
 
-.global "doAnimation__24ObjectMgr<11ModelEffect>Fv"
-"doAnimation__24ObjectMgr<11ModelEffect>Fv":
+.global doAnimation__24ObjectMgr$$011ModelEffect$$1Fv
+doAnimation__24ObjectMgr$$011ModelEffect$$1Fv:
 /* 803BC8DC 003B981C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803BC8E0 003B9820  7C 08 02 A6 */	mflr r0
-/* 803BC8E4 003B9824  3C 80 80 4E */	lis r4, "__vt__23Iterator<11ModelEffect>"@ha
+/* 803BC8E4 003B9824  3C 80 80 4E */	lis r4, __vt__23Iterator$$011ModelEffect$$1@ha
 /* 803BC8E8 003B9828  90 01 00 24 */	stw r0, 0x24(r1)
 /* 803BC8EC 003B982C  38 00 00 00 */	li r0, 0
-/* 803BC8F0 003B9830  38 84 78 10 */	addi r4, r4, "__vt__23Iterator<11ModelEffect>"@l
+/* 803BC8F0 003B9830  38 84 78 10 */	addi r4, r4, __vt__23Iterator$$011ModelEffect$$1@l
 /* 803BC8F4 003B9834  28 00 00 00 */	cmplwi r0, 0
 /* 803BC8F8 003B9838  90 01 00 14 */	stw r0, 0x14(r1)
 /* 803BC8FC 003B983C  90 81 00 08 */	stw r4, 8(r1)
@@ -2006,8 +2006,8 @@ lbl_803BCA90:
 /* 803BCAB8 003B99F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803BCABC 003B99FC  4E 80 00 20 */	blr 
 
-.global "__ml__23Iterator<11ModelEffect>Fv"
-"__ml__23Iterator<11ModelEffect>Fv":
+.global __ml__23Iterator$$011ModelEffect$$1Fv
+__ml__23Iterator$$011ModelEffect$$1Fv:
 /* 803BCAC0 003B9A00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BCAC4 003B9A04  7C 08 02 A6 */	mflr r0
 /* 803BCAC8 003B9A08  7C 64 1B 78 */	mr r4, r3
@@ -2023,8 +2023,8 @@ lbl_803BCA90:
 /* 803BCAF0 003B9A30  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BCAF4 003B9A34  4E 80 00 20 */	blr 
 
-.global "next__23Iterator<11ModelEffect>Fv"
-"next__23Iterator<11ModelEffect>Fv":
+.global next__23Iterator$$011ModelEffect$$1Fv
+next__23Iterator$$011ModelEffect$$1Fv:
 /* 803BCAF8 003B9A38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BCAFC 003B9A3C  7C 08 02 A6 */	mflr r0
 /* 803BCB00 003B9A40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2087,8 +2087,8 @@ lbl_803BCBC8:
 /* 803BCBD4 003B9B14  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BCBD8 003B9B18  4E 80 00 20 */	blr 
 
-.global "first__23Iterator<11ModelEffect>Fv"
-"first__23Iterator<11ModelEffect>Fv":
+.global first__23Iterator$$011ModelEffect$$1Fv
+first__23Iterator$$011ModelEffect$$1Fv:
 /* 803BCBDC 003B9B1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803BCBE0 003B9B20  7C 08 02 A6 */	mflr r0
 /* 803BCBE4 003B9B24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2162,37 +2162,37 @@ __sinit_particleMgr_cpp:
 /* 803BCCD8 003B9C18  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803BCCDC 003B9C1C  4E 80 00 20 */	blr 
 
-.global "@28@resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
-"@28@resetMgr__28NodeObjectMgr<11ModelEffect>Fv":
+.global $$228$$2resetMgr__28NodeObjectMgr$$011ModelEffect$$1Fv
+$$228$$2resetMgr__28NodeObjectMgr$$011ModelEffect$$1Fv:
 /* 803BCCE0 003B9C20  38 63 FF E4 */	addi r3, r3, -28
-/* 803BCCE4 003B9C24  4B FF F1 B4 */	b "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
+/* 803BCCE4 003B9C24  4B FF F1 B4 */	b resetMgr__28NodeObjectMgr$$011ModelEffect$$1Fv
 
-.global "@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
-"@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics":
+.global $$228$$2doDirectDraw__24ObjectMgr$$011ModelEffect$$1FR8Graphics
+$$228$$2doDirectDraw__24ObjectMgr$$011ModelEffect$$1FR8Graphics:
 /* 803BCCE8 003B9C28  38 63 FF E4 */	addi r3, r3, -28
-/* 803BCCEC 003B9C2C  4B FF F2 00 */	b "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+/* 803BCCEC 003B9C2C  4B FF F2 00 */	b doDirectDraw__24ObjectMgr$$011ModelEffect$$1FR8Graphics
 
-.global "@28@doSimulation__24ObjectMgr<11ModelEffect>Ff"
-"@28@doSimulation__24ObjectMgr<11ModelEffect>Ff":
+.global $$228$$2doSimulation__24ObjectMgr$$011ModelEffect$$1Ff
+$$228$$2doSimulation__24ObjectMgr$$011ModelEffect$$1Ff:
 /* 803BCCF0 003B9C30  38 63 FF E4 */	addi r3, r3, -28
-/* 803BCCF4 003B9C34  4B FF F4 38 */	b "doSimulation__24ObjectMgr<11ModelEffect>Ff"
+/* 803BCCF4 003B9C34  4B FF F4 38 */	b doSimulation__24ObjectMgr$$011ModelEffect$$1Ff
 
-.global "@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv"
-"@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv":
+.global $$228$$2doViewCalc__24ObjectMgr$$011ModelEffect$$1Fv
+$$228$$2doViewCalc__24ObjectMgr$$011ModelEffect$$1Fv:
 /* 803BCCF8 003B9C38  38 63 FF E4 */	addi r3, r3, -28
-/* 803BCCFC 003B9C3C  4B FF F6 24 */	b "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+/* 803BCCFC 003B9C3C  4B FF F6 24 */	b doViewCalc__24ObjectMgr$$011ModelEffect$$1Fv
 
-.global "@28@doSetView__24ObjectMgr<11ModelEffect>Fi"
-"@28@doSetView__24ObjectMgr<11ModelEffect>Fi":
+.global $$228$$2doSetView__24ObjectMgr$$011ModelEffect$$1Fi
+$$228$$2doSetView__24ObjectMgr$$011ModelEffect$$1Fi:
 /* 803BCD00 003B9C40  38 63 FF E4 */	addi r3, r3, -28
-/* 803BCD04 003B9C44  4B FF F8 00 */	b "doSetView__24ObjectMgr<11ModelEffect>Fi"
+/* 803BCD04 003B9C44  4B FF F8 00 */	b doSetView__24ObjectMgr$$011ModelEffect$$1Fi
 
-.global "@28@doEntry__24ObjectMgr<11ModelEffect>Fv"
-"@28@doEntry__24ObjectMgr<11ModelEffect>Fv":
+.global $$228$$2doEntry__24ObjectMgr$$011ModelEffect$$1Fv
+$$228$$2doEntry__24ObjectMgr$$011ModelEffect$$1Fv:
 /* 803BCD08 003B9C48  38 63 FF E4 */	addi r3, r3, -28
-/* 803BCD0C 003B9C4C  4B FF F9 EC */	b "doEntry__24ObjectMgr<11ModelEffect>Fv"
+/* 803BCD0C 003B9C4C  4B FF F9 EC */	b doEntry__24ObjectMgr$$011ModelEffect$$1Fv
 
-.global "@28@doAnimation__24ObjectMgr<11ModelEffect>Fv"
-"@28@doAnimation__24ObjectMgr<11ModelEffect>Fv":
+.global $$228$$2doAnimation__24ObjectMgr$$011ModelEffect$$1Fv
+$$228$$2doAnimation__24ObjectMgr$$011ModelEffect$$1Fv:
 /* 803BCD10 003B9C50  38 63 FF E4 */	addi r3, r3, -28
-/* 803BCD14 003B9C54  4B FF FB C8 */	b "doAnimation__24ObjectMgr<11ModelEffect>Fv"
+/* 803BCD14 003B9C54  4B FF FB C8 */	b doAnimation__24ObjectMgr$$011ModelEffect$$1Fv

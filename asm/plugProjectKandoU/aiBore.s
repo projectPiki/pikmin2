@@ -1172,16 +1172,16 @@ lbl_802322F8:
 /* 8023230C 0022F24C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80232310 0022F250  4E 80 00 20 */	blr 
 
-.global "@28@4@onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent"
-"@28@4@onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent":
+.global $$228$$24$$2onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent
+$$228$$24$$2onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent:
 /* 80232314 0022F254  39 60 00 04 */	li r11, 4
 /* 80232318 0022F258  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8023231C 0022F25C  7C 63 5A 14 */	add r3, r3, r11
 /* 80232320 0022F260  38 63 FF E4 */	addi r3, r3, -28
 /* 80232324 0022F264  4B FF FA A0 */	b onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent
 
-.global "@28@4@onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent"
-"@28@4@onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent":
+.global $$228$$24$$2onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent
+$$228$$24$$2onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent:
 /* 80232328 0022F268  39 60 00 04 */	li r11, 4
 /* 8023232C 0022F26C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80232330 0022F270  7C 63 5A 14 */	add r3, r3, r11

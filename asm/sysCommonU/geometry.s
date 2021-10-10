@@ -4814,49 +4814,49 @@ getBoundBox__Q23Sys11GridDividerFR8BoundBox:
 /* 80419F9C 00416EDC  D0 04 00 14 */	stfs f0, 0x14(r4)
 /* 80419FA0 00416EE0  4E 80 00 20 */	blr 
 
-.global "setArray__31ArrayContainer<Q23Sys8Triangle>FPQ23Sys8Trianglei"
-"setArray__31ArrayContainer<Q23Sys8Triangle>FPQ23Sys8Trianglei":
+.global setArray__31ArrayContainer$$0Q23Sys8Triangle$$1FPQ23Sys8Trianglei
+setArray__31ArrayContainer$$0Q23Sys8Triangle$$1FPQ23Sys8Trianglei:
 /* 80419FA4 00416EE4  90 83 00 24 */	stw r4, 0x24(r3)
 /* 80419FA8 00416EE8  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 80419FAC 00416EEC  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 80419FB0 00416EF0  4E 80 00 20 */	blr 
 
-.global "get__31ArrayContainer<Q23Sys8Triangle>FPv"
-"get__31ArrayContainer<Q23Sys8Triangle>FPv":
+.global get__31ArrayContainer$$0Q23Sys8Triangle$$1FPv
+get__31ArrayContainer$$0Q23Sys8Triangle$$1FPv:
 /* 80419FB4 00416EF4  1C 04 00 60 */	mulli r0, r4, 0x60
 /* 80419FB8 00416EF8  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80419FBC 00416EFC  7C 63 02 14 */	add r3, r3, r0
 /* 80419FC0 00416F00  4E 80 00 20 */	blr 
 
-.global "getNext__31ArrayContainer<Q23Sys8Triangle>FPv"
-"getNext__31ArrayContainer<Q23Sys8Triangle>FPv":
+.global getNext__31ArrayContainer$$0Q23Sys8Triangle$$1FPv
+getNext__31ArrayContainer$$0Q23Sys8Triangle$$1FPv:
 /* 80419FC4 00416F04  38 64 00 01 */	addi r3, r4, 1
 /* 80419FC8 00416F08  4E 80 00 20 */	blr 
 
-.global "getStart__31ArrayContainer<Q23Sys8Triangle>Fv"
-"getStart__31ArrayContainer<Q23Sys8Triangle>Fv":
+.global getStart__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
+getStart__31ArrayContainer$$0Q23Sys8Triangle$$1Fv:
 /* 80419FCC 00416F0C  38 60 00 00 */	li r3, 0
 /* 80419FD0 00416F10  4E 80 00 20 */	blr 
 
-.global "getEnd__31ArrayContainer<Q23Sys8Triangle>Fv"
-"getEnd__31ArrayContainer<Q23Sys8Triangle>Fv":
+.global getEnd__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
+getEnd__31ArrayContainer$$0Q23Sys8Triangle$$1Fv:
 /* 80419FD4 00416F14  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80419FD8 00416F18  4E 80 00 20 */	blr 
 
-.global "getAt__31ArrayContainer<Q23Sys8Triangle>Fi"
-"getAt__31ArrayContainer<Q23Sys8Triangle>Fi":
+.global getAt__31ArrayContainer$$0Q23Sys8Triangle$$1Fi
+getAt__31ArrayContainer$$0Q23Sys8Triangle$$1Fi:
 /* 80419FDC 00416F1C  1C 04 00 60 */	mulli r0, r4, 0x60
 /* 80419FE0 00416F20  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80419FE4 00416F24  7C 63 02 14 */	add r3, r3, r0
 /* 80419FE8 00416F28  4E 80 00 20 */	blr 
 
-.global "getTo__31ArrayContainer<Q23Sys8Triangle>Fv"
-"getTo__31ArrayContainer<Q23Sys8Triangle>Fv":
+.global getTo__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
+getTo__31ArrayContainer$$0Q23Sys8Triangle$$1Fv:
 /* 80419FEC 00416F2C  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 80419FF0 00416F30  4E 80 00 20 */	blr 
 
-.global "getObject__26Container<Q23Sys8Triangle>FPv"
-"getObject__26Container<Q23Sys8Triangle>FPv":
+.global getObject__26Container$$0Q23Sys8Triangle$$1FPv
+getObject__26Container$$0Q23Sys8Triangle$$1FPv:
 /* 80419FF4 00416F34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80419FF8 00416F38  7C 08 02 A6 */	mflr r0
 /* 80419FFC 00416F3C  90 01 00 14 */	stw r0, 0x14(r1)

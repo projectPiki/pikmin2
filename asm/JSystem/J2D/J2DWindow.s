@@ -1014,8 +1014,8 @@ lbl_80043434:
 /* 80043448 00040388  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004344C 0004038C  4E 80 00 20 */	blr 
 
-.global "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>"
-"draw__9J2DWindowFRCQ29JGeometry8TBox2<f>":
+.global draw__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1
+draw__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1:
 /* 80043450 00040390  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80043454 00040394  7C 08 02 A6 */	mflr r0
 /* 80043458 00040398  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1096,8 +1096,8 @@ lbl_80043560:
 /* 8004357C 000404BC  38 21 00 40 */	addi r1, r1, 0x40
 /* 80043580 000404C0  4E 80 00 20 */	blr 
 
-.global "draw_private__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-"draw_private__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>":
+.global draw_private__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
+draw_private__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1:
 /* 80043584 000404C4  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80043588 000404C8  7C 08 02 A6 */	mflr r0
 /* 8004358C 000404CC  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1389,8 +1389,8 @@ lbl_80043984:
 /* 80043A00 00040940  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80043A04 00040944  4E 80 00 20 */	blr 
 
-.global "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-"draw__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>":
+.global draw__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
+draw__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1:
 /* 80043A08 00040948  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80043A0C 0004094C  7C 08 02 A6 */	mflr r0
 /* 80043A10 00040950  C8 82 85 20 */	lfd f4, lbl_80516880@sda21(r2)
@@ -1456,7 +1456,7 @@ lbl_80043984:
 /* 80043B00 00040A40  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80043B04 00040A44  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80043B08 00040A48  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80043B0C 00040A4C  4B FF FA 79 */	bl "draw_private__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+/* 80043B0C 00040A4C  4B FF FA 79 */	bl draw_private__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
 /* 80043B10 00040A50  38 61 00 18 */	addi r3, r1, 0x18
 /* 80043B14 00040A54  48 0A 67 8D */	bl PSMTXIdentity
 /* 80043B18 00040A58  38 61 00 18 */	addi r3, r1, 0x18
@@ -1682,19 +1682,19 @@ drawSelf__9J2DWindowFffPA3_A4_f:
 /* 80043E48 00040D88  7F E3 FB 78 */	mr r3, r31
 /* 80043E4C 00040D8C  38 81 00 08 */	addi r4, r1, 8
 /* 80043E50 00040D90  38 BF 01 14 */	addi r5, r31, 0x114
-/* 80043E54 00040D94  4B FF F7 31 */	bl "draw_private__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+/* 80043E54 00040D94  4B FF F7 31 */	bl draw_private__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1RCQ29JGeometry8TBox2$$0f$$1
 lbl_80043E58:
 /* 80043E58 00040D98  7F E3 FB 78 */	mr r3, r31
 /* 80043E5C 00040D9C  38 9F 01 14 */	addi r4, r31, 0x114
-/* 80043E60 00040DA0  4B FF 46 29 */	bl "clip__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 80043E60 00040DA0  4B FF 46 29 */	bl clip__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 /* 80043E64 00040DA4  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80043E68 00040DA8  83 E1 00 5C */	lwz r31, 0x5c(r1)
 /* 80043E6C 00040DAC  7C 08 03 A6 */	mtlr r0
 /* 80043E70 00040DB0  38 21 00 60 */	addi r1, r1, 0x60
 /* 80043E74 00040DB4  4E 80 00 20 */	blr 
 
-.global "drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>"
-"drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>":
+.global drawContents__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1
+drawContents__9J2DWindowFRCQ29JGeometry8TBox2$$0f$$1:
 /* 80043E78 00040DB8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80043E7C 00040DBC  7C 08 02 A6 */	mflr r0
 /* 80043E80 00040DC0  C0 24 00 08 */	lfs f1, 8(r4)

@@ -604,8 +604,8 @@ lbl_8030275C:
 /* 8030275C 002FF69C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80302760 002FF6A0  4E 80 00 20 */	blr 
 
-.global "calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>"
-"calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<f>":
+.global calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1
+calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2$$0f$$1:
 /* 80302764 002FF6A4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80302768 002FF6A8  7C 08 02 A6 */	mflr r0
 /* 8030276C 002FF6AC  38 A0 00 00 */	li r5, 0
@@ -1511,12 +1511,12 @@ lbl_803033C8:
 /* 803033D8 00300318  4B D3 59 D5 */	bl setInfluencedAlpha__7J2DPaneFbb
 /* 803033DC 0030031C  3B 7C 00 DC */	addi r27, r28, 0xdc
 /* 803033E0 00300320  7F 63 DB 78 */	mr r3, r27
-/* 803033E4 00300324  4B D3 55 45 */	bl "getFirstChild__17JSUTree<7J2DPane>CFv"
+/* 803033E4 00300324  4B D3 55 45 */	bl getFirstChild__17JSUTree$$07J2DPane$$1CFv
 /* 803033E8 00300328  7C 79 1B 78 */	mr r25, r3
 /* 803033EC 0030032C  48 00 00 78 */	b lbl_80303464
 lbl_803033F0:
 /* 803033F0 00300330  7F 23 CB 78 */	mr r3, r25
-/* 803033F4 00300334  4B D3 55 49 */	bl "getObject__17JSUTree<7J2DPane>CFv"
+/* 803033F4 00300334  4B D3 55 49 */	bl getObject__17JSUTree$$07J2DPane$$1CFv
 /* 803033F8 00300338  38 80 00 01 */	li r4, 1
 /* 803033FC 0030033C  7C 7C 1B 78 */	mr r28, r3
 /* 80303400 00300340  38 A0 00 00 */	li r5, 0
@@ -1524,31 +1524,31 @@ lbl_803033F0:
 /* 80303408 00300348  7F 83 E3 78 */	mr r3, r28
 /* 8030340C 0030034C  48 00 00 E9 */	bl getPaneTree__7J2DPaneFv
 /* 80303410 00300350  7C 7C 1B 78 */	mr r28, r3
-/* 80303414 00300354  4B D3 55 15 */	bl "getFirstChild__17JSUTree<7J2DPane>CFv"
+/* 80303414 00300354  4B D3 55 15 */	bl getFirstChild__17JSUTree$$07J2DPane$$1CFv
 /* 80303418 00300358  7C 64 1B 78 */	mr r4, r3
 /* 8030341C 0030035C  38 61 00 08 */	addi r3, r1, 8
-/* 80303420 00300360  4B D3 54 F5 */	bl "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
+/* 80303420 00300360  4B D3 54 F5 */	bl __ct__25JSUTreeIterator$$07J2DPane$$1FP17JSUTree$$07J2DPane$$1
 /* 80303424 00300364  48 00 00 18 */	b lbl_8030343C
 lbl_80303428:
 /* 80303428 00300368  38 61 00 08 */	addi r3, r1, 8
-/* 8030342C 0030036C  48 00 00 BD */	bl "getObject__25JSUTreeIterator<7J2DPane>CFv"
+/* 8030342C 0030036C  48 00 00 BD */	bl getObject__25JSUTreeIterator$$07J2DPane$$1CFv
 /* 80303430 00300370  4B FF FE E5 */	bl setAlphaScreen__Q22og6ScreenFP7J2DPane
 /* 80303434 00300374  38 61 00 08 */	addi r3, r1, 8
-/* 80303438 00300378  4B D3 54 C1 */	bl "__pp__25JSUTreeIterator<7J2DPane>Fv"
+/* 80303438 00300378  4B D3 54 C1 */	bl __pp__25JSUTreeIterator$$07J2DPane$$1Fv
 lbl_8030343C:
 /* 8030343C 0030037C  7F 83 E3 78 */	mr r3, r28
-/* 80303440 00300380  4B D3 54 B1 */	bl "getEndChild__17JSUTree<7J2DPane>CFv"
+/* 80303440 00300380  4B D3 54 B1 */	bl getEndChild__17JSUTree$$07J2DPane$$1CFv
 /* 80303444 00300384  7C 64 1B 78 */	mr r4, r3
 /* 80303448 00300388  38 61 00 08 */	addi r3, r1, 8
-/* 8030344C 0030038C  4B D3 54 8D */	bl "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
+/* 8030344C 0030038C  4B D3 54 8D */	bl __ne__25JSUTreeIterator$$07J2DPane$$1CFPC17JSUTree$$07J2DPane$$1
 /* 80303450 00300390  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80303454 00300394  40 82 FF D4 */	bne lbl_80303428
 /* 80303458 00300398  7F 23 CB 78 */	mr r3, r25
-/* 8030345C 0030039C  4B D3 54 69 */	bl "getNextChild__17JSUTree<7J2DPane>CFv"
+/* 8030345C 0030039C  4B D3 54 69 */	bl getNextChild__17JSUTree$$07J2DPane$$1CFv
 /* 80303460 003003A0  7C 79 1B 78 */	mr r25, r3
 lbl_80303464:
 /* 80303464 003003A4  7F 63 DB 78 */	mr r3, r27
-/* 80303468 003003A8  4B D3 54 89 */	bl "getEndChild__17JSUTree<7J2DPane>CFv"
+/* 80303468 003003A8  4B D3 54 89 */	bl getEndChild__17JSUTree$$07J2DPane$$1CFv
 /* 8030346C 003003AC  7C 19 18 40 */	cmplw r25, r3
 /* 80303470 003003B0  40 82 FF 80 */	bne lbl_803033F0
 /* 80303474 003003B4  83 5A 00 18 */	lwz r26, 0x18(r26)
@@ -1585,8 +1585,8 @@ lbl_803034CC:
 /* 803034E0 00300420  38 21 00 30 */	addi r1, r1, 0x30
 /* 803034E4 00300424  4E 80 00 20 */	blr 
 
-.global "getObject__25JSUTreeIterator<7J2DPane>CFv"
-"getObject__25JSUTreeIterator<7J2DPane>CFv":
+.global getObject__25JSUTreeIterator$$07J2DPane$$1CFv
+getObject__25JSUTreeIterator$$07J2DPane$$1CFv:
 /* 803034E8 00300428  80 63 00 00 */	lwz r3, 0(r3)
 /* 803034EC 0030042C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 803034F0 00300430  4E 80 00 20 */	blr 

@@ -155,7 +155,7 @@ loadTexData__Q34Game5Ftank3MgrFv:
 /* 8029E338 0029B278  7C 7F 1B 78 */	mr r31, r3
 /* 8029E33C 0029B27C  90 03 00 44 */	stw r0, 0x44(r3)
 /* 8029E340 0029B280  38 61 00 08 */	addi r3, r1, 8
-/* 8029E344 0029B284  80 8D 84 C8 */	lwz r4, "cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@"@sda21(r13)
+/* 8029E344 0029B284  80 8D 84 C8 */	lwz r4, cTankChangeTexName__Q34Game5Ftank22$$2unnamed$$2FtankMgr_cpp$$2@sda21(r13)
 /* 8029E348 0029B288  48 1A E2 91 */	bl __ct__Q212LoadResource3ArgFPCc
 /* 8029E34C 0029B28C  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 8029E350 0029B290  38 81 00 08 */	addi r4, r1, 8
@@ -247,7 +247,7 @@ getChangeTexture__Q34Game5Ftank3MgrFv:
 /* 8029E474 0029B3B4  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 8029E478 0029B3B8  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game5Ftank3MgrFv"
-"@4@__dt__Q34Game5Ftank3MgrFv":
+.global $$24$$2__dt__Q34Game5Ftank3MgrFv
+$$24$$2__dt__Q34Game5Ftank3MgrFv:
 /* 8029E47C 0029B3BC  38 63 FF FC */	addi r3, r3, -4
 /* 8029E480 0029B3C0  4B FF FF 24 */	b __dt__Q34Game5Ftank3MgrFv

@@ -5,10 +5,10 @@
 __ct__Q34Game6VsGame11ResultStateFv:
 /* 8022C7F4 00229734  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022C7F8 00229738  7C 08 02 A6 */	mflr r0
-/* 8022C7FC 0022973C  3C 80 80 4C */	lis r4, "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"@ha
+/* 8022C7FC 0022973C  3C 80 80 4C */	lis r4, __vt__Q24Game32FSMState$$0Q24Game13VsGameSection$$1@ha
 /* 8022C800 00229740  38 A0 00 00 */	li r5, 0
 /* 8022C804 00229744  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8022C808 00229748  38 04 0E E4 */	addi r0, r4, "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"@l
+/* 8022C808 00229748  38 04 0E E4 */	addi r0, r4, __vt__Q24Game32FSMState$$0Q24Game13VsGameSection$$1@l
 /* 8022C80C 0022974C  3C 80 80 4C */	lis r4, __vt__Q34Game6VsGame5State@ha
 /* 8022C810 00229750  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8022C814 00229754  7C 7F 1B 78 */	mr r31, r3
@@ -48,11 +48,11 @@ lbl_8022C880:
 /* 8022C894 002297D4  3C 80 80 4C */	lis r4, lbl_804C0FEC@ha
 /* 8022C898 002297D8  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 8022C89C 002297DC  39 04 0F EC */	addi r8, r4, lbl_804C0FEC@l
-/* 8022C8A0 002297E0  3C 80 80 4C */	lis r4, "__vt__37Delegate<Q34Game6VsGame11ResultState>"@ha
+/* 8022C8A0 002297E0  3C 80 80 4C */	lis r4, __vt__37Delegate$$0Q34Game6VsGame11ResultState$$1@ha
 /* 8022C8A4 002297E4  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8022C8A8 002297E8  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 8022C8AC 002297EC  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8022C8B0 002297F0  38 04 10 5C */	addi r0, r4, "__vt__37Delegate<Q34Game6VsGame11ResultState>"@l
+/* 8022C8B0 002297F0  38 04 10 5C */	addi r0, r4, __vt__37Delegate$$0Q34Game6VsGame11ResultState$$1@l
 /* 8022C8B4 002297F4  80 88 00 08 */	lwz r4, 8(r8)
 /* 8022C8B8 002297F8  90 E1 00 08 */	stw r7, 8(r1)
 /* 8022C8BC 002297FC  90 A3 00 00 */	stw r5, 0(r3)
@@ -614,8 +614,8 @@ getMemberID__Q28Morimura25DispMemberChallengeResultFv:
 /* 8022D088 00229FC8  38 63 52 45 */	addi r3, r3, 0x43485245@l
 /* 8022D08C 00229FCC  4E 80 00 20 */	blr 
 
-.global "invoke__37Delegate<Q34Game6VsGame11ResultState>Fv"
-"invoke__37Delegate<Q34Game6VsGame11ResultState>Fv":
+.global invoke__37Delegate$$0Q34Game6VsGame11ResultState$$1Fv
+invoke__37Delegate$$0Q34Game6VsGame11ResultState$$1Fv:
 /* 8022D090 00229FD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022D094 00229FD4  7C 08 02 A6 */	mflr r0
 /* 8022D098 00229FD8  7C 64 1B 78 */	mr r4, r3

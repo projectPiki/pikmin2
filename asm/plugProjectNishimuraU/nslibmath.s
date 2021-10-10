@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "calcLagrange__Q24Game9NsMathExpFPC10Vector3<f>fR10Vector3<f>"
-"calcLagrange__Q24Game9NsMathExpFPC10Vector3<f>fR10Vector3<f>":
+.global calcLagrange__Q24Game9NsMathExpFPC10Vector3$$0f$$1fR10Vector3$$0f$$1
+calcLagrange__Q24Game9NsMathExpFPC10Vector3$$0f$$1fR10Vector3$$0f$$1:
 /* 8023D7B0 0023A6F0  C0 02 C2 A0 */	lfs f0, lbl_8051A600@sda21(r2)
 /* 8023D7B4 0023A6F4  C0 42 C2 A4 */	lfs f2, lbl_8051A604@sda21(r2)
 /* 8023D7B8 0023A6F8  C0 63 00 0C */	lfs f3, 0xc(r3)
@@ -46,8 +46,8 @@
 /* 8023D850 0023A790  D0 04 00 08 */	stfs f0, 8(r4)
 /* 8023D854 0023A794  4E 80 00 20 */	blr 
 
-.global "calcJointPos__Q24Game9NsMathExpFRC10Vector3<f>RC10Vector3<f>ffR10Vector3<f>R10Vector3<f>"
-"calcJointPos__Q24Game9NsMathExpFRC10Vector3<f>RC10Vector3<f>ffR10Vector3<f>R10Vector3<f>":
+.global calcJointPos__Q24Game9NsMathExpFRC10Vector3$$0f$$1RC10Vector3$$0f$$1ffR10Vector3$$0f$$1R10Vector3$$0f$$1
+calcJointPos__Q24Game9NsMathExpFRC10Vector3$$0f$$1RC10Vector3$$0f$$1ffR10Vector3$$0f$$1R10Vector3$$0f$$1:
 /* 8023D858 0023A798  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8023D85C 0023A79C  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 8023D860 0023A7A0  F3 E1 00 28 */	psq_st f31, 40(r1), 0, qr0

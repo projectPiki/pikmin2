@@ -123,7 +123,7 @@ __ct__Q34Game15IllustratedBook6CameraFP10Controller:
 /* 802211FC 0021E13C  D0 BD 02 D4 */	stfs f5, 0x2d4(r29)
 /* 80221200 0021E140  D0 BD 02 D8 */	stfs f5, 0x2d8(r29)
 /* 80221204 0021E144  90 1D 00 14 */	stw r0, 0x14(r29)
-/* 80221208 0021E148  48 00 02 7D */	bl "move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>"
+/* 80221208 0021E148  48 00 02 7D */	bl move__Q34Game15IllustratedBook6CameraFRC10Vector3$$0f$$1
 /* 8022120C 0021E14C  C0 62 BD E8 */	lfs f3, lbl_8051A148@sda21(r2)
 /* 80221210 0021E150  7F A3 EB 78 */	mr r3, r29
 /* 80221214 0021E154  C0 02 BD B0 */	lfs f0, lbl_8051A110@sda21(r2)
@@ -291,8 +291,8 @@ lbl_80221420:
 /* 8022147C 0021E3BC  38 21 00 70 */	addi r1, r1, 0x70
 /* 80221480 0021E3C0  4E 80 00 20 */	blr 
 
-.global "move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>"
-"move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>":
+.global move__Q34Game15IllustratedBook6CameraFRC10Vector3$$0f$$1
+move__Q34Game15IllustratedBook6CameraFRC10Vector3$$0f$$1:
 /* 80221484 0021E3C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80221488 0021E3C8  7C 08 02 A6 */	mflr r0
 /* 8022148C 0021E3CC  C0 04 00 00 */	lfs f0, 0(r4)
@@ -1400,10 +1400,10 @@ lbl_802224D0:
 __ct__Q34Game10SingleGame10ZukanStateFv:
 /* 802224EC 0021F42C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802224F0 0021F430  7C 08 02 A6 */	mflr r0
-/* 802224F4 0021F434  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 802224F4 0021F434  3C 80 80 4B */	lis r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 802224F8 0021F438  38 A0 00 00 */	li r5, 0
 /* 802224FC 0021F43C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80222500 0021F440  38 04 13 18 */	addi r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 80222500 0021F440  38 04 13 18 */	addi r0, r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 80222504 0021F444  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame5State@ha
 /* 80222508 0021F448  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8022250C 0021F44C  7C 7F 1B 78 */	mr r31, r3
@@ -1576,8 +1576,8 @@ lbl_80222764:
 /* 8022278C 0021F6CC  80 FF 00 30 */	lwz r7, 0x30(r31)
 /* 80222790 0021F6D0  38 A4 0F 00 */	addi r5, r4, __vt__9IDelegate@l
 /* 80222794 0021F6D4  80 DF 00 34 */	lwz r6, 0x34(r31)
-/* 80222798 0021F6D8  3C 80 80 4C */	lis r4, "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"@ha
-/* 8022279C 0021F6DC  38 04 0B 74 */	addi r0, r4, "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"@l
+/* 80222798 0021F6D8  3C 80 80 4C */	lis r4, __vt__41Delegate$$0Q34Game10SingleGame10ZukanState$$1@ha
+/* 8022279C 0021F6DC  38 04 0B 74 */	addi r0, r4, __vt__41Delegate$$0Q34Game10SingleGame10ZukanState$$1@l
 /* 802227A0 0021F6E0  91 01 00 20 */	stw r8, 0x20(r1)
 /* 802227A4 0021F6E4  90 A3 00 00 */	stw r5, 0(r3)
 /* 802227A8 0021F6E8  90 03 00 00 */	stw r0, 0(r3)
@@ -1598,8 +1598,8 @@ lbl_802227C4:
 /* 802227E0 0021F720  80 FF 00 3C */	lwz r7, 0x3c(r31)
 /* 802227E4 0021F724  38 A4 0F 00 */	addi r5, r4, __vt__9IDelegate@l
 /* 802227E8 0021F728  80 DF 00 40 */	lwz r6, 0x40(r31)
-/* 802227EC 0021F72C  3C 80 80 4C */	lis r4, "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"@ha
-/* 802227F0 0021F730  38 04 0B 74 */	addi r0, r4, "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"@l
+/* 802227EC 0021F72C  3C 80 80 4C */	lis r4, __vt__41Delegate$$0Q34Game10SingleGame10ZukanState$$1@ha
+/* 802227F0 0021F730  38 04 0B 74 */	addi r0, r4, __vt__41Delegate$$0Q34Game10SingleGame10ZukanState$$1@l
 /* 802227F4 0021F734  91 01 00 14 */	stw r8, 0x14(r1)
 /* 802227F8 0021F738  90 A3 00 00 */	stw r5, 0(r3)
 /* 802227FC 0021F73C  90 03 00 00 */	stw r0, 0(r3)
@@ -1620,8 +1620,8 @@ lbl_80222818:
 /* 80222834 0021F774  80 FF 00 48 */	lwz r7, 0x48(r31)
 /* 80222838 0021F778  38 A4 0F 00 */	addi r5, r4, __vt__9IDelegate@l
 /* 8022283C 0021F77C  80 DF 00 4C */	lwz r6, 0x4c(r31)
-/* 80222840 0021F780  3C 80 80 4C */	lis r4, "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"@ha
-/* 80222844 0021F784  38 04 0B 74 */	addi r0, r4, "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"@l
+/* 80222840 0021F780  3C 80 80 4C */	lis r4, __vt__41Delegate$$0Q34Game10SingleGame10ZukanState$$1@ha
+/* 80222844 0021F784  38 04 0B 74 */	addi r0, r4, __vt__41Delegate$$0Q34Game10SingleGame10ZukanState$$1@l
 /* 80222848 0021F788  91 01 00 08 */	stw r8, 8(r1)
 /* 8022284C 0021F78C  90 A3 00 00 */	stw r5, 0(r3)
 /* 80222850 0021F790  90 03 00 00 */	stw r0, 0(r3)
@@ -2638,7 +2638,7 @@ lbl_802236D0:
 /* 802236D0 00220610  7F E3 FB 78 */	mr r3, r31
 /* 802236D4 00220614  38 81 00 58 */	addi r4, r1, 0x58
 /* 802236D8 00220618  38 A0 00 00 */	li r5, 0
-/* 802236DC 0022061C  4B F1 7A CD */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 802236DC 0022061C  4B F1 7A CD */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 802236E0 00220620  4B EA 5E C1 */	bl rand
 /* 802236E4 00220624  6C 63 80 00 */	xoris r3, r3, 0x8000
 /* 802236E8 00220628  3C 00 43 30 */	lis r0, 0x4330
@@ -2677,7 +2677,7 @@ lbl_80223758:
 /* 80223764 002206A4  90 01 00 48 */	stw r0, 0x48(r1)
 /* 80223768 002206A8  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 8022376C 002206AC  90 01 00 40 */	stw r0, 0x40(r1)
-/* 80223770 002206B0  4B EE AD 21 */	bl "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 80223770 002206B0  4B EE AD 21 */	bl first__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 /* 80223774 002206B4  3C 80 80 4B */	lis r4, __vt__Q24Game11Interaction@ha
 /* 80223778 002206B8  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractDope@ha
 /* 8022377C 002206BC  3B 44 A3 00 */	addi r26, r4, __vt__Q24Game11Interaction@l
@@ -2701,7 +2701,7 @@ lbl_80223790:
 /* 802237C0 00220700  7D 89 03 A6 */	mtctr r12
 /* 802237C4 00220704  4E 80 04 21 */	bctrl 
 /* 802237C8 00220708  38 61 00 3C */	addi r3, r1, 0x3c
-/* 802237CC 0022070C  4B EE A7 25 */	bl "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+/* 802237CC 0022070C  4B EE A7 25 */	bl next__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
 lbl_802237D0:
 /* 802237D0 00220710  80 61 00 3C */	lwz r3, 0x3c(r1)
 /* 802237D4 00220714  28 03 00 00 */	cmplwi r3, 0
@@ -4035,8 +4035,8 @@ dvdloadA__Q34Game10SingleGame10ZukanStateFv:
 /* 80224B84 00221AC4  80 7F 00 D8 */	lwz r3, 0xd8(r31)
 /* 80224B88 00221AC8  4B DF EA 1D */	bl becomeCurrentHeap__7JKRHeapFv
 /* 80224B8C 00221ACC  80 1F 01 0C */	lwz r0, 0x10c(r31)
-/* 80224B90 00221AD0  3C 80 80 4C */	lis r4, "sDirName__28@unnamed@singleGS_Zukan_cpp@"@ha
-/* 80224B94 00221AD4  38 84 0A 5C */	addi r4, r4, "sDirName__28@unnamed@singleGS_Zukan_cpp@"@l
+/* 80224B90 00221AD0  3C 80 80 4C */	lis r4, sDirName__28$$2unnamed$$2singleGS_Zukan_cpp$$2@ha
+/* 80224B94 00221AD4  38 84 0A 5C */	addi r4, r4, sDirName__28$$2unnamed$$2singleGS_Zukan_cpp$$2@l
 /* 80224B98 00221AD8  38 A2 BE 98 */	addi r5, r2, lbl_8051A1F8@sda21
 /* 80224B9C 00221ADC  54 00 10 3A */	slwi r0, r0, 2
 /* 80224BA0 00221AE0  38 61 01 60 */	addi r3, r1, 0x160
@@ -4072,7 +4072,7 @@ lbl_80224C00:
 /* 80224C10 00221B50  80 7F 00 94 */	lwz r3, 0x94(r31)
 /* 80224C14 00221B54  80 9F 01 00 */	lwz r4, 0x100(r31)
 /* 80224C18 00221B58  4B F4 03 99 */	bl addGenNode__Q24Game14BaseHIOSectionFP5CNode
-/* 80224C1C 00221B5C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80224C1C 00221B5C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80224C20 00221B60  28 00 00 00 */	cmplwi r0, 0
 /* 80224C24 00221B64  41 82 00 18 */	beq lbl_80224C3C
 /* 80224C28 00221B68  38 7E 02 64 */	addi r3, r30, 0x264
@@ -4081,7 +4081,7 @@ lbl_80224C00:
 /* 80224C34 00221B74  4C C6 31 82 */	crclr 6
 /* 80224C38 00221B78  4B E0 5A 09 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80224C3C:
-/* 80224C3C 00221B7C  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80224C3C 00221B7C  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80224C40 00221B80  28 00 00 00 */	cmplwi r0, 0
 /* 80224C44 00221B84  40 82 00 6C */	bne lbl_80224CB0
 /* 80224C48 00221B88  38 60 00 30 */	li r3, 0x30
@@ -4090,14 +4090,14 @@ lbl_80224C3C:
 /* 80224C54 00221B94  41 82 00 58 */	beq lbl_80224CAC
 /* 80224C58 00221B98  7C B9 2B 78 */	mr r25, r5
 /* 80224C5C 00221B9C  4B E0 1C 75 */	bl initiate__10JSUPtrListFv
-/* 80224C60 00221BA0  3C 60 80 4B */	lis r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@ha
+/* 80224C60 00221BA0  3C 60 80 4B */	lis r3, __vt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@ha
 /* 80224C64 00221BA4  34 99 00 0C */	addic. r4, r25, 0xc
-/* 80224C68 00221BA8  38 03 0C E0 */	addi r0, r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@l
+/* 80224C68 00221BA8  38 03 0C E0 */	addi r0, r3, __vt__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@l
 /* 80224C6C 00221BAC  90 19 00 0C */	stw r0, 0xc(r25)
 /* 80224C70 00221BB0  41 82 00 08 */	beq lbl_80224C78
 /* 80224C74 00221BB4  38 84 FF F4 */	addi r4, r4, -12
 lbl_80224C78:
-/* 80224C78 00221BB8  90 8D 91 BC */	stw r4, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80224C78 00221BB8  90 8D 91 BC */	stw r4, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80224C7C 00221BBC  38 79 00 10 */	addi r3, r25, 0x10
 /* 80224C80 00221BC0  4B DF 83 4D */	bl __ct__11JKRDisposerFv
 /* 80224C84 00221BC4  3C 60 80 4F */	lis r3, __vt__Q23PSM6ObjMgr@ha
@@ -4111,9 +4111,9 @@ lbl_80224C78:
 /* 80224CA4 00221BE4  90 79 00 10 */	stw r3, 0x10(r25)
 /* 80224CA8 00221BE8  90 19 00 2C */	stw r0, 0x2c(r25)
 lbl_80224CAC:
-/* 80224CAC 00221BEC  90 AD 91 BC */	stw r5, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80224CAC 00221BEC  90 AD 91 BC */	stw r5, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 lbl_80224CB0:
-/* 80224CB0 00221BF0  80 0D 91 BC */	lwz r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80224CB0 00221BF0  80 0D 91 BC */	lwz r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80224CB4 00221BF4  28 00 00 00 */	cmplwi r0, 0
 /* 80224CB8 00221BF8  40 82 00 18 */	bne lbl_80224CD0
 /* 80224CBC 00221BFC  38 7E 02 64 */	addi r3, r30, 0x264
@@ -4313,7 +4313,7 @@ lbl_80224F38:
 /* 80224FAC 00221EEC  D0 3A 00 4C */	stfs f1, 0x4c(r26)
 /* 80224FB0 00221EF0  D0 1A 00 50 */	stfs f0, 0x50(r26)
 /* 80224FB4 00221EF4  D0 1A 00 54 */	stfs f0, 0x54(r26)
-/* 80224FB8 00221EF8  48 20 03 C9 */	bl "setRect__8ViewportFR7Rect<f>"
+/* 80224FB8 00221EF8  48 20 03 C9 */	bl setRect__8ViewportFR7Rect$$0f$$1
 /* 80224FBC 00221EFC  80 6D 9A 18 */	lwz r3, particleMgr@sda21(r13)
 /* 80224FC0 00221F00  7F 24 CB 78 */	mr r4, r25
 /* 80224FC4 00221F04  48 19 6B 65 */	bl setViewport__11ParticleMgrFR8Graphics
@@ -4372,7 +4372,7 @@ lbl_80225078:
 /* 80225090 00221FD0  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80225094 00221FD4  80 9F 00 90 */	lwz r4, 0x90(r31)
 /* 80225098 00221FD8  38 A5 01 74 */	addi r5, r5, 0x174
-/* 8022509C 00221FDC  48 02 EA D9 */	bl "setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<f>"
+/* 8022509C 00221FDC  48 02 EA D9 */	bl setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3$$0f$$1
 /* 802250A0 00221FE0  80 7F 00 94 */	lwz r3, 0x94(r31)
 /* 802250A4 00221FE4  80 8D 96 A8 */	lwz r4, rumbleMgr__4Game@sda21(r13)
 /* 802250A8 00221FE8  4B F3 FF 09 */	bl addGenNode__Q24Game14BaseHIOSectionFP5CNode
@@ -4556,7 +4556,7 @@ lbl_80225340:
 /* 80225344 00222284  4B F9 0C 05 */	bl addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
 /* 80225348 00222288  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
 /* 8022534C 0022228C  38 80 00 02 */	li r4, 2
-/* 80225350 00222290  4B F2 C9 E5 */	bl "alloc__27MonoObjectMgr<Q24Game4Navi>Fi"
+/* 80225350 00222290  4B F2 C9 E5 */	bl alloc__27MonoObjectMgr$$0Q24Game4Navi$$1Fi
 /* 80225354 00222294  38 80 00 00 */	li r4, 0
 /* 80225358 00222298  38 C0 FF FF */	li r6, -1
 /* 8022535C 0022229C  90 81 00 10 */	stw r4, 0x10(r1)
@@ -4808,7 +4808,7 @@ lbl_80225690:
 /* 802256D8 00222618  4B DF DE CD */	bl becomeCurrentHeap__7JKRHeapFv
 /* 802256DC 0022261C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 802256E0 00222620  38 80 00 64 */	li r4, 0x64
-/* 802256E4 00222624  4B F2 C7 DD */	bl "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
+/* 802256E4 00222624  4B F2 C7 DD */	bl alloc__27MonoObjectMgr$$0Q24Game4Piki$$1Fi
 /* 802256E8 00222628  80 9F 00 94 */	lwz r4, 0x94(r31)
 /* 802256EC 0022262C  80 6D 9A 18 */	lwz r3, particleMgr@sda21(r13)
 /* 802256F0 00222630  80 04 01 28 */	lwz r0, 0x128(r4)
@@ -5550,7 +5550,7 @@ lbl_80226170:
 /* 8022619C 002230DC  38 A0 00 00 */	li r5, 0
 /* 802261A0 002230E0  D0 61 00 38 */	stfs f3, 0x38(r1)
 /* 802261A4 002230E4  D0 01 00 3C */	stfs f0, 0x3c(r1)
-/* 802261A8 002230E8  4B F1 50 01 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 802261A8 002230E8  4B F1 50 01 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 802261AC 002230EC  4B EA 33 F5 */	bl rand
 /* 802261B0 002230F0  6C 63 80 00 */	xoris r3, r3, 0x8000
 /* 802261B4 002230F4  3C 00 43 30 */	lis r0, 0x4330
@@ -5580,7 +5580,7 @@ lbl_802261F0:
 /* 80226208 00223148  D0 21 00 30 */	stfs f1, 0x30(r1)
 /* 8022620C 0022314C  D0 41 00 34 */	stfs f2, 0x34(r1)
 /* 80226210 00223150  80 7F 00 98 */	lwz r3, 0x98(r31)
-/* 80226214 00223154  4B FF B2 71 */	bl "move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>"
+/* 80226214 00223154  4B FF B2 71 */	bl move__Q34Game15IllustratedBook6CameraFRC10Vector3$$0f$$1
 /* 80226218 00223158  C0 95 09 E0 */	lfs f4, 0x9e0(r21)
 /* 8022621C 0022315C  C0 75 09 B8 */	lfs f3, 0x9b8(r21)
 /* 80226220 00223160  80 7F 00 98 */	lwz r3, 0x98(r31)
@@ -5683,7 +5683,7 @@ lbl_8022633C:
 /* 80226388 002232C8  4B DF D2 1D */	bl becomeCurrentHeap__7JKRHeapFv
 /* 8022638C 002232CC  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 80226390 002232D0  38 80 00 64 */	li r4, 0x64
-/* 80226394 002232D4  4B F2 BB 2D */	bl "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
+/* 80226394 002232D4  4B F2 BB 2D */	bl alloc__27MonoObjectMgr$$0Q24Game4Piki$$1Fi
 /* 80226398 002232D8  80 9D 00 94 */	lwz r4, 0x94(r29)
 /* 8022639C 002232DC  80 6D 9A 18 */	lwz r3, particleMgr@sda21(r13)
 /* 802263A0 002232E0  80 04 01 28 */	lwz r0, 0x128(r4)
@@ -5850,7 +5850,7 @@ lbl_80226580:
 /* 802265FC 0022353C  EC 00 08 2A */	fadds f0, f0, f1
 /* 80226600 00223540  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80226604 00223544  80 7D 00 AC */	lwz r3, 0xac(r29)
-/* 80226608 00223548  4B F1 4B A1 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+/* 80226608 00223548  4B F1 4B A1 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
 /* 8022660C 0022354C  80 7D 00 98 */	lwz r3, 0x98(r29)
 /* 80226610 00223550  80 9D 00 AC */	lwz r4, 0xac(r29)
 /* 80226614 00223554  4B FF AE F9 */	bl setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature
@@ -5908,7 +5908,7 @@ lbl_802266A0:
 /* 802266E0 00223620  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 802266E4 00223624  D0 01 00 08 */	stfs f0, 8(r1)
 /* 802266E8 00223628  80 7D 00 98 */	lwz r3, 0x98(r29)
-/* 802266EC 0022362C  4B FF AD 99 */	bl "move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>"
+/* 802266EC 0022362C  4B FF AD 99 */	bl move__Q34Game15IllustratedBook6CameraFRC10Vector3$$0f$$1
 lbl_802266F0:
 /* 802266F0 00223630  C0 9F 01 B8 */	lfs f4, 0x1b8(r31)
 /* 802266F4 00223634  C0 7F 01 90 */	lfs f3, 0x190(r31)
@@ -6057,9 +6057,9 @@ lbl_802268DC:
 /* 802268FC 0022383C  4E 80 04 21 */	bctrl 
 /* 80226900 00223840  38 00 00 00 */	li r0, 0
 /* 80226904 00223844  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80226908 00223848  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+/* 80226908 00223848  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
 /* 8022690C 0022384C  90 01 00 1C */	stw r0, 0x1c(r1)
-/* 80226910 00223850  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+/* 80226910 00223850  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
 /* 80226914 00223854  28 00 00 00 */	cmplwi r0, 0
 /* 80226918 00223858  90 81 00 10 */	stw r4, 0x10(r1)
 /* 8022691C 0022385C  3B E0 00 00 */	li r31, 0
@@ -6518,7 +6518,7 @@ lbl_80226F64:
 lbl_80226F84:
 /* 80226F84 00223EC4  7F 63 DB 78 */	mr r3, r27
 /* 80226F88 00223EC8  48 11 B2 59 */	bl deleteCurrentScene__Q28PSSystem8SceneMgrFv
-/* 80226F8C 00223ECC  80 6D 91 BC */	lwz r3, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80226F8C 00223ECC  80 6D 91 BC */	lwz r3, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80226F90 00223ED0  28 03 00 00 */	cmplwi r3, 0
 /* 80226F94 00223ED4  41 82 00 18 */	beq lbl_80226FAC
 /* 80226F98 00223ED8  81 83 00 28 */	lwz r12, 0x28(r3)
@@ -6528,7 +6528,7 @@ lbl_80226F84:
 /* 80226FA8 00223EE8  4E 80 04 21 */	bctrl 
 lbl_80226FAC:
 /* 80226FAC 00223EEC  38 00 00 00 */	li r0, 0
-/* 80226FB0 00223EF0  90 0D 91 BC */	stw r0, "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
+/* 80226FB0 00223EF0  90 0D 91 BC */	stw r0, sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1@sda21(r13)
 /* 80226FB4 00223EF4  80 1F 00 D8 */	lwz r0, 0xd8(r31)
 /* 80226FB8 00223EF8  28 00 00 00 */	cmplwi r0, 0
 /* 80226FBC 00223EFC  41 82 00 E0 */	beq lbl_8022709C
@@ -6840,8 +6840,8 @@ lbl_802273A4:
 /* 802273B8 002242F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802273BC 002242FC  4E 80 00 20 */	blr 
 
-.global "invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv"
-"invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv":
+.global invoke__41Delegate$$0Q34Game10SingleGame10ZukanState$$1Fv
+invoke__41Delegate$$0Q34Game10SingleGame10ZukanState$$1Fv:
 /* 802273C0 00224300  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802273C4 00224304  7C 08 02 A6 */	mflr r0
 /* 802273C8 00224308  7C 64 1B 78 */	mr r4, r3

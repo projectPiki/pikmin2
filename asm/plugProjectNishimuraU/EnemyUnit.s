@@ -214,8 +214,8 @@ lbl_802443E4:
 /* 802443FC 0024133C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80244400 00241340  4E 80 00 20 */	blr 
 
-.global "setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3<f>f"
-"setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3<f>f":
+.global setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3$$0f$$1f
+setGlobalData__Q34Game4Cave9EnemyNodeFR10Vector3$$0f$$1f:
 /* 80244404 00241344  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80244408 00241348  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 8024440C 0024134C  C0 04 00 04 */	lfs f0, 4(r4)

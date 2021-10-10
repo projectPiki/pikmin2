@@ -126,7 +126,7 @@ lbl_8024C790:
 /* 8024C79C 002496DC  38 81 00 14 */	addi r4, r1, 0x14
 /* 8024C7A0 002496E0  D3 E1 00 18 */	stfs f31, 0x18(r1)
 /* 8024C7A4 002496E4  D3 E1 00 1C */	stfs f31, 0x1c(r1)
-/* 8024C7A8 002496E8  4B FF 83 0D */	bl "getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>i"
+/* 8024C7A8 002496E8  4B FF 83 0D */	bl getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3$$0f$$1i
 /* 8024C7AC 002496EC  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 8024C7B0 002496F0  3B 9C 00 01 */	addi r28, r28, 1
 /* 8024C7B4 002496F4  2C 1C 00 02 */	cmpwi r28, 2

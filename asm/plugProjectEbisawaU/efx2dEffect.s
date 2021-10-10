@@ -993,27 +993,27 @@ lbl_803BAF2C:
 /* 803BAF40 003B7E80  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BAF44 003B7E84  4E 80 00 20 */	blr 
 
-.global "@8@__dt__Q25efx2d9T2DCursorFv"
-"@8@__dt__Q25efx2d9T2DCursorFv":
+.global $$28$$2__dt__Q25efx2d9T2DCursorFv
+$$28$$2__dt__Q25efx2d9T2DCursorFv:
 /* 803BAF48 003B7E88  38 63 FF F8 */	addi r3, r3, -8
 /* 803BAF4C 003B7E8C  4B FF FF 60 */	b __dt__Q25efx2d9T2DCursorFv
 
-.global "@8@__dt__Q25efx2d12T2DCountKiraFv"
-"@8@__dt__Q25efx2d12T2DCountKiraFv":
+.global $$28$$2__dt__Q25efx2d12T2DCountKiraFv
+$$28$$2__dt__Q25efx2d12T2DCountKiraFv:
 /* 803BAF50 003B7E90  38 63 FF F8 */	addi r3, r3, -8
 /* 803BAF54 003B7E94  4B FF FE D4 */	b __dt__Q25efx2d12T2DCountKiraFv
 
-.global "@8@__dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv"
-"@8@__dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv":
+.global $$28$$2__dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv
+$$28$$2__dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv:
 /* 803BAF58 003B7E98  38 63 FF F8 */	addi r3, r3, -8
 /* 803BAF5C 003B7E9C  4B FF FE 48 */	b __dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv
 
-.global "@8@__dt__Q35efx2d8WorldMap12T2DOnyonKiraFv"
-"@8@__dt__Q35efx2d8WorldMap12T2DOnyonKiraFv":
+.global $$28$$2__dt__Q35efx2d8WorldMap12T2DOnyonKiraFv
+$$28$$2__dt__Q35efx2d8WorldMap12T2DOnyonKiraFv:
 /* 803BAF60 003B7EA0  38 63 FF F8 */	addi r3, r3, -8
 /* 803BAF64 003B7EA4  4B FF FD A4 */	b __dt__Q35efx2d8WorldMap12T2DOnyonKiraFv
 
-.global "@8@__dt__Q35efx2d8WorldMap10T2DRocketBFv"
-"@8@__dt__Q35efx2d8WorldMap10T2DRocketBFv":
+.global $$28$$2__dt__Q35efx2d8WorldMap10T2DRocketBFv
+$$28$$2__dt__Q35efx2d8WorldMap10T2DRocketBFv:
 /* 803BAF68 003B7EA8  38 63 FF F8 */	addi r3, r3, -8
 /* 803BAF6C 003B7EAC  4B FF FD 00 */	b __dt__Q35efx2d8WorldMap10T2DRocketBFv

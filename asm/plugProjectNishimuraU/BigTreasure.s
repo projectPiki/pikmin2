@@ -6670,85 +6670,85 @@ __sinit_BigTreasure_cpp:
 /* 802E177C 002DE6BC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802E1780 002DE6C0  4E 80 00 20 */	blr 
 
-.global "@1412@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-"@1412@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
+.global $$21412$$212$$2viewOnPelletKilled__Q24Game9EnemyBaseFv
+$$21412$$212$$2viewOnPelletKilled__Q24Game9EnemyBaseFv:
 /* 802E1784 002DE6C4  39 60 00 0C */	li r11, 0xc
 /* 802E1788 002DE6C8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802E178C 002DE6CC  7C 63 5A 14 */	add r3, r3, r11
 /* 802E1790 002DE6D0  38 63 FA 7C */	addi r3, r3, -1412
 /* 802E1794 002DE6D4  4B E2 51 88 */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
 
-.global "@1412@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-"@1412@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
+.global $$21412$$212$$2viewStartCarryMotion__Q24Game9EnemyBaseFv
+$$21412$$212$$2viewStartCarryMotion__Q24Game9EnemyBaseFv:
 /* 802E1798 002DE6D8  39 60 00 0C */	li r11, 0xc
 /* 802E179C 002DE6DC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802E17A0 002DE6E0  7C 63 5A 14 */	add r3, r3, r11
 /* 802E17A4 002DE6E4  38 63 FA 7C */	addi r3, r3, -1412
 /* 802E17A8 002DE6E8  4B E2 4F 00 */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
 
-.global "@1412@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-"@1412@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
+.global $$21412$$212$$2viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+$$21412$$212$$2viewStartPreCarryMotion__Q24Game9EnemyBaseFv:
 /* 802E17AC 002DE6EC  39 60 00 0C */	li r11, 0xc
 /* 802E17B0 002DE6F0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802E17B4 002DE6F4  7C 63 5A 14 */	add r3, r3, r11
 /* 802E17B8 002DE6F8  38 63 FA 7C */	addi r3, r3, -1412
 /* 802E17BC 002DE6FC  4B E2 4F 0C */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
 
-.global "@1412@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-"@1412@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
+.global $$21412$$212$$2view_finish_carrymotion__Q24Game9EnemyBaseFv
+$$21412$$212$$2view_finish_carrymotion__Q24Game9EnemyBaseFv:
 /* 802E17C0 002DE700  39 60 00 0C */	li r11, 0xc
 /* 802E17C4 002DE704  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802E17C8 002DE708  7C 63 5A 14 */	add r3, r3, r11
 /* 802E17CC 002DE70C  38 63 FA 7C */	addi r3, r3, -1412
 /* 802E17D0 002DE710  4B E2 52 A8 */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
 
-.global "@1412@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-"@1412@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
+.global $$21412$$212$$2view_start_carrymotion__Q24Game9EnemyBaseFv
+$$21412$$212$$2view_start_carrymotion__Q24Game9EnemyBaseFv:
 /* 802E17D4 002DE714  39 60 00 0C */	li r11, 0xc
 /* 802E17D8 002DE718  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802E17DC 002DE71C  7C 63 5A 14 */	add r3, r3, r11
 /* 802E17E0 002DE720  38 63 FA 7C */	addi r3, r3, -1412
 /* 802E17E4 002DE724  4B E2 52 68 */	b view_start_carrymotion__Q24Game9EnemyBaseFv
 
-.global "@1412@12@viewGetShape__Q24Game9EnemyBaseFv"
-"@1412@12@viewGetShape__Q24Game9EnemyBaseFv":
+.global $$21412$$212$$2viewGetShape__Q24Game9EnemyBaseFv
+$$21412$$212$$2viewGetShape__Q24Game9EnemyBaseFv:
 /* 802E17E8 002DE728  39 60 00 0C */	li r11, 0xc
 /* 802E17EC 002DE72C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802E17F0 002DE730  7C 63 5A 14 */	add r3, r3, r11
 /* 802E17F4 002DE734  38 63 FA 7C */	addi r3, r3, -1412
 /* 802E17F8 002DE738  4B E2 4E A8 */	b viewGetShape__Q24Game9EnemyBaseFv
 
-.global "@4@__dt__Q23efx14TOootaStartOtaFv"
-"@4@__dt__Q23efx14TOootaStartOtaFv":
+.global $$24$$2__dt__Q23efx14TOootaStartOtaFv
+$$24$$2__dt__Q23efx14TOootaStartOtaFv:
 /* 802E17FC 002DE73C  38 63 FF FC */	addi r3, r3, -4
 /* 802E1800 002DE740  4B FF FE 38 */	b __dt__Q23efx14TOootaStartOtaFv
 
-.global "@4@__dt__Q23efx14TOootaStartLegFv"
-"@4@__dt__Q23efx14TOootaStartLegFv":
+.global $$24$$2__dt__Q23efx14TOootaStartLegFv
+$$24$$2__dt__Q23efx14TOootaStartLegFv:
 /* 802E1804 002DE744  38 63 FF FC */	addi r3, r3, -4
 /* 802E1808 002DE748  4B FF FD 94 */	b __dt__Q23efx14TOootaStartLegFv
 
-.global "@4@__dt__Q23efx15TOootaChangeLegFv"
-"@4@__dt__Q23efx15TOootaChangeLegFv":
+.global $$24$$2__dt__Q23efx15TOootaChangeLegFv
+$$24$$2__dt__Q23efx15TOootaChangeLegFv:
 /* 802E180C 002DE74C  38 63 FF FC */	addi r3, r3, -4
 /* 802E1810 002DE750  4B FF FC F0 */	b __dt__Q23efx15TOootaChangeLegFv
 
-.global "@4@__dt__Q23efx15TOootaStartBodyFv"
-"@4@__dt__Q23efx15TOootaStartBodyFv":
+.global $$24$$2__dt__Q23efx15TOootaStartBodyFv
+$$24$$2__dt__Q23efx15TOootaStartBodyFv:
 /* 802E1814 002DE754  38 63 FF FC */	addi r3, r3, -4
 /* 802E1818 002DE758  4B FF FC 4C */	b __dt__Q23efx15TOootaStartBodyFv
 
-.global "@4@__dt__Q23efx13TOootaDeadAwaFv"
-"@4@__dt__Q23efx13TOootaDeadAwaFv":
+.global $$24$$2__dt__Q23efx13TOootaDeadAwaFv
+$$24$$2__dt__Q23efx13TOootaDeadAwaFv:
 /* 802E181C 002DE75C  38 63 FF FC */	addi r3, r3, -4
 /* 802E1820 002DE760  4B FF FB A8 */	b __dt__Q23efx13TOootaDeadAwaFv
 
-.global "@4@__dt__Q23efx16TOootaChangeBodyFv"
-"@4@__dt__Q23efx16TOootaChangeBodyFv":
+.global $$24$$2__dt__Q23efx16TOootaChangeBodyFv
+$$24$$2__dt__Q23efx16TOootaChangeBodyFv:
 /* 802E1824 002DE764  38 63 FF FC */	addi r3, r3, -4
 /* 802E1828 002DE768  4B FF FB 04 */	b __dt__Q23efx16TOootaChangeBodyFv
 
-.global "@4@__dt__Q23efx14TOootaParticleFv"
-"@4@__dt__Q23efx14TOootaParticleFv":
+.global $$24$$2__dt__Q23efx14TOootaParticleFv
+$$24$$2__dt__Q23efx14TOootaParticleFv:
 /* 802E182C 002DE76C  38 63 FF FC */	addi r3, r3, -4
 /* 802E1830 002DE770  4B FF FA 60 */	b __dt__Q23efx14TOootaParticleFv

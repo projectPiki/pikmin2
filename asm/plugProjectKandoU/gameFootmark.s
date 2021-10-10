@@ -159,8 +159,8 @@ lbl_801B4988:
 /* 801B49B0 001B18F0  7C 65 02 14 */	add r3, r5, r0
 /* 801B49B4 001B18F4  4E 80 00 20 */	blr 
 
-.global "findNearest2__Q24Game9FootmarksFR10Vector3<f>i"
-"findNearest2__Q24Game9FootmarksFR10Vector3<f>i":
+.global findNearest2__Q24Game9FootmarksFR10Vector3$$0f$$1i
+findNearest2__Q24Game9FootmarksFR10Vector3$$0f$$1i:
 /* 801B49B8 001B18F8  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801B49BC 001B18FC  39 00 FF FF */	li r8, -1
 /* 801B49C0 001B1900  C0 A2 B0 C0 */	lfs f5, lbl_80519420@sda21(r2)

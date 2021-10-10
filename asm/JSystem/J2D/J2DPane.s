@@ -127,8 +127,8 @@ initiate__7J2DPaneFv:
 /* 80036CAC 00033BEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80036CB0 00033BF0  4E 80 00 20 */	blr 
 
-.global "__ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>"
-"__ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>":
+.global __ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2$$0f$$1
+__ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2$$0f$$1:
 /* 80036CB4 00033BF4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80036CB8 00033BF8  7C 08 02 A6 */	mflr r0
 /* 80036CBC 00033BFC  3C C0 80 4A */	lis r6, __vt__7J2DPane@ha
@@ -156,7 +156,7 @@ initiate__7J2DPaneFv:
 /* 80036D14 00033C54  7F A8 EB 78 */	mr r8, r29
 /* 80036D18 00033C58  7F C7 F3 78 */	mr r7, r30
 /* 80036D1C 00033C5C  7F E9 FB 78 */	mr r9, r31
-/* 80036D20 00033C60  48 00 00 1D */	bl "initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>"
+/* 80036D20 00033C60  48 00 00 1D */	bl initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2$$0f$$1
 /* 80036D24 00033C64  7F 23 CB 78 */	mr r3, r25
 /* 80036D28 00033C68  BB 21 00 14 */	lmw r25, 0x14(r1)
 /* 80036D2C 00033C6C  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -164,8 +164,8 @@ initiate__7J2DPaneFv:
 /* 80036D34 00033C74  38 21 00 30 */	addi r1, r1, 0x30
 /* 80036D38 00033C78  4E 80 00 20 */	blr 
 
-.global "initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>"
-"initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>":
+.global initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2$$0f$$1
+initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2$$0f$$1:
 /* 80036D3C 00033C7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036D40 00033C80  7C 08 02 A6 */	mflr r0
 /* 80036D44 00033C84  3C C0 50 41 */	lis r6, 0x50414E31@ha
@@ -241,8 +241,8 @@ lbl_80036DB4:
 /* 80036E54 00033D94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80036E58 00033D98  4E 80 00 20 */	blr 
 
-.global "__ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
-"__ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>":
+.global __ct__7J2DPaneFUxRCQ29JGeometry8TBox2$$0f$$1
+__ct__7J2DPaneFUxRCQ29JGeometry8TBox2$$0f$$1:
 /* 80036E5C 00033D9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80036E60 00033DA0  7C 08 02 A6 */	mflr r0
 /* 80036E64 00033DA4  3C 80 80 4A */	lis r4, __vt__7J2DPane@ha
@@ -266,7 +266,7 @@ lbl_80036DB4:
 /* 80036EAC 00033DEC  7F A6 EB 78 */	mr r6, r29
 /* 80036EB0 00033DF0  7F C5 F3 78 */	mr r5, r30
 /* 80036EB4 00033DF4  7F E7 FB 78 */	mr r7, r31
-/* 80036EB8 00033DF8  48 00 00 1D */	bl "initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
+/* 80036EB8 00033DF8  48 00 00 1D */	bl initialize__7J2DPaneFUxRCQ29JGeometry8TBox2$$0f$$1
 /* 80036EBC 00033DFC  7F 63 DB 78 */	mr r3, r27
 /* 80036EC0 00033E00  BB 61 00 0C */	lmw r27, 0xc(r1)
 /* 80036EC4 00033E04  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -274,8 +274,8 @@ lbl_80036DB4:
 /* 80036ECC 00033E0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80036ED0 00033E10  4E 80 00 20 */	blr 
 
-.global "initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
-"initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>":
+.global initialize__7J2DPaneFUxRCQ29JGeometry8TBox2$$0f$$1
+initialize__7J2DPaneFUxRCQ29JGeometry8TBox2$$0f$$1:
 /* 80036ED4 00033E14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036ED8 00033E18  7C 08 02 A6 */	mflr r0
 /* 80036EDC 00033E1C  3D 00 50 41 */	lis r8, 0x50414E31@ha
@@ -1193,7 +1193,7 @@ lbl_80037BE4:
 /* 80037C08 00034B48  7F A3 EB 78 */	mr r3, r29
 /* 80037C0C 00034B4C  38 81 00 08 */	addi r4, r1, 8
 /* 80037C10 00034B50  38 BC 00 40 */	addi r5, r28, 0x40
-/* 80037C14 00034B54  4B FF DB 71 */	bl "scissorBounds__13J2DOrthoGraphFPQ29JGeometry8TBox2<f>PCQ29JGeometry8TBox2<f>"
+/* 80037C14 00034B54  4B FF DB 71 */	bl scissorBounds__13J2DOrthoGraphFPQ29JGeometry8TBox2$$0f$$1PCQ29JGeometry8TBox2$$0f$$1
 lbl_80037C18:
 /* 80037C18 00034B58  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 80037C1C 00034B5C  41 82 02 A8 */	beq lbl_80037EC4
@@ -1352,7 +1352,7 @@ lbl_80037C60:
 /* 80037E78 00034DB8  41 82 00 18 */	beq lbl_80037E90
 /* 80037E7C 00034DBC  38 61 00 18 */	addi r3, r1, 0x18
 /* 80037E80 00034DC0  38 81 00 08 */	addi r4, r1, 8
-/* 80037E84 00034DC4  4B FF E7 B1 */	bl "scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 80037E84 00034DC4  4B FF E7 B1 */	bl scissor__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 80037E88 00034DC8  38 61 00 18 */	addi r3, r1, 0x18
 /* 80037E8C 00034DCC  4B FF E5 01 */	bl setScissor__14J2DGrafContextFv
 lbl_80037E90:
@@ -1409,8 +1409,8 @@ drawSelf__7J2DPaneFffPA3_A4_f:
 rewriteAlpha__7J2DPaneFv:
 /* 80037F34 00034E74  4E 80 00 20 */	blr 
 
-.global "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-"place__7J2DPaneFRCQ29JGeometry8TBox2<f>":
+.global place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
+place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1:
 /* 80037F38 00034E78  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80037F3C 00034E7C  7C 08 02 A6 */	mflr r0
 /* 80037F40 00034E80  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1587,7 +1587,7 @@ move__7J2DPaneFff:
 /* 800381B4 000350F4  EC 02 00 2A */	fadds f0, f2, f0
 /* 800381B8 000350F8  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 800381BC 000350FC  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 800381C0 00035100  4B FF FD 79 */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 800381C0 00035100  4B FF FD 79 */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 /* 800381C4 00035104  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 800381C8 00035108  7C 08 03 A6 */	mtlr r0
 /* 800381CC 0003510C  38 21 00 20 */	addi r1, r1, 0x20
@@ -1672,7 +1672,7 @@ lbl_800382D8:
 /* 800382EC 0003522C  EC 00 F8 2A */	fadds f0, f0, f31
 /* 800382F0 00035230  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 800382F4 00035234  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 800382F8 00035238  4B FF FC 41 */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 800382F8 00035238  4B FF FC 41 */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 /* 800382FC 0003523C  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
 /* 80038300 00035240  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80038304 00035244  E3 C1 00 28 */	psq_l f30, 40(r1), 0, qr0
@@ -1786,8 +1786,8 @@ lbl_80038468:
 /* 80038480 000353C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80038484 000353C4  4E 80 00 20 */	blr 
 
-.global "clip__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-"clip__7J2DPaneFRCQ29JGeometry8TBox2<f>":
+.global clip__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
+clip__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1:
 /* 80038488 000353C8  C0 44 00 00 */	lfs f2, 0(r4)
 /* 8003848C 000353CC  C0 23 00 30 */	lfs f1, 0x30(r3)
 /* 80038490 000353D0  C0 84 00 08 */	lfs f4, 8(r4)
@@ -1978,7 +1978,7 @@ lbl_80038714:
 /* 80038718 00035658  48 00 01 60 */	b lbl_80038878
 lbl_8003871C:
 /* 8003871C 0003565C  7E 83 A3 78 */	mr r3, r20
-/* 80038720 00035660  48 00 02 1D */	bl "getObject__17JSUTree<7J2DPane>CFv"
+/* 80038720 00035660  48 00 02 1D */	bl getObject__17JSUTree$$07J2DPane$$1CFv
 /* 80038724 00035664  80 83 00 14 */	lwz r4, 0x14(r3)
 /* 80038728 00035668  7C 75 1B 78 */	mr r21, r3
 /* 8003872C 0003566C  80 63 00 10 */	lwz r3, 0x10(r3)
@@ -2003,12 +2003,12 @@ lbl_8003876C:
 /* 80038774 000356B4  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80038778:
 /* 80038778 000356B8  38 75 00 DC */	addi r3, r21, 0xdc
-/* 8003877C 000356BC  48 00 01 AD */	bl "getFirstChild__17JSUTree<7J2DPane>CFv"
+/* 8003877C 000356BC  48 00 01 AD */	bl getFirstChild__17JSUTree$$07J2DPane$$1CFv
 /* 80038780 000356C0  90 61 00 0C */	stw r3, 0xc(r1)
 /* 80038784 000356C4  48 00 00 D0 */	b lbl_80038854
 lbl_80038788:
 /* 80038788 000356C8  38 61 00 0C */	addi r3, r1, 0xc
-/* 8003878C 000356CC  48 00 01 91 */	bl "__rf__25JSUTreeIterator<7J2DPane>CFv"
+/* 8003878C 000356CC  48 00 01 91 */	bl __rf__25JSUTreeIterator$$07J2DPane$$1CFv
 /* 80038790 000356D0  80 83 00 14 */	lwz r4, 0x14(r3)
 /* 80038794 000356D4  7C 76 1B 78 */	mr r22, r3
 /* 80038798 000356D8  80 63 00 10 */	lwz r3, 0x10(r3)
@@ -2033,14 +2033,14 @@ lbl_800387D8:
 /* 800387E0 00035720  90 1F 00 00 */	stw r0, 0(r31)
 lbl_800387E4:
 /* 800387E4 00035724  38 76 00 DC */	addi r3, r22, 0xdc
-/* 800387E8 00035728  48 00 01 41 */	bl "getFirstChild__17JSUTree<7J2DPane>CFv"
+/* 800387E8 00035728  48 00 01 41 */	bl getFirstChild__17JSUTree$$07J2DPane$$1CFv
 /* 800387EC 0003572C  7C 64 1B 78 */	mr r4, r3
 /* 800387F0 00035730  38 61 00 08 */	addi r3, r1, 8
-/* 800387F4 00035734  48 00 01 21 */	bl "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
+/* 800387F4 00035734  48 00 01 21 */	bl __ct__25JSUTreeIterator$$07J2DPane$$1FP17JSUTree$$07J2DPane$$1
 /* 800387F8 00035738  48 00 00 34 */	b lbl_8003882C
 lbl_800387FC:
 /* 800387FC 0003573C  38 61 00 08 */	addi r3, r1, 8
-/* 80038800 00035740  48 00 01 1D */	bl "__rf__25JSUTreeIterator<7J2DPane>CFv"
+/* 80038800 00035740  48 00 01 1D */	bl __rf__25JSUTreeIterator$$07J2DPane$$1CFv
 /* 80038804 00035744  7F 44 D3 78 */	mr r4, r26
 /* 80038808 00035748  7F 66 DB 78 */	mr r6, r27
 /* 8003880C 0003574C  7F 85 E3 78 */	mr r5, r28
@@ -2050,21 +2050,21 @@ lbl_800387FC:
 /* 8003881C 0003575C  7F EA FB 78 */	mr r10, r31
 /* 80038820 00035760  4B FF FD 95 */	bl gather__7J2DPaneFPP7J2DPaneUxUxiRi
 /* 80038824 00035764  38 61 00 08 */	addi r3, r1, 8
-/* 80038828 00035768  48 00 00 D1 */	bl "__pp__25JSUTreeIterator<7J2DPane>Fv"
+/* 80038828 00035768  48 00 00 D1 */	bl __pp__25JSUTreeIterator$$07J2DPane$$1Fv
 lbl_8003882C:
 /* 8003882C 0003576C  38 76 00 DC */	addi r3, r22, 0xdc
-/* 80038830 00035770  48 00 00 C1 */	bl "getEndChild__17JSUTree<7J2DPane>CFv"
+/* 80038830 00035770  48 00 00 C1 */	bl getEndChild__17JSUTree$$07J2DPane$$1CFv
 /* 80038834 00035774  7C 64 1B 78 */	mr r4, r3
 /* 80038838 00035778  38 61 00 08 */	addi r3, r1, 8
-/* 8003883C 0003577C  48 00 00 9D */	bl "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
+/* 8003883C 0003577C  48 00 00 9D */	bl __ne__25JSUTreeIterator$$07J2DPane$$1CFPC17JSUTree$$07J2DPane$$1
 /* 80038840 00035780  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80038844 00035784  40 82 FF B8 */	bne lbl_800387FC
 /* 80038848 00035788  80 61 00 0C */	lwz r3, 0xc(r1)
-/* 8003884C 0003578C  48 00 00 79 */	bl "getNextChild__17JSUTree<7J2DPane>CFv"
+/* 8003884C 0003578C  48 00 00 79 */	bl getNextChild__17JSUTree$$07J2DPane$$1CFv
 /* 80038850 00035790  90 61 00 0C */	stw r3, 0xc(r1)
 lbl_80038854:
 /* 80038854 00035794  38 75 00 DC */	addi r3, r21, 0xdc
-/* 80038858 00035798  48 00 00 99 */	bl "getEndChild__17JSUTree<7J2DPane>CFv"
+/* 80038858 00035798  48 00 00 99 */	bl getEndChild__17JSUTree$$07J2DPane$$1CFv
 /* 8003885C 0003579C  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 80038860 000357A0  7C 00 18 40 */	cmplw r0, r3
 /* 80038864 000357A4  40 82 FF 24 */	bne lbl_80038788
@@ -2095,16 +2095,16 @@ lbl_800388A8:
 /* 800388BC 000357FC  38 21 00 50 */	addi r1, r1, 0x50
 /* 800388C0 00035800  4E 80 00 20 */	blr 
 
-.global "getNextChild__17JSUTree<7J2DPane>CFv"
-"getNextChild__17JSUTree<7J2DPane>CFv":
+.global getNextChild__17JSUTree$$07J2DPane$$1CFv
+getNextChild__17JSUTree$$07J2DPane$$1CFv:
 /* 800388C4 00035804  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 800388C8 00035808  28 03 00 00 */	cmplwi r3, 0
 /* 800388CC 0003580C  4D 82 00 20 */	beqlr 
 /* 800388D0 00035810  38 63 FF F4 */	addi r3, r3, -12
 /* 800388D4 00035814  4E 80 00 20 */	blr 
 
-.global "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
-"__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>":
+.global __ne__25JSUTreeIterator$$07J2DPane$$1CFPC17JSUTree$$07J2DPane$$1
+__ne__25JSUTreeIterator$$07J2DPane$$1CFPC17JSUTree$$07J2DPane$$1:
 /* 800388D8 00035818  80 03 00 00 */	lwz r0, 0(r3)
 /* 800388DC 0003581C  7C 60 20 50 */	subf r3, r0, r4
 /* 800388E0 00035820  7C 04 00 50 */	subf r0, r4, r0
@@ -2112,13 +2112,13 @@ lbl_800388A8:
 /* 800388E8 00035828  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 800388EC 0003582C  4E 80 00 20 */	blr 
 
-.global "getEndChild__17JSUTree<7J2DPane>CFv"
-"getEndChild__17JSUTree<7J2DPane>CFv":
+.global getEndChild__17JSUTree$$07J2DPane$$1CFv
+getEndChild__17JSUTree$$07J2DPane$$1CFv:
 /* 800388F0 00035830  38 60 00 00 */	li r3, 0
 /* 800388F4 00035834  4E 80 00 20 */	blr 
 
-.global "__pp__25JSUTreeIterator<7J2DPane>Fv"
-"__pp__25JSUTreeIterator<7J2DPane>Fv":
+.global __pp__25JSUTreeIterator$$07J2DPane$$1Fv
+__pp__25JSUTreeIterator$$07J2DPane$$1Fv:
 /* 800388F8 00035838  80 83 00 00 */	lwz r4, 0(r3)
 /* 800388FC 0003583C  80 84 00 18 */	lwz r4, 0x18(r4)
 /* 80038900 00035840  28 04 00 00 */	cmplwi r4, 0
@@ -2128,27 +2128,27 @@ lbl_8003890C:
 /* 8003890C 0003584C  90 83 00 00 */	stw r4, 0(r3)
 /* 80038910 00035850  4E 80 00 20 */	blr 
 
-.global "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
-"__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>":
+.global __ct__25JSUTreeIterator$$07J2DPane$$1FP17JSUTree$$07J2DPane$$1
+__ct__25JSUTreeIterator$$07J2DPane$$1FP17JSUTree$$07J2DPane$$1:
 /* 80038914 00035854  90 83 00 00 */	stw r4, 0(r3)
 /* 80038918 00035858  4E 80 00 20 */	blr 
 
-.global "__rf__25JSUTreeIterator<7J2DPane>CFv"
-"__rf__25JSUTreeIterator<7J2DPane>CFv":
+.global __rf__25JSUTreeIterator$$07J2DPane$$1CFv
+__rf__25JSUTreeIterator$$07J2DPane$$1CFv:
 /* 8003891C 0003585C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80038920 00035860  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80038924 00035864  4E 80 00 20 */	blr 
 
-.global "getFirstChild__17JSUTree<7J2DPane>CFv"
-"getFirstChild__17JSUTree<7J2DPane>CFv":
+.global getFirstChild__17JSUTree$$07J2DPane$$1CFv
+getFirstChild__17JSUTree$$07J2DPane$$1CFv:
 /* 80038928 00035868  80 63 00 00 */	lwz r3, 0(r3)
 /* 8003892C 0003586C  28 03 00 00 */	cmplwi r3, 0
 /* 80038930 00035870  4D 82 00 20 */	beqlr 
 /* 80038934 00035874  38 63 FF F4 */	addi r3, r3, -12
 /* 80038938 00035878  4E 80 00 20 */	blr 
 
-.global "getObject__17JSUTree<7J2DPane>CFv"
-"getObject__17JSUTree<7J2DPane>CFv":
+.global getObject__17JSUTree$$07J2DPane$$1CFv
+getObject__17JSUTree$$07J2DPane$$1CFv:
 /* 8003893C 0003587C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80038940 00035880  4E 80 00 20 */	blr 
 

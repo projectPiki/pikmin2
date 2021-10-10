@@ -915,14 +915,14 @@ createDownEffect__Q34Game7Sokkuri3ObjFff:
 /* 802F1EE4 002EEE24  FC 20 F8 90 */	fmr f1, f31
 /* 802F1EE8 002EEE28  7F E3 FB 78 */	mr r3, r31
 /* 802F1EEC 002EEE2C  38 81 00 08 */	addi r4, r1, 8
-/* 802F1EF0 002EEE30  4B E1 1B 09 */	bl "createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+/* 802F1EF0 002EEE30  4B E1 1B 09 */	bl createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
 /* 802F1EF4 002EEE34  48 00 00 18 */	b lbl_802F1F0C
 lbl_802F1EF8:
 /* 802F1EF8 002EEE38  C0 02 ED C0 */	lfs f0, lbl_8051D120@sda21(r2)
 /* 802F1EFC 002EEE3C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802F1F00 002EEE40  40 81 00 0C */	ble lbl_802F1F0C
 /* 802F1F04 002EEE44  38 9F 01 8C */	addi r4, r31, 0x18c
-/* 802F1F08 002EEE48  4B E1 1A 39 */	bl "createDropEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+/* 802F1F08 002EEE48  4B E1 1A 39 */	bl createDropEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
 lbl_802F1F0C:
 /* 802F1F0C 002EEE4C  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0
 /* 802F1F10 002EEE50  80 01 00 34 */	lwz r0, 0x34(r1)

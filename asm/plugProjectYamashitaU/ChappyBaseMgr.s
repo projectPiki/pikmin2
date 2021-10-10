@@ -212,7 +212,7 @@ getEnemyTypeID__Q34Game10ChappyBase3MgrFv:
 doAlloc__Q24Game12EnemyMgrBaseFv:
 /* 8012A944 00127884  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game10ChappyBase3MgrFv"
-"@4@__dt__Q34Game10ChappyBase3MgrFv":
+.global $$24$$2__dt__Q34Game10ChappyBase3MgrFv
+$$24$$2__dt__Q34Game10ChappyBase3MgrFv:
 /* 8012A948 00127888  38 63 FF FC */	addi r3, r3, -4
 /* 8012A94C 0012788C  4B FE EE 88 */	b __dt__Q34Game10ChappyBase3MgrFv

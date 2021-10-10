@@ -12,14 +12,14 @@ init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr:
 /* 803CE910 003CB850  38 80 00 08 */	li r4, 8
 /* 803CE914 003CB854  93 C1 00 08 */	stw r30, 8(r1)
 /* 803CE918 003CB858  7C 7E 1B 78 */	mr r30, r3
-/* 803CE91C 003CB85C  48 00 1B ED */	bl "create__Q24Game32StateMachine<Q33ebi6Option4TMgr>Fi"
+/* 803CE91C 003CB85C  48 00 1B ED */	bl create__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1Fi
 /* 803CE920 003CB860  38 60 00 10 */	li r3, 0x10
 /* 803CE924 003CB864  4B C5 55 81 */	bl __nw__FUl
 /* 803CE928 003CB868  7C 64 1B 79 */	or. r4, r3, r3
 /* 803CE92C 003CB86C  41 82 00 30 */	beq lbl_803CE95C
-/* 803CE930 003CB870  3C A0 80 4F */	lis r5, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
+/* 803CE930 003CB870  3C A0 80 4F */	lis r5, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CE934 003CB874  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option8FSMState@ha
-/* 803CE938 003CB878  38 05 89 AC */	addi r0, r5, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
+/* 803CE938 003CB878  38 05 89 AC */	addi r0, r5, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@l
 /* 803CE93C 003CB87C  38 A0 00 00 */	li r5, 0
 /* 803CE940 003CB880  90 04 00 00 */	stw r0, 0(r4)
 /* 803CE944 003CB884  38 63 89 84 */	addi r3, r3, __vt__Q33ebi6Option8FSMState@l
@@ -30,14 +30,14 @@ init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr:
 /* 803CE958 003CB898  90 04 00 0C */	stw r0, 0xc(r4)
 lbl_803CE95C:
 /* 803CE95C 003CB89C  7F C3 F3 78 */	mr r3, r30
-/* 803CE960 003CB8A0  48 00 1C A9 */	bl "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
+/* 803CE960 003CB8A0  48 00 1C A9 */	bl registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
 /* 803CE964 003CB8A4  38 60 00 14 */	li r3, 0x14
 /* 803CE968 003CB8A8  4B C5 55 3D */	bl __nw__FUl
 /* 803CE96C 003CB8AC  7C 64 1B 79 */	or. r4, r3, r3
 /* 803CE970 003CB8B0  41 82 00 40 */	beq lbl_803CE9B0
-/* 803CE974 003CB8B4  3C 60 80 4F */	lis r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
+/* 803CE974 003CB8B4  3C 60 80 4F */	lis r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CE978 003CB8B8  3C A0 80 4F */	lis r5, __vt__Q33ebi6Option8FSMState@ha
-/* 803CE97C 003CB8BC  38 03 89 AC */	addi r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
+/* 803CE97C 003CB8BC  38 03 89 AC */	addi r0, r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@l
 /* 803CE980 003CB8C0  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option19FSMState_LoadOption@ha
 /* 803CE984 003CB8C4  90 04 00 00 */	stw r0, 0(r4)
 /* 803CE988 003CB8C8  38 00 00 01 */	li r0, 1
@@ -52,14 +52,14 @@ lbl_803CE95C:
 /* 803CE9AC 003CB8EC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803CE9B0:
 /* 803CE9B0 003CB8F0  7F C3 F3 78 */	mr r3, r30
-/* 803CE9B4 003CB8F4  48 00 1C 55 */	bl "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
+/* 803CE9B4 003CB8F4  48 00 1C 55 */	bl registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
 /* 803CE9B8 003CB8F8  38 60 00 10 */	li r3, 0x10
 /* 803CE9BC 003CB8FC  4B C5 54 E9 */	bl __nw__FUl
 /* 803CE9C0 003CB900  7C 64 1B 79 */	or. r4, r3, r3
 /* 803CE9C4 003CB904  41 82 00 40 */	beq lbl_803CEA04
-/* 803CE9C8 003CB908  3C 60 80 4F */	lis r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
+/* 803CE9C8 003CB908  3C 60 80 4F */	lis r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CE9CC 003CB90C  3C A0 80 4F */	lis r5, __vt__Q33ebi6Option8FSMState@ha
-/* 803CE9D0 003CB910  38 03 89 AC */	addi r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
+/* 803CE9D0 003CB910  38 03 89 AC */	addi r0, r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@l
 /* 803CE9D4 003CB914  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option19FSMState_ScreenOpen@ha
 /* 803CE9D8 003CB918  90 04 00 00 */	stw r0, 0(r4)
 /* 803CE9DC 003CB91C  38 00 00 02 */	li r0, 2
@@ -74,14 +74,14 @@ lbl_803CE9B0:
 /* 803CEA00 003CB940  90 04 00 00 */	stw r0, 0(r4)
 lbl_803CEA04:
 /* 803CEA04 003CB944  7F C3 F3 78 */	mr r3, r30
-/* 803CEA08 003CB948  48 00 1C 01 */	bl "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
+/* 803CEA08 003CB948  48 00 1C 01 */	bl registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
 /* 803CEA0C 003CB94C  38 60 00 10 */	li r3, 0x10
 /* 803CEA10 003CB950  4B C5 54 95 */	bl __nw__FUl
 /* 803CEA14 003CB954  7C 64 1B 79 */	or. r4, r3, r3
 /* 803CEA18 003CB958  41 82 00 40 */	beq lbl_803CEA58
-/* 803CEA1C 003CB95C  3C 60 80 4F */	lis r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
+/* 803CEA1C 003CB95C  3C 60 80 4F */	lis r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CEA20 003CB960  3C A0 80 4F */	lis r5, __vt__Q33ebi6Option8FSMState@ha
-/* 803CEA24 003CB964  38 03 89 AC */	addi r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
+/* 803CEA24 003CB964  38 03 89 AC */	addi r0, r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@l
 /* 803CEA28 003CB968  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option19FSMState_ScreenWait@ha
 /* 803CEA2C 003CB96C  90 04 00 00 */	stw r0, 0(r4)
 /* 803CEA30 003CB970  38 00 00 03 */	li r0, 3
@@ -96,14 +96,14 @@ lbl_803CEA04:
 /* 803CEA54 003CB994  90 04 00 00 */	stw r0, 0(r4)
 lbl_803CEA58:
 /* 803CEA58 003CB998  7F C3 F3 78 */	mr r3, r30
-/* 803CEA5C 003CB99C  48 00 1B AD */	bl "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
+/* 803CEA5C 003CB99C  48 00 1B AD */	bl registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
 /* 803CEA60 003CB9A0  38 60 00 10 */	li r3, 0x10
 /* 803CEA64 003CB9A4  4B C5 54 41 */	bl __nw__FUl
 /* 803CEA68 003CB9A8  7C 64 1B 79 */	or. r4, r3, r3
 /* 803CEA6C 003CB9AC  41 82 00 40 */	beq lbl_803CEAAC
-/* 803CEA70 003CB9B0  3C 60 80 4F */	lis r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
+/* 803CEA70 003CB9B0  3C 60 80 4F */	lis r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CEA74 003CB9B4  3C A0 80 4F */	lis r5, __vt__Q33ebi6Option8FSMState@ha
-/* 803CEA78 003CB9B8  38 03 89 AC */	addi r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
+/* 803CEA78 003CB9B8  38 03 89 AC */	addi r0, r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@l
 /* 803CEA7C 003CB9BC  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option20FSMState_ScreenClose@ha
 /* 803CEA80 003CB9C0  90 04 00 00 */	stw r0, 0(r4)
 /* 803CEA84 003CB9C4  38 00 00 04 */	li r0, 4
@@ -118,14 +118,14 @@ lbl_803CEA58:
 /* 803CEAA8 003CB9E8  90 04 00 00 */	stw r0, 0(r4)
 lbl_803CEAAC:
 /* 803CEAAC 003CB9EC  7F C3 F3 78 */	mr r3, r30
-/* 803CEAB0 003CB9F0  48 00 1B 59 */	bl "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
+/* 803CEAB0 003CB9F0  48 00 1B 59 */	bl registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
 /* 803CEAB4 003CB9F4  38 60 00 10 */	li r3, 0x10
 /* 803CEAB8 003CB9F8  4B C5 53 ED */	bl __nw__FUl
 /* 803CEABC 003CB9FC  7C 64 1B 79 */	or. r4, r3, r3
 /* 803CEAC0 003CBA00  41 82 00 40 */	beq lbl_803CEB00
-/* 803CEAC4 003CBA04  3C 60 80 4F */	lis r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
+/* 803CEAC4 003CBA04  3C 60 80 4F */	lis r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CEAC8 003CBA08  3C A0 80 4F */	lis r5, __vt__Q33ebi6Option8FSMState@ha
-/* 803CEACC 003CBA0C  38 03 89 AC */	addi r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
+/* 803CEACC 003CBA0C  38 03 89 AC */	addi r0, r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@l
 /* 803CEAD0 003CBA10  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option16FSMState_SaveMgr@ha
 /* 803CEAD4 003CBA14  90 04 00 00 */	stw r0, 0(r4)
 /* 803CEAD8 003CBA18  38 00 00 05 */	li r0, 5
@@ -140,14 +140,14 @@ lbl_803CEAAC:
 /* 803CEAFC 003CBA3C  90 04 00 00 */	stw r0, 0(r4)
 lbl_803CEB00:
 /* 803CEB00 003CBA40  7F C3 F3 78 */	mr r3, r30
-/* 803CEB04 003CBA44  48 00 1B 05 */	bl "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
+/* 803CEB04 003CBA44  48 00 1B 05 */	bl registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
 /* 803CEB08 003CBA48  38 60 00 18 */	li r3, 0x18
 /* 803CEB0C 003CBA4C  4B C5 53 99 */	bl __nw__FUl
 /* 803CEB10 003CBA50  7C 64 1B 79 */	or. r4, r3, r3
 /* 803CEB14 003CBA54  41 82 00 48 */	beq lbl_803CEB5C
-/* 803CEB18 003CBA58  3C 60 80 4F */	lis r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
+/* 803CEB18 003CBA58  3C 60 80 4F */	lis r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CEB1C 003CBA5C  3C A0 80 4F */	lis r5, __vt__Q33ebi6Option8FSMState@ha
-/* 803CEB20 003CBA60  38 03 89 AC */	addi r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
+/* 803CEB20 003CBA60  38 03 89 AC */	addi r0, r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@l
 /* 803CEB24 003CBA64  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard@ha
 /* 803CEB28 003CBA68  90 04 00 00 */	stw r0, 0(r4)
 /* 803CEB2C 003CBA6C  38 00 00 06 */	li r0, 6
@@ -164,14 +164,14 @@ lbl_803CEB00:
 /* 803CEB58 003CBA98  90 E4 00 14 */	stw r7, 0x14(r4)
 lbl_803CEB5C:
 /* 803CEB5C 003CBA9C  7F C3 F3 78 */	mr r3, r30
-/* 803CEB60 003CBAA0  48 00 1A A9 */	bl "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
+/* 803CEB60 003CBAA0  48 00 1A A9 */	bl registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
 /* 803CEB64 003CBAA4  38 60 00 10 */	li r3, 0x10
 /* 803CEB68 003CBAA8  4B C5 53 3D */	bl __nw__FUl
 /* 803CEB6C 003CBAAC  7C 64 1B 79 */	or. r4, r3, r3
 /* 803CEB70 003CBAB0  41 82 00 40 */	beq lbl_803CEBB0
-/* 803CEB74 003CBAB4  3C 60 80 4F */	lis r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
+/* 803CEB74 003CBAB4  3C 60 80 4F */	lis r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CEB78 003CBAB8  3C A0 80 4F */	lis r5, __vt__Q33ebi6Option8FSMState@ha
-/* 803CEB7C 003CBABC  38 03 89 AC */	addi r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
+/* 803CEB7C 003CBABC  38 03 89 AC */	addi r0, r3, __vt__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1@l
 /* 803CEB80 003CBAC0  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow@ha
 /* 803CEB84 003CBAC4  90 04 00 00 */	stw r0, 0(r4)
 /* 803CEB88 003CBAC8  38 00 00 07 */	li r0, 7
@@ -186,7 +186,7 @@ lbl_803CEB5C:
 /* 803CEBAC 003CBAEC  90 04 00 00 */	stw r0, 0(r4)
 lbl_803CEBB0:
 /* 803CEBB0 003CBAF0  7F C3 F3 78 */	mr r3, r30
-/* 803CEBB4 003CBAF4  48 00 1A 55 */	bl "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
+/* 803CEBB4 003CBAF4  48 00 1A 55 */	bl registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
 /* 803CEBB8 003CBAF8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803CEBBC 003CBAFC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803CEBC0 003CBB00  83 C1 00 08 */	lwz r30, 8(r1)
@@ -282,8 +282,8 @@ lbl_803CECCC:
 /* 803CECDC 003CBC1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CECE0 003CBC20  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-"transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg":
+.global transit__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgriPQ24Game8StateArg
+transit__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgriPQ24Game8StateArg:
 /* 803CECE4 003CBC24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CECE8 003CBC28  7C 08 02 A6 */	mflr r0
 /* 803CECEC 003CBC2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -809,9 +809,9 @@ __ct__Q33ebi6Option4TMgrFv:
 /* 803CF3F4 003CC334  7C 7F 1B 78 */	mr r31, r3
 /* 803CF3F8 003CC338  48 00 04 7D */	bl __ct__Q33ebi6Screen7TOptionFv
 /* 803CF3FC 003CC33C  38 00 00 00 */	li r0, 0
-/* 803CF400 003CC340  3C 60 80 4F */	lis r3, "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>"@ha
+/* 803CF400 003CC340  3C 60 80 4F */	lis r3, __vt__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1@ha
 /* 803CF404 003CC344  98 1F 0F 20 */	stb r0, 0xf20(r31)
-/* 803CF408 003CC348  38 03 88 54 */	addi r0, r3, "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>"@l
+/* 803CF408 003CC348  38 03 88 54 */	addi r0, r3, __vt__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1@l
 /* 803CF40C 003CC34C  3C 60 80 4F */	lis r3, __vt__Q33ebi6Option15FSMStateMachine@ha
 /* 803CF410 003CC350  38 A0 FF FF */	li r5, -1
 /* 803CF414 003CC354  90 1F 0F 24 */	stw r0, 0xf24(r31)
@@ -851,8 +851,8 @@ __ct__Q33ebi6Option4TMgrFv:
 /* 803CF49C 003CC3DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803CF4A0 003CC3E0  4E 80 00 20 */	blr 
 
-.global "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-"start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg":
+.global start__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgriPQ24Game8StateArg
+start__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgriPQ24Game8StateArg:
 /* 803CF4A4 003CC3E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803CF4A8 003CC3E8  7C 08 02 A6 */	mflr r0
 /* 803CF4AC 003CC3EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1984,32 +1984,32 @@ lbl_803D04A4:
 do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext:
 /* 803D04B4 003CD3F4  4E 80 00 20 */	blr 
 
-.global "init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg"
-"init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg":
+.global init__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgrPQ24Game8StateArg
+init__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgrPQ24Game8StateArg:
 /* 803D04B8 003CD3F8  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"exec__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.global exec__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr
+exec__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr:
 /* 803D04BC 003CD3FC  4E 80 00 20 */	blr 
 
-.global "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.global cleanup__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr
+cleanup__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr:
 /* 803D04C0 003CD400  4E 80 00 20 */	blr 
 
-.global "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.global resume__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr
+resume__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr:
 /* 803D04C4 003CD404  4E 80 00 20 */	blr 
 
-.global "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.global restart__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr
+restart__Q24Game28FSMState$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr:
 /* 803D04C8 003CD408  4E 80 00 20 */	blr 
 
-.global "init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.global init__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr
+init__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr:
 /* 803D04CC 003CD40C  4E 80 00 20 */	blr 
 
-.global "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-"exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr":
+.global exec__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr
+exec__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgr:
 /* 803D04D0 003CD410  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D04D4 003CD414  7C 08 02 A6 */	mflr r0
 /* 803D04D8 003CD418  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2026,8 +2026,8 @@ lbl_803D04F8:
 /* 803D0500 003CD440  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0504 003CD444  4E 80 00 20 */	blr 
 
-.global "create__Q24Game32StateMachine<Q33ebi6Option4TMgr>Fi"
-"create__Q24Game32StateMachine<Q33ebi6Option4TMgr>Fi":
+.global create__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1Fi
+create__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1Fi:
 /* 803D0508 003CD448  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803D050C 003CD44C  7C 08 02 A6 */	mflr r0
 /* 803D0510 003CD450  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2054,8 +2054,8 @@ lbl_803D04F8:
 /* 803D0564 003CD4A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D0568 003CD4A8  4E 80 00 20 */	blr 
 
-.global "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-"transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg":
+.global transit__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgriPQ24Game8StateArg
+transit__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ33ebi6Option4TMgriPQ24Game8StateArg:
 /* 803D056C 003CD4AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803D0570 003CD4B0  7C 08 02 A6 */	mflr r0
 /* 803D0574 003CD4B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2099,8 +2099,8 @@ lbl_803D05CC:
 /* 803D0600 003CD540  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D0604 003CD544  4E 80 00 20 */	blr 
 
-.global "registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>":
+.global registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1
+registerState__Q24Game32StateMachine$$0Q33ebi6Option4TMgr$$1FPQ24Game28FSMState$$0Q33ebi6Option4TMgr$$1:
 /* 803D0608 003CD548  80 C3 00 08 */	lwz r6, 8(r3)
 /* 803D060C 003CD54C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 803D0610 003CD550  7C 06 00 00 */	cmpw r6, r0

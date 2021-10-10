@@ -1020,7 +1020,7 @@ __sinit_ogObjChallenge1P_cpp:
 /* 80328C20 00325B60  D0 03 00 68 */	stfs f0, 0x68(r3)
 /* 80328C24 00325B64  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen14ObjChallenge1PFv"
-"@24@__dt__Q32og9newScreen14ObjChallenge1PFv":
+.global $$224$$2__dt__Q32og9newScreen14ObjChallenge1PFv
+$$224$$2__dt__Q32og9newScreen14ObjChallenge1PFv:
 /* 80328C28 00325B68  38 63 FF E8 */	addi r3, r3, -24
 /* 80328C2C 00325B6C  4B FF F1 90 */	b __dt__Q32og9newScreen14ObjChallenge1PFv

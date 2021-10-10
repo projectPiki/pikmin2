@@ -5,10 +5,10 @@
 __ct__Q34Game10SingleGame15CaveResultStateFv:
 /* 8021AC20 00217B60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021AC24 00217B64  7C 08 02 A6 */	mflr r0
-/* 8021AC28 00217B68  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
+/* 8021AC28 00217B68  3C 80 80 4B */	lis r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
 /* 8021AC2C 00217B6C  38 A0 00 00 */	li r5, 0
 /* 8021AC30 00217B70  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8021AC34 00217B74  38 04 13 18 */	addi r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
+/* 8021AC34 00217B74  38 04 13 18 */	addi r0, r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
 /* 8021AC38 00217B78  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame5State@ha
 /* 8021AC3C 00217B7C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8021AC40 00217B80  7C 7F 1B 78 */	mr r31, r3
@@ -41,11 +41,11 @@ lbl_8021AC94:
 /* 8021ACA8 00217BE8  3C 80 80 4C */	lis r4, lbl_804C070C@ha
 /* 8021ACAC 00217BEC  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 8021ACB0 00217BF0  39 04 07 0C */	addi r8, r4, lbl_804C070C@l
-/* 8021ACB4 00217BF4  3C 80 80 4C */	lis r4, "__vt__46Delegate<Q34Game10SingleGame15CaveResultState>"@ha
+/* 8021ACB4 00217BF4  3C 80 80 4C */	lis r4, __vt__46Delegate$$0Q34Game10SingleGame15CaveResultState$$1@ha
 /* 8021ACB8 00217BF8  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8021ACBC 00217BFC  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 8021ACC0 00217C00  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8021ACC4 00217C04  38 04 07 60 */	addi r0, r4, "__vt__46Delegate<Q34Game10SingleGame15CaveResultState>"@l
+/* 8021ACC4 00217C04  38 04 07 60 */	addi r0, r4, __vt__46Delegate$$0Q34Game10SingleGame15CaveResultState$$1@l
 /* 8021ACC8 00217C08  80 88 00 08 */	lwz r4, 8(r8)
 /* 8021ACCC 00217C0C  90 E1 00 08 */	stw r7, 8(r1)
 /* 8021ACD0 00217C10  90 A3 00 00 */	stw r5, 0(r3)
@@ -889,8 +889,8 @@ lbl_8021B8D0:
 /* 8021B8EC 0021882C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8021B8F0 00218830  4E 80 00 20 */	blr 
 
-.global "invoke__46Delegate<Q34Game10SingleGame15CaveResultState>Fv"
-"invoke__46Delegate<Q34Game10SingleGame15CaveResultState>Fv":
+.global invoke__46Delegate$$0Q34Game10SingleGame15CaveResultState$$1Fv
+invoke__46Delegate$$0Q34Game10SingleGame15CaveResultState$$1Fv:
 /* 8021B8F4 00218834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021B8F8 00218838  7C 08 02 A6 */	mflr r0
 /* 8021B8FC 0021883C  7C 64 1B 78 */	mr r4, r3

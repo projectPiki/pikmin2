@@ -198,7 +198,7 @@ getEnemyTypeID__Q34Game8MaroFrog3MgrFv:
 /* 802617D0 0025E710  38 60 00 12 */	li r3, 0x12
 /* 802617D4 0025E714  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game8MaroFrog3MgrFv"
-"@4@__dt__Q34Game8MaroFrog3MgrFv":
+.global $$24$$2__dt__Q34Game8MaroFrog3MgrFv
+$$24$$2__dt__Q34Game8MaroFrog3MgrFv:
 /* 802617D8 0025E718  38 63 FF FC */	addi r3, r3, -4
 /* 802617DC 0025E71C  4B FF FF 44 */	b __dt__Q34Game8MaroFrog3MgrFv

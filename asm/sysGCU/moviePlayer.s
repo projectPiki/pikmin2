@@ -65,11 +65,11 @@ __ct__Q24Game11MoviePlayerFv:
 /* 8042C7EC 0042972C  3C 80 80 4F */	lis r4, lbl_804EBFBC@ha
 /* 8042C7F0 00429730  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 8042C7F4 00429734  39 04 BF BC */	addi r8, r4, lbl_804EBFBC@l
-/* 8042C7F8 00429738  3C 80 80 4F */	lis r4, "__vt__30Delegate<Q24Game11MoviePlayer>"@ha
+/* 8042C7F8 00429738  3C 80 80 4F */	lis r4, __vt__30Delegate$$0Q24Game11MoviePlayer$$1@ha
 /* 8042C7FC 0042973C  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8042C800 00429740  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 8042C804 00429744  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8042C808 00429748  38 04 C0 00 */	addi r0, r4, "__vt__30Delegate<Q24Game11MoviePlayer>"@l
+/* 8042C808 00429748  38 04 C0 00 */	addi r0, r4, __vt__30Delegate$$0Q24Game11MoviePlayer$$1@l
 /* 8042C80C 0042974C  80 88 00 08 */	lwz r4, 8(r8)
 /* 8042C810 00429750  90 E1 00 08 */	stw r7, 8(r1)
 /* 8042C814 00429754  90 A3 00 00 */	stw r5, 0(r3)
@@ -351,7 +351,7 @@ lbl_8042CBCC:
 /* 8042CBD0 00429B10  38 9C 00 8C */	addi r4, r28, 0x8c
 /* 8042CBD4 00429B14  C0 22 22 B8 */	lfs f1, lbl_80520618@sda21(r2)
 /* 8042CBD8 00429B18  C0 42 22 BC */	lfs f2, lbl_8052061C@sda21(r2)
-/* 8042CBDC 00429B1C  4B D3 5B 65 */	bl "getBestAngle__Q24Game6MapMgrFR10Vector3<f>ff"
+/* 8042CBDC 00429B1C  4B D3 5B 65 */	bl getBestAngle__Q24Game6MapMgrFR10Vector3$$0f$$1ff
 /* 8042CBE0 00429B20  C0 02 22 B4 */	lfs f0, lbl_80520614@sda21(r2)
 /* 8042CBE4 00429B24  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8042CBE8 00429B28  D0 1C 00 98 */	stfs f0, 0x98(r28)
@@ -1206,7 +1206,7 @@ lbl_8042D7F4:
 /* 8042D804 0042A744  C0 3C 00 98 */	lfs f1, 0x98(r28)
 /* 8042D808 0042A748  7F 83 E3 78 */	mr r3, r28
 /* 8042D80C 0042A74C  38 9C 00 8C */	addi r4, r28, 0x8c
-/* 8042D810 0042A750  48 00 0D 0D */	bl "setTransform__Q24Game11MoviePlayerFR10Vector3<f>f"
+/* 8042D810 0042A750  48 00 0D 0D */	bl setTransform__Q24Game11MoviePlayerFR10Vector3$$0f$$1f
 lbl_8042D814:
 /* 8042D814 0042A754  7F 83 E3 78 */	mr r3, r28
 /* 8042D818 0042A758  38 80 00 00 */	li r4, 0
@@ -1528,7 +1528,7 @@ lbl_8042DC68:
 /* 8042DC8C 0042ABCC  D0 3C 00 90 */	stfs f1, 0x90(r28)
 /* 8042DC90 0042ABD0  D0 1C 00 94 */	stfs f0, 0x94(r28)
 /* 8042DC94 0042ABD4  C0 3C 00 98 */	lfs f1, 0x98(r28)
-/* 8042DC98 0042ABD8  48 00 08 85 */	bl "setTransform__Q24Game11MoviePlayerFR10Vector3<f>f"
+/* 8042DC98 0042ABD8  48 00 08 85 */	bl setTransform__Q24Game11MoviePlayerFR10Vector3$$0f$$1f
 lbl_8042DC9C:
 /* 8042DC9C 0042ABDC  80 7C 01 D0 */	lwz r3, 0x1d0(r28)
 /* 8042DCA0 0042ABE0  38 80 00 01 */	li r4, 1
@@ -2141,8 +2141,8 @@ lbl_8042E508:
 /* 8042E514 0042B454  38 21 00 30 */	addi r1, r1, 0x30
 /* 8042E518 0042B458  4E 80 00 20 */	blr 
 
-.global "setTransform__Q24Game11MoviePlayerFR10Vector3<f>f"
-"setTransform__Q24Game11MoviePlayerFR10Vector3<f>f":
+.global setTransform__Q24Game11MoviePlayerFR10Vector3$$0f$$1f
+setTransform__Q24Game11MoviePlayerFR10Vector3$$0f$$1f:
 /* 8042E51C 0042B45C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042E520 0042B460  7C 08 02 A6 */	mflr r0
 /* 8042E524 0042B464  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2281,7 +2281,7 @@ lbl_8042E6B0:
 /* 8042E708 0042B648  EC 03 00 2A */	fadds f0, f3, f0
 /* 8042E70C 0042B64C  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 8042E710 0042B650  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8042E714 0042B654  4B C0 80 C1 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 8042E714 0042B654  4B C0 80 C1 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 lbl_8042E718:
 /* 8042E718 0042B658  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8042E71C 0042B65C  83 E1 00 4C */	lwz r31, 0x4c(r1)
@@ -2424,8 +2424,8 @@ lbl_8042E8EC:
 /* 8042E900 0042B840  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042E904 0042B844  4E 80 00 20 */	blr 
 
-.global "invoke__30Delegate<Q24Game11MoviePlayer>Fv"
-"invoke__30Delegate<Q24Game11MoviePlayer>Fv":
+.global invoke__30Delegate$$0Q24Game11MoviePlayer$$1Fv
+invoke__30Delegate$$0Q24Game11MoviePlayer$$1Fv:
 /* 8042E908 0042B848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042E90C 0042B84C  7C 08 02 A6 */	mflr r0
 /* 8042E910 0042B850  7C 64 1B 78 */	mr r4, r3

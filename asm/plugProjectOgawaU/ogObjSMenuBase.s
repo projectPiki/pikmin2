@@ -445,13 +445,13 @@ jump_L__Q32og9newScreen12ObjSMenuBaseFRQ26Screen11SetSceneArg:
 /* 8031683C 0031377C  3C 80 80 4E */	lis r4, __vt__Q26Screen12SceneArgBase@ha
 /* 80316840 00313780  3C 60 80 4E */	lis r3, __vt__Q26Screen13StartSceneArg@ha
 /* 80316844 00313784  38 04 84 68 */	addi r0, r4, __vt__Q26Screen12SceneArgBase@l
-/* 80316848 00313788  3C 80 80 4E */	lis r4, "__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"@ha
+/* 80316848 00313788  3C 80 80 4E */	lis r4, __vt__Q26Screen58StartSceneArgTemplate$$0Q32og9newScreen18StartSceneArgSMenu$$1@ha
 /* 8031684C 0031378C  90 01 00 08 */	stw r0, 8(r1)
 /* 80316850 00313790  38 A3 8A 78 */	addi r5, r3, __vt__Q26Screen13StartSceneArg@l
 /* 80316854 00313794  3C 60 80 4E */	lis r3, __vt__Q32og9newScreen18StartSceneArgSMenu@ha
 /* 80316858 00313798  38 00 00 01 */	li r0, 1
 /* 8031685C 0031379C  90 A1 00 08 */	stw r5, 8(r1)
-/* 80316860 003137A0  38 A4 8A 68 */	addi r5, r4, "__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"@l
+/* 80316860 003137A0  38 A4 8A 68 */	addi r5, r4, __vt__Q26Screen58StartSceneArgTemplate$$0Q32og9newScreen18StartSceneArgSMenu$$1@l
 /* 80316864 003137A4  38 83 8A 58 */	addi r4, r3, __vt__Q32og9newScreen18StartSceneArgSMenu@l
 /* 80316868 003137A8  7F C3 F3 78 */	mr r3, r30
 /* 8031686C 003137AC  90 A1 00 08 */	stw r5, 8(r1)
@@ -506,13 +506,13 @@ jump_R__Q32og9newScreen12ObjSMenuBaseFRQ26Screen11SetSceneArg:
 /* 80316920 00313860  3C 80 80 4E */	lis r4, __vt__Q26Screen12SceneArgBase@ha
 /* 80316924 00313864  3C 60 80 4E */	lis r3, __vt__Q26Screen13StartSceneArg@ha
 /* 80316928 00313868  38 04 84 68 */	addi r0, r4, __vt__Q26Screen12SceneArgBase@l
-/* 8031692C 0031386C  3C 80 80 4E */	lis r4, "__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"@ha
+/* 8031692C 0031386C  3C 80 80 4E */	lis r4, __vt__Q26Screen58StartSceneArgTemplate$$0Q32og9newScreen18StartSceneArgSMenu$$1@ha
 /* 80316930 00313870  90 01 00 08 */	stw r0, 8(r1)
 /* 80316934 00313874  38 A3 8A 78 */	addi r5, r3, __vt__Q26Screen13StartSceneArg@l
 /* 80316938 00313878  3C 60 80 4E */	lis r3, __vt__Q32og9newScreen18StartSceneArgSMenu@ha
 /* 8031693C 0031387C  38 00 00 01 */	li r0, 1
 /* 80316940 00313880  90 A1 00 08 */	stw r5, 8(r1)
-/* 80316944 00313884  38 A4 8A 68 */	addi r5, r4, "__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"@l
+/* 80316944 00313884  38 A4 8A 68 */	addi r5, r4, __vt__Q26Screen58StartSceneArgTemplate$$0Q32og9newScreen18StartSceneArgSMenu$$1@l
 /* 80316948 00313888  38 83 8A 58 */	addi r4, r3, __vt__Q32og9newScreen18StartSceneArgSMenu@l
 /* 8031694C 0031388C  7F C3 F3 78 */	mr r3, r30
 /* 80316950 00313890  90 A1 00 08 */	stw r5, 8(r1)
@@ -1274,8 +1274,8 @@ getSceneType__Q32og9newScreen18StartSceneArgSMenuCFv:
 /* 803173B0 003142F0  80 63 00 04 */	lwz r3, 4(r3)
 /* 803173B4 003142F4  4E 80 00 20 */	blr 
 
-.global "getClassSize__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>Fv"
-"getClassSize__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>Fv":
+.global getClassSize__Q26Screen58StartSceneArgTemplate$$0Q32og9newScreen18StartSceneArgSMenu$$1Fv
+getClassSize__Q26Screen58StartSceneArgTemplate$$0Q32og9newScreen18StartSceneArgSMenu$$1Fv:
 /* 803173B8 003142F8  38 60 00 0C */	li r3, 0xc
 /* 803173BC 003142FC  4E 80 00 20 */	blr 
 
@@ -1303,7 +1303,7 @@ __sinit_ogObjSMenuBase_cpp:
 /* 8031740C 0031434C  98 05 00 19 */	stb r0, 0x19(r5)
 /* 80317410 00314350  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen12ObjSMenuBaseFv"
-"@24@__dt__Q32og9newScreen12ObjSMenuBaseFv":
+.global $$224$$2__dt__Q32og9newScreen12ObjSMenuBaseFv
+$$224$$2__dt__Q32og9newScreen12ObjSMenuBaseFv:
 /* 80317414 00314354  38 63 FF E8 */	addi r3, r3, -24
 /* 80317418 00314358  4B FF 83 EC */	b __dt__Q32og9newScreen12ObjSMenuBaseFv

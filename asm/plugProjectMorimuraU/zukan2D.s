@@ -1578,13 +1578,13 @@ lbl_8037228C:
 /* 80372330 0036F270  EC 05 00 7A */	fmadds f0, f5, f1, f0
 /* 80372334 0036F274  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80372338 0036F278  80 7E 01 20 */	lwz r3, 0x120(r30)
-/* 8037233C 0036F27C  4B CC 5B FD */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 8037233C 0036F27C  4B CC 5B FD */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 /* 80372340 0036F280  80 7E 01 24 */	lwz r3, 0x124(r30)
 /* 80372344 0036F284  38 81 00 14 */	addi r4, r1, 0x14
-/* 80372348 0036F288  4B CC 5B F1 */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 80372348 0036F288  4B CC 5B F1 */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 /* 8037234C 0036F28C  80 7E 01 28 */	lwz r3, 0x128(r30)
 /* 80372350 0036F290  38 81 00 14 */	addi r4, r1, 0x14
-/* 80372354 0036F294  4B CC 5B E5 */	bl "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+/* 80372354 0036F294  4B CC 5B E5 */	bl place__7J2DPaneFRCQ29JGeometry8TBox2$$0f$$1
 /* 80372358 0036F298  80 7E 01 2C */	lwz r3, 0x12c(r30)
 /* 8037235C 0036F29C  28 03 00 00 */	cmplwi r3, 0
 /* 80372360 0036F2A0  41 82 00 2C */	beq lbl_8037238C
@@ -2417,7 +2417,7 @@ lbl_80372EC8:
 /* 80372F74 0036FEB4  EC 03 00 2A */	fadds f0, f3, f0
 /* 80372F78 0036FEB8  D0 21 00 74 */	stfs f1, 0x74(r1)
 /* 80372F7C 0036FEBC  D0 01 00 78 */	stfs f0, 0x78(r1)
-/* 80372F80 0036FEC0  4B CC 38 55 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 80372F80 0036FEC0  4B CC 38 55 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 80372F84 0036FEC4  38 60 00 01 */	li r3, 1
 /* 80372F88 0036FEC8  4B D7 61 D1 */	bl GXSetAlphaUpdate
 /* 80372F8C 0036FECC  80 77 01 08 */	lwz r3, 0x108(r23)
@@ -2559,7 +2559,7 @@ lbl_80373104:
 /* 80373194 003700D4  EC 03 00 2A */	fadds f0, f3, f0
 /* 80373198 003700D8  D0 21 00 64 */	stfs f1, 0x64(r1)
 /* 8037319C 003700DC  D0 01 00 68 */	stfs f0, 0x68(r1)
-/* 803731A0 003700E0  4B CC 36 35 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 803731A0 003700E0  4B CC 36 35 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 803731A4 003700E4  38 60 00 01 */	li r3, 1
 /* 803731A8 003700E8  4B D7 5F B1 */	bl GXSetAlphaUpdate
 lbl_803731AC:
@@ -2603,7 +2603,7 @@ lbl_803731AC:
 /* 80373240 00370180  EC 03 00 2A */	fadds f0, f3, f0
 /* 80373244 00370184  D0 21 00 54 */	stfs f1, 0x54(r1)
 /* 80373248 00370188  D0 01 00 58 */	stfs f0, 0x58(r1)
-/* 8037324C 0037018C  4B CC 35 89 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+/* 8037324C 0037018C  4B CC 35 89 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
 /* 80373250 00370190  38 60 00 01 */	li r3, 1
 /* 80373254 00370194  4B D7 5F 05 */	bl GXSetAlphaUpdate
 /* 80373258 00370198  E3 E1 00 D8 */	psq_l f31, 216(r1), 0, qr0
@@ -2841,7 +2841,7 @@ lbl_803734CC:
 /* 803735AC 003704EC  38 C4 73 74 */	addi r6, r4, 0x74657374@l
 /* 803735B0 003704F0  38 A0 00 00 */	li r5, 0
 /* 803735B4 003704F4  3D 20 01 10 */	lis r9, 0x110
-/* 803735B8 003704F8  4B CE 1B 85 */	bl "__ct__12J2DPictureExFUxRCQ29JGeometry8TBox2<f>PCcUl"
+/* 803735B8 003704F8  4B CE 1B 85 */	bl __ct__12J2DPictureExFUxRCQ29JGeometry8TBox2$$0f$$1PCcUl
 /* 803735BC 003704FC  7C 75 1B 78 */	mr r21, r3
 lbl_803735C0:
 /* 803735C0 00370500  28 15 00 00 */	cmplwi r21, 0
@@ -6443,7 +6443,7 @@ lbl_80376890:
 /* 80376970 003738B0  38 C4 73 74 */	addi r6, r4, 0x74657374@l
 /* 80376974 003738B4  38 A0 00 00 */	li r5, 0
 /* 80376978 003738B8  3D 20 01 10 */	lis r9, 0x110
-/* 8037697C 003738BC  4B CD E7 C1 */	bl "__ct__12J2DPictureExFUxRCQ29JGeometry8TBox2<f>PCcUl"
+/* 8037697C 003738BC  4B CD E7 C1 */	bl __ct__12J2DPictureExFUxRCQ29JGeometry8TBox2$$0f$$1PCcUl
 /* 80376980 003738C0  7C 75 1B 78 */	mr r21, r3
 lbl_80376984:
 /* 80376984 003738C4  28 15 00 00 */	cmplwi r21, 0
@@ -13255,17 +13255,17 @@ __sinit_zukan2D_cpp:
 /* 8037C98C 003798CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037C990 003798D0  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q28Morimura10TZukanBaseFv"
-"@24@__dt__Q28Morimura10TZukanBaseFv":
+.global $$224$$2__dt__Q28Morimura10TZukanBaseFv
+$$224$$2__dt__Q28Morimura10TZukanBaseFv:
 /* 8037C994 003798D4  38 63 FF E8 */	addi r3, r3, -24
 /* 8037C998 003798D8  4B FF 45 38 */	b __dt__Q28Morimura10TZukanBaseFv
 
-.global "@24@__dt__Q28Morimura11TEnemyZukanFv"
-"@24@__dt__Q28Morimura11TEnemyZukanFv":
+.global $$224$$2__dt__Q28Morimura11TEnemyZukanFv
+$$224$$2__dt__Q28Morimura11TEnemyZukanFv:
 /* 8037C99C 003798DC  38 63 FF E8 */	addi r3, r3, -24
 /* 8037C9A0 003798E0  4B FF 80 F4 */	b __dt__Q28Morimura11TEnemyZukanFv
 
-.global "@24@__dt__Q28Morimura10TItemZukanFv"
-"@24@__dt__Q28Morimura10TItemZukanFv":
+.global $$224$$2__dt__Q28Morimura10TItemZukanFv
+$$224$$2__dt__Q28Morimura10TItemZukanFv:
 /* 8037C9A4 003798E4  38 63 FF E8 */	addi r3, r3, -24
 /* 8037C9A8 003798E8  4B FF B5 D0 */	b __dt__Q28Morimura10TItemZukanFv
