@@ -70,10 +70,10 @@ void PrimTagParm<u16>::doDump() { }
  */
 void PrimTagParm<u64>::doRead(Stream& stream)
 {
-    char* str = stream.readString(nullptr, nullptr);
-    for (int i = 0; i < 8; i++) {
-        m_data[i] = str[i];
-    }
+	char* str = stream.readString(nullptr, nullptr);
+	for (int i = 0; i < 8; i++) {
+		m_data[i] = str[i];
+	}
 }
 
 /*
@@ -83,11 +83,11 @@ void PrimTagParm<u64>::doRead(Stream& stream)
  */
 void PrimTagParm<u64>::doWrite(Stream& stream)
 {
-    char data[8];
-    for (int i = 0; i < 8; i++) {
-        data[i] = m_data[i];
-    }
-    stream.writeString(data);
+	char data[8];
+	for (int i = 0; i < 8; i++) {
+		data[i] = m_data[i];
+	}
+	stream.writeString(data);
 }
 
 /*
@@ -145,9 +145,9 @@ void PrimTagParm<Vector3f>::doDump() { }
  * Size:	000044
  */
 StringTagParm::StringTagParm(TagParameters* params, char* name)
-    : TagParm(params, name)
+	: TagParm(params, name)
 {
-    m_data = nullptr;
+	m_data = nullptr;
 }
 
 /*
@@ -164,7 +164,7 @@ void StringTagParm::flushValue() { }
  */
 void StringTagParm::doRead(Stream& stream)
 {
-    m_data = stream.readString(nullptr, 0);
+	m_data = stream.readString(nullptr, 0);
 }
 
 /*
@@ -188,8 +188,8 @@ void StringTagParm::doDump() { }
  */
 TagParameters::TagParameters(char* name)
 {
-    _18    = 0;
-    m_name = name;
+	_18    = 0;
+	m_name = name;
 }
 
 ///*
