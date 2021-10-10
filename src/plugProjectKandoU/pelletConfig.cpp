@@ -95,44 +95,7 @@ namespace Game {
      * Size:	000070
      */
 
-    PelletConfig::TParms::~TParms()
-    {
-        /*
-        .loc_0x0:
-          stwu      r1, -0x10(r1)
-          mflr      r0
-          stw       r0, 0x14(r1)
-          stw       r31, 0xC(r1)
-          mr        r31, r4
-          stw       r30, 0x8(r1)
-          mr.       r30, r3
-          beq-      .loc_0x54
-          lis       r4, 0x804B
-          addi      r0, r4, 0x5B20
-          stw       r0, 0x0(r30)
-          beq-      .loc_0x44
-          lis       r5, 0x804B
-          li        r4, 0
-          addi      r0, r5, 0x5B10
-          stw       r0, 0x0(r30)
-          bl        0x25D568
-
-        .loc_0x44:
-          extsh.    r0, r31
-          ble-      .loc_0x54
-          mr        r3, r30
-          bl        -0x18FF7C
-
-        .loc_0x54:
-          lwz       r0, 0x14(r1)
-          mr        r3, r30
-          lwz       r31, 0xC(r1)
-          lwz       r30, 0x8(r1)
-          mtlr      r0
-          addi      r1, r1, 0x10
-          blr
-        */
-    }
+    PelletConfig::TParms::~TParms(){CNode::~CNode();}
 
     /*
      * --INFO--
