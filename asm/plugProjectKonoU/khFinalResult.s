@@ -1317,7 +1317,7 @@ lbl_8040D47C:
 /* 8040D588 0040A4C8  EC 03 00 2A */	fadds f0, f3, f0
 /* 8040D58C 0040A4CC  D0 21 00 34 */	stfs f1, 0x34(r1)
 /* 8040D590 0040A4D0  D0 01 00 38 */	stfs f0, 0x38(r1)
-/* 8040D594 0040A4D4  4B C2 92 41 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 8040D594 0040A4D4  4B C2 92 41 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 lbl_8040D598:
 /* 8040D598 0040A4D8  88 1B 01 4E */	lbz r0, 0x14e(r27)
 /* 8040D59C 0040A4DC  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
@@ -3243,7 +3243,7 @@ __sinit_khFinalResult_cpp:
 /* 8040F1D0 0040C110  38 21 00 20 */	addi r1, r1, 0x20
 /* 8040F1D4 0040C114  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32kh6Screen14ObjFinalResultFv
-$$224$$2__dt__Q32kh6Screen14ObjFinalResultFv:
+.global "@24@__dt__Q32kh6Screen14ObjFinalResultFv"
+"@24@__dt__Q32kh6Screen14ObjFinalResultFv":
 /* 8040F1D8 0040C118  38 63 FF E8 */	addi r3, r3, -24
 /* 8040F1DC 0040C11C  4B FF FE 3C */	b __dt__Q32kh6Screen14ObjFinalResultFv

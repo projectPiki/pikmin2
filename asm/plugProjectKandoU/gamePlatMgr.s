@@ -506,7 +506,7 @@ lbl_801C5218:
 /* 801C5308 001C2248  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 801C530C 001C224C  C0 17 01 2C */	lfs f0, 0x12c(r23)
 /* 801C5310 001C2250  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 801C5314 001C2254  4B F9 30 7D */	bl calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect$$0i$$1
+/* 801C5314 001C2254  4B F9 30 7D */	bl "calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>"
 /* 801C5318 001C2258  80 6D 92 CC */	lwz r3, platCellMgr__4Game@sda21(r13)
 /* 801C531C 001C225C  7E A4 AB 78 */	mr r4, r21
 /* 801C5320 001C2260  38 A1 00 28 */	addi r5, r1, 0x28
@@ -727,17 +727,17 @@ __ct__Q24Game7PlatMgrFv:
 /* 801C55FC 001C253C  93 C1 00 08 */	stw r30, 8(r1)
 /* 801C5600 001C2540  48 24 BD 91 */	bl __ct__5CNodeFv
 /* 801C5604 001C2544  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 801C5608 001C2548  3C 60 80 4B */	lis r3, __vt__32Container$$0Q24Game12PlatInstance$$1@ha
+/* 801C5608 001C2548  3C 60 80 4B */	lis r3, "__vt__32Container<Q24Game12PlatInstance>"@ha
 /* 801C560C 001C254C  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 801C5610 001C2550  3C A0 80 4B */	lis r5, __vt__16GenericObjectMgr@ha
 /* 801C5614 001C2554  90 1F 00 00 */	stw r0, 0(r31)
-/* 801C5618 001C2558  38 03 64 E0 */	addi r0, r3, __vt__32Container$$0Q24Game12PlatInstance$$1@l
-/* 801C561C 001C255C  3C 80 80 4B */	lis r4, __vt__32ObjectMgr$$0Q24Game12PlatInstance$$1@ha
-/* 801C5620 001C2560  3C 60 80 4B */	lis r3, __vt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1@ha
+/* 801C5618 001C2558  38 03 64 E0 */	addi r0, r3, "__vt__32Container<Q24Game12PlatInstance>"@l
+/* 801C561C 001C255C  3C 80 80 4B */	lis r4, "__vt__32ObjectMgr<Q24Game12PlatInstance>"@ha
+/* 801C5620 001C2560  3C 60 80 4B */	lis r3, "__vt__36NodeObjectMgr<Q24Game12PlatInstance>"@ha
 /* 801C5624 001C2564  90 1F 00 00 */	stw r0, 0(r31)
 /* 801C5628 001C2568  38 00 00 00 */	li r0, 0
-/* 801C562C 001C256C  38 C4 64 64 */	addi r6, r4, __vt__32ObjectMgr$$0Q24Game12PlatInstance$$1@l
-/* 801C5630 001C2570  38 83 63 E4 */	addi r4, r3, __vt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1@l
+/* 801C562C 001C256C  38 C4 64 64 */	addi r6, r4, "__vt__32ObjectMgr<Q24Game12PlatInstance>"@l
+/* 801C5630 001C2570  38 83 63 E4 */	addi r4, r3, "__vt__36NodeObjectMgr<Q24Game12PlatInstance>"@l
 /* 801C5634 001C2574  98 1F 00 18 */	stb r0, 0x18(r31)
 /* 801C5638 001C2578  38 05 B5 F0 */	addi r0, r5, __vt__16GenericObjectMgr@l
 /* 801C563C 001C257C  3B DF 00 20 */	addi r30, r31, 0x20
@@ -750,9 +750,9 @@ __ct__Q24Game7PlatMgrFv:
 /* 801C5658 001C2598  90 9F 00 00 */	stw r4, 0(r31)
 /* 801C565C 001C259C  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 801C5660 001C25A0  48 24 BD 31 */	bl __ct__5CNodeFv
-/* 801C5664 001C25A4  3C 60 80 4B */	lis r3, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@ha
+/* 801C5664 001C25A4  3C 60 80 4B */	lis r3, "__vt__34TObjectNode<Q24Game12PlatInstance>"@ha
 /* 801C5668 001C25A8  3C 80 80 4B */	lis r4, __vt__Q24Game7PlatMgr@ha
-/* 801C566C 001C25AC  38 03 63 D4 */	addi r0, r3, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@l
+/* 801C566C 001C25AC  38 03 63 D4 */	addi r0, r3, "__vt__34TObjectNode<Q24Game12PlatInstance>"@l
 /* 801C5670 001C25B0  7F E3 FB 78 */	mr r3, r31
 /* 801C5674 001C25B4  90 1E 00 00 */	stw r0, 0(r30)
 /* 801C5678 001C25B8  38 84 63 38 */	addi r4, r4, __vt__Q24Game7PlatMgr@l
@@ -766,8 +766,8 @@ __ct__Q24Game7PlatMgrFv:
 /* 801C5698 001C25D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C569C 001C25DC  4E 80 00 20 */	blr 
 
-.global __dt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv
-__dt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "__dt__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+"__dt__36NodeObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C56A0 001C25E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C56A4 001C25E4  7C 08 02 A6 */	mflr r0
 /* 801C56A8 001C25E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -776,30 +776,30 @@ __dt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv:
 /* 801C56B4 001C25F4  93 C1 00 08 */	stw r30, 8(r1)
 /* 801C56B8 001C25F8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801C56BC 001C25FC  41 82 00 90 */	beq lbl_801C574C
-/* 801C56C0 001C2600  3C 60 80 4B */	lis r3, __vt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1@ha
+/* 801C56C0 001C2600  3C 60 80 4B */	lis r3, "__vt__36NodeObjectMgr<Q24Game12PlatInstance>"@ha
 /* 801C56C4 001C2604  34 1E 00 20 */	addic. r0, r30, 0x20
-/* 801C56C8 001C2608  38 63 63 E4 */	addi r3, r3, __vt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1@l
+/* 801C56C8 001C2608  38 63 63 E4 */	addi r3, r3, "__vt__36NodeObjectMgr<Q24Game12PlatInstance>"@l
 /* 801C56CC 001C260C  90 7E 00 00 */	stw r3, 0(r30)
 /* 801C56D0 001C2610  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801C56D4 001C2614  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801C56D8 001C2618  41 82 00 1C */	beq lbl_801C56F4
-/* 801C56DC 001C261C  3C 80 80 4B */	lis r4, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@ha
+/* 801C56DC 001C261C  3C 80 80 4B */	lis r4, "__vt__34TObjectNode<Q24Game12PlatInstance>"@ha
 /* 801C56E0 001C2620  38 7E 00 20 */	addi r3, r30, 0x20
-/* 801C56E4 001C2624  38 04 63 D4 */	addi r0, r4, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@l
+/* 801C56E4 001C2624  38 04 63 D4 */	addi r0, r4, "__vt__34TObjectNode<Q24Game12PlatInstance>"@l
 /* 801C56E8 001C2628  38 80 00 00 */	li r4, 0
 /* 801C56EC 001C262C  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 801C56F0 001C2630  48 24 BE 99 */	bl __dt__5CNodeFv
 lbl_801C56F4:
 /* 801C56F4 001C2634  28 1E 00 00 */	cmplwi r30, 0
 /* 801C56F8 001C2638  41 82 00 44 */	beq lbl_801C573C
-/* 801C56FC 001C263C  3C 60 80 4B */	lis r3, __vt__32ObjectMgr$$0Q24Game12PlatInstance$$1@ha
-/* 801C5700 001C2640  38 63 64 64 */	addi r3, r3, __vt__32ObjectMgr$$0Q24Game12PlatInstance$$1@l
+/* 801C56FC 001C263C  3C 60 80 4B */	lis r3, "__vt__32ObjectMgr<Q24Game12PlatInstance>"@ha
+/* 801C5700 001C2640  38 63 64 64 */	addi r3, r3, "__vt__32ObjectMgr<Q24Game12PlatInstance>"@l
 /* 801C5704 001C2644  90 7E 00 00 */	stw r3, 0(r30)
 /* 801C5708 001C2648  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801C570C 001C264C  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801C5710 001C2650  41 82 00 2C */	beq lbl_801C573C
-/* 801C5714 001C2654  3C 60 80 4B */	lis r3, __vt__32Container$$0Q24Game12PlatInstance$$1@ha
-/* 801C5718 001C2658  38 03 64 E0 */	addi r0, r3, __vt__32Container$$0Q24Game12PlatInstance$$1@l
+/* 801C5714 001C2654  3C 60 80 4B */	lis r3, "__vt__32Container<Q24Game12PlatInstance>"@ha
+/* 801C5718 001C2658  38 03 64 E0 */	addi r0, r3, "__vt__32Container<Q24Game12PlatInstance>"@l
 /* 801C571C 001C265C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801C5720 001C2660  41 82 00 1C */	beq lbl_801C573C
 /* 801C5724 001C2664  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -822,8 +822,8 @@ lbl_801C574C:
 /* 801C5760 001C26A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C5764 001C26A4  4E 80 00 20 */	blr 
 
-.global __dt__34TObjectNode$$0Q24Game12PlatInstance$$1Fv
-__dt__34TObjectNode$$0Q24Game12PlatInstance$$1Fv:
+.global "__dt__34TObjectNode<Q24Game12PlatInstance>Fv"
+"__dt__34TObjectNode<Q24Game12PlatInstance>Fv":
 /* 801C5768 001C26A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C576C 001C26AC  7C 08 02 A6 */	mflr r0
 /* 801C5770 001C26B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -832,9 +832,9 @@ __dt__34TObjectNode$$0Q24Game12PlatInstance$$1Fv:
 /* 801C577C 001C26BC  93 C1 00 08 */	stw r30, 8(r1)
 /* 801C5780 001C26C0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801C5784 001C26C4  41 82 00 28 */	beq lbl_801C57AC
-/* 801C5788 001C26C8  3C A0 80 4B */	lis r5, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@ha
+/* 801C5788 001C26C8  3C A0 80 4B */	lis r5, "__vt__34TObjectNode<Q24Game12PlatInstance>"@ha
 /* 801C578C 001C26CC  38 80 00 00 */	li r4, 0
-/* 801C5790 001C26D0  38 05 63 D4 */	addi r0, r5, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@l
+/* 801C5790 001C26D0  38 05 63 D4 */	addi r0, r5, "__vt__34TObjectNode<Q24Game12PlatInstance>"@l
 /* 801C5794 001C26D4  90 1E 00 00 */	stw r0, 0(r30)
 /* 801C5798 001C26D8  48 24 BD F1 */	bl __dt__5CNodeFv
 /* 801C579C 001C26DC  7F E0 07 35 */	extsh. r0, r31
@@ -850,8 +850,8 @@ lbl_801C57AC:
 /* 801C57C0 001C2700  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C57C4 001C2704  4E 80 00 20 */	blr 
 
-.global __dt__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
-__dt__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "__dt__32ObjectMgr<Q24Game12PlatInstance>Fv"
+"__dt__32ObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C57C8 001C2708  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C57CC 001C270C  7C 08 02 A6 */	mflr r0
 /* 801C57D0 001C2710  90 01 00 14 */	stw r0, 0x14(r1)
@@ -860,14 +860,14 @@ __dt__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv:
 /* 801C57DC 001C271C  93 C1 00 08 */	stw r30, 8(r1)
 /* 801C57E0 001C2720  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801C57E4 001C2724  41 82 00 50 */	beq lbl_801C5834
-/* 801C57E8 001C2728  3C 80 80 4B */	lis r4, __vt__32ObjectMgr$$0Q24Game12PlatInstance$$1@ha
-/* 801C57EC 001C272C  38 84 64 64 */	addi r4, r4, __vt__32ObjectMgr$$0Q24Game12PlatInstance$$1@l
+/* 801C57E8 001C2728  3C 80 80 4B */	lis r4, "__vt__32ObjectMgr<Q24Game12PlatInstance>"@ha
+/* 801C57EC 001C272C  38 84 64 64 */	addi r4, r4, "__vt__32ObjectMgr<Q24Game12PlatInstance>"@l
 /* 801C57F0 001C2730  90 9E 00 00 */	stw r4, 0(r30)
 /* 801C57F4 001C2734  38 04 00 2C */	addi r0, r4, 0x2c
 /* 801C57F8 001C2738  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 801C57FC 001C273C  41 82 00 28 */	beq lbl_801C5824
-/* 801C5800 001C2740  3C 80 80 4B */	lis r4, __vt__32Container$$0Q24Game12PlatInstance$$1@ha
-/* 801C5804 001C2744  38 04 64 E0 */	addi r0, r4, __vt__32Container$$0Q24Game12PlatInstance$$1@l
+/* 801C5800 001C2740  3C 80 80 4B */	lis r4, "__vt__32Container<Q24Game12PlatInstance>"@ha
+/* 801C5804 001C2744  38 04 64 E0 */	addi r0, r4, "__vt__32Container<Q24Game12PlatInstance>"@l
 /* 801C5808 001C2748  90 1E 00 00 */	stw r0, 0(r30)
 /* 801C580C 001C274C  41 82 00 18 */	beq lbl_801C5824
 /* 801C5810 001C2750  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -889,8 +889,8 @@ lbl_801C5834:
 /* 801C5848 001C2788  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C584C 001C278C  4E 80 00 20 */	blr 
 
-.global __dt__32Container$$0Q24Game12PlatInstance$$1Fv
-__dt__32Container$$0Q24Game12PlatInstance$$1Fv:
+.global "__dt__32Container<Q24Game12PlatInstance>Fv"
+"__dt__32Container<Q24Game12PlatInstance>Fv":
 /* 801C5850 001C2790  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C5854 001C2794  7C 08 02 A6 */	mflr r0
 /* 801C5858 001C2798  90 01 00 14 */	stw r0, 0x14(r1)
@@ -899,8 +899,8 @@ __dt__32Container$$0Q24Game12PlatInstance$$1Fv:
 /* 801C5864 001C27A4  93 C1 00 08 */	stw r30, 8(r1)
 /* 801C5868 001C27A8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801C586C 001C27AC  41 82 00 38 */	beq lbl_801C58A4
-/* 801C5870 001C27B0  3C 80 80 4B */	lis r4, __vt__32Container$$0Q24Game12PlatInstance$$1@ha
-/* 801C5874 001C27B4  38 04 64 E0 */	addi r0, r4, __vt__32Container$$0Q24Game12PlatInstance$$1@l
+/* 801C5870 001C27B0  3C 80 80 4B */	lis r4, "__vt__32Container<Q24Game12PlatInstance>"@ha
+/* 801C5874 001C27B4  38 04 64 E0 */	addi r0, r4, "__vt__32Container<Q24Game12PlatInstance>"@l
 /* 801C5878 001C27B8  90 1E 00 00 */	stw r0, 0(r30)
 /* 801C587C 001C27BC  41 82 00 18 */	beq lbl_801C5894
 /* 801C5880 001C27C0  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1043,8 +1043,8 @@ lbl_801C5A70:
 /* 801C5A78 001C29B8  7C 7C 1B 79 */	or. r28, r3, r3
 /* 801C5A7C 001C29BC  41 82 00 14 */	beq lbl_801C5A90
 /* 801C5A80 001C29C0  48 24 B9 11 */	bl __ct__5CNodeFv
-/* 801C5A84 001C29C4  3C 60 80 4B */	lis r3, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@ha
-/* 801C5A88 001C29C8  38 03 63 D4 */	addi r0, r3, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@l
+/* 801C5A84 001C29C4  3C 60 80 4B */	lis r3, "__vt__34TObjectNode<Q24Game12PlatInstance>"@ha
+/* 801C5A88 001C29C8  38 03 63 D4 */	addi r0, r3, "__vt__34TObjectNode<Q24Game12PlatInstance>"@l
 /* 801C5A8C 001C29CC  90 1C 00 00 */	stw r0, 0(r28)
 lbl_801C5A90:
 /* 801C5A90 001C29D0  93 FC 00 18 */	stw r31, 0x18(r28)
@@ -1092,7 +1092,7 @@ lbl_801C5B30:
 /* 801C5B34 001C2A74  38 81 00 1C */	addi r4, r1, 0x1c
 /* 801C5B38 001C2A78  38 A1 00 08 */	addi r5, r1, 8
 /* 801C5B3C 001C2A7C  38 C1 00 0C */	addi r6, r1, 0xc
-/* 801C5B40 001C2A80  4B F9 28 51 */	bl calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect$$0i$$1
+/* 801C5B40 001C2A80  4B F9 28 51 */	bl "calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>"
 /* 801C5B44 001C2A84  80 6D 92 CC */	lwz r3, platCellMgr__4Game@sda21(r13)
 /* 801C5B48 001C2A88  7F E4 FB 78 */	mr r4, r31
 /* 801C5B4C 001C2A8C  38 A1 00 1C */	addi r5, r1, 0x1c
@@ -1124,7 +1124,7 @@ delInstance__Q24Game7PlatMgrFPQ24Game12PlatInstance:
 /* 801C5B98 001C2AD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C5B9C 001C2ADC  7C 08 02 A6 */	mflr r0
 /* 801C5BA0 001C2AE0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801C5BA4 001C2AE4  48 00 0E 01 */	bl delNode__36NodeObjectMgr$$0Q24Game12PlatInstance$$1FPQ24Game12PlatInstance
+/* 801C5BA4 001C2AE4  48 00 0E 01 */	bl "delNode__36NodeObjectMgr<Q24Game12PlatInstance>FPQ24Game12PlatInstance"
 /* 801C5BA8 001C2AE8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C5BAC 001C2AEC  7C 08 03 A6 */	mtlr r0
 /* 801C5BB0 001C2AF0  38 21 00 10 */	addi r1, r1, 0x10
@@ -1178,8 +1178,8 @@ lbl_801C5C48:
 /* 801C5C58 001C2B98  48 00 01 EC */	b lbl_801C5E44
 lbl_801C5C5C:
 /* 801C5C5C 001C2B9C  38 00 00 00 */	li r0, 0
-/* 801C5C60 001C2BA0  3C 80 80 4B */	lis r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
-/* 801C5C64 001C2BA4  38 84 63 BC */	addi r4, r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C5C60 001C2BA0  3C 80 80 4B */	lis r4, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
+/* 801C5C64 001C2BA4  38 84 63 BC */	addi r4, r4, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C5C68 001C2BA8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C5C6C 001C2BAC  28 00 00 00 */	cmplwi r0, 0
 /* 801C5C70 001C2BB0  90 81 00 08 */	stw r4, 8(r1)
@@ -1316,8 +1316,8 @@ lbl_801C5E44:
 /* 801C5E54 001C2D94  38 21 00 90 */	addi r1, r1, 0x90
 /* 801C5E58 001C2D98  4E 80 00 20 */	blr 
 
-.global isDone__31Iterator$$0Q24Game12PlatInstance$$1Fv
-isDone__31Iterator$$0Q24Game12PlatInstance$$1Fv:
+.global "isDone__31Iterator<Q24Game12PlatInstance>Fv"
+"isDone__31Iterator<Q24Game12PlatInstance>Fv":
 /* 801C5E5C 001C2D9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C5E60 001C2DA0  7C 08 02 A6 */	mflr r0
 /* 801C5E64 001C2DA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1391,8 +1391,8 @@ lbl_801C5F4C:
 /* 801C5F5C 001C2E9C  48 00 01 E8 */	b lbl_801C6144
 lbl_801C5F60:
 /* 801C5F60 001C2EA0  38 00 00 00 */	li r0, 0
-/* 801C5F64 001C2EA4  3C 80 80 4B */	lis r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
-/* 801C5F68 001C2EA8  38 84 63 BC */	addi r4, r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C5F64 001C2EA4  3C 80 80 4B */	lis r4, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
+/* 801C5F68 001C2EA8  38 84 63 BC */	addi r4, r4, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C5F6C 001C2EAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C5F70 001C2EB0  28 00 00 00 */	cmplwi r0, 0
 /* 801C5F74 001C2EB4  90 81 00 08 */	stw r4, 8(r1)
@@ -1561,8 +1561,8 @@ findRayIntersection__Q24Game7PlatMgrFRQ23Sys16RayIntersectInfo:
 /* 801C61CC 001C310C  EC 22 08 2A */	fadds f1, f2, f1
 /* 801C61D0 001C3110  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801C61D4 001C3114  38 00 00 00 */	li r0, 0
-/* 801C61D8 001C3118  3C 80 80 4B */	lis r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
-/* 801C61DC 001C311C  38 84 63 BC */	addi r4, r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C61D8 001C3118  3C 80 80 4B */	lis r4, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
+/* 801C61DC 001C311C  38 84 63 BC */	addi r4, r4, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C61E0 001C3120  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C61E4 001C3124  28 00 00 00 */	cmplwi r0, 0
 /* 801C61E8 001C3128  C3 82 B2 2C */	lfs f28, lbl_8051958C@sda21(r2)
@@ -1754,10 +1754,10 @@ lbl_801C6450:
 resetOnCount__Q24Game7PlatMgrFv:
 /* 801C6490 001C33D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C6494 001C33D4  7C 08 02 A6 */	mflr r0
-/* 801C6498 001C33D8  3C 80 80 4B */	lis r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
+/* 801C6498 001C33D8  3C 80 80 4B */	lis r4, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
 /* 801C649C 001C33DC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801C64A0 001C33E0  38 00 00 00 */	li r0, 0
-/* 801C64A4 001C33E4  38 84 63 BC */	addi r4, r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C64A4 001C33E4  38 84 63 BC */	addi r4, r4, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C64A8 001C33E8  28 00 00 00 */	cmplwi r0, 0
 /* 801C64AC 001C33EC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C64B0 001C33F0  90 81 00 08 */	stw r4, 8(r1)
@@ -1900,30 +1900,30 @@ __dt__Q24Game7PlatMgrFv:
 /* 801C669C 001C35DC  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801C66A0 001C35E0  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 801C66A4 001C35E4  41 82 00 80 */	beq lbl_801C6724
-/* 801C66A8 001C35E8  3C 60 80 4B */	lis r3, __vt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1@ha
+/* 801C66A8 001C35E8  3C 60 80 4B */	lis r3, "__vt__36NodeObjectMgr<Q24Game12PlatInstance>"@ha
 /* 801C66AC 001C35EC  34 1F 00 20 */	addic. r0, r31, 0x20
-/* 801C66B0 001C35F0  38 63 63 E4 */	addi r3, r3, __vt__36NodeObjectMgr$$0Q24Game12PlatInstance$$1@l
+/* 801C66B0 001C35F0  38 63 63 E4 */	addi r3, r3, "__vt__36NodeObjectMgr<Q24Game12PlatInstance>"@l
 /* 801C66B4 001C35F4  90 7F 00 00 */	stw r3, 0(r31)
 /* 801C66B8 001C35F8  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801C66BC 001C35FC  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 801C66C0 001C3600  41 82 00 1C */	beq lbl_801C66DC
-/* 801C66C4 001C3604  3C 80 80 4B */	lis r4, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@ha
+/* 801C66C4 001C3604  3C 80 80 4B */	lis r4, "__vt__34TObjectNode<Q24Game12PlatInstance>"@ha
 /* 801C66C8 001C3608  38 7F 00 20 */	addi r3, r31, 0x20
-/* 801C66CC 001C360C  38 04 63 D4 */	addi r0, r4, __vt__34TObjectNode$$0Q24Game12PlatInstance$$1@l
+/* 801C66CC 001C360C  38 04 63 D4 */	addi r0, r4, "__vt__34TObjectNode<Q24Game12PlatInstance>"@l
 /* 801C66D0 001C3610  38 80 00 00 */	li r4, 0
 /* 801C66D4 001C3614  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 801C66D8 001C3618  48 24 AE B1 */	bl __dt__5CNodeFv
 lbl_801C66DC:
 /* 801C66DC 001C361C  28 1F 00 00 */	cmplwi r31, 0
 /* 801C66E0 001C3620  41 82 00 44 */	beq lbl_801C6724
-/* 801C66E4 001C3624  3C 60 80 4B */	lis r3, __vt__32ObjectMgr$$0Q24Game12PlatInstance$$1@ha
-/* 801C66E8 001C3628  38 63 64 64 */	addi r3, r3, __vt__32ObjectMgr$$0Q24Game12PlatInstance$$1@l
+/* 801C66E4 001C3624  3C 60 80 4B */	lis r3, "__vt__32ObjectMgr<Q24Game12PlatInstance>"@ha
+/* 801C66E8 001C3628  38 63 64 64 */	addi r3, r3, "__vt__32ObjectMgr<Q24Game12PlatInstance>"@l
 /* 801C66EC 001C362C  90 7F 00 00 */	stw r3, 0(r31)
 /* 801C66F0 001C3630  38 03 00 2C */	addi r0, r3, 0x2c
 /* 801C66F4 001C3634  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 801C66F8 001C3638  41 82 00 2C */	beq lbl_801C6724
-/* 801C66FC 001C363C  3C 60 80 4B */	lis r3, __vt__32Container$$0Q24Game12PlatInstance$$1@ha
-/* 801C6700 001C3640  38 03 64 E0 */	addi r0, r3, __vt__32Container$$0Q24Game12PlatInstance$$1@l
+/* 801C66FC 001C363C  3C 60 80 4B */	lis r3, "__vt__32Container<Q24Game12PlatInstance>"@ha
+/* 801C6700 001C3640  38 03 64 E0 */	addi r0, r3, "__vt__32Container<Q24Game12PlatInstance>"@l
 /* 801C6704 001C3644  90 1F 00 00 */	stw r0, 0(r31)
 /* 801C6708 001C3648  41 82 00 1C */	beq lbl_801C6724
 /* 801C670C 001C364C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -1946,8 +1946,8 @@ lbl_801C6734:
 /* 801C6748 001C3688  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C674C 001C368C  4E 80 00 20 */	blr 
 
-.global __ml__31Iterator$$0Q24Game12PlatInstance$$1Fv
-__ml__31Iterator$$0Q24Game12PlatInstance$$1Fv:
+.global "__ml__31Iterator<Q24Game12PlatInstance>Fv"
+"__ml__31Iterator<Q24Game12PlatInstance>Fv":
 /* 801C6750 001C3690  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C6754 001C3694  7C 08 02 A6 */	mflr r0
 /* 801C6758 001C3698  7C 64 1B 78 */	mr r4, r3
@@ -1963,8 +1963,8 @@ __ml__31Iterator$$0Q24Game12PlatInstance$$1Fv:
 /* 801C6780 001C36C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C6784 001C36C4  4E 80 00 20 */	blr 
 
-.global next__31Iterator$$0Q24Game12PlatInstance$$1Fv
-next__31Iterator$$0Q24Game12PlatInstance$$1Fv:
+.global "next__31Iterator<Q24Game12PlatInstance>Fv"
+"next__31Iterator<Q24Game12PlatInstance>Fv":
 /* 801C6788 001C36C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C678C 001C36CC  7C 08 02 A6 */	mflr r0
 /* 801C6790 001C36D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2027,8 +2027,8 @@ lbl_801C6858:
 /* 801C6864 001C37A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C6868 001C37A8  4E 80 00 20 */	blr 
 
-.global first__31Iterator$$0Q24Game12PlatInstance$$1Fv
-first__31Iterator$$0Q24Game12PlatInstance$$1Fv:
+.global "first__31Iterator<Q24Game12PlatInstance>Fv"
+"first__31Iterator<Q24Game12PlatInstance>Fv":
 /* 801C686C 001C37AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C6870 001C37B0  7C 08 02 A6 */	mflr r0
 /* 801C6874 001C37B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2134,28 +2134,28 @@ collisionUpdatable__Q24Game12PlatInstanceFv:
 /* 801C697C 001C38BC  38 60 00 00 */	li r3, 0
 /* 801C6980 001C38C0  4E 80 00 20 */	blr 
 
-.global get__36NodeObjectMgr$$0Q24Game12PlatInstance$$1FPv
-get__36NodeObjectMgr$$0Q24Game12PlatInstance$$1FPv:
+.global "get__36NodeObjectMgr<Q24Game12PlatInstance>FPv"
+"get__36NodeObjectMgr<Q24Game12PlatInstance>FPv":
 /* 801C6984 001C38C4  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 801C6988 001C38C8  4E 80 00 20 */	blr 
 
-.global getNext__36NodeObjectMgr$$0Q24Game12PlatInstance$$1FPv
-getNext__36NodeObjectMgr$$0Q24Game12PlatInstance$$1FPv:
+.global "getNext__36NodeObjectMgr<Q24Game12PlatInstance>FPv"
+"getNext__36NodeObjectMgr<Q24Game12PlatInstance>FPv":
 /* 801C698C 001C38CC  80 64 00 04 */	lwz r3, 4(r4)
 /* 801C6990 001C38D0  4E 80 00 20 */	blr 
 
-.global getStart__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv
-getStart__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "getStart__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+"getStart__36NodeObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C6994 001C38D4  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 801C6998 001C38D8  4E 80 00 20 */	blr 
 
-.global getEnd__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv
-getEnd__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "getEnd__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+"getEnd__36NodeObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C699C 001C38DC  38 60 00 00 */	li r3, 0
 /* 801C69A0 001C38E0  4E 80 00 20 */	blr 
 
-.global delNode__36NodeObjectMgr$$0Q24Game12PlatInstance$$1FPQ24Game12PlatInstance
-delNode__36NodeObjectMgr$$0Q24Game12PlatInstance$$1FPQ24Game12PlatInstance:
+.global "delNode__36NodeObjectMgr<Q24Game12PlatInstance>FPQ24Game12PlatInstance"
+"delNode__36NodeObjectMgr<Q24Game12PlatInstance>FPQ24Game12PlatInstance":
 /* 801C69A4 001C38E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C69A8 001C38E8  7C 08 02 A6 */	mflr r0
 /* 801C69AC 001C38EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2178,8 +2178,8 @@ lbl_801C69D8:
 /* 801C69E0 001C3920  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C69E4 001C3924  4E 80 00 20 */	blr 
 
-.global resetMgr__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv
-resetMgr__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+"resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C69E8 001C3928  38 00 00 00 */	li r0, 0
 /* 801C69EC 001C392C  90 03 00 30 */	stw r0, 0x30(r3)
 /* 801C69F0 001C3930  90 03 00 2C */	stw r0, 0x2c(r3)
@@ -2187,14 +2187,14 @@ resetMgr__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv:
 /* 801C69F8 001C3938  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801C69FC 001C393C  4E 80 00 20 */	blr 
 
-.global doAnimation__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
-doAnimation__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+"doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C6A00 001C3940  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C6A04 001C3944  7C 08 02 A6 */	mflr r0
-/* 801C6A08 001C3948  3C 80 80 4B */	lis r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
+/* 801C6A08 001C3948  3C 80 80 4B */	lis r4, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
 /* 801C6A0C 001C394C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801C6A10 001C3950  38 00 00 00 */	li r0, 0
-/* 801C6A14 001C3954  38 84 63 BC */	addi r4, r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C6A14 001C3954  38 84 63 BC */	addi r4, r4, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C6A18 001C3958  28 00 00 00 */	cmplwi r0, 0
 /* 801C6A1C 001C395C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C6A20 001C3960  90 81 00 08 */	stw r4, 8(r1)
@@ -2319,14 +2319,14 @@ lbl_801C6BB4:
 /* 801C6BDC 001C3B1C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C6BE0 001C3B20  4E 80 00 20 */	blr 
 
-.global doEntry__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
-doEntry__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+"doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C6BE4 001C3B24  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C6BE8 001C3B28  7C 08 02 A6 */	mflr r0
-/* 801C6BEC 001C3B2C  3C 80 80 4B */	lis r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
+/* 801C6BEC 001C3B2C  3C 80 80 4B */	lis r4, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
 /* 801C6BF0 001C3B30  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801C6BF4 001C3B34  38 00 00 00 */	li r0, 0
-/* 801C6BF8 001C3B38  38 84 63 BC */	addi r4, r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C6BF8 001C3B38  38 84 63 BC */	addi r4, r4, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C6BFC 001C3B3C  28 00 00 00 */	cmplwi r0, 0
 /* 801C6C00 001C3B40  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C6C04 001C3B44  90 81 00 08 */	stw r4, 8(r1)
@@ -2451,14 +2451,14 @@ lbl_801C6D98:
 /* 801C6DC0 001C3D00  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C6DC4 001C3D04  4E 80 00 20 */	blr 
 
-.global doSetView__32ObjectMgr$$0Q24Game12PlatInstance$$1Fi
-doSetView__32ObjectMgr$$0Q24Game12PlatInstance$$1Fi:
+.global "doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+"doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi":
 /* 801C6DC8 001C3D08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C6DCC 001C3D0C  7C 08 02 A6 */	mflr r0
-/* 801C6DD0 001C3D10  3C A0 80 4B */	lis r5, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
+/* 801C6DD0 001C3D10  3C A0 80 4B */	lis r5, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
 /* 801C6DD4 001C3D14  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801C6DD8 001C3D18  38 00 00 00 */	li r0, 0
-/* 801C6DDC 001C3D1C  38 A5 63 BC */	addi r5, r5, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C6DDC 001C3D1C  38 A5 63 BC */	addi r5, r5, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C6DE0 001C3D20  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801C6DE4 001C3D24  28 00 00 00 */	cmplwi r0, 0
 /* 801C6DE8 001C3D28  7C 9F 23 78 */	mr r31, r4
@@ -2587,14 +2587,14 @@ lbl_801C6F88:
 /* 801C6FB4 001C3EF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C6FB8 001C3EF8  4E 80 00 20 */	blr 
 
-.global doViewCalc__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
-doViewCalc__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+"doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C6FBC 001C3EFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C6FC0 001C3F00  7C 08 02 A6 */	mflr r0
-/* 801C6FC4 001C3F04  3C 80 80 4B */	lis r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
+/* 801C6FC4 001C3F04  3C 80 80 4B */	lis r4, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
 /* 801C6FC8 001C3F08  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801C6FCC 001C3F0C  38 00 00 00 */	li r0, 0
-/* 801C6FD0 001C3F10  38 84 63 BC */	addi r4, r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C6FD0 001C3F10  38 84 63 BC */	addi r4, r4, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C6FD4 001C3F14  28 00 00 00 */	cmplwi r0, 0
 /* 801C6FD8 001C3F18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C6FDC 001C3F1C  90 81 00 08 */	stw r4, 8(r1)
@@ -2719,14 +2719,14 @@ lbl_801C7170:
 /* 801C7198 001C40D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C719C 001C40DC  4E 80 00 20 */	blr 
 
-.global doSimulation__32ObjectMgr$$0Q24Game12PlatInstance$$1Ff
-doSimulation__32ObjectMgr$$0Q24Game12PlatInstance$$1Ff:
+.global "doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+"doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff":
 /* 801C71A0 001C40E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C71A4 001C40E4  7C 08 02 A6 */	mflr r0
-/* 801C71A8 001C40E8  3C 80 80 4B */	lis r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
+/* 801C71A8 001C40E8  3C 80 80 4B */	lis r4, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
 /* 801C71AC 001C40EC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801C71B0 001C40F0  38 00 00 00 */	li r0, 0
-/* 801C71B4 001C40F4  38 84 63 BC */	addi r4, r4, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C71B4 001C40F4  38 84 63 BC */	addi r4, r4, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C71B8 001C40F8  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 801C71BC 001C40FC  FF E0 08 90 */	fmr f31, f1
 /* 801C71C0 001C4100  28 00 00 00 */	cmplwi r0, 0
@@ -2855,14 +2855,14 @@ lbl_801C7360:
 /* 801C738C 001C42CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C7390 001C42D0  4E 80 00 20 */	blr 
 
-.global doDirectDraw__32ObjectMgr$$0Q24Game12PlatInstance$$1FR8Graphics
-doDirectDraw__32ObjectMgr$$0Q24Game12PlatInstance$$1FR8Graphics:
+.global "doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics"
+"doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics":
 /* 801C7394 001C42D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C7398 001C42D8  7C 08 02 A6 */	mflr r0
-/* 801C739C 001C42DC  3C A0 80 4B */	lis r5, __vt__31Iterator$$0Q24Game12PlatInstance$$1@ha
+/* 801C739C 001C42DC  3C A0 80 4B */	lis r5, "__vt__31Iterator<Q24Game12PlatInstance>"@ha
 /* 801C73A0 001C42E0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801C73A4 001C42E4  38 00 00 00 */	li r0, 0
-/* 801C73A8 001C42E8  38 A5 63 BC */	addi r5, r5, __vt__31Iterator$$0Q24Game12PlatInstance$$1@l
+/* 801C73A8 001C42E8  38 A5 63 BC */	addi r5, r5, "__vt__31Iterator<Q24Game12PlatInstance>"@l
 /* 801C73AC 001C42EC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801C73B0 001C42F0  28 00 00 00 */	cmplwi r0, 0
 /* 801C73B4 001C42F4  7C 9F 23 78 */	mr r31, r4
@@ -2991,8 +2991,8 @@ lbl_801C7554:
 /* 801C7580 001C44C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C7584 001C44C4  4E 80 00 20 */	blr 
 
-.global getObject__32Container$$0Q24Game12PlatInstance$$1FPv
-getObject__32Container$$0Q24Game12PlatInstance$$1FPv:
+.global "getObject__32Container<Q24Game12PlatInstance>FPv"
+"getObject__32Container<Q24Game12PlatInstance>FPv":
 /* 801C7588 001C44C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C758C 001C44CC  7C 08 02 A6 */	mflr r0
 /* 801C7590 001C44D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3005,52 +3005,52 @@ getObject__32Container$$0Q24Game12PlatInstance$$1FPv:
 /* 801C75AC 001C44EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C75B0 001C44F0  4E 80 00 20 */	blr 
 
-.global getAt__32Container$$0Q24Game12PlatInstance$$1Fi
-getAt__32Container$$0Q24Game12PlatInstance$$1Fi:
+.global "getAt__32Container<Q24Game12PlatInstance>Fi"
+"getAt__32Container<Q24Game12PlatInstance>Fi":
 /* 801C75B4 001C44F4  38 60 00 00 */	li r3, 0
 /* 801C75B8 001C44F8  4E 80 00 20 */	blr 
 
-.global getTo__32Container$$0Q24Game12PlatInstance$$1Fv
-getTo__32Container$$0Q24Game12PlatInstance$$1Fv:
+.global "getTo__32Container<Q24Game12PlatInstance>Fv"
+"getTo__32Container<Q24Game12PlatInstance>Fv":
 /* 801C75BC 001C44FC  38 60 00 00 */	li r3, 0
 /* 801C75C0 001C4500  4E 80 00 20 */	blr 
 
-.global $$228$$2doDirectDraw__32ObjectMgr$$0Q24Game12PlatInstance$$1FR8Graphics
-$$228$$2doDirectDraw__32ObjectMgr$$0Q24Game12PlatInstance$$1FR8Graphics:
+.global "@28@doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics"
+"@28@doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics":
 /* 801C75C4 001C4504  38 63 FF E4 */	addi r3, r3, -28
-/* 801C75C8 001C4508  4B FF FD CC */	b doDirectDraw__32ObjectMgr$$0Q24Game12PlatInstance$$1FR8Graphics
+/* 801C75C8 001C4508  4B FF FD CC */	b "doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics"
 
-.global $$228$$2resetMgr__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv
-$$228$$2resetMgr__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "@28@resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+"@28@resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C75CC 001C450C  38 63 FF E4 */	addi r3, r3, -28
-/* 801C75D0 001C4510  4B FF F4 18 */	b resetMgr__36NodeObjectMgr$$0Q24Game12PlatInstance$$1Fv
+/* 801C75D0 001C4510  4B FF F4 18 */	b "resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
 
-.global $$228$$2doDirectDraw__Q24Game7PlatMgrFR8Graphics
-$$228$$2doDirectDraw__Q24Game7PlatMgrFR8Graphics:
+.global "@28@doDirectDraw__Q24Game7PlatMgrFR8Graphics"
+"@28@doDirectDraw__Q24Game7PlatMgrFR8Graphics":
 /* 801C75D4 001C4514  38 63 FF E4 */	addi r3, r3, -28
 /* 801C75D8 001C4518  4B FF F0 94 */	b doDirectDraw__Q24Game7PlatMgrFR8Graphics
 
-.global $$228$$2doSimulation__32ObjectMgr$$0Q24Game12PlatInstance$$1Ff
-$$228$$2doSimulation__32ObjectMgr$$0Q24Game12PlatInstance$$1Ff:
+.global "@28@doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+"@28@doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff":
 /* 801C75DC 001C451C  38 63 FF E4 */	addi r3, r3, -28
-/* 801C75E0 001C4520  4B FF FB C0 */	b doSimulation__32ObjectMgr$$0Q24Game12PlatInstance$$1Ff
+/* 801C75E0 001C4520  4B FF FB C0 */	b "doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
 
-.global $$228$$2doViewCalc__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
-$$228$$2doViewCalc__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "@28@doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+"@28@doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C75E4 001C4524  38 63 FF E4 */	addi r3, r3, -28
-/* 801C75E8 001C4528  4B FF F9 D4 */	b doViewCalc__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
+/* 801C75E8 001C4528  4B FF F9 D4 */	b "doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
 
-.global $$228$$2doSetView__32ObjectMgr$$0Q24Game12PlatInstance$$1Fi
-$$228$$2doSetView__32ObjectMgr$$0Q24Game12PlatInstance$$1Fi:
+.global "@28@doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+"@28@doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi":
 /* 801C75EC 001C452C  38 63 FF E4 */	addi r3, r3, -28
-/* 801C75F0 001C4530  4B FF F7 D8 */	b doSetView__32ObjectMgr$$0Q24Game12PlatInstance$$1Fi
+/* 801C75F0 001C4530  4B FF F7 D8 */	b "doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
 
-.global $$228$$2doEntry__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
-$$228$$2doEntry__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "@28@doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+"@28@doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C75F4 001C4534  38 63 FF E4 */	addi r3, r3, -28
-/* 801C75F8 001C4538  4B FF F5 EC */	b doEntry__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
+/* 801C75F8 001C4538  4B FF F5 EC */	b "doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
 
-.global $$228$$2doAnimation__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
-$$228$$2doAnimation__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv:
+.global "@28@doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+"@28@doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv":
 /* 801C75FC 001C453C  38 63 FF E4 */	addi r3, r3, -28
-/* 801C7600 001C4540  4B FF F4 00 */	b doAnimation__32ObjectMgr$$0Q24Game12PlatInstance$$1Fv
+/* 801C7600 001C4540  4B FF F4 00 */	b "doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"

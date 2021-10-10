@@ -63,9 +63,9 @@ __ct__Q24Game6CPlateFi:
 /* 8019509C 00191FDC  3C A0 70 30 */	lis r5, 0x70303030@ha
 /* 801950A0 00191FE0  38 03 AC DC */	addi r0, r3, __vt__16GenericContainer@l
 /* 801950A4 00191FE4  39 00 00 00 */	li r8, 0
-/* 801950A8 00191FE8  3C 60 80 4B */	lis r3, __vt__27Container$$0Q24Game8Creature$$1@ha
+/* 801950A8 00191FE8  3C 60 80 4B */	lis r3, "__vt__27Container<Q24Game8Creature>"@ha
 /* 801950AC 00191FEC  90 1C 00 00 */	stw r0, 0(r28)
-/* 801950B0 00191FF0  38 03 4A 08 */	addi r0, r3, __vt__27Container$$0Q24Game8Creature$$1@l
+/* 801950B0 00191FF0  38 03 4A 08 */	addi r0, r3, "__vt__27Container<Q24Game8Creature>"@l
 /* 801950B4 00191FF4  38 FD 00 A0 */	addi r7, r29, 0xa0
 /* 801950B8 00191FF8  90 1C 00 00 */	stw r0, 0(r28)
 /* 801950BC 00191FFC  3C 60 80 4B */	lis r3, __vt__Q24Game6CPlate@ha
@@ -81,9 +81,9 @@ __ct__Q24Game6CPlateFi:
 /* 801950E4 00192024  91 1D 00 20 */	stw r8, 0x20(r29)
 /* 801950E8 00192028  90 1D 00 24 */	stw r0, 0x24(r29)
 /* 801950EC 0019202C  48 27 E5 6D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 801950F0 00192030  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 801950F0 00192030  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 801950F4 00192034  3C A0 70 30 */	lis r5, 0x70303031@ha
-/* 801950F8 00192038  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 801950F8 00192038  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 801950FC 0019203C  38 9D 00 1C */	addi r4, r29, 0x1c
 /* 80195100 00192040  90 1D 00 28 */	stw r0, 0x28(r29)
 /* 80195104 00192044  38 64 00 34 */	addi r3, r4, 0x34
@@ -96,9 +96,9 @@ __ct__Q24Game6CPlateFi:
 /* 80195120 00192060  D0 3D 00 48 */	stfs f1, 0x48(r29)
 /* 80195124 00192064  D0 1D 00 4C */	stfs f0, 0x4c(r29)
 /* 80195128 00192068  48 27 E5 31 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8019512C 0019206C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8019512C 0019206C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80195130 00192070  3C A0 70 30 */	lis r5, 0x70303032@ha
-/* 80195134 00192074  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80195134 00192074  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80195138 00192078  38 9D 00 1C */	addi r4, r29, 0x1c
 /* 8019513C 0019207C  90 1D 00 50 */	stw r0, 0x50(r29)
 /* 80195140 00192080  38 64 00 5C */	addi r3, r4, 0x5c
@@ -111,9 +111,9 @@ __ct__Q24Game6CPlateFi:
 /* 8019515C 0019209C  D0 3D 00 70 */	stfs f1, 0x70(r29)
 /* 80195160 001920A0  D0 1D 00 74 */	stfs f0, 0x74(r29)
 /* 80195164 001920A4  48 27 E4 F5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80195168 001920A8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80195168 001920A8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8019516C 001920AC  C0 22 AB A8 */	lfs f1, lbl_80518F08@sda21(r2)
-/* 80195170 001920B0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80195170 001920B0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80195174 001920B4  C0 02 AB AC */	lfs f0, lbl_80518F0C@sda21(r2)
 /* 80195178 001920B8  90 1D 00 78 */	stw r0, 0x78(r29)
 /* 8019517C 001920BC  C0 42 AB B0 */	lfs f2, lbl_80518F10@sda21(r2)
@@ -184,8 +184,8 @@ __ct__Q34Game6CPlate4SlotFv:
 /* 80195274 001921B4  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 80195278 001921B8  4E 80 00 20 */	blr 
 
-.global __dt__27Container$$0Q24Game8Creature$$1Fv
-__dt__27Container$$0Q24Game8Creature$$1Fv:
+.global "__dt__27Container<Q24Game8Creature>Fv"
+"__dt__27Container<Q24Game8Creature>Fv":
 /* 8019527C 001921BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80195280 001921C0  7C 08 02 A6 */	mflr r0
 /* 80195284 001921C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -194,8 +194,8 @@ __dt__27Container$$0Q24Game8Creature$$1Fv:
 /* 80195290 001921D0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80195294 001921D4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80195298 001921D8  41 82 00 38 */	beq lbl_801952D0
-/* 8019529C 001921DC  3C 80 80 4B */	lis r4, __vt__27Container$$0Q24Game8Creature$$1@ha
-/* 801952A0 001921E0  38 04 4A 08 */	addi r0, r4, __vt__27Container$$0Q24Game8Creature$$1@l
+/* 8019529C 001921DC  3C 80 80 4B */	lis r4, "__vt__27Container<Q24Game8Creature>"@ha
+/* 801952A0 001921E0  38 04 4A 08 */	addi r0, r4, "__vt__27Container<Q24Game8Creature>"@l
 /* 801952A4 001921E4  90 1E 00 00 */	stw r0, 0(r30)
 /* 801952A8 001921E8  41 82 00 18 */	beq lbl_801952C0
 /* 801952AC 001921EC  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -217,8 +217,8 @@ lbl_801952D0:
 /* 801952E4 00192224  38 21 00 10 */	addi r1, r1, 0x10
 /* 801952E8 00192228  4E 80 00 20 */	blr 
 
-.global setPos__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1f
-setPos__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1f:
+.global "setPos__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>f"
+"setPos__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>f":
 /* 801952EC 0019222C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801952F0 00192230  C0 83 00 E4 */	lfs f4, 0xe4(r3)
 /* 801952F4 00192234  C0 03 00 EC */	lfs f0, 0xec(r3)
@@ -361,8 +361,8 @@ lbl_801954C0:
 /* 801954F4 00192434  38 21 00 40 */	addi r1, r1, 0x40
 /* 801954F8 00192438  4E 80 00 20 */	blr 
 
-.global setPosGray__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1f
-setPosGray__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1f:
+.global "setPosGray__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>f"
+"setPosGray__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>f":
 /* 801954FC 0019243C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80195500 00192440  C0 83 00 E4 */	lfs f4, 0xe4(r3)
 /* 80195504 00192444  C0 03 00 EC */	lfs f0, 0xec(r3)
@@ -1020,8 +1020,8 @@ lbl_80195E34:
 /* 80195E4C 00192D8C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80195E50 00192D90  4E 80 00 20 */	blr 
 
-.global rearrangeSlot__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1
-rearrangeSlot__Q24Game6CPlateFR10Vector3$$0f$$1fR10Vector3$$0f$$1:
+.global "rearrangeSlot__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>"
+"rearrangeSlot__Q24Game6CPlateFR10Vector3<f>fR10Vector3<f>":
 /* 80195E54 00192D94  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80195E58 00192D98  7C 08 02 A6 */	mflr r0
 /* 80195E5C 00192D9C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1152,8 +1152,8 @@ lbl_80196008:
 /* 8019602C 00192F6C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80196030 00192F70  4E 80 00 20 */	blr 
 
-.global getSlotPosition__Q24Game6CPlateFiR10Vector3$$0f$$1
-getSlotPosition__Q24Game6CPlateFiR10Vector3$$0f$$1:
+.global "getSlotPosition__Q24Game6CPlateFiR10Vector3<f>"
+"getSlotPosition__Q24Game6CPlateFiR10Vector3<f>":
 /* 80196034 00192F74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80196038 00192F78  7C 08 02 A6 */	mflr r0
 /* 8019603C 00192F7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1376,7 +1376,7 @@ refreshSlot__Q24Game6CPlateFf:
 /* 80196348 00193288  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 8019634C 0019328C  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 80196350 00193290  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 80196354 00193294  48 29 22 5D */	bl makeSR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80196354 00193294  48 29 22 5D */	bl "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 80196358 00193298  88 1D 01 00 */	lbz r0, 0x100(r29)
 /* 8019635C 0019329C  C0 5D 00 90 */	lfs f2, 0x90(r29)
 /* 80196360 001932A0  28 00 00 00 */	cmplwi r0, 0
@@ -1557,8 +1557,8 @@ __dt__Q24Game6CPlateFv:
 /* 801965D8 00193518  38 04 4A 34 */	addi r0, r4, __vt__Q24Game6CPlate@l
 /* 801965DC 0019351C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801965E0 00193520  41 82 00 28 */	beq lbl_80196608
-/* 801965E4 00193524  3C 80 80 4B */	lis r4, __vt__27Container$$0Q24Game8Creature$$1@ha
-/* 801965E8 00193528  38 04 4A 08 */	addi r0, r4, __vt__27Container$$0Q24Game8Creature$$1@l
+/* 801965E4 00193524  3C 80 80 4B */	lis r4, "__vt__27Container<Q24Game8Creature>"@ha
+/* 801965E8 00193528  38 04 4A 08 */	addi r0, r4, "__vt__27Container<Q24Game8Creature>"@l
 /* 801965EC 0019352C  90 1E 00 00 */	stw r0, 0(r30)
 /* 801965F0 00193530  41 82 00 18 */	beq lbl_80196608
 /* 801965F4 00193534  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1580,8 +1580,8 @@ lbl_80196618:
 /* 8019662C 0019356C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80196630 00193570  4E 80 00 20 */	blr 
 
-.global getObject__27Container$$0Q24Game8Creature$$1FPv
-getObject__27Container$$0Q24Game8Creature$$1FPv:
+.global "getObject__27Container<Q24Game8Creature>FPv"
+"getObject__27Container<Q24Game8Creature>FPv":
 /* 80196634 00193574  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80196638 00193578  7C 08 02 A6 */	mflr r0
 /* 8019663C 0019357C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1594,12 +1594,12 @@ getObject__27Container$$0Q24Game8Creature$$1FPv:
 /* 80196658 00193598  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019665C 0019359C  4E 80 00 20 */	blr 
 
-.global getAt__27Container$$0Q24Game8Creature$$1Fi
-getAt__27Container$$0Q24Game8Creature$$1Fi:
+.global "getAt__27Container<Q24Game8Creature>Fi"
+"getAt__27Container<Q24Game8Creature>Fi":
 /* 80196660 001935A0  38 60 00 00 */	li r3, 0
 /* 80196664 001935A4  4E 80 00 20 */	blr 
 
-.global getTo__27Container$$0Q24Game8Creature$$1Fv
-getTo__27Container$$0Q24Game8Creature$$1Fv:
+.global "getTo__27Container<Q24Game8Creature>Fv"
+"getTo__27Container<Q24Game8Creature>Fv":
 /* 80196668 001935A8  38 60 00 00 */	li r3, 0
 /* 8019666C 001935AC  4E 80 00 20 */	blr 

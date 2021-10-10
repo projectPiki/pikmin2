@@ -155,7 +155,7 @@ loadTexData__Q34Game12WaterOtakara3MgrFv:
 /* 802B88EC 002B582C  7C 7F 1B 78 */	mr r31, r3
 /* 802B88F0 002B5830  90 03 00 44 */	stw r0, 0x44(r3)
 /* 802B88F4 002B5834  38 61 00 08 */	addi r3, r1, 8
-/* 802B88F8 002B5838  80 8D 84 E8 */	lwz r4, cOtakaraChangeTexName__Q34Game12WaterOtakara29$$2unnamed$$2WaterOtakaraMgr_cpp$$2@sda21(r13)
+/* 802B88F8 002B5838  80 8D 84 E8 */	lwz r4, "cOtakaraChangeTexName__Q34Game12WaterOtakara29@unnamed@WaterOtakaraMgr_cpp@"@sda21(r13)
 /* 802B88FC 002B583C  48 19 3C DD */	bl __ct__Q212LoadResource3ArgFPCc
 /* 802B8900 002B5840  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 802B8904 002B5844  38 81 00 08 */	addi r4, r1, 8
@@ -247,7 +247,7 @@ getChangeTexture__Q34Game12WaterOtakara3MgrFv:
 /* 802B8A28 002B5968  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 802B8A2C 002B596C  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game12WaterOtakara3MgrFv
-$$24$$2__dt__Q34Game12WaterOtakara3MgrFv:
+.global "@4@__dt__Q34Game12WaterOtakara3MgrFv"
+"@4@__dt__Q34Game12WaterOtakara3MgrFv":
 /* 802B8A30 002B5970  38 63 FF FC */	addi r3, r3, -4
 /* 802B8A34 002B5974  4B FF FF 24 */	b __dt__Q34Game12WaterOtakara3MgrFv

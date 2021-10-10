@@ -476,8 +476,8 @@ getOffsetForMapCollision__Q34Game7Sokkuri3ObjFv:
 /* 802F18D0 002EE810  4E 80 04 21 */	bctrl 
 /* 802F18D4 002EE814  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802F18D8 002EE818  41 82 00 24 */	beq lbl_802F18FC
-/* 802F18DC 002EE81C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 802F18E0 002EE820  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 802F18DC 002EE81C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 802F18E0 002EE820  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 802F18E4 002EE824  D0 1E 00 00 */	stfs f0, 0(r30)
 /* 802F18E8 002EE828  C0 03 00 04 */	lfs f0, 4(r3)
 /* 802F18EC 002EE82C  D0 1E 00 04 */	stfs f0, 4(r30)
@@ -524,7 +524,7 @@ isAppear__Q34Game7Sokkuri3ObjFv:
 /* 802F197C 002EE8BC  38 A0 00 00 */	li r5, 0
 /* 802F1980 002EE8C0  C0 26 04 24 */	lfs f1, 0x424(r6)
 /* 802F1984 002EE8C4  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
-/* 802F1988 002EE8C8  4B E2 11 DD */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
+/* 802F1988 002EE8C8  4B E2 11 DD */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
 /* 802F198C 002EE8CC  48 00 00 1C */	b lbl_802F19A8
 lbl_802F1990:
 /* 802F1990 002EE8D0  80 C3 00 C0 */	lwz r6, 0xc0(r3)
@@ -532,7 +532,7 @@ lbl_802F1990:
 /* 802F1998 002EE8D8  38 A0 00 00 */	li r5, 0
 /* 802F199C 002EE8DC  C0 26 04 24 */	lfs f1, 0x424(r6)
 /* 802F19A0 002EE8E0  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
-/* 802F19A4 002EE8E4  4B E2 0D 51 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
+/* 802F19A4 002EE8E4  4B E2 0D 51 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 lbl_802F19A8:
 /* 802F19A8 002EE8E8  28 03 00 00 */	cmplwi r3, 0
 /* 802F19AC 002EE8EC  41 82 00 0C */	beq lbl_802F19B8
@@ -574,14 +574,14 @@ isDisappear__Q34Game7Sokkuri3ObjFv:
 /* 802F1A28 002EE968  38 80 00 00 */	li r4, 0
 /* 802F1A2C 002EE96C  C0 45 03 D4 */	lfs f2, 0x3d4(r5)
 /* 802F1A30 002EE970  38 A0 00 00 */	li r5, 0
-/* 802F1A34 002EE974  4B E2 11 31 */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
+/* 802F1A34 002EE974  4B E2 11 31 */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
 /* 802F1A38 002EE978  48 00 00 18 */	b lbl_802F1A50
 lbl_802F1A3C:
 /* 802F1A3C 002EE97C  C0 25 04 24 */	lfs f1, 0x424(r5)
 /* 802F1A40 002EE980  38 80 00 00 */	li r4, 0
 /* 802F1A44 002EE984  C0 45 03 D4 */	lfs f2, 0x3d4(r5)
 /* 802F1A48 002EE988  38 A0 00 00 */	li r5, 0
-/* 802F1A4C 002EE98C  4B E2 0C A9 */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
+/* 802F1A4C 002EE98C  4B E2 0C A9 */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 lbl_802F1A50:
 /* 802F1A50 002EE990  28 03 00 00 */	cmplwi r3, 0
 /* 802F1A54 002EE994  40 82 00 0C */	bne lbl_802F1A60
@@ -915,14 +915,14 @@ createDownEffect__Q34Game7Sokkuri3ObjFff:
 /* 802F1EE4 002EEE24  FC 20 F8 90 */	fmr f1, f31
 /* 802F1EE8 002EEE28  7F E3 FB 78 */	mr r3, r31
 /* 802F1EEC 002EEE2C  38 81 00 08 */	addi r4, r1, 8
-/* 802F1EF0 002EEE30  4B E1 1B 09 */	bl createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 802F1EF0 002EEE30  4B E1 1B 09 */	bl "createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 802F1EF4 002EEE34  48 00 00 18 */	b lbl_802F1F0C
 lbl_802F1EF8:
 /* 802F1EF8 002EEE38  C0 02 ED C0 */	lfs f0, lbl_8051D120@sda21(r2)
 /* 802F1EFC 002EEE3C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802F1F00 002EEE40  40 81 00 0C */	ble lbl_802F1F0C
 /* 802F1F04 002EEE44  38 9F 01 8C */	addi r4, r31, 0x18c
-/* 802F1F08 002EEE48  4B E1 1A 39 */	bl createDropEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 802F1F08 002EEE48  4B E1 1A 39 */	bl "createDropEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 lbl_802F1F0C:
 /* 802F1F0C 002EEE4C  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0
 /* 802F1F10 002EEE50  80 01 00 34 */	lwz r0, 0x34(r1)

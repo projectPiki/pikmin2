@@ -114,8 +114,8 @@ lbl_8020290C:
 /* 80202918 001FF858  38 21 00 10 */	addi r1, r1, 0x10
 /* 8020291C 001FF85C  4E 80 00 20 */	blr 
 
-.global generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3$$0f$$1
-generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3$$0f$$1:
+.global "generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3<f>"
+"generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3<f>":
 /* 80202920 001FF860  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80202924 001FF864  7C 08 02 A6 */	mflr r0
 /* 80202928 001FF868  C0 62 B9 E8 */	lfs f3, lbl_80519D48@sda21(r2)
@@ -137,7 +137,7 @@ generatorMakeMatrix__Q24Game9GenPelletFR7MatrixfR10Vector3$$0f$$1:
 /* 80202968 001FF8A8  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 8020296C 001FF8AC  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80202970 001FF8B0  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80202974 001FF8B4  48 22 5F 15 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80202974 001FF8B4  48 22 5F 15 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 80202978 001FF8B8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8020297C 001FF8BC  7C 08 03 A6 */	mtlr r0
 /* 80202980 001FF8C0  38 21 00 20 */	addi r1, r1, 0x20

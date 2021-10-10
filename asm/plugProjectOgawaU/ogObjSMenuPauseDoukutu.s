@@ -1486,7 +1486,7 @@ __sinit_ogObjSMenuPauseDoukutu_cpp:
 /* 80323574 003204B4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80323578 003204B8  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen20ObjSMenuPauseDoukutuFv
-$$224$$2__dt__Q32og9newScreen20ObjSMenuPauseDoukutuFv:
+.global "@24@__dt__Q32og9newScreen20ObjSMenuPauseDoukutuFv"
+"@24@__dt__Q32og9newScreen20ObjSMenuPauseDoukutuFv":
 /* 8032357C 003204BC  38 63 FF E8 */	addi r3, r3, -24
 /* 80323580 003204C0  4B FF EB BC */	b __dt__Q32og9newScreen20ObjSMenuPauseDoukutuFv

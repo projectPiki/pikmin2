@@ -226,9 +226,9 @@ __ct__Q34Game4Rock5ParmsFv:
 /* 80262BF4 0025FB34  38 9F 07 F8 */	addi r4, r31, 0x7f8
 /* 80262BF8 0025FB38  90 1F 08 00 */	stw r0, 0x800(r31)
 /* 80262BFC 0025FB3C  48 1B 0A 5D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 80262C00 0025FB40  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 80262C00 0025FB40  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 80262C04 0025FB44  C0 42 CA 2C */	lfs f2, lbl_8051AD8C@sda21(r2)
-/* 80262C08 0025FB48  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 80262C08 0025FB48  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 80262C0C 0025FB4C  C0 22 CA 30 */	lfs f1, lbl_8051AD90@sda21(r2)
 /* 80262C10 0025FB50  90 1F 08 04 */	stw r0, 0x804(r31)
 /* 80262C14 0025FB54  7F E3 FB 78 */	mr r3, r31
@@ -512,7 +512,7 @@ getInitialParam__Q34Game4Rock9GeneratorFv:
 /* 80262FE0 0025FF20  38 63 00 24 */	addi r3, r3, 0x24
 /* 80262FE4 0025FF24  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game4Rock3MgrFv
-$$24$$2__dt__Q34Game4Rock3MgrFv:
+.global "@4@__dt__Q34Game4Rock3MgrFv"
+"@4@__dt__Q34Game4Rock3MgrFv":
 /* 80262FE8 0025FF28  38 63 FF FC */	addi r3, r3, -4
 /* 80262FEC 0025FF2C  4B FF FE CC */	b __dt__Q34Game4Rock3MgrFv

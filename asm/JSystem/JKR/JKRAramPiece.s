@@ -302,10 +302,10 @@ __sinit_JKRAramPiece_cpp:
 /* 80019EEC 00016E2C  38 63 6D C4 */	addi r3, r3, sAramPieceCommandList__12JKRAramPiece@l
 /* 80019EF0 00016E30  48 00 C9 E1 */	bl initiate__10JSUPtrListFv
 /* 80019EF4 00016E34  3C 60 80 50 */	lis r3, sAramPieceCommandList__12JKRAramPiece@ha
-/* 80019EF8 00016E38  3C 80 80 02 */	lis r4, __dt__23JSUList$$012JKRAMCommand$$1Fv@ha
+/* 80019EF8 00016E38  3C 80 80 02 */	lis r4, "__dt__23JSUList<12JKRAMCommand>Fv"@ha
 /* 80019EFC 00016E3C  3C A0 80 4F */	lis r5, lbl_804EFF30@ha
 /* 80019F00 00016E40  38 63 6D C4 */	addi r3, r3, sAramPieceCommandList__12JKRAramPiece@l
-/* 80019F04 00016E44  38 84 89 04 */	addi r4, r4, __dt__23JSUList$$012JKRAMCommand$$1Fv@l
+/* 80019F04 00016E44  38 84 89 04 */	addi r4, r4, "__dt__23JSUList<12JKRAMCommand>Fv"@l
 /* 80019F08 00016E48  38 A5 FF 30 */	addi r5, r5, lbl_804EFF30@l
 /* 80019F0C 00016E4C  48 0A 77 F5 */	bl __register_global_object
 /* 80019F10 00016E50  80 01 00 14 */	lwz r0, 0x14(r1)

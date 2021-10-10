@@ -534,7 +534,7 @@ initMouthSlots__Q34Game9OniKurage3ObjFv:
 /* 802D46B8 002D15F8  4B E6 3F D9 */	bl setup__10MouthSlotsFiPQ28SysShape5ModelPc
 /* 802D46BC 002D15FC  C3 E2 E6 58 */	lfs f31, lbl_8051C9B8@sda21(r2)
 /* 802D46C0 002D1600  3B A0 00 00 */	li r29, 0
-/* 802D46C4 002D1604  3B C2 E6 30 */	addi r30, r2, cDefaultKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2@sda21
+/* 802D46C4 002D1604  3B C2 E6 30 */	addi r30, r2, "cDefaultKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@"@sda21
 /* 802D46C8 002D1608  3B E0 00 01 */	li r31, 1
 /* 802D46CC 002D160C  48 00 00 28 */	b lbl_802D46F4
 lbl_802D46D0:
@@ -1655,13 +1655,13 @@ suckPikmin__Q34Game9OniKurage3ObjFf:
 /* 802D56F8 002D2638  EF 40 00 32 */	fmuls f26, f0, f0
 /* 802D56FC 002D263C  4B E6 07 49 */	bl getCollPart__8CollTreeFUl
 /* 802D5700 002D2640  7C 7F 1B 78 */	mr r31, r3
-/* 802D5704 002D2644  3C 60 80 4B */	lis r3, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 802D5704 002D2644  3C 60 80 4B */	lis r3, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 802D5708 002D2648  38 00 00 00 */	li r0, 0
 /* 802D570C 002D264C  C3 FF 00 4C */	lfs f31, 0x4c(r31)
 /* 802D5710 002D2650  C3 DF 00 50 */	lfs f30, 0x50(r31)
 /* 802D5714 002D2654  28 00 00 00 */	cmplwi r0, 0
 /* 802D5718 002D2658  C3 BF 00 54 */	lfs f29, 0x54(r31)
-/* 802D571C 002D265C  38 83 BC 9C */	addi r4, r3, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 802D571C 002D265C  38 83 BC 9C */	addi r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 802D5720 002D2660  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 802D5724 002D2664  90 81 00 14 */	stw r4, 0x14(r1)
 /* 802D5728 002D2668  90 01 00 20 */	stw r0, 0x20(r1)
@@ -1941,12 +1941,12 @@ suckNavi__Q34Game9OniKurage3ObjFf:
 /* 802D5B40 002D2A80  EF C2 08 28 */	fsubs f30, f2, f1
 /* 802D5B44 002D2A84  EF A0 00 32 */	fmuls f29, f0, f0
 /* 802D5B48 002D2A88  4B E6 02 FD */	bl getCollPart__8CollTreeFUl
-/* 802D5B4C 002D2A8C  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Navi$$1@ha
+/* 802D5B4C 002D2A8C  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
 /* 802D5B50 002D2A90  38 00 00 00 */	li r0, 0
 /* 802D5B54 002D2A94  C3 83 00 4C */	lfs f28, 0x4c(r3)
 /* 802D5B58 002D2A98  28 00 00 00 */	cmplwi r0, 0
 /* 802D5B5C 002D2A9C  C3 63 00 50 */	lfs f27, 0x50(r3)
-/* 802D5B60 002D2AA0  38 84 BC B4 */	addi r4, r4, __vt__22Iterator$$0Q24Game4Navi$$1@l
+/* 802D5B60 002D2AA0  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
 /* 802D5B64 002D2AA4  C3 43 00 54 */	lfs f26, 0x54(r3)
 /* 802D5B68 002D2AA8  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
 /* 802D5B6C 002D2AAC  90 81 00 14 */	stw r4, 0x14(r1)
@@ -2283,7 +2283,7 @@ updateCollPartOffset__Q34Game9OniKurage3ObjFv:
 /* 802D602C 002D2F6C  7C 08 02 A6 */	mflr r0
 /* 802D6030 002D2F70  90 01 00 34 */	stw r0, 0x34(r1)
 /* 802D6034 002D2F74  93 E1 00 2C */	stw r31, 0x2c(r1)
-/* 802D6038 002D2F78  3B E2 E6 30 */	addi r31, r2, cDefaultKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2@sda21
+/* 802D6038 002D2F78  3B E2 E6 30 */	addi r31, r2, "cDefaultKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@"@sda21
 /* 802D603C 002D2F7C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 802D6040 002D2F80  93 A1 00 24 */	stw r29, 0x24(r1)
 /* 802D6044 002D2F84  3B A0 00 00 */	li r29, 0
@@ -2434,12 +2434,12 @@ lbl_802D6204:
 /* 802D6238 002D3178  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 802D623C 002D317C  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802D6240 002D3180  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802D6244 002D3184  4B F7 BF F9 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802D6244 002D3184  4B F7 BF F9 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802D6248 002D3188  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802D624C 002D318C  38 A1 00 14 */	addi r5, r1, 0x14
 /* 802D6250 002D3190  38 80 00 0A */	li r4, 0xa
 /* 802D6254 002D3194  38 C0 00 02 */	li r6, 2
-/* 802D6258 002D3198  4B F7 D5 29 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802D6258 002D3198  4B F7 D5 29 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 lbl_802D625C:
 /* 802D625C 002D319C  3B FF 00 04 */	addi r31, r31, 4
 /* 802D6260 002D31A0  3B DE 00 04 */	addi r30, r30, 4
@@ -2463,7 +2463,7 @@ isFinishNaviSuck__Q34Game9OniKurage3ObjFv:
 /* 802D6298 002D31D8  7C 08 02 A6 */	mflr r0
 /* 802D629C 002D31DC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802D62A0 002D31E0  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 802D62A4 002D31E4  3B E2 E6 30 */	addi r31, r2, cDefaultKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2@sda21
+/* 802D62A4 002D31E4  3B E2 E6 30 */	addi r31, r2, "cDefaultKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@"@sda21
 /* 802D62A8 002D31E8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 802D62AC 002D31EC  3B C0 00 01 */	li r30, 1
 /* 802D62B0 002D31F0  93 A1 00 14 */	stw r29, 0x14(r1)
@@ -2558,8 +2558,8 @@ flickStickNavi__Q34Game9OniKurage3ObjFb:
 /* 802D63CC 002D330C  7C 7B 1B 78 */	mr r27, r3
 /* 802D63D0 002D3310  7C 9C 23 78 */	mr r28, r4
 /* 802D63D4 002D3314  3B A0 00 00 */	li r29, 0
-/* 802D63D8 002D3318  3B E2 E6 38 */	addi r31, r2, cFlickKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2@sda21
-/* 802D63DC 002D331C  3B C2 E6 30 */	addi r30, r2, cDefaultKamuJointOffset__Q34Game9OniKurage23$$2unnamed$$2OniKurage_cpp$$2@sda21
+/* 802D63D8 002D3318  3B E2 E6 38 */	addi r31, r2, "cFlickKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@"@sda21
+/* 802D63DC 002D331C  3B C2 E6 30 */	addi r30, r2, "cDefaultKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@"@sda21
 /* 802D63E0 002D3320  48 00 02 58 */	b lbl_802D6638
 lbl_802D63E4:
 /* 802D63E4 002D3324  7F A4 EB 78 */	mr r4, r29
@@ -2793,12 +2793,12 @@ lbl_802D66D0:
 /* 802D670C 002D364C  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 802D6710 002D3650  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 802D6714 002D3654  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 802D6718 002D3658  4B F7 BB 25 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802D6718 002D3658  4B F7 BB 25 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802D671C 002D365C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802D6720 002D3660  38 A1 00 14 */	addi r5, r1, 0x14
 /* 802D6724 002D3664  38 80 00 0A */	li r4, 0xa
 /* 802D6728 002D3668  38 C0 00 02 */	li r6, 2
-/* 802D672C 002D366C  4B F7 D0 55 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802D672C 002D366C  4B F7 D0 55 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802D6730 002D3670  80 7F 02 EC */	lwz r3, 0x2ec(r31)
 /* 802D6734 002D3674  38 80 08 16 */	li r4, 0x816
 /* 802D6738 002D3678  38 A0 00 00 */	li r5, 0
@@ -3187,8 +3187,8 @@ finishHireEffect__Q34Game9OniKurage3ObjFv:
 /* 802D6CC4 002D3C04  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D6CC8 002D3C08  4E 80 00 20 */	blr 
 
-.global startSuckEffect__Q34Game9OniKurage3ObjFR10Vector3$$0f$$1
-startSuckEffect__Q34Game9OniKurage3ObjFR10Vector3$$0f$$1:
+.global "startSuckEffect__Q34Game9OniKurage3ObjFR10Vector3<f>"
+"startSuckEffect__Q34Game9OniKurage3ObjFR10Vector3<f>":
 /* 802D6CCC 002D3C0C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D6CD0 002D3C10  7C 08 02 A6 */	mflr r0
 /* 802D6CD4 002D3C14  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
@@ -3212,13 +3212,13 @@ startSuckEffect__Q34Game9OniKurage3ObjFR10Vector3$$0f$$1:
 /* 802D6D1C 002D3C5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D6D20 002D3C60  4E 80 00 20 */	blr 
 
-.global updateSuckEffect__Q34Game9OniKurage3ObjFR10Vector3$$0f$$1
-updateSuckEffect__Q34Game9OniKurage3ObjFR10Vector3$$0f$$1:
+.global "updateSuckEffect__Q34Game9OniKurage3ObjFR10Vector3<f>"
+"updateSuckEffect__Q34Game9OniKurage3ObjFR10Vector3<f>":
 /* 802D6D24 002D3C64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D6D28 002D3C68  7C 08 02 A6 */	mflr r0
 /* 802D6D2C 002D3C6C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802D6D30 002D3C70  80 63 03 04 */	lwz r3, 0x304(r3)
-/* 802D6D34 002D3C74  48 0D CC DD */	bl setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3$$0f$$1
+/* 802D6D34 002D3C74  48 0D CC DD */	bl "setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3<f>"
 /* 802D6D38 002D3C78  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802D6D3C 002D3C7C  7C 08 03 A6 */	mtlr r0
 /* 802D6D40 002D3C80  38 21 00 10 */	addi r1, r1, 0x10
@@ -3310,7 +3310,7 @@ createDownEffect__Q34Game9OniKurage3ObjFv:
 /* 802D6E68 002D3DA8  4E 80 04 21 */	bctrl 
 /* 802D6E6C 002D3DAC  7F E3 FB 78 */	mr r3, r31
 /* 802D6E70 002D3DB0  38 9F 01 8C */	addi r4, r31, 0x18c
-/* 802D6E74 002D3DB4  4B E2 CC DD */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 802D6E74 002D3DB4  4B E2 CC DD */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 802D6E78 002D3DB8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802D6E7C 002D3DBC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802D6E80 002D3DC0  7C 08 03 A6 */	mtlr r0
@@ -3625,22 +3625,22 @@ __sinit_OniKurage_cpp:
 /* 802D72A4 002D41E4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802D72A8 002D41E8  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx10TKurageEyeFv
-$$24$$2__dt__Q23efx10TKurageEyeFv:
+.global "@4@__dt__Q23efx10TKurageEyeFv"
+"@4@__dt__Q23efx10TKurageEyeFv":
 /* 802D72AC 002D41EC  38 63 FF FC */	addi r3, r3, -4
 /* 802D72B0 002D41F0  4B FF FF 20 */	b __dt__Q23efx10TKurageEyeFv
 
-.global $$24$$2__dt__Q23efx11TKurageKiraFv
-$$24$$2__dt__Q23efx11TKurageKiraFv:
+.global "@4@__dt__Q23efx11TKurageKiraFv"
+"@4@__dt__Q23efx11TKurageKiraFv":
 /* 802D72B4 002D41F4  38 63 FF FC */	addi r3, r3, -4
 /* 802D72B8 002D41F8  4B FF FE 7C */	b __dt__Q23efx11TKurageKiraFv
 
-.global $$24$$2__dt__Q23efx11TKurageGepuFv
-$$24$$2__dt__Q23efx11TKurageGepuFv:
+.global "@4@__dt__Q23efx11TKurageGepuFv"
+"@4@__dt__Q23efx11TKurageGepuFv":
 /* 802D72BC 002D41FC  38 63 FF FC */	addi r3, r3, -4
 /* 802D72C0 002D4200  4B FF FD D8 */	b __dt__Q23efx11TKurageGepuFv
 
-.global $$24$$2__dt__Q23efx14TKurageDeadrunFv
-$$24$$2__dt__Q23efx14TKurageDeadrunFv:
+.global "@4@__dt__Q23efx14TKurageDeadrunFv"
+"@4@__dt__Q23efx14TKurageDeadrunFv":
 /* 802D72C4 002D4204  38 63 FF FC */	addi r3, r3, -4
 /* 802D72C8 002D4208  4B FF FD 34 */	b __dt__Q23efx14TKurageDeadrunFv

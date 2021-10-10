@@ -558,7 +558,7 @@ lbl_803486E8:
 /* 80348730 00345670  3D 20 01 10 */	lis r9, 0x110
 /* 80348734 00345674  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80348738 00345678  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8034873C 0034567C  4B D0 CA 01 */	bl __ct__12J2DPictureExFUxRCQ29JGeometry8TBox2$$0f$$1PCcUl
+/* 8034873C 0034567C  4B D0 CA 01 */	bl "__ct__12J2DPictureExFUxRCQ29JGeometry8TBox2<f>PCcUl"
 /* 80348740 00345680  3C 60 80 4E */	lis r3, __vt__Q28Morimura10TGXSetPane@ha
 /* 80348744 00345684  38 03 B4 C0 */	addi r0, r3, __vt__Q28Morimura10TGXSetPane@l
 /* 80348748 00345688  90 1D 00 00 */	stw r0, 0(r29)
@@ -1297,32 +1297,32 @@ lbl_8034917C:
 /* 80349190 003460D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80349194 003460D4  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q28Morimura13TGameOverBaseFv
-$$224$$2__dt__Q28Morimura13TGameOverBaseFv:
+.global "@24@__dt__Q28Morimura13TGameOverBaseFv"
+"@24@__dt__Q28Morimura13TGameOverBaseFv":
 /* 80349198 003460D8  38 63 FF E8 */	addi r3, r3, -24
 /* 8034919C 003460DC  4B FF FF 38 */	b __dt__Q28Morimura13TGameOverBaseFv
 
-.global $$224$$2__dt__Q28Morimura11TGameOver2DFv
-$$224$$2__dt__Q28Morimura11TGameOver2DFv:
+.global "@24@__dt__Q28Morimura11TGameOver2DFv"
+"@24@__dt__Q28Morimura11TGameOver2DFv":
 /* 803491A0 003460E0  38 63 FF E8 */	addi r3, r3, -24
 /* 803491A4 003460E4  4B FF FE 54 */	b __dt__Q28Morimura11TGameOver2DFv
 
-.global $$224$$2__dt__Q28Morimura12TOrimaDown2DFv
-$$224$$2__dt__Q28Morimura12TOrimaDown2DFv:
+.global "@24@__dt__Q28Morimura12TOrimaDown2DFv"
+"@24@__dt__Q28Morimura12TOrimaDown2DFv":
 /* 803491A8 003460E8  38 63 FF E8 */	addi r3, r3, -24
 /* 803491AC 003460EC  4B FF FD 70 */	b __dt__Q28Morimura12TOrimaDown2DFv
 
-.global $$224$$2__dt__Q28Morimura11TLujiDown2DFv
-$$224$$2__dt__Q28Morimura11TLujiDown2DFv:
+.global "@24@__dt__Q28Morimura11TLujiDown2DFv"
+"@24@__dt__Q28Morimura11TLujiDown2DFv":
 /* 803491B0 003460F0  38 63 FF E8 */	addi r3, r3, -24
 /* 803491B4 003460F4  4B FF FC 8C */	b __dt__Q28Morimura11TLujiDown2DFv
 
-.global $$224$$2__dt__Q28Morimura16TPresidentDown2DFv
-$$224$$2__dt__Q28Morimura16TPresidentDown2DFv:
+.global "@24@__dt__Q28Morimura16TPresidentDown2DFv"
+"@24@__dt__Q28Morimura16TPresidentDown2DFv":
 /* 803491B8 003460F8  38 63 FF E8 */	addi r3, r3, -24
 /* 803491BC 003460FC  4B FF FB A8 */	b __dt__Q28Morimura16TPresidentDown2DFv
 
-.global $$224$$2__dt__Q28Morimura13TPikminDown2DFv
-$$224$$2__dt__Q28Morimura13TPikminDown2DFv:
+.global "@24@__dt__Q28Morimura13TPikminDown2DFv"
+"@24@__dt__Q28Morimura13TPikminDown2DFv":
 /* 803491C0 00346100  38 63 FF E8 */	addi r3, r3, -24
 /* 803491C4 00346104  4B FF FA 88 */	b __dt__Q28Morimura13TPikminDown2DFv

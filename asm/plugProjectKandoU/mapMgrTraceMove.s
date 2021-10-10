@@ -207,7 +207,7 @@ lbl_80205354:
 /* 80205368 002022A8  C0 5A 00 0C */	lfs f2, 0xc(r26)
 /* 8020536C 002022AC  38 61 00 0C */	addi r3, r1, 0xc
 /* 80205370 002022B0  38 BF 00 1C */	addi r5, r31, 0x1c
-/* 80205374 002022B4  48 21 C2 B5 */	bl __ct__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1ff
+/* 80205374 002022B4  48 21 C2 B5 */	bl "__ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
 /* 80205378 002022B8  7F A4 EB 78 */	mr r4, r29
 /* 8020537C 002022BC  38 61 00 0C */	addi r3, r1, 0xc
 /* 80205380 002022C0  38 A1 00 08 */	addi r5, r1, 8

@@ -798,7 +798,7 @@ __sinit_khFinalFloor_cpp:
 /* 8040283C 003FF77C  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80402840 003FF780  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32kh6Screen13ObjFinalFloorFv
-$$224$$2__dt__Q32kh6Screen13ObjFinalFloorFv:
+.global "@24@__dt__Q32kh6Screen13ObjFinalFloorFv"
+"@24@__dt__Q32kh6Screen13ObjFinalFloorFv":
 /* 80402844 003FF784  38 63 FF E8 */	addi r3, r3, -24
 /* 80402848 003FF788  4B FF FF 04 */	b __dt__Q32kh6Screen13ObjFinalFloorFv

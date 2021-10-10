@@ -155,7 +155,7 @@ loadTexData__Q34Game11ElecOtakara3MgrFv:
 /* 802B998C 002B68CC  7C 7F 1B 78 */	mr r31, r3
 /* 802B9990 002B68D0  90 03 00 44 */	stw r0, 0x44(r3)
 /* 802B9994 002B68D4  38 61 00 08 */	addi r3, r1, 8
-/* 802B9998 002B68D8  80 8D 84 F8 */	lwz r4, cOtakaraChangeTexName__Q34Game11ElecOtakara28$$2unnamed$$2ElecOtakaraMgr_cpp$$2@sda21(r13)
+/* 802B9998 002B68D8  80 8D 84 F8 */	lwz r4, "cOtakaraChangeTexName__Q34Game11ElecOtakara28@unnamed@ElecOtakaraMgr_cpp@"@sda21(r13)
 /* 802B999C 002B68DC  48 19 2C 3D */	bl __ct__Q212LoadResource3ArgFPCc
 /* 802B99A0 002B68E0  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 802B99A4 002B68E4  38 81 00 08 */	addi r4, r1, 8
@@ -247,7 +247,7 @@ getChangeTexture__Q34Game11ElecOtakara3MgrFv:
 /* 802B9AC8 002B6A08  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 802B9ACC 002B6A0C  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game11ElecOtakara3MgrFv
-$$24$$2__dt__Q34Game11ElecOtakara3MgrFv:
+.global "@4@__dt__Q34Game11ElecOtakara3MgrFv"
+"@4@__dt__Q34Game11ElecOtakara3MgrFv":
 /* 802B9AD0 002B6A10  38 63 FF FC */	addi r3, r3, -4
 /* 802B9AD4 002B6A14  4B FF FF 24 */	b __dt__Q34Game11ElecOtakara3MgrFv

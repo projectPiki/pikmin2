@@ -171,8 +171,8 @@ lbl_8043D6B8:
 /* 8043D6E8 0043A628  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8043D6EC 0043A62C  41 82 00 18 */	beq lbl_8043D704
 /* 8043D6F0 0043A630  4B FD 3C A1 */	bl __ct__5CNodeFv
-/* 8043D6F4 0043A634  3C 60 80 4E */	lis r3, __vt__26TObjectNode$$011ModelEffect$$1@ha
-/* 8043D6F8 0043A638  38 03 76 D8 */	addi r0, r3, __vt__26TObjectNode$$011ModelEffect$$1@l
+/* 8043D6F4 0043A634  3C 60 80 4E */	lis r3, "__vt__26TObjectNode<11ModelEffect>"@ha
+/* 8043D6F8 0043A638  38 03 76 D8 */	addi r0, r3, "__vt__26TObjectNode<11ModelEffect>"@l
 /* 8043D6FC 0043A63C  90 1E 00 00 */	stw r0, 0(r30)
 /* 8043D700 0043A640  93 BE 00 18 */	stw r29, 0x18(r30)
 lbl_8043D704:

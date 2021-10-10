@@ -244,7 +244,7 @@ doLoadBmd__Q34Game5Demon3MgrFPv:
 /* 8028E384 0028B2C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028E388 0028B2C8  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game5Demon3MgrFv
-$$24$$2__dt__Q34Game5Demon3MgrFv:
+.global "@4@__dt__Q34Game5Demon3MgrFv"
+"@4@__dt__Q34Game5Demon3MgrFv":
 /* 8028E38C 0028B2CC  38 63 FF FC */	addi r3, r3, -4
 /* 8028E390 0028B2D0  4B FF FF 18 */	b __dt__Q34Game5Demon3MgrFv

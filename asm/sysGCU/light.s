@@ -325,7 +325,7 @@ drawPos__8LightObjFR8GraphicsR7Matrixf:
 /* 8042B914 00428854  4B FF 9F 09 */	bl initPrimDraw__8GraphicsFP7Matrixf
 /* 8042B918 00428858  38 61 00 14 */	addi r3, r1, 0x14
 /* 8042B91C 0042885C  38 9E 00 1C */	addi r4, r30, 0x1c
-/* 8042B920 00428860  4B FF CF 21 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 8042B920 00428860  4B FF CF 21 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 8042B924 00428864  88 BE 00 37 */	lbz r5, 0x37(r30)
 /* 8042B928 00428868  88 9E 00 36 */	lbz r4, 0x36(r30)
 /* 8042B92C 0042886C  88 7E 00 35 */	lbz r3, 0x35(r30)
@@ -366,7 +366,7 @@ lbl_8042B964:
 /* 8042B9B4 004288F4  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 8042B9B8 004288F8  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8042B9BC 004288FC  D0 21 00 0C */	stfs f1, 0xc(r1)
-/* 8042B9C0 00428900  4B FF A0 29 */	bl drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8042B9C0 00428900  4B FF A0 29 */	bl "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
 /* 8042B9C4 00428904  C0 22 22 78 */	lfs f1, lbl_805205D8@sda21(r2)
 /* 8042B9C8 00428908  7F E3 FB 78 */	mr r3, r31
 /* 8042B9CC 0042890C  38 81 00 14 */	addi r4, r1, 0x14
@@ -400,7 +400,7 @@ lbl_8042B9D8:
 /* 8042BA38 00428978  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8042BA3C 0042897C  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8042BA40 00428980  C0 3E 00 44 */	lfs f1, 0x44(r30)
-/* 8042BA44 00428984  4B FF B2 75 */	bl drawCone__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1fi
+/* 8042BA44 00428984  4B FF B2 75 */	bl "drawCone__8GraphicsFR10Vector3<f>R10Vector3<f>fi"
 /* 8042BA48 00428988  48 00 00 2C */	b lbl_8042BA74
 lbl_8042BA4C:
 /* 8042BA4C 0042898C  C0 22 22 78 */	lfs f1, lbl_805205D8@sda21(r2)

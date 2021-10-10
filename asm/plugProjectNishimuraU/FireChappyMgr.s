@@ -187,7 +187,7 @@ loadTexData__Q34Game10FireChappy3MgrFv:
 /* 8028F3B0 0028C2F0  7C 7E 1B 78 */	mr r30, r3
 /* 8028F3B4 0028C2F4  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8028F3B8 0028C2F8  48 1A EE E5 */	bl enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-/* 8028F3BC 0028C2FC  80 8D 84 B8 */	lwz r4, cMatAnimBtkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2@sda21(r13)
+/* 8028F3BC 0028C2FC  80 8D 84 B8 */	lwz r4, "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"@sda21(r13)
 /* 8028F3C0 0028C300  38 61 00 38 */	addi r3, r1, 0x38
 /* 8028F3C4 0028C304  3B E0 00 00 */	li r31, 0
 /* 8028F3C8 0028C308  48 1B D2 11 */	bl __ct__Q212LoadResource3ArgFPCc
@@ -220,7 +220,7 @@ lbl_8028F420:
 /* 8028F428 0028C368  80 7E 00 48 */	lwz r3, 0x48(r30)
 /* 8028F42C 0028C36C  80 BE 00 1C */	lwz r5, 0x1c(r30)
 /* 8028F430 0028C370  48 1A 4B F1 */	bl attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-/* 8028F434 0028C374  80 8D 84 BC */	lwz r4, cMatAnimBrkTexName__Q34Game10FireChappy27$$2unnamed$$2FireChappyMgr_cpp$$2@sda21(r13)
+/* 8028F434 0028C374  80 8D 84 BC */	lwz r4, "cMatAnimBrkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"@sda21(r13)
 /* 8028F438 0028C378  38 61 00 08 */	addi r3, r1, 8
 /* 8028F43C 0028C37C  3B E0 00 00 */	li r31, 0
 /* 8028F440 0028C380  48 1B D1 99 */	bl __ct__Q212LoadResource3ArgFPCc
@@ -364,7 +364,7 @@ doLoadBmd__Q34Game10FireChappy3MgrFPv:
 /* 8028F61C 0028C55C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028F620 0028C560  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game10FireChappy3MgrFv
-$$24$$2__dt__Q34Game10FireChappy3MgrFv:
+.global "@4@__dt__Q34Game10FireChappy3MgrFv"
+"@4@__dt__Q34Game10FireChappy3MgrFv":
 /* 8028F624 0028C564  38 63 FF FC */	addi r3, r3, -4
 /* 8028F628 0028C568  4B FF FF 18 */	b __dt__Q34Game10FireChappy3MgrFv

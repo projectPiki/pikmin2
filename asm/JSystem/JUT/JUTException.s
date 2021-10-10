@@ -3134,10 +3134,10 @@ __sinit_JUTException_cpp:
 /* 8002CDD4 00029D14  38 63 6E 74 */	addi r3, r3, sMapFileList__12JUTException@l
 /* 8002CDD8 00029D18  4B FF 9A 59 */	bl __ct__10JSUPtrListFb
 /* 8002CDDC 00029D1C  3C 60 80 50 */	lis r3, sMapFileList__12JUTException@ha
-/* 8002CDE0 00029D20  3C 80 80 03 */	lis r4, __dt__39JSUList$$0Q212JUTException12JUTExMapFile$$1Fv@ha
+/* 8002CDE0 00029D20  3C 80 80 03 */	lis r4, "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"@ha
 /* 8002CDE4 00029D24  3C A0 80 4F */	lis r5, lbl_804F011C@ha
 /* 8002CDE8 00029D28  38 63 6E 74 */	addi r3, r3, sMapFileList__12JUTException@l
-/* 8002CDEC 00029D2C  38 84 CE 08 */	addi r4, r4, __dt__39JSUList$$0Q212JUTException12JUTExMapFile$$1Fv@l
+/* 8002CDEC 00029D2C  38 84 CE 08 */	addi r4, r4, "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"@l
 /* 8002CDF0 00029D30  38 A5 01 1C */	addi r5, r5, lbl_804F011C@l
 /* 8002CDF4 00029D34  48 09 49 0D */	bl __register_global_object
 /* 8002CDF8 00029D38  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3145,8 +3145,8 @@ __sinit_JUTException_cpp:
 /* 8002CE00 00029D40  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002CE04 00029D44  4E 80 00 20 */	blr 
 
-.global __dt__39JSUList$$0Q212JUTException12JUTExMapFile$$1Fv
-__dt__39JSUList$$0Q212JUTException12JUTExMapFile$$1Fv:
+.global "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"
+"__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv":
 /* 8002CE08 00029D48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CE0C 00029D4C  7C 08 02 A6 */	mflr r0
 /* 8002CE10 00029D50  90 01 00 14 */	stw r0, 0x14(r1)

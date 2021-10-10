@@ -55,11 +55,11 @@ lbl_800905DC:
 /* 800905F4 0008D534  1C 7D 00 A0 */	mulli r3, r29, 0xa0
 /* 800905F8 0008D538  38 63 00 10 */	addi r3, r3, 0x10
 /* 800905FC 0008D53C  4B F9 3A 4D */	bl __nwa__FUlP7JKRHeapi
-/* 80090600 0008D540  3C 80 80 09 */	lis r4, __ct__26JPANode$$015JPABaseParticle$$1Fv@ha
-/* 80090604 0008D544  3C A0 80 09 */	lis r5, __dt__26JPANode$$015JPABaseParticle$$1Fv@ha
-/* 80090608 0008D548  38 84 07 A0 */	addi r4, r4, __ct__26JPANode$$015JPABaseParticle$$1Fv@l
+/* 80090600 0008D540  3C 80 80 09 */	lis r4, "__ct__26JPANode<15JPABaseParticle>Fv"@ha
+/* 80090604 0008D544  3C A0 80 09 */	lis r5, "__dt__26JPANode<15JPABaseParticle>Fv"@ha
+/* 80090608 0008D548  38 84 07 A0 */	addi r4, r4, "__ct__26JPANode<15JPABaseParticle>Fv"@l
 /* 8009060C 0008D54C  7F A7 EB 78 */	mr r7, r29
-/* 80090610 0008D550  38 A5 07 64 */	addi r5, r5, __dt__26JPANode$$015JPABaseParticle$$1Fv@l
+/* 80090610 0008D550  38 A5 07 64 */	addi r5, r5, "__dt__26JPANode<15JPABaseParticle>Fv"@l
 /* 80090614 0008D554  38 C0 00 A0 */	li r6, 0xa0
 /* 80090618 0008D558  48 03 13 D9 */	bl __construct_new_array
 /* 8009061C 0008D55C  38 C0 00 00 */	li r6, 0
@@ -96,11 +96,11 @@ lbl_80090670:
 /* 80090688 0008D5C8  1C 7D 00 0C */	mulli r3, r29, 0xc
 /* 8009068C 0008D5CC  38 63 00 10 */	addi r3, r3, 0x10
 /* 80090690 0008D5D0  4B F9 39 B9 */	bl __nwa__FUlP7JKRHeapi
-/* 80090694 0008D5D4  3C 80 80 09 */	lis r4, __ct__25JSUList$$014JPABaseEmitter$$1Fv@ha
-/* 80090698 0008D5D8  3C A0 80 09 */	lis r5, __dt__25JSUList$$014JPABaseEmitter$$1Fv@ha
-/* 8009069C 0008D5DC  38 84 07 34 */	addi r4, r4, __ct__25JSUList$$014JPABaseEmitter$$1Fv@l
+/* 80090694 0008D5D4  3C 80 80 09 */	lis r4, "__ct__25JSUList<14JPABaseEmitter>Fv"@ha
+/* 80090698 0008D5D8  3C A0 80 09 */	lis r5, "__dt__25JSUList<14JPABaseEmitter>Fv"@ha
+/* 8009069C 0008D5DC  38 84 07 34 */	addi r4, r4, "__ct__25JSUList<14JPABaseEmitter>Fv"@l
 /* 800906A0 0008D5E0  7F A7 EB 78 */	mr r7, r29
-/* 800906A4 0008D5E4  38 A5 08 68 */	addi r5, r5, __dt__25JSUList$$014JPABaseEmitter$$1Fv@l
+/* 800906A4 0008D5E4  38 A5 08 68 */	addi r5, r5, "__dt__25JSUList<14JPABaseEmitter>Fv"@l
 /* 800906A8 0008D5E8  38 C0 00 0C */	li r6, 0xc
 /* 800906AC 0008D5EC  48 03 13 45 */	bl __construct_new_array
 /* 800906B0 0008D5F0  90 7E 00 00 */	stw r3, 0(r30)
@@ -140,8 +140,8 @@ lbl_80090718:
 /* 8009072C 0008D66C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80090730 0008D670  4E 80 00 20 */	blr 
 
-.global __ct__25JSUList$$014JPABaseEmitter$$1Fv
-__ct__25JSUList$$014JPABaseEmitter$$1Fv:
+.global "__ct__25JSUList<14JPABaseEmitter>Fv"
+"__ct__25JSUList<14JPABaseEmitter>Fv":
 /* 80090734 0008D674  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090738 0008D678  7C 08 02 A6 */	mflr r0
 /* 8009073C 0008D67C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -155,8 +155,8 @@ __ct__25JSUList$$014JPABaseEmitter$$1Fv:
 /* 8009075C 0008D69C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090760 0008D6A0  4E 80 00 20 */	blr 
 
-.global __dt__26JPANode$$015JPABaseParticle$$1Fv
-__dt__26JPANode$$015JPABaseParticle$$1Fv:
+.global "__dt__26JPANode<15JPABaseParticle>Fv"
+"__dt__26JPANode<15JPABaseParticle>Fv":
 /* 80090764 0008D6A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090768 0008D6A8  7C 08 02 A6 */	mflr r0
 /* 8009076C 0008D6AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -174,8 +174,8 @@ lbl_80090788:
 /* 80090798 0008D6D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009079C 0008D6DC  4E 80 00 20 */	blr 
 
-.global __ct__26JPANode$$015JPABaseParticle$$1Fv
-__ct__26JPANode$$015JPABaseParticle$$1Fv:
+.global "__ct__26JPANode<15JPABaseParticle>Fv"
+"__ct__26JPANode<15JPABaseParticle>Fv":
 /* 800907A0 0008D6E0  38 00 00 00 */	li r0, 0
 /* 800907A4 0008D6E4  90 03 00 00 */	stw r0, 0(r3)
 /* 800907A8 0008D6E8  90 03 00 04 */	stw r0, 4(r3)
@@ -235,8 +235,8 @@ __ct__14JPABaseEmitterFv:
 /* 80090860 0008D7A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090864 0008D7A4  4E 80 00 20 */	blr 
 
-.global __dt__25JSUList$$014JPABaseEmitter$$1Fv
-__dt__25JSUList$$014JPABaseEmitter$$1Fv:
+.global "__dt__25JSUList<14JPABaseEmitter>Fv"
+"__dt__25JSUList<14JPABaseEmitter>Fv":
 /* 80090868 0008D7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009086C 0008D7AC  7C 08 02 A6 */	mflr r0
 /* 80090870 0008D7B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -260,8 +260,8 @@ lbl_800908A0:
 /* 800908B4 0008D7F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800908B8 0008D7F8  4E 80 00 20 */	blr 
 
-.global createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3$$0f$$1UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
-createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3$$0f$$1UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack:
+.global "createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
+"createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack":
 /* 800908BC 0008D7FC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800908C0 0008D800  7C 08 02 A6 */	mflr r0
 /* 800908C4 0008D804  90 01 00 34 */	stw r0, 0x34(r1)

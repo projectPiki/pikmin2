@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1ff
-__ct__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1ff:
+.global "__ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+"__ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f":
 /* 80421628 0041E568  C0 64 00 00 */	lfs f3, 0(r4)
 /* 8042162C 0041E56C  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80421630 0041E570  D0 63 00 00 */	stfs f3, 0(r3)
@@ -19,8 +19,8 @@ __ct__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1ff:
 /* 8042165C 0041E59C  D0 43 00 1C */	stfs f2, 0x1c(r3)
 /* 80421660 0041E5A0  4E 80 00 20 */	blr 
 
-.global set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
-set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f:
+.global "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+"set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f":
 /* 80421664 0041E5A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80421668 0041E5A8  7C 08 02 A6 */	mflr r0
 /* 8042166C 0041E5AC  90 01 00 24 */	stw r0, 0x24(r1)

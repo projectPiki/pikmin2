@@ -351,10 +351,10 @@ lbl_801A1DC0:
 /* 801A1DF0 0019ED30  7D 89 03 A6 */	mtctr r12
 /* 801A1DF4 0019ED34  4E 80 04 21 */	bctrl 
 /* 801A1DF8 0019ED38  81 9C 00 00 */	lwz r12, 0(r28)
-/* 801A1DFC 0019ED3C  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 801A1DFC 0019ED3C  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 801A1E00 0019ED40  7F 83 E3 78 */	mr r3, r28
 /* 801A1E04 0019ED44  81 8C 00 68 */	lwz r12, 0x68(r12)
-/* 801A1E08 0019ED48  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 801A1E08 0019ED48  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 801A1E0C 0019ED4C  7D 89 03 A6 */	mtctr r12
 /* 801A1E10 0019ED50  4E 80 04 21 */	bctrl 
 /* 801A1E14 0019ED54  9B FE 00 3A */	stb r31, 0x3a(r30)
@@ -721,8 +721,8 @@ lbl_801A2318:
 /* 801A2320 0019F260  3B E0 00 00 */	li r31, 0
 /* 801A2324 0019F264  4B FF D9 39 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 801A2328 0019F268  38 00 00 00 */	li r0, 0
-/* 801A232C 0019F26C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 801A2330 0019F270  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801A232C 0019F26C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 801A2330 0019F270  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801A2334 0019F274  38 61 00 34 */	addi r3, r1, 0x34
 /* 801A2338 0019F278  28 00 00 00 */	cmplwi r0, 0
 /* 801A233C 0019F27C  90 81 00 08 */	stw r4, 8(r1)
@@ -995,8 +995,8 @@ getName__Q26PikiAI11GotoSlotArgFv:
 /* 801A2704 0019F644  38 63 F3 B0 */	addi r3, r3, lbl_8047F3B0@l
 /* 801A2708 0019F648  4E 80 00 20 */	blr 
 
-.global $$260$$24$$2onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent
-$$260$$24$$2onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent:
+.global "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent"
+"@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent":
 /* 801A270C 0019F64C  39 60 00 04 */	li r11, 4
 /* 801A2710 0019F650  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801A2714 0019F654  7C 63 5A 14 */	add r3, r3, r11

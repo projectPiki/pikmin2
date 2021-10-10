@@ -330,8 +330,8 @@ setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34G
 /* 8024E7C8 0024B708  90 A3 00 14 */	stw r5, 0x14(r3)
 /* 8024E7CC 0024B70C  4E 80 00 20 */	blr 
 
-.global getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3$$0f$$1fi
-getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3$$0f$$1fi:
+.global "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi"
+"getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi":
 /* 8024E7D0 0024B710  94 21 F7 70 */	stwu r1, -0x890(r1)
 /* 8024E7D4 0024B714  7C 08 02 A6 */	mflr r0
 /* 8024E7D8 0024B718  90 01 08 94 */	stw r0, 0x894(r1)
@@ -1305,9 +1305,9 @@ lbl_8024F514:
 lbl_8024F51C:
 /* 8024F51C 0024C45C  2C 1B 00 00 */	cmpwi r27, 0
 /* 8024F520 0024C460  40 81 01 FC */	ble lbl_8024F71C
-/* 8024F524 0024C464  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 8024F524 0024C464  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 8024F528 0024C468  38 61 01 38 */	addi r3, r1, 0x138
-/* 8024F52C 0024C46C  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 8024F52C 0024C46C  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 8024F530 0024C470  38 A0 00 00 */	li r5, 0
 /* 8024F534 0024C474  38 C0 00 0C */	li r6, 0xc
 /* 8024F538 0024C478  38 E0 00 20 */	li r7, 0x20
@@ -1748,8 +1748,8 @@ lbl_8024FB58:
 /* 8024FB70 0024CAB0  38 A5 41 78 */	addi r5, r5, lbl_80484178@l
 /* 8024FB74 0024CAB4  4C C6 31 82 */	crclr 6
 /* 8024FB78 0024CAB8  4B DD AA C9 */	bl panic_f__12JUTExceptionFPCciPCce
-/* 8024FB7C 0024CABC  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8024FB80 0024CAC0  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 8024FB7C 0024CABC  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8024FB80 0024CAC0  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 8024FB84 0024CAC4  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 8024FB88 0024CAC8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8024FB8C 0024CACC  D0 1F 00 04 */	stfs f0, 4(r31)

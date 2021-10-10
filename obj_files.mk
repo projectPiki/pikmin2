@@ -234,7 +234,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIStreamMgr.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAISystemInterface.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIObject.o\
-	$(BUILD_DIR)/asm/JSystem/JAD/JADHioNode.o\
+	$(BUILD_DIR)/src/JSystem/JAD/JADHioNode.o\
 	$(BUILD_DIR)/src/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUData.o\
@@ -333,6 +333,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/math_ppc.o\
 	$(BUILD_DIR)/src/Dolphin/w_sqrt.o\
 	$(BUILD_DIR)/asm/Dolphin/extras.o\
+	$(BUILD_DIR)/src/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/vi.o\
 	$(BUILD_DIR)/src/Dolphin/AmcExi2Stubs.o\
@@ -1057,7 +1058,14 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
+
+GROUP_1_FILES:=\
+	$(BUILD_DIR)/asm/rodata_2.o\
+	$(BUILD_DIR)/asm/data_0.o\
+
+TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
+	$(BUILD_DIR)/src/sysCommonU/node.o\
 	$(BUILD_DIR)/asm/sysCommonU/node.o\
 	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
@@ -1068,6 +1076,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/camera.o\
+	$(BUILD_DIR)/src/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/asm/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/src/sysCommonU/sysTemplates.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCode.o\
@@ -1123,6 +1132,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
 	$(BUILD_DIR)/asm/sysGCU/windowMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/memoryCard.o\
+	$(BUILD_DIR)/src/sysGCU/pikmin2MemoryCardMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2MemoryCardMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/commonSaveData.o\
 	$(BUILD_DIR)/asm/sysGCU/bootSection.o\
@@ -1131,6 +1141,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/sysGCU/rootMenuSection.o\
 	$(BUILD_DIR)/asm/sysGCU/demoSection.o\
 	$(BUILD_DIR)/asm/sysGCU/THPAudioDecode.o\
+	$(BUILD_DIR)/src/sysGCU/THPDraw.o\
 	$(BUILD_DIR)/asm/sysGCU/THPDraw.o\
 	$(BUILD_DIR)/asm/sysGCU/THPPlayer.o\
 	$(BUILD_DIR)/asm/sysGCU/THPRead.o\
@@ -1161,5 +1172,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
 
-GROUP_1_FILES:=\
-	$(BUILD_DIR)/asm/rodata_2.o\
+GROUP_2_FILES:=\
+	$(BUILD_DIR)/asm/rodata_3.o\
+	$(BUILD_DIR)/asm/data_1.o\

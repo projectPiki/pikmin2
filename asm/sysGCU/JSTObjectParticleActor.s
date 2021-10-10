@@ -402,7 +402,7 @@ lbl_80454A1C:
 /* 80454A4C 0045198C  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80454A50 00451990  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80454A54 00451994  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80454A58 00451998  4B FD 3E 31 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80454A58 00451998  4B FD 3E 31 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 80454A5C 0045199C  48 00 00 4C */	b lbl_80454AA8
 lbl_80454A60:
 /* 80454A60 004519A0  A8 1F 00 84 */	lha r0, 0x84(r31)
@@ -422,7 +422,7 @@ lbl_80454A60:
 /* 80454A98 004519D8  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80454A9C 004519DC  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80454AA0 004519E0  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 80454AA4 004519E4  4B FD 3D E5 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80454AA4 004519E4  4B FD 3D E5 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 lbl_80454AA8:
 /* 80454AA8 004519E8  80 1F 00 74 */	lwz r0, 0x74(r31)
 /* 80454AAC 004519EC  38 A1 00 2C */	addi r5, r1, 0x2c
@@ -430,7 +430,7 @@ lbl_80454AA8:
 /* 80454AB4 004519F4  38 E0 00 07 */	li r7, 7
 /* 80454AB8 004519F8  88 DF 00 78 */	lbz r6, 0x78(r31)
 /* 80454ABC 004519FC  54 04 04 3E */	clrlwi r4, r0, 0x10
-/* 80454AC0 00451A00  4B F6 6E BD */	bl createDemo__11ParticleMgrFUsR10Vector3$$0f$$1UcUc
+/* 80454AC0 00451A00  4B F6 6E BD */	bl "createDemo__11ParticleMgrFUsR10Vector3<f>UcUc"
 /* 80454AC4 00451A04  90 7F 00 7C */	stw r3, 0x7c(r31)
 /* 80454AC8 00451A08  80 7F 00 7C */	lwz r3, 0x7c(r31)
 /* 80454ACC 00451A0C  28 03 00 00 */	cmplwi r3, 0
@@ -449,7 +449,7 @@ lbl_80454AF0:
 /* 80454AFC 00451A3C  80 BF 00 7C */	lwz r5, 0x7c(r31)
 /* 80454B00 00451A40  38 85 00 68 */	addi r4, r5, 0x68
 /* 80454B04 00451A44  38 A5 00 A4 */	addi r5, r5, 0xa4
-/* 80454B08 00451A48  4B C3 F2 15 */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
+/* 80454B08 00451A48  4B C3 F2 15 */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
 lbl_80454B0C:
 /* 80454B0C 00451A4C  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80454B10 00451A50  83 E1 00 3C */	lwz r31, 0x3c(r1)
@@ -500,7 +500,7 @@ lbl_80454B98:
 /* 80454BB0 00451AF0  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80454BB4 00451AF4  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80454BB8 00451AF8  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80454BBC 00451AFC  4B FD 3C CD */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80454BBC 00451AFC  4B FD 3C CD */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 80454BC0 00451B00  48 00 00 2C */	b lbl_80454BEC
 lbl_80454BC4:
 /* 80454BC4 00451B04  80 AD 9B 54 */	lwz r5, moviePlayer__4Game@sda21(r13)
@@ -512,12 +512,12 @@ lbl_80454BC4:
 /* 80454BDC 00451B1C  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80454BE0 00451B20  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 80454BE4 00451B24  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80454BE8 00451B28  4B FD 3C A1 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80454BE8 00451B28  4B FD 3C A1 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 lbl_80454BEC:
 /* 80454BEC 00451B2C  38 7E 00 88 */	addi r3, r30, 0x88
 /* 80454BF0 00451B30  38 9F 00 68 */	addi r4, r31, 0x68
 /* 80454BF4 00451B34  38 BF 00 A4 */	addi r5, r31, 0xa4
-/* 80454BF8 00451B38  4B C3 F1 25 */	bl JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3$$0f$$1
+/* 80454BF8 00451B38  4B C3 F1 25 */	bl "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
 /* 80454BFC 00451B3C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80454C00 00451B40  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80454C04 00451B44  83 C1 00 28 */	lwz r30, 0x28(r1)
@@ -595,32 +595,32 @@ __sinit_JSTObjectParticleActor_cpp:
 /* 80454CF8 00451C38  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80454CFC 00451C3C  4E 80 00 20 */	blr 
 
-.global $$24$$2parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv
-$$24$$2parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv:
+.global "@4@parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv"
+"@4@parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv":
 /* 80454D00 00451C40  38 63 FF FC */	addi r3, r3, -4
 /* 80454D04 00451C44  4B FF FA 7C */	b parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv
 
-.global $$24$$2stop__Q34Game5P2JST19ObjectParticleActorFv
-$$24$$2stop__Q34Game5P2JST19ObjectParticleActorFv:
+.global "@4@stop__Q34Game5P2JST19ObjectParticleActorFv"
+"@4@stop__Q34Game5P2JST19ObjectParticleActorFv":
 /* 80454D08 00451C48  38 63 FF FC */	addi r3, r3, -4
 /* 80454D0C 00451C4C  4B FF F9 58 */	b stop__Q34Game5P2JST19ObjectParticleActorFv
 
-.global $$24$$2update__Q34Game5P2JST19ObjectParticleActorFv
-$$24$$2update__Q34Game5P2JST19ObjectParticleActorFv:
+.global "@4@update__Q34Game5P2JST19ObjectParticleActorFv"
+"@4@update__Q34Game5P2JST19ObjectParticleActorFv":
 /* 80454D10 00451C50  38 63 FF FC */	addi r3, r3, -4
 /* 80454D14 00451C54  4B FF F9 70 */	b update__Q34Game5P2JST19ObjectParticleActorFv
 
-.global $$24$$2reset__Q34Game5P2JST19ObjectParticleActorFv
-$$24$$2reset__Q34Game5P2JST19ObjectParticleActorFv:
+.global "@4@reset__Q34Game5P2JST19ObjectParticleActorFv"
+"@4@reset__Q34Game5P2JST19ObjectParticleActorFv":
 /* 80454D18 00451C58  38 63 FF FC */	addi r3, r3, -4
 /* 80454D1C 00451C5C  4B FF F9 20 */	b reset__Q34Game5P2JST19ObjectParticleActorFv
 
-.global $$2112$$2executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
-$$2112$$2executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter:
+.global "@112@executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter"
+"@112@executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter":
 /* 80454D20 00451C60  38 63 FF 90 */	addi r3, r3, -112
 /* 80454D24 00451C64  4B FF FD FC */	b executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
 
-.global $$2112$$2__dt__Q34Game5P2JST19ObjectParticleActorFv
-$$2112$$2__dt__Q34Game5P2JST19ObjectParticleActorFv:
+.global "@112@__dt__Q34Game5P2JST19ObjectParticleActorFv"
+"@112@__dt__Q34Game5P2JST19ObjectParticleActorFv":
 /* 80454D28 00451C68  38 63 FF 90 */	addi r3, r3, -112
 /* 80454D2C 00451C6C  4B FF FF 2C */	b __dt__Q34Game5P2JST19ObjectParticleActorFv

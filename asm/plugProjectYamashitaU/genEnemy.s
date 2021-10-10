@@ -145,11 +145,11 @@ generate__Q24Game14GenObjectEnemyFPQ24Game9Generator:
 /* 80124960 001218A0  C0 04 00 A0 */	lfs f0, 0xa0(r4)
 /* 80124964 001218A4  7C 7A 1B 78 */	mr r26, r3
 /* 80124968 001218A8  C0 7B 00 98 */	lfs f3, 0x98(r27)
-/* 8012496C 001218AC  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
+/* 8012496C 001218AC  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
 /* 80124970 001218B0  EF E1 00 2A */	fadds f31, f1, f0
 /* 80124974 001218B4  C0 5B 00 A4 */	lfs f2, 0xa4(r27)
 /* 80124978 001218B8  C0 3B 00 9C */	lfs f1, 0x9c(r27)
-/* 8012497C 001218BC  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
+/* 8012497C 001218BC  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
 /* 80124980 001218C0  C0 1B 00 A8 */	lfs f0, 0xa8(r27)
 /* 80124984 001218C4  EF C3 10 2A */	fadds f30, f3, f2
 /* 80124988 001218C8  80 FB 00 74 */	lwz r7, 0x74(r27)
@@ -161,9 +161,9 @@ generate__Q24Game14GenObjectEnemyFPQ24Game9Generator:
 /* 801249A0 001218E0  7F A7 00 50 */	subf r29, r7, r0
 /* 801249A4 001218E4  38 E0 00 0A */	li r7, 0xa
 /* 801249A8 001218E8  4B F9 CE 95 */	bl __construct_array
-/* 801249AC 001218EC  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 801249AC 001218EC  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 801249B0 001218F0  38 61 00 18 */	addi r3, r1, 0x18
-/* 801249B4 001218F4  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 801249B4 001218F4  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 801249B8 001218F8  38 A0 00 00 */	li r5, 0
 /* 801249BC 001218FC  38 C0 00 0C */	li r6, 0xc
 /* 801249C0 00121900  38 E0 00 0A */	li r7, 0xa
@@ -2347,7 +2347,7 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 801268F4 00123834  D0 01 00 34 */	stfs f0, 0x34(r1)
 /* 801268F8 00123838  EC 03 00 72 */	fmuls f0, f3, f1
 /* 801268FC 0012383C  D0 01 00 30 */	stfs f0, 0x30(r1)
-/* 80126900 00123840  48 30 1F 89 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80126900 00123840  48 30 1F 89 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 80126904 00123844  80 7E 02 5C */	lwz r3, 0x25c(r30)
 /* 80126908 00123848  38 80 00 00 */	li r4, 0
 /* 8012690C 0012384C  48 2F E8 51 */	bl getMatrix__8ViewportFb
@@ -2372,7 +2372,7 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 80126958 00123898  D0 41 00 14 */	stfs f2, 0x14(r1)
 /* 8012695C 0012389C  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80126960 001238A0  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80126964 001238A4  48 2F F0 85 */	bl drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80126964 001238A4  48 2F F0 85 */	bl "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
 /* 80126968 001238A8  C0 42 9B D4 */	lfs f2, lbl_80517F34@sda21(r2)
 /* 8012696C 001238AC  7F C3 F3 78 */	mr r3, r30
 /* 80126970 001238B0  C0 22 9B 48 */	lfs f1, lbl_80517EA8@sda21(r2)
@@ -2382,7 +2382,7 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 80126980 001238C0  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 80126984 001238C4  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80126988 001238C8  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8012698C 001238CC  48 2F F0 5D */	bl drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8012698C 001238CC  48 2F F0 5D */	bl "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
 /* 80126990 001238D0  C0 42 9B DC */	lfs f2, lbl_80517F3C@sda21(r2)
 /* 80126994 001238D4  7F C3 F3 78 */	mr r3, r30
 /* 80126998 001238D8  C0 22 9B 48 */	lfs f1, lbl_80517EA8@sda21(r2)
@@ -2392,13 +2392,13 @@ render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator:
 /* 801269A8 001238E8  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 801269AC 001238EC  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 801269B0 001238F0  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 801269B4 001238F4  48 2F F0 35 */	bl drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801269B4 001238F4  48 2F F0 35 */	bl "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
 /* 801269B8 001238F8  38 60 00 06 */	li r3, 6
 /* 801269BC 001238FC  38 80 00 00 */	li r4, 0
 /* 801269C0 00123900  4B FB F1 21 */	bl GXSetLineWidth
 /* 801269C4 00123904  38 61 00 90 */	addi r3, r1, 0x90
 /* 801269C8 00123908  38 81 00 38 */	addi r4, r1, 0x38
-/* 801269CC 0012390C  48 30 1E 75 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 801269CC 0012390C  48 30 1E 75 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 801269D0 00123910  88 1D 00 28 */	lbz r0, 0x28(r29)
 /* 801269D4 00123914  28 00 00 02 */	cmplwi r0, 2
 /* 801269D8 00123918  40 82 00 2C */	bne lbl_80126A04
@@ -2481,7 +2481,7 @@ lbl_80126A04:
 /* 80126B08 00123A48  1C 00 00 34 */	mulli r0, r0, 0x34
 /* 80126B0C 00123A4C  7C E7 00 2E */	lwzx r7, r7, r0
 /* 80126B10 00123A50  4C C6 31 82 */	crclr 6
-/* 80126B14 00123A54  48 30 0F C9 */	bl perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3$$0f$$1Pce
+/* 80126B14 00123A54  48 30 0F C9 */	bl "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
 /* 80126B18 00123A58  80 7D 00 48 */	lwz r3, 0x48(r29)
 /* 80126B1C 00123A5C  28 03 00 00 */	cmplwi r3, 0
 /* 80126B20 00123A60  41 82 00 1C */	beq lbl_80126B3C
@@ -2546,14 +2546,14 @@ getName__Q24Game6GenArgFv:
 update__Q24Game9GenObjectFPQ24Game9Generator:
 /* 80126BCC 00123B0C  4E 80 00 20 */	blr 
 
-.global generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1
-generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3$$0f$$1:
+.global "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
+"generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>":
 /* 80126BD0 00123B10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80126BD4 00123B14  7C 08 02 A6 */	mflr r0
 /* 80126BD8 00123B18  7C 83 23 78 */	mr r3, r4
 /* 80126BDC 00123B1C  7C A4 2B 78 */	mr r4, r5
 /* 80126BE0 00123B20  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80126BE4 00123B24  48 30 1C 5D */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80126BE4 00123B24  48 30 1C 5D */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80126BE8 00123B28  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80126BEC 00123B2C  7C 08 03 A6 */	mtlr r0
 /* 80126BF0 00123B30  38 21 00 10 */	addi r1, r1, 0x10

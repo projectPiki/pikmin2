@@ -291,12 +291,12 @@ lbl_802EE0C4:
 /* 802EE0F4 002EB034  38 A1 00 4C */	addi r5, r1, 0x4c
 /* 802EE0F8 002EB038  38 80 00 0F */	li r4, 0xf
 /* 802EE0FC 002EB03C  38 C0 00 02 */	li r6, 2
-/* 802EE100 002EB040  4B F6 41 3D */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802EE100 002EB040  4B F6 41 3D */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802EE104 002EB044  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802EE108 002EB048  38 A1 00 4C */	addi r5, r1, 0x4c
 /* 802EE10C 002EB04C  38 80 00 0E */	li r4, 0xe
 /* 802EE110 002EB050  38 C0 00 02 */	li r6, 2
-/* 802EE114 002EB054  4B F6 56 6D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802EE114 002EB054  4B F6 56 6D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 lbl_802EE118:
 /* 802EE118 002EB058  3B C0 00 01 */	li r30, 1
 /* 802EE11C 002EB05C  48 00 00 B8 */	b lbl_802EE1D4
@@ -512,8 +512,8 @@ lbl_802EE3DC:
 /* 802EE414 002EB354  38 61 01 40 */	addi r3, r1, 0x140
 /* 802EE418 002EB358  4B F4 00 45 */	bl first__Q24Game12CellIteratorFv
 /* 802EE41C 002EB35C  FC 00 88 50 */	fneg f0, f17
-/* 802EE420 002EB360  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 802EE424 002EB364  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
+/* 802EE420 002EB360  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 802EE424 002EB364  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
 /* 802EE428 002EB368  D0 01 02 34 */	stfs f0, 0x234(r1)
 /* 802EE42C 002EB36C  48 00 04 F4 */	b lbl_802EE920
 lbl_802EE430:
@@ -675,9 +675,9 @@ lbl_802EE644:
 /* 802EE674 002EB5B4  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
 /* 802EE678 002EB5B8  C0 62 EC E8 */	lfs f3, lbl_8051D048@sda21(r2)
 /* 802EE67C 002EB5BC  90 01 00 A4 */	stw r0, 0xa4(r1)
-/* 802EE680 002EB5C0  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802EE680 002EB5C0  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802EE684 002EB5C4  38 84 49 74 */	addi r4, r4, __vt__Q24Game12InteractWind@l
-/* 802EE688 002EB5C8  C0 43 41 E4 */	lfs f2, zero__10Vector3$$0f$$1@l(r3)
+/* 802EE688 002EB5C8  C0 43 41 E4 */	lfs f2, "zero__10Vector3<f>"@l(r3)
 /* 802EE68C 002EB5CC  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBomb@ha
 /* 802EE690 002EB5D0  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 802EE694 002EB5D4  90 81 00 A4 */	stw r4, 0xa4(r1)
@@ -830,9 +830,9 @@ lbl_802EE850:
 /* 802EE8B8 002EB7F8  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
 /* 802EE8BC 002EB7FC  3C 80 80 4B */	lis r4, __vt__Q24Game12InteractWind@ha
 /* 802EE8C0 002EB800  90 01 00 74 */	stw r0, 0x74(r1)
-/* 802EE8C4 002EB804  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802EE8C4 002EB804  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802EE8C8 002EB808  38 84 49 74 */	addi r4, r4, __vt__Q24Game12InteractWind@l
-/* 802EE8CC 002EB80C  C0 43 41 E4 */	lfs f2, zero__10Vector3$$0f$$1@l(r3)
+/* 802EE8CC 002EB80C  C0 43 41 E4 */	lfs f2, "zero__10Vector3<f>"@l(r3)
 /* 802EE8D0 002EB810  C0 62 EC E8 */	lfs f3, lbl_8051D048@sda21(r2)
 /* 802EE8D4 002EB814  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBomb@ha
 /* 802EE8D8 002EB818  C0 3F 00 04 */	lfs f1, 4(r31)
@@ -955,7 +955,7 @@ lbl_802EEA88:
 /* 802EEA88 002EB9C8  3C C0 80 4E */	lis r6, __vt__Q23efx5TSync@ha
 /* 802EEA8C 002EB9CC  3C A0 80 4E */	lis r5, __vt__Q23efx9TChasePos@ha
 /* 802EEA90 002EB9D0  3C 80 80 4D */	lis r4, __vt__Q23efx11TChibiShell@ha
-/* 802EEA94 002EB9D4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802EEA94 002EB9D4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802EEA98 002EB9D8  38 C6 69 8C */	addi r6, r6, __vt__Q23efx5TSync@l
 /* 802EEA9C 002EB9DC  38 A5 69 40 */	addi r5, r5, __vt__Q23efx9TChasePos@l
 /* 802EEAA0 002EB9E0  38 84 4C 64 */	addi r4, r4, __vt__Q23efx11TChibiShell@l
@@ -963,7 +963,7 @@ lbl_802EEA88:
 /* 802EEAA8 002EB9E8  3B A6 00 14 */	addi r29, r6, 0x14
 /* 802EEAAC 002EB9EC  3B 85 00 14 */	addi r28, r5, 0x14
 /* 802EEAB0 002EB9F0  3B 64 00 14 */	addi r27, r4, 0x14
-/* 802EEAB4 002EB9F4  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
+/* 802EEAB4 002EB9F4  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
 /* 802EEAB8 002EB9F8  3B 40 00 00 */	li r26, 0
 lbl_802EEABC:
 /* 802EEABC 002EB9FC  38 60 00 3C */	li r3, 0x3c
@@ -1114,8 +1114,8 @@ isFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EEC98 002EBBD8  88 63 00 06 */	lbz r3, 6(r3)
 /* 802EEC9C 002EBBDC  4E 80 00 20 */	blr 
 
-.global setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3$$0f$$1
-setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3$$0f$$1:
+.global "setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>"
+"setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>":
 /* 802EECA0 002EBBE0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 802EECA4 002EBBE4  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 802EECA8 002EBBE8  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2088,7 +2088,7 @@ __sinit_MiniHoudaiShotGun_cpp:
 /* 802EFA14 002EC954  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802EFA18 002EC958  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx11TChibiShellFv
-$$24$$2__dt__Q23efx11TChibiShellFv:
+.global "@4@__dt__Q23efx11TChibiShellFv"
+"@4@__dt__Q23efx11TChibiShellFv":
 /* 802EFA1C 002EC95C  38 63 FF FC */	addi r3, r3, -4
 /* 802EFA20 002EC960  4B FF FE D8 */	b __dt__Q23efx11TChibiShellFv

@@ -344,15 +344,15 @@ __ct__6CameraFv:
 /* 8041A668 004175A8  7F BF EB 78 */	mr r31, r29
 /* 8041A66C 004175AC  4B FF 6D 25 */	bl __ct__5CNodeFv
 /* 8041A670 004175B0  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041A674 004175B4  3C 60 80 4B */	lis r3, __vt__17Container$$05Plane$$1@ha
+/* 8041A674 004175B4  3C 60 80 4B */	lis r3, "__vt__17Container<5Plane>"@ha
 /* 8041A678 004175B8  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041A67C 004175BC  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
+/* 8041A67C 004175BC  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
 /* 8041A680 004175C0  90 1D 00 00 */	stw r0, 0(r29)
-/* 8041A684 004175C4  38 03 0E 20 */	addi r0, r3, __vt__17Container$$05Plane$$1@l
+/* 8041A684 004175C4  38 03 0E 20 */	addi r0, r3, "__vt__17Container<5Plane>"@l
 /* 8041A688 004175C8  3C 60 80 4B */	lis r3, __vt__9CullPlane@ha
 /* 8041A68C 004175CC  38 E0 00 00 */	li r7, 0
 /* 8041A690 004175D0  90 1D 00 00 */	stw r0, 0(r29)
-/* 8041A694 004175D4  38 C4 0E 4C */	addi r6, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 8041A694 004175D4  38 C4 0E 4C */	addi r6, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 8041A698 004175D8  38 A0 00 01 */	li r5, 1
 /* 8041A69C 004175DC  38 03 0E 94 */	addi r0, r3, __vt__9CullPlane@l
 /* 8041A6A0 004175E0  98 FD 00 18 */	stb r7, 0x18(r29)
@@ -438,12 +438,12 @@ __dt__11CullFrustumFv:
 /* 8041A7D4 00417714  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 8041A7D8 00417718  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041A7DC 0041771C  41 82 00 38 */	beq lbl_8041A814
-/* 8041A7E0 00417720  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
-/* 8041A7E4 00417724  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 8041A7E0 00417720  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
+/* 8041A7E4 00417724  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 8041A7E8 00417728  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041A7EC 0041772C  41 82 00 28 */	beq lbl_8041A814
-/* 8041A7F0 00417730  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 8041A7F4 00417734  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 8041A7F0 00417730  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 8041A7F4 00417734  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 8041A7F8 00417738  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041A7FC 0041773C  41 82 00 18 */	beq lbl_8041A814
 /* 8041A800 00417740  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -678,8 +678,8 @@ lbl_8041AB2C:
 
 .global getLookAtPosition___6CameraFv
 getLookAtPosition___6CameraFv:
-/* 8041AB48 00417A88  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 8041AB4C 00417A8C  C4 04 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r4)
+/* 8041AB48 00417A88  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 8041AB4C 00417A8C  C4 04 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r4)
 /* 8041AB50 00417A90  D0 03 00 00 */	stfs f0, 0(r3)
 /* 8041AB54 00417A94  C0 04 00 04 */	lfs f0, 4(r4)
 /* 8041AB58 00417A98  D0 03 00 04 */	stfs f0, 4(r3)
@@ -1365,15 +1365,15 @@ __ct__12LookAtCameraFv:
 /* 8041B4C0 00418400  7F 9F E3 78 */	mr r31, r28
 /* 8041B4C4 00418404  4B FF 5E CD */	bl __ct__5CNodeFv
 /* 8041B4C8 00418408  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041B4CC 0041840C  3C 60 80 4B */	lis r3, __vt__17Container$$05Plane$$1@ha
+/* 8041B4CC 0041840C  3C 60 80 4B */	lis r3, "__vt__17Container<5Plane>"@ha
 /* 8041B4D0 00418410  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041B4D4 00418414  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
+/* 8041B4D4 00418414  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
 /* 8041B4D8 00418418  90 1C 00 00 */	stw r0, 0(r28)
-/* 8041B4DC 0041841C  38 03 0E 20 */	addi r0, r3, __vt__17Container$$05Plane$$1@l
+/* 8041B4DC 0041841C  38 03 0E 20 */	addi r0, r3, "__vt__17Container<5Plane>"@l
 /* 8041B4E0 00418420  3C 60 80 4B */	lis r3, __vt__9CullPlane@ha
 /* 8041B4E4 00418424  38 E0 00 00 */	li r7, 0
 /* 8041B4E8 00418428  90 1C 00 00 */	stw r0, 0(r28)
-/* 8041B4EC 0041842C  38 C4 0E 4C */	addi r6, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 8041B4EC 0041842C  38 C4 0E 4C */	addi r6, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 8041B4F0 00418430  38 A0 00 01 */	li r5, 1
 /* 8041B4F4 00418434  38 03 0E 94 */	addi r0, r3, __vt__9CullPlane@l
 /* 8041B4F8 00418438  98 FC 00 18 */	stb r7, 0x18(r28)
@@ -1482,12 +1482,12 @@ __dt__6CameraFv:
 /* 8041B688 004185C8  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 8041B68C 004185CC  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041B690 004185D0  41 82 00 38 */	beq lbl_8041B6C8
-/* 8041B694 004185D4  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
-/* 8041B698 004185D8  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 8041B694 004185D4  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
+/* 8041B698 004185D8  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 8041B69C 004185DC  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041B6A0 004185E0  41 82 00 28 */	beq lbl_8041B6C8
-/* 8041B6A4 004185E4  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 8041B6A8 004185E8  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 8041B6A4 004185E4  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 8041B6A8 004185E8  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 8041B6AC 004185EC  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041B6B0 004185F0  41 82 00 18 */	beq lbl_8041B6C8
 /* 8041B6B4 004185F4  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -1539,15 +1539,15 @@ __ct__11BlendCameraFiPP6Camera:
 /* 8041B74C 0041868C  7F 5D D3 78 */	mr r29, r26
 /* 8041B750 00418690  4B FF 5C 41 */	bl __ct__5CNodeFv
 /* 8041B754 00418694  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041B758 00418698  3C 60 80 4B */	lis r3, __vt__17Container$$05Plane$$1@ha
+/* 8041B758 00418698  3C 60 80 4B */	lis r3, "__vt__17Container<5Plane>"@ha
 /* 8041B75C 0041869C  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041B760 004186A0  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
+/* 8041B760 004186A0  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
 /* 8041B764 004186A4  90 1A 00 00 */	stw r0, 0(r26)
-/* 8041B768 004186A8  38 03 0E 20 */	addi r0, r3, __vt__17Container$$05Plane$$1@l
+/* 8041B768 004186A8  38 03 0E 20 */	addi r0, r3, "__vt__17Container<5Plane>"@l
 /* 8041B76C 004186AC  3C 60 80 4B */	lis r3, __vt__9CullPlane@ha
 /* 8041B770 004186B0  38 E0 00 00 */	li r7, 0
 /* 8041B774 004186B4  90 1A 00 00 */	stw r0, 0(r26)
-/* 8041B778 004186B8  38 C4 0E 4C */	addi r6, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 8041B778 004186B8  38 C4 0E 4C */	addi r6, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 8041B77C 004186BC  38 A0 00 01 */	li r5, 1
 /* 8041B780 004186C0  38 03 0E 94 */	addi r0, r3, __vt__9CullPlane@l
 /* 8041B784 004186C4  98 FA 00 18 */	stb r7, 0x18(r26)
@@ -1850,7 +1850,7 @@ lbl_8041BA14:
 /* 8041BBF0 00418B30  D0 81 00 20 */	stfs f4, 0x20(r1)
 /* 8041BBF4 00418B34  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 8041BBF8 00418B38  D0 41 00 28 */	stfs f2, 0x28(r1)
-/* 8041BBFC 00418B3C  48 00 CE BD */	bl makeTQ__7MatrixfFR10Vector3$$0f$$1R4Quat
+/* 8041BBFC 00418B3C  48 00 CE BD */	bl "makeTQ__7MatrixfFR10Vector3<f>R4Quat"
 /* 8041BC00 00418B40  E3 E1 01 18 */	psq_l f31, 280(r1), 0, qr0
 /* 8041BC04 00418B44  CB E1 01 10 */	lfd f31, 0x110(r1)
 /* 8041BC08 00418B48  E3 C1 01 08 */	psq_l f30, 264(r1), 0, qr0
@@ -1893,12 +1893,12 @@ __dt__11BlendCameraFv:
 /* 8041BC90 00418BD0  38 04 0E 94 */	addi r0, r4, __vt__9CullPlane@l
 /* 8041BC94 00418BD4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041BC98 00418BD8  41 82 00 38 */	beq lbl_8041BCD0
-/* 8041BC9C 00418BDC  3C 80 80 4B */	lis r4, __vt__22ArrayContainer$$05Plane$$1@ha
-/* 8041BCA0 00418BE0  38 04 0E 4C */	addi r0, r4, __vt__22ArrayContainer$$05Plane$$1@l
+/* 8041BC9C 00418BDC  3C 80 80 4B */	lis r4, "__vt__22ArrayContainer<5Plane>"@ha
+/* 8041BCA0 00418BE0  38 04 0E 4C */	addi r0, r4, "__vt__22ArrayContainer<5Plane>"@l
 /* 8041BCA4 00418BE4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041BCA8 00418BE8  41 82 00 28 */	beq lbl_8041BCD0
-/* 8041BCAC 00418BEC  3C 80 80 4B */	lis r4, __vt__17Container$$05Plane$$1@ha
-/* 8041BCB0 00418BF0  38 04 0E 20 */	addi r0, r4, __vt__17Container$$05Plane$$1@l
+/* 8041BCAC 00418BEC  3C 80 80 4B */	lis r4, "__vt__17Container<5Plane>"@ha
+/* 8041BCB0 00418BF0  38 04 0E 20 */	addi r0, r4, "__vt__17Container<5Plane>"@l
 /* 8041BCB4 00418BF4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041BCB8 00418BF8  41 82 00 18 */	beq lbl_8041BCD0
 /* 8041BCBC 00418BFC  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha

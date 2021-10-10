@@ -825,7 +825,7 @@ startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc:
 /* 800ABC64 000A8BA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800ABC68 000A8BA8  7C BF 2B 78 */	mr r31, r5
 /* 800ABC6C 000A8BAC  80 6D 8B 68 */	lwz r3, msBasic__8JAIBasic@sda21(r13)
-/* 800ABC70 000A8BB0  4B F6 9C 5D */	bl startSoundActorT$$08JAISound$$1__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc
+/* 800ABC70 000A8BB0  4B F6 9C 5D */	bl "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
 /* 800ABC74 000A8BB4  80 7F 00 00 */	lwz r3, 0(r31)
 /* 800ABC78 000A8BB8  28 03 00 00 */	cmplwi r3, 0
 /* 800ABC7C 000A8BBC  41 82 00 0C */	beq lbl_800ABC88

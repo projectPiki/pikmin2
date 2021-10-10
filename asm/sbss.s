@@ -240,8 +240,8 @@ sTotalStart__15JKRThreadSwitch:
 .global lbl_80514EE4
 lbl_80514EE4:
 	.skip 0x4
-.global sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2
-sMessageLife__Q212JUTAssertion23$$2unnamed$$2JUTAssert_cpp$$2:
+.global "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
+"sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
 	.skip 0x8
 .global sManager__17JUTConsoleManager
 sManager__17JUTConsoleManager:
@@ -522,8 +522,8 @@ sBankArray__10JASBankMgr:
 .global sVir2PhyTable__10JASBankMgr
 sVir2PhyTable__10JASBankMgr:
 	.skip 0x4
-.global sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1
-sInstance__123JASSingletonHolder$$062JASMemPool$$010JASChannel$$4Q217JASThreadingModel14SingleThreaded$$1$$4Q217JASCreationPolicy15NewFromRootHeap$$1:
+.global "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"
+"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>":
 	.skip 0x4
 .global sUsedHeapSize__12JASBNKParser
 sUsedHeapSize__12JASBNKParser:
@@ -1650,35 +1650,35 @@ lbl_80515824:
 .global gParmArc__4Game
 gParmArc__4Game:
 	.skip 0x4
-.global sInstance__Q28PSSystem24ArcMgr$$0Q26PSGame6BASARC$$1
-sInstance__Q28PSSystem24ArcMgr$$0Q26PSGame6BASARC$$1:
+.global "sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"
+"sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>":
 	.skip 0x4
-.global sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1
-sInstance__Q28PSSystem39SingletonBase$$0Q33PSM12BossBgmFader3Mgr$$1:
+.global "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"
+"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>":
 	.skip 0x4
-.global sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1
-sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11ObjCalcBase$$1:
+.global "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>":
 	.skip 0x4
-.global sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1
-sInstance__Q28PSSystem34SingletonBase$$0Q23PSM11CreaturePrm$$1:
+.global "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>":
 	.skip 0x4
-.global sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1
-sInstance__Q28PSSystem28SingletonBase$$0Q23PSM6ObjMgr$$1:
+.global "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>":
 	.skip 0x4
-.global sInstance__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1
-sInstance__Q28PSSystem38SingletonBase$$0Q23PSM15BgmTrackMapFile$$1:
+.global "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"
+"sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>":
 	.skip 0x4
-.global sInstance__Q28PSSystem49SingletonBase$$0Q36PSGame10SoundTable11CategoryMgr$$1
-sInstance__Q28PSSystem49SingletonBase$$0Q36PSGame10SoundTable11CategoryMgr$$1:
+.global "sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"
+"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>":
 	.skip 0x4
-.global sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1
-sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1:
+.global "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"
+"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>":
 	.skip 0x4
-.global sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1
-sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1:
+.global "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"
+"sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>":
 	.skip 0x4
-.global sInstance__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1
-sInstance__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1:
+.global "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"
+"sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>":
 	.skip 0x8
 .global farmMgr__Q24Game4Farm
 farmMgr__Q24Game4Farm:
@@ -2754,8 +2754,8 @@ init$2941:
 .global sToolMode__Q26PSGame13ConductorList
 sToolMode__Q26PSGame13ConductorList:
 	.skip 0x4
-.global sInstance__Q28PSSystem39SingletonBase$$0Q26PSGame13ConductorList$$1
-sInstance__Q28PSSystem39SingletonBase$$0Q26PSGame13ConductorList$$1:
+.global "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
+"sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>":
 	.skip 0x4
 .global spSysIF__8PSSystem
 spSysIF__8PSSystem:
@@ -3168,8 +3168,8 @@ msVal__Q32kh6Screen19ObjDayEndResultTitl:
 .global msVal__Q32kh6Screen10ObjPayDept
 msVal__Q32kh6Screen10ObjPayDept:
 	.skip 0x8
-.global __init__zero__10Vector3$$0f$$1
-__init__zero__10Vector3$$0f$$1:
+.global "__init__zero__10Vector3<f>"
+"__init__zero__10Vector3<f>":
 	.skip 0x8
 .global debug__Q23Sys8Triangle
 debug__Q23Sys8Triangle:

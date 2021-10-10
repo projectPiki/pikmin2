@@ -9,15 +9,15 @@ __ct__Q28PSSystem11SeqDataListFv:
 /* 80330D2C 0032DC6C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80330D30 0032DC70  7C 7F 1B 78 */	mr r31, r3
 /* 80330D34 0032DC74  48 00 7C 4D */	bl __ct__Q28PSSystem12TextDataBaseFv
-/* 80330D38 0032DC78  3C 60 80 4E */	lis r3, __vt__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@ha
+/* 80330D38 0032DC78  3C 60 80 4E */	lis r3, "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@ha
 /* 80330D3C 0032DC7C  34 9F 00 1C */	addic. r4, r31, 0x1c
-/* 80330D40 0032DC80  38 03 A9 10 */	addi r0, r3, __vt__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@l
+/* 80330D40 0032DC80  38 03 A9 10 */	addi r0, r3, "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@l
 /* 80330D44 0032DC84  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 80330D48 0032DC88  41 82 00 08 */	beq lbl_80330D50
 /* 80330D4C 0032DC8C  38 84 FF E4 */	addi r4, r4, -28
 lbl_80330D50:
 /* 80330D50 0032DC90  3C 60 80 4E */	lis r3, __vt__Q28PSSystem11SeqDataList@ha
-/* 80330D54 0032DC94  90 8D 91 CC */	stw r4, sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@sda21(r13)
+/* 80330D54 0032DC94  90 8D 91 CC */	stw r4, "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
 /* 80330D58 0032DC98  38 83 A8 F4 */	addi r4, r3, __vt__Q28PSSystem11SeqDataList@l
 /* 80330D5C 0032DC9C  7F E3 FB 78 */	mr r3, r31
 /* 80330D60 0032DCA0  90 9F 00 00 */	stw r4, 0(r31)
@@ -46,11 +46,11 @@ __dt__Q28PSSystem11SeqDataListFv:
 /* 80330DB0 0032DCF0  38 03 00 10 */	addi r0, r3, 0x10
 /* 80330DB4 0032DCF4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 80330DB8 0032DCF8  41 82 00 18 */	beq lbl_80330DD0
-/* 80330DBC 0032DCFC  3C 60 80 4E */	lis r3, __vt__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@ha
+/* 80330DBC 0032DCFC  3C 60 80 4E */	lis r3, "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@ha
 /* 80330DC0 0032DD00  38 00 00 00 */	li r0, 0
-/* 80330DC4 0032DD04  38 63 A9 10 */	addi r3, r3, __vt__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@l
+/* 80330DC4 0032DD04  38 63 A9 10 */	addi r3, r3, "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@l
 /* 80330DC8 0032DD08  90 7E 00 1C */	stw r3, 0x1c(r30)
-/* 80330DCC 0032DD0C  90 0D 91 CC */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@sda21(r13)
+/* 80330DCC 0032DD0C  90 0D 91 CC */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
 lbl_80330DD0:
 /* 80330DD0 0032DD10  7F C3 F3 78 */	mr r3, r30
 /* 80330DD4 0032DD14  38 80 00 00 */	li r4, 0
@@ -151,15 +151,15 @@ __ct__Q28PSSystem14StreamDataListFv:
 /* 80330F1C 0032DE5C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80330F20 0032DE60  7C 7F 1B 78 */	mr r31, r3
 /* 80330F24 0032DE64  48 00 7A 5D */	bl __ct__Q28PSSystem12TextDataBaseFv
-/* 80330F28 0032DE68  3C 60 80 4E */	lis r3, __vt__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@ha
+/* 80330F28 0032DE68  3C 60 80 4E */	lis r3, "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@ha
 /* 80330F2C 0032DE6C  34 9F 00 1C */	addic. r4, r31, 0x1c
-/* 80330F30 0032DE70  38 03 A8 E8 */	addi r0, r3, __vt__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@l
+/* 80330F30 0032DE70  38 03 A8 E8 */	addi r0, r3, "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@l
 /* 80330F34 0032DE74  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 80330F38 0032DE78  41 82 00 08 */	beq lbl_80330F40
 /* 80330F3C 0032DE7C  38 84 FF E4 */	addi r4, r4, -28
 lbl_80330F40:
 /* 80330F40 0032DE80  3C 60 80 4E */	lis r3, __vt__Q28PSSystem14StreamDataList@ha
-/* 80330F44 0032DE84  90 8D 91 D0 */	stw r4, sInstance__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@sda21(r13)
+/* 80330F44 0032DE84  90 8D 91 D0 */	stw r4, "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
 /* 80330F48 0032DE88  38 83 A8 CC */	addi r4, r3, __vt__Q28PSSystem14StreamDataList@l
 /* 80330F4C 0032DE8C  7F E3 FB 78 */	mr r3, r31
 /* 80330F50 0032DE90  90 9F 00 00 */	stw r4, 0(r31)
@@ -188,11 +188,11 @@ __dt__Q28PSSystem14StreamDataListFv:
 /* 80330FA0 0032DEE0  38 03 00 10 */	addi r0, r3, 0x10
 /* 80330FA4 0032DEE4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 80330FA8 0032DEE8  41 82 00 18 */	beq lbl_80330FC0
-/* 80330FAC 0032DEEC  3C 60 80 4E */	lis r3, __vt__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@ha
+/* 80330FAC 0032DEEC  3C 60 80 4E */	lis r3, "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@ha
 /* 80330FB0 0032DEF0  38 00 00 00 */	li r0, 0
-/* 80330FB4 0032DEF4  38 63 A8 E8 */	addi r3, r3, __vt__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@l
+/* 80330FB4 0032DEF4  38 63 A8 E8 */	addi r3, r3, "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@l
 /* 80330FB8 0032DEF8  90 7E 00 1C */	stw r3, 0x1c(r30)
-/* 80330FBC 0032DEFC  90 0D 91 D0 */	stw r0, sInstance__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@sda21(r13)
+/* 80330FBC 0032DEFC  90 0D 91 D0 */	stw r0, "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
 lbl_80330FC0:
 /* 80330FC0 0032DF00  7F C3 F3 78 */	mr r3, r30
 /* 80330FC4 0032DF04  38 80 00 00 */	li r4, 0
@@ -735,7 +735,7 @@ init__Q28PSSystem7SeqBaseFv:
 /* 80331724 0032E664  80 83 00 14 */	lwz r4, 0x14(r3)
 /* 80331728 0032E668  28 04 00 00 */	cmplwi r4, 0
 /* 8033172C 0032E66C  41 82 00 F4 */	beq lbl_80331820
-/* 80331730 0032E670  80 6D 91 CC */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@sda21(r13)
+/* 80331730 0032E670  80 6D 91 CC */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
 /* 80331734 0032E674  28 03 00 00 */	cmplwi r3, 0
 /* 80331738 0032E678  41 82 00 0C */	beq lbl_80331744
 /* 8033173C 0032E67C  4B FF F6 CD */	bl getSeqVolume__Q28PSSystem11SeqDataListFPCc
@@ -1669,7 +1669,7 @@ startSeq__Q28PSSystem9StreamBgmFv:
 /* 80332418 0032F358  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8033241C 0032F35C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80332420 0032F360  7C 7F 1B 78 */	mr r31, r3
-/* 80332424 0032F364  80 0D 91 D0 */	lwz r0, sInstance__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@sda21(r13)
+/* 80332424 0032F364  80 0D 91 D0 */	lwz r0, "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
 /* 80332428 0032F368  28 00 00 00 */	cmplwi r0, 0
 /* 8033242C 0032F36C  41 82 00 14 */	beq lbl_80332440
 /* 80332430 0032F370  80 9F 00 70 */	lwz r4, 0x70(r31)
@@ -2309,7 +2309,7 @@ init__Q28PSSystem11DirectedBgmFv:
 /* 80332D14 0032FC54  80 9F 00 14 */	lwz r4, 0x14(r31)
 /* 80332D18 0032FC58  28 04 00 00 */	cmplwi r4, 0
 /* 80332D1C 0032FC5C  41 82 01 20 */	beq lbl_80332E3C
-/* 80332D20 0032FC60  80 6D 91 CC */	lwz r3, sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@sda21(r13)
+/* 80332D20 0032FC60  80 6D 91 CC */	lwz r3, "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
 /* 80332D24 0032FC64  28 03 00 00 */	cmplwi r3, 0
 /* 80332D28 0032FC68  41 82 00 0C */	beq lbl_80332D34
 /* 80332D2C 0032FC6C  4B FF E0 DD */	bl getSeqVolume__Q28PSSystem11SeqDataListFPCc
@@ -3673,20 +3673,20 @@ lbl_80333F94:
 /* 80333FA8 00330EE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333FAC 00330EEC  4E 80 00 20 */	blr 
 
-.global __dt__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1Fv
-__dt__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1Fv:
+.global "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv"
+"__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv":
 /* 80333FB0 00330EF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80333FB4 00330EF4  7C 08 02 A6 */	mflr r0
 /* 80333FB8 00330EF8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80333FBC 00330EFC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80333FC0 00330F00  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80333FC4 00330F04  41 82 00 24 */	beq lbl_80333FE8
-/* 80333FC8 00330F08  3C A0 80 4E */	lis r5, __vt__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@ha
+/* 80333FC8 00330F08  3C A0 80 4E */	lis r5, "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@ha
 /* 80333FCC 00330F0C  7C 80 07 35 */	extsh. r0, r4
-/* 80333FD0 00330F10  38 85 A9 10 */	addi r4, r5, __vt__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@l
+/* 80333FD0 00330F10  38 85 A9 10 */	addi r4, r5, "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@l
 /* 80333FD4 00330F14  38 00 00 00 */	li r0, 0
 /* 80333FD8 00330F18  90 9F 00 00 */	stw r4, 0(r31)
-/* 80333FDC 00330F1C  90 0D 91 CC */	stw r0, sInstance__Q28PSSystem39SingletonBase$$0Q28PSSystem11SeqDataList$$1@sda21(r13)
+/* 80333FDC 00330F1C  90 0D 91 CC */	stw r0, "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"@sda21(r13)
 /* 80333FE0 00330F20  40 81 00 08 */	ble lbl_80333FE8
 /* 80333FE4 00330F24  4B CF 00 D1 */	bl __dl__FPv
 lbl_80333FE8:
@@ -3697,20 +3697,20 @@ lbl_80333FE8:
 /* 80333FF8 00330F38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80333FFC 00330F3C  4E 80 00 20 */	blr 
 
-.global __dt__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1Fv
-__dt__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1Fv:
+.global "__dt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>Fv"
+"__dt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>Fv":
 /* 80334000 00330F40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80334004 00330F44  7C 08 02 A6 */	mflr r0
 /* 80334008 00330F48  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8033400C 00330F4C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80334010 00330F50  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80334014 00330F54  41 82 00 24 */	beq lbl_80334038
-/* 80334018 00330F58  3C A0 80 4E */	lis r5, __vt__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@ha
+/* 80334018 00330F58  3C A0 80 4E */	lis r5, "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@ha
 /* 8033401C 00330F5C  7C 80 07 35 */	extsh. r0, r4
-/* 80334020 00330F60  38 85 A8 E8 */	addi r4, r5, __vt__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@l
+/* 80334020 00330F60  38 85 A8 E8 */	addi r4, r5, "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@l
 /* 80334024 00330F64  38 00 00 00 */	li r0, 0
 /* 80334028 00330F68  90 9F 00 00 */	stw r4, 0(r31)
-/* 8033402C 00330F6C  90 0D 91 D0 */	stw r0, sInstance__Q28PSSystem42SingletonBase$$0Q28PSSystem14StreamDataList$$1@sda21(r13)
+/* 8033402C 00330F6C  90 0D 91 D0 */	stw r0, "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"@sda21(r13)
 /* 80334030 00330F70  40 81 00 08 */	ble lbl_80334038
 /* 80334034 00330F74  4B CF 00 81 */	bl __dl__FPv
 lbl_80334038:
@@ -3721,23 +3721,23 @@ lbl_80334038:
 /* 80334048 00330F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033404C 00330F8C  4E 80 00 20 */	blr 
 
-.global $$228$$2__dt__Q28PSSystem11SeqDataListFv
-$$228$$2__dt__Q28PSSystem11SeqDataListFv:
+.global "@28@__dt__Q28PSSystem11SeqDataListFv"
+"@28@__dt__Q28PSSystem11SeqDataListFv":
 /* 80334050 00330F90  38 63 FF E4 */	addi r3, r3, -28
 /* 80334054 00330F94  4B FF CD 2C */	b __dt__Q28PSSystem11SeqDataListFv
 
-.global $$228$$2__dt__Q28PSSystem14StreamDataListFv
-$$228$$2__dt__Q28PSSystem14StreamDataListFv:
+.global "@28@__dt__Q28PSSystem14StreamDataListFv"
+"@28@__dt__Q28PSSystem14StreamDataListFv":
 /* 80334058 00330F98  38 63 FF E4 */	addi r3, r3, -28
 /* 8033405C 00330F9C  4B FF CF 14 */	b __dt__Q28PSSystem14StreamDataListFv
 
-.global $$21696$$2stopInner__Q28PSSystem8SeqSoundFUl
-$$21696$$2stopInner__Q28PSSystem8SeqSoundFUl:
+.global "@1696@stopInner__Q28PSSystem8SeqSoundFUl"
+"@1696@stopInner__Q28PSSystem8SeqSoundFUl":
 /* 80334060 00330FA0  38 63 F9 60 */	addi r3, r3, -1696
 /* 80334064 00330FA4  4B FF D1 38 */	b stopInner__Q28PSSystem8SeqSoundFUl
 
-.global $$2472$$2stopInner__Q28PSSystem11StreamSoundFUl
-$$2472$$2stopInner__Q28PSSystem11StreamSoundFUl:
+.global "@472@stopInner__Q28PSSystem11StreamSoundFUl"
+"@472@stopInner__Q28PSSystem11StreamSoundFUl":
 /* 80334068 00330FA8  38 63 FE 28 */	addi r3, r3, -472
 /* 8033406C 00330FAC  4B FF D1 50 */	b stopInner__Q28PSSystem11StreamSoundFUl
 

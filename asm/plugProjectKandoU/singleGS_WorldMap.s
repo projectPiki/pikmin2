@@ -5,10 +5,10 @@
 __ct__Q34Game10SingleGame11SelectStateFv:
 /* 8021B94C 0021888C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021B950 00218890  7C 08 02 A6 */	mflr r0
-/* 8021B954 00218894  3C 80 80 4B */	lis r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
+/* 8021B954 00218894  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
 /* 8021B958 00218898  38 A0 00 00 */	li r5, 0
 /* 8021B95C 0021889C  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8021B960 002188A0  38 04 13 18 */	addi r0, r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
+/* 8021B960 002188A0  38 04 13 18 */	addi r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
 /* 8021B964 002188A4  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame5State@ha
 /* 8021B968 002188A8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8021B96C 002188AC  7C 7F 1B 78 */	mr r31, r3
@@ -37,11 +37,11 @@ lbl_8021B9B0:
 /* 8021B9C4 00218904  3C 80 80 4C */	lis r4, lbl_804C077C@ha
 /* 8021B9C8 00218908  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 8021B9CC 0021890C  39 04 07 7C */	addi r8, r4, lbl_804C077C@l
-/* 8021B9D0 00218910  3C 80 80 4C */	lis r4, __vt__42Delegate$$0Q34Game10SingleGame11SelectState$$1@ha
+/* 8021B9D0 00218910  3C 80 80 4C */	lis r4, "__vt__42Delegate<Q34Game10SingleGame11SelectState>"@ha
 /* 8021B9D4 00218914  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8021B9D8 00218918  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 8021B9DC 0021891C  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8021B9E0 00218920  38 04 07 D0 */	addi r0, r4, __vt__42Delegate$$0Q34Game10SingleGame11SelectState$$1@l
+/* 8021B9E0 00218920  38 04 07 D0 */	addi r0, r4, "__vt__42Delegate<Q34Game10SingleGame11SelectState>"@l
 /* 8021B9E4 00218924  80 88 00 08 */	lwz r4, 8(r8)
 /* 8021B9E8 00218928  90 E1 00 08 */	stw r7, 8(r1)
 /* 8021B9EC 0021892C  90 A3 00 00 */	stw r5, 0(r3)
@@ -951,8 +951,8 @@ lbl_8021C6A4:
 /* 8021C6B8 002195F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021C6BC 002195FC  4E 80 00 20 */	blr 
 
-.global invoke__42Delegate$$0Q34Game10SingleGame11SelectState$$1Fv
-invoke__42Delegate$$0Q34Game10SingleGame11SelectState$$1Fv:
+.global "invoke__42Delegate<Q34Game10SingleGame11SelectState>Fv"
+"invoke__42Delegate<Q34Game10SingleGame11SelectState>Fv":
 /* 8021C6C0 00219600  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021C6C4 00219604  7C 08 02 A6 */	mflr r0
 /* 8021C6C8 00219608  7C 64 1B 78 */	mr r4, r3

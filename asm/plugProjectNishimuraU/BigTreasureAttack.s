@@ -1281,9 +1281,9 @@ __ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj:
 /* 802F4C74 002F1BB4  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 802F4C78 002F1BB8  F3 E1 00 38 */	psq_st f31, 56(r1), 0, qr0
 /* 802F4C7C 002F1BBC  BE C1 00 08 */	stmw r22, 8(r1)
-/* 802F4C80 002F1BC0  3C A0 80 12 */	lis r5, __ct__10Vector3$$0f$$1Fv@ha
+/* 802F4C80 002F1BC0  3C A0 80 12 */	lis r5, "__ct__10Vector3<f>Fv"@ha
 /* 802F4C84 002F1BC4  7C 7F 1B 78 */	mr r31, r3
-/* 802F4C88 002F1BC8  38 05 F3 48 */	addi r0, r5, __ct__10Vector3$$0f$$1Fv@l
+/* 802F4C88 002F1BC8  38 05 F3 48 */	addi r0, r5, "__ct__10Vector3<f>Fv"@l
 /* 802F4C8C 002F1BCC  7C 96 23 78 */	mr r22, r4
 /* 802F4C90 002F1BD0  7C 04 03 78 */	mr r4, r0
 /* 802F4C94 002F1BD4  38 7F 00 28 */	addi r3, r31, 0x28
@@ -1291,9 +1291,9 @@ __ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj:
 /* 802F4C9C 002F1BDC  38 C0 00 0C */	li r6, 0xc
 /* 802F4CA0 002F1BE0  38 E0 00 03 */	li r7, 3
 /* 802F4CA4 002F1BE4  4B DC CB 99 */	bl __construct_array
-/* 802F4CA8 002F1BE8  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 802F4CA8 002F1BE8  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 802F4CAC 002F1BEC  38 7F 00 70 */	addi r3, r31, 0x70
-/* 802F4CB0 002F1BF0  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 802F4CB0 002F1BF0  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 802F4CB4 002F1BF4  38 A0 00 00 */	li r5, 0
 /* 802F4CB8 002F1BF8  38 C0 00 0C */	li r6, 0xc
 /* 802F4CBC 002F1BFC  38 E0 00 04 */	li r7, 4
@@ -1488,7 +1488,7 @@ lbl_802F4F18:
 /* 802F4F80 002F1EC0  38 C0 01 18 */	li r6, 0x118
 /* 802F4F84 002F1EC4  38 E0 01 19 */	li r7, 0x119
 /* 802F4F88 002F1EC8  39 00 01 1A */	li r8, 0x11a
-/* 802F4F8C 002F1ECC  48 0B B4 65 */	bl __ct__Q23efx10TChasePos4FP10Vector3$$0f$$1UsUsUsUs
+/* 802F4F8C 002F1ECC  48 0B B4 65 */	bl "__ct__Q23efx10TChasePos4FP10Vector3<f>UsUsUsUs"
 /* 802F4F90 002F1ED0  3C 60 80 4D */	lis r3, __vt__Q23efx11TOootaWbomb@ha
 /* 802F4F94 002F1ED4  38 03 59 80 */	addi r0, r3, __vt__Q23efx11TOootaWbomb@l
 /* 802F4F98 002F1ED8  90 16 00 00 */	stw r0, 0(r22)
@@ -1563,7 +1563,7 @@ lbl_802F5018:
 /* 802F5098 002F1FD8  38 C0 01 08 */	li r6, 0x108
 /* 802F509C 002F1FDC  38 E0 01 09 */	li r7, 0x109
 /* 802F50A0 002F1FE0  39 00 01 0A */	li r8, 0x10a
-/* 802F50A4 002F1FE4  48 0B BC 65 */	bl __ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1fUsUsUs
+/* 802F50A4 002F1FE4  48 0B BC 65 */	bl "__ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>fUsUsUs"
 /* 802F50A8 002F1FE8  3C 60 80 4D */	lis r3, __vt__Q23efx10TOootaElec@ha
 /* 802F50AC 002F1FEC  38 03 59 08 */	addi r0, r3, __vt__Q23efx10TOootaElec@l
 /* 802F50B0 002F1FF0  90 17 00 00 */	stw r0, 0(r23)
@@ -1609,7 +1609,7 @@ lbl_802F5134:
 /* 802F5148 002F2088  38 96 00 34 */	addi r4, r22, 0x34
 /* 802F514C 002F208C  38 A0 02 4A */	li r5, 0x24a
 /* 802F5150 002F2090  38 C0 02 4B */	li r6, 0x24b
-/* 802F5154 002F2094  48 0B B0 ED */	bl __ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs
+/* 802F5154 002F2094  48 0B B0 ED */	bl "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
 /* 802F5158 002F2098  3C 60 80 4D */	lis r3, __vt__Q23efx13TOootaPhouden@ha
 /* 802F515C 002F209C  38 03 58 A0 */	addi r0, r3, __vt__Q23efx13TOootaPhouden@l
 /* 802F5160 002F20A0  90 17 00 00 */	stw r0, 0(r23)
@@ -1657,7 +1657,7 @@ lbl_802F51E4:
 /* 802F51F8 002F2138  38 BD 00 54 */	addi r5, r29, 0x54
 /* 802F51FC 002F213C  38 C0 01 13 */	li r6, 0x113
 /* 802F5200 002F2140  38 E0 01 14 */	li r7, 0x114
-/* 802F5204 002F2144  48 0B B7 C9 */	bl __ct__Q23efx14TChasePosYRot2FP10Vector3$$0f$$1PfUsUs
+/* 802F5204 002F2144  48 0B B7 C9 */	bl "__ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs"
 /* 802F5208 002F2148  3C 60 80 4D */	lis r3, __vt__Q23efx9TOootaGas@ha
 /* 802F520C 002F214C  38 03 58 38 */	addi r0, r3, __vt__Q23efx9TOootaGas@l
 /* 802F5210 002F2150  90 16 00 00 */	stw r0, 0(r22)
@@ -1750,7 +1750,7 @@ lbl_802F5348:
 /* 802F535C 002F229C  38 80 00 00 */	li r4, 0
 /* 802F5360 002F22A0  38 A0 02 50 */	li r5, 0x250
 /* 802F5364 002F22A4  38 C0 02 51 */	li r6, 0x251
-/* 802F5368 002F22A8  48 0B AE D9 */	bl __ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs
+/* 802F5368 002F22A8  48 0B AE D9 */	bl "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
 /* 802F536C 002F22AC  3C 60 80 4D */	lis r3, __vt__Q23efx17TOootaElecAttack2@ha
 /* 802F5370 002F22B0  38 03 57 84 */	addi r0, r3, __vt__Q23efx17TOootaElecAttack2@l
 /* 802F5374 002F22B4  90 16 00 00 */	stw r0, 0(r22)
@@ -2038,9 +2038,9 @@ lbl_802F5764:
 /* 802F5768 002F26A8  48 00 02 BD */	bl updateFireEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
 /* 802F576C 002F26AC  7F E3 FB 78 */	mr r3, r31
 /* 802F5770 002F26B0  48 00 00 8D */	bl startNewFireList__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-/* 802F5774 002F26B4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802F5774 002F26B4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802F5778 002F26B8  81 3F 01 1C */	lwz r9, 0x11c(r31)
-/* 802F577C 002F26BC  39 03 41 E4 */	addi r8, r3, zero__10Vector3$$0f$$1@l
+/* 802F577C 002F26BC  39 03 41 E4 */	addi r8, r3, "zero__10Vector3<f>"@l
 /* 802F5780 002F26C0  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 802F5784 002F26C4  80 E8 00 00 */	lwz r7, 0(r8)
 /* 802F5788 002F26C8  3C 60 80 4B */	lis r3, __vt__Q23efx8ArgScale@ha
@@ -3387,9 +3387,9 @@ getWaterTargetCreature__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F6AC4 002F3A04  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 802F6AC8 002F3A08  7C 08 02 A6 */	mflr r0
 /* 802F6ACC 002F3A0C  38 80 00 00 */	li r4, 0
-/* 802F6AD0 002F3A10  3C A0 80 4B */	lis r5, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 802F6AD0 002F3A10  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 802F6AD4 002F3A14  90 01 04 44 */	stw r0, 0x444(r1)
-/* 802F6AD8 002F3A18  38 A5 BC 9C */	addi r5, r5, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 802F6AD8 002F3A18  38 A5 BC 9C */	addi r5, r5, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 802F6ADC 002F3A1C  28 04 00 00 */	cmplwi r4, 0
 /* 802F6AE0 002F3A20  93 E1 04 3C */	stw r31, 0x43c(r1)
 /* 802F6AE4 002F3A24  3B E0 00 00 */	li r31, 0
@@ -3568,7 +3568,7 @@ lbl_802F6D64:
 /* 802F6D6C 002F3CAC  C0 22 EF 4C */	lfs f1, lbl_8051D2AC@sda21(r2)
 /* 802F6D70 002F3CB0  38 A0 00 00 */	li r5, 0
 /* 802F6D74 002F3CB4  C0 42 EF 50 */	lfs f2, lbl_8051D2B0@sda21(r2)
-/* 802F6D78 002F3CB8  4B E1 B9 7D */	bl getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1
+/* 802F6D78 002F3CB8  4B E1 B9 7D */	bl "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 lbl_802F6D7C:
 /* 802F6D7C 002F3CBC  80 01 04 44 */	lwz r0, 0x444(r1)
 /* 802F6D80 002F3CC0  83 E1 04 3C */	lwz r31, 0x43c(r1)
@@ -3915,9 +3915,9 @@ lbl_802F7220:
 /* 802F7284 002F41C4  C3 E3 00 0C */	lfs f31, 0xc(r3)
 /* 802F7288 002F41C8  41 82 00 98 */	beq lbl_802F7320
 /* 802F728C 002F41CC  38 00 00 00 */	li r0, 0
-/* 802F7290 002F41D0  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802F7290 002F41D0  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802F7294 002F41D4  90 1B 00 24 */	stw r0, 0x24(r27)
-/* 802F7298 002F41D8  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 802F7298 002F41D8  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 802F729C 002F41DC  D0 1B 00 28 */	stfs f0, 0x28(r27)
 /* 802F72A0 002F41E0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 802F72A4 002F41E4  D0 1B 00 2C */	stfs f0, 0x2c(r27)
@@ -4248,7 +4248,7 @@ lbl_802F7700:
 /* 802F7768 002F46A8  4E 80 04 21 */	bctrl 
 /* 802F776C 002F46AC  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 802F7770 002F46B0  38 9E 00 34 */	addi r4, r30, 0x34
-/* 802F7774 002F46B4  48 0B 8B D1 */	bl setPosptr__Q23efx10TChasePos2FP10Vector3$$0f$$1
+/* 802F7774 002F46B4  48 0B 8B D1 */	bl "setPosptr__Q23efx10TChasePos2FP10Vector3<f>"
 /* 802F7778 002F46B8  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 802F777C 002F46BC  38 80 00 00 */	li r4, 0
 /* 802F7780 002F46C0  81 83 00 00 */	lwz r12, 0(r3)
@@ -4275,7 +4275,7 @@ lbl_802F7700:
 /* 802F77D4 002F4714  38 9E 00 34 */	addi r4, r30, 0x34
 /* 802F77D8 002F4718  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 802F77DC 002F471C  38 A5 00 34 */	addi r5, r5, 0x34
-/* 802F77E0 002F4720  48 0B 95 F1 */	bl setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1
+/* 802F77E0 002F4720  48 0B 95 F1 */	bl "setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>"
 /* 802F77E4 002F4724  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 802F77E8 002F4728  38 80 00 00 */	li r4, 0
 /* 802F77EC 002F472C  81 83 00 00 */	lwz r12, 0(r3)
@@ -4306,7 +4306,7 @@ lbl_802F7804:
 /* 802F7848 002F4788  38 9D 00 34 */	addi r4, r29, 0x34
 /* 802F784C 002F478C  80 7D 00 44 */	lwz r3, 0x44(r29)
 /* 802F7850 002F4790  38 A5 00 34 */	addi r5, r5, 0x34
-/* 802F7854 002F4794  48 0B 95 7D */	bl setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3$$0f$$1P10Vector3$$0f$$1
+/* 802F7854 002F4794  48 0B 95 7D */	bl "setPosptr__Q23efx24TChasePosPosLocalZScale3FP10Vector3<f>P10Vector3<f>"
 /* 802F7858 002F4798  80 7D 00 44 */	lwz r3, 0x44(r29)
 /* 802F785C 002F479C  38 80 00 00 */	li r4, 0
 /* 802F7860 002F47A0  81 83 00 00 */	lwz r12, 0(r3)
@@ -4904,17 +4904,17 @@ lbl_802F805C:
 /* 802F8070 002F4FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F8074 002F4FB4  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx15TOootaElecpartsFv
-$$24$$2__dt__Q23efx15TOootaElecpartsFv:
+.global "@4@__dt__Q23efx15TOootaElecpartsFv"
+"@4@__dt__Q23efx15TOootaElecpartsFv":
 /* 802F8078 002F4FB8  38 63 FF FC */	addi r3, r3, -4
 /* 802F807C 002F4FBC  4B FF FD 70 */	b __dt__Q23efx15TOootaElecpartsFv
 
-.global $$24$$2__dt__Q23efx13TOootaElecLegFv
-$$24$$2__dt__Q23efx13TOootaElecLegFv:
+.global "@4@__dt__Q23efx13TOootaElecLegFv"
+"@4@__dt__Q23efx13TOootaElecLegFv":
 /* 802F8080 002F4FC0  38 63 FF FC */	addi r3, r3, -4
 /* 802F8084 002F4FC4  4B FF FC CC */	b __dt__Q23efx13TOootaElecLegFv
 
-.global $$24$$2__dt__Q23efx17TOootaElecAttack1Fv
-$$24$$2__dt__Q23efx17TOootaElecAttack1Fv:
+.global "@4@__dt__Q23efx17TOootaElecAttack1Fv"
+"@4@__dt__Q23efx17TOootaElecAttack1Fv":
 /* 802F8088 002F4FC8  38 63 FF FC */	addi r3, r3, -4
 /* 802F808C 002F4FCC  4B FF FC 28 */	b __dt__Q23efx17TOootaElecAttack1Fv

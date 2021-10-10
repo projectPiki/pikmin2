@@ -284,7 +284,7 @@ becomePellet__Q24Game10PelletViewFPQ24Game13PelletViewArg:
 /* 80165CE0 00162C20  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80165CE4 00162C24  D0 61 00 18 */	stfs f3, 0x18(r1)
 /* 80165CE8 00162C28  D0 41 00 1C */	stfs f2, 0x1c(r1)
-/* 80165CEC 00162C2C  4B FD 54 BD */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80165CEC 00162C2C  4B FD 54 BD */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 80165CF0 00162C30  93 DF 00 04 */	stw r30, 4(r31)
 /* 80165CF4 00162C34  38 00 00 01 */	li r0, 1
 /* 80165CF8 00162C38  7F C3 F3 78 */	mr r3, r30
@@ -344,9 +344,9 @@ viewMakeMatrix__Q24Game10PelletViewFR7Matrixf:
 /* 80165DBC 00162CFC  80 63 00 04 */	lwz r3, 4(r3)
 /* 80165DC0 00162D00  48 00 0C 15 */	bl getCylinderHeight__Q24Game6PelletFv
 /* 80165DC4 00162D04  C0 42 A5 C4 */	lfs f2, lbl_80518924@sda21(r2)
-/* 80165DC8 00162D08  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80165DC8 00162D08  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80165DCC 00162D0C  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
-/* 80165DD0 00162D10  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 80165DD0 00162D10  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 80165DD4 00162D14  EC 22 00 72 */	fmuls f1, f2, f1
 /* 80165DD8 00162D18  38 61 00 14 */	addi r3, r1, 0x14
 /* 80165DDC 00162D1C  D0 01 00 08 */	stfs f0, 8(r1)
@@ -355,7 +355,7 @@ viewMakeMatrix__Q24Game10PelletViewFR7Matrixf:
 /* 80165DE8 00162D28  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80165DEC 00162D2C  80 9E 00 04 */	lwz r4, 4(r30)
 /* 80165DF0 00162D30  38 84 01 68 */	addi r4, r4, 0x168
-/* 80165DF4 00162D34  48 2C 24 E5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80165DF4 00162D34  48 2C 24 E5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80165DF8 00162D38  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80165DFC 00162D3C  7F E5 FB 78 */	mr r5, r31
 /* 80165E00 00162D40  38 81 00 14 */	addi r4, r1, 0x14
@@ -408,8 +408,8 @@ updateClaim__Q24Game6PelletFv:
 /* 80165E98 00162DD8  FF A0 F8 90 */	fmr f29, f31
 /* 80165E9C 00162DDC  48 03 9D C1 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80165EA0 00162DE0  38 00 00 00 */	li r0, 0
-/* 80165EA4 00162DE4  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80165EA8 00162DE8  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80165EA4 00162DE4  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80165EA8 00162DE8  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80165EAC 00162DEC  38 61 00 48 */	addi r3, r1, 0x48
 /* 80165EB0 00162DF0  28 00 00 00 */	cmplwi r0, 0
 /* 80165EB4 00162DF4  90 81 00 38 */	stw r4, 0x38(r1)
@@ -1033,9 +1033,9 @@ lbl_80166784:
 /* 8016678C 001636CC  4B EB D7 19 */	bl __nw__FUl
 /* 80166790 001636D0  28 03 00 00 */	cmplwi r3, 0
 /* 80166794 001636D4  41 82 00 24 */	beq lbl_801667B8
-/* 80166798 001636D8  3C A0 80 4B */	lis r5, __vt__Q24Game28StateMachine$$0Q24Game6Pellet$$1@ha
+/* 80166798 001636D8  3C A0 80 4B */	lis r5, "__vt__Q24Game28StateMachine<Q24Game6Pellet>"@ha
 /* 8016679C 001636DC  3C 80 80 4B */	lis r4, __vt__Q24Game9PelletFSM@ha
-/* 801667A0 001636E0  38 05 22 2C */	addi r0, r5, __vt__Q24Game28StateMachine$$0Q24Game6Pellet$$1@l
+/* 801667A0 001636E0  38 05 22 2C */	addi r0, r5, "__vt__Q24Game28StateMachine<Q24Game6Pellet>"@l
 /* 801667A4 001636E4  38 A0 FF FF */	li r5, -1
 /* 801667A8 001636E8  90 03 00 00 */	stw r0, 0(r3)
 /* 801667AC 001636EC  38 04 52 00 */	addi r0, r4, __vt__Q24Game9PelletFSM@l
@@ -1484,7 +1484,7 @@ lbl_80166D68:
 /* 80166D98 00163CD8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80166D9C 00163CDC  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80166DA0 00163CE0  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80166DA4 00163CE4  48 2C 15 35 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80166DA4 00163CE4  48 2C 15 35 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80166DA8 00163CE8  80 1F 01 74 */	lwz r0, 0x174(r31)
 /* 80166DAC 00163CEC  28 00 00 00 */	cmplwi r0, 0
 /* 80166DB0 00163CF0  41 82 00 80 */	beq lbl_80166E30
@@ -1592,8 +1592,8 @@ lbl_80166F1C:
 /* 80166F2C 00163E6C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80166F30 00163E70  4E 80 00 20 */	blr 
 
-.global start__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
-start__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg:
+.global "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+"start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg":
 /* 80166F34 00163E74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80166F38 00163E78  7C 08 02 A6 */	mflr r0
 /* 80166F3C 00163E7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2738,8 +2738,8 @@ getVelocity__Q24Game6PelletFv:
 /* 80167F54 00164E94  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80167F58 00164E98  4E 80 00 20 */	blr 
 
-.global setVelocity__Q24Game6PelletFR10Vector3$$0f$$1
-setVelocity__Q24Game6PelletFR10Vector3$$0f$$1:
+.global "setVelocity__Q24Game6PelletFR10Vector3<f>"
+"setVelocity__Q24Game6PelletFR10Vector3<f>":
 /* 80167F5C 00164E9C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80167F60 00164EA0  D0 03 01 BC */	stfs f0, 0x1bc(r3)
 /* 80167F64 00164EA4  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2896,7 +2896,7 @@ lbl_80168140:
 /* 8016818C 001650CC  7F C3 F3 78 */	mr r3, r30
 /* 80168190 001650D0  38 9F 03 AC */	addi r4, r31, 0x3ac
 /* 80168194 001650D4  38 A0 00 00 */	li r5, 0
-/* 80168198 001650D8  4B FD 30 11 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80168198 001650D8  4B FD 30 11 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8016819C 001650DC  7F C3 F3 78 */	mr r3, r30
 /* 801681A0 001650E0  7F E4 FB 78 */	mr r4, r31
 /* 801681A4 001650E4  48 08 BB BD */	bl setTreasure__Q34Game12ItemTreasure4ItemFPQ24Game6Pellet
@@ -2910,11 +2910,11 @@ lbl_801681AC:
 /* 801681C0 00165100  4C C6 31 82 */	crclr 6
 /* 801681C4 00165104  4B EC 24 7D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_801681C8:
-/* 801681C8 00165108  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 801681C8 00165108  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 801681CC 0016510C  38 7F 01 7C */	addi r3, r31, 0x17c
-/* 801681D0 00165110  38 A4 41 E4 */	addi r5, r4, zero__10Vector3$$0f$$1@l
+/* 801681D0 00165110  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l
 /* 801681D4 00165114  38 9F 03 AC */	addi r4, r31, 0x3ac
-/* 801681D8 00165118  4B FD 1F 01 */	bl initPosition__Q24Game5RigidFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801681D8 00165118  4B FD 1F 01 */	bl "initPosition__Q24Game5RigidFR10Vector3<f>R10Vector3<f>"
 /* 801681DC 0016511C  80 9F 01 80 */	lwz r4, 0x180(r31)
 /* 801681E0 00165120  7F E3 FB 78 */	mr r3, r31
 /* 801681E4 00165124  80 1F 01 84 */	lwz r0, 0x184(r31)
@@ -3066,7 +3066,7 @@ lbl_801683DC:
 lbl_80168414:
 /* 80168414 00165354  38 61 00 14 */	addi r3, r1, 0x14
 /* 80168418 00165358  38 81 00 08 */	addi r4, r1, 8
-/* 8016841C 0016535C  48 2B FB 75 */	bl makeNaturalPosture__7MatrixfFR10Vector3$$0f$$1f
+/* 8016841C 0016535C  48 2B FB 75 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>"
 /* 80168420 00165360  80 A1 00 14 */	lwz r5, 0x14(r1)
 /* 80168424 00165364  38 7F 01 F8 */	addi r3, r31, 0x1f8
 /* 80168428 00165368  80 01 00 18 */	lwz r0, 0x18(r1)
@@ -3319,7 +3319,7 @@ getStateID__Q24Game6PelletFv:
 /* 801687A4 001656E4  7C 64 1B 78 */	mr r4, r3
 /* 801687A8 001656E8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801687AC 001656EC  80 63 03 C8 */	lwz r3, 0x3c8(r3)
-/* 801687B0 001656F0  48 00 97 E1 */	bl getCurrID__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+/* 801687B0 001656F0  48 00 97 E1 */	bl "getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 /* 801687B4 001656F4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801687B8 001656F8  7C 08 03 A6 */	mtlr r0
 /* 801687BC 001656FC  38 21 00 10 */	addi r1, r1, 0x10
@@ -3646,7 +3646,7 @@ lbl_80168C30:
 lbl_80168C68:
 /* 80168C68 00165BA8  80 7E 03 34 */	lwz r3, 0x334(r30)
 /* 80168C6C 00165BAC  38 81 00 A4 */	addi r4, r1, 0xa4
-/* 80168C70 00165BB0  48 0C C3 CD */	bl frameWork__Q24Game11PelletCarryFR10Vector3$$0f$$1
+/* 80168C70 00165BB0  48 0C C3 CD */	bl "frameWork__Q24Game11PelletCarryFR10Vector3<f>"
 /* 80168C74 00165BB4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80168C78 00165BB8  41 82 00 54 */	beq lbl_80168CCC
 /* 80168C7C 00165BBC  80 1E 00 F0 */	lwz r0, 0xf0(r30)
@@ -3704,10 +3704,10 @@ lbl_80168D04:
 /* 80168D38 00165C78  28 00 00 00 */	cmplwi r0, 0
 /* 80168D3C 00165C7C  40 82 00 20 */	bne lbl_80168D5C
 /* 80168D40 00165C80  81 9E 00 00 */	lwz r12, 0(r30)
-/* 80168D44 00165C84  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 80168D44 00165C84  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 80168D48 00165C88  7F C3 F3 78 */	mr r3, r30
 /* 80168D4C 00165C8C  81 8C 00 68 */	lwz r12, 0x68(r12)
-/* 80168D50 00165C90  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 80168D50 00165C90  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 80168D54 00165C94  7D 89 03 A6 */	mtctr r12
 /* 80168D58 00165C98  4E 80 04 21 */	bctrl 
 lbl_80168D5C:
@@ -3741,7 +3741,7 @@ lbl_80168DB0:
 /* 80168DC4 00165D04  4E 80 04 21 */	bctrl 
 /* 80168DC8 00165D08  80 7E 03 C8 */	lwz r3, 0x3c8(r30)
 /* 80168DCC 00165D0C  7F C4 F3 78 */	mr r4, r30
-/* 80168DD0 00165D10  48 00 91 C1 */	bl getCurrID__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+/* 80168DD0 00165D10  48 00 91 C1 */	bl "getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 /* 80168DD4 00165D14  2C 03 00 06 */	cmpwi r3, 6
 /* 80168DD8 00165D18  40 82 00 1C */	bne lbl_80168DF4
 /* 80168DDC 00165D1C  38 61 00 98 */	addi r3, r1, 0x98
@@ -4147,7 +4147,7 @@ lbl_801693A0:
 /* 801693B0 001662F0  FC 00 00 50 */	fneg f0, f0
 /* 801693B4 001662F4  D0 1E 01 CC */	stfs f0, 0x1cc(r30)
 /* 801693B8 001662F8  80 7E 03 C8 */	lwz r3, 0x3c8(r30)
-/* 801693BC 001662FC  48 00 8B D5 */	bl getCurrID__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+/* 801693BC 001662FC  48 00 8B D5 */	bl "getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 /* 801693C0 00166300  2C 03 00 00 */	cmpwi r3, 0
 /* 801693C4 00166304  40 82 01 F8 */	bne lbl_801695BC
 /* 801693C8 00166308  88 1E 03 11 */	lbz r0, 0x311(r30)
@@ -4600,9 +4600,9 @@ doSimulation__Q24Game6PelletFf:
 /* 80169A28 00166968  81 8C 00 08 */	lwz r12, 8(r12)
 /* 80169A2C 0016696C  7D 89 03 A6 */	mtctr r12
 /* 80169A30 00166970  4E 80 04 21 */	bctrl 
-/* 80169A34 00166974  3C 60 80 4B */	lis r3, __vt__27Condition$$0Q24Game8WayPoint$$1@ha
+/* 80169A34 00166974  3C 60 80 4B */	lis r3, "__vt__27Condition<Q24Game8WayPoint>"@ha
 /* 80169A38 00166978  C0 61 00 10 */	lfs f3, 0x10(r1)
-/* 80169A3C 0016697C  38 03 1F 64 */	addi r0, r3, __vt__27Condition$$0Q24Game8WayPoint$$1@l
+/* 80169A3C 0016697C  38 03 1F 64 */	addi r0, r3, "__vt__27Condition<Q24Game8WayPoint>"@l
 /* 80169A40 00166980  C0 41 00 18 */	lfs f2, 0x18(r1)
 /* 80169A44 00166984  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80169A48 00166988  3C 60 80 4B */	lis r3, __vt__Q24Game11WPCondition@ha
@@ -4650,7 +4650,7 @@ doSimulation__Q24Game6PelletFf:
 /* 80169AF0 00166A30  38 A0 00 00 */	li r5, 0
 /* 80169AF4 00166A34  EC 00 08 2A */	fadds f0, f0, f1
 /* 80169AF8 00166A38  D0 01 00 20 */	stfs f0, 0x20(r1)
-/* 80169AFC 00166A3C  4B FD 16 AD */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80169AFC 00166A3C  4B FD 16 AD */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 lbl_80169B00:
 /* 80169B00 00166A40  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80169B04 00166A44  83 E1 00 4C */	lwz r31, 0x4c(r1)
@@ -4686,7 +4686,7 @@ updateTrMatrix__Q24Game6PelletFv:
 /* 80169B70 00166AB0  D0 61 00 10 */	stfs f3, 0x10(r1)
 /* 80169B74 00166AB4  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80169B78 00166AB8  D0 21 00 0C */	stfs f1, 0xc(r1)
-/* 80169B7C 00166ABC  48 2B EC C5 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80169B7C 00166ABC  48 2B EC C5 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80169B80 00166AC0  38 61 00 44 */	addi r3, r1, 0x44
 /* 80169B84 00166AC4  38 9F 01 F8 */	addi r4, r31, 0x1f8
 /* 80169B88 00166AC8  48 2B F0 01 */	bl makeQ__7MatrixfFR4Quat
@@ -4774,7 +4774,7 @@ lbl_80169CA0:
 lbl_80169CB4:
 /* 80169CB4 00166BF4  80 7F 03 C8 */	lwz r3, 0x3c8(r31)
 /* 80169CB8 00166BF8  7F E4 FB 78 */	mr r4, r31
-/* 80169CBC 00166BFC  48 00 82 D5 */	bl getCurrID__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
+/* 80169CBC 00166BFC  48 00 82 D5 */	bl "getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 /* 80169CC0 00166C00  2C 03 00 06 */	cmpwi r3, 6
 /* 80169CC4 00166C04  40 82 00 54 */	bne lbl_80169D18
 /* 80169CC8 00166C08  38 7F 04 1C */	addi r3, r31, 0x41c
@@ -4848,7 +4848,7 @@ lbl_80169D94:
 /* 80169DD0 00166D10  D0 61 00 10 */	stfs f3, 0x10(r1)
 /* 80169DD4 00166D14  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80169DD8 00166D18  D0 21 00 0C */	stfs f1, 0xc(r1)
-/* 80169DDC 00166D1C  48 2B EA 65 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80169DDC 00166D1C  48 2B EA 65 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80169DE0 00166D20  38 61 00 50 */	addi r3, r1, 0x50
 /* 80169DE4 00166D24  38 9F 01 F8 */	addi r4, r31, 0x1f8
 /* 80169DE8 00166D28  48 2B ED A1 */	bl makeQ__7MatrixfFR4Quat
@@ -5401,8 +5401,8 @@ lbl_8016A510:
 /* 8016A510 00167450  38 60 FF FF */	li r3, -1
 /* 8016A514 00167454  4E 80 00 20 */	blr 
 
-.global getNearFreeStickSlot__Q24Game6PelletFR10Vector3$$0f$$1
-getNearFreeStickSlot__Q24Game6PelletFR10Vector3$$0f$$1:
+.global "getNearFreeStickSlot__Q24Game6PelletFR10Vector3<f>"
+"getNearFreeStickSlot__Q24Game6PelletFR10Vector3<f>":
 /* 8016A518 00167458  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8016A51C 0016745C  7C 08 02 A6 */	mflr r0
 /* 8016A520 00167460  90 01 00 44 */	stw r0, 0x44(r1)
@@ -6043,8 +6043,8 @@ lbl_8016ADF0:
 /* 8016AE08 00167D48  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016AE0C 00167D4C  4E 80 00 20 */	blr 
 
-.global calcStickSlotGlobal__Q24Game6PelletFsR10Vector3$$0f$$1
-calcStickSlotGlobal__Q24Game6PelletFsR10Vector3$$0f$$1:
+.global "calcStickSlotGlobal__Q24Game6PelletFsR10Vector3<f>"
+"calcStickSlotGlobal__Q24Game6PelletFsR10Vector3<f>":
 /* 8016AE10 00167D50  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8016AE14 00167D54  7C 08 02 A6 */	mflr r0
 /* 8016AE18 00167D58  90 01 00 64 */	stw r0, 0x64(r1)
@@ -6201,7 +6201,7 @@ getFace__Q24Game6PelletFv:
 /* 8016B048 00167F88  48 00 00 3C */	b lbl_8016B084
 lbl_8016B04C:
 /* 8016B04C 00167F8C  38 81 00 08 */	addi r4, r1, 8
-/* 8016B050 00167F90  4B FD 02 F1 */	bl getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
+/* 8016B050 00167F90  4B FD 02 F1 */	bl "getYVector__Q24Game8CreatureFR10Vector3<f>"
 /* 8016B054 00167F94  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 8016B058 00167F98  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
 /* 8016B05C 00167F9C  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -6276,11 +6276,11 @@ lbl_8016B140:
 /* 8016B148 00168088  41 82 00 10 */	beq lbl_8016B158
 /* 8016B14C 0016808C  7F E3 FB 78 */	mr r3, r31
 /* 8016B150 00168090  38 81 00 20 */	addi r4, r1, 0x20
-/* 8016B154 00168094  4B FD 01 ED */	bl getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
+/* 8016B154 00168094  4B FD 01 ED */	bl "getYVector__Q24Game8CreatureFR10Vector3<f>"
 lbl_8016B158:
 /* 8016B158 00168098  7F E3 FB 78 */	mr r3, r31
 /* 8016B15C 0016809C  38 81 00 2C */	addi r4, r1, 0x2c
-/* 8016B160 001680A0  4B FD 01 E1 */	bl getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
+/* 8016B160 001680A0  4B FD 01 E1 */	bl "getYVector__Q24Game8CreatureFR10Vector3<f>"
 /* 8016B164 001680A4  C0 61 00 34 */	lfs f3, 0x34(r1)
 /* 8016B168 001680A8  C0 42 A5 D8 */	lfs f2, lbl_80518938@sda21(r2)
 /* 8016B16C 001680AC  C0 21 00 30 */	lfs f1, 0x30(r1)
@@ -6299,7 +6299,7 @@ lbl_8016B158:
 lbl_8016B1A0:
 /* 8016B1A0 001680E0  7F E3 FB 78 */	mr r3, r31
 /* 8016B1A4 001680E4  38 81 00 14 */	addi r4, r1, 0x14
-/* 8016B1A8 001680E8  4B FD 01 99 */	bl getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
+/* 8016B1A8 001680E8  4B FD 01 99 */	bl "getYVector__Q24Game8CreatureFR10Vector3<f>"
 /* 8016B1AC 001680EC  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 8016B1B0 001680F0  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
 /* 8016B1B4 001680F4  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -6355,7 +6355,7 @@ lbl_8016B250:
 lbl_8016B264:
 /* 8016B264 001681A4  7F E3 FB 78 */	mr r3, r31
 /* 8016B268 001681A8  38 81 00 08 */	addi r4, r1, 8
-/* 8016B26C 001681AC  4B FD 00 D5 */	bl getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
+/* 8016B26C 001681AC  4B FD 00 D5 */	bl "getYVector__Q24Game8CreatureFR10Vector3<f>"
 /* 8016B270 001681B0  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 8016B274 001681B4  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
 /* 8016B278 001681B8  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -6479,7 +6479,7 @@ lbl_8016B3F4:
 /* 8016B408 00168348  41 82 00 10 */	beq lbl_8016B418
 /* 8016B40C 0016834C  7F E3 FB 78 */	mr r3, r31
 /* 8016B410 00168350  38 81 00 14 */	addi r4, r1, 0x14
-/* 8016B414 00168354  4B FC FF 2D */	bl getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
+/* 8016B414 00168354  4B FC FF 2D */	bl "getYVector__Q24Game8CreatureFR10Vector3<f>"
 lbl_8016B418:
 /* 8016B418 00168358  83 DF 01 78 */	lwz r30, 0x178(r31)
 /* 8016B41C 0016835C  48 00 00 84 */	b lbl_8016B4A0
@@ -6492,7 +6492,7 @@ lbl_8016B420:
 lbl_8016B434:
 /* 8016B434 00168374  7F E3 FB 78 */	mr r3, r31
 /* 8016B438 00168378  38 81 00 08 */	addi r4, r1, 8
-/* 8016B43C 0016837C  4B FC FF 05 */	bl getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
+/* 8016B43C 0016837C  4B FC FF 05 */	bl "getYVector__Q24Game8CreatureFR10Vector3<f>"
 /* 8016B440 00168380  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 8016B444 00168384  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
 /* 8016B448 00168388  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -6656,9 +6656,9 @@ lbl_8016B620:
 lbl_8016B644:
 /* 8016B644 00168584  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 8016B648 00168588  41 82 00 A4 */	beq lbl_8016B6EC
-/* 8016B64C 0016858C  3C 80 80 4B */	lis r4, __vt__27Condition$$0Q24Game8WayPoint$$1@ha
+/* 8016B64C 0016858C  3C 80 80 4B */	lis r4, "__vt__27Condition<Q24Game8WayPoint>"@ha
 /* 8016B650 00168590  3C 60 80 4B */	lis r3, __vt__Q24Game11WPCondition@ha
-/* 8016B654 00168594  38 04 1F 64 */	addi r0, r4, __vt__27Condition$$0Q24Game8WayPoint$$1@l
+/* 8016B654 00168594  38 04 1F 64 */	addi r0, r4, "__vt__27Condition<Q24Game8WayPoint>"@l
 /* 8016B658 00168598  C0 02 A6 34 */	lfs f0, lbl_80518994@sda21(r2)
 /* 8016B65C 0016859C  90 01 00 08 */	stw r0, 8(r1)
 /* 8016B660 001685A0  38 03 1F 58 */	addi r0, r3, __vt__Q24Game11WPCondition@l
@@ -6695,7 +6695,7 @@ lbl_8016B644:
 /* 8016B6DC 0016861C  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8016B6E0 00168620  EC 02 00 2A */	fadds f0, f2, f0
 /* 8016B6E4 00168624  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8016B6E8 00168628  4B FC FA C1 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8016B6E8 00168628  4B FC FA C1 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 lbl_8016B6EC:
 /* 8016B6EC 0016862C  E3 E1 00 98 */	psq_l f31, 152(r1), 0, qr0
 /* 8016B6F0 00168630  CB E1 00 90 */	lfd f31, 0x90(r1)
@@ -6741,7 +6741,7 @@ onStartCapture__Q24Game6PelletFv:
 /* 8016B784 001686C4  41 82 00 6C */	beq lbl_8016B7F0
 /* 8016B788 001686C8  38 7F 01 38 */	addi r3, r31, 0x138
 /* 8016B78C 001686CC  38 9F 03 AC */	addi r4, r31, 0x3ac
-/* 8016B790 001686D0  48 2B D0 B1 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 8016B790 001686D0  48 2B D0 B1 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 8016B794 001686D4  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 8016B798 001686D8  38 7F 01 38 */	addi r3, r31, 0x138
 /* 8016B79C 001686DC  80 84 00 08 */	lwz r4, 8(r4)
@@ -6873,7 +6873,7 @@ onEndCapture__Q24Game6PelletFv:
 /* 8016B964 001688A4  7F E3 FB 78 */	mr r3, r31
 /* 8016B968 001688A8  38 9F 01 B0 */	addi r4, r31, 0x1b0
 /* 8016B96C 001688AC  38 A0 00 00 */	li r5, 0
-/* 8016B970 001688B0  4B FC F8 39 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8016B970 001688B0  4B FC F8 39 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8016B974 001688B4  7F E3 FB 78 */	mr r3, r31
 /* 8016B978 001688B8  38 9F 03 AC */	addi r4, r31, 0x3ac
 /* 8016B97C 001688BC  81 9F 00 00 */	lwz r12, 0(r31)
@@ -6918,7 +6918,7 @@ lbl_8016B9F0:
 /* 8016BA04 00168944  38 03 1C DC */	addi r0, r3, __vt__Q24Game13BasePelletMgr@l
 /* 8016BA08 00168948  7F E3 FB 78 */	mr r3, r31
 /* 8016BA0C 0016894C  90 1E 00 00 */	stw r0, 0(r30)
-/* 8016BA10 00168950  48 00 64 41 */	bl __ct__24MonoObjectMgr$$08CollPart$$1Fv
+/* 8016BA10 00168950  48 00 64 41 */	bl "__ct__24MonoObjectMgr<8CollPart>Fv"
 /* 8016BA14 00168954  3C 80 80 4B */	lis r4, __vt__11CollPartMgr@ha
 /* 8016BA18 00168958  7F A3 EB 78 */	mr r3, r29
 /* 8016BA1C 0016895C  38 84 1E B4 */	addi r4, r4, __vt__11CollPartMgr@l
@@ -7079,20 +7079,20 @@ __dt__11CollPartMgrFv:
 /* 8016BC5C 00168B9C  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8016BC60 00168BA0  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016BC64 00168BA4  41 82 00 58 */	beq lbl_8016BCBC
-/* 8016BC68 00168BA8  3C 80 80 4B */	lis r4, __vt__24MonoObjectMgr$$08CollPart$$1@ha
-/* 8016BC6C 00168BAC  38 84 1E 28 */	addi r4, r4, __vt__24MonoObjectMgr$$08CollPart$$1@l
+/* 8016BC68 00168BA8  3C 80 80 4B */	lis r4, "__vt__24MonoObjectMgr<8CollPart>"@ha
+/* 8016BC6C 00168BAC  38 84 1E 28 */	addi r4, r4, "__vt__24MonoObjectMgr<8CollPart>"@l
 /* 8016BC70 00168BB0  90 9E 00 00 */	stw r4, 0(r30)
 /* 8016BC74 00168BB4  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8016BC78 00168BB8  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016BC7C 00168BBC  41 82 00 40 */	beq lbl_8016BCBC
-/* 8016BC80 00168BC0  3C 80 80 4B */	lis r4, __vt__20ObjectMgr$$08CollPart$$1@ha
-/* 8016BC84 00168BC4  38 84 1D AC */	addi r4, r4, __vt__20ObjectMgr$$08CollPart$$1@l
+/* 8016BC80 00168BC0  3C 80 80 4B */	lis r4, "__vt__20ObjectMgr<8CollPart>"@ha
+/* 8016BC84 00168BC4  38 84 1D AC */	addi r4, r4, "__vt__20ObjectMgr<8CollPart>"@l
 /* 8016BC88 00168BC8  90 9E 00 00 */	stw r4, 0(r30)
 /* 8016BC8C 00168BCC  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8016BC90 00168BD0  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016BC94 00168BD4  41 82 00 28 */	beq lbl_8016BCBC
-/* 8016BC98 00168BD8  3C 80 80 4B */	lis r4, __vt__20Container$$08CollPart$$1@ha
-/* 8016BC9C 00168BDC  38 04 1D 80 */	addi r0, r4, __vt__20Container$$08CollPart$$1@l
+/* 8016BC98 00168BD8  3C 80 80 4B */	lis r4, "__vt__20Container<8CollPart>"@ha
+/* 8016BC9C 00168BDC  38 04 1D 80 */	addi r0, r4, "__vt__20Container<8CollPart>"@l
 /* 8016BCA0 00168BE0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016BCA4 00168BE4  41 82 00 18 */	beq lbl_8016BCBC
 /* 8016BCA8 00168BE8  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -7114,8 +7114,8 @@ lbl_8016BCCC:
 /* 8016BCE0 00168C20  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016BCE4 00168C24  4E 80 00 20 */	blr 
 
-.global __dt__24MonoObjectMgr$$08CollPart$$1Fv
-__dt__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "__dt__24MonoObjectMgr<8CollPart>Fv"
+"__dt__24MonoObjectMgr<8CollPart>Fv":
 /* 8016BCE8 00168C28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016BCEC 00168C2C  7C 08 02 A6 */	mflr r0
 /* 8016BCF0 00168C30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7124,20 +7124,20 @@ __dt__24MonoObjectMgr$$08CollPart$$1Fv:
 /* 8016BCFC 00168C3C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8016BD00 00168C40  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8016BD04 00168C44  41 82 00 68 */	beq lbl_8016BD6C
-/* 8016BD08 00168C48  3C 80 80 4B */	lis r4, __vt__24MonoObjectMgr$$08CollPart$$1@ha
-/* 8016BD0C 00168C4C  38 84 1E 28 */	addi r4, r4, __vt__24MonoObjectMgr$$08CollPart$$1@l
+/* 8016BD08 00168C48  3C 80 80 4B */	lis r4, "__vt__24MonoObjectMgr<8CollPart>"@ha
+/* 8016BD0C 00168C4C  38 84 1E 28 */	addi r4, r4, "__vt__24MonoObjectMgr<8CollPart>"@l
 /* 8016BD10 00168C50  90 9E 00 00 */	stw r4, 0(r30)
 /* 8016BD14 00168C54  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8016BD18 00168C58  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016BD1C 00168C5C  41 82 00 40 */	beq lbl_8016BD5C
-/* 8016BD20 00168C60  3C 80 80 4B */	lis r4, __vt__20ObjectMgr$$08CollPart$$1@ha
-/* 8016BD24 00168C64  38 84 1D AC */	addi r4, r4, __vt__20ObjectMgr$$08CollPart$$1@l
+/* 8016BD20 00168C60  3C 80 80 4B */	lis r4, "__vt__20ObjectMgr<8CollPart>"@ha
+/* 8016BD24 00168C64  38 84 1D AC */	addi r4, r4, "__vt__20ObjectMgr<8CollPart>"@l
 /* 8016BD28 00168C68  90 9E 00 00 */	stw r4, 0(r30)
 /* 8016BD2C 00168C6C  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8016BD30 00168C70  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016BD34 00168C74  41 82 00 28 */	beq lbl_8016BD5C
-/* 8016BD38 00168C78  3C 80 80 4B */	lis r4, __vt__20Container$$08CollPart$$1@ha
-/* 8016BD3C 00168C7C  38 04 1D 80 */	addi r0, r4, __vt__20Container$$08CollPart$$1@l
+/* 8016BD38 00168C78  3C 80 80 4B */	lis r4, "__vt__20Container<8CollPart>"@ha
+/* 8016BD3C 00168C7C  38 04 1D 80 */	addi r0, r4, "__vt__20Container<8CollPart>"@l
 /* 8016BD40 00168C80  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016BD44 00168C84  41 82 00 18 */	beq lbl_8016BD5C
 /* 8016BD48 00168C88  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -7791,13 +7791,13 @@ lbl_8016C62C:
 /* 8016C644 00169584  7C 69 1B 79 */	or. r9, r3, r3
 /* 8016C648 00169588  41 82 00 4C */	beq lbl_8016C694
 /* 8016C64C 0016958C  3C 60 80 4B */	lis r3, lbl_804B1AC0@ha
-/* 8016C650 00169590  3C 80 80 4B */	lis r4, __vt__30IDelegate1$$0PQ28SysShape5Model$$1@ha
+/* 8016C650 00169590  3C 80 80 4B */	lis r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@ha
 /* 8016C654 00169594  38 E3 1A C0 */	addi r7, r3, lbl_804B1AC0@l
-/* 8016C658 00169598  3C 60 80 4B */	lis r3, __vt__52Delegate1$$0Q24Game13BasePelletMgr$$4PQ28SysShape5Model$$1@ha
+/* 8016C658 00169598  3C 60 80 4B */	lis r3, "__vt__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>"@ha
 /* 8016C65C 0016959C  80 C7 00 00 */	lwz r6, 0(r7)
-/* 8016C660 001695A0  38 84 16 BC */	addi r4, r4, __vt__30IDelegate1$$0PQ28SysShape5Model$$1@l
+/* 8016C660 001695A0  38 84 16 BC */	addi r4, r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@l
 /* 8016C664 001695A4  80 A7 00 04 */	lwz r5, 4(r7)
-/* 8016C668 001695A8  38 03 1D 74 */	addi r0, r3, __vt__52Delegate1$$0Q24Game13BasePelletMgr$$4PQ28SysShape5Model$$1@l
+/* 8016C668 001695A8  38 03 1D 74 */	addi r0, r3, "__vt__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>"@l
 /* 8016C66C 001695AC  80 67 00 08 */	lwz r3, 8(r7)
 /* 8016C670 001695B0  90 C1 00 08 */	stw r6, 8(r1)
 /* 8016C674 001695B4  90 89 00 00 */	stw r4, 0(r9)
@@ -7816,7 +7816,7 @@ lbl_8016C694:
 /* 8016C6A4 001695E4  80 84 00 18 */	lwz r4, 0x18(r4)
 /* 8016C6A8 001695E8  7F C7 F3 78 */	mr r7, r30
 /* 8016C6AC 001695EC  7F E8 FB 78 */	mr r8, r31
-/* 8016C6B0 001695F0  48 2B E4 51 */	bl __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1$$0PQ28SysShape5Model$$1
+/* 8016C6B0 001695F0  48 2B E4 51 */	bl "__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"
 /* 8016C6B4 001695F4  7C 7B 1B 78 */	mr r27, r3
 lbl_8016C6B8:
 /* 8016C6B8 001695F8  93 7C 00 48 */	stw r27, 0x48(r28)
@@ -7928,8 +7928,8 @@ setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti:
 /* 8016C81C 0016975C  7D 89 03 A6 */	mtctr r12
 /* 8016C820 00169760  4E 80 04 21 */	bctrl 
 /* 8016C824 00169764  80 BE 03 5C */	lwz r5, 0x35c(r30)
-/* 8016C828 00169768  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 8016C82C 0016976C  C4 44 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r4)
+/* 8016C828 00169768  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 8016C82C 0016976C  C4 44 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r4)
 /* 8016C830 00169770  7C 7F 1B 78 */	mr r31, r3
 /* 8016C834 00169774  C0 65 00 B0 */	lfs f3, 0xb0(r5)
 /* 8016C838 00169778  C0 24 00 04 */	lfs f1, 4(r4)
@@ -7978,8 +7978,8 @@ lbl_8016C8C0:
 /* 8016C8E0 00169820  48 00 00 40 */	b lbl_8016C920
 lbl_8016C8E4:
 /* 8016C8E4 00169824  80 BE 03 5C */	lwz r5, 0x35c(r30)
-/* 8016C8E8 00169828  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8016C8EC 0016982C  C4 43 41 E4 */	lfsu f2, zero__10Vector3$$0f$$1@l(r3)
+/* 8016C8E8 00169828  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8016C8EC 0016982C  C4 43 41 E4 */	lfsu f2, "zero__10Vector3<f>"@l(r3)
 /* 8016C8F0 00169830  38 C1 00 14 */	addi r6, r1, 0x14
 /* 8016C8F4 00169834  C0 65 00 A0 */	lfs f3, 0xa0(r5)
 /* 8016C8F8 00169838  38 FD 00 18 */	addi r7, r29, 0x18
@@ -8323,7 +8323,7 @@ lbl_8016CD80:
 /* 8016CD98 00169CD8  7C 00 18 40 */	cmplw r0, r3
 /* 8016CD9C 00169CDC  40 82 00 A4 */	bne lbl_8016CE40
 /* 8016CDA0 00169CE0  80 7F 00 08 */	lwz r3, 8(r31)
-/* 8016CDA4 00169CE4  48 00 00 B1 */	bl getNext__31TObjectNode$$016GenericObjectMgr$$1Fv
+/* 8016CDA4 00169CE4  48 00 00 B1 */	bl "getNext__31TObjectNode<16GenericObjectMgr>Fv"
 /* 8016CDA8 00169CE8  90 7F 00 08 */	stw r3, 8(r31)
 /* 8016CDAC 00169CEC  80 7F 00 08 */	lwz r3, 8(r31)
 /* 8016CDB0 00169CF0  28 03 00 00 */	cmplwi r3, 0
@@ -8379,8 +8379,8 @@ lbl_8016CE40:
 /* 8016CE4C 00169D8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016CE50 00169D90  4E 80 00 20 */	blr 
 
-.global getNext__31TObjectNode$$016GenericObjectMgr$$1Fv
-getNext__31TObjectNode$$016GenericObjectMgr$$1Fv:
+.global "getNext__31TObjectNode<16GenericObjectMgr>Fv"
+"getNext__31TObjectNode<16GenericObjectMgr>Fv":
 /* 8016CE54 00169D94  80 63 00 04 */	lwz r3, 4(r3)
 /* 8016CE58 00169D98  4E 80 00 20 */	blr 
 
@@ -8394,17 +8394,17 @@ __ct__Q24Game9PelletMgrFv:
 /* 8016CE70 00169DB0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8016CE74 00169DB4  48 2A 45 1D */	bl __ct__5CNodeFv
 /* 8016CE78 00169DB8  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8016CE7C 00169DBC  3C 60 80 4B */	lis r3, __vt__29Container$$016GenericObjectMgr$$1@ha
+/* 8016CE7C 00169DBC  3C 60 80 4B */	lis r3, "__vt__29Container<16GenericObjectMgr>"@ha
 /* 8016CE80 00169DC0  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 8016CE84 00169DC4  3C A0 80 4B */	lis r5, __vt__16GenericObjectMgr@ha
 /* 8016CE88 00169DC8  90 1F 00 00 */	stw r0, 0(r31)
-/* 8016CE8C 00169DCC  38 03 1C B0 */	addi r0, r3, __vt__29Container$$016GenericObjectMgr$$1@l
-/* 8016CE90 00169DD0  3C 80 80 4B */	lis r4, __vt__29ObjectMgr$$016GenericObjectMgr$$1@ha
-/* 8016CE94 00169DD4  3C 60 80 4B */	lis r3, __vt__33NodeObjectMgr$$016GenericObjectMgr$$1@ha
+/* 8016CE8C 00169DCC  38 03 1C B0 */	addi r0, r3, "__vt__29Container<16GenericObjectMgr>"@l
+/* 8016CE90 00169DD0  3C 80 80 4B */	lis r4, "__vt__29ObjectMgr<16GenericObjectMgr>"@ha
+/* 8016CE94 00169DD4  3C 60 80 4B */	lis r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@ha
 /* 8016CE98 00169DD8  90 1F 00 00 */	stw r0, 0(r31)
 /* 8016CE9C 00169DDC  38 00 00 00 */	li r0, 0
-/* 8016CEA0 00169DE0  38 C4 1C 34 */	addi r6, r4, __vt__29ObjectMgr$$016GenericObjectMgr$$1@l
-/* 8016CEA4 00169DE4  38 83 1B B4 */	addi r4, r3, __vt__33NodeObjectMgr$$016GenericObjectMgr$$1@l
+/* 8016CEA0 00169DE0  38 C4 1C 34 */	addi r6, r4, "__vt__29ObjectMgr<16GenericObjectMgr>"@l
+/* 8016CEA4 00169DE4  38 83 1B B4 */	addi r4, r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@l
 /* 8016CEA8 00169DE8  98 1F 00 18 */	stb r0, 0x18(r31)
 /* 8016CEAC 00169DEC  38 05 B5 F0 */	addi r0, r5, __vt__16GenericObjectMgr@l
 /* 8016CEB0 00169DF0  3B DF 00 20 */	addi r30, r31, 0x20
@@ -8417,9 +8417,9 @@ __ct__Q24Game9PelletMgrFv:
 /* 8016CECC 00169E0C  90 9F 00 00 */	stw r4, 0(r31)
 /* 8016CED0 00169E10  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 8016CED4 00169E14  48 2A 44 BD */	bl __ct__5CNodeFv
-/* 8016CED8 00169E18  3C 60 80 4B */	lis r3, __vt__31TObjectNode$$016GenericObjectMgr$$1@ha
+/* 8016CED8 00169E18  3C 60 80 4B */	lis r3, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
 /* 8016CEDC 00169E1C  3C 80 80 4B */	lis r4, __vt__Q24Game9PelletMgr@ha
-/* 8016CEE0 00169E20  38 03 1B A4 */	addi r0, r3, __vt__31TObjectNode$$016GenericObjectMgr$$1@l
+/* 8016CEE0 00169E20  38 03 1B A4 */	addi r0, r3, "__vt__31TObjectNode<16GenericObjectMgr>"@l
 /* 8016CEE4 00169E24  3C 60 80 48 */	lis r3, lbl_8047E494@ha
 /* 8016CEE8 00169E28  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016CEEC 00169E2C  38 C4 1A CC */	addi r6, r4, __vt__Q24Game9PelletMgr@l
@@ -8438,8 +8438,8 @@ __ct__Q24Game9PelletMgrFv:
 /* 8016CF20 00169E60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016CF24 00169E64  4E 80 00 20 */	blr 
 
-.global __dt__33NodeObjectMgr$$016GenericObjectMgr$$1Fv
-__dt__33NodeObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "__dt__33NodeObjectMgr<16GenericObjectMgr>Fv"
+"__dt__33NodeObjectMgr<16GenericObjectMgr>Fv":
 /* 8016CF28 00169E68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016CF2C 00169E6C  7C 08 02 A6 */	mflr r0
 /* 8016CF30 00169E70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8448,30 +8448,30 @@ __dt__33NodeObjectMgr$$016GenericObjectMgr$$1Fv:
 /* 8016CF3C 00169E7C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8016CF40 00169E80  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8016CF44 00169E84  41 82 00 90 */	beq lbl_8016CFD4
-/* 8016CF48 00169E88  3C 60 80 4B */	lis r3, __vt__33NodeObjectMgr$$016GenericObjectMgr$$1@ha
+/* 8016CF48 00169E88  3C 60 80 4B */	lis r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@ha
 /* 8016CF4C 00169E8C  34 1E 00 20 */	addic. r0, r30, 0x20
-/* 8016CF50 00169E90  38 63 1B B4 */	addi r3, r3, __vt__33NodeObjectMgr$$016GenericObjectMgr$$1@l
+/* 8016CF50 00169E90  38 63 1B B4 */	addi r3, r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@l
 /* 8016CF54 00169E94  90 7E 00 00 */	stw r3, 0(r30)
 /* 8016CF58 00169E98  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8016CF5C 00169E9C  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016CF60 00169EA0  41 82 00 1C */	beq lbl_8016CF7C
-/* 8016CF64 00169EA4  3C 80 80 4B */	lis r4, __vt__31TObjectNode$$016GenericObjectMgr$$1@ha
+/* 8016CF64 00169EA4  3C 80 80 4B */	lis r4, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
 /* 8016CF68 00169EA8  38 7E 00 20 */	addi r3, r30, 0x20
-/* 8016CF6C 00169EAC  38 04 1B A4 */	addi r0, r4, __vt__31TObjectNode$$016GenericObjectMgr$$1@l
+/* 8016CF6C 00169EAC  38 04 1B A4 */	addi r0, r4, "__vt__31TObjectNode<16GenericObjectMgr>"@l
 /* 8016CF70 00169EB0  38 80 00 00 */	li r4, 0
 /* 8016CF74 00169EB4  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 8016CF78 00169EB8  48 2A 46 11 */	bl __dt__5CNodeFv
 lbl_8016CF7C:
 /* 8016CF7C 00169EBC  28 1E 00 00 */	cmplwi r30, 0
 /* 8016CF80 00169EC0  41 82 00 44 */	beq lbl_8016CFC4
-/* 8016CF84 00169EC4  3C 60 80 4B */	lis r3, __vt__29ObjectMgr$$016GenericObjectMgr$$1@ha
-/* 8016CF88 00169EC8  38 63 1C 34 */	addi r3, r3, __vt__29ObjectMgr$$016GenericObjectMgr$$1@l
+/* 8016CF84 00169EC4  3C 60 80 4B */	lis r3, "__vt__29ObjectMgr<16GenericObjectMgr>"@ha
+/* 8016CF88 00169EC8  38 63 1C 34 */	addi r3, r3, "__vt__29ObjectMgr<16GenericObjectMgr>"@l
 /* 8016CF8C 00169ECC  90 7E 00 00 */	stw r3, 0(r30)
 /* 8016CF90 00169ED0  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8016CF94 00169ED4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016CF98 00169ED8  41 82 00 2C */	beq lbl_8016CFC4
-/* 8016CF9C 00169EDC  3C 60 80 4B */	lis r3, __vt__29Container$$016GenericObjectMgr$$1@ha
-/* 8016CFA0 00169EE0  38 03 1C B0 */	addi r0, r3, __vt__29Container$$016GenericObjectMgr$$1@l
+/* 8016CF9C 00169EDC  3C 60 80 4B */	lis r3, "__vt__29Container<16GenericObjectMgr>"@ha
+/* 8016CFA0 00169EE0  38 03 1C B0 */	addi r0, r3, "__vt__29Container<16GenericObjectMgr>"@l
 /* 8016CFA4 00169EE4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016CFA8 00169EE8  41 82 00 1C */	beq lbl_8016CFC4
 /* 8016CFAC 00169EEC  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -8494,8 +8494,8 @@ lbl_8016CFD4:
 /* 8016CFE8 00169F28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016CFEC 00169F2C  4E 80 00 20 */	blr 
 
-.global __dt__31TObjectNode$$016GenericObjectMgr$$1Fv
-__dt__31TObjectNode$$016GenericObjectMgr$$1Fv:
+.global "__dt__31TObjectNode<16GenericObjectMgr>Fv"
+"__dt__31TObjectNode<16GenericObjectMgr>Fv":
 /* 8016CFF0 00169F30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016CFF4 00169F34  7C 08 02 A6 */	mflr r0
 /* 8016CFF8 00169F38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8504,9 +8504,9 @@ __dt__31TObjectNode$$016GenericObjectMgr$$1Fv:
 /* 8016D004 00169F44  93 C1 00 08 */	stw r30, 8(r1)
 /* 8016D008 00169F48  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8016D00C 00169F4C  41 82 00 28 */	beq lbl_8016D034
-/* 8016D010 00169F50  3C A0 80 4B */	lis r5, __vt__31TObjectNode$$016GenericObjectMgr$$1@ha
+/* 8016D010 00169F50  3C A0 80 4B */	lis r5, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
 /* 8016D014 00169F54  38 80 00 00 */	li r4, 0
-/* 8016D018 00169F58  38 05 1B A4 */	addi r0, r5, __vt__31TObjectNode$$016GenericObjectMgr$$1@l
+/* 8016D018 00169F58  38 05 1B A4 */	addi r0, r5, "__vt__31TObjectNode<16GenericObjectMgr>"@l
 /* 8016D01C 00169F5C  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016D020 00169F60  48 2A 45 69 */	bl __dt__5CNodeFv
 /* 8016D024 00169F64  7F E0 07 35 */	extsh. r0, r31
@@ -8522,8 +8522,8 @@ lbl_8016D034:
 /* 8016D048 00169F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D04C 00169F8C  4E 80 00 20 */	blr 
 
-.global __dt__29ObjectMgr$$016GenericObjectMgr$$1Fv
-__dt__29ObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "__dt__29ObjectMgr<16GenericObjectMgr>Fv"
+"__dt__29ObjectMgr<16GenericObjectMgr>Fv":
 /* 8016D050 00169F90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D054 00169F94  7C 08 02 A6 */	mflr r0
 /* 8016D058 00169F98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8532,14 +8532,14 @@ __dt__29ObjectMgr$$016GenericObjectMgr$$1Fv:
 /* 8016D064 00169FA4  93 C1 00 08 */	stw r30, 8(r1)
 /* 8016D068 00169FA8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8016D06C 00169FAC  41 82 00 50 */	beq lbl_8016D0BC
-/* 8016D070 00169FB0  3C 80 80 4B */	lis r4, __vt__29ObjectMgr$$016GenericObjectMgr$$1@ha
-/* 8016D074 00169FB4  38 84 1C 34 */	addi r4, r4, __vt__29ObjectMgr$$016GenericObjectMgr$$1@l
+/* 8016D070 00169FB0  3C 80 80 4B */	lis r4, "__vt__29ObjectMgr<16GenericObjectMgr>"@ha
+/* 8016D074 00169FB4  38 84 1C 34 */	addi r4, r4, "__vt__29ObjectMgr<16GenericObjectMgr>"@l
 /* 8016D078 00169FB8  90 9E 00 00 */	stw r4, 0(r30)
 /* 8016D07C 00169FBC  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8016D080 00169FC0  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016D084 00169FC4  41 82 00 28 */	beq lbl_8016D0AC
-/* 8016D088 00169FC8  3C 80 80 4B */	lis r4, __vt__29Container$$016GenericObjectMgr$$1@ha
-/* 8016D08C 00169FCC  38 04 1C B0 */	addi r0, r4, __vt__29Container$$016GenericObjectMgr$$1@l
+/* 8016D088 00169FC8  3C 80 80 4B */	lis r4, "__vt__29Container<16GenericObjectMgr>"@ha
+/* 8016D08C 00169FCC  38 04 1C B0 */	addi r0, r4, "__vt__29Container<16GenericObjectMgr>"@l
 /* 8016D090 00169FD0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016D094 00169FD4  41 82 00 18 */	beq lbl_8016D0AC
 /* 8016D098 00169FD8  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -8561,8 +8561,8 @@ lbl_8016D0BC:
 /* 8016D0D0 0016A010  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D0D4 0016A014  4E 80 00 20 */	blr 
 
-.global __dt__29Container$$016GenericObjectMgr$$1Fv
-__dt__29Container$$016GenericObjectMgr$$1Fv:
+.global "__dt__29Container<16GenericObjectMgr>Fv"
+"__dt__29Container<16GenericObjectMgr>Fv":
 /* 8016D0D8 0016A018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D0DC 0016A01C  7C 08 02 A6 */	mflr r0
 /* 8016D0E0 0016A020  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8571,8 +8571,8 @@ __dt__29Container$$016GenericObjectMgr$$1Fv:
 /* 8016D0EC 0016A02C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8016D0F0 0016A030  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8016D0F4 0016A034  41 82 00 38 */	beq lbl_8016D12C
-/* 8016D0F8 0016A038  3C 80 80 4B */	lis r4, __vt__29Container$$016GenericObjectMgr$$1@ha
-/* 8016D0FC 0016A03C  38 04 1C B0 */	addi r0, r4, __vt__29Container$$016GenericObjectMgr$$1@l
+/* 8016D0F8 0016A038  3C 80 80 4B */	lis r4, "__vt__29Container<16GenericObjectMgr>"@ha
+/* 8016D0FC 0016A03C  38 04 1C B0 */	addi r0, r4, "__vt__29Container<16GenericObjectMgr>"@l
 /* 8016D100 0016A040  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016D104 0016A044  41 82 00 18 */	beq lbl_8016D11C
 /* 8016D108 0016A048  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -8697,8 +8697,8 @@ resetMgrs__Q24Game9PelletMgrFv:
 /* 8016D2B0 0016A1F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D2B4 0016A1F4  4E 80 00 20 */	blr 
 
-.global resetMgr__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv
-resetMgr__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
+.global "resetMgr__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
+"resetMgr__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
 /* 8016D2B8 0016A1F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D2BC 0016A1FC  7C 08 02 A6 */	mflr r0
 /* 8016D2C0 0016A200  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8720,8 +8720,8 @@ resetMgr__Q24Game47FixedSizePelletMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 8016D300 0016A240  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D304 0016A244  4E 80 00 20 */	blr 
 
-.global resetMgr__Q24Game49FixedSizePelletMgr$$0Q34Game13PelletCarcass6Object$$1Fv
-resetMgr__Q24Game49FixedSizePelletMgr$$0Q34Game13PelletCarcass6Object$$1Fv:
+.global "resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
+"resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
 /* 8016D308 0016A248  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D30C 0016A24C  7C 08 02 A6 */	mflr r0
 /* 8016D310 0016A250  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8743,8 +8743,8 @@ resetMgr__Q24Game49FixedSizePelletMgr$$0Q34Game13PelletCarcass6Object$$1Fv:
 /* 8016D350 0016A290  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D354 0016A294  4E 80 00 20 */	blr 
 
-.global resetMgr__Q24Game48FixedSizePelletMgr$$0Q34Game12PelletNumber6Object$$1Fv
-resetMgr__Q24Game48FixedSizePelletMgr$$0Q34Game12PelletNumber6Object$$1Fv:
+.global "resetMgr__Q24Game48FixedSizePelletMgr<Q34Game12PelletNumber6Object>Fv"
+"resetMgr__Q24Game48FixedSizePelletMgr<Q34Game12PelletNumber6Object>Fv":
 /* 8016D358 0016A298  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D35C 0016A29C  7C 08 02 A6 */	mflr r0
 /* 8016D360 0016A2A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8801,8 +8801,8 @@ setupResources__Q24Game9PelletMgrFv:
 /* 8016D420 0016A360  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D424 0016A364  4E 80 00 20 */	blr 
 
-.global isDone__36Iterator$$0Q34Game10PelletItem6Object$$1Fv
-isDone__36Iterator$$0Q34Game10PelletItem6Object$$1Fv:
+.global "isDone__36Iterator<Q34Game10PelletItem6Object>Fv"
+"isDone__36Iterator<Q34Game10PelletItem6Object>Fv":
 /* 8016D428 0016A368  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D42C 0016A36C  7C 08 02 A6 */	mflr r0
 /* 8016D430 0016A370  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8823,8 +8823,8 @@ isDone__36Iterator$$0Q34Game10PelletItem6Object$$1Fv:
 /* 8016D46C 0016A3AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D470 0016A3B0  4E 80 00 20 */	blr 
 
-.global isDone__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv
-isDone__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv:
+.global "isDone__39Iterator<Q34Game13PelletOtakara6Object>Fv"
+"isDone__39Iterator<Q34Game13PelletOtakara6Object>Fv":
 /* 8016D474 0016A3B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D478 0016A3B8  7C 08 02 A6 */	mflr r0
 /* 8016D47C 0016A3BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9631,8 +9631,8 @@ addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr:
 /* 8016DF98 0016AED8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8016DF9C 0016AEDC  41 82 00 14 */	beq lbl_8016DFB0
 /* 8016DFA0 0016AEE0  48 2A 33 F1 */	bl __ct__5CNodeFv
-/* 8016DFA4 0016AEE4  3C 60 80 4B */	lis r3, __vt__31TObjectNode$$016GenericObjectMgr$$1@ha
-/* 8016DFA8 0016AEE8  38 03 1B A4 */	addi r0, r3, __vt__31TObjectNode$$016GenericObjectMgr$$1@l
+/* 8016DFA4 0016AEE4  3C 60 80 4B */	lis r3, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
+/* 8016DFA8 0016AEE8  38 03 1B A4 */	addi r0, r3, "__vt__31TObjectNode<16GenericObjectMgr>"@l
 /* 8016DFAC 0016AEEC  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8016DFB0:
 /* 8016DFB0 0016AEF0  93 DF 00 18 */	stw r30, 0x18(r31)
@@ -9651,10 +9651,10 @@ lbl_8016DFB0:
 doAnimation__Q24Game9PelletMgrFv:
 /* 8016DFDC 0016AF1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016DFE0 0016AF20  7C 08 02 A6 */	mflr r0
-/* 8016DFE4 0016AF24  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016DFE4 0016AF24  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016DFE8 0016AF28  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8016DFEC 0016AF2C  38 00 00 00 */	li r0, 0
-/* 8016DFF0 0016AF30  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016DFF0 0016AF30  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016DFF4 0016AF34  28 00 00 00 */	cmplwi r0, 0
 /* 8016DFF8 0016AF38  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8016DFFC 0016AF3C  90 81 00 08 */	stw r4, 8(r1)
@@ -9779,8 +9779,8 @@ lbl_8016E190:
 /* 8016E1B8 0016B0F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016E1BC 0016B0FC  4E 80 00 20 */	blr 
 
-.global isDone__28Iterator$$016GenericObjectMgr$$1Fv
-isDone__28Iterator$$016GenericObjectMgr$$1Fv:
+.global "isDone__28Iterator<16GenericObjectMgr>Fv"
+"isDone__28Iterator<16GenericObjectMgr>Fv":
 /* 8016E1C0 0016B100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016E1C4 0016B104  7C 08 02 A6 */	mflr r0
 /* 8016E1C8 0016B108  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9805,10 +9805,10 @@ isDone__28Iterator$$016GenericObjectMgr$$1Fv:
 doEntry__Q24Game9PelletMgrFv:
 /* 8016E20C 0016B14C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E210 0016B150  7C 08 02 A6 */	mflr r0
-/* 8016E214 0016B154  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016E214 0016B154  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016E218 0016B158  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8016E21C 0016B15C  38 00 00 00 */	li r0, 0
-/* 8016E220 0016B160  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016E220 0016B160  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016E224 0016B164  28 00 00 00 */	cmplwi r0, 0
 /* 8016E228 0016B168  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8016E22C 0016B16C  90 81 00 08 */	stw r4, 8(r1)
@@ -9937,10 +9937,10 @@ lbl_8016E3C0:
 doSetView__Q24Game9PelletMgrFi:
 /* 8016E3F0 0016B330  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E3F4 0016B334  7C 08 02 A6 */	mflr r0
-/* 8016E3F8 0016B338  3C A0 80 4B */	lis r5, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016E3F8 0016B338  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016E3FC 0016B33C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8016E400 0016B340  38 00 00 00 */	li r0, 0
-/* 8016E404 0016B344  38 A5 1B 5C */	addi r5, r5, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016E404 0016B344  38 A5 1B 5C */	addi r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016E408 0016B348  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8016E40C 0016B34C  28 00 00 00 */	cmplwi r0, 0
 /* 8016E410 0016B350  7C 9F 23 78 */	mr r31, r4
@@ -10073,10 +10073,10 @@ lbl_8016E5B0:
 doViewCalc__Q24Game9PelletMgrFv:
 /* 8016E5E4 0016B524  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E5E8 0016B528  7C 08 02 A6 */	mflr r0
-/* 8016E5EC 0016B52C  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016E5EC 0016B52C  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016E5F0 0016B530  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8016E5F4 0016B534  38 00 00 00 */	li r0, 0
-/* 8016E5F8 0016B538  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016E5F8 0016B538  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016E5FC 0016B53C  28 00 00 00 */	cmplwi r0, 0
 /* 8016E600 0016B540  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8016E604 0016B544  90 81 00 08 */	stw r4, 8(r1)
@@ -10205,10 +10205,10 @@ lbl_8016E798:
 doSimulation__Q24Game9PelletMgrFf:
 /* 8016E7C8 0016B708  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E7CC 0016B70C  7C 08 02 A6 */	mflr r0
-/* 8016E7D0 0016B710  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016E7D0 0016B710  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016E7D4 0016B714  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8016E7D8 0016B718  38 00 00 00 */	li r0, 0
-/* 8016E7DC 0016B71C  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016E7DC 0016B71C  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016E7E0 0016B720  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 8016E7E4 0016B724  FF E0 08 90 */	fmr f31, f1
 /* 8016E7E8 0016B728  28 00 00 00 */	cmplwi r0, 0
@@ -10345,10 +10345,10 @@ doDirectDraw__Q24Game9PelletMgrFR8Graphics:
 doSimpleDraw__Q24Game9PelletMgrFP8Viewport:
 /* 8016E9C0 0016B900  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E9C4 0016B904  7C 08 02 A6 */	mflr r0
-/* 8016E9C8 0016B908  3C A0 80 4B */	lis r5, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016E9C8 0016B908  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016E9CC 0016B90C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8016E9D0 0016B910  38 00 00 00 */	li r0, 0
-/* 8016E9D4 0016B914  38 A5 1B 5C */	addi r5, r5, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016E9D4 0016B914  38 A5 1B 5C */	addi r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016E9D8 0016B918  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8016E9DC 0016B91C  28 00 00 00 */	cmplwi r0, 0
 /* 8016E9E0 0016B920  7C 9F 23 78 */	mr r31, r4
@@ -10481,10 +10481,10 @@ lbl_8016EB80:
 setupSoundViewerAndBas__Q24Game9PelletMgrFv:
 /* 8016EBB4 0016BAF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016EBB8 0016BAF8  7C 08 02 A6 */	mflr r0
-/* 8016EBBC 0016BAFC  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016EBBC 0016BAFC  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016EBC0 0016BB00  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8016EBC4 0016BB04  38 00 00 00 */	li r0, 0
-/* 8016EBC8 0016BB08  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016EBC8 0016BB08  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016EBCC 0016BB0C  28 00 00 00 */	cmplwi r0, 0
 /* 8016EBD0 0016BB10  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8016EBD4 0016BB14  90 81 00 08 */	stw r4, 8(r1)
@@ -10676,10 +10676,10 @@ lbl_8016EE40:
 getCaveID__Q24Game9PelletMgrFPc:
 /* 8016EE5C 0016BD9C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8016EE60 0016BDA0  7C 08 02 A6 */	mflr r0
-/* 8016EE64 0016BDA4  3C A0 80 4B */	lis r5, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016EE64 0016BDA4  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016EE68 0016BDA8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8016EE6C 0016BDAC  38 00 00 00 */	li r0, 0
-/* 8016EE70 0016BDB0  38 A5 1B 5C */	addi r5, r5, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016EE70 0016BDB0  38 A5 1B 5C */	addi r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016EE74 0016BDB4  BF 61 00 1C */	stmw r27, 0x1c(r1)
 /* 8016EE78 0016BDB8  28 00 00 00 */	cmplwi r0, 0
 /* 8016EE7C 0016BDBC  7C 9F 23 78 */	mr r31, r4
@@ -10850,10 +10850,10 @@ lbl_8016F0B8:
 getMgrByID__Q24Game9PelletMgrFUc:
 /* 8016F0CC 0016C00C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016F0D0 0016C010  7C 08 02 A6 */	mflr r0
-/* 8016F0D4 0016C014  3C A0 80 4B */	lis r5, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 8016F0D4 0016C014  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8016F0D8 0016C018  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8016F0DC 0016C01C  38 00 00 00 */	li r0, 0
-/* 8016F0E0 0016C020  38 A5 1B 5C */	addi r5, r5, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 8016F0E0 0016C020  38 A5 1B 5C */	addi r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 8016F0E4 0016C024  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8016F0E8 0016C028  28 00 00 00 */	cmplwi r0, 0
 /* 8016F0EC 0016C02C  93 C1 00 18 */	stw r30, 0x18(r1)
@@ -11011,30 +11011,30 @@ __dt__Q24Game9PelletMgrFv:
 /* 8016F314 0016C254  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8016F318 0016C258  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 8016F31C 0016C25C  41 82 00 80 */	beq lbl_8016F39C
-/* 8016F320 0016C260  3C 60 80 4B */	lis r3, __vt__33NodeObjectMgr$$016GenericObjectMgr$$1@ha
+/* 8016F320 0016C260  3C 60 80 4B */	lis r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@ha
 /* 8016F324 0016C264  34 1F 00 20 */	addic. r0, r31, 0x20
-/* 8016F328 0016C268  38 63 1B B4 */	addi r3, r3, __vt__33NodeObjectMgr$$016GenericObjectMgr$$1@l
+/* 8016F328 0016C268  38 63 1B B4 */	addi r3, r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@l
 /* 8016F32C 0016C26C  90 7F 00 00 */	stw r3, 0(r31)
 /* 8016F330 0016C270  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8016F334 0016C274  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 8016F338 0016C278  41 82 00 1C */	beq lbl_8016F354
-/* 8016F33C 0016C27C  3C 80 80 4B */	lis r4, __vt__31TObjectNode$$016GenericObjectMgr$$1@ha
+/* 8016F33C 0016C27C  3C 80 80 4B */	lis r4, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
 /* 8016F340 0016C280  38 7F 00 20 */	addi r3, r31, 0x20
-/* 8016F344 0016C284  38 04 1B A4 */	addi r0, r4, __vt__31TObjectNode$$016GenericObjectMgr$$1@l
+/* 8016F344 0016C284  38 04 1B A4 */	addi r0, r4, "__vt__31TObjectNode<16GenericObjectMgr>"@l
 /* 8016F348 0016C288  38 80 00 00 */	li r4, 0
 /* 8016F34C 0016C28C  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 8016F350 0016C290  48 2A 22 39 */	bl __dt__5CNodeFv
 lbl_8016F354:
 /* 8016F354 0016C294  28 1F 00 00 */	cmplwi r31, 0
 /* 8016F358 0016C298  41 82 00 44 */	beq lbl_8016F39C
-/* 8016F35C 0016C29C  3C 60 80 4B */	lis r3, __vt__29ObjectMgr$$016GenericObjectMgr$$1@ha
-/* 8016F360 0016C2A0  38 63 1C 34 */	addi r3, r3, __vt__29ObjectMgr$$016GenericObjectMgr$$1@l
+/* 8016F35C 0016C29C  3C 60 80 4B */	lis r3, "__vt__29ObjectMgr<16GenericObjectMgr>"@ha
+/* 8016F360 0016C2A0  38 63 1C 34 */	addi r3, r3, "__vt__29ObjectMgr<16GenericObjectMgr>"@l
 /* 8016F364 0016C2A4  90 7F 00 00 */	stw r3, 0(r31)
 /* 8016F368 0016C2A8  38 03 00 2C */	addi r0, r3, 0x2c
 /* 8016F36C 0016C2AC  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 8016F370 0016C2B0  41 82 00 2C */	beq lbl_8016F39C
-/* 8016F374 0016C2B4  3C 60 80 4B */	lis r3, __vt__29Container$$016GenericObjectMgr$$1@ha
-/* 8016F378 0016C2B8  38 03 1C B0 */	addi r0, r3, __vt__29Container$$016GenericObjectMgr$$1@l
+/* 8016F374 0016C2B4  3C 60 80 4B */	lis r3, "__vt__29Container<16GenericObjectMgr>"@ha
+/* 8016F378 0016C2B8  38 03 1C B0 */	addi r0, r3, "__vt__29Container<16GenericObjectMgr>"@l
 /* 8016F37C 0016C2BC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8016F380 0016C2C0  41 82 00 1C */	beq lbl_8016F39C
 /* 8016F384 0016C2C4  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -11063,8 +11063,8 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F3CC 0016C30C  38 63 E4 94 */	addi r3, r3, lbl_8047E494@l
 /* 8016F3D0 0016C310  4E 80 00 20 */	blr 
 
-.global __ml__28Iterator$$016GenericObjectMgr$$1Fv
-__ml__28Iterator$$016GenericObjectMgr$$1Fv:
+.global "__ml__28Iterator<16GenericObjectMgr>Fv"
+"__ml__28Iterator<16GenericObjectMgr>Fv":
 /* 8016F3D4 0016C314  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F3D8 0016C318  7C 08 02 A6 */	mflr r0
 /* 8016F3DC 0016C31C  7C 64 1B 78 */	mr r4, r3
@@ -11080,8 +11080,8 @@ __ml__28Iterator$$016GenericObjectMgr$$1Fv:
 /* 8016F404 0016C344  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F408 0016C348  4E 80 00 20 */	blr 
 
-.global next__28Iterator$$016GenericObjectMgr$$1Fv
-next__28Iterator$$016GenericObjectMgr$$1Fv:
+.global "next__28Iterator<16GenericObjectMgr>Fv"
+"next__28Iterator<16GenericObjectMgr>Fv":
 /* 8016F40C 0016C34C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F410 0016C350  7C 08 02 A6 */	mflr r0
 /* 8016F414 0016C354  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11144,8 +11144,8 @@ lbl_8016F4DC:
 /* 8016F4E8 0016C428  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F4EC 0016C42C  4E 80 00 20 */	blr 
 
-.global first__28Iterator$$016GenericObjectMgr$$1Fv
-first__28Iterator$$016GenericObjectMgr$$1Fv:
+.global "first__28Iterator<16GenericObjectMgr>Fv"
+"first__28Iterator<16GenericObjectMgr>Fv":
 /* 8016F4F0 0016C430  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F4F4 0016C434  7C 08 02 A6 */	mflr r0
 /* 8016F4F8 0016C438  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11206,8 +11206,8 @@ lbl_8016F5B8:
 /* 8016F5C4 0016C504  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F5C8 0016C508  4E 80 00 20 */	blr 
 
-.global __ml__36Iterator$$0Q34Game10PelletItem6Object$$1Fv
-__ml__36Iterator$$0Q34Game10PelletItem6Object$$1Fv:
+.global "__ml__36Iterator<Q34Game10PelletItem6Object>Fv"
+"__ml__36Iterator<Q34Game10PelletItem6Object>Fv":
 /* 8016F5CC 0016C50C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F5D0 0016C510  7C 08 02 A6 */	mflr r0
 /* 8016F5D4 0016C514  7C 64 1B 78 */	mr r4, r3
@@ -11223,8 +11223,8 @@ __ml__36Iterator$$0Q34Game10PelletItem6Object$$1Fv:
 /* 8016F5FC 0016C53C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F600 0016C540  4E 80 00 20 */	blr 
 
-.global next__36Iterator$$0Q34Game10PelletItem6Object$$1Fv
-next__36Iterator$$0Q34Game10PelletItem6Object$$1Fv:
+.global "next__36Iterator<Q34Game10PelletItem6Object>Fv"
+"next__36Iterator<Q34Game10PelletItem6Object>Fv":
 /* 8016F604 0016C544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F608 0016C548  7C 08 02 A6 */	mflr r0
 /* 8016F60C 0016C54C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11287,8 +11287,8 @@ lbl_8016F6D4:
 /* 8016F6E0 0016C620  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F6E4 0016C624  4E 80 00 20 */	blr 
 
-.global first__36Iterator$$0Q34Game10PelletItem6Object$$1Fv
-first__36Iterator$$0Q34Game10PelletItem6Object$$1Fv:
+.global "first__36Iterator<Q34Game10PelletItem6Object>Fv"
+"first__36Iterator<Q34Game10PelletItem6Object>Fv":
 /* 8016F6E8 0016C628  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F6EC 0016C62C  7C 08 02 A6 */	mflr r0
 /* 8016F6F0 0016C630  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11349,8 +11349,8 @@ lbl_8016F7B0:
 /* 8016F7BC 0016C6FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F7C0 0016C700  4E 80 00 20 */	blr 
 
-.global __ml__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv
-__ml__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv:
+.global "__ml__39Iterator<Q34Game13PelletOtakara6Object>Fv"
+"__ml__39Iterator<Q34Game13PelletOtakara6Object>Fv":
 /* 8016F7C4 0016C704  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F7C8 0016C708  7C 08 02 A6 */	mflr r0
 /* 8016F7CC 0016C70C  7C 64 1B 78 */	mr r4, r3
@@ -11366,8 +11366,8 @@ __ml__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv:
 /* 8016F7F4 0016C734  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F7F8 0016C738  4E 80 00 20 */	blr 
 
-.global next__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv
-next__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv:
+.global "next__39Iterator<Q34Game13PelletOtakara6Object>Fv"
+"next__39Iterator<Q34Game13PelletOtakara6Object>Fv":
 /* 8016F7FC 0016C73C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F800 0016C740  7C 08 02 A6 */	mflr r0
 /* 8016F804 0016C744  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11430,8 +11430,8 @@ lbl_8016F8CC:
 /* 8016F8D8 0016C818  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F8DC 0016C81C  4E 80 00 20 */	blr 
 
-.global first__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv
-first__39Iterator$$0Q34Game13PelletOtakara6Object$$1Fv:
+.global "first__39Iterator<Q34Game13PelletOtakara6Object>Fv"
+"first__39Iterator<Q34Game13PelletOtakara6Object>Fv":
 /* 8016F8E0 0016C820  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F8E4 0016C824  7C 08 02 A6 */	mflr r0
 /* 8016F8E8 0016C828  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11492,8 +11492,8 @@ lbl_8016F9A8:
 /* 8016F9B4 0016C8F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F9B8 0016C8F8  4E 80 00 20 */	blr 
 
-.global generatorBirth__Q24Game13BasePelletMgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game13GenPelletParm
-generatorBirth__Q24Game13BasePelletMgrFR10Vector3$$0f$$1R10Vector3$$0f$$1PQ24Game13GenPelletParm:
+.global "generatorBirth__Q24Game13BasePelletMgrFR10Vector3<f>R10Vector3<f>PQ24Game13GenPelletParm"
+"generatorBirth__Q24Game13BasePelletMgrFR10Vector3<f>R10Vector3<f>PQ24Game13GenPelletParm":
 /* 8016F9BC 0016C8FC  38 60 00 00 */	li r3, 0
 /* 8016F9C0 0016C900  4E 80 00 20 */	blr 
 
@@ -11535,8 +11535,8 @@ doSimulation__Q24Game13BasePelletMgrFf:
 doDirectDraw__Q24Game13BasePelletMgrFR8Graphics:
 /* 8016F9EC 0016C92C  4E 80 00 20 */	blr 
 
-.global __dt__20Container$$08CollPart$$1Fv
-__dt__20Container$$08CollPart$$1Fv:
+.global "__dt__20Container<8CollPart>Fv"
+"__dt__20Container<8CollPart>Fv":
 /* 8016F9F0 0016C930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F9F4 0016C934  7C 08 02 A6 */	mflr r0
 /* 8016F9F8 0016C938  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11545,8 +11545,8 @@ __dt__20Container$$08CollPart$$1Fv:
 /* 8016FA04 0016C944  93 C1 00 08 */	stw r30, 8(r1)
 /* 8016FA08 0016C948  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8016FA0C 0016C94C  41 82 00 38 */	beq lbl_8016FA44
-/* 8016FA10 0016C950  3C 80 80 4B */	lis r4, __vt__20Container$$08CollPart$$1@ha
-/* 8016FA14 0016C954  38 04 1D 80 */	addi r0, r4, __vt__20Container$$08CollPart$$1@l
+/* 8016FA10 0016C950  3C 80 80 4B */	lis r4, "__vt__20Container<8CollPart>"@ha
+/* 8016FA14 0016C954  38 04 1D 80 */	addi r0, r4, "__vt__20Container<8CollPart>"@l
 /* 8016FA18 0016C958  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016FA1C 0016C95C  41 82 00 18 */	beq lbl_8016FA34
 /* 8016FA20 0016C960  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -11568,8 +11568,8 @@ lbl_8016FA44:
 /* 8016FA58 0016C998  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016FA5C 0016C99C  4E 80 00 20 */	blr 
 
-.global __dt__20ObjectMgr$$08CollPart$$1Fv
-__dt__20ObjectMgr$$08CollPart$$1Fv:
+.global "__dt__20ObjectMgr<8CollPart>Fv"
+"__dt__20ObjectMgr<8CollPart>Fv":
 /* 8016FA60 0016C9A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016FA64 0016C9A4  7C 08 02 A6 */	mflr r0
 /* 8016FA68 0016C9A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11578,14 +11578,14 @@ __dt__20ObjectMgr$$08CollPart$$1Fv:
 /* 8016FA74 0016C9B4  93 C1 00 08 */	stw r30, 8(r1)
 /* 8016FA78 0016C9B8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8016FA7C 0016C9BC  41 82 00 50 */	beq lbl_8016FACC
-/* 8016FA80 0016C9C0  3C 80 80 4B */	lis r4, __vt__20ObjectMgr$$08CollPart$$1@ha
-/* 8016FA84 0016C9C4  38 84 1D AC */	addi r4, r4, __vt__20ObjectMgr$$08CollPart$$1@l
+/* 8016FA80 0016C9C0  3C 80 80 4B */	lis r4, "__vt__20ObjectMgr<8CollPart>"@ha
+/* 8016FA84 0016C9C4  38 84 1D AC */	addi r4, r4, "__vt__20ObjectMgr<8CollPart>"@l
 /* 8016FA88 0016C9C8  90 9E 00 00 */	stw r4, 0(r30)
 /* 8016FA8C 0016C9CC  38 04 00 2C */	addi r0, r4, 0x2c
 /* 8016FA90 0016C9D0  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 8016FA94 0016C9D4  41 82 00 28 */	beq lbl_8016FABC
-/* 8016FA98 0016C9D8  3C 80 80 4B */	lis r4, __vt__20Container$$08CollPart$$1@ha
-/* 8016FA9C 0016C9DC  38 04 1D 80 */	addi r0, r4, __vt__20Container$$08CollPart$$1@l
+/* 8016FA98 0016C9D8  3C 80 80 4B */	lis r4, "__vt__20Container<8CollPart>"@ha
+/* 8016FA9C 0016C9DC  38 04 1D 80 */	addi r0, r4, "__vt__20Container<8CollPart>"@l
 /* 8016FAA0 0016C9E0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8016FAA4 0016C9E4  41 82 00 18 */	beq lbl_8016FABC
 /* 8016FAA8 0016C9E8  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -11646,8 +11646,8 @@ lbl_8016FB54:
 /* 8016FB64 0016CAA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016FB68 0016CAA8  4E 80 00 20 */	blr 
 
-.global satisfy__Q223$$2unnamed$$2pelletMgr_cpp$$26NotOffFPQ24Game8WayPoint
-satisfy__Q223$$2unnamed$$2pelletMgr_cpp$$26NotOffFPQ24Game8WayPoint:
+.global "satisfy__Q223@unnamed@pelletMgr_cpp@6NotOffFPQ24Game8WayPoint"
+"satisfy__Q223@unnamed@pelletMgr_cpp@6NotOffFPQ24Game8WayPoint":
 /* 8016FB6C 0016CAAC  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8016FB70 0016CAB0  7C 08 02 A6 */	mflr r0
 /* 8016FB74 0016CAB4  90 01 00 84 */	stw r0, 0x84(r1)
@@ -11674,8 +11674,8 @@ lbl_8016FBAC:
 /* 8016FBC4 0016CB04  38 63 00 30 */	addi r3, r3, 0x30
 lbl_8016FBC8:
 /* 8016FBC8 0016CB08  38 00 00 00 */	li r0, 0
-/* 8016FBCC 0016CB0C  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 8016FBD0 0016CB10  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 8016FBCC 0016CB0C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 8016FBD0 0016CB10  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 8016FBD4 0016CB14  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 8016FBD8 0016CB18  28 00 00 00 */	cmplwi r0, 0
 /* 8016FBDC 0016CB1C  90 81 00 30 */	stw r4, 0x30(r1)
@@ -11828,8 +11828,8 @@ lbl_8016FDE4:
 /* 8016FDF4 0016CD34  38 63 00 30 */	addi r3, r3, 0x30
 lbl_8016FDF8:
 /* 8016FDF8 0016CD38  38 00 00 00 */	li r0, 0
-/* 8016FDFC 0016CD3C  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 8016FE00 0016CD40  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 8016FDFC 0016CD3C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 8016FE00 0016CD40  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 8016FE04 0016CD44  90 01 00 2C */	stw r0, 0x2c(r1)
 /* 8016FE08 0016CD48  28 00 00 00 */	cmplwi r0, 0
 /* 8016FE0C 0016CD4C  90 81 00 20 */	stw r4, 0x20(r1)
@@ -11990,8 +11990,8 @@ lbl_80170018:
 /* 80170040 0016CF80  38 21 00 80 */	addi r1, r1, 0x80
 /* 80170044 0016CF84  4E 80 00 20 */	blr 
 
-.global onSetPosition__Q24Game6PelletFR10Vector3$$0f$$1
-onSetPosition__Q24Game6PelletFR10Vector3$$0f$$1:
+.global "onSetPosition__Q24Game6PelletFR10Vector3<f>"
+"onSetPosition__Q24Game6PelletFR10Vector3<f>":
 /* 80170048 0016CF88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017004C 0016CF8C  7C 08 02 A6 */	mflr r0
 /* 80170050 0016CF90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12120,32 +12120,32 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801701A4 0016D0E4  38 63 E5 34 */	addi r3, r3, lbl_8047E534@l
 /* 801701A8 0016D0E8  4E 80 00 20 */	blr 
 
-.global init__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-init__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet:
+.global "init__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
+"init__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 801701AC 0016D0EC  4E 80 00 20 */	blr 
 
-.global get__33NodeObjectMgr$$016GenericObjectMgr$$1FPv
-get__33NodeObjectMgr$$016GenericObjectMgr$$1FPv:
+.global "get__33NodeObjectMgr<16GenericObjectMgr>FPv"
+"get__33NodeObjectMgr<16GenericObjectMgr>FPv":
 /* 801701B0 0016D0F0  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 801701B4 0016D0F4  4E 80 00 20 */	blr 
 
-.global getNext__33NodeObjectMgr$$016GenericObjectMgr$$1FPv
-getNext__33NodeObjectMgr$$016GenericObjectMgr$$1FPv:
+.global "getNext__33NodeObjectMgr<16GenericObjectMgr>FPv"
+"getNext__33NodeObjectMgr<16GenericObjectMgr>FPv":
 /* 801701B8 0016D0F8  80 64 00 04 */	lwz r3, 4(r4)
 /* 801701BC 0016D0FC  4E 80 00 20 */	blr 
 
-.global getStart__33NodeObjectMgr$$016GenericObjectMgr$$1Fv
-getStart__33NodeObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "getStart__33NodeObjectMgr<16GenericObjectMgr>Fv"
+"getStart__33NodeObjectMgr<16GenericObjectMgr>Fv":
 /* 801701C0 0016D100  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 801701C4 0016D104  4E 80 00 20 */	blr 
 
-.global getEnd__33NodeObjectMgr$$016GenericObjectMgr$$1Fv
-getEnd__33NodeObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "getEnd__33NodeObjectMgr<16GenericObjectMgr>Fv"
+"getEnd__33NodeObjectMgr<16GenericObjectMgr>Fv":
 /* 801701C8 0016D108  38 60 00 00 */	li r3, 0
 /* 801701CC 0016D10C  4E 80 00 20 */	blr 
 
-.global resetMgr__33NodeObjectMgr$$016GenericObjectMgr$$1Fv
-resetMgr__33NodeObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
+"resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv":
 /* 801701D0 0016D110  38 00 00 00 */	li r0, 0
 /* 801701D4 0016D114  90 03 00 30 */	stw r0, 0x30(r3)
 /* 801701D8 0016D118  90 03 00 2C */	stw r0, 0x2c(r3)
@@ -12153,8 +12153,8 @@ resetMgr__33NodeObjectMgr$$016GenericObjectMgr$$1Fv:
 /* 801701E0 0016D120  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801701E4 0016D124  4E 80 00 20 */	blr 
 
-.global resetMgr__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv
-resetMgr__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
+.global "resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
+"resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
 /* 801701E8 0016D128  38 00 00 00 */	li r0, 0
 /* 801701EC 0016D12C  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801701F0 0016D130  90 03 00 24 */	stw r0, 0x24(r3)
@@ -12162,8 +12162,8 @@ resetMgr__42MonoObjectMgr$$0Q34Game11PelletFruit6Object$$1Fv:
 /* 801701F8 0016D138  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801701FC 0016D13C  4E 80 00 20 */	blr 
 
-.global resetMgr__44MonoObjectMgr$$0Q34Game13PelletCarcass6Object$$1Fv
-resetMgr__44MonoObjectMgr$$0Q34Game13PelletCarcass6Object$$1Fv:
+.global "resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+"resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
 /* 80170200 0016D140  38 00 00 00 */	li r0, 0
 /* 80170204 0016D144  90 03 00 28 */	stw r0, 0x28(r3)
 /* 80170208 0016D148  90 03 00 24 */	stw r0, 0x24(r3)
@@ -12171,8 +12171,8 @@ resetMgr__44MonoObjectMgr$$0Q34Game13PelletCarcass6Object$$1Fv:
 /* 80170210 0016D150  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 80170214 0016D154  4E 80 00 20 */	blr 
 
-.global resetMgr__43MonoObjectMgr$$0Q34Game12PelletNumber6Object$$1Fv
-resetMgr__43MonoObjectMgr$$0Q34Game12PelletNumber6Object$$1Fv:
+.global "resetMgr__43MonoObjectMgr<Q34Game12PelletNumber6Object>Fv"
+"resetMgr__43MonoObjectMgr<Q34Game12PelletNumber6Object>Fv":
 /* 80170218 0016D158  38 00 00 00 */	li r0, 0
 /* 8017021C 0016D15C  90 03 00 28 */	stw r0, 0x28(r3)
 /* 80170220 0016D160  90 03 00 24 */	stw r0, 0x24(r3)
@@ -12180,8 +12180,8 @@ resetMgr__43MonoObjectMgr$$0Q34Game12PelletNumber6Object$$1Fv:
 /* 80170228 0016D168  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8017022C 0016D16C  4E 80 00 20 */	blr 
 
-.global getNext__24MonoObjectMgr$$08CollPart$$1FPv
-getNext__24MonoObjectMgr$$08CollPart$$1FPv:
+.global "getNext__24MonoObjectMgr<8CollPart>FPv"
+"getNext__24MonoObjectMgr<8CollPart>FPv":
 /* 80170230 0016D170  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 80170234 0016D174  38 C4 00 01 */	addi r6, r4, 1
 /* 80170238 0016D178  7C 06 28 50 */	subf r0, r6, r5
@@ -12202,8 +12202,8 @@ lbl_80170268:
 /* 80170268 0016D1A8  7C A3 2B 78 */	mr r3, r5
 /* 8017026C 0016D1AC  4E 80 00 20 */	blr 
 
-.global getStart__24MonoObjectMgr$$08CollPart$$1Fv
-getStart__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "getStart__24MonoObjectMgr<8CollPart>Fv"
+"getStart__24MonoObjectMgr<8CollPart>Fv":
 /* 80170270 0016D1B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80170274 0016D1B4  7C 08 02 A6 */	mflr r0
 /* 80170278 0016D1B8  38 80 FF FF */	li r4, -1
@@ -12217,25 +12217,25 @@ getStart__24MonoObjectMgr$$08CollPart$$1Fv:
 /* 80170298 0016D1D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017029C 0016D1DC  4E 80 00 20 */	blr 
 
-.global getEnd__24MonoObjectMgr$$08CollPart$$1Fv
-getEnd__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "getEnd__24MonoObjectMgr<8CollPart>Fv"
+"getEnd__24MonoObjectMgr<8CollPart>Fv":
 /* 801702A0 0016D1E0  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801702A4 0016D1E4  4E 80 00 20 */	blr 
 
-.global getAt__24MonoObjectMgr$$08CollPart$$1Fi
-getAt__24MonoObjectMgr$$08CollPart$$1Fi:
+.global "getAt__24MonoObjectMgr<8CollPart>Fi"
+"getAt__24MonoObjectMgr<8CollPart>Fi":
 /* 801702A8 0016D1E8  1C 04 00 64 */	mulli r0, r4, 0x64
 /* 801702AC 0016D1EC  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801702B0 0016D1F0  7C 63 02 14 */	add r3, r3, r0
 /* 801702B4 0016D1F4  4E 80 00 20 */	blr 
 
-.global getTo__24MonoObjectMgr$$08CollPart$$1Fv
-getTo__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "getTo__24MonoObjectMgr<8CollPart>Fv"
+"getTo__24MonoObjectMgr<8CollPart>Fv":
 /* 801702B8 0016D1F8  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801702BC 0016D1FC  4E 80 00 20 */	blr 
 
-.global doAnimation__24MonoObjectMgr$$08CollPart$$1Fv
-doAnimation__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "doAnimation__24MonoObjectMgr<8CollPart>Fv"
+"doAnimation__24MonoObjectMgr<8CollPart>Fv":
 /* 801702C0 0016D200  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801702C4 0016D204  7C 08 02 A6 */	mflr r0
 /* 801702C8 0016D208  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12272,8 +12272,8 @@ lbl_80170318:
 /* 80170338 0016D278  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017033C 0016D27C  4E 80 00 20 */	blr 
 
-.global doEntry__24MonoObjectMgr$$08CollPart$$1Fv
-doEntry__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "doEntry__24MonoObjectMgr<8CollPart>Fv"
+"doEntry__24MonoObjectMgr<8CollPart>Fv":
 /* 80170340 0016D280  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170344 0016D284  7C 08 02 A6 */	mflr r0
 /* 80170348 0016D288  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12310,8 +12310,8 @@ lbl_80170398:
 /* 801703B8 0016D2F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801703BC 0016D2FC  4E 80 00 20 */	blr 
 
-.global doSetView__24MonoObjectMgr$$08CollPart$$1Fi
-doSetView__24MonoObjectMgr$$08CollPart$$1Fi:
+.global "doSetView__24MonoObjectMgr<8CollPart>Fi"
+"doSetView__24MonoObjectMgr<8CollPart>Fi":
 /* 801703C0 0016D300  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801703C4 0016D304  7C 08 02 A6 */	mflr r0
 /* 801703C8 0016D308  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12352,8 +12352,8 @@ lbl_80170424:
 /* 80170448 0016D388  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017044C 0016D38C  4E 80 00 20 */	blr 
 
-.global doViewCalc__24MonoObjectMgr$$08CollPart$$1Fv
-doViewCalc__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "doViewCalc__24MonoObjectMgr<8CollPart>Fv"
+"doViewCalc__24MonoObjectMgr<8CollPart>Fv":
 /* 80170450 0016D390  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170454 0016D394  7C 08 02 A6 */	mflr r0
 /* 80170458 0016D398  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12390,8 +12390,8 @@ lbl_801704A8:
 /* 801704C8 0016D408  38 21 00 20 */	addi r1, r1, 0x20
 /* 801704CC 0016D40C  4E 80 00 20 */	blr 
 
-.global doSimulation__24MonoObjectMgr$$08CollPart$$1Ff
-doSimulation__24MonoObjectMgr$$08CollPart$$1Ff:
+.global "doSimulation__24MonoObjectMgr<8CollPart>Ff"
+"doSimulation__24MonoObjectMgr<8CollPart>Ff":
 /* 801704D0 0016D410  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801704D4 0016D414  7C 08 02 A6 */	mflr r0
 /* 801704D8 0016D418  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12432,8 +12432,8 @@ lbl_80170534:
 /* 80170558 0016D498  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017055C 0016D49C  4E 80 00 20 */	blr 
 
-.global doDirectDraw__24MonoObjectMgr$$08CollPart$$1FR8Graphics
-doDirectDraw__24MonoObjectMgr$$08CollPart$$1FR8Graphics:
+.global "doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
+"doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics":
 /* 80170560 0016D4A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170564 0016D4A4  7C 08 02 A6 */	mflr r0
 /* 80170568 0016D4A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12474,8 +12474,8 @@ lbl_801705C4:
 /* 801705E8 0016D528  38 21 00 20 */	addi r1, r1, 0x20
 /* 801705EC 0016D52C  4E 80 00 20 */	blr 
 
-.global resetMgr__24MonoObjectMgr$$08CollPart$$1Fv
-resetMgr__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "resetMgr__24MonoObjectMgr<8CollPart>Fv"
+"resetMgr__24MonoObjectMgr<8CollPart>Fv":
 /* 801705F0 0016D530  38 00 00 00 */	li r0, 0
 /* 801705F4 0016D534  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801705F8 0016D538  90 03 00 24 */	stw r0, 0x24(r3)
@@ -12483,8 +12483,8 @@ resetMgr__24MonoObjectMgr$$08CollPart$$1Fv:
 /* 80170600 0016D540  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 80170604 0016D544  4E 80 00 20 */	blr 
 
-.global clearMgr__24MonoObjectMgr$$08CollPart$$1Fv
-clearMgr__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "clearMgr__24MonoObjectMgr<8CollPart>Fv"
+"clearMgr__24MonoObjectMgr<8CollPart>Fv":
 /* 80170608 0016D548  38 00 00 00 */	li r0, 0
 /* 8017060C 0016D54C  38 C0 00 00 */	li r6, 0
 /* 80170610 0016D550  90 03 00 20 */	stw r0, 0x20(r3)
@@ -12500,25 +12500,25 @@ lbl_80170628:
 /* 80170630 0016D570  41 80 FF EC */	blt lbl_8017061C
 /* 80170634 0016D574  4E 80 00 20 */	blr 
 
-.global onAlloc__24MonoObjectMgr$$08CollPart$$1Fv
-onAlloc__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "onAlloc__24MonoObjectMgr<8CollPart>Fv"
+"onAlloc__24MonoObjectMgr<8CollPart>Fv":
 /* 80170638 0016D578  4E 80 00 20 */	blr 
 
-.global get__24MonoObjectMgr$$08CollPart$$1FPv
-get__24MonoObjectMgr$$08CollPart$$1FPv:
+.global "get__24MonoObjectMgr<8CollPart>FPv"
+"get__24MonoObjectMgr<8CollPart>FPv":
 /* 8017063C 0016D57C  1C 04 00 64 */	mulli r0, r4, 0x64
 /* 80170640 0016D580  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 80170644 0016D584  7C 63 02 14 */	add r3, r3, r0
 /* 80170648 0016D588  4E 80 00 20 */	blr 
 
-.global doAnimation__29ObjectMgr$$016GenericObjectMgr$$1Fv
-doAnimation__29ObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "doAnimation__29ObjectMgr<16GenericObjectMgr>Fv"
+"doAnimation__29ObjectMgr<16GenericObjectMgr>Fv":
 /* 8017064C 0016D58C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170650 0016D590  7C 08 02 A6 */	mflr r0
-/* 80170654 0016D594  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 80170654 0016D594  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 80170658 0016D598  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017065C 0016D59C  38 00 00 00 */	li r0, 0
-/* 80170660 0016D5A0  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 80170660 0016D5A0  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 80170664 0016D5A4  28 00 00 00 */	cmplwi r0, 0
 /* 80170668 0016D5A8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8017066C 0016D5AC  90 81 00 08 */	stw r4, 8(r1)
@@ -12643,14 +12643,14 @@ lbl_80170800:
 /* 80170828 0016D768  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017082C 0016D76C  4E 80 00 20 */	blr 
 
-.global doEntry__29ObjectMgr$$016GenericObjectMgr$$1Fv
-doEntry__29ObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "doEntry__29ObjectMgr<16GenericObjectMgr>Fv"
+"doEntry__29ObjectMgr<16GenericObjectMgr>Fv":
 /* 80170830 0016D770  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170834 0016D774  7C 08 02 A6 */	mflr r0
-/* 80170838 0016D778  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 80170838 0016D778  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 8017083C 0016D77C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80170840 0016D780  38 00 00 00 */	li r0, 0
-/* 80170844 0016D784  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 80170844 0016D784  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 80170848 0016D788  28 00 00 00 */	cmplwi r0, 0
 /* 8017084C 0016D78C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80170850 0016D790  90 81 00 08 */	stw r4, 8(r1)
@@ -12775,14 +12775,14 @@ lbl_801709E4:
 /* 80170A0C 0016D94C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80170A10 0016D950  4E 80 00 20 */	blr 
 
-.global doSetView__29ObjectMgr$$016GenericObjectMgr$$1Fi
-doSetView__29ObjectMgr$$016GenericObjectMgr$$1Fi:
+.global "doSetView__29ObjectMgr<16GenericObjectMgr>Fi"
+"doSetView__29ObjectMgr<16GenericObjectMgr>Fi":
 /* 80170A14 0016D954  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170A18 0016D958  7C 08 02 A6 */	mflr r0
-/* 80170A1C 0016D95C  3C A0 80 4B */	lis r5, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 80170A1C 0016D95C  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 80170A20 0016D960  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80170A24 0016D964  38 00 00 00 */	li r0, 0
-/* 80170A28 0016D968  38 A5 1B 5C */	addi r5, r5, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 80170A28 0016D968  38 A5 1B 5C */	addi r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 80170A2C 0016D96C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80170A30 0016D970  28 00 00 00 */	cmplwi r0, 0
 /* 80170A34 0016D974  7C 9F 23 78 */	mr r31, r4
@@ -12911,14 +12911,14 @@ lbl_80170BD4:
 /* 80170C00 0016DB40  38 21 00 20 */	addi r1, r1, 0x20
 /* 80170C04 0016DB44  4E 80 00 20 */	blr 
 
-.global doViewCalc__29ObjectMgr$$016GenericObjectMgr$$1Fv
-doViewCalc__29ObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
+"doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv":
 /* 80170C08 0016DB48  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170C0C 0016DB4C  7C 08 02 A6 */	mflr r0
-/* 80170C10 0016DB50  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 80170C10 0016DB50  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 80170C14 0016DB54  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80170C18 0016DB58  38 00 00 00 */	li r0, 0
-/* 80170C1C 0016DB5C  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 80170C1C 0016DB5C  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 80170C20 0016DB60  28 00 00 00 */	cmplwi r0, 0
 /* 80170C24 0016DB64  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80170C28 0016DB68  90 81 00 08 */	stw r4, 8(r1)
@@ -13043,14 +13043,14 @@ lbl_80170DBC:
 /* 80170DE4 0016DD24  38 21 00 20 */	addi r1, r1, 0x20
 /* 80170DE8 0016DD28  4E 80 00 20 */	blr 
 
-.global doSimulation__29ObjectMgr$$016GenericObjectMgr$$1Ff
-doSimulation__29ObjectMgr$$016GenericObjectMgr$$1Ff:
+.global "doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
+"doSimulation__29ObjectMgr<16GenericObjectMgr>Ff":
 /* 80170DEC 0016DD2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170DF0 0016DD30  7C 08 02 A6 */	mflr r0
-/* 80170DF4 0016DD34  3C 80 80 4B */	lis r4, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 80170DF4 0016DD34  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 80170DF8 0016DD38  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80170DFC 0016DD3C  38 00 00 00 */	li r0, 0
-/* 80170E00 0016DD40  38 84 1B 5C */	addi r4, r4, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 80170E00 0016DD40  38 84 1B 5C */	addi r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 80170E04 0016DD44  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 80170E08 0016DD48  FF E0 08 90 */	fmr f31, f1
 /* 80170E0C 0016DD4C  28 00 00 00 */	cmplwi r0, 0
@@ -13179,14 +13179,14 @@ lbl_80170FAC:
 /* 80170FD8 0016DF18  38 21 00 20 */	addi r1, r1, 0x20
 /* 80170FDC 0016DF1C  4E 80 00 20 */	blr 
 
-.global doDirectDraw__29ObjectMgr$$016GenericObjectMgr$$1FR8Graphics
-doDirectDraw__29ObjectMgr$$016GenericObjectMgr$$1FR8Graphics:
+.global "doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
+"doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics":
 /* 80170FE0 0016DF20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170FE4 0016DF24  7C 08 02 A6 */	mflr r0
-/* 80170FE8 0016DF28  3C A0 80 4B */	lis r5, __vt__28Iterator$$016GenericObjectMgr$$1@ha
+/* 80170FE8 0016DF28  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
 /* 80170FEC 0016DF2C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80170FF0 0016DF30  38 00 00 00 */	li r0, 0
-/* 80170FF4 0016DF34  38 A5 1B 5C */	addi r5, r5, __vt__28Iterator$$016GenericObjectMgr$$1@l
+/* 80170FF4 0016DF34  38 A5 1B 5C */	addi r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
 /* 80170FF8 0016DF38  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80170FFC 0016DF3C  28 00 00 00 */	cmplwi r0, 0
 /* 80171000 0016DF40  7C 9F 23 78 */	mr r31, r4
@@ -13315,8 +13315,8 @@ lbl_801711A0:
 /* 801711CC 0016E10C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801711D0 0016E110  4E 80 00 20 */	blr 
 
-.global getObject__29Container$$016GenericObjectMgr$$1FPv
-getObject__29Container$$016GenericObjectMgr$$1FPv:
+.global "getObject__29Container<16GenericObjectMgr>FPv"
+"getObject__29Container<16GenericObjectMgr>FPv":
 /* 801711D4 0016E114  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801711D8 0016E118  7C 08 02 A6 */	mflr r0
 /* 801711DC 0016E11C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13329,18 +13329,18 @@ getObject__29Container$$016GenericObjectMgr$$1FPv:
 /* 801711F8 0016E138  38 21 00 10 */	addi r1, r1, 0x10
 /* 801711FC 0016E13C  4E 80 00 20 */	blr 
 
-.global getAt__29Container$$016GenericObjectMgr$$1Fi
-getAt__29Container$$016GenericObjectMgr$$1Fi:
+.global "getAt__29Container<16GenericObjectMgr>Fi"
+"getAt__29Container<16GenericObjectMgr>Fi":
 /* 80171200 0016E140  38 60 00 00 */	li r3, 0
 /* 80171204 0016E144  4E 80 00 20 */	blr 
 
-.global getTo__29Container$$016GenericObjectMgr$$1Fv
-getTo__29Container$$016GenericObjectMgr$$1Fv:
+.global "getTo__29Container<16GenericObjectMgr>Fv"
+"getTo__29Container<16GenericObjectMgr>Fv":
 /* 80171208 0016E148  38 60 00 00 */	li r3, 0
 /* 8017120C 0016E14C  4E 80 00 20 */	blr 
 
-.global getObject__20Container$$08CollPart$$1FPv
-getObject__20Container$$08CollPart$$1FPv:
+.global "getObject__20Container<8CollPart>FPv"
+"getObject__20Container<8CollPart>FPv":
 /* 80171210 0016E150  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171214 0016E154  7C 08 02 A6 */	mflr r0
 /* 80171218 0016E158  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13353,18 +13353,18 @@ getObject__20Container$$08CollPart$$1FPv:
 /* 80171234 0016E174  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171238 0016E178  4E 80 00 20 */	blr 
 
-.global getAt__20Container$$08CollPart$$1Fi
-getAt__20Container$$08CollPart$$1Fi:
+.global "getAt__20Container<8CollPart>Fi"
+"getAt__20Container<8CollPart>Fi":
 /* 8017123C 0016E17C  38 60 00 00 */	li r3, 0
 /* 80171240 0016E180  4E 80 00 20 */	blr 
 
-.global getTo__20Container$$08CollPart$$1Fv
-getTo__20Container$$08CollPart$$1Fv:
+.global "getTo__20Container<8CollPart>Fv"
+"getTo__20Container<8CollPart>Fv":
 /* 80171244 0016E184  38 60 00 00 */	li r3, 0
 /* 80171248 0016E188  4E 80 00 20 */	blr 
 
-.global invoke__52Delegate1$$0Q24Game13BasePelletMgr$$4PQ28SysShape5Model$$1FPQ28SysShape5Model
-invoke__52Delegate1$$0Q24Game13BasePelletMgr$$4PQ28SysShape5Model$$1FPQ28SysShape5Model:
+.global "invoke__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>FPQ28SysShape5Model"
+"invoke__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>FPQ28SysShape5Model":
 /* 8017124C 0016E18C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171250 0016E190  7C 08 02 A6 */	mflr r0
 /* 80171254 0016E194  7C 65 1B 78 */	mr r5, r3
@@ -13378,14 +13378,14 @@ invoke__52Delegate1$$0Q24Game13BasePelletMgr$$4PQ28SysShape5Model$$1FPQ28SysShap
 /* 80171274 0016E1B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171278 0016E1B8  4E 80 00 20 */	blr 
 
-.global doDirectDraw__20ObjectMgr$$08CollPart$$1FR8Graphics
-doDirectDraw__20ObjectMgr$$08CollPart$$1FR8Graphics:
+.global "doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
+"doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics":
 /* 8017127C 0016E1BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171280 0016E1C0  7C 08 02 A6 */	mflr r0
-/* 80171284 0016E1C4  3C A0 80 4B */	lis r5, __vt__19Iterator$$08CollPart$$1@ha
+/* 80171284 0016E1C4  3C A0 80 4B */	lis r5, "__vt__19Iterator<8CollPart>"@ha
 /* 80171288 0016E1C8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8017128C 0016E1CC  38 00 00 00 */	li r0, 0
-/* 80171290 0016E1D0  38 A5 22 E4 */	addi r5, r5, __vt__19Iterator$$08CollPart$$1@l
+/* 80171290 0016E1D0  38 A5 22 E4 */	addi r5, r5, "__vt__19Iterator<8CollPart>"@l
 /* 80171294 0016E1D4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80171298 0016E1D8  28 00 00 00 */	cmplwi r0, 0
 /* 8017129C 0016E1DC  7C 9F 23 78 */	mr r31, r4
@@ -13514,8 +13514,8 @@ lbl_8017143C:
 /* 80171468 0016E3A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017146C 0016E3AC  4E 80 00 20 */	blr 
 
-.global isDone__19Iterator$$08CollPart$$1Fv
-isDone__19Iterator$$08CollPart$$1Fv:
+.global "isDone__19Iterator<8CollPart>Fv"
+"isDone__19Iterator<8CollPart>Fv":
 /* 80171470 0016E3B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171474 0016E3B4  7C 08 02 A6 */	mflr r0
 /* 80171478 0016E3B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13536,14 +13536,14 @@ isDone__19Iterator$$08CollPart$$1Fv:
 /* 801714B4 0016E3F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801714B8 0016E3F8  4E 80 00 20 */	blr 
 
-.global doSimulation__20ObjectMgr$$08CollPart$$1Ff
-doSimulation__20ObjectMgr$$08CollPart$$1Ff:
+.global "doSimulation__20ObjectMgr<8CollPart>Ff"
+"doSimulation__20ObjectMgr<8CollPart>Ff":
 /* 801714BC 0016E3FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801714C0 0016E400  7C 08 02 A6 */	mflr r0
-/* 801714C4 0016E404  3C 80 80 4B */	lis r4, __vt__19Iterator$$08CollPart$$1@ha
+/* 801714C4 0016E404  3C 80 80 4B */	lis r4, "__vt__19Iterator<8CollPart>"@ha
 /* 801714C8 0016E408  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801714CC 0016E40C  38 00 00 00 */	li r0, 0
-/* 801714D0 0016E410  38 84 22 E4 */	addi r4, r4, __vt__19Iterator$$08CollPart$$1@l
+/* 801714D0 0016E410  38 84 22 E4 */	addi r4, r4, "__vt__19Iterator<8CollPart>"@l
 /* 801714D4 0016E414  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 801714D8 0016E418  FF E0 08 90 */	fmr f31, f1
 /* 801714DC 0016E41C  28 00 00 00 */	cmplwi r0, 0
@@ -13672,14 +13672,14 @@ lbl_8017167C:
 /* 801716A8 0016E5E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801716AC 0016E5EC  4E 80 00 20 */	blr 
 
-.global doViewCalc__20ObjectMgr$$08CollPart$$1Fv
-doViewCalc__20ObjectMgr$$08CollPart$$1Fv:
+.global "doViewCalc__20ObjectMgr<8CollPart>Fv"
+"doViewCalc__20ObjectMgr<8CollPart>Fv":
 /* 801716B0 0016E5F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801716B4 0016E5F4  7C 08 02 A6 */	mflr r0
-/* 801716B8 0016E5F8  3C 80 80 4B */	lis r4, __vt__19Iterator$$08CollPart$$1@ha
+/* 801716B8 0016E5F8  3C 80 80 4B */	lis r4, "__vt__19Iterator<8CollPart>"@ha
 /* 801716BC 0016E5FC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801716C0 0016E600  38 00 00 00 */	li r0, 0
-/* 801716C4 0016E604  38 84 22 E4 */	addi r4, r4, __vt__19Iterator$$08CollPart$$1@l
+/* 801716C4 0016E604  38 84 22 E4 */	addi r4, r4, "__vt__19Iterator<8CollPart>"@l
 /* 801716C8 0016E608  28 00 00 00 */	cmplwi r0, 0
 /* 801716CC 0016E60C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801716D0 0016E610  90 81 00 08 */	stw r4, 8(r1)
@@ -13804,14 +13804,14 @@ lbl_80171864:
 /* 8017188C 0016E7CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171890 0016E7D0  4E 80 00 20 */	blr 
 
-.global doSetView__20ObjectMgr$$08CollPart$$1Fi
-doSetView__20ObjectMgr$$08CollPart$$1Fi:
+.global "doSetView__20ObjectMgr<8CollPart>Fi"
+"doSetView__20ObjectMgr<8CollPart>Fi":
 /* 80171894 0016E7D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171898 0016E7D8  7C 08 02 A6 */	mflr r0
-/* 8017189C 0016E7DC  3C A0 80 4B */	lis r5, __vt__19Iterator$$08CollPart$$1@ha
+/* 8017189C 0016E7DC  3C A0 80 4B */	lis r5, "__vt__19Iterator<8CollPart>"@ha
 /* 801718A0 0016E7E0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801718A4 0016E7E4  38 00 00 00 */	li r0, 0
-/* 801718A8 0016E7E8  38 A5 22 E4 */	addi r5, r5, __vt__19Iterator$$08CollPart$$1@l
+/* 801718A8 0016E7E8  38 A5 22 E4 */	addi r5, r5, "__vt__19Iterator<8CollPart>"@l
 /* 801718AC 0016E7EC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801718B0 0016E7F0  28 00 00 00 */	cmplwi r0, 0
 /* 801718B4 0016E7F4  7C 9F 23 78 */	mr r31, r4
@@ -13940,14 +13940,14 @@ lbl_80171A54:
 /* 80171A80 0016E9C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171A84 0016E9C4  4E 80 00 20 */	blr 
 
-.global doEntry__20ObjectMgr$$08CollPart$$1Fv
-doEntry__20ObjectMgr$$08CollPart$$1Fv:
+.global "doEntry__20ObjectMgr<8CollPart>Fv"
+"doEntry__20ObjectMgr<8CollPart>Fv":
 /* 80171A88 0016E9C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171A8C 0016E9CC  7C 08 02 A6 */	mflr r0
-/* 80171A90 0016E9D0  3C 80 80 4B */	lis r4, __vt__19Iterator$$08CollPart$$1@ha
+/* 80171A90 0016E9D0  3C 80 80 4B */	lis r4, "__vt__19Iterator<8CollPart>"@ha
 /* 80171A94 0016E9D4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80171A98 0016E9D8  38 00 00 00 */	li r0, 0
-/* 80171A9C 0016E9DC  38 84 22 E4 */	addi r4, r4, __vt__19Iterator$$08CollPart$$1@l
+/* 80171A9C 0016E9DC  38 84 22 E4 */	addi r4, r4, "__vt__19Iterator<8CollPart>"@l
 /* 80171AA0 0016E9E0  28 00 00 00 */	cmplwi r0, 0
 /* 80171AA4 0016E9E4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80171AA8 0016E9E8  90 81 00 08 */	stw r4, 8(r1)
@@ -14072,14 +14072,14 @@ lbl_80171C3C:
 /* 80171C64 0016EBA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171C68 0016EBA8  4E 80 00 20 */	blr 
 
-.global doAnimation__20ObjectMgr$$08CollPart$$1Fv
-doAnimation__20ObjectMgr$$08CollPart$$1Fv:
+.global "doAnimation__20ObjectMgr<8CollPart>Fv"
+"doAnimation__20ObjectMgr<8CollPart>Fv":
 /* 80171C6C 0016EBAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171C70 0016EBB0  7C 08 02 A6 */	mflr r0
-/* 80171C74 0016EBB4  3C 80 80 4B */	lis r4, __vt__19Iterator$$08CollPart$$1@ha
+/* 80171C74 0016EBB4  3C 80 80 4B */	lis r4, "__vt__19Iterator<8CollPart>"@ha
 /* 80171C78 0016EBB8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80171C7C 0016EBBC  38 00 00 00 */	li r0, 0
-/* 80171C80 0016EBC0  38 84 22 E4 */	addi r4, r4, __vt__19Iterator$$08CollPart$$1@l
+/* 80171C80 0016EBC0  38 84 22 E4 */	addi r4, r4, "__vt__19Iterator<8CollPart>"@l
 /* 80171C84 0016EBC4  28 00 00 00 */	cmplwi r0, 0
 /* 80171C88 0016EBC8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80171C8C 0016EBCC  90 81 00 08 */	stw r4, 8(r1)
@@ -14204,8 +14204,8 @@ lbl_80171E20:
 /* 80171E48 0016ED88  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171E4C 0016ED8C  4E 80 00 20 */	blr 
 
-.global __ct__24MonoObjectMgr$$08CollPart$$1Fv
-__ct__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "__ct__24MonoObjectMgr<8CollPart>Fv"
+"__ct__24MonoObjectMgr<8CollPart>Fv":
 /* 80171E50 0016ED90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171E54 0016ED94  7C 08 02 A6 */	mflr r0
 /* 80171E58 0016ED98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14213,17 +14213,17 @@ __ct__24MonoObjectMgr$$08CollPart$$1Fv:
 /* 80171E60 0016EDA0  7C 7F 1B 78 */	mr r31, r3
 /* 80171E64 0016EDA4  48 29 F5 2D */	bl __ct__5CNodeFv
 /* 80171E68 0016EDA8  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 80171E6C 0016EDAC  3C 60 80 4B */	lis r3, __vt__20Container$$08CollPart$$1@ha
+/* 80171E6C 0016EDAC  3C 60 80 4B */	lis r3, "__vt__20Container<8CollPart>"@ha
 /* 80171E70 0016EDB0  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
 /* 80171E74 0016EDB4  3C C0 80 4B */	lis r6, __vt__16GenericObjectMgr@ha
 /* 80171E78 0016EDB8  90 1F 00 00 */	stw r0, 0(r31)
-/* 80171E7C 0016EDBC  38 03 1D 80 */	addi r0, r3, __vt__20Container$$08CollPart$$1@l
-/* 80171E80 0016EDC0  3C 80 80 4B */	lis r4, __vt__20ObjectMgr$$08CollPart$$1@ha
-/* 80171E84 0016EDC4  3C 60 80 4B */	lis r3, __vt__24MonoObjectMgr$$08CollPart$$1@ha
+/* 80171E7C 0016EDBC  38 03 1D 80 */	addi r0, r3, "__vt__20Container<8CollPart>"@l
+/* 80171E80 0016EDC0  3C 80 80 4B */	lis r4, "__vt__20ObjectMgr<8CollPart>"@ha
+/* 80171E84 0016EDC4  3C 60 80 4B */	lis r3, "__vt__24MonoObjectMgr<8CollPart>"@ha
 /* 80171E88 0016EDC8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80171E8C 0016EDCC  39 00 00 00 */	li r8, 0
-/* 80171E90 0016EDD0  38 E4 1D AC */	addi r7, r4, __vt__20ObjectMgr$$08CollPart$$1@l
-/* 80171E94 0016EDD4  38 A3 1E 28 */	addi r5, r3, __vt__24MonoObjectMgr$$08CollPart$$1@l
+/* 80171E90 0016EDD0  38 E4 1D AC */	addi r7, r4, "__vt__20ObjectMgr<8CollPart>"@l
+/* 80171E94 0016EDD4  38 A3 1E 28 */	addi r5, r3, "__vt__24MonoObjectMgr<8CollPart>"@l
 /* 80171E98 0016EDD8  99 1F 00 18 */	stb r8, 0x18(r31)
 /* 80171E9C 0016EDDC  38 06 B5 F0 */	addi r0, r6, __vt__16GenericObjectMgr@l
 /* 80171EA0 0016EDE0  38 C7 00 2C */	addi r6, r7, 0x2c
@@ -14246,8 +14246,8 @@ __ct__24MonoObjectMgr$$08CollPart$$1Fv:
 /* 80171EE4 0016EE24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171EE8 0016EE28  4E 80 00 20 */	blr 
 
-.global transit__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg
-transit__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6PelletiPQ24Game8StateArg:
+.global "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+"transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg":
 /* 80171EEC 0016EE2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171EF0 0016EE30  7C 08 02 A6 */	mflr r0
 /* 80171EF4 0016EE34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14291,16 +14291,16 @@ lbl_80171F4C:
 /* 80171F80 0016EEC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171F84 0016EEC4  4E 80 00 20 */	blr 
 
-.global init__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletPQ24Game8StateArg
-init__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6PelletPQ24Game8StateArg:
+.global "init__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletPQ24Game8StateArg"
+"init__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletPQ24Game8StateArg":
 /* 80171F88 0016EEC8  4E 80 00 20 */	blr 
 
-.global cleanup__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-cleanup__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet:
+.global "cleanup__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+"cleanup__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 80171F8C 0016EECC  4E 80 00 20 */	blr 
 
-.global getCurrID__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-getCurrID__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet:
+.global "getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
+"getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 80171F90 0016EED0  80 64 03 CC */	lwz r3, 0x3cc(r4)
 /* 80171F94 0016EED4  28 03 00 00 */	cmplwi r3, 0
 /* 80171F98 0016EED8  41 82 00 0C */	beq lbl_80171FA4
@@ -14310,8 +14310,8 @@ lbl_80171FA4:
 /* 80171FA4 0016EEE4  38 60 FF FF */	li r3, -1
 /* 80171FA8 0016EEE8  4E 80 00 20 */	blr 
 
-.global exec__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-exec__Q24Game28StateMachine$$0Q24Game6Pellet$$1FPQ24Game6Pellet:
+.global "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
+"exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 80171FAC 0016EEEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171FB0 0016EEF0  7C 08 02 A6 */	mflr r0
 /* 80171FB4 0016EEF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14328,12 +14328,12 @@ lbl_80171FD4:
 /* 80171FDC 0016EF1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171FE0 0016EF20  4E 80 00 20 */	blr 
 
-.global exec__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet
-exec__Q24Game24FSMState$$0Q24Game6Pellet$$1FPQ24Game6Pellet:
+.global "exec__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+"exec__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet":
 /* 80171FE4 0016EF24  4E 80 00 20 */	blr 
 
-.global resetMgrAndResources__Q24Game49FixedSizePelletMgr$$0Q34Game13PelletOtakara6Object$$1Fv
-resetMgrAndResources__Q24Game49FixedSizePelletMgr$$0Q34Game13PelletOtakara6Object$$1Fv:
+.global "resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv"
+"resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv":
 /* 80171FE8 0016EF28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171FEC 0016EF2C  7C 08 02 A6 */	mflr r0
 /* 80171FF0 0016EF30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14377,8 +14377,8 @@ lbl_80172070:
 /* 8017207C 0016EFBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80172080 0016EFC0  4E 80 00 20 */	blr 
 
-.global resetMgr__Q24Game49FixedSizePelletMgr$$0Q34Game13PelletOtakara6Object$$1Fv
-resetMgr__Q24Game49FixedSizePelletMgr$$0Q34Game13PelletOtakara6Object$$1Fv:
+.global "resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv"
+"resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv":
 /* 80172084 0016EFC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172088 0016EFC8  7C 08 02 A6 */	mflr r0
 /* 8017208C 0016EFCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14400,8 +14400,8 @@ resetMgr__Q24Game49FixedSizePelletMgr$$0Q34Game13PelletOtakara6Object$$1Fv:
 /* 801720CC 0016F00C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801720D0 0016F010  4E 80 00 20 */	blr 
 
-.global resetMgrAndResources__Q24Game46FixedSizePelletMgr$$0Q34Game10PelletItem6Object$$1Fv
-resetMgrAndResources__Q24Game46FixedSizePelletMgr$$0Q34Game10PelletItem6Object$$1Fv:
+.global "resetMgrAndResources__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
+"resetMgrAndResources__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv":
 /* 801720D4 0016F014  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801720D8 0016F018  7C 08 02 A6 */	mflr r0
 /* 801720DC 0016F01C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14445,8 +14445,8 @@ lbl_8017215C:
 /* 80172168 0016F0A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017216C 0016F0AC  4E 80 00 20 */	blr 
 
-.global resetMgr__Q24Game46FixedSizePelletMgr$$0Q34Game10PelletItem6Object$$1Fv
-resetMgr__Q24Game46FixedSizePelletMgr$$0Q34Game10PelletItem6Object$$1Fv:
+.global "resetMgr__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
+"resetMgr__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv":
 /* 80172170 0016F0B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172174 0016F0B4  7C 08 02 A6 */	mflr r0
 /* 80172178 0016F0B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14468,8 +14468,8 @@ resetMgr__Q24Game46FixedSizePelletMgr$$0Q34Game10PelletItem6Object$$1Fv:
 /* 801721B8 0016F0F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801721BC 0016F0FC  4E 80 00 20 */	blr 
 
-.global __ml__19Iterator$$08CollPart$$1Fv
-__ml__19Iterator$$08CollPart$$1Fv:
+.global "__ml__19Iterator<8CollPart>Fv"
+"__ml__19Iterator<8CollPart>Fv":
 /* 801721C0 0016F100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801721C4 0016F104  7C 08 02 A6 */	mflr r0
 /* 801721C8 0016F108  7C 64 1B 78 */	mr r4, r3
@@ -14485,8 +14485,8 @@ __ml__19Iterator$$08CollPart$$1Fv:
 /* 801721F0 0016F130  38 21 00 10 */	addi r1, r1, 0x10
 /* 801721F4 0016F134  4E 80 00 20 */	blr 
 
-.global next__19Iterator$$08CollPart$$1Fv
-next__19Iterator$$08CollPart$$1Fv:
+.global "next__19Iterator<8CollPart>Fv"
+"next__19Iterator<8CollPart>Fv":
 /* 801721F8 0016F138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801721FC 0016F13C  7C 08 02 A6 */	mflr r0
 /* 80172200 0016F140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14549,8 +14549,8 @@ lbl_801722C8:
 /* 801722D4 0016F214  38 21 00 10 */	addi r1, r1, 0x10
 /* 801722D8 0016F218  4E 80 00 20 */	blr 
 
-.global first__19Iterator$$08CollPart$$1Fv
-first__19Iterator$$08CollPart$$1Fv:
+.global "first__19Iterator<8CollPart>Fv"
+"first__19Iterator<8CollPart>Fv":
 /* 801722DC 0016F21C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801722E0 0016F220  7C 08 02 A6 */	mflr r0
 /* 801722E4 0016F224  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14611,8 +14611,8 @@ lbl_801723A4:
 /* 801723B0 0016F2F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801723B4 0016F2F4  4E 80 00 20 */	blr 
 
-.global resetMgr__41MonoObjectMgr$$0Q34Game10PelletItem6Object$$1Fv
-resetMgr__41MonoObjectMgr$$0Q34Game10PelletItem6Object$$1Fv:
+.global "resetMgr__41MonoObjectMgr<Q34Game10PelletItem6Object>Fv"
+"resetMgr__41MonoObjectMgr<Q34Game10PelletItem6Object>Fv":
 /* 801723B8 0016F2F8  38 00 00 00 */	li r0, 0
 /* 801723BC 0016F2FC  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801723C0 0016F300  90 03 00 24 */	stw r0, 0x24(r3)
@@ -14620,8 +14620,8 @@ resetMgr__41MonoObjectMgr$$0Q34Game10PelletItem6Object$$1Fv:
 /* 801723C8 0016F308  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801723CC 0016F30C  4E 80 00 20 */	blr 
 
-.global resetMgr__44MonoObjectMgr$$0Q34Game13PelletOtakara6Object$$1Fv
-resetMgr__44MonoObjectMgr$$0Q34Game13PelletOtakara6Object$$1Fv:
+.global "resetMgr__44MonoObjectMgr<Q34Game13PelletOtakara6Object>Fv"
+"resetMgr__44MonoObjectMgr<Q34Game13PelletOtakara6Object>Fv":
 /* 801723D0 0016F310  38 00 00 00 */	li r0, 0
 /* 801723D4 0016F314  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801723D8 0016F318  90 03 00 24 */	stw r0, 0x24(r3)
@@ -14642,172 +14642,172 @@ __sinit_pelletMgr_cpp:
 /* 80172408 0016F348  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8017240C 0016F34C  4E 80 00 20 */	blr 
 
-.global $$216$$2__dt__Q23PSM9EventBaseFv
-$$216$$2__dt__Q23PSM9EventBaseFv:
+.global "@16@__dt__Q23PSM9EventBaseFv"
+"@16@__dt__Q23PSM9EventBaseFv":
 /* 80172410 0016F350  38 63 FF F0 */	addi r3, r3, -16
 /* 80172414 0016F354  4B FF DC A4 */	b __dt__Q23PSM9EventBaseFv
 
-.global $$248$$2startSound__Q23PSM11CreatureObjFUcUlUl
-$$248$$2startSound__Q23PSM11CreatureObjFUcUlUl:
+.global "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+"@48@startSound__Q23PSM11CreatureObjFUcUlUl":
 /* 80172418 0016F358  38 63 FF D0 */	addi r3, r3, -48
 /* 8017241C 0016F35C  48 2E B5 68 */	b startSound__Q23PSM11CreatureObjFUcUlUl
 
-.global $$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
-$$248$$2startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl:
+.global "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+"@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl":
 /* 80172420 0016F360  38 63 FF D0 */	addi r3, r3, -48
 /* 80172424 0016F364  48 2E B5 EC */	b startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
 
-.global $$248$$2startSound__Q23PSM11CreatureObjFUlUl
-$$248$$2startSound__Q23PSM11CreatureObjFUlUl:
+.global "@48@startSound__Q23PSM11CreatureObjFUlUl"
+"@48@startSound__Q23PSM11CreatureObjFUlUl":
 /* 80172428 0016F368  38 63 FF D0 */	addi r3, r3, -48
 /* 8017242C 0016F36C  48 2E B5 1C */	b startSound__Q23PSM11CreatureObjFUlUl
 
-.global $$248$$2__dt__Q23PSM9EventBaseFv
-$$248$$2__dt__Q23PSM9EventBaseFv:
+.global "@48@__dt__Q23PSM9EventBaseFv"
+"@48@__dt__Q23PSM9EventBaseFv":
 /* 80172430 0016F370  38 63 FF D0 */	addi r3, r3, -48
 /* 80172434 0016F374  4B FF DC 84 */	b __dt__Q23PSM9EventBaseFv
 
-.global $$2788$$2onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent
-$$2788$$2onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent:
+.global "@788@onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent"
+"@788@onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent":
 /* 80172438 0016F378  38 63 FC EC */	addi r3, r3, -788
 /* 8017243C 0016F37C  4B FF 7F 24 */	b onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent
 
-.global $$2792$$2getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam
-$$2792$$2getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam:
+.global "@792@getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam"
+"@792@getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam":
 /* 80172440 0016F380  38 63 FC E8 */	addi r3, r3, -792
 /* 80172444 0016F384  4B FF 59 E4 */	b getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam
 
-.global $$228$$2resetMgr__24MonoObjectMgr$$08CollPart$$1Fv
-$$228$$2resetMgr__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "@28@resetMgr__24MonoObjectMgr<8CollPart>Fv"
+"@28@resetMgr__24MonoObjectMgr<8CollPart>Fv":
 /* 80172448 0016F388  38 63 FF E4 */	addi r3, r3, -28
-/* 8017244C 0016F38C  4B FF E1 A4 */	b resetMgr__24MonoObjectMgr$$08CollPart$$1Fv
+/* 8017244C 0016F38C  4B FF E1 A4 */	b "resetMgr__24MonoObjectMgr<8CollPart>Fv"
 
-.global $$228$$2doDirectDraw__24MonoObjectMgr$$08CollPart$$1FR8Graphics
-$$228$$2doDirectDraw__24MonoObjectMgr$$08CollPart$$1FR8Graphics:
+.global "@28@doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
+"@28@doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics":
 /* 80172450 0016F390  38 63 FF E4 */	addi r3, r3, -28
-/* 80172454 0016F394  4B FF E1 0C */	b doDirectDraw__24MonoObjectMgr$$08CollPart$$1FR8Graphics
+/* 80172454 0016F394  4B FF E1 0C */	b "doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
 
-.global $$228$$2doSimulation__24MonoObjectMgr$$08CollPart$$1Ff
-$$228$$2doSimulation__24MonoObjectMgr$$08CollPart$$1Ff:
+.global "@28@doSimulation__24MonoObjectMgr<8CollPart>Ff"
+"@28@doSimulation__24MonoObjectMgr<8CollPart>Ff":
 /* 80172458 0016F398  38 63 FF E4 */	addi r3, r3, -28
-/* 8017245C 0016F39C  4B FF E0 74 */	b doSimulation__24MonoObjectMgr$$08CollPart$$1Ff
+/* 8017245C 0016F39C  4B FF E0 74 */	b "doSimulation__24MonoObjectMgr<8CollPart>Ff"
 
-.global $$228$$2doViewCalc__24MonoObjectMgr$$08CollPart$$1Fv
-$$228$$2doViewCalc__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "@28@doViewCalc__24MonoObjectMgr<8CollPart>Fv"
+"@28@doViewCalc__24MonoObjectMgr<8CollPart>Fv":
 /* 80172460 0016F3A0  38 63 FF E4 */	addi r3, r3, -28
-/* 80172464 0016F3A4  4B FF DF EC */	b doViewCalc__24MonoObjectMgr$$08CollPart$$1Fv
+/* 80172464 0016F3A4  4B FF DF EC */	b "doViewCalc__24MonoObjectMgr<8CollPart>Fv"
 
-.global $$228$$2doSetView__24MonoObjectMgr$$08CollPart$$1Fi
-$$228$$2doSetView__24MonoObjectMgr$$08CollPart$$1Fi:
+.global "@28@doSetView__24MonoObjectMgr<8CollPart>Fi"
+"@28@doSetView__24MonoObjectMgr<8CollPart>Fi":
 /* 80172468 0016F3A8  38 63 FF E4 */	addi r3, r3, -28
-/* 8017246C 0016F3AC  4B FF DF 54 */	b doSetView__24MonoObjectMgr$$08CollPart$$1Fi
+/* 8017246C 0016F3AC  4B FF DF 54 */	b "doSetView__24MonoObjectMgr<8CollPart>Fi"
 
-.global $$228$$2doEntry__24MonoObjectMgr$$08CollPart$$1Fv
-$$228$$2doEntry__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "@28@doEntry__24MonoObjectMgr<8CollPart>Fv"
+"@28@doEntry__24MonoObjectMgr<8CollPart>Fv":
 /* 80172470 0016F3B0  38 63 FF E4 */	addi r3, r3, -28
-/* 80172474 0016F3B4  4B FF DE CC */	b doEntry__24MonoObjectMgr$$08CollPart$$1Fv
+/* 80172474 0016F3B4  4B FF DE CC */	b "doEntry__24MonoObjectMgr<8CollPart>Fv"
 
-.global $$228$$2doAnimation__24MonoObjectMgr$$08CollPart$$1Fv
-$$228$$2doAnimation__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "@28@doAnimation__24MonoObjectMgr<8CollPart>Fv"
+"@28@doAnimation__24MonoObjectMgr<8CollPart>Fv":
 /* 80172478 0016F3B8  38 63 FF E4 */	addi r3, r3, -28
-/* 8017247C 0016F3BC  4B FF DE 44 */	b doAnimation__24MonoObjectMgr$$08CollPart$$1Fv
+/* 8017247C 0016F3BC  4B FF DE 44 */	b "doAnimation__24MonoObjectMgr<8CollPart>Fv"
 
-.global $$228$$2doDirectDraw__20ObjectMgr$$08CollPart$$1FR8Graphics
-$$228$$2doDirectDraw__20ObjectMgr$$08CollPart$$1FR8Graphics:
+.global "@28@doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
+"@28@doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics":
 /* 80172480 0016F3C0  38 63 FF E4 */	addi r3, r3, -28
-/* 80172484 0016F3C4  4B FF ED F8 */	b doDirectDraw__20ObjectMgr$$08CollPart$$1FR8Graphics
+/* 80172484 0016F3C4  4B FF ED F8 */	b "doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
 
-.global $$228$$2doSimulation__20ObjectMgr$$08CollPart$$1Ff
-$$228$$2doSimulation__20ObjectMgr$$08CollPart$$1Ff:
+.global "@28@doSimulation__20ObjectMgr<8CollPart>Ff"
+"@28@doSimulation__20ObjectMgr<8CollPart>Ff":
 /* 80172488 0016F3C8  38 63 FF E4 */	addi r3, r3, -28
-/* 8017248C 0016F3CC  4B FF F0 30 */	b doSimulation__20ObjectMgr$$08CollPart$$1Ff
+/* 8017248C 0016F3CC  4B FF F0 30 */	b "doSimulation__20ObjectMgr<8CollPart>Ff"
 
-.global $$228$$2doViewCalc__20ObjectMgr$$08CollPart$$1Fv
-$$228$$2doViewCalc__20ObjectMgr$$08CollPart$$1Fv:
+.global "@28@doViewCalc__20ObjectMgr<8CollPart>Fv"
+"@28@doViewCalc__20ObjectMgr<8CollPart>Fv":
 /* 80172490 0016F3D0  38 63 FF E4 */	addi r3, r3, -28
-/* 80172494 0016F3D4  4B FF F2 1C */	b doViewCalc__20ObjectMgr$$08CollPart$$1Fv
+/* 80172494 0016F3D4  4B FF F2 1C */	b "doViewCalc__20ObjectMgr<8CollPart>Fv"
 
-.global $$228$$2doSetView__20ObjectMgr$$08CollPart$$1Fi
-$$228$$2doSetView__20ObjectMgr$$08CollPart$$1Fi:
+.global "@28@doSetView__20ObjectMgr<8CollPart>Fi"
+"@28@doSetView__20ObjectMgr<8CollPart>Fi":
 /* 80172498 0016F3D8  38 63 FF E4 */	addi r3, r3, -28
-/* 8017249C 0016F3DC  4B FF F3 F8 */	b doSetView__20ObjectMgr$$08CollPart$$1Fi
+/* 8017249C 0016F3DC  4B FF F3 F8 */	b "doSetView__20ObjectMgr<8CollPart>Fi"
 
-.global $$228$$2doEntry__20ObjectMgr$$08CollPart$$1Fv
-$$228$$2doEntry__20ObjectMgr$$08CollPart$$1Fv:
+.global "@28@doEntry__20ObjectMgr<8CollPart>Fv"
+"@28@doEntry__20ObjectMgr<8CollPart>Fv":
 /* 801724A0 0016F3E0  38 63 FF E4 */	addi r3, r3, -28
-/* 801724A4 0016F3E4  4B FF F5 E4 */	b doEntry__20ObjectMgr$$08CollPart$$1Fv
+/* 801724A4 0016F3E4  4B FF F5 E4 */	b "doEntry__20ObjectMgr<8CollPart>Fv"
 
-.global $$228$$2doAnimation__20ObjectMgr$$08CollPart$$1Fv
-$$228$$2doAnimation__20ObjectMgr$$08CollPart$$1Fv:
+.global "@28@doAnimation__20ObjectMgr<8CollPart>Fv"
+"@28@doAnimation__20ObjectMgr<8CollPart>Fv":
 /* 801724A8 0016F3E8  38 63 FF E4 */	addi r3, r3, -28
-/* 801724AC 0016F3EC  4B FF F7 C0 */	b doAnimation__20ObjectMgr$$08CollPart$$1Fv
+/* 801724AC 0016F3EC  4B FF F7 C0 */	b "doAnimation__20ObjectMgr<8CollPart>Fv"
 
-.global $$228$$2doDirectDraw__29ObjectMgr$$016GenericObjectMgr$$1FR8Graphics
-$$228$$2doDirectDraw__29ObjectMgr$$016GenericObjectMgr$$1FR8Graphics:
+.global "@28@doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
+"@28@doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics":
 /* 801724B0 0016F3F0  38 63 FF E4 */	addi r3, r3, -28
-/* 801724B4 0016F3F4  4B FF EB 2C */	b doDirectDraw__29ObjectMgr$$016GenericObjectMgr$$1FR8Graphics
+/* 801724B4 0016F3F4  4B FF EB 2C */	b "doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
 
-.global $$228$$2doSimulation__29ObjectMgr$$016GenericObjectMgr$$1Ff
-$$228$$2doSimulation__29ObjectMgr$$016GenericObjectMgr$$1Ff:
+.global "@28@doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
+"@28@doSimulation__29ObjectMgr<16GenericObjectMgr>Ff":
 /* 801724B8 0016F3F8  38 63 FF E4 */	addi r3, r3, -28
-/* 801724BC 0016F3FC  4B FF E9 30 */	b doSimulation__29ObjectMgr$$016GenericObjectMgr$$1Ff
+/* 801724BC 0016F3FC  4B FF E9 30 */	b "doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
 
-.global $$228$$2doViewCalc__29ObjectMgr$$016GenericObjectMgr$$1Fv
-$$228$$2doViewCalc__29ObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "@28@doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
+"@28@doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv":
 /* 801724C0 0016F400  38 63 FF E4 */	addi r3, r3, -28
-/* 801724C4 0016F404  4B FF E7 44 */	b doViewCalc__29ObjectMgr$$016GenericObjectMgr$$1Fv
+/* 801724C4 0016F404  4B FF E7 44 */	b "doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global $$228$$2doSetView__29ObjectMgr$$016GenericObjectMgr$$1Fi
-$$228$$2doSetView__29ObjectMgr$$016GenericObjectMgr$$1Fi:
+.global "@28@doSetView__29ObjectMgr<16GenericObjectMgr>Fi"
+"@28@doSetView__29ObjectMgr<16GenericObjectMgr>Fi":
 /* 801724C8 0016F408  38 63 FF E4 */	addi r3, r3, -28
-/* 801724CC 0016F40C  4B FF E5 48 */	b doSetView__29ObjectMgr$$016GenericObjectMgr$$1Fi
+/* 801724CC 0016F40C  4B FF E5 48 */	b "doSetView__29ObjectMgr<16GenericObjectMgr>Fi"
 
-.global $$228$$2doEntry__29ObjectMgr$$016GenericObjectMgr$$1Fv
-$$228$$2doEntry__29ObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "@28@doEntry__29ObjectMgr<16GenericObjectMgr>Fv"
+"@28@doEntry__29ObjectMgr<16GenericObjectMgr>Fv":
 /* 801724D0 0016F410  38 63 FF E4 */	addi r3, r3, -28
-/* 801724D4 0016F414  4B FF E3 5C */	b doEntry__29ObjectMgr$$016GenericObjectMgr$$1Fv
+/* 801724D4 0016F414  4B FF E3 5C */	b "doEntry__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global $$228$$2doAnimation__29ObjectMgr$$016GenericObjectMgr$$1Fv
-$$228$$2doAnimation__29ObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "@28@doAnimation__29ObjectMgr<16GenericObjectMgr>Fv"
+"@28@doAnimation__29ObjectMgr<16GenericObjectMgr>Fv":
 /* 801724D8 0016F418  38 63 FF E4 */	addi r3, r3, -28
-/* 801724DC 0016F41C  4B FF E1 70 */	b doAnimation__29ObjectMgr$$016GenericObjectMgr$$1Fv
+/* 801724DC 0016F41C  4B FF E1 70 */	b "doAnimation__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global $$228$$2resetMgr__33NodeObjectMgr$$016GenericObjectMgr$$1Fv
-$$228$$2resetMgr__33NodeObjectMgr$$016GenericObjectMgr$$1Fv:
+.global "@28@resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
+"@28@resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv":
 /* 801724E0 0016F420  38 63 FF E4 */	addi r3, r3, -28
-/* 801724E4 0016F424  4B FF DC EC */	b resetMgr__33NodeObjectMgr$$016GenericObjectMgr$$1Fv
+/* 801724E4 0016F424  4B FF DC EC */	b "resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
 
-.global $$228$$2doSimpleDraw__Q24Game9PelletMgrFP8Viewport
-$$228$$2doSimpleDraw__Q24Game9PelletMgrFP8Viewport:
+.global "@28@doSimpleDraw__Q24Game9PelletMgrFP8Viewport"
+"@28@doSimpleDraw__Q24Game9PelletMgrFP8Viewport":
 /* 801724E8 0016F428  38 63 FF E4 */	addi r3, r3, -28
 /* 801724EC 0016F42C  4B FF C4 D4 */	b doSimpleDraw__Q24Game9PelletMgrFP8Viewport
 
-.global $$228$$2doDirectDraw__Q24Game9PelletMgrFR8Graphics
-$$228$$2doDirectDraw__Q24Game9PelletMgrFR8Graphics:
+.global "@28@doDirectDraw__Q24Game9PelletMgrFR8Graphics"
+"@28@doDirectDraw__Q24Game9PelletMgrFR8Graphics":
 /* 801724F0 0016F430  38 63 FF E4 */	addi r3, r3, -28
 /* 801724F4 0016F434  4B FF C4 C8 */	b doDirectDraw__Q24Game9PelletMgrFR8Graphics
 
-.global $$228$$2doSimulation__Q24Game9PelletMgrFf
-$$228$$2doSimulation__Q24Game9PelletMgrFf:
+.global "@28@doSimulation__Q24Game9PelletMgrFf"
+"@28@doSimulation__Q24Game9PelletMgrFf":
 /* 801724F8 0016F438  38 63 FF E4 */	addi r3, r3, -28
 /* 801724FC 0016F43C  4B FF C2 CC */	b doSimulation__Q24Game9PelletMgrFf
 
-.global $$228$$2doViewCalc__Q24Game9PelletMgrFv
-$$228$$2doViewCalc__Q24Game9PelletMgrFv:
+.global "@28@doViewCalc__Q24Game9PelletMgrFv"
+"@28@doViewCalc__Q24Game9PelletMgrFv":
 /* 80172500 0016F440  38 63 FF E4 */	addi r3, r3, -28
 /* 80172504 0016F444  4B FF C0 E0 */	b doViewCalc__Q24Game9PelletMgrFv
 
-.global $$228$$2doSetView__Q24Game9PelletMgrFi
-$$228$$2doSetView__Q24Game9PelletMgrFi:
+.global "@28@doSetView__Q24Game9PelletMgrFi"
+"@28@doSetView__Q24Game9PelletMgrFi":
 /* 80172508 0016F448  38 63 FF E4 */	addi r3, r3, -28
 /* 8017250C 0016F44C  4B FF BE E4 */	b doSetView__Q24Game9PelletMgrFi
 
-.global $$228$$2doEntry__Q24Game9PelletMgrFv
-$$228$$2doEntry__Q24Game9PelletMgrFv:
+.global "@28@doEntry__Q24Game9PelletMgrFv"
+"@28@doEntry__Q24Game9PelletMgrFv":
 /* 80172510 0016F450  38 63 FF E4 */	addi r3, r3, -28
 /* 80172514 0016F454  4B FF BC F8 */	b doEntry__Q24Game9PelletMgrFv
 
-.global $$228$$2doAnimation__Q24Game9PelletMgrFv
-$$228$$2doAnimation__Q24Game9PelletMgrFv:
+.global "@28@doAnimation__Q24Game9PelletMgrFv"
+"@28@doAnimation__Q24Game9PelletMgrFv":
 /* 80172518 0016F458  38 63 FF E4 */	addi r3, r3, -28
 /* 8017251C 0016F45C  4B FF BA C0 */	b doAnimation__Q24Game9PelletMgrFv

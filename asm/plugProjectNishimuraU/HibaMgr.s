@@ -126,9 +126,9 @@ __ct__Q34Game4Hiba5ParmsFv:
 /* 8026BA6C 002689AC  90 FE 07 FC */	stw r7, 0x7fc(r30)
 /* 8026BA70 002689B0  90 1E 08 00 */	stw r0, 0x800(r30)
 /* 8026BA74 002689B4  48 1A 7B E5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8026BA78 002689B8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8026BA78 002689B8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8026BA7C 002689BC  3C A0 66 70 */	lis r5, 0x66703031@ha
-/* 8026BA80 002689C0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8026BA80 002689C0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8026BA84 002689C4  C0 02 CC A0 */	lfs f0, lbl_8051B000@sda21(r2)
 /* 8026BA88 002689C8  90 1E 08 04 */	stw r0, 0x804(r30)
 /* 8026BA8C 002689CC  38 7E 08 2C */	addi r3, r30, 0x82c
@@ -141,9 +141,9 @@ __ct__Q34Game4Hiba5ParmsFv:
 /* 8026BAA8 002689E8  D0 3E 08 24 */	stfs f1, 0x824(r30)
 /* 8026BAAC 002689EC  D0 1E 08 28 */	stfs f0, 0x828(r30)
 /* 8026BAB0 002689F0  48 1A 7B A9 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8026BAB4 002689F4  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8026BAB4 002689F4  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8026BAB8 002689F8  3C A0 66 70 */	lis r5, 0x66703033@ha
-/* 8026BABC 002689FC  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8026BABC 002689FC  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8026BAC0 00268A00  C0 02 CC A0 */	lfs f0, lbl_8051B000@sda21(r2)
 /* 8026BAC4 00268A04  90 1E 08 2C */	stw r0, 0x82c(r30)
 /* 8026BAC8 00268A08  38 7E 08 54 */	addi r3, r30, 0x854
@@ -156,9 +156,9 @@ __ct__Q34Game4Hiba5ParmsFv:
 /* 8026BAE4 00268A24  D0 3E 08 4C */	stfs f1, 0x84c(r30)
 /* 8026BAE8 00268A28  D0 1E 08 50 */	stfs f0, 0x850(r30)
 /* 8026BAEC 00268A2C  48 1A 7B 6D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8026BAF0 00268A30  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8026BAF0 00268A30  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8026BAF4 00268A34  3C A0 66 70 */	lis r5, 0x66703930@ha
-/* 8026BAF8 00268A38  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8026BAF8 00268A38  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8026BAFC 00268A3C  C0 02 CC AC */	lfs f0, lbl_8051B00C@sda21(r2)
 /* 8026BB00 00268A40  90 1E 08 54 */	stw r0, 0x854(r30)
 /* 8026BB04 00268A44  38 7E 08 7C */	addi r3, r30, 0x87c
@@ -171,9 +171,9 @@ __ct__Q34Game4Hiba5ParmsFv:
 /* 8026BB20 00268A60  D0 3E 08 74 */	stfs f1, 0x874(r30)
 /* 8026BB24 00268A64  D0 1E 08 78 */	stfs f0, 0x878(r30)
 /* 8026BB28 00268A68  48 1A 7B 31 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8026BB2C 00268A6C  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8026BB2C 00268A6C  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8026BB30 00268A70  3C A0 66 70 */	lis r5, 0x66703931@ha
-/* 8026BB34 00268A74  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8026BB34 00268A74  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8026BB38 00268A78  C0 02 CC B0 */	lfs f0, lbl_8051B010@sda21(r2)
 /* 8026BB3C 00268A7C  90 1E 08 7C */	stw r0, 0x87c(r30)
 /* 8026BB40 00268A80  38 7E 08 A4 */	addi r3, r30, 0x8a4
@@ -186,9 +186,9 @@ __ct__Q34Game4Hiba5ParmsFv:
 /* 8026BB5C 00268A9C  D0 3E 08 9C */	stfs f1, 0x89c(r30)
 /* 8026BB60 00268AA0  D0 1E 08 A0 */	stfs f0, 0x8a0(r30)
 /* 8026BB64 00268AA4  48 1A 7A F5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8026BB68 00268AA8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8026BB68 00268AA8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8026BB6C 00268AAC  C0 42 CC B8 */	lfs f2, lbl_8051B018@sda21(r2)
-/* 8026BB70 00268AB0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8026BB70 00268AB0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8026BB74 00268AB4  C0 22 CC A4 */	lfs f1, lbl_8051B004@sda21(r2)
 /* 8026BB78 00268AB8  90 1E 08 A4 */	stw r0, 0x8a4(r30)
 /* 8026BB7C 00268ABC  7F C3 F3 78 */	mr r3, r30
@@ -421,12 +421,12 @@ doDirectDraw__Q24Game28EnemyMgrBaseAlwaysMovieActorFR8Graphics:
 /* 8026BE74 00268DB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026BE78 00268DB8  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv
-$$24$$2__dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv:
+.global "@4@__dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv"
+"@4@__dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv":
 /* 8026BE7C 00268DBC  38 63 FF FC */	addi r3, r3, -4
 /* 8026BE80 00268DC0  4B FF FA A0 */	b __dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv
 
-.global $$24$$2__dt__Q34Game4Hiba3MgrFv
-$$24$$2__dt__Q34Game4Hiba3MgrFv:
+.global "@4@__dt__Q34Game4Hiba3MgrFv"
+"@4@__dt__Q34Game4Hiba3MgrFv":
 /* 8026BE84 00268DC4  38 63 FF FC */	addi r3, r3, -4
 /* 8026BE88 00268DC8  4B FF FE 9C */	b __dt__Q34Game4Hiba3MgrFv

@@ -70,10 +70,10 @@ lbl_80424F58:
 /* 80424F88 00421EC8  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 80424F8C 00421ECC  D0 61 00 10 */	stfs f3, 0x10(r1)
 /* 80424F90 00421ED0  D0 21 00 14 */	stfs f1, 0x14(r1)
-/* 80424F94 00421ED4  48 00 03 ED */	bl setRect__8ViewportFR7Rect$$0f$$1
+/* 80424F94 00421ED4  48 00 03 ED */	bl "setRect__8ViewportFR7Rect<f>"
 /* 80424F98 00421ED8  7F C3 F3 78 */	mr r3, r30
 /* 80424F9C 00421EDC  38 81 00 08 */	addi r4, r1, 8
-/* 80424FA0 00421EE0  48 00 03 E1 */	bl setRect__8ViewportFR7Rect$$0f$$1
+/* 80424FA0 00421EE0  48 00 03 E1 */	bl "setRect__8ViewportFR7Rect<f>"
 /* 80424FA4 00421EE4  7F A3 EB 78 */	mr r3, r29
 /* 80424FA8 00421EE8  7F E4 FB 78 */	mr r4, r31
 /* 80424FAC 00421EEC  48 00 06 15 */	bl addViewport__8GraphicsFP8Viewport
@@ -361,8 +361,8 @@ lbl_80425378:
 /* 80425378 004222B8  D0 04 00 2C */	stfs f0, 0x2c(r4)
 /* 8042537C 004222BC  4E 80 00 20 */	blr 
 
-.global setRect__8ViewportFR7Rect$$0f$$1
-setRect__8ViewportFR7Rect$$0f$$1:
+.global "setRect__8ViewportFR7Rect<f>"
+"setRect__8ViewportFR7Rect<f>":
 /* 80425380 004222C0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80425384 004222C4  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 80425388 004222C8  C0 04 00 04 */	lfs f0, 4(r4)
@@ -547,8 +547,8 @@ getViewport__8GraphicsFi:
 /* 804255F8 00422538  7C 63 00 2E */	lwzx r3, r3, r0
 /* 804255FC 0042253C  4E 80 00 20 */	blr 
 
-.global mapViewport__8GraphicsFP22IDelegate1$$0P8Viewport$$1
-mapViewport__8GraphicsFP22IDelegate1$$0P8Viewport$$1:
+.global "mapViewport__8GraphicsFP22IDelegate1<P8Viewport>"
+"mapViewport__8GraphicsFP22IDelegate1<P8Viewport>":
 /* 80425600 00422540  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80425604 00422544  7C 08 02 A6 */	mflr r0
 /* 80425608 00422548  90 01 00 24 */	stw r0, 0x24(r1)
@@ -835,8 +835,8 @@ lbl_80425998:
 /* 804259E0 00422920  38 21 00 20 */	addi r1, r1, 0x20
 /* 804259E4 00422924  4E 80 00 20 */	blr 
 
-.global drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1
-drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
+"drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>":
 /* 804259E8 00422928  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804259EC 0042292C  7C 08 02 A6 */	mflr r0
 /* 804259F0 00422930  90 01 00 24 */	stw r0, 0x24(r1)
@@ -887,8 +887,8 @@ drawLine__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1:
 /* 80425AA4 004229E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80425AA8 004229E8  4E 80 00 20 */	blr 
 
-.global drawSphere__8GraphicsFR10Vector3$$0f$$1f
-drawSphere__8GraphicsFR10Vector3$$0f$$1f:
+.global "drawSphere__8GraphicsFR10Vector3<f>f"
+"drawSphere__8GraphicsFR10Vector3<f>f":
 /* 80425AAC 004229EC  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 80425AB0 004229F0  7C 08 02 A6 */	mflr r0
 /* 80425AB4 004229F4  90 01 01 D4 */	stw r0, 0x1d4(r1)
@@ -943,7 +943,7 @@ lbl_80425B40:
 /* 80425B74 00422AB4  D3 81 00 20 */	stfs f28, 0x20(r1)
 /* 80425B78 00422AB8  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 80425B7C 00422ABC  D3 81 00 28 */	stfs f28, 0x28(r1)
-/* 80425B80 00422AC0  48 00 27 59 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80425B80 00422AC0  48 00 27 59 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80425B84 00422AC4  38 7A 00 8C */	addi r3, r26, 0x8c
 /* 80425B88 00422AC8  38 81 00 68 */	addi r4, r1, 0x68
 /* 80425B8C 00422ACC  38 A1 00 98 */	addi r5, r1, 0x98
@@ -1104,7 +1104,7 @@ lbl_80425DA4:
 /* 80425DD8 00422D18  D3 C1 00 0C */	stfs f30, 0xc(r1)
 /* 80425DDC 00422D1C  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80425DE0 00422D20  D3 C1 00 10 */	stfs f30, 0x10(r1)
-/* 80425DE4 00422D24  48 00 24 F5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80425DE4 00422D24  48 00 24 F5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80425DE8 00422D28  38 7A 00 8C */	addi r3, r26, 0x8c
 /* 80425DEC 00422D2C  38 81 00 38 */	addi r4, r1, 0x38
 /* 80425DF0 00422D30  38 A1 00 98 */	addi r5, r1, 0x98
@@ -1292,7 +1292,7 @@ drawSphere__8GraphicsFfP7Matrixf:
 /* 804260A0 00422FE0  BF 01 01 10 */	stmw r24, 0x110(r1)
 /* 804260A4 00422FE4  FF 20 08 90 */	fmr f25, f1
 /* 804260A8 00422FE8  3C A0 80 50 */	lis r5, sincosTable___5JMath@ha
-/* 804260AC 00422FEC  3C C0 80 51 */	lis r6, zero__10Vector3$$0f$$1@ha
+/* 804260AC 00422FEC  3C C0 80 51 */	lis r6, "zero__10Vector3<f>"@ha
 /* 804260B0 00422FF0  C3 C2 21 78 */	lfs f30, lbl_805204D8@sda21(r2)
 /* 804260B4 00422FF4  CB A2 21 70 */	lfd f29, lbl_805204D0@sda21(r2)
 /* 804260B8 00422FF8  7C 79 1B 78 */	mr r25, r3
@@ -1301,7 +1301,7 @@ drawSphere__8GraphicsFfP7Matrixf:
 /* 804260C4 00423004  C3 62 21 7C */	lfs f27, lbl_805204DC@sda21(r2)
 /* 804260C8 00423008  3B A5 71 A0 */	addi r29, r5, sincosTable___5JMath@l
 /* 804260CC 0042300C  C3 E2 21 68 */	lfs f31, lbl_805204C8@sda21(r2)
-/* 804260D0 00423010  3B E6 41 E4 */	addi r31, r6, zero__10Vector3$$0f$$1@l
+/* 804260D0 00423010  3B E6 41 E4 */	addi r31, r6, "zero__10Vector3<f>"@l
 /* 804260D4 00423014  3B 80 00 00 */	li r28, 0
 /* 804260D8 00423018  3F C0 43 30 */	lis r30, 0x4330
 /* 804260DC 0042301C  3F 00 CC 01 */	lis r24, 0xcc01
@@ -1322,7 +1322,7 @@ lbl_804260E0:
 /* 80426114 00423054  D3 81 00 20 */	stfs f28, 0x20(r1)
 /* 80426118 00423058  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 8042611C 0042305C  D3 81 00 28 */	stfs f28, 0x28(r1)
-/* 80426120 00423060  48 00 21 B9 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80426120 00423060  48 00 21 B9 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 80426124 00423064  38 81 00 68 */	addi r4, r1, 0x68
 /* 80426128 00423068  7F 43 D3 78 */	mr r3, r26
 /* 8042612C 0042306C  7C 85 23 78 */	mr r5, r4
@@ -1461,11 +1461,11 @@ lbl_804262A8:
 /* 80426324 00423264  2C 1C 00 10 */	cmpwi r28, 0x10
 /* 80426328 00423268  41 80 FD B8 */	blt lbl_804260E0
 /* 8042632C 0042326C  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
-/* 80426330 00423270  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 80426330 00423270  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 80426334 00423274  C3 82 21 78 */	lfs f28, lbl_805204D8@sda21(r2)
 /* 80426338 00423278  3B E3 71 A0 */	addi r31, r3, sincosTable___5JMath@l
 /* 8042633C 0042327C  CB A2 21 70 */	lfd f29, lbl_805204D0@sda21(r2)
-/* 80426340 00423280  3B A4 41 E4 */	addi r29, r4, zero__10Vector3$$0f$$1@l
+/* 80426340 00423280  3B A4 41 E4 */	addi r29, r4, "zero__10Vector3<f>"@l
 /* 80426344 00423284  C3 C2 21 58 */	lfs f30, lbl_805204B8@sda21(r2)
 /* 80426348 00423288  3B 60 00 00 */	li r27, 0
 /* 8042634C 0042328C  C3 E2 21 7C */	lfs f31, lbl_805204DC@sda21(r2)
@@ -1489,7 +1489,7 @@ lbl_8042635C:
 /* 80426390 004232D0  D3 C1 00 0C */	stfs f30, 0xc(r1)
 /* 80426394 004232D4  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80426398 004232D8  D3 C1 00 10 */	stfs f30, 0x10(r1)
-/* 8042639C 004232DC  48 00 1F 3D */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8042639C 004232DC  48 00 1F 3D */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 804263A0 004232E0  38 81 00 38 */	addi r4, r1, 0x38
 /* 804263A4 004232E4  7F 43 D3 78 */	mr r3, r26
 /* 804263A8 004232E8  7C 85 23 78 */	mr r5, r4
@@ -1838,20 +1838,20 @@ lbl_80426700:
 /* 804268BC 004237FC  38 21 00 60 */	addi r1, r1, 0x60
 /* 804268C0 00423800  4E 80 00 20 */	blr 
 
-.global clearZBuffer__8GraphicsFR7Rect$$0f$$1
-clearZBuffer__8GraphicsFR7Rect$$0f$$1:
+.global "clearZBuffer__8GraphicsFR7Rect<f>"
+"clearZBuffer__8GraphicsFR7Rect<f>":
 /* 804268C4 00423804  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804268C8 00423808  7C 08 02 A6 */	mflr r0
 /* 804268CC 0042380C  C0 22 21 88 */	lfs f1, lbl_805204E8@sda21(r2)
 /* 804268D0 00423810  90 01 00 14 */	stw r0, 0x14(r1)
-/* 804268D4 00423814  48 00 00 15 */	bl fillZBuffer__8GraphicsFR7Rect$$0f$$1f
+/* 804268D4 00423814  48 00 00 15 */	bl "fillZBuffer__8GraphicsFR7Rect<f>f"
 /* 804268D8 00423818  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 804268DC 0042381C  7C 08 03 A6 */	mtlr r0
 /* 804268E0 00423820  38 21 00 10 */	addi r1, r1, 0x10
 /* 804268E4 00423824  4E 80 00 20 */	blr 
 
-.global fillZBuffer__8GraphicsFR7Rect$$0f$$1f
-fillZBuffer__8GraphicsFR7Rect$$0f$$1f:
+.global "fillZBuffer__8GraphicsFR7Rect<f>f"
+"fillZBuffer__8GraphicsFR7Rect<f>f":
 /* 804268E8 00423828  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 804268EC 0042382C  7C 08 02 A6 */	mflr r0
 /* 804268F0 00423830  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -2103,8 +2103,8 @@ lbl_804269A8:
 /* 80426CB0 00423BF0  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80426CB4 00423BF4  4E 80 00 20 */	blr 
 
-.global drawCone__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1fi
-drawCone__8GraphicsFR10Vector3$$0f$$1R10Vector3$$0f$$1fi:
+.global "drawCone__8GraphicsFR10Vector3<f>R10Vector3<f>fi"
+"drawCone__8GraphicsFR10Vector3<f>R10Vector3<f>fi":
 /* 80426CB8 00423BF8  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 80426CBC 00423BFC  7C 08 02 A6 */	mflr r0
 /* 80426CC0 00423C00  90 01 01 94 */	stw r0, 0x194(r1)
@@ -2352,10 +2352,10 @@ lbl_80426FF8:
 /* 80427044 00423F84  38 61 00 08 */	addi r3, r1, 8
 /* 80427048 00423F88  38 80 00 00 */	li r4, 0
 /* 8042704C 00423F8C  4B CC 25 2D */	bl GXLoadPosMtxImm
-/* 80427050 00423F90  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 80427050 00423F90  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 80427054 00423F94  3C 60 80 50 */	lis r3, sincosTable___5JMath@ha
 /* 80427058 00423F98  C3 22 21 94 */	lfs f25, lbl_805204F4@sda21(r2)
-/* 8042705C 00423F9C  3B 64 41 E4 */	addi r27, r4, zero__10Vector3$$0f$$1@l
+/* 8042705C 00423F9C  3B 64 41 E4 */	addi r27, r4, "zero__10Vector3<f>"@l
 /* 80427060 00423FA0  CB 42 21 70 */	lfd f26, lbl_805204D0@sda21(r2)
 /* 80427064 00423FA4  6F 3D 80 00 */	xoris r29, r25, 0x8000
 /* 80427068 00423FA8  C3 62 21 5C */	lfs f27, lbl_805204BC@sda21(r2)
@@ -2686,7 +2686,7 @@ setupJ2DOrthoGraphDefault__8GraphicsFv:
 /* 80427544 00424484  EC 23 08 2A */	fadds f1, f3, f1
 /* 80427548 00424488  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8042754C 0042448C  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80427550 00424490  4B C0 F0 E5 */	bl scissor__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 80427550 00424490  4B C0 F0 E5 */	bl "scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 80427554 00424494  4B FF BC D1 */	bl getRenderModeObj__6SystemFv
 /* 80427558 00424498  A3 E3 00 06 */	lhz r31, 6(r3)
 /* 8042755C 0042449C  4B FF BC C9 */	bl getRenderModeObj__6SystemFv
@@ -2710,7 +2710,7 @@ setupJ2DOrthoGraphDefault__8GraphicsFv:
 /* 804275A4 004244E4  D0 A1 00 1C */	stfs f5, 0x1c(r1)
 /* 804275A8 004244E8  D0 61 00 20 */	stfs f3, 0x20(r1)
 /* 804275AC 004244EC  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 804275B0 004244F0  4B C0 E1 65 */	bl setOrtho__13J2DOrthoGraphFRCQ29JGeometry8TBox2$$0f$$1ff
+/* 804275B0 004244F0  4B C0 E1 65 */	bl "setOrtho__13J2DOrthoGraphFRCQ29JGeometry8TBox2<f>ff"
 /* 804275B4 004244F4  E3 E1 00 68 */	psq_l f31, 104(r1), 0, qr0
 /* 804275B8 004244F8  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 804275BC 004244FC  CB E1 00 60 */	lfd f31, 0x60(r1)
@@ -2779,7 +2779,7 @@ setupJ2DPerspGraphDefault__8GraphicsFv:
 /* 804276AC 004245EC  EC 23 08 2A */	fadds f1, f3, f1
 /* 804276B0 004245F0  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 804276B4 004245F4  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 804276B8 004245F8  4B C0 EF 7D */	bl scissor__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 804276B8 004245F8  4B C0 EF 7D */	bl "scissor__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 804276BC 004245FC  C0 22 21 A0 */	lfs f1, lbl_80520500@sda21(r2)
 /* 804276C0 00424600  38 7E 01 90 */	addi r3, r30, 0x190
 /* 804276C4 00424604  C0 42 21 A4 */	lfs f2, lbl_80520504@sda21(r2)
@@ -3073,8 +3073,8 @@ lbl_80427AC8:
 /* 80427AD4 00424A14  38 21 00 50 */	addi r1, r1, 0x50
 /* 80427AD8 00424A18  4E 80 00 20 */	blr 
 
-.global perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3$$0f$$1Pce
-perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3$$0f$$1Pce:
+.global "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
+"perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce":
 /* 80427ADC 00424A1C  94 21 FD 90 */	stwu r1, -0x270(r1)
 /* 80427AE0 00424A20  7C 08 02 A6 */	mflr r0
 /* 80427AE4 00424A24  90 01 02 74 */	stw r0, 0x274(r1)

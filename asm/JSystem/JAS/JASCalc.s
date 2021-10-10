@@ -444,8 +444,8 @@ lbl_800A64C8:
 /* 800A64D0 000A3410  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A64D4 000A3414  4E 80 00 20 */	blr 
 
-.global clamp$$0s$$4l$$1__7JASCalcFl
-clamp$$0s$$4l$$1__7JASCalcFl:
+.global "clamp<s,l>__7JASCalcFl"
+"clamp<s,l>__7JASCalcFl":
 /* 800A64D8 000A3418  2C 03 80 00 */	cmpwi r3, -32768
 /* 800A64DC 000A341C  41 81 00 0C */	bgt lbl_800A64E8
 /* 800A64E0 000A3420  38 60 80 00 */	li r3, -32768

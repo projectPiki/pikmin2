@@ -89,14 +89,14 @@ lbl_8012DC00:
 /* 8012DC28 0012AB68  38 21 00 10 */	addi r1, r1, 0x10
 /* 8012DC2C 0012AB6C  4E 80 00 20 */	blr 
 
-.global birth__Q34Game12KochappyBase3ObjFR10Vector3$$0f$$1f
-birth__Q34Game12KochappyBase3ObjFR10Vector3$$0f$$1f:
+.global "birth__Q34Game12KochappyBase3ObjFR10Vector3<f>f"
+"birth__Q34Game12KochappyBase3ObjFR10Vector3<f>f":
 /* 8012DC30 0012AB70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8012DC34 0012AB74  7C 08 02 A6 */	mflr r0
 /* 8012DC38 0012AB78  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8012DC3C 0012AB7C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8012DC40 0012AB80  7C 7F 1B 78 */	mr r31, r3
-/* 8012DC44 0012AB84  4B FD 4D BD */	bl birth__Q24Game9EnemyBaseFR10Vector3$$0f$$1f
+/* 8012DC44 0012AB84  4B FD 4D BD */	bl "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
 /* 8012DC48 0012AB88  80 7F 02 BC */	lwz r3, 0x2bc(r31)
 /* 8012DC4C 0012AB8C  3C C0 72 61 */	lis r6, 0x72616E64@ha
 /* 8012DC50 0012AB90  7F E4 FB 78 */	mr r4, r31
@@ -169,8 +169,8 @@ doUpdate__Q34Game12KochappyBase3ObjFv:
 /* 8012DD38 0012AC78  48 0B 96 A9 */	bl isDemoFlag__Q24Game8PlayDataFi
 /* 8012DD3C 0012AC7C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8012DD40 0012AC80  40 82 00 38 */	bne lbl_8012DD78
-/* 8012DD44 0012AC84  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8012DD48 0012AC88  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 8012DD44 0012AC84  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8012DD48 0012AC88  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 8012DD4C 0012AC8C  D0 1F 01 D4 */	stfs f0, 0x1d4(r31)
 /* 8012DD50 0012AC90  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8012DD54 0012AC94  D0 1F 01 D8 */	stfs f0, 0x1d8(r31)

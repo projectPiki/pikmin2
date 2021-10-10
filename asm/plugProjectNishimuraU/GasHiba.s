@@ -311,8 +311,8 @@ hipdropCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8026D584 0026A4C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026D588 0026A4C8  4E 80 00 20 */	blr 
 
-.global bombCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreatureR10Vector3$$0f$$1f
-bombCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreatureR10Vector3$$0f$$1f:
+.global "bombCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreatureR10Vector3<f>f"
+"bombCallBack__Q34Game7GasHiba3ObjFPQ24Game8CreatureR10Vector3<f>f":
 /* 8026D58C 0026A4CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026D590 0026A4D0  7C 08 02 A6 */	mflr r0
 /* 8026D594 0026A4D4  38 A0 00 00 */	li r5, 0
@@ -494,8 +494,8 @@ setInitLivingThing__Q34Game7GasHiba3ObjFv:
 /* 8026D820 0026A760  38 63 00 30 */	addi r3, r3, 0x30
 lbl_8026D824:
 /* 8026D824 0026A764  38 00 00 00 */	li r0, 0
-/* 8026D828 0026A768  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 8026D82C 0026A76C  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 8026D828 0026A768  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 8026D82C 0026A76C  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 8026D830 0026A770  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 8026D834 0026A774  28 00 00 00 */	cmplwi r0, 0
 /* 8026D838 0026A778  90 81 00 30 */	stw r4, 0x30(r1)
@@ -670,8 +670,8 @@ lbl_8026DA88:
 /* 8026DA98 0026A9D8  28 00 00 00 */	cmplwi r0, 0
 /* 8026DA9C 0026A9DC  40 82 02 68 */	bne lbl_8026DD04
 /* 8026DAA0 0026A9E0  38 00 00 00 */	li r0, 0
-/* 8026DAA4 0026A9E4  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
-/* 8026DAA8 0026A9E8  38 83 5A 7C */	addi r4, r3, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 8026DAA4 0026A9E4  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8ItemGate>"@ha
+/* 8026DAA8 0026A9E8  38 83 5A 7C */	addi r4, r3, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 8026DAAC 0026A9EC  38 65 00 30 */	addi r3, r5, 0x30
 /* 8026DAB0 0026A9F0  28 00 00 00 */	cmplwi r0, 0
 /* 8026DAB4 0026A9F4  90 81 00 20 */	stw r4, 0x20(r1)

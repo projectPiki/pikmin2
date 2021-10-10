@@ -31,7 +31,7 @@ append__Q28PSSystem9TaskEntryFPQ28PSSystem8TaskBase:
 /* 8033E250 0033B190  7C 08 02 A6 */	mflr r0
 /* 8033E254 0033B194  38 84 00 04 */	addi r4, r4, 4
 /* 8033E258 0033B198  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8033E25C 0033B19C  48 00 03 A9 */	bl append_Lock__Q28PSSystem31MutexList$$0Q28PSSystem8TaskBase$$1FP29JSULink$$0Q28PSSystem8TaskBase$$1
+/* 8033E25C 0033B19C  48 00 03 A9 */	bl "append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>"
 /* 8033E260 0033B1A0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8033E264 0033B1A4  7C 08 03 A6 */	mtlr r0
 /* 8033E268 0033B1A8  38 21 00 10 */	addi r1, r1, 0x10
@@ -188,7 +188,7 @@ lbl_8033E464:
 lbl_8033E468:
 /* 8033E468 0033B3A8  7F 83 E3 78 */	mr r3, r28
 /* 8033E46C 0033B3AC  38 9D 00 28 */	addi r4, r29, 0x28
-/* 8033E470 0033B3B0  48 00 01 ED */	bl append_Lock__Q28PSSystem32MutexList$$0Q28PSSystem9TaskEntry$$1FP30JSULink$$0Q28PSSystem9TaskEntry$$1
+/* 8033E470 0033B3B0  48 00 01 ED */	bl "append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
 /* 8033E474 0033B3B4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8033E478 0033B3B8  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8033E47C 0033B3BC  83 C1 00 18 */	lwz r30, 0x18(r1)
@@ -208,7 +208,7 @@ removeEntry__Q28PSSystem12TaskEntryMgrFPQ28PSSystem9TaskEntry:
 /* 8033E4A8 0033B3E8  7C 9E 23 79 */	or. r30, r4, r4
 /* 8033E4AC 0033B3EC  41 82 00 44 */	beq lbl_8033E4F0
 /* 8033E4B0 0033B3F0  38 9E 00 28 */	addi r4, r30, 0x28
-/* 8033E4B4 0033B3F4  48 00 00 F9 */	bl remove_Lock__Q28PSSystem32MutexList$$0Q28PSSystem9TaskEntry$$1FP30JSULink$$0Q28PSSystem9TaskEntry$$1
+/* 8033E4B4 0033B3F4  48 00 00 F9 */	bl "remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
 /* 8033E4B8 0033B3F8  38 7E 00 0C */	addi r3, r30, 0xc
 /* 8033E4BC 0033B3FC  4B DB 16 AD */	bl OSLockMutex
 /* 8033E4C0 0033B400  80 9E 00 00 */	lwz r4, 0(r30)
@@ -252,7 +252,7 @@ removeAllEntry__Q28PSSystem12TaskEntryMgrFv:
 /* 8033E540 0033B480  41 82 00 48 */	beq lbl_8033E588
 /* 8033E544 0033B484  7F A3 EB 78 */	mr r3, r29
 /* 8033E548 0033B488  38 9F 00 28 */	addi r4, r31, 0x28
-/* 8033E54C 0033B48C  48 00 00 61 */	bl remove_Lock__Q28PSSystem32MutexList$$0Q28PSSystem9TaskEntry$$1FP30JSULink$$0Q28PSSystem9TaskEntry$$1
+/* 8033E54C 0033B48C  48 00 00 61 */	bl "remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
 /* 8033E550 0033B490  38 7F 00 0C */	addi r3, r31, 0xc
 /* 8033E554 0033B494  4B DB 16 15 */	bl OSLockMutex
 /* 8033E558 0033B498  80 9F 00 00 */	lwz r4, 0(r31)
@@ -280,8 +280,8 @@ lbl_8033E588:
 /* 8033E5A4 0033B4E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8033E5A8 0033B4E8  4E 80 00 20 */	blr 
 
-.global remove_Lock__Q28PSSystem32MutexList$$0Q28PSSystem9TaskEntry$$1FP30JSULink$$0Q28PSSystem9TaskEntry$$1
-remove_Lock__Q28PSSystem32MutexList$$0Q28PSSystem9TaskEntry$$1FP30JSULink$$0Q28PSSystem9TaskEntry$$1:
+.global "remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
+"remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>":
 /* 8033E5AC 0033B4EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E5B0 0033B4F0  7C 08 02 A6 */	mflr r0
 /* 8033E5B4 0033B4F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -305,8 +305,8 @@ remove_Lock__Q28PSSystem32MutexList$$0Q28PSSystem9TaskEntry$$1FP30JSULink$$0Q28P
 /* 8033E5FC 0033B53C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E600 0033B540  4E 80 00 20 */	blr 
 
-.global append_Lock__Q28PSSystem31MutexList$$0Q28PSSystem8TaskBase$$1FP29JSULink$$0Q28PSSystem8TaskBase$$1
-append_Lock__Q28PSSystem31MutexList$$0Q28PSSystem8TaskBase$$1FP29JSULink$$0Q28PSSystem8TaskBase$$1:
+.global "append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>"
+"append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>":
 /* 8033E604 0033B544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E608 0033B548  7C 08 02 A6 */	mflr r0
 /* 8033E60C 0033B54C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -330,8 +330,8 @@ append_Lock__Q28PSSystem31MutexList$$0Q28PSSystem8TaskBase$$1FP29JSULink$$0Q28PS
 /* 8033E654 0033B594  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033E658 0033B598  4E 80 00 20 */	blr 
 
-.global append_Lock__Q28PSSystem32MutexList$$0Q28PSSystem9TaskEntry$$1FP30JSULink$$0Q28PSSystem9TaskEntry$$1
-append_Lock__Q28PSSystem32MutexList$$0Q28PSSystem9TaskEntry$$1FP30JSULink$$0Q28PSSystem9TaskEntry$$1:
+.global "append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
+"append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>":
 /* 8033E65C 0033B59C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E660 0033B5A0  7C 08 02 A6 */	mflr r0
 /* 8033E664 0033B5A4  90 01 00 14 */	stw r0, 0x14(r1)

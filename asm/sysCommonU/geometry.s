@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
-getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1:
+.global "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
+"getAxisVector__Q23Sys4TubeFR10Vector3<f>":
 /* 80415AA4 004129E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80415AA8 004129E8  7C 08 02 A6 */	mflr r0
 /* 80415AAC 004129EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -50,8 +50,8 @@ lbl_80415B44:
 /* 80415B50 00412A90  38 21 00 10 */	addi r1, r1, 0x10
 /* 80415B54 00412A94  4E 80 00 20 */	blr 
 
-.global collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
-collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf:
+.global "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
+"collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf":
 /* 80415B58 00412A98  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80415B5C 00412A9C  7C 08 02 A6 */	mflr r0
 /* 80415B60 00412AA0  90 01 00 84 */	stw r0, 0x84(r1)
@@ -218,8 +218,8 @@ lbl_80415D84:
 /* 80415DCC 00412D0C  38 21 00 80 */	addi r1, r1, 0x80
 /* 80415DD0 00412D10  4E 80 00 20 */	blr 
 
-.global getPosRatio__Q23Sys4TubeFRC10Vector3$$0f$$1
-getPosRatio__Q23Sys4TubeFRC10Vector3$$0f$$1:
+.global "getPosRatio__Q23Sys4TubeFRC10Vector3<f>"
+"getPosRatio__Q23Sys4TubeFRC10Vector3<f>":
 /* 80415DD4 00412D14  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80415DD8 00412D18  7C 08 02 A6 */	mflr r0
 /* 80415DDC 00412D1C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -331,8 +331,8 @@ intersect__Q23Sys6SphereFRQ23Sys6Sphere:
 /* 80415F64 00412EA4  54 03 1F FE */	rlwinm r3, r0, 3, 0x1f, 0x1f
 /* 80415F68 00412EA8  4E 80 00 20 */	blr 
 
-.global intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3$$0f$$1
-intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3$$0f$$1:
+.global "intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3<f>"
+"intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3<f>":
 /* 80415F6C 00412EAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80415F70 00412EB0  7C 08 02 A6 */	mflr r0
 /* 80415F74 00412EB4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -549,8 +549,8 @@ lbl_8041625C:
 /* 80416288 004131C8  38 21 00 50 */	addi r1, r1, 0x50
 /* 8041628C 004131CC  4E 80 00 20 */	blr 
 
-.global intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1
-intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1:
+.global "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
+"intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>":
 /* 80416290 004131D0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80416294 004131D4  7C 08 02 A6 */	mflr r0
 /* 80416298 004131D8  90 01 00 64 */	stw r0, 0x64(r1)
@@ -722,8 +722,8 @@ lbl_804164DC:
 /* 80416514 00413454  38 21 00 60 */	addi r1, r1, 0x60
 /* 80416518 00413458  4E 80 00 20 */	blr 
 
-.global intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1Rf
-intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1Rf:
+.global "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>Rf"
+"intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>Rf":
 /* 8041651C 0041345C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80416520 00413460  7C 08 02 A6 */	mflr r0
 /* 80416524 00413464  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1223,8 +1223,8 @@ lbl_80416C30:
 /* 80416C40 00413B80  FC 20 00 90 */	fmr f1, f0
 /* 80416C44 00413B84  4E 80 00 20 */	blr 
 
-.global intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3$$0f$$1
-intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3$$0f$$1:
+.global "intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>"
+"intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>":
 /* 80416C48 00413B88  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80416C4C 00413B8C  7C 08 02 A6 */	mflr r0
 /* 80416C50 00413B90  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1443,8 +1443,8 @@ lbl_80416F40:
 /* 80416F74 00413EB4  38 21 00 60 */	addi r1, r1, 0x60
 /* 80416F78 00413EB8  4E 80 00 20 */	blr 
 
-.global intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3$$0f$$1Rf
-intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3$$0f$$1Rf:
+.global "intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>Rf"
+"intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<f>Rf":
 /* 80416F7C 00413EBC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80416F80 00413EC0  7C 08 02 A6 */	mflr r0
 /* 80416F84 00413EC4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1863,8 +1863,8 @@ lbl_8041757C:
 /* 80417590 004144D0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80417594 004144D4  4E 80 00 20 */	blr 
 
-.global intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3$$0f$$1
-intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3$$0f$$1:
+.global "intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<f>"
+"intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<f>":
 /* 80417598 004144D8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8041759C 004144DC  7C 08 02 A6 */	mflr r0
 /* 804175A0 004144E0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1954,7 +1954,7 @@ lbl_8041760C:
 /* 804176EC 0041462C  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 804176F0 00414630  C0 07 00 08 */	lfs f0, 8(r7)
 /* 804176F4 00414634  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 804176F8 00414638  4B FF EB 99 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1
+/* 804176F8 00414638  4B FF EB 99 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
 /* 804176FC 0041463C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80417700 00414640  41 82 00 0C */	beq lbl_8041770C
 /* 80417704 00414644  38 60 00 01 */	li r3, 1
@@ -1983,7 +1983,7 @@ lbl_8041770C:
 /* 8041775C 0041469C  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 80417760 004146A0  C0 07 00 08 */	lfs f0, 8(r7)
 /* 80417764 004146A4  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 80417768 004146A8  4B FF EB 29 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1
+/* 80417768 004146A8  4B FF EB 29 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
 /* 8041776C 004146AC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80417770 004146B0  41 82 00 0C */	beq lbl_8041777C
 /* 80417774 004146B4  38 60 00 01 */	li r3, 1
@@ -2012,7 +2012,7 @@ lbl_8041777C:
 /* 804177CC 0041470C  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 804177D0 00414710  C0 07 00 08 */	lfs f0, 8(r7)
 /* 804177D4 00414714  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 804177D8 00414718  4B FF EA B9 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1
+/* 804177D8 00414718  4B FF EA B9 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
 /* 804177DC 0041471C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804177E0 00414720  41 82 00 0C */	beq lbl_804177EC
 /* 804177E4 00414724  38 60 00 01 */	li r3, 1
@@ -2064,8 +2064,8 @@ lbl_80417870:
 /* 80417888 004147C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8041788C 004147CC  4E 80 00 20 */	blr 
 
-.global intersectHard__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3$$0f$$1
-intersectHard__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3$$0f$$1:
+.global "intersectHard__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<f>"
+"intersectHard__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<f>":
 /* 80417890 004147D0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80417894 004147D4  7C 08 02 A6 */	mflr r0
 /* 80417898 004147D8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2158,7 +2158,7 @@ lbl_80417994:
 /* 804179E4 00414924  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 804179E8 00414928  C0 07 00 08 */	lfs f0, 8(r7)
 /* 804179EC 0041492C  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 804179F0 00414930  4B FF E8 A1 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1
+/* 804179F0 00414930  4B FF E8 A1 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
 /* 804179F4 00414934  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804179F8 00414938  41 82 00 0C */	beq lbl_80417A04
 /* 804179FC 0041493C  38 60 00 01 */	li r3, 1
@@ -2187,7 +2187,7 @@ lbl_80417A04:
 /* 80417A54 00414994  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 80417A58 00414998  C0 07 00 08 */	lfs f0, 8(r7)
 /* 80417A5C 0041499C  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 80417A60 004149A0  4B FF E8 31 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1
+/* 80417A60 004149A0  4B FF E8 31 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
 /* 80417A64 004149A4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80417A68 004149A8  41 82 00 0C */	beq lbl_80417A74
 /* 80417A6C 004149AC  38 60 00 01 */	li r3, 1
@@ -2216,7 +2216,7 @@ lbl_80417A74:
 /* 80417AC4 00414A04  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 80417AC8 00414A08  C0 07 00 08 */	lfs f0, 8(r7)
 /* 80417ACC 00414A0C  D0 01 00 2C */	stfs f0, 0x2c(r1)
-/* 80417AD0 00414A10  4B FF E7 C1 */	bl intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3$$0f$$1
+/* 80417AD0 00414A10  4B FF E7 C1 */	bl "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
 /* 80417AD4 00414A14  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80417AD8 00414A18  41 82 00 0C */	beq lbl_80417AE4
 /* 80417ADC 00414A1C  38 60 00 01 */	li r3, 1
@@ -2268,8 +2268,8 @@ lbl_80417B68:
 /* 80417B80 00414AC0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80417B84 00414AC4  4E 80 00 20 */	blr 
 
-.global insideXZ__Q23Sys8TriangleFR10Vector3$$0f$$1
-insideXZ__Q23Sys8TriangleFR10Vector3$$0f$$1:
+.global "insideXZ__Q23Sys8TriangleFR10Vector3<f>"
+"insideXZ__Q23Sys8TriangleFR10Vector3<f>":
 /* 80417B88 00414AC8  C0 83 00 10 */	lfs f4, 0x10(r3)
 /* 80417B8C 00414ACC  C0 E2 1F A8 */	lfs f7, lbl_80520308@sda21(r2)
 /* 80417B90 00414AD0  FC 04 38 40 */	fcmpo cr0, f4, f7
@@ -2681,10 +2681,10 @@ createTriangles__Q23Sys11GridDividerFRQ23Sys17CreateTriangleArg:
 /* 8041819C 004150DC  7C 7F 1B 78 */	mr r31, r3
 /* 804181A0 004150E0  90 04 00 18 */	stw r0, 0x18(r4)
 /* 804181A4 004150E4  7C 9C 23 78 */	mr r28, r4
-/* 804181A8 004150E8  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 804181A8 004150E8  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 804181AC 004150EC  38 61 02 08 */	addi r3, r1, 0x208
 /* 804181B0 004150F0  90 1C 00 1C */	stw r0, 0x1c(r28)
-/* 804181B4 004150F4  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 804181B4 004150F4  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 804181B8 004150F8  38 A0 00 00 */	li r5, 0
 /* 804181BC 004150FC  38 C0 00 0C */	li r6, 0xc
 /* 804181C0 00415100  38 E0 01 80 */	li r7, 0x180
@@ -2822,9 +2822,9 @@ lbl_804183A4:
 /* 804183B4 004152F4  1C 7F 00 0C */	mulli r3, r31, 0xc
 /* 804183B8 004152F8  38 63 00 10 */	addi r3, r3, 0x10
 /* 804183BC 004152FC  4B C0 BB F1 */	bl __nwa__FUl
-/* 804183C0 00415300  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 804183C0 00415300  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 804183C4 00415304  7F E7 FB 78 */	mr r7, r31
-/* 804183C8 00415308  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 804183C8 00415308  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 804183CC 0041530C  38 A0 00 00 */	li r5, 0
 /* 804183D0 00415310  38 C0 00 0C */	li r6, 0xc
 /* 804183D4 00415314  4B CA 96 1D */	bl __construct_new_array
@@ -2949,8 +2949,8 @@ lbl_80418584:
 /* 8041859C 004154DC  38 21 14 40 */	addi r1, r1, 0x1440
 /* 804185A0 004154E0  4E 80 00 20 */	blr 
 
-.global getMinY__Q23Sys11GridDividerFR10Vector3$$0f$$1
-getMinY__Q23Sys11GridDividerFR10Vector3$$0f$$1:
+.global "getMinY__Q23Sys11GridDividerFR10Vector3<f>"
+"getMinY__Q23Sys11GridDividerFR10Vector3<f>":
 /* 804185A4 004154E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804185A8 004154E8  38 A0 00 00 */	li r5, 0
 /* 804185AC 004154EC  C1 24 00 00 */	lfs f9, 0(r4)
@@ -3725,16 +3725,16 @@ __ct__Q23Sys12TriIndexListFv:
 /* 8041904C 00415F8C  7C 7F 1B 78 */	mr r31, r3
 /* 80419050 00415F90  4B FF 83 41 */	bl __ct__5CNodeFv
 /* 80419054 00415F94  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 80419058 00415F98  3C 60 80 4B */	lis r3, __vt__12Container$$0i$$1@ha
+/* 80419058 00415F98  3C 60 80 4B */	lis r3, "__vt__12Container<i>"@ha
 /* 8041905C 00415F9C  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 80419060 00415FA0  3C A0 80 4B */	lis r5, __vt__17ArrayContainer$$0i$$1@ha
+/* 80419060 00415FA0  3C A0 80 4B */	lis r5, "__vt__17ArrayContainer<i>"@ha
 /* 80419064 00415FA4  90 1F 00 00 */	stw r0, 0(r31)
-/* 80419068 00415FA8  38 03 FE E0 */	addi r0, r3, __vt__12Container$$0i$$1@l
+/* 80419068 00415FA8  38 03 FE E0 */	addi r0, r3, "__vt__12Container<i>"@l
 /* 8041906C 00415FAC  3C 80 80 4B */	lis r4, __vt__Q23Sys9IndexList@ha
 /* 80419070 00415FB0  3C 60 80 4B */	lis r3, __vt__Q23Sys12TriIndexList@ha
 /* 80419074 00415FB4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80419078 00415FB8  38 E0 00 00 */	li r7, 0
-/* 8041907C 00415FBC  38 C5 FF 0C */	addi r6, r5, __vt__17ArrayContainer$$0i$$1@l
+/* 8041907C 00415FBC  38 C5 FF 0C */	addi r6, r5, "__vt__17ArrayContainer<i>"@l
 /* 80419080 00415FC0  38 A0 00 01 */	li r5, 1
 /* 80419084 00415FC4  98 FF 00 18 */	stb r7, 0x18(r31)
 /* 80419088 00415FC8  38 84 FF 54 */	addi r4, r4, __vt__Q23Sys9IndexList@l
@@ -3753,8 +3753,8 @@ __ct__Q23Sys12TriIndexListFv:
 /* 804190BC 00415FFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804190C0 00416000  4E 80 00 20 */	blr 
 
-.global write__31ArrayContainer$$0Q23Sys8Triangle$$1FR6Stream
-write__31ArrayContainer$$0Q23Sys8Triangle$$1FR6Stream:
+.global "write__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+"write__31ArrayContainer<Q23Sys8Triangle>FR6Stream":
 /* 804190C4 00416004  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804190C8 00416008  7C 08 02 A6 */	mflr r0
 /* 804190CC 0041600C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3811,8 +3811,8 @@ lbl_80419170:
 /* 80419190 004160D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80419194 004160D4  4E 80 00 20 */	blr 
 
-.global writeObject__31ArrayContainer$$0Q23Sys8Triangle$$1FR6StreamRQ23Sys8Triangle
-writeObject__31ArrayContainer$$0Q23Sys8Triangle$$1FR6StreamRQ23Sys8Triangle:
+.global "writeObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle"
+"writeObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle":
 /* 80419198 004160D8  4E 80 00 20 */	blr 
 
 .global read__Q23Sys11GridDividerFR6Stream
@@ -3829,15 +3829,15 @@ read__Q23Sys11GridDividerFR6Stream:
 /* 804191C0 00416100  41 82 00 74 */	beq lbl_80419234
 /* 804191C4 00416104  4B FF 81 CD */	bl __ct__5CNodeFv
 /* 804191C8 00416108  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 804191CC 0041610C  3C 60 80 4B */	lis r3, __vt__23Container$$010Vector3$$0f$$1$$1@ha
+/* 804191CC 0041610C  3C 60 80 4B */	lis r3, "__vt__23Container<10Vector3<f>>"@ha
 /* 804191D0 00416110  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 804191D4 00416114  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
+/* 804191D4 00416114  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
 /* 804191D8 00416118  90 1D 00 00 */	stw r0, 0(r29)
-/* 804191DC 0041611C  38 03 00 2C */	addi r0, r3, __vt__23Container$$010Vector3$$0f$$1$$1@l
+/* 804191DC 0041611C  38 03 00 2C */	addi r0, r3, "__vt__23Container<10Vector3<f>>"@l
 /* 804191E0 00416120  3C 60 80 4F */	lis r3, __vt__Q23Sys11VertexTable@ha
 /* 804191E4 00416124  38 C0 00 00 */	li r6, 0
 /* 804191E8 00416128  90 1D 00 00 */	stw r0, 0(r29)
-/* 804191EC 0041612C  38 A4 FF E4 */	addi r5, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
+/* 804191EC 0041612C  38 A4 FF E4 */	addi r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
 /* 804191F0 00416130  38 80 00 01 */	li r4, 1
 /* 804191F4 00416134  38 03 B5 C0 */	addi r0, r3, __vt__Q23Sys11VertexTable@l
 /* 804191F8 00416138  98 DD 00 18 */	stb r6, 0x18(r29)
@@ -3968,8 +3968,8 @@ lbl_804193B0:
 /* 804193DC 0041631C  38 21 00 30 */	addi r1, r1, 0x30
 /* 804193E0 00416320  4E 80 00 20 */	blr 
 
-.global read__31ArrayContainer$$0Q23Sys8Triangle$$1FR6Stream
-read__31ArrayContainer$$0Q23Sys8Triangle$$1FR6Stream:
+.global "read__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+"read__31ArrayContainer<Q23Sys8Triangle>FR6Stream":
 /* 804193E4 00416324  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804193E8 00416328  7C 08 02 A6 */	mflr r0
 /* 804193EC 0041632C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4017,8 +4017,8 @@ lbl_80419468:
 /* 8041948C 004163CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80419490 004163D0  4E 80 00 20 */	blr 
 
-.global readObject__31ArrayContainer$$0Q23Sys8Triangle$$1FR6StreamRQ23Sys8Triangle
-readObject__31ArrayContainer$$0Q23Sys8Triangle$$1FR6StreamRQ23Sys8Triangle:
+.global "readObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle"
+"readObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle":
 /* 80419494 004163D4  4E 80 00 20 */	blr 
 
 .global createTriangleSphere__Q23Sys13TriangleTableFRQ23Sys11VertexTable
@@ -4094,8 +4094,8 @@ lbl_8041956C:
 /* 8041958C 004164CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80419590 004164D0  4E 80 00 20 */	blr 
 
-.global getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3$$0f$$1R10Vector3$$0f$$1RfRf
-getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3$$0f$$1R10Vector3$$0f$$1RfRf:
+.global "getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3<f>R10Vector3<f>RfRf"
+"getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3<f>R10Vector3<f>RfRf":
 /* 80419594 004164D4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80419598 004164D8  C0 22 1F E4 */	lfs f1, lbl_80520344@sda21(r2)
 /* 8041959C 004164DC  93 E1 00 3C */	stw r31, 0x3c(r1)
@@ -4186,8 +4186,8 @@ lbl_804196C0:
 /* 804196DC 0041661C  38 21 00 40 */	addi r1, r1, 0x40
 /* 804196E0 00416620  4E 80 00 20 */	blr 
 
-.global makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3$$0f$$1
-makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3$$0f$$1:
+.global "makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3<f>"
+"makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3<f>":
 /* 804196E4 00416624  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 804196E8 00416628  3C 00 43 30 */	lis r0, 0x4330
 /* 804196EC 0041662C  C8 42 1F D0 */	lfd f2, lbl_80520330@sda21(r2)
@@ -4373,15 +4373,15 @@ __ct__Q23Sys13TriangleTableFv:
 /* 8041998C 004168CC  7C 7F 1B 78 */	mr r31, r3
 /* 80419990 004168D0  4B FF 7A 01 */	bl __ct__5CNodeFv
 /* 80419994 004168D4  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 80419998 004168D8  3C 60 80 4F */	lis r3, __vt__26Container$$0Q23Sys8Triangle$$1@ha
+/* 80419998 004168D8  3C 60 80 4F */	lis r3, "__vt__26Container<Q23Sys8Triangle>"@ha
 /* 8041999C 004168DC  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 804199A0 004168E0  3C 80 80 4F */	lis r4, __vt__31ArrayContainer$$0Q23Sys8Triangle$$1@ha
+/* 804199A0 004168E0  3C 80 80 4F */	lis r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@ha
 /* 804199A4 004168E4  90 1F 00 00 */	stw r0, 0(r31)
-/* 804199A8 004168E8  38 03 B6 98 */	addi r0, r3, __vt__26Container$$0Q23Sys8Triangle$$1@l
+/* 804199A8 004168E8  38 03 B6 98 */	addi r0, r3, "__vt__26Container<Q23Sys8Triangle>"@l
 /* 804199AC 004168EC  3C 60 80 4F */	lis r3, __vt__Q23Sys13TriangleTable@ha
 /* 804199B0 004168F0  38 C0 00 00 */	li r6, 0
 /* 804199B4 004168F4  90 1F 00 00 */	stw r0, 0(r31)
-/* 804199B8 004168F8  38 A4 B6 50 */	addi r5, r4, __vt__31ArrayContainer$$0Q23Sys8Triangle$$1@l
+/* 804199B8 004168F8  38 A4 B6 50 */	addi r5, r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@l
 /* 804199BC 004168FC  38 80 00 01 */	li r4, 1
 /* 804199C0 00416900  38 03 B6 08 */	addi r0, r3, __vt__Q23Sys13TriangleTable@l
 /* 804199C4 00416904  98 DF 00 18 */	stb r6, 0x18(r31)
@@ -4398,8 +4398,8 @@ __ct__Q23Sys13TriangleTableFv:
 /* 804199F0 00416930  38 21 00 10 */	addi r1, r1, 0x10
 /* 804199F4 00416934  4E 80 00 20 */	blr 
 
-.global __dt__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
-__dt__31ArrayContainer$$0Q23Sys8Triangle$$1Fv:
+.global "__dt__31ArrayContainer<Q23Sys8Triangle>Fv"
+"__dt__31ArrayContainer<Q23Sys8Triangle>Fv":
 /* 804199F8 00416938  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804199FC 0041693C  7C 08 02 A6 */	mflr r0
 /* 80419A00 00416940  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4408,12 +4408,12 @@ __dt__31ArrayContainer$$0Q23Sys8Triangle$$1Fv:
 /* 80419A0C 0041694C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80419A10 00416950  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80419A14 00416954  41 82 00 48 */	beq lbl_80419A5C
-/* 80419A18 00416958  3C 80 80 4F */	lis r4, __vt__31ArrayContainer$$0Q23Sys8Triangle$$1@ha
-/* 80419A1C 0041695C  38 04 B6 50 */	addi r0, r4, __vt__31ArrayContainer$$0Q23Sys8Triangle$$1@l
+/* 80419A18 00416958  3C 80 80 4F */	lis r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@ha
+/* 80419A1C 0041695C  38 04 B6 50 */	addi r0, r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@l
 /* 80419A20 00416960  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419A24 00416964  41 82 00 28 */	beq lbl_80419A4C
-/* 80419A28 00416968  3C 80 80 4F */	lis r4, __vt__26Container$$0Q23Sys8Triangle$$1@ha
-/* 80419A2C 0041696C  38 04 B6 98 */	addi r0, r4, __vt__26Container$$0Q23Sys8Triangle$$1@l
+/* 80419A28 00416968  3C 80 80 4F */	lis r4, "__vt__26Container<Q23Sys8Triangle>"@ha
+/* 80419A2C 0041696C  38 04 B6 98 */	addi r0, r4, "__vt__26Container<Q23Sys8Triangle>"@l
 /* 80419A30 00416970  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419A34 00416974  41 82 00 18 */	beq lbl_80419A4C
 /* 80419A38 00416978  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -4435,8 +4435,8 @@ lbl_80419A5C:
 /* 80419A70 004169B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80419A74 004169B4  4E 80 00 20 */	blr 
 
-.global __dt__26Container$$0Q23Sys8Triangle$$1Fv
-__dt__26Container$$0Q23Sys8Triangle$$1Fv:
+.global "__dt__26Container<Q23Sys8Triangle>Fv"
+"__dt__26Container<Q23Sys8Triangle>Fv":
 /* 80419A78 004169B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80419A7C 004169BC  7C 08 02 A6 */	mflr r0
 /* 80419A80 004169C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4445,8 +4445,8 @@ __dt__26Container$$0Q23Sys8Triangle$$1Fv:
 /* 80419A8C 004169CC  93 C1 00 08 */	stw r30, 8(r1)
 /* 80419A90 004169D0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80419A94 004169D4  41 82 00 38 */	beq lbl_80419ACC
-/* 80419A98 004169D8  3C 80 80 4F */	lis r4, __vt__26Container$$0Q23Sys8Triangle$$1@ha
-/* 80419A9C 004169DC  38 04 B6 98 */	addi r0, r4, __vt__26Container$$0Q23Sys8Triangle$$1@l
+/* 80419A98 004169D8  3C 80 80 4F */	lis r4, "__vt__26Container<Q23Sys8Triangle>"@ha
+/* 80419A9C 004169DC  38 04 B6 98 */	addi r0, r4, "__vt__26Container<Q23Sys8Triangle>"@l
 /* 80419AA0 004169E0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419AA4 004169E4  41 82 00 18 */	beq lbl_80419ABC
 /* 80419AA8 004169E8  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -4618,13 +4618,13 @@ lbl_80419CD0:
 /* 80419CF0 00416C30  38 21 00 20 */	addi r1, r1, 0x20
 /* 80419CF4 00416C34  4E 80 00 20 */	blr 
 
-.global writeObject__Q23Sys11VertexTableFR6StreamR10Vector3$$0f$$1
-writeObject__Q23Sys11VertexTableFR6StreamR10Vector3$$0f$$1:
+.global "writeObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>"
+"writeObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>":
 /* 80419CF8 00416C38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80419CFC 00416C3C  7C 08 02 A6 */	mflr r0
 /* 80419D00 00416C40  7C A3 2B 78 */	mr r3, r5
 /* 80419D04 00416C44  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80419D08 00416C48  4B FF 7C E1 */	bl write__10Vector3$$0f$$1FR6Stream
+/* 80419D08 00416C48  4B FF 7C E1 */	bl "write__10Vector3<f>FR6Stream"
 /* 80419D0C 00416C4C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80419D10 00416C50  7C 08 03 A6 */	mtlr r0
 /* 80419D14 00416C54  38 21 00 10 */	addi r1, r1, 0x10
@@ -4644,12 +4644,12 @@ __dt__Q23Sys11VertexTableFv:
 /* 80419D40 00416C80  38 04 B5 C0 */	addi r0, r4, __vt__Q23Sys11VertexTable@l
 /* 80419D44 00416C84  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419D48 00416C88  41 82 00 38 */	beq lbl_80419D80
-/* 80419D4C 00416C8C  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
-/* 80419D50 00416C90  38 04 FF E4 */	addi r0, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
+/* 80419D4C 00416C8C  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
+/* 80419D50 00416C90  38 04 FF E4 */	addi r0, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
 /* 80419D54 00416C94  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419D58 00416C98  41 82 00 28 */	beq lbl_80419D80
-/* 80419D5C 00416C9C  3C 80 80 4B */	lis r4, __vt__23Container$$010Vector3$$0f$$1$$1@ha
-/* 80419D60 00416CA0  38 04 00 2C */	addi r0, r4, __vt__23Container$$010Vector3$$0f$$1$$1@l
+/* 80419D5C 00416C9C  3C 80 80 4B */	lis r4, "__vt__23Container<10Vector3<f>>"@ha
+/* 80419D60 00416CA0  38 04 00 2C */	addi r0, r4, "__vt__23Container<10Vector3<f>>"@l
 /* 80419D64 00416CA4  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419D68 00416CA8  41 82 00 18 */	beq lbl_80419D80
 /* 80419D6C 00416CAC  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -4671,13 +4671,13 @@ lbl_80419D90:
 /* 80419DA4 00416CE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80419DA8 00416CE8  4E 80 00 20 */	blr 
 
-.global readObject__Q23Sys11VertexTableFR6StreamR10Vector3$$0f$$1
-readObject__Q23Sys11VertexTableFR6StreamR10Vector3$$0f$$1:
+.global "readObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>"
+"readObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>":
 /* 80419DAC 00416CEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80419DB0 00416CF0  7C 08 02 A6 */	mflr r0
 /* 80419DB4 00416CF4  7C A3 2B 78 */	mr r3, r5
 /* 80419DB8 00416CF8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80419DBC 00416CFC  4B FF 7B D5 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80419DBC 00416CFC  4B FF 7B D5 */	bl "read__10Vector3<f>FR6Stream"
 /* 80419DC0 00416D00  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80419DC4 00416D04  7C 08 03 A6 */	mtlr r0
 /* 80419DC8 00416D08  38 21 00 10 */	addi r1, r1, 0x10
@@ -4697,12 +4697,12 @@ __dt__Q23Sys13TriangleTableFv:
 /* 80419DF4 00416D34  38 04 B6 08 */	addi r0, r4, __vt__Q23Sys13TriangleTable@l
 /* 80419DF8 00416D38  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419DFC 00416D3C  41 82 00 38 */	beq lbl_80419E34
-/* 80419E00 00416D40  3C 80 80 4F */	lis r4, __vt__31ArrayContainer$$0Q23Sys8Triangle$$1@ha
-/* 80419E04 00416D44  38 04 B6 50 */	addi r0, r4, __vt__31ArrayContainer$$0Q23Sys8Triangle$$1@l
+/* 80419E00 00416D40  3C 80 80 4F */	lis r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@ha
+/* 80419E04 00416D44  38 04 B6 50 */	addi r0, r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@l
 /* 80419E08 00416D48  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419E0C 00416D4C  41 82 00 28 */	beq lbl_80419E34
-/* 80419E10 00416D50  3C 80 80 4F */	lis r4, __vt__26Container$$0Q23Sys8Triangle$$1@ha
-/* 80419E14 00416D54  38 04 B6 98 */	addi r0, r4, __vt__26Container$$0Q23Sys8Triangle$$1@l
+/* 80419E10 00416D50  3C 80 80 4F */	lis r4, "__vt__26Container<Q23Sys8Triangle>"@ha
+/* 80419E14 00416D54  38 04 B6 98 */	addi r0, r4, "__vt__26Container<Q23Sys8Triangle>"@l
 /* 80419E18 00416D58  90 1E 00 00 */	stw r0, 0(r30)
 /* 80419E1C 00416D5C  41 82 00 18 */	beq lbl_80419E34
 /* 80419E20 00416D60  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -4814,49 +4814,49 @@ getBoundBox__Q23Sys11GridDividerFR8BoundBox:
 /* 80419F9C 00416EDC  D0 04 00 14 */	stfs f0, 0x14(r4)
 /* 80419FA0 00416EE0  4E 80 00 20 */	blr 
 
-.global setArray__31ArrayContainer$$0Q23Sys8Triangle$$1FPQ23Sys8Trianglei
-setArray__31ArrayContainer$$0Q23Sys8Triangle$$1FPQ23Sys8Trianglei:
+.global "setArray__31ArrayContainer<Q23Sys8Triangle>FPQ23Sys8Trianglei"
+"setArray__31ArrayContainer<Q23Sys8Triangle>FPQ23Sys8Trianglei":
 /* 80419FA4 00416EE4  90 83 00 24 */	stw r4, 0x24(r3)
 /* 80419FA8 00416EE8  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 80419FAC 00416EEC  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 80419FB0 00416EF0  4E 80 00 20 */	blr 
 
-.global get__31ArrayContainer$$0Q23Sys8Triangle$$1FPv
-get__31ArrayContainer$$0Q23Sys8Triangle$$1FPv:
+.global "get__31ArrayContainer<Q23Sys8Triangle>FPv"
+"get__31ArrayContainer<Q23Sys8Triangle>FPv":
 /* 80419FB4 00416EF4  1C 04 00 60 */	mulli r0, r4, 0x60
 /* 80419FB8 00416EF8  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80419FBC 00416EFC  7C 63 02 14 */	add r3, r3, r0
 /* 80419FC0 00416F00  4E 80 00 20 */	blr 
 
-.global getNext__31ArrayContainer$$0Q23Sys8Triangle$$1FPv
-getNext__31ArrayContainer$$0Q23Sys8Triangle$$1FPv:
+.global "getNext__31ArrayContainer<Q23Sys8Triangle>FPv"
+"getNext__31ArrayContainer<Q23Sys8Triangle>FPv":
 /* 80419FC4 00416F04  38 64 00 01 */	addi r3, r4, 1
 /* 80419FC8 00416F08  4E 80 00 20 */	blr 
 
-.global getStart__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
-getStart__31ArrayContainer$$0Q23Sys8Triangle$$1Fv:
+.global "getStart__31ArrayContainer<Q23Sys8Triangle>Fv"
+"getStart__31ArrayContainer<Q23Sys8Triangle>Fv":
 /* 80419FCC 00416F0C  38 60 00 00 */	li r3, 0
 /* 80419FD0 00416F10  4E 80 00 20 */	blr 
 
-.global getEnd__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
-getEnd__31ArrayContainer$$0Q23Sys8Triangle$$1Fv:
+.global "getEnd__31ArrayContainer<Q23Sys8Triangle>Fv"
+"getEnd__31ArrayContainer<Q23Sys8Triangle>Fv":
 /* 80419FD4 00416F14  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80419FD8 00416F18  4E 80 00 20 */	blr 
 
-.global getAt__31ArrayContainer$$0Q23Sys8Triangle$$1Fi
-getAt__31ArrayContainer$$0Q23Sys8Triangle$$1Fi:
+.global "getAt__31ArrayContainer<Q23Sys8Triangle>Fi"
+"getAt__31ArrayContainer<Q23Sys8Triangle>Fi":
 /* 80419FDC 00416F1C  1C 04 00 60 */	mulli r0, r4, 0x60
 /* 80419FE0 00416F20  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80419FE4 00416F24  7C 63 02 14 */	add r3, r3, r0
 /* 80419FE8 00416F28  4E 80 00 20 */	blr 
 
-.global getTo__31ArrayContainer$$0Q23Sys8Triangle$$1Fv
-getTo__31ArrayContainer$$0Q23Sys8Triangle$$1Fv:
+.global "getTo__31ArrayContainer<Q23Sys8Triangle>Fv"
+"getTo__31ArrayContainer<Q23Sys8Triangle>Fv":
 /* 80419FEC 00416F2C  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 80419FF0 00416F30  4E 80 00 20 */	blr 
 
-.global getObject__26Container$$0Q23Sys8Triangle$$1FPv
-getObject__26Container$$0Q23Sys8Triangle$$1FPv:
+.global "getObject__26Container<Q23Sys8Triangle>FPv"
+"getObject__26Container<Q23Sys8Triangle>FPv":
 /* 80419FF4 00416F34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80419FF8 00416F38  7C 08 02 A6 */	mflr r0
 /* 80419FFC 00416F3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4869,12 +4869,12 @@ getObject__26Container$$0Q23Sys8Triangle$$1FPv:
 /* 8041A018 00416F58  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041A01C 00416F5C  4E 80 00 20 */	blr 
 
-.global getAt__26Container$$0Q23Sys8Triangle$$1Fi
-getAt__26Container$$0Q23Sys8Triangle$$1Fi:
+.global "getAt__26Container<Q23Sys8Triangle>Fi"
+"getAt__26Container<Q23Sys8Triangle>Fi":
 /* 8041A020 00416F60  38 60 00 00 */	li r3, 0
 /* 8041A024 00416F64  4E 80 00 20 */	blr 
 
-.global getTo__26Container$$0Q23Sys8Triangle$$1Fv
-getTo__26Container$$0Q23Sys8Triangle$$1Fv:
+.global "getTo__26Container<Q23Sys8Triangle>Fv"
+"getTo__26Container<Q23Sys8Triangle>Fv":
 /* 8041A028 00416F68  38 60 00 00 */	li r3, 0
 /* 8041A02C 00416F6C  4E 80 00 20 */	blr 

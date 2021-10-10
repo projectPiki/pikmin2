@@ -66,15 +66,15 @@ lbl_8034F6A4:
 /* 8034F6B0 0034C5F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034F6B4 0034C5F4  4E 80 00 20 */	blr 
 
-.global birth__Q34Game13PanModokiBase3ObjFR10Vector3$$0f$$1f
-birth__Q34Game13PanModokiBase3ObjFR10Vector3$$0f$$1f:
+.global "birth__Q34Game13PanModokiBase3ObjFR10Vector3<f>f"
+"birth__Q34Game13PanModokiBase3ObjFR10Vector3<f>f":
 /* 8034F6B8 0034C5F8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8034F6BC 0034C5FC  7C 08 02 A6 */	mflr r0
 /* 8034F6C0 0034C600  90 01 00 54 */	stw r0, 0x54(r1)
 /* 8034F6C4 0034C604  93 E1 00 4C */	stw r31, 0x4c(r1)
 /* 8034F6C8 0034C608  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 8034F6CC 0034C60C  7C 7E 1B 78 */	mr r30, r3
-/* 8034F6D0 0034C610  4B DB 33 31 */	bl birth__Q24Game9EnemyBaseFR10Vector3$$0f$$1f
+/* 8034F6D0 0034C610  4B DB 33 31 */	bl "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
 /* 8034F6D4 0034C614  80 6D 91 E0 */	lwz r3, generalEnemyMgr__4Game@sda21(r13)
 /* 8034F6D8 0034C618  38 80 00 53 */	li r4, 0x53
 /* 8034F6DC 0034C61C  4B DB E5 C9 */	bl getEnemyMgr__Q24Game15GeneralEnemyMgrFi
@@ -493,14 +493,14 @@ lbl_8034FCD8:
 /* 8034FCF0 0034CC30  38 84 02 BC */	addi r4, r4, 0x2bc
 /* 8034FCF4 0034CC34  4B E4 FD B5 */	bl startCapture__Q24Game8CreatureFP7Matrixf
 /* 8034FCF8 0034CC38  C0 02 01 58 */	lfs f0, lbl_8051E4B8@sda21(r2)
-/* 8034FCFC 0034CC3C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8034FD00 0034CC40  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 8034FCFC 0034CC3C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8034FD00 0034CC40  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 8034FD04 0034CC44  38 81 00 08 */	addi r4, r1, 8
 /* 8034FD08 0034CC48  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8034FD0C 0034CC4C  38 61 00 14 */	addi r3, r1, 0x14
 /* 8034FD10 0034CC50  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8034FD14 0034CC54  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8034FD18 0034CC58  48 0D 88 49 */	bl makeST__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8034FD18 0034CC58  48 0D 88 49 */	bl "makeST__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 8034FD1C 0034CC5C  80 7F 03 8C */	lwz r3, 0x38c(r31)
 /* 8034FD20 0034CC60  38 81 00 14 */	addi r4, r1, 0x14
 /* 8034FD24 0034CC64  4B E4 FD D9 */	bl updateCapture__Q24Game8CreatureFR7Matrixf
@@ -527,7 +527,7 @@ doAnimationStick__Q34Game13PanModokiBase3ObjFv:
 /* 8034FD68 0034CCA8  28 00 00 00 */	cmplwi r0, 0
 /* 8034FD6C 0034CCAC  40 82 02 B8 */	bne lbl_80350024
 /* 8034FD70 0034CCB0  38 81 00 20 */	addi r4, r1, 0x20
-/* 8034FD74 0034CCB4  4B DE B5 CD */	bl getYVector__Q24Game8CreatureFR10Vector3$$0f$$1
+/* 8034FD74 0034CCB4  4B DE B5 CD */	bl "getYVector__Q24Game8CreatureFR10Vector3<f>"
 /* 8034FD78 0034CCB8  C0 41 00 20 */	lfs f2, 0x20(r1)
 /* 8034FD7C 0034CCBC  C0 21 00 24 */	lfs f1, 0x24(r1)
 /* 8034FD80 0034CCC0  EC 02 00 B2 */	fmuls f0, f2, f2
@@ -716,7 +716,7 @@ lbl_80350024:
 /* 80350028 0034CF68  38 9F 01 68 */	addi r4, r31, 0x168
 /* 8035002C 0034CF6C  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 80350030 0034CF70  38 DF 01 8C */	addi r6, r31, 0x18c
-/* 80350034 0034CF74  48 0D 82 A5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80350034 0034CF74  48 0D 82 A5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 lbl_80350038:
 /* 80350038 0034CF78  E3 E1 00 48 */	psq_l f31, 72(r1), 0, qr0
 /* 8035003C 0034CF7C  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -788,7 +788,7 @@ lbl_80350110:
 /* 80350130 0034D070  C3 C3 00 10 */	lfs f30, 0x10(r3)
 /* 80350134 0034D074  C3 A3 00 20 */	lfs f29, 0x20(r3)
 /* 80350138 0034D078  7F C3 F3 78 */	mr r3, r30
-/* 8035013C 0034D07C  48 00 32 F1 */	bl calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3$$0f$$1
+/* 8035013C 0034D07C  48 00 32 F1 */	bl "calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<f>"
 /* 80350140 0034D080  7F E4 FB 78 */	mr r4, r31
 /* 80350144 0034D084  38 61 00 20 */	addi r3, r1, 0x20
 /* 80350148 0034D088  81 9F 00 00 */	lwz r12, 0(r31)
@@ -861,9 +861,9 @@ lbl_80350200:
 /* 80350250 0034D190  D0 1E 03 74 */	stfs f0, 0x374(r30)
 /* 80350254 0034D194  4B E4 F8 55 */	bl startCapture__Q24Game8CreatureFP7Matrixf
 /* 80350258 0034D198  C0 42 01 60 */	lfs f2, lbl_8051E4C0@sda21(r2)
-/* 8035025C 0034D19C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8035025C 0034D19C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80350260 0034D1A0  C0 1E 02 E0 */	lfs f0, 0x2e0(r30)
-/* 80350264 0034D1A4  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 80350264 0034D1A4  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 80350268 0034D1A8  C0 22 01 30 */	lfs f1, lbl_8051E490@sda21(r2)
 /* 8035026C 0034D1AC  38 61 00 50 */	addi r3, r1, 0x50
 /* 80350270 0034D1B0  EC 42 00 28 */	fsubs f2, f2, f0
@@ -872,7 +872,7 @@ lbl_80350200:
 /* 8035027C 0034D1BC  38 A1 00 38 */	addi r5, r1, 0x38
 /* 80350280 0034D1C0  D0 41 00 3C */	stfs f2, 0x3c(r1)
 /* 80350284 0034D1C4  D0 01 00 40 */	stfs f0, 0x40(r1)
-/* 80350288 0034D1C8  48 0D 86 01 */	bl makeTR__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 80350288 0034D1C8  48 0D 86 01 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 8035028C 0034D1CC  7F E3 FB 78 */	mr r3, r31
 /* 80350290 0034D1D0  38 81 00 50 */	addi r4, r1, 0x50
 /* 80350294 0034D1D4  4B E4 F8 69 */	bl updateCapture__Q24Game8CreatureFR7Matrixf
@@ -1184,12 +1184,12 @@ damageRumble__Q34Game13PanModokiBase3ObjFv:
 /* 8035069C 0034D5DC  7C 7F 1B 78 */	mr r31, r3
 /* 803506A0 0034D5E0  38 BF 01 8C */	addi r5, r31, 0x18c
 /* 803506A4 0034D5E4  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
-/* 803506A8 0034D5E8  4B F0 1B 95 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 803506A8 0034D5E8  4B F0 1B 95 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 803506AC 0034D5EC  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 803506B0 0034D5F0  38 BF 01 8C */	addi r5, r31, 0x18c
 /* 803506B4 0034D5F4  38 80 00 0B */	li r4, 0xb
 /* 803506B8 0034D5F8  38 C0 00 02 */	li r6, 2
-/* 803506BC 0034D5FC  4B F0 30 C5 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 803506BC 0034D5FC  4B F0 30 C5 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 803506C0 0034D600  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803506C4 0034D604  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803506C8 0034D608  7C 08 03 A6 */	mtlr r0
@@ -1253,7 +1253,7 @@ lbl_80350780:
 /* 80350794 0034D6D4  41 82 01 40 */	beq lbl_803508D4
 /* 80350798 0034D6D8  7F E3 FB 78 */	mr r3, r31
 /* 8035079C 0034D6DC  38 81 00 14 */	addi r4, r1, 0x14
-/* 803507A0 0034D6E0  48 00 2C 8D */	bl calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3$$0f$$1
+/* 803507A0 0034D6E0  48 00 2C 8D */	bl "calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<f>"
 /* 803507A4 0034D6E4  C0 7F 01 FC */	lfs f3, 0x1fc(r31)
 /* 803507A8 0034D6E8  C0 02 01 30 */	lfs f0, lbl_8051E490@sda21(r2)
 /* 803507AC 0034D6EC  FC 20 18 90 */	fmr f1, f3
@@ -1574,7 +1574,7 @@ doFinishStoneState__Q34Game13PanModokiBase3ObjFv:
 /* 80350C04 0034DB44  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 80350C08 0034DB48  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 80350C0C 0034DB4C  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 80350C10 0034DB50  4B DC 25 0D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 80350C10 0034DB50  4B DC 25 0D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 80350C14 0034DB54  C0 02 01 30 */	lfs f0, lbl_8051E490@sda21(r2)
 /* 80350C18 0034DB58  7F E3 FB 78 */	mr r3, r31
 /* 80350C1C 0034DB5C  D0 1F 02 0C */	stfs f0, 0x20c(r31)
@@ -2220,7 +2220,7 @@ lbl_80351534:
 /* 8035153C 0034E47C  FC 40 E8 90 */	fmr f2, f29
 /* 80351540 0034E480  38 9F 02 BC */	addi r4, r31, 0x2bc
 /* 80351544 0034E484  FC 60 F0 90 */	fmr f3, f30
-/* 80351548 0034E488  4B DC 40 95 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 80351548 0034E488  4B DC 40 95 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 /* 8035154C 0034E48C  80 1F 00 C8 */	lwz r0, 0xc8(r31)
 /* 80351550 0034E490  28 00 00 00 */	cmplwi r0, 0
 /* 80351554 0034E494  41 82 00 B4 */	beq lbl_80351608
@@ -3136,7 +3136,7 @@ lbl_80352260:
 /* 80352278 0034F1B8  FC 60 F8 90 */	fmr f3, f31
 /* 8035227C 0034F1BC  D0 1E 01 FC */	stfs f0, 0x1fc(r30)
 /* 80352280 0034F1C0  38 81 00 74 */	addi r4, r1, 0x74
-/* 80352284 0034F1C4  4B DC 33 59 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 80352284 0034F1C4  4B DC 33 59 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 /* 80352288 0034F1C8  C0 1E 01 FC */	lfs f0, 0x1fc(r30)
 /* 8035228C 0034F1CC  D0 1E 02 C8 */	stfs f0, 0x2c8(r30)
 /* 80352290 0034F1D0  80 7E 02 30 */	lwz r3, 0x230(r30)
@@ -3299,7 +3299,7 @@ lbl_803524C8:
 /* 803524CC 0034F40C  38 A1 00 68 */	addi r5, r1, 0x68
 /* 803524D0 0034F410  C0 3E 03 7C */	lfs f1, 0x37c(r30)
 /* 803524D4 0034F414  38 80 00 02 */	li r4, 2
-/* 803524D8 0034F418  4B EE 2A 79 */	bl pull__Q24Game11PelletCarryFUsR10Vector3$$0f$$1f
+/* 803524D8 0034F418  4B EE 2A 79 */	bl "pull__Q24Game11PelletCarryFUsR10Vector3<f>f"
 /* 803524DC 0034F41C  7F E4 FB 78 */	mr r4, r31
 /* 803524E0 0034F420  38 61 00 20 */	addi r3, r1, 0x20
 /* 803524E4 0034F424  81 9F 00 00 */	lwz r12, 0(r31)
@@ -3550,8 +3550,8 @@ lbl_8035284C:
 /* 80352860 0034F7A0  38 61 00 30 */	addi r3, r1, 0x30
 /* 80352864 0034F7A4  4B E4 D3 F9 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80352868 0034F7A8  38 00 00 00 */	li r0, 0
-/* 8035286C 0034F7AC  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80352870 0034F7B0  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8035286C 0034F7AC  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80352870 0034F7B0  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80352874 0034F7B4  38 61 00 30 */	addi r3, r1, 0x30
 /* 80352878 0034F7B8  28 00 00 00 */	cmplwi r0, 0
 /* 8035287C 0034F7BC  90 81 00 20 */	stw r4, 0x20(r1)
@@ -4209,8 +4209,8 @@ lbl_803531A4:
 /* 803531A8 003500E8  38 61 00 18 */	addi r3, r1, 0x18
 /* 803531AC 003500EC  4B E4 CA B1 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 803531B0 003500F0  38 00 00 00 */	li r0, 0
-/* 803531B4 003500F4  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 803531B8 003500F8  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 803531B4 003500F4  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 803531B8 003500F8  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 803531BC 003500FC  38 61 00 18 */	addi r3, r1, 0x18
 /* 803531C0 00350100  28 00 00 00 */	cmplwi r0, 0
 /* 803531C4 00350104  90 81 00 08 */	stw r4, 8(r1)
@@ -4380,8 +4380,8 @@ lbl_80353414:
 /* 80353424 00350364  38 21 00 50 */	addi r1, r1, 0x50
 /* 80353428 00350368  4E 80 00 20 */	blr 
 
-.global calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3$$0f$$1
-calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3$$0f$$1:
+.global "calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<f>"
+"calcSlotGlobalPos__Q34Game13PanModokiBase3ObjFR10Vector3<f>":
 /* 8035342C 0035036C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80353430 00350370  7C 08 02 A6 */	mflr r0
 /* 80353434 00350374  90 01 00 84 */	stw r0, 0x84(r1)
@@ -4492,7 +4492,7 @@ boundEffect__Q34Game13PanModokiBase3ObjFv:
 /* 803535B0 003504F0  38 83 01 8C */	addi r4, r3, 0x18c
 /* 803535B4 003504F4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 803535B8 003504F8  C0 23 03 3C */	lfs f1, 0x33c(r3)
-/* 803535BC 003504FC  4B DB 05 95 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 803535BC 003504FC  4B DB 05 95 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 803535C0 00350500  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803535C4 00350504  7C 08 03 A6 */	mtlr r0
 /* 803535C8 00350508  38 21 00 10 */	addi r1, r1, 0x10
@@ -4553,7 +4553,7 @@ lbl_80353684:
 /* 80353694 003505D4  C0 3F 03 3C */	lfs f1, 0x33c(r31)
 /* 80353698 003505D8  7F E3 FB 78 */	mr r3, r31
 /* 8035369C 003505DC  38 9F 01 8C */	addi r4, r31, 0x18c
-/* 803536A0 003505E0  4B DB 03 59 */	bl createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 803536A0 003505E0  4B DB 03 59 */	bl "createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 lbl_803536A4:
 /* 803536A4 003505E4  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 803536A8 003505E8  83 E1 00 3C */	lwz r31, 0x3c(r1)
@@ -4845,7 +4845,7 @@ lbl_80353AC4:
 /* 80353AC4 00350A04  7F 63 DB 78 */	mr r3, r27
 /* 80353AC8 00350A08  38 81 00 14 */	addi r4, r1, 0x14
 /* 80353ACC 00350A0C  38 A0 00 00 */	li r5, 0
-/* 80353AD0 00350A10  4B DE 76 D9 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80353AD0 00350A10  4B DE 76 D9 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 80353AD4 00350A14  7F 63 DB 78 */	mr r3, r27
 /* 80353AD8 00350A18  38 81 00 08 */	addi r4, r1, 8
 /* 80353ADC 00350A1C  81 9B 00 00 */	lwz r12, 0(r27)
@@ -4938,7 +4938,7 @@ appearRumble__Q34Game11OoPanModoki3ObjFv:
 /* 80353C14 00350B54  38 A4 01 8C */	addi r5, r4, 0x18c
 /* 80353C18 00350B58  38 80 00 0B */	li r4, 0xb
 /* 80353C1C 00350B5C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
-/* 80353C20 00350B60  4B EF FB 61 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 80353C20 00350B60  4B EF FB 61 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 80353C24 00350B64  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80353C28 00350B68  7C 08 03 A6 */	mtlr r0
 /* 80353C2C 00350B6C  38 21 00 10 */	addi r1, r1, 0x10
@@ -4954,7 +4954,7 @@ hideRumble__Q34Game11OoPanModoki3ObjFv:
 /* 80353C48 00350B88  38 A4 01 8C */	addi r5, r4, 0x18c
 /* 80353C4C 00350B8C  38 80 00 0A */	li r4, 0xa
 /* 80353C50 00350B90  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
-/* 80353C54 00350B94  4B EF FB 2D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 80353C54 00350B94  4B EF FB 2D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 80353C58 00350B98  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80353C5C 00350B9C  7C 08 03 A6 */	mtlr r0
 /* 80353C60 00350BA0  38 21 00 10 */	addi r1, r1, 0x10

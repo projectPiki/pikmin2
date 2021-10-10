@@ -179,7 +179,7 @@ loadTexData__Q34Game11GreenKabuto3MgrFv:
 /* 802FFA2C 002FC96C  7C 7F 1B 78 */	mr r31, r3
 /* 802FFA30 002FC970  90 03 00 44 */	stw r0, 0x44(r3)
 /* 802FFA34 002FC974  38 61 00 08 */	addi r3, r1, 8
-/* 802FFA38 002FC978  80 8D 85 18 */	lwz r4, cKabutoChangeTexName__Q34Game11GreenKabuto28$$2unnamed$$2GreenKabutoMgr_cpp$$2@sda21(r13)
+/* 802FFA38 002FC978  80 8D 85 18 */	lwz r4, "cKabutoChangeTexName__Q34Game11GreenKabuto28@unnamed@GreenKabutoMgr_cpp@"@sda21(r13)
 /* 802FFA3C 002FC97C  48 14 CB 9D */	bl __ct__Q212LoadResource3ArgFPCc
 /* 802FFA40 002FC980  80 6D 9C 28 */	lwz r3, gLoadResourceMgr@sda21(r13)
 /* 802FFA44 002FC984  38 81 00 08 */	addi r4, r1, 8
@@ -294,7 +294,7 @@ read__Q34Game6Kabuto5ParmsFR6Stream:
 /* 802FFBB8 002FCAF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802FFBBC 002FCAFC  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game11GreenKabuto3MgrFv
-$$24$$2__dt__Q34Game11GreenKabuto3MgrFv:
+.global "@4@__dt__Q34Game11GreenKabuto3MgrFv"
+"@4@__dt__Q34Game11GreenKabuto3MgrFv":
 /* 802FFBC0 002FCB00  38 63 FF FC */	addi r3, r3, -4
 /* 802FFBC4 002FCB04  4B FF FE D4 */	b __dt__Q34Game11GreenKabuto3MgrFv

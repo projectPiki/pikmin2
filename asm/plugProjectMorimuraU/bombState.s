@@ -381,12 +381,12 @@ lbl_80349960:
 /* 80349964 003468A4  38 A1 00 48 */	addi r5, r1, 0x48
 /* 80349968 003468A8  38 80 00 0C */	li r4, 0xc
 /* 8034996C 003468AC  38 C0 00 02 */	li r6, 2
-/* 80349970 003468B0  4B F0 88 CD */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 80349970 003468B0  4B F0 88 CD */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 80349974 003468B4  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80349978 003468B8  38 A1 00 48 */	addi r5, r1, 0x48
 /* 8034997C 003468BC  38 80 00 0F */	li r4, 0xf
 /* 80349980 003468C0  38 C0 00 02 */	li r6, 2
-/* 80349984 003468C4  4B F0 9D FD */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 80349984 003468C4  4B F0 9D FD */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 80349988 003468C8  7F A4 EB 78 */	mr r4, r29
 /* 8034998C 003468CC  38 61 00 20 */	addi r3, r1, 0x20
 /* 80349990 003468D0  81 9D 00 00 */	lwz r12, 0(r29)
@@ -415,8 +415,8 @@ lbl_80349960:
 /* 803499EC 0034692C  4B EE 49 F5 */	bl __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
 /* 803499F0 00346930  38 61 00 F8 */	addi r3, r1, 0xf8
 /* 803499F4 00346934  4B EE 4A 69 */	bl first__Q24Game12CellIteratorFv
-/* 803499F8 00346938  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 803499FC 0034693C  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
+/* 803499F8 00346938  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 803499FC 0034693C  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
 /* 80349A00 00346940  48 00 02 40 */	b lbl_80349C40
 lbl_80349A04:
 /* 80349A04 00346944  38 61 00 F8 */	addi r3, r1, 0xf8
@@ -451,14 +451,14 @@ lbl_80349A04:
 /* 80349A78 003469B8  80 DD 00 C0 */	lwz r6, 0xc0(r29)
 /* 80349A7C 003469BC  3C A0 80 4B */	lis r5, __vt__Q24Game11Interaction@ha
 /* 80349A80 003469C0  3C 80 80 4B */	lis r4, __vt__Q24Game12InteractWind@ha
-/* 80349A84 003469C4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80349A84 003469C4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80349A88 003469C8  C0 06 08 1C */	lfs f0, 0x81c(r6)
 /* 80349A8C 003469CC  38 05 A3 00 */	addi r0, r5, __vt__Q24Game11Interaction@l
 /* 80349A90 003469D0  C0 22 FF A8 */	lfs f1, lbl_8051E308@sda21(r2)
 /* 80349A94 003469D4  38 84 49 74 */	addi r4, r4, __vt__Q24Game12InteractWind@l
 /* 80349A98 003469D8  90 01 00 6C */	stw r0, 0x6c(r1)
 /* 80349A9C 003469DC  EC 61 00 32 */	fmuls f3, f1, f0
-/* 80349AA0 003469E0  C0 43 41 E4 */	lfs f2, zero__10Vector3$$0f$$1@l(r3)
+/* 80349AA0 003469E0  C0 43 41 E4 */	lfs f2, "zero__10Vector3<f>"@l(r3)
 /* 80349AA4 003469E4  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 80349AA8 003469E8  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBomb@ha
 /* 80349AAC 003469EC  C0 1F 00 08 */	lfs f0, 8(r31)

@@ -285,9 +285,9 @@ initGo__Q26PikiAI9ActRescueFv:
 /* 80239284 002361C4  38 00 00 01 */	li r0, 1
 /* 80239288 002361C8  93 E1 00 5C */	stw r31, 0x5c(r1)
 /* 8023928C 002361CC  7C 7F 1B 78 */	mr r31, r3
-/* 80239290 002361D0  3C 60 80 4B */	lis r3, __vt__27Condition$$0Q24Game8WayPoint$$1@ha
+/* 80239290 002361D0  3C 60 80 4B */	lis r3, "__vt__27Condition<Q24Game8WayPoint>"@ha
 /* 80239294 002361D4  90 1F 00 10 */	stw r0, 0x10(r31)
-/* 80239298 002361D8  38 03 1F 64 */	addi r0, r3, __vt__27Condition$$0Q24Game8WayPoint$$1@l
+/* 80239298 002361D8  38 03 1F 64 */	addi r0, r3, "__vt__27Condition<Q24Game8WayPoint>"@l
 /* 8023929C 002361DC  3C 60 80 4B */	lis r3, __vt__Q24Game11WPCondition@ha
 /* 802392A0 002361E0  90 01 00 0C */	stw r0, 0xc(r1)
 /* 802392A4 002361E4  38 03 1F 58 */	addi r0, r3, __vt__Q24Game11WPCondition@l
@@ -479,7 +479,7 @@ lbl_80239514:
 /* 80239554 00236494  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80239558 00236498  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 8023955C 0023649C  80 7E 00 1C */	lwz r3, 0x1c(r30)
-/* 80239560 002364A0  4B F0 1C 49 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 80239560 002364A0  4B F0 1C 49 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 80239564 002364A4  38 60 00 01 */	li r3, 1
 lbl_80239568:
 /* 80239568 002364A8  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -737,8 +737,8 @@ getNextAIType__Q26PikiAI9ActRescueFv:
 /* 802398BC 002367FC  38 60 00 01 */	li r3, 1
 /* 802398C0 00236800  4E 80 00 20 */	blr 
 
-.global $$240$$24$$2onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent
-$$240$$24$$2onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent:
+.global "@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent"
+"@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent":
 /* 802398C4 00236804  39 60 00 04 */	li r11, 4
 /* 802398C8 00236808  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802398CC 0023680C  7C 63 5A 14 */	add r3, r3, r11

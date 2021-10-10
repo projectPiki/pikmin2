@@ -244,7 +244,7 @@ doLoadBmd__Q34Game4Hana3MgrFPv:
 /* 802F3128 002F0068  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F312C 002F006C  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game4Hana3MgrFv
-$$24$$2__dt__Q34Game4Hana3MgrFv:
+.global "@4@__dt__Q34Game4Hana3MgrFv"
+"@4@__dt__Q34Game4Hana3MgrFv":
 /* 802F3130 002F0070  38 63 FF FC */	addi r3, r3, -4
 /* 802F3134 002F0074  4B FF FF 18 */	b __dt__Q34Game4Hana3MgrFv

@@ -317,7 +317,7 @@ doFinishStoneState__Q34Game6Kabuto3ObjFv:
 /* 802E45B0 002E14F0  38 80 00 00 */	li r4, 0
 /* 802E45B4 002E14F4  C0 62 EA 6C */	lfs f3, lbl_8051CDCC@sda21(r2)
 /* 802E45B8 002E14F8  C0 82 EA 8C */	lfs f4, lbl_8051CDEC@sda21(r2)
-/* 802E45BC 002E14FC  4B E2 EB 61 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802E45BC 002E14FC  4B E2 EB 61 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802E45C0 002E1500  7F C3 F3 78 */	mr r3, r30
 /* 802E45C4 002E1504  81 9E 00 00 */	lwz r12, 0(r30)
 /* 802E45C8 002E1508  81 8C 02 58 */	lwz r12, 0x258(r12)
@@ -567,7 +567,7 @@ getSearchedTarget__Q34Game6Kabuto3ObjFv:
 /* 802E4918 002E1858  38 A0 00 00 */	li r5, 0
 /* 802E491C 002E185C  C0 46 03 D4 */	lfs f2, 0x3d4(r6)
 /* 802E4920 002E1860  38 C0 00 00 */	li r6, 0
-/* 802E4924 002E1864  4B E2 E7 2D */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
+/* 802E4924 002E1864  4B E2 E7 2D */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
 /* 802E4928 002E1868  28 03 00 00 */	cmplwi r3, 0
 /* 802E492C 002E186C  41 82 00 0C */	beq lbl_802E4938
 /* 802E4930 002E1870  C0 02 EA 6C */	lfs f0, lbl_8051CDCC@sda21(r2)

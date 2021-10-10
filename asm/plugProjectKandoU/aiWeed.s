@@ -189,7 +189,7 @@ decideTarget__Q26PikiAI7ActWeedFv:
 /* 8020DA14 0020A954  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 8020DA18 0020A958  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 8020DA1C 0020A95C  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8020DA20 0020A960  48 00 11 9D */	bl getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+/* 8020DA20 0020A960  48 00 11 9D */	bl "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
 /* 8020DA24 0020A964  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 8020DA28 0020A968  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8020DA2C 0020A96C  83 E1 00 2C */	lwz r31, 0x2c(r1)
@@ -425,7 +425,7 @@ lbl_8020DD48:
 /* 8020DD74 0020ACB4  D0 21 00 3C */	stfs f1, 0x3c(r1)
 /* 8020DD78 0020ACB8  D0 01 00 40 */	stfs f0, 0x40(r1)
 /* 8020DD7C 0020ACBC  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8020DD80 0020ACC0  48 00 0E 3D */	bl getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+/* 8020DD80 0020ACC0  48 00 0E 3D */	bl "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
 /* 8020DD84 0020ACC4  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 8020DD88 0020ACC8  83 BF 00 24 */	lwz r29, 0x24(r31)
 /* 8020DD8C 0020ACCC  2C 1D FF FF */	cmpwi r29, -1
@@ -558,7 +558,7 @@ lbl_8020DF38:
 /* 8020DF6C 0020AEAC  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 8020DF70 0020AEB0  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8020DF74 0020AEB4  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8020DF78 0020AEB8  48 00 0C 45 */	bl getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+/* 8020DF78 0020AEB8  48 00 0C 45 */	bl "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
 /* 8020DF7C 0020AEBC  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 8020DF80 0020AEC0  83 BF 00 24 */	lwz r29, 0x24(r31)
 /* 8020DF84 0020AEC4  2C 1D FF FF */	cmpwi r29, -1
@@ -692,7 +692,7 @@ lbl_8020E130:
 /* 8020E168 0020B0A8  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8020E16C 0020B0AC  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8020E170 0020B0B0  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8020E174 0020B0B4  48 00 0A 49 */	bl getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3$$0f$$1
+/* 8020E174 0020B0B4  48 00 0A 49 */	bl "getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3<f>"
 /* 8020E178 0020B0B8  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 8020E17C 0020B0BC  83 BF 00 24 */	lwz r29, 0x24(r31)
 /* 8020E180 0020B0C0  2C 1D FF FF */	cmpwi r29, -1
@@ -1170,10 +1170,10 @@ lbl_8020E784:
 /* 8020E83C 0020B77C  38 E0 00 00 */	li r7, 0
 /* 8020E840 0020B780  90 81 00 44 */	stw r4, 0x44(r1)
 /* 8020E844 0020B784  38 C3 4B 9C */	addi r6, r3, __vt__Q23efx11TPkAttackDP@l
-/* 8020E848 0020B788  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8020E848 0020B788  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8020E84C 0020B78C  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 8020E850 0020B790  B0 01 00 48 */	sth r0, 0x48(r1)
-/* 8020E854 0020B794  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 8020E854 0020B794  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 8020E858 0020B798  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8020E85C 0020B79C  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 8020E860 0020B7A0  90 E1 00 4C */	stw r7, 0x4c(r1)
@@ -1206,10 +1206,10 @@ lbl_8020E8AC:
 /* 8020E8C8 0020B808  38 E0 00 00 */	li r7, 0
 /* 8020E8CC 0020B80C  90 81 00 28 */	stw r4, 0x28(r1)
 /* 8020E8D0 0020B810  38 C3 4B 88 */	addi r6, r3, __vt__Q23efx10PikiDamage@l
-/* 8020E8D4 0020B814  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8020E8D4 0020B814  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8020E8D8 0020B818  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 8020E8DC 0020B81C  B0 01 00 2C */	sth r0, 0x2c(r1)
-/* 8020E8E0 0020B820  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 8020E8E0 0020B820  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 8020E8E4 0020B824  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8020E8E8 0020B828  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 8020E8EC 0020B82C  90 E1 00 30 */	stw r7, 0x30(r1)
@@ -1232,9 +1232,9 @@ lbl_8020E8AC:
 /* 8020E930 0020B870  48 1A 06 55 */	bl create__Q23efx8TSimple1FPQ23efx3Arg
 /* 8020E934 0020B874  48 00 00 B4 */	b lbl_8020E9E8
 lbl_8020E938:
-/* 8020E938 0020B878  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 8020E938 0020B878  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 8020E93C 0020B87C  3C 60 80 4B */	lis r3, __vt__Q23efx5TBase@ha
-/* 8020E940 0020B880  38 C4 41 E4 */	addi r6, r4, zero__10Vector3$$0f$$1@l
+/* 8020E940 0020B880  38 C4 41 E4 */	addi r6, r4, "zero__10Vector3<f>"@l
 /* 8020E944 0020B884  38 A0 00 00 */	li r5, 0
 /* 8020E948 0020B888  38 03 A7 F8 */	addi r0, r3, __vt__Q23efx5TBase@l
 /* 8020E94C 0020B88C  C0 26 00 00 */	lfs f1, 0(r6)
@@ -1353,8 +1353,8 @@ __sinit_aiWeed_cpp:
 /* 8020EAC0 0020BA00  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8020EAC4 0020BA04  4E 80 00 20 */	blr 
 
-.global $$240$$24$$2onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent
-$$240$$24$$2onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent:
+.global "@40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent"
+"@40@4@onKeyEvent__Q26PikiAI14ActFlockAttackFRCQ28SysShape8KeyEvent":
 /* 8020EAC8 0020BA08  39 60 00 04 */	li r11, 4
 /* 8020EACC 0020BA0C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8020EAD0 0020BA10  7C 63 5A 14 */	add r3, r3, r11

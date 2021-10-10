@@ -72,9 +72,9 @@ __ct__Q34Game3Egg5ParmsFv:
 /* 8034B79C 003486DC  90 FE 07 FC */	stw r7, 0x7fc(r30)
 /* 8034B7A0 003486E0  90 1E 08 00 */	stw r0, 0x800(r30)
 /* 8034B7A4 003486E4  48 0C 7E B5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8034B7A8 003486E8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8034B7A8 003486E8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8034B7AC 003486EC  3C A0 66 70 */	lis r5, 0x66703032@ha
-/* 8034B7B0 003486F0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8034B7B0 003486F0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8034B7B4 003486F4  C0 22 00 20 */	lfs f1, lbl_8051E380@sda21(r2)
 /* 8034B7B8 003486F8  90 1E 08 04 */	stw r0, 0x804(r30)
 /* 8034B7BC 003486FC  38 7E 08 2C */	addi r3, r30, 0x82c
@@ -86,9 +86,9 @@ __ct__Q34Game3Egg5ParmsFv:
 /* 8034B7D4 00348714  D0 1E 08 24 */	stfs f0, 0x824(r30)
 /* 8034B7D8 00348718  D0 3E 08 28 */	stfs f1, 0x828(r30)
 /* 8034B7DC 0034871C  48 0C 7E 7D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8034B7E0 00348720  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8034B7E0 00348720  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8034B7E4 00348724  3C A0 66 70 */	lis r5, 0x66703033@ha
-/* 8034B7E8 00348728  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8034B7E8 00348728  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8034B7EC 0034872C  C0 22 00 20 */	lfs f1, lbl_8051E380@sda21(r2)
 /* 8034B7F0 00348730  90 1E 08 2C */	stw r0, 0x82c(r30)
 /* 8034B7F4 00348734  38 7E 08 54 */	addi r3, r30, 0x854
@@ -100,9 +100,9 @@ __ct__Q34Game3Egg5ParmsFv:
 /* 8034B80C 0034874C  D0 1E 08 4C */	stfs f0, 0x84c(r30)
 /* 8034B810 00348750  D0 3E 08 50 */	stfs f1, 0x850(r30)
 /* 8034B814 00348754  48 0C 7E 45 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8034B818 00348758  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8034B818 00348758  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8034B81C 0034875C  3C A0 66 70 */	lis r5, 0x66703034@ha
-/* 8034B820 00348760  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8034B820 00348760  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8034B824 00348764  C0 22 00 20 */	lfs f1, lbl_8051E380@sda21(r2)
 /* 8034B828 00348768  90 1E 08 54 */	stw r0, 0x854(r30)
 /* 8034B82C 0034876C  38 7E 08 7C */	addi r3, r30, 0x87c
@@ -114,9 +114,9 @@ __ct__Q34Game3Egg5ParmsFv:
 /* 8034B844 00348784  D0 1E 08 74 */	stfs f0, 0x874(r30)
 /* 8034B848 00348788  D0 3E 08 78 */	stfs f1, 0x878(r30)
 /* 8034B84C 0034878C  48 0C 7E 0D */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8034B850 00348790  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8034B850 00348790  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8034B854 00348794  3C A0 66 70 */	lis r5, 0x66703035@ha
-/* 8034B858 00348798  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8034B858 00348798  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8034B85C 0034879C  C0 22 00 20 */	lfs f1, lbl_8051E380@sda21(r2)
 /* 8034B860 003487A0  90 1E 08 7C */	stw r0, 0x87c(r30)
 /* 8034B864 003487A4  38 7E 08 A4 */	addi r3, r30, 0x8a4
@@ -128,9 +128,9 @@ __ct__Q34Game3Egg5ParmsFv:
 /* 8034B87C 003487BC  D0 1E 08 9C */	stfs f0, 0x89c(r30)
 /* 8034B880 003487C0  D0 3E 08 A0 */	stfs f1, 0x8a0(r30)
 /* 8034B884 003487C4  48 0C 7D D5 */	bl __ct__8BaseParmFP10ParametersUlPc
-/* 8034B888 003487C8  3C 60 80 4B */	lis r3, __vt__7Parm$$0f$$1@ha
+/* 8034B888 003487C8  3C 60 80 4B */	lis r3, "__vt__7Parm<f>"@ha
 /* 8034B88C 003487CC  C0 22 00 20 */	lfs f1, lbl_8051E380@sda21(r2)
-/* 8034B890 003487D0  38 03 AC BC */	addi r0, r3, __vt__7Parm$$0f$$1@l
+/* 8034B890 003487D0  38 03 AC BC */	addi r0, r3, "__vt__7Parm<f>"@l
 /* 8034B894 003487D4  C0 02 00 24 */	lfs f0, lbl_8051E384@sda21(r2)
 /* 8034B898 003487D8  90 1E 08 A4 */	stw r0, 0x8a4(r30)
 /* 8034B89C 003487DC  38 80 00 00 */	li r4, 0
@@ -322,7 +322,7 @@ read__Q34Game3Egg5ParmsFR6Stream:
 /* 8034BB20 00348A60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8034BB24 00348A64  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q34Game3Egg3MgrFv
-$$24$$2__dt__Q34Game3Egg3MgrFv:
+.global "@4@__dt__Q34Game3Egg3MgrFv"
+"@4@__dt__Q34Game3Egg3MgrFv":
 /* 8034BB28 00348A68  38 63 FF FC */	addi r3, r3, -4
 /* 8034BB2C 00348A6C  4B FF FD C8 */	b __dt__Q34Game3Egg3MgrFv

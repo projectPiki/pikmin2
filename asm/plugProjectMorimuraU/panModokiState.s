@@ -578,8 +578,8 @@ lbl_8034D130:
 /* 8034D13C 0034A07C  38 61 00 30 */	addi r3, r1, 0x30
 /* 8034D140 0034A080  4B E5 2B 1D */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 8034D144 0034A084  38 00 00 00 */	li r0, 0
-/* 8034D148 0034A088  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 8034D14C 0034A08C  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8034D148 0034A088  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 8034D14C 0034A08C  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 8034D150 0034A090  38 61 00 30 */	addi r3, r1, 0x30
 /* 8034D154 0034A094  28 00 00 00 */	cmplwi r0, 0
 /* 8034D158 0034A098  90 81 00 20 */	stw r4, 0x20(r1)
@@ -964,8 +964,8 @@ lbl_8034D6C4:
 /* 8034D6D0 0034A610  38 61 00 30 */	addi r3, r1, 0x30
 /* 8034D6D4 0034A614  4B E5 25 89 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 8034D6D8 0034A618  38 00 00 00 */	li r0, 0
-/* 8034D6DC 0034A61C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 8034D6E0 0034A620  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8034D6DC 0034A61C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 8034D6E0 0034A620  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 8034D6E4 0034A624  38 61 00 30 */	addi r3, r1, 0x30
 /* 8034D6E8 0034A628  28 00 00 00 */	cmplwi r0, 0
 /* 8034D6EC 0034A62C  90 81 00 20 */	stw r4, 0x20(r1)
@@ -1855,7 +1855,7 @@ lbl_8034E34C:
 /* 8034E360 0034B2A0  C0 45 08 6C */	lfs f2, 0x86c(r5)
 /* 8034E364 0034B2A4  EC 21 00 32 */	fmuls f1, f1, f0
 /* 8034E368 0034B2A8  C0 65 08 94 */	lfs f3, 0x894(r5)
-/* 8034E36C 0034B2AC  4B DC 72 71 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 8034E36C 0034B2AC  4B DC 72 71 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 /* 8034E370 0034B2B0  7F C4 F3 78 */	mr r4, r30
 /* 8034E374 0034B2B4  80 BE 00 C0 */	lwz r5, 0xc0(r30)
 /* 8034E378 0034B2B8  81 9E 00 00 */	lwz r12, 0(r30)

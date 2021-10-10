@@ -50,11 +50,11 @@ lbl_802A582C:
 /* 802A5838 002A2778  3C 80 80 4D */	lis r4, __vt__Q34Game8Damagumo3Obj@ha
 /* 802A583C 002A277C  38 1F 04 98 */	addi r0, r31, 0x498
 /* 802A5840 002A2780  38 C4 DB 7C */	addi r6, r4, __vt__Q34Game8Damagumo3Obj@l
-/* 802A5844 002A2784  3C 60 80 12 */	lis r3, __ct__10Vector3$$0f$$1Fv@ha
+/* 802A5844 002A2784  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
 /* 802A5848 002A2788  90 DF 00 00 */	stw r6, 0(r31)
 /* 802A584C 002A278C  38 A6 01 B0 */	addi r5, r6, 0x1b0
 /* 802A5850 002A2790  39 26 02 FC */	addi r9, r6, 0x2fc
-/* 802A5854 002A2794  38 83 F3 48 */	addi r4, r3, __ct__10Vector3$$0f$$1Fv@l
+/* 802A5854 002A2794  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
 /* 802A5858 002A2798  90 BF 01 78 */	stw r5, 0x178(r31)
 /* 802A585C 002A279C  38 7F 02 F0 */	addi r3, r31, 0x2f0
 /* 802A5860 002A27A0  38 A0 00 00 */	li r5, 0
@@ -571,7 +571,7 @@ doFinishStoneState__Q34Game8Damagumo3ObjFv:
 /* 802A5F7C 002A2EBC  38 80 00 00 */	li r4, 0
 /* 802A5F80 002A2EC0  C0 62 DB 70 */	lfs f3, lbl_8051BED0@sda21(r2)
 /* 802A5F84 002A2EC4  C0 82 DB 84 */	lfs f4, lbl_8051BEE4@sda21(r2)
-/* 802A5F88 002A2EC8  4B E6 D1 95 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802A5F88 002A2EC8  4B E6 D1 95 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802A5F8C 002A2ECC  88 1F 02 DD */	lbz r0, 0x2dd(r31)
 /* 802A5F90 002A2ED0  28 00 00 00 */	cmplwi r0, 0
 /* 802A5F94 002A2ED4  41 82 00 0C */	beq lbl_802A5FA0
@@ -606,8 +606,8 @@ doEndMovie__Q34Game8Damagumo3ObjFv:
 /* 802A5FEC 002A2F2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A5FF0 002A2F30  4E 80 00 20 */	blr 
 
-.global getThrowupItemPosition__Q34Game8Damagumo3ObjFP10Vector3$$0f$$1
-getThrowupItemPosition__Q34Game8Damagumo3ObjFP10Vector3$$0f$$1:
+.global "getThrowupItemPosition__Q34Game8Damagumo3ObjFP10Vector3<f>"
+"getThrowupItemPosition__Q34Game8Damagumo3ObjFP10Vector3<f>":
 /* 802A5FF4 002A2F34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A5FF8 002A2F38  7C 08 02 A6 */	mflr r0
 /* 802A5FFC 002A2F3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -633,8 +633,8 @@ getThrowupItemPosition__Q34Game8Damagumo3ObjFP10Vector3$$0f$$1:
 /* 802A604C 002A2F8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A6050 002A2F90  4E 80 00 20 */	blr 
 
-.global getThrowupItemVelocity__Q34Game8Damagumo3ObjFP10Vector3$$0f$$1
-getThrowupItemVelocity__Q34Game8Damagumo3ObjFP10Vector3$$0f$$1:
+.global "getThrowupItemVelocity__Q34Game8Damagumo3ObjFP10Vector3<f>"
+"getThrowupItemVelocity__Q34Game8Damagumo3ObjFP10Vector3<f>":
 /* 802A6054 002A2F94  C0 02 DB 70 */	lfs f0, lbl_8051BED0@sda21(r2)
 /* 802A6058 002A2F98  D0 04 00 08 */	stfs f0, 8(r4)
 /* 802A605C 002A2F9C  D0 04 00 04 */	stfs f0, 4(r4)
@@ -665,9 +665,9 @@ getTargetPosition__Q34Game8Damagumo3ObjFv:
 /* 802A60B4 002A2FF4  EC 23 08 FA */	fmadds f1, f3, f3, f1
 /* 802A60B8 002A2FF8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802A60BC 002A2FFC  40 80 02 00 */	bge lbl_802A62BC
-/* 802A60C0 002A3000  3C A0 80 4B */	lis r5, __vt__23Condition$$0Q24Game4Piki$$1@ha
+/* 802A60C0 002A3000  3C A0 80 4B */	lis r5, "__vt__23Condition<Q24Game4Piki>"@ha
 /* 802A60C4 002A3004  3C 80 80 4D */	lis r4, __vt__Q24Game23ConditionNotStickClient@ha
-/* 802A60C8 002A3008  38 C5 BC 60 */	addi r6, r5, __vt__23Condition$$0Q24Game4Piki$$1@l
+/* 802A60C8 002A3008  38 C5 BC 60 */	addi r6, r5, "__vt__23Condition<Q24Game4Piki>"@l
 /* 802A60CC 002A300C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A60D0 002A3010  38 04 DB 70 */	addi r0, r4, __vt__Q24Game23ConditionNotStickClient@l
 /* 802A60D4 002A3014  38 A1 00 08 */	addi r5, r1, 8
@@ -676,7 +676,7 @@ getTargetPosition__Q34Game8Damagumo3ObjFv:
 /* 802A60E0 002A3020  90 01 00 08 */	stw r0, 8(r1)
 /* 802A60E4 002A3024  C0 27 04 24 */	lfs f1, 0x424(r7)
 /* 802A60E8 002A3028  C0 47 03 D4 */	lfs f2, 0x3d4(r7)
-/* 802A60EC 002A302C  4B E6 CA 79 */	bl getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Piki$$1
+/* 802A60EC 002A302C  4B E6 CA 79 */	bl "getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
 /* 802A60F0 002A3030  28 03 00 00 */	cmplwi r3, 0
 /* 802A60F4 002A3034  41 82 00 38 */	beq lbl_802A612C
 /* 802A60F8 002A3038  7C 64 1B 78 */	mr r4, r3
@@ -805,7 +805,7 @@ lbl_802A62BC:
 lbl_802A62D0:
 /* 802A62D0 002A3210  7F E3 FB 78 */	mr r3, r31
 /* 802A62D4 002A3214  38 9F 02 CC */	addi r4, r31, 0x2cc
-/* 802A62D8 002A3218  48 00 02 E9 */	bl setIKSystemTargetPosition__Q34Game8Damagumo3ObjFR10Vector3$$0f$$1
+/* 802A62D8 002A3218  48 00 02 E9 */	bl "setIKSystemTargetPosition__Q34Game8Damagumo3ObjFR10Vector3<f>"
 /* 802A62DC 002A321C  E3 E1 00 68 */	psq_l f31, 104(r1), 0, qr0
 /* 802A62E0 002A3220  CB E1 00 60 */	lfd f31, 0x60(r1)
 /* 802A62E4 002A3224  E3 C1 00 58 */	psq_l f30, 88(r1), 0, qr0
@@ -1004,8 +1004,8 @@ setIKParameter__Q34Game8Damagumo3ObjFv:
 /* 802A65B8 002A34F8  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 802A65BC 002A34FC  4E 80 00 20 */	blr 
 
-.global setIKSystemTargetPosition__Q34Game8Damagumo3ObjFR10Vector3$$0f$$1
-setIKSystemTargetPosition__Q34Game8Damagumo3ObjFR10Vector3$$0f$$1:
+.global "setIKSystemTargetPosition__Q34Game8Damagumo3ObjFR10Vector3<f>"
+"setIKSystemTargetPosition__Q34Game8Damagumo3ObjFR10Vector3<f>":
 /* 802A65C0 002A3500  80 63 02 E0 */	lwz r3, 0x2e0(r3)
 /* 802A65C4 002A3504  C0 04 00 00 */	lfs f0, 0(r4)
 /* 802A65C8 002A3508  D0 03 00 2C */	stfs f0, 0x2c(r3)
@@ -1062,7 +1062,7 @@ doAnimationIKSystem__Q34Game8Damagumo3ObjFv:
 /* 802A667C 002A35BC  D0 01 00 08 */	stfs f0, 8(r1)
 /* 802A6680 002A35C0  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 802A6684 002A35C4  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 802A6688 002A35C8  48 18 1C 51 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802A6688 002A35C8  48 18 1C 51 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 802A668C 002A35CC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802A6690 002A35D0  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802A6694 002A35D4  7C 08 03 A6 */	mtlr r0
@@ -1229,7 +1229,7 @@ lbl_802A6878:
 /* 802A687C 002A37BC  7F A4 EB 78 */	mr r4, r29
 /* 802A6880 002A37C0  7F 85 E3 78 */	mr r5, r28
 /* 802A6884 002A37C4  38 DF 02 F0 */	addi r6, r31, 0x2f0
-/* 802A6888 002A37C8  48 00 48 65 */	bl setJointPosPtr__Q34Game8Damagumo17DamagumoShadowMgrFiiP10Vector3$$0f$$1
+/* 802A6888 002A37C8  48 00 48 65 */	bl "setJointPosPtr__Q34Game8Damagumo17DamagumoShadowMgrFiiP10Vector3<f>"
 /* 802A688C 002A37CC  3B 9C 00 01 */	addi r28, r28, 1
 /* 802A6890 002A37D0  3B FF 00 0C */	addi r31, r31, 0xc
 /* 802A6894 002A37D4  2C 1C 00 04 */	cmpwi r28, 4
@@ -1754,7 +1754,7 @@ lbl_802A6FBC:
 /* 802A6FCC 002A3F0C  38 80 00 00 */	li r4, 0
 /* 802A6FD0 002A3F10  38 A0 00 24 */	li r5, 0x24
 /* 802A6FD4 002A3F14  38 C0 00 25 */	li r6, 0x25
-/* 802A6FD8 002A3F18  48 10 92 69 */	bl __ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs
+/* 802A6FD8 002A3F18  48 10 92 69 */	bl "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
 /* 802A6FDC 002A3F1C  3C 60 80 4D */	lis r3, __vt__Q23efx9TDamaFoot@ha
 /* 802A6FE0 002A3F20  38 03 DB 44 */	addi r0, r3, __vt__Q23efx9TDamaFoot@l
 /* 802A6FE4 002A3F24  90 10 00 00 */	stw r0, 0(r16)
@@ -2145,7 +2145,7 @@ setupEffect__Q34Game8Damagumo3ObjFv:
 lbl_802A7594:
 /* 802A7594 002A44D4  80 7E 03 B0 */	lwz r3, 0x3b0(r30)
 /* 802A7598 002A44D8  38 9F 03 14 */	addi r4, r31, 0x314
-/* 802A759C 002A44DC  48 10 8D A9 */	bl setPosptr__Q23efx10TChasePos2FP10Vector3$$0f$$1
+/* 802A759C 002A44DC  48 10 8D A9 */	bl "setPosptr__Q23efx10TChasePos2FP10Vector3<f>"
 /* 802A75A0 002A44E0  80 7E 03 C0 */	lwz r3, 0x3c0(r30)
 /* 802A75A4 002A44E4  39 1F 03 14 */	addi r8, r31, 0x314
 /* 802A75A8 002A44E8  38 C0 00 01 */	li r6, 1
@@ -2347,12 +2347,12 @@ lbl_802A7888:
 /* 802A789C 002A47DC  38 A1 00 38 */	addi r5, r1, 0x38
 /* 802A78A0 002A47E0  38 80 00 06 */	li r4, 6
 /* 802A78A4 002A47E4  38 C0 00 02 */	li r6, 2
-/* 802A78A8 002A47E8  4B FA A9 95 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 802A78A8 002A47E8  4B FA A9 95 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 802A78AC 002A47EC  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 802A78B0 002A47F0  38 A1 00 38 */	addi r5, r1, 0x38
 /* 802A78B4 002A47F4  38 80 00 0E */	li r4, 0xe
 /* 802A78B8 002A47F8  38 C0 00 02 */	li r6, 2
-/* 802A78BC 002A47FC  4B FA BE C5 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802A78BC 002A47FC  4B FA BE C5 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802A78C0 002A4800  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 802A78C4 002A4804  83 E1 00 6C */	lwz r31, 0x6c(r1)
 /* 802A78C8 002A4808  83 C1 00 68 */	lwz r30, 0x68(r1)
@@ -3568,95 +3568,95 @@ __sinit_Damagumo_cpp:
 /* 802A89B8 002A58F8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802A89BC 002A58FC  4E 80 00 20 */	blr 
 
-.global $$21176$$212$$2viewOnPelletKilled__Q24Game9EnemyBaseFv
-$$21176$$212$$2viewOnPelletKilled__Q24Game9EnemyBaseFv:
+.global "@1176@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
+"@1176@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
 /* 802A89C0 002A5900  39 60 00 0C */	li r11, 0xc
 /* 802A89C4 002A5904  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802A89C8 002A5908  7C 63 5A 14 */	add r3, r3, r11
 /* 802A89CC 002A590C  38 63 FB 68 */	addi r3, r3, -1176
 /* 802A89D0 002A5910  4B E5 DF 4C */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
 
-.global $$21176$$212$$2viewStartCarryMotion__Q24Game9EnemyBaseFv
-$$21176$$212$$2viewStartCarryMotion__Q24Game9EnemyBaseFv:
+.global "@1176@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
+"@1176@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
 /* 802A89D4 002A5914  39 60 00 0C */	li r11, 0xc
 /* 802A89D8 002A5918  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802A89DC 002A591C  7C 63 5A 14 */	add r3, r3, r11
 /* 802A89E0 002A5920  38 63 FB 68 */	addi r3, r3, -1176
 /* 802A89E4 002A5924  4B E5 DC C4 */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
 
-.global $$21176$$212$$2viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-$$21176$$212$$2viewStartPreCarryMotion__Q24Game9EnemyBaseFv:
+.global "@1176@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
+"@1176@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
 /* 802A89E8 002A5928  39 60 00 0C */	li r11, 0xc
 /* 802A89EC 002A592C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802A89F0 002A5930  7C 63 5A 14 */	add r3, r3, r11
 /* 802A89F4 002A5934  38 63 FB 68 */	addi r3, r3, -1176
 /* 802A89F8 002A5938  4B E5 DC D0 */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
 
-.global $$21176$$212$$2view_finish_carrymotion__Q24Game9EnemyBaseFv
-$$21176$$212$$2view_finish_carrymotion__Q24Game9EnemyBaseFv:
+.global "@1176@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
+"@1176@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
 /* 802A89FC 002A593C  39 60 00 0C */	li r11, 0xc
 /* 802A8A00 002A5940  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802A8A04 002A5944  7C 63 5A 14 */	add r3, r3, r11
 /* 802A8A08 002A5948  38 63 FB 68 */	addi r3, r3, -1176
 /* 802A8A0C 002A594C  4B E5 E0 6C */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
 
-.global $$21176$$212$$2view_start_carrymotion__Q24Game9EnemyBaseFv
-$$21176$$212$$2view_start_carrymotion__Q24Game9EnemyBaseFv:
+.global "@1176@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
+"@1176@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
 /* 802A8A10 002A5950  39 60 00 0C */	li r11, 0xc
 /* 802A8A14 002A5954  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802A8A18 002A5958  7C 63 5A 14 */	add r3, r3, r11
 /* 802A8A1C 002A595C  38 63 FB 68 */	addi r3, r3, -1176
 /* 802A8A20 002A5960  4B E5 E0 2C */	b view_start_carrymotion__Q24Game9EnemyBaseFv
 
-.global $$21176$$212$$2viewGetShape__Q24Game9EnemyBaseFv
-$$21176$$212$$2viewGetShape__Q24Game9EnemyBaseFv:
+.global "@1176@12@viewGetShape__Q24Game9EnemyBaseFv"
+"@1176@12@viewGetShape__Q24Game9EnemyBaseFv":
 /* 802A8A24 002A5964  39 60 00 0C */	li r11, 0xc
 /* 802A8A28 002A5968  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802A8A2C 002A596C  7C 63 5A 14 */	add r3, r3, r11
 /* 802A8A30 002A5970  38 63 FB 68 */	addi r3, r3, -1176
 /* 802A8A34 002A5974  4B E5 DC 6C */	b viewGetShape__Q24Game9EnemyBaseFv
 
-.global $$24$$2__dt__Q23efx10TDamaFootwFv
-$$24$$2__dt__Q23efx10TDamaFootwFv:
+.global "@4@__dt__Q23efx10TDamaFootwFv"
+"@4@__dt__Q23efx10TDamaFootwFv":
 /* 802A8A38 002A5978  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A3C 002A597C  4B FF FE 1C */	b __dt__Q23efx10TDamaFootwFv
 
-.global $$24$$2__dt__Q23efx10TDamaHahenFv
-$$24$$2__dt__Q23efx10TDamaHahenFv:
+.global "@4@__dt__Q23efx10TDamaHahenFv"
+"@4@__dt__Q23efx10TDamaHahenFv":
 /* 802A8A40 002A5980  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A44 002A5984  4B FF FD 78 */	b __dt__Q23efx10TDamaHahenFv
 
-.global $$24$$2__dt__Q23efx14TDamaDeadElecAFv
-$$24$$2__dt__Q23efx14TDamaDeadElecAFv:
+.global "@4@__dt__Q23efx14TDamaDeadElecAFv"
+"@4@__dt__Q23efx14TDamaDeadElecAFv":
 /* 802A8A48 002A5988  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A4C 002A598C  4B FF FC D4 */	b __dt__Q23efx14TDamaDeadElecAFv
 
-.global $$24$$2__dt__Q23efx14TDamaDeadElecBFv
-$$24$$2__dt__Q23efx14TDamaDeadElecBFv:
+.global "@4@__dt__Q23efx14TDamaDeadElecBFv"
+"@4@__dt__Q23efx14TDamaDeadElecBFv":
 /* 802A8A50 002A5990  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A54 002A5994  4B FF FC 30 */	b __dt__Q23efx14TDamaDeadElecBFv
 
-.global $$24$$2__dt__Q23efx15TDamaDeadHahenAFv
-$$24$$2__dt__Q23efx15TDamaDeadHahenAFv:
+.global "@4@__dt__Q23efx15TDamaDeadHahenAFv"
+"@4@__dt__Q23efx15TDamaDeadHahenAFv":
 /* 802A8A58 002A5998  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A5C 002A599C  4B FF FB 8C */	b __dt__Q23efx15TDamaDeadHahenAFv
 
-.global $$24$$2__dt__Q23efx15TDamaDeadHahenBFv
-$$24$$2__dt__Q23efx15TDamaDeadHahenBFv:
+.global "@4@__dt__Q23efx15TDamaDeadHahenBFv"
+"@4@__dt__Q23efx15TDamaDeadHahenBFv":
 /* 802A8A60 002A59A0  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A64 002A59A4  4B FF FA E8 */	b __dt__Q23efx15TDamaDeadHahenBFv
 
-.global $$24$$2__dt__Q23efx10TDamaSmokeFv
-$$24$$2__dt__Q23efx10TDamaSmokeFv:
+.global "@4@__dt__Q23efx10TDamaSmokeFv"
+"@4@__dt__Q23efx10TDamaSmokeFv":
 /* 802A8A68 002A59A8  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A6C 002A59AC  4B FF FA 44 */	b __dt__Q23efx10TDamaSmokeFv
 
-.global $$24$$2__dt__Q23efx16TDamaDeadHahenC1Fv
-$$24$$2__dt__Q23efx16TDamaDeadHahenC1Fv:
+.global "@4@__dt__Q23efx16TDamaDeadHahenC1Fv"
+"@4@__dt__Q23efx16TDamaDeadHahenC1Fv":
 /* 802A8A70 002A59B0  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A74 002A59B4  4B FF F9 A0 */	b __dt__Q23efx16TDamaDeadHahenC1Fv
 
-.global $$24$$2__dt__Q23efx16TDamaDeadHahenC2Fv
-$$24$$2__dt__Q23efx16TDamaDeadHahenC2Fv:
+.global "@4@__dt__Q23efx16TDamaDeadHahenC2Fv"
+"@4@__dt__Q23efx16TDamaDeadHahenC2Fv":
 /* 802A8A78 002A59B8  38 63 FF FC */	addi r3, r3, -4
 /* 802A8A7C 002A59BC  4B FF F8 FC */	b __dt__Q23efx16TDamaDeadHahenC2Fv

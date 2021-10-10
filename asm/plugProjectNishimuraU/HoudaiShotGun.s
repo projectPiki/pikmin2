@@ -370,7 +370,7 @@ lbl_802C3EB8:
 /* 802C3EBC 002C0DFC  38 A1 00 60 */	addi r5, r1, 0x60
 /* 802C3EC0 002C0E00  38 80 00 0B */	li r4, 0xb
 /* 802C3EC4 002C0E04  38 C0 00 02 */	li r6, 2
-/* 802C3EC8 002C0E08  4B F8 F8 B9 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 802C3EC8 002C0E08  4B F8 F8 B9 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 802C3ECC 002C0E0C  48 00 00 B8 */	b lbl_802C3F84
 lbl_802C3ED0:
 /* 802C3ED0 002C0E10  80 9C 00 18 */	lwz r4, 0x18(r28)
@@ -561,8 +561,8 @@ lbl_802C4138:
 /* 802C4168 002C10A8  38 61 01 68 */	addi r3, r1, 0x168
 /* 802C416C 002C10AC  4B F6 A2 F1 */	bl first__Q24Game12CellIteratorFv
 /* 802C4170 002C10B0  FE 80 F8 50 */	fneg f20, f31
-/* 802C4174 002C10B4  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 802C4178 002C10B8  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
+/* 802C4174 002C10B4  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 802C4178 002C10B8  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
 /* 802C417C 002C10BC  48 00 02 94 */	b lbl_802C4410
 lbl_802C4180:
 /* 802C4180 002C10C0  38 61 01 68 */	addi r3, r1, 0x168
@@ -717,9 +717,9 @@ lbl_802C437C:
 /* 802C43AC 002C12EC  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
 /* 802C43B0 002C12F0  C0 62 E2 4C */	lfs f3, lbl_8051C5AC@sda21(r2)
 /* 802C43B4 002C12F4  90 01 00 88 */	stw r0, 0x88(r1)
-/* 802C43B8 002C12F8  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802C43B8 002C12F8  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802C43BC 002C12FC  38 84 49 74 */	addi r4, r4, __vt__Q24Game12InteractWind@l
-/* 802C43C0 002C1300  C0 43 41 E4 */	lfs f2, zero__10Vector3$$0f$$1@l(r3)
+/* 802C43C0 002C1300  C0 43 41 E4 */	lfs f2, "zero__10Vector3<f>"@l(r3)
 /* 802C43C4 002C1304  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBomb@ha
 /* 802C43C8 002C1308  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 802C43CC 002C130C  90 81 00 88 */	stw r4, 0x88(r1)
@@ -833,7 +833,7 @@ lbl_802C455C:
 /* 802C455C 002C149C  3C C0 80 4E */	lis r6, __vt__Q23efx5TSync@ha
 /* 802C4560 002C14A0  3C A0 80 4E */	lis r5, __vt__Q23efx9TChasePos@ha
 /* 802C4564 002C14A4  3C 80 80 4F */	lis r4, __vt__Q23efx11THdamaShell@ha
-/* 802C4568 002C14A8  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 802C4568 002C14A8  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 802C456C 002C14AC  38 C6 69 8C */	addi r6, r6, __vt__Q23efx5TSync@l
 /* 802C4570 002C14B0  38 A5 69 40 */	addi r5, r5, __vt__Q23efx9TChasePos@l
 /* 802C4574 002C14B4  38 84 A0 08 */	addi r4, r4, __vt__Q23efx11THdamaShell@l
@@ -841,7 +841,7 @@ lbl_802C455C:
 /* 802C457C 002C14BC  3B 66 00 14 */	addi r27, r6, 0x14
 /* 802C4580 002C14C0  3B A5 00 14 */	addi r29, r5, 0x14
 /* 802C4584 002C14C4  3B 84 00 14 */	addi r28, r4, 0x14
-/* 802C4588 002C14C8  3B E3 41 E4 */	addi r31, r3, zero__10Vector3$$0f$$1@l
+/* 802C4588 002C14C8  3B E3 41 E4 */	addi r31, r3, "zero__10Vector3<f>"@l
 /* 802C458C 002C14CC  3B 40 00 00 */	li r26, 0
 lbl_802C4590:
 /* 802C4590 002C14D0  38 60 00 38 */	li r3, 0x38
@@ -1039,8 +1039,8 @@ isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C4824 002C1764  88 63 00 06 */	lbz r3, 6(r3)
 /* 802C4828 002C1768  4E 80 00 20 */	blr 
 
-.global setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3$$0f$$1
-setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3$$0f$$1:
+.global "setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>"
+"setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>":
 /* 802C482C 002C176C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 802C4830 002C1770  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 802C4834 002C1774  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2036,7 +2036,7 @@ lbl_802C5594:
 /* 802C560C 002C254C  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 802C5610 002C2550  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 802C5614 002C2554  80 7D 00 30 */	lwz r3, 0x30(r29)
-/* 802C5618 002C2558  48 12 6D B9 */	bl setPosNrm__Q23efx11THdamaSightFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802C5618 002C2558  48 12 6D B9 */	bl "setPosNrm__Q23efx11THdamaSightFR10Vector3<f>R10Vector3<f>"
 /* 802C561C 002C255C  48 00 00 18 */	b lbl_802C5634
 lbl_802C5620:
 /* 802C5620 002C2560  80 7D 00 30 */	lwz r3, 0x30(r29)
@@ -2261,7 +2261,7 @@ lbl_802C58F4:
 /* 802C5908 002C2848  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C590C 002C284C  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx11THdamaSightFv
-$$24$$2__dt__Q23efx11THdamaSightFv:
+.global "@4@__dt__Q23efx11THdamaSightFv"
+"@4@__dt__Q23efx11THdamaSightFv":
 /* 802C5910 002C2850  38 63 FF FC */	addi r3, r3, -4
 /* 802C5914 002C2854  4B FF FE F8 */	b __dt__Q23efx11THdamaSightFv

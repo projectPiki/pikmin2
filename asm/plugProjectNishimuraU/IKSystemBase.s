@@ -5,10 +5,10 @@
 __ct__Q24Game12IKSystemBaseFv:
 /* 802A9E5C 002A6D9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A9E60 002A6DA0  7C 08 02 A6 */	mflr r0
-/* 802A9E64 002A6DA4  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 802A9E64 002A6DA4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 802A9E68 002A6DA8  38 A0 00 00 */	li r5, 0
 /* 802A9E6C 002A6DAC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802A9E70 002A6DB0  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 802A9E70 002A6DB0  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 802A9E74 002A6DB4  38 C0 00 0C */	li r6, 0xc
 /* 802A9E78 002A6DB8  38 E0 00 03 */	li r7, 3
 /* 802A9E7C 002A6DBC  93 E1 00 0C */	stw r31, 0xc(r1)
@@ -126,8 +126,8 @@ lbl_802A9FFC:
 /* 802A9FFC 002A6F3C  D0 23 00 18 */	stfs f1, 0x18(r3)
 /* 802AA000 002A6F40  4E 80 00 20 */	blr 
 
-.global startMovePosition__Q24Game12IKSystemBaseFR10Vector3$$0f$$1
-startMovePosition__Q24Game12IKSystemBaseFR10Vector3$$0f$$1:
+.global "startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>"
+"startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>":
 /* 802AA004 002A6F44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802AA008 002A6F48  7C 08 02 A6 */	mflr r0
 /* 802AA00C 002A6F4C  C0 02 DC 40 */	lfs f0, lbl_8051BFA0@sda21(r2)
@@ -264,7 +264,7 @@ makeMatrix__Q24Game12IKSystemBaseFv:
 /* 802AA1D4 002A7114  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 802AA1D8 002A7118  D0 21 00 30 */	stfs f1, 0x30(r1)
 /* 802AA1DC 002A711C  D0 41 00 34 */	stfs f2, 0x34(r1)
-/* 802AA1E0 002A7120  48 00 04 F1 */	bl getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3$$0f$$1
+/* 802AA1E0 002A7120  48 00 04 F1 */	bl "getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3<f>"
 /* 802AA1E4 002A7124  C0 41 00 08 */	lfs f2, 8(r1)
 /* 802AA1E8 002A7128  38 61 00 2C */	addi r3, r1, 0x2c
 /* 802AA1EC 002A712C  C0 21 00 0C */	lfs f1, 0xc(r1)
@@ -277,15 +277,15 @@ makeMatrix__Q24Game12IKSystemBaseFv:
 /* 802AA208 002A7148  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 802AA20C 002A714C  C0 3F 00 14 */	lfs f1, 0x14(r31)
 /* 802AA210 002A7150  C0 5F 00 18 */	lfs f2, 0x18(r31)
-/* 802AA214 002A7154  4B F9 36 45 */	bl calcJointPos__Q24Game9NsMathExpFRC10Vector3$$0f$$1RC10Vector3$$0f$$1ffR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802AA214 002A7154  4B F9 36 45 */	bl "calcJointPos__Q24Game9NsMathExpFRC10Vector3<f>RC10Vector3<f>ffR10Vector3<f>R10Vector3<f>"
 /* 802AA218 002A7158  7F E3 FB 78 */	mr r3, r31
 /* 802AA21C 002A715C  38 81 00 2C */	addi r4, r1, 0x2c
 /* 802AA220 002A7160  38 A1 00 14 */	addi r5, r1, 0x14
-/* 802AA224 002A7164  48 00 05 49 */	bl setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802AA224 002A7164  48 00 05 49 */	bl "setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>"
 /* 802AA228 002A7168  7F E3 FB 78 */	mr r3, r31
 /* 802AA22C 002A716C  38 81 00 2C */	addi r4, r1, 0x2c
 /* 802AA230 002A7170  38 A1 00 14 */	addi r5, r1, 0x14
-/* 802AA234 002A7174  48 00 07 CD */	bl setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 802AA234 002A7174  48 00 07 CD */	bl "setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>"
 /* 802AA238 002A7178  80 BF 00 50 */	lwz r5, 0x50(r31)
 /* 802AA23C 002A717C  7F E3 FB 78 */	mr r3, r31
 /* 802AA240 002A7180  C0 01 00 14 */	lfs f0, 0x14(r1)
@@ -302,7 +302,7 @@ makeMatrix__Q24Game12IKSystemBaseFv:
 /* 802AA26C 002A71AC  D0 05 00 1C */	stfs f0, 0x1c(r5)
 /* 802AA270 002A71B0  C0 1F 00 24 */	lfs f0, 0x24(r31)
 /* 802AA274 002A71B4  D0 05 00 2C */	stfs f0, 0x2c(r5)
-/* 802AA278 002A71B8  48 00 0A 1D */	bl makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3$$0f$$1
+/* 802AA278 002A71B8  48 00 0A 1D */	bl "makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3<f>"
 lbl_802AA27C:
 /* 802AA27C 002A71BC  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 802AA280 002A71C0  83 E1 00 3C */	lwz r31, 0x3c(r1)
@@ -361,7 +361,7 @@ lbl_802AA30C:
 /* 802AA334 002A7274  EC 02 00 7A */	fmadds f0, f2, f1, f0
 /* 802AA338 002A7278  D0 07 00 0C */	stfs f0, 0xc(r7)
 /* 802AA33C 002A727C  C0 27 00 0C */	lfs f1, 0xc(r7)
-/* 802AA340 002A7280  4B F9 34 71 */	bl calcLagrange__Q24Game9NsMathExpFPC10Vector3$$0f$$1fR10Vector3$$0f$$1
+/* 802AA340 002A7280  4B F9 34 71 */	bl "calcLagrange__Q24Game9NsMathExpFPC10Vector3<f>fR10Vector3<f>"
 /* 802AA344 002A7284  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802AA348 002A7288  7C 08 03 A6 */	mtlr r0
 /* 802AA34C 002A728C  38 21 00 10 */	addi r1, r1, 0x10
@@ -623,8 +623,8 @@ lbl_802AA6C4:
 /* 802AA6C8 002A7608  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802AA6CC 002A760C  4E 80 00 20 */	blr 
 
-.global getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3$$0f$$1
-getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3$$0f$$1:
+.global "getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3<f>"
+"getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3<f>":
 /* 802AA6D0 002A7610  88 04 00 01 */	lbz r0, 1(r4)
 /* 802AA6D4 002A7614  28 00 00 00 */	cmplwi r0, 0
 /* 802AA6D8 002A7618  41 82 00 18 */	beq lbl_802AA6F0
@@ -670,8 +670,8 @@ lbl_802AA75C:
 /* 802AA764 002A76A4  D0 83 00 08 */	stfs f4, 8(r3)
 /* 802AA768 002A76A8  4E 80 00 20 */	blr 
 
-.global setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3$$0f$$1R10Vector3$$0f$$1
-setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>"
+"setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>":
 /* 802AA76C 002A76AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802AA770 002A76B0  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 802AA774 002A76B4  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
@@ -854,8 +854,8 @@ lbl_802AA9C0:
 /* 802AA9F8 002A7938  38 21 00 20 */	addi r1, r1, 0x20
 /* 802AA9FC 002A793C  4E 80 00 20 */	blr 
 
-.global setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3$$0f$$1R10Vector3$$0f$$1
-setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>"
+"setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>":
 /* 802AAA00 002A7940  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802AAA04 002A7944  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 802AAA08 002A7948  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
@@ -1038,8 +1038,8 @@ lbl_802AAC54:
 /* 802AAC8C 002A7BCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802AAC90 002A7BD0  4E 80 00 20 */	blr 
 
-.global makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3$$0f$$1
-makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3$$0f$$1:
+.global "makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3<f>"
+"makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3<f>":
 /* 802AAC94 002A7BD4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802AAC98 002A7BD8  7C 08 02 A6 */	mflr r0
 /* 802AAC9C 002A7BDC  90 01 00 44 */	stw r0, 0x44(r1)

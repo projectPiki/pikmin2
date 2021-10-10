@@ -244,8 +244,8 @@ getFixObjGen__Q34Game4Cave12RandMapScoreFi:
 /* 8024CBC0 00249B00  7C 63 00 2E */	lwzx r3, r3, r0
 /* 8024CBC4 00249B04  4E 80 00 20 */	blr 
 
-.global getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3$$0f$$1
-getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3$$0f$$1:
+.global "getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<f>"
+"getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<f>":
 /* 8024CBC8 00249B08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8024CBCC 00249B0C  7C 08 02 A6 */	mflr r0
 /* 8024CBD0 00249B10  90 01 00 24 */	stw r0, 0x24(r1)

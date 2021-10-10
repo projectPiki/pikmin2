@@ -142,7 +142,7 @@ lbl_8043F330:
 /* 8043F354 0043C294  40 80 00 08 */	bge lbl_8043F35C
 /* 8043F358 0043C298  3B E0 00 01 */	li r31, 1
 lbl_8043F35C:
-/* 8043F35C 0043C29C  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8043F35C 0043C29C  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8043F360 0043C2A0  28 00 00 00 */	cmplwi r0, 0
 /* 8043F364 0043C2A4  40 82 00 20 */	bne lbl_8043F384
 /* 8043F368 0043C2A8  3C 60 80 4A */	lis r3, lbl_8049ACE8@ha
@@ -153,7 +153,7 @@ lbl_8043F35C:
 /* 8043F37C 0043C2BC  4C C6 31 82 */	crclr 6
 /* 8043F380 0043C2C0  4B BE B2 C1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8043F384:
-/* 8043F384 0043C2C4  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8043F384 0043C2C4  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8043F388 0043C2C8  7F E5 FB 78 */	mr r5, r31
 /* 8043F38C 0043C2CC  38 80 18 50 */	li r4, 0x1850
 /* 8043F390 0043C2D0  4B EF FF D9 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
@@ -180,7 +180,7 @@ lbl_8043F3D0:
 /* 8043F3D0 0043C310  80 03 00 68 */	lwz r0, 0x68(r3)
 /* 8043F3D4 0043C314  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8043F3D8 0043C318  40 82 00 3C */	bne lbl_8043F414
-/* 8043F3DC 0043C31C  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8043F3DC 0043C31C  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8043F3E0 0043C320  28 00 00 00 */	cmplwi r0, 0
 /* 8043F3E4 0043C324  40 82 00 20 */	bne lbl_8043F404
 /* 8043F3E8 0043C328  3C 60 80 4A */	lis r3, lbl_8049ACE8@ha
@@ -191,7 +191,7 @@ lbl_8043F3D0:
 /* 8043F3FC 0043C33C  4C C6 31 82 */	crclr 6
 /* 8043F400 0043C340  4B BE B2 41 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8043F404:
-/* 8043F404 0043C344  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8043F404 0043C344  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8043F408 0043C348  38 80 18 46 */	li r4, 0x1846
 /* 8043F40C 0043C34C  38 A0 00 00 */	li r5, 0
 /* 8043F410 0043C350  4B EF FF 59 */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
@@ -217,7 +217,7 @@ lbl_8043F44C:
 /* 8043F44C 0043C38C  80 03 00 68 */	lwz r0, 0x68(r3)
 /* 8043F450 0043C390  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8043F454 0043C394  40 82 00 3C */	bne lbl_8043F490
-/* 8043F458 0043C398  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8043F458 0043C398  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8043F45C 0043C39C  28 00 00 00 */	cmplwi r0, 0
 /* 8043F460 0043C3A0  40 82 00 20 */	bne lbl_8043F480
 /* 8043F464 0043C3A4  3C 60 80 4A */	lis r3, lbl_8049ACE8@ha
@@ -228,7 +228,7 @@ lbl_8043F44C:
 /* 8043F478 0043C3B8  4C C6 31 82 */	crclr 6
 /* 8043F47C 0043C3BC  4B BE B1 C5 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8043F480:
-/* 8043F480 0043C3C0  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8043F480 0043C3C0  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8043F484 0043C3C4  38 80 18 5F */	li r4, 0x185f
 /* 8043F488 0043C3C8  38 A0 00 00 */	li r5, 0
 /* 8043F48C 0043C3CC  4B EF FE DD */	bl playMessageVoice__Q26PSGame5SeMgrFUlb
@@ -243,7 +243,7 @@ doFastForwardSE__Q35P2JME6Window18TSequenceProcessorFv:
 /* 8043F4A0 0043C3E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043F4A4 0043C3E4  7C 08 02 A6 */	mflr r0
 /* 8043F4A8 0043C3E8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8043F4AC 0043C3EC  80 0D 91 C8 */	lwz r0, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8043F4AC 0043C3EC  80 0D 91 C8 */	lwz r0, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8043F4B0 0043C3F0  28 00 00 00 */	cmplwi r0, 0
 /* 8043F4B4 0043C3F4  40 82 00 20 */	bne lbl_8043F4D4
 /* 8043F4B8 0043C3F8  3C 60 80 4A */	lis r3, lbl_8049ACE8@ha
@@ -254,7 +254,7 @@ doFastForwardSE__Q35P2JME6Window18TSequenceProcessorFv:
 /* 8043F4CC 0043C40C  4C C6 31 82 */	crclr 6
 /* 8043F4D0 0043C410  4B BE B1 71 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8043F4D4:
-/* 8043F4D4 0043C414  80 6D 91 C8 */	lwz r3, sInstance__Q28PSSystem30SingletonBase$$0Q26PSGame5SeMgr$$1@sda21(r13)
+/* 8043F4D4 0043C414  80 6D 91 C8 */	lwz r3, "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
 /* 8043F4D8 0043C418  4B EF FF B1 */	bl stopMessageVoice__Q26PSGame5SeMgrFv
 /* 8043F4DC 0043C41C  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 8043F4E0 0043C420  38 80 18 6E */	li r4, 0x186e
@@ -450,7 +450,7 @@ lbl_8043F77C:
 /* 8043F784 0043C6C4  38 81 00 14 */	addi r4, r1, 0x14
 /* 8043F788 0043C6C8  D3 E1 00 18 */	stfs f31, 0x18(r1)
 /* 8043F78C 0043C6CC  D3 81 00 1C */	stfs f28, 0x1c(r1)
-/* 8043F790 0043C6D0  4B FE 90 B1 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 8043F790 0043C6D0  4B FE 90 B1 */	bl "makeT__7MatrixfFR10Vector3<f>"
 lbl_8043F794:
 /* 8043F794 0043C6D4  28 1F 00 00 */	cmplwi r31, 0
 /* 8043F798 0043C6D8  41 82 00 50 */	beq lbl_8043F7E8
@@ -528,8 +528,8 @@ lbl_8043F834:
 doGetDrawInfo__Q35P2JME6Window19TRenderingProcessorFPQ35P2JME6Window8DrawInfo:
 /* 8043F8A0 0043C7E0  4E 80 00 20 */	blr 
 
-.global makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3$$0f$$1
-makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3$$0f$$1:
+.global "makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
+"makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>":
 /* 8043F8A4 0043C7E4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8043F8A8 0043C7E8  7C 08 02 A6 */	mflr r0
 /* 8043F8AC 0043C7EC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -603,7 +603,7 @@ lbl_8043F968:
 /* 8043F9AC 0043C8EC  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8043F9B0 0043C8F0  FC 00 00 50 */	fneg f0, f0
 /* 8043F9B4 0043C8F4  D0 01 00 40 */	stfs f0, 0x40(r1)
-/* 8043F9B8 0043C8F8  4B FE 89 21 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8043F9B8 0043C8F8  4B FE 89 21 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 8043F9BC 0043C8FC  48 00 01 5C */	b lbl_8043FB18
 lbl_8043F9C0:
 /* 8043F9C0 0043C900  C0 65 00 1C */	lfs f3, 0x1c(r5)
@@ -647,7 +647,7 @@ lbl_8043F9EC:
 /* 8043FA54 0043C994  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 8043FA58 0043C998  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 8043FA5C 0043C99C  D0 01 00 34 */	stfs f0, 0x34(r1)
-/* 8043FA60 0043C9A0  4B FE 88 79 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8043FA60 0043C9A0  4B FE 88 79 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 8043FA64 0043C9A4  48 00 00 B4 */	b lbl_8043FB18
 lbl_8043FA68:
 /* 8043FA68 0043C9A8  C0 65 00 1C */	lfs f3, 0x1c(r5)
@@ -694,7 +694,7 @@ lbl_8043FA94:
 /* 8043FB08 0043CA48  FC 20 08 18 */	frsp f1, f1
 /* 8043FB0C 0043CA4C  EC 02 00 7C */	fnmsubs f0, f2, f1, f0
 /* 8043FB10 0043CA50  D0 06 00 04 */	stfs f0, 4(r6)
-/* 8043FB14 0043CA54  4B FE 87 C5 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 8043FB14 0043CA54  4B FE 87 C5 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 lbl_8043FB18:
 /* 8043FB18 0043CA58  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 8043FB1C 0043CA5C  7C 08 03 A6 */	mtlr r0
@@ -1327,7 +1327,7 @@ draw__Q35P2JME6Window8TControlFR8Graphics:
 /* 80440414 0043D354  D0 41 00 08 */	stfs f2, 8(r1)
 /* 80440418 0043D358  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8044041C 0043D35C  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80440420 0043D360  4B FE 84 21 */	bl makeT__7MatrixfFR10Vector3$$0f$$1
+/* 80440420 0043D360  4B FE 84 21 */	bl "makeT__7MatrixfFR10Vector3<f>"
 /* 80440424 0043D364  38 7F 01 90 */	addi r3, r31, 0x190
 /* 80440428 0043D368  81 9F 01 90 */	lwz r12, 0x190(r31)
 /* 8044042C 0043D36C  81 8C 00 14 */	lwz r12, 0x14(r12)

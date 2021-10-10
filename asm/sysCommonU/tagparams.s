@@ -1,54 +1,9 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global doRead__7TagParmFR6Stream
-doRead__7TagParmFR6Stream:
-/* 8041BD2C 00418C6C  4E 80 00 20 */	blr 
 
-.global doWrite__7TagParmFR6Stream
-doWrite__7TagParmFR6Stream:
-/* 8041BD30 00418C70  4E 80 00 20 */	blr 
-
-.global doDump__7TagParmFv
-doDump__7TagParmFv:
-/* 8041BD34 00418C74  4E 80 00 20 */	blr 
-
-.global doRead__14PrimTagParm$$0i$$1FR6Stream
-doRead__14PrimTagParm$$0i$$1FR6Stream:
-/* 8041BD38 00418C78  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8041BD3C 00418C7C  7C 08 02 A6 */	mflr r0
-/* 8041BD40 00418C80  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8041BD44 00418C84  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8041BD48 00418C88  7C 7F 1B 78 */	mr r31, r3
-/* 8041BD4C 00418C8C  7C 83 23 78 */	mr r3, r4
-/* 8041BD50 00418C90  4B FF 8D 41 */	bl readInt__6StreamFv
-/* 8041BD54 00418C94  90 7F 00 0C */	stw r3, 0xc(r31)
-/* 8041BD58 00418C98  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8041BD5C 00418C9C  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 8041BD60 00418CA0  7C 08 03 A6 */	mtlr r0
-/* 8041BD64 00418CA4  38 21 00 10 */	addi r1, r1, 0x10
-/* 8041BD68 00418CA8  4E 80 00 20 */	blr 
-
-.global doWrite__14PrimTagParm$$0i$$1FR6Stream
-doWrite__14PrimTagParm$$0i$$1FR6Stream:
-/* 8041BD6C 00418CAC  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8041BD70 00418CB0  7C 08 02 A6 */	mflr r0
-/* 8041BD74 00418CB4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8041BD78 00418CB8  7C 80 23 78 */	mr r0, r4
-/* 8041BD7C 00418CBC  80 83 00 0C */	lwz r4, 0xc(r3)
-/* 8041BD80 00418CC0  7C 03 03 78 */	mr r3, r0
-/* 8041BD84 00418CC4  4B FF 9A 3D */	bl writeInt__6StreamFi
-/* 8041BD88 00418CC8  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8041BD8C 00418CCC  7C 08 03 A6 */	mtlr r0
-/* 8041BD90 00418CD0  38 21 00 10 */	addi r1, r1, 0x10
-/* 8041BD94 00418CD4  4E 80 00 20 */	blr 
-
-.global doDump__14PrimTagParm$$0i$$1Fv
-doDump__14PrimTagParm$$0i$$1Fv:
-/* 8041BD98 00418CD8  4E 80 00 20 */	blr 
-
-.global doRead__15PrimTagParm$$0Us$$1FR6Stream
-doRead__15PrimTagParm$$0Us$$1FR6Stream:
+.global "doRead__15PrimTagParm<Us>FR6Stream"
+"doRead__15PrimTagParm<Us>FR6Stream":
 /* 8041BD9C 00418CDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BDA0 00418CE0  7C 08 02 A6 */	mflr r0
 /* 8041BDA4 00418CE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -63,8 +18,8 @@ doRead__15PrimTagParm$$0Us$$1FR6Stream:
 /* 8041BDC8 00418D08  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BDCC 00418D0C  4E 80 00 20 */	blr 
 
-.global doWrite__15PrimTagParm$$0Us$$1FR6Stream
-doWrite__15PrimTagParm$$0Us$$1FR6Stream:
+.global "doWrite__15PrimTagParm<Us>FR6Stream"
+"doWrite__15PrimTagParm<Us>FR6Stream":
 /* 8041BDD0 00418D10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BDD4 00418D14  7C 08 02 A6 */	mflr r0
 /* 8041BDD8 00418D18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -77,12 +32,12 @@ doWrite__15PrimTagParm$$0Us$$1FR6Stream:
 /* 8041BDF4 00418D34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BDF8 00418D38  4E 80 00 20 */	blr 
 
-.global doDump__15PrimTagParm$$0Us$$1Fv
-doDump__15PrimTagParm$$0Us$$1Fv:
+.global "doDump__15PrimTagParm<Us>Fv"
+"doDump__15PrimTagParm<Us>Fv":
 /* 8041BDFC 00418D3C  4E 80 00 20 */	blr 
 
-.global doRead__15PrimTagParm$$0Ux$$1FR6Stream
-doRead__15PrimTagParm$$0Ux$$1FR6Stream:
+.global "doRead__15PrimTagParm<Ux>FR6Stream"
+"doRead__15PrimTagParm<Ux>FR6Stream":
 /* 8041BE00 00418D40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BE04 00418D44  7C 08 02 A6 */	mflr r0
 /* 8041BE08 00418D48  38 A0 00 00 */	li r5, 0
@@ -114,8 +69,8 @@ doRead__15PrimTagParm$$0Ux$$1FR6Stream:
 /* 8041BE70 00418DB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BE74 00418DB4  4E 80 00 20 */	blr 
 
-.global doWrite__15PrimTagParm$$0Ux$$1FR6Stream
-doWrite__15PrimTagParm$$0Ux$$1FR6Stream:
+.global "doWrite__15PrimTagParm<Ux>FR6Stream"
+"doWrite__15PrimTagParm<Ux>FR6Stream":
 /* 8041BE78 00418DB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BE7C 00418DBC  7C 08 02 A6 */	mflr r0
 /* 8041BE80 00418DC0  7C 85 23 78 */	mr r5, r4
@@ -144,12 +99,12 @@ doWrite__15PrimTagParm$$0Ux$$1FR6Stream:
 /* 8041BEDC 00418E1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BEE0 00418E20  4E 80 00 20 */	blr 
 
-.global doDump__15PrimTagParm$$0Ux$$1Fv
-doDump__15PrimTagParm$$0Ux$$1Fv:
+.global "doDump__15PrimTagParm<Ux>Fv"
+"doDump__15PrimTagParm<Ux>Fv":
 /* 8041BEE4 00418E24  4E 80 00 20 */	blr 
 
-.global doRead__14PrimTagParm$$0f$$1FR6Stream
-doRead__14PrimTagParm$$0f$$1FR6Stream:
+.global "doRead__14PrimTagParm<f>FR6Stream"
+"doRead__14PrimTagParm<f>FR6Stream":
 /* 8041BEE8 00418E28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BEEC 00418E2C  7C 08 02 A6 */	mflr r0
 /* 8041BEF0 00418E30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -164,8 +119,8 @@ doRead__14PrimTagParm$$0f$$1FR6Stream:
 /* 8041BF14 00418E54  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BF18 00418E58  4E 80 00 20 */	blr 
 
-.global doWrite__14PrimTagParm$$0f$$1FR6Stream
-doWrite__14PrimTagParm$$0f$$1FR6Stream:
+.global "doWrite__14PrimTagParm<f>FR6Stream"
+"doWrite__14PrimTagParm<f>FR6Stream":
 /* 8041BF1C 00418E5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BF20 00418E60  7C 08 02 A6 */	mflr r0
 /* 8041BF24 00418E64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -177,36 +132,36 @@ doWrite__14PrimTagParm$$0f$$1FR6Stream:
 /* 8041BF3C 00418E7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BF40 00418E80  4E 80 00 20 */	blr 
 
-.global doDump__14PrimTagParm$$0f$$1Fv
-doDump__14PrimTagParm$$0f$$1Fv:
+.global "doDump__14PrimTagParm<f>Fv"
+"doDump__14PrimTagParm<f>Fv":
 /* 8041BF44 00418E84  4E 80 00 20 */	blr 
 
-.global doRead__25PrimTagParm$$010Vector3$$0f$$1$$1FR6Stream
-doRead__25PrimTagParm$$010Vector3$$0f$$1$$1FR6Stream:
+.global "doRead__25PrimTagParm<10Vector3<f>>FR6Stream"
+"doRead__25PrimTagParm<10Vector3<f>>FR6Stream":
 /* 8041BF48 00418E88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BF4C 00418E8C  7C 08 02 A6 */	mflr r0
 /* 8041BF50 00418E90  38 63 00 0C */	addi r3, r3, 0xc
 /* 8041BF54 00418E94  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8041BF58 00418E98  4B FF 5A 39 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 8041BF58 00418E98  4B FF 5A 39 */	bl "read__10Vector3<f>FR6Stream"
 /* 8041BF5C 00418E9C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8041BF60 00418EA0  7C 08 03 A6 */	mtlr r0
 /* 8041BF64 00418EA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BF68 00418EA8  4E 80 00 20 */	blr 
 
-.global doWrite__25PrimTagParm$$010Vector3$$0f$$1$$1FR6Stream
-doWrite__25PrimTagParm$$010Vector3$$0f$$1$$1FR6Stream:
+.global "doWrite__25PrimTagParm<10Vector3<f>>FR6Stream"
+"doWrite__25PrimTagParm<10Vector3<f>>FR6Stream":
 /* 8041BF6C 00418EAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041BF70 00418EB0  7C 08 02 A6 */	mflr r0
 /* 8041BF74 00418EB4  38 63 00 0C */	addi r3, r3, 0xc
 /* 8041BF78 00418EB8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8041BF7C 00418EBC  4B FF 5A 6D */	bl write__10Vector3$$0f$$1FR6Stream
+/* 8041BF7C 00418EBC  4B FF 5A 6D */	bl "write__10Vector3<f>FR6Stream"
 /* 8041BF80 00418EC0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8041BF84 00418EC4  7C 08 03 A6 */	mtlr r0
 /* 8041BF88 00418EC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041BF8C 00418ECC  4E 80 00 20 */	blr 
 
-.global doDump__25PrimTagParm$$010Vector3$$0f$$1$$1Fv
-doDump__25PrimTagParm$$010Vector3$$0f$$1$$1Fv:
+.global "doDump__25PrimTagParm<10Vector3<f>>Fv"
+"doDump__25PrimTagParm<10Vector3<f>>Fv":
 /* 8041BF90 00418ED0  4E 80 00 20 */	blr 
 
 .global __ct__13StringTagParmFP13TagParametersPc

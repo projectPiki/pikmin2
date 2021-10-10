@@ -663,8 +663,8 @@ lbl_801D8710:
 /* 801D8778 001D56B8  38 C4 49 BC */	addi r6, r4, __vt__Q24Game11InteractFue@l
 /* 801D877C 001D56BC  28 1E 00 00 */	cmplwi r30, 0
 /* 801D8780 001D56C0  90 61 00 20 */	stw r3, 0x20(r1)
-/* 801D8784 001D56C4  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 801D8788 001D56C8  38 04 BC 84 */	addi r0, r4, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 801D8784 001D56C4  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 801D8788 001D56C8  38 04 BC 84 */	addi r0, r4, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 801D878C 001D56CC  3B A0 00 00 */	li r29, 0
 /* 801D8790 001D56D0  90 C1 00 1C */	stw r6, 0x1c(r1)
 /* 801D8794 001D56D4  98 A1 00 24 */	stb r5, 0x24(r1)

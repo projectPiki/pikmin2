@@ -425,7 +425,7 @@ lbl_8005B508:
 /* 8005B514 00058454  7F E3 FB 78 */	mr r3, r31
 /* 8005B518 00058458  54 00 10 3A */	slwi r0, r0, 2
 /* 8005B51C 0005845C  7C 84 02 14 */	add r4, r4, r0
-/* 8005B520 00058460  48 00 24 11 */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005B520 00058460  48 00 24 11 */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005B524 00058464  D0 3C 00 00 */	stfs f1, 0(r28)
 lbl_8005B528:
 /* 8005B528 00058468  A0 1E 00 00 */	lhz r0, 0(r30)
@@ -453,7 +453,7 @@ lbl_8005B568:
 /* 8005B574 000584B4  7F C3 F3 78 */	mr r3, r30
 /* 8005B578 000584B8  54 00 10 3A */	slwi r0, r0, 2
 /* 8005B57C 000584BC  7C 84 02 14 */	add r4, r4, r0
-/* 8005B580 000584C0  48 00 23 B1 */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005B580 000584C0  48 00 23 B1 */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005B584 000584C4  D0 3C 00 04 */	stfs f1, 4(r28)
 lbl_8005B588:
 /* 8005B588 000584C8  A0 1D 00 00 */	lhz r0, 0(r29)
@@ -481,7 +481,7 @@ lbl_8005B5C8:
 /* 8005B5D4 00058514  7F A3 EB 78 */	mr r3, r29
 /* 8005B5D8 00058518  54 00 10 3A */	slwi r0, r0, 2
 /* 8005B5DC 0005851C  7C 84 02 14 */	add r4, r4, r0
-/* 8005B5E0 00058520  48 00 23 51 */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005B5E0 00058520  48 00 23 51 */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005B5E4 00058524  D0 3C 00 08 */	stfs f1, 8(r28)
 lbl_8005B5E8:
 /* 8005B5E8 00058528  A0 1F 00 06 */	lhz r0, 6(r31)
@@ -511,7 +511,7 @@ lbl_8005B630:
 /* 8005B63C 0005857C  38 7F 00 06 */	addi r3, r31, 6
 /* 8005B640 00058580  54 00 08 3C */	slwi r0, r0, 1
 /* 8005B644 00058584  7C 84 02 14 */	add r4, r4, r0
-/* 8005B648 00058588  48 00 20 B5 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005B648 00058588  48 00 20 B5 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005B64C 0005858C  FC 00 08 1E */	fctiwz f0, f1
 /* 8005B650 00058590  80 1B 00 24 */	lwz r0, 0x24(r27)
 /* 8005B654 00058594  D8 01 00 08 */	stfd f0, 8(r1)
@@ -546,7 +546,7 @@ lbl_8005B6AC:
 /* 8005B6B8 000585F8  38 7E 00 06 */	addi r3, r30, 6
 /* 8005B6BC 000585FC  54 00 08 3C */	slwi r0, r0, 1
 /* 8005B6C0 00058600  7C 84 02 14 */	add r4, r4, r0
-/* 8005B6C4 00058604  48 00 20 39 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005B6C4 00058604  48 00 20 39 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005B6C8 00058608  FC 00 08 1E */	fctiwz f0, f1
 /* 8005B6CC 0005860C  80 1B 00 24 */	lwz r0, 0x24(r27)
 /* 8005B6D0 00058610  D8 01 00 08 */	stfd f0, 8(r1)
@@ -581,7 +581,7 @@ lbl_8005B728:
 /* 8005B734 00058674  38 7D 00 06 */	addi r3, r29, 6
 /* 8005B738 00058678  54 00 08 3C */	slwi r0, r0, 1
 /* 8005B73C 0005867C  7C 84 02 14 */	add r4, r4, r0
-/* 8005B740 00058680  48 00 1F BD */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005B740 00058680  48 00 1F BD */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005B744 00058684  FC 00 08 1E */	fctiwz f0, f1
 /* 8005B748 00058688  80 1B 00 24 */	lwz r0, 0x24(r27)
 /* 8005B74C 0005868C  D8 01 00 08 */	stfd f0, 8(r1)
@@ -614,7 +614,7 @@ lbl_8005B79C:
 /* 8005B7A8 000586E8  38 7F 00 0C */	addi r3, r31, 0xc
 /* 8005B7AC 000586EC  54 00 10 3A */	slwi r0, r0, 2
 /* 8005B7B0 000586F0  7C 84 02 14 */	add r4, r4, r0
-/* 8005B7B4 000586F4  48 00 21 7D */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005B7B4 000586F4  48 00 21 7D */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005B7B8 000586F8  D0 3C 00 14 */	stfs f1, 0x14(r28)
 lbl_8005B7BC:
 /* 8005B7BC 000586FC  A0 1E 00 0C */	lhz r0, 0xc(r30)
@@ -642,7 +642,7 @@ lbl_8005B7FC:
 /* 8005B808 00058748  38 7E 00 0C */	addi r3, r30, 0xc
 /* 8005B80C 0005874C  54 00 10 3A */	slwi r0, r0, 2
 /* 8005B810 00058750  7C 84 02 14 */	add r4, r4, r0
-/* 8005B814 00058754  48 00 21 1D */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005B814 00058754  48 00 21 1D */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005B818 00058758  D0 3C 00 18 */	stfs f1, 0x18(r28)
 lbl_8005B81C:
 /* 8005B81C 0005875C  A0 1D 00 0C */	lhz r0, 0xc(r29)
@@ -670,7 +670,7 @@ lbl_8005B85C:
 /* 8005B868 000587A8  38 7D 00 0C */	addi r3, r29, 0xc
 /* 8005B86C 000587AC  54 00 10 3A */	slwi r0, r0, 2
 /* 8005B870 000587B0  7C 84 02 14 */	add r4, r4, r0
-/* 8005B874 000587B4  48 00 20 BD */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005B874 000587B4  48 00 20 BD */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005B878 000587B8  D0 3C 00 1C */	stfs f1, 0x1c(r28)
 lbl_8005B87C:
 /* 8005B87C 000587BC  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
@@ -930,7 +930,7 @@ lbl_8005BBF4:
 /* 8005BC00 00058B40  54 00 08 3C */	slwi r0, r0, 1
 /* 8005BC04 00058B44  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005BC08 00058B48  7C 84 02 14 */	add r4, r4, r0
-/* 8005BC0C 00058B4C  48 00 1A F1 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005BC0C 00058B4C  48 00 1A F1 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005BC10 00058B50  FF E0 08 90 */	fmr f31, f1
 /* 8005BC14 00058B54  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005BC18 00058B58  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -975,7 +975,7 @@ lbl_8005BC90:
 /* 8005BC9C 00058BDC  54 00 08 3C */	slwi r0, r0, 1
 /* 8005BCA0 00058BE0  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005BCA4 00058BE4  7C 84 02 14 */	add r4, r4, r0
-/* 8005BCA8 00058BE8  48 00 1A 55 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005BCA8 00058BE8  48 00 1A 55 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005BCAC 00058BEC  FF E0 08 90 */	fmr f31, f1
 /* 8005BCB0 00058BF0  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005BCB4 00058BF4  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -1020,7 +1020,7 @@ lbl_8005BD2C:
 /* 8005BD38 00058C78  54 00 08 3C */	slwi r0, r0, 1
 /* 8005BD3C 00058C7C  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005BD40 00058C80  7C 84 02 14 */	add r4, r4, r0
-/* 8005BD44 00058C84  48 00 19 B9 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005BD44 00058C84  48 00 19 B9 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005BD48 00058C88  FF E0 08 90 */	fmr f31, f1
 /* 8005BD4C 00058C8C  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005BD50 00058C90  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -1065,7 +1065,7 @@ lbl_8005BDC8:
 /* 8005BDD4 00058D14  54 00 08 3C */	slwi r0, r0, 1
 /* 8005BDD8 00058D18  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005BDDC 00058D1C  7C 84 02 14 */	add r4, r4, r0
-/* 8005BDE0 00058D20  48 00 19 1D */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005BDE0 00058D20  48 00 19 1D */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005BDE4 00058D24  FF E0 08 90 */	fmr f31, f1
 /* 8005BDE8 00058D28  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005BDEC 00058D2C  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -1297,7 +1297,7 @@ lbl_8005C108:
 /* 8005C114 00059054  54 00 08 3C */	slwi r0, r0, 1
 /* 8005C118 00059058  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005C11C 0005905C  7C 84 02 14 */	add r4, r4, r0
-/* 8005C120 00059060  48 00 15 DD */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005C120 00059060  48 00 15 DD */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005C124 00059064  FF E0 08 90 */	fmr f31, f1
 /* 8005C128 00059068  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005C12C 0005906C  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -1344,7 +1344,7 @@ lbl_8005C1AC:
 /* 8005C1B8 000590F8  54 00 08 3C */	slwi r0, r0, 1
 /* 8005C1BC 000590FC  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005C1C0 00059100  7C 84 02 14 */	add r4, r4, r0
-/* 8005C1C4 00059104  48 00 15 39 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005C1C4 00059104  48 00 15 39 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005C1C8 00059108  FF E0 08 90 */	fmr f31, f1
 /* 8005C1CC 0005910C  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005C1D0 00059110  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -1391,7 +1391,7 @@ lbl_8005C250:
 /* 8005C25C 0005919C  54 00 08 3C */	slwi r0, r0, 1
 /* 8005C260 000591A0  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005C264 000591A4  7C 84 02 14 */	add r4, r4, r0
-/* 8005C268 000591A8  48 00 14 95 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005C268 000591A8  48 00 14 95 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005C26C 000591AC  FF E0 08 90 */	fmr f31, f1
 /* 8005C270 000591B0  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005C274 000591B4  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -1438,7 +1438,7 @@ lbl_8005C2F4:
 /* 8005C300 00059240  54 00 08 3C */	slwi r0, r0, 1
 /* 8005C304 00059244  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005C308 00059248  7C 84 02 14 */	add r4, r4, r0
-/* 8005C30C 0005924C  48 00 13 F1 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005C30C 0005924C  48 00 13 F1 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005C310 00059250  FF E0 08 90 */	fmr f31, f1
 /* 8005C314 00059254  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005C318 00059258  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -1517,7 +1517,7 @@ lbl_8005C40C:
 /* 8005C418 00059358  7F E3 FB 78 */	mr r3, r31
 /* 8005C41C 0005935C  54 00 10 3A */	slwi r0, r0, 2
 /* 8005C420 00059360  7C 84 02 14 */	add r4, r4, r0
-/* 8005C424 00059364  48 00 15 0D */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005C424 00059364  48 00 15 0D */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005C428 00059368  D0 3C 00 00 */	stfs f1, 0(r28)
 lbl_8005C42C:
 /* 8005C42C 0005936C  A0 1E 00 00 */	lhz r0, 0(r30)
@@ -1545,7 +1545,7 @@ lbl_8005C46C:
 /* 8005C478 000593B8  7F C3 F3 78 */	mr r3, r30
 /* 8005C47C 000593BC  54 00 10 3A */	slwi r0, r0, 2
 /* 8005C480 000593C0  7C 84 02 14 */	add r4, r4, r0
-/* 8005C484 000593C4  48 00 14 AD */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005C484 000593C4  48 00 14 AD */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005C488 000593C8  D0 3C 00 04 */	stfs f1, 4(r28)
 lbl_8005C48C:
 /* 8005C48C 000593CC  A0 1D 00 06 */	lhz r0, 6(r29)
@@ -1575,7 +1575,7 @@ lbl_8005C4D4:
 /* 8005C4E0 00059420  38 7D 00 06 */	addi r3, r29, 6
 /* 8005C4E4 00059424  54 00 08 3C */	slwi r0, r0, 1
 /* 8005C4E8 00059428  7C 84 02 14 */	add r4, r4, r0
-/* 8005C4EC 0005942C  48 00 12 11 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005C4EC 0005942C  48 00 12 11 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005C4F0 00059430  FC 00 08 1E */	fctiwz f0, f1
 /* 8005C4F4 00059434  80 1B 00 10 */	lwz r0, 0x10(r27)
 /* 8005C4F8 00059438  D8 01 00 08 */	stfd f0, 8(r1)
@@ -1608,7 +1608,7 @@ lbl_8005C548:
 /* 8005C554 00059494  38 7F 00 0C */	addi r3, r31, 0xc
 /* 8005C558 00059498  54 00 10 3A */	slwi r0, r0, 2
 /* 8005C55C 0005949C  7C 84 02 14 */	add r4, r4, r0
-/* 8005C560 000594A0  48 00 13 D1 */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005C560 000594A0  48 00 13 D1 */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005C564 000594A4  D0 3C 00 0C */	stfs f1, 0xc(r28)
 lbl_8005C568:
 /* 8005C568 000594A8  A0 1E 00 0C */	lhz r0, 0xc(r30)
@@ -1636,7 +1636,7 @@ lbl_8005C5A8:
 /* 8005C5B4 000594F4  38 7E 00 0C */	addi r3, r30, 0xc
 /* 8005C5B8 000594F8  54 00 10 3A */	slwi r0, r0, 2
 /* 8005C5BC 000594FC  7C 84 02 14 */	add r4, r4, r0
-/* 8005C5C0 00059500  48 00 13 71 */	bl J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
+/* 8005C5C0 00059500  48 00 13 71 */	bl "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
 /* 8005C5C4 00059504  D0 3C 00 10 */	stfs f1, 0x10(r28)
 lbl_8005C5C8:
 /* 8005C5C8 00059508  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
@@ -2123,7 +2123,7 @@ lbl_8005CC48:
 /* 8005CC54 00059B94  54 00 08 3C */	slwi r0, r0, 1
 /* 8005CC58 00059B98  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005CC5C 00059B9C  7C 84 02 14 */	add r4, r4, r0
-/* 8005CC60 00059BA0  48 00 0A 9D */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005CC60 00059BA0  48 00 0A 9D */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005CC64 00059BA4  FF E0 08 90 */	fmr f31, f1
 /* 8005CC68 00059BA8  C0 02 86 18 */	lfs f0, lbl_80516978@sda21(r2)
 /* 8005CC6C 00059BAC  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -2168,7 +2168,7 @@ lbl_8005CCE4:
 /* 8005CCF0 00059C30  54 00 08 3C */	slwi r0, r0, 1
 /* 8005CCF4 00059C34  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005CCF8 00059C38  7C 84 02 14 */	add r4, r4, r0
-/* 8005CCFC 00059C3C  48 00 0A 01 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005CCFC 00059C3C  48 00 0A 01 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005CD00 00059C40  FF E0 08 90 */	fmr f31, f1
 /* 8005CD04 00059C44  C0 02 86 18 */	lfs f0, lbl_80516978@sda21(r2)
 /* 8005CD08 00059C48  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -2213,7 +2213,7 @@ lbl_8005CD80:
 /* 8005CD8C 00059CCC  54 00 08 3C */	slwi r0, r0, 1
 /* 8005CD90 00059CD0  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005CD94 00059CD4  7C 84 02 14 */	add r4, r4, r0
-/* 8005CD98 00059CD8  48 00 09 65 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005CD98 00059CD8  48 00 09 65 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005CD9C 00059CDC  FF E0 08 90 */	fmr f31, f1
 /* 8005CDA0 00059CE0  C0 02 86 18 */	lfs f0, lbl_80516978@sda21(r2)
 /* 8005CDA4 00059CE4  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -2258,7 +2258,7 @@ lbl_8005CE1C:
 /* 8005CE28 00059D68  54 00 08 3C */	slwi r0, r0, 1
 /* 8005CE2C 00059D6C  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005CE30 00059D70  7C 84 02 14 */	add r4, r4, r0
-/* 8005CE34 00059D74  48 00 08 C9 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005CE34 00059D74  48 00 08 C9 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005CE38 00059D78  FF E0 08 90 */	fmr f31, f1
 /* 8005CE3C 00059D7C  C0 02 86 18 */	lfs f0, lbl_80516978@sda21(r2)
 /* 8005CE40 00059D80  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -2329,7 +2329,7 @@ lbl_8005CF14:
 /* 8005CF20 00059E60  54 00 08 3C */	slwi r0, r0, 1
 /* 8005CF24 00059E64  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005CF28 00059E68  7C 84 02 14 */	add r4, r4, r0
-/* 8005CF2C 00059E6C  48 00 07 D1 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005CF2C 00059E6C  48 00 07 D1 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005CF30 00059E70  FF E0 08 90 */	fmr f31, f1
 /* 8005CF34 00059E74  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005CF38 00059E78  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -2374,7 +2374,7 @@ lbl_8005CFB0:
 /* 8005CFBC 00059EFC  54 00 08 3C */	slwi r0, r0, 1
 /* 8005CFC0 00059F00  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005CFC4 00059F04  7C 84 02 14 */	add r4, r4, r0
-/* 8005CFC8 00059F08  48 00 07 35 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005CFC8 00059F08  48 00 07 35 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005CFCC 00059F0C  FF E0 08 90 */	fmr f31, f1
 /* 8005CFD0 00059F10  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005CFD4 00059F14  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -2419,7 +2419,7 @@ lbl_8005D04C:
 /* 8005D058 00059F98  54 00 08 3C */	slwi r0, r0, 1
 /* 8005D05C 00059F9C  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005D060 00059FA0  7C 84 02 14 */	add r4, r4, r0
-/* 8005D064 00059FA4  48 00 06 99 */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005D064 00059FA4  48 00 06 99 */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005D068 00059FA8  FF E0 08 90 */	fmr f31, f1
 /* 8005D06C 00059FAC  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005D070 00059FB0  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -2464,7 +2464,7 @@ lbl_8005D0E8:
 /* 8005D0F4 0005A034  54 00 08 3C */	slwi r0, r0, 1
 /* 8005D0F8 0005A038  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8005D0FC 0005A03C  7C 84 02 14 */	add r4, r4, r0
-/* 8005D100 0005A040  48 00 05 FD */	bl J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
+/* 8005D100 0005A040  48 00 05 FD */	bl "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 /* 8005D104 0005A044  FF E0 08 90 */	fmr f31, f1
 /* 8005D108 0005A048  C0 02 86 00 */	lfs f0, lbl_80516960@sda21(r2)
 /* 8005D10C 0005A04C  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -2918,8 +2918,8 @@ lbl_8005D6E4:
 /* 8005D6F4 0005A634  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005D6F8 0005A638  4E 80 00 20 */	blr 
 
-.global J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs
-J2DGetKeyFrameInterpolation$$0s$$1__FfP18J3DAnmKeyTableBasePs:
+.global "J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
+"J2DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs":
 /* 8005D6FC 0005A63C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005D700 0005A640  3C A0 43 30 */	lis r5, 0x4330
 /* 8005D704 0005A644  C8 42 86 20 */	lfd f2, lbl_80516980@sda21(r2)
@@ -3071,8 +3071,8 @@ lbl_8005D928:
 /* 8005D928 0005A868  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005D92C 0005A86C  4E 80 00 20 */	blr 
 
-.global J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf
-J2DGetKeyFrameInterpolation$$0f$$1__FfP18J3DAnmKeyTableBasePf:
+.global "J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
+"J2DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf":
 /* 8005D930 0005A870  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8005D934 0005A874  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8005D938 0005A878  40 80 00 0C */	bge lbl_8005D944

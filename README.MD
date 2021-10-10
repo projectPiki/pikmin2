@@ -41,5 +41,6 @@ Some of this progress may be outdated, or a branch other than main (workshop or 
 - sysGCU/system.cpp
 - sysGCU/sysMath.cpp
 - sysGCU/sysTemplates.cpp
+- sysGCU/pikmin2MemoryCardMgr.cpp
 - plugProjectKandoU/interactBattle.cpp
 - plugProjectMorimuraU/eggAnimator.cpp

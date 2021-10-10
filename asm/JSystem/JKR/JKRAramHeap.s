@@ -271,10 +271,10 @@ __sinit_JKRAramHeap_cpp:
 /* 80019A50 00016990  38 63 6D B8 */	addi r3, r3, sAramList__11JKRAramHeap@l
 /* 80019A54 00016994  48 00 CE 7D */	bl initiate__10JSUPtrListFv
 /* 80019A58 00016998  3C 60 80 50 */	lis r3, sAramList__11JKRAramHeap@ha
-/* 80019A5C 0001699C  3C 80 80 02 */	lis r4, __dt__23JSUList$$012JKRAramBlock$$1Fv@ha
+/* 80019A5C 0001699C  3C 80 80 02 */	lis r4, "__dt__23JSUList<12JKRAramBlock>Fv"@ha
 /* 80019A60 000169A0  3C A0 80 4F */	lis r5, lbl_804EFF20@ha
 /* 80019A64 000169A4  38 63 6D B8 */	addi r3, r3, sAramList__11JKRAramHeap@l
-/* 80019A68 000169A8  38 84 9A 84 */	addi r4, r4, __dt__23JSUList$$012JKRAramBlock$$1Fv@l
+/* 80019A68 000169A8  38 84 9A 84 */	addi r4, r4, "__dt__23JSUList<12JKRAramBlock>Fv"@l
 /* 80019A6C 000169AC  38 A5 FF 20 */	addi r5, r5, lbl_804EFF20@l
 /* 80019A70 000169B0  48 0A 7C 91 */	bl __register_global_object
 /* 80019A74 000169B4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -282,8 +282,8 @@ __sinit_JKRAramHeap_cpp:
 /* 80019A7C 000169BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019A80 000169C0  4E 80 00 20 */	blr 
 
-.global __dt__23JSUList$$012JKRAramBlock$$1Fv
-__dt__23JSUList$$012JKRAramBlock$$1Fv:
+.global "__dt__23JSUList<12JKRAramBlock>Fv"
+"__dt__23JSUList<12JKRAramBlock>Fv":
 /* 80019A84 000169C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019A88 000169C8  7C 08 02 A6 */	mflr r0
 /* 80019A8C 000169CC  90 01 00 14 */	stw r0, 0x14(r1)

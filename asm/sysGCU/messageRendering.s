@@ -2136,10 +2136,10 @@ lbl_8043AFF8:
 /* 8043B038 00437F78  41 82 00 08 */	beq lbl_8043B040
 /* 8043B03C 00437F7C  48 00 00 D0 */	b lbl_8043B10C
 lbl_8043B040:
-/* 8043B040 00437F80  3C 60 80 4F */	lis r3, cBtnIconColor__Q25P2JME30$$2unnamed$$2messageRendering_cpp$$2@ha
+/* 8043B040 00437F80  3C 60 80 4F */	lis r3, "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@"@ha
 /* 8043B044 00437F84  28 1D 00 08 */	cmplwi r29, 8
 /* 8043B048 00437F88  57 A5 1D 78 */	rlwinm r5, r29, 3, 0x15, 0x1c
-/* 8043B04C 00437F8C  38 03 CA 38 */	addi r0, r3, cBtnIconColor__Q25P2JME30$$2unnamed$$2messageRendering_cpp$$2@l
+/* 8043B04C 00437F8C  38 03 CA 38 */	addi r0, r3, "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@"@l
 /* 8043B050 00437F90  7D 20 2A 14 */	add r9, r0, r5
 /* 8043B054 00437F94  39 49 00 04 */	addi r10, r9, 4
 /* 8043B058 00437F98  40 80 00 70 */	bge lbl_8043B0C8

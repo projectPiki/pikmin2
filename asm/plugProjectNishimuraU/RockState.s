@@ -226,7 +226,7 @@ lbl_802620C0:
 /* 802620C8 0025F008  38 80 00 00 */	li r4, 0
 /* 802620CC 0025F00C  C3 E5 03 D4 */	lfs f31, 0x3d4(r5)
 /* 802620D0 0025F010  FC 20 F8 90 */	fmr f1, f31
-/* 802620D4 0025F014  4B EB 29 ED */	bl isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Navi$$1
+/* 802620D4 0025F014  4B EB 29 ED */	bl "isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
 /* 802620D8 0025F018  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802620DC 0025F01C  41 82 00 0C */	beq lbl_802620E8
 /* 802620E0 0025F020  38 00 00 01 */	li r0, 1
@@ -235,7 +235,7 @@ lbl_802620E8:
 /* 802620E8 0025F028  FC 20 F8 90 */	fmr f1, f31
 /* 802620EC 0025F02C  7F E3 FB 78 */	mr r3, r31
 /* 802620F0 0025F030  38 80 00 00 */	li r4, 0
-/* 802620F4 0025F034  4B EB 26 41 */	bl isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
+/* 802620F4 0025F034  4B EB 26 41 */	bl "isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
 /* 802620F8 0025F038  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802620FC 0025F03C  41 82 00 0C */	beq lbl_80262108
 /* 80262100 0025F040  38 00 00 01 */	li r0, 1
@@ -548,12 +548,12 @@ cleanup__Q34Game4Rock9StateFallFPQ24Game9EnemyBase:
 /* 8026253C 0025F47C  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 80262540 0025F480  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80262544 0025F484  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80262548 0025F488  4B FE FC F5 */	bl startVibration__Q24Game9CameraMgrFiR10Vector3$$0f$$1i
+/* 80262548 0025F488  4B FE FC F5 */	bl "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 /* 8026254C 0025F48C  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 80262550 0025F490  38 A1 00 14 */	addi r5, r1, 0x14
 /* 80262554 0025F494  38 80 00 0E */	li r4, 0xe
 /* 80262558 0025F498  38 C0 00 02 */	li r6, 2
-/* 8026255C 0025F49C  4B FF 12 25 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 8026255C 0025F49C  4B FF 12 25 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 80262560 0025F4A0  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80262564 0025F4A4  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80262568 0025F4A8  7C 08 03 A6 */	mtlr r0
@@ -680,7 +680,7 @@ cleanup__Q34Game4Rock9StateMoveFPQ24Game9EnemyBase:
 /* 80262718 0025F658  80 6D 96 A8 */	lwz r3, rumbleMgr__4Game@sda21(r13)
 /* 8026271C 0025F65C  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80262720 0025F660  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 80262724 0025F664  4B FF 10 5D */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 80262724 0025F664  4B FF 10 5D */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 80262728 0025F668  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8026272C 0025F66C  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80262730 0025F670  7C 08 03 A6 */	mtlr r0

@@ -21,9 +21,9 @@ __ct__Q24Game4PikiFv:
 /* 80147718 00144658  4B ED C7 8D */	bl __nw__FUl
 /* 8014771C 0014465C  28 03 00 00 */	cmplwi r3, 0
 /* 80147720 00144660  41 82 00 24 */	beq lbl_80147744
-/* 80147724 00144664  3C A0 80 4B */	lis r5, __vt__Q24Game26StateMachine$$0Q24Game4Piki$$1@ha
+/* 80147724 00144664  3C A0 80 4B */	lis r5, "__vt__Q24Game26StateMachine<Q24Game4Piki>"@ha
 /* 80147728 00144668  3C 80 80 4B */	lis r4, __vt__Q24Game7PikiFSM@ha
-/* 8014772C 0014466C  38 05 0C 54 */	addi r0, r5, __vt__Q24Game26StateMachine$$0Q24Game4Piki$$1@l
+/* 8014772C 0014466C  38 05 0C 54 */	addi r0, r5, "__vt__Q24Game26StateMachine<Q24Game4Piki>"@l
 /* 80147730 00144670  38 A0 FF FF */	li r5, -1
 /* 80147734 00144674  90 03 00 00 */	stw r0, 0(r3)
 /* 80147738 00144678  38 04 47 44 */	addi r0, r4, __vt__Q24Game7PikiFSM@l
@@ -696,8 +696,8 @@ lbl_80148084:
 /* 801480CC 0014500C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801480D0 00145010  4E 80 00 20 */	blr 
 
-.global start__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4PikiiPQ24Game8StateArg
-start__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4PikiiPQ24Game8StateArg:
+.global "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+"start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg":
 /* 801480D4 00145014  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801480D8 00145018  7C 08 02 A6 */	mflr r0
 /* 801480DC 0014501C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -849,7 +849,7 @@ lbl_80148278:
 /* 80148304 00145244  48 27 0B 39 */	bl killHamonB___Q23efx9TPkEffectFv
 /* 80148308 00145248  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 8014830C 0014524C  80 9E 00 08 */	lwz r4, 8(r30)
-/* 80148310 00145250  48 26 F1 B5 */	bl createSimpleDead__3efxFR10Vector3$$0f$$1l
+/* 80148310 00145250  48 26 F1 B5 */	bl "createSimpleDead__3efxFR10Vector3<f>l"
 /* 80148314 00145254  80 7F 02 50 */	lwz r3, 0x250(r31)
 /* 80148318 00145258  38 80 28 10 */	li r4, 0x2810
 /* 8014831C 0014525C  38 A0 00 5A */	li r5, 0x5a
@@ -939,7 +939,7 @@ lbl_80148430:
 lbl_8014845C:
 /* 8014845C 0014539C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 80148460 001453A0  7F E4 FB 78 */	mr r4, r31
-/* 80148464 001453A4  48 00 26 7D */	bl kill__27MonoObjectMgr$$0Q24Game4Piki$$1FPQ24Game4Piki
+/* 80148464 001453A4  48 00 26 7D */	bl "kill__27MonoObjectMgr<Q24Game4Piki>FPQ24Game4Piki"
 /* 80148468 001453A8  38 00 00 00 */	li r0, 0
 /* 8014846C 001453AC  7F E3 FB 78 */	mr r3, r31
 /* 80148470 001453B0  90 1F 02 C4 */	stw r0, 0x2c4(r31)
@@ -1228,8 +1228,8 @@ movieStartDemoAnimation__Q24Game4PikiFPQ28SysShape8AnimInfo:
 /* 80148834 00145774  38 21 00 10 */	addi r1, r1, 0x10
 /* 80148838 00145778  4E 80 00 20 */	blr 
 
-.global movieSetTranslation__Q24Game4PikiFR10Vector3$$0f$$1f
-movieSetTranslation__Q24Game4PikiFR10Vector3$$0f$$1f:
+.global "movieSetTranslation__Q24Game4PikiFR10Vector3<f>f"
+"movieSetTranslation__Q24Game4PikiFR10Vector3<f>f":
 /* 8014883C 0014577C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80148840 00145780  7C 08 02 A6 */	mflr r0
 /* 80148844 00145784  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1255,7 +1255,7 @@ movieSetTranslation__Q24Game4PikiFR10Vector3$$0f$$1f:
 /* 80148894 001457D4  D0 03 02 3C */	stfs f0, 0x23c(r3)
 /* 80148898 001457D8  C0 03 02 14 */	lfs f0, 0x214(r3)
 /* 8014889C 001457DC  D0 03 02 40 */	stfs f0, 0x240(r3)
-/* 801488A0 001457E0  4B FF 29 09 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 801488A0 001457E0  4B FF 29 09 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801488A4 001457E4  D3 FF 01 FC */	stfs f31, 0x1fc(r31)
 /* 801488A8 001457E8  E3 E1 00 18 */	psq_l f31, 24(r1), 0, qr0
 /* 801488AC 001457EC  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -1265,8 +1265,8 @@ movieSetTranslation__Q24Game4PikiFR10Vector3$$0f$$1f:
 /* 801488BC 001457FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801488C0 00145800  4E 80 00 20 */	blr 
 
-.global movieGotoPosition__Q24Game4PikiFR10Vector3$$0f$$1
-movieGotoPosition__Q24Game4PikiFR10Vector3$$0f$$1:
+.global "movieGotoPosition__Q24Game4PikiFR10Vector3<f>"
+"movieGotoPosition__Q24Game4PikiFR10Vector3<f>":
 /* 801488C4 00145804  38 60 00 00 */	li r3, 0
 /* 801488C8 00145808  4E 80 00 20 */	blr 
 
@@ -1582,7 +1582,7 @@ lbl_80148C80:
 /* 80148CD4 00145C14  28 1E 00 00 */	cmplwi r30, 0
 /* 80148CD8 00145C18  40 82 00 0C */	bne lbl_80148CE4
 /* 80148CDC 00145C1C  38 7F 00 28 */	addi r3, r31, 0x28
-/* 80148CE0 00145C20  48 26 EB B5 */	bl createSimpleDive__3efxFR10Vector3$$0f$$1
+/* 80148CE0 00145C20  48 26 EB B5 */	bl "createSimpleDive__3efxFR10Vector3<f>"
 lbl_80148CE4:
 /* 80148CE4 00145C24  80 7D 02 50 */	lwz r3, 0x250(r29)
 /* 80148CE8 00145C28  38 80 28 11 */	li r4, 0x2811
@@ -1831,8 +1831,8 @@ lbl_80148FFC:
 /* 80149010 00145F50  38 21 00 20 */	addi r1, r1, 0x20
 /* 80149014 00145F54  4E 80 00 20 */	blr 
 
-.global setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
-setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1:
+.global "setSpeed__Q24Game4PikiFfR10Vector3<f>"
+"setSpeed__Q24Game4PikiFfR10Vector3<f>":
 /* 80149018 00145F58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014901C 00145F5C  7C 08 02 A6 */	mflr r0
 /* 80149020 00145F60  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1958,8 +1958,8 @@ lbl_801491B8:
 /* 801491D0 00146110  38 21 00 20 */	addi r1, r1, 0x20
 /* 801491D4 00146114  4E 80 00 20 */	blr 
 
-.global setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1f
-setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1f:
+.global "setSpeed__Q24Game4PikiFfR10Vector3<f>f"
+"setSpeed__Q24Game4PikiFfR10Vector3<f>f":
 /* 801491D8 00146118  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801491DC 0014611C  7C 08 02 A6 */	mflr r0
 /* 801491E0 00146120  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2453,7 +2453,7 @@ onStickEndSelf__Q24Game4PikiFPQ24Game8Creature:
 /* 80149830 00146770  7F E3 FB 78 */	mr r3, r31
 /* 80149834 00146774  38 81 00 14 */	addi r4, r1, 0x14
 /* 80149838 00146778  38 A0 00 00 */	li r5, 0
-/* 8014983C 0014677C  4B FF 19 6D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8014983C 0014677C  4B FF 19 6D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 lbl_80149840:
 /* 80149840 00146780  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80149844 00146784  83 E1 00 5C */	lwz r31, 0x5c(r1)
@@ -2560,8 +2560,8 @@ aiActive__Q24Game9PikiStateFv:
 bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8014998C 001468CC  4E 80 00 20 */	blr 
 
-.global wallCallback__Q24Game4PikiFR10Vector3$$0f$$1
-wallCallback__Q24Game4PikiFR10Vector3$$0f$$1:
+.global "wallCallback__Q24Game4PikiFR10Vector3<f>"
+"wallCallback__Q24Game4PikiFR10Vector3<f>":
 /* 80149990 001468D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149994 001468D4  7C 08 02 A6 */	mflr r0
 /* 80149998 001468D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2605,12 +2605,12 @@ lbl_80149A18:
 /* 80149A28 00146968  38 21 00 10 */	addi r1, r1, 0x10
 /* 80149A2C 0014696C  4E 80 00 20 */	blr 
 
-.global wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1
-wallCallback__Q26PikiAI6ActionFR10Vector3$$0f$$1:
+.global "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+"wallCallback__Q26PikiAI6ActionFR10Vector3<f>":
 /* 80149A30 00146970  4E 80 00 20 */	blr 
 
-.global wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3$$0f$$1
-wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3$$0f$$1:
+.global "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
+"wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>":
 /* 80149A34 00146974  4E 80 00 20 */	blr 
 
 .global collisionCallback__Q24Game4PikiFRQ24Game9CollEvent
@@ -2738,9 +2738,9 @@ lbl_80149B78:
 /* 80149BE4 00146B24  B0 1F 02 A4 */	sth r0, 0x2a4(r31)
 /* 80149BE8 00146B28  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
 /* 80149BEC 00146B2C  3C A0 80 4B */	lis r5, __vt__Q24Game12InteractWind@ha
-/* 80149BF0 00146B30  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 80149BF0 00146B30  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 80149BF4 00146B34  90 01 00 08 */	stw r0, 8(r1)
-/* 80149BF8 00146B38  38 83 41 E4 */	addi r4, r3, zero__10Vector3$$0f$$1@l
+/* 80149BF8 00146B38  38 83 41 E4 */	addi r4, r3, "zero__10Vector3<f>"@l
 /* 80149BFC 00146B3C  38 A5 49 74 */	addi r5, r5, __vt__Q24Game12InteractWind@l
 /* 80149C00 00146B40  C0 62 A0 BC */	lfs f3, lbl_8051841C@sda21(r2)
 /* 80149C04 00146B44  C0 44 00 00 */	lfs f2, 0(r4)
@@ -2821,7 +2821,7 @@ setFreeLightEffect__Q24Game4PikiFb:
 /* 80149CEC 00146C2C  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80149CF0 00146C30  40 82 00 24 */	bne lbl_80149D14
 /* 80149CF4 00146C34  80 83 00 0C */	lwz r4, 0xc(r3)
-/* 80149CF8 00146C38  48 26 EB 31 */	bl createKourin___Q23efx9TPkEffectFP10Vector3$$0f$$1
+/* 80149CF8 00146C38  48 26 EB 31 */	bl "createKourin___Q23efx9TPkEffectFP10Vector3<f>"
 /* 80149CFC 00146C3C  48 00 00 18 */	b lbl_80149D14
 lbl_80149D00:
 /* 80149D00 00146C40  80 63 02 58 */	lwz r3, 0x258(r3)
@@ -2849,7 +2849,7 @@ setDopeEffect__Q24Game4PikiFb:
 /* 80149D48 00146C88  60 00 00 02 */	ori r0, r0, 2
 /* 80149D4C 00146C8C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80149D50 00146C90  80 9F 00 0C */	lwz r4, 0xc(r31)
-/* 80149D54 00146C94  48 26 EB 5D */	bl createDoping___Q23efx9TPkEffectFP10Vector3$$0f$$1
+/* 80149D54 00146C94  48 26 EB 5D */	bl "createDoping___Q23efx9TPkEffectFP10Vector3<f>"
 /* 80149D58 00146C98  7F E3 FB 78 */	mr r3, r31
 /* 80149D5C 00146C9C  48 26 EB 31 */	bl killKourin___Q23efx9TPkEffectFv
 /* 80149D60 00146CA0  48 00 00 34 */	b lbl_80149D94
@@ -2865,7 +2865,7 @@ lbl_80149D64:
 /* 80149D84 00146CC4  41 82 00 10 */	beq lbl_80149D94
 /* 80149D88 00146CC8  80 9F 00 0C */	lwz r4, 0xc(r31)
 /* 80149D8C 00146CCC  7F E3 FB 78 */	mr r3, r31
-/* 80149D90 00146CD0  48 26 EA 99 */	bl createKourin___Q23efx9TPkEffectFP10Vector3$$0f$$1
+/* 80149D90 00146CD0  48 26 EA 99 */	bl "createKourin___Q23efx9TPkEffectFP10Vector3<f>"
 lbl_80149D94:
 /* 80149D94 00146CD4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80149D98 00146CD8  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -2904,7 +2904,7 @@ lbl_80149DE4:
 /* 80149E0C 00146D4C  41 82 00 10 */	beq lbl_80149E1C
 /* 80149E10 00146D50  80 9F 00 0C */	lwz r4, 0xc(r31)
 /* 80149E14 00146D54  7F E3 FB 78 */	mr r3, r31
-/* 80149E18 00146D58  48 26 EA 11 */	bl createKourin___Q23efx9TPkEffectFP10Vector3$$0f$$1
+/* 80149E18 00146D58  48 26 EA 11 */	bl "createKourin___Q23efx9TPkEffectFP10Vector3<f>"
 lbl_80149E1C:
 /* 80149E1C 00146D5C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80149E20 00146D60  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -2946,7 +2946,7 @@ startDope__Q24Game4PikiFi:
 /* 80149E98 00146DD8  60 00 00 02 */	ori r0, r0, 2
 /* 80149E9C 00146DDC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80149EA0 00146DE0  80 9E 00 0C */	lwz r4, 0xc(r30)
-/* 80149EA4 00146DE4  48 26 EA 0D */	bl createDoping___Q23efx9TPkEffectFP10Vector3$$0f$$1
+/* 80149EA4 00146DE4  48 26 EA 0D */	bl "createDoping___Q23efx9TPkEffectFP10Vector3<f>"
 /* 80149EA8 00146DE8  7F C3 F3 78 */	mr r3, r30
 /* 80149EAC 00146DEC  48 26 E9 E1 */	bl killKourin___Q23efx9TPkEffectFv
 /* 80149EB0 00146DF0  80 7F 02 50 */	lwz r3, 0x250(r31)
@@ -3439,7 +3439,7 @@ lbl_8014A548:
 /* 8014A570 001474B0  41 82 00 10 */	beq lbl_8014A580
 /* 8014A574 001474B4  80 9F 00 0C */	lwz r4, 0xc(r31)
 /* 8014A578 001474B8  7F E3 FB 78 */	mr r3, r31
-/* 8014A57C 001474BC  48 26 E2 AD */	bl createKourin___Q23efx9TPkEffectFP10Vector3$$0f$$1
+/* 8014A57C 001474BC  48 26 E2 AD */	bl "createKourin___Q23efx9TPkEffectFP10Vector3<f>"
 lbl_8014A580:
 /* 8014A580 001474C0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8014A584 001474C4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -3836,8 +3836,8 @@ getCreatureName__Q24Game4PikiFv:
 /* 8014AAD8 00147A18  38 62 A1 2C */	addi r3, r2, lbl_8051848C@sda21
 /* 8014AADC 00147A1C  4E 80 00 20 */	blr 
 
-.global kill__27MonoObjectMgr$$0Q24Game4Piki$$1FPQ24Game4Piki
-kill__27MonoObjectMgr$$0Q24Game4Piki$$1FPQ24Game4Piki:
+.global "kill__27MonoObjectMgr<Q24Game4Piki>FPQ24Game4Piki"
+"kill__27MonoObjectMgr<Q24Game4Piki>FPQ24Game4Piki":
 /* 8014AAE0 00147A20  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 8014AAE4 00147A24  38 C0 00 00 */	li r6, 0
 /* 8014AAE8 00147A28  38 A0 00 00 */	li r5, 0
@@ -3862,12 +3862,12 @@ lbl_8014AB24:
 /* 8014AB2C 00147A6C  42 00 FF CC */	bdnz lbl_8014AAF8
 /* 8014AB30 00147A70  4E 80 00 20 */	blr 
 
-.global init__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4Piki
-init__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4Piki:
+.global "init__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
+"init__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki":
 /* 8014AB34 00147A74  4E 80 00 20 */	blr 
 
-.global transit__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4PikiiPQ24Game8StateArg
-transit__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4PikiiPQ24Game8StateArg:
+.global "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+"transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg":
 /* 8014AB38 00147A78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014AB3C 00147A7C  7C 08 02 A6 */	mflr r0
 /* 8014AB40 00147A80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3911,16 +3911,16 @@ lbl_8014AB98:
 /* 8014ABCC 00147B0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014ABD0 00147B10  4E 80 00 20 */	blr 
 
-.global init__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4PikiPQ24Game8StateArg:
+.global "init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg"
+"init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg":
 /* 8014ABD4 00147B14  4E 80 00 20 */	blr 
 
-.global cleanup__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4Piki
-cleanup__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4Piki:
+.global "cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
+"cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
 /* 8014ABD8 00147B18  4E 80 00 20 */	blr 
 
-.global exec__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4Piki
-exec__Q24Game26StateMachine$$0Q24Game4Piki$$1FPQ24Game4Piki:
+.global "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
+"exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki":
 /* 8014ABDC 00147B1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014ABE0 00147B20  7C 08 02 A6 */	mflr r0
 /* 8014ABE4 00147B24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3937,8 +3937,8 @@ lbl_8014AC04:
 /* 8014AC0C 00147B4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014AC10 00147B50  4E 80 00 20 */	blr 
 
-.global exec__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4Piki
-exec__Q24Game22FSMState$$0Q24Game4Piki$$1FPQ24Game4Piki:
+.global "exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
+"exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
 /* 8014AC14 00147B54  4E 80 00 20 */	blr 
 
 .global __sinit_piki_cpp
@@ -4036,17 +4036,17 @@ __sinit_piki_cpp:
 /* 8014AD80 00147CC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014AD84 00147CC4  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx7TPkMoeAFv
-$$24$$2__dt__Q23efx7TPkMoeAFv:
+.global "@4@__dt__Q23efx7TPkMoeAFv"
+"@4@__dt__Q23efx7TPkMoeAFv":
 /* 8014AD88 00147CC8  38 63 FF FC */	addi r3, r3, -4
 /* 8014AD8C 00147CCC  4B FF CE 4C */	b __dt__Q23efx7TPkMoeAFv
 
-.global $$24$$2__dt__Q23efx12TPkBlackDownFv
-$$24$$2__dt__Q23efx12TPkBlackDownFv:
+.global "@4@__dt__Q23efx12TPkBlackDownFv"
+"@4@__dt__Q23efx12TPkBlackDownFv":
 /* 8014AD90 00147CD0  38 63 FF FC */	addi r3, r3, -4
 /* 8014AD94 00147CD4  4B FF CD A8 */	b __dt__Q23efx12TPkBlackDownFv
 
-.global $$2376$$2onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent
-$$2376$$2onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent:
+.global "@376@onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent"
+"@376@onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent":
 /* 8014AD98 00147CD8  38 63 FE 88 */	addi r3, r3, -376
 /* 8014AD9C 00147CDC  4B FF E1 50 */	b onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent

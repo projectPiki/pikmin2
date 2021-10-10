@@ -31,7 +31,7 @@ ASM_DIRS := asm asm/Dolphin asm/JSystem asm/sysCommonU asm/sysGCU \
 			asm/plugProjectEbisawaU asm/plugProjectHikinoU asm/plugProjectKandoU \
 			asm/plugProjectKonoU asm/plugProjectMorimuraU asm/plugProjectNishimuraU \
 			asm/plugProjectOgawaU asm/plugProjectYamashitaU asm/utilityU asm/Dolphin/ddh \
-			asm/JSystem/dsp asm/JSystem/fvb asm/JSystem/J2D asm/JSystem/J3D asm/JSystem/JAD \
+			asm/JSystem/dsp asm/JSystem/fvb asm/JSystem/J2D asm/JSystem/J3D \
 			asm/JSystem/JAI asm/JSystem/JAL asm/JSystem/JAS asm/JSystem/JAU \
 			asm/JSystem/JFW asm/JSystem/JKR asm/JSystem/JMath asm/JSystem/JPA \
 			asm/JSystem/JSG asm/JSystem/jstudio asm/JSystem/JSU asm/JSystem/JUT \
@@ -50,7 +50,7 @@ MAP     := $(BUILD_DIR)/pikmin2.map
 
 include obj_files.mk
 
-O_FILES := $(GROUP_0_FILES) $(TEXT_O_FILES) $(GROUP_1_FILES)
+O_FILES := $(GROUP_0_FILES) $(TEXT_O_FILES) $(GROUP_1_FILES) $(TEXT_PART_TWO) $(GROUP_2_FILES)
 
 #-------------------------------------------------------------------------------
 # Tools
@@ -84,7 +84,7 @@ INCLUDES := -i include/
 
 ASFLAGS := -mgekko -I include/ 
 LDFLAGS := -map $(MAP) -fp hard -nodefaults
-CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -fp_contract on -rostr -O4,p -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
 
 # for postprocess.py
 PROCFLAGS := -fsymbol-fixup

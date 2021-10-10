@@ -257,7 +257,7 @@ init__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 8010AEB4 00107DF4  90 1F 01 E0 */	stw r0, 0x1e0(r31)
 /* 8010AEB8 00107DF8  C0 62 96 0C */	lfs f3, lbl_8051796C@sda21(r2)
 /* 8010AEBC 00107DFC  C0 82 96 10 */	lfs f4, lbl_80517970@sda21(r2)
-/* 8010AEC0 00107E00  48 00 82 5D */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 8010AEC0 00107E00  48 00 82 5D */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 8010AEC4 00107E04  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8010AEC8 00107E08  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8010AECC 00107E0C  7C 08 03 A6 */	mtlr r0
@@ -434,7 +434,7 @@ lbl_8010B0CC:
 /* 8010B11C 0010805C  38 81 00 14 */	addi r4, r1, 0x14
 /* 8010B120 00108060  38 A0 00 00 */	li r5, 0
 /* 8010B124 00108064  93 ED 91 DC */	stw r31, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-/* 8010B128 00108068  48 03 00 81 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8010B128 00108068  48 03 00 81 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8010B12C 0010806C  38 00 00 00 */	li r0, 0
 /* 8010B130 00108070  90 0D 91 DC */	stw r0, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
 /* 8010B134 00108074  80 01 00 34 */	lwz r0, 0x34(r1)

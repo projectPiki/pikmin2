@@ -5,10 +5,10 @@
 __ct__Q34Game10SingleGame15MainResultStateFv:
 /* 80219F48 00216E88  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80219F4C 00216E8C  7C 08 02 A6 */	mflr r0
-/* 80219F50 00216E90  3C 80 80 4B */	lis r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@ha
+/* 80219F50 00216E90  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
 /* 80219F54 00216E94  38 A0 00 00 */	li r5, 0
 /* 80219F58 00216E98  90 01 00 34 */	stw r0, 0x34(r1)
-/* 80219F5C 00216E9C  38 04 13 18 */	addi r0, r4, __vt__Q24Game36FSMState$$0Q24Game17SingleGameSection$$1@l
+/* 80219F5C 00216E9C  38 04 13 18 */	addi r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
 /* 80219F60 00216EA0  3C 80 80 4B */	lis r4, __vt__Q34Game10SingleGame5State@ha
 /* 80219F64 00216EA4  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80219F68 00216EA8  7C 7F 1B 78 */	mr r31, r3
@@ -43,11 +43,11 @@ lbl_80219FC4:
 /* 80219FD8 00216F18  3C 80 80 4C */	lis r4, lbl_804C0654@ha
 /* 80219FDC 00216F1C  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 80219FE0 00216F20  39 04 06 54 */	addi r8, r4, lbl_804C0654@l
-/* 80219FE4 00216F24  3C 80 80 4C */	lis r4, __vt__46Delegate$$0Q34Game10SingleGame15MainResultState$$1@ha
+/* 80219FE4 00216F24  3C 80 80 4C */	lis r4, "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"@ha
 /* 80219FE8 00216F28  80 E8 00 00 */	lwz r7, 0(r8)
 /* 80219FEC 00216F2C  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 80219FF0 00216F30  80 C8 00 04 */	lwz r6, 4(r8)
-/* 80219FF4 00216F34  38 04 06 F4 */	addi r0, r4, __vt__46Delegate$$0Q34Game10SingleGame15MainResultState$$1@l
+/* 80219FF4 00216F34  38 04 06 F4 */	addi r0, r4, "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"@l
 /* 80219FF8 00216F38  80 88 00 08 */	lwz r4, 8(r8)
 /* 80219FFC 00216F3C  90 E1 00 14 */	stw r7, 0x14(r1)
 /* 8021A000 00216F40  90 A3 00 00 */	stw r5, 0(r3)
@@ -67,11 +67,11 @@ lbl_8021A020:
 /* 8021A034 00216F74  3C 80 80 4C */	lis r4, lbl_804C0660@ha
 /* 8021A038 00216F78  3C A0 80 4B */	lis r5, __vt__9IDelegate@ha
 /* 8021A03C 00216F7C  39 04 06 60 */	addi r8, r4, lbl_804C0660@l
-/* 8021A040 00216F80  3C 80 80 4C */	lis r4, __vt__46Delegate$$0Q34Game10SingleGame15MainResultState$$1@ha
+/* 8021A040 00216F80  3C 80 80 4C */	lis r4, "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"@ha
 /* 8021A044 00216F84  80 E8 00 00 */	lwz r7, 0(r8)
 /* 8021A048 00216F88  38 A5 0F 00 */	addi r5, r5, __vt__9IDelegate@l
 /* 8021A04C 00216F8C  80 C8 00 04 */	lwz r6, 4(r8)
-/* 8021A050 00216F90  38 04 06 F4 */	addi r0, r4, __vt__46Delegate$$0Q34Game10SingleGame15MainResultState$$1@l
+/* 8021A050 00216F90  38 04 06 F4 */	addi r0, r4, "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"@l
 /* 8021A054 00216F94  80 88 00 08 */	lwz r4, 8(r8)
 /* 8021A058 00216F98  90 E1 00 08 */	stw r7, 8(r1)
 /* 8021A05C 00216F9C  90 A3 00 00 */	stw r5, 0(r3)
@@ -823,7 +823,7 @@ cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
 /* 8021AAEC 00217A2C  28 04 00 00 */	cmplwi r4, 0
 /* 8021AAF0 00217A30  41 82 00 0C */	beq lbl_8021AAFC
 /* 8021AAF4 00217A34  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
-/* 8021AAF8 00217A38  4B F9 B4 DD */	bl addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode$$016GenericObjectMgr$$1
+/* 8021AAF8 00217A38  4B F9 B4 DD */	bl "addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<16GenericObjectMgr>"
 lbl_8021AAFC:
 /* 8021AAFC 00217A3C  80 7F 01 38 */	lwz r3, 0x138(r31)
 /* 8021AB00 00217A40  38 00 00 00 */	li r0, 0
@@ -898,8 +898,8 @@ doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv:
 /* 8021ABC0 00217B00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021ABC4 00217B04  4E 80 00 20 */	blr 
 
-.global invoke__46Delegate$$0Q34Game10SingleGame15MainResultState$$1Fv
-invoke__46Delegate$$0Q34Game10SingleGame15MainResultState$$1Fv:
+.global "invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv"
+"invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv":
 /* 8021ABC8 00217B08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021ABCC 00217B0C  7C 08 02 A6 */	mflr r0
 /* 8021ABD0 00217B10  7C 64 1B 78 */	mr r4, r3

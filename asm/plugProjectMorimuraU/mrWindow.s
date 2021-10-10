@@ -354,7 +354,7 @@ lbl_803A3ACC:
 /* 803A3AE0 003A0A20  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A3AE4 003A0A24  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q28Morimura17TConfirmEndWindowFv
-$$224$$2__dt__Q28Morimura17TConfirmEndWindowFv:
+.global "@24@__dt__Q28Morimura17TConfirmEndWindowFv"
+"@24@__dt__Q28Morimura17TConfirmEndWindowFv":
 /* 803A3AE8 003A0A28  38 63 FF E8 */	addi r3, r3, -24
 /* 803A3AEC 003A0A2C  4B FF FF 7C */	b __dt__Q28Morimura17TConfirmEndWindowFv

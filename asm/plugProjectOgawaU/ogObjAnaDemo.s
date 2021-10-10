@@ -1997,7 +1997,7 @@ __sinit_ogObjAnaDemo_cpp:
 /* 8031EA48 0031B988  D0 43 00 0C */	stfs f2, 0xc(r3)
 /* 8031EA4C 0031B98C  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q32og9newScreen10ObjAnaDemoFv
-$$224$$2__dt__Q32og9newScreen10ObjAnaDemoFv:
+.global "@24@__dt__Q32og9newScreen10ObjAnaDemoFv"
+"@24@__dt__Q32og9newScreen10ObjAnaDemoFv":
 /* 8031EA50 0031B990  38 63 FF E8 */	addi r3, r3, -24
 /* 8031EA54 0031B994  4B FF E4 84 */	b __dt__Q32og9newScreen10ObjAnaDemoFv

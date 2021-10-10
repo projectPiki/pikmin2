@@ -1,8 +1,8 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global createObject_PARTICLE_JPA___Q217JStudio_JParticle21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem
-createObject_PARTICLE_JPA___Q217JStudio_JParticle21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem:
+.global "createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem"
+"createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem":
 /* 80006220 00003160  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80006224 00003164  7C 08 02 A6 */	mflr r0
 /* 80006228 00003168  90 01 00 24 */	stw r0, 0x24(r1)
@@ -105,8 +105,8 @@ create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3st
 /* 80006378 000032B8  41 82 00 08 */	beq lbl_80006380
 /* 8000637C 000032BC  48 00 00 10 */	b lbl_8000638C
 lbl_80006380:
-/* 80006380 000032C0  3C 60 80 00 */	lis r3, createObject_PARTICLE_JPA___Q217JStudio_JParticle21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem@ha
-/* 80006384 000032C4  39 83 62 20 */	addi r12, r3, createObject_PARTICLE_JPA___Q217JStudio_JParticle21$$2unnamed$$2control_cpp$$2FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem@l
+/* 80006380 000032C0  3C 60 80 00 */	lis r3, "createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem"@ha
+/* 80006384 000032C4  39 83 62 20 */	addi r12, r3, "createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem"@l
 /* 80006388 000032C8  48 00 00 0C */	b lbl_80006394
 lbl_8000638C:
 /* 8000638C 000032CC  38 60 00 00 */	li r3, 0

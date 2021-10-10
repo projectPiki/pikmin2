@@ -246,15 +246,15 @@ lbl_80133990:
 /* 801339D4 00130914  41 82 00 74 */	beq lbl_80133A48
 /* 801339D8 00130918  48 2D D9 B9 */	bl __ct__5CNodeFv
 /* 801339DC 0013091C  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 801339E0 00130920  3C 60 80 4B */	lis r3, __vt__23Container$$010Vector3$$0f$$1$$1@ha
+/* 801339E0 00130920  3C 60 80 4B */	lis r3, "__vt__23Container<10Vector3<f>>"@ha
 /* 801339E4 00130924  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 801339E8 00130928  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
+/* 801339E8 00130928  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
 /* 801339EC 0013092C  90 1D 00 00 */	stw r0, 0(r29)
-/* 801339F0 00130930  38 03 00 2C */	addi r0, r3, __vt__23Container$$010Vector3$$0f$$1$$1@l
+/* 801339F0 00130930  38 03 00 2C */	addi r0, r3, "__vt__23Container<10Vector3<f>>"@l
 /* 801339F4 00130934  3C 60 80 4F */	lis r3, __vt__Q23Sys11VertexTable@ha
 /* 801339F8 00130938  38 C0 00 00 */	li r6, 0
 /* 801339FC 0013093C  90 1D 00 00 */	stw r0, 0(r29)
-/* 80133A00 00130940  38 A4 FF E4 */	addi r5, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
+/* 80133A00 00130940  38 A4 FF E4 */	addi r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
 /* 80133A04 00130944  38 80 00 01 */	li r4, 1
 /* 80133A08 00130948  38 03 B5 C0 */	addi r0, r3, __vt__Q23Sys11VertexTable@l
 /* 80133A0C 0013094C  98 DD 00 18 */	stb r6, 0x18(r29)
@@ -309,8 +309,8 @@ lbl_80133AA8:
 /* 80133AC0 00130A00  38 21 00 20 */	addi r1, r1, 0x20
 /* 80133AC4 00130A04  4E 80 00 20 */	blr 
 
-.global read__28ArrayContainer$$010Vector3$$0f$$1$$1FR6Stream
-read__28ArrayContainer$$010Vector3$$0f$$1$$1FR6Stream:
+.global "read__28ArrayContainer<10Vector3<f>>FR6Stream"
+"read__28ArrayContainer<10Vector3<f>>FR6Stream":
 /* 80133AC8 00130A08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80133ACC 00130A0C  7C 08 02 A6 */	mflr r0
 /* 80133AD0 00130A10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -358,12 +358,12 @@ lbl_80133B4C:
 /* 80133B70 00130AB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80133B74 00130AB4  4E 80 00 20 */	blr 
 
-.global readObject__28ArrayContainer$$010Vector3$$0f$$1$$1FR6StreamR10Vector3$$0f$$1
-readObject__28ArrayContainer$$010Vector3$$0f$$1$$1FR6StreamR10Vector3$$0f$$1:
+.global "readObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>"
+"readObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>":
 /* 80133B78 00130AB8  4E 80 00 20 */	blr 
 
-.global alloc__28ArrayContainer$$010Vector3$$0f$$1$$1Fi
-alloc__28ArrayContainer$$010Vector3$$0f$$1$$1Fi:
+.global "alloc__28ArrayContainer<10Vector3<f>>Fi"
+"alloc__28ArrayContainer<10Vector3<f>>Fi":
 /* 80133B7C 00130ABC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80133B80 00130AC0  7C 08 02 A6 */	mflr r0
 /* 80133B84 00130AC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -374,9 +374,9 @@ alloc__28ArrayContainer$$010Vector3$$0f$$1$$1Fi:
 /* 80133B98 00130AD8  1C 7F 00 0C */	mulli r3, r31, 0xc
 /* 80133B9C 00130ADC  38 63 00 10 */	addi r3, r3, 0x10
 /* 80133BA0 00130AE0  4B EF 04 0D */	bl __nwa__FUl
-/* 80133BA4 00130AE4  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 80133BA4 00130AE4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 80133BA8 00130AE8  7F E7 FB 78 */	mr r7, r31
-/* 80133BAC 00130AEC  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 80133BAC 00130AEC  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 80133BB0 00130AF0  38 A0 00 00 */	li r5, 0
 /* 80133BB4 00130AF4  38 C0 00 0C */	li r6, 0xc
 /* 80133BB8 00130AF8  4B F8 DE 39 */	bl __construct_new_array
@@ -391,8 +391,8 @@ alloc__28ArrayContainer$$010Vector3$$0f$$1$$1Fi:
 /* 80133BDC 00130B1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80133BE0 00130B20  4E 80 00 20 */	blr 
 
-.global __dt__28ArrayContainer$$010Vector3$$0f$$1$$1Fv
-__dt__28ArrayContainer$$010Vector3$$0f$$1$$1Fv:
+.global "__dt__28ArrayContainer<10Vector3<f>>Fv"
+"__dt__28ArrayContainer<10Vector3<f>>Fv":
 /* 80133BE4 00130B24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80133BE8 00130B28  7C 08 02 A6 */	mflr r0
 /* 80133BEC 00130B2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -401,12 +401,12 @@ __dt__28ArrayContainer$$010Vector3$$0f$$1$$1Fv:
 /* 80133BF8 00130B38  93 C1 00 08 */	stw r30, 8(r1)
 /* 80133BFC 00130B3C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80133C00 00130B40  41 82 00 48 */	beq lbl_80133C48
-/* 80133C04 00130B44  3C 80 80 4B */	lis r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@ha
-/* 80133C08 00130B48  38 04 FF E4 */	addi r0, r4, __vt__28ArrayContainer$$010Vector3$$0f$$1$$1@l
+/* 80133C04 00130B44  3C 80 80 4B */	lis r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
+/* 80133C08 00130B48  38 04 FF E4 */	addi r0, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
 /* 80133C0C 00130B4C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133C10 00130B50  41 82 00 28 */	beq lbl_80133C38
-/* 80133C14 00130B54  3C 80 80 4B */	lis r4, __vt__23Container$$010Vector3$$0f$$1$$1@ha
-/* 80133C18 00130B58  38 04 00 2C */	addi r0, r4, __vt__23Container$$010Vector3$$0f$$1$$1@l
+/* 80133C14 00130B54  3C 80 80 4B */	lis r4, "__vt__23Container<10Vector3<f>>"@ha
+/* 80133C18 00130B58  38 04 00 2C */	addi r0, r4, "__vt__23Container<10Vector3<f>>"@l
 /* 80133C1C 00130B5C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133C20 00130B60  41 82 00 18 */	beq lbl_80133C38
 /* 80133C24 00130B64  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -428,8 +428,8 @@ lbl_80133C48:
 /* 80133C5C 00130B9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80133C60 00130BA0  4E 80 00 20 */	blr 
 
-.global __dt__23Container$$010Vector3$$0f$$1$$1Fv
-__dt__23Container$$010Vector3$$0f$$1$$1Fv:
+.global "__dt__23Container<10Vector3<f>>Fv"
+"__dt__23Container<10Vector3<f>>Fv":
 /* 80133C64 00130BA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80133C68 00130BA8  7C 08 02 A6 */	mflr r0
 /* 80133C6C 00130BAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -438,8 +438,8 @@ __dt__23Container$$010Vector3$$0f$$1$$1Fv:
 /* 80133C78 00130BB8  93 C1 00 08 */	stw r30, 8(r1)
 /* 80133C7C 00130BBC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80133C80 00130BC0  41 82 00 38 */	beq lbl_80133CB8
-/* 80133C84 00130BC4  3C 80 80 4B */	lis r4, __vt__23Container$$010Vector3$$0f$$1$$1@ha
-/* 80133C88 00130BC8  38 04 00 2C */	addi r0, r4, __vt__23Container$$010Vector3$$0f$$1$$1@l
+/* 80133C84 00130BC4  3C 80 80 4B */	lis r4, "__vt__23Container<10Vector3<f>>"@ha
+/* 80133C88 00130BC8  38 04 00 2C */	addi r0, r4, "__vt__23Container<10Vector3<f>>"@l
 /* 80133C8C 00130BCC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133C90 00130BD0  41 82 00 18 */	beq lbl_80133CA8
 /* 80133C94 00130BD4  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -598,12 +598,12 @@ __dt__Q23Sys12TriIndexListFv:
 /* 80133E98 00130DD8  38 04 FF 54 */	addi r0, r4, __vt__Q23Sys9IndexList@l
 /* 80133E9C 00130DDC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133EA0 00130DE0  41 82 00 38 */	beq lbl_80133ED8
-/* 80133EA4 00130DE4  3C 80 80 4B */	lis r4, __vt__17ArrayContainer$$0i$$1@ha
-/* 80133EA8 00130DE8  38 04 FF 0C */	addi r0, r4, __vt__17ArrayContainer$$0i$$1@l
+/* 80133EA4 00130DE4  3C 80 80 4B */	lis r4, "__vt__17ArrayContainer<i>"@ha
+/* 80133EA8 00130DE8  38 04 FF 0C */	addi r0, r4, "__vt__17ArrayContainer<i>"@l
 /* 80133EAC 00130DEC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133EB0 00130DF0  41 82 00 28 */	beq lbl_80133ED8
-/* 80133EB4 00130DF4  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
-/* 80133EB8 00130DF8  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
+/* 80133EB4 00130DF4  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
+/* 80133EB8 00130DF8  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
 /* 80133EBC 00130DFC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80133EC0 00130E00  41 82 00 18 */	beq lbl_80133ED8
 /* 80133EC4 00130E04  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -682,12 +682,12 @@ __dt__Q23Sys7OBBTreeFv:
 /* 80133FC4 00130F04  38 04 FF 54 */	addi r0, r4, __vt__Q23Sys9IndexList@l
 /* 80133FC8 00130F08  90 1E 00 F8 */	stw r0, 0xf8(r30)
 /* 80133FCC 00130F0C  41 82 00 38 */	beq lbl_80134004
-/* 80133FD0 00130F10  3C 80 80 4B */	lis r4, __vt__17ArrayContainer$$0i$$1@ha
-/* 80133FD4 00130F14  38 04 FF 0C */	addi r0, r4, __vt__17ArrayContainer$$0i$$1@l
+/* 80133FD0 00130F10  3C 80 80 4B */	lis r4, "__vt__17ArrayContainer<i>"@ha
+/* 80133FD4 00130F14  38 04 FF 0C */	addi r0, r4, "__vt__17ArrayContainer<i>"@l
 /* 80133FD8 00130F18  90 1E 00 F8 */	stw r0, 0xf8(r30)
 /* 80133FDC 00130F1C  41 82 00 28 */	beq lbl_80134004
-/* 80133FE0 00130F20  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
-/* 80133FE4 00130F24  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
+/* 80133FE0 00130F20  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
+/* 80133FE4 00130F24  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
 /* 80133FE8 00130F28  90 1E 00 F8 */	stw r0, 0xf8(r30)
 /* 80133FEC 00130F2C  41 82 00 18 */	beq lbl_80134004
 /* 80133FF0 00130F30  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -874,7 +874,7 @@ releaseRec__8CollTreeFP8CollPart:
 lbl_80134264:
 /* 80134264 001311A4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134268 001311A8  7E E4 BB 78 */	mr r4, r23
-/* 8013426C 001311AC  48 00 56 81 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 8013426C 001311AC  48 00 56 81 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134270 001311B0  28 1C 00 00 */	cmplwi r28, 0
 /* 80134274 001311B4  41 82 00 10 */	beq lbl_80134284
 /* 80134278 001311B8  7F E3 FB 78 */	mr r3, r31
@@ -883,7 +883,7 @@ lbl_80134264:
 lbl_80134284:
 /* 80134284 001311C4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134288 001311C8  7F 24 CB 78 */	mr r4, r25
-/* 8013428C 001311CC  48 00 56 61 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 8013428C 001311CC  48 00 56 61 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134290 001311D0  28 18 00 00 */	cmplwi r24, 0
 /* 80134294 001311D4  41 82 00 48 */	beq lbl_801342DC
 /* 80134298 001311D8  7F 03 C3 78 */	mr r3, r24
@@ -898,7 +898,7 @@ lbl_80134284:
 lbl_801342BC:
 /* 801342BC 001311FC  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801342C0 00131200  7F 04 C3 78 */	mr r4, r24
-/* 801342C4 00131204  48 00 56 29 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 801342C4 00131204  48 00 56 29 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 801342C8 00131208  28 1C 00 00 */	cmplwi r28, 0
 /* 801342CC 0013120C  41 82 00 10 */	beq lbl_801342DC
 /* 801342D0 00131210  7F E3 FB 78 */	mr r3, r31
@@ -907,7 +907,7 @@ lbl_801342BC:
 lbl_801342DC:
 /* 801342DC 0013121C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801342E0 00131220  7F 64 DB 78 */	mr r4, r27
-/* 801342E4 00131224  48 00 56 09 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 801342E4 00131224  48 00 56 09 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 801342E8 00131228  28 1A 00 00 */	cmplwi r26, 0
 /* 801342EC 0013122C  41 82 00 B0 */	beq lbl_8013439C
 /* 801342F0 00131230  83 1A 00 10 */	lwz r24, 0x10(r26)
@@ -926,7 +926,7 @@ lbl_801342DC:
 lbl_80134324:
 /* 80134324 00131264  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134328 00131268  7F 04 C3 78 */	mr r4, r24
-/* 8013432C 0013126C  48 00 55 C1 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 8013432C 0013126C  48 00 55 C1 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134330 00131270  28 1C 00 00 */	cmplwi r28, 0
 /* 80134334 00131274  41 82 00 10 */	beq lbl_80134344
 /* 80134338 00131278  7F E3 FB 78 */	mr r3, r31
@@ -935,7 +935,7 @@ lbl_80134324:
 lbl_80134344:
 /* 80134344 00131284  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134348 00131288  7F 44 D3 78 */	mr r4, r26
-/* 8013434C 0013128C  48 00 55 A1 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 8013434C 0013128C  48 00 55 A1 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134350 00131290  28 17 00 00 */	cmplwi r23, 0
 /* 80134354 00131294  41 82 00 48 */	beq lbl_8013439C
 /* 80134358 00131298  7E E3 BB 78 */	mr r3, r23
@@ -950,7 +950,7 @@ lbl_80134344:
 lbl_8013437C:
 /* 8013437C 001312BC  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134380 001312C0  7E E4 BB 78 */	mr r4, r23
-/* 80134384 001312C4  48 00 55 69 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 80134384 001312C4  48 00 55 69 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134388 001312C8  28 1C 00 00 */	cmplwi r28, 0
 /* 8013438C 001312CC  41 82 00 10 */	beq lbl_8013439C
 /* 80134390 001312D0  7F E3 FB 78 */	mr r3, r31
@@ -959,7 +959,7 @@ lbl_8013437C:
 lbl_8013439C:
 /* 8013439C 001312DC  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801343A0 001312E0  7F A4 EB 78 */	mr r4, r29
-/* 801343A4 001312E4  48 00 55 49 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 801343A4 001312E4  48 00 55 49 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 801343A8 001312E8  28 1E 00 00 */	cmplwi r30, 0
 /* 801343AC 001312EC  41 82 01 80 */	beq lbl_8013452C
 /* 801343B0 001312F0  83 1E 00 10 */	lwz r24, 0x10(r30)
@@ -982,7 +982,7 @@ lbl_8013439C:
 lbl_801343F4:
 /* 801343F4 00131334  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801343F8 00131338  7F 44 D3 78 */	mr r4, r26
-/* 801343FC 0013133C  48 00 54 F1 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 801343FC 0013133C  48 00 54 F1 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134400 00131340  28 1C 00 00 */	cmplwi r28, 0
 /* 80134404 00131344  41 82 00 10 */	beq lbl_80134414
 /* 80134408 00131348  7F E3 FB 78 */	mr r3, r31
@@ -991,7 +991,7 @@ lbl_801343F4:
 lbl_80134414:
 /* 80134414 00131354  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134418 00131358  7F 04 C3 78 */	mr r4, r24
-/* 8013441C 0013135C  48 00 54 D1 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 8013441C 0013135C  48 00 54 D1 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134420 00131360  28 19 00 00 */	cmplwi r25, 0
 /* 80134424 00131364  41 82 00 48 */	beq lbl_8013446C
 /* 80134428 00131368  7F 23 CB 78 */	mr r3, r25
@@ -1006,7 +1006,7 @@ lbl_80134414:
 lbl_8013444C:
 /* 8013444C 0013138C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134450 00131390  7F 24 CB 78 */	mr r4, r25
-/* 80134454 00131394  48 00 54 99 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 80134454 00131394  48 00 54 99 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134458 00131398  28 1C 00 00 */	cmplwi r28, 0
 /* 8013445C 0013139C  41 82 00 10 */	beq lbl_8013446C
 /* 80134460 001313A0  7F E3 FB 78 */	mr r3, r31
@@ -1015,7 +1015,7 @@ lbl_8013444C:
 lbl_8013446C:
 /* 8013446C 001313AC  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134470 001313B0  7F C4 F3 78 */	mr r4, r30
-/* 80134474 001313B4  48 00 54 79 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 80134474 001313B4  48 00 54 79 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134478 001313B8  28 17 00 00 */	cmplwi r23, 0
 /* 8013447C 001313BC  41 82 00 B0 */	beq lbl_8013452C
 /* 80134480 001313C0  83 37 00 10 */	lwz r25, 0x10(r23)
@@ -1034,7 +1034,7 @@ lbl_8013446C:
 lbl_801344B4:
 /* 801344B4 001313F4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801344B8 001313F8  7F 24 CB 78 */	mr r4, r25
-/* 801344BC 001313FC  48 00 54 31 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 801344BC 001313FC  48 00 54 31 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 801344C0 00131400  28 1C 00 00 */	cmplwi r28, 0
 /* 801344C4 00131404  41 82 00 10 */	beq lbl_801344D4
 /* 801344C8 00131408  7F E3 FB 78 */	mr r3, r31
@@ -1043,7 +1043,7 @@ lbl_801344B4:
 lbl_801344D4:
 /* 801344D4 00131414  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801344D8 00131418  7E E4 BB 78 */	mr r4, r23
-/* 801344DC 0013141C  48 00 54 11 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 801344DC 0013141C  48 00 54 11 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 801344E0 00131420  28 18 00 00 */	cmplwi r24, 0
 /* 801344E4 00131424  41 82 00 48 */	beq lbl_8013452C
 /* 801344E8 00131428  7F 03 C3 78 */	mr r3, r24
@@ -1058,7 +1058,7 @@ lbl_801344D4:
 lbl_8013450C:
 /* 8013450C 0013144C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80134510 00131450  7F 04 C3 78 */	mr r4, r24
-/* 80134514 00131454  48 00 53 D9 */	bl kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
+/* 80134514 00131454  48 00 53 D9 */	bl "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
 /* 80134518 00131458  28 1C 00 00 */	cmplwi r28, 0
 /* 8013451C 0013145C  41 82 00 10 */	beq lbl_8013452C
 /* 80134520 00131460  7F E3 FB 78 */	mr r3, r31
@@ -1081,8 +1081,8 @@ getNext__8CollPartFv:
 /* 80134548 00131488  80 63 00 04 */	lwz r3, 4(r3)
 /* 8013454C 0013148C  4E 80 00 20 */	blr 
 
-.global checkCollision__8CollTreeFP8CollTreePP8CollPartPP8CollPartR10Vector3$$0f$$1
-checkCollision__8CollTreeFP8CollTreePP8CollPartPP8CollPartR10Vector3$$0f$$1:
+.global "checkCollision__8CollTreeFP8CollTreePP8CollPartPP8CollPartR10Vector3<f>"
+"checkCollision__8CollTreeFP8CollTreePP8CollPartPP8CollPartR10Vector3<f>":
 /* 80134550 00131490  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80134554 00131494  7C 08 02 A6 */	mflr r0
 /* 80134558 00131498  7C 89 23 78 */	mr r9, r4
@@ -1093,14 +1093,14 @@ checkCollision__8CollTreeFP8CollTreePP8CollPartPP8CollPartR10Vector3$$0f$$1:
 /* 8013456C 001314AC  80 83 00 00 */	lwz r4, 0(r3)
 /* 80134570 001314B0  7C 07 03 78 */	mr r7, r0
 /* 80134574 001314B4  80 A9 00 00 */	lwz r5, 0(r9)
-/* 80134578 001314B8  48 00 00 15 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134578 001314B8  48 00 00 15 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 8013457C 001314BC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80134580 001314C0  7C 08 03 A6 */	mtlr r0
 /* 80134584 001314C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80134588 001314C8  4E 80 00 20 */	blr 
 
-.global checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
-checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1:
+.global "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
+"checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>":
 /* 8013458C 001314CC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80134590 001314D0  7C 08 02 A6 */	mflr r0
 /* 80134594 001314D4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1121,7 +1121,7 @@ lbl_801345C8:
 /* 801345C8 00131508  7F 23 CB 78 */	mr r3, r25
 /* 801345CC 0013150C  7F 44 D3 78 */	mr r4, r26
 /* 801345D0 00131510  7F C5 F3 78 */	mr r5, r30
-/* 801345D4 00131514  48 00 13 19 */	bl collide__8CollPartFP8CollPartR10Vector3$$0f$$1
+/* 801345D4 00131514  48 00 13 19 */	bl "collide__8CollPartFP8CollPartR10Vector3<f>"
 /* 801345D8 00131518  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801345DC 0013151C  41 82 02 FC */	beq lbl_801348D8
 /* 801345E0 00131520  83 79 00 10 */	lwz r27, 0x10(r25)
@@ -1169,7 +1169,7 @@ lbl_8013466C:
 /* 8013466C 001315AC  7F 63 DB 78 */	mr r3, r27
 /* 80134670 001315B0  7F 44 D3 78 */	mr r4, r26
 /* 80134674 001315B4  7F C5 F3 78 */	mr r5, r30
-/* 80134678 001315B8  48 00 12 75 */	bl collide__8CollPartFP8CollPartR10Vector3$$0f$$1
+/* 80134678 001315B8  48 00 12 75 */	bl "collide__8CollPartFP8CollPartR10Vector3<f>"
 /* 8013467C 001315BC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80134680 001315C0  41 82 00 94 */	beq lbl_80134714
 /* 80134684 001315C4  7F 63 DB 78 */	mr r3, r27
@@ -1197,7 +1197,7 @@ lbl_801346B4:
 /* 801346D8 00131618  7F E6 FB 78 */	mr r6, r31
 /* 801346DC 0013161C  7F A7 EB 78 */	mr r7, r29
 /* 801346E0 00131620  7F C8 F3 78 */	mr r8, r30
-/* 801346E4 00131624  4B FF FE A9 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 801346E4 00131624  4B FF FE A9 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 801346E8 00131628  48 00 04 94 */	b lbl_80134B7C
 lbl_801346EC:
 /* 801346EC 0013162C  7F 43 D3 78 */	mr r3, r26
@@ -1208,7 +1208,7 @@ lbl_801346EC:
 /* 80134700 00131640  7F E6 FB 78 */	mr r6, r31
 /* 80134704 00131644  7F A7 EB 78 */	mr r7, r29
 /* 80134708 00131648  7F C8 F3 78 */	mr r8, r30
-/* 8013470C 0013164C  4B FF FE 81 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 8013470C 0013164C  4B FF FE 81 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134710 00131650  48 00 04 6C */	b lbl_80134B7C
 lbl_80134714:
 /* 80134714 00131654  7F 63 DB 78 */	mr r3, r27
@@ -1223,7 +1223,7 @@ lbl_80134714:
 /* 80134738 00131678  7F E6 FB 78 */	mr r6, r31
 /* 8013473C 0013167C  7F A7 EB 78 */	mr r7, r29
 /* 80134740 00131680  7F C8 F3 78 */	mr r8, r30
-/* 80134744 00131684  4B FF FE 49 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134744 00131684  4B FF FE 49 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134748 00131688  48 00 04 34 */	b lbl_80134B7C
 lbl_8013474C:
 /* 8013474C 0013168C  7F 43 D3 78 */	mr r3, r26
@@ -1238,7 +1238,7 @@ lbl_8013474C:
 /* 80134770 001316B0  7F E6 FB 78 */	mr r6, r31
 /* 80134774 001316B4  7F A7 EB 78 */	mr r7, r29
 /* 80134778 001316B8  7F C8 F3 78 */	mr r8, r30
-/* 8013477C 001316BC  4B FF FE 11 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 8013477C 001316BC  4B FF FE 11 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134780 001316C0  48 00 03 FC */	b lbl_80134B7C
 lbl_80134784:
 /* 80134784 001316C4  38 60 00 00 */	li r3, 0
@@ -1258,7 +1258,7 @@ lbl_801347B0:
 /* 801347B0 001316F0  7F 23 CB 78 */	mr r3, r25
 /* 801347B4 001316F4  7F 44 D3 78 */	mr r4, r26
 /* 801347B8 001316F8  7F C5 F3 78 */	mr r5, r30
-/* 801347BC 001316FC  48 00 11 31 */	bl collide__8CollPartFP8CollPartR10Vector3$$0f$$1
+/* 801347BC 001316FC  48 00 11 31 */	bl "collide__8CollPartFP8CollPartR10Vector3<f>"
 /* 801347C0 00131700  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801347C4 00131704  41 82 00 94 */	beq lbl_80134858
 /* 801347C8 00131708  7F 23 CB 78 */	mr r3, r25
@@ -1286,7 +1286,7 @@ lbl_801347F8:
 /* 8013481C 0013175C  7F E6 FB 78 */	mr r6, r31
 /* 80134820 00131760  7F A7 EB 78 */	mr r7, r29
 /* 80134824 00131764  7F C8 F3 78 */	mr r8, r30
-/* 80134828 00131768  4B FF FD 65 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134828 00131768  4B FF FD 65 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 8013482C 0013176C  48 00 03 50 */	b lbl_80134B7C
 lbl_80134830:
 /* 80134830 00131770  7F 43 D3 78 */	mr r3, r26
@@ -1297,7 +1297,7 @@ lbl_80134830:
 /* 80134844 00131784  7F E6 FB 78 */	mr r6, r31
 /* 80134848 00131788  7F A7 EB 78 */	mr r7, r29
 /* 8013484C 0013178C  7F C8 F3 78 */	mr r8, r30
-/* 80134850 00131790  4B FF FD 3D */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134850 00131790  4B FF FD 3D */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134854 00131794  48 00 03 28 */	b lbl_80134B7C
 lbl_80134858:
 /* 80134858 00131798  7F 23 CB 78 */	mr r3, r25
@@ -1312,7 +1312,7 @@ lbl_80134858:
 /* 8013487C 001317BC  7F E6 FB 78 */	mr r6, r31
 /* 80134880 001317C0  7F A7 EB 78 */	mr r7, r29
 /* 80134884 001317C4  7F C8 F3 78 */	mr r8, r30
-/* 80134888 001317C8  4B FF FD 05 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134888 001317C8  4B FF FD 05 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 8013488C 001317CC  48 00 02 F0 */	b lbl_80134B7C
 lbl_80134890:
 /* 80134890 001317D0  7F 43 D3 78 */	mr r3, r26
@@ -1327,7 +1327,7 @@ lbl_80134890:
 /* 801348B4 001317F4  7F E6 FB 78 */	mr r6, r31
 /* 801348B8 001317F8  7F A7 EB 78 */	mr r7, r29
 /* 801348BC 001317FC  7F C8 F3 78 */	mr r8, r30
-/* 801348C0 00131800  4B FF FC CD */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 801348C0 00131800  4B FF FC CD */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 801348C4 00131804  48 00 02 B8 */	b lbl_80134B7C
 lbl_801348C8:
 /* 801348C8 00131808  38 60 00 00 */	li r3, 0
@@ -1348,7 +1348,7 @@ lbl_801348F8:
 /* 801348F8 00131838  7F 63 DB 78 */	mr r3, r27
 /* 801348FC 0013183C  7F 44 D3 78 */	mr r4, r26
 /* 80134900 00131840  7F C5 F3 78 */	mr r5, r30
-/* 80134904 00131844  48 00 0F E9 */	bl collide__8CollPartFP8CollPartR10Vector3$$0f$$1
+/* 80134904 00131844  48 00 0F E9 */	bl "collide__8CollPartFP8CollPartR10Vector3<f>"
 /* 80134908 00131848  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8013490C 0013184C  41 82 00 94 */	beq lbl_801349A0
 /* 80134910 00131850  7F 63 DB 78 */	mr r3, r27
@@ -1376,7 +1376,7 @@ lbl_80134940:
 /* 80134964 001318A4  7F E6 FB 78 */	mr r6, r31
 /* 80134968 001318A8  7F A7 EB 78 */	mr r7, r29
 /* 8013496C 001318AC  7F C8 F3 78 */	mr r8, r30
-/* 80134970 001318B0  4B FF FC 1D */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134970 001318B0  4B FF FC 1D */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134974 001318B4  48 00 02 08 */	b lbl_80134B7C
 lbl_80134978:
 /* 80134978 001318B8  7F 43 D3 78 */	mr r3, r26
@@ -1387,7 +1387,7 @@ lbl_80134978:
 /* 8013498C 001318CC  7F E6 FB 78 */	mr r6, r31
 /* 80134990 001318D0  7F A7 EB 78 */	mr r7, r29
 /* 80134994 001318D4  7F C8 F3 78 */	mr r8, r30
-/* 80134998 001318D8  4B FF FB F5 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134998 001318D8  4B FF FB F5 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 8013499C 001318DC  48 00 01 E0 */	b lbl_80134B7C
 lbl_801349A0:
 /* 801349A0 001318E0  7F 63 DB 78 */	mr r3, r27
@@ -1402,7 +1402,7 @@ lbl_801349A0:
 /* 801349C4 00131904  7F E6 FB 78 */	mr r6, r31
 /* 801349C8 00131908  7F A7 EB 78 */	mr r7, r29
 /* 801349CC 0013190C  7F C8 F3 78 */	mr r8, r30
-/* 801349D0 00131910  4B FF FB BD */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 801349D0 00131910  4B FF FB BD */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 801349D4 00131914  48 00 01 A8 */	b lbl_80134B7C
 lbl_801349D8:
 /* 801349D8 00131918  7F 43 D3 78 */	mr r3, r26
@@ -1417,7 +1417,7 @@ lbl_801349D8:
 /* 801349FC 0013193C  7F E6 FB 78 */	mr r6, r31
 /* 80134A00 00131940  7F A7 EB 78 */	mr r7, r29
 /* 80134A04 00131944  7F C8 F3 78 */	mr r8, r30
-/* 80134A08 00131948  4B FF FB 85 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134A08 00131948  4B FF FB 85 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134A0C 0013194C  48 00 01 70 */	b lbl_80134B7C
 lbl_80134A10:
 /* 80134A10 00131950  38 60 00 00 */	li r3, 0
@@ -1439,7 +1439,7 @@ lbl_80134A44:
 /* 80134A44 00131984  7F 23 CB 78 */	mr r3, r25
 /* 80134A48 00131988  7F 44 D3 78 */	mr r4, r26
 /* 80134A4C 0013198C  7F C5 F3 78 */	mr r5, r30
-/* 80134A50 00131990  48 00 0E 9D */	bl collide__8CollPartFP8CollPartR10Vector3$$0f$$1
+/* 80134A50 00131990  48 00 0E 9D */	bl "collide__8CollPartFP8CollPartR10Vector3<f>"
 /* 80134A54 00131994  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80134A58 00131998  41 82 00 94 */	beq lbl_80134AEC
 /* 80134A5C 0013199C  7F 23 CB 78 */	mr r3, r25
@@ -1467,7 +1467,7 @@ lbl_80134A8C:
 /* 80134AB0 001319F0  7F E6 FB 78 */	mr r6, r31
 /* 80134AB4 001319F4  7F A7 EB 78 */	mr r7, r29
 /* 80134AB8 001319F8  7F C8 F3 78 */	mr r8, r30
-/* 80134ABC 001319FC  4B FF FA D1 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134ABC 001319FC  4B FF FA D1 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134AC0 00131A00  48 00 00 BC */	b lbl_80134B7C
 lbl_80134AC4:
 /* 80134AC4 00131A04  7F 43 D3 78 */	mr r3, r26
@@ -1478,7 +1478,7 @@ lbl_80134AC4:
 /* 80134AD8 00131A18  7F E6 FB 78 */	mr r6, r31
 /* 80134ADC 00131A1C  7F A7 EB 78 */	mr r7, r29
 /* 80134AE0 00131A20  7F C8 F3 78 */	mr r8, r30
-/* 80134AE4 00131A24  4B FF FA A9 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134AE4 00131A24  4B FF FA A9 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134AE8 00131A28  48 00 00 94 */	b lbl_80134B7C
 lbl_80134AEC:
 /* 80134AEC 00131A2C  7F 23 CB 78 */	mr r3, r25
@@ -1493,7 +1493,7 @@ lbl_80134AEC:
 /* 80134B10 00131A50  7F E6 FB 78 */	mr r6, r31
 /* 80134B14 00131A54  7F A7 EB 78 */	mr r7, r29
 /* 80134B18 00131A58  7F C8 F3 78 */	mr r8, r30
-/* 80134B1C 00131A5C  4B FF FA 71 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134B1C 00131A5C  4B FF FA 71 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134B20 00131A60  48 00 00 5C */	b lbl_80134B7C
 lbl_80134B24:
 /* 80134B24 00131A64  7F 43 D3 78 */	mr r3, r26
@@ -1508,7 +1508,7 @@ lbl_80134B24:
 /* 80134B48 00131A88  7F E6 FB 78 */	mr r6, r31
 /* 80134B4C 00131A8C  7F A7 EB 78 */	mr r7, r29
 /* 80134B50 00131A90  7F C8 F3 78 */	mr r8, r30
-/* 80134B54 00131A94  4B FF FA 39 */	bl checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3$$0f$$1
+/* 80134B54 00131A94  4B FF FA 39 */	bl "checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
 /* 80134B58 00131A98  48 00 00 24 */	b lbl_80134B7C
 lbl_80134B5C:
 /* 80134B5C 00131A9C  38 60 00 00 */	li r3, 0
@@ -1551,23 +1551,23 @@ lbl_80134BC8:
 /* 80134BC8 00131B08  7C 83 23 78 */	mr r3, r4
 /* 80134BCC 00131B0C  4E 80 00 20 */	blr 
 
-.global checkCollision__8CollTreeFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
-checkCollision__8CollTreeFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1:
+.global "checkCollision__8CollTreeFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
+"checkCollision__8CollTreeFRQ23Sys6SphereP22IDelegate1<P8CollPart>":
 /* 80134BD0 00131B10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80134BD4 00131B14  7C 08 02 A6 */	mflr r0
 /* 80134BD8 00131B18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80134BDC 00131B1C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80134BE0 00131B20  28 03 00 00 */	cmplwi r3, 0
 /* 80134BE4 00131B24  41 82 00 08 */	beq lbl_80134BEC
-/* 80134BE8 00131B28  48 00 00 15 */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 80134BE8 00131B28  48 00 00 15 */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_80134BEC:
 /* 80134BEC 00131B2C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80134BF0 00131B30  7C 08 03 A6 */	mtlr r0
 /* 80134BF4 00131B34  38 21 00 10 */	addi r1, r1, 0x10
 /* 80134BF8 00131B38  4E 80 00 20 */	blr 
 
-.global checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
-checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1:
+.global "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
+"checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>":
 /* 80134BFC 00131B3C  94 21 FE 00 */	stwu r1, -0x200(r1)
 /* 80134C00 00131B40  7C 08 02 A6 */	mflr r0
 /* 80134C04 00131B44  90 01 02 04 */	stw r0, 0x204(r1)
@@ -1642,7 +1642,7 @@ lbl_80134CC4:
 /* 80134D08 00131C48  D0 01 01 BC */	stfs f0, 0x1bc(r1)
 /* 80134D0C 00131C4C  D0 21 01 C0 */	stfs f1, 0x1c0(r1)
 /* 80134D10 00131C50  D0 41 01 C4 */	stfs f2, 0x1c4(r1)
-/* 80134D14 00131C54  48 2E 0E 45 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 80134D14 00131C54  48 2E 0E 45 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 80134D18 00131C58  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80134D1C 00131C5C  41 82 00 1C */	beq lbl_80134D38
 /* 80134D20 00131C60  7F C3 F3 78 */	mr r3, r30
@@ -1679,7 +1679,7 @@ lbl_80134D7C:
 /* 80134D90 00131CD0  C3 FF 00 1C */	lfs f31, 0x1c(r31)
 /* 80134D94 00131CD4  38 61 00 B0 */	addi r3, r1, 0xb0
 /* 80134D98 00131CD8  38 9F 00 4C */	addi r4, r31, 0x4c
-/* 80134D9C 00131CDC  48 00 07 85 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
+/* 80134D9C 00131CDC  48 00 07 85 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
 /* 80134DA0 00131CE0  D3 E1 00 BC */	stfs f31, 0xbc(r1)
 /* 80134DA4 00131CE4  7F A4 EB 78 */	mr r4, r29
 /* 80134DA8 00131CE8  38 61 00 B0 */	addi r3, r1, 0xb0
@@ -1708,17 +1708,17 @@ lbl_80134DE4:
 /* 80134DFC 00131D3C  3B 63 00 4C */	addi r27, r3, 0x4c
 /* 80134E00 00131D40  38 61 01 88 */	addi r3, r1, 0x188
 /* 80134E04 00131D44  38 9F 00 4C */	addi r4, r31, 0x4c
-/* 80134E08 00131D48  48 00 07 19 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
+/* 80134E08 00131D48  48 00 07 19 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
 /* 80134E0C 00131D4C  7F 64 DB 78 */	mr r4, r27
 /* 80134E10 00131D50  38 61 01 94 */	addi r3, r1, 0x194
-/* 80134E14 00131D54  48 00 07 0D */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
+/* 80134E14 00131D54  48 00 07 0D */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
 /* 80134E18 00131D58  D3 E1 01 A0 */	stfs f31, 0x1a0(r1)
 /* 80134E1C 00131D5C  7F A4 EB 78 */	mr r4, r29
 /* 80134E20 00131D60  38 61 01 88 */	addi r3, r1, 0x188
 /* 80134E24 00131D64  38 A1 00 C0 */	addi r5, r1, 0xc0
 /* 80134E28 00131D68  D3 C1 01 A4 */	stfs f30, 0x1a4(r1)
 /* 80134E2C 00131D6C  38 C1 00 1C */	addi r6, r1, 0x1c
-/* 80134E30 00131D70  48 2E 0D 29 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 80134E30 00131D70  48 2E 0D 29 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 80134E34 00131D74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80134E38 00131D78  41 82 00 1C */	beq lbl_80134E54
 /* 80134E3C 00131D7C  7F C3 F3 78 */	mr r3, r30
@@ -1744,7 +1744,7 @@ lbl_80134E54:
 /* 80134E88 00131DC8  C0 3A 00 1C */	lfs f1, 0x1c(r26)
 /* 80134E8C 00131DCC  38 61 00 78 */	addi r3, r1, 0x78
 /* 80134E90 00131DD0  38 9A 00 4C */	addi r4, r26, 0x4c
-/* 80134E94 00131DD4  48 00 06 5D */	bl __ct__Q23Sys6SphereFR10Vector3$$0f$$1f
+/* 80134E94 00131DD4  48 00 06 5D */	bl "__ct__Q23Sys6SphereFR10Vector3<f>f"
 /* 80134E98 00131DD8  7F A4 EB 78 */	mr r4, r29
 /* 80134E9C 00131DDC  38 61 00 78 */	addi r3, r1, 0x78
 /* 80134EA0 00131DE0  48 2E 10 75 */	bl intersect__Q23Sys6SphereFRQ23Sys6Sphere
@@ -1778,14 +1778,14 @@ lbl_80134EE8:
 /* 80134F08 00131E48  38 61 01 48 */	addi r3, r1, 0x148
 /* 80134F0C 00131E4C  38 9A 00 4C */	addi r4, r26, 0x4c
 /* 80134F10 00131E50  38 A5 00 4C */	addi r5, r5, 0x4c
-/* 80134F14 00131E54  48 00 05 A1 */	bl __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
+/* 80134F14 00131E54  48 00 05 A1 */	bl "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
 /* 80134F18 00131E58  38 61 00 88 */	addi r3, r1, 0x88
-/* 80134F1C 00131E5C  4B FE A4 2D */	bl __ct__10Vector3$$0f$$1Fv
+/* 80134F1C 00131E5C  4B FE A4 2D */	bl "__ct__10Vector3<f>Fv"
 /* 80134F20 00131E60  7F A4 EB 78 */	mr r4, r29
 /* 80134F24 00131E64  38 61 01 48 */	addi r3, r1, 0x148
 /* 80134F28 00131E68  38 A1 00 88 */	addi r5, r1, 0x88
 /* 80134F2C 00131E6C  38 C1 00 14 */	addi r6, r1, 0x14
-/* 80134F30 00131E70  48 2E 0C 29 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 80134F30 00131E70  48 2E 0C 29 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 80134F34 00131E74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80134F38 00131E78  41 82 00 1C */	beq lbl_80134F54
 /* 80134F3C 00131E7C  7F C3 F3 78 */	mr r3, r30
@@ -1803,7 +1803,7 @@ lbl_80134F54:
 /* 80134F68 00131EA8  4B FF F5 D9 */	bl getChild__8CollPartFv
 /* 80134F6C 00131EAC  7F A4 EB 78 */	mr r4, r29
 /* 80134F70 00131EB0  7F C5 F3 78 */	mr r5, r30
-/* 80134F74 00131EB4  4B FF FC 89 */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 80134F74 00131EB4  4B FF FC 89 */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_80134F78:
 /* 80134F78 00131EB8  7F 43 D3 78 */	mr r3, r26
 /* 80134F7C 00131EBC  4B FF F5 CD */	bl getNext__8CollPartFv
@@ -1813,7 +1813,7 @@ lbl_80134F78:
 /* 80134F8C 00131ECC  4B FF F5 BD */	bl getNext__8CollPartFv
 /* 80134F90 00131ED0  7F A4 EB 78 */	mr r4, r29
 /* 80134F94 00131ED4  7F C5 F3 78 */	mr r5, r30
-/* 80134F98 00131ED8  4B FF FC 65 */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 80134F98 00131ED8  4B FF FC 65 */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_80134F9C:
 /* 80134F9C 00131EDC  80 1F 00 04 */	lwz r0, 4(r31)
 /* 80134FA0 00131EE0  28 00 00 00 */	cmplwi r0, 0
@@ -1831,7 +1831,7 @@ lbl_80134F9C:
 /* 80134FD0 00131F10  C0 3A 00 1C */	lfs f1, 0x1c(r26)
 /* 80134FD4 00131F14  38 61 00 5C */	addi r3, r1, 0x5c
 /* 80134FD8 00131F18  38 9A 00 4C */	addi r4, r26, 0x4c
-/* 80134FDC 00131F1C  48 00 05 15 */	bl __ct__Q23Sys6SphereFR10Vector3$$0f$$1f
+/* 80134FDC 00131F1C  48 00 05 15 */	bl "__ct__Q23Sys6SphereFR10Vector3<f>f"
 /* 80134FE0 00131F20  7F A4 EB 78 */	mr r4, r29
 /* 80134FE4 00131F24  38 61 00 5C */	addi r3, r1, 0x5c
 /* 80134FE8 00131F28  48 2E 0F 2D */	bl intersect__Q23Sys6SphereFRQ23Sys6Sphere
@@ -1865,14 +1865,14 @@ lbl_80135030:
 /* 80135050 00131F90  38 61 01 28 */	addi r3, r1, 0x128
 /* 80135054 00131F94  38 9A 00 4C */	addi r4, r26, 0x4c
 /* 80135058 00131F98  38 A5 00 4C */	addi r5, r5, 0x4c
-/* 8013505C 00131F9C  48 00 04 59 */	bl __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
+/* 8013505C 00131F9C  48 00 04 59 */	bl "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
 /* 80135060 00131FA0  38 61 00 6C */	addi r3, r1, 0x6c
-/* 80135064 00131FA4  4B FE A2 E5 */	bl __ct__10Vector3$$0f$$1Fv
+/* 80135064 00131FA4  4B FE A2 E5 */	bl "__ct__10Vector3<f>Fv"
 /* 80135068 00131FA8  7F A4 EB 78 */	mr r4, r29
 /* 8013506C 00131FAC  38 61 01 28 */	addi r3, r1, 0x128
 /* 80135070 00131FB0  38 A1 00 6C */	addi r5, r1, 0x6c
 /* 80135074 00131FB4  38 C1 00 10 */	addi r6, r1, 0x10
-/* 80135078 00131FB8  48 2E 0A E1 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 80135078 00131FB8  48 2E 0A E1 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 8013507C 00131FBC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80135080 00131FC0  41 82 00 1C */	beq lbl_8013509C
 /* 80135084 00131FC4  7F C3 F3 78 */	mr r3, r30
@@ -1890,7 +1890,7 @@ lbl_8013509C:
 /* 801350B0 00131FF0  4B FF F4 91 */	bl getChild__8CollPartFv
 /* 801350B4 00131FF4  7F A4 EB 78 */	mr r4, r29
 /* 801350B8 00131FF8  7F C5 F3 78 */	mr r5, r30
-/* 801350BC 00131FFC  4B FF FB 41 */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 801350BC 00131FFC  4B FF FB 41 */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_801350C0:
 /* 801350C0 00132000  7F 43 D3 78 */	mr r3, r26
 /* 801350C4 00132004  4B FF F4 85 */	bl getNext__8CollPartFv
@@ -1900,7 +1900,7 @@ lbl_801350C0:
 /* 801350D4 00132014  4B FF F4 75 */	bl getNext__8CollPartFv
 /* 801350D8 00132018  7F A4 EB 78 */	mr r4, r29
 /* 801350DC 0013201C  7F C5 F3 78 */	mr r5, r30
-/* 801350E0 00132020  4B FF FB 1D */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 801350E0 00132020  4B FF FB 1D */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_801350E4:
 /* 801350E4 00132024  83 FC 00 04 */	lwz r31, 4(r28)
 /* 801350E8 00132028  28 1F 00 00 */	cmplwi r31, 0
@@ -1929,7 +1929,7 @@ lbl_80135128:
 /* 8013513C 0013207C  C3 DF 00 1C */	lfs f30, 0x1c(r31)
 /* 80135140 00132080  38 61 00 94 */	addi r3, r1, 0x94
 /* 80135144 00132084  38 9F 00 4C */	addi r4, r31, 0x4c
-/* 80135148 00132088  48 00 03 D9 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
+/* 80135148 00132088  48 00 03 D9 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
 /* 8013514C 0013208C  D3 C1 00 A0 */	stfs f30, 0xa0(r1)
 /* 80135150 00132090  7F A4 EB 78 */	mr r4, r29
 /* 80135154 00132094  38 61 00 94 */	addi r3, r1, 0x94
@@ -1958,17 +1958,17 @@ lbl_80135190:
 /* 801351A8 001320E8  3B 43 00 4C */	addi r26, r3, 0x4c
 /* 801351AC 001320EC  38 61 01 68 */	addi r3, r1, 0x168
 /* 801351B0 001320F0  38 9F 00 4C */	addi r4, r31, 0x4c
-/* 801351B4 001320F4  48 00 03 6D */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
+/* 801351B4 001320F4  48 00 03 6D */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
 /* 801351B8 001320F8  7F 44 D3 78 */	mr r4, r26
 /* 801351BC 001320FC  38 61 01 74 */	addi r3, r1, 0x174
-/* 801351C0 00132100  48 00 03 61 */	bl __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
+/* 801351C0 00132100  48 00 03 61 */	bl "__ct__10Vector3<f>FRC10Vector3<f>"
 /* 801351C4 00132104  D3 C1 01 80 */	stfs f30, 0x180(r1)
 /* 801351C8 00132108  7F A4 EB 78 */	mr r4, r29
 /* 801351CC 0013210C  38 61 01 68 */	addi r3, r1, 0x168
 /* 801351D0 00132110  38 A1 00 A4 */	addi r5, r1, 0xa4
 /* 801351D4 00132114  D3 E1 01 84 */	stfs f31, 0x184(r1)
 /* 801351D8 00132118  38 C1 00 18 */	addi r6, r1, 0x18
-/* 801351DC 0013211C  48 2E 09 7D */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 801351DC 0013211C  48 2E 09 7D */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 801351E0 00132120  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801351E4 00132124  41 82 00 1C */	beq lbl_80135200
 /* 801351E8 00132128  7F C3 F3 78 */	mr r3, r30
@@ -1994,7 +1994,7 @@ lbl_80135200:
 /* 80135234 00132174  C0 3A 00 1C */	lfs f1, 0x1c(r26)
 /* 80135238 00132178  38 61 00 40 */	addi r3, r1, 0x40
 /* 8013523C 0013217C  38 9A 00 4C */	addi r4, r26, 0x4c
-/* 80135240 00132180  48 00 02 B1 */	bl __ct__Q23Sys6SphereFR10Vector3$$0f$$1f
+/* 80135240 00132180  48 00 02 B1 */	bl "__ct__Q23Sys6SphereFR10Vector3<f>f"
 /* 80135244 00132184  7F A4 EB 78 */	mr r4, r29
 /* 80135248 00132188  38 61 00 40 */	addi r3, r1, 0x40
 /* 8013524C 0013218C  48 2E 0C C9 */	bl intersect__Q23Sys6SphereFRQ23Sys6Sphere
@@ -2028,14 +2028,14 @@ lbl_80135294:
 /* 801352B4 001321F4  38 61 01 08 */	addi r3, r1, 0x108
 /* 801352B8 001321F8  38 9A 00 4C */	addi r4, r26, 0x4c
 /* 801352BC 001321FC  38 A5 00 4C */	addi r5, r5, 0x4c
-/* 801352C0 00132200  48 00 01 F5 */	bl __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
+/* 801352C0 00132200  48 00 01 F5 */	bl "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
 /* 801352C4 00132204  38 61 00 50 */	addi r3, r1, 0x50
-/* 801352C8 00132208  4B FE A0 81 */	bl __ct__10Vector3$$0f$$1Fv
+/* 801352C8 00132208  4B FE A0 81 */	bl "__ct__10Vector3<f>Fv"
 /* 801352CC 0013220C  7F A4 EB 78 */	mr r4, r29
 /* 801352D0 00132210  38 61 01 08 */	addi r3, r1, 0x108
 /* 801352D4 00132214  38 A1 00 50 */	addi r5, r1, 0x50
 /* 801352D8 00132218  38 C1 00 0C */	addi r6, r1, 0xc
-/* 801352DC 0013221C  48 2E 08 7D */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 801352DC 0013221C  48 2E 08 7D */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 801352E0 00132220  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801352E4 00132224  41 82 00 1C */	beq lbl_80135300
 /* 801352E8 00132228  7F C3 F3 78 */	mr r3, r30
@@ -2053,7 +2053,7 @@ lbl_80135300:
 /* 80135314 00132254  4B FF F2 2D */	bl getChild__8CollPartFv
 /* 80135318 00132258  7F A4 EB 78 */	mr r4, r29
 /* 8013531C 0013225C  7F C5 F3 78 */	mr r5, r30
-/* 80135320 00132260  4B FF F8 DD */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 80135320 00132260  4B FF F8 DD */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_80135324:
 /* 80135324 00132264  7F 43 D3 78 */	mr r3, r26
 /* 80135328 00132268  4B FF F2 21 */	bl getNext__8CollPartFv
@@ -2063,7 +2063,7 @@ lbl_80135324:
 /* 80135338 00132278  4B FF F2 11 */	bl getNext__8CollPartFv
 /* 8013533C 0013227C  7F A4 EB 78 */	mr r4, r29
 /* 80135340 00132280  7F C5 F3 78 */	mr r5, r30
-/* 80135344 00132284  4B FF F8 B9 */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 80135344 00132284  4B FF F8 B9 */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_80135348:
 /* 80135348 00132288  80 1F 00 04 */	lwz r0, 4(r31)
 /* 8013534C 0013228C  28 00 00 00 */	cmplwi r0, 0
@@ -2081,7 +2081,7 @@ lbl_80135348:
 /* 8013537C 001322BC  C0 3A 00 1C */	lfs f1, 0x1c(r26)
 /* 80135380 001322C0  38 61 00 24 */	addi r3, r1, 0x24
 /* 80135384 001322C4  38 9A 00 4C */	addi r4, r26, 0x4c
-/* 80135388 001322C8  48 00 01 69 */	bl __ct__Q23Sys6SphereFR10Vector3$$0f$$1f
+/* 80135388 001322C8  48 00 01 69 */	bl "__ct__Q23Sys6SphereFR10Vector3<f>f"
 /* 8013538C 001322CC  7F A4 EB 78 */	mr r4, r29
 /* 80135390 001322D0  38 61 00 24 */	addi r3, r1, 0x24
 /* 80135394 001322D4  48 2E 0B 81 */	bl intersect__Q23Sys6SphereFRQ23Sys6Sphere
@@ -2115,14 +2115,14 @@ lbl_801353DC:
 /* 801353FC 0013233C  38 61 00 E8 */	addi r3, r1, 0xe8
 /* 80135400 00132340  38 9A 00 4C */	addi r4, r26, 0x4c
 /* 80135404 00132344  38 A5 00 4C */	addi r5, r5, 0x4c
-/* 80135408 00132348  48 00 00 AD */	bl __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
+/* 80135408 00132348  48 00 00 AD */	bl "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
 /* 8013540C 0013234C  38 61 00 34 */	addi r3, r1, 0x34
-/* 80135410 00132350  4B FE 9F 39 */	bl __ct__10Vector3$$0f$$1Fv
+/* 80135410 00132350  4B FE 9F 39 */	bl "__ct__10Vector3<f>Fv"
 /* 80135414 00132354  7F A4 EB 78 */	mr r4, r29
 /* 80135418 00132358  38 61 00 E8 */	addi r3, r1, 0xe8
 /* 8013541C 0013235C  38 A1 00 34 */	addi r5, r1, 0x34
 /* 80135420 00132360  38 C1 00 08 */	addi r6, r1, 8
-/* 80135424 00132364  48 2E 07 35 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 80135424 00132364  48 2E 07 35 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 80135428 00132368  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8013542C 0013236C  41 82 00 1C */	beq lbl_80135448
 /* 80135430 00132370  7F C3 F3 78 */	mr r3, r30
@@ -2140,7 +2140,7 @@ lbl_80135448:
 /* 8013545C 0013239C  4B FF F0 E5 */	bl getChild__8CollPartFv
 /* 80135460 001323A0  7F A4 EB 78 */	mr r4, r29
 /* 80135464 001323A4  7F C5 F3 78 */	mr r5, r30
-/* 80135468 001323A8  4B FF F7 95 */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 80135468 001323A8  4B FF F7 95 */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_8013546C:
 /* 8013546C 001323AC  7F 43 D3 78 */	mr r3, r26
 /* 80135470 001323B0  4B FF F0 D9 */	bl getNext__8CollPartFv
@@ -2150,7 +2150,7 @@ lbl_8013546C:
 /* 80135480 001323C0  4B FF F0 C9 */	bl getNext__8CollPartFv
 /* 80135484 001323C4  7F A4 EB 78 */	mr r4, r29
 /* 80135488 001323C8  7F C5 F3 78 */	mr r5, r30
-/* 8013548C 001323CC  4B FF F7 71 */	bl checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1$$0P8CollPart$$1
+/* 8013548C 001323CC  4B FF F7 71 */	bl "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
 lbl_80135490:
 /* 80135490 001323D0  E3 E1 01 F8 */	psq_l f31, 504(r1), 0, qr0
 /* 80135494 001323D4  CB E1 01 F0 */	lfd f31, 0x1f0(r1)
@@ -2162,8 +2162,8 @@ lbl_80135490:
 /* 801354AC 001323EC  38 21 02 00 */	addi r1, r1, 0x200
 /* 801354B0 001323F0  4E 80 00 20 */	blr 
 
-.global __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff
-__ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff:
+.global "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
+"__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff":
 /* 801354B4 001323F4  C0 04 00 00 */	lfs f0, 0(r4)
 /* 801354B8 001323F8  D0 03 00 00 */	stfs f0, 0(r3)
 /* 801354BC 001323FC  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2180,8 +2180,8 @@ __ct__Q23Sys4TubeFR10Vector3$$0f$$1R10Vector3$$0f$$1ff:
 /* 801354E8 00132428  D0 43 00 1C */	stfs f2, 0x1c(r3)
 /* 801354EC 0013242C  4E 80 00 20 */	blr 
 
-.global __ct__Q23Sys6SphereFR10Vector3$$0f$$1f
-__ct__Q23Sys6SphereFR10Vector3$$0f$$1f:
+.global "__ct__Q23Sys6SphereFR10Vector3<f>f"
+"__ct__Q23Sys6SphereFR10Vector3<f>f":
 /* 801354F0 00132430  C0 04 00 00 */	lfs f0, 0(r4)
 /* 801354F4 00132434  D0 03 00 00 */	stfs f0, 0(r3)
 /* 801354F8 00132438  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2198,8 +2198,8 @@ isSphere__8CollPartFv:
 /* 80135518 00132458  54 03 D9 7E */	srwi r3, r0, 5
 /* 8013551C 0013245C  4E 80 00 20 */	blr 
 
-.global __ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1
-__ct__10Vector3$$0f$$1FRC10Vector3$$0f$$1:
+.global "__ct__10Vector3<f>FRC10Vector3<f>"
+"__ct__10Vector3<f>FRC10Vector3<f>":
 /* 80135520 00132460  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80135524 00132464  C0 24 00 04 */	lfs f1, 4(r4)
 /* 80135528 00132468  D0 03 00 00 */	stfs f0, 0(r3)
@@ -2224,8 +2224,8 @@ isTube__8CollPartFv:
 /* 8013555C 0013249C  54 03 D9 7E */	srwi r3, r0, 5
 /* 80135560 001324A0  4E 80 00 20 */	blr 
 
-.global checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
-checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1:
+.global "checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
+"checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>":
 /* 80135564 001324A4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80135568 001324A8  7C 08 02 A6 */	mflr r0
 /* 8013556C 001324AC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2244,7 +2244,7 @@ lbl_80135598:
 /* 80135598 001324D8  7F C3 F3 78 */	mr r3, r30
 /* 8013559C 001324DC  7F A4 EB 78 */	mr r4, r29
 /* 801355A0 001324E0  38 A1 00 08 */	addi r5, r1, 8
-/* 801355A4 001324E4  48 00 03 49 */	bl collide__8CollPartFP8CollPartR10Vector3$$0f$$1
+/* 801355A4 001324E4  48 00 03 49 */	bl "collide__8CollPartFP8CollPartR10Vector3<f>"
 /* 801355A8 001324E8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801355AC 001324EC  41 82 01 18 */	beq lbl_801356C4
 /* 801355B0 001324F0  80 7E 00 10 */	lwz r3, 0x10(r30)
@@ -2288,7 +2288,7 @@ lbl_80135608:
 /* 80135638 00132578  41 82 00 14 */	beq lbl_8013564C
 /* 8013563C 0013257C  7F A4 EB 78 */	mr r4, r29
 /* 80135640 00132580  7F 85 E3 78 */	mr r5, r28
-/* 80135644 00132584  48 00 00 B9 */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 80135644 00132584  48 00 00 B9 */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 80135648 00132588  48 00 00 7C */	b lbl_801356C4
 lbl_8013564C:
 /* 8013564C 0013258C  80 9D 00 10 */	lwz r4, 0x10(r29)
@@ -2296,7 +2296,7 @@ lbl_8013564C:
 /* 80135654 00132594  41 82 00 70 */	beq lbl_801356C4
 /* 80135658 00132598  7F C3 F3 78 */	mr r3, r30
 /* 8013565C 0013259C  7F 85 E3 78 */	mr r5, r28
-/* 80135660 001325A0  48 00 00 9D */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 80135660 001325A0  48 00 00 9D */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 80135664 001325A4  48 00 00 60 */	b lbl_801356C4
 lbl_80135668:
 /* 80135668 001325A8  28 03 00 00 */	cmplwi r3, 0
@@ -2304,7 +2304,7 @@ lbl_80135668:
 /* 80135670 001325B0  80 9D 00 10 */	lwz r4, 0x10(r29)
 /* 80135674 001325B4  7F C3 F3 78 */	mr r3, r30
 /* 80135678 001325B8  7F 85 E3 78 */	mr r5, r28
-/* 8013567C 001325BC  48 00 00 81 */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 8013567C 001325BC  48 00 00 81 */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 80135680 001325C0  48 00 00 44 */	b lbl_801356C4
 lbl_80135684:
 /* 80135684 001325C4  80 9D 00 10 */	lwz r4, 0x10(r29)
@@ -2312,19 +2312,19 @@ lbl_80135684:
 /* 8013568C 001325CC  40 82 00 14 */	bne lbl_801356A0
 /* 80135690 001325D0  7F A4 EB 78 */	mr r4, r29
 /* 80135694 001325D4  7F 85 E3 78 */	mr r5, r28
-/* 80135698 001325D8  48 00 00 65 */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 80135698 001325D8  48 00 00 65 */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 8013569C 001325DC  48 00 00 28 */	b lbl_801356C4
 lbl_801356A0:
 /* 801356A0 001325E0  28 03 00 00 */	cmplwi r3, 0
 /* 801356A4 001325E4  41 82 00 14 */	beq lbl_801356B8
 /* 801356A8 001325E8  7F A4 EB 78 */	mr r4, r29
 /* 801356AC 001325EC  7F 85 E3 78 */	mr r5, r28
-/* 801356B0 001325F0  48 00 00 4D */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 801356B0 001325F0  48 00 00 4D */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 801356B4 001325F4  48 00 00 10 */	b lbl_801356C4
 lbl_801356B8:
 /* 801356B8 001325F8  7F C3 F3 78 */	mr r3, r30
 /* 801356BC 001325FC  7F 85 E3 78 */	mr r5, r28
-/* 801356C0 00132600  48 00 00 3D */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 801356C0 00132600  48 00 00 3D */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 lbl_801356C4:
 /* 801356C4 00132604  83 BD 00 04 */	lwz r29, 4(r29)
 lbl_801356C8:
@@ -2343,8 +2343,8 @@ lbl_801356D4:
 /* 801356F4 00132634  38 21 00 30 */	addi r1, r1, 0x30
 /* 801356F8 00132638  4E 80 00 20 */	blr 
 
-.global checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
-checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1:
+.global "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
+"checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>":
 /* 801356FC 0013263C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80135700 00132640  7C 08 02 A6 */	mflr r0
 /* 80135704 00132644  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2363,7 +2363,7 @@ lbl_80135730:
 /* 80135730 00132670  7F E3 FB 78 */	mr r3, r31
 /* 80135734 00132674  7F C4 F3 78 */	mr r4, r30
 /* 80135738 00132678  38 A1 00 08 */	addi r5, r1, 8
-/* 8013573C 0013267C  48 00 01 B1 */	bl collide__8CollPartFP8CollPartR10Vector3$$0f$$1
+/* 8013573C 0013267C  48 00 01 B1 */	bl "collide__8CollPartFP8CollPartR10Vector3<f>"
 /* 80135740 00132680  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80135744 00132684  41 82 01 24 */	beq lbl_80135868
 /* 80135748 00132688  80 9F 00 10 */	lwz r4, 0x10(r31)
@@ -2407,7 +2407,7 @@ lbl_801357A0:
 /* 801357D0 00132710  41 82 00 14 */	beq lbl_801357E4
 /* 801357D4 00132714  7F E3 FB 78 */	mr r3, r31
 /* 801357D8 00132718  7F A5 EB 78 */	mr r5, r29
-/* 801357DC 0013271C  4B FF FF 21 */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 801357DC 0013271C  4B FF FF 21 */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 801357E0 00132720  48 00 00 D4 */	b lbl_801358B4
 lbl_801357E4:
 /* 801357E4 00132724  80 9F 00 10 */	lwz r4, 0x10(r31)
@@ -2415,7 +2415,7 @@ lbl_801357E4:
 /* 801357EC 0013272C  41 82 00 C8 */	beq lbl_801358B4
 /* 801357F0 00132730  7F C3 F3 78 */	mr r3, r30
 /* 801357F4 00132734  7F A5 EB 78 */	mr r5, r29
-/* 801357F8 00132738  4B FF FF 05 */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 801357F8 00132738  4B FF FF 05 */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 801357FC 0013273C  48 00 00 B8 */	b lbl_801358B4
 lbl_80135800:
 /* 80135800 00132740  28 04 00 00 */	cmplwi r4, 0
@@ -2423,7 +2423,7 @@ lbl_80135800:
 /* 80135808 00132748  80 9E 00 10 */	lwz r4, 0x10(r30)
 /* 8013580C 0013274C  7F E3 FB 78 */	mr r3, r31
 /* 80135810 00132750  7F A5 EB 78 */	mr r5, r29
-/* 80135814 00132754  4B FF FE E9 */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 80135814 00132754  4B FF FE E9 */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 80135818 00132758  48 00 00 9C */	b lbl_801358B4
 lbl_8013581C:
 /* 8013581C 0013275C  80 1E 00 10 */	lwz r0, 0x10(r30)
@@ -2431,7 +2431,7 @@ lbl_8013581C:
 /* 80135824 00132764  40 82 00 14 */	bne lbl_80135838
 /* 80135828 00132768  7F C3 F3 78 */	mr r3, r30
 /* 8013582C 0013276C  7F A5 EB 78 */	mr r5, r29
-/* 80135830 00132770  4B FF FE CD */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 80135830 00132770  4B FF FE CD */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 80135834 00132774  48 00 00 80 */	b lbl_801358B4
 lbl_80135838:
 /* 80135838 00132778  28 04 00 00 */	cmplwi r4, 0
@@ -2439,13 +2439,13 @@ lbl_80135838:
 /* 80135840 00132780  7C 83 23 78 */	mr r3, r4
 /* 80135844 00132784  7F C4 F3 78 */	mr r4, r30
 /* 80135848 00132788  7F A5 EB 78 */	mr r5, r29
-/* 8013584C 0013278C  4B FF FE B1 */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 8013584C 0013278C  4B FF FE B1 */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 80135850 00132790  48 00 00 64 */	b lbl_801358B4
 lbl_80135854:
 /* 80135854 00132794  7F E3 FB 78 */	mr r3, r31
 /* 80135858 00132798  7C 04 03 78 */	mr r4, r0
 /* 8013585C 0013279C  7F A5 EB 78 */	mr r5, r29
-/* 80135860 001327A0  4B FF FE 9D */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 80135860 001327A0  4B FF FE 9D */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 80135864 001327A4  48 00 00 50 */	b lbl_801358B4
 lbl_80135868:
 /* 80135868 001327A8  88 1F 00 58 */	lbz r0, 0x58(r31)
@@ -2457,7 +2457,7 @@ lbl_8013587C:
 /* 8013587C 001327BC  80 9F 00 10 */	lwz r4, 0x10(r31)
 /* 80135880 001327C0  7F C3 F3 78 */	mr r3, r30
 /* 80135884 001327C4  7F A5 EB 78 */	mr r5, r29
-/* 80135888 001327C8  4B FF FE 75 */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 80135888 001327C8  4B FF FE 75 */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 /* 8013588C 001327CC  48 00 00 28 */	b lbl_801358B4
 lbl_80135890:
 /* 80135890 001327D0  88 1E 00 58 */	lbz r0, 0x58(r30)
@@ -2469,7 +2469,7 @@ lbl_801358A4:
 /* 801358A4 001327E4  80 9E 00 10 */	lwz r4, 0x10(r30)
 /* 801358A8 001327E8  7F E3 FB 78 */	mr r3, r31
 /* 801358AC 001327EC  7F A5 EB 78 */	mr r5, r29
-/* 801358B0 001327F0  4B FF FE 4D */	bl checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3$$0P8CollPart$$4P8CollPart$$4R10Vector3$$0f$$1$$1
+/* 801358B0 001327F0  4B FF FE 4D */	bl "checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
 lbl_801358B4:
 /* 801358B4 001327F4  83 DE 00 04 */	lwz r30, 4(r30)
 lbl_801358B8:
@@ -2488,8 +2488,8 @@ lbl_801358C4:
 /* 801358E4 00132824  38 21 00 30 */	addi r1, r1, 0x30
 /* 801358E8 00132828  4E 80 00 20 */	blr 
 
-.global collide__8CollPartFP8CollPartR10Vector3$$0f$$1
-collide__8CollPartFP8CollPartR10Vector3$$0f$$1:
+.global "collide__8CollPartFP8CollPartR10Vector3<f>"
+"collide__8CollPartFP8CollPartR10Vector3<f>":
 /* 801358EC 0013282C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 801358F0 00132830  7C 08 02 A6 */	mflr r0
 /* 801358F4 00132834  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2517,7 +2517,7 @@ collide__8CollPartFP8CollPartR10Vector3$$0f$$1:
 /* 8013594C 0013288C  38 81 00 30 */	addi r4, r1, 0x30
 /* 80135950 00132890  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 80135954 00132894  D0 21 00 3C */	stfs f1, 0x3c(r1)
-/* 80135958 00132898  48 2E 06 15 */	bl intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3$$0f$$1
+/* 80135958 00132898  48 2E 06 15 */	bl "intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3<f>"
 /* 8013595C 0013289C  48 00 01 30 */	b lbl_80135A8C
 lbl_80135960:
 /* 80135960 001328A0  28 06 00 00 */	cmplwi r6, 0
@@ -2556,7 +2556,7 @@ lbl_8013597C:
 /* 801359E0 00132920  D0 01 00 84 */	stfs f0, 0x84(r1)
 /* 801359E4 00132924  D0 21 00 88 */	stfs f1, 0x88(r1)
 /* 801359E8 00132928  D0 41 00 8C */	stfs f2, 0x8c(r1)
-/* 801359EC 0013292C  48 2E 01 6D */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 801359EC 0013292C  48 2E 01 6D */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 801359F0 00132930  48 00 00 9C */	b lbl_80135A8C
 lbl_801359F4:
 /* 801359F4 00132934  28 06 00 01 */	cmplwi r6, 1
@@ -2595,7 +2595,7 @@ lbl_80135A04:
 /* 80135A74 001329B4  38 81 00 10 */	addi r4, r1, 0x10
 /* 80135A78 001329B8  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80135A7C 001329BC  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 80135A80 001329C0  48 2E 00 D9 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 80135A80 001329C0  48 2E 00 D9 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 80135A84 001329C4  48 00 00 08 */	b lbl_80135A8C
 lbl_80135A88:
 /* 80135A88 001329C8  38 60 00 00 */	li r3, 0
@@ -4036,7 +4036,7 @@ update__8CollPartFv:
 /* 80136E98 00133DD8  38 61 02 18 */	addi r3, r1, 0x218
 /* 80136E9C 00133DDC  38 BC 00 4C */	addi r5, r28, 0x4c
 /* 80136EA0 00133DE0  38 80 00 03 */	li r4, 3
-/* 80136EA4 00133DE4  48 00 04 39 */	bl getBasis__7MatrixfFiR10Vector3$$0f$$1
+/* 80136EA4 00133DE4  48 00 04 39 */	bl "getBasis__7MatrixfFiR10Vector3<f>"
 /* 80136EA8 00133DE8  80 1C 00 04 */	lwz r0, 4(r28)
 /* 80136EAC 00133DEC  28 00 00 00 */	cmplwi r0, 0
 /* 80136EB0 00133DF0  41 82 00 5C */	beq lbl_80136F0C
@@ -4047,7 +4047,7 @@ update__8CollPartFv:
 /* 80136EC4 00133E04  48 00 04 55 */	bl makeMatrixTo__8CollPartFR7Matrixf
 /* 80136EC8 00133E08  38 61 01 58 */	addi r3, r1, 0x158
 /* 80136ECC 00133E0C  38 9E 00 4C */	addi r4, r30, 0x4c
-/* 80136ED0 00133E10  48 00 03 F1 */	bl getTranslation__7MatrixfFR10Vector3$$0f$$1
+/* 80136ED0 00133E10  48 00 03 F1 */	bl "getTranslation__7MatrixfFR10Vector3<f>"
 /* 80136ED4 00133E14  7F C3 F3 78 */	mr r3, r30
 /* 80136ED8 00133E18  4B FF D6 71 */	bl getNext__8CollPartFv
 /* 80136EDC 00133E1C  28 03 00 00 */	cmplwi r3, 0
@@ -4074,7 +4074,7 @@ lbl_80136F0C:
 /* 80136F28 00133E68  48 00 03 F1 */	bl makeMatrixTo__8CollPartFR7Matrixf
 /* 80136F2C 00133E6C  38 61 01 28 */	addi r3, r1, 0x128
 /* 80136F30 00133E70  38 9E 00 4C */	addi r4, r30, 0x4c
-/* 80136F34 00133E74  48 00 03 8D */	bl getTranslation__7MatrixfFR10Vector3$$0f$$1
+/* 80136F34 00133E74  48 00 03 8D */	bl "getTranslation__7MatrixfFR10Vector3<f>"
 /* 80136F38 00133E78  7F C3 F3 78 */	mr r3, r30
 /* 80136F3C 00133E7C  4B FF D6 0D */	bl getNext__8CollPartFv
 /* 80136F40 00133E80  28 03 00 00 */	cmplwi r3, 0
@@ -4100,7 +4100,7 @@ lbl_80136F70:
 /* 80136F88 00133EC8  38 61 01 E8 */	addi r3, r1, 0x1e8
 /* 80136F8C 00133ECC  38 BC 00 4C */	addi r5, r28, 0x4c
 /* 80136F90 00133ED0  38 80 00 03 */	li r4, 3
-/* 80136F94 00133ED4  48 00 03 49 */	bl getBasis__7MatrixfFiR10Vector3$$0f$$1
+/* 80136F94 00133ED4  48 00 03 49 */	bl "getBasis__7MatrixfFiR10Vector3<f>"
 /* 80136F98 00133ED8  80 1C 00 04 */	lwz r0, 4(r28)
 /* 80136F9C 00133EDC  28 00 00 00 */	cmplwi r0, 0
 /* 80136FA0 00133EE0  41 82 00 5C */	beq lbl_80136FFC
@@ -4111,7 +4111,7 @@ lbl_80136F70:
 /* 80136FB4 00133EF4  48 00 03 65 */	bl makeMatrixTo__8CollPartFR7Matrixf
 /* 80136FB8 00133EF8  38 61 00 F8 */	addi r3, r1, 0xf8
 /* 80136FBC 00133EFC  38 9E 00 4C */	addi r4, r30, 0x4c
-/* 80136FC0 00133F00  48 00 03 01 */	bl getTranslation__7MatrixfFR10Vector3$$0f$$1
+/* 80136FC0 00133F00  48 00 03 01 */	bl "getTranslation__7MatrixfFR10Vector3<f>"
 /* 80136FC4 00133F04  7F C3 F3 78 */	mr r3, r30
 /* 80136FC8 00133F08  4B FF D5 81 */	bl getNext__8CollPartFv
 /* 80136FCC 00133F0C  28 03 00 00 */	cmplwi r3, 0
@@ -4138,7 +4138,7 @@ lbl_80136FFC:
 /* 80137018 00133F58  48 00 03 01 */	bl makeMatrixTo__8CollPartFR7Matrixf
 /* 8013701C 00133F5C  38 61 00 C8 */	addi r3, r1, 0xc8
 /* 80137020 00133F60  38 9E 00 4C */	addi r4, r30, 0x4c
-/* 80137024 00133F64  48 00 02 9D */	bl getTranslation__7MatrixfFR10Vector3$$0f$$1
+/* 80137024 00133F64  48 00 02 9D */	bl "getTranslation__7MatrixfFR10Vector3<f>"
 /* 80137028 00133F68  7F C3 F3 78 */	mr r3, r30
 /* 8013702C 00133F6C  4B FF D5 1D */	bl getNext__8CollPartFv
 /* 80137030 00133F70  28 03 00 00 */	cmplwi r3, 0
@@ -4188,7 +4188,7 @@ lbl_80137060:
 /* 801370D8 00134018  38 61 01 B8 */	addi r3, r1, 0x1b8
 /* 801370DC 0013401C  38 BD 00 4C */	addi r5, r29, 0x4c
 /* 801370E0 00134020  38 80 00 03 */	li r4, 3
-/* 801370E4 00134024  48 00 01 F9 */	bl getBasis__7MatrixfFiR10Vector3$$0f$$1
+/* 801370E4 00134024  48 00 01 F9 */	bl "getBasis__7MatrixfFiR10Vector3<f>"
 /* 801370E8 00134028  80 1D 00 04 */	lwz r0, 4(r29)
 /* 801370EC 0013402C  28 00 00 00 */	cmplwi r0, 0
 /* 801370F0 00134030  41 82 00 5C */	beq lbl_8013714C
@@ -4199,7 +4199,7 @@ lbl_80137060:
 /* 80137104 00134044  48 00 02 15 */	bl makeMatrixTo__8CollPartFR7Matrixf
 /* 80137108 00134048  38 61 00 98 */	addi r3, r1, 0x98
 /* 8013710C 0013404C  38 9E 00 4C */	addi r4, r30, 0x4c
-/* 80137110 00134050  48 00 01 B1 */	bl getTranslation__7MatrixfFR10Vector3$$0f$$1
+/* 80137110 00134050  48 00 01 B1 */	bl "getTranslation__7MatrixfFR10Vector3<f>"
 /* 80137114 00134054  7F C3 F3 78 */	mr r3, r30
 /* 80137118 00134058  4B FF D4 31 */	bl getNext__8CollPartFv
 /* 8013711C 0013405C  28 03 00 00 */	cmplwi r3, 0
@@ -4226,7 +4226,7 @@ lbl_8013714C:
 /* 80137168 001340A8  48 00 01 B1 */	bl makeMatrixTo__8CollPartFR7Matrixf
 /* 8013716C 001340AC  38 61 00 68 */	addi r3, r1, 0x68
 /* 80137170 001340B0  38 9E 00 4C */	addi r4, r30, 0x4c
-/* 80137174 001340B4  48 00 01 4D */	bl getTranslation__7MatrixfFR10Vector3$$0f$$1
+/* 80137174 001340B4  48 00 01 4D */	bl "getTranslation__7MatrixfFR10Vector3<f>"
 /* 80137178 001340B8  7F C3 F3 78 */	mr r3, r30
 /* 8013717C 001340BC  4B FF D3 CD */	bl getNext__8CollPartFv
 /* 80137180 001340C0  28 03 00 00 */	cmplwi r3, 0
@@ -4252,7 +4252,7 @@ lbl_801371B0:
 /* 801371C8 00134108  38 61 01 88 */	addi r3, r1, 0x188
 /* 801371CC 0013410C  38 BC 00 4C */	addi r5, r28, 0x4c
 /* 801371D0 00134110  38 80 00 03 */	li r4, 3
-/* 801371D4 00134114  48 00 01 09 */	bl getBasis__7MatrixfFiR10Vector3$$0f$$1
+/* 801371D4 00134114  48 00 01 09 */	bl "getBasis__7MatrixfFiR10Vector3<f>"
 /* 801371D8 00134118  80 1C 00 04 */	lwz r0, 4(r28)
 /* 801371DC 0013411C  28 00 00 00 */	cmplwi r0, 0
 /* 801371E0 00134120  41 82 00 5C */	beq lbl_8013723C
@@ -4263,7 +4263,7 @@ lbl_801371B0:
 /* 801371F4 00134134  48 00 01 25 */	bl makeMatrixTo__8CollPartFR7Matrixf
 /* 801371F8 00134138  38 61 00 38 */	addi r3, r1, 0x38
 /* 801371FC 0013413C  38 9E 00 4C */	addi r4, r30, 0x4c
-/* 80137200 00134140  48 00 00 C1 */	bl getTranslation__7MatrixfFR10Vector3$$0f$$1
+/* 80137200 00134140  48 00 00 C1 */	bl "getTranslation__7MatrixfFR10Vector3<f>"
 /* 80137204 00134144  7F C3 F3 78 */	mr r3, r30
 /* 80137208 00134148  4B FF D3 41 */	bl getNext__8CollPartFv
 /* 8013720C 0013414C  28 03 00 00 */	cmplwi r3, 0
@@ -4290,7 +4290,7 @@ lbl_8013723C:
 /* 80137258 00134198  48 00 00 C1 */	bl makeMatrixTo__8CollPartFR7Matrixf
 /* 8013725C 0013419C  38 61 00 08 */	addi r3, r1, 8
 /* 80137260 001341A0  38 9E 00 4C */	addi r4, r30, 0x4c
-/* 80137264 001341A4  48 00 00 5D */	bl getTranslation__7MatrixfFR10Vector3$$0f$$1
+/* 80137264 001341A4  48 00 00 5D */	bl "getTranslation__7MatrixfFR10Vector3<f>"
 /* 80137268 001341A8  7F C3 F3 78 */	mr r3, r30
 /* 8013726C 001341AC  4B FF D2 DD */	bl getNext__8CollPartFv
 /* 80137270 001341B0  28 03 00 00 */	cmplwi r3, 0
@@ -4316,8 +4316,8 @@ lbl_801372A0:
 /* 801372B8 001341F8  38 21 02 F0 */	addi r1, r1, 0x2f0
 /* 801372BC 001341FC  4E 80 00 20 */	blr 
 
-.global getTranslation__7MatrixfFR10Vector3$$0f$$1
-getTranslation__7MatrixfFR10Vector3$$0f$$1:
+.global "getTranslation__7MatrixfFR10Vector3<f>"
+"getTranslation__7MatrixfFR10Vector3<f>":
 /* 801372C0 00134200  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 801372C4 00134204  D0 04 00 00 */	stfs f0, 0(r4)
 /* 801372C8 00134208  C0 03 00 1C */	lfs f0, 0x1c(r3)
@@ -4326,8 +4326,8 @@ getTranslation__7MatrixfFR10Vector3$$0f$$1:
 /* 801372D4 00134214  D0 04 00 08 */	stfs f0, 8(r4)
 /* 801372D8 00134218  4E 80 00 20 */	blr 
 
-.global getBasis__7MatrixfFiR10Vector3$$0f$$1
-getBasis__7MatrixfFiR10Vector3$$0f$$1:
+.global "getBasis__7MatrixfFiR10Vector3<f>"
+"getBasis__7MatrixfFiR10Vector3<f>":
 /* 801372DC 0013421C  54 80 10 3A */	slwi r0, r4, 2
 /* 801372E0 00134220  7C 03 04 2E */	lfsx f0, r3, r0
 /* 801372E4 00134224  7C 63 02 14 */	add r3, r3, r0
@@ -4556,8 +4556,8 @@ lbl_80137594:
 /* 801375A8 001344E8  38 21 00 30 */	addi r1, r1, 0x30
 /* 801375AC 001344EC  4E 80 00 20 */	blr 
 
-.global calcStickLocal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1
-calcStickLocal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
+"calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>":
 /* 801375B0 001344F0  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 801375B4 001344F4  7C 08 02 A6 */	mflr r0
 /* 801375B8 001344F8  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -4695,7 +4695,7 @@ lbl_801377A0:
 /* 801377A4 001346E4  48 00 0A D5 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 801377A8 001346E8  7F C4 F3 78 */	mr r4, r30
 /* 801377AC 001346EC  38 61 00 14 */	addi r3, r1, 0x14
-/* 801377B0 001346F0  48 2D E6 25 */	bl getPosRatio__Q23Sys4TubeFRC10Vector3$$0f$$1
+/* 801377B0 001346F0  48 2D E6 25 */	bl "getPosRatio__Q23Sys4TubeFRC10Vector3<f>"
 /* 801377B4 001346F4  D0 3F 00 04 */	stfs f1, 4(r31)
 lbl_801377B8:
 /* 801377B8 001346F8  E3 E1 00 E8 */	psq_l f31, 232(r1), 0, qr0
@@ -4708,8 +4708,8 @@ lbl_801377B8:
 /* 801377D4 00134714  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 801377D8 00134718  4E 80 00 20 */	blr 
 
-.global calcStickGlobal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1
-calcStickGlobal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1:
+.global "calcStickGlobal__8CollPartFR10Vector3<f>R10Vector3<f>"
+"calcStickGlobal__8CollPartFR10Vector3<f>R10Vector3<f>":
 /* 801377DC 0013471C  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 801377E0 00134720  7C 08 02 A6 */	mflr r0
 /* 801377E4 00134724  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -4766,7 +4766,7 @@ lbl_80137878:
 lbl_801378A4:
 /* 801378A4 001347E4  7F E4 FB 78 */	mr r4, r31
 /* 801378A8 001347E8  7F C5 F3 78 */	mr r5, r30
-/* 801378AC 001347EC  4B FF FD 05 */	bl calcStickLocal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801378AC 001347EC  4B FF FD 05 */	bl "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
 /* 801378B0 001347F0  7F A3 EB 78 */	mr r3, r29
 /* 801378B4 001347F4  38 81 00 4C */	addi r4, r1, 0x4c
 /* 801378B8 001347F8  48 00 09 C1 */	bl getTube__8CollPartFRQ23Sys4Tube
@@ -4784,7 +4784,7 @@ lbl_801378A4:
 lbl_801378E8:
 /* 801378E8 00134828  7F E4 FB 78 */	mr r4, r31
 /* 801378EC 0013482C  7F C5 F3 78 */	mr r5, r30
-/* 801378F0 00134830  4B FF FC C1 */	bl calcStickLocal__8CollPartFR10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 801378F0 00134830  4B FF FC C1 */	bl "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
 /* 801378F4 00134834  7F A3 EB 78 */	mr r3, r29
 /* 801378F8 00134838  38 81 00 2C */	addi r4, r1, 0x2c
 /* 801378FC 0013483C  48 00 09 7D */	bl getTube__8CollPartFRQ23Sys4Tube
@@ -4807,8 +4807,8 @@ lbl_80137928:
 /* 8013793C 0013487C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80137940 00134880  4E 80 00 20 */	blr 
 
-.global calcPoseMatrix__8CollPartFR10Vector3$$0f$$1R7Matrixf
-calcPoseMatrix__8CollPartFR10Vector3$$0f$$1R7Matrixf:
+.global "calcPoseMatrix__8CollPartFR10Vector3<f>R7Matrixf"
+"calcPoseMatrix__8CollPartFR10Vector3<f>R7Matrixf":
 /* 80137944 00134884  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 80137948 00134888  7C 08 02 A6 */	mflr r0
 /* 8013794C 0013488C  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -4998,7 +4998,7 @@ lbl_80137BEC:
 /* 80137BEC 00134B2C  C0 3E 00 04 */	lfs f1, 4(r30)
 /* 80137BF0 00134B30  38 61 00 08 */	addi r3, r1, 8
 /* 80137BF4 00134B34  38 81 00 7C */	addi r4, r1, 0x7c
-/* 80137BF8 00134B38  48 2D 9C 61 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 80137BF8 00134B38  48 2D 9C 61 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 80137BFC 00134B3C  C0 81 00 08 */	lfs f4, 8(r1)
 /* 80137C00 00134B40  C0 61 00 0C */	lfs f3, 0xc(r1)
 /* 80137C04 00134B44  EC 04 01 32 */	fmuls f0, f4, f4
@@ -5041,14 +5041,14 @@ lbl_80137C8C:
 /* 80137C8C 00134BCC  C0 3E 00 00 */	lfs f1, 0(r30)
 /* 80137C90 00134BD0  7F E3 FB 78 */	mr r3, r31
 /* 80137C94 00134BD4  38 81 00 20 */	addi r4, r1, 0x20
-/* 80137C98 00134BD8  48 2F 02 F9 */	bl makeNaturalPosture__7MatrixfFR10Vector3$$0f$$1f
+/* 80137C98 00134BD8  48 2F 02 F9 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>"
 /* 80137C9C 00134BDC  48 00 01 54 */	b lbl_80137DF0
 lbl_80137CA0:
 /* 80137CA0 00134BE0  38 81 00 2C */	addi r4, r1, 0x2c
 /* 80137CA4 00134BE4  48 00 05 D5 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 80137CA8 00134BE8  38 61 00 2C */	addi r3, r1, 0x2c
 /* 80137CAC 00134BEC  38 81 00 14 */	addi r4, r1, 0x14
-/* 80137CB0 00134BF0  48 2D DD F5 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
+/* 80137CB0 00134BF0  48 2D DD F5 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
 /* 80137CB4 00134BF4  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80137CB8 00134BF8  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 80137CBC 00134BFC  FC 60 00 50 */	fneg f3, f0
@@ -5613,8 +5613,8 @@ lbl_801384AC:
 /* 801384C0 00135400  38 21 00 10 */	addi r1, r1, 0x10
 /* 801384C4 00135404  4E 80 00 20 */	blr 
 
-.global getPosition__13MouthCollPartFR10Vector3$$0f$$1
-getPosition__13MouthCollPartFR10Vector3$$0f$$1:
+.global "getPosition__13MouthCollPartFR10Vector3<f>"
+"getPosition__13MouthCollPartFR10Vector3<f>":
 /* 801384C8 00135408  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801384CC 0013540C  7C 08 02 A6 */	mflr r0
 /* 801384D0 00135410  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5786,9 +5786,9 @@ lbl_801386F8:
 /* 80138708 00135648  93 DF 00 5C */	stw r30, 0x5c(r31)
 /* 8013870C 0013564C  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 80138710 00135650  48 30 68 D5 */	bl getJoint__Q28SysShape5ModelFPc
-/* 80138714 00135654  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
+/* 80138714 00135654  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 80138718 00135658  90 7F 00 68 */	stw r3, 0x68(r31)
-/* 8013871C 0013565C  38 64 41 E4 */	addi r3, r4, zero__10Vector3$$0f$$1@l
+/* 8013871C 0013565C  38 64 41 E4 */	addi r3, r4, "zero__10Vector3<f>"@l
 /* 80138720 00135660  C0 02 9E B0 */	lfs f0, lbl_80518210@sda21(r2)
 /* 80138724 00135664  C0 23 00 00 */	lfs f1, 0(r3)
 /* 80138728 00135668  38 00 00 00 */	li r0, 0
@@ -6293,7 +6293,7 @@ read__8CollPartFR6Streamb:
 /* 80138E50 00135D90  48 2D A6 A1 */	bl read__4ID32FR6Stream
 /* 80138E54 00135D94  7F C4 F3 78 */	mr r4, r30
 /* 80138E58 00135D98  38 78 00 20 */	addi r3, r24, 0x20
-/* 80138E5C 00135D9C  48 2D 8B 35 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80138E5C 00135D9C  48 2D 8B 35 */	bl "read__10Vector3<f>FR6Stream"
 /* 80138E60 00135DA0  7F C3 F3 78 */	mr r3, r30
 /* 80138E64 00135DA4  48 2D BC 2D */	bl readInt__6StreamFv
 /* 80138E68 00135DA8  90 78 00 2C */	stw r3, 0x2c(r24)
@@ -6376,7 +6376,7 @@ lbl_80138F54:
 /* 80138F88 00135EC8  48 2D A5 69 */	bl read__4ID32FR6Stream
 /* 80138F8C 00135ECC  7F C4 F3 78 */	mr r4, r30
 /* 80138F90 00135ED0  38 79 00 20 */	addi r3, r25, 0x20
-/* 80138F94 00135ED4  48 2D 89 FD */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80138F94 00135ED4  48 2D 89 FD */	bl "read__10Vector3<f>FR6Stream"
 /* 80138F98 00135ED8  7F C3 F3 78 */	mr r3, r30
 /* 80138F9C 00135EDC  48 2D BA F5 */	bl readInt__6StreamFv
 /* 80138FA0 00135EE0  90 79 00 2C */	stw r3, 0x2c(r25)
@@ -6408,13 +6408,13 @@ lbl_80138FE0:
 /* 80139000 00135F40  38 72 00 20 */	addi r3, r18, 0x20
 /* 80139004 00135F44  38 04 FE 9C */	addi r0, r4, __vt__8CollPart@l
 /* 80139008 00135F48  90 12 00 00 */	stw r0, 0(r18)
-/* 8013900C 00135F4C  4B FE 63 3D */	bl __ct__10Vector3$$0f$$1Fv
+/* 8013900C 00135F4C  4B FE 63 3D */	bl "__ct__10Vector3<f>Fv"
 /* 80139010 00135F50  38 72 00 30 */	addi r3, r18, 0x30
 /* 80139014 00135F54  48 2D A2 5D */	bl __ct__4ID32Fv
 /* 80139018 00135F58  38 72 00 3C */	addi r3, r18, 0x3c
 /* 8013901C 00135F5C  48 2D A2 55 */	bl __ct__4ID32Fv
 /* 80139020 00135F60  38 72 00 4C */	addi r3, r18, 0x4c
-/* 80139024 00135F64  4B FE 63 25 */	bl __ct__10Vector3$$0f$$1Fv
+/* 80139024 00135F64  4B FE 63 25 */	bl "__ct__10Vector3<f>Fv"
 /* 80139028 00135F68  7E 43 93 78 */	mr r3, r18
 /* 8013902C 00135F6C  7E A4 AB 78 */	mr r4, r21
 /* 80139030 00135F70  4B FF DD 01 */	bl init__8CollPartFPQ28SysShape9MtxObject
@@ -6435,7 +6435,7 @@ lbl_80139034:
 /* 80139068 00135FA8  48 2D A4 89 */	bl read__4ID32FR6Stream
 /* 8013906C 00135FAC  7F C4 F3 78 */	mr r4, r30
 /* 80139070 00135FB0  38 74 00 20 */	addi r3, r20, 0x20
-/* 80139074 00135FB4  48 2D 89 1D */	bl read__10Vector3$$0f$$1FR6Stream
+/* 80139074 00135FB4  48 2D 89 1D */	bl "read__10Vector3<f>FR6Stream"
 /* 80139078 00135FB8  7F C3 F3 78 */	mr r3, r30
 /* 8013907C 00135FBC  48 2D BA 15 */	bl readInt__6StreamFv
 /* 80139080 00135FC0  90 74 00 2C */	stw r3, 0x2c(r20)
@@ -6784,14 +6784,14 @@ __dt__Q23Sys3OBBFv:
 /* 801394DC 0013641C  38 03 FF 54 */	addi r0, r3, __vt__Q23Sys9IndexList@l
 /* 801394E0 00136420  90 1E 00 D8 */	stw r0, 0xd8(r30)
 /* 801394E4 00136424  41 82 00 44 */	beq lbl_80139528
-/* 801394E8 00136428  3C 60 80 4B */	lis r3, __vt__17ArrayContainer$$0i$$1@ha
+/* 801394E8 00136428  3C 60 80 4B */	lis r3, "__vt__17ArrayContainer<i>"@ha
 /* 801394EC 0013642C  34 1E 00 D8 */	addic. r0, r30, 0xd8
-/* 801394F0 00136430  38 03 FF 0C */	addi r0, r3, __vt__17ArrayContainer$$0i$$1@l
+/* 801394F0 00136430  38 03 FF 0C */	addi r0, r3, "__vt__17ArrayContainer<i>"@l
 /* 801394F4 00136434  90 1E 00 D8 */	stw r0, 0xd8(r30)
 /* 801394F8 00136438  41 82 00 30 */	beq lbl_80139528
-/* 801394FC 0013643C  3C 60 80 4B */	lis r3, __vt__12Container$$0i$$1@ha
+/* 801394FC 0013643C  3C 60 80 4B */	lis r3, "__vt__12Container<i>"@ha
 /* 80139500 00136440  34 1E 00 D8 */	addic. r0, r30, 0xd8
-/* 80139504 00136444  38 03 FE E0 */	addi r0, r3, __vt__12Container$$0i$$1@l
+/* 80139504 00136444  38 03 FE E0 */	addi r0, r3, "__vt__12Container<i>"@l
 /* 80139508 00136448  90 1E 00 D8 */	stw r0, 0xd8(r30)
 /* 8013950C 0013644C  41 82 00 1C */	beq lbl_80139528
 /* 80139510 00136450  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
@@ -6817,8 +6817,8 @@ lbl_80139544:
 /* 80139558 00136498  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013955C 0013649C  4E 80 00 20 */	blr 
 
-.global __dt__12Container$$0i$$1Fv
-__dt__12Container$$0i$$1Fv:
+.global "__dt__12Container<i>Fv"
+"__dt__12Container<i>Fv":
 /* 80139560 001364A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80139564 001364A4  7C 08 02 A6 */	mflr r0
 /* 80139568 001364A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6827,8 +6827,8 @@ __dt__12Container$$0i$$1Fv:
 /* 80139574 001364B4  93 C1 00 08 */	stw r30, 8(r1)
 /* 80139578 001364B8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8013957C 001364BC  41 82 00 38 */	beq lbl_801395B4
-/* 80139580 001364C0  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
-/* 80139584 001364C4  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
+/* 80139580 001364C0  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
+/* 80139584 001364C4  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
 /* 80139588 001364C8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8013958C 001364CC  41 82 00 18 */	beq lbl_801395A4
 /* 80139590 001364D0  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -6850,8 +6850,8 @@ lbl_801395B4:
 /* 801395C8 00136508  38 21 00 10 */	addi r1, r1, 0x10
 /* 801395CC 0013650C  4E 80 00 20 */	blr 
 
-.global __dt__17ArrayContainer$$0i$$1Fv
-__dt__17ArrayContainer$$0i$$1Fv:
+.global "__dt__17ArrayContainer<i>Fv"
+"__dt__17ArrayContainer<i>Fv":
 /* 801395D0 00136510  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801395D4 00136514  7C 08 02 A6 */	mflr r0
 /* 801395D8 00136518  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6860,12 +6860,12 @@ __dt__17ArrayContainer$$0i$$1Fv:
 /* 801395E4 00136524  93 C1 00 08 */	stw r30, 8(r1)
 /* 801395E8 00136528  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801395EC 0013652C  41 82 00 48 */	beq lbl_80139634
-/* 801395F0 00136530  3C 80 80 4B */	lis r4, __vt__17ArrayContainer$$0i$$1@ha
-/* 801395F4 00136534  38 04 FF 0C */	addi r0, r4, __vt__17ArrayContainer$$0i$$1@l
+/* 801395F0 00136530  3C 80 80 4B */	lis r4, "__vt__17ArrayContainer<i>"@ha
+/* 801395F4 00136534  38 04 FF 0C */	addi r0, r4, "__vt__17ArrayContainer<i>"@l
 /* 801395F8 00136538  90 1E 00 00 */	stw r0, 0(r30)
 /* 801395FC 0013653C  41 82 00 28 */	beq lbl_80139624
-/* 80139600 00136540  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
-/* 80139604 00136544  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
+/* 80139600 00136540  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
+/* 80139604 00136544  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
 /* 80139608 00136548  90 1E 00 00 */	stw r0, 0(r30)
 /* 8013960C 0013654C  41 82 00 18 */	beq lbl_80139624
 /* 80139610 00136550  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -6887,8 +6887,8 @@ lbl_80139634:
 /* 80139648 00136588  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013964C 0013658C  4E 80 00 20 */	blr 
 
-.global alloc__17ArrayContainer$$0i$$1Fi
-alloc__17ArrayContainer$$0i$$1Fi:
+.global "alloc__17ArrayContainer<i>Fi"
+"alloc__17ArrayContainer<i>Fi":
 /* 80139650 00136590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80139654 00136594  7C 08 02 A6 */	mflr r0
 /* 80139658 00136598  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6909,8 +6909,8 @@ alloc__17ArrayContainer$$0i$$1Fi:
 /* 80139694 001365D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80139698 001365D8  4E 80 00 20 */	blr 
 
-.global read__17ArrayContainer$$0i$$1FR6Stream
-read__17ArrayContainer$$0i$$1FR6Stream:
+.global "read__17ArrayContainer<i>FR6Stream"
+"read__17ArrayContainer<i>FR6Stream":
 /* 8013969C 001365DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801396A0 001365E0  7C 08 02 A6 */	mflr r0
 /* 801396A4 001365E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6958,8 +6958,8 @@ lbl_80139720:
 /* 80139744 00136684  38 21 00 20 */	addi r1, r1, 0x20
 /* 80139748 00136688  4E 80 00 20 */	blr 
 
-.global readObject__17ArrayContainer$$0i$$1FR6StreamRi
-readObject__17ArrayContainer$$0i$$1FR6StreamRi:
+.global "readObject__17ArrayContainer<i>FR6StreamRi"
+"readObject__17ArrayContainer<i>FR6StreamRi":
 /* 8013974C 0013668C  4E 80 00 20 */	blr 
 
 .global readObject__Q23Sys9IndexListFR6StreamRi
@@ -7005,12 +7005,12 @@ __dt__Q23Sys9IndexListFv:
 /* 801397D0 00136710  38 04 FF 54 */	addi r0, r4, __vt__Q23Sys9IndexList@l
 /* 801397D4 00136714  90 1E 00 00 */	stw r0, 0(r30)
 /* 801397D8 00136718  41 82 00 38 */	beq lbl_80139810
-/* 801397DC 0013671C  3C 80 80 4B */	lis r4, __vt__17ArrayContainer$$0i$$1@ha
-/* 801397E0 00136720  38 04 FF 0C */	addi r0, r4, __vt__17ArrayContainer$$0i$$1@l
+/* 801397DC 0013671C  3C 80 80 4B */	lis r4, "__vt__17ArrayContainer<i>"@ha
+/* 801397E0 00136720  38 04 FF 0C */	addi r0, r4, "__vt__17ArrayContainer<i>"@l
 /* 801397E4 00136724  90 1E 00 00 */	stw r0, 0(r30)
 /* 801397E8 00136728  41 82 00 28 */	beq lbl_80139810
-/* 801397EC 0013672C  3C 80 80 4B */	lis r4, __vt__12Container$$0i$$1@ha
-/* 801397F0 00136730  38 04 FE E0 */	addi r0, r4, __vt__12Container$$0i$$1@l
+/* 801397EC 0013672C  3C 80 80 4B */	lis r4, "__vt__12Container<i>"@ha
+/* 801397F0 00136730  38 04 FE E0 */	addi r0, r4, "__vt__12Container<i>"@l
 /* 801397F4 00136734  90 1E 00 00 */	stw r0, 0(r30)
 /* 801397F8 00136738  41 82 00 18 */	beq lbl_80139810
 /* 801397FC 0013673C  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -7032,15 +7032,15 @@ lbl_80139820:
 /* 80139834 00136774  38 21 00 10 */	addi r1, r1, 0x10
 /* 80139838 00136778  4E 80 00 20 */	blr 
 
-.global setArray__28ArrayContainer$$010Vector3$$0f$$1$$1FP10Vector3$$0f$$1i
-setArray__28ArrayContainer$$010Vector3$$0f$$1$$1FP10Vector3$$0f$$1i:
+.global "setArray__28ArrayContainer<10Vector3<f>>FP10Vector3<f>i"
+"setArray__28ArrayContainer<10Vector3<f>>FP10Vector3<f>i":
 /* 8013983C 0013677C  90 83 00 24 */	stw r4, 0x24(r3)
 /* 80139840 00136780  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 80139844 00136784  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 80139848 00136788  4E 80 00 20 */	blr 
 
-.global addOne__28ArrayContainer$$010Vector3$$0f$$1$$1FR10Vector3$$0f$$1
-addOne__28ArrayContainer$$010Vector3$$0f$$1$$1FR10Vector3$$0f$$1:
+.global "addOne__28ArrayContainer<10Vector3<f>>FR10Vector3<f>"
+"addOne__28ArrayContainer<10Vector3<f>>FR10Vector3<f>":
 /* 8013984C 0013678C  80 E3 00 1C */	lwz r7, 0x1c(r3)
 /* 80139850 00136790  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 80139854 00136794  7C 07 00 00 */	cmpw r7, r0
@@ -7058,14 +7058,14 @@ addOne__28ArrayContainer$$010Vector3$$0f$$1$$1FR10Vector3$$0f$$1:
 /* 80139884 001367C4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80139888 001367C8  4E 80 00 20 */	blr 
 
-.global birth__24MonoObjectMgr$$08CollPart$$1Fv
-birth__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "birth__24MonoObjectMgr<8CollPart>Fv"
+"birth__24MonoObjectMgr<8CollPart>Fv":
 /* 8013988C 001367CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80139890 001367D0  7C 08 02 A6 */	mflr r0
 /* 80139894 001367D4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80139898 001367D8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8013989C 001367DC  7C 7F 1B 78 */	mr r31, r3
-/* 801398A0 001367E0  48 00 00 A1 */	bl getEmptyIndex__24MonoObjectMgr$$08CollPart$$1Fv
+/* 801398A0 001367E0  48 00 00 A1 */	bl "getEmptyIndex__24MonoObjectMgr<8CollPart>Fv"
 /* 801398A4 001367E4  2C 03 FF FF */	cmpwi r3, -1
 /* 801398A8 001367E8  41 82 00 2C */	beq lbl_801398D4
 /* 801398AC 001367EC  80 DF 00 28 */	lwz r6, 0x28(r31)
@@ -7087,8 +7087,8 @@ lbl_801398D8:
 /* 801398E4 00136824  38 21 00 10 */	addi r1, r1, 0x10
 /* 801398E8 00136828  4E 80 00 20 */	blr 
 
-.global kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart
-kill__24MonoObjectMgr$$08CollPart$$1FP8CollPart:
+.global "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
+"kill__24MonoObjectMgr<8CollPart>FP8CollPart":
 /* 801398EC 0013682C  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801398F0 00136830  38 C0 00 00 */	li r6, 0
 /* 801398F4 00136834  38 A0 00 00 */	li r5, 0
@@ -7113,8 +7113,8 @@ lbl_80139930:
 /* 80139938 00136878  42 00 FF CC */	bdnz lbl_80139904
 /* 8013993C 0013687C  4E 80 00 20 */	blr 
 
-.global getEmptyIndex__24MonoObjectMgr$$08CollPart$$1Fv
-getEmptyIndex__24MonoObjectMgr$$08CollPart$$1Fv:
+.global "getEmptyIndex__24MonoObjectMgr<8CollPart>Fv"
+"getEmptyIndex__24MonoObjectMgr<8CollPart>Fv":
 /* 80139940 00136880  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 80139944 00136884  38 A0 00 00 */	li r5, 0
 /* 80139948 00136888  7C 09 03 A6 */	mtctr r0
@@ -7134,12 +7134,12 @@ lbl_80139974:
 /* 80139974 001368B4  38 60 FF FF */	li r3, -1
 /* 80139978 001368B8  4E 80 00 20 */	blr 
 
-.global writeObject__28ArrayContainer$$010Vector3$$0f$$1$$1FR6StreamR10Vector3$$0f$$1
-writeObject__28ArrayContainer$$010Vector3$$0f$$1$$1FR6StreamR10Vector3$$0f$$1:
+.global "writeObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>"
+"writeObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>":
 /* 8013997C 001368BC  4E 80 00 20 */	blr 
 
-.global write__28ArrayContainer$$010Vector3$$0f$$1$$1FR6Stream
-write__28ArrayContainer$$010Vector3$$0f$$1$$1FR6Stream:
+.global "write__28ArrayContainer<10Vector3<f>>FR6Stream"
+"write__28ArrayContainer<10Vector3<f>>FR6Stream":
 /* 80139980 001368C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80139984 001368C4  7C 08 02 A6 */	mflr r0
 /* 80139988 001368C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7196,46 +7196,46 @@ lbl_80139A2C:
 /* 80139A4C 0013698C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80139A50 00136990  4E 80 00 20 */	blr 
 
-.global get__28ArrayContainer$$010Vector3$$0f$$1$$1FPv
-get__28ArrayContainer$$010Vector3$$0f$$1$$1FPv:
+.global "get__28ArrayContainer<10Vector3<f>>FPv"
+"get__28ArrayContainer<10Vector3<f>>FPv":
 /* 80139A54 00136994  1C 04 00 0C */	mulli r0, r4, 0xc
 /* 80139A58 00136998  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80139A5C 0013699C  7C 63 02 14 */	add r3, r3, r0
 /* 80139A60 001369A0  4E 80 00 20 */	blr 
 
-.global getNext__28ArrayContainer$$010Vector3$$0f$$1$$1FPv
-getNext__28ArrayContainer$$010Vector3$$0f$$1$$1FPv:
+.global "getNext__28ArrayContainer<10Vector3<f>>FPv"
+"getNext__28ArrayContainer<10Vector3<f>>FPv":
 /* 80139A64 001369A4  38 64 00 01 */	addi r3, r4, 1
 /* 80139A68 001369A8  4E 80 00 20 */	blr 
 
-.global getStart__28ArrayContainer$$010Vector3$$0f$$1$$1Fv
-getStart__28ArrayContainer$$010Vector3$$0f$$1$$1Fv:
+.global "getStart__28ArrayContainer<10Vector3<f>>Fv"
+"getStart__28ArrayContainer<10Vector3<f>>Fv":
 /* 80139A6C 001369AC  38 60 00 00 */	li r3, 0
 /* 80139A70 001369B0  4E 80 00 20 */	blr 
 
-.global getEnd__28ArrayContainer$$010Vector3$$0f$$1$$1Fv
-getEnd__28ArrayContainer$$010Vector3$$0f$$1$$1Fv:
+.global "getEnd__28ArrayContainer<10Vector3<f>>Fv"
+"getEnd__28ArrayContainer<10Vector3<f>>Fv":
 /* 80139A74 001369B4  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80139A78 001369B8  4E 80 00 20 */	blr 
 
-.global getAt__28ArrayContainer$$010Vector3$$0f$$1$$1Fi
-getAt__28ArrayContainer$$010Vector3$$0f$$1$$1Fi:
+.global "getAt__28ArrayContainer<10Vector3<f>>Fi"
+"getAt__28ArrayContainer<10Vector3<f>>Fi":
 /* 80139A7C 001369BC  1C 04 00 0C */	mulli r0, r4, 0xc
 /* 80139A80 001369C0  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80139A84 001369C4  7C 63 02 14 */	add r3, r3, r0
 /* 80139A88 001369C8  4E 80 00 20 */	blr 
 
-.global getTo__28ArrayContainer$$010Vector3$$0f$$1$$1Fv
-getTo__28ArrayContainer$$010Vector3$$0f$$1$$1Fv:
+.global "getTo__28ArrayContainer<10Vector3<f>>Fv"
+"getTo__28ArrayContainer<10Vector3<f>>Fv":
 /* 80139A8C 001369CC  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 80139A90 001369D0  4E 80 00 20 */	blr 
 
-.global writeObject__17ArrayContainer$$0i$$1FR6StreamRi
-writeObject__17ArrayContainer$$0i$$1FR6StreamRi:
+.global "writeObject__17ArrayContainer<i>FR6StreamRi"
+"writeObject__17ArrayContainer<i>FR6StreamRi":
 /* 80139A94 001369D4  4E 80 00 20 */	blr 
 
-.global write__17ArrayContainer$$0i$$1FR6Stream
-write__17ArrayContainer$$0i$$1FR6Stream:
+.global "write__17ArrayContainer<i>FR6Stream"
+"write__17ArrayContainer<i>FR6Stream":
 /* 80139A98 001369D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80139A9C 001369DC  7C 08 02 A6 */	mflr r0
 /* 80139AA0 001369E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7292,8 +7292,8 @@ lbl_80139B44:
 /* 80139B64 00136AA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80139B68 00136AA8  4E 80 00 20 */	blr 
 
-.global addOne__17ArrayContainer$$0i$$1FRi
-addOne__17ArrayContainer$$0i$$1FRi:
+.global "addOne__17ArrayContainer<i>FRi"
+"addOne__17ArrayContainer<i>FRi":
 /* 80139B6C 00136AAC  80 E3 00 1C */	lwz r7, 0x1c(r3)
 /* 80139B70 00136AB0  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 80139B74 00136AB4  7C 07 00 00 */	cmpw r7, r0
@@ -7306,49 +7306,49 @@ addOne__17ArrayContainer$$0i$$1FRi:
 /* 80139B90 00136AD0  7C C5 01 2E */	stwx r6, r5, r0
 /* 80139B94 00136AD4  4E 80 00 20 */	blr 
 
-.global setArray__17ArrayContainer$$0i$$1FPii
-setArray__17ArrayContainer$$0i$$1FPii:
+.global "setArray__17ArrayContainer<i>FPii"
+"setArray__17ArrayContainer<i>FPii":
 /* 80139B98 00136AD8  90 83 00 24 */	stw r4, 0x24(r3)
 /* 80139B9C 00136ADC  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 80139BA0 00136AE0  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 80139BA4 00136AE4  4E 80 00 20 */	blr 
 
-.global get__17ArrayContainer$$0i$$1FPv
-get__17ArrayContainer$$0i$$1FPv:
+.global "get__17ArrayContainer<i>FPv"
+"get__17ArrayContainer<i>FPv":
 /* 80139BA8 00136AE8  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80139BAC 00136AEC  54 80 10 3A */	slwi r0, r4, 2
 /* 80139BB0 00136AF0  7C 63 02 14 */	add r3, r3, r0
 /* 80139BB4 00136AF4  4E 80 00 20 */	blr 
 
-.global getNext__17ArrayContainer$$0i$$1FPv
-getNext__17ArrayContainer$$0i$$1FPv:
+.global "getNext__17ArrayContainer<i>FPv"
+"getNext__17ArrayContainer<i>FPv":
 /* 80139BB8 00136AF8  38 64 00 01 */	addi r3, r4, 1
 /* 80139BBC 00136AFC  4E 80 00 20 */	blr 
 
-.global getStart__17ArrayContainer$$0i$$1Fv
-getStart__17ArrayContainer$$0i$$1Fv:
+.global "getStart__17ArrayContainer<i>Fv"
+"getStart__17ArrayContainer<i>Fv":
 /* 80139BC0 00136B00  38 60 00 00 */	li r3, 0
 /* 80139BC4 00136B04  4E 80 00 20 */	blr 
 
-.global getEnd__17ArrayContainer$$0i$$1Fv
-getEnd__17ArrayContainer$$0i$$1Fv:
+.global "getEnd__17ArrayContainer<i>Fv"
+"getEnd__17ArrayContainer<i>Fv":
 /* 80139BC8 00136B08  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80139BCC 00136B0C  4E 80 00 20 */	blr 
 
-.global getAt__17ArrayContainer$$0i$$1Fi
-getAt__17ArrayContainer$$0i$$1Fi:
+.global "getAt__17ArrayContainer<i>Fi"
+"getAt__17ArrayContainer<i>Fi":
 /* 80139BD0 00136B10  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80139BD4 00136B14  54 80 10 3A */	slwi r0, r4, 2
 /* 80139BD8 00136B18  7C 63 02 14 */	add r3, r3, r0
 /* 80139BDC 00136B1C  4E 80 00 20 */	blr 
 
-.global getTo__17ArrayContainer$$0i$$1Fv
-getTo__17ArrayContainer$$0i$$1Fv:
+.global "getTo__17ArrayContainer<i>Fv"
+"getTo__17ArrayContainer<i>Fv":
 /* 80139BE0 00136B20  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 80139BE4 00136B24  4E 80 00 20 */	blr 
 
-.global getObject__23Container$$010Vector3$$0f$$1$$1FPv
-getObject__23Container$$010Vector3$$0f$$1$$1FPv:
+.global "getObject__23Container<10Vector3<f>>FPv"
+"getObject__23Container<10Vector3<f>>FPv":
 /* 80139BE8 00136B28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80139BEC 00136B2C  7C 08 02 A6 */	mflr r0
 /* 80139BF0 00136B30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7361,18 +7361,18 @@ getObject__23Container$$010Vector3$$0f$$1$$1FPv:
 /* 80139C0C 00136B4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80139C10 00136B50  4E 80 00 20 */	blr 
 
-.global getAt__23Container$$010Vector3$$0f$$1$$1Fi
-getAt__23Container$$010Vector3$$0f$$1$$1Fi:
+.global "getAt__23Container<10Vector3<f>>Fi"
+"getAt__23Container<10Vector3<f>>Fi":
 /* 80139C14 00136B54  38 60 00 00 */	li r3, 0
 /* 80139C18 00136B58  4E 80 00 20 */	blr 
 
-.global getTo__23Container$$010Vector3$$0f$$1$$1Fv
-getTo__23Container$$010Vector3$$0f$$1$$1Fv:
+.global "getTo__23Container<10Vector3<f>>Fv"
+"getTo__23Container<10Vector3<f>>Fv":
 /* 80139C1C 00136B5C  38 60 00 00 */	li r3, 0
 /* 80139C20 00136B60  4E 80 00 20 */	blr 
 
-.global getObject__12Container$$0i$$1FPv
-getObject__12Container$$0i$$1FPv:
+.global "getObject__12Container<i>FPv"
+"getObject__12Container<i>FPv":
 /* 80139C24 00136B64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80139C28 00136B68  7C 08 02 A6 */	mflr r0
 /* 80139C2C 00136B6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7385,12 +7385,12 @@ getObject__12Container$$0i$$1FPv:
 /* 80139C48 00136B88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80139C4C 00136B8C  4E 80 00 20 */	blr 
 
-.global getAt__12Container$$0i$$1Fi
-getAt__12Container$$0i$$1Fi:
+.global "getAt__12Container<i>Fi"
+"getAt__12Container<i>Fi":
 /* 80139C50 00136B90  38 60 00 00 */	li r3, 0
 /* 80139C54 00136B94  4E 80 00 20 */	blr 
 
-.global getTo__12Container$$0i$$1Fv
-getTo__12Container$$0i$$1Fv:
+.global "getTo__12Container<i>Fv"
+"getTo__12Container<i>Fv":
 /* 80139C58 00136B98  38 60 00 00 */	li r3, 0
 /* 80139C5C 00136B9C  4E 80 00 20 */	blr 

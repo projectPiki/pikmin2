@@ -346,7 +346,7 @@ wallCallback__Q34Game6Kogane3ObjFRCQ24Game8MoveInfo:
 /* 8025E130 0025B070  D0 41 00 08 */	stfs f2, 8(r1)
 /* 8025E134 0025B074  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8025E138 0025B078  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8025E13C 0025B07C  48 00 04 ED */	bl setTargetPosition__Q34Game6Kogane3ObjFP10Vector3$$0f$$1
+/* 8025E13C 0025B07C  48 00 04 ED */	bl "setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>"
 /* 8025E140 0025B080  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8025E144 0025B084  7C 08 03 A6 */	mtlr r0
 /* 8025E148 0025B088  38 21 00 20 */	addi r1, r1, 0x20
@@ -588,7 +588,7 @@ transitDisappear__Q34Game6Kogane3ObjFv:
 /* 8025E460 0025B3A0  80 6D 96 88 */	lwz r3, randMapMgr__Q24Game4Cave@sda21(r13)
 /* 8025E464 0025B3A4  38 9F 01 8C */	addi r4, r31, 0x18c
 /* 8025E468 0025B3A8  38 BF 01 FC */	addi r5, r31, 0x1fc
-/* 8025E46C 0025B3AC  4B FE 6A 99 */	bl getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3$$0f$$1Pf
+/* 8025E46C 0025B3AC  4B FE 6A 99 */	bl "getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<f>Pf"
 /* 8025E470 0025B3B0  C0 1F 01 8C */	lfs f0, 0x18c(r31)
 /* 8025E474 0025B3B4  38 60 00 00 */	li r3, 0
 /* 8025E478 0025B3B8  D0 1F 01 98 */	stfs f0, 0x198(r31)
@@ -715,8 +715,8 @@ lbl_8025E610:
 /* 8025E620 0025B560  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E624 0025B564  4E 80 00 20 */	blr 
 
-.global setTargetPosition__Q34Game6Kogane3ObjFP10Vector3$$0f$$1
-setTargetPosition__Q34Game6Kogane3ObjFP10Vector3$$0f$$1:
+.global "setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>"
+"setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>":
 /* 8025E628 0025B568  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8025E62C 0025B56C  7C 08 02 A6 */	mflr r0
 /* 8025E630 0025B570  90 01 00 44 */	stw r0, 0x44(r1)
@@ -877,7 +877,7 @@ isAppear__Q34Game6Kogane3ObjFv:
 /* 8025E86C 0025B7AC  80 A3 00 C0 */	lwz r5, 0xc0(r3)
 /* 8025E870 0025B7B0  C3 E5 03 D4 */	lfs f31, 0x3d4(r5)
 /* 8025E874 0025B7B4  FC 20 F8 90 */	fmr f1, f31
-/* 8025E878 0025B7B8  4B EB 62 49 */	bl isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Navi$$1
+/* 8025E878 0025B7B8  4B EB 62 49 */	bl "isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
 /* 8025E87C 0025B7BC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025E880 0025B7C0  41 82 00 0C */	beq lbl_8025E88C
 /* 8025E884 0025B7C4  38 60 00 01 */	li r3, 1
@@ -886,7 +886,7 @@ lbl_8025E88C:
 /* 8025E88C 0025B7CC  FC 20 F8 90 */	fmr f1, f31
 /* 8025E890 0025B7D0  7F E3 FB 78 */	mr r3, r31
 /* 8025E894 0025B7D4  38 80 00 00 */	li r4, 0
-/* 8025E898 0025B7D8  4B EB 5E 9D */	bl isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition$$0Q24Game4Piki$$1
+/* 8025E898 0025B7D8  4B EB 5E 9D */	bl "isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
 /* 8025E89C 0025B7DC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025E8A0 0025B7E0  41 82 00 0C */	beq lbl_8025E8AC
 /* 8025E8A4 0025B7E4  38 60 00 01 */	li r3, 1
@@ -1008,7 +1008,7 @@ lbl_8025E9F8:
 /* 8025EA50 0025B990  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8025EA54 0025B994  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 8025EA58 0025B998  80 7F 02 54 */	lwz r3, 0x254(r31)
-/* 8025EA5C 0025B99C  4B ED C7 4D */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8025EA5C 0025B99C  4B ED C7 4D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8025EA60 0025B9A0  80 7F 02 54 */	lwz r3, 0x254(r31)
 /* 8025EA64 0025B9A4  38 81 00 14 */	addi r4, r1, 0x14
 /* 8025EA68 0025B9A8  81 83 00 00 */	lwz r12, 0(r3)
@@ -1283,7 +1283,7 @@ lbl_8025EE20:
 /* 8025EE58 0025BD98  7F 43 D3 78 */	mr r3, r26
 /* 8025EE5C 0025BD9C  38 81 00 1C */	addi r4, r1, 0x1c
 /* 8025EE60 0025BDA0  38 A0 00 00 */	li r5, 0
-/* 8025EE64 0025BDA4  4B ED C3 45 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 8025EE64 0025BDA4  4B ED C3 45 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 8025EE68 0025BDA8  EF FF F0 2A */	fadds f31, f31, f30
 /* 8025EE6C 0025BDAC  C0 02 C8 CC */	lfs f0, lbl_8051AC2C@sda21(r2)
 /* 8025EE70 0025BDB0  FC 20 F8 90 */	fmr f1, f31

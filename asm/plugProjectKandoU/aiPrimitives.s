@@ -123,7 +123,7 @@ lbl_80197484:
 /* 80197484 001943C4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80197488 001943C8  38 81 00 14 */	addi r4, r1, 0x14
 /* 8019748C 001943CC  C0 22 AC 04 */	lfs f1, lbl_80518F64@sda21(r2)
-/* 80197490 001943D0  4B FB 1B 89 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 80197490 001943D0  4B FB 1B 89 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 80197494 001943D4  38 60 00 01 */	li r3, 1
 lbl_80197498:
 /* 80197498 001943D8  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -358,7 +358,7 @@ lbl_801977B0:
 /* 801977D8 00194718  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801977DC 0019471C  C0 22 AC 0C */	lfs f1, lbl_80518F6C@sda21(r2)
 /* 801977E0 00194720  38 81 00 14 */	addi r4, r1, 0x14
-/* 801977E4 00194724  4B FB 19 F5 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1f
+/* 801977E4 00194724  4B FB 19 F5 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>f"
 /* 801977E8 00194728  48 00 01 00 */	b lbl_801978E8
 lbl_801977EC:
 /* 801977EC 0019472C  C0 02 AC 10 */	lfs f0, lbl_80518F70@sda21(r2)
@@ -386,18 +386,18 @@ lbl_80197838:
 /* 80197840 00194780  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80197844 00194784  EC 21 00 32 */	fmuls f1, f1, f0
 /* 80197848 00194788  EC 20 08 2A */	fadds f1, f0, f1
-/* 8019784C 0019478C  4B FB 17 CD */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 8019784C 0019478C  4B FB 17 CD */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 80197850 00194790  48 00 00 98 */	b lbl_801978E8
 lbl_80197854:
 /* 80197854 00194794  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80197858 00194798  38 81 00 14 */	addi r4, r1, 0x14
 /* 8019785C 0019479C  C0 22 AC 18 */	lfs f1, lbl_80518F78@sda21(r2)
-/* 80197860 001947A0  4B FB 17 B9 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 80197860 001947A0  4B FB 17 B9 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 80197864 001947A4  48 00 00 84 */	b lbl_801978E8
 lbl_80197868:
 /* 80197868 001947A8  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8019786C 001947AC  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 80197870 001947B0  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 8019786C 001947AC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 80197870 001947B0  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 80197874 001947B4  81 83 00 00 */	lwz r12, 0(r3)
 /* 80197878 001947B8  81 8C 00 68 */	lwz r12, 0x68(r12)
 /* 8019787C 001947BC  7D 89 03 A6 */	mtctr r12
@@ -585,8 +585,8 @@ lbl_80197AE4:
 /* 80197B0C 00194A4C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80197B10 00194A50  4E 80 00 20 */	blr 
 
-.global wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3$$0f$$1
-wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3$$0f$$1:
+.global "wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>"
+"wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>":
 /* 80197B14 00194A54  88 83 00 1C */	lbz r4, 0x1c(r3)
 /* 80197B18 00194A58  28 04 00 64 */	cmplwi r4, 0x64
 /* 80197B1C 00194A5C  4C 80 00 20 */	bgelr 
@@ -798,7 +798,7 @@ lbl_80197E04:
 /* 80197E10 00194D50  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80197E14 00194D54  38 81 00 8C */	addi r4, r1, 0x8c
 /* 80197E18 00194D58  C0 22 AC 04 */	lfs f1, lbl_80518F64@sda21(r2)
-/* 80197E1C 00194D5C  4B FB 11 FD */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 80197E1C 00194D5C  4B FB 11 FD */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 80197E20 00194D60  C0 02 AC 2C */	lfs f0, lbl_80518F8C@sda21(r2)
 /* 80197E24 00194D64  FC 19 00 40 */	fcmpo cr0, f25, f0
 /* 80197E28 00194D68  40 80 02 E8 */	bge lbl_80198110
@@ -1003,7 +1003,7 @@ lbl_80198100:
 /* 80198100 00195040  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80198104 00195044  38 81 00 8C */	addi r4, r1, 0x8c
 /* 80198108 00195048  C0 22 AC 24 */	lfs f1, lbl_80518F84@sda21(r2)
-/* 8019810C 0019504C  4B FB 0F 0D */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 8019810C 0019504C  4B FB 0F 0D */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 lbl_80198110:
 /* 80198110 00195050  38 60 00 01 */	li r3, 1
 /* 80198114 00195054  48 00 04 6C */	b lbl_80198580
@@ -1135,7 +1135,7 @@ lbl_801982D8:
 /* 801982E4 00195224  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801982E8 00195228  38 81 00 5C */	addi r4, r1, 0x5c
 /* 801982EC 0019522C  C0 22 AC 04 */	lfs f1, lbl_80518F64@sda21(r2)
-/* 801982F0 00195230  4B FB 0D 29 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 801982F0 00195230  4B FB 0D 29 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 801982F4 00195234  38 60 00 01 */	li r3, 1
 /* 801982F8 00195238  48 00 02 88 */	b lbl_80198580
 lbl_801982FC:
@@ -1282,7 +1282,7 @@ lbl_80198504:
 /* 80198504 00195444  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80198508 00195448  38 81 00 50 */	addi r4, r1, 0x50
 /* 8019850C 0019544C  C0 22 AC 24 */	lfs f1, lbl_80518F84@sda21(r2)
-/* 80198510 00195450  4B FB 0B 09 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 80198510 00195450  4B FB 0B 09 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 80198514 00195454  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 80198518 00195458  C0 5F 00 18 */	lfs f2, 0x18(r31)
 /* 8019851C 0019545C  C0 23 00 54 */	lfs f1, 0x54(r3)
@@ -1310,7 +1310,7 @@ lbl_8019856C:
 /* 8019856C 001954AC  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80198570 001954B0  38 81 00 5C */	addi r4, r1, 0x5c
 /* 80198574 001954B4  C0 22 AC 24 */	lfs f1, lbl_80518F84@sda21(r2)
-/* 80198578 001954B8  4B FB 0A A1 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 80198578 001954B8  4B FB 0A A1 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 8019857C 001954BC  38 60 00 01 */	li r3, 1
 lbl_80198580:
 /* 80198580 001954C0  E3 E1 01 28 */	psq_l f31, 296(r1), 0, qr0
@@ -1348,12 +1348,12 @@ __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki:
 /* 801985E8 00195528  7C 7F 1B 78 */	mr r31, r3
 /* 801985EC 0019552C  4B FF E4 2D */	bl __ct__Q26PikiAI6ActionFPQ24Game4Piki
 /* 801985F0 00195530  3C 60 80 4B */	lis r3, __vt__Q26PikiAI11ActPathMove@ha
-/* 801985F4 00195534  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 801985F4 00195534  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 801985F8 00195538  38 03 4B FC */	addi r0, r3, __vt__Q26PikiAI11ActPathMove@l
 /* 801985FC 0019553C  38 A0 00 00 */	li r5, 0
 /* 80198600 00195540  90 1F 00 00 */	stw r0, 0(r31)
 /* 80198604 00195544  38 7F 00 74 */	addi r3, r31, 0x74
-/* 80198608 00195548  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 80198608 00195548  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 8019860C 0019554C  38 C0 00 0C */	li r6, 0xc
 /* 80198610 00195550  38 E0 00 04 */	li r7, 4
 /* 80198614 00195554  4B F2 92 29 */	bl __construct_array
@@ -1464,8 +1464,8 @@ lbl_8019872C:
 /* 8019879C 001956DC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801987A0 001956E0  41 82 00 50 */	beq lbl_801987F0
 /* 801987A4 001956E4  80 7F 00 30 */	lwz r3, 0x30(r31)
-/* 801987A8 001956E8  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 801987AC 001956EC  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 801987A8 001956E8  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 801987AC 001956EC  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 801987B0 001956F0  81 83 00 00 */	lwz r12, 0(r3)
 /* 801987B4 001956F4  7C 7D 1B 78 */	mr r29, r3
 /* 801987B8 001956F8  81 8C 00 68 */	lwz r12, 0x68(r12)
@@ -1517,8 +1517,8 @@ lbl_80198848:
 /* 8019885C 0019579C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80198860 001957A0  41 82 00 50 */	beq lbl_801988B0
 /* 80198864 001957A4  80 7E 00 30 */	lwz r3, 0x30(r30)
-/* 80198868 001957A8  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 8019886C 001957AC  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 80198868 001957A8  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 8019886C 001957AC  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 80198870 001957B0  81 83 00 00 */	lwz r12, 0(r3)
 /* 80198874 001957B4  7C 7D 1B 78 */	mr r29, r3
 /* 80198878 001957B8  81 8C 00 68 */	lwz r12, 0x68(r12)
@@ -1878,15 +1878,15 @@ execPathfinding__Q26PikiAI11ActPathMoveFv:
 /* 80198D6C 00195CAC  6C 63 80 00 */	xoris r3, r3, 0x8000
 /* 80198D70 00195CB0  3C 00 43 30 */	lis r0, 0x4330
 /* 80198D74 00195CB4  90 61 01 14 */	stw r3, 0x114(r1)
-/* 80198D78 00195CB8  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 80198D7C 00195CBC  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 80198D78 00195CB8  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 80198D7C 00195CBC  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 80198D80 00195CC0  C8 22 AC 48 */	lfd f1, lbl_80518FA8@sda21(r2)
 /* 80198D84 00195CC4  90 01 01 10 */	stw r0, 0x110(r1)
 /* 80198D88 00195CC8  38 80 00 00 */	li r4, 0
 /* 80198D8C 00195CCC  80 7D 03 34 */	lwz r3, 0x334(r29)
 /* 80198D90 00195CD0  C8 01 01 10 */	lfd f0, 0x110(r1)
 /* 80198D94 00195CD4  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80198D98 00195CD8  48 09 C1 B9 */	bl pull__Q24Game11PelletCarryFUsR10Vector3$$0f$$1f
+/* 80198D98 00195CD8  48 09 C1 B9 */	bl "pull__Q24Game11PelletCarryFUsR10Vector3<f>f"
 lbl_80198D9C:
 /* 80198D9C 00195CDC  80 7E 00 20 */	lwz r3, 0x20(r30)
 /* 80198DA0 00195CE0  28 03 00 00 */	cmplwi r3, 0
@@ -1919,8 +1919,8 @@ lbl_80198DC4:
 /* 80198E04 00195D44  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80198E08 00195D48  41 82 00 4C */	beq lbl_80198E54
 /* 80198E0C 00195D4C  80 7E 00 30 */	lwz r3, 0x30(r30)
-/* 80198E10 00195D50  3C 80 80 51 */	lis r4, zero__10Vector3$$0f$$1@ha
-/* 80198E14 00195D54  38 84 41 E4 */	addi r4, r4, zero__10Vector3$$0f$$1@l
+/* 80198E10 00195D50  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
+/* 80198E14 00195D54  38 84 41 E4 */	addi r4, r4, "zero__10Vector3<f>"@l
 /* 80198E18 00195D58  81 83 00 00 */	lwz r12, 0(r3)
 /* 80198E1C 00195D5C  81 8C 00 68 */	lwz r12, 0x68(r12)
 /* 80198E20 00195D60  7D 89 03 A6 */	mtctr r12
@@ -2135,8 +2135,8 @@ lbl_801990FC:
 /* 8019910C 0019604C  38 61 00 5C */	addi r3, r1, 0x5c
 /* 80199110 00196050  48 00 6B 4D */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80199114 00196054  38 00 00 00 */	li r0, 0
-/* 80199118 00196058  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 8019911C 0019605C  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80199118 00196058  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 8019911C 0019605C  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80199120 00196060  38 61 00 5C */	addi r3, r1, 0x5c
 /* 80199124 00196064  28 00 00 00 */	cmplwi r0, 0
 /* 80199128 00196068  90 81 00 24 */	stw r4, 0x24(r1)
@@ -2266,8 +2266,8 @@ lbl_801992B8:
 /* 801992F8 00196238  38 61 00 40 */	addi r3, r1, 0x40
 /* 801992FC 0019623C  48 00 69 61 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80199300 00196240  38 00 00 00 */	li r0, 0
-/* 80199304 00196244  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80199308 00196248  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 80199304 00196244  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80199308 00196248  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 8019930C 0019624C  38 61 00 40 */	addi r3, r1, 0x40
 /* 80199310 00196250  28 00 00 00 */	cmplwi r0, 0
 /* 80199314 00196254  90 81 00 14 */	stw r4, 0x14(r1)
@@ -2494,7 +2494,7 @@ lbl_80199628:
 /* 8019964C 0019658C  D0 21 00 38 */	stfs f1, 0x38(r1)
 /* 80199650 00196590  D0 41 00 34 */	stfs f2, 0x34(r1)
 /* 80199654 00196594  D0 01 00 3C */	stfs f0, 0x3c(r1)
-/* 80199658 00196598  48 00 00 D1 */	bl carry__Q26PikiAI11ActPathMoveFR10Vector3$$0f$$1
+/* 80199658 00196598  48 00 00 D1 */	bl "carry__Q26PikiAI11ActPathMoveFR10Vector3<f>"
 /* 8019965C 0019659C  38 60 00 01 */	li r3, 1
 lbl_80199660:
 /* 80199660 001965A0  E3 E1 00 C8 */	psq_l f31, 200(r1), 0, qr0
@@ -2554,8 +2554,8 @@ lbl_80199710:
 /* 80199720 00196660  38 21 00 10 */	addi r1, r1, 0x10
 /* 80199724 00196664  4E 80 00 20 */	blr 
 
-.global carry__Q26PikiAI11ActPathMoveFR10Vector3$$0f$$1
-carry__Q26PikiAI11ActPathMoveFR10Vector3$$0f$$1:
+.global "carry__Q26PikiAI11ActPathMoveFR10Vector3<f>"
+"carry__Q26PikiAI11ActPathMoveFR10Vector3<f>":
 /* 80199728 00196668  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019972C 0019666C  7C 08 02 A6 */	mflr r0
 /* 80199730 00196670  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2577,7 +2577,7 @@ carry__Q26PikiAI11ActPathMoveFR10Vector3$$0f$$1:
 /* 80199770 001966B0  80 7F 03 34 */	lwz r3, 0x334(r31)
 /* 80199774 001966B4  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80199778 001966B8  EC 20 08 28 */	fsubs f1, f0, f1
-/* 8019977C 001966BC  48 09 B7 D5 */	bl pull__Q24Game11PelletCarryFUsR10Vector3$$0f$$1f
+/* 8019977C 001966BC  48 09 B7 D5 */	bl "pull__Q24Game11PelletCarryFUsR10Vector3<f>f"
 /* 80199780 001966C0  88 1D 00 6C */	lbz r0, 0x6c(r29)
 /* 80199784 001966C4  28 00 00 00 */	cmplwi r0, 0
 /* 80199788 001966C8  41 82 00 2C */	beq lbl_801997B4
@@ -2758,7 +2758,7 @@ lbl_801999C8:
 /* 80199A14 00196954  80 7B 03 34 */	lwz r3, 0x334(r27)
 /* 80199A18 00196958  C8 01 00 20 */	lfd f0, 0x20(r1)
 /* 80199A1C 0019695C  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80199A20 00196960  48 09 B5 31 */	bl pull__Q24Game11PelletCarryFUsR10Vector3$$0f$$1f
+/* 80199A20 00196960  48 09 B5 31 */	bl "pull__Q24Game11PelletCarryFUsR10Vector3<f>f"
 /* 80199A24 00196964  88 1F 00 6C */	lbz r0, 0x6c(r31)
 /* 80199A28 00196968  28 00 00 00 */	cmplwi r0, 0
 /* 80199A2C 0019696C  41 82 00 2C */	beq lbl_80199A58
@@ -3238,7 +3238,7 @@ lbl_8019A0A8:
 /* 8019A0FC 0019703C  80 7B 03 34 */	lwz r3, 0x334(r27)
 /* 8019A100 00197040  C8 01 00 30 */	lfd f0, 0x30(r1)
 /* 8019A104 00197044  EC 20 08 28 */	fsubs f1, f0, f1
-/* 8019A108 00197048  48 09 AE 49 */	bl pull__Q24Game11PelletCarryFUsR10Vector3$$0f$$1f
+/* 8019A108 00197048  48 09 AE 49 */	bl "pull__Q24Game11PelletCarryFUsR10Vector3<f>f"
 /* 8019A10C 0019704C  88 1E 00 6C */	lbz r0, 0x6c(r30)
 /* 8019A110 00197050  28 00 00 00 */	cmplwi r0, 0
 /* 8019A114 00197054  41 82 00 2C */	beq lbl_8019A140
@@ -3399,8 +3399,8 @@ lbl_8019A328:
 lbl_8019A32C:
 /* 8019A32C 0019726C  28 03 00 00 */	cmplwi r3, 0
 /* 8019A330 00197270  40 82 00 24 */	bne lbl_8019A354
-/* 8019A334 00197274  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
-/* 8019A338 00197278  C4 03 41 E4 */	lfsu f0, zero__10Vector3$$0f$$1@l(r3)
+/* 8019A334 00197274  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
+/* 8019A338 00197278  C4 03 41 E4 */	lfsu f0, "zero__10Vector3<f>"@l(r3)
 /* 8019A33C 0019727C  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 8019A340 00197280  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8019A344 00197284  D0 1F 00 04 */	stfs f0, 4(r31)
@@ -3646,7 +3646,7 @@ lbl_8019A634:
 /* 8019A6B0 001975F0  D3 41 00 8C */	stfs f26, 0x8c(r1)
 /* 8019A6B4 001975F4  D3 C1 00 90 */	stfs f30, 0x90(r1)
 /* 8019A6B8 001975F8  D3 E1 00 94 */	stfs f31, 0x94(r1)
-/* 8019A6BC 001975FC  48 27 B4 9D */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 8019A6BC 001975FC  48 27 B4 9D */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 8019A6C0 00197600  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8019A6C4 00197604  41 82 00 0C */	beq lbl_8019A6D0
 /* 8019A6C8 00197608  38 60 00 01 */	li r3, 1
@@ -4045,7 +4045,7 @@ lbl_8019AC10:
 /* 8019AC3C 00197B7C  38 81 00 8C */	addi r4, r1, 0x8c
 /* 8019AC40 00197B80  38 A1 00 9C */	addi r5, r1, 0x9c
 /* 8019AC44 00197B84  38 C1 00 08 */	addi r6, r1, 8
-/* 8019AC48 00197B88  48 27 AF 11 */	bl collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3$$0f$$1Rf
+/* 8019AC48 00197B88  48 27 AF 11 */	bl "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
 /* 8019AC4C 00197B8C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8019AC50 00197B90  41 82 01 90 */	beq lbl_8019ADE0
 /* 8019AC54 00197B94  80 7E 00 70 */	lwz r3, 0x70(r30)
@@ -4589,7 +4589,7 @@ lbl_8019B378:
 /* 8019B3D8 00198318  B0 1F 00 1E */	sth r0, 0x1e(r31)
 /* 8019B3DC 0019831C  38 61 00 58 */	addi r3, r1, 0x58
 /* 8019B3E0 00198320  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019B3E4 00198324  48 27 64 75 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019B3E4 00198324  48 27 64 75 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019B3E8 00198328  C0 01 00 58 */	lfs f0, 0x58(r1)
 /* 8019B3EC 0019832C  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019B3F0 00198330  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -4642,7 +4642,7 @@ lbl_8019B48C:
 /* 8019B49C 001983DC  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019B4A0 001983E0  38 61 00 4C */	addi r3, r1, 0x4c
 /* 8019B4A4 001983E4  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019B4A8 001983E8  48 27 63 B1 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019B4A8 001983E8  48 27 63 B1 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019B4AC 001983EC  C0 01 00 4C */	lfs f0, 0x4c(r1)
 /* 8019B4B0 001983F0  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019B4B4 001983F4  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -5015,7 +5015,7 @@ lbl_8019B990:
 /* 8019B9BC 001988FC  B0 1F 00 1E */	sth r0, 0x1e(r31)
 /* 8019B9C0 00198900  38 61 00 40 */	addi r3, r1, 0x40
 /* 8019B9C4 00198904  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019B9C8 00198908  48 27 5E 91 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019B9C8 00198908  48 27 5E 91 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019B9CC 0019890C  C0 01 00 40 */	lfs f0, 0x40(r1)
 /* 8019B9D0 00198910  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019B9D4 00198914  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -5068,7 +5068,7 @@ lbl_8019BA70:
 /* 8019BA80 001989C0  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019BA84 001989C4  38 61 00 34 */	addi r3, r1, 0x34
 /* 8019BA88 001989C8  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019BA8C 001989CC  48 27 5D CD */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019BA8C 001989CC  48 27 5D CD */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019BA90 001989D0  C0 01 00 34 */	lfs f0, 0x34(r1)
 /* 8019BA94 001989D4  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019BA98 001989D8  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -5117,7 +5117,7 @@ lbl_8019BB34:
 /* 8019BB34 00198A74  FC 20 D8 90 */	fmr f1, f27
 /* 8019BB38 00198A78  38 61 00 28 */	addi r3, r1, 0x28
 /* 8019BB3C 00198A7C  38 9F 00 74 */	addi r4, r31, 0x74
-/* 8019BB40 00198A80  48 27 5D 19 */	bl CRSplineTangent__FfP10Vector3$$0f$$1
+/* 8019BB40 00198A80  48 27 5D 19 */	bl "CRSplineTangent__FfP10Vector3<f>"
 /* 8019BB44 00198A84  C0 01 00 28 */	lfs f0, 0x28(r1)
 /* 8019BB48 00198A88  C0 22 AC 00 */	lfs f1, lbl_80518F60@sda21(r2)
 /* 8019BB4C 00198A8C  D0 1F 00 B0 */	stfs f0, 0xb0(r31)
@@ -5510,7 +5510,7 @@ createEfx__Q26PikiAI14ActStickAttackFv:
 /* 8019C0C8 00199008  D0 01 00 7C */	stfs f0, 0x7c(r1)
 /* 8019C0CC 0019900C  D0 21 00 80 */	stfs f1, 0x80(r1)
 /* 8019C0D0 00199010  D0 41 00 84 */	stfs f2, 0x84(r1)
-/* 8019C0D4 00199014  48 21 B8 B5 */	bl createSimpleInattack__3efxFR10Vector3$$0f$$1
+/* 8019C0D4 00199014  48 21 B8 B5 */	bl "createSimpleInattack__3efxFR10Vector3<f>"
 /* 8019C0D8 00199018  48 00 05 E0 */	b lbl_8019C6B8
 lbl_8019C0DC:
 /* 8019C0DC 0019901C  88 9F 00 1D */	lbz r4, 0x1d(r31)
@@ -5538,10 +5538,10 @@ lbl_8019C0DC:
 /* 8019C134 00199074  38 E0 00 00 */	li r7, 0
 /* 8019C138 00199078  90 81 00 70 */	stw r4, 0x70(r1)
 /* 8019C13C 0019907C  38 C3 4B 9C */	addi r6, r3, __vt__Q23efx11TPkAttackDP@l
-/* 8019C140 00199080  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8019C140 00199080  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8019C144 00199084  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 8019C148 00199088  B0 01 00 74 */	sth r0, 0x74(r1)
-/* 8019C14C 0019908C  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 8019C14C 0019908C  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 8019C150 00199090  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8019C154 00199094  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 8019C158 00199098  90 E1 00 78 */	stw r7, 0x78(r1)
@@ -5574,10 +5574,10 @@ lbl_8019C1A4:
 /* 8019C1C0 00199100  38 E0 00 00 */	li r7, 0
 /* 8019C1C4 00199104  90 81 00 54 */	stw r4, 0x54(r1)
 /* 8019C1C8 00199108  38 C3 4B 88 */	addi r6, r3, __vt__Q23efx10PikiDamage@l
-/* 8019C1CC 0019910C  3C 60 80 51 */	lis r3, zero__10Vector3$$0f$$1@ha
+/* 8019C1CC 0019910C  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
 /* 8019C1D0 00199110  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
 /* 8019C1D4 00199114  B0 01 00 58 */	sth r0, 0x58(r1)
-/* 8019C1D8 00199118  38 A3 41 E4 */	addi r5, r3, zero__10Vector3$$0f$$1@l
+/* 8019C1D8 00199118  38 A3 41 E4 */	addi r5, r3, "zero__10Vector3<f>"@l
 /* 8019C1DC 0019911C  C0 45 00 00 */	lfs f2, 0(r5)
 /* 8019C1E0 00199120  38 04 A7 EC */	addi r0, r4, __vt__Q23efx3Arg@l
 /* 8019C1E4 00199124  90 E1 00 5C */	stw r7, 0x5c(r1)
@@ -5653,7 +5653,7 @@ lbl_8019C22C:
 /* 8019C2F8 00199238  4C 40 13 82 */	cror 2, 0, 2
 /* 8019C2FC 0019923C  40 82 03 BC */	bne lbl_8019C6B8
 /* 8019C300 00199240  38 61 00 38 */	addi r3, r1, 0x38
-/* 8019C304 00199244  48 21 B7 ED */	bl createSimpleBridgeAttack__3efxFR10Vector3$$0f$$1
+/* 8019C304 00199244  48 21 B7 ED */	bl "createSimpleBridgeAttack__3efxFR10Vector3<f>"
 /* 8019C308 00199248  80 7E 00 04 */	lwz r3, 4(r30)
 /* 8019C30C 0019924C  38 A0 28 27 */	li r5, 0x2827
 /* 8019C310 00199250  38 C0 00 02 */	li r6, 2
@@ -5665,7 +5665,7 @@ lbl_8019C22C:
 /* 8019C328 00199268  48 00 03 90 */	b lbl_8019C6B8
 lbl_8019C32C:
 /* 8019C32C 0019926C  38 61 00 38 */	addi r3, r1, 0x38
-/* 8019C330 00199270  48 21 B7 C1 */	bl createSimpleBridgeAttack__3efxFR10Vector3$$0f$$1
+/* 8019C330 00199270  48 21 B7 C1 */	bl "createSimpleBridgeAttack__3efxFR10Vector3<f>"
 /* 8019C334 00199274  48 00 03 84 */	b lbl_8019C6B8
 /* 8019C338 00199278  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C33C 0019927C  88 0D 84 6B */	lbz r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
@@ -5715,7 +5715,7 @@ lbl_8019C32C:
 /* 8019C3EC 0019932C  4C 40 13 82 */	cror 2, 0, 2
 /* 8019C3F0 00199330  40 82 02 C8 */	bne lbl_8019C6B8
 /* 8019C3F4 00199334  38 61 00 2C */	addi r3, r1, 0x2c
-/* 8019C3F8 00199338  48 21 B6 6D */	bl createSimpleGate2Attack__3efxFR10Vector3$$0f$$1
+/* 8019C3F8 00199338  48 21 B6 6D */	bl "createSimpleGate2Attack__3efxFR10Vector3<f>"
 /* 8019C3FC 0019933C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C400 00199340  38 A0 28 24 */	li r5, 0x2824
 /* 8019C404 00199344  80 9F 00 10 */	lwz r4, 0x10(r31)
@@ -5727,7 +5727,7 @@ lbl_8019C32C:
 /* 8019C41C 0019935C  48 00 02 9C */	b lbl_8019C6B8
 lbl_8019C420:
 /* 8019C420 00199360  38 61 00 2C */	addi r3, r1, 0x2c
-/* 8019C424 00199364  48 21 B6 41 */	bl createSimpleGate2Attack__3efxFR10Vector3$$0f$$1
+/* 8019C424 00199364  48 21 B6 41 */	bl "createSimpleGate2Attack__3efxFR10Vector3<f>"
 /* 8019C428 00199368  48 00 02 90 */	b lbl_8019C6B8
 /* 8019C42C 0019936C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C430 00199370  88 0D 84 6B */	lbz r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
@@ -5777,7 +5777,7 @@ lbl_8019C420:
 /* 8019C4E0 00199420  4C 40 13 82 */	cror 2, 0, 2
 /* 8019C4E4 00199424  40 82 01 D4 */	bne lbl_8019C6B8
 /* 8019C4E8 00199428  38 61 00 20 */	addi r3, r1, 0x20
-/* 8019C4EC 0019942C  48 21 B2 35 */	bl createSimpleGate1Attack__3efxFR10Vector3$$0f$$1
+/* 8019C4EC 0019942C  48 21 B2 35 */	bl "createSimpleGate1Attack__3efxFR10Vector3<f>"
 /* 8019C4F0 00199430  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C4F4 00199434  38 A0 28 25 */	li r5, 0x2825
 /* 8019C4F8 00199438  80 9F 00 10 */	lwz r4, 0x10(r31)
@@ -5789,7 +5789,7 @@ lbl_8019C420:
 /* 8019C510 00199450  48 00 01 A8 */	b lbl_8019C6B8
 lbl_8019C514:
 /* 8019C514 00199454  38 61 00 20 */	addi r3, r1, 0x20
-/* 8019C518 00199458  48 21 B2 09 */	bl createSimpleGate1Attack__3efxFR10Vector3$$0f$$1
+/* 8019C518 00199458  48 21 B2 09 */	bl "createSimpleGate1Attack__3efxFR10Vector3<f>"
 /* 8019C51C 0019945C  48 00 01 9C */	b lbl_8019C6B8
 /* 8019C520 00199460  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C524 00199464  88 0D 84 6B */	lbz r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
@@ -5839,7 +5839,7 @@ lbl_8019C514:
 /* 8019C5D4 00199514  4C 40 13 82 */	cror 2, 0, 2
 /* 8019C5D8 00199518  40 82 00 E0 */	bne lbl_8019C6B8
 /* 8019C5DC 0019951C  38 61 00 14 */	addi r3, r1, 0x14
-/* 8019C5E0 00199520  48 21 B7 55 */	bl createSimpleGate3Attack__3efxFR10Vector3$$0f$$1
+/* 8019C5E0 00199520  48 21 B7 55 */	bl "createSimpleGate3Attack__3efxFR10Vector3<f>"
 /* 8019C5E4 00199524  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C5E8 00199528  38 A0 28 4D */	li r5, 0x284d
 /* 8019C5EC 0019952C  80 9F 00 10 */	lwz r4, 0x10(r31)
@@ -5851,7 +5851,7 @@ lbl_8019C514:
 /* 8019C604 00199544  48 00 00 B4 */	b lbl_8019C6B8
 lbl_8019C608:
 /* 8019C608 00199548  38 61 00 14 */	addi r3, r1, 0x14
-/* 8019C60C 0019954C  48 21 B7 29 */	bl createSimpleGate3Attack__3efxFR10Vector3$$0f$$1
+/* 8019C60C 0019954C  48 21 B7 29 */	bl "createSimpleGate3Attack__3efxFR10Vector3<f>"
 /* 8019C610 00199550  48 00 00 A8 */	b lbl_8019C6B8
 /* 8019C614 00199554  80 9F 00 04 */	lwz r4, 4(r31)
 /* 8019C618 00199558  38 61 00 08 */	addi r3, r1, 8
@@ -5861,7 +5861,7 @@ lbl_8019C608:
 /* 8019C628 00199568  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8019C62C 0019956C  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8019C630 00199570  D0 41 00 10 */	stfs f2, 0x10(r1)
-/* 8019C634 00199574  48 21 B6 25 */	bl createSimpleStoneAttack__3efxFR10Vector3$$0f$$1
+/* 8019C634 00199574  48 21 B6 25 */	bl "createSimpleStoneAttack__3efxFR10Vector3<f>"
 /* 8019C638 00199578  80 9F 00 10 */	lwz r4, 0x10(r31)
 /* 8019C63C 0019957C  A0 04 01 28 */	lhz r0, 0x128(r4)
 /* 8019C640 00199580  28 00 04 10 */	cmplwi r0, 0x410
@@ -5890,7 +5890,7 @@ lbl_8019C678:
 /* 8019C694 001995D4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C698 001995D8  80 63 02 58 */	lwz r3, 0x258(r3)
 /* 8019C69C 001995DC  80 63 00 0C */	lwz r3, 0xc(r3)
-/* 8019C6A0 001995E0  48 21 B6 39 */	bl createSimpleDig__3efxFR10Vector3$$0f$$1
+/* 8019C6A0 001995E0  48 21 B6 39 */	bl "createSimpleDig__3efxFR10Vector3<f>"
 /* 8019C6A4 001995E4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C6A8 001995E8  38 A0 28 4F */	li r5, 0x284f
 /* 8019C6AC 001995EC  80 9F 00 10 */	lwz r4, 0x10(r31)
@@ -6019,7 +6019,7 @@ lbl_8019C83C:
 /* 8019C844 00199784  4B F9 BA 35 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 8019C848 00199788  38 61 00 08 */	addi r3, r1, 8
 /* 8019C84C 0019978C  38 9E 00 14 */	addi r4, r30, 0x14
-/* 8019C850 00199790  48 27 92 55 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
+/* 8019C850 00199790  48 27 92 55 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
 /* 8019C854 00199794  C0 1E 00 14 */	lfs f0, 0x14(r30)
 /* 8019C858 00199798  FC 00 00 50 */	fneg f0, f0
 /* 8019C85C 0019979C  D0 1E 00 14 */	stfs f0, 0x14(r30)
@@ -6278,7 +6278,7 @@ lbl_8019CBE8:
 /* 8019CBE8 00199B28  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019CBEC 00199B2C  38 81 00 14 */	addi r4, r1, 0x14
 /* 8019CBF0 00199B30  C0 22 AC 80 */	lfs f1, lbl_80518FE0@sda21(r2)
-/* 8019CBF4 00199B34  4B FA C4 25 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 8019CBF4 00199B34  4B FA C4 25 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 8019CBF8 00199B38  38 60 00 01 */	li r3, 1
 lbl_8019CBFC:
 /* 8019CBFC 00199B3C  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -6364,7 +6364,7 @@ lbl_8019CD08:
 /* 8019CD08 00199C48  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019CD0C 00199C4C  38 81 00 08 */	addi r4, r1, 8
 /* 8019CD10 00199C50  C0 22 AC 04 */	lfs f1, lbl_80518F64@sda21(r2)
-/* 8019CD14 00199C54  4B FA C3 05 */	bl setSpeed__Q24Game4PikiFfR10Vector3$$0f$$1
+/* 8019CD14 00199C54  4B FA C3 05 */	bl "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 /* 8019CD18 00199C58  38 60 00 01 */	li r3, 1
 lbl_8019CD1C:
 /* 8019CD1C 00199C5C  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -6390,8 +6390,8 @@ __sinit_aiPrimitives_cpp:
 /* 8019CD54 00199C94  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8019CD58 00199C98  4E 80 00 20 */	blr 
 
-.global $$236$$24$$2onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent
-$$236$$24$$2onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent:
+.global "@36@4@onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent"
+"@36@4@onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent":
 /* 8019CD5C 00199C9C  39 60 00 04 */	li r11, 4
 /* 8019CD60 00199CA0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8019CD64 00199CA4  7C 63 5A 14 */	add r3, r3, r11

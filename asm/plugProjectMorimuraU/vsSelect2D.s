@@ -1087,10 +1087,10 @@ __ct__Q28Morimura9TVsSelectFv:
 /* 8039A7EC 0039772C  39 00 00 01 */	li r8, 1
 /* 8039A7F0 00397730  90 9F 00 00 */	stw r4, 0(r31)
 /* 8039A7F4 00397734  38 04 00 10 */	addi r0, r4, 0x10
-/* 8039A7F8 00397738  3C 60 80 38 */	lis r3, __ct__10Vector2$$0f$$1Fv@ha
+/* 8039A7F8 00397738  3C 60 80 38 */	lis r3, "__ct__10Vector2<f>Fv"@ha
 /* 8039A7FC 0039773C  C0 62 0E 10 */	lfs f3, lbl_8051F170@sda21(r2)
 /* 8039A800 00397740  90 1F 00 18 */	stw r0, 0x18(r31)
-/* 8039A804 00397744  38 83 D0 B8 */	addi r4, r3, __ct__10Vector2$$0f$$1Fv@l
+/* 8039A804 00397744  38 83 D0 B8 */	addi r4, r3, "__ct__10Vector2<f>Fv"@l
 /* 8039A808 00397748  C0 42 0E 20 */	lfs f2, lbl_8051F180@sda21(r2)
 /* 8039A80C 0039774C  38 00 FF FF */	li r0, -1
 /* 8039A810 00397750  91 3F 00 B4 */	stw r9, 0xb4(r31)
@@ -1145,23 +1145,23 @@ __ct__Q28Morimura9TVsSelectFv:
 /* 8039A8D4 00397814  D0 1F 02 70 */	stfs f0, 0x270(r31)
 /* 8039A8D8 00397818  99 3F 02 8E */	stb r9, 0x28e(r31)
 /* 8039A8DC 0039781C  4B D2 6F 61 */	bl __construct_array
-/* 8039A8E0 00397820  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8039A8E0 00397820  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8039A8E4 00397824  38 7F 02 D0 */	addi r3, r31, 0x2d0
-/* 8039A8E8 00397828  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8039A8E8 00397828  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8039A8EC 0039782C  38 A0 00 00 */	li r5, 0
 /* 8039A8F0 00397830  38 C0 00 08 */	li r6, 8
 /* 8039A8F4 00397834  38 E0 00 05 */	li r7, 5
 /* 8039A8F8 00397838  4B D2 6F 45 */	bl __construct_array
-/* 8039A8FC 0039783C  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8039A8FC 0039783C  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8039A900 00397840  38 7F 02 F8 */	addi r3, r31, 0x2f8
-/* 8039A904 00397844  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8039A904 00397844  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8039A908 00397848  38 A0 00 00 */	li r5, 0
 /* 8039A90C 0039784C  38 C0 00 08 */	li r6, 8
 /* 8039A910 00397850  38 E0 00 02 */	li r7, 2
 /* 8039A914 00397854  4B D2 6F 29 */	bl __construct_array
-/* 8039A918 00397858  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8039A918 00397858  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8039A91C 0039785C  38 7F 03 08 */	addi r3, r31, 0x308
-/* 8039A920 00397860  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8039A920 00397860  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8039A924 00397864  38 A0 00 00 */	li r5, 0
 /* 8039A928 00397868  38 C0 00 08 */	li r6, 8
 /* 8039A92C 0039786C  38 E0 00 02 */	li r7, 2
@@ -2607,9 +2607,9 @@ lbl_8039BDF0:
 /* 8039BEA4 00398DE4  38 C0 00 10 */	li r6, 0x10
 /* 8039BEA8 00398DE8  38 E0 00 0A */	li r7, 0xa
 /* 8039BEAC 00398DEC  4B D2 59 91 */	bl __construct_array
-/* 8039BEB0 00398DF0  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8039BEB0 00398DF0  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8039BEB4 00398DF4  38 79 00 AC */	addi r3, r25, 0xac
-/* 8039BEB8 00398DF8  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8039BEB8 00398DF8  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8039BEBC 00398DFC  38 A0 00 00 */	li r5, 0
 /* 8039BEC0 00398E00  38 C0 00 08 */	li r6, 8
 /* 8039BEC4 00398E04  38 E0 00 02 */	li r7, 2
@@ -2714,9 +2714,9 @@ lbl_8039BF90:
 /* 8039C038 00398F78  38 C0 00 10 */	li r6, 0x10
 /* 8039C03C 00398F7C  38 E0 00 0A */	li r7, 0xa
 /* 8039C040 00398F80  4B D2 57 FD */	bl __construct_array
-/* 8039C044 00398F84  3C 80 80 38 */	lis r4, __ct__10Vector2$$0f$$1Fv@ha
+/* 8039C044 00398F84  3C 80 80 38 */	lis r4, "__ct__10Vector2<f>Fv"@ha
 /* 8039C048 00398F88  38 77 00 AC */	addi r3, r23, 0xac
-/* 8039C04C 00398F8C  38 84 D0 B8 */	addi r4, r4, __ct__10Vector2$$0f$$1Fv@l
+/* 8039C04C 00398F8C  38 84 D0 B8 */	addi r4, r4, "__ct__10Vector2<f>Fv"@l
 /* 8039C050 00398F90  38 A0 00 00 */	li r5, 0
 /* 8039C054 00398F94  38 C0 00 08 */	li r6, 8
 /* 8039C058 00398F98  38 E0 00 02 */	li r7, 2
@@ -5757,7 +5757,7 @@ lbl_8039EC9C:
 /* 8039ED50 0039BC90  EC 03 00 2A */	fadds f0, f3, f0
 /* 8039ED54 0039BC94  D0 21 00 68 */	stfs f1, 0x68(r1)
 /* 8039ED58 0039BC98  D0 01 00 6C */	stfs f0, 0x6c(r1)
-/* 8039ED5C 0039BC9C  4B C9 7A 79 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 8039ED5C 0039BC9C  4B C9 7A 79 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 8039ED60 0039BCA0  38 60 00 01 */	li r3, 1
 /* 8039ED64 0039BCA4  4B D4 A3 F5 */	bl GXSetAlphaUpdate
 lbl_8039ED68:
@@ -5867,7 +5867,7 @@ lbl_8039EE4C:
 /* 8039EEF8 0039BE38  EC 03 00 2A */	fadds f0, f3, f0
 /* 8039EEFC 0039BE3C  D0 21 00 58 */	stfs f1, 0x58(r1)
 /* 8039EF00 0039BE40  D0 01 00 5C */	stfs f0, 0x5c(r1)
-/* 8039EF04 0039BE44  4B C9 78 D1 */	bl fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2$$0f$$1
+/* 8039EF04 0039BE44  4B C9 78 D1 */	bl "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 /* 8039EF08 0039BE48  38 60 00 01 */	li r3, 1
 /* 8039EF0C 0039BE4C  4B D4 A2 4D */	bl GXSetAlphaUpdate
 /* 8039EF10 0039BE50  E3 E1 06 D8 */	psq_l f31, 1752(r1), 0, qr0
@@ -8194,7 +8194,7 @@ __sinit_vsSelect2D_cpp:
 /* 803A101C 0039DF5C  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 803A1020 0039DF60  4E 80 00 20 */	blr 
 
-.global $$224$$2__dt__Q28Morimura9TVsSelectFv
-$$224$$2__dt__Q28Morimura9TVsSelectFv:
+.global "@24@__dt__Q28Morimura9TVsSelectFv"
+"@24@__dt__Q28Morimura9TVsSelectFv":
 /* 803A1024 0039DF64  38 63 FF E8 */	addi r3, r3, -24
 /* 803A1028 0039DF68  4B FF 9B 38 */	b __dt__Q28Morimura9TVsSelectFv

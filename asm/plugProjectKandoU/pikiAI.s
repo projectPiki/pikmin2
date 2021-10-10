@@ -391,7 +391,7 @@ lbl_801B0D44:
 /* 801B0D6C 001ADCAC  41 82 05 B0 */	beq lbl_801B131C
 /* 801B0D70 001ADCB0  7F 63 DB 78 */	mr r3, r27
 /* 801B0D74 001ADCB4  38 97 02 0C */	addi r4, r23, 0x20c
-/* 801B0D78 001ADCB8  48 03 E6 0D */	bl workable__Q34Game10ItemBridge4ItemFR10Vector3$$0f$$1
+/* 801B0D78 001ADCB8  48 03 E6 0D */	bl "workable__Q34Game10ItemBridge4ItemFR10Vector3<f>"
 /* 801B0D7C 001ADCBC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801B0D80 001ADCC0  41 82 05 9C */	beq lbl_801B131C
 /* 801B0D84 001ADCC4  7F 63 DB 78 */	mr r3, r27
@@ -822,9 +822,9 @@ lbl_801B13B0:
 /* 801B13C8 001AE308  40 82 02 50 */	bne lbl_801B1618
 /* 801B13CC 001AE30C  38 00 00 00 */	li r0, 0
 /* 801B13D0 001AE310  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 801B13D4 001AE314  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 801B13D4 001AE314  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 801B13D8 001AE318  90 01 00 D0 */	stw r0, 0xd0(r1)
-/* 801B13DC 001AE31C  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 801B13DC 001AE31C  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 801B13E0 001AE320  28 00 00 00 */	cmplwi r0, 0
 /* 801B13E4 001AE324  90 81 00 C4 */	stw r4, 0xc4(r1)
 /* 801B13E8 001AE328  3B 60 00 00 */	li r27, 0
@@ -982,9 +982,9 @@ lbl_801B1618:
 /* 801B1620 001AE560  40 82 02 30 */	bne lbl_801B1850
 /* 801B1624 001AE564  38 00 00 00 */	li r0, 0
 /* 801B1628 001AE568  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 801B162C 001AE56C  3C 80 80 4B */	lis r4, __vt__22Iterator$$0Q24Game4Piki$$1@ha
+/* 801B162C 001AE56C  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 801B1630 001AE570  90 01 00 C0 */	stw r0, 0xc0(r1)
-/* 801B1634 001AE574  38 84 BC 9C */	addi r4, r4, __vt__22Iterator$$0Q24Game4Piki$$1@l
+/* 801B1634 001AE574  38 84 BC 9C */	addi r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
 /* 801B1638 001AE578  28 00 00 00 */	cmplwi r0, 0
 /* 801B163C 001AE57C  90 81 00 B4 */	stw r4, 0xb4(r1)
 /* 801B1640 001AE580  3B 60 00 00 */	li r27, 0
@@ -1235,12 +1235,12 @@ lbl_801B19D0:
 /* 801B19D4 001AE914  28 03 00 00 */	cmplwi r3, 0
 /* 801B19D8 001AE918  41 82 02 30 */	beq lbl_801B1C08
 /* 801B19DC 001AE91C  80 AD 92 F4 */	lwz r5, pikiMgr__4Game@sda21(r13)
-/* 801B19E0 001AE920  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
+/* 801B19E0 001AE920  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
 /* 801B19E4 001AE924  38 00 00 00 */	li r0, 0
 /* 801B19E8 001AE928  38 63 00 30 */	addi r3, r3, 0x30
 /* 801B19EC 001AE92C  80 A5 00 6C */	lwz r5, 0x6c(r5)
 /* 801B19F0 001AE930  28 00 00 00 */	cmplwi r0, 0
-/* 801B19F4 001AE934  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801B19F4 001AE934  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801B19F8 001AE938  3B 40 00 00 */	li r26, 0
 /* 801B19FC 001AE93C  C3 C5 09 F8 */	lfs f30, 0x9f8(r5)
 /* 801B1A00 001AE940  90 81 00 94 */	stw r4, 0x94(r1)
@@ -1394,8 +1394,8 @@ lbl_801B1C08:
 /* 801B1C28 001AEB68  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801B1C2C:
 /* 801B1C2C 001AEB6C  38 00 00 00 */	li r0, 0
-/* 801B1C30 001AEB70  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@ha
-/* 801B1C34 001AEB74  38 84 5A 7C */	addi r4, r4, __vt__26Iterator$$0Q24Game8ItemGate$$1@l
+/* 801B1C30 001AEB70  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
+/* 801B1C34 001AEB74  38 84 5A 7C */	addi r4, r4, "__vt__26Iterator<Q24Game8ItemGate>"@l
 /* 801B1C38 001AEB78  90 01 00 90 */	stw r0, 0x90(r1)
 /* 801B1C3C 001AEB7C  28 00 00 00 */	cmplwi r0, 0
 /* 801B1C40 001AEB80  90 81 00 84 */	stw r4, 0x84(r1)
@@ -1548,8 +1548,8 @@ lbl_801B1E44:
 /* 801B1E64 001AEDA4  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801B1E68:
 /* 801B1E68 001AEDA8  38 00 00 00 */	li r0, 0
-/* 801B1E6C 001AEDAC  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 801B1E70 001AEDB0  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 801B1E6C 001AEDAC  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 801B1E70 001AEDB0  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 801B1E74 001AEDB4  90 01 00 80 */	stw r0, 0x80(r1)
 /* 801B1E78 001AEDB8  28 00 00 00 */	cmplwi r0, 0
 /* 801B1E7C 001AEDBC  90 81 00 74 */	stw r4, 0x74(r1)
@@ -1616,7 +1616,7 @@ lbl_801B1F30:
 /* 801B1F60 001AEEA0  41 82 00 40 */	beq lbl_801B1FA0
 /* 801B1F64 001AEEA4  7F 03 C3 78 */	mr r3, r24
 /* 801B1F68 001AEEA8  38 9F 02 0C */	addi r4, r31, 0x20c
-/* 801B1F6C 001AEEAC  48 03 D4 19 */	bl workable__Q34Game10ItemBridge4ItemFR10Vector3$$0f$$1
+/* 801B1F6C 001AEEAC  48 03 D4 19 */	bl "workable__Q34Game10ItemBridge4ItemFR10Vector3<f>"
 /* 801B1F70 001AEEB0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801B1F74 001AEEB4  41 82 00 2C */	beq lbl_801B1FA0
 /* 801B1F78 001AEEB8  7F 03 C3 78 */	mr r3, r24
@@ -1708,8 +1708,8 @@ lbl_801B2098:
 /* 801B20B8 001AEFF8  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801B20BC:
 /* 801B20BC 001AEFFC  38 00 00 00 */	li r0, 0
-/* 801B20C0 001AF000  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 801B20C4 001AF004  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 801B20C0 001AF000  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 801B20C4 001AF004  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 801B20C8 001AF008  90 01 00 70 */	stw r0, 0x70(r1)
 /* 801B20CC 001AF00C  28 00 00 00 */	cmplwi r0, 0
 /* 801B20D0 001AF010  90 81 00 64 */	stw r4, 0x64(r1)
@@ -1863,8 +1863,8 @@ lbl_801B22D8:
 /* 801B22F8 001AF238  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801B22FC:
 /* 801B22FC 001AF23C  38 00 00 00 */	li r0, 0
-/* 801B2300 001AF240  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 801B2304 001AF244  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 801B2300 001AF240  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 801B2304 001AF244  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 801B2308 001AF248  90 01 00 60 */	stw r0, 0x60(r1)
 /* 801B230C 001AF24C  28 00 00 00 */	cmplwi r0, 0
 /* 801B2310 001AF250  90 81 00 54 */	stw r4, 0x54(r1)
@@ -2018,8 +2018,8 @@ lbl_801B2518:
 /* 801B2538 001AF478  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801B253C:
 /* 801B253C 001AF47C  38 00 00 00 */	li r0, 0
-/* 801B2540 001AF480  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 801B2544 001AF484  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 801B2540 001AF480  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 801B2544 001AF484  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 801B2548 001AF488  90 01 00 50 */	stw r0, 0x50(r1)
 /* 801B254C 001AF48C  28 00 00 00 */	cmplwi r0, 0
 /* 801B2550 001AF490  90 81 00 44 */	stw r4, 0x44(r1)
@@ -2173,8 +2173,8 @@ lbl_801B2758:
 /* 801B2778 001AF6B8  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801B277C:
 /* 801B277C 001AF6BC  38 00 00 00 */	li r0, 0
-/* 801B2780 001AF6C0  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 801B2784 001AF6C4  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 801B2780 001AF6C0  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 801B2784 001AF6C4  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 801B2788 001AF6C8  90 01 00 40 */	stw r0, 0x40(r1)
 /* 801B278C 001AF6CC  28 00 00 00 */	cmplwi r0, 0
 /* 801B2790 001AF6D0  90 81 00 34 */	stw r4, 0x34(r1)
@@ -2336,8 +2336,8 @@ lbl_801B29B4:
 /* 801B29D4 001AF914  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801B29D8:
 /* 801B29D8 001AF918  38 00 00 00 */	li r0, 0
-/* 801B29DC 001AF91C  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 801B29E0 001AF920  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 801B29DC 001AF91C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 801B29E0 001AF920  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 801B29E4 001AF924  90 01 00 30 */	stw r0, 0x30(r1)
 /* 801B29E8 001AF928  28 00 00 00 */	cmplwi r0, 0
 /* 801B29EC 001AF92C  90 81 00 24 */	stw r4, 0x24(r1)
@@ -2518,7 +2518,7 @@ lbl_801B2C68:
 /* 801B2C74 001AFBB4  90 01 00 20 */	stw r0, 0x20(r1)
 /* 801B2C78 001AFBB8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801B2C7C 001AFBBC  90 01 00 18 */	stw r0, 0x18(r1)
-/* 801B2C80 001AFBC0  4B F5 B8 11 */	bl first__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
+/* 801B2C80 001AFBC0  4B F5 B8 11 */	bl "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
 /* 801B2C84 001AFBC4  48 00 00 90 */	b lbl_801B2D14
 lbl_801B2C88:
 /* 801B2C88 001AFBC8  81 83 00 00 */	lwz r12, 0(r3)
@@ -2556,7 +2556,7 @@ lbl_801B2C88:
 /* 801B2D08 001AFC48  FF C0 08 90 */	fmr f30, f1
 lbl_801B2D0C:
 /* 801B2D0C 001AFC4C  38 61 00 14 */	addi r3, r1, 0x14
-/* 801B2D10 001AFC50  4B F5 B1 E1 */	bl next__37GeneralMgrIterator$$0Q24Game9EnemyBase$$1Fv
+/* 801B2D10 001AFC50  4B F5 B1 E1 */	bl "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
 lbl_801B2D14:
 /* 801B2D14 001AFC54  80 61 00 14 */	lwz r3, 0x14(r1)
 /* 801B2D18 001AFC58  28 03 00 00 */	cmplwi r3, 0
@@ -2581,8 +2581,8 @@ lbl_801B2D40:
 /* 801B2D5C 001AFC9C  38 21 01 20 */	addi r1, r1, 0x120
 /* 801B2D60 001AFCA0  4E 80 00 20 */	blr 
 
-.global isDone__26Iterator$$0Q24Game8ItemGate$$1Fv
-isDone__26Iterator$$0Q24Game8ItemGate$$1Fv:
+.global "isDone__26Iterator<Q24Game8ItemGate>Fv"
+"isDone__26Iterator<Q24Game8ItemGate>Fv":
 /* 801B2D64 001AFCA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B2D68 001AFCA8  7C 08 02 A6 */	mflr r0
 /* 801B2D6C 001AFCAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3112,7 +3112,7 @@ lbl_801B350C:
 /* 801B3524 001B0464  41 82 00 48 */	beq lbl_801B356C
 /* 801B3528 001B0468  7F E3 FB 78 */	mr r3, r31
 /* 801B352C 001B046C  38 9E 02 0C */	addi r4, r30, 0x20c
-/* 801B3530 001B0470  48 03 BE 55 */	bl workable__Q34Game10ItemBridge4ItemFR10Vector3$$0f$$1
+/* 801B3530 001B0470  48 03 BE 55 */	bl "workable__Q34Game10ItemBridge4ItemFR10Vector3<f>"
 /* 801B3534 001B0474  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801B3538 001B0478  41 82 00 34 */	beq lbl_801B356C
 /* 801B353C 001B047C  3C 80 80 4B */	lis r4, __vt__Q26PikiAI9ActionArg@ha
@@ -3282,7 +3282,7 @@ lbl_801B3760:
 /* 801B3794 001B06D4  41 82 00 94 */	beq lbl_801B3828
 /* 801B3798 001B06D8  7F A3 EB 78 */	mr r3, r29
 /* 801B379C 001B06DC  38 9E 02 0C */	addi r4, r30, 0x20c
-/* 801B37A0 001B06E0  48 03 BB E5 */	bl workable__Q34Game10ItemBridge4ItemFR10Vector3$$0f$$1
+/* 801B37A0 001B06E0  48 03 BB E5 */	bl "workable__Q34Game10ItemBridge4ItemFR10Vector3<f>"
 /* 801B37A4 001B06E4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801B37A8 001B06E8  41 82 00 80 */	beq lbl_801B3828
 /* 801B37AC 001B06EC  3C 80 80 4B */	lis r4, __vt__Q26PikiAI9ActionArg@ha
@@ -3520,7 +3520,7 @@ lbl_801B3A4C:
 /* 801B3B04 001B0A44  41 82 00 4C */	beq lbl_801B3B50
 /* 801B3B08 001B0A48  7F E3 FB 78 */	mr r3, r31
 /* 801B3B0C 001B0A4C  38 9E 02 0C */	addi r4, r30, 0x20c
-/* 801B3B10 001B0A50  48 03 B8 75 */	bl workable__Q34Game10ItemBridge4ItemFR10Vector3$$0f$$1
+/* 801B3B10 001B0A50  48 03 B8 75 */	bl "workable__Q34Game10ItemBridge4ItemFR10Vector3<f>"
 /* 801B3B14 001B0A54  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801B3B18 001B0A58  41 82 00 38 */	beq lbl_801B3B50
 /* 801B3B1C 001B0A5C  3C 60 80 4B */	lis r3, __vt__Q26PikiAI9ActionArg@ha
@@ -3661,8 +3661,8 @@ getName__Q26PikiAI10ActWeedArgFv:
 /* 801B3CC4 001B0C04  38 63 FA 9C */	addi r3, r3, lbl_8047FA9C@l
 /* 801B3CC8 001B0C08  4E 80 00 20 */	blr 
 
-.global __ml__26Iterator$$0Q24Game8ItemGate$$1Fv
-__ml__26Iterator$$0Q24Game8ItemGate$$1Fv:
+.global "__ml__26Iterator<Q24Game8ItemGate>Fv"
+"__ml__26Iterator<Q24Game8ItemGate>Fv":
 /* 801B3CCC 001B0C0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B3CD0 001B0C10  7C 08 02 A6 */	mflr r0
 /* 801B3CD4 001B0C14  7C 64 1B 78 */	mr r4, r3
@@ -3678,8 +3678,8 @@ __ml__26Iterator$$0Q24Game8ItemGate$$1Fv:
 /* 801B3CFC 001B0C3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B3D00 001B0C40  4E 80 00 20 */	blr 
 
-.global next__26Iterator$$0Q24Game8ItemGate$$1Fv
-next__26Iterator$$0Q24Game8ItemGate$$1Fv:
+.global "next__26Iterator<Q24Game8ItemGate>Fv"
+"next__26Iterator<Q24Game8ItemGate>Fv":
 /* 801B3D04 001B0C44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B3D08 001B0C48  7C 08 02 A6 */	mflr r0
 /* 801B3D0C 001B0C4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3742,8 +3742,8 @@ lbl_801B3DD4:
 /* 801B3DE0 001B0D20  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B3DE4 001B0D24  4E 80 00 20 */	blr 
 
-.global first__26Iterator$$0Q24Game8ItemGate$$1Fv
-first__26Iterator$$0Q24Game8ItemGate$$1Fv:
+.global "first__26Iterator<Q24Game8ItemGate>Fv"
+"first__26Iterator<Q24Game8ItemGate>Fv":
 /* 801B3DE8 001B0D28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B3DEC 001B0D2C  7C 08 02 A6 */	mflr r0
 /* 801B3DF0 001B0D30  90 01 00 14 */	stw r0, 0x14(r1)

@@ -276,9 +276,9 @@ create__Q29TexCaster3MgrFRQ23Sys6Spheref:
 /* 8023CD24 00239C64  38 60 00 58 */	li r3, 0x58
 /* 8023CD28 00239C68  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8023CD2C 00239C6C  4B DE 72 81 */	bl __nwa__FUl
-/* 8023CD30 00239C70  3C 80 80 12 */	lis r4, __ct__10Vector3$$0f$$1Fv@ha
+/* 8023CD30 00239C70  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
 /* 8023CD34 00239C74  38 A0 00 00 */	li r5, 0
-/* 8023CD38 00239C78  38 84 F3 48 */	addi r4, r4, __ct__10Vector3$$0f$$1Fv@l
+/* 8023CD38 00239C78  38 84 F3 48 */	addi r4, r4, "__ct__10Vector3<f>Fv"@l
 /* 8023CD3C 00239C7C  38 C0 00 0C */	li r6, 0xc
 /* 8023CD40 00239C80  38 E0 00 06 */	li r7, 6
 /* 8023CD44 00239C84  4B E8 4C AD */	bl __construct_new_array

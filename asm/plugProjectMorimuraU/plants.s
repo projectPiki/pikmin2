@@ -24,12 +24,12 @@ setParameters__Q34Game6Plants3ObjFv:
 /* 80358414 00355354  38 21 00 10 */	addi r1, r1, 0x10
 /* 80358418 00355358  4E 80 00 20 */	blr 
 
-.global birth__Q34Game6Plants3ObjFR10Vector3$$0f$$1f
-birth__Q34Game6Plants3ObjFR10Vector3$$0f$$1f:
+.global "birth__Q34Game6Plants3ObjFR10Vector3<f>f"
+"birth__Q34Game6Plants3ObjFR10Vector3<f>f":
 /* 8035841C 0035535C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80358420 00355360  7C 08 02 A6 */	mflr r0
 /* 80358424 00355364  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80358428 00355368  4B DA A5 D9 */	bl birth__Q24Game9EnemyBaseFR10Vector3$$0f$$1f
+/* 80358428 00355368  4B DA A5 D9 */	bl "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
 /* 8035842C 0035536C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80358430 00355370  7C 08 03 A6 */	mtlr r0
 /* 80358434 00355374  38 21 00 10 */	addi r1, r1, 0x10
@@ -75,7 +75,7 @@ onInit__Q34Game6Plants3ObjFPQ24Game15CreatureInitArg:
 /* 803584C8 00355408  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 803584CC 0035540C  38 DF 01 8C */	addi r6, r31, 0x18c
 /* 803584D0 00355410  98 1F 02 BD */	stb r0, 0x2bd(r31)
-/* 803584D4 00355414  48 0C FE 05 */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 803584D4 00355414  48 0C FE 05 */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 803584D8 00355418  80 1F 01 74 */	lwz r0, 0x174(r31)
 /* 803584DC 0035541C  28 00 00 00 */	cmplwi r0, 0
 /* 803584E0 00355420  40 82 00 20 */	bne lbl_80358500
@@ -288,7 +288,7 @@ doAnimationCullingOff__Q34Game6Plants3ObjFv:
 /* 803587D0 00355710  38 9F 01 68 */	addi r4, r31, 0x168
 /* 803587D4 00355714  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 803587D8 00355718  38 DF 01 8C */	addi r6, r31, 0x18c
-/* 803587DC 0035571C  48 0C FA FD */	bl makeSRT__7MatrixfFR10Vector3$$0f$$1R10Vector3$$0f$$1R10Vector3$$0f$$1
+/* 803587DC 0035571C  48 0C FA FD */	bl "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
 /* 803587E0 00355720  80 9F 01 74 */	lwz r4, 0x174(r31)
 /* 803587E4 00355724  38 7F 01 38 */	addi r3, r31, 0x138
 /* 803587E8 00355728  80 84 00 08 */	lwz r4, 8(r4)
@@ -762,7 +762,7 @@ getLODCylinder__Q34Game10DiodeGreen3ObjFRQ23Sys8Cylinder:
 /* 80358E58 00355D98  EC 01 00 2A */	fadds f0, f1, f0
 /* 80358E5C 00355D9C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80358E60 00355DA0  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 80358E64 00355DA4  48 0C 88 01 */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
+/* 80358E64 00355DA4  48 0C 88 01 */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
 /* 80358E68 00355DA8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80358E6C 00355DAC  7C 08 03 A6 */	mtlr r0
 /* 80358E70 00355DB0  38 21 00 20 */	addi r1, r1, 0x20
@@ -822,7 +822,7 @@ getLODCylinder__Q34Game8DiodeRed3ObjFRQ23Sys8Cylinder:
 /* 80358F24 00355E64  EC 01 00 2A */	fadds f0, f1, f0
 /* 80358F28 00355E68  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80358F2C 00355E6C  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 80358F30 00355E70  48 0C 87 35 */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
+/* 80358F30 00355E70  48 0C 87 35 */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
 /* 80358F34 00355E74  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80358F38 00355E78  7C 08 03 A6 */	mtlr r0
 /* 80358F3C 00355E7C  38 21 00 20 */	addi r1, r1, 0x20
@@ -927,7 +927,7 @@ lbl_80359038:
 /* 80359098 00355FD8  EC 01 00 2A */	fadds f0, f1, f0
 /* 8035909C 00355FDC  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 803590A0 00355FE0  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 803590A4 00355FE4  48 0C 85 C1 */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
+/* 803590A4 00355FE4  48 0C 85 C1 */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
 /* 803590A8 00355FE8  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 803590AC 00355FEC  7C 08 03 A6 */	mtlr r0
 /* 803590B0 00355FF0  38 21 00 40 */	addi r1, r1, 0x40
@@ -992,7 +992,7 @@ getLODCylinder__Q34Game12HikariKinoko3ObjFRQ23Sys8Cylinder:
 /* 8035916C 003560AC  EC 01 00 2A */	fadds f0, f1, f0
 /* 80359170 003560B0  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80359174 003560B4  C0 26 03 84 */	lfs f1, 0x384(r6)
-/* 80359178 003560B8  48 0C 84 ED */	bl set__Q23Sys8CylinderFRC10Vector3$$0f$$1RC10Vector3$$0f$$1f
+/* 80359178 003560B8  48 0C 84 ED */	bl "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
 /* 8035917C 003560BC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80359180 003560C0  7C 08 03 A6 */	mtlr r0
 /* 80359184 003560C4  38 21 00 20 */	addi r1, r1, 0x20

@@ -132,121 +132,121 @@ __ct__Q34Game10GameConfig5ParmsFv:
 /* 80432348 0042F288  90 1E 00 00 */	stw r0, 0(r30)
 /* 8043234C 0042F28C  38 BF 00 18 */	addi r5, r31, 0x18
 /* 80432350 0042F290  4B FE 9D 4D */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432354 0042F294  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432354 0042F294  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432358 0042F298  7F C4 F3 78 */	mr r4, r30
-/* 8043235C 0042F29C  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 8043235C 0042F29C  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432360 0042F2A0  38 7E 00 2C */	addi r3, r30, 0x2c
 /* 80432364 0042F2A4  90 1E 00 1C */	stw r0, 0x1c(r30)
 /* 80432368 0042F2A8  38 A2 23 B4 */	addi r5, r2, lbl_80520714@sda21
 /* 8043236C 0042F2AC  4B FE 9D 31 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432370 0042F2B0  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432370 0042F2B0  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432374 0042F2B4  7F C4 F3 78 */	mr r4, r30
-/* 80432378 0042F2B8  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432378 0042F2B8  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 8043237C 0042F2BC  38 7E 00 3C */	addi r3, r30, 0x3c
 /* 80432380 0042F2C0  90 1E 00 2C */	stw r0, 0x2c(r30)
 /* 80432384 0042F2C4  38 BF 00 24 */	addi r5, r31, 0x24
 /* 80432388 0042F2C8  4B FE 9D 15 */	bl __ct__7TagParmFP13TagParametersPc
-/* 8043238C 0042F2CC  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 8043238C 0042F2CC  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432390 0042F2D0  7F C4 F3 78 */	mr r4, r30
-/* 80432394 0042F2D4  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432394 0042F2D4  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432398 0042F2D8  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 8043239C 0042F2DC  90 1E 00 3C */	stw r0, 0x3c(r30)
 /* 804323A0 0042F2E0  38 BF 00 30 */	addi r5, r31, 0x30
 /* 804323A4 0042F2E4  4B FE 9C F9 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804323A8 0042F2E8  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804323A8 0042F2E8  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804323AC 0042F2EC  7F C4 F3 78 */	mr r4, r30
-/* 804323B0 0042F2F0  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804323B0 0042F2F0  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804323B4 0042F2F4  38 7E 00 5C */	addi r3, r30, 0x5c
 /* 804323B8 0042F2F8  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 804323BC 0042F2FC  38 BF 00 40 */	addi r5, r31, 0x40
 /* 804323C0 0042F300  4B FE 9C DD */	bl __ct__7TagParmFP13TagParametersPc
-/* 804323C4 0042F304  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804323C4 0042F304  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804323C8 0042F308  7F C4 F3 78 */	mr r4, r30
-/* 804323CC 0042F30C  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804323CC 0042F30C  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804323D0 0042F310  38 7E 00 6C */	addi r3, r30, 0x6c
 /* 804323D4 0042F314  90 1E 00 5C */	stw r0, 0x5c(r30)
 /* 804323D8 0042F318  38 BF 00 50 */	addi r5, r31, 0x50
 /* 804323DC 0042F31C  4B FE 9C C1 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804323E0 0042F320  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804323E0 0042F320  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804323E4 0042F324  7F C4 F3 78 */	mr r4, r30
-/* 804323E8 0042F328  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804323E8 0042F328  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804323EC 0042F32C  38 7E 00 7C */	addi r3, r30, 0x7c
 /* 804323F0 0042F330  90 1E 00 6C */	stw r0, 0x6c(r30)
 /* 804323F4 0042F334  38 BF 00 5C */	addi r5, r31, 0x5c
 /* 804323F8 0042F338  4B FE 9C A5 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804323FC 0042F33C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804323FC 0042F33C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432400 0042F340  7F C4 F3 78 */	mr r4, r30
-/* 80432404 0042F344  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432404 0042F344  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432408 0042F348  38 7E 00 8C */	addi r3, r30, 0x8c
 /* 8043240C 0042F34C  90 1E 00 7C */	stw r0, 0x7c(r30)
 /* 80432410 0042F350  38 BF 00 6C */	addi r5, r31, 0x6c
 /* 80432414 0042F354  4B FE 9C 89 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432418 0042F358  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432418 0042F358  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 8043241C 0042F35C  7F C4 F3 78 */	mr r4, r30
-/* 80432420 0042F360  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432420 0042F360  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432424 0042F364  38 7E 00 9C */	addi r3, r30, 0x9c
 /* 80432428 0042F368  90 1E 00 8C */	stw r0, 0x8c(r30)
 /* 8043242C 0042F36C  38 BF 00 7C */	addi r5, r31, 0x7c
 /* 80432430 0042F370  4B FE 9C 6D */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432434 0042F374  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432434 0042F374  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432438 0042F378  7F C4 F3 78 */	mr r4, r30
-/* 8043243C 0042F37C  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 8043243C 0042F37C  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432440 0042F380  38 7E 00 AC */	addi r3, r30, 0xac
 /* 80432444 0042F384  90 1E 00 9C */	stw r0, 0x9c(r30)
 /* 80432448 0042F388  38 BF 00 8C */	addi r5, r31, 0x8c
 /* 8043244C 0042F38C  4B FE 9C 51 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432450 0042F390  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432450 0042F390  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432454 0042F394  7F C4 F3 78 */	mr r4, r30
-/* 80432458 0042F398  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432458 0042F398  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 8043245C 0042F39C  38 7E 00 BC */	addi r3, r30, 0xbc
 /* 80432460 0042F3A0  90 1E 00 AC */	stw r0, 0xac(r30)
 /* 80432464 0042F3A4  38 BF 00 98 */	addi r5, r31, 0x98
 /* 80432468 0042F3A8  4B FE 9C 35 */	bl __ct__7TagParmFP13TagParametersPc
-/* 8043246C 0042F3AC  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 8043246C 0042F3AC  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432470 0042F3B0  7F C4 F3 78 */	mr r4, r30
-/* 80432474 0042F3B4  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432474 0042F3B4  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432478 0042F3B8  38 7E 00 CC */	addi r3, r30, 0xcc
 /* 8043247C 0042F3BC  90 1E 00 BC */	stw r0, 0xbc(r30)
 /* 80432480 0042F3C0  38 BF 00 A4 */	addi r5, r31, 0xa4
 /* 80432484 0042F3C4  4B FE 9C 19 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432488 0042F3C8  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432488 0042F3C8  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 8043248C 0042F3CC  7F C4 F3 78 */	mr r4, r30
-/* 80432490 0042F3D0  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432490 0042F3D0  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432494 0042F3D4  38 7E 00 DC */	addi r3, r30, 0xdc
 /* 80432498 0042F3D8  90 1E 00 CC */	stw r0, 0xcc(r30)
 /* 8043249C 0042F3DC  38 BF 00 B0 */	addi r5, r31, 0xb0
 /* 804324A0 0042F3E0  4B FE 9B FD */	bl __ct__7TagParmFP13TagParametersPc
-/* 804324A4 0042F3E4  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804324A4 0042F3E4  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804324A8 0042F3E8  7F C4 F3 78 */	mr r4, r30
-/* 804324AC 0042F3EC  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804324AC 0042F3EC  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804324B0 0042F3F0  38 7E 00 EC */	addi r3, r30, 0xec
 /* 804324B4 0042F3F4  90 1E 00 DC */	stw r0, 0xdc(r30)
 /* 804324B8 0042F3F8  38 BF 00 BC */	addi r5, r31, 0xbc
 /* 804324BC 0042F3FC  4B FE 9B E1 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804324C0 0042F400  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804324C0 0042F400  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804324C4 0042F404  7F C4 F3 78 */	mr r4, r30
-/* 804324C8 0042F408  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804324C8 0042F408  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804324CC 0042F40C  38 7E 00 FC */	addi r3, r30, 0xfc
 /* 804324D0 0042F410  90 1E 00 EC */	stw r0, 0xec(r30)
 /* 804324D4 0042F414  38 BF 00 CC */	addi r5, r31, 0xcc
 /* 804324D8 0042F418  4B FE 9B C5 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804324DC 0042F41C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804324DC 0042F41C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804324E0 0042F420  7F C4 F3 78 */	mr r4, r30
-/* 804324E4 0042F424  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804324E4 0042F424  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804324E8 0042F428  38 7E 01 0C */	addi r3, r30, 0x10c
 /* 804324EC 0042F42C  90 1E 00 FC */	stw r0, 0xfc(r30)
 /* 804324F0 0042F430  38 BF 00 DC */	addi r5, r31, 0xdc
 /* 804324F4 0042F434  4B FE 9B A9 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804324F8 0042F438  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804324F8 0042F438  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804324FC 0042F43C  7F C4 F3 78 */	mr r4, r30
-/* 80432500 0042F440  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432500 0042F440  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432504 0042F444  38 7E 01 1C */	addi r3, r30, 0x11c
 /* 80432508 0042F448  90 1E 01 0C */	stw r0, 0x10c(r30)
 /* 8043250C 0042F44C  38 BF 00 EC */	addi r5, r31, 0xec
 /* 80432510 0042F450  4B FE 9B 8D */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432514 0042F454  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432514 0042F454  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432518 0042F458  7F C4 F3 78 */	mr r4, r30
-/* 8043251C 0042F45C  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 8043251C 0042F45C  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432520 0042F460  38 7E 01 2C */	addi r3, r30, 0x12c
 /* 80432524 0042F464  90 1E 01 1C */	stw r0, 0x11c(r30)
 /* 80432528 0042F468  38 BF 00 FC */	addi r5, r31, 0xfc
@@ -255,114 +255,114 @@ __ct__Q34Game10GameConfig5ParmsFv:
 /* 80432534 0042F474  38 7E 01 3C */	addi r3, r30, 0x13c
 /* 80432538 0042F478  38 BF 01 0C */	addi r5, r31, 0x10c
 /* 8043253C 0042F47C  4B FE 9B 61 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432540 0042F480  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432540 0042F480  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432544 0042F484  7F C4 F3 78 */	mr r4, r30
-/* 80432548 0042F488  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432548 0042F488  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 8043254C 0042F48C  38 7E 01 4C */	addi r3, r30, 0x14c
 /* 80432550 0042F490  90 1E 01 3C */	stw r0, 0x13c(r30)
 /* 80432554 0042F494  38 BF 01 18 */	addi r5, r31, 0x118
 /* 80432558 0042F498  4B FE 9B 45 */	bl __ct__7TagParmFP13TagParametersPc
-/* 8043255C 0042F49C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 8043255C 0042F49C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432560 0042F4A0  7F C4 F3 78 */	mr r4, r30
-/* 80432564 0042F4A4  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432564 0042F4A4  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432568 0042F4A8  38 7E 01 5C */	addi r3, r30, 0x15c
 /* 8043256C 0042F4AC  90 1E 01 4C */	stw r0, 0x14c(r30)
 /* 80432570 0042F4B0  38 A2 23 BC */	addi r5, r2, lbl_8052071C@sda21
 /* 80432574 0042F4B4  4B FE 9B 29 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432578 0042F4B8  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432578 0042F4B8  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 8043257C 0042F4BC  7F C4 F3 78 */	mr r4, r30
-/* 80432580 0042F4C0  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432580 0042F4C0  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432584 0042F4C4  38 7E 01 6C */	addi r3, r30, 0x16c
 /* 80432588 0042F4C8  90 1E 01 5C */	stw r0, 0x15c(r30)
 /* 8043258C 0042F4CC  38 A2 23 C0 */	addi r5, r2, lbl_80520720@sda21
 /* 80432590 0042F4D0  4B FE 9B 0D */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432594 0042F4D4  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432594 0042F4D4  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432598 0042F4D8  7F C4 F3 78 */	mr r4, r30
-/* 8043259C 0042F4DC  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 8043259C 0042F4DC  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804325A0 0042F4E0  38 7E 01 7C */	addi r3, r30, 0x17c
 /* 804325A4 0042F4E4  90 1E 01 6C */	stw r0, 0x16c(r30)
 /* 804325A8 0042F4E8  38 A2 23 C8 */	addi r5, r2, lbl_80520728@sda21
 /* 804325AC 0042F4EC  4B FE 9A F1 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804325B0 0042F4F0  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804325B0 0042F4F0  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804325B4 0042F4F4  7F C4 F3 78 */	mr r4, r30
-/* 804325B8 0042F4F8  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804325B8 0042F4F8  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804325BC 0042F4FC  38 7E 01 8C */	addi r3, r30, 0x18c
 /* 804325C0 0042F500  90 1E 01 7C */	stw r0, 0x17c(r30)
 /* 804325C4 0042F504  38 BF 01 28 */	addi r5, r31, 0x128
 /* 804325C8 0042F508  4B FE 9A D5 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804325CC 0042F50C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804325CC 0042F50C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804325D0 0042F510  7F C4 F3 78 */	mr r4, r30
-/* 804325D4 0042F514  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804325D4 0042F514  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804325D8 0042F518  38 7E 01 9C */	addi r3, r30, 0x19c
 /* 804325DC 0042F51C  90 1E 01 8C */	stw r0, 0x18c(r30)
 /* 804325E0 0042F520  38 A2 23 D0 */	addi r5, r2, lbl_80520730@sda21
 /* 804325E4 0042F524  4B FE 9A B9 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804325E8 0042F528  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804325E8 0042F528  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804325EC 0042F52C  7F C4 F3 78 */	mr r4, r30
-/* 804325F0 0042F530  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804325F0 0042F530  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804325F4 0042F534  38 7E 01 AC */	addi r3, r30, 0x1ac
 /* 804325F8 0042F538  90 1E 01 9C */	stw r0, 0x19c(r30)
 /* 804325FC 0042F53C  38 A2 23 D8 */	addi r5, r2, lbl_80520738@sda21
 /* 80432600 0042F540  4B FE 9A 9D */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432604 0042F544  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432604 0042F544  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432608 0042F548  7F C4 F3 78 */	mr r4, r30
-/* 8043260C 0042F54C  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 8043260C 0042F54C  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432610 0042F550  38 7E 01 BC */	addi r3, r30, 0x1bc
 /* 80432614 0042F554  90 1E 01 AC */	stw r0, 0x1ac(r30)
 /* 80432618 0042F558  38 BF 01 34 */	addi r5, r31, 0x134
 /* 8043261C 0042F55C  4B FE 9A 81 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432620 0042F560  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432620 0042F560  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432624 0042F564  7F C4 F3 78 */	mr r4, r30
-/* 80432628 0042F568  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432628 0042F568  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 8043262C 0042F56C  38 7E 01 CC */	addi r3, r30, 0x1cc
 /* 80432630 0042F570  90 1E 01 BC */	stw r0, 0x1bc(r30)
 /* 80432634 0042F574  38 BF 01 40 */	addi r5, r31, 0x140
 /* 80432638 0042F578  4B FE 9A 65 */	bl __ct__7TagParmFP13TagParametersPc
-/* 8043263C 0042F57C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 8043263C 0042F57C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432640 0042F580  7F C4 F3 78 */	mr r4, r30
-/* 80432644 0042F584  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432644 0042F584  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432648 0042F588  38 7E 01 DC */	addi r3, r30, 0x1dc
 /* 8043264C 0042F58C  90 1E 01 CC */	stw r0, 0x1cc(r30)
 /* 80432650 0042F590  38 BF 01 50 */	addi r5, r31, 0x150
 /* 80432654 0042F594  4B FE 9A 49 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432658 0042F598  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432658 0042F598  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 8043265C 0042F59C  7F C4 F3 78 */	mr r4, r30
-/* 80432660 0042F5A0  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432660 0042F5A0  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432664 0042F5A4  38 7E 01 EC */	addi r3, r30, 0x1ec
 /* 80432668 0042F5A8  90 1E 01 DC */	stw r0, 0x1dc(r30)
 /* 8043266C 0042F5AC  38 BF 01 64 */	addi r5, r31, 0x164
 /* 80432670 0042F5B0  4B FE 9A 2D */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432674 0042F5B4  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432674 0042F5B4  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432678 0042F5B8  7F C4 F3 78 */	mr r4, r30
-/* 8043267C 0042F5BC  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 8043267C 0042F5BC  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432680 0042F5C0  38 7E 01 FC */	addi r3, r30, 0x1fc
 /* 80432684 0042F5C4  90 1E 01 EC */	stw r0, 0x1ec(r30)
 /* 80432688 0042F5C8  38 BF 01 74 */	addi r5, r31, 0x174
 /* 8043268C 0042F5CC  4B FE 9A 11 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432690 0042F5D0  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432690 0042F5D0  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432694 0042F5D4  7F C4 F3 78 */	mr r4, r30
-/* 80432698 0042F5D8  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432698 0042F5D8  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 8043269C 0042F5DC  38 7E 02 0C */	addi r3, r30, 0x20c
 /* 804326A0 0042F5E0  90 1E 01 FC */	stw r0, 0x1fc(r30)
 /* 804326A4 0042F5E4  38 BF 01 84 */	addi r5, r31, 0x184
 /* 804326A8 0042F5E8  4B FE 99 F5 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804326AC 0042F5EC  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804326AC 0042F5EC  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804326B0 0042F5F0  7F C4 F3 78 */	mr r4, r30
-/* 804326B4 0042F5F4  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804326B4 0042F5F4  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804326B8 0042F5F8  38 7E 02 1C */	addi r3, r30, 0x21c
 /* 804326BC 0042F5FC  90 1E 02 0C */	stw r0, 0x20c(r30)
 /* 804326C0 0042F600  38 BF 01 98 */	addi r5, r31, 0x198
 /* 804326C4 0042F604  4B FE 99 D9 */	bl __ct__7TagParmFP13TagParametersPc
-/* 804326C8 0042F608  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804326C8 0042F608  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804326CC 0042F60C  7F C4 F3 78 */	mr r4, r30
-/* 804326D0 0042F610  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804326D0 0042F610  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804326D4 0042F614  38 7E 02 2C */	addi r3, r30, 0x22c
 /* 804326D8 0042F618  90 1E 02 1C */	stw r0, 0x21c(r30)
 /* 804326DC 0042F61C  38 BF 01 A4 */	addi r5, r31, 0x1a4
 /* 804326E0 0042F620  4B FE 99 BD */	bl __ct__7TagParmFP13TagParametersPc
-/* 804326E4 0042F624  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 804326E4 0042F624  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 804326E8 0042F628  7F C4 F3 78 */	mr r4, r30
-/* 804326EC 0042F62C  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 804326EC 0042F62C  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 804326F0 0042F630  38 7E 02 3C */	addi r3, r30, 0x23c
 /* 804326F4 0042F634  90 1E 02 2C */	stw r0, 0x22c(r30)
 /* 804326F8 0042F638  38 BF 01 B4 */	addi r5, r31, 0x1b4
@@ -371,23 +371,23 @@ __ct__Q34Game10GameConfig5ParmsFv:
 /* 80432704 0042F644  38 7E 02 4C */	addi r3, r30, 0x24c
 /* 80432708 0042F648  38 BF 01 C0 */	addi r5, r31, 0x1c0
 /* 8043270C 0042F64C  4B FE 99 91 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432710 0042F650  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432710 0042F650  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432714 0042F654  7F C4 F3 78 */	mr r4, r30
-/* 80432718 0042F658  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432718 0042F658  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 8043271C 0042F65C  38 7E 02 5C */	addi r3, r30, 0x25c
 /* 80432720 0042F660  90 1E 02 4C */	stw r0, 0x24c(r30)
 /* 80432724 0042F664  38 BF 01 CC */	addi r5, r31, 0x1cc
 /* 80432728 0042F668  4B FE 99 75 */	bl __ct__7TagParmFP13TagParametersPc
-/* 8043272C 0042F66C  3C 60 80 4B */	lis r3, __vt__14PrimTagParm$$0i$$1@ha
+/* 8043272C 0042F66C  3C 60 80 4B */	lis r3, "__vt__14PrimTagParm<i>"@ha
 /* 80432730 0042F670  7F C4 F3 78 */	mr r4, r30
-/* 80432734 0042F674  38 03 5A E0 */	addi r0, r3, __vt__14PrimTagParm$$0i$$1@l
+/* 80432734 0042F674  38 03 5A E0 */	addi r0, r3, "__vt__14PrimTagParm<i>"@l
 /* 80432738 0042F678  38 7E 02 6C */	addi r3, r30, 0x26c
 /* 8043273C 0042F67C  90 1E 02 5C */	stw r0, 0x25c(r30)
 /* 80432740 0042F680  38 A2 23 DC */	addi r5, r2, lbl_8052073C@sda21
 /* 80432744 0042F684  4B FE 99 59 */	bl __ct__7TagParmFP13TagParametersPc
-/* 80432748 0042F688  3C 80 80 4B */	lis r4, __vt__14PrimTagParm$$0i$$1@ha
+/* 80432748 0042F688  3C 80 80 4B */	lis r4, "__vt__14PrimTagParm<i>"@ha
 /* 8043274C 0042F68C  7F C3 F3 78 */	mr r3, r30
-/* 80432750 0042F690  38 04 5A E0 */	addi r0, r4, __vt__14PrimTagParm$$0i$$1@l
+/* 80432750 0042F690  38 04 5A E0 */	addi r0, r4, "__vt__14PrimTagParm<i>"@l
 /* 80432754 0042F694  90 1E 02 6C */	stw r0, 0x26c(r30)
 /* 80432758 0042F698  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8043275C 0042F69C  83 C1 00 08 */	lwz r30, 8(r1)

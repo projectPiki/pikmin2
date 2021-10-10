@@ -650,7 +650,7 @@ lbl_802FCC68:
 /* 802FCCAC 002F9BEC  90 C1 00 08 */	stw r6, 8(r1)
 /* 802FCCB0 002F9BF0  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 802FCCB4 002F9BF4  90 01 00 10 */	stw r0, 0x10(r1)
-/* 802FCCB8 002F9BF8  48 00 24 8D */	bl createBodyWallCrashEffect__Q34Game10DangoMushi3ObjF10Vector3$$0f$$1
+/* 802FCCB8 002F9BF8  48 00 24 8D */	bl "createBodyWallCrashEffect__Q34Game10DangoMushi3ObjF10Vector3<f>"
 /* 802FCCBC 002F9BFC  80 7F 02 BC */	lwz r3, 0x2bc(r31)
 /* 802FCCC0 002F9C00  7F E4 FB 78 */	mr r4, r31
 /* 802FCCC4 002F9C04  38 A0 00 06 */	li r5, 6
@@ -697,7 +697,7 @@ doFinishStoneState__Q34Game10DangoMushi3ObjFv:
 /* 802FCD4C 002F9C8C  38 80 00 00 */	li r4, 0
 /* 802FCD50 002F9C90  C0 62 F0 48 */	lfs f3, lbl_8051D3A8@sda21(r2)
 /* 802FCD54 002F9C94  C0 82 F0 6C */	lfs f4, lbl_8051D3CC@sda21(r2)
-/* 802FCD58 002F9C98  4B E1 63 C5 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 802FCD58 002F9C98  4B E1 63 C5 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 802FCD5C 002F9C9C  7F E3 FB 78 */	mr r3, r31
 /* 802FCD60 002F9CA0  4B E0 A6 95 */	bl getStateID__Q24Game9EnemyBaseFv
 /* 802FCD64 002F9CA4  2C 03 00 06 */	cmpwi r3, 6
@@ -779,8 +779,8 @@ getWalkSmokeEffectMgr__Q34Game10DangoMushi3ObjFv:
 /* 802FCE50 002F9D90  38 63 02 E8 */	addi r3, r3, 0x2e8
 /* 802FCE54 002F9D94  4E 80 00 20 */	blr 
 
-.global getCommonEffectPos__Q34Game10DangoMushi3ObjFR10Vector3$$0f$$1
-getCommonEffectPos__Q34Game10DangoMushi3ObjFR10Vector3$$0f$$1:
+.global "getCommonEffectPos__Q34Game10DangoMushi3ObjFR10Vector3<f>"
+"getCommonEffectPos__Q34Game10DangoMushi3ObjFR10Vector3<f>":
 /* 802FCE58 002F9D98  C0 03 01 8C */	lfs f0, 0x18c(r3)
 /* 802FCE5C 002F9D9C  C0 22 F0 50 */	lfs f1, lbl_8051D3B0@sda21(r2)
 /* 802FCE60 002F9DA0  D0 04 00 00 */	stfs f0, 0(r4)
@@ -951,7 +951,7 @@ getSearchedTarget__Q34Game10DangoMushi3ObjFv:
 /* 802FD0B0 002F9FF0  80 E3 00 C0 */	lwz r7, 0xc0(r3)
 /* 802FD0B4 002F9FF4  C0 27 04 24 */	lfs f1, 0x424(r7)
 /* 802FD0B8 002F9FF8  C0 47 03 D4 */	lfs f2, 0x3d4(r7)
-/* 802FD0BC 002F9FFC  4B E1 5F 95 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
+/* 802FD0BC 002F9FFC  4B E1 5F 95 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
 /* 802FD0C0 002FA000  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802FD0C4 002FA004  7C 08 03 A6 */	mtlr r0
 /* 802FD0C8 002FA008  38 21 00 10 */	addi r1, r1, 0x10
@@ -983,7 +983,7 @@ rollingMove__Q34Game10DangoMushi3ObjFv:
 /* 802FD124 002FA064  C0 45 03 D4 */	lfs f2, 0x3d4(r5)
 /* 802FD128 002FA068  38 A0 00 00 */	li r5, 0
 /* 802FD12C 002FA06C  38 C0 00 00 */	li r6, 0
-/* 802FD130 002FA070  4B E1 5F 21 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
+/* 802FD130 002FA070  4B E1 5F 21 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
 lbl_802FD134:
 /* 802FD134 002FA074  28 03 00 00 */	cmplwi r3, 0
 /* 802FD138 002FA078  41 82 00 28 */	beq lbl_802FD160
@@ -1583,7 +1583,7 @@ lbl_802FD9E0:
 /* 802FD9EC 002FA92C  38 80 00 00 */	li r4, 0
 /* 802FD9F0 002FA930  38 A0 00 00 */	li r5, 0
 /* 802FD9F4 002FA934  38 C0 00 00 */	li r6, 0
-/* 802FD9F8 002FA938  4B E1 56 59 */	bl getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition$$0Q24Game4Navi$$1P23Condition$$0Q24Game4Piki$$1
+/* 802FD9F8 002FA938  4B E1 56 59 */	bl "getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
 /* 802FD9FC 002FA93C  28 03 00 00 */	cmplwi r3, 0
 /* 802FDA00 002FA940  41 82 00 28 */	beq lbl_802FDA28
 /* 802FDA04 002FA944  7C 64 1B 78 */	mr r4, r3
@@ -1734,8 +1734,8 @@ lbl_802FDBDC:
 /* 802FDC10 002FAB50  EF A1 00 32 */	fmuls f29, f1, f0
 /* 802FDC14 002FAB54  4B EA 20 49 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 802FDC18 002FAB58  38 00 00 00 */	li r0, 0
-/* 802FDC1C 002FAB5C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 802FDC20 002FAB60  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 802FDC1C 002FAB5C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 802FDC20 002FAB60  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 802FDC24 002FAB64  38 61 00 4C */	addi r3, r1, 0x4c
 /* 802FDC28 002FAB68  28 00 00 00 */	cmplwi r0, 0
 /* 802FDC2C 002FAB6C  90 81 00 10 */	stw r4, 0x10(r1)
@@ -2993,7 +2993,7 @@ lbl_802FEDEC:
 /* 802FEE00 002FBD40  38 80 00 00 */	li r4, 0
 /* 802FEE04 002FBD44  38 A0 02 A9 */	li r5, 0x2a9
 /* 802FEE08 002FBD48  38 C0 02 AA */	li r6, 0x2aa
-/* 802FEE0C 002FBD4C  48 0B 14 35 */	bl __ct__Q23efx10TChasePos2FP10Vector3$$0f$$1UsUs
+/* 802FEE0C 002FBD4C  48 0B 14 35 */	bl "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
 /* 802FEE10 002FBD50  3C 60 80 4D */	lis r3, __vt__Q23efx9TDangoRun@ha
 /* 802FEE14 002FBD54  38 03 61 38 */	addi r0, r3, __vt__Q23efx9TDangoRun@l
 /* 802FEE18 002FBD58  90 1E 00 00 */	stw r0, 0(r30)
@@ -3027,7 +3027,7 @@ setupEffect__Q34Game10DangoMushi3ObjFv:
 /* 802FEE78 002FBDB8  38 9F 01 8C */	addi r4, r31, 0x18c
 /* 802FEE7C 002FBDBC  90 65 00 10 */	stw r3, 0x10(r5)
 /* 802FEE80 002FBDC0  80 7F 02 FC */	lwz r3, 0x2fc(r31)
-/* 802FEE84 002FBDC4  48 0B 14 C1 */	bl setPosptr__Q23efx10TChasePos2FP10Vector3$$0f$$1
+/* 802FEE84 002FBDC4  48 0B 14 C1 */	bl "setPosptr__Q23efx10TChasePos2FP10Vector3<f>"
 /* 802FEE88 002FBDC8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802FEE8C 002FBDCC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802FEE90 002FBDD0  7C 08 03 A6 */	mtlr r0
@@ -3222,8 +3222,8 @@ createBodyDamageEffect__Q34Game10DangoMushi3ObjFv:
 /* 802FF13C 002FC07C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802FF140 002FC080  4E 80 00 20 */	blr 
 
-.global createBodyWallCrashEffect__Q34Game10DangoMushi3ObjF10Vector3$$0f$$1
-createBodyWallCrashEffect__Q34Game10DangoMushi3ObjF10Vector3$$0f$$1:
+.global "createBodyWallCrashEffect__Q34Game10DangoMushi3ObjF10Vector3<f>"
+"createBodyWallCrashEffect__Q34Game10DangoMushi3ObjF10Vector3<f>":
 /* 802FF144 002FC084  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802FF148 002FC088  7C 08 02 A6 */	mflr r0
 /* 802FF14C 002FC08C  3C A0 80 4B */	lis r5, __vt__Q23efx3Arg@ha
@@ -3320,7 +3320,7 @@ createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv:
 /* 802FF294 002FC1D4  4E 80 04 21 */	bctrl 
 /* 802FF298 002FC1D8  7F E3 FB 78 */	mr r3, r31
 /* 802FF29C 002FC1DC  38 9F 01 8C */	addi r4, r31, 0x18c
-/* 802FF2A0 002FC1E0  4B E0 48 B1 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 802FF2A0 002FC1E0  4B E0 48 B1 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 /* 802FF2A4 002FC1E4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802FF2A8 002FC1E8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802FF2AC 002FC1EC  7C 08 03 A6 */	mtlr r0
@@ -3458,7 +3458,7 @@ lbl_802FF468:
 /* 802FF484 002FC3C4  38 81 00 08 */	addi r4, r1, 8
 /* 802FF488 002FC3C8  C0 1F 01 90 */	lfs f0, 0x190(r31)
 /* 802FF48C 002FC3CC  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 802FF490 002FC3D0  4B E0 46 C1 */	bl createBounceEffect__Q24Game9EnemyBaseFRC10Vector3$$0f$$1f
+/* 802FF490 002FC3D0  4B E0 46 C1 */	bl "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
 lbl_802FF494:
 /* 802FF494 002FC3D4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802FF498 002FC3D8  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -3693,12 +3693,12 @@ lbl_802FF7A4:
 /* 802FF7B4 002FC6F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802FF7B8 002FC6F8  4E 80 00 20 */	blr 
 
-.global $$24$$2__dt__Q23efx15TDangoWallBreakFv
-$$24$$2__dt__Q23efx15TDangoWallBreakFv:
+.global "@4@__dt__Q23efx15TDangoWallBreakFv"
+"@4@__dt__Q23efx15TDangoWallBreakFv":
 /* 802FF7BC 002FC6FC  38 63 FF FC */	addi r3, r3, -4
 /* 802FF7C0 002FC700  4B FF FE E4 */	b __dt__Q23efx15TDangoWallBreakFv
 
-.global $$24$$2__dt__Q23efx13TDangoAttack2Fv
-$$24$$2__dt__Q23efx13TDangoAttack2Fv:
+.global "@4@__dt__Q23efx13TDangoAttack2Fv"
+"@4@__dt__Q23efx13TDangoAttack2Fv":
 /* 802FF7C4 002FC704  38 63 FF FC */	addi r3, r3, -4
 /* 802FF7C8 002FC708  4B FF FE 40 */	b __dt__Q23efx13TDangoAttack2Fv

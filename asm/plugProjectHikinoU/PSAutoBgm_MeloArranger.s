@@ -210,12 +210,12 @@ lbl_8033F12C:
 /* 8033F140 0033C080  38 21 00 10 */	addi r1, r1, 0x10
 /* 8033F144 0033C084  4E 80 00 20 */	blr 
 
-.global $$216$$2__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv
-$$216$$2__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv:
+.global "@16@__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv"
+"@16@__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv":
 /* 8033F148 0033C088  38 63 FF F0 */	addi r3, r3, -16
 /* 8033F14C 0033C08C  4B FF FF 64 */	b __dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv
 
-.global $$216$$2__dt__Q29PSAutoBgm11MeloArrBaseFv
-$$216$$2__dt__Q29PSAutoBgm11MeloArrBaseFv:
+.global "@16@__dt__Q29PSAutoBgm11MeloArrBaseFv"
+"@16@__dt__Q29PSAutoBgm11MeloArrBaseFv":
 /* 8033F150 0033C090  38 63 FF F0 */	addi r3, r3, -16
 /* 8033F154 0033C094  4B FF FE DC */	b __dt__Q29PSAutoBgm11MeloArrBaseFv

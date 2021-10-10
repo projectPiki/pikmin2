@@ -938,8 +938,8 @@ getRandFruitsPlant__Q34Game8Imomushi3ObjFv:
 /* 802BCDF0 002B9D30  38 63 00 30 */	addi r3, r3, 0x30
 lbl_802BCDF4:
 /* 802BCDF4 002B9D34  38 00 00 00 */	li r0, 0
-/* 802BCDF8 002B9D38  3C 80 80 4B */	lis r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@ha
-/* 802BCDFC 002B9D3C  38 84 05 60 */	addi r4, r4, __vt__26Iterator$$0Q24Game8BaseItem$$1@l
+/* 802BCDF8 002B9D38  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+/* 802BCDFC 002B9D3C  38 84 05 60 */	addi r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
 /* 802BCE00 002B9D40  90 01 00 20 */	stw r0, 0x20(r1)
 /* 802BCE04 002B9D44  28 00 00 00 */	cmplwi r0, 0
 /* 802BCE08 002B9D48  90 81 00 14 */	stw r4, 0x14(r1)
@@ -1152,7 +1152,7 @@ startClimbPlant__Q34Game8Imomushi3ObjFP8CollPart:
 /* 802BD108 002BA048  4B E7 B1 71 */	bl getTube__8CollPartFRQ23Sys4Tube
 /* 802BD10C 002BA04C  38 61 00 08 */	addi r3, r1, 8
 /* 802BD110 002BA050  38 9E 02 CC */	addi r4, r30, 0x2cc
-/* 802BD114 002BA054  48 15 89 91 */	bl getAxisVector__Q23Sys4TubeFR10Vector3$$0f$$1
+/* 802BD114 002BA054  48 15 89 91 */	bl "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
 /* 802BD118 002BA058  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 802BD11C 002BA05C  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 802BD120 002BA060  C0 61 00 08 */	lfs f3, 8(r1)

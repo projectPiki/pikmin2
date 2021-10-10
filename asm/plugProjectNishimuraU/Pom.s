@@ -906,8 +906,8 @@ shotPikmin__Q34Game3Pom3ObjFv:
 /* 80255410 00252350  7F C5 01 D6 */	mullw r30, r5, r0
 /* 80255414 00252354  4B F4 A8 49 */	bl __ct__Q24Game8StickersFPQ24Game8Creature
 /* 80255418 00252358  38 00 00 00 */	li r0, 0
-/* 8025541C 0025235C  3C 60 80 4B */	lis r3, __vt__26Iterator$$0Q24Game8Creature$$1@ha
-/* 80255420 00252360  38 83 BC 84 */	addi r4, r3, __vt__26Iterator$$0Q24Game8Creature$$1@l
+/* 8025541C 0025235C  3C 60 80 4B */	lis r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+/* 80255420 00252360  38 83 BC 84 */	addi r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
 /* 80255424 00252364  38 61 00 64 */	addi r3, r1, 0x64
 /* 80255428 00252368  28 00 00 00 */	cmplwi r0, 0
 /* 8025542C 0025236C  90 81 00 28 */	stw r4, 0x28(r1)
@@ -1167,7 +1167,7 @@ lbl_80255760:
 /* 802557EC 0025272C  7F A3 EB 78 */	mr r3, r29
 /* 802557F0 00252730  38 81 00 38 */	addi r4, r1, 0x38
 /* 802557F4 00252734  38 A0 00 00 */	li r5, 0
-/* 802557F8 00252738  4B EE 59 B1 */	bl setPosition__Q24Game8CreatureFR10Vector3$$0f$$1b
+/* 802557F8 00252738  4B EE 59 B1 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 802557FC 0025273C  80 7C 02 D8 */	lwz r3, 0x2d8(r28)
 /* 80255800 00252740  4B FD A2 65 */	bl inc__Q24Game8BirthMgrFi
 lbl_80255804:

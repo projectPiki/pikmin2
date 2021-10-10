@@ -429,7 +429,7 @@ lbl_80270E80:
 /* 80270EBC 0026DDFC  38 A1 00 14 */	addi r5, r1, 0x14
 /* 80270EC0 0026DE00  38 80 00 0B */	li r4, 0xb
 /* 80270EC4 0026DE04  38 C0 00 02 */	li r6, 2
-/* 80270EC8 0026DE08  4B FE 28 B9 */	bl startRumble__Q24Game9RumbleMgrFiR10Vector3$$0f$$1i
+/* 80270EC8 0026DE08  4B FE 28 B9 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 /* 80270ECC 0026DE0C  48 00 00 64 */	b lbl_80270F30
 lbl_80270ED0:
 /* 80270ED0 0026DE10  28 00 03 E8 */	cmplwi r0, 0x3e8
@@ -749,7 +749,7 @@ exec__Q34Game5Sarai10StateFlickFPQ24Game9EnemyBase:
 /* 80271320 0026E260  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 80271324 0026E264  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 80271328 0026E268  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 8027132C 0026E26C  4B EA 1D F1 */	bl flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition$$0Q24Game4Piki$$1
+/* 8027132C 0026E26C  4B EA 1D F1 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 80271330 0026E270  C0 02 CD F8 */	lfs f0, lbl_8051B158@sda21(r2)
 /* 80271334 0026E274  D0 1F 02 0C */	stfs f0, 0x20c(r31)
 /* 80271338 0026E278  48 00 00 98 */	b lbl_802713D0
@@ -1060,7 +1060,7 @@ lbl_80271770:
 /* 8027177C 0026E6BC  C0 25 08 94 */	lfs f1, 0x894(r5)
 /* 80271780 0026E6C0  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 80271784 0026E6C4  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 80271788 0026E6C8  4B EA 3E 55 */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 80271788 0026E6C8  4B EA 3E 55 */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 lbl_8027178C:
 /* 8027178C 0026E6CC  80 7E 00 C0 */	lwz r3, 0xc0(r30)
 /* 80271790 0026E6D0  C0 03 08 6C */	lfs f0, 0x86c(r3)
@@ -1783,7 +1783,7 @@ lbl_802721D8:
 /* 802721E4 0026F124  C0 25 08 BC */	lfs f1, 0x8bc(r5)
 /* 802721E8 0026F128  C0 45 03 0C */	lfs f2, 0x30c(r5)
 /* 802721EC 0026F12C  C0 65 03 34 */	lfs f3, 0x334(r5)
-/* 802721F0 0026F130  4B EA 33 ED */	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3$$0f$$1fff
+/* 802721F0 0026F130  4B EA 33 ED */	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 lbl_802721F4:
 /* 802721F4 0026F134  7F E3 FB 78 */	mr r3, r31
 /* 802721F8 0026F138  48 00 14 A5 */	bl getCatchTargetNum__Q34Game5Sarai3ObjFv

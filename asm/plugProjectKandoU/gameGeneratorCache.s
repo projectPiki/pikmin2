@@ -236,7 +236,7 @@ lbl_801F1C04:
 /* 801F1C0C 001EEB4C  54 7F 06 3E */	clrlwi r31, r3, 0x18
 /* 801F1C10 001EEB50  38 61 00 08 */	addi r3, r1, 8
 /* 801F1C14 001EEB54  38 81 00 14 */	addi r4, r1, 0x14
-/* 801F1C18 001EEB58  48 21 FD 79 */	bl read__10Vector3$$0f$$1FR6Stream
+/* 801F1C18 001EEB58  48 21 FD 79 */	bl "read__10Vector3<f>FR6Stream"
 /* 801F1C1C 001EEB5C  57 E0 07 3E */	clrlwi r0, r31, 0x1c
 /* 801F1C20 001EEB60  7C 00 E0 00 */	cmpw r0, r28
 /* 801F1C24 001EEB64  40 82 00 08 */	bne lbl_801F1C2C
@@ -557,12 +557,12 @@ loadPikiheads__Q24Game14GeneratorCacheFv:
 /* 801F2044 001EEF84  7C 80 3A 14 */	add r4, r0, r7
 /* 801F2048 001EEF88  7C 86 22 14 */	add r4, r6, r4
 /* 801F204C 001EEF8C  48 22 38 AD */	bl __ct__9RamStreamFPvi
-/* 801F2050 001EEF90  3C C0 80 51 */	lis r6, zero__10Vector3$$0f$$1@ha
+/* 801F2050 001EEF90  3C C0 80 51 */	lis r6, "zero__10Vector3<f>"@ha
 /* 801F2054 001EEF94  3C A0 80 4B */	lis r5, __vt__Q24Game15CreatureInitArg@ha
 /* 801F2058 001EEF98  3C 80 80 4B */	lis r4, __vt__Q24Game11ItemInitArg@ha
 /* 801F205C 001EEF9C  3C 60 80 4B */	lis r3, __vt__Q34Game12ItemPikihead7InitArg@ha
 /* 801F2060 001EEFA0  C3 E2 B8 68 */	lfs f31, lbl_80519BC8@sda21(r2)
-/* 801F2064 001EEFA4  3B 66 41 E4 */	addi r27, r6, zero__10Vector3$$0f$$1@l
+/* 801F2064 001EEFA4  3B 66 41 E4 */	addi r27, r6, "zero__10Vector3<f>"@l
 /* 801F2068 001EEFA8  3B 85 A2 F4 */	addi r28, r5, __vt__Q24Game15CreatureInitArg@l
 /* 801F206C 001EEFAC  3B A4 2C 7C */	addi r29, r4, __vt__Q24Game11ItemInitArg@l
 /* 801F2070 001EEFB0  3B C3 2C 70 */	addi r30, r3, __vt__Q34Game12ItemPikihead7InitArg@l
@@ -1037,8 +1037,8 @@ savePikiheads__Q24Game14GeneratorCacheFv:
 /* 801F26D0 001EF610  38 63 00 30 */	addi r3, r3, 0x30
 lbl_801F26D4:
 /* 801F26D4 001EF614  38 00 00 00 */	li r0, 0
-/* 801F26D8 001EF618  3C 80 80 4B */	lis r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@ha
-/* 801F26DC 001EF61C  38 84 05 A4 */	addi r4, r4, __vt__36Iterator$$0Q34Game12ItemPikihead4Item$$1@l
+/* 801F26D8 001EF618  3C 80 80 4B */	lis r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+/* 801F26DC 001EF61C  38 84 05 A4 */	addi r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
 /* 801F26E0 001EF620  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801F26E4 001EF624  28 00 00 00 */	cmplwi r0, 0
 /* 801F26E8 001EF628  90 81 00 08 */	stw r4, 8(r1)
