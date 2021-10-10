@@ -143,6 +143,13 @@ PelletConfig::TParms::TParms()
     : TagParameters("PelletConfig")
     , name(this, "name")
     , archive(this, "archive")
+    , txtArchive(this, "txt_archive")
+    , bmd(this, "bmd")
+    , animMgr(this, "animmgr")
+    , colltree(this, "colltree")
+    , radius(this, "radius")
+    , pRadius(this, "p_radius")
+    , height(this, "height")
 {
 }
 
@@ -150,6 +157,7 @@ PelletConfig::TParms::TParms()
  * --INFO--
  * Address:	801B43C4
  * Size:	000060
+ */
 
 
 TagParameters::~TagParameters()
@@ -182,13 +190,14 @@ TagParameters::~TagParameters()
       mtlr      r0
       addi      r1, r1, 0x10
       blr
-
+      */
 }
 
 /*
  * --INFO--
  * Address:	801B4424
  * Size:	000084
+ */
 
 namespace Game {
     void PelletConfigList::getPelletConfig(char*)
@@ -236,6 +245,7 @@ namespace Game {
           mtlr      r0
           addi      r1, r1, 0x20
           blr
+          */
 
     }
 
@@ -243,6 +253,7 @@ namespace Game {
      * --INFO--
      * Address:	801B44A8
      * Size:	00007C
+     */
 
 
     void PelletConfigList::getPelletConfig(int)
@@ -284,6 +295,7 @@ namespace Game {
           mtlr      r0
           addi      r1, r1, 0x10
           blr
+          */
 
     }
 
@@ -291,6 +303,7 @@ namespace Game {
      * --INFO--
      * Address:	801B4524
      * Size:	000044
+     */
 
 
     void PelletConfigList::getPelletConfig_ByDictionaryNo(int)
@@ -320,35 +333,14 @@ namespace Game {
         .loc_0x3C:
           li        r3, 0
           blr
-
+          */
     }
-
-    /*
-     * --INFO--
-     * Address:	........
-     * Size:	000068
-
-
-    // void PelletConfigList::dump(void)
-    //{
-    // UNUSED FUNCTION
-    //}
-
-    /*
-     * --INFO--
-     * Address:	........
-     * Size:	00009C
-
-
-    // void PelletConfigList::load((char*))
-    //{
-    // UNUSED FUNCTION
-    //}
 
     /*
      * --INFO--
      * Address:	801B4568
      * Size:	000130
+     */
 
 
     void PelletConfigList::read(Stream&)
@@ -441,13 +433,14 @@ namespace Game {
           mtlr      r0
           addi      r1, r1, 0x20
           blr
-
+          */
     }
 
     /*
      * --INFO--
      * Address:	801B4698
      * Size:	000098
+     */
 
     PelletConfig::~PelletConfig()
     {
@@ -495,25 +488,15 @@ namespace Game {
           mtlr      r0
           addi      r1, r1, 0x10
           blr
+          */
 
     }
-
-    /*
-     * --INFO--
-     * Address:	........
-     * Size:	000004
-
-    /*
-    void PelletConfigList::write((Stream&))
-    {
-            // UNUSED FUNCTION
-    }
-
 
     /*
      * --INFO--
      * Address:	801B4730
      * Size:	000004
+     */
 
 } // namespace Game
 void TagParm::flushValue() { return; }
@@ -522,6 +505,7 @@ void TagParm::flushValue() { return; }
  * --INFO--
  * Address:	801B4734
  * Size:	000060
+ */
 
 namespace Game {
     PelletConfigList::~PelletConfigList()
@@ -554,7 +538,7 @@ namespace Game {
           mtlr      r0
           addi      r1, r1, 0x10
           blr
+          */
 
     }
-    */
 } // namespace Game
