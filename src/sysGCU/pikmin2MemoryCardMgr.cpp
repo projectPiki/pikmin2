@@ -2,9 +2,6 @@
 #include "Game/MemoryCard/PlayerFileInfo.h"
 #include "Game/MemoryCard/Resource.h"
 
-extern char
-    lbl_8049ADF4[49]; // "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
-
 namespace Game {
 namespace MemoryCard {
     /*
@@ -76,34 +73,83 @@ namespace MemoryCard {
      * Size:	00006C
      */
     Resource::~Resource() { m_mgr->destroyResource(); }
-
-    /*
-     * --INFO--
-     * Address:	80442B20
-     * Size:	00007C
-     */
-    Mgr::Mgr()
-        : MemoryCardMgr()
-    {
-        this->_D8 = 0;
-        this->_DC = 0;
-        this->_E0 = 0;
-        this->_E4 = 0;
-        this->_E5 = 0;
-        this->_E6 = 0;
-        this->_E7 = 0;
-
-        OSReport(lbl_8049ADF4, 0xC000, 0xC000, 0x3C);
-    }
-
-    /*
-     * --INFO--
-     * Address:	80442B9C
-     * Size:	000030
-     */
-    u32 Mgr::isErrorOccured() { return !(getCardStatus() == MCS_Error); }
 } // namespace MemoryCard
 } // namespace Game
+
+// void Game::MemoryCard::Resource::__dt(void)
+// {
+/*
+.loc_0x0:
+
+
+}
+
+/*
+* --INFO--
+* Address:	80442B20
+* Size:	00007C
+
+void Game::MemoryCard::Mgr::__ct(void)
+{
+/*
+.loc_0x0:
+  stwu      r1, -0x10(r1)
+  mflr      r0
+  stw       r0, 0x14(r1)
+  stw       r31, 0xC(r1)
+  mr        r31, r3
+  bl        -0x2544
+  lis       r4, 0x804F
+  lis       r3, 0x804A
+  subi      r0, r4, 0x3054
+  li        r6, 0x3C
+  stw       r0, 0x0(r31)
+  li        r0, 0
+  lis       r4, 0x1
+  subi      r3, r3, 0x520C
+  stw       r0, 0xD8(r31)
+  subi      r4, r4, 0x4000
+  mr        r5, r4
+  stw       r0, 0xDC(r31)
+  stw       r0, 0xE0(r31)
+  stb       r0, 0xE4(r31)
+  stb       r0, 0xE5(r31)
+  stb       r0, 0xE6(r31)
+  stb       r0, 0xE7(r31)
+  crclr     6, 0x6
+  bl        -0x355494
+  lwz       r0, 0x14(r1)
+  mr        r3, r31
+  lwz       r31, 0xC(r1)
+  mtlr      r0
+  addi      r1, r1, 0x10
+  blr
+
+}
+
+/*
+* --INFO--
+* Address:	80442B9C
+* Size:	000030
+
+void Game::MemoryCard::Mgr::isErrorOccured(void)
+{
+/*
+.loc_0x0:
+  stwu      r1, -0x10(r1)
+  mflr      r0
+  stw       r0, 0x14(r1)
+  bl        0x2F64
+  subfic    r4, r3, 0x2
+  subi      r0, r3, 0x2
+  or        r0, r4, r0
+  rlwinm    r3,r0,1,31,31
+  lwz       r0, 0x14(r1)
+  mtlr      r0
+  addi      r1, r1, 0x10
+  blr
+
+}
 
 /*
 * --INFO--
