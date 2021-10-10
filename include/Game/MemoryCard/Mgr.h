@@ -6,6 +6,8 @@
 namespace Game {
 namespace MemoryCard {
     struct Mgr {
+        ~Mgr() { destroyResource(); }
+
         void destroyResource();
     };
 } // namespace MemoryCard

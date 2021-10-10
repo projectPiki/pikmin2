@@ -72,7 +72,7 @@ namespace MemoryCard {
      * Address:	80442AB4
      * Size:	00006C
      */
-    Resource::~Resource() { m_mgr->destroyResource(); }
+    Resource::~Resource() { }
 } // namespace MemoryCard
 } // namespace Game
 
