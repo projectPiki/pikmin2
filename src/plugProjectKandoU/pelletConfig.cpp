@@ -1,4 +1,4 @@
-#include "PrimTagParm.h"
+#include "Game/pelletConfig.h"
 
 /*
  * --INFO--
@@ -15,32 +15,14 @@
  * Address:	801B3EEC
  * Size:	000048
  */
-void Game::PelletConfigList::__ct(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x25D490
-	  lis       r3, 0x804B
-	  li        r0, 0
-	  addi      r4, r3, 0x5B40
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x1C(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	  */
+namespace Game {
 
+	PelletConfigList::PelletConfigList()
+	{
+		this->pelletConfigArray = nullptr;
+		this->count = 0;
+	}
 }
-
 /*
  * --INFO--
  * Address:	801B3F34
@@ -139,7 +121,7 @@ void Game::PelletConfigList::__ct(void)
 	  blr
 	  */
 
-}
+//}
 
 /*
  * --INFO--
@@ -735,10 +717,10 @@ void Game::PelletConfigList::write((Stream&))
  * Address:	801B4730
  * Size:	000004
  */
-void TagParm::flushValue()
-{
-	return;
-}
+//void TagParm::flushValue()
+//{
+//	return;
+//}
 
 /*
  * --INFO--

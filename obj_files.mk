@@ -521,9 +521,9 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/data_0.o\
 	
 TEXT_PT1:=\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig.o\
+	$(BUILD_DIR)/asm/data_pellet.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig2.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiConstants.o\
@@ -1081,7 +1081,6 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/camera.o\
-	$(BUILD_DIR)/asm/data_tagparms.o\
 	$(BUILD_DIR)/src/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/asm/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/src/sysCommonU/sysTemplates.o\

@@ -2,46 +2,7 @@
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 
- .global "__vt__15PrimTagParm<Us>"
-"__vt__15PrimTagParm<Us>":
-  .4byte 0
-  .4byte 0
-  .4byte "doWrite__15PrimTagParm<Us>FR6Stream"
-  .4byte "doRead__15PrimTagParm<Us>FR6Stream"
-  .4byte flushValue__7TagParmFv
-  .4byte "doDump__15PrimTagParm<Us>Fv"
-.global "__vt__15PrimTagParm<Ux>"
-"__vt__15PrimTagParm<Ux>":
-  .4byte 0
-  .4byte 0
-  .4byte "doWrite__15PrimTagParm<Ux>FR6Stream"
-  .4byte "doRead__15PrimTagParm<Ux>FR6Stream"
-  .4byte flushValue__7TagParmFv
-  .4byte "doDump__15PrimTagParm<Ux>Fv"
-.global "__vt__25PrimTagParm<10Vector3<f>>"
-"__vt__25PrimTagParm<10Vector3<f>>":
-  .4byte 0
-  .4byte 0
-  .4byte "doWrite__25PrimTagParm<10Vector3<f>>FR6Stream"
-  .4byte "doRead__25PrimTagParm<10Vector3<f>>FR6Stream"
-  .4byte flushValue__7TagParmFv
-  .4byte "doDump__25PrimTagParm<10Vector3<f>>Fv"
-.global "__vt__14PrimTagParm<i>"
-"__vt__14PrimTagParm<i>":
-  .4byte 0
-  .4byte 0
-  .4byte "doWrite__14PrimTagParm<i>FR6Stream"
-  .4byte "doRead__14PrimTagParm<i>FR6Stream"
-  .4byte flushValue__7TagParmFv
-  .4byte "doDump__14PrimTagParm<i>Fv"
-.global "__vt__14PrimTagParm<f>"
-"__vt__14PrimTagParm<f>":
-  .4byte 0
-  .4byte 0
-  .4byte "doWrite__14PrimTagParm<f>FR6Stream"
-  .4byte "doRead__14PrimTagParm<f>FR6Stream"
-  .4byte flushValue__7TagParmFv
-  .4byte "doDump__14PrimTagParm<f>Fv"
+
 .global __vt__13TagParameters
 __vt__13TagParameters:
   .4byte 0
@@ -50,26 +11,6 @@ __vt__13TagParameters:
   .4byte getChildCount__5CNodeFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game16PelletConfigListFv
-__ct__Q24Game16PelletConfigListFv:
-/* 801B3EEC 001B0E2C  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 801B3EF0 001B0E30  7C 08 02 A6 */	mflr r0
-/* 801B3EF4 001B0E34  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801B3EF8 001B0E38  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 801B3EFC 001B0E3C  7C 7F 1B 78 */	mr r31, r3
-/* 801B3F00 001B0E40  48 25 D4 91 */	bl __ct__5CNodeFv
-/* 801B3F04 001B0E44  3C 60 80 4B */	lis r3, __vt__Q24Game16PelletConfigList@ha
-/* 801B3F08 001B0E48  38 00 00 00 */	li r0, 0
-/* 801B3F0C 001B0E4C  38 83 5B 40 */	addi r4, r3, __vt__Q24Game16PelletConfigList@l
-/* 801B3F10 001B0E50  7F E3 FB 78 */	mr r3, r31
-/* 801B3F14 001B0E54  90 9F 00 00 */	stw r4, 0(r31)
-/* 801B3F18 001B0E58  90 1F 00 1C */	stw r0, 0x1c(r31)
-/* 801B3F1C 001B0E5C  90 1F 00 18 */	stw r0, 0x18(r31)
-/* 801B3F20 001B0E60  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 801B3F24 001B0E64  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 801B3F28 001B0E68  7C 08 03 A6 */	mtlr r0
-/* 801B3F2C 001B0E6C  38 21 00 10 */	addi r1, r1, 0x10
-/* 801B3F30 001B0E70  4E 80 00 20 */	blr 
 
 .global __ct__Q24Game12PelletConfigFv
 __ct__Q24Game12PelletConfigFv:
@@ -627,3 +568,35 @@ lbl_801B4714:
 /* 801B4724 001B1664  7C 08 03 A6 */	mtlr r0
 /* 801B4728 001B1668  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B472C 001B166C  4E 80 00 20 */	blr 
+
+.global flushValue__7TagParmFv
+flushValue__7TagParmFv:
+blr
+
+.global __dt__Q24Game16PelletConfigListFv
+__dt__Q24Game16PelletConfigListFv:
+/* 801B4734 001B1674  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 801B4738 001B1678  7C 08 02 A6 */	mflr r0
+/* 801B473C 001B167C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 801B4740 001B1680  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 801B4744 001B1684  7C 9F 23 78 */	mr r31, r4
+/* 801B4748 001B1688  93 C1 00 08 */	stw r30, 8(r1)
+/* 801B474C 001B168C  7C 7E 1B 79 */	or. r30, r3, r3
+/* 801B4750 001B1690  41 82 00 28 */	beq lbl_801B4778
+/* 801B4754 001B1694  3C A0 80 4B */	lis r5, __vt__Q24Game16PelletConfigList@ha
+/* 801B4758 001B1698  38 80 00 00 */	li r4, 0
+/* 801B475C 001B169C  38 05 5B 40 */	addi r0, r5, __vt__Q24Game16PelletConfigList@l
+/* 801B4760 001B16A0  90 1E 00 00 */	stw r0, 0(r30)
+/* 801B4764 001B16A4  48 25 CE 25 */	bl __dt__5CNodeFv
+/* 801B4768 001B16A8  7F E0 07 35 */	extsh. r0, r31
+/* 801B476C 001B16AC  40 81 00 0C */	ble lbl_801B4778
+/* 801B4770 001B16B0  7F C3 F3 78 */	mr r3, r30
+/* 801B4774 001B16B4  4B E6 F9 41 */	bl __dl__FPv
+lbl_801B4778:
+/* 801B4778 001B16B8  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 801B477C 001B16BC  7F C3 F3 78 */	mr r3, r30
+/* 801B4780 001B16C0  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 801B4784 001B16C4  83 C1 00 08 */	lwz r30, 8(r1)
+/* 801B4788 001B16C8  7C 08 03 A6 */	mtlr r0
+/* 801B478C 001B16CC  38 21 00 10 */	addi r1, r1, 0x10
+/* 801B4790 001B16D0  4E 80 00 20 */	blr 
