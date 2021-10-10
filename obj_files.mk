@@ -1164,4 +1164,3 @@ TEXT_O_FILES:=\
 
 GROUP_1_FILES:=\
 	$(BUILD_DIR)/asm/rodata_2.o\
-	$(BUILD_DIR)/asm/data_1.o\
