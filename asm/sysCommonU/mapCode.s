@@ -40,15 +40,15 @@ __ct__Q27MapCode3MgrFv:
 /* 8041C48C 004193CC  7C 7F 1B 78 */	mr r31, r3
 /* 8041C490 004193D0  4B FF 4F 01 */	bl __ct__5CNodeFv
 /* 8041C494 004193D4  3C 80 80 4B */	lis r4, __vt__16GenericContainer@ha
-/* 8041C498 004193D8  3C 60 80 4F */	lis r3, "__vt__26Container<Q27MapCode4Code>"@ha
+/* 8041C498 004193D8  3C 60 80 4F */	lis r3, __vt__26Container$$0Q27MapCode4Code$$1@ha
 /* 8041C49C 004193DC  38 04 AC DC */	addi r0, r4, __vt__16GenericContainer@l
-/* 8041C4A0 004193E0  3C 80 80 4F */	lis r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@ha
+/* 8041C4A0 004193E0  3C 80 80 4F */	lis r4, __vt__31ArrayContainer$$0Q27MapCode4Code$$1@ha
 /* 8041C4A4 004193E4  90 1F 00 00 */	stw r0, 0(r31)
-/* 8041C4A8 004193E8  38 03 B9 B0 */	addi r0, r3, "__vt__26Container<Q27MapCode4Code>"@l
+/* 8041C4A8 004193E8  38 03 B9 B0 */	addi r0, r3, __vt__26Container$$0Q27MapCode4Code$$1@l
 /* 8041C4AC 004193EC  3C 60 80 4F */	lis r3, __vt__Q37MapCode3Mgr9CodeArray@ha
 /* 8041C4B0 004193F0  38 C0 00 00 */	li r6, 0
 /* 8041C4B4 004193F4  90 1F 00 00 */	stw r0, 0(r31)
-/* 8041C4B8 004193F8  38 A4 B9 68 */	addi r5, r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@l
+/* 8041C4B8 004193F8  38 A4 B9 68 */	addi r5, r4, __vt__31ArrayContainer$$0Q27MapCode4Code$$1@l
 /* 8041C4BC 004193FC  38 80 00 01 */	li r4, 1
 /* 8041C4C0 00419400  38 03 B9 20 */	addi r0, r3, __vt__Q37MapCode3Mgr9CodeArray@l
 /* 8041C4C4 00419404  98 DF 00 18 */	stb r6, 0x18(r31)
@@ -79,12 +79,12 @@ __dt__Q37MapCode3Mgr9CodeArrayFv:
 /* 8041C51C 0041945C  38 04 B9 20 */	addi r0, r4, __vt__Q37MapCode3Mgr9CodeArray@l
 /* 8041C520 00419460  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041C524 00419464  41 82 00 38 */	beq lbl_8041C55C
-/* 8041C528 00419468  3C 80 80 4F */	lis r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@ha
-/* 8041C52C 0041946C  38 04 B9 68 */	addi r0, r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@l
+/* 8041C528 00419468  3C 80 80 4F */	lis r4, __vt__31ArrayContainer$$0Q27MapCode4Code$$1@ha
+/* 8041C52C 0041946C  38 04 B9 68 */	addi r0, r4, __vt__31ArrayContainer$$0Q27MapCode4Code$$1@l
 /* 8041C530 00419470  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041C534 00419474  41 82 00 28 */	beq lbl_8041C55C
-/* 8041C538 00419478  3C 80 80 4F */	lis r4, "__vt__26Container<Q27MapCode4Code>"@ha
-/* 8041C53C 0041947C  38 04 B9 B0 */	addi r0, r4, "__vt__26Container<Q27MapCode4Code>"@l
+/* 8041C538 00419478  3C 80 80 4F */	lis r4, __vt__26Container$$0Q27MapCode4Code$$1@ha
+/* 8041C53C 0041947C  38 04 B9 B0 */	addi r0, r4, __vt__26Container$$0Q27MapCode4Code$$1@l
 /* 8041C540 00419480  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041C544 00419484  41 82 00 18 */	beq lbl_8041C55C
 /* 8041C548 00419488  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -106,8 +106,8 @@ lbl_8041C56C:
 /* 8041C580 004194C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041C584 004194C4  4E 80 00 20 */	blr 
 
-.global "__dt__31ArrayContainer<Q27MapCode4Code>Fv"
-"__dt__31ArrayContainer<Q27MapCode4Code>Fv":
+.global __dt__31ArrayContainer$$0Q27MapCode4Code$$1Fv
+__dt__31ArrayContainer$$0Q27MapCode4Code$$1Fv:
 /* 8041C588 004194C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041C58C 004194CC  7C 08 02 A6 */	mflr r0
 /* 8041C590 004194D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -116,12 +116,12 @@ lbl_8041C56C:
 /* 8041C59C 004194DC  93 C1 00 08 */	stw r30, 8(r1)
 /* 8041C5A0 004194E0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8041C5A4 004194E4  41 82 00 48 */	beq lbl_8041C5EC
-/* 8041C5A8 004194E8  3C 80 80 4F */	lis r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@ha
-/* 8041C5AC 004194EC  38 04 B9 68 */	addi r0, r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@l
+/* 8041C5A8 004194E8  3C 80 80 4F */	lis r4, __vt__31ArrayContainer$$0Q27MapCode4Code$$1@ha
+/* 8041C5AC 004194EC  38 04 B9 68 */	addi r0, r4, __vt__31ArrayContainer$$0Q27MapCode4Code$$1@l
 /* 8041C5B0 004194F0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041C5B4 004194F4  41 82 00 28 */	beq lbl_8041C5DC
-/* 8041C5B8 004194F8  3C 80 80 4F */	lis r4, "__vt__26Container<Q27MapCode4Code>"@ha
-/* 8041C5BC 004194FC  38 04 B9 B0 */	addi r0, r4, "__vt__26Container<Q27MapCode4Code>"@l
+/* 8041C5B8 004194F8  3C 80 80 4F */	lis r4, __vt__26Container$$0Q27MapCode4Code$$1@ha
+/* 8041C5BC 004194FC  38 04 B9 B0 */	addi r0, r4, __vt__26Container$$0Q27MapCode4Code$$1@l
 /* 8041C5C0 00419500  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041C5C4 00419504  41 82 00 18 */	beq lbl_8041C5DC
 /* 8041C5C8 00419508  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -143,8 +143,8 @@ lbl_8041C5EC:
 /* 8041C600 00419540  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041C604 00419544  4E 80 00 20 */	blr 
 
-.global "__dt__26Container<Q27MapCode4Code>Fv"
-"__dt__26Container<Q27MapCode4Code>Fv":
+.global __dt__26Container$$0Q27MapCode4Code$$1Fv
+__dt__26Container$$0Q27MapCode4Code$$1Fv:
 /* 8041C608 00419548  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041C60C 0041954C  7C 08 02 A6 */	mflr r0
 /* 8041C610 00419550  90 01 00 14 */	stw r0, 0x14(r1)
@@ -153,8 +153,8 @@ lbl_8041C5EC:
 /* 8041C61C 0041955C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8041C620 00419560  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8041C624 00419564  41 82 00 38 */	beq lbl_8041C65C
-/* 8041C628 00419568  3C 80 80 4F */	lis r4, "__vt__26Container<Q27MapCode4Code>"@ha
-/* 8041C62C 0041956C  38 04 B9 B0 */	addi r0, r4, "__vt__26Container<Q27MapCode4Code>"@l
+/* 8041C628 00419568  3C 80 80 4F */	lis r4, __vt__26Container$$0Q27MapCode4Code$$1@ha
+/* 8041C62C 0041956C  38 04 B9 B0 */	addi r0, r4, __vt__26Container$$0Q27MapCode4Code$$1@l
 /* 8041C630 00419570  90 1E 00 00 */	stw r0, 0(r30)
 /* 8041C634 00419574  41 82 00 18 */	beq lbl_8041C64C
 /* 8041C638 00419578  3C A0 80 4B */	lis r5, __vt__16GenericContainer@ha
@@ -176,8 +176,8 @@ lbl_8041C65C:
 /* 8041C670 004195B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041C674 004195B4  4E 80 00 20 */	blr 
 
-.global "write__31ArrayContainer<Q27MapCode4Code>FR6Stream"
-"write__31ArrayContainer<Q27MapCode4Code>FR6Stream":
+.global write__31ArrayContainer$$0Q27MapCode4Code$$1FR6Stream
+write__31ArrayContainer$$0Q27MapCode4Code$$1FR6Stream:
 /* 8041C678 004195B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041C67C 004195BC  7C 08 02 A6 */	mflr r0
 /* 8041C680 004195C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -238,8 +238,8 @@ lbl_8041C728:
 /* 8041C754 00419694  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041C758 00419698  4E 80 00 20 */	blr 
 
-.global "writeObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code"
-"writeObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code":
+.global writeObject__31ArrayContainer$$0Q27MapCode4Code$$1FR6StreamRQ27MapCode4Code
+writeObject__31ArrayContainer$$0Q27MapCode4Code$$1FR6StreamRQ27MapCode4Code:
 /* 8041C75C 0041969C  4E 80 00 20 */	blr 
 
 .global read__Q27MapCode3MgrFR6Stream
@@ -256,8 +256,8 @@ read__Q27MapCode3MgrFR6Stream:
 /* 8041C784 004196C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041C788 004196C8  4E 80 00 20 */	blr 
 
-.global "read__31ArrayContainer<Q27MapCode4Code>FR6Stream"
-"read__31ArrayContainer<Q27MapCode4Code>FR6Stream":
+.global read__31ArrayContainer$$0Q27MapCode4Code$$1FR6Stream
+read__31ArrayContainer$$0Q27MapCode4Code$$1FR6Stream:
 /* 8041C78C 004196CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041C790 004196D0  7C 08 02 A6 */	mflr r0
 /* 8041C794 004196D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -301,12 +301,12 @@ lbl_8041C804:
 /* 8041C824 00419764  38 21 00 20 */	addi r1, r1, 0x20
 /* 8041C828 00419768  4E 80 00 20 */	blr 
 
-.global "readObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code"
-"readObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code":
+.global readObject__31ArrayContainer$$0Q27MapCode4Code$$1FR6StreamRQ27MapCode4Code
+readObject__31ArrayContainer$$0Q27MapCode4Code$$1FR6StreamRQ27MapCode4Code:
 /* 8041C82C 0041976C  4E 80 00 20 */	blr 
 
-.global "alloc__31ArrayContainer<Q27MapCode4Code>Fi"
-"alloc__31ArrayContainer<Q27MapCode4Code>Fi":
+.global alloc__31ArrayContainer$$0Q27MapCode4Code$$1Fi
+alloc__31ArrayContainer$$0Q27MapCode4Code$$1Fi:
 /* 8041C830 00419770  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8041C834 00419774  7C 08 02 A6 */	mflr r0
 /* 8041C838 00419778  90 01 00 14 */	stw r0, 0x14(r1)
@@ -379,8 +379,8 @@ readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code:
 /* 8041C918 00419858  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041C91C 0041985C  4E 80 00 20 */	blr 
 
-.global "addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code"
-"addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code":
+.global addOne__31ArrayContainer$$0Q27MapCode4Code$$1FRQ27MapCode4Code
+addOne__31ArrayContainer$$0Q27MapCode4Code$$1FRQ27MapCode4Code:
 /* 8041C920 00419860  80 C3 00 1C */	lwz r6, 0x1c(r3)
 /* 8041C924 00419864  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 8041C928 00419868  7C 06 00 00 */	cmpw r6, r0
@@ -392,21 +392,21 @@ readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code:
 /* 8041C940 00419880  7C 05 31 AE */	stbx r0, r5, r6
 /* 8041C944 00419884  4E 80 00 20 */	blr 
 
-.global "setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei"
-"setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei":
+.global setArray__31ArrayContainer$$0Q27MapCode4Code$$1FPQ27MapCode4Codei
+setArray__31ArrayContainer$$0Q27MapCode4Code$$1FPQ27MapCode4Codei:
 /* 8041C948 00419888  90 83 00 24 */	stw r4, 0x24(r3)
 /* 8041C94C 0041988C  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 8041C950 00419890  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 8041C954 00419894  4E 80 00 20 */	blr 
 
-.global "get__31ArrayContainer<Q27MapCode4Code>FPv"
-"get__31ArrayContainer<Q27MapCode4Code>FPv":
+.global get__31ArrayContainer$$0Q27MapCode4Code$$1FPv
+get__31ArrayContainer$$0Q27MapCode4Code$$1FPv:
 /* 8041C958 00419898  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 8041C95C 0041989C  7C 60 22 14 */	add r3, r0, r4
 /* 8041C960 004198A0  4E 80 00 20 */	blr 
 
-.global "getNext__31ArrayContainer<Q27MapCode4Code>FPv"
-"getNext__31ArrayContainer<Q27MapCode4Code>FPv":
+.global getNext__31ArrayContainer$$0Q27MapCode4Code$$1FPv
+getNext__31ArrayContainer$$0Q27MapCode4Code$$1FPv:
 /* 8041C964 004198A4  38 64 00 01 */	addi r3, r4, 1
 /* 8041C968 004198A8  4E 80 00 20 */	blr 
 
@@ -450,7 +450,7 @@ getAt__26Container$$0Q27MapCode4Code$$1Fi:
 /* 8041C9BC 004198FC  38 60 00 00 */	li r3, 0
 /* 8041C9C0 00419900  4E 80 00 20 */	blr 
 
-.global "getTo__26Container<Q27MapCode4Code>Fv"
-"getTo__26Container<Q27MapCode4Code>Fv":
+.global getTo__26Container$$0Q27MapCode4Code$$1Fv
+getTo__26Container$$0Q27MapCode4Code$$1Fv:
 /* 8041C9C4 00419904  38 60 00 00 */	li r3, 0
 /* 8041C9C8 00419908  4E 80 00 20 */	blr 
