@@ -1,7 +1,6 @@
 #ifndef _GAME_MEMORYCARD_MGR_H
 #define _GAME_MEMORYCARD_MGR_H
 
-#include "JSystem/JKRHeap.h"
 #include "types.h"
 
 struct MemoryCardMgr {
@@ -18,7 +17,6 @@ namespace MemoryCard {
             MCS_Error = 2,
         };
 
-        void loadResource(JKRHeap*);
         void destroyResource();
         u32 isErrorOccured();
         u32 getCardStatus();

@@ -1520,8 +1520,6 @@ lbl_8049ADF4:
 	.4byte 0x696E673A
 	.4byte 0x2564200A
 	.4byte 0x00000000
-.global lbl_8049AE28
-lbl_8049AE28:
 	.4byte 0x2F6D656D
 	.4byte 0x6F727943
 	.4byte 0x6172642F

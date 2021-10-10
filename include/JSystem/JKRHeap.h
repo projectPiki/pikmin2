@@ -8,6 +8,4 @@ struct JKRHeap {
     void free(void*, JKRHeap*);
 };
 
-void* operator new(size_t, JKRHeap*, int);
-
 #endif

@@ -8,10 +8,6 @@
 namespace Game {
 namespace MemoryCard {
     struct Resource : public JKRDisposer {
-        Resource(Mgr* parentMgr)
-            : m_mgr(parentMgr)
-        {
-        }
         virtual ~Resource();
 
         // _00 vtbl

@@ -1,9 +1,12 @@
-#ifndef _JSYSTEM_JADHIONODE_H
-#define _JSYSTEM_JADHIONODE_H
+#ifndef _JSYSTEM_JADHioNode_H
+#define _JSYSTEM_JADHioNode_H
 
-struct JADHioNode {
+//namespace JADHioNode {
+class JADHioNode {
+public:
     JADHioNode(const char*);
     virtual ~JADHioNode();
 };
+//}
 
 #endif
