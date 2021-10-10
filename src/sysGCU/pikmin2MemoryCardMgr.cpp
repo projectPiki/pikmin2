@@ -72,7 +72,42 @@ namespace MemoryCard {
      * Address:	80442AB4
      * Size:	00006C
      */
-    Resource::~Resource() { }
+    // clang-format off
+    // TODO
+    /*asm Resource::~Resource()
+    {
+      nofralloc
+      stwu      r1, -0x10(r1)
+      mflr      r0
+      stw       r0, 0x14(r1)
+      stw       r31, 0xC(r1)
+      mr        r31, r4
+      stw       r30, 0x8(r1)
+      mr.       r30, r3
+      beq      loc_0x50
+      lis       r3, 0x804F
+      subi      r0, r3, 0x3028
+      stw       r0, 0x0(r30)
+      lwz       r3, 0x18(r30)
+      bl        destroyResource__Q34Game10MemoryCard3MgrFv
+      mr        r3, r30
+      li        r4, 0
+      bl        __dt__11JKRDisposerFv
+      extsh.    r0, r31
+      ble      loc_0x50
+      mr        r3, r30
+      bl        __dl__FPv
+
+    loc_0x50:
+      lwz       r0, 0x14(r1)
+      mr        r3, r30
+      lwz       r31, 0xC(r1)
+      lwz       r30, 0x8(r1)
+      mtlr      r0
+      addi      r1, r1, 0x10
+      blr
+    }*/
+    // clang-format on
 } // namespace MemoryCard
 } // namespace Game
 

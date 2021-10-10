@@ -4,7 +4,7 @@
 #include "types.h"
 
 struct JKRDisposer {
-    virtual ~JKRDisposer();
+    /* virtual */ ~JKRDisposer();
 };
 
 #endif
