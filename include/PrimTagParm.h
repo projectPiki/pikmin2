@@ -8,6 +8,11 @@
 #include "types.h"
 
 template <typename T> struct PrimTagParm : public TagParm {
+	PrimTagParm(struct TagParameters* a, char* b)
+	    : TagParm(a, b)
+	{
+	}
+
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
 	virtual void doDump();         // virtual
@@ -16,6 +21,11 @@ template <typename T> struct PrimTagParm : public TagParm {
 };
 
 struct PrimTagParm<u16> : public TagParm {
+	PrimTagParm<u16>(struct TagParameters* a, char* b)
+	    : TagParm(a, b)
+	{
+	}
+
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
 	virtual void doDump();         // virtual
@@ -24,6 +34,11 @@ struct PrimTagParm<u16> : public TagParm {
 };
 
 struct PrimTagParm<u64> : public TagParm {
+	PrimTagParm<u64>(struct TagParameters* a, char* b)
+	    : TagParm(a, b)
+	{
+	}
+
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
 	virtual void doDump();         // virtual
@@ -35,6 +50,11 @@ struct PrimTagParm<u64> : public TagParm {
 };
 
 struct PrimTagParm<Vector3f> : public TagParm {
+	PrimTagParm<Vector3f>(struct TagParameters* a, char* b)
+	    : TagParm(a, b)
+	{
+	}
+
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
 	virtual void doDump();         // virtual
@@ -43,6 +63,11 @@ struct PrimTagParm<Vector3f> : public TagParm {
 };
 
 struct PrimTagParm<int> : public TagParm {
+	PrimTagParm<int>(struct TagParameters* a, char* b)
+	    : TagParm(a, b)
+	{
+	}
+
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
 	virtual void doDump();         // virtual
@@ -51,6 +76,11 @@ struct PrimTagParm<int> : public TagParm {
 };
 
 struct PrimTagParm<float> : public TagParm {
+	PrimTagParm<float>(struct TagParameters* a, char* b)
+	    : TagParm(a, b)
+	{
+	}
+
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
 	virtual void doDump();         // virtual
