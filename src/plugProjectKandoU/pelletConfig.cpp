@@ -155,8 +155,10 @@ void PelletConfigList::read(Stream& stream)
 {
 	count             = stream.readInt();
 	pelletConfigArray = new PelletConfig[count];
-	for (int i = 0, j = 0; i < count; i++) {
-		PelletConfig* cfg = &pelletConfigArray[j];
+	int i             = 0;
+	PelletConfig* j   = nullptr;
+	for (; i < count; j++, i++) {
+		PelletConfig* cfg = &pelletConfigArray[(u32)j];
 
 		cfg->parms.read(stream);
 		cfg->parms.sus = i;
@@ -170,8 +172,6 @@ void PelletConfigList::read(Stream& stream)
 		} else {
 			cfg->parms.sus2 = 2;
 		}
-
-		j += 0x260; // <-- wtf?
 	}
 	/*
 	.loc_0x0:
