@@ -93,6 +93,7 @@ PelletConfig::TParms::TParms()
  * Address:	801B4424
  * Size:	000084
  */
+
 extern "C" {
 extern size_t strlen(char*);
 extern int strncmp(char*, char*, size_t);
@@ -119,60 +120,10 @@ PelletConfig* PelletConfigList::getPelletConfig(char* str)
 
 PelletConfig* PelletConfigList::getPelletConfig(int param_1)
 {
-
-	bool bVar1;
-
-	bVar1 = false;
-	if (-1 < param_1) {
-		if (param_1 < this->count) {
-			bVar1 = true;
-		}
-	}
-	if (!bVar1) {
-		// WARNING: Subroutine does not return
-		JUTException::panic_f("pelletConfig.cpp", 125, "P2Assert");
-	}
-	return nullptr;
-	// return *this->pelletConfigArray + param_1;
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0x18(r30)
-	  cmpw      r31, r0
-	  bge-      .loc_0x34
-	  li        r3, 0x1
-
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x468
-	  li        r4, 0x7D
-	  subi      r5, r5, 0x454
-	  crclr     6, 0x6
-	  bl        -0x189EBC
-
-	.loc_0x58:
-	  mulli     r0, r31, 0x260
-	  lwz       r3, 0x1C(r30)
-	  add       r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	  */
+	bool var = 0 <= param_1 && param_1 < this->count;
+#line 125
+	P2ASSERT(var);
+	return &this->pelletConfigArray[param_1];
 }
 
 /*
