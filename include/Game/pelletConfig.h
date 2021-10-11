@@ -65,8 +65,8 @@ class PelletConfigList : public CNode {
 	PelletConfigList();
 	virtual ~PelletConfigList() {}; // virtual
 
-	int count;
-	PelletConfig* pelletConfigArray;
+	int count;                       // _18
+	PelletConfig* pelletConfigArray; // _1C
 	PelletConfig* getPelletConfig(char*);
 	PelletConfig* getPelletConfig(int);
 	PelletConfig* getPelletConfig_ByDictionaryNo(int);

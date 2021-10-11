@@ -150,8 +150,15 @@ PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int param_1)
  * Size:	000130
  */
 
-void PelletConfigList::read(Stream&)
+void PelletConfigList::read(Stream& stream)
 {
+	count             = stream.readInt();
+	pelletConfigArray = new PelletConfig[count];
+	for (int i = 0, j = 0; i < count; i++) {
+		pelletConfigArray[j].parms.read(stream);
+
+		j += 0x260; // <-- wtf?
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)

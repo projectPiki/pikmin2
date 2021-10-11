@@ -99,6 +99,8 @@ struct TagParameters : public CNode {
 	TagParameters(char*);
 	virtual ~TagParameters() {}; // virtual
 
+	void read(Stream&);
+
 	u32 _18; // _18
 };
 
