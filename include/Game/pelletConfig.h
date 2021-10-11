@@ -56,20 +56,20 @@ struct PelletConfig : public CNode {
 	// short short_0x256;
 	// short short_0x258;
 	unsigned char indirect;
-	unsigned char unknown[5];
+	// unsigned char unknown[5];
 	// char filler[584];
 	PelletConfig();
-	virtual ~PelletConfig(); // virtual destructor
-};                           // temporary filler struct for pellet config
+	virtual ~PelletConfig() {}; // virtual destructor
+};                              // struct for pellet config
 class PelletConfigList : public CNode {
 	PelletConfigList();
 	virtual ~PelletConfigList() {}; // virtual
 
 	int count;
 	PelletConfig* pelletConfigArray;
-	void getPelletConfig(char*);
-	void getPelletConfig(int);
-	void getPelletConfig_ByDictionaryNo(int);
+	PelletConfig* getPelletConfig(char*);
+	PelletConfig* getPelletConfig(int);
+	PelletConfig* getPelletConfig_ByDictionaryNo(int);
 	void read(Stream&);
 };
 } // namespace Game

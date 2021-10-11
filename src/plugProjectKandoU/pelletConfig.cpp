@@ -1,4 +1,5 @@
 #include "Game/pelletConfig.h"
+#include "JSystem/JUTException.h"
 //#include "pelletConfig.h"
 
 namespace Game {
@@ -97,76 +98,16 @@ extern size_t strlen(char*);
 extern int strncmp(char*, char*, size_t);
 }
 
-PelletConfig* PelletConfigList::getPelletConfig(char* param_1)
+PelletConfig* PelletConfigList::getPelletConfig(char* str)
 {
-
-	size_t __n;
-	// int iVar1;
-	int struct_offset;
-	int loopcount;
-	PelletConfig* pPconf;
-
-	loopcount     = 0;
-	struct_offset = 0;
-	while (true) {
-		if (this->count <= loopcount) {
-			return nullptr;
+	for (int i = 0; i < count; i++) {
+		PelletConfig* pConfig = &pelletConfigArray[i];
+		if (strncmp(pConfig->parms.name.m_name, str, strlen(str)) == 0) {
+			return pConfig;
 		}
-		pPconf = (PelletConfig*)((int)&(*this->pelletConfigArray) /*[0]*/
-		                         + struct_offset);
-		__n    = strlen(param_1);
-		// iVar1 = strncmp((pPconf->parms).name.m_name, param_1, __n);
-		if (strncmp((pPconf->parms).name.m_name, param_1, __n) == 0)
-			break;
-		struct_offset = struct_offset + 0x260;
-		loopcount     = loopcount + 1;
 	}
-	return pPconf;
 
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  li        r30, 0
-	  li        r31, 0
-	  b         .loc_0x60
-
-	.loc_0x24:
-	  lwz       r0, 0x1C(r27)
-	  mr        r3, r28
-	  add       r29, r0, r31
-	  bl        -0xE9B44
-	  mr        r0, r3
-	  lwz       r3, 0x40(r29)
-	  mr        r5, r0
-	  mr        r4, r28
-	  bl        -0xE9DE8
-	  cmpwi     r3, 0
-	  bne-      .loc_0x58
-	  mr        r3, r29
-	  b         .loc_0x70
-
-	.loc_0x58:
-	  addi      r31, r31, 0x260
-	  addi      r30, r30, 0x1
-
-	.loc_0x60:
-	  lwz       r0, 0x18(r27)
-	  cmpw      r30, r0
-	  blt+      .loc_0x24
-	  li        r3, 0
-
-	.loc_0x70:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	  */
+	return nullptr;
 }
 
 /*
@@ -175,8 +116,24 @@ PelletConfig* PelletConfigList::getPelletConfig(char* param_1)
  * Size:	00007C
  */
 
-PelletConfig* PelletConfigList::getPelletConfig(int)
+PelletConfig* PelletConfigList::getPelletConfig(int param_1)
 {
+
+	bool bVar1;
+
+	bVar1 = false;
+	if (-1 < param_1) {
+		if (param_1 < this->count) {
+			bVar1 = true;
+		}
+	}
+	if (!bVar1) {
+		// WARNING: Subroutine does not return
+		JUTException::panic_f("pelletConfig.cpp", 125, "P2Assert");
+	}
+	// return *this->pelletConfigArray + param_1;
+	return nullptr;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -215,7 +172,6 @@ PelletConfig* PelletConfigList::getPelletConfig(int)
 	  addi      r1, r1, 0x10
 	  blr
 	  */
-	return nullptr;
 }
 
 /*
