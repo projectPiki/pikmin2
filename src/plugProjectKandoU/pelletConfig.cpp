@@ -92,9 +92,37 @@ PelletConfig::TParms::TParms()
  * Address:	801B4424
  * Size:	000084
  */
+extern "C" {
+extern size_t strlen(char*);
+extern int strncmp(char*, char*, size_t);
+}
 
-PelletConfig* PelletConfigList::getPelletConfig(char*)
+PelletConfig* PelletConfigList::getPelletConfig(char* param_1)
 {
+
+	size_t __n;
+	// int iVar1;
+	int struct_offset;
+	int loopcount;
+	PelletConfig* pPconf;
+
+	loopcount     = 0;
+	struct_offset = 0;
+	while (true) {
+		if (this->count <= loopcount) {
+			return nullptr;
+		}
+		pPconf = (PelletConfig*)((int)&(*this->pelletConfigArray) /*[0]*/
+		                         + struct_offset);
+		__n    = strlen(param_1);
+		// iVar1 = strncmp((pPconf->parms).name.m_name, param_1, __n);
+		if (strncmp((pPconf->parms).name.m_name, param_1, __n) == 0)
+			break;
+		struct_offset = struct_offset + 0x260;
+		loopcount     = loopcount + 1;
+	}
+	return pPconf;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -147,7 +175,7 @@ PelletConfig* PelletConfigList::getPelletConfig(char*)
  * Size:	00007C
  */
 
-void PelletConfigList::getPelletConfig(int)
+PelletConfig* PelletConfigList::getPelletConfig(int)
 {
 	/*
 	.loc_0x0:
@@ -187,6 +215,7 @@ void PelletConfigList::getPelletConfig(int)
 	  addi      r1, r1, 0x10
 	  blr
 	  */
+	return nullptr;
 }
 
 /*
@@ -195,7 +224,7 @@ void PelletConfigList::getPelletConfig(int)
  * Size:	000044
  */
 
-void PelletConfigList::getPelletConfig_ByDictionaryNo(int)
+PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int)
 {
 	/*
 	.loc_0x0:
@@ -223,6 +252,7 @@ void PelletConfigList::getPelletConfig_ByDictionaryNo(int)
 	  li        r3, 0
 	  blr
 	  */
+	return nullptr;
 }
 
 /*
