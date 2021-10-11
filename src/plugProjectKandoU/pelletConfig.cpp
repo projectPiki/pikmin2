@@ -163,7 +163,7 @@ void PelletConfigList::read(Stream& stream)
 
 		if (strcmp("yes", cfg->parms.indirect.m_data)) {
 			if (strcmp("use", cfg->parms.indirect.m_data)) {
-				cfg->parms.sus2 = == 0;
+				cfg->parms.sus2 = 0;
 			} else {
 				cfg->parms.sus2 = 1;
 			}
