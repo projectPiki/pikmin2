@@ -97,7 +97,7 @@ struct PrimTagParm<float> : public TagParm {
 
 struct TagParameters : public CNode {
 	TagParameters(char*);
-	virtual ~TagParameters(); // virtual
+	virtual ~TagParameters() {}; // virtual
 
 	u32 _18; // _18
 };
