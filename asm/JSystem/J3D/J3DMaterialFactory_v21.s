@@ -1,4 +1,11 @@
 .include "macros.inc"
+.section .sbss2 # 0x80520e40 - 0x80520ED8
+.global lbl_80520E50
+lbl_80520E50:
+	.skip 0x4
+.global lbl_80520E54
+lbl_80520E54:
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21

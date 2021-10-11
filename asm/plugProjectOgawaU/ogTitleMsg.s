@@ -1,4 +1,11 @@
 .include "macros.inc"
+.section .sbss2 # 0x80520e40 - 0x80520ED8
+.global lbl_80520EB8
+lbl_80520EB8:
+	.skip 0x2
+.global lbl_80520EBA
+lbl_80520EBA:
+	.skip 0x6
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q25P2JME8AnalyzerFv

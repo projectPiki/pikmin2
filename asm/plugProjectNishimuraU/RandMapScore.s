@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .sbss2 # 0x80520e40 - 0x80520ED8
+.global lbl_80520EA8
+lbl_80520EA8:
+	.skip 0x4
+.global lbl_80520EAC
+lbl_80520EAC:
+	.skip 0x4
+.global lbl_80520EB0
+lbl_80520EB0:
+	.skip 0x4
+.global lbl_80520EB4
+lbl_80520EB4:
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave12RandMapScoreFPQ34Game4Cave16MapUnitGenerator
