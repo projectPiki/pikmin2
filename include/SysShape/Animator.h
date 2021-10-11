@@ -4,12 +4,12 @@
 namespace SysShape {
 
 struct BaseAnimator {
-    virtual void getCalc() = 0;
+	virtual void getCalc() = 0;
 };
 
 struct Animator : public BaseAnimator {
-    virtual void getCalc();
-    virtual void animate(float);
+	virtual void getCalc();
+	virtual void animate(float);
 };
 
 } // namespace SysShape

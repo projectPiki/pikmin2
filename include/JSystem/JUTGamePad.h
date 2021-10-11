@@ -4,15 +4,15 @@
 #include "types.h"
 
 struct JUTGamePad {
-    enum EPadPort {
-        PORT_0 = 0,
-        PORT_1,
-        PORT_2,
-        PORT_3,
-    };
+	enum EPadPort {
+		PORT_0 = 0,
+		PORT_1,
+		PORT_2,
+		PORT_3,
+	};
 
-    JUTGamePad(EPadPort);
-    virtual ~JUTGamePad();
+	JUTGamePad(EPadPort);
+	virtual ~JUTGamePad();
 };
 
 #endif

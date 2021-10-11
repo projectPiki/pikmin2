@@ -3,8 +3,8 @@
 
 namespace JMath {
 template <int length, typename T> struct TAtanTable {
-    T atan2_(T, T) const;
-    T m_table[length];
+	T atan2_(T, T) const;
+	T m_table[length];
 };
 
 extern const float sincosTable_[1024];

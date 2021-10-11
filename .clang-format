@@ -5,3 +5,6 @@ AlignAfterOpenBracket: true
 AlignConsecutiveAssignments: true
 AllowShortFunctionsOnASingleLine: true
 FixNamespaceComments: true
+IndentWidth: 4
+TabWidth: 4
+UseTab: ForIndentation

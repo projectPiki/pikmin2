@@ -5,13 +5,13 @@
 
 namespace Game {
 struct Creature {
-    bool isStickTo();
-    void endStick();
+	bool isStickTo();
+	void endStick();
 
-    bool isTeki();
-    bool isNavi();
+	bool isTeki();
+	bool isNavi();
 
-    u8 _00[0x178]; // _00
+	u8 _00[0x178]; // _00
 };
 } // namespace Game
 

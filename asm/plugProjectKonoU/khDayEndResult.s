@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sbss2 # 0x80520e40 - 0x80520ED8
+
+.global lbl_80520EC8
+lbl_80520EC8:
+	.skip 0x4
+.global lbl_80520ECC
+lbl_80520ECC:
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen20DispDayEndResultItemFPQ34Game6Result5TNodeiib

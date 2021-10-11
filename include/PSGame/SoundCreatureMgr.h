@@ -6,7 +6,7 @@
 namespace PSGame {
 class SoundCreatureMgr {
 public:
-    void registerAnime(J3DAnmBase*, const char*);
+	void registerAnime(J3DAnmBase*, const char*);
 };
 } // namespace PSGame
 

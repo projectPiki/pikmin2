@@ -2,8 +2,8 @@
 #define _JSYSTEM_JADHIONODE_H
 
 struct JADHioNode {
-    JADHioNode(const char*);
-    virtual ~JADHioNode();
+	JADHioNode(const char*);
+	virtual ~JADHioNode();
 };
 
 #endif

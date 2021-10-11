@@ -5,7 +5,7 @@
 
 namespace Game {
 struct Onyon {
-    u8 _00[0x260]; // _00
+	u8 _00[0x260]; // _00
 };
 } // namespace Game
 

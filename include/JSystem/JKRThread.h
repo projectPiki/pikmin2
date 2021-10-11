@@ -4,10 +4,10 @@
 #include "types.h"
 
 struct JKRThread {
-    JKRThread(unsigned long, int, int);
+	JKRThread(unsigned long, int, int);
 
-    virtual ~JKRThread();
-    virtual void run();
+	virtual ~JKRThread();
+	virtual void run();
 };
 
 #endif

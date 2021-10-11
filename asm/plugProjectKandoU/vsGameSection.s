@@ -1,4 +1,23 @@
 .include "macros.inc"
+.section .sbss2 # 0x80520e40 - 0x80520ED8
+.global lbl_80520E68
+lbl_80520E68:
+	.skip 0x4
+.global lbl_80520E6C
+lbl_80520E6C:
+	.skip 0x4
+.global lbl_80520E70
+lbl_80520E70:
+	.skip 0x4
+.global lbl_80520E74
+lbl_80520E74:
+	.skip 0x4
+.global lbl_80520E78
+lbl_80520E78:
+	.skip 0x4
+.global lbl_80520E7C
+lbl_80520E7C:
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game6VsGame3FSMFPQ24Game13VsGameSection
