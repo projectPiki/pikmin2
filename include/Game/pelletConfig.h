@@ -7,57 +7,51 @@
 
 namespace Game {
 struct PelletConfig : public CNode {
-	struct TParms : public TagParameters {
+	struct TParms : public TagParameters { // _18
 		TParms();
 		virtual ~TParms() { }
-		StringTagParm name;
-		StringTagParm archive;
-		StringTagParm txtArchive;
-		StringTagParm bmd;
-		StringTagParm animMgr;
-		StringTagParm colltree;
-		PrimTagParm<float> radius;
-		PrimTagParm<float> pRadius;
-		PrimTagParm<float> height;
-		PrimTagParm<float> inertiaScaling;
-		StringTagParm particleType;
-		PrimTagParm<int> numParticles;
-		PrimTagParm<float> particleSize;
-		PrimTagParm<float> friction;
-		PrimTagParm<int> min;
-		PrimTagParm<int> max;
-		PrimTagParm<int> pikiCountMax;
-		PrimTagParm<int> pikiCountMin;
-		StringTagParm dynamics;
-		PrimTagParm<int> money;
-		StringTagParm unique;
-		StringTagParm indirect;
-		PrimTagParm<int> numPMotions;
-		PrimTagParm<float> depth;
-		PrimTagParm<float> depthMax;
-		PrimTagParm<float> depthA;
-		PrimTagParm<float> depthB;
-		PrimTagParm<float> depthC;
-		PrimTagParm<float> depthD;
-		PrimTagParm<Vector3f> offset;
+		StringTagParm name;                // _34
+		StringTagParm archive;             // _44
+		StringTagParm txtArchive;          // _54
+		StringTagParm bmd;                 // _64
+		StringTagParm animMgr;             // _74
+		StringTagParm colltree;            // _84
+		PrimTagParm<float> radius;         // _94
+		PrimTagParm<float> pRadius;        // _a4
+		PrimTagParm<float> height;         // _b4
+		PrimTagParm<float> inertiaScaling; // _c4
+		StringTagParm particleType;        // _d4
+		PrimTagParm<int> numParticles;     // _e4
+		PrimTagParm<float> particleSize;   // _f4
+		PrimTagParm<float> friction;       // _104
+		PrimTagParm<int> min;              // _114
+		PrimTagParm<int> max;              // _124
+		PrimTagParm<int> pikiCountMax;     // _134
+		PrimTagParm<int> pikiCountMin;     // _144
+		StringTagParm dynamics;            // _154
+		PrimTagParm<int> money;            // _164
+		StringTagParm unique;              // _174
+		StringTagParm indirect;            // _184
+		PrimTagParm<int> numPMotions;      // _194
+		PrimTagParm<float> depth;          // _1a4
+		PrimTagParm<float> depthMax;       // _1b4
+		PrimTagParm<float> depthA;         // _1c4
+		PrimTagParm<float> depthB;         // _1d4
+		PrimTagParm<float> depthC;         // _1e4
+		PrimTagParm<float> depthD;         // _1f4
+		PrimTagParm<Vector3f> offset;      // _204
 		unsigned char field_0x204;
 		unsigned char field_0x205;
 		unsigned char field_0x206;
 		unsigned char field_0x207;
 		PrimTagParm<unsigned long long> message;
 		PrimTagParm<unsigned short> code;
-		// unsigned char field_0x22e;
-		// unsigned char field_0x22f;
 		PrimTagParm<unsigned short> dictionary;
 		short sus;
 		unsigned char sus2;
 	}; // struct TParms
 	TParms parms;
-	// short short_0x256;
-	// short short_0x258;
 	unsigned char indirect;
-	// unsigned char unknown[5];
-	// char filler[584];
 	PelletConfig();
 	virtual ~PelletConfig() {}; // virtual destructor
 };                              // struct for pellet config
