@@ -53,7 +53,7 @@ struct PrimTagParm<u64> : public TagParm {
 		} intView;
 	} m_data;
 
-	//u8 m_data[sizeof(u64)];
+	// u8 m_data[sizeof(u64)];
 };
 
 struct PrimTagParm<Vector3f> : public TagParm {
