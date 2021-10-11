@@ -93,7 +93,7 @@ PelletConfig::TParms::TParms()
  * Size:	000084
  */
 
-void PelletConfigList::getPelletConfig(char*)
+PelletConfig* PelletConfigList::getPelletConfig(char*)
 {
 	/*
 	.loc_0x0:
