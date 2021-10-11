@@ -102,7 +102,8 @@ PelletConfig* PelletConfigList::getPelletConfig(char* str)
 {
 	for (int i = 0; i < count; i++) {
 		PelletConfig* pConfig = &pelletConfigArray[i];
-		if (strncmp(pConfig->parms.name.m_name, str, strlen(str)) == 0) {
+		int len               = strlen(str);
+		if (strncmp(pConfig->parms.name.m_name, str, len) == 0) {
 			return pConfig;
 		}
 	}
