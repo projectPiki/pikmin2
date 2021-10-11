@@ -1,6 +1,6 @@
 #include "Game/pelletConfig.h"
 #include "JSystem/JUTException.h"
-//#include "pelletConfig.h"
+#include "TagParm.h"
 
 namespace Game {
 
