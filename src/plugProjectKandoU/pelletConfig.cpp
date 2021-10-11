@@ -49,7 +49,7 @@ PelletConfig::PelletConfig()
  * Address:	801B4050
  * Size:	000374
  */
-
+const char* UNUSED_pelletConfig = "pelletConfig";
 PelletConfig::TParms::TParms()
     : TagParameters("PelletConfig")
     , name(this, "name")
@@ -118,12 +118,12 @@ PelletConfig* PelletConfigList::getPelletConfig(char* str)
  * Size:	00007C
  */
 
-PelletConfig* PelletConfigList::getPelletConfig(int param_1)
+PelletConfig* PelletConfigList::getPelletConfig(int index)
 {
-	bool var = 0 <= param_1 && param_1 < this->count;
+	bool var = 0 <= index && index < this->count;
 #line 125
 	P2ASSERT(var);
-	return &this->pelletConfigArray[param_1];
+	return &this->pelletConfigArray[index];
 }
 
 /*
@@ -135,39 +135,12 @@ PelletConfig* PelletConfigList::getPelletConfig(int param_1)
 PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int param_1)
 
 {
-	for (int i = this->count; i < count; i++) {
+	for (int i = 0; i < count; i++) {
 		PelletConfig* pConfig = &pelletConfigArray[i];
-		if (param_1 + 1U == (uint)(ushort)(pConfig->parms).dictionary.m_data) {
+		if (param_1 + 1 == (pConfig->parms).dictionary.m_data) {
 			return pConfig;
 		}
 	}
-
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x18(r3)
-	  addi      r4, r4, 0x1
-	  li        r5, 0
-	  mtctr     r0
-	  cmpwi     r0, 0
-	  ble-      .loc_0x3C
-
-	.loc_0x18:
-	  lwz       r0, 0x1C(r3)
-	  add       r6, r0, r5
-	  lhz       r0, 0x254(r6)
-	  cmpw      r4, r0
-	  bne-      .loc_0x34
-	  mr        r3, r6
-	  blr
-
-	.loc_0x34:
-	  addi      r5, r5, 0x260
-	  bdnz+     .loc_0x18
-
-	.loc_0x3C:
-	  li        r3, 0
-	  blr
-	  */
 	return nullptr;
 }
 
