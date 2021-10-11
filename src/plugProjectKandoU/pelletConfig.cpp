@@ -97,6 +97,7 @@ PelletConfig::TParms::TParms()
 extern "C" {
 extern size_t strlen(char*);
 extern int strncmp(char*, char*, size_t);
+extern int strcmp(char*, char*);
 }
 
 PelletConfig* PelletConfigList::getPelletConfig(char* str)
@@ -155,7 +156,16 @@ void PelletConfigList::read(Stream& stream)
 	count             = stream.readInt();
 	pelletConfigArray = new PelletConfig[count];
 	for (int i = 0, j = 0; i < count; i++) {
-		pelletConfigArray[j].parms.read(stream);
+		PelletConfig* cfg = &pelletConfigArray[j];
+
+		cfg->parms.read(stream);
+		cfg->parms.sus = i;
+
+		if (strcmp("yes", cfg->parms.indirect.m_data)) {
+			cfg->parms.sus2 = strcmp("use", cfg->parms.indirect.m_data) == 0;
+		} else {
+			cfg->parms.sus2 = 2;
+		}
 
 		j += 0x260; // <-- wtf?
 	}
