@@ -2,8 +2,6 @@
 
 GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/init.o\
-	$(BUILD_DIR)/asm/extab.o\
-	$(BUILD_DIR)/asm/exidx.o\
 	$(BUILD_DIR)/asm/ctors.o\
 	$(BUILD_DIR)/asm/dtors.o\
 	$(BUILD_DIR)/asm/rodata.o\
@@ -12,7 +10,6 @@ GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/sdata.o\
 	$(BUILD_DIR)/asm/sbss.o\
 	$(BUILD_DIR)/asm/sdata2.o\
-	$(BUILD_DIR)/asm/sbss2.o\
 
 TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/object/object-particle.o\
@@ -521,9 +518,9 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/data_0.o\
 	
 TEXT_PT1:=\
-	$(BUILD_DIR)/asm/data_pellet.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig.o\
+	$(BUILD_DIR)/asm/pelletData.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiConstants.o\

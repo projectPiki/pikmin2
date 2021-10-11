@@ -72,7 +72,7 @@ void PrimTagParm<u64>::doRead(Stream& stream)
 {
 	char* str = stream.readString(nullptr, nullptr);
 	for (int i = 0; i < 8; i++) {
-		m_data[i] = str[i];
+		m_data.byteView.data[i] = str[i];
 	}
 }
 
@@ -85,7 +85,7 @@ void PrimTagParm<u64>::doWrite(Stream& stream)
 {
 	char data[8];
 	for (int i = 0; i < 8; i++) {
-		data[i] = m_data[i];
+		data[i] = m_data.byteView.data[i];
 	}
 	stream.writeString(data);
 }

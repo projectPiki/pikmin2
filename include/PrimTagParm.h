@@ -44,7 +44,16 @@ struct PrimTagParm<u64> : public TagParm {
 	virtual void doDump();         // virtual
 
 	u32 _0C; // _0C
-	u8 m_data[sizeof(u64)];
+	union {
+		struct {
+			u8 data[sizeof(u64)];
+		} byteView;
+		struct {
+			u32 a, b;
+		} intView;
+	} m_data;
+
+	// u8 m_data[sizeof(u64)];
 };
 
 struct PrimTagParm<Vector3f> : public TagParm {
