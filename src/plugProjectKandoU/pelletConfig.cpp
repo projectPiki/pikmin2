@@ -23,7 +23,7 @@ namespace Game {
 
     PelletConfig::PelletConfig()
     {
-        this->short_0x258 = -1;
+        this->parms.sus = -1;
         this->parms.unique.m_data = "no";
         this->parms.indirect.m_data = "no";
         this->parms.txtArchive.m_data = nullptr;
@@ -40,7 +40,7 @@ namespace Game {
         this->parms.offset.m_data.z = 0.0f;
         this->parms.code.m_data = 0;
         this->parms.dictionary.m_data = 0;
-        this->indirect = 0;
+        this->parms.sus2 = 0;
         /*
         .loc_0x0:
           stwu      r1, -0x10(r1)
@@ -95,7 +95,7 @@ namespace Game {
      * Size:	000070
      */
 
-    PelletConfig::TParms::~TParms(){CNode::~CNode();}
+    //PelletConfig::TParms::~TParms(){}
 
     /*
      * --INFO--
@@ -146,12 +146,12 @@ namespace Game {
  * Address:	801B43C4
  * Size:	000060
  */
-
+/*
 TagParameters::~TagParameters()
 {
 
 }
-
+*/
 /*
  * --INFO--
  * Address:	801B4424

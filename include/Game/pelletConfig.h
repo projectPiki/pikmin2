@@ -9,7 +9,7 @@ namespace Game {
 struct PelletConfig : public CNode {
 	struct TParms : public TagParameters {
 		TParms();
-		virtual ~TParms();
+		virtual ~TParms() {}
 		StringTagParm name;
 		StringTagParm archive;
 		StringTagParm txtArchive;
@@ -49,10 +49,12 @@ struct PelletConfig : public CNode {
 		//unsigned char field_0x22e;
 		//unsigned char field_0x22f;
 		PrimTagParm<unsigned short> dictionary;
+		short sus;
+		unsigned char sus2;
 	}; // struct TParms
 	TParms parms;
 	//short short_0x256;
-	short short_0x258;
+	//short short_0x258;
 	unsigned char indirect;
 	unsigned char unknown[5];
 	// char filler[584];
@@ -61,7 +63,7 @@ struct PelletConfig : public CNode {
 };                           // temporary filler struct for pellet config
 class PelletConfigList : public CNode {
 	PelletConfigList();
-	virtual ~PelletConfigList(); // virtual
+	virtual ~PelletConfigList() {};// virtual
 
 	int count;
 	PelletConfig* pelletConfigArray;
