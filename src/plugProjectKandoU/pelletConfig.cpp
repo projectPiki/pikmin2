@@ -103,7 +103,7 @@ PelletConfig* PelletConfigList::getPelletConfig(char* str)
 	for (int i = 0; i < count; i++) {
 		PelletConfig* pConfig = &pelletConfigArray[i];
 		int len               = strlen(str);
-		if (strncmp(pConfig->parms.name.m_name, str, len) == 0) {
+		if (strncmp(pConfig->parms.name.m_data, str, len) == 0) {
 			return pConfig;
 		}
 	}
@@ -132,8 +132,8 @@ PelletConfig* PelletConfigList::getPelletConfig(int param_1)
 		// WARNING: Subroutine does not return
 		JUTException::panic_f("pelletConfig.cpp", 125, "P2Assert");
 	}
-	// return *this->pelletConfigArray + param_1;
 	return nullptr;
+	// return *this->pelletConfigArray + param_1;
 
 	/*
 	.loc_0x0:
@@ -181,8 +181,16 @@ PelletConfig* PelletConfigList::getPelletConfig(int param_1)
  * Size:	000044
  */
 
-PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int)
+PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int param_1)
+
 {
+	for (int i = this->count; i < count; i++) {
+		PelletConfig* pConfig = &pelletConfigArray[i];
+		if (param_1 + 1U == (uint)(ushort)(pConfig->parms).dictionary.m_data) {
+			return pConfig;
+		}
+	}
+
 	/*
 	.loc_0x0:
 	  lwz       r0, 0x18(r3)
