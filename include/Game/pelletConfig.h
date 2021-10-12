@@ -40,10 +40,6 @@ struct PelletConfig : public CNode {
 		PrimTagParm<float> depthC;         // _1e4
 		PrimTagParm<float> depthD;         // _1f4
 		PrimTagParm<Vector3f> offset;      // _204
-		unsigned char field_0x204;
-		unsigned char field_0x205;
-		unsigned char field_0x206;
-		unsigned char field_0x207;
 		PrimTagParm<unsigned long long> message;
 		PrimTagParm<unsigned short> code;
 		PrimTagParm<unsigned short> dictionary;
@@ -51,7 +47,7 @@ struct PelletConfig : public CNode {
 		unsigned char sus2;
 	}; // struct TParms
 	TParms parms;
-	unsigned char indirect;
+	// unsigned char indirect;
 	PelletConfig();
 	virtual ~PelletConfig() {}; // virtual destructor
 };                              // struct for pellet config

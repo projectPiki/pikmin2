@@ -65,27 +65,27 @@ void PrimTagParm<u16>::doDump() { }
 
 /*
  * --INFO--
- * Address:	8041BE00
- * Size:	000078
+ * Address: 8041BE00
+ * Size:    000078
  */
 void PrimTagParm<u64>::doRead(Stream& stream)
 {
 	char* str = stream.readString(nullptr, nullptr);
 	for (int i = 0; i < 8; i++) {
-		m_data.byteView.data[i] = str[i];
+		((char*)&m_data)[i] = str[i];
 	}
 }
 
 /*
  * --INFO--
- * Address:	8041BE78
- * Size:	00006C
+ * Address: 8041BE78
+ * Size:    00006C
  */
 void PrimTagParm<u64>::doWrite(Stream& stream)
 {
 	char data[8];
 	for (int i = 0; i < 8; i++) {
-		data[i] = m_data.byteView.data[i];
+		data[i] = ((char*)&m_data)[i];
 	}
 	stream.writeString(data);
 }

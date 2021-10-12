@@ -1,6 +1,6 @@
-#include "PrimTagParm.h"
 #include "Game/pelletConfig.h"
 #include "JSystem/JUTException.h"
+#include "PrimTagParm.h"
 
 namespace Game {
 
@@ -24,24 +24,24 @@ PelletConfigList::PelletConfigList()
 
 PelletConfig::PelletConfig()
 {
-	this->parms.sus                      = -1;
-	this->parms.unique.m_data            = "no";
-	this->parms.indirect.m_data          = "no";
-	this->parms.txtArchive.m_data        = nullptr;
-	this->parms.depth.m_data             = 0.0f;
-	this->parms.depthA.m_data            = 10.0f;
-	this->parms.depthB.m_data            = 20.0f;
-	this->parms.depthC.m_data            = 30.0f;
-	this->parms.depthD.m_data            = 40.0f;
-	this->parms.numPMotions.m_data       = 0;
-	this->parms.message.m_data.intView.b = 0;
-	this->parms.message.m_data.intView.a = 0;
-	this->parms.offset.m_data.x          = 0.0f;
-	this->parms.offset.m_data.y          = 0.0f;
-	this->parms.offset.m_data.z          = 0.0f;
-	this->parms.code.m_data              = 0;
-	this->parms.dictionary.m_data        = 0;
-	this->parms.sus2                     = 0;
+	this->parms.sus                                        = -1;
+	this->parms.unique.m_data                              = "no";
+	this->parms.indirect.m_data                            = "no";
+	this->parms.txtArchive.m_data                          = nullptr;
+	this->parms.depth.m_data                               = 0.0f;
+	this->parms.depthA.m_data                              = 10.0f;
+	this->parms.depthB.m_data                              = 20.0f;
+	this->parms.depthC.m_data                              = 30.0f;
+	this->parms.depthD.m_data                              = 40.0f;
+	this->parms.numPMotions.m_data                         = 0;
+	reinterpret_cast<int*>(&this->parms.message.m_data)[1] = 0;
+	reinterpret_cast<int*>(&this->parms.message.m_data)[0] = 0;
+	this->parms.offset.m_data.x                            = 0.0f;
+	this->parms.offset.m_data.y                            = 0.0f;
+	this->parms.offset.m_data.z                            = 0.0f;
+	this->parms.code.m_data                                = 0;
+	this->parms.dictionary.m_data                          = 0;
+	this->parms.sus2                                       = 0;
 }
 
 /*

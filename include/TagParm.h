@@ -10,7 +10,7 @@ struct TagParm {
 
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
-	virtual void flushValue();  // virtual
+	virtual void flushValue();     // virtual
 	virtual void doDump();         // virtual
 
 	// _00 VTBL
