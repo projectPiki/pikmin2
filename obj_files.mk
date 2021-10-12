@@ -1061,6 +1061,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
 
 GROUP_1_FILES:=\
+	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/data_0a.o\
 
