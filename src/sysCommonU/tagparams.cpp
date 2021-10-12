@@ -211,116 +211,112 @@ TagParm::TagParm(TagParameters* container, char* name)
 }
 
 /*
-.loc_0x0:
-  lis       r6, 0x804F
-  li        r0, 0
-  subi      r6, r6, 0x4710
-  stw       r6, 0x0(r3)
-  stw       r5, 0x4(r3)
-  stw       r0, 0x8(r3)
-  lwz       r0, 0x18(r4)
-  cmplwi    r0, 0
-  beq-      .loc_0x30
-  stw       r0, 0x8(r3)
-  stw       r3, 0x18(r4)
-  blr
+ * --INFO--
+ * Address:	8041C0D4
+ * Size:	0000D4
+ */
 
-.loc_0x30:
-  stw       r3, 0x18(r4)
+/*
+extern "C" {
+extern size_t strlen(char*);
+extern int strncmp(char*, char*, size_t);
+}
+void TagParameters::read(Stream& stream)
+{
+
+    uint uVar1;
+    char* __s2;
+    size_t sVar2;
+    int iVar3;
+    size_t sVar4;
+    TagParm* pTVar5;
+
+    while (true) {
+        __s2  = Stream::readString(stream, (char*)0x0, 0);
+        sVar2 = strlen("end");
+        iVar3 = strncmp("end", __s2, sVar2);
+        uVar1 = countLeadingZeros(iVar3);
+        if ((uVar1 >> 5 & 0xff) != 0)
+            break;
+        for (pTVar5 = this->head; pTVar5 != (TagParm*)0x0;
+             pTVar5 = pTVar5->next) {
+            sVar2 = strlen(__s2);
+            sVar4 = strlen(pTVar5->name);
+            if (sVar2 == sVar4) {
+                sVar2 = strlen(__s2);
+                iVar3 = strncmp(pTVar5->name, __s2, sVar2);
+                if (iVar3 == 0) {
+                    *pTVar5->doRead(pTVar5, stream);
+                }
+            }
+        }
+    }
+    return;
+    */
+/*
+.loc_0x0:
+  stwu      r1, -0x20(r1)
+  mflr      r0
+  stw       r0, 0x24(r1)
+  stmw      r27, 0xC(r1)
+  mr        r27, r3
+  mr        r28, r4
+
+.loc_0x18:
+  mr        r3, r28
+  li        r4, 0
+  li        r5, 0
+  bl        -0x7024
+  mr        r0, r3
+  addi      r3, r2, 0x2040
+  mr        r30, r0
+  bl        -0x3517F8
+  mr        r5, r3
+  mr        r4, r30
+  addi      r3, r2, 0x2040
+  bl        -0x351A98
+  cntlzw    r0, r3
+  rlwinm.   r0,r0,27,24,31
+  bne-      .loc_0xC0
+  lwz       r29, 0x18(r27)
+  b         .loc_0xB4
+
+.loc_0x5C:
+  mr        r3, r30
+  bl        -0x351824
+  mr        r31, r3
+  lwz       r3, 0x4(r29)
+  bl        -0x351830
+  cmpw      r31, r3
+  bne-      .loc_0xB0
+  mr        r3, r30
+  bl        -0x351840
+  mr        r5, r3
+  lwz       r3, 0x4(r29)
+  mr        r4, r30
+  bl        -0x351AE0
+  cmpwi     r3, 0
+  bne-      .loc_0xB0
+  mr        r3, r29
+  mr        r4, r28
+  lwz       r12, 0x0(r29)
+  lwz       r12, 0xC(r12)
+  mtctr     r12
+  bctrl
+
+.loc_0xB0:
+  lwz       r29, 0x8(r29)
+
+.loc_0xB4:
+  cmplwi    r29, 0
+  bne+      .loc_0x5C
+  b         .loc_0x18
+
+.loc_0xC0:
+  lmw       r27, 0xC(r1)
+  lwz       r0, 0x24(r1)
+  mtlr      r0
+  addi      r1, r1, 0x20
   blr
 */
-
-///*
-// * --INFO--
-// * Address:	8041C0D4
-// * Size:	0000D4
-// */
-// void TagParameters::read(Stream&)
-//{
-//    /*
-//    .loc_0x0:
-//      stwu      r1, -0x20(r1)
-//      mflr      r0
-//      stw       r0, 0x24(r1)
-//      stmw      r27, 0xC(r1)
-//      mr        r27, r3
-//      mr        r28, r4
-//
-//    .loc_0x18:
-//      mr        r3, r28
-//      li        r4, 0
-//      li        r5, 0
-//      bl        -0x7024
-//      mr        r0, r3
-//      addi      r3, r2, 0x2040
-//      mr        r30, r0
-//      bl        -0x3517F8
-//      mr        r5, r3
-//      mr        r4, r30
-//      addi      r3, r2, 0x2040
-//      bl        -0x351A98
-//      cntlzw    r0, r3
-//      rlwinm.   r0,r0,27,24,31
-//      bne-      .loc_0xC0
-//      lwz       r29, 0x18(r27)
-//      b         .loc_0xB4
-//
-//    .loc_0x5C:
-//      mr        r3, r30
-//      bl        -0x351824
-//      mr        r31, r3
-//      lwz       r3, 0x4(r29)
-//      bl        -0x351830
-//      cmpw      r31, r3
-//      bne-      .loc_0xB0
-//      mr        r3, r30
-//      bl        -0x351840
-//      mr        r5, r3
-//      lwz       r3, 0x4(r29)
-//      mr        r4, r30
-//      bl        -0x351AE0
-//      cmpwi     r3, 0
-//      bne-      .loc_0xB0
-//      mr        r3, r29
-//      mr        r4, r28
-//      lwz       r12, 0x0(r29)
-//      lwz       r12, 0xC(r12)
-//      mtctr     r12
-//      bctrl
-//
-//    .loc_0xB0:
-//      lwz       r29, 0x8(r29)
-//
-//    .loc_0xB4:
-//      cmplwi    r29, 0
-//      bne+      .loc_0x5C
-//      b         .loc_0x18
-//
-//    .loc_0xC0:
-//      lmw       r27, 0xC(r1)
-//      lwz       r0, 0x24(r1)
-//      mtlr      r0
-//      addi      r1, r1, 0x20
-//      blr
-//    */
-//}
-//
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	0000C8
-// */
-// void TagParameters::write(Stream&)
-//{
-//    // UNUSED FUNCTION
-//}
-//
-///*
-// * --INFO--
-// * Address:	........
-// * Size:	00004C
-// */
-// void TagParameters::dump()
-//{
-//    // UNUSED FUNCTION
 //}

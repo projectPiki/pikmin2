@@ -160,13 +160,13 @@ void PelletConfigList::read(Stream& stream)
 		pelletConfigArray[i].parms.sus = i;
 
 		if (!strcmp("yes", pelletConfigArray[i].parms.indirect.m_data)) {
-			if (!strcmp("use", pelletConfigArray[i].parms.indirect.m_data)) {
-				pelletConfigArray[i].parms.sus2 = 0;
-			} else {
-				pelletConfigArray[i].parms.sus2 = 1;
-			}
-		} else {
 			pelletConfigArray[i].parms.sus2 = 2;
+		} else {
+			if (!strcmp("use", pelletConfigArray[i].parms.indirect.m_data)) {
+				pelletConfigArray[i].parms.sus2 = 1;
+			} else {
+				pelletConfigArray[i].parms.sus2 = 0;
+			}
 		}
 	}
 }
