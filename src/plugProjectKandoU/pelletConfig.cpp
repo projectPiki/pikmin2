@@ -155,112 +155,19 @@ void PelletConfigList::read(Stream& stream)
 {
 	count             = stream.readInt();
 	pelletConfigArray = new PelletConfig[count];
-	int i             = 0;
-	PelletConfig* j   = nullptr;
-	for (; i < count; j++, i++) {
-		PelletConfig* cfg = &pelletConfigArray[(u32)j];
+	for (int i = 0; i < count; i++) {
+		pelletConfigArray[i].parms.read(stream);
+		pelletConfigArray[i].parms.sus = i;
 
-		cfg->parms.read(stream);
-		cfg->parms.sus = i;
-
-		if (strcmp("yes", cfg->parms.indirect.m_data)) {
-			if (strcmp("use", cfg->parms.indirect.m_data)) {
-				cfg->parms.sus2 = 0;
+		if (!strcmp("yes", pelletConfigArray[i].parms.indirect.m_data)) {
+			if (!strcmp("use", pelletConfigArray[i].parms.indirect.m_data)) {
+				pelletConfigArray[i].parms.sus2 = 0;
 			} else {
-				cfg->parms.sus2 = 1;
+				pelletConfigArray[i].parms.sus2 = 1;
 			}
 		} else {
-			cfg->parms.sus2 = 2;
+			pelletConfigArray[i].parms.sus2 = 2;
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r29
-	  bl        0x260500
-	  stw       r3, 0x18(r28)
-	  lwz       r30, 0x18(r28)
-	  mulli     r3, r30, 0x260
-	  addi      r3, r3, 0x10
-	  bl        -0x1905F8
-	  lis       r4, 0x801B
-	  lis       r5, 0x801B
-	  addi      r4, r4, 0x3F34
-	  mr        r7, r30
-	  addi      r5, r5, 0x4698
-	  li        r6, 0x260
-	  bl        -0xF2BD0
-	  stw       r3, 0x1C(r28)
-	  li        r30, 0
-	  li        r31, 0
-	  b         .loc_0x104
-
-	.loc_0x6C:
-	  lwz       r0, 0x1C(r28)
-	  addi      r3, r31, 0x18
-	  mr        r4, r29
-	  add       r3, r0, r3
-	  bl        0x267AF0
-	  lwz       r4, 0x1C(r28)
-	  addi      r3, r31, 0x258
-	  addi      r0, r31, 0x190
-	  sthx      r30, r4, r3
-	  subi      r3, r2, 0x4F54
-	  lwz       r4, 0x1C(r28)
-	  lwzx      r4, r4, r0
-	  bl        -0xE9F44
-	  cmpwi     r3, 0
-	  bne-      .loc_0xBC
-	  lwz       r3, 0x1C(r28)
-	  addi      r0, r31, 0x25A
-	  li        r4, 0x2
-	  stbx      r4, r3, r0
-	  b         .loc_0xFC
-
-	.loc_0xBC:
-	  lwz       r4, 0x1C(r28)
-	  addi      r0, r31, 0x190
-	  subi      r3, r2, 0x4F50
-	  lwzx      r4, r4, r0
-	  bl        -0xE9F74
-	  cmpwi     r3, 0
-	  bne-      .loc_0xEC
-	  lwz       r3, 0x1C(r28)
-	  addi      r0, r31, 0x25A
-	  li        r4, 0x1
-	  stbx      r4, r3, r0
-	  b         .loc_0xFC
-
-	.loc_0xEC:
-	  lwz       r3, 0x1C(r28)
-	  addi      r0, r31, 0x25A
-	  li        r4, 0
-	  stbx      r4, r3, r0
-
-	.loc_0xFC:
-	  addi      r31, r31, 0x260
-	  addi      r30, r30, 0x1
-
-	.loc_0x104:
-	  lwz       r0, 0x18(r28)
-	  cmpw      r30, r0
-	  blt+      .loc_0x6C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	  */
 }
 } // namespace Game
