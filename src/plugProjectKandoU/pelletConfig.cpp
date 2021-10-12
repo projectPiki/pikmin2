@@ -1,6 +1,6 @@
+#include "PrimTagParm.h"
 #include "Game/pelletConfig.h"
 #include "JSystem/JUTException.h"
-#include "TagParm.h"
 
 namespace Game {
 
@@ -171,3 +171,4 @@ void PelletConfigList::read(Stream& stream)
 	}
 }
 } // namespace Game
+void TagParm::flushValue() {};
