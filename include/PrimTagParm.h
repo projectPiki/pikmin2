@@ -20,20 +20,7 @@ template <typename T> struct PrimTagParm : public TagParm {
 	T m_data; // _0C
 };
 
-struct PrimTagParm<u16> : public TagParm {
-	PrimTagParm<u16>(struct TagParameters* a, char* b)
-	    : TagParm(a, b)
-	{
-	}
-
-	virtual void doWrite(Stream&); // virtual
-	virtual void doRead(Stream&);  // virtual
-	virtual void doDump();         // virtual
-
-	u16 m_data;
-};
-
-struct PrimTagParm<u64> : public TagParm {
+template <> struct PrimTagParm<u64> : public TagParm {
 	PrimTagParm<u64>(struct TagParameters* a, char* b)
 	    : TagParm(a, b)
 	{
@@ -54,45 +41,6 @@ struct PrimTagParm<u64> : public TagParm {
 	} m_data;
 
 	// u8 m_data[sizeof(u64)];
-};
-
-struct PrimTagParm<Vector3f> : public TagParm {
-	PrimTagParm<Vector3f>(struct TagParameters* a, char* b)
-	    : TagParm(a, b)
-	{
-	}
-
-	virtual void doWrite(Stream&); // virtual
-	virtual void doRead(Stream&);  // virtual
-	virtual void doDump();         // virtual
-
-	Vector3f m_data;
-};
-
-struct PrimTagParm<int> : public TagParm {
-	PrimTagParm<int>(struct TagParameters* a, char* b)
-	    : TagParm(a, b)
-	{
-	}
-
-	virtual void doWrite(Stream&); // virtual
-	virtual void doRead(Stream&);  // virtual
-	virtual void doDump();         // virtual
-
-	int m_data;
-};
-
-struct PrimTagParm<float> : public TagParm {
-	PrimTagParm<float>(struct TagParameters* a, char* b)
-	    : TagParm(a, b)
-	{
-	}
-
-	virtual void doWrite(Stream&); // virtual
-	virtual void doRead(Stream&);  // virtual
-	virtual void doDump();         // virtual
-
-	float m_data;
 };
 
 struct TagParameters : public CNode {
