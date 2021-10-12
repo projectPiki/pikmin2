@@ -171,4 +171,3 @@ void PelletConfigList::read(Stream& stream)
 	}
 }
 } // namespace Game
-void TagParm::flushValue() {};

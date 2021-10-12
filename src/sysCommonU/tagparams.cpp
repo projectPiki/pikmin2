@@ -188,38 +188,48 @@ void StringTagParm::doDump() { }
  */
 TagParameters::TagParameters(char* name)
 {
-	_18    = 0;
+	head   = 0;
 	m_name = name;
 }
 
-///*
-// * --INFO--
-// * Address:	8041C09C
-// * Size:	000038
-// */
-// void TagParm::TagParm(TagParameters*, char*)
-//{
-//    /*
-//    .loc_0x0:
-//      lis       r6, 0x804F
-//      li        r0, 0
-//      subi      r6, r6, 0x4710
-//      stw       r6, 0x0(r3)
-//      stw       r5, 0x4(r3)
-//      stw       r0, 0x8(r3)
-//      lwz       r0, 0x18(r4)
-//      cmplwi    r0, 0
-//      beq-      .loc_0x30
-//      stw       r0, 0x8(r3)
-//      stw       r3, 0x18(r4)
-//      blr
-//
-//    .loc_0x30:
-//      stw       r3, 0x18(r4)
-//      blr
-//    */
-//}
-//
+/*
+ * --INFO--
+ * Address:	8041C09C
+ * Size:	000038
+ */
+TagParm::TagParm(TagParameters* container, char* name)
+{
+	m_name = name;
+	m_next = nullptr;
+	if (container->head != nullptr) {
+		this->m_next    = container->head;
+		container->head = this;
+		return;
+	}
+	container->head = this;
+	return;
+}
+
+/*
+.loc_0x0:
+  lis       r6, 0x804F
+  li        r0, 0
+  subi      r6, r6, 0x4710
+  stw       r6, 0x0(r3)
+  stw       r5, 0x4(r3)
+  stw       r0, 0x8(r3)
+  lwz       r0, 0x18(r4)
+  cmplwi    r0, 0
+  beq-      .loc_0x30
+  stw       r0, 0x8(r3)
+  stw       r3, 0x18(r4)
+  blr
+
+.loc_0x30:
+  stw       r3, 0x18(r4)
+  blr
+*/
+
 ///*
 // * --INFO--
 // * Address:	8041C0D4

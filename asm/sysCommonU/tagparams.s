@@ -1,24 +1,6 @@
 .include "macros.inc"
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
-.global __ct__7TagParmFP13TagParametersPc
-__ct__7TagParmFP13TagParametersPc:
-/* 8041C09C 00418FDC  3C C0 80 4F */	lis r6, __vt__7TagParm@ha
-/* 8041C0A0 00418FE0  38 00 00 00 */	li r0, 0
-/* 8041C0A4 00418FE4  38 C6 B8 F0 */	addi r6, r6, __vt__7TagParm@l
-/* 8041C0A8 00418FE8  90 C3 00 00 */	stw r6, 0(r3)
-/* 8041C0AC 00418FEC  90 A3 00 04 */	stw r5, 4(r3)
-/* 8041C0B0 00418FF0  90 03 00 08 */	stw r0, 8(r3)
-/* 8041C0B4 00418FF4  80 04 00 18 */	lwz r0, 0x18(r4)
-/* 8041C0B8 00418FF8  28 00 00 00 */	cmplwi r0, 0
-/* 8041C0BC 00418FFC  41 82 00 10 */	beq lbl_8041C0CC
-/* 8041C0C0 00419000  90 03 00 08 */	stw r0, 8(r3)
-/* 8041C0C4 00419004  90 64 00 18 */	stw r3, 0x18(r4)
-/* 8041C0C8 00419008  4E 80 00 20 */	blr 
-lbl_8041C0CC:
-/* 8041C0CC 0041900C  90 64 00 18 */	stw r3, 0x18(r4)
-/* 8041C0D0 00419010  4E 80 00 20 */	blr 
-
 .global read__13TagParametersFR6Stream
 read__13TagParametersFR6Stream:
 /* 8041C0D4 00419014  94 21 FF E0 */	stwu r1, -0x20(r1)

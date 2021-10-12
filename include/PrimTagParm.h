@@ -26,7 +26,7 @@ struct TagParameters : public CNode {
 
 	void read(Stream&);
 
-	u32 _18; // _18
+	TagParm* head; // _18
 };
 
 #endif
