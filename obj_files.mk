@@ -516,6 +516,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
 	$(BUILD_DIR)/asm/data_0.o\
+	$(BUILD_DIR)/asm/rodata_2.o\
 	
 TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
@@ -1060,7 +1061,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
 
 GROUP_1_FILES:=\
-	$(BUILD_DIR)/asm/rodata_2.o\
+	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/data_0a.o\
 
 TEXT_PART_TWO:=\
