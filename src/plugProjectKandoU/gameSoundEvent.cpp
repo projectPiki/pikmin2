@@ -7,11 +7,11 @@
  * Size:	00001C
  */
 Game::TSoundEvent::TSoundEvent()
-    : _00(0)
+    : m_state(0)
 {
-    _00 = 0;
-    _08 = 0;
-    _04 = 30;
+	m_state = 0;
+	_08     = 0;
+	_04     = 30;
 }
 
 /*
@@ -21,18 +21,18 @@ Game::TSoundEvent::TSoundEvent()
  */
 u32 Game::TSoundEvent::event()
 {
-    _08 = Game::gameSystem->_50;
-    if (!(_00 & 1)) {
-        _00 |= 1;
-        return 1;
-    }
+	_08 = Game::gameSystem->_50;
+	if (!(m_state & 1)) {
+		m_state |= 1;
+		return 1;
+	}
 
-    if (_00 & 2) {
-        _00 &= ~2;
-        return 3;
-    }
+	if (m_state & 2) {
+		m_state &= ~2;
+		return 3;
+	}
 
-    return 0;
+	return 0;
 }
 
 /*
@@ -40,7 +40,7 @@ u32 Game::TSoundEvent::event()
  * Address:	8022EC30
  * Size:	000010
  */
-void Game::TSoundEvent::finish(void) { _00 |= 4; }
+void Game::TSoundEvent::finish(void) { m_state |= Finish; }
 
 /*
  * --INFO--
@@ -49,11 +49,11 @@ void Game::TSoundEvent::finish(void) { _00 |= 4; }
  */
 u32 Game::TSoundEvent::update()
 {
-    if (!(_00 & 4) && Game::gameSystem->calcFrameDist(_08) > _04 && _00 & 1
-        && !(_00 & 2)) {
-        _00 |= 2;
-        return 2;
-    }
+	if (!(m_state & Finish) && Game::gameSystem->calcFrameDist(_08) > _04
+	    && m_state & 1 && !(m_state & 2)) {
+		m_state |= 2;
+		return 2;
+	}
 
-    return 0;
+	return 0;
 }
