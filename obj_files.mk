@@ -1079,7 +1079,6 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/camera.o\
 	$(BUILD_DIR)/src/sysCommonU/tagparams.o\
-	$(BUILD_DIR)/asm/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/src/sysCommonU/sysTemplates.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCode.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomIntersection.o\
@@ -1089,6 +1088,7 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
 
 TEXT_PT3:=\
+	$(BUILD_DIR)/asm/sdata2_b.o\
 	$(BUILD_DIR)/asm/data_01.o\
 	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
