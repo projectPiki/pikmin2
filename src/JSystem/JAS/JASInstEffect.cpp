@@ -7,9 +7,9 @@
  */
 void JASInstEffect::setTarget(int)
 {
-    /*
-    .loc_0x0:
-      stb       r4, 0x4(r3)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  stb       r4, 0x4(r3)
+	  blr
+	*/
 }

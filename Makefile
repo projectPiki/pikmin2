@@ -50,7 +50,7 @@ MAP     := $(BUILD_DIR)/pikmin2.map
 
 include obj_files.mk
 
-O_FILES := $(GROUP_0_FILES) $(TEXT_O_FILES) $(GROUP_1_FILES) $(TEXT_PART_TWO) $(GROUP_2_FILES)
+O_FILES := $(GROUP_0_FILES) $(TEXT_O_FILES) $(TEXT_PT1) $(GROUP_1_FILES) $(TEXT_PART_TWO) $(TEXT_PT3) $(GROUP_2_FILES)
 
 #-------------------------------------------------------------------------------
 # Tools
@@ -77,17 +77,17 @@ ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
 PYTHON  := python
 
-POSTPROC := tools/postprocess.py
+# POSTPROC := tools/postprocess.py
 
 # Options
 INCLUDES := -i include/
 
 ASFLAGS := -mgekko -I include/ 
 LDFLAGS := -map $(MAP) -fp hard -nodefaults
-CFLAGS  := -Cpp_exceptions off -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
 
 # for postprocess.py
-PROCFLAGS := -fsymbol-fixup
+# PROCFLAGS := -fsymbol-fixup
 
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
@@ -139,11 +139,9 @@ $(BUILD_DIR)/%.o: %.s
 	
 $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
-	#$(PYTHON) $(POSTPROC) $(PROCFLAGS) $@
 
 $(BUILD_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
-	#$(PYTHON) $(POSTPROC) $(PROCFLAGS) $@
 
 ### Debug Print ###
 

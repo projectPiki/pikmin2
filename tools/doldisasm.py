@@ -9,26 +9,27 @@ from capstone.ppc import *
 import re
 import sys
 
-substitutions = (
-    ('<',  '$$0'),
-    ('>',  '$$1'),
-    ('@',  '$$2'),
-    ('\\', '$$3'),
-    (',',  '$$4'),
-    ('-',  '$$5')
-)
+#substitutions = (
+#    ('<',  '$$0'),
+#    ('>',  '$$1'),
+#    ('@',  '$$2'),
+#    ('\\', '$$3'),
+#    (',',  '$$4'),
+#    ('-',  '$$5')
+#)
 
 def format(symbol):
-    for sub in substitutions:
-        symbol = symbol.replace(sub[0], sub[1])
+    symbol = f'"{symbol}"'
+    #for sub in substitutions:
+        #symbol = symbol.replace(sub[0], sub[1])
 
     return symbol
 
-def decodeformat(symbol):
-    for sub in substitutions:
-        symbol = symbol.replace(sub[1], sub[0])
-
-    return symbol
+#def decodeformat(symbol):
+#    for sub in substitutions:
+#        symbol = symbol.replace(sub[1], sub[0])
+#
+#    return symbol
 
 r13_addr = None
 r2_addr = None

@@ -24,7 +24,7 @@ def format_folders(folder_to_iter):
 if __name__ == "__main__":
     if os.path.exists("clang-format.exe"):
         format_folders("include/")
-        format_folders("source/")
+        format_folders("src/")
         print("Done formatting!")
     else:
         print("You need to download clang-format and place it in this directory!")

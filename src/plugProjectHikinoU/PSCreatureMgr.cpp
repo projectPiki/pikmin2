@@ -3,6 +3,6 @@
 namespace PSGame {
 void SoundCreatureMgr::registerAnime(J3DAnmBase* arg1, const char* arg2)
 {
-    return;
+	return;
 }
 } // namespace PSGame

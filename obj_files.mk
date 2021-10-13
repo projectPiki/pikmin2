@@ -515,7 +515,11 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pelletConfig.o\
+	$(BUILD_DIR)/asm/data_0.o\
+	$(BUILD_DIR)/asm/rodata_2.o\
+	
+TEXT_PT1:=\
+	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiConstants.o\
@@ -1058,8 +1062,9 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
 
 GROUP_1_FILES:=\
-	$(BUILD_DIR)/asm/rodata_2.o\
-	$(BUILD_DIR)/asm/data_0.o\
+	$(BUILD_DIR)/asm/sdata2_a.o\
+	$(BUILD_DIR)/asm/rodata_2a.o\
+	$(BUILD_DIR)/asm/data_0a.o\
 
 TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
@@ -1074,8 +1079,8 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/camera.o\
+	$(BUILD_DIR)/src/sysCommonU/tagparams_jank.o\
 	$(BUILD_DIR)/src/sysCommonU/tagparams.o\
-	$(BUILD_DIR)/asm/sysCommonU/tagparams.o\
 	$(BUILD_DIR)/src/sysCommonU/sysTemplates.o\
 	$(BUILD_DIR)/asm/sysCommonU/mapCode.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomIntersection.o\
@@ -1083,6 +1088,10 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
+
+TEXT_PT3:=\
+	$(BUILD_DIR)/asm/sdata2_b.o\
+	$(BUILD_DIR)/asm/data_01.o\
 	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/section.o\

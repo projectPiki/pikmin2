@@ -10,123 +10,123 @@ extern const char lbl_8049AE28[33]; // "/memoryCard/memoryCardHeader.szs"
 
 namespace Game {
 namespace MemoryCard {
-    /*
-     * --INFO--
-     * Address:	804428AC
-     * Size:	00003C
-     */
-    Player::Player()
-        : _00(0)
-        , _04(0)
-        , _08(0)
-        , _0C(0)
-        , _10(0)
-        , _14(0)
-        , _18(0)
-        , _1C(0)
-        , _20(0)
-        , _24(0)
-        , _28(0)
-        , _2C(0)
-        , _30(0)
-    {
-    }
+	/*
+	 * --INFO--
+	 * Address:	804428AC
+	 * Size:	00003C
+	 */
+	Player::Player()
+	    : _00(0)
+	    , _04(0)
+	    , _08(0)
+	    , _0C(0)
+	    , _10(0)
+	    , _14(0)
+	    , _18(0)
+	    , _1C(0)
+	    , _20(0)
+	    , _24(0)
+	    , _28(0)
+	    , _2C(0)
+	    , _30(0)
+	{
+	}
 
-    /*
-     * --INFO--
-     * Address:	804428E8
-     * Size:	000044
-     */
-    PlayerFileInfo::PlayerFileInfo() { }
+	/*
+	 * --INFO--
+	 * Address:	804428E8
+	 * Size:	000044
+	 */
+	PlayerFileInfo::PlayerFileInfo() { }
 
-    /*
-     * --INFO--
-     * Address:	8044292C
-     * Size:	000074
-     */
-    Player* PlayerFileInfo::getPlayer(int idx)
-    {
-        checkValidity(idx);
-        return &m_players[idx];
-    }
+	/*
+	 * --INFO--
+	 * Address:	8044292C
+	 * Size:	000074
+	 */
+	Player* PlayerFileInfo::getPlayer(int idx)
+	{
+		checkValidity(idx);
+		return &m_players[idx];
+	}
 
-    /*
-     * --INFO--
-     * Address:	804429A0
-     * Size:	000080
-     */
-    u8 PlayerFileInfo::isBrokenFile(int idx)
-    {
-        checkValidity(idx);
-        return m_players[idx]._00 != 0;
-    }
+	/*
+	 * --INFO--
+	 * Address:	804429A0
+	 * Size:	000080
+	 */
+	u8 PlayerFileInfo::isBrokenFile(int idx)
+	{
+		checkValidity(idx);
+		return m_players[idx]._00 != 0;
+	}
 
-    /*
-     * --INFO--
-     * Address:	80442A20
-     * Size:	000094
-     */
-    bool PlayerFileInfo::isNewFile(int idx)
-    {
-        checkValidity(idx);
-        Player* curPlayer = &m_players[idx];
-        return !curPlayer->_00 && !curPlayer->_04;
-    }
+	/*
+	 * --INFO--
+	 * Address:	80442A20
+	 * Size:	000094
+	 */
+	bool PlayerFileInfo::isNewFile(int idx)
+	{
+		checkValidity(idx);
+		Player* curPlayer = &m_players[idx];
+		return !curPlayer->_00 && !curPlayer->_04;
+	}
 
-    /*
-     * --INFO--
-     * Address:	80442AB4
-     * Size:	00006C
-     */
-    Resource::~Resource() { m_mgr->destroyResource(); }
+	/*
+	 * --INFO--
+	 * Address:	80442AB4
+	 * Size:	00006C
+	 */
+	Resource::~Resource() { m_mgr->destroyResource(); }
 
-    /*
-     * --INFO--
-     * Address:	80442B20
-     * Size:	00007C
-     */
-    Mgr::Mgr()
-        : MemoryCardMgr()
-    {
-        this->_D8 = 0;
-        this->_DC = 0;
-        this->_E0 = 0;
-        this->_E4 = 0;
-        this->_E5 = 0;
-        this->_E6 = 0;
-        this->_E7 = 0;
+	/*
+	 * --INFO--
+	 * Address:	80442B20
+	 * Size:	00007C
+	 */
+	Mgr::Mgr()
+	    : MemoryCardMgr()
+	{
+		this->_D8 = 0;
+		this->_DC = 0;
+		this->_E0 = 0;
+		this->_E4 = 0;
+		this->_E5 = 0;
+		this->_E6 = 0;
+		this->_E7 = 0;
 
-        OSReport(lbl_8049ADF4, 0xC000, 0xC000, 0x3C);
-    }
+		OSReport(lbl_8049ADF4, 0xC000, 0xC000, 0x3C);
+	}
 
-    /*
-     * --INFO--
-     * Address:	80442B9C
-     * Size:	000030
-     */
-    u32 Mgr::isErrorOccured() { return !(getCardStatus() == MCS_Error); }
+	/*
+	 * --INFO--
+	 * Address:	80442B9C
+	 * Size:	000030
+	 */
+	u32 Mgr::isErrorOccured() { return !(getCardStatus() == MCS_Error); }
 
-    /*
-     * --INFO--
-     * Address:	80442BCC
-     * Size:	000120
-     */
-    // void Mgr::loadResource(JKRHeap* heap)
-    // {
-    //     Resource* resource = new (heap, 0) Resource(this);
-    //     if (!resource) {
-    //         JUTException::panic_f(gStrMemoryCardMgrCpp, 533,
-    //                               gStrMemoryCardMgrP2Assert);
-    //     }
+	/*
+	 * --INFO--
+	 * Address:	80442BCC
+	 * Size:	000120
+	 */
+	// void Mgr::loadResource(JKRHeap* heap)
+	// {
+	//     Resource* resource = new (heap, 0) Resource(this);
+	//     if (!resource) {
+	//         JUTException::panic_f(gStrMemoryCardMgrCpp, 533,
+	//                               gStrMemoryCardMgrP2Assert);
+	//     }
 
-    //     u32* file = JKRArchive::mount(lbl_8049AE28,
-    //     (JKRArchive::EMountMode)1,
-    //                                   heap, (JKRArchive::EMountDirection)1);
-    //     if (!file) {
-    //         JUTException::panic_f(gStrMemoryCardMgrCpp, 540,
-    //                               gStrMemoryCardMgrP2Assert);
-    //     }
-    // }
+	//     u32* file = JKRArchive::mount(lbl_8049AE28,
+	//     (JKRArchive::EMountMode)1,
+	//                                   heap, (JKRArchive::EMountDirection)1);
+	//     if (!file) {
+	//         JUTException::panic_f(gStrMemoryCardMgrCpp, 540,
+	//                               gStrMemoryCardMgrP2Assert);
+	//     }
+	// }
 
 } // namespace MemoryCard
 } // namespace Game

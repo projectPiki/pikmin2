@@ -15,10 +15,10 @@ P2JME::SimpleMessage::SimpleMessage(void) { }
  */
 void P2JME::SimpleMessage::init(void)
 {
-    this->m_processor = new P2JME::TRenderingProcessor(gP2JMEMgr->m_messageRef);
+	this->m_processor = new P2JME::TRenderingProcessor(gP2JMEMgr->m_messageRef);
 
-    this->m_processor->setFont(gP2JMEMgr->m_font);
-    this->m_processor->_50 = gP2JMEMgr->m_font;
+	this->m_processor->setFont(gP2JMEMgr->m_font);
+	this->m_processor->_50 = gP2JMEMgr->m_font;
 }
 
 /*
@@ -29,11 +29,11 @@ void P2JME::SimpleMessage::init(void)
 void P2JME::SimpleMessage::drawMessageID(Graphics& r4, unsigned long r5,
                                          unsigned long r6)
 {
-    this->m_processor->preProcID(r5, r6);
+	this->m_processor->preProcID(r5, r6);
 
-    JMessage::TRenderingProcessor* jmProc
-        = static_cast<JMessage::TRenderingProcessor*>(this->m_processor);
-    jmProc->reset_(nullptr);
-    jmProc->setBegin_messageID(r5, r6, nullptr);
-    jmProc->process(nullptr);
+	JMessage::TRenderingProcessor* jmProc
+	    = static_cast<JMessage::TRenderingProcessor*>(this->m_processor);
+	jmProc->reset_(nullptr);
+	jmProc->setBegin_messageID(r5, r6, nullptr);
+	jmProc->process(nullptr);
 }

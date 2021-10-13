@@ -6,10 +6,10 @@ extern const float lbl_80520270; // 0.0f
 
 float pikmin2_sinf(float x)
 {
-    if (x < lbl_80520270) {
-        return -JMath::sincosTable_[((int)(x * lbl_80520268) & 0x7ffU) * 2];
-    }
-    return JMath::sincosTable_[((int)(x * lbl_8052026C) & 0x7ffU) * 2];
+	if (x < lbl_80520270) {
+		return -JMath::sincosTable_[((int)(x * lbl_80520268) & 0x7ffU) * 2];
+	}
+	return JMath::sincosTable_[((int)(x * lbl_8052026C) & 0x7ffU) * 2];
 }
 
 /*
@@ -19,10 +19,10 @@ float pikmin2_sinf(float x)
  */
 float pikmin2_cosf(float x)
 {
-    if (x < lbl_80520270) {
-        x = -x;
-    }
-    return JMath::sincosTable_[((int)(x * lbl_8052026C) & 0x7ffU) * 2 + 1];
+	if (x < lbl_80520270) {
+		x = -x;
+	}
+	return JMath::sincosTable_[((int)(x * lbl_8052026C) & 0x7ffU) * 2 + 1];
 }
 
 /*
@@ -32,7 +32,7 @@ float pikmin2_cosf(float x)
  */
 float pikmin2_atan2f(float x, float y)
 {
-    return JMath::atanTable_.atan2_(x, y);
+	return JMath::atanTable_.atan2_(x, y);
 }
 
 /*
@@ -42,20 +42,20 @@ float pikmin2_atan2f(float x, float y)
  */
 float pikmin2_sqrtf(float x)
 {
-    if (!(x > lbl_80520270)) { // if x <= 0
-        return x;
-    }
+	if (!(x > lbl_80520270)) { // if x <= 0
+		return x;
+	}
 
-    register float reg1 = x;
-    register float reg2 = lbl_80520270;
-    register float result;
+	register float reg1 = x;
+	register float reg2 = lbl_80520270;
+	register float result;
 
-    asm {
+	asm {
       frsqrte reg2, reg1
       fmuls result, reg2, reg1
-    }
+	}
 
-    return result;
+	return result;
 }
 
 /*
@@ -69,15 +69,15 @@ float pikmin2_sqrtf(float x)
 float qdist2(float x1, float y1, float x2, float y2)
 {
 
-    float xdiff = (x2 - x1);
-    float ydiff = (y2 - y1);
+	float xdiff = (x2 - x1);
+	float ydiff = (y2 - y1);
 
-    float dist = ((xdiff * xdiff) + (ydiff * ydiff));
-    if (dist > lbl_80520270) {
-        volatile float a = dist * (__frsqrte(dist));
-        dist             = a;
-    }
-    return dist;
+	float dist = ((xdiff * xdiff) + (ydiff * ydiff));
+	if (dist > lbl_80520270) {
+		volatile float a = dist * (__frsqrte(dist));
+		dist             = a;
+	}
+	return dist;
 }
 
 //

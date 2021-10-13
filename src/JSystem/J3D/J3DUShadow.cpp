@@ -7,7 +7,7 @@
  */
 void J3DUMultiTexture::J3DUMultiTexture(unsigned long, unsigned char)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -17,16 +17,16 @@ void J3DUMultiTexture::J3DUMultiTexture(unsigned long, unsigned char)
  */
 void JUTTexture::JUTTexture()
 {
-    /*
-    .loc_0x0:
-      lbz       r4, 0x3B(r3)
-      li        r0, 0
-      rlwinm    r4,r4,0,30,30
-      stb       r4, 0x3B(r3)
-      stw       r0, 0x28(r3)
-      stw       r0, 0x20(r3)
-      blr
-    */
+	/*
+	.loc_0x0:
+	  lbz       r4, 0x3B(r3)
+	  li        r0, 0
+	  rlwinm    r4,r4,0,30,30
+	  stb       r4, 0x3B(r3)
+	  stw       r0, 0x28(r3)
+	  stw       r0, 0x20(r3)
+	  blr
+	*/
 }
 
 /*
@@ -36,7 +36,7 @@ void JUTTexture::JUTTexture()
  */
 void J3DUMultiTexture::~J3DUMultiTexture()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -46,7 +46,7 @@ void J3DUMultiTexture::~J3DUMultiTexture()
  */
 void J3DUMultiTexture::initResTIMG(unsigned char, _GXTexFmt)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -57,7 +57,7 @@ void J3DUMultiTexture::initResTIMG(unsigned char, _GXTexFmt)
 void J3DUMultiTexture::allocateTexture(unsigned char, unsigned short,
                                        unsigned short, _GXTexFmt)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -68,7 +68,7 @@ void J3DUMultiTexture::allocateTexture(unsigned char, unsigned short,
 void J3DUMultiTexture::draw(unsigned char, unsigned long, unsigned long,
                             _GXTevColorArg, unsigned long, unsigned long) const
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -78,7 +78,7 @@ void J3DUMultiTexture::draw(unsigned char, unsigned long, unsigned long,
  */
 void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float, Vec*, float*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -88,7 +88,7 @@ void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float, Vec*, float*)
  */
 void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -98,7 +98,7 @@ void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float*)
  */
 void calcSphereIncludingModel(const J3DModel*, Vec*, float*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -108,7 +108,7 @@ void calcSphereIncludingModel(const J3DModel*, Vec*, float*)
  */
 void J3DUShadowManager::getFormatCoefficient(_GXTexFmt) const
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -119,7 +119,7 @@ void J3DUShadowManager::getFormatCoefficient(_GXTexFmt) const
 void J3DUShadowManager::J3DUShadowManager(unsigned long, _GXTexFmt,
                                           unsigned char, bool)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -129,7 +129,7 @@ void J3DUShadowManager::J3DUShadowManager(unsigned long, _GXTexFmt,
  */
 void J3DUShadowManager::~J3DUShadowManager()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -139,7 +139,7 @@ void J3DUShadowManager::~J3DUShadowManager()
  */
 void J3DUShadowManager::calc(const Vec&, J3DUShadowTextureSizeRatioCalcBase*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -149,7 +149,7 @@ void J3DUShadowManager::calc(const Vec&, J3DUShadowTextureSizeRatioCalcBase*)
  */
 void J3DUShadowManager::capture()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -159,7 +159,7 @@ void J3DUShadowManager::capture()
  */
 void ProjectionBackup::~ProjectionBackup()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -169,7 +169,7 @@ void ProjectionBackup::~ProjectionBackup()
  */
 void ScissorBackup::~ScissorBackup()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -179,7 +179,7 @@ void ScissorBackup::~ScissorBackup()
  */
 void ViewportBackup::~ViewportBackup()
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -190,7 +190,7 @@ void ViewportBackup::~ViewportBackup()
 void J3DUShadowTextureSizeRatioCalcDefault::operator()(const Vec&,
                                                        J3DUShadowInfo*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -202,7 +202,7 @@ void J3DUShadowCameraPolicyUsingSphere::operator()(J3DModel*, const Vec&,
                                                    _GXProjectionType,
                                                    J3DUShadowInfo*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -212,7 +212,7 @@ void J3DUShadowCameraPolicyUsingSphere::operator()(J3DModel*, const Vec&,
  */
 void J3DUShadowInfo::setViewportAndScissor(bool) const
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -223,7 +223,7 @@ void J3DUShadowInfo::setViewportAndScissor(bool) const
 void J3DUShadowInfo::gxConfig(const _GXColor&, _GXTevColorArg,
                               _GXTevAlphaArg) const
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -233,7 +233,7 @@ void J3DUShadowInfo::gxConfig(const _GXColor&, _GXTevColorArg,
  */
 void J3DUShadowInfo::renderShape() const
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -243,7 +243,7 @@ void J3DUShadowInfo::renderShape() const
  */
 void J3DUShadowInfo::getTexMtx(float (*)[4]) const
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -253,7 +253,7 @@ void J3DUShadowInfo::getTexMtx(float (*)[4]) const
  */
 void J3DUShadowInfo::getTexMtxForGX(float (*)[4]) const
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
@@ -265,5 +265,5 @@ void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, float (*)[4],
                                const J3DUClipper&, const Vec&,
                                const JGeometry::TPartition3<float>&)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
