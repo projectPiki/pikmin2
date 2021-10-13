@@ -1,4 +1,100 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520CE0
+lbl_80520CE0:
+	.4byte 0x00000000
+.global lbl_80520CE4
+lbl_80520CE4:
+	.4byte 0x44180000
+.global lbl_80520CE8
+lbl_80520CE8:
+	.4byte 0x40800000
+.global lbl_80520CEC
+lbl_80520CEC:
+	.4byte 0x42C80000
+.global lbl_80520CF0
+lbl_80520CF0:
+	.4byte 0x43820000
+.global lbl_80520CF4
+lbl_80520CF4:
+	.float 1.0
+.global lbl_80520CF8
+lbl_80520CF8:
+	.float 0.5
+.global lbl_80520CFC
+lbl_80520CFC:
+	.4byte 0x4000A3D7
+.global lbl_80520D00
+lbl_80520D00:
+	.4byte 0x40000000
+.global lbl_80520D04
+lbl_80520D04:
+	.4byte 0x40200000
+.global lbl_80520D08
+lbl_80520D08:
+	.4byte 0x40133333
+.global lbl_80520D0C
+lbl_80520D0C:
+	.4byte 0x3FC00000
+.global lbl_80520D10
+lbl_80520D10:
+	.float 0.3
+.global lbl_80520D14
+lbl_80520D14:
+	.float 0.1
+.global lbl_80520D18
+lbl_80520D18:
+	.4byte 0x3F4CCCCD
+.global lbl_80520D1C
+lbl_80520D1C:
+	.4byte 0x3F666666
+.global lbl_80520D20
+lbl_80520D20:
+	.4byte 0x3F8CCCCD
+.global lbl_80520D24
+lbl_80520D24:
+	.4byte 0x3F99999A
+.global lbl_80520D28
+lbl_80520D28:
+	.4byte 0x3FA66666
+.global lbl_80520D2C
+lbl_80520D2C:
+	.4byte 0x3FB33333
+.global lbl_80520D30
+lbl_80520D30:
+	.float 0.7
+.global lbl_80520D34
+lbl_80520D34:
+	.4byte 0x3F19999A
+.global lbl_80520D38
+lbl_80520D38:
+	.4byte 0x3FCCCCCD
+.global lbl_80520D3C
+lbl_80520D3C:
+	.4byte 0x3FD9999A
+.global lbl_80520D40
+lbl_80520D40:
+	.4byte 0x3FE66666
+.global lbl_80520D44
+lbl_80520D44:
+	.4byte 0x3ECCCCCD
+.global lbl_80520D48
+lbl_80520D48:
+	.4byte 0x40A00000
+.global lbl_80520D4C
+lbl_80520D4C:
+	.4byte 0x437A0000
+.global lbl_80520D50
+lbl_80520D50:
+	.4byte 0x42FE0000
+.global lbl_80520D54
+lbl_80520D54:
+	.4byte 0x3E4CCCCD
+.global lbl_80520D58
+lbl_80520D58:
+	.4byte 0x43300000
+	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global partInit__Q23PSM14ClusterFactoryFUc

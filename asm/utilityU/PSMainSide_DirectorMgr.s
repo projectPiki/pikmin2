@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520D60
+lbl_80520D60:
+	.4byte 0x00000000
+.global lbl_80520D64
+lbl_80520D64:
+	.4byte 0x6E65775F
+	.4byte 0x00000000
+.global lbl_80520D6C
+lbl_80520D6C:
+	.4byte 0x6576656E
+	.4byte 0x74440000
+.global lbl_80520D74
+lbl_80520D74:
+	.4byte 0x43480000
+.global lbl_80520D78
+lbl_80520D78:
+	.4byte 0x44BB8000
+.global lbl_80520D7C
+lbl_80520D7C:
+	.4byte 0x50535365
+	.4byte 0x712E6800
+.global lbl_80520D84
+lbl_80520D84:
+	.4byte 0x43960000
+.global lbl_80520D88
+lbl_80520D88:
+	.4byte 0x44160000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q23PSM17DirectorMgr_SceneFPQ23PSM17DirectorMgr_SceneUc

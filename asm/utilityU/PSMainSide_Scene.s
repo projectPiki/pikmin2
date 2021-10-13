@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520C98
+lbl_80520C98:
+	.4byte 0x3DA3D70A
+.global lbl_80520C9C
+lbl_80520C9C:
+	.4byte 0x00000000
+.global lbl_80520CA0
+lbl_80520CA0:
+	.float 1.0
+.global lbl_80520CA4
+lbl_80520CA4:
+	.float 0.3
+.global cEvenning_fadeOuTime__Q23PSM12Scene_Ground
+cEvenning_fadeOuTime__Q23PSM12Scene_Ground:
+	.4byte 0x00000096
+.global cEvenning_fadeInTime__Q23PSM12Scene_Ground
+cEvenning_fadeInTime__Q23PSM12Scene_Ground:
+	.4byte 0x00000096
+.global lbl_80520CB0
+lbl_80520CB0:
+	.4byte 0x3F4CCCCD
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q23PSM9SceneBaseFUcPQ26PSGame9SceneInfo

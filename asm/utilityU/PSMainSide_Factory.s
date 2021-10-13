@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520C20
+lbl_80520C20:
+	.float 1.0
+.global lbl_80520C24
+lbl_80520C24:
+	.4byte 0x00000000
+.global lbl_80520C28
+lbl_80520C28:
+	.4byte 0x43C80000
+.global lbl_80520C2C
+lbl_80520C2C:
+	.4byte 0x43EF8000
+.global lbl_80520C30
+lbl_80520C30:
+	.4byte 0x3AF330E5
+.global lbl_80520C34
+lbl_80520C34:
+	.4byte 0x3A603CEC
+.global lbl_80520C38
+lbl_80520C38:
+	.float 0.5
+.global lbl_80520C3C
+lbl_80520C3C:
+	.4byte 0x43BD8000
+.global lbl_80520C40
+lbl_80520C40:
+	.4byte 0x3E8F5C29
+.global lbl_80520C44
+lbl_80520C44:
+	.4byte 0x3F19999A
+.global lbl_80520C48
+lbl_80520C48:
+	.4byte 0x461C4000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global play__Q23PSM12Env_PollutinFv

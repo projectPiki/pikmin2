@@ -1,4 +1,46 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520C50
+lbl_80520C50:
+	.4byte 0x00000000
+.global lbl_80520C54
+lbl_80520C54:
+	.float 0.5
+.global lbl_80520C58
+lbl_80520C58:
+	.4byte 0x42FE0000
+.global lbl_80520C5C
+lbl_80520C5C:
+	.float 1.0
+.global lbl_80520C60
+lbl_80520C60:
+	.4byte 0x3D000000
+	.4byte 0x00000000
+.global lbl_80520C68
+lbl_80520C68:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80520C70
+lbl_80520C70:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520C78
+lbl_80520C78:
+	.4byte 0x4B189680
+.global lbl_80520C7C
+lbl_80520C7C:
+	.4byte 0x43FA0000
+.global lbl_80520C80
+lbl_80520C80:
+	.4byte 0x3F4CCCCD
+.global lbl_80520C84
+lbl_80520C84:
+	.4byte 0x3F266666
+.global lbl_80520C88
+lbl_80520C88:
+	.float 0.7
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q23PSM7ObjBaseFv

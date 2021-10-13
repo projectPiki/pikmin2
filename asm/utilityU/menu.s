@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520BE8
+lbl_80520BE8:
+	.4byte 0x726F6F74
+	.4byte 0x00000000
+.global lbl_80520BF0
+lbl_80520BF0:
+	.4byte 0x00000000
+.global lbl_80520BF4
+lbl_80520BF4:
+	.float 1.0
+.global lbl_80520BF8
+lbl_80520BF8:
+	.4byte 0x40E00000
+.global lbl_80520BFC
+lbl_80520BFC:
+	.4byte 0x41000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__4MenuFP10JUTGamePadP7JUTFontb
