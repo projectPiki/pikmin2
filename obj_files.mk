@@ -1164,6 +1164,7 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/sysGCU/illustratedBookMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/sysDrawBuffer.o\
 	$(BUILD_DIR)/asm/rodata_3.o\
+	$(BUILD_DIR)/asm/sysGCU/dvdErrorMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2AramMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/messageAnalyzer.o\
 	$(BUILD_DIR)/asm/utilityU/menu.o\
