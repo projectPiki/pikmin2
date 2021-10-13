@@ -28,6 +28,33 @@ lbl_8049E1E0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23PSM14ObjCalc_2PGame
+__vt__Q23PSM14ObjCalc_2PGame:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM14ObjCalc_2PGameFv
+  .4byte getPlayerNo__Q23PSM14ObjCalc_2PGameFPQ23PSM8Creature
+  .4byte getPlayerNo__Q23PSM14ObjCalc_2PGameFR3Vec
+  .4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
+  .4byte is1PGame__Q23PSM14ObjCalc_2PGameFv
+.global __vt__Q23PSM18ObjCalc_SingleGame
+__vt__Q23PSM18ObjCalc_SingleGame:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM18ObjCalc_SingleGameFv
+  .4byte getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature
+  .4byte getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec
+  .4byte setMode__Q23PSM11ObjCalcBaseFQ33PSM11ObjCalcBase4Mode
+  .4byte is1PGame__Q23PSM11ObjCalcBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+  .4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520E28

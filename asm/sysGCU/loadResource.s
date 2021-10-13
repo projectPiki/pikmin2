@@ -30,6 +30,19 @@ lbl_8049B3A8:
 	.4byte 0x0A000000
 	.4byte 0x00000000
 
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q212LoadResource4Node
+__vt__Q212LoadResource4Node:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q212LoadResource4NodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q212LoadResource4NodeFv"
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520AA8

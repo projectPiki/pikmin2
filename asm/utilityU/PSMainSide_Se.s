@@ -40,6 +40,117 @@ lbl_8049DA70:
 	.4byte 0x2E680000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EF6F0
+lbl_804EF6F0:
+	.4byte 0x8046D858
+	.4byte 0x8046D5B8
+	.4byte 0x8046D62C
+	.4byte 0x8046D6A0
+	.4byte 0x8046D714
+	.4byte 0x8046D758
+	.4byte 0x8046D79C
+	.4byte 0x8046D7F0
+.global lbl_804EF710
+lbl_804EF710:
+	.4byte 0x8046E3A8
+	.4byte 0x8046E370
+	.4byte 0x8046E328
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E394
+	.4byte 0x8046E394
+	.4byte 0x8046E394
+	.4byte 0x8046E34C
+	.4byte 0x8046E394
+	.4byte 0x8046E358
+	.4byte 0x8046E358
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E364
+	.4byte 0x8046E358
+	.4byte 0x8046E358
+	.4byte 0x8046E34C
+	.4byte 0x8046E37C
+	.4byte 0x8046E364
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E37C
+	.4byte 0x8046E364
+	.4byte 0x8046E31C
+	.4byte 0x8046E340
+	.4byte 0x8046E31C
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E364
+	.4byte 0x8046E3A8
+	.4byte 0x8046E31C
+	.4byte 0x8046E364
+	.4byte 0x8046E328
+	.4byte 0x8046E328
+	.4byte 0x8046E370
+	.4byte 0x8046E370
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E310
+	.4byte 0x8046E34C
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E34C
+	.4byte 0x8046E388
+	.4byte 0x8046E388
+	.4byte 0x8046E388
+	.4byte 0x8046E388
+	.4byte 0x8046E364
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E364
+	.4byte 0x8046E394
+	.4byte 0x8046E3A8
+	.4byte 0x8046E340
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E340
+	.4byte 0x8046E370
+	.4byte 0x8046E3A0
+	.4byte 0x8046E334
+	.4byte 0x8046E370
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E3A8
+	.4byte 0x8046E340
+.global __vt__Q23PSM14ClusterFactory
+__vt__Q23PSM14ClusterFactory:
+  .4byte 0
+  .4byte 0
+  .4byte constructPart__Q38PSSystem9ClusterSe7FactoryFv
+  .4byte identifyPart__Q23PSM14ClusterFactoryFUc
+.global __vt__Q23PSM14WorldMapRocket
+__vt__Q23PSM14WorldMapRocket:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM14WorldMapRocketFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520CE0

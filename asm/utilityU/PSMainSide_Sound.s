@@ -158,6 +158,77 @@ lbl_8049DE10:
 	.4byte 0x6E670A00
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EF9A8
+lbl_804EF9A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q23PSM7SeSound
+__vt__Q23PSM7SeSound:
+  .4byte 0
+  .4byte 0
+  .4byte setPortData__5JAISeFUcUs
+  .4byte getPortData__5JAISeFUc
+  .4byte start__8JAISoundFUl
+  .4byte stop__5JAISeFUl
+  .4byte release__8JAISoundFv
+  .4byte setVolume__5JAISeFfUlUc
+  .4byte getVolume__5JAISeFUc
+  .4byte setPan__5JAISeFfUlUc
+  .4byte getPan__5JAISeFUc
+  .4byte setPitch__5JAISeFfUlUc
+  .4byte getPitch__5JAISeFUc
+  .4byte setFxmix__5JAISeFfUlUc
+  .4byte getFxmix__5JAISeFUc
+  .4byte setDolby__5JAISeFfUlUc
+  .4byte getDolby__5JAISeFUc
+  .4byte setTempoProportion__8JAISoundFfUl
+  .4byte getTempoProportion__8JAISoundFv
+  .4byte setVolumeU7__5JAISeFUcUlUc
+  .4byte getVolumeU7__5JAISeFUc
+  .4byte setPanU7__5JAISeFUcUlUc
+  .4byte getPanU7__5JAISeFUc
+  .4byte setFxmixU7__5JAISeFUcUlUc
+  .4byte getFxmixU7__5JAISeFUc
+  .4byte setDolbyU7__5JAISeFUcUlUc
+  .4byte getDolbyU7__5JAISeFUc
+  .4byte setDirectVolume__8JAISoundFfUl
+  .4byte setDirectPan__8JAISoundFfUl
+  .4byte setDirectPitch__8JAISoundFfUl
+  .4byte setDirectFxmix__8JAISoundFfUl
+  .4byte setDirectDolby__8JAISoundFfUl
+  .4byte setDemoVolume__8JAISoundFfUl
+  .4byte setDemoPan__8JAISoundFfUl
+  .4byte setDemoPitch__8JAISoundFfUl
+  .4byte setDemoFxmix__8JAISoundFfUl
+  .4byte setDemoDolby__8JAISoundFfUl
+  .4byte setDemoVolumeU7__8JAISoundFUcUl
+  .4byte setDemoPanU7__8JAISoundFUcUl
+  .4byte setDemoFxmixU7__8JAISoundFUcUl
+  .4byte setDemoDolbyU7__8JAISoundFUcUl
+  .4byte getFadeCounter__5JAISeFv
+  .4byte setPrepareFlag__8JAISoundFUc
+  .4byte checkReady__8JAISoundFv
+  .4byte setDistanceParameterMoveTime__8JAISoundFUc
+  .4byte setAdjustPriority__8JAISoundFs
+  .4byte setPositionDopplarCommon__8JAISoundFUl
+  .4byte setDistanceVolumeCommon__Q23PSM7SeSoundFfUc
+  .4byte setDistancePanCommon__8JAISoundFv
+  .4byte setDistanceDolbyCommon__8JAISoundFv
+  .4byte initParameter__Q23PSM7SeSoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
+  .4byte onGet__Q23PSM7SeSoundFv
+  .4byte onRelease__Q23PSM7SeSoundFv
+  .4byte setSeDistanceParameters__5JAISeFv
+  .4byte setSeDistanceVolume__5JAISeFUc
+  .4byte setSeDistancePan__Q23PSM7SeSoundFUc
+  .4byte setSeDistancePitch__5JAISeFUc
+  .4byte setSeDistanceFxmix__5JAISeFUc
+  .4byte setSeDistanceFir__5JAISeFUc
+  .4byte setSeDistanceDolby__Q23PSM7SeSoundFUc
+  .4byte setSePositionDopplar__5JAISeFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520D90

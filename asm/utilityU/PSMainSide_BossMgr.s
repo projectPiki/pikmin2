@@ -30,6 +30,19 @@ lbl_8049D9C0:
 	.4byte 0x696D6D69
 	.4byte 0x6E670A00
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q33PSM12BossBgmFader17TypedProc_MidBoss
+__vt__Q33PSM12BossBgmFader17TypedProc_MidBoss:
+  .4byte 0
+  .4byte 0
+  .4byte update__Q33PSM12BossBgmFader17TypedProc_MidBossFv
+.global __vt__Q33PSM12BossBgmFader9TypedProc
+__vt__Q33PSM12BossBgmFader9TypedProc:
+  .4byte 0
+  .4byte 0
+  .4byte update__Q33PSM12BossBgmFader9TypedProcFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520CB8

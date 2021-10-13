@@ -224,6 +224,33 @@ lbl_8049B830:
 	.4byte 0x2564200A
 	.4byte 0x00000000
 
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ED4C0
+lbl_804ED4C0:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x804500D8
+.global __vt__Q24Game9THPPlayer
+__vt__Q24Game9THPPlayer:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game9THPPlayerFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q24Game9THPPlayerFv"
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q24Game9THPPlayerFv
+	.4byte draw__Q24Game9THPPlayerFR8Graphics
+	.4byte draw__Q24Game9THPPlayerFR8GraphicsllUlUl
+	.4byte draw__Q24Game9THPPlayerFR8Graphicsllf
+.global "__vt__27Delegate<Q24Game9THPPlayer>"
+"__vt__27Delegate<Q24Game9THPPlayer>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__27Delegate<Q24Game9THPPlayer>Fv"
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520B10

@@ -70,6 +70,303 @@ lbl_8049CE5C:
 	.4byte 0x696F6E44
 	.4byte 0x20000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23PSM13ExiteDirector
+__vt__Q23PSM13ExiteDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM13ExiteDirectorFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM17PikAttackDirector
+__vt__Q23PSM17PikAttackDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM17PikAttackDirectorFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM19ActorDirector_Kehai
+__vt__Q23PSM19ActorDirector_Kehai:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM19ActorDirector_KehaiFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+  .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
+  .4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
+  .4byte getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
+  .4byte getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
+.global __vt__Q23PSM20ActorDirector_Battle
+__vt__Q23PSM20ActorDirector_Battle:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM20ActorDirector_BattleFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+  .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
+  .4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
+  .4byte getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
+  .4byte getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase
+.global __vt__Q23PSM19ActorDirector_Enemy
+__vt__Q23PSM19ActorDirector_Enemy:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM19ActorDirector_EnemyFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+  .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
+  .4byte onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature
+  .4byte 0
+  .4byte 0
+.global __vt__Q23PSM20ActorDirector_Scaled
+__vt__Q23PSM20ActorDirector_Scaled:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM20ActorDirector_ScaledFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM22TrackOnDirector_ScaledFv
+  .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte getNearestDistance__Q23PSM20ActorDirector_ScaledFv
+  .4byte onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature
+.global __vt__Q23PSM21ActorDirector_TrackOn
+__vt__Q23PSM21ActorDirector_TrackOn:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM21ActorDirector_TrackOnFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM21ActorDirector_TrackOnFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM17ListDirectorActor
+__vt__Q23PSM17ListDirectorActor:
+  .4byte 0
+  .4byte 0
+  .4byte exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
+  .4byte onUpdateFromMasterD__Q23PSM17ListDirectorActorFv
+  .4byte onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv
+.global __vt__Q23PSM22TrackOnDirector_Scaled
+__vt__Q23PSM22TrackOnDirector_Scaled:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM22TrackOnDirector_ScaledFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q23PSM22TrackOnDirector_ScaledFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+  .4byte 0
+.global __vt__Q23PSM22TrackOnDirector_Voting
+__vt__Q23PSM22TrackOnDirector_Voting:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM22TrackOnDirector_VotingFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM22TrackOnDirector_VotingFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM19TrackOnDirectorBase
+__vt__Q23PSM19TrackOnDirectorBase:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM19TrackOnDirectorBaseFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM28PikminNumberDirector_AutoBgm
+__vt__Q23PSM28PikminNumberDirector_AutoBgm:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM28PikminNumberDirector_AutoBgmFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM20PikminNumberDirectorFv
+  .4byte directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM20PikminNumberDirector
+__vt__Q23PSM20PikminNumberDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM20PikminNumberDirectorFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM20PikminNumberDirectorFv
+  .4byte directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM25ActorDirector_TempoChange
+__vt__Q23PSM25ActorDirector_TempoChange:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM25ActorDirector_TempoChangeFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM25ActorDirector_TempoChangeFv
+  .4byte directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM23TempoChangeDirectorBase
+__vt__Q23PSM23TempoChangeDirectorBase:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM23TempoChangeDirectorBaseFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM16SwitcherDirector
+__vt__Q23PSM16SwitcherDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM16SwitcherDirectorFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte 0
+  .4byte 0
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM14DamageDirector
+__vt__Q23PSM14DamageDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM14DamageDirectorFv
+  .4byte exec__Q28PSSystem15OneShotDirectorFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM14DamageDirectorFv
+  .4byte directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q23PSM15OneShotDirector
+__vt__Q23PSM15OneShotDirector:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM15OneShotDirectorFv
+  .4byte exec__Q28PSSystem15OneShotDirectorFv
+  .4byte directOn__Q28PSSystem12DirectorBaseFv
+  .4byte directOff__Q28PSSystem12DirectorBaseFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q28PSSystem12DirectorBaseFv
+  .4byte 0
+  .4byte directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+  .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520C00

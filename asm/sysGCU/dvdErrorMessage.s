@@ -581,3 +581,54 @@ lbl_8049BB08:
 	.4byte 0x656C2064
 	.4byte 0x6973636F
 	.4byte 0x2E000000
+
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global gMessage_jpn__8DvdError
+gMessage_jpn__8DvdError:
+	.4byte 0x8049BB08
+	.4byte 0x8049BB1C
+	.4byte 0x8049BB94
+	.4byte 0x8049BBEC
+	.4byte 0x8049BC18
+	.4byte 0x8049BBEC
+.global gMessage_eng__8DvdError
+gMessage_eng__8DvdError:
+	.4byte 0x8049BC70
+	.4byte 0x8049BC80
+	.4byte 0x8049BD00
+	.4byte 0x8049BD70
+	.4byte 0x8049BD98
+	.4byte 0x8049BD70
+.global gMessage_ger__8DvdError
+gMessage_ger__8DvdError:
+	.4byte 0x8049BDF4
+	.4byte 0x8049BE04
+	.4byte 0x8049BE9C
+	.4byte 0x8049BF18
+	.4byte 0x8049BF44
+	.4byte 0x8049BF18
+.global gMessage_fra__8DvdError
+gMessage_fra__8DvdError:
+	.4byte 0x8049BC70
+	.4byte 0x8049BFA4
+	.4byte 0x8049C030
+	.4byte 0x8049C0B4
+	.4byte 0x8049C0DC
+	.4byte 0x8049C0B4
+.global gMessage_spa__8DvdError
+gMessage_spa__8DvdError:
+	.4byte 0x8049BC70
+	.4byte 0x8049C12C
+	.4byte 0x8049C1B0
+	.4byte 0x8049C224
+	.4byte 0x8049C244
+	.4byte 0x8049C224
+.global gMessage_ita__8DvdError
+gMessage_ita__8DvdError:
+	.4byte 0x8049BC70
+	.4byte 0x8049C28C
+	.4byte 0x8049C30C
+	.4byte 0x8049C388
+	.4byte 0x8049C3B0
+	.4byte 0x8049C388

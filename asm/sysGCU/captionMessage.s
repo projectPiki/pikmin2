@@ -14,6 +14,99 @@ lbl_8049B890:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q35P2JME7Caption8TControl
+__vt__Q35P2JME7Caption8TControl:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q35P2JME7Caption8TControlFv
+	.4byte reset__Q35P2JME7Caption8TControlFv
+	.4byte update__Q25P2JME8TControlFv
+	.4byte update__Q35P2JME6Window8TControlFP10ControllerP10Controller
+	.4byte draw__Q35P2JME7Caption8TControlFR8Graphics
+	.4byte draw__Q35P2JME6Window8TControlFPA4_fPA4_f
+	.4byte setMessageID__Q25P2JME8TControlFUlUl
+	.4byte setMessageID__Q25P2JME8TControlFPc
+	.4byte setMessageID__Q25P2JME8TControlFUx
+	.4byte setMessageCode__Q25P2JME8TControlFUsUs
+	.4byte setMessageCode__Q25P2JME8TControlFUl
+	.4byte onInit__Q35P2JME7Caption8TControlFv
+	.4byte createReference__Q25P2JME8TControlFv
+	.4byte createResourceContainer__Q25P2JME8TControlFv
+	.4byte createSequenceProcessor__Q35P2JME7Caption8TControlFv
+	.4byte createRenderingProcessor__Q35P2JME7Caption8TControlFv
+.global __vt__Q35P2JME7Caption18TSequenceProcessor
+__vt__Q35P2JME7Caption18TSequenceProcessor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q35P2JME7Caption18TSequenceProcessorFv
+	.4byte do_reset__Q28JMessage10TProcessorFv
+	.4byte do_character__Q25P2JME18TSequenceProcessorFi
+	.4byte do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl
+	.4byte do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl
+	.4byte do_select_begin__Q28JMessage10TProcessorFUl
+	.4byte do_select_end__Q28JMessage10TProcessorFv
+	.4byte do_select_separate__Q28JMessage10TProcessorFv
+	.4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
+	.4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
+	.4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
+	.4byte do_end___Q28JMessage18TSequenceProcessorFv
+	.4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
+	.4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
+	.4byte do_begin__Q25P2JME18TSequenceProcessorFPCvPCc
+	.4byte do_end__Q25P2JME18TSequenceProcessorFv
+	.4byte do_isReady__Q35P2JME7Caption18TSequenceProcessorFv
+	.4byte do_jump_isReady__Q25P2JME18TSequenceProcessorFv
+	.4byte do_jump__Q25P2JME18TSequenceProcessorFPCvPCc
+	.4byte do_branch_query__Q25P2JME18TSequenceProcessorFUs
+	.4byte do_branch_queryResult__Q25P2JME18TSequenceProcessorFv
+	.4byte do_branch__Q25P2JME18TSequenceProcessorFPCvPCc
+	.4byte doResetAbtnWaitSE__Q35P2JME7Caption18TSequenceProcessorFv
+	.4byte doCharacterSEStart__Q35P2JME7Caption18TSequenceProcessorFv
+	.4byte doCharacterSE__Q35P2JME7Caption18TSequenceProcessorFi
+	.4byte doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv
+	.4byte doFastForwardSE__Q35P2JME6Window18TSequenceProcessorFv
+	.4byte reset__Q25P2JME18TSequenceProcessorFv
+.global __vt__Q35P2JME7Caption19TRenderingProcessor
+__vt__Q35P2JME7Caption19TRenderingProcessor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q35P2JME7Caption19TRenderingProcessorFv
+	.4byte do_reset__Q28JMessage10TProcessorFv
+	.4byte do_character__Q25P2JME19TRenderingProcessorFi
+	.4byte do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl
+	.4byte do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte do_select_begin__Q25P2JME19TRenderingProcessorFUl
+	.4byte do_select_end__Q25P2JME19TRenderingProcessorFv
+	.4byte do_select_separate__Q25P2JME19TRenderingProcessorFv
+	.4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+	.4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+	.4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+	.4byte do_end___Q28JMessage19TRenderingProcessorFv
+	.4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+	.4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+	.4byte do_begin__Q25P2JME19TRenderingProcessorFPCvPCc
+	.4byte do_end__Q28JMessage19TRenderingProcessorFv
+	.4byte tagColor__Q25P2JME19TRenderingProcessorFPCvUl
+	.4byte tagSize__Q25P2JME19TRenderingProcessorFPCvUl
+	.4byte tagRuby__Q25P2JME19TRenderingProcessorFPCvUl
+	.4byte tagFont__Q25P2JME19TRenderingProcessorFPCvUl
+	.4byte tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte update__Q35P2JME6Window19TRenderingProcessorFv
+	.4byte reset__Q35P2JME6Window19TRenderingProcessorFv
+	.4byte newParagraph__Q25P2JME19TRenderingProcessorFv
+	.4byte doDrawImage__Q35P2JME6Window19TRenderingProcessorFP10JUTTextureffff
+	.4byte doDrawRuby__Q35P2JME6Window19TRenderingProcessorFffffib
+	.4byte doDrawLetter__Q35P2JME6Window19TRenderingProcessorFffffib
+	.4byte doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv
+	.4byte doDrawCommon__Q35P2JME7Caption19TRenderingProcessorFffP7MatrixfP7Matrixf
+	.4byte "makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
+	.4byte doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520B30

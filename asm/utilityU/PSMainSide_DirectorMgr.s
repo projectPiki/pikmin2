@@ -114,6 +114,101 @@ lbl_8049DA9C:
 	.4byte 0x44000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EF880
+lbl_804EF880:
+	.4byte 0x8046F928
+	.4byte 0x8046FB60
+	.4byte 0x8046F9D8
+	.4byte 0x8046FA98
+	.4byte 0x8046FC0C
+	.4byte 0x8046FD34
+	.4byte 0x8046FEA8
+	.4byte 0x8046FF14
+.global lbl_804EF8A0
+lbl_804EF8A0:
+	.4byte 0x80470060
+	.4byte 0x80470068
+	.4byte 0x80470070
+	.4byte 0x80470078
+	.4byte 0x80470080
+	.4byte 0x80470088
+	.4byte 0x80470090
+	.4byte 0x80470098
+.global lbl_804EF8C0
+lbl_804EF8C0:
+	.4byte 0x80470518
+	.4byte 0x804705F8
+	.4byte 0x804706D4
+	.4byte 0x804707B0
+	.4byte 0x80470850
+	.4byte 0x804708F0
+	.4byte 0x804709C4
+	.4byte 0x80470A98
+.global __vt__Q23PSM20DirectorMgr_2PBattle
+__vt__Q23PSM20DirectorMgr_2PBattle:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM20DirectorMgr_2PBattleFv
+  .4byte newDirector__Q23PSM20DirectorMgr_2PBattleFUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+  .4byte 0
+  .4byte "@12@__dt__Q23PSM20DirectorMgr_2PBattleFv"
+.global __vt__Q23PSM18DirectorMgr_Battle
+__vt__Q23PSM18DirectorMgr_Battle:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM18DirectorMgr_BattleFv
+  .4byte newDirector__Q23PSM18DirectorMgr_BattleFUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+  .4byte 0
+  .4byte "@12@__dt__Q23PSM18DirectorMgr_BattleFv"
+.global __vt__Q23PSM25DirectorMgr_Scene_AutoBgm
+__vt__Q23PSM25DirectorMgr_Scene_AutoBgm:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
+  .4byte newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+  .4byte 0
+  .4byte "@12@__dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv"
+  .4byte isSlave__Q23PSM17DirectorMgr_SceneFv
+  .4byte newPikminNumberDirector__Q23PSM25DirectorMgr_Scene_AutoBgmFiUcRQ28PSSystem11DirectedBgm
+.global __vt__Q23PSM19GroundDirector_Cave
+__vt__Q23PSM19GroundDirector_Cave:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM19GroundDirector_CaveFv
+  .4byte exec__Q28PSSystem12DirectorBaseFv
+  .4byte directOn__Q23PSM19GroundDirector_CaveFv
+  .4byte directOff__Q23PSM19GroundDirector_CaveFv
+  .4byte underDirection__Q28PSSystem12DirectorBaseFv
+  .4byte execInner__Q23PSM21ActorDirector_TrackOnFv
+  .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+  .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+  .4byte onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack
+  .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+  .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"
+"__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>":
+  .4byte 0
+  .4byte 0
+  .4byte "__dt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>Fv"
+.global __vt__Q23PSM17DirectorMgr_Scene
+__vt__Q23PSM17DirectorMgr_Scene:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM17DirectorMgr_SceneFv
+  .4byte newDirector__Q23PSM17DirectorMgr_SceneFUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+  .4byte 0
+  .4byte "@12@__dt__Q23PSM17DirectorMgr_SceneFv"
+  .4byte isSlave__Q23PSM17DirectorMgr_SceneFv
+  .4byte newPikminNumberDirector__Q23PSM17DirectorMgr_SceneFiUcRQ28PSSystem11DirectedBgm
+  .4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520D60

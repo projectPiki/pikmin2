@@ -20,6 +20,21 @@ lbl_8049BAF8:
 	.4byte 0x65720000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23Sys11DrawBuffers
+__vt__Q23Sys11DrawBuffers:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23Sys11DrawBuffersFv
+  .4byte getChildCount__5CNodeFv
+.global __vt__Q23Sys10DrawBuffer
+__vt__Q23Sys10DrawBuffer:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23Sys10DrawBufferFv
+  .4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q23Sys10DrawBufferFv
 __ct__Q23Sys10DrawBufferFv:

@@ -158,6 +158,101 @@ lbl_8049B100:
 	.4byte 0x69000000
 	.4byte 0x00000000
 
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ED1A8
+lbl_804ED1A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804ED1B4
+lbl_804ED1B4:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044A5C8
+.global lbl_804ED1C0
+lbl_804ED1C0:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044AB00
+.global lbl_804ED1CC
+lbl_804ED1CC:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044AB2C
+.global lbl_804ED1D8
+lbl_804ED1D8:
+	.4byte 0x8044B290
+	.4byte 0x8044AF78
+	.4byte 0x8044AF84
+	.4byte 0x8044AF90
+	.4byte 0x8044AF9C
+	.4byte 0x8044B088
+	.4byte 0x8044B1B4
+.global lbl_804ED1F4
+lbl_804ED1F4:
+	.4byte 0x00000000
+	.4byte 0x00000050
+	.4byte 0x00000000
+.global lbl_804ED200
+lbl_804ED200:
+	.4byte 0x8044C208
+	.4byte 0x8044C214
+	.4byte 0x8044C220
+	.4byte 0x8044C22C
+	.4byte 0x8044C238
+	.4byte 0x8044C244
+	.4byte 0x8044C250
+	.4byte 0x8044C25C
+	.4byte 0x8044C268
+	.4byte 0x8044C274
+	.4byte 0x8044C280
+	.4byte 0x8044C28C
+.global "__vt__34Delegate1<Q25Title7Section,R4Menu>"
+"__vt__34Delegate1<Q25Title7Section,R4Menu>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__34Delegate1<Q25Title7Section,R4Menu>FR4Menu"
+.global "__vt__18IDelegate1<R4Menu>"
+"__vt__18IDelegate1<R4Menu>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__11HIORootNode
+__vt__11HIORootNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11HIORootNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q25Title7Section
+__vt__Q25Title7Section:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q25Title7SectionFv
+	.4byte run__Q25Title7SectionFv
+	.4byte update__7SectionFv
+	.4byte draw__7SectionFR8Graphics
+	.4byte init__Q25Title7SectionFv
+	.4byte drawInit__7SectionFR8Graphics
+	.4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+	.4byte doExit__Q25Title7SectionFv
+	.4byte forceFinish__7SectionFv
+	.4byte forceReset__Q25Title7SectionFv
+	.4byte getCurrentSection__7SectionFv
+	.4byte doLoadingStart__Q25Title7SectionFv
+	.4byte doLoading__Q25Title7SectionFv
+	.4byte doUpdate__Q25Title7SectionFv
+	.4byte doDraw__Q25Title7SectionFR8Graphics
+	.4byte isFinishable__Q25Title7SectionFv
+	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
+	.4byte loadResource__Q25Title7SectionFv
+.global "__vt__26Delegate<Q25Title7Section>"
+"__vt__26Delegate<Q25Title7Section>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__26Delegate<Q25Title7Section>Fv"
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520A80

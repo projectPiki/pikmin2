@@ -22,6 +22,23 @@ lbl_8049B870:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q27Caption3Mgr
+__vt__Q27Caption3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27Caption3MgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q27Caption3MgrFR6Stream
+.global __vt__Q27Caption4Node
+__vt__Q27Caption4Node:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27Caption4NodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q27Caption4NodeFR6Stream
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520B20

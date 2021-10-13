@@ -72,6 +72,81 @@ cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm:
 	.4byte 0x449C0000
 	.4byte 0x43E9FFFF
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sThpDemoDinamics__3PSM
+sThpDemoDinamics__3PSM:
+	.4byte 0x3F4CCCCD
+	.4byte 0x3EC28F5C
+	.4byte 0x3F70A3D7
+	.4byte 0x01000000
+	.4byte 0x8049E0F0
+	.4byte 0x3F666666
+	.4byte 0x3E6147AE
+	.float 0.98
+	.4byte 0x01000000
+	.4byte 0x8049E0FC
+	.float 0.7
+	.4byte 0x3EC28F5C
+	.float 0.98
+	.4byte 0x01000000
+	.4byte 0x80520DB8
+	.4byte 0x3F4CCCCD
+	.4byte 0x3EE147AE
+	.4byte 0x3F7D70A4
+	.4byte 0x01000000
+	.4byte 0x80520DC0
+	.4byte 0x3F11EB85
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x8049E108
+	.float 0.5
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x80520DC8
+	.float 0.7
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x80520DD0
+	.float 0.7
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x80520DD8
+	.float 0.7
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x80520DE0
+	.float 0.7
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x80520DE8
+	.float 0.7
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x80520DF0
+	.float 0.7
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x80520DF8
+.global __vt__Q23PSM11CreaturePrm
+__vt__Q23PSM11CreaturePrm:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM11CreaturePrmFv
+.global "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"
+"__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>":
+  .4byte 0
+  .4byte 0
+  .4byte "__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv"
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520DB8

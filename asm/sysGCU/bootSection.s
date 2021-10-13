@@ -130,6 +130,137 @@ lbl_8049AF08:
 	.4byte 0x6D652E68
 	.4byte 0x00000000
 
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ECFE8
+lbl_804ECFE8:
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000000
+.global lbl_804ECFF8
+lbl_804ECFF8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804ED004
+lbl_804ED004:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x804487B0
+.global lbl_804ED010
+lbl_804ED010:
+	.4byte 0x80448834
+	.4byte 0x80448834
+	.4byte 0x80448834
+	.4byte 0x80448834
+	.4byte 0x80448844
+	.4byte 0x8044884C
+	.4byte 0x80448978
+	.4byte 0x804488AC
+	.4byte 0x8044890C
+	.4byte 0x8044896C
+	.4byte 0x8044896C
+.global lbl_804ED03C
+lbl_804ED03C:
+	.4byte 0x8044907C
+	.4byte 0x80449088
+	.4byte 0x80449374
+	.4byte 0x804494C0
+	.4byte 0x80449094
+	.4byte 0x804490A0
+	.4byte 0x804490AC
+	.4byte 0x80449220
+	.4byte 0x804490B8
+	.4byte 0x8044959C
+	.4byte 0x8044962C
+.global lbl_804ED068
+lbl_804ED068:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x804483F4
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044813C
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x80449EA0
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x80449EA0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__11BootSection
+__vt__11BootSection:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11BootSectionFv
+	.4byte run__11BootSectionFv
+	.4byte update__7SectionFv
+	.4byte draw__7SectionFR8Graphics
+	.4byte init__11BootSectionFv
+	.4byte drawInit__7SectionFR8Graphics
+	.4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+	.4byte doExit__7SectionFv
+	.4byte forceFinish__7SectionFv
+	.4byte forceReset__11BootSectionFv
+	.4byte getCurrentSection__7SectionFv
+	.4byte doLoadingStart__7SectionFv
+	.4byte doLoading__7SectionFv
+	.4byte doUpdate__11BootSectionFv
+	.4byte doDraw__11BootSectionFR8Graphics
+	.4byte isFinishable__7SectionFv
+	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
+.global "__vt__23Delegate<11BootSection>"
+"__vt__23Delegate<11BootSection>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__23Delegate<11BootSection>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805209A0

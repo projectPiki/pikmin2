@@ -111,7 +111,42 @@ lbl_8049BA38:
 	.4byte 0x5B25735D
 	.4byte 0x205B2573
 	.4byte 0x5D0A0000
-	
+
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ED6F8
+lbl_804ED6F8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q26Screen3Mgr
+__vt__Q26Screen3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26Screen3MgrFv
+	.4byte setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg
+	.4byte startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg
+	.4byte endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg
+	.4byte reset__Q26Screen3MgrFv
+	.4byte setColorBG__Q26Screen3MgrFRQ28JUtility6TColor
+	.4byte setBGMode__Q26Screen3MgrFi
+	.4byte doGetSceneBase__Q26Screen3MgrFl
+	.4byte drawBG__Q26Screen3MgrFR8Graphics
+	.4byte drawWipe__Q26Screen3MgrFR8Graphics
+.global __vt__Q26Screen10MgrCommand
+__vt__Q26Screen10MgrCommand:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26Screen10MgrCommandFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q26Screen13SceneInfoList
+__vt__Q26Screen13SceneInfoList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26Screen13SceneInfoListFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520B80

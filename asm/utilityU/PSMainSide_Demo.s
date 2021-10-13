@@ -552,6 +552,17 @@ lbl_8049D0DC:
 	.4byte 0x69766575
 	.4byte 0x70000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23PSM4Demo
+__vt__Q23PSM4Demo:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q23PSM4DemoFv
+  .4byte init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg
+  .4byte initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc
+  .4byte initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520C90

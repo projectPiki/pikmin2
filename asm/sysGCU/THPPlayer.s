@@ -46,6 +46,75 @@ lbl_8049B4F8:
 	.4byte 0x8F898AFA
 	.4byte 0x89BB0A00
 
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global VolumeTable
+VolumeTable:
+	.4byte 0x00000002
+	.4byte 0x00080012
+	.4byte 0x00200032
+	.4byte 0x00490063
+	.4byte 0x008200A4
+	.4byte 0x00CB00F5
+	.4byte 0x01240157
+	.4byte 0x018E01C9
+	.4byte 0x0208024B
+	.4byte 0x029202DD
+	.4byte 0x032C037F
+	.4byte 0x03D70432
+	.4byte 0x049204F5
+	.4byte 0x055D05C9
+	.4byte 0x063806AC
+	.4byte 0x072407A0
+	.4byte 0x082008A4
+	.4byte 0x092C09B8
+	.4byte 0x0A480ADD
+	.4byte 0x0B750C12
+	.4byte 0x0CB20D57
+	.4byte 0x0DFF0EAC
+	.4byte 0x0F5D1012
+	.4byte 0x10CA1187
+	.4byte 0x1248130D
+	.4byte 0x13D714A4
+	.4byte 0x1575164A
+	.4byte 0x17241801
+	.4byte 0x18E319C8
+	.4byte 0x1AB21BA0
+	.4byte 0x1C911D87
+	.4byte 0x1E811F7F
+	.4byte 0x20812187
+	.4byte 0x2291239F
+	.4byte 0x24B225C8
+	.4byte 0x26E22801
+	.4byte 0x29232A4A
+	.4byte 0x2B752CA3
+	.4byte 0x2DD62F0D
+	.4byte 0x30483187
+	.4byte 0x32CA3411
+	.4byte 0x355C36AB
+	.4byte 0x37FF3956
+	.4byte 0x3AB13C11
+	.4byte 0x3D743EDC
+	.4byte 0x404841B7
+	.4byte 0x432B44A3
+	.4byte 0x461F479F
+	.4byte 0x49234AAB
+	.4byte 0x4C374DC7
+	.4byte 0x4F5C50F4
+	.4byte 0x52905431
+	.4byte 0x55D6577E
+	.4byte 0x592B5ADC
+	.4byte 0x5C905E49
+	.4byte 0x600661C7
+	.4byte 0x638C6555
+	.4byte 0x672268F4
+	.4byte 0x6AC96CA2
+	.4byte 0x6E807061
+	.4byte 0x72477430
+	.4byte 0x761E7810
+	.4byte 0x7A067C00
+	.4byte 0x7DFE8000
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520AF8

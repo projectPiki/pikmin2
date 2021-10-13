@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ED8C8
+lbl_804ED8C8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__27Pikmin_TCreateObject_JAudio
+__vt__27Pikmin_TCreateObject_JAudio:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__27Pikmin_TCreateObject_JAudioFv
+	.4byte create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__27Pikmin_TCreateObject_JAudioFP8JAIBasicPCQ26JStage7TSystem

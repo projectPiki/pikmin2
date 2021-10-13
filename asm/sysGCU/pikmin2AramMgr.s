@@ -608,6 +608,83 @@ lbl_8049CD54:
 	.4byte 0x6973742E
 	.4byte 0x74787400
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global "sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
+"sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
+	.4byte 0x8049C424
+	.4byte 0x8049C434
+	.4byte 0x8049C444
+	.4byte 0x8049C458
+	.4byte 0x8049C470
+	.4byte 0x8049C484
+	.4byte 0x8049C49C
+	.4byte 0x8049C4B4
+	.4byte 0x8049C4C0
+	.4byte 0x8049C4E0
+	.4byte 0x8049C4F8
+	.4byte 0x8049C50C
+	.4byte 0x8049C51C
+.global "sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
+"sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
+	.4byte 0x8049C528
+	.4byte 0x8049C554
+	.4byte 0x8049C580
+	.4byte 0x8049C5AC
+.global "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
+"sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
+	.4byte 0x8049C5D4
+	.4byte 0x8049C5FC
+	.4byte 0x8049C628
+	.4byte 0x8049C650
+	.4byte 0x8049C67C
+	.4byte 0x8049C6AC
+	.4byte 0x8049C6DC
+	.4byte 0x8049C70C
+	.4byte 0x8049C740
+	.4byte 0x8049C770
+	.4byte 0x8049C798
+	.4byte 0x8049C7C8
+	.4byte 0x8049C7F4
+	.4byte 0x8049C824
+	.4byte 0x8049C850
+	.4byte 0x8049C884
+	.4byte 0x8049C8B0
+	.4byte 0x8049C8DC
+	.4byte 0x8049C908
+.global "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
+"sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
+	.4byte 0x8049C938
+	.4byte 0x8049C954
+	.4byte 0x8049C970
+	.4byte 0x8049C988
+	.4byte 0x8049C9A4
+	.4byte 0x8049C9C0
+	.4byte 0x8049C9E0
+	.4byte 0x8049C9F8
+	.4byte 0x8049CA14
+	.4byte 0x8049CA30
+	.4byte 0x8049CA50
+	.4byte 0x8049CA78
+	.4byte 0x8049CAA0
+	.4byte 0x8049CAC8
+	.4byte 0x8049CAF4
+	.4byte 0x8049CB1C
+	.4byte 0x8049CB48
+	.4byte 0x8049CB6C
+	.4byte 0x8049CB94
+	.4byte 0x8049CBB8
+	.4byte 0x8049CBE0
+	.4byte 0x8049CC04
+	.4byte 0x8049CC28
+	.4byte 0x8049CC4C
+.global __vt__Q211Pikmin2ARAM3Mgr
+__vt__Q211Pikmin2ARAM3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q211Pikmin2ARAM3MgrFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520BE0

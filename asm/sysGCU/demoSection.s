@@ -52,6 +52,57 @@ lbl_8049B41C:
 	.4byte 0x6F676F2E
 	.4byte 0x62746900
 
+.section .data, "wa"	# 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global "sLogoLocate__Q24Demo25@unnamed@demoSection_cpp@"
+"sLogoLocate__Q24Demo25@unnamed@demoSection_cpp@":
+	.4byte 0x0172000F
+	.4byte 0x0172000F
+	.4byte 0x0172000F
+	.4byte 0x01720028
+	.4byte 0x0172000F
+	.4byte 0x0172000F
+	.4byte 0x0172000F
+	.4byte 0x01720028
+.global lbl_804ED348
+lbl_804ED348:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8044D154
+.global "__vt__25Delegate<Q24Demo7Section>"
+"__vt__25Delegate<Q24Demo7Section>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__25Delegate<Q24Demo7Section>Fv"
+.global __vt__Q24Demo11HIORootNode
+__vt__Q24Demo11HIORootNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Demo11HIORootNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Demo7Section
+__vt__Q24Demo7Section:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Demo7SectionFv
+	.4byte run__7SectionFv
+	.4byte update__7SectionFv
+	.4byte draw__7SectionFR8Graphics
+	.4byte init__Q24Demo7SectionFv
+	.4byte drawInit__7SectionFR8Graphics
+	.4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+	.4byte doExit__Q24Demo7SectionFv
+	.4byte forceFinish__7SectionFv
+	.4byte forceReset__Q24Demo7SectionFv
+	.4byte getCurrentSection__7SectionFv
+	.4byte doLoadingStart__Q24Demo7SectionFv
+	.4byte doLoading__Q24Demo7SectionFv
+	.4byte doUpdate__Q24Demo7SectionFv
+	.4byte doDraw__Q24Demo7SectionFR8Graphics
+	.4byte isFinishable__7SectionFv
+	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520AB0

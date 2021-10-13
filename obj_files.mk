@@ -1178,6 +1178,3 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_TrackMap.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
-
-GROUP_2_FILES:=\
-	$(BUILD_DIR)/asm/data_1.o\
