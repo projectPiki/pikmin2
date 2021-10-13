@@ -14,6 +14,27 @@ lbl_804999F0:
 	.asciz "no Display manager.\n"
 	.skip 7
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520440
+lbl_80520440:
+	.float 0.5
+.global lbl_80520444
+lbl_80520444:
+	.float 0.016666668
+.global lbl_80520448
+lbl_80520448:
+	.float 0.0
+.global lbl_8052044C
+lbl_8052044C:
+	.asciz "draw"
+	.skip 0x3
+.global lbl_80520454
+lbl_80520454:
+	.asciz "update"
+	.skip 0x1
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__7SectionFv
 init__7SectionFv:

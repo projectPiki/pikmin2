@@ -38,6 +38,21 @@ lbl_8049A3D8:
 	.4byte 0x73657274
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805206F8
+lbl_805206F8:
+	.4byte 0x666F6C64
+	.4byte 0x65720000
+.global lbl_80520700
+lbl_80520700:
+	.4byte 0x00000000
+.global lbl_80520704
+lbl_80520704:
+	.4byte 0x6E6F6D61
+	.4byte 0x70000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q34Game11MovieConfig6TParmsFv
 __dt__Q34Game11MovieConfig6TParmsFv:

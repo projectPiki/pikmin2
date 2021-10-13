@@ -8,6 +8,17 @@ lbl_80499EE8:
 	.4byte 0x75732E63
 	.4byte 0x70700000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520598
+lbl_80520598:
+	.4byte 0x726F6F74
+	.4byte 0x00000000
+.global lbl_805205A0
+lbl_805205A0:
+	.4byte 0x45584954
+	.4byte 0x0A000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10HeapStatusFv
 __ct__10HeapStatusFv:

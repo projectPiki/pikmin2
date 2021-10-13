@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520AD0
+lbl_80520AD0:
+	.4byte 0xFFA60000
+.global lbl_80520AD4
+lbl_80520AD4:
+	.4byte 0xFF8E0087
+.global lbl_80520AD8
+lbl_80520AD8:
+	.4byte 0x0000E258
+.global lbl_80520ADC
+lbl_80520ADC:
+	.4byte 0xB30000B6
+.global lbl_80520AE0
+lbl_80520AE0:
+	.4byte 0xFF00FFFF
+.global lbl_80520AE4
+lbl_80520AE4:
+	.4byte 0x00000000
+.global lbl_80520AE8
+lbl_80520AE8:
+	.4byte 0xBF800000
+.global lbl_80520AEC
+lbl_80520AEC:
+	.float 1.0
+.global lbl_80520AF0
+lbl_80520AF0:
+	.4byte 0x43300000
+	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 

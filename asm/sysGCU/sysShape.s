@@ -30,6 +30,27 @@ lbl_80499D10:
 	.asciz "reached eof\n"
 	.skip 3
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520528
+lbl_80520528:
+	.4byte 0x00000000
+.global lbl_8052052C
+lbl_8052052C:
+	.4byte 0x4F4B4F4B
+	.4byte 0x0A000000
+.global lbl_80520534
+lbl_80520534:
+	.float 1.0
+.global lbl_80520538
+lbl_80520538:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520540
+lbl_80520540:
+	.4byte 0x47FA0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clearAnimatorAll__Q28SysShape5ModelFv
 clearAnimatorAll__Q28SysShape5ModelFv:

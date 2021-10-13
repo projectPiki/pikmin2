@@ -64,6 +64,27 @@ lbl_80499BF4:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global str_Ogawa
+str_Ogawa:
+	.asciz "Ogawa"
+	.skip 0x2
+	.asciz "Hikino"
+	.skip 0x1
+	.asciz "Fujino"
+	.skip 0x1
+	.asciz "Ebisawa"
+	.asciz "Boot"
+	.skip 0x3
+	.asciz "Demo"
+	.skip 0x3
+	.asciz "VS Game"
+	.asciz "EXP_C"
+	.skip 0x2
+	.asciz "EXP_S"
+	.skip 0x2
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8GameFlowFv
 __ct__8GameFlowFv:

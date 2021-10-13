@@ -28,6 +28,17 @@ lbl_8049AC74:
 	.4byte 0x617E7E7E
 	.4byte 0x7E3F0A00
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805208F8
+lbl_805208F8:
+	.4byte 0x25732F25
+	.4byte 0x73000000
+.global lbl_80520900
+lbl_80520900:
+	.4byte 0x25730000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global attach__Q28SysShape8AnimInfoFP12J3DModelDataPv
 attach__Q28SysShape8AnimInfoFP12J3DModelDataPv:

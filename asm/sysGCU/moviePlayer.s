@@ -164,6 +164,73 @@ lbl_8049A118:
 	.4byte 0x20252E31
 	.4byte 0x664B0000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520610
+lbl_80520610:
+	.4byte 0x00000000
+.global lbl_80520614
+lbl_80520614:
+	.4byte 0x42652EE0
+.global lbl_80520618
+lbl_80520618:
+	.4byte 0x437A0000
+.global lbl_8052061C
+lbl_8052061C:
+	.4byte 0x3EDF66F4
+.global lbl_80520620
+lbl_80520620:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_80520628
+lbl_80520628:
+	.4byte 0x3FA11111
+	.4byte 0x20000000
+.global lbl_80520630
+lbl_80520630:
+	.4byte 0x61726300
+.global lbl_80520634
+lbl_80520634:
+	.4byte 0x6D657373
+	.4byte 0x61676500
+.global lbl_8052063C
+lbl_8052063C:
+	.4byte 0x6566782E
+	.4byte 0x6A706300
+.global lbl_80520644
+lbl_80520644:
+	.4byte 0x73746200
+.global lbl_80520648
+lbl_80520648:
+	.4byte 0x3F8CCCCD
+.global lbl_8052064C
+lbl_8052064C:
+	.float 1.0
+.global lbl_80520650
+lbl_80520650:
+	.4byte 0x41200000
+.global lbl_80520654
+lbl_80520654:
+	.4byte 0x40000000
+.global lbl_80520658
+lbl_80520658:
+	.4byte 0x63616D65
+	.4byte 0x72610000
+.global lbl_80520660
+lbl_80520660:
+	.4byte 0x76696577
+	.4byte 0x6D617400
+.global lbl_80520668
+lbl_80520668:
+	.4byte 0x40490FDB
+.global lbl_8052066C
+lbl_8052066C:
+	.4byte 0x3BB60B61
+.global lbl_80520670
+lbl_80520670:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game11MoviePlayerFv
 __ct__Q24Game11MoviePlayerFv:

@@ -18,6 +18,19 @@ lbl_8049B8BC:
 	.4byte 0x656E4D67
 	.4byte 0x722E6800
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520B70
+lbl_80520B70:
+	.4byte 0x6E6F206E
+	.4byte 0x616D6500
+.global lbl_80520B78
+lbl_80520B78:
+	.4byte 0x3F3F3F00
+.global lbl_80520B7C
+lbl_80520B7C:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26Screen9SceneBaseFv
 __ct__Q26Screen9SceneBaseFv:

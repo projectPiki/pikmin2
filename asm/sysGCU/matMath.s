@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520510
+lbl_80520510:
+	.float 1.0
+.global lbl_80520514
+lbl_80520514:
+	.4byte 0x00000000
+.global lbl_80520518
+lbl_80520518:
+	.4byte 0x43A2F983
+.global lbl_8052051C
+lbl_8052051C:
+	.4byte 0xC3A2F983
+.global lbl_80520520
+lbl_80520520:
+	.4byte 0x3FC90FDB
+.global lbl_80520524
+lbl_80520524:
+	.4byte 0x40000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeNaturalPosture__7MatrixfFR10Vector3<f>"

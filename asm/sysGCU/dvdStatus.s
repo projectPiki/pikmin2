@@ -30,6 +30,23 @@ lbl_80499DA8:
 	.4byte 0x2E202564
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520570
+lbl_80520570:
+	.4byte 0x00000000
+.global lbl_80520574
+lbl_80520574:
+	.4byte 0x42200000
+.global lbl_80520578
+lbl_80520578:
+	.4byte 0x43480000
+	.4byte 0x00000000
+.global lbl_80520580
+lbl_80520580:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9DvdStatusFv
 __ct__9DvdStatusFv:

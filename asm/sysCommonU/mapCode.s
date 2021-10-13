@@ -6,6 +6,15 @@ lbl_804997B8:
 	.asciz "# %d/%d\r\n"
 	.skip 0x6
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805203A8
+lbl_805203A8:
+	.asciz "\r\n"
+	.skip 0x1
+	.4byte 0x00000000
+
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getAttribute__Q27MapCode4CodeFv
 getAttribute__Q27MapCode4CodeFv:

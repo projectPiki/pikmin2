@@ -32,6 +32,17 @@ lbl_80499E38:
 	.4byte 0x4981490A
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520588
+lbl_80520588:
+	.4byte 0x6E6F6E61
+	.4byte 0x6D650000
+.global lbl_80520590
+lbl_80520590:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9SysTimersFv
 __ct__9SysTimersFv:

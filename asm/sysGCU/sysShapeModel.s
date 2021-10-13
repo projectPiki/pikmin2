@@ -10,6 +10,25 @@ lbl_8049AC90:
 	.4byte 0x70000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520908
+lbl_80520908:
+	.4byte 0x6D616E64
+	.4byte 0x610A0000
+.global lbl_80520910
+lbl_80520910:
+	.4byte 0x00000000
+.global lbl_80520914
+lbl_80520914:
+	.float 0.5
+.global lbl_80520918
+lbl_80520918:
+	.4byte 0x47000000
+.global lbl_8052091C
+lbl_8052091C:
+	.4byte 0xC7000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
 __ct__Q28SysShape5ModelFP12J3DModelDataUlUl:

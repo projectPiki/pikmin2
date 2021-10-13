@@ -34,6 +34,35 @@ lbl_8049A338:
 	.4byte 0x61446561
 	.4byte 0x64000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805206C8
+lbl_805206C8:
+	.4byte 0x6F6E796F
+	.4byte 0x6E000000
+.global lbl_805206D0
+lbl_805206D0:
+	.4byte 0x70696B6D
+	.4byte 0x696E0000
+.global lbl_805206D8
+lbl_805206D8:
+	.4byte 0x74617267
+	.4byte 0x65740000
+.global lbl_805206E0
+lbl_805206E0:
+	.4byte 0x75666F00
+.global lbl_805206E4
+lbl_805206E4:
+	.4byte 0x706F6400
+.global lbl_805206E8
+lbl_805206E8:
+	.4byte 0x6F72696D
+	.4byte 0x61000000
+.global lbl_805206F0
+lbl_805206F0:
+	.4byte 0x706C6179
+	.4byte 0x65720000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global findCreature__Q34Game5P2JST12ObjectSystemCFPCc
 findCreature__Q34Game5P2JST12ObjectSystemCFPCc:

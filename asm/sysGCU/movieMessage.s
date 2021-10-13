@@ -102,6 +102,121 @@ lbl_8049A844:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805207B8
+lbl_805207B8:
+	.4byte 0x00000000
+.global lbl_805207BC
+lbl_805207BC:
+	.4byte 0x41200000
+.global lbl_805207C0
+lbl_805207C0:
+	.4byte 0x42B40000
+.global lbl_805207C4
+lbl_805207C4:
+	.4byte 0x43340000
+.global lbl_805207C8
+lbl_805207C8:
+	.float 1.0
+.global lbl_805207CC
+lbl_805207CC:
+	.4byte 0x43FA0000
+.global lbl_805207D0
+lbl_805207D0:
+	.4byte 0x40490FDB
+.global lbl_805207D4
+lbl_805207D4:
+	.4byte 0x3BB60B61
+.global lbl_805207D8
+lbl_805207D8:
+	.4byte 0x43A2F983
+.global lbl_805207DC
+lbl_805207DC:
+	.4byte 0xC3A2F983
+.global lbl_805207E0
+lbl_805207E0:
+	.4byte 0x3E4CCCCD
+.global lbl_805207E4
+lbl_805207E4:
+	.4byte 0x3F3851EC
+.global lbl_805207E8
+lbl_805207E8:
+	.4byte 0x43870000
+.global lbl_805207EC
+lbl_805207EC:
+	.4byte 0x42652EE0
+.global lbl_805207F0
+lbl_805207F0:
+	.4byte 0x437F0000
+	.4byte 0x00000000
+.global lbl_805207F8
+lbl_805207F8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80520800
+lbl_80520800:
+	.4byte 0x40C90FDB
+.global lbl_80520804
+lbl_80520804:
+	.float 0.5
+.global lbl_80520808
+lbl_80520808:
+	.4byte 0x40000000
+.global lbl_8052080C
+lbl_8052080C:
+	.4byte 0x3F400000
+.global lbl_80520810
+lbl_80520810:
+	.4byte 0x42C80000
+.global lbl_80520814
+lbl_80520814:
+	.4byte 0x41C80000
+.global lbl_80520818
+lbl_80520818:
+	.4byte 0x437A0000
+.global lbl_8052081C
+lbl_8052081C:
+	.4byte 0x47000000
+.global lbl_80520820
+lbl_80520820:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520828
+lbl_80520828:
+	.float 0.3
+.global lbl_8052082C
+lbl_8052082C:
+	.4byte 0x3FA00000
+.global lbl_80520830
+lbl_80520830:
+	.4byte 0x3F266666
+.global lbl_80520834
+lbl_80520834:
+	.4byte 0x706F642E
+	.4byte 0x626C6F00
+.global lbl_8052083C
+lbl_8052083C:
+	.4byte 0x38D1B717
+.global lbl_80520840
+lbl_80520840:
+	.4byte 0x3EB33333
+.global lbl_80520844
+lbl_80520844:
+	.4byte 0x41A00000
+.global lbl_80520848
+lbl_80520848:
+	.4byte 0x80000000
+.global lbl_8052084C
+lbl_8052084C:
+	.4byte 0x706F6449
+	.4byte 0x636F6E00
+.global lbl_80520854
+lbl_80520854:
+	.4byte 0x6D657373
+	.4byte 0x61676500
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doInit__Q35P2JME5Movie10WindowPaneFv
 doInit__Q35P2JME5Movie10WindowPaneFv:

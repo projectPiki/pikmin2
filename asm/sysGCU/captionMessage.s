@@ -14,6 +14,49 @@ lbl_8049B890:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520B30
+lbl_80520B30:
+	.float 1.0
+.global lbl_80520B34
+lbl_80520B34:
+	.4byte 0x3E888889
+.global lbl_80520B38
+lbl_80520B38:
+	.4byte 0x437F0000
+.global lbl_80520B3C
+lbl_80520B3C:
+	.4byte 0x00000000
+.global lbl_80520B40
+lbl_80520B40:
+	.4byte 0x41200000
+.global lbl_80520B44
+lbl_80520B44:
+	.4byte 0x40A00000
+.global lbl_80520B48
+lbl_80520B48:
+	.float 0.5
+.global lbl_80520B4C
+lbl_80520B4C:
+	.4byte 0x40400000
+.global lbl_80520B50
+lbl_80520B50:
+	.4byte 0x43480000
+	.4byte 0x00000000
+.global lbl_80520B58
+lbl_80520B58:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80520B60
+lbl_80520B60:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520B68
+lbl_80520B68:
+	.4byte 0x43910000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
 doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo:

@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805203B0
+lbl_805203B0:
+	.float 5.0
+.global lbl_805203B4
+lbl_805203B4:
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ33Sys8Triangle11SphereSweep

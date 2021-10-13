@@ -14,6 +14,35 @@ lbl_8049A8C4:
 	.4byte 0x73657274
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520868
+lbl_80520868:
+	.4byte 0x00000000
+.global lbl_8052086C
+lbl_8052086C:
+	.4byte 0x3DE147AE
+.global lbl_80520870
+lbl_80520870:
+	.float 1.0
+.global lbl_80520874
+lbl_80520874:
+	.4byte 0x41200000
+.global lbl_80520878
+lbl_80520878:
+	.4byte 0x40200000
+.global lbl_8052087C
+lbl_8052087C:
+	.4byte 0x42C80000
+.global lbl_80520880
+lbl_80520880:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80520888
+lbl_80520888:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q25P2JME18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl
 __ct__Q25P2JME18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl:

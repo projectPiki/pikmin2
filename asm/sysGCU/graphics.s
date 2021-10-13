@@ -10,6 +10,69 @@ lbl_80499C48:
 	.asciz "draw axis"
 	.skip 6
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805204B8
+lbl_805204B8:
+	.4byte 0x00000000
+.global lbl_805204BC
+lbl_805204BC:
+	.float 0.5
+.global lbl_805204C0
+lbl_805204C0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_805204C8
+lbl_805204C8:
+	.float 1.0
+.global lbl_805204CC
+lbl_805204CC:
+	.4byte 0xBF800000
+.global lbl_805204D0
+lbl_805204D0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805204D8
+lbl_805204D8:
+	.4byte 0x3EC90FDB
+.global lbl_805204DC
+lbl_805204DC:
+	.4byte 0x43A2F983
+.global lbl_805204E0
+lbl_805204E0:
+	.4byte 0xC3A2F983
+.global lbl_805204E4
+lbl_805204E4:
+	.4byte 0x40490FDB
+.global lbl_805204E8
+lbl_805204E8:
+	.4byte 0xBF7FBE77
+.global lbl_805204EC
+lbl_805204EC:
+	.4byte 0x3BB60B61
+.global lbl_805204F0
+lbl_805204F0:
+	.4byte 0x33D6BF95
+.global lbl_805204F4
+lbl_805204F4:
+	.4byte 0x40C90FDB
+.global lbl_805204F8
+lbl_805204F8:
+	.4byte 0xC4800000
+.global lbl_805204FC
+lbl_805204FC:
+	.4byte 0x44800000
+.global lbl_80520500
+lbl_80520500:
+	.4byte 0x41F00000
+.global lbl_80520504
+lbl_80520504:
+	.4byte 0x41200000
+.global lbl_80520508
+lbl_80520508:
+	.4byte 0x461C4000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__17HorizonalSplitterFP8Graphics
 __ct__17HorizonalSplitterFP8Graphics:

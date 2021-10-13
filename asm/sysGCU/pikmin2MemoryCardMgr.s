@@ -84,6 +84,13 @@ lbl_8049AEA0:
 	.4byte 0x3A253032
 	.4byte 0x64000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520978
+lbl_80520978:
+	.4byte 0x64616D65
+	.4byte 0x636B0A00
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
 .global loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap

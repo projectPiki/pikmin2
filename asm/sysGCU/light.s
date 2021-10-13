@@ -10,6 +10,49 @@ lbl_80499EF8:
 	.4byte 0x83670000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805205A8
+lbl_805205A8:
+	.4byte 0x00000000
+.global lbl_805205AC
+lbl_805205AC:
+	.4byte 0x447A0000
+.global lbl_805205B0
+lbl_805205B0:
+	.4byte 0xBF800000
+.global lbl_805205B4
+lbl_805205B4:
+	.float 1.0
+.global lbl_805205B8
+lbl_805205B8:
+	.4byte 0x42700000
+.global lbl_805205BC
+lbl_805205BC:
+	.4byte 0x41800000
+.global lbl_805205C0
+lbl_805205C0:
+	.4byte 0x41F00000
+.global lbl_805205C4
+lbl_805205C4:
+	.4byte 0x437F0000
+.global lbl_805205C8
+lbl_805205C8:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_805205D0
+lbl_805205D0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_805205D8
+lbl_805205D8:
+	.4byte 0x41200000
+.global lbl_805205DC
+lbl_805205DC:
+	.4byte 0x83898343
+	.4byte 0x83670000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor
 __ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor:

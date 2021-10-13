@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520698
+lbl_80520698:
+	.4byte 0x42340000
+	.4byte 0x00000000
+.global lbl_805206A0
+lbl_805206A0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805206A8
+lbl_805206A8:
+	.4byte 0x00000000
+.global lbl_805206AC
+lbl_805206AC:
+	.float 1.0
+.global lbl_805206B0
+lbl_805206B0:
+	.4byte 0x3C8EFA35
+.global lbl_805206B4
+lbl_805206B4:
+	.4byte 0x43480000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST12ObjectCameraFPCcPQ24Game11MoviePlayer

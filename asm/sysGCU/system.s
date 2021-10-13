@@ -79,6 +79,42 @@ lbl_804999E4:
 	.asciz "no display"
 	.skip 0x1
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global gStrSystem_Abort
+gStrSystem_Abort:
+	.asciz "abort\n"
+	.skip 0x1
+.global lbl_80520408
+lbl_80520408:
+	.float 0.016666668
+.global lbl_8052040C
+lbl_8052040C:
+	.float 1.0
+.global lbl_80520410
+lbl_80520410:
+	.float 0.5
+.global lbl_80520414
+lbl_80520414:
+	.asciz "ARAMMgr"
+	.4byte 0x00000000
+.global lbl_80520420
+lbl_80520420:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80520428
+lbl_80520428:
+	.asciz "sound"
+	.skip 0x2
+.global lbl_80520430
+lbl_80520430:
+	.float 60.0
+	.4byte 0x00000000
+.global lbl_80520438
+lbl_80520438:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00 
 .global kando_panic_f__FbPCciPCce
 kando_panic_f__FbPCciPCce:

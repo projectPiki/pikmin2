@@ -126,6 +126,59 @@ lbl_8049A428:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520710
+lbl_80520710:
+	.4byte 0x00000000
+.global lbl_80520714
+lbl_80520714:
+	.4byte 0x5072696E
+	.4byte 0x74000000
+.global lbl_8052071C
+lbl_8052071C:
+	.4byte 0x41490000
+.global lbl_80520720
+lbl_80520720:
+	.4byte 0x74696D65
+	.4byte 0x72730000
+.global lbl_80520728
+lbl_80520728:
+	.4byte 0x76735465
+	.4byte 0x73740000
+.global lbl_80520730
+lbl_80520730:
+	.4byte 0x76734869
+	.4byte 0x62610000
+.global lbl_80520738
+lbl_80520738:
+	.4byte 0x76735900
+.global lbl_8052073C
+lbl_8052073C:
+	.4byte 0x76734669
+	.4byte 0x666F0000
+.global lbl_80520744
+lbl_80520744:
+	.4byte 0x656E6700
+.global lbl_80520748
+lbl_80520748:
+	.4byte 0x66726100
+.global lbl_8052074C
+lbl_8052074C:
+	.4byte 0x67657200
+.global lbl_80520750
+lbl_80520750:
+	.4byte 0x686F6C00
+.global lbl_80520754
+lbl_80520754:
+	.4byte 0x69746100
+.global lbl_80520758
+lbl_80520758:
+	.4byte 0x6A706E00
+.global lbl_8052075C
+lbl_8052075C:
+	.4byte 0x73706100
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10GameConfigFv
 __ct__Q24Game10GameConfigFv:

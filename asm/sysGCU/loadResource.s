@@ -30,6 +30,13 @@ lbl_8049B3A8:
 	.4byte 0x0A000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520AA8
+lbl_80520AA8:
+	.4byte 0x44766452
+	.4byte 0x6F6F7400
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q212LoadResource4NodeFv
 __dt__Q212LoadResource4NodeFv:

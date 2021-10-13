@@ -14,6 +14,37 @@ lbl_8049A6D0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520790
+lbl_80520790:
+	.4byte 0x00000000
+.global mstTuningScaleX__Q29P2DScreen10Mgr_tuning
+mstTuningScaleX__Q29P2DScreen10Mgr_tuning:
+	.4byte 0x3F733333
+.global mstTuningScaleY__Q29P2DScreen10Mgr_tuning
+mstTuningScaleY__Q29P2DScreen10Mgr_tuning:
+	.4byte 0x3F733333
+.global mstTuningTransX__Q29P2DScreen10Mgr_tuning
+mstTuningTransX__Q29P2DScreen10Mgr_tuning:
+	.4byte 0xC1733333
+.global mstTuningTransY__Q29P2DScreen10Mgr_tuning
+mstTuningTransY__Q29P2DScreen10Mgr_tuning:
+	.4byte 0xC1733333
+.global lbl_805207A4
+lbl_805207A4:
+	.4byte 0x3F733333
+.global lbl_805207A8
+lbl_805207A8:
+	.4byte 0xC1733333
+.global lbl_805207AC
+lbl_805207AC:
+	.float 0.5
+.global lbl_805207B0
+lbl_805207B0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q29P2DScreen3MgrFv
 __ct__Q29P2DScreen3MgrFv:

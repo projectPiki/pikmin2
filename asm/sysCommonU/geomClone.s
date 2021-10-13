@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805203F8
+lbl_805203F8:
+	.float 32768.0
+.global lbl_805203FC
+lbl_805203FC:
+	.float -32768.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clone__Q23Sys10TriDividerFR7Matrixf

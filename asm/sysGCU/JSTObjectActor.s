@@ -56,6 +56,31 @@ lbl_8049A204:
 	.4byte 0x73657274
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520678
+lbl_80520678:
+	.float 1.0
+.global lbl_8052067C
+lbl_8052067C:
+	.4byte 0x00000000
+.global lbl_80520680
+lbl_80520680:
+	.4byte 0x3C8EFA35
+.global lbl_80520684
+lbl_80520684:
+	.4byte 0x40490FDB
+.global lbl_80520688
+lbl_80520688:
+	.4byte 0x3BB60B61
+.global lbl_8052068C
+lbl_8052068C:
+	.4byte 0x62670000
+.global lbl_80520690
+lbl_80520690:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST11ObjectActorFPCcPQ24Game11MoviePlayer
 __ct__Q34Game5P2JST11ObjectActorFPCcPQ24Game11MoviePlayer:

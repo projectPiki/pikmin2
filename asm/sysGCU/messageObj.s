@@ -32,6 +32,17 @@ lbl_8049ABD4:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805208A8
+lbl_805208A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805208B0
+lbl_805208B0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q25P2JME8TControlFv
 __ct__Q25P2JME8TControlFv:

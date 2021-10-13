@@ -38,6 +38,33 @@ lbl_80499D20:
 	.4byte 0x0A000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520548
+lbl_80520548:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80520550
+lbl_80520550:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80520558
+lbl_80520558:
+	.float 0.25
+.global lbl_8052055C
+lbl_8052055C:
+	.4byte 0xBF800000
+.global lbl_80520560
+lbl_80520560:
+	.float 1.0
+.global lbl_80520564
+lbl_80520564:
+	.4byte 0x437F0000
+.global lbl_80520568
+lbl_80520568:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12ResetManagerFf
 __ct__12ResetManagerFf:

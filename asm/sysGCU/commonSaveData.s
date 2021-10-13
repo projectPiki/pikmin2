@@ -24,6 +24,27 @@ lbl_8049AED4:
 	.4byte 0x49462E68
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520980
+lbl_80520980:
+	.4byte 0x437F0000
+	.4byte 0x00000000
+.global lbl_80520988
+lbl_80520988:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80520990
+lbl_80520990:
+	.4byte 0x00000000
+.global lbl_80520994
+lbl_80520994:
+	.float 1.0
+.global lbl_80520998
+lbl_80520998:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game14CommonSaveData3MgrFv
 __ct__Q34Game14CommonSaveData3MgrFv:

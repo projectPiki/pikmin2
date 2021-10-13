@@ -46,6 +46,25 @@ lbl_8049B4F8:
 	.4byte 0x8F898AFA
 	.4byte 0x89BB0A00
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520AF8
+lbl_80520AF8:
+	.4byte 0x54485000
+.global lbl_80520AFC
+lbl_80520AFC:
+	.4byte 0x42FE0000
+.global lbl_80520B00
+lbl_80520B00:
+	.4byte 0x42C80000
+.global lbl_80520B04
+lbl_80520B04:
+	.4byte 0x47000000
+.global lbl_80520B08
+lbl_80520B08:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global audioCallbackWithMSound__Fl
 audioCallbackWithMSound__Fl:

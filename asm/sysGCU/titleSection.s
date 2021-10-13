@@ -158,6 +158,33 @@ lbl_8049B100:
 	.4byte 0x69000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520A80
+lbl_80520A80:
+	.4byte 0x00000000
+.global lbl_80520A84
+lbl_80520A84:
+	.4byte 0x4E4F204E
+	.4byte 0x414D4500
+	.4byte 0x00000000
+.global lbl_80520A90
+lbl_80520A90:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520A98
+lbl_80520A98:
+	.float 0.5
+.global lbl_80520A9C
+lbl_80520A9C:
+	.4byte 0x422C0000
+.global lbl_80520AA0
+lbl_80520AA0:
+	.4byte 0x47000000
+.global lbl_80520AA4
+lbl_80520AA4:
+	.4byte 0x41400000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q25Title7SectionFP7JKRHeap
 __ct__Q25Title7SectionFP7JKRHeap:
