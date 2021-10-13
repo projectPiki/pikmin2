@@ -36,6 +36,7 @@ This list is not absolute and may become outdated as the project progresses. In 
 - sysGCU/controller.cpp
 - sysGCU/simpleMessage.cpp
 - sysCommonU/id32.cpp
+- sysCommonU/tagparams.cpp
 - plugProjectKandoU/gameSoundEvent.cpp
 - plugProjectHikinoU/PSCreatureMgr.cpp
 
@@ -44,7 +45,6 @@ This list is not absolute and may become outdated as the project progresses. In 
 - sysGCU/system.cpp
 - sysGCU/sysTemplates.cpp
 - sysGCU/pikmin2MemoryCardMgr.cpp
-- sysCommonU/tagparams.cpp
 - sysCommonU/node.cpp
 - sysCommonU/sysMath.cpp
 - plugProjectKandoU/interactBattle.cpp
