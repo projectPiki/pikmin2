@@ -38,6 +38,7 @@ This list is not absolute and may become outdated as the project progresses. In 
 - sysCommonU/id32.cpp
 - sysCommonU/tagparams.cpp
 - plugProjectKandoU/gameSoundEvent.cpp
+- plugProjectKandoU/pelletConfig.cpp
 - plugProjectHikinoU/PSCreatureMgr.cpp
 
 ### WIP
