@@ -1,7 +1,7 @@
 #include "Game/AIConstants.h"
 
 struct RamStream : public Stream {
-	char _10[266 - sizeof(Stream)]; // _10
+	char _10[(266 - sizeof(Stream)) + 0x310]; // _10
 
 	RamStream(void*, int);
 };
