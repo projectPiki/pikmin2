@@ -2,18 +2,12 @@
 #define _EBI_TITLE_TTITLECAMERAMGR_H
 
 #include "types.h"
-
-struct Camera {
-	u32 _00; // _00
-	static void update();
-};
+#include "Camera.h"
 
 namespace ebi {
 namespace title {
 	// Is Camera really parent class ?
-	struct TTitleCameraMgr : public Camera {
-		void update();
-
+	struct TTitleCameraMgr {
 		u8 gap4[36];    // _04
 		float float28;  // _28
 		u8 gap2C[328];  // _2C
@@ -31,7 +25,6 @@ namespace title {
 		u8 gap1C0[36];  // _1C0
 		float float1E4; // _1E4
 	};
-
 } // namespace title
 } // namespace ebi
 

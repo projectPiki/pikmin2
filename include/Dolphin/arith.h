@@ -1,5 +1,5 @@
-#ifndef _ARITH_H
-#define _ARITH_H
+#ifndef _DOLPHIN_ARITH_H
+#define _DOLPHIN_ARITH_H
 
 #include "types.h"
 

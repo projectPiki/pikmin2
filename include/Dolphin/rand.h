@@ -1,5 +1,5 @@
-#ifndef _RAND_H
-#define _RAND_H
+#ifndef _DOLPHIN_RAND_H
+#define _DOLPHIN_RAND_H
 
 #include "types.h"
 

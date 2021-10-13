@@ -9,3 +9,4 @@ IndentWidth: 4
 TabWidth: 4
 UseTab: ForIndentation
 SortIncludes: false
+AlignConsecutiveMacros: true

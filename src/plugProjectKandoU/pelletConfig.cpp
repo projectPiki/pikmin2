@@ -1,6 +1,7 @@
-#include "Game/pelletConfig.h"
+#include "Game/PelletConfig.h"
 #include "JSystem/JUTException.h"
 #include "PrimTagParm.h"
+#include "Dolphin/string.h"
 
 namespace Game {
 
@@ -9,11 +10,10 @@ namespace Game {
  * Address:	801B3EEC
  * Size:	000048
  */
-
 PelletConfigList::PelletConfigList()
 {
-	this->pelletConfigArray = nullptr;
-	this->count             = 0;
+	m_configs   = nullptr;
+	m_configCnt = 0;
 }
 
 /*
@@ -21,27 +21,26 @@ PelletConfigList::PelletConfigList()
  * Address:	801B3F34
  * Size:	0000AC
  */
-
 PelletConfig::PelletConfig()
 {
-	this->parms.sus                                        = -1;
-	this->parms.unique.m_data                              = "no";
-	this->parms.indirect.m_data                            = "no";
-	this->parms.txtArchive.m_data                          = nullptr;
-	this->parms.depth.m_data                               = 0.0f;
-	this->parms.depthA.m_data                              = 10.0f;
-	this->parms.depthB.m_data                              = 20.0f;
-	this->parms.depthC.m_data                              = 30.0f;
-	this->parms.depthD.m_data                              = 40.0f;
-	this->parms.numPMotions.m_data                         = 0;
-	reinterpret_cast<int*>(&this->parms.message.m_data)[1] = 0;
-	reinterpret_cast<int*>(&this->parms.message.m_data)[0] = 0;
-	this->parms.offset.m_data.x                            = 0.0f;
-	this->parms.offset.m_data.y                            = 0.0f;
-	this->parms.offset.m_data.z                            = 0.0f;
-	this->parms.code.m_data                                = 0;
-	this->parms.dictionary.m_data                          = 0;
-	this->parms.sus2                                       = 0;
+	m_params.m_index                                      = -1;
+	m_params.m_unique.m_data                              = "no";
+	m_params.m_indirect.m_data                            = "no";
+	m_params.m_txtArchive.m_data                          = nullptr;
+	m_params.m_depth.m_data                               = 0.0f;
+	m_params.m_depthA.m_data                              = 10.0f;
+	m_params.m_depthB.m_data                              = 20.0f;
+	m_params.m_depthC.m_data                              = 30.0f;
+	m_params.m_depthD.m_data                              = 40.0f;
+	m_params.m_numPMotions.m_data                         = 0;
+	reinterpret_cast<int*>(&m_params.m_message.m_data)[1] = 0;
+	reinterpret_cast<int*>(&m_params.m_message.m_data)[0] = 0;
+	m_params.m_offset.m_data.x                            = 0.0f;
+	m_params.m_offset.m_data.y                            = 0.0f;
+	m_params.m_offset.m_data.z                            = 0.0f;
+	m_params.m_code.m_data                                = 0;
+	m_params.m_dictionary.m_data                          = 0;
+	m_params.m_indirectState                              = PC_INDIRECTSTATE_NO;
 }
 
 /*
@@ -52,39 +51,39 @@ PelletConfig::PelletConfig()
 const char* UNUSED_pelletConfig = "pelletConfig";
 PelletConfig::TParms::TParms()
     : TagParameters("PelletConfig")
-    , name(this, "name")
-    , archive(this, "archive")
-    , txtArchive(this, "txt_archive")
-    , bmd(this, "bmd")
-    , animMgr(this, "animmgr")
-    , colltree(this, "colltree")
-    , radius(this, "radius")
-    , pRadius(this, "p_radius")
-    , height(this, "height")
-    , inertiaScaling(this, "inertiascaling")
-    , particleType(this, "particletype")
-    , numParticles(this, "numparticles")
-    , particleSize(this, "particlesize")
-    , friction(this, "friction")
-    , min(this, "min")
-    , max(this, "max")
-    , pikiCountMax(this, "pikicountmax")
-    , pikiCountMin(this, "pikicountmin")
-    , dynamics(this, "dynamics")
-    , money(this, "money")
-    , unique(this, "unique")
-    , indirect(this, "indirect")
-    , numPMotions(this, "num_pmotions")
-    , depth(this, "depth")
-    , depthMax(this, "depth_max")
-    , depthA(this, "depth_a")
-    , depthB(this, "depth_b")
-    , depthC(this, "depth_c")
-    , depthD(this, "depth_d")
-    , offset(this, "offset")
-    , message(this, "message")
-    , code(this, "code")
-    , dictionary(this, "dictionary")
+    , m_name(this, "name")
+    , m_archive(this, "archive")
+    , m_txtArchive(this, "txt_archive")
+    , m_bmd(this, "bmd")
+    , m_animMgr(this, "animmgr")
+    , m_colltree(this, "colltree")
+    , m_radius(this, "radius")
+    , m_pRadius(this, "p_radius")
+    , m_height(this, "height")
+    , m_inertiaScaling(this, "inertiascaling")
+    , m_particleType(this, "particletype")
+    , m_numParticles(this, "numparticles")
+    , m_particleSize(this, "particlesize")
+    , m_friction(this, "friction")
+    , m_min(this, "min")
+    , m_max(this, "max")
+    , m_pikiCountMax(this, "pikicountmax")
+    , m_pikiCountMin(this, "pikicountmin")
+    , m_dynamics(this, "dynamics")
+    , m_money(this, "money")
+    , m_unique(this, "unique")
+    , m_indirect(this, "indirect")
+    , m_numPMotions(this, "num_pmotions")
+    , m_depth(this, "depth")
+    , m_depthMax(this, "depth_max")
+    , m_depthA(this, "depth_a")
+    , m_depthB(this, "depth_b")
+    , m_depthC(this, "depth_c")
+    , m_depthD(this, "depth_d")
+    , m_offset(this, "offset")
+    , m_message(this, "message")
+    , m_code(this, "code")
+    , m_dictionary(this, "dictionary")
 {
 }
 
@@ -93,19 +92,13 @@ PelletConfig::TParms::TParms()
  * Address:	801B4424
  * Size:	000084
  */
-
-extern "C" {
-extern size_t strlen(char*);
-extern int strncmp(char*, char*, size_t);
-extern int strcmp(char*, char*);
-}
-
 PelletConfig* PelletConfigList::getPelletConfig(char* str)
 {
-	for (int i = 0; i < count; i++) {
-		PelletConfig* pConfig = &pelletConfigArray[i];
-		int len               = strlen(str);
-		if (strncmp(pConfig->parms.name.m_data, str, len) == 0) {
+	for (s32 i = 0; i < m_configCnt; i++) {
+		PelletConfig* pConfig = &m_configs[i];
+		u32 len               = strlen(str);
+
+		if (!strncmp(pConfig->m_params.m_name.m_data, str, len)) {
 			return pConfig;
 		}
 	}
@@ -118,13 +111,13 @@ PelletConfig* PelletConfigList::getPelletConfig(char* str)
  * Address:	801B44A8
  * Size:	00007C
  */
-
-PelletConfig* PelletConfigList::getPelletConfig(int index)
+PelletConfig* PelletConfigList::getPelletConfig(s32 index)
 {
-	bool var = 0 <= index && index < this->count;
+	bool isValid = 0 <= index && index < m_configCnt;
 #line 125
-	P2ASSERT(var);
-	return &this->pelletConfigArray[index];
+	P2ASSERT(isValid);
+
+	return &m_configs[index];
 }
 
 /*
@@ -132,13 +125,11 @@ PelletConfig* PelletConfigList::getPelletConfig(int index)
  * Address:	801B4524
  * Size:	000044
  */
-
-PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int param_1)
-
+PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(s32 dictNumber)
 {
-	for (int i = 0; i < count; i++) {
-		PelletConfig* pConfig = &pelletConfigArray[i];
-		if (param_1 + 1 == (pConfig->parms).dictionary.m_data) {
+	for (s32 i = 0; i < m_configCnt; i++) {
+		PelletConfig* pConfig = &m_configs[i];
+		if (dictNumber + 1 == pConfig->m_params.m_dictionary.m_data) {
 			return pConfig;
 		}
 	}
@@ -150,24 +141,25 @@ PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int param_1)
  * Address:	801B4568
  * Size:	000130
  */
-
 void PelletConfigList::read(Stream& stream)
 {
-	count             = stream.readInt();
-	pelletConfigArray = new PelletConfig[count];
-	for (int i = 0; i < count; i++) {
-		pelletConfigArray[i].parms.read(stream);
-		pelletConfigArray[i].parms.sus = i;
+	m_configCnt = stream.readInt();
+	m_configs   = new PelletConfig[m_configCnt];
+	for (s32 i = 0; i < m_configCnt; i++) {
+		m_configs[i].m_params.read(stream);
+		m_configs[i].m_params.m_index = i;
 
-		if (!strcmp("yes", pelletConfigArray[i].parms.indirect.m_data)) {
-			pelletConfigArray[i].parms.sus2 = 2;
+		// Set indirect state
+		if (!strcmp("yes", m_configs[i].m_params.m_indirect.m_data)) {
+			m_configs[i].m_params.m_indirectState = PC_INDIRECTSTATE_YES;
 		} else {
-			if (!strcmp("use", pelletConfigArray[i].parms.indirect.m_data)) {
-				pelletConfigArray[i].parms.sus2 = 1;
+			if (!strcmp("use", m_configs[i].m_params.m_indirect.m_data)) {
+				m_configs[i].m_params.m_indirectState = PC_INDIRECTSTATE_USE;
 			} else {
-				pelletConfigArray[i].parms.sus2 = 0;
+				m_configs[i].m_params.m_indirectState = PC_INDIRECTSTATE_NO;
 			}
 		}
 	}
 }
+
 } // namespace Game

@@ -5,63 +5,73 @@
 #include "PrimTagParm.h"
 #include "types.h"
 
+#define PC_INDIRECTSTATE_NO  0x0
+#define PC_INDIRECTSTATE_USE 0x1
+#define PC_INDIRECTSTATE_YES 0x2
+
 namespace Game {
+
 struct PelletConfig : public CNode {
 	struct TParms : public TagParameters { // _18
 		TParms();
 		virtual ~TParms() { }
-		StringTagParm name;                // _34
-		StringTagParm archive;             // _44
-		StringTagParm txtArchive;          // _54
-		StringTagParm bmd;                 // _64
-		StringTagParm animMgr;             // _74
-		StringTagParm colltree;            // _84
-		PrimTagParm<float> radius;         // _94
-		PrimTagParm<float> pRadius;        // _a4
-		PrimTagParm<float> height;         // _b4
-		PrimTagParm<float> inertiaScaling; // _c4
-		StringTagParm particleType;        // _d4
-		PrimTagParm<int> numParticles;     // _e4
-		PrimTagParm<float> particleSize;   // _f4
-		PrimTagParm<float> friction;       // _104
-		PrimTagParm<int> min;              // _114
-		PrimTagParm<int> max;              // _124
-		PrimTagParm<int> pikiCountMax;     // _134
-		PrimTagParm<int> pikiCountMin;     // _144
-		StringTagParm dynamics;            // _154
-		PrimTagParm<int> money;            // _164
-		StringTagParm unique;              // _174
-		StringTagParm indirect;            // _184
-		PrimTagParm<int> numPMotions;      // _194
-		PrimTagParm<float> depth;          // _1a4
-		PrimTagParm<float> depthMax;       // _1b4
-		PrimTagParm<float> depthA;         // _1c4
-		PrimTagParm<float> depthB;         // _1d4
-		PrimTagParm<float> depthC;         // _1e4
-		PrimTagParm<float> depthD;         // _1f4
-		PrimTagParm<Vector3f> offset;      // _204
-		PrimTagParm<unsigned long long> message;
-		PrimTagParm<unsigned short> code;
-		PrimTagParm<unsigned short> dictionary;
-		short sus;
-		unsigned char sus2;
+		StringTagParm m_name;              // _34
+		StringTagParm m_archive;           // _44
+		StringTagParm m_txtArchive;        // _54
+		StringTagParm m_bmd;               // _64
+		StringTagParm m_animMgr;           // _74
+		StringTagParm m_colltree;          // _84
+		PrimTagParm<f32> m_radius;         // _94
+		PrimTagParm<f32> m_pRadius;        // _A4
+		PrimTagParm<f32> m_height;         // _B4
+		PrimTagParm<f32> m_inertiaScaling; // _C4
+		StringTagParm m_particleType;      // _D4
+		PrimTagParm<s32> m_numParticles;   // _E4
+		PrimTagParm<f32> m_particleSize;   // _F4
+		PrimTagParm<f32> m_friction;       // _104
+		PrimTagParm<s32> m_min;            // _114
+		PrimTagParm<s32> m_max;            // _124
+		PrimTagParm<s32> m_pikiCountMax;   // _134
+		PrimTagParm<s32> m_pikiCountMin;   // _144
+		StringTagParm m_dynamics;          // _154
+		PrimTagParm<s32> m_money;          // _164
+		StringTagParm m_unique;            // _174
+		StringTagParm m_indirect;          // _184
+		PrimTagParm<s32> m_numPMotions;    // _194
+		PrimTagParm<f32> m_depth;          // _1A4
+		PrimTagParm<f32> m_depthMax;       // _1B4
+		PrimTagParm<f32> m_depthA;         // _1C4
+		PrimTagParm<f32> m_depthB;         // _1D4
+		PrimTagParm<f32> m_depthC;         // _1E4
+		PrimTagParm<f32> m_depthD;         // _1F4
+		PrimTagParm<Vector3f> m_offset;    // _204
+		PrimTagParm<u64> m_message;
+		PrimTagParm<u16> m_code;
+		PrimTagParm<u16> m_dictionary;
+		s16 m_index;
+
+		u8 m_indirectState;
 	}; // struct TParms
-	TParms parms;
-	// unsigned char indirect;
+
 	PelletConfig();
-	virtual ~PelletConfig() {}; // virtual destructor
-};                              // struct for pellet config
+	virtual ~PelletConfig() { }
+
+	TParms m_params; // _04
+};
+
 class PelletConfigList : public CNode {
 	PelletConfigList();
-	virtual ~PelletConfigList() {}; // virtual
+	virtual ~PelletConfigList() {};
 
-	int count;                       // _18
-	PelletConfig* pelletConfigArray; // _1C
-	PelletConfig* getPelletConfig(char*);
-	PelletConfig* getPelletConfig(int);
-	PelletConfig* getPelletConfig_ByDictionaryNo(int);
+	PelletConfig* getPelletConfig(char* name);
+	PelletConfig* getPelletConfig(s32 index);
+	PelletConfig* getPelletConfig_ByDictionaryNo(s32 dictionaryNumber);
 	void read(Stream&);
+
+	s32 m_configCnt;         // _18
+	PelletConfig* m_configs; // _1C
 };
+
 } // namespace Game
 
 #endif
