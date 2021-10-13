@@ -5,7 +5,7 @@
 
 struct AIConstants : public TagParameters {
 	AIConstants();
-	~AIConstants();
+	virtual ~AIConstants();
 
 	PrimTagParm<f32> m_gravity;     // _1C
 	PrimTagParm<s32> m_dopeCount;   // _2C
