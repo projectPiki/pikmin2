@@ -133,6 +133,7 @@ PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(s32 dictNumber)
 			return pConfig;
 		}
 	}
+
 	return nullptr;
 }
 
