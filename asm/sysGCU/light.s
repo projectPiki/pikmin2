@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499EF8
+lbl_80499EF8:
+	.4byte 0x83418393
+	.4byte 0x83728347
+	.4byte 0x83938367
+	.4byte 0x83898343
+	.4byte 0x83670000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor

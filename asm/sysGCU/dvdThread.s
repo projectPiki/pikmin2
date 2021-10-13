@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499C18
+lbl_80499C18:
+	.asciz "dvdThread.cpp"
+	.skip 2
+.global lbl_80499C28
+lbl_80499C28:
+	.asciz "P2Assert"
+	.skip 7
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__16DvdThreadCommandFv

@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A680
+lbl_8049A680:
+	.4byte 0x7265736F
+	.4byte 0x75726365
+	.4byte 0x4D677232
+	.4byte 0x442E6370
+	.4byte 0x70000000
+.global lbl_8049A694
+lbl_8049A694:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q28Resource5Mgr2DFP7JKRHeap

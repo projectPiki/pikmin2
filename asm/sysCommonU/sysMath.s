@@ -1,4 +1,13 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499648
+lbl_80499648:
+	.asciz "sysMath.cpp"
+.global lbl_80499654
+lbl_80499654:
+	.asciz "acosf %f\n"
+	.skip 0x2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 

@@ -1,4 +1,56 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049B3C0
+lbl_8049B3C0:
+	.4byte 0x64656D6F
+	.4byte 0x53656374
+	.4byte 0x696F6E2E
+	.4byte 0x63707000
+	.4byte 0x5469746C
+	.4byte 0x65536563
+	.4byte 0x74696F6E
+	.4byte 0x3A3A696E
+	.4byte 0x69740000
+	.4byte 0x4A4D414E
+	.4byte 0x65775369
+	.4byte 0x6E546162
+	.4byte 0x6C650000
+	.4byte 0x54485083
+	.4byte 0x5A834E83
+	.4byte 0x56838783
+	.4byte 0x93000000
+	.4byte 0x6672616D
+	.4byte 0x65427566
+	.4byte 0x66657200
+.global lbl_8049B410
+lbl_8049B410:
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+.global lbl_8049B41C
+lbl_8049B41C:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x2F757365
+	.4byte 0x722F7961
+	.4byte 0x6D617368
+	.4byte 0x6974612F
+	.4byte 0x6172632F
+	.4byte 0x64656D6F
+	.4byte 0x4D6F7669
+	.4byte 0x654C6F67
+	.4byte 0x6F5F7573
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+	.4byte 0x2F646174
+	.4byte 0x612F7469
+	.4byte 0x6D672F70
+	.4byte 0x696B6D69
+	.4byte 0x6E325F6C
+	.4byte 0x6F676F2E
+	.4byte 0x62746900
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Demo7SectionFP7JKRHeap

@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049AC90
+lbl_8049AC90:
+	.4byte 0x73797353
+	.4byte 0x68617065
+	.4byte 0x4D6F6465
+	.4byte 0x6C2E6370
+	.4byte 0x70000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28SysShape5ModelFP12J3DModelDataUlUl

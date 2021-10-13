@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_804997A8
+lbl_804997A8:
+	.asciz "# %d/%d\r\n"
+	.skip 0x6
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "getAxisVector__Q23Sys4TubeFR10Vector3<f>"

@@ -1,4 +1,58 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049AD08
+lbl_8049AD08:
+	.4byte 0x6D656D6F
+	.4byte 0x72794361
+	.4byte 0x72642E63
+	.4byte 0x70700000
+	.4byte 0x636F6D6D
+	.4byte 0x616E6420
+	.4byte 0x71756575
+	.4byte 0x65206973
+	.4byte 0x2062726F
+	.4byte 0x6B656E2E
+	.4byte 0x666C6167
+	.4byte 0x3A256420
+	.4byte 0x6E756D3A
+	.4byte 0x25640000
+.global lbl_8049AD40
+lbl_8049AD40:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x636F6D6D
+	.4byte 0x616E6420
+	.4byte 0x51756575
+	.4byte 0x65206973
+	.4byte 0x2066756C
+	.4byte 0x6C2E0000
+	.4byte 0x696D706F
+	.4byte 0x73736962
+	.4byte 0x6C652063
+	.4byte 0x6173650A
+	.4byte 0x00000000
+.global lbl_8049AD78
+lbl_8049AD78:
+	.4byte 0x8373834E
+	.4byte 0x837E8393
+	.4byte 0x82518140
+	.4byte 0x835A815B
+	.4byte 0x83758366
+	.4byte 0x815B835E
+	.4byte 0x20000000
+.global lbl_8049AD94
+lbl_8049AD94:
+	.4byte 0x25303464
+	.4byte 0x2F253032
+	.4byte 0x642F2530
+	.4byte 0x32642025
+	.4byte 0x3032643A
+	.4byte 0x25303264
+	.4byte 0x3A253032
+	.4byte 0x64000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13MemoryCardMgrFv

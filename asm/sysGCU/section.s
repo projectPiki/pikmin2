@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_804999F0
+lbl_804999F0:
+	.skip 0xC
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "section.cpp"
+	.asciz "no Display manager.\n"
+	.skip 7
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__7SectionFv

@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499C00
+lbl_80499C00:
+	.asciz "ChildSection::init"
+	.skip 5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11MenuSectionFP10JFWDisplayP7JKRHeapb

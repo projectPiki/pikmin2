@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_804997B8
+lbl_804997B8:
+	.asciz "# %d/%d\r\n"
+	.skip 0x6
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getAttribute__Q27MapCode4CodeFv

@@ -1,4 +1,83 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global gStrSystem_CPP
+gStrSystem_CPP:
+	.asciz "system.cpp"
+	.skip 0x1
+.global gStrSystem_MemoryAllocError
+gStrSystem_MemoryAllocError:
+	.asciz "Memory Alloc Error!\n%x (size %d) align(%d)\nRestTotal=%d\nRestFree =%d\n"
+	.skip 0x2
+.global gStrSystem_InOnLine
+gStrSystem_InOnLine:
+	.asciz "%s in \"%s\" on line %d\n"
+	.skip 0x1
+.global lbl_80499834
+lbl_80499834:
+	.asciz "%s in \"%s\" on\n line %d\n"
+	.short 0x0100
+	.short 0x0200
+	.short 0x0400
+	.short 0x0020
+	.short 0x0040
+	.short 0x0001
+	.short 0x0004
+	.short 0x0008
+	.short 0x0002
+	.short 0x0010
+	.short 0x0000
+	.short 0x0000
+	.asciz "--- Game debug information ---\n"
+	.4byte 0x83528393
+	.4byte 0x835C815B
+	.4byte 0x838B82AA
+	.4byte 0x82A082E8
+	.4byte 0x82DC82B9
+	.4byte 0x82F10A00
+	.asciz "aramStrm"
+	.skip 3
+	.asciz "cpuLockCount %d retraceCount %d\n"
+	.skip 3
+	.asciz "system/retrace"
+	.skip 1
+	.asciz "CPU LOCKED!"
+	.asciz "/pikmin2UP.map"
+	.skip 1
+	.asciz "construct"
+	.skip 2
+	.asciz "DvdThread"
+	.skip 2
+	.asciz "SysTimers"
+	.skip 2
+	.asciz "ResetManager"
+	.skip 3
+	.asciz "ResourceMgr2D"
+	.skip 2
+.global lbl_8049993C
+lbl_8049993C:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "constructWithDvdAccess1st"
+	.skip 2
+	.asciz "gameConfig.ini"
+	.skip 1
+	.asciz "constructWithDvdAccess2nd"
+	.skip 2
+	.asciz "P2JME::Mgr"
+	.skip 1
+	.asciz "SoundSystem"
+	.asciz "/AudioRes"
+	.skip 2
+	.asciz "PSound.aaf"
+	.skip 1
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "unknown renderMode:%d \n"
+.global lbl_804999E4
+lbl_804999E4:
+	.asciz "no display"
+	.skip 0x1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00 
 .global kando_panic_f__FbPCciPCce

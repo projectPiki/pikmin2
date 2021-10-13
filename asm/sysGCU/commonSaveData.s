@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049AEC0
+lbl_8049AEC0:
+	.4byte 0x636F6D6D
+	.4byte 0x6F6E5361
+	.4byte 0x76654461
+	.4byte 0x74612E63
+	.4byte 0x70700000
+.global lbl_8049AED4
+lbl_8049AED4:
+	.4byte 0x556E6B6E
+	.4byte 0x6F776E20
+	.4byte 0x736F756E
+	.4byte 0x64206D6F
+	.4byte 0x64653A25
+	.4byte 0x64200A00
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x50535379
+	.4byte 0x7374656D
+	.4byte 0x49462E68
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game14CommonSaveData3MgrFv

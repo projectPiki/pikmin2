@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499E10
+lbl_80499E10:
+	.4byte 0x73797354
+	.4byte 0x696D6572
+	.4byte 0x73000000
+.global lbl_80499E1C
+lbl_80499E1C:
+	.4byte 0x73797354
+	.4byte 0x696D6572
+	.4byte 0x732E6370
+	.4byte 0x70000000
+.global lbl_80499E2C
+lbl_80499E2C:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+.global lbl_80499E38
+lbl_80499E38:
+	.4byte 0x974C82E8
+	.4byte 0x82A682C8
+	.4byte 0x82A2815B
+	.4byte 0x8140974C
+	.4byte 0x82E882A6
+	.4byte 0x82C882A2
+	.4byte 0x815C2083
+	.4byte 0x55837D83
+	.4byte 0x56838183
+	.4byte 0x62834E81
+	.4byte 0x4981490A
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9SysTimersFv

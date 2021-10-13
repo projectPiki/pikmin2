@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049BA78
+lbl_8049BA78:
+	.4byte 0x7475746F
+	.4byte 0x7269616C
+	.4byte 0x00000000
+.global lbl_8049BA84
+lbl_8049BA84:
+	.4byte 0x79616B75
+	.4byte 0x7368696D
+	.4byte 0x61000000
+.global lbl_8049BA90
+lbl_8049BA90:
+	.4byte 0x73747269
+	.4byte 0x6E673A25
+	.4byte 0x752C2573
+	.4byte 0x0A000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST19ObjectParticleActorFPCcPQ24Game11MoviePlayerPQ24Game8Creature

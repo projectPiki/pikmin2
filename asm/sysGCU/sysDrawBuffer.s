@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049BAD8
+lbl_8049BAD8:
+	.4byte 0x73797344
+	.4byte 0x72617742
+	.4byte 0x75666665
+	.4byte 0x722E6370
+	.4byte 0x70000000
+.global lbl_8049BAEC
+lbl_8049BAEC:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+.global lbl_8049BAF8
+lbl_8049BAF8:
+	.4byte 0x44726177
+	.4byte 0x42756666
+	.4byte 0x65720000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q23Sys10DrawBufferFv

@@ -1,4 +1,228 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049B510
+lbl_8049B510:
+	.4byte 0x2F746870
+	.4byte 0x2F6F7065
+	.4byte 0x6E696E67
+	.4byte 0x312E7468
+	.4byte 0x70000000
+	.4byte 0x2F746870
+	.4byte 0x2F6F7065
+	.4byte 0x6E696E67
+	.4byte 0x312E696E
+	.4byte 0x69000000
+	.4byte 0x2F746870
+	.4byte 0x2F6F7065
+	.4byte 0x6E696E67
+	.4byte 0x322E7468
+	.4byte 0x70000000
+	.4byte 0x2F746870
+	.4byte 0x2F6F7065
+	.4byte 0x6E696E67
+	.4byte 0x322E696E
+	.4byte 0x69000000
+	.4byte 0x2F746870
+	.4byte 0x2F656E64
+	.4byte 0x696E6731
+	.4byte 0x2E746870
+	.4byte 0x00000000
+	.4byte 0x2F746870
+	.4byte 0x2F656E64
+	.4byte 0x696E6731
+	.4byte 0x2E696E69
+	.4byte 0x00000000
+	.4byte 0x2F746870
+	.4byte 0x2F656E64
+	.4byte 0x696E6732
+	.4byte 0x2E746870
+	.4byte 0x00000000
+	.4byte 0x2F746870
+	.4byte 0x2F737461
+	.4byte 0x6666726F
+	.4byte 0x6C6C2E74
+	.4byte 0x68700000
+	.4byte 0x2F746870
+	.4byte 0x2F706C61
+	.4byte 0x79312E74
+	.4byte 0x68700000
+	.4byte 0x2F746870
+	.4byte 0x2F706C61
+	.4byte 0x79322E74
+	.4byte 0x68700000
+	.4byte 0x2F746870
+	.4byte 0x2F706C61
+	.4byte 0x79332E74
+	.4byte 0x68700000
+	.4byte 0x2F746870
+	.4byte 0x2F706C61
+	.4byte 0x79342E74
+	.4byte 0x68700000
+	.4byte 0x2F746870
+	.4byte 0x2F706C61
+	.4byte 0x79352E74
+	.4byte 0x68700000
+	.4byte 0x2F746870
+	.4byte 0x2F706C61
+	.4byte 0x79362E74
+	.4byte 0x68700000
+	.4byte 0x2F746870
+	.4byte 0x2F637269
+	.4byte 0x6D652E74
+	.4byte 0x68700000
+	.4byte 0x2F746870
+	.4byte 0x2F637269
+	.4byte 0x6D652E69
+	.4byte 0x6E690000
+.global "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@"
+"sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@":
+	.4byte lbl_8049B510
+	.4byte 0x8049B524
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x8049B538
+	.4byte 0x8049B54C
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x8049B560
+	.4byte 0x8049B574
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x8049B588
+	.4byte 0x80520B10
+	.4byte 0x00000000
+	.4byte 0x00000003
+	.4byte 0x8049B59C
+	.4byte 0x80520B10
+	.4byte 0x00000000
+	.4byte 0x00000004
+	.4byte 0x8049B5B0
+	.4byte 0x80520B10
+	.4byte 0x00000000
+	.4byte 0x00000005
+	.4byte 0x8049B5C0
+	.4byte 0x80520B10
+	.4byte 0x00000000
+	.4byte 0x00000006
+	.4byte 0x8049B5D0
+	.4byte 0x80520B10
+	.4byte 0x00000000
+	.4byte 0x00000007
+	.4byte 0x8049B5E0
+	.4byte 0x80520B10
+	.4byte 0x00000000
+	.4byte 0x00000008
+	.4byte 0x8049B5F0
+	.4byte 0x80520B10
+	.4byte 0x00000000
+	.4byte 0x00000009
+	.4byte 0x8049B600
+	.4byte 0x80520B10
+	.4byte 0x00000000
+	.4byte 0x0000000A
+	.4byte 0x8049B610
+	.4byte 0x8049B620
+	.4byte 0x00000000
+	.4byte 0x0000000B
+.global lbl_8049B6F0
+lbl_8049B6F0:
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x72000000
+.global lbl_8049B6FC
+lbl_8049B6FC:
+	.4byte 0x70696B6D
+	.4byte 0x696E3254
+	.4byte 0x4850506C
+	.4byte 0x61796572
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8049B714
+lbl_8049B714:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+.global lbl_8049B720
+lbl_8049B720:
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x72496E69
+	.4byte 0x74206661
+	.4byte 0x696C7572
+	.4byte 0x652E0000
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x723A3A6C
+	.4byte 0x6F616452
+	.4byte 0x65736F75
+	.4byte 0x72636500
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x725F5265
+	.4byte 0x736F7572
+	.4byte 0x63650000
+	.4byte 0x54485050
+	.4byte 0x6C617972
+	.4byte 0x5F636170
+	.4byte 0x74696F6E
+	.4byte 0x00000000
+	.4byte 0x6661696C
+	.4byte 0x20746F20
+	.4byte 0x6F70656E
+	.4byte 0x20746865
+	.4byte 0x20636170
+	.4byte 0x74696F6E
+	.4byte 0x2066696C
+	.4byte 0x650A5B25
+	.4byte 0x735D0A00
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x724F7065
+	.4byte 0x6E000000
+	.4byte 0x4661696C
+	.4byte 0x20746F20
+	.4byte 0x6F70656E
+	.4byte 0x20746865
+	.4byte 0x20746870
+	.4byte 0x2066696C
+	.4byte 0x650A5B25
+	.4byte 0x735D0A00
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x725F7072
+	.4byte 0x65706172
+	.4byte 0x65000000
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x725F776F
+	.4byte 0x726B0000
+	.4byte 0x43616E27
+	.4byte 0x7420616C
+	.4byte 0x6C6F6361
+	.4byte 0x74652074
+	.4byte 0x6865206D
+	.4byte 0x656D6F72
+	.4byte 0x79000000
+	.4byte 0x4661696C
+	.4byte 0x20746F20
+	.4byte 0x70726570
+	.4byte 0x6172650A
+	.4byte 0x00000000
+.global lbl_8049B820
+lbl_8049B820:
+	.4byte 0x50535379
+	.4byte 0x7374656D
+	.4byte 0x49462E68
+	.4byte 0x00000000
+.global lbl_8049B830
+lbl_8049B830:
+	.4byte 0x556E6B6E
+	.4byte 0x6F776E20
+	.4byte 0x53746174
+	.4byte 0x65203A20
+	.4byte 0x2564200A
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9THPPlayerFv

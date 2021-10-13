@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A6A0
+lbl_8049A6A0:
+	.4byte 0x7379734D
+	.4byte 0x61746572
+	.4byte 0x69616C41
+	.4byte 0x6E696D2E
+	.4byte 0x63707000
+.global lbl_8049A6B4
+lbl_8049A6B4:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData

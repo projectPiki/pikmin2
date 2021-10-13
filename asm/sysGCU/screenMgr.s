@@ -1,4 +1,116 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049B8C8
+lbl_8049B8C8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8049B8D4
+lbl_8049B8D4:
+	.4byte 0x73637265
+	.4byte 0x656E4D67
+	.4byte 0x722E6370
+	.4byte 0x70000000
+.global lbl_8049B8E4
+lbl_8049B8E4:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x64697370
+	.4byte 0x4D656D62
+	.4byte 0x65725B25
+	.4byte 0x735D2053
+	.4byte 0x697A6520
+	.4byte 0x6F766572
+	.4byte 0x2E200A20
+	.4byte 0x2564206D
+	.4byte 0x61783A25
+	.4byte 0x64000000
+	.4byte 0x53657453
+	.4byte 0x63656E65
+	.4byte 0x00000000
+	.4byte 0x53746172
+	.4byte 0x74536365
+	.4byte 0x6E650000
+	.4byte 0x456E6453
+	.4byte 0x63656E65
+	.4byte 0x00000000
+.global lbl_8049B93C
+lbl_8049B93C:
+	.4byte 0x63616E27
+	.4byte 0x74207265
+	.4byte 0x7365742E
+	.4byte 0x206F776E
+	.4byte 0x65725B25
+	.4byte 0x735D2020
+	.4byte 0x6D656D62
+	.4byte 0x65725B25
+	.4byte 0x735D0A00
+	.4byte 0x63616E27
+	.4byte 0x74207374
+	.4byte 0x61727453
+	.4byte 0x63656E65
+	.4byte 0x2E0A206F
+	.4byte 0x776E6572
+	.4byte 0x5B25735D
+	.4byte 0x206D656D
+	.4byte 0x6265725B
+	.4byte 0x25735D0A
+	.4byte 0x00000000
+	.4byte 0x73637265
+	.4byte 0x656E2063
+	.4byte 0x6F6D6D61
+	.4byte 0x6E642062
+	.4byte 0x75666665
+	.4byte 0x72206973
+	.4byte 0x20656D70
+	.4byte 0x74792E0A
+	.4byte 0x00000000
+	.4byte 0x81798347
+	.4byte 0x8389815B
+	.4byte 0x817A8352
+	.4byte 0x837D8393
+	.4byte 0x8368836F
+	.4byte 0x83628374
+	.4byte 0x834082AA
+	.4byte 0x91AB82E8
+	.4byte 0x82DC82B9
+	.4byte 0x82F10A00
+	.4byte 0x4D69736D
+	.4byte 0x61746368
+	.4byte 0x20617267
+	.4byte 0x2E206375
+	.4byte 0x7272656E
+	.4byte 0x74207363
+	.4byte 0x656E653A
+	.4byte 0x25642061
+	.4byte 0x72673A25
+	.4byte 0x640A0000
+	.4byte 0x8356815B
+	.4byte 0x839382CC
+	.4byte 0x90B690AC
+	.4byte 0x82C98EB8
+	.4byte 0x94730000
+	.4byte 0x63616E27
+	.4byte 0x74206372
+	.4byte 0x65617465
+	.4byte 0x204E6577
+	.4byte 0x20536365
+	.4byte 0x6E65496E
+	.4byte 0x666F4C69
+	.4byte 0x73742E0A
+	.4byte 0x00000000
+.global lbl_8049BA38
+lbl_8049BA38:
+	.4byte 0x746F2020
+	.4byte 0x205B2573
+	.4byte 0x5D205B25
+	.4byte 0x735D0A66
+	.4byte 0x726F6D20
+	.4byte 0x5B25735D
+	.4byte 0x205B2573
+	.4byte 0x5D0A0000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26Screen13SceneInfoListFv

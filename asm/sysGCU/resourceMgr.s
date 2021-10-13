@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A640
+lbl_8049A640:
+	.4byte 0x7265736F
+	.4byte 0x75726365
+	.4byte 0x4D67722E
+	.4byte 0x63707000
+.global lbl_8049A650
+lbl_8049A650:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+.global lbl_8049A65C
+lbl_8049A65C:
+	.4byte 0x974C82E8
+	.4byte 0x82A682C8
+	.4byte 0x82A28FF3
+	.4byte 0x91D482C5
+	.4byte 0x82B282B4
+	.4byte 0x82A282DC
+	.4byte 0x82B7200A
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q28Resource4NodeFv

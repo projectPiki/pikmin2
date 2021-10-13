@@ -1,4 +1,60 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A158
+lbl_8049A158:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x4A53544F
+	.4byte 0x626A6563
+	.4byte 0x74416374
+	.4byte 0x6F720000
+.global lbl_8049A174
+lbl_8049A174:
+	.4byte 0x4A53544F
+	.4byte 0x626A6563
+	.4byte 0x74416374
+	.4byte 0x6F722E63
+	.4byte 0x70700000
+	.4byte 0x4D6F6465
+	.4byte 0x6C446174
+	.4byte 0x61206E75
+	.4byte 0x6C6C0000
+	.4byte 0x704D6F64
+	.4byte 0x656C5F20
+	.4byte 0x6E756C6C
+	.4byte 0x00000000
+.global lbl_8049A1A8
+lbl_8049A1A8:
+	.4byte 0x444F4E27
+	.4byte 0x54204341
+	.4byte 0x4C4C2054
+	.4byte 0x48495320
+	.4byte 0x210A0000
+	.4byte 0x64617461
+	.4byte 0x2D494420
+	.4byte 0x3A202575
+	.4byte 0x20283078
+	.4byte 0x25303878
+	.4byte 0x290A0000
+	.4byte 0x696E7431
+	.4byte 0x363A2564
+	.4byte 0x2C25642C
+	.4byte 0x25640A00
+	.4byte 0x63686172
+	.4byte 0x3A25642C
+	.4byte 0x25632C25
+	.4byte 0x630A0000
+	.4byte 0x73747269
+	.4byte 0x6E673A25
+	.4byte 0x752C2573
+	.4byte 0x0A000000
+.global lbl_8049A204
+lbl_8049A204:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST11ObjectActorFPCcPQ24Game11MoviePlayer

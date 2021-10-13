@@ -1,5 +1,21 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_804995F0
+lbl_804995F0:
+	.asciz "node.cpp"
+	.skip 0x3
+.global lbl_804995FC
+lbl_804995FC:
+	.asciz "CNode add err count %d\n"
+.global lbl_80499614
+lbl_80499614:
+	.asciz "CNode concat Loop Err!\n"
+.global lbl_8049962C
+lbl_8049962C:
+	.asciz "%d child (realchild = %d)!\n"
 
+.section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global displayInfo__4NodeFi
 displayInfo__4NodeFi:
 /* 80411208 0040E148  94 21 FF E0 */	stwu r1, -0x20(r1)

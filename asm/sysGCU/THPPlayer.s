@@ -1,4 +1,50 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049B470
+lbl_8049B470:
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x722E6300
+	.4byte 0x43726561
+	.4byte 0x74655669
+	.4byte 0x64656F44
+	.4byte 0x65636F64
+	.4byte 0x65546872
+	.4byte 0x65616420
+	.4byte 0x6661696C
+	.4byte 0x7572652E
+	.4byte 0x0A000000
+	.4byte 0x43726561
+	.4byte 0x74654175
+	.4byte 0x64696F44
+	.4byte 0x65636F64
+	.4byte 0x65546872
+	.4byte 0x65616420
+	.4byte 0x6661696C
+	.4byte 0x7572652E
+	.4byte 0x0A000000
+	.4byte 0x43726561
+	.4byte 0x74655265
+	.4byte 0x61645468
+	.4byte 0x72656164
+	.4byte 0x20666169
+	.4byte 0x6C757265
+	.4byte 0x2E0A0000
+	.4byte 0x54485050
+	.4byte 0x6C617965
+	.4byte 0x72507265
+	.4byte 0x70617265
+	.4byte 0x28298F49
+	.4byte 0x97B90A00
+.global lbl_8049B4F8
+lbl_8049B4F8:
+	.4byte 0x8349815B
+	.4byte 0x83668342
+	.4byte 0x83498AD6
+	.4byte 0x8C5782F0
+	.4byte 0x8F898AFA
+	.4byte 0x89BB0A00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global audioCallbackWithMSound__Fl

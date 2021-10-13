@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049B368
+lbl_8049B368:
+	.4byte 0x6C6F6164
+	.4byte 0x5265736F
+	.4byte 0x75726365
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x4172616D
+	.4byte 0x526F6F74
+	.4byte 0x00000000
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+.global lbl_8049B394
+lbl_8049B394:
+	.4byte 0x6D6F756E
+	.4byte 0x74206172
+	.4byte 0x63206661
+	.4byte 0x696C7572
+	.4byte 0x65000000
+.global lbl_8049B3A8
+lbl_8049B3A8:
+	.4byte 0x556E6B6E
+	.4byte 0x6F776E20
+	.4byte 0x666C6167
+	.4byte 0x3A256420
+	.4byte 0x0A000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q212LoadResource4NodeFv

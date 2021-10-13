@@ -1,4 +1,106 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A6E0
+lbl_8049A6E0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6D6F7669
+	.4byte 0x654D6573
+	.4byte 0x73616765
+	.4byte 0x00000000
+	.4byte 0x6D6F7669
+	.4byte 0x654D6573
+	.4byte 0x73616765
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8049A710
+lbl_8049A710:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x616E696D
+	.4byte 0x2F706F64
+	.4byte 0x2E627470
+	.4byte 0x00000000
+	.4byte 0x616E696D
+	.4byte 0x2F706F64
+	.4byte 0x2E62636B
+	.4byte 0x00000000
+	.4byte 0x616E696D
+	.4byte 0x2F706F64
+	.4byte 0x2E62706B
+	.4byte 0x00000000
+	.4byte 0x6D675F77
+	.4byte 0x696E646F
+	.4byte 0x772E626C
+	.4byte 0x6F000000
+	.4byte 0x50324A4D
+	.4byte 0x453A3A4D
+	.4byte 0x6F766965
+	.4byte 0x3A3A5443
+	.4byte 0x6F6E7472
+	.4byte 0x6F6C3A3A
+	.4byte 0x6F6E496E
+	.4byte 0x69740000
+	.4byte 0x504D545F
+	.4byte 0x6F6E496E
+	.4byte 0x69745F61
+	.4byte 0x72630000
+	.4byte 0x6E65775F
+	.4byte 0x73637265
+	.4byte 0x656E2F63
+	.4byte 0x6D6E2F6D
+	.4byte 0x65737361
+	.4byte 0x67655F77
+	.4byte 0x696E646F
+	.4byte 0x772E737A
+	.4byte 0x73000000
+	.4byte 0x6E65775F
+	.4byte 0x73637265
+	.4byte 0x656E2F63
+	.4byte 0x6D6E2F67
+	.4byte 0x6F6C645F
+	.4byte 0x706F645F
+	.4byte 0x666F725F
+	.4byte 0x6D657373
+	.4byte 0x6167655F
+	.4byte 0x77696E64
+	.4byte 0x6F772E73
+	.4byte 0x7A730000
+	.4byte 0x6E65775F
+	.4byte 0x73637265
+	.4byte 0x656E2F63
+	.4byte 0x6D6E2F70
+	.4byte 0x6F645F66
+	.4byte 0x6F725F6D
+	.4byte 0x65737361
+	.4byte 0x67655F77
+	.4byte 0x696E646F
+	.4byte 0x772E737A
+	.4byte 0x73000000
+	.4byte 0x25732069
+	.4byte 0x73206E6F
+	.4byte 0x7420666F
+	.4byte 0x756E642E
+	.4byte 0x0A000000
+	.4byte 0x504D545F
+	.4byte 0x6F6E496E
+	.4byte 0x69745F69
+	.4byte 0x6E697452
+	.4byte 0x656E6465
+	.4byte 0x72696E67
+	.4byte 0x50726F63
+	.4byte 0x6573736F
+	.4byte 0x72000000
+.global lbl_8049A844
+lbl_8049A844:
+	.4byte 0x6D657373
+	.4byte 0x6167654F
+	.4byte 0x626A2E68
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doInit__Q35P2JME5Movie10WindowPaneFv

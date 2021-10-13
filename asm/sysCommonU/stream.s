@@ -1,4 +1,46 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499660
+lbl_80499660:
+	.asciz "stream.cpp"
+	.skip 0x1
+.global lbl_8049966C
+lbl_8049966C:
+	.asciz "Reached EOF\n"
+	.skip 0x3
+.global readByteTokErr
+readByteTokErr:
+	.asciz "readByte:Token Error\n"
+	.skip 0x2
+.global readShortTokErr
+readShortTokErr:
+	.asciz "readShort:Token Error\n"
+	.skip 0x1
+.global readIntTokErr
+readIntTokErr:
+	.asciz "readInt:Token Error\n"
+	.skip 0x3
+.global readFloatTokErr
+readFloatTokErr:
+	.asciz "readFloat:Token Error\n"
+	.skip 0x1
+.global "assert@3391"
+"assert@3391":
+	.asciz "P2Assert"
+	.skip 0x3
+	.asciz "can not use readFixedString in text mode\n"
+	.skip 0x2
+	.asciz "can not use writeFixedString in text mode\n"
+	.skip 0x1
+.global lbl_80499740
+lbl_80499740:
+	.asciz "RamStream::read out of bounds (pos=%d,bound=%d)\n"
+	.skip 0x3
+.global lbl_80499774
+lbl_80499774:
+	.asciz "RamStream::write out of bounds (pos=%d,bound=%d)\n"
+	.skip 0x2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global eof__6StreamFv

@@ -1,4 +1,38 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A338
+lbl_8049A338:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x4A535446
+	.4byte 0x696E6443
+	.4byte 0x72656174
+	.4byte 0x75726500
+	.4byte 0x4A535446
+	.4byte 0x696E6443
+	.4byte 0x72656174
+	.4byte 0x7572652E
+	.4byte 0x63707000
+	.4byte 0x4F472D44
+	.4byte 0x524F4E0A
+	.4byte 0x00000000
+	.4byte 0x7468654F
+	.4byte 0x72696D61
+	.4byte 0x00000000
+	.4byte 0x7468654C
+	.4byte 0x6F756965
+	.4byte 0x00000000
+	.4byte 0x6F72696D
+	.4byte 0x61416C69
+	.4byte 0x76650000
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x6F72696D
+	.4byte 0x61446561
+	.4byte 0x64000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global findCreature__Q34Game5P2JST12ObjectSystemCFPCc

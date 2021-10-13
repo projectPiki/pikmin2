@@ -1,4 +1,68 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global str_RootMenu
+str_RootMenu:
+	.asciz "Root Menu"
+	.skip 2
+	.asciz "Object Editor"
+	.skip 2
+	.asciz "Single Game"
+	.asciz "Challenge Game"
+	.skip 1
+	.asciz "Test Challenge"
+	.skip 1
+	.asciz "Teki Test"
+	.skip 2
+	.asciz "Anim Editor"
+	.asciz "Map Parts Editor"
+	.skip 3
+	.asciz "Tex Viewer"
+	.skip 1
+	.asciz "Ogawa Screen Test"
+	.skip 2
+	.asciz "Yamashita"
+	.skip 2
+	.asciz "Nishimura"
+	.skip 2
+	.asciz "Nishimura2"
+	.skip 1
+	.asciz "Morimura"
+	.skip 3
+	.asciz "2D Debug"
+	.skip 3
+	.asciz "Cave Editor"
+	.asciz "JStudio CameraEditor"
+	.skip 3
+	.asciz "Movie Test"
+	.skip 1
+	.asciz "JStudio Kando Test"
+	.skip 1
+	.asciz "Pellet Test"
+	.asciz "Main Title"
+	.skip 1
+	.asciz "Message Previewer"
+	.skip 2
+	.asciz "Ebi Main Title"
+	.skip 1
+	.asciz "E3 Thanks Section"
+	.skip 2
+	.asciz "Ebimun Effect"
+	.skip 2
+	.asciz "2D Debug2"
+	.skip 2
+.global lbl_80499BC8
+lbl_80499BC8:
+	.asciz "gameflow.cpp"
+	.skip 3
+.global lbl_80499BD8
+lbl_80499BD8:
+	.asciz "Unknown SectionFlag. %d \n"
+	.skip 2
+.global lbl_80499BF4
+lbl_80499BF4:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8GameFlowFv

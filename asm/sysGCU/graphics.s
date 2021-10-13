@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499C38
+lbl_80499C38:
+	.asciz "initPrimDraw"
+	.skip 3
+.global lbl_80499C48
+lbl_80499C48:
+	.asciz "draw axis"
+	.skip 6
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__17HorizonalSplitterFP8Graphics

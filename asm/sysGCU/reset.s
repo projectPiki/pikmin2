@@ -1,4 +1,42 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499D20
+lbl_80499D20:
+	.4byte 0x09838183
+	.4byte 0x82838A81
+	.4byte 0x5B834A81
+	.4byte 0x5B83688F
+	.4byte 0x9182AB8D
+	.4byte 0x9E82DD8F
+	.4byte 0x4997B991
+	.4byte 0xD282BF0A
+	.4byte 0x00000000
+	.4byte 0x09834981
+	.4byte 0x5B836683
+	.4byte 0x4283498F
+	.4byte 0x4997B991
+	.4byte 0xD282BF0A
+	.4byte 0x00000000
+	.4byte 0x0947508F
+	.4byte 0x88979D8F
+	.4byte 0x4997B991
+	.4byte 0xD282BF0A
+	.4byte 0x00000000
+	.4byte 0x09838A83
+	.4byte 0x5A836283
+	.4byte 0x67837B83
+	.4byte 0x5E839382
+	.4byte 0xAA899F82
+	.4byte 0xB382EA82
+	.4byte 0xC482A282
+	.4byte 0xE90A0000
+	.4byte 0x8B9689C2
+	.4byte 0x82AA8F6F
+	.4byte 0x82C482A2
+	.4byte 0x82C882A2
+	.4byte 0x0A000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12ResetManagerFf

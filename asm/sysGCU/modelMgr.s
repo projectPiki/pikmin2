@@ -1,4 +1,44 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499E68
+lbl_80499E68:
+	.4byte 0x6D6F6465
+	.4byte 0x6C4D6772
+	.4byte 0x00000000
+.global lbl_80499E74
+lbl_80499E74:
+	.4byte 0x6D6F6465
+	.4byte 0x6C4D6772
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80499E84
+lbl_80499E84:
+	.4byte 0x736F6C69
+	.4byte 0x64206865
+	.4byte 0x61702063
+	.4byte 0x72656174
+	.4byte 0x696F6E20
+	.4byte 0x6661696C
+	.4byte 0x65642021
+	.4byte 0x0A000000
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x736F6C69
+	.4byte 0x64486561
+	.4byte 0x70206E75
+	.4byte 0x6C6C210A
+	.4byte 0x00000000
+	.4byte 0x6661696C
+	.4byte 0x65642074
+	.4byte 0x6F206E65
+	.4byte 0x77206D6F
+	.4byte 0x64656C20
+	.4byte 0x21206964
+	.4byte 0x20256420
+	.4byte 0x69647820
+	.4byte 0x25640A00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"

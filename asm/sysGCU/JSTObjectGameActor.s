@@ -1,4 +1,74 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A210
+lbl_8049A210:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x4F626A65
+	.4byte 0x63744761
+	.4byte 0x6D654163
+	.4byte 0x746F7200
+.global lbl_8049A22C
+lbl_8049A22C:
+	.4byte 0x4A53544F
+	.4byte 0x626A6563
+	.4byte 0x7447616D
+	.4byte 0x65416374
+	.4byte 0x6F722E63
+	.4byte 0x70700000
+.global lbl_8049A244
+lbl_8049A244:
+	.4byte 0x444F4E27
+	.4byte 0x54205553
+	.4byte 0x45205B53
+	.4byte 0x52545F43
+	.4byte 0x4F4D4D41
+	.4byte 0x4E445F47
+	.4byte 0x4F544F5D
+	.4byte 0x0A000000
+.global lbl_8049A264
+lbl_8049A264:
+	.4byte 0x746F6F20
+	.4byte 0x6D616E79
+	.4byte 0x20636F6D
+	.4byte 0x6D616E64
+	.4byte 0x7320210A
+	.4byte 0x00000000
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x28257329
+	.4byte 0x206A6F69
+	.4byte 0x6E742025
+	.4byte 0x73206E6F
+	.4byte 0x7420666F
+	.4byte 0x756E640A
+	.4byte 0x00000000
+	.4byte 0x28257329
+	.4byte 0x206A6F69
+	.4byte 0x6E742025
+	.4byte 0x64206E6F
+	.4byte 0x7420666F
+	.4byte 0x756E640A
+	.4byte 0x00000000
+	.4byte 0x636F6D6D
+	.4byte 0x616E6420
+	.4byte 0x3C2D3E20
+	.4byte 0x75736572
+	.4byte 0x44617461
+	.4byte 0x206D6973
+	.4byte 0x6D617463
+	.4byte 0x68202120
+	.4byte 0x28256429
+	.4byte 0x0A000000
+	.4byte 0x746F6F20
+	.4byte 0x6D616E79
+	.4byte 0x20757365
+	.4byte 0x72646174
+	.4byte 0x61202825
+	.4byte 0x64290A00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST15ObjectGameActorFPCcPQ24Game11MoviePlayerPQ24Game8Creature

@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A8B0
+lbl_8049A8B0:
+	.4byte 0x6D657373
+	.4byte 0x61676553
+	.4byte 0x65717565
+	.4byte 0x6E63652E
+	.4byte 0x63707000
+.global lbl_8049A8C4
+lbl_8049A8C4:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q25P2JME18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl

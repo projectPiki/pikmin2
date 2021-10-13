@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499DA8
+lbl_80499DA8:
+	.4byte 0x64766453
+	.4byte 0x74617475
+	.4byte 0x73000000
+	.4byte 0x64766453
+	.4byte 0x74617475
+	.4byte 0x732E6370
+	.4byte 0x70000000
+	.4byte 0x6E6F2064
+	.4byte 0x6973706C
+	.4byte 0x61792E0A
+	.4byte 0x00000000
+	.4byte 0x64697370
+	.4byte 0x6C617920
+	.4byte 0x6368616E
+	.4byte 0x67656420
+	.4byte 0x210A0000
+	.4byte 0x6E6F2052
+	.4byte 0x4F4D2066
+	.4byte 0x6F6E740A
+	.4byte 0x00000000
+	.4byte 0x756E6B6E
+	.4byte 0x6F776E20
+	.4byte 0x6C616E67
+	.4byte 0x75616765
+	.4byte 0x2E202564
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9DvdStatusFv

@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A610
+lbl_8049A610:
+	.4byte 0x83748348
+	.4byte 0x834F837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__6FogMgrFv

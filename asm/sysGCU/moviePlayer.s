@@ -1,4 +1,168 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499F10
+lbl_80499F10:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6D6F7669
+	.4byte 0x65506C61
+	.4byte 0x79657200
+.global lbl_80499F28
+lbl_80499F28:
+	.4byte 0x6D6F7669
+	.4byte 0x65506C61
+	.4byte 0x7965722E
+	.4byte 0x63707000
+.global lbl_80499F38
+lbl_80499F38:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x2A2A2A2A
+	.4byte 0x2A2A2A20
+	.4byte 0x819A834C
+	.4byte 0x8385815B
+	.4byte 0x82C982CD
+	.4byte 0x82A282E8
+	.4byte 0x82AB82E7
+	.4byte 0x82F182E6
+	.4byte 0x81608149
+	.4byte 0x81490A00
+	.4byte 0x2F757365
+	.4byte 0x722F4D75
+	.4byte 0x6B6B692F
+	.4byte 0x6D6F7669
+	.4byte 0x652F2573
+	.4byte 0x2F64656D
+	.4byte 0x6F2E7374
+	.4byte 0x62000000
+	.4byte 0x2F757365
+	.4byte 0x722F4D75
+	.4byte 0x6B6B692F
+	.4byte 0x6D6F7669
+	.4byte 0x652F2573
+	.4byte 0x2F64656D
+	.4byte 0x6F2E737A
+	.4byte 0x73000000
+	.4byte 0x6D6F7669
+	.4byte 0x65506C3A
+	.4byte 0x706C6179
+	.4byte 0x00000000
+	.4byte 0x54686520
+	.4byte 0x42696B6B
+	.4byte 0x7572690A
+	.4byte 0x00000000
+	.4byte 0x5B515545
+	.4byte 0x5F464149
+	.4byte 0x4C45445D
+	.4byte 0x2025730A
+	.4byte 0x00000000
+	.4byte 0x20834C83
+	.4byte 0x85815B82
+	.4byte 0xC982C882
+	.4byte 0xC982E082
+	.4byte 0xC882A282
+	.4byte 0xBC815B81
+	.4byte 0x5B28545E
+	.4byte 0x54290A00
+	.4byte 0x4F626A65
+	.4byte 0x63745379
+	.4byte 0x7374656D
+	.4byte 0x00000000
+	.4byte 0x6D6F7669
+	.4byte 0x65526573
+	.4byte 0x6F757263
+	.4byte 0x65000000
+	.4byte 0x64656D6F
+	.4byte 0x2E737462
+	.4byte 0x00000000
+	.4byte 0x82DC82C0
+	.4byte 0x82A98297
+	.4byte 0x0A000000
+	.4byte 0x64656D6F
+	.4byte 0x2E737A73
+	.4byte 0x2082AA82
+	.4byte 0xC882A282
+	.4byte 0xC682BE82
+	.4byte 0xDF82BE82
+	.4byte 0xE682970A
+	.4byte 0x00000000
+	.4byte 0x7265736F
+	.4byte 0x75726365
+	.4byte 0x206F7065
+	.4byte 0x6E206661
+	.4byte 0x696C6564
+	.4byte 0x210A0000
+	.4byte 0x4A537475
+	.4byte 0x64696F3A
+	.4byte 0x3A545061
+	.4byte 0x72736500
+.global lbl_8049A080
+lbl_8049A080:
+	.4byte 0x8366815B
+	.4byte 0x835E82F0
+	.4byte 0x89F08EDF
+	.4byte 0x82C582AB
+	.4byte 0x82DC82B5
+	.4byte 0x82A582F1
+	.4byte 0x0A000000
+	.4byte 0x6D6F7669
+	.4byte 0x65506C3A
+	.4byte 0x6C6F6164
+	.4byte 0x646F6E65
+	.4byte 0x00000000
+	.4byte 0x6D6F7669
+	.4byte 0x65506C3A
+	.4byte 0x646F6E65
+	.4byte 0x63616C6C
+	.4byte 0x00000000
+.global lbl_8049A0C4
+lbl_8049A0C4:
+	.4byte 0x63757272
+	.4byte 0x3D256420
+	.4byte 0x696E6974
+	.4byte 0x3D256420
+	.4byte 0x66726565
+	.4byte 0x20696E76
+	.4byte 0x616C6964
+	.4byte 0x0A000000
+	.4byte 0x4D794361
+	.4byte 0x6D657261
+	.4byte 0x00000000
+.global lbl_8049A0F0
+lbl_8049A0F0:
+	.4byte 0x6D6F7669
+	.4byte 0x65506C3A
+	.4byte 0x756E7375
+	.4byte 0x7370656E
+	.4byte 0x64000000
+.global lbl_8049A104
+lbl_8049A104:
+	.4byte 0x6D6F7669
+	.4byte 0x65506C3A
+	.4byte 0x6733332F
+	.4byte 0x73757370
+	.4byte 0x00000000
+.global lbl_8049A118
+lbl_8049A118:
+	.4byte 0x6D6F7669
+	.4byte 0x65506C3A
+	.4byte 0x736B6970
+	.4byte 0x00000000
+	.4byte 0x3C737573
+	.4byte 0x70656E64
+	.4byte 0x3E000000
+	.4byte 0x6672616D
+	.4byte 0x65202534
+	.4byte 0x64000000
+	.4byte 0x75736520
+	.4byte 0x20252E31
+	.4byte 0x664B0000
+	.4byte 0x68656170
+	.4byte 0x20252E31
+	.4byte 0x664B0000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game11MoviePlayerFv

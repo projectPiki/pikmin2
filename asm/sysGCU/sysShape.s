@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499C58
+lbl_80499C58:
+	.skip 0xC
+	.asciz "sysShape"
+	.skip 3
+.global lbl_80499C70
+lbl_80499C70:
+	.asciz "sysShape.cpp"
+	.skip 3
+.global lbl_80499C80
+lbl_80499C80:
+	.asciz "go to hell !\n"
+	.skip 2
+.global lbl_80499C90
+lbl_80499C90:
+	.asciz "ExMotionErr::setFrameByKeyType(%d)\n"
+.global lbl_80499CB4
+lbl_80499CB4:
+	.asciz "mismatch LOOP_START - LOOP_END\n"
+	.asciz "BlendAnimator : at least 1 motion is required!\n"
+.global lbl_80499D04
+lbl_80499D04:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80499D10
+lbl_80499D10:
+	.asciz "reached eof\n"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clearAnimatorAll__Q28SysShape5ModelFv

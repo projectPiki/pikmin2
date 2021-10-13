@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049B848
+lbl_8049B848:
+	.4byte 0x834C8383
+	.4byte 0x83768356
+	.4byte 0x83878393
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+.global lbl_8049B860
+lbl_8049B860:
+	.4byte 0x63617074
+	.4byte 0x696F6E4D
+	.4byte 0x67722E63
+	.4byte 0x70700000
+.global lbl_8049B870
+lbl_8049B870:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global read__Q27Caption4NodeFR6Stream

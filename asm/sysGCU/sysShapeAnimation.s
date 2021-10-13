@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049AC40
+lbl_8049AC40:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x73797353
+	.4byte 0x68617065
+	.4byte 0x4D6F6465
+	.4byte 0x6C000000
+.global lbl_8049AC5C
+lbl_8049AC5C:
+	.4byte 0x73797353
+	.4byte 0x68617065
+	.4byte 0x416E696D
+	.4byte 0x6174696F
+	.4byte 0x6E2E6370
+	.4byte 0x70000000
+.global lbl_8049AC74
+lbl_8049AC74:
+	.4byte 0x616E696D
+	.4byte 0x44617461
+	.4byte 0x206E756C
+	.4byte 0x6C210A00
+	.4byte 0x6E616E64
+	.4byte 0x617E7E7E
+	.4byte 0x7E3F0A00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global attach__Q28SysShape8AnimInfoFP12J3DModelDataPv

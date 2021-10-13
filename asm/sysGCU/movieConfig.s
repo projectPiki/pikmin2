@@ -1,4 +1,42 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049A3B0
+lbl_8049A3B0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6D6F7669
+	.4byte 0x65436F6E
+	.4byte 0x66696700
+.global lbl_8049A3C8
+lbl_8049A3C8:
+	.4byte 0x4D6F7669
+	.4byte 0x65436F6E
+	.4byte 0x66696754
+	.4byte 0x61670000
+.global lbl_8049A3D8
+lbl_8049A3D8:
+	.4byte 0x64656D6F
+	.4byte 0x5F6E616D
+	.4byte 0x65000000
+	.4byte 0x4D6F7669
+	.4byte 0x654C6973
+	.4byte 0x74000000
+	.4byte 0x75736572
+	.4byte 0x2F4D756B
+	.4byte 0x6B692F6D
+	.4byte 0x6F766965
+	.4byte 0x2F64656D
+	.4byte 0x6F732E74
+	.4byte 0x78740000
+	.4byte 0x6D6F7669
+	.4byte 0x65436F6E
+	.4byte 0x6669672E
+	.4byte 0x63707000
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q34Game11MovieConfig6TParmsFv
