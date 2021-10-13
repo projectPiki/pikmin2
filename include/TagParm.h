@@ -8,10 +8,10 @@
 struct TagParm {
 	TagParm(struct TagParameters*, char*);
 
-	virtual void doWrite(Stream&) {}; // virtual
-	virtual void doRead(Stream&) {};  // virtual
-	virtual void flushValue() {};     // virtual
-	virtual void doDump() {};         // virtual
+	virtual void doWrite(Stream&); // virtual
+	virtual void doRead(Stream&);  // virtual
+	virtual void flushValue() {};  // virtual
+	virtual void doDump();         // virtual
 
 	// _00 VTBL
 	char* m_name;    // _04

@@ -5,21 +5,21 @@
  * Address:	8041BD2C
  * Size:	000004
  */
-void TagParm::doRead(Stream&);
+// void TagParm::doRead(Stream&);
 
 /*
  * --INFO--
  * Address:	8041BD30
  * Size:	000004
  */
-void TagParm::doWrite(Stream&);
+// void TagParm::doWrite(Stream&);
 
 /*
  * --INFO--
  * Address:	8041BD34
  * Size:	000004
  */
-void TagParm::doDump();
+// void TagParm::doDump();
 
 /*
  * --INFO--
@@ -233,13 +233,13 @@ void TagParameters::read(Stream& stream)
 		__s2  = stream.readString(nullptr, 0);
 		sVar2 = strlen("end");
 		iVar3 = strncmp("end", __s2, sVar2);
-		if ((__cntlzw(iVar3) >> 5 & 0xff) != 0)
+		if ((__cntlzw(iVar3) >> 5 & 0xff) != 0) // needs refining
 			break;
 		for (pTVar5 = this->head; pTVar5 != (TagParm*)0x0;
 		     pTVar5 = pTVar5->m_next) {
 			sVar2 = strlen(__s2);
 			sVar4 = strlen(pTVar5->m_name);
-			if (sVar2 == sVar4) {
+			if (int(sVar2) == int(sVar4)) {
 				sVar2 = strlen(__s2);
 				iVar3 = strncmp(pTVar5->m_name, __s2, sVar2);
 				if (iVar3 == 0) {
