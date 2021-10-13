@@ -19,6 +19,7 @@
 *.dump
 *.7z
 *.bat
+include/*.s
 
 build/
 tools/mwcc_compiler/
