@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520E28
+lbl_80520E28:
+	.float 100000.0
+.global lbl_80520E2C
+lbl_80520E2C:
+	.float 1000000.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv

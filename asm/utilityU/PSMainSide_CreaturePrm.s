@@ -1,4 +1,54 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520DB8
+lbl_80520DB8:
+	.4byte 0x456E6469
+	.4byte 0x6E673100
+	.4byte 0x456E6469
+	.4byte 0x6E673200
+	.4byte 0x506C6179
+	.4byte 0x31000000
+	.4byte 0x506C6179
+	.4byte 0x32000000
+	.4byte 0x506C6179
+	.4byte 0x33000000
+	.4byte 0x506C6179
+	.4byte 0x34000000
+	.4byte 0x506C6179
+	.4byte 0x35000000
+	.4byte 0x506C6179
+	.4byte 0x36000000
+	.4byte 0x4372696D
+	.4byte 0x65000000
+.global lbl_80520E00
+lbl_80520E00:
+	.4byte 0x00000000
+.global lbl_80520E04
+lbl_80520E04:
+	.float 1.0
+.global lbl_80520E08
+lbl_80520E08:
+	.4byte 0xBF800000
+.global lbl_80520E0C
+lbl_80520E0C:
+	.4byte 0x43C80000
+.global lbl_80520E10
+lbl_80520E10:
+	.4byte 0x3F4CCCCD
+.global lbl_80520E14
+lbl_80520E14:
+	.4byte 0x442F0000
+.global cNoukouDistance__Q23PSM11CreaturePrm
+cNoukouDistance__Q23PSM11CreaturePrm:
+	.4byte 0x43960000
+.global cSeFxMix__Q23PSM11CreaturePrm
+cSeFxMix__Q23PSM11CreaturePrm:
+	.4byte 0x3D8F5C29
+.global cSeFxMix_cave__Q23PSM11CreaturePrm
+cSeFxMix_cave__Q23PSM11CreaturePrm:
+	.float 1.0
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID
