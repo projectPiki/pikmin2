@@ -1,7 +1,7 @@
 #ifndef _VECTOR3_H
 #define _VECTOR3_H
 
-#include "stream.h"
+#include "Stream.h"
 
 template <typename T> struct Vector3 {
 	T x, y, z;
