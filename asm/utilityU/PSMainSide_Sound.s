@@ -1,4 +1,163 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049DC30
+lbl_8049DC30:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global smACosPrm__Q23PSM7SeSound
+smACosPrm__Q23PSM7SeSound:
+	.4byte 0x40490FD8
+	.4byte 0x403C3D92
+	.4byte 0x4036E62E
+	.4byte 0x4032C782
+	.4byte 0x402F49C3
+	.4byte 0x402C323C
+	.4byte 0x402962D8
+	.4byte 0x4026C9C9
+	.4byte 0x40245B68
+	.4byte 0x40220FAE
+	.4byte 0x401FE0BD
+	.4byte 0x401DCA21
+	.4byte 0x401BC871
+	.4byte 0x4019D8F5
+	.4byte 0x4017F96E
+	.4byte 0x4016280B
+	.4byte 0x40146345
+	.4byte 0x4012A9D2
+	.4byte 0x4010FA98
+	.4byte 0x400F549B
+	.4byte 0x400DB70F
+	.4byte 0x400C212D
+	.4byte 0x400A9258
+	.4byte 0x400909F6
+	.4byte 0x40078787
+	.4byte 0x40060A91
+	.4byte 0x400492A7
+	.4byte 0x40031F64
+	.4byte 0x4001B075
+	.4byte 0x4000457C
+	.4byte 0x3FFDBC6F
+	.4byte 0x3FFAF4B6
+	.4byte 0x3FF83340
+	.4byte 0x3FF5779F
+	.4byte 0x3FF2C15D
+	.4byte 0x3FF01006
+	.4byte 0x3FED633D
+	.4byte 0x3FEABA95
+	.4byte 0x3FE815B1
+	.4byte 0x3FE57447
+	.4byte 0x3FE2D5F1
+	.4byte 0x3FE03A6D
+	.4byte 0x3FDDA15E
+	.4byte 0x3FDB0A81
+	.4byte 0x3FD87582
+	.4byte 0x3FD5E226
+	.4byte 0x3FD3501A
+	.4byte 0x3FD0BF1A
+	.4byte 0x3FCE2EEC
+	.4byte 0x3FCB9F45
+	.4byte 0x3FC90FD8
+	.4byte 0x3FC68073
+	.4byte 0x3FC3F0CC
+	.4byte 0x3FC16095
+	.4byte 0x3FBECF9E
+	.4byte 0x3FBC3D92
+	.4byte 0x3FB9AA37
+	.4byte 0x3FB71538
+	.4byte 0x3FB47E5A
+	.4byte 0x3FB1E54B
+	.4byte 0x3FAF49C7
+	.4byte 0x3FACAB71
+	.4byte 0x3FAA0A07
+	.4byte 0x3FA76523
+	.4byte 0x3FA4BC7B
+	.4byte 0x3FA20FB2
+	.4byte 0x3F9F5E5B
+	.4byte 0x3F9CA811
+	.4byte 0x3F99EC70
+	.4byte 0x3F972B02
+	.4byte 0x3F946349
+	.4byte 0x3F9194B8
+	.4byte 0x3F8EBECF
+	.4byte 0x3F8BE0E7
+	.4byte 0x3F88FA6A
+	.4byte 0x3F860A96
+	.4byte 0x3F8310A1
+	.4byte 0x3F800BC4
+	.4byte 0x3F79F612
+	.4byte 0x3F73BABA
+	.4byte 0x3F6D6335
+	.4byte 0x3F66ED03
+	.4byte 0x3F605511
+	.4byte 0x3F599829
+	.4byte 0x3F52B25B
+	.4byte 0x3F4B9F45
+	.4byte 0x3F4459B8
+	.4byte 0x3F3CDB9C
+	.4byte 0x3F351D9B
+	.4byte 0x3F2D16EC
+	.4byte 0x3F24BC7B
+	.4byte 0x3F1C00B9
+	.4byte 0x3F12D1BF
+	.4byte 0x3F09184C
+	.4byte 0x3EFD67FD
+	.4byte 0x3EE6ED03
+	.4byte 0x3ECE30CB
+	.4byte 0x3EB242D0
+	.4byte 0x3E914D72
+	.4byte 0x3E4D249E
+	.4byte 0x00000000
+.global lbl_8049DDD0
+lbl_8049DDD0:
+	.4byte 0x50534D61
+	.4byte 0x696E5369
+	.4byte 0x64655F53
+	.4byte 0x6F756E64
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8049DDE8
+lbl_8049DDE8:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x5053436F
+	.4byte 0x6D6D6F6E
+	.4byte 0x2E680000
+	.4byte 0x50535379
+	.4byte 0x7374656D
+	.4byte 0x49462E68
+	.4byte 0x00000000
+.global lbl_8049DE10
+lbl_8049DE10:
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x0A534520
+	.4byte 0x63616C6C
+	.4byte 0x65642061
+	.4byte 0x7420696E
+	.4byte 0x76616C69
+	.4byte 0x64207469
+	.4byte 0x6D6D696E
+	.4byte 0x670A2825
+	.4byte 0x30387829
+	.4byte 0x0A000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x00000000
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520D90

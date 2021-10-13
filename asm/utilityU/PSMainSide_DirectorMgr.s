@@ -1,4 +1,119 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049DA80
+lbl_8049DA80:
+	.4byte 0x50534D61
+	.4byte 0x696E5369
+	.4byte 0x64655F44
+	.4byte 0x69726563
+	.4byte 0x746F724D
+	.4byte 0x67722E63
+	.4byte 0x70700000
+.global lbl_8049DA9C
+lbl_8049DA9C:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x63617665
+	.4byte 0x676C6173
+	.4byte 0x732E626D
+	.4byte 0x73000000
+	.4byte 0x63617665
+	.4byte 0x72656C61
+	.4byte 0x782E626D
+	.4byte 0x73000000
+	.4byte 0x2F757365
+	.4byte 0x722F546F
+	.4byte 0x74616B61
+	.4byte 0x2F747261
+	.4byte 0x636B4D61
+	.4byte 0x705F5365
+	.4byte 0x715F542E
+	.4byte 0x74787400
+	.4byte 0x63617665
+	.4byte 0x636F6E63
+	.4byte 0x2E626D73
+	.4byte 0x00000000
+	.4byte 0x2F757365
+	.4byte 0x722F546F
+	.4byte 0x74616B61
+	.4byte 0x2F747261
+	.4byte 0x636B4D61
+	.4byte 0x705F436F
+	.4byte 0x6E645F54
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x63617665
+	.4byte 0x736F696C
+	.4byte 0x2E626D73
+	.4byte 0x00000000
+	.4byte 0x63617665
+	.4byte 0x6D657461
+	.4byte 0x6C2E626D
+	.4byte 0x73000000
+	.4byte 0x2F757365
+	.4byte 0x722F5761
+	.4byte 0x6B61692F
+	.4byte 0x74726163
+	.4byte 0x6B4D6170
+	.4byte 0x5F436F6E
+	.4byte 0x645F572E
+	.4byte 0x74787400
+	.4byte 0x2F757365
+	.4byte 0x722F5761
+	.4byte 0x6B61692F
+	.4byte 0x74726163
+	.4byte 0x6B4D6170
+	.4byte 0x5F536571
+	.4byte 0x5F572E74
+	.4byte 0x78740000
+	.4byte 0x74726163
+	.4byte 0x6B206D61
+	.4byte 0x70206973
+	.4byte 0x0A6E6F74
+	.4byte 0x20696E69
+	.4byte 0x7469616C
+	.4byte 0x697A6564
+	.4byte 0x0A000000
+	.4byte 0x6B656861
+	.4byte 0x69442020
+	.4byte 0x20000000
+	.4byte 0x62617474
+	.4byte 0x6C654420
+	.4byte 0x20000000
+	.4byte 0x4F74616B
+	.4byte 0x61726144
+	.4byte 0x00000000
+	.4byte 0x47726F75
+	.4byte 0x6E644420
+	.4byte 0x20000000
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.4byte 0x5053436F
+	.4byte 0x6D6D6F6E
+	.4byte 0x2E680000
+	.4byte 0x6576656E
+	.4byte 0x74442020
+	.4byte 0x20000000
+	.4byte 0x4F726942
+	.4byte 0x65656461
+	.4byte 0x44000000
+	.4byte 0x52756742
+	.4byte 0x65656461
+	.4byte 0x44000000
+	.4byte 0x4F726949
+	.4byte 0x63686F75
+	.4byte 0x44000000
+	.4byte 0x526F7549
+	.4byte 0x63686F75
+	.4byte 0x44000000
+	.4byte 0x50696B42
+	.4byte 0x6174746C
+	.4byte 0x44000000
+	.4byte 0x00000000
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520D60

@@ -1,4 +1,77 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_8049E0F0
+lbl_8049E0F0:
+	.4byte 0x4F70656E
+	.4byte 0x696E6731
+	.4byte 0x00000000
+	.4byte 0x4F70656E
+	.4byte 0x696E6732
+	.4byte 0x00000000
+	.4byte 0x53746166
+	.4byte 0x66726F6C
+	.4byte 0x6C000000
+.global lbl_8049E114
+lbl_8049E114:
+	.4byte 0x50534D61
+	.4byte 0x696E5369
+	.4byte 0x64655F43
+	.4byte 0x72656174
+	.4byte 0x75726550
+	.4byte 0x726D2E63
+	.4byte 0x70700000
+.global lbl_8049E130
+lbl_8049E130:
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+.global cVolMaxDist_Kehai__Q23PSM11CreaturePrm
+cVolMaxDist_Kehai__Q23PSM11CreaturePrm:
+	.4byte 0x43160000
+	.4byte 0x42C80000
+	.4byte 0x43FA0000
+	.4byte 0x43FA0000
+	.4byte 0x44160000
+	.4byte 0x44480000
+	.4byte 0x43960000
+.global cVolMaxDist_Battle__Q23PSM11CreaturePrm
+cVolMaxDist_Battle__Q23PSM11CreaturePrm:
+	.4byte 0x43520000
+	.4byte 0x430C0000
+	.4byte 0x442F0000
+	.4byte 0x442F0000
+	.4byte 0x44520000
+	.4byte 0x448C0000
+	.4byte 0x43D20000
+.global cVolZeroDist_Kehai__Q23PSM11CreaturePrm
+cVolZeroDist_Kehai__Q23PSM11CreaturePrm:
+	.4byte 0x43960000
+	.4byte 0x43480000
+	.4byte 0x447A0000
+	.4byte 0x447A0000
+	.4byte 0x44960000
+	.4byte 0x44C80000
+	.4byte 0x44160000
+.global cVolZeroDist_Battle__Q23PSM11CreaturePrm
+cVolZeroDist_Battle__Q23PSM11CreaturePrm:
+	.4byte 0x43D20000
+	.4byte 0x438C0000
+	.4byte 0x44AF0000
+	.4byte 0x44AF0000
+	.4byte 0x44D20000
+	.4byte 0x450C0000
+	.4byte 0x44520000
+.global cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm
+cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm:
+	.4byte 0x4369FFFF
+	.4byte 0x431C0000
+	.4byte 0x44430000
+	.4byte 0x44430000
+	.4byte 0x4469FFFF
+	.4byte 0x449C0000
+	.4byte 0x43E9FFFF
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520DB8
