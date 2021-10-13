@@ -11,10 +11,12 @@ struct CNode {
 	s32 calcNextCount();
 	CNode* getChildAt(s32);
 
-	void addHead(CNode*);
 	void add(CNode*);
+	void addHead(CNode*);
 	void concat(CNode*);
 	void del();
+
+	void setName();
 
 	// _00 vtbl
 	CNode* _04;   // _04
