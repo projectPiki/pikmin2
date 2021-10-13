@@ -141,15 +141,15 @@ lbl_804EF710:
 	.4byte 0x8046E340
 .global __vt__Q23PSM14ClusterFactory
 __vt__Q23PSM14ClusterFactory:
-  .4byte 0
-  .4byte 0
-  .4byte constructPart__Q38PSSystem9ClusterSe7FactoryFv
-  .4byte identifyPart__Q23PSM14ClusterFactoryFUc
+	.4byte 0
+	.4byte 0
+	.4byte constructPart__Q38PSSystem9ClusterSe7FactoryFv
+	.4byte identifyPart__Q23PSM14ClusterFactoryFUc
 .global __vt__Q23PSM14WorldMapRocket
 __vt__Q23PSM14WorldMapRocket:
-  .4byte 0
-  .4byte 0
-  .4byte __dt__Q23PSM14WorldMapRocketFv
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23PSM14WorldMapRocketFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8

@@ -150,100 +150,100 @@ lbl_804EE1F4:
 	.4byte 0x8045C8C8
 .global __vt__Q23PSM10BigBossSeq
 __vt__Q23PSM10BigBossSeq:
-  .4byte 0
-  .4byte 0
-  .4byte __dt__Q23PSM10BigBossSeqFv
-  .4byte init__Q28PSSystem11DirectedBgmFv
-  .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
-  .4byte startSeq__Q28PSSystem10JumpBgmSeqFv
-  .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
-  .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
-  .4byte pauseOff__Q28PSSystem7SeqBaseFv
-  .4byte getCastType__Q28PSSystem10JumpBgmSeqFv
-  .4byte getSeqType__Q28PSSystem6BgmSeqFv
-  .4byte exec__Q23PSM13MiddleBossSeqFv
-  .4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
-  .4byte isPlaying__Q28PSSystem7SeqBaseFv
-  .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
-  .4byte getHandleP__Q28PSSystem6BgmSeqFv
-  .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
-  .4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
-  .4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
-  .4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
-  .4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
-  .4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
-  .4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
-  .4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
-  .4byte onJump__Q23PSM10BigBossSeqFUs
-  .4byte jumpCheck__Q23PSM10BigBossSeqFUs
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23PSM10BigBossSeqFv
+	.4byte init__Q28PSSystem11DirectedBgmFv
+	.4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q28PSSystem10JumpBgmSeqFv
+	.4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+	.4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q28PSSystem7SeqBaseFv
+	.4byte getCastType__Q28PSSystem10JumpBgmSeqFv
+	.4byte getSeqType__Q28PSSystem6BgmSeqFv
+	.4byte exec__Q23PSM13MiddleBossSeqFv
+	.4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
+	.4byte isPlaying__Q28PSSystem7SeqBaseFv
+	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+	.4byte getHandleP__Q28PSSystem6BgmSeqFv
+	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+	.4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
+	.4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+	.4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
+	.4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
+	.4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
+	.4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
+	.4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
+	.4byte onJump__Q23PSM10BigBossSeqFUs
+	.4byte jumpCheck__Q23PSM10BigBossSeqFUs
 .global __vt__Q23PSM13MiddleBossSeq
 __vt__Q23PSM13MiddleBossSeq:
-  .4byte 0
-  .4byte 0
-  .4byte __dt__Q23PSM13MiddleBossSeqFv
-  .4byte init__Q28PSSystem11DirectedBgmFv
-  .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
-  .4byte startSeq__Q28PSSystem10JumpBgmSeqFv
-  .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
-  .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
-  .4byte pauseOff__Q28PSSystem7SeqBaseFv
-  .4byte getCastType__Q28PSSystem10JumpBgmSeqFv
-  .4byte getSeqType__Q28PSSystem6BgmSeqFv
-  .4byte exec__Q23PSM13MiddleBossSeqFv
-  .4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
-  .4byte isPlaying__Q28PSSystem7SeqBaseFv
-  .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
-  .4byte getHandleP__Q28PSSystem6BgmSeqFv
-  .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
-  .4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
-  .4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
-  .4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
-  .4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
-  .4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
-  .4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
-  .4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
-  .4byte onJump__Q23PSM13MiddleBossSeqFUs
-  .4byte jumpCheck__Q23PSM13MiddleBossSeqFUs
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23PSM13MiddleBossSeqFv
+	.4byte init__Q28PSSystem11DirectedBgmFv
+	.4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q28PSSystem10JumpBgmSeqFv
+	.4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+	.4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q28PSSystem7SeqBaseFv
+	.4byte getCastType__Q28PSSystem10JumpBgmSeqFv
+	.4byte getSeqType__Q28PSSystem6BgmSeqFv
+	.4byte exec__Q23PSM13MiddleBossSeqFv
+	.4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
+	.4byte isPlaying__Q28PSSystem7SeqBaseFv
+	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+	.4byte getHandleP__Q28PSSystem6BgmSeqFv
+	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+	.4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
+	.4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+	.4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
+	.4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
+	.4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
+	.4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
+	.4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
+	.4byte onJump__Q23PSM13MiddleBossSeqFUs
+	.4byte jumpCheck__Q23PSM13MiddleBossSeqFUs
 .global __vt__Q23PSM8SceneMgr
 __vt__Q23PSM8SceneMgr:
-  .4byte 0
-  .4byte 0
-  .4byte exec__Q28PSSystem8SceneMgrFv
-  .4byte newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo
-  .4byte newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv
-  .4byte newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
-  .4byte newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
-  .4byte newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase
-  .4byte curSceneIsBigBossFloor__Q23PSM8SceneMgrFv
-  .4byte newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem8SceneMgrFv
+	.4byte newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo
+	.4byte newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv
+	.4byte newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
+	.4byte newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
+	.4byte newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase
+	.4byte curSceneIsBigBossFloor__Q23PSM8SceneMgrFv
+	.4byte newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
 .global __vt__Q28PSSystem8SceneMgr
 __vt__Q28PSSystem8SceneMgr:
-  .4byte 0
-  .4byte 0
-  .4byte exec__Q28PSSystem8SceneMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem8SceneMgrFv
 .global __vt__Q23PSM15EnvSeObjBuilder
 __vt__Q23PSM15EnvSeObjBuilder:
-  .4byte 0
-  .4byte 0
-  .4byte __dt__Q23PSM15EnvSeObjBuilderFv
-  .4byte onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase
-  .4byte newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23PSM15EnvSeObjBuilderFv
+	.4byte onBuild__Q23PSM15EnvSeObjBuilderFPQ28PSSystem9EnvSeBase
+	.4byte newSeObj__Q23PSM15EnvSeObjBuilderFUlf3Vec
 .global __vt__Q23PSM24EnvSe_Perspective_AvoidY
 __vt__Q23PSM24EnvSe_Perspective_AvoidY:
-  .4byte 0
-  .4byte 0
-  .4byte exec__Q28PSSystem9EnvSeBaseFv
-  .4byte play__Q23PSM24EnvSe_Perspective_AvoidYFv
-  .4byte getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv
-  .4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem9EnvSeBaseFv
+	.4byte play__Q23PSM24EnvSe_Perspective_AvoidYFv
+	.4byte getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv
+	.4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
 .global __vt__Q23PSM12Env_Pollutin
 __vt__Q23PSM12Env_Pollutin:
-  .4byte 0
-  .4byte 0
-  .4byte exec__Q28PSSystem9EnvSeBaseFv
-  .4byte play__Q23PSM12Env_PollutinFv
-  .4byte getCastType__Q23PSM12Env_PollutinFv
-  .4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem9EnvSeBaseFv
+	.4byte play__Q23PSM12Env_PollutinFv
+	.4byte getCastType__Q23PSM12Env_PollutinFv
+	.4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8

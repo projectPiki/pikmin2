@@ -138,14 +138,14 @@ sThpDemoDinamics__3PSM:
 	.4byte 0x80520DF8
 .global __vt__Q23PSM11CreaturePrm
 __vt__Q23PSM11CreaturePrm:
-  .4byte 0
-  .4byte 0
-  .4byte __dt__Q23PSM11CreaturePrmFv
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23PSM11CreaturePrmFv
 .global "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"
 "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>":
-  .4byte 0
-  .4byte 0
-  .4byte "__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
