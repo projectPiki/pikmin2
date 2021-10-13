@@ -287,7 +287,7 @@ sequenceArchivesFileName__18JAIGlobalParameter:
 	.4byte 0x804796A0
 .global inputGainDown__18JAIGlobalParameter
 inputGainDown__18JAIGlobalParameter:
-	.4byte 0x3F000000
+	.float 0.5
 .global outputGainUp__18JAIGlobalParameter
 outputGainUp__18JAIGlobalParameter:
 	.float 1.2
@@ -893,7 +893,7 @@ mScaleSp1__Q28Morimura10THurryUp2D:
 	.4byte 0x3C23D70A
 .global mScaleSp2__Q28Morimura10THurryUp2D
 mScaleSp2__Q28Morimura10THurryUp2D:
-	.4byte 0x3DCCCCCD
+	.float 0.1
 .global mScaleRate__Q28Morimura10THurryUp2D
 mScaleRate__Q28Morimura10THurryUp2D:
 	.4byte 0x3F828F5C
@@ -922,7 +922,7 @@ mScrollSpeedCoe__Q28Morimura10TZukanBase:
 	.4byte 0x3DA3D70A
 .global mNewScale__Q28Morimura10TZukanBase
 mNewScale__Q28Morimura10TZukanBase:
-	.4byte 0x3F333333
+	.float 0.7
 .global mPodIconOffsetX__Q28Morimura10TZukanBase
 mPodIconOffsetX__Q28Morimura10TZukanBase:
 	.4byte 0x43F00000
@@ -952,7 +952,7 @@ mSelected1p__Q28Morimura16TChallengeSelect:
 	.4byte 0x01000000
 .global mAlphaSpeed__Q28Morimura16TChallengeSelect
 mAlphaSpeed__Q28Morimura16TChallengeSelect:
-	.4byte 0x3D4CCCCD
+	.float 0.05
 .global mFlashAnimInterval__Q28Morimura16TChallengeSelect
 mFlashAnimInterval__Q28Morimura16TChallengeSelect:
 	.4byte 0x012C0000
@@ -967,13 +967,13 @@ mPanelMoveVal__Q28Morimura16TChallengeSelect:
 	.float 1.0
 .global mPanelMoveRate__Q28Morimura16TChallengeSelect
 mPanelMoveRate__Q28Morimura16TChallengeSelect:
-	.4byte 0x3E800000
+	.float 0.25
 .global mCircleY__Q28Morimura16TChallengeSelect
 mCircleY__Q28Morimura16TChallengeSelect:
 	.4byte 0x42C80000
 .global mTimerSpeed__Q28Morimura16TChallengeSelect
 mTimerSpeed__Q28Morimura16TChallengeSelect:
-	.4byte 0x3E19999A
+	.float 0.15
 .global mMoveSpeed__Q28Morimura16TChallengeSelect
 mMoveSpeed__Q28Morimura16TChallengeSelect:
 	.4byte 0x41400000
@@ -986,13 +986,13 @@ mMoveSpeed__Q28Morimura16TChallengeResult:
 	.4byte 0x41400000
 .global mAngRate__Q28Morimura16TChallengeResult
 mAngRate__Q28Morimura16TChallengeResult:
-	.4byte 0x3E99999A
+	.float 0.3
 .global mAngVelMax__Q28Morimura16TChallengeResult
 mAngVelMax__Q28Morimura16TChallengeResult:
 	.4byte 0x41A00000
 .global mAccel__Q28Morimura16TChallengeResult
 mAccel__Q28Morimura16TChallengeResult:
-	.4byte 0x3DCCCCCD
+	.float 0.1
 .global mTestDemo__Q28Morimura16TChallengeResult
 mTestDemo__Q28Morimura16TChallengeResult:
 	.byte 0x1
@@ -1024,10 +1024,10 @@ mMoveSpeed__Q28Morimura9TVsSelect:
 	.4byte 0x41C80000
 .global mIndVal__Q28Morimura9TVsSelect
 mIndVal__Q28Morimura9TVsSelect:
-	.4byte 0x3D4CCCCD
+	.float 0.05
 .global mIndShuki__Q28Morimura9TVsSelect
 mIndShuki__Q28Morimura9TVsSelect:
-	.4byte 0x3E99999A
+	.float 0.3
 .global mZoomFrameMax__Q28Morimura9TVsSelect
 mZoomFrameMax__Q28Morimura9TVsSelect:
 	.4byte 0x41C80000
@@ -1051,7 +1051,7 @@ mDemoOffsetMax__Q28Morimura9TVsSelect:
 	.4byte 0x43910000
 .global mFireAlphaRate__Q28Morimura9TVsSelect
 mFireAlphaRate__Q28Morimura9TVsSelect:
-	.4byte 0x3F000000
+	.float 0.5
 .global mWideWindow__Q28Morimura11TScrollList
 mWideWindow__Q28Morimura11TScrollList:
 	.4byte 0x01000000

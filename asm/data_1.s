@@ -3072,12 +3072,12 @@ sThpDemoDinamics__3PSM:
 	.4byte 0x8049E0F0
 	.4byte 0x3F666666
 	.4byte 0x3E6147AE
-	.4byte 0x3F7AE148
+	.float 0.98
 	.4byte 0x01000000
 	.4byte 0x8049E0FC
-	.4byte 0x3F333333
+	.float 0.7
 	.4byte 0x3EC28F5C
-	.4byte 0x3F7AE148
+	.float 0.98
 	.4byte 0x01000000
 	.4byte 0x80520DB8
 	.4byte 0x3F4CCCCD
@@ -3086,43 +3086,43 @@ sThpDemoDinamics__3PSM:
 	.4byte 0x01000000
 	.4byte 0x80520DC0
 	.4byte 0x3F11EB85
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x8049E108
-	.4byte 0x3F000000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 0.5
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80520DC8
-	.4byte 0x3F333333
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 0.7
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80520DD0
-	.4byte 0x3F333333
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 0.7
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80520DD8
-	.4byte 0x3F333333
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 0.7
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80520DE0
-	.4byte 0x3F333333
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 0.7
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80520DE8
-	.4byte 0x3F333333
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 0.7
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80520DF0
-	.4byte 0x3F333333
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 0.7
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80520DF8
 .global __vt__Q23PSM11CreaturePrm

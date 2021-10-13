@@ -3763,12 +3763,12 @@ lbl_8049CE8C:
 	.4byte 0x43EF8000
 	.4byte 0x4430C000
 	.4byte 0x444A0000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x44BB8000
 	.4byte 0x43EF8000
 	.4byte 0x4430C000
 	.4byte 0x444A0000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x44BB8000
 	.4byte 0x43BD8000
 	.4byte 0x4410C000
@@ -3778,12 +3778,12 @@ lbl_8049CE8C:
 	.4byte 0x43EF8000
 	.4byte 0x4430C000
 	.4byte 0x444A0000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x44BB8000
 	.4byte 0x43BD8000
 	.4byte 0x43EF8000
 	.4byte 0x448D6000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x97909094
 	.4byte 0x88CA9275
 	.4byte 0x41766F69
@@ -3892,7 +3892,7 @@ lbl_8049D0DC:
 	.4byte 0x66660000
 	.4byte 0x00000000
 	.4byte 0x7F030000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x3C000000
 	.4byte 0x7330325F
 	.4byte 0x64617965

@@ -3670,25 +3670,25 @@ NullTexData:
 	.4byte 0x00000000
 .global j3dIdentityMtx
 j3dIdentityMtx:
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global IndMtx
 IndMtx:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 .global sDifferedRegister
 sDifferedRegister:
@@ -3928,31 +3928,31 @@ __vt__13J3DColorBlock:
   .4byte __dt__13J3DColorBlockFv
 .global qMtx$1682
 qMtx$1682:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0xBF000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global qMtx2$1683
 qMtx2$1683:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0xBF000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global lbl_804A1870
 lbl_804A1870:
@@ -3970,31 +3970,31 @@ lbl_804A1870:
 	.4byte 0x80064D5C
 .global qMtx$1744
 qMtx$1744:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0xBF000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global qMtx2$1745
 qMtx2$1745:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0xBF000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global lbl_804A1900
 lbl_804A1900:
@@ -5476,31 +5476,31 @@ sMtxLoadLODPipeline__21J3DShapeMtxConcatView:
 	.4byte 0x00000000
 .global qMtx$1532
 qMtx$1532:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0xBF000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global qMtx2$1533
 qMtx2$1533:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0xBF000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global lbl_804A2E18
 lbl_804A2E18:
@@ -5652,17 +5652,17 @@ __vt__12J3DShapeDraw:
   .4byte 0
 .global e_mtx
 e_mtx:
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000

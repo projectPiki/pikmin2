@@ -5497,21 +5497,21 @@ j2dDefaultTexCoordInfo:
 .global j2dDefaultTexMtxInfo
 j2dDefaultTexMtxInfo:
 	.4byte 0x0101FFFF
-	.4byte 0x3F000000
-	.4byte 0x3F000000
+	.float 0.5
+	.float 0.5
 	.4byte 0x00000000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 .global j2dDefaultIndTexMtxInfo
 j2dDefaultIndTexMtxInfo:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x01000000
 .global j2dDefaultTevStageInfo
@@ -5552,11 +5552,11 @@ lbl_80478700:
 	.4byte 0x00000004
 	.4byte 0x00000001
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x53756363
 	.4byte 0x6573730A
@@ -5626,9 +5626,9 @@ lbl_80478700:
 	.4byte 0x80478804
 .global j3dDefaultTransformInfo
 j3dDefaultTransformInfo:
-	.4byte 0x3F800000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 1.0
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -5636,22 +5636,22 @@ j3dDefaultTransformInfo:
 	.4byte 0x00000000
 .global j3dDefaultScale
 j3dDefaultScale:
-	.4byte 0x3F800000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 1.0
+	.float 1.0
+	.float 1.0
 .global j3dDefaultMtx
 j3dDefaultMtx:
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global lbl_8047889C
 lbl_8047889C:
@@ -5674,34 +5674,34 @@ j3dDefaultTexMtxInfo:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 1.0
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
 .global j3dDefaultIndTexMtxInfo
 j3dDefaultIndTexMtxInfo:
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x01000000
 .global j3dDefaultTevStageInfo
@@ -5721,7 +5721,7 @@ j3dDefaultFogInfo:
 	.4byte 0x00000140
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3DCCCCCD
+	.float 0.1
 	.4byte 0x461C4000
 	.4byte 0xFFFFFF00
 	.4byte 0x00000000
@@ -5732,9 +5732,9 @@ j3dDefaultFogInfo:
 .global j3dDefaultNBTScaleInfo
 j3dDefaultNBTScaleInfo:
 	.4byte 0x00000000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 1.0
+	.float 1.0
+	.float 1.0
 .global lbl_804789A4
 lbl_804789A4:
 	.4byte 0x1E212427
@@ -5742,14 +5742,14 @@ lbl_804789A4:
 	.4byte 0x36393C00
 .global lbl_804789B0
 lbl_804789B0:
-	.4byte 0x3F800000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 1.0
+	.float 1.0
+	.float 1.0
 .global lbl_804789BC
 lbl_804789BC:
-	.4byte 0x3F800000
-	.4byte 0x3F800000
-	.4byte 0x3F800000
+	.float 1.0
+	.float 1.0
+	.float 1.0
 .global lbl_804789C8
 lbl_804789C8:
 	.4byte 0x00000000
@@ -5824,15 +5824,15 @@ OSC_RELEASE_TABLE__10JASBankMgr:
 .global OSC_ENV__10JASBankMgr
 OSC_ENV__10JASBankMgr:
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80478AB8
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 .global s_key_table
 s_key_table:
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x3F801DD2
 	.4byte 0x3F803BAC
 	.4byte 0x3F80598E
@@ -5899,35 +5899,35 @@ s_key_table:
 .global sAdsrDef__9JASPlayer
 sAdsrDef__9JASPlayer:
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global sEnvelopeDef__9JASPlayer
 sEnvelopeDef__9JASPlayer:
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x804A3D10
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 .global sVibratoDef__9JASPlayer
 sVibratoDef__9JASPlayer:
 	.4byte 0x00000001
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x804A3D1C
 	.4byte 0x804A3D1C
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 .global sTremoroDef__9JASPlayer
 sTremoroDef__9JASPlayer:
 	.4byte 0x00000000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x804A3D40
 	.4byte 0x804A3D40
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 .global Arglist
 Arglist:
 	.4byte 0x00000000
@@ -5996,7 +5996,7 @@ Arglist:
 	.4byte 0x00000000
 .global relTableSampleCell__13JASOscillator
 relTableSampleCell__13JASOscillator:
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x3F7871F8
 	.4byte 0x3F480193
 	.4byte 0x3F0BD912
@@ -6015,7 +6015,7 @@ relTableSampleCell__13JASOscillator:
 	.4byte 0x00000000
 .global relTableSqRoot__13JASOscillator
 relTableSqRoot__13JASOscillator:
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x3F60FFFC
 	.4byte 0x3F440000
 	.4byte 0x3F28FFFC
@@ -6023,7 +6023,7 @@ relTableSqRoot__13JASOscillator:
 	.4byte 0x3EF1FFF8
 	.4byte 0x3EC80000
 	.4byte 0x3EA1FFF8
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x3E43FFEF
 	.4byte 0x3E100000
 	.4byte 0x3DC7FFF9
@@ -6034,7 +6034,7 @@ relTableSqRoot__13JASOscillator:
 	.4byte 0x00000000
 .global relTableSquare__13JASOscillator
 relTableSquare__13JASOscillator:
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x3F77DEF8
 	.4byte 0x3F6F774B
 	.4byte 0x3F66C15D
@@ -6046,10 +6046,10 @@ relTableSquare__13JASOscillator:
 	.4byte 0x3F295400
 	.4byte 0x3F1CC469
 	.4byte 0x3F0F1BBD
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x3EDDB3E1
 	.4byte 0x3EB504E6
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x00000000
 .global oscTableForceStop__13JASOscillator
 oscTableForceStop__13JASOscillator:
@@ -6118,7 +6118,7 @@ C5BASE_PITCHTABLE__9JASDriver:
 	.4byte 0x3E5744F6
 	.4byte 0x3E641206
 	.4byte 0x3E71A1DC
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x3E879C84
 	.4byte 0x3E8FACE6
 	.4byte 0x3E9837F8
@@ -6130,7 +6130,7 @@ C5BASE_PITCHTABLE__9JASDriver:
 	.4byte 0x3ED744F6
 	.4byte 0x3EE411E4
 	.4byte 0x3EF1A1BA
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x3F079C84
 	.4byte 0x3F0FACD6
 	.4byte 0x3F1837F8
@@ -6142,7 +6142,7 @@ C5BASE_PITCHTABLE__9JASDriver:
 	.4byte 0x3F574507
 	.4byte 0x3F6411F5
 	.4byte 0x3F71A1CB
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x3F879C7C
 	.4byte 0x3F8FACD6
 	.4byte 0x3F9837EF
@@ -6608,10 +6608,10 @@ OSC_RELEASE_TABLE:
 .global OSC_ENV
 OSC_ENV:
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x80479640
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 .global lbl_80479668

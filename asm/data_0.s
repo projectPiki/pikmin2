@@ -1841,9 +1841,9 @@ GXDefaultVATList:
 	.4byte 0x00000000
 .global GXDefaultProjData
 GXDefaultProjData:
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x00000000
 	.4byte 0xBF800000
 	.4byte 0xC0000000
@@ -10106,29 +10106,29 @@ __vt__Q213TreasureLight3Mgr:
 .global "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x41000000
-	.4byte 0x3E99999A
+	.float 0.3
 	.4byte 0x41500000
 	.4byte 0x3DF5C28F
 	.4byte 0x41B00000
-	.4byte 0x3E99999A
+	.float 0.3
 	.4byte 0x41C00000
-	.4byte 0x3E99999A
+	.float 0.3
 	.4byte 0x41E80000
 	.4byte 0x3DF5C28F
 	.4byte 0x42100000
-	.4byte 0x3E99999A
+	.float 0.3
 	.4byte 0x42480000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x42480000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
@@ -10153,17 +10153,17 @@ __vt__Q213TreasureLight3Mgr:
 .global "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x41C80000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x41C80000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
@@ -10178,7 +10178,7 @@ __vt__Q213TreasureLight3Mgr:
 	.4byte 0x42000000
 	.4byte 0x00000000
 	.4byte 0x42340000
-	.4byte 0x3E99999A
+	.float 0.3
 	.4byte 0x42700000
 	.4byte 0x00000000
 	.4byte 0xBF800000
@@ -10186,23 +10186,23 @@ __vt__Q213TreasureLight3Mgr:
 .global "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x41A00000
-	.4byte 0x3E19999A
+	.float 0.15
 	.4byte 0x42200000
-	.4byte 0x3E19999A
+	.float 0.15
 	.4byte 0x42480000
 	.4byte 0x3F59999A
 	.4byte 0x42700000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x42700000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
@@ -10215,9 +10215,9 @@ __vt__Q213TreasureLight3Mgr:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x41200000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x41F00000
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x42200000
 	.4byte 0x00000000
 	.4byte 0x42A00000
@@ -10227,29 +10227,29 @@ __vt__Q213TreasureLight3Mgr:
 .global "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x41F00000
-	.4byte 0x3E19999A
+	.float 0.15
 	.4byte 0x420C0000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x42820000
 	.4byte 0x3ECCCCCD
 	.4byte 0x42A00000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x41F00000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x420C0000
 	.4byte 0x3FA00000
 	.4byte 0x425C0000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x42A00000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
@@ -10264,17 +10264,17 @@ __vt__Q213TreasureLight3Mgr:
 	.4byte 0x41700000
 	.4byte 0x00000000
 	.4byte 0x41A00000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x42200000
-	.4byte 0x3F333333
+	.float 0.7
 	.4byte 0x42480000
 	.4byte 0x00000000
 	.4byte 0x42CC0000
 	.4byte 0x00000000
 	.4byte 0x42D60000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x42FA0000
-	.4byte 0x3D75C28F
+	.float 0.06
 	.4byte 0x43010000
 	.4byte 0x00000000
 	.4byte 0x43340000
@@ -10284,7 +10284,7 @@ __vt__Q213TreasureLight3Mgr:
 .global "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x41700000
 	.4byte 0x3E4CCCCD
 	.4byte 0x41B00000
@@ -10292,7 +10292,7 @@ __vt__Q213TreasureLight3Mgr:
 	.4byte 0x41F00000
 	.4byte 0x3FE66666
 	.4byte 0x42340000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x428C0000
 	.4byte 0x3DF5C28F
 	.4byte 0x42CC0000
@@ -10300,17 +10300,17 @@ __vt__Q213TreasureLight3Mgr:
 	.4byte 0x43020000
 	.4byte 0x3DF5C28F
 	.4byte 0x430C0000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x43340000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte 0x00000000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0x43340000
-	.4byte 0x3F800000
+	.float 1.0
 	.4byte 0xBF800000
 	.4byte 0x00000000
 .global "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"

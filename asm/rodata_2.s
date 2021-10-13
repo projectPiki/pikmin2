@@ -5904,33 +5904,33 @@ lbl_8047EAC8:
 	.4byte 0x53746174
 	.4byte 0x65000000
 	.4byte 0x00000000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x0000000B
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x00000036
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x00000032
-	.4byte 0x3E800000
+	.float 0.25
 .global lbl_8047EB00
 lbl_8047EB00:
 	.4byte 0x00000000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x0000000B
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x00000036
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x0000000D
-	.4byte 0x3E800000
+	.float 0.25
 .global lbl_8047EB20
 lbl_8047EB20:
 	.4byte 0x00000032
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x00000000
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x00000003
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x00000036
-	.4byte 0x3E800000
+	.float 0.25
 	.4byte 0x43726561
 	.4byte 0x74757265
 	.4byte 0x00000000
@@ -6121,13 +6121,13 @@ lbl_8047ED64:
 	.4byte 0x00000034
 	.4byte 0x3EA8F5C3
 	.4byte 0x00000035
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000036
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x0000000C
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x00000036
-	.4byte 0x3F000000
+	.float 0.5
 	.4byte 0x72617043
 	.4byte 0x6E742082
 	.4byte 0xCC8E6782
