@@ -1,6 +1,6 @@
 ﻿BasedOnStyle: WebKit
 ColumnLimit: 80
-AlignTrailingComments:  true
+AlignTrailingComments: true
 AlignAfterOpenBracket: true
 AlignConsecutiveAssignments: true
 AllowShortFunctionsOnASingleLine: true
@@ -8,3 +8,4 @@ FixNamespaceComments: true
 IndentWidth: 4
 TabWidth: 4
 UseTab: ForIndentation
+SortIncludes: false
