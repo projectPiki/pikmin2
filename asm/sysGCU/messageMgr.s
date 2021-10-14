@@ -186,6 +186,51 @@ lbl_8049AA4C:
 	.4byte 0x815B8358
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EC970
+lbl_804EC970:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sFontResName__5P2JME
+sFontResName__5P2JME:
+	.4byte 0x8049A8DC
+	.4byte 0x8049A8DC
+	.4byte 0x8049A8DC
+	.4byte 0x8049A8DC
+	.4byte 0x8049A8DC
+	.4byte 0x8049A8F8
+	.4byte 0x8049A8DC
+.global sMesResName__5P2JME
+sMesResName__5P2JME:
+	.4byte 0x8049A910
+	.4byte 0x8049A928
+	.4byte 0x8049A940
+	.4byte 0x8049A958
+	.4byte 0x8049A970
+	.4byte 0x8049A988
+	.4byte 0x8049A9A0
+.global cBtnTexName__5P2JME
+cBtnTexName__5P2JME:
+	.4byte 0x8049A9B8
+	.4byte 0x8049A9C4
+	.4byte 0x8049A9D0
+	.4byte 0x8049A9DC
+	.4byte 0x8049A9E8
+	.4byte 0x8049A9F4
+	.4byte 0x8049AA00
+	.4byte 0x8049AA0C
+	.4byte 0x8049AA18
+	.4byte 0x8049AA24
+	.4byte 0x8049AA30
+.global __vt__Q25P2JME3Mgr
+__vt__Q25P2JME3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q25P2JME3MgrFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520890

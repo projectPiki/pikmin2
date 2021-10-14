@@ -6,6 +6,31 @@ lbl_80499C00:
 	.asciz "ChildSection::init"
 	.skip 5
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__11MenuSection
+__vt__11MenuSection:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11MenuSectionFv
+	.4byte run__11MenuSectionFv
+	.4byte update__7SectionFv
+	.4byte draw__7SectionFR8Graphics
+	.4byte init__7SectionFv
+	.4byte drawInit__7SectionFR8Graphics
+	.4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+	.4byte doExit__7SectionFv
+	.4byte forceFinish__7SectionFv
+	.4byte forceReset__7SectionFv
+	.4byte getCurrentSection__11MenuSectionFv
+	.4byte doLoadingStart__7SectionFv
+	.4byte doLoading__7SectionFv
+	.4byte 0
+	.4byte 0
+	.4byte isFinishable__7SectionFv
+	.4byte 0
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805204A8

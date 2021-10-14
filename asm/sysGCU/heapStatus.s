@@ -8,6 +8,21 @@ lbl_80499EE8:
 	.4byte 0x75732E63
 	.4byte 0x70700000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__8HeapInfo
+__vt__8HeapInfo:
+	.4byte 0
+	.4byte 0
+	.4byte update__4NodeFv
+	.4byte draw__4NodeFR8Graphics
+	.4byte displayInfo__4NodeFi
+	.4byte 0
+	.4byte 0
+	.4byte "@36@__dt__8HeapInfoFv"
+	.4byte __dt__8HeapInfoFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520598

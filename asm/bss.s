@@ -791,5 +791,4 @@ ActivePlayer:
 	.skip 0x1D0
 .global sInsReal__3PSM
 sInsReal__3PSM:
-	#.skip 0x720
 	.skip 0x20

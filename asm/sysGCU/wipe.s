@@ -1,4 +1,73 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EBED8
+lbl_804EBED8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__10BlackFader
+__vt__10BlackFader:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10BlackFaderFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__8WipeBaseFv
+	.4byte draw__8WipeBaseFv
+	.4byte isWhite__10BlackFaderFv
+	.4byte isBlack__10BlackFaderFv
+	.4byte on_start__8WipeBaseFv
+	.4byte do_draw__10BlackFaderFf
+.global __vt__14WipeOutInFader
+__vt__14WipeOutInFader:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14WipeOutInFaderFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__8WipeBaseFv
+	.4byte draw__8WipeBaseFv
+	.4byte isWhite__14WipeOutInFaderFv
+	.4byte isBlack__14WipeOutInFaderFv
+	.4byte on_start__14WipeOutInFaderFv
+	.4byte do_draw__14WipeOutInFaderFf
+.global __vt__12WipeOutFader
+__vt__12WipeOutFader:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12WipeOutFaderFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__8WipeBaseFv
+	.4byte draw__8WipeBaseFv
+	.4byte isWhite__12WipeOutFaderFv
+	.4byte isBlack__12WipeOutFaderFv
+	.4byte on_start__12WipeOutFaderFv
+	.4byte do_draw__12WipeOutFaderFf
+.global __vt__11WipeInFader
+__vt__11WipeInFader:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11WipeInFaderFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__8WipeBaseFv
+	.4byte draw__8WipeBaseFv
+	.4byte isWhite__11WipeInFaderFv
+	.4byte isBlack__11WipeInFaderFv
+	.4byte on_start__8WipeBaseFv
+	.4byte do_draw__11WipeInFaderFf
+.global __vt__8WipeBase
+__vt__8WipeBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8WipeBaseFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__8WipeBaseFv
+	.4byte draw__8WipeBaseFv
+	.4byte isWhite__8WipeBaseFv
+	.4byte isBlack__8WipeBaseFv
+	.4byte on_start__8WipeBaseFv
+	.4byte do_draw__8WipeBaseFf
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805205E8

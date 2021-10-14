@@ -102,6 +102,137 @@ lbl_8049A844:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EC640
+lbl_804EC640:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q35P2JME5Movie8TControl
+__vt__Q35P2JME5Movie8TControl:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q35P2JME5Movie8TControlFv
+	.4byte reset__Q35P2JME5Movie8TControlFv
+	.4byte update__Q25P2JME8TControlFv
+	.4byte update__Q35P2JME5Movie8TControlFP10ControllerP10Controller
+	.4byte draw__Q35P2JME5Movie8TControlFR8Graphics
+	.4byte draw__Q35P2JME6Window8TControlFPA4_fPA4_f
+	.4byte setMessageID__Q25P2JME8TControlFUlUl
+	.4byte setMessageID__Q25P2JME8TControlFPc
+	.4byte setMessageID__Q25P2JME8TControlFUx
+	.4byte setMessageCode__Q25P2JME8TControlFUsUs
+	.4byte setMessageCode__Q25P2JME8TControlFUl
+	.4byte onInit__Q35P2JME5Movie8TControlFv
+	.4byte createReference__Q25P2JME8TControlFv
+	.4byte createResourceContainer__Q25P2JME8TControlFv
+	.4byte createSequenceProcessor__Q35P2JME6Window8TControlFv
+	.4byte createRenderingProcessor__Q35P2JME6Window8TControlFv
+.global __vt__Q35P2JME5Movie19MessageWindowScreen
+__vt__Q35P2JME5Movie19MessageWindowScreen:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q35P2JME5Movie19MessageWindowScreenFv
+	.4byte getTypeID__9J2DScreenCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__7J2DPaneFff
+	.4byte setCullBack__7J2DPaneFb
+	.4byte setCullBack__7J2DPaneF11_GXCullMode
+	.4byte setAlpha__7J2DPaneFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__9J2DScreenFv
+	.4byte update__Q29P2DScreen3MgrFv
+	.4byte drawSelf__7J2DPaneFff
+	.4byte drawSelf__9J2DScreenFffPA3_A4_f
+	.4byte search__9J2DScreenFUx
+	.4byte searchUserInfo__9J2DScreenFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__9J2DScreenFPC7ResTIMG
+	.4byte isUsed__9J2DScreenFPC7ResFONT
+	.4byte clearAnmTransform__9J2DScreenFv
+	.4byte rewriteAlpha__7J2DPaneFv
+	.4byte setAnimation__9J2DScreenFP10J2DAnmBase
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTransform
+	.4byte setAnimation__9J2DScreenFP11J2DAnmColor
+	.4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
+	.4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
+	.4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
+	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
+.global __vt__Q35P2JME5Movie13PodIconScreen
+__vt__Q35P2JME5Movie13PodIconScreen:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q35P2JME5Movie13PodIconScreenFv
+	.4byte getTypeID__9J2DScreenCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__7J2DPaneFff
+	.4byte setCullBack__7J2DPaneFb
+	.4byte setCullBack__7J2DPaneF11_GXCullMode
+	.4byte setAlpha__7J2DPaneFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__9J2DScreenFv
+	.4byte update__Q35P2JME5Movie13PodIconScreenFv
+	.4byte drawSelf__7J2DPaneFff
+	.4byte drawSelf__9J2DScreenFffPA3_A4_f
+	.4byte search__9J2DScreenFUx
+	.4byte searchUserInfo__9J2DScreenFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__9J2DScreenFPC7ResTIMG
+	.4byte isUsed__9J2DScreenFPC7ResFONT
+	.4byte clearAnmTransform__9J2DScreenFv
+	.4byte rewriteAlpha__7J2DPaneFv
+	.4byte setAnimation__9J2DScreenFP10J2DAnmBase
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTransform
+	.4byte setAnimation__9J2DScreenFP11J2DAnmColor
+	.4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
+	.4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
+	.4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
+	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
+.global __vt__Q35P2JME5Movie8AbtnPane
+__vt__Q35P2JME5Movie8AbtnPane:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q35P2JME5Movie8AbtnPaneFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q35P2JME5Movie8AbtnPaneFv
+	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q35P2JME5Movie8AbtnPaneFv
+.global __vt__Q35P2JME5Movie10WindowPane
+__vt__Q35P2JME5Movie10WindowPane:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q35P2JME5Movie10WindowPaneFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q35P2JME5Movie10WindowPaneFv
+	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q35P2JME5Movie10WindowPaneFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805207B8

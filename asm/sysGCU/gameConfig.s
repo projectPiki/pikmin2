@@ -126,6 +126,15 @@ lbl_8049A428:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game10GameConfig5Parms
+__vt__Q34Game10GameConfig5Parms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game10GameConfig5ParmsFv
+	.4byte getChildCount__5CNodeFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520710

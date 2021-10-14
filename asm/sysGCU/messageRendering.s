@@ -20,6 +20,107 @@ lbl_8049AC00:
 	.4byte 0x72696E67
 	.4byte 0x2E680000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@"
+"cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@":
+	.4byte 0xFFFFFFFF
+	.4byte 0x00A60000
+	.4byte 0xFFFFFFFF
+	.4byte 0xFF000000
+	.4byte 0x000000FF
+	.4byte 0xFFFF0000
+	.4byte 0x000000FF
+	.4byte 0xC8C8C800
+	.4byte 0x000000FF
+	.4byte 0xC8C8C800
+	.4byte 0x0000FFFF
+	.4byte 0xFFFFFF00
+	.4byte 0x000000FF
+	.4byte 0xC8C8C800
+	.4byte 0x000000FF
+	.4byte 0xC8C8C800
+	.4byte 0xE1E1E1FF
+	.4byte 0x888888FF
+	.4byte 0xE1E1E1FF
+	.4byte 0x888888FF
+	.4byte 0xE1E1E1FF
+	.4byte 0x888888FF
+.global lbl_804ECA90
+lbl_804ECA90:
+	.4byte 0x8043A50C
+	.4byte 0x8043A518
+	.4byte 0x8043A544
+	.4byte 0x8043A830
+	.4byte 0x8043AB3C
+	.4byte 0x8043AB48
+	.4byte 0x8043AB74
+	.4byte 0x8043AB80
+.global __vt__Q25P2JME19TRenderingProcessor
+__vt__Q25P2JME19TRenderingProcessor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q25P2JME19TRenderingProcessorFv
+	.4byte do_reset__Q28JMessage10TProcessorFv
+	.4byte do_character__Q25P2JME19TRenderingProcessorFi
+	.4byte do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl
+	.4byte do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte do_select_begin__Q25P2JME19TRenderingProcessorFUl
+	.4byte do_select_end__Q25P2JME19TRenderingProcessorFv
+	.4byte do_select_separate__Q25P2JME19TRenderingProcessorFv
+	.4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+	.4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+	.4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+	.4byte do_end___Q28JMessage19TRenderingProcessorFv
+	.4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+	.4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+	.4byte do_begin__Q25P2JME19TRenderingProcessorFPCvPCc
+	.4byte do_end__Q28JMessage19TRenderingProcessorFv
+	.4byte tagColor__Q25P2JME19TRenderingProcessorFPCvUl
+	.4byte tagSize__Q25P2JME19TRenderingProcessorFPCvUl
+	.4byte tagRuby__Q25P2JME19TRenderingProcessorFPCvUl
+	.4byte tagFont__Q25P2JME19TRenderingProcessorFPCvUl
+	.4byte tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl
+	.4byte update__Q25P2JME19TRenderingProcessorFv
+	.4byte reset__Q25P2JME19TRenderingProcessorFv
+	.4byte newParagraph__Q25P2JME19TRenderingProcessorFv
+	.4byte doDrawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff
+	.4byte doDrawRuby__Q25P2JME19TRenderingProcessorFffffib
+	.4byte doDrawLetter__Q25P2JME19TRenderingProcessorFffffib
+	.4byte doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv
+.global __vt__Q25P2JME23TRenderingProcessorBase
+__vt__Q25P2JME23TRenderingProcessorBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q25P2JME23TRenderingProcessorBaseFv
+	.4byte do_reset__Q28JMessage10TProcessorFv
+	.4byte do_character__Q25P2JME23TRenderingProcessorBaseFi
+	.4byte do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl
+	.4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+	.4byte do_select_begin__Q28JMessage10TProcessorFUl
+	.4byte do_select_end__Q28JMessage10TProcessorFv
+	.4byte do_select_separate__Q28JMessage10TProcessorFv
+	.4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+	.4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+	.4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+	.4byte do_end___Q28JMessage19TRenderingProcessorFv
+	.4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+	.4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+	.4byte do_begin__Q28JMessage19TRenderingProcessorFPCvPCc
+	.4byte do_end__Q28JMessage19TRenderingProcessorFv
+	.4byte tagColor__Q25P2JME23TRenderingProcessorBaseFPCvUl
+	.4byte tagSize__Q25P2JME23TRenderingProcessorBaseFPCvUl
+	.4byte tagRuby__Q25P2JME23TRenderingProcessorBaseFPCvUl
+	.4byte tagFont__Q25P2JME23TRenderingProcessorBaseFPCvUl
+	.4byte tagImage__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
+	.4byte tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
+	.4byte tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
+	.4byte tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global cPageInfoBufferNum__Q25P2JME19TRenderingProcessor

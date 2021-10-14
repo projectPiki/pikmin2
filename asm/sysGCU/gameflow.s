@@ -64,6 +64,99 @@ lbl_80499BF4:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EBBF0
+lbl_804EBBF0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global "sSectionInfo__22@unnamed@gameflow_cpp@"
+"sSectionInfo__22@unnamed@gameflow_cpp@":
+	.4byte 0x80499A48
+	.4byte 0x00000000
+	.4byte 0x80499A54
+	.4byte 0x01010000
+	.4byte 0x80499A64
+	.4byte 0x02010000
+	.4byte 0x80499A70
+	.4byte 0x03010000
+	.4byte 0x80499A80
+	.4byte 0x04010100
+	.4byte 0x80499A90
+	.4byte 0x05010000
+	.4byte 0x80499A9C
+	.4byte 0x06010000
+	.4byte 0x80499AA8
+	.4byte 0x07010000
+	.4byte 0x80499ABC
+	.4byte 0x08010000
+	.4byte 0x80520460
+	.4byte 0x09010000
+	.4byte 0x80499AC8
+	.4byte 0x1C010000
+	.4byte 0x80520468
+	.4byte 0x0A010000
+	.4byte 0x80499ADC
+	.4byte 0x0B010000
+	.4byte 0x80499AE8
+	.4byte 0x0C010000
+	.4byte 0x80499AF4
+	.4byte 0x0D010000
+	.4byte 0x80499B00
+	.4byte 0x0E010000
+	.4byte 0x80499B0C
+	.4byte 0x1A010100
+	.4byte 0x80520470
+	.4byte 0x1B010000
+	.4byte 0x80520478
+	.4byte 0x0F010000
+	.4byte 0x80499B18
+	.4byte 0x10010000
+	.4byte 0x80499B24
+	.4byte 0x11010000
+	.4byte 0x80499B3C
+	.4byte 0x12010000
+	.4byte 0x80499B48
+	.4byte 0x13010000
+	.4byte 0x80499B5C
+	.4byte 0x14010000
+	.4byte 0x80520480
+	.4byte 0x15000000
+	.4byte 0x80499B68
+	.4byte 0x16010000
+	.4byte 0x80520488
+	.4byte 0x17010000
+	.4byte 0x80499B74
+	.4byte 0x18010100
+	.4byte 0x80499B88
+	.4byte 0x19010000
+	.4byte 0x80499B98
+	.4byte 0x1D010000
+	.4byte 0x80520490
+	.4byte 0x1E010000
+	.4byte 0x80499BAC
+	.4byte 0x1F010000
+	.4byte 0x80499BBC
+	.4byte 0x20010100
+	.4byte 0x80520498
+	.4byte 0x21000000
+	.4byte 0x805204A0
+	.4byte 0x22000000
+.global __vt__8GameFlow
+__vt__8GameFlow:
+	.4byte 0
+	.4byte 0
+	.4byte run__8GameFlowFv
+	.4byte getCurrentSection__8GameFlowFv
+.global __vt__11ISectionMgr
+__vt__11ISectionMgr:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte getCurrentSection__11ISectionMgrFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global str_Ogawa

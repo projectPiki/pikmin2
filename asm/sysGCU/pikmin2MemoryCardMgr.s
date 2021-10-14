@@ -84,6 +84,57 @@ lbl_8049AEA0:
 	.4byte 0x3A253032
 	.4byte 0x64000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ECF58
+lbl_804ECF58:
+	.4byte 0x80443790
+	.4byte 0x804437EC
+	.4byte 0x80443768
+	.4byte 0x804437FC
+	.4byte 0x8044385C
+	.4byte 0x804438BC
+	.4byte 0x804438D4
+	.4byte 0x80443930
+	.4byte 0x80443994
+	.4byte 0x804439A8
+	.4byte 0x804439B8
+	.4byte 0x804439C8
+.global __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader
+__vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader:
+	.4byte 0
+	.4byte 0
+	.4byte getClassSize__Q34Game10MemoryCard25MgrCommandGetPlayerHeaderFv
+.global __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer
+__vt__Q34Game10MemoryCard20MgrCommandCopyPlayer:
+	.4byte 0
+	.4byte 0
+	.4byte getClassSize__Q34Game10MemoryCard20MgrCommandCopyPlayerFv
+.global __vt__Q34Game10MemoryCard18MgrCommandPlayerNo
+__vt__Q34Game10MemoryCard18MgrCommandPlayerNo:
+	.4byte 0
+	.4byte 0
+	.4byte getClassSize__Q34Game10MemoryCard18MgrCommandPlayerNoFv
+.global __vt__Q34Game10MemoryCard3Mgr
+__vt__Q34Game10MemoryCard3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game10MemoryCard3MgrFv
+	.4byte update__Q34Game10MemoryCard3MgrFv
+	.4byte doInit__13MemoryCardMgrFv
+	.4byte doCardProc__Q34Game10MemoryCard3MgrFPvP20MemoryCardMgrCommand
+	.4byte getHeaderSize__Q34Game10MemoryCard3MgrFv
+	.4byte doMakeHeader__Q34Game10MemoryCard3MgrFPUc
+	.4byte doSetCardStat__Q34Game10MemoryCard3MgrFP8CARDStat
+	.4byte doCheckCardStat__Q34Game10MemoryCard3MgrFP8CARDStat
+	.4byte isErrorOccured__Q34Game10MemoryCard3MgrFv
+.global __vt__Q34Game10MemoryCard8Resource
+__vt__Q34Game10MemoryCard8Resource:
+  .4byte 0
+  .4byte 0
+  .4byte __dt__Q34Game10MemoryCard8ResourceFv
+  .4byte 0
+  
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520978
@@ -92,6 +143,237 @@ lbl_80520978:
 	.4byte 0x636B0A00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global __ct__Q34Game10MemoryCard6PlayerFv
+__ct__Q34Game10MemoryCard6PlayerFv:
+/* 804428AC 0043F7EC  38 00 00 00 */	li r0, 0
+/* 804428B0 0043F7F0  98 03 00 00 */	stb r0, 0(r3)
+/* 804428B4 0043F7F4  90 03 00 04 */	stw r0, 4(r3)
+/* 804428B8 0043F7F8  90 03 00 08 */	stw r0, 8(r3)
+/* 804428BC 0043F7FC  90 03 00 0C */	stw r0, 0xc(r3)
+/* 804428C0 0043F800  90 03 00 10 */	stw r0, 0x10(r3)
+/* 804428C4 0043F804  90 03 00 14 */	stw r0, 0x14(r3)
+/* 804428C8 0043F808  90 03 00 18 */	stw r0, 0x18(r3)
+/* 804428CC 0043F80C  90 03 00 1C */	stw r0, 0x1c(r3)
+/* 804428D0 0043F810  90 03 00 20 */	stw r0, 0x20(r3)
+/* 804428D4 0043F814  90 03 00 24 */	stw r0, 0x24(r3)
+/* 804428D8 0043F818  90 03 00 28 */	stw r0, 0x28(r3)
+/* 804428DC 0043F81C  90 03 00 2C */	stw r0, 0x2c(r3)
+/* 804428E0 0043F820  90 03 00 30 */	stw r0, 0x30(r3)
+/* 804428E4 0043F824  4E 80 00 20 */	blr 
+
+.global __ct__Q34Game10MemoryCard14PlayerFileInfoFv
+__ct__Q34Game10MemoryCard14PlayerFileInfoFv:
+/* 804428E8 0043F828  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 804428EC 0043F82C  7C 08 02 A6 */	mflr r0
+/* 804428F0 0043F830  3C 80 80 44 */	lis r4, __ct__Q34Game10MemoryCard6PlayerFv@ha
+/* 804428F4 0043F834  38 A0 00 00 */	li r5, 0
+/* 804428F8 0043F838  90 01 00 14 */	stw r0, 0x14(r1)
+/* 804428FC 0043F83C  38 84 28 AC */	addi r4, r4, __ct__Q34Game10MemoryCard6PlayerFv@l
+/* 80442900 0043F840  38 C0 00 34 */	li r6, 0x34
+/* 80442904 0043F844  38 E0 00 03 */	li r7, 3
+/* 80442908 0043F848  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 8044290C 0043F84C  7C 7F 1B 78 */	mr r31, r3
+/* 80442910 0043F850  4B C7 EF 2D */	bl __construct_array
+/* 80442914 0043F854  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80442918 0043F858  7F E3 FB 78 */	mr r3, r31
+/* 8044291C 0043F85C  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 80442920 0043F860  7C 08 03 A6 */	mtlr r0
+/* 80442924 0043F864  38 21 00 10 */	addi r1, r1, 0x10
+/* 80442928 0043F868  4E 80 00 20 */	blr 
+
+.global getPlayer__Q34Game10MemoryCard14PlayerFileInfoFi
+getPlayer__Q34Game10MemoryCard14PlayerFileInfoFi:
+/* 8044292C 0043F86C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 80442930 0043F870  7C 08 02 A6 */	mflr r0
+/* 80442934 0043F874  90 01 00 14 */	stw r0, 0x14(r1)
+/* 80442938 0043F878  38 00 00 00 */	li r0, 0
+/* 8044293C 0043F87C  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 80442940 0043F880  7C 9F 23 79 */	or. r31, r4, r4
+/* 80442944 0043F884  93 C1 00 08 */	stw r30, 8(r1)
+/* 80442948 0043F888  7C 7E 1B 78 */	mr r30, r3
+/* 8044294C 0043F88C  41 80 00 10 */	blt lbl_8044295C
+/* 80442950 0043F890  2C 1F 00 03 */	cmpwi r31, 3
+/* 80442954 0043F894  40 80 00 08 */	bge lbl_8044295C
+/* 80442958 0043F898  38 00 00 01 */	li r0, 1
+lbl_8044295C:
+/* 8044295C 0043F89C  54 00 06 3F */	clrlwi. r0, r0, 0x18
+/* 80442960 0043F8A0  40 82 00 20 */	bne lbl_80442980
+/* 80442964 0043F8A4  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
+/* 80442968 0043F8A8  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
+/* 8044296C 0043F8AC  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80442970 0043F8B0  38 80 01 8C */	li r4, 0x18c
+/* 80442974 0043F8B4  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80442978 0043F8B8  4C C6 31 82 */	crclr 6
+/* 8044297C 0043F8BC  4B BE 7C C5 */	bl panic_f__12JUTExceptionFPCciPCce
+lbl_80442980:
+/* 80442980 0043F8C0  1C 1F 00 34 */	mulli r0, r31, 0x34
+/* 80442984 0043F8C4  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 80442988 0043F8C8  7C 7E 02 14 */	add r3, r30, r0
+/* 8044298C 0043F8CC  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80442990 0043F8D0  83 C1 00 08 */	lwz r30, 8(r1)
+/* 80442994 0043F8D4  7C 08 03 A6 */	mtlr r0
+/* 80442998 0043F8D8  38 21 00 10 */	addi r1, r1, 0x10
+/* 8044299C 0043F8DC  4E 80 00 20 */	blr 
+
+.global isBrokenFile__Q34Game10MemoryCard14PlayerFileInfoFi
+isBrokenFile__Q34Game10MemoryCard14PlayerFileInfoFi:
+/* 804429A0 0043F8E0  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 804429A4 0043F8E4  7C 08 02 A6 */	mflr r0
+/* 804429A8 0043F8E8  90 01 00 14 */	stw r0, 0x14(r1)
+/* 804429AC 0043F8EC  38 00 00 00 */	li r0, 0
+/* 804429B0 0043F8F0  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 804429B4 0043F8F4  7C 9F 23 79 */	or. r31, r4, r4
+/* 804429B8 0043F8F8  93 C1 00 08 */	stw r30, 8(r1)
+/* 804429BC 0043F8FC  7C 7E 1B 78 */	mr r30, r3
+/* 804429C0 0043F900  41 80 00 10 */	blt lbl_804429D0
+/* 804429C4 0043F904  2C 1F 00 03 */	cmpwi r31, 3
+/* 804429C8 0043F908  40 80 00 08 */	bge lbl_804429D0
+/* 804429CC 0043F90C  38 00 00 01 */	li r0, 1
+lbl_804429D0:
+/* 804429D0 0043F910  54 00 06 3F */	clrlwi. r0, r0, 0x18
+/* 804429D4 0043F914  40 82 00 20 */	bne lbl_804429F4
+/* 804429D8 0043F918  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
+/* 804429DC 0043F91C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
+/* 804429E0 0043F920  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804429E4 0043F924  38 80 01 8C */	li r4, 0x18c
+/* 804429E8 0043F928  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804429EC 0043F92C  4C C6 31 82 */	crclr 6
+/* 804429F0 0043F930  4B BE 7C 51 */	bl panic_f__12JUTExceptionFPCciPCce
+lbl_804429F4:
+/* 804429F4 0043F934  1C 1F 00 34 */	mulli r0, r31, 0x34
+/* 804429F8 0043F938  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 804429FC 0043F93C  7C 7E 00 AE */	lbzx r3, r30, r0
+/* 80442A00 0043F940  83 C1 00 08 */	lwz r30, 8(r1)
+/* 80442A04 0043F944  7C 03 00 D0 */	neg r0, r3
+/* 80442A08 0043F948  7C 00 1B 78 */	or r0, r0, r3
+/* 80442A0C 0043F94C  54 03 0F FE */	srwi r3, r0, 0x1f
+/* 80442A10 0043F950  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80442A14 0043F954  7C 08 03 A6 */	mtlr r0
+/* 80442A18 0043F958  38 21 00 10 */	addi r1, r1, 0x10
+/* 80442A1C 0043F95C  4E 80 00 20 */	blr 
+
+.global isNewFile__Q34Game10MemoryCard14PlayerFileInfoFi
+isNewFile__Q34Game10MemoryCard14PlayerFileInfoFi:
+/* 80442A20 0043F960  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 80442A24 0043F964  7C 08 02 A6 */	mflr r0
+/* 80442A28 0043F968  90 01 00 14 */	stw r0, 0x14(r1)
+/* 80442A2C 0043F96C  38 00 00 00 */	li r0, 0
+/* 80442A30 0043F970  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 80442A34 0043F974  7C 9F 23 79 */	or. r31, r4, r4
+/* 80442A38 0043F978  93 C1 00 08 */	stw r30, 8(r1)
+/* 80442A3C 0043F97C  7C 7E 1B 78 */	mr r30, r3
+/* 80442A40 0043F980  41 80 00 10 */	blt lbl_80442A50
+/* 80442A44 0043F984  2C 1F 00 03 */	cmpwi r31, 3
+/* 80442A48 0043F988  40 80 00 08 */	bge lbl_80442A50
+/* 80442A4C 0043F98C  38 00 00 01 */	li r0, 1
+lbl_80442A50:
+/* 80442A50 0043F990  54 00 06 3F */	clrlwi. r0, r0, 0x18
+/* 80442A54 0043F994  40 82 00 20 */	bne lbl_80442A74
+/* 80442A58 0043F998  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
+/* 80442A5C 0043F99C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
+/* 80442A60 0043F9A0  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80442A64 0043F9A4  38 80 01 8C */	li r4, 0x18c
+/* 80442A68 0043F9A8  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80442A6C 0043F9AC  4C C6 31 82 */	crclr 6
+/* 80442A70 0043F9B0  4B BE 7B D1 */	bl panic_f__12JUTExceptionFPCciPCce
+lbl_80442A74:
+/* 80442A74 0043F9B4  1C 1F 00 34 */	mulli r0, r31, 0x34
+/* 80442A78 0043F9B8  38 60 00 00 */	li r3, 0
+/* 80442A7C 0043F9BC  7C 9E 02 14 */	add r4, r30, r0
+/* 80442A80 0043F9C0  88 04 00 00 */	lbz r0, 0(r4)
+/* 80442A84 0043F9C4  28 00 00 00 */	cmplwi r0, 0
+/* 80442A88 0043F9C8  40 82 00 14 */	bne lbl_80442A9C
+/* 80442A8C 0043F9CC  80 04 00 04 */	lwz r0, 4(r4)
+/* 80442A90 0043F9D0  28 00 00 00 */	cmplwi r0, 0
+/* 80442A94 0043F9D4  40 82 00 08 */	bne lbl_80442A9C
+/* 80442A98 0043F9D8  38 60 00 01 */	li r3, 1
+lbl_80442A9C:
+/* 80442A9C 0043F9DC  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80442AA0 0043F9E0  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 80442AA4 0043F9E4  83 C1 00 08 */	lwz r30, 8(r1)
+/* 80442AA8 0043F9E8  7C 08 03 A6 */	mtlr r0
+/* 80442AAC 0043F9EC  38 21 00 10 */	addi r1, r1, 0x10
+/* 80442AB0 0043F9F0  4E 80 00 20 */	blr 
+
+.global __dt__Q34Game10MemoryCard8ResourceFv
+__dt__Q34Game10MemoryCard8ResourceFv:
+/* 80442AB4 0043F9F4  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 80442AB8 0043F9F8  7C 08 02 A6 */	mflr r0
+/* 80442ABC 0043F9FC  90 01 00 14 */	stw r0, 0x14(r1)
+/* 80442AC0 0043FA00  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 80442AC4 0043FA04  7C 9F 23 78 */	mr r31, r4
+/* 80442AC8 0043FA08  93 C1 00 08 */	stw r30, 8(r1)
+/* 80442ACC 0043FA0C  7C 7E 1B 79 */	or. r30, r3, r3
+/* 80442AD0 0043FA10  41 82 00 34 */	beq lbl_80442B04
+/* 80442AD4 0043FA14  3C 60 80 4F */	lis r3, __vt__Q34Game10MemoryCard8Resource@ha
+/* 80442AD8 0043FA18  38 03 CF D8 */	addi r0, r3, __vt__Q34Game10MemoryCard8Resource@l
+/* 80442ADC 0043FA1C  90 1E 00 00 */	stw r0, 0(r30)
+/* 80442AE0 0043FA20  80 7E 00 18 */	lwz r3, 0x18(r30)
+/* 80442AE4 0043FA24  48 00 02 09 */	bl destroyResource__Q34Game10MemoryCard3MgrFv
+/* 80442AE8 0043FA28  7F C3 F3 78 */	mr r3, r30
+/* 80442AEC 0043FA2C  38 80 00 00 */	li r4, 0
+/* 80442AF0 0043FA30  4B BD A5 45 */	bl __dt__11JKRDisposerFv
+/* 80442AF4 0043FA34  7F E0 07 35 */	extsh. r0, r31
+/* 80442AF8 0043FA38  40 81 00 0C */	ble lbl_80442B04
+/* 80442AFC 0043FA3C  7F C3 F3 78 */	mr r3, r30
+/* 80442B00 0043FA40  4B BE 15 B5 */	bl __dl__FPv
+lbl_80442B04:
+/* 80442B04 0043FA44  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80442B08 0043FA48  7F C3 F3 78 */	mr r3, r30
+/* 80442B0C 0043FA4C  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 80442B10 0043FA50  83 C1 00 08 */	lwz r30, 8(r1)
+/* 80442B14 0043FA54  7C 08 03 A6 */	mtlr r0
+/* 80442B18 0043FA58  38 21 00 10 */	addi r1, r1, 0x10
+/* 80442B1C 0043FA5C  4E 80 00 20 */	blr 
+
+.global __ct__Q34Game10MemoryCard3MgrFv
+__ct__Q34Game10MemoryCard3MgrFv:
+/* 80442B20 0043FA60  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 80442B24 0043FA64  7C 08 02 A6 */	mflr r0
+/* 80442B28 0043FA68  90 01 00 14 */	stw r0, 0x14(r1)
+/* 80442B2C 0043FA6C  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 80442B30 0043FA70  7C 7F 1B 78 */	mr r31, r3
+/* 80442B34 0043FA74  4B FF DA BD */	bl __ct__13MemoryCardMgrFv
+/* 80442B38 0043FA78  3C 80 80 4F */	lis r4, __vt__Q34Game10MemoryCard3Mgr@ha
+/* 80442B3C 0043FA7C  3C 60 80 4A */	lis r3, lbl_8049ADF4@ha
+/* 80442B40 0043FA80  38 04 CF AC */	addi r0, r4, __vt__Q34Game10MemoryCard3Mgr@l
+/* 80442B44 0043FA84  38 C0 00 3C */	li r6, 0x3c
+/* 80442B48 0043FA88  90 1F 00 00 */	stw r0, 0(r31)
+/* 80442B4C 0043FA8C  38 00 00 00 */	li r0, 0
+/* 80442B50 0043FA90  3C 80 00 01 */	lis r4, 0x0000C000@ha
+/* 80442B54 0043FA94  38 63 AD F4 */	addi r3, r3, lbl_8049ADF4@l
+/* 80442B58 0043FA98  90 1F 00 D8 */	stw r0, 0xd8(r31)
+/* 80442B5C 0043FA9C  38 84 C0 00 */	addi r4, r4, 0x0000C000@l
+/* 80442B60 0043FAA0  7C 85 23 78 */	mr r5, r4
+/* 80442B64 0043FAA4  90 1F 00 DC */	stw r0, 0xdc(r31)
+/* 80442B68 0043FAA8  90 1F 00 E0 */	stw r0, 0xe0(r31)
+/* 80442B6C 0043FAAC  98 1F 00 E4 */	stb r0, 0xe4(r31)
+/* 80442B70 0043FAB0  98 1F 00 E5 */	stb r0, 0xe5(r31)
+/* 80442B74 0043FAB4  98 1F 00 E6 */	stb r0, 0xe6(r31)
+/* 80442B78 0043FAB8  98 1F 00 E7 */	stb r0, 0xe7(r31)
+/* 80442B7C 0043FABC  4C C6 31 82 */	crclr 6
+/* 80442B80 0043FAC0  4B CA AB 6D */	bl OSReport
+/* 80442B84 0043FAC4  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80442B88 0043FAC8  7F E3 FB 78 */	mr r3, r31
+/* 80442B8C 0043FACC  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 80442B90 0043FAD0  7C 08 03 A6 */	mtlr r0
+/* 80442B94 0043FAD4  38 21 00 10 */	addi r1, r1, 0x10
+/* 80442B98 0043FAD8  4E 80 00 20 */	blr 
+
+.global isErrorOccured__Q34Game10MemoryCard3MgrFv
+isErrorOccured__Q34Game10MemoryCard3MgrFv:
+/* 80442B9C 0043FADC  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 80442BA0 0043FAE0  7C 08 02 A6 */	mflr r0
+/* 80442BA4 0043FAE4  90 01 00 14 */	stw r0, 0x14(r1)
+/* 80442BA8 0043FAE8  48 00 2F 65 */	bl getCardStatus__Q34Game10MemoryCard3MgrFv
+/* 80442BAC 0043FAEC  20 83 00 02 */	subfic r4, r3, 2
+/* 80442BB0 0043FAF0  38 03 FF FE */	addi r0, r3, -2
+/* 80442BB4 0043FAF4  7C 80 03 78 */	or r0, r4, r0
+/* 80442BB8 0043FAF8  54 03 0F FE */	srwi r3, r0, 0x1f
+/* 80442BBC 0043FAFC  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80442BC0 0043FB00  7C 08 03 A6 */	mtlr r0
+/* 80442BC4 0043FB04  38 21 00 10 */	addi r1, r1, 0x10
+/* 80442BC8 0043FB08  4E 80 00 20 */	blr
 
 .global loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap
 loadResource__Q34Game10MemoryCard3MgrFP7JKRHeap:

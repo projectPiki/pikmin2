@@ -10,6 +10,15 @@ lbl_80499C28:
 	.asciz "P2Assert"
 	.skip 7
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__9DvdThread
+__vt__9DvdThread:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__9DvdThreadFv
+	.4byte run__9DvdThreadFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805204B0

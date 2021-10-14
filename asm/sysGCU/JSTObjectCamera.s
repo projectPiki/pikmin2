@@ -1,4 +1,67 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EC110
+lbl_804EC110:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game5P2JST12ObjectCamera
+__vt__Q34Game5P2JST12ObjectCamera:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game5P2JST12ObjectCameraFv
+	.4byte JSGFGetType__Q26JStage7TCameraCFv
+	.4byte JSGGetName__Q34Game5P2JST12ObjectCameraCFv
+	.4byte JSGUpdate__Q26JStage7TObjectFv
+	.4byte JSGGetFlag__Q34Game5P2JST12ObjectCameraCFv
+	.4byte JSGSetFlag__Q34Game5P2JST12ObjectCameraFUl
+	.4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+	.4byte JSGSetData__Q34Game5P2JST12ObjectCameraFUlPCvUl
+	.4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+	.4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+	.4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+	.4byte JSGFindNodeID__Q26JStage7TObjectCFPCc
+	.4byte JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f
+	.4byte JSGGetProjectionType__Q26JStage7TCameraCFv
+	.4byte JSGSetProjectionType__Q26JStage7TCameraFQ26JStage18TECameraProjection
+	.4byte JSGGetProjectionNear__Q34Game5P2JST12ObjectCameraCFv
+	.4byte JSGSetProjectionNear__Q34Game5P2JST12ObjectCameraFf
+	.4byte JSGGetProjectionFar__Q34Game5P2JST12ObjectCameraCFv
+	.4byte JSGSetProjectionFar__Q34Game5P2JST12ObjectCameraFf
+	.4byte JSGGetProjectionFovy__Q34Game5P2JST12ObjectCameraCFv
+	.4byte JSGSetProjectionFovy__Q34Game5P2JST12ObjectCameraFf
+	.4byte JSGGetProjectionAspect__Q34Game5P2JST12ObjectCameraCFv
+	.4byte JSGSetProjectionAspect__Q34Game5P2JST12ObjectCameraFf
+	.4byte JSGGetProjectionField__Q26JStage7TCameraCFPf
+	.4byte JSGSetProjectionField__Q26JStage7TCameraFPCf
+	.4byte JSGGetViewType__Q26JStage7TCameraCFv
+	.4byte JSGSetViewType__Q26JStage7TCameraFQ26JStage12TECameraView
+	.4byte JSGGetViewPosition__Q34Game5P2JST12ObjectCameraCFP3Vec
+	.4byte JSGSetViewPosition__Q34Game5P2JST12ObjectCameraFRC3Vec
+	.4byte JSGGetViewUpVector__Q26JStage7TCameraCFP3Vec
+	.4byte JSGSetViewUpVector__Q26JStage7TCameraFRC3Vec
+	.4byte JSGGetViewTargetPosition__Q34Game5P2JST12ObjectCameraCFP3Vec
+	.4byte JSGSetViewTargetPosition__Q34Game5P2JST12ObjectCameraFRC3Vec
+	.4byte JSGGetViewRoll__Q34Game5P2JST12ObjectCameraCFv
+	.4byte JSGSetViewRoll__Q34Game5P2JST12ObjectCameraFf
+	.4byte 0
+	.4byte 0
+	.4byte "@4@reset__Q34Game5P2JST12ObjectCameraFv"
+	.4byte "@4@update__Q34Game5P2JST12ObjectCameraFv"
+	.4byte "@4@start__Q34Game5P2JST12ObjectCameraFv"
+	.4byte "@4@stop__Q34Game5P2JST12ObjectCameraFv"
+	.4byte parseUserData___Q34Game5P2JST10ObjectBaseFUlPCv
+	.4byte updateCamera__Q34Game5P2JST12ObjectCameraFv
+	.4byte setProjection__Q34Game5P2JST12ObjectCameraFv
+	.4byte setView__Q34Game5P2JST12ObjectCameraFv
+	.4byte isRunning__Q34Game5P2JST12ObjectCameraFv
+	.4byte reset__Q34Game5P2JST12ObjectCameraFv
+	.4byte update__Q34Game5P2JST12ObjectCameraFv
+	.4byte start__Q34Game5P2JST12ObjectCameraFv
+	.4byte stop__Q34Game5P2JST12ObjectCameraFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520698

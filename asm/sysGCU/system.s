@@ -79,6 +79,109 @@ lbl_804999E4:
 	.asciz "no display"
 	.skip 0x1
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global localNtsc608x448IntDfProg
+localNtsc608x448IntDfProg:
+	.4byte 0x00000002
+	.4byte 0x026001C0
+	.4byte 0x01C0001B
+	.4byte 0x0010029A
+	.4byte 0x01C00000
+	.4byte 0x00000000
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060000
+	.4byte 0x15161500
+	.4byte 0x00000000
+.global localNtsc608x448IntDf
+localNtsc608x448IntDf:
+	.4byte 0x00000000
+	.4byte 0x026001C0
+	.4byte 0x01C0001B
+	.4byte 0x0010029A
+	.4byte 0x01C00000
+	.4byte 0x00000001
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060707
+	.4byte 0x0C0C0C07
+	.4byte 0x07000000
+.global localPal608x448IntDf
+localPal608x448IntDf:
+	.4byte 0x00000004
+	.4byte 0x026001C0
+	.4byte 0x021A0019
+	.4byte 0x0012029E
+	.4byte 0x021A0000
+	.4byte 0x00000001
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060707
+	.4byte 0x0C0C0C07
+	.4byte 0x07000000
+.global localPal60608x448IntDf
+localPal60608x448IntDf:
+	.4byte 0x00000014
+	.4byte 0x026001C0
+	.4byte 0x01C0001B
+	.4byte 0x0010029A
+	.4byte 0x01C00000
+	.4byte 0x00000001
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060707
+	.4byte 0x0C0C0C07
+	.4byte 0x07000000
+.global sRenderModeTable
+sRenderModeTable:
+	.4byte 0x804EBA7C
+	.4byte 0x804EBA40
+	.4byte 0x804EBAB8
+	.4byte 0x804EBAF4
+.global lbl_804EBB40
+lbl_804EBB40:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x80422718
+.global lbl_804EBB4C
+lbl_804EBB4C:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x80422800
+.global __vt__9AppThread
+__vt__9AppThread:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__9AppThreadFv
+	.4byte run__9JKRThreadFv
+.global "__vt__17Delegate<6System>"
+"__vt__17Delegate<6System>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__17Delegate<6System>Fv"
+.global __vt__Q23PSM7Factory
+__vt__Q23PSM7Factory:
+	.4byte 0
+	.4byte 0
+	.4byte newSceneMgr__Q23PSM7FactoryFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global gStrSystem_Abort

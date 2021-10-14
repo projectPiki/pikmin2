@@ -164,6 +164,47 @@ lbl_8049A118:
 	.4byte 0x20252E31
 	.4byte 0x664B0000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EBFB0
+lbl_804EBFB0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804EBFBC
+lbl_804EBFBC:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x8042D130
+.global lbl_804EBFC8
+lbl_804EBFC8:
+	.4byte 0x8042D6B0
+	.4byte 0x8042D6B8
+	.4byte 0x8042D734
+	.4byte 0x8042D894
+	.4byte 0x8042D8A0
+	.4byte 0x8042D8AC
+	.4byte 0x8042D8B8
+	.4byte 0x8042DB64
+.global __vt__Q24Game12MovieContext
+__vt__Q24Game12MovieContext:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game12MovieContextFv
+	.4byte getChildCount__5CNodeFv
+	.4byte getChild__Q24Game12MovieContextFv
+	.4byte getNext__Q24Game12MovieContextFv
+.global "__vt__30Delegate<Q24Game11MoviePlayer>"
+"__vt__30Delegate<Q24Game11MoviePlayer>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__30Delegate<Q24Game11MoviePlayer>Fv"
+.global __vt__Q24Game11MoviePlayer
+__vt__Q24Game11MoviePlayer:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game11MoviePlayerFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520610

@@ -70,6 +70,67 @@ lbl_8049A264:
 	.4byte 0x61202825
 	.4byte 0x64290A00
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EC1F0
+lbl_804EC1F0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game5P2JST15ObjectGameActor
+__vt__Q34Game5P2JST15ObjectGameActor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game5P2JST15ObjectGameActorFv
+	.4byte JSGFGetType__Q26JStage6TActorCFv
+	.4byte JSGGetName__Q34Game5P2JST11ObjectActorCFv
+	.4byte JSGUpdate__Q26JStage7TObjectFv
+	.4byte JSGGetFlag__Q34Game5P2JST11ObjectActorCFv
+	.4byte JSGSetFlag__Q34Game5P2JST11ObjectActorFUl
+	.4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+	.4byte JSGSetData__Q34Game5P2JST11ObjectActorFUlPCvUl
+	.4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+	.4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+	.4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+	.4byte JSGFindNodeID__Q34Game5P2JST15ObjectGameActorCFPCc
+	.4byte JSGGetNodeTransformation__Q34Game5P2JST15ObjectGameActorCFUlPA4_f
+	.4byte JSGGetTranslation__Q34Game5P2JST15ObjectGameActorCFP3Vec
+	.4byte JSGSetTranslation__Q34Game5P2JST15ObjectGameActorFRC3Vec
+	.4byte JSGGetScaling__Q34Game5P2JST11ObjectActorCFP3Vec
+	.4byte JSGSetScaling__Q34Game5P2JST11ObjectActorFRC3Vec
+	.4byte JSGGetRotation__Q34Game5P2JST15ObjectGameActorCFP3Vec
+	.4byte JSGSetRotation__Q34Game5P2JST15ObjectGameActorFRC3Vec
+	.4byte JSGGetShape__Q34Game5P2JST11ObjectActorCFv
+	.4byte JSGSetShape__Q34Game5P2JST15ObjectGameActorFUl
+	.4byte JSGGetAnimation__Q34Game5P2JST11ObjectActorCFv
+	.4byte JSGSetAnimation__Q34Game5P2JST15ObjectGameActorFUl
+	.4byte JSGGetAnimationFrame__Q34Game5P2JST11ObjectActorCFv
+	.4byte JSGSetAnimationFrame__Q34Game5P2JST11ObjectActorFf
+	.4byte JSGGetAnimationFrameMax__Q34Game5P2JST11ObjectActorCFv
+	.4byte JSGGetAnimationTransition__Q26JStage6TActorCFv
+	.4byte JSGSetAnimationTransition__Q26JStage6TActorFf
+	.4byte JSGGetTextureAnimation__Q26JStage6TActorCFv
+	.4byte JSGSetTextureAnimation__Q26JStage6TActorFUl
+	.4byte JSGGetTextureAnimationFrame__Q26JStage6TActorCFv
+	.4byte JSGSetTextureAnimationFrame__Q26JStage6TActorFf
+	.4byte JSGGetTextureAnimationFrameMax__Q26JStage6TActorCFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@reset__Q34Game5P2JST15ObjectGameActorFv"
+	.4byte "@4@update__Q34Game5P2JST15ObjectGameActorFv"
+	.4byte "@4@start__Q34Game5P2JST11ObjectActorFv"
+	.4byte "@4@stop__Q34Game5P2JST15ObjectGameActorFv"
+	.4byte "@4@parseUserData___Q34Game5P2JST15ObjectGameActorFUlPCv"
+	.4byte reset__Q34Game5P2JST15ObjectGameActorFv
+	.4byte update__Q34Game5P2JST15ObjectGameActorFv
+	.4byte entry__Q34Game5P2JST11ObjectActorFv
+	.4byte start__Q34Game5P2JST11ObjectActorFv
+	.4byte stop__Q34Game5P2JST15ObjectGameActorFv
+	.4byte setShape__Q34Game5P2JST11ObjectActorFv
+	.4byte setAnim__Q34Game5P2JST11ObjectActorFv
+	.4byte mountArchive__Q34Game5P2JST11ObjectActorFv
+	.4byte parseUserData___Q34Game5P2JST15ObjectGameActorFUlPCv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805206B8

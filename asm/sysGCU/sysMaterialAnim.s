@@ -14,6 +14,55 @@ lbl_8049A6B4:
 	.4byte 0x73657274
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23Sys17MatRepeatAnimator
+__vt__Q23Sys17MatRepeatAnimator:
+	.4byte 0
+	.4byte 0
+	.4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
+	.4byte onStart__Q23Sys17MatRepeatAnimatorFv
+	.4byte do_animate__Q23Sys17MatRepeatAnimatorFf
+.global __vt__Q23Sys15MatLoopAnimator
+__vt__Q23Sys15MatLoopAnimator:
+	.4byte 0
+	.4byte 0
+	.4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
+	.4byte onStart__Q23Sys15MatBaseAnimatorFv
+	.4byte do_animate__Q23Sys15MatLoopAnimatorFf
+.global __vt__Q23Sys15MatBaseAnimator
+__vt__Q23Sys15MatBaseAnimator:
+	.4byte 0
+	.4byte 0
+	.4byte start__Q23Sys15MatBaseAnimatorFPQ23Sys16MatBaseAnimation
+	.4byte onStart__Q23Sys15MatBaseAnimatorFv
+	.4byte do_animate__Q23Sys15MatBaseAnimatorFf
+.global __vt__Q23Sys18MatTevRegAnimation
+__vt__Q23Sys18MatTevRegAnimation:
+	.4byte 0
+	.4byte 0
+	.4byte onAttachResource__Q23Sys18MatTevRegAnimationFPv
+	.4byte getAnmBase__Q23Sys18MatTevRegAnimationFv
+	.4byte set__Q23Sys18MatTevRegAnimationFv
+	.4byte remove__Q23Sys18MatTevRegAnimationFv
+.global __vt__Q23Sys15MatTexAnimation
+__vt__Q23Sys15MatTexAnimation:
+	.4byte 0
+	.4byte 0
+	.4byte onAttachResource__Q23Sys15MatTexAnimationFPv
+	.4byte getAnmBase__Q23Sys15MatTexAnimationFv
+	.4byte set__Q23Sys15MatTexAnimationFv
+	.4byte remove__Q23Sys15MatTexAnimationFv
+.global __vt__Q23Sys16MatBaseAnimation
+__vt__Q23Sys16MatBaseAnimation:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520780

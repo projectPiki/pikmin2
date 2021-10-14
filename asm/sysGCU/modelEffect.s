@@ -14,6 +14,29 @@ lbl_8049AC30:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ECBA0
+lbl_804ECBA0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__11ModelEffect
+__vt__11ModelEffect:
+	.4byte 0
+	.4byte 0
+	.4byte constructor__11ModelEffectFv
+	.4byte doAnimation__11ModelEffectFv
+	.4byte doEntry__11ModelEffectFv
+	.4byte doSetView__11ModelEffectFi
+	.4byte doViewCalc__11ModelEffectFv
+	.4byte changeMaterial__11ModelEffectFv
+	.4byte 0
+	.4byte useCylinderLOD__11ModelEffectFv
+	.4byte getLODCylinder__11ModelEffectFRQ23Sys8Cylinder
+	.4byte doSimulation__11ModelEffectFf
+	.4byte doDirectDraw__11ModelEffectFR8Graphics
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global entry__15ModelEffectDataFv
 entry__15ModelEffectDataFv:

@@ -24,6 +24,55 @@ lbl_8049A65C:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EC3D8
+lbl_804EC3D8:
+	.4byte 0x00000000
+	.4byte 0x0000001C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000024
+	.4byte 0x00000000
+.global __vt__Q28Resource3Mgr
+__vt__Q28Resource3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte drawDump__Q28Resource3MgrFR8Graphicsii
+.global __vt__Q28Resource10MgrCommand
+__vt__Q28Resource10MgrCommand:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Resource10MgrCommandFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q28Resource10MgrCommandFv"
+	.4byte memoryCallBackFunc__Q28Resource10MgrCommandFv
+	.4byte dvdLoadCallBackFunc__Q28Resource10MgrCommandFv
+	.4byte aramLoadCallBackFunc__Q28Resource10MgrCommandFv
+.global "__vt__33Delegate<Q28Resource10MgrCommand>"
+"__vt__33Delegate<Q28Resource10MgrCommand>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__33Delegate<Q28Resource10MgrCommand>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28Resource4Node
+__vt__Q28Resource4Node:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Resource4NodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q28Resource4NodeFv"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q28Resource4NodeFv
 __dt__Q28Resource4NodeFv:

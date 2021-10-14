@@ -3500,5 +3500,4 @@ init$3854_1:
 	.skip 0x4
 .global sTHPDinamicsProc__3PSM
 sTHPDinamicsProc__3PSM:
-	#.skip 0xAB00
 	.skip 0x20

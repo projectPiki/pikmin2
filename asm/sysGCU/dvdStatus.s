@@ -30,6 +30,19 @@ lbl_80499DA8:
 	.4byte 0x2E202564
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EBE20
+lbl_804EBE20:
+	.4byte 0x8042A6C4
+	.4byte 0x8042A6D4
+	.4byte 0x8042A6E4
+	.4byte 0x8042A724
+	.4byte 0x8042A6F4
+	.4byte 0x8042A704
+	.4byte 0x8042A714
+	.4byte 0x00000000
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520570

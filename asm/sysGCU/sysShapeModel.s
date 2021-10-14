@@ -10,6 +10,35 @@ lbl_8049AC90:
 	.4byte 0x70000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ECC00
+lbl_804ECC00:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q28SysShape5Joint
+__vt__Q28SysShape5Joint:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28SysShape5JointFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q28SysShape5Model
+__vt__Q28SysShape5Model:
+	.4byte 0
+	.4byte 0
+	.4byte getMatrix__Q28SysShape5ModelFi
+	.4byte isModel__Q28SysShape5ModelFv
+	.4byte isVisible__Q28SysShape5ModelFRQ23Sys6Sphere
+	.4byte isVisible__Q28SysShape5ModelFv
+	.4byte hide__Q28SysShape5ModelFv
+	.4byte show__Q28SysShape5ModelFv
+	.4byte hidePackets__Q28SysShape5ModelFv
+	.4byte showPackets__Q28SysShape5ModelFv
+	.4byte jointVisible__Q28SysShape5ModelFbi
+	.4byte jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520908

@@ -38,6 +38,33 @@ lbl_8049A3D8:
 	.4byte 0x73657274
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EC368
+lbl_804EC368:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game9MovieList
+__vt__Q24Game9MovieList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game9MovieListFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game11MovieConfig6TParms
+__vt__Q34Game11MovieConfig6TParms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game11MovieConfig6TParmsFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game11MovieConfig
+__vt__Q24Game11MovieConfig:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game11MovieConfigFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805206F8

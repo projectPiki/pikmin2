@@ -30,6 +30,37 @@ lbl_80499D10:
 	.asciz "reached eof\n"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EBDC8
+lbl_804EBDC8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q28SysShape8AnimInfo
+__vt__Q28SysShape8AnimInfo:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28SysShape8AnimInfoFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q28SysShape7AnimMgr
+__vt__Q28SysShape7AnimMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28SysShape7AnimMgrFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q28SysShape13BlendAnimator
+__vt__Q28SysShape13BlendAnimator:
+	.4byte 0
+	.4byte 0
+	.4byte getCalc__Q28SysShape13BlendAnimatorFv
+.global __vt__Q28SysShape8Animator
+__vt__Q28SysShape8Animator:
+	.4byte 0
+	.4byte 0
+	.4byte getCalc__Q28SysShape8AnimatorFv
+	.4byte animate__Q28SysShape8AnimatorFf
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520528

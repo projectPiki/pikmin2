@@ -32,6 +32,29 @@ lbl_8049ABD4:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q25P2JME8TControl
+__vt__Q25P2JME8TControl:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q25P2JME8TControlFv
+	.4byte reset__Q25P2JME8TControlFv
+	.4byte update__Q25P2JME8TControlFv
+	.4byte update__Q25P2JME8TControlFP10ControllerP10Controller
+	.4byte draw__Q25P2JME8TControlFR8Graphics
+	.4byte draw__Q25P2JME8TControlFPA4_fPA4_f
+	.4byte setMessageID__Q25P2JME8TControlFUlUl
+	.4byte setMessageID__Q25P2JME8TControlFPc
+	.4byte setMessageID__Q25P2JME8TControlFUx
+	.4byte setMessageCode__Q25P2JME8TControlFUsUs
+	.4byte setMessageCode__Q25P2JME8TControlFUl
+	.4byte onInit__Q25P2JME8TControlFv
+	.4byte createReference__Q25P2JME8TControlFv
+	.4byte createResourceContainer__Q25P2JME8TControlFv
+	.4byte createSequenceProcessor__Q25P2JME8TControlFv
+	.4byte createRenderingProcessor__Q25P2JME8TControlFv
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805208A8

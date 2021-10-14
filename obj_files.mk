@@ -1090,7 +1090,6 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
 
 TEXT_PT3:=\
-	$(BUILD_DIR)/asm/data_01.o\
 	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/section.o\
@@ -1138,7 +1137,6 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
 	$(BUILD_DIR)/asm/sysGCU/windowMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/memoryCard.o\
-	$(BUILD_DIR)/src/sysGCU/pikmin2MemoryCardMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2MemoryCardMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/commonSaveData.o\
 	$(BUILD_DIR)/asm/sysGCU/bootSection.o\

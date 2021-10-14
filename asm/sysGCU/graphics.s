@@ -10,6 +10,27 @@ lbl_80499C48:
 	.asciz "draw axis"
 	.skip 6
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EBD98
+lbl_804EBD98:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__17HorizonalSplitter
+__vt__17HorizonalSplitter:
+	.4byte 0
+	.4byte 0
+	.4byte split2__17HorizonalSplitterFf
+	.4byte split4__8SplitterFff
+.global __vt__8Splitter
+__vt__8Splitter:
+	.4byte 0
+	.4byte 0
+	.4byte split2__8SplitterFf
+	.4byte split4__8SplitterFff
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805204B8

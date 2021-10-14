@@ -32,6 +32,21 @@ lbl_80499E38:
 	.4byte 0x4981490A
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__8TimerInf
+__vt__8TimerInf:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8TimerInfFv
+.global __vt__9SysTimers
+__vt__9SysTimers:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__9SysTimersFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520588

@@ -1,4 +1,13 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q25P2JME10TReference
+__vt__Q25P2JME10TReference:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q25P2JME10TReferenceFv
+	.4byte do_word__Q25P2JME10TReferenceCFUl
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805208E8

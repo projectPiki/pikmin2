@@ -6,6 +6,63 @@ lbl_804997B8:
 	.asciz "# %d/%d\r\n"
 	.skip 0x6
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q37MapCode3Mgr9CodeArray
+__vt__Q37MapCode3Mgr9CodeArray:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37MapCode3Mgr9CodeArrayFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q27MapCode4Code>FPv"
+	.4byte "getNext__31ArrayContainer<Q27MapCode4Code>FPv"
+	.4byte "getStart__31ArrayContainer<Q27MapCode4Code>Fv"
+	.4byte "getEnd__31ArrayContainer<Q27MapCode4Code>Fv"
+	.4byte "get__31ArrayContainer<Q27MapCode4Code>FPv"
+	.4byte "getAt__31ArrayContainer<Q27MapCode4Code>Fi"
+	.4byte "getTo__31ArrayContainer<Q27MapCode4Code>Fv"
+	.4byte writeObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code
+	.4byte readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code
+	.4byte "write__31ArrayContainer<Q27MapCode4Code>FR6Stream"
+	.4byte "read__31ArrayContainer<Q27MapCode4Code>FR6Stream"
+	.4byte "alloc__31ArrayContainer<Q27MapCode4Code>Fi"
+	.4byte "addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code"
+	.4byte "setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei"
+.global "__vt__31ArrayContainer<Q27MapCode4Code>"
+"__vt__31ArrayContainer<Q27MapCode4Code>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__31ArrayContainer<Q27MapCode4Code>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q27MapCode4Code>FPv"
+	.4byte "getNext__31ArrayContainer<Q27MapCode4Code>FPv"
+	.4byte "getStart__31ArrayContainer<Q27MapCode4Code>Fv"
+	.4byte "getEnd__31ArrayContainer<Q27MapCode4Code>Fv"
+	.4byte "get__31ArrayContainer<Q27MapCode4Code>FPv"
+	.4byte "getAt__31ArrayContainer<Q27MapCode4Code>Fi"
+	.4byte "getTo__31ArrayContainer<Q27MapCode4Code>Fv"
+	.4byte "writeObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code"
+	.4byte "readObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code"
+	.4byte "write__31ArrayContainer<Q27MapCode4Code>FR6Stream"
+	.4byte "read__31ArrayContainer<Q27MapCode4Code>FR6Stream"
+	.4byte "alloc__31ArrayContainer<Q27MapCode4Code>Fi"
+	.4byte "addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code"
+	.4byte "setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei"
+.global "__vt__26Container<Q27MapCode4Code>"
+"__vt__26Container<Q27MapCode4Code>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__26Container<Q27MapCode4Code>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q27MapCode4Code>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__26Container<Q27MapCode4Code>Fi"
+	.4byte "getTo__26Container<Q27MapCode4Code>Fv"
+	.4byte 0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805203A8

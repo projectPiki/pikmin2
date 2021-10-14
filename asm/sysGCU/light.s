@@ -10,6 +10,35 @@ lbl_80499EF8:
 	.4byte 0x83670000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EBE88
+lbl_804EBE88:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__8LightMgr
+__vt__8LightMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8LightMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__8LightMgrFv
+	.4byte set__8LightMgrFR8Graphics
+	.4byte set__8LightMgrFR7Matrixf
+	.4byte drawDebugInfo__8LightMgrFR8Graphics
+.global __vt__8LightObj
+__vt__8LightObj:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8LightObjFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__8LightObjFv
+	.4byte set__8LightObjFR7Matrixf
+	.4byte drawPos__8LightObjFR8Graphics
+	.4byte drawPos__8LightObjFR8GraphicsR7Matrixf
+	.4byte drawPos__8LightObjFR8GraphicsR6Camera
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805205A8

@@ -14,6 +14,15 @@ lbl_8049A694:
 	.4byte 0x73657274
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28Resource5Mgr2D
+__vt__Q28Resource5Mgr2D:
+	.4byte 0
+	.4byte 0
+	.4byte drawDump__Q28Resource3MgrFR8Graphicsii
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q28Resource5Mgr2DFP7JKRHeap
 init__Q28Resource5Mgr2DFP7JKRHeap:
