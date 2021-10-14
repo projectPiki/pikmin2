@@ -2075,172 +2075,198 @@ lbl_8047B434:
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000000
-	.4byte 0x50656C70
-	.4byte 0x6C616E74
-	.4byte 0x00000000
-	.4byte 0x4B6F6368
-	.4byte 0x61707079
-	.4byte 0x00000000
-	.4byte 0x426C7565
-	.4byte 0x4B6F6368
-	.4byte 0x61707079
-	.4byte 0x00000000
-	.4byte 0x59656C6C
-	.4byte 0x6F774B6F
-	.4byte 0x63686170
-	.4byte 0x70790000
-	.4byte 0x4B756D61
-	.4byte 0x4B6F6368
-	.4byte 0x61707079
-	.4byte 0x00000000
-	.4byte 0x426C7565
-	.4byte 0x43686170
-	.4byte 0x70790000
-	.4byte 0x59656C6C
-	.4byte 0x6F774368
-	.4byte 0x61707079
-	.4byte 0x00000000
-	.4byte 0x59656C6C
-	.4byte 0x6F77506F
-	.4byte 0x6D000000
-	.4byte 0x426C6163
-	.4byte 0x6B506F6D
-	.4byte 0x00000000
-	.4byte 0x57686974
-	.4byte 0x65506F6D
-	.4byte 0x00000000
-	.4byte 0x4D61726F
-	.4byte 0x46726F67
-	.4byte 0x00000000
-	.4byte 0x496D6F6D
-	.4byte 0x75736869
-	.4byte 0x00000000
-	.4byte 0x456C6563
-	.4byte 0x48696261
-	.4byte 0x00000000
-	.4byte 0x426F6D62
-	.4byte 0x53617261
-	.4byte 0x69000000
-	.4byte 0x48616E61
-	.4byte 0x63686972
-	.4byte 0x61736869
-	.4byte 0x00000000
-	.4byte 0x4F6E694B
-	.4byte 0x75726167
-	.4byte 0x65000000
-	.4byte 0x46697265
-	.4byte 0x43686170
-	.4byte 0x70790000
-	.4byte 0x4B756D61
-	.4byte 0x43686170
-	.4byte 0x70790000
-	.4byte 0x4C656166
-	.4byte 0x43686170
-	.4byte 0x70790000
-	.4byte 0x536E616B
-	.4byte 0x6543726F
-	.4byte 0x77000000
-	.4byte 0x536E616B
-	.4byte 0x6557686F
-	.4byte 0x6C650000
-	.4byte 0x50616E4D
-	.4byte 0x6F646F6B
-	.4byte 0x69000000
-	.4byte 0x4F6F5061
-	.4byte 0x6E4D6F64
-	.4byte 0x6F6B6900
-	.4byte 0x50616E48
-	.4byte 0x6F757365
-	.4byte 0x00000000
-	.4byte 0x48696B61
-	.4byte 0x72694B69
-	.4byte 0x6E6F6B6F
-	.4byte 0x00000000
-	.4byte 0x4B617265
-	.4byte 0x4F6F696E
-	.4byte 0x755F7300
-	.4byte 0x4B617265
-	.4byte 0x4F6F696E
-	.4byte 0x755F6C00
-	.4byte 0x57616B61
-	.4byte 0x6D655F73
-	.4byte 0x00000000
-	.4byte 0x57616B61
-	.4byte 0x6D655F6C
-	.4byte 0x00000000
-	.4byte 0x4461696F
-	.4byte 0x646F5265
-	.4byte 0x64000000
-	.4byte 0x4461696F
-	.4byte 0x646F4772
-	.4byte 0x65656E00
-	.4byte 0x4E656B6F
-	.4byte 0x6A617261
-	.4byte 0x73686900
-	.4byte 0x43686979
-	.4byte 0x6F67616D
-	.4byte 0x69000000
-	.4byte 0x4B696E67
-	.4byte 0x43686170
-	.4byte 0x70790000
-	.4byte 0x44616D61
-	.4byte 0x67756D6F
-	.4byte 0x00000000
-	.4byte 0x46697265
-	.4byte 0x4F74616B
-	.4byte 0x61726100
-	.4byte 0x57617465
-	.4byte 0x724F7461
-	.4byte 0x6B617261
-	.4byte 0x00000000
-	.4byte 0x4761734F
-	.4byte 0x74616B61
-	.4byte 0x72610000
-	.4byte 0x456C6563
-	.4byte 0x4F74616B
-	.4byte 0x61726100
-	.4byte 0x54616D61
-	.4byte 0x676F4D75
-	.4byte 0x73686900
-	.4byte 0x556D694D
-	.4byte 0x75736869
-	.4byte 0x42617365
-	.4byte 0x00000000
-	.4byte 0x556D694D
-	.4byte 0x75736869
-	.4byte 0x00000000
-	.4byte 0x556D694D
-	.4byte 0x75736869
-	.4byte 0x426C696E
-	.4byte 0x64000000
-	.4byte 0x42696754
-	.4byte 0x72656173
-	.4byte 0x75726500
-	.4byte 0x5368696A
-	.4byte 0x696D6943
-	.4byte 0x686F7500
-	.4byte 0x4D696E69
-	.4byte 0x486F7564
-	.4byte 0x61690000
-	.4byte 0x466D696E
-	.4byte 0x69486F75
-	.4byte 0x64616900
-	.4byte 0x426F6D62
-	.4byte 0x4F74616B
-	.4byte 0x61726100
-	.4byte 0x426C6163
-	.4byte 0x6B4D616E
-	.4byte 0x00000000
-	.4byte 0x44616E67
-	.4byte 0x6F4D7573
-	.4byte 0x68690000
-	.4byte 0x00000000
+.global lbl_8047B448
+lbl_8047B448:
+	.asciz "Pelplant"
+	.skip 3
+.global lbl_8047B454
+lbl_8047B454:
+	.asciz "Kochappy"
+	.skip 3
+.global lbl_8047B460
+lbl_8047B460:
+	.asciz "BlueKochappy"
+	.skip 3
+.global lbl_8047B470
+lbl_8047B470:
+	.asciz "YellowKochappy"
+	.skip 1
+.global lbl_8047B480
+lbl_8047B480:
+	.asciz "KumaKochappy"
+	.skip 3
+.global lbl_8047B490
+lbl_8047B490:
+	.asciz "BlueChappy"
+	.skip 1
+.global lbl_8047B49C
+lbl_8047B49C:
+	.asciz "YellowChappy"
+	.skip 3
+.global lbl_8047B4AC
+lbl_8047B4AC:
+	.asciz "YellowPom"
+	.skip 2
+.global lbl_8047B4B8
+lbl_8047B4B8:
+	.asciz "BlackPom"
+	.skip 3
+.global lbl_8047B4C4
+lbl_8047B4C4:
+	.asciz "WhitePom"
+	.skip 3
+.global lbl_8047B4D0
+lbl_8047B4D0:
+	.asciz "MaroFrog"
+	.skip 3
+.global lbl_8047B4DC
+lbl_8047B4DC:
+	.asciz "Imomushi"
+	.skip 3
+.global lbl_8047B4E8
+lbl_8047B4E8:
+	.asciz "ElecHiba"
+	.skip 3
+.global lbl_8047B4F4
+lbl_8047B4F4:
+	.asciz "BombSarai"
+	.skip 2
+.global lbl_8047B500
+lbl_8047B500:
+	.asciz "Hanachirashi"
+	.skip 3
+.global lbl_8047B510
+lbl_8047B510:
+	.asciz "OniKurage"
+	.skip 2
+.global lbl_8047B51C
+lbl_8047B51C:
+	.asciz "FireChappy"
+	.skip 1
+.global lbl_8047B528
+lbl_8047B528:
+	.asciz "KumaChappy"
+	.skip 1
+.global lbl_8047B534
+lbl_8047B534:
+	.asciz "LeafChappy"
+	.skip 1
+.global lbl_8047B540
+lbl_8047B540:
+	.asciz "SnakeCrow"
+	.skip 2
+.global lbl_8047B54C
+lbl_8047B54C:
+	.asciz "SnakeWhole"
+	.skip 1
+.global lbl_8047B558
+lbl_8047B558:
+	.asciz "PanModoki"
+	.skip 2
+.global lbl_8047B564
+lbl_8047B564:
+	.asciz "OoPanModoki"
+.global lbl_8047B570
+lbl_8047B570:
+	.asciz "PanHouse"
+	.skip 3
+.global lbl_8047B57C
+lbl_8047B57C:
+	.asciz "HikariKinoko"
+	.skip 3
+.global lbl_8047B58C
+lbl_8047B58C:
+	.asciz "KareOoinu_s"
+.global lbl_8047B598
+lbl_8047B598:
+	.asciz "KareOoinu_l"
+.global lbl_8047B5A4
+lbl_8047B5A4:
+	.asciz "Wakame_s"
+	.skip 3
+.global lbl_8047B5B0
+lbl_8047B5B0:
+	.asciz "Wakame_l"
+	.skip 3
+.global lbl_8047B5BC
+lbl_8047B5BC:
+	.asciz "DaiodoRed"
+	.skip 2
+.global lbl_8047B5C8
+lbl_8047B5C8:
+	.asciz "DaiodoGreen"
+.global lbl_8047B5D4
+lbl_8047B5D4:
+	.asciz "Nekojarashi"
+.global lbl_8047B5E0
+lbl_8047B5E0:
+	.asciz "Chiyogami"
+	.skip 2
+.global lbl_8047B5EC
+lbl_8047B5EC:
+	.asciz "KingChappy"
+	.skip 1
+.global lbl_8047B5F8
+lbl_8047B5F8:
+	.asciz "Damagumo"
+	.skip 3
+.global lbl_8047B604
+lbl_8047B604:
+	.asciz "FireOtakara"
+.global lbl_8047B610
+lbl_8047B610:
+	.asciz "WaterOtakara"
+	.skip 3
+.global lbl_8047B620
+lbl_8047B620:
+	.asciz "GasOtakara"
+	.skip 1
+.global lbl_8047B62C
+lbl_8047B62C:
+	.asciz "ElecOtakara"
+.global lbl_8047B638
+lbl_8047B638:
+	.asciz "TamagoMushi"
+.global lbl_8047B644
+lbl_8047B644:
+	.asciz "UmiMushiBase"
+	.skip 3
+.global lbl_8047B654
+lbl_8047B654:
+	.asciz "UmiMushi"
+	.skip 3
+.global lbl_8047B660
+lbl_8047B660:
+	.asciz "UmiMushiBlind"
+	.skip 2
+.global lbl_8047B670
+lbl_8047B670:
+	.asciz "BigTreasure"
+.global lbl_8047B67C
+lbl_8047B67C:
+	.asciz "ShijimiChou"
+.global lbl_8047B688
+lbl_8047B688:
+	.asciz "MiniHoudai"
+	.skip 1
+.global lbl_8047B694
+lbl_8047B694:
+	.asciz "FminiHoudai"
+.global lbl_8047B6A0
+lbl_8047B6A0:
+	.asciz "BombOtakara"
+.global lbl_8047B6AC
+lbl_8047B6AC:
+	.asciz "BlackMan"
+	.skip 3
+.global lbl_8047B6B8
+lbl_8047B6B8:
+	.asciz "DangoMushi"
+	.skip 5
 .global lbl_8047B6C8
 lbl_8047B6C8:
-	.4byte 0x4F627374
-	.4byte 0x61636C65
-	.4byte 0x4E6F6465
-	.4byte 0x00000000
+	.asciz "ObstacleNode"
+	.skip 3
 .global lbl_8047B6D8
 lbl_8047B6D8:
 	.4byte 0x506C616E
