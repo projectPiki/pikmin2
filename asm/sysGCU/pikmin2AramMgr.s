@@ -277,8 +277,7 @@ __vt__Q211Pikmin2ARAM3Mgr:
 .balign 0x8
 .global lbl_80520BE0
 lbl_80520BE0:
-	.4byte 0x454F4600
-	.4byte 0x00000000
+	.asciz "EOF"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q211Pikmin2ARAM3MgrFv
