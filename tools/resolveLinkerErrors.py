@@ -20,7 +20,7 @@ for line in lines:
                 localstr = localstr.strip("\'lbl_")
                 lbls.append(localstr)
                 
-with open("asm/MSound/MSoundBGM.s", "r") as asm:
+with open("asm/utilityU/menu.s", "r") as asm:
     asms = asm.readlines()
 
 prevLine = ""

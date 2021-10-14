@@ -24,3 +24,4 @@ include/*.s
 build/
 tools/mwcc_compiler/
 decomp/
+errors.txt

@@ -1351,15 +1351,19 @@ lbl_8044AF34:
 /* 8044AF6C 00447EAC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8044AF70 00447EB0  7C 09 03 A6 */	mtctr r0
 /* 8044AF74 00447EB4  4E 80 04 20 */	bctr 
+lbl_8044AF78:
 /* 8044AF78 00447EB8  38 00 00 02 */	li r0, 2
 /* 8044AF7C 00447EBC  90 0D 86 78 */	stw r0, mActiveSectionFlag__8GameFlow@sda21(r13)
 /* 8044AF80 00447EC0  48 00 03 7C */	b lbl_8044B2FC
+lbl_8044AF84:
 /* 8044AF84 00447EC4  38 00 00 03 */	li r0, 3
 /* 8044AF88 00447EC8  90 0D 86 78 */	stw r0, mActiveSectionFlag__8GameFlow@sda21(r13)
 /* 8044AF8C 00447ECC  48 00 03 70 */	b lbl_8044B2FC
+lbl_8044AF90:
 /* 8044AF90 00447ED0  38 00 00 1E */	li r0, 0x1e
 /* 8044AF94 00447ED4  90 0D 86 78 */	stw r0, mActiveSectionFlag__8GameFlow@sda21(r13)
 /* 8044AF98 00447ED8  48 00 03 64 */	b lbl_8044B2FC
+lbl_8044AF9C:
 /* 8044AF9C 00447EDC  38 00 00 02 */	li r0, 2
 /* 8044AFA0 00447EE0  38 7E 17 30 */	addi r3, r30, 0x1730
 /* 8044AFA4 00447EE4  90 1E 00 48 */	stw r0, 0x48(r30)
@@ -1424,6 +1428,7 @@ lbl_8044B060:
 /* 8044B07C 00447FBC  88 03 00 3E */	lbz r0, 0x3e(r3)
 /* 8044B080 00447FC0  90 1E 2F 48 */	stw r0, 0x2f48(r30)
 /* 8044B084 00447FC4  48 00 02 78 */	b lbl_8044B2FC
+lbl_8044B088:
 /* 8044B088 00447FC8  7F C3 F3 78 */	mr r3, r30
 /* 8044B08C 00447FCC  81 9E 00 00 */	lwz r12, 0(r30)
 /* 8044B090 00447FD0  81 8C 00 44 */	lwz r12, 0x44(r12)
@@ -1505,6 +1510,7 @@ lbl_8044B1A8:
 /* 8044B1A8 004480E8  38 00 00 01 */	li r0, 1
 /* 8044B1AC 004480EC  98 1E 00 34 */	stb r0, 0x34(r30)
 /* 8044B1B0 004480F0  48 00 01 4C */	b lbl_8044B2FC
+lbl_8044B1B4:
 /* 8044B1B4 004480F4  38 00 00 03 */	li r0, 3
 /* 8044B1B8 004480F8  38 7E 26 78 */	addi r3, r30, 0x2678
 /* 8044B1BC 004480FC  90 1E 00 48 */	stw r0, 0x48(r30)
@@ -1565,6 +1571,7 @@ lbl_8044B278:
 /* 8044B284 004481C4  7D 89 03 A6 */	mtctr r12
 /* 8044B288 004481C8  4E 80 04 21 */	bctrl 
 /* 8044B28C 004481CC  48 00 00 70 */	b lbl_8044B2FC
+lbl_8044B290:
 /* 8044B290 004481D0  38 00 00 01 */	li r0, 1
 /* 8044B294 004481D4  98 1E 00 34 */	stb r0, 0x34(r30)
 /* 8044B298 004481D8  48 00 00 64 */	b lbl_8044B2FC
@@ -2662,39 +2669,51 @@ lbl_8044C1E8:
 /* 8044C1FC 0044913C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8044C200 00449140  7C 09 03 A6 */	mtctr r0
 /* 8044C204 00449144  4E 80 04 20 */	bctr 
+lbl_8044C208:
 /* 8044C208 00449148  38 00 00 03 */	li r0, 3
 /* 8044C20C 0044914C  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C210 00449150  48 00 00 A8 */	b lbl_8044C2B8
+lbl_8044C214:
 /* 8044C214 00449154  38 00 00 03 */	li r0, 3
 /* 8044C218 00449158  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C21C 0044915C  48 00 00 9C */	b lbl_8044C2B8
+lbl_8044C220:
 /* 8044C220 00449160  38 00 00 00 */	li r0, 0
 /* 8044C224 00449164  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C228 00449168  48 00 00 90 */	b lbl_8044C2B8
+lbl_8044C22C:
 /* 8044C22C 0044916C  38 00 00 00 */	li r0, 0
 /* 8044C230 00449170  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C234 00449174  48 00 00 84 */	b lbl_8044C2B8
+lbl_8044C238:
 /* 8044C238 00449178  38 00 00 00 */	li r0, 0
 /* 8044C23C 0044917C  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C240 00449180  48 00 00 78 */	b lbl_8044C2B8
+lbl_8044C244:
 /* 8044C244 00449184  38 00 00 01 */	li r0, 1
 /* 8044C248 00449188  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C24C 0044918C  48 00 00 6C */	b lbl_8044C2B8
+lbl_8044C250:
 /* 8044C250 00449190  38 00 00 01 */	li r0, 1
 /* 8044C254 00449194  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C258 00449198  48 00 00 60 */	b lbl_8044C2B8
+lbl_8044C25C:
 /* 8044C25C 0044919C  38 00 00 01 */	li r0, 1
 /* 8044C260 004491A0  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C264 004491A4  48 00 00 54 */	b lbl_8044C2B8
+lbl_8044C268:
 /* 8044C268 004491A8  38 00 00 02 */	li r0, 2
 /* 8044C26C 004491AC  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C270 004491B0  48 00 00 48 */	b lbl_8044C2B8
+lbl_8044C274:
 /* 8044C274 004491B4  38 00 00 02 */	li r0, 2
 /* 8044C278 004491B8  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C27C 004491BC  48 00 00 3C */	b lbl_8044C2B8
+lbl_8044C280:
 /* 8044C280 004491C0  38 00 00 02 */	li r0, 2
 /* 8044C284 004491C4  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C288 004491C8  48 00 00 30 */	b lbl_8044C2B8
+lbl_8044C28C:
 /* 8044C28C 004491CC  38 00 00 03 */	li r0, 3
 /* 8044C290 004491D0  98 0D 86 9F */	stb r0, "sSeasonIndex__26@unnamed@titleSection_cpp@"@sda21(r13)
 /* 8044C294 004491D4  48 00 00 24 */	b lbl_8044C2B8
