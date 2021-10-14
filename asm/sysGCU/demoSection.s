@@ -68,7 +68,7 @@ lbl_8049B41C:
 lbl_804ED348:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x8044D154
+	.4byte loadResource__Q24Demo7SectionFv
 .global "__vt__25Delegate<Q24Demo7Section>"
 "__vt__25Delegate<Q24Demo7Section>":
 	.4byte 0

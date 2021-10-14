@@ -147,47 +147,47 @@ lbl_804ECFF8:
 lbl_804ED004:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x804487B0
+	.4byte loadResident__11BootSectionFv
 .global lbl_804ED010
 lbl_804ED010:
-	.4byte 0x80448834
-	.4byte 0x80448834
-	.4byte 0x80448834
-	.4byte 0x80448834
-	.4byte 0x80448844
-	.4byte 0x8044884C
-	.4byte 0x80448978
-	.4byte 0x804488AC
-	.4byte 0x8044890C
-	.4byte 0x8044896C
-	.4byte 0x8044896C
+	.4byte lbl_80448834
+	.4byte lbl_80448834
+	.4byte lbl_80448834
+	.4byte lbl_80448834
+	.4byte lbl_80448844
+	.4byte lbl_8044884C
+	.4byte lbl_80448978
+	.4byte lbl_804488AC
+	.4byte lbl_8044890C
+	.4byte lbl_8044896C
+	.4byte lbl_8044896C
 .global lbl_804ED03C
 lbl_804ED03C:
-	.4byte 0x8044907C
-	.4byte 0x80449088
-	.4byte 0x80449374
-	.4byte 0x804494C0
-	.4byte 0x80449094
-	.4byte 0x804490A0
-	.4byte 0x804490AC
-	.4byte 0x80449220
-	.4byte 0x804490B8
-	.4byte 0x8044959C
-	.4byte 0x8044962C
+	.4byte lbl_8044907C
+	.4byte lbl_80449088
+	.4byte lbl_80449374
+	.4byte lbl_804494C0
+	.4byte lbl_80449094
+	.4byte lbl_804490A0
+	.4byte lbl_804490AC
+	.4byte lbl_80449220
+	.4byte lbl_804490B8
+	.4byte lbl_8044959C
+	.4byte lbl_8044962C
 .global lbl_804ED068
 lbl_804ED068:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x804483F4
+	.4byte load2DResource__11BootSectionFv
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x8044813C
+	.4byte loadBootResource__11BootSectionFv
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x80449EA0
+	.4byte waitLoadResource__11BootSectionFv
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x80449EA0
+	.4byte waitLoadResource__11BootSectionFv
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000

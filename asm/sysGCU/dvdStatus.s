@@ -34,13 +34,13 @@ lbl_80499DA8:
 .balign 0x8
 .global lbl_804EBE20
 lbl_804EBE20:
-	.4byte 0x8042A6C4
-	.4byte 0x8042A6D4
-	.4byte 0x8042A6E4
-	.4byte 0x8042A724
-	.4byte 0x8042A6F4
-	.4byte 0x8042A704
-	.4byte 0x8042A714
+	.4byte lbl_8042A6C4
+	.4byte lbl_8042A6D4
+	.4byte lbl_8042A6E4
+	.4byte lbl_8042A724
+	.4byte lbl_8042A6F4
+	.4byte lbl_8042A704
+	.4byte lbl_8042A714
 	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40

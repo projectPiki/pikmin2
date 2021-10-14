@@ -48,14 +48,14 @@ lbl_8049AC00:
 	.4byte 0x888888FF
 .global lbl_804ECA90
 lbl_804ECA90:
-	.4byte 0x8043A50C
-	.4byte 0x8043A518
-	.4byte 0x8043A544
-	.4byte 0x8043A830
-	.4byte 0x8043AB3C
-	.4byte 0x8043AB48
-	.4byte 0x8043AB74
-	.4byte 0x8043AB80
+	.4byte lbl_8043A50C
+	.4byte lbl_8043A518
+	.4byte lbl_8043A544
+	.4byte lbl_8043A830
+	.4byte lbl_8043AB3C
+	.4byte lbl_8043AB48
+	.4byte lbl_8043AB74
+	.4byte lbl_8043AB80
 .global __vt__Q25P2JME19TRenderingProcessor
 __vt__Q25P2JME19TRenderingProcessor:
 	.4byte 0

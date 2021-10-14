@@ -118,34 +118,34 @@ lbl_8049DA9C:
 .balign 0x8
 .global lbl_804EF880
 lbl_804EF880:
-	.4byte 0x8046F928
-	.4byte 0x8046FB60
-	.4byte 0x8046F9D8
-	.4byte 0x8046FA98
-	.4byte 0x8046FC0C
-	.4byte 0x8046FD34
-	.4byte 0x8046FEA8
-	.4byte 0x8046FF14
+	.4byte lbl_8046F928
+	.4byte lbl_8046FB60
+	.4byte lbl_8046F9D8
+	.4byte lbl_8046FA98
+	.4byte lbl_8046FC0C
+	.4byte lbl_8046FD34
+	.4byte lbl_8046FEA8
+	.4byte lbl_8046FF14
 .global lbl_804EF8A0
 lbl_804EF8A0:
-	.4byte 0x80470060
-	.4byte 0x80470068
-	.4byte 0x80470070
-	.4byte 0x80470078
-	.4byte 0x80470080
-	.4byte 0x80470088
-	.4byte 0x80470090
-	.4byte 0x80470098
+	.4byte lbl_80470060
+	.4byte lbl_80470068
+	.4byte lbl_80470070
+	.4byte lbl_80470078
+	.4byte lbl_80470080
+	.4byte lbl_80470088
+	.4byte lbl_80470090
+	.4byte lbl_80470098
 .global lbl_804EF8C0
 lbl_804EF8C0:
-	.4byte 0x80470518
-	.4byte 0x804705F8
-	.4byte 0x804706D4
-	.4byte 0x804707B0
-	.4byte 0x80470850
-	.4byte 0x804708F0
-	.4byte 0x804709C4
-	.4byte 0x80470A98
+	.4byte lbl_80470518
+	.4byte lbl_804705F8
+	.4byte lbl_804706D4
+	.4byte lbl_804707B0
+	.4byte lbl_80470850
+	.4byte lbl_804708F0
+	.4byte lbl_804709C4
+	.4byte lbl_80470A98
 .global __vt__Q23PSM20DirectorMgr_2PBattle
 __vt__Q23PSM20DirectorMgr_2PBattle:
 	.4byte 0

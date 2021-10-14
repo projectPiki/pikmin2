@@ -230,7 +230,7 @@ lbl_8049B830:
 lbl_804ED4C0:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x804500D8
+	.4byte loadResource__Q24Game9THPPlayerFv
 .global __vt__Q24Game9THPPlayer
 __vt__Q24Game9THPPlayer:
 	.4byte 0

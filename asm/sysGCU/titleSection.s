@@ -169,26 +169,26 @@ lbl_804ED1A8:
 lbl_804ED1B4:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x8044A5C8
+	.4byte loadResident__Q25Title7SectionFv
 .global lbl_804ED1C0
 lbl_804ED1C0:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x8044AB00
+	.4byte menuCancel__Q25Title7SectionFR4Menu
 .global lbl_804ED1CC
 lbl_804ED1CC:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x8044AB2C
+	.4byte menuSelect__Q25Title7SectionFR4Menu
 .global lbl_804ED1D8
 lbl_804ED1D8:
-	.4byte 0x8044B290
-	.4byte 0x8044AF78
-	.4byte 0x8044AF84
-	.4byte 0x8044AF90
-	.4byte 0x8044AF9C
-	.4byte 0x8044B088
-	.4byte 0x8044B1B4
+	.4byte lbl_8044B290
+	.4byte lbl_8044AF78
+	.4byte lbl_8044AF84
+	.4byte lbl_8044AF90
+	.4byte lbl_8044AF9C
+	.4byte lbl_8044B088
+	.4byte lbl_8044B1B4
 .global lbl_804ED1F4
 lbl_804ED1F4:
 	.4byte 0x00000000
@@ -196,18 +196,18 @@ lbl_804ED1F4:
 	.4byte 0x00000000
 .global lbl_804ED200
 lbl_804ED200:
-	.4byte 0x8044C208
-	.4byte 0x8044C214
-	.4byte 0x8044C220
-	.4byte 0x8044C22C
-	.4byte 0x8044C238
-	.4byte 0x8044C244
-	.4byte 0x8044C250
-	.4byte 0x8044C25C
-	.4byte 0x8044C268
-	.4byte 0x8044C274
-	.4byte 0x8044C280
-	.4byte 0x8044C28C
+	.4byte lbl_8044C208
+	.4byte lbl_8044C214
+	.4byte lbl_8044C220
+	.4byte lbl_8044C22C
+	.4byte lbl_8044C238
+	.4byte lbl_8044C244
+	.4byte lbl_8044C250
+	.4byte lbl_8044C25C
+	.4byte lbl_8044C268
+	.4byte lbl_8044C274
+	.4byte lbl_8044C280
+	.4byte lbl_8044C28C
 .global "__vt__34Delegate1<Q25Title7Section,R4Menu>"
 "__vt__34Delegate1<Q25Title7Section,R4Menu>":
 	.4byte 0

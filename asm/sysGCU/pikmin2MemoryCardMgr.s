@@ -88,18 +88,18 @@ lbl_8049AEA0:
 .balign 0x8
 .global lbl_804ECF58
 lbl_804ECF58:
-	.4byte 0x80443790
-	.4byte 0x804437EC
-	.4byte 0x80443768
-	.4byte 0x804437FC
-	.4byte 0x8044385C
-	.4byte 0x804438BC
-	.4byte 0x804438D4
-	.4byte 0x80443930
-	.4byte 0x80443994
-	.4byte 0x804439A8
-	.4byte 0x804439B8
-	.4byte 0x804439C8
+	.4byte lbl_80443790
+	.4byte lbl_804437EC
+	.4byte lbl_80443768
+	.4byte lbl_804437FC
+	.4byte lbl_8044385C
+	.4byte lbl_804438BC
+	.4byte lbl_804438D4
+	.4byte lbl_80443930
+	.4byte lbl_80443994
+	.4byte lbl_804439A8
+	.4byte lbl_804439B8
+	.4byte lbl_804439C8
 .global __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader
 __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader:
 	.4byte 0

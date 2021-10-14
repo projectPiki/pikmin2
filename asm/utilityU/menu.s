@@ -18,39 +18,39 @@ lbl_8049CD84:
 .balign 0x8
 .global lbl_804EDCC8
 lbl_804EDCC8:
-	.4byte 0x80456ACC
-	.4byte 0x80456954
-	.4byte 0x80456970
-	.4byte 0x80456ACC
-	.4byte 0x8045698C
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x804569BC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x804569F4
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x80456ACC
-	.4byte 0x804569BC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456954
+	.4byte lbl_80456970
+	.4byte lbl_80456ACC
+	.4byte lbl_8045698C
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_804569BC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_804569F4
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_80456ACC
+	.4byte lbl_804569BC
 	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40

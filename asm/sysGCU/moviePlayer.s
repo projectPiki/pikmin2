@@ -175,17 +175,17 @@ lbl_804EBFB0:
 lbl_804EBFBC:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x8042D130
+	.4byte loadResource__Q24Game11MoviePlayerFv
 .global lbl_804EBFC8
 lbl_804EBFC8:
-	.4byte 0x8042D6B0
-	.4byte 0x8042D6B8
-	.4byte 0x8042D734
-	.4byte 0x8042D894
-	.4byte 0x8042D8A0
-	.4byte 0x8042D8AC
-	.4byte 0x8042D8B8
-	.4byte 0x8042DB64
+	.4byte lbl_8042D6B0
+	.4byte lbl_8042D6B8
+	.4byte lbl_8042D734
+	.4byte lbl_8042D894
+	.4byte lbl_8042D8A0
+	.4byte lbl_8042D8AC
+	.4byte lbl_8042D8B8
+	.4byte lbl_8042DB64
 .global __vt__Q24Game12MovieContext
 __vt__Q24Game12MovieContext:
 	.4byte 0

@@ -95,59 +95,59 @@ lbl_804EE158:
 	.4byte 0x00000000
 .global lbl_804EE164
 lbl_804EE164:
-	.4byte 0x8045A578
-	.4byte 0x8045A5CC
-	.4byte 0x8045A5CC
-	.4byte 0x8045A5CC
-	.4byte 0x8045A5CC
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A5F4
-	.4byte 0x8045A5F4
-	.4byte 0x8045A5A0
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A618
-	.4byte 0x8045A5CC
+	.4byte lbl_8045A578
+	.4byte lbl_8045A5CC
+	.4byte lbl_8045A5CC
+	.4byte lbl_8045A5CC
+	.4byte lbl_8045A5CC
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A5F4
+	.4byte lbl_8045A5F4
+	.4byte lbl_8045A5A0
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A618
+	.4byte lbl_8045A5CC
 .global lbl_804EE1B8
 lbl_804EE1B8:
-	.4byte 0x8045AB94
-	.4byte 0x8045AC24
-	.4byte 0x8045ACB4
-	.4byte 0x8045AD88
-	.4byte 0x8045AE5C
-	.4byte 0x8045AF30
-	.4byte 0x8045B004
-	.4byte 0x8045B0D8
-	.4byte 0x8045B1AC
-	.4byte 0x8045B280
-	.4byte 0x8045B354
-	.4byte 0x8045B428
-	.4byte 0x8045B4FC
-	.4byte 0x8045B5D0
-	.4byte 0x8045B6A4
+	.4byte lbl_8045AB94
+	.4byte lbl_8045AC24
+	.4byte lbl_8045ACB4
+	.4byte lbl_8045AD88
+	.4byte lbl_8045AE5C
+	.4byte lbl_8045AF30
+	.4byte lbl_8045B004
+	.4byte lbl_8045B0D8
+	.4byte lbl_8045B1AC
+	.4byte lbl_8045B280
+	.4byte lbl_8045B354
+	.4byte lbl_8045B428
+	.4byte lbl_8045B4FC
+	.4byte lbl_8045B5D0
+	.4byte lbl_8045B6A4
 .global lbl_804EE1F4
 lbl_804EE1F4:
-	.4byte 0x8045C8C8
-	.4byte 0x8045C820
-	.4byte 0x8045C8C8
-	.4byte 0x8045C898
-	.4byte 0x8045C8C8
-	.4byte 0x8045C898
-	.4byte 0x8045C898
-	.4byte 0x8045C898
-	.4byte 0x8045C838
-	.4byte 0x8045C850
-	.4byte 0x8045C868
-	.4byte 0x8045C880
-	.4byte 0x8045C8C8
+	.4byte lbl_8045C8C8
+	.4byte lbl_8045C820
+	.4byte lbl_8045C8C8
+	.4byte lbl_8045C898
+	.4byte lbl_8045C8C8
+	.4byte lbl_8045C898
+	.4byte lbl_8045C898
+	.4byte lbl_8045C898
+	.4byte lbl_8045C838
+	.4byte lbl_8045C850
+	.4byte lbl_8045C868
+	.4byte lbl_8045C880
+	.4byte lbl_8045C8C8
 .global __vt__Q23PSM10BigBossSeq
 __vt__Q23PSM10BigBossSeq:
 	.4byte 0

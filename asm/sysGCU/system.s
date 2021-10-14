@@ -159,12 +159,12 @@ sRenderModeTable:
 lbl_804EBB40:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x80422718
+	.4byte constructWithDvdAccessFirst__6SystemFv
 .global lbl_804EBB4C
 lbl_804EBB4C:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x80422800
+	.4byte constructWithDvdAccessSecond__6SystemFv
 .global __vt__9AppThread
 __vt__9AppThread:
 	.4byte 0

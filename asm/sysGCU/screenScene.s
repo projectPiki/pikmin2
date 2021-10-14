@@ -24,7 +24,7 @@ lbl_8049B8BC:
 lbl_804ED680:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
-	.4byte 0x80451D1C
+	.4byte userCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
 .global __vt__Q26Screen9SceneBase
 __vt__Q26Screen9SceneBase:
 	.4byte 0
