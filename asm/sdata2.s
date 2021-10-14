@@ -3857,94 +3857,164 @@ lbl_80517D10:
 .global lbl_80517D18
 lbl_80517D18:
 	.asciz "Wealthy"
-	.4byte 0x46617274
-	.4byte 0x00000000
-	.4byte 0x46726F67
-	.4byte 0x00000000
-	.4byte 0x556A6941
-	.4byte 0x00000000
-	.4byte 0x556A6942
-	.4byte 0x00000000
-	.4byte 0x41726D6F
-	.4byte 0x72000000
-	.4byte 0x546F6269
-	.4byte 0x00000000
-	.4byte 0x51757269
-	.4byte 0x6F6E6500
-	.4byte 0x526F636B
-	.4byte 0x00000000
-	.4byte 0x53746F6E
-	.4byte 0x65000000
-	.4byte 0x4B616275
-	.4byte 0x746F0000
-	.4byte 0x526B6162
-	.4byte 0x75746F00
-	.4byte 0x466B6162
-	.4byte 0x75746F00
-	.4byte 0x48696261
-	.4byte 0x00000000
-	.4byte 0x47617348
-	.4byte 0x69626100
-	.4byte 0x53617261
-	.4byte 0x69000000
-	.4byte 0x44656D6F
-	.4byte 0x6E000000
-	.4byte 0x54616E6B
-	.4byte 0x00000000
-	.4byte 0x5774616E
-	.4byte 0x6B000000
-	.4byte 0x43617466
-	.4byte 0x69736800
-	.4byte 0x54616470
-	.4byte 0x6F6C6500
-	.4byte 0x456C6563
-	.4byte 0x42756700
-	.4byte 0x4D617200
-	.4byte 0x4B757261
-	.4byte 0x67650000
-	.4byte 0x51756565
-	.4byte 0x6E000000
-	.4byte 0x42616279
-	.4byte 0x00000000
-	.4byte 0x48616E61
-	.4byte 0x00000000
-	.4byte 0x426F6D62
-	.4byte 0x00000000
-	.4byte 0x45676700
-	.4byte 0x46756566
-	.4byte 0x756B6900
-	.4byte 0x54616E70
-	.4byte 0x6F706F00
-	.4byte 0x57617461
-	.4byte 0x67650000
-	.4byte 0x436C6F76
-	.4byte 0x65720000
-	.4byte 0x4F6F696E
-	.4byte 0x755F7300
-	.4byte 0x4F6F696E
-	.4byte 0x755F6C00
-	.4byte 0x54756B75
-	.4byte 0x73686900
-	.4byte 0x4D616761
-	.4byte 0x72657400
-	.4byte 0x5A656E6D
-	.4byte 0x61690000
-	.4byte 0x4D69756C
-	.4byte 0x696E0000
-	.4byte 0x42696746
-	.4byte 0x6F6F7400
-	.4byte 0x486F7564
-	.4byte 0x61690000
+.global lbl_80517D20
+lbl_80517D20:
+	.asciz "Fart"
+	.skip 0x3
+.global lbl_80517D28
+lbl_80517D28:
+	.asciz "Frog"
+	.skip 0x3
+.global lbl_80517D30
+lbl_80517D30:
+	.asciz "UjiA"
+	.skip 0x3
+.global lbl_80517D38
+lbl_80517D38:
+	.asciz "UjiB"
+	.skip 0x3
+.global lbl_80517D40
+lbl_80517D40:
+	.asciz "Armor"
+	.skip 0x2
+.global lbl_80517D48
+lbl_80517D48:
+	.asciz "Tobi"
+	.skip 0x3
+.global lbl_80517D50
+lbl_80517D50:
+	.asciz "Qurione"
+.global lbl_80517D58
+lbl_80517D58:
+	.asciz "Rock"
+	.skip 0x3
+.global lbl_80517D60
+lbl_80517D60:
+	.asciz "Stone"
+	.skip 0x2
+.global lbl_80517D68
+lbl_80517D68:
+	.asciz "Kabuto"
+	.skip 0x1
+.global lbl_80517D70
+lbl_80517D70:
+	.asciz "Rkabuto"
+.global lbl_80517D78
+lbl_80517D78:
+	.asciz "Fkabuto"
+.global lbl_80517D80
+lbl_80517D80:
+	.asciz "Hiba"
+	.skip 0x3
+.global lbl_80517D88
+lbl_80517D88:
+	.asciz "GasHiba"
+.global lbl_80517D90
+lbl_80517D90:
+	.asciz "Sarai"
+	.skip 0x2
+.global lbl_80517D98
+lbl_80517D98:
+	.asciz "Demon"
+	.skip 0x2
+.global lbl_80517DA0
+lbl_80517DA0:
+	.asciz "Tank"
+	.skip 0x3
+.global lbl_80517DA8
+lbl_80517DA8:
+	.asciz "Wtank"
+	.skip 0x2
+.global lbl_80517DB0
+lbl_80517DB0:
+	.asciz "Catfish"
+.global lbl_80517DB8
+lbl_80517DB8:
+	.asciz "Tadpole"
+.global lbl_80517DC0
+lbl_80517DC0:
+	.asciz "ElecBug"
+.global lbl_80517DC8
+lbl_80517DC8:
+	.asciz "Mar"
+.global lbl_80517DCC
+lbl_80517DCC:
+	.asciz "Kurage"
+	.skip 0x1
+.global lbl_80517DD4
+lbl_80517DD4:
+	.asciz "Queen"
+	.skip 0x2
+.global lbl_80517DDC
+lbl_80517DDC:
+	.asciz "Baby"
+	.skip 0x3
+.global lbl_80517DE4
+lbl_80517DE4:
+	.asciz "Hana"
+	.skip 0x3
+.global lbl_80517DEC
+lbl_80517DEC:
+	.asciz "Bomb"
+	.skip 0x3
+.global lbl_80517DF4
+lbl_80517DF4:
+	.asciz "Egg"
+.global lbl_80517DF8
+lbl_80517DF8:
+	.asciz "Fuefuki"
+.global lbl_80517E00
+lbl_80517E00:
+	.asciz "Tanpopo"
+.global lbl_80517E08
+lbl_80517E08:
+	.asciz "Watage"
+	.skip 0x1
+.global lbl_80517E10
+lbl_80517E10:
+	.asciz "Clover"
+	.skip 0x1
+.global lbl_80517E18
+lbl_80517E18:
+	.asciz "Ooinu_s"
+.global lbl_80517E20
+lbl_80517E20:
+	.asciz "Ooinu_l"
+.global lbl_80517E28
+lbl_80517E28:
+	.asciz "Tukushi"
+.global lbl_80517E30
+lbl_80517E30:
+	.asciz "Magaret"
+.global lbl_80517E38
+lbl_80517E38:
+	.asciz "Zenmai"
+	.skip 0x1
+.global lbl_80517E40
+lbl_80517E40:
+	.asciz "Miulin"
+	.skip 0x1
+.global lbl_80517E48
+lbl_80517E48:
+	.asciz "BigFoot"
+.global lbl_80517E50
+lbl_80517E50:
+	.asciz "Houdai"
+	.skip 0x1
 .global lbl_80517E58
 lbl_80517E58:
-	.4byte 0x4F74616B
-	.4byte 0x61726100
-	.4byte 0x4A696775
-	.4byte 0x6D6F0000
-	.4byte 0x536F6B6B
-	.4byte 0x75726900
-	.4byte 0x54797265
-	.4byte 0x00000000
+	.asciz "Otakara"
+.global lbl_80517E60
+lbl_80517E60:
+	.asciz "Jigumo"
+	.skip 0x1
+.global lbl_80517E68
+lbl_80517E68:
+	.asciz "Sokkuri"
+.global lbl_80517E70
+lbl_80517E70:
+	.asciz "Tyre"
+	.skip 0x3
 .global lbl_80517E78
 lbl_80517E78:
 	.4byte 0x00000000
