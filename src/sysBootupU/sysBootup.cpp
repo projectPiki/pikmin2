@@ -11,6 +11,5 @@ int main(void)
 	OSReport("bootup -----------------------\n");
 
 	System::initialize();
-	System* sysInstance = new System();
-	return sysInstance->run();
+	return (new System())->run();
 }
