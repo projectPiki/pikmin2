@@ -6612,7 +6612,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x01000000
-	.4byte 0x80517CEC
+	.4byte lbl_80517CEC
 	.4byte 0x02FF0100
 	.4byte 0x00970000
 	.4byte lbl_80517CE8
@@ -6628,121 +6628,121 @@ gEnemyInfo__4Game:
 	.4byte 0x8047B490
 	.4byte 0x2AFF0100
 	.4byte 0x00970000
-	.4byte 0x80517CEC
-	.4byte 0x80517CEC
-	.4byte 0x80517CEC
+	.4byte lbl_80517CEC
+	.4byte lbl_80517CEC
+	.4byte lbl_80517CEC
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517CEC
-	.4byte 0x80517CEC
+	.4byte lbl_80517CEC
+	.4byte lbl_80517CEC
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
 	.4byte 0x8047B49C
 	.4byte 0x2BFF0100
 	.4byte 0x00970000
-	.4byte 0x80517CEC
-	.4byte 0x80517CEC
-	.4byte 0x80517CEC
+	.4byte lbl_80517CEC
+	.4byte lbl_80517CEC
+	.4byte lbl_80517CEC
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517CEC
-	.4byte 0x80517CEC
+	.4byte lbl_80517CEC
+	.4byte lbl_80517CEC
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517CF4
+	.4byte lbl_80517CF4
 	.4byte 0x52FF0100
 	.4byte 0x00010000
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517CF8
+	.4byte lbl_80517CF8
 	.4byte 0x03520100
 	.4byte 0x00060000
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D00
+	.4byte lbl_80517D00
 	.4byte 0x04520100
 	.4byte 0x00060000
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
 	.4byte 0x8047B4AC
 	.4byte 0x05520100
 	.4byte 0x00060000
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
 	.4byte 0x8047B4B8
 	.4byte 0x06520100
 	.4byte 0x00060000
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
 	.4byte 0x8047B4C4
 	.4byte 0x07520100
 	.4byte 0x00060000
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D08
+	.4byte lbl_80517D08
 	.4byte 0x08520100
 	.4byte 0x00060000
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
-	.4byte 0x80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
+	.4byte lbl_80517CF4
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D10
+	.4byte lbl_80517D10
 	.4byte 0x09FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -6755,29 +6755,29 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D18
+	.4byte lbl_80517D18
 	.4byte 0x0AFF0100
 	.4byte 0x00070000
-	.4byte 0x80517D10
-	.4byte 0x80517D10
-	.4byte 0x80517D10
+	.4byte lbl_80517D10
+	.4byte lbl_80517D10
+	.4byte lbl_80517D10
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517D10
-	.4byte 0x80517D10
+	.4byte lbl_80517D10
+	.4byte lbl_80517D10
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
 	.4byte 0x80517D20
 	.4byte 0x0BFF0100
 	.4byte 0x00070000
-	.4byte 0x80517D10
-	.4byte 0x80517D10
-	.4byte 0x80517D10
+	.4byte lbl_80517D10
+	.4byte lbl_80517D10
+	.4byte lbl_80517D10
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517D10
-	.4byte 0x80517D10
+	.4byte lbl_80517D10
+	.4byte lbl_80517D10
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
@@ -7201,7 +7201,7 @@ gEnemyInfo__4Game:
 	.4byte 0x23FF0100
 	.4byte 0x00970000
 	.4byte lbl_80517CE8
-	.4byte 0x80517CEC
+	.4byte lbl_80517CEC
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8

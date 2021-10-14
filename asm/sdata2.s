@@ -3833,19 +3833,30 @@ lbl_80517CE0:
 .global lbl_80517CE8
 lbl_80517CE8:
 	.4byte 0x00000000
-	.4byte 0x43686170
-	.4byte 0x70790000
-	.4byte 0x506F6D00
-	.4byte 0x426C7565
-	.4byte 0x506F6D00
-	.4byte 0x52656450
-	.4byte 0x6F6D0000
-	.4byte 0x52616E64
-	.4byte 0x506F6D00
-	.4byte 0x4B6F6761
-	.4byte 0x6E650000
-	.4byte 0x5765616C
-	.4byte 0x74687900
+.global lbl_80517CEC
+lbl_80517CEC:
+	.asciz "Chappy"
+	.skip 0x1
+.global lbl_80517CF4
+lbl_80517CF4:
+	.asciz "Pom"
+.global lbl_80517CF8
+lbl_80517CF8:
+	.asciz "BluePom"
+.global lbl_80517D00
+lbl_80517D00:
+	.asciz "RedPom"
+	.skip 0x1
+.global lbl_80517D08
+lbl_80517D08:
+	.asciz "RandPom"
+.global lbl_80517D10
+lbl_80517D10:
+	.asciz "Kogane"
+	.skip 0x1
+.global lbl_80517D18
+lbl_80517D18:
+	.asciz "Wealthy"
 	.4byte 0x46617274
 	.4byte 0x00000000
 	.4byte 0x46726F67
