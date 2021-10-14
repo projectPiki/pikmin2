@@ -35,6 +35,7 @@ This list is not absolute and may become outdated as the project progresses. In 
 - sysGCU/appThread.cpp
 - sysGCU/controller.cpp
 - sysGCU/simpleMessage.cpp
+- sysGCU/rootMenuSection.cpp
 - sysCommonU/id32.cpp
 - sysCommonU/tagparams.cpp
 - plugProjectKandoU/gameSoundEvent.cpp
