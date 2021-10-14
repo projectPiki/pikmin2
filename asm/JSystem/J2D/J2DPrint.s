@@ -1443,6 +1443,7 @@ doCtrlCode__8J2DPrintFi:
 /* 8003EC04 0003BB44  C0 02 84 DC */	lfs f0, lbl_8051683C@sda21(r2)
 /* 8003EC08 0003BB48  EC 01 00 2A */	fadds f0, f1, f0
 /* 8003EC0C 0003BB4C  D0 03 00 30 */	stfs f0, 0x30(r3)
+.global lbl_8003EC10
 lbl_8003EC10:
 /* 8003EC10 0003BB50  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003EC14 0003BB54  4E 80 00 20 */	blr 
