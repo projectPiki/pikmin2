@@ -12,8 +12,8 @@ struct JUTException {
 	static OSMessageQueue sMessageQueue;
 };
 
-#define JUT_ASSERT(cond, string_ref)                                           \
-	if (!(cond))                                                               \
+#define JUT_ASSERT(cond, string_ref) \
+	if (!(cond))                     \
 	JUTException::panic_f(__FILE__, __LINE__, string_ref)
 
 #define P2ASSERT_BROKEN(cond) JUT_ASSERT(cond, nullptr)
