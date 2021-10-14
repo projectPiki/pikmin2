@@ -10995,68 +10995,73 @@ lbl_80489518:
 	.4byte 0x82630000
 .global lbl_80489850
 lbl_80489850:
-	.4byte 0x44616D61
-	.4byte 0x67756D6F
-	.4byte 0x4D67722E
-	.4byte 0x63707000
+	.asciz "DamagumoMgr.cpp"
 .global lbl_80489860
 lbl_80489860:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x7268616E
-	.4byte 0x64316A6E
-	.4byte 0x74000000
-	.4byte 0x7268616E
-	.4byte 0x64326A6E
-	.4byte 0x74000000
+	.asciz "P2Assert"
+	.skip 7
+.global lbl_80489870
+lbl_80489870:
+	.asciz "rhand1jnt"
+	.skip 2
+.global lbl_8048987C
+lbl_8048987C:
+	.asciz "rhand2jnt"
+	.skip 2
 .global lbl_80489888
 lbl_80489888:
-	.4byte 0x7268616E
-	.4byte 0x64336A6E
-	.4byte 0x74000000
-	.4byte 0x6C68616E
-	.4byte 0x64316A6E
-	.4byte 0x74000000
-	.4byte 0x6C68616E
-	.4byte 0x64326A6E
-	.4byte 0x74000000
-	.4byte 0x6C68616E
-	.4byte 0x64336A6E
-	.4byte 0x74000000
-	.4byte 0x72666F6F
-	.4byte 0x74316A6E
-	.4byte 0x74000000
-	.4byte 0x72666F6F
-	.4byte 0x74326A6E
-	.4byte 0x74000000
-	.4byte 0x72666F6F
-	.4byte 0x74336A6E
-	.4byte 0x74000000
-	.4byte 0x6C666F6F
-	.4byte 0x74316A6E
-	.4byte 0x74000000
-	.4byte 0x6C666F6F
-	.4byte 0x74326A6E
-	.4byte 0x74000000
-	.4byte 0x6C666F6F
-	.4byte 0x74336A6E
-	.4byte 0x74000000
+	.asciz "rhand3jnt"
+	.skip 2
+.global lbl_80489894
+lbl_80489894:
+	.asciz "lhand1jnt"
+	.skip 2
+.global lbl_804898A0
+lbl_804898A0:
+	.asciz "lhand2jnt"
+	.skip 2
+.global lbl_804898AC
+lbl_804898AC:
+	.asciz "lhand3jnt"
+	.skip 2
+.global lbl_804898B8
+lbl_804898B8:
+	.asciz "rfoot1jnt"
+	.skip 2
+.global lbl_804898C4
+lbl_804898C4:
+	.asciz "rfoot2jnt"
+	.skip 2
+.global lbl_804898D0
+lbl_804898D0:
+	.asciz "rfoot3jnt"
+	.skip 2
+.global lbl_804898DC
+lbl_804898DC:
+	.asciz "lfoot1jnt"
+	.skip 2
+.global lbl_804898E8
+lbl_804898E8:
+	.asciz "lfoot2jnt"
+	.skip 2
+.global lbl_804898F4
+lbl_804898F4:
+	.asciz "lfoot3jnt"
+	.skip 2
 .global lbl_80489900
 lbl_80489900:
-	.4byte 0x80489870
-	.4byte 0x8048987C
-	.4byte 0x80489888
-	.4byte 0x80489894
-	.4byte 0x804898A0
-	.4byte 0x804898AC
-	.4byte 0x804898B8
-	.4byte 0x804898C4
-	.4byte 0x804898D0
-	.4byte 0x804898DC
-	.4byte 0x804898E8
-	.4byte 0x804898F4
+	.4byte lbl_80489870
+	.4byte lbl_8048987C
+	.4byte lbl_80489888
+	.4byte lbl_80489894
+	.4byte lbl_804898A0
+	.4byte lbl_804898AC
+	.4byte lbl_804898B8
+	.4byte lbl_804898C4
+	.4byte lbl_804898D0
+	.4byte lbl_804898DC
+	.4byte lbl_804898E8
+	.4byte lbl_804898F4
 .global lbl_80489930
 lbl_80489930:
 	.4byte 0x6C667431
