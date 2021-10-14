@@ -1,54 +1,78 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 0x4
-.global str_RootMenu
 str_RootMenu:
 	.asciz "Root Menu"
 	.skip 2
+str_objedit:
 	.asciz "Object Editor"
 	.skip 2
+str_sgame:
 	.asciz "Single Game"
+str_cgame:
 	.asciz "Challenge Game"
 	.skip 1
+str_test_challenge:
 	.asciz "Test Challenge"
 	.skip 1
+str_test_teki:
 	.asciz "Teki Test"
 	.skip 2
+str_animEdit:
 	.asciz "Anim Editor"
+str_mapEdit:
 	.asciz "Map Parts Editor"
 	.skip 3
+str_texview:
 	.asciz "Tex Viewer"
 	.skip 1
+str_ogtest:
 	.asciz "Ogawa Screen Test"
 	.skip 2
+str_yamashita:
 	.asciz "Yamashita"
 	.skip 2
+str_nishimura:
 	.asciz "Nishimura"
 	.skip 2
+str_nishimura2:
 	.asciz "Nishimura2"
 	.skip 1
+str_morimura:
 	.asciz "Morimura"
 	.skip 3
+str_2D_Debug:
 	.asciz "2D Debug"
 	.skip 3
+str_caveEditor:
 	.asciz "Cave Editor"
+str_cameraEditor:
 	.asciz "JStudio CameraEditor"
 	.skip 3
+str_movieTest:
 	.asciz "Movie Test"
 	.skip 1
+str_kandoTest:
 	.asciz "JStudio Kando Test"
 	.skip 1
+str_pelletTest:
 	.asciz "Pellet Test"
+str_mainTitle:
 	.asciz "Main Title"
 	.skip 1
+str_msgPreviewer:
 	.asciz "Message Previewer"
 	.skip 2
+str_ebiMainTitle:
 	.asciz "Ebi Main Title"
 	.skip 1
+str_E3_Thanks:
 	.asciz "E3 Thanks Section"
 	.skip 2
+str_ebimunEff:
 	.asciz "Ebimun Effect"
 	.skip 2
+str_2D_Debug2:
 	.asciz "2D Debug2"
 	.skip 2
 .global lbl_80499BC8
@@ -73,75 +97,75 @@ lbl_804EBBF0:
 	.4byte 0x00000000
 .global "sSectionInfo__22@unnamed@gameflow_cpp@"
 "sSectionInfo__22@unnamed@gameflow_cpp@":
-	.4byte 0x80499A48
+	.4byte str_RootMenu
 	.4byte 0x00000000
-	.4byte 0x80499A54
+	.4byte str_objedit
 	.4byte 0x01010000
-	.4byte 0x80499A64
+	.4byte str_sgame
 	.4byte 0x02010000
-	.4byte 0x80499A70
+	.4byte str_cgame
 	.4byte 0x03010000
-	.4byte 0x80499A80
+	.4byte str_test_challenge
 	.4byte 0x04010100
-	.4byte 0x80499A90
+	.4byte str_test_teki
 	.4byte 0x05010000
-	.4byte 0x80499A9C
+	.4byte str_animEdit
 	.4byte 0x06010000
-	.4byte 0x80499AA8
+	.4byte str_mapEdit
 	.4byte 0x07010000
-	.4byte 0x80499ABC
+	.4byte str_texview
 	.4byte 0x08010000
-	.4byte 0x80520460
+	.4byte str_Ogawa
 	.4byte 0x09010000
-	.4byte 0x80499AC8
+	.4byte str_ogtest
 	.4byte 0x1C010000
-	.4byte 0x80520468
+	.4byte str_Hikino
 	.4byte 0x0A010000
-	.4byte 0x80499ADC
+	.4byte str_yamashita
 	.4byte 0x0B010000
-	.4byte 0x80499AE8
+	.4byte str_nishimura
 	.4byte 0x0C010000
-	.4byte 0x80499AF4
+	.4byte str_nishimura2
 	.4byte 0x0D010000
-	.4byte 0x80499B00
+	.4byte str_morimura
 	.4byte 0x0E010000
-	.4byte 0x80499B0C
+	.4byte str_2D_Debug
 	.4byte 0x1A010100
-	.4byte 0x80520470
+	.4byte str_Fujino
 	.4byte 0x1B010000
-	.4byte 0x80520478
+	.4byte str_Ebisawa
 	.4byte 0x0F010000
-	.4byte 0x80499B18
+	.4byte str_caveEditor
 	.4byte 0x10010000
-	.4byte 0x80499B24
+	.4byte str_cameraEditor
 	.4byte 0x11010000
-	.4byte 0x80499B3C
+	.4byte str_movieTest
 	.4byte 0x12010000
-	.4byte 0x80499B48
+	.4byte str_kandoTest
 	.4byte 0x13010000
-	.4byte 0x80499B5C
+	.4byte str_pelletTest
 	.4byte 0x14010000
-	.4byte 0x80520480
+	.4byte str_boot
 	.4byte 0x15000000
-	.4byte 0x80499B68
+	.4byte str_mainTitle
 	.4byte 0x16010000
-	.4byte 0x80520488
+	.4byte str_demo
 	.4byte 0x17010000
-	.4byte 0x80499B74
+	.4byte str_msgPreviewer
 	.4byte 0x18010100
-	.4byte 0x80499B88
+	.4byte str_ebiMainTitle
 	.4byte 0x19010000
-	.4byte 0x80499B98
+	.4byte str_E3_Thanks
 	.4byte 0x1D010000
-	.4byte 0x80520490
+	.4byte str_vsgame
 	.4byte 0x1E010000
-	.4byte 0x80499BAC
+	.4byte str_ebimunEff
 	.4byte 0x1F010000
-	.4byte 0x80499BBC
+	.4byte str_2D_Debug2
 	.4byte 0x20010100
-	.4byte 0x80520498
+	.4byte str_exp_c
 	.4byte 0x21000000
-	.4byte 0x805204A0
+	.4byte str_exp_s
 	.4byte 0x22000000
 .global __vt__8GameFlow
 __vt__8GameFlow:
@@ -159,22 +183,29 @@ __vt__11ISectionMgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
-.global str_Ogawa
 str_Ogawa:
 	.asciz "Ogawa"
 	.skip 0x2
+str_Hikino:
 	.asciz "Hikino"
 	.skip 0x1
+str_Fujino:
 	.asciz "Fujino"
 	.skip 0x1
+str_Ebisawa:
 	.asciz "Ebisawa"
+str_boot:
 	.asciz "Boot"
 	.skip 0x3
+str_demo:
 	.asciz "Demo"
 	.skip 0x3
+str_vsgame:
 	.asciz "VS Game"
+str_exp_c:
 	.asciz "EXP_C"
 	.skip 0x2
+str_exp_s:
 	.asciz "EXP_S"
 	.skip 0x2
 
