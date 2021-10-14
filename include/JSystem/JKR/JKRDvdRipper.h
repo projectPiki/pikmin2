@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "JSystem/JKR/JKRExpandSwitch.h"
-#include "JSystem/JKRHeap.h"
+#include "JSystem/JKR/JKRHeap.h"
 
 struct JKRDvdRipper {
 	enum EAllocDirection {
@@ -11,20 +11,16 @@ struct JKRDvdRipper {
 		AllocDirection_1,
 		AllocDirection_2
 	};
+	
 	static void* loadToMainRAM(const char*, uchar*, JKRExpandSwitch, ulong,
 	                           JKRHeap*, EAllocDirection, ulong, int*, ulong*);
 	static void* loadToMainRAM(long, uchar*, JKRExpandSwitch, ulong, JKRHeap*,
 	                           EAllocDirection, ulong, int*, ulong*);
-	// static void* loadToMainRAM(JKRDvdFile*, uchar*, JKRExpandSwitch, ulong,
-	// JKRHeap*, EAllocDirection, ulong, int*, ulong*);
 	static void* loadToMainRAMAsync(const char*, uchar*, JKRExpandSwitch, ulong,
 	                                JKRHeap*, ulong*);
 	static void* loadToMainRAMAsync(long, uchar*, JKRExpandSwitch, ulong,
 	                                JKRHeap*, ulong*);
-	// static void* loadToMainRAMAsync(JKRDvdFile*, uchar*, JKRExpandSwitch,
-	// ulong, JKRHeap*, ulong*);
-	// static void doneProcess(long, DVDFileInfo*);
-	// static void sync(JKRDMCommand*, int);
+
 	static void syncAll(int);
 	static void countLeftSync();
 	static bool isErrorRetry();

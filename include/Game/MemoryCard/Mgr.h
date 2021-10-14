@@ -1,7 +1,7 @@
 #ifndef _GAME_MEMORYCARD_MGR_H
 #define _GAME_MEMORYCARD_MGR_H
 
-#include "JSystem/JKRHeap.h"
+#include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
 struct MemoryCardMgr {
