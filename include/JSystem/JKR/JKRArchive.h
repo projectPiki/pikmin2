@@ -1,7 +1,7 @@
 #ifndef _JSYSTEM_JKRARCHIVE_H
 #define _JSYSTEM_JKRARCHIVE_H
 
-#include "JSystem/JKRHeap.h"
+#include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
 struct JKRArchive {

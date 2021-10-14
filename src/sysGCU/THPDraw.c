@@ -1,13 +1,5 @@
-#include "types.h"
-extern void GXSetZMode(uint,uint,uint);
-extern void GXSetBlendMode(uint,uint,uint,uint);
-extern void GXSetNumTexGens(uint);
-extern void GXSetNumChans(uint);
-extern void GXSetNumTevStages(uint);
-extern void GXSetTevOrder(uint,uint,uint,int);
-extern void GXSetTevOp(int,int);
-extern void GXSetTevSwapMode(int,uint,uint);
-extern void GXSetTevSwapModeTable(int,uint,uint,uint,uint);
+#include "THP/THPDraw.h"
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
@@ -31,15 +23,15 @@ void THPGXRestore(void)
 	GXSetTevSwapModeTable(1, 0, 0, 0, 3);
 	GXSetTevSwapModeTable(2, 1, 1, 1, 3);
 	GXSetTevSwapModeTable(3, 2, 2, 2, 3);
-	return;
 }
+
 //
 ///*
 // * --INFO--
 // * Address:	8044D79C
 // * Size:	0004C0
 // */
-//void THPGXYuv2RgbSetup(void)
+// void THPGXYuv2RgbSetup(void)
 //{
 ///*
 //.loc_0x0:
@@ -355,7 +347,7 @@ void THPGXRestore(void)
 // * Address:	8044DC5C
 // * Size:	0001DC
 // */
-//void THPGXYuv2RgbDraw(void)
+// void THPGXYuv2RgbDraw(void)
 //{
 ///*
 //.loc_0x0:

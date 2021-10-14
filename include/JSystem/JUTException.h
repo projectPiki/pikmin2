@@ -5,7 +5,7 @@
 #include "types.h"
 
 struct JUTException {
-	static void panic_f(char const*, int, char const*, ...);
+	static void panic_f(char const* file, int line, char const* msg, ...);
 
 	static u32* sConsole;
 	static u32* sErrorManager;

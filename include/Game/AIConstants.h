@@ -4,16 +4,16 @@
 #include "PrimTagParm.h"
 
 namespace Game {
-	struct AIConstants : public TagParameters {
-		AIConstants();
-		virtual ~AIConstants();
+struct AIConstants : public TagParameters {
+	AIConstants();
+	virtual ~AIConstants();
 
-		PrimTagParm<f32> m_gravity;     // _1C
-		PrimTagParm<s32> m_dopeCount;   // _2C
-		PrimTagParm<s32> m_debt;        // _3C
-		PrimTagParm<f32> m_cameraAngle; // _4C
-										// _5C
-	};
-}
+	PrimTagParm<f32> m_gravity;     // _1C
+	PrimTagParm<s32> m_dopeCount;   // _2C
+	PrimTagParm<s32> m_debt;        // _3C
+	PrimTagParm<f32> m_cameraAngle; // _4C
+	                                // _5C
+};
+} // namespace Game
 
 #endif

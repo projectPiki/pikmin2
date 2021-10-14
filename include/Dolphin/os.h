@@ -8,7 +8,7 @@ extern "C" {
 #endif // ifdef __cplusplus
 
 void OSReport(const char*, ...);
-void OSPanic(const char*, int, const char*, ...);
+void OSPanic(const char* file, int line, const char* message, ...);
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
 
 // TODO

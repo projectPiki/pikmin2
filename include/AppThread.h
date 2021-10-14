@@ -1,7 +1,7 @@
 #ifndef _APPTHREAD_H
 #define _APPTHREAD_H
 
-#include "JSystem/JKRThread.h"
+#include "JSystem/JKR/JKRThread.h"
 
 struct AppThread : public JKRThread {
 	AppThread(unsigned long, int, int);

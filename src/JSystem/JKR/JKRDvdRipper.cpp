@@ -6,9 +6,9 @@
  * Size:	0000B4
  */
 void* JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
-                                 unsigned long, JKRHeap*,
-                                 JKRDvdRipper::EAllocDirection, unsigned long,
-                                 int*, unsigned long*)
+                                  unsigned long, JKRHeap*,
+                                  JKRDvdRipper::EAllocDirection, unsigned long,
+                                  int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -70,9 +70,9 @@ void* JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
  * Size:	0000B4
  */
 void* JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
-                                 unsigned long, JKRHeap*,
-                                 JKRDvdRipper::EAllocDirection, unsigned long,
-                                 int*, unsigned long*)
+                                  unsigned long, JKRHeap*,
+                                  JKRDvdRipper::EAllocDirection, unsigned long,
+                                  int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -136,9 +136,9 @@ void* JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
  * Size:	0004AC
  */
 void* JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
-                                 unsigned long, JKRHeap*,
-                                 JKRDvdRipper::EAllocDirection, unsigned long,
-                                 int*, unsigned long*)
+                                  unsigned long, JKRHeap*,
+                                  JKRDvdRipper::EAllocDirection, unsigned long,
+                                  int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -542,8 +542,8 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
  * Size:	0000F4
  */
 void* JKRDvdRipper::loadToMainRAMAsync(const char*, unsigned char*,
-                                      JKRExpandSwitch, unsigned long, JKRHeap*,
-                                      unsigned long*)
+                                       JKRExpandSwitch, unsigned long, JKRHeap*,
+                                       unsigned long*)
 {
 	// UNUSED FUNCTION
 }
@@ -554,7 +554,7 @@ void* JKRDvdRipper::loadToMainRAMAsync(const char*, unsigned char*,
  * Size:	0000F4
  */
 void* JKRDvdRipper::loadToMainRAMAsync(long, unsigned char*, JKRExpandSwitch,
-                                      unsigned long, JKRHeap*, unsigned long*)
+                                       unsigned long, JKRHeap*, unsigned long*)
 {
 	// UNUSED FUNCTION
 }
@@ -565,8 +565,8 @@ void* JKRDvdRipper::loadToMainRAMAsync(long, unsigned char*, JKRExpandSwitch,
  * Size:	0001EC
  */
 void* JKRDvdRipper::loadToMainRAMAsync(JKRDvdFile*, unsigned char*,
-                                      JKRExpandSwitch, unsigned long, JKRHeap*,
-                                      unsigned long*)
+                                       JKRExpandSwitch, unsigned long, JKRHeap*,
+                                       unsigned long*)
 {
 	// UNUSED FUNCTION
 }
