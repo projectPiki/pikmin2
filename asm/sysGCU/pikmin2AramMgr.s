@@ -33,453 +33,168 @@ str_res_SMenuPauseDoukutu:
 	.skip 0x3
 str_res_SMenuPauseVS:
 	.asciz "res_s_menu_pause_VS.szs"
+str_res_AnaDemo:
 	.asciz "res_ana_demo.szs"
 	.skip 0x3
+str_res_Contena:
 	.asciz "res_contena.szs"
+str_res_Ufo:
 	.asciz "res_ufo.szs"
+str_mIMG_tutorial:
 	.asciz "/new_screen/cmn/res_map_image_tutorial.szs"
 	.skip 0x1
+str_mIMG_forest:
 	.asciz "/new_screen/cmn/res_map_image_forest.szs"
 	.skip 0x3
+str_mIMG_yakushima:
 	.asciz "/new_screen/cmn/res_map_image_yakushima.szs"
+str_mIMG_last:
 	.asciz "/new_screen/cmn/res_map_image_last.szs"
 	.skip 0x1
+str_m_s00:
 	.asciz "/user/Mukki/movie/s00_coursein/demo.szs"
+str_m_s0B:
 	.asciz "/user/Mukki/movie/s0B_cv_coursein/demo.szs"
 	.skip 0x1
+str_m_s09:
 	.asciz "/user/Mukki/movie/s09_holein/demo.szs"
 	.skip 0x2
+str_m_g2F:
 	.asciz "/user/Mukki/movie/g2F_appear_hole/demo.szs"
 	.skip 0x1
+str_m_g30:
 	.asciz "/user/Mukki/movie/g30_appear_fountain/demo.szs"
 	.skip 0x1
+str_m_s10:
 	.asciz "/user/Mukki/movie/s10_suck_treasure/demo.szs"
 	.skip 0x3
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7331
-	.4byte 0x375F7375
-	.4byte 0x636B5F65
-	.4byte 0x71756970
-	.4byte 0x6D656E74
-	.4byte 0x2F64656D
-	.4byte 0x6F2E737A
-	.4byte 0x73000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7332
-	.4byte 0x325F6376
-	.4byte 0x5F737563
-	.4byte 0x6B5F6571
-	.4byte 0x7569706D
-	.4byte 0x656E742F
-	.4byte 0x64656D6F
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7332
-	.4byte 0x325F6376
-	.4byte 0x5F737563
-	.4byte 0x6B5F7472
-	.4byte 0x65617375
-	.4byte 0x72652F64
-	.4byte 0x656D6F2E
-	.4byte 0x737A7300
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7330
-	.4byte 0x315F6461
-	.4byte 0x79656E64
-	.4byte 0x2F64656D
-	.4byte 0x6F2E737A
-	.4byte 0x73000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7330
-	.4byte 0x325F6461
-	.4byte 0x79656E64
-	.4byte 0x5F726573
-	.4byte 0x756C742F
-	.4byte 0x64656D6F
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7330
-	.4byte 0x335F6F72
-	.4byte 0x696D6164
-	.4byte 0x6F776E2F
-	.4byte 0x64656D6F
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7330
-	.4byte 0x345F6461
-	.4byte 0x79656E64
-	.4byte 0x5F6F7269
-	.4byte 0x6D61646F
-	.4byte 0x776E2F64
-	.4byte 0x656D6F2E
-	.4byte 0x737A7300
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7330
-	.4byte 0x355F7069
-	.4byte 0x6B6D696E
-	.4byte 0x7A65726F
-	.4byte 0x2F64656D
-	.4byte 0x6F2E737A
-	.4byte 0x73000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7330
-	.4byte 0x365F6461
-	.4byte 0x79656E64
-	.4byte 0x5F70696B
-	.4byte 0x6D696E7A
-	.4byte 0x65726F2F
-	.4byte 0x64656D6F
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7330
-	.4byte 0x435F6376
-	.4byte 0x5F657363
-	.4byte 0x6170652F
-	.4byte 0x64656D6F
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7330
-	.4byte 0x455F7265
-	.4byte 0x7475726E
-	.4byte 0x5F636176
-	.4byte 0x652F6465
-	.4byte 0x6D6F2E73
-	.4byte 0x7A730000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7331
-	.4byte 0x325F6376
-	.4byte 0x5F676976
-	.4byte 0x6575702F
-	.4byte 0x64656D6F
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F7332
-	.4byte 0x315F6461
-	.4byte 0x79656E64
-	.4byte 0x5F74616B
-	.4byte 0x656F6666
-	.4byte 0x2F64656D
-	.4byte 0x6F2E737A
-	.4byte 0x73000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x6E796F6E
-	.4byte 0x2F617263
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x6E796F6E
-	.4byte 0x2F746578
-	.4byte 0x74732E73
-	.4byte 0x7A730000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F70
-	.4byte 0x6F642F61
-	.4byte 0x72632E73
-	.4byte 0x7A730000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F70
-	.4byte 0x6F642F74
-	.4byte 0x65787473
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F70
-	.4byte 0x6F645F67
-	.4byte 0x6F6C642F
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F70
-	.4byte 0x6F645F67
-	.4byte 0x6F6C642F
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F75
-	.4byte 0x666F2F61
-	.4byte 0x72632E73
-	.4byte 0x7A730000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F75
-	.4byte 0x666F2F74
-	.4byte 0x65787473
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F75
-	.4byte 0x666F5F67
-	.4byte 0x6F6C642F
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F75
-	.4byte 0x666F5F67
-	.4byte 0x6F6C642F
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F67
-	.4byte 0x61746573
-	.4byte 0x2F676174
-	.4byte 0x652D6172
-	.4byte 0x632E737A
-	.4byte 0x73000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F67
-	.4byte 0x61746573
-	.4byte 0x2F676174
-	.4byte 0x652D7465
-	.4byte 0x7874732E
-	.4byte 0x737A7300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F67
-	.4byte 0x61746573
-	.4byte 0x2F652D67
-	.4byte 0x6174652D
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F67
-	.4byte 0x61746573
-	.4byte 0x2F652D67
-	.4byte 0x6174652D
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F64
-	.4byte 0x756E6765
-	.4byte 0x6F6E5F68
-	.4byte 0x6F6C652F
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F64
-	.4byte 0x756E6765
-	.4byte 0x6F6E5F68
-	.4byte 0x6F6C652F
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F70
-	.4byte 0x696B6968
-	.4byte 0x6561642F
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F70
-	.4byte 0x696B6968
-	.4byte 0x6561642F
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F62
-	.4byte 0x72696467
-	.4byte 0x652F735F
-	.4byte 0x62726964
-	.4byte 0x67652F61
-	.4byte 0x72632E73
-	.4byte 0x7A730000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F62
-	.4byte 0x72696467
-	.4byte 0x652F735F
-	.4byte 0x62726964
-	.4byte 0x67652F74
-	.4byte 0x65787473
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F62
-	.4byte 0x72696467
-	.4byte 0x652F736C
-	.4byte 0x6F70655F
-	.4byte 0x752F6172
-	.4byte 0x632E737A
-	.4byte 0x73000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F62
-	.4byte 0x72696467
-	.4byte 0x652F736C
-	.4byte 0x6F70655F
-	.4byte 0x752F7465
-	.4byte 0x7874732E
-	.4byte 0x737A7300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F62
-	.4byte 0x72696467
-	.4byte 0x652F6C5F
-	.4byte 0x62726964
-	.4byte 0x67652F61
-	.4byte 0x72632E73
-	.4byte 0x7A730000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F62
-	.4byte 0x72696467
-	.4byte 0x652F6C5F
-	.4byte 0x62726964
-	.4byte 0x67652F74
-	.4byte 0x65787473
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x51756565
-	.4byte 0x6E2F7175
-	.4byte 0x65656E63
-	.4byte 0x68617070
-	.4byte 0x795F6D6F
-	.4byte 0x64656C2E
-	.4byte 0x62746B00
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x51756565
-	.4byte 0x6E2F6D6F
-	.4byte 0x64656C2E
-	.4byte 0x737A7300
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x51756565
-	.4byte 0x6E2F616E
-	.4byte 0x696D2E73
-	.4byte 0x7A730000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x42696754
-	.4byte 0x72656173
-	.4byte 0x7572652F
-	.4byte 0x6D6F6465
-	.4byte 0x6C2E737A
-	.4byte 0x73000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x42696754
-	.4byte 0x72656173
-	.4byte 0x7572652F
-	.4byte 0x616E696D
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x42616279
-	.4byte 0x2F6D6F64
-	.4byte 0x656C2E73
-	.4byte 0x7A730000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x42616279
-	.4byte 0x2F616E69
-	.4byte 0x6D2E737A
-	.4byte 0x73000000
+str_m_s17:
+	.asciz "/user/Mukki/movie/s17_suck_equipment/demo.szs"
+	.skip 0x2
+str_m_s22_e:
+	.asciz "/user/Mukki/movie/s22_cv_suck_equipment/demo.szs"
+	.skip 0x3
+str_m_s22_t:
+	.asciz "/user/Mukki/movie/s22_cv_suck_treasure/demo.szs"
+str_m_s01:
+	.asciz "/user/Mukki/movie/s01_dayend/demo.szs"
+	.skip 0x2
+str_m_s02:
+	.asciz "/user/Mukki/movie/s02_dayend_result/demo.szs"
+	.skip 0x3
+str_m_s03:
+	.asciz "/user/Mukki/movie/s03_orimadown/demo.szs"
+	.skip 0x3
+str_m_s04:
+	.asciz "/user/Mukki/movie/s04_dayend_orimadown/demo.szs"
+str_m_s05:
+	.asciz "/user/Mukki/movie/s05_pikminzero/demo.szs"
+	.skip 0x2
+str_m_s06:
+	.asciz "/user/Mukki/movie/s06_dayend_pikminzero/demo.szs"
+	.skip 0x3
+str_m_s0C:
+	.asciz "/user/Mukki/movie/s0C_cv_escape/demo.szs"
+	.skip 0x3
+str_m_s0E:
+	.asciz "/user/Mukki/movie/s0E_return_cave/demo.szs"
+	.skip 0x1
+str_m_s12:
+	.asciz "/user/Mukki/movie/s12_cv_giveup/demo.szs"
+	.skip 0x3
+str_m_s21:
+	.asciz "/user/Mukki/movie/s21_dayend_takeoff/demo.szs"
+	.skip 0x2
+str_k_onyon_A:
+	.asciz "user/Kando/onyon/arc.szs"
+	.skip 0x3
+str_k_onyon_T:
+	.asciz "user/Kando/onyon/texts.szs"
+	.skip 0x1
+str_k_pod_A:
+	.asciz "user/Kando/pod/arc.szs"
+	.skip 0x1
+str_k_pod_T:
+	.asciz "user/Kando/pod/texts.szs"
+	.skip 0x3
+str_k_pod_gold_A:
+	.asciz "user/Kando/pod_gold/arc.szs"
+str_k_pod_gold_T:
+	.asciz "user/Kando/pod_gold/texts.szs"
+	.skip 0x2
+str_k_ufo_A:
+	.asciz "user/Kando/ufo/arc.szs"
+	.skip 0x1
+str_k_ufo_T:
+	.asciz "user/Kando/ufo/texts.szs"
+	.skip 0x3
+str_k_ufo_gold_A:
+	.asciz "user/Kando/ufo_gold/arc.szs"
+str_k_ufo_gold_T:
+	.asciz "user/Kando/ufo_gold/texts.szs"
+	.skip 0x2
+str_k_gate_A:
+	.asciz "user/Kando/objects/gates/gate-arc.szs"
+	.skip 0x2
+str_k_gate_T:
+	.asciz "user/Kando/objects/gates/gate-texts.szs"
+str_k_egate_A:
+	.asciz "user/Kando/objects/gates/e-gate-arc.szs"
+str_k_egate_T:
+	.asciz "user/Kando/objects/gates/e-gate-texts.szs"
+	.skip 0x2
+str_k_dhole_A:
+	.asciz "user/Kando/objects/dungeon_hole/arc.szs"
+str_k_dhole_T:
+	.asciz "user/Kando/objects/dungeon_hole/texts.szs"
+	.skip 0x2
+str_k_pikihead_A:
+	.asciz "user/Kando/objects/pikihead/arc.szs"
+str_k_pikihead_T:
+	.asciz "user/Kando/objects/pikihead/texts.szs"
+	.skip 0x2
+str_k_sBridge_A:
+	.asciz "user/Kando/bridge/s_bridge/arc.szs"
+	.skip 0x1
+str_k_sBridge_T:
+	.asciz "user/Kando/bridge/s_bridge/texts.szs"
+	.skip 0x3
+str_k_slopeU_A:
+	.asciz "user/Kando/bridge/slope_u/arc.szs"
+	.skip 0x2
+str_k_slopeU_T:
+	.asciz "user/Kando/bridge/slope_u/texts.szs"
+str_k_lBridge_A:
+	.asciz "user/Kando/bridge/l_bridge/arc.szs"
+	.skip 0x1
+str_k_lBridge_T:
+	.asciz "user/Kando/bridge/l_bridge/texts.szs"
+	.skip 0x3
+str_queenchappy_btk:
+	.asciz "/enemy/data/Queen/queenchappy_model.btk"
+str_queen_model:
+	.asciz "/enemy/data/Queen/model.szs"
+str_queen_anim:
+	.asciz "/enemy/data/Queen/anim.szs"
+	.skip 0x1
+str_bigtreasure_model:
+	.asciz "/enemy/data/BigTreasure/model.szs"
+	.skip 0x2
+str_bigtreasure_anim:
+	.asciz "/enemy/data/BigTreasure/anim.szs"
+	.skip 0x3
+str_baby_model:
+	.asciz "/enemy/data/Baby/model.szs"
+	.skip 0x1
+str_baby_anim:
+	.asciz "/enemy/data/Baby/anim.szs"
+	.skip 0x2
 .global lbl_8049CD54
 lbl_8049CD54:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F65
-	.4byte 0x6E656D79
-	.4byte 0x5265734C
-	.4byte 0x6973742E
-	.4byte 0x74787400
+	.asciz "P2Assert"
+	.skip 0x3
+str_enemyResList:
+	.asciz "/enemy/enemyResList.txt"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -495,62 +210,62 @@ lbl_8049CD54:
 	.4byte str_res_VS
 	.4byte str_res_SMenuPauseDoukutu
 	.4byte str_res_SMenuPauseVS
-	.4byte 0x8049C4F8
-	.4byte 0x8049C50C
-	.4byte 0x8049C51C
+	.4byte str_res_AnaDemo
+	.4byte str_res_Contena
+	.4byte str_res_Ufo
 .global "sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
 "sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
-	.4byte 0x8049C528
-	.4byte 0x8049C554
-	.4byte 0x8049C580
-	.4byte 0x8049C5AC
+	.4byte str_mIMG_tutorial
+	.4byte str_mIMG_forest
+	.4byte str_mIMG_yakushima
+	.4byte str_mIMG_last
 .global "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
 "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
-	.4byte 0x8049C5D4
-	.4byte 0x8049C5FC
-	.4byte 0x8049C628
-	.4byte 0x8049C650
-	.4byte 0x8049C67C
-	.4byte 0x8049C6AC
-	.4byte 0x8049C6DC
-	.4byte 0x8049C70C
-	.4byte 0x8049C740
-	.4byte 0x8049C770
-	.4byte 0x8049C798
-	.4byte 0x8049C7C8
-	.4byte 0x8049C7F4
-	.4byte 0x8049C824
-	.4byte 0x8049C850
-	.4byte 0x8049C884
-	.4byte 0x8049C8B0
-	.4byte 0x8049C8DC
-	.4byte 0x8049C908
+	.4byte str_m_s00
+	.4byte str_m_s0B
+	.4byte str_m_s09
+	.4byte str_m_g2F
+	.4byte str_m_g30
+	.4byte str_m_s10
+	.4byte str_m_s17
+	.4byte str_m_s22_e
+	.4byte str_m_s22_t
+	.4byte str_m_s01
+	.4byte str_m_s02
+	.4byte str_m_s03
+	.4byte str_m_s04
+	.4byte str_m_s05
+	.4byte str_m_s06
+	.4byte str_m_s0C
+	.4byte str_m_s0E
+	.4byte str_m_s12
+	.4byte str_m_s21
 .global "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
 "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
-	.4byte 0x8049C938
-	.4byte 0x8049C954
-	.4byte 0x8049C970
-	.4byte 0x8049C988
-	.4byte 0x8049C9A4
-	.4byte 0x8049C9C0
-	.4byte 0x8049C9E0
-	.4byte 0x8049C9F8
-	.4byte 0x8049CA14
-	.4byte 0x8049CA30
-	.4byte 0x8049CA50
-	.4byte 0x8049CA78
-	.4byte 0x8049CAA0
-	.4byte 0x8049CAC8
-	.4byte 0x8049CAF4
-	.4byte 0x8049CB1C
-	.4byte 0x8049CB48
-	.4byte 0x8049CB6C
-	.4byte 0x8049CB94
-	.4byte 0x8049CBB8
-	.4byte 0x8049CBE0
-	.4byte 0x8049CC04
-	.4byte 0x8049CC28
-	.4byte 0x8049CC4C
+	.4byte str_k_onyon_A
+	.4byte str_k_onyon_T
+	.4byte str_k_pod_A
+	.4byte str_k_pod_T
+	.4byte str_k_pod_gold_A
+	.4byte str_k_pod_gold_T
+	.4byte str_k_ufo_A
+	.4byte str_k_ufo_T
+	.4byte str_k_ufo_gold_A
+	.4byte str_k_ufo_gold_T
+	.4byte str_k_gate_A
+	.4byte str_k_gate_T
+	.4byte str_k_egate_A
+	.4byte str_k_egate_T
+	.4byte str_k_dhole_A
+	.4byte str_k_dhole_T
+	.4byte str_k_pikihead_A
+	.4byte str_k_pikihead_T
+	.4byte str_k_sBridge_A
+	.4byte str_k_sBridge_T
+	.4byte str_k_slopeU_A
+	.4byte str_k_slopeU_T
+	.4byte str_k_lBridge_A
+	.4byte str_k_lBridge_T
 .global __vt__Q211Pikmin2ARAM3Mgr
 __vt__Q211Pikmin2ARAM3Mgr:
 	.4byte 0
