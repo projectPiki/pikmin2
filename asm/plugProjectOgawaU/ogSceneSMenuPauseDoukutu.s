@@ -121,6 +121,8 @@ doConfirmSetScene__Q32og9newScreen17SMenuPauseDoukutuFRQ26Screen11SetSceneArg:
 /* 8032370C 0032064C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80323710 00320650  7C 09 03 A6 */	mtctr r0
 /* 80323714 00320654  4E 80 04 20 */	bctr 
+.global lbl_80323718
+lbl_80323718:
 /* 80323718 00320658  3B E0 00 01 */	li r31, 1
 .global lbl_8032371C
 lbl_8032371C:

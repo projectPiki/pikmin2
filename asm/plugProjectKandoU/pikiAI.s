@@ -3425,6 +3425,8 @@ lbl_801B3978:
 /* 801B3990 001B08D0  7C 04 00 2E */	lwzx r0, r4, r0
 /* 801B3994 001B08D4  7C 09 03 A6 */	mtctr r0
 /* 801B3998 001B08D8  4E 80 04 20 */	bctr 
+.global lbl_801B399C
+lbl_801B399C:
 /* 801B399C 001B08DC  81 83 00 00 */	lwz r12, 0(r3)
 /* 801B39A0 001B08E0  81 8C 00 18 */	lwz r12, 0x18(r12)
 /* 801B39A4 001B08E4  7D 89 03 A6 */	mtctr r12
@@ -3452,6 +3454,8 @@ lbl_801B39D0:
 /* 801B39F8 001B0938  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B39FC 001B093C  4B FE 35 99 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3A00 001B0940  48 00 01 EC */	b lbl_801B3BEC
+.global lbl_801B3A04
+lbl_801B3A04:
 /* 801B3A04 001B0944  3C 60 80 4B */	lis r3, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3A08 001B0948  3C 80 80 4B */	lis r4, __vt__Q26PikiAI15ActTransportArg@ha
 /* 801B3A0C 001B094C  38 03 05 30 */	addi r0, r3, __vt__Q26PikiAI9ActionArg@l
@@ -3473,6 +3477,8 @@ lbl_801B39D0:
 lbl_801B3A4C:
 /* 801B3A4C 001B098C  38 60 00 01 */	li r3, 1
 /* 801B3A50 001B0990  48 00 01 9C */	b lbl_801B3BEC
+.global lbl_801B3A54
+lbl_801B3A54:
 /* 801B3A54 001B0994  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3A58 001B0998  3C 80 80 4B */	lis r4, __vt__Q26PikiAI12ActAttackArg@ha
 /* 801B3A5C 001B099C  38 A5 05 30 */	addi r5, r5, __vt__Q26PikiAI9ActionArg@l
@@ -3487,6 +3493,8 @@ lbl_801B3A4C:
 /* 801B3A80 001B09C0  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3A84 001B09C4  4B FE 35 11 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3A88 001B09C8  48 00 01 64 */	b lbl_801B3BEC
+.global lbl_801B3A8C
+lbl_801B3A8C:
 /* 801B3A8C 001B09CC  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3A90 001B09D0  3C 80 80 4B */	lis r4, __vt__Q26PikiAI17CreatureActionArg@ha
 /* 801B3A94 001B09D4  38 A5 05 30 */	addi r5, r5, __vt__Q26PikiAI9ActionArg@l
@@ -3499,6 +3507,8 @@ lbl_801B3A4C:
 /* 801B3AB0 001B09F0  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3AB4 001B09F4  4B FE 34 E1 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3AB8 001B09F8  48 00 01 34 */	b lbl_801B3BEC
+.global lbl_801B3ABC
+lbl_801B3ABC:
 /* 801B3ABC 001B09FC  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3AC0 001B0A00  3C 80 80 4B */	lis r4, __vt__Q26PikiAI15ActBreakGateArg@ha
 /* 801B3AC4 001B0A04  38 C5 05 30 */	addi r6, r5, __vt__Q26PikiAI9ActionArg@l
@@ -3511,6 +3521,8 @@ lbl_801B3A4C:
 /* 801B3AE0 001B0A20  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3AE4 001B0A24  4B FE 34 B1 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3AE8 001B0A28  48 00 01 04 */	b lbl_801B3BEC
+.global lbl_801B3AEC
+lbl_801B3AEC:
 /* 801B3AEC 001B0A2C  81 83 00 00 */	lwz r12, 0(r3)
 /* 801B3AF0 001B0A30  7C 7F 1B 78 */	mr r31, r3
 /* 801B3AF4 001B0A34  81 8C 00 A8 */	lwz r12, 0xa8(r12)
@@ -3539,6 +3551,8 @@ lbl_801B3A4C:
 lbl_801B3B50:
 /* 801B3B50 001B0A90  38 60 00 01 */	li r3, 1
 /* 801B3B54 001B0A94  48 00 00 98 */	b lbl_801B3BEC
+.global lbl_801B3B58
+lbl_801B3B58:
 /* 801B3B58 001B0A98  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3B5C 001B0A9C  3C 80 80 4B */	lis r4, __vt__Q26PikiAI15ActBreakRockArg@ha
 /* 801B3B60 001B0AA0  38 C5 05 30 */	addi r6, r5, __vt__Q26PikiAI9ActionArg@l
@@ -3551,6 +3565,8 @@ lbl_801B3B50:
 /* 801B3B7C 001B0ABC  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3B80 001B0AC0  4B FE 34 15 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3B84 001B0AC4  48 00 00 68 */	b lbl_801B3BEC
+.global lbl_801B3B88
+lbl_801B3B88:
 /* 801B3B88 001B0AC8  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3B8C 001B0ACC  3C 80 80 4B */	lis r4, __vt__Q26PikiAI10ActCropArg@ha
 /* 801B3B90 001B0AD0  38 C5 05 30 */	addi r6, r5, __vt__Q26PikiAI9ActionArg@l
@@ -3563,6 +3579,8 @@ lbl_801B3B50:
 /* 801B3BAC 001B0AEC  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3BB0 001B0AF0  4B FE 33 E5 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3BB4 001B0AF4  48 00 00 38 */	b lbl_801B3BEC
+.global lbl_801B3BB8
+lbl_801B3BB8:
 /* 801B3BB8 001B0AF8  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3BBC 001B0AFC  3C 80 80 4B */	lis r4, __vt__Q26PikiAI10ActWeedArg@ha
 /* 801B3BC0 001B0B00  38 C5 05 30 */	addi r6, r5, __vt__Q26PikiAI9ActionArg@l

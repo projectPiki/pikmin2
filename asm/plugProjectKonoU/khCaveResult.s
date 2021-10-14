@@ -971,30 +971,48 @@ lbl_803F94C8:
 /* 803F94E0 003F6420  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803F94E4 003F6424  7C 09 03 A6 */	mtctr r0
 /* 803F94E8 003F6428  4E 80 04 20 */	bctr 
+.global lbl_803F94EC
+lbl_803F94EC:
 /* 803F94EC 003F642C  7F C3 F3 78 */	mr r3, r30
 /* 803F94F0 003F6430  48 00 0A 9D */	bl statusNormal__Q32kh6Screen13ObjCaveResultFv
 /* 803F94F4 003F6434  48 00 00 60 */	b lbl_803F9554
+.global lbl_803F94F8
+lbl_803F94F8:
 /* 803F94F8 003F6438  7F C3 F3 78 */	mr r3, r30
 /* 803F94FC 003F643C  48 00 0C 6D */	bl statusScrollUp__Q32kh6Screen13ObjCaveResultFv
 /* 803F9500 003F6440  48 00 00 54 */	b lbl_803F9554
+.global lbl_803F9504
+lbl_803F9504:
 /* 803F9504 003F6444  7F C3 F3 78 */	mr r3, r30
 /* 803F9508 003F6448  48 00 0D 55 */	bl statusScrollDown__Q32kh6Screen13ObjCaveResultFv
 /* 803F950C 003F644C  48 00 00 48 */	b lbl_803F9554
+.global lbl_803F9510
+lbl_803F9510:
 /* 803F9510 003F6450  7F C3 F3 78 */	mr r3, r30
 /* 803F9514 003F6454  48 00 0E 3D */	bl statusForceScroll__Q32kh6Screen13ObjCaveResultFv
 /* 803F9518 003F6458  48 00 00 3C */	b lbl_803F9554
+.global lbl_803F951C
+lbl_803F951C:
 /* 803F951C 003F645C  7F C3 F3 78 */	mr r3, r30
 /* 803F9520 003F6460  48 00 11 21 */	bl statusDrumRoll__Q32kh6Screen13ObjCaveResultFv
 /* 803F9524 003F6464  48 00 00 30 */	b lbl_803F9554
+.global lbl_803F9528
+lbl_803F9528:
 /* 803F9528 003F6468  7F C3 F3 78 */	mr r3, r30
 /* 803F952C 003F646C  48 00 12 D9 */	bl statusLost__Q32kh6Screen13ObjCaveResultFv
 /* 803F9530 003F6470  48 00 00 24 */	b lbl_803F9554
+.global lbl_803F9534
+lbl_803F9534:
 /* 803F9534 003F6474  7F C3 F3 78 */	mr r3, r30
 /* 803F9538 003F6478  48 00 11 E5 */	bl statusDecP__Q32kh6Screen13ObjCaveResultFv
 /* 803F953C 003F647C  48 00 00 18 */	b lbl_803F9554
+.global lbl_803F9540
+lbl_803F9540:
 /* 803F9540 003F6480  7F C3 F3 78 */	mr r3, r30
 /* 803F9544 003F6484  48 00 13 D1 */	bl statusEffect__Q32kh6Screen13ObjCaveResultFv
 /* 803F9548 003F6488  48 00 00 0C */	b lbl_803F9554
+.global lbl_803F954C
+lbl_803F954C:
 /* 803F954C 003F648C  7F C3 F3 78 */	mr r3, r30
 /* 803F9550 003F6490  48 00 11 0D */	bl statusAllMoney__Q32kh6Screen13ObjCaveResultFv
 lbl_803F9554:

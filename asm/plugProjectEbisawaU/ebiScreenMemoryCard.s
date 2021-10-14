@@ -487,6 +487,8 @@ lbl_803C294C:
 /* 803C2974 003BF8B4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803C2978 003BF8B8  7C 09 03 A6 */	mtctr r0
 /* 803C297C 003BF8BC  4E 80 04 20 */	bctr 
+.global lbl_803C2980
+lbl_803C2980:
 /* 803C2980 003BF8C0  7F E3 FB 78 */	mr r3, r31
 /* 803C2984 003BF8C4  38 80 00 03 */	li r4, 3
 /* 803C2988 003BF8C8  48 00 16 51 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
@@ -494,6 +496,8 @@ lbl_803C294C:
 /* 803C2990 003BF8D0  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 803C2994 003BF8D4  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 803C2998 003BF8D8  48 00 11 50 */	b lbl_803C3AE8
+.global lbl_803C299C
+lbl_803C299C:
 /* 803C299C 003BF8DC  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C29A0 003BF8E0  38 80 18 0D */	li r4, 0x180d
 /* 803C29A4 003BF8E4  38 A0 00 00 */	li r5, 0
@@ -518,6 +522,8 @@ lbl_803C294C:
 /* 803C29F0 003BF930  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C29F4 003BF934  48 00 15 E5 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C29F8 003BF938  48 00 10 F0 */	b lbl_803C3AE8
+.global lbl_803C29FC
+lbl_803C29FC:
 /* 803C29FC 003BF93C  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2A00 003BF940  38 80 18 0D */	li r4, 0x180d
 /* 803C2A04 003BF944  38 A0 00 00 */	li r5, 0
@@ -542,6 +548,8 @@ lbl_803C294C:
 /* 803C2A50 003BF990  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2A54 003BF994  48 00 15 85 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2A58 003BF998  48 00 10 90 */	b lbl_803C3AE8
+.global lbl_803C2A5C
+lbl_803C2A5C:
 /* 803C2A5C 003BF99C  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2A60 003BF9A0  38 80 18 0D */	li r4, 0x180d
 /* 803C2A64 003BF9A4  38 A0 00 00 */	li r5, 0
@@ -566,6 +574,8 @@ lbl_803C294C:
 /* 803C2AB0 003BF9F0  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2AB4 003BF9F4  48 00 15 25 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2AB8 003BF9F8  48 00 10 30 */	b lbl_803C3AE8
+.global lbl_803C2ABC
+lbl_803C2ABC:
 /* 803C2ABC 003BF9FC  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2AC0 003BFA00  38 80 18 0D */	li r4, 0x180d
 /* 803C2AC4 003BFA04  38 A0 00 00 */	li r5, 0
@@ -590,6 +600,8 @@ lbl_803C294C:
 /* 803C2B10 003BFA50  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2B14 003BFA54  48 00 14 C5 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2B18 003BFA58  48 00 0F D0 */	b lbl_803C3AE8
+.global lbl_803C2B1C
+lbl_803C2B1C:
 /* 803C2B1C 003BFA5C  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2B20 003BFA60  38 80 18 0D */	li r4, 0x180d
 /* 803C2B24 003BFA64  38 A0 00 00 */	li r5, 0
@@ -625,6 +637,8 @@ lbl_803C294C:
 /* 803C2B9C 003BFADC  38 80 00 01 */	li r4, 1
 /* 803C2BA0 003BFAE0  48 00 14 39 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2BA4 003BFAE4  48 00 0F 44 */	b lbl_803C3AE8
+.global lbl_803C2BA8
+lbl_803C2BA8:
 /* 803C2BA8 003BFAE8  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2BAC 003BFAEC  38 80 18 0D */	li r4, 0x180d
 /* 803C2BB0 003BFAF0  38 A0 00 00 */	li r5, 0
@@ -649,6 +663,8 @@ lbl_803C294C:
 /* 803C2BFC 003BFB3C  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2C00 003BFB40  48 00 13 D9 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2C04 003BFB44  48 00 0E E4 */	b lbl_803C3AE8
+.global lbl_803C2C08
+lbl_803C2C08:
 /* 803C2C08 003BFB48  3C 60 38 5F */	lis r3, 0x385F3030@ha
 /* 803C2C0C 003BFB4C  80 BF 00 28 */	lwz r5, 0x28(r31)
 /* 803C2C10 003BFB50  38 C3 30 30 */	addi r6, r3, 0x385F3030@l
@@ -669,6 +685,8 @@ lbl_803C294C:
 /* 803C2C4C 003BFB8C  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2C50 003BFB90  48 00 13 89 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2C54 003BFB94  48 00 0E 94 */	b lbl_803C3AE8
+.global lbl_803C2C58
+lbl_803C2C58:
 /* 803C2C58 003BFB98  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2C5C 003BFB9C  38 80 18 0D */	li r4, 0x180d
 /* 803C2C60 003BFBA0  38 A0 00 00 */	li r5, 0
@@ -693,6 +711,8 @@ lbl_803C294C:
 /* 803C2CAC 003BFBEC  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2CB0 003BFBF0  48 00 13 29 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2CB4 003BFBF4  48 00 0E 34 */	b lbl_803C3AE8
+.global lbl_803C2CB8
+lbl_803C2CB8:
 /* 803C2CB8 003BFBF8  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2CBC 003BFBFC  38 80 18 0C */	li r4, 0x180c
 /* 803C2CC0 003BFC00  38 A0 00 00 */	li r5, 0
@@ -717,6 +737,8 @@ lbl_803C294C:
 /* 803C2D0C 003BFC4C  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2D10 003BFC50  48 00 12 C9 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2D14 003BFC54  48 00 0D D4 */	b lbl_803C3AE8
+.global lbl_803C2D18
+lbl_803C2D18:
 /* 803C2D18 003BFC58  38 00 00 01 */	li r0, 1
 /* 803C2D1C 003BFC5C  3C 60 31 5F */	lis r3, 0x315F3030@ha
 /* 803C2D20 003BFC60  98 1F 02 94 */	stb r0, 0x294(r31)
@@ -739,6 +761,8 @@ lbl_803C294C:
 /* 803C2D64 003BFCA4  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2D68 003BFCA8  48 00 12 71 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2D6C 003BFCAC  48 00 0D 7C */	b lbl_803C3AE8
+.global lbl_803C2D70
+lbl_803C2D70:
 /* 803C2D70 003BFCB0  3C 80 30 5F */	lis r4, 0x305F3030@ha
 /* 803C2D74 003BFCB4  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 803C2D78 003BFCB8  38 04 30 30 */	addi r0, r4, 0x305F3030@l
@@ -770,6 +794,8 @@ lbl_803C294C:
 /* 803C2DE0 003BFD20  38 80 00 01 */	li r4, 1
 /* 803C2DE4 003BFD24  48 00 11 F5 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2DE8 003BFD28  48 00 0D 00 */	b lbl_803C3AE8
+.global lbl_803C2DEC
+lbl_803C2DEC:
 /* 803C2DEC 003BFD2C  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2DF0 003BFD30  38 80 18 0D */	li r4, 0x180d
 /* 803C2DF4 003BFD34  38 A0 00 00 */	li r5, 0
@@ -794,6 +820,8 @@ lbl_803C294C:
 /* 803C2E40 003BFD80  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C2E44 003BFD84  48 00 11 95 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2E48 003BFD88  48 00 0C A0 */	b lbl_803C3AE8
+.global lbl_803C2E4C
+lbl_803C2E4C:
 /* 803C2E4C 003BFD8C  3C 80 30 5F */	lis r4, 0x305F3030@ha
 /* 803C2E50 003BFD90  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 803C2E54 003BFD94  38 04 30 30 */	addi r0, r4, 0x305F3030@l
@@ -825,6 +853,8 @@ lbl_803C294C:
 /* 803C2EBC 003BFDFC  38 80 00 01 */	li r4, 1
 /* 803C2EC0 003BFE00  48 00 11 19 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2EC4 003BFE04  48 00 0C 24 */	b lbl_803C3AE8
+.global lbl_803C2EC8
+lbl_803C2EC8:
 /* 803C2EC8 003BFE08  3C 80 30 5F */	lis r4, 0x305F3030@ha
 /* 803C2ECC 003BFE0C  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 803C2ED0 003BFE10  39 24 30 30 */	addi r9, r4, 0x305F3030@l
@@ -855,6 +885,8 @@ lbl_803C294C:
 /* 803C2F34 003BFE74  38 80 00 01 */	li r4, 1
 /* 803C2F38 003BFE78  48 00 10 A1 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2F3C 003BFE7C  48 00 0B AC */	b lbl_803C3AE8
+.global lbl_803C2F40
+lbl_803C2F40:
 /* 803C2F40 003BFE80  3C 80 30 5F */	lis r4, 0x305F3030@ha
 /* 803C2F44 003BFE84  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 803C2F48 003BFE88  38 04 30 30 */	addi r0, r4, 0x305F3030@l
@@ -886,6 +918,8 @@ lbl_803C294C:
 /* 803C2FB0 003BFEF0  38 80 00 01 */	li r4, 1
 /* 803C2FB4 003BFEF4  48 00 10 25 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C2FB8 003BFEF8  48 00 0B 30 */	b lbl_803C3AE8
+.global lbl_803C2FBC
+lbl_803C2FBC:
 /* 803C2FBC 003BFEFC  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C2FC0 003BFF00  38 80 18 0D */	li r4, 0x180d
 /* 803C2FC4 003BFF04  38 A0 00 00 */	li r5, 0
@@ -910,6 +944,8 @@ lbl_803C294C:
 /* 803C3010 003BFF50  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C3014 003BFF54  48 00 0F C5 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3018 003BFF58  48 00 0A D0 */	b lbl_803C3AE8
+.global lbl_803C301C
+lbl_803C301C:
 /* 803C301C 003BFF5C  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3020 003BFF60  38 80 18 0D */	li r4, 0x180d
 /* 803C3024 003BFF64  38 A0 00 00 */	li r5, 0
@@ -934,6 +970,8 @@ lbl_803C294C:
 /* 803C3070 003BFFB0  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C3074 003BFFB4  48 00 0F 65 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3078 003BFFB8  48 00 0A 70 */	b lbl_803C3AE8
+.global lbl_803C307C
+lbl_803C307C:
 /* 803C307C 003BFFBC  38 00 00 01 */	li r0, 1
 /* 803C3080 003BFFC0  3C 60 37 5F */	lis r3, 0x375F3030@ha
 /* 803C3084 003BFFC4  98 1F 02 94 */	stb r0, 0x294(r31)
@@ -956,6 +994,8 @@ lbl_803C294C:
 /* 803C30C8 003C0008  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C30CC 003C000C  48 00 0F 0D */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C30D0 003C0010  48 00 0A 18 */	b lbl_803C3AE8
+.global lbl_803C30D4
+lbl_803C30D4:
 /* 803C30D4 003C0014  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C30D8 003C0018  38 80 18 0C */	li r4, 0x180c
 /* 803C30DC 003C001C  38 A0 00 00 */	li r5, 0
@@ -980,6 +1020,8 @@ lbl_803C294C:
 /* 803C3128 003C0068  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C312C 003C006C  48 00 0E AD */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3130 003C0070  48 00 09 B8 */	b lbl_803C3AE8
+.global lbl_803C3134
+lbl_803C3134:
 /* 803C3134 003C0074  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3138 003C0078  38 80 18 0D */	li r4, 0x180d
 /* 803C313C 003C007C  38 A0 00 00 */	li r5, 0
@@ -1004,6 +1046,8 @@ lbl_803C294C:
 /* 803C3188 003C00C8  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C318C 003C00CC  48 00 0E 4D */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3190 003C00D0  48 00 09 58 */	b lbl_803C3AE8
+.global lbl_803C3194
+lbl_803C3194:
 /* 803C3194 003C00D4  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3198 003C00D8  38 80 18 0D */	li r4, 0x180d
 /* 803C319C 003C00DC  38 A0 00 00 */	li r5, 0
@@ -1028,6 +1072,8 @@ lbl_803C294C:
 /* 803C31E8 003C0128  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C31EC 003C012C  48 00 0D ED */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C31F0 003C0130  48 00 08 F8 */	b lbl_803C3AE8
+.global lbl_803C31F4
+lbl_803C31F4:
 /* 803C31F4 003C0134  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C31F8 003C0138  38 80 18 0D */	li r4, 0x180d
 /* 803C31FC 003C013C  38 A0 00 00 */	li r5, 0
@@ -1052,6 +1098,8 @@ lbl_803C294C:
 /* 803C3248 003C0188  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C324C 003C018C  48 00 0D 8D */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3250 003C0190  48 00 08 98 */	b lbl_803C3AE8
+.global lbl_803C3254
+lbl_803C3254:
 /* 803C3254 003C0194  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3258 003C0198  38 80 18 0D */	li r4, 0x180d
 /* 803C325C 003C019C  38 A0 00 00 */	li r5, 0
@@ -1076,6 +1124,8 @@ lbl_803C294C:
 /* 803C32A8 003C01E8  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C32AC 003C01EC  48 00 0D 2D */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C32B0 003C01F0  48 00 08 38 */	b lbl_803C3AE8
+.global lbl_803C32B4
+lbl_803C32B4:
 /* 803C32B4 003C01F4  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C32B8 003C01F8  38 80 18 0D */	li r4, 0x180d
 /* 803C32BC 003C01FC  38 A0 00 00 */	li r5, 0
@@ -1111,6 +1161,8 @@ lbl_803C294C:
 /* 803C3334 003C0274  38 80 00 01 */	li r4, 1
 /* 803C3338 003C0278  48 00 0C A1 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C333C 003C027C  48 00 07 AC */	b lbl_803C3AE8
+.global lbl_803C3340
+lbl_803C3340:
 /* 803C3340 003C0280  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3344 003C0284  38 80 18 0D */	li r4, 0x180d
 /* 803C3348 003C0288  38 A0 00 00 */	li r5, 0
@@ -1135,6 +1187,8 @@ lbl_803C294C:
 /* 803C3394 003C02D4  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C3398 003C02D8  48 00 0C 41 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C339C 003C02DC  48 00 07 4C */	b lbl_803C3AE8
+.global lbl_803C33A0
+lbl_803C33A0:
 /* 803C33A0 003C02E0  3C 60 36 5F */	lis r3, 0x365F3030@ha
 /* 803C33A4 003C02E4  80 BF 00 28 */	lwz r5, 0x28(r31)
 /* 803C33A8 003C02E8  38 C3 30 30 */	addi r6, r3, 0x365F3030@l
@@ -1155,6 +1209,8 @@ lbl_803C294C:
 /* 803C33E4 003C0324  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C33E8 003C0328  48 00 0B F1 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C33EC 003C032C  48 00 06 FC */	b lbl_803C3AE8
+.global lbl_803C33F0
+lbl_803C33F0:
 /* 803C33F0 003C0330  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C33F4 003C0334  38 80 18 0D */	li r4, 0x180d
 /* 803C33F8 003C0338  38 A0 00 00 */	li r5, 0
@@ -1179,6 +1235,8 @@ lbl_803C294C:
 /* 803C3444 003C0384  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C3448 003C0388  48 00 0B 91 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C344C 003C038C  48 00 06 9C */	b lbl_803C3AE8
+.global lbl_803C3450
+lbl_803C3450:
 /* 803C3450 003C0390  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3454 003C0394  38 80 18 0C */	li r4, 0x180c
 /* 803C3458 003C0398  38 A0 00 00 */	li r5, 0
@@ -1203,6 +1261,8 @@ lbl_803C294C:
 /* 803C34A4 003C03E4  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C34A8 003C03E8  48 00 0B 31 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C34AC 003C03EC  48 00 06 3C */	b lbl_803C3AE8
+.global lbl_803C34B0
+lbl_803C34B0:
 /* 803C34B0 003C03F0  38 00 00 01 */	li r0, 1
 /* 803C34B4 003C03F4  3C 60 39 5F */	lis r3, 0x395F3030@ha
 /* 803C34B8 003C03F8  98 1F 02 94 */	stb r0, 0x294(r31)
@@ -1225,6 +1285,8 @@ lbl_803C294C:
 /* 803C34FC 003C043C  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C3500 003C0440  48 00 0A D9 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3504 003C0444  48 00 05 E4 */	b lbl_803C3AE8
+.global lbl_803C3508
+lbl_803C3508:
 /* 803C3508 003C0448  3C 80 30 5F */	lis r4, 0x305F3030@ha
 /* 803C350C 003C044C  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 803C3510 003C0450  39 04 30 30 */	addi r8, r4, 0x305F3030@l
@@ -1254,6 +1316,8 @@ lbl_803C294C:
 /* 803C3570 003C04B0  38 80 00 01 */	li r4, 1
 /* 803C3574 003C04B4  48 00 0A 65 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3578 003C04B8  48 00 05 70 */	b lbl_803C3AE8
+.global lbl_803C357C
+lbl_803C357C:
 /* 803C357C 003C04BC  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3580 003C04C0  38 80 18 0D */	li r4, 0x180d
 /* 803C3584 003C04C4  38 A0 00 00 */	li r5, 0
@@ -1278,6 +1342,8 @@ lbl_803C294C:
 /* 803C35D0 003C0510  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C35D4 003C0514  48 00 0A 05 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C35D8 003C0518  48 00 05 10 */	b lbl_803C3AE8
+.global lbl_803C35DC
+lbl_803C35DC:
 /* 803C35DC 003C051C  3C 80 30 5F */	lis r4, 0x305F3030@ha
 /* 803C35E0 003C0520  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 803C35E4 003C0524  38 04 30 30 */	addi r0, r4, 0x305F3030@l
@@ -1309,6 +1375,8 @@ lbl_803C294C:
 /* 803C364C 003C058C  38 80 00 01 */	li r4, 1
 /* 803C3650 003C0590  48 00 09 89 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3654 003C0594  48 00 04 94 */	b lbl_803C3AE8
+.global lbl_803C3658
+lbl_803C3658:
 /* 803C3658 003C0598  3C 80 30 5F */	lis r4, 0x305F3030@ha
 /* 803C365C 003C059C  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 803C3660 003C05A0  38 04 30 30 */	addi r0, r4, 0x305F3030@l
@@ -1340,6 +1408,8 @@ lbl_803C294C:
 /* 803C36C8 003C0608  38 80 00 01 */	li r4, 1
 /* 803C36CC 003C060C  48 00 09 0D */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C36D0 003C0610  48 00 04 18 */	b lbl_803C3AE8
+.global lbl_803C36D4
+lbl_803C36D4:
 /* 803C36D4 003C0614  3C 80 30 5F */	lis r4, 0x305F3030@ha
 /* 803C36D8 003C0618  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 803C36DC 003C061C  39 04 30 30 */	addi r8, r4, 0x305F3030@l
@@ -1369,6 +1439,8 @@ lbl_803C294C:
 /* 803C373C 003C067C  38 80 00 01 */	li r4, 1
 /* 803C3740 003C0680  48 00 08 99 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3744 003C0684  48 00 03 A4 */	b lbl_803C3AE8
+.global lbl_803C3748
+lbl_803C3748:
 /* 803C3748 003C0688  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C374C 003C068C  38 80 18 0D */	li r4, 0x180d
 /* 803C3750 003C0690  38 A0 00 00 */	li r5, 0
@@ -1393,6 +1465,8 @@ lbl_803C294C:
 /* 803C379C 003C06DC  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C37A0 003C06E0  48 00 08 39 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C37A4 003C06E4  48 00 03 44 */	b lbl_803C3AE8
+.global lbl_803C37A8
+lbl_803C37A8:
 /* 803C37A8 003C06E8  38 00 00 01 */	li r0, 1
 /* 803C37AC 003C06EC  3C 60 34 5F */	lis r3, 0x345F3030@ha
 /* 803C37B0 003C06F0  98 1F 02 94 */	stb r0, 0x294(r31)
@@ -1415,6 +1489,8 @@ lbl_803C294C:
 /* 803C37F4 003C0734  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C37F8 003C0738  48 00 07 E1 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C37FC 003C073C  48 00 02 EC */	b lbl_803C3AE8
+.global lbl_803C3800
+lbl_803C3800:
 /* 803C3800 003C0740  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3804 003C0744  38 80 18 0D */	li r4, 0x180d
 /* 803C3808 003C0748  38 A0 00 00 */	li r5, 0
@@ -1439,6 +1515,8 @@ lbl_803C294C:
 /* 803C3854 003C0794  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C3858 003C0798  48 00 07 81 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C385C 003C079C  48 00 02 8C */	b lbl_803C3AE8
+.global lbl_803C3860
+lbl_803C3860:
 /* 803C3860 003C07A0  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3864 003C07A4  38 80 18 0C */	li r4, 0x180c
 /* 803C3868 003C07A8  38 A0 00 00 */	li r5, 0
@@ -1463,6 +1541,8 @@ lbl_803C294C:
 /* 803C38B4 003C07F4  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C38B8 003C07F8  48 00 07 21 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C38BC 003C07FC  48 00 02 2C */	b lbl_803C3AE8
+.global lbl_803C38C0
+lbl_803C38C0:
 /* 803C38C0 003C0800  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C38C4 003C0804  38 80 18 0D */	li r4, 0x180d
 /* 803C38C8 003C0808  38 A0 00 00 */	li r5, 0
@@ -1487,6 +1567,8 @@ lbl_803C294C:
 /* 803C3914 003C0854  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C3918 003C0858  48 00 06 C1 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C391C 003C085C  48 00 01 CC */	b lbl_803C3AE8
+.global lbl_803C3920
+lbl_803C3920:
 /* 803C3920 003C0860  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3924 003C0864  38 80 18 0D */	li r4, 0x180d
 /* 803C3928 003C0868  38 A0 00 00 */	li r5, 0
@@ -1521,6 +1603,8 @@ lbl_803C294C:
 /* 803C399C 003C08DC  38 80 00 01 */	li r4, 1
 /* 803C39A0 003C08E0  48 00 06 39 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C39A4 003C08E4  48 00 01 44 */	b lbl_803C3AE8
+.global lbl_803C39A8
+lbl_803C39A8:
 /* 803C39A8 003C08E8  38 00 00 01 */	li r0, 1
 /* 803C39AC 003C08EC  3C 60 31 5F */	lis r3, 0x315F3030@ha
 /* 803C39B0 003C08F0  98 1F 02 94 */	stb r0, 0x294(r31)
@@ -1543,6 +1627,8 @@ lbl_803C294C:
 /* 803C39F4 003C0934  90 05 00 18 */	stw r0, 0x18(r5)
 /* 803C39F8 003C0938  48 00 05 E1 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C39FC 003C093C  48 00 00 EC */	b lbl_803C3AE8
+.global lbl_803C3A00
+lbl_803C3A00:
 /* 803C3A00 003C0940  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3A04 003C0944  38 80 18 0C */	li r4, 0x180c
 /* 803C3A08 003C0948  38 A0 00 00 */	li r5, 0
@@ -1578,6 +1664,8 @@ lbl_803C294C:
 /* 803C3A80 003C09C0  38 80 00 01 */	li r4, 1
 /* 803C3A84 003C09C4  48 00 05 55 */	bl startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
 /* 803C3A88 003C09C8  48 00 00 60 */	b lbl_803C3AE8
+.global lbl_803C3A8C
+lbl_803C3A8C:
 /* 803C3A8C 003C09CC  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803C3A90 003C09D0  38 80 18 0D */	li r4, 0x180d
 /* 803C3A94 003C09D4  38 A0 00 00 */	li r5, 0

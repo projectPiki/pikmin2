@@ -8,28 +8,28 @@ lbl_804732E0:
 	.4byte 0x00000000
 .global "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"
 "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@":
-	.4byte 0x80008A80
-	.4byte 0x80008A84
-	.4byte 0x80008B7C
-	.4byte 0x80008AC0
+	.4byte extrapolateParameter_raw__Q27JStudio13functionvalueFdd
+	.4byte extrapolateParameter_repeat__Q27JStudio13functionvalueFdd
+	.4byte extrapolateParameter_turn__Q27JStudio13functionvalueFdd
+	.4byte extrapolateParameter_clamp__Q27JStudio13functionvalueFdd
 .global "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"
 "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@":
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x80008D00
-	.4byte 0x8000BD64
-	.4byte 0x80008D6C
-	.4byte 0x8000BD70
-	.4byte 0x80008ED8
-	.4byte 0x8000BD7C
-	.4byte 0x80008F40
-	.4byte 0x8000BD88
-	.4byte 0x80008FC4
-	.4byte 0x8000BD94
-	.4byte 0x800090AC
-	.4byte 0x8000BDA0
-	.4byte 0x80009130
-	.4byte 0x8000BDAC
+	.4byte "composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_raw___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_index___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_parameter___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_add___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_subtract___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_multiply___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
 .global lbl_80473340
 lbl_80473340:
 	.4byte 0x00000000
@@ -1054,9 +1054,9 @@ lbl_80474160:
 	.4byte 0x00000000
 .global saoAboutEncoding___10JUTResFont
 saoAboutEncoding___10JUTResFont:
-	.4byte 0x80006758
-	.4byte 0x80006760
-	.4byte 0x80006768
+	.4byte isLeadByte_1Byte__7JUTFontFi
+	.4byte isLeadByte_2Byte__7JUTFontFi
+	.4byte isLeadByte_ShiftJIS__7JUTFontFi
 .global lbl_8047418C
 lbl_8047418C:
 	.4byte 0x4A555452
@@ -6418,7 +6418,7 @@ DSPRES_FILTER__6JASDsp:
 	.4byte 0xB001A801
 	.4byte 0xA0019801
 	.4byte 0x90018801
-	.4byte 0x80018800
+	.4byte lbl_80018800
 	.4byte 0x90009800
 	.4byte 0xA000A800
 	.4byte 0xB000B800
@@ -6570,10 +6570,10 @@ lbl_804795D8:
 	.4byte 0x00000000
 .global sMixFuncs__9JASDriver
 sMixFuncs__9JASDriver:
-	.4byte 0x800A8218
-	.4byte 0x800A82D8
-	.4byte 0x800A8398
-	.4byte 0x800A8478
+	.4byte mixMonoTrack__9JASDriverFPsUlPFl_Ps
+	.4byte mixMonoTrackWide__9JASDriverFPsUlPFl_Ps
+	.4byte mixExtraTrack__9JASDriverFPsUlPFl_Ps
+	.4byte mixInterleaveTrack__9JASDriverFPsUlPFl_Ps
 .global lbl_804795F8
 lbl_804795F8:
 	.4byte 0x5346522D

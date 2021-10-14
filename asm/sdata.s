@@ -351,13 +351,13 @@ seDistancepitchMax__18JAIGlobalParameter:
 	.4byte 0x00000000
 .global wsInitCallback__Q27JAInter8InitData
 wsInitCallback__Q27JAInter8InitData:
-	.4byte 0x800ADFC8
+	.4byte initWsList__Q27JAInter8InitDataFPUl
 .global bnkInitCallback__Q27JAInter8InitData
 bnkInitCallback__Q27JAInter8InitData:
-	.4byte 0x800ADEFC
+	.4byte initBnkList__Q27JAInter8InitDataFPUl
 .global seStartCallback__Q27JAInter5SeMgr
 seStartCallback__Q27JAInter5SeMgr:
-	.4byte 0x800AE57C
+	.4byte startSeSequence__Q27JAInter5SeMgrFv
 	.4byte 0x00000000
 .global sChannelMax__Q27JAInter9StreamMgr
 sChannelMax__Q27JAInter9StreamMgr:
@@ -462,7 +462,7 @@ autoInvalidation:
 	.4byte 0x00000001
 .global checkOptionalCommand
 checkOptionalCommand:
-	.4byte 0x800DCD28
+	.4byte defaultOptionalCommandChecker
 .global lbl_80514944
 lbl_80514944:
 	.4byte 0x6476642E
@@ -564,7 +564,7 @@ fontEncode$80:
 	.4byte 0x00000000
 .global SwitchThreadCallback
 SwitchThreadCallback:
-	.4byte 0x800F1858
+	.4byte DefaultSwitchThreadCallback
 	.4byte 0x00000000
 .global __PADVersion
 __PADVersion:
@@ -583,7 +583,7 @@ Spec:
 	.4byte 0x00000005
 .global MakeStatus
 MakeStatus:
-	.4byte 0x800F482C
+	.4byte SPEC2_MakeStatus
 .global CmdReadOrigin
 CmdReadOrigin:
 	.4byte 0x41000000

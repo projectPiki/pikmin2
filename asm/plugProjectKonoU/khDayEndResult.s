@@ -6687,27 +6687,43 @@ lbl_80408A94:
 /* 80408AAC 004059EC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80408AB0 004059F0  7C 09 03 A6 */	mtctr r0
 /* 80408AB4 004059F4  4E 80 04 20 */	bctr 
+.global lbl_80408AB8
+lbl_80408AB8:
 /* 80408AB8 004059F8  7F E3 FB 78 */	mr r3, r31
 /* 80408ABC 004059FC  48 00 03 1D */	bl statusNormal__Q32kh6Screen19ObjDayEndResultMailFv
 /* 80408AC0 00405A00  48 00 00 54 */	b lbl_80408B14
+.global lbl_80408AC4
+lbl_80408AC4:
 /* 80408AC4 00405A04  7F E3 FB 78 */	mr r3, r31
 /* 80408AC8 00405A08  48 00 05 25 */	bl statusFadeoutToLeft__Q32kh6Screen19ObjDayEndResultMailFv
 /* 80408ACC 00405A0C  48 00 00 48 */	b lbl_80408B14
+.global lbl_80408AD0
+lbl_80408AD0:
 /* 80408AD0 00405A10  7F E3 FB 78 */	mr r3, r31
 /* 80408AD4 00405A14  48 00 05 C1 */	bl statusFadeinFromLeft__Q32kh6Screen19ObjDayEndResultMailFv
 /* 80408AD8 00405A18  48 00 00 3C */	b lbl_80408B14
+.global lbl_80408ADC
+lbl_80408ADC:
 /* 80408ADC 00405A1C  7F E3 FB 78 */	mr r3, r31
 /* 80408AE0 00405A20  48 00 05 ED */	bl statusFadeoutToRight__Q32kh6Screen19ObjDayEndResultMailFv
 /* 80408AE4 00405A24  48 00 00 30 */	b lbl_80408B14
+.global lbl_80408AE8
+lbl_80408AE8:
 /* 80408AE8 00405A28  7F E3 FB 78 */	mr r3, r31
 /* 80408AEC 00405A2C  48 00 06 99 */	bl statusFadeinFromRight__Q32kh6Screen19ObjDayEndResultMailFv
 /* 80408AF0 00405A30  48 00 00 24 */	b lbl_80408B14
+.global lbl_80408AF4
+lbl_80408AF4:
 /* 80408AF4 00405A34  7F E3 FB 78 */	mr r3, r31
 /* 80408AF8 00405A38  48 00 06 C5 */	bl statusWaitOpen__Q32kh6Screen19ObjDayEndResultMailFv
 /* 80408AFC 00405A3C  48 00 00 18 */	b lbl_80408B14
+.global lbl_80408B00
+lbl_80408B00:
 /* 80408B00 00405A40  7F E3 FB 78 */	mr r3, r31
 /* 80408B04 00405A44  48 00 07 E5 */	bl statusOpenW__Q32kh6Screen19ObjDayEndResultMailFv
 /* 80408B08 00405A48  48 00 00 0C */	b lbl_80408B14
+.global lbl_80408B0C
+lbl_80408B0C:
 /* 80408B0C 00405A4C  7F E3 FB 78 */	mr r3, r31
 /* 80408B10 00405A50  48 00 08 AD */	bl statusOpenH__Q32kh6Screen19ObjDayEndResultMailFv
 lbl_80408B14:

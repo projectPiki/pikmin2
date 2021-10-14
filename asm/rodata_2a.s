@@ -17834,7 +17834,7 @@ lbl_8048F924:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x000000E7
-	.4byte 0x803372E0
+	.4byte seqCpuSync__6PSGameFP8JASTrackUs
 	.4byte 0x00000000
 	.4byte 0x8048FA24
 	.4byte 0x50534175

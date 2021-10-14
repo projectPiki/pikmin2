@@ -3362,6 +3362,8 @@ movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer:
 /* 801425EC 0013F52C  7C 04 00 2E */	lwzx r0, r4, r0
 /* 801425F0 0013F530  7C 09 03 A6 */	mtctr r0
 /* 801425F4 0013F534  4E 80 04 20 */	bctr 
+.global lbl_801425F8
+lbl_801425F8:
 /* 801425F8 0013F538  48 00 22 2D */	bl enterAllPikis__Q24Game4NaviFv
 /* 801425FC 0013F53C  80 1E 01 F0 */	lwz r0, 0x1f0(r30)
 /* 80142600 0013F540  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
@@ -3370,6 +3372,8 @@ movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer:
 /* 8014260C 0013F54C  38 80 00 00 */	li r4, 0
 /* 80142610 0013F550  48 01 D6 A5 */	bl forceEnterPikmins__Q24Game7PikiMgrFUc
 /* 80142614 0013F554  48 00 01 F8 */	b lbl_8014280C
+.global lbl_80142618
+lbl_80142618:
 /* 80142618 0013F558  83 FE 01 94 */	lwz r31, 0x194(r30)
 /* 8014261C 0013F55C  28 1F 00 00 */	cmplwi r31, 0
 /* 80142620 0013F560  40 82 00 18 */	bne lbl_80142638
@@ -3395,6 +3399,8 @@ lbl_80142638:
 /* 8014266C 0013F5AC  D0 01 00 34 */	stfs f0, 0x34(r1)
 /* 80142670 0013F5B0  48 00 25 45 */	bl "holeinAllPikis__Q24Game4NaviFR10Vector3<f>"
 /* 80142674 0013F5B4  48 00 01 98 */	b lbl_8014280C
+.global lbl_80142678
+lbl_80142678:
 /* 80142678 0013F5B8  83 FE 01 94 */	lwz r31, 0x194(r30)
 /* 8014267C 0013F5BC  28 1F 00 00 */	cmplwi r31, 0
 /* 80142680 0013F5C0  40 82 00 18 */	bne lbl_80142698
@@ -3420,14 +3426,20 @@ lbl_80142698:
 /* 801426CC 0013F60C  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 801426D0 0013F610  48 00 27 F1 */	bl "fountainonAllPikis__Q24Game4NaviFR10Vector3<f>"
 /* 801426D4 0013F614  48 00 01 38 */	b lbl_8014280C
+.global lbl_801426D8
+lbl_801426D8:
 /* 801426D8 0013F618  80 6D 96 80 */	lwz r3, shadowMgr__4Game@sda21(r13)
 /* 801426DC 0013F61C  7F A4 EB 78 */	mr r4, r29
 /* 801426E0 0013F620  48 0F F6 11 */	bl delShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 /* 801426E4 0013F624  48 00 01 28 */	b lbl_8014280C
+.global lbl_801426E8
+lbl_801426E8:
 /* 801426E8 0013F628  80 6D 96 80 */	lwz r3, shadowMgr__4Game@sda21(r13)
 /* 801426EC 0013F62C  7F A4 EB 78 */	mr r4, r29
 /* 801426F0 0013F630  48 0F F5 BD */	bl addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 /* 801426F4 0013F634  48 00 01 18 */	b lbl_8014280C
+.global lbl_801426F8
+lbl_801426F8:
 /* 801426F8 0013F638  83 FD 02 D0 */	lwz r31, 0x2d0(r29)
 /* 801426FC 0013F63C  80 7F 00 00 */	lwz r3, 0(r31)
 /* 80142700 0013F640  54 60 00 01 */	rlwinm. r0, r3, 0, 0, 0
@@ -3470,6 +3482,8 @@ lbl_8014272C:
 /* 80142790 0013F6D0  7F E3 FB 78 */	mr r3, r31
 /* 80142794 0013F6D4  48 27 5E 79 */	bl killFueact___Q23efx11TNaviEffectFv
 /* 80142798 0013F6D8  48 00 00 74 */	b lbl_8014280C
+.global lbl_8014279C
+lbl_8014279C:
 /* 8014279C 0013F6DC  83 FD 02 D0 */	lwz r31, 0x2d0(r29)
 /* 801427A0 0013F6E0  80 1F 00 00 */	lwz r0, 0(r31)
 /* 801427A4 0013F6E4  54 00 00 01 */	rlwinm. r0, r0, 0, 0, 0
