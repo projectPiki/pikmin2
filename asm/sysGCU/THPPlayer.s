@@ -115,6 +115,11 @@ VolumeTable:
 	.4byte 0x7A067C00
 	.4byte 0x7DFE8000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global ActivePlayer
+ActivePlayer:
+	.skip 0x1D0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520AF8

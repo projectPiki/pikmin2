@@ -1,4 +1,8 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32kh6Screen16ObjWinLoseReason
+msVal__Q32kh6Screen16ObjWinLoseReason:
+	.skip 0x1C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doCreate__Q32kh6Screen16ObjWinLoseReasonFP10JKRArchive

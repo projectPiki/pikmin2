@@ -9,6 +9,11 @@ lbl_80499654:
 	.asciz "acosf %f\n"
 	.skip 0x2
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global "zero__10Vector3<f>"
+"zero__10Vector3<f>":
+	.skip 0xC
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
 .global "CRSplineTangent__FfP10Vector3<f>"

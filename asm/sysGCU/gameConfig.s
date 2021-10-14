@@ -135,6 +135,11 @@ __vt__Q34Game10GameConfig5Parms:
 	.4byte __dt__Q34Game10GameConfig5ParmsFv
 	.4byte getChildCount__5CNodeFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global gGameConfig__4Game
+gGameConfig__4Game:
+	.skip 0x27C
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520710

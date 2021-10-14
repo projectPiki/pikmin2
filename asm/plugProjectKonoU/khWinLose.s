@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32kh6Screen10ObjWinLose
+msVal__Q32kh6Screen10ObjWinLose:
+	.skip 0x1C
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 
 .global lbl_80520ED0

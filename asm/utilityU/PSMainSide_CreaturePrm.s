@@ -147,6 +147,11 @@ __vt__Q23PSM11CreaturePrm:
 	.4byte 0
 	.4byte "__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv"
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sInsReal__3PSM
+sInsReal__3PSM:
+	.skip 0x20
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520DB8

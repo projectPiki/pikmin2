@@ -768,27 +768,3 @@ msVal__Q32kh6Screen19ObjDayEndResultBase:
 .global msVal__Q32kh6Screen14ObjFinalResult
 msVal__Q32kh6Screen14ObjFinalResult:
 	.skip 0x24
-.global msVal__Q32kh6Screen10ObjWinLose
-msVal__Q32kh6Screen10ObjWinLose:
-	.skip 0x1C
-.global msVal__Q32kh6Screen16ObjWinLoseReason
-msVal__Q32kh6Screen16ObjWinLoseReason:
-	.skip 0x1C
-.global "zero__10Vector3<f>"
-"zero__10Vector3<f>":
-	.skip 0xC
-.global eof__4ID32
-eof__4ID32:
-	.skip 0xC
-.global gGameConfig__4Game
-gGameConfig__4Game:
-	.skip 0x27C
-.global sPikminTex__13TinyPikminMgr
-sPikminTex__13TinyPikminMgr:
-	.skip 0x18
-.global ActivePlayer
-ActivePlayer:
-	.skip 0x1D0
-.global sInsReal__3PSM
-sInsReal__3PSM:
-	.skip 0x20
