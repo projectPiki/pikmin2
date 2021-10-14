@@ -142,26 +142,38 @@ adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio7TObjectUlQ37JStudio4da
 /* 8000D1F8 0000A138  7C 06 00 2E */	lwzx r0, r6, r0
 /* 8000D1FC 0000A13C  7C 09 03 A6 */	mtctr r0
 /* 8000D200 0000A140  4E 80 04 20 */	bctr 
+.global lbl_8000D204
+lbl_8000D204:
 /* 8000D204 0000A144  3C C0 80 01 */	lis r6, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000D208 0000A148  38 06 D5 90 */	addi r0, r6, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000D20C 0000A14C  7C 0C 03 78 */	mr r12, r0
 /* 8000D210 0000A150  48 00 00 48 */	b lbl_8000D258
+.global lbl_8000D214
+lbl_8000D214:
 /* 8000D214 0000A154  3C C0 80 01 */	lis r6, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000D218 0000A158  38 06 D5 A8 */	addi r0, r6, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000D21C 0000A15C  7C 0C 03 78 */	mr r12, r0
 /* 8000D220 0000A160  48 00 00 38 */	b lbl_8000D258
+.global lbl_8000D224
+lbl_8000D224:
 /* 8000D224 0000A164  3C C0 80 01 */	lis r6, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000D228 0000A168  38 06 D5 D4 */	addi r0, r6, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000D22C 0000A16C  7C 0C 03 78 */	mr r12, r0
 /* 8000D230 0000A170  48 00 00 28 */	b lbl_8000D258
+.global lbl_8000D234
+lbl_8000D234:
 /* 8000D234 0000A174  3C C0 80 01 */	lis r6, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000D238 0000A178  38 06 D6 00 */	addi r0, r6, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000D23C 0000A17C  7C 0C 03 78 */	mr r12, r0
 /* 8000D240 0000A180  48 00 00 18 */	b lbl_8000D258
+.global lbl_8000D244
+lbl_8000D244:
 /* 8000D244 0000A184  3C C0 80 01 */	lis r6, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000D248 0000A188  38 06 D6 70 */	addi r0, r6, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000D24C 0000A18C  7C 0C 03 78 */	mr r12, r0
 /* 8000D250 0000A190  48 00 00 08 */	b lbl_8000D258
+.global lbl_8000D254
+lbl_8000D254:
 /* 8000D254 0000A194  48 00 00 14 */	b lbl_8000D268
 lbl_8000D258:
 /* 8000D258 0000A198  7C E6 3B 78 */	mr r6, r7
@@ -723,6 +735,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000D9C8 0000A908  7C A5 30 2E */	lwzx r5, r5, r6
 /* 8000D9CC 0000A90C  7C A9 03 A6 */	mtctr r5
 /* 8000D9D0 0000A910  4E 80 04 20 */	bctr 
+.global lbl_8000D9D4
+lbl_8000D9D4:
 /* 8000D9D4 0000A914  80 C3 00 AC */	lwz r6, 0xac(r3)
 /* 8000D9D8 0000A918  80 A3 00 B0 */	lwz r5, 0xb0(r3)
 /* 8000D9DC 0000A91C  80 63 00 B4 */	lwz r3, 0xb4(r3)
@@ -730,6 +744,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000D9E4 0000A924  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000D9E8 0000A928  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000D9EC 0000A92C  48 00 03 BC */	b lbl_8000DDA8
+.global lbl_8000D9F0
+lbl_8000D9F0:
 /* 8000D9F0 0000A930  80 C3 00 B8 */	lwz r6, 0xb8(r3)
 /* 8000D9F4 0000A934  80 A3 00 BC */	lwz r5, 0xbc(r3)
 /* 8000D9F8 0000A938  80 63 00 C0 */	lwz r3, 0xc0(r3)
@@ -737,6 +753,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DA00 0000A940  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DA04 0000A944  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DA08 0000A948  48 00 03 A0 */	b lbl_8000DDA8
+.global lbl_8000DA0C
+lbl_8000DA0C:
 /* 8000DA0C 0000A94C  80 C3 00 C4 */	lwz r6, 0xc4(r3)
 /* 8000DA10 0000A950  80 A3 00 C8 */	lwz r5, 0xc8(r3)
 /* 8000DA14 0000A954  80 63 00 CC */	lwz r3, 0xcc(r3)
@@ -744,6 +762,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DA1C 0000A95C  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DA20 0000A960  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DA24 0000A964  48 00 03 84 */	b lbl_8000DDA8
+.global lbl_8000DA28
+lbl_8000DA28:
 /* 8000DA28 0000A968  80 C3 00 D0 */	lwz r6, 0xd0(r3)
 /* 8000DA2C 0000A96C  80 A3 00 D4 */	lwz r5, 0xd4(r3)
 /* 8000DA30 0000A970  80 63 00 D8 */	lwz r3, 0xd8(r3)
@@ -751,6 +771,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DA38 0000A978  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DA3C 0000A97C  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DA40 0000A980  48 00 03 68 */	b lbl_8000DDA8
+.global lbl_8000DA44
+lbl_8000DA44:
 /* 8000DA44 0000A984  80 C3 00 DC */	lwz r6, 0xdc(r3)
 /* 8000DA48 0000A988  80 A3 00 E0 */	lwz r5, 0xe0(r3)
 /* 8000DA4C 0000A98C  80 63 00 E4 */	lwz r3, 0xe4(r3)
@@ -758,6 +780,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DA54 0000A994  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DA58 0000A998  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DA5C 0000A99C  48 00 03 4C */	b lbl_8000DDA8
+.global lbl_8000DA60
+lbl_8000DA60:
 /* 8000DA60 0000A9A0  80 C3 00 E8 */	lwz r6, 0xe8(r3)
 /* 8000DA64 0000A9A4  80 A3 00 EC */	lwz r5, 0xec(r3)
 /* 8000DA68 0000A9A8  80 63 00 F0 */	lwz r3, 0xf0(r3)
@@ -765,6 +789,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DA70 0000A9B0  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DA74 0000A9B4  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DA78 0000A9B8  48 00 03 30 */	b lbl_8000DDA8
+.global lbl_8000DA7C
+lbl_8000DA7C:
 /* 8000DA7C 0000A9BC  80 C3 00 F4 */	lwz r6, 0xf4(r3)
 /* 8000DA80 0000A9C0  80 A3 00 F8 */	lwz r5, 0xf8(r3)
 /* 8000DA84 0000A9C4  80 63 00 FC */	lwz r3, 0xfc(r3)
@@ -772,6 +798,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DA8C 0000A9CC  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DA90 0000A9D0  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DA94 0000A9D4  48 00 03 14 */	b lbl_8000DDA8
+.global lbl_8000DA98
+lbl_8000DA98:
 /* 8000DA98 0000A9D8  81 03 01 00 */	lwz r8, 0x100(r3)
 /* 8000DA9C 0000A9DC  3C A0 80 4F */	lis r5, "soovv_actor_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
 /* 8000DAA0 0000A9E0  80 C3 01 04 */	lwz r6, 0x104(r3)
@@ -783,6 +811,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DAB8 0000A9F8  90 C1 00 0C */	stw r6, 0xc(r1)
 /* 8000DABC 0000A9FC  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DAC0 0000AA00  48 00 01 04 */	b lbl_8000DBC4
+.global lbl_8000DAC4
+lbl_8000DAC4:
 /* 8000DAC4 0000AA04  80 C3 01 0C */	lwz r6, 0x10c(r3)
 /* 8000DAC8 0000AA08  80 A3 01 10 */	lwz r5, 0x110(r3)
 /* 8000DACC 0000AA0C  80 63 01 14 */	lwz r3, 0x114(r3)
@@ -790,6 +820,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DAD4 0000AA14  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DAD8 0000AA18  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DADC 0000AA1C  48 00 02 CC */	b lbl_8000DDA8
+.global lbl_8000DAE0
+lbl_8000DAE0:
 /* 8000DAE0 0000AA20  80 C3 01 18 */	lwz r6, 0x118(r3)
 /* 8000DAE4 0000AA24  80 A3 01 1C */	lwz r5, 0x11c(r3)
 /* 8000DAE8 0000AA28  80 63 01 20 */	lwz r3, 0x120(r3)
@@ -797,6 +829,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DAF0 0000AA30  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DAF4 0000AA34  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DAF8 0000AA38  48 00 02 B0 */	b lbl_8000DDA8
+.global lbl_8000DAFC
+lbl_8000DAFC:
 /* 8000DAFC 0000AA3C  80 C3 01 24 */	lwz r6, 0x124(r3)
 /* 8000DB00 0000AA40  80 A3 01 28 */	lwz r5, 0x128(r3)
 /* 8000DB04 0000AA44  80 63 01 2C */	lwz r3, 0x12c(r3)
@@ -804,6 +838,8 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DB0C 0000AA4C  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000DB10 0000AA50  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DB14 0000AA54  48 00 02 94 */	b lbl_8000DDA8
+.global lbl_8000DB18
+lbl_8000DB18:
 /* 8000DB18 0000AA58  81 03 01 30 */	lwz r8, 0x130(r3)
 /* 8000DB1C 0000AA5C  3C A0 80 4F */	lis r5, "soovv_actor_RELATION_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
 /* 8000DB20 0000AA60  80 C3 01 34 */	lwz r6, 0x134(r3)
@@ -815,37 +851,67 @@ do_paragraph__Q27JStudio13TObject_actorFUlPCvUl:
 /* 8000DB38 0000AA78  90 C1 00 0C */	stw r6, 0xc(r1)
 /* 8000DB3C 0000AA7C  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000DB40 0000AA80  48 00 00 84 */	b lbl_8000DBC4
+.global lbl_8000DB44
+lbl_8000DB44:
 /* 8000DB44 0000AA84  38 A0 00 00 */	li r5, 0
 /* 8000DB48 0000AA88  48 00 01 44 */	b lbl_8000DC8C
+.global lbl_8000DB4C
+lbl_8000DB4C:
 /* 8000DB4C 0000AA8C  38 A0 00 01 */	li r5, 1
 /* 8000DB50 0000AA90  48 00 01 3C */	b lbl_8000DC8C
+.global lbl_8000DB54
+lbl_8000DB54:
 /* 8000DB54 0000AA94  38 A0 00 03 */	li r5, 3
 /* 8000DB58 0000AA98  48 00 01 34 */	b lbl_8000DC8C
+.global lbl_8000DB5C
+lbl_8000DB5C:
 /* 8000DB5C 0000AA9C  38 A0 00 04 */	li r5, 4
 /* 8000DB60 0000AAA0  48 00 01 2C */	b lbl_8000DC8C
+.global lbl_8000DB64
+lbl_8000DB64:
 /* 8000DB64 0000AAA4  38 A0 00 05 */	li r5, 5
 /* 8000DB68 0000AAA8  48 00 01 24 */	b lbl_8000DC8C
+.global lbl_8000DB6C
+lbl_8000DB6C:
 /* 8000DB6C 0000AAAC  38 A0 00 06 */	li r5, 6
 /* 8000DB70 0000AAB0  48 00 01 1C */	b lbl_8000DC8C
+.global lbl_8000DB74
+lbl_8000DB74:
 /* 8000DB74 0000AAB4  38 A0 00 07 */	li r5, 7
 /* 8000DB78 0000AAB8  48 00 01 14 */	b lbl_8000DC8C
+.global lbl_8000DB7C
+lbl_8000DB7C:
 /* 8000DB7C 0000AABC  38 A0 00 08 */	li r5, 8
 /* 8000DB80 0000AAC0  48 00 01 0C */	b lbl_8000DC8C
+.global lbl_8000DB84
+lbl_8000DB84:
 /* 8000DB84 0000AAC4  38 A0 00 09 */	li r5, 9
 /* 8000DB88 0000AAC8  48 00 01 04 */	b lbl_8000DC8C
+.global lbl_8000DB8C
+lbl_8000DB8C:
 /* 8000DB8C 0000AACC  38 A0 00 0A */	li r5, 0xa
 /* 8000DB90 0000AAD0  48 00 00 FC */	b lbl_8000DC8C
+.global lbl_8000DB94
+lbl_8000DB94:
 /* 8000DB94 0000AAD4  38 A0 00 0B */	li r5, 0xb
 /* 8000DB98 0000AAD8  48 00 00 F4 */	b lbl_8000DC8C
+.global lbl_8000DB9C
+lbl_8000DB9C:
 /* 8000DB9C 0000AADC  38 CA 00 00 */	addi r6, r10, 0
 /* 8000DBA0 0000AAE0  38 A0 00 03 */	li r5, 3
 /* 8000DBA4 0000AAE4  48 00 01 58 */	b lbl_8000DCFC
+.global lbl_8000DBA8
+lbl_8000DBA8:
 /* 8000DBA8 0000AAE8  38 CA 00 0C */	addi r6, r10, 0xc
 /* 8000DBAC 0000AAEC  38 A0 00 03 */	li r5, 3
 /* 8000DBB0 0000AAF0  48 00 01 4C */	b lbl_8000DCFC
+.global lbl_8000DBB4
+lbl_8000DBB4:
 /* 8000DBB4 0000AAF4  38 CA 00 18 */	addi r6, r10, 0x18
 /* 8000DBB8 0000AAF8  38 A0 00 03 */	li r5, 3
 /* 8000DBBC 0000AAFC  48 00 01 40 */	b lbl_8000DCFC
+.global lbl_8000DBC0
+lbl_8000DBC0:
 /* 8000DBC0 0000AB00  48 00 02 00 */	b lbl_8000DDC0
 lbl_8000DBC4:
 /* 8000DBC4 0000AB04  2C 04 00 13 */	cmpwi r4, 0x13
@@ -862,18 +928,28 @@ lbl_8000DBD8:
 /* 8000DBEC 0000AB2C  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000DBF0 0000AB30  7C 69 03 A6 */	mtctr r3
 /* 8000DBF4 0000AB34  4E 80 04 20 */	bctr 
+.global lbl_8000DBF8
+lbl_8000DBF8:
 /* 8000DBF8 0000AB38  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DBFC 0000AB3C  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DC00 0000AB40  48 00 00 30 */	b lbl_8000DC30
+.global lbl_8000DC04
+lbl_8000DC04:
 /* 8000DC04 0000AB44  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DC08 0000AB48  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DC0C 0000AB4C  48 00 00 24 */	b lbl_8000DC30
+.global lbl_8000DC10
+lbl_8000DC10:
 /* 8000DC10 0000AB50  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DC14 0000AB54  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DC18 0000AB58  48 00 00 18 */	b lbl_8000DC30
+.global lbl_8000DC1C
+lbl_8000DC1C:
 /* 8000DC1C 0000AB5C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DC20 0000AB60  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DC24 0000AB64  48 00 00 0C */	b lbl_8000DC30
+.global lbl_8000DC28
+lbl_8000DC28:
 /* 8000DC28 0000AB68  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DC2C 0000AB6C  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000DC30:
@@ -914,18 +990,28 @@ lbl_8000DC8C:
 /* 8000DCA0 0000ABE0  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000DCA4 0000ABE4  7C 69 03 A6 */	mtctr r3
 /* 8000DCA8 0000ABE8  4E 80 04 20 */	bctr 
+.global lbl_8000DCAC
+lbl_8000DCAC:
 /* 8000DCAC 0000ABEC  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DCB0 0000ABF0  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DCB4 0000ABF4  48 00 00 30 */	b lbl_8000DCE4
+.global lbl_8000DCB8
+lbl_8000DCB8:
 /* 8000DCB8 0000ABF8  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DCBC 0000ABFC  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DCC0 0000AC00  48 00 00 24 */	b lbl_8000DCE4
+.global lbl_8000DCC4
+lbl_8000DCC4:
 /* 8000DCC4 0000AC04  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DCC8 0000AC08  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DCCC 0000AC0C  48 00 00 18 */	b lbl_8000DCE4
+.global lbl_8000DCD0
+lbl_8000DCD0:
 /* 8000DCD0 0000AC10  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DCD4 0000AC14  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DCD8 0000AC18  48 00 00 0C */	b lbl_8000DCE4
+.global lbl_8000DCDC
+lbl_8000DCDC:
 /* 8000DCDC 0000AC1C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DCE0 0000AC20  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000DCE4:
@@ -934,6 +1020,8 @@ lbl_8000DCE4:
 /* 8000DCEC 0000AC2C  7C 06 03 78 */	mr r6, r0
 /* 8000DCF0 0000AC30  7D 89 03 A6 */	mtctr r12
 /* 8000DCF4 0000AC34  4E 80 04 21 */	bctrl 
+.global lbl_8000DCF8
+lbl_8000DCF8:
 /* 8000DCF8 0000AC38  48 00 00 C8 */	b lbl_8000DDC0
 lbl_8000DCFC:
 /* 8000DCFC 0000AC3C  2C 04 00 03 */	cmpwi r4, 3
@@ -1116,18 +1204,28 @@ lbl_8000DF38:
 /* 8000DF4C 0000AE8C  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000DF50 0000AE90  7C 69 03 A6 */	mtctr r3
 /* 8000DF54 0000AE94  4E 80 04 20 */	bctr 
+.global lbl_8000DF58
+lbl_8000DF58:
 /* 8000DF58 0000AE98  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DF5C 0000AE9C  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DF60 0000AEA0  48 00 00 30 */	b lbl_8000DF90
+.global lbl_8000DF64
+lbl_8000DF64:
 /* 8000DF64 0000AEA4  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DF68 0000AEA8  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DF6C 0000AEAC  48 00 00 24 */	b lbl_8000DF90
+.global lbl_8000DF70
+lbl_8000DF70:
 /* 8000DF70 0000AEB0  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DF74 0000AEB4  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DF78 0000AEB8  48 00 00 18 */	b lbl_8000DF90
+.global lbl_8000DF7C
+lbl_8000DF7C:
 /* 8000DF7C 0000AEBC  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DF80 0000AEC0  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000DF84 0000AEC4  48 00 00 0C */	b lbl_8000DF90
+.global lbl_8000DF88
+lbl_8000DF88:
 /* 8000DF88 0000AEC8  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000DF8C 0000AECC  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000DF90:
@@ -1136,6 +1234,8 @@ lbl_8000DF90:
 /* 8000DF98 0000AED8  7C 06 03 78 */	mr r6, r0
 /* 8000DF9C 0000AEDC  7D 89 03 A6 */	mtctr r12
 /* 8000DFA0 0000AEE0  4E 80 04 21 */	bctrl 
+.global lbl_8000DFA4
+lbl_8000DFA4:
 /* 8000DFA4 0000AEE4  48 00 00 AC */	b lbl_8000E050
 lbl_8000DFA8:
 /* 8000DFA8 0000AEE8  2C 06 00 03 */	cmpwi r6, 3
@@ -1281,6 +1381,8 @@ do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl:
 /* 8000E188 0000B0C8  7C A5 30 2E */	lwzx r5, r5, r6
 /* 8000E18C 0000B0CC  7C A9 03 A6 */	mtctr r5
 /* 8000E190 0000B0D0  4E 80 04 20 */	bctr 
+.global lbl_8000E194
+lbl_8000E194:
 /* 8000E194 0000B0D4  80 C3 03 44 */	lwz r6, 0x344(r3)
 /* 8000E198 0000B0D8  80 A3 03 48 */	lwz r5, 0x348(r3)
 /* 8000E19C 0000B0DC  80 63 03 4C */	lwz r3, 0x34c(r3)
@@ -1288,6 +1390,8 @@ do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl:
 /* 8000E1A4 0000B0E4  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000E1A8 0000B0E8  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000E1AC 0000B0EC  48 00 03 38 */	b lbl_8000E4E4
+.global lbl_8000E1B0
+lbl_8000E1B0:
 /* 8000E1B0 0000B0F0  80 C3 03 50 */	lwz r6, 0x350(r3)
 /* 8000E1B4 0000B0F4  80 A3 03 54 */	lwz r5, 0x354(r3)
 /* 8000E1B8 0000B0F8  80 63 03 58 */	lwz r3, 0x358(r3)
@@ -1295,6 +1399,8 @@ do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl:
 /* 8000E1C0 0000B100  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000E1C4 0000B104  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000E1C8 0000B108  48 00 03 1C */	b lbl_8000E4E4
+.global lbl_8000E1CC
+lbl_8000E1CC:
 /* 8000E1CC 0000B10C  81 03 03 5C */	lwz r8, 0x35c(r3)
 /* 8000E1D0 0000B110  3C A0 80 4F */	lis r5, "soovv_camera_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
 /* 8000E1D4 0000B114  80 C3 03 60 */	lwz r6, 0x360(r3)
@@ -1306,6 +1412,8 @@ do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl:
 /* 8000E1EC 0000B12C  90 C1 00 0C */	stw r6, 0xc(r1)
 /* 8000E1F0 0000B130  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000E1F4 0000B134  48 00 01 0C */	b lbl_8000E300
+.global lbl_8000E1F8
+lbl_8000E1F8:
 /* 8000E1F8 0000B138  80 C3 03 68 */	lwz r6, 0x368(r3)
 /* 8000E1FC 0000B13C  80 A3 03 6C */	lwz r5, 0x36c(r3)
 /* 8000E200 0000B140  80 63 03 70 */	lwz r3, 0x370(r3)
@@ -1313,6 +1421,8 @@ do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl:
 /* 8000E208 0000B148  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000E20C 0000B14C  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000E210 0000B150  48 00 02 D4 */	b lbl_8000E4E4
+.global lbl_8000E214
+lbl_8000E214:
 /* 8000E214 0000B154  80 C3 03 74 */	lwz r6, 0x374(r3)
 /* 8000E218 0000B158  80 A3 03 78 */	lwz r5, 0x378(r3)
 /* 8000E21C 0000B15C  80 63 03 7C */	lwz r3, 0x37c(r3)
@@ -1320,6 +1430,8 @@ do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl:
 /* 8000E224 0000B164  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000E228 0000B168  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000E22C 0000B16C  48 00 02 B8 */	b lbl_8000E4E4
+.global lbl_8000E230
+lbl_8000E230:
 /* 8000E230 0000B170  80 C3 03 80 */	lwz r6, 0x380(r3)
 /* 8000E234 0000B174  80 A3 03 84 */	lwz r5, 0x384(r3)
 /* 8000E238 0000B178  80 63 03 88 */	lwz r3, 0x388(r3)
@@ -1327,6 +1439,8 @@ do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl:
 /* 8000E240 0000B180  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000E244 0000B184  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000E248 0000B188  48 00 02 9C */	b lbl_8000E4E4
+.global lbl_8000E24C
+lbl_8000E24C:
 /* 8000E24C 0000B18C  81 03 03 8C */	lwz r8, 0x38c(r3)
 /* 8000E250 0000B190  3C A0 80 4F */	lis r5, "soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
 /* 8000E254 0000B194  80 C3 03 90 */	lwz r6, 0x390(r3)
@@ -1338,18 +1452,32 @@ do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl:
 /* 8000E26C 0000B1AC  90 C1 00 0C */	stw r6, 0xc(r1)
 /* 8000E270 0000B1B0  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000E274 0000B1B4  48 00 00 8C */	b lbl_8000E300
+.global lbl_8000E278
+lbl_8000E278:
 /* 8000E278 0000B1B8  38 A0 00 00 */	li r5, 0
 /* 8000E27C 0000B1BC  48 00 01 4C */	b lbl_8000E3C8
+.global lbl_8000E280
+lbl_8000E280:
 /* 8000E280 0000B1C0  38 A0 00 01 */	li r5, 1
 /* 8000E284 0000B1C4  48 00 01 44 */	b lbl_8000E3C8
+.global lbl_8000E288
+lbl_8000E288:
 /* 8000E288 0000B1C8  38 A0 00 02 */	li r5, 2
 /* 8000E28C 0000B1CC  48 00 01 3C */	b lbl_8000E3C8
+.global lbl_8000E290
+lbl_8000E290:
 /* 8000E290 0000B1D0  38 A0 00 03 */	li r5, 3
 /* 8000E294 0000B1D4  48 00 01 34 */	b lbl_8000E3C8
+.global lbl_8000E298
+lbl_8000E298:
 /* 8000E298 0000B1D8  38 A0 00 04 */	li r5, 4
 /* 8000E29C 0000B1DC  48 00 01 2C */	b lbl_8000E3C8
+.global lbl_8000E2A0
+lbl_8000E2A0:
 /* 8000E2A0 0000B1E0  38 A0 00 05 */	li r5, 5
 /* 8000E2A4 0000B1E4  48 00 01 24 */	b lbl_8000E3C8
+.global lbl_8000E2A8
+lbl_8000E2A8:
 /* 8000E2A8 0000B1E8  38 A0 00 06 */	li r5, 6
 /* 8000E2AC 0000B1EC  48 00 01 1C */	b lbl_8000E3C8
 .global lbl_8000E2B0
@@ -1360,21 +1488,31 @@ lbl_8000E2B0:
 lbl_8000E2B8:
 /* 8000E2B8 0000B1F8  38 A0 00 08 */	li r5, 8
 /* 8000E2BC 0000B1FC  48 00 01 0C */	b lbl_8000E3C8
+.global lbl_8000E2C0
+lbl_8000E2C0:
 /* 8000E2C0 0000B200  38 A0 00 09 */	li r5, 9
 /* 8000E2C4 0000B204  48 00 01 04 */	b lbl_8000E3C8
+.global lbl_8000E2C8
+lbl_8000E2C8:
 /* 8000E2C8 0000B208  3C 60 80 47 */	lis r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera@ha
 /* 8000E2CC 0000B20C  38 A0 00 03 */	li r5, 3
 /* 8000E2D0 0000B210  38 63 33 90 */	addi r3, r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera@l
 /* 8000E2D4 0000B214  7C 66 1B 78 */	mr r6, r3
 /* 8000E2D8 0000B218  48 00 01 60 */	b lbl_8000E438
+.global lbl_8000E2DC
+lbl_8000E2DC:
 /* 8000E2DC 0000B21C  3C 60 80 47 */	lis r3, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera@ha
 /* 8000E2E0 0000B220  38 A0 00 03 */	li r5, 3
 /* 8000E2E4 0000B224  38 63 33 9C */	addi r3, r3, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera@l
 /* 8000E2E8 0000B228  7C 66 1B 78 */	mr r6, r3
 /* 8000E2EC 0000B22C  48 00 01 4C */	b lbl_8000E438
+.global lbl_8000E2F0
+lbl_8000E2F0:
 /* 8000E2F0 0000B230  38 C2 80 B8 */	addi r6, r2, sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera@sda21
 /* 8000E2F4 0000B234  38 A0 00 02 */	li r5, 2
 /* 8000E2F8 0000B238  48 00 01 40 */	b lbl_8000E438
+.global lbl_8000E2FC
+lbl_8000E2FC:
 /* 8000E2FC 0000B23C  48 00 02 00 */	b lbl_8000E4FC
 lbl_8000E300:
 /* 8000E300 0000B240  2C 04 00 13 */	cmpwi r4, 0x13
@@ -1391,18 +1529,28 @@ lbl_8000E314:
 /* 8000E328 0000B268  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000E32C 0000B26C  7C 69 03 A6 */	mtctr r3
 /* 8000E330 0000B270  4E 80 04 20 */	bctr 
+.global lbl_8000E334
+lbl_8000E334:
 /* 8000E334 0000B274  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E338 0000B278  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E33C 0000B27C  48 00 00 30 */	b lbl_8000E36C
+.global lbl_8000E340
+lbl_8000E340:
 /* 8000E340 0000B280  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E344 0000B284  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E348 0000B288  48 00 00 24 */	b lbl_8000E36C
+.global lbl_8000E34C
+lbl_8000E34C:
 /* 8000E34C 0000B28C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E350 0000B290  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E354 0000B294  48 00 00 18 */	b lbl_8000E36C
+.global lbl_8000E358
+lbl_8000E358:
 /* 8000E358 0000B298  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E35C 0000B29C  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E360 0000B2A0  48 00 00 0C */	b lbl_8000E36C
+.global lbl_8000E364
+lbl_8000E364:
 /* 8000E364 0000B2A4  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E368 0000B2A8  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000E36C:
@@ -1443,18 +1591,28 @@ lbl_8000E3C8:
 /* 8000E3DC 0000B31C  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000E3E0 0000B320  7C 69 03 A6 */	mtctr r3
 /* 8000E3E4 0000B324  4E 80 04 20 */	bctr 
+.global lbl_8000E3E8
+lbl_8000E3E8:
 /* 8000E3E8 0000B328  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E3EC 0000B32C  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E3F0 0000B330  48 00 00 30 */	b lbl_8000E420
+.global lbl_8000E3F4
+lbl_8000E3F4:
 /* 8000E3F4 0000B334  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E3F8 0000B338  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E3FC 0000B33C  48 00 00 24 */	b lbl_8000E420
+.global lbl_8000E400
+lbl_8000E400:
 /* 8000E400 0000B340  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E404 0000B344  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E408 0000B348  48 00 00 18 */	b lbl_8000E420
+.global lbl_8000E40C
+lbl_8000E40C:
 /* 8000E40C 0000B34C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E410 0000B350  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E414 0000B354  48 00 00 0C */	b lbl_8000E420
+.global lbl_8000E418
+lbl_8000E418:
 /* 8000E418 0000B358  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E41C 0000B35C  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000E420:
@@ -1463,6 +1621,8 @@ lbl_8000E420:
 /* 8000E428 0000B368  7C 06 03 78 */	mr r6, r0
 /* 8000E42C 0000B36C  7D 89 03 A6 */	mtctr r12
 /* 8000E430 0000B370  4E 80 04 21 */	bctrl 
+.global lbl_8000E434
+lbl_8000E434:
 /* 8000E434 0000B374  48 00 00 C8 */	b lbl_8000E4FC
 lbl_8000E438:
 /* 8000E438 0000B378  2C 04 00 03 */	cmpwi r4, 3
@@ -1606,31 +1766,51 @@ do_paragraph__Q27JStudio11TObject_fogFUlPCvUl:
 /* 8000E60C 0000B54C  7C 63 20 2E */	lwzx r3, r3, r4
 /* 8000E610 0000B550  7C 69 03 A6 */	mtctr r3
 /* 8000E614 0000B554  4E 80 04 20 */	bctr 
+.global lbl_8000E618
+lbl_8000E618:
 /* 8000E618 0000B558  38 A0 00 00 */	li r5, 0
 /* 8000E61C 0000B55C  48 00 00 64 */	b lbl_8000E680
+.global lbl_8000E620
+lbl_8000E620:
 /* 8000E620 0000B560  38 A0 00 01 */	li r5, 1
 /* 8000E624 0000B564  48 00 00 5C */	b lbl_8000E680
+.global lbl_8000E628
+lbl_8000E628:
 /* 8000E628 0000B568  38 A0 00 02 */	li r5, 2
 /* 8000E62C 0000B56C  48 00 00 54 */	b lbl_8000E680
+.global lbl_8000E630
+lbl_8000E630:
 /* 8000E630 0000B570  38 A0 00 03 */	li r5, 3
 /* 8000E634 0000B574  48 00 00 4C */	b lbl_8000E680
+.global lbl_8000E638
+lbl_8000E638:
 /* 8000E638 0000B578  38 A0 00 04 */	li r5, 4
 /* 8000E63C 0000B57C  48 00 00 44 */	b lbl_8000E680
+.global lbl_8000E640
+lbl_8000E640:
 /* 8000E640 0000B580  38 A0 00 05 */	li r5, 5
 /* 8000E644 0000B584  48 00 00 3C */	b lbl_8000E680
+.global lbl_8000E648
+lbl_8000E648:
 /* 8000E648 0000B588  3C 60 80 47 */	lis r3, sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog@ha
 /* 8000E64C 0000B58C  38 80 00 03 */	li r4, 3
 /* 8000E650 0000B590  38 63 33 A8 */	addi r3, r3, sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog@l
 /* 8000E654 0000B594  7C 65 1B 78 */	mr r5, r3
 /* 8000E658 0000B598  48 00 00 98 */	b lbl_8000E6F0
+.global lbl_8000E65C
+lbl_8000E65C:
 /* 8000E65C 0000B59C  3C 60 80 47 */	lis r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@ha
 /* 8000E660 0000B5A0  38 80 00 04 */	li r4, 4
 /* 8000E664 0000B5A4  38 63 33 B4 */	addi r3, r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@l
 /* 8000E668 0000B5A8  7C 65 1B 78 */	mr r5, r3
 /* 8000E66C 0000B5AC  48 00 00 84 */	b lbl_8000E6F0
+.global lbl_8000E670
+lbl_8000E670:
 /* 8000E670 0000B5B0  38 A2 80 C0 */	addi r5, r2, sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog@sda21
 /* 8000E674 0000B5B4  38 80 00 02 */	li r4, 2
 /* 8000E678 0000B5B8  48 00 00 78 */	b lbl_8000E6F0
+.global lbl_8000E67C
+lbl_8000E67C:
 /* 8000E67C 0000B5BC  48 00 01 1C */	b lbl_8000E798
 lbl_8000E680:
 /* 8000E680 0000B5C0  28 06 00 12 */	cmplwi r6, 0x12
@@ -1641,18 +1821,28 @@ lbl_8000E680:
 /* 8000E694 0000B5D4  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000E698 0000B5D8  7C 69 03 A6 */	mtctr r3
 /* 8000E69C 0000B5DC  4E 80 04 20 */	bctr 
+.global lbl_8000E6A0
+lbl_8000E6A0:
 /* 8000E6A0 0000B5E0  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E6A4 0000B5E4  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E6A8 0000B5E8  48 00 00 30 */	b lbl_8000E6D8
+.global lbl_8000E6AC
+lbl_8000E6AC:
 /* 8000E6AC 0000B5EC  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E6B0 0000B5F0  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E6B4 0000B5F4  48 00 00 24 */	b lbl_8000E6D8
+.global lbl_8000E6B8
+lbl_8000E6B8:
 /* 8000E6B8 0000B5F8  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E6BC 0000B5FC  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E6C0 0000B600  48 00 00 18 */	b lbl_8000E6D8
+.global lbl_8000E6C4
+lbl_8000E6C4:
 /* 8000E6C4 0000B604  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E6C8 0000B608  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000E6CC 0000B60C  48 00 00 0C */	b lbl_8000E6D8
+.global lbl_8000E6D0
+lbl_8000E6D0:
 /* 8000E6D0 0000B610  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000E6D4 0000B614  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000E6D8:
@@ -1661,6 +1851,8 @@ lbl_8000E6D8:
 /* 8000E6E0 0000B620  7C 06 03 78 */	mr r6, r0
 /* 8000E6E4 0000B624  7D 89 03 A6 */	mtctr r12
 /* 8000E6E8 0000B628  4E 80 04 21 */	bctrl 
+.global lbl_8000E6EC
+lbl_8000E6EC:
 /* 8000E6EC 0000B62C  48 00 00 AC */	b lbl_8000E798
 lbl_8000E6F0:
 /* 8000E6F0 0000B630  2C 06 00 03 */	cmpwi r6, 3
@@ -1806,6 +1998,8 @@ do_paragraph__Q27JStudio13TObject_lightFUlPCvUl:
 /* 8000E8D0 0000B810  7C 63 40 2E */	lwzx r3, r3, r8
 /* 8000E8D4 0000B814  7C 69 03 A6 */	mtctr r3
 /* 8000E8D8 0000B818  4E 80 04 20 */	bctr 
+.global lbl_8000E8DC
+lbl_8000E8DC:
 /* 8000E8DC 0000B81C  3C A0 80 4A */	lis r5, lbl_8049EC58@ha
 /* 8000E8E0 0000B820  3C 60 80 4F */	lis r3, "soovv_light_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
 /* 8000E8E4 0000B824  39 05 EC 58 */	addi r8, r5, lbl_8049EC58@l
@@ -1818,6 +2012,8 @@ do_paragraph__Q27JStudio13TObject_lightFUlPCvUl:
 /* 8000E900 0000B840  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000E904 0000B844  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000E908 0000B848  48 00 00 C8 */	b lbl_8000E9D0
+.global lbl_8000E90C
+lbl_8000E90C:
 /* 8000E90C 0000B84C  3C 60 80 4A */	lis r3, lbl_8049EC64@ha
 /* 8000E910 0000B850  39 03 EC 64 */	addi r8, r3, lbl_8049EC64@l
 /* 8000E914 0000B854  80 E8 00 00 */	lwz r7, 0(r8)
@@ -1827,45 +2023,81 @@ do_paragraph__Q27JStudio13TObject_lightFUlPCvUl:
 /* 8000E924 0000B864  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8000E928 0000B868  90 01 00 10 */	stw r0, 0x10(r1)
 /* 8000E92C 0000B86C  48 00 02 80 */	b lbl_8000EBAC
+.global lbl_8000E930
+lbl_8000E930:
 /* 8000E930 0000B870  38 A0 00 00 */	li r5, 0
 /* 8000E934 0000B874  48 00 01 5C */	b lbl_8000EA90
+.global lbl_8000E938
+lbl_8000E938:
 /* 8000E938 0000B878  38 A0 00 01 */	li r5, 1
 /* 8000E93C 0000B87C  48 00 01 54 */	b lbl_8000EA90
+.global lbl_8000E940
+lbl_8000E940:
 /* 8000E940 0000B880  38 A0 00 02 */	li r5, 2
 /* 8000E944 0000B884  48 00 01 4C */	b lbl_8000EA90
+.global lbl_8000E948
+lbl_8000E948:
 /* 8000E948 0000B888  38 A0 00 03 */	li r5, 3
 /* 8000E94C 0000B88C  48 00 01 44 */	b lbl_8000EA90
+.global lbl_8000E950
+lbl_8000E950:
 /* 8000E950 0000B890  38 A0 00 04 */	li r5, 4
 /* 8000E954 0000B894  48 00 01 3C */	b lbl_8000EA90
+.global lbl_8000E958
+lbl_8000E958:
 /* 8000E958 0000B898  38 A0 00 05 */	li r5, 5
 /* 8000E95C 0000B89C  48 00 01 34 */	b lbl_8000EA90
+.global lbl_8000E960
+lbl_8000E960:
 /* 8000E960 0000B8A0  38 A0 00 06 */	li r5, 6
 /* 8000E964 0000B8A4  48 00 01 2C */	b lbl_8000EA90
+.global lbl_8000E968
+lbl_8000E968:
 /* 8000E968 0000B8A8  38 A0 00 07 */	li r5, 7
 /* 8000E96C 0000B8AC  48 00 01 24 */	b lbl_8000EA90
+.global lbl_8000E970
+lbl_8000E970:
 /* 8000E970 0000B8B0  38 A0 00 08 */	li r5, 8
 /* 8000E974 0000B8B4  48 00 01 1C */	b lbl_8000EA90
+.global lbl_8000E978
+lbl_8000E978:
 /* 8000E978 0000B8B8  38 A0 00 09 */	li r5, 9
 /* 8000E97C 0000B8BC  48 00 01 14 */	b lbl_8000EA90
+.global lbl_8000E980
+lbl_8000E980:
 /* 8000E980 0000B8C0  38 A0 00 0A */	li r5, 0xa
 /* 8000E984 0000B8C4  48 00 01 0C */	b lbl_8000EA90
+.global lbl_8000E988
+lbl_8000E988:
 /* 8000E988 0000B8C8  38 A0 00 0B */	li r5, 0xb
 /* 8000E98C 0000B8CC  48 00 01 04 */	b lbl_8000EA90
+.global lbl_8000E990
+lbl_8000E990:
 /* 8000E990 0000B8D0  38 CB 00 74 */	addi r6, r11, 0x74
 /* 8000E994 0000B8D4  38 A0 00 03 */	li r5, 3
 /* 8000E998 0000B8D8  48 00 01 68 */	b lbl_8000EB00
+.global lbl_8000E99C
+lbl_8000E99C:
 /* 8000E99C 0000B8DC  38 CB 00 80 */	addi r6, r11, 0x80
 /* 8000E9A0 0000B8E0  38 A0 00 04 */	li r5, 4
 /* 8000E9A4 0000B8E4  48 00 01 5C */	b lbl_8000EB00
+.global lbl_8000E9A8
+lbl_8000E9A8:
 /* 8000E9A8 0000B8E8  38 CB 00 90 */	addi r6, r11, 0x90
 /* 8000E9AC 0000B8EC  38 A0 00 03 */	li r5, 3
 /* 8000E9B0 0000B8F0  48 00 01 50 */	b lbl_8000EB00
+.global lbl_8000E9B4
+lbl_8000E9B4:
 /* 8000E9B4 0000B8F4  38 CB 00 9C */	addi r6, r11, 0x9c
 /* 8000E9B8 0000B8F8  38 A0 00 03 */	li r5, 3
 /* 8000E9BC 0000B8FC  48 00 01 44 */	b lbl_8000EB00
+.global lbl_8000E9C0
+lbl_8000E9C0:
 /* 8000E9C0 0000B900  38 C2 80 C8 */	addi r6, r2, sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light@sda21
 /* 8000E9C4 0000B904  38 A0 00 02 */	li r5, 2
 /* 8000E9C8 0000B908  48 00 01 38 */	b lbl_8000EB00
+.global lbl_8000E9CC
+lbl_8000E9CC:
 /* 8000E9CC 0000B90C  48 00 01 F0 */	b lbl_8000EBBC
 lbl_8000E9D0:
 /* 8000E9D0 0000B910  2C 04 00 13 */	cmpwi r4, 0x13
@@ -1882,18 +2114,28 @@ lbl_8000E9E4:
 /* 8000E9F8 0000B938  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000E9FC 0000B93C  7C 69 03 A6 */	mtctr r3
 /* 8000EA00 0000B940  4E 80 04 20 */	bctr 
+.global lbl_8000EA04
+lbl_8000EA04:
 /* 8000EA04 0000B944  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EA08 0000B948  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000EA0C 0000B94C  48 00 00 30 */	b lbl_8000EA3C
+.global lbl_8000EA10
+lbl_8000EA10:
 /* 8000EA10 0000B950  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EA14 0000B954  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000EA18 0000B958  48 00 00 24 */	b lbl_8000EA3C
+.global lbl_8000EA1C
+lbl_8000EA1C:
 /* 8000EA1C 0000B95C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EA20 0000B960  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000EA24 0000B964  48 00 00 18 */	b lbl_8000EA3C
+.global lbl_8000EA28
+lbl_8000EA28:
 /* 8000EA28 0000B968  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EA2C 0000B96C  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000EA30 0000B970  48 00 00 0C */	b lbl_8000EA3C
+.global lbl_8000EA34
+lbl_8000EA34:
 /* 8000EA34 0000B974  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EA38 0000B978  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000EA3C:
@@ -1932,18 +2174,28 @@ lbl_8000EA90:
 /* 8000EAA4 0000B9E4  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000EAA8 0000B9E8  7C 69 03 A6 */	mtctr r3
 /* 8000EAAC 0000B9EC  4E 80 04 20 */	bctr 
+.global lbl_8000EAB0
+lbl_8000EAB0:
 /* 8000EAB0 0000B9F0  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EAB4 0000B9F4  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000EAB8 0000B9F8  48 00 00 30 */	b lbl_8000EAE8
+.global lbl_8000EABC
+lbl_8000EABC:
 /* 8000EABC 0000B9FC  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EAC0 0000BA00  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000EAC4 0000BA04  48 00 00 24 */	b lbl_8000EAE8
+.global lbl_8000EAC8
+lbl_8000EAC8:
 /* 8000EAC8 0000BA08  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EACC 0000BA0C  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000EAD0 0000BA10  48 00 00 18 */	b lbl_8000EAE8
+.global lbl_8000EAD4
+lbl_8000EAD4:
 /* 8000EAD4 0000BA14  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EAD8 0000BA18  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000EADC 0000BA1C  48 00 00 0C */	b lbl_8000EAE8
+.global lbl_8000EAE0
+lbl_8000EAE0:
 /* 8000EAE0 0000BA20  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000EAE4 0000BA24  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000EAE8:
@@ -1952,6 +2204,8 @@ lbl_8000EAE8:
 /* 8000EAF0 0000BA30  7C 06 03 78 */	mr r6, r0
 /* 8000EAF4 0000BA34  7D 89 03 A6 */	mtctr r12
 /* 8000EAF8 0000BA38  4E 80 04 21 */	bctrl 
+.global lbl_8000EAFC
+lbl_8000EAFC:
 /* 8000EAFC 0000BA3C  48 00 00 C0 */	b lbl_8000EBBC
 lbl_8000EB00:
 /* 8000EB00 0000BA40  2C 04 00 03 */	cmpwi r4, 3
@@ -2200,6 +2454,8 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EE40 0000BD80  7C A5 30 2E */	lwzx r5, r5, r6
 /* 8000EE44 0000BD84  7C A9 03 A6 */	mtctr r5
 /* 8000EE48 0000BD88  4E 80 04 20 */	bctr 
+.global lbl_8000EE4C
+lbl_8000EE4C:
 /* 8000EE4C 0000BD8C  80 C3 07 08 */	lwz r6, 0x708(r3)
 /* 8000EE50 0000BD90  80 A3 07 0C */	lwz r5, 0x70c(r3)
 /* 8000EE54 0000BD94  80 63 07 10 */	lwz r3, 0x710(r3)
@@ -2207,6 +2463,8 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EE5C 0000BD9C  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000EE60 0000BDA0  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000EE64 0000BDA4  48 00 03 90 */	b lbl_8000F1F4
+.global lbl_8000EE68
+lbl_8000EE68:
 /* 8000EE68 0000BDA8  80 C3 07 14 */	lwz r6, 0x714(r3)
 /* 8000EE6C 0000BDAC  80 A3 07 18 */	lwz r5, 0x718(r3)
 /* 8000EE70 0000BDB0  80 63 07 1C */	lwz r3, 0x71c(r3)
@@ -2214,6 +2472,8 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EE78 0000BDB8  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000EE7C 0000BDBC  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000EE80 0000BDC0  48 00 03 74 */	b lbl_8000F1F4
+.global lbl_8000EE84
+lbl_8000EE84:
 /* 8000EE84 0000BDC4  80 C3 07 20 */	lwz r6, 0x720(r3)
 /* 8000EE88 0000BDC8  80 A3 07 24 */	lwz r5, 0x724(r3)
 /* 8000EE8C 0000BDCC  80 63 07 28 */	lwz r3, 0x728(r3)
@@ -2221,6 +2481,8 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EE94 0000BDD4  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000EE98 0000BDD8  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000EE9C 0000BDDC  48 00 03 58 */	b lbl_8000F1F4
+.global lbl_8000EEA0
+lbl_8000EEA0:
 /* 8000EEA0 0000BDE0  80 C3 07 2C */	lwz r6, 0x72c(r3)
 /* 8000EEA4 0000BDE4  80 A3 07 30 */	lwz r5, 0x730(r3)
 /* 8000EEA8 0000BDE8  80 63 07 34 */	lwz r3, 0x734(r3)
@@ -2228,6 +2490,8 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EEB0 0000BDF0  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000EEB4 0000BDF4  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000EEB8 0000BDF8  48 00 03 3C */	b lbl_8000F1F4
+.global lbl_8000EEBC
+lbl_8000EEBC:
 /* 8000EEBC 0000BDFC  80 C3 07 38 */	lwz r6, 0x738(r3)
 /* 8000EEC0 0000BE00  80 A3 07 3C */	lwz r5, 0x73c(r3)
 /* 8000EEC4 0000BE04  80 63 07 40 */	lwz r3, 0x740(r3)
@@ -2235,6 +2499,8 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EECC 0000BE0C  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000EED0 0000BE10  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000EED4 0000BE14  48 00 03 20 */	b lbl_8000F1F4
+.global lbl_8000EED8
+lbl_8000EED8:
 /* 8000EED8 0000BE18  80 C3 07 44 */	lwz r6, 0x744(r3)
 /* 8000EEDC 0000BE1C  80 A3 07 48 */	lwz r5, 0x748(r3)
 /* 8000EEE0 0000BE20  80 63 07 4C */	lwz r3, 0x74c(r3)
@@ -2242,6 +2508,8 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EEE8 0000BE28  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000EEEC 0000BE2C  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000EEF0 0000BE30  48 00 03 04 */	b lbl_8000F1F4
+.global lbl_8000EEF4
+lbl_8000EEF4:
 /* 8000EEF4 0000BE34  80 C3 07 50 */	lwz r6, 0x750(r3)
 /* 8000EEF8 0000BE38  80 A3 07 54 */	lwz r5, 0x754(r3)
 /* 8000EEFC 0000BE3C  80 63 07 58 */	lwz r3, 0x758(r3)
@@ -2249,6 +2517,8 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EF04 0000BE44  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000EF08 0000BE48  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000EF0C 0000BE4C  48 00 02 E8 */	b lbl_8000F1F4
+.global lbl_8000EF10
+lbl_8000EF10:
 /* 8000EF10 0000BE50  81 03 07 5C */	lwz r8, 0x75c(r3)
 /* 8000EF14 0000BE54  3C A0 80 4F */	lis r5, "soovv_particle_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
 /* 8000EF18 0000BE58  80 C3 07 60 */	lwz r6, 0x760(r3)
@@ -2259,61 +2529,111 @@ do_paragraph__Q27JStudio16TObject_particleFUlPCvUl:
 /* 8000EF2C 0000BE6C  90 C1 00 0C */	stw r6, 0xc(r1)
 /* 8000EF30 0000BE70  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000EF34 0000BE74  48 00 00 E4 */	b lbl_8000F018
+.global lbl_8000EF38
+lbl_8000EF38:
 /* 8000EF38 0000BE78  38 A0 00 00 */	li r5, 0
 /* 8000EF3C 0000BE7C  48 00 01 9C */	b lbl_8000F0D8
+.global lbl_8000EF40
+lbl_8000EF40:
 /* 8000EF40 0000BE80  38 A0 00 01 */	li r5, 1
 /* 8000EF44 0000BE84  48 00 01 94 */	b lbl_8000F0D8
+.global lbl_8000EF48
+lbl_8000EF48:
 /* 8000EF48 0000BE88  38 A0 00 02 */	li r5, 2
 /* 8000EF4C 0000BE8C  48 00 01 8C */	b lbl_8000F0D8
+.global lbl_8000EF50
+lbl_8000EF50:
 /* 8000EF50 0000BE90  38 A0 00 03 */	li r5, 3
 /* 8000EF54 0000BE94  48 00 01 84 */	b lbl_8000F0D8
+.global lbl_8000EF58
+lbl_8000EF58:
 /* 8000EF58 0000BE98  38 A0 00 04 */	li r5, 4
 /* 8000EF5C 0000BE9C  48 00 01 7C */	b lbl_8000F0D8
+.global lbl_8000EF60
+lbl_8000EF60:
 /* 8000EF60 0000BEA0  38 A0 00 05 */	li r5, 5
 /* 8000EF64 0000BEA4  48 00 01 74 */	b lbl_8000F0D8
+.global lbl_8000EF68
+lbl_8000EF68:
 /* 8000EF68 0000BEA8  38 A0 00 06 */	li r5, 6
 /* 8000EF6C 0000BEAC  48 00 01 6C */	b lbl_8000F0D8
+.global lbl_8000EF70
+lbl_8000EF70:
 /* 8000EF70 0000BEB0  38 A0 00 07 */	li r5, 7
 /* 8000EF74 0000BEB4  48 00 01 64 */	b lbl_8000F0D8
+.global lbl_8000EF78
+lbl_8000EF78:
 /* 8000EF78 0000BEB8  38 A0 00 08 */	li r5, 8
 /* 8000EF7C 0000BEBC  48 00 01 5C */	b lbl_8000F0D8
+.global lbl_8000EF80
+lbl_8000EF80:
 /* 8000EF80 0000BEC0  38 A0 00 09 */	li r5, 9
 /* 8000EF84 0000BEC4  48 00 01 54 */	b lbl_8000F0D8
+.global lbl_8000EF88
+lbl_8000EF88:
 /* 8000EF88 0000BEC8  38 A0 00 0A */	li r5, 0xa
 /* 8000EF8C 0000BECC  48 00 01 4C */	b lbl_8000F0D8
+.global lbl_8000EF90
+lbl_8000EF90:
 /* 8000EF90 0000BED0  38 A0 00 0B */	li r5, 0xb
 /* 8000EF94 0000BED4  48 00 01 44 */	b lbl_8000F0D8
+.global lbl_8000EF98
+lbl_8000EF98:
 /* 8000EF98 0000BED8  38 A0 00 0C */	li r5, 0xc
 /* 8000EF9C 0000BEDC  48 00 01 3C */	b lbl_8000F0D8
+.global lbl_8000EFA0
+lbl_8000EFA0:
 /* 8000EFA0 0000BEE0  38 A0 00 0D */	li r5, 0xd
 /* 8000EFA4 0000BEE4  48 00 01 34 */	b lbl_8000F0D8
+.global lbl_8000EFA8
+lbl_8000EFA8:
 /* 8000EFA8 0000BEE8  38 A0 00 0E */	li r5, 0xe
 /* 8000EFAC 0000BEEC  48 00 01 2C */	b lbl_8000F0D8
+.global lbl_8000EFB0
+lbl_8000EFB0:
 /* 8000EFB0 0000BEF0  38 A0 00 0F */	li r5, 0xf
 /* 8000EFB4 0000BEF4  48 00 01 24 */	b lbl_8000F0D8
+.global lbl_8000EFB8
+lbl_8000EFB8:
 /* 8000EFB8 0000BEF8  38 A0 00 10 */	li r5, 0x10
 /* 8000EFBC 0000BEFC  48 00 01 1C */	b lbl_8000F0D8
+.global lbl_8000EFC0
+lbl_8000EFC0:
 /* 8000EFC0 0000BF00  38 CA 00 A8 */	addi r6, r10, 0xa8
 /* 8000EFC4 0000BF04  38 A0 00 03 */	li r5, 3
 /* 8000EFC8 0000BF08  48 00 01 80 */	b lbl_8000F148
+.global lbl_8000EFCC
+lbl_8000EFCC:
 /* 8000EFCC 0000BF0C  38 CA 00 B4 */	addi r6, r10, 0xb4
 /* 8000EFD0 0000BF10  38 A0 00 03 */	li r5, 3
 /* 8000EFD4 0000BF14  48 00 01 74 */	b lbl_8000F148
+.global lbl_8000EFD8
+lbl_8000EFD8:
 /* 8000EFD8 0000BF18  38 CA 00 C0 */	addi r6, r10, 0xc0
 /* 8000EFDC 0000BF1C  38 A0 00 03 */	li r5, 3
 /* 8000EFE0 0000BF20  48 00 01 68 */	b lbl_8000F148
+.global lbl_8000EFE4
+lbl_8000EFE4:
 /* 8000EFE4 0000BF24  38 CA 00 CC */	addi r6, r10, 0xcc
 /* 8000EFE8 0000BF28  38 A0 00 03 */	li r5, 3
 /* 8000EFEC 0000BF2C  48 00 01 5C */	b lbl_8000F148
+.global lbl_8000EFF0
+lbl_8000EFF0:
 /* 8000EFF0 0000BF30  38 CA 00 D8 */	addi r6, r10, 0xd8
 /* 8000EFF4 0000BF34  38 A0 00 04 */	li r5, 4
 /* 8000EFF8 0000BF38  48 00 01 50 */	b lbl_8000F148
+.global lbl_8000EFFC
+lbl_8000EFFC:
 /* 8000EFFC 0000BF3C  38 CA 00 E8 */	addi r6, r10, 0xe8
 /* 8000F000 0000BF40  38 A0 00 03 */	li r5, 3
 /* 8000F004 0000BF44  48 00 01 44 */	b lbl_8000F148
+.global lbl_8000F008
+lbl_8000F008:
 /* 8000F008 0000BF48  38 CA 00 F4 */	addi r6, r10, 0xf4
 /* 8000F00C 0000BF4C  38 A0 00 04 */	li r5, 4
 /* 8000F010 0000BF50  48 00 01 38 */	b lbl_8000F148
+.global lbl_8000F014
+lbl_8000F014:
 /* 8000F014 0000BF54  48 00 01 F8 */	b lbl_8000F20C
 lbl_8000F018:
 /* 8000F018 0000BF58  2C 04 00 13 */	cmpwi r4, 0x13
@@ -2330,18 +2650,28 @@ lbl_8000F02C:
 /* 8000F040 0000BF80  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000F044 0000BF84  7C 69 03 A6 */	mtctr r3
 /* 8000F048 0000BF88  4E 80 04 20 */	bctr 
+.global lbl_8000F04C
+lbl_8000F04C:
 /* 8000F04C 0000BF8C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F050 0000BF90  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F054 0000BF94  48 00 00 30 */	b lbl_8000F084
+.global lbl_8000F058
+lbl_8000F058:
 /* 8000F058 0000BF98  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F05C 0000BF9C  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F060 0000BFA0  48 00 00 24 */	b lbl_8000F084
+.global lbl_8000F064
+lbl_8000F064:
 /* 8000F064 0000BFA4  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F068 0000BFA8  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F06C 0000BFAC  48 00 00 18 */	b lbl_8000F084
+.global lbl_8000F070
+lbl_8000F070:
 /* 8000F070 0000BFB0  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F074 0000BFB4  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F078 0000BFB8  48 00 00 0C */	b lbl_8000F084
+.global lbl_8000F07C
+lbl_8000F07C:
 /* 8000F07C 0000BFBC  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F080 0000BFC0  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000F084:
@@ -2380,18 +2710,28 @@ lbl_8000F0D8:
 /* 8000F0EC 0000C02C  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000F0F0 0000C030  7C 69 03 A6 */	mtctr r3
 /* 8000F0F4 0000C034  4E 80 04 20 */	bctr 
+.global lbl_8000F0F8
+lbl_8000F0F8:
 /* 8000F0F8 0000C038  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F0FC 0000C03C  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F100 0000C040  48 00 00 30 */	b lbl_8000F130
+.global lbl_8000F104
+lbl_8000F104:
 /* 8000F104 0000C044  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F108 0000C048  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F10C 0000C04C  48 00 00 24 */	b lbl_8000F130
+.global lbl_8000F110
+lbl_8000F110:
 /* 8000F110 0000C050  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F114 0000C054  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F118 0000C058  48 00 00 18 */	b lbl_8000F130
+.global lbl_8000F11C
+lbl_8000F11C:
 /* 8000F11C 0000C05C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F120 0000C060  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F124 0000C064  48 00 00 0C */	b lbl_8000F130
+.global lbl_8000F128
+lbl_8000F128:
 /* 8000F128 0000C068  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F12C 0000C06C  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000F130:
@@ -2400,6 +2740,8 @@ lbl_8000F130:
 /* 8000F138 0000C078  7C 06 03 78 */	mr r6, r0
 /* 8000F13C 0000C07C  7D 89 03 A6 */	mtctr r12
 /* 8000F140 0000C080  4E 80 04 21 */	bctrl 
+.global lbl_8000F144
+lbl_8000F144:
 /* 8000F144 0000C084  48 00 00 C8 */	b lbl_8000F20C
 lbl_8000F148:
 /* 8000F148 0000C088  2C 04 00 03 */	cmpwi r4, 3
@@ -2553,6 +2895,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F344 0000C284  7C A5 30 2E */	lwzx r5, r5, r6
 /* 8000F348 0000C288  7C A9 03 A6 */	mtctr r5
 /* 8000F34C 0000C28C  4E 80 04 20 */	bctr 
+.global lbl_8000F350
+lbl_8000F350:
 /* 8000F350 0000C290  80 C3 09 20 */	lwz r6, 0x920(r3)
 /* 8000F354 0000C294  80 A3 09 24 */	lwz r5, 0x924(r3)
 /* 8000F358 0000C298  80 63 09 28 */	lwz r3, 0x928(r3)
@@ -2560,6 +2904,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F360 0000C2A0  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000F364 0000C2A4  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F368 0000C2A8  48 00 03 38 */	b lbl_8000F6A0
+.global lbl_8000F36C
+lbl_8000F36C:
 /* 8000F36C 0000C2AC  80 C3 09 2C */	lwz r6, 0x92c(r3)
 /* 8000F370 0000C2B0  80 A3 09 30 */	lwz r5, 0x930(r3)
 /* 8000F374 0000C2B4  80 63 09 34 */	lwz r3, 0x934(r3)
@@ -2567,6 +2913,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F37C 0000C2BC  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000F380 0000C2C0  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F384 0000C2C4  48 00 03 1C */	b lbl_8000F6A0
+.global lbl_8000F388
+lbl_8000F388:
 /* 8000F388 0000C2C8  80 C3 09 38 */	lwz r6, 0x938(r3)
 /* 8000F38C 0000C2CC  80 A3 09 3C */	lwz r5, 0x93c(r3)
 /* 8000F390 0000C2D0  80 63 09 40 */	lwz r3, 0x940(r3)
@@ -2574,6 +2922,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F398 0000C2D8  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000F39C 0000C2DC  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F3A0 0000C2E0  48 00 03 00 */	b lbl_8000F6A0
+.global lbl_8000F3A4
+lbl_8000F3A4:
 /* 8000F3A4 0000C2E4  80 C3 09 44 */	lwz r6, 0x944(r3)
 /* 8000F3A8 0000C2E8  80 A3 09 48 */	lwz r5, 0x948(r3)
 /* 8000F3AC 0000C2EC  80 63 09 4C */	lwz r3, 0x94c(r3)
@@ -2581,6 +2931,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F3B4 0000C2F4  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000F3B8 0000C2F8  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F3BC 0000C2FC  48 00 02 E4 */	b lbl_8000F6A0
+.global lbl_8000F3C0
+lbl_8000F3C0:
 /* 8000F3C0 0000C300  80 C3 09 50 */	lwz r6, 0x950(r3)
 /* 8000F3C4 0000C304  80 A3 09 54 */	lwz r5, 0x954(r3)
 /* 8000F3C8 0000C308  80 63 09 58 */	lwz r3, 0x958(r3)
@@ -2588,6 +2940,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F3D0 0000C310  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000F3D4 0000C314  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F3D8 0000C318  48 00 02 C8 */	b lbl_8000F6A0
+.global lbl_8000F3DC
+lbl_8000F3DC:
 /* 8000F3DC 0000C31C  80 C3 09 5C */	lwz r6, 0x95c(r3)
 /* 8000F3E0 0000C320  80 A3 09 60 */	lwz r5, 0x960(r3)
 /* 8000F3E4 0000C324  80 63 09 64 */	lwz r3, 0x964(r3)
@@ -2595,6 +2949,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F3EC 0000C32C  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000F3F0 0000C330  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F3F4 0000C334  48 00 02 AC */	b lbl_8000F6A0
+.global lbl_8000F3F8
+lbl_8000F3F8:
 /* 8000F3F8 0000C338  80 C3 09 68 */	lwz r6, 0x968(r3)
 /* 8000F3FC 0000C33C  80 A3 09 6C */	lwz r5, 0x96c(r3)
 /* 8000F400 0000C340  80 63 09 70 */	lwz r3, 0x970(r3)
@@ -2602,6 +2958,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F408 0000C348  90 A1 00 0C */	stw r5, 0xc(r1)
 /* 8000F40C 0000C34C  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F410 0000C350  48 00 02 90 */	b lbl_8000F6A0
+.global lbl_8000F414
+lbl_8000F414:
 /* 8000F414 0000C354  81 03 09 74 */	lwz r8, 0x974(r3)
 /* 8000F418 0000C358  3C A0 80 4F */	lis r5, "soovv_sound_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
 /* 8000F41C 0000C35C  80 C3 09 78 */	lwz r6, 0x978(r3)
@@ -2613,6 +2971,8 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F434 0000C374  90 C1 00 0C */	stw r6, 0xc(r1)
 /* 8000F438 0000C378  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F43C 0000C37C  48 00 00 84 */	b lbl_8000F4C0
+.global lbl_8000F440
+lbl_8000F440:
 /* 8000F440 0000C380  81 03 09 80 */	lwz r8, 0x980(r3)
 /* 8000F444 0000C384  3C A0 80 4F */	lis r5, "soovv_sound_LOCATED___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
 /* 8000F448 0000C388  80 C3 09 84 */	lwz r6, 0x984(r3)
@@ -2624,26 +2984,46 @@ do_paragraph__Q27JStudio13TObject_soundFUlPCvUl:
 /* 8000F460 0000C3A0  90 C1 00 0C */	stw r6, 0xc(r1)
 /* 8000F464 0000C3A4  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8000F468 0000C3A8  48 00 00 58 */	b lbl_8000F4C0
+.global lbl_8000F46C
+lbl_8000F46C:
 /* 8000F46C 0000C3AC  38 A0 00 00 */	li r5, 0
 /* 8000F470 0000C3B0  48 00 01 18 */	b lbl_8000F588
+.global lbl_8000F474
+lbl_8000F474:
 /* 8000F474 0000C3B4  38 A0 00 01 */	li r5, 1
 /* 8000F478 0000C3B8  48 00 01 10 */	b lbl_8000F588
+.global lbl_8000F47C
+lbl_8000F47C:
 /* 8000F47C 0000C3BC  38 A0 00 02 */	li r5, 2
 /* 8000F480 0000C3C0  48 00 01 08 */	b lbl_8000F588
+.global lbl_8000F484
+lbl_8000F484:
 /* 8000F484 0000C3C4  38 A0 00 05 */	li r5, 5
 /* 8000F488 0000C3C8  48 00 01 00 */	b lbl_8000F588
+.global lbl_8000F48C
+lbl_8000F48C:
 /* 8000F48C 0000C3CC  38 A0 00 06 */	li r5, 6
 /* 8000F490 0000C3D0  48 00 00 F8 */	b lbl_8000F588
+.global lbl_8000F494
+lbl_8000F494:
 /* 8000F494 0000C3D4  38 A0 00 07 */	li r5, 7
 /* 8000F498 0000C3D8  48 00 00 F0 */	b lbl_8000F588
+.global lbl_8000F49C
+lbl_8000F49C:
 /* 8000F49C 0000C3DC  38 A0 00 08 */	li r5, 8
 /* 8000F4A0 0000C3E0  48 00 00 E8 */	b lbl_8000F588
+.global lbl_8000F4A4
+lbl_8000F4A4:
 /* 8000F4A4 0000C3E4  38 A0 00 09 */	li r5, 9
 /* 8000F4A8 0000C3E8  48 00 00 E0 */	b lbl_8000F588
+.global lbl_8000F4AC
+lbl_8000F4AC:
 /* 8000F4AC 0000C3EC  3C 60 80 47 */	lis r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@ha
 /* 8000F4B0 0000C3F0  38 63 34 54 */	addi r3, r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@l
 /* 8000F4B4 0000C3F4  7C 65 1B 78 */	mr r5, r3
 /* 8000F4B8 0000C3F8  48 00 01 40 */	b lbl_8000F5F8
+.global lbl_8000F4BC
+lbl_8000F4BC:
 /* 8000F4BC 0000C3FC  48 00 01 FC */	b lbl_8000F6B8
 lbl_8000F4C0:
 /* 8000F4C0 0000C400  2C 04 00 13 */	cmpwi r4, 0x13
@@ -2660,18 +3040,28 @@ lbl_8000F4D4:
 /* 8000F4E8 0000C428  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000F4EC 0000C42C  7C 69 03 A6 */	mtctr r3
 /* 8000F4F0 0000C430  4E 80 04 20 */	bctr 
+.global lbl_8000F4F4
+lbl_8000F4F4:
 /* 8000F4F4 0000C434  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F4F8 0000C438  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F4FC 0000C43C  48 00 00 30 */	b lbl_8000F52C
+.global lbl_8000F500
+lbl_8000F500:
 /* 8000F500 0000C440  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F504 0000C444  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F508 0000C448  48 00 00 24 */	b lbl_8000F52C
+.global lbl_8000F50C
+lbl_8000F50C:
 /* 8000F50C 0000C44C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F510 0000C450  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F514 0000C454  48 00 00 18 */	b lbl_8000F52C
+.global lbl_8000F518
+lbl_8000F518:
 /* 8000F518 0000C458  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F51C 0000C45C  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F520 0000C460  48 00 00 0C */	b lbl_8000F52C
+.global lbl_8000F524
+lbl_8000F524:
 /* 8000F524 0000C464  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F528 0000C468  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000F52C:
@@ -2712,18 +3102,28 @@ lbl_8000F588:
 /* 8000F59C 0000C4DC  7C 64 18 2E */	lwzx r3, r4, r3
 /* 8000F5A0 0000C4E0  7C 69 03 A6 */	mtctr r3
 /* 8000F5A4 0000C4E4  4E 80 04 20 */	bctr 
+.global lbl_8000F5A8
+lbl_8000F5A8:
 /* 8000F5A8 0000C4E8  3C 60 80 01 */	lis r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F5AC 0000C4EC  39 83 D5 90 */	addi r12, r3, adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F5B0 0000C4F0  48 00 00 30 */	b lbl_8000F5E0
+.global lbl_8000F5B4
+lbl_8000F5B4:
 /* 8000F5B4 0000C4F4  3C 60 80 01 */	lis r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F5B8 0000C4F8  39 83 D5 A8 */	addi r12, r3, adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F5BC 0000C4FC  48 00 00 24 */	b lbl_8000F5E0
+.global lbl_8000F5C0
+lbl_8000F5C0:
 /* 8000F5C0 0000C500  3C 60 80 01 */	lis r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F5C4 0000C504  39 83 D5 D4 */	addi r12, r3, adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F5C8 0000C508  48 00 00 18 */	b lbl_8000F5E0
+.global lbl_8000F5CC
+lbl_8000F5CC:
 /* 8000F5CC 0000C50C  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F5D0 0000C510  39 83 D6 00 */	addi r12, r3, adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 /* 8000F5D4 0000C514  48 00 00 0C */	b lbl_8000F5E0
+.global lbl_8000F5D8
+lbl_8000F5D8:
 /* 8000F5D8 0000C518  3C 60 80 01 */	lis r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
 /* 8000F5DC 0000C51C  39 83 D6 70 */	addi r12, r3, adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
 lbl_8000F5E0:
@@ -2732,6 +3132,8 @@ lbl_8000F5E0:
 /* 8000F5E8 0000C528  7C 06 03 78 */	mr r6, r0
 /* 8000F5EC 0000C52C  7D 89 03 A6 */	mtctr r12
 /* 8000F5F0 0000C530  4E 80 04 21 */	bctrl 
+.global lbl_8000F5F4
+lbl_8000F5F4:
 /* 8000F5F4 0000C534  48 00 00 C4 */	b lbl_8000F6B8
 lbl_8000F5F8:
 /* 8000F5F8 0000C538  2C 04 00 03 */	cmpwi r4, 3
@@ -3466,6 +3868,8 @@ lbl_8000FFEC:
 /* 8000FFF4 0000CF34  39 86 00 04 */	addi r12, r6, 4
 /* 8000FFF8 0000CF38  38 80 00 02 */	li r4, 2
 /* 8000FFFC 0000CF3C  38 C0 00 04 */	li r6, 4
+.global lbl_80010000
+lbl_80010000:
 /* 80010000 0000CF40  48 0B 1B 25 */	bl __ptmf_scall
 /* 80010004 0000CF44  60 00 00 00 */	nop 
 /* 80010008 0000CF48  80 01 00 14 */	lwz r0, 0x14(r1)

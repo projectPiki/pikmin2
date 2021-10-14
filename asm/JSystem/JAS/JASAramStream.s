@@ -818,6 +818,8 @@ dvdErrorCheck__13JASAramStreamFPv:
 /* 800A9AE0 000A6A20  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800A9AE4 000A6A24  7C 09 03 A6 */	mtctr r0
 /* 800A9AE8 000A6A28  4E 80 04 20 */	bctr 
+.global lbl_800A9AEC
+lbl_800A9AEC:
 /* 800A9AEC 000A6A2C  38 00 00 00 */	li r0, 0
 /* 800A9AF0 000A6A30  98 0D 8B 28 */	stb r0, sSystemPauseFlag__13JASAramStream@sda21(r13)
 /* 800A9AF4 000A6A34  48 00 00 0C */	b lbl_800A9B00

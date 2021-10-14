@@ -510,6 +510,8 @@ lbl_800B7DA4:
 /* 800B7DBC 000B4CFC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800B7DC0 000B4D00  7C 09 03 A6 */	mtctr r0
 /* 800B7DC4 000B4D04  4E 80 04 20 */	bctr 
+.global lbl_800B7DC8
+lbl_800B7DC8:
 /* 800B7DC8 000B4D08  88 0D 8C 45 */	lbz r0, finishFlag__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7DCC 000B4D0C  28 00 00 00 */	cmplwi r0, 0
 /* 800B7DD0 000B4D10  40 82 01 14 */	bne lbl_800B7EE4
@@ -523,6 +525,8 @@ lbl_800B7DEC:
 /* 800B7DEC 000B4D2C  38 00 00 02 */	li r0, 2
 /* 800B7DF0 000B4D30  90 0D 8C 60 */	stw r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7DF4 000B4D34  48 00 00 F0 */	b lbl_800B7EE4
+.global lbl_800B7DF8
+lbl_800B7DF8:
 /* 800B7DF8 000B4D38  80 6D 8C 78 */	lwz r3, dataFileNumber__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7DFC 000B4D3C  2C 03 00 00 */	cmpwi r3, 0
 /* 800B7E00 000B4D40  40 82 00 10 */	bne lbl_800B7E10
@@ -535,6 +539,8 @@ lbl_800B7E10:
 /* 800B7E18 000B4D58  38 00 00 04 */	li r0, 4
 /* 800B7E1C 000B4D5C  90 0D 8C 60 */	stw r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7E20 000B4D60  48 00 00 C4 */	b lbl_800B7EE4
+.global lbl_800B7E24
+lbl_800B7E24:
 /* 800B7E24 000B4D64  88 0D 8C 43 */	lbz r0, prepareFlag__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7E28 000B4D68  28 00 00 01 */	cmplwi r0, 1
 /* 800B7E2C 000B4D6C  40 82 00 2C */	bne lbl_800B7E58
@@ -553,6 +559,8 @@ lbl_800B7E58:
 /* 800B7E58 000B4D98  80 0D 8C 60 */	lwz r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7E5C 000B4D9C  28 00 00 03 */	cmplwi r0, 3
 /* 800B7E60 000B4DA0  40 82 00 84 */	bne lbl_800B7EE4
+.global lbl_800B7E64
+lbl_800B7E64:
 /* 800B7E64 000B4DA4  81 8D 8C 7C */	lwz r12, mgrCallback__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7E68 000B4DA8  28 0C 00 00 */	cmplwi r12, 0
 /* 800B7E6C 000B4DAC  41 82 00 0C */	beq lbl_800B7E78
@@ -566,6 +574,8 @@ lbl_800B7E78:
 /* 800B7E88 000B4DC8  98 6D 8C 43 */	stb r3, prepareFlag__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7E8C 000B4DCC  90 0D 8C 60 */	stw r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7E90 000B4DD0  48 00 00 54 */	b lbl_800B7EE4
+.global lbl_800B7E94
+lbl_800B7E94:
 /* 800B7E94 000B4DD4  38 00 00 01 */	li r0, 1
 /* 800B7E98 000B4DD8  80 6D 8C 58 */	lwz r3, streamSystem__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7E9C 000B4DDC  98 0D 8C 45 */	stb r0, finishFlag__Q27JAInter9StreamMgr@sda21(r13)
@@ -574,6 +584,8 @@ lbl_800B7E78:
 /* 800B7EA8 000B4DE8  38 00 00 01 */	li r0, 1
 /* 800B7EAC 000B4DEC  90 0D 8C 60 */	stw r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7EB0 000B4DF0  48 00 00 34 */	b lbl_800B7EE4
+.global lbl_800B7EB4
+lbl_800B7EB4:
 /* 800B7EB4 000B4DF4  38 00 00 01 */	li r0, 1
 /* 800B7EB8 000B4DF8  80 6D 8C 58 */	lwz r3, streamSystem__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7EBC 000B4DFC  98 0D 8C 45 */	stb r0, finishFlag__Q27JAInter9StreamMgr@sda21(r13)
@@ -581,6 +593,8 @@ lbl_800B7E78:
 /* 800B7EC4 000B4E04  38 00 00 01 */	li r0, 1
 /* 800B7EC8 000B4E08  90 0D 8C 60 */	stw r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7ECC 000B4E0C  48 00 00 18 */	b lbl_800B7EE4
+.global lbl_800B7ED0
+lbl_800B7ED0:
 /* 800B7ED0 000B4E10  81 8D 8C 7C */	lwz r12, mgrCallback__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B7ED4 000B4E14  28 0C 00 00 */	cmplwi r12, 0
 /* 800B7ED8 000B4E18  41 82 00 0C */	beq lbl_800B7EE4
