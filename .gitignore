@@ -25,3 +25,4 @@ build/
 tools/mwcc_compiler/
 decomp/
 errors.txt
+output.asm
