@@ -3,132 +3,56 @@
 .balign 0x4
 .global lbl_8049AF08
 lbl_8049AF08:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x626F6F74
-	.4byte 0x53656374
-	.4byte 0x696F6E2E
-	.4byte 0x63707000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x7469746C
-	.4byte 0x655F7265
-	.4byte 0x645F3561
-	.4byte 0x332E6274
-	.4byte 0x69000000
-	.4byte 0x7469746C
-	.4byte 0x655F7965
-	.4byte 0x6C6C6F77
-	.4byte 0x5F356133
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x7469746C
-	.4byte 0x655F626C
-	.4byte 0x75655F35
-	.4byte 0x61332E62
-	.4byte 0x74690000
-	.4byte 0x7469746C
-	.4byte 0x655F7768
-	.4byte 0x6974655F
-	.4byte 0x3561332E
-	.4byte 0x62746900
-	.4byte 0x7469746C
-	.4byte 0x655F7669
-	.4byte 0x6F6C6574
-	.4byte 0x5F356133
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x8049AF30
-	.4byte 0x8049AF44
-	.4byte 0x8049AF5C
-	.4byte 0x8049AF70
-	.4byte 0x8049AF84
+	.skip 0xC
+	.asciz "bootSection.cpp"
+	.asciz "P2Assert"
+	.skip 0x3
+TitlePiki_Red:
+	.asciz "title_red_5a3.bti"
+	.skip 0x2
+TitlePiki_Yellow:
+	.asciz "title_yellow_5a3.bti"
+	.skip 0x3
+TitlePiki_Blue:
+	.asciz "title_blue_5a3.bti"
+	.skip 0x1
+TitlePiki_White:
+	.asciz "title_white_5a3.bti"
+TitlePiki_Violet:
+	.asciz "title_violet_5a3.bti"
+	.skip 0x3
+	.4byte TitlePiki_Red
+	.4byte TitlePiki_Yellow
+	.4byte TitlePiki_Blue
+	.4byte TitlePiki_White
+	.4byte TitlePiki_Violet
 	.4byte 0x8375815B
 	.4byte 0x8367835A
 	.4byte 0x834E8356
 	.4byte 0x83878393
 	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F7961
-	.4byte 0x6D617368
-	.4byte 0x6974612F
-	.4byte 0x6172632F
-	.4byte 0x626F6F74
-	.4byte 0x5F75732E
-	.4byte 0x737A7300
-	.4byte 0x2F646174
-	.4byte 0x612F7469
-	.4byte 0x6D672F6E
-	.4byte 0x696E7465
-	.4byte 0x6E646F5F
-	.4byte 0x33373678
-	.4byte 0x3130342E
-	.4byte 0x62746900
-	.4byte 0x2F646174
-	.4byte 0x612F7469
-	.4byte 0x6D672F64
-	.4byte 0x6F6C6279
-	.4byte 0x5F6D6172
-	.4byte 0x6B2E6274
-	.4byte 0x69000000
-	.4byte 0x2F646174
-	.4byte 0x612F7469
-	.4byte 0x6D672F77
-	.4byte 0x61726E69
-	.4byte 0x6E672E62
-	.4byte 0x74690000
-	.4byte 0x2F646174
-	.4byte 0x612F7469
-	.4byte 0x6D672F77
-	.4byte 0x61726E69
-	.4byte 0x6E675F70
-	.4byte 0x73746172
-	.4byte 0x742E6274
-	.4byte 0x69000000
-	.4byte 0x6F673A3A
-	.4byte 0x53637265
-	.4byte 0x656E3A3A
-	.4byte 0x4D616E61
-	.4byte 0x67657232
-	.4byte 0x443A3A63
-	.4byte 0x72656174
-	.4byte 0x65000000
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E000000
-	.4byte 0x54506172
-	.4byte 0x7469636C
-	.4byte 0x6532644D
-	.4byte 0x67720000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F656666
-	.4byte 0x6563742F
-	.4byte 0x65666632
-	.4byte 0x645F6761
-	.4byte 0x6D653264
-	.4byte 0x2E6A7063
-	.4byte 0x00000000
-	.4byte 0x6562693A
-	.4byte 0x3A545363
-	.4byte 0x7265656E
-	.4byte 0x50726F67
-	.4byte 0x72650000
-	.4byte 0x6562693A
-	.4byte 0x3A545363
-	.4byte 0x7265656E
-	.4byte 0x50726F67
-	.4byte 0x72653A3A
-	.4byte 0x6C6F6164
-	.4byte 0x5265736F
-	.4byte 0x75726365
-	.4byte 0x00000000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
+	.asciz "/user/yamashita/arc/boot_us.szs"
+	.asciz "/data/timg/nintendo_376x104.bti"
+	.asciz "/data/timg/dolby_mark.bti"
+	.skip 0x2
+	.asciz "/data/timg/warning.bti"
+	.skip 0x1
+	.asciz "/data/timg/warning_pstart.bti"
+	.skip 0x2
+	.asciz "og::Screen::Manager2D::create"
+	.skip 0x2
+	.asciz "ebiScreen"
+	.skip 0x2
+	.asciz "TParticle2dMgr"
+	.skip 0x1
+	.asciz "user/Ebisawa/effect/eff2d_game2d.jpc"
+	.skip 0x3
+	.asciz "ebi::TScreenProgre"
+	.skip 0x1
+	.asciz "ebi::TScreenProgre::loadResource"
+	.skip 0x3
+	.asciz "PSGame.h"
+	.skip 0x3
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 0x8
