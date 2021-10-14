@@ -6,6 +6,11 @@
 template <typename T> struct Vector3 {
 	T x, y, z;
 
+	void operator=(const Vector3<T>&);
+	void distance(Vector3<T>&);
+	void length() const;
+	void normalise();
+
 	void read(Stream&);
 	void write(Stream&);
 };
