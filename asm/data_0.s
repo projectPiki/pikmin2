@@ -1842,12 +1842,12 @@ GXDefaultVATList:
 .global GXDefaultProjData
 GXDefaultProjData:
 	.float 1.0
-	.4byte 0x00000000
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0xBF800000
-	.4byte 0xC0000000
-	.4byte 0x00000000
+	.float 0.0
+	.float -1.0
+	.float -2.0
+	.float 0.0
 .global GXTexRegionAddrTable
 GXTexRegionAddrTable:
 	.4byte 0x00000000
@@ -6448,11 +6448,11 @@ lbl_804AC420:
 	.4byte 0x00000000
 .global "GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@"
 "GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@":
-	.4byte 0x80517C00
-	.4byte 0x80517C04
-	.4byte 0x80517C08
-	.4byte 0x80517C0C
-	.4byte 0x80517C10
+	.4byte lbl_80517C00
+	.4byte lbl_80517C04
+	.4byte lbl_80517C08
+	.4byte lbl_80517C0C
+	.4byte lbl_80517C10
 .global __vt__Q24Game12GameLightMgr
 __vt__Q24Game12GameLightMgr:
 	.4byte 0
@@ -10097,238 +10097,238 @@ __vt__Q213TreasureLight3Mgr:
 	.4byte 0
 .global "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x42480000
-	.4byte 0x00000000
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 50.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
 .global "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.25
-	.4byte 0x41000000
+	.float 8.0
 	.float 0.3
-	.4byte 0x41500000
-	.4byte 0x3DF5C28F
-	.4byte 0x41B00000
+	.float 13.0
+	.float 0.12
+	.float 22.0
 	.float 0.3
-	.4byte 0x41C00000
+	.float 24.0
 	.float 0.3
-	.4byte 0x41E80000
-	.4byte 0x3DF5C28F
-	.4byte 0x42100000
+	.float 29.0
+	.float 0.12
+	.float 36.0
 	.float 0.3
-	.4byte 0x42480000
+	.float 50.0
 	.float 0.25
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 1.0
-	.4byte 0x42480000
+	.float 50.0
 	.float 1.0
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x804AFAB0
-	.4byte 0x804AFAC8
-	.4byte 0x804AFB10
+	.4byte "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 .global "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x41200000
-	.4byte 0x00000000
-	.4byte 0x41600000
-	.4byte 0x3F19999A
-	.4byte 0x41980000
-	.4byte 0x00000000
-	.4byte 0x41C80000
-	.4byte 0x00000000
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 10.0
+	.float 0.0
+	.float 14.0
+	.float 0.6
+	.float 19.0
+	.float 0.0
+	.float 25.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
 .global "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.25
-	.4byte 0x41C80000
+	.float 25.0
 	.float 0.25
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 1.0
-	.4byte 0x41C80000
+	.float 25.0
 	.float 1.0
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x804AFB34
-	.4byte 0x804AFB64
-	.4byte 0x804AFB7C
+	.4byte "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 .global "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x42000000
-	.4byte 0x00000000
-	.4byte 0x42340000
+	.float 0.0
+	.float 0.0
+	.float 32.0
+	.float 0.0
+	.float 45.0
 	.float 0.3
-	.4byte 0x42700000
-	.4byte 0x00000000
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float 60.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
 .global "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.25
-	.4byte 0x41A00000
+	.float 20.0
 	.float 0.15
-	.4byte 0x42200000
+	.float 40.0
 	.float 0.15
-	.4byte 0x42480000
-	.4byte 0x3F59999A
-	.4byte 0x42700000
+	.float 50.0
+	.float 0.85
+	.float 60.0
 	.float 0.25
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 1.0
-	.4byte 0x42700000
+	.float 60.0
 	.float 1.0
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x804AFBA0
-	.4byte 0x804AFBC8
-	.4byte 0x804AFBF8
+	.4byte "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 .global "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x41200000
+	.float 0.0
+	.float 0.0
+	.float 10.0
 	.float 1.0
-	.4byte 0x41F00000
+	.float 30.0
 	.float 0.5
-	.4byte 0x42200000
-	.4byte 0x00000000
-	.4byte 0x42A00000
-	.4byte 0x00000000
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float 40.0
+	.float 0.0
+	.float 80.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
 .global "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.25
-	.4byte 0x41F00000
+	.float 30.0
 	.float 0.15
-	.4byte 0x420C0000
+	.float 35.0
 	.float 1.0
-	.4byte 0x42820000
-	.4byte 0x3ECCCCCD
-	.4byte 0x42A00000
+	.float 65.0
+	.float 0.4
+	.float 80.0
 	.float 0.25
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 1.0
-	.4byte 0x41F00000
+	.float 30.0
 	.float 1.0
-	.4byte 0x420C0000
-	.4byte 0x3FA00000
-	.4byte 0x425C0000
+	.float 35.0
+	.float 1.25
+	.float 55.0
 	.float 1.0
-	.4byte 0x42A00000
+	.float 80.0
 	.float 1.0
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x804AFC1C
-	.4byte 0x804AFC4C
-	.4byte 0x804AFC7C
+	.4byte "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 .global "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x41700000
-	.4byte 0x00000000
-	.4byte 0x41A00000
+	.float 0.0
+	.float 0.0
+	.float 15.0
+	.float 0.0
+	.float 20.0
 	.float 1.0
-	.4byte 0x42200000
+	.float 40.0
 	.float 0.7
-	.4byte 0x42480000
-	.4byte 0x00000000
-	.4byte 0x42CC0000
-	.4byte 0x00000000
-	.4byte 0x42D60000
+	.float 50.0
+	.float 0.0
+	.float 102.0
+	.float 0.0
+	.float 107.0
 	.float 0.25
-	.4byte 0x42FA0000
+	.float 125.0
 	.float 0.06
-	.4byte 0x43010000
-	.4byte 0x00000000
-	.4byte 0x43340000
-	.4byte 0x00000000
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float 129.0
+	.float 0.0
+	.float 180.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
 .global "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.25
-	.4byte 0x41700000
-	.4byte 0x3E4CCCCD
-	.4byte 0x41B00000
-	.4byte 0x40000000
-	.4byte 0x41F00000
-	.4byte 0x3FE66666
-	.4byte 0x42340000
+	.float 15.0
+	.float 0.2
+	.float 22.0
+	.float 2.0
+	.float 30.0
+	.float 1.8
+	.float 45.0
 	.float 0.25
-	.4byte 0x428C0000
-	.4byte 0x3DF5C28F
-	.4byte 0x42CC0000
-	.4byte 0x3EB33333
-	.4byte 0x43020000
-	.4byte 0x3DF5C28F
-	.4byte 0x430C0000
+	.float 70.0
+	.float 0.12
+	.float 102.0
+	.float 0.35
+	.float 130.0
+	.float 0.12
+	.float 140.0
 	.float 0.25
-	.4byte 0x43340000
+	.float 180.0
 	.float 0.25
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x00000000
+	.float 0.0
 	.float 1.0
-	.4byte 0x43340000
+	.float 180.0
 	.float 1.0
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
+	.float 0.0
 .global "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x804AFCB8
-	.4byte 0x804AFD10
-	.4byte 0x804AFD68
+	.4byte "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 .global "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
-	.4byte 0x804AFC10
-	.4byte 0x00000000
-	.4byte 0x804AFCAC
-	.4byte 0x804AFB28
-	.4byte 0x804AFD80
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x804AFB94
-	.4byte 0x00000000
+	.4byte "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte 0
+	.4byte "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte 0
+	.4byte 0
+	.4byte "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte 0
 .global __vt__Q214EffectAnimator9LengthObj
 __vt__Q214EffectAnimator9LengthObj:
 	.4byte 0
@@ -13752,51 +13752,51 @@ __vt__Q24Game11ItemInitArg:
 .global infos
 infos:
 	.4byte 0x00000000
-	.4byte 0x80518B60
+	.4byte lbl_80518B60
 	.4byte 0x00010000
-	.4byte 0x80518B68
+	.4byte lbl_80518B68
 	.4byte 0x00020000
-	.4byte 0x80518B70
+	.4byte lbl_80518B70
 	.4byte 0x04010000
-	.4byte 0x80518B78
+	.4byte lbl_80518B78
 	.4byte 0x04020000
-	.4byte 0x80518B80
+	.4byte lbl_80518B80
 	.4byte 0x04030000
-	.4byte 0x80518B88
+	.4byte lbl_80518B88
 	.4byte 0x04040000
-	.4byte 0x80518B8C
+	.4byte lbl_80518B8C
 	.4byte 0x04050000
-	.4byte 0x80518B94
+	.4byte lbl_80518B94
 	.4byte 0x04060000
-	.4byte 0x80518B9C
+	.4byte lbl_80518B9C
 	.4byte 0x04070000
-	.4byte 0x8047EA80
+	.4byte lbl_8047EA80
 	.4byte 0x04080000
-	.4byte 0x80518BA4
+	.4byte lbl_80518BA4
 	.4byte 0x04090000
-	.4byte 0x80518BAC
+	.4byte lbl_80518BAC
 	.4byte 0x040A0000
-	.4byte 0x80518BB4
+	.4byte lbl_80518BB4
 	.4byte 0x040B0000
-	.4byte 0x8047EA8C
+	.4byte lbl_8047EA8C
 	.4byte 0x040C0000
-	.4byte 0x8047EA98
+	.4byte lbl_8047EA98
 	.4byte 0x040D0000
-	.4byte 0x80518BBC
+	.4byte lbl_80518BBC
 	.4byte 0x040E0000
-	.4byte 0x8047EAA4
+	.4byte lbl_8047EAA4
 	.4byte 0x040F0000
-	.4byte 0x8047EAB0
+	.4byte lbl_8047EAB0
 	.4byte 0x04110000
-	.4byte 0x8047EABC
+	.4byte lbl_8047EABC
 	.4byte 0x04120000
-	.4byte 0x80518BC4
+	.4byte lbl_80518BC4
 	.4byte 0x04130000
-	.4byte 0x80518BCC
+	.4byte lbl_80518BCC
 	.4byte 0xFFFE0000
-	.4byte 0x80518BD4
+	.4byte lbl_80518BD4
 	.4byte 0xFFFF0000
-	.4byte 0x80518BDC
+	.4byte lbl_80518BDC
 .global lbl_804B2D40
 lbl_804B2D40:
 	.4byte 0x00000000

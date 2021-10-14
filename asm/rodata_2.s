@@ -5874,27 +5874,30 @@ lbl_8047EA5C:
 	.4byte 0x67000000
 .global lbl_8047EA74
 lbl_8047EA74:
-	.4byte 0x4974656D
-	.4byte 0x496E6974
-	.4byte 0x41726700
-	.4byte 0x70696B69
-	.4byte 0x68656164
-	.4byte 0x00000000
-	.4byte 0x666F756E
-	.4byte 0x7461696E
-	.4byte 0x00000000
-	.4byte 0x62696766
-	.4byte 0x6F756E74
-	.4byte 0x61696E00
-	.4byte 0x74726561
-	.4byte 0x73757265
-	.4byte 0x00000000
-	.4byte 0x646F776E
-	.4byte 0x666C6F6F
-	.4byte 0x72000000
-	.4byte 0x756A616D
-	.4byte 0x75736869
-	.4byte 0x00000000
+	.asciz "ItemInitArg"
+.global lbl_8047EA80
+lbl_8047EA80:
+	.asciz "pikihead"
+	.skip 0x3
+.global lbl_8047EA8C
+lbl_8047EA8C:
+	.asciz "fountain"
+	.skip 0x3
+.global lbl_8047EA98
+lbl_8047EA98:
+	.asciz "bigfountain"
+.global lbl_8047EAA4
+lbl_8047EAA4:
+	.asciz "treasure"
+	.skip 0x3
+.global lbl_8047EAB0
+lbl_8047EAB0:
+	.asciz "downfloor"
+	.skip 0x2
+.global lbl_8047EABC
+lbl_8047EABC:
+	.asciz "ujamushi"
+	.skip 0x3
 .global lbl_8047EAC8
 lbl_8047EAC8:
 	.4byte 0x00000000
