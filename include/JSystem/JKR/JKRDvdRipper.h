@@ -11,7 +11,7 @@ struct JKRDvdRipper {
 		AllocDirection_1,
 		AllocDirection_2
 	};
-	
+
 	static void* loadToMainRAM(const char*, uchar*, JKRExpandSwitch, ulong,
 	                           JKRHeap*, EAllocDirection, ulong, int*, ulong*);
 	static void* loadToMainRAM(long, uchar*, JKRExpandSwitch, ulong, JKRHeap*,
