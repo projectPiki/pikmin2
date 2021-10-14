@@ -1086,6 +1086,7 @@ lbl_8031920C:
 /* 80319240 00316180  40 82 00 0C */	bne lbl_8031924C
 /* 80319244 00316184  7F E3 FB 78 */	mr r3, r31
 /* 80319248 00316188  48 00 01 4D */	bl finishKantei__Q32og9newScreen9ObjKanteiFv
+.global lbl_8031924C
 lbl_8031924C:
 /* 8031924C 0031618C  7F E3 FB 78 */	mr r3, r31
 /* 80319250 00316190  4B FF F9 8D */	bl scaleAnimItemName__Q32og9newScreen9ObjKanteiFv

@@ -635,6 +635,7 @@ generatorRead__Q34Game12PelletNumber3MgrFR6StreamPQ24Game13GenPelletParmUl:
 /* 801F99C4 001F6904  38 00 00 03 */	li r0, 3
 /* 801F99C8 001F6908  90 1F 00 00 */	stw r0, 0(r31)
 /* 801F99CC 001F690C  48 00 00 20 */	b lbl_801F99EC
+.global lbl_801F99D0
 lbl_801F99D0:
 /* 801F99D0 001F6910  3C 60 80 48 */	lis r3, lbl_80481B04@ha
 /* 801F99D4 001F6914  3C 80 80 48 */	lis r4, lbl_80481B18@ha

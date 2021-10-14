@@ -5507,6 +5507,7 @@ fadeEffect__Q34Game10KingChappy3ObjFi:
 /* 80361CEC 0035EC2C  81 8C 00 10 */	lwz r12, 0x10(r12)
 /* 80361CF0 0035EC30  7D 89 03 A6 */	mtctr r12
 /* 80361CF4 0035EC34  4E 80 04 21 */	bctrl 
+.global lbl_80361CF8
 lbl_80361CF8:
 /* 80361CF8 0035EC38  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80361CFC 0035EC3C  83 E1 00 0C */	lwz r31, 0xc(r1)

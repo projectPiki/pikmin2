@@ -2888,6 +2888,7 @@ lbl_80336A6C:
 /* 80336AAC 003339EC  3B 3F 03 D8 */	addi r25, r31, 0x3d8
 /* 80336AB0 003339F0  48 00 00 08 */	b lbl_80336AB8
 /* 80336AB4 003339F4  3B 3F 03 F8 */	addi r25, r31, 0x3f8
+.global lbl_80336AB8
 lbl_80336AB8:
 /* 80336AB8 003339F8  80 0D 98 54 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"@sda21(r13)
 /* 80336ABC 003339FC  28 00 00 00 */	cmplwi r0, 0
@@ -3427,6 +3428,7 @@ lbl_80337258:
 /* 8033726C 003341AC  4C C6 31 82 */	crclr 6
 /* 80337270 003341B0  4B CF 33 D1 */	bl panic_f__12JUTExceptionFPCciPCce
 /* 80337274 003341B4  48 00 00 18 */	b lbl_8033728C
+.global lbl_80337278
 lbl_80337278:
 /* 80337278 003341B8  38 7F 00 00 */	addi r3, r31, 0
 /* 8033727C 003341BC  38 BF 00 0C */	addi r5, r31, 0xc

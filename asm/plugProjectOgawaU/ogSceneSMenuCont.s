@@ -46,6 +46,7 @@ doConfirmSetScene__Q32og9newScreen9SMenuContFRQ26Screen11SetSceneArg:
 /* 80330584 0032D4C4  7C 09 03 A6 */	mtctr r0
 /* 80330588 0032D4C8  4E 80 04 20 */	bctr 
 /* 8033058C 0032D4CC  3B E0 00 01 */	li r31, 1
+.global lbl_80330590
 lbl_80330590:
 /* 80330590 0032D4D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80330594 0032D4D4  7F E3 FB 78 */	mr r3, r31

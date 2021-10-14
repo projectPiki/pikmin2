@@ -545,6 +545,7 @@ lbl_803E7AE8:
 lbl_803E7B04:
 /* 803E7B04 003E4A44  D0 5F 00 0C */	stfs f2, 0xc(r31)
 /* 803E7B08 003E4A48  D0 7F 00 10 */	stfs f3, 0x10(r31)
+.global lbl_803E7B0C
 lbl_803E7B0C:
 /* 803E7B0C 003E4A4C  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 803E7B10 003E4A50  CB E1 00 50 */	lfd f31, 0x50(r1)

@@ -2439,6 +2439,7 @@ lbl_803C7144:
 /* 803C7150 003C4090  38 80 01 5C */	li r4, 0x15c
 /* 803C7154 003C4094  4C C6 31 82 */	crclr 6
 /* 803C7158 003C4098  4B C6 34 E9 */	bl panic_f__12JUTExceptionFPCciPCce
+.global lbl_803C715C
 lbl_803C715C:
 /* 803C715C 003C409C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 803C7160 003C40A0  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -2493,6 +2494,7 @@ kill__Q23efx9ToeKourinFv:
 /* 803C7218 003C4158  7C 64 1B 78 */	mr r4, r3
 /* 803C721C 003C415C  80 65 00 2C */	lwz r3, 0x2c(r5)
 /* 803C7220 003C4160  4B FE 79 75 */	bl del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
+.global lbl_803C7224
 lbl_803C7224:
 /* 803C7224 003C4164  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803C7228 003C4168  7C 08 03 A6 */	mtlr r0
