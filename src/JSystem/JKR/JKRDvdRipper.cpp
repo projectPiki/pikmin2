@@ -1,11 +1,11 @@
-
+#include "JSystem/JKR/JKRDvdRipper.h"
 
 /*
  * --INFO--
  * Address:	8001F188
  * Size:	0000B4
  */
-void JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
+void* JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
                                  unsigned long, JKRHeap*,
                                  JKRDvdRipper::EAllocDirection, unsigned long,
                                  int*, unsigned long*)
@@ -69,7 +69,7 @@ void JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
  * Address:	8001F23C
  * Size:	0000B4
  */
-void JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
+void* JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
                                  unsigned long, JKRHeap*,
                                  JKRDvdRipper::EAllocDirection, unsigned long,
                                  int*, unsigned long*)
@@ -135,7 +135,7 @@ void JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
  * Address:	8001F2F0
  * Size:	0004AC
  */
-void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
+void* JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
                                  unsigned long, JKRHeap*,
                                  JKRDvdRipper::EAllocDirection, unsigned long,
                                  int*, unsigned long*)
@@ -541,7 +541,7 @@ void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
  * Address:	........
  * Size:	0000F4
  */
-void JKRDvdRipper::loadToMainRAMAsync(const char*, unsigned char*,
+void* JKRDvdRipper::loadToMainRAMAsync(const char*, unsigned char*,
                                       JKRExpandSwitch, unsigned long, JKRHeap*,
                                       unsigned long*)
 {
@@ -553,7 +553,7 @@ void JKRDvdRipper::loadToMainRAMAsync(const char*, unsigned char*,
  * Address:	........
  * Size:	0000F4
  */
-void JKRDvdRipper::loadToMainRAMAsync(long, unsigned char*, JKRExpandSwitch,
+void* JKRDvdRipper::loadToMainRAMAsync(long, unsigned char*, JKRExpandSwitch,
                                       unsigned long, JKRHeap*, unsigned long*)
 {
 	// UNUSED FUNCTION
@@ -564,7 +564,7 @@ void JKRDvdRipper::loadToMainRAMAsync(long, unsigned char*, JKRExpandSwitch,
  * Address:	........
  * Size:	0001EC
  */
-void JKRDvdRipper::loadToMainRAMAsync(JKRDvdFile*, unsigned char*,
+void* JKRDvdRipper::loadToMainRAMAsync(JKRDvdFile*, unsigned char*,
                                       JKRExpandSwitch, unsigned long, JKRHeap*,
                                       unsigned long*)
 {
@@ -1176,7 +1176,7 @@ void nextSrcData(unsigned char*)
  * Address:	8001FDA8
  * Size:	000008
  */
-void JKRDvdRipper::isErrorRetry()
+bool JKRDvdRipper::isErrorRetry()
 {
 	/*
 	.loc_0x0:

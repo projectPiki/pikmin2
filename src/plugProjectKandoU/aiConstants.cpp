@@ -1,20 +1,7 @@
 #include "Game/AIConstants.h"
-
-struct RamStream : public Stream {
-	char _10[(266 - sizeof(Stream)) + 0x310]; // _10
-
-	RamStream(void*, int);
-};
-
-enum JKRExpandSwitch { Switch_0 = 0 };
-
-struct JKRDvdRipper {
-	enum EAllocDirection { Dir_2 = 2 };
-
-	static void* loadToMainRAM(char const*, uchar*, JKRExpandSwitch, ulong,
-	                           struct JKRHeap*, JKRDvdRipper::EAllocDirection,
-	                           ulong, int*, ulong*);
-};
+#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKR/JKRExpandSwitch.h"
+#include "stream.h"
 
 namespace Game {
 
@@ -37,12 +24,12 @@ AIConstants::AIConstants()
 
 	void* handle = JKRDvdRipper::loadToMainRAM(
 	    "/user/Kando/aiConstants.txt", nullptr, Switch_0, 0, 0,
-	    (JKRDvdRipper::EAllocDirection)2, 0, nullptr, nullptr);
+	    AllocDirection_2, 0, nullptr, nullptr);
 
 	if (handle) {
 		RamStream stream(handle, -1);
-		*((u32*)&stream + 3)   = 1;
-		*((u32*)&stream + 261) = 1;
+		stream.m_isTextMode = 1;
+		stream.m_tabCount   = 0;
 
 		this->read(stream);
 

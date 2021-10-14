@@ -29,10 +29,24 @@ struct Stream {
 	void textWriteTab(int);
 	void textWriteText(char*, ...);
 
-	u32 m_vtbl;       // _00
-	u32 _04;          // _04
-	int m_position;   // _08
-	int m_isTextMode; // _0C
+	u32 m_vtbl;        // _000
+	u32 _04;           // _004
+	int m_position;    // _008
+	int m_isTextMode;  // _00C
+    int _10;           // _010
+    u8 m_buffer[1024]; // _014
+    int m_tabCount;    // _414
+};
+
+struct RamStream : Stream {
+    RamStream(void*, int);
+    void set(uchar*, int);
+    void read(void*, int);
+    void write(void*, int);
+    bool eof();
+
+    void* _418; // _418
+    int bounds; // _41C
 };
 
 #endif
