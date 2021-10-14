@@ -665,9 +665,9 @@ lbl_8049EAC8:
 	.4byte 0x8000E2FC
 	.4byte 0x8000E2FC
 	.4byte 0x8000E2FC
-	.4byte 0x8000E2B0
+	.4byte lbl_8000E2B0
 	.4byte 0x8000E2A8
-	.4byte 0x8000E2B8
+	.4byte lbl_8000E2B8
 	.4byte 0x8000E2C0
 	.4byte 0x8000E2F0
 	.4byte 0x8000E2FC
