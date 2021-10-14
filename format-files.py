@@ -18,8 +18,21 @@ def format_folders(folder_to_iter):
         for name in files:
             if name.lower().endswith(".h") or name.lower().endswith(".cpp"):
                 relative_path = os.path.join(dirpath, name)
-                print(relative_path)
-                launch_no_console("clang-format.exe", [relative_path, "-style=file", "-i"])                
+                print(relative_path, end="\t")
+                launch_no_console("clang-format.exe", [relative_path, "-style=file", "-i"])
+
+                if os.stat(relative_path).st_size < 1:
+                   print("")
+                   continue
+
+                with open(relative_path, "r+") as f:
+                   f.seek(0, 2)
+                   f.seek(f.tell() - 1, 0)
+                   if f.read() != '\n':
+                      f.write("\n");
+                      print("added newline", end="")
+
+                print("")
 
 if __name__ == "__main__":
     if os.path.exists("clang-format.exe"):
