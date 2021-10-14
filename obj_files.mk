@@ -1142,7 +1142,7 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/sysGCU/bootSection.o\
 	$(BUILD_DIR)/asm/sysGCU/titleSection.o\
 	$(BUILD_DIR)/asm/sysGCU/loadResource.o\
-	$(BUILD_DIR)/asm/sysGCU/rootMenuSection.o\
+	$(BUILD_DIR)/src/sysGCU/rootMenuSection.o\
 	$(BUILD_DIR)/asm/sysGCU/demoSection.o\
 	$(BUILD_DIR)/asm/sysGCU/THPAudioDecode.o\
 	$(BUILD_DIR)/src/sysGCU/THPDraw.o\
