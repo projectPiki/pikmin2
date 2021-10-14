@@ -448,6 +448,7 @@ lbl_800EDC5C:
 /* 800EDD58 000EAC98  4C C6 31 82 */	crclr 6
 /* 800EDD5C 000EAC9C  38 7F 02 88 */	addi r3, r31, 0x288
 /* 800EDD60 000EACA0  4B FF F9 8D */	bl OSReport
+.global lbl_800EDD64
 lbl_800EDD64:
 /* 800EDD64 000EACA4  A8 8D 8F 88 */	lha r4, __OSLastInterrupt@sda21(r13)
 /* 800EDD68 000EACA8  38 7F 02 A4 */	addi r3, r31, 0x2a4

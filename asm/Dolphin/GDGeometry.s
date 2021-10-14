@@ -158,6 +158,7 @@ lbl_800E1CD0:
 /* 800E1ECC 000DEE0C  7C 00 29 10 */	subfe r0, r0, r5
 /* 800E1ED0 000DEE10  39 E6 00 00 */	addi r15, r6, 0
 /* 800E1ED4 000DEE14  7F BD 02 14 */	add r29, r29, r0
+.global lbl_800E1ED8
 lbl_800E1ED8:
 /* 800E1ED8 000DEE18  38 63 00 08 */	addi r3, r3, 8
 lbl_800E1EDC:

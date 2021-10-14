@@ -138,6 +138,7 @@ lbl_800E43C4:
 /* 800E448C 000E13CC  80 03 00 18 */	lwz r0, 0x18(r3)
 /* 800E4490 000E13D0  50 80 74 22 */	rlwimi r0, r4, 0xe, 0x10, 0x11
 /* 800E4494 000E13D4  90 03 00 18 */	stw r0, 0x18(r3)
+.global lbl_800E4498
 lbl_800E4498:
 /* 800E4498 000E13D8  80 82 92 90 */	lwz r4, __GXData@sda21(r2)
 /* 800E449C 000E13DC  88 04 04 D4 */	lbz r0, 0x4d4(r4)
@@ -455,6 +456,7 @@ lbl_800E47A0:
 /* 800E4928 000E1868  80 8A 00 00 */	lwz r4, 0(r10)
 /* 800E492C 000E186C  50 E4 D8 08 */	rlwimi r4, r7, 0x1b, 0, 4
 /* 800E4930 000E1870  90 8A 00 00 */	stw r4, 0(r10)
+.global lbl_800E4934
 lbl_800E4934:
 /* 800E4934 000E1874  80 A2 92 90 */	lwz r5, __GXData@sda21(r2)
 /* 800E4938 000E1878  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -617,6 +619,7 @@ lbl_800E4A10:
 /* 800E4B98 000E1AD8  80 09 00 00 */	lwz r0, 0(r9)
 /* 800E4B9C 000E1ADC  50 C0 D8 08 */	rlwimi r0, r6, 0x1b, 0, 4
 /* 800E4BA0 000E1AE0  90 09 00 00 */	stw r0, 0(r9)
+.global lbl_800E4BA4
 lbl_800E4BA4:
 /* 800E4BA4 000E1AE4  38 84 00 10 */	addi r4, r4, 0x10
 lbl_800E4BA8:
@@ -775,6 +778,7 @@ GXSetTexCoordGen2:
 /* 800E4DC4 000E1D04  39 60 00 0B */	li r11, 0xb
 /* 800E4DC8 000E1D08  48 00 00 08 */	b lbl_800E4DD0
 /* 800E4DCC 000E1D0C  39 60 00 0C */	li r11, 0xc
+.global lbl_800E4DD0
 lbl_800E4DD0:
 /* 800E4DD0 000E1D10  2C 04 00 01 */	cmpwi r4, 1
 /* 800E4DD4 000E1D14  41 82 00 24 */	beq lbl_800E4DF8

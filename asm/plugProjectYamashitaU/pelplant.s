@@ -734,6 +734,7 @@ doAnimation__Q34Game8Pelplant3ObjFv:
 /* 80108D3C 00105C7C  48 00 00 08 */	b lbl_80108D44
 lbl_80108D40:
 /* 80108D40 00105C80  C3 E2 95 08 */	lfs f31, lbl_80517868@sda21(r2)
+.global lbl_80108D44
 lbl_80108D44:
 /* 80108D44 00105C84  93 ED 91 DC */	stw r31, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
 /* 80108D48 00105C88  7F E3 FB 78 */	mr r3, r31
@@ -760,6 +761,7 @@ lbl_80108D44:
 /* 80108D9C 00105CDC  48 00 00 28 */	b lbl_80108DC4
 /* 80108DA0 00105CE0  C3 C2 95 4C */	lfs f30, lbl_805178AC@sda21(r2)
 /* 80108DA4 00105CE4  48 00 00 20 */	b lbl_80108DC4
+.global lbl_80108DA8
 lbl_80108DA8:
 /* 80108DA8 00105CE8  3C 60 80 48 */	lis r3, lbl_8047A660@ha
 /* 80108DAC 00105CEC  3C 80 80 48 */	lis r4, lbl_8047A6E4@ha
@@ -1221,6 +1223,7 @@ headJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi:
 /* 801093D4 00106314  48 00 00 08 */	b lbl_801093DC
 lbl_801093D8:
 /* 801093D8 00106318  C0 22 95 08 */	lfs f1, lbl_80517868@sda21(r2)
+.global lbl_801093DC
 lbl_801093DC:
 /* 801093DC 0010631C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 801093E0 00106320  EC 00 00 72 */	fmuls f0, f0, f1
@@ -1292,6 +1295,7 @@ neckJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi:
 lbl_801094D8:
 /* 801094D8 00106418  C0 42 95 08 */	lfs f2, lbl_80517868@sda21(r2)
 /* 801094DC 0010641C  FC 20 10 90 */	fmr f1, f2
+.global lbl_801094E0
 lbl_801094E0:
 /* 801094E0 00106420  C0 04 00 00 */	lfs f0, 0(r4)
 /* 801094E4 00106424  EC 00 00 B2 */	fmuls f0, f0, f2

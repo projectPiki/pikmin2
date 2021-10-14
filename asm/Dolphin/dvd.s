@@ -1577,6 +1577,7 @@ lbl_800DE148:
 /* 800DE2A8 000DB1E8  80 67 00 18 */	lwz r3, 0x18(r7)
 /* 800DE2AC 000DB1EC  4B FF DA BD */	bl DVDLowInquiry
 /* 800DE2B0 000DB1F0  48 00 00 1C */	b lbl_800DE2CC
+.global lbl_800DE2B4
 lbl_800DE2B4:
 /* 800DE2B4 000DB1F4  81 8D 82 C0 */	lwz r12, checkOptionalCommand@sda21(r13)
 /* 800DE2B8 000DB1F8  3C 60 80 0E */	lis r3, cbForStateBusy@ha
@@ -2626,6 +2627,7 @@ lbl_800DF0F0:
 /* 800DF108 000DC048  4E 80 00 21 */	blrl 
 lbl_800DF10C:
 /* 800DF10C 000DC04C  4B FF EC 81 */	bl stateReady
+.global lbl_800DF110
 lbl_800DF110:
 /* 800DF110 000DC050  7F E3 FB 78 */	mr r3, r31
 /* 800DF114 000DC054  48 00 FB 4D */	bl OSRestoreInterrupts
