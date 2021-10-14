@@ -6768,7 +6768,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D20
+	.4byte lbl_80517D20
 	.4byte 0x0BFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517D10
@@ -6781,7 +6781,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D28
+	.4byte lbl_80517D28
 	.4byte 0x11FF0100
 	.4byte 0x00970000
 	.4byte lbl_80517CE8
@@ -6807,7 +6807,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517D30
+	.4byte lbl_80517D30
 	.4byte 0x0CFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -6820,11 +6820,11 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x80517D38
+	.4byte lbl_80517D38
 	.4byte 0x0DFF0100
 	.4byte 0x01170000
 	.4byte lbl_80517CE8
-	.4byte 0x80517D30
+	.4byte lbl_80517D30
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
@@ -6833,7 +6833,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x80517D40
+	.4byte lbl_80517D40
 	.4byte 0x0FFF0100
 	.4byte 0x00970000
 	.4byte lbl_80517CE8
@@ -6846,7 +6846,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517D48
+	.4byte lbl_80517D48
 	.4byte 0x0EFF0100
 	.4byte 0x01170000
 	.4byte lbl_80517CE8
@@ -6872,7 +6872,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x80517D50
+	.4byte lbl_80517D50
 	.4byte 0x10FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -6885,7 +6885,7 @@ gEnemyInfo__4Game:
 	.4byte 0x00000025
 	.4byte 0x00000001
 	.4byte 0x04000000
-	.4byte 0x80517D58
+	.4byte lbl_80517D58
 	.4byte 0x13FF0100
 	.4byte 0x02070000
 	.4byte lbl_80517CE8
@@ -6898,20 +6898,20 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D60
+	.4byte lbl_80517D60
 	.4byte 0x4A130100
 	.4byte 0x02060000
-	.4byte 0x80517D58
-	.4byte 0x80517D58
-	.4byte 0x80517D58
-	.4byte 0x80517D58
-	.4byte 0x80517D58
-	.4byte 0x80517D58
-	.4byte 0x80517D58
+	.4byte lbl_80517D58
+	.4byte lbl_80517D58
+	.4byte lbl_80517D58
+	.4byte lbl_80517D58
+	.4byte lbl_80517D58
+	.4byte lbl_80517D58
+	.4byte lbl_80517D58
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D68
+	.4byte lbl_80517D68
 	.4byte 0x4BFF0100
 	.4byte 0x00970000
 	.4byte lbl_80517CE8
@@ -6924,33 +6924,33 @@ gEnemyInfo__4Game:
 	.4byte 0x0000004A
 	.4byte 0x00000005
 	.4byte 0x01000000
-	.4byte 0x80517D70
+	.4byte lbl_80517D70
 	.4byte 0x5FFF0100
 	.4byte 0x00970000
-	.4byte 0x80517D68
-	.4byte 0x80517D68
-	.4byte 0x80517D68
+	.4byte lbl_80517D68
+	.4byte lbl_80517D68
+	.4byte lbl_80517D68
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517D68
-	.4byte 0x80517D68
+	.4byte lbl_80517D68
+	.4byte lbl_80517D68
 	.4byte 0x0000004A
 	.4byte 0x00000005
 	.4byte 0x01000000
-	.4byte 0x80517D78
+	.4byte lbl_80517D78
 	.4byte 0x60FF0100
 	.4byte 0x00970000
-	.4byte 0x80517D68
-	.4byte 0x80517D68
-	.4byte 0x80517D68
+	.4byte lbl_80517D68
+	.4byte lbl_80517D68
+	.4byte lbl_80517D68
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517D68
-	.4byte 0x80517D68
+	.4byte lbl_80517D68
+	.4byte lbl_80517D68
 	.4byte 0x0000004A
 	.4byte 0x00000005
 	.4byte 0x01000000
-	.4byte 0x80517D80
+	.4byte lbl_80517D80
 	.4byte 0x14FF0100
 	.4byte 0x02070000
 	.4byte lbl_80517CE8
@@ -6963,7 +6963,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D88
+	.4byte lbl_80517D88
 	.4byte 0x15FF0100
 	.4byte 0x02070000
 	.4byte lbl_80517CE8
@@ -6989,7 +6989,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517D90
+	.4byte lbl_80517D90
 	.4byte 0x17FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7002,7 +7002,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517D98
+	.4byte lbl_80517D98
 	.4byte 0x20FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7028,7 +7028,7 @@ gEnemyInfo__4Game:
 	.4byte 0x00000024
 	.4byte 0x00000002
 	.4byte 0x02000000
-	.4byte 0x80517DA0
+	.4byte lbl_80517DA0
 	.4byte 0x18FF0100
 	.4byte 0x00970000
 	.4byte lbl_80517CE8
@@ -7041,20 +7041,20 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517DA8
+	.4byte lbl_80517DA8
 	.4byte 0x19FF0100
 	.4byte 0x00970000
-	.4byte 0x80517DA0
-	.4byte 0x80517DA0
-	.4byte 0x80517DA0
+	.4byte lbl_80517DA0
+	.4byte lbl_80517DA0
+	.4byte lbl_80517DA0
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517DA0
-	.4byte 0x80517DA0
+	.4byte lbl_80517DA0
+	.4byte lbl_80517DA0
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517DB0
+	.4byte lbl_80517DB0
 	.4byte 0x1AFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7067,7 +7067,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x01000000
-	.4byte 0x80517DB8
+	.4byte lbl_80517DB8
 	.4byte 0x1BFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7080,7 +7080,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x80517DC0
+	.4byte lbl_80517DC0
 	.4byte 0x1CFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7093,7 +7093,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x01000000
-	.4byte 0x80517DC8
+	.4byte lbl_80517DC8
 	.4byte 0x1DFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7119,7 +7119,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517DCC
+	.4byte lbl_80517DCC
 	.4byte 0x39FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7145,7 +7145,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517DD4
+	.4byte lbl_80517DD4
 	.4byte 0x1EFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7158,7 +7158,7 @@ gEnemyInfo__4Game:
 	.4byte 0x0000001F
 	.4byte 0x00000032
 	.4byte 0x07000000
-	.4byte 0x80517DDC
+	.4byte lbl_80517DDC
 	.4byte 0x1FFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7184,7 +7184,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517DE4
+	.4byte lbl_80517DE4
 	.4byte 0x54FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7249,7 +7249,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x07000000
-	.4byte 0x80517DEC
+	.4byte lbl_80517DEC
 	.4byte 0x24FF0100
 	.4byte 0x02070000
 	.4byte lbl_80517CE8
@@ -7262,7 +7262,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517DF4
+	.4byte lbl_80517DF4
 	.4byte 0x25FF0100
 	.4byte 0x02070000
 	.4byte lbl_80517CE8
@@ -7314,7 +7314,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517DF8
+	.4byte lbl_80517DF8
 	.4byte 0x29FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7327,7 +7327,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x02000000
-	.4byte 0x80517E00
+	.4byte lbl_80517E00
 	.4byte 0x2EFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7340,7 +7340,7 @@ gEnemyInfo__4Game:
 	.4byte 0x0000004D
 	.4byte 0x00000005
 	.4byte 0x04000000
-	.4byte 0x80517E08
+	.4byte lbl_80517E08
 	.4byte 0x51FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7353,7 +7353,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517E10
+	.4byte lbl_80517E10
 	.4byte 0x2FFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7379,7 +7379,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517E18
+	.4byte lbl_80517E18
 	.4byte 0x31FF0100
 	.4byte 0x02070000
 	.4byte lbl_80517CE8
@@ -7405,7 +7405,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517E20
+	.4byte lbl_80517E20
 	.4byte 0x32FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7457,7 +7457,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517E28
+	.4byte lbl_80517E28
 	.4byte 0x50FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7496,7 +7496,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517E30
+	.4byte lbl_80517E30
 	.4byte 0x57FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7535,7 +7535,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x04000000
-	.4byte 0x80517E38
+	.4byte lbl_80517E38
 	.4byte 0x5AFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7561,7 +7561,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x07000000
-	.4byte 0x80517E40
+	.4byte lbl_80517E40
 	.4byte 0x36FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7587,7 +7587,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x07000000
-	.4byte 0x80517E48
+	.4byte lbl_80517E48
 	.4byte 0x45FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7600,7 +7600,7 @@ gEnemyInfo__4Game:
 	.4byte 0x00000044
 	.4byte 0x0000001E
 	.4byte 0x07000000
-	.4byte 0x80517E50
+	.4byte lbl_80517E50
 	.4byte 0x42FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7618,11 +7618,11 @@ gEnemyInfo__4Game:
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517E58
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
+	.4byte lbl_80517E58
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x01000000
@@ -7631,11 +7631,11 @@ gEnemyInfo__4Game:
 	.4byte 0x00070000
 	.4byte 0x8047B604
 	.4byte 0x8047B604
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517E58
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
+	.4byte lbl_80517E58
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x01000000
@@ -7644,11 +7644,11 @@ gEnemyInfo__4Game:
 	.4byte 0x00070000
 	.4byte 0x8047B604
 	.4byte 0x8047B604
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517E58
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
+	.4byte lbl_80517E58
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x01000000
@@ -7657,15 +7657,15 @@ gEnemyInfo__4Game:
 	.4byte 0x00070000
 	.4byte 0x8047B604
 	.4byte 0x8047B604
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517E58
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
+	.4byte lbl_80517E58
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x01000000
-	.4byte 0x80517E60
+	.4byte lbl_80517E60
 	.4byte 0x3FFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7782,7 +7782,7 @@ gEnemyInfo__4Game:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x01000000
-	.4byte 0x80517E68
+	.4byte lbl_80517E68
 	.4byte 0x4FFF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
@@ -7800,11 +7800,11 @@ gEnemyInfo__4Game:
 	.4byte 0x00070000
 	.4byte 0x8047B604
 	.4byte 0x8047B604
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
 	.4byte lbl_80517CE8
 	.4byte lbl_80517CE8
-	.4byte 0x80517E58
-	.4byte 0x80517E58
+	.4byte lbl_80517E58
+	.4byte lbl_80517E58
 	.4byte 0x00000024
 	.4byte 0x00000001
 	.4byte 0x01000000
@@ -7821,7 +7821,7 @@ gEnemyInfo__4Game:
 	.4byte 0x00000062
 	.4byte 0x00000001
 	.4byte 0x07000000
-	.4byte 0x80517E70
+	.4byte lbl_80517E70
 	.4byte 0x62FF0100
 	.4byte 0x00070000
 	.4byte lbl_80517CE8
