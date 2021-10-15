@@ -2760,27 +2760,16 @@ lbl_8047BE28:
 	.4byte 0x8379838C
 	.4byte 0x83628367
 	.4byte 0x91900000
-	.4byte 0x09092320
-	.4byte 0x2573200D
-	.4byte 0x0A000000
-	.4byte 0x70656C6C
-	.4byte 0x65742074
-	.4byte 0x79706500
-	.4byte 0x70656C6C
-	.4byte 0x65742073
-	.4byte 0x697A6500
+	.asciz "\t\t# %s \r\n"
+	.skip 2
+	.asciz "pellet type"
+	.asciz "pellet size"
 .global lbl_8047BE58
 lbl_8047BE58:
-	.4byte 0x73656B69
-	.4byte 0x6B616F62
-	.4byte 0x6A5F6C61
-	.4byte 0x7267652E
-	.4byte 0x626D6400
-	.4byte 0x73656B69
-	.4byte 0x6B616F62
-	.4byte 0x6A5F736D
-	.4byte 0x616C6C2E
-	.4byte 0x626D6400
+	.asciz "sekikaobj_large.bmd"
+.global lbl_8047BE6C
+lbl_8047BE6C:
+	.asciz "sekikaobj_small.bmd"
 	.4byte 0x456E656D
 	.4byte 0x7953746F
 	.4byte 0x6E653A3A
@@ -2864,40 +2853,26 @@ lbl_8047BF80:
 	.4byte 0x83830000
 .global lbl_8047BF9C
 lbl_8047BF9C:
-	.4byte 0x00000002
-	.4byte 0x0000002A
-	.4byte 0x0000002B
+	.4byte 2
+	.4byte 42
+	.4byte 43
 .global lbl_8047BFA8
 lbl_8047BFA8:
-	.4byte 0x00000002
-	.4byte 0x0000002A
-	.4byte 0x0000002B
+	.4byte 2
+	.4byte 42
+	.4byte 43
 .global lbl_8047BFB4
 lbl_8047BFB4:
-	.4byte 0x6F736972
-	.4byte 0x695F315F
-	.4byte 0x32000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x426C7565
-	.4byte 0x43686170
-	.4byte 0x70792F6D
-	.4byte 0x6F796F75
-	.4byte 0x5F353635
-	.4byte 0x2E332E62
-	.4byte 0x74690000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x426C7565
-	.4byte 0x43686170
-	.4byte 0x70792F73
-	.4byte 0x77616C6C
-	.4byte 0x6F775F35
-	.4byte 0x36352E33
-	.4byte 0x2E627469
-	.4byte 0x00000000
+	.asciz "osiri_1_2"
+	.skip 2
+.global lbl_8047BFC0
+lbl_8047BFC0:
+	.asciz "/enemy/data/BlueChappy/moyou_565.3.bti"
+	.skip 1
+.global lbl_8047BFE8
+lbl_8047BFE8:
+	.asciz "/enemy/data/BlueChappy/swallow_565.3.bti"
+	.skip 3
 .global lbl_8047C014
 lbl_8047C014:
 	.4byte 0x90C28360
@@ -2907,28 +2882,14 @@ lbl_8047C014:
 	.4byte 0x815B8357
 	.4byte 0x83830000
 	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x59656C6C
-	.4byte 0x6F774368
-	.4byte 0x61707079
-	.4byte 0x2F6D6F79
-	.4byte 0x6F755F35
-	.4byte 0x36352E32
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x59656C6C
-	.4byte 0x6F774368
-	.4byte 0x61707079
-	.4byte 0x2F737761
-	.4byte 0x6C6C6F77
-	.4byte 0x5F353635
-	.4byte 0x2E322E62
-	.4byte 0x74690000
+.global lbl_8047C030
+lbl_8047C030:
+	.asciz "/enemy/data/YellowChappy/moyou_565.2.bti"
+	.skip 3
+.global lbl_8047C05C
+lbl_8047C05C:
+	.asciz "/enemy/data/YellowChappy/swallow_565.2.bti"
+	.skip 1
 .global lbl_8047C088
 lbl_8047C088:
 	.4byte 0x89A98360
@@ -2939,29 +2900,16 @@ lbl_8047C088:
 	.4byte 0x83830000
 .global lbl_8047C0A0
 lbl_8047C0A0:
-	.4byte 0x59656C6C
-	.4byte 0x6F774368
-	.4byte 0x61707079
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "YellowChappy.cpp"
+	.skip 3
 .global lbl_8047C0B4
 lbl_8047C0B4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x426C7565
-	.4byte 0x4B6F6368
-	.4byte 0x61707079
-	.4byte 0x2F6B6F63
-	.4byte 0x68617070
-	.4byte 0x795F626F
-	.4byte 0x64795F73
-	.4byte 0x3374632E
-	.4byte 0x332E6274
-	.4byte 0x69000000
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8047C0C0
+lbl_8047C0C0:
+	.asciz "/enemy/data/BlueKochappy/kochappy_body_s3tc.3.bti"
+	.skip 2
 .global lbl_8047C0F4
 lbl_8047C0F4:
 	.4byte 0x90C28352
@@ -2971,19 +2919,9 @@ lbl_8047C0F4:
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x59656C6C
-	.4byte 0x6F774B6F
-	.4byte 0x63686170
-	.4byte 0x70792F6B
-	.4byte 0x6F636861
-	.4byte 0x7070795F
-	.4byte 0x626F6479
-	.4byte 0x5F733374
-	.4byte 0x632E322E
-	.4byte 0x62746900
+.global lbl_8047C110
+lbl_8047C110:
+	.asciz "/enemy/data/YellowKochappy/kochappy_body_s3tc.2.bti"
 .global lbl_8047C144
 lbl_8047C144:
 	.4byte 0x89A98352
@@ -3005,14 +2943,14 @@ lbl_8047C160:
 	.4byte 0x00000000
 .global lbl_8047C180
 lbl_8047C180:
-	.4byte 0x00000001
-	.4byte 0x0000002C
-	.4byte 0x0000002D
+	.4byte 1
+	.4byte 44
+	.4byte 45
 .global lbl_8047C18C
 lbl_8047C18C:
-	.4byte 0x00000001
-	.4byte 0x0000002C
-	.4byte 0x0000002D
+	.4byte 1
+	.4byte 44
+	.4byte 45
 .global lbl_8047C198
 lbl_8047C198:
 	.4byte 0x6C616D62

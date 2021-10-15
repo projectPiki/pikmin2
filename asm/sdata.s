@@ -420,15 +420,15 @@ lbl_805148EC:
 .global __ARVersion
 __ARVersion:
 	.4byte 0x804A7680
-	.4byte 0x00000000
+	.4byte 0
 .global __ARQVersion
 __ARQVersion:
 	.4byte 0x804A76C8
-	.4byte 0x00000000
+	.4byte 0
 .global __CARDVersion
 __CARDVersion:
 	.4byte 0x804A7710
-	.4byte 0x00000000
+	.4byte 0
 .global next_1
 next_1:
 	.4byte 0x00000001
@@ -483,11 +483,11 @@ lbl_80514958:
 .global __EXIVersion
 __EXIVersion:
 	.4byte 0x804A7ED0
-	.4byte 0x00000000
+	.4byte 0
 .global __GXVersion
 __GXVersion:
 	.4byte 0x804A8060
-	.4byte 0x00000000
+	.4byte 0
 .global tbl1$263
 tbl1$263:
 	.4byte 0x00040102
@@ -623,27 +623,27 @@ gEnemyInfoNum__4Game:
 .global "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@"
 "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@":
 	.4byte lbl_8047BE58
-	.4byte 0x8047BE6C
+	.4byte lbl_8047BE6C
 .global "cChappyChangeTexName0__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@"
 "cChappyChangeTexName0__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@":
-	.4byte 0x8047BFC0
+	.4byte lbl_8047BFC0
 .global "cChappyChangeTexName1__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@"
 "cChappyChangeTexName1__Q34Game10BlueChappy27@unnamed@BlueChappyMgr_cpp@":
-	.4byte 0x8047BFE8
+	.4byte lbl_8047BFE8
 .global "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"
 "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@":
-	.4byte 0x8047C030
+	.4byte lbl_8047C030
 .global "cChappyChangeTexName1__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"
 "cChappyChangeTexName1__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@":
-	.4byte 0x8047C05C
+	.4byte lbl_8047C05C
 .global "cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@"
 "cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@":
-	.4byte 0x8047C0C0
-	.4byte 0x00000000
+	.4byte lbl_8047C0C0
+	.4byte 0
 .global "cKochappyChangeTexName__Q34Game14YellowKochappy31@unnamed@YellowKochappyMgr_cpp@"
 "cKochappyChangeTexName__Q34Game14YellowKochappy31@unnamed@YellowKochappyMgr_cpp@":
-	.4byte 0x8047C110
-	.4byte 0x00000000
+	.4byte lbl_8047C110
+	.4byte 0
 .global usePacketCulling__Q24Game8Creature
 usePacketCulling__Q24Game8Creature:
 	.4byte 0x01000000
