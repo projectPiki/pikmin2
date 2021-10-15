@@ -2488,23 +2488,23 @@ c3bcnt:
 	.4byte 0x00000000
 .global sCpuExpName__12JUTException
 sCpuExpName__12JUTException:
-	.4byte 0x80473C18
-	.4byte 0x80473C28
-	.4byte 0x80516610
-	.4byte 0x80516614
-	.4byte 0x80473C38
-	.4byte 0x80473C4C
-	.4byte 0x80516618
-	.4byte 0x80473C58
-	.4byte 0x80473C68
-	.4byte 0x80473C74
-	.4byte 0x80516620
-	.4byte 0x80473C80
-	.4byte 0x80473C94
-	.4byte 0x80473CA0
-	.4byte 0x80473CB4
-	.4byte 0x80473CC8
-	.4byte 0x80473C58
+	.4byte lbl_80473C18
+	.4byte lbl_80473C28
+	.4byte lbl_80516610
+	.4byte lbl_80516614
+	.4byte lbl_80473C38
+	.4byte lbl_80473C4C
+	.4byte lbl_80516618
+	.4byte lbl_80473C58
+	.4byte lbl_80473C68
+	.4byte lbl_80473C74
+	.4byte lbl_80516620
+	.4byte lbl_80473C80
+	.4byte lbl_80473C94
+	.4byte lbl_80473CA0
+	.4byte lbl_80473CB4
+	.4byte lbl_80473CC8
+	.4byte lbl_80473C58
 .global __vt__12JUTException
 __vt__12JUTException:
 	.4byte 0

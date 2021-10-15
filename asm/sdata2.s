@@ -370,15 +370,22 @@ lbl_80516600:
 lbl_80516608:
 	.4byte 0x43300000
 	.4byte 0x80000000
-	.4byte 0x44534900
-	.4byte 0x49534900
-	.4byte 0x50524F47
-	.4byte 0x52414D00
-	.4byte 0x54524143
-	.4byte 0x45000000
+.global lbl_80516610
+lbl_80516610:
+	.asciz "DSI"
+.global lbl_80516614
+lbl_80516614:
+	.asciz "ISI"
+.global lbl_80516618
+lbl_80516618:
+	.asciz "PROGRAM"
+.global lbl_80516620
+lbl_80516620:
+	.asciz "TRACE"
+	.skip 2
 .global lbl_80516628
 lbl_80516628:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_8051662C
 lbl_8051662C:
 	.4byte 0x20000000
@@ -398,14 +405,14 @@ lbl_80516644:
 	.4byte 0x00000000
 .global lbl_80516648
 lbl_80516648:
-	.4byte 0x2E6D6170
-	.4byte 0x00000000
+	.asciz ".map"
+	.skip 3
 .global lbl_80516650
 lbl_80516650:
-	.4byte 0x41200000
+	.float 10.0
 .global lbl_80516654
 lbl_80516654:
-	.4byte 0x40C00000
+	.float 6.0
 .global lbl_80516658
 lbl_80516658:
 	.4byte 0x43300000

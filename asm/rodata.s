@@ -570,488 +570,180 @@ lbl_80473720:
 	.4byte 0x00000000
 .global lbl_80473A68
 lbl_80473A68:
-	.4byte 0x4A4B5248
-	.4byte 0x6561702E
-	.4byte 0x63707000
-	.4byte 0x00000000
+	.asciz "JKRHeap.cpp"
+	.skip 4
 .global lbl_80473A78
 lbl_80473A78:
-	.4byte 0x4A4B524D
-	.4byte 0x656D4172
-	.4byte 0x63686976
-	.4byte 0x652E6370
-	.4byte 0x70000000
+	.asciz "JKRMemArchive.cpp"
+	.skip 2
 .global lbl_80473A8C
 lbl_80473A8C:
-	.4byte 0x3A3A3A3F
-	.4byte 0x3F3F2062
-	.4byte 0x61642073
-	.4byte 0x65717565
-	.4byte 0x6E63650A
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz ":::??? bad sequence\n"
+	.skip 7
 .global lbl_80473AA8
 lbl_80473AA8:
-	.4byte 0x616C6C6F
-	.4byte 0x6346726F
-	.4byte 0x6D486561
-	.4byte 0x643A2063
-	.4byte 0x616E6E6F
-	.4byte 0x7420616C
-	.4byte 0x6C6F6320
-	.4byte 0x6D656D6F
-	.4byte 0x72792028
-	.4byte 0x30782578
-	.4byte 0x20627974
-	.4byte 0x65292E0A
-	.4byte 0x00000000
+	.asciz "allocFromHead: cannot alloc memory (0x%x byte).\n"
+	.skip 3
 .global lbl_80473ADC
 lbl_80473ADC:
-	.4byte 0x616C6C6F
-	.4byte 0x6346726F
-	.4byte 0x6D546169
-	.4byte 0x6C3A2063
-	.4byte 0x616E6E6F
-	.4byte 0x7420616C
-	.4byte 0x6C6F6320
-	.4byte 0x6D656D6F
-	.4byte 0x72792028
-	.4byte 0x30782578
-	.4byte 0x20627974
-	.4byte 0x65292E0A
-	.4byte 0x00000000
+	.asciz "allocFromTail: cannot alloc memory (0x%x byte).\n"
+	.skip 3
 .global lbl_80473B10
 lbl_80473B10:
-	.4byte 0x66726565
-	.4byte 0x3A206361
-	.4byte 0x6E6E6F74
-	.4byte 0x20667265
-	.4byte 0x65206D65
-	.4byte 0x6D6F7279
-	.4byte 0x20626C6F
-	.4byte 0x636B2028
-	.4byte 0x25303878
-	.4byte 0x290A0000
+	.asciz "free: cannot free memory block (%08x)\n"
+	.skip 1
 .global lbl_80473B38
 lbl_80473B38:
-	.4byte 0x72657369
-	.4byte 0x7A653A20
-	.4byte 0x63616E6E
-	.4byte 0x6F742072
-	.4byte 0x6573697A
-	.4byte 0x65206D65
-	.4byte 0x6D6F7279
-	.4byte 0x20626C6F
-	.4byte 0x636B2028
-	.4byte 0x25303878
-	.4byte 0x3A202564
-	.4byte 0x290A0000
+	.asciz "resize: cannot resize memory block (%08x: %d)\n"
+	.skip 1
 .global lbl_80473B68
 lbl_80473B68:
-	.4byte 0x67657453
-	.4byte 0x697A653A
-	.4byte 0x2063616E
-	.4byte 0x6E6F7420
-	.4byte 0x67657420
-	.4byte 0x6D656D6F
-	.4byte 0x72792062
-	.4byte 0x6C6F636B
-	.4byte 0x2073697A
-	.4byte 0x65202825
-	.4byte 0x30387829
-	.4byte 0x0A000000
+	.asciz "getSize: cannot get memory block size (%08x)\n"
+	.skip 2
 .global lbl_80473B98
 lbl_80473B98:
-	.4byte 0x63686563
-	.4byte 0x6B3A2062
-	.4byte 0x61642074
-	.4byte 0x6F74616C
-	.4byte 0x206D656D
-	.4byte 0x6F727920
-	.4byte 0x626C6F63
-	.4byte 0x6B207369
-	.4byte 0x7A652028
-	.4byte 0x25303858
-	.4byte 0x2C202530
-	.4byte 0x3858290A
-	.4byte 0x00000000
-	.4byte 0x68656164
-	.4byte 0x20253038
-	.4byte 0x783A2025
-	.4byte 0x3038780A
-	.4byte 0x00000000
-	.4byte 0x7461696C
-	.4byte 0x20253038
-	.4byte 0x783A2025
-	.4byte 0x3038780A
-	.4byte 0x00000000
-	.4byte 0x2564202F
-	.4byte 0x20256420
-	.4byte 0x62797465
-	.4byte 0x73202825
-	.4byte 0x362E3266
-	.4byte 0x25252920
-	.4byte 0x75736564
-	.4byte 0x0A000000
-	.4byte 0x00000000
+	.asciz "check: bad total memory block size (%08X, %08X)\n"
+	.skip 3
+	.asciz "head %08x: %08x\n"
+	.skip 3
+	.asciz "tail %08x: %08x\n"
+	.skip 3
+	.asciz "%d / %d bytes (%6.2f%%) used\n"
+	.skip 6
 .global lbl_80473C18
 lbl_80473C18:
-	.4byte 0x53595354
-	.4byte 0x454D2052
-	.4byte 0x45534554
-	.4byte 0x00000000
-	.4byte 0x4D414348
-	.4byte 0x494E4520
-	.4byte 0x43484543
-	.4byte 0x4B000000
-	.4byte 0x45585445
-	.4byte 0x524E414C
-	.4byte 0x20494E54
-	.4byte 0x45525255
-	.4byte 0x50540000
-	.4byte 0x414C4947
-	.4byte 0x4E4D454E
-	.4byte 0x54000000
-	.4byte 0x464C4F41
-	.4byte 0x54494E47
-	.4byte 0x20504F49
-	.4byte 0x4E540000
-	.4byte 0x44454352
-	.4byte 0x454D454E
-	.4byte 0x54455200
-	.4byte 0x53595354
-	.4byte 0x454D2043
-	.4byte 0x414C4C00
-	.4byte 0x50455246
-	.4byte 0x4F524D41
-	.4byte 0x4345204D
-	.4byte 0x4F4E4954
-	.4byte 0x4F520000
-	.4byte 0x42524541
-	.4byte 0x4B20504F
-	.4byte 0x494E5400
-	.4byte 0x53595354
-	.4byte 0x454D2049
-	.4byte 0x4E544552
-	.4byte 0x52555054
-	.4byte 0x00000000
-	.4byte 0x54484552
-	.4byte 0x4D414C20
-	.4byte 0x494E5445
-	.4byte 0x52525550
-	.4byte 0x54000000
-	.4byte 0x50524F54
-	.4byte 0x45435449
-	.4byte 0x4F4E0000
+	.asciz "SYSTEM RESET"
+	.skip 3
+.global lbl_80473C28
+lbl_80473C28:
+	.asciz "MACHINE CHECK"
+	.skip 2
+.global lbl_80473C38
+lbl_80473C38:
+	.asciz "EXTERNAL INTERRUPT"
+	.skip 1
+.global lbl_80473C4C
+lbl_80473C4C:
+	.asciz "ALIGNMENT"
+	.skip 2
+.global lbl_80473C58
+lbl_80473C58:
+	.asciz "FLOATING POINT"
+	.skip 1
+.global lbl_80473C68
+lbl_80473C68:
+	.asciz "DECREMENTER"
+.global lbl_80473C74
+lbl_80473C74:
+	.asciz "SYSTEM CALL"
+.global lbl_80473C80
+lbl_80473C80:
+	.asciz "PERFORMACE MONITOR"
+	.skip 1
+.global lbl_80473C94
+lbl_80473C94:
+	.asciz "BREAK POINT"
+.global lbl_80473CA0
+lbl_80473CA0:
+	.asciz "SYSTEM INTERRUPT"
+	.skip 3
+.global lbl_80473CB4
+lbl_80473CB4:
+	.asciz "THERMAL INTERRUPT"
+	.skip 2
+.global lbl_80473CC8
+lbl_80473CC8:
+	.asciz "PROTECTION"
+	.skip 1
 .global lbl_80473CD4
 lbl_80473CD4:
-	.4byte 0x25732069
-	.4byte 0x6E202225
-	.4byte 0x7322206F
-	.4byte 0x6E206C69
-	.4byte 0x6E652025
-	.4byte 0x640A0000
-	.4byte 0x46253032
-	.4byte 0x643A204E
-	.4byte 0x616E2020
-	.4byte 0x20202020
-	.4byte 0x00000000
-	.4byte 0x46253032
-	.4byte 0x643A2B49
-	.4byte 0x6E662020
-	.4byte 0x20202000
-	.4byte 0x46253032
-	.4byte 0x643A2D49
-	.4byte 0x6E662020
-	.4byte 0x20202000
-	.4byte 0x46253032
-	.4byte 0x643A2030
-	.4byte 0x2E302020
-	.4byte 0x20202020
-	.4byte 0x00000000
-	.4byte 0x46253032
-	.4byte 0x643A252B
-	.4byte 0x2E334500
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x20465052
-	.4byte 0x0A000000
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x20545241
-	.4byte 0x43450A00
-	.4byte 0x41646472
-	.4byte 0x6573733A
-	.4byte 0x20202042
-	.4byte 0x61636B43
-	.4byte 0x6861696E
-	.4byte 0x2020204C
-	.4byte 0x52207361
-	.4byte 0x76650A00
-	.4byte 0x53757070
-	.4byte 0x72657373
-	.4byte 0x20747261
-	.4byte 0x63652E0A
-	.4byte 0x00000000
-	.4byte 0x25303858
-	.4byte 0x3A202025
-	.4byte 0x30385820
-	.4byte 0x20202025
-	.4byte 0x3038580A
-	.4byte 0x00000000
-	.4byte 0x434F4E54
-	.4byte 0x4558543A
-	.4byte 0x25303858
-	.4byte 0x48202028
-	.4byte 0x25732045
-	.4byte 0x58434550
-	.4byte 0x54494F4E
-	.4byte 0x290A0000
-	.4byte 0x434F4E54
-	.4byte 0x4558543A
-	.4byte 0x25303858
-	.4byte 0x480A0000
-	.4byte 0x20465045
-	.4byte 0x3A20496E
-	.4byte 0x76616C69
-	.4byte 0x64206F70
-	.4byte 0x65726174
-	.4byte 0x696F6E0A
-	.4byte 0x00000000
-	.4byte 0x20496E66
-	.4byte 0x696E6974
-	.4byte 0x79202D20
-	.4byte 0x496E6669
-	.4byte 0x6E697479
-	.4byte 0x0A000000
-	.4byte 0x20496E66
-	.4byte 0x696E6974
-	.4byte 0x79202F20
-	.4byte 0x496E6669
-	.4byte 0x6E697479
-	.4byte 0x0A000000
-	.4byte 0x20496E66
-	.4byte 0x696E6974
-	.4byte 0x79202A20
-	.4byte 0x300A0000
-	.4byte 0x20496E76
-	.4byte 0x616C6964
-	.4byte 0x20636F6D
-	.4byte 0x70617265
-	.4byte 0x0A000000
-	.4byte 0x20536F66
-	.4byte 0x74776172
-	.4byte 0x65207265
-	.4byte 0x71756573
-	.4byte 0x740A0000
-	.4byte 0x20496E76
-	.4byte 0x616C6964
-	.4byte 0x20737175
-	.4byte 0x61726520
-	.4byte 0x726F6F74
-	.4byte 0x0A000000
-	.4byte 0x20496E76
-	.4byte 0x616C6964
-	.4byte 0x20696E74
-	.4byte 0x65676572
-	.4byte 0x20636F6E
-	.4byte 0x76657274
-	.4byte 0x0A000000
-	.4byte 0x20465045
-	.4byte 0x3A204F76
-	.4byte 0x6572666C
-	.4byte 0x6F770A00
-	.4byte 0x20465045
-	.4byte 0x3A20556E
-	.4byte 0x64657266
-	.4byte 0x6C6F770A
-	.4byte 0x00000000
-	.4byte 0x20465045
-	.4byte 0x3A205A65
-	.4byte 0x726F2064
-	.4byte 0x69766973
-	.4byte 0x696F6E0A
-	.4byte 0x00000000
-	.4byte 0x20465045
-	.4byte 0x3A20496E
-	.4byte 0x65786163
-	.4byte 0x74207265
-	.4byte 0x73756C74
-	.4byte 0x0A000000
-	.4byte 0x53525230
-	.4byte 0x3A202020
-	.4byte 0x25303858
-	.4byte 0x48202020
-	.4byte 0x53525231
-	.4byte 0x3A253038
-	.4byte 0x58480A00
-	.4byte 0x44534953
-	.4byte 0x523A2020
-	.4byte 0x25303858
-	.4byte 0x48202020
-	.4byte 0x4441523A
-	.4byte 0x20253038
-	.4byte 0x58480A00
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x20475052
-	.4byte 0x0A000000
-	.4byte 0x52253032
-	.4byte 0x643A2530
-	.4byte 0x38584820
-	.4byte 0x20522530
-	.4byte 0x32643A25
-	.4byte 0x30385848
-	.4byte 0x20205225
-	.4byte 0x3032643A
-	.4byte 0x25303858
-	.4byte 0x480A0000
-	.4byte 0x52253032
-	.4byte 0x643A2530
-	.4byte 0x38584820
-	.4byte 0x20522530
-	.4byte 0x32643A25
-	.4byte 0x30385848
-	.4byte 0x0A000000
+	.asciz "%s in \"%s\" on line %d\n"
+	.skip 1
+	.asciz "F%02d: Nan      "
+	.skip 3
+	.asciz "F%02d:+Inf     "
+	.asciz "F%02d:-Inf     "
+	.asciz "F%02d: 0.0      "
+	.skip 3
+	.asciz "F%02d:%+.3E"
+	.asciz "-------------------------------- FPR\n"
+	.skip 2
+	.asciz "-------------------------------- TRACE\n"
+	.asciz "Address:   BackChain   LR save\n"
+	.asciz "Suppress trace.\n"
+	.skip 3
+	.asciz "%08X:  %08X    %08X\n"
+	.skip 3
+	.asciz "CONTEXT:%08XH  (%s EXCEPTION)\n"
+	.skip 1
+	.asciz "CONTEXT:%08XH\n"
+	.skip 1
+	.asciz " FPE: Invalid operation\n"
+	.skip 3
+	.asciz " Infinity - Infinity\n"
+	.skip 2
+	.asciz " Infinity / Infinity\n"
+	.skip 2
+	.asciz " Infinity * 0\n"
+	.skip 1
+	.asciz " Invalid compare\n"
+	.skip 2
+	.asciz " Software request\n"
+	.skip 1
+	.asciz " Invalid square root\n"
+	.skip 2
+	.asciz " Invalid integer convert\n"
+	.skip 2
+	.asciz " FPE: Overflow\n"
+	.asciz " FPE: Underflow\n"
+	.skip 3
+	.asciz " FPE: Zero division\n"
+	.skip 3
+	.asciz " FPE: Inexact result\n"
+	.skip 2
+	.asciz "SRR0:   %08XH   SRR1:%08XH\n"
+	.asciz "DSISR:  %08XH   DAR: %08XH\n"
+	.asciz "-------------------------------- GPR\n"
+	.skip 2
+	.asciz "R%02d:%08XH  R%02d:%08XH  R%02d:%08XH\n"
+	.skip 1
+	.asciz "R%02d:%08XH  R%02d:%08XH\n"
+	.skip 2
 .global lbl_80473FBC
 lbl_80473FBC:
-	.4byte 0x25732025
-	.4byte 0x733A2578
-	.4byte 0x20736563
-	.4byte 0x74696F6E
-	.4byte 0x3A25640A
-	.4byte 0x00000000
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x20475052
-	.4byte 0x4D41500A
-	.4byte 0x00000000
-	.4byte 0x52253032
-	.4byte 0x643A2025
-	.4byte 0x30385848
-	.4byte 0x00000000
-	.4byte 0x20206E6F
-	.4byte 0x20696E66
-	.4byte 0x6F726D61
-	.4byte 0x74696F6E
-	.4byte 0x0A000000
-	.4byte 0x20206E6F
-	.4byte 0x20726567
-	.4byte 0x69737465
-	.4byte 0x72207768
-	.4byte 0x69636820
-	.4byte 0x7365656D
-	.4byte 0x20746F20
-	.4byte 0x61646472
-	.4byte 0x6573732E
-	.4byte 0x0A000000
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x20535252
-	.4byte 0x304D4150
-	.4byte 0x0A000000
-	.4byte 0x53525230
-	.4byte 0x3A202530
-	.4byte 0x38584800
-	.4byte 0x204D5352
-	.4byte 0x3A253038
-	.4byte 0x58480920
-	.4byte 0x46505343
-	.4byte 0x523A2530
-	.4byte 0x3858480A
-	.4byte 0x00000000
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x20455843
-	.4byte 0x45505449
-	.4byte 0x4F4E204F
-	.4byte 0x43435552
-	.4byte 0x52454421
-	.4byte 0x202A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A0A4672
-	.4byte 0x616D654D
-	.4byte 0x656D6F72
-	.4byte 0x793A2558
-	.4byte 0x480A0000
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A2A
-	.4byte 0x20555345
-	.4byte 0x52204841
-	.4byte 0x4C54202A
-	.4byte 0x2A2A2A2A
-	.4byte 0x2A2A2A0A
-	.4byte 0x4672616D
-	.4byte 0x654D656D
-	.4byte 0x6F72793A
-	.4byte 0x2558480A
-	.4byte 0x00000000
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x0A000000
+	.asciz "%s %s:%x section:%d\n"
+	.skip 3
+	.asciz "-------------------------------- GPRMAP\n"
+	.skip 3
+	.asciz "R%02d: %08XH"
+	.skip 3
+	.asciz "  no information\n"
+	.skip 2
+	.asciz "  no register which seem to address.\n"
+	.skip 2
+	.asciz "-------------------------------- SRR0MAP\n"
+	.skip 2
+	.asciz "SRR0: %08XH"
+	.asciz " MSR:%08XH\t FPSCR:%08XH\n"
+	.skip 3
+	.asciz "******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n"
+	.skip 1
+	.asciz "******** USER HALT ********\nFrameMemory:%XH\n"
+	.skip 3
+	.asciz "--------------------------------\n"
+	.skip 2
 .global lbl_8047412C
 lbl_8047412C:
-	.4byte 0x20205B25
-	.4byte 0x3038585D
-	.4byte 0x3A202E25
-	.4byte 0x73205B25
-	.4byte 0x3038583A
-	.4byte 0x20255848
-	.4byte 0x5D0A2020
-	.4byte 0x25730A00
-	.4byte 0x00000000
+	.asciz "  [%08X]: .%s [%08X: %XH]\n  %s\n"
+	.skip 4
 .global lbl_80474150
 lbl_80474150:
-	.4byte 0x4A555450
-	.4byte 0x616C6574
-	.4byte 0x74652E63
-	.4byte 0x70700000
+	.asciz "JUTPalette.cpp"
+	.skip 1
 .global lbl_80474160
 lbl_80474160:
-	.4byte 0x4A555454
-	.4byte 0x65787475
-	.4byte 0x72653A20
-	.4byte 0x544C5554
-	.4byte 0x20697320
-	.4byte 0x4E554C4C
-	.4byte 0x0A000000
-	.4byte 0x00000000
+	.asciz "JUTTexture: TLUT is NULL\n"
+	.skip 6
 .global saoAboutEncoding___10JUTResFont
 saoAboutEncoding___10JUTResFont:
 	.4byte isLeadByte_1Byte__7JUTFontFi
@@ -1059,21 +751,10 @@ saoAboutEncoding___10JUTResFont:
 	.4byte isLeadByte_ShiftJIS__7JUTFontFi
 .global lbl_8047418C
 lbl_8047418C:
-	.4byte 0x4A555452
-	.4byte 0x6573466F
-	.4byte 0x6E743A20
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x64617461
-	.4byte 0x20626C6F
-	.4byte 0x636B0A00
+	.asciz "JUTResFont: Unknown data block\n"
 .global lbl_804741AC
 lbl_804741AC:
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x64617461
-	.4byte 0x20626C6F
-	.4byte 0x636B0A00
+	.asciz "Unknown data block\n"
 .global halftofull$725
 halftofull$725:
 	.4byte 0x81408149
