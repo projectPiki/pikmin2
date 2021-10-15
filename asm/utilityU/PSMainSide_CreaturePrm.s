@@ -3,139 +3,146 @@
 .balign 0x4
 .global lbl_8049E0F0
 lbl_8049E0F0:
-	.4byte 0x4F70656E
-	.4byte 0x696E6731
-	.4byte 0x00000000
-	.4byte 0x4F70656E
-	.4byte 0x696E6732
-	.4byte 0x00000000
-	.4byte 0x53746166
-	.4byte 0x66726F6C
-	.4byte 0x6C000000
+	.asciz "Opening1"
+	.skip 3
+.global lbl_8049E0FC
+lbl_8049E0FC:
+	.asciz "Opening2"
+	.skip 3
+.global lbl_8049E108
+lbl_8049E108:
+	.asciz "Staffroll"
+	.skip 2
 .global lbl_8049E114
 lbl_8049E114:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F43
-	.4byte 0x72656174
-	.4byte 0x75726550
-	.4byte 0x726D2E63
-	.4byte 0x70700000
+	.asciz "PSMainSide_CreaturePrm.cpp"
+	.skip 1
 .global lbl_8049E130
 lbl_8049E130:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global cVolMaxDist_Kehai__Q23PSM11CreaturePrm
 cVolMaxDist_Kehai__Q23PSM11CreaturePrm:
-	.4byte 0x43160000
-	.4byte 0x42C80000
-	.4byte 0x43FA0000
-	.4byte 0x43FA0000
-	.4byte 0x44160000
-	.4byte 0x44480000
-	.4byte 0x43960000
+	.float 150.0
+	.float 100.0
+	.float 500.0
+	.float 500.0
+	.float 600.0
+	.float 800.0
+	.float 300.0
 .global cVolMaxDist_Battle__Q23PSM11CreaturePrm
 cVolMaxDist_Battle__Q23PSM11CreaturePrm:
-	.4byte 0x43520000
-	.4byte 0x430C0000
-	.4byte 0x442F0000
-	.4byte 0x442F0000
-	.4byte 0x44520000
-	.4byte 0x448C0000
-	.4byte 0x43D20000
+	.float 210.0
+	.float 140.0
+	.float 700.0
+	.float 700.0
+	.float 840.0
+	.float 1120.0
+	.float 420.0
 .global cVolZeroDist_Kehai__Q23PSM11CreaturePrm
 cVolZeroDist_Kehai__Q23PSM11CreaturePrm:
-	.4byte 0x43960000
-	.4byte 0x43480000
-	.4byte 0x447A0000
-	.4byte 0x447A0000
-	.4byte 0x44960000
-	.4byte 0x44C80000
-	.4byte 0x44160000
+	.float 300.0
+	.float 200.0
+	.float 1000.0
+	.float 1000.0
+	.float 1200.0
+	.float 1600.0
+	.float 600.0
 .global cVolZeroDist_Battle__Q23PSM11CreaturePrm
 cVolZeroDist_Battle__Q23PSM11CreaturePrm:
-	.4byte 0x43D20000
-	.4byte 0x438C0000
-	.4byte 0x44AF0000
-	.4byte 0x44AF0000
-	.4byte 0x44D20000
-	.4byte 0x450C0000
-	.4byte 0x44520000
+	.float 420.0
+	.float 280.0
+	.float 1400.0
+	.float 1400.0
+	.float 1680.0
+	.float 2240.0
+	.float 840.0
 .global cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm
 cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm:
-	.4byte 0x4369FFFF
-	.4byte 0x431C0000
-	.4byte 0x44430000
-	.4byte 0x44430000
-	.4byte 0x4469FFFF
-	.4byte 0x449C0000
-	.4byte 0x43E9FFFF
+	.float 233.99998
+	.float 156.0
+	.float 780.0
+	.float 780.0
+	.float 935.99994
+	.float 1248.0
+	.float 467.99997
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global sThpDemoDinamics__3PSM
 sThpDemoDinamics__3PSM:
-	.4byte 0x3F4CCCCD
-	.4byte 0x3EC28F5C
-	.4byte 0x3F70A3D7
-	.4byte 0x01000000
-	.4byte 0x8049E0F0
-	.4byte 0x3F666666
-	.4byte 0x3E6147AE
+	.float 0.8
+	.float 0.38
+	.float 0.94
+	.byte 0x01
+	.skip 3
+	.4byte lbl_8049E0F0
+	.float 0.9
+	.float 0.22
 	.float 0.98
-	.4byte 0x01000000
-	.4byte 0x8049E0FC
+	.byte 0x01
+	.skip 3
+	.4byte lbl_8049E0FC
 	.float 0.7
-	.4byte 0x3EC28F5C
+	.float 0.38
 	.float 0.98
-	.4byte 0x01000000
-	.4byte 0x80520DB8
-	.4byte 0x3F4CCCCD
-	.4byte 0x3EE147AE
-	.4byte 0x3F7D70A4
-	.4byte 0x01000000
-	.4byte 0x80520DC0
-	.4byte 0x3F11EB85
+	.byte 0x01
+	.skip 3
+	.4byte lbl_80520DB8
+	.float 0.8
+	.float 0.44
+	.float 0.99
+	.byte 0x01
+	.skip 3
+	.4byte lbl_80520DC0
+	.float 0.57
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x8049E108
+	.byte 0x00
+	.skip 3
+	.4byte lbl_8049E108
 	.float 0.5
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x80520DC8
+	.byte 0x00
+	.skip 3
+	.4byte lbl_80520DC8
 	.float 0.7
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x80520DD0
+	.byte 0x00
+	.skip 3
+	.4byte lbl_80520DD0
 	.float 0.7
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x80520DD8
+	.byte 0x00
+	.skip 3
+	.4byte lbl_80520DD8
 	.float 0.7
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x80520DE0
+	.byte 0x00
+	.skip 3
+	.4byte lbl_80520DE0
 	.float 0.7
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x80520DE8
+	.byte 0x00
+	.skip 3
+	.4byte lbl_80520DE8
 	.float 0.7
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x80520DF0
+	.byte 0x00
+	.skip 3
+	.4byte lbl_80520DF0
 	.float 0.7
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x80520DF8
+	.byte 0x00
+	.skip 3
+	.4byte lbl_80520DF8
 .global __vt__Q23PSM11CreaturePrm
 __vt__Q23PSM11CreaturePrm:
 	.4byte 0
@@ -156,52 +163,65 @@ sInsReal__3PSM:
 .balign 0x8
 .global lbl_80520DB8
 lbl_80520DB8:
-	.4byte 0x456E6469
-	.4byte 0x6E673100
-	.4byte 0x456E6469
-	.4byte 0x6E673200
-	.4byte 0x506C6179
-	.4byte 0x31000000
-	.4byte 0x506C6179
-	.4byte 0x32000000
-	.4byte 0x506C6179
-	.4byte 0x33000000
-	.4byte 0x506C6179
-	.4byte 0x34000000
-	.4byte 0x506C6179
-	.4byte 0x35000000
-	.4byte 0x506C6179
-	.4byte 0x36000000
-	.4byte 0x4372696D
-	.4byte 0x65000000
+	.asciz "Ending1"
+.global lbl_80520DC0
+lbl_80520DC0:
+	.asciz "Ending2"
+.global lbl_80520DC8
+lbl_80520DC8:
+	.asciz "Play1"
+	.skip 2
+.global lbl_80520DD0
+lbl_80520DD0:
+	.asciz "Play2"
+	.skip 2
+.global lbl_80520DD8
+lbl_80520DD8:
+	.asciz "Play3"
+	.skip 2
+.global lbl_80520DE0
+lbl_80520DE0:
+	.asciz "Play4"
+	.skip 2
+.global lbl_80520DE8
+lbl_80520DE8:
+	.asciz "Play5"
+	.skip 2
+.global lbl_80520DF0
+lbl_80520DF0:
+	.asciz "Play6"
+	.skip 2
+.global lbl_80520DF8
+lbl_80520DF8:
+	.asciz "Crime"
+	.skip 2
 .global lbl_80520E00
 lbl_80520E00:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_80520E04
 lbl_80520E04:
 	.float 1.0
 .global lbl_80520E08
 lbl_80520E08:
-	.4byte 0xBF800000
+	.float -1.0
 .global lbl_80520E0C
 lbl_80520E0C:
-	.4byte 0x43C80000
+	.float 400.0
 .global lbl_80520E10
 lbl_80520E10:
-	.4byte 0x3F4CCCCD
+	.float 0.8
 .global lbl_80520E14
 lbl_80520E14:
-	.4byte 0x442F0000
+	.float 700.0
 .global cNoukouDistance__Q23PSM11CreaturePrm
 cNoukouDistance__Q23PSM11CreaturePrm:
-	.4byte 0x43960000
+	.float 300.0
 .global cSeFxMix__Q23PSM11CreaturePrm
 cSeFxMix__Q23PSM11CreaturePrm:
-	.4byte 0x3D8F5C29
+	.float 0.07
 .global cSeFxMix_cave__Q23PSM11CreaturePrm
 cSeFxMix_cave__Q23PSM11CreaturePrm:
 	.float 1.0
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID

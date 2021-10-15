@@ -153,10 +153,10 @@ localPal60608x448IntDf:
 	.4byte 0x07000000
 .global sRenderModeTable
 sRenderModeTable:
-	.4byte 0x804EBA7C
-	.4byte 0x804EBA40
-	.4byte 0x804EBAB8
-	.4byte 0x804EBAF4
+	.4byte localNtsc608x448IntDf
+	.4byte localNtsc608x448IntDfProg
+	.4byte localPal608x448IntDf
+	.4byte localPal60608x448IntDf
 .global lbl_804EBB40
 lbl_804EBB40:
 	.4byte 0x00000000

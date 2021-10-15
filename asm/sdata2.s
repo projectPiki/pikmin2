@@ -2547,20 +2547,16 @@ lbl_805174B8:
 	.4byte 0x00000000
 .global lbl_805174C0
 lbl_805174C0:
-	.4byte 0x40200000
-	.4byte 0x00000000
+	.double 8.0
 .global lbl_805174C8
 lbl_805174C8:
-	.4byte 0x3FC00000
-	.4byte 0x00000000
+	.double 0.125
 .global lbl_805174D0
 lbl_805174D0:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
+	.double 0.5
 .global lbl_805174D8
 lbl_805174D8:
-	.4byte 0x3FF00000
-	.4byte 0x00000000
+	.double 1.0
 .global lbl_805174E0
 lbl_805174E0:
 	.4byte 0x43300000

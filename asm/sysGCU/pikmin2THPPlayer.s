@@ -3,226 +3,159 @@
 .balign 0x4
 .global lbl_8049B510
 lbl_8049B510:
-	.4byte 0x2F746870
-	.4byte 0x2F6F7065
-	.4byte 0x6E696E67
-	.4byte 0x312E7468
-	.4byte 0x70000000
-	.4byte 0x2F746870
-	.4byte 0x2F6F7065
-	.4byte 0x6E696E67
-	.4byte 0x312E696E
-	.4byte 0x69000000
-	.4byte 0x2F746870
-	.4byte 0x2F6F7065
-	.4byte 0x6E696E67
-	.4byte 0x322E7468
-	.4byte 0x70000000
-	.4byte 0x2F746870
-	.4byte 0x2F6F7065
-	.4byte 0x6E696E67
-	.4byte 0x322E696E
-	.4byte 0x69000000
-	.4byte 0x2F746870
-	.4byte 0x2F656E64
-	.4byte 0x696E6731
-	.4byte 0x2E746870
-	.4byte 0x00000000
-	.4byte 0x2F746870
-	.4byte 0x2F656E64
-	.4byte 0x696E6731
-	.4byte 0x2E696E69
-	.4byte 0x00000000
-	.4byte 0x2F746870
-	.4byte 0x2F656E64
-	.4byte 0x696E6732
-	.4byte 0x2E746870
-	.4byte 0x00000000
-	.4byte 0x2F746870
-	.4byte 0x2F737461
-	.4byte 0x6666726F
-	.4byte 0x6C6C2E74
-	.4byte 0x68700000
-	.4byte 0x2F746870
-	.4byte 0x2F706C61
-	.4byte 0x79312E74
-	.4byte 0x68700000
-	.4byte 0x2F746870
-	.4byte 0x2F706C61
-	.4byte 0x79322E74
-	.4byte 0x68700000
-	.4byte 0x2F746870
-	.4byte 0x2F706C61
-	.4byte 0x79332E74
-	.4byte 0x68700000
-	.4byte 0x2F746870
-	.4byte 0x2F706C61
-	.4byte 0x79342E74
-	.4byte 0x68700000
-	.4byte 0x2F746870
-	.4byte 0x2F706C61
-	.4byte 0x79352E74
-	.4byte 0x68700000
-	.4byte 0x2F746870
-	.4byte 0x2F706C61
-	.4byte 0x79362E74
-	.4byte 0x68700000
-	.4byte 0x2F746870
-	.4byte 0x2F637269
-	.4byte 0x6D652E74
-	.4byte 0x68700000
-	.4byte 0x2F746870
-	.4byte 0x2F637269
-	.4byte 0x6D652E69
-	.4byte 0x6E690000
+	.asciz "/thp/opening1.thp"
+	.skip 2
+.global lbl_8049B524
+lbl_8049B524:
+	.asciz "/thp/opening1.ini"
+	.skip 2
+.global lbl_8049B538
+lbl_8049B538:
+	.asciz "/thp/opening2.thp"
+	.skip 2
+.global lbl_8049B54C
+lbl_8049B54C:
+	.asciz "/thp/opening2.ini"
+	.skip 2
+.global lbl_8049B560
+lbl_8049B560:
+	.asciz "/thp/ending1.thp"
+	.skip 3
+.global lbl_8049B574
+lbl_8049B574:
+	.asciz "/thp/ending1.ini"
+	.skip 3
+.global lbl_8049B588
+lbl_8049B588:
+	.asciz "/thp/ending2.thp"
+	.skip 3
+.global lbl_8049B59C
+lbl_8049B59C:
+	.asciz "/thp/staffroll.thp"
+	.skip 1
+.global lbl_8049B5B0
+lbl_8049B5B0:
+	.asciz "/thp/play1.thp"
+	.skip 1
+.global lbl_8049B5C0
+lbl_8049B5C0:
+	.asciz "/thp/play2.thp"
+	.skip 1
+.global lbl_8049B5D0
+lbl_8049B5D0:
+	.asciz "/thp/play3.thp"
+	.skip 1
+.global lbl_8049B5E0
+lbl_8049B5E0:
+	.asciz "/thp/play4.thp"
+	.skip 1
+.global lbl_8049B5F0
+lbl_8049B5F0:
+	.asciz "/thp/play5.thp"
+	.skip 1
+.global lbl_8049B600
+lbl_8049B600:
+	.asciz "/thp/play6.thp"
+	.skip 1
+.global lbl_8049B610
+lbl_8049B610:
+	.asciz "/thp/crime.thp"
+	.skip 1
+.global lbl_8049B620
+lbl_8049B620:
+	.asciz "/thp/crime.ini"
+	.skip 1
 .global "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@"
 "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@":
 	.4byte lbl_8049B510
-	.4byte 0x8049B524
+	.4byte lbl_8049B524
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x8049B538
-	.4byte 0x8049B54C
+	.4byte lbl_8049B538
+	.4byte lbl_8049B54C
 	.4byte 0x00000000
 	.4byte 0x00000001
-	.4byte 0x8049B560
-	.4byte 0x8049B574
+	.4byte lbl_8049B560
+	.4byte lbl_8049B574
 	.4byte 0x00000000
 	.4byte 0x00000002
-	.4byte 0x8049B588
-	.4byte 0x80520B10
+	.4byte lbl_8049B588
+	.4byte lbl_80520B10
 	.4byte 0x00000000
 	.4byte 0x00000003
-	.4byte 0x8049B59C
-	.4byte 0x80520B10
+	.4byte lbl_8049B59C
+	.4byte lbl_80520B10
 	.4byte 0x00000000
 	.4byte 0x00000004
-	.4byte 0x8049B5B0
-	.4byte 0x80520B10
+	.4byte lbl_8049B5B0
+	.4byte lbl_80520B10
 	.4byte 0x00000000
 	.4byte 0x00000005
-	.4byte 0x8049B5C0
-	.4byte 0x80520B10
+	.4byte lbl_8049B5C0
+	.4byte lbl_80520B10
 	.4byte 0x00000000
 	.4byte 0x00000006
-	.4byte 0x8049B5D0
-	.4byte 0x80520B10
+	.4byte lbl_8049B5D0
+	.4byte lbl_80520B10
 	.4byte 0x00000000
 	.4byte 0x00000007
-	.4byte 0x8049B5E0
-	.4byte 0x80520B10
+	.4byte lbl_8049B5E0
+	.4byte lbl_80520B10
 	.4byte 0x00000000
 	.4byte 0x00000008
-	.4byte 0x8049B5F0
-	.4byte 0x80520B10
+	.4byte lbl_8049B5F0
+	.4byte lbl_80520B10
 	.4byte 0x00000000
 	.4byte 0x00000009
-	.4byte 0x8049B600
-	.4byte 0x80520B10
+	.4byte lbl_8049B600
+	.4byte lbl_80520B10
 	.4byte 0x00000000
 	.4byte 0x0000000A
-	.4byte 0x8049B610
-	.4byte 0x8049B620
+	.4byte lbl_8049B610
+	.4byte lbl_8049B620
 	.4byte 0x00000000
 	.4byte 0x0000000B
 .global lbl_8049B6F0
 lbl_8049B6F0:
-	.4byte 0x54485050
-	.4byte 0x6C617965
-	.4byte 0x72000000
+	.asciz "THPPlayer"
+	.skip 2
 .global lbl_8049B6FC
 lbl_8049B6FC:
-	.4byte 0x70696B6D
-	.4byte 0x696E3254
-	.4byte 0x4850506C
-	.4byte 0x61796572
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "pikmin2THPPlayer.cpp"
+	.skip 3
 .global lbl_8049B714
 lbl_8049B714:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8049B720
 lbl_8049B720:
-	.4byte 0x54485050
-	.4byte 0x6C617965
-	.4byte 0x72496E69
-	.4byte 0x74206661
-	.4byte 0x696C7572
-	.4byte 0x652E0000
-	.4byte 0x54485050
-	.4byte 0x6C617965
-	.4byte 0x723A3A6C
-	.4byte 0x6F616452
-	.4byte 0x65736F75
-	.4byte 0x72636500
-	.4byte 0x54485050
-	.4byte 0x6C617965
-	.4byte 0x725F5265
-	.4byte 0x736F7572
-	.4byte 0x63650000
-	.4byte 0x54485050
-	.4byte 0x6C617972
-	.4byte 0x5F636170
-	.4byte 0x74696F6E
-	.4byte 0x00000000
-	.4byte 0x6661696C
-	.4byte 0x20746F20
-	.4byte 0x6F70656E
-	.4byte 0x20746865
-	.4byte 0x20636170
-	.4byte 0x74696F6E
-	.4byte 0x2066696C
-	.4byte 0x650A5B25
-	.4byte 0x735D0A00
-	.4byte 0x54485050
-	.4byte 0x6C617965
-	.4byte 0x724F7065
-	.4byte 0x6E000000
-	.4byte 0x4661696C
-	.4byte 0x20746F20
-	.4byte 0x6F70656E
-	.4byte 0x20746865
-	.4byte 0x20746870
-	.4byte 0x2066696C
-	.4byte 0x650A5B25
-	.4byte 0x735D0A00
-	.4byte 0x54485050
-	.4byte 0x6C617965
-	.4byte 0x725F7072
-	.4byte 0x65706172
-	.4byte 0x65000000
-	.4byte 0x54485050
-	.4byte 0x6C617965
-	.4byte 0x725F776F
-	.4byte 0x726B0000
-	.4byte 0x43616E27
-	.4byte 0x7420616C
-	.4byte 0x6C6F6361
-	.4byte 0x74652074
-	.4byte 0x6865206D
-	.4byte 0x656D6F72
-	.4byte 0x79000000
-	.4byte 0x4661696C
-	.4byte 0x20746F20
-	.4byte 0x70726570
-	.4byte 0x6172650A
-	.4byte 0x00000000
+	.asciz "THPPlayerInit failure."
+	.skip 1
+	.asciz "THPPlayer::loadResource"
+	.asciz "THPPlayer_Resource"
+	.skip 1
+	.asciz "THPPlayr_caption"
+	.skip 3
+	.asciz "fail to open the caption file\n[%s]\n"
+	.asciz "THPPlayerOpen"
+	.skip 2
+	.asciz "Fail to open the thp file\n[%s]\n"
+	.asciz "THPPlayer_prepare"
+	.skip 2
+	.asciz "THPPlayer_work"
+	.skip 1
+	.asciz "Can't allocate the memory"
+	.skip 2
+	.asciz "Fail to prepare\n"
+	.skip 3
 .global lbl_8049B820
 lbl_8049B820:
-	.4byte 0x50535379
-	.4byte 0x7374656D
-	.4byte 0x49462E68
-	.4byte 0x00000000
+	.asciz "PSSystemIF.h"
+	.skip 3
 .global lbl_8049B830
 lbl_8049B830:
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x53746174
-	.4byte 0x65203A20
-	.4byte 0x2564200A
-	.4byte 0x00000000
+	.asciz "Unknown State : %d \n"
+	.skip 3
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -258,7 +191,7 @@ lbl_80520B10:
 	.4byte 0x00000000
 .global lbl_80520B14
 lbl_80520B14:
-	.4byte 0x42FE0000
+	.float 127.0
 .global lbl_80520B18
 lbl_80520B18:
 	.4byte 0x43300000

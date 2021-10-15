@@ -3,135 +3,98 @@
 .balign 0x4
 .global lbl_8049A8D0
 lbl_8049A8D0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F666F6E
-	.4byte 0x745F666F
-	.4byte 0x72656967
-	.4byte 0x6E2E737A
-	.4byte 0x73000000
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F666F6E
-	.4byte 0x745F6A70
-	.4byte 0x6E2E737A
-	.4byte 0x73000000
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F6D6573
-	.4byte 0x5265735F
-	.4byte 0x656E672E
-	.4byte 0x737A7300
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F6D6573
-	.4byte 0x5265735F
-	.4byte 0x6672612E
-	.4byte 0x737A7300
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F6D6573
-	.4byte 0x5265735F
-	.4byte 0x6765722E
-	.4byte 0x737A7300
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F6D6573
-	.4byte 0x5265735F
-	.4byte 0x686F6C2E
-	.4byte 0x737A7300
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F6D6573
-	.4byte 0x5265735F
-	.4byte 0x6974612E
-	.4byte 0x737A7300
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F6D6573
-	.4byte 0x5265735F
-	.4byte 0x6A706E2E
-	.4byte 0x737A7300
-	.4byte 0x2F6D6573
-	.4byte 0x73616765
-	.4byte 0x2F6D6573
-	.4byte 0x5265735F
-	.4byte 0x7370612E
-	.4byte 0x737A7300
-	.4byte 0x615F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-	.4byte 0x625F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-	.4byte 0x635F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-	.4byte 0x785F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-	.4byte 0x795F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-	.4byte 0x7A5F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-	.4byte 0x6C5F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-	.4byte 0x725F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-	.4byte 0x33645F62
-	.4byte 0x746E2E62
-	.4byte 0x74690000
-	.4byte 0x73745F62
-	.4byte 0x746E2E62
-	.4byte 0x74690000
-	.4byte 0x745F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
+	.skip 0xC
+.global lbl_8049A8DC
+lbl_8049A8DC:
+	.asciz "/message/font_foreign.szs"
+	.skip 2
+.global lbl_8049A8F8
+lbl_8049A8F8:
+	.asciz "/message/font_jpn.szs"
+	.skip 2
+.global lbl_8049A910
+lbl_8049A910:
+	.asciz "/message/mesRes_eng.szs"
+.global lbl_8049A928
+lbl_8049A928:
+	.asciz "/message/mesRes_fra.szs"
+.global lbl_8049A940
+lbl_8049A940:
+	.asciz "/message/mesRes_ger.szs"
+.global lbl_8049A958
+lbl_8049A958:
+	.asciz "/message/mesRes_hol.szs"
+.global lbl_8049A970
+lbl_8049A970:
+	.asciz "/message/mesRes_ita.szs"
+.global lbl_8049A988
+lbl_8049A988:
+	.asciz "/message/mesRes_jpn.szs"
+.global lbl_8049A9A0
+lbl_8049A9A0:
+	.asciz "/message/mesRes_spa.szs"
+.global lbl_8049A9B8
+lbl_8049A9B8:
+	.asciz "a_btn.bti"
+	.skip 2
+.global lbl_8049A9C4
+lbl_8049A9C4:
+	.asciz "b_btn.bti"
+	.skip 2
+.global lbl_8049A9D0
+lbl_8049A9D0:
+	.asciz "c_btn.bti"
+	.skip 2
+.global lbl_8049A9DC
+lbl_8049A9DC:
+	.asciz "x_btn.bti"
+	.skip 2
+.global lbl_8049A9E8
+lbl_8049A9E8:
+	.asciz "y_btn.bti"
+	.skip 2
+.global lbl_8049A9F4
+lbl_8049A9F4:
+	.asciz "z_btn.bti"
+	.skip 2
+.global lbl_8049AA00
+lbl_8049AA00:
+	.asciz "l_btn.bti"
+	.skip 2
+.global lbl_8049AA0C
+lbl_8049AA0C:
+	.asciz "r_btn.bti"
+	.skip 2
+.global lbl_8049AA18
+lbl_8049AA18:
+	.asciz "3d_btn.bti"
+	.skip 1
+.global lbl_8049AA24
+lbl_8049AA24:
+	.asciz "st_btn.bti"
+	.skip 1
+.global lbl_8049AA30
+lbl_8049AA30:
+	.asciz "t_btn.bti"
+	.skip 2
 .global lbl_8049AA3C
 lbl_8049AA3C:
-	.4byte 0x6D657373
-	.4byte 0x6167654D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "messageMgr.cpp"
+	.skip 1
 .global lbl_8049AA4C
 lbl_8049AA4C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x4D657373
-	.4byte 0x6167654D
-	.4byte 0x67720000
-	.4byte 0x666F6E74
-	.4byte 0x20726573
-	.4byte 0x00000000
-	.4byte 0x70696B6D
-	.4byte 0x696E326D
-	.4byte 0x61696E2E
-	.4byte 0x62666E00
-	.4byte 0x70696B6D
-	.4byte 0x696E322E
-	.4byte 0x626D6700
-	.4byte 0x70696B6D
-	.4byte 0x696E322E
-	.4byte 0x626D6300
-	.4byte 0x2F757365
-	.4byte 0x722F5961
-	.4byte 0x6D617368
-	.4byte 0x6974612F
-	.4byte 0x6172632F
-	.4byte 0x67616D65
-	.4byte 0x5465782E
-	.4byte 0x737A7300
-	.4byte 0x63616368
-	.4byte 0x65466F6E
-	.4byte 0x74000000
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "MessageMgr"
+	.skip 1
+	.asciz "font res"
+	.skip 3
+	.asciz "pikmin2main.bfn"
+	.asciz "pikmin2.bmg"
+	.asciz "pikmin2.bmc"
+	.asciz "/user/Yamashita/arc/gameTex.szs"
+	.asciz "cacheFont"
+	.skip 2
 	.4byte 0x0982A082
 	.4byte 0xA282A482
 	.4byte 0xA682A882
@@ -195,35 +158,35 @@ lbl_804EC970:
 	.4byte 0x00000000
 .global sFontResName__5P2JME
 sFontResName__5P2JME:
-	.4byte 0x8049A8DC
-	.4byte 0x8049A8DC
-	.4byte 0x8049A8DC
-	.4byte 0x8049A8DC
-	.4byte 0x8049A8DC
-	.4byte 0x8049A8F8
-	.4byte 0x8049A8DC
+	.4byte lbl_8049A8DC
+	.4byte lbl_8049A8DC
+	.4byte lbl_8049A8DC
+	.4byte lbl_8049A8DC
+	.4byte lbl_8049A8DC
+	.4byte lbl_8049A8F8
+	.4byte lbl_8049A8DC
 .global sMesResName__5P2JME
 sMesResName__5P2JME:
-	.4byte 0x8049A910
-	.4byte 0x8049A928
-	.4byte 0x8049A940
-	.4byte 0x8049A958
-	.4byte 0x8049A970
-	.4byte 0x8049A988
-	.4byte 0x8049A9A0
+	.4byte lbl_8049A910
+	.4byte lbl_8049A928
+	.4byte lbl_8049A940
+	.4byte lbl_8049A958
+	.4byte lbl_8049A970
+	.4byte lbl_8049A988
+	.4byte lbl_8049A9A0
 .global cBtnTexName__5P2JME
 cBtnTexName__5P2JME:
-	.4byte 0x8049A9B8
-	.4byte 0x8049A9C4
-	.4byte 0x8049A9D0
-	.4byte 0x8049A9DC
-	.4byte 0x8049A9E8
-	.4byte 0x8049A9F4
-	.4byte 0x8049AA00
-	.4byte 0x8049AA0C
-	.4byte 0x8049AA18
-	.4byte 0x8049AA24
-	.4byte 0x8049AA30
+	.4byte lbl_8049A9B8
+	.4byte lbl_8049A9C4
+	.4byte lbl_8049A9D0
+	.4byte lbl_8049A9DC
+	.4byte lbl_8049A9E8
+	.4byte lbl_8049A9F4
+	.4byte lbl_8049AA00
+	.4byte lbl_8049AA0C
+	.4byte lbl_8049AA18
+	.4byte lbl_8049AA24
+	.4byte lbl_8049AA30
 .global __vt__Q25P2JME3Mgr
 __vt__Q25P2JME3Mgr:
 	.4byte 0
@@ -235,16 +198,13 @@ __vt__Q25P2JME3Mgr:
 .balign 0x8
 .global lbl_80520890
 lbl_80520890:
-	.4byte 0x74657820
-	.4byte 0x72657300
+	.asciz "tex res"
 .global lbl_80520898
 lbl_80520898:
-	.4byte 0x72657346
-	.4byte 0x6F6E7400
+	.asciz "resFont"
 .global lbl_805208A0
 lbl_805208A0:
-	.4byte 0x626D6700
-	.4byte 0x00000000
+	.asciz "bmg"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q25P2JME3MgrFP10JKRExpHeap

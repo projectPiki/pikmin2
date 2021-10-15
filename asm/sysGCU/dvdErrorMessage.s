@@ -8,6 +8,8 @@ lbl_8049BB08:
 	.4byte 0x928682C5
 	.4byte 0x82B78142
 	.4byte 0x00000000
+.global lbl_8049BB1C
+lbl_8049BB1C:
 	.4byte 0x83478389
 	.4byte 0x815B82AA
 	.4byte 0x94AD90B6
@@ -38,6 +40,8 @@ lbl_8049BB08:
 	.4byte 0x82AD82BE
 	.4byte 0x82B382A2
 	.4byte 0x81420000
+.global lbl_8049BB94
+lbl_8049BB94:
 	.4byte 0x83668342
 	.4byte 0x8358834E
 	.4byte 0x82F082E6
@@ -60,6 +64,8 @@ lbl_8049BB08:
 	.4byte 0x82BE82B3
 	.4byte 0x82A28142
 	.4byte 0x00000000
+.global lbl_8049BBEC
+lbl_8049BBEC:
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x825182CC
@@ -71,6 +77,8 @@ lbl_8049BB08:
 	.4byte 0x0A82AD82
 	.4byte 0xBE82B382
 	.4byte 0xA2814200
+.global lbl_8049BC18
+lbl_8049BC18:
 	.4byte 0x83668342
 	.4byte 0x8358834E
 	.4byte 0x834A836F
@@ -93,187 +101,45 @@ lbl_8049BB08:
 	.4byte 0x82AD82BE
 	.4byte 0x82B382A2
 	.4byte 0x81420000
-	.4byte 0x4E6F7720
-	.4byte 0x6C6F6164
-	.4byte 0x696E672E
-	.4byte 0x00000000
-	.4byte 0x416E2065
-	.4byte 0x72726F72
-	.4byte 0x20686173
-	.4byte 0x206F6363
-	.4byte 0x75727265
-	.4byte 0x642E5475
-	.4byte 0x726E2074
-	.4byte 0x6865200A
-	.4byte 0x706F7765
-	.4byte 0x72206F66
-	.4byte 0x6620616E
-	.4byte 0x64207265
-	.4byte 0x66657220
-	.4byte 0x746F2074
-	.4byte 0x6865200A
-	.4byte 0x4E696E74
-	.4byte 0x656E646F
-	.4byte 0x2047616D
-	.4byte 0x65437562
-	.4byte 0x6520496E
-	.4byte 0x73747275
-	.4byte 0x6374696F
-	.4byte 0x6E200A42
-	.4byte 0x6F6F6B6C
-	.4byte 0x65742066
-	.4byte 0x6F722066
-	.4byte 0x75727468
-	.4byte 0x65722069
-	.4byte 0x6E737472
-	.4byte 0x75637469
-	.4byte 0x6F6E732E
-	.4byte 0x00000000
-	.4byte 0x54686520
-	.4byte 0x47616D65
-	.4byte 0x20446973
-	.4byte 0x6320636F
-	.4byte 0x756C6420
-	.4byte 0x6E6F7420
-	.4byte 0x62652072
-	.4byte 0x6561642E
-	.4byte 0x0A506C65
-	.4byte 0x61736520
-	.4byte 0x72656164
-	.4byte 0x20746865
-	.4byte 0x204E696E
-	.4byte 0x74656E64
-	.4byte 0x6F200A47
-	.4byte 0x616D6543
-	.4byte 0x75626520
-	.4byte 0x496E7374
-	.4byte 0x72756374
-	.4byte 0x696F6E20
-	.4byte 0x426F6F6B
-	.4byte 0x6C657420
-	.4byte 0x0A666F72
-	.4byte 0x206D6F72
-	.4byte 0x6520696E
-	.4byte 0x666F726D
-	.4byte 0x6174696F
-	.4byte 0x6E2E0000
-	.4byte 0x506C6561
-	.4byte 0x73652069
-	.4byte 0x6E736572
-	.4byte 0x74207468
-	.4byte 0x65205049
-	.4byte 0x4B4D494E
-	.4byte 0x2032200A
-	.4byte 0x47616D65
-	.4byte 0x20446973
-	.4byte 0x632E0000
-	.4byte 0x54686520
-	.4byte 0x44697363
-	.4byte 0x20436F76
-	.4byte 0x65722069
-	.4byte 0x73206F70
-	.4byte 0x656E2E20
-	.4byte 0x49662079
-	.4byte 0x6F75200A
-	.4byte 0x77616E74
-	.4byte 0x20746F20
-	.4byte 0x636F6E74
-	.4byte 0x696E7565
-	.4byte 0x20746865
-	.4byte 0x2067616D
-	.4byte 0x652C200A
-	.4byte 0x706C6561
-	.4byte 0x73652063
-	.4byte 0x6C6F7365
-	.4byte 0x20746865
-	.4byte 0x20446973
-	.4byte 0x6320436F
-	.4byte 0x7665722E
-	.4byte 0x00000000
+.global lbl_8049BC70
+lbl_8049BC70:
+	.asciz "Now loading."
+	.skip 3
+.global lbl_8049BC80
+lbl_8049BC80:
+	.asciz "An error has occurred.Turn the \npower off and refer to the \nNintendo GameCube Instruction \nBooklet for further instructions."
+	.skip 3
+.global lbl_8049BD00
+lbl_8049BD00:
+	.asciz "The Game Disc could not be read.\nPlease read the Nintendo \nGameCube Instruction Booklet \nfor more information."
+	.skip 1
+.global lbl_8049BD70
+lbl_8049BD70:
+	.asciz "Please insert the PIKMIN 2 \nGame Disc."
+	.skip 1
+.global lbl_8049BD98
+lbl_8049BD98:
+	.asciz "The Disc Cover is open. If you \nwant to continue the game, \nplease close the Disc Cover."
+	.skip 3
+.global lbl_8049BDF4
+lbl_8049BDF4:
 	.4byte 0xF64E6F77
 	.4byte 0x206C6F61
 	.4byte 0x64696E67
 	.4byte 0x2E000000
-	.4byte 0x45696E20
-	.4byte 0x4665686C
-	.4byte 0x65722069
-	.4byte 0x73742061
-	.4byte 0x75666765
-	.4byte 0x74726574
-	.4byte 0x656E2E0A
-	.4byte 0x42697474
-	.4byte 0x65207363
-	.4byte 0x68616C74
-	.4byte 0x656E2053
-	.4byte 0x69652064
-	.4byte 0x656E204E
-	.4byte 0x494E5445
-	.4byte 0x4E444F20
-	.4byte 0x47414D45
-	.4byte 0x43554245
-	.4byte 0x20617573
-	.4byte 0x20756E64
-	.4byte 0x206C6573
-	.4byte 0x656E2053
-	.4byte 0x69652064
-	.4byte 0x69652042
-	.4byte 0x65646965
-	.4byte 0x6E756E67
-	.4byte 0x73616E6C
-	.4byte 0x65697475
-	.4byte 0x6E672C20
-	.4byte 0x756D2077
-	.4byte 0x65697465
-	.4byte 0x72652049
-	.4byte 0x6E666F72
-	.4byte 0x6D617469
-	.4byte 0x6F6E656E
-	.4byte 0x207A7520
-	.4byte 0x65726861
-	.4byte 0x6C74656E
-	.4byte 0x2E000000
-	.4byte 0x44696573
-	.4byte 0x65204761
-	.4byte 0x6D652044
-	.4byte 0x69736320
-	.4byte 0x6B616E6E
-	.4byte 0x206E6963
-	.4byte 0x68742067
-	.4byte 0x656C6573
-	.4byte 0x656E2077
-	.4byte 0x65726465
-	.4byte 0x6E2E0A42
-	.4byte 0x69747465
-	.4byte 0x206C6573
-	.4byte 0x656E2053
-	.4byte 0x69652064
-	.4byte 0x69652042
-	.4byte 0x65646965
-	.4byte 0x6E756E67
-	.4byte 0x73616E6C
-	.4byte 0x65697475
-	.4byte 0x6E672C20
-	.4byte 0x756D2077
-	.4byte 0x65697465
-	.4byte 0x72652049
-	.4byte 0x6E666F72
-	.4byte 0x6D617469
-	.4byte 0x6F6E656E
-	.4byte 0x207A7520
-	.4byte 0x65726861
-	.4byte 0x6C74656E
-	.4byte 0x2E000000
-	.4byte 0x42697474
-	.4byte 0x65206C65
-	.4byte 0x67656E20
-	.4byte 0x53696520
-	.4byte 0x64696520
-	.4byte 0x50494B4D
-	.4byte 0x494E2032
-	.4byte 0x2047616D
-	.4byte 0x65204469
-	.4byte 0x73632065
-	.4byte 0x696E2E00
+.global lbl_8049BE04
+lbl_8049BE04:
+	.asciz "Ein Fehler ist aufgetreten.\nBitte schalten Sie den NINTENDO GAMECUBE aus und lesen Sie die Bedienungsanleitung, um weitere Informationen zu erhalten."
+	.skip 2
+.global lbl_8049BE9C
+lbl_8049BE9C:
+	.asciz "Diese Game Disc kann nicht gelesen werden.\nBitte lesen Sie die Bedienungsanleitung, um weitere Informationen zu erhalten."
+	.skip 2
+.global lbl_8049BF18
+lbl_8049BF18:
+	.asciz "Bitte legen Sie die PIKMIN 2 Game Disc ein."
+.global lbl_8049BF44
+lbl_8049BF44:
 	.4byte 0x44657220
 	.4byte 0x44697363
 	.4byte 0x2D446563
@@ -298,6 +164,8 @@ lbl_8049BB08:
 	.4byte 0x7A756661
 	.4byte 0x6872656E
 	.4byte 0x2E000000
+.global lbl_8049BFA4
+lbl_8049BFA4:
 	.4byte 0x556E6520
 	.4byte 0x65727265
 	.4byte 0x75722065
@@ -333,6 +201,8 @@ lbl_8049BB08:
 	.4byte 0x726D6174
 	.4byte 0x696F6E73
 	.4byte 0x2E000000
+.global lbl_8049C030
+lbl_8049C030:
 	.4byte 0x4C61206C
 	.4byte 0x65637475
 	.4byte 0x72652064
@@ -366,6 +236,8 @@ lbl_8049BB08:
 	.4byte 0x726D6174
 	.4byte 0x696F6E73
 	.4byte 0x2E000000
+.global lbl_8049C0B4
+lbl_8049C0B4:
 	.4byte 0x56657569
 	.4byte 0x6C6C657A
 	.4byte 0x20696E73
@@ -376,6 +248,8 @@ lbl_8049BB08:
 	.4byte 0x494B4D49
 	.4byte 0x4E20322E
 	.4byte 0x00000000
+.global lbl_8049C0DC
+lbl_8049C0DC:
 	.4byte 0x4C652063
 	.4byte 0x6F757665
 	.4byte 0x72636C65
@@ -396,39 +270,11 @@ lbl_8049BB08:
 	.4byte 0x636F7576
 	.4byte 0x6572636C
 	.4byte 0x652E0000
-	.4byte 0x53652068
-	.4byte 0x61207072
-	.4byte 0x6F647563
-	.4byte 0x69646F20
-	.4byte 0x756E2065
-	.4byte 0x72726F72
-	.4byte 0x2E0A4170
-	.4byte 0x61676120
-	.4byte 0x6C612063
-	.4byte 0x6F6E736F
-	.4byte 0x6C612079
-	.4byte 0x20636F6E
-	.4byte 0x73756C74
-	.4byte 0x6120656C
-	.4byte 0x206D616E
-	.4byte 0x75616C20
-	.4byte 0x64652069
-	.4byte 0x6E737472
-	.4byte 0x75636369
-	.4byte 0x6F6E6573
-	.4byte 0x20646520
-	.4byte 0x4E494E54
-	.4byte 0x454E444F
-	.4byte 0x2047414D
-	.4byte 0x45435542
-	.4byte 0x45207061
-	.4byte 0x7261206F
-	.4byte 0x6274656E
-	.4byte 0x6572206D
-	.4byte 0x61732069
-	.4byte 0x6E666F72
-	.4byte 0x6D616369
-	.4byte 0x6F6E2E00
+.global lbl_8049C12C
+lbl_8049C12C:
+	.asciz "Se ha producido un error.\nApaga la consola y consulta el manual de instrucciones de NINTENDO GAMECUBE para obtener mas informacion."
+.global lbl_8049C1B0
+lbl_8049C1B0:
 	.4byte 0x4E6F2073
 	.4byte 0x65207075
 	.4byte 0x65646520
@@ -458,32 +304,15 @@ lbl_8049BB08:
 	.4byte 0x6F726D61
 	.4byte 0x6369D36E
 	.4byte 0x2E000000
-	.4byte 0x436F6C6F
-	.4byte 0x63612065
-	.4byte 0x6C206469
-	.4byte 0x73636F20
-	.4byte 0x64652050
-	.4byte 0x494B4D49
-	.4byte 0x4E20322E
-	.4byte 0x00000000
-	.4byte 0x4C612074
-	.4byte 0x61706120
-	.4byte 0x65737461
-	.4byte 0x20616269
-	.4byte 0x65727461
-	.4byte 0x2E200A53
-	.4byte 0x69207175
-	.4byte 0x69657265
-	.4byte 0x73207365
-	.4byte 0x67756972
-	.4byte 0x206A7567
-	.4byte 0x616E646F
-	.4byte 0x2C206465
-	.4byte 0x62657320
-	.4byte 0x63657272
-	.4byte 0x6172206C
-	.4byte 0x61207461
-	.4byte 0x70612E00
+.global lbl_8049C224
+lbl_8049C224:
+	.asciz "Coloca el disco de PIKMIN 2."
+	.skip 3
+.global lbl_8049C244
+lbl_8049C244:
+	.asciz "La tapa esta abierta. \nSi quieres seguir jugando, debes cerrar la tapa."
+.global lbl_8049C28C
+lbl_8049C28C:
 	.4byte 0x536920E8
 	.4byte 0x20766572
 	.4byte 0x69666963
@@ -516,119 +345,66 @@ lbl_8049BB08:
 	.4byte 0x63617A69
 	.4byte 0x6F6E692E
 	.4byte 0x00000000
-	.4byte 0x496D706F
-	.4byte 0x73736962
-	.4byte 0x696C6520
-	.4byte 0x6C656767
-	.4byte 0x65726520
-	.4byte 0x696C2064
-	.4byte 0x6973636F
-	.4byte 0x20646920
-	.4byte 0x67696F63
-	.4byte 0x6F2E0A43
-	.4byte 0x6F6E7375
-	.4byte 0x6C746120
-	.4byte 0x696C206D
-	.4byte 0x616E7561
-	.4byte 0x6C652064
-	.4byte 0x27697374
-	.4byte 0x72757A69
-	.4byte 0x6F6E6920
-	.4byte 0x64656C20
-	.4byte 0x4E494E54
-	.4byte 0x454E444F
-	.4byte 0x2047414D
-	.4byte 0x45435542
-	.4byte 0x45207065
-	.4byte 0x7220756C
-	.4byte 0x74657269
-	.4byte 0x6F726920
-	.4byte 0x696E6469
-	.4byte 0x63617A69
-	.4byte 0x6F6E692E
-	.4byte 0x00000000
-	.4byte 0x496E7365
-	.4byte 0x72697363
-	.4byte 0x6920696C
-	.4byte 0x20646973
-	.4byte 0x636F2064
-	.4byte 0x69206769
-	.4byte 0x6F636F20
-	.4byte 0x50494B4D
-	.4byte 0x494E2032
-	.4byte 0x2E000000
-	.4byte 0x496C2063
-	.4byte 0x6F706572
-	.4byte 0x6368696F
-	.4byte 0x2064656C
-	.4byte 0x20646973
-	.4byte 0x636F2065
-	.4byte 0x20617065
-	.4byte 0x72746F2E
-	.4byte 0x0A536520
-	.4byte 0x76756F69
-	.4byte 0x2070726F
-	.4byte 0x73656775
-	.4byte 0x69726520
-	.4byte 0x6E656C20
-	.4byte 0x67696F63
-	.4byte 0x6F2C2063
-	.4byte 0x68697564
-	.4byte 0x6920696C
-	.4byte 0x20636F70
-	.4byte 0x65726368
-	.4byte 0x696F2064
-	.4byte 0x656C2064
-	.4byte 0x6973636F
-	.4byte 0x2E000000
+.global lbl_8049C30C
+lbl_8049C30C:
+	.asciz "Impossibile leggere il disco di gioco.\nConsulta il manuale d'istruzioni del NINTENDO GAMECUBE per ulteriori indicazioni."
+	.skip 3
+.global lbl_8049C388
+lbl_8049C388:
+	.asciz "Inserisci il disco di gioco PIKMIN 2."
+	.skip 2
+.global lbl_8049C3B0
+lbl_8049C3B0:
+	.asciz "Il coperchio del disco e aperto.\nSe vuoi proseguire nel gioco, chiudi il coperchio del disco."
+	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global gMessage_jpn__8DvdError
 gMessage_jpn__8DvdError:
-	.4byte 0x8049BB08
-	.4byte 0x8049BB1C
-	.4byte 0x8049BB94
-	.4byte 0x8049BBEC
-	.4byte 0x8049BC18
-	.4byte 0x8049BBEC
+	.4byte lbl_8049BB08
+	.4byte lbl_8049BB1C
+	.4byte lbl_8049BB94
+	.4byte lbl_8049BBEC
+	.4byte lbl_8049BC18
+	.4byte lbl_8049BBEC
 .global gMessage_eng__8DvdError
 gMessage_eng__8DvdError:
-	.4byte 0x8049BC70
-	.4byte 0x8049BC80
-	.4byte 0x8049BD00
-	.4byte 0x8049BD70
-	.4byte 0x8049BD98
-	.4byte 0x8049BD70
+	.4byte lbl_8049BC70
+	.4byte lbl_8049BC80
+	.4byte lbl_8049BD00
+	.4byte lbl_8049BD70
+	.4byte lbl_8049BD98
+	.4byte lbl_8049BD70
 .global gMessage_ger__8DvdError
 gMessage_ger__8DvdError:
-	.4byte 0x8049BDF4
-	.4byte 0x8049BE04
-	.4byte 0x8049BE9C
-	.4byte 0x8049BF18
-	.4byte 0x8049BF44
-	.4byte 0x8049BF18
+	.4byte lbl_8049BDF4
+	.4byte lbl_8049BE04
+	.4byte lbl_8049BE9C
+	.4byte lbl_8049BF18
+	.4byte lbl_8049BF44
+	.4byte lbl_8049BF18
 .global gMessage_fra__8DvdError
 gMessage_fra__8DvdError:
-	.4byte 0x8049BC70
-	.4byte 0x8049BFA4
-	.4byte 0x8049C030
-	.4byte 0x8049C0B4
-	.4byte 0x8049C0DC
-	.4byte 0x8049C0B4
+	.4byte lbl_8049BC70
+	.4byte lbl_8049BFA4
+	.4byte lbl_8049C030
+	.4byte lbl_8049C0B4
+	.4byte lbl_8049C0DC
+	.4byte lbl_8049C0B4
 .global gMessage_spa__8DvdError
 gMessage_spa__8DvdError:
-	.4byte 0x8049BC70
-	.4byte 0x8049C12C
-	.4byte 0x8049C1B0
-	.4byte 0x8049C224
-	.4byte 0x8049C244
-	.4byte 0x8049C224
+	.4byte lbl_8049BC70
+	.4byte lbl_8049C12C
+	.4byte lbl_8049C1B0
+	.4byte lbl_8049C224
+	.4byte lbl_8049C244
+	.4byte lbl_8049C224
 .global gMessage_ita__8DvdError
 gMessage_ita__8DvdError:
-	.4byte 0x8049BC70
-	.4byte 0x8049C28C
-	.4byte 0x8049C30C
-	.4byte 0x8049C388
-	.4byte 0x8049C3B0
-	.4byte 0x8049C388
+	.4byte lbl_8049BC70
+	.4byte lbl_8049C28C
+	.4byte lbl_8049C30C
+	.4byte lbl_8049C388
+	.4byte lbl_8049C3B0
+	.4byte lbl_8049C388
