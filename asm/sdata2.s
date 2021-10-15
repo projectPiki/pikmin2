@@ -2697,7 +2697,7 @@ lbl_805175E8:
 	.4byte 0x00000000
 .global __GXData
 __GXData:
-	.4byte 0x804F6068
+	.4byte gxData
 .global lbl_805175F4
 lbl_805175F4:
 	.4byte 0x4B800000

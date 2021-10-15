@@ -807,24 +807,15 @@ halftofull$725:
 	.4byte 0x81600000
 .global lbl_80474280
 lbl_80474280:
-	.4byte 0x466F6E74
-	.4byte 0x20456E63
-	.4byte 0x6F646520
-	.4byte 0x54797065
-	.4byte 0x2025640A
-	.4byte 0x00000000
+	.asciz "Font Encode Type %d\n"
+	.skip 3
 .global lbl_80474298
 lbl_80474298:
-	.4byte 0x49504C52
-	.4byte 0x4F4D2066
-	.4byte 0x6F6E7464
-	.4byte 0x61746120
-	.4byte 0x73697A65
-	.4byte 0x203A2025
-	.4byte 0x750A0000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "IPLROM fontdata size : %u\n"
+	.skip 1
+	.skip 0xC
+.global lbl_804742C0
+lbl_804742C0:
 	.4byte 0x464F4E54
 	.4byte 0x62666E31
 	.4byte 0x00004160

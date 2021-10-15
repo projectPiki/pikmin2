@@ -147,7 +147,7 @@ aPiecePriority__Q29JFWSystem11CSetUpParam:
 	.4byte 0x00000006
 .global systemFontRes__Q29JFWSystem11CSetUpParam
 systemFontRes__Q29JFWSystem11CSetUpParam:
-	.4byte 0x804742C0
+	.4byte lbl_804742C0
 .global renderMode__Q29JFWSystem11CSetUpParam
 renderMode__Q29JFWSystem11CSetUpParam:
 	.4byte GXNtsc480IntDf
@@ -693,8 +693,8 @@ mUseCellMgr__Q24Game7PlatMgr:
 	.4byte 0x00000000
 .global "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"
 "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@":
-	.4byte 0x805196F0
-	.4byte 0x805196F8
+	.4byte lbl_805196F0
+	.4byte lbl_805196F8
 .global mTraceMoveOptLevel__Q24Game6MapMgr
 mTraceMoveOptLevel__Q24Game6MapMgr:
 	.4byte 0x01000000

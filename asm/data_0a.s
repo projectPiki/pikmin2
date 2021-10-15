@@ -2943,17 +2943,17 @@ lbl_804B8528:
 	.4byte "__ml__32Iterator<Q34Game9ItemHoney4Item>Fv"
 .global "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@"
 "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@":
-	.4byte 0x805196CC
-	.4byte 0x805196D0
-	.4byte 0x80480688
-	.4byte 0x805196D8
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.4byte lbl_805196CC
+	.4byte lbl_805196D0
+	.4byte lbl_80480688
+	.4byte lbl_805196D8
+	.4byte 0
+	.4byte 0
 .global "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@"
 "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@":
-	.4byte 0x805196E0
-	.4byte 0x805196E8
-	.4byte 0x80480698
+	.4byte lbl_805196E0
+	.4byte lbl_805196E8
+	.4byte lbl_80480698
 .global __vt__Q34Game4Cave8CaveInfo
 __vt__Q34Game4Cave8CaveInfo:
 	.4byte 0
@@ -12006,65 +12006,65 @@ lbl_804C0880:
 	.4byte 0x00000000
 .global opening_strings
 opening_strings:
-	.4byte 0x80482C20
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x80482C30
-	.4byte 0x80482C40
-	.4byte 0x80482C50
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x80482C60
-	.4byte 0x80482C78
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x80482C84
-	.4byte 0x00000000
+	.4byte lbl_80482C20
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482C30
+	.4byte lbl_80482C40
+	.4byte lbl_80482C50
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482C60
+	.4byte lbl_80482C78
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482C84
+	.4byte 0
 .global ending_strings
 ending_strings:
-	.4byte 0x80482C94
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x80482CA4
+	.4byte lbl_80482C94
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482CA4
 .global endingcomplete_strings
 endingcomplete_strings:
-	.4byte 0x80482CB0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x80482CA4
+	.4byte lbl_80482CB0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482CA4
 .global staffroll_strings
 staffroll_strings:
-	.4byte 0x8051A0C4
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x80482CC8
-	.4byte 0x80482C40
-	.4byte 0x80482C50
-	.4byte 0x8051A0C0
-	.4byte 0x80482CD4
-	.4byte 0x80482CE8
-	.4byte 0x8051A0C0
-	.4byte 0x80482CA4
+	.4byte lbl_8051A0C4
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482CC8
+	.4byte lbl_80482C40
+	.4byte lbl_80482C50
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482CD4
+	.4byte lbl_80482CE8
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482CA4
 .global mezase_strings
 mezase_strings:
-	.4byte 0x80482CF4
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x8051A0C0
-	.4byte 0x80482CA4
+	.4byte lbl_80482CF4
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_8051A0C0
+	.4byte lbl_80482CA4
 .global __vt__Q34Game10SingleGame10MovieState
 __vt__Q34Game10SingleGame10MovieState:
 	.4byte 0

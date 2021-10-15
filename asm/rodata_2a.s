@@ -814,13 +814,16 @@ lbl_80480660:
 	.4byte 0x00000000
 .global lbl_8048067C
 lbl_8048067C:
-	.4byte 0x666C6F6F
-	.4byte 0x72496E66
-	.4byte 0x6F000000
+	.asciz "floorInfo"
+	.skip 2
+.global lbl_80480688
+lbl_80480688:
 	.4byte 0x83528393
 	.4byte 0x834E838A
 	.4byte 0x815B8363
 	.4byte 0x00000000
+.global lbl_80480698
+lbl_80480698:
 	.4byte 0x82E282B7
 	.4byte 0x82E782AC
 	.4byte 0x00000000
@@ -3508,114 +3511,82 @@ lbl_80482B24:
 	.4byte 0x720D0A00
 .global lbl_80482B8C
 lbl_80482B8C:
-	.4byte 0x09232069
-	.4byte 0x74656D46
-	.4byte 0x6C61670D
-	.4byte 0x0A000000
-	.4byte 0x2320666F
-	.4byte 0x726D6174
-	.4byte 0x696F6E50
-	.4byte 0x696B6D69
-	.4byte 0x6E0D0A00
-	.4byte 0x09232074
-	.4byte 0x696D650D
-	.4byte 0x0A000000
-	.4byte 0x09232063
-	.4byte 0x75727220
-	.4byte 0x636F7572
-	.4byte 0x73650D0A
-	.4byte 0x00000000
-	.4byte 0x09232063
-	.4byte 0x75727220
-	.4byte 0x63617665
-	.4byte 0x0D0A0000
-	.4byte 0x09232062
-	.4byte 0x6C61636B
-	.4byte 0x6D616E20
-	.4byte 0x616C6976
-	.4byte 0x650D0A00
-	.4byte 0x09232062
-	.4byte 0x6C61636B
-	.4byte 0x6D616E20
-	.4byte 0x74696D65
-	.4byte 0x720D0A00
-	.4byte 0x09232061
-	.4byte 0x63746976
-	.4byte 0x6520706C
-	.4byte 0x61796572
-	.4byte 0x2069640D
-	.4byte 0x0A000000
-	.4byte 0x4F70656E
-	.4byte 0x696E6720
-	.4byte 0x4D6F7669
-	.4byte 0x65000000
-	.4byte 0x2D2D2044
-	.4byte 0x69726563
-	.4byte 0x746F7220
-	.4byte 0x2D2D0000
-	.4byte 0x47657368
-	.4byte 0x6966756D
-	.4byte 0x69204869
-	.4byte 0x6E6F0000
-	.4byte 0x4D616D61
-	.4byte 0x6D696368
-	.4byte 0x69204162
-	.4byte 0x65000000
-	.4byte 0x2D2D204D
-	.4byte 0x61696E20
-	.4byte 0x50726F67
-	.4byte 0x72616D6D
-	.4byte 0x6572202D
-	.4byte 0x2D000000
-	.4byte 0x54657065
-	.4byte 0x6E2D6B65
-	.4byte 0x69000000
-	.4byte 0x28432920
-	.4byte 0x4E696E74
-	.4byte 0x656E646F
-	.4byte 0x00000000
-	.4byte 0x456E6469
-	.4byte 0x6E67204D
-	.4byte 0x6F766965
-	.4byte 0x00000000
-	.4byte 0x28432920
-	.4byte 0x4E696E74
-	.4byte 0x656E6F00
-	.4byte 0x456E6469
-	.4byte 0x6E672843
-	.4byte 0x6F6D706C
-	.4byte 0x65746529
-	.4byte 0x204D6F76
-	.4byte 0x69650000
-	.4byte 0x2A204469
-	.4byte 0x72656374
-	.4byte 0x6F720000
-	.4byte 0x2A204F74
-	.4byte 0x616B6172
-	.4byte 0x61204465
-	.4byte 0x7369676E
-	.4byte 0x00000000
-	.4byte 0x48696465
-	.4byte 0x6F204F74
-	.4byte 0x61000000
-	.4byte 0x4D657A61
-	.4byte 0x73652043
-	.4byte 0x6F6D706C
-	.4byte 0x65746520
-	.4byte 0x4D6F7669
-	.4byte 0x65000000
+	.asciz "\t# itemFlag\r\n"
+	.skip 2
+	.asciz "# formationPikmin\r\n"
+	.asciz "\t# time\r\n"
+	.skip 2
+	.asciz "\t# curr course\r\n"
+	.skip 3
+	.asciz "\t# curr cave\r\n"
+	.skip 1
+	.asciz "\t# blackman alive\r\n"
+	.asciz "\t# blackman timer\r\n"
+	.asciz "\t# active player id\r\n"
+	.skip 2
+.global lbl_80482C20
+lbl_80482C20:
+	.asciz "Opening Movie"
+	.skip 2
+.global lbl_80482C30
+lbl_80482C30:
+	.asciz "-- Director --"
+	.skip 1
+.global lbl_80482C40
+lbl_80482C40:
+	.asciz "Geshifumi Hino"
+	.skip 1
+.global lbl_80482C50
+lbl_80482C50:
+	.asciz "Mamamichi Abe"
+	.skip 2
+.global lbl_80482C60
+lbl_80482C60:
+	.asciz "-- Main Programmer --"
+	.skip 2
+.global lbl_80482C78
+lbl_80482C78:
+	.asciz "Tepen-kei"
+	.skip 2
+.global lbl_80482C84
+lbl_80482C84:
+	.asciz "(C) Nintendo"
+	.skip 3
+.global lbl_80482C94
+lbl_80482C94:
+	.asciz "Ending Movie"
+	.skip 3
+.global lbl_80482CA4
+lbl_80482CA4:
+	.asciz "(C) Ninteno"
+.global lbl_80482CB0
+lbl_80482CB0:
+	.asciz "Ending(Complete) Movie"
+	.skip 1
+.global lbl_80482CC8
+lbl_80482CC8:
+	.asciz "* Director"
+	.skip 1
+.global lbl_80482CD4
+lbl_80482CD4:
+	.asciz "* Otakara Design"
+	.skip 3
+.global lbl_80482CE8
+lbl_80482CE8:
+	.asciz "Hideo Ota"
+	.skip 2
+.global lbl_80482CF4
+lbl_80482CF4:
+	.asciz "Mezase Complete Movie"
+	.skip 2
 .global lbl_80482D0C
 lbl_80482D0C:
-	.4byte 0x73696E67
-	.4byte 0x6C654753
-	.4byte 0x5F4D6F76
-	.4byte 0x69652E63
-	.4byte 0x70700000
+	.asciz "singleGS_Movie.cpp"
+	.skip 1
 .global lbl_80482D20
 lbl_80482D20:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80482D30
 lbl_80482D30:

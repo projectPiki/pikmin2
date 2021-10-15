@@ -393,64 +393,75 @@ lbl_80519670:
 	.4byte 0x00000000
 .global lbl_80519678
 lbl_80519678:
-	.4byte 0x6172632E
-	.4byte 0x737A7300
+	.asciz "arc.szs"
 .global lbl_80519680
 lbl_80519680:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_80519684
 lbl_80519684:
-	.4byte 0x42C80000
+	.float 100.0
 .global lbl_80519688
 lbl_80519688:
-	.4byte 0x41700000
+	.float 15.0
 .global lbl_8051968C
 lbl_8051968C:
-	.4byte 0x47000000
+	.float 32768.0
 .global lbl_80519690
 lbl_80519690:
-	.4byte 0x40400000
+	.float 3.0
 .global lbl_80519694
 lbl_80519694:
-	.4byte 0x41F00000
+	.float 30.0
 .global lbl_80519698
 lbl_80519698:
 	.4byte 0x43300000
 	.4byte 0x80000000
 .global lbl_805196A0
 lbl_805196A0:
-	.4byte 0x40F00000
+	.float 7.5
 .global lbl_805196A4
 lbl_805196A4:
-	.4byte 0x6D697475
-	.4byte 0x31000000
+	.asciz "mitu1"
+	.skip 2
 .global lbl_805196AC
 lbl_805196AC:
-	.4byte 0x486F6E65
-	.4byte 0x79000000
+	.asciz "Honey"
+	.skip 2
 .global lbl_805196B4
 lbl_805196B4:
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-	.4byte 0x00000000
+	.asciz "arc.szs"
+	.skip 4
 .global lbl_805196C0
 lbl_805196C0:
-	.4byte 0x42617365
-	.4byte 0x47656E00
+	.asciz "BaseGen"
 .global lbl_805196C8
 lbl_805196C8:
-	.4byte 0x00000000
+	.float 0.0
+.global lbl_805196CC
+lbl_805196CC:
 	.4byte 0x93790000
+.global lbl_805196D0
+lbl_805196D0:
 	.4byte 0x8381835E
 	.4byte 0x838B0000
+.global lbl_805196D8
+lbl_805196D8:
 	.4byte 0x835E8343
 	.4byte 0x838B0000
+.global lbl_805196E0
+lbl_805196E0:
 	.4byte 0x92CA8FED
 	.4byte 0x00000000
+.global lbl_805196E8
+lbl_805196E8:
 	.4byte 0x837B8358
 	.4byte 0x00000000
+.global lbl_805196F0
+lbl_805196F0:
 	.4byte 0x82C882B5
 	.4byte 0x00000000
+.global lbl_805196F8
+lbl_805196F8:
 	.4byte 0x82A082E8
 	.4byte 0x00000000
 .global lbl_80519700
@@ -458,12 +469,12 @@ lbl_80519700:
 	.float 1.0
 .global lbl_80519704
 lbl_80519704:
-	.4byte 0x74657374
-	.4byte 0x00000000
+	.asciz "test"
+	.skip 3
 .global lbl_8051970C
 lbl_8051970C:
-	.4byte 0x5652424F
-	.4byte 0x58000000
+	.asciz "VRBOX"
+	.skip 2
 .global lbl_80519714
 lbl_80519714:
 	.4byte 0x83BF91AE
@@ -1723,16 +1734,22 @@ lbl_80519EA8:
 	.4byte 0x737A7300
 .global lbl_80519EB0
 lbl_80519EB0:
-	.4byte 0x3EB33333
-	.4byte 0x00000000
-	.4byte 0x53410000
-	.4byte 0x414A0000
+	.float 0.35
+	.skip 4
+.global lbl_80519EB8
+lbl_80519EB8:
+	.asciz "SA"
+	.skip 1
+.global lbl_80519EBC
+lbl_80519EBC:
+	.asciz "AJ"
+	.skip 1
 .global lbl_80519EC0
 lbl_80519EC0:
-	.4byte 0x80519EB8
+	.4byte lbl_80519EB8
 .global lbl_80519EC4
 lbl_80519EC4:
-	.4byte 0x80519EBC
+	.4byte lbl_80519EBC
 .global lbl_80519EC8
 lbl_80519EC8:
 	.4byte 0x57656564
@@ -2053,16 +2070,19 @@ lbl_8051A0B4:
 	.4byte 0x44F70000
 .global lbl_8051A0B8
 lbl_8051A0B8:
-	.4byte 0xC3A88000
+	.float -337.0
 .global lbl_8051A0BC
 lbl_8051A0BC:
-	.4byte 0x45035000
+	.float 2101.0
+.global lbl_8051A0C0
+lbl_8051A0C0:
 	.4byte 0x00000000
-	.4byte 0x50696B6D
-	.4byte 0x696E3200
+.global lbl_8051A0C4
+lbl_8051A0C4:
+	.asciz "Pikmin2"
 .global lbl_8051A0CC
 lbl_8051A0CC:
-	.4byte 0x40800000
+	.float 4.0
 .global lbl_8051A0D0
 lbl_8051A0D0:
 	.4byte 0x43F00000
