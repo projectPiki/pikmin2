@@ -24143,22 +24143,22 @@ lbl_80495708:
 	.4byte 0x74684669
 	.4byte 0x6E646572
 	.4byte 0x0A000000
-	.4byte 0x8051F454
-	.4byte 0x8051F45C
-	.4byte 0x8051F464
-	.4byte 0x8051F46C
+	.4byte lbl_8051F454
+	.4byte lbl_8051F45C
+	.4byte lbl_8051F464
+	.4byte lbl_8051F46C
 	.4byte 0x804956A4
 	.4byte 0x804956B0
-	.4byte 0x8051F444
-	.4byte 0x8051F44C
-	.4byte 0x8051F500
-	.4byte 0x8051F508
-	.4byte 0x8051F510
-	.4byte 0x8051F518
-	.4byte 0x8051F520
-	.4byte 0x8051F528
-	.4byte 0x8051F530
-	.4byte 0x8051F538
+	.4byte lbl_8051F444
+	.4byte lbl_8051F44C
+	.4byte lbl_8051F500
+	.4byte lbl_8051F508
+	.4byte lbl_8051F510
+	.4byte lbl_8051F518
+	.4byte lbl_8051F520
+	.4byte lbl_8051F528
+	.4byte lbl_8051F530
+	.4byte lbl_8051F538
 	.4byte 0x73686F75
 	.4byte 0x6C646572
 	.4byte 0x4C000000
@@ -24167,8 +24167,8 @@ lbl_80495708:
 	.4byte 0x52000000
 	.4byte 0x80495778
 	.4byte 0x80495784
-	.4byte 0x8051F540
-	.4byte 0x8051F548
+	.4byte lbl_8051F540
+	.4byte lbl_8051F548
 	.4byte 0x67657420
 	.4byte 0x736F756E
 	.4byte 0x64207363

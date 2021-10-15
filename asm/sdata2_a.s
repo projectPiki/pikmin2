@@ -16089,35 +16089,35 @@ lbl_8051F43C:
 	.4byte 0x74000000
 .global lbl_8051F444
 lbl_8051F444:
-	.4byte 0x666F6F74
-	.4byte 0x4C000000
+	.asciz "footL"
+	.skip 2
 .global lbl_8051F44C
 lbl_8051F44C:
-	.4byte 0x666F6F74
-	.4byte 0x52000000
+	.asciz "footR"
+	.skip 2
 .global lbl_8051F454
 lbl_8051F454:
-	.4byte 0x74797265
-	.4byte 0x464C0000
+	.asciz "tyreFL"
+	.skip 1
 .global lbl_8051F45C
 lbl_8051F45C:
-	.4byte 0x54797265
-	.4byte 0x46520000
+	.asciz "TyreFR"
+	.skip 1
 .global lbl_8051F464
 lbl_8051F464:
-	.4byte 0x54797265
-	.4byte 0x424C0000
+	.asciz "TyreBL"
+	.skip 1
 .global lbl_8051F46C
 lbl_8051F46C:
-	.4byte 0x74797265
-	.4byte 0x42520000
+	.asciz "tyreBR"
+	.skip 1
 .global lbl_8051F474
 lbl_8051F474:
-	.4byte 0x77616973
-	.4byte 0x74000000
+	.asciz "waist"
+	.skip 2
 .global lbl_8051F47C
 lbl_8051F47C:
-	.4byte 0x41200000
+	.float 10.0
 .global lbl_8051F480
 lbl_8051F480:
 	.float 1.0
@@ -16169,7 +16169,7 @@ lbl_8051F4C0:
 	.4byte 0x42C80000
 .global lbl_8051F4C4
 lbl_8051F4C4:
-	.4byte 0x430A3AE7
+	.float 138.23009
 .global lbl_8051F4C8
 lbl_8051F4C8:
 	.float 0.25
@@ -16186,7 +16186,7 @@ lbl_8051F4DC:
 	.float 0.5
 .global lbl_8051F4E0
 lbl_8051F4E0:
-	.4byte 0x3FB33333
+	.float 1.4
 	.4byte 0x00000000
 .global lbl_8051F4E8
 lbl_8051F4E8:
@@ -16194,45 +16194,63 @@ lbl_8051F4E8:
 	.4byte 0x80000000
 .global lbl_8051F4F0
 lbl_8051F4F0:
-	.4byte 0xC3A2F983
+	.float -325.9493
 .global lbl_8051F4F4
 lbl_8051F4F4:
-	.4byte 0x43A2F983
+	.float 325.9493
 .global lbl_8051F4F8
 lbl_8051F4F8:
-	.4byte 0x47000000
+	.float 32768.0
 .global lbl_8051F4FC
 lbl_8051F4FC:
-	.4byte 0x49742400
-	.4byte 0x68616E64
-	.4byte 0x4C000000
-	.4byte 0x68616E64
-	.4byte 0x52000000
-	.4byte 0x6C656742
-	.4byte 0x4C000000
-	.4byte 0x6C656742
-	.4byte 0x52000000
-	.4byte 0x61726D42
-	.4byte 0x4C000000
-	.4byte 0x61726D42
-	.4byte 0x52000000
-	.4byte 0x6C656754
-	.4byte 0x4C000000
-	.4byte 0x6C656754
-	.4byte 0x52000000
-	.4byte 0x636C6F75
-	.4byte 0x63684C00
-	.4byte 0x636C6F75
-	.4byte 0x63685200
+	.float 1000000.0
+.global lbl_8051F500
+lbl_8051F500:
+	.asciz "handL"
+	.skip 2
+.global lbl_8051F508
+lbl_8051F508:
+	.asciz "handR"
+	.skip 2
+.global lbl_8051F510
+lbl_8051F510:
+	.asciz "legBL"
+	.skip 2
+.global lbl_8051F518
+lbl_8051F518:
+	.asciz "legBR"
+	.skip 2
+.global lbl_8051F520
+lbl_8051F520:
+	.asciz "armBL"
+	.skip 2
+.global lbl_8051F528
+lbl_8051F528:
+	.asciz "armBR"
+	.skip 2
+.global lbl_8051F530
+lbl_8051F530:
+	.asciz "legTL"
+	.skip 2
+.global lbl_8051F538
+lbl_8051F538:
+	.asciz "legTR"
+	.skip 2
+.global lbl_8051F540
+lbl_8051F540:
+	.asciz "clouchL"
+.global lbl_8051F548
+lbl_8051F548:
+	.asciz "clouchR"
 .global lbl_8051F550
 lbl_8051F550:
 	.4byte 0x41700000
 .global lbl_8051F554
 lbl_8051F554:
-	.4byte 0x8051F454
+	.4byte lbl_8051F454
 .global lbl_8051F558
 lbl_8051F558:
-	.4byte 0x8051F45C
+	.4byte lbl_8051F45C
 .global lbl_8051F55C
 lbl_8051F55C:
 	.4byte 0x3F4CCCCD
