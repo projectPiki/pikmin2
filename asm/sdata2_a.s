@@ -2085,40 +2085,44 @@ lbl_8051A0CC:
 	.float 4.0
 .global lbl_8051A0D0
 lbl_8051A0D0:
-	.4byte 0x43F00000
-	.4byte 0x00000000
+	.float 480.0
+	.skip 4
 .global lbl_8051A0D8
 lbl_8051A0D8:
-	.4byte 0x43AF0000
+	.float 350.0
 .global lbl_8051A0DC
 lbl_8051A0DC:
-	.4byte 0x42FA0000
+	.float 125.0
 .global lbl_8051A0E0
 lbl_8051A0E0:
-	.4byte 0x44C80000
+	.float 1600.0
 .global lbl_8051A0E4
 lbl_8051A0E4:
-	.4byte 0x443B8000
+	.float 750.0
 .global lbl_8051A0E8
 lbl_8051A0E8:
-	.4byte 0x43480000
+	.float 200.0
 .global lbl_8051A0EC
 lbl_8051A0EC:
-	.4byte 0x42C80000
+	.float 100.0
 .global lbl_8051A0F0
 lbl_8051A0F0:
-	.4byte 0x42700000
+	.float 60.0
 .global lbl_8051A0F4
 lbl_8051A0F4:
-	.4byte 0x42200000
+	.float 40.0
 .global lbl_8051A0F8
 lbl_8051A0F8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x666F7265
-	.4byte 0x73740000
-	.4byte 0x6C617374
-	.4byte 0x00000000
+	.float 0.0
+	.skip 4
+.global lbl_8051A100
+lbl_8051A100:
+	.asciz "forest"
+	.skip 1
+.global lbl_8051A108
+lbl_8051A108:
+	.asciz "last"
+	.skip 3
 .global lbl_8051A110
 lbl_8051A110:
 	.float 0.05

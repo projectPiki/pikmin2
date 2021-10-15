@@ -3668,19 +3668,17 @@ lbl_80482D30:
 	.4byte 0x74000000
 .global lbl_80482E60
 lbl_80482E60:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x53696E67
-	.4byte 0x6C654753
-	.4byte 0x5F5A756B
-	.4byte 0x616E0000
-	.4byte 0x7475746F
-	.4byte 0x7269616C
-	.4byte 0x00000000
-	.4byte 0x79616B75
-	.4byte 0x7368696D
-	.4byte 0x61000000
+	.skip 0xC
+	.asciz "SingleGS_Zukan"
+	.skip 1
+.global lbl_80482E7C
+lbl_80482E7C:
+	.asciz "tutorial"
+	.skip 3
+.global lbl_80482E88
+lbl_80482E88:
+	.asciz "yakushima"
+	.skip 2
 	.4byte 0x907D8AD3
 	.4byte 0x8366836F
 	.4byte 0x8362834F
@@ -4077,14 +4075,10 @@ lbl_80483344:
 	.4byte 0x00000000
 .global lbl_8048344C
 lbl_8048344C:
-	.4byte 0x64696374
-	.4byte 0x4E6F3A25
-	.4byte 0x64200A00
+	.asciz "dictNo:%d \n"
 .global lbl_80483458
 lbl_80483458:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.skip 0xC
 	.4byte 0x76734753
 	.4byte 0x5F546974
 	.4byte 0x6C650000
@@ -15389,107 +15383,58 @@ lbl_8048DFC8:
 	.4byte 0x0A000000
 .global lbl_8048DFE0
 lbl_8048DFE0:
-	.4byte 0x616E696D
-	.4byte 0x5F746578
-	.4byte 0x742E626C
-	.4byte 0x6F000000
+	.asciz "anim_text.blo"
+	.skip 2
 .global lbl_8048DFF0
 lbl_8048DFF0:
-	.4byte 0x616E696D
-	.4byte 0x5F746578
-	.4byte 0x742E6263
-	.4byte 0x6B000000
+	.asciz "anim_text.bck"
+	.skip 2
 .global lbl_8048E000
 lbl_8048E000:
-	.4byte 0x6F67416E
-	.4byte 0x696D5465
-	.4byte 0x78745363
-	.4byte 0x7265656E
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "ogAnimTextScreen.cpp"
+	.skip 3
 .global lbl_8048E018
 lbl_8048E018:
-	.4byte 0x436F6C6F
-	.4byte 0x72547970
-	.4byte 0x65204552
-	.4byte 0x5221210A
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "ColorType ERR!!\n"
+	.skip 7
 .global lbl_8048E030
 lbl_8048E030:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "get sound scene at\ninvalid timming\n"
 .global lbl_8048E078
 lbl_8048E078:
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.asciz "screenObj.h"
 .global lbl_8048E084
 lbl_8048E084:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048E090
 lbl_8048E090:
-	.4byte 0x67726F75
-	.4byte 0x6E642073
-	.4byte 0x63726565
-	.4byte 0x6E000000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x44617945
-	.4byte 0x6E64436F
-	.4byte 0x756E7400
-	.4byte 0x48757272
-	.4byte 0x79557032
-	.4byte 0x44000000
+	.asciz "ground screen"
+	.skip 2
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "get sound scene at\ninvalid timming\n"
+	.asciz "DayEndCount"
+	.asciz "HurryUp2D"
+	.skip 2
 .global lbl_8048E100
 lbl_8048E100:
-	.4byte 0x7265735F
-	.4byte 0x67726F75
-	.4byte 0x6E642E73
-	.4byte 0x7A730000
+	.asciz "res_ground.szs"
+	.skip 1
 .global lbl_8048E110
 lbl_8048E110:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x6F674F62
-	.4byte 0x6A47726F
-	.4byte 0x756E642E
-	.4byte 0x63707000
+	.skip 0xC
+	.asciz "ogObjGround.cpp"
 	.4byte 0x45525221
 	.4byte 0x20696E20
 	.4byte 0x4F626A43
@@ -15498,29 +15443,19 @@ lbl_8048E110:
 	.4byte 0x74658EB8
 	.4byte 0x94738149
 	.4byte 0x0A000000
-	.4byte 0x73756E5F
-	.4byte 0x6D657465
-	.4byte 0x722E626C
-	.4byte 0x6F000000
-	.4byte 0x646F7069
-	.4byte 0x6E672E62
-	.4byte 0x6C6F0000
-	.4byte 0x6F72696D
-	.4byte 0x612E626C
-	.4byte 0x6F000000
-	.4byte 0x67725F70
-	.4byte 0x696B6D69
-	.4byte 0x6E2E626C
-	.4byte 0x6F000000
-	.4byte 0x73656E73
-	.4byte 0x6F722E62
-	.4byte 0x6C6F0000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "sun_meter.blo"
+	.skip 2
+	.asciz "doping.blo"
+	.skip 1
+	.asciz "orima.blo"
+	.skip 2
+	.asciz "gr_pikmin.blo"
+	.skip 2
+	.asciz "sensor.blo"
+	.skip 1
+	.asciz "screenObj.h"
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048E1A8
 lbl_8048E1A8:
 	.4byte 0x00000000
@@ -15970,121 +15905,91 @@ lbl_8048E790:
 	.4byte 0x21210A00
 .global lbl_8048E7DC
 lbl_8048E7DC:
-	.4byte 0x636F7572
-	.4byte 0x7365206E
-	.4byte 0x616D6520
-	.4byte 0x73637265
-	.4byte 0x656E0000
-	.4byte 0x7265735F
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x302E737A
-	.4byte 0x73000000
-	.4byte 0x7265735F
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x312E737A
-	.4byte 0x73000000
-	.4byte 0x7265735F
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x322E737A
-	.4byte 0x73000000
-	.4byte 0x7265735F
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x332E737A
-	.4byte 0x73000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x302E626C
-	.4byte 0x6F000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x312E626C
-	.4byte 0x6F000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x322E626C
-	.4byte 0x6F000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x332E626C
-	.4byte 0x6F000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x302E6263
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x302E6274
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x302E6270
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x312E6263
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x312E6274
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x312E6270
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x322E6263
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x322E6274
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x322E6270
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x332E6263
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x332E6274
-	.4byte 0x6B000000
-	.4byte 0x636F7572
-	.4byte 0x73655F6E
-	.4byte 0x616D6530
-	.4byte 0x332E6270
-	.4byte 0x6B000000
+	.asciz "course name screen"
+	.skip 1
+.global lbl_8048E7F0
+lbl_8048E7F0:
+	.asciz "res_course_name00.szs"
+	.skip 2
+.global lbl_8048E808
+lbl_8048E808:
+	.asciz "res_course_name01.szs"
+	.skip 2
+.global lbl_8048E820
+lbl_8048E820:
+	.asciz "res_course_name02.szs"
+	.skip 2
+.global lbl_8048E838
+lbl_8048E838:
+	.asciz "res_course_name03.szs"
+	.skip 2
+.global lbl_8048E850
+lbl_8048E850:
+	.asciz "course_name00.blo"
+	.skip 2
+.global lbl_8048E864
+lbl_8048E864:
+	.asciz "course_name01.blo"
+	.skip 2
+.global lbl_8048E878
+lbl_8048E878:
+	.asciz "course_name02.blo"
+	.skip 2
+.global lbl_8048E88C
+lbl_8048E88C:
+	.asciz "course_name03.blo"
+	.skip 2
+.global lbl_8048E8A0
+lbl_8048E8A0:
+	.asciz "course_name00.bck"
+	.skip 2
+.global lbl_8048E8B4
+lbl_8048E8B4:
+	.asciz "course_name00.btk"
+	.skip 2
+.global lbl_8048E8C8
+lbl_8048E8C8:
+	.asciz "course_name00.bpk"
+	.skip 2
+.global lbl_8048E8DC
+lbl_8048E8DC:
+	.asciz "course_name01.bck"
+	.skip 2
+.global lbl_8048E8F0
+lbl_8048E8F0:
+	.asciz "course_name01.btk"
+	.skip 2
+.global lbl_8048E904
+lbl_8048E904:
+	.asciz "course_name01.bpk"
+	.skip 2
+.global lbl_8048E918
+lbl_8048E918:
+	.asciz "course_name02.bck"
+	.skip 2
+.global lbl_8048E92C
+lbl_8048E92C:
+	.asciz "course_name02.btk"
+	.skip 2
+.global lbl_8048E940
+lbl_8048E940:
+	.asciz "course_name02.bpk"
+	.skip 2
+.global lbl_8048E954
+lbl_8048E954:
+	.asciz "course_name03.bck"
+	.skip 2
+.global lbl_8048E968
+lbl_8048E968:
+	.asciz "course_name03.btk"
+	.skip 2
+.global lbl_8048E97C
+lbl_8048E97C:
+	.asciz "course_name03.bpk"
+	.skip 2
 .global lbl_8048E990
 lbl_8048E990:
-	.4byte 0x6F674F62
-	.4byte 0x6A4B616E
-	.4byte 0x7465692E
-	.4byte 0x63707000
+	.asciz "ogObjKantei.cpp"
 	.4byte 0x00303130
 	.4byte 0x315F3031
 	.4byte 0x00303131

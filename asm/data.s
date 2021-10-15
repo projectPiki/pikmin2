@@ -6626,7 +6626,7 @@ sTreTable__9JASPlayer:
 	.4byte 0x7FFF0000
 	.4byte 0x00140000
 	.4byte 0x00000014
-	.4byte lbl_80010000
+	.4byte 0x80010000
 	.4byte 0x00140000
 	.4byte 0x00000014
 	.4byte 0x7FFF000D

@@ -5225,77 +5225,45 @@ lbl_80478700:
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x53756363
-	.4byte 0x6573730A
-	.4byte 0x00000000
-	.4byte 0x4A334445
-	.4byte 0x72725479
-	.4byte 0x7065203A
-	.4byte 0x204D6174
-	.4byte 0x65726961
-	.4byte 0x6C206861
-	.4byte 0x73204E6F
-	.4byte 0x204D6174
-	.4byte 0x65726961
-	.4byte 0x6C20416E
-	.4byte 0x696D6174
-	.4byte 0x696F6E0A
-	.4byte 0x00000000
-	.4byte 0x4A334445
-	.4byte 0x72725479
-	.4byte 0x7065203A
-	.4byte 0x204D6F64
-	.4byte 0x656C2044
-	.4byte 0x61746120
-	.4byte 0x6973204C
-	.4byte 0x6F636B65
-	.4byte 0x640A0000
-	.4byte 0x4A334445
-	.4byte 0x72725479
-	.4byte 0x7065203A
-	.4byte 0x2042696E
-	.4byte 0x61727920
-	.4byte 0x5265736F
-	.4byte 0x75726365
-	.4byte 0x20697320
-	.4byte 0x4E756C6C
-	.4byte 0x0A000000
-	.4byte 0x4A334445
-	.4byte 0x72725479
-	.4byte 0x7065203A
-	.4byte 0x204F7574
-	.4byte 0x204F6620
-	.4byte 0x4D656D6F
-	.4byte 0x72790A00
-	.4byte 0x4A334445
-	.4byte 0x72725479
-	.4byte 0x7065203A
-	.4byte 0x20417267
-	.4byte 0x756D656E
-	.4byte 0x74206973
-	.4byte 0x20496E76
-	.4byte 0x616C6964
-	.4byte 0x0A000000
-	.4byte 0x4A334445
-	.4byte 0x72725479
-	.4byte 0x7065203A
-	.4byte 0x20446174
-	.4byte 0x61206973
-	.4byte 0x20496E76
-	.4byte 0x616C6964
-	.4byte 0x0A000000
-	.4byte 0x80478738
-	.4byte 0x80478744
-	.4byte 0x80478778
-	.4byte 0x8047879C
-	.4byte 0x804787C4
-	.4byte 0x804787E0
-	.4byte 0x80478804
+	.float 0.0
+.global lbl_80478738
+lbl_80478738:
+	.asciz "Success\n"
+	.skip 3
+.global lbl_80478744
+lbl_80478744:
+	.asciz "J3DErrType : Material has No Material Animation\n"
+	.skip 3
+.global lbl_80478778
+lbl_80478778:
+	.asciz "J3DErrType : Model Data is Locked\n"
+	.skip 1
+.global lbl_8047879C
+lbl_8047879C:
+	.asciz "J3DErrType : Binary Resource is Null\n"
+	.skip 2
+.global lbl_804787C4
+lbl_804787C4:
+	.asciz "J3DErrType : Out Of Memory\n"
+.global lbl_804787E0
+lbl_804787E0:
+	.asciz "J3DErrType : Argument is Invalid\n"
+	.skip 2
+.global lbl_80478804
+lbl_80478804:
+	.asciz "J3DErrType : Data is Invalid\n"
+	.skip 2
+	.4byte lbl_80478738
+	.4byte lbl_80478744
+	.4byte lbl_80478778
+	.4byte lbl_8047879C
+	.4byte lbl_804787C4
+	.4byte lbl_804787E0
+	.4byte lbl_80478804
 .global j3dDefaultTransformInfo
 j3dDefaultTransformInfo:
 	.float 1.0
@@ -5581,23 +5549,23 @@ sEnvelopeDef__9JASPlayer:
 	.4byte 0x00000000
 	.float 1.0
 	.4byte 0x00000000
-	.4byte 0x804A3D10
+	.4byte sRelTable__9JASPlayer
 	.float 1.0
 	.4byte 0x00000000
 .global sVibratoDef__9JASPlayer
 sVibratoDef__9JASPlayer:
 	.4byte 0x00000001
 	.float 0.5
-	.4byte 0x804A3D1C
-	.4byte 0x804A3D1C
+	.4byte sVibTable__9JASPlayer
+	.4byte sVibTable__9JASPlayer
 	.4byte 0x00000000
 	.float 1.0
 .global sTremoroDef__9JASPlayer
 sTremoroDef__9JASPlayer:
 	.4byte 0x00000000
 	.float 0.5
-	.4byte 0x804A3D40
-	.4byte 0x804A3D40
+	.4byte sTreTable__9JASPlayer
+	.4byte sTreTable__9JASPlayer
 	.4byte 0x00000000
 	.float 1.0
 .global Arglist
@@ -5754,10 +5722,10 @@ calc_sw_table__10JASChannel:
 	.4byte 0x00000000
 .global C5BASE_PITCHTABLE__9JASDriver
 C5BASE_PITCHTABLE__9JASDriver:
-	.4byte 0x3D000000
-	.4byte 0x3D079C41
-	.4byte 0x3D0FACE6
-	.4byte 0x3D18372E
+	.float 0.03125
+	.float 0.033108
+	.float 0.035077
+	.float 0.037162
 	.4byte 0x3D214489
 	.4byte 0x3D2ADB40
 	.4byte 0x3D3504C5
@@ -5778,7 +5746,7 @@ C5BASE_PITCHTABLE__9JASDriver:
 	.4byte 0x3DD744F6
 	.4byte 0x3DE411C3
 	.4byte 0x3DF1A198
-	.4byte 0x3E000000
+	.float 0.125
 	.4byte 0x3E079C84
 	.4byte 0x3E0FACE6
 	.4byte 0x3E1837F8
@@ -5798,7 +5766,7 @@ C5BASE_PITCHTABLE__9JASDriver:
 	.4byte 0x3EAADC0A
 	.4byte 0x3EB504E6
 	.4byte 0x3EBFC88E
-	.4byte 0x3ECB2FEC
+	.float 0.39685
 	.4byte 0x3ED744F6
 	.4byte 0x3EE411E4
 	.4byte 0x3EF1A1BA
@@ -6090,7 +6058,7 @@ DSPRES_FILTER__6JASDsp:
 	.4byte 0xB001A801
 	.4byte 0xA0019801
 	.4byte 0x90018801
-	.4byte lbl_80018800
+	.4byte 0x80018800
 	.4byte 0x90009800
 	.4byte 0xA000A800
 	.4byte 0xB000B800

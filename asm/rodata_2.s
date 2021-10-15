@@ -5575,9 +5575,8 @@ lbl_8047E794:
 	.4byte 0x4F290A00
 .global lbl_8047E7BC
 lbl_8047E7BC:
-	.4byte 0x6E6F7420
-	.4byte 0x75666F0A
-	.4byte 0x00000000
+	.asciz "not ufo\n"
+	.skip 3
 .global lbl_8047E7C8
 lbl_8047E7C8:
 	.4byte 0x82BE82DF
