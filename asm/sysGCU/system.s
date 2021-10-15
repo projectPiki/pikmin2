@@ -42,6 +42,8 @@ lbl_80499834:
 	.asciz "system/retrace"
 	.skip 1
 	.asciz "CPU LOCKED!"
+.global str_MapFileName
+str_MapFileName:
 	.asciz "/pikmin2UP.map"
 	.skip 1
 	.asciz "construct"

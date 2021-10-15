@@ -4759,19 +4759,22 @@ lbl_80483EBC:
 	.skip 3
 	.asciz "user/Kando/texCaster/arc.szs"
 	.skip 3
+.global lbl_80483EE8
+lbl_80483EE8:
 	.asciz "flower_red"
 	.skip 1
+.global lbl_80483EF4
+lbl_80483EF4:
 	.asciz "be_dama_blue_l"
 	.skip 1
-	.4byte 0x62655F64
-	.4byte 0x616D615F
-	.4byte 0x7265645F
-	.4byte 0x6C000000
-	.4byte 0x62655F64
-	.4byte 0x616D615F
-	.4byte 0x79656C6C
-	.4byte 0x6F775F6C
-	.4byte 0x00000000
+.global lbl_80483F04
+lbl_80483F04:
+	.asciz "be_dama_red_l"
+	.skip 2
+.global lbl_80483F14
+lbl_80483F14:
+	.asciz "be_dama_yellow_l"
+	.skip 3
 .global lbl_80483F28
 lbl_80483F28:
 	.4byte 0x70656C6C
@@ -7962,10 +7965,8 @@ lbl_80486D70:
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+	.asciz "EnemyParmsBase"
+	.skip 1
 	.4byte 0x82D082C1
 	.4byte 0x82AD82E8
 	.4byte 0x95D482E8
@@ -7978,28 +7979,16 @@ lbl_80486D70:
 	.4byte 0x95FA9364
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
+	.asciz "Creature::Property"
+	.skip 1
+	.asciz "friction(not used)"
+	.skip 1
+	.asciz "wallReflection"
+	.skip 1
+	.asciz "faceDirAdjust"
+	.skip 2
+	.asciz "bounceFactor"
+	.skip 3
 	.4byte 0x83898343
 	.4byte 0x837482CC
 	.4byte 0x8D8282B3
@@ -8152,19 +8141,10 @@ lbl_80486D70:
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82630000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x5774616E
-	.4byte 0x6B2F6D69
-	.4byte 0x7A755F62
-	.4byte 0x75746164
-	.4byte 0x6F6B6B75
-	.4byte 0x72695F6D
-	.4byte 0x61696E5F
-	.4byte 0x73337463
-	.4byte 0x2E627469
-	.4byte 0x00000000
+.global lbl_80487080
+lbl_80487080:
+	.asciz "/enemy/data/Wtank/mizu_butadokkuri_main_s3tc.bti"
+	.skip 3
 .global lbl_804870B4
 lbl_804870B4:
 	.4byte 0x837E8359
@@ -8176,26 +8156,20 @@ lbl_804870B4:
 	.4byte 0x83830000
 .global lbl_804870D0
 lbl_804870D0:
-	.4byte 0x54616E6B
-	.4byte 0x5061726D
-	.4byte 0x73000000
+	.asciz "TankParms"
+	.skip 2
 .global lbl_804870DC
 lbl_804870DC:
-	.4byte 0x5774616E
-	.4byte 0x6B4D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "WtankMgr.cpp"
+	.skip 3
 .global lbl_804870EC
 lbl_804870EC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804870F8
 lbl_804870F8:
-	.4byte 0x3234362D
-	.4byte 0x41726D6F
-	.4byte 0x724D6772
-	.4byte 0x00000000
+	.asciz "246-ArmorMgr"
+	.skip 3
 .global lbl_80487108
 lbl_80487108:
 	.4byte 0x8388838D
@@ -8204,10 +8178,8 @@ lbl_80487108:
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+	.asciz "EnemyParmsBase"
+	.skip 1
 	.4byte 0x94928373
 	.4byte 0x834E837E
 	.4byte 0x83930000
@@ -8396,33 +8368,20 @@ lbl_80487108:
 	.4byte 0x00000000
 .global lbl_80487418
 lbl_80487418:
-	.4byte 0x796F726F
-	.4byte 0x696D7573
-	.4byte 0x68690000
-	.4byte 0x00000000
+	.asciz "yoroimushi"
+	.skip 5
 .global lbl_80487428
 lbl_80487428:
-	.4byte 0x3234362D
-	.4byte 0x4D61724D
-	.4byte 0x67720000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x4D61722F
-	.4byte 0x66757573
-	.4byte 0x656E5F6D
-	.4byte 0x6F64656C
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x4D61722F
-	.4byte 0x66757573
-	.4byte 0x656E5F6D
-	.4byte 0x6F64656C
-	.4byte 0x2E62726B
-	.4byte 0x00000000
+	.asciz "246-MarMgr"
+	.skip 1
+.global lbl_80487434
+lbl_80487434:
+	.asciz "/enemy/data/Mar/fuusen_model.btk"
+	.skip 3
+.global lbl_80487458
+lbl_80487458:
+	.asciz "/enemy/data/Mar/fuusen_model.brk"
+	.skip 3
 .global lbl_8048747C
 lbl_8048747C:
 	.4byte 0x83748345
@@ -8432,10 +8391,8 @@ lbl_8048747C:
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+	.asciz "EnemyParmsBase"
+	.skip 1
 	.4byte 0x8AEE8F80
 	.4byte 0x94F28D73
 	.4byte 0x8D8282B3
@@ -8645,46 +8602,28 @@ lbl_8048747C:
 	.4byte 0x82630000
 .global lbl_804877E4
 lbl_804877E4:
-	.4byte 0x4D61724D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "MarMgr.cpp"
+	.skip 1
 .global lbl_804877F0
 lbl_804877F0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_80487800
 lbl_80487800:
-	.4byte 0x3234362D
-	.4byte 0x4D617253
-	.4byte 0x74617465
-	.4byte 0x00000000
-	.4byte 0x63686173
-	.4byte 0x65696E73
-	.4byte 0x69646500
-	.4byte 0x666C7966
-	.4byte 0x6C69636B
-	.4byte 0x00000000
-	.4byte 0x67726F75
-	.4byte 0x6E64666C
-	.4byte 0x69636B00
-	.4byte 0x00000000
+	.asciz "246-MarState"
+	.skip 3
+	.asciz "chaseinside"
+	.asciz "flyflick"
+	.skip 3
+	.asciz "groundflick"
+	.skip 4
 .global lbl_80487838
 lbl_80487838:
-	.4byte 0x3234362D
-	.4byte 0x5765616C
-	.4byte 0x7468794D
-	.4byte 0x67720000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x5765616C
-	.4byte 0x7468792F
-	.4byte 0x6F6F6761
-	.4byte 0x6E655F73
-	.4byte 0x3374632E
-	.4byte 0x62746900
+	.asciz "246-WealthyMgr"
+	.skip 1
+.global lbl_80487848
+lbl_80487848:
+	.asciz "/enemy/data/Wealthy/oogane_s3tc.bti"
 .global lbl_8048786C
 lbl_8048786C:
 	.4byte 0x83498349
@@ -8904,26 +8843,16 @@ lbl_8048786C:
 	.4byte 0x82630000
 .global lbl_80487BC8
 lbl_80487BC8:
-	.4byte 0x5765616C
-	.4byte 0x7468794D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "WealthyMgr.cpp"
+	.skip 1
 .global lbl_80487BD8
 lbl_80487BD8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x46617274
-	.4byte 0x2F626162
-	.4byte 0x616B6F67
-	.4byte 0x616E655F
-	.4byte 0x73337463
-	.4byte 0x2E627469
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
+.global lbl_80487BE8
+lbl_80487BE8:
+	.asciz "/enemy/data/Fart/babakogane_s3tc.bti"
+	.skip 3
 .global lbl_80487C10
 lbl_80487C10:
 	.4byte 0x836F836F
@@ -8934,40 +8863,26 @@ lbl_80487C10:
 	.4byte 0x00000000
 .global lbl_80487C28
 lbl_80487C28:
-	.4byte 0x46617274
-	.4byte 0x4D67722E
-	.4byte 0x63707000
+	.asciz "FartMgr.cpp"
 .global lbl_80487C34
 lbl_80487C34:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80487C40
 lbl_80487C40:
-	.4byte 0x6D6F7665
-	.4byte 0x73696465
-	.4byte 0x00000000
+	.asciz "moveside"
+	.skip 3
 .global lbl_80487C4C
 lbl_80487C4C:
-	.4byte 0x6D6F7665
-	.4byte 0x63656E74
-	.4byte 0x72650000
+	.asciz "movecentre"
+	.skip 1
 .global lbl_80487C58
 lbl_80487C58:
-	.4byte 0x3234362D
-	.4byte 0x51756565
-	.4byte 0x6E4D6772
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x51756565
-	.4byte 0x6E2F7175
-	.4byte 0x65656E63
-	.4byte 0x68617070
-	.4byte 0x795F6D6F
-	.4byte 0x64656C2E
-	.4byte 0x62746B00
+	.asciz "246-QueenMgr"
+	.skip 3
+.global lbl_80487C68
+lbl_80487C68:
+	.asciz "/enemy/data/Queen/queenchappy_model.btk"
 .global lbl_80487C90
 lbl_80487C90:
 	.4byte 0x834E8342
@@ -9182,39 +9097,27 @@ lbl_80487C90:
 	.4byte 0x82630000
 .global lbl_80487FD8
 lbl_80487FD8:
-	.4byte 0x51756565
-	.4byte 0x6E4D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "QueenMgr.cpp"
+	.skip 3
 .global lbl_80487FE8
 lbl_80487FE8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_80487FF8
 lbl_80487FF8:
-	.4byte 0x626F6479
-	.4byte 0x5F656E64
-	.4byte 0x00000000
+	.asciz "body_end"
+	.skip 3
 .global lbl_80488004
 lbl_80488004:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F4F
-	.4byte 0x626A536F
-	.4byte 0x756E642E
-	.4byte 0x68000000
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
 .global lbl_8048801C
 lbl_8048801C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80488028
 lbl_80488028:
-	.4byte 0x3234362D
-	.4byte 0x42616279
-	.4byte 0x4D677200
+	.asciz "246-BabyMgr"
 .global lbl_80488034
 lbl_80488034:
 	.4byte 0x83788372
@@ -9416,26 +9319,14 @@ lbl_80488330:
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x46697265
-	.4byte 0x43686170
-	.4byte 0x70792F79
-	.4byte 0x616B6963
-	.4byte 0x68617070
-	.4byte 0x792E6274
-	.4byte 0x6B000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x46697265
-	.4byte 0x43686170
-	.4byte 0x70792F79
-	.4byte 0x616B6963
-	.4byte 0x68617070
-	.4byte 0x792E6272
-	.4byte 0x6B000000
+.global lbl_80488348
+lbl_80488348:
+	.asciz "/enemy/data/FireChappy/yakichappy.btk"
+	.skip 2
+.global lbl_80488370
+lbl_80488370:
+	.asciz "/enemy/data/FireChappy/yakichappy.brk"
+	.skip 2
 .global lbl_80488398
 lbl_80488398:
 	.4byte 0x8384834C
@@ -9447,34 +9338,24 @@ lbl_80488398:
 	.4byte 0x00000000
 .global lbl_804883B4
 lbl_804883B4:
-	.4byte 0x46697265
-	.4byte 0x43686170
-	.4byte 0x70794D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
+	.asciz "FireChappyMgr.cpp"
+	.skip 2
 .global lbl_804883C8
 lbl_804883C8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_804883D8
 lbl_804883D8:
-	.4byte 0x64697361
-	.4byte 0x70706561
-	.4byte 0x72000000
+	.asciz "disappear"
+	.skip 2
 .global lbl_804883E4
 lbl_804883E4:
-	.4byte 0x73747275
-	.4byte 0x67676C65
-	.4byte 0x00000000
+	.asciz "struggle"
+	.skip 3
 .global lbl_804883F0
 lbl_804883F0:
-	.4byte 0x3234362D
-	.4byte 0x536E616B
-	.4byte 0x6543726F
-	.4byte 0x774D6772
-	.4byte 0x00000000
+	.asciz "246-SnakeCrowMgr"
+	.skip 3
 .global lbl_80488404
 lbl_80488404:
 	.4byte 0x83778372
@@ -10250,19 +10131,12 @@ lbl_80488C30:
 	.4byte 0x00000000
 .global lbl_80488FA8
 lbl_80488FA8:
-	.4byte 0x41726743
-	.4byte 0x7572736F
-	.4byte 0x72000000
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x4B6F6761
-	.4byte 0x6E652F6B
-	.4byte 0x6F67616E
-	.4byte 0x655F7333
-	.4byte 0x74632E62
-	.4byte 0x74690000
+	.asciz "ArgCursor"
+	.skip 6
+.global lbl_80488FB8
+lbl_80488FB8:
+	.asciz "/enemy/data/Kogane/kogane_s3tc.bti"
+	.skip 1
 .global lbl_80488FDC
 lbl_80488FDC:
 	.4byte 0x8352834B
@@ -10272,28 +10146,15 @@ lbl_80488FDC:
 	.4byte 0x00000000
 .global lbl_80488FF0
 lbl_80488FF0:
-	.4byte 0x4B6F6761
-	.4byte 0x6E656D75
-	.4byte 0x7368694D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "KoganemushiMgr.cpp"
+	.skip 1
 .global lbl_80489004
 lbl_80489004:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x54616E6B
-	.4byte 0x2F666972
-	.4byte 0x655F6275
-	.4byte 0x7461646F
-	.4byte 0x6B6B7572
-	.4byte 0x695F6D61
-	.4byte 0x696E5F73
-	.4byte 0x3374632E
-	.4byte 0x62746900
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80489010
+lbl_80489010:
+	.asciz "/enemy/data/Tank/fire_butadokkuri_main_s3tc.bti"
 .global lbl_80489040
 lbl_80489040:
 	.4byte 0x8375835E
@@ -10304,65 +10165,30 @@ lbl_80489040:
 	.4byte 0x83830000
 .global lbl_80489058
 lbl_80489058:
-	.4byte 0x4674616E
-	.4byte 0x6B4D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "FtankMgr.cpp"
+	.skip 3
 .global lbl_80489068
 lbl_80489068:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_80489078
 lbl_80489078:
-	.4byte 0x3234362D
-	.4byte 0x48616E61
-	.4byte 0x63686972
-	.4byte 0x61736869
-	.4byte 0x53746174
-	.4byte 0x65000000
-	.4byte 0x63686173
-	.4byte 0x65696E73
-	.4byte 0x69646500
-	.4byte 0x666C7966
-	.4byte 0x6C69636B
-	.4byte 0x00000000
-	.4byte 0x67726F75
-	.4byte 0x6E64666C
-	.4byte 0x69636B00
-	.4byte 0x00000000
+	.asciz "246-HanachirashiState"
+	.skip 2
+	.asciz "chaseinside"
+	.asciz "flyflick"
+	.skip 3
+	.asciz "groundflick"
+	.skip 4
 .global lbl_804890B8
 lbl_804890B8:
-	.4byte 0x3234362D
-	.4byte 0x48616E61
-	.4byte 0x63686972
-	.4byte 0x61736869
-	.4byte 0x4D677200
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x48616E61
-	.4byte 0x63686972
-	.4byte 0x61736869
-	.4byte 0x2F68616E
-	.4byte 0x61636869
-	.4byte 0x72617368
-	.4byte 0x695F6D6F
-	.4byte 0x64656C2E
-	.4byte 0x62746B00
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x48616E61
-	.4byte 0x63686972
-	.4byte 0x61736869
-	.4byte 0x2F68616E
-	.4byte 0x61636869
-	.4byte 0x72617368
-	.4byte 0x695F6D6F
-	.4byte 0x64656C2E
-	.4byte 0x62726B00
+	.asciz "246-HanachirashiMgr"
+.global lbl_804890CC
+lbl_804890CC:
+	.asciz "/enemy/data/Hanachirashi/hanachirashi_model.btk"
+.global lbl_804890FC
+lbl_804890FC:
+	.asciz "/enemy/data/Hanachirashi/hanachirashi_model.brk"
 .global lbl_8048912C
 lbl_8048912C:
 	.4byte 0x83748345
@@ -10373,10 +10199,8 @@ lbl_8048912C:
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+	.asciz "EnemyParmsBase"
+	.skip 1
 	.4byte 0x8AEE8F80
 	.4byte 0x94F28D73
 	.4byte 0x8D8282B3
@@ -10586,42 +10410,20 @@ lbl_8048912C:
 	.4byte 0x82630000
 .global lbl_80489498
 lbl_80489498:
-	.4byte 0x48616E61
-	.4byte 0x63686972
-	.4byte 0x61736869
-	.4byte 0x4D67722E
-	.4byte 0x63707000
+	.asciz "HanachirashiMgr.cpp"
 .global lbl_804894AC
 lbl_804894AC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804894B8
 lbl_804894B8:
-	.4byte 0x3234362D
-	.4byte 0x44616D61
-	.4byte 0x67756D6F
-	.4byte 0x4D677200
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x44616D61
-	.4byte 0x67756D6F
-	.4byte 0x2F64616D
-	.4byte 0x6167756D
-	.4byte 0x6F5F6D6F
-	.4byte 0x64656C2E
-	.4byte 0x62746B00
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x44616D61
-	.4byte 0x67756D6F
-	.4byte 0x2F64616D
-	.4byte 0x6167756D
-	.4byte 0x6F5F6D6F
-	.4byte 0x64656C2E
-	.4byte 0x62726B00
+	.asciz "246-DamagumoMgr"
+.global lbl_804894C8
+lbl_804894C8:
+	.asciz "/enemy/data/Damagumo/damagumo_model.btk"
+.global lbl_804894F0
+lbl_804894F0:
+	.asciz "/enemy/data/Damagumo/damagumo_model.brk"
 .global lbl_80489518
 lbl_80489518:
 	.4byte 0x835F837D
@@ -10901,90 +10703,63 @@ lbl_80489900:
 	.4byte lbl_804898F4
 .global lbl_80489930
 lbl_80489930:
-	.4byte 0x6C667431
-	.4byte 0x6C687431
-	.4byte 0x72667431
-	.4byte 0x72687431
+	.ascii "lft1"
+	.ascii "lht1"
+	.ascii "rft1"
+	.ascii "rht1"
 .global lbl_80489940
 lbl_80489940:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F4F
-	.4byte 0x626A536F
-	.4byte 0x756E642E
-	.4byte 0x68000000
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
 .global lbl_80489958
 lbl_80489958:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_80489968
 lbl_80489968:
-	.4byte 0x3ECCCCCD
+	.float 0.4
 	.float 0.3
-	.4byte 0x3E4CCCCD
+	.float 0.2
 	.float 0.1
 .global lbl_80489978
 lbl_80489978:
-	.4byte 0x3234362D
-	.4byte 0x44616D61
-	.4byte 0x67756D6F
-	.4byte 0x53686164
-	.4byte 0x6F770000
-	.4byte 0x7268616E
-	.4byte 0x64316A6E
-	.4byte 0x74000000
-	.4byte 0x7268616E
-	.4byte 0x64326A6E
-	.4byte 0x74000000
-	.4byte 0x7268616E
-	.4byte 0x64336A6E
-	.4byte 0x74000000
-	.4byte 0x6C68616E
-	.4byte 0x64316A6E
-	.4byte 0x74000000
-	.4byte 0x6C68616E
-	.4byte 0x64326A6E
-	.4byte 0x74000000
-	.4byte 0x6C68616E
-	.4byte 0x64336A6E
-	.4byte 0x74000000
-	.4byte 0x72666F6F
-	.4byte 0x74316A6E
-	.4byte 0x74000000
-	.4byte 0x72666F6F
-	.4byte 0x74326A6E
-	.4byte 0x74000000
-	.4byte 0x72666F6F
-	.4byte 0x74336A6E
-	.4byte 0x74000000
-	.4byte 0x6C666F6F
-	.4byte 0x74316A6E
-	.4byte 0x74000000
-	.4byte 0x6C666F6F
-	.4byte 0x74326A6E
-	.4byte 0x74000000
-	.4byte 0x6C666F6F
-	.4byte 0x74336A6E
-	.4byte 0x74000000
-	.4byte 0x00000000
+	.asciz "246-DamagumoShadow"
+	.skip 1
+	.asciz "rhand1jnt"
+	.skip 2
+	.asciz "rhand2jnt"
+	.skip 2
+	.asciz "rhand3jnt"
+	.skip 2
+	.asciz "lhand1jnt"
+	.skip 2
+	.asciz "lhand2jnt"
+	.skip 2
+	.asciz "lhand3jnt"
+	.skip 2
+	.asciz "rfoot1jnt"
+	.skip 2
+	.asciz "rfoot2jnt"
+	.skip 2
+	.asciz "rfoot3jnt"
+	.skip 2
+	.asciz "lfoot1jnt"
+	.skip 2
+	.asciz "lfoot2jnt"
+	.skip 2
+	.asciz "lfoot3jnt"
+	.skip 6
 .global lbl_80489A20
 lbl_80489A20:
-	.4byte 0x666C7966
-	.4byte 0x6C69636B
-	.4byte 0x00000000
+	.asciz "flyflick"
+	.skip 3
 .global lbl_80489A2C
 lbl_80489A2C:
-	.4byte 0x67726F75
-	.4byte 0x6E64666C
-	.4byte 0x69636B00
+	.asciz "groundflick"
 .global lbl_80489A38
 lbl_80489A38:
-	.4byte 0x3234362D
-	.4byte 0x4B757261
-	.4byte 0x67654D67
-	.4byte 0x72000000
+	.asciz "246-KurageMgr"
+	.skip 2
 .global lbl_80489A48
 lbl_80489A48:
 	.4byte 0x834E8389
@@ -11627,23 +11402,12 @@ lbl_8048A378:
 	.4byte 0x00000000
 .global lbl_8048A3B8
 lbl_8048A3B8:
-	.4byte 0x3234362D
-	.4byte 0x46697265
-	.4byte 0x4F74616B
-	.4byte 0x6172614D
-	.4byte 0x67720000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x46697265
-	.4byte 0x4F74616B
-	.4byte 0x6172612F
-	.4byte 0x6F74616B
-	.4byte 0x6172615F
-	.4byte 0x7265645F
-	.4byte 0x73337463
-	.4byte 0x2E627469
-	.4byte 0x00000000
+	.asciz "246-FireOtakaraMgr"
+	.skip 1
+.global lbl_8048A3CC
+lbl_8048A3CC:
+	.asciz "/enemy/data/FireOtakara/otakara_red_s3tc.bti"
+	.skip 3
 .global lbl_8048A3FC
 lbl_8048A3FC:
 	.4byte 0x89CE8349
@@ -11857,28 +11621,16 @@ lbl_8048A3FC:
 	.4byte 0x82630000
 .global lbl_8048A740
 lbl_8048A740:
-	.4byte 0x46697265
-	.4byte 0x4F74616B
-	.4byte 0x6172614D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "FireOtakaraMgr.cpp"
+	.skip 1
 .global lbl_8048A754
 lbl_8048A754:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x57617465
-	.4byte 0x724F7461
-	.4byte 0x6B617261
-	.4byte 0x2F6F7461
-	.4byte 0x6B617261
-	.4byte 0x5F626C75
-	.4byte 0x655F7333
-	.4byte 0x74632E62
-	.4byte 0x74690000
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8048A760
+lbl_8048A760:
+	.asciz "/enemy/data/WaterOtakara/otakara_blue_s3tc.bti"
+	.skip 1
 .global lbl_8048A790
 lbl_8048A790:
 	.4byte 0x90858349
@@ -11890,29 +11642,15 @@ lbl_8048A790:
 	.4byte 0x00000000
 .global lbl_8048A7AC
 lbl_8048A7AC:
-	.4byte 0x57617465
-	.4byte 0x724F7461
-	.4byte 0x6B617261
-	.4byte 0x4D67722E
-	.4byte 0x63707000
+	.asciz "WaterOtakaraMgr.cpp"
 .global lbl_8048A7C0
 lbl_8048A7C0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x4761734F
-	.4byte 0x74616B61
-	.4byte 0x72612F6F
-	.4byte 0x74616B61
-	.4byte 0x72615F70
-	.4byte 0x7572706C
-	.4byte 0x655F7333
-	.4byte 0x74632E62
-	.4byte 0x74690000
+	.asciz "P2Assert"
+	.skip 7
+.global lbl_8048A7D0
+lbl_8048A7D0:
+	.asciz "/enemy/data/GasOtakara/otakara_purple_s3tc.bti"
+	.skip 1
 .global lbl_8048A800
 lbl_8048A800:
 	.4byte 0x834B8358
@@ -11924,29 +11662,15 @@ lbl_8048A800:
 	.4byte 0x83830000
 .global lbl_8048A81C
 lbl_8048A81C:
-	.4byte 0x4761734F
-	.4byte 0x74616B61
-	.4byte 0x72614D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
+	.asciz "GasOtakaraMgr.cpp"
+	.skip 2
 .global lbl_8048A830
 lbl_8048A830:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x456C6563
-	.4byte 0x4F74616B
-	.4byte 0x6172612F
-	.4byte 0x6F74616B
-	.4byte 0x6172615F
-	.4byte 0x79656C6C
-	.4byte 0x6F775F73
-	.4byte 0x3374632E
-	.4byte 0x62746900
+	.asciz "P2Assert"
+	.skip 7
+.global lbl_8048A840
+lbl_8048A840:
+	.asciz "/enemy/data/ElecOtakara/otakara_yellow_s3tc.bti"
 .global lbl_8048A870
 lbl_8048A870:
 	.4byte 0x93648B43
@@ -11958,17 +11682,12 @@ lbl_8048A870:
 	.4byte 0x83830000
 .global lbl_8048A88C
 lbl_8048A88C:
-	.4byte 0x456C6563
-	.4byte 0x4F74616B
-	.4byte 0x6172614D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "ElecOtakaraMgr.cpp"
+	.skip 1
 .global lbl_8048A8A0
 lbl_8048A8A0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_8048A8B0
 lbl_8048A8B0:
 	.4byte 0x3234362D
@@ -12605,20 +12324,12 @@ lbl_8048B1F8:
 	.4byte 0x00000000
 .global lbl_8048B218
 lbl_8048B218:
-	.4byte 0x3234362D
-	.4byte 0x42696746
-	.4byte 0x6F6F744D
-	.4byte 0x67720000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x42696746
-	.4byte 0x6F6F742F
-	.4byte 0x6F6F6173
-	.4byte 0x68695F6D
-	.4byte 0x6F64656C
-	.4byte 0x2E62726B
-	.4byte 0x00000000
+	.asciz "246-BigFootMgr"
+	.skip 1
+.global lbl_8048B228
+lbl_8048B228:
+	.asciz "/enemy/data/BigFoot/ooashi_model.brk"
+	.skip 3
 .global lbl_8048B250
 lbl_8048B250:
 	.4byte 0x83498349
@@ -12626,10 +12337,8 @@ lbl_8048B250:
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+	.asciz "EnemyParmsBase"
+	.skip 1
 	.4byte 0x8378815B
 	.4byte 0x83588C57
 	.4byte 0x90940000
@@ -14749,20 +14458,14 @@ lbl_8048CE30:
 	.4byte 0x00000000
 .global lbl_8048D1B0
 lbl_8048D1B0:
-	.4byte 0x6C656166
-	.4byte 0x5F6A6F69
-	.4byte 0x6E743100
-	.4byte 0x00000000
+	.asciz "leaf_joint1"
+	.skip 4
 .global lbl_8048D1C0
 lbl_8048D1C0:
-	.4byte 0x7765616B
-	.4byte 0x5F6A6F69
-	.4byte 0x6E743100
+	.asciz "weak_joint1"
 .global lbl_8048D1CC
 lbl_8048D1CC:
-	.4byte 0x7765616B
-	.4byte 0x5F6A6F69
-	.4byte 0x6E743200
+	.asciz "weak_joint2"
 .global lbl_8048D1D8
 lbl_8048D1D8:
 	.4byte 0x836E8369
@@ -14773,158 +14476,153 @@ lbl_8048D1D8:
 	.4byte 0x83830000
 .global lbl_8048D1F0
 lbl_8048D1F0:
-	.4byte 0x6F74616B
-	.4byte 0x6172615F
-	.4byte 0x656C6563
-	.4byte 0x5F656666
-	.4byte 0x00000000
+	.asciz "otakara_elec_eff"
+	.skip 3
 .global lbl_8048D204
 lbl_8048D204:
-	.4byte 0x6F74616B
-	.4byte 0x6172615F
-	.4byte 0x66697265
-	.4byte 0x5F656666
-	.4byte 0x00000000
+	.asciz "otakara_fire_eff"
+	.skip 3
 .global lbl_8048D218
 lbl_8048D218:
-	.4byte 0x6F74616B
-	.4byte 0x6172615F
-	.4byte 0x6761735F
-	.4byte 0x65666600
+	.asciz "otakara_gas_eff"
 .global lbl_8048D228
 lbl_8048D228:
-	.4byte 0x6F74616B
-	.4byte 0x6172615F
-	.4byte 0x77617465
-	.4byte 0x725F6566
-	.4byte 0x66000000
-	.4byte 0x00000000
+	.asciz "otakara_water_eff"
+	.skip 6
 .global "cSphereShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@"
 "cSphereShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@":
-	.4byte 0x418C0000
-	.4byte 0x418C0000
-	.4byte 0x41700000
-	.4byte 0x41400000
-	.4byte 0x41200000
-	.4byte 0x40F00000
-	.4byte 0x40D00000
-	.4byte 0x418C0000
+	.float 17.5
+	.float 17.5
+	.float 15.0
+	.float 12.0
+	.float 10.0
+	.float 7.5
+	.float 6.5
+	.float 17.5
 .global "cTubeShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@"
 "cTubeShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@":
-	.4byte 0x418C0000
-	.4byte 0x41840000
-	.4byte 0x41580000
-	.4byte 0x41300000
-	.4byte 0x41100000
-	.4byte 0x40E00000
-	.4byte 0x40C00000
-	.4byte 0x40F00000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7432
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7433
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7434
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7435
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7436
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7437
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7438
-	.4byte 0x00000000
-	.4byte 0x6B757469
-	.4byte 0x6A6E7431
-	.4byte 0x00000000
+	.float 17.5
+	.float 16.5
+	.float 13.5
+	.float 11.0
+	.float 9.0
+	.float 7.0
+	.float 6.0
+	.float 7.5
+.global lbl_8048D280
+lbl_8048D280:
+	.asciz "bodyjnt2"
+	.skip 3
+.global lbl_8048D28C
+lbl_8048D28C:
+	.asciz "bodyjnt3"
+	.skip 3
+.global lbl_8048D298
+lbl_8048D298:
+	.asciz "bodyjnt4"
+	.skip 3
+.global lbl_8048D2A4
+lbl_8048D2A4:
+	.asciz "bodyjnt5"
+	.skip 3
+.global lbl_8048D2B0
+lbl_8048D2B0:
+	.asciz "bodyjnt6"
+	.skip 3
+.global lbl_8048D2BC
+lbl_8048D2BC:
+	.asciz "bodyjnt7"
+	.skip 3
+.global lbl_8048D2C8
+lbl_8048D2C8:
+	.asciz "bodyjnt8"
+	.skip 3
+.global lbl_8048D2D4
+lbl_8048D2D4:
+	.asciz "kutijnt1"
+	.skip 3
 .global lbl_8048D2E0
 lbl_8048D2E0:
-	.4byte 0x8048D280
-	.4byte 0x8048D28C
-	.4byte 0x8048D298
-	.4byte 0x8048D2A4
-	.4byte 0x8048D2B0
-	.4byte 0x8048D2BC
-	.4byte 0x8048D2C8
-	.4byte 0x8048D2D4
+	.4byte lbl_8048D280
+	.4byte lbl_8048D28C
+	.4byte lbl_8048D298
+	.4byte lbl_8048D2A4
+	.4byte lbl_8048D2B0
+	.4byte lbl_8048D2BC
+	.4byte lbl_8048D2C8
+	.4byte lbl_8048D2D4
 .global "cSphereShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"
 "cSphereShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@":
-	.4byte 0x40F00000
-	.4byte 0x40F00000
-	.4byte 0x41A00000
-	.4byte 0x41F00000
-	.4byte 0x41C80000
-	.4byte 0x418C0000
-	.4byte 0x41300000
-	.4byte 0x41000000
-	.4byte 0x41B40000
+	.float 7.5
+	.float 7.5
+	.float 20.0
+	.float 30.0
+	.float 25.0
+	.float 17.5
+	.float 11.0
+	.float 8.0
+	.float 22.5
 .global "cTubeShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"
 "cTubeShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@":
-	.4byte 0x40F00000
-	.4byte 0x40F00000
-	.4byte 0x41A00000
-	.4byte 0x41DC0000
-	.4byte 0x41B40000
-	.4byte 0x41700000
-	.4byte 0x41100000
-	.4byte 0x41000000
-	.4byte 0x41200000
-	.4byte 0x666F6F74
-	.4byte 0x5F6A6F69
-	.4byte 0x6E743100
-	.4byte 0x6C65675F
-	.4byte 0x6A6F696E
-	.4byte 0x74320000
-	.4byte 0x6C65675F
-	.4byte 0x6A6F696E
-	.4byte 0x74310000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7434
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7435
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7436
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7437
-	.4byte 0x00000000
-	.4byte 0x626F6479
-	.4byte 0x6A6E7438
-	.4byte 0x00000000
-	.4byte 0x6B757469
-	.4byte 0x6A6E7431
-	.4byte 0x00000000
+	.float 7.5
+	.float 7.5
+	.float 20.0
+	.float 27.5
+	.float 22.5
+	.float 15.0
+	.float 9.0
+	.float 8.0
+	.float 10.0
+.global lbl_8048D348
+lbl_8048D348:
+	.asciz "foot_joint1"
+.global lbl_8048D354
+lbl_8048D354:
+	.asciz "leg_joint2"
+	.skip 1
+.global lbl_8048D360
+lbl_8048D360:
+	.asciz "leg_joint1"
+	.skip 1
+.global lbl_8048D36C
+lbl_8048D36C:
+	.asciz "bodyjnt4"
+	.skip 3
+.global lbl_8048D378
+lbl_8048D378:
+	.asciz "bodyjnt5"
+	.skip 3
+.global lbl_8048D384
+lbl_8048D384:
+	.asciz "bodyjnt6"
+	.skip 3
+.global lbl_8048D390
+lbl_8048D390:
+	.asciz "bodyjnt7"
+	.skip 3
+.global lbl_8048D39C
+lbl_8048D39C:
+	.asciz "bodyjnt8"
+	.skip 3
+.global lbl_8048D3A8
+lbl_8048D3A8:
+	.asciz "kutijnt1"
+	.skip 3
 .global lbl_8048D3B4
 lbl_8048D3B4:
-	.4byte 0x8048D348
-	.4byte 0x8048D354
-	.4byte 0x8048D360
-	.4byte 0x8048D36C
-	.4byte 0x8048D378
-	.4byte 0x8048D384
-	.4byte 0x8048D390
-	.4byte 0x8048D39C
-	.4byte 0x8048D3A8
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x426F6D62
-	.4byte 0x4F74616B
-	.4byte 0x6172612F
-	.4byte 0x6F74616B
-	.4byte 0x6172615F
-	.4byte 0x626F6D62
-	.4byte 0x5F733374
-	.4byte 0x632E6274
-	.4byte 0x69000000
+	.4byte lbl_8048D348
+	.4byte lbl_8048D354
+	.4byte lbl_8048D360
+	.4byte lbl_8048D36C
+	.4byte lbl_8048D378
+	.4byte lbl_8048D384
+	.4byte lbl_8048D390
+	.4byte lbl_8048D39C
+	.4byte lbl_8048D3A8
+.global lbl_8048D3D8
+lbl_8048D3D8:
+	.asciz "/enemy/data/BombOtakara/otakara_bomb_s3tc.bti"
+	.skip 2
 .global lbl_8048D408
 lbl_8048D408:
 	.4byte 0x836F834E
@@ -14937,33 +14635,20 @@ lbl_8048D408:
 	.4byte 0x83830000
 .global lbl_8048D428
 lbl_8048D428:
-	.4byte 0x426F6D62
-	.4byte 0x4F74616B
-	.4byte 0x6172614D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "BombOtakaraMgr.cpp"
+	.skip 1
 .global lbl_8048D43C
 lbl_8048D43C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048D448
 lbl_8048D448:
-	.4byte 0x3234362D
-	.4byte 0x44616E67
-	.4byte 0x6F4D7573
-	.4byte 0x68694D67
-	.4byte 0x72000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x44616E67
-	.4byte 0x6F4D7573
-	.4byte 0x68692F64
-	.4byte 0x616E676F
-	.4byte 0x6D757368
-	.4byte 0x692E6272
-	.4byte 0x6B000000
+	.asciz "246-DangoMushiMgr"
+	.skip 2
+.global lbl_8048D45C
+lbl_8048D45C:
+	.asciz "/enemy/data/DangoMushi/dangomushi.brk"
+	.skip 2
 .global lbl_8048D484
 lbl_8048D484:
 	.4byte 0x835F8393
@@ -15174,47 +14859,28 @@ lbl_8048D484:
 	.4byte 0x82630000
 .global lbl_8048D7BC
 lbl_8048D7BC:
-	.4byte 0x44616E67
-	.4byte 0x6F4D7573
-	.4byte 0x68694D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
+	.asciz "DangoMushiMgr.cpp"
+	.skip 2
 .global lbl_8048D7D0
 lbl_8048D7D0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_8048D7E0
 lbl_8048D7E0:
-	.4byte 0x776F726C
-	.4byte 0x645F726F
-	.4byte 0x6F740000
+	.asciz "world_root"
+	.skip 1
 .global lbl_8048D7EC
 lbl_8048D7EC:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F4F
-	.4byte 0x626A536F
-	.4byte 0x756E642E
-	.4byte 0x68000000
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
 .global lbl_8048D804
 lbl_8048D804:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x4B616275
-	.4byte 0x746F2F62
-	.4byte 0x6162796B
-	.4byte 0x61627574
-	.4byte 0x6F5F6772
-	.4byte 0x65656E5F
-	.4byte 0x73337463
-	.4byte 0x2E627469
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8048D810
+lbl_8048D810:
+	.asciz "/enemy/data/Kabuto/babykabuto_green_s3tc.bti"
+	.skip 3
 .global lbl_8048D840
 lbl_8048D840:
 	.4byte 0x834F838A
@@ -15226,34 +14892,19 @@ lbl_8048D840:
 	.4byte 0x00000000
 .global lbl_8048D85C
 lbl_8048D85C:
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+	.asciz "EnemyParmsBase"
+	.skip 1
 .global lbl_8048D86C
 lbl_8048D86C:
-	.4byte 0x47726565
-	.4byte 0x6E4B6162
-	.4byte 0x75746F4D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "GreenKabutoMgr.cpp"
+	.skip 1
 .global lbl_8048D880
 lbl_8048D880:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x526B6162
-	.4byte 0x75746F2F
-	.4byte 0x62616279
-	.4byte 0x6B616275
-	.4byte 0x746F5F72
-	.4byte 0x65645F73
-	.4byte 0x3374632E
-	.4byte 0x62746900
+	.asciz "P2Assert"
+	.skip 7
+.global lbl_8048D890
+lbl_8048D890:
+	.asciz "/enemy/data/Rkabuto/babykabuto_red_s3tc.bti"
 .global lbl_8048D8BC
 lbl_8048D8BC:
 	.4byte 0x838C8362
@@ -15264,29 +14915,16 @@ lbl_8048D8BC:
 	.4byte 0x83830000
 .global lbl_8048D8D4
 lbl_8048D8D4:
-	.4byte 0x5265644B
-	.4byte 0x61627574
-	.4byte 0x6F4D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "RedKabutoMgr.cpp"
+	.skip 3
 .global lbl_8048D8E8
 lbl_8048D8E8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x4B616275
-	.4byte 0x746F2F62
-	.4byte 0x6162796B
-	.4byte 0x61627574
-	.4byte 0x6F5F6772
-	.4byte 0x65656E5F
-	.4byte 0x73337463
-	.4byte 0x2E627469
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
+.global lbl_8048D8F8
+lbl_8048D8F8:
+	.asciz "/enemy/data/Kabuto/babykabuto_green_s3tc.bti"
+	.skip 3
 .global lbl_8048D928
 lbl_8048D928:
 	.4byte 0x8CC592E8
@@ -15297,24 +14935,16 @@ lbl_8048D928:
 	.4byte 0x00000000
 .global lbl_8048D940
 lbl_8048D940:
-	.4byte 0x4669784B
-	.4byte 0x61627574
-	.4byte 0x6F4D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "FixKabutoMgr.cpp"
+	.skip 3
 .global lbl_8048D954
 lbl_8048D954:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048D960
 lbl_8048D960:
-	.4byte 0x3234362D
-	.4byte 0x4E6F726D
-	.4byte 0x4D696E69
-	.4byte 0x486F7564
-	.4byte 0x61694D67
-	.4byte 0x72000000
+	.asciz "246-NormMiniHoudaiMgr"
+	.skip 2
 .global lbl_8048D978
 lbl_8048D978:
 	.4byte 0x836D815B
