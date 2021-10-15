@@ -36,6 +36,7 @@ This list is not absolute and may become outdated as the project progresses. In 
 - sysGCU/controller.cpp
 - sysGCU/simpleMessage.cpp
 - sysGCU/rootMenuSection.cpp
+- sysGCU/dvdErrorMessage.cpp
 - sysCommonU/id32.cpp
 - sysCommonU/tagparams.cpp
 - plugProjectKandoU/gameSoundEvent.cpp
@@ -47,6 +48,7 @@ This list is not absolute and may become outdated as the project progresses. In 
 - sysGCU/THPDraw.c
 - sysGCU/system.cpp
 - sysGCU/sysTemplates.cpp
+- sysGCU/messageReference.cpp
 - sysGCU/pikmin2MemoryCardMgr.cpp
 - sysCommonU/node.cpp
 - sysCommonU/sysMath.cpp
