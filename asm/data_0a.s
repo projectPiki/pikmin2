@@ -12136,10 +12136,10 @@ lbl_804C0A40:
 	.4byte 0x00000000
 .global "sDirName__28@unnamed@singleGS_Zukan_cpp@"
 "sDirName__28@unnamed@singleGS_Zukan_cpp@":
-	.4byte 0x80482E7C
-	.4byte 0x8051A100
-	.4byte 0x80482E88
-	.4byte 0x8051A108
+	.4byte lbl_80482E7C
+	.4byte lbl_8051A100
+	.4byte lbl_80482E88
+	.4byte lbl_8051A108
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdloadA__Q34Game10SingleGame10ZukanStateFv
@@ -38887,46 +38887,46 @@ lbl_804D8B0C:
 	.4byte lbl_80317FD8
 .global CourseNumToSZS__Q22og9newScreen
 CourseNumToSZS__Q22og9newScreen:
-	.4byte 0x8048E7F0
-	.4byte 0x8048E808
-	.4byte 0x8048E820
-	.4byte 0x8048E838
+	.4byte lbl_8048E7F0
+	.4byte lbl_8048E808
+	.4byte lbl_8048E820
+	.4byte lbl_8048E838
 .global bloFileNameCourse__Q22og9newScreen
 bloFileNameCourse__Q22og9newScreen:
-	.4byte 0x8048E850
-	.4byte 0x8048E864
-	.4byte 0x8048E878
-	.4byte 0x8048E88C
+	.4byte lbl_8048E850
+	.4byte lbl_8048E864
+	.4byte lbl_8048E878
+	.4byte lbl_8048E88C
 .global animFile_Course00__Q22og9newScreen
 animFile_Course00__Q22og9newScreen:
-	.4byte 0x8048E8A0
-	.4byte 0x8048E8B4
-	.4byte 0x8048E8C8
-	.4byte 0x00000000
+	.4byte lbl_8048E8A0
+	.4byte lbl_8048E8B4
+	.4byte lbl_8048E8C8
+	.4byte 0
 .global animFile_Course01__Q22og9newScreen
 animFile_Course01__Q22og9newScreen:
-	.4byte 0x8048E8DC
-	.4byte 0x8048E8F0
-	.4byte 0x8048E904
-	.4byte 0x00000000
+	.4byte lbl_8048E8DC
+	.4byte lbl_8048E8F0
+	.4byte lbl_8048E904
+	.4byte 0
 .global animFile_Course02__Q22og9newScreen
 animFile_Course02__Q22og9newScreen:
-	.4byte 0x8048E918
-	.4byte 0x8048E92C
-	.4byte 0x8048E940
-	.4byte 0x00000000
+	.4byte lbl_8048E918
+	.4byte lbl_8048E92C
+	.4byte lbl_8048E940
+	.4byte 0
 .global animFile_Course03__Q22og9newScreen
 animFile_Course03__Q22og9newScreen:
-	.4byte 0x8048E954
-	.4byte 0x8048E968
-	.4byte 0x8048E97C
-	.4byte 0x00000000
+	.4byte lbl_8048E954
+	.4byte lbl_8048E968
+	.4byte lbl_8048E97C
+	.4byte 0
 .global animFileTableCourse__Q22og9newScreen
 animFileTableCourse__Q22og9newScreen:
-	.4byte 0x804D8B48
-	.4byte 0x804D8B58
-	.4byte 0x804D8B68
-	.4byte 0x804D8B78
+	.4byte animFile_Course00__Q22og9newScreen
+	.4byte animFile_Course01__Q22og9newScreen
+	.4byte animFile_Course02__Q22og9newScreen
+	.4byte animFile_Course03__Q22og9newScreen
 .global __vt__Q32og9newScreen10CourseName
 __vt__Q32og9newScreen10CourseName:
 	.4byte 0
