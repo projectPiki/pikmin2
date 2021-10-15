@@ -12914,18 +12914,18 @@ lbl_804C1470:
 	.4byte 0x00000000
 .global "tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"
 "tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@":
-	.4byte 0x80483AE8
-	.4byte 0x80483AF8
-	.4byte 0x80483B08
-	.4byte 0x80483B18
-	.4byte 0x80483B28
-	.4byte 0x80483B38
-	.4byte 0x80483B48
-	.4byte 0x80483C00
-	.4byte 0x80483B70
-	.4byte 0x80483B80
-	.4byte 0x80483C18
-	.4byte 0x80483B90
+	.4byte lbl_80483AE8
+	.4byte lbl_80483AF8
+	.4byte lbl_80483B08
+	.4byte lbl_80483B18
+	.4byte lbl_80483B28
+	.4byte lbl_80483B38
+	.4byte lbl_80483B48
+	.4byte lbl_80483C00
+	.4byte lbl_80483B70
+	.4byte lbl_80483B80
+	.4byte lbl_80483C18
+	.4byte lbl_80483B90
 .global lbl_804C14AC
 lbl_804C14AC:
 	.4byte lbl_80237714

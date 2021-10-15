@@ -4528,375 +4528,241 @@ lbl_80483A1C:
 	.4byte 0x00000000
 .global lbl_80483A28
 lbl_80483A28:
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x696E6465
-	.4byte 0x78205B25
-	.4byte 0x645D205B
-	.4byte 0x302E2E25
-	.4byte 0x64290A00
-	.4byte 0x00000000
+	.asciz "illegal index [%d] [0..%d)\n"
+	.skip 4
 .global lbl_80483A48
 lbl_80483A48:
-	.4byte 0x67616D65
-	.4byte 0x54656B69
-	.4byte 0x53746174
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "gameTekiStat.cpp"
+	.skip 3
 .global lbl_80483A5C
 lbl_80483A5C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483A68
 lbl_80483A68:
-	.4byte 0x67616D65
-	.4byte 0x48696768
-	.4byte 0x73636F72
-	.4byte 0x652E6370
-	.4byte 0x70000000
+	.asciz "gameHighscore.cpp"
+	.skip 2
 .global lbl_80483A7C
 lbl_80483A7C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483A88
 lbl_80483A88:
-	.4byte 0x67616D65
-	.4byte 0x506C6179
-	.4byte 0x436F6D6D
-	.4byte 0x6F6E4461
-	.4byte 0x74612E63
-	.4byte 0x70700000
+	.asciz "gamePlayCommonData.cpp"
+	.skip 1
 .global lbl_80483AA0
 lbl_80483AA0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 7
 .global lbl_80483AB0
 lbl_80483AB0:
-	.4byte 0x67616D65
-	.4byte 0x4368616C
-	.4byte 0x6C656E67
-	.4byte 0x6532442E
-	.4byte 0x63707000
+	.asciz "gameChallenge2D.cpp"
 .global lbl_80483AC4
 lbl_80483AC4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483AD0
 lbl_80483AD0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x76734361
-	.4byte 0x72644D67
-	.4byte 0x72000000
-	.4byte 0x70696B6D
-	.4byte 0x696E5F35
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x70696B6D
-	.4byte 0x696E5F31
-	.4byte 0x302E6274
-	.4byte 0x69000000
-	.4byte 0x616C6C5F
-	.4byte 0x666C6F77
-	.4byte 0x65722E62
-	.4byte 0x74690000
-	.4byte 0x70696B6D
-	.4byte 0x696E5F78
-	.4byte 0x6C752E62
-	.4byte 0x74690000
-	.4byte 0x646F7065
-	.4byte 0x5F626C61
-	.4byte 0x636B2E62
-	.4byte 0x74690000
-	.4byte 0x646F7065
-	.4byte 0x5F726564
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x72657365
-	.4byte 0x745F6265
-	.4byte 0x64616D61
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x74656B69
-	.4byte 0x5F68616E
-	.4byte 0x61636869
-	.4byte 0x72617368
-	.4byte 0x69000000
-	.4byte 0x74656B69
-	.4byte 0x5F736172
-	.4byte 0x61692E62
-	.4byte 0x74690000
-	.4byte 0x74656B69
-	.4byte 0x5F726F63
-	.4byte 0x6B2E6274
-	.4byte 0x69000000
-	.4byte 0x74656B69
-	.4byte 0x5F74616E
-	.4byte 0x6B2E6274
-	.4byte 0x69000000
+	.skip 0xC
+	.asciz "vsCardMgr"
+	.skip 2
+.global lbl_80483AE8
+lbl_80483AE8:
+	.asciz "pikmin_5.bti"
+	.skip 3
+.global lbl_80483AF8
+lbl_80483AF8:
+	.asciz "pikmin_10.bti"
+	.skip 2
+.global lbl_80483B08
+lbl_80483B08:
+	.asciz "all_flower.bti"
+	.skip 1
+.global lbl_80483B18
+lbl_80483B18:
+	.asciz "pikmin_xlu.bti"
+	.skip 1
+.global lbl_80483B28
+lbl_80483B28:
+	.asciz "dope_black.bti"
+	.skip 1
+.global lbl_80483B38
+lbl_80483B38:
+	.asciz "dope_red.bti"
+	.skip 3
+.global lbl_80483B48
+lbl_80483B48:
+	.asciz "reset_bedama.bti"
+	.skip 3
+.global lbl_80483B5C
+lbl_80483B5C:
+	.asciz "teki_hanachirashi"
+	.skip 2
+.global lbl_80483B70
+lbl_80483B70:
+	.asciz "teki_sarai.bti"
+	.skip 1
+.global lbl_80483B80
+lbl_80483B80:
+	.asciz "teki_rock.bti"
+	.skip 2
+.global lbl_80483B90
+lbl_80483B90:
+	.asciz "teki_tank.bti"
+	.skip 2
 .global "cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"
 "cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@":
-	.4byte 0x80483AE8
+	.4byte lbl_80483AE8
 	.4byte 0x00000001
-	.4byte 0x80483AF8
+	.4byte lbl_80483AF8
 	.4byte 0x00000001
-	.4byte 0x80483B08
+	.4byte lbl_80483B08
 	.4byte 0x00000001
-	.4byte 0x80483B18
+	.4byte lbl_80483B18
 	.4byte 0x00000001
-	.4byte 0x80483B28
+	.4byte lbl_80483B28
 	.4byte 0x00000001
-	.4byte 0x80483B38
+	.4byte lbl_80483B38
 	.4byte 0x00000001
-	.4byte 0x80483B48
+	.4byte lbl_80483B48
 	.4byte 0x00000001
-	.4byte 0x80483B5C
+	.4byte lbl_80483B5C
 	.4byte 0x00000001
-	.4byte 0x80483B70
+	.4byte lbl_80483B70
 	.4byte 0x00000001
-	.4byte 0x80483B80
+	.4byte lbl_80483B80
 	.4byte 0x00000001
-	.4byte 0x80483B90
+	.4byte lbl_80483B90
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x74656B69
-	.4byte 0x5F68616E
-	.4byte 0x61636869
-	.4byte 0x72617368
-	.4byte 0x692E6274
-	.4byte 0x69000000
-	.4byte 0x74656B69
-	.4byte 0x5F626F6D
-	.4byte 0x626F7461
-	.4byte 0x6B617261
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F76
-	.4byte 0x73746578
-	.4byte 0x2F617263
-	.4byte 0x2E737A73
-	.4byte 0x00000000
+.global lbl_80483C00
+lbl_80483C00:
+	.asciz "teki_hanachirashi.bti"
+	.skip 2
+.global lbl_80483C18
+lbl_80483C18:
+	.asciz "teki_bombotakara.bti"
+	.skip 3
+	.asciz "user/Kando/vstex/arc.szs"
+	.skip 3
 .global lbl_80483C4C
 lbl_80483C4C:
-	.4byte 0x76734361
-	.4byte 0x72644D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
-	.4byte 0x76737465
-	.4byte 0x782F6172
-	.4byte 0x632E737A
-	.4byte 0x73206E6F
-	.4byte 0x7420666F
-	.4byte 0x756E6420
-	.4byte 0x210A0000
-	.4byte 0x2573206E
-	.4byte 0x6F742066
-	.4byte 0x6F756E64
-	.4byte 0x20210A00
-	.4byte 0x70726573
-	.4byte 0x735F792E
-	.4byte 0x62746900
-	.4byte 0x6C616D70
-	.4byte 0x5F6F6E2E
-	.4byte 0x62746900
-	.4byte 0x6C616D70
-	.4byte 0x5F6F6666
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "vsCardMgr.cpp"
+	.skip 2
+	.asciz "vstex/arc.szs not found !\n"
+	.skip 1
+	.asciz "%s not found !\n"
+	.asciz "press_y.bti"
+	.asciz "lamp_on.bti"
+	.asciz "lamp_off.bti"
+	.skip 3
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483CBC
 lbl_80483CBC:
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x436F6C6F
-	.4byte 0x72436F6C
-	.4byte 0x6F720000
+	.asciz "ArgScaleColorColor"
+	.skip 1
 .global lbl_80483CD0
 lbl_80483CD0:
-	.4byte 0x61637452
-	.4byte 0x65736375
-	.4byte 0x65000000
+	.asciz "actRescue"
+	.skip 2
 .global lbl_80483CDC
 lbl_80483CDC:
-	.4byte 0x61695265
-	.4byte 0x73637565
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "aiRescue.cpp"
+	.skip 3
 .global lbl_80483CEC
 lbl_80483CEC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x7268616E
-	.4byte 0x646A6E74
-	.4byte 0x00000000
-	.4byte 0x41707072
-	.4byte 0x6F616368
-	.4byte 0x506F7341
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "rhandjnt"
+	.skip 3
+	.asciz "ApproachPosActionArg"
+	.skip 3
+	.asciz "ActionArg"
+	.skip 2
 .global lbl_80483D28
 lbl_80483D28:
-	.4byte 0x64726374
-	.4byte 0x2D706F73
-	.4byte 0x74000000
+	.asciz "drct-post"
+	.skip 2
 .global lbl_80483D34
 lbl_80483D34:
-	.4byte 0x70617274
-	.4byte 0x2D647261
-	.4byte 0x77000000
+	.asciz "part-draw"
+	.skip 2
 .global lbl_80483D40
 lbl_80483D40:
-	.4byte 0x64726177
-	.4byte 0x5F63616C
-	.4byte 0x63000000
-	.4byte 0x00000000
+	.asciz "draw_calc"
+	.skip 6
 .global lbl_80483D50
 lbl_80483D50:
-	.4byte 0x73696E67
-	.4byte 0x6C654753
-	.4byte 0x5F4C6F61
-	.4byte 0x642E6370
-	.4byte 0x70000000
+	.asciz "singleGS_Load.cpp"
+	.skip 2
 .global lbl_80483D64
 lbl_80483D64:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483D70
 lbl_80483D70:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x73696E67
-	.4byte 0x6C654753
-	.4byte 0x5F446179
-	.4byte 0x456E6400
+	.skip 0xC
+	.asciz "singleGS_DayEnd"
 .global lbl_80483D8C
 lbl_80483D8C:
-	.4byte 0x73696E67
-	.4byte 0x6C654753
-	.4byte 0x5F446179
-	.4byte 0x456E642E
-	.4byte 0x63707000
+	.asciz "singleGS_DayEnd.cpp"
 .global lbl_80483DA0
 lbl_80483DA0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483DAC
 lbl_80483DAC:
-	.4byte 0x7330315F
-	.4byte 0x64617965
-	.4byte 0x6E640000
-	.4byte 0x6E6F2061
-	.4byte 0x6C697665
-	.4byte 0x3A733031
-	.4byte 0x5F646179
-	.4byte 0x656E6400
-	.4byte 0x7330365F
-	.4byte 0x64617965
-	.4byte 0x6E645F70
-	.4byte 0x696B6D69
-	.4byte 0x6E7A6572
-	.4byte 0x6F000000
-	.4byte 0x7330365F
-	.4byte 0x64617965
-	.4byte 0x6E640000
-	.4byte 0x7330345F
-	.4byte 0x64617965
-	.4byte 0x6E645F6F
-	.4byte 0x72696D61
-	.4byte 0x646F776E
-	.4byte 0x00000000
-	.4byte 0x7330345F
-	.4byte 0x64617965
-	.4byte 0x6E640000
-	.4byte 0x64617965
-	.4byte 0x6E642D63
-	.4byte 0x61636865
-	.4byte 0x00000000
-	.4byte 0x6E6F2061
-	.4byte 0x6C697665
-	.4byte 0x206E6176
-	.4byte 0x69000000
+	.asciz "s01_dayend"
+	.skip 1
+	.asciz "no alive:s01_dayend"
+	.asciz "s06_dayend_pikminzero"
+	.skip 2
+	.asciz "s06_dayend"
+	.skip 1
+	.asciz "s04_dayend_orimadown"
+	.skip 3
+	.asciz "s04_dayend"
+	.skip 1
+	.asciz "dayend-cache"
+	.skip 3
+	.asciz "no alive navi"
+	.skip 2
 .global lbl_80483E34
 lbl_80483E34:
-	.4byte 0x7332315F
-	.4byte 0x64617965
-	.4byte 0x6E645F74
-	.4byte 0x616B656F
-	.4byte 0x66660000
+	.asciz "s21_dayend_takeoff"
+	.skip 1
 .global lbl_80483E48
 lbl_80483E48:
-	.4byte 0x64617965
-	.4byte 0x6E643B63
-	.4byte 0x6C6E0000
-	.4byte 0x50696B69
-	.4byte 0x496E6974
-	.4byte 0x41726700
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x50696B69
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x00000000
+	.asciz "dayend;cln"
+	.skip 1
+	.asciz "PikiInitArg"
+	.asciz "CreatureActionArg"
+	.skip 2
+	.asciz "ActionArg"
+	.skip 2
+	.asciz "PikiKillArg"
+	.asciz "CreatureKillArg"
+	.skip 4
 .global lbl_80483EA0
 lbl_80483EA0:
-	.4byte 0x74657843
-	.4byte 0x61737465
-	.4byte 0x72000000
+	.asciz "texCaster"
+	.skip 2
 .global lbl_80483EAC
 lbl_80483EAC:
-	.4byte 0x74657843
-	.4byte 0x61737465
-	.4byte 0x722E6370
-	.4byte 0x70000000
+	.asciz "texCaster.cpp"
+	.skip 2
 .global lbl_80483EBC
 lbl_80483EBC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F74
-	.4byte 0x65784361
-	.4byte 0x73746572
-	.4byte 0x2F617263
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x666C6F77
-	.4byte 0x65725F72
-	.4byte 0x65640000
-	.4byte 0x62655F64
-	.4byte 0x616D615F
-	.4byte 0x626C7565
-	.4byte 0x5F6C0000
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "user/Kando/texCaster/arc.szs"
+	.skip 3
+	.asciz "flower_red"
+	.skip 1
+	.asciz "be_dama_blue_l"
+	.skip 1
 	.4byte 0x62655F64
 	.4byte 0x616D615F
 	.4byte 0x7265645F

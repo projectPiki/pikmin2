@@ -1373,101 +1373,58 @@ lbl_8047A70C:
 	.4byte 0x00000000
 .global lbl_8047AA20
 lbl_8047AA20:
-	.4byte 0x77697468
-	.4byte 0x65725F62
-	.4byte 0x69670000
-	.4byte 0x77697468
-	.4byte 0x65725F4D
-	.4byte 0x6964646C
-	.4byte 0x65000000
-	.4byte 0x77697468
-	.4byte 0x65725F53
-	.4byte 0x6D616C6C
-	.4byte 0x00000000
-	.4byte 0x77616974
-	.4byte 0x5F736D61
-	.4byte 0x6C6C0000
-	.4byte 0x77616974
-	.4byte 0x5F6D6964
-	.4byte 0x646C6500
-	.4byte 0x77616974
-	.4byte 0x5F626967
-	.4byte 0x00000000
+	.asciz "wither_big"
+	.skip 1
+	.asciz "wither_Middle"
+	.skip 2
+	.asciz "wither_Small"
+	.skip 3
+	.asciz "wait_small"
+	.skip 1
+	.asciz "wait_middle"
+	.asciz "wait_big"
+	.skip 3
 .global lbl_8047AA70
 lbl_8047AA70:
-	.4byte 0x656E656D
-	.4byte 0x79426173
-	.4byte 0x65000000
+	.asciz "enemyBase"
+	.skip 2
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x8383836D
 	.4byte 0x815B8368
 	.4byte 0x00000000
-	.4byte 0x47656E65
-	.4byte 0x72616C45
-	.4byte 0x6E656D79
-	.4byte 0x4D677200
+	.asciz "GeneralEnemyMgr"
 	.4byte 0x9347837D
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x656E656D
-	.4byte 0x79486561
-	.4byte 0x70000000
+	.asciz "enemyHeap"
+	.skip 2
 .global lbl_8047AABC
 lbl_8047AABC:
-	.4byte 0x67656E65
-	.4byte 0x72616C45
-	.4byte 0x6E656D79
-	.4byte 0x4D67722E
-	.4byte 0x63707000
+	.asciz "generalEnemyMgr.cpp"
 .global lbl_8047AAD0
 lbl_8047AAD0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F70
-	.4byte 0x61726D2F
-	.4byte 0x656E656D
-	.4byte 0x79506172
-	.4byte 0x6D732E73
-	.4byte 0x7A730000
-	.4byte 0x616C6C6F
-	.4byte 0x63617465
-	.4byte 0x456E656D
-	.4byte 0x79730000
-	.4byte 0x456E656D
-	.4byte 0x794B696C
-	.4byte 0x6C417267
-	.4byte 0x00000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "/enemy/parm/enemyParms.szs"
+	.skip 1
+	.asciz "allocateEnemys"
+	.skip 1
+	.asciz "EnemyKillArg"
+	.skip 3
+	.asciz "CreatureKillArg"
 .global lbl_8047AB28
 lbl_8047AB28:
-	.4byte 0x5475726E
-	.4byte 0x546F486F
-	.4byte 0x6D650000
-	.4byte 0x00000000
+	.asciz "TurnToHome"
+	.skip 5
 .global lbl_8047AB38
 lbl_8047AB38:
-	.4byte 0x6B6F6368
-	.4byte 0x61707079
-	.4byte 0x4D677200
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x4B6F6368
-	.4byte 0x61707079
-	.4byte 0x2F6B6F63
-	.4byte 0x68617070
-	.4byte 0x795F626F
-	.4byte 0x64795F73
-	.4byte 0x3374632E
-	.4byte 0x312E6274
-	.4byte 0x69000000
+	.asciz "kochappyMgr"
+.global lbl_8047AB44
+lbl_8047AB44:
+	.asciz "/enemy/data/Kochappy/kochappy_body_s3tc.1.bti"
+	.skip 2
 .global lbl_8047AB74
 lbl_8047AB74:
 	.4byte 0x90D48352
@@ -1477,10 +1434,8 @@ lbl_8047AB74:
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+	.asciz "EnemyParmsBase"
+	.skip 1
 	.4byte 0x82DA82F1
 	.4byte 0x82E282E8
 	.4byte 0x8E9E8AD4
@@ -1493,28 +1448,16 @@ lbl_8047AB74:
 	.4byte 0x8F4997B9
 	.4byte 0x8A709378
 	.4byte 0x00000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
+	.asciz "Creature::Property"
+	.skip 1
+	.asciz "friction(not used)"
+	.skip 1
+	.asciz "wallReflection"
+	.skip 1
+	.asciz "faceDirAdjust"
+	.skip 2
+	.asciz "bounceFactor"
+	.skip 3
 	.4byte 0x83898343
 	.4byte 0x837482CC
 	.4byte 0x8D8282B3
@@ -1669,52 +1612,32 @@ lbl_8047AB74:
 	.4byte 0x82630000
 .global lbl_8047AE88
 lbl_8047AE88:
-	.4byte 0x74656B69
-	.4byte 0x2D737263
-	.4byte 0x68000000
+	.asciz "teki-srch"
+	.skip 2
 .global lbl_8047AE94
 lbl_8047AE94:
-	.4byte 0x6732425F
-	.4byte 0x77686974
-	.4byte 0x655F706F
-	.4byte 0x69736F6E
-	.4byte 0x00000000
+	.asciz "g2B_white_poison"
+	.skip 3
 .global lbl_8047AEA8
 lbl_8047AEA8:
-	.4byte 0x53746174
-	.4byte 0x65436175
-	.4byte 0x74696F6E
-	.4byte 0x42617365
-	.4byte 0x00000000
+	.asciz "StateCautionBase"
+	.skip 3
 .global lbl_8047AEBC
 lbl_8047AEBC:
-	.4byte 0x5475726E
-	.4byte 0x546F486F
-	.4byte 0x6D650000
+	.asciz "TurnToHome"
+	.skip 1
 .global lbl_8047AEC8
 lbl_8047AEC8:
-	.4byte 0x63686170
-	.4byte 0x70794D67
-	.4byte 0x72000000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x43686170
-	.4byte 0x70792F6D
-	.4byte 0x6F796F75
-	.4byte 0x5F353635
-	.4byte 0x2E312E62
-	.4byte 0x74690000
-	.4byte 0x2F656E65
-	.4byte 0x6D792F64
-	.4byte 0x6174612F
-	.4byte 0x43686170
-	.4byte 0x70792F73
-	.4byte 0x77616C6C
-	.4byte 0x6F775F35
-	.4byte 0x36352E31
-	.4byte 0x2E627469
-	.4byte 0x00000000
+	.asciz "chappyMgr"
+	.skip 2
+.global lbl_8047AED4
+lbl_8047AED4:
+	.asciz "/enemy/data/Chappy/moyou_565.1.bti"
+	.skip 1
+.global lbl_8047AEF8
+lbl_8047AEF8:
+	.asciz "/enemy/data/Chappy/swallow_565.1.bti"
+	.skip 3
 .global lbl_8047AF20
 lbl_8047AF20:
 	.4byte 0x90D48360

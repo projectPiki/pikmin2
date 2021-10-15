@@ -272,13 +272,13 @@ initDataFileName__18JAIGlobalParameter:
 	.4byte lbl_80479688
 .global wavePath__18JAIGlobalParameter
 wavePath__18JAIGlobalParameter:
-	.4byte 0x80516F28
+	.4byte lbl_80516F28
 .global sequenceArchivesPath__18JAIGlobalParameter
 sequenceArchivesPath__18JAIGlobalParameter:
-	.4byte 0x80516F30
+	.4byte lbl_80516F30
 .global streamPath__18JAIGlobalParameter
 streamPath__18JAIGlobalParameter:
-	.4byte 0x80516F38
+	.4byte lbl_80516F38
 .global audioResPath__18JAIGlobalParameter
 audioResPath__18JAIGlobalParameter:
 	.4byte lbl_80479694
@@ -411,7 +411,7 @@ SendCount:
 	.4byte 0x00000000
 .global __VIVersion
 __VIVersion:
-	.4byte 0x804A72B0
+	.4byte lbl_804A72B0
 .global lbl_805148EC
 lbl_805148EC:
 	.4byte 0x76692E63
@@ -419,15 +419,15 @@ lbl_805148EC:
 	.4byte 0x00000000
 .global __ARVersion
 __ARVersion:
-	.4byte 0x804A7680
+	.4byte lbl_804A7680
 	.4byte 0
 .global __ARQVersion
 __ARQVersion:
-	.4byte 0x804A76C8
+	.4byte lbl_804A76C8
 	.4byte 0
 .global __CARDVersion
 __CARDVersion:
-	.4byte 0x804A7710
+	.4byte lbl_804A7710
 	.4byte 0
 .global next_1
 next_1:
@@ -456,7 +456,7 @@ lbl_80514930:
 	.4byte 0x732E6300
 .global __DVDVersion
 __DVDVersion:
-	.4byte 0x804A7C98
+	.4byte lbl_804A7C98
 .global autoInvalidation
 autoInvalidation:
 	.4byte 0x00000001
@@ -482,11 +482,11 @@ lbl_80514958:
 	.4byte 0x00000000
 .global __EXIVersion
 __EXIVersion:
-	.4byte 0x804A7ED0
+	.4byte lbl_804A7ED0
 	.4byte 0
 .global __GXVersion
 __GXVersion:
-	.4byte 0x804A8060
+	.4byte lbl_804A8060
 	.4byte 0
 .global tbl1$263
 tbl1$263:
@@ -568,7 +568,7 @@ SwitchThreadCallback:
 	.4byte 0x00000000
 .global __PADVersion
 __PADVersion:
-	.4byte 0x804A9E60
+	.4byte lbl_804A9E60
 .global ResettingChan
 ResettingChan:
 	.4byte 0x00000020
@@ -592,30 +592,30 @@ CmdCalibrate:
 	.4byte 0x42000000
 .global __SIVersion
 __SIVersion:
-	.4byte 0x804A9EB8
+	.4byte lbl_804A9EB8
 	.4byte 0
 .global __AIVersion
 __AIVersion:
-	.4byte 0x804AA068
+	.4byte AI_VERSION_STRING
 	.4byte 0
 .global __THPVersion
 __THPVersion:
-	.4byte 0x804AA0B0
+	.4byte THP_VERSION_STRING
 	.4byte 0
 .global __GBAVersion
 __GBAVersion:
-	.4byte 0x804AA0F8
+	.4byte GBA_VERSION_STRING
 	.4byte 0
 .global "cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@"
 "cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@":
-	.4byte 0x8047AB44
+	.4byte lbl_8047AB44
 	.4byte 0
 .global "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"
 "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@":
-	.4byte 0x8047AED4
+	.4byte lbl_8047AED4
 .global "cChappyChangeTexName1__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"
 "cChappyChangeTexName1__Q34Game6Chappy23@unnamed@chappyMgr_cpp@":
-	.4byte 0x8047AEF8
+	.4byte lbl_8047AEF8
 .global gEnemyInfoNum__4Game
 gEnemyInfoNum__4Game:
 	.4byte 100
@@ -661,7 +661,7 @@ sOptResolveColl__Q24Game11CellPyramid:
 	.4byte 0x02000000
 .global sCellBugName__Q24Game11CellPyramid
 sCellBugName__Q24Game11CellPyramid:
-	.4byte 0x80518640
+	.4byte lbl_80518640
 .global sFromTekiEnable__Q24Game6Pellet
 sFromTekiEnable__Q24Game6Pellet:
 	.4byte 0x01000000

@@ -826,23 +826,7 @@ lbl_804A726C:
 	.4byte lbl_800CC0DC
 .global lbl_804A72B0
 lbl_804A72B0:
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20564909
-	.4byte 0x72656C65
-	.4byte 0x61736520
-	.4byte 0x6275696C
-	.4byte 0x643A2041
-	.4byte 0x70722031
-	.4byte 0x37203230
-	.4byte 0x30332031
-	.4byte 0x323A3333
-	.4byte 0x3A323220
-	.4byte 0x28307832
-	.4byte 0x33303129
-	.4byte 0x203E3E00
+	.asciz "<< Dolphin SDK - VI\trelease build: Apr 17 2003 12:33:22 (0x2301) >>"
 .global timing
 timing:
 	.4byte 0x060000F0
@@ -1078,60 +1062,18 @@ lbl_804A7664:
 	.4byte lbl_800D2364
 	.4byte lbl_800D236C
 	.4byte lbl_800D235C
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20415209
-	.4byte 0x72656C65
-	.4byte 0x61736520
-	.4byte 0x6275696C
-	.4byte 0x643A204E
-	.4byte 0x6F762032
-	.4byte 0x36203230
-	.4byte 0x30332030
-	.4byte 0x353A3139
-	.4byte 0x3A343220
-	.4byte 0x28307832
-	.4byte 0x33303129
-	.4byte 0x203E3E00
-	.4byte 0x00000000
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20415251
-	.4byte 0x0972656C
-	.4byte 0x65617365
-	.4byte 0x20627569
-	.4byte 0x6C643A20
-	.4byte 0x4E6F7620
-	.4byte 0x32362032
-	.4byte 0x30303320
-	.4byte 0x30353A31
-	.4byte 0x393A3433
-	.4byte 0x20283078
-	.4byte 0x32333031
-	.4byte 0x29203E3E
-	.4byte 0x00000000
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20434152
-	.4byte 0x44097265
-	.4byte 0x6C656173
-	.4byte 0x65206275
-	.4byte 0x696C643A
-	.4byte 0x20417072
-	.4byte 0x20313720
-	.4byte 0x32303033
-	.4byte 0x2031323A
-	.4byte 0x33343A31
-	.4byte 0x39202830
-	.4byte 0x78323330
-	.4byte 0x3129203E
-	.4byte 0x3E000000
+.global lbl_804A7680
+lbl_804A7680:
+	.asciz "<< Dolphin SDK - AR\trelease build: Nov 26 2003 05:19:42 (0x2301) >>"
+	.skip 4
+.global lbl_804A76C8
+lbl_804A76C8:
+	.asciz "<< Dolphin SDK - ARQ\trelease build: Nov 26 2003 05:19:43 (0x2301) >>"
+	.skip 3
+.global lbl_804A7710
+lbl_804A7710:
+	.asciz "<< Dolphin SDK - CARD\trelease build: Apr 17 2003 12:34:19 (0x2301) >>"
+	.skip 2
 .global ResetFunctionInfo
 ResetFunctionInfo:
 	.4byte OnReset
@@ -1256,280 +1198,61 @@ LatencyTable:
 	.4byte 0x00000200
 .global lbl_804A7920
 lbl_804A7920:
-	.4byte 0x44424578
-	.4byte 0x63657074
-	.4byte 0x696F6E44
-	.4byte 0x65737469
-	.4byte 0x6E617469
-	.4byte 0x6F6E0A00
+	.asciz "DBExceptionDestination\n"
 .global lbl_804A7938
 lbl_804A7938:
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20445350
-	.4byte 0x0972656C
-	.4byte 0x65617365
-	.4byte 0x20627569
-	.4byte 0x6C643A20
-	.4byte 0x41707220
-	.4byte 0x31372032
-	.4byte 0x30303320
-	.4byte 0x31323A33
-	.4byte 0x343A3136
-	.4byte 0x20283078
-	.4byte 0x32333031
-	.4byte 0x29203E3E
-	.4byte 0x00000000
-	.4byte 0x44535049
-	.4byte 0x6E697428
-	.4byte 0x293A2042
-	.4byte 0x75696C64
-	.4byte 0x20446174
-	.4byte 0x653A2025
-	.4byte 0x73202573
-	.4byte 0x0A000000
-	.4byte 0x41707220
-	.4byte 0x31372032
-	.4byte 0x30303300
-	.4byte 0x31323A33
-	.4byte 0x343A3136
-	.4byte 0x00000000
+	.asciz "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16 (0x2301) >>"
+	.skip 3
+	.asciz "DSPInit(): Build Date: %s %s\n"
+	.skip 2
+	.asciz "Apr 17 2003"
+	.asciz "12:34:16"
+	.skip 3
 .global lbl_804A79B8
 lbl_804A79B8:
-	.4byte 0x44535020
-	.4byte 0x69732062
-	.4byte 0x6F6F7469
-	.4byte 0x6E672074
-	.4byte 0x61736B3A
-	.4byte 0x20307825
-	.4byte 0x3038580A
-	.4byte 0x00000000
-	.4byte 0x5F5F4453
-	.4byte 0x505F626F
-	.4byte 0x6F745F74
-	.4byte 0x61736B28
-	.4byte 0x2920203A
-	.4byte 0x20495241
-	.4byte 0x4D204D4D
-	.4byte 0x454D2041
-	.4byte 0x4444523A
-	.4byte 0x20307825
-	.4byte 0x3038580A
-	.4byte 0x00000000
-	.4byte 0x5F5F4453
-	.4byte 0x505F626F
-	.4byte 0x6F745F74
-	.4byte 0x61736B28
-	.4byte 0x2920203A
-	.4byte 0x20495241
-	.4byte 0x4D204453
-	.4byte 0x50204144
-	.4byte 0x4452203A
-	.4byte 0x20307825
-	.4byte 0x3038580A
-	.4byte 0x00000000
-	.4byte 0x5F5F4453
-	.4byte 0x505F626F
-	.4byte 0x6F745F74
-	.4byte 0x61736B28
-	.4byte 0x2920203A
-	.4byte 0x20495241
-	.4byte 0x4D204C45
-	.4byte 0x4E475448
-	.4byte 0x2020203A
-	.4byte 0x20307825
-	.4byte 0x3038580A
-	.4byte 0x00000000
-	.4byte 0x5F5F4453
-	.4byte 0x505F626F
-	.4byte 0x6F745F74
-	.4byte 0x61736B28
-	.4byte 0x2920203A
-	.4byte 0x20445241
-	.4byte 0x4D204D4D
-	.4byte 0x454D2041
-	.4byte 0x4444523A
-	.4byte 0x20307825
-	.4byte 0x3038580A
-	.4byte 0x00000000
-	.4byte 0x5F5F4453
-	.4byte 0x505F626F
-	.4byte 0x6F745F74
-	.4byte 0x61736B28
-	.4byte 0x2920203A
-	.4byte 0x20537461
-	.4byte 0x72742056
-	.4byte 0x6563746F
-	.4byte 0x7220203A
-	.4byte 0x20307825
-	.4byte 0x3038580A
-	.4byte 0x00000000
-	.4byte 0x5F5F4453
-	.4byte 0x505F6164
-	.4byte 0x645F7461
-	.4byte 0x736B2829
-	.4byte 0x203A2041
-	.4byte 0x64646564
-	.4byte 0x20746173
-	.4byte 0x6B202020
-	.4byte 0x203A2030
-	.4byte 0x78253038
-	.4byte 0x580A0000
-	.4byte 0x00000000
+	.asciz "DSP is booting task: 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : IRAM MMEM ADDR: 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : IRAM DSP ADDR : 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : IRAM LENGTH   : 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : DRAM MMEM ADDR: 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : Start Vector  : 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_add_task() : Added task    : 0x%08X\n"
+	.skip 5
 .global lbl_804A7AF8
 lbl_804A7AF8:
-	.4byte 0x44564443
-	.4byte 0x6F6E7665
-	.4byte 0x7274456E
-	.4byte 0x7472796E
-	.4byte 0x756D546F
-	.4byte 0x50617468
-	.4byte 0x28706F73
-	.4byte 0x7369626C
-	.4byte 0x79204456
-	.4byte 0x444F7065
-	.4byte 0x6E206F72
-	.4byte 0x20445644
-	.4byte 0x4368616E
-	.4byte 0x67654469
-	.4byte 0x72206F72
-	.4byte 0x20445644
-	.4byte 0x4F70656E
-	.4byte 0x44697229
-	.4byte 0x3A207370
-	.4byte 0x65636966
-	.4byte 0x69656420
-	.4byte 0x64697265
-	.4byte 0x63746F72
-	.4byte 0x79206F72
-	.4byte 0x2066696C
-	.4byte 0x65202825
-	.4byte 0x73292064
-	.4byte 0x6F65736E
-	.4byte 0x2774206D
-	.4byte 0x61746368
-	.4byte 0x20737461
-	.4byte 0x6E646172
-	.4byte 0x6420382E
-	.4byte 0x3320666F
-	.4byte 0x726D6174
-	.4byte 0x2E205468
-	.4byte 0x69732069
-	.4byte 0x73206120
-	.4byte 0x74656D70
-	.4byte 0x6F726172
-	.4byte 0x79207265
-	.4byte 0x73747269
-	.4byte 0x6374696F
-	.4byte 0x6E20616E
-	.4byte 0x64207769
-	.4byte 0x6C6C2062
-	.4byte 0x65207265
-	.4byte 0x6D6F7665
-	.4byte 0x6420736F
-	.4byte 0x6F6E0A00
+	.asciz "DVDConvertEntrynumToPath(possibly DVDOpen or DVDChangeDir or DVDOpenDir): specified directory or file (%s) doesn't match standard 8.3 format. This is a temporary restriction and will be removed soon\n"
 .global lbl_804A7BC0
 lbl_804A7BC0:
-	.4byte 0x5761726E
-	.4byte 0x696E673A
-	.4byte 0x20445644
-	.4byte 0x4F70656E
-	.4byte 0x28293A20
-	.4byte 0x66696C65
-	.4byte 0x20272573
-	.4byte 0x27207761
-	.4byte 0x73206E6F
-	.4byte 0x7420666F
-	.4byte 0x756E6420
-	.4byte 0x756E6465
-	.4byte 0x72202573
-	.4byte 0x2E0A0000
+	.asciz "Warning: DVDOpen(): file '%s' was not found under %s.\n"
+	.skip 1
 .global lbl_804A7BF8
 lbl_804A7BF8:
-	.4byte 0x44564452
-	.4byte 0x65616441
-	.4byte 0x73796E63
-	.4byte 0x28293A20
-	.4byte 0x73706563
-	.4byte 0x69666965
-	.4byte 0x64206172
-	.4byte 0x65612069
-	.4byte 0x73206F75
-	.4byte 0x74206F66
-	.4byte 0x20746865
-	.4byte 0x2066696C
-	.4byte 0x65202000
+	.asciz "DVDReadAsync(): specified area is out of the file  "
 .global lbl_804A7C2C
 lbl_804A7C2C:
-	.4byte 0x44564452
-	.4byte 0x65616428
-	.4byte 0x293A2073
-	.4byte 0x70656369
-	.4byte 0x66696564
-	.4byte 0x20617265
-	.4byte 0x61206973
-	.4byte 0x206F7574
-	.4byte 0x206F6620
-	.4byte 0x74686520
-	.4byte 0x66696C65
-	.4byte 0x20200000
+	.asciz "DVDRead(): specified area is out of the file  "
+	.skip 1
 .global lbl_804A7C5C
 lbl_804A7C5C:
-	.4byte 0x5761726E
-	.4byte 0x696E673A
-	.4byte 0x20445644
-	.4byte 0x4F70656E
-	.4byte 0x44697228
-	.4byte 0x293A2066
-	.4byte 0x696C6520
-	.4byte 0x27257327
-	.4byte 0x20776173
-	.4byte 0x206E6F74
-	.4byte 0x20666F75
-	.4byte 0x6E642075
-	.4byte 0x6E646572
-	.4byte 0x2025732E
-	.4byte 0x0A000000
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20445644
-	.4byte 0x0972656C
-	.4byte 0x65617365
-	.4byte 0x20627569
-	.4byte 0x6C643A20
-	.4byte 0x53657020
-	.4byte 0x31362032
-	.4byte 0x30303320
-	.4byte 0x30393A35
-	.4byte 0x303A3534
-	.4byte 0x20283078
-	.4byte 0x32333031
-	.4byte 0x29203E3E
-	.4byte 0x00000000
+	.asciz "Warning: DVDOpenDir(): file '%s' was not found under %s.\n"
+	.skip 2
+.global lbl_804A7C98
+lbl_804A7C98:
+	.asciz "<< Dolphin SDK - DVD\trelease build: Sep 16 2003 09:50:54 (0x2301) >>"
+	.skip 3
 .global lbl_804A7CE0
 lbl_804A7CE0:
-	.4byte 0x6C6F6164
-	.4byte 0x20667374
-	.4byte 0x0A000000
+	.asciz "load fst\n"
+	.skip 2
 .global lbl_804A7CEC
 lbl_804A7CEC:
-	.4byte 0x44564443
-	.4byte 0x68616E67
-	.4byte 0x65446973
-	.4byte 0x6B28293A
-	.4byte 0x20465354
-	.4byte 0x20696E20
-	.4byte 0x74686520
-	.4byte 0x6E657720
-	.4byte 0x64697363
-	.4byte 0x20697320
-	.4byte 0x746F6F20
-	.4byte 0x6269672E
-	.4byte 0x20202000
+	.asciz "DVDChangeDisk(): FST in the new disc is too big.   "
 .global lbl_804A7D20
 lbl_804A7D20:
 	.4byte lbl_800DE2B4
@@ -1553,23 +1276,8 @@ ImmCommand:
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
-	.4byte 0x44564443
-	.4byte 0x68616E67
-	.4byte 0x65446973
-	.4byte 0x6B417379
-	.4byte 0x6E632829
-	.4byte 0x3A20596F
-	.4byte 0x75206361
-	.4byte 0x6E277420
-	.4byte 0x73706563
-	.4byte 0x69667920
-	.4byte 0x4E554C4C
-	.4byte 0x20746F20
-	.4byte 0x636F6D70
-	.4byte 0x616E7920
-	.4byte 0x6E616D65
-	.4byte 0x2E20200A
-	.4byte 0x00000000
+	.asciz "DVDChangeDiskAsync(): You can't specify NULL to company name.  \n"
+	.skip 3
 .global lbl_804A7DB0
 lbl_804A7DB0:
 	.4byte lbl_800DEF0C
@@ -1622,102 +1330,37 @@ ErrorTable:
 	.4byte 0x00000000
 .global lbl_804A7E60
 lbl_804A7E60:
-	.4byte 0x20204761
-	.4byte 0x6D65204E
-	.4byte 0x616D6520
-	.4byte 0x2E2E2E20
-	.4byte 0x25632563
-	.4byte 0x25632563
-	.4byte 0x0A000000
-	.4byte 0x2020436F
-	.4byte 0x6D70616E
-	.4byte 0x79202E2E
-	.4byte 0x2E2E2E20
-	.4byte 0x25632563
-	.4byte 0x0A000000
-	.4byte 0x20204469
-	.4byte 0x736B2023
-	.4byte 0x202E2E2E
-	.4byte 0x2E2E2E20
-	.4byte 0x25640A00
-	.4byte 0x20204761
-	.4byte 0x6D652076
-	.4byte 0x6572202E
-	.4byte 0x2E2E2E20
-	.4byte 0x25640A00
-	.4byte 0x20205374
-	.4byte 0x7265616D
-	.4byte 0x696E6720
-	.4byte 0x2E2E2E20
-	.4byte 0x25730A00
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20455849
-	.4byte 0x0972656C
-	.4byte 0x65617365
-	.4byte 0x20627569
-	.4byte 0x6C643A20
-	.4byte 0x41707220
-	.4byte 0x31372032
-	.4byte 0x30303320
-	.4byte 0x31323A33
-	.4byte 0x333A3137
-	.4byte 0x20283078
-	.4byte 0x32333031
-	.4byte 0x29203E3E
-	.4byte 0x00000000
-	.4byte 0x4D656D6F
-	.4byte 0x72792043
-	.4byte 0x61726420
-	.4byte 0x35390000
-	.4byte 0x4D656D6F
-	.4byte 0x72792043
-	.4byte 0x61726420
-	.4byte 0x31323300
-	.4byte 0x4D656D6F
-	.4byte 0x72792043
-	.4byte 0x61726420
-	.4byte 0x32353100
-	.4byte 0x4D656D6F
-	.4byte 0x72792043
-	.4byte 0x61726420
-	.4byte 0x35303700
-	.4byte 0x4D656D6F
-	.4byte 0x72792043
-	.4byte 0x61726420
-	.4byte 0x31303139
-	.4byte 0x00000000
-	.4byte 0x4D656D6F
-	.4byte 0x72792043
-	.4byte 0x61726420
-	.4byte 0x32303433
-	.4byte 0x00000000
-	.4byte 0x55534220
-	.4byte 0x41646170
-	.4byte 0x74657200
-	.4byte 0x4E657420
-	.4byte 0x43617264
-	.4byte 0x00000000
-	.4byte 0x41727469
-	.4byte 0x73742045
-	.4byte 0x74686572
-	.4byte 0x00000000
-	.4byte 0x42726F61
-	.4byte 0x6462616E
-	.4byte 0x64204164
-	.4byte 0x61707465
-	.4byte 0x72000000
-	.4byte 0x53747265
-	.4byte 0x616D2048
-	.4byte 0x616E6765
-	.4byte 0x72000000
-	.4byte 0x49532D44
-	.4byte 0x4F4C2D56
-	.4byte 0x49455745
-	.4byte 0x52000000
-	.4byte 0x00000000
+	.asciz "  Game Name ... %c%c%c%c\n"
+	.skip 2
+	.asciz "  Company ..... %c%c\n"
+	.skip 2
+	.asciz "  Disk # ...... %d\n"
+	.asciz "  Game ver .... %d\n"
+	.asciz "  Streaming ... %s\n"
+.global lbl_804A7ED0
+lbl_804A7ED0:
+	.asciz "<< Dolphin SDK - EXI\trelease build: Apr 17 2003 12:33:17 (0x2301) >>"
+	.skip 3
+	.asciz "Memory Card 59"
+	.skip 1
+	.asciz "Memory Card 123"
+	.asciz "Memory Card 251"
+	.asciz "Memory Card 507"
+	.asciz "Memory Card 1019"
+	.skip 3
+	.asciz "Memory Card 2043"
+	.skip 3
+	.asciz "USB Adapter"
+	.asciz "Net Card"
+	.skip 3
+	.asciz "Artist Ether"
+	.skip 3
+	.asciz "Broadband Adapter"
+	.skip 2
+	.asciz "Stream Hanger"
+	.skip 2
+	.asciz "IS-DOL-VIEWER"
+	.skip 6
 .global lbl_804A7FE0
 lbl_804A7FE0:
 	.4byte lbl_800E1CE8
@@ -1754,23 +1397,7 @@ lbl_804A7FE0:
 	.4byte 0x00000000
 .global lbl_804A8060
 lbl_804A8060:
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20475809
-	.4byte 0x72656C65
-	.4byte 0x61736520
-	.4byte 0x6275696C
-	.4byte 0x643A204E
-	.4byte 0x6F762032
-	.4byte 0x36203230
-	.4byte 0x30332030
-	.4byte 0x353A3139
-	.4byte 0x3A303720
-	.4byte 0x28307832
-	.4byte 0x33303129
-	.4byte 0x203E3E00
+	.asciz "<< Dolphin SDK - GX\trelease build: Nov 26 2003 05:19:07 (0x2301) >>"
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -2362,79 +1989,31 @@ lbl_804A886C:
 	.4byte 0x00000000
 .global lbl_804A8900
 lbl_804A8900:
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x204F5309
-	.4byte 0x72656C65
-	.4byte 0x61736520
-	.4byte 0x6275696C
-	.4byte 0x643A204E
-	.4byte 0x6F762032
-	.4byte 0x36203230
-	.4byte 0x30332030
-	.4byte 0x353A3138
-	.4byte 0x3A333720
-	.4byte 0x28307832
-	.4byte 0x33303129
-	.4byte 0x203E3E00
-	.4byte 0x0A446F6C
-	.4byte 0x7068696E
-	.4byte 0x204F530A
-	.4byte 0x00000000
-	.4byte 0x4B65726E
-	.4byte 0x656C2062
-	.4byte 0x75696C74
-	.4byte 0x203A2025
-	.4byte 0x73202573
-	.4byte 0x0A000000
-	.4byte 0x4E6F7620
-	.4byte 0x32362032
-	.4byte 0x30303300
-	.4byte 0x30353A31
-	.4byte 0x383A3337
-	.4byte 0x00000000
-	.4byte 0x436F6E73
-	.4byte 0x6F6C6520
-	.4byte 0x54797065
-	.4byte 0x203A2000
-	.4byte 0x52657461
-	.4byte 0x696C2025
-	.4byte 0x640A0000
-	.4byte 0x4D616320
-	.4byte 0x456D756C
-	.4byte 0x61746F72
-	.4byte 0x0A000000
-	.4byte 0x50432045
-	.4byte 0x6D756C61
-	.4byte 0x746F720A
-	.4byte 0x00000000
-	.4byte 0x45505043
-	.4byte 0x20417274
-	.4byte 0x6875720A
-	.4byte 0x00000000
-	.4byte 0x45505043
-	.4byte 0x204D696E
-	.4byte 0x6E6F770A
-	.4byte 0x00000000
-	.4byte 0x44657665
-	.4byte 0x6C6F706D
-	.4byte 0x656E7420
-	.4byte 0x48572564
-	.4byte 0x20282530
-	.4byte 0x3878290A
-	.4byte 0x00000000
-	.4byte 0x4D656D6F
-	.4byte 0x72792025
-	.4byte 0x64204D42
-	.4byte 0x0A000000
-	.4byte 0x4172656E
-	.4byte 0x61203A20
-	.4byte 0x30782578
-	.4byte 0x202D2030
-	.4byte 0x7825780A
-	.4byte 0x00000000
+	.asciz "<< Dolphin SDK - OS\trelease build: Nov 26 2003 05:18:37 (0x2301) >>"
+	.asciz "\nDolphin OS\n"
+	.skip 3
+	.asciz "Kernel built : %s %s\n"
+	.skip 2
+	.asciz "Nov 26 2003"
+	.asciz "05:18:37"
+	.skip 3
+	.asciz "Console Type : "
+	.asciz "Retail %d\n"
+	.skip 1
+	.asciz "Mac Emulator\n"
+	.skip 2
+	.asciz "PC Emulator\n"
+	.skip 3
+	.asciz "EPPC Arthur\n"
+	.skip 3
+	.asciz "EPPC Minnow\n"
+	.skip 3
+	.asciz "Development HW%d (%08x)\n"
+	.skip 3
+	.asciz "Memory %d MB\n"
+	.skip 2
+	.asciz "Arena : 0x%x - 0x%x\n"
+	.skip 3
 .global __OSExceptionLocations
 __OSExceptionLocations:
 	.4byte 0x00000100
@@ -2452,44 +2031,14 @@ __OSExceptionLocations:
 	.4byte 0x00001300
 	.4byte 0x00001400
 	.4byte 0x00001700
-	.4byte 0x496E7374
-	.4byte 0x616C6C69
-	.4byte 0x6E67204F
-	.4byte 0x53444249
-	.4byte 0x6E746567
-	.4byte 0x7261746F
-	.4byte 0x720A0000
-	.4byte 0x3E3E3E20
-	.4byte 0x4F53494E
-	.4byte 0x49543A20
-	.4byte 0x65786365
-	.4byte 0x7074696F
-	.4byte 0x6E202564
-	.4byte 0x20636F6D
-	.4byte 0x6D616E64
-	.4byte 0x65657265
-	.4byte 0x64206279
-	.4byte 0x2054524B
-	.4byte 0x0A000000
-	.4byte 0x3E3E3E20
-	.4byte 0x4F53494E
-	.4byte 0x49543A20
-	.4byte 0x65786365
-	.4byte 0x7074696F
-	.4byte 0x6E202564
-	.4byte 0x20766563
-	.4byte 0x746F7265
-	.4byte 0x6420746F
-	.4byte 0x20646562
-	.4byte 0x75676765
-	.4byte 0x720A0000
-	.4byte 0x45786365
-	.4byte 0x7074696F
-	.4byte 0x6E732069
-	.4byte 0x6E697469
-	.4byte 0x616C697A
-	.4byte 0x65642E2E
-	.4byte 0x2E0A0000
+	.asciz "Installing OSDBIntegrator\n"
+	.skip 1
+	.asciz ">>> OSINIT: exception %d commandeered by TRK\n"
+	.skip 2
+	.asciz ">>> OSINIT: exception %d vectored to debugger\n"
+	.skip 1
+	.asciz "Exceptions initialized...\n"
+	.skip 1
 .global ResetFunctionInfo_1
 ResetFunctionInfo_1:
 	.4byte OnReset1
@@ -2532,453 +2081,85 @@ DSPInitCode:
 	.4byte 0x00000000
 .global lbl_804A8B88
 lbl_804A8B88:
-	.4byte 0x3E3E3E20
-	.4byte 0x4C322049
-	.4byte 0x4E56414C
-	.4byte 0x49444154
-	.4byte 0x45203A20
-	.4byte 0x53484F55
-	.4byte 0x4C44204E
-	.4byte 0x45564552
-	.4byte 0x20484150
-	.4byte 0x50454E0A
-	.4byte 0x00000000
-	.4byte 0x4D616368
-	.4byte 0x696E6520
-	.4byte 0x63686563
-	.4byte 0x6B207265
-	.4byte 0x63656976
-	.4byte 0x65640A00
-	.4byte 0x48494432
-	.4byte 0x203D2030
-	.4byte 0x78257820
-	.4byte 0x20205352
-	.4byte 0x5231203D
-	.4byte 0x20307825
-	.4byte 0x780A0000
-	.4byte 0x4D616368
-	.4byte 0x696E6520
-	.4byte 0x63686563
-	.4byte 0x6B207761
-	.4byte 0x73206E6F
-	.4byte 0x7420444D
-	.4byte 0x412F6C6F
-	.4byte 0x636B6564
-	.4byte 0x20636163
-	.4byte 0x68652072
-	.4byte 0x656C6174
-	.4byte 0x65640A00
-	.4byte 0x444D4145
-	.4byte 0x72726F72
-	.4byte 0x48616E64
-	.4byte 0x6C657228
-	.4byte 0x293A2041
-	.4byte 0x6E206572
-	.4byte 0x726F7220
-	.4byte 0x6F636375
-	.4byte 0x72726564
-	.4byte 0x20776869
-	.4byte 0x6C652070
-	.4byte 0x726F6365
-	.4byte 0x7373696E
-	.4byte 0x6720444D
-	.4byte 0x412E0A00
-	.4byte 0x54686520
-	.4byte 0x666F6C6C
-	.4byte 0x6F77696E
-	.4byte 0x67206572
-	.4byte 0x726F7273
-	.4byte 0x20686176
-	.4byte 0x65206265
-	.4byte 0x656E2064
-	.4byte 0x65746563
-	.4byte 0x74656420
-	.4byte 0x616E6420
-	.4byte 0x636C6561
-	.4byte 0x72656420
-	.4byte 0x3A0A0000
-	.4byte 0x092D2052
-	.4byte 0x65717565
-	.4byte 0x73746564
-	.4byte 0x2061206C
-	.4byte 0x6F636B65
-	.4byte 0x64206361
-	.4byte 0x63686520
-	.4byte 0x74616720
-	.4byte 0x74686174
-	.4byte 0x20776173
-	.4byte 0x20616C72
-	.4byte 0x65616479
-	.4byte 0x20696E20
-	.4byte 0x74686520
-	.4byte 0x63616368
-	.4byte 0x650A0000
-	.4byte 0x092D2044
-	.4byte 0x4D412061
-	.4byte 0x7474656D
-	.4byte 0x70746564
-	.4byte 0x20746F20
-	.4byte 0x61636365
-	.4byte 0x7373206E
-	.4byte 0x6F726D61
-	.4byte 0x6C206361
-	.4byte 0x6368650A
-	.4byte 0x00000000
-	.4byte 0x092D2044
-	.4byte 0x4D41206D
-	.4byte 0x69737365
-	.4byte 0x6420696E
-	.4byte 0x20646174
-	.4byte 0x61206361
-	.4byte 0x6368650A
-	.4byte 0x00000000
-	.4byte 0x092D2044
-	.4byte 0x4D412071
-	.4byte 0x75657565
-	.4byte 0x206F7665
-	.4byte 0x72666C6F
-	.4byte 0x7765640A
-	.4byte 0x00000000
-	.4byte 0x4C312069
-	.4byte 0x2D636163
-	.4byte 0x68657320
-	.4byte 0x696E6974
-	.4byte 0x69616C69
-	.4byte 0x7A65640A
-	.4byte 0x00000000
-	.4byte 0x4C312064
-	.4byte 0x2D636163
-	.4byte 0x68657320
-	.4byte 0x696E6974
-	.4byte 0x69616C69
-	.4byte 0x7A65640A
-	.4byte 0x00000000
-	.4byte 0x4C322063
-	.4byte 0x61636865
-	.4byte 0x20696E69
-	.4byte 0x7469616C
-	.4byte 0x697A6564
-	.4byte 0x0A000000
-	.4byte 0x4C6F636B
-	.4byte 0x65642063
-	.4byte 0x61636865
-	.4byte 0x206D6163
-	.4byte 0x68696E65
-	.4byte 0x20636865
-	.4byte 0x636B2068
-	.4byte 0x616E646C
-	.4byte 0x65722069
-	.4byte 0x6E737461
-	.4byte 0x6C6C6564
-	.4byte 0x0A000000
-	.4byte 0x00000000
+	.asciz ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n"
+	.skip 3
+	.asciz "Machine check received\n"
+	.asciz "HID2 = 0x%x   SRR1 = 0x%x\n"
+	.skip 1
+	.asciz "Machine check was not DMA/locked cache related\n"
+	.asciz "DMAErrorHandler(): An error occurred while processing DMA.\n"
+	.asciz "The following errors have been detected and cleared :\n"
+	.skip 1
+	.asciz "\t- Requested a locked cache tag that was already in the cache\n"
+	.skip 1
+	.asciz "\t- DMA attempted to access normal cache\n"
+	.skip 3
+	.asciz "\t- DMA missed in data cache\n"
+	.skip 3
+	.asciz "\t- DMA queue overflowed\n"
+	.skip 3
+	.asciz "L1 i-caches initialized\n"
+	.skip 3
+	.asciz "L1 d-caches initialized\n"
+	.skip 3
+	.asciz "L2 cache initialized\n"
+	.skip 2
+	.asciz "Locked cache machine check handler installed\n"
+	.skip 6
 .global lbl_804A8DB8
 lbl_804A8DB8:
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D20436F
-	.4byte 0x6E746578
-	.4byte 0x74203078
-	.4byte 0x25303878
-	.4byte 0x202D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D0A00
-	.4byte 0x72252D32
-	.4byte 0x6420203D
-	.4byte 0x20307825
-	.4byte 0x30387820
-	.4byte 0x28253134
-	.4byte 0x64292020
-	.4byte 0x72252D32
-	.4byte 0x6420203D
-	.4byte 0x20307825
-	.4byte 0x30387820
-	.4byte 0x28253134
-	.4byte 0x64290A00
-	.4byte 0x4C522020
-	.4byte 0x203D2030
-	.4byte 0x78253038
-	.4byte 0x78202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x43522020
-	.4byte 0x203D2030
-	.4byte 0x78253038
-	.4byte 0x780A0000
-	.4byte 0x53525230
-	.4byte 0x203D2030
-	.4byte 0x78253038
-	.4byte 0x78202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x53525231
-	.4byte 0x203D2030
-	.4byte 0x78253038
-	.4byte 0x780A0000
-	.4byte 0x0A475152
-	.4byte 0x732D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D0A
-	.4byte 0x00000000
-	.4byte 0x67717225
-	.4byte 0x64203D20
-	.4byte 0x30782530
-	.4byte 0x38782009
-	.4byte 0x20677172
-	.4byte 0x2564203D
-	.4byte 0x20307825
-	.4byte 0x3038780A
-	.4byte 0x00000000
-	.4byte 0x0A0A4650
-	.4byte 0x52732D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x0A000000
-	.4byte 0x66722564
-	.4byte 0x20093D20
-	.4byte 0x25642009
-	.4byte 0x20667225
-	.4byte 0x6420093D
-	.4byte 0x2025640A
-	.4byte 0x00000000
-	.4byte 0x0A0A5053
-	.4byte 0x46732D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x0A000000
-	.4byte 0x70732564
-	.4byte 0x20093D20
-	.4byte 0x30782578
-	.4byte 0x20092070
-	.4byte 0x73256420
-	.4byte 0x093D2030
-	.4byte 0x7825780A
-	.4byte 0x00000000
-	.4byte 0x0A416464
-	.4byte 0x72657373
-	.4byte 0x3A202020
-	.4byte 0x20202042
-	.4byte 0x61636B20
-	.4byte 0x43686169
-	.4byte 0x6E202020
-	.4byte 0x204C5220
-	.4byte 0x53617665
-	.4byte 0x0A000000
-	.4byte 0x30782530
-	.4byte 0x38783A20
-	.4byte 0x20203078
-	.4byte 0x25303878
-	.4byte 0x20202020
-	.4byte 0x30782530
-	.4byte 0x38780A00
+	.asciz "------------------------- Context 0x%08x -------------------------\n"
+	.asciz "r%-2d  = 0x%08x (%14d)  r%-2d  = 0x%08x (%14d)\n"
+	.asciz "LR   = 0x%08x                   CR   = 0x%08x\n"
+	.skip 1
+	.asciz "SRR0 = 0x%08x                   SRR1 = 0x%08x\n"
+	.skip 1
+	.asciz "\nGQRs----------\n"
+	.skip 3
+	.asciz "gqr%d = 0x%08x \t gqr%d = 0x%08x\n"
+	.skip 3
+	.asciz "\n\nFPRs----------\n"
+	.skip 2
+	.asciz "fr%d \t= %d \t fr%d \t= %d\n"
+	.skip 3
+	.asciz "\n\nPSFs----------\n"
+	.skip 2
+	.asciz "ps%d \t= 0x%x \t ps%d \t= 0x%x\n"
+	.skip 3
+	.asciz "\nAddress:      Back Chain    LR Save\n"
+	.skip 2
+	.asciz "0x%08x:   0x%08x    0x%08x\n"
 .global lbl_804A8F6C
 lbl_804A8F6C:
-	.4byte 0x4650552D
-	.4byte 0x756E6176
-	.4byte 0x61696C61
-	.4byte 0x626C6520
-	.4byte 0x68616E64
-	.4byte 0x6C657220
-	.4byte 0x696E7374
-	.4byte 0x616C6C65
-	.4byte 0x640A0000
+	.asciz "FPU-unavailable handler installed\n"
+	.skip 1
 .global lbl_804A8F90
 lbl_804A8F90:
-	.4byte 0x20696E20
-	.4byte 0x22257322
-	.4byte 0x206F6E20
-	.4byte 0x6C696E65
-	.4byte 0x2025642E
-	.4byte 0x0A000000
-	.4byte 0x0A416464
-	.4byte 0x72657373
-	.4byte 0x3A202020
-	.4byte 0x20202042
-	.4byte 0x61636B20
-	.4byte 0x43686169
-	.4byte 0x6E202020
-	.4byte 0x204C5220
-	.4byte 0x53617665
-	.4byte 0x0A000000
-	.4byte 0x30782530
-	.4byte 0x38783A20
-	.4byte 0x20203078
-	.4byte 0x25303878
-	.4byte 0x20202020
-	.4byte 0x30782530
-	.4byte 0x38780A00
-	.4byte 0x4E6F6E2D
-	.4byte 0x7265636F
-	.4byte 0x76657261
-	.4byte 0x626C6520
-	.4byte 0x45786365
-	.4byte 0x7074696F
-	.4byte 0x6E202564
-	.4byte 0x00000000
-	.4byte 0x556E6861
-	.4byte 0x6E646C65
-	.4byte 0x64204578
-	.4byte 0x63657074
-	.4byte 0x696F6E20
-	.4byte 0x25640000
-	.4byte 0x0A445349
-	.4byte 0x5352203D
-	.4byte 0x20307825
-	.4byte 0x30387820
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x20204441
-	.4byte 0x5220203D
-	.4byte 0x20307825
-	.4byte 0x3038780A
-	.4byte 0x00000000
-	.4byte 0x5442203D
-	.4byte 0x20307825
-	.4byte 0x3031366C
-	.4byte 0x6C780A00
-	.4byte 0x0A496E73
-	.4byte 0x74727563
-	.4byte 0x74696F6E
-	.4byte 0x20617420
-	.4byte 0x30782578
-	.4byte 0x20287265
-	.4byte 0x61642066
-	.4byte 0x726F6D20
-	.4byte 0x53525230
-	.4byte 0x29206174
-	.4byte 0x74656D70
-	.4byte 0x74656420
-	.4byte 0x746F2061
-	.4byte 0x63636573
-	.4byte 0x7320696E
-	.4byte 0x76616C69
-	.4byte 0x64206164
-	.4byte 0x64726573
-	.4byte 0x73203078
-	.4byte 0x25782028
-	.4byte 0x72656164
-	.4byte 0x2066726F
-	.4byte 0x6D204441
-	.4byte 0x52290A00
-	.4byte 0x0A417474
-	.4byte 0x656D7074
-	.4byte 0x65642074
-	.4byte 0x6F206665
-	.4byte 0x74636820
-	.4byte 0x696E7374
-	.4byte 0x72756374
-	.4byte 0x696F6E20
-	.4byte 0x66726F6D
-	.4byte 0x20696E76
-	.4byte 0x616C6964
-	.4byte 0x20616464
-	.4byte 0x72657373
-	.4byte 0x20307825
-	.4byte 0x78202872
-	.4byte 0x65616420
-	.4byte 0x66726F6D
-	.4byte 0x20535252
-	.4byte 0x30290A00
-	.4byte 0x0A496E73
-	.4byte 0x74727563
-	.4byte 0x74696F6E
-	.4byte 0x20617420
-	.4byte 0x30782578
-	.4byte 0x20287265
-	.4byte 0x61642066
-	.4byte 0x726F6D20
-	.4byte 0x53525230
-	.4byte 0x29206174
-	.4byte 0x74656D70
-	.4byte 0x74656420
-	.4byte 0x746F2061
-	.4byte 0x63636573
-	.4byte 0x7320756E
-	.4byte 0x616C6967
-	.4byte 0x6E656420
-	.4byte 0x61646472
-	.4byte 0x65737320
-	.4byte 0x30782578
-	.4byte 0x20287265
-	.4byte 0x61642066
-	.4byte 0x726F6D20
-	.4byte 0x44415229
-	.4byte 0x0A000000
-	.4byte 0x0A50726F
-	.4byte 0x6772616D
-	.4byte 0x20657863
-	.4byte 0x65707469
-	.4byte 0x6F6E203A
-	.4byte 0x20506F73
-	.4byte 0x7369626C
-	.4byte 0x6520696C
-	.4byte 0x6C656761
-	.4byte 0x6C20696E
-	.4byte 0x73747275
-	.4byte 0x6374696F
-	.4byte 0x6E2F6F70
-	.4byte 0x65726174
-	.4byte 0x696F6E20
-	.4byte 0x6174206F
-	.4byte 0x72206172
-	.4byte 0x6F756E64
-	.4byte 0x20307825
-	.4byte 0x78202872
-	.4byte 0x65616420
-	.4byte 0x66726F6D
-	.4byte 0x20535252
-	.4byte 0x30290A00
-	.4byte 0x41492044
-	.4byte 0x4D412041
-	.4byte 0x64647265
-	.4byte 0x7373203D
-	.4byte 0x20202030
-	.4byte 0x78253034
-	.4byte 0x78253034
-	.4byte 0x780A0000
-	.4byte 0x4152414D
-	.4byte 0x20444D41
-	.4byte 0x20416464
-	.4byte 0x72657373
-	.4byte 0x203D2030
-	.4byte 0x78253034
-	.4byte 0x78253034
-	.4byte 0x780A0000
-	.4byte 0x44492044
-	.4byte 0x4D412041
-	.4byte 0x64647265
-	.4byte 0x7373203D
-	.4byte 0x20202030
-	.4byte 0x78253038
-	.4byte 0x780A0000
-	.4byte 0x0A4C6173
-	.4byte 0x7420696E
-	.4byte 0x74657272
-	.4byte 0x75707420
-	.4byte 0x28256429
-	.4byte 0x3A205352
-	.4byte 0x5230203D
-	.4byte 0x20307825
-	.4byte 0x30387820
-	.4byte 0x20544220
-	.4byte 0x3D203078
-	.4byte 0x25303136
-	.4byte 0x6C6C780A
-	.4byte 0x00000000
+	.asciz " in \"%s\" on line %d.\n"
+	.skip 2
+	.asciz "\nAddress:      Back Chain    LR Save\n"
+	.skip 2
+	.asciz "0x%08x:   0x%08x    0x%08x\n"
+	.asciz "Non-recoverable Exception %d"
+	.skip 3
+	.asciz "Unhandled Exception %d"
+	.skip 1
+	.asciz "\nDSISR = 0x%08x                   DAR  = 0x%08x\n"
+	.skip 3
+	.asciz "TB = 0x%016llx\n"
+	.asciz "\nInstruction at 0x%x (read from SRR0) attempted to access invalid address 0x%x (read from DAR)\n"
+	.asciz "\nAttempted to fetch instruction from invalid address 0x%x (read from SRR0)\n"
+	.asciz "\nInstruction at 0x%x (read from SRR0) attempted to access unaligned address 0x%x (read from DAR)\n"
+	.skip 2
+	.asciz "\nProgram exception : Possible illegal instruction/operation at or around 0x%x (read from SRR0)\n"
+	.asciz "AI DMA Address =   0x%04x%04x\n"
+	.skip 1
+	.asciz "ARAM DMA Address = 0x%04x%04x\n"
+	.skip 1
+	.asciz "DI DMA Address =   0x%08x\n"
+	.skip 1
+	.asciz "\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n"
+	.skip 3
 .global lbl_804A926C
 lbl_804A926C:
 	.4byte lbl_800EDD64
@@ -2997,7 +2178,7 @@ lbl_804A926C:
 	.4byte lbl_800EDD64
 	.4byte lbl_800EDD64
 	.4byte lbl_800EDD18
-	.4byte 0x00000000
+	.4byte 0
 .global HankakuToCode
 HankakuToCode:
 	.4byte 0x020C020D
@@ -3758,24 +2939,10 @@ LeapYearDays:
 	.4byte 0x00000112
 	.4byte 0x00000131
 	.4byte 0x0000014F
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20504144
-	.4byte 0x0972656C
-	.4byte 0x65617365
-	.4byte 0x20627569
-	.4byte 0x6C643A20
-	.4byte 0x41756720
-	.4byte 0x20362032
-	.4byte 0x30303320
-	.4byte 0x30343A33
-	.4byte 0x303A3032
-	.4byte 0x20283078
-	.4byte 0x32333031
-	.4byte 0x29203E3E
-	.4byte 0x00000000
+.global lbl_804A9E60
+lbl_804A9E60:
+	.asciz "<< Dolphin SDK - PAD\trelease build: Aug  6 2003 04:30:02 (0x2301) >>"
+	.skip 3
 .global ResetFunctionInfo_3
 ResetFunctionInfo_3:
 	.4byte OnReset3
@@ -3784,23 +2951,7 @@ ResetFunctionInfo_3:
 	.4byte 0x00000000
 .global lbl_804A9EB8
 lbl_804A9EB8:
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20534909
-	.4byte 0x72656C65
-	.4byte 0x61736520
-	.4byte 0x6275696C
-	.4byte 0x643A2041
-	.4byte 0x70722031
-	.4byte 0x37203230
-	.4byte 0x30332031
-	.4byte 0x323A3333
-	.4byte 0x3A313920
-	.4byte 0x28307832
-	.4byte 0x33303129
-	.4byte 0x203E3E00
+	.asciz "<< Dolphin SDK - SI\trelease build: Apr 17 2003 12:33:19 (0x2301) >>"
 .global Si
 Si:
 	.4byte 0xFFFFFFFF
@@ -3814,50 +2965,24 @@ Type:
 	.4byte 0x00000008
 	.4byte 0x00000008
 	.4byte 0x00000008
-	.4byte 0x4E6F2072
-	.4byte 0x6573706F
-	.4byte 0x6E736500
-	.4byte 0x4E363420
-	.4byte 0x636F6E74
-	.4byte 0x726F6C6C
-	.4byte 0x65720000
-	.4byte 0x4E363420
-	.4byte 0x6D696372
-	.4byte 0x6F70686F
-	.4byte 0x6E650000
-	.4byte 0x4E363420
-	.4byte 0x6B657962
-	.4byte 0x6F617264
-	.4byte 0x00000000
-	.4byte 0x4E363420
-	.4byte 0x6D6F7573
-	.4byte 0x65000000
-	.4byte 0x47616D65
-	.4byte 0x426F7920
-	.4byte 0x41647661
-	.4byte 0x6E636500
-	.4byte 0x5374616E
-	.4byte 0x64617264
-	.4byte 0x20636F6E
-	.4byte 0x74726F6C
-	.4byte 0x6C657200
-	.4byte 0x57697265
-	.4byte 0x6C657373
-	.4byte 0x20726563
-	.4byte 0x65697665
-	.4byte 0x72000000
-	.4byte 0x57617665
-	.4byte 0x42697264
-	.4byte 0x20636F6E
-	.4byte 0x74726F6C
-	.4byte 0x6C657200
-	.4byte 0x4B657962
-	.4byte 0x6F617264
-	.4byte 0x00000000
-	.4byte 0x53746565
-	.4byte 0x72696E67
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "No response"
+	.asciz "N64 controller"
+	.skip 1
+	.asciz "N64 microphone"
+	.skip 1
+	.asciz "N64 keyboard"
+	.skip 3
+	.asciz "N64 mouse"
+	.skip 2
+	.asciz "GameBoy Advance"
+	.asciz "Standard controller"
+	.asciz "Wireless receiver"
+	.skip 2
+	.asciz "WaveBird controller"
+	.asciz "Keyboard"
+	.skip 3
+	.asciz "Steering"
+	.skip 7
 .global XYNTSC
 XYNTSC:
 	.4byte 0x00F60200
@@ -3886,74 +3011,20 @@ XYPAL:
 	.4byte 0x00680300
 	.4byte 0x00680300
 	.4byte 0x009C0200
-	.4byte 0x53495365
-	.4byte 0x7453616D
-	.4byte 0x706C696E
-	.4byte 0x67526174
-	.4byte 0x653A2075
-	.4byte 0x6E6B6E6F
-	.4byte 0x776E2054
-	.4byte 0x5620666F
-	.4byte 0x726D6174
-	.4byte 0x2E205573
-	.4byte 0x65206465
-	.4byte 0x6661756C
-	.4byte 0x742E0000
-	.4byte 0x00000000
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20414909
-	.4byte 0x72656C65
-	.4byte 0x61736520
-	.4byte 0x6275696C
-	.4byte 0x643A2041
-	.4byte 0x70722031
-	.4byte 0x37203230
-	.4byte 0x30332031
-	.4byte 0x323A3333
-	.4byte 0x3A353420
-	.4byte 0x28307832
-	.4byte 0x33303129
-	.4byte 0x203E3E00
-	.4byte 0x00000000
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20544850
-	.4byte 0x0972656C
-	.4byte 0x65617365
-	.4byte 0x20627569
-	.4byte 0x6C643A20
-	.4byte 0x4A616E20
-	.4byte 0x20392032
-	.4byte 0x30303420
-	.4byte 0x31333A30
-	.4byte 0x363A3535
-	.4byte 0x20283078
-	.4byte 0x32333031
-	.4byte 0x29203E3E
-	.4byte 0x00000000
-	.4byte 0x3C3C2044
-	.4byte 0x6F6C7068
-	.4byte 0x696E2053
-	.4byte 0x444B202D
-	.4byte 0x20474241
-	.4byte 0x0972656C
-	.4byte 0x65617365
-	.4byte 0x20627569
-	.4byte 0x6C643A20
-	.4byte 0x44656320
-	.4byte 0x20332032
-	.4byte 0x30303320
-	.4byte 0x31383A34
-	.4byte 0x313A3535
-	.4byte 0x20283078
-	.4byte 0x32333031
-	.4byte 0x29203E3E
-	.4byte 0x00000000
+	.asciz "SISetSamplingRate: unknown TV format. Use default."
+	.skip 5
+.global AI_VERSION_STRING
+AI_VERSION_STRING:
+	.asciz "<< Dolphin SDK - AI\trelease build: Apr 17 2003 12:33:54 (0x2301) >>"
+	.skip 4
+.global THP_VERSION_STRING
+THP_VERSION_STRING:
+	.asciz "<< Dolphin SDK - THP\trelease build: Jan  9 2004 13:06:55 (0x2301) >>"
+	.skip 3
+.global GBA_VERSION_STRING
+GBA_VERSION_STRING:
+	.asciz "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>"
+	.skip 3
 .global ResetFunctionInfo_4
 ResetFunctionInfo_4:
 	.4byte OnReset4

@@ -1799,47 +1799,49 @@ lbl_80516F1C:
 lbl_80516F20:
 	.4byte 0x43300000
 	.4byte 0x00000000
-	.4byte 0x42616E6B
-	.4byte 0x732F0000
-	.4byte 0x53657173
-	.4byte 0x2F000000
-	.4byte 0x53747265
-	.4byte 0x616D2F00
+.global lbl_80516F28
+lbl_80516F28:
+	.asciz "Banks/"
+	.skip 1
+.global lbl_80516F30
+lbl_80516F30:
+	.asciz "Seqs/"
+	.skip 2
+.global lbl_80516F38
+lbl_80516F38:
+	.asciz "Stream/"
 .global lbl_80516F40
 lbl_80516F40:
-	.4byte 0x25732573
-	.4byte 0x25630000
+	.asciz "%s%s%c"
+	.skip 1
 .global lbl_80516F48
 lbl_80516F48:
 	.float 1.0
 .global lbl_80516F4C
 lbl_80516F4C:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_80516F50
 lbl_80516F50:
 	.float 0.5
 .global lbl_80516F54
 lbl_80516F54:
-	.4byte 0x447A0000
+	.float 1000.0
 .global lbl_80516F58
 lbl_80516F58:
 	.4byte 0x4F000000
 	.4byte 0x00000000
 .global lbl_80516F60
 lbl_80516F60:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
+	.double 0.5
 .global lbl_80516F68
 lbl_80516F68:
-	.4byte 0x40080000
-	.4byte 0x00000000
+	.double 3.0
 .global lbl_80516F70
 lbl_80516F70:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.double 0.0
 .global lbl_80516F78
 lbl_80516F78:
-	.4byte 0x40C00000
+	.float 6.0
 .global lbl_80516F7C
 lbl_80516F7C:
 	.4byte 0x501502F9
@@ -5300,19 +5302,19 @@ lbl_80518610:
 	.4byte 0x80000000
 .global lbl_80518618
 lbl_80518618:
-	.4byte 0x44610000
+	.float 900.0
 .global lbl_8051861C
 lbl_8051861C:
 	.float 1.0
 .global lbl_80518620
 lbl_80518620:
-	.4byte 0x3F666666
+	.float 0.9
 .global lbl_80518624
 lbl_80518624:
-	.4byte 0x3F4CCCCD
+	.float 0.8
 .global lbl_80518628
 lbl_80518628:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_8051862C
 lbl_8051862C:
 	.4byte 0x47C35000
@@ -5324,22 +5326,23 @@ lbl_80518630:
 lbl_80518638:
 	.4byte 0x43300000
 	.4byte 0x00000000
-	.4byte 0x6E6F6E65
-	.4byte 0x00000000
+.global lbl_80518640
+lbl_80518640:
+	.asciz "none"
+	.skip 3
 .global lbl_80518648
 lbl_80518648:
-	.4byte 0x40000000
+	.float 2.0
 	.4byte 0x00000000
 .global lbl_80518650
 lbl_80518650:
-	.4byte 0x40000000
-	.4byte 0x00000000
+	.double 2.0
 .global lbl_80518658
 lbl_80518658:
 	.float 1.0
 .global lbl_8051865C
 lbl_8051865C:
-	.4byte 0x3FC00000
+	.float 1.5
 .global lbl_80518660
 lbl_80518660:
 	.4byte 0x43300000
