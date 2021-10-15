@@ -269,7 +269,7 @@ stayHeapSize__18JAIGlobalParameter:
 	.4byte 0x00010000
 .global initDataFileName__18JAIGlobalParameter
 initDataFileName__18JAIGlobalParameter:
-	.4byte 0x80479688
+	.4byte lbl_80479688
 .global wavePath__18JAIGlobalParameter
 wavePath__18JAIGlobalParameter:
 	.4byte 0x80516F28
@@ -281,10 +281,10 @@ streamPath__18JAIGlobalParameter:
 	.4byte 0x80516F38
 .global audioResPath__18JAIGlobalParameter
 audioResPath__18JAIGlobalParameter:
-	.4byte 0x80479694
+	.4byte lbl_80479694
 .global sequenceArchivesFileName__18JAIGlobalParameter
 sequenceArchivesFileName__18JAIGlobalParameter:
-	.4byte 0x804796A0
+	.4byte lbl_804796A0
 .global inputGainDown__18JAIGlobalParameter
 inputGainDown__18JAIGlobalParameter:
 	.float 0.5
@@ -593,23 +593,23 @@ CmdCalibrate:
 .global __SIVersion
 __SIVersion:
 	.4byte 0x804A9EB8
-	.4byte 0x00000000
+	.4byte 0
 .global __AIVersion
 __AIVersion:
 	.4byte 0x804AA068
-	.4byte 0x00000000
+	.4byte 0
 .global __THPVersion
 __THPVersion:
 	.4byte 0x804AA0B0
-	.4byte 0x00000000
+	.4byte 0
 .global __GBAVersion
 __GBAVersion:
 	.4byte 0x804AA0F8
-	.4byte 0x00000000
+	.4byte 0
 .global "cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@"
 "cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@":
 	.4byte 0x8047AB44
-	.4byte 0x00000000
+	.4byte 0
 .global "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"
 "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@":
 	.4byte 0x8047AED4
@@ -618,8 +618,8 @@ __GBAVersion:
 	.4byte 0x8047AEF8
 .global gEnemyInfoNum__4Game
 gEnemyInfoNum__4Game:
-	.4byte 0x00000064
-	.4byte 0x00000000
+	.4byte 100
+	.4byte 0
 .global "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@"
 "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@":
 	.4byte lbl_8047BE58
@@ -746,7 +746,7 @@ cBedamaYellowDepth__13VsOtakaraName:
 .global "cTankChangeTexName__Q34Game5Wtank22@unnamed@WtankMgr_cpp@"
 "cTankChangeTexName__Q34Game5Wtank22@unnamed@WtankMgr_cpp@":
 	.4byte 0x80487080
-	.4byte 0x00000000
+	.4byte 0
 .global "cMatAnimBtkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@":
 	.4byte 0x80487434
@@ -756,15 +756,15 @@ cBedamaYellowDepth__13VsOtakaraName:
 .global "cKoganeChangeTexName__Q34Game7Wealthy24@unnamed@WealthyMgr_cpp@"
 "cKoganeChangeTexName__Q34Game7Wealthy24@unnamed@WealthyMgr_cpp@":
 	.4byte 0x80487848
-	.4byte 0x00000000
+	.4byte 0
 .global "cKoganeChangeTexName__Q34Game4Fart21@unnamed@FartMgr_cpp@"
 "cKoganeChangeTexName__Q34Game4Fart21@unnamed@FartMgr_cpp@":
 	.4byte 0x80487BE8
-	.4byte 0x00000000
+	.4byte 0
 .global "cMatAnimBtkTexName__Q34Game5Queen22@unnamed@QueenMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game5Queen22@unnamed@QueenMgr_cpp@":
 	.4byte 0x80487C68
-	.4byte 0x00000000
+	.4byte 0
 .global "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@":
 	.4byte 0x80488348
@@ -774,11 +774,11 @@ cBedamaYellowDepth__13VsOtakaraName:
 .global "cKoganeChangeTexName__Q34Game11Koganemushi28@unnamed@KoganemushiMgr_cpp@"
 "cKoganeChangeTexName__Q34Game11Koganemushi28@unnamed@KoganemushiMgr_cpp@":
 	.4byte 0x80488FB8
-	.4byte 0x00000000
+	.4byte 0
 .global "cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@"
 "cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@":
 	.4byte 0x80489010
-	.4byte 0x00000000
+	.4byte 0
 .global "cMatAnimBtkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@":
 	.4byte 0x804890CC
@@ -794,43 +794,43 @@ cBedamaYellowDepth__13VsOtakaraName:
 .global "cOtakaraChangeTexName__Q34Game11FireOtakara28@unnamed@FireOtakaraMgr_cpp@"
 "cOtakaraChangeTexName__Q34Game11FireOtakara28@unnamed@FireOtakaraMgr_cpp@":
 	.4byte 0x8048A3CC
-	.4byte 0x00000000
+	.4byte 0
 .global "cOtakaraChangeTexName__Q34Game12WaterOtakara29@unnamed@WaterOtakaraMgr_cpp@"
 "cOtakaraChangeTexName__Q34Game12WaterOtakara29@unnamed@WaterOtakaraMgr_cpp@":
 	.4byte 0x8048A760
-	.4byte 0x00000000
+	.4byte 0
 .global "cOtakaraChangeTexName__Q34Game10GasOtakara27@unnamed@GasOtakaraMgr_cpp@"
 "cOtakaraChangeTexName__Q34Game10GasOtakara27@unnamed@GasOtakaraMgr_cpp@":
 	.4byte 0x8048A7D0
-	.4byte 0x00000000
+	.4byte 0
 .global "cOtakaraChangeTexName__Q34Game11ElecOtakara28@unnamed@ElecOtakaraMgr_cpp@"
 "cOtakaraChangeTexName__Q34Game11ElecOtakara28@unnamed@ElecOtakaraMgr_cpp@":
 	.4byte 0x8048A840
-	.4byte 0x00000000
+	.4byte 0
 .global "cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@"
 "cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@":
 	.4byte 0x8048B228
-	.4byte 0x00000000
+	.4byte 0
 .global "cOtakaraChangeTexName__Q34Game11BombOtakara28@unnamed@BombOtakaraMgr_cpp@"
 "cOtakaraChangeTexName__Q34Game11BombOtakara28@unnamed@BombOtakaraMgr_cpp@":
 	.4byte 0x8048D3D8
-	.4byte 0x00000000
+	.4byte 0
 .global "cMatAnimBrkTexName__Q34Game10DangoMushi27@unnamed@DangoMushiMgr_cpp@"
 "cMatAnimBrkTexName__Q34Game10DangoMushi27@unnamed@DangoMushiMgr_cpp@":
 	.4byte 0x8048D45C
-	.4byte 0x00000000
+	.4byte 0
 .global "cKabutoChangeTexName__Q34Game11GreenKabuto28@unnamed@GreenKabutoMgr_cpp@"
 "cKabutoChangeTexName__Q34Game11GreenKabuto28@unnamed@GreenKabutoMgr_cpp@":
 	.4byte 0x8048D810
-	.4byte 0x00000000
+	.4byte 0
 .global "cKabutoChangeTexName__Q34Game9RedKabuto26@unnamed@RedKabutoMgr_cpp@"
 "cKabutoChangeTexName__Q34Game9RedKabuto26@unnamed@RedKabutoMgr_cpp@":
 	.4byte 0x8048D890
-	.4byte 0x00000000
+	.4byte 0
 .global "cKabutoChangeTexName__Q34Game9FixKabuto26@unnamed@FixKabutoMgr_cpp@"
 "cKabutoChangeTexName__Q34Game9FixKabuto26@unnamed@FixKabutoMgr_cpp@":
 	.4byte 0x8048D8F8
-	.4byte 0x00000000
+	.4byte 0
 .global sDistanceParameterMoveTime__8PSSystem
 sDistanceParameterMoveTime__8PSSystem:
 	.4byte 0x05000000

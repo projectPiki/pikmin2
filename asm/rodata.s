@@ -6282,30 +6282,25 @@ OSC_ENV:
 	.4byte 0x00000000
 	.float 1.0
 	.4byte 0x00000000
-	.4byte 0x80479640
+	.4byte OSC_RELEASE_TABLE
 	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 .global lbl_80479668
 lbl_80479668:
-	.4byte 0x416C7265
-	.4byte 0x61647920
-	.4byte 0x696E6974
-	.4byte 0x65642070
-	.4byte 0x72696F72
-	.4byte 0x20445350
-	.4byte 0x20746173
-	.4byte 0x6B0A0000
-	.4byte 0x4A616949
-	.4byte 0x6E69742E
-	.4byte 0x61616600
-	.4byte 0x41756469
-	.4byte 0x6F526573
-	.4byte 0x2F000000
-	.4byte 0x4A616953
-	.4byte 0x6571732E
-	.4byte 0x61726300
-	.4byte 0x00000000
+	.asciz "Already inited prior DSP task\n"
+	.skip 1
+.global lbl_80479688
+lbl_80479688:
+	.asciz "JaiInit.aaf"
+.global lbl_80479694
+lbl_80479694:
+	.asciz "AudioRes/"
+	.skip 2
+.global lbl_804796A0
+lbl_804796A0:
+	.asciz "JaiSeqs.arc"
+	.skip 4
 .global lbl_804796B0
 lbl_804796B0:
 	.4byte 0x00000000
