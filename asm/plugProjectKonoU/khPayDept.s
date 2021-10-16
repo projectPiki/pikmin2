@@ -1,4 +1,99 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499160
+lbl_80499160:
+	.asciz "khPayDept.cpp"
+	.skip 2
+.global lbl_80499170
+lbl_80499170:
+	.asciz "0_48.bti"
+	.skip 3
+.global lbl_8049917C
+lbl_8049917C:
+	.asciz "1_48.bti"
+	.skip 3
+.global lbl_80499188
+lbl_80499188:
+	.asciz "2_48.bti"
+	.skip 3
+.global lbl_80499194
+lbl_80499194:
+	.asciz "3_48.bti"
+	.skip 3
+.global lbl_804991A0
+lbl_804991A0:
+	.asciz "4_48.bti"
+	.skip 3
+.global lbl_804991AC
+lbl_804991AC:
+	.asciz "5_48.bti"
+	.skip 3
+.global lbl_804991B8
+lbl_804991B8:
+	.asciz "6_48.bti"
+	.skip 3
+.global lbl_804991C4
+lbl_804991C4:
+	.asciz "7_48.bti"
+	.skip 3
+.global lbl_804991D0
+lbl_804991D0:
+	.asciz "8_48.bti"
+	.skip 3
+.global lbl_804991DC
+lbl_804991DC:
+	.asciz "9_48.bti"
+	.skip 3
+.global lbl_804991E8
+lbl_804991E8:
+	.asciz "hensai_demo_parsent.blo"
+.global lbl_80499200
+lbl_80499200:
+	.asciz "hensai_demo_parsent.bck"
+.global lbl_80499218
+lbl_80499218:
+	.asciz "hensai_demo_parsent.bpk"
+	.4byte lbl_804991E8
+	.4byte lbl_80499200
+	.4byte lbl_80499218
+.global lbl_8049923C
+lbl_8049923C:
+	.asciz "hensai_demo_kanryo.blo"
+	.skip 1
+.global lbl_80499254
+lbl_80499254:
+	.asciz "hensai_demo_kanryo.bck"
+	.skip 1
+.global lbl_8049926C
+lbl_8049926C:
+	.asciz "hensai_demo_kanryo.bpk"
+	.skip 1
+	.4byte lbl_8049923C
+	.4byte lbl_80499254
+	.4byte lbl_8049926C
+.global lbl_80499290
+lbl_80499290:
+	.asciz "hensai_demo_otakara.blo"
+.global lbl_804992A8
+lbl_804992A8:
+	.asciz "hensai_demo_otakara.bck"
+.global lbl_804992C0
+lbl_804992C0:
+	.asciz "hensai_demo_otakara.bpk"
+	.4byte lbl_80499290
+	.4byte lbl_804992A8
+	.4byte lbl_804992C0
+.global lbl_804992E4
+lbl_804992E4:
+	.asciz "disp member err"
+	.asciz "hensai_demo_parsent.szs"
+	.asciz "hensai_demo_kanryo.szs"
+	.skip 1
+	.asciz "hensai_demo_otakara.szs"
+	.asciz "screenObj.h"
+	.asciz "P2Assert"
+	.skip 7
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen11DispPayDeptFQ42kh6Screen11DispPayDept11PayDeptTypei

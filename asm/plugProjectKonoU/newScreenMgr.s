@@ -1,4 +1,74 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_804985B8
+lbl_804985B8:
+	.4byte 0x7265735F
+	.4byte 0x70696B6D
+	.4byte 0x696E646F
+	.4byte 0x776E2E73
+	.4byte 0x7A730000
+.global lbl_804985CC
+lbl_804985CC:
+	.4byte 0x50696B6D
+	.4byte 0x696E446F
+	.4byte 0x776E0000
+.global lbl_804985D8
+lbl_804985D8:
+	.4byte 0x7265735F
+	.4byte 0x70726573
+	.4byte 0x6964656E
+	.4byte 0x74646F77
+	.4byte 0x6E2E737A
+	.4byte 0x73000000
+.global lbl_804985F0
+lbl_804985F0:
+	.4byte 0x50726573
+	.4byte 0x6964656E
+	.4byte 0x74446F77
+	.4byte 0x6E000000
+.global lbl_80498600
+lbl_80498600:
+	.4byte 0x67616D65
+	.4byte 0x6F766572
+	.4byte 0x5F6C6F75
+	.4byte 0x69652E73
+	.4byte 0x7A730000
+.global lbl_80498614
+lbl_80498614:
+	.4byte 0x4C756A69
+	.4byte 0x446F776E
+	.4byte 0x00000000
+.global lbl_80498620
+lbl_80498620:
+	.4byte 0x7265735F
+	.4byte 0x6F72696D
+	.4byte 0x61646F77
+	.4byte 0x6E2E737A
+	.4byte 0x73000000
+.global lbl_80498634
+lbl_80498634:
+	.4byte 0x4F72696D
+	.4byte 0x61446F77
+	.4byte 0x6E000000
+.global lbl_80498640
+lbl_80498640:
+	.4byte 0x7265735F
+	.4byte 0x67616D65
+	.4byte 0x6F766572
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+.global lbl_80498654
+lbl_80498654:
+	.4byte 0x47616D65
+	.4byte 0x4F766572
+	.4byte 0x00000000
+.global lbl_80498660
+lbl_80498660:
+	.4byte 0x7265735F
+	.4byte 0x67726F75
+	.4byte 0x6E642E73
+	.4byte 0x7A730000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createScene_Ogawa__9newScreenFl

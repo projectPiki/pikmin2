@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_804984C0
+lbl_804984C0:
+	.4byte 0x72657375
+	.4byte 0x6C745F74
+	.4byte 0x69746C65
+	.4byte 0x5F6E6577
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+.global lbl_804984D8
+lbl_804984D8:
+	.4byte 0x77696E5F
+	.4byte 0x6C6F7365
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+.global lbl_804984E8
+lbl_804984E8:
+	.4byte 0x72657375
+	.4byte 0x6C745F66
+	.4byte 0x75657461
+	.4byte 0x68657461
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+.global lbl_80498500
+lbl_80498500:
+	.4byte 0x72657375
+	.4byte 0x6C745F69
+	.4byte 0x74656D2E
+	.4byte 0x737A7300
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createScene_Koono__Q22kh6ScreenFl

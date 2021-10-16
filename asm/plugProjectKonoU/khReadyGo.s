@@ -1,4 +1,55 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80498670
+lbl_80498670:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8049867C
+lbl_8049867C:
+	.asciz "khReadyGo.cpp"
+	.skip 2
+.global lbl_8049868C
+lbl_8049868C:
+	.asciz "disp member err"
+.global lbl_8049869C
+lbl_8049869C:
+	.asciz "ready_go.blo"
+	.skip 3
+.global lbl_804986AC
+lbl_804986AC:
+	.asciz "ready_go.bck"
+	.skip 3
+.global lbl_804986BC
+lbl_804986BC:
+	.asciz "ready_go.bpk"
+	.skip 3
+.global lbl_804986CC
+lbl_804986CC:
+	.asciz "ready_go_reverse.blo"
+	.skip 3
+.global lbl_804986E4
+lbl_804986E4:
+	.asciz "ready_go_reverse.bck"
+	.skip 3
+.global lbl_804986FC
+lbl_804986FC:
+	.asciz "ready_go_reverse.bpk"
+	.skip 3
+	.4byte lbl_8049869C
+	.4byte lbl_804986AC
+	.4byte lbl_804986BC
+	.4byte lbl_804986CC
+	.4byte lbl_804986E4
+	.4byte lbl_804986FC
+.global lbl_8049872C
+lbl_8049872C:
+	.asciz "ready_go.szs"
+	.skip 3
+	.asciz "screenObj.h"
+	.asciz "P2Assert"
+	.skip 7
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doUpdateFadein__Q32kh6Screen10ObjReadyGoFv

@@ -1,4 +1,107 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80499358
+lbl_80499358:
+	.asciz "khWinLose.cpp"
+	.skip 2
+.global lbl_80499368
+lbl_80499368:
+	.asciz "lose.blo"
+	.skip 3
+.global lbl_80499374
+lbl_80499374:
+	.asciz "lose.bck"
+	.skip 3
+.global lbl_80499380
+lbl_80499380:
+	.asciz "lose.bpk"
+	.skip 3
+.global lbl_8049938C
+lbl_8049938C:
+	.asciz "time_up.blo"
+.global lbl_80499398
+lbl_80499398:
+	.asciz "time_up.bck"
+.global lbl_804993A4
+lbl_804993A4:
+	.asciz "time_up.bpk"
+	.4byte lbl_8052020C
+	.4byte lbl_80520214
+	.4byte lbl_8052021C
+	.4byte lbl_80499368
+	.4byte lbl_80499374
+	.4byte lbl_80499380
+	.4byte lbl_8049938C
+	.4byte lbl_80499398
+	.4byte lbl_804993A4
+.global lbl_804993D4
+lbl_804993D4:
+	.asciz "win_wait.blo"
+	.skip 3
+.global lbl_804993E4
+lbl_804993E4:
+	.asciz "win_wait.bck"
+	.skip 3
+.global lbl_804993F4
+lbl_804993F4:
+	.asciz "win_wait.bpk"
+	.skip 3
+.global lbl_80499404
+lbl_80499404:
+	.asciz "lose_wait.blo"
+	.skip 2
+.global lbl_80499414
+lbl_80499414:
+	.asciz "lose_wait.bck"
+	.skip 2
+.global lbl_80499424
+lbl_80499424:
+	.asciz "lose_wait.bpk"
+	.skip 2
+.global lbl_80499434
+lbl_80499434:
+	.asciz "time_up_wait.blo"
+	.skip 3
+.global lbl_80499448
+lbl_80499448:
+	.asciz "time_up_wait.bck"
+	.skip 3
+.global lbl_8049945C
+lbl_8049945C:
+	.asciz "time_up_wait.bpk"
+	.skip 3
+.global lbl_80499470
+lbl_80499470:
+	.asciz "draw.blo"
+	.skip 3
+.global lbl_8049947C
+lbl_8049947C:
+	.asciz "draw.bck"
+	.skip 3
+.global lbl_80499488
+lbl_80499488:
+	.asciz "draw.bpk"
+	.skip 3
+	.4byte lbl_804993D4
+	.4byte lbl_804993E4
+	.4byte lbl_804993F4
+	.4byte lbl_80499404
+	.4byte lbl_80499414
+	.4byte lbl_80499424
+	.4byte lbl_80499434
+	.4byte lbl_80499448
+	.4byte lbl_8049945C
+	.4byte lbl_80499470
+	.4byte lbl_8049947C
+	.4byte lbl_80499488
+.global lbl_804994C4
+lbl_804994C4:
+	.asciz "disp member err"
+	.asciz "screenObj.h"
+	.asciz "P2Assert"
+	.skip 7
+
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global msVal__Q32kh6Screen10ObjWinLose
 msVal__Q32kh6Screen10ObjWinLose:

@@ -1,4 +1,33 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_804994F0
+lbl_804994F0:
+	.asciz "khWinLoseReason.cpp"
+	.asciz "otakara_get.blo"
+	.asciz "otakara_get.bck"
+	.asciz "otakara_get.bpk"
+	.asciz "disp member err"
+	.asciz "OrimaDown"
+	.skip 2
+.global lbl_80499550
+lbl_80499550:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PikminDown"
+	.skip 1
+	.asciz "LujiDown"
+	.skip 3
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "get sound scene at\ninvalid timming\n"
+.global lbl_804995B0
+lbl_804995B0:
+	.asciz "win_lose_reason.szs"
+	.asciz "screenObj.h"
+
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global msVal__Q32kh6Screen16ObjWinLoseReason
 msVal__Q32kh6Screen16ObjWinLoseReason:

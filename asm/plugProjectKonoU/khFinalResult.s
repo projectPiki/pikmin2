@@ -1,4 +1,240 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80498CD8
+lbl_80498CD8:
+	.asciz "khFinalResult.cpp"
+	.skip 2
+.global lbl_80498CEC
+lbl_80498CEC:
+	.asciz "result_final_image00.blo"
+	.skip 3
+.global lbl_80498D08
+lbl_80498D08:
+	.asciz "result_final_image01.blo"
+	.skip 3
+.global lbl_80498D24
+lbl_80498D24:
+	.asciz "result_final_image02.blo"
+	.skip 3
+.global lbl_80498D40
+lbl_80498D40:
+	.asciz "result_final_image03.blo"
+	.skip 3
+.global lbl_80498D5C
+lbl_80498D5C:
+	.asciz "result_final_image04.blo"
+	.skip 3
+.global lbl_80498D78
+lbl_80498D78:
+	.asciz "result_final_image05.blo"
+	.skip 3
+.global lbl_80498D94
+lbl_80498D94:
+	.asciz "result_final_image06.blo"
+	.skip 3
+.global lbl_80498DB0
+lbl_80498DB0:
+	.asciz "result_final_image07.blo"
+	.skip 3
+.global lbl_80498DCC
+lbl_80498DCC:
+	.asciz "result_final_image08.blo"
+	.skip 3
+.global lbl_80498DE8
+lbl_80498DE8:
+	.asciz "result_final_image09.blo"
+	.skip 3
+.global lbl_80498E04
+lbl_80498E04:
+	.asciz "result_final_image10.blo"
+	.skip 3
+.global lbl_80498E20
+lbl_80498E20:
+	.asciz "result_final_image11.blo"
+	.skip 3
+.global lbl_80498E3C
+lbl_80498E3C:
+	.asciz "result_final_image12.blo"
+	.skip 3
+.global lbl_80498E58
+lbl_80498E58:
+	.asciz "result_final_image13.blo"
+	.skip 3
+.global lbl_80498E74
+lbl_80498E74:
+	.asciz "result_final_image14.blo"
+	.skip 3
+.global lbl_80498E90
+lbl_80498E90:
+	.asciz "result_final_image15.blo"
+	.skip 3
+	.4byte lbl_80498CEC
+	.4byte lbl_80498D08
+	.4byte lbl_80498D24
+	.4byte lbl_80498D40
+	.4byte lbl_80498D5C
+	.4byte lbl_80498D78
+	.4byte lbl_80498D94
+	.4byte lbl_80498DB0
+	.4byte lbl_80498DCC
+	.4byte lbl_80498DE8
+	.4byte lbl_80498E04
+	.4byte lbl_80498E20
+	.4byte lbl_80498E3C
+	.4byte lbl_80498E58
+	.4byte lbl_80498E74
+	.4byte lbl_80498E90
+	.4byte 0x00000000
+	.4byte 0x00000008
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000004
+	.4byte 0x00000005
+	.4byte 0x00000006
+	.4byte 0x00000007
+	.4byte 0x0000000E
+	.4byte 0x0000000A
+	.4byte 0x0000000B
+	.4byte 0x00000009
+	.4byte 0x0000000D
+	.4byte 0x0000000C
+	.4byte 0x0000000F
+	.asciz "/new_screen/cmn/result_final_image.szs"
+	.skip 5
+	.4byte 0x50746F6B
+	.4byte 0x796F7031
+	.4byte 0x00503173
+	.4byte 0x74305F31
+	.4byte 0x0050326E
+	.4byte 0x64305F31
+	.4byte 0x00503372
+	.4byte 0x64305F31
+	.4byte 0x50746F6D
+	.4byte 0x61647031
+	.4byte 0x00503173
+	.4byte 0x74315F31
+	.4byte 0x0050326E
+	.4byte 0x64315F31
+	.4byte 0x00503372
+	.4byte 0x64315F31
+	.4byte 0x50746F6D
+	.4byte 0x61643131
+	.4byte 0x00005031
+	.4byte 0x73747433
+	.4byte 0x00005032
+	.4byte 0x6E647433
+	.4byte 0x00005033
+	.4byte 0x72647433
+	.4byte 0x50746F6D
+	.4byte 0x61647039
+	.4byte 0x00005031
+	.4byte 0x73747431
+	.4byte 0x00005032
+	.4byte 0x6E647431
+	.4byte 0x00005033
+	.4byte 0x72647431
+.global lbl_80498FD8
+lbl_80498FD8:
+	.4byte 0x64697370
+	.4byte 0x206D656D
+	.4byte 0x62657220
+	.4byte 0x65727200
+	.4byte 0x72657375
+	.4byte 0x6C745F66
+	.4byte 0x696E616C
+	.4byte 0x2E626C6F
+	.4byte 0x00000000
+	.4byte 0x72657375
+	.4byte 0x6C745F66
+	.4byte 0x696E616C
+	.4byte 0x2E62636B
+	.4byte 0x00000000
+	.4byte 0x72657375
+	.4byte 0x6C745F66
+	.4byte 0x696E616C
+	.4byte 0x2E62706B
+	.4byte 0x00000000
+	.4byte 0x72657375
+	.4byte 0x6C745F66
+	.4byte 0x696E616C
+	.4byte 0x2E62746B
+	.4byte 0x00000000
+	.4byte 0x72657375
+	.4byte 0x6C745F66
+	.4byte 0x696E616C
+	.4byte 0x2E62726B
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00383435
+	.4byte 0x325F3030
+	.4byte 0x00383435
+	.4byte 0x335F3030
+	.4byte 0x00383435
+	.4byte 0x345F3030
+	.4byte 0x00383435
+	.4byte 0x355F3030
+	.4byte 0x00383435
+	.4byte 0x365F3030
+	.4byte 0x00383435
+	.4byte 0x375F3030
+	.4byte 0x00383435
+	.4byte 0x385F3030
+	.4byte 0x00383435
+	.4byte 0x395F3030
+	.4byte 0x00383436
+	.4byte 0x305F3030
+	.4byte 0x00383436
+	.4byte 0x315F3030
+	.4byte 0x00383436
+	.4byte 0x325F3030
+	.4byte 0x00383436
+	.4byte 0x335F3030
+	.4byte 0x00383436
+	.4byte 0x345F3030
+	.4byte 0x00383436
+	.4byte 0x355F3030
+	.4byte 0x00383436
+	.4byte 0x365F3030
+	.4byte 0x00383436
+	.4byte 0x375F3030
+	.4byte 0x00503173
+	.4byte 0x74305F31
+	.4byte 0x0050326E
+	.4byte 0x64305F31
+	.4byte 0x00503372
+	.4byte 0x64305F31
+	.4byte 0x00503173
+	.4byte 0x74315F31
+	.4byte 0x0050326E
+	.4byte 0x64315F31
+	.4byte 0x00503372
+	.4byte 0x64315F31
+	.4byte 0x00005031
+	.4byte 0x73747433
+	.4byte 0x00005032
+	.4byte 0x6E647433
+	.4byte 0x00005033
+	.4byte 0x72647433
+	.4byte 0x00005031
+	.4byte 0x73747431
+	.4byte 0x00005032
+	.4byte 0x6E647431
+	.4byte 0x00005033
+	.4byte 0x72647431
+	.4byte 0x72657375
+	.4byte 0x6C745F66
+	.4byte 0x696E616C
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+	.4byte 0x50324173
+	.4byte 0x73657274
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen15DispFinalResultFPQ32kh6Screen15TotalResultDataQ42kh6Screen15DispFinalResult10ResultTypeP7JKRHeap

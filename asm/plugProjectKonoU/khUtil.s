@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_80498CB0
+lbl_80498CB0:
+	.asciz "khUtil.cpp"
+	.skip 1
+.global lbl_80498CBC
+lbl_80498CBC:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80498CC8
+lbl_80498CC8:
+	.asciz "khUtil.h"
+	.skip 7
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getSerialTagName__Q22kh6ScreenFUxi
