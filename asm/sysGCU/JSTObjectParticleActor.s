@@ -87,6 +87,14 @@ __vt__Q34Game5P2JST19ObjectParticleActor:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805162F0
+lbl_805162F0:
+	.skip 0x4
+.global lbl_805162F4
+lbl_805162F4:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520B98

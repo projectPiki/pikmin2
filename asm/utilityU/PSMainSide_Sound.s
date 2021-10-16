@@ -247,6 +247,20 @@ cPan_MaxAmp__Q23PSM7SeSound:
 cCenterRad__Q23PSM7SeSound:
 	.float 1.57
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516330
+lbl_80516330:
+	.skip 0x4
+.global lbl_80516334
+lbl_80516334:
+	.skip 0x4
+.global panRatio$3853
+panRatio$3853:
+	.skip 0x4
+.global init$3854_1
+init$3854_1:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520D90

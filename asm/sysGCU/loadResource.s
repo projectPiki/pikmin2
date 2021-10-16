@@ -50,6 +50,11 @@ lbl_80520AA8:
 	.4byte 0x44766452
 	.4byte 0x6F6F7400
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global gLoadResourceMgr
+gLoadResourceMgr:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q212LoadResource4NodeFv
 __dt__Q212LoadResource4NodeFv:

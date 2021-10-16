@@ -120,6 +120,26 @@ VolumeTable:
 ActivePlayer:
 	.skip 0x1D0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global Initialized_2
+Initialized_2:
+	.skip 0x4
+.global PrepareReadyMessage
+PrepareReadyMessage:
+	.skip 0x4
+.global OldVIPostCallback
+OldVIPostCallback:
+	.skip 0x4
+.global SoundBufferIndex
+SoundBufferIndex:
+	.skip 0x4
+.global LastAudioBuffer
+LastAudioBuffer:
+	.skip 0x4
+.global CurAudioBuffer
+CurAudioBuffer:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520AF8

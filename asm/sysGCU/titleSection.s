@@ -268,6 +268,14 @@ __vt__Q25Title7Section:
 "sSeasonIndex__26@unnamed@titleSection_cpp@":
 	.byte 0xFF
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805162A0
+lbl_805162A0:
+	.skip 0x4
+.global lbl_805162A4
+lbl_805162A4:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520A80

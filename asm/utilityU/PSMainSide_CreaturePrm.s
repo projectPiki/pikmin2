@@ -174,6 +174,11 @@ sBoss_ViewDistVol__3PSM:
 sBoss_DistMax__3PSM:
 	.float 4000.0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global sTHPDinamicsProc__3PSM
+sTHPDinamicsProc__3PSM:
+	.skip 0x20
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520DB8

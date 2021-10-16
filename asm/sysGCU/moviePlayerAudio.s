@@ -14,6 +14,14 @@ __vt__27Pikmin_TCreateObject_JAudio:
 	.4byte create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805162F8
+lbl_805162F8:
+	.skip 0x4
+.global lbl_805162FC
+lbl_805162FC:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__27Pikmin_TCreateObject_JAudioFP8JAIBasicPCQ26JStage7TSystem
 __ct__27Pikmin_TCreateObject_JAudioFP8JAIBasicPCQ26JStage7TSystem:

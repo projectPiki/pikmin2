@@ -375,6 +375,14 @@ __vt__Q23PSM9SceneBase:
 	.4byte pauseOn_Demo__Q23PSM9SceneBaseFv
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516318
+lbl_80516318:
+	.skip 0x4
+.global lbl_8051631C
+lbl_8051631C:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520C98
