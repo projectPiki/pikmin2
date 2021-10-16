@@ -24,4 +24,33 @@ GROUP: {
     _db_stack_end = _stack_addr;
     __ArenaLo = (_db_stack_addr + 0x1f) & ~0x1f;
     __ArenaHi = 0x81700000;
+
+    /* Sizes */
+    _size_init = SIZEOF(.init);
+    _size_extab = SIZEOF(._extab);
+    _size_extabindex = SIZEOF(._exidx);
+    _size_text = SIZEOF(.text);
+    _size_ctors = SIZEOF(.ctors); /* unlike the other sections, we can use this size symbol as-is. */
+    _size_dtors = SIZEOF(.dtors);
+    _size_rodata = SIZEOF(.rodata);
+    _size_data = SIZEOF(.data);
+    _size_sdata = SIZEOF(.sdata); /* unlike the other sections, we can use this size symbol as-is. */
+    _size_sdata2 = SIZEOF(.sdata2);
+    _size_bss = SIZEOF(.bss);
+    _size_sbss = SIZEOF(.sbss);
+    _size_sbss2 = SIZEOF(.sbss2); /* unlike the other sections, we can use this size symbol as-is. */
+    
+    /* Sizes, but reduced to match lbl_80005544 entries in .init. */
+    /* TODO: Figure out why they're reduced with seemingly */
+    /* random offsets? Perhaps it's padding. */
+    _size_init_reduced = _size_init-0x18;
+    _size_extab_reduced = _size_extab-0x18;
+    _size_extabindex_reduced = _size_extabindex-0x4;
+    _size_text_reduced = _size_text-0x1C;
+    _size_dtors_reduced = _size_dtors-0x10;
+    _size_rodata_reduced = _size_rodata-0xE;
+    _size_data_reduced = _size_data-0x18;
+    _size_bss_reduced = _size_bss-0x4;
+    _size_sbss_reduced = _size_sbss-0x1C;
+    _size_sdata2_reduced = _size_sdata2-0x10;
 }
