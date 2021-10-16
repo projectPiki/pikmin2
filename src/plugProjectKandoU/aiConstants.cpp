@@ -24,7 +24,7 @@ AIConstants::AIConstants()
 
 	void* handle = JKRDvdRipper::loadToMainRAM(
 	    "/user/Kando/aiConstants.txt", nullptr, Switch_0, 0, 0,
-	    AllocDirection_2, 0, nullptr, nullptr);
+	    JKRDvdRipper::AllocDirection_2, 0, nullptr, nullptr);
 
 	if (handle) {
 		RamStream stream(handle, -1);
