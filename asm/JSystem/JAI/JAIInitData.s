@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global wsInitCallback__Q27JAInter8InitData
+wsInitCallback__Q27JAInter8InitData:
+	.4byte initWsList__Q27JAInter8InitDataFPUl
+.global bnkInitCallback__Q27JAInter8InitData
+bnkInitCallback__Q27JAInter8InitData:
+	.4byte initBnkList__Q27JAInter8InitDataFPUl
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setWsInitCallback__Q27JAInter8InitDataFPFPUl_v

@@ -235,6 +235,11 @@ lbl_80498FD8:
 	.4byte 0x73657274
 	.4byte 0x00000000
 	.4byte 0x00000000
+	
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32kh6Screen14ObjFinalResult
+msVal__Q32kh6Screen14ObjFinalResult:
+	.skip 0x24
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen15DispFinalResultFPQ32kh6Screen15TotalResultDataQ42kh6Screen15DispFinalResult10ResultTypeP7JKRHeap

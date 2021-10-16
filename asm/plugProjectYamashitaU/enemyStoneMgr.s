@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@"
+"sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@":
+	.4byte lbl_8047BE58
+	.4byte lbl_8047BE6C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10EnemyStone3MgrFv

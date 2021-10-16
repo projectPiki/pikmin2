@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global oneFrameRate
+oneFrameRate:
+	.float 8.0
+.global oneFrameRateUser
+oneFrameRateUser:
+	.float 10.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q210JUTProcBar5CTimeFv

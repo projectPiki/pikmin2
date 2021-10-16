@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global lbl_80514950
+lbl_80514950:
+	.asciz "\n"
+	.skip 2
+.global lbl_80514954
+lbl_80514954:
+	.asciz "OFF"
+.global lbl_80514958
+lbl_80514958:
+	.asciz "ON"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global cb

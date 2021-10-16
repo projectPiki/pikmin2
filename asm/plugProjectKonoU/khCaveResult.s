@@ -104,6 +104,11 @@ lbl_80498494:
 	.4byte 0x73657274
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32kh6Screen13ObjCaveResult
+msVal__Q32kh6Screen13ObjCaveResult:
+	.skip 0x3C
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EC0
 lbl_80520EC0:

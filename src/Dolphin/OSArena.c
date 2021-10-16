@@ -1,5 +1,5 @@
 extern int __OSArenaHi;
-extern int __OSArenaLo;
+int __OSArenaLo = -1;
 
 /*
  * --INFO--

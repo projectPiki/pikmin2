@@ -1,6 +1,6 @@
 #include "dolphin/rand.h"
 
-extern u32 next;
+u32 next = 1;
 
 /*
  * --INFO--

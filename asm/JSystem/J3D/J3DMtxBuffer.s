@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global sNoUseDrawMtxPtr__12J3DMtxBuffer
+sNoUseDrawMtxPtr__12J3DMtxBuffer:
+	.4byte sNoUseDrawMtx__12J3DMtxBuffer
+.global sNoUseNrmMtxPtr__12J3DMtxBuffer
+sNoUseNrmMtxPtr__12J3DMtxBuffer:
+	.4byte sNoUseNrmMtx__12J3DMtxBuffer
+.global J3DUnit01
+J3DUnit01:
+	.4byte 0x00000000
+	.float 1.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__12J3DMtxBufferFv

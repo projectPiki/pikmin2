@@ -1,4 +1,39 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global mMoveSpeed__Q28Morimura16TChallengeResult
+mMoveSpeed__Q28Morimura16TChallengeResult:
+	.float 12.0
+.global mAngRate__Q28Morimura16TChallengeResult
+mAngRate__Q28Morimura16TChallengeResult:
+	.float 0.3
+.global mAngVelMax__Q28Morimura16TChallengeResult
+mAngVelMax__Q28Morimura16TChallengeResult:
+	.float 20.0
+.global mAccel__Q28Morimura16TChallengeResult
+mAccel__Q28Morimura16TChallengeResult:
+	.float 0.1
+.global mTestDemo__Q28Morimura16TChallengeResult
+mTestDemo__Q28Morimura16TChallengeResult:
+	.byte 0x1
+.global mComplete__Q28Morimura16TChallengeResult
+mComplete__Q28Morimura16TChallengeResult:
+	.byte 0x1
+.global mTestRankInOrder__Q28Morimura16TChallengeResult
+mTestRankInOrder__Q28Morimura16TChallengeResult:
+	.2byte 0xFFFF
+.global mFlashInterval__Q28Morimura16TChallengeResult
+mFlashInterval__Q28Morimura16TChallengeResult:
+	.float 40.0
+.global mDemoSpeedUpRate__Q28Morimura16TChallengeResult
+mDemoSpeedUpRate__Q28Morimura16TChallengeResult:
+	.float 2.0
+.global mDemoSpeedUpMax__Q28Morimura16TChallengeResult
+mDemoSpeedUpMax__Q28Morimura16TChallengeResult:
+	.float 3.0
+.global mFlashColor__Q28Morimura16TChallengeResult
+mFlashColor__Q28Morimura16TChallengeResult:
+	.4byte 0xFFFF00FF
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q28Morimura22TChallengeResultScreenFPCcUl

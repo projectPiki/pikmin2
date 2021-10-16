@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global sDspDacBufferCount__9JASDriver
+sDspDacBufferCount__9JASDriver:
+	.4byte 0x03000000
+.global sSubFrames__9JASDriver
+sSubFrames__9JASDriver:
+	.4byte 0x00000007
+.global sMixMode__9JASDriver
+sMixMode__9JASDriver:
+	.4byte 0x00000002
+.global sDacRate__9JASDriver
+sDacRate__9JASDriver:
+	.float 32028.5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initAI__9JASDriverFPFv_v

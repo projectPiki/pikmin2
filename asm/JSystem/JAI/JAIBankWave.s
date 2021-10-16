@@ -1,4 +1,21 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global flags__Q27JAInter8BankWave
+flags__Q27JAInter8BankWave:
+	.4byte 0x00000000
+.global SceneSetFlag__Q27JAInter8BankWave
+SceneSetFlag__Q27JAInter8BankWave:
+	.4byte 0xFFFFFFFF
+.global initCallback__Q27JAInter8BankWave
+initCallback__Q27JAInter8BankWave:
+	.4byte init__Q27JAInter8BankWaveFv
+.global firstLoadCallback__Q27JAInter8BankWave
+firstLoadCallback__Q27JAInter8BankWave:
+	.4byte loadFirstStayWave__Q27JAInter8BankWaveFv
+.global secondLoadCallback__Q27JAInter8BankWave
+secondLoadCallback__Q27JAInter8BankWave:
+	.4byte loadSecondStayWave__Q27JAInter8BankWaveFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setInitCallback__Q27JAInter8BankWaveFPFv_v

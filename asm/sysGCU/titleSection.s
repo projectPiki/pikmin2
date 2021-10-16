@@ -253,6 +253,21 @@ __vt__Q25Title7Section:
 	.4byte 0
 	.4byte "invoke__26Delegate<Q25Title7Section>Fv"
 
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global "sMovieIndex__26@unnamed@titleSection_cpp@"
+"sMovieIndex__26@unnamed@titleSection_cpp@":
+	.byte 0x0
+	.byte 0x2
+	.byte 0x4
+	.byte 0x01
+	.byte 0x03
+	.byte 0x0B
+	.byte 0x0B
+.global "sSeasonIndex__26@unnamed@titleSection_cpp@"
+"sSeasonIndex__26@unnamed@titleSection_cpp@":
+	.byte 0xFF
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520A80

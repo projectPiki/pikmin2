@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global asArrayOtakara__4Game
+asArrayOtakara__4Game:
+	.4byte 0xFFFFFFFF
+	.float 1.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics

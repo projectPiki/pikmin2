@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global sOptDraw__Q24Game15BaseGameSection
+sOptDraw__Q24Game15BaseGameSection:
+	.4byte 0x03000000
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E58
 lbl_80520E58:

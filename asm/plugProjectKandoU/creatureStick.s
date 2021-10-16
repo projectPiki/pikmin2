@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global maxBuffer__Q24Game8Stickers
+maxBuffer__Q24Game8Stickers:
+	.4byte 0x0000006E
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clearStick__Q24Game8CreatureFv

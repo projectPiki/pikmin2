@@ -51,6 +51,11 @@ lbl_8049872C:
 	.asciz "P2Assert"
 	.skip 7
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32kh6Screen10ObjReadyGo
+msVal__Q32kh6Screen10ObjReadyGo:
+	.skip 0x18
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doUpdateFadein__Q32kh6Screen10ObjReadyGoFv
 doUpdateFadein__Q32kh6Screen10ObjReadyGoFv:

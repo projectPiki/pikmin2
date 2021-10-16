@@ -1,4 +1,39 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global maxStdHeaps__Q29JFWSystem11CSetUpParam
+maxStdHeaps__Q29JFWSystem11CSetUpParam:
+	.4byte 2
+.global sysHeapSize__Q29JFWSystem11CSetUpParam
+sysHeapSize__Q29JFWSystem11CSetUpParam:
+	.4byte 0x00400000
+.global fifoBufSize__Q29JFWSystem11CSetUpParam
+fifoBufSize__Q29JFWSystem11CSetUpParam:
+	.4byte 0x00040000
+.global aramAudioBufSize__Q29JFWSystem11CSetUpParam
+aramAudioBufSize__Q29JFWSystem11CSetUpParam:
+	.4byte 0x00800000
+.global aramGraphBufSize__Q29JFWSystem11CSetUpParam
+aramGraphBufSize__Q29JFWSystem11CSetUpParam:
+	.4byte 0x00600000
+.global streamPriority__Q29JFWSystem11CSetUpParam
+streamPriority__Q29JFWSystem11CSetUpParam:
+	.4byte 0x00000008
+.global decompPriority__Q29JFWSystem11CSetUpParam
+decompPriority__Q29JFWSystem11CSetUpParam:
+	.4byte 0x00000007
+.global aPiecePriority__Q29JFWSystem11CSetUpParam
+aPiecePriority__Q29JFWSystem11CSetUpParam:
+	.4byte 0x00000006
+.global systemFontRes__Q29JFWSystem11CSetUpParam
+systemFontRes__Q29JFWSystem11CSetUpParam:
+	.4byte lbl_804742C0
+.global renderMode__Q29JFWSystem11CSetUpParam
+renderMode__Q29JFWSystem11CSetUpParam:
+	.4byte GXNtsc480IntDf
+.global exConsoleBufferSize__Q29JFWSystem11CSetUpParam
+exConsoleBufferSize__Q29JFWSystem11CSetUpParam:
+	.4byte 0x000024FC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__9JFWSystemFv

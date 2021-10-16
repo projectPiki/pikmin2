@@ -1,4 +1,45 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global mScrollParm__Q28Morimura10TZukanBase
+mScrollParm__Q28Morimura10TZukanBase:
+	.skip 0x14
+
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global mRequestTimerMax__Q28Morimura10TZukanBase
+mRequestTimerMax__Q28Morimura10TZukanBase:
+	.2byte 0xA
+.global mIconMove__Q28Morimura10TZukanBase
+mIconMove__Q28Morimura10TZukanBase:
+	.byte 0x1
+	.byte 0x0
+.global mLineSpace__Q28Morimura10TZukanBase
+mLineSpace__Q28Morimura10TZukanBase:
+	.float 48.0
+.global mWarpRadius__Q28Morimura10TZukanBase
+mWarpRadius__Q28Morimura10TZukanBase:
+	.float 15.0
+.global mScrollValueCoe__Q28Morimura10TZukanBase
+mScrollValueCoe__Q28Morimura10TZukanBase:
+	.float 3.5
+.global mScrollSpeedCoe__Q28Morimura10TZukanBase
+mScrollSpeedCoe__Q28Morimura10TZukanBase:
+	.float 0.08
+.global mNewScale__Q28Morimura10TZukanBase
+mNewScale__Q28Morimura10TZukanBase:
+	.float 0.7
+.global mPodIconOffsetX__Q28Morimura10TZukanBase
+mPodIconOffsetX__Q28Morimura10TZukanBase:
+	.float 480.0
+.global mLargeCategoryScale__Q28Morimura10TZukanBase
+mLargeCategoryScale__Q28Morimura10TZukanBase:
+	.float 2.0
+.global mCategoryAlphaRate__Q28Morimura10TZukanBase
+mCategoryAlphaRate__Q28Morimura10TZukanBase:
+	.float 0.6
+.global mDrawLineType__Q28Morimura10TZukanBase
+mDrawLineType__Q28Morimura10TZukanBase:
+	.4byte 0x02000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28Morimura10TZukanBaseFPc

@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global mInitPosX__Q28Morimura10THurryUp2D
+mInitPosX__Q28Morimura10THurryUp2D:
+	.float 900.0
+.global mMoveSp__Q28Morimura10THurryUp2D
+mMoveSp__Q28Morimura10THurryUp2D:
+	.float 12.0
+.global mScaleSp1__Q28Morimura10THurryUp2D
+mScaleSp1__Q28Morimura10THurryUp2D:
+	.float 0.01
+.global mScaleSp2__Q28Morimura10THurryUp2D
+mScaleSp2__Q28Morimura10THurryUp2D:
+	.float 0.1
+.global mScaleRate__Q28Morimura10THurryUp2D
+mScaleRate__Q28Morimura10THurryUp2D:
+	.float 1.02
+.global mColorUpSp__Q28Morimura10THurryUp2D
+mColorUpSp__Q28Morimura10THurryUp2D:
+	.float 1.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f

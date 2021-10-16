@@ -738,33 +738,3 @@ msVal__Q32og9newScreen14ObjChallenge1P:
 .global msBaseVal__Q32og9newScreen16ObjChallengeBase
 msBaseVal__Q32og9newScreen16ObjChallengeBase:
 	.skip 0x1C
-.global newSeqName__6PSGame
-newSeqName__6PSGame:
-	.skip 0x20
-.global mScrollParm__Q28Morimura10TZukanBase
-mScrollParm__Q28Morimura10TZukanBase:
-	.skip 0x14
-.global mScrollParm__Q28Morimura8THiScore
-mScrollParm__Q28Morimura8THiScore:
-	.skip 0x14
-.global mScrollParm__Q28Morimura9TVsSelect
-mScrollParm__Q28Morimura9TVsSelect:
-	.skip 0x14
-.global msVal__Q32kh6Screen8WorldMap
-msVal__Q32kh6Screen8WorldMap:
-	.skip 0x7C
-.global msVal__Q32kh6Screen13ObjCaveResult
-msVal__Q32kh6Screen13ObjCaveResult:
-	.skip 0x3C
-.global msVal__Q32kh6Screen10ObjReadyGo
-msVal__Q32kh6Screen10ObjReadyGo:
-	.skip 0x18
-.global msVal__Q32kh6Screen13ObjFinalFloor
-msVal__Q32kh6Screen13ObjFinalFloor:
-	.skip 0xC
-.global msVal__Q32kh6Screen19ObjDayEndResultBase
-msVal__Q32kh6Screen19ObjDayEndResultBase:
-	.skip 0x54
-.global msVal__Q32kh6Screen14ObjFinalResult
-msVal__Q32kh6Screen14ObjFinalResult:
-	.skip 0x24

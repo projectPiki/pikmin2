@@ -1,4 +1,23 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global mScrollParm__Q28Morimura8THiScore
+mScrollParm__Q28Morimura8THiScore:
+	.skip 0x14
+
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global mPictureOffsetY__Q28Morimura8THiScore
+mPictureOffsetY__Q28Morimura8THiScore:
+	.float -8.0
+.global mChangeAlpha__Q28Morimura8THiScore
+mChangeAlpha__Q28Morimura8THiScore:
+	.4byte 0x01000000
+.global mListOffsetY__Q28Morimura8THiScore
+mListOffsetY__Q28Morimura8THiScore:
+	.float 25.0
+.global mClearListHeightRate__Q28Morimura8THiScore
+mClearListHeightRate__Q28Morimura8THiScore:
+	.float 1.55
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global draw__Q28Morimura15THiScoreIndPaneFv

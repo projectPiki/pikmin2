@@ -39,6 +39,15 @@ __vt__Q28SysShape5Model:
 	.4byte jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint
 	.4byte 0
 
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global viewCalcMode__Q28SysShape5Model
+viewCalcMode__Q28SysShape5Model:
+	.byte 0x01
+	.byte 0x00
+	.byte 0x00
+	.byte 0x00
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520908

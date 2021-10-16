@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global COMP_BLOCKSAMPLES$600
+COMP_BLOCKSAMPLES$600:
+	.4byte 0x10100101
+	.4byte 0x01101001
+.global COMP_BLOCKBYTES$601
+COMP_BLOCKBYTES$601:
+	.4byte 0x09050810
+	.4byte 0x01010101
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global boot__6JASDspFPFPv_v

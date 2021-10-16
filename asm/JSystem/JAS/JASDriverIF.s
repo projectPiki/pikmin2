@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global MAX_MIXERLEVEL__9JASDriver
+MAX_MIXERLEVEL__9JASDriver:
+	.2byte 0x2ee0
+.global MAX_AUTOMIXERLEVEL__9JASDriver
+MAX_AUTOMIXERLEVEL__9JASDriver:
+	.2byte 0x2ee0
+.global JAS_SYSTEM_OUTPUT_MODE__9JASDriver
+JAS_SYSTEM_OUTPUT_MODE__9JASDriver:
+	.4byte 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global key2pitch_c5__9JASDriverFi

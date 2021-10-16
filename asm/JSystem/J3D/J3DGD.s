@@ -1,4 +1,41 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global cm2hw$551
+cm2hw$551:
+	.4byte 0x00020103
+.global J3DGDTexMode0Ids
+J3DGDTexMode0Ids:
+	.4byte 0x80818283
+	.4byte 0xa0a1a2a3
+.global J3DGDTexMode1Ids
+J3DGDTexMode1Ids:
+	.4byte 0x84858687
+	.4byte 0xa4a5a6a7
+.global J3DGDTexImage0Ids
+J3DGDTexImage0Ids:
+	.4byte 0x88898a8b
+	.4byte 0xa8a9aaab
+.global J3DGDTexImage3Ids
+J3DGDTexImage3Ids:
+	.4byte 0x94959697
+	.4byte 0xb4b5b6b7
+.global J3DGDTexTlutIds
+J3DGDTexTlutIds:
+	.4byte 0x98999a9b
+	.4byte 0xb8b9babb
+.global GX2HWFiltConv
+GX2HWFiltConv:
+	.4byte 0x00040105
+	.4byte 0x02060000
+.global J3DTexImage1Ids
+J3DTexImage1Ids:
+	.4byte 0x8c8d8e8f
+	.4byte 0xacadaeaf
+.global J3DTexImage2Ids
+J3DTexImage2Ids:
+	.4byte 0x90919293
+	.4byte 0xb0b1b2b3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global J3DGDSetGenMode__FUcUcUcUc11_GXCullMode

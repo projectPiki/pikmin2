@@ -2396,110 +2396,61 @@ lbl_80481C08:
 	.4byte 0x70000000
 .global lbl_80481C18
 lbl_80481C18:
-	.4byte 0x6E6F2062
-	.4byte 0x61736550
-	.4byte 0x656C6C65
-	.4byte 0x744D6772
-	.4byte 0x20666F72
-	.4byte 0x2025640A
-	.4byte 0x00000000
+	.asciz "no basePelletMgr for %d\n"
+	.skip 3
 .global lbl_80481C34
 lbl_80481C34:
-	.4byte 0x6D677225
-	.4byte 0x643A2564
-	.4byte 0x00000000
+	.asciz "mgr%d:%d"
+	.skip 3
 .global lbl_80481C40
 lbl_80481C40:
-	.4byte 0x47454E45
-	.4byte 0x5241544F
-	.4byte 0x52204552
-	.4byte 0x520A0000
+	.asciz "GENERATOR ERR\n"
+	.skip 1
 .global lbl_80481C50
 lbl_80481C50:
-	.4byte 0x70656C6C
-	.4byte 0x65744974
-	.4byte 0x656D2E63
-	.4byte 0x70700000
+	.asciz "pelletItem.cpp"
+	.skip 1
 .global lbl_80481C60
 lbl_80481C60:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80481C6C
 lbl_80481C6C:
-	.4byte 0x45717569
-	.4byte 0x706D656E
-	.4byte 0x74000000
+	.asciz "Equipment"
+	.skip 2
 .global lbl_80481C78
 lbl_80481C78:
-	.4byte 0x6974656D
-	.4byte 0x5F746578
-	.4byte 0x74732E73
-	.4byte 0x7A730000
+	.asciz "item_texts.szs"
+	.skip 1
 .global lbl_80481C88
 lbl_80481C88:
-	.4byte 0x6566784D
-	.4byte 0x6F64656C
-	.4byte 0x4F626A65
-	.4byte 0x63747300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F65
-	.4byte 0x66666563
-	.4byte 0x742F6D6F
-	.4byte 0x64656C65
-	.4byte 0x66666563
-	.4byte 0x742E737A
-	.4byte 0x73000000
+	.asciz "efxModelObjects"
+	.asciz "user/Kando/effect/modeleffect.szs"
+	.skip 2
 .global lbl_80481CBC
 lbl_80481CBC:
-	.4byte 0x6566784D
-	.4byte 0x6F64656C
-	.4byte 0x4F626A65
-	.4byte 0x6374732E
-	.4byte 0x63707000
+	.asciz "efxModelObjects.cpp"
 .global lbl_80481CD0
 lbl_80481CD0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x6F6E796F
-	.4byte 0x6E73706F
-	.4byte 0x742E626D
-	.4byte 0x64000000
-	.4byte 0x6F6E796F
-	.4byte 0x6E73706F
-	.4byte 0x742E6274
-	.4byte 0x6B000000
-	.4byte 0x6F6E796F
-	.4byte 0x6E73706F
-	.4byte 0x745F626C
-	.4byte 0x75652E62
-	.4byte 0x726B0000
-	.4byte 0x6F6E796F
-	.4byte 0x6E73706F
-	.4byte 0x745F7265
-	.4byte 0x642E6272
-	.4byte 0x6B000000
-	.4byte 0x6F6E796F
-	.4byte 0x6E73706F
-	.4byte 0x745F7965
-	.4byte 0x6C6C6F77
-	.4byte 0x2E62726B
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "onyonspot.bmd"
+	.skip 2
+	.asciz "onyonspot.btk"
+	.skip 2
+	.asciz "onyonspot_blue.brk"
+	.skip 1
+	.asciz "onyonspot_red.brk"
+	.skip 2
+	.asciz "onyonspot_yellow.brk"
+	.skip 7
 .global lbl_80481D40
 lbl_80481D40:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x6974656D
-	.4byte 0x556A616D
-	.4byte 0x75736869
-	.4byte 0x00000000
-	.4byte 0x426F6964
-	.4byte 0x5061726D
-	.4byte 0x73000000
+	.skip 0xC
+	.asciz "itemUjamushi"
+	.skip 3
+	.asciz "BoidParms"
+	.skip 2
 	.4byte 0x436F6865
 	.4byte 0x6E73696F
 	.4byte 0x6E000000
@@ -20723,9 +20674,8 @@ lbl_80492B4C:
 	.4byte 0x315F3032
 .global lbl_80493110
 lbl_80493110:
-	.4byte 0x656E6457
-	.4byte 0x696E646F
-	.4byte 0x77000000
+	.asciz "endWindow"
+	.skip 2
 .global lbl_8049311C
 lbl_8049311C:
 	.4byte 0x6974656D
@@ -20830,21 +20780,13 @@ lbl_8049311C:
 	.4byte 0x0A000000
 .global lbl_804932AC
 lbl_804932AC:
-	.4byte 0x7265735F
-	.4byte 0x6974656D
-	.4byte 0x5A756B61
-	.4byte 0x6E2E737A
-	.4byte 0x73000000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.asciz "res_itemZukan.szs"
+	.skip 2
+	.asciz "screenObj.h"
 .global lbl_804932CC
 lbl_804932CC:
-	.4byte 0x7265735F
-	.4byte 0x656E656D
-	.4byte 0x795A756B
-	.4byte 0x616E2E73
-	.4byte 0x7A730000
+	.asciz "res_enemyZukan.szs"
+	.skip 1
 .global lbl_804932E0
 lbl_804932E0:
 	.asciz "hiScore2D"
@@ -25791,9 +25733,7 @@ lbl_80497B40:
 	.4byte 0x00000000
 .global lbl_80497BDC
 lbl_80497BDC:
-	.4byte 0x544F6D61
-	.4byte 0x6B654361
-	.4byte 0x72644500
+	.asciz "TOmakeCardE"
 .global lbl_80497BE8
 lbl_80497BE8:
 	.4byte 0x65626953
@@ -25829,6 +25769,5 @@ lbl_80497BE8:
 	.4byte 0x636B0000
 .global lbl_80497C64
 lbl_80497C64:
-	.4byte 0x544F6D61
-	.4byte 0x6B654761
-	.4byte 0x6D650000
+	.asciz "TOmakeGame"
+	.skip 1

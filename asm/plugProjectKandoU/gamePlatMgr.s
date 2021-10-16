@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global useFixCollision__Q24Game12PlatInstance
+useFixCollision__Q24Game12PlatInstance:
+	.byte 0x1
+.global mUseCellMgr__Q24Game7PlatMgr
+mUseCellMgr__Q24Game7PlatMgr:
+	.byte 0x1
+	.byte 0x0
+	.byte 0x0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setCollision__Q24Game12PlatInstanceFb

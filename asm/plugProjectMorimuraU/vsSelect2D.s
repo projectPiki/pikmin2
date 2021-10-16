@@ -1,4 +1,47 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global mScrollParm__Q28Morimura9TVsSelect
+mScrollParm__Q28Morimura9TVsSelect:
+	.skip 0x14
+
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global mAngRate__Q28Morimura9TVsSelect
+mAngRate__Q28Morimura9TVsSelect:
+	.float 0.2
+.global mMoveSpeed__Q28Morimura9TVsSelect
+mMoveSpeed__Q28Morimura9TVsSelect:
+	.float 25.0
+.global mIndVal__Q28Morimura9TVsSelect
+mIndVal__Q28Morimura9TVsSelect:
+	.float 0.05
+.global mIndShuki__Q28Morimura9TVsSelect
+mIndShuki__Q28Morimura9TVsSelect:
+	.float 0.3
+.global mZoomFrameMax__Q28Morimura9TVsSelect
+mZoomFrameMax__Q28Morimura9TVsSelect:
+	.float 25.0
+.global mTestVal__Q28Morimura9TVsSelect
+mTestVal__Q28Morimura9TVsSelect:
+	.float 10.0
+.global mAngUp__Q28Morimura9TVsSelect
+mAngUp__Q28Morimura9TVsSelect:
+	.float 0.03
+.global mWindowScale__Q28Morimura9TVsSelect
+mWindowScale__Q28Morimura9TVsSelect:
+	.float 1.0
+.global mDemoScaleMax__Q28Morimura9TVsSelect
+mDemoScaleMax__Q28Morimura9TVsSelect:
+	.float 2.2
+.global mDemoScale__Q28Morimura9TVsSelect
+mDemoScale__Q28Morimura9TVsSelect:
+	.float 1.0
+.global mDemoOffsetMax__Q28Morimura9TVsSelect
+mDemoOffsetMax__Q28Morimura9TVsSelect:
+	.float 290.0
+.global mFireAlphaRate__Q28Morimura9TVsSelect
+mFireAlphaRate__Q28Morimura9TVsSelect:
+	.float 0.5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global draw__Q28Morimura16TVsSelectIndPaneFv

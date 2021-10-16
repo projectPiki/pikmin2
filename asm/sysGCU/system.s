@@ -184,6 +184,18 @@ __vt__Q23PSM7Factory:
 	.4byte 0
 	.4byte newSceneMgr__Q23PSM7FactoryFv
 
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global sUseABXCommand
+sUseABXCommand:
+	.byte 0x01
+	.byte 0x00
+	.byte 0x00
+	.byte 0x00
+.global cMapFileName
+cMapFileName:
+	.4byte str_MapFileName
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global gStrSystem_Abort

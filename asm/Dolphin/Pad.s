@@ -1,4 +1,30 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global __PADVersion
+__PADVersion:
+	.4byte lbl_804A9E60
+.global ResettingChan
+ResettingChan:
+	.4byte 0x00000020
+.global XPatchBits
+XPatchBits:
+	.4byte 0xF0000000
+.global AnalogMode
+AnalogMode:
+	.4byte 0x00000300
+.global Spec
+Spec:
+	.4byte 5
+.global MakeStatus
+MakeStatus:
+	.4byte SPEC2_MakeStatus
+.global CmdReadOrigin
+CmdReadOrigin:
+	.4byte 0x41000000
+.global CmdCalibrate
+CmdCalibrate:
+	.4byte 0x42000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global UpdateOrigin

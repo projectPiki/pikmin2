@@ -130,11 +130,17 @@ __vt__Q34Game10MemoryCard3Mgr:
 	.4byte isErrorOccured__Q34Game10MemoryCard3MgrFv
 .global __vt__Q34Game10MemoryCard8Resource
 __vt__Q34Game10MemoryCard8Resource:
-  .4byte 0
-  .4byte 0
-  .4byte __dt__Q34Game10MemoryCard8ResourceFv
-  .4byte 0
-  
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game10MemoryCard8ResourceFv
+	.4byte 0
+
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global cFileName__Q24Game10MemoryCard
+cFileName__Q24Game10MemoryCard:
+	.4byte lbl_8049ADB8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520978

@@ -103,6 +103,25 @@ __vt__Q24Demo7Section:
 	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
 	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
 
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global "sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@"
+"sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@":
+	.byte 0x05
+	.byte 0x06
+	.byte 0x07
+	.byte 0x00
+	.byte 0x08
+	.byte 0x09
+	.byte 0x0A
+	.byte 0x00
+.global "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"
+"sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@":
+	.byte 0xFF
+	.byte 0x00
+	.byte 0x00
+	.byte 0x00
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520AB0

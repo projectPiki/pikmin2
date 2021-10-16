@@ -294,6 +294,11 @@ lbl_80498900:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32kh6Screen19ObjDayEndResultBase
+msVal__Q32kh6Screen19ObjDayEndResultBase:
+	.skip 0x54
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EC8
 lbl_80520EC8:

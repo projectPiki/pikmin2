@@ -151,6 +151,40 @@ __vt__Q23PSM14WorldMapRocket:
 	.4byte 0
 	.4byte __dt__Q23PSM14WorldMapRocketFv
 
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global sTreasureLader_PitchDistance
+sTreasureLader_PitchDistance:
+	.float 0.77
+.global sTreasureLader_Pitch
+sTreasureLader_Pitch:
+	.float 1.04
+.global sTreasureLader_DistanceExp
+sTreasureLader_DistanceExp:
+	.float 5.0
+.global sTreasureLader_MinimumVolume
+sTreasureLader_MinimumVolume:
+	.float 0.3
+.global sLaderNoiseVolumeExp
+sLaderNoiseVolumeExp:
+	.float 7.18
+.global sLaderNoiseFuefukiTimerCenter
+sLaderNoiseFuefukiTimerCenter:
+	.byte 0x0
+	.byte 0x3C
+.global sLaderNoiseFuefukiTimerRandam
+sLaderNoiseFuefukiTimerRandam:
+	.2byte 0x0008
+.global sLaderNoiseFuefukiSensMax
+sLaderNoiseFuefukiSensMax:
+	.float 0.3
+.global sLaderNoiseFuefukiVolumeMin
+sLaderNoiseFuefukiVolumeMin:
+	.float 0.25
+.global sLaderNoiseFuefukiVolumeMax
+sLaderNoiseFuefukiVolumeMax:
+	.float 0.5
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520CE0

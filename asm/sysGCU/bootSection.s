@@ -190,6 +190,12 @@ __vt__11BootSection:
 sPikminTex__13TinyPikminMgr:
 	.skip 0x18
 
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global sTinyPikminNum__13TinyPikminMgr
+sTinyPikminNum__13TinyPikminMgr:
+	.4byte 10
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805209A0

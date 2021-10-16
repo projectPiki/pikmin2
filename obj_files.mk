@@ -7,7 +7,6 @@ GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/rodata.o\
 	$(BUILD_DIR)/asm/data.o\
 	$(BUILD_DIR)/asm/bss.o\
-	$(BUILD_DIR)/asm/sdata.o\
 	$(BUILD_DIR)/asm/sbss.o\
 	$(BUILD_DIR)/asm/sdata2.o\
 
@@ -292,6 +291,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/misc_io.o\
 	$(BUILD_DIR)/asm/Dolphin/printf.o\
 	$(BUILD_DIR)/src/Dolphin/rand.o\
+	$(BUILD_DIR)/asm/Dolphin/float.o\
 	$(BUILD_DIR)/asm/Dolphin/scanf.o\
 	$(BUILD_DIR)/asm/Dolphin/string.o\
 	$(BUILD_DIR)/asm/Dolphin/strtold.o\
@@ -572,6 +572,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_WorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_FileSelect.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayDataMemCard.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/baseHIOparms.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/radarInfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Movie.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/navi_demoCheck.o\
@@ -607,6 +608,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/baseGameSectionKantei.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/sweepPrune.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/texCaster.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o\

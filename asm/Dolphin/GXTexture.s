@@ -1,4 +1,38 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global GXTexMode0Ids
+GXTexMode0Ids:
+	.4byte 0x80818283
+	.4byte 0xA0A1A2A3
+.global GXTexMode1Ids
+GXTexMode1Ids:
+	.4byte 0x84858687
+	.4byte 0xA4A5A6A7
+.global GXTexImage0Ids
+GXTexImage0Ids:
+	.4byte 0x88898A8B
+	.4byte 0xA8A9AAAB
+.global GXTexImage1Ids
+GXTexImage1Ids:
+	.4byte 0x8C8D8E8F
+	.4byte 0xACADAEAF
+.global GXTexImage2Ids
+GXTexImage2Ids:
+	.4byte 0x90919293
+	.4byte 0xB0B1B2B3
+.global GXTexImage3Ids
+GXTexImage3Ids:
+	.4byte 0x94959697
+	.4byte 0xB4B5B6B7
+.global GXTexTlutIds
+GXTexTlutIds:
+	.4byte 0x98999A9B
+	.4byte 0xB8B9BABB
+.global GX2HWFiltConv_1
+GX2HWFiltConv_1:
+	.4byte 0x00040105
+	.4byte 0x02060000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXGetTexBufferSize

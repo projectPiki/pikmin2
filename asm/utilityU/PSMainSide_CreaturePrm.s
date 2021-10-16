@@ -159,6 +159,21 @@ __vt__Q23PSM11CreaturePrm:
 sInsReal__3PSM:
 	.skip 0x20
 
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global sCamFov__3PSM
+sCamFov__3PSM:
+	.float 0.25
+.global sBoss_ViewDist__3PSM
+sBoss_ViewDist__3PSM:
+	.float 1300.0
+.global sBoss_ViewDistVol__3PSM
+sBoss_ViewDistVol__3PSM:
+	.float 0.3
+.global sBoss_DistMax__3PSM
+sBoss_DistMax__3PSM:
+	.float 4000.0
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520DB8

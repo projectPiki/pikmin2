@@ -1,4 +1,139 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global distanceParameterMoveTime__18JAIGlobalParameter
+distanceParameterMoveTime__18JAIGlobalParameter:
+	.byte 0x3
+.global audioSystemThreadPriority__18JAIGlobalParameter
+audioSystemThreadPriority__18JAIGlobalParameter:
+	.byte 0x2
+.global audioDvdThreadPriority__18JAIGlobalParameter
+audioDvdThreadPriority__18JAIGlobalParameter:
+	.byte 0x3
+.global seqMuteVolumeSePlay__18JAIGlobalParameter
+seqMuteVolumeSePlay__18JAIGlobalParameter:
+	.byte 0x28
+.global seqParameterLines__18JAIGlobalParameter
+seqParameterLines__18JAIGlobalParameter:
+	.byte 0x7
+.global streamParameterLines__18JAIGlobalParameter
+streamParameterLines__18JAIGlobalParameter:
+	.byte 0x7
+.global seDistanceFxParameter__18JAIGlobalParameter
+seDistanceFxParameter__18JAIGlobalParameter:
+	.byte 0x0
+	.byte 0x96
+.global soundSceneMax__18JAIGlobalParameter
+soundSceneMax__18JAIGlobalParameter:
+	.4byte 0x00000002
+.global seRegistMax__18JAIGlobalParameter
+seRegistMax__18JAIGlobalParameter:
+	.4byte 0x00000014
+.global seTrackMax__18JAIGlobalParameter
+seTrackMax__18JAIGlobalParameter:
+	.4byte 0x00000020
+.global seqTrackMax__18JAIGlobalParameter
+seqTrackMax__18JAIGlobalParameter:
+	.4byte 0x00000020
+.global seqPlayTrackMax__18JAIGlobalParameter
+seqPlayTrackMax__18JAIGlobalParameter:
+	.4byte 0x00000008
+.global seqControlBufferMax__18JAIGlobalParameter
+seqControlBufferMax__18JAIGlobalParameter:
+	.4byte 0x00000008
+.global autoHeapMax__18JAIGlobalParameter
+autoHeapMax__18JAIGlobalParameter:
+	.4byte 0x00000002
+.global stayHeapMax__18JAIGlobalParameter
+stayHeapMax__18JAIGlobalParameter:
+	.4byte 0x00000002
+.global autoHeapRoomSize__18JAIGlobalParameter
+autoHeapRoomSize__18JAIGlobalParameter:
+	.4byte 0x0000C000
+.global stayHeapSize__18JAIGlobalParameter
+stayHeapSize__18JAIGlobalParameter:
+	.4byte 0x00010000
+.global initDataFileName__18JAIGlobalParameter
+initDataFileName__18JAIGlobalParameter:
+	.4byte lbl_80479688
+.global wavePath__18JAIGlobalParameter
+wavePath__18JAIGlobalParameter:
+	.4byte lbl_80516F28
+.global sequenceArchivesPath__18JAIGlobalParameter
+sequenceArchivesPath__18JAIGlobalParameter:
+	.4byte lbl_80516F30
+.global streamPath__18JAIGlobalParameter
+streamPath__18JAIGlobalParameter:
+	.4byte lbl_80516F38
+.global audioResPath__18JAIGlobalParameter
+audioResPath__18JAIGlobalParameter:
+	.4byte lbl_80479694
+.global sequenceArchivesFileName__18JAIGlobalParameter
+sequenceArchivesFileName__18JAIGlobalParameter:
+	.4byte lbl_804796A0
+.global inputGainDown__18JAIGlobalParameter
+inputGainDown__18JAIGlobalParameter:
+	.float 0.5
+.global outputGainUp__18JAIGlobalParameter
+outputGainUp__18JAIGlobalParameter:
+	.float 1.2
+.global distanceMax__18JAIGlobalParameter
+distanceMax__18JAIGlobalParameter:
+	.float 5000.0
+.global maxVolumeDistance__18JAIGlobalParameter
+maxVolumeDistance__18JAIGlobalParameter:
+	.float 1000.0
+.global seDolbyCenterValue__18JAIGlobalParameter
+seDolbyCenterValue__18JAIGlobalParameter:
+	.float 30.0
+.global seDolbyFrontDistanceMax__18JAIGlobalParameter
+seDolbyFrontDistanceMax__18JAIGlobalParameter:
+	.float -300.0
+.global seDolbyBehindDistanceMax__18JAIGlobalParameter
+seDolbyBehindDistanceMax__18JAIGlobalParameter:
+	.float 1000.0
+.global dopplarMoveTime__18JAIGlobalParameter
+dopplarMoveTime__18JAIGlobalParameter:
+	.4byte 0x0000000F
+.global dummyObjectLifeTime__18JAIGlobalParameter
+dummyObjectLifeTime__18JAIGlobalParameter:
+	.4byte 0x00000258
+.global dummyObjectMax__18JAIGlobalParameter
+dummyObjectMax__18JAIGlobalParameter:
+	.4byte 0x0000000A
+.global seqMuteMoveSpeedSePlay__18JAIGlobalParameter
+seqMuteMoveSpeedSePlay__18JAIGlobalParameter:
+	.4byte 0x00000003
+.global audioCameraMax__18JAIGlobalParameter
+audioCameraMax__18JAIGlobalParameter:
+	.4byte 0x00000001
+.global systemTrackMax__18JAIGlobalParameter
+systemTrackMax__18JAIGlobalParameter:
+	.4byte 0x00000100
+.global systemRootTrackMax__18JAIGlobalParameter
+systemRootTrackMax__18JAIGlobalParameter:
+	.4byte 0x00000010
+.global panDistanceMax__18JAIGlobalParameter
+panDistanceMax__18JAIGlobalParameter:
+	.float 500.0
+.global panDistance2Max__18JAIGlobalParameter
+panDistance2Max__18JAIGlobalParameter:
+	.float 1000.0
+.global panAngleParameter__18JAIGlobalParameter
+panAngleParameter__18JAIGlobalParameter:
+	.float 12.0
+.global panAngleParameter2__18JAIGlobalParameter
+panAngleParameter2__18JAIGlobalParameter:
+	.float 2.4
+.global dopplarParameter__18JAIGlobalParameter
+dopplarParameter__18JAIGlobalParameter:
+	.float 3200.0
+.global seDistanceWaitMax__18JAIGlobalParameter
+seDistanceWaitMax__18JAIGlobalParameter:
+	.4byte 0x000C0000
+.global seDistancepitchMax__18JAIGlobalParameter
+seDistancepitchMax__18JAIGlobalParameter:
+	.float 0.2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setParamInitDataPointer__18JAIGlobalParameterFPv

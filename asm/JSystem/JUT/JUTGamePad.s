@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global sStickMode__10JUTGamePad
+sStickMode__10JUTGamePad:
+	.4byte 1
+.global sClampMode__10JUTGamePad
+sClampMode__10JUTGamePad:
+	.4byte 1
+.global sPressPoint__Q210JUTGamePad6CStick
+sPressPoint__Q210JUTGamePad6CStick:
+	.float 0.5
+.global sReleasePoint__Q210JUTGamePad6CStick
+sReleasePoint__Q210JUTGamePad6CStick:
+	.float 0.25
+.global sResetPattern__Q210JUTGamePad13C3ButtonReset
+sResetPattern__Q210JUTGamePad13C3ButtonReset:
+	.4byte 0x00001600
+.global sResetMaskPattern__Q210JUTGamePad13C3ButtonReset
+sResetMaskPattern__Q210JUTGamePad13C3ButtonReset:
+	.4byte 0x0000ffff
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTGamePadFQ210JUTGamePad8EPadPort

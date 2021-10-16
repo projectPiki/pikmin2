@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global __DVDVersion
+__DVDVersion:
+	.4byte lbl_804A7C98
+.global autoInvalidation
+autoInvalidation:
+	.4byte 0x00000001
+.global checkOptionalCommand
+checkOptionalCommand:
+	.4byte defaultOptionalCommandChecker
+.global lbl_80514944
+lbl_80514944:
+	.asciz "dvd.c"
+	.skip 2
+.global DmaCommand
+DmaCommand:
+	.4byte 0xFFFFFFFF
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global defaultOptionalCommandChecker

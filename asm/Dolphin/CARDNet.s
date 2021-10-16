@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global __CARDVendorID
+__CARDVendorID:
+	.byte 0xFF
+	.byte 0xFF
+.global __CARDPermMask
+__CARDPermMask:
+	.byte 0x1C
+	.byte 0x0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global CARDGetSerialNo

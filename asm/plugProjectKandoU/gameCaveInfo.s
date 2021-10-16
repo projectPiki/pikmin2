@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"
+"enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@":
+	.4byte lbl_805196F0
+	.4byte lbl_805196F8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave7BaseGenFv

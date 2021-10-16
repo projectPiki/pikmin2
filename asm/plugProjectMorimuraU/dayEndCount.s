@@ -1,4 +1,38 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global mWaitTime__Q28Morimura12TDayEndCount
+mWaitTime__Q28Morimura12TDayEndCount:
+	.float 0.4
+.global mAlphaMax__Q28Morimura12TDayEndCount
+mAlphaMax__Q28Morimura12TDayEndCount:
+	.byte 0xC8
+.global mWaitAlpha__Q28Morimura12TDayEndCount
+mWaitAlpha__Q28Morimura12TDayEndCount:
+	.byte 0x64
+	.byte 0x0
+	.byte 0x0
+.global mWaitScale__Q28Morimura12TDayEndCount
+mWaitScale__Q28Morimura12TDayEndCount:
+	.float 0.2
+.global mStopScale__Q28Morimura12TDayEndCount
+mStopScale__Q28Morimura12TDayEndCount:
+	.float 1.0
+.global mScaleMax__Q28Morimura12TDayEndCount
+mScaleMax__Q28Morimura12TDayEndCount:
+	.float 2.0
+.global m2pScale__Q28Morimura12TDayEndCount
+m2pScale__Q28Morimura12TDayEndCount:
+	.float 0.75
+.global m2pOffsetY__Q28Morimura12TDayEndCount
+m2pOffsetY__Q28Morimura12TDayEndCount:
+	.float 170.0
+.global mColor__Q28Morimura12TDayEndCount
+mColor__Q28Morimura12TDayEndCount:
+	.4byte 0x00FF00FF
+.global mNumberColor__Q28Morimura12TDayEndCount
+mNumberColor__Q28Morimura12TDayEndCount:
+	.4byte 0xFF6400FF
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28Morimura12TDayEndCountFv

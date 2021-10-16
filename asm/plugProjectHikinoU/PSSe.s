@@ -1,4 +1,19 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global cRatio__Q26PSGame5Rappa
+cRatio__Q26PSGame5Rappa:
+	.float 15.0
+.global cBaseWaitTime__Q26PSGame5Rappa
+cBaseWaitTime__Q26PSGame5Rappa:
+	.4byte 0x00030000
+.global sRappa__Q26PSGame5Rappa
+sRappa__Q26PSGame5Rappa:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global cNotUsingMasterIdRatio__Q26PSGame6RandId
+cNotUsingMasterIdRatio__Q26PSGame6RandId:
+	.float -1.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PSGame5SeMgrFv

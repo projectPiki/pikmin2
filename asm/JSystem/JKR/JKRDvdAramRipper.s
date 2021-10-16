@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global errorRetry__16JKRDvdAramRipper
+errorRetry__16JKRDvdAramRipper:
+	.4byte 0x01000000
+.global sSZSBufferSize__16JKRDvdAramRipper
+sSZSBufferSize__16JKRDvdAramRipper:
+	.4byte 0x00000400
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl

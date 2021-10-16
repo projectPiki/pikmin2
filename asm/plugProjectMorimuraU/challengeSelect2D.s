@@ -1,4 +1,43 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global mSelected1p__Q28Morimura16TChallengeSelect
+mSelected1p__Q28Morimura16TChallengeSelect:
+	.4byte 0x01000000
+.global mAlphaSpeed__Q28Morimura16TChallengeSelect
+mAlphaSpeed__Q28Morimura16TChallengeSelect:
+	.float 0.05
+.global mFlashAnimInterval__Q28Morimura16TChallengeSelect
+mFlashAnimInterval__Q28Morimura16TChallengeSelect:
+	.2byte 0x012C
+	.2byte 0x0000
+.global mTextFlashVal__Q28Morimura16TChallengeSelect
+mTextFlashVal__Q28Morimura16TChallengeSelect:
+	.float 1.0
+.global mConnect2p__Q28Morimura16TChallengeSelect
+mConnect2p__Q28Morimura16TChallengeSelect:
+	.byte 0x01
+	.byte 0x00
+	.byte 0x00
+	.byte 0x00
+.global mPanelMoveVal__Q28Morimura16TChallengeSelect
+mPanelMoveVal__Q28Morimura16TChallengeSelect:
+	.float 1.0
+.global mPanelMoveRate__Q28Morimura16TChallengeSelect
+mPanelMoveRate__Q28Morimura16TChallengeSelect:
+	.float 0.25
+.global mCircleY__Q28Morimura16TChallengeSelect
+mCircleY__Q28Morimura16TChallengeSelect:
+	.float 100.0
+.global mTimerSpeed__Q28Morimura16TChallengeSelect
+mTimerSpeed__Q28Morimura16TChallengeSelect:
+	.float 0.15
+.global mMoveSpeed__Q28Morimura16TChallengeSelect
+mMoveSpeed__Q28Morimura16TChallengeSelect:
+	.float 12.0
+.global mSelectIconScale__Q28Morimura16TChallengeSelect
+mSelectIconScale__Q28Morimura16TChallengeSelect:
+	.float 1.5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q38Morimura14TChallengePiki7posInfoFv

@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global "cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@"
+"cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@":
+	.4byte lbl_8047C0C0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12BlueKochappy3MgrFiUc

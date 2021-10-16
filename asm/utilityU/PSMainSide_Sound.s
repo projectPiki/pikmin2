@@ -229,6 +229,24 @@ __vt__Q23PSM7SeSound:
 	.4byte setSeDistanceDolby__Q23PSM7SeSoundFUc
 	.4byte setSePositionDopplar__5JAISeFv
 
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global cDol_0Rad__Q23PSM7SeSound
+cDol_0Rad__Q23PSM7SeSound:
+	.float 1.0316
+.global cDol_HalfRad__Q23PSM7SeSound
+cDol_HalfRad__Q23PSM7SeSound:
+	.float 1.5708
+.global cDol_FullRad__Q23PSM7SeSound
+cDol_FullRad__Q23PSM7SeSound:
+	.float 2.11
+.global cPan_MaxAmp__Q23PSM7SeSound
+cPan_MaxAmp__Q23PSM7SeSound:
+	.float 0.98
+.global cCenterRad__Q23PSM7SeSound
+cCenterRad__Q23PSM7SeSound:
+	.float 1.57
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520D90

@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global mClipRadiusS__11ParticleMgr
+mClipRadiusS__11ParticleMgr:
+	.float 10.0
+.global mClipRadiusM__11ParticleMgr
+mClipRadiusM__11ParticleMgr:
+	.float 30.0
+.global mClipRadiusL__11ParticleMgr
+mClipRadiusL__11ParticleMgr:
+	.float 100.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global globalInstance__11ParticleMgrFv

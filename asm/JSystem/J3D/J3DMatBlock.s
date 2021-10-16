@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global SizeOfLoadMatColors
+SizeOfLoadMatColors:
+	.4byte 0xd
+.global SizeOfLoadAmbColors
+SizeOfLoadAmbColors:
+	.4byte 0xd
+.global SizeOfLoadColorChans
+SizeOfLoadColorChans:
+	.4byte 0x15
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__21J3DColorBlockLightOffFv

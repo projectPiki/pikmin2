@@ -64,6 +64,11 @@ lbl_80498814:
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32kh6Screen13ObjFinalFloor
+msVal__Q32kh6Screen13ObjFinalFloor:
+	.skip 0xC
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive
 doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive:

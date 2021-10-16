@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .sdata, "wa"  # 0x80514680 - 0x80514D80
+.balign 0x8
+.global __OSVersion
+__OSVersion:
+	.4byte lbl_804A8900
+.global lbl_805149CC
+lbl_805149CC:
+	.asciz "%08x\n"
+	.skip 2
+.global lbl_805149D4
+lbl_805149D4:
+	.asciz "%s\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __OSFPRInit

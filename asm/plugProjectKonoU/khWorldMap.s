@@ -445,6 +445,11 @@ lbl_80498348:
 	.4byte 0x63616C65
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global msVal__Q32kh6Screen8WorldMap
+msVal__Q32kh6Screen8WorldMap:
+	.skip 0x7C
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q32kh6Screen14khUtilFadePaneFv
 __dt__Q32kh6Screen14khUtilFadePaneFv:
