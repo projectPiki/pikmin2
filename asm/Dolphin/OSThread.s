@@ -39,11 +39,11 @@ __OSThreadInit:
 /* 800F18D0 000EE810  4B FF B8 9D */	bl OSClearContext
 /* 800F18D4 000EE814  7F E3 FB 78 */	mr r3, r31
 /* 800F18D8 000EE818  4B FF B6 CD */	bl OSSetCurrentContext
-/* 800F18DC 000EE81C  3C 60 80 53 */	lis r3, 0x80530ED8@ha
-/* 800F18E0 000EE820  38 03 0E D8 */	addi r0, r3, 0x80530ED8@l
-/* 800F18E4 000EE824  3C 60 80 52 */	lis r3, 0x80520ED8@ha
+/* 800F18DC 000EE81C  3C 60 80 53 */	lis r3, _stack_addr@ha
+/* 800F18E0 000EE820  38 03 0E D8 */	addi r0, r3, _stack_addr@l
+/* 800F18E4 000EE824  3C 60 80 52 */	lis r3, _stack_end@ha
 /* 800F18E8 000EE828  90 1C 07 1C */	stw r0, 0x71c(r28)
-/* 800F18EC 000EE82C  38 03 0E D8 */	addi r0, r3, 0x80520ED8@l
+/* 800F18EC 000EE82C  38 03 0E D8 */	addi r0, r3, _stack_end@l
 /* 800F18F0 000EE830  90 1C 07 20 */	stw r0, 0x720(r28)
 /* 800F18F4 000EE834  3C 60 DE AE */	lis r3, 0xDEADBABE@ha
 /* 800F18F8 000EE838  38 03 BA BE */	addi r0, r3, 0xDEADBABE@l
