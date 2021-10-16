@@ -283,8 +283,8 @@ lbl_800EB398:
 /* 800EB3B8 000E82F8  80 03 00 00 */	lwz r0, 0(r3)
 /* 800EB3BC 000E82FC  28 00 00 02 */	cmplwi r0, 2
 /* 800EB3C0 000E8300  40 80 00 18 */	bge lbl_800EB3D8
-/* 800EB3C4 000E8304  3C 60 80 53 */	lis r3, 0x80530ED8@ha
-/* 800EB3C8 000E8308  38 63 0E D8 */	addi r3, r3, 0x80530ED8@l
+/* 800EB3C4 000E8304  3C 60 80 53 */	lis r3, _db_stack_end@ha
+/* 800EB3C8 000E8308  38 63 0E D8 */	addi r3, r3, _db_stack_end@l
 /* 800EB3CC 000E830C  38 03 00 1F */	addi r0, r3, 0x1f
 /* 800EB3D0 000E8310  54 03 00 34 */	rlwinm r3, r0, 0, 0, 0x1a
 /* 800EB3D4 000E8314  48 00 10 69 */	bl OSSetArenaLo
