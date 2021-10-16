@@ -551,11 +551,4 @@ void PSM::ObjCalc_2PGame::__dt(void)
  * Address:	80472EDC
  * Size:	000008
  */
-void PSM::ObjCalc_2PGame::is1PGame(void)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+void PSM::ObjCalc_2PGame::is1PGame(void) { return 0; }
