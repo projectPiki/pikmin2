@@ -1,6 +1,10 @@
 # Pikmin 2
 Pikmin 2 decompilation to C++/C
 
+It builds the following DOL:
+
+pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
+
 ## Credits
 - Revo
 - intns
@@ -14,14 +18,29 @@ Pikmin 2 decompilation to C++/C
 - JHawk
 - Meeo
 
-## Modifying the CW compiler
-In order for a correct compile to occur, you need to modify the binary of the v2.7 linker executable as follows:
+## Building
+
+### Required Tools
+* [devkitPro](https://devkitpro.org/wiki/Getting_Started)
+* gcc
+
+### Instructions
+
+* WINDOWS ONLY STEP: Launch msys2(Provided by devkitPro) and run the command `pacman -S gcc`.
+* OPTIONAL: Obtain a clean DOL of Pikmin 2 USA 1.0 and place it in the base working directory and rename it to `baserom.dol`.
+1. Download GC_WII_COMPILERS.zip from (https://cdn.discordapp.com/attachments/704241951972524063/801641758249320478/GC_WII_COMPILERS.zip) and extract it to tools/mwcc_compiler/.
+2. Create a copy of the `2.7` folder in tools/mwcc_compiler/ and name it `2.7e`.
+3. Run the `make` command.
+## Modifications to the CW compiler
+In order for a correct compile to occur, the v2.7 linker executable is modified as follows:
 
 | Offset | From | To |
 | :---: | :---: | :---: |
 | 0x36510 | 0x74 | 0x75 |
 
-Change the byte of value 0x74 to 0x75 at offset 0x36510 (fixes an issue regarding destructor generation)
+The byte's value is changed from 0x74 to 0x75 at offset 0x36510 (fixes an issue regarding destructor generation)
+
+When compiling the project, this patch is automatically applied, if it fails to patch you can also patch the executable yourself with a hex editor
 
 ## Project Organisation
 For each namespace that types and functions are contained within, create a folder. E.g. the structure `Game::GameSystem` will go in include/Game/GameSystem.h.
