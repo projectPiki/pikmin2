@@ -12392,10 +12392,10 @@ lbl_804C0DE8:
 	.4byte 0x00000000
 .global "cMaps__24@unnamed@vsGS_Title_cpp@"
 "cMaps__24@unnamed@vsGS_Title_cpp@":
-	.4byte 0x80483470
-	.4byte 0x80483480
-	.4byte 0x80483494
-	.4byte 0x804834A8
+	.4byte lbl_80483470
+	.4byte lbl_80483480
+	.4byte lbl_80483494
+	.4byte lbl_804834A8
 .global lbl_804C0E04
 lbl_804C0E04:
 	.4byte 0x00000000
@@ -37721,25 +37721,25 @@ __vt__Q24Game18TyreTubeShadowNode:
 	.4byte getChildCount__5CNodeFv
 .global PikiIconTextureName__Q22og6Screen
 PikiIconTextureName__Q22og6Screen:
-	.4byte 0x8048DD0C
-	.4byte 0x8048DD1C
-	.4byte 0x8048DD28
-	.4byte 0x8048DD34
-	.4byte 0x8048DD40
-	.4byte 0x8048DD4C
-	.4byte 0x8048DD58
-	.4byte 0x8048DD64
-	.4byte 0x8048DD70
-	.4byte 0x8048DD7C
-	.4byte 0x8048DD88
-	.4byte 0x8048DD94
-	.4byte 0x8048DDA0
-	.4byte 0x8048DDAC
-	.4byte 0x8048DDB8
-	.4byte 0x8048DDC4
-	.4byte 0x8048DDD0
-	.4byte 0x8048DDDC
-	.4byte 0x8048DDE8
+	.4byte lbl_8048DD0C
+	.4byte lbl_8048DD1C
+	.4byte lbl_8048DD28
+	.4byte lbl_8048DD34
+	.4byte lbl_8048DD40
+	.4byte lbl_8048DD4C
+	.4byte lbl_8048DD58
+	.4byte lbl_8048DD64
+	.4byte lbl_8048DD70
+	.4byte lbl_8048DD7C
+	.4byte lbl_8048DD88
+	.4byte lbl_8048DD94
+	.4byte lbl_8048DDA0
+	.4byte lbl_8048DDAC
+	.4byte lbl_8048DDB8
+	.4byte lbl_8048DDC4
+	.4byte lbl_8048DDD0
+	.4byte lbl_8048DDDC
+	.4byte lbl_8048DDE8
 .global __vt__Q29P2DScreen4Node
 __vt__Q29P2DScreen4Node:
 	.4byte 0
@@ -37957,30 +37957,30 @@ __vt__Q32og6Screen12AnimBaseBase:
 	.4byte 0
 .global SujiTex32__Q22og6Screen
 SujiTex32__Q22og6Screen:
-	.4byte 0x8048DE90
-	.4byte 0x8048DE9C
-	.4byte 0x8048DEA8
-	.4byte 0x8048DEB4
-	.4byte 0x8048DEC0
-	.4byte 0x8048DECC
-	.4byte 0x8048DED8
-	.4byte 0x8048DEE4
-	.4byte 0x8048DEF0
-	.4byte 0x8048DEFC
-	.4byte 0x8048DF08
+	.4byte lbl_8048DE90
+	.4byte lbl_8048DE9C
+	.4byte lbl_8048DEA8
+	.4byte lbl_8048DEB4
+	.4byte lbl_8048DEC0
+	.4byte lbl_8048DECC
+	.4byte lbl_8048DED8
+	.4byte lbl_8048DEE4
+	.4byte lbl_8048DEF0
+	.4byte lbl_8048DEFC
+	.4byte lbl_8048DF08
 .global SujiTexMap__Q22og6Screen
 SujiTexMap__Q22og6Screen:
-	.4byte 0x8048DF14
-	.4byte 0x8048DF20
-	.4byte 0x8048DF2C
-	.4byte 0x8048DF38
-	.4byte 0x8048DF44
-	.4byte 0x8048DF50
-	.4byte 0x8048DF5C
-	.4byte 0x8048DF68
-	.4byte 0x8048DF74
-	.4byte 0x8048DF80
-	.4byte 0x8048DF14
+	.4byte lbl_8048DF14
+	.4byte lbl_8048DF20
+	.4byte lbl_8048DF2C
+	.4byte lbl_8048DF38
+	.4byte lbl_8048DF44
+	.4byte lbl_8048DF50
+	.4byte lbl_8048DF5C
+	.4byte lbl_8048DF68
+	.4byte lbl_8048DF74
+	.4byte lbl_8048DF80
+	.4byte lbl_8048DF14
 .global __vt__Q32og6Screen13NaviLifeGauge
 __vt__Q32og6Screen13NaviLifeGauge:
 	.4byte 0
@@ -59611,16 +59611,16 @@ __vt__Q32kh6Screen15DispFinalResult:
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 .global cpNumTexLargeName__Q22kh6Screen
 cpNumTexLargeName__Q22kh6Screen:
-	.4byte 0x80499170
-	.4byte 0x8049917C
-	.4byte 0x80499188
-	.4byte 0x80499194
-	.4byte 0x804991A0
-	.4byte 0x804991AC
-	.4byte 0x804991B8
-	.4byte 0x804991C4
-	.4byte 0x804991D0
-	.4byte 0x804991DC
+	.4byte lbl_80499170
+	.4byte lbl_8049917C
+	.4byte lbl_80499188
+	.4byte lbl_80499194
+	.4byte lbl_804991A0
+	.4byte lbl_804991AC
+	.4byte lbl_804991B8
+	.4byte lbl_804991C4
+	.4byte lbl_804991D0
+	.4byte lbl_804991DC
 .global __vt__Q32kh6Screen12ScenePayDept
 __vt__Q32kh6Screen12ScenePayDept:
 	.4byte 0

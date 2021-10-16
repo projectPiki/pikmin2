@@ -7033,17 +7033,17 @@ lbl_80519050:
 	.4byte 0x00000000
 .global lbl_80519058
 lbl_80519058:
-	.4byte 0x46726565
-	.4byte 0x00000000
+	.asciz "Free"
+	.skip 3
 .global lbl_80519060
 lbl_80519060:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_80519064
 lbl_80519064:
-	.4byte 0x47000000
+	.float 32768.0
 .global lbl_80519068
 lbl_80519068:
-	.4byte 0x41F00000
+	.float 30.0
 .global lbl_8051906C
 lbl_8051906C:
 	.float 0.5
@@ -7051,22 +7051,37 @@ lbl_8051906C:
 lbl_80519070:
 	.4byte 0x43300000
 	.4byte 0x80000000
-	.4byte 0x53410000
-	.4byte 0x414A0000
-	.4byte 0x4A410000
-	.4byte 0x4A500000
-	.4byte 0x4C540000
+.global lbl_80519078
+lbl_80519078:
+	.asciz "SA"
+	.skip 1
+.global lbl_8051907C
+lbl_8051907C:
+	.asciz "AJ"
+	.skip 1
+.global lbl_80519080
+lbl_80519080:
+	.asciz "JA"
+	.skip 1
+.global lbl_80519084
+lbl_80519084:
+	.asciz "JP"
+	.skip 1
+.global lbl_80519088
+lbl_80519088:
+	.asciz "LT"
+	.skip 1
 .global lbl_8051908C
 lbl_8051908C:
-	.4byte 0x41747461
-	.4byte 0x636B0000
+	.asciz "Attack"
+	.skip 1
 .global lbl_80519094
 lbl_80519094:
-	.4byte 0x47000000
+	.float 32768.0
 .global lbl_80519098
 lbl_80519098:
-	.4byte 0x3F4CCCCD
-	.4byte 0x00000000
+	.float 0.8
+	.skip 4
 .global lbl_805190A0
 lbl_805190A0:
 	.4byte 0x43300000
@@ -7098,37 +7113,43 @@ lbl_805190C4:
 .global lbl_805190C8
 lbl_805190C8:
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x534C4F54
-	.4byte 0x00000000
-	.4byte 0x4C494654
-	.4byte 0x00000000
-	.4byte 0x4D4F5645
-	.4byte 0x00000000
+	.skip 4
+.global lbl_805190D0
+lbl_805190D0:
+	.ascii "SLOT"
+	.skip 4
+.global lbl_805190D8
+lbl_805190D8:
+	.ascii "LIFT"
+	.skip 4
+.global lbl_805190E0
+lbl_805190E0:
+	.ascii "MOVE"
+	.skip 4
 .global lbl_805190E8
 lbl_805190E8:
-	.4byte 0x43617272
-	.4byte 0x79000000
+	.asciz "Carry"
+	.skip 2
 .global lbl_805190F0
 lbl_805190F0:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_805190F4
 lbl_805190F4:
-	.4byte 0x47000000
+	.float 32768.0
 .global lbl_805190F8
 lbl_805190F8:
-	.4byte 0x40A00000
+	.float 5.0
 .global lbl_805190FC
 lbl_805190FC:
-	.4byte 0x40400000
+	.float 3.0
 .global lbl_80519100
 lbl_80519100:
 	.4byte 0x43300000
 	.4byte 0x80000000
 .global lbl_80519108
 lbl_80519108:
-	.4byte 0x41300000
-	.4byte 0x00000000
+	.float 11.0
+	.skip 4
 .global lbl_80519110
 lbl_80519110:
 	.4byte 0x456E7465

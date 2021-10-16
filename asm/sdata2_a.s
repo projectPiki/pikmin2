@@ -504,18 +504,24 @@ lbl_80519740:
 	.4byte 0x00000000
 .global lbl_80519748
 lbl_80519748:
-	.4byte 0x25730000
-	.4byte 0x00000000
+	.asciz "%s"
+	.skip 5
 .global lbl_80519750
 lbl_80519750:
-	.4byte 0x3D8F5C29
+	.float 0.07
 .global lbl_80519754
 lbl_80519754:
-	.4byte 0x3CA3D70A
-	.4byte 0x6E656172
-	.4byte 0x00000000
-	.4byte 0x6D696400
-	.4byte 0x66617200
+	.float 0.02
+.global lbl_80519758
+lbl_80519758:
+	.asciz "near"
+	.skip 3
+.global lbl_80519760
+lbl_80519760:
+	.asciz "mid"
+.global lbl_80519764
+lbl_80519764:
+	.asciz "far"
 .global lbl_80519768
 lbl_80519768:
 	.float 1.0
@@ -2250,14 +2256,20 @@ lbl_8051A1B8:
 	.4byte 0x3F666666
 .global lbl_8051A1BC
 lbl_8051A1BC:
-	.4byte 0x7A756B61
-	.4byte 0x6E000000
-	.4byte 0x54656B69
-	.4byte 0x00000000
-	.4byte 0x50656C6C
-	.4byte 0x65740000
-	.4byte 0x4E6F6E65
-	.4byte 0x00000000
+	.asciz "zukan"
+	.skip 2
+.global lbl_8051A1C4
+lbl_8051A1C4:
+	.asciz "Teki"
+	.skip 3
+.global lbl_8051A1CC
+lbl_8051A1CC:
+	.asciz "Pellet"
+	.skip 1
+.global lbl_8051A1D4
+lbl_8051A1D4:
+	.asciz "None"
+	.skip 3
 .global lbl_8051A1DC
 lbl_8051A1DC:
 	.4byte 0x40400000
@@ -9013,23 +9025,33 @@ lbl_8051CAA0:
 	.4byte 0x80000000
 .global lbl_8051CAA8
 lbl_8051CAA8:
-	.4byte 0x41200000
-	.4byte 0x00000000
-	.4byte 0x656C6563
-	.4byte 0x00000000
-	.4byte 0x66697265
-	.4byte 0x00000000
-	.4byte 0x67617300
-	.4byte 0x77617465
-	.4byte 0x72000000
-	.4byte 0x6C6F6F7A
-	.4byte 0x79000000
+	.float 10.0
+	.skip 4
+.global lbl_8051CAB0
+lbl_8051CAB0:
+	.asciz "elec"
+	.skip 3
+.global lbl_8051CAB8
+lbl_8051CAB8:
+	.asciz "fire"
+	.skip 3
+.global lbl_8051CAC0
+lbl_8051CAC0:
+	.asciz "gas"
+.global lbl_8051CAC4
+lbl_8051CAC4:
+	.asciz "water"
+	.skip 2
+.global lbl_8051CACC
+lbl_8051CACC:
+	.asciz "loozy"
+	.skip 2
 .global lbl_8051CAD4
 lbl_8051CAD4:
-	.4byte 0x40400000
+	.float 3.0
 .global lbl_8051CAD8
 lbl_8051CAD8:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_8051CADC
 lbl_8051CADC:
 	.4byte 0x41200000
@@ -9352,45 +9374,53 @@ lbl_8051CCA0:
 	.4byte 0x42960000
 .global lbl_8051CCA4
 lbl_8051CCA4:
-	.4byte 0x41F00000
+	.float 30.0
 .global lbl_8051CCA8
 lbl_8051CCA8:
 	.float 0.7
 .global lbl_8051CCAC
 lbl_8051CCAC:
-	.4byte 0xBFC00000
-	.4byte 0x656C6563
-	.4byte 0x00000000
-	.4byte 0x66697265
-	.4byte 0x00000000
-	.4byte 0x67617300
-	.4byte 0x77617465
-	.4byte 0x72000000
+	.float -1.5
+.global lbl_8051CCB0
+lbl_8051CCB0:
+	.asciz "elec"
+	.skip 3
+.global lbl_8051CCB8
+lbl_8051CCB8:
+	.asciz "fire"
+	.skip 3
+.global lbl_8051CCC0
+lbl_8051CCC0:
+	.asciz "gas"
+.global lbl_8051CCC4
+lbl_8051CCC4:
+	.asciz "water"
+	.skip 2
 .global lbl_8051CCCC
 lbl_8051CCCC:
-	.4byte 0x45BB8000
+	.float 6000.0
 .global lbl_8051CCD0
 lbl_8051CCD0:
-	.4byte 0x6C6F6F7A
-	.4byte 0x79000000
+	.asciz "loozy"
+	.skip 2
 .global lbl_8051CCD8
 lbl_8051CCD8:
-	.4byte 0x3FB33333
+	.float 1.4
 .global lbl_8051CCDC
 lbl_8051CCDC:
-	.4byte 0x40C90FDB
+	.float 6.2831855
 .global lbl_8051CCE0
 lbl_8051CCE0:
 	.float 0.15
 .global lbl_8051CCE4
 lbl_8051CCE4:
-	.4byte 0xC1B00000
+	.float -22.0
 .global lbl_8051CCE8
 lbl_8051CCE8:
-	.4byte 0x42C80000
+	.float 100.0
 .global lbl_8051CCEC
 lbl_8051CCEC:
-	.4byte 0x453B8000
+	.float 3000.0
 .global lbl_8051CCF0
 lbl_8051CCF0:
 	.4byte 0x43160000
@@ -13771,34 +13801,52 @@ lbl_8051E6D8:
 	.float 0.25
 .global lbl_8051E6DC
 lbl_8051E6DC:
-	.4byte 0x40000000
+	.float 2.0
 .global lbl_8051E6E0
 lbl_8051E6E0:
-	.4byte 0xC47A0000
-	.4byte 0x6B616D75
-	.4byte 0x31000000
-	.4byte 0x6B616D75
-	.4byte 0x32000000
-	.4byte 0x6B616D75
-	.4byte 0x33000000
-	.4byte 0x6B616D75
-	.4byte 0x34000000
-	.4byte 0x6B616D75
-	.4byte 0x35000000
-	.4byte 0x6B616D75
-	.4byte 0x36000000
-	.4byte 0x6B616D75
-	.4byte 0x37000000
-	.4byte 0x6B616D75
-	.4byte 0x38000000
-	.4byte 0x6B616D75
-	.4byte 0x39000000
+	.float -1000.0
+.global lbl_8051E6E4
+lbl_8051E6E4:
+	.asciz "kamu1"
+	.skip 2
+.global lbl_8051E6EC
+lbl_8051E6EC:
+	.asciz "kamu2"
+	.skip 2
+.global lbl_8051E6F4
+lbl_8051E6F4:
+	.asciz "kamu3"
+	.skip 2
+.global lbl_8051E6FC
+lbl_8051E6FC:
+	.asciz "kamu4"
+	.skip 2
+.global lbl_8051E704
+lbl_8051E704:
+	.asciz "kamu5"
+	.skip 2
+.global lbl_8051E70C
+lbl_8051E70C:
+	.asciz "kamu6"
+	.skip 2
+.global lbl_8051E714
+lbl_8051E714:
+	.asciz "kamu7"
+	.skip 2
+.global lbl_8051E71C
+lbl_8051E71C:
+	.asciz "kamu8"
+	.skip 2
+.global lbl_8051E724
+lbl_8051E724:
+	.asciz "kamu9"
+	.skip 2
 .global lbl_8051E72C
 lbl_8051E72C:
-	.4byte 0x41C80000
+	.float 25.0
 .global lbl_8051E730
 lbl_8051E730:
-	.4byte 0x47000000
+	.float 32768.0
 .global lbl_8051E734
 lbl_8051E734:
 	.float 0.3
@@ -18398,8 +18446,8 @@ lbl_805201F0:
 	.4byte 0x80000000
 .global lbl_805201F8
 lbl_805201F8:
-	.4byte 0x6661696C
-	.4byte 0x65640000
+	.asciz "failed"
+	.skip 1
 .global lbl_80520200
 lbl_80520200:
 	.4byte 0x00000000
@@ -18408,13 +18456,16 @@ lbl_80520204:
 	.float 1.0
 .global lbl_80520208
 lbl_80520208:
-	.4byte 0x00000000
-	.4byte 0x77696E2E
-	.4byte 0x626C6F00
-	.4byte 0x77696E2E
-	.4byte 0x62636B00
-	.4byte 0x77696E2E
-	.4byte 0x62706B00
+	.float 0.0
+.global lbl_8052020C
+lbl_8052020C:
+	.asciz "win.blo"
+.global lbl_80520214
+lbl_80520214:
+	.asciz "win.bck"
+.global lbl_8052021C
+lbl_8052021C:
+	.asciz "win.bpk"
 .global lbl_80520224
 lbl_80520224:
 	.float 1.0
