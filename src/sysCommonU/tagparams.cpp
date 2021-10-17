@@ -1,4 +1,5 @@
 #include "PrimTagParm.h"
+#include "Dolphin/string.h"
 
 /*
  * --INFO--
@@ -195,10 +196,6 @@ TagParm::TagParm(TagParameters* container, char* name)
  * Size:	0000D4
  */
 
-extern "C" {
-extern size_t strlen(char*);
-extern int strncmp(char*, char*, size_t);
-}
 void TagParameters::read(Stream& stream)
 {
 

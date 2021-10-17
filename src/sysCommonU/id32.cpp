@@ -108,8 +108,6 @@ bool ID32::operator==(unsigned long target) { return this->m_id.raw == target; }
  */
 bool ID32::operator!=(unsigned long _id) { return this->m_id.raw != _id; }
 
-extern char lbl_805202C8[8]; // sd_StringSpecifier
-
 /*
  * --INFO--
  * Address:	80413460
@@ -120,7 +118,7 @@ void ID32::write(Stream& stream)
 	if (stream.m_isTextMode == TRUE) {
 		char str[0x10];
 		sprint(str);
-		stream.printf(lbl_805202C8, str);
+		stream.printf("{%s} ", str);
 	} else {
 		stream.writeByte(m_id.str[3]);
 		stream.writeByte(m_id.str[2]);
