@@ -1,4 +1,150 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E8AA0
+lbl_804E8AA0:
+	.4byte lbl_803D2000
+	.4byte lbl_803D20E0
+	.4byte lbl_803D1FE4
+	.4byte lbl_803D2070
+	.4byte lbl_803D208C
+	.4byte lbl_803D201C
+	.4byte lbl_803D2038
+	.4byte lbl_803D2054
+	.4byte lbl_803D20A8
+	.4byte lbl_803D20C4
+	.4byte lbl_803D2118
+	.4byte lbl_803D2118
+	.4byte lbl_803D2118
+	.4byte lbl_803D2118
+	.4byte lbl_803D20FC
+.global lbl_804E8ADC
+lbl_804E8ADC:
+	.4byte lbl_803D30B8
+	.4byte lbl_803D30E4
+	.4byte lbl_803D3110
+	.4byte lbl_803D313C
+	.4byte lbl_803D3168
+	.4byte lbl_803D3194
+	.4byte lbl_803D31C0
+	.4byte lbl_803D31EC
+	.4byte lbl_803D3218
+	.4byte lbl_803D3244
+	.4byte lbl_803D3270
+	.4byte lbl_803D329C
+	.4byte lbl_803D32C8
+	.4byte lbl_803D32F4
+	.4byte lbl_803D3320
+	.4byte lbl_803D334C
+	.4byte lbl_803D3378
+.global "__vt__Q24Game35StateMachine<Q33ebi9CardError4TMgr>"
+"__vt__Q24Game35StateMachine<Q33ebi9CardError4TMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+	.4byte "exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+.global __vt__Q33ebi9CardError15FSMState_NoCard
+__vt__Q33ebi9CardError15FSMState_NoCard:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
+	.4byte "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q33ebi9CardError20FSMState_CardRequest
+__vt__Q33ebi9CardError20FSMState_CardRequest:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
+	.4byte "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte do_transitCardNoCard__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardIOError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardWrongDevice__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardWrongSector__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardBroken__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardEncoding__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardNoFileSpace__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardNoFileEntry__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardFileOpenError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+	.4byte do_transitCardSerialNoError__Q33ebi9CardError20FSMState_CardRequestFPQ33ebi9CardError4TMgr
+.global __vt__Q33ebi9CardError17FSMState_Question
+__vt__Q33ebi9CardError17FSMState_Question:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
+	.4byte "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q33ebi9CardError16FSMState_Warning
+__vt__Q33ebi9CardError16FSMState_Warning:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
+	.4byte "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi9CardError16FSMState_WarningFPQ33ebi9CardError4TMgr
+	.4byte 0
+	.4byte 0
+.global __vt__Q33ebi9CardError8FSMState
+__vt__Q33ebi9CardError8FSMState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
+	.4byte "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
+.global "__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>"
+"__vt__Q24Game31FSMState<Q33ebi9CardError4TMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgrPQ24Game8StateArg"
+	.4byte "exec__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+.global __vt__Q33ebi9CardError15FSMStateMachine
+__vt__Q33ebi9CardError15FSMStateMachine:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr
+	.4byte "start__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+	.4byte "exec__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+	.4byte "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr

@@ -1000,6 +1000,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\
+	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o\
@@ -1049,7 +1050,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 	$(BUILD_DIR)/asm/rodata_2a.o\
-	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khSceneLoader.o\

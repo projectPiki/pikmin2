@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E9F60
+lbl_804E9F60:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q33ebi6Screen14ArgCloseTMBack
+__vt__Q33ebi6Screen14ArgCloseTMBack:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q33ebi6Screen8ArgCloseFv
+.global __vt__Q33ebi6Screen8ArgClose
+__vt__Q33ebi6Screen8ArgClose:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q33ebi6Screen8ArgCloseFv
+.global __vt__Q33ebi6Screen16ArgOpenTitleMenu
+__vt__Q33ebi6Screen16ArgOpenTitleMenu:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q33ebi6Screen7ArgOpenFv
+.global __vt__Q33ebi6Screen13ArgOpenTMBack
+__vt__Q33ebi6Screen13ArgOpenTMBack:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q33ebi6Screen7ArgOpenFv
+.global __vt__Q33ebi6Screen7ArgOpen
+__vt__Q33ebi6Screen7ArgOpen:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q33ebi6Screen7ArgOpenFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q23ebi13TMainTitleMgrFv

@@ -1,4 +1,162 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q33ebi6Screen20TScreenBaseInterface
+__vt__Q33ebi6Screen20TScreenBaseInterface:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q23ebi25E2DCallBack_CalcAnimation
+__vt__Q23ebi25E2DCallBack_CalcAnimation:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23ebi25E2DCallBack_CalcAnimationFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q23ebi16E2DCallBack_BaseFv
+	.4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q23ebi25E2DCallBack_CalcAnimationFv
+	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+.global __vt__Q23ebi16E2DCallBack_Base
+__vt__Q23ebi16E2DCallBack_Base:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23ebi16E2DCallBack_BaseFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q23ebi16E2DCallBack_BaseFv
+	.4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q23ebi16E2DCallBack_BaseFv
+	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+.global "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>"
+"__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+.global __vt__Q33ebi6Option16FSMState_SaveMgr
+__vt__Q33ebi6Option16FSMState_SaveMgr:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr
+.global __vt__Q33ebi6Option19FSMState_LoadOption
+__vt__Q33ebi6Option19FSMState_LoadOption:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr
+.global __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow
+__vt__Q33ebi6Option27FSMState_WorldMapInfoWindow:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr
+.global __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard
+__vt__Q33ebi6Option27FSMState_WaitCloseForNoCard:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr
+.global __vt__Q33ebi6Option20FSMState_ScreenClose
+__vt__Q33ebi6Option20FSMState_ScreenClose:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr
+.global __vt__Q33ebi6Option19FSMState_ScreenWait
+__vt__Q33ebi6Option19FSMState_ScreenWait:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr
+.global __vt__Q33ebi6Option19FSMState_ScreenOpen
+__vt__Q33ebi6Option19FSMState_ScreenOpen:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr
+.global __vt__Q33ebi6Option8FSMState
+__vt__Q33ebi6Option8FSMState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
+.global "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"
+"__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg"
+	.4byte "exec__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+.global __vt__Q33ebi6Option15FSMStateMachine
+__vt__Q33ebi6Option15FSMStateMachine:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr
+	.4byte "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
+	.4byte "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr

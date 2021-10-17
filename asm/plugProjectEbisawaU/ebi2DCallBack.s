@@ -1,4 +1,62 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23ebi24E2DCallBack_WindowCursor
+__vt__Q23ebi24E2DCallBack_WindowCursor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23ebi24E2DCallBack_WindowCursorFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q23ebi16E2DCallBack_BaseFv
+	.4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q23ebi24E2DCallBack_WindowCursorFv
+	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+.global __vt__Q23ebi19E2DCallBack_AnmBase
+__vt__Q23ebi19E2DCallBack_AnmBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23ebi19E2DCallBack_AnmBaseFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q23ebi16E2DCallBack_BaseFv
+	.4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q23ebi19E2DCallBack_AnmBaseFv
+	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+.global __vt__Q23ebi22E2DCallBack_BlinkAlpha
+__vt__Q23ebi22E2DCallBack_BlinkAlpha:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23ebi22E2DCallBack_BlinkAlphaFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q23ebi16E2DCallBack_BaseFv
+	.4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q23ebi22E2DCallBack_BlinkAlphaFv
+	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+.global __vt__Q23ebi26E2DCallBack_BlinkFontColor
+__vt__Q23ebi26E2DCallBack_BlinkFontColor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23ebi26E2DCallBack_BlinkFontColorFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q23ebi16E2DCallBack_BaseFv
+	.4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q23ebi26E2DCallBack_BlinkFontColorFv
+	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+.global __vt__Q23ebi20E2DCallBack_Purupuru
+__vt__Q23ebi20E2DCallBack_Purupuru:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23ebi20E2DCallBack_PurupuruFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q23ebi16E2DCallBack_BaseFv
+	.4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q23ebi20E2DCallBack_PurupuruFv
+	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_update__Q23ebi20E2DCallBack_PurupuruFv

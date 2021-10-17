@@ -1,4 +1,88 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q25efx2d12TChasePosDir
+__vt__Q25efx2d12TChasePosDir:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q25efx2d12TChasePosDirFv"
+	.4byte "@8@execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q25efx2d12TChasePosDirFv
+	.4byte execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter
+.global __vt__Q25efx2d9TChasePos
+__vt__Q25efx2d9TChasePos:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q25efx2d9TChasePosFv"
+	.4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q25efx2d9TChasePosFv
+	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+.global __vt__Q25efx2d9TForeverN
+__vt__Q25efx2d9TForeverN:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d9TForeverNFv
+	.4byte fade__Q25efx2d9TForeverNFv
+	.4byte setGroup__Q25efx2d9TForeverNFUc
+.global __vt__Q25efx2d8TForever
+__vt__Q25efx2d8TForever:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q25efx2d8TForeverFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q25efx2d8TForeverFv
+.global __vt__Q25efx2d8TSimple3
+__vt__Q25efx2d8TSimple3:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TSimple3FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple3Fv
+	.4byte fade__Q25efx2d8TSimple3Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q25efx2d8TSimple2
+__vt__Q25efx2d8TSimple2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TSimple2FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple2Fv
+	.4byte fade__Q25efx2d8TSimple2Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q25efx2d8TSimple1
+__vt__Q25efx2d8TSimple1:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TSimple1FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple1Fv
+	.4byte fade__Q25efx2d8TSimple1Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q25efx2d8TSimple1FPQ25efx2d3Arg

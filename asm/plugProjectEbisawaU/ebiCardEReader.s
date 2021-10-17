@@ -1,4 +1,13 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q33ebi11CardEReader4TMgr
+__vt__Q33ebi11CardEReader4TMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q33ebi11CardEReader4TMgrFv
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global cInitialCode__Q23ebi11CardEReader

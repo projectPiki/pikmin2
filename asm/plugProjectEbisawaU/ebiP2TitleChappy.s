@@ -1,4 +1,42 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E9E60
+lbl_804E9E60:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804E9E6C
+lbl_804E9E6C:
+	.4byte lbl_803E8B88
+	.4byte lbl_803E8BC8
+	.4byte lbl_803E8C20
+	.4byte lbl_803E8D38
+	.4byte lbl_803E8DEC
+	.4byte lbl_803E8D90
+	.4byte lbl_803E8DEC
+	.4byte lbl_803E8BA4
+.global lbl_804E9E8C
+lbl_804E9E8C:
+	.4byte lbl_803E914C
+	.4byte lbl_803E8F48
+	.4byte lbl_803E8F70
+	.4byte lbl_803E9024
+	.4byte lbl_803E9108
+	.4byte lbl_803E9130
+	.4byte lbl_803E9140
+	.4byte lbl_803E8F10
+.global __vt__Q43ebi5title6Chappy5TUnit
+__vt__Q43ebi5title6Chappy5TUnit:
+	.4byte 0
+	.4byte 0
+	.4byte getCreatureType__Q43ebi5title6Chappy5TUnitFv
+	.4byte isCalc__Q43ebi5title6Chappy5TUnitFv
+.global __vt__Q43ebi5title6Chappy11TAnimFolder
+__vt__Q43ebi5title6Chappy11TAnimFolder:
+	.4byte 0
+	.4byte 0
+	.4byte getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q43ebi5title6Chappy4TMgrFv

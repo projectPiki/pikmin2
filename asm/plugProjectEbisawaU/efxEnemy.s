@@ -1,4 +1,386 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23efx13TDenkiHibaMgr
+__vt__Q23efx13TDenkiHibaMgr:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx13TDenkiHibaMgrFPQ23efx3Arg
+	.4byte forceKill__Q23efx13TDenkiHibaMgrFv
+	.4byte fade__Q23efx13TDenkiHibaMgrFv
+.global __vt__Q23efx10TDenkiHiba
+__vt__Q23efx10TDenkiHiba:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx10TDenkiHibaFPQ23efx3Arg
+	.4byte "forceKill__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
+	.4byte "fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
+	.4byte "startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
+	.4byte "endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
+.global __vt__Q23efx9TGasuHiba
+__vt__Q23efx9TGasuHiba:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx9TGasuHibaFPQ23efx3Arg
+	.4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+.global __vt__Q23efx14TDnkmsThunderB
+__vt__Q23efx14TDnkmsThunderB:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx14TDnkmsThunderBFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx14TDnkmsThunderBFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx14TDnkmsThunderBFv
+.global __vt__Q23efx14TDnkmsThunderA
+__vt__Q23efx14TDnkmsThunderA:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx14TDnkmsThunderAFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx14TDnkmsThunderAFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx14TDnkmsThunderAFv
+.global __vt__Q23efx8TTankWat
+__vt__Q23efx8TTankWat:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TTankWatFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TTankWatFv
+	.4byte fade__Q23efx8TTankWatFv
+	.4byte startDemoDrawOff__Q23efx8TTankWatFv
+	.4byte endDemoDrawOn__Q23efx8TTankWatFv
+.global __vt__Q23efx9TTankFire
+__vt__Q23efx9TTankFire:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx9TTankFireFPQ23efx3Arg
+	.4byte forceKill__Q23efx9TTankFireFv
+	.4byte fade__Q23efx9TTankFireFv
+.global __vt__Q23efx12TTankFireIND
+__vt__Q23efx12TTankFireIND:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx12TTankFireINDFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx12TTankFireINDFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx12TTankFireINDFv
+.global __vt__Q23efx12TTankFireABC
+__vt__Q23efx12TTankFireABC:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx12TTankFireABCFPQ23efx3Arg
+	.4byte forceKill__Q23efx12TTankFireABCFv
+	.4byte fade__Q23efx12TTankFireABCFv
+	.4byte startDemoDrawOff__Q23efx12TTankFireABCFv
+	.4byte endDemoDrawOn__Q23efx12TTankFireABCFv
+.global __vt__Q23efx26TParticleCallBack_TankFire
+__vt__Q23efx26TParticleCallBack_TankFire:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23efx26TParticleCallBack_TankFireFv
+	.4byte execute__Q23efx26TParticleCallBack_TankFireFP14JPABaseEmitterP15JPABaseParticle
+	.4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
+	.4byte init__Q23efx26TParticleCallBack_TankFireFP14JPABaseEmitterP15JPABaseParticle
+.global __vt__Q23efx11TKoganeDive
+__vt__Q23efx11TKoganeDive:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TKoganeDiveFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx10TKoganeHit
+__vt__Q23efx10TKoganeHit:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx10TKoganeHitFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx7TBabaHe
+__vt__Q23efx7TBabaHe:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx7TBabaHeFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx14TBabaFly_ver01
+__vt__Q23efx14TBabaFly_ver01:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx14TBabaFly_ver01FPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx14TBabaFly_ver01Fv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx14TBabaFly_ver01Fv
+.global __vt__Q23efx9TPanSmoke
+__vt__Q23efx9TPanSmoke:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx9TPanSmokeFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx9TPanSmokeFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx9TPanSmokeFv
+.global __vt__Q23efx8TPanHide
+__vt__Q23efx8TPanHide:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TPanHideFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx8TPanHideFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx8TPanHideFv
+.global __vt__Q23efx7TPanApp
+__vt__Q23efx7TPanApp:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx7TPanAppFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx14THebiAphd_base
+__vt__Q23efx14THebiAphd_base:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx14THebiAphd_baseFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple4Fv
+	.4byte fade__Q23efx8TSimple4Fv
+.global __vt__Q23efx12TOtaPartsoff
+__vt__Q23efx12TOtaPartsoff:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx12TOtaPartsoffFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx9TImoSmoke
+__vt__Q23efx9TImoSmoke:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx9TImoSmokeFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx9TImoSmokeFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx9TImoSmokeFv
+.global __vt__Q23efx13TUjinkoAp_Imo
+__vt__Q23efx13TUjinkoAp_Imo:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx13TUjinkoAp_ImoFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx13TUjinkoHd_Imo
+__vt__Q23efx13TUjinkoHd_Imo:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx13TUjinkoHd_ImoFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx7TImoEat
+__vt__Q23efx7TImoEat:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx7TImoEatFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx7TImoEatFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx7TImoEatFv
+.global __vt__Q23efx9TJgmBackW
+__vt__Q23efx9TJgmBackW:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx9TJgmBackWFPQ23efx3Arg
+	.4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+.global __vt__Q23efx8TJgmBack
+__vt__Q23efx8TJgmBack:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TJgmBackFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx8TJgmBackFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx8TJgmBackFv
+.global __vt__Q23efx11TJgmAttackW
+__vt__Q23efx11TJgmAttackW:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TJgmAttackWFPQ23efx3Arg
+	.4byte "forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
+	.4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
+	.4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
+	.4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
+.global __vt__Q23efx10TJgmAttack
+__vt__Q23efx10TJgmAttack:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx10TJgmAttackFPQ23efx3Arg
+	.4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+.global __vt__Q23efx12TUmiDeadmelt
+__vt__Q23efx12TUmiDeadmelt:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx12TUmiDeadmeltFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx10TUmiAttack
+__vt__Q23efx10TUmiAttack:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx10TUmiAttackFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx9TUmiFlick
+__vt__Q23efx9TUmiFlick:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx9TUmiFlickFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple3Fv
+	.4byte fade__Q23efx8TSimple3Fv
+.global __vt__Q23efx9TChouDown
+__vt__Q23efx9TChouDown:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx9TChouDownFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx9TChouDownFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx9TChouDownFv
+.global __vt__Q23efx9TChibiHit
+__vt__Q23efx9TChibiHit:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx9TChibiHitFPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple4Fv
+	.4byte fade__Q23efx8TSimple4Fv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx9TChibiHitFPQ23efx3Arg

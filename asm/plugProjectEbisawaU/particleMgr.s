@@ -1,4 +1,127 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E7688
+lbl_804E7688:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__11ParticleMgr
+__vt__11ParticleMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11ParticleMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__11ParticleMgrFv
+	.4byte doAnimation__11ParticleMgrFv
+	.4byte doEntry__11ParticleMgrFv
+	.4byte doSetView__11ParticleMgrFi
+	.4byte doViewCalc__11ParticleMgrFv
+	.4byte draw__11ParticleMgrFP8ViewportUc
+.global __vt__19ModelEffectDataRoot
+__vt__19ModelEffectDataRoot:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__19ModelEffectDataRootFv
+	.4byte getChildCount__5CNodeFv
+	.4byte loadResources__19ModelEffectDataRootFv
+	.4byte getID__19ModelEffectDataRootFv
+	.4byte onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg
+.global "__vt__26TObjectNode<11ModelEffect>"
+"__vt__26TObjectNode<11ModelEffect>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__26TObjectNode<11ModelEffect>Fv"
+	.4byte getChildCount__5CNodeFv
+.global "__vt__28NodeObjectMgr<11ModelEffect>"
+"__vt__28NodeObjectMgr<11ModelEffect>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__28NodeObjectMgr<11ModelEffect>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__24Container<11ModelEffect>FPv"
+	.4byte "getNext__28NodeObjectMgr<11ModelEffect>FPv"
+	.4byte "getStart__28NodeObjectMgr<11ModelEffect>Fv"
+	.4byte "getEnd__28NodeObjectMgr<11ModelEffect>Fv"
+	.4byte "get__28NodeObjectMgr<11ModelEffect>FPv"
+	.4byte "getAt__24Container<11ModelEffect>Fi"
+	.4byte "getTo__24Container<11ModelEffect>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "@28@doEntry__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "@28@doSetView__24ObjectMgr<11ModelEffect>Fi"
+	.4byte "@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "@28@doSimulation__24ObjectMgr<11ModelEffect>Ff"
+	.4byte "@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "doEntry__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "doSetView__24ObjectMgr<11ModelEffect>Fi"
+	.4byte "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "doSimulation__24ObjectMgr<11ModelEffect>Ff"
+	.4byte "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+	.4byte "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
+.global "__vt__24ObjectMgr<11ModelEffect>"
+"__vt__24ObjectMgr<11ModelEffect>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__24ObjectMgr<11ModelEffect>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__24Container<11ModelEffect>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__24Container<11ModelEffect>Fi"
+	.4byte "getTo__24Container<11ModelEffect>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "@28@doEntry__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "@28@doSetView__24ObjectMgr<11ModelEffect>Fi"
+	.4byte "@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "@28@doSimulation__24ObjectMgr<11ModelEffect>Ff"
+	.4byte "@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "doEntry__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "doSetView__24ObjectMgr<11ModelEffect>Fi"
+	.4byte "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+	.4byte "doSimulation__24ObjectMgr<11ModelEffect>Ff"
+	.4byte "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+.global "__vt__24Container<11ModelEffect>"
+"__vt__24Container<11ModelEffect>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__24Container<11ModelEffect>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__24Container<11ModelEffect>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__24Container<11ModelEffect>Fi"
+	.4byte "getTo__24Container<11ModelEffect>Fv"
+.global "__vt__23Iterator<11ModelEffect>"
+"__vt__23Iterator<11ModelEffect>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__23Iterator<11ModelEffect>Fv"
+	.4byte "next__23Iterator<11ModelEffect>Fv"
+	.4byte "isDone__23Iterator<11ModelEffect>Fv"
+	.4byte "__ml__23Iterator<11ModelEffect>Fv"
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global mClipRadiusS__11ParticleMgr

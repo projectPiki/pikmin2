@@ -1,4 +1,154 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q35efx2d8WorldMap10T2DRocketB
+__vt__Q35efx2d8WorldMap10T2DRocketB:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d8WorldMap10T2DRocketBFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d8WorldMap10T2DRocketBFv"
+	.4byte "@8@execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d8WorldMap10T2DRocketBFv
+	.4byte execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter
+.global __vt__Q35efx2d8WorldMap12T2DOnyonKira
+__vt__Q35efx2d8WorldMap12T2DOnyonKira:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d8WorldMap12T2DOnyonKiraFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d8WorldMap12T2DOnyonKiraFv"
+	.4byte "@8@execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d8WorldMap12T2DOnyonKiraFv
+	.4byte execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter
+.global __vt__Q35efx2d8WorldMap19TSimple_ArgDirScale
+__vt__Q35efx2d8WorldMap19TSimple_ArgDirScale:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d8WorldMap19TSimple_ArgDirScaleFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple1Fv
+	.4byte fade__Q25efx2d8TSimple1Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q35efx2d8WorldMap9T2DNewmap
+__vt__Q35efx2d8WorldMap9T2DNewmap:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d8WorldMap9T2DNewmapFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple2Fv
+	.4byte fade__Q25efx2d8TSimple2Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q35efx2d8WorldMap10T2DShstar2
+__vt__Q35efx2d8WorldMap10T2DShstar2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d8WorldMap10T2DShstar2FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple1Fv
+	.4byte fade__Q25efx2d8TSimple1Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q35efx2d10FileSelect15T2DFilecopyBase
+__vt__Q35efx2d10FileSelect15T2DFilecopyBase:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv
+.global __vt__Q35efx2d10FileSelect14T2DFiledeleteM
+__vt__Q35efx2d10FileSelect14T2DFiledeleteM:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d10FileSelect14T2DFiledeleteMFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple1Fv
+	.4byte fade__Q25efx2d8TSimple1Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q35efx2d10FileSelect13T2DFiledelete
+__vt__Q35efx2d10FileSelect13T2DFiledelete:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d10FileSelect13T2DFiledeleteFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple1Fv
+	.4byte fade__Q25efx2d8TSimple1Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q35efx2d10FileSelect13T2DFilecopied
+__vt__Q35efx2d10FileSelect13T2DFilecopied:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d10FileSelect13T2DFilecopiedFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple1Fv
+	.4byte fade__Q25efx2d8TSimple1Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q25efx2d17T2DSprayset_forVS
+__vt__Q25efx2d17T2DSprayset_forVS:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d17T2DSprayset_forVSFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple2Fv
+	.4byte fade__Q25efx2d8TSimple2Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q25efx2d18T2DSensorGet_forVS
+__vt__Q25efx2d18T2DSensorGet_forVS:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d18T2DSensorGet_forVSFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple2Fv
+	.4byte fade__Q25efx2d8TSimple2Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q25efx2d12T2DCountKira
+__vt__Q25efx2d12T2DCountKira:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d12T2DCountKiraFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q25efx2d12T2DCountKiraFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q25efx2d12T2DCountKiraFv
+.global __vt__Q25efx2d9T2DCursor
+__vt__Q25efx2d9T2DCursor:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9T2DCursorFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q25efx2d9T2DCursorFv"
+	.4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q25efx2d9T2DCursorFv
+	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q25efx2d9T2DCursorFPQ25efx2d3Arg

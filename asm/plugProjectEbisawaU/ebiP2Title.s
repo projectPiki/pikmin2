@@ -1,4 +1,140 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E7828
+lbl_804E7828:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804E7834
+lbl_804E7834:
+	.4byte lbl_803C0214
+	.4byte lbl_803C046C
+	.4byte lbl_803C02F4
+	.4byte lbl_803C03B8
+	.4byte lbl_803C0218
+	.4byte lbl_803C026C
+	.4byte lbl_803C02C0
+.global __vt__Q33ebi5title9TTitleMgr
+__vt__Q33ebi5title9TTitleMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q33ebi5title9TTitleMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q33ebi5title9TTitleMgrFv"
+.global __vt__Q43ebi5title6Pikmin13TBoidParamMgr
+__vt__Q43ebi5title6Pikmin13TBoidParamMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q43ebi5title6Pikmin13TBoidParamMgrFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q43ebi5title6Pikmin4TMgr
+__vt__Q43ebi5title6Pikmin4TMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q43ebi5title6Pikmin4TMgrFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q43ebi5title6Kogane4TMgr
+__vt__Q43ebi5title6Kogane4TMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q43ebi5title6Kogane4TMgrFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q43ebi5title6Chappy4TMgr
+__vt__Q43ebi5title6Chappy4TMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q43ebi5title6Chappy4TMgrFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q33ebi5title9TCoordMgr
+__vt__Q33ebi5title9TCoordMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q33ebi5title9TCoordMgrFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__8Viewport
+__vt__8Viewport:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8ViewportFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__6FogMgr
+__vt__6FogMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__6FogMgrFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q33ebi5title12TTitleFogMgr
+__vt__Q33ebi5title12TTitleFogMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q33ebi5title12TTitleFogMgrFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q33ebi5title15TTitleCameraMgr
+__vt__Q33ebi5title15TTitleCameraMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q33ebi5title15TTitleCameraMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__17Container<5Plane>FPv"
+	.4byte "getNext__22ArrayContainer<5Plane>FPv"
+	.4byte "getStart__22ArrayContainer<5Plane>Fv"
+	.4byte "getEnd__22ArrayContainer<5Plane>Fv"
+	.4byte "get__22ArrayContainer<5Plane>FPv"
+	.4byte "getAt__22ArrayContainer<5Plane>Fi"
+	.4byte "getTo__22ArrayContainer<5Plane>Fv"
+	.4byte writeObject__9CullPlaneFR6StreamR5Plane
+	.4byte readObject__9CullPlaneFR6StreamR5Plane
+	.4byte "write__22ArrayContainer<5Plane>FR6Stream"
+	.4byte read__Q33ebi5title15TTitleCameraMgrFR6Stream
+	.4byte "alloc__22ArrayContainer<5Plane>Fi"
+	.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+	.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+	.4byte getViewMatrix__6CameraFb
+	.4byte getPosition__6CameraFv
+	.4byte updatePlanes__6CameraFv
+	.4byte updateScreenConstants__6CameraFv
+	.4byte getLookAtPosition___12LookAtCameraFv
+	.4byte getTargetDistance__6CameraFv
+	.4byte getPositionPtr__6CameraFv
+	.4byte on_getPositionPtr__12LookAtCameraFv
+	.4byte getSoundPositionPtr__6CameraFv
+	.4byte getSoundMatrixPtr__6CameraFv
+	.4byte isSpecialCamera__6CameraFv
+	.4byte updateMatrix__12LookAtCameraFv
+	.4byte doUpdate__6CameraFv
+	.4byte startVibration__12LookAtCameraFi
+.global __vt__Q33ebi5title11TBlackPlane
+__vt__Q33ebi5title11TBlackPlane:
+	.4byte 0
+	.4byte 0
+	.4byte getCreatureType__Q33ebi5title8TObjBaseFv
+	.4byte isCalc__Q33ebi5title8TObjBaseFv
+.global __vt__Q33ebi5title12TBGEnemyBase
+__vt__Q33ebi5title12TBGEnemyBase:
+	.4byte 0
+	.4byte 0
+	.4byte getCreatureType__Q33ebi5title8TObjBaseFv
+	.4byte isCalc__Q33ebi5title8TObjBaseFv
+.global __vt__12J3DFrameCtrl
+__vt__12J3DFrameCtrl:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12J3DFrameCtrlFv
+.global __vt__Q33ebi5title8TMapBase
+__vt__Q33ebi5title8TMapBase:
+	.4byte 0
+	.4byte 0
+	.4byte getCreatureType__Q33ebi5title8TObjBaseFv
+	.4byte isCalc__Q33ebi5title8TObjBaseFv
+.global __vt__Q33ebi5title8TObjBase
+__vt__Q33ebi5title8TObjBase:
+	.4byte 0
+	.4byte 0
+	.4byte getCreatureType__Q33ebi5title8TObjBaseFv
+	.4byte isCalc__Q33ebi5title8TObjBaseFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q33ebi5title9TTitleMgrFv

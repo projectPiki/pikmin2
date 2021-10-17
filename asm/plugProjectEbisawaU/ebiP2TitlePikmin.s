@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E9DF0
+lbl_804E9DF0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q43ebi5title6Pikmin5TUnit
+__vt__Q43ebi5title6Pikmin5TUnit:
+	.4byte 0
+	.4byte 0
+	.4byte getCreatureType__Q43ebi5title6Pikmin5TUnitFv
+	.4byte isCalc__Q43ebi5title6Pikmin5TUnitFv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive

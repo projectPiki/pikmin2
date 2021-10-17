@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q33ebi6Screen10TTitleMenu
+__vt__Q33ebi6Screen10TTitleMenu:
+	.4byte 0
+	.4byte 0
+	.4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
+	.4byte openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen
+	.4byte closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose
+	.4byte killScreen__Q33ebi6Screen11TScreenBaseFv
+	.4byte update__Q33ebi6Screen11TScreenBaseFv
+	.4byte draw__Q33ebi6Screen11TScreenBaseFv
+	.4byte isFinishScreen__Q33ebi6Screen11TScreenBaseFv
+	.4byte doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive
+	.4byte doOpenScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen7ArgOpen
+	.4byte doCloseScreen__Q33ebi6Screen10TTitleMenuFPQ33ebi6Screen8ArgClose
+	.4byte doKillScreen__Q33ebi6Screen11TScreenBaseFv
+	.4byte doInitWaitState__Q33ebi6Screen10TTitleMenuFv
+	.4byte doUpdateStateOpen__Q33ebi6Screen10TTitleMenuFv
+	.4byte doUpdateStateWait__Q33ebi6Screen10TTitleMenuFv
+	.4byte doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv
+	.4byte doDraw__Q33ebi6Screen10TTitleMenuFv
+	.4byte getName__Q33ebi6Screen10TTitleMenuFv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doSetArchive__Q33ebi6Screen10TTitleMenuFP10JKRArchive

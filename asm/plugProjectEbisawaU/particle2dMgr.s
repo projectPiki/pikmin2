@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E7368
+lbl_804E7368:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__14TParticle2dMgr
+__vt__14TParticle2dMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14TParticle2dMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__14TParticle2dMgrFv"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__14TParticle2dMgrFv

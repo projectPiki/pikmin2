@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E9E10
+lbl_804E9E10:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804E9E1C
+lbl_804E9E1C:
+	.4byte lbl_803E78A8
+	.4byte lbl_803E78E8
+	.4byte lbl_803E7940
+	.4byte lbl_803E7A58
+	.4byte lbl_803E7AB0
+	.4byte lbl_803E7B0C
+	.4byte lbl_803E78C4
+.global __vt__Q43ebi5title6Kogane5TUnit
+__vt__Q43ebi5title6Kogane5TUnit:
+	.4byte 0
+	.4byte 0
+	.4byte getCreatureType__Q43ebi5title6Kogane5TUnitFv
+	.4byte isCalc__Q43ebi5title6Kogane5TUnitFv
+.global __vt__Q43ebi5title6Kogane11TAnimFolder
+__vt__Q43ebi5title6Kogane11TAnimFolder:
+	.4byte 0
+	.4byte 0
+	.4byte getAnimRes__Q43ebi5title6Kogane11TAnimFolderFl
+.global __vt__Q23ebi17E3DAnimFolderBase
+__vt__Q23ebi17E3DAnimFolderBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q43ebi5title6Kogane4TMgrFv

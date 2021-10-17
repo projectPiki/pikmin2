@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E79D8
+lbl_804E79D8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q33ebi5title14TTitleLightMgr
+__vt__Q33ebi5title14TTitleLightMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q33ebi5title14TTitleLightMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q33ebi5title14TTitleLightMgrFv
+	.4byte set__8LightMgrFR8Graphics
+	.4byte set__8LightMgrFR7Matrixf
+	.4byte drawDebugInfo__8LightMgrFR8Graphics
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadSettingFile__Q33ebi5title14TTitleLightMgrFP10JKRArchivePc

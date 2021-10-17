@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23ebi13TScreenProgre
+__vt__Q23ebi13TScreenProgre:
+	.4byte 0
+	.4byte 0
+	.4byte setArchive__Q23ebi13TScreenProgreFP10JKRArchive
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadResource__Q23ebi13TScreenProgreFv

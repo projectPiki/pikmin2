@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E7AC8
+lbl_804E7AC8:
+	.4byte lbl_803C715C
+	.4byte lbl_803C70CC
+	.4byte lbl_803C70E0
+	.4byte lbl_803C70F4
+	.4byte lbl_803C7108
+	.4byte lbl_803C711C
+	.4byte lbl_803C7130
+	.4byte lbl_803C7130
+.global lbl_804E7AE8
+lbl_804E7AE8:
+	.4byte lbl_803C7224
+	.4byte lbl_803C71B0
+	.4byte lbl_803C71C4
+	.4byte lbl_803C71D8
+	.4byte lbl_803C71EC
+	.4byte lbl_803C7200
+	.4byte lbl_803C7214
+	.4byte lbl_803C7214
+.global __vt__Q23efx12TPkEffectMgr
+__vt__Q23efx12TPkEffectMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23efx12TPkEffectMgrFv
+.global __vt__Q23efx19TPkOneEmitterSimple
+__vt__Q23efx19TPkOneEmitterSimple:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg
+	.4byte forceKill__Q23efx19TPkOneEmitterSimpleFv
+	.4byte fade__Q23efx19TPkOneEmitterSimpleFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx19TPkOneEmitterSimpleFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte "@4@executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter
+	.4byte __dt__Q23efx19TPkOneEmitterSimpleFv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg

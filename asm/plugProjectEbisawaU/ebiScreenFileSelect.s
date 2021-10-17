@@ -1,4 +1,156 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E8D30
+lbl_804E8D30:
+	.4byte lbl_803D828C
+	.4byte lbl_803D82B8
+	.4byte lbl_803D82F4
+	.4byte lbl_803D8320
+	.4byte lbl_803D835C
+	.4byte lbl_803D838C
+	.4byte lbl_803D83BC
+	.4byte lbl_803D83EC
+	.4byte lbl_803D8428
+	.4byte lbl_803D8458
+	.4byte lbl_803D8488
+.global __vt__Q25efx2d8ArgColor
+__vt__Q25efx2d8ArgColor:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q25efx2d8ArgColorFv
+.global __vt__Q35efx2d10FileSelect11ArgFilecopy
+__vt__Q35efx2d10FileSelect11ArgFilecopy:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q35efx2d10FileSelect11ArgFilecopyFv
+.global __vt__Q35efx2d10FileSelect13T2DFiledecide
+__vt__Q35efx2d10FileSelect13T2DFiledecide:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TSimple2FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple2Fv
+	.4byte fade__Q25efx2d8TSimple2Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q43ebi6Screen10FileSelect11TMainScreen
+__vt__Q43ebi6Screen10FileSelect11TMainScreen:
+	.4byte 0
+	.4byte 0
+	.4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
+	.4byte openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen
+	.4byte closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose
+	.4byte killScreen__Q33ebi6Screen11TScreenBaseFv
+	.4byte update__Q33ebi6Screen11TScreenBaseFv
+	.4byte draw__Q33ebi6Screen11TScreenBaseFv
+	.4byte isFinishScreen__Q33ebi6Screen11TScreenBaseFv
+	.4byte doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive
+	.4byte doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen
+	.4byte doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose
+	.4byte doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv
+	.4byte doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv
+	.4byte doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv
+	.4byte doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv
+	.4byte doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv
+	.4byte doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv
+	.4byte getName__Q43ebi6Screen10FileSelect11TMainScreenFv
+.global __vt__Q35efx2d10FileSelect11T2DFileselM
+__vt__Q35efx2d10FileSelect11T2DFileselM:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv"
+	.4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d10FileSelect11T2DFileselMFv
+	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+.global __vt__Q35efx2d10FileSelect10T2DFilesel
+__vt__Q35efx2d10FileSelect10T2DFilesel:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d10FileSelect10T2DFileselFv"
+	.4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d10FileSelect10T2DFileselFv
+	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+.global __vt__Q35efx2d10FileSelect16T2DFiledeletingM
+__vt__Q35efx2d10FileSelect16T2DFiledeletingM:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
+.global __vt__Q35efx2d10FileSelect15T2DFiledeleting
+__vt__Q35efx2d10FileSelect15T2DFiledeleting:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d10FileSelect15T2DFiledeletingFv
+.global __vt__Q35efx2d10FileSelect12T2DFilecopyM
+__vt__Q35efx2d10FileSelect12T2DFilecopyM:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d10FileSelect12T2DFilecopyMFv
+.global __vt__Q35efx2d10FileSelect11T2DFilecopy
+__vt__Q35efx2d10FileSelect11T2DFilecopy:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d10FileSelect11T2DFilecopyFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl

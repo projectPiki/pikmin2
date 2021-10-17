@@ -1,4 +1,86 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>"
+"__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+	.4byte "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+.global __vt__Q33ebi5Omake19FSMState_SelectGame
+__vt__Q33ebi5Omake19FSMState_SelectGame:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
+	.4byte "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi5Omake19FSMState_SelectGameFPQ33ebi5Omake4TMgr
+.global __vt__Q33ebi5Omake20FSMState_CardEScreen
+__vt__Q33ebi5Omake20FSMState_CardEScreen:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
+	.4byte "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi5Omake20FSMState_CardEScreenFPQ33ebi5Omake4TMgr
+.global __vt__Q33ebi6Screen12ArgOpenOmake
+__vt__Q33ebi6Screen12ArgOpenOmake:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q33ebi6Screen12ArgOpenOmakeFv
+.global __vt__Q33ebi5Omake20FSMState_OmakeScreen
+__vt__Q33ebi5Omake20FSMState_OmakeScreen:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
+	.4byte "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr
+.global __vt__Q33ebi5Omake8FSMState
+__vt__Q33ebi5Omake8FSMState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+	.4byte exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
+	.4byte "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+	.4byte do_init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+	.4byte do_exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
+.global "__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>"
+"__vt__Q24Game27FSMState<Q33ebi5Omake4TMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgrPQ24Game8StateArg"
+	.4byte "exec__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+.global __vt__Q33ebi5Omake15FSMStateMachine
+__vt__Q33ebi5Omake15FSMStateMachine:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr
+	.4byte "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+	.4byte "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+	.4byte "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr

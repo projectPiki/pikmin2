@@ -1,4 +1,58 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E7A08
+lbl_804E7A08:
+	.4byte lbl_803C2980
+	.4byte lbl_803C299C
+	.4byte lbl_803C29FC
+	.4byte lbl_803C2A5C
+	.4byte lbl_803C2ABC
+	.4byte lbl_803C2B1C
+	.4byte lbl_803C2BA8
+	.4byte lbl_803C2C08
+	.4byte lbl_803C2C58
+	.4byte lbl_803C2CB8
+	.4byte lbl_803C2D18
+	.4byte lbl_803C2D70
+	.4byte lbl_803C2DEC
+	.4byte lbl_803C2E4C
+	.4byte lbl_803C2EC8
+	.4byte lbl_803C2F40
+	.4byte lbl_803C2FBC
+	.4byte lbl_803C301C
+	.4byte lbl_803C307C
+	.4byte lbl_803C30D4
+	.4byte lbl_803C3134
+	.4byte lbl_803C3194
+	.4byte lbl_803C31F4
+	.4byte lbl_803C3254
+	.4byte lbl_803C32B4
+	.4byte lbl_803C3340
+	.4byte lbl_803C33A0
+	.4byte lbl_803C33F0
+	.4byte lbl_803C3450
+	.4byte lbl_803C34B0
+	.4byte lbl_803C3508
+	.4byte lbl_803C357C
+	.4byte lbl_803C35DC
+	.4byte lbl_803C3658
+	.4byte lbl_803C36D4
+	.4byte lbl_803C3748
+	.4byte lbl_803C37A8
+	.4byte lbl_803C3800
+	.4byte lbl_803C3860
+	.4byte lbl_803C38C0
+	.4byte lbl_803C3920
+	.4byte lbl_803C39A8
+	.4byte lbl_803C3A00
+	.4byte lbl_803C3A8C
+.global __vt__Q33ebi6Screen17TResourceObserver
+__vt__Q33ebi6Screen17TResourceObserver:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q33ebi6Screen17TResourceObserverFv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q33ebi6Screen17TResourceObserverFv
