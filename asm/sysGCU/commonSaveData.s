@@ -3,47 +3,35 @@
 .balign 0x4
 .global lbl_8049AEC0
 lbl_8049AEC0:
-	.4byte 0x636F6D6D
-	.4byte 0x6F6E5361
-	.4byte 0x76654461
-	.4byte 0x74612E63
-	.4byte 0x70700000
+	.asciz "commonSaveData.cpp"
+	.skip 1
 .global lbl_8049AED4
 lbl_8049AED4:
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x736F756E
-	.4byte 0x64206D6F
-	.4byte 0x64653A25
-	.4byte 0x64200A00
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x50535379
-	.4byte 0x7374656D
-	.4byte 0x49462E68
-	.4byte 0x00000000
+	.asciz "Unknown sound mode:%d \n"
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PSSystemIF.h"
+	.skip 3
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520980
 lbl_80520980:
-	.4byte 0x437F0000
-	.4byte 0x00000000
+	.float 255.0
+	.skip 4
 .global lbl_80520988
 lbl_80520988:
 	.4byte 0x43300000
 	.4byte 0x00000000
 .global lbl_80520990
 lbl_80520990:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_80520994
 lbl_80520994:
 	.float 1.0
 .global lbl_80520998
 lbl_80520998:
 	.float 0.5
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game14CommonSaveData3MgrFv

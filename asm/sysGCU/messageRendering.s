@@ -3,22 +3,14 @@
 .balign 0x4
 .global lbl_8049ABE8
 lbl_8049ABE8:
-	.4byte 0x6D657373
-	.4byte 0x61676552
-	.4byte 0x656E6465
-	.4byte 0x72696E67
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "messageRendering.cpp"
+	.skip 3
 .global lbl_8049AC00
 lbl_8049AC00:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x6D657373
-	.4byte 0x61676552
-	.4byte 0x656E6465
-	.4byte 0x72696E67
-	.4byte 0x2E680000
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "messageRendering.h"
+	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -125,19 +117,19 @@ __vt__Q25P2JME23TRenderingProcessorBase:
 .balign 0x8
 .global cPageInfoBufferNum__Q25P2JME19TRenderingProcessor
 cPageInfoBufferNum__Q25P2JME19TRenderingProcessor:
-	.4byte 0x0000000A
+	.4byte 10
 .global lbl_805208BC
 lbl_805208BC:
-	.4byte 0x42C80000
+	.float 100.0
 .global lbl_805208C0
 lbl_805208C0:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_805208C4
 lbl_805208C4:
 	.float 1.0
 .global lbl_805208C8
 lbl_805208C8:
-	.4byte 0x42280000
+	.float 42.0
 .global lbl_805208CC
 lbl_805208CC:
 	.float 0.5
@@ -151,10 +143,10 @@ lbl_805208D8:
 	.4byte 0x00000000
 .global lbl_805208E0
 lbl_805208E0:
-	.4byte 0x42000000
+	.float 32.0
 .global lbl_805208E4
 lbl_805208E4:
-	.4byte 0x437F0000
+	.float 255.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference

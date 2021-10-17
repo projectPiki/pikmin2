@@ -3,86 +3,42 @@
 .balign 0x4
 .global lbl_8049ADB8
 lbl_8049ADB8:
-	.4byte 0x50696B6D
-	.4byte 0x696E325F
-	.4byte 0x53617665
-	.4byte 0x44617461
-	.4byte 0x00000000
+	.asciz "Pikmin2_SaveData"
+	.skip 3
 .global gStrMemoryCardMgrCpp
 gStrMemoryCardMgrCpp:
-	.4byte 0x70696B6D
-	.4byte 0x696E324D
-	.4byte 0x656D6F72
-	.4byte 0x79436172
-	.4byte 0x644D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "pikmin2MemoryCardMgr.cpp"
+	.skip 3
 .global gStrMemoryCardMgrP2Assert
 gStrMemoryCardMgrP2Assert:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8049ADF4
 lbl_8049ADF4:
-	.4byte 0x73697A65
-	.4byte 0x6F662850
-	.4byte 0x6C617965
-	.4byte 0x72496E66
-	.4byte 0x6F293A20
-	.4byte 0x25642042
-	.4byte 0x4C4F434B
-	.4byte 0x53495A45
-	.4byte 0x20256420
-	.4byte 0x70616464
-	.4byte 0x696E673A
-	.4byte 0x2564200A
-	.4byte 0x00000000
+	.asciz "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
+	.skip 3
 .global lbl_8049AE28
 lbl_8049AE28:
-	.4byte 0x2F6D656D
-	.4byte 0x6F727943
-	.4byte 0x6172642F
-	.4byte 0x6D656D6F
-	.4byte 0x72794361
-	.4byte 0x72644865
-	.4byte 0x61646572
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x62616E6E
-	.4byte 0x65722E64
-	.4byte 0x61740000
-	.4byte 0x69636F6E
-	.4byte 0x2E646174
-	.4byte 0x00000000
+	.asciz "/memoryCard/memoryCardHeader.szs"
+	.skip 3
+	.asciz "banner.dat"
+	.skip 1
+	.asciz "icon.dat"
+	.skip 3
 .global lbl_8049AE64
 lbl_8049AE64:
-	.4byte 0x4D656D6F
-	.4byte 0x72794361
-	.4byte 0x72644D6F
-	.4byte 0x64696679
-	.4byte 0x20457272
-	.4byte 0x6F720000
-	.4byte 0x63617264
-	.4byte 0x205B2564
-	.4byte 0x5D206D65
-	.4byte 0x6D6F7279
-	.4byte 0x5B25645D
-	.4byte 0x0A000000
+	.asciz "MemoryCardModify Error"
+	.skip 1
+	.asciz "card [%d] memory[%d]\n"
+	.skip 2
 .global lbl_8049AE94
 lbl_8049AE94:
-	.4byte 0x50494B4D
-	.4byte 0x494E2032
-	.4byte 0x00000000
+	.asciz "PIKMIN 2"
+	.skip 3
 .global lbl_8049AEA0
 lbl_8049AEA0:
-	.4byte 0x25303264
-	.4byte 0x2F253032
-	.4byte 0x642F2530
-	.4byte 0x34642025
-	.4byte 0x3032643A
-	.4byte 0x25303264
-	.4byte 0x3A253032
-	.4byte 0x64000000
+	.asciz "%02d/%02d/%04d %02d:%02d:%02d"
+	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -145,8 +101,7 @@ cFileName__Q24Game10MemoryCard:
 .balign 0x8
 .global lbl_80520978
 lbl_80520978:
-	.4byte 0x64616D65
-	.4byte 0x636B0A00
+	.asciz "dameck\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10MemoryCard6PlayerFv
