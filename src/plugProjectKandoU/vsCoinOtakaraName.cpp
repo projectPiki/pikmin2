@@ -10,8 +10,8 @@ struct VsOtakaraName {
 	static const char* cBedamaYellow;
 	static float cBedamaYellowDepth;
 };
-const char* VsOtakaraName::cCoin = lbl_80483EE8;
-const char* VsOtakaraName::cBedamaBlue = lbl_80483EF4;
-const char* VsOtakaraName::cBedamaRed = lbl_80483F04;
+const char* VsOtakaraName::cCoin         = lbl_80483EE8;
+const char* VsOtakaraName::cBedamaBlue   = lbl_80483EF4;
+const char* VsOtakaraName::cBedamaRed    = lbl_80483F04;
 const char* VsOtakaraName::cBedamaYellow = lbl_80483F14;
-float VsOtakaraName::cBedamaYellowDepth = 20.0f;
+float VsOtakaraName::cBedamaYellowDepth  = 20.0f;
