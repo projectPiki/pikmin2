@@ -6,8 +6,7 @@ int __OSArenaLo = -1;
  * Address:	800EC424
  * Size:	000008
  */
-int OSGetArenaHi(void)
-{return __OSArenaHi;}
+int OSGetArenaHi(void) { return __OSArenaHi; }
 /*
 .loc_0x0:
   lwz       r3, -0x7098(r13)
@@ -19,8 +18,7 @@ int OSGetArenaHi(void)
  * Address:	800EC42C
  * Size:	000008
  */
-int OSGetArenaLo(void)
-{return __OSArenaLo;}
+int OSGetArenaLo(void) { return __OSArenaLo; }
 /*
 .loc_0x0:
   lwz       r3, -0x7CA0(r13)
@@ -35,8 +33,8 @@ int OSGetArenaLo(void)
 void OSSetArenaHi(int arena_hi)
 
 {
-  __OSArenaHi = arena_hi;
-  return;
+	__OSArenaHi = arena_hi;
+	return;
 }
 /*
 .loc_0x0:
@@ -52,8 +50,8 @@ void OSSetArenaHi(int arena_hi)
 void OSSetArenaLo(int arena_lo)
 
 {
-  __OSArenaLo = arena_lo;
-  return;
+	__OSArenaLo = arena_lo;
+	return;
 }
 /*
 .loc_0x0:
