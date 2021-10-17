@@ -1,4 +1,273 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804E5328
+lbl_804E5328:
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000000
+.global mOrimaTexture__Q28Morimura9TVsSelect
+mOrimaTexture__Q28Morimura9TVsSelect:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global mLouieTexture__Q28Morimura9TVsSelect
+mLouieTexture__Q28Morimura9TVsSelect:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global slotIDInfo__8Morimura
+slotIDInfo__8Morimura:
+	.4byte 0x00000006
+	.4byte 0x00000000
+	.4byte 0x00323034
+	.4byte 0x325F3030
+	.4byte 0x00000007
+	.4byte 0x00000001
+	.4byte 0x00323034
+	.4byte 0x315F3030
+	.4byte 0x00000008
+	.4byte 0x00000005
+	.4byte 0x00323034
+	.4byte 0x395F3030
+	.4byte 0x00000009
+	.4byte 0x00000003
+	.4byte 0x00323034
+	.4byte 0x345F3030
+	.4byte 0x0000000A
+	.4byte 0x00000004
+	.4byte 0x00323034
+	.4byte 0x355F3030
+	.4byte 0x0000000B
+	.4byte 0x00000002
+	.4byte 0x00323035
+	.4byte 0x325F3030
+	.4byte 0x00000000
+	.4byte 0x00000006
+	.4byte 0x00323034
+	.4byte 0x365F3030
+	.4byte 0x00000001
+	.4byte 0x00000007
+	.4byte 0x00323035
+	.4byte 0x305F3030
+	.4byte 0x00000002
+	.4byte 0x00000008
+	.4byte 0x00323035
+	.4byte 0x315F3030
+	.4byte 0x00000003
+	.4byte 0x00000009
+	.4byte 0x00323034
+	.4byte 0x375F3030
+	.4byte 0x00000004
+	.4byte 0x0000000A
+	.4byte 0x00323034
+	.4byte 0x385F3030
+	.4byte 0x00000005
+	.4byte 0x0000000B
+	.4byte 0x00323034
+	.4byte 0x335F3030
+.global __vt__Q28Morimura14TVsSelectScene
+__vt__Q28Morimura14TVsSelectScene:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q28Morimura14TVsSelectSceneFv
+	.4byte getOwnerID__Q28Morimura14TVsSelectSceneFv
+	.4byte getMemberID__Q28Morimura14TVsSelectSceneFv
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q28Morimura14TVsSelectSceneCFv
+	.4byte doCreateObj__Q28Morimura14TVsSelectSceneFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q28Morimura14TVsSelectSceneFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28Morimura19TVsSelectListScreen
+__vt__Q28Morimura19TVsSelectListScreen:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q28Morimura19TVsSelectListScreenFPCcUl
+	.4byte update__Q28Morimura19TVsSelectListScreenFv
+	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28Morimura9TVsSelect
+__vt__Q28Morimura9TVsSelect:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura9TVsSelectFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q28Morimura9TVsSelectFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q28Morimura9TTestBaseFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q28Morimura9TVsSelectFP10JKRArchive
+	.4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeinFinish__Q28Morimura9TVsSelectFv
+	.4byte doUpdate__Q28Morimura9TVsSelectFv
+	.4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeoutFinish__Q28Morimura9TVsSelectFv
+	.4byte doDraw__Q28Morimura9TVsSelectFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte getDispMemberBase__Q28Morimura9TVsSelectFv
+	.4byte isListShow__Q28Morimura11TScrollListFi
+	.4byte paneInit__Q28Morimura9TVsSelectFv
+	.4byte changePaneInfo__Q28Morimura9TVsSelectFv
+	.4byte getIdMax__Q28Morimura9TVsSelectFv
+	.4byte getNameID__Q28Morimura9TVsSelectFi
+	.4byte getUpdateIndex__Q28Morimura11TScrollListFRib
+	.4byte setShortenIndex__Q28Morimura9TVsSelectFiib
+	.4byte doUpdateIn__Q28Morimura11TScrollListFv
+	.4byte doUpdateOut__Q28Morimura11TScrollListFv
+	.4byte changeTextTevBlock__Q28Morimura11TScrollListFi
+	.4byte updateIndex__Q28Morimura11TScrollListFb
+	.4byte setPaneCharacter__Q28Morimura11TScrollListFi
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28Morimura17TVsSelectCBWinNum
+__vt__Q28Morimura17TVsSelectCBWinNum:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura17TVsSelectCBWinNumFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q28Morimura17TVsSelectCBWinNumFv
+	.4byte draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte init__Q32og6Screen19CallBack_CounterDayFP9J2DScreenUxUxUxPUlb
+	.4byte show__Q32og6Screen19CallBack_CounterDayFv
+	.4byte hide__Q32og6Screen19CallBack_CounterDayFv
+	.4byte setValue__Q28Morimura17TVsSelectCBWinNumFbb
+	.4byte setValue__Q32og6Screen19CallBack_CounterDayFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28Morimura15TVsSelectScreen
+__vt__Q28Morimura15TVsSelectScreen:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q28Morimura15TVsSelectScreenFPCcUl
+	.4byte update__Q28Morimura11TScreenBaseFv
+	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
+.global __vt__Q25efx2d13T2DBattleDive
+__vt__Q25efx2d13T2DBattleDive:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TSimple3FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple3Fv
+	.4byte fade__Q25efx2d8TSimple3Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28Morimura26TVsSelectExplanationWindow
+__vt__Q28Morimura26TVsSelectExplanationWindow:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q28Morimura26TVsSelectExplanationWindowFPCcUl
+	.4byte update__Q28Morimura24TSelectExplanationWindowFv
+	.4byte draw__Q28Morimura24TSelectExplanationWindowFR8GraphicsP13J2DPerspGraph
+	.4byte screenScaleUp__Q28Morimura26TVsSelectExplanationWindowFv
+.global __vt__Q28Morimura16TVsSelectIndPane
+__vt__Q28Morimura16TVsSelectIndPane:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura16TVsSelectIndPaneFv
+	.4byte getChildCount__5CNodeFv
+	.4byte draw__Q28Morimura16TVsSelectIndPaneFv
+	.4byte 0
+
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global mScrollParm__Q28Morimura9TVsSelect
 mScrollParm__Q28Morimura9TVsSelect:

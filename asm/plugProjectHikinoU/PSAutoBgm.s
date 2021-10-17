@@ -1,4 +1,212 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q29PSAutoBgm7AutoBgm
+__vt__Q29PSAutoBgm7AutoBgm:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29PSAutoBgm7AutoBgmFv
+	.4byte init__Q28PSSystem11DirectedBgmFv
+	.4byte scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q29PSAutoBgm7AutoBgmFv
+	.4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+	.4byte pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q29PSAutoBgm7AutoBgmFv
+	.4byte getCastType__Q29PSAutoBgm7AutoBgmFv
+	.4byte getSeqType__Q28PSSystem6BgmSeqFv
+	.4byte exec__Q28PSSystem7SeqBaseFv
+	.4byte onPlayingFrame__Q28PSSystem11DirectedBgmFv
+	.4byte isPlaying__Q28PSSystem7SeqBaseFv
+	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+	.4byte getHandleP__Q28PSSystem6BgmSeqFv
+	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+	.4byte newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv
+	.4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+.global __vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot
+__vt__Q29PSAutoBgm19AutoBgmSeqTrackRoot:
+	.4byte 0
+	.4byte 0
+	.4byte update__Q28PSSystem12SeqTrackRootFv
+	.4byte init__Q28PSSystem12SeqTrackRootFP8JASTrack
+	.4byte onStopSeq__Q28PSSystem12SeqTrackRootFv
+	.4byte beatUpdate__Q29PSAutoBgm19AutoBgmSeqTrackRootFv
+	.4byte onBeatTop__Q28PSSystem12SeqTrackRootFv
+.global __vt__Q29PSAutoBgm10MeloArrMgr
+__vt__Q29PSAutoBgm10MeloArrMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29PSAutoBgm10MeloArrMgrFv
+.global __vt__Q29PSAutoBgm12ConductorMgr
+__vt__Q29PSAutoBgm12ConductorMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29PSAutoBgm12ConductorMgrFv
+	.4byte isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
+	.4byte init__Q210JADUtility11DataMgrNodeFv
+	.4byte getObjHeap__Q29PSAutoBgm12ConductorMgrFv
+	.4byte getDataHeap__Q29PSAutoBgm12ConductorMgrFv
+	.4byte "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>FPvl"
+	.4byte "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
+	.4byte getPath__Q210JADUtility11DataMgrNodeFv
+	.4byte setPath__Q210JADUtility11DataMgrNodeFPc
+	.4byte getSaveTempHeap__Q29PSAutoBgm12ConductorMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@600@28@__dt__Q29PSAutoBgm12ConductorMgrFv"
+	.4byte "@600@28@init__Q210JADUtility11DataMgrNodeFv"
+.global "__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>"
+"__vt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
+	.4byte isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
+	.4byte init__Q210JADUtility11DataMgrNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>FPvl"
+	.4byte "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
+	.4byte getPath__Q210JADUtility11DataMgrNodeFv
+	.4byte setPath__Q210JADUtility11DataMgrNodeFPc
+	.4byte 0
+	.4byte 0
+	.4byte "@600@28@__dt__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
+	.4byte "@600@28@init__Q210JADUtility11DataMgrNodeFv"
+.global __vt__Q29PSAutoBgm8OffCycle
+__vt__Q29PSAutoBgm8OffCycle:
+	.4byte 0
+	.4byte 0
+	.4byte play__Q29PSAutoBgm9CycleBaseFP8JASTrack
+	.4byte getCycleType__Q29PSAutoBgm9CycleBaseFv
+	.4byte avoidCheck__Q29PSAutoBgm9CycleBaseFv
+.global __vt__Q29PSAutoBgm7OnCycle
+__vt__Q29PSAutoBgm7OnCycle:
+	.4byte 0
+	.4byte 0
+	.4byte play__Q29PSAutoBgm7OnCycleFP8JASTrack
+	.4byte getCycleType__Q29PSAutoBgm7OnCycleFv
+	.4byte avoidCheck__Q29PSAutoBgm7OnCycleFv
+.global __vt__Q29PSAutoBgm9CycleBase
+__vt__Q29PSAutoBgm9CycleBase:
+	.4byte 0
+	.4byte 0
+	.4byte play__Q29PSAutoBgm9CycleBaseFP8JASTrack
+	.4byte getCycleType__Q29PSAutoBgm9CycleBaseFv
+	.4byte avoidCheck__Q29PSAutoBgm9CycleBaseFv
+.global __vt__Q29PSAutoBgm6Module
+__vt__Q29PSAutoBgm6Module:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29PSAutoBgm6ModuleFv
+	.4byte appendAfter__Q210JADUtility10PrmSetBaseFv
+	.4byte load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream
+	.4byte afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
+	.4byte afterGetFromFree__Q29PSAutoBgm6ModuleFv
+.global __vt__Q29PSAutoBgm5Track
+__vt__Q29PSAutoBgm5Track:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29PSAutoBgm5TrackFv
+	.4byte appendAfter__Q210JADUtility10PrmSetBaseFv
+	.4byte "load__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FR20JSUMemoryInputStream"
+	.4byte afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
+	.4byte afterGetFromFree__Q29PSAutoBgm5TrackFv
+	.4byte "getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
+.global "__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>"
+"__vt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
+	.4byte appendAfter__Q210JADUtility10PrmSetBaseFv
+	.4byte "load__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FR20JSUMemoryInputStream"
+	.4byte afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
+	.4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
+	.4byte "getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
+.global __vt__Q210JADUtility10StrEditBox
+__vt__Q210JADUtility10StrEditBox:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q210JADUtility10StrEditBoxFv
+	.4byte save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream
+	.4byte load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream
+.global "__vt__Q210JADUtility12PrmSlider<s>"
+"__vt__Q210JADUtility12PrmSlider<s>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility12PrmSlider<s>Fv"
+	.4byte "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream"
+	.4byte "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream"
+.global "__vt__Q210JADUtility9PrmHio<s>"
+"__vt__Q210JADUtility9PrmHio<s>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility9PrmHio<s>Fv"
+	.4byte "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream"
+	.4byte "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream"
+.global "__vt__Q210JADUtility6Prm<s>"
+"__vt__Q210JADUtility6Prm<s>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility6Prm<s>Fv"
+	.4byte "save__Q210JADUtility6Prm<s>FR21JSUMemoryOutputStream"
+	.4byte "load__Q210JADUtility6Prm<s>FR20JSUMemoryInputStream"
+.global __vt__Q29PSAutoBgm9Conductor
+__vt__Q29PSAutoBgm9Conductor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29PSAutoBgm9ConductorFv
+	.4byte appendAfter__Q210JADUtility10PrmSetBaseFv
+	.4byte "load__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FR20JSUMemoryInputStream"
+	.4byte afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte getEraseLink__Q29PSAutoBgm9ConductorFv
+	.4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
+	.4byte "getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
+.global "__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>"
+"__vt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
+	.4byte appendAfter__Q210JADUtility10PrmSetBaseFv
+	.4byte "load__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FR20JSUMemoryInputStream"
+	.4byte afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
+	.4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
+	.4byte "getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
+.global "__vt__Q210JADUtility18PrmRadioButton<Uc>"
+"__vt__Q210JADUtility18PrmRadioButton<Uc>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility18PrmRadioButton<Uc>Fv"
+	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
+	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
+.global "__vt__Q210JADUtility13PrmSlider<Uc>"
+"__vt__Q210JADUtility13PrmSlider<Uc>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility13PrmSlider<Uc>Fv"
+	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
+	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
+.global "__vt__Q210JADUtility10PrmHio<Uc>"
+"__vt__Q210JADUtility10PrmHio<Uc>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility10PrmHio<Uc>Fv"
+	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
+	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
+.global "__vt__Q210JADUtility7Prm<Uc>"
+"__vt__Q210JADUtility7Prm<Uc>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q210JADUtility7Prm<Uc>Fv"
+	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
+	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "__dt__Q210JADUtility18PrmRadioButton<Uc>Fv"

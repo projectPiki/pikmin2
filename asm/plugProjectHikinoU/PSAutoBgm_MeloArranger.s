@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q29PSAutoBgm11MeloArrBase
+__vt__Q29PSAutoBgm11MeloArrBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "@16@__dt__Q29PSAutoBgm11MeloArrBaseFv"
+	.4byte directOn__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track
+	.4byte directOff__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track
+	.4byte pre__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg
+	.4byte post__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg
+	.4byte 0
+	.4byte __dt__Q29PSAutoBgm11MeloArrBaseFv
+.global __vt__Q29PSAutoBgm19MeloArr_RandomAvoid
+__vt__Q29PSAutoBgm19MeloArr_RandomAvoid:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "@16@__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv"
+	.4byte directOn__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track
+	.4byte directOff__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track
+	.4byte pre__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg
+	.4byte post__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg
+	.4byte avoidChk__Q29PSAutoBgm19MeloArr_RandomAvoidFRQ29PSAutoBgm10MeloArrArg
+	.4byte __dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global avoidChk__Q29PSAutoBgm19MeloArr_RandomAvoidFRQ29PSAutoBgm10MeloArrArg

@@ -1,4 +1,72 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28PSSystem17DirectorCopyActor
+__vt__Q28PSSystem17DirectorCopyActor:
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
+	.4byte onUpdateFromMasterD__Q28PSSystem17DirectorCopyActorFv
+	.4byte onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv
+.global __vt__Q28PSSystem17DirectorActorBase
+__vt__Q28PSSystem17DirectorActorBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28PSSystem15DirectorMgrBase
+__vt__Q28PSSystem15DirectorMgrBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem15DirectorMgrBaseFv
+	.4byte 0
+.global __vt__Q28PSSystem16SwitcherDirector
+__vt__Q28PSSystem16SwitcherDirector:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem16SwitcherDirectorFv
+	.4byte exec__Q28PSSystem12DirectorBaseFv
+	.4byte directOn__Q28PSSystem12DirectorBaseFv
+	.4byte directOff__Q28PSSystem12DirectorBaseFv
+	.4byte underDirection__Q28PSSystem12DirectorBaseFv
+	.4byte execInner__Q28PSSystem12DirectorBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q28PSSystem15OneShotDirector
+__vt__Q28PSSystem15OneShotDirector:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem15OneShotDirectorFv
+	.4byte exec__Q28PSSystem15OneShotDirectorFv
+	.4byte directOn__Q28PSSystem12DirectorBaseFv
+	.4byte directOff__Q28PSSystem12DirectorBaseFv
+	.4byte underDirection__Q28PSSystem12DirectorBaseFv
+	.4byte execInner__Q28PSSystem12DirectorBaseFv
+	.4byte 0
+	.4byte directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
+	.4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+.global __vt__Q28PSSystem12DirectorBase
+__vt__Q28PSSystem12DirectorBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem12DirectorBaseFv
+	.4byte exec__Q28PSSystem12DirectorBaseFv
+	.4byte directOn__Q28PSSystem12DirectorBaseFv
+	.4byte directOff__Q28PSSystem12DirectorBaseFv
+	.4byte underDirection__Q28PSSystem12DirectorBaseFv
+	.4byte execInner__Q28PSSystem12DirectorBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+	.4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28PSSystem12DirectorBaseFiPCc

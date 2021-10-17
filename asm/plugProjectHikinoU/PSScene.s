@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28PSSystem5Scene
+__vt__Q28PSSystem5Scene:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q28PSSystem5SceneFv
+	.4byte __dt__Q28PSSystem5SceneFv
+	.4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+	.4byte scene1stLoadSync__Q28PSSystem5SceneFv
+	.4byte exec__Q28PSSystem5SceneFv
+	.4byte startMainSeq__Q28PSSystem5SceneFv
+	.4byte stopMainSeq__Q28PSSystem5SceneFUl
+	.4byte stopAllSound__Q28PSSystem5SceneFUl
+.global __vt__Q28PSSystem10WaveLoader
+__vt__Q28PSSystem10WaveLoader:
+	.4byte 0
+	.4byte 0
+	.4byte loadWave__Q28PSSystem10WaveLoaderFPQ28PSSystem11TaskCheckerQ38PSSystem9WaveScene7AreaArg
+.global __vt__Q28PSSystem9WaveScene
+__vt__Q28PSSystem9WaveScene:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem9WaveSceneFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q28PSSystem9WaveSceneFv

@@ -1,4 +1,27 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28PSSystem12TextDataBase
+__vt__Q28PSSystem12TextDataBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem12TextDataBaseFv
+	.4byte 0
+.global __vt__Q28PSSystem5SysIF
+__vt__Q28PSSystem5SysIF:
+	.4byte 0
+	.4byte 0
+	.4byte makeSequence__Q28PSSystem5SysIFFv
+	.4byte makeSe__Q28PSSystem5SysIFFv
+	.4byte makeStream__Q28PSSystem5SysIFFv
+	.4byte getMapInfoFxline__8JAIBasicFUl
+	.4byte getMapInfoGround__8JAIBasicFUl
+	.4byte getMapInfoFxParameter__8JAIBasicFUl
+	.4byte setSeExtParameter__8JAIBasicFP8JAISound
+	.4byte setRegisterTrackCallback__8JAIBasicFv
+	.4byte initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sDistanceParameterMoveTime__8PSSystem

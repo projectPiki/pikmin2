@@ -1,4 +1,350 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28PSSystem6SeqMgr
+__vt__Q28PSSystem6SeqMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem6SeqMgrFv
+.global __vt__Q28PSSystem10JumpBgmSeq
+__vt__Q28PSSystem10JumpBgmSeq:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem10JumpBgmSeqFv
+	.4byte init__Q28PSSystem11DirectedBgmFv
+	.4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q28PSSystem10JumpBgmSeqFv
+	.4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+	.4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q28PSSystem7SeqBaseFv
+	.4byte getCastType__Q28PSSystem10JumpBgmSeqFv
+	.4byte getSeqType__Q28PSSystem6BgmSeqFv
+	.4byte exec__Q28PSSystem7SeqBaseFv
+	.4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
+	.4byte isPlaying__Q28PSSystem7SeqBaseFv
+	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+	.4byte getHandleP__Q28PSSystem6BgmSeqFv
+	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+	.4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
+	.4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+	.4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
+	.4byte requestJumpBgmQuickly__Q28PSSystem10JumpBgmSeqFUs
+	.4byte requestJumpBgmOnBeat__Q28PSSystem10JumpBgmSeqFUs
+	.4byte requestJumpBgmEveryBeat__Q28PSSystem10JumpBgmSeqFUs
+	.4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
+	.4byte onJump__Q28PSSystem10JumpBgmSeqFUs
+.global __vt__Q28PSSystem20TriangleTableModTask
+__vt__Q28PSSystem20TriangleTableModTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
+	.4byte getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc
+	.4byte getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv
+	.4byte 0
+.global __vt__Q28PSSystem14PitchResetTask
+__vt__Q28PSSystem14PitchResetTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem14PitchResetTaskFR8JASTrack
+.global __vt__Q28PSSystem12FlagWaitTask
+__vt__Q28PSSystem12FlagWaitTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem12FlagWaitTaskFR8JASTrack
+.global __vt__Q28PSSystem8TaskBase
+__vt__Q28PSSystem8TaskBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28PSSystem12BankRandTask
+__vt__Q28PSSystem12BankRandTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem16ModParamWithFadeFR8JASTrack
+	.4byte getPreParam__Q28PSSystem12BankRandTaskFR8JASTrack
+	.4byte timeTask__Q28PSSystem12BankRandTaskFR8JASTrackf
+.global __vt__Q28PSSystem20SeqTrackRoot_JumpBgm
+__vt__Q28PSSystem20SeqTrackRoot_JumpBgm:
+	.4byte 0
+	.4byte 0
+	.4byte update__Q28PSSystem12SeqTrackRootFv
+	.4byte init__Q28PSSystem12SeqTrackRootFP8JASTrack
+	.4byte onStopSeq__Q28PSSystem12SeqTrackRootFv
+	.4byte beatUpdate__Q28PSSystem12SeqTrackRootFv
+	.4byte onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv
+.global __vt__Q28PSSystem11DirectedBgm
+__vt__Q28PSSystem11DirectedBgm:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem11DirectedBgmFv
+	.4byte init__Q28PSSystem11DirectedBgmFv
+	.4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q28PSSystem11DirectedBgmFv
+	.4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+	.4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q28PSSystem7SeqBaseFv
+	.4byte getCastType__Q28PSSystem11DirectedBgmFv
+	.4byte getSeqType__Q28PSSystem6BgmSeqFv
+	.4byte exec__Q28PSSystem7SeqBaseFv
+	.4byte onPlayingFrame__Q28PSSystem11DirectedBgmFv
+	.4byte isPlaying__Q28PSSystem7SeqBaseFv
+	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+	.4byte getHandleP__Q28PSSystem6BgmSeqFv
+	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+	.4byte newSeqTrackRoot__Q28PSSystem11DirectedBgmFv
+	.4byte newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+.global __vt__Q28PSSystem5SeSeq
+__vt__Q28PSSystem5SeSeq:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem5SeSeqFv
+	.4byte init__Q28PSSystem7SeqBaseFv
+	.4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q28PSSystem7SeqBaseFv
+	.4byte stopSeq__Q28PSSystem5SeSeqFUl
+	.4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q28PSSystem7SeqBaseFv
+	.4byte getCastType__Q28PSSystem5SeSeqFv
+	.4byte getSeqType__Q28PSSystem5SeSeqFv
+	.4byte exec__Q28PSSystem7SeqBaseFv
+	.4byte onPlayingFrame__Q28PSSystem7SeqBaseFv
+	.4byte isPlaying__Q28PSSystem7SeqBaseFv
+	.4byte seqLoadAfter__Q28PSSystem5SeSeqFv
+	.4byte getHandleP__Q28PSSystem5SeSeqFv
+	.4byte setConfigVolume__Q28PSSystem5SeSeqFv
+.global __vt__Q28PSSystem9StreamBgm
+__vt__Q28PSSystem9StreamBgm:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem9StreamBgmFv
+	.4byte init__Q28PSSystem9StreamBgmFv
+	.4byte scene1st__Q28PSSystem9StreamBgmFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q28PSSystem9StreamBgmFv
+	.4byte stopSeq__Q28PSSystem7SeqBaseFUl
+	.4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q28PSSystem7SeqBaseFv
+	.4byte getCastType__Q28PSSystem9StreamBgmFv
+	.4byte getSeqType__Q28PSSystem9StreamBgmFv
+	.4byte exec__Q28PSSystem7SeqBaseFv
+	.4byte onPlayingFrame__Q28PSSystem7SeqBaseFv
+	.4byte isPlaying__Q28PSSystem9StreamBgmFv
+	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+	.4byte getHandleP__Q28PSSystem9StreamBgmFv
+	.4byte setConfigVolume__Q28PSSystem9StreamBgmFv
+.global __vt__Q28PSSystem6BgmSeq
+__vt__Q28PSSystem6BgmSeq:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem6BgmSeqFv
+	.4byte init__Q28PSSystem7SeqBaseFv
+	.4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q28PSSystem7SeqBaseFv
+	.4byte stopSeq__Q28PSSystem7SeqBaseFUl
+	.4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q28PSSystem7SeqBaseFv
+	.4byte getCastType__Q28PSSystem6BgmSeqFv
+	.4byte getSeqType__Q28PSSystem6BgmSeqFv
+	.4byte exec__Q28PSSystem7SeqBaseFv
+	.4byte onPlayingFrame__Q28PSSystem7SeqBaseFv
+	.4byte isPlaying__Q28PSSystem7SeqBaseFv
+	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+	.4byte getHandleP__Q28PSSystem6BgmSeqFv
+	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+.global __vt__Q28PSSystem7SeqBase
+__vt__Q28PSSystem7SeqBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem7SeqBaseFv
+	.4byte init__Q28PSSystem7SeqBaseFv
+	.4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+	.4byte startSeq__Q28PSSystem7SeqBaseFv
+	.4byte stopSeq__Q28PSSystem7SeqBaseFUl
+	.4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+	.4byte pauseOff__Q28PSSystem7SeqBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem7SeqBaseFv
+	.4byte onPlayingFrame__Q28PSSystem7SeqBaseFv
+	.4byte isPlaying__Q28PSSystem7SeqBaseFv
+	.4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+	.4byte 0
+	.4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+.global __vt__Q28PSSystem10Reservator
+__vt__Q28PSSystem10Reservator:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28PSSystem21SeqPauseOffReservator
+__vt__Q28PSSystem21SeqPauseOffReservator:
+	.4byte 0
+	.4byte 0
+	.4byte reservatorTask__Q28PSSystem21SeqPauseOffReservatorFv
+.global __vt__Q28PSSystem17SeqPlayReservator
+__vt__Q28PSSystem17SeqPlayReservator:
+	.4byte 0
+	.4byte 0
+	.4byte reservatorTask__Q28PSSystem17SeqPlayReservatorFv
+.global __vt__Q28PSSystem7SeqHeap
+__vt__Q28PSSystem7SeqHeap:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem7SeqHeapFv
+	.4byte loadSeqAsync__Q28PSSystem7SeqHeapFPQ28PSSystem11TaskChecker
+.global __vt__Q28PSSystem11StreamSound
+__vt__Q28PSSystem11StreamSound:
+	.4byte 0
+	.4byte 0
+	.4byte setPortData__9JAIStreamFUcUs
+	.4byte getPortData__9JAIStreamFUc
+	.4byte start__8JAISoundFUl
+	.4byte stop__9JAIStreamFUl
+	.4byte release__8JAISoundFv
+	.4byte setVolume__9JAIStreamFfUlUc
+	.4byte getVolume__9JAIStreamFUc
+	.4byte setPan__9JAIStreamFfUlUc
+	.4byte getPan__9JAIStreamFUc
+	.4byte setPitch__9JAIStreamFfUlUc
+	.4byte getPitch__9JAIStreamFUc
+	.4byte setFxmix__9JAIStreamFfUlUc
+	.4byte getFxmix__9JAIStreamFUc
+	.4byte setDolby__9JAIStreamFfUlUc
+	.4byte getDolby__9JAIStreamFUc
+	.4byte setTempoProportion__8JAISoundFfUl
+	.4byte getTempoProportion__8JAISoundFv
+	.4byte setVolumeU7__9JAIStreamFUcUlUc
+	.4byte getVolumeU7__9JAIStreamFUc
+	.4byte setPanU7__9JAIStreamFUcUlUc
+	.4byte getPanU7__9JAIStreamFUc
+	.4byte setFxmixU7__9JAIStreamFUcUlUc
+	.4byte getFxmixU7__9JAIStreamFUc
+	.4byte setDolbyU7__9JAIStreamFUcUlUc
+	.4byte getDolbyU7__9JAIStreamFUc
+	.4byte setDirectVolume__8JAISoundFfUl
+	.4byte setDirectPan__8JAISoundFfUl
+	.4byte setDirectPitch__8JAISoundFfUl
+	.4byte setDirectFxmix__8JAISoundFfUl
+	.4byte setDirectDolby__8JAISoundFfUl
+	.4byte setDemoVolume__8JAISoundFfUl
+	.4byte setDemoPan__8JAISoundFfUl
+	.4byte setDemoPitch__8JAISoundFfUl
+	.4byte setDemoFxmix__8JAISoundFfUl
+	.4byte setDemoDolby__8JAISoundFfUl
+	.4byte setDemoVolumeU7__8JAISoundFUcUl
+	.4byte setDemoPanU7__8JAISoundFUcUl
+	.4byte setDemoFxmixU7__8JAISoundFUcUl
+	.4byte setDemoDolbyU7__8JAISoundFUcUl
+	.4byte getFadeCounter__9JAIStreamFv
+	.4byte setPrepareFlag__9JAIStreamFUc
+	.4byte checkReady__9JAIStreamFv
+	.4byte setDistanceParameterMoveTime__8JAISoundFUc
+	.4byte setAdjustPriority__8JAISoundFs
+	.4byte setPositionDopplarCommon__8JAISoundFUl
+	.4byte setDistanceVolumeCommon__8JAISoundFfUc
+	.4byte setDistancePanCommon__8JAISoundFv
+	.4byte setDistanceDolbyCommon__8JAISoundFv
+	.4byte initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
+	.4byte onGet__8JAISoundFv
+	.4byte onRelease__8JAISoundFv
+	.4byte 0
+	.4byte 0
+	.4byte stop__Q28PSSystem12SeqSoundBaseFUl
+	.4byte "@472@stopInner__Q28PSSystem11StreamSoundFUl"
+	.4byte stopInner__Q28PSSystem11StreamSoundFUl
+.global __vt__Q28PSSystem8SeqSound
+__vt__Q28PSSystem8SeqSound:
+	.4byte 0
+	.4byte 0
+	.4byte setPortData__11JAISequenceFUcUs
+	.4byte getPortData__11JAISequenceFUc
+	.4byte start__8JAISoundFUl
+	.4byte stop__11JAISequenceFUl
+	.4byte release__8JAISoundFv
+	.4byte setVolume__11JAISequenceFfUlUc
+	.4byte getVolume__11JAISequenceFUc
+	.4byte setPan__11JAISequenceFfUlUc
+	.4byte getPan__11JAISequenceFUc
+	.4byte setPitch__11JAISequenceFfUlUc
+	.4byte getPitch__11JAISequenceFUc
+	.4byte setFxmix__11JAISequenceFfUlUc
+	.4byte getFxmix__11JAISequenceFUc
+	.4byte setDolby__11JAISequenceFfUlUc
+	.4byte getDolby__11JAISequenceFUc
+	.4byte setTempoProportion__11JAISequenceFfUl
+	.4byte getTempoProportion__11JAISequenceFv
+	.4byte setVolumeU7__11JAISequenceFUcUlUc
+	.4byte getVolumeU7__11JAISequenceFUc
+	.4byte setPanU7__11JAISequenceFUcUlUc
+	.4byte getPanU7__11JAISequenceFUc
+	.4byte setFxmixU7__11JAISequenceFUcUlUc
+	.4byte getFxmixU7__11JAISequenceFUc
+	.4byte setDolbyU7__11JAISequenceFUcUlUc
+	.4byte getDolbyU7__11JAISequenceFUc
+	.4byte setDirectVolume__8JAISoundFfUl
+	.4byte setDirectPan__8JAISoundFfUl
+	.4byte setDirectPitch__8JAISoundFfUl
+	.4byte setDirectFxmix__8JAISoundFfUl
+	.4byte setDirectDolby__8JAISoundFfUl
+	.4byte setDemoVolume__8JAISoundFfUl
+	.4byte setDemoPan__8JAISoundFfUl
+	.4byte setDemoPitch__8JAISoundFfUl
+	.4byte setDemoFxmix__8JAISoundFfUl
+	.4byte setDemoDolby__8JAISoundFfUl
+	.4byte setDemoVolumeU7__8JAISoundFUcUl
+	.4byte setDemoPanU7__8JAISoundFUcUl
+	.4byte setDemoFxmixU7__8JAISoundFUcUl
+	.4byte setDemoDolbyU7__8JAISoundFUcUl
+	.4byte getFadeCounter__11JAISequenceFv
+	.4byte setPrepareFlag__11JAISequenceFUc
+	.4byte checkReady__11JAISequenceFv
+	.4byte setDistanceParameterMoveTime__8JAISoundFUc
+	.4byte setAdjustPriority__8JAISoundFs
+	.4byte setPositionDopplarCommon__8JAISoundFUl
+	.4byte setDistanceVolumeCommon__8JAISoundFfUc
+	.4byte setDistancePanCommon__8JAISoundFv
+	.4byte setDistanceDolbyCommon__8JAISoundFv
+	.4byte initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
+	.4byte onGet__8JAISoundFv
+	.4byte onRelease__8JAISoundFv
+	.4byte 0
+	.4byte 0
+	.4byte stop__Q28PSSystem12SeqSoundBaseFUl
+	.4byte "@1696@stopInner__Q28PSSystem8SeqSoundFUl"
+	.4byte stopInner__Q28PSSystem8SeqSoundFUl
+.global __vt__Q28PSSystem12SeqSoundBase
+__vt__Q28PSSystem12SeqSoundBase:
+	.4byte 0
+	.4byte 0
+	.4byte stop__Q28PSSystem12SeqSoundBaseFUl
+	.4byte 0
+.global __vt__Q28PSSystem14StreamDataList
+__vt__Q28PSSystem14StreamDataList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem14StreamDataListFv
+	.4byte read__Q28PSSystem14StreamDataListFR6Stream
+	.4byte 0
+	.4byte 0
+	.4byte "@28@__dt__Q28PSSystem14StreamDataListFv"
+.global "__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"
+"__vt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>Fv"
+.global __vt__Q28PSSystem11SeqDataList
+__vt__Q28PSSystem11SeqDataList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem11SeqDataListFv
+	.4byte read__Q28PSSystem11SeqDataListFR6Stream
+	.4byte 0
+	.4byte 0
+	.4byte "@28@__dt__Q28PSSystem11SeqDataListFv"
+.global "__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"
+"__vt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv"
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28PSSystem11SeqDataListFv

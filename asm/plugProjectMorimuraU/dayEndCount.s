@@ -1,4 +1,175 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global deTagName__8Morimura
+deTagName__8Morimura:
+	.4byte 0x63643030
+	.4byte 0x63643031
+	.4byte 0x63643032
+	.4byte 0x63643033
+	.4byte 0x63643034
+	.4byte 0x63643035
+	.4byte 0x63643036
+	.4byte 0x63643037
+	.4byte 0x63643038
+	.4byte 0x63643039
+	.4byte 0x63643130
+.global __vt__Q28Morimura15TCountDownScene
+__vt__Q28Morimura15TCountDownScene:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q28Morimura15TCountDownSceneFv
+	.4byte getOwnerID__Q28Morimura15TCountDownSceneFv
+	.4byte getMemberID__Q28Morimura15TCountDownSceneFv
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q28Morimura15TCountDownSceneCFv
+	.4byte doCreateObj__Q28Morimura15TCountDownSceneFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q28Morimura15TCountDownSceneFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q28Morimura20TChallengeEndCount2p
+__vt__Q28Morimura20TChallengeEndCount2p:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura20TChallengeEndCount2pFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q28Morimura20TChallengeEndCount2pFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive
+	.4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdate__Q28Morimura20TChallengeEndCount2pFv
+	.4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+	.4byte doDraw__Q28Morimura12TDayEndCountFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+.global __vt__Q28Morimura20TChallengeEndCount1p
+__vt__Q28Morimura20TChallengeEndCount1p:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura20TChallengeEndCount1pFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q28Morimura20TChallengeEndCount1pFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive
+	.4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdate__Q28Morimura20TChallengeEndCount1pFv
+	.4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+	.4byte doDraw__Q28Morimura12TDayEndCountFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+.global __vt__Q28Morimura18TChallengeEndCount
+__vt__Q28Morimura18TChallengeEndCount:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura18TChallengeEndCountFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q28Morimura18TChallengeEndCountFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive
+	.4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdate__Q28Morimura12TDayEndCountFv
+	.4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+	.4byte doDraw__Q28Morimura12TDayEndCountFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+.global __vt__Q28Morimura12TDayEndCount
+__vt__Q28Morimura12TDayEndCount:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura12TDayEndCountFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q28Morimura12TDayEndCountFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q28Morimura12TDayEndCountFP10JKRArchive
+	.4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdate__Q28Morimura12TDayEndCountFv
+	.4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+	.4byte doDraw__Q28Morimura12TDayEndCountFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global mWaitTime__Q28Morimura12TDayEndCount

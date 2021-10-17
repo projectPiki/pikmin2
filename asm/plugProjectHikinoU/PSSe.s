@@ -1,4 +1,53 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q26PSGame25Builder_EvnSe_Perspective
+__vt__Q26PSGame25Builder_EvnSe_Perspective:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv
+	.4byte onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase
+	.4byte newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec
+.global __vt__Q26PSGame13EnvSe_AutoPan
+__vt__Q26PSGame13EnvSe_AutoPan:
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem9EnvSeBaseFv
+	.4byte play__Q28PSSystem9EnvSeBaseFv
+	.4byte getCastType__Q28PSSystem9EnvSeBaseFv
+	.4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
+.global __vt__Q26PSGame17EnvSe_Perspective
+__vt__Q26PSGame17EnvSe_Perspective:
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem9EnvSeBaseFv
+	.4byte play__Q26PSGame17EnvSe_PerspectiveFv
+	.4byte getCastType__Q28PSSystem9EnvSeBaseFv
+	.4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
+.global __vt__Q26PSGame9EnvSe_Pan
+__vt__Q26PSGame9EnvSe_Pan:
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem9EnvSeBaseFv
+	.4byte play__Q28PSSystem9EnvSeBaseFv
+	.4byte getCastType__Q28PSSystem9EnvSeBaseFv
+	.4byte setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound
+.global __vt__Q26PSGame5Rappa
+__vt__Q26PSGame5Rappa:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26PSGame5RappaFv
+.global __vt__Q26PSGame5SeMgr
+__vt__Q26PSGame5SeMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26PSGame5SeMgrFv
+.global "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"
+"__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv"
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global cRatio__Q26PSGame5Rappa

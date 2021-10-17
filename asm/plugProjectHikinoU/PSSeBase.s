@@ -1,4 +1,30 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q38PSSystem9ClusterSe7Factory
+__vt__Q38PSSystem9ClusterSe7Factory:
+	.4byte 0
+	.4byte 0
+	.4byte constructPart__Q38PSSystem9ClusterSe7FactoryFv
+	.4byte 0
+.global __vt__Q38PSSystem9ClusterSe4Part
+__vt__Q38PSSystem9ClusterSe4Part:
+	.4byte 0
+	.4byte 0
+	.4byte callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object
+.global __vt__Q28PSSystem24EnvSe_PauseOffReservator
+__vt__Q28PSSystem24EnvSe_PauseOffReservator:
+	.4byte 0
+	.4byte 0
+	.4byte reservatorTask__Q28PSSystem24EnvSe_PauseOffReservatorFv
+.global __vt__Q28PSSystem9EnvSeBase
+__vt__Q28PSSystem9EnvSeBase:
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem9EnvSeBaseFv
+	.4byte play__Q28PSSystem9EnvSeBaseFv
+	.4byte getCastType__Q28PSSystem9EnvSeBaseFv
+	.4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28PSSystem9EnvSeBaseFUlf

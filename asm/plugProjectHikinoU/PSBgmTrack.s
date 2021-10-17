@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28PSSystem13SeqTrackChild
+__vt__Q28PSSystem13SeqTrackChild:
+	.4byte 0
+	.4byte 0
+	.4byte update__Q28PSSystem12SeqTrackBaseFv
+	.4byte init__Q28PSSystem12SeqTrackBaseFP8JASTrack
+	.4byte onStopSeq__Q28PSSystem13SeqTrackChildFv
+.global __vt__Q28PSSystem10IdMaskTask
+__vt__Q28PSSystem10IdMaskTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem10IdMaskTaskFR8JASTrack
+.global __vt__Q28PSSystem8MuteTask
+__vt__Q28PSSystem8MuteTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem8MuteTaskFR8JASTrack
+.global __vt__Q28PSSystem12SeqTrackRoot
+__vt__Q28PSSystem12SeqTrackRoot:
+	.4byte 0
+	.4byte 0
+	.4byte update__Q28PSSystem12SeqTrackRootFv
+	.4byte init__Q28PSSystem12SeqTrackRootFP8JASTrack
+	.4byte onStopSeq__Q28PSSystem12SeqTrackRootFv
+	.4byte beatUpdate__Q28PSSystem12SeqTrackRootFv
+	.4byte onBeatTop__Q28PSSystem12SeqTrackRootFv
+.global __vt__Q28PSSystem12SeqTrackBase
+__vt__Q28PSSystem12SeqTrackBase:
+	.4byte 0
+	.4byte 0
+	.4byte update__Q28PSSystem12SeqTrackBaseFv
+	.4byte init__Q28PSSystem12SeqTrackBaseFP8JASTrack
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global proc__Q28PSSystem7BeatMgrFv

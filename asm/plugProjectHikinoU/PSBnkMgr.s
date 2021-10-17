@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q38PSSystem9WaveScene8WaveArea
+__vt__Q38PSSystem9WaveScene8WaveArea:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q38PSSystem9WaveScene8WaveAreaFv
+.global __vt__Q28PSSystem7BankMgr
+__vt__Q28PSSystem7BankMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28PSSystem7BankMgrFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createInstance__Q28PSSystem7BankMgrFv

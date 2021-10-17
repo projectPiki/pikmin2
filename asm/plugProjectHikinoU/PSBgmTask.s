@@ -1,4 +1,42 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28PSSystem14SimpleWaitTask
+__vt__Q28PSSystem14SimpleWaitTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem14SimpleWaitTaskFR8JASTrack
+.global __vt__Q28PSSystem14OuterParamTask
+__vt__Q28PSSystem14OuterParamTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem16ModParamWithFadeFR8JASTrack
+	.4byte getPreParam__Q28PSSystem14OuterParamTaskFR8JASTrack
+	.4byte timeTask__Q28PSSystem14OuterParamTaskFR8JASTrackf
+.global __vt__Q28PSSystem12PitchModTask
+__vt__Q28PSSystem12PitchModTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
+	.4byte getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc
+	.4byte getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv
+	.4byte tableTask__Q28PSSystem12PitchModTaskFR8JASTrackf
+.global __vt__Q28PSSystem21ModParamWithTableTask
+__vt__Q28PSSystem21ModParamWithTableTask:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28PSSystem16ModParamWithFade
+__vt__Q28PSSystem16ModParamWithFade:
+	.4byte 0
+	.4byte 0
+	.4byte task__Q28PSSystem16ModParamWithFadeFR8JASTrack
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global task__Q28PSSystem16ModParamWithFadeFR8JASTrack

@@ -1,4 +1,127 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804DA920
+lbl_804DA920:
+	.4byte lbl_80337278
+	.4byte lbl_80336D5C
+	.4byte lbl_80336D88
+	.4byte lbl_80336DB4
+	.4byte lbl_80336E40
+	.4byte lbl_80337278
+	.4byte lbl_80337278
+	.4byte lbl_80337278
+	.4byte lbl_80336ECC
+	.4byte lbl_80336F20
+	.4byte lbl_80336FB8
+	.4byte lbl_80337004
+	.4byte lbl_80337060
+	.4byte lbl_80337118
+	.4byte lbl_80337174
+	.4byte lbl_803371D0
+	.4byte lbl_80336F6C
+	.4byte lbl_803370BC
+	.4byte lbl_80337278
+	.4byte lbl_8033722C
+	.4byte lbl_80336D5C
+.global lbl_804DA974
+lbl_804DA974:
+	.4byte lbl_80336AB8
+	.4byte lbl_80336A94
+	.4byte lbl_80336A9C
+	.4byte lbl_80336AA4
+	.4byte lbl_80336AAC
+	.4byte lbl_80336AB4
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336AB8
+	.4byte lbl_80336A94
+.global __vt__Q26PSGame11PikSceneMgr
+__vt__Q26PSGame11PikSceneMgr:
+	.4byte 0
+	.4byte 0
+	.4byte exec__Q28PSSystem8SceneMgrFv
+	.4byte newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo
+	.4byte newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv
+	.4byte 0
+.global __vt__Q26PSGame8PikScene
+__vt__Q26PSGame8PikScene:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q28PSSystem5SceneFv
+	.4byte __dt__Q26PSGame8PikSceneFv
+	.4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+	.4byte scene1stLoadSync__Q28PSSystem5SceneFv
+	.4byte exec__Q28PSSystem5SceneFv
+	.4byte startMainSeq__Q28PSSystem5SceneFv
+	.4byte stopMainSeq__Q28PSSystem5SceneFUl
+	.4byte stopAllSound__Q28PSSystem5SceneFUl
+.global __vt__Q26PSGame9SceneInfo
+__vt__Q26PSGame9SceneInfo:
+	.4byte 0
+	.4byte 0
+	.4byte isCaveFloor__Q26PSGame9SceneInfoFv
+.global "__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"
+"__vt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>Fv"
+.global __vt__Q29PSAutoBgm15ConductorArcMgr
+__vt__Q29PSAutoBgm15ConductorArcMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29PSAutoBgm15ConductorArcMgrFv
+.global __vt__Q26PSGame10SysFactory
+__vt__Q26PSGame10SysFactory:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q26PSGame9CameraMgr
+__vt__Q26PSGame9CameraMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26PSGame9CameraMgrFv
+.global __vt__Q36PSGame10SoundTable11CategoryMgr
+__vt__Q36PSGame10SoundTable11CategoryMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q36PSGame10SoundTable11CategoryMgrFv
+.global "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"
+"__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>Fv"
+.global __vt__Q26PSGame13ConductorList
+__vt__Q26PSGame13ConductorList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26PSGame13ConductorListFv
+	.4byte read__Q26PSGame13ConductorListFR6Stream
+	.4byte 0
+	.4byte 0
+	.4byte "@28@__dt__Q26PSGame13ConductorListFv"
+.global "__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
+"__vt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv"
+	.4byte 0
+
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global newSeqName__6PSGame
 newSeqName__6PSGame:

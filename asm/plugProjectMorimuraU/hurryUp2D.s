@@ -1,4 +1,131 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804DB2E8
+lbl_804DB2E8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q28Morimura10THurryUp2D
+__vt__Q28Morimura10THurryUp2D:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura10THurryUp2DFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q28Morimura10THurryUp2DFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q28Morimura10THurryUp2DFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q28Morimura10THurryUp2DFP10JKRArchive
+	.4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdate__Q28Morimura10THurryUp2DFv
+	.4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+	.4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+	.4byte doDraw__Q28Morimura10THurryUp2DFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte getDispMemberBase__Q28Morimura10THurryUp2DFv
+.global __vt__Q28Morimura15THuWhitePaneSet
+__vt__Q28Morimura15THuWhitePaneSet:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28Morimura15THuWhitePaneSetFv
+	.4byte getTypeID__10J2DPictureCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__7J2DPaneFff
+	.4byte setCullBack__12J2DPictureExFb
+	.4byte setCullBack__12J2DPictureExF11_GXCullMode
+	.4byte setAlpha__12J2DPictureExFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__7J2DPaneFv
+	.4byte update__7J2DPaneFv
+	.4byte drawSelf__10J2DPictureFff
+	.4byte drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f
+	.4byte search__7J2DPaneFUx
+	.4byte searchUserInfo__7J2DPaneFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__12J2DPictureExFPC7ResTIMG
+	.4byte isUsed__12J2DPictureExFPC7ResFONT
+	.4byte clearAnmTransform__7J2DPaneFv
+	.4byte rewriteAlpha__12J2DPictureExFv
+	.4byte setAnimation__12J2DPictureExFP10J2DAnmBase
+	.4byte setAnimation__12J2DPictureExFP15J2DAnmTransform
+	.4byte setAnimation__12J2DPictureExFP11J2DAnmColor
+	.4byte setAnimation__12J2DPictureExFP16J2DAnmTexPattern
+	.4byte setAnimation__12J2DPictureExFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__12J2DPictureExFP15J2DAnmTevRegKey
+	.4byte setAnimation__12J2DPictureExFP20J2DAnmVisibilityFull
+	.4byte setAnimation__12J2DPictureExFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+	.4byte animationPane__12J2DPictureExFPC15J2DAnmTransform
+	.4byte initiate__12J2DPictureExFPC7ResTIMGPC7ResTLUT
+	.4byte prepareTexture__12J2DPictureExFUc
+	.4byte append__12J2DPictureExFPC7ResTIMGf
+	.4byte append__12J2DPictureExFPC7ResTIMGP10JUTPalettef
+	.4byte append__12J2DPictureExFPCcf
+	.4byte append__12J2DPictureExFPCcP10JUTPalettef
+	.4byte append__12J2DPictureExFP10JUTTexturef
+	.4byte prepend__12J2DPictureExFPC7ResTIMGf
+	.4byte prepend__12J2DPictureExFPC7ResTIMGP10JUTPalettef
+	.4byte prepend__12J2DPictureExFPCcf
+	.4byte prepend__12J2DPictureExFPCcP10JUTPalettef
+	.4byte prepend__12J2DPictureExFP10JUTTexturef
+	.4byte insert__12J2DPictureExFPC7ResTIMGUcf
+	.4byte insert__12J2DPictureExFPC7ResTIMGP10JUTPaletteUcf
+	.4byte insert__12J2DPictureExFPCcUcf
+	.4byte insert__12J2DPictureExFPCcP10JUTPaletteUcf
+	.4byte insert__12J2DPictureExFP10JUTTextureUcf
+	.4byte remove__12J2DPictureExFUc
+	.4byte remove__12J2DPictureExFv
+	.4byte remove__12J2DPictureExFP10JUTTexture
+	.4byte draw__12J2DPictureExFffbbb
+	.4byte draw__12J2DPictureExFffUcbbb
+	.4byte draw__12J2DPictureExFffffbbb
+	.4byte drawOut__12J2DPictureExFffffff
+	.4byte drawOut__12J2DPictureExFffffffff
+	.4byte "drawOut__12J2DPictureExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+	.4byte load__12J2DPictureExF11_GXTexMapIDUc
+	.4byte load__12J2DPictureExFUc
+	.4byte setBlendRatio__10J2DPictureFffffffff
+	.4byte setBlendColorRatio__12J2DPictureExFffffffff
+	.4byte setBlendAlphaRatio__12J2DPictureExFffffffff
+	.4byte changeTexture__12J2DPictureExFPC7ResTIMGUc
+	.4byte changeTexture__12J2DPictureExFPCcUc
+	.4byte changeTexture__12J2DPictureExFPC7ResTIMGUcP10JUTPalette
+	.4byte changeTexture__12J2DPictureExFPCcUcP10JUTPalette
+	.4byte getTexture__12J2DPictureExCFUc
+	.4byte getTextureCount__12J2DPictureExCFv
+	.4byte setBlack__12J2DPictureExFQ28JUtility6TColor
+	.4byte setWhite__12J2DPictureExFQ28JUtility6TColor
+	.4byte setBlackWhite__12J2DPictureExFQ28JUtility6TColorQ28JUtility6TColor
+	.4byte getBlack__12J2DPictureExCFv
+	.4byte getWhite__12J2DPictureExCFv
+	.4byte getMaterial__12J2DPictureExCFv
+	.4byte drawFullSet__12J2DPictureExFffffPA3_A4_f
+	.4byte drawTexCoord__12J2DPictureExFffffssssssssPA3_A4_f
+	.4byte getUsableTlut__12J2DPictureExFUc
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global mInitPosX__Q28Morimura10THurryUp2D
