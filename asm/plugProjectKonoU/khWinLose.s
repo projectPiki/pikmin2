@@ -142,8 +142,39 @@ __vt__Q32kh6Screen10ObjWinLose:
 msVal__Q32kh6Screen10ObjWinLose:
 	.skip 0x1C
 
-.section .sbss2 # 0x80520e40 - 0x80520ED8
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520208
+lbl_80520208:
+	.float 0.0
+.global lbl_8052020C
+lbl_8052020C:
+	.asciz "win.blo"
+.global lbl_80520214
+lbl_80520214:
+	.asciz "win.bck"
+.global lbl_8052021C
+lbl_8052021C:
+	.asciz "win.bpk"
+.global lbl_80520224
+lbl_80520224:
+	.float 1.0
+.global lbl_80520228
+lbl_80520228:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520230
+lbl_80520230:
+	.4byte 0xC2F00000
+.global lbl_80520234
+lbl_80520234:
+	.4byte 0x42F00000
+.global lbl_80520238
+lbl_80520238:
+	.4byte 0x42700000
+	.4byte 0x00000000
 
+.section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520ED0
 lbl_80520ED0:
 	.skip 0x4

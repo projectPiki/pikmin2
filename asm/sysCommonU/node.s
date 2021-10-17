@@ -32,6 +32,21 @@ __vt__4Node:
 	.4byte displayInfo__4NodeFi
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520250
+lbl_80520250:
+	.4byte 0x20202020
+	.4byte 0x00000000
+.global lbl_80520258
+lbl_80520258:
+	.4byte 0x5B25735D
+	.4byte 0x0A000000
+.global lbl_80520260
+lbl_80520260:
+	.4byte 0x434E6F64
+	.4byte 0x65000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global displayInfo__4NodeFi
 displayInfo__4NodeFi:

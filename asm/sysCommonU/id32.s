@@ -5,6 +5,13 @@
 eof__4ID32:
 	.skip 0xC
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805202C8
+lbl_805202C8:
+	.4byte 0x7B25737D
+	.4byte 0x20000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
 .global __sinit_id32_cpp

@@ -39,6 +39,23 @@ __vt__Q32kh6Screen14khUtilFadePane:
 	.4byte fadeout_finish__Q32kh6Screen14khUtilFadePaneFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520180
+lbl_80520180:
+	.float 0.25
+.global lbl_80520184
+lbl_80520184:
+	.float 1.0
+.global lbl_80520188
+lbl_80520188:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520190
+lbl_80520190:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getSerialTagName__Q22kh6ScreenFUxi
 getSerialTagName__Q22kh6ScreenFUxi:

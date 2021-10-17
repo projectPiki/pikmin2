@@ -19,6 +19,79 @@ lbl_80499654:
 "__init__zero__10Vector3<f>":
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520268
+lbl_80520268:
+	.4byte 0xC3A2F983
+.global lbl_8052026C
+lbl_8052026C:
+	.4byte 0x43A2F983
+.global lbl_80520270
+lbl_80520270:
+	.4byte 0x00000000
+.global lbl_80520274
+lbl_80520274:
+	.4byte 0xBF800000
+.global lbl_80520278
+lbl_80520278:
+	.float 1.0
+.global lbl_8052027C
+lbl_8052027C:
+	.4byte 0x40490FDB
+.global lbl_80520280
+lbl_80520280:
+	.4byte 0x447FE000
+.global lbl_80520284
+lbl_80520284:
+	.4byte 0x3FC90FDB
+.global lbl_80520288
+lbl_80520288:
+	.float 0.5
+.global lbl_8052028C
+lbl_8052028C:
+	.4byte 0x3FC00000
+.global lbl_80520290
+lbl_80520290:
+	.4byte 0xBFC00000
+.global lbl_80520294
+lbl_80520294:
+	.4byte 0x40000000
+.global lbl_80520298
+lbl_80520298:
+	.4byte 0x40900000
+.global lbl_8052029C
+lbl_8052029C:
+	.4byte 0x40A00000
+.global lbl_805202A0
+lbl_805202A0:
+	.4byte 0xC0900000
+.global lbl_805202A4
+lbl_805202A4:
+	.4byte 0x40800000
+.global lbl_805202A8
+lbl_805202A8:
+	.4byte 0x40C90FDB
+.global lbl_805202AC
+lbl_805202AC:
+	.4byte 0x3C23D70A
+.global lbl_805202B0
+lbl_805202B0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805202B8
+lbl_805202B8:
+	.4byte 0x3727C5AC
+.global lbl_805202BC
+lbl_805202BC:
+	.float 0.25
+.global lbl_805202C0
+lbl_805202C0:
+	.4byte 0x47000000
+.global lbl_805202C4
+lbl_805202C4:
+	.4byte 0xC7000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
 .global "CRSplineTangent__FfP10Vector3<f>"

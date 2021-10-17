@@ -306,6 +306,61 @@ __vt__Q32kh6Screen15DispFinalResult:
 msVal__Q32kh6Screen14ObjFinalResult:
 	.skip 0x24
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520198
+lbl_80520198:
+	.4byte 0x6661696C
+	.4byte 0x65640000
+.global lbl_805201A0
+lbl_805201A0:
+	.4byte 0x00000000
+.global lbl_805201A4
+lbl_805201A4:
+	.4byte 0x40000000
+.global lbl_805201A8
+lbl_805201A8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_805201B0
+lbl_805201B0:
+	.float 0.5
+.global lbl_805201B4
+lbl_805201B4:
+	.float 1.0
+.global lbl_805201B8
+lbl_805201B8:
+	.4byte 0x42C60000
+.global lbl_805201BC
+lbl_805201BC:
+	.4byte 0x426C0000
+.global lbl_805201C0
+lbl_805201C0:
+	.4byte 0x42200000
+.global lbl_805201C4
+lbl_805201C4:
+	.4byte 0x47000000
+.global lbl_805201C8
+lbl_805201C8:
+	.4byte 0x42440000
+.global lbl_805201CC
+lbl_805201CC:
+	.4byte 0x40400000
+.global lbl_805201D0
+lbl_805201D0:
+	.4byte 0x40800000
+	.4byte 0x00000000
+.global lbl_805201D8
+lbl_805201D8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805201E0
+lbl_805201E0:
+	.4byte 0x00000000
+.global lbl_805201E4
+lbl_805201E4:
+	.float 0.05
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen15DispFinalResultFPQ32kh6Screen15TotalResultDataQ42kh6Screen15DispFinalResult10ResultTypeP7JKRHeap
 __ct__Q32kh6Screen15DispFinalResultFPQ32kh6Screen15TotalResultDataQ42kh6Screen15DispFinalResult10ResultTypeP7JKRHeap:

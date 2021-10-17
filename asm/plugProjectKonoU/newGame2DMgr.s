@@ -126,6 +126,19 @@ __vt__Q26Screen9Game2DMgr:
 gGame2DMgr__6Screen:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520038
+lbl_80520038:
+	.4byte 0x3FC00000
+.global lbl_8052003C
+lbl_8052003C:
+	.4byte 0x3DA3D70A
+.global lbl_80520040
+lbl_80520040:
+	.float 1.0
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q26Screen9Game2DMgrFv
 create__Q26Screen9Game2DMgrFv:

@@ -61,6 +61,35 @@ __vt__6Stream:
 	.4byte eof__6StreamFv
 	.4byte getPending__6StreamFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805202E0
+lbl_805202E0:
+	.4byte 0x23202573
+	.4byte 0x0D0A0000
+.global lbl_805202E8
+lbl_805202E8:
+	.4byte 0x7B0D0A00
+.global lbl_805202EC
+lbl_805202EC:
+	.4byte 0x7D0D0A00
+.global lbl_805202F0
+lbl_805202F0:
+	.4byte 0x25640000
+.global lbl_805202F4
+lbl_805202F4:
+	.4byte 0x25660000
+.global lbl_805202F8
+lbl_805202F8:
+	.4byte 0x20000000
+.global lbl_805202FC
+lbl_805202FC:
+	.4byte 0x25642000
+.global lbl_80520300
+lbl_80520300:
+	.4byte 0x25662000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global eof__6StreamFv
 eof__6StreamFv:

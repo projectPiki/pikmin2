@@ -102,6 +102,61 @@ __vt__Q23Sys11GridDivider:
 debug__Q23Sys8Triangle:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520308
+lbl_80520308:
+	.4byte 0x00000000
+.global lbl_8052030C
+lbl_8052030C:
+	.float 1.0
+.global lbl_80520310
+lbl_80520310:
+	.float 0.5
+.global lbl_80520314
+lbl_80520314:
+	.4byte 0x3EAAAAAB
+.global lbl_80520318
+lbl_80520318:
+	.4byte 0x4B435000
+.global lbl_8052031C
+lbl_8052031C:
+	.4byte 0xCB435000
+.global lbl_80520320
+lbl_80520320:
+	.4byte 0x3C23D70A
+.global lbl_80520324
+lbl_80520324:
+	.4byte 0xBDCCCCCD
+.global lbl_80520328
+lbl_80520328:
+	.4byte 0x48A02800
+.global lbl_8052032C
+lbl_8052032C:
+	.4byte 0xC8A02800
+.global lbl_80520330
+lbl_80520330:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520338
+lbl_80520338:
+	.4byte 0x0D0A0000
+.global lbl_8052033C
+lbl_8052033C:
+	.4byte 0x47000000
+.global lbl_80520340
+lbl_80520340:
+	.4byte 0xC7000000
+.global lbl_80520344
+lbl_80520344:
+	.4byte 0x501502F9
+.global lbl_80520348
+lbl_80520348:
+	.4byte 0xD01502F9
+.global lbl_8052034C
+lbl_8052034C:
+	.4byte 0x40400000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
 "getAxisVector__Q23Sys4TubeFR10Vector3<f>":

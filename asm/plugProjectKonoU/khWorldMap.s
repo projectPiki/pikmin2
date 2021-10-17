@@ -587,6 +587,141 @@ __vt__Q42kh6Screen14khUtilFadePane10khPaneNode:
 msVal__Q32kh6Screen8WorldMap:
 	.skip 0x7C
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FEF0
+lbl_8051FEF0:
+	.float 1.0
+.global lbl_8051FEF4
+lbl_8051FEF4:
+	.4byte 0x00000000
+.global lbl_8051FEF8
+lbl_8051FEF8:
+	.4byte 0xBF800000
+.global lbl_8051FEFC
+lbl_8051FEFC:
+	.4byte 0x6661696C
+	.4byte 0x65640000
+.global lbl_8051FF04
+lbl_8051FF04:
+	.float 0.1
+.global lbl_8051FF08
+lbl_8051FF08:
+	.float 0.7
+.global lbl_8051FF0C
+lbl_8051FF0C:
+	.float 0.3
+.global lbl_8051FF10
+lbl_8051FF10:
+	.4byte 0x447A0000
+.global lbl_8051FF14
+lbl_8051FF14:
+	.float 0.5
+.global lbl_8051FF18
+lbl_8051FF18:
+	.4byte 0x3FC00000
+.global lbl_8051FF1C
+lbl_8051FF1C:
+	.4byte 0xBDCCCCCD
+.global lbl_8051FF20
+lbl_8051FF20:
+	.4byte 0x42000000
+.global lbl_8051FF24
+lbl_8051FF24:
+	.4byte 0x40400000
+.global lbl_8051FF28
+lbl_8051FF28:
+	.4byte 0x40C90FDB
+.global lbl_8051FF2C
+lbl_8051FF2C:
+	.4byte 0x3F733333
+.global lbl_8051FF30
+lbl_8051FF30:
+	.4byte 0x3C23D70A
+.global lbl_8051FF34
+lbl_8051FF34:
+	.4byte 0x42652EE0
+.global lbl_8051FF38
+lbl_8051FF38:
+	.4byte 0x40000000
+.global lbl_8051FF3C
+lbl_8051FF3C:
+	.4byte 0x437F0000
+.global lbl_8051FF40
+lbl_8051FF40:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051FF48
+lbl_8051FF48:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FF50
+lbl_8051FF50:
+	.4byte 0x3F7D70A4
+.global lbl_8051FF54
+lbl_8051FF54:
+	.4byte 0x40490FDB
+.global lbl_8051FF58
+lbl_8051FF58:
+	.4byte 0x3CA3D70A
+.global lbl_8051FF5C
+lbl_8051FF5C:
+	.4byte 0xBD4CCCCD
+.global lbl_8051FF60
+lbl_8051FF60:
+	.float 0.05
+.global lbl_8051FF64
+lbl_8051FF64:
+	.4byte 0x3E4CCCCD
+.global lbl_8051FF68
+lbl_8051FF68:
+	.4byte 0x41480000
+.global lbl_8051FF6C
+lbl_8051FF6C:
+	.4byte 0x41380000
+.global lbl_8051FF70
+lbl_8051FF70:
+	.float 0.25
+.global lbl_8051FF74
+lbl_8051FF74:
+	.4byte 0x41A00000
+.global lbl_8051FF78
+lbl_8051FF78:
+	.4byte 0x42480000
+.global lbl_8051FF7C
+lbl_8051FF7C:
+	.4byte 0x458CA000
+.global lbl_8051FF80
+lbl_8051FF80:
+	.4byte 0x3A83126F
+.global lbl_8051FF84
+lbl_8051FF84:
+	.4byte 0x3F6B851F
+.global lbl_8051FF88
+lbl_8051FF88:
+	.4byte 0x44480000
+.global lbl_8051FF8C
+lbl_8051FF8C:
+	.4byte 0x3F7851EC
+.global lbl_8051FF90
+lbl_8051FF90:
+	.4byte 0x45BB8000
+.global lbl_8051FF94
+lbl_8051FF94:
+	.4byte 0x3F4CCCCD
+.global lbl_8051FF98
+lbl_8051FF98:
+	.4byte 0x3F666666
+.global lbl_8051FF9C
+lbl_8051FF9C:
+	.4byte 0x3F99999A
+.global lbl_8051FFA0
+lbl_8051FFA0:
+	.4byte 0xBC23D70A
+.global lbl_8051FFA4
+lbl_8051FFA4:
+	.4byte 0x3F6147AE
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q32kh6Screen14khUtilFadePaneFv
 __dt__Q32kh6Screen14khUtilFadePaneFv:

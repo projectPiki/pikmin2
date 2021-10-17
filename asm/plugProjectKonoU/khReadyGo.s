@@ -143,6 +143,39 @@ lbl_80516128:
 lbl_8051612C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520058
+lbl_80520058:
+	.4byte 0x00000000
+.global lbl_8052005C
+lbl_8052005C:
+	.4byte 0x42700000
+.global lbl_80520060
+lbl_80520060:
+	.4byte 0x429C0000
+	.4byte 0x00000000
+.global lbl_80520068
+lbl_80520068:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520070
+lbl_80520070:
+	.4byte 0xC2F00000
+.global lbl_80520074
+lbl_80520074:
+	.4byte 0x42F00000
+.global lbl_80520078
+lbl_80520078:
+	.float 0.7
+.global lbl_8052007C
+lbl_8052007C:
+	.4byte 0xC1400000
+.global lbl_80520080
+lbl_80520080:
+	.4byte 0xC1B00000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doUpdateFadein__Q32kh6Screen10ObjReadyGoFv
 doUpdateFadein__Q32kh6Screen10ObjReadyGoFv:

@@ -90,6 +90,21 @@ __vt__Q32kh6Screen16ObjWinLoseReason:
 msVal__Q32kh6Screen16ObjWinLoseReason:
 	.skip 0x1C
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520240
+lbl_80520240:
+	.4byte 0x00000000
+.global lbl_80520244
+lbl_80520244:
+	.float 1.0
+.global lbl_80520248
+lbl_80520248:
+	.4byte 0xC2F00000
+.global lbl_8052024C
+lbl_8052024C:
+	.4byte 0x42F00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doCreate__Q32kh6Screen16ObjWinLoseReasonFP10JKRArchive
 doCreate__Q32kh6Screen16ObjWinLoseReasonFP10JKRArchive:

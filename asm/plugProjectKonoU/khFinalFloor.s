@@ -140,6 +140,29 @@ lbl_80516130:
 lbl_80516134:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520088
+lbl_80520088:
+	.4byte 0x00000000
+.global lbl_8052008C
+lbl_8052008C:
+	.4byte 0x3FC00000
+.global lbl_80520090
+lbl_80520090:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80520098
+lbl_80520098:
+	.4byte 0xC2F00000
+.global lbl_8052009C
+lbl_8052009C:
+	.4byte 0x42F00000
+.global lbl_805200A0
+lbl_805200A0:
+	.4byte 0x3F4CCCCD
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive
 doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive:

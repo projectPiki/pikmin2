@@ -24,6 +24,17 @@ __vt__8BaseParm:
 	.4byte read__8BaseParmFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805202D0
+lbl_805202D0:
+	.4byte 0x09232025
+	.4byte 0x730D0A00
+.global lbl_805202D8
+lbl_805202D8:
+	.4byte 0x0D0A0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8BaseParmFP10ParametersUlPc
 __ct__8BaseParmFP10ParametersUlPc:

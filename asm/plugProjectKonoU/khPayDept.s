@@ -177,6 +177,27 @@ __vt__Q32kh6Screen11DispPayDept:
 msVal__Q32kh6Screen10ObjPayDept:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805201E8
+lbl_805201E8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805201F0
+lbl_805201F0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805201F8
+lbl_805201F8:
+	.asciz "failed"
+	.skip 1
+.global lbl_80520200
+lbl_80520200:
+	.4byte 0x00000000
+.global lbl_80520204
+lbl_80520204:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen11DispPayDeptFQ42kh6Screen11DispPayDept11PayDeptTypei
 __ct__Q32kh6Screen11DispPayDeptFQ42kh6Screen11DispPayDept11PayDeptTypei:

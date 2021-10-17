@@ -926,6 +926,8 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAngleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuCont.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
+
+TEXT_PT3:=\
 	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o\
@@ -1049,7 +1051,10 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
+
+GROUP_1_FILES:=\
 	$(BUILD_DIR)/asm/rodata_2a.o\
+	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khSceneLoader.o\
@@ -1064,9 +1069,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLose.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
-
-GROUP_1_FILES:=\
-	$(BUILD_DIR)/asm/sdata2_a.o\
 
 TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
@@ -1090,8 +1092,6 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
-
-TEXT_PT3:=\
 	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/section.o\

@@ -12,6 +12,15 @@ __vt__12MapCollision:
 	.4byte createTriangles__12MapCollisionFRQ23Sys17CreateTriangleArg
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520350
+lbl_80520350:
+	.4byte 0x47000000
+.global lbl_80520354
+lbl_80520354:
+	.4byte 0xC7000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getCurrTri__12MapCollisionFRQ24Game11CurrTriInfo
 getCurrTri__12MapCollisionFRQ24Game11CurrTriInfo:

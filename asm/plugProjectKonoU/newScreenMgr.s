@@ -295,6 +295,19 @@ __vt__Q28Morimura13THurryUpScene:
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80520048
+lbl_80520048:
+	.4byte 0x00000000
+.global lbl_8052004C
+lbl_8052004C:
+	.float 0.5
+.global lbl_80520050
+lbl_80520050:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createScene_Ogawa__9newScreenFl
 createScene_Ogawa__9newScreenFl:

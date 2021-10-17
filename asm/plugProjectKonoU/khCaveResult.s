@@ -186,6 +186,109 @@ __vt__Q32kh6Screen14DispCaveResult:
 msVal__Q32kh6Screen13ObjCaveResult:
 	.skip 0x3C
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FFA8
+lbl_8051FFA8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8051FFB0
+lbl_8051FFB0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051FFB8
+lbl_8051FFB8:
+	.float 1.0
+.global lbl_8051FFBC
+lbl_8051FFBC:
+	.4byte 0x40000000
+.global lbl_8051FFC0
+lbl_8051FFC0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FFC8
+lbl_8051FFC8:
+	.4byte 0x432F0000
+.global lbl_8051FFCC
+lbl_8051FFCC:
+	.4byte 0x43608000
+.global lbl_8051FFD0
+lbl_8051FFD0:
+	.float 0.5
+.global lbl_8051FFD4
+lbl_8051FFD4:
+	.4byte 0x41F00000
+.global lbl_8051FFD8
+lbl_8051FFD8:
+	.4byte 0x3F59999A
+.global lbl_8051FFDC
+lbl_8051FFDC:
+	.4byte 0x42700000
+.global lbl_8051FFE0
+lbl_8051FFE0:
+	.4byte 0x47000000
+.global lbl_8051FFE4
+lbl_8051FFE4:
+	.4byte 0x42200000
+.global lbl_8051FFE8
+lbl_8051FFE8:
+	.4byte 0x41A00000
+.global lbl_8051FFEC
+lbl_8051FFEC:
+	.4byte 0x42000000
+.global lbl_8051FFF0
+lbl_8051FFF0:
+	.4byte 0x40800000
+.global lbl_8051FFF4
+lbl_8051FFF4:
+	.4byte 0x461C4000
+.global lbl_8051FFF8
+lbl_8051FFF8:
+	.4byte 0x459C4000
+.global lbl_8051FFFC
+lbl_8051FFFC:
+	.4byte 0x41000000
+.global lbl_80520000
+lbl_80520000:
+	.4byte 0x41200000
+.global lbl_80520004
+lbl_80520004:
+	.4byte 0x43B40000
+.global lbl_80520008
+lbl_80520008:
+	.4byte 0x47800000
+.global lbl_8052000C
+lbl_8052000C:
+	.4byte 0x6661696C
+	.4byte 0x65640000
+.global lbl_80520014
+lbl_80520014:
+	.4byte 0x00000000
+.global lbl_80520018
+lbl_80520018:
+	.float 0.7
+.global lbl_8052001C
+lbl_8052001C:
+	.4byte 0x42B40000
+.global lbl_80520020
+lbl_80520020:
+	.4byte 0xC1F00000
+.global lbl_80520024
+lbl_80520024:
+	.4byte 0xC1A00000
+.global lbl_80520028
+lbl_80520028:
+	.4byte 0x430C0000
+.global lbl_8052002C
+lbl_8052002C:
+	.4byte 0x432D0000
+.global lbl_80520030
+lbl_80520030:
+	.4byte 0x434E0000
+.global lbl_80520034
+lbl_80520034:
+	.4byte 0x43700000
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EC0
 lbl_80520EC0:
