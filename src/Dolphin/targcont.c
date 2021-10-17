@@ -1,7 +1,4 @@
-extern void TRKTargetSetStopped(unsigned int);
-extern void UnreserveEXI2Port();
-extern void TRKSwapAndGo();
-extern void ReserveEXI2Port();
+#include "Dolphin/trk.h"
 
 /*
  * --INFO--
@@ -9,21 +6,10 @@ extern void ReserveEXI2Port();
  * Size:	000034
  */
 unsigned int TRKTargetContinue(void)
-
 {
 	TRKTargetSetStopped(0);
 	UnreserveEXI2Port();
 	TRKSwapAndGo();
 	ReserveEXI2Port();
 	return 0;
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-void OutputGPR(void)
-{
-	// UNUSED FUNCTION
 }
