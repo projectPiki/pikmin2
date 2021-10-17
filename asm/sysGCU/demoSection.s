@@ -3,15 +3,9 @@
 .balign 0x4
 .global lbl_8049B3C0
 lbl_8049B3C0:
-	.4byte 0x64656D6F
-	.4byte 0x53656374
-	.4byte 0x696F6E2E
-	.4byte 0x63707000
-	.4byte 0x5469746C
-	.4byte 0x65536563
-	.4byte 0x74696F6E
-	.4byte 0x3A3A696E
-	.4byte 0x69740000
+	.asciz "demoSection.cpp"
+	.asciz "TitleSection::init"
+	.skip 1
 	.4byte 0x4A4D414E
 	.4byte 0x65775369
 	.4byte 0x6E546162
@@ -20,37 +14,18 @@ lbl_8049B3C0:
 	.4byte 0x5A834E83
 	.4byte 0x56838783
 	.4byte 0x93000000
-	.4byte 0x6672616D
-	.4byte 0x65427566
-	.4byte 0x66657200
+	.asciz "frameBuffer"
 .global lbl_8049B410
 lbl_8049B410:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
+	.asciz "PSGame.h"
+	.skip 3
 .global lbl_8049B41C
 lbl_8049B41C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F7961
-	.4byte 0x6D617368
-	.4byte 0x6974612F
-	.4byte 0x6172632F
-	.4byte 0x64656D6F
-	.4byte 0x4D6F7669
-	.4byte 0x654C6F67
-	.4byte 0x6F5F7573
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x2F646174
-	.4byte 0x612F7469
-	.4byte 0x6D672F70
-	.4byte 0x696B6D69
-	.4byte 0x6E325F6C
-	.4byte 0x6F676F2E
-	.4byte 0x62746900
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "/user/yamashita/arc/demoMovieLogo_us.szs"
+	.skip 3
+	.asciz "/data/timg/pikmin2_logo.bti"
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -126,16 +101,16 @@ __vt__Q24Demo7Section:
 .balign 0x8
 .global lbl_80520AB0
 lbl_80520AB0:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_80520AB4
 lbl_80520AB4:
 	.float 0.5
 .global lbl_80520AB8
 lbl_80520AB8:
-	.4byte 0x47000000
+	.float 32768.0
 .global lbl_80520ABC
 lbl_80520ABC:
-	.4byte 0x41000000
+	.float 8.0
 .global lbl_80520AC0
 lbl_80520AC0:
 	.4byte 0x43300000
