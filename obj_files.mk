@@ -256,7 +256,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/dolphin_trk.o\
 	$(BUILD_DIR)/asm/Dolphin/main_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/dolphin_trk_glue.o\
-	$(BUILD_DIR)/asm/Dolphin/targcont.o\
+	$(BUILD_DIR)/src/Dolphin/targcont.o\
 	$(BUILD_DIR)/asm/Dolphin/target_options.o\
 	$(BUILD_DIR)/asm/Dolphin/mslsupp.o\
 	$(BUILD_DIR)/src/Dolphin/UDP_Stubs.o\
