@@ -135,6 +135,14 @@ __vt__Q32kh6Screen10ObjReadyGo:
 msVal__Q32kh6Screen10ObjReadyGo:
 	.skip 0x18
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516128
+lbl_80516128:
+	.skip 0x4
+.global lbl_8051612C
+lbl_8051612C:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doUpdateFadein__Q32kh6Screen10ObjReadyGoFv
 doUpdateFadein__Q32kh6Screen10ObjReadyGoFv:

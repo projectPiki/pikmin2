@@ -19,6 +19,11 @@ __vt__Q28Resource5Mgr2D:
 	.4byte drawDump__Q28Resource3MgrFR8Graphicsii
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global gResMgr2D
+gResMgr2D:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q28Resource5Mgr2DFP7JKRHeap
 init__Q28Resource5Mgr2DFP7JKRHeap:

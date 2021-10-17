@@ -68,6 +68,14 @@ __vt__8WipeBase:
 	.4byte do_draw__8WipeBaseFf
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805161C0
+lbl_805161C0:
+	.skip 0x4
+.global lbl_805161C4
+lbl_805161C4:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805205E8

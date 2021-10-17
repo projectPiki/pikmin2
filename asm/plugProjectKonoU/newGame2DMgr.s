@@ -121,6 +121,11 @@ __vt__Q26Screen9Game2DMgr:
 	.4byte __dt__Q26Screen9Game2DMgrFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global gGame2DMgr__6Screen
+gGame2DMgr__6Screen:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q26Screen9Game2DMgrFv
 create__Q26Screen9Game2DMgrFv:

@@ -48,6 +48,17 @@ viewCalcMode__Q28SysShape5Model:
 	.byte 0x00
 	.byte 0x00
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516278
+lbl_80516278:
+	.skip 0x4
+.global lbl_8051627C
+lbl_8051627C:
+	.skip 0x4
+.global cullCount__Q28SysShape5Model
+cullCount__Q28SysShape5Model:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520908

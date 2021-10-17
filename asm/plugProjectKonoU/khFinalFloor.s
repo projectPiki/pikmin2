@@ -132,6 +132,14 @@ __vt__Q32kh6Screen13ObjFinalFloor:
 msVal__Q32kh6Screen13ObjFinalFloor:
 	.skip 0xC
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516130
+lbl_80516130:
+	.skip 0x4
+.global lbl_80516134
+lbl_80516134:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive
 doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive:

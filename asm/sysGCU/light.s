@@ -39,6 +39,14 @@ __vt__8LightObj:
 	.4byte drawPos__8LightObjFR8GraphicsR7Matrixf
 	.4byte drawPos__8LightObjFR8GraphicsR6Camera
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805161B8
+lbl_805161B8:
+	.skip 0x4
+.global lbl_805161BC
+lbl_805161BC:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805205A8

@@ -14,6 +14,11 @@ lbl_80499654:
 "zero__10Vector3<f>":
 	.skip 0xC
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global "__init__zero__10Vector3<f>"
+"__init__zero__10Vector3<f>":
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
 .global "CRSplineTangent__FfP10Vector3<f>"

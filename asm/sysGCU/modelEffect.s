@@ -37,6 +37,14 @@ __vt__11ModelEffect:
 	.4byte doSimulation__11ModelEffectFf
 	.4byte doDirectDraw__11ModelEffectFR8Graphics
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516260
+lbl_80516260:
+	.skip 0x4
+.global lbl_80516264
+lbl_80516264:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global entry__15ModelEffectDataFv
 entry__15ModelEffectDataFv:

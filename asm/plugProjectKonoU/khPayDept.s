@@ -172,6 +172,11 @@ __vt__Q32kh6Screen11DispPayDept:
 	.4byte getMemberID__Q32kh6Screen11DispPayDeptFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global msVal__Q32kh6Screen10ObjPayDept
+msVal__Q32kh6Screen10ObjPayDept:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen11DispPayDeptFQ42kh6Screen11DispPayDept11PayDeptTypei
 __ct__Q32kh6Screen11DispPayDeptFQ42kh6Screen11DispPayDept11PayDeptTypei:

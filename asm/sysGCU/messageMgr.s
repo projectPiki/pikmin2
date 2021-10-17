@@ -194,6 +194,17 @@ __vt__Q25P2JME3Mgr:
 	.4byte __dt__Q25P2JME3MgrFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516250
+lbl_80516250:
+	.skip 0x4
+.global lbl_80516254
+lbl_80516254:
+	.skip 0x4
+.global gP2JMEMgr
+gP2JMEMgr:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520890

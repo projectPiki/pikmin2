@@ -8,6 +8,14 @@ lbl_804EC810:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516240
+lbl_80516240:
+	.skip 0x4
+.global lbl_80516244
+lbl_80516244:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig
 setPauseAndDraw__Q24Game11MoviePlayerFPQ24Game11MovieConfig:

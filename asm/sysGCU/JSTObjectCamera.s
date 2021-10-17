@@ -62,6 +62,17 @@ __vt__Q34Game5P2JST12ObjectCamera:
 	.4byte stop__Q34Game5P2JST12ObjectCameraFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805161E0
+lbl_805161E0:
+	.skip 0x4
+.global lbl_805161E4
+lbl_805161E4:
+	.skip 0x4
+.global sFovBackup__Q24Game5P2JST
+sFovBackup__Q24Game5P2JST:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520698

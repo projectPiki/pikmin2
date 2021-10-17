@@ -130,6 +130,14 @@ __vt__11CullFrustum:
 	.4byte getPosition__11CullFrustumFv
 	.4byte updatePlanes__11CullFrustumFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516158
+lbl_80516158:
+	.skip 0x4
+.global lbl_8051615C
+lbl_8051615C:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global isVisible__9CullPlaneFRQ23Sys6Sphere
 isVisible__9CullPlaneFRQ23Sys6Sphere:

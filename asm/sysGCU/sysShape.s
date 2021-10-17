@@ -61,6 +61,17 @@ __vt__Q28SysShape8Animator:
 	.4byte getCalc__Q28SysShape8AnimatorFv
 	.4byte animate__Q28SysShape8AnimatorFf
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805161A0
+lbl_805161A0:
+	.skip 0x4
+.global lbl_805161A4
+lbl_805161A4:
+	.skip 0x4
+.global verbose__Q28SysShape8Animator
+verbose__Q28SysShape8Animator:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520528

@@ -65,6 +65,17 @@ __vt__Q24Game11MovieConfig:
 	.4byte getChildCount__5CNodeFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516210
+lbl_80516210:
+	.skip 0x4
+.global lbl_80516214
+lbl_80516214:
+	.skip 0x4
+.global movieList__4Game
+movieList__4Game:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805206F8

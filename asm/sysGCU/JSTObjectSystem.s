@@ -63,6 +63,17 @@ __vt__Q34Game5P2JST12ObjectSystem:
 	.4byte stop__Q34Game5P2JST12ObjectSystemFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805161F8
+lbl_805161F8:
+	.skip 0x4
+.global lbl_805161FC
+lbl_805161FC:
+	.skip 0x4
+.global lbl_80516200
+lbl_80516200:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer
 __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer:

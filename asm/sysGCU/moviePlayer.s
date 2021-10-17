@@ -205,6 +205,20 @@ __vt__Q24Game11MoviePlayer:
 	.4byte 0
 	.4byte __dt__Q24Game11MoviePlayerFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805161C8
+lbl_805161C8:
+	.skip 0x4
+.global lbl_805161CC
+lbl_805161CC:
+	.skip 0x4
+.global mArchive__Q24Game11MoviePlayer
+mArchive__Q24Game11MoviePlayer:
+	.skip 0x4
+.global moviePlayer__4Game
+moviePlayer__4Game:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_80520610

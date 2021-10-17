@@ -31,6 +31,20 @@ __vt__8Splitter:
 	.4byte split4__8SplitterFff
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516190
+lbl_80516190:
+	.skip 0x4
+.global lbl_80516194
+lbl_80516194:
+	.skip 0x4
+.global gScissorOffset
+gScissorOffset:
+	.skip 0x4
+.global lastTokenName__8Graphics
+lastTokenName__8Graphics:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805204B8

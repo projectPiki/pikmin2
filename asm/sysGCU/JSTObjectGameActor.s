@@ -131,6 +131,14 @@ __vt__Q34Game5P2JST15ObjectGameActor:
 	.4byte mountArchive__Q34Game5P2JST11ObjectActorFv
 	.4byte parseUserData___Q34Game5P2JST15ObjectGameActorFUlPCv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805161F0
+lbl_805161F0:
+	.skip 0x4
+.global lbl_805161F4
+lbl_805161F4:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_805206B8

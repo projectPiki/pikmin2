@@ -196,6 +196,17 @@ sUseABXCommand:
 cMapFileName:
 	.4byte str_MapFileName
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global mRenderMode__6System
+mRenderMode__6System:
+	.skip 0x4
+.global sys
+sys:
+	.skip 0x4
+.global sVerifyArg__6System
+sVerifyArg__6System:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global gStrSystem_Abort
