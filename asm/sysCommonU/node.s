@@ -15,6 +15,23 @@ lbl_80499614:
 lbl_8049962C:
 	.asciz "%d child (realchild = %d)!\n"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__5CNode
+__vt__5CNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__5CNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__4Node
+__vt__4Node:
+	.4byte 0
+	.4byte 0
+	.4byte update__4NodeFv
+	.4byte draw__4NodeFR8Graphics
+	.4byte displayInfo__4NodeFi
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global displayInfo__4NodeFi
 displayInfo__4NodeFi:

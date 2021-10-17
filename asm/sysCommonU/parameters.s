@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__8ParmEnum
+__vt__8ParmEnum:
+	.4byte 0
+	.4byte 0
+	.4byte size__8ParmEnumFv
+	.4byte write__8ParmEnumFR6Stream
+	.4byte read__8ParmEnumFR6Stream
+.global __vt__10ParmString
+__vt__10ParmString:
+	.4byte 0
+	.4byte 0
+	.4byte size__10ParmStringFv
+	.4byte write__10ParmStringFR6Stream
+	.4byte read__10ParmStringFR6Stream
+.global __vt__8BaseParm
+__vt__8BaseParm:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte write__8BaseParmFR6Stream
+	.4byte read__8BaseParmFR6Stream
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8BaseParmFP10ParametersUlPc

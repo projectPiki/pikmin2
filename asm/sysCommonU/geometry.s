@@ -6,6 +6,97 @@ lbl_804997A8:
 	.asciz "# %d/%d\r\n"
 	.skip 0x6
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23Sys11VertexTable
+__vt__Q23Sys11VertexTable:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23Sys11VertexTableFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<10Vector3<f>>FPv"
+	.4byte "getNext__28ArrayContainer<10Vector3<f>>FPv"
+	.4byte "getStart__28ArrayContainer<10Vector3<f>>Fv"
+	.4byte "getEnd__28ArrayContainer<10Vector3<f>>Fv"
+	.4byte "get__28ArrayContainer<10Vector3<f>>FPv"
+	.4byte "getAt__28ArrayContainer<10Vector3<f>>Fi"
+	.4byte "getTo__28ArrayContainer<10Vector3<f>>Fv"
+	.4byte "writeObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>"
+	.4byte "readObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>"
+	.4byte write__Q23Sys11VertexTableFR6Stream
+	.4byte "read__28ArrayContainer<10Vector3<f>>FR6Stream"
+	.4byte "alloc__28ArrayContainer<10Vector3<f>>Fi"
+	.4byte "addOne__Q23Sys11VertexTableFR10Vector3<f>"
+	.4byte "setArray__28ArrayContainer<10Vector3<f>>FP10Vector3<f>i"
+.global __vt__Q23Sys13TriangleTable
+__vt__Q23Sys13TriangleTable:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23Sys13TriangleTableFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q23Sys8Triangle>FPv"
+	.4byte "getNext__31ArrayContainer<Q23Sys8Triangle>FPv"
+	.4byte "getStart__31ArrayContainer<Q23Sys8Triangle>Fv"
+	.4byte "getEnd__31ArrayContainer<Q23Sys8Triangle>Fv"
+	.4byte "get__31ArrayContainer<Q23Sys8Triangle>FPv"
+	.4byte "getAt__31ArrayContainer<Q23Sys8Triangle>Fi"
+	.4byte "getTo__31ArrayContainer<Q23Sys8Triangle>Fv"
+	.4byte writeObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle
+	.4byte readObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle
+	.4byte "write__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+	.4byte "read__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+	.4byte "alloc__31ArrayContainer<Q23Sys8Triangle>Fi"
+	.4byte "addOne__31ArrayContainer<Q23Sys8Triangle>FRQ23Sys8Triangle"
+	.4byte "setArray__31ArrayContainer<Q23Sys8Triangle>FPQ23Sys8Trianglei"
+.global "__vt__31ArrayContainer<Q23Sys8Triangle>"
+"__vt__31ArrayContainer<Q23Sys8Triangle>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__31ArrayContainer<Q23Sys8Triangle>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q23Sys8Triangle>FPv"
+	.4byte "getNext__31ArrayContainer<Q23Sys8Triangle>FPv"
+	.4byte "getStart__31ArrayContainer<Q23Sys8Triangle>Fv"
+	.4byte "getEnd__31ArrayContainer<Q23Sys8Triangle>Fv"
+	.4byte "get__31ArrayContainer<Q23Sys8Triangle>FPv"
+	.4byte "getAt__31ArrayContainer<Q23Sys8Triangle>Fi"
+	.4byte "getTo__31ArrayContainer<Q23Sys8Triangle>Fv"
+	.4byte "writeObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle"
+	.4byte "readObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle"
+	.4byte "write__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+	.4byte "read__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+	.4byte "alloc__31ArrayContainer<Q23Sys8Triangle>Fi"
+	.4byte "addOne__31ArrayContainer<Q23Sys8Triangle>FRQ23Sys8Triangle"
+	.4byte "setArray__31ArrayContainer<Q23Sys8Triangle>FPQ23Sys8Trianglei"
+.global "__vt__26Container<Q23Sys8Triangle>"
+"__vt__26Container<Q23Sys8Triangle>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__26Container<Q23Sys8Triangle>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q23Sys8Triangle>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__26Container<Q23Sys8Triangle>Fi"
+	.4byte "getTo__26Container<Q23Sys8Triangle>Fv"
+.global __vt__Q23Sys11GridDivider
+__vt__Q23Sys11GridDivider:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23Sys11GridDividerFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getMinY__Q23Sys11GridDividerFR10Vector3<f>"
+	.4byte findTriLists__Q23Sys11GridDividerFRQ23Sys6Sphere
+	.4byte read__Q23Sys11GridDividerFR6Stream
+	.4byte getCurrTri__Q23Sys11GridDividerFRQ24Game11CurrTriInfo
+	.4byte createTriangles__Q23Sys11GridDividerFRQ23Sys17CreateTriangleArg
+	.4byte getBoundBox__Q23Sys11GridDividerFR8BoundBox
+	.4byte clone__Q23Sys10TriDividerFR7Matrixf
+	.4byte do_clone__Q23Sys11GridDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "getAxisVector__Q23Sys4TubeFR10Vector3<f>"
 "getAxisVector__Q23Sys4TubeFR10Vector3<f>":

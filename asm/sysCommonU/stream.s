@@ -42,6 +42,25 @@ lbl_80499774:
 	.asciz "RamStream::write out of bounds (pos=%d,bound=%d)\n"
 	.skip 0x2
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__9RamStream
+__vt__9RamStream:
+	.4byte 0
+	.4byte 0
+	.4byte read__9RamStreamFPvi
+	.4byte write__9RamStreamFPvi
+	.4byte eof__9RamStreamFv
+	.4byte getPending__6StreamFv
+.global __vt__6Stream
+__vt__6Stream:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte eof__6StreamFv
+	.4byte getPending__6StreamFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global eof__6StreamFv
 eof__6StreamFv:
