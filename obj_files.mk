@@ -312,7 +312,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/k_tan.o\
 	$(BUILD_DIR)/asm/Dolphin/s_atan.o\
 	$(BUILD_DIR)/asm/Dolphin/s_ceil.o\
-	$(BUILD_DIR)/asm/Dolphin/s_copysign.o\
+	$(BUILD_DIR)/src/Dolphin/s_copysign.o\
 	$(BUILD_DIR)/asm/Dolphin/s_cos.o\
 	$(BUILD_DIR)/asm/Dolphin/s_floor.o\
 	$(BUILD_DIR)/asm/Dolphin/s_frexp.o\
