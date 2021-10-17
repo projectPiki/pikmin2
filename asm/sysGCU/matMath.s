@@ -6,19 +6,19 @@ lbl_80520510:
 	.float 1.0
 .global lbl_80520514
 lbl_80520514:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_80520518
 lbl_80520518:
-	.4byte 0x43A2F983
+	.float 325.9493
 .global lbl_8052051C
 lbl_8052051C:
-	.4byte 0xC3A2F983
+	.float -325.9493
 .global lbl_80520520
 lbl_80520520:
-	.4byte 0x3FC90FDB
+	.float 1.5707964
 .global lbl_80520524
 lbl_80520524:
-	.4byte 0x40000000
+	.float 2.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeNaturalPosture__7MatrixfFR10Vector3<f>"

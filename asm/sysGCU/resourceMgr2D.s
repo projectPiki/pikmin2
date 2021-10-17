@@ -3,16 +3,12 @@
 .balign 0x4
 .global lbl_8049A680
 lbl_8049A680:
-	.4byte 0x7265736F
-	.4byte 0x75726365
-	.4byte 0x4D677232
-	.4byte 0x442E6370
-	.4byte 0x70000000
+	.asciz "resourceMgr2D.cpp"
+	.skip 2
 .global lbl_8049A694
 lbl_8049A694:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
