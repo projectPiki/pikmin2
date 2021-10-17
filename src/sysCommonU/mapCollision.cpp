@@ -1,15 +1,4 @@
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
 /*
  * --INFO--
  * Address:	8041A030

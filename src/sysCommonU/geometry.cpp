@@ -1,21 +1,10 @@
 
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
 /*
  * --INFO--
  * Address:	........
  * Size:	000238
  */
-void calcNearestEdgePoint__Q23Sys4EdgeFR10Vector3<float> R10Vector3<float>(void)
+void Sys::Edge::calcNearestEdgePoint(Vector3<float>&, Vector3<float>&)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +14,7 @@ void calcNearestEdgePoint__Q23Sys4EdgeFR10Vector3<float> R10Vector3<float>(void)
  * Address:	80415AA4
  * Size:	0000B4
  */
-void getAxisVector__Q23Sys4TubeFR10Vector3<float>(void)
+void Sys::Tube::getAxisVector(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -94,7 +83,7 @@ void Sys::Tube::getYRatio((float))
  * Address:	80415B58
  * Size:	00027C
  */
-void collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<float> Rf(void)
+void Sys::Tube::collide(Sys::Sphere&, Vector3<float>&, float&)
 {
 	/*
 	.loc_0x0:
@@ -277,7 +266,7 @@ void collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<float> Rf(void)
  * Address:	80415DD4
  * Size:	0000F4
  */
-void getPosRatio__Q23Sys4TubeFRC10Vector3<float>(void)
+void Sys::Tube::getPosRatio(const Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -364,8 +353,8 @@ void Sys::Tube::getRatioRadius((float))
  * Address:	........
  * Size:	000200
  */
-void getPosGradient__Q23Sys4TubeFR10Vector3<float> fR10Vector3<float>
-R10Vector3<float>(void)
+void Sys::Tube::getPosGradient(Vector3<float>&, float, Vector3<float>&,
+                               Vector3<float>&)
 {
 	// UNUSED FUNCTION
 }
@@ -440,7 +429,7 @@ void Sys::Sphere::intersect((Sys::Sphere&))
  * Address:	80415F6C
  * Size:	000120
  */
-void intersect__Q23Sys6SphereFRQ23Sys6SphereR10Vector3<float>(void)
+void Sys::Sphere::intersect(Sys::Sphere&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -687,7 +676,7 @@ void Sys::Sphere::intersect((Sys::Edge&, float&))
  * Address:	80416290
  * Size:	00028C
  */
-void intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<float>(void)
+void Sys::Sphere::intersect(Sys::Edge&, float&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -876,7 +865,7 @@ void intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<float>(void)
  * Address:	8041651C
  * Size:	0003D4
  */
-void intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<float> Rf(void)
+void Sys::Sphere::intersect(Sys::Edge&, float&, Vector3<float>&, float&)
 {
 	/*
 	.loc_0x0:
@@ -1167,7 +1156,7 @@ void intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<float> Rf(void)
  * Address:	........
  * Size:	0000D8
  */
-void intersectRay__Q23Sys6SphereFR10Vector3<float> R10Vector3<float>(void)
+void Sys::Sphere::intersectRay(Vector3<float>&, Vector3<float>&)
 {
 	// UNUSED FUNCTION
 }
@@ -1215,8 +1204,8 @@ void Sys::Triangle::__ct(void)
  * Address:	........
  * Size:	00027C
  */
-void findNearestPoint__Q23Sys8TriangleFRQ23Sys11VertexTableR10Vector3<float>
-R10Vector3<float>(void)
+void Sys::Triangle::findNearestPoint(Sys::VertexTable&, Vector3<float>&,
+                                     Vector3<float>&)
 {
 	// UNUSED FUNCTION
 }
@@ -1520,7 +1509,7 @@ void Sys::Triangle::intersect((Sys::VertexTable&, BoundBox2d&))
  * Address:	........
  * Size:	0002F0
  */
-void intersect__Q23Sys8TriangleFRQ23Sys4EdgeR10Vector3<float>(void)
+void Sys::Triangle::intersect(Sys::Edge&, Vector3<float>&)
 {
 	// UNUSED FUNCTION
 }
@@ -1530,7 +1519,7 @@ void intersect__Q23Sys8TriangleFRQ23Sys4EdgeR10Vector3<float>(void)
  * Address:	80416C48
  * Size:	000334
  */
-void intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<float>(void)
+void Sys::Triangle::intersect(Sys::Edge&, float, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1771,7 +1760,7 @@ void intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<float>(void)
  * Address:	80416F7C
  * Size:	000370
  */
-void intersect__Q23Sys8TriangleFRQ23Sys4EdgefR10Vector3<float> Rf(void)
+void Sys::Triangle::intersect(Sys::Edge&, float, Vector3<float>&, float&)
 {
 	/*
 	.loc_0x0:
@@ -2232,8 +2221,7 @@ void Sys::Triangle::intersect((Sys::VertexTable&, Sys::Sphere&))
  * Address:	80417598
  * Size:	0002F8
  */
-void intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<
-    float>(void)
+void Sys::Triangle::intersect(Sys::VertexTable&, Sys::Sphere&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -2451,8 +2439,8 @@ void intersect__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<
  * Address:	80417890
  * Size:	0002F8
  */
-void intersectHard__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3<
-    float>(void)
+void Sys::Triangle::intersectHard(Sys::VertexTable&, Sys::Sphere&,
+                                  Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -2676,7 +2664,7 @@ void intersectHard__Q23Sys8TriangleFRQ23Sys11VertexTableRQ23Sys6SphereR10Vector3
  * Address:	........
  * Size:	00014C
  */
-void intersectOptimistic__Q23Sys8TriangleFRQ23Sys6SphereR10Vector3<float>(void)
+void Sys::Triangle::intersectOptimistic(Sys::Sphere&, Vector3<float>&)
 {
 	// UNUSED FUNCTION
 }
@@ -2686,7 +2674,7 @@ void intersectOptimistic__Q23Sys8TriangleFRQ23Sys6SphereR10Vector3<float>(void)
  * Address:	80417B88
  * Size:	0000EC
  */
-void insideXZ__Q23Sys8TriangleFR10Vector3<float>(void)
+void Sys::Triangle::insideXZ(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -3425,7 +3413,7 @@ void Sys::GridDivider::createTriangles((Sys::CreateTriangleArg&))
  * Address:	804185A4
  * Size:	0001D8
  */
-void getMinY__Q23Sys11GridDividerFR10Vector3<float>(void)
+void Sys::GridDivider::getMinY(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -4788,10 +4776,9 @@ void Sys::TriIndexList::constructClone((Sys::TriangleTable&))
  * Address:	80419594
  * Size:	000150
  */
-void
-    getMinMax__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR10Vector3<
-        float>
-        R10Vector3<float> RfRf(void)
+void Sys::TriIndexList::getMinMax(Sys::VertexTable&, Sys::TriangleTable&,
+                                  Vector3<float>&, Vector3<float>&, float&,
+                                  float&)
 {
 	/*
 	.loc_0x0:
@@ -4897,8 +4884,9 @@ void
  * Address:	804196E4
  * Size:	000294
  */
-void makeCovarianceMatrix__Q23Sys12TriIndexListFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR10Vector3<
-    float>(void)
+void Sys::TriIndexList::makeCovarianceMatrix(Sys::VertexTable&,
+                                             Sys::TriangleTable&, Matrix3f&,
+                                             Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -5426,7 +5414,7 @@ void Sys::VertexTable::write((Stream&))
  * Address:	80419CF8
  * Size:	000024
  */
-void writeObject__Q23Sys11VertexTableFR6StreamR10Vector3<float>(void)
+void Sys::VertexTable::writeObject(Stream&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -5499,7 +5487,7 @@ void Sys::VertexTable::__dt(void)
  * Address:	80419DAC
  * Size:	000024
  */
-void readObject__Q23Sys11VertexTableFR6StreamR10Vector3<float>(void)
+void Sys::VertexTable::readObject(Stream&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
