@@ -1049,6 +1049,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 	$(BUILD_DIR)/asm/rodata_2a.o\
+	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khSceneLoader.o\
@@ -1066,7 +1067,6 @@ TEXT_PT1:=\
 
 GROUP_1_FILES:=\
 	$(BUILD_DIR)/asm/sdata2_a.o\
-	$(BUILD_DIR)/asm/data_0a.o\
 
 TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\

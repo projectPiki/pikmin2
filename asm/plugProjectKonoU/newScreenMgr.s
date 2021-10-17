@@ -70,6 +70,231 @@ lbl_80498660:
 	.4byte 0x6E642E73
 	.4byte 0x7A730000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EA878
+lbl_804EA878:
+	.4byte lbl_8040020C
+	.4byte lbl_8040032C
+	.4byte lbl_804004D8
+	.4byte lbl_8040030C
+	.4byte lbl_804003F8
+	.4byte lbl_80400418
+	.4byte lbl_80400438
+	.4byte lbl_80400458
+	.4byte lbl_80400478
+	.4byte lbl_804003D8
+	.4byte lbl_8040026C
+	.4byte lbl_8040028C
+	.4byte lbl_8040024C
+	.4byte lbl_8040022C
+	.4byte lbl_804002AC
+	.4byte lbl_8040034C
+	.4byte lbl_80400370
+	.4byte lbl_80400394
+	.4byte lbl_804002CC
+	.4byte lbl_804002EC
+	.4byte lbl_804003B8
+	.4byte lbl_80400498
+	.4byte lbl_804004B8
+	.4byte lbl_804004F8
+	.4byte lbl_80400518
+	.4byte lbl_80400538
+	.4byte lbl_80400558
+	.4byte lbl_80400578
+.global lbl_804EA8E8
+lbl_804EA8E8:
+	.4byte lbl_804005DC
+	.4byte lbl_8040061C
+	.4byte lbl_80400658
+	.4byte lbl_804006A0
+	.4byte lbl_804006E8
+	.4byte lbl_80400730
+	.4byte lbl_80400778
+	.4byte lbl_804007C0
+	.4byte lbl_804007E0
+	.4byte lbl_804008BC
+	.4byte lbl_80400800
+	.4byte lbl_80400840
+	.4byte lbl_8040087C
+.global __vt__Q29newScreen3Mgr
+__vt__Q29newScreen3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29newScreen3MgrFv
+	.4byte setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg
+	.4byte startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg
+	.4byte endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg
+	.4byte reset__Q29newScreen3MgrFv
+	.4byte setColorBG__Q29newScreen3MgrFRQ28JUtility6TColor
+	.4byte setBGMode__Q29newScreen3MgrFi
+	.4byte doGetSceneBase__Q29newScreen3MgrFl
+	.4byte drawBG__Q29newScreen3MgrFR8Graphics
+	.4byte drawWipe__Q26Screen3MgrFR8Graphics
+.global __vt__Q26Screen7MgrBase
+__vt__Q26Screen7MgrBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26Screen7MgrBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28Morimura16TPikminDownScene
+__vt__Q28Morimura16TPikminDownScene:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q28Morimura16TPikminDownSceneFv
+	.4byte getOwnerID__Q28Morimura16TPikminDownSceneFv
+	.4byte getMemberID__Q28Morimura16TPikminDownSceneFv
+	.4byte isUseBackupSceneInfo__Q28Morimura16TPikminDownSceneFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q28Morimura16TPikminDownSceneCFv
+	.4byte doCreateObj__Q28Morimura16TPikminDownSceneFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q28Morimura19TPresidentDownScene
+__vt__Q28Morimura19TPresidentDownScene:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q28Morimura19TPresidentDownSceneFv
+	.4byte getOwnerID__Q28Morimura19TPresidentDownSceneFv
+	.4byte getMemberID__Q28Morimura19TPresidentDownSceneFv
+	.4byte isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q28Morimura19TPresidentDownSceneCFv
+	.4byte doCreateObj__Q28Morimura19TPresidentDownSceneFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q28Morimura14TLujiDownScene
+__vt__Q28Morimura14TLujiDownScene:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q28Morimura14TLujiDownSceneFv
+	.4byte getOwnerID__Q28Morimura14TLujiDownSceneFv
+	.4byte getMemberID__Q28Morimura14TLujiDownSceneFv
+	.4byte isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q28Morimura14TLujiDownSceneCFv
+	.4byte doCreateObj__Q28Morimura14TLujiDownSceneFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q28Morimura15TOrimaDownScene
+__vt__Q28Morimura15TOrimaDownScene:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q28Morimura15TOrimaDownSceneFv
+	.4byte getOwnerID__Q28Morimura15TOrimaDownSceneFv
+	.4byte getMemberID__Q28Morimura15TOrimaDownSceneFv
+	.4byte isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q28Morimura15TOrimaDownSceneCFv
+	.4byte doCreateObj__Q28Morimura15TOrimaDownSceneFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q28Morimura14TGameOverScene
+__vt__Q28Morimura14TGameOverScene:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q28Morimura14TGameOverSceneFv
+	.4byte getOwnerID__Q28Morimura14TGameOverSceneFv
+	.4byte getMemberID__Q28Morimura14TGameOverSceneFv
+	.4byte isUseBackupSceneInfo__Q28Morimura14TGameOverSceneFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q28Morimura14TGameOverSceneCFv
+	.4byte doCreateObj__Q28Morimura14TGameOverSceneFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q28Morimura18TGameOverSceneBase
+__vt__Q28Morimura18TGameOverSceneBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte 0
+	.4byte 0
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q28Morimura13THurryUpScene
+__vt__Q28Morimura13THurryUpScene:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q28Morimura13THurryUpSceneFv
+	.4byte getOwnerID__Q28Morimura13THurryUpSceneFv
+	.4byte getMemberID__Q28Morimura13THurryUpSceneFv
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q28Morimura13THurryUpSceneCFv
+	.4byte doCreateObj__Q28Morimura13THurryUpSceneFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createScene_Ogawa__9newScreenFl
 createScene_Ogawa__9newScreenFl:

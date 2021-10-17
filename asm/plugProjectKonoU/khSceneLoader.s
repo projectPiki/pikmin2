@@ -30,6 +30,111 @@ lbl_80498500:
 	.4byte 0x74656D2E
 	.4byte 0x737A7300
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EA668
+lbl_804EA668:
+	.4byte lbl_803FBB0C
+	.4byte lbl_803FBB34
+	.4byte lbl_803FBB5C
+	.4byte lbl_803FBB8C
+	.4byte lbl_803FBBB4
+	.4byte lbl_803FBBDC
+	.4byte lbl_803FBBFC
+	.4byte lbl_803FBC24
+	.4byte lbl_803FBC4C
+	.4byte lbl_803FBC74
+	.4byte lbl_803FBC94
+.global __vt__Q32kh6Screen21SceneDayEndResultTitl
+__vt__Q32kh6Screen21SceneDayEndResultTitl:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32kh6Screen21SceneDayEndResultTitlFv
+	.4byte getOwnerID__Q32kh6Screen21SceneDayEndResultTitlFv
+	.4byte getMemberID__Q32kh6Screen21SceneDayEndResultTitlFv
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32kh6Screen21SceneDayEndResultTitlCFv
+	.4byte doCreateObj__Q32kh6Screen21SceneDayEndResultTitlFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q32kh6Screen12SceneWinLose
+__vt__Q32kh6Screen12SceneWinLose:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32kh6Screen12SceneWinLoseFv
+	.4byte getOwnerID__Q32kh6Screen12SceneWinLoseFv
+	.4byte getMemberID__Q32kh6Screen12SceneWinLoseFv
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32kh6Screen12SceneWinLoseCFv
+	.4byte doCreateObj__Q32kh6Screen12SceneWinLoseFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q32kh6Screen21SceneDayEndResultIncP
+__vt__Q32kh6Screen21SceneDayEndResultIncP:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32kh6Screen21SceneDayEndResultIncPFv
+	.4byte getOwnerID__Q32kh6Screen21SceneDayEndResultIncPFv
+	.4byte getMemberID__Q32kh6Screen21SceneDayEndResultIncPFv
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32kh6Screen21SceneDayEndResultIncPCFv
+	.4byte doCreateObj__Q32kh6Screen21SceneDayEndResultIncPFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q32kh6Screen21SceneDayEndResultItem
+__vt__Q32kh6Screen21SceneDayEndResultItem:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32kh6Screen21SceneDayEndResultItemFv
+	.4byte getOwnerID__Q32kh6Screen21SceneDayEndResultItemFv
+	.4byte getMemberID__Q32kh6Screen21SceneDayEndResultItemFv
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32kh6Screen21SceneDayEndResultItemCFv
+	.4byte doCreateObj__Q32kh6Screen21SceneDayEndResultItemFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createScene_Koono__Q22kh6ScreenFl
 createScene_Koono__Q22kh6ScreenFl:

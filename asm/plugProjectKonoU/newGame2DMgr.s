@@ -62,6 +62,65 @@ lbl_804985A4:
 	.4byte 0x2E0A0000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EA7D8
+lbl_804EA7D8:
+	.4byte lbl_803FD008
+	.4byte lbl_803FCFB8
+	.4byte lbl_803FCFC0
+	.4byte lbl_803FCFCC
+	.4byte lbl_803FCFD8
+	.4byte lbl_803FCFE4
+	.4byte lbl_803FCFF0
+	.4byte lbl_803FCFFC
+.global __vt__Q26Screen11EndSceneArg
+__vt__Q26Screen11EndSceneArg:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q26Screen12SceneArgBaseCFv
+	.4byte getClassSize__Q26Screen11EndSceneArgFv
+.global __vt__Q32og9newScreen15SArgChallenge1P
+__vt__Q32og9newScreen15SArgChallenge1P:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32og9newScreen15SArgChallenge1PCFv
+	.4byte getClassSize__Q32og9newScreen15SArgChallenge1PFv
+.global __vt__Q32og9newScreen15SArgChallenge2P
+__vt__Q32og9newScreen15SArgChallenge2P:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32og9newScreen15SArgChallenge2PCFv
+	.4byte getClassSize__Q32og9newScreen15SArgChallenge2PFv
+.global __vt__Q32og9newScreen17SArgChallengeBase
+__vt__Q32og9newScreen17SArgChallengeBase:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q26Screen12SceneArgBaseCFv
+	.4byte 0
+.global __vt__Q32kh6Screen11DispReadyGo
+__vt__Q32kh6Screen11DispReadyGo:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32kh6Screen11DispReadyGoFv
+	.4byte getOwnerID__Q32kh6Screen11DispReadyGoFv
+	.4byte getMemberID__Q32kh6Screen11DispReadyGoFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32kh6Screen14DispFinalFloor
+__vt__Q32kh6Screen14DispFinalFloor:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32kh6Screen14DispFinalFloorFv
+	.4byte getOwnerID__Q32kh6Screen14DispFinalFloorFv
+	.4byte getMemberID__Q32kh6Screen14DispFinalFloorFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q26Screen9Game2DMgr
+__vt__Q26Screen9Game2DMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26Screen9Game2DMgrFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q26Screen9Game2DMgrFv
 create__Q26Screen9Game2DMgrFv:

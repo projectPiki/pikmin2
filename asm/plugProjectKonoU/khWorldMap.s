@@ -445,6 +445,143 @@ lbl_80498348:
 	.4byte 0x63616C65
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EA3A0
+lbl_804EA3A0:
+	.4byte lbl_803F3D80
+	.4byte lbl_803F4084
+	.4byte lbl_803F40E8
+	.4byte lbl_803F4108
+	.4byte lbl_803F44A8
+	.4byte lbl_803F4554
+	.4byte lbl_803F4698
+	.4byte lbl_803F472C
+	.4byte lbl_803F47C0
+	.4byte lbl_803F4864
+	.4byte lbl_803F4908
+	.4byte lbl_803F4D90
+	.4byte lbl_803F503C
+	.4byte lbl_803F5098
+	.4byte lbl_803F4420
+.global __vt__Q35efx2d8WorldMap10T2DRocketA
+__vt__Q35efx2d8WorldMap10T2DRocketA:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q35efx2d8WorldMap19TSimple_ArgDirScaleFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple1Fv
+	.4byte fade__Q25efx2d8TSimple1Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q35efx2d8WorldMap11ArgDirScale
+__vt__Q35efx2d8WorldMap11ArgDirScale:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q35efx2d8WorldMap11ArgDirScaleFv
+.global __vt__Q35efx2d8WorldMap10T2DShstar1
+__vt__Q35efx2d8WorldMap10T2DShstar1:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d8WorldMap10T2DShstar1Fv"
+	.4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d8WorldMap10T2DShstar1Fv
+	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+.global __vt__Q35efx2d8WorldMap11T2DMapFlare
+__vt__Q35efx2d8WorldMap11T2DMapFlare:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d8WorldMap11T2DMapFlareFv"
+	.4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d8WorldMap11T2DMapFlareFv
+	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+.global __vt__Q35efx2d8WorldMap13T2DRocketGlow
+__vt__Q35efx2d8WorldMap13T2DRocketGlow:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q35efx2d8WorldMap13T2DRocketGlowFv"
+	.4byte "@8@execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter"
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q35efx2d8WorldMap13T2DRocketGlowFv
+	.4byte execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter
+.global __vt__Q32kh6Screen8WorldMap
+__vt__Q32kh6Screen8WorldMap:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32kh6Screen8WorldMapFv
+	.4byte loadResource__Q32kh6Screen8WorldMapFv
+	.4byte init__Q32kh6Screen8WorldMapFRQ34Game8WorldMap7InitArg
+	.4byte update__Q32kh6Screen8WorldMapFRQ34Game8WorldMap9UpdateArg
+	.4byte draw__Q34Game8WorldMap4BaseFR8Graphics
+	.4byte draw1st__Q32kh6Screen8WorldMapFR8Graphics
+	.4byte draw2nd__Q32kh6Screen8WorldMapFR8Graphics
+	.4byte draw3rd__Q32kh6Screen8WorldMapFR8Graphics
+	.4byte draw4th__Q32kh6Screen8WorldMapFR8Graphics
+.global __vt__Q34Game8WorldMap4Base
+__vt__Q34Game8WorldMap4Base:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game8WorldMap4BaseFv
+	.4byte loadResource__Q34Game8WorldMap4BaseFv
+	.4byte init__Q34Game8WorldMap4BaseFRQ34Game8WorldMap7InitArg
+	.4byte update__Q34Game8WorldMap4BaseFRQ34Game8WorldMap9UpdateArg
+	.4byte draw__Q34Game8WorldMap4BaseFR8Graphics
+	.4byte draw1st__Q34Game8WorldMap4BaseFR8Graphics
+	.4byte draw2nd__Q34Game8WorldMap4BaseFR8Graphics
+	.4byte draw3rd__Q34Game8WorldMap4BaseFR8Graphics
+	.4byte draw4th__Q34Game8WorldMap4BaseFR8Graphics
+.global __vt__Q32kh6Screen16khUtilColorAnmWM
+__vt__Q32kh6Screen16khUtilColorAnmWM:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32kh6Screen16khUtilColorAnmWMFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32kh6Screen14khUtilColorAnmFv
+	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q32kh6Screen16khUtilColorAnmWMFv
+.global __vt__Q32kh6Screen16khUtilFadePaneWM
+__vt__Q32kh6Screen16khUtilFadePaneWM:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32kh6Screen16khUtilFadePaneWMFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32kh6Screen14khUtilFadePaneFv
+	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte fadein_finish__Q32kh6Screen14khUtilFadePaneFv
+	.4byte fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv
+.global __vt__Q42kh6Screen14khUtilFadePane10khPaneNode
+__vt__Q42kh6Screen14khUtilFadePane10khPaneNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv
+	.4byte 0
+
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global msVal__Q32kh6Screen8WorldMap
 msVal__Q32kh6Screen8WorldMap:

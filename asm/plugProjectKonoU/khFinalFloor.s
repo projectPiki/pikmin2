@@ -64,6 +64,69 @@ lbl_80498814:
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804EACA0
+lbl_804EACA0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q32kh6Screen15SceneFinalFloor
+__vt__Q32kh6Screen15SceneFinalFloor:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32kh6Screen15SceneFinalFloorFv
+	.4byte getOwnerID__Q32kh6Screen15SceneFinalFloorFv
+	.4byte getMemberID__Q32kh6Screen15SceneFinalFloorFv
+	.4byte isUseBackupSceneInfo__Q32kh6Screen15SceneFinalFloorFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32kh6Screen15SceneFinalFloorCFv
+	.4byte doCreateObj__Q32kh6Screen15SceneFinalFloorFP10JKRArchive
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q32kh6Screen15SceneFinalFloorFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.global __vt__Q32kh6Screen13ObjFinalFloor
+__vt__Q32kh6Screen13ObjFinalFloor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32kh6Screen13ObjFinalFloorFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q32kh6Screen13ObjFinalFloorFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive
+	.4byte doUpdateFadein__Q32kh6Screen13ObjFinalFloorFv
+	.4byte doUpdateFadeinFinish__Q26Screen7ObjBaseFv
+	.4byte doUpdate__Q32kh6Screen13ObjFinalFloorFv
+	.4byte doUpdateFinish__Q26Screen7ObjBaseFv
+	.4byte doUpdateFadeout__Q32kh6Screen13ObjFinalFloorFv
+	.4byte doUpdateFadeoutFinish__Q32kh6Screen13ObjFinalFloorFv
+	.4byte doDraw__Q32kh6Screen13ObjFinalFloorFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte 0
+
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global msVal__Q32kh6Screen13ObjFinalFloor
 msVal__Q32kh6Screen13ObjFinalFloor:

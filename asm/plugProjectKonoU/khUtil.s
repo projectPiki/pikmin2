@@ -14,6 +14,31 @@ lbl_80498CC8:
 	.asciz "khUtil.h"
 	.skip 7
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32kh6Screen14khUtilColorAnm
+__vt__Q32kh6Screen14khUtilColorAnm:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32kh6Screen14khUtilColorAnmFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32kh6Screen14khUtilColorAnmFv
+	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte do_update__Q32kh6Screen14khUtilColorAnmFv
+.global __vt__Q32kh6Screen14khUtilFadePane
+__vt__Q32kh6Screen14khUtilFadePane:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32kh6Screen14khUtilFadePaneFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32kh6Screen14khUtilFadePaneFv
+	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte fadein_finish__Q32kh6Screen14khUtilFadePaneFv
+	.4byte fadeout_finish__Q32kh6Screen14khUtilFadePaneFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getSerialTagName__Q22kh6ScreenFUxi
 getSerialTagName__Q22kh6ScreenFUxi:
