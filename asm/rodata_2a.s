@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x4
+.balign 0x8
 .global lbl_8047FBB8
 lbl_8047FBB8:
 	.4byte 0x00000000
@@ -109,9 +109,8 @@ lbl_8047FCF4:
 	.4byte 0x25732F61
 	.4byte 0x72632E73
 	.4byte 0x7A730000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x76696577
 	.4byte 0x2E626D64
 	.4byte 0x00000000
@@ -287,9 +286,8 @@ lbl_8047FF98:
 	.4byte 0x00000000
 .global lbl_8047FFC0
 lbl_8047FFC0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -450,9 +448,8 @@ lbl_804801B0:
 	.4byte 0x20210A00
 .global lbl_804801BC
 lbl_804801BC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804801C8
 lbl_804801C8:
 	.4byte 0x4974656D
@@ -601,9 +598,8 @@ lbl_804803B4:
 	.4byte 0x00000000
 .global lbl_804803D0
 lbl_804803D0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804803DC
 lbl_804803DC:
 	.4byte 0x42617365
@@ -664,9 +660,8 @@ lbl_80480470:
 	.4byte 0x65616B47
 	.4byte 0x6174652E
 	.4byte 0x63707000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41637469
 	.4byte 0x6F6E4172
 	.4byte 0x67000000
@@ -699,9 +694,8 @@ lbl_80480500:
 	.4byte 0x00000000
 .global lbl_80480510
 lbl_80480510:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80480520
 lbl_80480520:
@@ -891,9 +885,8 @@ lbl_80480698:
 	.4byte 0x72000000
 .global lbl_8048079C
 lbl_8048079C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804807A8
 lbl_804807A8:
 	.4byte 0x43617665
@@ -947,9 +940,8 @@ lbl_8048083C:
 	.4byte 0x21210A00
 .global lbl_8048084C
 lbl_8048084C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80480858
 lbl_80480858:
 	.4byte 0x50696B69
@@ -1009,9 +1001,8 @@ lbl_804808FC:
 	.4byte 0x70000000
 .global lbl_8048090C
 lbl_8048090C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80480918
 lbl_80480918:
 	.4byte 0x6D20252E
@@ -1271,9 +1262,8 @@ lbl_80480CB0:
 	.4byte 0x65616B52
 	.4byte 0x6F636B2E
 	.4byte 0x63707000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41637469
 	.4byte 0x6F6E4172
 	.4byte 0x67000000
@@ -1312,9 +1302,8 @@ lbl_80480D5C:
 	.4byte 0x70700000
 .global lbl_80480D68
 lbl_80480D68:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41637469
 	.4byte 0x6F6E4172
 	.4byte 0x67000000
@@ -1382,9 +1371,8 @@ lbl_80480E4C:
 	.4byte 0x00000000
 .global lbl_80480E60
 lbl_80480E60:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x706C6179
 	.4byte 0x44617461
 	.4byte 0x00000000
@@ -1538,9 +1526,8 @@ lbl_80481068:
 	.4byte 0x00000000
 .global lbl_80481078
 lbl_80481078:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x09232069
 	.4byte 0x64202866
 	.4byte 0x6F722073
@@ -1566,9 +1553,8 @@ lbl_804810BC:
 	.4byte 0x63707000
 .global lbl_804810D0
 lbl_804810D0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804810DC
 lbl_804810DC:
 	.4byte 0x6733305F
@@ -1682,9 +1668,8 @@ lbl_80481244:
 	.4byte 0x00000000
 .global lbl_80481260
 lbl_80481260:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x09238BB4
 	.4byte 0x835E8343
 	.4byte 0x83760D0A
@@ -1813,9 +1798,8 @@ lbl_80481438:
 	.4byte 0x70000000
 .global lbl_8048144C
 lbl_8048144C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x23205069
 	.4byte 0x6B69436F
 	.4byte 0x756E7465
@@ -1875,9 +1859,8 @@ lbl_80481490:
 	.4byte 0x20210A00
 .global lbl_8048152C
 lbl_8048152C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80481538
 lbl_80481538:
 	.4byte 0x2867656E
@@ -2002,9 +1985,8 @@ lbl_804816E4:
 	.4byte 0x00000000
 .global lbl_804816F8
 lbl_804816F8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80481704
 lbl_80481704:
 	.4byte 0x54726561
@@ -2109,9 +2091,8 @@ lbl_8048183C:
 	.4byte 0x73290A00
 .global lbl_80481874
 lbl_80481874:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x446F776E
 	.4byte 0x466C6F6F
 	.4byte 0x72000000
@@ -2220,9 +2201,8 @@ lbl_804819E0:
 	.4byte 0x70700000
 .global lbl_804819F0
 lbl_804819F0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804819FC
 lbl_804819FC:
 	.4byte 0x7831325F
@@ -2335,9 +2315,8 @@ lbl_80481B50:
 	.4byte 0x70000000
 .global lbl_80481B64
 lbl_80481B64:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80481B70
 lbl_80481B70:
 	.4byte 0x696E6469
@@ -2484,9 +2463,8 @@ lbl_80481DC8:
 	.4byte 0x00000000
 .global lbl_80481DDC
 lbl_80481DDC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x0923206E
 	.4byte 0x756D2070
 	.4byte 0x61726D73
@@ -2576,9 +2554,8 @@ lbl_80481EF8:
 	.4byte 0x70700000
 .global lbl_80481F1C
 lbl_80481F1C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x6E6F2061
 	.4byte 0x63747765
 	.4byte 0x65646172
@@ -2621,9 +2598,8 @@ lbl_80481FA0:
 	.4byte 0x00000000
 .global lbl_80481FB0
 lbl_80481FB0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80481FC0
 lbl_80481FC0:
@@ -2641,9 +2617,8 @@ lbl_80481FD8:
 	.4byte 0x00000000
 .global lbl_80481FE8
 lbl_80481FE8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80481FF4
 lbl_80481FF4:
 	.4byte 0x835F8381
@@ -2708,9 +2683,8 @@ lbl_804820A8:
 	.4byte 0x69646765
 	.4byte 0x2E637070
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41637469
 	.4byte 0x6F6E4172
 	.4byte 0x67000000
@@ -2938,9 +2912,8 @@ lbl_8048244C:
 	.4byte 0x50534761
 	.4byte 0x6D652E68
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -3053,9 +3026,8 @@ lbl_804825B0:
 	.4byte 0x63707000
 .global lbl_804825F4
 lbl_804825F4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80482600
 lbl_80482600:
 	.4byte 0x50534761
@@ -3092,9 +3064,8 @@ lbl_80482658:
 	.4byte 0x50534761
 	.4byte 0x6D652E68
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x73696E67
 	.4byte 0x6C654753
 	.4byte 0x5F576F72
@@ -3160,9 +3131,8 @@ lbl_80482764:
 	.4byte 0x00000000
 .global lbl_80482770
 lbl_80482770:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -3317,9 +3287,8 @@ lbl_804829BC:
 	.4byte 0x4D656D43
 	.4byte 0x6172642E
 	.4byte 0x63707000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x2A2093B4
 	.4byte 0x8C419242
 	.4byte 0x90AC8FEE
@@ -3809,9 +3778,8 @@ lbl_804831FC:
 	.4byte 0x74690000
 .global lbl_8048327C
 lbl_8048327C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483288
 lbl_80483288:
 	.4byte 0x696C6C65
@@ -3984,9 +3952,8 @@ lbl_80483550:
 	.4byte 0x5F47616D
 	.4byte 0x652E6370
 	.4byte 0x70000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804835DC
 lbl_804835DC:
 	.4byte 0x7331365F
@@ -4094,9 +4061,8 @@ lbl_80483738:
 	.4byte 0x63707000
 .global lbl_80483748
 lbl_80483748:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483754
 lbl_80483754:
 	.4byte 0x81978197
@@ -4191,9 +4157,8 @@ lbl_80483850:
 	.4byte 0x50534761
 	.4byte 0x6D652E68
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -4211,9 +4176,8 @@ lbl_80483890:
 	.4byte 0x74746C65
 	.4byte 0x2E637070
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41637469
 	.4byte 0x6F6E4172
 	.4byte 0x67000000
@@ -4239,9 +4203,8 @@ lbl_80483900:
 	.4byte 0x70700000
 .global lbl_80483914
 lbl_80483914:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483920
 lbl_80483920:
 	.4byte 0x44656174
@@ -4265,9 +4228,8 @@ lbl_80483950:
 	.4byte 0x70700000
 .global lbl_8048395C
 lbl_8048395C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50534761
 	.4byte 0x6D652E68
 	.4byte 0x00000000
@@ -4302,9 +4264,8 @@ lbl_804839CC:
 	.4byte 0x00000000
 .global lbl_804839D8
 lbl_804839D8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -4325,9 +4286,8 @@ lbl_80483A04:
 	.4byte 0x00000000
 .global lbl_80483A1C
 lbl_80483A1C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483A28
 lbl_80483A28:
 	.asciz "illegal index [%d] [0..%d)\n"
@@ -4612,9 +4572,8 @@ lbl_80483F78:
 	.4byte 0x70700000
 .global lbl_80483F8C
 lbl_80483F8C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 	.float 1.0
 	.4byte 0x00000000
@@ -4644,9 +4603,8 @@ lbl_80483FDC:
 	.4byte 0x70700000
 .global lbl_80483FEC
 lbl_80483FEC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80483FF8
 lbl_80483FF8:
 	.4byte 0x00000000
@@ -5202,9 +5160,8 @@ lbl_804847FC:
 	.4byte 0x70000000
 .global lbl_8048480C
 lbl_8048480C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x63616D65
 	.4byte 0x72612069
 	.4byte 0x73206E6F
@@ -5528,9 +5485,8 @@ lbl_80484C98:
 	.4byte 0x506F6D4D
 	.4byte 0x67722E63
 	.4byte 0x70700000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x68616E61
 	.4byte 0x62697261
 	.4byte 0x315F7600
@@ -6016,9 +5972,8 @@ lbl_804853BC:
 	.4byte 0x70000000
 .global lbl_804853CC
 lbl_804853CC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000001
 	.4byte 0x00000001
 	.4byte 0x00000001
@@ -7699,9 +7654,8 @@ lbl_80486C8C:
 	.4byte 0x54616E6B
 	.4byte 0x4D67722E
 	.4byte 0x63707000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x6D61745F
 	.4byte 0x646F6B6B
 	.4byte 0x7572695F
@@ -9468,9 +9422,8 @@ lbl_80488894:
 	.4byte 0x68000000
 .global lbl_804888AC
 lbl_804888AC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804888B8
 lbl_804888B8:
 	.4byte 0x626F6479
@@ -11196,9 +11149,8 @@ lbl_8048A378:
 	.4byte 0x6173654D
 	.4byte 0x67722E63
 	.4byte 0x70700000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x6D61745F
 	.4byte 0x626F6479
 	.4byte 0x00000000
@@ -12376,9 +12328,8 @@ lbl_8048B624:
 	.4byte 0x70700000
 .global lbl_8048B634
 lbl_8048B634:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048B640
 lbl_8048B640:
 	.asciz "246-BigFootShadow"
@@ -12810,9 +12761,8 @@ lbl_8048BC90:
 	.4byte 0x68000000
 .global lbl_8048BCA8
 lbl_8048BCA8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048BCB4
 lbl_8048BCB4:
 	.asciz "foot_joint1"
@@ -13633,9 +13583,8 @@ lbl_8048C938:
 	.4byte 0x70700000
 .global lbl_8048C94C
 lbl_8048C94C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50656C6C
 	.4byte 0x6574496E
 	.4byte 0x69744172
@@ -13892,9 +13841,8 @@ lbl_8048CCC8:
 	.4byte 0x746F4D67
 	.4byte 0x722E6370
 	.4byte 0x70000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x6D61745F
 	.4byte 0x62616279
 	.4byte 0x6B616275
@@ -15299,9 +15247,8 @@ lbl_8048E278:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048E300
 lbl_8048E300:
 	.4byte 0x00000000
@@ -15454,9 +15401,8 @@ lbl_8048E438:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_8048E550
 lbl_8048E550:
@@ -15533,9 +15479,8 @@ lbl_8048E62C:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048E658
 lbl_8048E658:
 	.4byte 0x6F674F62
@@ -15591,9 +15536,8 @@ lbl_8048E6D8:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048E700
 lbl_8048E700:
 	.4byte 0x6F674F62
@@ -15622,9 +15566,8 @@ lbl_8048E700:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_8048E778
 lbl_8048E778:
@@ -15798,9 +15741,8 @@ lbl_8048EA64:
 	.4byte 0x00000000
 .global lbl_8048EA70
 lbl_8048EA70:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -15852,9 +15794,8 @@ lbl_8048EAD8:
 	.4byte 0x50534761
 	.4byte 0x6D652E68
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -15938,9 +15879,8 @@ lbl_8048EBA8:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_8048EC80
 lbl_8048EC80:
@@ -16020,9 +15960,8 @@ lbl_8048ED18:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_8048EDB8
 lbl_8048EDB8:
@@ -16085,9 +16024,8 @@ lbl_8048EE74:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048EE98
 lbl_8048EE98:
 	.4byte 0x6F675363
@@ -16155,9 +16093,8 @@ lbl_8048EEF0:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048EF88
 lbl_8048EF88:
 	.4byte 0x6368616C
@@ -16275,9 +16212,8 @@ lbl_8048EFE0:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048F140
 lbl_8048F140:
 	.4byte 0x636F6E74
@@ -16347,9 +16283,8 @@ lbl_8048F214:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048F240
 lbl_8048F240:
 	.4byte 0x534D656E
@@ -16494,9 +16429,8 @@ lbl_8048F3D4:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_8048F410
 lbl_8048F410:
@@ -16548,9 +16482,8 @@ lbl_8048F428:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_8048F4D0
 lbl_8048F4D0:
@@ -16605,9 +16538,8 @@ lbl_8048F550:
 	.4byte 0x4E554C4C
 	.4byte 0x2070616E
 	.4byte 0x652E0A00
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048F578
 lbl_8048F578:
 	.4byte 0x6F67436F
@@ -16641,9 +16573,8 @@ lbl_8048F5C8:
 	.4byte 0x73655653
 	.4byte 0x20736372
 	.4byte 0x65656E00
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x696E666F
 	.4byte 0x5F77696E
 	.4byte 0x646F772E
@@ -16759,9 +16690,8 @@ lbl_8048F734:
 	.4byte 0x50534761
 	.4byte 0x6D652E68
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -16825,9 +16755,8 @@ lbl_8048F7D0:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048F848
 lbl_8048F848:
 	.4byte 0x50535365
@@ -16835,9 +16764,8 @@ lbl_8048F848:
 	.4byte 0x70000000
 .global lbl_8048F854
 lbl_8048F854:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x656E646F
 	.4byte 0x6666696C
 	.4byte 0x65000000
@@ -17208,9 +17136,8 @@ lbl_8048FE28:
 	.4byte 0x70700000
 .global lbl_8048FE38
 lbl_8048FE38:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8048FE44
 lbl_8048FE44:
 	.4byte 0x50534761
@@ -17230,9 +17157,8 @@ lbl_8048FE60:
 	.4byte 0x70000000
 .global lbl_8048FE70
 lbl_8048FE70:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x8386836A
 	.4byte 0x835D8393
 	.4byte 0x837D8358
@@ -17272,9 +17198,8 @@ lbl_8048FEF0:
 	.4byte 0x00000000
 .global lbl_8048FF00
 lbl_8048FF00:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x2F417564
 	.4byte 0x696F5265
 	.4byte 0x732F4261
@@ -17288,9 +17213,8 @@ lbl_8048FF20:
 	.4byte 0x70700000
 .global lbl_8048FF30
 lbl_8048FF30:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535461
 	.4byte 0x736B4261
 	.4byte 0x73652E68
@@ -17363,9 +17287,8 @@ lbl_80490010:
 	.4byte 0x70700000
 .global lbl_8049002C
 lbl_8049002C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80490038
 lbl_80490038:
 	.4byte 0x8373834C
@@ -17411,9 +17334,8 @@ lbl_804900C8:
 	.4byte 0x00000000
 .global lbl_804900D4
 lbl_804900D4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x5053436F
 	.4byte 0x6D6D6F6E
 	.4byte 0x2E680000
@@ -17430,9 +17352,8 @@ lbl_80490100:
 	.4byte 0x00000000
 .global lbl_80490110
 lbl_80490110:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80490120
 lbl_80490120:
@@ -17441,9 +17362,8 @@ lbl_80490120:
 	.4byte 0x63707000
 .global lbl_8049012C
 lbl_8049012C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x50535363
 	.4byte 0x656E652E
 	.4byte 0x68000000
@@ -17461,9 +17381,8 @@ lbl_80490158:
 	.4byte 0x6B2E6800
 .global lbl_80490164
 lbl_80490164:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80490170
 lbl_80490170:
 	.4byte 0x50534267
@@ -17478,9 +17397,8 @@ lbl_80490180:
 	.4byte 0x70700000
 .global lbl_80490190
 lbl_80490190:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8049019C
 lbl_8049019C:
 	.4byte 0x0A4E6F74
@@ -17525,9 +17443,8 @@ lbl_8049020C:
 	.4byte 0x63707000
 .global lbl_8049021C
 lbl_8049021C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80490228
 lbl_80490228:
 	.4byte 0x6368616C
@@ -17578,9 +17495,8 @@ lbl_804902B0:
 	.4byte 0x70000000
 .global lbl_804902C0
 lbl_804902C0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x73756E68
 	.4byte 0x5F772E62
 	.4byte 0x74690000
@@ -17714,9 +17630,8 @@ lbl_804902F8:
 	.4byte 0x4F766572
 	.4byte 0x32442E63
 	.4byte 0x70700000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
@@ -18384,9 +18299,8 @@ lbl_80490EF8:
 	.4byte 0x70000000
 .global lbl_80490F08
 lbl_80490F08:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80490F18
 lbl_80490F18:
@@ -18535,9 +18449,8 @@ lbl_804910C0:
 	.4byte 0x722E6800
 .global lbl_804910CC
 lbl_804910CC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804910D8
 lbl_804910D8:
 	.4byte 0x706C616E
@@ -18545,9 +18458,8 @@ lbl_804910D8:
 	.4byte 0x70700000
 .global lbl_804910E4
 lbl_804910E4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804910F0
 lbl_804910F0:
 	.4byte 0x50534D61
@@ -18558,9 +18470,8 @@ lbl_804910F0:
 	.4byte 0x68000000
 .global lbl_80491108
 lbl_80491108:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80491114
 lbl_80491114:
 	.4byte 0x68696465
@@ -18872,9 +18783,8 @@ lbl_804915AC:
 	.4byte 0x70000000
 .global lbl_804915C0
 lbl_804915C0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_804915D0
 lbl_804915D0:
@@ -19162,9 +19072,8 @@ lbl_80491A18:
 	.4byte 0x6D69756C
 	.4byte 0x696E2E63
 	.4byte 0x70700000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80491A3C
 lbl_80491A3C:
 	.4byte 0x6A6E745F
@@ -19395,9 +19304,8 @@ lbl_80491D98:
 	.4byte 0x70700000
 .global lbl_80491DA4
 lbl_80491DA4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x626F6479
 	.4byte 0x5F6A6F69
 	.4byte 0x6E743100
@@ -19617,9 +19525,8 @@ lbl_80491DE8:
 	.4byte 0x744D6772
 	.4byte 0x2E637070
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.float 1.0
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -19870,9 +19777,8 @@ lbl_804924C4:
 	.4byte 0x70700000
 .global lbl_804924D8
 lbl_804924D8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_804924E8
 lbl_804924E8:
@@ -19887,9 +19793,8 @@ lbl_804924F4:
 	.4byte 0x63707000
 .global lbl_80492504
 lbl_80492504:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x6B6F7368
 	.4byte 0x696A6E74
 	.4byte 0x00000000
@@ -19906,9 +19811,8 @@ lbl_8049252C:
 	.4byte 0x63707000
 .global lbl_80492538
 lbl_80492538:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x6E657769
 	.4byte 0x636F6E2E
 	.4byte 0x626C6F00
@@ -20960,9 +20864,8 @@ lbl_804935F0:
 	.4byte 0x70000000
 .global lbl_80493600
 lbl_80493600:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x68695F73
 	.4byte 0x636F7265
 	.4byte 0x5F6D6169
@@ -21019,9 +20922,8 @@ lbl_804936B4:
 	.4byte 0x68000000
 .global lbl_804936CC
 lbl_804936CC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804936D8
 lbl_804936D8:
 	.4byte 0x756D694D
@@ -21286,9 +21188,8 @@ lbl_80493AC8:
 	.4byte 0x63707000
 .global lbl_80493AD8
 lbl_80493AD8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80493AE8
 lbl_80493AE8:
@@ -21306,9 +21207,8 @@ lbl_80493B00:
 	.4byte 0x00000000
 .global lbl_80493B10
 lbl_80493B10:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x63635F6D
 	.4byte 0x6174315F
 	.4byte 0x76000000
@@ -21575,9 +21475,8 @@ lbl_80493C18:
 	.4byte 0x686F754D
 	.4byte 0x67722E63
 	.4byte 0x70700000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x6D61745F
 	.4byte 0x7368696A
 	.4byte 0x696D695F
@@ -21602,9 +21501,8 @@ lbl_80493FA0:
 	.4byte 0x63707000
 .global lbl_80493FB0
 lbl_80493FB0:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80493FC0
 lbl_80493FC0:
@@ -21623,9 +21521,8 @@ lbl_80493FD4:
 	.4byte 0x70000000
 .global lbl_80493FEC
 lbl_80493FEC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80493FF8
 lbl_80493FF8:
 	.4byte 0x5053436F
@@ -22180,9 +22077,8 @@ lbl_80494850:
 	.4byte 0x70000000
 .global lbl_80494868
 lbl_80494868:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80494874
 lbl_80494874:
 	.4byte 0x6E6F2073
@@ -22790,9 +22686,8 @@ lbl_804951F8:
 	.4byte 0x70700000
 .global lbl_80495204
 lbl_80495204:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80495210
 lbl_80495210:
 	.4byte 0x7363726F
@@ -22801,9 +22696,8 @@ lbl_80495210:
 	.4byte 0x70700000
 .global lbl_80495220
 lbl_80495220:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80495230
 lbl_80495230:
@@ -22815,9 +22709,8 @@ lbl_80495230:
 	.4byte 0x68000000
 .global lbl_80495248
 lbl_80495248:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80495258
 lbl_80495258:
@@ -23073,9 +22966,8 @@ lbl_80495620:
 	.4byte 0x63707000
 .global lbl_80495630
 lbl_80495630:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x2F656E65
 	.4byte 0x6D792F64
 	.4byte 0x6174612F
@@ -23190,9 +23082,8 @@ lbl_80495804:
 	.4byte 0x63707000
 .global lbl_80495810
 lbl_80495810:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80495820
 lbl_80495820:
@@ -23202,9 +23093,8 @@ lbl_80495820:
 	.4byte 0x74797265
 	.4byte 0x2E637070
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x74797265
 	.4byte 0x66726F6E
 	.4byte 0x74000000
@@ -23227,9 +23117,8 @@ lbl_80495880:
 	.4byte 0x63707000
 .global lbl_8049588C
 lbl_8049588C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80495898
 lbl_80495898:
 	.4byte 0x65667845
@@ -23241,9 +23130,8 @@ lbl_80495898:
 	.4byte 0x00000000
 .global lbl_804958B4
 lbl_804958B4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41726749
 	.4byte 0x6D6F4561
 	.4byte 0x74000000
@@ -23313,9 +23201,8 @@ lbl_80495988:
 	.4byte 0x00000000
 .global lbl_804959A4
 lbl_804959A4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x4172674B
 	.4byte 0x6F756861
 	.4byte 0x69000000
@@ -23358,9 +23245,8 @@ lbl_80495A28:
 	.4byte 0x70000000
 .global lbl_80495A38
 lbl_80495A38:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41726744
 	.4byte 0x6F70696E
 	.4byte 0x67536D6F
@@ -23403,9 +23289,8 @@ lbl_80495AB8:
 	.4byte 0x70000000
 .global lbl_80495ACC
 lbl_80495ACC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x65666665
 	.4byte 0x63742068
 	.4byte 0x65617020
@@ -23442,9 +23327,8 @@ lbl_80495B48:
 	.4byte 0x70000000
 .global lbl_80495B58
 lbl_80495B58:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80495B68
 lbl_80495B68:
@@ -23458,9 +23342,8 @@ lbl_80495B68:
 	.4byte 0x64456666
 	.4byte 0x6563742E
 	.4byte 0x63707000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41726753
 	.4byte 0x63616C65
 	.4byte 0x436F6C6F
@@ -23493,9 +23376,8 @@ lbl_80495BEC:
 	.4byte 0x63707000
 .global lbl_80495BFC
 lbl_80495BFC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x65666665
 	.4byte 0x63742068
 	.4byte 0x65617020
@@ -23746,9 +23628,8 @@ lbl_80495C58:
 	.4byte 0x32546974
 	.4byte 0x6C652E63
 	.4byte 0x70700000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x70617261
 	.4byte 0x6D2F7061
 	.4byte 0x72616D5F
@@ -23893,9 +23774,8 @@ lbl_80496200:
 	.4byte 0x70700000
 .global lbl_80496214
 lbl_80496214:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x6F70656E
 	.4byte 0x696E675F
 	.4byte 0x77616974
@@ -23947,9 +23827,8 @@ lbl_804962B4:
 	.4byte 0x63707000
 .global lbl_804962CC
 lbl_804962CC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x54536372
 	.4byte 0x65656E4D
 	.4byte 0x656D6F72
@@ -24005,9 +23884,8 @@ lbl_8049638C:
 	.4byte 0x72000000
 .global lbl_8049639C
 lbl_8049639C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x696C6C65
 	.4byte 0x67616C20
 	.4byte 0x6B6F7572
@@ -24027,9 +23905,8 @@ lbl_804963C8:
 	.4byte 0x6E656D79
 	.4byte 0x54797065
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41726753
 	.4byte 0x63616C65
 	.4byte 0x00000000
@@ -24042,9 +23919,8 @@ lbl_80496408:
 	.4byte 0x70700000
 .global lbl_80496418
 lbl_80496418:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80496428
 lbl_80496428:
@@ -24054,9 +23930,8 @@ lbl_80496428:
 	.4byte 0x70700000
 .global lbl_80496438
 lbl_80496438:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80496448
 lbl_80496448:
@@ -24110,9 +23985,8 @@ lbl_80496448:
 	.4byte 0x6E4F7074
 	.4byte 0x696F6E2E
 	.4byte 0x63707000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80496520
 lbl_80496520:
@@ -24135,9 +24009,8 @@ lbl_80496520:
 	.4byte 0x6E50726F
 	.4byte 0x6772652E
 	.4byte 0x63707000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80496578
 lbl_80496578:
 	.4byte 0x54536372
@@ -24213,9 +24086,8 @@ lbl_80496650:
 	.4byte 0x63650000
 .global lbl_8049666C
 lbl_8049666C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80496678
 lbl_80496678:
 	.4byte 0x65626932
@@ -24225,9 +24097,8 @@ lbl_80496678:
 	.4byte 0x70000000
 .global lbl_8049668C
 lbl_8049668C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80496698
 lbl_80496698:
 	.4byte 0x65626943
@@ -24383,9 +24254,8 @@ lbl_804968DC:
 	.4byte 0x70700000
 .global lbl_804968EC
 lbl_804968EC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804968F8
 lbl_804968F8:
 	.4byte 0x4E6F4E61
@@ -24562,9 +24432,8 @@ lbl_80496B70:
 	.4byte 0x63707000
 .global lbl_80496B88
 lbl_80496B88:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x66696C65
 	.4byte 0x5F73656C
 	.4byte 0x6563745F
@@ -24704,9 +24573,8 @@ lbl_80496D78:
 	.4byte 0x70700000
 .global lbl_80496D90
 lbl_80496D90:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x7469746C
 	.4byte 0x655F6D65
 	.4byte 0x6E755F35
@@ -24759,9 +24627,8 @@ lbl_80496E3C:
 	.4byte 0x70700000
 .global lbl_80496E4C
 lbl_80496E4C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x917A92E8
 	.4byte 0x8A4F82C5
 	.4byte 0x82B78142
@@ -24803,9 +24670,8 @@ lbl_80496EC4:
 	.4byte 0x70000000
 .global lbl_80496EDC
 lbl_80496EDC:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80496EE8
 lbl_80496EE8:
 	.4byte 0x82A082E8
@@ -24886,9 +24752,8 @@ lbl_80496FE4:
 	.4byte 0x63707000
 .global lbl_80497000
 lbl_80497000:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x00000000
 .global lbl_80497010
 lbl_80497010:
@@ -24925,9 +24790,8 @@ lbl_8049706C:
 	.4byte 0x00000000
 .global lbl_80497084
 lbl_80497084:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x81A68381
 	.4byte 0x8382838A
 	.4byte 0x815B834A
@@ -24971,9 +24835,8 @@ lbl_80497118:
 	.4byte 0x63707000
 .global lbl_8049712C
 lbl_8049712C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80497138
 lbl_80497138:
 	.4byte 0x54436F6F
@@ -25072,9 +24935,8 @@ lbl_80497278:
 	.4byte 0x00000000
 .global lbl_80497290
 lbl_80497290:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x70696B6D
 	.4byte 0x696E2F74
 	.4byte 0x69746C65
@@ -25311,9 +25173,8 @@ lbl_804975A4:
 	.4byte 0x67616E65
 	.4byte 0x2E637070
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80497628
 lbl_80497628:
 	.4byte 0x00000000
@@ -25431,9 +25292,8 @@ lbl_80497748:
 	.4byte 0x61707079
 	.4byte 0x2E637070
 	.4byte 0x00000000
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_804977F0
 lbl_804977F0:
 	.4byte 0x54536372
@@ -25457,9 +25317,8 @@ lbl_80497818:
 	.4byte 0x63707000
 .global lbl_8049782C
 lbl_8049782C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80497838
 lbl_80497838:
 	.4byte 0x54536372
@@ -25519,9 +25378,8 @@ lbl_804978E0:
 	.4byte 0x63707000
 .global lbl_804978F4
 lbl_804978F4:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80497900
 lbl_80497900:
 	.4byte 0x41726743
@@ -25537,9 +25395,8 @@ lbl_80497910:
 	.4byte 0x00000000
 .global lbl_80497924
 lbl_80497924:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x41726750
 	.4byte 0x726D436F
 	.4byte 0x6C6F7200
@@ -25573,9 +25430,8 @@ lbl_80497988:
 	.4byte 0x70700000
 .global lbl_8049799C
 lbl_8049799C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x75736572
 	.4byte 0x2F456269
 	.4byte 0x73617761
@@ -25606,168 +25462,57 @@ lbl_8049799C:
 	.4byte 0x00000000
 .global lbl_80497A18
 lbl_80497A18:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E4F6D61
-	.4byte 0x6B650000
-	.4byte 0x53637265
-	.4byte 0x656E5F6E
-	.4byte 0x65775363
-	.4byte 0x7265656E
-	.4byte 0x5F6F665F
-	.4byte 0x544F6D61
-	.4byte 0x6B650000
-	.4byte 0x6F6D616B
-	.4byte 0x652E626C
-	.4byte 0x6F000000
-	.4byte 0x53637265
-	.4byte 0x656E5F73
-	.4byte 0x65744361
-	.4byte 0x6C6C4261
-	.4byte 0x636B4D65
-	.4byte 0x73736167
-	.4byte 0x655F6F66
-	.4byte 0x5F544F6D
-	.4byte 0x616B6500
-	.4byte 0x6F6D616B
-	.4byte 0x652E6263
-	.4byte 0x6B000000
+	.asciz "ebiScreenOmake"
+	.skip 1
+	.asciz "Screen_newScreen_of_TOmake"
+	.skip 1
+	.asciz "omake.blo"
+	.skip 2
+	.asciz "Screen_setCallBackMessage_of_TOmake"
+	.asciz "omake.bck"
+	.skip 2
 .global lbl_80497A80
 lbl_80497A80:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E4F6D61
-	.4byte 0x6B652E63
-	.4byte 0x70700000
+	.asciz "ebiScreenOmake.cpp"
+	.skip 1
 .global lbl_80497A94
 lbl_80497A94:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80497AA0
 lbl_80497AA0:
-	.4byte 0x6562694F
-	.4byte 0x6D616B65
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-	.4byte 0x46534D53
-	.4byte 0x74617465
-	.4byte 0x5F4F6D61
-	.4byte 0x6B655363
-	.4byte 0x7265656E
-	.4byte 0x00000000
-	.4byte 0x46534D53
-	.4byte 0x74617465
-	.4byte 0x5F436172
-	.4byte 0x64455363
-	.4byte 0x7265656E
-	.4byte 0x00000000
-	.4byte 0x46534D53
-	.4byte 0x74617465
-	.4byte 0x5F53656C
-	.4byte 0x65637447
-	.4byte 0x616D6500
+	.asciz "ebiOmakeMgr.cpp"
+	.asciz "FSMState_OmakeScreen"
+	.skip 3
+	.asciz "FSMState_CardEScreen"
+	.skip 3
+	.asciz "FSMState_SelectGame"
 	.4byte 0x4D6F7669
 	.4byte 0x658FF391
 	.4byte 0xD4000000
-	.4byte 0x544F6D61
-	.4byte 0x6B654D67
-	.4byte 0x723A3A6C
-	.4byte 0x6F616452
-	.4byte 0x65736F75
-	.4byte 0x72636500
-	.4byte 0x6F6D616B
-	.4byte 0x652E737A
-	.4byte 0x73000000
+	.asciz "TOmakeMgr::loadResource"
+	.asciz "omake.szs"
+	.skip 2
 .global lbl_80497B24
 lbl_80497B24:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_80497B30
 lbl_80497B30:
-	.4byte 0x4172674F
-	.4byte 0x70656E4F
-	.4byte 0x6D616B65
-	.4byte 0x00000000
+	.asciz "ArgOpenOmake"
+	.skip 3
 .global lbl_80497B40
 lbl_80497B40:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E4F6D61
-	.4byte 0x6B654361
-	.4byte 0x72644500
-	.4byte 0x53637265
-	.4byte 0x656E5F6E
-	.4byte 0x65775363
-	.4byte 0x7265656E
-	.4byte 0x5F6F665F
-	.4byte 0x544F6D61
-	.4byte 0x6B654361
-	.4byte 0x72644500
-	.4byte 0x6F6D616B
-	.4byte 0x655F7475
-	.4byte 0x6E616775
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x53637265
-	.4byte 0x656E5F73
-	.4byte 0x65744361
-	.4byte 0x6C6C4261
-	.4byte 0x636B4D65
-	.4byte 0x73736167
-	.4byte 0x655F6F66
-	.4byte 0x5F544F6D
-	.4byte 0x616B6543
-	.4byte 0x61726445
-	.4byte 0x00000000
-	.4byte 0x6F6D616B
-	.4byte 0x655F7475
-	.4byte 0x6E616775
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x6F6D616B
-	.4byte 0x655F7475
-	.4byte 0x6E616775
-	.4byte 0x2E62706B
-	.4byte 0x00000000
+	.asciz "ebiScreenOmakeCardE"
+	.asciz "Screen_newScreen_of_TOmakeCardE"
+	.asciz "omake_tunagu.blo"
+	.skip 3
+	.asciz "Screen_setCallBackMessage_of_TOmakeCardE"
+	.skip 3
+	.asciz "omake_tunagu.bck"
+	.skip 3
+	.asciz "omake_tunagu.bpk"
+	.skip 3
 .global lbl_80497BDC
 lbl_80497BDC:
 	.asciz "TOmakeCardE"
-.global lbl_80497BE8
-lbl_80497BE8:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E4F6D61
-	.4byte 0x6B654761
-	.4byte 0x6D650000
-	.4byte 0x53637265
-	.4byte 0x656E5F6E
-	.4byte 0x65775363
-	.4byte 0x7265656E
-	.4byte 0x5F6F665F
-	.4byte 0x544F6D61
-	.4byte 0x6B654761
-	.4byte 0x6D650000
-	.4byte 0x6F6D616B
-	.4byte 0x655F6761
-	.4byte 0x6D652E62
-	.4byte 0x6C6F0000
-	.4byte 0x53637265
-	.4byte 0x656E5F73
-	.4byte 0x65744361
-	.4byte 0x6C6C4261
-	.4byte 0x636B4D65
-	.4byte 0x73736167
-	.4byte 0x655F6F66
-	.4byte 0x5F544F6D
-	.4byte 0x616B6547
-	.4byte 0x616D6500
-	.4byte 0x6F6D616B
-	.4byte 0x655F6761
-	.4byte 0x6D652E62
-	.4byte 0x636B0000
-.global lbl_80497C64
-lbl_80497C64:
-	.asciz "TOmakeGame"
-	.skip 1

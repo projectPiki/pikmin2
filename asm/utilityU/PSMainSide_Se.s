@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x4
+.balign 0x8
 .global lbl_8049DA08
 lbl_8049DA08:
 	.4byte 0x50534D61
@@ -10,9 +10,8 @@ lbl_8049DA08:
 	.4byte 0x70000000
 .global lbl_8049DA1C
 lbl_8049DA1C:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 	.4byte 0x67616D65
 	.4byte 0x53746174
 	.4byte 0x2E680000

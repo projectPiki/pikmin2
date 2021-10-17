@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x4
+.balign 0x8
 .global lbl_8049A680
 lbl_8049A680:
 	.asciz "resourceMgr2D.cpp"

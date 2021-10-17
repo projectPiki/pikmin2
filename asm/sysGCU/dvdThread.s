@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x4
+.balign 0x8
 .global lbl_80499C18
 lbl_80499C18:
 	.asciz "dvdThread.cpp"

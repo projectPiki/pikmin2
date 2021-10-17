@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x4
+.balign 0x8
 .global lbl_804995F0
 lbl_804995F0:
 	.asciz "node.cpp"
@@ -36,16 +36,16 @@ __vt__4Node:
 .balign 0x8
 .global lbl_80520250
 lbl_80520250:
-	.4byte 0x20202020
-	.4byte 0x00000000
+	.asciz "    "
+	.skip 3
 .global lbl_80520258
 lbl_80520258:
-	.4byte 0x5B25735D
-	.4byte 0x0A000000
+	.asciz "[%s]\n"
+	.skip 2
 .global lbl_80520260
 lbl_80520260:
-	.4byte 0x434E6F64
-	.4byte 0x65000000
+	.asciz "CNode"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global displayInfo__4NodeFi

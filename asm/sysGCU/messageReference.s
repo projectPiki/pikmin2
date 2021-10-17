@@ -24,8 +24,8 @@ lbl_805208E8:
 	.4byte 0x83670000
 .global lbl_805208F0
 lbl_805208F0:
-	.4byte 0x25640000
-	.4byte 0x00000000
+	.asciz "%d"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_word__Q25P2JME10TReferenceCFUl

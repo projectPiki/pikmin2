@@ -1049,11 +1049,11 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
+	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 
 GROUP_1_FILES:=\
-	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\

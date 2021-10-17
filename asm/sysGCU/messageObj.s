@@ -1,17 +1,14 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x4
+.balign 0x8
 .global lbl_8049AB98
 lbl_8049AB98:
-	.4byte 0x6D657373
-	.4byte 0x6167654F
-	.4byte 0x626A2E63
-	.4byte 0x70700000
+	.asciz "messageObj.cpp"
+	.skip 1
 .global lbl_8049ABA8
 lbl_8049ABA8:
-	.4byte 0x50324173
-	.4byte 0x73657274
-	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
 .global lbl_8049ABB4
 lbl_8049ABB4:
 	.4byte 0x4A4D6573
@@ -26,11 +23,8 @@ lbl_8049ABC8:
 	.4byte 0x89BB0000
 .global lbl_8049ABD4
 lbl_8049ABD4:
-	.4byte 0x6D657373
-	.4byte 0x6167654F
-	.4byte 0x626A2E68
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "messageObj.h"
+	.skip 7
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -59,8 +53,8 @@ __vt__Q25P2JME8TControl:
 .balign 0x8
 .global lbl_805208A8
 lbl_805208A8:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.skip 4
 .global lbl_805208B0
 lbl_805208B0:
 	.4byte 0x43300000

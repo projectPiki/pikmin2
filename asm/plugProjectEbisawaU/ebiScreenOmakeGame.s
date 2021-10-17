@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80497BE8
+lbl_80497BE8:
+	.asciz "ebiScreenOmakeGame"
+	.skip 1
+	.asciz "Screen_newScreen_of_TOmakeGame"
+	.skip 1
+	.asciz "omake_game.blo"
+	.skip 1
+	.asciz "Screen_setCallBackMessage_of_TOmakeGame"
+	.asciz "omake_game.bck"
+	.skip 1
+.global lbl_80497C64
+lbl_80497C64:
+	.asciz "TOmakeGame"
+	.skip 1
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q33ebi6Screen10TOmakeGame
