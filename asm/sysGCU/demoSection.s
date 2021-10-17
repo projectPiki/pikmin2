@@ -6,11 +6,9 @@ lbl_8049B3C0:
 	.asciz "demoSection.cpp"
 	.asciz "TitleSection::init"
 	.skip 1
-	.4byte 0x4A4D414E
-	.4byte 0x65775369
-	.4byte 0x6E546162
-	.4byte 0x6C650000
-	.4byte 0x54485083
+	.asciz "JMANewSinTable"
+	.skip 1
+	.4byte 0x54485083 # "THPƒZƒNƒVƒ‡ƒ“"
 	.4byte 0x5A834E83
 	.4byte 0x56838783
 	.4byte 0x93000000
