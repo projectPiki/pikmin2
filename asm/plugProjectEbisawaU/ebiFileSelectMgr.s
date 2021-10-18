@@ -248,6 +248,11 @@ __vt__Q33ebi10FileSelect15FSMStateMachine:
 	.4byte "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global msInstance__Q33ebi10FileSelect4TMgr
+msInstance__Q33ebi10FileSelect4TMgr:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr
 init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr:

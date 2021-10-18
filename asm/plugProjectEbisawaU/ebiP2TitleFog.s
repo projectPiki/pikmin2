@@ -8,6 +8,14 @@ lbl_804E9FA8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516110
+lbl_80516110:
+	.skip 0x4
+.global lbl_80516114
+lbl_80516114:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051FE30

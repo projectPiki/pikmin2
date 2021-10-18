@@ -79,6 +79,20 @@ __vt__14TParticle2dMgr:
 	.4byte 0
 	.4byte "@24@__dt__14TParticle2dMgrFv"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516080
+lbl_80516080:
+	.skip 0x4
+.global lbl_80516084
+lbl_80516084:
+	.skip 0x4
+.global particle2dMgr
+particle2dMgr:
+	.skip 0x4
+.global _instance__14TParticle2dMgr
+_instance__14TParticle2dMgr:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F6C0

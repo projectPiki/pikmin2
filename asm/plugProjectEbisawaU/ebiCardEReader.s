@@ -62,6 +62,11 @@ __vt__Q33ebi11CardEReader4TMgr:
 cInitialCode__Q23ebi11CardEReader:
 	.ascii "PSAJ"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global gCardEMgr__3ebi
+gCardEMgr__3ebi:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051FE58

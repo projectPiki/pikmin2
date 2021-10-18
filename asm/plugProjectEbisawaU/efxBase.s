@@ -308,6 +308,11 @@ __vt__Q23efx24TCallBack_StaticClipping:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global mCallBack_StaticClipping__Q23efx5TBase
+mCallBack_StaticClipping__Q23efx5TBase:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F610

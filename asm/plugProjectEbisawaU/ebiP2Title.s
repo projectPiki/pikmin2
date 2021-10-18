@@ -491,6 +491,26 @@ __vt__Q33ebi5title8TObjBase:
 	.4byte getCreatureType__Q33ebi5title8TObjBaseFv
 	.4byte isCalc__Q33ebi5title8TObjBaseFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805160A0
+lbl_805160A0:
+	.skip 0x4
+.global lbl_805160A4
+lbl_805160A4:
+	.skip 0x4
+.global titleMgr__Q23ebi5title
+titleMgr__Q23ebi5title:
+	.skip 0x4
+.global _instance__Q33ebi5title9TTitleMgr
+_instance__Q33ebi5title9TTitleMgr:
+	.skip 0x4
+.global boidCalcTimer$5256
+boidCalcTimer$5256:
+	.skip 0x4
+.global init$5257
+init$5257:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F6F8

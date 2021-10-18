@@ -78,6 +78,14 @@ __vt__Q33ebi6Screen7ArgOpen:
 	.4byte 0
 	.4byte getName__Q33ebi6Screen7ArgOpenFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516108
+lbl_80516108:
+	.skip 0x4
+.global lbl_8051610C
+lbl_8051610C:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global kFadeOutTime__Q23ebi13TMainTitleMgr

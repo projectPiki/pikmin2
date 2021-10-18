@@ -240,6 +240,20 @@ __vt__Q43ebi5title6Pikmin5TUnit:
 	.4byte isCalc__Q43ebi5title6Pikmin5TUnitFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805160E8
+lbl_805160E8:
+	.skip 0x4
+.global lbl_805160EC
+lbl_805160EC:
+	.skip 0x4
+.global boidCalcTimer$4026
+boidCalcTimer$4026:
+	.skip 0x4
+.global init$4027
+init$4027:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051FC60

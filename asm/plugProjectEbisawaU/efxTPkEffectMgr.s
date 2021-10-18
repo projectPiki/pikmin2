@@ -71,6 +71,14 @@ __vt__Q23efx19TPkOneEmitterSimple:
 	.4byte __dt__Q23efx19TPkOneEmitterSimpleFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global pkEffectMgr
+pkEffectMgr:
+	.skip 0x4
+.global _instance__Q23efx12TPkEffectMgr
+_instance__Q23efx12TPkEffectMgr:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg
 create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg:

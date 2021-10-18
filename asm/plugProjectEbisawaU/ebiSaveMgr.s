@@ -270,6 +270,11 @@ __vt__Q33ebi4Save15FSMStateMachine:
 	.4byte "exec__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgr"
 	.4byte "transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global msInstance__Q33ebi4Save4TMgr
+msInstance__Q33ebi4Save4TMgr:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051FBA0

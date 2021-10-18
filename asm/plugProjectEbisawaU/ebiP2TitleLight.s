@@ -18,6 +18,14 @@ __vt__Q33ebi5title14TTitleLightMgr:
 	.4byte drawDebugInfo__8LightMgrFR8Graphics
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_805160C8
+lbl_805160C8:
+	.skip 0x4
+.global lbl_805160CC
+lbl_805160CC:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F8A0

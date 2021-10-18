@@ -160,6 +160,14 @@ __vt__Q43ebi5title6Chappy11TAnimFolder:
 	.4byte 0
 	.4byte getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516100
+lbl_80516100:
+	.skip 0x4
+.global lbl_80516104
+lbl_80516104:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051FD68
