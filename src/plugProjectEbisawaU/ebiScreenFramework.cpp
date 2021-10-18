@@ -40,6 +40,7 @@ namespace screen {
 			doOpenScreen(open_screen);
 			is_zero   = 1;
 			this->_08 = 1;
+			return is_zero;
 		}
 		else {
 			return 0;
