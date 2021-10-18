@@ -15,7 +15,7 @@ namespace ebi {
 	struct TScreenBase {
 		virtual void setArchive(JKRArchive*);
 		virtual bool openScreen(ArgOpen*);
-		virtual uint closeScreen(ArgClose*);
+		virtual bool closeScreen(ArgClose*);
 		virtual uchar killScreen();
 		virtual uchar update();
 		virtual uchar draw();
@@ -24,14 +24,19 @@ namespace ebi {
 		virtual void doOpenScreen(ArgOpen*);
 		virtual void doCloseScreen(ArgClose*);
 		virtual uchar doKillScreen();
-		virtual uint doUpdateStateOpen();
-		virtual uint doUpdateStateWait();
-		virtual uint doUpdateStateClose();
+		virtual void doInitWaitState();
+		virtual bool doUpdateStateOpen();
+		virtual bool doUpdateStateWait();
+		virtual bool doUpdateStateClose();
 		virtual void doDraw();
 		virtual char* getName();
 
-		JKRArchive* pArchive; // _04
-		int _08;                                      // _08
+		bool isOpenScreen(void);
+		bool isWaitScreen(void);
+		bool isCloseScreen(void);
+
+		JKRArchive* pArchive;	// _04
+		int _08;				// _08
 	};
 	} // namespace screen
 } // namespace ebi
