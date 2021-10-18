@@ -23,10 +23,10 @@ lbl_80499654:
 .balign 0x8
 .global lbl_80520268
 lbl_80520268:
-	.float -325.949
+	.float -325.9493
 .global lbl_8052026C
 lbl_8052026C:
-	.float 325.949
+	.float 325.9493
 .global lbl_80520270
 lbl_80520270:
 	.float 0.0
@@ -38,13 +38,13 @@ lbl_80520278:
 	.float 1.0
 .global lbl_8052027C
 lbl_8052027C:
-	.float 3.14159
+	.float 3.1415927
 .global lbl_80520280
 lbl_80520280:
 	.float 1023.5
 .global lbl_80520284
 lbl_80520284:
-	.float 1.5708
+	.float 1.5707964
 .global lbl_80520288
 lbl_80520288:
 	.float 0.5
@@ -71,7 +71,7 @@ lbl_805202A4:
 	.float 4.0
 .global lbl_805202A8
 lbl_805202A8:
-	.float 6.28319
+	.float 6.2831855
 .global lbl_805202AC
 lbl_805202AC:
 	.float 0.01
