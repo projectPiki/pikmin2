@@ -58,6 +58,27 @@ __vt__Q28Morimura17TConfirmEndWindow:
 	.4byte out_menu_1__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
 	.4byte getResult__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F358
+lbl_8051F358:
+	.4byte 0x00000000
+.global lbl_8051F35C
+lbl_8051F35C:
+	.float 0.05
+.global lbl_8051F360
+lbl_8051F360:
+	.float 0.1
+.global lbl_8051F364
+lbl_8051F364:
+	.float 1.0
+.global lbl_8051F368
+lbl_8051F368:
+	.4byte 0x3DF5C28F
+.global lbl_8051F36C
+lbl_8051F36C:
+	.4byte 0xBDF5C28F
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28Morimura17TConfirmEndWindowFPCc
 __ct__Q28Morimura17TConfirmEndWindowFPCc:

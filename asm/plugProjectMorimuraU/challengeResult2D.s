@@ -414,6 +414,179 @@ mDemoSpeedUpMax__Q28Morimura16TChallengeResult:
 mFlashColor__Q28Morimura16TChallengeResult:
 	.4byte 0xFFFF00FF
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F080
+lbl_8051F080:
+	.4byte 0x42F00000
+.global lbl_8051F084
+lbl_8051F084:
+	.4byte 0x00000000
+.global lbl_8051F088
+lbl_8051F088:
+	.4byte 0x41A00000
+.global lbl_8051F08C
+lbl_8051F08C:
+	.4byte 0x40C90FDB
+.global lbl_8051F090
+lbl_8051F090:
+	.4byte 0x43B40000
+.global lbl_8051F094
+lbl_8051F094:
+	.4byte 0xC3A2F983
+.global lbl_8051F098
+lbl_8051F098:
+	.4byte 0x43A2F983
+.global lbl_8051F09C
+lbl_8051F09C:
+	.4byte 0x40490FDB
+.global lbl_8051F0A0
+lbl_8051F0A0:
+	.4byte 0x3BB60B61
+.global lbl_8051F0A4
+lbl_8051F0A4:
+	.float 0.1
+.global lbl_8051F0A8
+lbl_8051F0A8:
+	.float 0.05
+.global lbl_8051F0AC
+lbl_8051F0AC:
+	.4byte 0x42C80000
+.global lbl_8051F0B0
+lbl_8051F0B0:
+	.4byte 0x3C23D70A
+.global lbl_8051F0B4
+lbl_8051F0B4:
+	.float 0.5
+.global lbl_8051F0B8
+lbl_8051F0B8:
+	.4byte 0x44160000
+.global lbl_8051F0BC
+lbl_8051F0BC:
+	.float 1.0
+.global lbl_8051F0C0
+lbl_8051F0C0:
+	.4byte 0x3ECCCCCD
+.global lbl_8051F0C4
+lbl_8051F0C4:
+	.4byte 0x42480000
+.global lbl_8051F0C8
+lbl_8051F0C8:
+	.4byte 0x3F4CCCCD
+	.4byte 0x00000000
+.global lbl_8051F0D0
+lbl_8051F0D0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051F0D8
+lbl_8051F0D8:
+	.4byte 0x40240000
+	.4byte 0x00000000
+.global lbl_8051F0E0
+lbl_8051F0E0:
+	.4byte 0x47000000
+.global lbl_8051F0E4
+lbl_8051F0E4:
+	.4byte 0x41100000
+.global lbl_8051F0E8
+lbl_8051F0E8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051F0F0
+lbl_8051F0F0:
+	.4byte 0x43610000
+.global lbl_8051F0F4
+lbl_8051F0F4:
+	.4byte 0x437A0000
+.global lbl_8051F0F8
+lbl_8051F0F8:
+	.4byte 0x42200000
+.global lbl_8051F0FC
+lbl_8051F0FC:
+	.4byte 0x43CA8000
+.global lbl_8051F100
+lbl_8051F100:
+	.4byte 0x43700000
+.global lbl_8051F104
+lbl_8051F104:
+	.4byte 0x44124000
+.global lbl_8051F108
+lbl_8051F108:
+	.4byte 0x43D70000
+.global lbl_8051F10C
+lbl_8051F10C:
+	.4byte 0x43DC0000
+.global lbl_8051F110
+lbl_8051F110:
+	.4byte 0x432A0000
+.global lbl_8051F114
+lbl_8051F114:
+	.4byte 0x43480000
+.global lbl_8051F118
+lbl_8051F118:
+	.4byte 0x428C0000
+.global lbl_8051F11C
+lbl_8051F11C:
+	.4byte 0x41F00000
+.global lbl_8051F120
+lbl_8051F120:
+	.4byte 0xC2E60000
+.global lbl_8051F124
+lbl_8051F124:
+	.4byte 0x44200000
+.global lbl_8051F128
+lbl_8051F128:
+	.4byte 0x43F00000
+.global lbl_8051F12C
+lbl_8051F12C:
+	.4byte 0x40A00000
+.global lbl_8051F130
+lbl_8051F130:
+	.4byte 0x437F0000
+.global lbl_8051F134
+lbl_8051F134:
+	.4byte 0x40C00000
+.global lbl_8051F138
+lbl_8051F138:
+	.4byte 0x447A0000
+.global lbl_8051F13C
+lbl_8051F13C:
+	.4byte 0x47AFC800
+.global lbl_8051F140
+lbl_8051F140:
+	.4byte 0x460CA000
+.global lbl_8051F144
+lbl_8051F144:
+	.4byte 0x41200000
+.global lbl_8051F148
+lbl_8051F148:
+	.4byte 0x44610000
+.global lbl_8051F14C
+lbl_8051F14C:
+	.4byte 0x461C3C00
+.global lbl_8051F150
+lbl_8051F150:
+	.4byte 0x3E4CCCCD
+.global lbl_8051F154
+lbl_8051F154:
+	.4byte 0x42700000
+.global lbl_8051F158
+lbl_8051F158:
+	.4byte 0x43960000
+.global lbl_8051F15C
+lbl_8051F15C:
+	.4byte 0x44098000
+.global lbl_8051F160
+lbl_8051F160:
+	.4byte 0x430C0000
+.global lbl_8051F164
+lbl_8051F164:
+	.4byte 0x43C80000
+.global lbl_8051F168
+lbl_8051F168:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q28Morimura22TChallengeResultScreenFPCcUl
 create__Q28Morimura22TChallengeResultScreenFPCcUl:

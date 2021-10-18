@@ -290,6 +290,33 @@ __vt__Q34Game6Miulin5Parms:
 	.4byte read__Q34Game6Miulin5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E7F0
+lbl_8051E7F0:
+	.4byte 0x41A00000
+.global lbl_8051E7F4
+lbl_8051E7F4:
+	.4byte 0x00000000
+.global lbl_8051E7F8
+lbl_8051E7F8:
+	.4byte 0x43340000
+.global lbl_8051E7FC
+lbl_8051E7FC:
+	.4byte 0x40000000
+.global lbl_8051E800
+lbl_8051E800:
+	.4byte 0x41200000
+.global lbl_8051E804
+lbl_8051E804:
+	.4byte 0x41F00000
+.global lbl_8051E808
+lbl_8051E808:
+	.4byte 0x41C80000
+.global lbl_8051E80C
+lbl_8051E80C:
+	.4byte 0x42C80000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Miulin3MgrFiUc
 __ct__Q34Game6Miulin3MgrFiUc:

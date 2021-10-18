@@ -309,6 +309,79 @@ __vt__16J3DUMtxCacheBase:
 	.4byte 0
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051EA50
+lbl_8051EA50:
+	.4byte 0x43960000
+.global lbl_8051EA54
+lbl_8051EA54:
+	.4byte 0x00000000
+.global lbl_8051EA58
+lbl_8051EA58:
+	.4byte 0x44FA0000
+.global lbl_8051EA5C
+lbl_8051EA5C:
+	.4byte 0x42A00000
+.global lbl_8051EA60
+lbl_8051EA60:
+	.4byte 0x43480000
+.global lbl_8051EA64
+lbl_8051EA64:
+	.float 1.0
+.global lbl_8051EA68
+lbl_8051EA68:
+	.4byte 0x42200000
+.global lbl_8051EA6C
+lbl_8051EA6C:
+	.float 0.3
+.global lbl_8051EA70
+lbl_8051EA70:
+	.4byte 0x41200000
+.global lbl_8051EA74
+lbl_8051EA74:
+	.4byte 0x3E4CCCCD
+.global lbl_8051EA78
+lbl_8051EA78:
+	.4byte 0x42480000
+.global lbl_8051EA7C
+lbl_8051EA7C:
+	.4byte 0x41F00000
+.global lbl_8051EA80
+lbl_8051EA80:
+	.4byte 0x43160000
+.global lbl_8051EA84
+lbl_8051EA84:
+	.float 0.5
+.global lbl_8051EA88
+lbl_8051EA88:
+	.4byte 0x42340000
+.global lbl_8051EA8C
+lbl_8051EA8C:
+	.4byte 0xC1200000
+.global lbl_8051EA90
+lbl_8051EA90:
+	.4byte 0x47000000
+.global lbl_8051EA94
+lbl_8051EA94:
+	.4byte 0x3F4CCCCD
+.global lbl_8051EA98
+lbl_8051EA98:
+	.4byte 0x40C90FDB
+.global lbl_8051EA9C
+lbl_8051EA9C:
+	.4byte 0xC3A2F983
+.global lbl_8051EAA0
+lbl_8051EAA0:
+	.4byte 0x43A2F983
+.global lbl_8051EAA4
+lbl_8051EAA4:
+	.4byte 0xBF800000
+.global lbl_8051EAA8
+lbl_8051EAA8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11TamagoMushi3MgrFiUc
 __ct__Q34Game11TamagoMushi3MgrFiUc:

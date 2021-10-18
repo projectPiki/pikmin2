@@ -103,6 +103,13 @@ __vt__Q28PSSystem12DirectorBase:
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E1F0
+lbl_8051E1F0:
+	.4byte 0x50535365
+	.4byte 0x712E6800
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28PSSystem12DirectorBaseFiPCc
 __ct__Q28PSSystem12DirectorBaseFiPCc:

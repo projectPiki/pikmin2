@@ -275,6 +275,67 @@ __vt__Q34Game4Tyre3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F5B8
+lbl_8051F5B8:
+	.4byte 0x00000000
+.global lbl_8051F5BC
+lbl_8051F5BC:
+	.4byte 0x3C23D70A
+.global lbl_8051F5C0
+lbl_8051F5C0:
+	.float 0.5
+.global lbl_8051F5C4
+lbl_8051F5C4:
+	.float 1.0
+.global lbl_8051F5C8
+lbl_8051F5C8:
+	.4byte 0xC47A0000
+.global lbl_8051F5CC
+lbl_8051F5CC:
+	.4byte 0x461C4000
+.global lbl_8051F5D0
+lbl_8051F5D0:
+	.4byte 0x44610000
+	.4byte 0x00000000
+.global lbl_8051F5D8
+lbl_8051F5D8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051F5E0
+lbl_8051F5E0:
+	.4byte 0x40000000
+.global lbl_8051F5E4
+lbl_8051F5E4:
+	.4byte 0x41A00000
+.global lbl_8051F5E8
+lbl_8051F5E8:
+	.4byte 0x41200000
+.global lbl_8051F5EC
+lbl_8051F5EC:
+	.4byte 0x74797265
+	.4byte 0x464C0000
+.global lbl_8051F5F4
+lbl_8051F5F4:
+	.4byte 0x54797265
+	.4byte 0x46520000
+.global lbl_8051F5FC
+lbl_8051F5FC:
+	.4byte 0x42C80000
+.global lbl_8051F600
+lbl_8051F600:
+	.4byte 0x40A00000
+.global lbl_8051F604
+lbl_8051F604:
+	.4byte 0x42480000
+.global lbl_8051F608
+lbl_8051F608:
+	.4byte 0x42A00000
+.global lbl_8051F60C
+lbl_8051F60C:
+	.4byte 0x3F4CCCCD
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global frontTyreCallBack__Q24Game4TyreFP8J3DJointi
 frontTyreCallBack__Q24Game4TyreFP8J3DJointi:

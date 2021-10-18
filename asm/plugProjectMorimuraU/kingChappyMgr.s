@@ -371,6 +371,82 @@ __vt__Q34Game10KingChappy5Parms:
 	.4byte read__Q34Game10KingChappy5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E608
+lbl_8051E608:
+	.4byte 0x40400000
+.global lbl_8051E60C
+lbl_8051E60C:
+	.4byte 0x41A00000
+.global lbl_8051E610
+lbl_8051E610:
+	.4byte 0x00000000
+.global lbl_8051E614
+lbl_8051E614:
+	.4byte 0x43340000
+.global lbl_8051E618
+lbl_8051E618:
+	.4byte 0x43160000
+.global lbl_8051E61C
+lbl_8051E61C:
+	.4byte 0x43960000
+.global lbl_8051E620
+lbl_8051E620:
+	.4byte 0x42340000
+.global lbl_8051E624
+lbl_8051E624:
+	.4byte 0x42C80000
+.global lbl_8051E628
+lbl_8051E628:
+	.4byte 0x43480000
+.global lbl_8051E62C
+lbl_8051E62C:
+	.4byte 0x44160000
+.global lbl_8051E630
+lbl_8051E630:
+	.4byte 0x428C0000
+.global lbl_8051E634
+lbl_8051E634:
+	.4byte 0x41200000
+.global lbl_8051E638
+lbl_8051E638:
+	.4byte 0x43C80000
+.global lbl_8051E63C
+lbl_8051E63C:
+	.float 1.0
+.global lbl_8051E640
+lbl_8051E640:
+	.float 0.5
+.global lbl_8051E644
+lbl_8051E644:
+	.4byte 0x447A0000
+.global lbl_8051E648
+lbl_8051E648:
+	.4byte 0x40000000
+.global lbl_8051E64C
+lbl_8051E64C:
+	.4byte 0x461C3C00
+.global lbl_8051E650
+lbl_8051E650:
+	.4byte 0x62696791
+	.4byte 0xAC937800
+.global lbl_8051E658
+lbl_8051E658:
+	.2byte 0x42A0
+.global lbl_8051E65A
+lbl_8051E65A:
+	.2byte 0x0000
+.global lbl_8051E65C
+lbl_8051E65C:
+	.float 0.1
+.global lbl_8051E660
+lbl_8051E660:
+	.4byte 0x43B40000
+.global lbl_8051E664
+lbl_8051E664:
+	.4byte 0x41700000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10KingChappy3MgrFiUc
 __ct__Q34Game10KingChappy3MgrFiUc:

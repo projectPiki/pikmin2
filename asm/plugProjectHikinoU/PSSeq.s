@@ -405,6 +405,29 @@ __vt__Q28PSSystem11SeqDataList:
 	.4byte "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E0A0
+lbl_8051E0A0:
+	.4byte 0x00000000
+.global lbl_8051E0A4
+lbl_8051E0A4:
+	.4byte 0x42FE0000
+.global lbl_8051E0A8
+lbl_8051E0A8:
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_8051E0B0
+lbl_8051E0B0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051E0B8
+lbl_8051E0B8:
+	.4byte 0x3F4CCCCD
+.global lbl_8051E0BC
+lbl_8051E0BC:
+	.float 0.5
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28PSSystem11SeqDataListFv
 __ct__Q28PSSystem11SeqDataListFv:

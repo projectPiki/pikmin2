@@ -51,6 +51,19 @@ __vt__Q28PSSystem5SysIF:
 sDistanceParameterMoveTime__8PSSystem:
 	.4byte 0x05000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E150
+lbl_8051E150:
+	.float 1.0
+.global lbl_8051E154
+lbl_8051E154:
+	.4byte 0x3F666666
+.global lbl_8051E158
+lbl_8051E158:
+	.4byte 0x4079999A
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getObject__8PSSystemFP8JASTrackUc
 getObject__8PSSystemFP8JASTrackUc:

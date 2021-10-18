@@ -408,6 +408,187 @@ __vt__Q34Game8BlackMan3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F438
+lbl_8051F438:
+	.4byte 0x00000000
+.global lbl_8051F43C
+lbl_8051F43C:
+	.4byte 0x63686573
+	.4byte 0x74000000
+.global lbl_8051F444
+lbl_8051F444:
+	.asciz "footL"
+	.skip 2
+.global lbl_8051F44C
+lbl_8051F44C:
+	.asciz "footR"
+	.skip 2
+.global lbl_8051F454
+lbl_8051F454:
+	.asciz "tyreFL"
+	.skip 1
+.global lbl_8051F45C
+lbl_8051F45C:
+	.asciz "TyreFR"
+	.skip 1
+.global lbl_8051F464
+lbl_8051F464:
+	.asciz "TyreBL"
+	.skip 1
+.global lbl_8051F46C
+lbl_8051F46C:
+	.asciz "tyreBR"
+	.skip 1
+.global lbl_8051F474
+lbl_8051F474:
+	.asciz "waist"
+	.skip 2
+.global lbl_8051F47C
+lbl_8051F47C:
+	.float 10.0
+.global lbl_8051F480
+lbl_8051F480:
+	.float 1.0
+.global lbl_8051F484
+lbl_8051F484:
+	.4byte 0x437F0000
+.global lbl_8051F488
+lbl_8051F488:
+	.4byte 0x461C4000
+.global lbl_8051F48C
+lbl_8051F48C:
+	.4byte 0xBF800000
+.global lbl_8051F490
+lbl_8051F490:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051F498
+lbl_8051F498:
+	.4byte 0x3C23D70A
+.global lbl_8051F49C
+lbl_8051F49C:
+	.4byte 0xC47A0000
+.global lbl_8051F4A0
+lbl_8051F4A0:
+	.float 0.1
+.global lbl_8051F4A4
+lbl_8051F4A4:
+	.4byte 0x41F00000
+.global lbl_8051F4A8
+lbl_8051F4A8:
+	.4byte 0x40000000
+.global lbl_8051F4AC
+lbl_8051F4AC:
+	.4byte 0x42480000
+.global lbl_8051F4B0
+lbl_8051F4B0:
+	.4byte 0x40A00000
+.global lbl_8051F4B4
+lbl_8051F4B4:
+	.4byte 0x491C4000
+.global lbl_8051F4B8
+lbl_8051F4B8:
+	.4byte 0x481C4000
+.global lbl_8051F4BC
+lbl_8051F4BC:
+	.4byte 0x3E4CCCCD
+.global lbl_8051F4C0
+lbl_8051F4C0:
+	.4byte 0x42C80000
+.global lbl_8051F4C4
+lbl_8051F4C4:
+	.float 138.23009
+.global lbl_8051F4C8
+lbl_8051F4C8:
+	.float 0.25
+	.4byte 0x00000000
+.global lbl_8051F4D0
+lbl_8051F4D0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8051F4D8
+lbl_8051F4D8:
+	.float 0.05
+.global lbl_8051F4DC
+lbl_8051F4DC:
+	.float 0.5
+.global lbl_8051F4E0
+lbl_8051F4E0:
+	.float 1.4
+	.4byte 0x00000000
+.global lbl_8051F4E8
+lbl_8051F4E8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051F4F0
+lbl_8051F4F0:
+	.float -325.9493
+.global lbl_8051F4F4
+lbl_8051F4F4:
+	.float 325.9493
+.global lbl_8051F4F8
+lbl_8051F4F8:
+	.float 32768.0
+.global lbl_8051F4FC
+lbl_8051F4FC:
+	.float 1000000.0
+.global lbl_8051F500
+lbl_8051F500:
+	.asciz "handL"
+	.skip 2
+.global lbl_8051F508
+lbl_8051F508:
+	.asciz "handR"
+	.skip 2
+.global lbl_8051F510
+lbl_8051F510:
+	.asciz "legBL"
+	.skip 2
+.global lbl_8051F518
+lbl_8051F518:
+	.asciz "legBR"
+	.skip 2
+.global lbl_8051F520
+lbl_8051F520:
+	.asciz "armBL"
+	.skip 2
+.global lbl_8051F528
+lbl_8051F528:
+	.asciz "armBR"
+	.skip 2
+.global lbl_8051F530
+lbl_8051F530:
+	.asciz "legTL"
+	.skip 2
+.global lbl_8051F538
+lbl_8051F538:
+	.asciz "legTR"
+	.skip 2
+.global lbl_8051F540
+lbl_8051F540:
+	.asciz "clouchL"
+.global lbl_8051F548
+lbl_8051F548:
+	.asciz "clouchR"
+.global lbl_8051F550
+lbl_8051F550:
+	.4byte 0x41700000
+.global lbl_8051F554
+lbl_8051F554:
+	.4byte lbl_8051F454
+.global lbl_8051F558
+lbl_8051F558:
+	.4byte lbl_8051F45C
+.global lbl_8051F55C
+lbl_8051F55C:
+	.4byte 0x3F4CCCCD
+.global lbl_8051F560
+lbl_8051F560:
+	.4byte 0x68656164
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global lHandCallBack__Q24Game8BlackManFP8J3DJointi
 lHandCallBack__Q24Game8BlackManFP8J3DJointi:

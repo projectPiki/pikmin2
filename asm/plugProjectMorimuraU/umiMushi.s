@@ -366,6 +366,101 @@ __vt__Q34Game8UmiMushi3Obj:
 	.4byte "@932@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051ED90
+lbl_8051ED90:
+	.float 1.0
+.global lbl_8051ED94
+lbl_8051ED94:
+	.float 0.5
+.global lbl_8051ED98
+lbl_8051ED98:
+	.4byte 0x42480000
+.global lbl_8051ED9C
+lbl_8051ED9C:
+	.4byte 0x42C80000
+.global lbl_8051EDA0
+lbl_8051EDA0:
+	.4byte 0x00000000
+.global lbl_8051EDA4
+lbl_8051EDA4:
+	.4byte 0x3EE66666
+.global lbl_8051EDA8
+lbl_8051EDA8:
+	.4byte 0x40000000
+.global lbl_8051EDAC
+lbl_8051EDAC:
+	.4byte 0x41F00000
+.global lbl_8051EDB0
+lbl_8051EDB0:
+	.4byte 0x40A00000
+.global lbl_8051EDB4
+lbl_8051EDB4:
+	.4byte 0x41200000
+.global lbl_8051EDB8
+lbl_8051EDB8:
+	.4byte 0x42A00000
+.global lbl_8051EDBC
+lbl_8051EDBC:
+	.4byte 0x41C80000
+.global lbl_8051EDC0
+lbl_8051EDC0:
+	.4byte 0xC47A0000
+.global lbl_8051EDC4
+lbl_8051EDC4:
+	.4byte 0x42700000
+.global lbl_8051EDC8
+lbl_8051EDC8:
+	.4byte 0x43B40000
+.global lbl_8051EDCC
+lbl_8051EDCC:
+	.4byte 0x40490FDB
+.global lbl_8051EDD0
+lbl_8051EDD0:
+	.4byte 0x3BB60B61
+.global lbl_8051EDD4
+lbl_8051EDD4:
+	.4byte 0xC3A2F983
+.global lbl_8051EDD8
+lbl_8051EDD8:
+	.4byte 0x43A2F983
+.global lbl_8051EDDC
+lbl_8051EDDC:
+	.4byte 0x44610000
+.global lbl_8051EDE0
+lbl_8051EDE0:
+	.4byte 0x47000000
+.global lbl_8051EDE4
+lbl_8051EDE4:
+	.4byte 0x40C90FDB
+.global lbl_8051EDE8
+lbl_8051EDE8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051EDF0
+lbl_8051EDF0:
+	.4byte 0x4096CBE4
+.global lbl_8051EDF4
+lbl_8051EDF4:
+	.4byte 0x42400000
+.global lbl_8051EDF8
+lbl_8051EDF8:
+	.4byte 0x3C23D70A
+.global lbl_8051EDFC
+lbl_8051EDFC:
+	.4byte 0x3FC90FDB
+.global lbl_8051EE00
+lbl_8051EE00:
+	.4byte 0x3F99999A
+.global lbl_8051EE04
+lbl_8051EE04:
+	.4byte 0x3FC00000
+.global lbl_8051EE08
+lbl_8051EE08:
+	.4byte 0x3F4CCCCD
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global eyeScaleCallBack__Q24Game8UmiMushiFP8J3DJointi
 eyeScaleCallBack__Q24Game8UmiMushiFP8J3DJointi:

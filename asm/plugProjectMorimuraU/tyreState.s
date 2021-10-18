@@ -68,6 +68,34 @@ __vt__Q34Game4Tyre3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F568
+lbl_8051F568:
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+.global lbl_8051F570
+lbl_8051F570:
+	.4byte 0x3E4CCCCD
+.global lbl_8051F574
+lbl_8051F574:
+	.4byte 0x40C90FDB
+.global lbl_8051F578
+lbl_8051F578:
+	.4byte 0x00000000
+.global lbl_8051F57C
+lbl_8051F57C:
+	.4byte 0x6C616E64
+	.4byte 0x00000000
+.global lbl_8051F584
+lbl_8051F584:
+	.4byte 0x66726565
+	.4byte 0x7A650000
+.global lbl_8051F58C
+lbl_8051F58C:
+	.4byte 0x64656164
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game4Tyre3FSMFPQ24Game9EnemyBase
 init__Q34Game4Tyre3FSMFPQ24Game9EnemyBase:

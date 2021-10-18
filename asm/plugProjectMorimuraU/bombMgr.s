@@ -270,6 +270,21 @@ __vt__Q34Game4Bomb5Parms:
 	.4byte read__Q34Game4Bomb5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E320
+lbl_8051E320:
+	.4byte 0x437A0000
+.global lbl_8051E324
+lbl_8051E324:
+	.4byte 0x00000000
+.global lbl_8051E328
+lbl_8051E328:
+	.4byte 0x44FA0000
+.global lbl_8051E32C
+lbl_8051E32C:
+	.4byte 0x42480000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Bomb3MgrFiUc
 __ct__Q34Game4Bomb3MgrFiUc:

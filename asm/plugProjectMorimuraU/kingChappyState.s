@@ -204,6 +204,103 @@ __vt__Q34Game10KingChappy3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E568
+lbl_8051E568:
+	.4byte 0x77616C6B
+	.4byte 0x00000000
+.global lbl_8051E570
+lbl_8051E570:
+	.float 1.0
+.global lbl_8051E574
+lbl_8051E574:
+	.4byte 0x41A00000
+.global lbl_8051E578
+lbl_8051E578:
+	.4byte 0x00000000
+.global lbl_8051E57C
+lbl_8051E57C:
+	.4byte 0x61747461
+	.4byte 0x636B0000
+.global lbl_8051E584
+lbl_8051E584:
+	.4byte 0x40A00000
+.global lbl_8051E588
+lbl_8051E588:
+	.4byte 0x3F19999A
+.global lbl_8051E58C
+lbl_8051E58C:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051E594
+lbl_8051E594:
+	.4byte 0x666C6963
+	.4byte 0x6B000000
+.global lbl_8051E59C
+lbl_8051E59C:
+	.4byte 0x41C80000
+.global lbl_8051E5A0
+lbl_8051E5A0:
+	.4byte 0x41F00000
+.global lbl_8051E5A4
+lbl_8051E5A4:
+	.4byte 0xC47A0000
+.global lbl_8051E5A8
+lbl_8051E5A8:
+	.4byte 0x77617263
+	.4byte 0x72790000
+.global lbl_8051E5B0
+lbl_8051E5B0:
+	.4byte 0x40490FDB
+.global lbl_8051E5B4
+lbl_8051E5B4:
+	.4byte 0x3BB60B61
+.global lbl_8051E5B8
+lbl_8051E5B8:
+	.4byte 0x42C80000
+.global lbl_8051E5BC
+lbl_8051E5BC:
+	.4byte 0x64616D61
+	.4byte 0x67650000
+	.4byte 0x00000000
+.global lbl_8051E5C8
+lbl_8051E5C8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051E5D0
+lbl_8051E5D0:
+	.4byte 0x7475726E
+	.4byte 0x00000000
+.global lbl_8051E5D8
+lbl_8051E5D8:
+	.float 0.5
+.global lbl_8051E5DC
+lbl_8051E5DC:
+	.4byte 0x65617400
+.global lbl_8051E5E0
+lbl_8051E5E0:
+	.4byte 0x68696465
+.global lbl_8051E5E4
+lbl_8051E5E4:
+	.4byte 0x00000000
+.global lbl_8051E5E8
+lbl_8051E5E8:
+	.4byte 0x61707065
+	.4byte 0x61720000
+.global lbl_8051E5F0
+lbl_8051E5F0:
+	.4byte 0x63617574
+	.4byte 0x696F6E00
+.global lbl_8051E5F8
+lbl_8051E5F8:
+	.4byte 0x7377616C
+	.4byte 0x6C6F7700
+.global lbl_8051E600
+lbl_8051E600:
+	.4byte 0x43960000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10KingChappy3FSMFPQ24Game9EnemyBase
 init__Q34Game10KingChappy3FSMFPQ24Game9EnemyBase:

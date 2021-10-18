@@ -1262,6 +1262,27 @@ __vt__Q34Game6Plants3Obj:
 	.4byte "@704@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E550
+lbl_8051E550:
+	.4byte 0x40A00000
+.global lbl_8051E554
+lbl_8051E554:
+	.float 1.0
+.global lbl_8051E558
+lbl_8051E558:
+	.4byte 0x00000000
+.global lbl_8051E55C
+lbl_8051E55C:
+	.4byte 0x42480000
+.global lbl_8051E560
+lbl_8051E560:
+	.4byte 0xC3A2F983
+.global lbl_8051E564
+lbl_8051E564:
+	.4byte 0x43A2F983
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setParameters__Q34Game6Plants3ObjFv
 setParameters__Q34Game6Plants3ObjFv:

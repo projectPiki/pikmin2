@@ -97,6 +97,30 @@ __vt__Q34Game4Tyre5Parms:
 	.4byte read__Q34Game4Tyre5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F598
+lbl_8051F598:
+	.float 0.5
+.global lbl_8051F59C
+lbl_8051F59C:
+	.4byte 0x00000000
+.global lbl_8051F5A0
+lbl_8051F5A0:
+	.4byte 0x42C80000
+.global lbl_8051F5A4
+lbl_8051F5A4:
+	.4byte 0x3F400000
+.global lbl_8051F5A8
+lbl_8051F5A8:
+	.float 0.05
+.global lbl_8051F5AC
+lbl_8051F5AC:
+	.4byte 0x3CCCCCCD
+.global lbl_8051F5B0
+lbl_8051F5B0:
+	.4byte 0x3F99999A
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Tyre3MgrFiUc
 __ct__Q34Game4Tyre3MgrFiUc:

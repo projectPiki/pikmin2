@@ -243,6 +243,108 @@ __vt__Q34Game11ShijimiChou3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051EEF8
+lbl_8051EEF8:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051EF00
+lbl_8051EF00:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051EF08
+lbl_8051EF08:
+	.4byte 0x00000000
+.global lbl_8051EF0C
+lbl_8051EF0C:
+	.4byte 0x40C90FDB
+.global lbl_8051EF10
+lbl_8051EF10:
+	.4byte 0xC3A2F983
+.global lbl_8051EF14
+lbl_8051EF14:
+	.4byte 0x43A2F983
+.global lbl_8051EF18
+lbl_8051EF18:
+	.4byte 0x40400000
+.global lbl_8051EF1C
+lbl_8051EF1C:
+	.float 0.1
+.global lbl_8051EF20
+lbl_8051EF20:
+	.4byte 0x40000000
+.global lbl_8051EF24
+lbl_8051EF24:
+	.4byte 0x42C80000
+.global lbl_8051EF28
+lbl_8051EF28:
+	.float 1.0
+.global lbl_8051EF2C
+lbl_8051EF2C:
+	.4byte 0x41A00000
+.global lbl_8051EF30
+lbl_8051EF30:
+	.4byte 0x40E00000
+.global lbl_8051EF34
+lbl_8051EF34:
+	.4byte 0x42480000
+.global lbl_8051EF38
+lbl_8051EF38:
+	.4byte 0x43480000
+.global lbl_8051EF3C
+lbl_8051EF3C:
+	.4byte 0x447A0000
+.global lbl_8051EF40
+lbl_8051EF40:
+	.4byte 0x43B40000
+.global lbl_8051EF44
+lbl_8051EF44:
+	.4byte 0x40490FDB
+.global lbl_8051EF48
+lbl_8051EF48:
+	.4byte 0x3BB60B61
+.global lbl_8051EF4C
+lbl_8051EF4C:
+	.4byte 0x3C23D70A
+.global lbl_8051EF50
+lbl_8051EF50:
+	.4byte 0x3E4CCCCD
+.global lbl_8051EF54
+lbl_8051EF54:
+	.float 0.05
+.global lbl_8051EF58
+lbl_8051EF58:
+	.4byte 0x3F99999A
+.global lbl_8051EF5C
+lbl_8051EF5C:
+	.float 0.3
+.global lbl_8051EF60
+lbl_8051EF60:
+	.4byte 0x3CA3D70A
+.global lbl_8051EF64
+lbl_8051EF64:
+	.4byte 0xBF800000
+.global lbl_8051EF68
+lbl_8051EF68:
+	.4byte 0x43FA0000
+.global lbl_8051EF6C
+lbl_8051EF6C:
+	.4byte 0x43340000
+.global lbl_8051EF70
+lbl_8051EF70:
+	.float 0.5
+.global lbl_8051EF74
+lbl_8051EF74:
+	.4byte 0x41200000
+.global lbl_8051EF78
+lbl_8051EF78:
+	.4byte 0x3EB33333
+.global lbl_8051EF7C
+lbl_8051EF7C:
+	.4byte 0x41726743
+	.4byte 0x686F7500
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setParameters__Q34Game11ShijimiChou3ObjFv
 setParameters__Q34Game11ShijimiChou3ObjFv:

@@ -444,6 +444,105 @@ __vt__Q26PSGame13ConductorList:
 newSeqName__6PSGame:
 	.skip 0x20
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E0C0
+lbl_8051E0C0:
+	.4byte 0x30300000
+.global lbl_8051E0C4
+lbl_8051E0C4:
+	.4byte 0x30350000
+.global lbl_8051E0C8
+lbl_8051E0C8:
+	.4byte 0x6E657700
+.global lbl_8051E0CC
+lbl_8051E0CC:
+	.4byte 0x2E626D73
+	.4byte 0x00000000
+.global lbl_8051E0D4
+lbl_8051E0D4:
+	.float 1.0
+.global lbl_8051E0D8
+lbl_8051E0D8:
+	.4byte 0x00000000
+.global lbl_8051E0DC
+lbl_8051E0DC:
+	.4byte 0x442F0000
+.global lbl_8051E0E0
+lbl_8051E0E0:
+	.4byte 0x3E3851EC
+.global lbl_8051E0E4
+lbl_8051E0E4:
+	.4byte 0x45228000
+.global lbl_8051E0E8
+lbl_8051E0E8:
+	.4byte 0x43480000
+.global lbl_8051E0EC
+lbl_8051E0EC:
+	.4byte 0x442B0000
+.global lbl_8051E0F0
+lbl_8051E0F0:
+	.4byte 0x3E49BA5E
+.global lbl_8051E0F4
+lbl_8051E0F4:
+	.4byte 0x457AC800
+.global lbl_8051E0F8
+lbl_8051E0F8:
+	.4byte 0x40000000
+.global lbl_8051E0FC
+lbl_8051E0FC:
+	.float 0.5
+.global lbl_8051E100
+lbl_8051E100:
+	.float 0.25
+.global sDefaultVol__Q26PSGame9CameraMgr
+sDefaultVol__Q26PSGame9CameraMgr:
+	.4byte 0x3F4CCCCD
+.global lbl_8051E108
+lbl_8051E108:
+	.4byte 0x4276A3D7
+.global lbl_8051E10C
+lbl_8051E10C:
+	.4byte 0x43034000
+.global lbl_8051E110
+lbl_8051E110:
+	.4byte 0x43570A3D
+.global lbl_8051E114
+lbl_8051E114:
+	.4byte 0x43A5170A
+.global lbl_8051E118
+lbl_8051E118:
+	.4byte 0x3F4CCCCD
+.global lbl_8051E11C
+lbl_8051E11C:
+	.4byte 0x3F35C28F
+.global lbl_8051E120
+lbl_8051E120:
+	.4byte 0x3F1EB852
+.global lbl_8051E124
+lbl_8051E124:
+	.4byte 0x3EE66666
+.global lbl_8051E128
+lbl_8051E128:
+	.4byte 0x5365712E
+	.4byte 0x61726300
+.global lbl_8051E130
+lbl_8051E130:
+	.4byte 0x42F00000
+.global lbl_8051E134
+lbl_8051E134:
+	.4byte 0x73652E62
+	.4byte 0x6D730000
+.global lbl_8051E13C
+lbl_8051E13C:
+	.4byte 0x50535365
+	.4byte 0x712E6800
+.global lbl_8051E144
+lbl_8051E144:
+	.4byte 0x50535365
+	.4byte 0x2E680000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getCaveNoFromID__Q26PSGame13CaveFloorInfoFv
 getCaveNoFromID__Q26PSGame13CaveFloorInfoFv:

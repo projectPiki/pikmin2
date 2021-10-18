@@ -122,6 +122,43 @@ sRappa__Q26PSGame5Rappa:
 cNotUsingMasterIdRatio__Q26PSGame6RandId:
 	.float -1.0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E188
+lbl_8051E188:
+	.4byte 0x934794C4
+	.4byte 0x97700000
+.global lbl_8051E190
+lbl_8051E190:
+	.float 1.0
+.global lbl_8051E194
+lbl_8051E194:
+	.float 0.5
+.global lbl_8051E198
+lbl_8051E198:
+	.4byte 0x00000000
+.global lbl_8051E19C
+lbl_8051E19C:
+	.float 0.1
+.global lbl_8051E1A0
+lbl_8051E1A0:
+	.4byte 0xBF800000
+	.4byte 0x00000000
+.global lbl_8051E1A8
+lbl_8051E1A8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051E1B0
+lbl_8051E1B0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051E1B8
+lbl_8051E1B8:
+	.4byte 0x40000000
+.global lbl_8051E1BC
+lbl_8051E1BC:
+	.4byte 0x447A0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PSGame5SeMgrFv
 __ct__Q26PSGame5SeMgrFv:

@@ -579,6 +579,49 @@ __vt__Q34Game13PanModokiBase5Parms:
 	.4byte read__Q34Game13PanModokiBase5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E458
+lbl_8051E458:
+	.4byte 0x41A00000
+.global lbl_8051E45C
+lbl_8051E45C:
+	.float 1.0
+.global lbl_8051E460
+lbl_8051E460:
+	.4byte 0x00000000
+.global lbl_8051E464
+lbl_8051E464:
+	.4byte 0x40A00000
+.global lbl_8051E468
+lbl_8051E468:
+	.float 0.1
+.global lbl_8051E46C
+lbl_8051E46C:
+	.4byte 0x43340000
+.global lbl_8051E470
+lbl_8051E470:
+	.4byte 0x41200000
+.global lbl_8051E474
+lbl_8051E474:
+	.4byte 0x42C80000
+.global lbl_8051E478
+lbl_8051E478:
+	.4byte 0x447A0000
+.global lbl_8051E47C
+lbl_8051E47C:
+	.4byte 0x43FA0000
+.global lbl_8051E480
+lbl_8051E480:
+	.4byte 0x42480000
+.global lbl_8051E484
+lbl_8051E484:
+	.4byte 0x43960000
+.global lbl_8051E488
+lbl_8051E488:
+	.4byte 0x3F19999A
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9PanModoki3MgrFiUc
 __ct__Q34Game9PanModoki3MgrFiUc:

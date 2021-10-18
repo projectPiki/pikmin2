@@ -275,6 +275,15 @@ __vt__Q34Game3Egg5Parms:
 	.4byte read__Q34Game3Egg5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E380
+lbl_8051E380:
+	.float 1.0
+.global lbl_8051E384
+lbl_8051E384:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game3Egg3MgrFiUc
 __ct__Q34Game3Egg3MgrFiUc:

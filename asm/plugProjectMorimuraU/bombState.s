@@ -72,6 +72,29 @@ __vt__Q34Game4Bomb3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E300
+lbl_8051E300:
+	.4byte 0x77616974
+	.4byte 0x00000000
+.global lbl_8051E308
+lbl_8051E308:
+	.float 1.0
+.global lbl_8051E30C
+lbl_8051E30C:
+	.4byte 0x626F6D62
+	.4byte 0x00000000
+.global lbl_8051E314
+lbl_8051E314:
+	.4byte 0x00000000
+.global lbl_8051E318
+lbl_8051E318:
+	.4byte 0x42C80000
+.global lbl_8051E31C
+lbl_8051E31C:
+	.4byte 0x43480000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game4Bomb3FSMFPQ24Game9EnemyBase
 init__Q34Game4Bomb3FSMFPQ24Game9EnemyBase:

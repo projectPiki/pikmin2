@@ -178,6 +178,117 @@ __vt__Q34Game6Jigumo3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E870
+lbl_8051E870:
+	.4byte 0x77616974
+	.4byte 0x00000000
+.global lbl_8051E878
+lbl_8051E878:
+	.4byte 0x61707065
+	.4byte 0x61720000
+.global lbl_8051E880
+lbl_8051E880:
+	.4byte 0x00000000
+.global lbl_8051E884
+lbl_8051E884:
+	.float 1.0
+.global lbl_8051E888
+lbl_8051E888:
+	.4byte 0x40A00000
+.global lbl_8051E88C
+lbl_8051E88C:
+	.4byte 0x43B40000
+.global lbl_8051E890
+lbl_8051E890:
+	.4byte 0x40C90FDB
+.global lbl_8051E894
+lbl_8051E894:
+	.4byte 0x3F07AE14
+.global lbl_8051E898
+lbl_8051E898:
+	.4byte 0x68696465
+	.4byte 0x00000000
+.global lbl_8051E8A0
+lbl_8051E8A0:
+	.4byte 0xC47A0000
+.global lbl_8051E8A4
+lbl_8051E8A4:
+	.float 0.05
+.global lbl_8051E8A8
+lbl_8051E8A8:
+	.4byte 0x40490FDB
+.global lbl_8051E8AC
+lbl_8051E8AC:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051E8B4
+lbl_8051E8B4:
+	.4byte 0x61747461
+	.4byte 0x636B0000
+.global lbl_8051E8BC
+lbl_8051E8BC:
+	.4byte 0x3BB60B61
+.global lbl_8051E8C0
+lbl_8051E8C0:
+	.4byte 0x41C80000
+.global lbl_8051E8C4
+lbl_8051E8C4:
+	.4byte 0x41200000
+.global lbl_8051E8C8
+lbl_8051E8C8:
+	.4byte 0x42C80000
+.global lbl_8051E8CC
+lbl_8051E8CC:
+	.4byte 0x6D697373
+	.4byte 0x00000000
+.global lbl_8051E8D4
+lbl_8051E8D4:
+	.4byte 0x72657475
+	.4byte 0x726E0000
+.global lbl_8051E8DC
+lbl_8051E8DC:
+	.4byte 0x41A00000
+.global lbl_8051E8E0
+lbl_8051E8E0:
+	.4byte 0x63617272
+	.4byte 0x79000000
+.global lbl_8051E8E8
+lbl_8051E8E8:
+	.4byte 0x3F8CCCCD
+.global lbl_8051E8EC
+lbl_8051E8EC:
+	.4byte 0x666C6963
+	.4byte 0x6B000000
+.global lbl_8051E8F4
+lbl_8051E8F4:
+	.4byte 0x65617400
+.global lbl_8051E8F8
+lbl_8051E8F8:
+	.float 0.1
+.global lbl_8051E8FC
+lbl_8051E8FC:
+	.4byte 0x43960000
+.global lbl_8051E900
+lbl_8051E900:
+	.4byte 0x73656172
+	.4byte 0x63680000
+.global lbl_8051E908
+lbl_8051E908:
+	.4byte 0x3C23D70A
+.global lbl_8051E90C
+lbl_8051E90C:
+	.4byte 0x73617474
+	.4byte 0x61636B00
+.global lbl_8051E914
+lbl_8051E914:
+	.4byte 0x42480000
+.global lbl_8051E918
+lbl_8051E918:
+	.4byte 0x736D6973
+	.4byte 0x73000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game6Jigumo3FSMFPQ24Game9EnemyBase
 init__Q34Game6Jigumo3FSMFPQ24Game9EnemyBase:

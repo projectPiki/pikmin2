@@ -90,6 +90,53 @@ __vt__Q34Game11TamagoMushi3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051EA00
+lbl_8051EA00:
+	.4byte 0x77616C6B
+	.4byte 0x00000000
+.global lbl_8051EA08
+lbl_8051EA08:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051EA10
+lbl_8051EA10:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051EA18
+lbl_8051EA18:
+	.4byte 0x41200000
+.global lbl_8051EA1C
+lbl_8051EA1C:
+	.4byte 0x00000000
+.global lbl_8051EA20
+lbl_8051EA20:
+	.4byte 0x7475726E
+	.4byte 0x00000000
+.global lbl_8051EA28
+lbl_8051EA28:
+	.4byte 0x61707065
+	.4byte 0x61720000
+.global lbl_8051EA30
+lbl_8051EA30:
+	.4byte 0x41700000
+.global lbl_8051EA34
+lbl_8051EA34:
+	.4byte 0x68696465
+	.4byte 0x00000000
+.global lbl_8051EA3C
+lbl_8051EA3C:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051EA44
+lbl_8051EA44:
+	.float 1.0
+.global lbl_8051EA48
+lbl_8051EA48:
+	.4byte 0x57616974
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game11TamagoMushi3FSMFPQ24Game9EnemyBase
 init__Q34Game11TamagoMushi3FSMFPQ24Game9EnemyBase:

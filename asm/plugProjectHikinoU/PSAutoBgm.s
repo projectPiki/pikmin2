@@ -252,6 +252,25 @@ __vt__Q29PSAutoBgm9Conductor:
 	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E160
+lbl_8051E160:
+	.4byte 0x00000000
+.global lbl_8051E164
+lbl_8051E164:
+	.4byte 0x42FE0000
+.global lbl_8051E168
+lbl_8051E168:
+	.4byte 0x00000000
+.global lbl_8051E16C
+lbl_8051E16C:
+	.float 1.0
+.global lbl_8051E170
+lbl_8051E170:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "__dt__Q210JADUtility18PrmRadioButton<Uc>Fv"
 "__dt__Q210JADUtility18PrmRadioButton<Uc>Fv":

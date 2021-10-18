@@ -457,6 +457,139 @@ __vt__Q24Game18InteractSuckFinish:
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E490
+lbl_8051E490:
+	.4byte 0x00000000
+.global lbl_8051E494
+lbl_8051E494:
+	.4byte 0x626F6479
+	.4byte 0x00000000
+.global lbl_8051E49C
+lbl_8051E49C:
+	.4byte 0x6B616D75
+	.4byte 0x00000000
+.global lbl_8051E4A4
+lbl_8051E4A4:
+	.4byte 0x41A00000
+.global lbl_8051E4A8
+lbl_8051E4A8:
+	.4byte 0x41700000
+.global lbl_8051E4AC
+lbl_8051E4AC:
+	.4byte 0x40A00000
+.global lbl_8051E4B0
+lbl_8051E4B0:
+	.4byte 0x3F19999A
+.global lbl_8051E4B4
+lbl_8051E4B4:
+	.float 1.0
+.global lbl_8051E4B8
+lbl_8051E4B8:
+	.float 0.1
+.global lbl_8051E4BC
+lbl_8051E4BC:
+	.4byte 0x3E4CCCCD
+.global lbl_8051E4C0
+lbl_8051E4C0:
+	.4byte 0x3FC90FDB
+.global lbl_8051E4C4
+lbl_8051E4C4:
+	.4byte 0x40490FDB
+.global lbl_8051E4C8
+lbl_8051E4C8:
+	.4byte 0x43A2F983
+.global lbl_8051E4CC
+lbl_8051E4CC:
+	.4byte 0xC3A2F983
+.global lbl_8051E4D0
+lbl_8051E4D0:
+	.float 0.5
+.global lbl_8051E4D4
+lbl_8051E4D4:
+	.4byte 0x40000000
+.global lbl_8051E4D8
+lbl_8051E4D8:
+	.4byte 0x42480000
+.global lbl_8051E4DC
+lbl_8051E4DC:
+	.4byte 0x41F00000
+.global lbl_8051E4E0
+lbl_8051E4E0:
+	.4byte 0xC47A0000
+.global lbl_8051E4E4
+lbl_8051E4E4:
+	.4byte 0x6173694C
+	.4byte 0x00000000
+.global lbl_8051E4EC
+lbl_8051E4EC:
+	.4byte 0x61736952
+	.4byte 0x00000000
+.global lbl_8051E4F4
+lbl_8051E4F4:
+	.4byte 0x42C80000
+.global lbl_8051E4F8
+lbl_8051E4F8:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051E500
+lbl_8051E500:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051E508
+lbl_8051E508:
+	.4byte 0x42700000
+.global lbl_8051E50C
+lbl_8051E50C:
+	.4byte 0x42960000
+.global lbl_8051E510
+lbl_8051E510:
+	.4byte 0xBF800000
+.global lbl_8051E514
+lbl_8051E514:
+	.4byte 0x43160000
+.global lbl_8051E518
+lbl_8051E518:
+	.4byte 0x41200000
+.global lbl_8051E51C
+lbl_8051E51C:
+	.4byte 0xBDCCCCCD
+.global lbl_8051E520
+lbl_8051E520:
+	.4byte 0x3F666666
+.global lbl_8051E524
+lbl_8051E524:
+	.4byte 0x3BB60B61
+.global lbl_8051E528
+lbl_8051E528:
+	.4byte 0x6F72696D
+	.4byte 0x61000000
+.global lbl_8051E530
+lbl_8051E530:
+	.4byte 0x40C90FDB
+.global lbl_8051E534
+lbl_8051E534:
+	.4byte 0x461C4000
+.global lbl_8051E538
+lbl_8051E538:
+	.float 0.15
+.global lbl_8051E53C
+lbl_8051E53C:
+	.4byte 0x3F7D70A4
+.global lbl_8051E540
+lbl_8051E540:
+	.4byte 0x42200000
+.global lbl_8051E544
+lbl_8051E544:
+	.4byte 0x41400000
+.global lbl_8051E548
+lbl_8051E548:
+	.4byte 0x3FCCCCCD
+.global lbl_8051E54C
+lbl_8051E54C:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase
 actEnemy__Q24Game18InteractSuckFinishFPQ24Game9EnemyBase:

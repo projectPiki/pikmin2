@@ -206,6 +206,19 @@ __vt__Q34Game4Nest3Obj:
 	.4byte "@756@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E9F0
+lbl_8051E9F0:
+	.4byte 0x41200000
+.global lbl_8051E9F4
+lbl_8051E9F4:
+	.float 1.0
+.global lbl_8051E9F8
+lbl_8051E9F8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "birth__Q34Game4Nest3ObjFR10Vector3<f>f"
 "birth__Q34Game4Nest3ObjFR10Vector3<f>f":

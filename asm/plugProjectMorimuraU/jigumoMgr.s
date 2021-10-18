@@ -280,6 +280,57 @@ __vt__Q34Game6Jigumo5Parms:
 	.4byte read__Q34Game6Jigumo5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E920
+lbl_8051E920:
+	.4byte 0x42C80000
+.global lbl_8051E924
+lbl_8051E924:
+	.4byte 0x00000000
+.global lbl_8051E928
+lbl_8051E928:
+	.4byte 0x43960000
+.global lbl_8051E92C
+lbl_8051E92C:
+	.float 1.0
+.global lbl_8051E930
+lbl_8051E930:
+	.4byte 0x40400000
+.global lbl_8051E934
+lbl_8051E934:
+	.4byte 0x3F99999A
+.global lbl_8051E938
+lbl_8051E938:
+	.4byte 0x447A0000
+.global lbl_8051E93C
+lbl_8051E93C:
+	.4byte 0x3F400000
+.global lbl_8051E940
+lbl_8051E940:
+	.4byte 0x41A00000
+.global lbl_8051E944
+lbl_8051E944:
+	.float 0.05
+.global lbl_8051E948
+lbl_8051E948:
+	.4byte 0x41F00000
+.global lbl_8051E94C
+lbl_8051E94C:
+	.4byte 0x420C0000
+.global lbl_8051E950
+lbl_8051E950:
+	.float 0.15
+.global lbl_8051E954
+lbl_8051E954:
+	.4byte 0x41500000
+.global lbl_8051E958
+lbl_8051E958:
+	.4byte 0x41900000
+.global lbl_8051E95C
+lbl_8051E95C:
+	.4byte 0x3FB33333
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Jigumo3MgrFiUc
 __ct__Q34Game6Jigumo3MgrFiUc:

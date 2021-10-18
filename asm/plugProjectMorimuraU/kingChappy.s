@@ -470,6 +470,179 @@ __vt__Q34Game10KingChappy3Obj:
 	.4byte "@920@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E668
+lbl_8051E668:
+	.4byte 0x42700000
+.global lbl_8051E66C
+lbl_8051E66C:
+	.4byte 0x6B757469
+	.4byte 0x00000000
+.global lbl_8051E674
+lbl_8051E674:
+	.4byte 0x6B6F7369
+	.4byte 0x6A6E7400
+.global lbl_8051E67C
+lbl_8051E67C:
+	.4byte 0x6265726F
+	.4byte 0x36000000
+.global lbl_8051E684
+lbl_8051E684:
+	.4byte 0x6265726F
+	.4byte 0x35000000
+.global lbl_8051E68C
+lbl_8051E68C:
+	.4byte 0x00000000
+.global lbl_8051E690
+lbl_8051E690:
+	.4byte 0x6173694C
+	.4byte 0x00000000
+.global lbl_8051E698
+lbl_8051E698:
+	.4byte 0x61736952
+	.4byte 0x00000000
+.global lbl_8051E6A0
+lbl_8051E6A0:
+	.4byte 0x68616E61
+	.4byte 0x00000000
+.global lbl_8051E6A8
+lbl_8051E6A8:
+	.4byte 0x43FA0000
+.global lbl_8051E6AC
+lbl_8051E6AC:
+	.4byte 0x41200000
+.global lbl_8051E6B0
+lbl_8051E6B0:
+	.4byte 0xC3A2F983
+.global lbl_8051E6B4
+lbl_8051E6B4:
+	.4byte 0x43A2F983
+.global lbl_8051E6B8
+lbl_8051E6B8:
+	.float 1.0
+.global lbl_8051E6BC
+lbl_8051E6BC:
+	.4byte 0x41A00000
+.global lbl_8051E6C0
+lbl_8051E6C0:
+	.4byte 0x42C80000
+.global lbl_8051E6C4
+lbl_8051E6C4:
+	.4byte 0x42340000
+.global lbl_8051E6C8
+lbl_8051E6C8:
+	.float 0.1
+.global lbl_8051E6CC
+lbl_8051E6CC:
+	.4byte 0x40A00000
+.global lbl_8051E6D0
+lbl_8051E6D0:
+	.4byte 0x44C80000
+.global lbl_8051E6D4
+lbl_8051E6D4:
+	.4byte 0x3E4CCCCD
+.global lbl_8051E6D8
+lbl_8051E6D8:
+	.float 0.25
+.global lbl_8051E6DC
+lbl_8051E6DC:
+	.float 2.0
+.global lbl_8051E6E0
+lbl_8051E6E0:
+	.float -1000.0
+.global lbl_8051E6E4
+lbl_8051E6E4:
+	.asciz "kamu1"
+	.skip 2
+.global lbl_8051E6EC
+lbl_8051E6EC:
+	.asciz "kamu2"
+	.skip 2
+.global lbl_8051E6F4
+lbl_8051E6F4:
+	.asciz "kamu3"
+	.skip 2
+.global lbl_8051E6FC
+lbl_8051E6FC:
+	.asciz "kamu4"
+	.skip 2
+.global lbl_8051E704
+lbl_8051E704:
+	.asciz "kamu5"
+	.skip 2
+.global lbl_8051E70C
+lbl_8051E70C:
+	.asciz "kamu6"
+	.skip 2
+.global lbl_8051E714
+lbl_8051E714:
+	.asciz "kamu7"
+	.skip 2
+.global lbl_8051E71C
+lbl_8051E71C:
+	.asciz "kamu8"
+	.skip 2
+.global lbl_8051E724
+lbl_8051E724:
+	.asciz "kamu9"
+	.skip 2
+.global lbl_8051E72C
+lbl_8051E72C:
+	.float 25.0
+.global lbl_8051E730
+lbl_8051E730:
+	.float 32768.0
+.global lbl_8051E734
+lbl_8051E734:
+	.float 0.3
+.global lbl_8051E738
+lbl_8051E738:
+	.4byte 0x40C90FDB
+	.4byte 0x00000000
+.global lbl_8051E740
+lbl_8051E740:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051E748
+lbl_8051E748:
+	.4byte 0x3F4CCCCD
+.global lbl_8051E74C
+lbl_8051E74C:
+	.4byte 0x40490FDB
+.global lbl_8051E750
+lbl_8051E750:
+	.4byte 0x3BB60B61
+.global lbl_8051E754
+lbl_8051E754:
+	.4byte 0x42480000
+.global lbl_8051E758
+lbl_8051E758:
+	.4byte 0x44610000
+.global lbl_8051E75C
+lbl_8051E75C:
+	.float 0.5
+.global lbl_8051E760
+lbl_8051E760:
+	.4byte 0x41F00000
+.global lbl_8051E764
+lbl_8051E764:
+	.float 0.7
+.global lbl_8051E768
+lbl_8051E768:
+	.4byte 0x65796533
+	.4byte 0x52000000
+.global lbl_8051E770
+lbl_8051E770:
+	.4byte 0x65796533
+	.4byte 0x4C000000
+.global lbl_8051E778
+lbl_8051E778:
+	.4byte 0x3FCCCCCD
+.global lbl_8051E77C
+lbl_8051E77C:
+	.4byte 0x3FA66666
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global lFootCallBack__Q24Game10KingChappyFP8J3DJointi
 lFootCallBack__Q24Game10KingChappyFP8J3DJointi:

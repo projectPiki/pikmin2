@@ -142,6 +142,45 @@ __vt__Q28Morimura16TCallbackScissor:
 	.4byte draw__Q28Morimura16TCallbackScissorFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F2C0
+lbl_8051F2C0:
+	.4byte 0x40240000
+	.4byte 0x00000000
+.global lbl_8051F2C8
+lbl_8051F2C8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051F2D0
+lbl_8051F2D0:
+	.float 0.5
+.global lbl_8051F2D4
+lbl_8051F2D4:
+	.4byte 0x696E6470
+	.4byte 0x616E6500
+.global lbl_8051F2DC
+lbl_8051F2DC:
+	.4byte 0x00000000
+.global lbl_8051F2E0
+lbl_8051F2E0:
+	.4byte 0x3CA3D70A
+.global lbl_8051F2E4
+lbl_8051F2E4:
+	.4byte 0x44200000
+.global lbl_8051F2E8
+lbl_8051F2E8:
+	.4byte 0x43F00000
+.global lbl_8051F2EC
+lbl_8051F2EC:
+	.4byte 0xBF800000
+.global lbl_8051F2F0
+lbl_8051F2F0:
+	.float 1.0
+.global lbl_8051F2F4
+lbl_8051F2F4:
+	.4byte 0x3C8EFA35
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global draw__Q28Morimura16TCallbackScissorFR8GraphicsR14J2DGrafContext
 draw__Q28Morimura16TCallbackScissorFR8GraphicsR14J2DGrafContext:

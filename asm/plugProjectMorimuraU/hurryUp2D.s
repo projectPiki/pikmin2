@@ -189,6 +189,89 @@ mScaleRate__Q28Morimura10THurryUp2D:
 mColorUpSp__Q28Morimura10THurryUp2D:
 	.float 1.0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E258
+lbl_8051E258:
+	.4byte 0x00000000
+.global lbl_8051E25C
+lbl_8051E25C:
+	.4byte 0x437F0000
+.global lbl_8051E260
+lbl_8051E260:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_8051E268
+lbl_8051E268:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051E270
+lbl_8051E270:
+	.float 1.0
+.global lbl_8051E274
+lbl_8051E274:
+	.4byte 0x3F4CCCCD
+.global lbl_8051E278
+lbl_8051E278:
+	.4byte 0x3727C5AC
+.global lbl_8051E27C
+lbl_8051E27C:
+	.4byte 0x3F4D9168
+.global lbl_8051E280
+lbl_8051E280:
+	.4byte 0x41200000
+.global lbl_8051E284
+lbl_8051E284:
+	.4byte 0xFFFFFF00
+.global lbl_8051E288
+lbl_8051E288:
+	.4byte 0x42600000
+.global lbl_8051E28C
+lbl_8051E28C:
+	.4byte 0x40C90FDB
+.global lbl_8051E290
+lbl_8051E290:
+	.4byte 0x43B40000
+.global lbl_8051E294
+lbl_8051E294:
+	.4byte 0x42A00000
+.global lbl_8051E298
+lbl_8051E298:
+	.4byte 0xC3A2F983
+.global lbl_8051E29C
+lbl_8051E29C:
+	.4byte 0x43A2F983
+.global lbl_8051E2A0
+lbl_8051E2A0:
+	.4byte 0xBF800000
+	.4byte 0x00000000
+.global lbl_8051E2A8
+lbl_8051E2A8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051E2B0
+lbl_8051E2B0:
+	.4byte 0x38345AE6
+.global lbl_8051E2B4
+lbl_8051E2B4:
+	.4byte 0x38D1B717
+.global lbl_8051E2B8
+lbl_8051E2B8:
+	.4byte 0x3F666666
+.global lbl_8051E2BC
+lbl_8051E2BC:
+	.4byte 0x3F866666
+.global lbl_8051E2C0
+lbl_8051E2C0:
+	.4byte 0x40000000
+.global lbl_8051E2C4
+lbl_8051E2C4:
+	.4byte 0x42700000
+.global lbl_8051E2C8
+lbl_8051E2C8:
+	.4byte 0x42F00000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f
 drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f:

@@ -231,6 +231,111 @@ __vt__Q34Game6Jigumo3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E960
+lbl_8051E960:
+	.4byte 0x47000000
+.global lbl_8051E964
+lbl_8051E964:
+	.4byte 0x40A00000
+.global lbl_8051E968
+lbl_8051E968:
+	.4byte 0x41C80000
+	.4byte 0x00000000
+.global lbl_8051E970
+lbl_8051E970:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051E978
+lbl_8051E978:
+	.4byte 0x00000000
+.global lbl_8051E97C
+lbl_8051E97C:
+	.float 1.0
+.global lbl_8051E980
+lbl_8051E980:
+	.4byte 0x41200000
+.global lbl_8051E984
+lbl_8051E984:
+	.4byte 0x40000000
+.global lbl_8051E988
+lbl_8051E988:
+	.4byte 0x42A00000
+.global lbl_8051E98C
+lbl_8051E98C:
+	.4byte 0x41700000
+.global lbl_8051E990
+lbl_8051E990:
+	.4byte 0x40200000
+.global lbl_8051E994
+lbl_8051E994:
+	.4byte 0x40400000
+.global lbl_8051E998
+lbl_8051E998:
+	.4byte 0x41F00000
+.global lbl_8051E99C
+lbl_8051E99C:
+	.4byte 0x43B40000
+.global lbl_8051E9A0
+lbl_8051E9A0:
+	.4byte 0x43340000
+.global lbl_8051E9A4
+lbl_8051E9A4:
+	.4byte 0x40490FDB
+.global lbl_8051E9A8
+lbl_8051E9A8:
+	.4byte 0x3BB60B61
+.global lbl_8051E9AC
+lbl_8051E9AC:
+	.float 0.1
+.global lbl_8051E9B0
+lbl_8051E9B0:
+	.4byte 0x3E4CCCCD
+.global lbl_8051E9B4
+lbl_8051E9B4:
+	.4byte 0x3F4CCCCD
+.global lbl_8051E9B8
+lbl_8051E9B8:
+	.4byte 0x43C80000
+.global lbl_8051E9BC
+lbl_8051E9BC:
+	.4byte 0xBF800000
+.global lbl_8051E9C0
+lbl_8051E9C0:
+	.4byte 0xC3A2F983
+.global lbl_8051E9C4
+lbl_8051E9C4:
+	.4byte 0x43A2F983
+.global lbl_8051E9C8
+lbl_8051E9C8:
+	.4byte 0xC0000000
+.global lbl_8051E9CC
+lbl_8051E9CC:
+	.4byte 0x42C80000
+.global lbl_8051E9D0
+lbl_8051E9D0:
+	.4byte 0x3F19999A
+.global lbl_8051E9D4
+lbl_8051E9D4:
+	.4byte 0x3F733333
+.global lbl_8051E9D8
+lbl_8051E9D8:
+	.4byte 0x3F8CCCCD
+.global lbl_8051E9DC
+lbl_8051E9DC:
+	.4byte 0x3FD00000
+.global lbl_8051E9E0
+lbl_8051E9E0:
+	.4byte 0x3F400000
+.global lbl_8051E9E4
+lbl_8051E9E4:
+	.4byte 0x3C23D70A
+.global lbl_8051E9E8
+lbl_8051E9E8:
+	.4byte 0x3F266666
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global mouthScaleCallBack__Q24Game6JigumoFP8J3DJointi
 mouthScaleCallBack__Q24Game6JigumoFP8J3DJointi:

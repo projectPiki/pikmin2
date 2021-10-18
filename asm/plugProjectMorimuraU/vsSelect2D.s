@@ -746,6 +746,249 @@ mDemoOffsetMax__Q28Morimura9TVsSelect:
 mFireAlphaRate__Q28Morimura9TVsSelect:
 	.float 0.5
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F170
+lbl_8051F170:
+	.4byte 0x00000000
+.global lbl_8051F174
+lbl_8051F174:
+	.4byte 0x44200000
+.global lbl_8051F178
+lbl_8051F178:
+	.4byte 0x43F00000
+.global lbl_8051F17C
+lbl_8051F17C:
+	.4byte 0xBF800000
+.global lbl_8051F180
+lbl_8051F180:
+	.float 1.0
+.global lbl_8051F184
+lbl_8051F184:
+	.4byte 0x3C8EFA35
+.global lbl_8051F188
+lbl_8051F188:
+	.float 0.5
+.global lbl_8051F18C
+lbl_8051F18C:
+	.4byte 0xC4480000
+.global lbl_8051F190
+lbl_8051F190:
+	.4byte 0x41A00000
+	.4byte 0x00000000
+.global lbl_8051F198
+lbl_8051F198:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051F1A0
+lbl_8051F1A0:
+	.4byte 0x40A00000
+.global lbl_8051F1A4
+lbl_8051F1A4:
+	.4byte 0x3EA0D97C
+.global lbl_8051F1A8
+lbl_8051F1A8:
+	.4byte 0x40490FDB
+.global lbl_8051F1AC
+lbl_8051F1AC:
+	.4byte 0xC1A00000
+.global lbl_8051F1B0
+lbl_8051F1B0:
+	.4byte 0xC3A2F983
+.global lbl_8051F1B4
+lbl_8051F1B4:
+	.4byte 0x43A2F983
+.global lbl_8051F1B8
+lbl_8051F1B8:
+	.4byte 0x42480000
+.global lbl_8051F1BC
+lbl_8051F1BC:
+	.4byte 0x41400000
+.global lbl_8051F1C0
+lbl_8051F1C0:
+	.4byte 0xC2C80000
+.global lbl_8051F1C4
+lbl_8051F1C4:
+	.4byte 0x47000000
+.global lbl_8051F1C8
+lbl_8051F1C8:
+	.4byte 0x40C90FDB
+.global lbl_8051F1CC
+lbl_8051F1CC:
+	.float 0.05
+.global lbl_8051F1D0
+lbl_8051F1D0:
+	.4byte 0x3ECCCCCD
+.global lbl_8051F1D4
+lbl_8051F1D4:
+	.4byte 0x43B40000
+.global lbl_8051F1D8
+lbl_8051F1D8:
+	.float 0.1
+.global lbl_8051F1DC
+lbl_8051F1DC:
+	.4byte 0xC3700000
+.global lbl_8051F1E0
+lbl_8051F1E0:
+	.4byte 0xC3A00000
+.global lbl_8051F1E4
+lbl_8051F1E4:
+	.4byte 0x3FA00000
+.global lbl_8051F1E8
+lbl_8051F1E8:
+	.4byte 0xC1F00000
+.global lbl_8051F1EC
+lbl_8051F1EC:
+	.4byte 0x40000000
+.global lbl_8051F1F0
+lbl_8051F1F0:
+	.4byte 0x41800000
+.global lbl_8051F1F4
+lbl_8051F1F4:
+	.4byte 0x41F00000
+.global lbl_8051F1F8
+lbl_8051F1F8:
+	.4byte 0x3F4CCCCD
+.global lbl_8051F1FC
+lbl_8051F1FC:
+	.float 0.25
+.global lbl_8051F200
+lbl_8051F200:
+	.4byte 0x42700000
+.global lbl_8051F204
+lbl_8051F204:
+	.4byte 0x42E60000
+.global lbl_8051F208
+lbl_8051F208:
+	.4byte 0x432A0000
+.global lbl_8051F20C
+lbl_8051F20C:
+	.4byte 0x43EB0000
+.global lbl_8051F210
+lbl_8051F210:
+	.4byte 0x43D20000
+.global lbl_8051F214
+lbl_8051F214:
+	.4byte 0xC1700000
+.global lbl_8051F218
+lbl_8051F218:
+	.4byte 0x3F7D70A4
+.global lbl_8051F21C
+lbl_8051F21C:
+	.4byte 0x3FC00000
+.global lbl_8051F220
+lbl_8051F220:
+	.4byte 0x40200000
+	.4byte 0x00000000
+.global lbl_8051F228
+lbl_8051F228:
+	.4byte 0x00343737
+	.4byte 0x315F3030
+.global lbl_8051F230
+lbl_8051F230:
+	.4byte 0x42C60000
+.global lbl_8051F234
+lbl_8051F234:
+	.float 0.7
+.global lbl_8051F238
+lbl_8051F238:
+	.float 0.3
+.global lbl_8051F23C
+lbl_8051F23C:
+	.4byte 0x43A80000
+.global lbl_8051F240
+lbl_8051F240:
+	.4byte 0x43700000
+.global lbl_8051F244
+lbl_8051F244:
+	.4byte 0x43C80000
+.global lbl_8051F248
+lbl_8051F248:
+	.4byte 0x420C0000
+.global lbl_8051F24C
+lbl_8051F24C:
+	.4byte 0x42C80000
+.global lbl_8051F250
+lbl_8051F250:
+	.4byte 0x43730000
+.global lbl_8051F254
+lbl_8051F254:
+	.4byte 0x42200000
+.global lbl_8051F258
+lbl_8051F258:
+	.4byte 0x43A20000
+.global lbl_8051F25C
+lbl_8051F25C:
+	.4byte 0x3F8CCCCD
+.global lbl_8051F260
+lbl_8051F260:
+	.4byte 0xC0400000
+.global lbl_8051F264
+lbl_8051F264:
+	.4byte 0x44160000
+.global lbl_8051F268
+lbl_8051F268:
+	.4byte 0x3FC90FDB
+.global lbl_8051F26C
+lbl_8051F26C:
+	.4byte 0xC4160000
+.global lbl_8051F270
+lbl_8051F270:
+	.4byte 0x437F0000
+.global lbl_8051F274
+lbl_8051F274:
+	.4byte 0x3E4CCCCD
+.global lbl_8051F278
+lbl_8051F278:
+	.4byte 0x3F666666
+.global lbl_8051F27C
+lbl_8051F27C:
+	.4byte 0x43C10000
+.global lbl_8051F280
+lbl_8051F280:
+	.4byte 0x43910000
+.global lbl_8051F284
+lbl_8051F284:
+	.4byte 0x41C80000
+.global lbl_8051F288
+lbl_8051F288:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051F290
+lbl_8051F290:
+	.4byte 0x41200000
+.global lbl_8051F294
+lbl_8051F294:
+	.4byte 0x43A00000
+.global lbl_8051F298
+lbl_8051F298:
+	.4byte 0x481C4000
+.global lbl_8051F29C
+lbl_8051F29C:
+	.4byte 0x40800000
+.global lbl_8051F2A0
+lbl_8051F2A0:
+	.4byte 0x40400000
+.global lbl_8051F2A4
+lbl_8051F2A4:
+	.4byte 0x41700000
+.global lbl_8051F2A8
+lbl_8051F2A8:
+	.4byte 0xC2480000
+.global lbl_8051F2AC
+lbl_8051F2AC:
+	.4byte 0x43340000
+.global lbl_8051F2B0
+lbl_8051F2B0:
+	.4byte 0x41480000
+.global lbl_8051F2B4
+lbl_8051F2B4:
+	.4byte 0xBF000000
+.global lbl_8051F2B8
+lbl_8051F2B8:
+	.4byte 0x41000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global draw__Q28Morimura16TVsSelectIndPaneFv
 draw__Q28Morimura16TVsSelectIndPaneFv:

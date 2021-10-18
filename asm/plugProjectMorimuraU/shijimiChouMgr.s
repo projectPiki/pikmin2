@@ -291,6 +291,97 @@ __vt__Q34Game11ShijimiChou5Parms:
 	.4byte read__Q34Game11ShijimiChou5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051EE78
+lbl_8051EE78:
+	.4byte 0x40800000
+.global lbl_8051EE7C
+lbl_8051EE7C:
+	.4byte 0x3F4CCCCD
+.global lbl_8051EE80
+lbl_8051EE80:
+	.4byte 0x41A00000
+.global lbl_8051EE84
+lbl_8051EE84:
+	.4byte 0x3ECCCCCD
+.global lbl_8051EE88
+lbl_8051EE88:
+	.float 1.0
+.global lbl_8051EE8C
+lbl_8051EE8C:
+	.float 0.3
+.global lbl_8051EE90
+lbl_8051EE90:
+	.4byte 0x428C0000
+.global lbl_8051EE94
+lbl_8051EE94:
+	.4byte 0x40A00000
+.global lbl_8051EE98
+lbl_8051EE98:
+	.4byte 0x43960000
+.global lbl_8051EE9C
+lbl_8051EE9C:
+	.4byte 0x00000000
+.global lbl_8051EEA0
+lbl_8051EEA0:
+	.4byte 0x447A0000
+.global lbl_8051EEA4
+lbl_8051EEA4:
+	.4byte 0x42C80000
+.global lbl_8051EEA8
+lbl_8051EEA8:
+	.4byte 0x43480000
+.global lbl_8051EEAC
+lbl_8051EEAC:
+	.float 0.05
+.global lbl_8051EEB0
+lbl_8051EEB0:
+	.4byte 0x41200000
+.global lbl_8051EEB4
+lbl_8051EEB4:
+	.4byte 0x90D492B1
+	.4byte 0x97A60000
+.global lbl_8051EEBC
+lbl_8051EEBC:
+	.float 0.1
+.global lbl_8051EEC0
+lbl_8051EEC0:
+	.4byte 0x8D9592B1
+	.4byte 0x97A60000
+.global lbl_8051EEC8
+lbl_8051EEC8:
+	.float 0.5
+.global lbl_8051EECC
+lbl_8051EECC:
+	.4byte 0x42480000
+.global lbl_8051EED0
+lbl_8051EED0:
+	.4byte 0x42F00000
+.global lbl_8051EED4
+lbl_8051EED4:
+	.4byte 0xC3A2F983
+.global lbl_8051EED8
+lbl_8051EED8:
+	.4byte 0x43A2F983
+.global lbl_8051EEDC
+lbl_8051EEDC:
+	.4byte 0x47000000
+.global lbl_8051EEE0
+lbl_8051EEE0:
+	.4byte 0x40C90FDB
+.global lbl_8051EEE4
+lbl_8051EEE4:
+	.4byte 0x41C80000
+.global lbl_8051EEE8
+lbl_8051EEE8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051EEF0
+lbl_8051EEF0:
+	.4byte 0x42960000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11ShijimiChou3MgrFiUc
 __ct__Q34Game11ShijimiChou3MgrFiUc:

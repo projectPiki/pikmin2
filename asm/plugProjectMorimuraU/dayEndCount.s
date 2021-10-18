@@ -257,6 +257,77 @@ mColor__Q28Morimura12TDayEndCount:
 mNumberColor__Q28Morimura12TDayEndCount:
 	.4byte 0xFF6400FF
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E1F8
+lbl_8051E1F8:
+	.float 1.0
+.global lbl_8051E1FC
+lbl_8051E1FC:
+	.4byte 0x00000000
+.global lbl_8051E200
+lbl_8051E200:
+	.4byte 0x3F666666
+.global lbl_8051E204
+lbl_8051E204:
+	.4byte 0x41C80000
+.global lbl_8051E208
+lbl_8051E208:
+	.4byte 0x38D1B717
+.global lbl_8051E20C
+lbl_8051E20C:
+	.4byte 0x3C23D70A
+.global lbl_8051E210
+lbl_8051E210:
+	.4byte 0x41200000
+.global lbl_8051E214
+lbl_8051E214:
+	.4byte 0x3F8CCCCD
+.global lbl_8051E218
+lbl_8051E218:
+	.4byte 0x41300000
+.global lbl_8051E21C
+lbl_8051E21C:
+	.float 0.5
+.global lbl_8051E220
+lbl_8051E220:
+	.4byte 0x42C80000
+.global lbl_8051E224
+lbl_8051E224:
+	.4byte 0x437F0000
+.global lbl_8051E228
+lbl_8051E228:
+	.4byte 0x41490FDB
+.global lbl_8051E22C
+lbl_8051E22C:
+	.4byte 0xC3A2F983
+.global lbl_8051E230
+lbl_8051E230:
+	.4byte 0x43A2F983
+.global lbl_8051E234
+lbl_8051E234:
+	.4byte 0x40A00000
+.global lbl_8051E238
+lbl_8051E238:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051E240
+lbl_8051E240:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051E248
+lbl_8051E248:
+	.4byte 0x40C90FDB
+.global lbl_8051E24C
+lbl_8051E24C:
+	.4byte 0x42100000
+.global lbl_8051E250
+lbl_8051E250:
+	.4byte 0x43B40000
+.global lbl_8051E254
+lbl_8051E254:
+	.4byte 0x42A00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28Morimura12TDayEndCountFv
 __ct__Q28Morimura12TDayEndCountFv:
