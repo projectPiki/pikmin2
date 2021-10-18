@@ -165,6 +165,60 @@ __vt__Q23efx11TPkNageBlur:
 	.4byte __dt__Q23efx11TPkNageBlurFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F670
+lbl_8051F670:
+	.4byte 0x00000000
+.global lbl_8051F674
+lbl_8051F674:
+	.4byte 0x41726754
+	.4byte 0x79706500
+.global lbl_8051F67C
+lbl_8051F67C:
+	.float 1.0
+.global lbl_8051F680
+lbl_8051F680:
+	.4byte 0x40C90FDB
+.global lbl_8051F684
+lbl_8051F684:
+	.4byte 0x40490FDB
+.global lbl_8051F688
+lbl_8051F688:
+	.4byte 0x40000000
+.global lbl_8051F68C
+lbl_8051F68C:
+	.4byte 0x43A2F983
+.global lbl_8051F690
+lbl_8051F690:
+	.4byte 0xC3A2F983
+	.4byte 0x00000000
+.global lbl_8051F698
+lbl_8051F698:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051F6A0
+lbl_8051F6A0:
+	.4byte 0x42000000
+.global lbl_8051F6A4
+lbl_8051F6A4:
+	.float 0.5
+.global lbl_8051F6A8
+lbl_8051F6A8:
+	.4byte 0x40400000
+.global lbl_8051F6AC
+lbl_8051F6AC:
+	.4byte 0x432F0000
+.global lbl_8051F6B0
+lbl_8051F6B0:
+	.4byte 0x42C80000
+.global lbl_8051F6B4
+lbl_8051F6B4:
+	.4byte 0x41400000
+.global lbl_8051F6B8
+lbl_8051F6B8:
+	.4byte 0x41B00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx11TPkNageBlurFPQ23efx3Arg
 create__Q23efx11TPkNageBlurFPQ23efx3Arg:

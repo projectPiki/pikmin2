@@ -99,6 +99,66 @@ __vt__Q33ebi6Screen7TOption:
 	.4byte getName__Q33ebi6Screen7TOptionFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FA00
+lbl_8051FA00:
+	.4byte 0x41200000
+.global lbl_8051FA04
+lbl_8051FA04:
+	.4byte 0x437F0000
+.global lbl_8051FA08
+lbl_8051FA08:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FA10
+lbl_8051FA10:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051FA18
+lbl_8051FA18:
+	.4byte 0x40555555
+.global lbl_8051FA1C
+lbl_8051FA1C:
+	.4byte 0x00000000
+.global lbl_8051FA20
+lbl_8051FA20:
+	.4byte 0x42700000
+.global lbl_8051FA24
+lbl_8051FA24:
+	.float 0.1
+.global lbl_8051FA28
+lbl_8051FA28:
+	.4byte 0x41F00000
+.global lbl_8051FA2C
+lbl_8051FA2C:
+	.4byte 0x3F19999A
+.global lbl_8051FA30
+lbl_8051FA30:
+	.4byte 0x3FD55555
+.global lbl_8051FA34
+lbl_8051FA34:
+	.float 0.5
+.global lbl_8051FA38
+lbl_8051FA38:
+	.4byte 0x3E4CCCCD
+.global lbl_8051FA3C
+lbl_8051FA3C:
+	.4byte 0xBF000000
+.global lbl_8051FA40
+lbl_8051FA40:
+	.float 1.0
+.global lbl_8051FA44
+lbl_8051FA44:
+	.4byte 0x3F28F5C3
+.global lbl_8051FA48
+lbl_8051FA48:
+	.float 0.15
+.global lbl_8051FA4C
+lbl_8051FA4C:
+	.4byte 0x544F7074
+	.4byte 0x696F6E00
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadRam__Q33ebi6Screen16TOptionParameterFv
 loadRam__Q33ebi6Screen16TOptionParameterFv:

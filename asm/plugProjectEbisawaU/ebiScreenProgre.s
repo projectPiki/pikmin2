@@ -48,6 +48,31 @@ __vt__Q23ebi13TScreenProgre:
 	.4byte setArchive__Q23ebi13TScreenProgreFP10JKRArchive
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FA58
+lbl_8051FA58:
+	.4byte 0x40555555
+.global lbl_8051FA5C
+lbl_8051FA5C:
+	.4byte 0x00000000
+.global lbl_8051FA60
+lbl_8051FA60:
+	.float 1.0
+.global lbl_8051FA64
+lbl_8051FA64:
+	.4byte 0x437F0000
+.global lbl_8051FA68
+lbl_8051FA68:
+	.float 0.5
+.global lbl_8051FA6C
+lbl_8051FA6C:
+	.4byte 0xBF000000
+.global lbl_8051FA70
+lbl_8051FA70:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadResource__Q23ebi13TScreenProgreFv
 loadResource__Q23ebi13TScreenProgreFv:

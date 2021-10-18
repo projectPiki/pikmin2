@@ -178,6 +178,21 @@ __vt__Q25efx2d9T2DCursor:
 	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F6E0
+lbl_8051F6E0:
+	.4byte 0x3C8AD8F3
+.global lbl_8051F6E4
+lbl_8051F6E4:
+	.4byte 0x00000000
+.global lbl_8051F6E8
+lbl_8051F6E8:
+	.4byte 0x43480000
+.global lbl_8051F6EC
+lbl_8051F6EC:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q25efx2d9T2DCursorFPQ25efx2d3Arg
 create__Q25efx2d9T2DCursorFPQ25efx2d3Arg:

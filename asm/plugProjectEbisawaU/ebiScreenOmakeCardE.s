@@ -42,6 +42,27 @@ __vt__Q33ebi6Screen11TOmakeCardE:
 	.4byte getName__Q33ebi6Screen11TOmakeCardEFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FEB0
+lbl_8051FEB0:
+	.4byte 0x42280000
+.global lbl_8051FEB4
+lbl_8051FEB4:
+	.4byte 0x41F00000
+.global lbl_8051FEB8
+lbl_8051FEB8:
+	.4byte 0x42700000
+.global lbl_8051FEBC
+lbl_8051FEBC:
+	.4byte 0x451F6000
+.global lbl_8051FEC0
+lbl_8051FEC0:
+	.4byte 0x00000000
+.global lbl_8051FEC4
+lbl_8051FEC4:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q33ebi6Screen11TOmakeCardEFv
 __ct__Q33ebi6Screen11TOmakeCardEFv:

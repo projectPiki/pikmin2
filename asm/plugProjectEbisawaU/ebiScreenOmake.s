@@ -54,6 +54,51 @@ __vt__Q33ebi6Screen6TOmake:
 	.4byte doDraw__Q33ebi6Screen6TOmakeFv
 	.4byte getName__Q33ebi6Screen6TOmakeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FE60
+lbl_8051FE60:
+	.float 1.0
+.global lbl_8051FE64
+lbl_8051FE64:
+	.4byte 0x00000000
+.global lbl_8051FE68
+lbl_8051FE68:
+	.4byte 0x3D08850A
+.global lbl_8051FE6C
+lbl_8051FE6C:
+	.4byte 0x42700000
+.global lbl_8051FE70
+lbl_8051FE70:
+	.float 0.1
+.global lbl_8051FE74
+lbl_8051FE74:
+	.4byte 0x40555555
+.global lbl_8051FE78
+lbl_8051FE78:
+	.4byte 0x41F00000
+.global lbl_8051FE7C
+lbl_8051FE7C:
+	.4byte 0x3F19999A
+.global lbl_8051FE80
+lbl_8051FE80:
+	.4byte 0x437F0000
+	.4byte 0x00000000
+.global lbl_8051FE88
+lbl_8051FE88:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FE90
+lbl_8051FE90:
+	.4byte 0x3F28F5C3
+.global lbl_8051FE94
+lbl_8051FE94:
+	.float 0.15
+.global lbl_8051FE98
+lbl_8051FE98:
+	.4byte 0x544F6D61
+	.4byte 0x6B650000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q33ebi6Screen6TOmakeFv
 __ct__Q33ebi6Screen6TOmakeFv:

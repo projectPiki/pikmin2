@@ -128,6 +128,37 @@ __vt__Q33ebi6Screen17TResourceObserver:
 	.4byte __dt__Q33ebi6Screen17TResourceObserverFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F8A8
+lbl_8051F8A8:
+	.4byte 0x42700000
+.global lbl_8051F8AC
+lbl_8051F8AC:
+	.float 1.0
+.global lbl_8051F8B0
+lbl_8051F8B0:
+	.4byte 0x00000000
+.global lbl_8051F8B4
+lbl_8051F8B4:
+	.4byte 0x40555555
+.global lbl_8051F8B8
+lbl_8051F8B8:
+	.float 0.5
+.global lbl_8051F8BC
+lbl_8051F8BC:
+	.4byte 0xBF000000
+.global lbl_8051F8C0
+lbl_8051F8C0:
+	.float 0.7
+.global lbl_8051F8C4
+lbl_8051F8C4:
+	.4byte 0x437F0000
+.global lbl_8051F8C8
+lbl_8051F8C8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q33ebi6Screen17TResourceObserverFv
 __dt__Q33ebi6Screen17TResourceObserverFv:

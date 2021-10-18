@@ -78,6 +78,28 @@ __vt__Q33ebi6Screen7ArgOpen:
 	.4byte 0
 	.4byte getName__Q33ebi6Screen7ArgOpenFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global kFadeOutTime__Q23ebi13TMainTitleMgr
+kFadeOutTime__Q23ebi13TMainTitleMgr:
+	.float 1.0
+.global lbl_8051FE14
+lbl_8051FE14:
+	.4byte 0x40A00000
+.global lbl_8051FE18
+lbl_8051FE18:
+	.4byte 0x00000000
+.global lbl_8051FE1C
+lbl_8051FE1C:
+	.float 1.0
+.global lbl_8051FE20
+lbl_8051FE20:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FE28
+lbl_8051FE28:
+	.asciz "ArgOpen"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q23ebi13TMainTitleMgrFv
 __ct__Q23ebi13TMainTitleMgrFv:

@@ -455,6 +455,41 @@ __vt__Q23efx9TChibiHit:
 	.4byte fade__Q23efx8TSimple4Fv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F620
+lbl_8051F620:
+	.4byte 0x41726743
+	.4byte 0x686F7500
+.global lbl_8051F628
+lbl_8051F628:
+	.4byte 0x3FA66666
+.global lbl_8051F62C
+lbl_8051F62C:
+	.4byte 0x41726752
+	.4byte 0x6F745900
+.global lbl_8051F634
+lbl_8051F634:
+	.4byte 0xC20C0000
+.global lbl_8051F638
+lbl_8051F638:
+	.4byte 0x00000000
+.global lbl_8051F63C
+lbl_8051F63C:
+	.float 0.5
+.global lbl_8051F640
+lbl_8051F640:
+	.4byte 0x40400000
+.global lbl_8051F644
+lbl_8051F644:
+	.4byte 0x447A0000
+.global lbl_8051F648
+lbl_8051F648:
+	.4byte 0x42F00000
+.global lbl_8051F64C
+lbl_8051F64C:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx9TChibiHitFPQ23efx3Arg
 create__Q23efx9TChibiHitFPQ23efx3Arg:

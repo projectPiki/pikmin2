@@ -72,6 +72,33 @@ __vt__Q23ebi20E2DCallBack_Purupuru:
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FA98
+lbl_8051FA98:
+	.4byte 0x3A83126F
+.global lbl_8051FA9C
+lbl_8051FA9C:
+	.float 1.0
+.global lbl_8051FAA0
+lbl_8051FAA0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8051FAA8
+lbl_8051FAA8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051FAB0
+lbl_8051FAB0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FAB8
+lbl_8051FAB8:
+	.4byte 0x46FFFE00
+.global lbl_8051FABC
+lbl_8051FABC:
+	.4byte 0x3F8CCCCD
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_update__Q23ebi20E2DCallBack_PurupuruFv
 do_update__Q23ebi20E2DCallBack_PurupuruFv:

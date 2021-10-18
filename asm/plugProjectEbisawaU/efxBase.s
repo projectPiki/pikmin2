@@ -308,6 +308,18 @@ __vt__Q23efx24TCallBack_StaticClipping:
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F610
+lbl_8051F610:
+	.float 0.5
+.global lbl_8051F614
+lbl_8051F614:
+	.4byte 0x00000000
+.global lbl_8051F618
+lbl_8051F618:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter
 executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter:

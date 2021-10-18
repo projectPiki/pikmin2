@@ -240,6 +240,117 @@ __vt__Q43ebi5title6Pikmin5TUnit:
 	.4byte isCalc__Q43ebi5title6Pikmin5TUnitFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FC60
+lbl_8051FC60:
+	.4byte 0x00000000
+.global lbl_8051FC64
+lbl_8051FC64:
+	.4byte 0x3E4CCCCD
+.global lbl_8051FC68
+lbl_8051FC68:
+	.4byte 0x41200000
+.global lbl_8051FC6C
+lbl_8051FC6C:
+	.4byte 0x3ECCCCCD
+.global lbl_8051FC70
+lbl_8051FC70:
+	.4byte 0x40000000
+.global lbl_8051FC74
+lbl_8051FC74:
+	.4byte 0x44480000
+.global lbl_8051FC78
+lbl_8051FC78:
+	.4byte 0x461C4000
+.global lbl_8051FC7C
+lbl_8051FC7C:
+	.4byte 0x40900000
+.global lbl_8051FC80
+lbl_8051FC80:
+	.4byte 0x42C80000
+.global lbl_8051FC84
+lbl_8051FC84:
+	.4byte 0x3BA3D70A
+.global lbl_8051FC88
+lbl_8051FC88:
+	.4byte 0x41F00000
+.global lbl_8051FC8C
+lbl_8051FC8C:
+	.4byte 0x43FA0000
+.global lbl_8051FC90
+lbl_8051FC90:
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_8051FC98
+lbl_8051FC98:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FCA0
+lbl_8051FCA0:
+	.4byte 0xBF800000
+.global lbl_8051FCA4
+lbl_8051FCA4:
+	.4byte 0x5061726D
+	.4byte 0x73000000
+.global lbl_8051FCAC
+lbl_8051FCAC:
+	.4byte 0x4019999A
+.global lbl_8051FCB0
+lbl_8051FCB0:
+	.4byte 0x40266666
+.global lbl_8051FCB4
+lbl_8051FCB4:
+	.4byte 0x40A00000
+.global lbl_8051FCB8
+lbl_8051FCB8:
+	.4byte 0x41A00000
+.global lbl_8051FCBC
+lbl_8051FCBC:
+	.4byte 0x42480000
+.global lbl_8051FCC0
+lbl_8051FCC0:
+	.float 0.5
+.global lbl_8051FCC4
+lbl_8051FCC4:
+	.4byte 0xC1200000
+.global lbl_8051FCC8
+lbl_8051FCC8:
+	.4byte 0xC0A00000
+.global lbl_8051FCCC
+lbl_8051FCCC:
+	.4byte 0x43C80000
+.global lbl_8051FCD0
+lbl_8051FCD0:
+	.4byte 0x40C00000
+	.4byte 0x00000000
+.global lbl_8051FCD8
+lbl_8051FCD8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051FCE0
+lbl_8051FCE0:
+	.4byte 0x46FFFE00
+.global lbl_8051FCE4
+lbl_8051FCE4:
+	.4byte 0x3F4CCCCD
+.global lbl_8051FCE8
+lbl_8051FCE8:
+	.4byte 0x3ECCCCCE
+.global lbl_8051FCEC
+lbl_8051FCEC:
+	.4byte 0x42700000
+.global lbl_8051FCF0
+lbl_8051FCF0:
+	.float 0.1
+.global lbl_8051FCF4
+lbl_8051FCF4:
+	.4byte 0xC0000000
+.global lbl_8051FCF8
+lbl_8051FCF8:
+	.4byte 0x73686164
+	.4byte 0x6F773100
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive
 setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive:

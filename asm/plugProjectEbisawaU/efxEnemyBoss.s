@@ -184,6 +184,25 @@ __vt__Q23efx11TDangoCrash:
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FE38
+lbl_8051FE38:
+	.asciz "ArgDir"
+	.skip 1
+.global lbl_8051FE40
+lbl_8051FE40:
+	.float 0.0
+.global lbl_8051FE44
+lbl_8051FE44:
+	.float 1.0
+.global lbl_8051FE48
+lbl_8051FE48:
+	.asciz "ArgRotY"
+.global lbl_8051FE50
+lbl_8051FE50:
+	.float 100.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx11TDangoCrashFPQ23efx3Arg
 create__Q23efx11TDangoCrashFPQ23efx3Arg:

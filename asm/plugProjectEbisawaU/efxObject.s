@@ -149,6 +149,29 @@ __vt__Q23efx12TOtakaraDive:
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F650
+lbl_8051F650:
+	.4byte 0x420C0000
+.global lbl_8051F654
+lbl_8051F654:
+	.4byte 0x41726752
+	.4byte 0x6F745900
+.global lbl_8051F65C
+lbl_8051F65C:
+	.4byte 0x3EB33333
+.global lbl_8051F660
+lbl_8051F660:
+	.4byte 0x3F19999A
+.global lbl_8051F664
+lbl_8051F664:
+	.float 1.0
+.global lbl_8051F668
+lbl_8051F668:
+	.4byte 0x41726754
+	.4byte 0x79706500
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx12TOtakaraDiveFPQ23efx3Arg
 create__Q23efx12TOtakaraDiveFPQ23efx3Arg:

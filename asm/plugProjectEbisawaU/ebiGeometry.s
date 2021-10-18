@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F9F0
+lbl_8051F9F0:
+	.4byte 0x00000000
+.global lbl_8051F9F4
+lbl_8051F9F4:
+	.float 1.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "isOut__Q23ebi8EGEBox2fFR10Vector2<f>"

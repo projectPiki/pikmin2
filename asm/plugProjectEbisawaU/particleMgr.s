@@ -182,6 +182,15 @@ mClipRadiusM__11ParticleMgr:
 mClipRadiusL__11ParticleMgr:
 	.float 100.0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F6F0
+lbl_8051F6F0:
+	.float 0.5
+.global lbl_8051F6F4
+lbl_8051F6F4:
+	.4byte 0xBF000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global globalInstance__11ParticleMgrFv
 globalInstance__11ParticleMgrFv:

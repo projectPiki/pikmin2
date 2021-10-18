@@ -138,6 +138,83 @@ __vt__Q23ebi17E3DAnimFolderBase:
 	.4byte 0
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FD00
+lbl_8051FD00:
+	.4byte 0x00000000
+.global lbl_8051FD04
+lbl_8051FD04:
+	.4byte 0xBF800000
+.global lbl_8051FD08
+lbl_8051FD08:
+	.float 1.0
+.global lbl_8051FD0C
+lbl_8051FD0C:
+	.4byte 0x5061726D
+	.4byte 0x73000000
+.global lbl_8051FD14
+lbl_8051FD14:
+	.4byte 0x40000000
+.global lbl_8051FD18
+lbl_8051FD18:
+	.4byte 0x41200000
+.global lbl_8051FD1C
+lbl_8051FD1C:
+	.4byte 0x42480000
+.global lbl_8051FD20
+lbl_8051FD20:
+	.4byte 0x43FA0000
+.global lbl_8051FD24
+lbl_8051FD24:
+	.4byte 0x43160000
+.global lbl_8051FD28
+lbl_8051FD28:
+	.4byte 0x42700000
+.global lbl_8051FD2C
+lbl_8051FD2C:
+	.4byte 0x42B40000
+.global lbl_8051FD30
+lbl_8051FD30:
+	.4byte 0x42C80000
+.global lbl_8051FD34
+lbl_8051FD34:
+	.float 0.1
+.global lbl_8051FD38
+lbl_8051FD38:
+	.4byte 0x3FC00000
+.global lbl_8051FD3C
+lbl_8051FD3C:
+	.float 0.3
+.global lbl_8051FD40
+lbl_8051FD40:
+	.4byte 0x40A00000
+.global lbl_8051FD44
+lbl_8051FD44:
+	.4byte 0x46FFFE00
+.global lbl_8051FD48
+lbl_8051FD48:
+	.4byte 0x40490FDB
+.global lbl_8051FD4C
+lbl_8051FD4C:
+	.4byte 0x3BB60B61
+.global lbl_8051FD50
+lbl_8051FD50:
+	.4byte 0xC3A2F983
+.global lbl_8051FD54
+lbl_8051FD54:
+	.4byte 0x43A2F983
+.global lbl_8051FD58
+lbl_8051FD58:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051FD60
+lbl_8051FD60:
+	.float 0.7
+.global lbl_8051FD64
+lbl_8051FD64:
+	.float 0.5
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q43ebi5title6Kogane4TMgrFv
 __ct__Q43ebi5title6Kogane4TMgrFv:

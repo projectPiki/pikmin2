@@ -160,6 +160,111 @@ __vt__Q43ebi5title6Chappy11TAnimFolder:
 	.4byte 0
 	.4byte getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FD68
+lbl_8051FD68:
+	.4byte 0x00000000
+.global lbl_8051FD6C
+lbl_8051FD6C:
+	.4byte 0xBF800000
+.global lbl_8051FD70
+lbl_8051FD70:
+	.float 1.0
+.global lbl_8051FD74
+lbl_8051FD74:
+	.4byte 0x5061726D
+	.4byte 0x73000000
+.global lbl_8051FD7C
+lbl_8051FD7C:
+	.4byte 0x40000000
+.global lbl_8051FD80
+lbl_8051FD80:
+	.4byte 0x41200000
+.global lbl_8051FD84
+lbl_8051FD84:
+	.4byte 0x42C80000
+.global lbl_8051FD88
+lbl_8051FD88:
+	.4byte 0x43FA0000
+.global lbl_8051FD8C
+lbl_8051FD8C:
+	.4byte 0x43160000
+.global lbl_8051FD90
+lbl_8051FD90:
+	.4byte 0x43960000
+.global lbl_8051FD94
+lbl_8051FD94:
+	.4byte 0x42A00000
+.global lbl_8051FD98
+lbl_8051FD98:
+	.4byte 0x41F00000
+.global lbl_8051FD9C
+lbl_8051FD9C:
+	.4byte 0x42B40000
+.global lbl_8051FDA0
+lbl_8051FDA0:
+	.4byte 0x41000000
+.global lbl_8051FDA4
+lbl_8051FDA4:
+	.float 0.05
+.global lbl_8051FDA8
+lbl_8051FDA8:
+	.float 0.3
+.global lbl_8051FDAC
+lbl_8051FDAC:
+	.float 0.5
+.global lbl_8051FDB0
+lbl_8051FDB0:
+	.4byte 0x3FC00000
+.global lbl_8051FDB4
+lbl_8051FDB4:
+	.4byte 0x40A00000
+.global lbl_8051FDB8
+lbl_8051FDB8:
+	.4byte 0x42700000
+.global lbl_8051FDBC
+lbl_8051FDBC:
+	.4byte 0x42080000
+.global lbl_8051FDC0
+lbl_8051FDC0:
+	.4byte 0x41980000
+.global lbl_8051FDC4
+lbl_8051FDC4:
+	.4byte 0x46FFFE00
+.global lbl_8051FDC8
+lbl_8051FDC8:
+	.4byte 0x40490FDB
+.global lbl_8051FDCC
+lbl_8051FDCC:
+	.4byte 0x3BB60B61
+.global lbl_8051FDD0
+lbl_8051FDD0:
+	.4byte 0xC3A2F983
+.global lbl_8051FDD4
+lbl_8051FDD4:
+	.4byte 0x43A2F983
+.global lbl_8051FDD8
+lbl_8051FDD8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051FDE0
+lbl_8051FDE0:
+	.float 0.1
+.global lbl_8051FDE4
+lbl_8051FDE4:
+	.float 0.7
+.global lbl_8051FDE8
+lbl_8051FDE8:
+	.4byte 0x40C90FDB
+.global lbl_8051FDEC
+lbl_8051FDEC:
+	.4byte 0xC0490FDB
+.global lbl_8051FDF0
+lbl_8051FDF0:
+	.4byte 0x3DC90FDB
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q43ebi5title6Chappy4TMgrFv
 __ct__Q43ebi5title6Chappy4TMgrFv:

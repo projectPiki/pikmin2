@@ -224,6 +224,26 @@ __vt__Q33ebi6Option15FSMStateMachine:
 	.4byte "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FA78
+lbl_8051FA78:
+	.4byte 0x5374616E
+	.4byte 0x64627900
+.global lbl_8051FA80
+lbl_8051FA80:
+	.4byte 0x53617665
+	.4byte 0x4D677200
+.global lbl_8051FA88
+lbl_8051FA88:
+	.float 1.0
+.global lbl_8051FA8C
+lbl_8051FA8C:
+	.4byte 0x00000000
+.global lbl_8051FA90
+lbl_8051FA90:
+	.4byte 0x3D08850A
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr
 init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr:

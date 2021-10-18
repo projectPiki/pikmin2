@@ -491,6 +491,212 @@ __vt__Q33ebi5title8TObjBase:
 	.4byte getCreatureType__Q33ebi5title8TObjBaseFv
 	.4byte isCalc__Q33ebi5title8TObjBaseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F6F8
+lbl_8051F6F8:
+	.4byte 0x00000000
+.global lbl_8051F6FC
+lbl_8051F6FC:
+	.4byte 0xBF800000
+.global lbl_8051F700
+lbl_8051F700:
+	.float 1.0
+.global lbl_8051F704
+lbl_8051F704:
+	.4byte 0x41700000
+.global lbl_8051F708
+lbl_8051F708:
+	.4byte 0xC47A0000
+.global lbl_8051F70C
+lbl_8051F70C:
+	.4byte 0x461C4000
+.global lbl_8051F710
+lbl_8051F710:
+	.4byte 0x466F7679
+	.4byte 0x00000000
+.global lbl_8051F718
+lbl_8051F718:
+	.4byte 0x420C0000
+.global lbl_8051F71C
+lbl_8051F71C:
+	.4byte 0x43340000
+.global lbl_8051F720
+lbl_8051F720:
+	.4byte 0x73746172
+	.4byte 0x74207A00
+.global lbl_8051F728
+lbl_8051F728:
+	.4byte 0x42C80000
+.global lbl_8051F72C
+lbl_8051F72C:
+	.4byte 0x44800000
+.global lbl_8051F730
+lbl_8051F730:
+	.4byte 0x656E6420
+	.4byte 0x7A000000
+.global lbl_8051F738
+lbl_8051F738:
+	.4byte 0x44FA0000
+.global lbl_8051F73C
+lbl_8051F73C:
+	.4byte 0x46480000
+.global lbl_8051F740
+lbl_8051F740:
+	.4byte 0x90468140
+	.4byte 0x52000000
+.global lbl_8051F748
+lbl_8051F748:
+	.4byte 0x90468140
+	.4byte 0x47000000
+.global lbl_8051F750
+lbl_8051F750:
+	.4byte 0x90468140
+	.4byte 0x42000000
+.global lbl_8051F758
+lbl_8051F758:
+	.4byte 0x90468140
+	.4byte 0x41000000
+.global lbl_8051F760
+lbl_8051F760:
+	.4byte 0xC3C80000
+.global lbl_8051F764
+lbl_8051F764:
+	.4byte 0xC4FA0000
+.global lbl_8051F768
+lbl_8051F768:
+	.4byte 0x43C80000
+.global lbl_8051F76C
+lbl_8051F76C:
+	.4byte 0xC37A0000
+.global lbl_8051F770
+lbl_8051F770:
+	.4byte 0x43AA0000
+.global lbl_8051F774
+lbl_8051F774:
+	.4byte 0xC4200000
+.global lbl_8051F778
+lbl_8051F778:
+	.4byte 0x44200000
+.global lbl_8051F77C
+lbl_8051F77C:
+	.4byte 0xC3F00000
+.global lbl_8051F780
+lbl_8051F780:
+	.4byte 0x43F00000
+.global lbl_8051F784
+lbl_8051F784:
+	.4byte 0x43FA0000
+.global lbl_8051F788
+lbl_8051F788:
+	.4byte 0x447A0000
+.global lbl_8051F78C
+lbl_8051F78C:
+	.4byte 0x44160000
+.global lbl_8051F790
+lbl_8051F790:
+	.4byte 0x41F00000
+.global lbl_8051F794
+lbl_8051F794:
+	.4byte 0x41000000
+.global lbl_8051F798
+lbl_8051F798:
+	.4byte 0x40400000
+.global lbl_8051F79C
+lbl_8051F79C:
+	.4byte 0x42700000
+.global lbl_8051F7A0
+lbl_8051F7A0:
+	.4byte 0x41200000
+.global lbl_8051F7A4
+lbl_8051F7A4:
+	.4byte 0x40000000
+.global lbl_8051F7A8
+lbl_8051F7A8:
+	.4byte 0x40600000
+.global lbl_8051F7AC
+lbl_8051F7AC:
+	.4byte 0x8CFC82AB
+	.4byte 0x58000000
+.global lbl_8051F7B4
+lbl_8051F7B4:
+	.4byte 0x8CFC82AB
+	.4byte 0x59000000
+.global lbl_8051F7BC
+lbl_8051F7BC:
+	.4byte 0x8CFC82AB
+	.4byte 0x5A000000
+.global lbl_8051F7C4
+lbl_8051F7C4:
+	.4byte 0x8CF591F2
+	.4byte 0x00000000
+.global lbl_8051F7CC
+lbl_8051F7CC:
+	.4byte 0x42800000
+.global lbl_8051F7D0
+lbl_8051F7D0:
+	.4byte 0x44000000
+.global lbl_8051F7D4
+lbl_8051F7D4:
+	.4byte 0x88CA9275
+	.4byte 0x58000000
+.global lbl_8051F7DC
+lbl_8051F7DC:
+	.4byte 0xC61C4000
+.global lbl_8051F7E0
+lbl_8051F7E0:
+	.4byte 0x88CA9275
+	.4byte 0x59000000
+.global lbl_8051F7E8
+lbl_8051F7E8:
+	.4byte 0x47435000
+.global lbl_8051F7EC
+lbl_8051F7EC:
+	.4byte 0x88CA9275
+	.4byte 0x5A000000
+.global lbl_8051F7F4
+lbl_8051F7F4:
+	.4byte 0x41C80000
+.global lbl_8051F7F8
+lbl_8051F7F8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051F800
+lbl_8051F800:
+	.4byte 0x46FFFE00
+.global lbl_8051F804
+lbl_8051F804:
+	.4byte 0xBF490FDB
+.global lbl_8051F808
+lbl_8051F808:
+	.4byte 0x4096CBE4
+.global lbl_8051F80C
+lbl_8051F80C:
+	.4byte 0xC3A2F983
+.global lbl_8051F810
+lbl_8051F810:
+	.4byte 0x43A2F983
+	.4byte 0x00000000
+.global lbl_8051F818
+lbl_8051F818:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051F820
+lbl_8051F820:
+	.4byte 0x00000000
+.global lbl_8051F824
+lbl_8051F824:
+	.4byte 0x40C90FDB
+.global lbl_8051F828
+lbl_8051F828:
+	.4byte 0x3E4CCCCD
+.global lbl_8051F82C
+lbl_8051F82C:
+	.4byte 0x3ECCCCCD
+.global lbl_8051F830
+lbl_8051F830:
+	.4byte 0x3F19999A
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q33ebi5title9TTitleMgrFv
 __ct__Q33ebi5title9TTitleMgrFv:

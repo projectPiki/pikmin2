@@ -151,6 +151,43 @@ __vt__Q33ebi6Screen11TPressStart:
 	.4byte getName__Q33ebi6Screen11TPressStartFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FAE0
+lbl_8051FAE0:
+	.4byte 0x3E4CCCCD
+.global lbl_8051FAE4
+lbl_8051FAE4:
+	.4byte 0x00000000
+.global lbl_8051FAE8
+lbl_8051FAE8:
+	.4byte 0x437F0000
+	.4byte 0x00000000
+.global lbl_8051FAF0
+lbl_8051FAF0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FAF8
+lbl_8051FAF8:
+	.4byte 0x46FFFE00
+.global lbl_8051FAFC
+lbl_8051FAFC:
+	.float 0.25
+.global lbl_8051FB00
+lbl_8051FB00:
+	.float 0.5
+.global lbl_8051FB04
+lbl_8051FB04:
+	.4byte 0x3F400000
+.global lbl_8051FB08
+lbl_8051FB08:
+	.4byte 0x42700000
+	.4byte 0x00000000
+.global lbl_8051FB10
+lbl_8051FB10:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doSetArchive__Q33ebi6Screen11TPressStartFP10JKRArchive
 doSetArchive__Q33ebi6Screen11TPressStartFP10JKRArchive:

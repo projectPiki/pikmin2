@@ -314,6 +314,65 @@ __vt__Q35efx2d10FileSelect11T2DFilecopy:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q35efx2d10FileSelect11T2DFilecopyFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FB18
+lbl_8051FB18:
+	.4byte 0x42480000
+.global lbl_8051FB1C
+lbl_8051FB1C:
+	.4byte 0x00000000
+.global lbl_8051FB20
+lbl_8051FB20:
+	.4byte 0x3D08850A
+.global lbl_8051FB24
+lbl_8051FB24:
+	.float 1.0
+.global lbl_8051FB28
+lbl_8051FB28:
+	.4byte 0x40A00000
+.global lbl_8051FB2C
+lbl_8051FB2C:
+	.4byte 0x42700000
+.global lbl_8051FB30
+lbl_8051FB30:
+	.float 0.5
+.global lbl_8051FB34
+lbl_8051FB34:
+	.float 0.25
+.global lbl_8051FB38
+lbl_8051FB38:
+	.4byte 0x3ECCCCCD
+.global lbl_8051FB3C
+lbl_8051FB3C:
+	.4byte 0x437F0000
+.global lbl_8051FB40
+lbl_8051FB40:
+	.4byte 0x3F99999A
+	.4byte 0x00000000
+.global lbl_8051FB48
+lbl_8051FB48:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051FB50
+lbl_8051FB50:
+	.4byte 0x3E4CCCCD
+.global lbl_8051FB54
+lbl_8051FB54:
+	.4byte 0x40555555
+.global lbl_8051FB58
+lbl_8051FB58:
+	.4byte 0x41F00000
+.global lbl_8051FB5C
+lbl_8051FB5C:
+	.4byte 0x3F19999A
+.global lbl_8051FB60
+lbl_8051FB60:
+	.4byte 0x447FC000
+.global lbl_8051FB64
+lbl_8051FB64:
+	.4byte 0x433E0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl
 setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl:

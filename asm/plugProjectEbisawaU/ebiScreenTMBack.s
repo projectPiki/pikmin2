@@ -96,6 +96,25 @@ __vt__Q33ebi6Screen7TTMBack:
 	.4byte doDraw__Q33ebi6Screen7TTMBackFv
 	.4byte getName__Q33ebi6Screen7TTMBackFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FDF8
+lbl_8051FDF8:
+	.float 0.5
+.global lbl_8051FDFC
+lbl_8051FDFC:
+	.4byte 0x00000000
+.global lbl_8051FE00
+lbl_8051FE00:
+	.4byte 0x43000000
+.global lbl_8051FE04
+lbl_8051FE04:
+	.float 1.0
+.global lbl_8051FE08
+lbl_8051FE08:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doSetArchive__Q33ebi6Screen7TTMBackFP10JKRArchive
 doSetArchive__Q33ebi6Screen7TTMBackFP10JKRArchive:

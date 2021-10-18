@@ -12,6 +12,15 @@ lbl_80496438:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global kFadeTime__Q23ebi8E2DFader
+kFadeTime__Q23ebi8E2DFader:
+	.float 0.5
+.global lbl_8051F9FC
+lbl_8051F9FC:
+	.float 0.5
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global E2DScreen_searchAssert__3ebiFP9J2DScreenUx
 E2DScreen_searchAssert__3ebiFP9J2DScreenUx:

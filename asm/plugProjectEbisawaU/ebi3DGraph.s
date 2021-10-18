@@ -12,6 +12,25 @@ lbl_80496418:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F9D8
+lbl_8051F9D8:
+	.4byte 0x00000000
+.global lbl_8051F9DC
+lbl_8051F9DC:
+	.4byte 0x40000000
+.global lbl_8051F9E0
+lbl_8051F9E0:
+	.float 0.5
+.global lbl_8051F9E4
+lbl_8051F9E4:
+	.4byte 0x42700000
+.global lbl_8051F9E8
+lbl_8051F9E8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc
 load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc:

@@ -56,6 +56,51 @@ lbl_804E79B8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F838
+lbl_8051F838:
+	.float 1.0
+.global lbl_8051F83C
+lbl_8051F83C:
+	.4byte 0x00000000
+.global lbl_8051F840
+lbl_8051F840:
+	.float 0.5
+.global lbl_8051F844
+lbl_8051F844:
+	.4byte 0x42700000
+.global lbl_8051F848
+lbl_8051F848:
+	.4byte 0x3E4CCCCD
+.global lbl_8051F84C
+lbl_8051F84C:
+	.4byte 0x3F4CCCCD
+.global lbl_8051F850
+lbl_8051F850:
+	.4byte 0xC0A00001
+	.4byte 0x00000000
+.global lbl_8051F858
+lbl_8051F858:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051F860
+lbl_8051F860:
+	.4byte 0x63616D2E
+	.4byte 0x626D6400
+.global lbl_8051F868
+lbl_8051F868:
+	.4byte 0x63616D2E
+	.4byte 0x62636B00
+.global lbl_8051F870
+lbl_8051F870:
+	.4byte 0x63616D2E
+	.4byte 0x62726B00
+.global lbl_8051F878
+lbl_8051F878:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc
 loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc:

@@ -306,6 +306,28 @@ __vt__Q33ebi9CardError15FSMStateMachine:
 	.4byte "transit__Q24Game35StateMachine<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051FAC0
+lbl_8051FAC0:
+	.4byte 0x5374616E
+	.4byte 0x64627900
+.global lbl_8051FAC8
+lbl_8051FAC8:
+	.4byte 0x00000000
+.global lbl_8051FACC
+lbl_8051FACC:
+	.4byte 0x40400000
+.global lbl_8051FAD0
+lbl_8051FAD0:
+	.4byte 0x3D08850A
+.global lbl_8051FAD4
+lbl_8051FAD4:
+	.float 1.0
+.global lbl_8051FAD8
+lbl_8051FAD8:
+	.4byte 0x40A00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr
 init__Q33ebi9CardError15FSMStateMachineFPQ33ebi9CardError4TMgr:

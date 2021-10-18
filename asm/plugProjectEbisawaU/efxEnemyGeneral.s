@@ -851,6 +851,205 @@ __vt__Q23efx10TEnemyPiyo:
 	.4byte __dt__Q23efx10TEnemyPiyoFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051F8D0
+lbl_8051F8D0:
+	.4byte 0x3FE00000
+.global lbl_8051F8D4
+lbl_8051F8D4:
+	.4byte 0x3F266666
+.global lbl_8051F8D8
+lbl_8051F8D8:
+	.4byte 0x3F75C28F
+.global lbl_8051F8DC
+lbl_8051F8DC:
+	.4byte 0x3FF33333
+.global lbl_8051F8E0
+lbl_8051F8E0:
+	.4byte 0x3F19999A
+.global lbl_8051F8E4
+lbl_8051F8E4:
+	.4byte 0x3F6147AE
+.global lbl_8051F8E8
+lbl_8051F8E8:
+	.float 1.0
+.global lbl_8051F8EC
+lbl_8051F8EC:
+	.4byte 0x3F6E147B
+.global lbl_8051F8F0
+lbl_8051F8F0:
+	.4byte 0x3F07AE14
+.global lbl_8051F8F4
+lbl_8051F8F4:
+	.4byte 0x3F47AE14
+.global lbl_8051F8F8
+lbl_8051F8F8:
+	.4byte 0x3F400000
+.global lbl_8051F8FC
+lbl_8051F8FC:
+	.4byte 0x3F8CCCCD
+.global lbl_8051F900
+lbl_8051F900:
+	.4byte 0x3EE66666
+.global lbl_8051F904
+lbl_8051F904:
+	.4byte 0x3F933333
+.global lbl_8051F908
+lbl_8051F908:
+	.4byte 0x3F4CCCCD
+.global lbl_8051F90C
+lbl_8051F90C:
+	.4byte 0x3FA00000
+.global lbl_8051F910
+lbl_8051F910:
+	.4byte 0x3F1EB852
+.global lbl_8051F914
+lbl_8051F914:
+	.4byte 0x3F451EB8
+.global lbl_8051F918
+lbl_8051F918:
+	.4byte 0x3E570A3D
+.global lbl_8051F91C
+lbl_8051F91C:
+	.4byte 0x3FACCCCD
+.global lbl_8051F920
+lbl_8051F920:
+	.4byte 0x3FA66666
+.global lbl_8051F924
+lbl_8051F924:
+	.4byte 0x4009999A
+.global lbl_8051F928
+lbl_8051F928:
+	.4byte 0x3FB9999A
+.global lbl_8051F92C
+lbl_8051F92C:
+	.4byte 0x3FB33333
+.global lbl_8051F930
+lbl_8051F930:
+	.4byte 0x3F59999A
+.global lbl_8051F934
+lbl_8051F934:
+	.4byte 0x3FC66666
+.global lbl_8051F938
+lbl_8051F938:
+	.4byte 0x401CCCCD
+.global lbl_8051F93C
+lbl_8051F93C:
+	.float 0.5
+.global lbl_8051F940
+lbl_8051F940:
+	.4byte 0x3FE66666
+.global lbl_8051F944
+lbl_8051F944:
+	.4byte 0x3F666666
+.global lbl_8051F948
+lbl_8051F948:
+	.4byte 0x3F733333
+.global lbl_8051F94C
+lbl_8051F94C:
+	.4byte 0x3FC00000
+.global lbl_8051F950
+lbl_8051F950:
+	.float 0.7
+.global lbl_8051F954
+lbl_8051F954:
+	.4byte 0x3F0CCCCD
+.global lbl_8051F958
+lbl_8051F958:
+	.4byte 0x40000000
+.global lbl_8051F95C
+lbl_8051F95C:
+	.4byte 0x3FCCCCCD
+.global lbl_8051F960
+lbl_8051F960:
+	.4byte 0x3FD9999A
+.global lbl_8051F964
+lbl_8051F964:
+	.4byte 0x3F70A3D7
+.global lbl_8051F968
+lbl_8051F968:
+	.4byte 0x40200000
+.global lbl_8051F96C
+lbl_8051F96C:
+	.4byte 0x3F6B851F
+.global lbl_8051F970
+lbl_8051F970:
+	.4byte 0x3FD33333
+.global lbl_8051F974
+lbl_8051F974:
+	.4byte 0x3F99999A
+.global lbl_8051F978
+lbl_8051F978:
+	.4byte 0x00000000
+.global lbl_8051F97C
+lbl_8051F97C:
+	.4byte 0x3F3851EC
+.global lbl_8051F980
+lbl_8051F980:
+	.4byte 0x3FECCCCD
+.global lbl_8051F984
+lbl_8051F984:
+	.4byte 0x40333333
+.global lbl_8051F988
+lbl_8051F988:
+	.4byte 0x3FE80000
+	.4byte 0x00000000
+.global lbl_8051F990
+lbl_8051F990:
+	.4byte 0x461C4000
+.global lbl_8051F994
+lbl_8051F994:
+	.4byte 0x42A00000
+.global lbl_8051F998
+lbl_8051F998:
+	.4byte 0x41D80000
+.global lbl_8051F99C
+lbl_8051F99C:
+	.4byte 0x41A00000
+.global lbl_8051F9A0
+lbl_8051F9A0:
+	.4byte 0x42080000
+.global lbl_8051F9A4
+lbl_8051F9A4:
+	.4byte 0x42200000
+.global lbl_8051F9A8
+lbl_8051F9A8:
+	.4byte 0x41F00000
+.global lbl_8051F9AC
+lbl_8051F9AC:
+	.4byte 0x41880000
+.global lbl_8051F9B0
+lbl_8051F9B0:
+	.4byte 0x42DC0000
+.global lbl_8051F9B4
+lbl_8051F9B4:
+	.4byte 0x41400000
+.global lbl_8051F9B8
+lbl_8051F9B8:
+	.4byte 0x41D00000
+.global lbl_8051F9BC
+lbl_8051F9BC:
+	.4byte 0x420C0000
+.global lbl_8051F9C0
+lbl_8051F9C0:
+	.4byte 0x42700000
+.global lbl_8051F9C4
+lbl_8051F9C4:
+	.4byte 0x41700000
+.global lbl_8051F9C8
+lbl_8051F9C8:
+	.4byte 0x42340000
+.global lbl_8051F9CC
+lbl_8051F9CC:
+	.4byte 0x42480000
+.global lbl_8051F9D0
+lbl_8051F9D0:
+	.4byte 0x42C80000
+.global lbl_8051F9D4
+lbl_8051F9D4:
+	.4byte 0x425C0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx10TEnemyPiyoFPQ23efx3Arg
 create__Q23efx10TEnemyPiyoFPQ23efx3Arg:
