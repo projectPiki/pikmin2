@@ -746,6 +746,26 @@ mDemoOffsetMax__Q28Morimura9TVsSelect:
 mFireAlphaRate__Q28Morimura9TVsSelect:
 	.float 0.5
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global mDebugHeapParent__Q28Morimura9TVsSelect
+mDebugHeapParent__Q28Morimura9TVsSelect:
+	.skip 0x4
+.global mDebugHeap__Q28Morimura9TVsSelect
+mDebugHeap__Q28Morimura9TVsSelect:
+	.skip 0x4
+.global mPikiOffset__Q28Morimura7TVsPiki
+mPikiOffset__Q28Morimura7TVsPiki:
+	.skip 0x8
+.global mForceDemoStart__Q28Morimura9TVsSelect
+mForceDemoStart__Q28Morimura9TVsSelect:
+	.skip 0x1
+.global mLoopDrum__Q28Morimura9TVsSelect
+mLoopDrum__Q28Morimura9TVsSelect:
+	.skip 0x1
+.global mCanCancel__Q28Morimura9TVsSelect
+mCanCancel__Q28Morimura9TVsSelect:
+	.skip 0x6
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F170

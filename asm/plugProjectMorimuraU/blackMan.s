@@ -408,6 +408,17 @@ __vt__Q34Game8BlackMan3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516058
+lbl_80516058:
+	.skip 0x4
+.global lbl_8051605C
+lbl_8051605C:
+	.skip 0x4
+.global curB__Q24Game8BlackMan
+curB__Q24Game8BlackMan:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F438

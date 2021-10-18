@@ -76,6 +76,14 @@ mWideWindow__Q28Morimura11TScrollList:
 	.byte 0x00
 	.byte 0x00
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global mRightOffset__Q28Morimura11TScrollList
+mRightOffset__Q28Morimura11TScrollList:
+	.skip 0x4
+.global mForceResetParm__Q28Morimura11TScrollList
+mForceResetParm__Q28Morimura11TScrollList:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F2F8

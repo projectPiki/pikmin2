@@ -143,6 +143,14 @@ __vt__Q34Game8BlackMan3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global lbl_80516050
+lbl_80516050:
+	.skip 0x4
+.global lbl_80516054
+lbl_80516054:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F370
