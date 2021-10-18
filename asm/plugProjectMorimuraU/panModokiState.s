@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80490B38
+lbl_80490B38:
+	.4byte 0x63617272
+	.4byte 0x79656E64
+	.4byte 0x00000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q34Game13PanModokiBase13StateCarryEnd

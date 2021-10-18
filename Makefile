@@ -50,7 +50,7 @@ MAP     := $(BUILD_DIR)/pikmin2.map
 
 include obj_files.mk
 
-O_FILES := $(GROUP_0_FILES) $(TEXT_O_FILES) $(TEXT_PT1) $(TEXT_PT3) $(GROUP_1_FILES) $(TEXT_PART_TWO)
+O_FILES := $(GROUP_0_FILES) $(TEXT_O_FILES) $(TEXT_PT1) $(TEXT_PT3) $(KONO) $(TEXT_PART_TWO)
 
 #-------------------------------------------------------------------------------
 # Tools

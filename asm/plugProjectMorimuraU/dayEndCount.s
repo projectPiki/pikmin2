@@ -1,4 +1,56 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804901E8
+lbl_804901E8:
+	.4byte 0x64617945
+	.4byte 0x6E64436F
+	.4byte 0x756E7400
+.global lbl_804901F4
+lbl_804901F4:
+	.4byte 0x44617945
+	.4byte 0x6E64436F
+	.4byte 0x756E7400
+	.4byte 0x636F756E
+	.4byte 0x742E626C
+	.4byte 0x6F000000
+.global lbl_8049020C
+lbl_8049020C:
+	.4byte 0x64617945
+	.4byte 0x6E64436F
+	.4byte 0x756E742E
+	.4byte 0x63707000
+.global lbl_8049021C
+lbl_8049021C:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80490228
+lbl_80490228:
+	.4byte 0x6368616C
+	.4byte 0x6C656E67
+	.4byte 0x65456E64
+	.4byte 0x436F756E
+	.4byte 0x74000000
+	.4byte 0x6368616C
+	.4byte 0x6C656E67
+	.4byte 0x65456E64
+	.4byte 0x436F756E
+	.4byte 0x74317000
+	.4byte 0x6368616C
+	.4byte 0x6C656E67
+	.4byte 0x65456E64
+	.4byte 0x436F756E
+	.4byte 0x74327000
+.global lbl_80490264
+lbl_80490264:
+	.4byte 0x7265735F
+	.4byte 0x67726F75
+	.4byte 0x6E642E73
+	.4byte 0x7A730000
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global deTagName__8Morimura

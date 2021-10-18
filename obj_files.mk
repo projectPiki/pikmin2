@@ -943,6 +943,7 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSScene.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTrack.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o\
+	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/dayEndCount.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/hurryUp2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/gameOver2D.o\
@@ -965,7 +966,6 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyState.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o\
-	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinState.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinMgr.o\
@@ -1053,7 +1053,7 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 
-GROUP_1_FILES:=\
+KONO:=\
 	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\

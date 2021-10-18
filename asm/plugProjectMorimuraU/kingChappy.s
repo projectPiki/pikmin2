@@ -1,4 +1,46 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804915D0
+lbl_804915D0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6B696E67
+	.4byte 0x43686170
+	.4byte 0x70790000
+.global lbl_804915E8
+lbl_804915E8:
+	.asciz "kingChappy.cpp"
+	.skip 1
+.global lbl_804915F8
+lbl_804915F8:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80491604
+lbl_80491604:
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
+.global lbl_8049161C
+lbl_8049161C:
+	.4byte lbl_8051E6E4
+	.4byte lbl_8051E6EC
+	.4byte lbl_8051E6F4
+	.4byte lbl_8051E6FC
+	.4byte lbl_8051E704
+	.4byte lbl_8051E70C
+	.4byte lbl_8051E714
+	.4byte lbl_8051E71C
+	.4byte lbl_8051E724
+	.asciz "ArgEnemyType"
+	.skip 3
+	.asciz "ArgScale"
+	.skip 3
+.global lbl_8049165C
+lbl_8049165C:
+	.asciz "ArgKchYodare"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global lbl_804E1D28
