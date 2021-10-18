@@ -15,15 +15,15 @@ namespace ebi {
 	struct TScreenBase {
 		virtual void setArchive(JKRArchive*);
 		virtual bool openScreen(ArgOpen*);
-		virtual bool closeScreen(ArgClose*);
-		virtual uchar killScreen();
+		virtual uint closeScreen(ArgClose*);
+		virtual void killScreen();
 		virtual uchar update();
 		virtual uchar draw();
 		virtual bool isFinishScreen();
 		virtual void doSetArchive(JKRArchive*);
 		virtual void doOpenScreen(ArgOpen*);
 		virtual void doCloseScreen(ArgClose*);
-		virtual uchar doKillScreen();
+		virtual void doKillScreen();
 		virtual void doInitWaitState();
 		virtual bool doUpdateStateOpen();
 		virtual bool doUpdateStateWait();
