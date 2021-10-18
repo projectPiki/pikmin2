@@ -1,14 +1,4 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+#include "stream.h"
 
 /*
  * --INFO--
@@ -153,13 +143,7 @@ void Parameters::write(Stream&)
  * Address:	804137F0
  * Size:	000004
  */
-void BaseParm::write(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void BaseParm::write(Stream&) { return; }
 
 /*
  * --INFO--
@@ -236,13 +220,7 @@ void Parameters::read(Stream&)
  * Address:	804138BC
  * Size:	000004
  */
-void BaseParm::read(Stream&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void BaseParm::read(Stream&) { return; }
 
 /*
  * --INFO--
@@ -296,22 +274,10 @@ void Parameters::findParm(unsigned long)
  */
 void Parm<int>::read(Stream&)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  bl        0x1154
-	  stw       r3, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	int Var1;
+
+	Var1       = Stream::readInt(stream);
+	this->value = Var1;
 }
 
 /*
@@ -319,23 +285,7 @@ void Parm<int>::read(Stream&)
  * Address:	80413958
  * Size:	00002C
  */
-void Parm<int>::write(Stream&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r4
-	  lwz       r4, 0x18(r3)
-	  mr        r3, r0
-	  bl        0x1E50
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void Parm<int>::write(Stream&) { Stream::writeInt(stream, this->value); }
 
 /*
  * --INFO--
@@ -446,22 +396,10 @@ void Parm<bool>::write(Stream&)
  */
 void Parm<float>::read(Stream&)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  bl        0x1338
-	  stfs      f1, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	float fVar1;
+
+	fVar1       = Stream::readFloat(stream);
+	this->value = fVar1;
 }
 
 /*
@@ -469,22 +407,7 @@ void Parm<float>::read(Stream&)
  * Address:	80413A90
  * Size:	000028
  */
-void Parm<float>::write(Stream&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lfs       f1, 0x18(r3)
-	  mr        r3, r4
-	  bl        0x1DA4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void Parm<float>::write(Stream&) { Stream::writeFloat(stream, this->value); }
 
 /*
  * --INFO--
@@ -627,23 +550,7 @@ void ParmString::ParmString(Parameters*, char*, int, unsigned long, char*)
  * Address:	80413C68
  * Size:	00002C
  */
-void ParmString::write(Stream&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r4
-	  lwz       r4, 0x18(r3)
-	  mr        r3, r0
-	  bl        0x194C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void ParmString::write(Stream&) { Stream::writeString(stream, this->m_value); }
 
 /*
  * --INFO--
@@ -652,21 +559,7 @@ void ParmString::write(Stream&)
  */
 void ParmString::read(Stream&)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x18(r5)
-	  lwz       r5, 0x1C(r5)
-	  bl        0x1424
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	Stream::readString(stream, this->value, this->characterCount_0x1c);
 }
 
 /*
@@ -788,25 +681,11 @@ void ParmEnum::read(Stream&)
  * Address:	80413DDC
  * Size:	000008
  */
-void ParmEnum::size()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x4
-	  blr
-	*/
-}
+int ParmEnum::size() { return 4; }
 
 /*
  * --INFO--
  * Address:	80413DE4
  * Size:	000008
  */
-void ParmString::size()
-{
-	/*
-	.loc_0x0:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+int ParmString::size() { return -1; }
