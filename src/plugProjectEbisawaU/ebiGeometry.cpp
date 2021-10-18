@@ -15,7 +15,7 @@ void _Print(char*, ...)
  * Address:	........
  * Size:	00002C
  */
-void isIn__Q23ebi8EGEBox2fFR10Vector2<float>(void)
+void ebi::EGEBox2f::isIn(Vector2<float>&)
 {
 	// UNUSED FUNCTION
 }
@@ -25,7 +25,7 @@ void isIn__Q23ebi8EGEBox2fFR10Vector2<float>(void)
  * Address:	803C9FF4
  * Size:	000058
  */
-void isOut__Q23ebi8EGEBox2fFR10Vector2<float>(void)
+bool ebi::EGEBox2f::isOut(Vector2<float>&)
 {
 	/*
 	.loc_0x0:
