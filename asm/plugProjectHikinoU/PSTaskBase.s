@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048FF20
+lbl_8048FF20:
+	.4byte 0x50535461
+	.4byte 0x736B4261
+	.4byte 0x73652E63
+	.4byte 0x70700000
+.global lbl_8048FF30
+lbl_8048FF30:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x50535461
+	.4byte 0x736B4261
+	.4byte 0x73652E68
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28PSSystem8TaskBaseFv

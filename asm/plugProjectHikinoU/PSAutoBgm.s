@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048FE60
+lbl_8048FE60:
+	.4byte 0x50534175
+	.4byte 0x746F4267
+	.4byte 0x6D2E6370
+	.4byte 0x70000000
+.global lbl_8048FE70
+lbl_8048FE70:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x8386836A
+	.4byte 0x835D8393
+	.4byte 0x837D8358
+	.4byte 0x835E815B
+	.4byte 0x83678389
+	.4byte 0x8362834E
+	.4byte 0x82CD8386
+	.4byte 0x836A835D
+	.4byte 0x83938367
+	.4byte 0x83898362
+	.4byte 0x834E82E6
+	.4byte 0x82E88EE1
+	.4byte 0x82A294D4
+	.4byte 0x8D8682CC
+	.4byte 0x83678389
+	.4byte 0x8362834E
+	.4byte 0x82C582A0
+	.4byte 0x82E9954B
+	.4byte 0x977682AA
+	.4byte 0x82A082E8
+	.4byte 0x82DC82B7
+	.4byte 0x00000000
+.global lbl_8048FED4
+lbl_8048FED4:
+	.4byte 0x50534175
+	.4byte 0x746F4267
+	.4byte 0x6D2E6800
+	.4byte 0x6E6F7420
+	.4byte 0x66696E64
+	.4byte 0x28257329
+	.4byte 0x00000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q29PSAutoBgm7AutoBgm

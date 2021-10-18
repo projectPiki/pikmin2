@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80490158
+lbl_80490158:
+	.4byte 0x50534267
+	.4byte 0x6D546173
+	.4byte 0x6B2E6800
+.global lbl_80490164
+lbl_80490164:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80490170
+lbl_80490170:
+	.4byte 0x50534267
+	.4byte 0x6D547261
+	.4byte 0x636B2E63
+	.4byte 0x70700000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q28PSSystem13SeqTrackChild

@@ -928,6 +928,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
 
 TEXT_PT3:=\
+	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o\
@@ -943,7 +944,6 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSScene.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTrack.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o\
-	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/dayEndCount.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/hurryUp2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/gameOver2D.o\

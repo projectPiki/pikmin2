@@ -1,4 +1,25 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80490120
+lbl_80490120:
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x63707000
+.global lbl_8049012C
+lbl_8049012C:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+.global lbl_80490144
+lbl_80490144:
+	.4byte 0x50535379
+	.4byte 0x7374656D
+	.4byte 0x49462E68
+	.4byte 0x00000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q28PSSystem5Scene

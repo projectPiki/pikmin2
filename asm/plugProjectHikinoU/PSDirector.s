@@ -1,4 +1,39 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80490180
+lbl_80490180:
+	.4byte 0x50534469
+	.4byte 0x72656374
+	.4byte 0x6F722E63
+	.4byte 0x70700000
+.global lbl_80490190
+lbl_80490190:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8049019C
+lbl_8049019C:
+	.4byte 0x0A4E6F74
+	.4byte 0x2043616C
+	.4byte 0x6C656420
+	.4byte 0x46726F6D
+	.4byte 0x204D6169
+	.4byte 0x6E205468
+	.4byte 0x72656164
+	.4byte 0x0A000000
+	.4byte 0x83668342
+	.4byte 0x838C834E
+	.4byte 0x835E815B
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+.global lbl_804901D4
+lbl_804901D4:
+	.4byte 0x50534469
+	.4byte 0x72656374
+	.4byte 0x6F722E68
+	.4byte 0x00000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q28PSSystem17DirectorCopyActor

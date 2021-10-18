@@ -1,4 +1,21 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048FEF0
+lbl_8048FEF0:
+	.4byte 0x5053426E
+	.4byte 0x6B4D6772
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8048FF00
+lbl_8048FF00:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x2F417564
+	.4byte 0x696F5265
+	.4byte 0x732F4261
+	.4byte 0x6E6B7300
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q38PSSystem9WaveScene8WaveArea

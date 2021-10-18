@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80490100
+lbl_80490100:
+	.4byte 0x50535365
+	.4byte 0x42617365
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80490110
+lbl_80490110:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q38PSSystem9ClusterSe7Factory

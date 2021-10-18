@@ -1,4 +1,62 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80490038
+lbl_80490038:
+	.4byte 0x8373834C
+	.4byte 0x53458AD4
+	.4byte 0x88F882AB
+	.4byte 0x90DD92E8
+	.4byte 0x00000000
+	.4byte 0x8373834C
+	.4byte 0x95A8895E
+	.4byte 0x82D189B9
+	.4byte 0x00000000
+	.4byte 0x8373834C
+	.4byte 0x8E648E96
+	.4byte 0x924082AB
+	.4byte 0x89B90000
+	.4byte 0x8373834C
+	.4byte 0x93DB82DD
+	.4byte 0x8D9E82DC
+	.4byte 0x82EA82E0
+	.4byte 0x82AA82AB
+	.4byte 0x90BA0000
+	.4byte 0x83608383
+	.4byte 0x838C8393
+	.4byte 0x83578382
+	.4byte 0x815B8368
+	.4byte 0x82CC8367
+	.4byte 0x83628376
+	.4byte 0x89E696CA
+	.4byte 0x97700000
+	.4byte 0x8373834C
+	.4byte 0x92859085
+	.4byte 0x89B99770
+	.4byte 0x00000000
+	.4byte 0x8373834C
+	.4byte 0x8370836A
+	.4byte 0x8362834E
+	.4byte 0x83898393
+	.4byte 0x97700000
+.global lbl_804900C8
+lbl_804900C8:
+	.4byte 0x50535365
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_804900D4
+lbl_804900D4:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x5053436F
+	.4byte 0x6D6D6F6E
+	.4byte 0x2E680000
+	.4byte 0x838A8393
+	.4byte 0x834E82AA
+	.4byte 0x82A082E8
+	.4byte 0x82DC82B9
+	.4byte 0x82F10000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q26PSGame25Builder_EvnSe_Perspective
