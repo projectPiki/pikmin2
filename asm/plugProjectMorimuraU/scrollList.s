@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80495210
+lbl_80495210:
+	.4byte 0x7363726F
+	.4byte 0x6C6C4C69
+	.4byte 0x73742E63
+	.4byte 0x70700000
+.global lbl_80495220
+lbl_80495220:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q28Morimura11TScrollList

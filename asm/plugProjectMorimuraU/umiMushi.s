@@ -1,4 +1,76 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80493AE8
+lbl_80493AE8:
+	.4byte 0x756D694D
+	.4byte 0x75736869
+	.4byte 0x00000000
+	.4byte 0x68656164
+	.4byte 0x5F6A6F69
+	.4byte 0x6E743100
+.global lbl_80493B00
+lbl_80493B00:
+	.4byte 0x756D694D
+	.4byte 0x75736869
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80493B10
+lbl_80493B10:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x63635F6D
+	.4byte 0x6174315F
+	.4byte 0x76000000
+.global lbl_80493B28
+lbl_80493B28:
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
+	.asciz "eyes_joint1"
+	.asciz "weak_joint2"
+	.asciz "ef_eye_r"
+	.skip 3
+	.asciz "ef_eye_l"
+	.skip 3
+.global lbl_80493B70
+lbl_80493B70:
+	.asciz "bero_joint1"
+.global lbl_80493B7C
+lbl_80493B7C:
+	.asciz "kamu_joint1"
+.global lbl_80493B88
+lbl_80493B88:
+	.asciz "kamu_joint2"
+.global lbl_80493B94
+lbl_80493B94:
+	.asciz "kamu_joint3"
+.global lbl_80493BA0
+lbl_80493BA0:
+	.asciz "kamu_joint4"
+.global lbl_80493BAC
+lbl_80493BAC:
+	.asciz "kamu_joint5"
+.global lbl_80493BB8
+lbl_80493BB8:
+	.asciz "kamu_joint6"
+.global lbl_80493BC4
+lbl_80493BC4:
+	.asciz "kamu_joint7"
+.global lbl_80493BD0
+lbl_80493BD0:
+	.4byte lbl_80493B7C
+	.4byte lbl_80493B88
+	.4byte lbl_80493B94
+	.4byte lbl_80493BA0
+	.4byte lbl_80493BAC
+	.4byte lbl_80493BB8
+	.4byte lbl_80493BC4
+.global lbl_80493BEC
+lbl_80493BEC:
+	.asciz "kuti_joint1"
+	.asciz "ArgScale"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q23efx11TUmiDeadawa

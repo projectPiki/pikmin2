@@ -1,4 +1,82 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80495670
+lbl_80495670:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x626C6163
+	.4byte 0x6B4D616E
+	.4byte 0x00000000
+.global lbl_80495688
+lbl_80495688:
+	.4byte 0x626C6163
+	.4byte 0x6B4D616E
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80495698
+lbl_80495698:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_804956A4
+lbl_804956A4:
+	.asciz "handLend"
+	.skip 3
+.global lbl_804956B0
+lbl_804956B0:
+	.asciz "handRend"
+	.skip 3
+.global lbl_804956BC
+lbl_804956BC:
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
+	.asciz "kage_mat"
+	.skip 3
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "x20_blackman"
+	.skip 3
+.global lbl_80495708
+lbl_80495708:
+	.asciz "failed traceRoutePoint\n"
+	.asciz "no handle pathFinder\n"
+	.skip 2
+	.4byte lbl_8051F454
+	.4byte lbl_8051F45C
+	.4byte lbl_8051F464
+	.4byte lbl_8051F46C
+	.4byte lbl_804956A4
+	.4byte lbl_804956B0
+	.4byte lbl_8051F444
+	.4byte lbl_8051F44C
+	.4byte lbl_8051F500
+	.4byte lbl_8051F508
+	.4byte lbl_8051F510
+	.4byte lbl_8051F518
+	.4byte lbl_8051F520
+	.4byte lbl_8051F528
+	.4byte lbl_8051F530
+	.4byte lbl_8051F538
+.global lbl_80495778
+lbl_80495778:
+	.asciz "shoulderL"
+	.skip 2
+.global lbl_80495784
+lbl_80495784:
+	.asciz "shoulderR"
+	.skip 2
+	.4byte lbl_80495778
+	.4byte lbl_80495784
+	.4byte lbl_8051F540
+	.4byte lbl_8051F548
+	.asciz "get sound scene at\ninvalid timming\n"
+.global lbl_804957C4
+lbl_804957C4:
+	.asciz "ArgPrmColor"
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global lbl_804E5D00

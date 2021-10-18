@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804951F8
+lbl_804951F8:
+	.4byte 0x6D725574
+	.4byte 0x696C2E63
+	.4byte 0x70700000
+.global lbl_80495204
+lbl_80495204:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q28Morimura12TScissorPane

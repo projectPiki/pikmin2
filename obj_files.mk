@@ -965,6 +965,7 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyState.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o\
+	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinState.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinMgr.o\
@@ -1003,7 +1004,6 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\
-	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o\

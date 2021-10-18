@@ -1,4 +1,220 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804932E0
+lbl_804932E0:
+	.asciz "hiScore2D"
+	.skip 2
+.global lbl_804932EC
+lbl_804932EC:
+	.asciz "timg/hi_score_00.bti"
+	.skip 3
+.global lbl_80493304
+lbl_80493304:
+	.asciz "timg/hi_score_01.bti"
+	.skip 3
+.global lbl_8049331C
+lbl_8049331C:
+	.asciz "timg/hi_score_02.bti"
+	.skip 3
+.global lbl_80493334
+lbl_80493334:
+	.asciz "timg/hi_score_03.bti"
+	.skip 3
+.global lbl_8049334C
+lbl_8049334C:
+	.asciz "timg/hi_score_04.bti"
+	.skip 3
+.global lbl_80493364
+lbl_80493364:
+	.asciz "timg/hi_score_05.bti"
+	.skip 3
+.global lbl_8049337C
+lbl_8049337C:
+	.asciz "timg/hi_score_06.bti"
+	.skip 3
+.global lbl_80493394
+lbl_80493394:
+	.asciz "timg/hi_score_07.bti"
+	.skip 3
+.global lbl_804933AC
+lbl_804933AC:
+	.asciz "timg/hi_score_08.bti"
+	.skip 3
+.global lbl_804933C4
+lbl_804933C4:
+	.asciz "timg/hi_score_09.bti"
+	.skip 3
+.global lbl_804933DC
+lbl_804933DC:
+	.asciz "timg/hi_score_10.bti"
+	.skip 3
+.global lbl_804933F4
+lbl_804933F4:
+	.asciz "timg/hi_score_11.bti"
+	.skip 3
+.global lbl_8049340C
+lbl_8049340C:
+	.asciz "timg/hi_score_12.bti"
+	.skip 3
+.global lbl_80493424
+lbl_80493424:
+	.asciz "timg/hi_score_13.bti"
+	.skip 3
+.global lbl_8049343C
+lbl_8049343C:
+	.asciz "timg/hi_score_14.bti"
+	.skip 3
+.global lbl_80493454
+lbl_80493454:
+	.asciz "timg/hi_score_15.bti"
+	.skip 3
+	.4byte lbl_804932EC
+	.4byte lbl_80493304
+	.4byte lbl_8049331C
+	.4byte lbl_80493334
+	.4byte lbl_8049334C
+	.4byte lbl_80493364
+	.4byte lbl_8049337C
+	.4byte lbl_80493394
+	.4byte lbl_804933AC
+	.4byte lbl_804933C4
+	.4byte lbl_804933DC
+	.4byte lbl_804933F4
+	.4byte lbl_8049340C
+	.4byte lbl_80493424
+	.4byte lbl_8049343C
+	.4byte lbl_80493454
+	.skip 4
+	.4byte 0x004E6D65
+	.4byte 0x6E753030
+	.4byte 0x004E6D65
+	.4byte 0x6E753031
+	.4byte 0x004E6D65
+	.4byte 0x6E753032
+	.4byte 0x004E6D65
+	.4byte 0x6E753033
+	.4byte 0x004E6D65
+	.4byte 0x6E753034
+	.4byte 0x00546D65
+	.4byte 0x6E753030
+	.4byte 0x00546D65
+	.4byte 0x6E753031
+	.4byte 0x00546D65
+	.4byte 0x6E753032
+	.4byte 0x00546D65
+	.4byte 0x6E753033
+	.4byte 0x00546D65
+	.4byte 0x6E753034
+	.4byte 0x00506865
+	.4byte 0x31737431
+	.4byte 0x00506865
+	.4byte 0x326E6431
+	.4byte 0x00506865
+	.4byte 0x33726431
+	.4byte 0x00506F74
+	.4byte 0x31737431
+	.4byte 0x00506F74
+	.4byte 0x326E6431
+	.4byte 0x00506F74
+	.4byte 0x33726431
+	.4byte 0x00506865
+	.4byte 0x31737434
+	.4byte 0x00506865
+	.4byte 0x326E6434
+	.4byte 0x00506865
+	.4byte 0x33726434
+	.4byte 0x00506F74
+	.4byte 0x31737434
+	.4byte 0x00506F74
+	.4byte 0x326E6434
+	.4byte 0x00506F74
+	.4byte 0x33726434
+	.4byte 0x00506865
+	.4byte 0x31737435
+	.4byte 0x00506865
+	.4byte 0x326E6435
+	.4byte 0x00506865
+	.4byte 0x33726435
+	.4byte 0x00506F74
+	.4byte 0x31737435
+	.4byte 0x00506F74
+	.4byte 0x326E6435
+	.4byte 0x00506F74
+	.4byte 0x33726435
+	.4byte 0x00506865
+	.4byte 0x31737431
+	.4byte 0x00506865
+	.4byte 0x326E6431
+	.4byte 0x00506865
+	.4byte 0x33726431
+	.4byte 0x00506F74
+	.4byte 0x31737431
+	.4byte 0x00506F74
+	.4byte 0x326E6431
+	.4byte 0x00506F74
+	.4byte 0x33726431
+	.4byte 0x00506865
+	.4byte 0x31737432
+	.4byte 0x00506865
+	.4byte 0x326E6432
+	.4byte 0x00506865
+	.4byte 0x33726432
+	.4byte 0x00506F74
+	.4byte 0x31737432
+	.4byte 0x00506F74
+	.4byte 0x326E6432
+	.4byte 0x00506F74
+	.4byte 0x33726432
+.global lbl_804935F0
+lbl_804935F0:
+	.4byte 0x68695363
+	.4byte 0x6F726532
+	.4byte 0x442E6370
+	.4byte 0x70000000
+.global lbl_80493600
+lbl_80493600:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x68695F73
+	.4byte 0x636F7265
+	.4byte 0x5F6D6169
+	.4byte 0x6E2E626C
+	.4byte 0x6F000000
+	.4byte 0x68695F73
+	.4byte 0x636F7265
+	.4byte 0x5F6D6169
+	.4byte 0x6E2E6263
+	.4byte 0x6B000000
+	.4byte 0x68695F73
+	.4byte 0x636F7265
+	.4byte 0x5F6D6169
+	.4byte 0x6E2E6270
+	.4byte 0x6B000000
+	.4byte 0x68695F73
+	.4byte 0x636F7265
+	.4byte 0x5F6C6973
+	.4byte 0x742E626C
+	.4byte 0x6F000000
+	.4byte 0x61737365
+	.4byte 0x7274696E
+	.4byte 0x64657820
+	.4byte 0x3D202564
+	.4byte 0x200A0000
+	.4byte 0x68695F73
+	.4byte 0x636F7265
+	.4byte 0x5F30302E
+	.4byte 0x62746900
+.global lbl_80493680
+lbl_80493680:
+	.4byte 0x7265735F
+	.4byte 0x68697363
+	.4byte 0x6F72652E
+	.4byte 0x737A7300
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global mPicTexture__Q28Morimura8THiScore

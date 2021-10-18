@@ -1,4 +1,25 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80491670
+lbl_80491670:
+	.asciz "attackstart"
+.global lbl_8049167C
+lbl_8049167C:
+	.asciz "attackind"
+	.skip 2
+.global lbl_80491688
+lbl_80491688:
+	.asciz "attackend"
+	.skip 2
+.global lbl_80491694
+lbl_80491694:
+	.asciz "miulinState.cpp"
+.global lbl_804916A4
+lbl_804916A4:
+	.asciz "state -1\n"
+	.skip 2
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q34Game6Miulin9StateDead

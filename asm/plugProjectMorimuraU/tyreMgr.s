@@ -1,4 +1,35 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804957D0
+lbl_804957D0:
+	.4byte 0x835E8343
+	.4byte 0x8384837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+.global lbl_804957E4
+lbl_804957E4:
+	.4byte 0x456E656D
+	.4byte 0x79506172
+	.4byte 0x6D734261
+	.4byte 0x73650000
+.global lbl_804957F4
+lbl_804957F4:
+	.4byte 0x89F1935D
+	.4byte 0x83588373
+	.4byte 0x815B8368
+	.4byte 0x00000000
+.global lbl_80495804
+lbl_80495804:
+	.4byte 0x74797265
+	.4byte 0x4D67722E
+	.4byte 0x63707000
+.global lbl_80495810
+lbl_80495810:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q34Game4Tyre3Mgr
