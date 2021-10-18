@@ -145,7 +145,7 @@ namespace screen {
 		screen_state = this->_08;
 		if (screen_state == 2) {
 			update_state = doUpdateStateWait();
-			if (((uint)update_state & 0xff) != 0) {
+			if (update_state == 0) {
 				update_state = closeScreen(nullptr);
 			}
 		} else {
@@ -160,7 +160,7 @@ namespace screen {
 			} else {
 				if ((screen_state < 4)
 				    && (update_state = doUpdateStateClose(),
-				        ((uint)update_state & 0xff) != 0)) {
+				        (update_state == 0))) {
 					killScreen();
 				}
 			}
