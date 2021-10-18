@@ -1,37 +1,40 @@
+#include "GameFlow.h"
 
+// TODO: Finish
+struct {
+	char* name;
+	u32 _04;
+} sSectionInfo[] = {
+	{ "Root Menu", 0x00000000 },         { "Object Editor", 0x01010000 },
+	{ "Single Game", 0x02010000 },       { "Challenge Game", 0x03010000 },
+	{ "Test Challenge", 0x04010100 },    { "Teki Test", 0x05010000 },
+	{ "Anim Editor", 0x06010000 },       { "Map Parts Editor", 0x07010000 },
+	{ "Tex Viewer", 0x08010000 },        { "Ogawa", 0x09010000 },
+	{ "Ogawa Screen Test", 0x1C010000 }, { "Hikino", 0x0A010000 },
+	{ "Yamashita", 0x0B010000 },         { "Nishimura", 0x0C010000 },
+	{ "Nishimura2", 0x0D010000 },        { "Morimura", 0x0E010000 },
+	{ "2D Debug", 0x1A010100 },          { "Fujino", 0x1A010100 },
+	{ "Cave Editor", 6, 1, 0, 0 },       { "JStudio CameraEditor", 7, 1, 0, 0 },
+	{ "Movie Test", 6, 1, 0, 0 },        { "JStudio Kando Test", 7, 1, 0, 0 },
+	{ "Pellet Test", 6, 1, 0, 0 },       { "Main Title", 7, 1, 0, 0 },
+	{ "Message Previewer", 6, 1, 0, 0 }, { "Ebi Main Title", 7, 1, 0, 0 },
+	{ "E3 Thanks Section", 6, 1, 0, 0 }, { "Ebimun Effect", 7, 1, 0, 0 },
+	{ "2D Debug2", 7, 1, 0, 0 }
+};
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+u32 GameFlow::mActiveSectionFlag;
 
 /*
  * --INFO--
  * Address:	804241A4
  * Size:	00002C
  */
-void GameFlow::GameFlow()
+GameFlow::GameFlow()
 {
-	/*
-	.loc_0x0:
-	  lis       r4, 0x804F
-	  lis       r5, 0x804F
-	  subi      r0, r4, 0x42DC
-	  li        r4, 0x15
-	  stw       r0, 0x0(r3)
-	  subi      r5, r5, 0x42EC
-	  li        r0, 0
-	  stw       r5, 0x0(r3)
-	  stw       r4, -0x7988(r13)
-	  stw       r0, 0x4(r3)
-	  blr
-	*/
+	mActiveSectionFlag = 21;
+	m_section          = nullptr;
 }
+
 
 /*
  * --INFO--
