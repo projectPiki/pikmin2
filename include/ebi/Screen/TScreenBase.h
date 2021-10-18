@@ -19,7 +19,7 @@ namespace ebi {
 		virtual void killScreen();
 		virtual uchar update();
 		virtual uchar draw();
-		virtual bool isFinishScreen();
+		virtual uchar isFinishScreen();
 		virtual void doSetArchive(JKRArchive*);
 		virtual void doOpenScreen(ArgOpen*);
 		virtual void doCloseScreen(ArgClose*);
@@ -31,9 +31,9 @@ namespace ebi {
 		virtual void doDraw();
 		virtual char* getName();
 
-		bool isOpenScreen(void);
-		bool isWaitScreen(void);
-		bool isCloseScreen(void);
+		uchar isOpenScreen(void);
+		uchar isWaitScreen(void);
+		uchar isCloseScreen(void);
 
 		JKRArchive* pArchive;	// _04
 		int _08;				// _08
