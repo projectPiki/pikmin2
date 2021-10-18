@@ -36,8 +36,9 @@ namespace screen {
 		bool is_zero;
 
 		is_zero = (this->_08 == 0);
-		if (!(is_zero)) {
+		if (is_zero) {
 			doOpenScreen(open_screen);
+			is_zero   = 1;
 			this->_08 = 1;
 		}
 		else {
