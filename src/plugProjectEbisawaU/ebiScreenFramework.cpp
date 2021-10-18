@@ -7,29 +7,14 @@ namespace screen {
 	 * Address:	803D3850
 	 * Size:	00003C
 	 */
-	void TScreenBase::setArchive(JKRArchive*)
-	{
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  lwz       r0, 0x4(r3)
-		  cmplwi    r0, 0
-		  bne-      .loc_0x2C
-		  stw       r4, 0x4(r3)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x24(r12)
-		  mtctr     r12
-		  bctrl
-
-		.loc_0x2C:
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
-		*/
-	}
+	void TScreenBase::setArchive(JKRArchive* new_archive)
+		{
+			if (this->pArchive == nullptr) {
+				this->pArchive = new_archive;
+				doSetArchive(new_archive);
+			}
+			return;
+		}
 
 	/*
 	 * --INFO--
@@ -38,10 +23,7 @@ namespace screen {
 	 */
 	void TScreenBase::doSetArchive(JKRArchive*)
 	{
-		/*
-		.loc_0x0:
-		  blr
-		*/
+
 	}
 
 	/*
@@ -49,38 +31,19 @@ namespace screen {
 	 * Address:	803D3890
 	 * Size:	000058
 	 */
-	bool TScreenBase::openScreen(ArgOpen*)
+	bool TScreenBase::openScreen(ArgOpen* open_screen)
 	{
-		return true;
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r3
-		  lwz       r0, 0x8(r3)
-		  cmpwi     r0, 0
-		  bne-      .loc_0x40
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x28(r12)
-		  mtctr     r12
-		  bctrl
-		  li        r0, 0x1
-		  li        r3, 0x1
-		  stw       r0, 0x8(r31)
-		  b         .loc_0x44
+		bool is_zero;
 
-		.loc_0x40:
-		  li        r3, 0
-
-		.loc_0x44:
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
-		*/
+		is_zero = (this->_08 == 0);
+		if (!(is_zero)) {
+			doOpenScreen(open_screen);
+			this->_08 = 1;
+		}
+		else {
+			return 0;
+		}
+		return is_zero;
 	}
 
 	/*
