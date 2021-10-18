@@ -8,23 +8,20 @@ namespace screen {
 	 * Size:	00003C
 	 */
 	void TScreenBase::setArchive(JKRArchive* new_archive)
-		{
-			if (this->pArchive == nullptr) {
-				this->pArchive = new_archive;
-				doSetArchive(new_archive);
-			}
-			return;
+	{
+		if (this->pArchive == nullptr) {
+			this->pArchive = new_archive;
+			doSetArchive(new_archive);
 		}
+		return;
+	}
 
 	/*
 	 * --INFO--
 	 * Address:	803D388C
 	 * Size:	000004
 	 */
-	void TScreenBase::doSetArchive(JKRArchive*)
-	{
-
-	}
+	void TScreenBase::doSetArchive(JKRArchive*) { }
 
 	/*
 	 * --INFO--
@@ -41,8 +38,7 @@ namespace screen {
 			is_zero   = 1;
 			this->_08 = 1;
 			return is_zero;
-		}
-		else {
+		} else {
 			return 0;
 		}
 		return is_zero;
@@ -88,9 +84,7 @@ namespace screen {
 	 * Address:	803D3944
 	 * Size:	000004
 	 */
-	void TScreenBase::doCloseScreen(ArgClose*)
-	{
-	}
+	void TScreenBase::doCloseScreen(ArgClose*) { }
 
 	/*
 	 * --INFO--
@@ -140,29 +134,27 @@ namespace screen {
 	uchar TScreenBase::update(void)
 	{
 		int screen_state;
+		screen_state = this->_08;
 		uchar update_state;
 
-		screen_state = this->_08;
 		if (screen_state == 2) {
 			update_state = doUpdateStateWait();
 			if (update_state == 0) {
 				update_state = closeScreen(nullptr);
 			}
-		} else {
-			//update_state = this;
-			if (screen_state == 1) {
+		}else if (screen_state < 2) {
+			// update_state = this;
+			if ((screen_state != 0) && (-1 < screen_state)) {
 				update_state = doUpdateStateOpen();
-				if (update_state == 0)
-					{
-						doInitWaitState();
-						this->_08 = 2;
-					}
-			} else {
-				if ((screen_state < 4)
-				    && (update_state = doUpdateStateClose(),
-				        (update_state == 0))) {
-					killScreen();
+				if (update_state == 0) {
+					doInitWaitState();
+					this->_08 = 2;
 				}
+			}
+		} else {
+			if ((screen_state < 4)
+			    && (update_state = doUpdateStateClose(), (update_state == 0))) {
+				killScreen();
 			}
 		}
 		return update_state;
