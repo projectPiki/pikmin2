@@ -3,10 +3,8 @@
 .balign 0x8
 .global lbl_80496408
 lbl_80496408:
-	.4byte 0x65626933
-	.4byte 0x44477261
-	.4byte 0x70682E63
-	.4byte 0x70700000
+	.asciz "ebi3DGraph.cpp"
+	.skip 1
 .global lbl_80496418
 lbl_80496418:
 	.asciz "P2Assert"
@@ -16,16 +14,16 @@ lbl_80496418:
 .balign 0x8
 .global lbl_8051F9D8
 lbl_8051F9D8:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_8051F9DC
 lbl_8051F9DC:
-	.4byte 0x40000000
+	.float 2.0
 .global lbl_8051F9E0
 lbl_8051F9E0:
 	.float 0.5
 .global lbl_8051F9E4
 lbl_8051F9E4:
-	.4byte 0x42700000
+	.float 60.0
 .global lbl_8051F9E8
 lbl_8051F9E8:
 	.4byte 0x43300000
