@@ -23,62 +23,61 @@ lbl_80499654:
 .balign 0x8
 .global lbl_80520268
 lbl_80520268:
-	.4byte 0xC3A2F983
+	.float -325.949
 .global lbl_8052026C
 lbl_8052026C:
-	.4byte 0x43A2F983
+	.float 325.949
 .global lbl_80520270
 lbl_80520270:
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_80520274
 lbl_80520274:
-	.4byte 0xBF800000
+	.float -1.0
 .global lbl_80520278
 lbl_80520278:
 	.float 1.0
 .global lbl_8052027C
 lbl_8052027C:
-	.4byte 0x40490FDB
+	.float 3.14159
 .global lbl_80520280
 lbl_80520280:
-	.4byte 0x447FE000
+	.float 1023.5
 .global lbl_80520284
 lbl_80520284:
-	.4byte 0x3FC90FDB
+	.float 1.5708
 .global lbl_80520288
 lbl_80520288:
 	.float 0.5
 .global lbl_8052028C
 lbl_8052028C:
-	.4byte 0x3FC00000
+	.float 1.5
 .global lbl_80520290
 lbl_80520290:
-	.4byte 0xBFC00000
+	.float -1.5
 .global lbl_80520294
 lbl_80520294:
-	.4byte 0x40000000
+	.float 2.0
 .global lbl_80520298
 lbl_80520298:
-	.4byte 0x40900000
+	.float 4.5
 .global lbl_8052029C
 lbl_8052029C:
-	.4byte 0x40A00000
+	.float 5.0
 .global lbl_805202A0
 lbl_805202A0:
-	.4byte 0xC0900000
+	.float -4.5
 .global lbl_805202A4
 lbl_805202A4:
-	.4byte 0x40800000
+	.float 4.0
 .global lbl_805202A8
 lbl_805202A8:
-	.4byte 0x40C90FDB
+	.float 6.28319
 .global lbl_805202AC
 lbl_805202AC:
-	.4byte 0x3C23D70A
+	.float 0.01
 .global lbl_805202B0
 lbl_805202B0:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.double 0.0
 .global lbl_805202B8
 lbl_805202B8:
 	.4byte 0x3727C5AC
@@ -87,10 +86,10 @@ lbl_805202BC:
 	.float 0.25
 .global lbl_805202C0
 lbl_805202C0:
-	.4byte 0x47000000
+	.float 32768.0
 .global lbl_805202C4
 lbl_805202C4:
-	.4byte 0xC7000000
+	.float -32768.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
