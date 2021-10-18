@@ -1,4 +1,110 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804974A0
+lbl_804974A0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x65626950
+	.4byte 0x32546974
+	.4byte 0x6C654B6F
+	.4byte 0x67616E65
+	.4byte 0x00000000
+.global lbl_804974C0
+lbl_804974C0:
+	.4byte 0x4B6F6761
+	.4byte 0x6E654D67
+	.4byte 0x72000000
+	.4byte 0x83588350
+	.4byte 0x815B838B
+	.4byte 0x00000000
+	.4byte 0x834A838A
+	.4byte 0x8393834F
+	.4byte 0x94BC8C61
+	.4byte 0x00000000
+	.4byte 0x8352838A
+	.4byte 0x83578387
+	.4byte 0x839394BC
+	.4byte 0x8C610000
+	.4byte 0x8373834E
+	.4byte 0x837E8393
+	.4byte 0x94BD899E
+	.4byte 0x94BC8C61
+	.4byte 0x00000000
+	.4byte 0x95E08D73
+	.4byte 0x83898393
+	.4byte 0x835F8380
+	.4byte 0x8A709378
+	.4byte 0x00000000
+	.4byte 0x95E08D73
+	.4byte 0x91AC9378
+	.4byte 0x00000000
+	.4byte 0x90F989F1
+	.4byte 0x90AB945C
+	.4byte 0x00000000
+	.4byte 0x91D282BF
+	.4byte 0x8E9E8AD4
+	.4byte 0x8DC58FAC
+	.4byte 0x28956229
+	.4byte 0x00000000
+	.4byte 0x91D282BF
+	.4byte 0x8E9E8AD4
+	.4byte 0x8DC591E5
+	.4byte 0x28956229
+	.4byte 0x00000000
+	.4byte 0x88DA93AE
+	.4byte 0x8E9E8AD4
+	.4byte 0x8DC58FAC
+	.4byte 0x28956229
+	.4byte 0x00000000
+	.4byte 0x88DA93AE
+	.4byte 0x8E9E8AD4
+	.4byte 0x8DC591E5
+	.4byte 0x28956229
+	.4byte 0x00000000
+	.4byte 0x83528393
+	.4byte 0x8367838D
+	.4byte 0x815B8389
+	.4byte 0x8FF391D4
+	.4byte 0x8E9E8AD4
+	.4byte 0x28956229
+	.4byte 0x00000000
+.global lbl_804975A4
+lbl_804975A4:
+	.4byte 0x70617261
+	.4byte 0x6D2F7061
+	.4byte 0x72616D5F
+	.4byte 0x6B6F6761
+	.4byte 0x6E652E74
+	.4byte 0x78740000
+	.4byte 0x6B6F6761
+	.4byte 0x6E652F6B
+	.4byte 0x6F67616E
+	.4byte 0x655F6D6F
+	.4byte 0x76652E62
+	.4byte 0x636B0000
+	.4byte 0x6B6F6761
+	.4byte 0x6E652F6B
+	.4byte 0x6F67616E
+	.4byte 0x655F7761
+	.4byte 0x69742E62
+	.4byte 0x636B0000
+	.4byte 0x6B6F6761
+	.4byte 0x6E652F6B
+	.4byte 0x6F67616E
+	.4byte 0x655F7469
+	.4byte 0x746C652E
+	.4byte 0x626D6400
+	.4byte 0x65626950
+	.4byte 0x32546974
+	.4byte 0x6C654B6F
+	.4byte 0x67616E65
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global lbl_804E9E10

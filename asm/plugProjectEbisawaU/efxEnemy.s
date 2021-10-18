@@ -1,4 +1,77 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80495898
+lbl_80495898:
+	.4byte 0x65667845
+	.4byte 0x6E656D79
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x41726753
+	.4byte 0x63616C65
+	.4byte 0x00000000
+.global lbl_804958B4
+lbl_804958B4:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x41726749
+	.4byte 0x6D6F4561
+	.4byte 0x74000000
+.global lbl_804958CC
+lbl_804958CC:
+	.4byte 0x3E4CCCCD
+	.4byte 0x3E4CCCCD
+	.4byte 0x3E4CCCCD
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.4byte 0x3DA7EF9E
+	.float 0.05
+	.4byte 0x00000000
+	.4byte 0x40133333
+	.4byte 0x3FD9999A
+	.4byte 0x00000000
+.global lbl_804958FC
+lbl_804958FC:
+	.4byte 0x3F59999A
+	.float 0.5
+	.4byte 0x3EB33333
+	.float 0.3
+	.4byte 0x3E4CCCCD
+	.4byte 0x00000000
+	.float 0.25
+	.float 0.25
+	.4byte 0x3E4CCCCD
+	.float 0.25
+	.float 0.15
+	.4byte 0x00000000
+	.4byte 0x41726747
+	.4byte 0x61737548
+	.4byte 0x69626100
+.global lbl_80495938
+lbl_80495938:
+	.float 0.5
+	.4byte 0x3ECCCCCD
+	.float 0.25
+	.4byte 0x3EB33333
+	.4byte 0x3E4CCCCD
+	.float 0.1
+	.4byte 0x41726744
+	.4byte 0x656E6B69
+	.4byte 0x48696261
+	.4byte 0x00000000
+.global lbl_80495960
+lbl_80495960:
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 0.15
+	.float 0.07
+	.float 0.02
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q23efx13TDenkiHibaMgr

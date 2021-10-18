@@ -1,4 +1,52 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80495BC8
+lbl_80495BC8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x70617274
+	.4byte 0x69636C65
+	.4byte 0x4D677200
+.global lbl_80495BE0
+lbl_80495BE0:
+	.4byte 0x50617274
+	.4byte 0x69636C65
+	.4byte 0x4D677200
+.global lbl_80495BEC
+lbl_80495BEC:
+	.4byte 0x70617274
+	.4byte 0x69636C65
+	.4byte 0x4D67722E
+	.4byte 0x63707000
+.global lbl_80495BFC
+lbl_80495BFC:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x65666665
+	.4byte 0x63742068
+	.4byte 0x65617020
+	.4byte 0x6E6F7420
+	.4byte 0x616C6C6F
+	.4byte 0x63617465
+	.4byte 0x6420210A
+	.4byte 0x00000000
+	.4byte 0x50617274
+	.4byte 0x69636C65
+	.4byte 0x5265736F
+	.4byte 0x75726365
+	.4byte 0x20282573
+	.4byte 0x29206E6F
+	.4byte 0x7420666F
+	.4byte 0x756E640A
+	.4byte 0x00000000
+.global lbl_80495C4C
+lbl_80495C4C:
+	.4byte 0x4950325F
+	.4byte 0x64756D6D
+	.4byte 0x79000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global lbl_804E7688

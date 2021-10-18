@@ -1,4 +1,49 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80495988
+lbl_80495988:
+	.asciz "efxObject.cpp"
+	.skip 2
+	.asciz "ArgScale"
+	.skip 3
+.global lbl_804959A4
+lbl_804959A4:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "ArgKouhai"
+	.skip 2
+	.asciz "ArgPelType"
+	.skip 1
+.global lbl_804959C8
+lbl_804959C8:
+	.float 0.3
+	.float 0.25
+	.float 0.15
+	.float 0.06
+	.float 0.05
+	.float 0.04
+	.float 0.225
+	.float 0.2
+	.float 0.15
+	.float 0.1
+	.float 0.08
+	.float 0.06
+.global lbl_804959F8
+lbl_804959F8:
+	.float 0.3
+	.float 0.25
+	.float 0.15
+	.float 0.06
+	.float 0.05
+	.float 0.04
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.1
+	.float 0.08
+	.float 0.06
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q23efx12ContainerAct

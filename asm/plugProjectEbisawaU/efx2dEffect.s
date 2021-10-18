@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80495B68
+lbl_80495B68:
+	.4byte 0x65667832
+	.4byte 0x64456666
+	.4byte 0x65637400
+	.4byte 0x41726753
+	.4byte 0x63616C65
+	.4byte 0x00000000
+	.4byte 0x65667832
+	.4byte 0x64456666
+	.4byte 0x6563742E
+	.4byte 0x63707000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x41726753
+	.4byte 0x63616C65
+	.4byte 0x436F6C6F
+	.4byte 0x72436F6C
+	.4byte 0x6F720000
+	.4byte 0x41726743
+	.4byte 0x6F6C6F72
+	.4byte 0x00000000
+	.4byte 0x41726746
+	.4byte 0x696C6563
+	.4byte 0x6F707900
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q35efx2d8WorldMap10T2DRocketB

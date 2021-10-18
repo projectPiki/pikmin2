@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80496428
+lbl_80496428:
+	.4byte 0x65626932
+	.4byte 0x44477261
+	.4byte 0x70682E63
+	.4byte 0x70700000
+.global lbl_80496438
+lbl_80496438:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global E2DScreen_searchAssert__3ebiFP9J2DScreenUx

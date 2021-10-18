@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80497B40
+lbl_80497B40:
+	.asciz "ebiScreenOmakeCardE"
+	.asciz "Screen_newScreen_of_TOmakeCardE"
+	.asciz "omake_tunagu.blo"
+	.skip 3
+	.asciz "Screen_setCallBackMessage_of_TOmakeCardE"
+	.skip 3
+	.asciz "omake_tunagu.bck"
+	.skip 3
+	.asciz "omake_tunagu.bpk"
+	.skip 3
+.global lbl_80497BDC
+lbl_80497BDC:
+	.asciz "TOmakeCardE"
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q33ebi6Screen11TOmakeCardE

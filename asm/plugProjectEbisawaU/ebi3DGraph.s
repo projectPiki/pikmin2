@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80496408
+lbl_80496408:
+	.4byte 0x65626933
+	.4byte 0x44477261
+	.4byte 0x70682E63
+	.4byte 0x70700000
+.global lbl_80496418
+lbl_80496418:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc

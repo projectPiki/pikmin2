@@ -1,4 +1,13 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804968F8
+lbl_804968F8:
+	.4byte 0x4E6F4E61
+	.4byte 0x6D655363
+	.4byte 0x7265656E
+	.4byte 0x00000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q33ebi6Screen11TScreenBase

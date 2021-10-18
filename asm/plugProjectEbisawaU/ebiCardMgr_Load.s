@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80497118
+lbl_80497118:
+	.4byte 0x65626943
+	.4byte 0x6172644D
+	.4byte 0x67725F4C
+	.4byte 0x6F61642E
+	.4byte 0x63707000
+.global lbl_8049712C
+lbl_8049712C:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q33ebi9CardError29FSMState_WN1_NowCreateNewFile

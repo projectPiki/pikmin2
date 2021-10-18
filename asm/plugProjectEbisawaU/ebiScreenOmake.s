@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80497A18
+lbl_80497A18:
+	.asciz "ebiScreenOmake"
+	.skip 1
+	.asciz "Screen_newScreen_of_TOmake"
+	.skip 1
+	.asciz "omake.blo"
+	.skip 2
+	.asciz "Screen_setCallBackMessage_of_TOmake"
+	.asciz "omake.bck"
+	.skip 2
+.global lbl_80497A80
+lbl_80497A80:
+	.asciz "ebiScreenOmake.cpp"
+	.skip 1
+.global lbl_80497A94
+lbl_80497A94:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global lbl_804EA198

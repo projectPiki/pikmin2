@@ -1,4 +1,78 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80497010
+lbl_80497010:
+	.4byte 0x65626946
+	.4byte 0x696C6553
+	.4byte 0x656C6563
+	.4byte 0x744D6772
+	.4byte 0x00000000
+	.4byte 0x456E7074
+	.4byte 0x79557064
+	.4byte 0x61746500
+	.4byte 0x4D6F756E
+	.4byte 0x74436865
+	.4byte 0x636B0000
+	.4byte 0x47657450
+	.4byte 0x6C617965
+	.4byte 0x72486561
+	.4byte 0x64657200
+	.4byte 0x43617264
+	.4byte 0x4572726F
+	.4byte 0x72000000
+	.4byte 0x53637265
+	.4byte 0x656E4669
+	.4byte 0x6C655365
+	.4byte 0x6C656374
+	.4byte 0x00000000
+.global lbl_8049706C
+lbl_8049706C:
+	.4byte 0x65626946
+	.4byte 0x696C6553
+	.4byte 0x656C6563
+	.4byte 0x744D6772
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80497084
+lbl_80497084:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x81A68381
+	.4byte 0x8382838A
+	.4byte 0x815B834A
+	.4byte 0x815B8368
+	.4byte 0x83478389
+	.4byte 0x815B3A91
+	.4byte 0x7A92E88A
+	.4byte 0x4F82CC83
+	.4byte 0x50815B83
+	.4byte 0x5882C582
+	.4byte 0xB70A0000
+	.4byte 0x81A6838D
+	.4byte 0x815B8368
+	.4byte 0x82C58356
+	.4byte 0x838A8341
+	.4byte 0x838B8347
+	.4byte 0x8389815B
+	.4byte 0x82CD82A0
+	.4byte 0x82E882A6
+	.4byte 0x82C882A2
+	.4byte 0x0A000000
+	.4byte 0x81A68140
+	.4byte 0x6D67722D
+	.4byte 0x3E6D4361
+	.4byte 0x72644572
+	.4byte 0x726F724D
+	.4byte 0x67722D3E
+	.4byte 0x67657445
+	.4byte 0x6E643D25
+	.4byte 0x642082C1
+	.4byte 0x82C482A0
+	.4byte 0x82E882A6
+	.4byte 0x82C882A2
+	.4byte 0x81490A00
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global lbl_804E9678

@@ -1,4 +1,56 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804977F0
+lbl_804977F0:
+	.4byte 0x54536372
+	.4byte 0x65656E54
+	.4byte 0x4D426163
+	.4byte 0x6B3A3A73
+	.4byte 0x65744172
+	.4byte 0x63686976
+	.4byte 0x65000000
+.global lbl_8049780C
+lbl_8049780C:
+	.4byte 0x746D5F62
+	.4byte 0x61636B2E
+	.4byte 0x626C6F00
+.global lbl_80497818
+lbl_80497818:
+	.4byte 0x65626953
+	.4byte 0x63726565
+	.4byte 0x6E544D42
+	.4byte 0x61636B2E
+	.4byte 0x63707000
+.global lbl_8049782C
+lbl_8049782C:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80497838
+lbl_80497838:
+	.4byte 0x54536372
+	.4byte 0x65656E4E
+	.4byte 0x696E7465
+	.4byte 0x6E646F4C
+	.4byte 0x6F676F3A
+	.4byte 0x3A736574
+	.4byte 0x41726368
+	.4byte 0x69766500
+.global lbl_80497858
+lbl_80497858:
+	.4byte 0x746D5F32
+	.4byte 0x3030336E
+	.4byte 0x696E7465
+	.4byte 0x6E646F2E
+	.4byte 0x626C6F00
+.global lbl_8049786C
+lbl_8049786C:
+	.4byte 0x544E696E
+	.4byte 0x74656E64
+	.4byte 0x6F4C6F67
+	.4byte 0x6F000000
+	.4byte 0x00000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q33ebi6Screen13TNintendoLogo

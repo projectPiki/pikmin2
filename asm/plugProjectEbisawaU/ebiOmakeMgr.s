@@ -1,4 +1,29 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80497AA0
+lbl_80497AA0:
+	.asciz "ebiOmakeMgr.cpp"
+	.asciz "FSMState_OmakeScreen"
+	.skip 3
+	.asciz "FSMState_CardEScreen"
+	.skip 3
+	.asciz "FSMState_SelectGame"
+	.4byte 0x4D6F7669
+	.4byte 0x658FF391
+	.4byte 0xD4000000
+	.asciz "TOmakeMgr::loadResource"
+	.asciz "omake.szs"
+	.skip 2
+.global lbl_80497B24
+lbl_80497B24:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80497B30
+lbl_80497B30:
+	.asciz "ArgOpenOmake"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>"

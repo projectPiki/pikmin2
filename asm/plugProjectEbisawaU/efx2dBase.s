@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80495B48
+lbl_80495B48:
+	.4byte 0x65667832
+	.4byte 0x64426173
+	.4byte 0x652E6370
+	.4byte 0x70000000
+.global lbl_80495B58
+lbl_80495B58:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q25efx2d12TChasePosDir

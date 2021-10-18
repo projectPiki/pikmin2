@@ -1,4 +1,70 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804965A0
+lbl_804965A0:
+	.4byte 0x6562694F
+	.4byte 0x7074696F
+	.4byte 0x6E4D6772
+	.4byte 0x00000000
+	.4byte 0x4C6F6164
+	.4byte 0x4F707469
+	.4byte 0x6F6E0000
+	.4byte 0x53637265
+	.4byte 0x656E4F70
+	.4byte 0x656E0000
+	.4byte 0x53637265
+	.4byte 0x656E5761
+	.4byte 0x69740000
+	.4byte 0x53637265
+	.4byte 0x656E436C
+	.4byte 0x6F736500
+	.4byte 0x57616974
+	.4byte 0x436C6F73
+	.4byte 0x65466F72
+	.4byte 0x4E6F4361
+	.4byte 0x72640000
+	.4byte 0x576F726C
+	.4byte 0x644D6170
+	.4byte 0x496E666F
+	.4byte 0x57696E64
+	.4byte 0x6F770000
+.global lbl_80496608
+lbl_80496608:
+	.4byte 0x6562694F
+	.4byte 0x7074696F
+	.4byte 0x6E4D6772
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8049661C
+lbl_8049661C:
+	.4byte 0x6661696C
+	.4byte 0x20746F20
+	.4byte 0x6D656D6F
+	.4byte 0x72792063
+	.4byte 0x61726420
+	.4byte 0x52657175
+	.4byte 0x65737420
+	.4byte 0x6576656E
+	.4byte 0x20696620
+	.4byte 0x66696E69
+	.4byte 0x73682074
+	.4byte 0x61736B0A
+	.4byte 0x00000000
+.global lbl_80496650
+lbl_80496650:
+	.4byte 0x4F707469
+	.4byte 0x6F6E3A3A
+	.4byte 0x544D6772
+	.4byte 0x3A3A6C6F
+	.4byte 0x61645265
+	.4byte 0x736F7572
+	.4byte 0x63650000
+.global lbl_8049666C
+lbl_8049666C:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q33ebi6Screen20TScreenBaseInterface

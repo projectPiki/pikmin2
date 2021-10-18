@@ -1003,6 +1003,7 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\
+	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o\
@@ -1049,7 +1050,6 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
-	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 

@@ -1,4 +1,52 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80497978
+lbl_80497978:
+	.4byte 0x65626943
+	.4byte 0x61726445
+	.4byte 0x52656164
+	.4byte 0x65720000
+.global lbl_80497988
+lbl_80497988:
+	.4byte 0x65626943
+	.4byte 0x61726445
+	.4byte 0x52656164
+	.4byte 0x65722E63
+	.4byte 0x70700000
+.global lbl_8049799C
+lbl_8049799C:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x75736572
+	.4byte 0x2F456269
+	.4byte 0x73617761
+	.4byte 0x2F636172
+	.4byte 0x645F655F
+	.4byte 0x72656164
+	.4byte 0x65722F70
+	.4byte 0x70312E64
+	.4byte 0x776E0000
+	.4byte 0x75736572
+	.4byte 0x2F456269
+	.4byte 0x73617761
+	.4byte 0x2F636172
+	.4byte 0x645F655F
+	.4byte 0x72656164
+	.4byte 0x65722F70
+	.4byte 0x70322E64
+	.4byte 0x776E0000
+	.4byte 0x75736572
+	.4byte 0x2F456269
+	.4byte 0x73617761
+	.4byte 0x2F636172
+	.4byte 0x645F655F
+	.4byte 0x72656164
+	.4byte 0x65722F70
+	.4byte 0x70332E64
+	.4byte 0x776E0000
+	.4byte 0x00000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q33ebi11CardEReader4TMgr
