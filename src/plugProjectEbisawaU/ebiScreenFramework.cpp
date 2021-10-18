@@ -212,28 +212,11 @@ namespace screen {
 	 * Address:	803D3AC8
 	 * Size:	000038
 	 */
-	uchar TScreenBase::draw(void)
+	void TScreenBase::draw(void)
 	{
-		return 1;
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  lwz       r0, 0x8(r3)
-		  cmpwi     r0, 0
-		  beq-      .loc_0x28
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x44(r12)
-		  mtctr     r12
-		  bctrl
-
-		.loc_0x28:
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
-		*/
+		if (this->_08 != 0) {
+			doDraw();
+		}
 	}
 
 	/*

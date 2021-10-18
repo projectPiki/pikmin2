@@ -18,7 +18,7 @@ namespace ebi {
 		virtual uint closeScreen(ArgClose*);
 		virtual void killScreen();
 		virtual uchar update();
-		virtual uchar draw();
+		virtual void draw();
 		virtual uchar isFinishScreen();
 		virtual void doSetArchive(JKRArchive*);
 		virtual void doOpenScreen(ArgOpen*);
