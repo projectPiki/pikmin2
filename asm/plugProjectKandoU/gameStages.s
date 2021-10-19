@@ -1,4 +1,59 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F8A8
+lbl_8047F8A8:
+	.4byte 0x67616D65
+	.4byte 0x53746167
+	.4byte 0x65730000
+.global lbl_8047F8B4
+lbl_8047F8B4:
+	.4byte 0x6B656967
+	.4byte 0x6F5F6465
+	.4byte 0x5F736F78
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x6162655F
+	.4byte 0x666F6C64
+	.4byte 0x65720000
+	.4byte 0x636F6C6C
+	.4byte 0x6973696F
+	.4byte 0x6E000000
+	.4byte 0x77617465
+	.4byte 0x72626F78
+	.4byte 0x00000000
+	.4byte 0x73746172
+	.4byte 0x74616E67
+	.4byte 0x6C650000
+.global lbl_8047F8F8
+lbl_8047F8F8:
+	.4byte 0x67616D65
+	.4byte 0x53746167
+	.4byte 0x65732E63
+	.4byte 0x70700000
+.global lbl_8047F908
+lbl_8047F908:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8047F914
+lbl_8047F914:
+	.4byte 0x75736572
+	.4byte 0x2F416265
+	.4byte 0x2F737461
+	.4byte 0x6765732E
+	.4byte 0x74787400
+	.4byte 0x53656C65
+	.4byte 0x63742043
+	.4byte 0x6F757273
+	.4byte 0x65000000
+	.4byte 0x2573203A
+	.4byte 0x20256420
+	.4byte 0x63617665
+	.4byte 0x730A0000
+	.4byte 0x5B25735D
+	.4byte 0x2025642F
+	.4byte 0x25640000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q24Game11CaveOtakaraFv

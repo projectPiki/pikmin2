@@ -1,4 +1,29 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047EA80
+lbl_8047EA80:
+	.asciz "pikihead"
+	.skip 0x3
+.global lbl_8047EA8C
+lbl_8047EA8C:
+	.asciz "fountain"
+	.skip 0x3
+.global lbl_8047EA98
+lbl_8047EA98:
+	.asciz "bigfountain"
+.global lbl_8047EAA4
+lbl_8047EAA4:
+	.asciz "treasure"
+	.skip 0x3
+.global lbl_8047EAB0
+lbl_8047EAB0:
+	.asciz "downfloor"
+	.skip 0x2
+.global lbl_8047EABC
+lbl_8047EABC:
+	.asciz "ujamushi"
+	.skip 0x3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getName__Q24Game7ObjTypeFUs

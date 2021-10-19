@@ -1,4 +1,81 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C788
+lbl_8047C788:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8047C794
+lbl_8047C794:
+	.4byte 0x6E617669
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x83558393
+	.4byte 0x815B815B
+	.4byte 0x81698145
+	.4byte 0x84748145
+	.4byte 0x816A817C
+	.4byte 0x817C836C
+	.4byte 0x83930A00
+	.4byte 0x68617070
+	.4byte 0x616A6E74
+	.4byte 0x33000000
+	.4byte 0x6E6F2074
+	.4byte 0x61726765
+	.4byte 0x74212120
+	.4byte 0x484F4C45
+	.4byte 0x494E0A00
+	.4byte 0x6E6F2074
+	.4byte 0x61726765
+	.4byte 0x74212120
+	.4byte 0x464F554E
+	.4byte 0x5441494E
+	.4byte 0x4F4E0A00
+.global lbl_8047C7F4
+lbl_8047C7F4:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x74696D65
+	.4byte 0x6F757420
+	.4byte 0x25642C25
+	.4byte 0x643A2564
+	.4byte 0x0A25642C
+	.4byte 0x25642D25
+	.4byte 0x642C2564
+	.4byte 0x0A000000
+	.4byte 0x696E666C
+	.4byte 0x6F6F7020
+	.4byte 0x25642C25
+	.4byte 0x643A2564
+	.4byte 0x0A25642C
+	.4byte 0x25642D25
+	.4byte 0x642C2564
+	.4byte 0x0A000000
+.global lbl_8047C840
+lbl_8047C840:
+	.4byte 0x41637446
+	.4byte 0x72656541
+	.4byte 0x72670000
+.global lbl_8047C84C
+lbl_8047C84C:
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+.global lbl_8047C860
+lbl_8047C860:
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+.global lbl_8047C86C
+lbl_8047C86C:
+	.4byte 0x4E617669
+	.4byte 0x44616D61
+	.4byte 0x67654172
+	.4byte 0x67000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam

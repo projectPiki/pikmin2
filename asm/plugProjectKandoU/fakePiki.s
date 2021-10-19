@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C708
+lbl_8047C708:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x66616B65
+	.4byte 0x50696B69
+	.4byte 0x00000000
+.global lbl_8047C720
+lbl_8047C720:
+	.4byte 0x66616B65
+	.4byte 0x50696B69
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8047C730
+lbl_8047C730:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8047C73C
+lbl_8047C73C:
+	.4byte 0x64616D65
+	.4byte 0x6461796F
+	.4byte 0x210A0000
+	.4byte 0x7A616D61
+	.4byte 0x2D2D2D2D
+	.4byte 0x2D2D2D2D
+	.4byte 0x6E0A0000
+	.4byte 0x63616C63
+	.4byte 0x2D636F6C
+	.4byte 0x6C000000
+.global lbl_8047C764
+lbl_8047C764:
+	.4byte 0x6E6F2072
+	.4byte 0x65636F76
+	.4byte 0x6572206F
+	.4byte 0x6E796F6E
+	.4byte 0x0A000000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global kAngleSpeed__Q23efx7TCursor

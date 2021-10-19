@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F7D8
+lbl_8047F7D8:
+	.4byte 0x6F626A65
+	.4byte 0x63742074
+	.4byte 0x79706500
+	.4byte 0x4E415649
+	.4byte 0x2082F083
+	.4byte 0x5A836283
+	.4byte 0x67000000
+	.4byte 0x8358835E
+	.4byte 0x815B8367
+	.4byte 0x8CFC82AB
+	.4byte 0x00000000
+.global lbl_8047F804
+lbl_8047F804:
+	.4byte 0x83698372
+	.4byte 0x82F094AD
+	.4byte 0x90B60000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeObjectNavi__Fv

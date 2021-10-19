@@ -1,4 +1,65 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047EE90
+lbl_8047EE90:
+	.skip 0xC
+	.asciz "interactPiki"
+	.skip 3
+.global lbl_8047EEAC
+lbl_8047EEAC:
+	.asciz "g21_meet_bluepikmin"
+.global lbl_8047EEC0
+lbl_8047EEC0:
+	.asciz "g03_meet_redpikmin"
+	.skip 1
+.global lbl_8047EED4
+lbl_8047EED4:
+	.asciz "g1F_meet_yellowpikmin"
+	.skip 2
+	.4byte lbl_8047EEAC
+	.4byte lbl_8047EEC0
+	.4byte lbl_8047EED4
+	.asciz "X13_exp_leafchappy"
+	.skip 1
+	.asciz "x13_exp_leafchappy"
+	.skip 1
+.global lbl_8047EF20
+lbl_8047EF20:
+	.asciz "interactPiki.cpp"
+	.skip 3
+.global lbl_8047EF34
+lbl_8047EF34:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8047EF40
+lbl_8047EF40:
+	.4byte 0x41637442
+	.4byte 0x6174746C
+	.4byte 0x65417267
+	.4byte 0x00000000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
+	.4byte 0x4974656D
+	.4byte 0x50696B69
+	.4byte 0x48656164
+	.4byte 0x3A3A496E
+	.4byte 0x69744172
+	.4byte 0x67000000
+	.4byte 0x4974656D
+	.4byte 0x496E6974
+	.4byte 0x41726700
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki

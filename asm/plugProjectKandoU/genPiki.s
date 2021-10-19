@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F788
+lbl_8047F788:
+	.4byte 0x6F626A65
+	.4byte 0x63742074
+	.4byte 0x79706500
+	.4byte 0x50494B4D
+	.4byte 0x494E2082
+	.4byte 0xF0835A83
+	.4byte 0x62836700
+	.4byte 0x8EA98A88
+	.4byte 0x28313D79
+	.4byte 0x65732900
+.global lbl_8047F7B0
+lbl_8047F7B0:
+	.4byte 0x8373834E
+	.4byte 0x837E8393
+	.4byte 0x82F094AD
+	.4byte 0x90B60000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8047F7CC
+lbl_8047F7CC:
+	.4byte 0x67656E50
+	.4byte 0x696B692E
+	.4byte 0x63707000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeObjectPiki__Fv

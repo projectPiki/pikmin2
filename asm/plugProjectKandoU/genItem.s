@@ -1,4 +1,54 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F810
+lbl_8047F810:
+	.4byte 0x6F626A65
+	.4byte 0x63742074
+	.4byte 0x79706500
+.global lbl_8047F81C
+lbl_8047F81C:
+	.4byte 0x4954454D
+	.4byte 0x2082F083
+	.4byte 0x5A836283
+	.4byte 0x67000000
+.global lbl_8047F82C
+lbl_8047F82C:
+	.4byte 0x83418343
+	.4byte 0x83658380
+	.4byte 0x82F094AD
+	.4byte 0x90B60000
+	.4byte 0x09232069
+	.4byte 0x74656D20
+	.4byte 0x69640D0A
+	.4byte 0x00000000
+	.4byte 0x09232072
+	.4byte 0x6F746174
+	.4byte 0x696F6E0D
+	.4byte 0x0A000000
+	.4byte 0x09232069
+	.4byte 0x74656D20
+	.4byte 0x6C6F6361
+	.4byte 0x6C207665
+	.4byte 0x7273696F
+	.4byte 0x6E0D0A00
+.global lbl_8047F874
+lbl_8047F874:
+	.4byte 0x67656E49
+	.4byte 0x74656D2E
+	.4byte 0x63707000
+.global lbl_8047F880
+lbl_8047F880:
+	.4byte 0x6E6F2062
+	.4byte 0x61736549
+	.4byte 0x74656D4D
+	.4byte 0x67722066
+	.4byte 0x6F722025
+	.4byte 0x730A0000
+	.4byte 0x8349836A
+	.4byte 0x83878393
+	.4byte 0x82F094AD
+	.4byte 0x90B60000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeItem__Fv

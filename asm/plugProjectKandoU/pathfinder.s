@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F400
+lbl_8047F400:
+	.4byte 0x70617468
+	.4byte 0x66696E64
+	.4byte 0x65720000
+.global lbl_8047F40C
+lbl_8047F40C:
+	.4byte 0x70617468
+	.4byte 0x66696E64
+	.4byte 0x65722E63
+	.4byte 0x70700000
+	.4byte 0x4F682120
+	.4byte 0x6E6F210A
+	.4byte 0x00000000
+	.4byte 0x6E6F2063
+	.4byte 0x6F6E7465
+	.4byte 0x78742069
+	.4byte 0x73206176
+	.4byte 0x61696C61
+	.4byte 0x626C6520
+	.4byte 0x28636C69
+	.4byte 0x656E7473
+	.4byte 0x3D256429
+	.4byte 0x210A0000
+	.4byte 0x636F6E74
+	.4byte 0x65787420
+	.4byte 0x73746174
+	.4byte 0x65206973
+	.4byte 0x2025640A
+	.4byte 0x00000000
+	.4byte 0x6E6F2073
+	.4byte 0x75636820
+	.4byte 0x68616E64
+	.4byte 0x6C652025
+	.4byte 0x640A0000
+.global lbl_8047F47C
+lbl_8047F47C:
+	.4byte 0x206E6F20
+	.4byte 0x68616E64
+	.4byte 0x6C652021
+	.4byte 0x2025640A
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10PathfinderFv

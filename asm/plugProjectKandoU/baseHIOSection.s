@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047E2A0
+lbl_8047E2A0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x62617365
+	.4byte 0x48494F53
+	.4byte 0x65637469
+	.4byte 0x6F6E0000
+	.4byte 0x42617365
+	.4byte 0x48494F53
+	.4byte 0x65637469
+	.4byte 0x6F6E0000
+.global lbl_8047E2CC
+lbl_8047E2CC:
+	.4byte 0x62617365
+	.4byte 0x48494F53
+	.4byte 0x65637469
+	.4byte 0x6F6E2E63
+	.4byte 0x70700000
+	.4byte 0x66726167
+	.4byte 0x6D656E74
+	.4byte 0x6174696F
+	.4byte 0x6E206F63
+	.4byte 0x63757272
+	.4byte 0x6564203A
+	.4byte 0x20616674
+	.4byte 0x65722073
+	.4byte 0x6F756E64
+	.4byte 0x0A000000
+.global lbl_8047E308
+lbl_8047E308:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14BaseHIOSectionFP7JKRHeap

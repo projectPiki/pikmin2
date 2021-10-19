@@ -1,4 +1,56 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047FA28
+lbl_8047FA28:
+	.4byte 0x696E766F
+	.4byte 0x6B654149
+	.4byte 0x2D660000
+.global lbl_8047FA34
+lbl_8047FA34:
+	.4byte 0x70696B69
+	.4byte 0x41492E63
+	.4byte 0x70700000
+.global lbl_8047FA40
+lbl_8047FA40:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8047FA4C
+lbl_8047FA4C:
+	.4byte 0x41637442
+	.4byte 0x72696467
+	.4byte 0x65417267
+	.4byte 0x00000000
+.global lbl_8047FA5C
+lbl_8047FA5C:
+	.4byte 0x41637442
+	.4byte 0x7265616B
+	.4byte 0x526F636B
+	.4byte 0x41726700
+.global lbl_8047FA6C
+lbl_8047FA6C:
+	.4byte 0x41637442
+	.4byte 0x7265616B
+	.4byte 0x47617465
+	.4byte 0x41726700
+.global lbl_8047FA7C
+lbl_8047FA7C:
+	.4byte 0x41637454
+	.4byte 0x72616E73
+	.4byte 0x706F7274
+	.4byte 0x41726700
+.global lbl_8047FA8C
+lbl_8047FA8C:
+	.4byte 0x41637441
+	.4byte 0x74746163
+	.4byte 0x6B417267
+	.4byte 0x00000000
+.global lbl_8047FA9C
+lbl_8047FA9C:
+	.4byte 0x41637457
+	.4byte 0x65656441
+	.4byte 0x72670000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sGraspSituationOptimise__Q24Game4Piki

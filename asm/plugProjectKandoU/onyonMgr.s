@@ -1,4 +1,241 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047E620
+lbl_8047E620:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6F6E796F
+	.4byte 0x6E4D6772
+	.4byte 0x00000000
+.global lbl_8047E638
+lbl_8047E638:
+	.asciz "onyonMgr.cpp"
+	.skip 3
+	.asciz "BIKKURI no boot!\n"
+	.skip 2
+	.asciz "onyon supply failure!\n"
+	.skip 1
+.global lbl_8047E674
+lbl_8047E674:
+	.asciz "pmotion3"
+	.skip 3
+.global lbl_8047E680
+lbl_8047E680:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "damedayo !: arrive  ufoSuckState=%d\n"
+	.skip 3
+.global lbl_8047E6B4
+lbl_8047E6B4:
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x62696B6B
+	.4byte 0x75726921
+	.4byte 0x0A000000
+	.4byte 0x4927616D
+	.4byte 0x2062696B
+	.4byte 0x6B757269
+	.4byte 0x2D65640A
+	.4byte 0x00000000
+.global lbl_8047E71C
+lbl_8047E71C:
+	.4byte 0x6731365F
+	.4byte 0x39355F70
+	.4byte 0x696B6D69
+	.4byte 0x6E000000
+.global lbl_8047E72C
+lbl_8047E72C:
+	.4byte 0x6731365F
+	.4byte 0x3130305F
+	.4byte 0x70696B6D
+	.4byte 0x696E0000
+.global lbl_8047E73C
+lbl_8047E73C:
+	.4byte 0x7831385F
+	.4byte 0x6578705F
+	.4byte 0x70656C6C
+	.4byte 0x65740000
+	.4byte 0x6C656731
+	.4byte 0x6C656732
+	.4byte 0x6C656733
+	.4byte 0x666F7431
+	.4byte 0x666F7432
+	.4byte 0x666F7433
+	.asciz "oh! no!\n"
+	.skip 3
+.global lbl_8047E770
+lbl_8047E770:
+	.asciz "kasi1jnt1"
+	.skip 2
+.global lbl_8047E77C
+lbl_8047E77C:
+	.asciz "kass2jnt1"
+	.skip 2
+.global lbl_8047E788
+lbl_8047E788:
+	.asciz "kasi3jnt1"
+	.skip 2
+.global lbl_8047E794
+lbl_8047E794:
+	.4byte lbl_8047E770
+	.4byte lbl_8047E77C
+	.4byte lbl_8047E788
+	.asciz "exitWhite/Black zero (UFO)\n"
+.global lbl_8047E7BC
+lbl_8047E7BC:
+	.asciz "not ufo\n"
+	.skip 3
+.global lbl_8047E7C8
+lbl_8047E7C8:
+	.4byte 0x82BE82DF
+	.4byte 0x82C582B7
+	.4byte 0x00000000
+.global lbl_8047E7D4
+lbl_8047E7D4:
+	.asciz "pmotion1"
+	.skip 3
+.global lbl_8047E7E0
+lbl_8047E7E0:
+	.asciz "pmotion2"
+	.skip 3
+	.4byte lbl_8047E7D4
+	.4byte lbl_8047E7E0
+	.4byte lbl_8047E674
+	.asciz "no joint (%s)\n"
+	.skip 1
+.global lbl_8047E808
+lbl_8047E808:
+	.asciz "\t# onyon index\r\n"
+	.skip 3
+.global lbl_8047E81C
+lbl_8047E81C:
+	.asciz "\t# after boot? true==1\r\n"
+	.skip 3
+.global lbl_8047E838
+lbl_8047E838:
+	.asciz "illegal onyon index %d\n"
+	.asciz "onyon-arc"
+	.skip 2
+	.asciz "user/Kando/onyon/arc.szs"
+	.skip 3
+	.asciz "goal.bmd"
+	.skip 3
+	.asciz "goal.bmd not found !!\n"
+	.skip 1
+	.asciz "user/Kando/pod_gold/arc.szs"
+	.asciz "user/Kando/pod/arc.szs"
+	.skip 1
+	.asciz "pot.bmd not found !!\n"
+	.skip 2
+	.asciz "kidou_blue.brk"
+	.skip 1
+	.asciz "kidou_red.brk"
+	.skip 2
+	.asciz "kidou_yellow.brk"
+	.skip 3
+	.asciz "user/Kando/onyon"
+	.skip 3
+	.4byte 0x74657874
+	.4byte 0x732E737A
+	.4byte 0x73000000
+	.4byte 0x6F6E796F
+	.4byte 0x6E416E69
+	.4byte 0x6D4D6772
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x6F6E796F
+	.4byte 0x6E436F6C
+	.4byte 0x6C2E7478
+	.4byte 0x74000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F70
+	.4byte 0x6F645F67
+	.4byte 0x6F6C6400
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F70
+	.4byte 0x6F640000
+	.4byte 0x616E696D
+	.4byte 0x4D67722E
+	.4byte 0x74787400
+	.4byte 0x636F6C6C
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F75
+	.4byte 0x666F5F67
+	.4byte 0x6F6C642F
+	.4byte 0x6172632E
+	.4byte 0x737A7300
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F75
+	.4byte 0x666F2F61
+	.4byte 0x72632E73
+	.4byte 0x7A730000
+	.4byte 0x75666F2E
+	.4byte 0x626D6420
+	.4byte 0x6E6F7420
+	.4byte 0x666F756E
+	.4byte 0x64210A00
+	.4byte 0x75666F5F
+	.4byte 0x322E6272
+	.4byte 0x6B000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F75
+	.4byte 0x666F5F67
+	.4byte 0x6F6C6400
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F75
+	.4byte 0x666F0000
+	.4byte 0x616E696D
+	.4byte 0x6D67722E
+	.4byte 0x74787400
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+	.4byte 0x50696B69
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
+.global lbl_8047EA5C
+lbl_8047EA5C:
+	.asciz "ItemPikiHead::InitArg"
+	.skip 2
+.global lbl_8047EA74
+lbl_8047EA74:
+	.asciz "ItemInitArg"
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E60
 lbl_80520E60:

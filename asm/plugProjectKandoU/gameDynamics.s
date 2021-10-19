@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C648
+lbl_8047C648:
+	.4byte 0x44796E61
+	.4byte 0x6D696373
+	.4byte 0x00000000
+	.4byte 0x90568374
+	.4byte 0x838A834E
+	.4byte 0x83568387
+	.4byte 0x83930000
+	.4byte 0x5374612D
+	.4byte 0x5061726D
+	.4byte 0x00000000
+	.4byte 0x6D696372
+	.4byte 0x6F20636F
+	.4byte 0x6C6C6973
+	.4byte 0x696F6E00
+	.4byte 0x5265736F
+	.4byte 0x6C76658E
+	.4byte 0x9E82CC96
+	.4byte 0x808E4300
+	.4byte 0x656C6173
+	.4byte 0x74696369
+	.4byte 0x74790000
+	.4byte 0x96808E43
+	.4byte 0x3A74616E
+	.4byte 0x76656C00
+	.4byte 0x8CC592E8
+	.4byte 0x96808E43
+	.4byte 0x00000000
+	.4byte 0x8CC592E8
+	.4byte 0x96808E43
+	.4byte 0x926C0000
+	.4byte 0x89F1935D
+	.4byte 0x89658BBF
+	.4byte 0x82C882B5
+	.4byte 0x82C982B7
+	.4byte 0x82E90000
+	.4byte 0x89F1935D
+	.4byte 0x8382815B
+	.4byte 0x83818393
+	.4byte 0x83672044
+	.4byte 0x616D7000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13DynamicsParmsFv

@@ -1,4 +1,79 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047E190
+lbl_8047E190:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8047E19C
+lbl_8047E19C:
+	.4byte 0x6D61704D
+	.4byte 0x67722E63
+	.4byte 0x70700000
+.global lbl_8047E1A8
+lbl_8047E1A8:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x25732F61
+	.4byte 0x72632E73
+	.4byte 0x7A730000
+	.4byte 0x25732F61
+	.4byte 0x72632E61
+	.4byte 0x72630000
+	.4byte 0x6D617020
+	.4byte 0x6D6F6465
+	.4byte 0x6C000000
+	.4byte 0x6D6F6465
+	.4byte 0x6C2E626D
+	.4byte 0x64000000
+	.4byte 0x6661726D
+	.4byte 0x5F25642E
+	.4byte 0x626D6400
+	.4byte 0x74657861
+	.4byte 0x6E6D5F25
+	.4byte 0x642E6274
+	.4byte 0x6B000000
+	.4byte 0x25732F6C
+	.4byte 0x69676874
+	.4byte 0x2E696E69
+	.4byte 0x00000000
+	.4byte 0x25732F74
+	.4byte 0x65787473
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+	.4byte 0x67726964
+	.4byte 0x2E62696E
+	.4byte 0x00000000
+	.4byte 0x6D617020
+	.4byte 0x636F6C6C
+	.4byte 0x6973696F
+	.4byte 0x6E000000
+	.4byte 0x77617465
+	.4byte 0x72626F78
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x77617465
+	.4byte 0x72626F78
+	.4byte 0x00000000
+	.4byte 0x6D617063
+	.4byte 0x6F64652E
+	.4byte 0x62696E00
+	.4byte 0x726F7574
+	.4byte 0x65496E66
+	.4byte 0x6F000000
+	.4byte 0x6C6F6F70
+	.4byte 0x2061762E
+	.4byte 0x20252E31
+	.4byte 0x66000000
+	.4byte 0x25642025
+	.4byte 0x64202564
+	.4byte 0x3C25643E
+	.4byte 0x00000000
+	.4byte 0x74726973
+	.4byte 0x2061762E
+	.4byte 0x20252E31
+	.4byte 0x66000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei

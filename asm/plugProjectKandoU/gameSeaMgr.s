@@ -1,4 +1,65 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F958
+lbl_8047F958:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8047F964
+lbl_8047F964:
+	.4byte 0x67616D65
+	.4byte 0x5365614D
+	.4byte 0x67722E63
+	.4byte 0x70700000
+.global lbl_8047F974
+lbl_8047F974:
+	.4byte 0x82DC82F1
+	.4byte 0x82BE2120
+	.4byte 0x73746172
+	.4byte 0x7455700A
+	.4byte 0x00000000
+.global lbl_8047F988
+lbl_8047F988:
+	.4byte 0x66627465
+	.4byte 0x785F6475
+	.4byte 0x6D6D7900
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6D
+	.4byte 0x61702F77
+	.4byte 0x61746572
+	.4byte 0x626F782E
+	.4byte 0x737A7300
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6D
+	.4byte 0x61702F77
+	.4byte 0x61746572
+	.4byte 0x626F7832
+	.4byte 0x702E737A
+	.4byte 0x73000000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x31303078
+	.4byte 0x3130302F
+	.4byte 0x6D697A75
+	.4byte 0x31303078
+	.4byte 0x3130302E
+	.4byte 0x626D6400
+	.4byte 0x32702F32
+	.4byte 0x702E626D
+	.4byte 0x64000000
+	.4byte 0x31303078
+	.4byte 0x3130302F
+	.4byte 0x6D697A75
+	.4byte 0x31303078
+	.4byte 0x3130302E
+	.4byte 0x62746B00
+	.4byte 0x32702F32
+	.4byte 0x702E6274
+	.4byte 0x6B000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global startDown__Q24Game12AABBWaterBoxFf

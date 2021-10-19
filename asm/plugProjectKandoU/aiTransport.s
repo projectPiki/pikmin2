@@ -1,4 +1,49 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F338
+lbl_8047F338:
+	.4byte 0x61637454
+	.4byte 0x72616E73
+	.4byte 0x706F7274
+	.4byte 0x00000000
+.global lbl_8047F348
+lbl_8047F348:
+	.4byte lbl_805190D0
+	.4byte lbl_805190D8
+	.4byte lbl_805190E0
+.global lbl_8047F354
+lbl_8047F354:
+	.4byte 0x43415252
+	.4byte 0x59202573
+	.4byte 0x00000000
+	.4byte 0x41637454
+	.4byte 0x72616E73
+	.4byte 0x706F7274
+	.4byte 0x41726700
+	.4byte 0x61695472
+	.4byte 0x616E7370
+	.4byte 0x6F72742E
+	.4byte 0x63707000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x00000000
+.global lbl_8047F3A4
+lbl_8047F3A4:
+	.4byte 0x50617468
+	.4byte 0x4D6F7665
+	.4byte 0x41726700
+.global lbl_8047F3B0
+lbl_8047F3B0:
+	.4byte 0x476F746F
+	.4byte 0x536C6F74
+	.4byte 0x41726700
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getInfo__Q26PikiAI12ActTransportFPc

@@ -1,4 +1,19 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F260
+lbl_8047F260:
+	.asciz "ActFreeArg"
+	.skip 1
+	.asciz "aiFree.cpp"
+	.skip 1
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "ActionArg"
+	.skip 2
+.global lbl_8047F290
+lbl_8047F290:
+	.asciz "GatherActionArg"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActFreeFPQ24Game4Piki

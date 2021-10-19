@@ -1,4 +1,30 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F218
+lbl_8047F218:
+	.4byte 0x63726561
+	.4byte 0x74757265
+	.4byte 0x53746963
+	.4byte 0x6B000000
+.global lbl_8047F228
+lbl_8047F228:
+	.4byte 0x63726561
+	.4byte 0x74757265
+	.4byte 0x53746963
+	.4byte 0x6B2E6370
+	.4byte 0x70000000
+.global lbl_8047F23C
+lbl_8047F23C:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x746F6F20
+	.4byte 0x6D616E79
+	.4byte 0x20737469
+	.4byte 0x636B6572
+	.4byte 0x7320210A
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global maxBuffer__Q24Game8Stickers

@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F630
+lbl_8047F630:
+	.4byte 0x64796E43
+	.4byte 0x72656174
+	.4byte 0x7572652E
+	.4byte 0x63707000
+.global lbl_8047F640
+lbl_8047F640:
+	.4byte 0x70206973
+	.4byte 0x206E756C
+	.4byte 0x6C206E20
+	.4byte 0x69732025
+	.4byte 0x640A0000
+.global lbl_8047F654
+lbl_8047F654:
+	.4byte 0x73696D75
+	.4byte 0x6C617465
+	.4byte 0x20657272
+	.4byte 0x6F720A00
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14DynParticleMgrFi

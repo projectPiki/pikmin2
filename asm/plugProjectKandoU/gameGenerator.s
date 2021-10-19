@@ -1,4 +1,89 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F668
+lbl_8047F668:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x67656E65
+	.4byte 0x7261746F
+	.4byte 0x72000000
+.global lbl_8047F680
+lbl_8047F680:
+	.4byte 0x67656E20
+	.4byte 0x62617365
+	.4byte 0x00000000
+.global lbl_8047F68C
+lbl_8047F68C:
+	.4byte 0x67616D65
+	.4byte 0x47656E65
+	.4byte 0x7261746F
+	.4byte 0x722E6370
+	.4byte 0x70000000
+.global lbl_8047F6A0
+lbl_8047F6A0:
+	.4byte 0x47656E65
+	.4byte 0x72616F74
+	.4byte 0x723A3A73
+	.4byte 0x61766543
+	.4byte 0x72656174
+	.4byte 0x75726520
+	.4byte 0x63726561
+	.4byte 0x74757265
+	.4byte 0x20697320
+	.4byte 0x300A0000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x00000000
+	.4byte 0x09232076
+	.4byte 0x65727369
+	.4byte 0x6F6E0D0A
+	.4byte 0x00000000
+	.4byte 0x09232072
+	.4byte 0x65736572
+	.4byte 0x7665640D
+	.4byte 0x0A000000
+	.4byte 0x09232095
+	.4byte 0x9C8A8893
+	.4byte 0xFA90940D
+	.4byte 0x0A000000
+	.4byte 0x0923203C
+	.4byte 0x25733E0D
+	.4byte 0x0A000000
+	.4byte 0x09232070
+	.4byte 0x6F730D0A
+	.4byte 0x00000000
+	.4byte 0x0923206F
+	.4byte 0x66667365
+	.4byte 0x740D0A00
+.global lbl_8047F728
+lbl_8047F728:
+	.4byte 0x47656E65
+	.4byte 0x7261746F
+	.4byte 0x724D6772
+	.4byte 0x00000000
+	.4byte 0x23206765
+	.4byte 0x6E657261
+	.4byte 0x746F724D
+	.4byte 0x6772203C
+	.4byte 0x25733E0D
+	.4byte 0x0A000000
+	.4byte 0x09232073
+	.4byte 0x74617274
+	.4byte 0x506F730D
+	.4byte 0x0A000000
+	.4byte 0x09232073
+	.4byte 0x74617274
+	.4byte 0x4469720D
+	.4byte 0x0A000000
+	.4byte 0x09232025
+	.4byte 0x64206765
+	.4byte 0x6E657261
+	.4byte 0x746F7273
+	.4byte 0x0D0A0000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global GeneratorCurrentVersion

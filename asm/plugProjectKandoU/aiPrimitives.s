@@ -1,4 +1,73 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F070
+lbl_8047F070:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x61695072
+	.4byte 0x696D6974
+	.4byte 0x69766573
+	.4byte 0x00000000
+	.4byte 0x41707072
+	.4byte 0x6F616368
+	.4byte 0x506F7341
+	.4byte 0x6374696F
+	.4byte 0x6E417267
+	.4byte 0x00000000
+.global lbl_8047F0A4
+lbl_8047F0A4:
+	.4byte 0x61695072
+	.4byte 0x696D6974
+	.4byte 0x69766573
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8047F0B8
+lbl_8047F0B8:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+	.4byte 0x476F746F
+	.4byte 0x536C6F74
+	.4byte 0x41726700
+	.4byte 0x50617468
+	.4byte 0x4D6F7665
+	.4byte 0x41726700
+	.4byte 0x7A616E6E
+	.4byte 0x656E2021
+	.4byte 0x0A000000
+	.4byte 0x73746172
+	.4byte 0x743D3D30
+	.4byte 0x00000000
+	.4byte 0x6E657767
+	.4byte 0x6F616C20
+	.4byte 0x3D3D2030
+	.4byte 0x00000000
+	.4byte 0x25642D3E
+	.4byte 0x25642D3E
+	.4byte 0x2E2E2E2D
+	.4byte 0x3E256400
+	.4byte 0x6E6F2068
+	.4byte 0x616E646C
+	.4byte 0x65202564
+	.4byte 0x0A000000
+	.4byte 0x6D617820
+	.4byte 0x69732030
+	.4byte 0x205B2573
+	.4byte 0x5D0A0000
+	.4byte 0x53746963
+	.4byte 0x6B417474
+	.4byte 0x61636B41
+	.4byte 0x6374696F
+	.4byte 0x6E417267
+	.4byte 0x00000000
+	.4byte 0x47617468
+	.4byte 0x65724163
+	.4byte 0x74696F6E
+	.4byte 0x41726700
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki

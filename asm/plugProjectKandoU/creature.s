@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C6E8
+lbl_8047C6E8:
+	.4byte 0x63726561
+	.4byte 0x74757265
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8047C6F8
+lbl_8047C6F8:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global usePacketCulling__Q24Game8Creature

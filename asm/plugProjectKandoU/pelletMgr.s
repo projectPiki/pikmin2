@@ -1,4 +1,174 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047E318
+lbl_8047E318:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x70656C6C
+	.4byte 0x65744D67
+	.4byte 0x72000000
+.global lbl_8047E330
+lbl_8047E330:
+	.4byte 0x6E6F2063
+	.4byte 0x6F6E6669
+	.4byte 0x67207065
+	.4byte 0x6C6C6574
+	.4byte 0x00000000
+.global lbl_8047E344
+lbl_8047E344:
+	.4byte 0x70656C6C
+	.4byte 0x65744D67
+	.4byte 0x722E6370
+	.4byte 0x70000000
+.global lbl_8047E354
+lbl_8047E354:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8047E374
+lbl_8047E374:
+	.4byte 0x6E756D62
+	.4byte 0x65723130
+	.4byte 0x00000000
+.global lbl_8047E380
+lbl_8047E380:
+	.4byte 0x6E756D62
+	.4byte 0x65723230
+	.4byte 0x00000000
+.global lbl_8047E38C
+lbl_8047E38C:
+	.4byte 0x82AA82C1
+	.4byte 0x82A982E8
+	.4byte 0x0A000000
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x50534D61
+	.4byte 0x696E5369
+	.4byte 0x64655F53
+	.4byte 0x63656E65
+	.4byte 0x2E680000
+	.4byte 0x6F6E536C
+	.4byte 0x6F745374
+	.4byte 0x69636B45
+	.4byte 0x6E640A00
+.global lbl_8047E3F8
+lbl_8047E3F8:
+	.4byte 0x2F757365
+	.4byte 0x722F4162
+	.4byte 0x652F5065
+	.4byte 0x6C6C6574
+	.4byte 0x2F25732F
+	.4byte 0x00000000
+.global lbl_8047E410
+lbl_8047E410:
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F70
+	.4byte 0x656C6C65
+	.4byte 0x742F0000
+	.4byte 0x6D65636B
+	.4byte 0x202A2A20
+	.4byte 0x2573203A
+	.4byte 0x20697320
+	.4byte 0x6E6F7420
+	.4byte 0x666F756E
+	.4byte 0x20210A00
+	.4byte 0x25733A20
+	.4byte 0x6E6F7420
+	.4byte 0x666F756E
+	.4byte 0x6420210A
+	.4byte 0x00000000
+	.4byte 0x61726368
+	.4byte 0x69766520
+	.4byte 0x6E6F7420
+	.4byte 0x666F756E
+	.4byte 0x640A0000
+	.4byte 0x2573203A
+	.4byte 0x20697320
+	.4byte 0x6E6F7420
+	.4byte 0x666F756E
+	.4byte 0x20210A00
+.global lbl_8047E47C
+lbl_8047E47C:
+	.4byte 0x62706D67
+	.4byte 0x723A6E6F
+	.4byte 0x206D6F64
+	.4byte 0x656C4461
+	.4byte 0x74612125
+	.4byte 0x640A0000
+.global lbl_8047E494
+lbl_8047E494:
+	.4byte 0x8379838C
+	.4byte 0x83628367
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x636F6465
+	.4byte 0x20282578
+	.4byte 0x290A0000
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x636F6465
+	.4byte 0x206E6F20
+	.4byte 0x636F6E66
+	.4byte 0x69672066
+	.4byte 0x6F756E64
+	.4byte 0x20282578
+	.4byte 0x2920696E
+	.4byte 0x64657820
+	.4byte 0x25640A00
+.global lbl_8047E4E8
+lbl_8047E4E8:
+	.4byte 0x6E6F2063
+	.4byte 0x6F6E6669
+	.4byte 0x6720666F
+	.4byte 0x756E6428
+	.4byte 0x2573290A
+	.4byte 0x00000000
+.global lbl_8047E500
+lbl_8047E500:
+	.4byte 0x232082A8
+	.4byte 0x95F38341
+	.4byte 0x83438365
+	.4byte 0x83808352
+	.4byte 0x815B8368
+	.4byte 0x0D0A0000
+	.4byte 0x41726753
+	.4byte 0x63616C65
+	.4byte 0x00000000
+	.4byte 0x50656C6C
+	.4byte 0x6574496E
+	.4byte 0x69744172
+	.4byte 0x67000000
+.global lbl_8047E534
+lbl_8047E534:
+	.4byte 0x50656C6C
+	.4byte 0x6574476F
+	.4byte 0x616C5374
+	.4byte 0x61746541
+	.4byte 0x72670000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sFromTekiEnable__Q24Game6Pellet

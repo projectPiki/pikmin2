@@ -1,4 +1,58 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F168
+lbl_8047F168:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x61637446
+	.4byte 0x6F726D61
+	.4byte 0x74696F6E
+	.4byte 0x00000000
+.global lbl_8047F184
+lbl_8047F184:
+	.4byte 0x466F726D
+	.4byte 0x6174696F
+	.4byte 0x6E000000
+.global lbl_8047F190
+lbl_8047F190:
+	.4byte 0x6169466F
+	.4byte 0x726D6174
+	.4byte 0x696F6E2E
+	.4byte 0x63707000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x736C6F74
+	.4byte 0x20696420
+	.4byte 0x6973202D
+	.4byte 0x31000000
+	.4byte 0x7830325F
+	.4byte 0x77617463
+	.4byte 0x685F7265
+	.4byte 0x645F7069
+	.4byte 0x6B6D696E
+	.4byte 0x00000000
+	.4byte 0x67616D65
+	.4byte 0x53746174
+	.4byte 0x2E680000
+.global lbl_8047F1E0
+lbl_8047F1E0:
+	.4byte 0x696E7661
+	.4byte 0x6C696420
+	.4byte 0x736C6F74
+	.4byte 0x4964210A
+	.4byte 0x00000000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global newVer

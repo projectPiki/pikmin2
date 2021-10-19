@@ -1,4 +1,56 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047CFE0
+lbl_8047CFE0:
+	.4byte 0x63656C6C
+	.4byte 0x50797261
+	.4byte 0x6D696400
+.global lbl_8047CFEC
+lbl_8047CFEC:
+	.4byte 0x63656C6C
+	.4byte 0x50797261
+	.4byte 0x6D69642E
+	.4byte 0x63707000
+.global lbl_8047CFFC
+lbl_8047CFFC:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x6C656720
+	.4byte 0x656E7472
+	.4byte 0x79206661
+	.4byte 0x696C6564
+	.4byte 0x20210A00
+.global lbl_8047D01C
+lbl_8047D01C:
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x6C617965
+	.4byte 0x724C6576
+	.4byte 0x656C2025
+	.4byte 0x64203A20
+	.4byte 0x6F757420
+	.4byte 0x6F662062
+	.4byte 0x6F756E64
+	.4byte 0x73203081
+	.4byte 0x6025640A
+	.4byte 0x00000000
+	.4byte 0x43656C6C
+	.4byte 0x20496E66
+	.4byte 0x2D4C6F6F
+	.4byte 0x702082A9
+	.4byte 0x82E082B5
+	.4byte 0x82EA82C8
+	.4byte 0x82A20A00
+	.4byte 0x6C656720
+	.4byte 0x656E7472
+	.4byte 0x79206661
+	.4byte 0x696C6564
+	.4byte 0x20212121
+	.4byte 0x21212121
+	.4byte 0x2121210A
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sOptResolveColl__Q24Game11CellPyramid

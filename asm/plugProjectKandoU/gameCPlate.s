@@ -1,4 +1,57 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047EFA8
+lbl_8047EFA8:
+	.4byte 0x4E617669
+	.4byte 0x3A3A5061
+	.4byte 0x726D7300
+	.4byte 0x90E693AA
+	.4byte 0x83498374
+	.4byte 0x835A8362
+	.4byte 0x83670000
+	.4byte 0x92B782B3
+	.4byte 0x838A837E
+	.4byte 0x83628367
+	.4byte 0x00000000
+	.4byte 0x837C8357
+	.4byte 0x83568387
+	.4byte 0x839382CC
+	.4byte 0x91E582AB
+	.4byte 0x82B3288D
+	.4byte 0xC591E529
+	.4byte 0x00000000
+.global lbl_8047EFF0
+lbl_8047EFF0:
+	.4byte 0x67616D65
+	.4byte 0x43506C61
+	.4byte 0x74652E63
+	.4byte 0x70700000
+.global lbl_8047F000
+lbl_8047F000:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8047F00C
+lbl_8047F00C:
+	.4byte 0x20736F72
+	.4byte 0x7279202E
+	.4byte 0x2E2E0A00
+.global lbl_8047F018
+lbl_8047F018:
+	.4byte 0x636F6C20
+	.4byte 0x2564203A
+	.4byte 0x20736F72
+	.4byte 0x74206661
+	.4byte 0x696C6564
+	.4byte 0x20210A00
+.global lbl_8047F030
+lbl_8047F030:
+	.4byte 0x696E7661
+	.4byte 0x6C696420
+	.4byte 0x736C6F74
+	.4byte 0x20696478
+	.4byte 0x2025640A
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global get__Q24Game6CPlateFPv

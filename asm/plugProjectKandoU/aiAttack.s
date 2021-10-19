@@ -1,4 +1,50 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047F2A0
+lbl_8047F2A0:
+	.asciz "actAttack"
+	.skip 2
+	.4byte lbl_80519078
+	.4byte lbl_8051907C
+	.4byte lbl_80519080
+	.4byte lbl_80519084
+	.4byte lbl_80519088
+.global lbl_8047F2C0
+lbl_8047F2C0:
+	.4byte 0x61747461
+	.4byte 0x636B2025
+	.4byte 0x73000000
+	.4byte 0x41637441
+	.4byte 0x74746163
+	.4byte 0x6B417267
+	.4byte 0x00000000
+	.4byte 0x61694174
+	.4byte 0x7461636B
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+.global lbl_8047F304
+lbl_8047F304:
+	.4byte 0x41707072
+	.4byte 0x6F616368
+	.4byte 0x506F7341
+	.4byte 0x6374696F
+	.4byte 0x6E417267
+	.4byte 0x00000000
+.global lbl_8047F31C
+lbl_8047F31C:
+	.4byte 0x53746963
+	.4byte 0x6B417474
+	.4byte 0x61636B41
+	.4byte 0x6374696F
+	.4byte 0x6E417267
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getInfo__Q26PikiAI9ActAttackFPc
