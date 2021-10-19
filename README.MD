@@ -1,8 +1,15 @@
 # Pikmin 2
 Pikmin 2 decompilation to C++/C
 
-It builds the following DOL:
+```diff
+- WARNING! -
 
+The ROM this repository builds cannot be 'shifted', primarily due to some hardcoded pointers which have yet
+to be dumped. Thus this repository is currently in an experimental and research phase and cannot yet be used
+traditionally as a source code base for general changes.
+```
+
+It builds the following DOL:
 pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 
 ## Credits
