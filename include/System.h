@@ -36,7 +36,7 @@ struct System {
 	void construct();
 	void constructWithDvdAccessFirst();
 	void constructWithDvdAccessSecond();
-	void createRomFont(JKRHeap*);
+	void createRomFont(struct JKRHeap*);
 	void destroyRomFont();
 	void loadResourceFirst();
 	void loadResourceSecond();

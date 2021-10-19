@@ -74,8 +74,8 @@ float qdist2(float x1, float y1, float x2, float y2)
 
 	float dist = ((xdiff * xdiff) + (ydiff * ydiff));
 	if (dist > lbl_80520270) {
-		volatile float a = dist * (__frsqrte(dist));
-		dist             = a;
+		volatile float calcDist = dist * (__frsqrte(dist));
+		dist                    = calcDist;
 	}
 	return dist;
 }
