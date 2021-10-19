@@ -264,7 +264,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/CircleBuffer.o\
 	$(BUILD_DIR)/asm/Dolphin/main.o\
 	$(BUILD_DIR)/asm/Dolphin/MWTrace.o\
-	$(BUILD_DIR)/asm/Dolphin/MWCriticalSection_gc.o\
+	$(BUILD_DIR)/src/Dolphin/MWCriticalSection_gc.o\
 	$(BUILD_DIR)/asm/Dolphin/__va_arg.o\
 	$(BUILD_DIR)/asm/Dolphin/global_destructor_chain.o\
 	$(BUILD_DIR)/asm/Dolphin/CPlusLibPPC.o\
