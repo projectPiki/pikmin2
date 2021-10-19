@@ -49,13 +49,7 @@ namespace Screen {
 	 * Address:	803D38E8
 	 * Size:	000004
 	 */
-	void TScreenBase::doOpenScreen(ArgOpen*)
-	{
-		/*
-		.loc_0x0:
-		  blr
-		*/
-	}
+	void TScreenBase::doOpenScreen(ArgOpen*) { }
 
 	/*
 	 * --INFO--
