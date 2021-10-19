@@ -1,4 +1,72 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048C0C0
+lbl_8048C0C0:
+	.4byte 0x00000000
+	.4byte 0x41F00000
+	.4byte 0x42820000
+	.4byte 0x42A00000
+	.4byte 0x42BE0000
+	.4byte 0x42D80000
+	.4byte 0x42F00000
+.global lbl_8048C0DC
+lbl_8048C0DC:
+	.4byte 0x00000000
+	.4byte 0xC1F00000
+	.4byte 0x41F00000
+	.4byte 0xC2480000
+	.4byte 0x00000000
+	.4byte 0xC2200000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41200000
+	.4byte 0x41700000
+	.4byte 0x41A00000
+	.4byte 0x41F00000
+	.4byte 0x42200000
+	.4byte 0x42700000
+.global lbl_8048C114
+lbl_8048C114:
+	.4byte 0x00000000
+	.4byte 0xC2A00000
+	.4byte 0x42A00000
+	.4byte 0xC2C80000
+	.4byte 0x41F00000
+	.4byte 0xC2480000
+	.4byte 0x00000000
+	.4byte 0x42000000
+	.4byte 0x42200000
+	.4byte 0x42500000
+	.4byte 0x428C0000
+	.4byte 0x42A00000
+.global lbl_8048C144
+lbl_8048C144:
+	.4byte 0x00000000
+	.4byte 0xC2480000
+	.4byte 0xC2700000
+	.4byte 0xC1200000
+	.4byte 0xC1200000
+.global lbl_8048C158
+lbl_8048C158:
+	.4byte 0x40E00000
+	.4byte 0x41880000
+	.4byte 0x41D80000
+	.4byte 0x42140000
+	.4byte 0x423C0000
+	.4byte 0x42640000
+	.4byte 0x42860000
+	.4byte 0x429A0000
+.global lbl_8048C178
+lbl_8048C178:
+	.4byte 0xC1C80000
+	.4byte 0xC1700000
+	.4byte 0xC2200000
+	.4byte 0xC1F00000
+	.4byte 0xC2340000
+	.4byte 0xC20C0000
+	.4byte 0xC28C0000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9OniKurage3ObjFv

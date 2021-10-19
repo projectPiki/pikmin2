@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048D810
+lbl_8048D810:
+	.asciz "/enemy/data/Kabuto/babykabuto_green_s3tc.bti"
+	.skip 3
+.global lbl_8048D840
+lbl_8048D840:
+	.4byte 0x834F838A
+	.4byte 0x815B8393
+	.4byte 0x834A8375
+	.4byte 0x8367837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+.global lbl_8048D85C
+lbl_8048D85C:
+	.asciz "EnemyParmsBase"
+	.skip 1
+.global lbl_8048D86C
+lbl_8048D86C:
+	.asciz "GreenKabutoMgr.cpp"
+	.skip 1
+.global lbl_8048D880
+lbl_8048D880:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cKabutoChangeTexName__Q34Game11GreenKabuto28@unnamed@GreenKabutoMgr_cpp@"

@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80488348
+lbl_80488348:
+	.asciz "/enemy/data/FireChappy/yakichappy.btk"
+	.skip 2
+.global lbl_80488370
+lbl_80488370:
+	.asciz "/enemy/data/FireChappy/yakichappy.brk"
+	.skip 2
+.global lbl_80488398
+lbl_80488398:
+	.4byte 0x8384834C
+	.4byte 0x83608383
+	.4byte 0x83628373
+	.4byte 0x815B837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+.global lbl_804883B4
+lbl_804883B4:
+	.asciz "FireChappyMgr.cpp"
+	.skip 2
+.global lbl_804883C8
+lbl_804883C8:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"

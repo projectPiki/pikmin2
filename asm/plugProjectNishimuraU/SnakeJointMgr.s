@@ -1,4 +1,46 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@"
+"cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@":
+	.float 0.0
+	.float 0.2
+	.float 0.4
+	.float 0.6
+	.float 0.8
+	.float 1.0
+.global lbl_8048BCD8
+lbl_8048BCD8:
+	.asciz "bodyjnt3"
+	.skip 3
+.global lbl_8048BCE4
+lbl_8048BCE4:
+	.asciz "bodyjnt4"
+	.skip 3
+.global lbl_8048BCF0
+lbl_8048BCF0:
+	.asciz "bodyjnt5"
+	.skip 3
+.global lbl_8048BCFC
+lbl_8048BCFC:
+	.asciz "bodyjnt6"
+	.skip 3
+.global lbl_8048BD08
+lbl_8048BD08:
+	.asciz "bodyjnt7"
+	.skip 3
+.global lbl_8048BD14
+lbl_8048BD14:
+	.asciz "bodyjnt8"
+	.skip 3
+.global lbl_8048BD20
+lbl_8048BD20:
+	.4byte lbl_8048BCD8
+	.4byte lbl_8048BCE4
+	.4byte lbl_8048BCF0
+	.4byte lbl_8048BCFC
+	.4byte lbl_8048BD08
+	.4byte lbl_8048BD14
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global SnakeJointCallBack__4GameFP8J3DJointi

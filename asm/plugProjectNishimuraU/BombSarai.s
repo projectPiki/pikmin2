@@ -1,4 +1,42 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048A250
+lbl_8048A250:
+	.4byte 0x3234362D
+	.4byte 0x426F6D62
+	.4byte 0x53617261
+	.4byte 0x69000000
+.global lbl_8048A260
+lbl_8048A260:
+	.4byte 0x626F6479
+	.4byte 0x5F6A6F69
+	.4byte 0x6E743100
+.global lbl_8048A26C
+lbl_8048A26C:
+	.4byte 0x6B616D75
+	.4byte 0x5F6A6E74
+	.4byte 0x31000000
+.global lbl_8048A278
+lbl_8048A278:
+	.4byte 0x6B757469
+	.4byte 0x5F6A6F69
+	.4byte 0x6E743100
+	.4byte 0x62616C6C
+	.4byte 0x6F6F6E31
+	.4byte 0x00000000
+	.4byte 0x62616C6C
+	.4byte 0x6F6F6E32
+	.4byte 0x00000000
+	.4byte 0x62616C6C
+	.4byte 0x6F6F6E33
+	.4byte 0x00000000
+	.4byte 0x62616C6C
+	.4byte 0x6F6F6E34
+	.4byte 0x00000000
+	.4byte 0x62616C6C
+	.4byte 0x6F6F6E35
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9BombSarai3ObjFv

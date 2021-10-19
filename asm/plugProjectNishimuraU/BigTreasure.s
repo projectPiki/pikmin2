@@ -1,4 +1,142 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048CA80
+lbl_8048CA80:
+	.skip 0xC
+.global lbl_8048CA8C
+lbl_8048CA8C:
+	.asciz "246-BigTreasure"
+.global lbl_8048CA9C
+lbl_8048CA9C:
+	.asciz "mat_body"
+	.skip 3
+.global lbl_8048CAA8
+lbl_8048CAA8:
+	.asciz "mat_eye1"
+	.skip 3
+.global lbl_8048CAB4
+lbl_8048CAB4:
+	.asciz "mat_eye2"
+	.skip 3
+.global lbl_8048CAC0
+lbl_8048CAC0:
+	.asciz "rhand1jnt"
+	.skip 2
+.global lbl_8048CACC
+lbl_8048CACC:
+	.asciz "rhand2jnt"
+	.skip 2
+.global lbl_8048CAD8
+lbl_8048CAD8:
+	.asciz "rhand3jnt"
+	.skip 2
+.global lbl_8048CAE4
+lbl_8048CAE4:
+	.asciz "lhand1jnt"
+	.skip 2
+.global lbl_8048CAF0
+lbl_8048CAF0:
+	.asciz "lhand2jnt"
+	.skip 2
+.global lbl_8048CAFC
+lbl_8048CAFC:
+	.asciz "lhand3jnt"
+	.skip 2
+.global lbl_8048CB08
+lbl_8048CB08:
+	.asciz "rfoot1jnt"
+	.skip 2
+.global lbl_8048CB14
+lbl_8048CB14:
+	.asciz "rfoot2jnt"
+	.skip 2
+.global lbl_8048CB20
+lbl_8048CB20:
+	.asciz "rfoot3jnt"
+	.skip 2
+.global lbl_8048CB2C
+lbl_8048CB2C:
+	.asciz "lfoot1jnt"
+	.skip 2
+.global lbl_8048CB38
+lbl_8048CB38:
+	.asciz "lfoot2jnt"
+	.skip 2
+.global lbl_8048CB44
+lbl_8048CB44:
+	.asciz "lfoot3jnt"
+	.skip 2
+.global lbl_8048CB50
+lbl_8048CB50:
+	.4byte lbl_8048CAC0
+	.4byte lbl_8048CACC
+	.4byte lbl_8048CAD8
+	.4byte lbl_8048CAE4
+	.4byte lbl_8048CAF0
+	.4byte lbl_8048CAFC
+	.4byte lbl_8048CB08
+	.4byte lbl_8048CB14
+	.4byte lbl_8048CB20
+	.4byte lbl_8048CB2C
+	.4byte lbl_8048CB38
+	.4byte lbl_8048CB44
+.global lbl_8048CB80
+lbl_8048CB80:
+	.4byte 0x6C667431
+	.4byte 0x6C687431
+	.4byte 0x72667431
+	.4byte 0x72687431
+	.4byte 0x656C6563
+	.4byte 0x66697265
+	.4byte 0x67617369
+	.4byte 0x6D697A75
+	.4byte lbl_8051CCB0
+	.4byte lbl_8051CCB8
+	.4byte lbl_8051CCC0
+	.4byte lbl_8051CCC4
+.global lbl_8048CBB0
+lbl_8048CBB0:
+	.asciz "otakara_elec"
+	.skip 3
+.global lbl_8048CBC0
+lbl_8048CBC0:
+	.asciz "otakara_fire"
+	.skip 3
+.global lbl_8048CBD0
+lbl_8048CBD0:
+	.asciz "otakara_gas"
+.global lbl_8048CBDC
+lbl_8048CBDC:
+	.asciz "otakara_water"
+	.skip 2
+	.4byte lbl_8048CBB0
+	.4byte lbl_8048CBC0
+	.4byte lbl_8048CBD0
+	.4byte lbl_8048CBDC
+	.asciz "otakara_loozy"
+	.skip 2
+.global lbl_8048CC0C
+lbl_8048CC0C:
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
+.global lbl_8048CC24
+lbl_8048CC24:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8048CC30
+lbl_8048CC30:
+	.4byte 0x6733365F
+	.4byte 0x66696E64
+	.4byte 0x5F6C6F75
+	.4byte 0x69650000
+	.4byte 0x41726750
+	.4byte 0x6F73506F
+	.4byte 0x73000000
+	.4byte 0x50656C6C
+	.4byte 0x6574496E
+	.4byte 0x69744172
+	.4byte 0x67000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global invokeOnGround__Q34Game11BigTreasure25BigTreasureGroundCallBackFiPQ24Game8WaterBox

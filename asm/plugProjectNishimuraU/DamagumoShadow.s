@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80489978
+lbl_80489978:
+	.asciz "246-DamagumoShadow"
+	.skip 1
+	.asciz "rhand1jnt"
+	.skip 2
+	.asciz "rhand2jnt"
+	.skip 2
+	.asciz "rhand3jnt"
+	.skip 2
+	.asciz "lhand1jnt"
+	.skip 2
+	.asciz "lhand2jnt"
+	.skip 2
+	.asciz "lhand3jnt"
+	.skip 2
+	.asciz "rfoot1jnt"
+	.skip 2
+	.asciz "rfoot2jnt"
+	.skip 2
+	.asciz "rfoot3jnt"
+	.skip 2
+	.asciz "lfoot1jnt"
+	.skip 2
+	.asciz "lfoot2jnt"
+	.skip 2
+	.asciz "lfoot3jnt"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Damagumo17DamagumoShadowMgrFPQ34Game8Damagumo3Obj

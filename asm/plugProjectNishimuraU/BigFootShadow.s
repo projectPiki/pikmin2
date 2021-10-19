@@ -1,4 +1,82 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048B640
+lbl_8048B640:
+	.asciz "246-BigFootShadow"
+	.skip 2
+	.asciz "rhand1jnt"
+	.skip 2
+	.asciz "rhand2jnt"
+	.skip 2
+	.asciz "rhand3jnt"
+	.skip 2
+	.asciz "lhand1jnt"
+	.skip 2
+	.asciz "lhand2jnt"
+	.skip 2
+	.asciz "lhand3jnt"
+	.skip 2
+	.asciz "rfoot1jnt"
+	.skip 2
+	.asciz "rfoot2jnt"
+	.skip 2
+	.asciz "rfoot3jnt"
+	.skip 2
+	.asciz "lfoot1jnt"
+	.skip 2
+	.asciz "lfoot2jnt"
+	.skip 2
+	.asciz "lfoot3jnt"
+	.skip 6
+.global lbl_8048B6E8
+lbl_8048B6E8:
+	.asciz "rhand1jnt"
+	.skip 2
+.global lbl_8048B6F4
+lbl_8048B6F4:
+	.asciz "rhand2jnt"
+	.skip 2
+.global lbl_8048B700
+lbl_8048B700:
+	.asciz "rhand3jnt"
+	.skip 2
+.global lbl_8048B70C
+lbl_8048B70C:
+	.asciz "lhand1jnt"
+	.skip 2
+.global lbl_8048B718
+lbl_8048B718:
+	.asciz "lhand2jnt"
+	.skip 2
+.global lbl_8048B724
+lbl_8048B724:
+	.asciz "lhand3jnt"
+	.skip 2
+.global lbl_8048B730
+lbl_8048B730:
+	.asciz "rfoot1jnt"
+	.skip 2
+.global lbl_8048B73C
+lbl_8048B73C:
+	.asciz "rfoot2jnt"
+	.skip 2
+.global lbl_8048B748
+lbl_8048B748:
+	.asciz "rfoot3jnt"
+	.skip 2
+.global lbl_8048B754
+lbl_8048B754:
+	.asciz "lfoot1jnt"
+	.skip 2
+.global lbl_8048B760
+lbl_8048B760:
+	.asciz "lfoot2jnt"
+	.skip 2
+.global lbl_8048B76C
+lbl_8048B76C:
+	.asciz "lfoot3jnt"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7BigFoot16BigFootShadowMgrFPQ34Game7BigFoot3Obj

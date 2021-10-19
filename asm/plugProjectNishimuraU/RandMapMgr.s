@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80484070
+lbl_80484070:
+	.4byte 0x52616E64
+	.4byte 0x4D61704D
+	.4byte 0x67720000
+.global lbl_8048407C
+lbl_8048407C:
+	.4byte 0x52616461
+	.4byte 0x72204D61
+	.4byte 0x70205465
+	.4byte 0x78747572
+	.4byte 0x65000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave10RandMapMgrFb

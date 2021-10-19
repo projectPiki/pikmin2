@@ -1,4 +1,27 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048D8F8
+lbl_8048D8F8:
+	.asciz "/enemy/data/Kabuto/babykabuto_green_s3tc.bti"
+	.skip 3
+.global lbl_8048D928
+lbl_8048D928:
+	.4byte 0x8CC592E8
+	.4byte 0x834A8375
+	.4byte 0x8367837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+.global lbl_8048D940
+lbl_8048D940:
+	.asciz "FixKabutoMgr.cpp"
+	.skip 3
+.global lbl_8048D954
+lbl_8048D954:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cKabutoChangeTexName__Q34Game9FixKabuto26@unnamed@FixKabutoMgr_cpp@"

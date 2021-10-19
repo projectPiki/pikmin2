@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80487FF8
+lbl_80487FF8:
+	.asciz "body_end"
+	.skip 3
+.global lbl_80488004
+lbl_80488004:
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
+.global lbl_8048801C
+lbl_8048801C:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5Queen3ObjFv

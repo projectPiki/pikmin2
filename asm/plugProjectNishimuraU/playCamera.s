@@ -1,4 +1,21 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483FD0
+lbl_80483FD0:
+	.4byte 0x506C6179
+	.4byte 0x43616D65
+	.4byte 0x72610000
+.global lbl_80483FDC
+lbl_80483FDC:
+	.4byte 0x706C6179
+	.4byte 0x43616D65
+	.4byte 0x72612E63
+	.4byte 0x70700000
+.global lbl_80483FEC
+lbl_80483FEC:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10PlayCameraFPQ24Game4Navi

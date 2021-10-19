@@ -611,6 +611,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o\
+	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
@@ -846,7 +847,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudaiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TyreShadow.o\
-	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDopingScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogPikminCounter.o\

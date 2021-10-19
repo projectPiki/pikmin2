@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80489010
+lbl_80489010:
+	.asciz "/enemy/data/Tank/fire_butadokkuri_main_s3tc.bti"
+.global lbl_80489040
+lbl_80489040:
+	.4byte 0x8375835E
+	.4byte 0x83688362
+	.4byte 0x834E838A
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+.global lbl_80489058
+lbl_80489058:
+	.asciz "FtankMgr.cpp"
+	.skip 3
+.global lbl_80489068
+lbl_80489068:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@"

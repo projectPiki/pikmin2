@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048A8B0
+lbl_8048A8B0:
+	.4byte 0x3234362D
+	.4byte 0x496D6F6D
+	.4byte 0x75736869
+	.4byte 0x53746174
+	.4byte 0x65000000
+	.4byte 0x66616C6C
+	.4byte 0x64697665
+	.4byte 0x00000000
+	.4byte 0x66616C6C
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+	.4byte 0x7A756B61
+	.4byte 0x6E737461
+	.4byte 0x79000000
+	.4byte 0x7A756B61
+	.4byte 0x6E617070
+	.4byte 0x65617200
+	.4byte 0x7A756B61
+	.4byte 0x6E6D6F76
+	.4byte 0x65000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8Imomushi3FSMFPQ24Game9EnemyBase

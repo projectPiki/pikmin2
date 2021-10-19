@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048D1C0
+lbl_8048D1C0:
+	.asciz "weak_joint1"
+.global lbl_8048D1CC
+lbl_8048D1CC:
+	.asciz "weak_joint2"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>"

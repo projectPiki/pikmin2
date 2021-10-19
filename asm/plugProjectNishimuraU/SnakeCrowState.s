@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804883D8
+lbl_804883D8:
+	.asciz "disappear"
+	.skip 2
+.global lbl_804883E4
+lbl_804883E4:
+	.asciz "struggle"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9SnakeCrow3FSMFPQ24Game9EnemyBase

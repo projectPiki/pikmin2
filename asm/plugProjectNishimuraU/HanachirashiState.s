@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80489078
+lbl_80489078:
+	.asciz "246-HanachirashiState"
+	.skip 2
+	.asciz "chaseinside"
+	.asciz "flyflick"
+	.skip 3
+	.asciz "groundflick"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game12Hanachirashi3FSMFPQ24Game9EnemyBase

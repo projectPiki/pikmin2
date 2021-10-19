@@ -1,4 +1,21 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048D1F0
+lbl_8048D1F0:
+	.asciz "otakara_elec_eff"
+	.skip 3
+.global lbl_8048D204
+lbl_8048D204:
+	.asciz "otakara_fire_eff"
+	.skip 3
+.global lbl_8048D218
+lbl_8048D218:
+	.asciz "otakara_gas_eff"
+.global lbl_8048D228
+lbl_8048D228:
+	.asciz "otakara_water_eff"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv

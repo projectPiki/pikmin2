@@ -1,4 +1,97 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048B0D8
+lbl_8048B0D8:
+	.asciz "rhand1jnt"
+	.skip 2
+.global lbl_8048B0E4
+lbl_8048B0E4:
+	.asciz "rhand2jnt"
+	.skip 2
+.global lbl_8048B0F0
+lbl_8048B0F0:
+	.asciz "rhand3jnt"
+	.skip 2
+.global lbl_8048B0FC
+lbl_8048B0FC:
+	.asciz "lhand1jnt"
+	.skip 2
+.global lbl_8048B108
+lbl_8048B108:
+	.asciz "lhand2jnt"
+	.skip 2
+.global lbl_8048B114
+lbl_8048B114:
+	.asciz "lhand3jnt"
+	.skip 2
+.global lbl_8048B120
+lbl_8048B120:
+	.asciz "rfoot1jnt"
+	.skip 2
+.global lbl_8048B12C
+lbl_8048B12C:
+	.asciz "rfoot2jnt"
+	.skip 2
+.global lbl_8048B138
+lbl_8048B138:
+	.asciz "rfoot3jnt"
+	.skip 2
+.global lbl_8048B144
+lbl_8048B144:
+	.asciz "lfoot1jnt"
+	.skip 2
+.global lbl_8048B150
+lbl_8048B150:
+	.asciz "lfoot2jnt"
+	.skip 2
+.global lbl_8048B15C
+lbl_8048B15C:
+	.asciz "lfoot3jnt"
+	.skip 2
+.global lbl_8048B168
+lbl_8048B168:
+	.4byte lbl_8048B0D8
+	.4byte lbl_8048B0E4
+	.4byte lbl_8048B0F0
+	.4byte lbl_8048B0FC
+	.4byte lbl_8048B108
+	.4byte lbl_8048B114
+	.4byte lbl_8048B120
+	.4byte lbl_8048B12C
+	.4byte lbl_8048B138
+	.4byte lbl_8048B144
+	.4byte lbl_8048B150
+	.4byte lbl_8048B15C
+.global lbl_8048B198
+lbl_8048B198:
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
+.global lbl_8048B1B0
+lbl_8048B1B0:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8048B1BC
+lbl_8048B1BC:
+	.asciz "ef_01_loc"
+	.skip 2
+.global lbl_8048B1C8
+lbl_8048B1C8:
+	.asciz "ef_02_loc"
+	.skip 2
+.global lbl_8048B1D4
+lbl_8048B1D4:
+	.asciz "ef_03_loc"
+	.skip 2
+.global lbl_8048B1E0
+lbl_8048B1E0:
+	.4byte lbl_8048B1BC
+	.4byte lbl_8048B1C8
+	.4byte lbl_8048B1D4
+.global lbl_8048B1EC
+lbl_8048B1EC:
+	.asciz "ArgPosPos"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global invokeOnGround__Q34Game6Houdai20HoudaiGroundCallBackFiPQ24Game8WaterBox

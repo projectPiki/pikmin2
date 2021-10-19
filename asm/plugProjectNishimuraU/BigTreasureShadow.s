@@ -1,4 +1,77 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048C968
+lbl_8048C968:
+	.4byte 0x3234362D
+	.4byte 0x42696754
+	.4byte 0x72656173
+	.4byte 0x75726553
+	.4byte 0x6861646F
+	.4byte 0x77000000
+	.4byte 0x7268616E
+	.4byte 0x64316A6E
+	.4byte 0x74000000
+	.4byte 0x7268616E
+	.4byte 0x64326A6E
+	.4byte 0x74000000
+	.4byte 0x7268616E
+	.4byte 0x64336A6E
+	.4byte 0x74000000
+	.4byte 0x6C68616E
+	.4byte 0x64316A6E
+	.4byte 0x74000000
+	.4byte 0x6C68616E
+	.4byte 0x64326A6E
+	.4byte 0x74000000
+	.4byte 0x6C68616E
+	.4byte 0x64336A6E
+	.4byte 0x74000000
+	.4byte 0x72666F6F
+	.4byte 0x74316A6E
+	.4byte 0x74000000
+	.4byte 0x72666F6F
+	.4byte 0x74326A6E
+	.4byte 0x74000000
+	.4byte 0x72666F6F
+	.4byte 0x74336A6E
+	.4byte 0x74000000
+	.4byte 0x6C666F6F
+	.4byte 0x74316A6E
+	.4byte 0x74000000
+	.4byte 0x6C666F6F
+	.4byte 0x74326A6E
+	.4byte 0x74000000
+	.4byte 0x6C666F6F
+	.4byte 0x74336A6E
+	.4byte 0x74000000
+	.4byte 0x6F74616B
+	.4byte 0x6172615F
+	.4byte 0x656C6563
+	.4byte 0x00000000
+	.4byte 0x6F74616B
+	.4byte 0x6172615F
+	.4byte 0x66697265
+	.4byte 0x00000000
+	.4byte 0x6F74616B
+	.4byte 0x6172615F
+	.4byte 0x67617300
+	.4byte 0x6F74616B
+	.4byte 0x6172615F
+	.4byte 0x77617465
+	.4byte 0x72000000
+	.4byte 0x6C616E74
+	.4byte 0x656E6E61
+	.4byte 0x31000000
+	.4byte 0x6C616E74
+	.4byte 0x656E6E61
+	.4byte 0x32000000
+	.4byte 0x72616E74
+	.4byte 0x656E6E61
+	.4byte 0x31000000
+	.4byte 0x72616E74
+	.4byte 0x656E6E61
+	.4byte 0x32000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj

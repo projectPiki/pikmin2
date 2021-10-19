@@ -1,4 +1,25 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804840F8
+lbl_804840F8:
+	.4byte 0x00000004
+	.4byte 0x00000003
+	.4byte 0x00000005
+	.4byte 0x00000006
+	.4byte 0x00000007
+.global lbl_8048410C
+lbl_8048410C:
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x00000002
+.global lbl_80484118
+lbl_80484118:
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x00000000
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EA8
 lbl_80520EA8:

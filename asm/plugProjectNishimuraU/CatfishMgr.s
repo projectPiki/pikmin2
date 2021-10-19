@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80486CD0
+lbl_80486CD0:
+	.4byte 0x8369837D
+	.4byte 0x8359837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7Catfish3MgrFiUc

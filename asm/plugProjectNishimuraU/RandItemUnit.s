@@ -1,4 +1,38 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80484128
+lbl_80484128:
+	.4byte 0x3234362D
+	.4byte 0x52616E64
+	.4byte 0x4974656D
+	.4byte 0x556E6974
+	.4byte 0x00000000
+.global lbl_8048413C
+lbl_8048413C:
+	.4byte 0x52616E64
+	.4byte 0x4974656D
+	.4byte 0x556E6974
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x6974656D
+	.4byte 0x20736C6F
+	.4byte 0x74206E6F
+	.4byte 0x6E650A00
+	.4byte 0x6974656D
+	.4byte 0x20736C6F
+	.4byte 0x74206E6F
+	.4byte 0x7420656E
+	.4byte 0x6F756768
+	.4byte 0x0A000000
+.global lbl_80484178
+lbl_80484178:
+	.4byte 0x6E6F7420
+	.4byte 0x73656172
+	.4byte 0x63682069
+	.4byte 0x74656D20
+	.4byte 0x736C6F74
+	.4byte 0x0A000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator

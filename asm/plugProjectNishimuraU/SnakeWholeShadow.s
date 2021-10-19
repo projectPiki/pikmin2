@@ -1,4 +1,74 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global "cSphereShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"
+"cSphereShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@":
+	.float 7.5
+	.float 7.5
+	.float 20.0
+	.float 30.0
+	.float 25.0
+	.float 17.5
+	.float 11.0
+	.float 8.0
+	.float 22.5
+.global "cTubeShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@"
+"cTubeShadowRadius__Q34Game10SnakeWhole30@unnamed@SnakeWholeShadow_cpp@":
+	.float 7.5
+	.float 7.5
+	.float 20.0
+	.float 27.5
+	.float 22.5
+	.float 15.0
+	.float 9.0
+	.float 8.0
+	.float 10.0
+.global lbl_8048D348
+lbl_8048D348:
+	.asciz "foot_joint1"
+.global lbl_8048D354
+lbl_8048D354:
+	.asciz "leg_joint2"
+	.skip 1
+.global lbl_8048D360
+lbl_8048D360:
+	.asciz "leg_joint1"
+	.skip 1
+.global lbl_8048D36C
+lbl_8048D36C:
+	.asciz "bodyjnt4"
+	.skip 3
+.global lbl_8048D378
+lbl_8048D378:
+	.asciz "bodyjnt5"
+	.skip 3
+.global lbl_8048D384
+lbl_8048D384:
+	.asciz "bodyjnt6"
+	.skip 3
+.global lbl_8048D390
+lbl_8048D390:
+	.asciz "bodyjnt7"
+	.skip 3
+.global lbl_8048D39C
+lbl_8048D39C:
+	.asciz "bodyjnt8"
+	.skip 3
+.global lbl_8048D3A8
+lbl_8048D3A8:
+	.asciz "kutijnt1"
+	.skip 3
+.global lbl_8048D3B4
+lbl_8048D3B4:
+	.4byte lbl_8048D348
+	.4byte lbl_8048D354
+	.4byte lbl_8048D360
+	.4byte lbl_8048D36C
+	.4byte lbl_8048D378
+	.4byte lbl_8048D384
+	.4byte lbl_8048D390
+	.4byte lbl_8048D39C
+	.4byte lbl_8048D3A8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeShadowSRT__Q24Game24SnakeWholeTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"

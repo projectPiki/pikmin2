@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80484850
+lbl_80484850:
+	.4byte 0x3ECCCCCD
+	.4byte 0x3F0CCCCD
+	.float 1.0
+.global lbl_8048485C
+lbl_8048485C:
+	.4byte 0x3E4CCCCD
+	.4byte 0x3EB33333
+	.float 0.5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10ContRumbleFii

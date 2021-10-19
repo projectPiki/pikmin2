@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048B030
+lbl_8048B030:
+	.asciz "246-HoudaiShadow"
+	.skip 3
+	.asciz "rhand1jnt"
+	.skip 2
+	.asciz "rhand2jnt"
+	.skip 2
+	.asciz "rhand3jnt"
+	.skip 2
+	.asciz "lhand1jnt"
+	.skip 2
+	.asciz "lhand2jnt"
+	.skip 2
+	.asciz "lhand3jnt"
+	.skip 2
+	.asciz "rfoot1jnt"
+	.skip 2
+	.asciz "rfoot2jnt"
+	.skip 2
+	.asciz "rfoot3jnt"
+	.skip 2
+	.asciz "lfoot1jnt"
+	.skip 2
+	.asciz "lfoot2jnt"
+	.skip 2
+	.asciz "lfoot3jnt"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Houdai15HoudaiShadowMgrFPQ34Game6Houdai3Obj

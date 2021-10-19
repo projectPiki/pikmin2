@@ -1,4 +1,41 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048B778
+lbl_8048B778:
+	.4byte lbl_8048B6E8
+	.4byte lbl_8048B6F4
+	.4byte lbl_8048B700
+	.4byte lbl_8048B70C
+	.4byte lbl_8048B718
+	.4byte lbl_8048B724
+	.4byte lbl_8048B730
+	.4byte lbl_8048B73C
+	.4byte lbl_8048B748
+	.4byte lbl_8048B754
+	.4byte lbl_8048B760
+	.4byte lbl_8048B76C
+.global lbl_8048B7A8
+lbl_8048B7A8:
+	.4byte 0x6C667431
+	.4byte 0x6C687431
+	.4byte 0x72667431
+	.4byte 0x72687431
+.global lbl_8048B7B8
+lbl_8048B7B8:
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
+.global lbl_8048B7D0
+lbl_8048B7D0:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8048B7DC
+lbl_8048B7DC:
+	.4byte lbl_8048B6F4
+	.4byte lbl_8048B718
+	.4byte lbl_8048B73C
+	.4byte lbl_8048B760
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global invokeOnGround__Q34Game7BigFoot21BigFootGroundCallBackFiPQ24Game8WaterBox

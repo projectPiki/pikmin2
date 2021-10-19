@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483FF8
+lbl_80483FF8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x3234362D
+	.4byte 0x53686164
+	.4byte 0x6F774D67
+	.4byte 0x72000000
+.global lbl_80484014
+lbl_80484014:
+	.4byte 0x53686164
+	.4byte 0x6F774D67
+	.4byte 0x72000000
+	.4byte 0x53686164
+	.4byte 0x6F775061
+	.4byte 0x726D7300
+	.4byte 0x4C4F4420
+	.4byte 0x4E656172
+	.4byte 0x81460000
+	.4byte 0x4C4F4420
+	.4byte 0x46617281
+	.4byte 0x46000000
+	.4byte 0x2F757365
+	.4byte 0x722F4E69
+	.4byte 0x7368696D
+	.4byte 0x7572612F
+	.4byte 0x53686164
+	.4byte 0x6F772F73
+	.4byte 0x6861646F
+	.4byte 0x77506172
+	.4byte 0x6D732E74
+	.4byte 0x78740000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature

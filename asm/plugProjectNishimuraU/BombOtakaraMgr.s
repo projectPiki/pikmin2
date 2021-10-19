@@ -1,4 +1,29 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048D3D8
+lbl_8048D3D8:
+	.asciz "/enemy/data/BombOtakara/otakara_bomb_s3tc.bti"
+	.skip 2
+.global lbl_8048D408
+lbl_8048D408:
+	.4byte 0x836F834E
+	.4byte 0x835F8393
+	.4byte 0x8349835E
+	.4byte 0x834A8389
+	.4byte 0x83808356
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+.global lbl_8048D428
+lbl_8048D428:
+	.asciz "BombOtakaraMgr.cpp"
+	.skip 1
+.global lbl_8048D43C
+lbl_8048D43C:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cOtakaraChangeTexName__Q34Game11BombOtakara28@unnamed@BombOtakaraMgr_cpp@"

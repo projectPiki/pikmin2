@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80487BE8
+lbl_80487BE8:
+	.asciz "/enemy/data/Fart/babakogane_s3tc.bti"
+	.skip 3
+.global lbl_80487C10
+lbl_80487C10:
+	.4byte 0x836F836F
+	.4byte 0x8352834B
+	.4byte 0x836C837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+.global lbl_80487C28
+lbl_80487C28:
+	.asciz "FartMgr.cpp"
+.global lbl_80487C34
+lbl_80487C34:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cKoganeChangeTexName__Q34Game4Fart21@unnamed@FartMgr_cpp@"

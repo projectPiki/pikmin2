@@ -1,4 +1,11 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80488C10
+lbl_80488C10:
+	.4byte 0x73747275
+	.4byte 0x67676C65
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game7Fuefuki3FSMFPQ24Game9EnemyBase

@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80488FB8
+lbl_80488FB8:
+	.asciz "/enemy/data/Kogane/kogane_s3tc.bti"
+	.skip 1
+.global lbl_80488FDC
+lbl_80488FDC:
+	.4byte 0x8352834B
+	.4byte 0x836C837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+.global lbl_80488FF0
+lbl_80488FF0:
+	.asciz "KoganemushiMgr.cpp"
+	.skip 1
+.global lbl_80489004
+lbl_80489004:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cKoganeChangeTexName__Q34Game11Koganemushi28@unnamed@KoganemushiMgr_cpp@"

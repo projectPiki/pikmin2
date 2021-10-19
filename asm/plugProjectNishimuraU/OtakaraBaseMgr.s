@@ -1,4 +1,45 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048A338
+lbl_8048A338:
+	.4byte 0x3234362D
+	.4byte 0x4F74616B
+	.4byte 0x61726142
+	.4byte 0x6173654D
+	.4byte 0x67720000
+.global lbl_8048A34C
+lbl_8048A34C:
+	.4byte 0x8349835E
+	.4byte 0x834A8389
+	.4byte 0x83808356
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+.global lbl_8048A364
+lbl_8048A364:
+	.4byte 0x0000003B
+	.4byte 0x0000003C
+	.4byte 0x0000003D
+	.4byte 0x0000003E
+	.4byte 0x0000005D
+.global lbl_8048A378
+lbl_8048A378:
+	.4byte 0x0000003B
+	.4byte 0x0000003C
+	.4byte 0x0000003D
+	.4byte 0x0000003E
+	.4byte 0x0000005D
+	.4byte 0x4F74616B
+	.4byte 0x61726142
+	.4byte 0x6173654D
+	.4byte 0x67722E63
+	.4byte 0x70700000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x6D61745F
+	.4byte 0x626F6479
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11OtakaraBase3MgrFiUc

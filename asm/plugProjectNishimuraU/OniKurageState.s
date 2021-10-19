@@ -1,4 +1,13 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048BD38
+lbl_8048BD38:
+	.asciz "flyflick"
+	.skip 3
+.global lbl_8048BD44
+lbl_8048BD44:
+	.asciz "groundflick"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9OniKurage3FSMFPQ24Game9EnemyBase

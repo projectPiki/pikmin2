@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80487080
+lbl_80487080:
+	.asciz "/enemy/data/Wtank/mizu_butadokkuri_main_s3tc.bti"
+	.skip 3
+.global lbl_804870B4
+lbl_804870B4:
+	.4byte 0x837E8359
+	.4byte 0x8375835E
+	.4byte 0x83688362
+	.4byte 0x834E838A
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+.global lbl_804870D0
+lbl_804870D0:
+	.asciz "TankParms"
+	.skip 2
+.global lbl_804870DC
+lbl_804870DC:
+	.asciz "WtankMgr.cpp"
+	.skip 3
+.global lbl_804870EC
+lbl_804870EC:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cTankChangeTexName__Q34Game5Wtank22@unnamed@WtankMgr_cpp@"

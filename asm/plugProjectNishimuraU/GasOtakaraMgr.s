@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048A7D0
+lbl_8048A7D0:
+	.asciz "/enemy/data/GasOtakara/otakara_purple_s3tc.bti"
+	.skip 1
+.global lbl_8048A800
+lbl_8048A800:
+	.4byte 0x834B8358
+	.4byte 0x8349835E
+	.4byte 0x834A8389
+	.4byte 0x83808356
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+.global lbl_8048A81C
+lbl_8048A81C:
+	.asciz "GasOtakaraMgr.cpp"
+	.skip 2
+.global lbl_8048A830
+lbl_8048A830:
+	.asciz "P2Assert"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cOtakaraChangeTexName__Q34Game10GasOtakara27@unnamed@GasOtakaraMgr_cpp@"

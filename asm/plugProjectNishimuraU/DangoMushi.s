@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048D7E0
+lbl_8048D7E0:
+	.asciz "world_root"
+	.skip 1
+.global lbl_8048D7EC
+lbl_8048D7EC:
+	.asciz "PSMainSide_ObjSound.h"
+	.skip 2
+.global lbl_8048D804
+lbl_8048D804:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10DangoMushi3ObjFv
