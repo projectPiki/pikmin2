@@ -167,39 +167,28 @@ namespace Screen {
 	 * Address:	803D3AAC
 	 * Size:	000008
 	 */
-	bool TScreenBase::doUpdateStateClose(void)
-	{
-		return true;
-	}
+	bool TScreenBase::doUpdateStateClose(void) { return true; }
 
 	/*
 	 * --INFO--
 	 * Address:	803D3AB4
 	 * Size:	000008
 	 */
-	bool TScreenBase::doUpdateStateWait(void)
-	{
-		return true;
-	}
+	bool TScreenBase::doUpdateStateWait(void) { return true; }
 
 	/*
 	 * --INFO--
 	 * Address:	803D3ABC
 	 * Size:	000004
 	 */
-	void TScreenBase::doInitWaitState(void)
-	{
-	}
+	void TScreenBase::doInitWaitState(void) { }
 
 	/*
 	 * --INFO--
 	 * Address:	803D3AC0
 	 * Size:	000008
 	 */
-	bool TScreenBase::doUpdateStateOpen(void)
-	{
-		return true;
-	}
+	bool TScreenBase::doUpdateStateOpen(void) { return true; }
 
 	/*
 	 * --INFO--
@@ -218,18 +207,13 @@ namespace Screen {
 	 * Address:	803D3B00
 	 * Size:	000004
 	 */
-	void TScreenBase::doDraw(void)
-	{
-	}
+	void TScreenBase::doDraw(void) { }
 
 	/*
 	 * --INFO--
 	 * Address:	803D3B04
 	 * Size:	00000C
 	 */
-	char* TScreenBase::getName(void)
-	{
-		return "NoNameScreen";
-	}
+	char* TScreenBase::getName(void) { return "NoNameScreen"; }
 } // namespace Screen
 } // namespace ebi

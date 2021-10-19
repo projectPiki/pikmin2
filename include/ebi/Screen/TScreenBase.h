@@ -5,7 +5,7 @@
 #include "JSystem/JKR/JKRArchive.h"
 
 namespace ebi {
-	namespace Screen {
+namespace Screen {
 	enum UpdateState { Open = 1, Wait = 2, Close = 3 };
 	struct ArgOpen {
 		virtual char* getName(void) { return "ArgOpen"; }
@@ -36,10 +36,10 @@ namespace ebi {
 		uchar isWaitScreen(void);
 		uchar isCloseScreen(void);
 
-		JKRArchive* pArchive;	// _04
-		int _08;				// _08
+		JKRArchive* pArchive; // _04
+		int _08;              // _08
 	};
-	} // namespace Screen
+} // namespace Screen
 } // namespace ebi
 
 #endif

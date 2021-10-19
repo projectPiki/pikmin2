@@ -35,7 +35,6 @@ GameFlow::GameFlow()
 	m_section          = nullptr;
 }
 
-
 /*
  * --INFO--
  * Address:	........

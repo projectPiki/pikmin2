@@ -276,7 +276,7 @@ void Parm<int>::read(Stream&)
 {
 	int Var1;
 
-	Var1       = Stream::readInt(stream);
+	Var1        = Stream::readInt(stream);
 	this->value = Var1;
 }
 
