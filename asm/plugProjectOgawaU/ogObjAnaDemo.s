@@ -1,4 +1,57 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048EDD8
+lbl_8048EDD8:
+	.4byte 0x6F674F62
+	.4byte 0x6A416E61
+	.4byte 0x44656D6F
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x45525221
+	.4byte 0x20696E20
+	.4byte 0x4F626A41
+	.4byte 0x6E614465
+	.4byte 0x6D6F2043
+	.4byte 0x72656174
+	.4byte 0x658EB894
+	.4byte 0x7381490A
+	.4byte 0x00000000
+	.4byte 0x616E615F
+	.4byte 0x64656D6F
+	.4byte 0x2E626C6F
+	.4byte 0x00000000
+	.4byte 0x7761726E
+	.4byte 0x696E675F
+	.4byte 0x6D655F70
+	.4byte 0x696B692E
+	.4byte 0x626C6F00
+	.4byte 0x696E666F
+	.4byte 0x5F77696E
+	.4byte 0x646F772E
+	.4byte 0x626C6F00
+	.4byte 0x616E615F
+	.4byte 0x64656D6F
+	.4byte 0x2E62746B
+	.4byte 0x00000000
+	.4byte 0x616E615F
+	.4byte 0x64656D6F
+	.4byte 0x5F30322E
+	.4byte 0x62746B00
+	.4byte 0x616E615F
+	.4byte 0x64656D6F
+	.4byte 0x5F30332E
+	.4byte 0x62746B00
+.global lbl_8048EE74
+lbl_8048EE74:
+	.4byte 0x82BE82DF
+	.4byte 0x82C582B7
+	.4byte 0x0A000000
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global caveIDtoMsgID__Q22og9newScreenFUl

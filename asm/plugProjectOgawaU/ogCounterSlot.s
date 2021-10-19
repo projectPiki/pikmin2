@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048F578
+lbl_8048F578:
+	.4byte 0x6F67436F
+	.4byte 0x756E7465
+	.4byte 0x72536C6F
+	.4byte 0x742E6370
+	.4byte 0x70000000
+.global lbl_8048F58C
+lbl_8048F58C:
+	.4byte 0x736C6F74
+	.4byte 0x5F757020
+	.4byte 0x6F766572
+	.4byte 0x666C6F77
+	.4byte 0x20212028
+	.4byte 0x6B3D2564
+	.4byte 0x290A0000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb

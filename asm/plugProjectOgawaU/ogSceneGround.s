@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E090
+lbl_8048E090:
+	.asciz "ground screen"
+	.skip 2
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "get sound scene at\ninvalid timming\n"
+	.asciz "DayEndCount"
+	.asciz "HurryUp2D"
+	.skip 2
+.global lbl_8048E100
+lbl_8048E100:
+	.asciz "res_ground.szs"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initGround__Q22og9newScreenFv

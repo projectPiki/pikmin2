@@ -1,4 +1,105 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048DCC0
+lbl_8048DCC0:
+	.asciz "ogScreen"
+	.skip 3
+.global lbl_8048DCCC
+lbl_8048DCCC:
+	.asciz "ogScreen.cpp"
+	.skip 3
+.global lbl_8048DCDC
+lbl_8048DCDC:
+	.asciz "picture pane overflow!!\n"
+	.skip 3
+.global lbl_8048DCF8
+lbl_8048DCF8:
+	.asciz "num is overflow!\n"
+	.skip 2
+.global lbl_8048DD0C
+lbl_8048DD0C:
+	.asciz "toumei_piki.bti"
+.global lbl_8048DD1C
+lbl_8048DD1C:
+	.asciz "bp_l64.bti"
+	.skip 1
+.global lbl_8048DD28
+lbl_8048DD28:
+	.asciz "bp_b64.bti"
+	.skip 1
+.global lbl_8048DD34
+lbl_8048DD34:
+	.asciz "bp_f64.bti"
+	.skip 1
+.global lbl_8048DD40
+lbl_8048DD40:
+	.asciz "rp_l64.bti"
+	.skip 1
+.global lbl_8048DD4C
+lbl_8048DD4C:
+	.asciz "rp_b64.bti"
+	.skip 1
+.global lbl_8048DD58
+lbl_8048DD58:
+	.asciz "rp_f64.bti"
+	.skip 1
+.global lbl_8048DD64
+lbl_8048DD64:
+	.asciz "yp_l64.bti"
+	.skip 1
+.global lbl_8048DD70
+lbl_8048DD70:
+	.asciz "yp_b64.bti"
+	.skip 1
+.global lbl_8048DD7C
+lbl_8048DD7C:
+	.asciz "yp_f64.bti"
+	.skip 1
+.global lbl_8048DD88
+lbl_8048DD88:
+	.asciz "blp_l64.bti"
+.global lbl_8048DD94
+lbl_8048DD94:
+	.asciz "blp_b64.bti"
+.global lbl_8048DDA0
+lbl_8048DDA0:
+	.asciz "blp_f64.bti"
+.global lbl_8048DDAC
+lbl_8048DDAC:
+	.asciz "wp_l64.bti"
+	.skip 1
+.global lbl_8048DDB8
+lbl_8048DDB8:
+	.asciz "wp_b64.bti"
+	.skip 1
+.global lbl_8048DDC4
+lbl_8048DDC4:
+	.asciz "wp_f64.bti"
+	.skip 1
+.global lbl_8048DDD0
+lbl_8048DDD0:
+	.asciz "cha_l.bti"
+	.skip 2
+.global lbl_8048DDDC
+lbl_8048DDDC:
+	.asciz "cha_b.bti"
+	.skip 2
+.global lbl_8048DDE8
+lbl_8048DDE8:
+	.asciz "cha_f.bti"
+	.skip 2
+	.asciz "MojiToNum ERR!(keta) [%s]\n"
+	.skip 1
+	.asciz "MojiToNum ERR! [%s]\n"
+	.skip 3
+.global lbl_8048DE28
+lbl_8048DE28:
+	.asciz "x%02x%02x"
+	.skip 2
+.global lbl_8048DE34
+lbl_8048DE34:
+	.asciz "tag[%s] is not exist!!\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSpeed__Q32og6Screen15ArrowAlphaBlinkFf

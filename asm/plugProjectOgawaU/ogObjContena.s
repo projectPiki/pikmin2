@@ -1,4 +1,95 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048EFE0
+lbl_8048EFE0:
+	.4byte 0x6F674F62
+	.4byte 0x6A436F6E
+	.4byte 0x74656E61
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x55464F4D
+	.4byte 0x454E5520
+	.4byte 0x2D2D3E20
+	.4byte 0x434F4E54
+	.4byte 0x454E4120
+	.4byte 0x45525221
+	.4byte 0x0A000000
+	.4byte 0x45525221
+	.4byte 0x20696E20
+	.4byte 0x4F626A43
+	.4byte 0x6F6E7465
+	.4byte 0x6E612043
+	.4byte 0x72656174
+	.4byte 0x658EB894
+	.4byte 0x7381490A
+	.4byte 0x00000000
+	.4byte 0x636F6E74
+	.4byte 0x656E615F
+	.4byte 0x622E626C
+	.4byte 0x6F000000
+	.4byte 0x636F6E74
+	.4byte 0x656E615F
+	.4byte 0x722E626C
+	.4byte 0x6F000000
+	.4byte 0x636F6E74
+	.4byte 0x656E615F
+	.4byte 0x792E626C
+	.4byte 0x6F000000
+	.4byte 0x636F6E74
+	.4byte 0x656E615F
+	.4byte 0x626C2E62
+	.4byte 0x6C6F0000
+	.4byte 0x636F6E74
+	.4byte 0x656E615F
+	.4byte 0x772E626C
+	.4byte 0x6F000000
+	.4byte 0x45525221
+	.4byte 0x20756E6B
+	.4byte 0x6E776F6E
+	.4byte 0x20636F6E
+	.4byte 0x74656E61
+	.4byte 0x20747970
+	.4byte 0x65210A00
+	.4byte 0x63757073
+	.4byte 0x756C652E
+	.4byte 0x626C6F00
+	.4byte 0x73706F74
+	.4byte 0x2E626C6F
+	.4byte 0x00000000
+	.4byte 0x44617461
+	.4byte 0x436F6E74
+	.4byte 0x656E6120
+	.4byte 0x6973206E
+	.4byte 0x6F742066
+	.4byte 0x6F756E64
+	.4byte 0x210A0000
+	.4byte 0x436F6E74
+	.4byte 0x656E6120
+	.4byte 0x54797065
+	.4byte 0x20657272
+	.4byte 0x6F72210A
+	.4byte 0x00000000
+	.4byte 0x82BE82DF
+	.4byte 0x82C582B7
+	.4byte 0x0A000000
+	.4byte 0x53544152
+	.4byte 0x54204552
+	.4byte 0x52212028
+	.4byte 0x4261636B
+	.4byte 0x75705363
+	.4byte 0x656E6529
+	.4byte 0x00000000
+	.4byte 0x73657442
+	.4byte 0x61636B75
+	.4byte 0x70536365
+	.4byte 0x6E652045
+	.4byte 0x52522100
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen10ObjContenaFPCc

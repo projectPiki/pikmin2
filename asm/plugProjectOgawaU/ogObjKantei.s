@@ -1,4 +1,82 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E990
+lbl_8048E990:
+	.asciz "ogObjKantei.cpp"
+	.4byte 0x00303130
+	.4byte 0x315F3031
+	.4byte 0x00303131
+	.4byte 0x305F3031
+	.4byte 0x00303230
+	.4byte 0x305F3031
+	.4byte 0x45525221
+	.4byte 0x20696E20
+	.4byte 0x4F626A4B
+	.4byte 0x616E7465
+	.4byte 0x69204372
+	.4byte 0x65617465
+	.4byte 0x8EB89473
+	.4byte 0x81490A00
+	.4byte 0x6974656D
+	.4byte 0x5F6E616D
+	.4byte 0x652E626C
+	.4byte 0x6F000000
+	.4byte 0x6F74616B
+	.4byte 0x6172615F
+	.4byte 0x6B616E74
+	.4byte 0x65695F62
+	.4byte 0x7574746F
+	.4byte 0x6E2E626C
+	.4byte 0x6F000000
+	.4byte 0x6F6B5F6D
+	.4byte 0x65737361
+	.4byte 0x67655F77
+	.4byte 0x696E646F
+	.4byte 0x772E626C
+	.4byte 0x6F000000
+	.4byte 0x6F6B5F6D
+	.4byte 0x65737361
+	.4byte 0x67655F77
+	.4byte 0x696E646F
+	.4byte 0x77322E62
+	.4byte 0x6C6F0000
+	.4byte 0x45525221
+	.4byte 0x20554E4B
+	.4byte 0x4E4F574E
+	.4byte 0x204B414E
+	.4byte 0x5445495F
+	.4byte 0x54595045
+	.4byte 0x21210000
+	.4byte 0x6F6B5F62
+	.4byte 0x675F6E6F
+	.4byte 0x726D616C
+	.4byte 0x2E626C6F
+	.4byte 0x00000000
+.global lbl_8048EA64
+lbl_8048EA64:
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+.global lbl_8048EA70
+lbl_8048EA70:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen9ObjKanteiFPCc

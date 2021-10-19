@@ -1,4 +1,38 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048F6B0
+lbl_8048F6B0:
+	.4byte 0x7467615F
+	.4byte 0x33645F61
+	.4byte 0x6E696D5F
+	.4byte 0x6F746168
+	.4byte 0x2E626C6F
+	.4byte 0x00000000
+.global lbl_8048F6C8
+lbl_8048F6C8:
+	.4byte 0x7467615F
+	.4byte 0x33645F61
+	.4byte 0x6E696D5F
+	.4byte 0x6F746168
+	.4byte 0x2E627470
+	.4byte 0x00000000
+.global lbl_8048F6E0
+lbl_8048F6E0:
+	.4byte 0x7467615F
+	.4byte 0x33645F61
+	.4byte 0x6E696D5F
+	.4byte 0x6F746168
+	.4byte 0x5F33322E
+	.4byte 0x626C6F00
+.global lbl_8048F6F8
+lbl_8048F6F8:
+	.4byte 0x7467615F
+	.4byte 0x33645F61
+	.4byte 0x6E696D5F
+	.4byte 0x6F746168
+	.4byte 0x5F33322E
+	.4byte 0x62747000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q32og6Screen16CallBack_PictureFv

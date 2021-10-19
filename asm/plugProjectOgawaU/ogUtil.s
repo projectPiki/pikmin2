@@ -1,4 +1,13 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E778
+lbl_8048E778:
+	.4byte 0x2F6E6577
+	.4byte 0x5F736372
+	.4byte 0x65656E2F
+	.4byte 0x25732573
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global checkMovieActive__Q22og9newScreenFv

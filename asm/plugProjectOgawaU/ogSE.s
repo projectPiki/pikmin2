@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E030
+lbl_8048E030:
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "get sound scene at\ninvalid timming\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSE__Q22og5SoundFUl

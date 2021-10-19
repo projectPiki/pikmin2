@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048F550
+lbl_8048F550:
+	.4byte 0x6F674675
+	.4byte 0x72696B6F
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x4E554C4C
+	.4byte 0x2070616E
+	.4byte 0x652E0A00
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global stop__Q32og6Screen15CallBack_FurikoFv

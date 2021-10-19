@@ -1,4 +1,111 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E790
+lbl_8048E790:
+	.4byte 0x6F675363
+	.4byte 0x656E6543
+	.4byte 0x6F757273
+	.4byte 0x654E616D
+	.4byte 0x652E6370
+	.4byte 0x70000000
+	.4byte 0x44697370
+	.4byte 0x4D656D62
+	.4byte 0x65722045
+	.4byte 0x5252210A
+	.4byte 0x00000000
+	.4byte 0x61726320
+	.4byte 0x6973204E
+	.4byte 0x554C4C21
+	.4byte 0x210A0000
+	.4byte 0x6E6F6465
+	.4byte 0x20697320
+	.4byte 0x4E554C4C
+	.4byte 0x21210A00
+.global lbl_8048E7DC
+lbl_8048E7DC:
+	.asciz "course name screen"
+	.skip 1
+.global lbl_8048E7F0
+lbl_8048E7F0:
+	.asciz "res_course_name00.szs"
+	.skip 2
+.global lbl_8048E808
+lbl_8048E808:
+	.asciz "res_course_name01.szs"
+	.skip 2
+.global lbl_8048E820
+lbl_8048E820:
+	.asciz "res_course_name02.szs"
+	.skip 2
+.global lbl_8048E838
+lbl_8048E838:
+	.asciz "res_course_name03.szs"
+	.skip 2
+.global lbl_8048E850
+lbl_8048E850:
+	.asciz "course_name00.blo"
+	.skip 2
+.global lbl_8048E864
+lbl_8048E864:
+	.asciz "course_name01.blo"
+	.skip 2
+.global lbl_8048E878
+lbl_8048E878:
+	.asciz "course_name02.blo"
+	.skip 2
+.global lbl_8048E88C
+lbl_8048E88C:
+	.asciz "course_name03.blo"
+	.skip 2
+.global lbl_8048E8A0
+lbl_8048E8A0:
+	.asciz "course_name00.bck"
+	.skip 2
+.global lbl_8048E8B4
+lbl_8048E8B4:
+	.asciz "course_name00.btk"
+	.skip 2
+.global lbl_8048E8C8
+lbl_8048E8C8:
+	.asciz "course_name00.bpk"
+	.skip 2
+.global lbl_8048E8DC
+lbl_8048E8DC:
+	.asciz "course_name01.bck"
+	.skip 2
+.global lbl_8048E8F0
+lbl_8048E8F0:
+	.asciz "course_name01.btk"
+	.skip 2
+.global lbl_8048E904
+lbl_8048E904:
+	.asciz "course_name01.bpk"
+	.skip 2
+.global lbl_8048E918
+lbl_8048E918:
+	.asciz "course_name02.bck"
+	.skip 2
+.global lbl_8048E92C
+lbl_8048E92C:
+	.asciz "course_name02.btk"
+	.skip 2
+.global lbl_8048E940
+lbl_8048E940:
+	.asciz "course_name02.bpk"
+	.skip 2
+.global lbl_8048E954
+lbl_8048E954:
+	.asciz "course_name03.bck"
+	.skip 2
+.global lbl_8048E968
+lbl_8048E968:
+	.asciz "course_name03.btk"
+	.skip 2
+.global lbl_8048E97C
+lbl_8048E97C:
+	.asciz "course_name03.bpk"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen10CourseNameFv

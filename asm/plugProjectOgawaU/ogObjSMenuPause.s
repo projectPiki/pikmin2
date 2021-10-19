@@ -1,4 +1,53 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E5A8
+lbl_8048E5A8:
+	.4byte 0x6F674F62
+	.4byte 0x6A534D65
+	.4byte 0x6E755061
+	.4byte 0x7573652E
+	.4byte 0x63707000
+	.4byte 0x735F6D65
+	.4byte 0x6E755F70
+	.4byte 0x61757365
+	.4byte 0x5F6C2E62
+	.4byte 0x6C6F0000
+	.4byte 0x735F6D65
+	.4byte 0x6E755F70
+	.4byte 0x61757365
+	.4byte 0x5F6C2E62
+	.4byte 0x746B0000
+	.4byte 0x735F6D65
+	.4byte 0x6E755F70
+	.4byte 0x61757365
+	.4byte 0x5F6C5F30
+	.4byte 0x322E6274
+	.4byte 0x6B000000
+	.4byte 0x735F6D65
+	.4byte 0x6E755F70
+	.4byte 0x61757365
+	.4byte 0x5F6C5F30
+	.4byte 0x332E6274
+	.4byte 0x6B000000
+	.4byte 0x735F6D65
+	.4byte 0x6E755F70
+	.4byte 0x61757365
+	.4byte 0x5F6C5F30
+	.4byte 0x342E6274
+	.4byte 0x6B000000
+.global lbl_8048E62C
+lbl_8048E62C:
+	.4byte 0x75706461
+	.4byte 0x74654669
+	.4byte 0x6E697368
+	.4byte 0x20455252
+	.4byte 0x210A0000
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getMenuColor__Q42og9newScreen13ObjSMenuPause9ObjHIOValFPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColor

@@ -1,4 +1,31 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E110
+lbl_8048E110:
+	.skip 0xC
+	.asciz "ogObjGround.cpp"
+	.4byte 0x45525221
+	.4byte 0x20696E20
+	.4byte 0x4F626A43
+	.4byte 0x61766520
+	.4byte 0x43726561
+	.4byte 0x74658EB8
+	.4byte 0x94738149
+	.4byte 0x0A000000
+	.asciz "sun_meter.blo"
+	.skip 2
+	.asciz "doping.blo"
+	.skip 1
+	.asciz "orima.blo"
+	.skip 2
+	.asciz "gr_pikmin.blo"
+	.skip 2
+	.asciz "sensor.blo"
+	.skip 1
+	.asciz "screenObj.h"
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen9ObjGroundFPCc

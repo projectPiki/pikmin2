@@ -1,4 +1,89 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E300
+lbl_8048E300:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6F675363
+	.4byte 0x656E6553
+	.4byte 0x4D656E75
+	.4byte 0x4D61702E
+	.4byte 0x63707000
+	.4byte 0x44697370
+	.4byte 0x4D656D62
+	.4byte 0x65722045
+	.4byte 0x52522120
+	.4byte 0x28257329
+	.4byte 0x0A000000
+	.4byte 0x2F6E6577
+	.4byte 0x5F736372
+	.4byte 0x65656E2F
+	.4byte 0x636D6E2F
+	.4byte 0x7265735F
+	.4byte 0x6D61705F
+	.4byte 0x696D6167
+	.4byte 0x655F7475
+	.4byte 0x746F7269
+	.4byte 0x616C2E73
+	.4byte 0x7A730000
+	.4byte 0x2F6E6577
+	.4byte 0x5F736372
+	.4byte 0x65656E2F
+	.4byte 0x636D6E2F
+	.4byte 0x7265735F
+	.4byte 0x6D61705F
+	.4byte 0x696D6167
+	.4byte 0x655F666F
+	.4byte 0x72657374
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+	.4byte 0x2F6E6577
+	.4byte 0x5F736372
+	.4byte 0x65656E2F
+	.4byte 0x636D6E2F
+	.4byte 0x7265735F
+	.4byte 0x6D61705F
+	.4byte 0x696D6167
+	.4byte 0x655F7961
+	.4byte 0x6B757368
+	.4byte 0x696D612E
+	.4byte 0x737A7300
+	.4byte 0x2F6E6577
+	.4byte 0x5F736372
+	.4byte 0x65656E2F
+	.4byte 0x636D6E2F
+	.4byte 0x7265735F
+	.4byte 0x6D61705F
+	.4byte 0x696D6167
+	.4byte 0x655F6C61
+	.4byte 0x73742E73
+	.4byte 0x7A730000
+	.4byte 0x61726320
+	.4byte 0x6973204E
+	.4byte 0x554C4C21
+	.4byte 0x210A0000
+	.4byte 0x6E6F6465
+	.4byte 0x20697320
+	.4byte 0x4E554C4C
+	.4byte 0x21210A00
+.global lbl_8048E404
+lbl_8048E404:
+	.4byte 0x534D656E
+	.4byte 0x754D6170
+	.4byte 0x20736372
+	.4byte 0x65656E00
+	.4byte 0x82BE82DF
+	.4byte 0x82C582B7
+	.4byte 0x00000000
+.global lbl_8048E420
+lbl_8048E420:
+	.4byte 0x7265735F
+	.4byte 0x735F6D65
+	.4byte 0x6E755F6D
+	.4byte 0x61702E73
+	.4byte 0x7A730000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen8SMenuMapFv

@@ -1,4 +1,13 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E078
+lbl_8048E078:
+	.asciz "screenObj.h"
+.global lbl_8048E084
+lbl_8048E084:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q26Screen7ObjBaseFv

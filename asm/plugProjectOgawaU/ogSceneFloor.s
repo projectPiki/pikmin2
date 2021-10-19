@@ -1,4 +1,45 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048EC80
+lbl_8048EC80:
+	.4byte 0x6F675363
+	.4byte 0x656E6546
+	.4byte 0x6C6F6F72
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x7265735F
+	.4byte 0x666C6F6F
+	.4byte 0x725F6E61
+	.4byte 0x6D655F6A
+	.4byte 0x706E2E73
+	.4byte 0x7A730000
+	.4byte 0x7265735F
+	.4byte 0x666C6F6F
+	.4byte 0x725F6E61
+	.4byte 0x6D655F65
+	.4byte 0x6E675F70
+	.4byte 0x616C2E73
+	.4byte 0x7A730000
+	.4byte 0x61726320
+	.4byte 0x6973204E
+	.4byte 0x554C4C21
+	.4byte 0x210A0000
+	.4byte 0x6E6F6465
+	.4byte 0x20697320
+	.4byte 0x4E554C4C
+	.4byte 0x21210A00
+	.4byte 0x666C6F6F
+	.4byte 0x72207363
+	.4byte 0x7265656E
+	.4byte 0x00000000
+	.4byte 0x44697370
+	.4byte 0x4D656D62
+	.4byte 0x65722069
+	.4byte 0x73206E6F
+	.4byte 0x74202746
+	.4byte 0x4C4F4F52
+	.4byte 0x27210000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen5FloorFv

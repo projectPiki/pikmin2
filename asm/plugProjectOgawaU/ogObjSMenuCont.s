@@ -1,4 +1,37 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048F7D0
+lbl_8048F7D0:
+	.4byte 0x6F674F62
+	.4byte 0x6A534D65
+	.4byte 0x6E75436F
+	.4byte 0x6E742E63
+	.4byte 0x70700000
+	.4byte 0x735F6D65
+	.4byte 0x6E755F63
+	.4byte 0x6F6E7472
+	.4byte 0x6F6C6C65
+	.4byte 0x722E626C
+	.4byte 0x6F000000
+	.4byte 0x735F6D65
+	.4byte 0x6E755F63
+	.4byte 0x6F6E7472
+	.4byte 0x6F6C6C65
+	.4byte 0x722E6274
+	.4byte 0x6B000000
+	.4byte 0x735F6D65
+	.4byte 0x6E755F63
+	.4byte 0x6F6E7472
+	.4byte 0x6F6C6C65
+	.4byte 0x725F3032
+	.4byte 0x2E62746B
+	.4byte 0x00000000
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuContFPCc

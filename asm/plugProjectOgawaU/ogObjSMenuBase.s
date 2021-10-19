@@ -1,4 +1,63 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048E658
+lbl_8048E658:
+	.4byte 0x6F674F62
+	.4byte 0x6A534D65
+	.4byte 0x6E754261
+	.4byte 0x73652E63
+	.4byte 0x70700000
+.global lbl_8048E66C
+lbl_8048E66C:
+	.4byte 0x735F6D65
+	.4byte 0x6E755F79
+	.4byte 0x616A6972
+	.4byte 0x75736869
+	.4byte 0x5F4C522E
+	.4byte 0x626C6F00
+.global lbl_8048E684
+lbl_8048E684:
+	.4byte 0x43616E63
+	.4byte 0x656C2045
+	.4byte 0x5252210A
+	.4byte 0x00000000
+.global lbl_8048E694
+lbl_8048E694:
+	.4byte 0x75706461
+	.4byte 0x74654669
+	.4byte 0x6E697368
+	.4byte 0x20455252
+	.4byte 0x210A0000
+.global lbl_8048E6A8
+lbl_8048E6A8:
+	.4byte 0x82BE82DF
+	.4byte 0x82C582B7
+	.4byte 0x0A000000
+.global lbl_8048E6B4
+lbl_8048E6B4:
+	.4byte 0x73657459
+	.4byte 0x616A694E
+	.4byte 0x616D6520
+	.4byte 0x45525221
+	.4byte 0x200A0000
+.global lbl_8048E6C8
+lbl_8048E6C8:
+	.4byte 0x46616465
+	.4byte 0x496E2045
+	.4byte 0x5252210A
+	.4byte 0x00000000
+.global lbl_8048E6D8
+lbl_8048E6D8:
+	.4byte 0x46616465
+	.4byte 0x4F757420
+	.4byte 0x45525221
+	.4byte 0x0A000000
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuBaseFv

@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048F428
+lbl_8048F428:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6F674F62
+	.4byte 0x6A436861
+	.4byte 0x6C6C656E
+	.4byte 0x67653150
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x45525221
+	.4byte 0x20696E20
+	.4byte 0x4F626A43
+	.4byte 0x68616C6C
+	.4byte 0x656E6765
+	.4byte 0x31502043
+	.4byte 0x72656174
+	.4byte 0x658EB894
+	.4byte 0x7381490A
+	.4byte 0x00000000
+	.4byte 0x646F7069
+	.4byte 0x6E672E62
+	.4byte 0x6C6F0000
+	.4byte 0x6F72696D
+	.4byte 0x612E626C
+	.4byte 0x6F000000
+	.4byte 0x63617665
+	.4byte 0x5F70696B
+	.4byte 0x6D696E2E
+	.4byte 0x626C6F00
+	.4byte 0x32505F63
+	.4byte 0x68616C6C
+	.4byte 0x656E6765
+	.4byte 0x5F706F6B
+	.4byte 0x6F2E626C
+	.4byte 0x6F000000
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen14ObjChallenge1PFPCc

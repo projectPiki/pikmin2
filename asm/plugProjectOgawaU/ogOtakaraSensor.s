@@ -1,4 +1,63 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048F710
+lbl_8048F710:
+	.4byte 0x6F674F74
+	.4byte 0x616B6172
+	.4byte 0x6153656E
+	.4byte 0x736F7200
+.global lbl_8048F720
+lbl_8048F720:
+	.4byte 0x6F674F74
+	.4byte 0x616B6172
+	.4byte 0x6153656E
+	.4byte 0x736F722E
+	.4byte 0x63707000
+.global lbl_8048F734
+lbl_8048F734:
+	.4byte 0x4E554C4C
+	.4byte 0x2070616E
+	.4byte 0x652E0A00
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x50534D61
+	.4byte 0x696E5369
+	.4byte 0x64655F53
+	.4byte 0x63656E65
+	.4byte 0x2E680000
+	.4byte 0x00000000
+.global lbl_8048F7A0
+lbl_8048F7A0:
+	.4byte 0x534D656E
+	.4byte 0x75436F6E
+	.4byte 0x74207363
+	.4byte 0x7265656E
+	.4byte 0x00000000
+.global lbl_8048F7B4
+lbl_8048F7B4:
+	.4byte 0x7265735F
+	.4byte 0x735F6D65
+	.4byte 0x6E755F63
+	.4byte 0x6F6E7472
+	.4byte 0x6F6C6C65
+	.4byte 0x722E737A
+	.4byte 0x73000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen13OtakaraSensorFv

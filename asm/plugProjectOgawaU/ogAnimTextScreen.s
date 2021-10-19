@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048DFE0
+lbl_8048DFE0:
+	.asciz "anim_text.blo"
+	.skip 2
+.global lbl_8048DFF0
+lbl_8048DFF0:
+	.asciz "anim_text.bck"
+	.skip 2
+.global lbl_8048E000
+lbl_8048E000:
+	.asciz "ogAnimTextScreen.cpp"
+	.skip 3
+.global lbl_8048E018
+lbl_8048E018:
+	.asciz "ColorType ERR!!\n"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setAnimTextScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx

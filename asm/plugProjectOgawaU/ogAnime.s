@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048DE50
+lbl_8048DE50:
+	.asciz "ogAnime.cpp"
+.global lbl_8048DE5C
+lbl_8048DE5C:
+	.asciz "no name resource (%s) \n"
+	.asciz "anim group is overflow!!\n"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global start__Q32og6Screen12AnimBaseBaseFf

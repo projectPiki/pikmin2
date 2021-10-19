@@ -1,4 +1,47 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048EAD8
+lbl_8048EAD8:
+	.4byte 0x6F674F62
+	.4byte 0x6A537065
+	.4byte 0x6369616C
+	.4byte 0x4974656D
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x45525221
+	.4byte 0x20696E20
+	.4byte 0x4F626A54
+	.4byte 0x65737420
+	.4byte 0x43726561
+	.4byte 0x74658EB8
+	.4byte 0x94738149
+	.4byte 0x0A000000
+	.4byte 0x6F6B5F62
+	.4byte 0x675F746F
+	.4byte 0x6B757368
+	.4byte 0x752E626C
+	.4byte 0x6F000000
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen14ObjSpecialItemFPCc

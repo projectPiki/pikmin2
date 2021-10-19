@@ -1,4 +1,46 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048ED18
+lbl_8048ED18:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6F674F62
+	.4byte 0x6A436176
+	.4byte 0x652E6370
+	.4byte 0x70000000
+	.4byte 0x45525221
+	.4byte 0x20696E20
+	.4byte 0x4F626A43
+	.4byte 0x61766520
+	.4byte 0x43726561
+	.4byte 0x74658EB8
+	.4byte 0x94738149
+	.4byte 0x0A000000
+	.4byte 0x646F7069
+	.4byte 0x6E672E62
+	.4byte 0x6C6F0000
+	.4byte 0x6F72696D
+	.4byte 0x612E626C
+	.4byte 0x6F000000
+	.4byte 0x63617665
+	.4byte 0x5F70696B
+	.4byte 0x6D696E2E
+	.4byte 0x626C6F00
+	.4byte 0x6772616E
+	.4byte 0x645F6361
+	.4byte 0x76655F70
+	.4byte 0x6F6B6F2E
+	.4byte 0x626C6F00
+	.4byte 0x73656E73
+	.4byte 0x6F722E62
+	.4byte 0x6C6F0000
+	.4byte 0x73637265
+	.4byte 0x656E4F62
+	.4byte 0x6A2E6800
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen7ObjCaveFPCc

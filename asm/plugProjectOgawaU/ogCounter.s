@@ -1,4 +1,98 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8048DE90
+lbl_8048DE90:
+	.asciz "0_32.bti"
+	.skip 3
+.global lbl_8048DE9C
+lbl_8048DE9C:
+	.asciz "1_32.bti"
+	.skip 3
+.global lbl_8048DEA8
+lbl_8048DEA8:
+	.asciz "2_32.bti"
+	.skip 3
+.global lbl_8048DEB4
+lbl_8048DEB4:
+	.asciz "3_32.bti"
+	.skip 3
+.global lbl_8048DEC0
+lbl_8048DEC0:
+	.asciz "4_32.bti"
+	.skip 3
+.global lbl_8048DECC
+lbl_8048DECC:
+	.asciz "5_32.bti"
+	.skip 3
+.global lbl_8048DED8
+lbl_8048DED8:
+	.asciz "6_32.bti"
+	.skip 3
+.global lbl_8048DEE4
+lbl_8048DEE4:
+	.asciz "7_32.bti"
+	.skip 3
+.global lbl_8048DEF0
+lbl_8048DEF0:
+	.asciz "8_32.bti"
+	.skip 3
+.global lbl_8048DEFC
+lbl_8048DEFC:
+	.asciz "9_32.bti"
+	.skip 3
+.global lbl_8048DF08
+lbl_8048DF08:
+	.asciz "h_32.bti"
+	.skip 3
+.global lbl_8048DF14
+lbl_8048DF14:
+	.asciz "0_28.bti"
+	.skip 3
+.global lbl_8048DF20
+lbl_8048DF20:
+	.asciz "1_28.bti"
+	.skip 3
+.global lbl_8048DF2C
+lbl_8048DF2C:
+	.asciz "2_28.bti"
+	.skip 3
+.global lbl_8048DF38
+lbl_8048DF38:
+	.asciz "3_28.bti"
+	.skip 3
+.global lbl_8048DF44
+lbl_8048DF44:
+	.asciz "4_28.bti"
+	.skip 3
+.global lbl_8048DF50
+lbl_8048DF50:
+	.asciz "5_28.bti"
+	.skip 3
+.global lbl_8048DF5C
+lbl_8048DF5C:
+	.asciz "6_28.bti"
+	.skip 3
+.global lbl_8048DF68
+lbl_8048DF68:
+	.asciz "7_28.bti"
+	.skip 3
+.global lbl_8048DF74
+lbl_8048DF74:
+	.asciz "8_28.bti"
+	.skip 3
+.global lbl_8048DF80
+lbl_8048DF80:
+	.asciz "9_28.bti"
+	.skip 3
+.global lbl_8048DF8C
+lbl_8048DF8C:
+	.asciz "ogCounter.cpp"
+	.skip 2
+.global lbl_8048DF9C
+lbl_8048DF9C:
+	.asciz "SujiFont is not found !!!\n"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeSujiFontTable__Q22og6ScreenFPPcP10JKRArchive
