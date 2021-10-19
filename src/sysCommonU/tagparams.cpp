@@ -50,7 +50,7 @@ void PrimTagParm<u16>::doDump() { }
  */
 void PrimTagParm<u64>::doRead(Stream& stream)
 {
-	char* str = stream.readString(nullptr, nullptr);
+	char* str = stream.readString(nullptr, 0);
 	for (int i = 0; i < 8; i++) {
 		((char*)&m_data)[i] = str[i];
 	}
@@ -168,7 +168,7 @@ void StringTagParm::doDump() { }
  */
 TagParameters::TagParameters(char* name)
 {
-	head   = 0;
+	m_head = nullptr;
 	m_name = name;
 }
 
@@ -181,13 +181,13 @@ TagParm::TagParm(TagParameters* container, char* name)
 {
 	m_name = name;
 	m_next = nullptr;
-	if (container->head != nullptr) {
-		this->m_next    = container->head;
-		container->head = this;
+	if (container->m_head) {
+		this->m_next      = container->m_head;
+		container->m_head = this;
 		return;
 	}
-	container->head = this;
-	return;
+
+	container->m_head = this;
 }
 
 /*
@@ -198,31 +198,25 @@ TagParm::TagParm(TagParameters* container, char* name)
 
 void TagParameters::read(Stream& stream)
 {
-
-	char* __s2;
-	size_t sVar2;
-	int iVar3;
-	size_t sVar4;
-	TagParm* pTVar5;
-
+	// More cleanup
 	while (true) {
-		__s2  = stream.readString(nullptr, 0);
-		sVar2 = strlen("end");
-		iVar3 = strncmp("end", __s2, sVar2);
-		if ((__cntlzw(iVar3) >> 5 & 0xff) != 0) // needs refining
+		char* str  = stream.readString(nullptr, 0);
+		s32 strLen = strlen("end");
+
+		if (__cntlzw(strncmp("end", str, strLen)) >> 5 & 0xff) // needs refining
 			break;
-		for (pTVar5 = this->head; pTVar5 != (TagParm*)0x0;
-		     pTVar5 = pTVar5->m_next) {
-			sVar2 = strlen(__s2);
-			sVar4 = strlen(pTVar5->m_name);
-			if (int(sVar2) == int(sVar4)) {
-				sVar2 = strlen(__s2);
-				iVar3 = strncmp(pTVar5->m_name, __s2, sVar2);
-				if (iVar3 == 0) {
-					pTVar5->doRead(stream);
-				}
+
+		for (TagParm* node = this->m_head; node; node = node->m_next) {
+			strLen          = strlen(str);
+			s32 nodeNameLen = strlen(node->m_name);
+			if (strLen != nodeNameLen) {
+				continue;
+			}
+
+			strLen = strlen(str);
+			if (strncmp(node->m_name, str, strLen) == 0) {
+				node->doRead(stream);
 			}
 		}
 	}
-	return;
 }

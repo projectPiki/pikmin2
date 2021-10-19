@@ -13,20 +13,20 @@ template <typename T> struct PrimTagParm : public TagParm {
 	{
 	}
 
-	virtual void doWrite(Stream&); // virtual
-	virtual void doRead(Stream&);  // virtual
-	virtual void doDump();         // virtual
+	virtual void doWrite(Stream&);
+	virtual void doRead(Stream&);
+	virtual void doDump();
 
 	T m_data; // _0C
 };
 
 struct TagParameters : public CNode {
 	TagParameters(char*);
-	virtual ~TagParameters() {}; // virtual
+	virtual ~TagParameters() { }
 
 	void read(Stream&);
 
-	TagParm* head; // _18
+	TagParm* m_head; // _18
 };
 
 #endif
