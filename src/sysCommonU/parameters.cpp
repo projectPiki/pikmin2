@@ -272,20 +272,14 @@ void Parameters::findParm(unsigned long)
  * Address:	80413924
  * Size:	000034
  */
-void Parm<int>::read(Stream&)
-{
-	int Var1;
-
-	Var1        = Stream::readInt(stream);
-	this->value = Var1;
-}
+void Parm<int>::read(Stream& stream) { this->value = stream.readInt(); }
 
 /*
  * --INFO--
  * Address:	80413958
  * Size:	00002C
  */
-void Parm<int>::write(Stream&) { Stream::writeInt(stream, this->value); }
+void Parm<int>::write(Stream& stream) { stream.writeInt(this->value); }
 
 /*
  * --INFO--
