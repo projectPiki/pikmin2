@@ -419,6 +419,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/GBARead.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAWrite.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAXfer.o\
+	$(BUILD_DIR)/asm/rodata_2.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantState.o\
@@ -471,7 +472,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/treasureLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/effectAnimator.o\
-	$(BUILD_DIR)/asm/rodata_2.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/collinfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDynamics.o\

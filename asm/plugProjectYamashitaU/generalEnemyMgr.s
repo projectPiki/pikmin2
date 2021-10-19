@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047AA70
+lbl_8047AA70:
+	.asciz "enemyBase"
+	.skip 2
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x8383836D
+	.4byte 0x815B8368
+	.4byte 0x00000000
+	.asciz "GeneralEnemyMgr"
+	.4byte 0x9347837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+	.asciz "enemyHeap"
+	.skip 2
+.global lbl_8047AABC
+lbl_8047AABC:
+	.asciz "generalEnemyMgr.cpp"
+.global lbl_8047AAD0
+lbl_8047AAD0:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "/enemy/parm/enemyParms.szs"
+	.skip 1
+	.asciz "allocateEnemys"
+	.skip 1
+	.asciz "EnemyKillArg"
+	.skip 3
+	.asciz "CreatureKillArg"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii

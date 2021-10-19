@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C0A0
+lbl_8047C0A0:
+	.asciz "YellowChappy.cpp"
+	.skip 3
+.global lbl_8047C0B4
+lbl_8047C0B4:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12YellowChappy3ObjFv

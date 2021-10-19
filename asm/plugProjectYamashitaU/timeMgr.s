@@ -1,4 +1,64 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047BD48
+lbl_8047BD48:
+	.4byte 0x835E8343
+	.4byte 0x8380837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+	.4byte 0x54696D65
+	.4byte 0x4D677250
+	.4byte 0x61726D73
+	.4byte 0x00000000
+	.4byte 0x8351815B
+	.4byte 0x83808A4A
+	.4byte 0x8E6E8E9E
+	.4byte 0x8D8F0000
+	.4byte 0x8351815B
+	.4byte 0x83808F49
+	.4byte 0x97B98E9E
+	.4byte 0x8D8F0000
+	.4byte 0x3193FA82
+	.4byte 0xCC8E9E8A
+	.4byte 0xD43C9562
+	.4byte 0x816A0000
+	.4byte 0x92A98A4A
+	.4byte 0x8E6E8E9E
+	.4byte 0x8D8F0000
+	.4byte 0x92A99286
+	.4byte 0x8AD48E9E
+	.4byte 0x8D8F0000
+	.4byte 0x92A98F49
+	.4byte 0x97B98E9E
+	.4byte 0x8D8F0000
+	.4byte 0x975B95FB
+	.4byte 0x8A4A8E6E
+	.4byte 0x8E9E8D8F
+	.4byte 0x00000000
+	.4byte 0x975B95FB
+	.4byte 0x92868AD4
+	.4byte 0x8A4A8E6E
+	.4byte 0x8E9E8D8F
+	.4byte 0x00000000
+	.4byte 0x975B95FB
+	.4byte 0x92868AD4
+	.4byte 0x8F4997B9
+	.4byte 0x8E9E8D8F
+	.4byte 0x00000000
+	.4byte 0x975B95FB
+	.4byte 0x8F4997B9
+	.4byte 0x8E9E8D8F
+	.4byte 0x00000000
+	.4byte 0x96E98C78
+	.4byte 0x8D908E9E
+	.4byte 0x8D8F0000
+	.4byte 0x834A8345
+	.4byte 0x83938367
+	.4byte 0x835F8345
+	.4byte 0x83930000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7TimeMgrFv

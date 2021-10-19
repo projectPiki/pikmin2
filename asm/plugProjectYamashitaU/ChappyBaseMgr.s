@@ -1,4 +1,29 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047BF80
+lbl_8047BF80:
+	.4byte 0x83608383
+	.4byte 0x83628373
+	.4byte 0x815B8378
+	.4byte 0x815B8358
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+.global lbl_8047BF9C
+lbl_8047BF9C:
+	.4byte 2
+	.4byte 42
+	.4byte 43
+.global lbl_8047BFA8
+lbl_8047BFA8:
+	.4byte 2
+	.4byte 42
+	.4byte 43
+.global lbl_8047BFB4
+lbl_8047BFB4:
+	.asciz "osiri_1_2"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10ChappyBase3MgrFiUc

@@ -1,4 +1,119 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C1E8
+lbl_8047C1E8:
+	.4byte 0x656E656D
+	.4byte 0x794D6772
+	.4byte 0x42617365
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x6B696C6C
+	.4byte 0x20646561
+	.4byte 0x6420656E
+	.4byte 0x656D792E
+	.4byte 0x20257320
+	.4byte 0x25640A20
+	.4byte 0x73746174
+	.4byte 0x653A2573
+	.4byte 0x00000000
+	.4byte 0x6B696C6C
+	.4byte 0x20646561
+	.4byte 0x6420656E
+	.4byte 0x656D792E
+	.4byte 0x20257320
+	.4byte 0x25640A20
+	.4byte 0x73746174
+	.4byte 0x653A2564
+	.4byte 0x00000000
+.global lbl_8047C244
+lbl_8047C244:
+	.4byte 0x6D4E756D
+	.4byte 0x4F626A65
+	.4byte 0x63747320
+	.4byte 0x6973206E
+	.4byte 0x6F74207A
+	.4byte 0x65726F2E
+	.4byte 0x205B2564
+	.4byte 0x5D200A00
+.global lbl_8047C264
+lbl_8047C264:
+	.4byte 0x50535379
+	.4byte 0x7374656D
+	.4byte 0x49462E68
+	.4byte 0x00000000
+.global lbl_8047C274
+lbl_8047C274:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_8047C280
+lbl_8047C280:
+	.4byte 0x25732F65
+	.4byte 0x6E656D79
+	.4byte 0x5061726D
+	.4byte 0x2E747874
+	.4byte 0x00000000
+.global lbl_8047C294
+lbl_8047C294:
+	.4byte 0x25732F65
+	.4byte 0x6E656D79
+	.4byte 0x436F6C6C
+	.4byte 0x2E747874
+	.4byte 0x00000000
+.global lbl_8047C2A8
+lbl_8047C2A8:
+	.4byte 0x25732F65
+	.4byte 0x6E656D79
+	.4byte 0x53746F6E
+	.4byte 0x65496E66
+	.4byte 0x6F2E7478
+	.4byte 0x74000000
+	.4byte 0x656E656D
+	.4byte 0x792E626D
+	.4byte 0x64000000
+	.4byte 0x656E656D
+	.4byte 0x792E6264
+	.4byte 0x6C000000
+	.4byte 0x456E656D
+	.4byte 0x794D6772
+	.4byte 0x42617365
+	.4byte 0x3A43616E
+	.4byte 0x206E6F74
+	.4byte 0x206D616B
+	.4byte 0x65206D64
+	.4byte 0x6C446174
+	.4byte 0x610A0000
+.global lbl_8047C2FC
+lbl_8047C2FC:
+	.4byte 0x2F656E65
+	.4byte 0x6D792F64
+	.4byte 0x6174612F
+	.4byte 0x25732F6D
+	.4byte 0x6F64656C
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+.global lbl_8047C318
+lbl_8047C318:
+	.4byte 0x2F656E65
+	.4byte 0x6D792F64
+	.4byte 0x6174612F
+	.4byte 0x25732F61
+	.4byte 0x6E696D2E
+	.4byte 0x737A7300
+.global lbl_8047C330
+lbl_8047C330:
+	.4byte 0x25732F65
+	.4byte 0x6E656D79
+	.4byte 0x416E696D
+	.4byte 0x4D67722E
+	.4byte 0x74787400
+.global lbl_8047C344
+lbl_8047C344:
+	.4byte 0x456E656D
+	.4byte 0x7947656E
+	.4byte 0x65726174
+	.4byte 0x6F720000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game13EnemyBirthArgFv

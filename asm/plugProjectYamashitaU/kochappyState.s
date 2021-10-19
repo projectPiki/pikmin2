@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047AB28
+lbl_8047AB28:
+	.asciz "TurnToHome"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game12KochappyBase3FSMFPQ24Game9EnemyBase

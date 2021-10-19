@@ -1,4 +1,45 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047BE58
+lbl_8047BE58:
+	.asciz "sekikaobj_large.bmd"
+.global lbl_8047BE6C
+lbl_8047BE6C:
+	.asciz "sekikaobj_small.bmd"
+	.4byte 0x456E656D
+	.4byte 0x7953746F
+	.4byte 0x6E653A3A
+	.4byte 0x4D67723A
+	.4byte 0x3A6C6F61
+	.4byte 0x64526573
+	.4byte 0x6F757263
+	.4byte 0x65000000
+	.4byte 0x456E656D
+	.4byte 0x7953746F
+	.4byte 0x6E653A3A
+	.4byte 0x4D67723A
+	.4byte 0x3A73746F
+	.4byte 0x6E654D6F
+	.4byte 0x64656C00
+	.4byte 0x2F656E65
+	.4byte 0x6D792F63
+	.4byte 0x6F6D6D6F
+	.4byte 0x6E2F656E
+	.4byte 0x656D7943
+	.4byte 0x6F6D6D6F
+	.4byte 0x6E2E737A
+	.4byte 0x73000000
+	.4byte 0x456E656D
+	.4byte 0x7953746F
+	.4byte 0x6E653A3A
+	.4byte 0x4D67723A
+	.4byte 0x3A447261
+	.4byte 0x77496E66
+	.4byte 0x6F5F6275
+	.4byte 0x66666572
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@"

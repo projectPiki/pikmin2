@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047B420
+lbl_8047B420:
+	.4byte 0x4669656C
+	.4byte 0x64567478
+	.4byte 0x436F6C6F
+	.4byte 0x724D6772
+	.4byte 0x00000000
+.global lbl_8047B434
+lbl_8047B434:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData

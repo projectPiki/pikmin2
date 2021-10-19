@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C530
+lbl_8047C530:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x82A895F3
+	.4byte 0x83898343
+	.4byte 0x83670000
+	.4byte 0x83818343
+	.4byte 0x83938389
+	.4byte 0x83438367
+	.4byte 0x00000000
+	.4byte 0x83588379
+	.4byte 0x834C8385
+	.4byte 0x83892D83
+	.4byte 0x89834383
+	.4byte 0x67000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q213TreasureLight3MgrFv

@@ -1,4 +1,23 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C030
+lbl_8047C030:
+	.asciz "/enemy/data/YellowChappy/moyou_565.2.bti"
+	.skip 3
+.global lbl_8047C05C
+lbl_8047C05C:
+	.asciz "/enemy/data/YellowChappy/swallow_565.2.bti"
+	.skip 1
+.global lbl_8047C088
+lbl_8047C088:
+	.4byte 0x89A98360
+	.4byte 0x83838362
+	.4byte 0x8373815B
+	.4byte 0x837D836C
+	.4byte 0x815B8357
+	.4byte 0x83830000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"

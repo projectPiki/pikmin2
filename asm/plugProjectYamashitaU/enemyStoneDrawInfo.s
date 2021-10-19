@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047BF00
+lbl_8047BF00:
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+.global lbl_8047BF0C
+lbl_8047BF0C:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfo

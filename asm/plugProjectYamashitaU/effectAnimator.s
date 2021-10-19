@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C570
+lbl_8047C570:
+	.4byte 0x65666665
+	.4byte 0x63744F62
+	.4byte 0x6A000000
+.global lbl_8047C57C
+lbl_8047C57C:
+	.4byte 0x65666665
+	.4byte 0x6374416E
+	.4byte 0x696D6174
+	.4byte 0x6F722E63
+	.4byte 0x70700000
+.global lbl_8047C590
+lbl_8047C590:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf

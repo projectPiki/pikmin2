@@ -1,4 +1,103 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047A520
+lbl_8047A520:
+	.skip 0xC
+	.asciz "enemyBase"
+	.skip 2
+.global lbl_8047A538
+lbl_8047A538:
+	.asciz "e-upd-do"
+	.skip 3
+.global lbl_8047A544
+lbl_8047A544:
+	.asciz "enemyBase.cpp"
+	.skip 2
+.global lbl_8047A554
+lbl_8047A554:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x42697274
+	.4byte 0x68547970
+	.4byte 0x6544726F
+	.4byte 0x70000000
+	.4byte 0x42697274
+	.4byte 0x68547970
+	.4byte 0x6544726F
+	.4byte 0x7050696B
+	.4byte 0x6D696E00
+	.4byte 0x42697274
+	.4byte 0x68547970
+	.4byte 0x6544726F
+	.4byte 0x704F6C69
+	.4byte 0x6D617200
+	.4byte 0x42697274
+	.4byte 0x68547970
+	.4byte 0x6544726F
+	.4byte 0x70547265
+	.4byte 0x61737572
+	.4byte 0x65000000
+	.4byte 0x42697274
+	.4byte 0x68547970
+	.4byte 0x6544726F
+	.4byte 0x70456172
+	.4byte 0x74687175
+	.4byte 0x616B6500
+	.4byte 0x45617274
+	.4byte 0x68717561
+	.4byte 0x6B650000
+.global lbl_8047A5D4
+lbl_8047A5D4:
+	.4byte 0x556E6B6E
+	.4byte 0x6F776E20
+	.4byte 0x62697274
+	.4byte 0x68207479
+	.4byte 0x70653A25
+	.4byte 0x64000000
+.global lbl_8047A5EC
+lbl_8047A5EC:
+	.4byte 0x456E656D
+	.4byte 0x794B696C
+	.4byte 0x6C417267
+	.4byte 0x00000000
+.global lbl_8047A5FC
+lbl_8047A5FC:
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
+.global lbl_8047A60C
+lbl_8047A60C:
+	.4byte 0x61626F6C
+	.4byte 0x69736865
+	.4byte 0x64207479
+	.4byte 0x70650A00
+.global lbl_8047A61C
+lbl_8047A61C:
+	.4byte 0x50656C6C
+	.4byte 0x6574496E
+	.4byte 0x69744172
+	.4byte 0x67000000
+.global lbl_8047A62C
+lbl_8047A62C:
+	.4byte 0x41726753
+	.4byte 0x63616C65
+	.4byte 0x00000000
+.global lbl_8047A638
+lbl_8047A638:
+	.4byte 0x4974656D
+	.4byte 0x486F6E65
+	.4byte 0x793A3A49
+	.4byte 0x6E697441
+	.4byte 0x72670000
+.global lbl_8047A64C
+lbl_8047A64C:
+	.4byte 0x41726745
+	.4byte 0x6E656D79
+	.4byte 0x54797065
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase

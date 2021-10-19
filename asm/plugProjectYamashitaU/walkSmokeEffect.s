@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047BF30
+lbl_8047BF30:
+	.4byte 0x77616C6B
+	.4byte 0x536D6F6B
+	.4byte 0x65000000
+	.4byte 0x77616C6B
+	.4byte 0x536D6F6B
+	.4byte 0x65456666
+	.4byte 0x6563742E
+	.4byte 0x63707000
+	.4byte 0x616C6C6F
+	.4byte 0x63206572
+	.4byte 0x726F720A
+	.4byte 0x00000000
+	.4byte 0x7365636F
+	.4byte 0x6E642061
+	.4byte 0x6C6C6F63
+	.4byte 0x00000000
+	.4byte 0x41726745
+	.4byte 0x6E656D79
+	.4byte 0x54797065
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game15WalkSmokeEffect3ObjFv

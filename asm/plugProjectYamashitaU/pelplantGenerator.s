@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047BE28
+lbl_8047BE28:
+	.4byte 0x8379838C
+	.4byte 0x83628367
+	.4byte 0x91900000
+	.asciz "\t\t# %s \r\n"
+	.skip 2
+	.asciz "pellet type"
+	.asciz "pellet size"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Pelplant9GeneratorFv

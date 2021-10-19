@@ -1,4 +1,195 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047B448
+lbl_8047B448:
+	.asciz "Pelplant"
+	.skip 3
+.global lbl_8047B454
+lbl_8047B454:
+	.asciz "Kochappy"
+	.skip 3
+.global lbl_8047B460
+lbl_8047B460:
+	.asciz "BlueKochappy"
+	.skip 3
+.global lbl_8047B470
+lbl_8047B470:
+	.asciz "YellowKochappy"
+	.skip 1
+.global lbl_8047B480
+lbl_8047B480:
+	.asciz "KumaKochappy"
+	.skip 3
+.global lbl_8047B490
+lbl_8047B490:
+	.asciz "BlueChappy"
+	.skip 1
+.global lbl_8047B49C
+lbl_8047B49C:
+	.asciz "YellowChappy"
+	.skip 3
+.global lbl_8047B4AC
+lbl_8047B4AC:
+	.asciz "YellowPom"
+	.skip 2
+.global lbl_8047B4B8
+lbl_8047B4B8:
+	.asciz "BlackPom"
+	.skip 3
+.global lbl_8047B4C4
+lbl_8047B4C4:
+	.asciz "WhitePom"
+	.skip 3
+.global lbl_8047B4D0
+lbl_8047B4D0:
+	.asciz "MaroFrog"
+	.skip 3
+.global lbl_8047B4DC
+lbl_8047B4DC:
+	.asciz "Imomushi"
+	.skip 3
+.global lbl_8047B4E8
+lbl_8047B4E8:
+	.asciz "ElecHiba"
+	.skip 3
+.global lbl_8047B4F4
+lbl_8047B4F4:
+	.asciz "BombSarai"
+	.skip 2
+.global lbl_8047B500
+lbl_8047B500:
+	.asciz "Hanachirashi"
+	.skip 3
+.global lbl_8047B510
+lbl_8047B510:
+	.asciz "OniKurage"
+	.skip 2
+.global lbl_8047B51C
+lbl_8047B51C:
+	.asciz "FireChappy"
+	.skip 1
+.global lbl_8047B528
+lbl_8047B528:
+	.asciz "KumaChappy"
+	.skip 1
+.global lbl_8047B534
+lbl_8047B534:
+	.asciz "LeafChappy"
+	.skip 1
+.global lbl_8047B540
+lbl_8047B540:
+	.asciz "SnakeCrow"
+	.skip 2
+.global lbl_8047B54C
+lbl_8047B54C:
+	.asciz "SnakeWhole"
+	.skip 1
+.global lbl_8047B558
+lbl_8047B558:
+	.asciz "PanModoki"
+	.skip 2
+.global lbl_8047B564
+lbl_8047B564:
+	.asciz "OoPanModoki"
+.global lbl_8047B570
+lbl_8047B570:
+	.asciz "PanHouse"
+	.skip 3
+.global lbl_8047B57C
+lbl_8047B57C:
+	.asciz "HikariKinoko"
+	.skip 3
+.global lbl_8047B58C
+lbl_8047B58C:
+	.asciz "KareOoinu_s"
+.global lbl_8047B598
+lbl_8047B598:
+	.asciz "KareOoinu_l"
+.global lbl_8047B5A4
+lbl_8047B5A4:
+	.asciz "Wakame_s"
+	.skip 3
+.global lbl_8047B5B0
+lbl_8047B5B0:
+	.asciz "Wakame_l"
+	.skip 3
+.global lbl_8047B5BC
+lbl_8047B5BC:
+	.asciz "DaiodoRed"
+	.skip 2
+.global lbl_8047B5C8
+lbl_8047B5C8:
+	.asciz "DaiodoGreen"
+.global lbl_8047B5D4
+lbl_8047B5D4:
+	.asciz "Nekojarashi"
+.global lbl_8047B5E0
+lbl_8047B5E0:
+	.asciz "Chiyogami"
+	.skip 2
+.global lbl_8047B5EC
+lbl_8047B5EC:
+	.asciz "KingChappy"
+	.skip 1
+.global lbl_8047B5F8
+lbl_8047B5F8:
+	.asciz "Damagumo"
+	.skip 3
+.global lbl_8047B604
+lbl_8047B604:
+	.asciz "FireOtakara"
+.global lbl_8047B610
+lbl_8047B610:
+	.asciz "WaterOtakara"
+	.skip 3
+.global lbl_8047B620
+lbl_8047B620:
+	.asciz "GasOtakara"
+	.skip 1
+.global lbl_8047B62C
+lbl_8047B62C:
+	.asciz "ElecOtakara"
+.global lbl_8047B638
+lbl_8047B638:
+	.asciz "TamagoMushi"
+.global lbl_8047B644
+lbl_8047B644:
+	.asciz "UmiMushiBase"
+	.skip 3
+.global lbl_8047B654
+lbl_8047B654:
+	.asciz "UmiMushi"
+	.skip 3
+.global lbl_8047B660
+lbl_8047B660:
+	.asciz "UmiMushiBlind"
+	.skip 2
+.global lbl_8047B670
+lbl_8047B670:
+	.asciz "BigTreasure"
+.global lbl_8047B67C
+lbl_8047B67C:
+	.asciz "ShijimiChou"
+.global lbl_8047B688
+lbl_8047B688:
+	.asciz "MiniHoudai"
+	.skip 1
+.global lbl_8047B694
+lbl_8047B694:
+	.asciz "FminiHoudai"
+.global lbl_8047B6A0
+lbl_8047B6A0:
+	.asciz "BombOtakara"
+.global lbl_8047B6AC
+lbl_8047B6AC:
+	.asciz "BlackMan"
+	.skip 3
+.global lbl_8047B6B8
+lbl_8047B6B8:
+	.asciz "DangoMushi"
+	.skip 1
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global gEnemyInfoNum__4Game #Number of elements in gEnemyInfo.

@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047AE88
+lbl_8047AE88:
+	.asciz "teki-srch"
+	.skip 2
+.global lbl_8047AE94
+lbl_8047AE94:
+	.asciz "g2B_white_poison"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"

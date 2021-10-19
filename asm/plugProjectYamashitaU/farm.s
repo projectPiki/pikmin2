@@ -1,4 +1,30 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047B6C8
+lbl_8047B6C8:
+	.asciz "ObstacleNode"
+	.skip 3
+.global lbl_8047B6D8
+lbl_8047B6D8:
+	.4byte 0x506C616E
+	.4byte 0x744E6F64
+	.4byte 0x65000000
+	.4byte 0x4661726D
+	.4byte 0x20726573
+	.4byte 0x6F757263
+	.4byte 0x65000000
+	.4byte 0x63726561
+	.4byte 0x74654D6F
+	.4byte 0x64656C00
+	.4byte 0x76747843
+	.4byte 0x6C72416E
+	.4byte 0x6D000000
+.global lbl_8047B70C
+lbl_8047B70C:
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setPower__Q34Game4Farm8ObstacleFf

@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C160
+lbl_8047C160:
+	.4byte 0x83528360
+	.4byte 0x83838362
+	.4byte 0x8373815B
+	.4byte 0x8378815B
+	.4byte 0x8358837D
+	.4byte 0x836C815B
+	.4byte 0x83578383
+	.4byte 0x00000000
+.global lbl_8047C180
+lbl_8047C180:
+	.4byte 1
+	.4byte 44
+	.4byte 45
+.global lbl_8047C18C
+lbl_8047C18C:
+	.4byte 1
+	.4byte 44
+	.4byte 45
+.global lbl_8047C198
+lbl_8047C198:
+	.4byte 0x6C616D62
+	.4byte 0x65727434
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12KochappyBase3MgrFiUc

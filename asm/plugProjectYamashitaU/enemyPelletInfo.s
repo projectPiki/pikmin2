@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C1A8
+lbl_8047C1A8:
+	.4byte 0x09092320
+	.4byte 0x2573200D
+	.4byte 0x0A000000
+	.4byte 0x50656C6C
+	.4byte 0x65742063
+	.4byte 0x6F6C6F72
+	.4byte 0x00000000
+	.4byte 0x50656C6C
+	.4byte 0x65742073
+	.4byte 0x697A6500
+	.4byte 0x50656C6C
+	.4byte 0x6574204D
+	.4byte 0x696E0000
+	.4byte 0x50656C6C
+	.4byte 0x6574204D
+	.4byte 0x61780000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game15EnemyPelletInfoFv

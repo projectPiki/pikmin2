@@ -1,4 +1,19 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047AA20
+lbl_8047AA20:
+	.asciz "wither_big"
+	.skip 1
+	.asciz "wither_Middle"
+	.skip 2
+	.asciz "wither_Small"
+	.skip 3
+	.asciz "wait_small"
+	.skip 1
+	.asciz "wait_middle"
+	.asciz "wait_big"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8Pelplant3FSMFPQ24Game9EnemyBase

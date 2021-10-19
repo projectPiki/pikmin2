@@ -1,4 +1,106 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047B2C0
+lbl_8047B2C0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x67616D65
+	.4byte 0x4C696768
+	.4byte 0x744D6772
+	.4byte 0x00000000
+.global lbl_8047B2DC
+lbl_8047B2DC:
+	.4byte 0x436F6C6F
+	.4byte 0x72506172
+	.4byte 0x6D730000
+.global lbl_8047B2E8
+lbl_8047B2E8:
+	.4byte 0x8341838B
+	.4byte 0x83748340
+	.4byte 0x00000000
+	.4byte 0x47616D65
+	.4byte 0x466F6750
+	.4byte 0x61726D73
+	.4byte 0x00000000
+	.4byte 0x4D6F7665
+	.4byte 0x5061726D
+	.4byte 0x73000000
+	.4byte 0x8CF58CB9
+	.4byte 0x82DC82C5
+	.4byte 0x82CC8B97
+	.4byte 0x97A30000
+	.4byte 0x93FA82CC
+	.4byte 0x8F6F8A70
+	.4byte 0x93780000
+	.4byte 0x93FA82CC
+	.4byte 0x93FC8A70
+	.4byte 0x93780000
+	.4byte 0x53706F74
+	.4byte 0x5061726D
+	.4byte 0x73000000
+	.4byte 0x834A8362
+	.4byte 0x83678349
+	.4byte 0x83740000
+	.4byte 0x91BE977A
+	.4byte 0x835E8343
+	.4byte 0x837690DD
+	.4byte 0x92E80000
+	.4byte 0x89F99286
+	.4byte 0x93649394
+	.4byte 0x8341838A
+	.4byte 0x00000000
+	.4byte 0x89F99286
+	.4byte 0x93649394
+	.4byte 0x83698356
+	.4byte 0x00000000
+.global lbl_8047B380
+lbl_8047B380:
+	.4byte 0x67616D65
+	.4byte 0x4C696768
+	.4byte 0x744D6772
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8047B394
+lbl_8047B394:
+	.4byte 0x556E6B6E
+	.4byte 0x6F776E20
+	.4byte 0x76657273
+	.4byte 0x696F6E20
+	.4byte 0x5B253038
+	.4byte 0x785D0000
+	.4byte 0x83818343
+	.4byte 0x83938389
+	.4byte 0x83438367
+	.4byte 0x00000000
+	.4byte 0x83548375
+	.4byte 0x83898343
+	.4byte 0x83670000
+	.4byte 0x83588379
+	.4byte 0x834C8385
+	.4byte 0x83892D83
+	.4byte 0x89834383
+	.4byte 0x67000000
+	.4byte 0x2F757365
+	.4byte 0x722F5961
+	.4byte 0x6D617368
+	.4byte 0x6974612F
+	.4byte 0x74657374
+	.4byte 0x5265736F
+	.4byte 0x75726365
+	.4byte 0x2F6C6967
+	.4byte 0x68742F6C
+	.4byte 0x69676874
+	.4byte 0x2E696E69
+	.4byte 0x00000000
+.global lbl_8047B40C
+lbl_8047B40C:
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x76702D69
+	.4byte 0x64202825
+	.4byte 0x64290A00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game20GameLightTimeSettingFv

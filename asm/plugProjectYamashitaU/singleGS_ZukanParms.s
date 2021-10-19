@@ -1,4 +1,133 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047C358
+lbl_8047C358:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8047C364
+lbl_8047C364:
+	.4byte 0x73696E67
+	.4byte 0x6C654753
+	.4byte 0x5F5A756B
+	.4byte 0x616E5061
+	.4byte 0x726D732E
+	.4byte 0x63707000
+.global lbl_8047C37C
+lbl_8047C37C:
+	.4byte 0x496C6C65
+	.4byte 0x67616C20
+	.4byte 0x736C6F74
+	.4byte 0x2E0A0000
+	.4byte 0x506F7369
+	.4byte 0x74696F6E
+	.4byte 0x5061726D
+	.4byte 0x73000000
+	.4byte 0x8F6F8CBB
+	.4byte 0x88CA9275
+	.4byte 0x81408298
+	.4byte 0x00000000
+	.4byte 0x8F6F8CBB
+	.4byte 0x88CA9275
+	.4byte 0x81408299
+	.4byte 0x00000000
+	.4byte 0x8F6F8CBB
+	.4byte 0x88CA9275
+	.4byte 0x8140829A
+	.4byte 0x00000000
+	.4byte 0x8F6F8CBB
+	.4byte 0x8FEA8F8A
+	.4byte 0x96BC0000
+	.4byte 0x8F6F8CBB
+	.4byte 0x88CA9275
+	.4byte 0x838A8358
+	.4byte 0x83670000
+.global lbl_8047C3E8
+lbl_8047C3E8:
+	.4byte 0x656E656D
+	.4byte 0x79506172
+	.4byte 0x6D730000
+.global lbl_8047C3F4
+lbl_8047C3F4:
+	.4byte 0x8F6F8CBB
+	.4byte 0x94CD88CD
+	.4byte 0x00000000
+	.4byte 0x63616D65
+	.4byte 0x72615061
+	.4byte 0x726D7300
+	.4byte 0x8D8282B3
+	.4byte 0x81408F89
+	.4byte 0x8AFA926C
+	.4byte 0x00000000
+	.4byte 0x8D8282B3
+	.4byte 0x81408DC5
+	.4byte 0x8FAC926C
+	.4byte 0x00000000
+	.4byte 0x8D8282B3
+	.4byte 0x81408DC5
+	.4byte 0x91E5926C
+	.4byte 0x00000000
+	.4byte 0x83498374
+	.4byte 0x835A8362
+	.4byte 0x83678140
+	.4byte 0x82980000
+	.4byte 0x83498374
+	.4byte 0x835A8362
+	.4byte 0x83678140
+	.4byte 0x82990000
+	.4byte 0x83498374
+	.4byte 0x835A8362
+	.4byte 0x83678140
+	.4byte 0x829A0000
+	.4byte 0x89E68A70
+	.4byte 0x81408F89
+	.4byte 0x8AFA926C
+	.4byte 0x00000000
+	.4byte 0x89E68A70
+	.4byte 0x81408DC5
+	.4byte 0x8FAC926C
+	.4byte 0x00000000
+	.4byte 0x89E68A70
+	.4byte 0x81408DC5
+	.4byte 0x91E5926C
+	.4byte 0x00000000
+	.4byte 0x89F1935D
+	.4byte 0x81408F89
+	.4byte 0x8AFA926C
+	.4byte 0x00000000
+	.4byte 0x83498374
+	.4byte 0x835A8362
+	.4byte 0x83678298
+	.4byte 0x00000000
+	.4byte 0x83498374
+	.4byte 0x835A8362
+	.4byte 0x83678299
+	.4byte 0x00000000
+	.4byte 0x83498374
+	.4byte 0x835A8362
+	.4byte 0x8367829A
+	.4byte 0x00000000
+	.4byte 0x82A895F3
+	.4byte 0x907D8AD3
+	.4byte 0x00000000
+	.4byte 0x907D8AD3
+	.4byte 0x90DD92E8
+	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x73657474
+	.4byte 0x696E672E
+	.4byte 0x696E6900
+	.4byte 0x6C6F6164
+	.4byte 0x20657272
+	.4byte 0x6F722E5B
+	.4byte 0x25735D0A
+	.4byte 0x00000000
+	.4byte 0x6E6F2066
+	.4byte 0x696C654E
+	.4byte 0x616D6500
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game15IllustratedBook12ColorSettingFv
