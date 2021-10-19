@@ -9,11 +9,10 @@ namespace Screen {
 	 */
 	void TScreenBase::setArchive(JKRArchive* new_archive)
 	{
-		if (this->pArchive == nullptr) {
-			this->pArchive = new_archive;
+		if (this->m_archive == nullptr) {
+			this->m_archive = new_archive;
 			doSetArchive(new_archive);
 		}
-		return;
 	}
 
 	/*
@@ -30,18 +29,13 @@ namespace Screen {
 	 */
 	bool TScreenBase::openScreen(ArgOpen* open_screen)
 	{
-		bool is_zero;
-
-		is_zero = (this->_08 == 0);
-		if (is_zero) {
+		if (this->m_state == US_Finish) {
 			doOpenScreen(open_screen);
-			is_zero   = 1;
-			this->_08 = 1;
-			return is_zero;
-		} else {
-			return 0;
+			this->m_state = US_Open;
+			return true;
 		}
-		return is_zero;
+
+		return false;
 	}
 
 	/*
@@ -56,21 +50,15 @@ namespace Screen {
 	 * Address:	803D38EC
 	 * Size:	000058
 	 */
-	uint TScreenBase::closeScreen(ArgClose* close_screen)
+	bool TScreenBase::closeScreen(ArgClose* close_screen)
 	{
-
-		uint is_zero;
-
-		is_zero = (this->_08 == 2);
-		if (is_zero) {
+		if (this->m_state == US_Wait) {
 			doCloseScreen(close_screen);
-			is_zero   = 1;
-			this->_08 = 3;
-			return is_zero;
-		} else {
-			return 0;
+			this->m_state = US_Close;
+			return true;
 		}
-		return is_zero;
+
+		return false;
 	}
 
 	/*
@@ -88,7 +76,7 @@ namespace Screen {
 	void TScreenBase::killScreen(void)
 	{
 		doKillScreen();
-		this->_08 = 0;
+		this->m_state = US_Finish;
 	}
 
 	/*
@@ -96,7 +84,7 @@ namespace Screen {
 	 * Address:	803D3988
 	 * Size:	000010
 	 */
-	uchar TScreenBase::isFinishScreen(void) { return (this->_08 == 0); }
+	u8 TScreenBase::isFinishScreen(void) { return this->m_state == US_Finish; }
 
 	/*
 	 * --INFO--
@@ -104,21 +92,21 @@ namespace Screen {
 	 * Size:	000014
 	 */
 	// unused function
-	uchar TScreenBase::isOpenScreen(void) { return (this->_08 == 1); }
+	u8 TScreenBase::isOpenScreen(void) { return this->m_state == US_Open; }
 
 	/*
 	 * --INFO--
 	 * Address:	803D3998
 	 * Size:	000014
 	 */
-	uchar TScreenBase::isWaitScreen(void) { return (this->_08 == 2); }
+	u8 TScreenBase::isWaitScreen(void) { return this->m_state == US_Wait; }
 
 	/*
 	 * --INFO--
 	 * Address:	803D39AC
 	 * Size:	000014
 	 */
-	uchar TScreenBase::isCloseScreen(void) { return (this->_08 == 3); }
+	u8 TScreenBase::isCloseScreen(void) { return this->m_state == US_Close; }
 
 	/*
 	 * --INFO--
@@ -127,33 +115,27 @@ namespace Screen {
 	 */
 	void TScreenBase::update(void)
 	{
-		// uchar update_state;
-		int screen_state = this->_08;
-		switch (screen_state) {
-		case Open:
-			// update_state = doUpdateStateOpen();
-			if (doUpdateStateOpen() != 0) {
+		switch (this->m_state) {
+		case US_Open:
+			if (doUpdateStateOpen()) {
 				doInitWaitState();
-				this->_08 = 2;
+				this->m_state = US_Wait;
 			}
 			break;
-		case Wait:
-			// update_state = doUpdateStateWait();
-			if (doUpdateStateWait() != 0) {
+		case US_Wait:
+			if (doUpdateStateWait()) {
 				closeScreen(nullptr);
 			}
 			break;
-		case Close:
-			// update_state = doUpdateStateClose();
-			if (doUpdateStateClose() != 0) {
+		case US_Close:
+			if (doUpdateStateClose()) {
 				killScreen();
 			}
 			break;
-		case 0:
+		case US_Finish:
 		default:
-			return;
+			break;
 		}
-		return;
 	}
 
 	/*
@@ -191,7 +173,7 @@ namespace Screen {
 	 */
 	void TScreenBase::draw(void)
 	{
-		if (this->_08 != 0) {
+		if (this->m_state != US_Finish) {
 			doDraw();
 		}
 	}
