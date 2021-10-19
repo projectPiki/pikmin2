@@ -131,33 +131,35 @@ namespace screen {
 	 * Address:	803D39C0
 	 * Size:	0000EC
 	 */
-	uchar TScreenBase::update(void)
+	void TScreenBase::update(void)
 	{
-		int screen_state;
-		screen_state = this->_08;
-		uchar update_state;
-
-		if (screen_state == 2) {
-			update_state = doUpdateStateWait();
-			if (update_state == 0) {
-				update_state = closeScreen(nullptr);
+		// uchar update_state;
+		int screen_state = this->_08;
+		switch (screen_state) {
+		case Open:
+			// update_state = doUpdateStateOpen();
+			if (doUpdateStateOpen() != 0) {
+				doInitWaitState();
+				this->_08 = 2;
 			}
-		}else if (screen_state < 2) {
-			// update_state = this;
-			if ((screen_state != 0) && (-1 < screen_state)) {
-				update_state = doUpdateStateOpen();
-				if (update_state == 0) {
-					doInitWaitState();
-					this->_08 = 2;
-				}
+			break;
+		case Wait:
+			// update_state = doUpdateStateWait();
+			if (doUpdateStateWait() != 0) {
+				closeScreen(nullptr);
 			}
-		} else {
-			if ((screen_state < 4)
-			    && (update_state = doUpdateStateClose(), (update_state == 0))) {
+			break;
+		case Close:
+			// update_state = doUpdateStateClose();
+			if (doUpdateStateClose() != 0) {
 				killScreen();
 			}
+			break;
+		case 0:
+		default:
+			return;
 		}
-		return update_state;
+		return;
 	}
 
 	/*

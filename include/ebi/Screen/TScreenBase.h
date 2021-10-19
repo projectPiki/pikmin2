@@ -6,6 +6,7 @@
 
 namespace ebi {
 	namespace screen {
+	enum UpdateState { Open = 1, Wait = 2, Close = 3 };
 	struct ArgOpen {
 		virtual char* getName(void) { return "ArgOpen"; }
 	};
@@ -17,7 +18,7 @@ namespace ebi {
 		virtual bool openScreen(ArgOpen*);
 		virtual uint closeScreen(ArgClose*);
 		virtual void killScreen();
-		virtual uchar update();
+		virtual void update();
 		virtual void draw();
 		virtual uchar isFinishScreen();
 		virtual void doSetArchive(JKRArchive*);
