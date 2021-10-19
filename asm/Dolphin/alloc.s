@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global fix_pool_sizes
+fix_pool_sizes:
+	.4byte 0x00000004
+	.4byte 0x0000000C
+	.4byte 0x00000014
+	.4byte 0x00000024
+	.4byte 0x00000034
+	.4byte 0x00000044
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global free

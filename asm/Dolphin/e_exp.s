@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global halF
+halF:
+	.4byte 0x3FE00000
+	.4byte 0x00000000
+	.4byte 0xBFE00000
+	.4byte 0x00000000
+.global ln2HI
+ln2HI:
+	.4byte 0x3FE62E42
+	.4byte 0xFEE00000
+	.4byte 0xBFE62E42
+	.4byte 0xFEE00000
+.global ln2LO
+ln2LO:
+	.4byte 0x3DEA39EF
+	.4byte 0x35793C76
+	.4byte 0xBDEA39EF
+	.4byte 0x35793C76
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_exp

@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global bp
+bp:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+	.4byte 0x3FF80000
+	.4byte 0x00000000
+.global dp_h
+dp_h:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x3FE2B803
+	.4byte 0x40000000
+.global dp_l
+dp_l:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x3E4CFDEB
+	.4byte 0x43CFD006
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_pow

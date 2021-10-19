@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804798D0
+lbl_804798D0:
+	.4byte 0x44697370
+	.4byte 0x61746368
+	.4byte 0x20636F6D
+	.4byte 0x6D616E64
+	.4byte 0x20307825
+	.4byte 0x3038780A
+	.4byte 0x00000000
+.global lbl_804798EC
+lbl_804798EC:
+	.4byte 0x44697370
+	.4byte 0x61746368
+	.4byte 0x20636F6D
+	.4byte 0x706C6574
+	.4byte 0x65206572
+	.4byte 0x72203D20
+	.4byte 0x256C640A
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKDispatchMessage

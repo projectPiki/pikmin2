@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804796F8
+lbl_804796F8:
+	.ascii "MessageSend : cc_write returned %ld\n"
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKMessageSend

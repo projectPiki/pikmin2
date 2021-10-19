@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global __constants
+__constants:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41F00000
+	.4byte 0x00000000
+	.4byte 0x41E00000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __cvt_fp2unsigned

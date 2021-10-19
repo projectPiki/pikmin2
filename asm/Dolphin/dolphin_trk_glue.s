@@ -1,4 +1,76 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global EndofProgramInstruction$162
+EndofProgramInstruction$162:
+	.4byte 0x00454E44
+.global lbl_80479C4C
+lbl_80479C4C:
+	.4byte 0x25730A00
+	.4byte 0x4465766B
+	.4byte 0x69742073
+	.4byte 0x65742074
+	.4byte 0x6F203A20
+	.4byte 0x256C640A
+	.4byte 0x00000000
+	.4byte 0x4D657472
+	.4byte 0x6F54524B
+	.4byte 0x203A2053
+	.4byte 0x65742074
+	.4byte 0x6F204242
+	.4byte 0x410A0000
+	.4byte 0x4D657472
+	.4byte 0x6F54524B
+	.4byte 0x203A2053
+	.4byte 0x65742074
+	.4byte 0x6F204744
+	.4byte 0x45562068
+	.4byte 0x61726477
+	.4byte 0x6172650A
+	.4byte 0x00000000
+	.4byte 0x4D657472
+	.4byte 0x6F54524B
+	.4byte 0x203A2053
+	.4byte 0x65742074
+	.4byte 0x6F20414D
+	.4byte 0x43204444
+	.4byte 0x48206861
+	.4byte 0x72647761
+	.4byte 0x72650A00
+	.4byte 0x4D657472
+	.4byte 0x6F54524B
+	.4byte 0x203A2053
+	.4byte 0x65742074
+	.4byte 0x6F20554E
+	.4byte 0x4B4E4F57
+	.4byte 0x4E206861
+	.4byte 0x72647761
+	.4byte 0x72652E20
+	.4byte 0x28256C64
+	.4byte 0x290A0000
+	.4byte 0x4D657472
+	.4byte 0x6F54524B
+	.4byte 0x203A2049
+	.4byte 0x6E76616C
+	.4byte 0x69642068
+	.4byte 0x61726477
+	.4byte 0x61726520
+	.4byte 0x49442070
+	.4byte 0x61737365
+	.4byte 0x64206672
+	.4byte 0x6F6D204F
+	.4byte 0x530A0000
+	.4byte 0x4D657472
+	.4byte 0x6F54524B
+	.4byte 0x203A2044
+	.4byte 0x65666175
+	.4byte 0x6C74696E
+	.4byte 0x6720746F
+	.4byte 0x20474445
+	.4byte 0x56204861
+	.4byte 0x72647761
+	.4byte 0x72650A00
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKLoadContext

@@ -1,4 +1,50 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80479AF8
+lbl_80479AF8:
+	.4byte 0x43616C6C
+	.4byte 0x696E6720
+	.4byte 0x4D657373
+	.4byte 0x61676553
+	.4byte 0x656E640A
+	.4byte 0x00000000
+	.4byte 0x6D73675F
+	.4byte 0x636F6D6D
+	.4byte 0x616E6420
+	.4byte 0x3A203078
+	.4byte 0x25303278
+	.4byte 0x20686472
+	.4byte 0x2D3E636D
+	.4byte 0x64494420
+	.4byte 0x30782530
+	.4byte 0x32780A00
+	.4byte 0x6D73675F
+	.4byte 0x6572726F
+	.4byte 0x72203A20
+	.4byte 0x30782530
+	.4byte 0x32780A00
+	.4byte 0x52657175
+	.4byte 0x65737453
+	.4byte 0x656E6420
+	.4byte 0x3A204261
+	.4byte 0x64206163
+	.4byte 0x6B206F72
+	.4byte 0x206E6F6E
+	.4byte 0x2061636B
+	.4byte 0x20726563
+	.4byte 0x65697665
+	.4byte 0x64206D73
+	.4byte 0x675F636F
+	.4byte 0x6D6D616E
+	.4byte 0x64203A20
+	.4byte 0x30782530
+	.4byte 0x3278206D
+	.4byte 0x73675F65
+	.4byte 0x72726F72
+	.4byte 0x20307825
+	.4byte 0x3032780A
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global HandlePositionFileSupportRequest

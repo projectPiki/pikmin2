@@ -1,4 +1,19 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global "@stringBase0_3"
+"@stringBase0_3":
+	.4byte 0x002D494E
+	.4byte 0x46002D69
+	.4byte 0x6E660049
+	.4byte 0x4E460069
+	.4byte 0x6E66002D
+	.4byte 0x4E414E00
+	.4byte 0x2D6E616E
+	.4byte 0x004E414E
+	.4byte 0x006E616E
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "@wstringBase0"

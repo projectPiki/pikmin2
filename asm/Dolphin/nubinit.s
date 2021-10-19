@@ -1,7 +1,11 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x4
+.global lbl_804796E4
+lbl_804796E4:
+	.asciz "Initialize NUB\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-
 .global TRKInitializeNub
 TRKInitializeNub:
 /* 800BB6FC 000B863C  94 21 FF E0 */	stwu r1, -0x20(r1)

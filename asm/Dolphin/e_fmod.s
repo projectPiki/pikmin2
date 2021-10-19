@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global Zero
+Zero:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x80000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_fmod

@@ -1,4 +1,52 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global gTRKMemMap
+gTRKMemMap:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000001
+	.4byte 0x00000001
+.global lbl_80479BB0
+lbl_80479BB0:
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+.global lbl_80479C00
+lbl_80479C00:
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+	.4byte 0x60000000
+.global lbl_80479C28
+lbl_80479C28:
+	.4byte 0x54617267
+	.4byte 0x6574446F
+	.4byte 0x53746570
+	.4byte 0x28290A00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __TRK_get_MSR

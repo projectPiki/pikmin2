@@ -1,4 +1,140 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80479910
+lbl_80479910:
+	.4byte 0x0A4D6574
+	.4byte 0x726F5452
+	.4byte 0x4B204F70
+	.4byte 0x74696F6E
+	.4byte 0x203A2053
+	.4byte 0x65726961
+	.4byte 0x6C494F20
+	.4byte 0x2D200000
+	.4byte 0x456E6162
+	.4byte 0x6C650A00
+	.4byte 0x44697361
+	.4byte 0x626C650A
+	.4byte 0x00000000
+.global lbl_80479944
+lbl_80479944:
+	.4byte 0x446F436F
+	.4byte 0x6E74696E
+	.4byte 0x75650A00
+	.4byte 0x446F466C
+	.4byte 0x75736843
+	.4byte 0x61636865
+	.4byte 0x20756E69
+	.4byte 0x6D706C65
+	.4byte 0x6D656E74
+	.4byte 0x65642121
+	.4byte 0x210A0000
+.global lbl_80479970
+lbl_80479970:
+	.4byte 0x53656E64
+	.4byte 0x41434B20
+	.4byte 0x3A204361
+	.4byte 0x6C6C696E
+	.4byte 0x67204D65
+	.4byte 0x73736167
+	.4byte 0x6553656E
+	.4byte 0x640A0000
+.global lbl_80479990
+lbl_80479990:
+	.4byte 0x4D657373
+	.4byte 0x61676553
+	.4byte 0x656E6420
+	.4byte 0x65727220
+	.4byte 0x3A20256C
+	.4byte 0x640A0000
+	.4byte 0x446F5265
+	.4byte 0x61645265
+	.4byte 0x67697374
+	.4byte 0x65727320
+	.4byte 0x3A204275
+	.4byte 0x66666572
+	.4byte 0x206C656E
+	.4byte 0x67746820
+	.4byte 0x30782530
+	.4byte 0x38780A00
+	.4byte 0x446F5265
+	.4byte 0x61645265
+	.4byte 0x67697374
+	.4byte 0x65727320
+	.4byte 0x3A204572
+	.4byte 0x726F7220
+	.4byte 0x72656164
+	.4byte 0x696E6720
+	.4byte 0x20646566
+	.4byte 0x61756C74
+	.4byte 0x20726567
+	.4byte 0x73203078
+	.4byte 0x25303878
+	.4byte 0x0A000000
+	.4byte 0x446F5265
+	.4byte 0x61645265
+	.4byte 0x67697374
+	.4byte 0x65727320
+	.4byte 0x3A204572
+	.4byte 0x726F7220
+	.4byte 0x46502072
+	.4byte 0x65677320
+	.4byte 0x30782530
+	.4byte 0x38780A00
+	.4byte 0x446F5265
+	.4byte 0x61645265
+	.4byte 0x67697374
+	.4byte 0x65727320
+	.4byte 0x3A204572
+	.4byte 0x726F7220
+	.4byte 0x65787465
+	.4byte 0x6E646564
+	.4byte 0x31207265
+	.4byte 0x67732030
+	.4byte 0x78253038
+	.4byte 0x780A0000
+	.4byte 0x446F5265
+	.4byte 0x61645265
+	.4byte 0x67697374
+	.4byte 0x65727320
+	.4byte 0x3A204572
+	.4byte 0x726F7220
+	.4byte 0x65787465
+	.4byte 0x6E646564
+	.4byte 0x32207265
+	.4byte 0x67732030
+	.4byte 0x78253038
+	.4byte 0x780A0000
+	.4byte 0x57726974
+	.4byte 0x654D656D
+	.4byte 0x6F727920
+	.4byte 0x28307825
+	.4byte 0x30327829
+	.4byte 0x203A2030
+	.4byte 0x78253038
+	.4byte 0x78203078
+	.4byte 0x25303878
+	.4byte 0x20307825
+	.4byte 0x3038780A
+	.4byte 0x00000000
+	.4byte 0x52656164
+	.4byte 0x4D656D6F
+	.4byte 0x72792028
+	.4byte 0x30782530
+	.4byte 0x32782920
+	.4byte 0x3A203078
+	.4byte 0x25303878
+	.4byte 0x20307825
+	.4byte 0x30387820
+	.4byte 0x30782530
+	.4byte 0x38780A00
+.global lbl_80479AEC
+lbl_80479AEC:
+	.4byte 0x25303278
+	.4byte 0x20000000
+.global lbl_80479AF4
+lbl_80479AF4:
+	.4byte 0x0A000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKDoSetOption

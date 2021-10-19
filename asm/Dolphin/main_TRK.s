@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80479C38
+lbl_80479C38:
+	.4byte 0x54524B5F
+	.4byte 0x4D61696E
+	.4byte 0x200A0000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRK_main

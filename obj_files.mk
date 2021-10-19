@@ -285,6 +285,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/direct_io.o\
 	$(BUILD_DIR)/asm/Dolphin/file_io.o\
 	$(BUILD_DIR)/asm/Dolphin/FILE_POS.o\
+	$(BUILD_DIR)/asm/Dolphin/locale.o\
 	$(BUILD_DIR)/asm/Dolphin/mbstring.o\
 	$(BUILD_DIR)/asm/Dolphin/mem.o\
 	$(BUILD_DIR)/asm/Dolphin/mem_funcs.o\
@@ -419,7 +420,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/GBARead.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAWrite.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAXfer.o\
-	$(BUILD_DIR)/asm/rodata_2.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantState.o\

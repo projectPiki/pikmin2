@@ -1,4 +1,108 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global two_over_pi
+two_over_pi:
+	.4byte 0x00A2F983
+	.4byte 0x006E4E44
+	.4byte 0x001529FC
+	.4byte 0x002757D1
+	.4byte 0x00F534DD
+	.4byte 0x00C0DB62
+	.4byte 0x0095993C
+	.4byte 0x00439041
+	.4byte 0x00FE5163
+	.4byte 0x00ABDEBB
+	.4byte 0x00C561B7
+	.4byte 0x00246E3A
+	.4byte 0x00424DD2
+	.4byte 0x00E00649
+	.4byte 0x002EEA09
+	.4byte 0x00D1921C
+	.4byte 0x00FE1DEB
+	.4byte 0x001CB129
+	.4byte 0x00A73EE8
+	.4byte 0x008235F5
+	.4byte 0x002EBB44
+	.4byte 0x0084E99C
+	.4byte 0x007026B4
+	.4byte 0x005F7E41
+	.4byte 0x003991D6
+	.4byte 0x00398353
+	.4byte 0x0039F49C
+	.4byte 0x00845F8B
+	.4byte 0x00BDF928
+	.4byte 0x003B1FF8
+	.4byte 0x0097FFDE
+	.4byte 0x0005980F
+	.4byte 0x00EF2F11
+	.4byte 0x008B5A0A
+	.4byte 0x006D1F6D
+	.4byte 0x00367ECF
+	.4byte 0x0027CB09
+	.4byte 0x00B74F46
+	.4byte 0x003F669E
+	.4byte 0x005FEA2D
+	.4byte 0x007527BA
+	.4byte 0x00C7EBE5
+	.4byte 0x00F17B3D
+	.4byte 0x000739F7
+	.4byte 0x008A5292
+	.4byte 0x00EA6BFB
+	.4byte 0x005FB11F
+	.4byte 0x008D5D08
+	.4byte 0x00560330
+	.4byte 0x0046FC7B
+	.4byte 0x006BABF0
+	.4byte 0x00CFBC20
+	.4byte 0x009AF436
+	.4byte 0x001DA9E3
+	.4byte 0x0091615E
+	.4byte 0x00E61B08
+	.4byte 0x00659985
+	.4byte 0x005F14A0
+	.4byte 0x0068408D
+	.4byte 0x00FFD880
+	.4byte 0x004D7327
+	.4byte 0x00310606
+	.4byte 0x001556CA
+	.4byte 0x0073A8C9
+	.4byte 0x0060E27B
+	.4byte 0x00C08C6B
+.global npio2_hw
+npio2_hw:
+	.4byte 0x3FF921FB
+	.4byte 0x400921FB
+	.4byte 0x4012D97C
+	.4byte 0x401921FB
+	.4byte 0x401F6A7A
+	.4byte 0x4022D97C
+	.4byte 0x4025FDBB
+	.4byte 0x402921FB
+	.4byte 0x402C463A
+	.4byte 0x402F6A7A
+	.4byte 0x4031475C
+	.4byte 0x4032D97C
+	.4byte 0x40346B9C
+	.4byte 0x4035FDBB
+	.4byte 0x40378FDB
+	.4byte 0x403921FB
+	.4byte 0x403AB41B
+	.4byte 0x403C463A
+	.4byte 0x403DD85A
+	.4byte 0x403F6A7A
+	.4byte 0x40407E4C
+	.4byte 0x4041475C
+	.4byte 0x4042106C
+	.4byte 0x4042D97C
+	.4byte 0x4043A28C
+	.4byte 0x40446B9C
+	.4byte 0x404534AC
+	.4byte 0x4045FDBB
+	.4byte 0x4046C6CB
+	.4byte 0x40478FDB
+	.4byte 0x404858EB
+	.4byte 0x404921FB
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_rem_pio2
