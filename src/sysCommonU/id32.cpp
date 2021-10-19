@@ -180,6 +180,9 @@ void ID32::sprint(char* str)
 	str[3] = static_cast<u8>(m_id.raw);
 	str[4] = '\0';
 }
+
+// TODO: Figure out how to do sinit in this style
+
 // extern "C" void __sinit_id32_cpp(){
 // ID32::eof.m_id.str[0] = '_';
 // ID32::eof.m_id.str[1] = 'e';
