@@ -1,7 +1,7 @@
 #include "ebi/screen/TScreenBase.h"
 
 namespace ebi {
-namespace screen {
+namespace Screen {
 	/*
 	 * --INFO--
 	 * Address:	803D3850
@@ -231,5 +231,5 @@ namespace screen {
 	{
 		return "NoNameScreen";
 	}
-} // namespace screen
+} // namespace Screen
 } // namespace ebi

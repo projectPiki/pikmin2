@@ -1030,7 +1030,7 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOptionMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DCallBack.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardMgr.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFramework.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFramework.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenPushStart.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTitleMenu.o\
