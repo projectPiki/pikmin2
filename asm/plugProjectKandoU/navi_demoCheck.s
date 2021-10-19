@@ -1,4 +1,84 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80482D30
+lbl_80482D30:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6E617669
+	.4byte 0x44656D6F
+	.4byte 0x43686563
+	.4byte 0x6B000000
+	.4byte 0x6733385F
+	.4byte 0x66696E64
+	.4byte 0x5F776869
+	.4byte 0x7465706F
+	.4byte 0x6D000000
+	.4byte 0x6733395F
+	.4byte 0x66696E64
+	.4byte 0x5F626C61
+	.4byte 0x636B706F
+	.4byte 0x6D000000
+	.4byte 0x7830335F
+	.4byte 0x66696E64
+	.4byte 0x5F726564
+	.4byte 0x5F6F6E79
+	.4byte 0x6F6E0000
+	.4byte 0x7831305F
+	.4byte 0x66696E64
+	.4byte 0x5F79656C
+	.4byte 0x6C6F775F
+	.4byte 0x6F6E796F
+	.4byte 0x6E000000
+	.4byte 0x7831315F
+	.4byte 0x66696E64
+	.4byte 0x5F626C75
+	.4byte 0x655F6F6E
+	.4byte 0x796F6E00
+	.4byte 0x6730345F
+	.4byte 0x66696E64
+	.4byte 0x5F747265
+	.4byte 0x61737572
+	.4byte 0x65000000
+	.4byte 0x7331365F
+	.4byte 0x66696E64
+	.4byte 0x5F697465
+	.4byte 0x6D5F2530
+	.4byte 0x32640000
+	.4byte 0x6733375F
+	.4byte 0x6765745F
+	.4byte 0x6C6F7569
+	.4byte 0x65000000
+	.4byte 0x6730355F
+	.4byte 0x66696E64
+	.4byte 0x5F636176
+	.4byte 0x655F2573
+	.4byte 0x00000000
+	.4byte 0x6730415F
+	.4byte 0x63765F66
+	.4byte 0x696E645F
+	.4byte 0x686F6C65
+	.4byte 0x00000000
+	.4byte 0x6730425F
+	.4byte 0x63765F66
+	.4byte 0x696E645F
+	.4byte 0x666F756E
+	.4byte 0x7461696E
+	.4byte 0x00000000
+	.4byte 0x6731395F
+	.4byte 0x66696E64
+	.4byte 0x5F726F63
+	.4byte 0x6B000000
+	.4byte 0x6732445F
+	.4byte 0x7265645F
+	.4byte 0x65787472
+	.4byte 0x61637400
+	.4byte 0x6732455F
+	.4byte 0x626C6163
+	.4byte 0x6B5F6578
+	.4byte 0x74726163
+	.4byte 0x74000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global demoCheck__Q24Game4NaviFv

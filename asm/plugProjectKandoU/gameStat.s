@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80480500
+lbl_80480500:
+	.4byte 0x67616D65
+	.4byte 0x53746174
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80480510
+lbl_80480510:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game8GameStatFv

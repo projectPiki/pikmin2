@@ -1,4 +1,52 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804805B0
+lbl_804805B0:
+	.4byte 0x6974656D
+	.4byte 0x486F6E65
+	.4byte 0x79000000
+.global lbl_804805BC
+lbl_804805BC:
+	.4byte 0x6974656D
+	.4byte 0x486F6E65
+	.4byte 0x792E6370
+	.4byte 0x70000000
+.global lbl_804805CC
+lbl_804805CC:
+	.4byte 0x6E6F206D
+	.4byte 0x6174206D
+	.4byte 0x69747531
+	.4byte 0x0A000000
+.global lbl_804805DC
+lbl_804805DC:
+	.4byte 0x3FC00000
+	.4byte 0x3FE00000
+	.4byte 0x3FE00000
+.global lbl_804805E8
+lbl_804805E8:
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6F
+	.4byte 0x626A6563
+	.4byte 0x74732F68
+	.4byte 0x6F6E6579
+	.4byte 0x00000000
+	.4byte 0x6D697475
+	.4byte 0x2E626D64
+	.4byte 0x00000000
+	.4byte 0x74657874
+	.4byte 0x732E737A
+	.4byte 0x73000000
+	.4byte 0x686F6E65
+	.4byte 0x79416E69
+	.4byte 0x6D4D6772
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem

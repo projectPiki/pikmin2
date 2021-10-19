@@ -1,4 +1,155 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804808F0
+lbl_804808F0:
+	.4byte 0x6974656D
+	.4byte 0x506C616E
+	.4byte 0x74000000
+.global lbl_804808FC
+lbl_804808FC:
+	.4byte 0x6974656D
+	.4byte 0x506C616E
+	.4byte 0x742E6370
+	.4byte 0x70000000
+.global lbl_8048090C
+lbl_8048090C:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80480918
+lbl_80480918:
+	.4byte 0x6D20252E
+	.4byte 0x31662028
+	.4byte 0x25642F25
+	.4byte 0x64290000
+.global lbl_80480928
+lbl_80480928:
+	.4byte 0x252E3166
+	.4byte 0x20252E31
+	.4byte 0x66000000
+	.4byte 0x6B756B69
+	.4byte 0x5F6A6E74
+	.4byte 0x31000000
+	.4byte 0x6B756B69
+	.4byte 0x5F6A6E74
+	.4byte 0x32000000
+	.4byte 0x6B756B69
+	.4byte 0x5F6A6E74
+	.4byte 0x33000000
+	.4byte 0x6B756B69
+	.4byte 0x5F6A6E74
+	.4byte 0x34000000
+.global lbl_80480964
+lbl_80480964:
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6F
+	.4byte 0x626A6563
+	.4byte 0x74732F70
+	.4byte 0x6C616E74
+	.4byte 0x73000000
+.global lbl_80480980
+lbl_80480980:
+	.4byte 0x75736572
+	.4byte 0x2F416265
+	.4byte 0x2F697465
+	.4byte 0x6D2F706C
+	.4byte 0x616E7450
+	.4byte 0x61726D73
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x3A3A5072
+	.4byte 0x6F706572
+	.4byte 0x74790000
+	.4byte 0x66726963
+	.4byte 0x74696F6E
+	.4byte 0x286E6F74
+	.4byte 0x20757365
+	.4byte 0x64290000
+	.4byte 0x77616C6C
+	.4byte 0x5265666C
+	.4byte 0x65637469
+	.4byte 0x6F6E0000
+	.4byte 0x66616365
+	.4byte 0x44697241
+	.4byte 0x646A7573
+	.4byte 0x74000000
+	.4byte 0x626F756E
+	.4byte 0x63654661
+	.4byte 0x63746F72
+	.4byte 0x00000000
+	.4byte 0x506C616E
+	.4byte 0x743A3A50
+	.4byte 0x61726D73
+	.4byte 0x00000000
+	.4byte 0x90AC92B7
+	.4byte 0x8E9E8AD4
+	.4byte 0x288FAC81
+	.4byte 0xA8928629
+	.4byte 0x00000000
+	.4byte 0x90AC92B7
+	.4byte 0x8E9E8AD4
+	.4byte 0x28928681
+	.4byte 0xA891E529
+	.4byte 0x00000000
+	.4byte 0x8368838D
+	.4byte 0x83628376
+	.4byte 0x82B782E9
+	.4byte 0x835F8381
+	.4byte 0x815B8357
+	.4byte 0x00000000
+	.4byte 0x8EC082F0
+	.4byte 0x82C282AF
+	.4byte 0x82E982DC
+	.4byte 0x82C582CC
+	.4byte 0x8E9E8AD4
+	.4byte 0x00000000
+	.4byte 0x8EC08DC4
+	.4byte 0x90B68E9E
+	.4byte 0x8AD40000
+	.4byte 0x958582E9
+	.4byte 0x82DC82C5
+	.4byte 0x82CC8E9E
+	.4byte 0x8AD40000
+	.4byte 0x6D6F6465
+	.4byte 0x6C2E626D
+	.4byte 0x64000000
+	.4byte 0x6D6F6465
+	.4byte 0x6C2E6270
+	.4byte 0x6B000000
+	.4byte 0x74657874
+	.4byte 0x732E737A
+	.4byte 0x73000000
+	.4byte 0x706C616E
+	.4byte 0x74416E69
+	.4byte 0x6D4D6772
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x09238EC0
+	.4byte 0x835E8343
+	.4byte 0x83760D0A
+	.4byte 0x00000000
+	.4byte 0x4207DC29
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41CBB439
+	.4byte 0x41000000
+	.4byte 0xC1000000
+	.4byte 0x41CBB439
+	.4byte 0x41000000
+	.4byte 0x41000000
+	.4byte 0x41CBB439
+	.4byte 0xC1000000
+	.4byte 0xC1000000
+	.4byte 0x41CBB439
+	.4byte 0xC1000000
+	.4byte 0x41000000
+	.4byte 0x50656C6C
+	.4byte 0x6574496E
+	.4byte 0x69744172
+	.4byte 0x67000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item

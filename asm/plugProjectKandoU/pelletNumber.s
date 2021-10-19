@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80481AE0
+lbl_80481AE0:
+	.4byte 0x4E756D62
+	.4byte 0x65725065
+	.4byte 0x6C6C6574
+	.4byte 0x00000000
+.global lbl_80481AF0
+lbl_80481AF0:
+	.4byte 0x70656C6C
+	.4byte 0x65745F74
+	.4byte 0x65787473
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+.global lbl_80481B04
+lbl_80481B04:
+	.4byte 0x70656C6C
+	.4byte 0x65744E75
+	.4byte 0x6D626572
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80481B18
+lbl_80481B18:
+	.4byte 0x4E756D62
+	.4byte 0x65725065
+	.4byte 0x6C6C6574
+	.4byte 0x2073697A
+	.4byte 0x65202564
+	.4byte 0x20657272
+	.4byte 0x6F720A00
+.global lbl_80481B34
+lbl_80481B34:
+	.4byte 0x41726750
+	.4byte 0x656C5479
+	.4byte 0x70650000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game12PelletNumber6ObjectFPQ24Game15CreatureInitArg

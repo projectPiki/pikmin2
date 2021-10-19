@@ -1,4 +1,53 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804825B0
+lbl_804825B0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x53696E67
+	.4byte 0x6C654753
+	.4byte 0x5F436176
+	.4byte 0x65526573
+	.4byte 0x756C7400
+	.4byte 0x63617665
+	.4byte 0x722D696E
+	.4byte 0x69740000
+	.4byte 0x73696E67
+	.4byte 0x6C654753
+	.4byte 0x5F436176
+	.4byte 0x65526573
+	.4byte 0x756C742E
+	.4byte 0x63707000
+.global lbl_804825F4
+lbl_804825F4:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80482600
+lbl_80482600:
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x63616E6E
+	.4byte 0x6F74206F
+	.4byte 0x70656E20
+	.4byte 0x63617665
+	.4byte 0x72657375
+	.4byte 0x6C740A00
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame15CaveResultStateFv

@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483828
+lbl_80483828:
+	.4byte 0x63656C6C
+	.4byte 0x49746572
+	.4byte 0x61746F72
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8048383C
+lbl_8048383C:
+	.4byte 0x78792025
+	.4byte 0x66202566
+	.4byte 0x0A256620
+	.4byte 0x25660A00
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game15CellIteratorArgFv

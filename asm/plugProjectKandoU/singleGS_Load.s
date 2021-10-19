@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483D50
+lbl_80483D50:
+	.asciz "singleGS_Load.cpp"
+	.skip 2
+.global lbl_80483D64
+lbl_80483D64:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSectionPQ24Game8StateArg

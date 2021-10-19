@@ -1,4 +1,70 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80482C20
+lbl_80482C20:
+	.asciz "Opening Movie"
+	.skip 2
+.global lbl_80482C30
+lbl_80482C30:
+	.asciz "-- Director --"
+	.skip 1
+.global lbl_80482C40
+lbl_80482C40:
+	.asciz "Geshifumi Hino"
+	.skip 1
+.global lbl_80482C50
+lbl_80482C50:
+	.asciz "Mamamichi Abe"
+	.skip 2
+.global lbl_80482C60
+lbl_80482C60:
+	.asciz "-- Main Programmer --"
+	.skip 2
+.global lbl_80482C78
+lbl_80482C78:
+	.asciz "Tepen-kei"
+	.skip 2
+.global lbl_80482C84
+lbl_80482C84:
+	.asciz "(C) Nintendo"
+	.skip 3
+.global lbl_80482C94
+lbl_80482C94:
+	.asciz "Ending Movie"
+	.skip 3
+.global lbl_80482CA4
+lbl_80482CA4:
+	.asciz "(C) Ninteno"
+.global lbl_80482CB0
+lbl_80482CB0:
+	.asciz "Ending(Complete) Movie"
+	.skip 1
+.global lbl_80482CC8
+lbl_80482CC8:
+	.asciz "* Director"
+	.skip 1
+.global lbl_80482CD4
+lbl_80482CD4:
+	.asciz "* Otakara Design"
+	.skip 3
+.global lbl_80482CE8
+lbl_80482CE8:
+	.asciz "Hideo Ota"
+	.skip 2
+.global lbl_80482CF4
+lbl_80482CF4:
+	.asciz "Mezase Complete Movie"
+	.skip 2
+.global lbl_80482D0C
+lbl_80482D0C:
+	.asciz "singleGS_Movie.cpp"
+	.skip 1
+.global lbl_80482D20
+lbl_80482D20:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame10MovieStateFv

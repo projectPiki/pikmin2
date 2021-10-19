@@ -1,4 +1,13 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483AB0
+lbl_80483AB0:
+	.asciz "gameChallenge2D.cpp"
+.global lbl_80483AC4
+lbl_80483AC4:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game21Challenge2D_TitleInfoFi

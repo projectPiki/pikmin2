@@ -1,4 +1,19 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80480168
+lbl_80480168:
+	.4byte 0x706C6174
+	.4byte 0x2D6F6262
+	.4byte 0x00000000
+.global lbl_80480174
+lbl_80480174:
+	.4byte 0x706C6174
+	.4byte 0x696E7374
+	.4byte 0x616E6365
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global useFixCollision__Q24Game12PlatInstance

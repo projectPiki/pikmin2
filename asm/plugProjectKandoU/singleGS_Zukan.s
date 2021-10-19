@@ -1,4 +1,174 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80482E60
+lbl_80482E60:
+	.skip 0xC
+	.asciz "SingleGS_Zukan"
+	.skip 1
+.global lbl_80482E7C
+lbl_80482E7C:
+	.asciz "tutorial"
+	.skip 3
+.global lbl_80482E88
+lbl_80482E88:
+	.asciz "yakushima"
+	.skip 2
+	.4byte 0x907D8AD3
+	.4byte 0x8366836F
+	.4byte 0x8362834F
+	.4byte 0x00000000
+	.asciz "/user/Yamashita/enemyTex/arc.szs"
+	.skip 3
+	.asciz "ZZDummy/texture.bti"
+.global lbl_80482EDC
+lbl_80482EDC:
+	.asciz "singleGS_Zukan.cpp"
+	.skip 1
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "%s/texture.bti"
+	.skip 1
+.global lbl_80482F0C
+lbl_80482F0C:
+	.4byte 0x907D8AD3
+	.4byte 0x834A8381
+	.4byte 0x83890000
+.global lbl_80482F18
+lbl_80482F18:
+	.asciz "radius:%6.3f"
+	.skip 3
+.global lbl_80482F28
+lbl_80482F28:
+	.asciz "angle :%6.3f"
+	.skip 3
+.global lbl_80482F38
+lbl_80482F38:
+	.asciz "height:%6.3f"
+	.skip 3
+.global lbl_80482F48
+lbl_80482F48:
+	.asciz "fovy  :%6.3f"
+	.skip 3
+.global lbl_80482F58
+lbl_80482F58:
+	.asciz "ExtraHeapFor2D null\n"
+	.skip 3
+.global lbl_80482F70
+lbl_80482F70:
+	.asciz "StartTeki"
+	.skip 2
+.global lbl_80482F7C
+lbl_80482F7C:
+	.asciz "StartPellet"
+.global lbl_80482F88
+lbl_80482F88:
+	.asciz "ModeChangeToTeki"
+	.skip 3
+.global lbl_80482F9C
+lbl_80482F9C:
+	.asciz "ChangeTeki"
+	.skip 1
+.global lbl_80482FA8
+lbl_80482FA8:
+	.asciz "ModeChangeToPellet"
+	.skip 1
+.global lbl_80482FBC
+lbl_80482FBC:
+	.asciz "ChangePellet"
+	.skip 3
+	.4byte lbl_80482F70
+	.4byte lbl_80482F7C
+	.4byte lbl_80482F88
+	.4byte lbl_8051A1C4
+	.4byte lbl_80482F9C
+	.4byte lbl_80482FA8
+	.4byte lbl_8051A1CC
+	.4byte lbl_80482FBC
+	.4byte lbl_8051A1D4
+	.asciz "PSGame.h"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "get sound scene at\ninvalid timming\n"
+	.asciz "Unknown mode : %d \n"
+.global lbl_80483040
+lbl_80483040:
+	.asciz "Illegal next mode. %d \n"
+	.asciz "READY:%d Enemy:%d Item:%d"
+	.skip 2
+	.asciz "enemy:%d item:%d"
+	.skip 3
+	.asciz "heapA %d"
+	.skip 3
+	.asciz "heapB %d"
+	.skip 3
+	.asciz "user/Yamashita/zukan/%s/%s/arc.szs"
+	.skip 1
+	.asciz "PSCommon.h"
+	.skip 1
+	.asciz "course.txt"
+	.skip 1
+.global lbl_804830DC
+lbl_804830DC:
+	.asciz "FreeSizeA :%d \n"
+	.4byte 0x8379838C
+	.4byte 0x83628367
+	.4byte 0x919082C8
+	.4byte 0x82CC82C5
+	.4byte 0x8379838C
+	.4byte 0x83628367
+	.4byte 0x82F0838D
+	.4byte 0x815B8368
+	.4byte 0x82B582DC
+	.4byte 0x82B72066
+	.4byte 0x7265653A
+	.4byte 0x2564200A
+	.4byte 0x00000000
+	.4byte 0x82BE82B5
+	.4byte 0x82BD2066
+	.4byte 0x7265653A
+	.4byte 0x2564200A
+	.4byte 0x00000000
+	.4byte 0x934782F0
+	.4byte 0x8341838D
+	.4byte 0x8362834E
+	.4byte 0x20256495
+	.4byte 0x43814066
+	.4byte 0x7265653A
+	.4byte 0x2564200A
+	.4byte 0x00000000
+	.4byte 0x2A2A2042
+	.4byte 0x49525448
+	.4byte 0x20464149
+	.4byte 0x4C454420
+	.4byte 0x21212049
+	.4byte 0x443A2564
+	.4byte 0x200A0000
+.global lbl_80483170
+lbl_80483170:
+	.4byte 0x746F6F20
+	.4byte 0x6D616E79
+	.4byte 0x2070656C
+	.4byte 0x6C65740A
+	.4byte 0x00000000
+	.4byte 0x50696B69
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
+	.4byte 0x50656C6C
+	.4byte 0x6574496E
+	.4byte 0x69744172
+	.4byte 0x67000000
+	.4byte 0x50696B69
+	.4byte 0x496E6974
+	.4byte 0x41726700
+	.4byte 0x23202564
+	.4byte 0x2F25640D
+	.4byte 0x0A000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game15IllustratedBook6CameraFP10Controller

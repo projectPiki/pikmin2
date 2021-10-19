@@ -1,4 +1,39 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80482748
+lbl_80482748:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x53696E67
+	.4byte 0x6C654753
+	.4byte 0x5F47616D
+	.4byte 0x65000000
+.global lbl_80482764
+lbl_80482764:
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+.global lbl_80482770
+lbl_80482770:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x73696E67
+	.4byte 0x6C654753
+	.4byte 0x5F46696C
+	.4byte 0x6553656C
+	.4byte 0x6563742E
+	.4byte 0x63707000
+	.4byte 0x756E6B6E
+	.4byte 0x6F776E20
+	.4byte 0x73617665
+	.4byte 0x466C6167
+	.4byte 0x20282564
+	.4byte 0x290A0000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame9FileStateFv

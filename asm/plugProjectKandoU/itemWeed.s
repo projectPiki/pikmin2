@@ -1,4 +1,75 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80481FC0
+lbl_80481FC0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6974656D
+	.4byte 0x57656564
+	.4byte 0x00000000
+.global lbl_80481FD8
+lbl_80481FD8:
+	.4byte 0x6974656D
+	.4byte 0x57656564
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80481FE8
+lbl_80481FE8:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80481FF4
+lbl_80481FF4:
+	.4byte 0x835F8381
+	.4byte 0x8362834E
+	.4byte 0x0A000000
+.global lbl_80482000
+lbl_80482000:
+	.4byte 0x666C6F63
+	.4byte 0x6B4D6772
+	.4byte 0x2E680000
+	.4byte 0x919082C6
+	.4byte 0x8FAC90CE
+	.4byte 0x00000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6F
+	.4byte 0x626A6563
+	.4byte 0x74732F77
+	.4byte 0x65656400
+	.4byte 0x77656564
+	.4byte 0x312E626D
+	.4byte 0x64000000
+	.4byte 0x73746F6E
+	.4byte 0x65312E62
+	.4byte 0x6D640000
+	.4byte 0x73746F6E
+	.4byte 0x65322E62
+	.4byte 0x6D640000
+	.4byte 0x73746F6E
+	.4byte 0x65332E62
+	.4byte 0x6D640000
+	.4byte 0x092382A4
+	.4byte 0x82B682E1
+	.4byte 0x89A49094
+	.4byte 0x0D0A0000
+	.4byte 0x092390CE
+	.4byte 0x82A99190
+	.4byte 0x82A90D0A
+	.4byte 0x00000000
+.global lbl_80482080
+lbl_80482080:
+	.4byte 0x4974656D
+	.4byte 0x57656564
+	.4byte 0x3A3A496E
+	.4byte 0x69744172
+	.4byte 0x67000000
+	.4byte 0x4974656D
+	.4byte 0x486F6E65
+	.4byte 0x793A3A49
+	.4byte 0x6E697441
+	.4byte 0x72670000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8ItemWeed4WeedFv

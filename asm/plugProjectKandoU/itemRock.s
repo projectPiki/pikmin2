@@ -1,4 +1,112 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80480B10
+lbl_80480B10:
+	.4byte 0x6974656D
+	.4byte 0x526F636B
+	.4byte 0x00000000
+	.4byte 0x8D729470
+	.4byte 0x83498375
+	.4byte 0x83578346
+	.4byte 0x834E8367
+	.4byte 0x00000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6F
+	.4byte 0x626A6563
+	.4byte 0x74732F6F
+	.4byte 0x6A616D61
+	.4byte 0x726F636B
+	.4byte 0x00000000
+	.4byte 0x75736572
+	.4byte 0x2F416265
+	.4byte 0x2F697465
+	.4byte 0x6D2F726F
+	.4byte 0x636B5061
+	.4byte 0x726D732E
+	.4byte 0x74787400
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x3A3A5072
+	.4byte 0x6F706572
+	.4byte 0x74790000
+	.4byte 0x66726963
+	.4byte 0x74696F6E
+	.4byte 0x286E6F74
+	.4byte 0x20757365
+	.4byte 0x64290000
+	.4byte 0x77616C6C
+	.4byte 0x5265666C
+	.4byte 0x65637469
+	.4byte 0x6F6E0000
+	.4byte 0x66616365
+	.4byte 0x44697241
+	.4byte 0x646A7573
+	.4byte 0x74000000
+	.4byte 0x626F756E
+	.4byte 0x63654661
+	.4byte 0x63746F72
+	.4byte 0x00000000
+	.4byte 0x506C616E
+	.4byte 0x743A3A50
+	.4byte 0x61726D73
+	.4byte 0x00000000
+	.4byte 0x83898343
+	.4byte 0x83742830
+	.4byte 0x29000000
+	.4byte 0x83898343
+	.4byte 0x83742831
+	.4byte 0x29000000
+	.4byte 0x83898343
+	.4byte 0x83742832
+	.4byte 0x29000000
+	.4byte 0x83898343
+	.4byte 0x83742833
+	.4byte 0x29000000
+	.4byte 0x8DC490B6
+	.4byte 0x8E9E8AD4
+	.4byte 0x28302920
+	.4byte 0x5B95AA5D
+	.4byte 0x00000000
+	.4byte 0x8DC490B6
+	.4byte 0x8E9E8AD4
+	.4byte 0x28312920
+	.4byte 0x5B95AA5D
+	.4byte 0x00000000
+	.4byte 0x8DC490B6
+	.4byte 0x8E9E8AD4
+	.4byte 0x28322920
+	.4byte 0x5B95AA5D
+	.4byte 0x00000000
+	.4byte 0x8DC490B6
+	.4byte 0x8E9E8AD4
+	.4byte 0x28332920
+	.4byte 0x5B95AA5D
+	.4byte 0x00000000
+	.4byte 0x8E648E96
+	.4byte 0x94BC8C61
+	.4byte 0x28302900
+	.4byte 0x726F636B
+	.4byte 0x2E626D64
+	.4byte 0x00000000
+	.4byte 0x74657874
+	.4byte 0x732E737A
+	.4byte 0x73000000
+	.4byte 0x616E696D
+	.4byte 0x6D67722E
+	.4byte 0x74787400
+.global lbl_80480C84
+lbl_80480C84:
+	.4byte 0x4172674B
+	.4byte 0x6F756861
+	.4byte 0x69000000
+.global lbl_80480C90
+lbl_80480C90:
+	.4byte 0x526F636B
+	.4byte 0x284D616E
+	.4byte 0x6A752900
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item

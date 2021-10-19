@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80481C50
+lbl_80481C50:
+	.asciz "pelletItem.cpp"
+	.skip 1
+.global lbl_80481C60
+lbl_80481C60:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80481C6C
+lbl_80481C6C:
+	.asciz "Equipment"
+	.skip 2
+.global lbl_80481C78
+lbl_80481C78:
+	.asciz "item_texts.szs"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game10PelletItem6ObjectFPQ24Game15CreatureInitArg

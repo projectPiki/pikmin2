@@ -1,4 +1,103 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804831C8
+lbl_804831C8:
+	.4byte 0x72657375
+	.4byte 0x6C745465
+	.4byte 0x784D6772
+	.4byte 0x00000000
+	.4byte 0x2F757365
+	.4byte 0x722F4D61
+	.4byte 0x746F6261
+	.4byte 0x2F726573
+	.4byte 0x756C7474
+	.4byte 0x65782F25
+	.4byte 0x732F6172
+	.4byte 0x632E737A
+	.4byte 0x73000000
+.global lbl_804831FC
+lbl_804831FC:
+	.4byte 0x67616D65
+	.4byte 0x52657375
+	.4byte 0x6C745465
+	.4byte 0x784D6772
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x6661696C
+	.4byte 0x65642074
+	.4byte 0x6F206F70
+	.4byte 0x656E2072
+	.4byte 0x6573756C
+	.4byte 0x74746578
+	.4byte 0x2F617263
+	.4byte 0x2E737A73
+	.4byte 0x0A25730A
+	.4byte 0x00000000
+	.4byte 0x74656B69
+	.4byte 0x5F636172
+	.4byte 0x63617373
+	.4byte 0x2F746578
+	.4byte 0x74757265
+	.4byte 0x2E627469
+	.4byte 0x00000000
+	.4byte 0x61686972
+	.4byte 0x752F7465
+	.4byte 0x78747572
+	.4byte 0x652E6274
+	.4byte 0x69000000
+	.4byte 0x25732F74
+	.4byte 0x65787475
+	.4byte 0x72652E62
+	.4byte 0x74690000
+.global lbl_8048327C
+lbl_8048327C:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80483288
+lbl_80483288:
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x696E6465
+	.4byte 0x78202564
+	.4byte 0x0A000000
+	.4byte 0x00000000
+.global lbl_804832A0
+lbl_804832A0:
+	.4byte 0x00303130
+	.4byte 0x315F3030
+	.4byte 0x00303131
+	.4byte 0x305F3030
+	.4byte 0x00303230
+	.4byte 0x305F3030
+.global lbl_804832B8
+lbl_804832B8:
+	.4byte 0x444E6F64
+	.4byte 0x65206164
+	.4byte 0x64206572
+	.4byte 0x7220636F
+	.4byte 0x756E7420
+	.4byte 0x25640A00
+	.4byte 0x444E6F64
+	.4byte 0x6520636F
+	.4byte 0x6E636174
+	.4byte 0x204C6F6F
+	.4byte 0x70204572
+	.4byte 0x72210A00
+	.4byte 0x63616E6E
+	.4byte 0x6F742072
+	.4byte 0x65747269
+	.4byte 0x65766520
+	.4byte 0x25642D74
+	.4byte 0x68206368
+	.4byte 0x696C6420
+	.4byte 0x28726561
+	.4byte 0x6C206368
+	.4byte 0x696C6420
+	.4byte 0x636F756E
+	.4byte 0x74203D20
+	.4byte 0x25642921
+	.4byte 0x0A000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12ResultTexMgr3MgrFv

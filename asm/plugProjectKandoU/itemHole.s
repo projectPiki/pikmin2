@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80480520
+lbl_80480520:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6974656D
+	.4byte 0x486F6C65
+	.4byte 0x00000000
+.global lbl_80480538
+lbl_80480538:
+	.4byte 0x6732465F
+	.4byte 0x61707065
+	.4byte 0x61725F68
+	.4byte 0x6F6C6500
+.global lbl_80480548
+lbl_80480548:
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6F
+	.4byte 0x626A6563
+	.4byte 0x74732F64
+	.4byte 0x756E6765
+	.4byte 0x6F6E5F68
+	.4byte 0x6F6C6500
+	.4byte 0x64756E67
+	.4byte 0x656F6E5F
+	.4byte 0x686F6C65
+	.4byte 0x2E626D64
+	.4byte 0x00000000
+	.4byte 0x74657874
+	.4byte 0x732E737A
+	.4byte 0x73000000
+	.4byte 0x6361705F
+	.4byte 0x706C6174
+	.4byte 0x666F726D
+	.4byte 0x2E62696E
+	.4byte 0x00000000
+	.4byte 0x73696465
+	.4byte 0x5F706C61
+	.4byte 0x74666F72
+	.4byte 0x6D2E6269
+	.4byte 0x6E000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8ItemHole3FSMFPQ24Game8CFSMItem

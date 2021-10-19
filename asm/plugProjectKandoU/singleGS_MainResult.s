@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80482598
+lbl_80482598:
+	.4byte 0x7330325F
+	.4byte 0x64617965
+	.4byte 0x6E645F72
+	.4byte 0x6573756C
+	.4byte 0x74000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame15MainResultStateFv

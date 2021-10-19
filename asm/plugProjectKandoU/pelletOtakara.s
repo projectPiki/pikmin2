@@ -1,4 +1,31 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80481B50
+lbl_80481B50:
+	.4byte 0x70656C6C
+	.4byte 0x65744F74
+	.4byte 0x616B6172
+	.4byte 0x612E6370
+	.4byte 0x70000000
+.global lbl_80481B64
+lbl_80481B64:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80481B70
+lbl_80481B70:
+	.4byte 0x696E6469
+	.4byte 0x72656374
+	.4byte 0x5F746578
+	.4byte 0x00000000
+.global lbl_80481B80
+lbl_80481B80:
+	.4byte 0x6F74616B
+	.4byte 0x6172615F
+	.4byte 0x74657874
+	.4byte 0x732E737A
+	.4byte 0x73000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global constructor__Q34Game13PelletOtakara6ObjectFv

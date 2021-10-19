@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804839F0
+lbl_804839F0:
+	.4byte 0x67616D65
+	.4byte 0x49636F6E
+	.4byte 0x54657874
+	.4byte 0x7572652E
+	.4byte 0x63707000
+.global lbl_80483A04
+lbl_80483A04:
+	.4byte 0x6661696C
+	.4byte 0x65642074
+	.4byte 0x6F206F70
+	.4byte 0x656E205B
+	.4byte 0x25735D0A
+	.4byte 0x00000000
+.global lbl_80483A1C
+lbl_80483A1C:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80483A28
+lbl_80483A28:
+	.asciz "illegal index [%d] [0..%d)\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11IconTexture6LoaderFv

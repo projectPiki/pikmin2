@@ -1,4 +1,27 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047FC28
+lbl_8047FC28:
+	.4byte 0x6169436F
+	.4byte 0x6E737461
+	.4byte 0x6E747300
+	.4byte 0x646F7065
+	.4byte 0x636F756E
+	.4byte 0x74000000
+	.4byte 0x63616D65
+	.4byte 0x72615F61
+	.4byte 0x6E676C65
+	.4byte 0x00000000
+	.4byte 0x2F757365
+	.4byte 0x722F4B61
+	.4byte 0x6E646F2F
+	.4byte 0x6169436F
+	.4byte 0x6E737461
+	.4byte 0x6E74732E
+	.4byte 0x74787400
+	.4byte 0x00000000
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
 .global __vt__Q24Game11AIConstants

@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483A48
+lbl_80483A48:
+	.asciz "gameTekiStat.cpp"
+	.skip 3
+.global lbl_80483A5C
+lbl_80483A5C:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global incKilled__Q34Game8TekiStat4InfoFv

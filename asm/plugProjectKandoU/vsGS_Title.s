@@ -1,4 +1,52 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483458
+lbl_80483458:
+	.skip 0xC
+.global lbl_80483464
+lbl_80483464:
+	.asciz "vsGS_Title"
+	.skip 1
+.global lbl_80483470
+lbl_80483470:
+	.asciz "caveinfo.txt"
+	.skip 3
+.global lbl_80483480
+lbl_80483480:
+	.asciz "caveinfo_metal.txt"
+	.skip 1
+.global lbl_80483494
+lbl_80483494:
+	.asciz "caveinfo_conc.txt"
+	.skip 2
+.global lbl_804834A8
+lbl_804834A8:
+	.asciz "caveinfo_tsuchi.txt"
+	.4byte 0x83528393
+	.4byte 0x834E838A
+	.4byte 0x815B8367
+	.4byte 0x00000000
+.global lbl_804834CC
+lbl_804834CC:
+	.asciz "PSGame.h"
+	.skip 3
+.global lbl_804834D8
+lbl_804834D8:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "PSScene.h"
+	.skip 2
+	.asciz "from Morimun:STATE_GO:stageNo=%d:playType=%d\n"
+	.skip 2
+	.asciz "vsGS_Title.cpp"
+	.skip 1
+	.asciz "PikiContainer"
+	.skip 2
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0xFFFFFFFF
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame10TitleStateFv

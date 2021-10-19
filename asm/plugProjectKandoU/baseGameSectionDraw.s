@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483D28
+lbl_80483D28:
+	.asciz "drct-post"
+	.skip 2
+.global lbl_80483D34
+lbl_80483D34:
+	.asciz "part-draw"
+	.skip 2
+.global lbl_80483D40
+lbl_80483D40:
+	.asciz "draw_calc"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics

@@ -1,4 +1,97 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804816B8
+lbl_804816B8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6974656D
+	.4byte 0x54726561
+	.4byte 0x73757265
+	.4byte 0x00000000
+.global lbl_804816D4
+lbl_804816D4:
+	.4byte 0x7831345F
+	.4byte 0x77686974
+	.4byte 0x655F6469
+	.4byte 0x67000000
+.global lbl_804816E4
+lbl_804816E4:
+	.4byte 0x6974656D
+	.4byte 0x54726561
+	.4byte 0x73757265
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_804816F8
+lbl_804816F8:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80481704
+lbl_80481704:
+	.4byte 0x54726561
+	.4byte 0x73757265
+	.4byte 0x00000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6F
+	.4byte 0x626A6563
+	.4byte 0x74732F74
+	.4byte 0x72656173
+	.4byte 0x75726500
+	.4byte 0x75736572
+	.4byte 0x2F416265
+	.4byte 0x2F697465
+	.4byte 0x6D2F7472
+	.4byte 0x65617375
+	.4byte 0x72655061
+	.4byte 0x726D732E
+	.4byte 0x74787400
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x3A3A5072
+	.4byte 0x6F706572
+	.4byte 0x74790000
+	.4byte 0x66726963
+	.4byte 0x74696F6E
+	.4byte 0x286E6F74
+	.4byte 0x20757365
+	.4byte 0x64290000
+	.4byte 0x77616C6C
+	.4byte 0x5265666C
+	.4byte 0x65637469
+	.4byte 0x6F6E0000
+	.4byte 0x66616365
+	.4byte 0x44697241
+	.4byte 0x646A7573
+	.4byte 0x74000000
+	.4byte 0x626F756E
+	.4byte 0x63654661
+	.4byte 0x63746F72
+	.4byte 0x00000000
+	.4byte 0x506C616E
+	.4byte 0x743A3A50
+	.4byte 0x61726D73
+	.4byte 0x00000000
+	.4byte 0x83898343
+	.4byte 0x83742830
+	.4byte 0x29000000
+	.4byte 0x83898343
+	.4byte 0x83742831
+	.4byte 0x29000000
+	.4byte 0x83898343
+	.4byte 0x83742832
+	.4byte 0x29000000
+	.4byte 0x83898343
+	.4byte 0x83742833
+	.4byte 0x29000000
+	.4byte 0x50656C6C
+	.4byte 0x6574496E
+	.4byte 0x69744172
+	.4byte 0x67000000
+	.4byte 0x41726753
+	.4byte 0x63616C65
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item

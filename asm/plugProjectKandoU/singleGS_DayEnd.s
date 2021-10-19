@@ -1,4 +1,49 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483D70
+lbl_80483D70:
+	.skip 0xC
+	.asciz "singleGS_DayEnd"
+.global lbl_80483D8C
+lbl_80483D8C:
+	.asciz "singleGS_DayEnd.cpp"
+.global lbl_80483DA0
+lbl_80483DA0:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80483DAC
+lbl_80483DAC:
+	.asciz "s01_dayend"
+	.skip 1
+	.asciz "no alive:s01_dayend"
+	.asciz "s06_dayend_pikminzero"
+	.skip 2
+	.asciz "s06_dayend"
+	.skip 1
+	.asciz "s04_dayend_orimadown"
+	.skip 3
+	.asciz "s04_dayend"
+	.skip 1
+	.asciz "dayend-cache"
+	.skip 3
+	.asciz "no alive navi"
+	.skip 2
+.global lbl_80483E34
+lbl_80483E34:
+	.asciz "s21_dayend_takeoff"
+	.skip 1
+.global lbl_80483E48
+lbl_80483E48:
+	.asciz "dayend;cln"
+	.skip 1
+	.asciz "PikiInitArg"
+	.asciz "CreatureActionArg"
+	.skip 2
+	.asciz "ActionArg"
+	.skip 2
+	.asciz "PikiKillArg"
+	.asciz "CreatureKillArg"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg

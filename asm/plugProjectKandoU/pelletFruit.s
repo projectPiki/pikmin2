@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80481B40
+lbl_80481B40:
+	.4byte 0x50656C6C
+	.4byte 0x65744672
+	.4byte 0x75697400
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game11PelletFruit6ObjectFPQ24Game15CreatureInitArg

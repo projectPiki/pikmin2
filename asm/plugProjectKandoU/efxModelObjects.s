@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80481C88
+lbl_80481C88:
+	.asciz "efxModelObjects"
+	.asciz "user/Kando/effect/modeleffect.szs"
+	.skip 2
+.global lbl_80481CBC
+lbl_80481CBC:
+	.asciz "efxModelObjects.cpp"
+.global lbl_80481CD0
+lbl_80481CD0:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "onyonspot.bmd"
+	.skip 2
+	.asciz "onyonspot.btk"
+	.skip 2
+	.asciz "onyonspot_blue.brk"
+	.skip 1
+	.asciz "onyonspot_red.brk"
+	.skip 2
+	.asciz "onyonspot_yellow.brk"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getLODSphere__Q23efx9OnyonSpotFRQ23Sys6Sphere

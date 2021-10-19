@@ -611,7 +611,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o\
-	$(BUILD_DIR)/asm/rodata_2a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\

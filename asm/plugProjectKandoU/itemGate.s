@@ -1,4 +1,153 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80480188
+lbl_80480188:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6974656D
+	.4byte 0x47617465
+	.4byte 0x00000000
+.global lbl_804801A0
+lbl_804801A0:
+	.4byte 0x6974656D
+	.4byte 0x47617465
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_804801B0
+lbl_804801B0:
+	.4byte 0x6E6F2073
+	.4byte 0x68617065
+	.4byte 0x20210A00
+.global lbl_804801BC
+lbl_804801BC:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_804801C8
+lbl_804801C8:
+	.4byte 0x4974656D
+	.4byte 0x47617465
+	.4byte 0x00000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6F
+	.4byte 0x626A6563
+	.4byte 0x74732F67
+	.4byte 0x61746573
+	.4byte 0x00000000
+	.4byte 0x67617465
+	.4byte 0x2D617263
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+	.4byte 0x67617465
+	.4byte 0x5F736F66
+	.4byte 0x742E626D
+	.4byte 0x64000000
+	.4byte 0x67617465
+	.4byte 0x2D746578
+	.4byte 0x74732E73
+	.4byte 0x7A730000
+	.4byte 0x67617465
+	.4byte 0x416E696D
+	.4byte 0x4D67722E
+	.4byte 0x74787400
+	.4byte 0x67617465
+	.4byte 0x436F6C6C
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x63656E74
+	.4byte 0x2E706C61
+	.4byte 0x00000000
+	.4byte 0x73696465
+	.4byte 0x2E706C61
+	.4byte 0x00000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F67
+	.4byte 0x61746573
+	.4byte 0x2F676174
+	.4byte 0x652D6172
+	.4byte 0x632E737A
+	.4byte 0x73000000
+	.4byte 0x67617465
+	.4byte 0x5F736F66
+	.4byte 0x742E6272
+	.4byte 0x6B000000
+.global lbl_80480288
+lbl_80480288:
+	.4byte 0x6E657720
+	.4byte 0x4D6F6465
+	.4byte 0x6C000000
+.global lbl_80480294
+lbl_80480294:
+	.4byte 0x506C6174
+	.4byte 0x666F726D
+	.4byte 0x00000000
+.global lbl_804802A0
+lbl_804802A0:
+	.4byte 0x436C6F6E
+	.4byte 0x652D506C
+	.4byte 0x61740000
+	.4byte 0x09238389
+	.4byte 0x83438374
+	.4byte 0x0D0A0000
+	.4byte 0x0923436F
+	.4byte 0x6C6F720D
+	.4byte 0x0A000000
+.global lbl_804802C4
+lbl_804802C4:
+	.4byte 0x6731385F
+	.4byte 0x66696E64
+	.4byte 0x5F676174
+	.4byte 0x65000000
+	.4byte 0x93648C82
+	.4byte 0x8351815B
+	.4byte 0x83670000
+	.4byte 0x4974656D
+	.4byte 0x44656E67
+	.4byte 0x656B6947
+	.4byte 0x61746500
+	.4byte 0x652D6761
+	.4byte 0x74652D61
+	.4byte 0x72632E73
+	.4byte 0x7A730000
+	.4byte 0x652D6761
+	.4byte 0x74652E62
+	.4byte 0x6D640000
+	.4byte 0x652D6761
+	.4byte 0x74652D74
+	.4byte 0x65787473
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+	.4byte 0x652D616E
+	.4byte 0x696D6D67
+	.4byte 0x722E7478
+	.4byte 0x74000000
+	.4byte 0x652D636F
+	.4byte 0x6C6C2E74
+	.4byte 0x78740000
+	.4byte 0x652D6365
+	.4byte 0x6E742E70
+	.4byte 0x6C610000
+	.4byte 0x652D7369
+	.4byte 0x64652E70
+	.4byte 0x6C610000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F67
+	.4byte 0x61746573
+	.4byte 0x2F652D67
+	.4byte 0x6174652D
+	.4byte 0x6172632E
+	.4byte 0x737A7300
+	.4byte 0x652D6761
+	.4byte 0x74652E62
+	.4byte 0x746B0000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q24Game7GateFSMFPQ24Game8ItemGate

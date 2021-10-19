@@ -1,4 +1,60 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80481B98
+lbl_80481B98:
+	.4byte 0x67656E50
+	.4byte 0x656C6C65
+	.4byte 0x74000000
+.global lbl_80481BA4
+lbl_80481BA4:
+	.4byte 0x6F626A65
+	.4byte 0x63742074
+	.4byte 0x79706500
+.global lbl_80481BB0
+lbl_80481BB0:
+	.4byte 0x50454C4C
+	.4byte 0x45542082
+	.4byte 0xF0835A83
+	.4byte 0x62836700
+.global lbl_80481BC0
+lbl_80481BC0:
+	.4byte 0x50454C4C
+	.4byte 0x455482F0
+	.4byte 0x94AD90B6
+	.4byte 0x00000000
+	.4byte 0x0923206D
+	.4byte 0x67722069
+	.4byte 0x640D0A00
+	.4byte 0x09232072
+	.4byte 0x6F746174
+	.4byte 0x696F6E0D
+	.4byte 0x0A000000
+	.4byte 0x09232070
+	.4byte 0x656C6C65
+	.4byte 0x74206C6F
+	.4byte 0x63616C20
+	.4byte 0x76657273
+	.4byte 0x696F6E0D
+	.4byte 0x0A000000
+.global lbl_80481C08
+lbl_80481C08:
+	.4byte 0x67656E50
+	.4byte 0x656C6C65
+	.4byte 0x742E6370
+	.4byte 0x70000000
+.global lbl_80481C18
+lbl_80481C18:
+	.asciz "no basePelletMgr for %d\n"
+	.skip 3
+.global lbl_80481C34
+lbl_80481C34:
+	.asciz "mgr%d:%d"
+	.skip 3
+.global lbl_80481C40
+lbl_80481C40:
+	.asciz "GENERATOR ERR\n"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makePellet__Fv

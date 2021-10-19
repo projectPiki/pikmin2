@@ -1,4 +1,54 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483320
+lbl_80483320:
+	.asciz "gamePelletList"
+	.skip 1
+.global lbl_80483330
+lbl_80483330:
+	.asciz "gamePelletList.cpp"
+	.skip 1
+.global lbl_80483344
+lbl_80483344:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80483350
+lbl_80483350:
+	.asciz "numberpellet_config.txt"
+.global lbl_80483368
+lbl_80483368:
+	.asciz "carcass_config.txt"
+	.skip 1
+.global lbl_8048337C
+lbl_8048337C:
+	.asciz "fruit_config.txt"
+	.skip 3
+.global lbl_80483390
+lbl_80483390:
+	.asciz "otakara_config.txt"
+	.skip 1
+.global lbl_804833A4
+lbl_804833A4:
+	.asciz "item_config.txt"
+	.4byte lbl_80483350
+	.4byte lbl_80483368
+	.4byte lbl_8048337C
+	.4byte lbl_80483390
+	.4byte lbl_804833A4
+	.asciz "/user/Abe/Pellet/%s/pelletlist_%s.szs"
+	.skip 2
+	.asciz "don't use this !\n"
+	.skip 2
+	.asciz "/user/Kando/pelletlist.szs"
+	.skip 1
+	.asciz "no pelletlist.szs\n"
+	.skip 1
+	.asciz "no config file [%s]\n"
+	.skip 3
+.global lbl_8048344C
+lbl_8048344C:
+	.asciz "dictNo:%d \n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind

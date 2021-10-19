@@ -1,4 +1,69 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80482658
+lbl_80482658:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x53696E67
+	.4byte 0x6C654753
+	.4byte 0x5F47616D
+	.4byte 0x65000000
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x73696E67
+	.4byte 0x6C654753
+	.4byte 0x5F576F72
+	.4byte 0x6C644D61
+	.4byte 0x702E6370
+	.4byte 0x70000000
+	.4byte 0x50534765
+	.4byte 0x74536365
+	.4byte 0x6E654D67
+	.4byte 0x72206E75
+	.4byte 0x6C6C0A00
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x4D4F4320
+	.4byte 0x3D204D6F
+	.4byte 0x75736520
+	.4byte 0x6F6E2043
+	.4byte 0x61727321
+	.4byte 0x0A000000
+	.4byte 0x75736572
+	.4byte 0x2F456269
+	.4byte 0x73617761
+	.4byte 0x2F656666
+	.4byte 0x6563742F
+	.4byte 0x65666632
+	.4byte 0x645F776F
+	.4byte 0x726C645F
+	.4byte 0x6D61702E
+	.4byte 0x6A706300
+	.4byte 0x574F524C
+	.4byte 0x445F4D41
+	.4byte 0x505F4A50
+	.4byte 0x43000000
+	.4byte 0x70617274
+	.4byte 0x69636C65
+	.4byte 0x32644D67
+	.4byte 0x72206E75
+	.4byte 0x6C6C0A00
+	.4byte 0x6D576F72
+	.4byte 0x6C644D61
+	.4byte 0x70206E75
+	.4byte 0x6C6C0A00
+.global lbl_80482738
+lbl_80482738:
+	.4byte 0x2A202564
+	.4byte 0x20256420
+	.4byte 0x25640000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame11SelectStateFv

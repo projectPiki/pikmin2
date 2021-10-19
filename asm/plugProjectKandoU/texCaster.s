@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483EA0
+lbl_80483EA0:
+	.asciz "texCaster"
+	.skip 2
+.global lbl_80483EAC
+lbl_80483EAC:
+	.asciz "texCaster.cpp"
+	.skip 2
+.global lbl_80483EBC
+lbl_80483EBC:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "user/Kando/texCaster/arc.szs"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q29TexCaster6CasterFv

@@ -1,4 +1,223 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_8047FC70
+lbl_8047FC70:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x67616D65
+	.4byte 0x4D617050
+	.4byte 0x61727473
+	.4byte 0x00000000
+	.4byte 0x09232064
+	.4byte 0x6973742F
+	.4byte 0x646F6F72
+	.4byte 0x2D69642F
+	.4byte 0x74656B69
+	.4byte 0x666C6167
+	.4byte 0x0D0A0000
+	.4byte 0x09232069
+	.4byte 0x6E646578
+	.4byte 0x0D0A0000
+	.4byte 0x09232064
+	.4byte 0x69722F6F
+	.4byte 0x6666732F
+	.4byte 0x7770696E
+	.4byte 0x6465780D
+	.4byte 0x0A000000
+	.4byte 0x09232064
+	.4byte 0x6F6F7220
+	.4byte 0x6C696E6B
+	.4byte 0x730D0A00
+	.4byte 0x09232064
+	.4byte 0x582F645A
+	.4byte 0x203B2063
+	.4byte 0x656C6C20
+	.4byte 0x73697A65
+	.4byte 0x0D0A0000
+.global lbl_8047FCF4
+lbl_8047FCF4:
+	.4byte 0x67616D65
+	.4byte 0x4D617050
+	.4byte 0x61727473
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x82E082A4
+	.4byte 0x8E6782ED
+	.4byte 0x82C882A2
+	.4byte 0x0A000000
+	.4byte 0x2573203A
+	.4byte 0x206E6F74
+	.4byte 0x20666F75
+	.4byte 0x6E642021
+	.4byte 0x0A000000
+	.4byte 0x25732F61
+	.4byte 0x72632E73
+	.4byte 0x7A730000
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x76696577
+	.4byte 0x2E626D64
+	.4byte 0x00000000
+	.4byte 0x74657874
+	.4byte 0x7572652E
+	.4byte 0x62746900
+	.4byte 0x25735F25
+	.4byte 0x642E6274
+	.4byte 0x6B000000
+	.4byte 0x25732F74
+	.4byte 0x65787473
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+	.4byte 0x67726964
+	.4byte 0x2E62696E
+	.4byte 0x00000000
+	.4byte 0x6D617063
+	.4byte 0x6F64652E
+	.4byte 0x62696E00
+	.4byte 0x77617465
+	.4byte 0x72626F78
+	.4byte 0x2E747874
+	.4byte 0x00000000
+	.4byte 0x726F7574
+	.4byte 0x652E7478
+	.4byte 0x74000000
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6D
+	.4byte 0x61702F76
+	.4byte 0x72626F78
+	.4byte 0x2F25732E
+	.4byte 0x737A7300
+	.4byte 0x6D6F6465
+	.4byte 0x6C2E626D
+	.4byte 0x64000000
+	.4byte 0x6E6F206D
+	.4byte 0x6F64656C
+	.4byte 0x2E626D64
+	.4byte 0x20696E20
+	.4byte 0x25730A00
+	.4byte 0x75736572
+	.4byte 0x2F4D756B
+	.4byte 0x6B692F6D
+	.4byte 0x6170756E
+	.4byte 0x6974732F
+	.4byte 0x756E6974
+	.4byte 0x732F2573
+	.4byte 0x00000000
+	.4byte 0x2573206E
+	.4byte 0x6F742066
+	.4byte 0x6F756E64
+	.4byte 0x20210A00
+	.4byte 0x75736572
+	.4byte 0x2F416265
+	.4byte 0x2F636176
+	.4byte 0x652F2573
+	.4byte 0x00000000
+	.4byte 0x6E6F206C
+	.4byte 0x69676874
+	.4byte 0x2066696C
+	.4byte 0x65202825
+	.4byte 0x73290A00
+	.4byte 0x75736572
+	.4byte 0x2F4D756B
+	.4byte 0x6B692F6D
+	.4byte 0x6170756E
+	.4byte 0x6974732F
+	.4byte 0x6172632F
+	.4byte 0x25732F74
+	.4byte 0x65787473
+	.4byte 0x2E737A73
+	.4byte 0x00000000
+	.4byte 0x6E6F2074
+	.4byte 0x65787441
+	.4byte 0x52632021
+	.4byte 0x0A000000
+	.4byte 0x6C61796F
+	.4byte 0x75742E74
+	.4byte 0x78740000
+	.4byte 0x3234362D
+	.4byte 0x43726561
+	.4byte 0x74655261
+	.4byte 0x6E646F6D
+	.4byte 0x4D617000
+	.4byte 0x4D6F6465
+	.4byte 0x6C20616E
+	.4byte 0x6420436F
+	.4byte 0x6C6C6973
+	.4byte 0x696F6E00
+	.4byte 0x3234362D
+	.4byte 0x506C6163
+	.4byte 0x65526F6F
+	.4byte 0x6D730000
+.global lbl_8047FEBC
+lbl_8047FEBC:
+	.4byte 0x75736572
+	.4byte 0x2F4D756B
+	.4byte 0x6B692F6D
+	.4byte 0x6170756E
+	.4byte 0x6974732F
+	.4byte 0x6172632F
+	.4byte 0x25730000
+.global lbl_8047FED8
+lbl_8047FED8:
+	.4byte 0x6E6F2073
+	.4byte 0x75636820
+	.4byte 0x756E6974
+	.4byte 0x2025730A
+	.4byte 0x00000000
+.global lbl_8047FEEC
+lbl_8047FEEC:
+	.4byte 0x7369626F
+	.4byte 0x75646573
+	.4byte 0x7520210A
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xBF800000
+	.4byte 0xBF800000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x6361705F
+	.4byte 0x636F6E63
+	.4byte 0x00000000
+.global lbl_8047FF38
+lbl_8047FF38:
+	.4byte 0x4974656D
+	.4byte 0x47617465
+	.4byte 0x496E6974
+	.4byte 0x41726700
+.global lbl_8047FF48
+lbl_8047FF48:
+	.4byte 0x4974656D
+	.4byte 0x42696746
+	.4byte 0x6F756E74
+	.4byte 0x61696E3A
+	.4byte 0x3A496E69
+	.4byte 0x74417267
+	.4byte 0x00000000
+.global lbl_8047FF64
+lbl_8047FF64:
+	.4byte 0x4974656D
+	.4byte 0x486F6C65
+	.4byte 0x3A3A496E
+	.4byte 0x69744172
+	.4byte 0x67000000
+	.4byte 0x50656C6C
+	.4byte 0x6574496E
+	.4byte 0x69744172
+	.4byte 0x67000000
+	.4byte 0x23202564
+	.4byte 0x2F25640D
+	.4byte 0x0A000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getDoor__Q24Game16MapUnitInterfaceFi

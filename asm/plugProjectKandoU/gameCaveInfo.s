@@ -1,4 +1,121 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80480640
+lbl_80480640:
+	.4byte 0x63617665
+	.4byte 0x496E666F
+	.4byte 0x00000000
+.global lbl_8048064C
+lbl_8048064C:
+	.4byte 0x67616D65
+	.4byte 0x43617665
+	.4byte 0x496E666F
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_80480660
+lbl_80480660:
+	.4byte 0x95CF82C8
+	.4byte 0x8379838C
+	.4byte 0x83628367
+	.4byte 0x836C815B
+	.4byte 0x838082C5
+	.4byte 0x82B7210A
+	.4byte 0x00000000
+.global lbl_8048067C
+lbl_8048067C:
+	.asciz "floorInfo"
+	.skip 2
+.global lbl_80480688
+lbl_80480688:
+	.4byte 0x83528393
+	.4byte 0x834E838A
+	.4byte 0x815B8363
+	.4byte 0x00000000
+.global lbl_80480698
+lbl_80480698:
+	.4byte 0x82E282B7
+	.4byte 0x82E782AC
+	.4byte 0x00000000
+	.4byte 0x466C6F6F
+	.4byte 0x72496E66
+	.4byte 0x6F000000
+	.4byte 0x8A4B82CD
+	.4byte 0x82B682DF
+	.4byte 0x00000000
+	.4byte 0x8A4B82A8
+	.4byte 0x82ED82E8
+	.4byte 0x00000000
+	.4byte 0x93478DC5
+	.4byte 0x91E59094
+	.4byte 0x00000000
+	.4byte 0x83418343
+	.4byte 0x83658380
+	.4byte 0x8DC591E5
+	.4byte 0x90940000
+	.4byte 0x8351815B
+	.4byte 0x83678DC5
+	.4byte 0x91E59094
+	.4byte 0x00000000
+	.4byte 0x834C8383
+	.4byte 0x83628376
+	.4byte 0x8DC591E5
+	.4byte 0x90940000
+	.4byte 0x838B815B
+	.4byte 0x83809094
+	.4byte 0x00000000
+	.4byte 0x838B815B
+	.4byte 0x836782CC
+	.4byte 0x8A848D87
+	.4byte 0x00000000
+	.4byte 0x8B418AD2
+	.4byte 0x95AC9085
+	.4byte 0x28313D82
+	.4byte 0xA082E829
+	.4byte 0x00000000
+	.4byte 0x756E6974
+	.4byte 0x732E7478
+	.4byte 0x74000000
+	.4byte 0x8E679770
+	.4byte 0x8386836A
+	.4byte 0x83628367
+	.4byte 0x00000000
+	.4byte 0x6C696768
+	.4byte 0x742E696E
+	.4byte 0x69000000
+	.4byte 0x8E679770
+	.4byte 0x83898343
+	.4byte 0x83670000
+	.4byte 0x8A4B9269
+	.4byte 0x82F089F3
+	.4byte 0x82B78AE2
+	.4byte 0x82C58942
+	.4byte 0x82B72830
+	.4byte 0x3D834983
+	.4byte 0x7420313D
+	.4byte 0x83498393
+	.4byte 0x29000000
+	.4byte 0x426C6163
+	.4byte 0x6B4D616E
+	.4byte 0x54696D65
+	.4byte 0x72000000
+.global lbl_8048079C
+lbl_8048079C:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_804807A8
+lbl_804807A8:
+	.4byte 0x43617665
+	.4byte 0x496E666F
+	.4byte 0x00000000
+.global lbl_804807B4
+lbl_804807B4:
+	.4byte 0x2573206E
+	.4byte 0x6F742066
+	.4byte 0x6F756E64
+	.4byte 0x20210A00
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"

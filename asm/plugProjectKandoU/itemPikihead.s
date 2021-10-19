@@ -1,4 +1,81 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80480800
+lbl_80480800:
+	.skip 0xC
+	.4byte 0x6974656D
+	.4byte 0x50696B69
+	.4byte 0x68656164
+	.4byte 0x00000000
+.global lbl_8048081C
+lbl_8048081C:
+	.4byte 0x68617070
+	.4byte 0x616A6E74
+	.4byte 0x33000000
+.global lbl_80480828
+lbl_80480828:
+	.4byte 0x6974656D
+	.4byte 0x50696B69
+	.4byte 0x68656164
+	.4byte 0x2E637070
+	.4byte 0x00000000
+.global lbl_8048083C
+lbl_8048083C:
+	.4byte 0x65786974
+	.4byte 0x20666169
+	.4byte 0x6C656420
+	.4byte 0x21210A00
+.global lbl_8048084C
+lbl_8048084C:
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80480858
+lbl_80480858:
+	.4byte 0x50696B69
+	.4byte 0x48656164
+	.4byte 0x00000000
+.global lbl_80480864
+lbl_80480864:
+	.4byte 0x75736572
+	.4byte 0x2F4B616E
+	.4byte 0x646F2F6F
+	.4byte 0x626A6563
+	.4byte 0x74732F70
+	.4byte 0x696B6968
+	.4byte 0x65616400
+	.4byte 0x70696B69
+	.4byte 0x68656164
+	.4byte 0x2E626D64
+	.4byte 0x00000000
+	.4byte 0x74657874
+	.4byte 0x732E737A
+	.4byte 0x73000000
+	.4byte 0x70696B69
+	.4byte 0x68656164
+	.4byte 0x416E696D
+	.4byte 0x4D67722E
+	.4byte 0x74787400
+.global lbl_804808B0
+lbl_804808B0:
+	.4byte 0x82B182EA
+	.4byte 0x82CD82A0
+	.4byte 0x82E882A6
+	.4byte 0x82C882A2
+	.4byte 0x82E60A00
+.global lbl_804808C4
+lbl_804808C4:
+	.4byte 0x50696B69
+	.4byte 0x68656164
+	.4byte 0x00000000
+	.4byte 0x41726753
+	.4byte 0x63616C65
+	.4byte 0x00000000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game12ItemPikihead3FSMFPQ34Game12ItemPikihead4Item

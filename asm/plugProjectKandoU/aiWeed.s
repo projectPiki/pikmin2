@@ -1,4 +1,55 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80481EF8
+lbl_80481EF8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x41637457
+	.4byte 0x65656441
+	.4byte 0x72670000
+	.4byte 0x61695765
+	.4byte 0x65642E63
+	.4byte 0x70700000
+.global lbl_80481F1C
+lbl_80481F1C:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x6E6F2061
+	.4byte 0x63747765
+	.4byte 0x65646172
+	.4byte 0x67000000
+	.4byte 0x41637457
+	.4byte 0x6565643A
+	.4byte 0x6E6F2074
+	.4byte 0x61726765
+	.4byte 0x74000000
+	.4byte 0x6E6F2066
+	.4byte 0x6C6F636B
+	.4byte 0x6D677200
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
+.global lbl_80481F64
+lbl_80481F64:
+	.4byte 0x666C6F63
+	.4byte 0x6B4D6772
+	.4byte 0x2E680000
+.global lbl_80481F70
+lbl_80481F70:
+	.4byte 0x466C6F63
+	.4byte 0x6B417474
+	.4byte 0x61636B41
+	.4byte 0x6374696F
+	.4byte 0x6E417267
+	.4byte 0x00000000
+	.4byte 0x41707072
+	.4byte 0x6F616368
+	.4byte 0x506F7341
+	.4byte 0x6374696F
+	.4byte 0x6E417267
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getInfo__Q26PikiAI7ActWeedFPc

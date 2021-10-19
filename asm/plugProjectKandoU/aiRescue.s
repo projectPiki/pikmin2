@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483CD0
+lbl_80483CD0:
+	.asciz "actRescue"
+	.skip 2
+.global lbl_80483CDC
+lbl_80483CDC:
+	.asciz "aiRescue.cpp"
+	.skip 3
+.global lbl_80483CEC
+lbl_80483CEC:
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "rhandjnt"
+	.skip 3
+	.asciz "ApproachPosActionArg"
+	.skip 3
+	.asciz "ActionArg"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI9ActRescueFPQ24Game4Piki

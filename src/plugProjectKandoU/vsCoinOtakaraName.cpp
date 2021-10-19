@@ -1,8 +1,3 @@
-extern const char lbl_80483EE8[12];
-extern const char lbl_80483EF4[16];
-extern const char lbl_80483F04[16];
-extern const char lbl_80483F14[20];
-// replace the externs with the strings themselves once data's split
 struct VsOtakaraName {
 	static const char* cCoin;
 	static const char* cBedamaBlue;
@@ -10,8 +5,8 @@ struct VsOtakaraName {
 	static const char* cBedamaYellow;
 	static float cBedamaYellowDepth;
 };
-const char* VsOtakaraName::cCoin         = lbl_80483EE8;
-const char* VsOtakaraName::cBedamaBlue   = lbl_80483EF4;
-const char* VsOtakaraName::cBedamaRed    = lbl_80483F04;
-const char* VsOtakaraName::cBedamaYellow = lbl_80483F14;
+const char* VsOtakaraName::cCoin         = "flower_red";
+const char* VsOtakaraName::cBedamaBlue   = "be_dama_blue_l";
+const char* VsOtakaraName::cBedamaRed    = "be_dama_red_l";
+const char* VsOtakaraName::cBedamaYellow = "be_dama_yellow_l";
 float VsOtakaraName::cBedamaYellowDepth  = 20.0f;

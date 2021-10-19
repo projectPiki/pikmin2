@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483F28
+lbl_80483F28:
+	.4byte 0x70656C6C
+	.4byte 0x65744269
+	.4byte 0x72746842
+	.4byte 0x75666665
+	.4byte 0x722E6370
+	.4byte 0x70000000
+.global lbl_80483F40
+lbl_80483F40:
+	.4byte 0x746F6F20
+	.4byte 0x6D616E79
+	.4byte 0x20626972
+	.4byte 0x74686275
+	.4byte 0x66666572
+	.4byte 0x0A000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game17PelletBirthBufferFv

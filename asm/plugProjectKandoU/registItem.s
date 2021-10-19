@@ -1,4 +1,44 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80480DB0
+lbl_80480DB0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x72656769
+	.4byte 0x73744974
+	.4byte 0x656D0000
+	.4byte 0x2D426172
+	.4byte 0x72656C2D
+	.4byte 0x00000000
+	.4byte 0x2D556A61
+	.4byte 0x6D757368
+	.4byte 0x692D0000
+	.4byte 0x2D446F77
+	.4byte 0x6E466C6F
+	.4byte 0x6F722D00
+	.4byte 0x2D547265
+	.4byte 0x61737572
+	.4byte 0x652D0000
+	.4byte 0x2D50696B
+	.4byte 0x69486561
+	.4byte 0x642D0000
+	.4byte 0x2D426967
+	.4byte 0x466F756E
+	.4byte 0x7461696E
+	.4byte 0x2D000000
+	.4byte 0x2D427269
+	.4byte 0x6467652D
+	.4byte 0x00000000
+	.4byte 0x2D44656E
+	.4byte 0x67656B69
+	.4byte 0x47617465
+	.4byte 0x2D000000
+	.4byte 0x43726561
+	.4byte 0x74757265
+	.4byte 0x4B696C6C
+	.4byte 0x41726700
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createManagers__Q24Game7ItemMgrFUl

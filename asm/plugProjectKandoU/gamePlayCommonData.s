@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483A88
+lbl_80483A88:
+	.asciz "gamePlayCommonData.cpp"
+	.skip 1
+.global lbl_80483AA0
+lbl_80483AA0:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14PlayCommonDataFv

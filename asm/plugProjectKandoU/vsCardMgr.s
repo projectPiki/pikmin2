@@ -1,4 +1,108 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483AD0
+lbl_80483AD0:
+	.skip 0xC
+	.asciz "vsCardMgr"
+	.skip 2
+.global lbl_80483AE8
+lbl_80483AE8:
+	.asciz "pikmin_5.bti"
+	.skip 3
+.global lbl_80483AF8
+lbl_80483AF8:
+	.asciz "pikmin_10.bti"
+	.skip 2
+.global lbl_80483B08
+lbl_80483B08:
+	.asciz "all_flower.bti"
+	.skip 1
+.global lbl_80483B18
+lbl_80483B18:
+	.asciz "pikmin_xlu.bti"
+	.skip 1
+.global lbl_80483B28
+lbl_80483B28:
+	.asciz "dope_black.bti"
+	.skip 1
+.global lbl_80483B38
+lbl_80483B38:
+	.asciz "dope_red.bti"
+	.skip 3
+.global lbl_80483B48
+lbl_80483B48:
+	.asciz "reset_bedama.bti"
+	.skip 3
+.global lbl_80483B5C
+lbl_80483B5C:
+	.asciz "teki_hanachirashi"
+	.skip 2
+.global lbl_80483B70
+lbl_80483B70:
+	.asciz "teki_sarai.bti"
+	.skip 1
+.global lbl_80483B80
+lbl_80483B80:
+	.asciz "teki_rock.bti"
+	.skip 2
+.global lbl_80483B90
+lbl_80483B90:
+	.asciz "teki_tank.bti"
+	.skip 2
+.global "cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"
+"cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@":
+	.4byte lbl_80483AE8
+	.4byte 0x00000001
+	.4byte lbl_80483AF8
+	.4byte 0x00000001
+	.4byte lbl_80483B08
+	.4byte 0x00000001
+	.4byte lbl_80483B18
+	.4byte 0x00000001
+	.4byte lbl_80483B28
+	.4byte 0x00000001
+	.4byte lbl_80483B38
+	.4byte 0x00000001
+	.4byte lbl_80483B48
+	.4byte 0x00000001
+	.4byte lbl_80483B5C
+	.4byte 0x00000001
+	.4byte lbl_80483B70
+	.4byte 0x00000001
+	.4byte lbl_80483B80
+	.4byte 0x00000001
+	.4byte lbl_80483B90
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_80483C00
+lbl_80483C00:
+	.asciz "teki_hanachirashi.bti"
+	.skip 2
+.global lbl_80483C18
+lbl_80483C18:
+	.asciz "teki_bombotakara.bti"
+	.skip 3
+	.asciz "user/Kando/vstex/arc.szs"
+	.skip 3
+.global lbl_80483C4C
+lbl_80483C4C:
+	.asciz "vsCardMgr.cpp"
+	.skip 2
+	.asciz "vstex/arc.szs not found !\n"
+	.skip 1
+	.asciz "%s not found !\n"
+	.asciz "press_y.bti"
+	.asciz "lamp_on.bti"
+	.asciz "lamp_off.bti"
+	.skip 3
+	.asciz "P2Assert"
+	.skip 3
+.global lbl_80483CBC
+lbl_80483CBC:
+	.asciz "ArgScaleColorColor"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr

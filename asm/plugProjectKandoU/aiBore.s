@@ -1,4 +1,43 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483930
+lbl_80483930:
+	.4byte 0x00000000
+	.float 0.05
+	.4byte 0x00000003
+	.4byte 0x3EB33333
+	.4byte 0x00000036
+	.4byte 0x3ECCCCCD
+	.4byte 0x00000015
+	.float 0.1
+.global lbl_80483950
+lbl_80483950:
+	.4byte 0x6169426F
+	.4byte 0x72652E63
+	.4byte 0x70700000
+.global lbl_8048395C
+lbl_8048395C:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x41637469
+	.4byte 0x6F6E4172
+	.4byte 0x67000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActBoreFPQ24Game4Piki

@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80482138
+lbl_80482138:
+	.asciz "aiTeki.cpp"
+	.skip 1
+.global lbl_80482144
+lbl_80482144:
+	.asciz "P2Assert"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActTekiFPQ24Game4Piki

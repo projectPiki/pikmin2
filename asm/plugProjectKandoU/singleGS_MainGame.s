@@ -1,4 +1,185 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80482150
+lbl_80482150:
+	.skip 0xC
+	.asciz "SingleGS_Game"
+	.skip 2
+.global lbl_8048216C
+lbl_8048216C:
+	.asciz "x01_gamestart"
+	.skip 2
+.global lbl_8048217C
+lbl_8048217C:
+	.asciz "x01_coursein_forest"
+.global lbl_80482190
+lbl_80482190:
+	.asciz "x01_coursein_yakushima"
+	.skip 1
+.global lbl_804821A8
+lbl_804821A8:
+	.asciz "x01_coursein_last"
+	.skip 2
+	.4byte lbl_8048216C
+	.4byte lbl_8048217C
+	.4byte lbl_80482190
+	.4byte lbl_804821A8
+	.asciz "singleGS_MainGame.cpp"
+	.skip 2
+	.asciz "P2Assert"
+	.skip 3
+	.asciz "BGS::GAME START"
+	.4byte 0x7330305F
+	.4byte 0x636F7572
+	.4byte 0x7365696E
+	.4byte 0x00000000
+	.4byte 0x7330455F
+	.4byte 0x72657475
+	.4byte 0x726E5F63
+	.4byte 0x61766500
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x73746174
+	.4byte 0x65204761
+	.4byte 0x6D655374
+	.4byte 0x6174653A
+	.4byte 0x3A696E69
+	.4byte 0x740A0000
+	.4byte 0x50534761
+	.4byte 0x6D652E68
+	.4byte 0x00000000
+	.4byte 0x50535363
+	.4byte 0x656E652E
+	.4byte 0x68000000
+	.4byte 0x67657420
+	.4byte 0x736F756E
+	.4byte 0x64207363
+	.4byte 0x656E6520
+	.4byte 0x61740A69
+	.4byte 0x6E76616C
+	.4byte 0x69642074
+	.4byte 0x696D6D69
+	.4byte 0x6E670A00
+	.4byte 0x50534D61
+	.4byte 0x696E5369
+	.4byte 0x64655F53
+	.4byte 0x63656E65
+	.4byte 0x2E680000
+	.4byte 0x6732365F
+	.4byte 0x696E6F75
+	.4byte 0x745F626C
+	.4byte 0x61636B00
+	.4byte 0x6732395F
+	.4byte 0x696E6F75
+	.4byte 0x745F7768
+	.4byte 0x69746500
+	.4byte 0x6732435F
+	.4byte 0x696E6F75
+	.4byte 0x745F7265
+	.4byte 0x64000000
+	.4byte 0x6E6F2064
+	.4byte 0x6F776E20
+	.4byte 0x666C6F6F
+	.4byte 0x72203230
+	.4byte 0x0A000000
+	.4byte 0x7831375F
+	.4byte 0x6A6F696E
+	.4byte 0x5F677569
+	.4byte 0x64650000
+	.4byte 0x7831355F
+	.4byte 0x6578705F
+	.4byte 0x78000000
+	.4byte 0x7830325F
+	.4byte 0x77617463
+	.4byte 0x685F7265
+	.4byte 0x645F7069
+	.4byte 0x6B6D696E
+	.4byte 0x00000000
+	.4byte 0x7830345F
+	.4byte 0x6578705F
+	.4byte 0x79000000
+	.4byte 0x6730315F
+	.4byte 0x7069636B
+	.4byte 0x5F6D6500
+	.4byte 0x6733335F
+	.4byte 0x63616D65
+	.4byte 0x72615F64
+	.4byte 0x656D6F00
+	.4byte 0x72657061
+	.4byte 0x792D646F
+	.4byte 0x6E650000
+	.4byte 0x736D656E
+	.4byte 0x755F6573
+	.4byte 0x63617065
+	.4byte 0x0A000000
+	.4byte 0x7330355F
+	.4byte 0x70696B6D
+	.4byte 0x696E7A65
+	.4byte 0x726F0000
+.global lbl_8048235C
+lbl_8048235C:
+	.4byte 0x7330335F
+	.4byte 0x6F72696D
+	.4byte 0x61646F77
+	.4byte 0x6E000000
+.global lbl_8048236C
+lbl_8048236C:
+	.4byte 0x7330395F
+	.4byte 0x686F6C65
+	.4byte 0x696E0000
+	.4byte 0x7331305F
+	.4byte 0x7375636B
+	.4byte 0x5F747265
+	.4byte 0x61737572
+	.4byte 0x65000000
+	.4byte 0x7830375F
+	.4byte 0x66697273
+	.4byte 0x745F7265
+	.4byte 0x636F7665
+	.4byte 0x72790000
+	.4byte 0x6730385F
+	.4byte 0x66697273
+	.4byte 0x745F7265
+	.4byte 0x7475726E
+	.4byte 0x00000000
+	.4byte 0x6733325F
+	.4byte 0x6765745F
+	.4byte 0x6D617000
+	.4byte 0x7331335F
+	.4byte 0x70696B6D
+	.4byte 0x696E5F73
+	.4byte 0x7570706C
+	.4byte 0x79000000
+	.4byte 0x7830335F
+	.4byte 0x66696E64
+	.4byte 0x5F726564
+	.4byte 0x5F6F6E79
+	.4byte 0x6F6E0000
+	.4byte 0x6733355F
+	.4byte 0x70726573
+	.4byte 0x6964656E
+	.4byte 0x745F6761
+	.4byte 0x6D657374
+	.4byte 0x61727400
+.global lbl_80482400
+lbl_80482400:
+	.4byte 0x73746172
+	.4byte 0x742D7265
+	.4byte 0x70617900
+.global lbl_8048240C
+lbl_8048240C:
+	.4byte 0x63686563
+	.4byte 0x6B2D7265
+	.4byte 0x70617900
+.global lbl_80482418
+lbl_80482418:
+	.4byte 0x67616D65
+	.4byte 0x73746174
+	.4byte 0x653A3A63
+	.4byte 0x6C65616E
+	.4byte 0x75700000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg

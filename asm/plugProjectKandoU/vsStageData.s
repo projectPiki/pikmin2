@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80483788
+lbl_80483788:
+	.4byte 0x63617665
+	.4byte 0x696E666F
+	.4byte 0x2E747874
+	.4byte 0x00000000
+.global lbl_80483798
+lbl_80483798:
+	.4byte 0x83608383
+	.4byte 0x838C8393
+	.4byte 0x83578358
+	.4byte 0x8365815B
+	.4byte 0x83570000
+.global lbl_804837AC
+lbl_804837AC:
+	.4byte 0x76735374
+	.4byte 0x61676544
+	.4byte 0x6174612E
+	.4byte 0x63707000
+.global lbl_804837BC
+lbl_804837BC:
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x73746167
+	.4byte 0x6520696E
+	.4byte 0x64657820
+	.4byte 0x25640A00
+.global lbl_804837D4
+lbl_804837D4:
+	.4byte 0x91CE90ED
+	.4byte 0x97708358
+	.4byte 0x8365815B
+	.4byte 0x83570000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global read__Q34Game13ChallengeGame9StageDataFR6Stream

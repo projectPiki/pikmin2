@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804807C8
+lbl_804807C8:
+	.asciz "creatureLOD.cpp"
+.global lbl_804807D8
+lbl_804807D8:
+	.asciz "P2Assert"
+	.skip 3
+	.4byte lbl_80519758
+	.4byte lbl_80519760
+	.4byte lbl_80519764
+.global lbl_804807F0
+lbl_804807F0:
+	.asciz "[%s%s %s %s]"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9AILODParmFv
