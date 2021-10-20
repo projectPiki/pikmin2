@@ -32,6 +32,93 @@ lbl_8047B2B0:
 	.4byte 0x2E627469
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804AC320
+lbl_804AC320:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@"
+"sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@":
+	.4byte 0x1E1EFFFF
+	.4byte 0xFF0000FF
+	.4byte 0xEAEA00FF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0x669999FF
+	.4byte 0x66D3D3FF
+.global "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@"
+"sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@":
+	.4byte 0x1E1EFFFF
+	.4byte 0xFF0000FF
+	.4byte 0xEAEA00FF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0x669999FF
+	.4byte 0x70D8D8FF
+.global __vt__12CarryInfoMgr
+__vt__12CarryInfoMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12CarryInfoMgrFv
+	.4byte loadResource__12CarryInfoMgrFv
+	.4byte update__12CarryInfoMgrFv
+	.4byte draw__12CarryInfoMgrFR8Graphics
+	.4byte regist__12CarryInfoMgrFP14CarryInfoOwner
+	.4byte scratch__12CarryInfoMgrFP14CarryInfoOwner
+.global __vt__11InfoMgrBase
+__vt__11InfoMgrBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11InfoMgrBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"
+"__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
+	.4byte "init__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
+	.4byte "update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
+	.4byte "draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
+	.4byte 0
+.global "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"
+"__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
+	.4byte 0
+	.4byte "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
+	.4byte "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
+	.4byte "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
+	.4byte "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
+.global __vt__14CarryInfoOwner
+__vt__14CarryInfoOwner:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__13PokoInfoOwner
+__vt__13PokoInfoOwner:
+	.4byte 0
+	.4byte 0
+	.4byte getCarryInfoParam__13PokoInfoOwnerFR14CarryInfoParam
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__13PokoInfoOwnerFv"
+	.4byte getChildCount__5CNodeFv
+	.4byte __dt__13PokoInfoOwnerFv
+.global __vt__13CarryInfoList
+__vt__13CarryInfoList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13CarryInfoListFv
+	.4byte init__13CarryInfoListFv
+	.4byte update__13CarryInfoListFv
+	.4byte draw__13CarryInfoListFR8Graphics
+	.4byte isFinish__13CarryInfoListFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global disappear__9CarryInfoFv
 disappear__9CarryInfoFv:

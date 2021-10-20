@@ -20,6 +20,25 @@ lbl_8047C530:
 	.4byte 0x67000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804AFA80
+lbl_804AFA80:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q213TreasureLight3Mgr
+__vt__Q213TreasureLight3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q213TreasureLight3MgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q213TreasureLight3MgrFv
+	.4byte set__Q213TreasureLight3MgrFR8Graphics
+	.4byte set__Q213TreasureLight3MgrFR7Matrixf
+	.4byte drawDebugInfo__Q213TreasureLight3MgrFR8Graphics
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q213TreasureLight3MgrFv
 __ct__Q213TreasureLight3MgrFv:

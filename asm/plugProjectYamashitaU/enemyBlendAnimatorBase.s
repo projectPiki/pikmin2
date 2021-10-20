@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28SysShape14BlendLinearFun
+__vt__Q28SysShape14BlendLinearFun:
+	.4byte 0
+	.4byte 0
+	.4byte getValue__Q28SysShape14BlendLinearFunFf
+.global __vt__Q24Game22EnemyBlendAnimatorBase
+__vt__Q24Game22EnemyBlendAnimatorBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game22EnemyBlendAnimatorBaseFv
+	.4byte setAnimMgr__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape7AnimMgr
+	.4byte getAnimator__Q24Game22EnemyBlendAnimatorBaseFv
+	.4byte getAnimator__Q24Game22EnemyBlendAnimatorBaseFi
+	.4byte animate__Q24Game22EnemyBlendAnimatorBaseFf
+	.4byte animate__Q24Game22EnemyBlendAnimatorBaseFif
+	.4byte resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv
+	.4byte getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
+.global __vt__Q28SysShape18BlendQuadraticFunc
+__vt__Q28SysShape18BlendQuadraticFunc:
+	.4byte 0
+	.4byte 0
+	.4byte getValue__Q28SysShape18BlendQuadraticFuncFf
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game22EnemyBlendAnimatorBaseFv

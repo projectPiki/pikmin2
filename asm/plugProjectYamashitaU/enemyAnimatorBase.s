@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game17EnemyAnimatorBase
+__vt__Q24Game17EnemyAnimatorBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game17EnemyAnimatorBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte animate__Q24Game17EnemyAnimatorBaseFf
+	.4byte animate__Q24Game17EnemyAnimatorBaseFif
+	.4byte resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv
+	.4byte getTypeID__Q24Game17EnemyAnimatorBaseFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game17EnemyAnimatorBaseFv

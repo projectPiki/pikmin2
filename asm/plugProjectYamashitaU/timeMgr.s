@@ -60,6 +60,15 @@ lbl_8047BD48:
 	.4byte 0x83930000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game7TimeMgr
+__vt__Q24Game7TimeMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game7TimeMgrFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7TimeMgrFv
 __ct__Q24Game7TimeMgrFv:

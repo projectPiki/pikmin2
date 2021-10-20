@@ -26,6 +26,27 @@ lbl_8047B70C:
 	.4byte 0x74757265
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game4Farm4Farm
+__vt__Q34Game4Farm4Farm:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Farm4FarmFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game4Farm8Obstacle
+__vt__Q34Game4Farm8Obstacle:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Farm8ObstacleFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game4Farm5Plant
+__vt__Q34Game4Farm5Plant:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Farm5PlantFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setPower__Q34Game4Farm8ObstacleFf
 setPower__Q34Game4Farm8ObstacleFf:

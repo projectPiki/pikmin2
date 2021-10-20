@@ -11,6 +11,21 @@ lbl_8047BE28:
 	.asciz "pellet type"
 	.asciz "pellet size"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game8Pelplant9Generator
+__vt__Q34Game8Pelplant9Generator:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game8Pelplant9GeneratorFv
+	.4byte getChildCount__5CNodeFv
+	.4byte doWrite__Q34Game8Pelplant9GeneratorFR6Stream
+	.4byte doRead__Q34Game8Pelplant9GeneratorFR6Stream
+	.4byte getLatestVersion__Q34Game8Pelplant9GeneratorFv
+	.4byte draw__Q24Game18EnemyGeneratorBaseFR8GraphicsPQ24Game9Generator
+	.4byte getInitialParam__Q34Game8Pelplant9GeneratorFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Pelplant9GeneratorFv
 __ct__Q34Game8Pelplant9GeneratorFv:

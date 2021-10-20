@@ -392,6 +392,147 @@ lbl_8047B774:
 	.4byte 0x69744172
 	.4byte 0x67000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ADA18
+lbl_804ADA18:
+	.4byte lbl_80125970
+	.4byte lbl_80125990
+	.4byte lbl_801259FC
+	.4byte lbl_80125A68
+	.4byte lbl_80125A8C
+	.4byte lbl_80125AB0
+	.4byte lbl_80125AD4
+	.4byte lbl_80125AF8
+	.4byte lbl_80125B1C
+	.4byte lbl_80125B40
+	.4byte lbl_80125B64
+	.4byte lbl_80125B88
+	.4byte lbl_80125BF4
+	.4byte lbl_80125C3C
+	.4byte lbl_80125C18
+	.4byte lbl_80125C60
+	.4byte lbl_80125C84
+	.4byte lbl_80125BAC
+	.4byte lbl_80125BD0
+	.4byte lbl_80125CA4
+	.4byte lbl_80125CC4
+	.4byte lbl_80125CE8
+	.4byte lbl_80125D0C
+	.4byte lbl_80125D2C
+	.4byte lbl_80125D50
+	.4byte lbl_80125D74
+	.4byte lbl_80125D98
+	.4byte lbl_80125DBC
+	.4byte lbl_80125DE0
+	.4byte lbl_80125E04
+	.4byte lbl_80125E28
+	.4byte lbl_80125E4C
+	.4byte lbl_80125E70
+	.4byte lbl_80125E94
+	.4byte lbl_80125EB8
+	.4byte lbl_80125EDC
+	.4byte lbl_80125F00
+	.4byte lbl_80125F24
+	.4byte lbl_80125F48
+	.4byte lbl_80125F90
+	.4byte lbl_80125F6C
+	.4byte lbl_80125FB4
+	.4byte lbl_80125A20
+	.4byte lbl_80125A44
+	.4byte lbl_801259B4
+	.4byte lbl_801259D8
+	.4byte lbl_80125FD8
+	.4byte lbl_80126020
+	.4byte lbl_80126044
+	.4byte lbl_80126068
+	.4byte lbl_801260B0
+	.4byte lbl_801260F8
+	.4byte lbl_8012611C
+	.4byte lbl_8012623C
+	.4byte lbl_80126260
+	.4byte lbl_80126284
+	.4byte lbl_801262A8
+	.4byte lbl_801262CC
+	.4byte lbl_801262F0
+	.4byte lbl_80126314
+	.4byte lbl_80126338
+	.4byte lbl_8012635C
+	.4byte lbl_80126380
+	.4byte lbl_801263C8
+	.4byte lbl_801263EC
+	.4byte lbl_80126410
+	.4byte lbl_80126434
+	.4byte lbl_80126458
+	.4byte lbl_8012647C
+	.4byte lbl_801264A0
+	.4byte lbl_801264C4
+	.4byte lbl_801264E8
+	.4byte lbl_80126530
+	.4byte lbl_80126554
+	.4byte lbl_80126728
+	.4byte lbl_80126578
+	.4byte lbl_801265E4
+	.4byte lbl_80126608
+	.4byte lbl_8012662C
+	.4byte lbl_80126674
+	.4byte lbl_80126140
+	.4byte lbl_80125FFC
+	.4byte lbl_80126728
+	.4byte lbl_80126728
+	.4byte lbl_80126698
+	.4byte lbl_80126164
+	.4byte lbl_80126188
+	.4byte lbl_801261AC
+	.4byte lbl_801261D0
+	.4byte lbl_801261F4
+	.4byte lbl_80126218
+	.4byte lbl_8012608C
+	.4byte lbl_801260D4
+	.4byte lbl_801263A4
+	.4byte lbl_80126704
+	.4byte lbl_8012659C
+	.4byte lbl_801265C0
+	.4byte lbl_80126650
+	.4byte lbl_801266E0
+	.4byte lbl_801266BC
+	.4byte lbl_80126728
+	.4byte lbl_8012650C
+.global __vt__Q24Game18EnemyGeneratorBase
+__vt__Q24Game18EnemyGeneratorBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game18EnemyGeneratorBaseFv
+	.4byte getChildCount__5CNodeFv
+	.4byte doWrite__Q24Game18EnemyGeneratorBaseFR6Stream
+	.4byte doRead__Q24Game18EnemyGeneratorBaseFR6Stream
+	.4byte getLatestVersion__Q24Game18EnemyGeneratorBaseFv
+	.4byte draw__Q24Game18EnemyGeneratorBaseFR8GraphicsPQ24Game9Generator
+	.4byte getInitialParam__Q24Game18EnemyGeneratorBaseFv
+.global __vt__Q24Game6GenArg
+__vt__Q24Game6GenArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q24Game6GenArgFv
+.global __vt__Q24Game14GenObjectEnemy
+__vt__Q24Game14GenObjectEnemy:
+	.4byte 0
+	.4byte 0
+	.4byte doWrite__Q24Game14GenObjectEnemyFR6Stream
+	.4byte ramSaveParameters__Q24Game14GenObjectEnemyFR6Stream
+	.4byte ramLoadParameters__Q24Game14GenObjectEnemyFR6Stream
+	.4byte doEvent__Q24Game7GenBaseFUl
+	.4byte doRead__Q24Game14GenObjectEnemyFR6Stream
+	.4byte update__Q24Game9GenObjectFPQ24Game9Generator
+	.4byte render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator
+	.4byte getLatestVersion__Q24Game9GenObjectFv
+	.4byte getShape__Q24Game14GenObjectEnemyFv
+	.4byte updateUseList__Q24Game14GenObjectEnemyFPQ24Game9Generatori
+	.4byte generate__Q24Game14GenObjectEnemyFPQ24Game9Generator
+	.4byte birth__Q24Game14GenObjectEnemyFPQ24Game6GenArg
+	.4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
+	.4byte getDebugInfo__Q24Game9GenObjectFPc
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeObjectEnemy__4GameFv
 makeObjectEnemy__4GameFv:

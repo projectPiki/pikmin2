@@ -18,6 +18,19 @@ lbl_8047B258:
 	.4byte 0x652E6274
 	.4byte 0x69000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804AC308
+lbl_804AC308:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__13LifeGaugeList
+__vt__13LifeGaugeList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13LifeGaugeListFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9LifeGaugeFv
 __ct__9LifeGaugeFv:

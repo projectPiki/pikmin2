@@ -15,6 +15,155 @@ lbl_8047AA20:
 	.asciz "wait_big"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804AB100
+lbl_804AB100:
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B520
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B57C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B5D8
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B68C
+	.4byte lbl_8010B634
+.global __vt__Q34Game8Pelplant9StateDead
+__vt__Q34Game8Pelplant9StateDead:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game8Pelplant11StateDamage
+__vt__Q34Game8Pelplant11StateDamage:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q23efx11TPpl20Grow2
+__vt__Q23efx11TPpl20Grow2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple3Fv
+	.4byte fade__Q23efx8TSimple3Fv
+.global __vt__Q23efx11TPpl10Grow2
+__vt__Q23efx11TPpl10Grow2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple3Fv
+	.4byte fade__Q23efx8TSimple3Fv
+.global __vt__Q23efx10TPpl5Grow2
+__vt__Q23efx10TPpl5Grow2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple3Fv
+	.4byte fade__Q23efx8TSimple3Fv
+.global __vt__Q23efx9TPplGrow2
+__vt__Q23efx9TPplGrow2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple3Fv
+	.4byte fade__Q23efx8TSimple3Fv
+.global __vt__Q23efx9TPplGrow1
+__vt__Q23efx9TPplGrow1:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q34Game8Pelplant9StateGrow
+__vt__Q34Game8Pelplant9StateGrow:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game8Pelplant9StateWait
+__vt__Q34Game8Pelplant9StateWait:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game8Pelplant11StateWither
+__vt__Q34Game8Pelplant11StateWither:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game8Pelplant14StateBlendAnim
+__vt__Q34Game8Pelplant14StateBlendAnim:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game8Pelplant14StateBlendAnimFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game8Pelplant14StateBlendAnimFPQ24Game9EnemyBase
+	.4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game8Pelplant5State
+__vt__Q34Game8Pelplant5State:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game8Pelplant3FSM
+__vt__Q34Game8Pelplant3FSM:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game8Pelplant3FSMFPQ24Game9EnemyBase
+	.4byte start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
+	.4byte transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
+	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
+	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8Pelplant3FSMFPQ24Game9EnemyBase
 init__Q34Game8Pelplant3FSMFPQ24Game9EnemyBase:

@@ -22,6 +22,37 @@ lbl_8047B738:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804AD9B8
+lbl_804AD9B8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game4Farm7FarmMgr
+__vt__Q34Game4Farm7FarmMgr:
+	.4byte 0
+	.4byte 0
+	.4byte doAnimation__Q34Game4Farm7FarmMgrFv
+	.4byte doEntry__Q34Game4Farm7FarmMgrFv
+	.4byte doSetView__Q34Game4Farm7FarmMgrFi
+	.4byte doViewCalc__Q34Game4Farm7FarmMgrFv
+	.4byte doSimulation__Q34Game4Farm7FarmMgrFf
+	.4byte doDirectDraw__Q34Game4Farm7FarmMgrFR8Graphics
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q34Game4Farm7FarmMgrFv"
+	.4byte getChildCount__5CNodeFv
+	.4byte doDebugDraw__Q34Game4Farm7FarmMgrFR8Graphics
+	.4byte __dt__Q34Game4Farm7FarmMgrFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Farm7FarmMgrFUl
 __ct__Q34Game4Farm7FarmMgrFUl:

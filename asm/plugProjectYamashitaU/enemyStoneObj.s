@@ -10,6 +10,21 @@ lbl_8047BF18:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ADDF8
+lbl_804ADDF8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game10EnemyStone3Obj
+__vt__Q34Game10EnemyStone3Obj:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game10EnemyStone3ObjFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10EnemyStone3ObjFPQ24Game9EnemyBasePQ34Game10EnemyStone4Info
 __ct__Q34Game10EnemyStone3ObjFPQ24Game9EnemyBasePQ34Game10EnemyStone4Info:

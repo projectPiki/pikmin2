@@ -102,6 +102,103 @@ lbl_8047B40C:
 	.4byte 0x64202825
 	.4byte 0x64290A00
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804AC420
+lbl_804AC420:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global "GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@"
+"GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@":
+	.4byte lbl_80517C00
+	.4byte lbl_80517C04
+	.4byte lbl_80517C08
+	.4byte lbl_80517C0C
+	.4byte lbl_80517C10
+.global __vt__Q24Game12GameLightMgr
+__vt__Q24Game12GameLightMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game12GameLightMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q24Game12GameLightMgrFv
+	.4byte set__Q24Game12GameLightMgrFR8Graphics
+	.4byte set__8LightMgrFR7Matrixf
+	.4byte drawDebugInfo__8LightMgrFR8Graphics
+.global __vt__15AmbientLightObj
+__vt__15AmbientLightObj:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15AmbientLightObjFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game18GameLightEventNode
+__vt__Q24Game18GameLightEventNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game18GameLightEventNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game19GameLightMgrSetting
+__vt__Q24Game19GameLightMgrSetting:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game19GameLightMgrSettingFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q24Game19GameLightMgrSettingFR6Stream
+.global __vt__Q24Game20GameSpotLightSetting
+__vt__Q24Game20GameSpotLightSetting:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game20GameSpotLightSettingFR6Stream
+.global __vt__Q24Game20GameLightSpotSetting
+__vt__Q24Game20GameLightSpotSetting:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game20GameLightSpotSettingFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game19GameLightSunSetting
+__vt__Q24Game19GameLightSunSetting:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game19GameLightSunSettingFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game14GameFogSetting
+__vt__Q24Game14GameFogSetting:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game14GameFogSettingFR6Stream
+.global __vt__Q24Game17GameShadowSetting
+__vt__Q24Game17GameShadowSetting:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game17GameShadowSettingFR6Stream
+.global __vt__Q24Game23GameLightAmbientSetting
+__vt__Q24Game23GameLightAmbientSetting:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game20GameLightSettingBaseFR6Stream
+.global __vt__Q24Game20GameSpecLightSetting
+__vt__Q24Game20GameSpecLightSetting:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game20GameLightSettingBaseFR6Stream
+.global __vt__Q24Game23GameDiffuseLightSetting
+__vt__Q24Game23GameDiffuseLightSetting:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game20GameLightSettingBaseFR6Stream
+.global __vt__Q24Game20GameLightSettingBase
+__vt__Q24Game20GameLightSettingBase:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game20GameLightSettingBaseFR6Stream
+.global __vt__Q24Game20GameLightTimeSetting
+__vt__Q24Game20GameLightTimeSetting:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game20GameLightTimeSettingFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game20GameLightTimeSettingFv
 __ct__Q24Game20GameLightTimeSettingFv:

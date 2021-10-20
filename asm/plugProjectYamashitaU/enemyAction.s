@@ -10,6 +10,59 @@ lbl_8047AE94:
 	.asciz "g2B_white_poison"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804ABC48
+lbl_804ABC48:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition
+__vt__Q34Game9EnemyFunc25EatPikminDefaultCondition:
+	.4byte 0
+	.4byte 0
+	.4byte satisfy__Q34Game9EnemyFunc25EatPikminDefaultConditionFPQ24Game4Piki
+.global "__vt__23Condition<Q24Game4Piki>"
+"__vt__23Condition<Q24Game4Piki>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q34Game9EnemyFunc21ConditionPikminNearby
+__vt__Q34Game9EnemyFunc21ConditionPikminNearby:
+	.4byte 0
+	.4byte 0
+	.4byte satisfy__Q34Game9EnemyFunc21ConditionPikminNearbyFPQ24Game8Creature
+.global "__vt__27Condition<Q24Game8Creature>"
+"__vt__27Condition<Q24Game8Creature>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__26Iterator<Q24Game8Creature>"
+"__vt__26Iterator<Q24Game8Creature>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__26Iterator<Q24Game8Creature>Fv"
+	.4byte "next__26Iterator<Q24Game8Creature>Fv"
+	.4byte "isDone__26Iterator<Q24Game8Creature>Fv"
+	.4byte "__ml__26Iterator<Q24Game8Creature>Fv"
+.global "__vt__22Iterator<Q24Game4Piki>"
+"__vt__22Iterator<Q24Game4Piki>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__22Iterator<Q24Game4Piki>Fv"
+	.4byte "next__22Iterator<Q24Game4Piki>Fv"
+	.4byte "isDone__22Iterator<Q24Game4Piki>Fv"
+	.4byte "__ml__22Iterator<Q24Game4Piki>Fv"
+.global "__vt__22Iterator<Q24Game4Navi>"
+"__vt__22Iterator<Q24Game4Navi>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__22Iterator<Q24Game4Navi>Fv"
+	.4byte "next__22Iterator<Q24Game4Navi>Fv"
+	.4byte "isDone__22Iterator<Q24Game4Navi>Fv"
+	.4byte "__ml__22Iterator<Q24Game4Navi>Fv"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>":

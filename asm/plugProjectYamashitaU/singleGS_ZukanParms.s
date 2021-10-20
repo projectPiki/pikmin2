@@ -129,6 +129,75 @@ lbl_8047C3F4:
 	.4byte 0x616D6500
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804AF9C8
+lbl_804AF9C8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game15IllustratedBook5Parms
+__vt__Q34Game15IllustratedBook5Parms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook5ParmsFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game15IllustratedBook5ParmsFR6Stream
+.global __vt__Q34Game15IllustratedBook13ItemModeParms
+__vt__Q34Game15IllustratedBook13ItemModeParms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook13ItemModeParmsFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game15IllustratedBook13ItemModeParmsFR6Stream
+.global __vt__Q34Game15IllustratedBook9ItemParms
+__vt__Q34Game15IllustratedBook9ItemParms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook9ItemParmsFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game15IllustratedBook9ItemParmsFR6Stream
+.global __vt__Q34Game15IllustratedBook14EnemyModeParms
+__vt__Q34Game15IllustratedBook14EnemyModeParms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook14EnemyModeParmsFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game15IllustratedBook14EnemyModeParmsFR6Stream
+.global __vt__Q34Game15IllustratedBook10EnemyParms
+__vt__Q34Game15IllustratedBook10EnemyParms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook10EnemyParmsFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game15IllustratedBook10EnemyParmsFR6Stream
+.global __vt__Q34Game15IllustratedBook11CameraParms
+__vt__Q34Game15IllustratedBook11CameraParms:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q34Game15IllustratedBook11CameraParmsFR6Stream
+.global __vt__Q34Game15IllustratedBook17PositionParmsList
+__vt__Q34Game15IllustratedBook17PositionParmsList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook17PositionParmsListFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game15IllustratedBook17PositionParmsListFR6Stream
+.global __vt__Q34Game15IllustratedBook13PositionParms
+__vt__Q34Game15IllustratedBook13PositionParms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook13PositionParmsFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game15IllustratedBook13PositionParmsFR6Stream
+.global __vt__Q34Game15IllustratedBook12ColorSetting
+__vt__Q34Game15IllustratedBook12ColorSetting:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook12ColorSettingFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game15IllustratedBook12ColorSettingFR6Stream
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game15IllustratedBook12ColorSettingFv
 __ct__Q34Game15IllustratedBook12ColorSettingFv:

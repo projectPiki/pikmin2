@@ -32,6 +32,183 @@ lbl_8047AAD0:
 	.skip 3
 	.asciz "CreatureKillArg"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804AB390
+lbl_804AB390:
+	.4byte lbl_8010BDB8
+	.4byte lbl_8010BDE0
+	.4byte lbl_8010BE58
+	.4byte lbl_8010CC34
+	.4byte lbl_8010CC34
+	.4byte lbl_8010CC34
+	.4byte lbl_8010CC34
+	.4byte lbl_8010CC34
+	.4byte lbl_8010CC34
+	.4byte lbl_8010BF20
+	.4byte lbl_8010BF48
+	.4byte lbl_8010BF70
+	.4byte lbl_8010C010
+	.4byte lbl_8010C038
+	.4byte lbl_8010C060
+	.4byte lbl_8010C088
+	.4byte lbl_8010BF98
+	.4byte lbl_8010BEF8
+	.4byte lbl_8010BFC0
+	.4byte lbl_8010BFE8
+	.4byte lbl_8010C0B0
+	.4byte lbl_8010C0D8
+	.4byte lbl_8010C100
+	.4byte lbl_8010C128
+	.4byte lbl_8010C150
+	.4byte lbl_8010C178
+	.4byte lbl_8010C1A0
+	.4byte lbl_8010C1C8
+	.4byte lbl_8010C1F0
+	.4byte lbl_8010C218
+	.4byte lbl_8010C240
+	.4byte lbl_8010C268
+	.4byte lbl_8010C290
+	.4byte lbl_8010C2B8
+	.4byte lbl_8010C2E0
+	.4byte lbl_8010C308
+	.4byte lbl_8010C330
+	.4byte lbl_8010C358
+	.4byte lbl_8010C380
+	.4byte lbl_8010CC34
+	.4byte lbl_8010C3A8
+	.4byte lbl_8010C3F8
+	.4byte lbl_8010BE80
+	.4byte lbl_8010BEA8
+	.4byte lbl_8010BE08
+	.4byte lbl_8010BE30
+	.4byte lbl_8010C420
+	.4byte lbl_8010C448
+	.4byte lbl_8010C470
+	.4byte lbl_8010C498
+	.4byte lbl_8010C4E8
+	.4byte lbl_8010C538
+	.4byte lbl_8010C560
+	.4byte lbl_8010C6C8
+	.4byte lbl_8010C6F0
+	.4byte lbl_8010C718
+	.4byte lbl_8010C740
+	.4byte lbl_8010C768
+	.4byte lbl_8010C790
+	.4byte lbl_8010C7B8
+	.4byte lbl_8010C7E0
+	.4byte lbl_8010C808
+	.4byte lbl_8010C830
+	.4byte lbl_8010C880
+	.4byte lbl_8010CC34
+	.4byte lbl_8010C8A8
+	.4byte lbl_8010C8D0
+	.4byte lbl_8010C8F8
+	.4byte lbl_8010C920
+	.4byte lbl_8010C96C
+	.4byte lbl_8010C994
+	.4byte lbl_8010CC34
+	.4byte lbl_8010C9E4
+	.4byte lbl_8010CA0C
+	.4byte lbl_8010CC34
+	.4byte lbl_8010CA34
+	.4byte lbl_8010CAAC
+	.4byte lbl_8010CAD4
+	.4byte lbl_8010CB20
+	.4byte lbl_8010CB70
+	.4byte lbl_8010C588
+	.4byte lbl_8010C5B0
+	.4byte lbl_8010BED0
+	.4byte lbl_8010C3D0
+	.4byte lbl_8010CB98
+	.4byte lbl_8010C5D8
+	.4byte lbl_8010C600
+	.4byte lbl_8010C628
+	.4byte lbl_8010C650
+	.4byte lbl_8010C678
+	.4byte lbl_8010C6A0
+	.4byte lbl_8010C4C0
+	.4byte lbl_8010C510
+	.4byte lbl_8010C858
+	.4byte lbl_8010CC10
+	.4byte lbl_8010CA5C
+	.4byte lbl_8010CA84
+	.4byte lbl_8010CB48
+	.4byte lbl_8010CBE8
+	.4byte lbl_8010CBC0
+	.4byte lbl_8010C9BC
+.global __vt__Q24Game15GeneralEnemyMgr
+__vt__Q24Game15GeneralEnemyMgr:
+	.4byte 0
+	.4byte 0
+	.4byte doAnimation__Q24Game15GeneralEnemyMgrFv
+	.4byte doEntry__Q24Game15GeneralEnemyMgrFv
+	.4byte doSetView__Q24Game15GeneralEnemyMgrFi
+	.4byte doViewCalc__Q24Game15GeneralEnemyMgrFv
+	.4byte doSimulation__Q24Game15GeneralEnemyMgrFf
+	.4byte doDirectDraw__Q24Game15GeneralEnemyMgrFR8Graphics
+	.4byte doSimpleDraw__Q24Game15GeneralEnemyMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q24Game15GeneralEnemyMgrFv"
+	.4byte getChildCount__5CNodeFv
+	.4byte __dt__Q24Game15GeneralEnemyMgrFv
+.global __vt__Q24Game12EnemyMgrNode
+__vt__Q24Game12EnemyMgrNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game12EnemyMgrNodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@doAnimation__Q24Game12EnemyMgrNodeFv"
+	.4byte "@24@doEntry__Q24Game12EnemyMgrNodeFv"
+	.4byte "@24@doSetView__Q24Game12EnemyMgrNodeFi"
+	.4byte "@24@doViewCalc__Q24Game12EnemyMgrNodeFv"
+	.4byte "@24@doSimulation__Q24Game12EnemyMgrNodeFf"
+	.4byte "@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics"
+	.4byte "@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport"
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte "@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv"
+	.4byte doAnimation__Q24Game12EnemyMgrNodeFv
+	.4byte doEntry__Q24Game12EnemyMgrNodeFv
+	.4byte doSetView__Q24Game12EnemyMgrNodeFi
+	.4byte doViewCalc__Q24Game12EnemyMgrNodeFv
+	.4byte doSimulation__Q24Game12EnemyMgrNodeFf
+	.4byte doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
+	.4byte doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
+	.4byte killAll__Q24Game12EnemyMgrNodeFPQ24Game15CreatureKillArg
+	.4byte setupSoundViewerAndBas__Q24Game12EnemyMgrNodeFv
+	.4byte setDebugParm__Q24Game12EnemyMgrNodeFUl
+	.4byte resetDebugParm__Q24Game12EnemyMgrNodeFUl
+	.4byte startMovie__Q24Game12EnemyMgrNodeFv
+	.4byte endMovie__Q24Game12EnemyMgrNodeFv
+	.4byte getMatrixLoadType__Q24Game12EnemyMgrNodeFv
+.global __vt__16GenericObjectMgr
+__vt__16GenericObjectMgr:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte doEntry__16GenericObjectMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii
 createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii:

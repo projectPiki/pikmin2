@@ -18,6 +18,271 @@ lbl_8047C590:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.0
+	.float 50.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
+.global "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.25
+	.float 8.0
+	.float 0.3
+	.float 13.0
+	.float 0.12
+	.float 22.0
+	.float 0.3
+	.float 24.0
+	.float 0.3
+	.float 29.0
+	.float 0.12
+	.float 36.0
+	.float 0.3
+	.float 50.0
+	.float 0.25
+	.float -1.0
+	.float 0.0
+.global "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 1.0
+	.float 50.0
+	.float 1.0
+	.float -1.0
+	.float 0.0
+.global "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.4byte "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+.global "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.0
+	.float 10.0
+	.float 0.0
+	.float 14.0
+	.float 0.6
+	.float 19.0
+	.float 0.0
+	.float 25.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
+.global "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.25
+	.float 25.0
+	.float 0.25
+	.float -1.0
+	.float 0.0
+.global "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 1.0
+	.float 25.0
+	.float 1.0
+	.float -1.0
+	.float 0.0
+.global "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.4byte "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+.global "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.0
+	.float 32.0
+	.float 0.0
+	.float 45.0
+	.float 0.3
+	.float 60.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
+.global "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.25
+	.float 20.0
+	.float 0.15
+	.float 40.0
+	.float 0.15
+	.float 50.0
+	.float 0.85
+	.float 60.0
+	.float 0.25
+	.float -1.0
+	.float 0.0
+.global "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 1.0
+	.float 60.0
+	.float 1.0
+	.float -1.0
+	.float 0.0
+.global "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.4byte "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+.global "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.0
+	.float 10.0
+	.float 1.0
+	.float 30.0
+	.float 0.5
+	.float 40.0
+	.float 0.0
+	.float 80.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
+.global "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.25
+	.float 30.0
+	.float 0.15
+	.float 35.0
+	.float 1.0
+	.float 65.0
+	.float 0.4
+	.float 80.0
+	.float 0.25
+	.float -1.0
+	.float 0.0
+.global "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 1.0
+	.float 30.0
+	.float 1.0
+	.float 35.0
+	.float 1.25
+	.float 55.0
+	.float 1.0
+	.float 80.0
+	.float 1.0
+	.float -1.0
+	.float 0.0
+.global "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.4byte "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+.global "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.0
+	.float 15.0
+	.float 0.0
+	.float 20.0
+	.float 1.0
+	.float 40.0
+	.float 0.7
+	.float 50.0
+	.float 0.0
+	.float 102.0
+	.float 0.0
+	.float 107.0
+	.float 0.25
+	.float 125.0
+	.float 0.06
+	.float 129.0
+	.float 0.0
+	.float 180.0
+	.float 0.0
+	.float -1.0
+	.float 0.0
+.global "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 0.25
+	.float 15.0
+	.float 0.2
+	.float 22.0
+	.float 2.0
+	.float 30.0
+	.float 1.8
+	.float 45.0
+	.float 0.25
+	.float 70.0
+	.float 0.12
+	.float 102.0
+	.float 0.35
+	.float 130.0
+	.float 0.12
+	.float 140.0
+	.float 0.25
+	.float 180.0
+	.float 0.25
+	.float -1.0
+	.float 0.0
+.global "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.float 0.0
+	.float 1.0
+	.float 180.0
+	.float 1.0
+	.float -1.0
+	.float 0.0
+.global "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.4byte "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+.global "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+"sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+	.4byte "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte 0
+	.4byte "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte 0
+	.4byte 0
+	.4byte "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+	.4byte 0
+.global __vt__Q214EffectAnimator9LengthObj
+__vt__Q214EffectAnimator9LengthObj:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214EffectAnimator9LengthObjFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q214EffectAnimator9LengthObjFPQ23efx13TKechappyTestf
+.global __vt__Q214EffectAnimator10BristleObj
+__vt__Q214EffectAnimator10BristleObj:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214EffectAnimator10BristleObjFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q214EffectAnimator10BristleObjFPQ23efx13TKechappyTestf
+.global __vt__Q214EffectAnimator12VibrationObj
+__vt__Q214EffectAnimator12VibrationObj:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214EffectAnimator12VibrationObjFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q214EffectAnimator12VibrationObjFPQ23efx13TKechappyTestf
+.global __vt__Q214EffectAnimator3Obj
+__vt__Q214EffectAnimator3Obj:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214EffectAnimator3ObjFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf
 update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf:

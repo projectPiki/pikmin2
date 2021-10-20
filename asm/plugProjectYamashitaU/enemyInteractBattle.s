@@ -1,4 +1,62 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game12InteractDrop
+__vt__Q24Game12InteractDrop:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game12InteractDropFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game20InteractFlyCollision
+__vt__Q24Game20InteractFlyCollision:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game20InteractFlyCollisionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game13InteractPress
+__vt__Q24Game13InteractPress:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game13InteractPressFPQ24Game4Piki
+	.4byte actNavi__Q24Game13InteractPressFPQ24Game4Navi
+	.4byte actEnemy__Q24Game13InteractPressFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game18InteractEarthquake
+__vt__Q24Game18InteractEarthquake:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game18InteractEarthquakeFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game15InteractHipdrop
+__vt__Q24Game15InteractHipdrop:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game14InteractAttackFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+	.4byte actNavi__Q24Game14InteractAttackFPQ24Game4Navi
+	.4byte actEnemy__Q24Game15InteractHipdropFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actEnemy__Q24Game15InteractHipdropFPQ24Game9EnemyBase

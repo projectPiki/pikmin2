@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game20EnemyEffectNodeHamon
+__vt__Q24Game20EnemyEffectNodeHamon:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game20EnemyEffectNodeHamonFv
+	.4byte getChildCount__5CNodeFv
+	.4byte create__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase
+	.4byte fade__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase
+	.4byte forceKill__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase
+.global __vt__Q24Game19EnemyEffectNodeBase
+__vt__Q24Game19EnemyEffectNodeBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game19EnemyEffectNodeBaseFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game20EnemyEffectNodeHamonFv

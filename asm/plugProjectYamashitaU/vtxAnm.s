@@ -16,6 +16,19 @@ lbl_8047B434:
 	.4byte 0x00000002
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game16FieldVtxColorMgr
+__vt__Q24Game16FieldVtxColorMgr:
+	.4byte 0
+	.4byte 0
+	.4byte calc__Q24Game16FieldVtxColorMgrFP15J3DVertexBuffer
+	.4byte __dt__Q24Game16FieldVtxColorMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@12@__dt__Q24Game16FieldVtxColorMgrFv"
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData
 __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData:
