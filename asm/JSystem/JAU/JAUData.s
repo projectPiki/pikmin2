@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q210JADUtility10PrmSetBase
+__vt__Q210JADUtility10PrmSetBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q210JADUtility10PrmSetBaseFv
+	.4byte appendAfter__Q210JADUtility10PrmSetBaseFv
+	.4byte load__Q210JADUtility10PrmSetBaseFR20JSUMemoryInputStream
+	.4byte afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+	.4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
+	.4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
+.global __vt__Q210JADUtility10PrmSetTree
+__vt__Q210JADUtility10PrmSetTree:
+	.4byte 0
+	.4byte 0
+	.4byte "beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+	.4byte "beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+	.4byte "afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+	.4byte "afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase"
+.global "__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>"
+"__vt__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>":
+	.4byte 0
+	.4byte 0
+	.4byte "beforeRemovingChild__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+	.4byte "beforeRemovingThis__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+	.4byte "afterRemovingChildButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBase"
+	.4byte "afterRemovingThisButton__Q210JADUtility36NodeTree<Q210JADUtility10PrmSetBase>FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase"
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q210JADUtility10PrmSetBaseFb
