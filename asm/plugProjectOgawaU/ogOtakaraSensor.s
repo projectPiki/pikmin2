@@ -59,6 +59,33 @@ lbl_8048F7B4:
 	.4byte 0x722E737A
 	.4byte 0x73000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q25efx2d12T2DSensorAct
+__vt__Q25efx2d12T2DSensorAct:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TSimple2FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple2Fv
+	.4byte fade__Q25efx2d8TSimple2Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q25efx2d13T2DSensorComp
+__vt__Q25efx2d13T2DSensorComp:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TSimple2FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple2Fv
+	.4byte fade__Q25efx2d8TSimple2Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q25efx2d12T2DSensorGet
+__vt__Q25efx2d12T2DSensorGet:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TSimple3FPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TSimple3Fv
+	.4byte fade__Q25efx2d8TSimple3Fv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen13OtakaraSensorFv
 __ct__Q32og6Screen13OtakaraSensorFv:

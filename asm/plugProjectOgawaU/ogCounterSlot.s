@@ -18,6 +18,23 @@ lbl_8048F58C:
 	.4byte 0x6B3D2564
 	.4byte 0x290A0000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og6Screen20CallBack_CounterSlot
+__vt__Q32og6Screen20CallBack_CounterSlot:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og6Screen20CallBack_CounterSlotFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32og6Screen20CallBack_CounterSlotFv
+	.4byte draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb
+	.4byte show__Q32og6Screen18CallBack_CounterRVFv
+	.4byte hide__Q32og6Screen18CallBack_CounterRVFv
+	.4byte setValue__Q32og6Screen20CallBack_CounterSlotFbb
+	.4byte setValue__Q32og6Screen20CallBack_CounterSlotFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb
 init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb:

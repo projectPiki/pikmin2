@@ -94,6 +94,35 @@ lbl_8048DF9C:
 	.asciz "SujiFont is not found !!!\n"
 	.skip 1
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global SujiTex32__Q22og6Screen
+SujiTex32__Q22og6Screen:
+	.4byte lbl_8048DE90
+	.4byte lbl_8048DE9C
+	.4byte lbl_8048DEA8
+	.4byte lbl_8048DEB4
+	.4byte lbl_8048DEC0
+	.4byte lbl_8048DECC
+	.4byte lbl_8048DED8
+	.4byte lbl_8048DEE4
+	.4byte lbl_8048DEF0
+	.4byte lbl_8048DEFC
+	.4byte lbl_8048DF08
+.global SujiTexMap__Q22og6Screen
+SujiTexMap__Q22og6Screen:
+	.4byte lbl_8048DF14
+	.4byte lbl_8048DF20
+	.4byte lbl_8048DF2C
+	.4byte lbl_8048DF38
+	.4byte lbl_8048DF44
+	.4byte lbl_8048DF50
+	.4byte lbl_8048DF5C
+	.4byte lbl_8048DF68
+	.4byte lbl_8048DF74
+	.4byte lbl_8048DF80
+	.4byte lbl_8048DF14
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeSujiFontTable__Q22og6ScreenFPPcP10JKRArchive
 makeSujiFontTable__Q22og6ScreenFPPcP10JKRArchive:

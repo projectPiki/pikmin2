@@ -1,4 +1,117 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og9newScreen13TitleMsgClash
+__vt__Q32og9newScreen13TitleMsgClash:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q32og9newScreen13TitleMsgClashFv
+	.4byte update__Q32og9newScreen13TitleMsgClashFv
+	.4byte start__Q32og9newScreen8TitleMsgFv
+	.4byte end__Q32og9newScreen13TitleMsgClashFv
+.global __vt__Q25efx2d11T2DCvnameVs
+__vt__Q25efx2d11T2DCvnameVs:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d9TForeverNFv
+	.4byte fade__Q25efx2d9TForeverNFv
+	.4byte setGroup__Q25efx2d9TForeverNFUc
+.global __vt__Q25efx2d9TForever2
+__vt__Q25efx2d9TForever2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d9TForeverNFv
+	.4byte fade__Q25efx2d9TForeverNFv
+	.4byte setGroup__Q25efx2d9TForeverNFUc
+.global __vt__Q32og9newScreen12TitleMsgWave
+__vt__Q32og9newScreen12TitleMsgWave:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q32og9newScreen12TitleMsgWaveFv
+	.4byte update__Q32og9newScreen12TitleMsgWaveFv
+	.4byte start__Q32og9newScreen12TitleMsgWaveFv
+	.4byte end__Q32og9newScreen12TitleMsgWaveFv
+	.4byte setParam__Q32og9newScreen12TitleMsgWaveFffff
+.global __vt__Q25efx2d13T2DCvnameChal
+__vt__Q25efx2d13T2DCvnameChal:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d8TForeverFv
+	.4byte fade__Q25efx2d8TForeverFv
+	.4byte setGroup__Q25efx2d5TBaseFUc
+	.4byte 0
+	.4byte 0
+	.4byte "@8@__dt__Q25efx2d13T2DCvnameChalFv"
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte __dt__Q25efx2d13T2DCvnameChalFv
+.global __vt__Q32og9newScreen12TitleMsgDrop
+__vt__Q32og9newScreen12TitleMsgDrop:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q32og9newScreen12TitleMsgDropFv
+	.4byte update__Q32og9newScreen12TitleMsgDropFv
+	.4byte start__Q32og9newScreen8TitleMsgFv
+	.4byte end__Q32og9newScreen12TitleMsgDropFv
+.global __vt__Q25efx2d13T2DCvnameCave
+__vt__Q25efx2d13T2DCvnameCave:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d9TForeverNFv
+	.4byte fade__Q25efx2d9TForeverNFv
+	.4byte setGroup__Q25efx2d9TForeverNFUc
+.global __vt__Q25efx2d9TForever3
+__vt__Q25efx2d9TForever3:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d9TForeverNFv
+	.4byte fade__Q25efx2d9TForeverNFv
+	.4byte setGroup__Q25efx2d9TForeverNFUc
+.global __vt__Q32og9newScreen8TitleMsg
+__vt__Q32og9newScreen8TitleMsg:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q32og9newScreen8TitleMsgFv
+	.4byte update__Q32og9newScreen8TitleMsgFv
+	.4byte start__Q32og9newScreen8TitleMsgFv
+	.4byte end__Q32og9newScreen8TitleMsgFv
+.global __vt__Q32og9newScreen20TitleMessageAnalyzer
+__vt__Q32og9newScreen20TitleMessageAnalyzer:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og9newScreen20TitleMessageAnalyzerFv
+	.4byte do_reset__Q28JMessage10TProcessorFv
+	.4byte do_character__Q32og9newScreen20TitleMessageAnalyzerFi
+	.4byte do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl
+	.4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+	.4byte do_select_begin__Q28JMessage10TProcessorFUl
+	.4byte do_select_end__Q28JMessage10TProcessorFv
+	.4byte do_select_separate__Q28JMessage10TProcessorFv
+	.4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+	.4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+	.4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+	.4byte do_end___Q28JMessage19TRenderingProcessorFv
+	.4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+	.4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+	.4byte do_begin__Q28JMessage19TRenderingProcessorFPCvPCc
+	.4byte do_end__Q28JMessage19TRenderingProcessorFv
+	.4byte tagColor__Q25P2JME8AnalyzerFPCvUl
+	.4byte tagSize__Q25P2JME8AnalyzerFPCvUl
+	.4byte tagRuby__Q25P2JME8AnalyzerFPCvUl
+	.4byte tagFont__Q25P2JME8AnalyzerFPCvUl
+	.4byte tagImage__Q25P2JME8AnalyzerFUsPCvUl
+	.4byte tagColorEX__Q25P2JME8AnalyzerFUsPCvUl
+	.4byte tagControl__Q25P2JME8AnalyzerFUsPCvUl
+	.4byte tagPosition__Q25P2JME8AnalyzerFUsPCvUl
+	.4byte 0
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EB8
 lbl_80520EB8:

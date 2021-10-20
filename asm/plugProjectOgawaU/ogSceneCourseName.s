@@ -107,6 +107,73 @@ lbl_8048E97C:
 	.asciz "course_name03.bpk"
 	.skip 2
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global CourseNumToSZS__Q22og9newScreen
+CourseNumToSZS__Q22og9newScreen:
+	.4byte lbl_8048E7F0
+	.4byte lbl_8048E808
+	.4byte lbl_8048E820
+	.4byte lbl_8048E838
+.global bloFileNameCourse__Q22og9newScreen
+bloFileNameCourse__Q22og9newScreen:
+	.4byte lbl_8048E850
+	.4byte lbl_8048E864
+	.4byte lbl_8048E878
+	.4byte lbl_8048E88C
+.global animFile_Course00__Q22og9newScreen
+animFile_Course00__Q22og9newScreen:
+	.4byte lbl_8048E8A0
+	.4byte lbl_8048E8B4
+	.4byte lbl_8048E8C8
+	.4byte 0
+.global animFile_Course01__Q22og9newScreen
+animFile_Course01__Q22og9newScreen:
+	.4byte lbl_8048E8DC
+	.4byte lbl_8048E8F0
+	.4byte lbl_8048E904
+	.4byte 0
+.global animFile_Course02__Q22og9newScreen
+animFile_Course02__Q22og9newScreen:
+	.4byte lbl_8048E918
+	.4byte lbl_8048E92C
+	.4byte lbl_8048E940
+	.4byte 0
+.global animFile_Course03__Q22og9newScreen
+animFile_Course03__Q22og9newScreen:
+	.4byte lbl_8048E954
+	.4byte lbl_8048E968
+	.4byte lbl_8048E97C
+	.4byte 0
+.global animFileTableCourse__Q22og9newScreen
+animFileTableCourse__Q22og9newScreen:
+	.4byte animFile_Course00__Q22og9newScreen
+	.4byte animFile_Course01__Q22og9newScreen
+	.4byte animFile_Course02__Q22og9newScreen
+	.4byte animFile_Course03__Q22og9newScreen
+.global __vt__Q32og9newScreen10CourseName
+__vt__Q32og9newScreen10CourseName:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32og9newScreen10CourseNameFv
+	.4byte getOwnerID__Q32og9newScreen10CourseNameFv
+	.4byte getMemberID__Q32og9newScreen10CourseNameFv
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32og9newScreen10CourseNameCFv
+	.4byte doCreateObj__Q32og9newScreen10CourseNameFP10JKRArchive
+	.4byte doUserCallBackFunc__Q32og9newScreen10CourseNameFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen10CourseNameFv
 __ct__Q32og9newScreen10CourseNameFv:

@@ -59,6 +59,71 @@ lbl_8048E6D8:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og9newScreen12ObjSMenuBase
+__vt__Q32og9newScreen12ObjSMenuBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q32og9newScreen12ObjSMenuBaseFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte doUpdateFadein__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doUpdateFadeinFinish__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doUpdate__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doUpdateFinish__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doUpdateFadeout__Q26Screen7ObjBaseFv
+	.4byte doUpdateFadeoutFinish__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doDraw__Q26Screen7ObjBaseFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte loop__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte updateFadeIn__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte 0
+.global __vt__Q32og9newScreen18StartSceneArgSMenu
+__vt__Q32og9newScreen18StartSceneArgSMenu:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32og9newScreen18StartSceneArgSMenuCFv
+	.4byte "getClassSize__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>Fv"
+.global "__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"
+"__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>":
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q26Screen12SceneArgBaseCFv
+	.4byte "getClassSize__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>Fv"
+.global __vt__Q26Screen13StartSceneArg
+__vt__Q26Screen13StartSceneArg:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q26Screen12SceneArgBaseCFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuBaseFv
 __ct__Q32og9newScreen12ObjSMenuBaseFv:

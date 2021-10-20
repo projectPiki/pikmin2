@@ -101,6 +101,39 @@ lbl_8048DE28:
 lbl_8048DE34:
 	.asciz "tag[%s] is not exist!!\n"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global PikiIconTextureName__Q22og6Screen
+PikiIconTextureName__Q22og6Screen:
+	.4byte lbl_8048DD0C
+	.4byte lbl_8048DD1C
+	.4byte lbl_8048DD28
+	.4byte lbl_8048DD34
+	.4byte lbl_8048DD40
+	.4byte lbl_8048DD4C
+	.4byte lbl_8048DD58
+	.4byte lbl_8048DD64
+	.4byte lbl_8048DD70
+	.4byte lbl_8048DD7C
+	.4byte lbl_8048DD88
+	.4byte lbl_8048DD94
+	.4byte lbl_8048DDA0
+	.4byte lbl_8048DDAC
+	.4byte lbl_8048DDB8
+	.4byte lbl_8048DDC4
+	.4byte lbl_8048DDD0
+	.4byte lbl_8048DDDC
+	.4byte lbl_8048DDE8
+.global __vt__Q29P2DScreen4Node
+__vt__Q29P2DScreen4Node:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29P2DScreen4NodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q29P2DScreen4NodeFv
+	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSpeed__Q32og6Screen15ArrowAlphaBlinkFf
 setSpeed__Q32og6Screen15ArrowAlphaBlinkFf:

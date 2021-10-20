@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og6Screen19CallBack_CounterDay
+__vt__Q32og6Screen19CallBack_CounterDay:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og6Screen19CallBack_CounterDayFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32og6Screen19CallBack_CounterDayFv
+	.4byte draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte init__Q32og6Screen19CallBack_CounterDayFP9J2DScreenUxUxUxPUlb
+	.4byte show__Q32og6Screen19CallBack_CounterDayFv
+	.4byte hide__Q32og6Screen19CallBack_CounterDayFv
+	.4byte setValue__Q32og6Screen18CallBack_CounterRVFbb
+	.4byte setValue__Q32og6Screen19CallBack_CounterDayFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen19CallBack_CounterDayFPPcUsP10JKRArchive

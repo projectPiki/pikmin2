@@ -36,6 +36,37 @@ lbl_8048F68C:
 	.4byte 0x7A730000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804D9F50
+lbl_804D9F50:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q32og9newScreen19WorldMapInfoWindow1
+__vt__Q32og9newScreen19WorldMapInfoWindow1:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32og9newScreen19WorldMapInfoWindow1Fv
+	.4byte getOwnerID__Q32og9newScreen12SMenuPauseVSFv
+	.4byte getMemberID__Q32og9newScreen19WorldMapInfoWindow1Fv
+	.4byte isUseBackupSceneInfo__Q32og9newScreen19WorldMapInfoWindow1Fv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32og9newScreen19WorldMapInfoWindow1CFv
+	.4byte doCreateObj__Q32og9newScreen19WorldMapInfoWindow1FP10JKRArchive
+	.4byte doUserCallBackFunc__Q32og9newScreen12SMenuPauseVSFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q32og9newScreen12SMenuPauseVSFv
+	.4byte doConfirmSetScene__Q32og9newScreen19WorldMapInfoWindow1FRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q32og9newScreen19WorldMapInfoWindow1Fv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen19WorldMapInfoWindow1Fv
 __ct__Q32og9newScreen19WorldMapInfoWindow1Fv:
