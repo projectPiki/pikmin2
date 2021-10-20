@@ -60,27 +60,6 @@ When compiling the project, this patch is automatically applied, if it fails to 
 
 ## Progress
 ### DONE
-- Dolphin/AmcExi2Stubs.cpp
-- Dolphin/arith.cpp
-- Dolphin/critical_regions.gamecube.cpp
-- Dolphin/ctype.cpp
-- Dolphin/dvdFatal.cpp
-- Dolphin/misc_io.cpp
-- Dolphin/mutex_TRK.cpp
-- Dolphin/MWCriticalSection_gc.cpp
-- Dolphin/odenotstub.cpp
-- Dolphin/OSArena.cpp
-- Dolphin/rand.cpp
-- Dolphin/s_copysign.cpp
-- Dolphin/targcont.cpp
-- Dolphin/UDP_Stubs.cpp
-- Dolphin/w_asin.cpp
-- Dolphin/w_atan2.cpp
-- Dolphin/w_exp.cpp
-- Dolphin/w_fmod.cpp
-- Dolphin/w_log10.cpp
-- Dolphin/w_pow.cpp
-- Dolphin/w_sqrt.cpp
 - JSystem/JAD/JADHioNode.cpp
 - plugProjectEbisawaU/ebiScreenFramework.cpp
 - plugProjectHikinoU/PSCreatureMgr.cpp
@@ -97,8 +76,6 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - sysGCU/rootMenuSection.cpp
 - sysGCU/simpleMessage.cpp
 ### WIP
-- Dolphin/DebuggerDriver.cpp
-- Dolphin/nubinit.cpp
 - JSystem/JAL/JALCalc.cpp
 - plugProjectEbisawaU/ebiP2TitleCamera.cpp
 - plugProjectKandoU/interactBattle.cpp
