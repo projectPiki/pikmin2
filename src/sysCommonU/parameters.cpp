@@ -1,66 +1,31 @@
+#include "Parameters.h"
 #include "stream.h"
+#include "BaseParm.h"
+#include "Dolphin/string.h"
+
+extern
 
 /*
  * --INFO--
  * Address:	80413658
  * Size:	0000AC
  */
-void BaseParm::BaseParm(Parameters*, unsigned long, char*)
+BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* comment)
+	: m_id()
+	, m_comment(comment)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804F
-	  stw       r0, 0x24(r1)
-	  subi      r0, r7, 0x4A88
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  stw       r0, 0x0(r3)
-	  addi      r3, r28, 0x4
-	  bl        -0x424
-	  stw       r31, 0x14(r28)
-	  li        r4, 0
-	  lwz       r3, 0x4(r29)
-	  b         .loc_0x58
-
-	.loc_0x50:
-	  mr        r4, r3
-	  lwz       r3, 0x10(r3)
-
-	.loc_0x58:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x50
-	  cmplwi    r4, 0
-	  beq-      .loc_0x70
-	  stw       r28, 0x10(r4)
-	  b         .loc_0x74
-
-	.loc_0x70:
-	  stw       r28, 0x4(r29)
-
-	.loc_0x74:
-	  mr        r4, r30
-	  addi      r3, r28, 0x4
-	  bl        -0x2D0
-	  li        r0, 0
-	  mr        r3, r28
-	  stw       r0, 0x10(r28)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	BaseParm* parm1;
+	BaseParm* parm2 = nullptr;
+	for (parm1 = parameters->m_parmsHead; parm1 != NULL; parm1 = parm2->m_next) {
+		parm2 = parm1;
+	}
+	if (parm2 != nullptr) {
+		parm2->m_next = this;
+	} else {
+		parameters->m_parmsHead = this;
+	}
+	m_id = rawID;
+	m_next = nullptr;
 }
 
 /*
@@ -68,74 +33,20 @@ void BaseParm::BaseParm(Parameters*, unsigned long, char*)
  * Address:	80413704
  * Size:	0000EC
  */
-void Parameters::write(Stream&)
+void Parameters::write(Stream& stream)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lwz       r4, 0x8(r3)
-	  mr        r3, r30
-	  bl        0x8F4
-	  lwz       r31, 0x4(r31)
-	  b         .loc_0x98
-
-	.loc_0x30:
-	  lwz       r4, 0x414(r30)
-	  mr        r3, r30
-	  bl        0xCF8
-	  mr        r4, r30
-	  addi      r3, r31, 0x4
-	  bl        -0x2E8
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r30
-	  bl        0x2058
-	  mr        r3, r31
-	  mr        r4, r30
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, 0x14(r31)
-	  mr        r3, r30
-	  addi      r4, r2, 0x1F70
-	  crclr     6, 0x6
-	  bl        0xA48
-	  lwz       r31, 0x10(r31)
-
-	.loc_0x98:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x30
-	  lwz       r4, 0x414(r30)
-	  mr        r3, r30
-	  bl        0xC88
-	  lis       r3, 0x8051
-	  mr        r4, r30
-	  addi      r3, r3, 0x41F0
-	  bl        -0x35C
-	  mr        r3, r30
-	  addi      r4, r2, 0x1F78
-	  crclr     6, 0x6
-	  bl        0xA10
-	  mr        r3, r30
-	  bl        0x8CC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	stream.textBeginGroup(m_name);
+	for (BaseParm* parm = m_parmsHead; parm != nullptr; parm = parm->m_next) {
+		stream.textWriteTab(stream.m_tabCount);
+		parm->m_id.write(stream);
+		stream.writeInt(parm->size());
+		parm->write(stream);
+		stream.textWriteText("\t# %s\r\n", parm->m_comment);
+	}
+	stream.textWriteTab(stream.m_tabCount);
+	ID32::eof.write(stream);
+	stream.textWriteText("\r\n");
+	stream.textEndGroup();
 }
 
 /*
@@ -143,76 +54,36 @@ void Parameters::write(Stream&)
  * Address:	804137F0
  * Size:	000004
  */
-void BaseParm::write(Stream&) { return; }
+void BaseParm::write(Stream& stream) { return; }
 
 /*
  * --INFO--
  * Address:	804137F4
  * Size:	0000C8
  */
-void Parameters::read(Stream&)
+void Parameters::read(Stream& stream)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x130(r1)
-	  mflr      r0
-	  stw       r0, 0x134(r1)
-	  stw       r31, 0x12C(r1)
-	  stw       r30, 0x128(r1)
-	  mr        r30, r4
-	  stw       r29, 0x124(r1)
-	  mr        r29, r3
-
-	.loc_0x20:
-	  addi      r3, r1, 0x8
-	  bl        -0x5A8
-	  mr        r4, r30
-	  addi      r3, r1, 0x8
-	  bl        -0x334
-	  addi      r3, r1, 0x8
-	  bl        -0x5D8
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xAC
-	  addi      r3, r1, 0x8
-	  addi      r4, r1, 0x14
-	  bl        -0x260
-	  mr        r3, r30
-	  bl        0x1248
-	  lwz       r4, 0x10(r1)
-	  mr        r31, r3
-	  mr        r3, r29
-	  bl        0x68
-	  cmplwi    r3, 0
-	  beq-      .loc_0x88
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r30
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x20
-
-	.loc_0x88:
-	  cmpwi     r31, -0x1
-	  beq-      .loc_0xA0
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0xA3C
-	  b         .loc_0x20
-
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xAF4
-	  b         .loc_0x20
-
-	.loc_0xAC:
-	  lwz       r0, 0x134(r1)
-	  lwz       r31, 0x12C(r1)
-	  lwz       r30, 0x128(r1)
-	  lwz       r29, 0x124(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x130
-	  blr
-	*/
+	BaseParm* currentParm;
+	while (true) {
+		ID32 currentID;
+		currentID.read(stream);
+		if (currentID.isEof()) {
+			return;
+		}
+		char buffer[256];
+		currentID.sprint(buffer);
+		int parmSize = stream.readInt();
+		currentParm = findParm(currentID.m_id.raw);
+		if (currentParm != nullptr) {
+			currentParm->read(stream);
+		} else {
+			if (parmSize != -1) {
+				stream.skipReading(parmSize);
+			} else {
+				stream.skipReadingText();
+			}
+		}
+	}
 }
 
 /*
@@ -220,51 +91,23 @@ void Parameters::read(Stream&)
  * Address:	804138BC
  * Size:	000004
  */
-void BaseParm::read(Stream&) { return; }
+void BaseParm::read(Stream& stream) { return; }
+
+
 
 /*
  * --INFO--
  * Address:	804138C0
  * Size:	000064
  */
-void Parameters::findParm(unsigned long)
+BaseParm* Parameters::findParm(ulong rawID)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lwz       r31, 0x4(r3)
-	  b         .loc_0x40
-
-	.loc_0x20:
-	  mr        r4, r30
-	  addi      r3, r31, 0x4
-	  bl        -0x4B4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x3C
-	  mr        r3, r31
-	  b         .loc_0x4C
-
-	.loc_0x3C:
-	  lwz       r31, 0x10(r31)
-
-	.loc_0x40:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x20
-	  li        r3, 0
-
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	for (BaseParm* parm = m_parmsHead; parm != nullptr; parm = parm->m_next) {
+		if (parm->m_id == rawID) {
+			return parm;
+		}
+	}
+	return nullptr;
 }
 
 /*
@@ -272,144 +115,76 @@ void Parameters::findParm(unsigned long)
  * Address:	80413924
  * Size:	000034
  */
-void Parm<int>::read(Stream& stream) { this->value = stream.readInt(); }
+template<> void Parm<int>::read(Stream& stream) { m_value = stream.readInt(); }
 
 /*
  * --INFO--
  * Address:	80413958
  * Size:	00002C
  */
-void Parm<int>::write(Stream& stream) { stream.writeInt(this->value); }
+template<> void Parm<int>::write(Stream& stream) { stream.writeInt(m_value); }
 
 /*
  * --INFO--
  * Address:	80413984
  * Size:	000034
  */
-void Parm<unsigned char>::read(Stream&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  bl        0xB00
-	  stb       r3, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+template<> void Parm<unsigned char>::read(Stream& stream) { m_value = stream.readByte(); }
 
 /*
  * --INFO--
  * Address:	804139B8
  * Size:	00002C
  */
-void Parm<unsigned char>::write(Stream&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x18(r3)
-	  mr        r3, r4
-	  mr        r4, r0
-	  bl        0x1CA0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+template<> void Parm<unsigned char>::write(Stream& stream) { stream.writeByte((u8)m_value); }
 
 /*
  * --INFO--
  * Address:	804139E4
  * Size:	000044
  */
-void Parm<bool>::read(Stream&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  bl        0xAA0
-	  rlwinm    r3,r3,0,24,31
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+template<> void Parm<bool>::read(Stream& stream) { m_value = (bool)stream.readByte(); }
 
 /*
  * --INFO--
  * Address:	80413A28
  * Size:	000034
  */
-void Parm<bool>::write(Stream&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r5, 0x18(r3)
-	  mr        r3, r4
-	  neg       r0, r5
-	  or        r0, r0, r5
-	  rlwinm    r4,r0,1,31,31
-	  bl        0x1C28
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+template<> void Parm<bool>::write(Stream& stream) { stream.writeByte(m_value ? 1 : 0); }
 
 /*
  * --INFO--
  * Address:	80413A5C
  * Size:	000034
  */
-void Parm<float>::read(Stream&)
-{
-	float fVar1;
-
-	fVar1       = Stream::readFloat(stream);
-	this->value = fVar1;
-}
+template<> void Parm<float>::read(Stream& stream) { m_value = stream.readFloat(); }
 
 /*
  * --INFO--
  * Address:	80413A90
  * Size:	000028
  */
-void Parm<float>::write(Stream&) { Stream::writeFloat(stream, this->value); }
+template<> void Parm<float>::write(Stream& stream) { stream.writeFloat(m_value); }
+
+#ifdef NOPE
 
 /*
  * --INFO--
  * Address:	80413AB8
  * Size:	0001B0
  */
-void ParmString::ParmString(Parameters*, char*, int, unsigned long, char*)
+ParmString::ParmString(Parameters* parameters, char* value, int length, ulong rawID, char* comment)
+	: BaseParm(parameters, rawID, comment)
+	, m_length(length)
 {
+	char* buffer = new char[m_length+1];
+	m_value = buffer;
+	int actualLength = strlen(value);
+	int i;
+	for (i = 0; i < actualLength; ++i) {
+		m_value[i] = value[i];
+	}
+	m_value[i] = '\0';
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -683,3 +458,5 @@ int ParmEnum::size() { return 4; }
  * Size:	000008
  */
 int ParmString::size() { return -1; }
+
+#endif
