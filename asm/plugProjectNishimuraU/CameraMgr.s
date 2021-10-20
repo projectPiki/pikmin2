@@ -449,6 +449,21 @@ lbl_80484838:
 	.4byte 0x206E6F6E
 	.4byte 0x650A0000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C1BC8
+lbl_804C1BC8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game9CameraMgr
+__vt__Q24Game9CameraMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game9CameraMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9CameraMgrFv
 __ct__Q24Game9CameraMgrFv:

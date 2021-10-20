@@ -20,6 +20,23 @@ lbl_80484118:
 	.4byte 0x00000002
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game4Cave10FixObjNode
+__vt__Q34Game4Cave10FixObjNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave10FixObjNodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte getObjectId__Q34Game4Cave10FixObjNodeFv
+	.4byte getObjectType__Q34Game4Cave10FixObjNodeFv
+	.4byte getBirthCount__Q34Game4Cave10FixObjNodeFv
+	.4byte getDirection__Q34Game4Cave10FixObjNodeFv
+	.4byte getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv
+	.4byte getBirthPosition__Q34Game4Cave10FixObjNodeFRfRf
+	.4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
+	.4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EA8
 lbl_80520EA8:

@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game4Cave8GateNode
+__vt__Q34Game4Cave8GateNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave8GateNodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte getObjectId__Q34Game4Cave8GateNodeFv
+	.4byte getObjectType__Q34Game4Cave8GateNodeFv
+	.4byte getBirthCount__Q34Game4Cave8GateNodeFv
+	.4byte getDirection__Q34Game4Cave8GateNodeFv
+	.4byte getBirthDoorIndex__Q34Game4Cave8GateNodeFv
+	.4byte getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf
+	.4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
+	.4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave8GateNodeFv

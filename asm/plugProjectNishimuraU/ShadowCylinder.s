@@ -39,6 +39,141 @@ lbl_80483FBC:
 	.4byte 0x72650000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C1780
+lbl_804C1780:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sHighCylinderDL__4Game
+sHighCylinderDL__4Game:
+	.4byte 0xA0000C00
+	.4byte 0x00000100
+	.4byte 0x02000300
+	.4byte 0x04000500
+	.4byte 0x06000700
+	.4byte 0x08000900
+	.4byte 0x0A000BA0
+	.4byte 0x000C0017
+	.4byte 0x00160015
+	.4byte 0x00140013
+	.4byte 0x00120011
+	.4byte 0x0010000F
+	.4byte 0x000E000D
+	.4byte 0x000C9800
+	.4byte 0x1A000000
+	.4byte 0x0C000100
+	.4byte 0x0D000200
+	.4byte 0x0E000300
+	.4byte 0x0F000400
+	.4byte 0x10000500
+	.4byte 0x11000600
+	.4byte 0x12000700
+	.4byte 0x13000800
+	.4byte 0x14000900
+	.4byte 0x15000A00
+	.4byte 0x16000B00
+	.4byte 0x17000000
+	.4byte 0x0C000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sMidCylinderDL__4Game
+sMidCylinderDL__4Game:
+	.4byte 0xA0000800
+	.4byte 0x18001900
+	.4byte 0x1A001B00
+	.4byte 0x1C001D00
+	.4byte 0x1E001FA0
+	.4byte 0x00080027
+	.4byte 0x00260025
+	.4byte 0x00240023
+	.4byte 0x00220021
+	.4byte 0x00209800
+	.4byte 0x12001800
+	.4byte 0x20001900
+	.4byte 0x21001A00
+	.4byte 0x22001B00
+	.4byte 0x23001C00
+	.4byte 0x24001D00
+	.4byte 0x25001E00
+	.4byte 0x26001F00
+	.4byte 0x27001800
+	.4byte 0x20000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sLowCylinderDL__4Game
+sLowCylinderDL__4Game:
+	.4byte 0xA0000400
+	.4byte 0x28002900
+	.4byte 0x2A002BA0
+	.4byte 0x0004002F
+	.4byte 0x002E002D
+	.4byte 0x002C9800
+	.4byte 0x0A002800
+	.4byte 0x2C002900
+	.4byte 0x2D002A00
+	.4byte 0x2E002B00
+	.4byte 0x2F002800
+	.4byte 0x2C000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game15ShadowCylinder3
+__vt__Q24Game15ShadowCylinder3:
+	.4byte 0
+	.4byte 0
+	.4byte setFilterTextureID__Q24Game15ShadowCylinder3Fi
+	.4byte drawInit__Q24Game15ShadowCylinder3Fv
+	.4byte drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi
+	.4byte drawFinish__Q24Game15ShadowCylinder3Fv
+.global __vt__Q24Game15ShadowCylinder2
+__vt__Q24Game15ShadowCylinder2:
+	.4byte 0
+	.4byte 0
+	.4byte setFilterTextureID__Q24Game15ShadowCylinder2Fi
+	.4byte drawInit__Q24Game15ShadowCylinder2Fv
+	.4byte drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi
+	.4byte drawFinish__Q24Game15ShadowCylinder2Fv
+.global __vt__Q24Game12CylinderBase
+__vt__Q24Game12CylinderBase:
+	.4byte 0
+	.4byte 0
+	.4byte setFilterTextureID__Q24Game12CylinderBaseFi
+	.4byte drawInit__Q24Game12CylinderBaseFv
+	.4byte drawCylinder__Q24Game12CylinderBaseFR7Matrixfi
+	.4byte drawFinish__Q24Game12CylinderBaseFv
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E88
 lbl_80520E88:

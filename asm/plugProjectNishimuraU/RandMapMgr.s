@@ -14,6 +14,21 @@ lbl_8048407C:
 	.4byte 0x78747572
 	.4byte 0x65000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game8RoomLink
+__vt__Q24Game8RoomLink:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game8RoomLinkFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game4Cave10RandMapMgr
+__vt__Q34Game4Cave10RandMapMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave10RandMapMgrFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave10RandMapMgrFb
 __ct__Q34Game4Cave10RandMapMgrFb:

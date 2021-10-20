@@ -8,6 +8,87 @@ lbl_80485380:
 	.4byte 0x72000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game6Kogane10StatePress
+__vt__Q34Game6Kogane10StatePress:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6Kogane10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game6Kogane10StatePressFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game6Kogane10StatePressFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game6Kogane9StateWait
+__vt__Q34Game6Kogane9StateWait:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game6Kogane9StateMove
+__vt__Q34Game6Kogane9StateMove:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game6Kogane14StateDisappear
+__vt__Q34Game6Kogane14StateDisappear:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game6Kogane11StateAppear
+__vt__Q34Game6Kogane11StateAppear:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBase
+	.4byte cleanup__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game6Kogane5State
+__vt__Q34Game6Kogane5State:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+	.4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+.global __vt__Q34Game6Kogane3FSM
+__vt__Q34Game6Kogane3FSM:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6Kogane3FSMFPQ24Game9EnemyBase
+	.4byte start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
+	.4byte transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
+	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
+	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game6Kogane3FSMFPQ24Game9EnemyBase
 init__Q34Game6Kogane3FSMFPQ24Game9EnemyBase:

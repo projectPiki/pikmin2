@@ -12,6 +12,15 @@ lbl_8048485C:
 	.4byte 0x3EB33333
 	.float 0.5
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game10RumbleNode
+__vt__Q24Game10RumbleNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game10RumbleNodeFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10ContRumbleFii
 __ct__Q24Game10ContRumbleFii:

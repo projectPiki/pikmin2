@@ -219,6 +219,83 @@ lbl_80485808:
 	.4byte 0x91C58C82
 	.4byte 0x82630000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game4Rock5Parms
+__vt__Q34Game4Rock5Parms:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q34Game4Rock5ParmsFR6Stream
+.global __vt__Q34Game4Rock3Mgr
+__vt__Q34Game4Rock3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte doAnimation__Q24Game12EnemyMgrBaseFv
+	.4byte doEntry__Q24Game12EnemyMgrBaseFv
+	.4byte doSetView__Q24Game12EnemyMgrBaseFi
+	.4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+	.4byte doSimulation__Q24Game12EnemyMgrBaseFf
+	.4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q34Game4Rock3MgrFv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+	.4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+	.4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+	.4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+	.4byte __dt__Q34Game4Rock3MgrFv
+	.4byte getObject__Q24Game12EnemyMgrBaseFPv
+	.4byte getNext__Q24Game12EnemyMgrBaseFPv
+	.4byte getStart__Q24Game12EnemyMgrBaseFv
+	.4byte getEnd__Q24Game12EnemyMgrBaseFv
+	.4byte alloc__Q24Game12EnemyMgrBaseFv
+	.4byte birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+	.4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+	.4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+	.4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+	.4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+	.4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+	.4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+	.4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+	.4byte startMovie__Q24Game12EnemyMgrBaseFv
+	.4byte endMovie__Q24Game12EnemyMgrBaseFv
+	.4byte get__Q24Game12EnemyMgrBaseFPv
+	.4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+	.4byte createObj__Q34Game4Rock3MgrFi
+	.4byte getEnemy__Q34Game4Rock3MgrFi
+	.4byte doAlloc__Q34Game4Rock3MgrFv
+	.4byte getEnemyTypeID__Q34Game4Rock3MgrFv
+	.4byte createModel__Q24Game12EnemyMgrBaseFv
+	.4byte initParms__Q24Game12EnemyMgrBaseFv
+	.4byte loadResource__Q24Game12EnemyMgrBaseFv
+	.4byte initObjects__Q24Game12EnemyMgrBaseFv
+	.4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+	.4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+	.4byte loadModelData__Q24Game12EnemyMgrBaseFv
+	.4byte loadAnimData__Q24Game12EnemyMgrBaseFv
+	.4byte loadTexData__Q24Game12EnemyMgrBaseFv
+	.4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
+	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
+.global __vt__Q34Game4Rock9Generator
+__vt__Q34Game4Rock9Generator:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Rock9GeneratorFv
+	.4byte getChildCount__5CNodeFv
+	.4byte doWrite__Q34Game4Rock9GeneratorFR6Stream
+	.4byte doRead__Q34Game4Rock9GeneratorFR6Stream
+	.4byte getLatestVersion__Q34Game4Rock9GeneratorFv
+	.4byte draw__Q24Game18EnemyGeneratorBaseFR8GraphicsPQ24Game9Generator
+	.4byte getInitialParam__Q34Game4Rock9GeneratorFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Rock9GeneratorFv
 __ct__Q34Game4Rock9GeneratorFv:

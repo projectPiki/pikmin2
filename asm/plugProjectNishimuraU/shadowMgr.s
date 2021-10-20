@@ -36,6 +36,47 @@ lbl_80484014:
 	.4byte 0x78740000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C19E8
+lbl_804C19E8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game9ShadowMgr
+__vt__Q24Game9ShadowMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game9ShadowMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte getSize__Q24Game9ShadowMgrFv
+	.4byte getMax__Q24Game9ShadowMgrFv
+	.4byte getCreature__Q24Game9ShadowMgrFi
+	.4byte getFirst__Q24Game9ShadowMgrFv
+	.4byte getNext__Q24Game9ShadowMgrFi
+	.4byte isDone__Q24Game9ShadowMgrFi
+	.4byte write__Q24Game9ShadowMgrFR6Stream
+	.4byte read__Q24Game9ShadowMgrFR6Stream
+.global __vt__Q24Game10ShadowNode
+__vt__Q24Game10ShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game10ShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game15JointShadowNode
+__vt__Q24Game15JointShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game15JointShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game19JointShadowRootNode
+__vt__Q24Game19JointShadowRootNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game19JointShadowRootNodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
 __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature:

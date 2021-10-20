@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game4Cave12ObjectLayout
+__vt__Q34Game4Cave12ObjectLayout:
+	.4byte 0
+	.4byte 0
+	.4byte getCount__Q34Game4Cave12ObjectLayoutFi
+	.4byte getNode__Q34Game4Cave12ObjectLayoutFii
+.global __vt__Q24Game16ObjectLayoutInfo
+__vt__Q24Game16ObjectLayoutInfo:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave12ObjectLayoutFPQ34Game4Cave7MapNode

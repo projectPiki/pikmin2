@@ -30,6 +30,27 @@ lbl_80489978:
 	.asciz "lfoot3jnt"
 	.skip 2
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game17TubeShadowSetNode
+__vt__Q24Game17TubeShadowSetNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game17TubeShadowSetNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game19TubeShadowTransNode
+__vt__Q24Game19TubeShadowTransNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game19TubeShadowTransNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game16SphereShadowNode
+__vt__Q24Game16SphereShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game16SphereShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Damagumo17DamagumoShadowMgrFPQ34Game8Damagumo3Obj
 __ct__Q34Game8Damagumo17DamagumoShadowMgrFPQ34Game8Damagumo3Obj:

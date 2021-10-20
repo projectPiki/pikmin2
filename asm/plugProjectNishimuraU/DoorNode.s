@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game4Cave8DoorNode
+__vt__Q34Game4Cave8DoorNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave8DoorNodeFv
+	.4byte getChildCount__5CNodeFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave6AdjustFv
