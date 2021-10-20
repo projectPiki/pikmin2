@@ -5,7 +5,7 @@
  * Address:	80127974
  * Size:	000044
  */
-void Game::EnemyAnimatorBase::__ct(void)
+void Game::EnemyAnimatorBase::EnemyAnimatorBase()
 {
 	/*
 	.loc_0x0:
@@ -31,20 +31,10 @@ void Game::EnemyAnimatorBase::__ct(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000090
- */
-void Game::EnemyAnimatorBase::animateCommon(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801279B8
  * Size:	000124
  */
-void Game::EnemyAnimatorBase::animate((float))
+void Game::EnemyAnimatorBase::animate(float)
 {
 	/*
 	.loc_0x0:
@@ -137,7 +127,7 @@ void Game::EnemyAnimatorBase::animate((float))
  * Address:	80127ADC
  * Size:	000124
  */
-void Game::EnemyAnimatorBase::animate((int, float))
+void Game::EnemyAnimatorBase::animate(int, float)
 {
 	/*
 	.loc_0x0:

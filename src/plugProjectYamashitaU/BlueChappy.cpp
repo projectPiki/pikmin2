@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012BBF4
  * Size:	000144
  */
-void Game::BlueChappy::Obj::__ct(void)
+void Game::BlueChappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -114,7 +104,7 @@ void Game::BlueChappy::Obj::__ct(void)
  * Address:	8012BD38
  * Size:	0002B0
  */
-void Game::BlueChappy::Obj::changeMaterial(void)
+void Game::BlueChappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -302,7 +292,7 @@ void Game::BlueChappy::Obj::changeMaterial(void)
  * Address:	8012BFE8
  * Size:	000008
  */
-void Game::BlueChappy::Obj::getEnemyTypeID(void)
+void Game::BlueChappy::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:

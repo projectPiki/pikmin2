@@ -5,7 +5,7 @@
  * Address:	80127884
  * Size:	00005C
  */
-void Game::InteractFarmKarero::actEnemy((Game::EnemyBase*))
+void Game::InteractFarmKarero::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -40,7 +40,7 @@ void Game::InteractFarmKarero::actEnemy((Game::EnemyBase*))
  * Address:	801278E0
  * Size:	000058
  */
-void Game::InteractFarmHaero::actEnemy((Game::EnemyBase*))
+void Game::InteractFarmHaero::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -74,7 +74,7 @@ void Game::InteractFarmHaero::actEnemy((Game::EnemyBase*))
  * Address:	80127938
  * Size:	00003C
  */
-void Game::InteractDope::actEnemy((Game::EnemyBase*))
+void Game::InteractDope::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:

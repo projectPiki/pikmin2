@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012C378
  * Size:	000154
  */
-void Game::YellowChappy::Obj::__ct(void)
+void Game::YellowChappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -118,7 +108,7 @@ void Game::YellowChappy::Obj::__ct(void)
  * Address:	8012C4CC
  * Size:	000048
  */
-void Game::YellowChappy::Obj::onInit((Game::CreatureInitArg*))
+void Game::YellowChappy::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -148,7 +138,7 @@ void Game::YellowChappy::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8012C514
  * Size:	0001B0
  */
-void Game::YellowChappy::Obj::doUpdateCommon(void)
+void Game::YellowChappy::Obj::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -284,7 +274,7 @@ void Game::YellowChappy::Obj::doUpdateCommon(void)
  * Address:	8012C6C4
  * Size:	000040
  */
-void Game::YellowChappy::Obj::onKill((Game::CreatureKillArg*))
+void Game::YellowChappy::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -312,7 +302,7 @@ void Game::YellowChappy::Obj::onKill((Game::CreatureKillArg*))
  * Address:	8012C704
  * Size:	000068
  */
-void Game::YellowChappy::Obj::createEffect(void)
+void Game::YellowChappy::Obj::createEffect()
 {
 	/*
 	.loc_0x0:
@@ -349,20 +339,10 @@ void Game::YellowChappy::Obj::createEffect(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000080
- */
-void efx::TChaseMtx3::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012C76C
  * Size:	0000B4
  */
-void Game::YellowChappy::Obj::setupEffect(void)
+void Game::YellowChappy::Obj::setupEffect()
 {
 	/*
 	.loc_0x0:
@@ -423,7 +403,7 @@ void Game::YellowChappy::Obj::setupEffect(void)
  * Address:	8012C820
  * Size:	000028
  */
-void Game::YellowChappy::Obj::doStartMovie(void)
+void Game::YellowChappy::Obj::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -445,7 +425,7 @@ void Game::YellowChappy::Obj::doStartMovie(void)
  * Address:	8012C848
  * Size:	000004
  */
-void Game::YellowChappy::Obj::doEndMovie(void)
+void Game::YellowChappy::Obj::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -458,7 +438,7 @@ void Game::YellowChappy::Obj::doEndMovie(void)
  * Address:	8012C84C
  * Size:	0002B0
  */
-void Game::YellowChappy::Obj::changeMaterial(void)
+void Game::YellowChappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -646,7 +626,7 @@ void Game::YellowChappy::Obj::changeMaterial(void)
  * Address:	8012CAFC
  * Size:	00004C
  */
-void Game::YellowChappy::Obj::doStartWaitingBirthTypeDrop(void)
+void Game::YellowChappy::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -677,7 +657,7 @@ void Game::YellowChappy::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	8012CB48
  * Size:	00004C
  */
-void Game::YellowChappy::Obj::doFinishWaitingBirthTypeDrop(void)
+void Game::YellowChappy::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -708,7 +688,7 @@ void Game::YellowChappy::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	8012CB94
  * Size:	000004
  */
-void efx::TSimple1::forceKill(void)
+void efx::TSimple1::forceKill()
 {
 	/*
 	.loc_0x0:
@@ -721,7 +701,7 @@ void efx::TSimple1::forceKill(void)
  * Address:	8012CB98
  * Size:	000004
  */
-void efx::TSimple1::fade(void)
+void efx::TSimple1::fade()
 {
 	/*
 	.loc_0x0:
@@ -734,7 +714,7 @@ void efx::TSimple1::fade(void)
  * Address:	8012CB9C
  * Size:	000008
  */
-void Game::YellowChappy::Obj::getEnemyTypeID(void)
+void Game::YellowChappy::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -748,7 +728,7 @@ void Game::YellowChappy::Obj::getEnemyTypeID(void)
  * Address:	8012CBA4
  * Size:	000014
  */
-void @752 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@752 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -765,7 +745,7 @@ void @752 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8012CBB8
  * Size:	000014
  */
-void @752 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@752 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -782,7 +762,7 @@ void @752 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8012CBCC
  * Size:	000014
  */
-void @752 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@752 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -799,7 +779,7 @@ void @752 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8012CBE0
  * Size:	000014
  */
-void @752 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@752 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -816,7 +796,7 @@ void @752 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8012CBF4
  * Size:	000014
  */
-void @752 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@752 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -833,7 +813,7 @@ void @752 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8012CC08
  * Size:	000014
  */
-void @752 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@752 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:

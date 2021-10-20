@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80119784
  * Size:	000050
  */
-void Game::Chappy::Mgr::__ct((int, unsigned char))
+void Game::Chappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Chappy::Mgr::__ct((int, unsigned char))
  * Address:	801197D4
  * Size:	0000B0
  */
-void Game::ChappyBase::Mgr::__dt(void)
+void Game::ChappyBase::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -107,7 +97,7 @@ void Game::ChappyBase::Mgr::__dt(void)
  * Address:	80119884
  * Size:	00006C
  */
-void Game::Chappy::Mgr::loadTexData(void)
+void Game::Chappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -146,7 +136,7 @@ void Game::Chappy::Mgr::loadTexData(void)
  * Address:	801198F0
  * Size:	000048
  */
-void Game::Chappy::Mgr::doAlloc(void)
+void Game::Chappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -180,7 +170,7 @@ void Game::Chappy::Mgr::doAlloc(void)
  * Address:	80119938
  * Size:	00012C
  */
-void Game::ChappyBase::Parms::__ct(void)
+void Game::ChappyBase::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -267,7 +257,7 @@ void Game::ChappyBase::Parms::__ct(void)
  * Address:	80119A64
  * Size:	000050
  */
-void Game::ChappyBase::Parms::read((Stream&))
+void Game::ChappyBase::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -299,7 +289,7 @@ void Game::ChappyBase::Parms::read((Stream&))
  * Address:	80119AB4
  * Size:	0000C8
  */
-void Game::Chappy::Mgr::__dt(void)
+void Game::Chappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -365,7 +355,7 @@ void Game::Chappy::Mgr::__dt(void)
  * Address:	80119B7C
  * Size:	000008
  */
-void Game::Chappy::Mgr::getEnemyTypeID(void)
+void Game::Chappy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -379,7 +369,7 @@ void Game::Chappy::Mgr::getEnemyTypeID(void)
  * Address:	80119B84
  * Size:	000060
  */
-void Game::Chappy::Mgr::createObj((int))
+void Game::Chappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -415,7 +405,7 @@ void Game::Chappy::Mgr::createObj((int))
  * Address:	80119BE4
  * Size:	000010
  */
-void Game::Chappy::Mgr::getEnemy((int))
+void Game::Chappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -431,7 +421,7 @@ void Game::Chappy::Mgr::getEnemy((int))
  * Address:	80119BF4
  * Size:	000008
  */
-void @4 @Game::Chappy::Mgr::__dt(void)
+void Game::Chappy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

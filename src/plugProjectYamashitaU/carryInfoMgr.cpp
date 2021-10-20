@@ -2,36 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void CarryInfo::CarryInfo()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void CarryInfo::appear()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011AFD0
  * Size:	00000C
  */
@@ -43,16 +13,6 @@ void CarryInfo::disappear()
 	  stb       r0, 0xC(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00001C
- */
-void CarryInfo::hide()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -254,16 +214,6 @@ void CarryInfo::update(const CarryInfoParam&)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
- */
-void CarryInfo::initDraw(Graphics&)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -942,16 +892,6 @@ void CarryInfo::drawNumberPrim(Graphics&, float, float, int, Color4&, float)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000004
- */
-void CarryInfo::debugDraw(Graphics&, CarryInfoParam&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011BBC8
  * Size:	000004
  */
@@ -1019,16 +959,6 @@ void CarryInfoList::draw(Graphics&)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000004
- */
-void CarryInfoList::debugDraw(Graphics&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011BC44
  * Size:	00003C
  */
@@ -1052,26 +982,6 @@ void PokoInfoOwner::getCarryInfoParam(CarryInfoParam&)
 	  stw       r0, 0x20(r4)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void PokoInfoOwner::start(CarryInfoList*, const Vector3<float>&, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void PokoInfoOwner::update()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1588,16 +1498,6 @@ void CarryInfoMgr::appear(CarryInfoOwner*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000038
- */
-void CarryInfoMgr::disappear(CarryInfoOwner*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011C218
  * Size:	000098
  */
@@ -1887,36 +1787,6 @@ void CarryInfoMgr::updatePokoInfoOwners()
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void CarryInfoMgr::getActiveCarryInfoListNum()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void CarryInfoMgr::getInactiveCarryInfoListNum()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
- */
-void CarryInfoMgr::drawDebugInfo(Graphics&, int, int)
-{
-	// UNUSED FUNCTION
 }
 
 /*

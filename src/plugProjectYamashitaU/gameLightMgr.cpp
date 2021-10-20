@@ -2,30 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void Game::_Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001FC
- */
-void Game::calcLightColor(Color4*, Color4&, Color4&, float)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011CCE0
  * Size:	000654
  */
-void Game::GameLightTimeSetting::__ct(void)
+void Game::GameLightTimeSetting::GameLightTimeSetting()
 {
 	/*
 	.loc_0x0:
@@ -444,7 +424,7 @@ void Game::GameLightTimeSetting::__ct(void)
  * Address:	8011D334
  * Size:	0001D4
  */
-void Game::GameFogSetting::__ct(void)
+void Game::GameFogSetting::GameFogSetting()
 {
 	/*
 	.loc_0x0:
@@ -570,20 +550,10 @@ void Game::GameFogSetting::__ct(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C0
- */
-void Game::GameLightTimeSetting::read((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011D508
  * Size:	000020
  */
-void Game::GameShadowSetting::read((Stream&))
+void Game::GameShadowSetting::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -603,7 +573,7 @@ void Game::GameShadowSetting::read((Stream&))
  * Address:	8011D528
  * Size:	000044
  */
-void Game::GameFogSetting::read((Stream&))
+void Game::GameFogSetting::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -632,7 +602,7 @@ void Game::GameFogSetting::read((Stream&))
  * Address:	8011D56C
  * Size:	000020
  */
-void Game::GameLightSettingBase::read((Stream&))
+void Game::GameLightSettingBase::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -649,20 +619,10 @@ void Game::GameLightSettingBase::read((Stream&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0001A8
- */
-void Game::GameLightSunSetting::__ct((char*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011D58C
  * Size:	000060
  */
-void Game::GameLightTimeSetting::__dt(void)
+void Game::GameLightTimeSetting::~GameLightTimeSetting()
 {
 	/*
 	.loc_0x0:
@@ -697,20 +657,10 @@ void Game::GameLightTimeSetting::__dt(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E8
- */
-void Game::GameLightSunSetting::read((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011D5EC
  * Size:	000738
  */
-void Game::GameLightSpotSetting::__ct((char*))
+void Game::GameLightSpotSetting::GameLightSpotSetting(char*)
 {
 	/*
 	.loc_0x0:
@@ -1181,20 +1131,10 @@ void Game::GameLightSpotSetting::__ct((char*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000CC
- */
-void Game::GameLightSpotSetting::read((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011DD24
  * Size:	000044
  */
-void Game::GameSpotLightSetting::read((Stream&))
+void Game::GameSpotLightSetting::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1223,7 +1163,7 @@ void Game::GameSpotLightSetting::read((Stream&))
  * Address:	8011DD68
  * Size:	0001E0
  */
-void Game::GameLightMgrSetting::__ct(void)
+void Game::GameLightMgrSetting::GameLightMgrSetting()
 {
 	/*
 	.loc_0x0:
@@ -1357,7 +1297,7 @@ void Game::GameLightMgrSetting::__ct(void)
  * Address:	8011DF48
  * Size:	000060
  */
-void Game::GameLightSpotSetting::__dt(void)
+void Game::GameLightSpotSetting::~GameLightSpotSetting()
 {
 	/*
 	.loc_0x0:
@@ -1395,7 +1335,7 @@ void Game::GameLightSpotSetting::__dt(void)
  * Address:	8011DFA8
  * Size:	00007C
  */
-void Game::GameLightSunSetting::__dt(void)
+void Game::GameLightSunSetting::~GameLightSunSetting()
 {
 	/*
 	.loc_0x0:
@@ -1440,7 +1380,7 @@ void Game::GameLightSunSetting::__dt(void)
  * Address:	8011E024
  * Size:	000074
  */
-void Game::GameLightMgrSetting::updateNode(void)
+void Game::GameLightMgrSetting::updateNode()
 {
 	/*
 	.loc_0x0:
@@ -1485,7 +1425,7 @@ void Game::GameLightMgrSetting::updateNode(void)
  * Address:	8011E098
  * Size:	0002F0
  */
-void Game::GameLightMgrSetting::read((Stream&))
+void Game::GameLightMgrSetting::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1699,7 +1639,7 @@ void Game::GameLightMgrSetting::read((Stream&))
  * Address:	8011E388
  * Size:	0001E0
  */
-void Game::GameLightMgrSetting::readOldVersion((ID32, Stream&))
+void Game::GameLightMgrSetting::readOldVersion(ID32, Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1838,20 +1778,10 @@ void Game::GameLightMgrSetting::readOldVersion((ID32, Stream&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void Game::GameLightEventNode::start((Game::GameLightEventArg&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011E568
  * Size:	0001F4
  */
-void Game::GameLightEventNode::update((Game::GameLightMgr*))
+void Game::GameLightEventNode::update(Game::GameLightMgr*)
 {
 	/*
 	.loc_0x0:
@@ -2014,7 +1944,7 @@ void Game::GameLightEventNode::update((Game::GameLightMgr*))
  * Address:	8011E75C
  * Size:	00037C
  */
-void Game::GameLightEventNode::updateCommon((Game::GameLightMgr*, bool))
+void Game::GameLightEventNode::updateCommon(Game::GameLightMgr*, bool)
 {
 	/*
 	.loc_0x0:
@@ -2269,7 +2199,7 @@ void Game::GameLightEventNode::updateCommon((Game::GameLightMgr*, bool))
  * Address:	8011EAD8
  * Size:	000464
  */
-void Game::GameLightEventNode::calcColor((Color4*))
+void Game::GameLightEventNode::calcColor(Color4*)
 {
 	/*
 	.loc_0x0:
@@ -2642,7 +2572,7 @@ void Game::GameLightEventNode::calcColor((Color4*))
  * Address:	8011EF3C
  * Size:	000310
  */
-void Game::GameLightMgr::__ct((char*))
+void Game::GameLightMgr::GameLightMgr(char*)
 {
 	/*
 	.loc_0x0:
@@ -2862,7 +2792,7 @@ void Game::GameLightMgr::__ct((char*))
  * Address:	8011F24C
  * Size:	000060
  */
-void Game::GameLightEventNode::__dt(void)
+void Game::GameLightEventNode::~GameLightEventNode()
 {
 	/*
 	.loc_0x0:
@@ -2900,7 +2830,7 @@ void Game::GameLightEventNode::__dt(void)
  * Address:	8011F2AC
  * Size:	00009C
  */
-void Game::GameLightEventNode::__ct(void)
+void Game::GameLightEventNode::GameLightEventNode()
 {
 	/*
 	.loc_0x0:
@@ -2964,7 +2894,7 @@ void Vector3<float>::Vector3()
  * Address:	8011F34C
  * Size:	0000DC
  */
-void Game::GameLightMgrSetting::__dt(void)
+void Game::GameLightMgrSetting::~GameLightMgrSetting()
 {
 	/*
 	.loc_0x0:
@@ -3091,7 +3021,7 @@ void LightMgr::~LightMgr()
  * Address:	8011F4B8
  * Size:	00002C
  */
-void Game::GameLightMgr::start(void)
+void Game::GameLightMgr::start()
 {
 	/*
 	.loc_0x0:
@@ -3114,7 +3044,7 @@ void Game::GameLightMgr::start(void)
  * Address:	8011F4E4
  * Size:	0000BC
  */
-void Game::GameLightMgr::createEventLight((Game::GameLightEventArg&))
+void Game::GameLightMgr::createEventLight(Game::GameLightEventArg&)
 {
 	/*
 	.loc_0x0:
@@ -3175,7 +3105,7 @@ void Game::GameLightMgr::createEventLight((Game::GameLightEventArg&))
  * Address:	8011F5A0
  * Size:	000048
  */
-void Game::GameLightMgr::loadParm((Stream&))
+void Game::GameLightMgr::loadParm(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -3204,22 +3134,12 @@ void Game::GameLightMgr::loadParm((Stream&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void Game::GameLightMgr::loadParm((char*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011F5E8
  * Size:	001AE8
  */
-void Game::GameLightMgr::calcSetting((Game::GameLightTimeSetting*,
-                                      Game::GameLightTimeSetting*,
-                                      Game::GameLightTimeSetting*))
+void Game::GameLightMgr::calcSetting(Game::GameLightTimeSetting*,
+                                     Game::GameLightTimeSetting*,
+                                     Game::GameLightTimeSetting*)
 {
 	/*
 	.loc_0x0:
@@ -5149,7 +5069,7 @@ void Game::GameLightMgr::calcSetting((Game::GameLightTimeSetting*,
  * Address:	801210D0
  * Size:	0001F0
  */
-void Game::GameLightMgr::updateSunType(void)
+void Game::GameLightMgr::updateSunType()
 {
 	/*
 	.loc_0x0:
@@ -5303,7 +5223,7 @@ void Game::GameLightMgr::updateSunType(void)
  * Address:	801212C0
  * Size:	000C00
  */
-void Game::GameLightMgr::updateSpotType(void)
+void Game::GameLightMgr::updateSpotType()
 {
 	/*
 	.loc_0x0:
@@ -6164,20 +6084,10 @@ void Game::GameLightMgr::updateSpotType(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void Game::GameLightMgr::updateEventLight(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80121EC0
  * Size:	000094
  */
-void Game::GameLightMgr::update(void)
+void Game::GameLightMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -6236,7 +6146,7 @@ void Game::GameLightMgr::update(void)
  * Address:	80121F54
  * Size:	000054
  */
-void Game::GameLightMgr::set((Graphics&))
+void Game::GameLightMgr::set(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -6271,7 +6181,7 @@ void Game::GameLightMgr::set((Graphics&))
  * Address:	80121FA8
  * Size:	0002C0
  */
-void Game::GameLightMgr::updatePosition((Viewport*))
+void Game::GameLightMgr::updatePosition(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -6469,7 +6379,7 @@ void Game::GameLightMgr::updatePosition((Viewport*))
  * Address:	80122268
  * Size:	000154
  */
-void Game::GameLightMgr::__dt(void)
+void Game::GameLightMgr::~GameLightMgr()
 {
 	/*
 	.loc_0x0:

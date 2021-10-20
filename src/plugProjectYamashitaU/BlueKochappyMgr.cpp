@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012CC1C
  * Size:	000050
  */
-void Game::BlueKochappy::Mgr::__ct((int, unsigned char))
+void Game::BlueKochappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::BlueKochappy::Mgr::__ct((int, unsigned char))
  * Address:	8012CC6C
  * Size:	000048
  */
-void Game::BlueKochappy::Mgr::doAlloc(void)
+void Game::BlueKochappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::BlueKochappy::Mgr::doAlloc(void)
  * Address:	8012CCB4
  * Size:	000048
  */
-void Game::BlueKochappy::Mgr::loadTexData(void)
+void Game::BlueKochappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -109,7 +99,7 @@ void Game::BlueKochappy::Mgr::loadTexData(void)
  * Address:	8012CCFC
  * Size:	0000C8
  */
-void Game::BlueKochappy::Mgr::__dt(void)
+void Game::BlueKochappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -175,7 +165,7 @@ void Game::BlueKochappy::Mgr::__dt(void)
  * Address:	8012CDC4
  * Size:	000008
  */
-void Game::BlueKochappy::Mgr::getChangeTexture(void)
+void Game::BlueKochappy::Mgr::getChangeTexture()
 {
 	/*
 	.loc_0x0:
@@ -189,7 +179,7 @@ void Game::BlueKochappy::Mgr::getChangeTexture(void)
  * Address:	8012CDCC
  * Size:	000008
  */
-void Game::BlueKochappy::Mgr::getEnemyTypeID(void)
+void Game::BlueKochappy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -203,7 +193,7 @@ void Game::BlueKochappy::Mgr::getEnemyTypeID(void)
  * Address:	8012CDD4
  * Size:	000060
  */
-void Game::BlueKochappy::Mgr::createObj((int))
+void Game::BlueKochappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -239,7 +229,7 @@ void Game::BlueKochappy::Mgr::createObj((int))
  * Address:	8012CE34
  * Size:	0000EC
  */
-void Game::BlueKochappy::Obj::__dt(void)
+void Game::BlueKochappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -314,7 +304,7 @@ void Game::BlueKochappy::Obj::__dt(void)
  * Address:	8012CF20
  * Size:	000010
  */
-void Game::BlueKochappy::Mgr::getEnemy((int))
+void Game::BlueKochappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -330,7 +320,7 @@ void Game::BlueKochappy::Mgr::getEnemy((int))
  * Address:	8012CF30
  * Size:	000008
  */
-void @4 @Game::BlueKochappy::Mgr::__dt(void)
+void Game::BlueKochappy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void Game::_Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012A244
  * Size:	000094
  */
-void Game::EnemyParmsBase::loadSettingFile((JKRArchive*, char*))
+void Game::EnemyParmsBase::loadSettingFile(JKRArchive*, char*)
 {
 	/*
 	.loc_0x0:
@@ -67,20 +57,10 @@ void Game::EnemyParmsBase::loadSettingFile((JKRArchive*, char*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void Game::EnemyParmsBase::loadSettingFile((char*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012A2D8
  * Size:	000024
  */
-void Game::EnemyParmsBase::setDebugParm((unsigned long))
+void Game::EnemyParmsBase::setDebugParm(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -101,7 +81,7 @@ void Game::EnemyParmsBase::setDebugParm((unsigned long))
  * Address:	8012A2FC
  * Size:	000024
  */
-void Game::EnemyParmsBase::resetDebugParm((unsigned long))
+void Game::EnemyParmsBase::resetDebugParm(unsigned long)
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801122B4
  * Size:	000050
  */
-void Game::Kochappy::Mgr::__ct((int, unsigned char))
+void Game::Kochappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::Kochappy::Mgr::__ct((int, unsigned char))
  * Address:	80112304
  * Size:	0000B0
  */
-void Game::KochappyBase::Mgr::__dt(void)
+void Game::KochappyBase::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -107,7 +97,7 @@ void Game::KochappyBase::Mgr::__dt(void)
  * Address:	801123B4
  * Size:	000048
  */
-void Game::Kochappy::Mgr::doAlloc(void)
+void Game::Kochappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -141,7 +131,7 @@ void Game::Kochappy::Mgr::doAlloc(void)
  * Address:	801123FC
  * Size:	000118
  */
-void Game::KochappyBase::Parms::__ct(void)
+void Game::KochappyBase::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -223,7 +213,7 @@ void Game::KochappyBase::Parms::__ct(void)
  * Address:	80112514
  * Size:	000048
  */
-void Game::Kochappy::Mgr::loadTexData(void)
+void Game::Kochappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -253,7 +243,7 @@ void Game::Kochappy::Mgr::loadTexData(void)
  * Address:	8011255C
  * Size:	0000C8
  */
-void Game::Kochappy::Mgr::__dt(void)
+void Game::Kochappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -319,7 +309,7 @@ void Game::Kochappy::Mgr::__dt(void)
  * Address:	80112624
  * Size:	000008
  */
-void Game::Kochappy::Mgr::getEnemyTypeID(void)
+void Game::Kochappy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -333,7 +323,7 @@ void Game::Kochappy::Mgr::getEnemyTypeID(void)
  * Address:	8011262C
  * Size:	000060
  */
-void Game::Kochappy::Mgr::createObj((int))
+void Game::Kochappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +359,7 @@ void Game::Kochappy::Mgr::createObj((int))
  * Address:	8011268C
  * Size:	000010
  */
-void Game::Kochappy::Mgr::getEnemy((int))
+void Game::Kochappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -385,7 +375,7 @@ void Game::Kochappy::Mgr::getEnemy((int))
  * Address:	8011269C
  * Size:	000050
  */
-void Game::KochappyBase::Parms::read((Stream&))
+void Game::KochappyBase::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -417,7 +407,7 @@ void Game::KochappyBase::Parms::read((Stream&))
  * Address:	801126EC
  * Size:	000008
  */
-void @4 @Game::Kochappy::Mgr::__dt(void)
+void Game::Kochappy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

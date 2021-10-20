@@ -5,7 +5,7 @@
  * Address:	801275B0
  * Size:	000098
  */
-void Game::Pelplant::Generator::__ct(void)
+void Game::Pelplant::Generator::Generator()
 {
 	/*
 	.loc_0x0:
@@ -55,7 +55,7 @@ void Game::Pelplant::Generator::__ct(void)
  * Address:	80127648
  * Size:	00008C
  */
-void Game::Pelplant::Generator::doRead((Stream&))
+void Game::Pelplant::Generator::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +106,7 @@ void Game::Pelplant::Generator::doRead((Stream&))
  * Address:	801276D4
  * Size:	00000C
  */
-void Game::Pelplant::Generator::getLatestVersion(void)
+void Game::Pelplant::Generator::getLatestVersion()
 {
 	/*
 	.loc_0x0:
@@ -121,7 +121,7 @@ void Game::Pelplant::Generator::getLatestVersion(void)
  * Address:	801276E0
  * Size:	000064
  */
-void Game::Pelplant::Generator::doReadOldVersion((Stream&))
+void Game::Pelplant::Generator::doReadOldVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -162,7 +162,7 @@ void Game::Pelplant::Generator::doReadOldVersion((Stream&))
  * Address:	80127744
  * Size:	0000C8
  */
-void Game::Pelplant::Generator::doWrite((Stream&))
+void Game::Pelplant::Generator::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -224,7 +224,7 @@ void Game::Pelplant::Generator::doWrite((Stream&))
  * Address:	8012780C
  * Size:	000070
  */
-void Game::Pelplant::Generator::__dt(void)
+void Game::Pelplant::Generator::~Generator()
 {
 	/*
 	.loc_0x0:
@@ -268,7 +268,7 @@ void Game::Pelplant::Generator::__dt(void)
  * Address:	8012787C
  * Size:	000008
  */
-void Game::Pelplant::Generator::getInitialParam(void)
+void Game::Pelplant::Generator::getInitialParam()
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8010AB38
  * Size:	0001E0
  */
-void Game::Pelplant::FSM::init((Game::EnemyBase*))
+void Game::Pelplant::FSM::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -164,20 +154,10 @@ void Game::Pelplant::FSM::init((Game::EnemyBase*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000040
- */
-void Game::Pelplant::StateBlendAnim::__ct((int, int, int, int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8010AD18
  * Size:	00003C
  */
-void Game::Pelplant::StateBlendAnim::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pelplant::StateBlendAnim::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -204,7 +184,7 @@ void Game::Pelplant::StateBlendAnim::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8010AD54
  * Size:	00007C
  */
-void Game::Pelplant::StateBlendAnim::exec((Game::EnemyBase*))
+void Game::Pelplant::StateBlendAnim::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -251,7 +231,7 @@ void Game::Pelplant::StateBlendAnim::exec((Game::EnemyBase*))
  * Address:	8010ADD0
  * Size:	000098
  */
-void Game::Pelplant::StateWither::__ct((int, int, int, int))
+void Game::Pelplant::StateWither::StateWither(int, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -309,7 +289,7 @@ void Game::Pelplant::StateWither::__ct((int, int, int, int))
  * Address:	8010AE68
  * Size:	000070
  */
-void Game::Pelplant::StateWither::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pelplant::StateWither::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -349,7 +329,7 @@ void Game::Pelplant::StateWither::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8010AED8
  * Size:	00007C
  */
-void Game::Pelplant::StateWither::exec((Game::EnemyBase*))
+void Game::Pelplant::StateWither::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -396,7 +376,7 @@ void Game::Pelplant::StateWither::exec((Game::EnemyBase*))
  * Address:	8010AF54
  * Size:	000028
  */
-void Game::Pelplant::StateWither::cleanup((Game::EnemyBase*))
+void Game::Pelplant::StateWither::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -418,7 +398,7 @@ void Game::Pelplant::StateWither::cleanup((Game::EnemyBase*))
  * Address:	8010AF7C
  * Size:	000088
  */
-void Game::Pelplant::StateWait::__ct((int, int))
+void Game::Pelplant::StateWait::StateWait(int, int)
 {
 	/*
 	.loc_0x0:
@@ -472,7 +452,7 @@ void Game::Pelplant::StateWait::__ct((int, int))
  * Address:	8010B004
  * Size:	000144
  */
-void Game::Pelplant::StateWait::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pelplant::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -575,7 +555,7 @@ void Game::Pelplant::StateWait::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8010B148
  * Size:	000278
  */
-void Game::Pelplant::StateWait::exec((Game::EnemyBase*))
+void Game::Pelplant::StateWait::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -779,7 +759,7 @@ void Game::Pelplant::StateWait::exec((Game::EnemyBase*))
  * Address:	8010B3C0
  * Size:	000004
  */
-void Game::Pelplant::StateWait::cleanup((Game::EnemyBase*))
+void Game::Pelplant::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -792,7 +772,7 @@ void Game::Pelplant::StateWait::cleanup((Game::EnemyBase*))
  * Address:	8010B3C4
  * Size:	000044
  */
-void Game::Pelplant::StateGrow::__ct((int, int, int))
+void Game::Pelplant::StateGrow::StateGrow(int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -821,7 +801,7 @@ void Game::Pelplant::StateGrow::__ct((int, int, int))
  * Address:	8010B408
  * Size:	0002E0
  */
-void Game::Pelplant::StateGrow::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pelplant::StateGrow::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1031,7 +1011,7 @@ void Game::Pelplant::StateGrow::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8010B6E8
  * Size:	000060
  */
-void Game::Pelplant::StateGrow::exec((Game::EnemyBase*))
+void Game::Pelplant::StateGrow::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1071,7 +1051,7 @@ void Game::Pelplant::StateGrow::exec((Game::EnemyBase*))
  * Address:	8010B748
  * Size:	000004
  */
-void Game::Pelplant::StateGrow::cleanup((Game::EnemyBase*))
+void Game::Pelplant::StateGrow::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1084,7 +1064,7 @@ void Game::Pelplant::StateGrow::cleanup((Game::EnemyBase*))
  * Address:	8010B74C
  * Size:	000040
  */
-void Game::Pelplant::StateDamage::__ct((int, int))
+void Game::Pelplant::StateDamage::StateDamage(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1112,7 +1092,7 @@ void Game::Pelplant::StateDamage::__ct((int, int))
  * Address:	8010B78C
  * Size:	00008C
  */
-void Game::Pelplant::StateDamage::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pelplant::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1167,7 +1147,7 @@ void Game::Pelplant::StateDamage::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8010B818
  * Size:	000068
  */
-void Game::Pelplant::StateDamage::exec((Game::EnemyBase*))
+void Game::Pelplant::StateDamage::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1207,7 +1187,7 @@ void Game::Pelplant::StateDamage::exec((Game::EnemyBase*))
  * Address:	8010B880
  * Size:	000010
  */
-void Game::Pelplant::StateDamage::cleanup((Game::EnemyBase*))
+void Game::Pelplant::StateDamage::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1223,7 +1203,7 @@ void Game::Pelplant::StateDamage::cleanup((Game::EnemyBase*))
  * Address:	8010B890
  * Size:	000040
  */
-void Game::Pelplant::StateDead::__ct((int, int))
+void Game::Pelplant::StateDead::StateDead(int, int)
 {
 	/*
 	.loc_0x0:
@@ -1251,7 +1231,7 @@ void Game::Pelplant::StateDead::__ct((int, int))
  * Address:	8010B8D0
  * Size:	0000B4
  */
-void Game::Pelplant::StateDead::init((Game::EnemyBase*, Game::StateArg*))
+void Game::Pelplant::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1318,7 +1298,7 @@ void Game::Pelplant::StateDead::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	8010B984
  * Size:	000068
  */
-void Game::Pelplant::StateDead::exec((Game::EnemyBase*))
+void Game::Pelplant::StateDead::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1360,7 +1340,7 @@ void Game::Pelplant::StateDead::exec((Game::EnemyBase*))
  * Address:	8010B9EC
  * Size:	000004
  */
-void Game::Pelplant::StateDead::cleanup((Game::EnemyBase*))
+void Game::Pelplant::StateDead::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1373,7 +1353,7 @@ void Game::Pelplant::StateDead::cleanup((Game::EnemyBase*))
  * Address:	8010B9F0
  * Size:	000004
  */
-void efx::TSimple3::forceKill(void)
+void efx::TSimple3::forceKill()
 {
 	/*
 	.loc_0x0:
@@ -1386,7 +1366,7 @@ void efx::TSimple3::forceKill(void)
  * Address:	8010B9F4
  * Size:	000004
  */
-void efx::TSimple3::fade(void)
+void efx::TSimple3::fade()
 {
 	/*
 	.loc_0x0:
@@ -1399,7 +1379,7 @@ void efx::TSimple3::fade(void)
  * Address:	8010B9F8
  * Size:	000004
  */
-void efx::TSimple2::forceKill(void)
+void efx::TSimple2::forceKill()
 {
 	/*
 	.loc_0x0:
@@ -1412,7 +1392,7 @@ void efx::TSimple2::forceKill(void)
  * Address:	8010B9FC
  * Size:	000004
  */
-void efx::TSimple2::fade(void)
+void efx::TSimple2::fade()
 {
 	/*
 	.loc_0x0:

@@ -2,60 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000044
- */
-void EffectAnimator::Obj::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-void EffectAnimator::Obj::setup((EffectAnimator::KeyData*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
- */
-void EffectAnimator::Obj::calcValue((float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void EffectAnimator::ObjMgr::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void EffectAnimator::ObjMgr::update((efx::TKechappyTest*, float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80132CB4
  * Size:	000004
  */
-void EffectAnimator::Obj::update((efx::TKechappyTest*, float))
+void EffectAnimator::Obj::update(efx::TKechappyTest*, float)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +18,7 @@ void EffectAnimator::Obj::update((efx::TKechappyTest*, float))
  * Address:	80132CB8
  * Size:	0002F8
  */
-void EffectAnimator::ObjMgr::setup((EffectAnimator::ObjMgrData*))
+void EffectAnimator::ObjMgr::setup(EffectAnimator::ObjMgrData*)
 {
 	/*
 	.loc_0x0:
@@ -312,7 +262,7 @@ void EffectAnimator::ObjMgr::setup((EffectAnimator::ObjMgrData*))
  * Address:	80132FB0
  * Size:	000060
  */
-void EffectAnimator::Obj::__dt(void)
+void EffectAnimator::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -350,7 +300,7 @@ void EffectAnimator::Obj::__dt(void)
  * Address:	80133010
  * Size:	00000C
  */
-void EffectAnimator::Mgr::__ct(void)
+void EffectAnimator::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -365,7 +315,7 @@ void EffectAnimator::Mgr::__ct(void)
  * Address:	8013301C
  * Size:	0000B4
  */
-void EffectAnimator::Mgr::setup(void)
+void EffectAnimator::Mgr::setup()
 {
 	/*
 	.loc_0x0:
@@ -430,7 +380,7 @@ void EffectAnimator::Mgr::setup(void)
  * Address:	801330D0
  * Size:	0000E4
  */
-void EffectAnimator::Mgr::update((efx::TKechappyTest*, int, float))
+void EffectAnimator::Mgr::update(efx::TKechappyTest*, int, float)
 {
 	/*
 	.loc_0x0:
@@ -509,7 +459,7 @@ void EffectAnimator::Mgr::update((efx::TKechappyTest*, int, float))
  * Address:	801331B4
  * Size:	000070
  */
-void EffectAnimator::LengthObj::__dt(void)
+void EffectAnimator::LengthObj::~LengthObj()
 {
 	/*
 	.loc_0x0:
@@ -553,7 +503,7 @@ void EffectAnimator::LengthObj::__dt(void)
  * Address:	80133224
  * Size:	000118
  */
-void EffectAnimator::LengthObj::update((efx::TKechappyTest*, float))
+void EffectAnimator::LengthObj::update(efx::TKechappyTest*, float)
 {
 	/*
 	.loc_0x0:
@@ -647,7 +597,7 @@ void EffectAnimator::LengthObj::update((efx::TKechappyTest*, float))
  * Address:	8013333C
  * Size:	000070
  */
-void EffectAnimator::BristleObj::__dt(void)
+void EffectAnimator::BristleObj::~BristleObj()
 {
 	/*
 	.loc_0x0:
@@ -691,7 +641,7 @@ void EffectAnimator::BristleObj::__dt(void)
  * Address:	801333AC
  * Size:	000118
  */
-void EffectAnimator::BristleObj::update((efx::TKechappyTest*, float))
+void EffectAnimator::BristleObj::update(efx::TKechappyTest*, float)
 {
 	/*
 	.loc_0x0:
@@ -785,7 +735,7 @@ void EffectAnimator::BristleObj::update((efx::TKechappyTest*, float))
  * Address:	801334C4
  * Size:	000070
  */
-void EffectAnimator::VibrationObj::__dt(void)
+void EffectAnimator::VibrationObj::~VibrationObj()
 {
 	/*
 	.loc_0x0:
@@ -829,7 +779,7 @@ void EffectAnimator::VibrationObj::__dt(void)
  * Address:	80133534
  * Size:	000118
  */
-void EffectAnimator::VibrationObj::update((efx::TKechappyTest*, float))
+void EffectAnimator::VibrationObj::update(efx::TKechappyTest*, float)
 {
 	/*
 	.loc_0x0:

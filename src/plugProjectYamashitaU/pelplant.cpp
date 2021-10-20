@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80108300
  * Size:	0000B0
  */
-void Game::Pelplant::BlendAccelerationFunc::getValue((float))
+void Game::Pelplant::BlendAccelerationFunc::getValue(float)
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::Pelplant::BlendAccelerationFunc::getValue((float))
  * Address:	801083B0
  * Size:	0000B4
  */
-void birth__Q34Game8Pelplant3ObjFR10Vector3<float> f(void)
+void Game::Pelplant::Obj::birth(Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -139,20 +129,10 @@ void birth__Q34Game8Pelplant3ObjFR10Vector3<float> f(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void Game::Pelplant::Obj::setupFarmSetting(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80108464
  * Size:	000280
  */
-void Game::Pelplant::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::Pelplant::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -352,7 +332,7 @@ void Game::Pelplant::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	801086E4
  * Size:	000138
  */
-void Game::Pelplant::Obj::__ct(void)
+void Game::Pelplant::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -448,7 +428,7 @@ void Game::Pelplant::Obj::__ct(void)
  * Address:	8010881C
  * Size:	00004C
  */
-void Game::Pelplant::Obj::setFSM((Game::Pelplant::FSM*))
+void Game::Pelplant::Obj::setFSM(Game::Pelplant::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -479,7 +459,7 @@ void Game::Pelplant::Obj::setFSM((Game::Pelplant::FSM*))
  * Address:	80108868
  * Size:	00005C
  */
-void Game::EnemyBlendAnimatorBase::__dt(void)
+void Game::EnemyBlendAnimatorBase::~EnemyBlendAnimatorBase()
 {
 	/*
 	.loc_0x0:
@@ -518,7 +498,7 @@ void Game::EnemyBlendAnimatorBase::__dt(void)
  * Address:	801088C4
  * Size:	000034
  */
-void Game::Pelplant::Obj::doUpdate(void)
+void Game::Pelplant::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -543,7 +523,7 @@ void Game::Pelplant::Obj::doUpdate(void)
  * Address:	801088F8
  * Size:	000088
  */
-void Game::Pelplant::Obj::updateLODSphereRadius((int))
+void Game::Pelplant::Obj::updateLODSphereRadius(int)
 {
 	/*
 	.loc_0x0:
@@ -591,7 +571,7 @@ void Game::Pelplant::Obj::updateLODSphereRadius((int))
  * Address:	80108980
  * Size:	000004
  */
-void Game::Pelplant::Obj::doDirectDraw((Graphics&))
+void Game::Pelplant::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -604,7 +584,7 @@ void Game::Pelplant::Obj::doDirectDraw((Graphics&))
  * Address:	80108984
  * Size:	00018C
  */
-void Game::Pelplant::Obj::doDebugDraw((Graphics&))
+void Game::Pelplant::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -719,7 +699,7 @@ void Game::Pelplant::Obj::doDebugDraw((Graphics&))
  * Address:	80108B10
  * Size:	0000C0
  */
-void Game::Pelplant::Obj::getShadowParam((Game::ShadowParam&))
+void Game::Pelplant::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -787,7 +767,7 @@ void Game::Pelplant::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	80108BD0
  * Size:	000090
  */
-void Game::Pelplant::Obj::doAnimationUpdateAnimator(void)
+void Game::Pelplant::Obj::doAnimationUpdateAnimator()
 {
 	/*
 	.loc_0x0:
@@ -835,7 +815,7 @@ void Game::Pelplant::Obj::doAnimationUpdateAnimator(void)
  * Address:	80108C60
  * Size:	000058
  */
-void Game::Pelplant::Obj::getHeadScale(void)
+void Game::Pelplant::Obj::getHeadScale()
 {
 	/*
 	.loc_0x0:
@@ -868,20 +848,10 @@ void Game::Pelplant::Obj::getHeadScale(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void getNeckScale__Q34Game8Pelplant3ObjFP10Vector3<float>(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80108CB8
  * Size:	000198
  */
-void Game::Pelplant::Obj::doAnimation(void)
+void Game::Pelplant::Obj::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1005,7 +975,7 @@ void Game::Pelplant::Obj::doAnimation(void)
  * Address:	80108E50
  * Size:	000004
  */
-void Game::Pelplant::Obj::doSimulation((float))
+void Game::Pelplant::Obj::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -1018,7 +988,7 @@ void Game::Pelplant::Obj::doSimulation((float))
  * Address:	80108E54
  * Size:	0000F0
  */
-void Game::Pelplant::Obj::setPelletColor((unsigned short, bool))
+void Game::Pelplant::Obj::setPelletColor(unsigned short, bool)
 {
 	/*
 	.loc_0x0:
@@ -1104,7 +1074,7 @@ void Game::Pelplant::Obj::setPelletColor((unsigned short, bool))
  * Address:	80108F44
  * Size:	000190
  */
-void Game::Pelplant::Obj::changePelletColor(void)
+void Game::Pelplant::Obj::changePelletColor()
 {
 	/*
 	.loc_0x0:
@@ -1244,7 +1214,7 @@ void Game::Pelplant::Obj::changePelletColor(void)
  * Address:	801090D4
  * Size:	000110
  */
-void Game::Pelplant::Obj::attachPellet(void)
+void Game::Pelplant::Obj::attachPellet()
 {
 	/*
 	.loc_0x0:
@@ -1336,7 +1306,7 @@ void Game::Pelplant::Obj::attachPellet(void)
  * Address:	801091E4
  * Size:	000098
  */
-void Game::Pelplant::Obj::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::Pelplant::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -1388,7 +1358,7 @@ void Game::Pelplant::Obj::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	8010927C
  * Size:	00000C
  */
-void Game::Pelplant::Obj::isLivingThing(void)
+void Game::Pelplant::Obj::isLivingThing()
 {
 	/*
 	.loc_0x0:
@@ -1403,7 +1373,7 @@ void Game::Pelplant::Obj::isLivingThing(void)
  * Address:	80109288
  * Size:	000078
  */
-void Game::Pelplant::Obj::farmCallBack((Game::Creature*, float))
+void Game::Pelplant::Obj::farmCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -1450,20 +1420,10 @@ void Game::Pelplant::Obj::farmCallBack((Game::Creature*, float))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000030
- */
-void Game::Pelplant::Obj::addFarmPower((signed char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80109300
  * Size:	000060
  */
-void Game::Pelplant::Obj::onStickStart((Game::Creature*))
+void Game::Pelplant::Obj::onStickStart(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -1501,7 +1461,7 @@ void Game::Pelplant::Obj::onStickStart((Game::Creature*))
  * Address:	80109360
  * Size:	0000F0
  */
-void Game::Pelplant::Obj::headJointCallBack((J3DJoint*, int))
+void Game::Pelplant::Obj::headJointCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -1579,7 +1539,7 @@ void Game::Pelplant::Obj::headJointCallBack((J3DJoint*, int))
  * Address:	80109450
  * Size:	000104
  */
-void Game::Pelplant::Obj::neckJointCallBack((J3DJoint*, int))
+void Game::Pelplant::Obj::neckJointCallBack(J3DJoint*, int)
 {
 	/*
 	.loc_0x0:
@@ -1662,7 +1622,7 @@ void Game::Pelplant::Obj::neckJointCallBack((J3DJoint*, int))
  * Address:	80109554
  * Size:	000050
  */
-void Game::Pelplant::Mgr::__ct((int, unsigned char))
+void Game::Pelplant::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1694,7 +1654,7 @@ void Game::Pelplant::Mgr::__ct((int, unsigned char))
  * Address:	801095A4
  * Size:	000098
  */
-void Game::EnemyMgrBase::__dt(void)
+void Game::EnemyMgrBase::~EnemyMgrBase()
 {
 	/*
 	.loc_0x0:
@@ -1748,7 +1708,7 @@ void Game::EnemyMgrBase::__dt(void)
  * Address:	8010963C
  * Size:	000048
  */
-void Game::Pelplant::Mgr::doAlloc(void)
+void Game::Pelplant::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -1782,7 +1742,7 @@ void Game::Pelplant::Mgr::doAlloc(void)
  * Address:	80109684
  * Size:	000118
  */
-void Game::Pelplant::Parms::__ct(void)
+void Game::Pelplant::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -1866,7 +1826,7 @@ void Game::Pelplant::Parms::__ct(void)
  * Address:	8010979C
  * Size:	0001D4
  */
-void Game::EnemyParmsBase::__ct(void)
+void Game::EnemyParmsBase::EnemyParmsBase()
 {
 	/*
 	.loc_0x0:
@@ -1997,7 +1957,7 @@ void Game::EnemyParmsBase::__ct(void)
  * Address:	80109970
  * Size:	000AE0
  */
-void Game::EnemyParmsBase::Parms::__ct(void)
+void Game::EnemyParmsBase::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -2723,7 +2683,7 @@ void BitFlag<unsigned short>::BitFlag()
  * Address:	8010A460
  * Size:	000020
  */
-void Game::Pelplant::Mgr::birth((Game::EnemyBirthArg&))
+void Game::Pelplant::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	.loc_0x0:
@@ -2743,7 +2703,7 @@ void Game::Pelplant::Mgr::birth((Game::EnemyBirthArg&))
  * Address:	8010A480
  * Size:	0000D0
  */
-void Game::Pelplant::Obj::onInit((Game::CreatureInitArg*))
+void Game::Pelplant::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -2813,7 +2773,7 @@ void Game::Pelplant::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8010A550
  * Size:	000048
  */
-void Game::Pelplant::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
+void Game::Pelplant::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -2843,7 +2803,7 @@ void Game::Pelplant::Obj::doGetLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	8010A598
  * Size:	0000B0
  */
-void Game::Pelplant::Mgr::__dt(void)
+void Game::Pelplant::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -2903,7 +2863,7 @@ void Game::Pelplant::Mgr::__dt(void)
  * Address:	8010A648
  * Size:	000008
  */
-void Game::Pelplant::Mgr::getEnemyTypeID(void)
+void Game::Pelplant::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -2917,7 +2877,7 @@ void Game::Pelplant::Mgr::getEnemyTypeID(void)
  * Address:	8010A650
  * Size:	000060
  */
-void Game::Pelplant::Mgr::createObj((int))
+void Game::Pelplant::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -2953,7 +2913,7 @@ void Game::Pelplant::Mgr::createObj((int))
  * Address:	8010A6B0
  * Size:	0000BC
  */
-void Game::Pelplant::Obj::__dt(void)
+void Game::Pelplant::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -3016,7 +2976,7 @@ void Game::Pelplant::Obj::__dt(void)
  * Address:	8010A76C
  * Size:	000010
  */
-void Game::Pelplant::Mgr::getEnemy((int))
+void Game::Pelplant::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -3032,7 +2992,7 @@ void Game::Pelplant::Mgr::getEnemy((int))
  * Address:	8010A77C
  * Size:	000004
  */
-void Game::Pelplant::Mgr::initStoneSetting(void)
+void Game::Pelplant::Mgr::initStoneSetting()
 {
 	/*
 	.loc_0x0:
@@ -3045,7 +3005,7 @@ void Game::Pelplant::Mgr::initStoneSetting(void)
  * Address:	8010A780
  * Size:	00002C
  */
-void Game::EnemyMgrBase::get((void*))
+void Game::EnemyMgrBase::get(void*)
 {
 	/*
 	.loc_0x0:
@@ -3068,7 +3028,7 @@ void Game::EnemyMgrBase::get((void*))
  * Address:	8010A7AC
  * Size:	000008
  */
-void Game::EnemyMgrBase::getJ3DModelData( const
+void Game::EnemyMgrBase::getJ3DModelData() const
 {
 	/*
 	.loc_0x0:
@@ -3082,7 +3042,7 @@ void Game::EnemyMgrBase::getJ3DModelData( const
  * Address:	8010A7B4
  * Size:	000008
  */
-void Game::EnemyMgrBase::getGenerator( const
+void Game::EnemyMgrBase::getGenerator() const
 {
 	/*
 	.loc_0x0:
@@ -3096,7 +3056,7 @@ void Game::EnemyMgrBase::getGenerator( const
  * Address:	8010A7BC
  * Size:	000008
  */
-void Game::EnemyMgrBase::getMaxObjects( const
+void Game::EnemyMgrBase::getMaxObjects() const
 {
 	/*
 	.loc_0x0:
@@ -3110,7 +3070,7 @@ void Game::EnemyMgrBase::getMaxObjects( const
  * Address:	8010A7C4
  * Size:	000004
  */
-void GenericObjectMgr::doSimpleDraw(Viewport *)
+void GenericObjectMgr::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -3191,7 +3151,7 @@ void GenericObjectMgr::getMatrixLoadType()
  * Address:	8010A7E8
  * Size:	000008
  */
-void Game::EnemyMgrBase::getEnd(void)
+void Game::EnemyMgrBase::getEnd()
 {
 	/*
 	.loc_0x0:
@@ -3205,7 +3165,7 @@ void Game::EnemyMgrBase::getEnd(void)
  * Address:	8010A7F0
  * Size:	000030
  */
-void Game::EnemyMgrBase::getStart(void)
+void Game::EnemyMgrBase::getStart()
 {
 	/*
 	.loc_0x0:
@@ -3229,7 +3189,7 @@ void Game::EnemyMgrBase::getStart(void)
  * Address:	8010A820
  * Size:	00002C
  */
-void Game::EnemyMgrBase::getObject( (void *))
+void Game::EnemyMgrBase::getObject(void*)
 {
 	/*
 	.loc_0x0:
@@ -3252,7 +3212,7 @@ void Game::EnemyMgrBase::getObject( (void *))
  * Address:	8010A84C
  * Size:	000044
  */
-void Game::EnemyParmsBase::read( (Stream &))
+void Game::EnemyParmsBase::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -3281,7 +3241,7 @@ void Game::EnemyParmsBase::read( (Stream &))
  * Address:	8010A890
  * Size:	000020
  */
-void Game::CreatureParms::read( (Stream &))
+void Game::CreatureParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -3301,7 +3261,7 @@ void Game::CreatureParms::read( (Stream &))
  * Address:	8010A8B0
  * Size:	000050
  */
-void Game::Pelplant::Parms::read( (Stream &))
+void Game::Pelplant::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -3371,7 +3331,7 @@ void GenericContainer::~GenericContainer()
  * Address:	8010A960
  * Size:	000080
  */
-void Game::IEnemyMgrBase::__dt(void)
+void Game::IEnemyMgrBase::~IEnemyMgrBase()
 {
 	/*
 	.loc_0x0:
@@ -3419,7 +3379,7 @@ void Game::IEnemyMgrBase::__dt(void)
  * Address:	8010A9E0
  * Size:	00006C
  */
-void Game::Pelplant::ProperAnimator::__dt(void)
+void Game::Pelplant::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -3462,7 +3422,7 @@ void Game::Pelplant::ProperAnimator::__dt(void)
  * Address:	8010AA4C
  * Size:	000020
  */
-void Game::EnemyBlendAnimatorBase::animate( (int, float))
+void Game::EnemyBlendAnimatorBase::animate(int, float)
 {
 	/*
 	.loc_0x0:
@@ -3482,7 +3442,7 @@ void Game::EnemyBlendAnimatorBase::animate( (int, float))
  * Address:	8010AA6C
  * Size:	00000C
  */
-void Game::EnemyBlendAnimatorBase::getTypeID(void)
+void Game::EnemyBlendAnimatorBase::getTypeID()
 {
 	/*
 	.loc_0x0:
@@ -3497,7 +3457,7 @@ void Game::EnemyBlendAnimatorBase::getTypeID(void)
  * Address:	8010AA78
  * Size:	000008
  */
-void Game::Pelplant::Obj::getEnemyTypeID(void)
+void Game::Pelplant::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -3539,7 +3499,7 @@ void Parm<float>::size()
  * Address:	8010AA90
  * Size:	000014
  */
-void @728@12@Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@728 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -3556,7 +3516,7 @@ void @728@12@Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8010AAA4
  * Size:	000014
  */
-void @728@12@Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@728 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -3573,7 +3533,7 @@ void @728@12@Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8010AAB8
  * Size:	000014
  */
-void @728@12@Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@728 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -3590,7 +3550,7 @@ void @728@12@Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8010AACC
  * Size:	000014
  */
-void @728@12@Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@728 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -3607,7 +3567,7 @@ void @728@12@Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8010AAE0
  * Size:	000014
  */
-void @728@12@Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@728 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -3624,7 +3584,7 @@ void @728@12@Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8010AAF4
  * Size:	000014
  */
-void @728@12@Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@728 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -3641,7 +3601,7 @@ void @728@12@Game::EnemyBase::viewGetShape(void)
  * Address:	8010AB08
  * Size:	000008
  */
-void @4@Game::IEnemyMgrBase::__dt(void)
+void Game::IEnemyMgrBase::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -3655,7 +3615,7 @@ void @4@Game::IEnemyMgrBase::__dt(void)
  * Address:	8010AB10
  * Size:	000008
  */
-void @4@Game::Pelplant::Mgr::__dt(void)
+void Game::Pelplant::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -3669,7 +3629,7 @@ void @4@Game::Pelplant::Mgr::__dt(void)
  * Address:	8010AB18
  * Size:	000008
  */
-void @4@Game::EnemyMgrBase::getEnd(void)
+void Game::EnemyMgrBase::@4 @getEnd()
 {
 	/*
 	.loc_0x0:
@@ -3683,7 +3643,7 @@ void @4@Game::EnemyMgrBase::getEnd(void)
  * Address:	8010AB20
  * Size:	000008
  */
-void @4@Game::EnemyMgrBase::getStart(void)
+void Game::EnemyMgrBase::@4 @getStart()
 {
 	/*
 	.loc_0x0:
@@ -3697,7 +3657,7 @@ void @4@Game::EnemyMgrBase::getStart(void)
  * Address:	8010AB28
  * Size:	000008
  */
-void @4@Game::EnemyMgrBase::getNext( (void *))
+void Game::EnemyMgrBase::@4 @getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -3711,7 +3671,7 @@ void @4@Game::EnemyMgrBase::getNext( (void *))
  * Address:	8010AB30
  * Size:	000008
  */
-void @4@Game::EnemyMgrBase::getObject( (void *))
+void Game::EnemyMgrBase::@4 @getObject(void*)
 {
 	/*
 	.loc_0x0:

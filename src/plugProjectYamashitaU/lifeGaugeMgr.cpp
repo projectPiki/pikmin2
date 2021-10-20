@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80119BFC
  * Size:	000034
  */
@@ -201,16 +191,6 @@ void LifeGauge::update(float)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000024
- */
-void LifeGauge::draw(float, float)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80119E10
  * Size:	0001BC
  */
@@ -338,16 +318,6 @@ void LifeGauge::draw(float, float, float)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000264
- */
-void LifeGauge::draw(Graphics&, Vector3<float>&, float, float)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80119FCC
  * Size:	000110
  */
@@ -428,16 +398,6 @@ void LifeGauge::initLifeGaugeDraw()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00014C
- */
-void LifeGauge::initLifeGaugeFrameDraw()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011A0DC
  * Size:	0000F0
  */
@@ -506,46 +466,6 @@ void LifeGauge::drawOneTri(Vector3<float>*, Color4&)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void LifeGaugeList::LifeGaugeList(Game::Creature*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void LifeGaugeList::init()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000238
- */
-void LifeGaugeList::update()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D0
- */
-void LifeGaugeList::setMatrix(Graphics&)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1072,36 +992,6 @@ void LifeGaugeList::~LifeGaugeList()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void LifeGaugeMgr::search(LifeGaugeList*, Game::Creature*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
- */
-void LifeGaugeMgr::addActiveList(LifeGaugeList*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void LifeGaugeMgr::addInactiveList(LifeGaugeList*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void Game::_Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80126C00
  * Size:	000090
  */
-void Game::TimeMgr::__ct(void)
+void Game::TimeMgr::TimeMgr()
 {
 	/*
 	.loc_0x0:
@@ -65,7 +55,7 @@ void Game::TimeMgr::__ct(void)
  * Address:	80126C90
  * Size:	000034
  */
-void Game::TimeMgrParms::__ct(void)
+void Game::TimeMgrParms::TimeMgrParms()
 {
 	/*
 	.loc_0x0:
@@ -92,7 +82,7 @@ void Game::TimeMgrParms::__ct(void)
  * Address:	80126CC4
  * Size:	00032C
  */
-void Game::TimeMgrParms::Parms::__ct(void)
+void Game::TimeMgrParms::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -309,7 +299,7 @@ void Game::TimeMgrParms::Parms::__ct(void)
  * Address:	80126FF0
  * Size:	0000B0
  */
-void Game::TimeMgr::init(void)
+void Game::TimeMgr::init()
 {
 	/*
 	.loc_0x0:
@@ -367,7 +357,7 @@ void Game::TimeMgr::init(void)
  * Address:	801270A0
  * Size:	00003C
  */
-void Game::TimeMgr::setTime((float))
+void Game::TimeMgr::setTime(float)
 {
 	/*
 	.loc_0x0:
@@ -394,7 +384,7 @@ void Game::TimeMgr::setTime((float))
  * Address:	801270DC
  * Size:	000040
  */
-void Game::TimeMgr::setStartTime(void)
+void Game::TimeMgr::setStartTime()
 {
 	/*
 	.loc_0x0:
@@ -422,7 +412,7 @@ void Game::TimeMgr::setStartTime(void)
  * Address:	8012711C
  * Size:	000040
  */
-void Game::TimeMgr::setEndTime(void)
+void Game::TimeMgr::setEndTime()
 {
 	/*
 	.loc_0x0:
@@ -452,7 +442,7 @@ void Game::TimeMgr::setEndTime(void)
  * Address:	8012715C
  * Size:	000168
  */
-void Game::TimeMgr::updateSlot(void)
+void Game::TimeMgr::updateSlot()
 {
 	/*
 	.loc_0x0:
@@ -570,7 +560,7 @@ void Game::TimeMgr::updateSlot(void)
  * Address:	801272C4
  * Size:	000060
  */
-void Game::TimeMgr::getSunGaugeRatio(void)
+void Game::TimeMgr::getSunGaugeRatio()
 {
 	/*
 	.loc_0x0:
@@ -607,20 +597,10 @@ void Game::TimeMgr::getSunGaugeRatio(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000038
- */
-void Game::TimeMgr::updateFrame(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80127324
  * Size:	000074
  */
-void Game::TimeMgr::update(void)
+void Game::TimeMgr::update()
 {
 	/*
 	.loc_0x0:
@@ -665,7 +645,7 @@ void Game::TimeMgr::update(void)
  * Address:	80127398
  * Size:	000018
  */
-void Game::TimeMgr::isDayOver(void)
+void Game::TimeMgr::isDayOver()
 {
 	/*
 	.loc_0x0:
@@ -683,7 +663,7 @@ void Game::TimeMgr::isDayOver(void)
  * Address:	801273B0
  * Size:	000030
  */
-void Game::TimeMgr::isDayTime(void)
+void Game::TimeMgr::isDayTime()
 {
 	/*
 	.loc_0x0:
@@ -709,7 +689,7 @@ void Game::TimeMgr::isDayTime(void)
  * Address:	801273E0
  * Size:	000020
  */
-void Game::TimeMgr::getRealDayTime(void)
+void Game::TimeMgr::getRealDayTime()
 {
 	/*
 	.loc_0x0:
@@ -729,7 +709,7 @@ void Game::TimeMgr::getRealDayTime(void)
  * Address:	80127400
  * Size:	000150
  */
-void Game::TimeMgr::loadSettingFile((char*))
+void Game::TimeMgr::loadSettingFile(char*)
 {
 	/*
 	.loc_0x0:
@@ -829,7 +809,7 @@ void Game::TimeMgr::loadSettingFile((char*))
  * Address:	80127550
  * Size:	000060
  */
-void Game::TimeMgr::__dt(void)
+void Game::TimeMgr::~TimeMgr()
 {
 	/*
 	.loc_0x0:

@@ -2,80 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void Game::KochappyBase::Generator::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void Game::KochappyBase::Generator::getLatestVersion(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void Game::KochappyBase::Generator::doRead((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::KochappyBase::Generator::doWrite((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::KochappyBase::Generator::doReadLatestVersion((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::KochappyBase::Generator::doReadOldVersion((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012D80C
  * Size:	000050
  */
-void Game::KochappyBase::Mgr::__ct((int, unsigned char))
+void Game::KochappyBase::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +37,7 @@ void Game::KochappyBase::Mgr::__ct((int, unsigned char))
  * Address:	8012D85C
  * Size:	0000C0
  */
-void Game::KochappyBase::Mgr::loadModelData(void)
+void Game::KochappyBase::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -173,7 +103,7 @@ void Game::KochappyBase::Mgr::loadModelData(void)
  * Address:	8012D91C
  * Size:	0000A0
  */
-void Game::KochappyBase::Mgr::loadAnimData(void)
+void Game::KochappyBase::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -231,7 +161,7 @@ void Game::KochappyBase::Mgr::loadAnimData(void)
  * Address:	8012D9BC
  * Size:	00011C
  */
-void Game::KochappyBase::Mgr::createModel(void)
+void Game::KochappyBase::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -322,7 +252,7 @@ void Game::KochappyBase::Mgr::createModel(void)
  * Address:	8012DAD8
  * Size:	000008
  */
-void Game::KochappyBase::Mgr::getEnemyTypeID(void)
+void Game::KochappyBase::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -333,30 +263,10 @@ void Game::KochappyBase::Mgr::getEnemyTypeID(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000070
- */
-void Game::KochappyBase::Generator::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void Game::KochappyBase::Generator::getInitialParam(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012DAE0
  * Size:	000008
  */
-void @4 @Game::KochappyBase::Mgr::__dt(void)
+void Game::KochappyBase::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

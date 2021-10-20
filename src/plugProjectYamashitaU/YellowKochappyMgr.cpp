@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012D5E4
  * Size:	000050
  */
-void Game::YellowKochappy::Mgr::__ct((int, unsigned char))
+void Game::YellowKochappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -47,7 +37,7 @@ void Game::YellowKochappy::Mgr::__ct((int, unsigned char))
  * Address:	8012D634
  * Size:	000048
  */
-void Game::YellowKochappy::Mgr::doAlloc(void)
+void Game::YellowKochappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -79,7 +69,7 @@ void Game::YellowKochappy::Mgr::doAlloc(void)
  * Address:	8012D67C
  * Size:	000048
  */
-void Game::YellowKochappy::Mgr::loadTexData(void)
+void Game::YellowKochappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -109,7 +99,7 @@ void Game::YellowKochappy::Mgr::loadTexData(void)
  * Address:	8012D6C4
  * Size:	0000C8
  */
-void Game::YellowKochappy::Mgr::__dt(void)
+void Game::YellowKochappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -175,7 +165,7 @@ void Game::YellowKochappy::Mgr::__dt(void)
  * Address:	8012D78C
  * Size:	000008
  */
-void Game::YellowKochappy::Mgr::getEnemyTypeID(void)
+void Game::YellowKochappy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -189,7 +179,7 @@ void Game::YellowKochappy::Mgr::getEnemyTypeID(void)
  * Address:	8012D794
  * Size:	000060
  */
-void Game::YellowKochappy::Mgr::createObj((int))
+void Game::YellowKochappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -225,7 +215,7 @@ void Game::YellowKochappy::Mgr::createObj((int))
  * Address:	8012D7F4
  * Size:	000010
  */
-void Game::YellowKochappy::Mgr::getEnemy((int))
+void Game::YellowKochappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -241,7 +231,7 @@ void Game::YellowKochappy::Mgr::getEnemy((int))
  * Address:	8012D804
  * Size:	000008
  */
-void @4 @Game::YellowKochappy::Mgr::__dt(void)
+void Game::YellowKochappy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,21 +2,11 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801126F4
  * Size:	000424
  */
-void getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<
-    Game::Navi>(void)
+void Game::EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*,
+                                     Condition<Game::Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -354,8 +344,8 @@ void Iterator<Game::Navi>::isDone()
  * Address:	80112B64
  * Size:	000484
  */
-void getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<
-    Game::Piki>(void)
+void Game::EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*,
+                                       Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -688,7 +678,7 @@ void getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<
  * Address:	80112FE8
  * Size:	00001C
  */
-void Game::FakePiki::getPosition(void)
+void Game::FakePiki::getPosition()
 {
 	/*
 	.loc_0x0:
@@ -738,10 +728,9 @@ void Iterator<Game::Piki>::isDone()
  * Address:	80113050
  * Size:	0000C4
  */
-void
-    getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<
-        Game::Navi>
-    P23Condition<Game::Piki>(void)
+void Game::EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float,
+                                             float*, Condition<Game::Navi>*,
+                                             Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -805,21 +794,10 @@ void
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000060
- */
-void Game::EnemyFunc::flickCreature((Game::Creature*, Game::Creature*, float,
-                                     float, float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80113114
  * Size:	000008
  */
-void Game::Creature::stimulate((Game::Interaction&))
+void Game::Creature::stimulate(Game::Interaction&)
 {
 	/*
 	.loc_0x0:
@@ -830,23 +808,11 @@ void Game::Creature::stimulate((Game::Interaction&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0002A4
- */
-void
-    flickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureR27Condition<Game::Creature>
-    fffP23Condition<Game::Piki>(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8011311C
  * Size:	00036C
  */
-void flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<
-    Game::Piki>(void)
+void Game::EnemyFunc::flickStickPikmin(Game::Creature*, float, float, float,
+                                       float, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -1128,8 +1094,8 @@ void Iterator<Game::Creature>::isDone()
  * Address:	801134D4
  * Size:	0002BC
  */
-void flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<
-    Game::Piki>(void)
+void Game::EnemyFunc::flickNearbyPikmin(Game::Creature*, float, float, float,
+                                        float, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -1334,8 +1300,8 @@ void flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<
  * Address:	80113790
  * Size:	0003A4
  */
-void flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<
-    Game::Navi>(void)
+void Game::EnemyFunc::flickNearbyNavi(Game::Creature*, float, float, float,
+                                      float, Condition<Game::Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -1598,8 +1564,7 @@ void flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<
  * Address:	80113B34
  * Size:	000350
  */
-void eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Game::Piki>(
-    void)
+void Game::EnemyFunc::eatPikmin(Game::EnemyBase*, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -1855,8 +1820,8 @@ void eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Game::Piki>(
  * Address:	80113E84
  * Size:	0003DC
  */
-void swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<
-    Game::Piki>(void)
+void Game::EnemyFunc::swallowPikmin(Game::Creature*, float,
+                                    Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -2135,8 +2100,8 @@ void swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<
  * Address:	80114260
  * Size:	0003F8
  */
-void attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition<
-    Game::Navi>(void)
+void Game::EnemyFunc::attackNavi(Game::Creature*, float, float, float,
+                                 CollPart*, Condition<Game::Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -2426,7 +2391,7 @@ void attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition<
  * Address:	80114658
  * Size:	0000DC
  */
-void Game::EnemyFunc::isStartFlick((Game::EnemyBase*, bool))
+void Game::EnemyFunc::isStartFlick(Game::EnemyBase*, bool)
 {
 	/*
 	.loc_0x0:
@@ -2507,8 +2472,8 @@ void Game::EnemyFunc::isStartFlick((Game::EnemyBase*, bool))
  * Address:	80114734
  * Size:	00038C
  */
-void isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<
-    Game::Piki>(void)
+void Game::EnemyFunc::isTherePikmin(Game::Creature*, float,
+                                    Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -2769,8 +2734,8 @@ void isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<
  * Address:	80114AC0
  * Size:	000330
  */
-void isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<
-    Game::Navi>(void)
+void Game::EnemyFunc::isThereOlimar(Game::Creature*, float,
+                                    Condition<Game::Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -3006,8 +2971,8 @@ void isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<
  * Address:	80114DF0
  * Size:	0003C4
  */
-void getSurroundPikminNum__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<
-    Game::Piki>(void)
+void Game::EnemyFunc::getSurroundPikminNum(Game::Creature*, float,
+                                           Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -3280,7 +3245,7 @@ void getSurroundPikminNum__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<
  * Address:	801151B4
  * Size:	00024C
  */
-void Game::EnemyFunc::getStickPikminColorNum((Game::Creature*, int))
+void Game::EnemyFunc::getStickPikminColorNum(Game::Creature*, int)
 {
 	/*
 	.loc_0x0:
@@ -3457,8 +3422,8 @@ void Game::EnemyFunc::getStickPikminColorNum((Game::Creature*, int))
  * Address:	80115400
  * Size:	0001DC
  */
-void Game::EnemyFunc::walkToTarget((Game::EnemyBase*, Game::Creature*, float,
-                                    float, float))
+void Game::EnemyFunc::walkToTarget(Game::EnemyBase*, Game::Creature*, float,
+                                   float, float)
 {
 	/*
 	.loc_0x0:
@@ -3593,8 +3558,8 @@ void Game::EnemyFunc::walkToTarget((Game::EnemyBase*, Game::Creature*, float,
  * Address:	801155DC
  * Size:	0001BC
  */
-void walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<float>
-fff(void)
+void Game::EnemyFunc::walkToTarget(Game::EnemyBase*, Vector3<float>&, float,
+                                   float, float)
 {
 	/*
 	.loc_0x0:
@@ -3718,21 +3683,10 @@ fff(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000204
- */
-void iteratePikmin__Q24Game9EnemyFuncFP23Condition<Game::Piki>
-P25IDelegate1<Game::Piki*>(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80115798
  * Size:	000080
  */
-void Game::EnemyFunc::EatPikminDefaultCondition::satisfy((Game::Piki*))
+void Game::EnemyFunc::EatPikminDefaultCondition::satisfy(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -3778,7 +3732,7 @@ void Game::EnemyFunc::EatPikminDefaultCondition::satisfy((Game::Piki*))
  * Address:	80115818
  * Size:	000168
  */
-void Game::EnemyFunc::ConditionPikminNearby::satisfy((Game::Creature*))
+void Game::EnemyFunc::ConditionPikminNearby::satisfy(Game::Creature*)
 {
 	/*
 	.loc_0x0:

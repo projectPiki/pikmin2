@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012DAE8
  * Size:	000148
  */
-void Game::KochappyBase::Obj::__ct(void)
+void Game::KochappyBase::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -115,7 +105,7 @@ void Game::KochappyBase::Obj::__ct(void)
  * Address:	8012DC30
  * Size:	000068
  */
-void birth__Q34Game12KochappyBase3ObjFR10Vector3<float> f(void)
+void Game::KochappyBase::Obj::birth(Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -153,7 +143,7 @@ void birth__Q34Game12KochappyBase3ObjFR10Vector3<float> f(void)
  * Address:	8012DC98
  * Size:	000004
  */
-void Game::KochappyBase::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
+void Game::KochappyBase::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
 	.loc_0x0:
@@ -166,7 +156,7 @@ void Game::KochappyBase::Obj::setInitialSetting((Game::EnemyInitialParamBase*))
  * Address:	8012DC9C
  * Size:	000068
  */
-void Game::KochappyBase::Obj::onInit((Game::CreatureInitArg*))
+void Game::KochappyBase::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -174,28 +164,32 @@ void Game::KochappyBase::Obj::onInit((Game::CreatureInitArg*))
 	  mflr      r0
 	  stw       r0, 0x14(r1)
 	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x2C258
-	  lwz       r3, 0x174(r31)
-	  subi      r4, r2, 0x6280
-	  bl        0x311328
-	  stw       r3, 0x2C8(r31)
-	  lis       r3, 0x7261
-	  lfs       f0, -0x627C(r2)
-	  mr        r4, r31
-	  addi      r6, r3, 0x6E64
-	  li        r5, 0
-	  stfs      f0, 0x2CC(r31)
-	  lwz       r3, 0x2BC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	  mr        r31, r4
+	  stw       r30, 0x8(r1)
+	  mr        r30, r3
+	  lwz       r0, 0x1F4(r4)
+	  cmpwi     r0, 0
+	  beq-      .loc_0x3C
+	  lwz       r3, 0xC0(r31)
+	  lfs       f1, 0x2C4(r31)
+	  lfs       f0, 0x86C(r3)
+	  fcmpo     cr0, f1, f0
+	  ble-      .loc_0x44
+
+	.loc_0x3C:
+	  mr        r3, r31
+	  bl        -0x1A7804
+
+	.loc_0x44:
+	  lwz       r3, -0x6514(r13)
+	  lfs       f1, 0x2C4(r31)
+	  lfs       f0, 0x54(r3)
+	  fadds     f0, f1, f0
+	  stfs      f0, 0x2C4(r31)
+	  lwz       r3, 0x188(r31)
+	  lbz       r0, 0x24(r3)
+	  cmplwi    r0, 0
+	  beq-      0x98
 	*/
 }
 
@@ -204,7 +198,7 @@ void Game::KochappyBase::Obj::onInit((Game::CreatureInitArg*))
  * Address:	8012DD04
  * Size:	000088
  */
-void Game::KochappyBase::Obj::doUpdate(void)
+void Game::KochappyBase::Obj::doUpdate()
 {
 	/*
 	.loc_0x0:
@@ -252,7 +246,7 @@ void Game::KochappyBase::Obj::doUpdate(void)
  * Address:	8012DD8C
  * Size:	000004
  */
-void Game::KochappyBase::Obj::doDirectDraw((Graphics&))
+void Game::KochappyBase::Obj::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -265,7 +259,7 @@ void Game::KochappyBase::Obj::doDirectDraw((Graphics&))
  * Address:	8012DD90
  * Size:	000020
  */
-void Game::KochappyBase::Obj::doDebugDraw((Graphics&))
+void Game::KochappyBase::Obj::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +279,7 @@ void Game::KochappyBase::Obj::doDebugDraw((Graphics&))
  * Address:	8012DDB0
  * Size:	000088
  */
-void Game::KochappyBase::Obj::getShadowParam((Game::ShadowParam&))
+void Game::KochappyBase::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	.loc_0x0:
@@ -331,7 +325,7 @@ void Game::KochappyBase::Obj::getShadowParam((Game::ShadowParam&))
  * Address:	8012DE38
  * Size:	000040
  */
-void Game::KochappyBase::Obj::bounceCallback((Sys::Triangle*))
+void Game::KochappyBase::Obj::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -361,7 +355,7 @@ void Game::KochappyBase::Obj::bounceCallback((Sys::Triangle*))
  * Address:	8012DE78
  * Size:	0000A0
  */
-void Game::KochappyBase::Obj::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::KochappyBase::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -419,7 +413,7 @@ void Game::KochappyBase::Obj::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	8012DF18
  * Size:	000020
  */
-void Game::KochappyBase::Obj::doStartStoneState(void)
+void Game::KochappyBase::Obj::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -439,7 +433,7 @@ void Game::KochappyBase::Obj::doStartStoneState(void)
  * Address:	8012DF38
  * Size:	000004
  */
-void Game::KochappyBase::Obj::doFinishStoneState(void)
+void Game::KochappyBase::Obj::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -452,7 +446,7 @@ void Game::KochappyBase::Obj::doFinishStoneState(void)
  * Address:	8012DF3C
  * Size:	000064
  */
-void Game::KochappyBase::Obj::getOffsetForMapCollision(void)
+void Game::KochappyBase::Obj::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -489,7 +483,7 @@ void Game::KochappyBase::Obj::getOffsetForMapCollision(void)
  * Address:	8012DFA0
  * Size:	000028
  */
-void Game::KochappyBase::Obj::startCarcassMotion(void)
+void Game::KochappyBase::Obj::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -511,7 +505,7 @@ void Game::KochappyBase::Obj::startCarcassMotion(void)
  * Address:	8012DFC8
  * Size:	00008C
  */
-void Game::KochappyBase::Obj::initMouthSlots(void)
+void Game::KochappyBase::Obj::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -562,7 +556,7 @@ void Game::KochappyBase::Obj::initMouthSlots(void)
  * Address:	8012E054
  * Size:	00008C
  */
-void Game::KochappyBase::Obj::initWalkSmokeEffect(void)
+void Game::KochappyBase::Obj::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -611,7 +605,7 @@ void Game::KochappyBase::Obj::initWalkSmokeEffect(void)
  * Address:	8012E0E0
  * Size:	000008
  */
-void Game::KochappyBase::Obj::getWalkSmokeEffectMgr(void)
+void Game::KochappyBase::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	.loc_0x0:

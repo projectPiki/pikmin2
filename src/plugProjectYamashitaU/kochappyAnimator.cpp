@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8010F2A8
  * Size:	000008
  */
-void Game::KochappyBase::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::KochappyBase::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::KochappyBase::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	8010F2B0
  * Size:	000008
  */
-void Game::KochappyBase::ProperAnimator::getAnimator((int))
+void Game::KochappyBase::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::KochappyBase::ProperAnimator::getAnimator((int))
  * Address:	8010F2B8
  * Size:	00005C
  */
-void Game::KochappyBase::ProperAnimator::__dt(void)
+void Game::KochappyBase::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::KochappyBase::ProperAnimator::__dt(void)
  * Address:	8010F314
  * Size:	000008
  */
-void Game::KochappyBase::ProperAnimator::getAnimator(void)
+void Game::KochappyBase::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

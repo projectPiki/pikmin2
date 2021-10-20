@@ -5,7 +5,7 @@
  * Address:	80127C00
  * Size:	000088
  */
-void Game::EnemyStone::Mgr::__ct(void)
+void Game::EnemyStone::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -51,7 +51,7 @@ void Game::EnemyStone::Mgr::__ct(void)
  * Address:	80127C88
  * Size:	000174
  */
-void Game::EnemyStone::Mgr::loadResource(void)
+void Game::EnemyStone::Mgr::loadResource()
 {
 	/*
 	.loc_0x0:
@@ -160,7 +160,7 @@ void Game::EnemyStone::Mgr::loadResource(void)
  * Address:	80127DFC
  * Size:	000024
  */
-void Game::EnemyStone::DrawInfo::__defctor(void)
+void Game::EnemyStone::DrawInfo::__defctor()
 {
 	/*
 	.loc_0x0:
@@ -178,30 +178,10 @@ void Game::EnemyStone::DrawInfo::__defctor(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void Game::EnemyStone::Mgr::getDrawInfo(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void Game::EnemyStone::Mgr::addDrawInfo((Game::EnemyStone::DrawInfo*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80127E20
  * Size:	0000F8
  */
-void Game::EnemyStone::Mgr::regist((Game::EnemyStone::Obj*))
+void Game::EnemyStone::Mgr::regist(Game::EnemyStone::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +265,7 @@ void Game::EnemyStone::Mgr::regist((Game::EnemyStone::Obj*))
  * Address:	80127F18
  * Size:	00008C
  */
-void Game::EnemyStone::Mgr::release((Game::EnemyStone::Obj*))
+void Game::EnemyStone::Mgr::release(Game::EnemyStone::Obj*)
 {
 	/*
 	.loc_0x0:
@@ -340,7 +320,7 @@ void Game::EnemyStone::Mgr::release((Game::EnemyStone::Obj*))
  * Address:	80127FA4
  * Size:	000164
  */
-void Game::EnemyStone::Mgr::draw((Viewport*))
+void Game::EnemyStone::Mgr::draw(Viewport*)
 {
 	/*
 	.loc_0x0:

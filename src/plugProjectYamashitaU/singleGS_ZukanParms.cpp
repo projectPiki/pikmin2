@@ -5,7 +5,7 @@
  * Address:	80130B9C
  * Size:	0001D0
  */
-void Game::IllustratedBook::ColorSetting::__ct(void)
+void Game::IllustratedBook::ColorSetting::ColorSetting()
 {
 	/*
 	.loc_0x0:
@@ -146,7 +146,7 @@ void Color4::Color4()
  * Address:	80130D70
  * Size:	000098
  */
-void Game::IllustratedBook::ColorSetting::read((Stream&))
+void Game::IllustratedBook::ColorSetting::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -200,7 +200,7 @@ void Game::IllustratedBook::ColorSetting::read((Stream&))
  * Address:	80130E08
  * Size:	0008CC
  */
-void Game::IllustratedBook::ColorSetting::update(void)
+void Game::IllustratedBook::ColorSetting::update()
 {
 	/*
 	.loc_0x0:
@@ -793,7 +793,7 @@ void Game::IllustratedBook::ColorSetting::update(void)
  * Address:	801316D4
  * Size:	000148
  */
-void Game::IllustratedBook::PositionParms::__ct(void)
+void Game::IllustratedBook::PositionParms::PositionParms()
 {
 	/*
 	.loc_0x0:
@@ -887,7 +887,7 @@ void Game::IllustratedBook::PositionParms::__ct(void)
  * Address:	8013181C
  * Size:	000050
  */
-void Game::IllustratedBook::PositionParms::read((Stream&))
+void Game::IllustratedBook::PositionParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -916,20 +916,10 @@ void Game::IllustratedBook::PositionParms::read((Stream&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void Game::IllustratedBook::PositionParmsList::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8013186C
  * Size:	000060
  */
-void Game::IllustratedBook::PositionParms::__dt(void)
+void Game::IllustratedBook::PositionParms::~PositionParms()
 {
 	/*
 	.loc_0x0:
@@ -967,7 +957,7 @@ void Game::IllustratedBook::PositionParms::__dt(void)
  * Address:	801318CC
  * Size:	000068
  */
-void Game::IllustratedBook::PositionParmsList::read((Stream&))
+void Game::IllustratedBook::PositionParmsList::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1007,7 +997,7 @@ void Game::IllustratedBook::PositionParmsList::read((Stream&))
  * Address:	80131934
  * Size:	000020
  */
-void Game::IllustratedBook::CameraParms::read((Stream&))
+void Game::IllustratedBook::CameraParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1027,7 +1017,7 @@ void Game::IllustratedBook::CameraParms::read((Stream&))
  * Address:	80131954
  * Size:	000130
  */
-void Game::IllustratedBook::EnemyParms::__ct(void)
+void Game::IllustratedBook::EnemyParms::EnemyParms()
 {
 	/*
 	.loc_0x0:
@@ -1117,7 +1107,7 @@ void Game::IllustratedBook::EnemyParms::__ct(void)
  * Address:	80131A84
  * Size:	000040
  */
-void Game::IllustratedBook::CameraParms::__ct(void)
+void Game::IllustratedBook::CameraParms::CameraParms()
 {
 	/*
 	.loc_0x0:
@@ -1147,7 +1137,7 @@ void Game::IllustratedBook::CameraParms::__ct(void)
  * Address:	80131AC4
  * Size:	0002E4
  */
-void Game::IllustratedBook::CameraParms::Parms::__ct(void)
+void Game::IllustratedBook::CameraParms::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -1346,7 +1336,7 @@ void Game::IllustratedBook::CameraParms::Parms::__ct(void)
  * Address:	80131DA8
  * Size:	000064
  */
-void Game::IllustratedBook::EnemyParms::read((Stream&))
+void Game::IllustratedBook::EnemyParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1380,21 +1370,10 @@ void Game::IllustratedBook::EnemyParms::read((Stream&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000D0
- */
-void Game::IllustratedBook::EnemyModeParms::__ct(
-    (Game::IllustratedBook::PositionParmsList*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80131E0C
  * Size:	000060
  */
-void Game::IllustratedBook::EnemyParms::__dt(void)
+void Game::IllustratedBook::EnemyParms::~EnemyParms()
 {
 	/*
 	.loc_0x0:
@@ -1432,7 +1411,7 @@ void Game::IllustratedBook::EnemyParms::__dt(void)
  * Address:	80131E6C
  * Size:	000084
  */
-void Game::IllustratedBook::EnemyModeParms::read((Stream&))
+void Game::IllustratedBook::EnemyModeParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1481,7 +1460,7 @@ void Game::IllustratedBook::EnemyModeParms::read((Stream&))
  * Address:	80131EF0
  * Size:	000148
  */
-void Game::IllustratedBook::ItemParms::__ct(void)
+void Game::IllustratedBook::ItemParms::ItemParms()
 {
 	/*
 	.loc_0x0:
@@ -1575,7 +1554,7 @@ void Game::IllustratedBook::ItemParms::__ct(void)
  * Address:	80132038
  * Size:	000064
  */
-void Game::IllustratedBook::ItemParms::read((Stream&))
+void Game::IllustratedBook::ItemParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1609,21 +1588,10 @@ void Game::IllustratedBook::ItemParms::read((Stream&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000118
- */
-void Game::IllustratedBook::ItemModeParms::__ct(
-    (Game::IllustratedBook::PositionParmsList*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8013209C
  * Size:	000060
  */
-void Game::IllustratedBook::ItemParms::__dt(void)
+void Game::IllustratedBook::ItemParms::~ItemParms()
 {
 	/*
 	.loc_0x0:
@@ -1661,7 +1629,7 @@ void Game::IllustratedBook::ItemParms::__dt(void)
  * Address:	801320FC
  * Size:	000080
  */
-void Game::IllustratedBook::ItemModeParms::read((Stream&))
+void Game::IllustratedBook::ItemModeParms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1709,7 +1677,7 @@ void Game::IllustratedBook::ItemModeParms::read((Stream&))
  * Address:	8013217C
  * Size:	00029C
  */
-void Game::IllustratedBook::Parms::__ct(void)
+void Game::IllustratedBook::Parms::Parms()
 {
 	/*
 	.loc_0x0:
@@ -1896,7 +1864,7 @@ void Game::IllustratedBook::Parms::__ct(void)
  * Address:	80132418
  * Size:	000060
  */
-void Game::IllustratedBook::ItemModeParms::__dt(void)
+void Game::IllustratedBook::ItemModeParms::~ItemModeParms()
 {
 	/*
 	.loc_0x0:
@@ -1934,7 +1902,7 @@ void Game::IllustratedBook::ItemModeParms::__dt(void)
  * Address:	80132478
  * Size:	00007C
  */
-void Game::IllustratedBook::EnemyModeParms::__dt(void)
+void Game::IllustratedBook::EnemyModeParms::~EnemyModeParms()
 {
 	/*
 	.loc_0x0:
@@ -1979,7 +1947,7 @@ void Game::IllustratedBook::EnemyModeParms::__dt(void)
  * Address:	801324F4
  * Size:	00007C
  */
-void Game::IllustratedBook::PositionParmsList::__dt(void)
+void Game::IllustratedBook::PositionParmsList::~PositionParmsList()
 {
 	/*
 	.loc_0x0:
@@ -2024,7 +1992,7 @@ void Game::IllustratedBook::PositionParmsList::__dt(void)
  * Address:	80132570
  * Size:	000060
  */
-void Game::IllustratedBook::ColorSetting::__dt(void)
+void Game::IllustratedBook::ColorSetting::~ColorSetting()
 {
 	/*
 	.loc_0x0:
@@ -2062,7 +2030,7 @@ void Game::IllustratedBook::ColorSetting::__dt(void)
  * Address:	801325D0
  * Size:	000090
  */
-void Game::IllustratedBook::Parms::read((Stream&))
+void Game::IllustratedBook::Parms::read(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -2110,7 +2078,7 @@ void Game::IllustratedBook::Parms::read((Stream&))
  * Address:	80132660
  * Size:	0000D0
  */
-void Game::IllustratedBook::Parms::loadFile((JKRArchive*))
+void Game::IllustratedBook::Parms::loadFile(JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -2177,20 +2145,10 @@ void Game::IllustratedBook::Parms::loadFile((JKRArchive*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void Game::IllustratedBook::Parms::loadFile((char const*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80132730
  * Size:	000114
  */
-void Game::IllustratedBook::Parms::__dt(void)
+void Game::IllustratedBook::Parms::~Parms()
 {
 	/*
 	.loc_0x0:

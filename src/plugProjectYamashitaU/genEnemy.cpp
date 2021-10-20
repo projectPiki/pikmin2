@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void Game::_Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80124778
  * Size:	00003C
  */
@@ -46,7 +36,7 @@ void Game::makeObjectEnemy()
  * Address:	801247B4
  * Size:	0000D0
  */
-void Game::GenObjectEnemy::__ct(void)
+void Game::GenObjectEnemy::GenObjectEnemy()
 {
 	/*
 	.loc_0x0:
@@ -109,20 +99,10 @@ void Game::GenObjectEnemy::__ct(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000030
- */
-void Game::GenObjectEnemy::initParms(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80124884
  * Size:	00008C
  */
-void Game::GenObjectEnemy::initialise(void)
+void Game::GenObjectEnemy::initialise()
 {
 	/*
 	.loc_0x0:
@@ -169,7 +149,7 @@ void Game::GenObjectEnemy::initialise(void)
  * Address:	80124910
  * Size:	000004
  */
-void Game::GenObjectEnemy::ramSaveParameters((Stream&))
+void Game::GenObjectEnemy::ramSaveParameters(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -182,7 +162,7 @@ void Game::GenObjectEnemy::ramSaveParameters((Stream&))
  * Address:	80124914
  * Size:	000004
  */
-void Game::GenObjectEnemy::ramLoadParameters((Stream&))
+void Game::GenObjectEnemy::ramLoadParameters(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -195,7 +175,7 @@ void Game::GenObjectEnemy::ramLoadParameters((Stream&))
  * Address:	80124918
  * Size:	0006B4
  */
-void Game::GenObjectEnemy::generate((Game::Generator*))
+void Game::GenObjectEnemy::generate(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -682,7 +662,7 @@ void Game::GenObjectEnemy::generate((Game::Generator*))
  * Address:	80124FCC
  * Size:	0000E0
  */
-void Game::GenObjectEnemy::birth((Game::GenArg*))
+void Game::GenObjectEnemy::birth(Game::GenArg*)
 {
 	/*
 	.loc_0x0:
@@ -752,7 +732,7 @@ void Game::GenObjectEnemy::birth((Game::GenArg*))
  * Address:	801250AC
  * Size:	000218
  */
-void Game::GenObjectEnemy::doWrite((Stream&))
+void Game::GenObjectEnemy::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -900,7 +880,7 @@ void Game::GenObjectEnemy::doWrite((Stream&))
  * Address:	801252C4
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::doWrite((Stream&))
+void Game::EnemyGeneratorBase::doWrite(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -913,7 +893,7 @@ void Game::EnemyGeneratorBase::doWrite((Stream&))
  * Address:	801252C8
  * Size:	00000C
  */
-void Game::EnemyGeneratorBase::getLatestVersion(void)
+void Game::EnemyGeneratorBase::getLatestVersion()
 {
 	/*
 	.loc_0x0:
@@ -928,7 +908,7 @@ void Game::EnemyGeneratorBase::getLatestVersion(void)
  * Address:	801252D4
  * Size:	0001E4
  */
-void Game::GenObjectEnemy::doRead((Stream&))
+void Game::GenObjectEnemy::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1069,7 +1049,7 @@ void Game::GenObjectEnemy::doRead((Stream&))
  * Address:	801254B8
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::doRead((Stream&))
+void Game::EnemyGeneratorBase::doRead(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1082,7 +1062,7 @@ void Game::EnemyGeneratorBase::doRead((Stream&))
  * Address:	801254BC
  * Size:	000470
  */
-void Game::GenObjectEnemy::doReadOldVersion((Stream&))
+void Game::GenObjectEnemy::doReadOldVersion(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -1408,7 +1388,7 @@ void Game::GenObjectEnemy::doReadOldVersion((Stream&))
  * Address:	8012592C
  * Size:	000E38
  */
-void Game::GenObjectEnemy::createEnemyGenerator(void)
+void Game::GenObjectEnemy::createEnemyGenerator()
 {
 	/*
 	.loc_0x0:
@@ -2534,7 +2514,7 @@ void Game::GenObjectEnemy::createEnemyGenerator(void)
  * Address:	80126764
  * Size:	00006C
  */
-void Game::EnemyGeneratorBase::__ct((char*))
+void Game::EnemyGeneratorBase::EnemyGeneratorBase(char*)
 {
 	/*
 	.loc_0x0:
@@ -2573,7 +2553,7 @@ void Game::EnemyGeneratorBase::__ct((char*))
  * Address:	801267D0
  * Size:	00002C
  */
-void Game::GenObjectEnemy::getShape(void)
+void Game::GenObjectEnemy::getShape()
 {
 	/*
 	.loc_0x0:
@@ -2596,7 +2576,7 @@ void Game::GenObjectEnemy::getShape(void)
  * Address:	801267FC
  * Size:	000040
  */
-void Game::GenObjectEnemy::updateUseList((Game::Generator*, int))
+void Game::GenObjectEnemy::updateUseList(Game::Generator*, int)
 {
 	/*
 	.loc_0x0:
@@ -2626,7 +2606,7 @@ void Game::GenObjectEnemy::updateUseList((Game::Generator*, int))
  * Address:	8012683C
  * Size:	00031C
  */
-void Game::GenObjectEnemy::render((Graphics&, Game::Generator*))
+void Game::GenObjectEnemy::render(Graphics&, Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -2841,7 +2821,7 @@ void Game::GenObjectEnemy::render((Graphics&, Game::Generator*))
  * Address:	80126B58
  * Size:	000004
  */
-void Game::EnemyGeneratorBase::draw((Graphics&, Game::Generator*))
+void Game::EnemyGeneratorBase::draw(Graphics&, Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -2854,7 +2834,7 @@ void Game::EnemyGeneratorBase::draw((Graphics&, Game::Generator*))
  * Address:	80126B5C
  * Size:	000060
  */
-void Game::EnemyGeneratorBase::__dt(void)
+void Game::EnemyGeneratorBase::~EnemyGeneratorBase()
 {
 	/*
 	.loc_0x0:
@@ -2892,7 +2872,7 @@ void Game::EnemyGeneratorBase::__dt(void)
  * Address:	80126BBC
  * Size:	000008
  */
-void Game::EnemyGeneratorBase::getInitialParam(void)
+void Game::EnemyGeneratorBase::getInitialParam()
 {
 	/*
 	.loc_0x0:
@@ -2906,7 +2886,7 @@ void Game::EnemyGeneratorBase::getInitialParam(void)
  * Address:	80126BC4
  * Size:	000008
  */
-void Game::GenArg::getName(void)
+void Game::GenArg::getName()
 {
 	/*
 	.loc_0x0:
@@ -2920,7 +2900,7 @@ void Game::GenArg::getName(void)
  * Address:	80126BCC
  * Size:	000004
  */
-void Game::GenObject::update((Game::Generator*))
+void Game::GenObject::update(Game::Generator*)
 {
 	/*
 	.loc_0x0:
@@ -2933,7 +2913,7 @@ void Game::GenObject::update((Game::Generator*))
  * Address:	80126BD0
  * Size:	000028
  */
-void generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<float>(void)
+void Game::GenObject::generatorMakeMatrix(Matrixf&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -2955,7 +2935,7 @@ void generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<float>(void)
  * Address:	80126BF8
  * Size:	000004
  */
-void Game::GenObject::getDebugInfo((char*))
+void Game::GenObject::getDebugInfo(char*)
 {
 	/*
 	.loc_0x0:
@@ -2968,7 +2948,7 @@ void Game::GenObject::getDebugInfo((char*))
  * Address:	80126BFC
  * Size:	000004
  */
-void Game::GenBase::doEvent((unsigned long))
+void Game::GenBase::doEvent(unsigned long)
 {
 	/*
 	.loc_0x0:

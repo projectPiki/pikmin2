@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80129B30
  * Size:	0000A8
  */
-void Game::EnemyStone::Obj::__ct((Game::EnemyBase*, Game::EnemyStone::Info*))
+void Game::EnemyStone::Obj::Obj(Game::EnemyBase*, Game::EnemyStone::Info*)
 {
 	/*
 	.loc_0x0:
@@ -69,7 +59,7 @@ void Game::EnemyStone::Obj::__ct((Game::EnemyBase*, Game::EnemyStone::Info*))
  * Address:	80129BD8
  * Size:	000104
  */
-void Game::EnemyStone::Obj::start(void)
+void Game::EnemyStone::Obj::start()
 {
 	/*
 	.loc_0x0:
@@ -151,20 +141,10 @@ void Game::EnemyStone::Obj::start(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000038
- */
-void Game::EnemyStone::Obj::finish(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80129CDC
  * Size:	0000E0
  */
-void Game::EnemyStone::Obj::shake(void)
+void Game::EnemyStone::Obj::shake()
 {
 	/*
 	.loc_0x0:
@@ -237,40 +217,10 @@ void Game::EnemyStone::Obj::shake(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000078
- */
-void Game::EnemyStone::Obj::updateDrawInfo(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void Game::EnemyStone::Obj::fitDrawInfo(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void Game::EnemyStone::Obj::disappearDrawInfo(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80129DBC
  * Size:	0002A8
  */
-void Game::EnemyStone::Obj::update(void)
+void Game::EnemyStone::Obj::update()
 {
 	/*
 	.loc_0x0:
@@ -478,7 +428,7 @@ void Game::EnemyStone::Obj::update(void)
  * Address:	8012A064
  * Size:	000088
  */
-void Game::EnemyStone::Obj::checkDrawInfoState((int))
+void Game::EnemyStone::Obj::checkDrawInfoState(int)
 {
 	/*
 	.loc_0x0:
@@ -534,7 +484,7 @@ void Game::EnemyStone::Obj::checkDrawInfoState((int))
  * Address:	8012A0EC
  * Size:	0000B4
  */
-void Game::EnemyStone::Obj::dead(void)
+void Game::EnemyStone::Obj::dead()
 {
 	/*
 	.loc_0x0:
@@ -597,7 +547,7 @@ void Game::EnemyStone::Obj::dead(void)
  * Address:	8012A1A0
  * Size:	00007C
  */
-void Game::EnemyStone::Obj::__dt(void)
+void Game::EnemyStone::Obj::~Obj()
 {
 	/*
 	.loc_0x0:

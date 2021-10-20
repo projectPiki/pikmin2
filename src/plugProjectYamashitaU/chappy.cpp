@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80115F90
  * Size:	000144
  */
-void Game::Chappy::Obj::__ct(void)
+void Game::Chappy::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -114,7 +104,7 @@ void Game::Chappy::Obj::__ct(void)
  * Address:	801160D4
  * Size:	00004C
  */
-void Game::ChappyBase::Obj::setFSM((Game::ChappyBase::FSM*))
+void Game::ChappyBase::Obj::setFSM(Game::ChappyBase::FSM*)
 {
 	/*
 	.loc_0x0:
@@ -145,7 +135,7 @@ void Game::ChappyBase::Obj::setFSM((Game::ChappyBase::FSM*))
  * Address:	80116120
  * Size:	0000BC
  */
-void Game::ChappyBase::Obj::__dt(void)
+void Game::ChappyBase::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -208,7 +198,7 @@ void Game::ChappyBase::Obj::__dt(void)
  * Address:	801161DC
  * Size:	0002B0
  */
-void Game::Chappy::Obj::changeMaterial(void)
+void Game::Chappy::Obj::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -396,7 +386,7 @@ void Game::Chappy::Obj::changeMaterial(void)
  * Address:	8011648C
  * Size:	000008
  */
-void Game::Chappy::Mgr::getChangeTexture1(void)
+void Game::Chappy::Mgr::getChangeTexture1()
 {
 	/*
 	.loc_0x0:
@@ -410,7 +400,7 @@ void Game::Chappy::Mgr::getChangeTexture1(void)
  * Address:	80116494
  * Size:	000008
  */
-void Game::Chappy::Mgr::getChangeTexture0(void)
+void Game::Chappy::Mgr::getChangeTexture0()
 {
 	/*
 	.loc_0x0:
@@ -424,7 +414,7 @@ void Game::Chappy::Mgr::getChangeTexture0(void)
  * Address:	8011649C
  * Size:	0000EC
  */
-void Game::Chappy::Obj::__dt(void)
+void Game::Chappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -499,7 +489,7 @@ void Game::Chappy::Obj::__dt(void)
  * Address:	80116588
  * Size:	000008
  */
-void Game::Chappy::Obj::getEnemyTypeID(void)
+void Game::Chappy::Obj::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -513,7 +503,7 @@ void Game::Chappy::Obj::getEnemyTypeID(void)
  * Address:	80116590
  * Size:	000008
  */
-void Game::ChappyBase::Obj::getMouthSlots(void)
+void Game::ChappyBase::Obj::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -527,7 +517,7 @@ void Game::ChappyBase::Obj::getMouthSlots(void)
  * Address:	80116598
  * Size:	000020
  */
-void Game::ChappyBase::Obj::setAnimationSpeed((float))
+void Game::ChappyBase::Obj::setAnimationSpeed(float)
 {
 	/*
 	.loc_0x0:
@@ -547,7 +537,7 @@ void Game::ChappyBase::Obj::setAnimationSpeed((float))
  * Address:	801165B8
  * Size:	000004
  */
-void Game::ChappyBase::Obj::resetUnderGround(void)
+void Game::ChappyBase::Obj::resetUnderGround()
 {
 	/*
 	.loc_0x0:
@@ -560,7 +550,7 @@ void Game::ChappyBase::Obj::resetUnderGround(void)
  * Address:	801165BC
  * Size:	000004
  */
-void Game::ChappyBase::Obj::setUnderGround(void)
+void Game::ChappyBase::Obj::setUnderGround()
 {
 	/*
 	.loc_0x0:
@@ -573,7 +563,7 @@ void Game::ChappyBase::Obj::setUnderGround(void)
  * Address:	801165C0
  * Size:	000004
  */
-void Game::ChappyBase::Obj::createFlickEffect(void)
+void Game::ChappyBase::Obj::createFlickEffect()
 {
 	/*
 	.loc_0x0:
@@ -586,7 +576,7 @@ void Game::ChappyBase::Obj::createFlickEffect(void)
  * Address:	801165C4
  * Size:	000004
  */
-void Game::ChappyBase::Obj::createSmokeEffect(void)
+void Game::ChappyBase::Obj::createSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -599,7 +589,7 @@ void Game::ChappyBase::Obj::createSmokeEffect(void)
  * Address:	801165C8
  * Size:	000008
  */
-void Game::ChappyBase::Obj::getDownSmokeScale(void)
+void Game::ChappyBase::Obj::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -613,7 +603,7 @@ void Game::ChappyBase::Obj::getDownSmokeScale(void)
  * Address:	801165D0
  * Size:	000014
  */
-void @740 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@740 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -630,7 +620,7 @@ void @740 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	801165E4
  * Size:	000014
  */
-void @740 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@740 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -647,7 +637,7 @@ void @740 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	801165F8
  * Size:	000014
  */
-void @740 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@740 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -664,7 +654,7 @@ void @740 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8011660C
  * Size:	000014
  */
-void @740 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@740 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -681,7 +671,7 @@ void @740 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	80116620
  * Size:	000014
  */
-void @740 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@740 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -698,7 +688,7 @@ void @740 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	80116634
  * Size:	000014
  */
-void @740 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@740 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:

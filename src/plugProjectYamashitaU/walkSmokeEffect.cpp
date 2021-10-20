@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012A320
  * Size:	000034
  */
-void Game::WalkSmokeEffect::Obj::__ct(void)
+void Game::WalkSmokeEffect::Obj::Obj()
 {
 	/*
 	.loc_0x0:
@@ -37,40 +27,10 @@ void Game::WalkSmokeEffect::Obj::__ct(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000030
- */
-void Game::WalkSmokeEffect::Obj::init((Matrixf*, float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001A8
- */
-void Game::WalkSmokeEffect::Obj::update((Game::EnemyBase*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void Game::WalkSmokeEffect::Obj::draw((Graphics&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012A354
  * Size:	000010
  */
-void Game::WalkSmokeEffect::Mgr::__ct(void)
+void Game::WalkSmokeEffect::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -86,7 +46,7 @@ void Game::WalkSmokeEffect::Mgr::__ct(void)
  * Address:	8012A364
  * Size:	0000B4
  */
-void Game::WalkSmokeEffect::Mgr::alloc((int))
+void Game::WalkSmokeEffect::Mgr::alloc(int)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +107,7 @@ void Game::WalkSmokeEffect::Mgr::alloc((int))
  * Address:	8012A418
  * Size:	0001C8
  */
-void Game::WalkSmokeEffect::Mgr::update((Game::EnemyBase*))
+void Game::WalkSmokeEffect::Mgr::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -280,20 +240,10 @@ void Game::WalkSmokeEffect::Mgr::update((Game::EnemyBase*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C4
- */
-void Game::WalkSmokeEffect::Mgr::draw((Graphics&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012A5E0
  * Size:	000090
  */
-void Game::WalkSmokeEffect::Mgr::setup((int, SysShape::Model*, char*, float))
+void Game::WalkSmokeEffect::Mgr::setup(int, SysShape::Model*, char*, float)
 {
 	/*
 	.loc_0x0:

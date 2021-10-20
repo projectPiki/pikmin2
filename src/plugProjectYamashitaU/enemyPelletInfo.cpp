@@ -5,7 +5,7 @@
  * Address:	8012E34C
  * Size:	000034
  */
-void Game::EnemyPelletInfo::__ct(void)
+void Game::EnemyPelletInfo::EnemyPelletInfo()
 {
 	/*
 	.loc_0x0:
@@ -30,7 +30,7 @@ void Game::EnemyPelletInfo::__ct(void)
  * Address:	8012E380
  * Size:	000120
  */
-void Game::EnemyPelletInfo::write((Stream&))
+void Game::EnemyPelletInfo::write(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -114,7 +114,7 @@ void Game::EnemyPelletInfo::write((Stream&))
  * Address:	8012E4A0
  * Size:	000070
  */
-void Game::EnemyPelletInfo::read((Stream&))
+void Game::EnemyPelletInfo::read(Stream&)
 {
 	/*
 	.loc_0x0:

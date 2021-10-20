@@ -2,80 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void Game::ChappyBase::Generator::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void Game::ChappyBase::Generator::getLatestVersion(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void Game::ChappyBase::Generator::doRead((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::ChappyBase::Generator::doWrite((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::ChappyBase::Generator::doReadLatestVersion((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::ChappyBase::Generator::doReadOldVersion((Stream&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012A670
  * Size:	000050
  */
-void Game::ChappyBase::Mgr::__ct((int, unsigned char))
+void Game::ChappyBase::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -107,7 +37,7 @@ void Game::ChappyBase::Mgr::__ct((int, unsigned char))
  * Address:	8012A6C0
  * Size:	0000C0
  */
-void Game::ChappyBase::Mgr::loadModelData(void)
+void Game::ChappyBase::Mgr::loadModelData()
 {
 	/*
 	.loc_0x0:
@@ -173,7 +103,7 @@ void Game::ChappyBase::Mgr::loadModelData(void)
  * Address:	8012A780
  * Size:	0000A0
  */
-void Game::ChappyBase::Mgr::loadAnimData(void)
+void Game::ChappyBase::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -231,7 +161,7 @@ void Game::ChappyBase::Mgr::loadAnimData(void)
  * Address:	8012A820
  * Size:	00011C
  */
-void Game::ChappyBase::Mgr::createModel(void)
+void Game::ChappyBase::Mgr::createModel()
 {
 	/*
 	.loc_0x0:
@@ -324,7 +254,7 @@ void Game::ChappyBase::Mgr::createModel(void)
  * Address:	8012A93C
  * Size:	000008
  */
-void Game::ChappyBase::Mgr::getEnemyTypeID(void)
+void Game::ChappyBase::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -338,7 +268,7 @@ void Game::ChappyBase::Mgr::getEnemyTypeID(void)
  * Address:	8012A944
  * Size:	000004
  */
-void Game::EnemyMgrBase::doAlloc(void)
+void Game::EnemyMgrBase::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -348,30 +278,10 @@ void Game::EnemyMgrBase::doAlloc(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000070
- */
-void Game::ChappyBase::Generator::__dt(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void Game::ChappyBase::Generator::getInitialParam(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012A948
  * Size:	000008
  */
-void @4 @Game::ChappyBase::Mgr::__dt(void)
+void Game::ChappyBase::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

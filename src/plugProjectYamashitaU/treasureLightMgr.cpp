@@ -5,7 +5,7 @@
  * Address:	8013286C
  * Size:	000150
  */
-void TreasureLight::Mgr::__ct(void)
+void TreasureLight::Mgr::Mgr()
 {
 	/*
 	.loc_0x0:
@@ -105,7 +105,7 @@ void TreasureLight::Mgr::__ct(void)
  * Address:	801329BC
  * Size:	000004
  */
-void TreasureLight::Mgr::update(void)
+void TreasureLight::Mgr::update()
 {
 	/*
 	.loc_0x0:
@@ -118,7 +118,7 @@ void TreasureLight::Mgr::update(void)
  * Address:	801329C0
  * Size:	000044
  */
-void TreasureLight::Mgr::set((Graphics&))
+void TreasureLight::Mgr::set(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -147,7 +147,7 @@ void TreasureLight::Mgr::set((Graphics&))
  * Address:	80132A04
  * Size:	000044
  */
-void TreasureLight::Mgr::set((Matrixf&))
+void TreasureLight::Mgr::set(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -178,7 +178,7 @@ void TreasureLight::Mgr::set((Matrixf&))
  * Address:	80132A48
  * Size:	000184
  */
-void TreasureLight::Mgr::setCommonProc(void)
+void TreasureLight::Mgr::setCommonProc()
 {
 	/*
 	.loc_0x0:
@@ -289,7 +289,7 @@ void TreasureLight::Mgr::setCommonProc(void)
  * Address:	80132BCC
  * Size:	000020
  */
-void TreasureLight::Mgr::drawDebugInfo((Graphics&))
+void TreasureLight::Mgr::drawDebugInfo(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -309,7 +309,7 @@ void TreasureLight::Mgr::drawDebugInfo((Graphics&))
  * Address:	80132BEC
  * Size:	0000A0
  */
-void TreasureLight::Mgr::__dt(void)
+void TreasureLight::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:

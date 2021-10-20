@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void Game::ChappyBase::_Print((char*, ...))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80119710
  * Size:	000008
  */
-void Game::ChappyBase::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
+void Game::ChappyBase::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -29,7 +19,7 @@ void Game::ChappyBase::ProperAnimator::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80119718
  * Size:	000008
  */
-void Game::ChappyBase::ProperAnimator::getAnimator((int))
+void Game::ChappyBase::ProperAnimator::getAnimator(int)
 {
 	/*
 	.loc_0x0:
@@ -43,7 +33,7 @@ void Game::ChappyBase::ProperAnimator::getAnimator((int))
  * Address:	80119720
  * Size:	00005C
  */
-void Game::ChappyBase::ProperAnimator::__dt(void)
+void Game::ChappyBase::ProperAnimator::~ProperAnimator()
 {
 	/*
 	.loc_0x0:
@@ -82,7 +72,7 @@ void Game::ChappyBase::ProperAnimator::__dt(void)
  * Address:	8011977C
  * Size:	000008
  */
-void Game::ChappyBase::ProperAnimator::getAnimator(void)
+void Game::ChappyBase::ProperAnimator::getAnimator()
 {
 	/*
 	.loc_0x0:

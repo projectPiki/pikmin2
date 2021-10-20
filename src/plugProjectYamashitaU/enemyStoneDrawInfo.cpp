@@ -5,7 +5,7 @@
  * Address:	80128280
  * Size:	0002D4
  */
-void Game::EnemyStone::StateMachine::init((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::StateMachine::init(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -216,8 +216,8 @@ void Game::EnemyStone::StateMachine::init((Game::EnemyStone::DrawInfo*))
  * Address:	80128554
  * Size:	000038
  */
-void Game::EnemyStone::StateMachine::makeMatrix((Game::EnemyStone::DrawInfo*,
-                                                 Matrixf*))
+void Game::EnemyStone::StateMachine::makeMatrix(Game::EnemyStone::DrawInfo*,
+                                                Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -245,8 +245,8 @@ void Game::EnemyStone::StateMachine::makeMatrix((Game::EnemyStone::DrawInfo*,
  * Address:	8012858C
  * Size:	000024
  */
-void Game::EnemyStone::FSMState::makeMatrix((Game::EnemyStone::DrawInfo*,
-                                             Matrixf*))
+void Game::EnemyStone::FSMState::makeMatrix(Game::EnemyStone::DrawInfo*,
+                                            Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -267,8 +267,8 @@ void Game::EnemyStone::FSMState::makeMatrix((Game::EnemyStone::DrawInfo*,
  * Address:	801285B0
  * Size:	000014
  */
-void Game::EnemyStone::FSMStateExpansion::init((Game::EnemyStone::DrawInfo*,
-                                                Game::StateArg*))
+void Game::EnemyStone::FSMStateExpansion::init(Game::EnemyStone::DrawInfo*,
+                                               Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -285,7 +285,7 @@ void Game::EnemyStone::FSMStateExpansion::init((Game::EnemyStone::DrawInfo*,
  * Address:	801285C4
  * Size:	0001BC
  */
-void Game::EnemyStone::FSMStateExpansion::exec((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateExpansion::exec(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -416,8 +416,8 @@ void Game::EnemyStone::FSMStateExpansion::exec((Game::EnemyStone::DrawInfo*))
  * Address:	80128780
  * Size:	000030
  */
-void transit__Q24Game38FSMState<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfoiPQ24Game8StateArg(void)
+void Game::FSMState<Game::EnemyStone::DrawInfo>::transit(
+    Game::EnemyStone::DrawInfo*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -441,7 +441,7 @@ FPQ34Game10EnemyStone8DrawInfoiPQ24Game8StateArg(void)
  * Address:	801287B0
  * Size:	000004
  */
-void Game::EnemyStone::FSMStateExpansion::cleanup((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateExpansion::cleanup(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -455,7 +455,7 @@ void Game::EnemyStone::FSMStateExpansion::cleanup((Game::EnemyStone::DrawInfo*))
  * Size:	000140
  */
 void Game::EnemyStone::FSMStateExpansion::makeMatrix(
-    (Game::EnemyStone::DrawInfo*, Matrixf*))
+    Game::EnemyStone::DrawInfo*, Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -556,7 +556,7 @@ void Game::EnemyStone::FSMStateExpansion::makeMatrix(
  * Size:	0000A0
  */
 void Game::EnemyStone::FSMStateExpansionFull::makeMatrix(
-    (Game::EnemyStone::DrawInfo*, Matrixf*))
+    Game::EnemyStone::DrawInfo*, Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -608,8 +608,8 @@ void Game::EnemyStone::FSMStateExpansionFull::makeMatrix(
  * Address:	80128994
  * Size:	000014
  */
-void Game::EnemyStone::FSMStateFit::init((Game::EnemyStone::DrawInfo*,
-                                          Game::StateArg*))
+void Game::EnemyStone::FSMStateFit::init(Game::EnemyStone::DrawInfo*,
+                                         Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -626,7 +626,7 @@ void Game::EnemyStone::FSMStateFit::init((Game::EnemyStone::DrawInfo*,
  * Address:	801289A8
  * Size:	00005C
  */
-void Game::EnemyStone::FSMStateFit::exec((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateFit::exec(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -663,7 +663,7 @@ void Game::EnemyStone::FSMStateFit::exec((Game::EnemyStone::DrawInfo*))
  * Address:	80128A04
  * Size:	000004
  */
-void Game::EnemyStone::FSMStateFit::cleanup((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateFit::cleanup(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -676,8 +676,8 @@ void Game::EnemyStone::FSMStateFit::cleanup((Game::EnemyStone::DrawInfo*))
  * Address:	80128A08
  * Size:	0000DC
  */
-void Game::EnemyStone::FSMStateFit::makeMatrix((Game::EnemyStone::DrawInfo*,
-                                                Matrixf*))
+void Game::EnemyStone::FSMStateFit::makeMatrix(Game::EnemyStone::DrawInfo*,
+                                               Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -748,8 +748,8 @@ void Game::EnemyStone::FSMStateFit::makeMatrix((Game::EnemyStone::DrawInfo*,
  * Address:	80128AE4
  * Size:	000024
  */
-void Game::EnemyStone::FSMStateShake::init((Game::EnemyStone::DrawInfo*,
-                                            Game::StateArg*))
+void Game::EnemyStone::FSMStateShake::init(Game::EnemyStone::DrawInfo*,
+                                           Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -770,7 +770,7 @@ void Game::EnemyStone::FSMStateShake::init((Game::EnemyStone::DrawInfo*,
  * Address:	80128B08
  * Size:	000278
  */
-void Game::EnemyStone::FSMStateShake::exec((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateShake::exec(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -970,7 +970,7 @@ void Game::EnemyStone::FSMStateShake::exec((Game::EnemyStone::DrawInfo*))
  * Address:	80128D80
  * Size:	000004
  */
-void Game::EnemyStone::FSMStateShake::cleanup((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateShake::cleanup(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -983,8 +983,8 @@ void Game::EnemyStone::FSMStateShake::cleanup((Game::EnemyStone::DrawInfo*))
  * Address:	80128D84
  * Size:	0002E4
  */
-void Game::EnemyStone::FSMStateShake::makeMatrix((Game::EnemyStone::DrawInfo*,
-                                                  Matrixf*))
+void Game::EnemyStone::FSMStateShake::makeMatrix(Game::EnemyStone::DrawInfo*,
+                                                 Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -1214,7 +1214,7 @@ void Game::EnemyStone::FSMStateShake::makeMatrix((Game::EnemyStone::DrawInfo*,
  * Size:	00011C
  */
 void Game::EnemyStone::FSMStateBreakable::makeMatrix(
-    (Game::EnemyStone::DrawInfo*, Matrixf*))
+    Game::EnemyStone::DrawInfo*, Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -1303,8 +1303,8 @@ void Game::EnemyStone::FSMStateBreakable::makeMatrix(
  * Address:	80129184
  * Size:	00000C
  */
-void Game::EnemyStone::FSMStateBreakable::init((Game::EnemyStone::DrawInfo*,
-                                                Game::StateArg*))
+void Game::EnemyStone::FSMStateBreakable::init(Game::EnemyStone::DrawInfo*,
+                                               Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1319,7 +1319,7 @@ void Game::EnemyStone::FSMStateBreakable::init((Game::EnemyStone::DrawInfo*,
  * Address:	80129190
  * Size:	000018
  */
-void Game::EnemyStone::FSMStateBreakable::exec((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateBreakable::exec(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -1337,8 +1337,8 @@ void Game::EnemyStone::FSMStateBreakable::exec((Game::EnemyStone::DrawInfo*))
  * Address:	801291A8
  * Size:	000144
  */
-void Game::EnemyStone::FSMStateDisappear::init((Game::EnemyStone::DrawInfo*,
-                                                Game::StateArg*))
+void Game::EnemyStone::FSMStateDisappear::init(Game::EnemyStone::DrawInfo*,
+                                               Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1437,7 +1437,7 @@ void Game::EnemyStone::FSMStateDisappear::init((Game::EnemyStone::DrawInfo*,
  * Address:	801292EC
  * Size:	000004
  */
-void Game::EnemyStone::FSMStateDisappear::cleanup((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateDisappear::cleanup(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -1450,7 +1450,7 @@ void Game::EnemyStone::FSMStateDisappear::cleanup((Game::EnemyStone::DrawInfo*))
  * Address:	801292F0
  * Size:	000004
  */
-void Game::EnemyStone::FSMStateDisappear::exec((Game::EnemyStone::DrawInfo*))
+void Game::EnemyStone::FSMStateDisappear::exec(Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -1464,7 +1464,7 @@ void Game::EnemyStone::FSMStateDisappear::exec((Game::EnemyStone::DrawInfo*))
  * Size:	000024
  */
 void Game::EnemyStone::FSMStateDisappear::makeMatrix(
-    (Game::EnemyStone::DrawInfo*, Matrixf*))
+    Game::EnemyStone::DrawInfo*, Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -1485,8 +1485,8 @@ void Game::EnemyStone::FSMStateDisappear::makeMatrix(
  * Address:	80129318
  * Size:	000144
  */
-void Game::EnemyStone::FSMStateDead::init((Game::EnemyStone::DrawInfo*,
-                                           Game::StateArg*))
+void Game::EnemyStone::FSMStateDead::init(Game::EnemyStone::DrawInfo*,
+                                          Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1585,8 +1585,8 @@ void Game::EnemyStone::FSMStateDead::init((Game::EnemyStone::DrawInfo*,
  * Address:	8012945C
  * Size:	000024
  */
-void Game::EnemyStone::FSMStateDead::makeMatrix((Game::EnemyStone::DrawInfo*,
-                                                 Matrixf*))
+void Game::EnemyStone::FSMStateDead::makeMatrix(Game::EnemyStone::DrawInfo*,
+                                                Matrixf*)
 {
 	/*
 	.loc_0x0:
@@ -1607,7 +1607,7 @@ void Game::EnemyStone::FSMStateDead::makeMatrix((Game::EnemyStone::DrawInfo*,
  * Address:	80129480
  * Size:	0000BC
  */
-void Game::EnemyStone::DrawInfo::__ct((bool))
+void Game::EnemyStone::DrawInfo::DrawInfo(bool)
 {
 	/*
 	.loc_0x0:
@@ -1670,7 +1670,7 @@ void Game::EnemyStone::DrawInfo::__ct((bool))
  * Address:	8012953C
  * Size:	000064
  */
-void Game::EnemyStone::DrawInfo::reset(void)
+void Game::EnemyStone::DrawInfo::reset()
 {
 	/*
 	.loc_0x0:
@@ -1707,8 +1707,8 @@ void Game::EnemyStone::DrawInfo::reset(void)
  * Address:	801295A0
  * Size:	000034
  */
-void start__Q24Game42StateMachine<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfoiPQ24Game8StateArg(void)
+void Game::StateMachine<Game::EnemyStone::DrawInfo>::start(
+    Game::EnemyStone::DrawInfo*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1733,7 +1733,7 @@ FPQ34Game10EnemyStone8DrawInfoiPQ24Game8StateArg(void)
  * Address:	801295D4
  * Size:	000044
  */
-void Game::EnemyStone::DrawInfo::update((Game::EnemyBase*))
+void Game::EnemyStone::DrawInfo::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1762,7 +1762,7 @@ void Game::EnemyStone::DrawInfo::update((Game::EnemyBase*))
  * Address:	80129618
  * Size:	0000A8
  */
-void Game::EnemyStone::DrawInfo::makeMatrix((Matrixf*, bool))
+void Game::EnemyStone::DrawInfo::makeMatrix(Matrixf*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1820,7 +1820,7 @@ void Game::EnemyStone::DrawInfo::makeMatrix((Matrixf*, bool))
  * Address:	801296C0
  * Size:	00000C
  */
-void Game::EnemyStone::DrawInfo::getStateID(void)
+void Game::EnemyStone::DrawInfo::getStateID()
 {
 	/*
 	.loc_0x0:
@@ -1835,7 +1835,7 @@ void Game::EnemyStone::DrawInfo::getStateID(void)
  * Address:	801296CC
  * Size:	000114
  */
-void getPosAndScale__Q34Game10EnemyStone8DrawInfoFP10Vector3<float> Pf(void)
+void Game::EnemyStone::DrawInfo::getPosAndScale(Vector3<float>*, float*)
 {
 	/*
 	.loc_0x0:
@@ -1930,7 +1930,7 @@ void getPosAndScale__Q34Game10EnemyStone8DrawInfoFP10Vector3<float> Pf(void)
  * Address:	801297E0
  * Size:	00004C
  */
-void Game::EnemyStone::DrawInfo::appear((Game::EnemyBase*, float))
+void Game::EnemyStone::DrawInfo::appear(Game::EnemyBase*, float)
 {
 	/*
 	.loc_0x0:
@@ -1961,7 +1961,7 @@ void Game::EnemyStone::DrawInfo::appear((Game::EnemyBase*, float))
  * Address:	8012982C
  * Size:	00004C
  */
-void Game::EnemyStone::DrawInfo::fit((Game::EnemyBase*))
+void Game::EnemyStone::DrawInfo::fit(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1992,7 +1992,7 @@ void Game::EnemyStone::DrawInfo::fit((Game::EnemyBase*))
  * Address:	80129878
  * Size:	00004C
  */
-void Game::EnemyStone::DrawInfo::shake((Game::EnemyBase*, float))
+void Game::EnemyStone::DrawInfo::shake(Game::EnemyBase*, float)
 {
 	/*
 	.loc_0x0:
@@ -2023,7 +2023,7 @@ void Game::EnemyStone::DrawInfo::shake((Game::EnemyBase*, float))
  * Address:	801298C4
  * Size:	00004C
  */
-void Game::EnemyStone::DrawInfo::disappear((Game::EnemyBase*))
+void Game::EnemyStone::DrawInfo::disappear(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2054,7 +2054,7 @@ void Game::EnemyStone::DrawInfo::disappear((Game::EnemyBase*))
  * Address:	80129910
  * Size:	00004C
  */
-void Game::EnemyStone::DrawInfo::dead((Game::EnemyBase*))
+void Game::EnemyStone::DrawInfo::dead(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2085,8 +2085,8 @@ void Game::EnemyStone::DrawInfo::dead((Game::EnemyBase*))
  * Address:	8012995C
  * Size:	000004
  */
-void init__Q24Game38FSMState<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfoPQ24Game8StateArg(void)
+void Game::FSMState<Game::EnemyStone::DrawInfo>::init(
+    Game::EnemyStone::DrawInfo*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2099,8 +2099,8 @@ FPQ34Game10EnemyStone8DrawInfoPQ24Game8StateArg(void)
  * Address:	80129960
  * Size:	000004
  */
-void exec__Q24Game38FSMState<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfo(void)
+void Game::FSMState<Game::EnemyStone::DrawInfo>::exec(
+    Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2113,8 +2113,8 @@ FPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	80129964
  * Size:	000004
  */
-void cleanup__Q24Game38FSMState<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfo(void)
+void Game::FSMState<Game::EnemyStone::DrawInfo>::cleanup(
+    Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2127,8 +2127,8 @@ FPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	80129968
  * Size:	000004
  */
-void resume__Q24Game38FSMState<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfo(void)
+void Game::FSMState<Game::EnemyStone::DrawInfo>::resume(
+    Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2141,8 +2141,8 @@ FPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	8012996C
  * Size:	000004
  */
-void restart__Q24Game38FSMState<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfo(void)
+void Game::FSMState<Game::EnemyStone::DrawInfo>::restart(
+    Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2155,8 +2155,8 @@ FPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	80129970
  * Size:	000004
  */
-void init__Q24Game42StateMachine<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfo(void)
+void Game::StateMachine<Game::EnemyStone::DrawInfo>::init(
+    Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2169,8 +2169,8 @@ FPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	80129974
  * Size:	000038
  */
-void exec__Q24Game42StateMachine<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfo(void)
+void Game::StateMachine<Game::EnemyStone::DrawInfo>::exec(
+    Game::EnemyStone::DrawInfo*)
 {
 	/*
 	.loc_0x0:
@@ -2198,7 +2198,7 @@ FPQ34Game10EnemyStone8DrawInfo(void)
  * Address:	801299AC
  * Size:	000064
  */
-void create__Q24Game42StateMachine<Game::EnemyStone::DrawInfo> Fi(void)
+void Game::StateMachine<Game::EnemyStone::DrawInfo>::create(int)
 {
 	/*
 	.loc_0x0:
@@ -2235,8 +2235,8 @@ void create__Q24Game42StateMachine<Game::EnemyStone::DrawInfo> Fi(void)
  * Address:	80129A10
  * Size:	00009C
  */
-void transit__Q24Game42StateMachine<Game::EnemyStone::DrawInfo>
-FPQ34Game10EnemyStone8DrawInfoiPQ24Game8StateArg(void)
+void Game::StateMachine<Game::EnemyStone::DrawInfo>::transit(
+    Game::EnemyStone::DrawInfo*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2293,8 +2293,8 @@ FPQ34Game10EnemyStone8DrawInfoiPQ24Game8StateArg(void)
  * Address:	80129AAC
  * Size:	000084
  */
-void registerState__Q24Game42StateMachine<Game::EnemyStone::DrawInfo>
-FPQ24Game38FSMState<Game::EnemyStone::DrawInfo>(void)
+void Game::StateMachine<Game::EnemyStone::DrawInfo>::registerState(
+    Game::FSMState<Game::EnemyStone::DrawInfo>*)
 {
 	/*
 	.loc_0x0:

@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void Game::_Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800FF26C
  * Size:	0000F8
  */
-void Game::EnemyBaseFSM::State::animation((Game::EnemyBase*))
+void Game::EnemyBaseFSM::State::animation(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -98,7 +88,7 @@ void Game::EnemyBaseFSM::State::animation((Game::EnemyBase*))
  * Size:	0001E0
  */
 void Game::EnemyBaseFSM::BirthTypeDropState::isFinishableWaitingBirthTypeDrop(
-    (Game::EnemyBase*))
+    Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -238,7 +228,7 @@ void Game::EnemyBaseFSM::BirthTypeDropState::isFinishableWaitingBirthTypeDrop(
  * Address:	800FF544
  * Size:	00000C
  */
-void Game::Creature::isAlive(void)
+void Game::Creature::isAlive()
 {
 	/*
 	.loc_0x0:
@@ -253,8 +243,8 @@ void Game::Creature::isAlive(void)
  * Address:	800FF550
  * Size:	0001A8
  */
-void Game::EnemyBaseFSM::BirthTypeDropState::init((Game::EnemyBase*,
-                                                   Game::StateArg*))
+void Game::EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase*,
+                                                  Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -380,7 +370,7 @@ void Game::EnemyBaseFSM::BirthTypeDropState::init((Game::EnemyBase*,
  * Address:	800FF6F8
  * Size:	00006C
  */
-void Game::EnemyBaseFSM::BirthTypeDropState::update((Game::EnemyBase*))
+void Game::EnemyBaseFSM::BirthTypeDropState::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -421,7 +411,7 @@ void Game::EnemyBaseFSM::BirthTypeDropState::update((Game::EnemyBase*))
  * Address:	800FF764
  * Size:	000030
  */
-void Game::EnemyBaseFSM::BirthTypeDropState::cleanup((Game::EnemyBase*))
+void Game::EnemyBaseFSM::BirthTypeDropState::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -446,7 +436,7 @@ void Game::EnemyBaseFSM::BirthTypeDropState::cleanup((Game::EnemyBase*))
  * Size:	0001C4
  */
 void Game::EnemyBaseFSM::BirthTypeDropPikminState::
-    isFinishableWaitingBirthTypeDrop((Game::EnemyBase*))
+    isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -578,7 +568,7 @@ void Game::EnemyBaseFSM::BirthTypeDropPikminState::
  * Size:	0001A8
  */
 void Game::EnemyBaseFSM::BirthTypeDropOlimarState::
-    isFinishableWaitingBirthTypeDrop((Game::EnemyBase*))
+    isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -703,7 +693,7 @@ void Game::EnemyBaseFSM::BirthTypeDropOlimarState::
  * Size:	00018C
  */
 void Game::EnemyBaseFSM::BirthTypeDropTreasureState::
-    isFinishableWaitingBirthTypeDrop((Game::EnemyBase*))
+    isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -820,7 +810,7 @@ void Game::EnemyBaseFSM::BirthTypeDropTreasureState::
  * Address:	800FFC8C
  * Size:	00001C
  */
-void Game::Pellet::getPosition(void)
+void Game::Pellet::getPosition()
 {
 	/*
 	.loc_0x0:
@@ -840,7 +830,7 @@ void Game::Pellet::getPosition(void)
  * Size:	000008
  */
 void Game::EnemyBaseFSM::BirthTypeDropEarthquakeState::
-    isFinishableWaitingBirthTypeDrop((Game::EnemyBase*))
+    isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -854,7 +844,7 @@ void Game::EnemyBaseFSM::BirthTypeDropEarthquakeState::
  * Address:	800FFCB0
  * Size:	000024
  */
-void Game::EnemyBaseFSM::AppearState::entry((Game::EnemyBase*))
+void Game::EnemyBaseFSM::AppearState::entry(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -875,7 +865,7 @@ void Game::EnemyBaseFSM::AppearState::entry((Game::EnemyBase*))
  * Address:	800FFCD4
  * Size:	0000FC
  */
-void Game::EnemyBaseFSM::AppearState::init((Game::EnemyBase*, Game::StateArg*))
+void Game::EnemyBaseFSM::AppearState::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -950,7 +940,7 @@ void Game::EnemyBaseFSM::AppearState::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	800FFDD0
  * Size:	00001C
  */
-void Game::EnemyBase::getPosition(void)
+void Game::EnemyBase::getPosition()
 {
 	/*
 	.loc_0x0:
@@ -969,7 +959,7 @@ void Game::EnemyBase::getPosition(void)
  * Address:	800FFDEC
  * Size:	000130
  */
-void Game::EnemyBaseFSM::AppearState::update((Game::EnemyBase*))
+void Game::EnemyBaseFSM::AppearState::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1067,7 +1057,7 @@ void Game::EnemyBaseFSM::AppearState::update((Game::EnemyBase*))
  * Address:	800FFF1C
  * Size:	00001C
  */
-void Game::EnemyBaseFSM::AppearState::cleanup((Game::EnemyBase*))
+void Game::EnemyBaseFSM::AppearState::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1086,7 +1076,7 @@ void Game::EnemyBaseFSM::AppearState::cleanup((Game::EnemyBase*))
  * Address:	800FFF38
  * Size:	00010C
  */
-void Game::EnemyBaseFSM::LivingState::simulation((Game::EnemyBase*, float))
+void Game::EnemyBaseFSM::LivingState::simulation(Game::EnemyBase*, float)
 {
 	/*
 	.loc_0x0:
@@ -1177,7 +1167,7 @@ void Game::EnemyBaseFSM::LivingState::simulation((Game::EnemyBase*, float))
  * Address:	80100044
  * Size:	000008
  */
-void Game::EnemyBase::getCreatureID(void)
+void Game::EnemyBase::getCreatureID()
 {
 	/*
 	.loc_0x0:
@@ -1191,7 +1181,7 @@ void Game::EnemyBase::getCreatureID(void)
  * Address:	8010004C
  * Size:	000038
  */
-void Game::EnemyBase::getCreatureName(void)
+void Game::EnemyBase::getCreatureName()
 {
 	/*
 	.loc_0x0:
@@ -1217,7 +1207,7 @@ void Game::EnemyBase::getCreatureName(void)
  * Address:	80100084
  * Size:	000040
  */
-void Game::EnemyBaseFSM::LivingState::entry((Game::EnemyBase*))
+void Game::EnemyBaseFSM::LivingState::entry(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1249,7 +1239,7 @@ void Game::EnemyBaseFSM::LivingState::entry((Game::EnemyBase*))
  * Address:	801000C4
  * Size:	000030
  */
-void Game::EnemyBaseFSM::LivingState::updateCullingOff((Game::EnemyBase*))
+void Game::EnemyBaseFSM::LivingState::updateCullingOff(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1273,7 +1263,7 @@ void Game::EnemyBaseFSM::LivingState::updateCullingOff((Game::EnemyBase*))
  * Address:	801000F4
  * Size:	000030
  */
-void Game::EnemyBaseFSM::LivingState::updateAlways((Game::EnemyBase*))
+void Game::EnemyBaseFSM::LivingState::updateAlways(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1299,7 +1289,7 @@ void Game::EnemyBaseFSM::LivingState::updateAlways((Game::EnemyBase*))
  * Address:	80100124
  * Size:	0001BC
  */
-void Game::EnemyBaseFSM::LivingState::update((Game::EnemyBase*))
+void Game::EnemyBaseFSM::LivingState::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1430,7 +1420,7 @@ void Game::EnemyBaseFSM::LivingState::update((Game::EnemyBase*))
  * Address:	801002E0
  * Size:	000048
  */
-void Game::EnemyBaseFSM::FitState::updateCullingOff((Game::EnemyBase*))
+void Game::EnemyBaseFSM::FitState::updateCullingOff(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1462,7 +1452,7 @@ void Game::EnemyBaseFSM::FitState::updateCullingOff((Game::EnemyBase*))
  * Address:	80100328
  * Size:	000150
  */
-void Game::EnemyBaseFSM::FitState::init((Game::EnemyBase*, Game::StateArg*))
+void Game::EnemyBaseFSM::FitState::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1558,7 +1548,7 @@ void Game::EnemyBaseFSM::FitState::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80100478
  * Size:	000080
  */
-void Game::EnemyBaseFSM::FitState::cleanup((Game::EnemyBase*))
+void Game::EnemyBaseFSM::FitState::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1602,7 +1592,7 @@ void Game::EnemyBaseFSM::FitState::cleanup((Game::EnemyBase*))
  * Address:	801004F8
  * Size:	000204
  */
-void Game::EnemyBaseFSM::FitState::updateAlways((Game::EnemyBase*))
+void Game::EnemyBaseFSM::FitState::updateAlways(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1761,8 +1751,8 @@ void Game::EnemyBaseFSM::FitState::updateAlways((Game::EnemyBase*))
  * Address:	801006FC
  * Size:	000088
  */
-void Game::EnemyBaseFSM::EarthquakeState::init((Game::EnemyBase*,
-                                                Game::StateArg*))
+void Game::EnemyBaseFSM::EarthquakeState::init(Game::EnemyBase*,
+                                               Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1808,7 +1798,7 @@ void Game::EnemyBaseFSM::EarthquakeState::init((Game::EnemyBase*,
  * Address:	80100784
  * Size:	000050
  */
-void Game::EnemyBaseFSM::EarthquakeState::cleanup((Game::EnemyBase*))
+void Game::EnemyBaseFSM::EarthquakeState::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1840,7 +1830,7 @@ void Game::EnemyBaseFSM::EarthquakeState::cleanup((Game::EnemyBase*))
  * Address:	801007D4
  * Size:	000158
  */
-void Game::EnemyBaseFSM::EarthquakeState::updateCullingOff((Game::EnemyBase*))
+void Game::EnemyBaseFSM::EarthquakeState::updateCullingOff(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1948,7 +1938,7 @@ void Game::EnemyBaseFSM::EarthquakeState::updateCullingOff((Game::EnemyBase*))
  * Address:	8010092C
  * Size:	00000C
  */
-void Game::EnemyBase::isFlying(void)
+void Game::EnemyBase::isFlying()
 {
 	/*
 	.loc_0x0:
@@ -1963,8 +1953,8 @@ void Game::EnemyBase::isFlying(void)
  * Address:	80100938
  * Size:	000064
  */
-void Game::EnemyBaseFSM::StoneState::bounceProcedure((Game::EnemyBase*,
-                                                      Sys::Triangle*))
+void Game::EnemyBaseFSM::StoneState::bounceProcedure(Game::EnemyBase*,
+                                                     Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -2001,7 +1991,7 @@ void Game::EnemyBaseFSM::StoneState::bounceProcedure((Game::EnemyBase*,
  * Address:	8010099C
  * Size:	000100
  */
-void Game::EnemyBaseFSM::StoneState::init((Game::EnemyBase*, Game::StateArg*))
+void Game::EnemyBaseFSM::StoneState::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2087,7 +2077,7 @@ void Game::EnemyBaseFSM::StoneState::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	80100A9C
  * Size:	0000CC
  */
-void Game::EnemyBaseFSM::StoneState::cleanup((Game::EnemyBase*))
+void Game::EnemyBaseFSM::StoneState::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2154,7 +2144,7 @@ void Game::EnemyBaseFSM::StoneState::cleanup((Game::EnemyBase*))
  * Address:	80100B68
  * Size:	000118
  */
-void Game::EnemyBaseFSM::StoneState::updateAlways((Game::EnemyBase*))
+void Game::EnemyBaseFSM::StoneState::updateAlways(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2242,7 +2232,7 @@ void Game::EnemyBaseFSM::StoneState::updateAlways((Game::EnemyBase*))
  * Address:	80100C80
  * Size:	000074
  */
-void Game::EnemyBaseFSM::StoneState::updateCullingOff((Game::EnemyBase*))
+void Game::EnemyBaseFSM::StoneState::updateCullingOff(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2285,7 +2275,7 @@ void Game::EnemyBaseFSM::StoneState::updateCullingOff((Game::EnemyBase*))
  * Address:	80100CF4
  * Size:	000484
  */
-void Game::EnemyBaseFSM::StateMachine::init((Game::EnemyBase*))
+void Game::EnemyBaseFSM::StateMachine::init(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2606,7 +2596,7 @@ void Game::EnemyBaseFSM::StateMachine::init((Game::EnemyBase*))
  * Address:	80101178
  * Size:	00009C
  */
-void efx::TEnemyPiyo::__dt(void)
+void efx::TEnemyPiyo::~TEnemyPiyo()
 {
 	/*
 	.loc_0x0:
@@ -2661,7 +2651,7 @@ void efx::TEnemyPiyo::__dt(void)
  * Address:	80101214
  * Size:	000084
  */
-void efx::TChasePos::__dt(void)
+void efx::TChasePos::~TChasePos()
 {
 	/*
 	.loc_0x0:
@@ -2710,7 +2700,7 @@ void efx::TChasePos::__dt(void)
  * Address:	80101298
  * Size:	00006C
  */
-void efx::TSync::__dt(void)
+void efx::TSync::~TSync()
 {
 	/*
 	.loc_0x0:
@@ -2751,7 +2741,7 @@ void efx::TSync::__dt(void)
  * Address:	80101304
  * Size:	000030
  */
-void Game::EnemyBaseFSM::StateMachine::update((Game::EnemyBase*))
+void Game::EnemyBaseFSM::StateMachine::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2775,7 +2765,7 @@ void Game::EnemyBaseFSM::StateMachine::update((Game::EnemyBase*))
  * Address:	80101334
  * Size:	000004
  */
-void Game::EnemyBaseFSM::State::update((Game::EnemyBase*))
+void Game::EnemyBaseFSM::State::update(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2788,7 +2778,7 @@ void Game::EnemyBaseFSM::State::update((Game::EnemyBase*))
  * Address:	80101338
  * Size:	000030
  */
-void Game::EnemyBaseFSM::StateMachine::entry((Game::EnemyBase*))
+void Game::EnemyBaseFSM::StateMachine::entry(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2812,7 +2802,7 @@ void Game::EnemyBaseFSM::StateMachine::entry((Game::EnemyBase*))
  * Address:	80101368
  * Size:	000004
  */
-void Game::EnemyBaseFSM::State::entry((Game::EnemyBase*))
+void Game::EnemyBaseFSM::State::entry(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -2825,7 +2815,7 @@ void Game::EnemyBaseFSM::State::entry((Game::EnemyBase*))
  * Address:	8010136C
  * Size:	000030
  */
-void Game::EnemyBaseFSM::StateMachine::simulation((Game::EnemyBase*, float))
+void Game::EnemyBaseFSM::StateMachine::simulation(Game::EnemyBase*, float)
 {
 	/*
 	.loc_0x0:
@@ -2849,7 +2839,7 @@ void Game::EnemyBaseFSM::StateMachine::simulation((Game::EnemyBase*, float))
  * Address:	8010139C
  * Size:	000004
  */
-void Game::EnemyBaseFSM::State::simulation((Game::EnemyBase*, float))
+void Game::EnemyBaseFSM::State::simulation(Game::EnemyBase*, float)
 {
 	/*
 	.loc_0x0:
@@ -2862,7 +2852,7 @@ void Game::EnemyBaseFSM::State::simulation((Game::EnemyBase*, float))
  * Address:	801013A0
  * Size:	000370
  */
-void Game::EnemyBase::__ct(void)
+void Game::EnemyBase::EnemyBase()
 {
 	/*
 	.loc_0x0:
@@ -3104,7 +3094,7 @@ void Game::EnemyBase::__ct(void)
  * Address:	80101710
  * Size:	000060
  */
-void SysShape::KeyEvent::__dt(void)
+void SysShape::KeyEvent::~KeyEvent()
 {
 	/*
 	.loc_0x0:
@@ -3160,7 +3150,7 @@ void BitFlag<unsigned long>::BitFlag()
  * Address:	80101788
  * Size:	000044
  */
-void Game::EnemyBase::constructor(void)
+void Game::EnemyBase::constructor()
 {
 	/*
 	.loc_0x0:
@@ -3186,20 +3176,10 @@ void Game::EnemyBase::constructor(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000024
- */
-void Game::EnemyBase::addEffects((Game::EnemyEffectNodeBase*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801017CC
  * Size:	00005C
  */
-void Game::EnemyBase::createEffects(void)
+void Game::EnemyBase::createEffects()
 {
 	/*
 	.loc_0x0:
@@ -3238,7 +3218,7 @@ void Game::EnemyBase::createEffects(void)
  * Address:	80101828
  * Size:	00005C
  */
-void Game::EnemyBase::fadeEffects(void)
+void Game::EnemyBase::fadeEffects()
 {
 	/*
 	.loc_0x0:
@@ -3274,20 +3254,10 @@ void Game::EnemyBase::fadeEffects(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void Game::EnemyBase::forceKillEffects(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80101884
  * Size:	000050
  */
-void Game::EnemyBase::createInstanceEfxHamon(void)
+void Game::EnemyBase::createInstanceEfxHamon()
 {
 	/*
 	.loc_0x0:
@@ -3321,7 +3291,7 @@ void Game::EnemyBase::createInstanceEfxHamon(void)
  * Address:	801018D4
  * Size:	000030
  */
-void Game::EnemyBase::updateEfxHamon(void)
+void Game::EnemyBase::updateEfxHamon()
 {
 	/*
 	.loc_0x0:
@@ -3347,7 +3317,7 @@ void Game::EnemyBase::updateEfxHamon(void)
  * Address:	80101904
  * Size:	00003C
  */
-void Game::EnemyBase::createEfxHamon(void)
+void Game::EnemyBase::createEfxHamon()
 {
 	/*
 	.loc_0x0:
@@ -3376,7 +3346,7 @@ void Game::EnemyBase::createEfxHamon(void)
  * Address:	80101940
  * Size:	00003C
  */
-void Game::EnemyBase::fadeEfxHamon(void)
+void Game::EnemyBase::fadeEfxHamon()
 {
 	/*
 	.loc_0x0:
@@ -3405,7 +3375,7 @@ void Game::EnemyBase::fadeEfxHamon(void)
  * Address:	8010197C
  * Size:	000050
  */
-void Game::EnemyBase::setEmotionCaution(void)
+void Game::EnemyBase::setEmotionCaution()
 {
 	/*
 	.loc_0x0:
@@ -3439,7 +3409,7 @@ void Game::EnemyBase::setEmotionCaution(void)
  * Address:	801019CC
  * Size:	00003C
  */
-void Game::EnemyBase::setEmotionExcitement(void)
+void Game::EnemyBase::setEmotionExcitement()
 {
 	/*
 	.loc_0x0:
@@ -3466,7 +3436,7 @@ void Game::EnemyBase::setEmotionExcitement(void)
  * Address:	80101A08
  * Size:	000050
  */
-void Game::EnemyBase::setEmotionNone(void)
+void Game::EnemyBase::setEmotionNone()
 {
 	/*
 	.loc_0x0:
@@ -3500,7 +3470,7 @@ void Game::EnemyBase::setEmotionNone(void)
  * Address:	80101A58
  * Size:	000104
  */
-void Game::EnemyBase::onInit((Game::CreatureInitArg*))
+void Game::EnemyBase::onInit(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -3577,7 +3547,7 @@ void Game::EnemyBase::onInit((Game::CreatureInitArg*))
  * Address:	80101B5C
  * Size:	000218
  */
-void Game::EnemyBase::onInitPost((Game::CreatureInitArg*))
+void Game::EnemyBase::onInitPost(Game::CreatureInitArg*)
 {
 	/*
 	.loc_0x0:
@@ -3753,7 +3723,7 @@ void Game::EnemyBase::onInitPost((Game::CreatureInitArg*))
  * Address:	80101D74
  * Size:	0000A0
  */
-void Game::EnemyBase::setOtakaraCode((Game::PelletMgr::OtakaraItemCode&))
+void Game::EnemyBase::setOtakaraCode(Game::PelletMgr::OtakaraItemCode&)
 {
 	/*
 	.loc_0x0:
@@ -3808,20 +3778,10 @@ void Game::EnemyBase::setOtakaraCode((Game::PelletMgr::OtakaraItemCode&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E8
- */
-void Game::EnemyBase::commonDeadProc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80101E14
  * Size:	000004
  */
-void PSM::EnemyBase::setKilled(void)
+void PSM::EnemyBase::setKilled()
 {
 	/*
 	.loc_0x0:
@@ -3834,7 +3794,7 @@ void PSM::EnemyBase::setKilled(void)
  * Address:	80101E18
  * Size:	0000C4
  */
-void Game::EnemyBase::setCarcassArg((Game::PelletViewArg&))
+void Game::EnemyBase::setCarcassArg(Game::PelletViewArg&)
 {
 	/*
 	.loc_0x0:
@@ -3892,30 +3852,10 @@ void Game::EnemyBase::setCarcassArg((Game::PelletViewArg&))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000074
- */
-void Game::EnemyBase::permitFindingOtakaraDemo(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000234
- */
-void Game::EnemyBase::becomeCarcass(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80101EDC
  * Size:	000008
  */
-void Game::EnemyBase::doBecomeCarcass(void)
+void Game::EnemyBase::doBecomeCarcass()
 {
 	/*
 	.loc_0x0:
@@ -3929,7 +3869,7 @@ void Game::EnemyBase::doBecomeCarcass(void)
  * Address:	80101EE4
  * Size:	000004
  */
-void Game::EnemyBase::doUpdateCarcass(void)
+void Game::EnemyBase::doUpdateCarcass()
 {
 	/*
 	.loc_0x0:
@@ -3942,7 +3882,7 @@ void Game::EnemyBase::doUpdateCarcass(void)
  * Address:	80101EE8
  * Size:	0009EC
  */
-void Game::EnemyBase::onKill((Game::CreatureKillArg*))
+void Game::EnemyBase::onKill(Game::CreatureKillArg*)
 {
 	/*
 	.loc_0x0:
@@ -4703,7 +4643,7 @@ void Game::EnemyBase::onKill((Game::CreatureKillArg*))
  * Address:	801028D4
  * Size:	00001C
  */
-void setVelocity__Q24Game8BaseItemFR10Vector3<float>(void)
+void Game::BaseItem::setVelocity(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -4722,7 +4662,7 @@ void setVelocity__Q24Game8BaseItemFR10Vector3<float>(void)
  * Address:	801028F0
  * Size:	000024
  */
-void Game::EnemyBase::getBoundingSphere((Sys::Sphere&))
+void Game::EnemyBase::getBoundingSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -4743,7 +4683,7 @@ void Game::EnemyBase::getBoundingSphere((Sys::Sphere&))
  * Address:	80102914
  * Size:	00000C
  */
-void Game::CreatureKillArg::getName(void)
+void Game::CreatureKillArg::getName()
 {
 	/*
 	.loc_0x0:
@@ -4758,7 +4698,7 @@ void Game::CreatureKillArg::getName(void)
  * Address:	80102920
  * Size:	0000E0
  */
-void Game::EnemyBase::setZukanVisible((bool))
+void Game::EnemyBase::setZukanVisible(bool)
 {
 	/*
 	.loc_0x0:
@@ -4832,7 +4772,7 @@ void Game::EnemyBase::setZukanVisible((bool))
  * Address:	80102A00
  * Size:	000160
  */
-void birth__Q24Game9EnemyBaseFR10Vector3<float> f(void)
+void Game::EnemyBase::birth(Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -4934,7 +4874,7 @@ void birth__Q24Game9EnemyBaseFR10Vector3<float> f(void)
  * Address:	80102B60
  * Size:	000078
  */
-void Game::EnemyBase::updateTrMatrix(void)
+void Game::EnemyBase::updateTrMatrix()
 {
 	/*
 	.loc_0x0:
@@ -4976,7 +4916,7 @@ void Game::EnemyBase::updateTrMatrix(void)
  * Address:	80102BD8
  * Size:	000078
  */
-void Game::EnemyBase::setParameters(void)
+void Game::EnemyBase::setParameters()
 {
 	/*
 	.loc_0x0:
@@ -5018,7 +4958,7 @@ void Game::EnemyBase::setParameters(void)
  * Address:	80102C50
  * Size:	000034
  */
-void Game::EnemyBase::update(void)
+void Game::EnemyBase::update()
 {
 	/*
 	.loc_0x0:
@@ -5043,7 +4983,7 @@ void Game::EnemyBase::update(void)
  * Address:	80102C84
  * Size:	0001E0
  */
-void Game::EnemyBase::isFinishableWaitingBirthTypeDrop(void)
+void Game::EnemyBase::isFinishableWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -5183,7 +5123,7 @@ void Game::EnemyBase::isFinishableWaitingBirthTypeDrop(void)
  * Address:	80102E64
  * Size:	000090
  */
-void Game::EnemyBase::startStoneState(void)
+void Game::EnemyBase::startStoneState()
 {
 	/*
 	.loc_0x0:
@@ -5237,7 +5177,7 @@ void Game::EnemyBase::startStoneState(void)
  * Address:	80102EF4
  * Size:	000014
  */
-void Game::EnemyBase::doStartStoneState(void)
+void Game::EnemyBase::doStartStoneState()
 {
 	/*
 	.loc_0x0:
@@ -5254,7 +5194,7 @@ void Game::EnemyBase::doStartStoneState(void)
  * Address:	80102F08
  * Size:	000004
  */
-void Game::EnemyBase::doFinishStoneState(void)
+void Game::EnemyBase::doFinishStoneState()
 {
 	/*
 	.loc_0x0:
@@ -5264,20 +5204,10 @@ void Game::EnemyBase::doFinishStoneState(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000064
- */
-void Game::EnemyBase::updateEffects(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80102F0C
  * Size:	000008
  */
-void Game::EnemyBase::getWalkSmokeEffectMgr(void)
+void Game::EnemyBase::getWalkSmokeEffectMgr()
 {
 	/*
 	.loc_0x0:
@@ -5291,7 +5221,7 @@ void Game::EnemyBase::getWalkSmokeEffectMgr(void)
  * Address:	80102F14
  * Size:	000080
  */
-void Game::EnemyBase::doUpdateCommon(void)
+void Game::EnemyBase::doUpdateCommon()
 {
 	/*
 	.loc_0x0:
@@ -5337,7 +5267,7 @@ void Game::EnemyBase::doUpdateCommon(void)
  * Address:	80102F94
  * Size:	000034
  */
-void Game::EnemyBase::doAnimation(void)
+void Game::EnemyBase::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -5362,7 +5292,7 @@ void Game::EnemyBase::doAnimation(void)
  * Address:	80102FC8
  * Size:	000030
  */
-void Game::EnemyBaseFSM::StateMachine::animation((Game::EnemyBase*))
+void Game::EnemyBaseFSM::StateMachine::animation(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -5386,7 +5316,7 @@ void Game::EnemyBaseFSM::StateMachine::animation((Game::EnemyBase*))
  * Address:	80102FF8
  * Size:	000088
  */
-void Game::EnemyBase::doAnimationUpdateAnimator(void)
+void Game::EnemyBase::doAnimationUpdateAnimator()
 {
 	/*
 	.loc_0x0:
@@ -5432,7 +5362,7 @@ void Game::EnemyBase::doAnimationUpdateAnimator(void)
  * Address:	80103080
  * Size:	0001E0
  */
-void Game::EnemyBase::doAnimationCullingOff(void)
+void Game::EnemyBase::doAnimationCullingOff()
 {
 	/*
 	.loc_0x0:
@@ -5572,7 +5502,7 @@ void Game::EnemyBase::doAnimationCullingOff(void)
  * Address:	80103260
  * Size:	000020
  */
-void onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<float>(void)
+void Game::EnemyBase::onSetPositionPost(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -5592,7 +5522,7 @@ void onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<float>(void)
  * Address:	80103280
  * Size:	00001C
  */
-void onSetPosition__Q24Game9EnemyBaseFR10Vector3<float>(void)
+void Game::EnemyBase::onSetPosition(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -5611,7 +5541,7 @@ void onSetPosition__Q24Game9EnemyBaseFR10Vector3<float>(void)
  * Address:	8010329C
  * Size:	00007C
  */
-void Game::EnemyBase::doAnimationStick(void)
+void Game::EnemyBase::doAnimationStick()
 {
 	/*
 	.loc_0x0:
@@ -5654,7 +5584,7 @@ void Game::EnemyBase::doAnimationStick(void)
  * Address:	80103318
  * Size:	000020
  */
-void Game::EnemyBase::doAnimationCullingOn(void)
+void Game::EnemyBase::doAnimationCullingOn()
 {
 	/*
 	.loc_0x0:
@@ -5674,7 +5604,7 @@ void Game::EnemyBase::doAnimationCullingOn(void)
  * Address:	80103338
  * Size:	00007C
  */
-void Game::EnemyBase::show(void)
+void Game::EnemyBase::show()
 {
 	/*
 	.loc_0x0:
@@ -5723,7 +5653,7 @@ void Game::EnemyBase::show(void)
  * Address:	801033B4
  * Size:	000054
  */
-void Game::EnemyBase::hide(void)
+void Game::EnemyBase::hide()
 {
 	/*
 	.loc_0x0:
@@ -5760,7 +5690,7 @@ void Game::EnemyBase::hide(void)
  * Address:	80103408
  * Size:	000108
  */
-void Game::EnemyBase::doEntryCarcass(void)
+void Game::EnemyBase::doEntryCarcass()
 {
 	/*
 	.loc_0x0:
@@ -5852,7 +5782,7 @@ void Game::EnemyBase::doEntryCarcass(void)
  * Address:	80103510
  * Size:	00013C
  */
-void Game::EnemyBase::doEntryLiving(void)
+void Game::EnemyBase::doEntryLiving()
 {
 	/*
 	.loc_0x0:
@@ -5963,7 +5893,7 @@ void Game::EnemyBase::doEntryLiving(void)
  * Address:	8010364C
  * Size:	000034
  */
-void Game::EnemyBase::doEntry(void)
+void Game::EnemyBase::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -5988,7 +5918,7 @@ void Game::EnemyBase::doEntry(void)
  * Address:	80103680
  * Size:	000028
  */
-void Game::EnemyBase::doSetView((int))
+void Game::EnemyBase::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -6010,7 +5940,7 @@ void Game::EnemyBase::doSetView((int))
  * Address:	801036A8
  * Size:	000054
  */
-void Game::EnemyBase::isCullingOff(void)
+void Game::EnemyBase::isCullingOff()
 {
 	/*
 	.loc_0x0:
@@ -6049,7 +5979,7 @@ void Game::EnemyBase::isCullingOff(void)
  * Address:	801036FC
  * Size:	000078
  */
-void Game::EnemyBase::doViewCalc(void)
+void Game::EnemyBase::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -6099,7 +6029,7 @@ void Game::EnemyBase::doViewCalc(void)
  * Address:	80103774
  * Size:	0000AC
  */
-void Game::EnemyBase::doSimulationGround((float))
+void Game::EnemyBase::doSimulationGround(float)
 {
 	/*
 	.loc_0x0:
@@ -6160,7 +6090,7 @@ void Game::EnemyBase::doSimulationGround((float))
  * Address:	80103820
  * Size:	000058
  */
-void Game::EnemyBase::doSimulationFlying((float))
+void Game::EnemyBase::doSimulationFlying(float)
 {
 	/*
 	.loc_0x0:
@@ -6194,7 +6124,7 @@ void Game::EnemyBase::doSimulationFlying((float))
  * Address:	80103878
  * Size:	000058
  */
-void Game::EnemyBase::doSimulationStick((float))
+void Game::EnemyBase::doSimulationStick(float)
 {
 	/*
 	.loc_0x0:
@@ -6228,7 +6158,7 @@ void Game::EnemyBase::doSimulationStick((float))
  * Address:	801038D0
  * Size:	000070
  */
-void Game::EnemyBase::updateSpheres(void)
+void Game::EnemyBase::updateSpheres()
 {
 	/*
 	.loc_0x0:
@@ -6268,7 +6198,7 @@ void Game::EnemyBase::updateSpheres(void)
  * Address:	80103940
  * Size:	0000B8
  */
-void createDropEffect__Q24Game9EnemyBaseFRC10Vector3<float> f(void)
+void Game::EnemyBase::createDropEffect(const Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -6326,7 +6256,7 @@ void createDropEffect__Q24Game9EnemyBaseFRC10Vector3<float> f(void)
  * Address:	801039F8
  * Size:	000158
  */
-void createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3<float> f(void)
+void Game::EnemyBase::createSplashDownEffect(const Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -6428,7 +6358,7 @@ void createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3<float> f(void)
  * Address:	80103B50
  * Size:	0001DC
  */
-void createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<float> f(void)
+void Game::EnemyBase::createBounceEffect(const Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -6567,7 +6497,7 @@ void createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<float> f(void)
  * Address:	80103D2C
  * Size:	000168
  */
-void Game::EnemyBase::outWaterCallback(void)
+void Game::EnemyBase::outWaterCallback()
 {
 	/*
 	.loc_0x0:
@@ -6675,7 +6605,7 @@ void Game::EnemyBase::outWaterCallback(void)
  * Address:	80103E94
  * Size:	000168
  */
-void Game::EnemyBase::inWaterCallback((Game::WaterBox*))
+void Game::EnemyBase::inWaterCallback(Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -6783,7 +6713,7 @@ void Game::EnemyBase::inWaterCallback((Game::WaterBox*))
  * Address:	80103FFC
  * Size:	00028C
  */
-void Game::EnemyBase::finishDropping((bool))
+void Game::EnemyBase::finishDropping(bool)
 {
 	/*
 	.loc_0x0:
@@ -6970,7 +6900,7 @@ void Game::EnemyBase::finishDropping((bool))
  * Address:	80104288
  * Size:	000080
  */
-void Game::EnemyBase::bounceProcedure((Sys::Triangle*))
+void Game::EnemyBase::bounceProcedure(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -7014,8 +6944,8 @@ void Game::EnemyBase::bounceProcedure((Sys::Triangle*))
  * Address:	80104308
  * Size:	000030
  */
-void Game::EnemyBaseFSM::StateMachine::bounceProcedure((Game::EnemyBase*,
-                                                        Sys::Triangle*))
+void Game::EnemyBaseFSM::StateMachine::bounceProcedure(Game::EnemyBase*,
+                                                       Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -7039,8 +6969,8 @@ void Game::EnemyBaseFSM::StateMachine::bounceProcedure((Game::EnemyBase*,
  * Address:	80104338
  * Size:	000004
  */
-void Game::EnemyBaseFSM::State::bounceProcedure((Game::EnemyBase*,
-                                                 Sys::Triangle*))
+void Game::EnemyBaseFSM::State::bounceProcedure(Game::EnemyBase*,
+                                                Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -7053,7 +6983,7 @@ void Game::EnemyBaseFSM::State::bounceProcedure((Game::EnemyBase*,
  * Address:	8010433C
  * Size:	000004
  */
-void Game::Creature::bounceCallback((Sys::Triangle*))
+void Game::Creature::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -7066,7 +6996,7 @@ void Game::Creature::bounceCallback((Sys::Triangle*))
  * Address:	80104340
  * Size:	0006D4
  */
-void Game::EnemyBase::collisionMapAndPlat((float))
+void Game::EnemyBase::collisionMapAndPlat(float)
 {
 	/*
 	.loc_0x0:
@@ -7567,7 +7497,7 @@ void Game::EnemyBase::collisionMapAndPlat((float))
  * Address:	80104A14
  * Size:	000004
  */
-void Game::MapMgr::constraintBoundBox((Sys::Sphere&))
+void Game::MapMgr::constraintBoundBox(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -7580,7 +7510,7 @@ void Game::MapMgr::constraintBoundBox((Sys::Sphere&))
  * Address:	80104A18
  * Size:	000008
  */
-void Game::MapMgr::hasHiddenCollision(void)
+void Game::MapMgr::hasHiddenCollision()
 {
 	/*
 	.loc_0x0:
@@ -7594,7 +7524,7 @@ void Game::MapMgr::hasHiddenCollision(void)
  * Address:	80104A20
  * Size:	000004
  */
-void Game::EnemyBase::wallCallback((Game::MoveInfo const&))
+void Game::EnemyBase::wallCallback(const Game::MoveInfo&)
 {
 	/*
 	.loc_0x0:
@@ -7607,7 +7537,7 @@ void Game::EnemyBase::wallCallback((Game::MoveInfo const&))
  * Address:	80104A24
  * Size:	000014
  */
-void Game::EnemyBase::getOffsetForMapCollision(void)
+void Game::EnemyBase::getOffsetForMapCollision()
 {
 	/*
 	.loc_0x0:
@@ -7624,7 +7554,7 @@ void Game::EnemyBase::getOffsetForMapCollision(void)
  * Address:	80104A38
  * Size:	000020
  */
-void Game::EnemyBase::doSimulationCarcass((float))
+void Game::EnemyBase::doSimulationCarcass(float)
 {
 	/*
 	.loc_0x0:
@@ -7644,7 +7574,7 @@ void Game::EnemyBase::doSimulationCarcass((float))
  * Address:	80104A58
  * Size:	000034
  */
-void Game::EnemyBase::doSimulation((float))
+void Game::EnemyBase::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -7669,7 +7599,7 @@ void Game::EnemyBase::doSimulation((float))
  * Address:	80104A8C
  * Size:	0000D8
  */
-void Game::EnemyBase::doSimulationConstraint((float))
+void Game::EnemyBase::doSimulationConstraint(float)
 {
 	/*
 	.loc_0x0:
@@ -7743,7 +7673,7 @@ void Game::EnemyBase::doSimulationConstraint((float))
  * Address:	80104B64
  * Size:	000070
  */
-void Game::EnemyBase::gotoHell(void)
+void Game::EnemyBase::gotoHell()
 {
 	/*
 	.loc_0x0:
@@ -7785,7 +7715,7 @@ void Game::EnemyBase::gotoHell(void)
  * Address:	80104BD4
  * Size:	000030
  */
-void Game::EnemyBase::setAnimMgr((SysShape::AnimMgr*))
+void Game::EnemyBase::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
 	.loc_0x0:
@@ -7809,7 +7739,7 @@ void Game::EnemyBase::setAnimMgr((SysShape::AnimMgr*))
  * Address:	80104C04
  * Size:	0001B4
  */
-void Game::EnemyBase::setPSEnemyBaseAnime(void)
+void Game::EnemyBase::setPSEnemyBaseAnime()
 {
 	/*
 	.loc_0x0:
@@ -7950,8 +7880,8 @@ void Game::EnemyBase::setPSEnemyBaseAnime(void)
  * Address:	80104DB8
  * Size:	0001F0
  */
-void Game::EnemyBase::startBlend((int, int, SysShape::BlendFunction*, float,
-                                  SysShape::MotionListener*))
+void Game::EnemyBase::startBlend(int, int, SysShape::BlendFunction*, float,
+                                 SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -8109,7 +8039,7 @@ void Game::EnemyBase::startBlend((int, int, SysShape::BlendFunction*, float,
  * Address:	80104FA8
  * Size:	000050
  */
-void Game::EnemyBase::endBlend(void)
+void Game::EnemyBase::endBlend()
 {
 	/*
 	.loc_0x0:
@@ -8143,7 +8073,7 @@ void Game::EnemyBase::endBlend(void)
  * Address:	80104FF8
  * Size:	00000C
  */
-void Game::EnemyAnimatorBase::getTypeID(void)
+void Game::EnemyAnimatorBase::getTypeID()
 {
 	/*
 	.loc_0x0:
@@ -8158,7 +8088,7 @@ void Game::EnemyAnimatorBase::getTypeID(void)
  * Address:	80105004
  * Size:	000224
  */
-void Game::EnemyBase::startMotion((int, SysShape::MotionListener*))
+void Game::EnemyBase::startMotion(int, SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -8328,20 +8258,10 @@ void Game::EnemyBase::startMotion((int, SysShape::MotionListener*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000220
- */
-void Game::EnemyBase::startMotion((int, int, SysShape::MotionListener*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80105228
  * Size:	000044
  */
-void Game::EnemyBase::setMotionFrame((float))
+void Game::EnemyBase::setMotionFrame(float)
 {
 	/*
 	.loc_0x0:
@@ -8367,20 +8287,10 @@ void Game::EnemyBase::setMotionFrame((float))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000044
- */
-void Game::EnemyBase::setMotionFrame((int, float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8010526C
  * Size:	000034
  */
-void Game::EnemyBase::getMotionFrame(void)
+void Game::EnemyBase::getMotionFrame()
 {
 	/*
 	.loc_0x0:
@@ -8402,20 +8312,10 @@ void Game::EnemyBase::getMotionFrame(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000034
- */
-void Game::EnemyBase::getMotionFrame((int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801052A0
  * Size:	000040
  */
-void Game::EnemyBase::finishMotion(void)
+void Game::EnemyBase::finishMotion()
 {
 	/*
 	.loc_0x0:
@@ -8440,20 +8340,10 @@ void Game::EnemyBase::finishMotion(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void Game::EnemyBase::finishMotion((int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801052E0
  * Size:	000020
  */
-void Game::EnemyBase::onKeyEvent((SysShape::KeyEvent const&))
+void Game::EnemyBase::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -8473,7 +8363,7 @@ void Game::EnemyBase::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80105300
  * Size:	000080
  */
-void Game::EnemyBase::stimulate((Game::Interaction&))
+void Game::EnemyBase::stimulate(Game::Interaction&)
 {
 	/*
 	.loc_0x0:
@@ -8519,7 +8409,7 @@ void Game::EnemyBase::stimulate((Game::Interaction&))
  * Address:	80105380
  * Size:	000008
  */
-void Game::Interaction::actEnemy((Game::EnemyBase*))
+void Game::Interaction::actEnemy(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -8533,7 +8423,7 @@ void Game::Interaction::actEnemy((Game::EnemyBase*))
  * Address:	80105388
  * Size:	000008
  */
-void Game::Interaction::actCommon((Game::Creature*))
+void Game::Interaction::actCommon(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -8547,7 +8437,7 @@ void Game::Interaction::actCommon((Game::Creature*))
  * Address:	80105390
  * Size:	000030
  */
-void Game::EnemyBase::lifeRecover(void)
+void Game::EnemyBase::lifeRecover()
 {
 	/*
 	.loc_0x0:
@@ -8571,7 +8461,7 @@ void Game::EnemyBase::lifeRecover(void)
  * Address:	801053C0
  * Size:	00033C
  */
-void Game::EnemyBase::scaleDamageAnim(void)
+void Game::EnemyBase::scaleDamageAnim()
 {
 	/*
 	.loc_0x0:
@@ -8832,7 +8722,7 @@ void Game::EnemyBase::scaleDamageAnim(void)
  * Address:	801056FC
  * Size:	000024
  */
-void Game::EnemyBase::finishScaleDamageAnim(void)
+void Game::EnemyBase::finishScaleDamageAnim()
 {
 	/*
 	.loc_0x0:
@@ -8853,7 +8743,7 @@ void Game::EnemyBase::finishScaleDamageAnim(void)
  * Address:	80105720
  * Size:	0000F8
  */
-void Game::EnemyBase::deathProcedure(void)
+void Game::EnemyBase::deathProcedure()
 {
 	/*
 	.loc_0x0:
@@ -8937,7 +8827,7 @@ void Game::EnemyBase::deathProcedure(void)
  * Address:	80105818
  * Size:	000008
  */
-void PSM::EnemyBase::getCastType(void)
+void PSM::EnemyBase::getCastType()
 {
 	/*
 	.loc_0x0:
@@ -8951,7 +8841,7 @@ void PSM::EnemyBase::getCastType(void)
  * Address:	80105820
  * Size:	00002C
  */
-void Game::EnemyBase::throwupItemInDeathProcedure(void)
+void Game::EnemyBase::throwupItemInDeathProcedure()
 {
 	/*
 	.loc_0x0:
@@ -8974,7 +8864,7 @@ void Game::EnemyBase::throwupItemInDeathProcedure(void)
  * Address:	8010584C
  * Size:	000028
  */
-void Game::Creature::setAlive((bool))
+void Game::Creature::setAlive(bool)
 {
 	/*
 	.loc_0x0:
@@ -8998,7 +8888,7 @@ void Game::Creature::setAlive((bool))
  * Address:	80105874
  * Size:	0000D8
  */
-void Game::EnemyBase::createDeadBombEffect(void)
+void Game::EnemyBase::createDeadBombEffect()
 {
 	/*
 	.loc_0x0:
@@ -9064,7 +8954,7 @@ void Game::EnemyBase::createDeadBombEffect(void)
  * Address:	8010594C
  * Size:	000054
  */
-void getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<float>(void)
+void Game::EnemyBase::getThrowupItemPosition(Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -9097,7 +8987,7 @@ void getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<float>(void)
  * Address:	801059A0
  * Size:	000018
  */
-void getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<float>(void)
+void Game::EnemyBase::getThrowupItemVelocity(Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -9115,7 +9005,7 @@ void getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<float>(void)
  * Address:	801059B8
  * Size:	0004B0
  */
-void Game::EnemyBase::throwupItem(void)
+void Game::EnemyBase::throwupItem()
 {
 	/*
 	.loc_0x0:
@@ -9451,7 +9341,7 @@ void Game::EnemyBase::throwupItem(void)
  * Address:	80105E68
  * Size:	000004
  */
-void createKiraEffect__Q24Game6PelletFR10Vector3<float>(void)
+void Game::Pellet::createKiraEffect(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -9464,7 +9354,7 @@ void createKiraEffect__Q24Game6PelletFR10Vector3<float>(void)
  * Address:	80105E6C
  * Size:	000004
  */
-void Game::EnemyBase::doDebugDraw((Graphics&))
+void Game::EnemyBase::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -9477,7 +9367,7 @@ void Game::EnemyBase::doDebugDraw((Graphics&))
  * Address:	80105E70
  * Size:	000080
  */
-void Game::EnemyBase::getLifeGaugeParam((Game::LifeGaugeParam&))
+void Game::EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -9529,7 +9419,7 @@ void Game::EnemyBase::getLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	80105EF0
  * Size:	000040
  */
-void Game::EnemyBase::doGetLifeGaugeParam((Game::LifeGaugeParam&))
+void Game::EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam&)
 {
 	/*
 	.loc_0x0:
@@ -9557,7 +9447,7 @@ void Game::EnemyBase::doGetLifeGaugeParam((Game::LifeGaugeParam&))
  * Address:	80105F30
  * Size:	000050
  */
-void Game::EnemyBase::onStickStart((Game::Creature*))
+void Game::EnemyBase::onStickStart(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -9591,7 +9481,7 @@ void Game::EnemyBase::onStickStart((Game::Creature*))
  * Address:	80105F80
  * Size:	000050
  */
-void Game::EnemyBase::onStickEnd((Game::Creature*))
+void Game::EnemyBase::onStickEnd(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -9625,7 +9515,7 @@ void Game::EnemyBase::onStickEnd((Game::Creature*))
  * Address:	80105FD0
  * Size:	00005C
  */
-void Game::EnemyBase::injure(void)
+void Game::EnemyBase::injure()
 {
 	/*
 	.loc_0x0:
@@ -9664,7 +9554,7 @@ void Game::EnemyBase::injure(void)
  * Address:	8010602C
  * Size:	000040
  */
-void Game::EnemyBase::addDamage((float, float))
+void Game::EnemyBase::addDamage(float, float)
 {
 	/*
 	.loc_0x0:
@@ -9694,7 +9584,7 @@ void Game::EnemyBase::addDamage((float, float))
  * Address:	8010606C
  * Size:	000048
  */
-void Game::EnemyBase::damageCallBack((Game::Creature*, float, CollPart*))
+void Game::EnemyBase::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -9728,7 +9618,7 @@ void Game::EnemyBase::damageCallBack((Game::Creature*, float, CollPart*))
  * Address:	801060B4
  * Size:	000008
  */
-void Game::EnemyBase::pressCallBack((Game::Creature*, float, CollPart*))
+void Game::EnemyBase::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -9742,7 +9632,7 @@ void Game::EnemyBase::pressCallBack((Game::Creature*, float, CollPart*))
  * Address:	801060BC
  * Size:	000008
  */
-void Game::EnemyBase::flyCollisionCallBack((Game::Creature*, float, CollPart*))
+void Game::EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -9756,7 +9646,7 @@ void Game::EnemyBase::flyCollisionCallBack((Game::Creature*, float, CollPart*))
  * Address:	801060C4
  * Size:	000248
  */
-void Game::EnemyBase::hipdropCallBack((Game::Creature*, float, CollPart*))
+void Game::EnemyBase::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	.loc_0x0:
@@ -9926,7 +9816,7 @@ void Game::EnemyBase::hipdropCallBack((Game::Creature*, float, CollPart*))
  * Address:	8010630C
  * Size:	000008
  */
-void Game::EnemyBase::dropCallBack((Game::Creature*))
+void Game::EnemyBase::dropCallBack(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -9940,7 +9830,7 @@ void Game::EnemyBase::dropCallBack((Game::Creature*))
  * Address:	80106314
  * Size:	000040
  */
-void Game::EnemyBase::isBeforeAppearState(void)
+void Game::EnemyBase::isBeforeAppearState()
 {
 	/*
 	.loc_0x0:
@@ -9968,7 +9858,7 @@ void Game::EnemyBase::isBeforeAppearState(void)
  * Address:	80106354
  * Size:	000070
  */
-void Game::EnemyBase::checkBirthTypeDropEarthquake(void)
+void Game::EnemyBase::checkBirthTypeDropEarthquake()
 {
 	/*
 	.loc_0x0:
@@ -10010,7 +9900,7 @@ void Game::EnemyBase::checkBirthTypeDropEarthquake(void)
  * Address:	801063C4
  * Size:	0000EC
  */
-void Game::EnemyBase::earthquakeCallBack((Game::Creature*, float))
+void Game::EnemyBase::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -10087,7 +9977,7 @@ void Game::EnemyBase::earthquakeCallBack((Game::Creature*, float))
  * Address:	801064B0
  * Size:	000108
  */
-void Game::EnemyBase::dopeCallBack((Game::Creature*, int))
+void Game::EnemyBase::dopeCallBack(Game::Creature*, int)
 {
 	/*
 	.loc_0x0:
@@ -10173,7 +10063,7 @@ void Game::EnemyBase::dopeCallBack((Game::Creature*, int))
  * Address:	801065B8
  * Size:	000008
  */
-void Game::EnemyBase::doDopeCallBack((Game::Creature*, int))
+void Game::EnemyBase::doDopeCallBack(Game::Creature*, int)
 {
 	/*
 	.loc_0x0:
@@ -10187,7 +10077,7 @@ void Game::EnemyBase::doDopeCallBack((Game::Creature*, int))
  * Address:	801065C0
  * Size:	000008
  */
-void Game::EnemyBase::farmCallBack((Game::Creature*, float))
+void Game::EnemyBase::farmCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -10201,7 +10091,7 @@ void Game::EnemyBase::farmCallBack((Game::Creature*, float))
  * Address:	801065C8
  * Size:	000048
  */
-void bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<float> f(void)
+void Game::EnemyBase::bombCallBack(Game::Creature*, Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -10235,7 +10125,7 @@ void bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<float> f(void)
  * Address:	80106610
  * Size:	000054
  */
-void Game::EnemyBase::collisionCallback((Game::CollEvent&))
+void Game::EnemyBase::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -10268,7 +10158,7 @@ void Game::EnemyBase::collisionCallback((Game::CollEvent&))
  * Address:	80106664
  * Size:	000028
  */
-void Game::EnemyBase::setCollEvent((Game::CollEvent&))
+void Game::EnemyBase::setCollEvent(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -10290,7 +10180,7 @@ void Game::EnemyBase::setCollEvent((Game::CollEvent&))
  * Address:	8010668C
  * Size:	000010
  */
-void Game::EnemyBase::resetCollEvent(void)
+void Game::EnemyBase::resetCollEvent()
 {
 	/*
 	.loc_0x0:
@@ -10306,7 +10196,7 @@ void Game::EnemyBase::resetCollEvent(void)
  * Address:	8010669C
  * Size:	000004
  */
-void Game::EnemyBase::changeMaterial(void)
+void Game::EnemyBase::changeMaterial()
 {
 	/*
 	.loc_0x0:
@@ -10319,7 +10209,7 @@ void Game::EnemyBase::changeMaterial(void)
  * Address:	801066A0
  * Size:	000008
  */
-void Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -10333,7 +10223,7 @@ void Game::EnemyBase::viewGetShape(void)
  * Address:	801066A8
  * Size:	000020
  */
-void Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -10353,7 +10243,7 @@ void Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	801066C8
  * Size:	000040
  */
-void Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -10381,7 +10271,7 @@ void Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	80106708
  * Size:	000214
  */
-void Game::EnemyBase::startCarcassMotion(void)
+void Game::EnemyBase::startCarcassMotion()
 {
 	/*
 	.loc_0x0:
@@ -10548,7 +10438,7 @@ void Game::EnemyBase::startCarcassMotion(void)
  * Address:	8010691C
  * Size:	000130
  */
-void Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -10648,7 +10538,7 @@ void Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	80106A4C
  * Size:	00002C
  */
-void Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -10671,7 +10561,7 @@ void Game::EnemyBase::view_start_carrymotion(void)
  * Address:	80106A78
  * Size:	000040
  */
-void Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -10699,7 +10589,7 @@ void Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	80106AB8
  * Size:	0000A8
  */
-void getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<float>(void)
+void Game::EnemyBase::getCommonEffectPos(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -10753,7 +10643,7 @@ void getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<float>(void)
  * Address:	80106B60
  * Size:	000040
  */
-void Game::EnemyBase::getWaterSphere((Sys::Sphere*))
+void Game::EnemyBase::getWaterSphere(Sys::Sphere*)
 {
 	/*
 	.loc_0x0:
@@ -10781,7 +10671,7 @@ void Game::EnemyBase::getWaterSphere((Sys::Sphere*))
  * Address:	80106BA0
  * Size:	000148
  */
-void Game::EnemyBase::updateWaterBox(void)
+void Game::EnemyBase::updateWaterBox()
 {
 	/*
 	.loc_0x0:
@@ -10885,7 +10775,7 @@ void Game::EnemyBase::updateWaterBox(void)
  * Address:	80106CE8
  * Size:	000008
  */
-void Game::WaterBox::inWater((Sys::Sphere&))
+void Game::WaterBox::inWater(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -10899,7 +10789,7 @@ void Game::WaterBox::inWater((Sys::Sphere&))
  * Address:	80106CF0
  * Size:	00027C
  */
-void Game::EnemyBase::createPSEnemyBase(void)
+void Game::EnemyBase::createPSEnemyBase()
 {
 	/*
 	.loc_0x0:
@@ -11088,7 +10978,7 @@ void Game::EnemyBase::createPSEnemyBase(void)
  * Address:	80106F6C
  * Size:	000164
  */
-void PSM::EnemyBig::__dt(void)
+void PSM::EnemyBig::~EnemyBig()
 {
 	/*
 	.loc_0x0:
@@ -11199,7 +11089,7 @@ void PSM::EnemyBig::__dt(void)
  * Address:	801070D0
  * Size:	000134
  */
-void PSM::EnemyBase::__dt(void)
+void PSM::EnemyBase::~EnemyBase()
 {
 	/*
 	.loc_0x0:
@@ -11298,7 +11188,7 @@ void PSM::EnemyBase::__dt(void)
  * Address:	80107204
  * Size:	00001C
  */
-void Game::EnemyBase::startMotion(void)
+void Game::EnemyBase::startMotion()
 {
 	/*
 	.loc_0x0:
@@ -11314,20 +11204,10 @@ void Game::EnemyBase::startMotion(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000020
- */
-void Game::EnemyBase::slowStartMotion(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80107220
  * Size:	000058
  */
-void Game::EnemyBase::getMotionFrameMax(void)
+void Game::EnemyBase::getMotionFrameMax()
 {
 	/*
 	.loc_0x0:
@@ -11358,20 +11238,10 @@ void Game::EnemyBase::getMotionFrameMax(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000058
- */
-void Game::EnemyBase::getMotionFrameMax((int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80107278
  * Size:	000068
  */
-void Game::EnemyBase::getFirstKeyFrame(void)
+void Game::EnemyBase::getFirstKeyFrame()
 {
 	/*
 	.loc_0x0:
@@ -11410,20 +11280,10 @@ void Game::EnemyBase::getFirstKeyFrame(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000068
- */
-void Game::EnemyBase::getFirstKeyFrame((int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801072E0
  * Size:	000020
  */
-void Game::EnemyBase::stopMotion(void)
+void Game::EnemyBase::stopMotion()
 {
 	/*
 	.loc_0x0:
@@ -11440,20 +11300,10 @@ void Game::EnemyBase::stopMotion(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000024
- */
-void Game::EnemyBase::slowStopMotion(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80107300
  * Size:	000038
  */
-void Game::EnemyBase::isFinishMotion(void)
+void Game::EnemyBase::isFinishMotion()
 {
 	/*
 	.loc_0x0:
@@ -11476,20 +11326,10 @@ void Game::EnemyBase::isFinishMotion(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000038
- */
-void Game::EnemyBase::isFinishMotion((int))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80107338
  * Size:	000010
  */
-void Game::EnemyBase::isStopMotion(void)
+void Game::EnemyBase::isStopMotion()
 {
 	/*
 	.loc_0x0:
@@ -11505,7 +11345,7 @@ void Game::EnemyBase::isStopMotion(void)
  * Address:	80107348
  * Size:	000048
  */
-void Game::EnemyBase::getCurrAnimIndex(void)
+void Game::EnemyBase::getCurrAnimIndex()
 {
 	/*
 	.loc_0x0:
@@ -11539,7 +11379,7 @@ void Game::EnemyBase::getCurrAnimIndex(void)
  * Address:	80107390
  * Size:	00000C
  */
-void Game::EnemyBase::setAnimSpeed((float))
+void Game::EnemyBase::setAnimSpeed(float)
 {
 	/*
 	.loc_0x0:
@@ -11554,7 +11394,7 @@ void Game::EnemyBase::setAnimSpeed((float))
  * Address:	8010739C
  * Size:	000030
  */
-void Game::EnemyBase::resetAnimSpeed(void)
+void Game::EnemyBase::resetAnimSpeed()
 {
 	/*
 	.loc_0x0:
@@ -11578,7 +11418,7 @@ void Game::EnemyBase::resetAnimSpeed(void)
  * Address:	801073CC
  * Size:	00000C
  */
-void Game::EnemyAnimatorBase::resetAnimSpeed(void)
+void Game::EnemyAnimatorBase::resetAnimSpeed()
 {
 	/*
 	.loc_0x0:
@@ -11590,20 +11430,10 @@ void Game::EnemyAnimatorBase::resetAnimSpeed(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00000C
- */
-void Game::EnemyBase::getAnimSpeed(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801073D8
  * Size:	000014
  */
-void Game::EnemyBase::getJAIObject(void)
+void Game::EnemyBase::getJAIObject()
 {
 	/*
 	.loc_0x0:
@@ -11620,7 +11450,7 @@ void Game::EnemyBase::getJAIObject(void)
  * Address:	801073EC
  * Size:	000008
  */
-void Game::EnemyBase::getPSCreature(void)
+void Game::EnemyBase::getPSCreature()
 {
 	/*
 	.loc_0x0:
@@ -11634,7 +11464,7 @@ void Game::EnemyBase::getPSCreature(void)
  * Address:	801073F4
  * Size:	00001C
  */
-void Game::EnemyBase::getStateID(void)
+void Game::EnemyBase::getStateID()
 {
 	/*
 	.loc_0x0:
@@ -11655,7 +11485,7 @@ void Game::EnemyBase::getStateID(void)
  * Address:	80107410
  * Size:	0000AC
  */
-void Game::EnemyBase::needShadow(void)
+void Game::EnemyBase::needShadow()
 {
 	/*
 	.loc_0x0:
@@ -11718,7 +11548,7 @@ void Game::EnemyBase::needShadow(void)
  * Address:	801074BC
  * Size:	000008
  */
-void Game::EnemyMgrBase::isAlwaysMovieActor(void)
+void Game::EnemyMgrBase::isAlwaysMovieActor()
 {
 	/*
 	.loc_0x0:
@@ -11732,7 +11562,7 @@ void Game::EnemyMgrBase::isAlwaysMovieActor(void)
  * Address:	801074C4
  * Size:	00000C
  */
-void Game::Creature::isMovieActor(void)
+void Game::Creature::isMovieActor()
 {
 	/*
 	.loc_0x0:
@@ -11747,7 +11577,7 @@ void Game::Creature::isMovieActor(void)
  * Address:	801074D0
  * Size:	000234
  */
-void Game::EnemyBase::eatWhitePikminCallBack((Game::Creature*, float))
+void Game::EnemyBase::eatWhitePikminCallBack(Game::Creature*, float)
 {
 	/*
 	.loc_0x0:
@@ -11916,7 +11746,7 @@ void Game::EnemyBase::eatWhitePikminCallBack((Game::Creature*, float))
  * Address:	80107704
  * Size:	000060
  */
-void Game::EnemyStone::DrawInfo::__dt(void)
+void Game::EnemyStone::DrawInfo::~DrawInfo()
 {
 	/*
 	.loc_0x0:
@@ -11954,7 +11784,7 @@ void Game::EnemyStone::DrawInfo::__dt(void)
  * Address:	80107764
  * Size:	000008
  */
-void Game::EnemyBase::getDownSmokeScale(void)
+void Game::EnemyBase::getDownSmokeScale()
 {
 	/*
 	.loc_0x0:
@@ -11968,7 +11798,7 @@ void Game::EnemyBase::getDownSmokeScale(void)
  * Address:	8010776C
  * Size:	000010
  */
-void Game::EnemyBase::constraintOff(void)
+void Game::EnemyBase::constraintOff()
 {
 	/*
 	.loc_0x0:
@@ -11984,7 +11814,7 @@ void Game::EnemyBase::constraintOff(void)
  * Address:	8010777C
  * Size:	000018
  */
-void Game::EnemyBase::hardConstraintOn(void)
+void Game::EnemyBase::hardConstraintOn()
 {
 	/*
 	.loc_0x0:
@@ -12002,7 +11832,7 @@ void Game::EnemyBase::hardConstraintOn(void)
  * Address:	80107794
  * Size:	000028
  */
-void Game::EnemyBase::hardConstraintOff(void)
+void Game::EnemyBase::hardConstraintOff()
 {
 	/*
 	.loc_0x0:
@@ -12024,7 +11854,7 @@ void Game::EnemyBase::hardConstraintOff(void)
  * Address:	801077BC
  * Size:	000084
  */
-void Game::EnemyBase::startMovie(void)
+void Game::EnemyBase::startMovie()
 {
 	/*
 	.loc_0x0:
@@ -12075,7 +11905,7 @@ void Game::EnemyBase::startMovie(void)
  * Address:	80107840
  * Size:	000004
  */
-void Game::EnemyBase::doStartMovie(void)
+void Game::EnemyBase::doStartMovie()
 {
 	/*
 	.loc_0x0:
@@ -12088,7 +11918,7 @@ void Game::EnemyBase::doStartMovie(void)
  * Address:	80107844
  * Size:	000084
  */
-void Game::EnemyBase::endMovie(void)
+void Game::EnemyBase::endMovie()
 {
 	/*
 	.loc_0x0:
@@ -12139,7 +11969,7 @@ void Game::EnemyBase::endMovie(void)
  * Address:	801078C8
  * Size:	000004
  */
-void Game::EnemyBase::doEndMovie(void)
+void Game::EnemyBase::doEndMovie()
 {
 	/*
 	.loc_0x0:
@@ -12152,7 +11982,7 @@ void Game::EnemyBase::doEndMovie(void)
  * Address:	801078CC
  * Size:	000094
  */
-void Game::EnemyBase::doStartEarthquakeState((float))
+void Game::EnemyBase::doStartEarthquakeState(float)
 {
 	/*
 	.loc_0x0:
@@ -12201,7 +12031,7 @@ void Game::EnemyBase::doStartEarthquakeState((float))
  * Address:	80107960
  * Size:	000004
  */
-void Game::EnemyBase::doFinishEarthquakeState(void)
+void Game::EnemyBase::doFinishEarthquakeState()
 {
 	/*
 	.loc_0x0:
@@ -12214,7 +12044,7 @@ void Game::EnemyBase::doFinishEarthquakeState(void)
  * Address:	80107964
  * Size:	000004
  */
-void Game::EnemyBase::doStartEarthquakeFitState(void)
+void Game::EnemyBase::doStartEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -12227,7 +12057,7 @@ void Game::EnemyBase::doStartEarthquakeFitState(void)
  * Address:	80107968
  * Size:	000004
  */
-void Game::EnemyBase::doFinishEarthquakeFitState(void)
+void Game::EnemyBase::doFinishEarthquakeFitState()
 {
 	/*
 	.loc_0x0:
@@ -12240,7 +12070,7 @@ void Game::EnemyBase::doFinishEarthquakeFitState(void)
  * Address:	8010796C
  * Size:	00002C
  */
-void Game::EnemyBase::startWaitingBirthTypeDrop(void)
+void Game::EnemyBase::startWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -12263,7 +12093,7 @@ void Game::EnemyBase::startWaitingBirthTypeDrop(void)
  * Address:	80107998
  * Size:	000004
  */
-void Game::EnemyBase::doStartWaitingBirthTypeDrop(void)
+void Game::EnemyBase::doStartWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -12276,7 +12106,7 @@ void Game::EnemyBase::doStartWaitingBirthTypeDrop(void)
  * Address:	8010799C
  * Size:	00002C
  */
-void Game::EnemyBase::finishWaitingBirthTypeDrop(void)
+void Game::EnemyBase::finishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -12299,7 +12129,7 @@ void Game::EnemyBase::finishWaitingBirthTypeDrop(void)
  * Address:	801079C8
  * Size:	000064
  */
-void Game::EnemyBase::doFinishWaitingBirthTypeDrop(void)
+void Game::EnemyBase::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	.loc_0x0:
@@ -12338,7 +12168,7 @@ void Game::EnemyBase::doFinishWaitingBirthTypeDrop(void)
  * Address:	80107A2C
  * Size:	00003C
  */
-void Game::EnemyBase::isBirthTypeDropGroup(void)
+void Game::EnemyBase::isBirthTypeDropGroup()
 {
 	/*
 	.loc_0x0:
@@ -12367,7 +12197,7 @@ void Game::EnemyBase::isBirthTypeDropGroup(void)
  * Address:	80107A68
  * Size:	000008
  */
-void Game::EnemyBase::getFitEffectPos(void)
+void Game::EnemyBase::getFitEffectPos()
 {
 	/*
 	.loc_0x0:
@@ -12381,7 +12211,7 @@ void Game::EnemyBase::getFitEffectPos(void)
  * Address:	80107A70
  * Size:	000018
  */
-void Game::EnemyBase::setDroppingMassZero(void)
+void Game::EnemyBase::setDroppingMassZero()
 {
 	/*
 	.loc_0x0:
@@ -12399,7 +12229,7 @@ void Game::EnemyBase::setDroppingMassZero(void)
  * Address:	80107A88
  * Size:	000018
  */
-void Game::EnemyBase::resetDroppingMassZero(void)
+void Game::EnemyBase::resetDroppingMassZero()
 {
 	/*
 	.loc_0x0:
@@ -12417,7 +12247,7 @@ void Game::EnemyBase::resetDroppingMassZero(void)
  * Address:	80107AA0
  * Size:	000164
  */
-void PSM::EnemyHekoi::__dt(void)
+void PSM::EnemyHekoi::~EnemyHekoi()
 {
 	/*
 	.loc_0x0:
@@ -12528,7 +12358,7 @@ void PSM::EnemyHekoi::__dt(void)
  * Address:	80107C04
  * Size:	000008
  */
-void PSM::EnemyHekoi::getCastType(void)
+void PSM::EnemyHekoi::getCastType()
 {
 	/*
 	.loc_0x0:
@@ -12542,7 +12372,7 @@ void PSM::EnemyHekoi::getCastType(void)
  * Address:	80107C0C
  * Size:	000010
  */
-void PSM::CreatureAnime::getJAIObject(void)
+void PSM::CreatureAnime::getJAIObject()
 {
 	/*
 	.loc_0x0:
@@ -12558,7 +12388,7 @@ void PSM::CreatureAnime::getJAIObject(void)
  * Address:	80107C1C
  * Size:	000010
  */
-void PSM::CreatureAnime::getHandleArea((unsigned char))
+void PSM::CreatureAnime::getHandleArea(unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -12574,7 +12404,7 @@ void PSM::CreatureAnime::getHandleArea((unsigned char))
  * Address:	80107C2C
  * Size:	00000C
  */
-void Game::PelletInitArg::getName(void)
+void Game::PelletInitArg::getName()
 {
 	/*
 	.loc_0x0:
@@ -12589,7 +12419,7 @@ void Game::PelletInitArg::getName(void)
  * Address:	80107C38
  * Size:	00000C
  */
-void Game::EnemyKillArg::getName(void)
+void Game::EnemyKillArg::getName()
 {
 	/*
 	.loc_0x0:
@@ -12604,7 +12434,7 @@ void Game::EnemyKillArg::getName(void)
  * Address:	80107C44
  * Size:	00000C
  */
-void efx::ArgScale::getName(void)
+void efx::ArgScale::getName()
 {
 	/*
 	.loc_0x0:
@@ -12619,7 +12449,7 @@ void efx::ArgScale::getName(void)
  * Address:	80107C50
  * Size:	00000C
  */
-void Game::ItemHoney::InitArg::getName(void)
+void Game::ItemHoney::InitArg::getName()
 {
 	/*
 	.loc_0x0:
@@ -12634,7 +12464,7 @@ void Game::ItemHoney::InitArg::getName(void)
  * Address:	80107C5C
  * Size:	000008
  */
-void Game::Interaction::actPiki((Game::Piki*))
+void Game::Interaction::actPiki(Game::Piki*)
 {
 	/*
 	.loc_0x0:
@@ -12648,7 +12478,7 @@ void Game::Interaction::actPiki((Game::Piki*))
  * Address:	80107C64
  * Size:	000008
  */
-void Game::Interaction::actNavi((Game::Navi*))
+void Game::Interaction::actNavi(Game::Navi*)
 {
 	/*
 	.loc_0x0:
@@ -12662,7 +12492,7 @@ void Game::Interaction::actNavi((Game::Navi*))
  * Address:	80107C6C
  * Size:	000008
  */
-void Game::Interaction::actPellet((Game::Pellet*))
+void Game::Interaction::actPellet(Game::Pellet*)
 {
 	/*
 	.loc_0x0:
@@ -12676,7 +12506,7 @@ void Game::Interaction::actPellet((Game::Pellet*))
  * Address:	80107C74
  * Size:	000008
  */
-void Game::Interaction::actOnyon((Game::Onyon*))
+void Game::Interaction::actOnyon(Game::Onyon*)
 {
 	/*
 	.loc_0x0:
@@ -12690,7 +12520,7 @@ void Game::Interaction::actOnyon((Game::Onyon*))
  * Address:	80107C7C
  * Size:	000008
  */
-void Game::Interaction::actItem((Game::BaseItem*))
+void Game::Interaction::actItem(Game::BaseItem*)
 {
 	/*
 	.loc_0x0:
@@ -12704,7 +12534,7 @@ void Game::Interaction::actItem((Game::BaseItem*))
  * Address:	80107C84
  * Size:	000088
  */
-void Game::EnemyBase::__dt(void)
+void Game::EnemyBase::~EnemyBase()
 {
 	/*
 	.loc_0x0:
@@ -12752,7 +12582,7 @@ void Game::EnemyBase::__dt(void)
  * Address:	80107D0C
  * Size:	000004
  */
-void Game::EnemyBase::doSimpleDraw((Viewport*))
+void Game::EnemyBase::doSimpleDraw(Viewport*)
 {
 	/*
 	.loc_0x0:
@@ -12765,7 +12595,7 @@ void Game::EnemyBase::doSimpleDraw((Viewport*))
  * Address:	80107D10
  * Size:	00000C
  */
-void Game::EnemyBase::getCellRadius(void)
+void Game::EnemyBase::getCellRadius()
 {
 	/*
 	.loc_0x0:
@@ -12780,7 +12610,7 @@ void Game::EnemyBase::getCellRadius(void)
  * Address:	80107D1C
  * Size:	00000C
  */
-void Game::EnemyBase::getBodyRadius(void)
+void Game::EnemyBase::getBodyRadius()
 {
 	/*
 	.loc_0x0:
@@ -12795,7 +12625,7 @@ void Game::EnemyBase::getBodyRadius(void)
  * Address:	80107D28
  * Size:	000008
  */
-void Game::EnemyBase::getFaceDir(void)
+void Game::EnemyBase::getFaceDir()
 {
 	/*
 	.loc_0x0:
@@ -12809,7 +12639,7 @@ void Game::EnemyBase::getFaceDir(void)
  * Address:	80107D30
  * Size:	00001C
  */
-void setVelocity__Q24Game9EnemyBaseFR10Vector3<float>(void)
+void Game::EnemyBase::setVelocity(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -12828,7 +12658,7 @@ void setVelocity__Q24Game9EnemyBaseFR10Vector3<float>(void)
  * Address:	80107D4C
  * Size:	00001C
  */
-void Game::EnemyBase::getVelocity(void)
+void Game::EnemyBase::getVelocity()
 {
 	/*
 	.loc_0x0:
@@ -12847,7 +12677,7 @@ void Game::EnemyBase::getVelocity(void)
  * Address:	80107D68
  * Size:	000034
  */
-void getVelocityAt__Q24Game9EnemyBaseFR10Vector3<float> R10Vector3<float>(void)
+void Game::EnemyBase::getVelocityAt(Vector3<float>&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -12872,7 +12702,7 @@ void getVelocityAt__Q24Game9EnemyBaseFR10Vector3<float> R10Vector3<float>(void)
  * Address:	80107D9C
  * Size:	000008
  */
-void Game::EnemyBase::isTeki(void)
+void Game::EnemyBase::isTeki()
 {
 	/*
 	.loc_0x0:
@@ -12886,7 +12716,7 @@ void Game::EnemyBase::isTeki(void)
  * Address:	80107DA4
  * Size:	000008
  */
-void Game::EnemyBase::getSound_PosPtr(void)
+void Game::EnemyBase::getSound_PosPtr()
 {
 	/*
 	.loc_0x0:
@@ -12900,7 +12730,7 @@ void Game::EnemyBase::getSound_PosPtr(void)
  * Address:	80107DAC
  * Size:	000004
  */
-void Game::EnemyBase::initMouthSlots(void)
+void Game::EnemyBase::initMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -12913,7 +12743,7 @@ void Game::EnemyBase::initMouthSlots(void)
  * Address:	80107DB0
  * Size:	000004
  */
-void Game::EnemyBase::initWalkSmokeEffect(void)
+void Game::EnemyBase::initWalkSmokeEffect()
 {
 	/*
 	.loc_0x0:
@@ -12926,7 +12756,7 @@ void Game::EnemyBase::initWalkSmokeEffect(void)
  * Address:	80107DB4
  * Size:	000014
  */
-void Game::EnemyBase::inWater(void)
+void Game::EnemyBase::inWater()
 {
 	/*
 	.loc_0x0:
@@ -12943,7 +12773,7 @@ void Game::EnemyBase::inWater(void)
  * Address:	80107DC8
  * Size:	00001C
  */
-void getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<float>(void)
+void Game::EnemyBase::getEfxHamonPos(Vector3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -12962,7 +12792,7 @@ void getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<float>(void)
  * Address:	80107DE4
  * Size:	000008
  */
-void Game::EnemyBase::getMouthSlots(void)
+void Game::EnemyBase::getMouthSlots()
 {
 	/*
 	.loc_0x0:
@@ -12976,7 +12806,7 @@ void Game::EnemyBase::getMouthSlots(void)
  * Address:	80107DEC
  * Size:	000024
  */
-void Game::EnemyBase::setLODSphere((Sys::Sphere&))
+void Game::EnemyBase::setLODSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -12997,7 +12827,7 @@ void Game::EnemyBase::setLODSphere((Sys::Sphere&))
  * Address:	80107E10
  * Size:	000024
  */
-void Game::EnemyBase::getLODSphere((Sys::Sphere&))
+void Game::EnemyBase::getLODSphere(Sys::Sphere&)
 {
 	/*
 	.loc_0x0:
@@ -13018,7 +12848,7 @@ void Game::EnemyBase::getLODSphere((Sys::Sphere&))
  * Address:	80107E34
  * Size:	000008
  */
-void Game::EnemyBase::getDamageCoeStoneState(void)
+void Game::EnemyBase::getDamageCoeStoneState()
 {
 	/*
 	.loc_0x0:
@@ -13032,7 +12862,7 @@ void Game::EnemyBase::getDamageCoeStoneState(void)
  * Address:	80107E3C
  * Size:	000034
  */
-void Game::EnemyBase::getSound_CurrAnimFrame(void)
+void Game::EnemyBase::getSound_CurrAnimFrame()
 {
 	/*
 	.loc_0x0:
@@ -13057,7 +12887,7 @@ void Game::EnemyBase::getSound_CurrAnimFrame(void)
  * Address:	80107E70
  * Size:	00000C
  */
-void Game::EnemyBase::getSound_CurrAnimSpeed(void)
+void Game::EnemyBase::getSound_CurrAnimSpeed()
 {
 	/*
 	.loc_0x0:
@@ -13072,7 +12902,7 @@ void Game::EnemyBase::getSound_CurrAnimSpeed(void)
  * Address:	80107E7C
  * Size:	000030
  */
-void Game::EnemyBase::sound_culling(void)
+void Game::EnemyBase::sound_culling()
 {
 	/*
 	.loc_0x0:
@@ -13098,7 +12928,7 @@ void Game::EnemyBase::sound_culling(void)
  * Address:	80107EAC
  * Size:	000008
  */
-void Game::EnemyBase::getCarcassArgHeight(void)
+void Game::EnemyBase::getCarcassArgHeight()
 {
 	/*
 	.loc_0x0:
@@ -13112,7 +12942,7 @@ void Game::EnemyBase::getCarcassArgHeight(void)
  * Address:	80107EB4
  * Size:	000008
  */
-void Game::PelletView::viewGetBaseScale(void)
+void Game::PelletView::viewGetBaseScale()
 {
 	/*
 	.loc_0x0:
@@ -13126,7 +12956,7 @@ void Game::PelletView::viewGetBaseScale(void)
  * Address:	80107EBC
  * Size:	000008
  */
-void Game::PelletView::viewGetCollTreeJointIndex(void)
+void Game::PelletView::viewGetCollTreeJointIndex()
 {
 	/*
 	.loc_0x0:
@@ -13140,7 +12970,7 @@ void Game::PelletView::viewGetCollTreeJointIndex(void)
  * Address:	80107EC4
  * Size:	000020
  */
-void Game::PelletView::viewGetCollTreeOffset(void)
+void Game::PelletView::viewGetCollTreeOffset()
 {
 	/*
 	.loc_0x0:
@@ -13160,7 +12990,7 @@ void Game::PelletView::viewGetCollTreeOffset(void)
  * Address:	80107EE4
  * Size:	000004
  */
-void viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<float>(void)
+void Game::PelletView::viewEntryShape(Matrixf&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -13173,7 +13003,7 @@ void viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<float>(void)
  * Address:	80107EE8
  * Size:	000004
  */
-void Game::Creature::doDirectDraw((Graphics&))
+void Game::Creature::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -13186,7 +13016,7 @@ void Game::Creature::doDirectDraw((Graphics&))
  * Address:	80107EEC
  * Size:	000004
  */
-void onInitPosition__Q24Game8CreatureFR10Vector3<float>(void)
+void Game::Creature::onInitPosition(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -13199,7 +13029,7 @@ void onInitPosition__Q24Game8CreatureFR10Vector3<float>(void)
  * Address:	80107EF0
  * Size:	000008
  */
-void Game::Creature::getFlockMgr(void)
+void Game::Creature::getFlockMgr()
 {
 	/*
 	.loc_0x0:
@@ -13213,7 +13043,7 @@ void Game::Creature::getFlockMgr(void)
  * Address:	80107EF8
  * Size:	000004
  */
-void Game::Creature::onStartCapture(void)
+void Game::Creature::onStartCapture()
 {
 	/*
 	.loc_0x0:
@@ -13226,7 +13056,7 @@ void Game::Creature::onStartCapture(void)
  * Address:	80107EFC
  * Size:	000004
  */
-void Game::Creature::onUpdateCapture((Matrixf&))
+void Game::Creature::onUpdateCapture(Matrixf&)
 {
 	/*
 	.loc_0x0:
@@ -13239,7 +13069,7 @@ void Game::Creature::onUpdateCapture((Matrixf&))
  * Address:	80107F00
  * Size:	000004
  */
-void Game::Creature::onEndCapture(void)
+void Game::Creature::onEndCapture()
 {
 	/*
 	.loc_0x0:
@@ -13252,7 +13082,7 @@ void Game::Creature::onEndCapture(void)
  * Address:	80107F04
  * Size:	00000C
  */
-void Game::Creature::isAtari(void)
+void Game::Creature::isAtari()
 {
 	/*
 	.loc_0x0:
@@ -13267,7 +13097,7 @@ void Game::Creature::isAtari(void)
  * Address:	80107F10
  * Size:	000028
  */
-void Game::Creature::setAtari((bool))
+void Game::Creature::setAtari(bool)
 {
 	/*
 	.loc_0x0:
@@ -13291,7 +13121,7 @@ void Game::Creature::setAtari((bool))
  * Address:	80107F38
  * Size:	00000C
  */
-void Game::Creature::isCollisionFlick(void)
+void Game::Creature::isCollisionFlick()
 {
 	/*
 	.loc_0x0:
@@ -13306,7 +13136,7 @@ void Game::Creature::isCollisionFlick(void)
  * Address:	80107F44
  * Size:	000028
  */
-void Game::Creature::setCollisionFlick((bool))
+void Game::Creature::setCollisionFlick(bool)
 {
 	/*
 	.loc_0x0:
@@ -13330,7 +13160,7 @@ void Game::Creature::setCollisionFlick((bool))
  * Address:	80107F6C
  * Size:	00000C
  */
-void Game::Creature::isMovieExtra(void)
+void Game::Creature::isMovieExtra()
 {
 	/*
 	.loc_0x0:
@@ -13345,7 +13175,7 @@ void Game::Creature::isMovieExtra(void)
  * Address:	80107F78
  * Size:	00000C
  */
-void Game::Creature::isMovieMotion(void)
+void Game::Creature::isMovieMotion()
 {
 	/*
 	.loc_0x0:
@@ -13360,7 +13190,7 @@ void Game::Creature::isMovieMotion(void)
  * Address:	80107F84
  * Size:	000028
  */
-void Game::Creature::setMovieMotion((bool))
+void Game::Creature::setMovieMotion(bool)
 {
 	/*
 	.loc_0x0:
@@ -13384,7 +13214,7 @@ void Game::Creature::setMovieMotion((bool))
  * Address:	80107FAC
  * Size:	000008
  */
-void Game::Creature::isBuried(void)
+void Game::Creature::isBuried()
 {
 	/*
 	.loc_0x0:
@@ -13398,7 +13228,7 @@ void Game::Creature::isBuried(void)
  * Address:	80107FB4
  * Size:	000008
  */
-void Game::Creature::isUnderground(void)
+void Game::Creature::isUnderground()
 {
 	/*
 	.loc_0x0:
@@ -13412,7 +13242,7 @@ void Game::Creature::isUnderground(void)
  * Address:	80107FBC
  * Size:	000008
  */
-void Game::Creature::isLivingThing(void)
+void Game::Creature::isLivingThing()
 {
 	/*
 	.loc_0x0:
@@ -13426,7 +13256,7 @@ void Game::Creature::isLivingThing(void)
  * Address:	80107FC4
  * Size:	00000C
  */
-void Game::Creature::isDebugCollision(void)
+void Game::Creature::isDebugCollision()
 {
 	/*
 	.loc_0x0:
@@ -13441,7 +13271,7 @@ void Game::Creature::isDebugCollision(void)
  * Address:	80107FD0
  * Size:	000028
  */
-void Game::Creature::setDebugCollision((bool))
+void Game::Creature::setDebugCollision(bool)
 {
 	/*
 	.loc_0x0:
@@ -13465,7 +13295,7 @@ void Game::Creature::setDebugCollision((bool))
  * Address:	80107FF8
  * Size:	000004
  */
-void Game::Creature::doSave((Stream&))
+void Game::Creature::doSave(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -13478,7 +13308,7 @@ void Game::Creature::doSave((Stream&))
  * Address:	80107FFC
  * Size:	000004
  */
-void Game::Creature::doLoad((Stream&))
+void Game::Creature::doLoad(Stream&)
 {
 	/*
 	.loc_0x0:
@@ -13491,7 +13321,7 @@ void Game::Creature::doLoad((Stream&))
  * Address:	80108000
  * Size:	000004
  */
-void Game::Creature::platCallback((Game::PlatEvent&))
+void Game::Creature::platCallback(Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -13504,7 +13334,7 @@ void Game::Creature::platCallback((Game::PlatEvent&))
  * Address:	80108004
  * Size:	000008
  */
-void Game::Creature::getSound_AILOD(void)
+void Game::Creature::getSound_AILOD()
 {
 	/*
 	.loc_0x0:
@@ -13518,7 +13348,7 @@ void Game::Creature::getSound_AILOD(void)
  * Address:	8010800C
  * Size:	000004
  */
-void Game::Creature::on_movie_begin((bool))
+void Game::Creature::on_movie_begin(bool)
 {
 	/*
 	.loc_0x0:
@@ -13531,7 +13361,7 @@ void Game::Creature::on_movie_begin((bool))
  * Address:	80108010
  * Size:	000004
  */
-void Game::Creature::on_movie_end((bool))
+void Game::Creature::on_movie_end(bool)
 {
 	/*
 	.loc_0x0:
@@ -13544,7 +13374,7 @@ void Game::Creature::on_movie_end((bool))
  * Address:	80108014
  * Size:	000004
  */
-void Game::Creature::movieStartAnimation((unsigned long))
+void Game::Creature::movieStartAnimation(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -13557,7 +13387,7 @@ void Game::Creature::movieStartAnimation((unsigned long))
  * Address:	80108018
  * Size:	000004
  */
-void Game::Creature::movieStartDemoAnimation((SysShape::AnimInfo*))
+void Game::Creature::movieStartDemoAnimation(SysShape::AnimInfo*)
 {
 	/*
 	.loc_0x0:
@@ -13570,7 +13400,7 @@ void Game::Creature::movieStartDemoAnimation((SysShape::AnimInfo*))
  * Address:	8010801C
  * Size:	000004
  */
-void Game::Creature::movieSetAnimationLastFrame(void)
+void Game::Creature::movieSetAnimationLastFrame()
 {
 	/*
 	.loc_0x0:
@@ -13583,7 +13413,7 @@ void Game::Creature::movieSetAnimationLastFrame(void)
  * Address:	80108020
  * Size:	000004
  */
-void movieSetTranslation__Q24Game8CreatureFR10Vector3<float> f(void)
+void Game::Creature::movieSetTranslation(Vector3<float>&, float)
 {
 	/*
 	.loc_0x0:
@@ -13596,7 +13426,7 @@ void movieSetTranslation__Q24Game8CreatureFR10Vector3<float> f(void)
  * Address:	80108024
  * Size:	000004
  */
-void Game::Creature::movieSetFaceDir((float))
+void Game::Creature::movieSetFaceDir(float)
 {
 	/*
 	.loc_0x0:
@@ -13609,7 +13439,7 @@ void Game::Creature::movieSetFaceDir((float))
  * Address:	80108028
  * Size:	000008
  */
-void movieGotoPosition__Q24Game8CreatureFR10Vector3<float>(void)
+void Game::Creature::movieGotoPosition(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -13623,7 +13453,7 @@ void movieGotoPosition__Q24Game8CreatureFR10Vector3<float>(void)
  * Address:	80108030
  * Size:	000004
  */
-void Game::Creature::movieUserCommand((unsigned long, Game::MoviePlayer*))
+void Game::Creature::movieUserCommand(unsigned long, Game::MoviePlayer*)
 {
 	/*
 	.loc_0x0:
@@ -13636,7 +13466,7 @@ void Game::Creature::movieUserCommand((unsigned long, Game::MoviePlayer*))
  * Address:	80108034
  * Size:	000004
  */
-void Game::Creature::getLODCylinder((Sys::Cylinder&))
+void Game::Creature::getLODCylinder(Sys::Cylinder&)
 {
 	/*
 	.loc_0x0:
@@ -13649,7 +13479,7 @@ void Game::Creature::getLODCylinder((Sys::Cylinder&))
  * Address:	80108038
  * Size:	000004
  */
-void Game::Creature::startPick(void)
+void Game::Creature::startPick()
 {
 	/*
 	.loc_0x0:
@@ -13662,7 +13492,7 @@ void Game::Creature::startPick(void)
  * Address:	8010803C
  * Size:	000004
  */
-void Game::Creature::endPick((bool))
+void Game::Creature::endPick(bool)
 {
 	/*
 	.loc_0x0:
@@ -13675,7 +13505,7 @@ void Game::Creature::endPick((bool))
  * Address:	80108040
  * Size:	000008
  */
-void Game::Creature::getMabiki(void)
+void Game::Creature::getMabiki()
 {
 	/*
 	.loc_0x0:
@@ -13689,7 +13519,7 @@ void Game::Creature::getMabiki(void)
  * Address:	80108048
  * Size:	000008
  */
-void Game::Creature::getFootmarks(void)
+void Game::Creature::getFootmarks()
 {
 	/*
 	.loc_0x0:
@@ -13703,7 +13533,7 @@ void Game::Creature::getFootmarks(void)
  * Address:	80108050
  * Size:	000004
  */
-void Game::Creature::onStickStartSelf((Game::Creature*))
+void Game::Creature::onStickStartSelf(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -13716,7 +13546,7 @@ void Game::Creature::onStickStartSelf((Game::Creature*))
  * Address:	80108054
  * Size:	000004
  */
-void Game::Creature::onStickEndSelf((Game::Creature*))
+void Game::Creature::onStickEndSelf(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -13729,7 +13559,7 @@ void Game::Creature::onStickEndSelf((Game::Creature*))
  * Address:	80108058
  * Size:	000008
  */
-void Game::Creature::isSlotFree((short))
+void Game::Creature::isSlotFree(short)
 {
 	/*
 	.loc_0x0:
@@ -13743,7 +13573,7 @@ void Game::Creature::isSlotFree((short))
  * Address:	80108060
  * Size:	000008
  */
-void Game::Creature::getFreeStickSlot(void)
+void Game::Creature::getFreeStickSlot()
 {
 	/*
 	.loc_0x0:
@@ -13757,7 +13587,7 @@ void Game::Creature::getFreeStickSlot(void)
  * Address:	80108068
  * Size:	000008
  */
-void getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<float>(void)
+void Game::Creature::getNearFreeStickSlot(Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -13771,7 +13601,7 @@ void getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<float>(void)
  * Address:	80108070
  * Size:	000008
  */
-void Game::Creature::getRandomFreeStickSlot(void)
+void Game::Creature::getRandomFreeStickSlot()
 {
 	/*
 	.loc_0x0:
@@ -13785,7 +13615,7 @@ void Game::Creature::getRandomFreeStickSlot(void)
  * Address:	80108078
  * Size:	000004
  */
-void Game::Creature::onSlotStickStart((Game::Creature*, short))
+void Game::Creature::onSlotStickStart(Game::Creature*, short)
 {
 	/*
 	.loc_0x0:
@@ -13798,7 +13628,7 @@ void Game::Creature::onSlotStickStart((Game::Creature*, short))
  * Address:	8010807C
  * Size:	000004
  */
-void Game::Creature::onSlotStickEnd((Game::Creature*, short))
+void Game::Creature::onSlotStickEnd(Game::Creature*, short)
 {
 	/*
 	.loc_0x0:
@@ -13811,7 +13641,7 @@ void Game::Creature::onSlotStickEnd((Game::Creature*, short))
  * Address:	80108080
  * Size:	000004
  */
-void calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<float>(void)
+void Game::Creature::calcStickSlotGlobal(short, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -13824,8 +13654,7 @@ void calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<float>(void)
  * Address:	80108084
  * Size:	000008
  */
-void getAngularEffect__Q24Game8CreatureFR10Vector3<float>
-R10Vector3<float>(void)
+void Game::Creature::getAngularEffect(Vector3<float>&, Vector3<float>&)
 {
 	/*
 	.loc_0x0:
@@ -13839,7 +13668,7 @@ R10Vector3<float>(void)
  * Address:	8010808C
  * Size:	000008
  */
-void Game::Creature::ignoreAtari((Game::Creature*))
+void Game::Creature::ignoreAtari(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -13853,7 +13682,7 @@ void Game::Creature::ignoreAtari((Game::Creature*))
  * Address:	80108094
  * Size:	000038
  */
-void Game::Creature::getSuckPos(void)
+void Game::Creature::getSuckPos()
 {
 	/*
 	.loc_0x0:
@@ -13879,7 +13708,7 @@ void Game::Creature::getSuckPos(void)
  * Address:	801080CC
  * Size:	000038
  */
-void Game::Creature::getGoalPos(void)
+void Game::Creature::getGoalPos()
 {
 	/*
 	.loc_0x0:
@@ -13905,7 +13734,7 @@ void Game::Creature::getGoalPos(void)
  * Address:	80108104
  * Size:	000008
  */
-void Game::Creature::isSuckReady(void)
+void Game::Creature::isSuckReady()
 {
 	/*
 	.loc_0x0:
@@ -13919,7 +13748,7 @@ void Game::Creature::isSuckReady(void)
  * Address:	8010810C
  * Size:	000008
  */
-void Game::Creature::isSuckArriveWait(void)
+void Game::Creature::isSuckArriveWait()
 {
 	/*
 	.loc_0x0:
@@ -13933,7 +13762,7 @@ void Game::Creature::isSuckArriveWait(void)
  * Address:	80108114
  * Size:	000008
  */
-void Game::Creature::getObjType(void)
+void Game::Creature::getObjType()
 {
 	/*
 	.loc_0x0:
@@ -13947,7 +13776,7 @@ void Game::Creature::getObjType(void)
  * Address:	8010811C
  * Size:	000024
  */
-void Game::Creature::collisionUpdatable(void)
+void Game::Creature::collisionUpdatable()
 {
 	/*
 	.loc_0x0:
@@ -13968,7 +13797,7 @@ void Game::Creature::collisionUpdatable(void)
  * Address:	80108140
  * Size:	000008
  */
-void Game::CellObject::deferPikiCollision(void)
+void Game::CellObject::deferPikiCollision()
 {
 	/*
 	.loc_0x0:
@@ -13982,7 +13811,7 @@ void Game::CellObject::deferPikiCollision(void)
  * Address:	80108148
  * Size:	000070
  */
-void Game::EnemyAnimKeyEvent::__dt(void)
+void Game::EnemyAnimKeyEvent::~EnemyAnimKeyEvent()
 {
 	/*
 	.loc_0x0:
@@ -14026,7 +13855,7 @@ void Game::EnemyAnimKeyEvent::__dt(void)
  * Address:	801081B8
  * Size:	000004
  */
-void Game::PelletView::view_start_carrymotion(void)
+void Game::PelletView::view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -14039,7 +13868,7 @@ void Game::PelletView::view_start_carrymotion(void)
  * Address:	801081BC
  * Size:	000004
  */
-void Game::PelletView::view_finish_carrymotion(void)
+void Game::PelletView::view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -14052,7 +13881,7 @@ void Game::PelletView::view_finish_carrymotion(void)
  * Address:	801081C0
  * Size:	000004
  */
-void Game::PelletView::viewStartPreCarryMotion(void)
+void Game::PelletView::viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -14065,7 +13894,7 @@ void Game::PelletView::viewStartPreCarryMotion(void)
  * Address:	801081C4
  * Size:	000004
  */
-void Game::PelletView::viewStartCarryMotion(void)
+void Game::PelletView::viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -14078,7 +13907,7 @@ void Game::PelletView::viewStartCarryMotion(void)
  * Address:	801081C8
  * Size:	000004
  */
-void Game::PelletView::viewOnPelletKilled(void)
+void Game::PelletView::viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -14091,7 +13920,7 @@ void Game::PelletView::viewOnPelletKilled(void)
  * Address:	801081CC
  * Size:	000008
  */
-void Game::EnemyBaseFSM::StateMachine::getCurrState((Game::EnemyBase*))
+void Game::EnemyBaseFSM::StateMachine::getCurrState(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -14105,8 +13934,8 @@ void Game::EnemyBaseFSM::StateMachine::getCurrState((Game::EnemyBase*))
  * Address:	801081D4
  * Size:	000008
  */
-void Game::EnemyBaseFSM::StateMachine::setCurrState((Game::EnemyBase*,
-                                                     Game::EnemyFSMState*))
+void Game::EnemyBaseFSM::StateMachine::setCurrState(Game::EnemyBase*,
+                                                    Game::EnemyFSMState*)
 {
 	/*
 	.loc_0x0:
@@ -14120,7 +13949,7 @@ void Game::EnemyBaseFSM::StateMachine::setCurrState((Game::EnemyBase*,
  * Address:	801081DC
  * Size:	000004
  */
-void Game::EnemyFSMState::exec((Game::EnemyBase*))
+void Game::EnemyFSMState::exec(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -14133,7 +13962,7 @@ void Game::EnemyFSMState::exec((Game::EnemyBase*))
  * Address:	801081E0
  * Size:	000004
  */
-void Game::EnemyFSMState::resume((Game::EnemyBase*))
+void Game::EnemyFSMState::resume(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -14146,7 +13975,7 @@ void Game::EnemyFSMState::resume((Game::EnemyBase*))
  * Address:	801081E4
  * Size:	000004
  */
-void Game::EnemyFSMState::restart((Game::EnemyBase*))
+void Game::EnemyFSMState::restart(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -14159,7 +13988,7 @@ void Game::EnemyFSMState::restart((Game::EnemyBase*))
  * Address:	801081E8
  * Size:	000004
  */
-void Game::EnemyFSMState::doDirectDraw((Game::EnemyBase*, Graphics&))
+void Game::EnemyFSMState::doDirectDraw(Game::EnemyBase*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -14172,7 +14001,7 @@ void Game::EnemyFSMState::doDirectDraw((Game::EnemyBase*, Graphics&))
  * Address:	801081EC
  * Size:	000004
  */
-void Game::EnemyFSMState::init((Game::EnemyBase*, Game::StateArg*))
+void Game::EnemyFSMState::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -14185,7 +14014,7 @@ void Game::EnemyFSMState::init((Game::EnemyBase*, Game::StateArg*))
  * Address:	801081F0
  * Size:	000004
  */
-void Game::EnemyFSMState::cleanup((Game::EnemyBase*))
+void Game::EnemyFSMState::cleanup(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -14198,7 +14027,7 @@ void Game::EnemyFSMState::cleanup((Game::EnemyBase*))
  * Address:	801081F4
  * Size:	00000C
  */
-void efx::ArgEnemyType::getName(void)
+void efx::ArgEnemyType::getName()
 {
 	/*
 	.loc_0x0:
@@ -14213,7 +14042,7 @@ void efx::ArgEnemyType::getName(void)
  * Address:	80108200
  * Size:	000008
  */
-void efx::Arg::getName(void)
+void efx::Arg::getName()
 {
 	/*
 	.loc_0x0:
@@ -14227,7 +14056,7 @@ void efx::Arg::getName(void)
  * Address:	80108208
  * Size:	000004
  */
-void Game::EnemyBaseFSM::AppearState::simulation((Game::EnemyBase*, float))
+void Game::EnemyBaseFSM::AppearState::simulation(Game::EnemyBase*, float)
 {
 	/*
 	.loc_0x0:
@@ -14240,7 +14069,7 @@ void Game::EnemyBaseFSM::AppearState::simulation((Game::EnemyBase*, float))
  * Address:	8010820C
  * Size:	000004
  */
-void Game::EnemyBaseFSM::BirthTypeDropState::entry((Game::EnemyBase*))
+void Game::EnemyBaseFSM::BirthTypeDropState::entry(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -14253,8 +14082,7 @@ void Game::EnemyBaseFSM::BirthTypeDropState::entry((Game::EnemyBase*))
  * Address:	80108210
  * Size:	000004
  */
-void Game::EnemyBaseFSM::BirthTypeDropState::simulation((Game::EnemyBase*,
-                                                         float))
+void Game::EnemyBaseFSM::BirthTypeDropState::simulation(Game::EnemyBase*, float)
 {
 	/*
 	.loc_0x0:
@@ -14267,7 +14095,7 @@ void Game::EnemyBaseFSM::BirthTypeDropState::simulation((Game::EnemyBase*,
  * Address:	80108214
  * Size:	000004
  */
-void Game::EnemyBaseFSM::BirthTypeDropState::animation((Game::EnemyBase*))
+void Game::EnemyBaseFSM::BirthTypeDropState::animation(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -14302,7 +14130,7 @@ void __sinit_enemyBase_cpp(void)
  * Address:	80108240
  * Size:	000008
  */
-void @376 @Game::EnemyBase::onKeyEvent((SysShape::KeyEvent const&))
+void Game::EnemyBase::@376 @onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -14316,7 +14144,7 @@ void @376 @Game::EnemyBase::onKeyEvent((SysShape::KeyEvent const&))
  * Address:	80108248
  * Size:	000014
  */
-void @700 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void Game::EnemyBase::@700 @12 @viewOnPelletKilled()
 {
 	/*
 	.loc_0x0:
@@ -14333,7 +14161,7 @@ void @700 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8010825C
  * Size:	000014
  */
-void @700 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void Game::EnemyBase::@700 @12 @viewStartCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -14350,7 +14178,7 @@ void @700 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	80108270
  * Size:	000014
  */
-void @700 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void Game::EnemyBase::@700 @12 @viewStartPreCarryMotion()
 {
 	/*
 	.loc_0x0:
@@ -14367,7 +14195,7 @@ void @700 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	80108284
  * Size:	000014
  */
-void @700 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void Game::EnemyBase::@700 @12 @view_finish_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -14384,7 +14212,7 @@ void @700 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	80108298
  * Size:	000014
  */
-void @700 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void Game::EnemyBase::@700 @12 @view_start_carrymotion()
 {
 	/*
 	.loc_0x0:
@@ -14401,7 +14229,7 @@ void @700 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	801082AC
  * Size:	000014
  */
-void @700 @12 @Game::EnemyBase::viewGetShape(void)
+void Game::EnemyBase::@700 @12 @viewGetShape()
 {
 	/*
 	.loc_0x0:
@@ -14418,7 +14246,7 @@ void @700 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	801082C0
  * Size:	000008
  */
-void @16 @PSM::EnemyHekoi::__dt(void)
+void PSM::EnemyHekoi::@16 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -14432,8 +14260,8 @@ void @16 @PSM::EnemyHekoi::__dt(void)
  * Address:	801082C8
  * Size:	000008
  */
-void @48 @PSM::CreatureAnime::startSound((unsigned char, unsigned long,
-                                          unsigned long))
+void PSM::CreatureAnime::@48
+    @startSound(unsigned char, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -14447,8 +14275,8 @@ void @48 @PSM::CreatureAnime::startSound((unsigned char, unsigned long,
  * Address:	801082D0
  * Size:	000008
  */
-void @48
-    @PSM::CreatureAnime::startSound((JAISound**, unsigned long, unsigned long))
+void PSM::CreatureAnime::@48
+    @startSound(JAISound**, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -14462,7 +14290,7 @@ void @48
  * Address:	801082D8
  * Size:	000008
  */
-void @48 @PSM::CreatureAnime::startSound((unsigned long, unsigned long))
+void PSM::CreatureAnime::@48 @startSound(unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -14476,7 +14304,7 @@ void @48 @PSM::CreatureAnime::startSound((unsigned long, unsigned long))
  * Address:	801082E0
  * Size:	000008
  */
-void @48 @PSM::EnemyHekoi::__dt(void)
+void PSM::EnemyHekoi::@48 @__dt()
 {
 	/*
 	.loc_0x0:
@@ -14490,8 +14318,8 @@ void @48 @PSM::EnemyHekoi::__dt(void)
  * Address:	801082E8
  * Size:	000008
  */
-void @48 @PSM::EnemyBase::startAnimSound((unsigned long, JAISound**,
-                                          JAInter::Actor*, unsigned char))
+void PSM::EnemyBase::@48
+    @startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -14505,8 +14333,8 @@ void @48 @PSM::EnemyBase::startAnimSound((unsigned long, JAISound**,
  * Address:	801082F0
  * Size:	000008
  */
-void @48 @PSM::CreatureAnime::playActorAnimSound((JAInter::Actor*, float,
-                                                  unsigned char))
+void PSM::CreatureAnime::@48
+    @playActorAnimSound(JAInter::Actor*, float, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -14520,7 +14348,7 @@ void @48 @PSM::CreatureAnime::playActorAnimSound((JAInter::Actor*, float,
  * Address:	801082F8
  * Size:	000008
  */
-void @184 @PSM::EnemyBase::battleOff(void)
+void PSM::EnemyBase::@184 @battleOff()
 {
 	/*
 	.loc_0x0:

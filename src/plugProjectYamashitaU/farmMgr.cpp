@@ -5,7 +5,7 @@
  * Address:	80124018
  * Size:	0000C0
  */
-void Game::Farm::FarmMgr::__ct((unsigned long))
+void Game::Farm::FarmMgr::FarmMgr(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -65,7 +65,7 @@ void Game::Farm::FarmMgr::__ct((unsigned long))
  * Address:	801240D8
  * Size:	00002C
  */
-void Game::Farm::FarmMgr::setupSound(void)
+void Game::Farm::FarmMgr::setupSound()
 {
 	/*
 	.loc_0x0:
@@ -96,7 +96,7 @@ void Game::Farm::FarmMgr::setupSound(void)
  * Address:	80124104
  * Size:	000124
  */
-void Game::Farm::FarmMgr::doAnimation(void)
+void Game::Farm::FarmMgr::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -199,7 +199,7 @@ void Game::Farm::FarmMgr::doAnimation(void)
  * Address:	80124228
  * Size:	000008
  */
-void Game::Creature::getJAIObject(void)
+void Game::Creature::getJAIObject()
 {
 	/*
 	.loc_0x0:
@@ -213,7 +213,7 @@ void Game::Creature::getJAIObject(void)
  * Address:	80124230
  * Size:	000068
  */
-void Game::Farm::FarmMgr::doEntry(void)
+void Game::Farm::FarmMgr::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -257,7 +257,7 @@ void Game::Farm::FarmMgr::doEntry(void)
  * Address:	80124298
  * Size:	00005C
  */
-void Game::Farm::FarmMgr::doSetView((int))
+void Game::Farm::FarmMgr::doSetView(int)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +298,7 @@ void Game::Farm::FarmMgr::doSetView((int))
  * Address:	801242F4
  * Size:	00004C
  */
-void Game::Farm::FarmMgr::doViewCalc(void)
+void Game::Farm::FarmMgr::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -335,7 +335,7 @@ void Game::Farm::FarmMgr::doViewCalc(void)
  * Address:	80124340
  * Size:	000004
  */
-void Game::Farm::FarmMgr::doSimulation((float))
+void Game::Farm::FarmMgr::doSimulation(float)
 {
 	/*
 	.loc_0x0:
@@ -348,7 +348,7 @@ void Game::Farm::FarmMgr::doSimulation((float))
  * Address:	80124344
  * Size:	000004
  */
-void Game::Farm::FarmMgr::doDirectDraw((Graphics&))
+void Game::Farm::FarmMgr::doDirectDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -361,7 +361,7 @@ void Game::Farm::FarmMgr::doDirectDraw((Graphics&))
  * Address:	80124348
  * Size:	000050
  */
-void Game::Farm::FarmMgr::doDebugDraw((Graphics&))
+void Game::Farm::FarmMgr::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -397,7 +397,7 @@ void Game::Farm::FarmMgr::doDebugDraw((Graphics&))
  * Address:	80124398
  * Size:	000068
  */
-void Game::Farm::FarmMgr::addFarmBmd((void*))
+void Game::Farm::FarmMgr::addFarmBmd(void*)
 {
 	/*
 	.loc_0x0:
@@ -437,7 +437,7 @@ void Game::Farm::FarmMgr::addFarmBmd((void*))
  * Address:	80124400
  * Size:	000074
  */
-void Game::Farm::FarmMgr::createNewFarm((void*))
+void Game::Farm::FarmMgr::createNewFarm(void*)
 {
 	/*
 	.loc_0x0:
@@ -477,20 +477,10 @@ void Game::Farm::FarmMgr::createNewFarm((void*))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000098
- */
-void getNearestFarm__Q34Game4Farm7FarmMgrFR10Vector3<float>(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80124474
  * Size:	000120
  */
-void Game::Farm::FarmMgr::addObstacle((Game::Creature*, float, float))
+void Game::Farm::FarmMgr::addObstacle(Game::Creature*, float, float)
 {
 	/*
 	.loc_0x0:
@@ -590,7 +580,7 @@ void Game::Farm::FarmMgr::addObstacle((Game::Creature*, float, float))
  * Address:	80124594
  * Size:	0000F0
  */
-void Game::Farm::FarmMgr::addPlant((Game::Creature*))
+void Game::Farm::FarmMgr::addPlant(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -678,7 +668,7 @@ void Game::Farm::FarmMgr::addPlant((Game::Creature*))
  * Address:	80124684
  * Size:	00004C
  */
-void Game::Farm::FarmMgr::initAllFarmObjectNodes(void)
+void Game::Farm::FarmMgr::initAllFarmObjectNodes()
 {
 	/*
 	.loc_0x0:
@@ -715,7 +705,7 @@ void Game::Farm::FarmMgr::initAllFarmObjectNodes(void)
  * Address:	801246D0
  * Size:	000078
  */
-void Game::Farm::FarmMgr::__dt(void)
+void Game::Farm::FarmMgr::~FarmMgr()
 {
 	/*
 	.loc_0x0:
@@ -781,7 +771,7 @@ void __sinit_farmMgr_cpp(void)
  * Address:	80124770
  * Size:	000008
  */
-void @4 @Game::Farm::FarmMgr::__dt(void)
+void Game::Farm::FarmMgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:

@@ -2,61 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void Game::Farm::_Print((char*, ...))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void Game::Farm::Plant::__ct((Game::Creature*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
- */
-void Game::Farm::Plant::sendInteraction(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Game::Farm::Plant::doDebugDraw((Graphics&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
- */
-void Game::Farm::Obstacle::__ct((Game::Farm::Farm*, Game::FieldVtxColorMgr*,
-                                 Game::Creature*, float, float))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	801234F8
  * Size:	000030
  */
-void Game::Farm::Obstacle::setPower((float))
+void Game::Farm::Obstacle::setPower(float)
 {
 	/*
 	.loc_0x0:
@@ -77,20 +26,10 @@ void Game::Farm::Obstacle::setPower((float))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C0
- */
-void Game::Farm::Obstacle::doDebugDraw((Graphics&))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80123528
  * Size:	0000BC
  */
-void Game::Farm::Farm::__ct(void)
+void Game::Farm::Farm::Farm()
 {
 	/*
 	.loc_0x0:
@@ -149,7 +88,7 @@ void Game::Farm::Farm::__ct(void)
  * Address:	801235E4
  * Size:	000200
  */
-void Game::Farm::Farm::loadResource((unsigned long, void*))
+void Game::Farm::Farm::loadResource(unsigned long, void*)
 {
 	/*
 	.loc_0x0:
@@ -299,7 +238,7 @@ void Game::Farm::Farm::loadResource((unsigned long, void*))
  * Address:	801237E4
  * Size:	000004
  */
-void Game::Farm::Farm::update(void)
+void Game::Farm::Farm::update()
 {
 	/*
 	.loc_0x0:
@@ -312,7 +251,7 @@ void Game::Farm::Farm::update(void)
  * Address:	801237E8
  * Size:	000034
  */
-void Game::Farm::Farm::doAnimation(void)
+void Game::Farm::Farm::doAnimation()
 {
 	/*
 	.loc_0x0:
@@ -337,7 +276,7 @@ void Game::Farm::Farm::doAnimation(void)
  * Address:	8012381C
  * Size:	000034
  */
-void Game::Farm::Farm::doEntry(void)
+void Game::Farm::Farm::doEntry()
 {
 	/*
 	.loc_0x0:
@@ -362,7 +301,7 @@ void Game::Farm::Farm::doEntry(void)
  * Address:	80123850
  * Size:	000024
  */
-void Game::Farm::Farm::doSetView((unsigned long))
+void Game::Farm::Farm::doSetView(unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -383,7 +322,7 @@ void Game::Farm::Farm::doSetView((unsigned long))
  * Address:	80123874
  * Size:	000024
  */
-void Game::Farm::Farm::doViewCalc(void)
+void Game::Farm::Farm::doViewCalc()
 {
 	/*
 	.loc_0x0:
@@ -404,7 +343,7 @@ void Game::Farm::Farm::doViewCalc(void)
  * Address:	80123898
  * Size:	000070
  */
-void Game::Farm::Farm::addObstacle((Game::Creature*, float, float))
+void Game::Farm::Farm::addObstacle(Game::Creature*, float, float)
 {
 	/*
 	.loc_0x0:
@@ -444,7 +383,7 @@ void Game::Farm::Farm::addObstacle((Game::Creature*, float, float))
  * Address:	80123908
  * Size:	00000C
  */
-void Game::Creature::getCreatureName(void)
+void Game::Creature::getCreatureName()
 {
 	/*
 	.loc_0x0:
@@ -459,7 +398,7 @@ void Game::Creature::getCreatureName(void)
  * Address:	80123914
  * Size:	000114
  */
-void Game::Farm::Farm::createNewObstacle((Game::Creature*, float, float))
+void Game::Farm::Farm::createNewObstacle(Game::Creature*, float, float)
 {
 	/*
 	.loc_0x0:
@@ -542,7 +481,7 @@ void Game::Farm::Farm::createNewObstacle((Game::Creature*, float, float))
  * Address:	80123A28
  * Size:	000044
  */
-void Game::Farm::Farm::addPlant((Game::Creature*))
+void Game::Farm::Farm::addPlant(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -573,7 +512,7 @@ void Game::Farm::Farm::addPlant((Game::Creature*))
  * Address:	80123A6C
  * Size:	0000B0
  */
-void Game::Farm::Farm::createNewPlant((Game::Creature*))
+void Game::Farm::Farm::createNewPlant(Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -631,7 +570,7 @@ void Game::Farm::Farm::createNewPlant((Game::Creature*))
  * Address:	80123B1C
  * Size:	0001DC
  */
-void Game::Farm::Farm::updateObjectRelation((bool))
+void Game::Farm::Farm::updateObjectRelation(bool)
 {
 	/*
 	.loc_0x0:
@@ -782,7 +721,7 @@ void Game::Farm::Farm::updateObjectRelation((bool))
  * Address:	80123CF8
  * Size:	000108
  */
-void Game::Farm::Farm::doDebugDraw((Graphics&))
+void Game::Farm::Farm::doDebugDraw(Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -868,7 +807,7 @@ void Game::Farm::Farm::doDebugDraw((Graphics&))
  * Address:	80123E00
  * Size:	0000DC
  */
-void Game::Farm::Farm::initAllObjectNodes(void)
+void Game::Farm::Farm::initAllObjectNodes()
 {
 	/*
 	.loc_0x0:
@@ -947,7 +886,7 @@ void Game::Farm::Farm::initAllObjectNodes(void)
  * Address:	80123EDC
  * Size:	000060
  */
-void Game::Farm::Plant::__dt(void)
+void Game::Farm::Plant::~Plant()
 {
 	/*
 	.loc_0x0:
@@ -985,7 +924,7 @@ void Game::Farm::Plant::__dt(void)
  * Address:	80123F3C
  * Size:	000060
  */
-void Game::Farm::Obstacle::__dt(void)
+void Game::Farm::Obstacle::~Obstacle()
 {
 	/*
 	.loc_0x0:
@@ -1023,7 +962,7 @@ void Game::Farm::Obstacle::__dt(void)
  * Address:	80123F9C
  * Size:	00007C
  */
-void Game::Farm::Farm::__dt(void)
+void Game::Farm::Farm::~Farm()
 {
 	/*
 	.loc_0x0:

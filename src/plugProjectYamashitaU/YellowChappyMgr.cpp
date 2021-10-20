@@ -2,20 +2,10 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void _Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8012BFF0
  * Size:	000058
  */
-void Game::YellowChappy::Mgr::__ct((int, unsigned char))
+void Game::YellowChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -49,7 +39,7 @@ void Game::YellowChappy::Mgr::__ct((int, unsigned char))
  * Address:	8012C048
  * Size:	00006C
  */
-void Game::YellowChappy::Mgr::loadTexData(void)
+void Game::YellowChappy::Mgr::loadTexData()
 {
 	/*
 	.loc_0x0:
@@ -88,7 +78,7 @@ void Game::YellowChappy::Mgr::loadTexData(void)
  * Address:	8012C0B4
  * Size:	000048
  */
-void Game::YellowChappy::Mgr::doAlloc(void)
+void Game::YellowChappy::Mgr::doAlloc()
 {
 	/*
 	.loc_0x0:
@@ -120,7 +110,7 @@ void Game::YellowChappy::Mgr::doAlloc(void)
  * Address:	8012C0FC
  * Size:	000034
  */
-void Game::YellowChappy::Mgr::loadAnimData(void)
+void Game::YellowChappy::Mgr::loadAnimData()
 {
 	/*
 	.loc_0x0:
@@ -145,7 +135,7 @@ void Game::YellowChappy::Mgr::loadAnimData(void)
  * Address:	8012C130
  * Size:	0000C8
  */
-void Game::YellowChappy::Mgr::__dt(void)
+void Game::YellowChappy::Mgr::~Mgr()
 {
 	/*
 	.loc_0x0:
@@ -211,7 +201,7 @@ void Game::YellowChappy::Mgr::__dt(void)
  * Address:	8012C1F8
  * Size:	000008
  */
-void Game::YellowChappy::Mgr::getEnemyTypeID(void)
+void Game::YellowChappy::Mgr::getEnemyTypeID()
 {
 	/*
 	.loc_0x0:
@@ -225,7 +215,7 @@ void Game::YellowChappy::Mgr::getEnemyTypeID(void)
  * Address:	8012C200
  * Size:	000008
  */
-void Game::YellowChappy::Mgr::getChangeTexture0(void)
+void Game::YellowChappy::Mgr::getChangeTexture0()
 {
 	/*
 	.loc_0x0:
@@ -239,7 +229,7 @@ void Game::YellowChappy::Mgr::getChangeTexture0(void)
  * Address:	8012C208
  * Size:	000008
  */
-void Game::YellowChappy::Mgr::getChangeTexture1(void)
+void Game::YellowChappy::Mgr::getChangeTexture1()
 {
 	/*
 	.loc_0x0:
@@ -253,7 +243,7 @@ void Game::YellowChappy::Mgr::getChangeTexture1(void)
  * Address:	8012C210
  * Size:	000060
  */
-void Game::YellowChappy::Mgr::createObj((int))
+void Game::YellowChappy::Mgr::createObj(int)
 {
 	/*
 	.loc_0x0:
@@ -289,7 +279,7 @@ void Game::YellowChappy::Mgr::createObj((int))
  * Address:	8012C270
  * Size:	0000F0
  */
-void Game::YellowChappy::Obj::__dt(void)
+void Game::YellowChappy::Obj::~Obj()
 {
 	/*
 	.loc_0x0:
@@ -365,7 +355,7 @@ void Game::YellowChappy::Obj::__dt(void)
  * Address:	8012C360
  * Size:	000010
  */
-void Game::YellowChappy::Mgr::getEnemy((int))
+void Game::YellowChappy::Mgr::getEnemy(int)
 {
 	/*
 	.loc_0x0:
@@ -381,7 +371,7 @@ void Game::YellowChappy::Mgr::getEnemy((int))
  * Address:	8012C370
  * Size:	000008
  */
-void @4 @Game::YellowChappy::Mgr::__dt(void)
+void Game::YellowChappy::Mgr::@4 @__dt()
 {
 	/*
 	.loc_0x0:
