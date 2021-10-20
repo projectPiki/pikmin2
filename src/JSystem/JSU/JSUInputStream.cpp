@@ -139,26 +139,6 @@ void JSUInputStream::read(char*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000D4
- */
-void JSUInputStream::readString()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000120
- */
-void JSUInputStream::readString(char*, unsigned short)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800264DC
  * Size:	000088
  */

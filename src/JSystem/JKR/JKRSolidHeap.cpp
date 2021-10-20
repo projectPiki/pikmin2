@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000078
- */
-void JKRSolidHeap::createRoot(int, bool)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80024D70
  * Size:	0000B4
  */
@@ -636,26 +626,6 @@ void JKRSolidHeap::do_getSize(void*)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void JKRSolidHeap::recordState(unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
- */
-void JKRSolidHeap::restoreState(unsigned long)
-{
-	// UNUSED FUNCTION
 }
 
 /*

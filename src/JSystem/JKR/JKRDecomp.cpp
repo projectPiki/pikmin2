@@ -184,17 +184,6 @@ void JKRDecomp::run()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000070
- */
-void JKRDecomp::prepareCommand(unsigned char*, unsigned char*, unsigned long,
-                               unsigned long, void (*)(unsigned long))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001CB0C
  * Size:	000030
  */
@@ -215,27 +204,6 @@ void JKRDecomp::sendCommand(JKRDecompCommand*)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void JKRDecomp::orderAsync(unsigned char*, unsigned char*, unsigned long,
-                           unsigned long, void (*)(unsigned long))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
- */
-void JKRDecomp::sync(JKRDecompCommand*, int)
-{
-	// UNUSED FUNCTION
 }
 
 /*

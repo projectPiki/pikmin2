@@ -46,13 +46,3 @@ void JKRFile::read(void*, long, long)
 	  blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void JKRFile::write(const void*, long, long)
-{
-	// UNUSED FUNCTION
-}

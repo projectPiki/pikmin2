@@ -2,38 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000038
- */
-void JKRAramPiece::JKRAramPiece()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void JKRAramPiece::~JKRAramPiece()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void JKRAramPiece::prepareCommand(int, unsigned long, unsigned long,
-                                  unsigned long, JKRAramBlock*,
-                                  void (*)(unsigned long))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80019AD8
  * Size:	000020
  */
@@ -50,37 +18,6 @@ void JKRAramPiece::sendCommand(JKRAMCommand*)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
- */
-void JKRAramPiece::orderAsync(int, unsigned long, unsigned long, unsigned long,
-                              JKRAramBlock*, void (*)(unsigned long))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void JKRAramPiece::sync(JKRAMCommand*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
- */
-void JKRAramPiece::syncAll(int)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -363,16 +300,6 @@ void JKRAMCommand::JKRAMCommand()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRAMCommand>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80019E34
  * Size:	0000A8
  */
@@ -435,16 +362,6 @@ void JKRAMCommand::~JKRAMCommand()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void JKRAMCommand::getDestination()
-{
-	// UNUSED FUNCTION
 }
 
 /*

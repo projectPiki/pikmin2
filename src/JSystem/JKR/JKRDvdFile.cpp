@@ -43,16 +43,6 @@ void JKRDvdFile::JKRDvdFile()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRDvdFile>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001D12C
  * Size:	0000B0
  */
@@ -471,16 +461,6 @@ void JKRDvdFile::readData(void*, long, long)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C4
- */
-void JKRDvdFile::readDataAsync(void*, long, long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001D5C4
  * Size:	000008
  */
@@ -491,16 +471,6 @@ void JKRDvdFile::writeData(const void*, long, long)
 	  li        r3, -0x1
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void JKRDvdFile::writeDataAsync(const void*, long, long)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -558,26 +528,6 @@ void JKRDvdFile::doneProcess(long, DVDFileInfo*)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-void JKRDvdFile::check()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000354
- */
-void JKRDvdFile::load(const char*, JKRHeap*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

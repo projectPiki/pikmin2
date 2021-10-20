@@ -130,16 +130,6 @@ void JKRAramHeap::~JKRAramHeap()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000060
- */
-void JKRAramHeap::changeGroupID(unsigned char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80019848
  * Size:	000080
  */
@@ -302,46 +292,6 @@ void JKRAramHeap::allocFromTail(unsigned long)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-void JKRAramHeap::freeLevel(unsigned char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-void JKRAramHeap::freeGroup(unsigned char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
- */
-void JKRAramHeap::freeAll()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-void JKRAramHeap::freeTail()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800199C8
  * Size:	000078
  */
@@ -386,46 +336,6 @@ void JKRAramHeap::getFreeSize()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void JKRAramHeap::getTotalFreeSize()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
- */
-void JKRAramHeap::getUsedSize(unsigned char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void JKRAramHeap::isEmpty()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JKRAramHeap::dump()
-{
-	// UNUSED FUNCTION
 }
 
 /*

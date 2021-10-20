@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void JKRAramArchive::JKRAramArchive()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80018958
  * Size:	0000B0
  */
@@ -220,46 +210,6 @@ void JKRFile::~JKRFile()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void JKRAramArchive::fixedInit(long, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
- */
-void JKRAramArchive::mountFixed(long, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
- */
-void JKRAramArchive::mountFixed(const char*, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
- */
-void JKRAramArchive::unmountFixed()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -713,56 +663,6 @@ void JKRAramArchive::fetchResource(void*, unsigned long,
 
 	.loc_0xF8:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void JKRAramArchive::getAramAddress_Entry(JKRArchive::SDIFileEntry*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void JKRAramArchive::getAramAddress(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void JKRAramArchive::getAramAddress(unsigned long, const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void JKRAramArchive::getAramAddress(unsigned short)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void JKRAramArchive::getIdxAramAddress(unsigned long)
-{
-	// UNUSED FUNCTION
 }
 
 /*

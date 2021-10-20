@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void JKRArchive::JKRArchive()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001A4BC
  * Size:	0000A8
  */
@@ -66,16 +56,6 @@ void JKRArchive::JKRArchive(long, JKRArchive::EMountMode)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void JKRArchive::JKRArchive(const char*, JKRArchive::EMountMode)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -150,16 +130,6 @@ void JKRArchive::isSameName(JKRArchive::CArcName&, unsigned long,
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void JKRArchive::findResType(unsigned long) const
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -434,7 +404,7 @@ void JKRArchive::findDirectory(const char*, unsigned long) const
  * Address:	8001A92C
  * Size:	000044
  */
-void JKRArchive::CArcName::__ct((char const**, char))
+void JKRArchive::CArcName::CArcName(const char**, char)
 {
 	/*
 	.loc_0x0:
@@ -463,7 +433,7 @@ void JKRArchive::CArcName::__ct((char const**, char))
  * Address:	8001A970
  * Size:	000008
  */
-void JKRArchive::CArcName::getString( const
+void JKRArchive::CArcName::getString() const
 {
 	/*
 	.loc_0x0:
@@ -477,7 +447,7 @@ void JKRArchive::CArcName::getString( const
  * Address:	8001A978
  * Size:	000008
  */
-void JKRArchive::CArcName::getHash( const
+void JKRArchive::CArcName::getHash() const
 {
 	/*
 	.loc_0x0:
@@ -488,20 +458,10 @@ void JKRArchive::CArcName::getHash( const
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000098
- */
-void JKRArchive::findTypeResource(unsigned long, unsigned long) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001A980
  * Size:	0000F4
  */
-void JKRArchive::findTypeResource(unsigned long, const char *) const
+void JKRArchive::findTypeResource(unsigned long, const char*) const
 {
 	/*
 	.loc_0x0:
@@ -596,7 +556,7 @@ void JKRArchive::findTypeResource(unsigned long, const char *) const
  * Address:	8001AA74
  * Size:	000340
  */
-void JKRArchive::findFsResource(const char *, unsigned long) const
+void JKRArchive::findFsResource(const char*, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -902,7 +862,7 @@ void JKRArchive::findIdxResource(unsigned long) const
  * Address:	8001ADDC
  * Size:	0000A4
  */
-void JKRArchive::findNameResource(const char *) const
+void JKRArchive::findNameResource(const char*) const
 {
 	/*
 	.loc_0x0:
@@ -967,7 +927,7 @@ void JKRArchive::findNameResource(const char *) const
  * Address:	8001AE80
  * Size:	000034
  */
-void JKRArchive::findPtrResource(const void *) const
+void JKRArchive::findPtrResource(const void*) const
 {
 	/*
 	.loc_0x0:
@@ -1045,20 +1005,10 @@ void JKRArchive::findIdResource(unsigned short) const
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000014
- */
-void JKRArchive::CArcName::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001AF34
  * Size:	000098
  */
-void JKRArchive::CArcName::store( (char const *))
+void JKRArchive::CArcName::store(const char*)
 {
 	/*
 	.loc_0x0:
@@ -1114,7 +1064,7 @@ void JKRArchive::CArcName::store( (char const *))
  * Address:	8001AFCC
  * Size:	0000C8
  */
-void JKRArchive::CArcName::store( (char const *, char))
+void JKRArchive::CArcName::store(const char*, char)
 {
 	/*
 	.loc_0x0:
@@ -1188,7 +1138,7 @@ void JKRArchive::CArcName::store( (char const *, char))
  * Address:	8001B094
  * Size:	00004C
  */
-void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry *, unsigned long)
+void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1221,7 +1171,7 @@ void JKRArchive::setExpandSize(JKRArchive::SDIFileEntry *, unsigned long)
  * Address:	8001B0E0
  * Size:	000050
  */
-void JKRArchive::getExpandSize(JKRArchive::SDIFileEntry *) const
+void JKRArchive::getExpandSize(JKRArchive::SDIFileEntry*) const
 {
 	/*
 	.loc_0x0:

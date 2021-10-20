@@ -5,7 +5,7 @@
  * Address:	80014D24
  * Size:	000038
  */
-void JStudio_JMessage::TAdaptor_message::__ct((JMessage::TControl*))
+void JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -31,7 +31,7 @@ void JStudio_JMessage::TAdaptor_message::__ct((JMessage::TControl*))
  * Address:	80014D5C
  * Size:	000060
  */
-void JStudio_JMessage::TAdaptor_message::__dt(void)
+void JStudio_JMessage::TAdaptor_message::~TAdaptor_message()
 {
 	/*
 	.loc_0x0:
@@ -70,7 +70,7 @@ void JStudio_JMessage::TAdaptor_message::__dt(void)
  * Size:	00003C
  */
 void JStudio_JMessage::TAdaptor_message::adaptor_do_MESSAGE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:

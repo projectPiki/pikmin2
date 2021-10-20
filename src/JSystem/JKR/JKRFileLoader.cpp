@@ -36,16 +36,6 @@ void JKRFileLoader::JKRFileLoader()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRFileLoader>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80022EF0
  * Size:	00008C
  */
@@ -129,36 +119,6 @@ void JKRFileLoader::unmount()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void JKRFileLoader::unmountAll()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void JKRFileLoader::getVolume(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void JKRFileLoader::changeDirectory(const char*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -256,67 +216,6 @@ void JKRFileLoader::getGlbResource(const char*, JKRFileLoader*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void JKRFileLoader::readGlbResource(void*, unsigned long, const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void JKRFileLoader::readGlbResource(void*, unsigned long, const char*,
-                                    JKRFileLoader*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-void JKRFileLoader::removeResource(void*, JKRFileLoader*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-void JKRFileLoader::detachResource(void*, JKRFileLoader*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void JKRFileLoader::getResSize(void*, JKRFileLoader*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
- */
-void JKRFileLoader::countFileGlb(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800230B0
  * Size:	00008C
  */
@@ -372,16 +271,6 @@ void JKRFileLoader::findVolume(const char**)
 
 	.loc_0x8C:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
- */
-void JKRFileLoader::findFirstFile(const char*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

@@ -246,27 +246,6 @@ void JKRAram::run()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void JKRAram::checkOkAddress(unsigned char*, unsigned long, JKRAramBlock*,
-                             unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void JKRAram::changeGroupIdIfNeed(unsigned char*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80017CC0
  * Size:	00028C
  */
@@ -488,42 +467,6 @@ void JKRAram::mainRamToAram(unsigned char*, unsigned long, unsigned long,
 	  addi      r1, r1, 0x30
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
- */
-void JKRAram::mainRamToAram(unsigned char*, JKRAramBlock*, unsigned long,
-                            JKRExpandSwitch, unsigned long, JKRHeap*, int,
-                            unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0002E8
- */
-void JKRAram::mainRamToAram_Async(unsigned char*, unsigned long, unsigned long,
-                                  JKRExpandSwitch, unsigned long, JKRHeap*,
-                                  void (*)(unsigned long), int, unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
- */
-void JKRAram::mainRamToAram_Async(unsigned char*, JKRAramBlock*, unsigned long,
-                                  JKRExpandSwitch, unsigned long, JKRHeap*,
-                                  void (*)(unsigned long), int, unsigned long*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -856,61 +799,6 @@ void JKRAram::aramToMainRam(JKRAramBlock*, unsigned char*, unsigned long,
 	  addi      r1, r1, 0x30
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0002E4
- */
-void JKRAram::aramToMainRam_Async(unsigned long, unsigned char*, unsigned long,
-                                  JKRExpandSwitch, unsigned long, JKRHeap*,
-                                  void (*)(unsigned long), int, unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000100
- */
-void JKRAram::aramToMainRam_Async(JKRAramBlock*, unsigned char*, unsigned long,
-                                  unsigned long, JKRExpandSwitch, unsigned long,
-                                  JKRHeap*, void (*)(unsigned long), int,
-                                  unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void JKRAram::aramSync(JKRAMCommand*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000FC
- */
-void JKRAram::aramSyncAll(int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void JKRAram::countLeftSync()
-{
-	// UNUSED FUNCTION
 }
 
 /*

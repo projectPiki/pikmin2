@@ -133,16 +133,6 @@ void JKRExpHeap::create(unsigned long, JKRHeap*, bool)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void JKRExpHeap::create(void*, unsigned long, JKRHeap*, bool)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001FFAC
  * Size:	000084
  */
@@ -898,16 +888,6 @@ void JKRExpHeap::do_free(void*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000094
- */
-void JKRExpHeap::freeLevel(unsigned char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80020830
  * Size:	000094
  */
@@ -1107,16 +1087,6 @@ void JKRExpHeap::do_changeGroupID(unsigned char)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000074
- */
-void JKRExpHeap::countGroup(unsigned char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80020A2C
  * Size:	0001BC
  */
@@ -1260,16 +1230,6 @@ void JKRExpHeap::do_resize(void*, unsigned long)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000144
- */
-void JKRExpHeap::adjustSize()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1459,36 +1419,6 @@ void JKRExpHeap::do_getTotalFreeSize()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void JKRExpHeap::getUsedSize(unsigned char) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
- */
-void JKRExpHeap::getTotalUsedSize() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void JKRExpHeap::isEmpty()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80020DB4
  * Size:	000098
  */
@@ -1614,16 +1544,6 @@ void JKRExpHeap::removeFreeBlock(JKRExpHeap::CMemBlock*)
 	  stw       r5, 0x8(r4)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void JKRExpHeap::removeUsedBlock(JKRExpHeap::CMemBlock*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -2340,22 +2260,12 @@ void JKRExpHeap::dump_sort()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000198
- */
-void JKRExpHeap::DBshow()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80021754
  * Size:	000020
  */
-void JKRExpHeap::CMemBlock::initiate((JKRExpHeap::CMemBlock*,
-                                      JKRExpHeap::CMemBlock*, unsigned long,
-                                      unsigned char, unsigned char))
+void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock*,
+                                     JKRExpHeap::CMemBlock*, unsigned long,
+                                     unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2375,9 +2285,9 @@ void JKRExpHeap::CMemBlock::initiate((JKRExpHeap::CMemBlock*,
  * Address:	80021774
  * Size:	000044
  */
-void JKRExpHeap::CMemBlock::allocFore((unsigned long, unsigned char,
-                                       unsigned char, unsigned char,
-                                       unsigned char))
+void JKRExpHeap::CMemBlock::allocFore(unsigned long, unsigned char,
+                                      unsigned char, unsigned char,
+                                      unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2408,9 +2318,9 @@ void JKRExpHeap::CMemBlock::allocFore((unsigned long, unsigned char,
  * Address:	800217B8
  * Size:	000058
  */
-void JKRExpHeap::CMemBlock::allocBack((unsigned long, unsigned char,
-                                       unsigned char, unsigned char,
-                                       unsigned char))
+void JKRExpHeap::CMemBlock::allocBack(unsigned long, unsigned char,
+                                      unsigned char, unsigned char,
+                                      unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2448,7 +2358,7 @@ void JKRExpHeap::CMemBlock::allocBack((unsigned long, unsigned char,
  * Address:	80021810
  * Size:	000060
  */
-void JKRExpHeap::CMemBlock::free((JKRExpHeap*))
+void JKRExpHeap::CMemBlock::free(JKRExpHeap*)
 {
 	/*
 	.loc_0x0:
@@ -2492,7 +2402,7 @@ void JKRExpHeap::CMemBlock::free((JKRExpHeap*))
  * Address:	80021870
  * Size:	00001C
  */
-void JKRExpHeap::CMemBlock::getHeapBlock((void*))
+void JKRExpHeap::CMemBlock::getHeapBlock(void*)
 {
 	/*
 	.loc_0x0:

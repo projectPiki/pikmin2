@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void JSUOutputStream::~JSUOutputStream()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800261E0
  * Size:	000058
  */
@@ -126,66 +116,6 @@ void JSUOutputStream::write(const char*)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
- */
-void JSUOutputStream::skip(long, char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void JSURandomOutputStream::align(long, char)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void JSURandomOutputStream::poke(void*, long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void JSURandomOutputStream::seek(long, JSUStreamSeekFrom)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void JSURandomOutputStream::~JSURandomOutputStream()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void JSURandomOutputStream::getAvailable() const
-{
-	// UNUSED FUNCTION
 }
 
 /*

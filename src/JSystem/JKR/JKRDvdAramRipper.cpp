@@ -178,51 +178,6 @@ void JKRDvdAramRipper::loadToAram(JKRDvdFile*, unsigned long, JKRExpandSwitch,
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00015C
- */
-void JKRDvdAramRipper::loadToAram_Async(const char*, unsigned long,
-                                        JKRExpandSwitch,
-                                        void (*)(unsigned long), unsigned long,
-                                        unsigned long, unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void __dt__Q27JGadget29TPointer_delete<JKRDvdFile> Fv(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void __dt__Q27JGadget22TPointer<JKRDvdFile> Fv(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
- */
-void JKRDvdAramRipper::loadToAram_Async(long, unsigned long, JKRExpandSwitch,
-                                        void (*)(unsigned long), unsigned long,
-                                        unsigned long, unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001D8CC
  * Size:	0000AC
  */
@@ -681,36 +636,6 @@ void JKRDvdAramRipper::syncAram(JKRADCommand*, int)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00010C
- */
-void JKRDvdAramRipper::syncAramAll(int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void JKRDvdAramRipper::countLeftSync()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void JKRDvdAramRipper::afterAramAsync(JKRADCommand*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001DE18
  * Size:	000040
  */
@@ -735,16 +660,6 @@ void JKRADCommand::JKRADCommand()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRADCommand>::~JSULink()
-{
-	// UNUSED FUNCTION
 }
 
 /*

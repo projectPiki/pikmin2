@@ -5,8 +5,8 @@
  * Address:	80012198
  * Size:	0000C8
  */
-void JStudio_JStage::TAdaptor_actor::__ct((JStage::TSystem const*,
-                                           JStage::TActor*))
+void JStudio_JStage::TAdaptor_actor::TAdaptor_actor(const JStage::TSystem*,
+                                                    JStage::TActor*)
 {
 	/*
 	.loc_0x0:
@@ -68,7 +68,7 @@ void JStudio_JStage::TAdaptor_actor::__ct((JStage::TSystem const*,
  * Address:	80012260
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_actor::__dt(void)
+void JStudio_JStage::TAdaptor_actor::~TAdaptor_actor()
 {
 	/*
 	.loc_0x0:
@@ -112,8 +112,7 @@ void JStudio_JStage::TAdaptor_actor::__dt(void)
  * Address:	800122D8
  * Size:	00008C
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare(
-    (JStudio::TObject const*))
+void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -176,7 +175,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare(
  * Address:	80012364
  * Size:	000130
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_begin((JStudio::TObject const*))
+void JStudio_JStage::TAdaptor_actor::adaptor_do_begin(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -272,7 +271,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_begin((JStudio::TObject const*))
  * Address:	80012494
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_end((JStudio::TObject const*))
+void JStudio_JStage::TAdaptor_actor::adaptor_do_end(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -305,8 +304,8 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_end((JStudio::TObject const*))
  * Address:	800124E8
  * Size:	000044
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_update((JStudio::TObject const*,
-                                                        unsigned long))
+void JStudio_JStage::TAdaptor_actor::adaptor_do_update(const JStudio::TObject*,
+                                                       unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -335,9 +334,9 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_update((JStudio::TObject const*,
  * Address:	8001252C
  * Size:	000034
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_data(
-    (JStudio::TObject const*, void const*, unsigned long, void const*,
-     unsigned long))
+void JStudio_JStage::TAdaptor_actor::adaptor_do_data(const JStudio::TObject*,
+                                                     const void*, unsigned long,
+                                                     const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -363,7 +362,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_data(
  * Size:	000054
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_SHAPE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -397,7 +396,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_SHAPE(
  * Size:	000054
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -431,7 +430,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION(
  * Size:	000014
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION_MODE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -449,7 +448,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION_MODE(
  * Size:	000054
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -483,7 +482,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(
  * Size:	000014
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -501,7 +500,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(
  * Size:	000044
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -535,7 +534,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(
  * Size:	00005C
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -577,7 +576,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(
  * Size:	000088
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -632,7 +631,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(
  * Size:	000014
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -650,7 +649,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(
  * Size:	000044
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -684,7 +683,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(
  * Size:	00005C
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -726,7 +725,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(
  * Size:	000058
  */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_ENABLE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -765,8 +764,8 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_ENABLE(
  * Size:	00003C
  */
 void JStudio_JStage::TAdaptor_actor::setJSG_ID_(
-    (void(JStage::TActor::)(void const*, void*, unsigned long),
-     JStudio::data::TEOperationData, void const*, unsigned long))
+    JStage::TActor, void(const void*, void*, unsigned long),
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -797,7 +796,7 @@ void JStudio_JStage::TAdaptor_actor::setJSG_ID_(
  * Address:	800128F4
  * Size:	000178
  */
-void JStudio_JStage::TAdaptor_actor::setJSG_SRT_((JStudio::TControl const*))
+void JStudio_JStage::TAdaptor_actor::setJSG_SRT_(const JStudio::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -919,7 +918,7 @@ void JStudio_JStage::TAdaptor_actor::setJSG_SRT_((JStudio::TControl const*))
  * Address:	80012A6C
  * Size:	00017C
  */
-void JStudio_JStage::TAdaptor_actor::getJSG_SRT_((JStudio::TControl const*))
+void JStudio_JStage::TAdaptor_actor::getJSG_SRT_(const JStudio::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -1043,7 +1042,7 @@ void JStudio_JStage::TAdaptor_actor::getJSG_SRT_((JStudio::TControl const*))
  * Size:	0000E4
  */
 void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(
-    const(float, JStudio::TAdaptor*))
+    float, JStudio::TAdaptor*) const
 {
 	/*
 	.loc_0x0:
@@ -1118,7 +1117,8 @@ void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(
  * Address:	80012CCC
  * Size:	000060
  */
-void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::__dt(void)
+void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::
+    ~TVVOutput_ANIMATION_FRAME_()
 {
 	/*
 	.loc_0x0:
@@ -1412,9 +1412,9 @@ void __sinit_object - actor_cpp(void)
  * Address:	800130FC
  * Size:	000060
  */
-void __dt__Q214JStudio_JStage81TVariableValueOutput_object_<
-    JStudio_JStage::TAdaptor_actor, JStage::TActor>
-Fv(void)
+void JStudio_JStage::TVariableValueOutput_object_<
+    JStudio_JStage::TAdaptor_actor,
+    JStage::TActor>::~TVariableValueOutput_object_()
 {
 	/*
 	.loc_0x0:
@@ -1452,9 +1452,9 @@ Fv(void)
  * Address:	8001315C
  * Size:	000030
  */
-void __cl__Q214JStudio_JStage81TVariableValueOutput_object_<
-    JStudio_JStage::TAdaptor_actor, JStage::TActor>
-CFfPQ27JStudio8TAdaptor(void)
+void JStudio_JStage::TVariableValueOutput_object_<
+    JStudio_JStage::TAdaptor_actor,
+    JStage::TActor>::operator()(float, JStudio::TAdaptor*) const
 {
 	/*
 	.loc_0x0:

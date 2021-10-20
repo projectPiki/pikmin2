@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void JKRDvdArchive::JKRDvdArchive()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001E57C
  * Size:	0000B0
  */
@@ -171,46 +161,6 @@ void JKRDvdArchive::~JKRDvdArchive()
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void JKRDvdArchive::fixedInit(long, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
- */
-void JKRDvdArchive::mountFixed(long, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000104
- */
-void JKRDvdArchive::mountFixed(const char*, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D4
- */
-void JKRDvdArchive::unmountFixed()
-{
-	// UNUSED FUNCTION
 }
 
 /*

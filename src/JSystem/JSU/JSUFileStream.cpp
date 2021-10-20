@@ -31,26 +31,6 @@ void JSUFileInputStream::JSUFileInputStream(JKRFile*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void JSUFileInputStream::open(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void JSUFileInputStream::close()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80026F28
  * Size:	0000E0
  */
@@ -207,86 +187,6 @@ void JSUFileInputStream::seekPos(long, JSUStreamSeekFrom)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void JSUFileOutputStream::JSUFileOutputStream(JKRFile*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void JSUFileOutputStream::open(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void JSUFileOutputStream::close()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void JSUFileOutputStream::writeData(const void*, long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E8
- */
-void JSUFileOutputStream::seekPos(long, JSUStreamSeekFrom)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void JSUFileOutputStream::~JSUFileOutputStream()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void JSUFileOutputStream::getLength() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void JSUFileOutputStream::getPosition() const
-{
-	// UNUSED FUNCTION
 }
 
 /*

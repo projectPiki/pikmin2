@@ -226,16 +226,6 @@ void JKRFileCache::JKRFileCache(const char*, const char*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSUList<JKRFileCache::CCacheBlock>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80021C7C
  * Size:	0000D4
  */
@@ -453,16 +443,6 @@ void JKRFileCache::getResource(const char*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void JKRFileCache::getRelResource(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80021F00
  * Size:	000090
  */
@@ -584,16 +564,6 @@ void JKRFileCache::readResource(void*, unsigned long, const char*)
 	  addi      r1, r1, 0x120
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void JKRFileCache::readRelResource(void*, unsigned long, const char*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1473,8 +1443,8 @@ void JKRFileCache::convStrLower(char*) const
  * Address:	800229C0
  * Size:	00006C
  */
-void JKRFileCache::CCacheBlock::__ct((unsigned long, unsigned long,
-                                      void const*))
+void JKRFileCache::CCacheBlock::CCacheBlock(unsigned long, unsigned long,
+                                            const void*)
 {
 	/*
 	.loc_0x0:
@@ -1506,16 +1476,6 @@ void JKRFileCache::CCacheBlock::__ct((unsigned long, unsigned long,
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRFileCache::CCacheBlock>::~JSULink()
-{
-	// UNUSED FUNCTION
 }
 
 /*

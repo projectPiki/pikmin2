@@ -149,16 +149,6 @@ void JSUPtrList::initiate()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000024
- */
-void JSUPtrList::setFirst(JSUPtrLink*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800268E4
  * Size:	0000B8
  */

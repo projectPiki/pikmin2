@@ -5,8 +5,8 @@
  * Address:	8001318C
  * Size:	0000A0
  */
-void JStudio_JStage::TAdaptor_ambientLight::__ct((JStage::TSystem const*,
-                                                  JStage::TAmbientLight*))
+void JStudio_JStage::TAdaptor_ambientLight::TAdaptor_ambientLight(
+    const JStage::TSystem*, JStage::TAmbientLight*)
 {
 	/*
 	.loc_0x0:
@@ -58,7 +58,7 @@ void JStudio_JStage::TAdaptor_ambientLight::__ct((JStage::TSystem const*,
  * Address:	8001322C
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_ambientLight::__dt(void)
+void JStudio_JStage::TAdaptor_ambientLight::~TAdaptor_ambientLight()
 {
 	/*
 	.loc_0x0:
@@ -103,7 +103,7 @@ void JStudio_JStage::TAdaptor_ambientLight::__dt(void)
  * Size:	000004
  */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_prepare(
-    (JStudio::TObject const*))
+    const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -117,7 +117,7 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_prepare(
  * Size:	00008C
  */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_begin(
-    (JStudio::TObject const*))
+    const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -165,7 +165,7 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_begin(
  * Size:	000054
  */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_end(
-    (JStudio::TObject const*))
+    const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -199,7 +199,7 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_end(
  * Size:	00006C
  */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(
-    (JStudio::TObject const*, unsigned long))
+    const JStudio::TObject*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -239,8 +239,8 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(
  * Size:	000034
  */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_data(
-    (JStudio::TObject const*, void const*, unsigned long, void const*,
-     unsigned long))
+    const JStudio::TObject*, const void*, unsigned long, const void*,
+    unsigned long)
 {
 	/*
 	.loc_0x0:

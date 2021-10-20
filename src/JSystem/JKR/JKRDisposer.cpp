@@ -42,16 +42,6 @@ void JKRDisposer::JKRDisposer()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRDisposer>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001D034
  * Size:	000084
  */

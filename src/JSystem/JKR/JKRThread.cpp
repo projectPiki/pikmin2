@@ -62,16 +62,6 @@ void JKRThread::JKRThread(unsigned long, int, int)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRThread>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800256F0
  * Size:	0000A0
  */
@@ -379,126 +369,6 @@ void JKRThread::run()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void JKRThread::searchThread(OSThread*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void JKRThread::searchThreadLoad(OSThread*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void JKRThread::dump()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000160
- */
-void JKRIdleThread::create(JKRHeap*, int, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void JKRThreadSwitch::JKRThreadSwitch(JKRHeap*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
- */
-void JKRThreadSwitch::createManager(JKRHeap*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000180
- */
-void JKRThreadSwitch::enter(OSThread*, JKRHeap*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void JKRThreadSwitch::enter(JKRThread*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void JKRThreadSwitch::setPreCallback(void (*)(OSThread*, OSThread*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void JKRThreadSwitch::setPostCallback(void (*)(OSThread*, OSThread*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001B4
- */
-void JKRThreadSwitch::callback(OSThread*, OSThread*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void JKRThreadSwitch::resetAll()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80025A44
  * Size:	000184
  */
@@ -626,56 +496,6 @@ void JKRThreadSwitch::loopProc()
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void JKRThreadSwitch::draw(JKRThreadName_*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000190
- */
-void JKRThreadSwitch::draw(JKRThreadName_*, JUTConsole*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001F0
- */
-void JKRThreadSwitch::createConsole(JUTFont*, int, JKRHeap*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000154
- */
-void JKRTask::JKRTask(int, int, unsigned long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRTask>::~JSULink()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -975,16 +795,6 @@ void JKRTask::create(int, int, unsigned long, JKRHeap*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000064
- */
-void JKRTask::destroy(JKRTask*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80025F7C
  * Size:	00009C
  */
@@ -1036,16 +846,6 @@ void JKRTask::run()
 	  stw       r31, 0x0(r30)
 	  b         .loc_0x50
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void JKRTask::searchBlank()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1114,106 +914,6 @@ void JKRTask::request(void (*)(void*), void*, void*)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-void JKRTask::requestJam(void (*)(void*), void*, void*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void JKRTask::cancelAll()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void JKRTask::createTaskEndMessageQueue(int, JKRHeap*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void JKRTask::destroyTaskEndMessageQueue()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void JKRTask::waitQueueMessageBlock(OSMessageQueue*, int*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void JKRTask::waitQueueMessage(OSMessageQueue*, int*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void JKRThreadSwitch::~JKRThreadSwitch()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void JKRIdleThread::destroy()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
- */
-void JKRIdleThread::~JKRIdleThread()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void JKRIdleThread::run()
-{
-	// UNUSED FUNCTION
 }
 
 /*

@@ -174,46 +174,6 @@ void JKRCompArchive::~JKRCompArchive()
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000044
- */
-void JKRCompArchive::fixedInit(long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
- */
-void JKRCompArchive::mountFixed(long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
- */
-void JKRCompArchive::mountFixed(const char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void JKRCompArchive::unmountFixed()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001BDB8
  * Size:	00057C
  */

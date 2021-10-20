@@ -5,8 +5,8 @@
  * Address:	800113C8
  * Size:	0000A8
  */
-void JStudio_JStage::TAdaptor_light::__ct((JStage::TSystem const*,
-                                           JStage::TLight*))
+void JStudio_JStage::TAdaptor_light::TAdaptor_light(const JStage::TSystem*,
+                                                    JStage::TLight*)
 {
 	/*
 	.loc_0x0:
@@ -60,7 +60,7 @@ void JStudio_JStage::TAdaptor_light::__ct((JStage::TSystem const*,
  * Address:	80011470
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_light::__dt(void)
+void JStudio_JStage::TAdaptor_light::~TAdaptor_light()
 {
 	/*
 	.loc_0x0:
@@ -104,8 +104,7 @@ void JStudio_JStage::TAdaptor_light::__dt(void)
  * Address:	800114E8
  * Size:	000048
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_prepare(
-    (JStudio::TObject const*))
+void JStudio_JStage::TAdaptor_light::adaptor_do_prepare(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -143,7 +142,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_prepare(
  * Address:	80011530
  * Size:	0002AC
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_begin((JStudio::TObject const*))
+void JStudio_JStage::TAdaptor_light::adaptor_do_begin(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -348,7 +347,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_begin((JStudio::TObject const*))
  * Address:	800117DC
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_end((JStudio::TObject const*))
+void JStudio_JStage::TAdaptor_light::adaptor_do_end(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -381,8 +380,8 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_end((JStudio::TObject const*))
  * Address:	80011830
  * Size:	0001C8
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_update((JStudio::TObject const*,
-                                                        unsigned long))
+void JStudio_JStage::TAdaptor_light::adaptor_do_update(const JStudio::TObject*,
+                                                       unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -518,9 +517,9 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_update((JStudio::TObject const*,
  * Address:	800119F8
  * Size:	000034
  */
-void JStudio_JStage::TAdaptor_light::adaptor_do_data(
-    (JStudio::TObject const*, void const*, unsigned long, void const*,
-     unsigned long))
+void JStudio_JStage::TAdaptor_light::adaptor_do_data(const JStudio::TObject*,
+                                                     const void*, unsigned long,
+                                                     const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -546,7 +545,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_data(
  * Size:	000078
  */
 void JStudio_JStage::TAdaptor_light::adaptor_do_FACULTY(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -603,7 +602,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_FACULTY(
  * Size:	000024
  */
 void JStudio_JStage::TAdaptor_light::adaptor_do_ENABLE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -625,7 +624,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_ENABLE(
  * Size:	00000C
  */
 void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::operator()(
-    const(float, JStudio::TAdaptor*))
+    float, JStudio::TAdaptor*) const
 {
 	/*
 	.loc_0x0:
@@ -640,7 +639,8 @@ void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::operator()(
  * Address:	80011AD4
  * Size:	000060
  */
-void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::__dt(void)
+void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::
+    ~TVVOutput_direction_()
 {
 	/*
 	.loc_0x0:

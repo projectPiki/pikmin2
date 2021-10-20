@@ -122,66 +122,6 @@ void JSUMemoryInputStream::seekPos(long, JSUStreamSeekFrom)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000014
- */
-void JSUMemoryOutputStream::setBuffer(void*, long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void JSUMemoryOutputStream::writeData(const void*, long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void JSUMemoryOutputStream::seekPos(long, JSUStreamSeekFrom)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void JSUMemoryOutputStream::~JSUMemoryOutputStream()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void JSUMemoryOutputStream::getLength() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void JSUMemoryOutputStream::getPosition() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80026E64
  * Size:	000070
  */

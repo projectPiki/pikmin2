@@ -42,16 +42,6 @@ void JKRAramBlock::JKRAramBlock(unsigned long, unsigned long, unsigned long,
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRAramBlock>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800194B0
  * Size:	0000BC
  */

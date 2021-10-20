@@ -5,8 +5,8 @@
  * Address:	80013428
  * Size:	0000C4
  */
-void JStudio_JStage::TAdaptor_camera::__ct((JStage::TSystem const*,
-                                            JStage::TCamera*))
+void JStudio_JStage::TAdaptor_camera::TAdaptor_camera(const JStage::TSystem*,
+                                                      JStage::TCamera*)
 {
 	/*
 	.loc_0x0:
@@ -67,7 +67,7 @@ void JStudio_JStage::TAdaptor_camera::__ct((JStage::TSystem const*,
  * Address:	800134EC
  * Size:	000078
  */
-void JStudio_JStage::TAdaptor_camera::__dt(void)
+void JStudio_JStage::TAdaptor_camera::~TAdaptor_camera()
 {
 	/*
 	.loc_0x0:
@@ -112,7 +112,7 @@ void JStudio_JStage::TAdaptor_camera::__dt(void)
  * Size:	000048
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_prepare(
-    (JStudio::TObject const*))
+    const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -150,8 +150,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_prepare(
  * Address:	800135AC
  * Size:	0000E8
  */
-void
-    JStudio_JStage::TAdaptor_camera::adaptor_do_begin((JStudio::TObject const*))
+void JStudio_JStage::TAdaptor_camera::adaptor_do_begin(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -225,7 +224,7 @@ void
  * Address:	80013694
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_end((JStudio::TObject const*))
+void JStudio_JStage::TAdaptor_camera::adaptor_do_end(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -258,8 +257,8 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_end((JStudio::TObject const*))
  * Address:	800136E8
  * Size:	00005C
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_update(
-    (JStudio::TObject const*, unsigned long))
+void JStudio_JStage::TAdaptor_camera::adaptor_do_update(const JStudio::TObject*,
+                                                        unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -294,9 +293,11 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_update(
  * Address:	80013744
  * Size:	000034
  */
-void JStudio_JStage::TAdaptor_camera::adaptor_do_data(
-    (JStudio::TObject const*, void const*, unsigned long, void const*,
-     unsigned long))
+void JStudio_JStage::TAdaptor_camera::adaptor_do_data(const JStudio::TObject*,
+                                                      const void*,
+                                                      unsigned long,
+                                                      const void*,
+                                                      unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -322,7 +323,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_data(
  * Size:	000044
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -356,7 +357,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT(
  * Size:	00005C
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_NODE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +399,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_NODE(
  * Size:	000080
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -451,7 +452,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE(
  * Size:	000014
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_FUNCTION(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -469,7 +470,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_FUNCTION(
  * Size:	000044
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -503,7 +504,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT(
  * Size:	00005C
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -545,7 +546,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE(
  * Size:	000020
  */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE(
-    (JStudio::data::TEOperationData, void const*, unsigned long))
+    JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -565,8 +566,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE(
  * Address:	8001396C
  * Size:	0000FC
  */
-void JStudio_JStage::TAdaptor_camera::setJSG_position_(
-    (JStudio::TControl const*))
+void JStudio_JStage::TAdaptor_camera::setJSG_position_(const JStudio::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -657,8 +657,7 @@ void JStudio_JStage::TAdaptor_camera::setJSG_position_(
  * Address:	80013A68
  * Size:	000108
  */
-void JStudio_JStage::TAdaptor_camera::getJSG_position_(
-    (JStudio::TControl const*))
+void JStudio_JStage::TAdaptor_camera::getJSG_position_(const JStudio::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -753,7 +752,7 @@ void JStudio_JStage::TAdaptor_camera::getJSG_position_(
  * Size:	0000E0
  */
 void JStudio_JStage::TAdaptor_camera::setJSG_targetPosition_(
-    (JStudio::TControl const*))
+    const JStudio::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -836,7 +835,7 @@ void JStudio_JStage::TAdaptor_camera::setJSG_targetPosition_(
  * Size:	0000E4
  */
 void JStudio_JStage::TAdaptor_camera::getJSG_targetPosition_(
-    (JStudio::TControl const*))
+    const JStudio::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -1151,9 +1150,9 @@ void __sinit_object - camera_cpp(void)
  * Address:	800140A4
  * Size:	000060
  */
-void __dt__Q214JStudio_JStage83TVariableValueOutput_object_<
-    JStudio_JStage::TAdaptor_camera, JStage::TCamera>
-Fv(void)
+void JStudio_JStage::TVariableValueOutput_object_<
+    JStudio_JStage::TAdaptor_camera,
+    JStage::TCamera>::~TVariableValueOutput_object_()
 {
 	/*
 	.loc_0x0:
@@ -1191,9 +1190,9 @@ Fv(void)
  * Address:	80014104
  * Size:	000030
  */
-void __cl__Q214JStudio_JStage83TVariableValueOutput_object_<
-    JStudio_JStage::TAdaptor_camera, JStage::TCamera>
-CFfPQ27JStudio8TAdaptor(void)
+void JStudio_JStage::TVariableValueOutput_object_<
+    JStudio_JStage::TAdaptor_camera,
+    JStage::TCamera>::operator()(float, JStudio::TAdaptor*) const
 {
 	/*
 	.loc_0x0:

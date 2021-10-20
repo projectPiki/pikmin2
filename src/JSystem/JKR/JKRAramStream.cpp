@@ -345,18 +345,6 @@ void JKRAramStream::writeToAram(JKRAramStreamCommand*)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000A0
- */
-void JKRAramStream::write_StreamToAram_Async(JSUFileInputStream*, JKRAramBlock*,
-                                             unsigned long, unsigned long,
-                                             unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001A2A4
  * Size:	00005C
  */
@@ -515,30 +503,6 @@ void JKRAramStream::sync(JKRAramStreamCommand*, int)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void JKRAramStream::write_StreamToAram(JSUFileInputStream*, JKRAramBlock*,
-                                       unsigned long, unsigned long,
-                                       unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
- */
-void JKRAramStream::write_StreamToAram(JSUFileInputStream*, unsigned long,
-                                       unsigned long, unsigned long,
-                                       unsigned long*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

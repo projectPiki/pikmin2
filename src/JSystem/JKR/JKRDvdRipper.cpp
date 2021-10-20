@@ -1,14 +1,14 @@
-#include "JSystem/JKR/JKRDvdRipper.h"
+
 
 /*
  * --INFO--
  * Address:	8001F188
  * Size:	0000B4
  */
-void* JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
-                                  unsigned long, JKRHeap*,
-                                  JKRDvdRipper::EAllocDirection, unsigned long,
-                                  int*, unsigned long*)
+void JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
+                                 unsigned long, JKRHeap*,
+                                 JKRDvdRipper::EAllocDirection, unsigned long,
+                                 int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -69,10 +69,10 @@ void* JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
  * Address:	8001F23C
  * Size:	0000B4
  */
-void* JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
-                                  unsigned long, JKRHeap*,
-                                  JKRDvdRipper::EAllocDirection, unsigned long,
-                                  int*, unsigned long*)
+void JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
+                                 unsigned long, JKRHeap*,
+                                 JKRDvdRipper::EAllocDirection, unsigned long,
+                                 int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -135,10 +135,10 @@ void* JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
  * Address:	8001F2F0
  * Size:	0004AC
  */
-void* JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
-                                  unsigned long, JKRHeap*,
-                                  JKRDvdRipper::EAllocDirection, unsigned long,
-                                  int*, unsigned long*)
+void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
+                                 unsigned long, JKRHeap*,
+                                 JKRDvdRipper::EAllocDirection, unsigned long,
+                                 int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -534,111 +534,6 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
 
 	.loc_0x4AC:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
- */
-void* JKRDvdRipper::loadToMainRAMAsync(const char*, unsigned char*,
-                                       JKRExpandSwitch, unsigned long, JKRHeap*,
-                                       unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F4
- */
-void* JKRDvdRipper::loadToMainRAMAsync(long, unsigned char*, JKRExpandSwitch,
-                                       unsigned long, JKRHeap*, unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001EC
- */
-void* JKRDvdRipper::loadToMainRAMAsync(JKRDvdFile*, unsigned char*,
-                                       JKRExpandSwitch, unsigned long, JKRHeap*,
-                                       unsigned long*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void JKRDvdRipper::doneProcess(long, DVDFileInfo*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001EC
- */
-void JKRDvdRipper::sync(JKRDMCommand*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void JKRDvdRipper::syncAll(int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void JKRDvdRipper::countLeftSync()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void JKRDMCommand::JKRDMCommand()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<JKRDMCommand>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A0
- */
-void JKRDMCommand::~JKRDMCommand()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -1176,7 +1071,7 @@ void nextSrcData(unsigned char*)
  * Address:	8001FDA8
  * Size:	000008
  */
-bool JKRDvdRipper::isErrorRetry()
+void JKRDvdRipper::isErrorRetry()
 {
 	/*
 	.loc_0x0:

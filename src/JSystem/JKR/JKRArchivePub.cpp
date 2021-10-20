@@ -2,26 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JKRArchive::check_mount_already(long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void JKRArchive::check_mount_already(long, JKRHeap*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001B130
  * Size:	000064
  */
@@ -631,27 +611,6 @@ void JKRArchive::getIdxResource(unsigned long)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JKRArchive::getResource(unsigned short)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C0
- */
-void JKRArchive::readTypeResource(void*, unsigned long, unsigned long,
-                                  const char*, JKRArchive*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001B74C
  * Size:	0000AC
  */
@@ -774,16 +733,6 @@ void JKRArchive::readResource(void*, unsigned long, const char*)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void JKRArchive::readIdxResource(void*, unsigned long, unsigned long)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -993,36 +942,6 @@ void JKRArchive::getResSize(const void*) const
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000094
- */
-void JKRArchive::countResource(unsigned long, const JKRArchive*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void JKRArchive::countResource() const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void JKRArchive::countResource(unsigned long) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	8001BA80
  * Size:	000060
  */
@@ -1132,26 +1051,6 @@ void JKRArchive::getFirstFile(const char*) const
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
- */
-void JKRArchive::getFirstResource(unsigned long) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void JKRArchive::getFileAttribute(unsigned long) const
-{
-	// UNUSED FUNCTION
 }
 
 /*

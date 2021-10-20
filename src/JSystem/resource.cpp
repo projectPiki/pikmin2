@@ -2,23 +2,11 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void JMessage::TResource::toMessageID_messageIndex(const(unsigned short,
-                                                         unsigned long*,
-                                                         unsigned long*))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800063C4
  * Size:	0001E4
  */
-void JMessage::TResource::toMessageIndex_messageID(const(unsigned long,
-                                                         unsigned long, bool*))
+void JMessage::TResource::toMessageIndex_messageID(unsigned long, unsigned long,
+                                                   bool*) const
 {
 	/*
 	.loc_0x0:
@@ -200,40 +188,10 @@ void JMessage::TResource::toMessageIndex_messageID(const(unsigned long,
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000038
- */
-void JMessage::TResourceContainer::TCResource::__ct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void __dt__Q27JGadget42TLinkList_factory<JMessage::TResource, 0> Fv(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void __dt__Q27JGadget34TLinkList<JMessage::TResource, 0> Fv(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800065A8
  * Size:	000074
  */
-void JMessage::TResourceContainer::TCResource::__dt(void)
+void JMessage::TResourceContainer::TCResource::~TCResource()
 {
 	/*
 	.loc_0x0:
@@ -278,7 +236,7 @@ void JMessage::TResourceContainer::TCResource::__dt(void)
  * Address:	8000661C
  * Size:	000084
  */
-void JMessage::TResourceContainer::TCResource::Get_groupID((unsigned short))
+void JMessage::TResourceContainer::TCResource::Get_groupID(unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -328,42 +286,10 @@ void JMessage::TResourceContainer::TCResource::Get_groupID((unsigned short))
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void JMessage::TResourceContainer::TCResource::Remove_groupID((unsigned short))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
- */
-void JMessage::TResourceContainer::TCResource::Erase_destroy_groupID(
-    (unsigned short))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
- */
-void JMessage::TResourceContainer::TCResource::Erase_destroy_groupID_all(
-    (unsigned short))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800066A0
  * Size:	00004C
  */
-void JMessage::TResourceContainer::TCResource::Do_create(void)
+void JMessage::TResourceContainer::TCResource::Do_create()
 {
 	/*
 	.loc_0x0:
@@ -396,8 +322,7 @@ void JMessage::TResourceContainer::TCResource::Do_create(void)
  * Address:	800066EC
  * Size:	000024
  */
-void
-    JMessage::TResourceContainer::TCResource::Do_destroy((JMessage::TResource*))
+void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource*)
 {
 	/*
 	.loc_0x0:
@@ -418,7 +343,7 @@ void
  * Address:	80006710
  * Size:	000048
  */
-void JMessage::TResourceContainer::__ct(void)
+void JMessage::TResourceContainer::TResourceContainer()
 {
 	/*
 	.loc_0x0:
@@ -441,46 +366,6 @@ void JMessage::TResourceContainer::__ct(void)
 	  stw       r7, 0x1C(r3)
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void JMessage::TResourceContainer::__ct((unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-void JMessage::TResourceContainer::getMessageEntryNumber( const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void JMessage::TResourceContainer::setEncoding( (unsigned char))
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void JMessage::TResourceContainer::setEncoding_( (unsigned char))
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -546,7 +431,7 @@ void JUTFont::isLeadByte_ShiftJIS(int)
  * Address:	80006798
  * Size:	000028
  */
-void JMessage::TParse::__ct( (JMessage::TResourceContainer *))
+void JMessage::TParse::TParse(JMessage::TResourceContainer*)
 {
 	/*
 	.loc_0x0:
@@ -568,7 +453,7 @@ void JMessage::TParse::__ct( (JMessage::TResourceContainer *))
  * Address:	800067C0
  * Size:	000060
  */
-void JMessage::TParse::__dt(void)
+void JMessage::TParse::~TParse()
 {
 	/*
 	.loc_0x0:
@@ -606,7 +491,8 @@ void JMessage::TParse::__dt(void)
  * Address:	80006820
  * Size:	00018C
  */
-void JMessage::TParse::parseHeader_next( (void const **, unsigned long *, unsigned long))
+void JMessage::TParse::parseHeader_next(const void**, unsigned long*,
+                                        unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -739,7 +625,8 @@ void JMessage::TParse::parseHeader_next( (void const **, unsigned long *, unsign
  * Address:	800069AC
  * Size:	00017C
  */
-void JMessage::TParse::parseBlock_next( (void const **, unsigned long *, unsigned long))
+void JMessage::TParse::parseBlock_next(const void**, unsigned long*,
+                                       unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -868,7 +755,7 @@ void JMessage::TParse::parseBlock_next( (void const **, unsigned long *, unsigne
  * Address:	80006B28
  * Size:	000020
  */
-void JMessage::TParse_color::__ct( (JMessage::TResourceContainer *))
+void JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
 {
 	/*
 	.loc_0x0:
@@ -888,7 +775,7 @@ void JMessage::TParse_color::__ct( (JMessage::TResourceContainer *))
  * Address:	80006B48
  * Size:	000060
  */
-void JMessage::TParse_color::__dt(void)
+void JMessage::TParse_color::~TParse_color()
 {
 	/*
 	.loc_0x0:
@@ -926,7 +813,8 @@ void JMessage::TParse_color::__dt(void)
  * Address:	80006BA8
  * Size:	0000BC
  */
-void JMessage::TParse_color::parseHeader_next( (void const **, unsigned long *, unsigned long))
+void JMessage::TParse_color::parseHeader_next(const void**, unsigned long*,
+                                              unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -993,7 +881,8 @@ void JMessage::TParse_color::parseHeader_next( (void const **, unsigned long *, 
  * Address:	80006C64
  * Size:	000054
  */
-void JMessage::TParse_color::parseBlock_next( (void const **, unsigned long *, unsigned long))
+void JMessage::TParse_color::parseBlock_next(const void**, unsigned long*,
+                                             unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1032,7 +921,9 @@ void JMessage::TParse_color::parseBlock_next( (void const **, unsigned long *, u
  * Address:	80006CB8
  * Size:	000054
  */
-void std::lower_bound<const unsigned long *, unsigned long>(const unsigned long *, const unsigned long *, const unsigned long &)
+void std::lower_bound<const unsigned long*, unsigned long>(const unsigned long*,
+                                                           const unsigned long*,
+                                                           const unsigned long&)
 {
 	/*
 	.loc_0x0:

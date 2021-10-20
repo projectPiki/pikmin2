@@ -2,16 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00003C
- */
-void JKRMemArchive::JKRMemArchive()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80024644
  * Size:	0000BC
  */
@@ -141,16 +131,6 @@ void JKRMemArchive::JKRMemArchive(void*, unsigned long, JKRMemBreakFlag)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void JKRMemArchive::JKRMemArchive(const char*, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800247C8
  * Size:	0000A8
  */
@@ -207,56 +187,6 @@ void JKRMemArchive::~JKRMemArchive()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void JKRMemArchive::fixedInit(long)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
- */
-void JKRMemArchive::mountFixed(long, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00010C
- */
-void JKRMemArchive::mountFixed(const char*, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000108
- */
-void JKRMemArchive::mountFixed(void*, JKRMemBreakFlag)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void JKRMemArchive::unmountFixed()
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -422,16 +352,6 @@ void JKRMemArchive::open(void*, unsigned long, JKRMemBreakFlag)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void JKRMemArchive::open(const char*, JKRArchive::EMountDirection)
-{
-	// UNUSED FUNCTION
 }
 
 /*

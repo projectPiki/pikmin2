@@ -2,26 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000018
- */
-void J3DUMtxAnmCacheTableBase::J3DUMtxAnmCacheTableBase()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void J3DUMtxAnmCacheTableBase::J3DUMtxAnmCacheTableBase(int, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800177EC
  * Size:	00005C
  */
@@ -57,96 +37,6 @@ void J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void J3DUMtxAnmCacheTableBase::init(int, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
- */
-void J3DUSqtAnmCacheTableBase::J3DUSqtAnmCacheTableBase()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void J3DUSqtAnmCacheTableBase::J3DUSqtAnmCacheTableBase(int, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void J3DUSqtAnmCacheTableBase::~J3DUSqtAnmCacheTableBase()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void J3DUSqtAnmCacheTableBase::init(int, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void J3DUSqtBlendAnmCacheTable::setFrame(float)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void J3DUSqtBlendAnmCacheTable::setFrame(int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00017C
- */
-void J3DUSqt::setMtx(const float (*)[4])
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void J3DUSqt::getMtx(float (*)[4]) const
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -194,72 +84,6 @@ void J3DUMtxAnmCacheTable::J3DUMtxAnmCacheTable(J3DModel*, J3DAnmTransform*)
 
 	.loc_0x84:
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void J3DUSqtAnmCacheTable::J3DUSqtAnmCacheTable(J3DModel*, J3DAnmTransform*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void J3DUSqtBlendAnmCacheTable::J3DUSqtBlendAnmCacheTable()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000240
- */
-void J3DUSqtBlendAnmCacheTable::J3DUSqtBlendAnmCacheTable(J3DModel*,
-                                                          J3DAnmTransform*,
-                                                          J3DAnmTransform*,
-                                                          J3DAnmTransform*,
-                                                          J3DAnmTransform*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-void J3DUSqtBlendAnmCacheTable::~J3DUSqtBlendAnmCacheTable()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00030C
- */
-void J3DUSqtBlendAnmCacheTable::get(int, float (&)[3][4]) const
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00028C
- */
-void @unnamed @J3DUMtxCache_cpp
-    @ ::init<J3DUSqtAnmCacheTable>(J3DModel*, J3DAnmTransform*,
-                                   J3DUSqtAnmCacheTable*)
-{
-	// UNUSED FUNCTION
 }
 
 /*

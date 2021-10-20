@@ -1015,36 +1015,6 @@ void J3DMtxCalcBlendSharedMotionT::calcBlend(Vec*, Vec*, J3DAnmTransform**,
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000384
- */
-void J3DMtxCalcMayaAdditiveAnm::calcTransform(const J3DTransformInfo&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
- */
-void J3DMtxCalcScaleBlendBasic::calcScaleBlend(const Vec&, const Vec&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000174
- */
-void J3DMtxCalcScaleBlendSoftimage::calcScaleBlend(const Vec&, const Vec&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80016B04
  * Size:	000198
  */
