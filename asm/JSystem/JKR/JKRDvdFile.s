@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473608
+lbl_80473608:
+	.4byte 0x4A4B5244
+	.4byte 0x76644669
+	.4byte 0x6C652E63
+	.4byte 0x70700000
+.global lbl_80473618
+lbl_80473618:
+	.4byte 0x63616E6E
+	.4byte 0x6F742063
+	.4byte 0x6C6F7365
+	.4byte 0x20445644
+	.4byte 0x2066696C
+	.4byte 0x650A0000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JKRDvdFileFv

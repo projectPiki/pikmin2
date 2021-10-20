@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global j2dDefaultTexCoordInfo
+j2dDefaultTexCoordInfo:
+	.4byte 0x01043C00
+	.4byte 0x01053C00
+	.4byte 0x01063C00
+	.4byte 0x01073C00
+	.4byte 0x01083C00
+	.4byte 0x01093C00
+	.4byte 0x010A3C00
+	.4byte 0x010B3C00
+.global j2dDefaultTexMtxInfo
+j2dDefaultTexMtxInfo:
+	.4byte 0x0101FFFF
+	.float 0.5
+	.float 0.5
+	.4byte 0x00000000
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global j2dDefaultIndTexMtxInfo
+j2dDefaultIndTexMtxInfo:
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x01000000
+.global j2dDefaultTevStageInfo
+j2dDefaultTevStageInfo:
+	.4byte 0x040A0F0F
+	.4byte 0x00000000
+	.4byte 0x01000507
+	.4byte 0x07000000
+	.4byte 0x00010000
+.global j2dDefaultIndTevStageInfo
+j2dDefaultIndTevStageInfo:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__9J2DTexMtxFUl

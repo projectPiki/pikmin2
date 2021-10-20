@@ -1,4 +1,33 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473688
+lbl_80473688:
+	.4byte 0x4A4B5244
+	.4byte 0x76645269
+	.4byte 0x70706572
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x536F7272
+	.4byte 0x792C206E
+	.4byte 0x6F742070
+	.4byte 0x72657061
+	.4byte 0x72656420
+	.4byte 0x666F7220
+	.4byte 0x535A5020
+	.4byte 0x7265736F
+	.4byte 0x75726365
+	.4byte 0x0A000000
+	.4byte 0x3A3A3A4E
+	.4byte 0x6F742073
+	.4byte 0x7570706F
+	.4byte 0x72742053
+	.4byte 0x5A502077
+	.4byte 0x69746820
+	.4byte 0x6F666673
+	.4byte 0x65742072
+	.4byte 0x65616400
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global errorRetry__12JKRDvdRipper

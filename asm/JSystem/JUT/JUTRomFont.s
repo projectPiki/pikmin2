@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80474280
+lbl_80474280:
+	.asciz "Font Encode Type %d\n"
+	.skip 3
+.global lbl_80474298
+lbl_80474298:
+	.asciz "IPLROM fontdata size : %u\n"
+	.skip 1
+	.skip 0xC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTRomFontFP7JKRHeap

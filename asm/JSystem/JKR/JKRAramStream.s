@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473598
+lbl_80473598:
+	.4byte 0x4A4B5241
+	.4byte 0x72616D53
+	.4byte 0x74726561
+	.4byte 0x6D2E6370
+	.4byte 0x70000000
+.global lbl_804735AC
+lbl_804735AC:
+	.4byte 0x3A3A3A43
+	.4byte 0x616E6E6F
+	.4byte 0x7420616C
+	.4byte 0x6C6F6320
+	.4byte 0x6D656D6F
+	.4byte 0x72790A00
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__13JKRAramStreamFl

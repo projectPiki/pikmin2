@@ -1,4 +1,88 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global j3dDefaultTexCoordInfo
+j3dDefaultTexCoordInfo:
+	.4byte 0x01043C00
+	.4byte 0x01053C00
+	.4byte 0x01063C00
+	.4byte 0x01073C00
+	.4byte 0x01083C00
+	.4byte 0x01093C00
+	.4byte 0x010A3C00
+	.4byte 0x010B3C00
+.global j3dDefaultTexMtxInfo
+j3dDefaultTexMtxInfo:
+	.4byte 0x0100FFFF
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+.global j3dDefaultIndTexMtxInfo
+j3dDefaultIndTexMtxInfo:
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x01000000
+.global j3dDefaultTevStageInfo
+j3dDefaultTevStageInfo:
+	.4byte 0x040A0F0F
+	.4byte 0x00000000
+	.4byte 0x01000507
+	.4byte 0x07000000
+	.4byte 0x00010000
+.global j3dDefaultIndTevStageInfo
+j3dDefaultIndTevStageInfo:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global j3dDefaultFogInfo
+j3dDefaultFogInfo:
+	.4byte 0x00000140
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 0.1
+	.4byte 0x461C4000
+	.4byte 0xFFFFFF00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global j3dDefaultNBTScaleInfo
+j3dDefaultNBTScaleInfo:
+	.4byte 0x00000000
+	.float 1.0
+	.float 1.0
+	.float 1.0
+.global lbl_804789A4
+lbl_804789A4:
+	.4byte 0x1E212427
+	.4byte 0x2A2D3033
+	.4byte 0x36393C00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__11J3DLightObjCFUl

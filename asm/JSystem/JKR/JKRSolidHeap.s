@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473AA8
+lbl_80473AA8:
+	.asciz "allocFromHead: cannot alloc memory (0x%x byte).\n"
+	.skip 3
+.global lbl_80473ADC
+lbl_80473ADC:
+	.asciz "allocFromTail: cannot alloc memory (0x%x byte).\n"
+	.skip 3
+.global lbl_80473B10
+lbl_80473B10:
+	.asciz "free: cannot free memory block (%08x)\n"
+	.skip 1
+.global lbl_80473B38
+lbl_80473B38:
+	.asciz "resize: cannot resize memory block (%08x: %d)\n"
+	.skip 1
+.global lbl_80473B68
+lbl_80473B68:
+	.asciz "getSize: cannot get memory block size (%08x)\n"
+	.skip 2
+.global lbl_80473B98
+lbl_80473B98:
+	.asciz "check: bad total memory block size (%08X, %08X)\n"
+	.skip 3
+	.asciz "head %08x: %08x\n"
+	.skip 3
+	.asciz "tail %08x: %08x\n"
+	.skip 3
+	.asciz "%d / %d bytes (%6.2f%%) used\n"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__12JKRSolidHeapFUlP7JKRHeapb

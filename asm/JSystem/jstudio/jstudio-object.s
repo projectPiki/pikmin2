@@ -1,4 +1,116 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor:
+	.4byte 0x00000003
+	.4byte 0x00000004
+	.4byte 0x00000005
+.global sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor
+sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor:
+	.4byte 0x00000006
+	.4byte 0x00000007
+	.4byte 0x00000008
+.global sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor
+sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor:
+	.4byte 0x00000009
+	.4byte 0x0000000A
+	.4byte 0x0000000B
+.global sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight
+sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+.global sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight
+sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+.global sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera
+sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+.global sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera
+sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera:
+	.4byte 0x00000003
+	.4byte 0x00000004
+	.4byte 0x00000005
+.global sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog
+sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+.global sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog
+sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+.global sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light
+sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+.global sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light
+sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+.global sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light
+sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light:
+	.4byte 0x00000004
+	.4byte 0x00000005
+	.4byte 0x00000006
+.global sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light
+sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light:
+	.4byte 0x00000007
+	.4byte 0x00000008
+	.4byte 0x00000009
+.global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+.global sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle
+sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle:
+	.4byte 0x00000003
+	.4byte 0x00000004
+	.4byte 0x00000005
+.global sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle
+sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle:
+	.4byte 0x00000006
+	.4byte 0x00000007
+	.4byte 0x00000008
+.global sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle
+sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle:
+	.4byte 0x00000009
+	.4byte 0x0000000A
+	.4byte 0x0000000B
+.global sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle
+sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle:
+	.4byte 0x00000009
+	.4byte 0x0000000A
+	.4byte 0x0000000B
+	.4byte 0x0000000C
+.global sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle
+sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle:
+	.4byte 0x00000009
+	.4byte 0x0000000A
+	.4byte 0x0000000B
+.global sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle
+sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle:
+	.4byte 0x00000009
+	.4byte 0x0000000A
+	.4byte 0x0000000B
+	.4byte 0x0000000C
+.global sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound
+sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q37JStudio14TVariableValue7TOutputFv

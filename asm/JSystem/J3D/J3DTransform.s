@@ -1,4 +1,41 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global j3dDefaultTransformInfo
+j3dDefaultTransformInfo:
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global j3dDefaultScale
+j3dDefaultScale:
+	.float 1.0
+	.float 1.0
+	.float 1.0
+.global j3dDefaultMtx
+j3dDefaultMtx:
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_8047889C
+lbl_8047889C:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global Unit01

@@ -1,4 +1,67 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global saoAboutEncoding___10JUTResFont
+saoAboutEncoding___10JUTResFont:
+	.4byte isLeadByte_1Byte__7JUTFontFi
+	.4byte isLeadByte_2Byte__7JUTFontFi
+	.4byte isLeadByte_ShiftJIS__7JUTFontFi
+.global lbl_8047418C
+lbl_8047418C:
+	.asciz "JUTResFont: Unknown data block\n"
+.global lbl_804741AC
+lbl_804741AC:
+	.asciz "Unknown data block\n"
+.global halftofull$725
+halftofull$725:
+	.4byte 0x81408149
+	.4byte 0x81688194
+	.4byte 0x81908193
+	.4byte 0x81958166
+	.4byte 0x8169816A
+	.4byte 0x8196817B
+	.4byte 0x8143817C
+	.4byte 0x8144815E
+	.4byte 0x824F8250
+	.4byte 0x82518252
+	.4byte 0x82538254
+	.4byte 0x82558256
+	.4byte 0x82578258
+	.4byte 0x81468147
+	.4byte 0x81838181
+	.4byte 0x81848148
+	.4byte 0x81978260
+	.4byte 0x82618262
+	.4byte 0x82638264
+	.4byte 0x82658266
+	.4byte 0x82678268
+	.4byte 0x8269826A
+	.4byte 0x826B826C
+	.4byte 0x826D826E
+	.4byte 0x826F8270
+	.4byte 0x82718272
+	.4byte 0x82738274
+	.4byte 0x82758276
+	.4byte 0x82778278
+	.4byte 0x8279816D
+	.4byte 0x818F816E
+	.4byte 0x814F8151
+	.4byte 0x81658281
+	.4byte 0x82828283
+	.4byte 0x82848285
+	.4byte 0x82868287
+	.4byte 0x82888289
+	.4byte 0x828A828B
+	.4byte 0x828C828D
+	.4byte 0x828E828F
+	.4byte 0x82908291
+	.4byte 0x82928293
+	.4byte 0x82948295
+	.4byte 0x82968297
+	.4byte 0x82988299
+	.4byte 0x829A816F
+	.4byte 0x81628170
+	.4byte 0x81600000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTResFontFv

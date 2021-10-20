@@ -4,7 +4,6 @@ GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/init.o\
 	$(BUILD_DIR)/asm/ctors.o\
 	$(BUILD_DIR)/asm/dtors.o\
-	$(BUILD_DIR)/asm/rodata.o\
 	$(BUILD_DIR)/asm/data.o\
 	$(BUILD_DIR)/asm/bss.o\
 	$(BUILD_DIR)/asm/sbss.o\
@@ -24,6 +23,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-object.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-id.o\
 	$(BUILD_DIR)/asm/JSystem/stb/stb.o\
+	$(BUILD_DIR)/asm/JSystem/stb/stb-data.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-math.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-light.o\
 	$(BUILD_DIR)/asm/JSystem/object/object.o\
@@ -89,6 +89,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTResFont.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTResource.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTRomFont.o\
+	$(BUILD_DIR)/asm/JSystem/JUT/JUTFontData_Ascfont_fix12.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTTexture.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTVideo.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTXfb.o\

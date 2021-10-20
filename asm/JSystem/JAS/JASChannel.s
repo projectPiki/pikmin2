@@ -1,4 +1,30 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global calc_sw_table__10JASChannel
+calc_sw_table__10JASChannel:
+	.4byte 0x00000000
+	.4byte 0x00010000
+	.4byte 0x01000100
+	.4byte 0x00010100
+	.4byte 0x01020001
+	.4byte 0x00000201
+	.4byte 0x00020201
+	.4byte 0x00000100
+	.4byte 0x01010002
+	.4byte 0x01010001
+	.4byte 0x01010101
+	.4byte 0x02010200
+	.4byte 0x01020101
+	.4byte 0x02020100
+	.4byte 0x00020001
+	.4byte 0x02000202
+	.4byte 0x01000201
+	.4byte 0x01020102
+	.4byte 0x02020002
+	.4byte 0x02010202
+	.4byte 0x02000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv

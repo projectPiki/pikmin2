@@ -1,4 +1,47 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473480
+lbl_80473480:
+	.4byte 0x4A4B5241
+	.4byte 0x72616D2E
+	.4byte 0x63707000
+.global lbl_8047348C
+lbl_8047348C:
+	.4byte 0x3A3A3A61
+	.4byte 0x64647265
+	.4byte 0x7373206E
+	.4byte 0x6F742033
+	.4byte 0x32427974
+	.4byte 0x6520616C
+	.4byte 0x69676E65
+	.4byte 0x642E0000
+	.4byte 0x3A3A3A42
+	.4byte 0x61642041
+	.4byte 0x72616D20
+	.4byte 0x426C6F63
+	.4byte 0x6B207370
+	.4byte 0x65636966
+	.4byte 0x6965642E
+	.4byte 0x0A000000
+	.4byte 0x2D2D2D2D
+	.4byte 0x2D2D2D2D
+	.4byte 0x2D2D2D2D
+	.4byte 0x2D2D2D2D
+	.4byte 0x20424144
+	.4byte 0x2053594E
+	.4byte 0x432E2079
+	.4byte 0x6F752764
+	.4byte 0x20736574
+	.4byte 0x2063616C
+	.4byte 0x6C626163
+	.4byte 0x6B2C2062
+	.4byte 0x7574206E
+	.4byte 0x6F772063
+	.4byte 0x616C6C20
+	.4byte 0x73796E63
+	.4byte 0x2E0A0000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sSZSBufferSize__7JKRAram

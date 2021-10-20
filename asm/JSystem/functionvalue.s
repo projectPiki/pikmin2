@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@":
+	.4byte extrapolateParameter_raw__Q27JStudio13functionvalueFdd
+	.4byte extrapolateParameter_repeat__Q27JStudio13functionvalueFdd
+	.4byte extrapolateParameter_turn__Q27JStudio13functionvalueFdd
+	.4byte extrapolateParameter_clamp__Q27JStudio13functionvalueFdd
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global extrapolateParameter_raw__Q27JStudio13functionvalueFdd

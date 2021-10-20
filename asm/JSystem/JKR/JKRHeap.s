@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473A68
+lbl_80473A68:
+	.asciz "JKRHeap.cpp"
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sDefaultFillFlag__7JKRHeap

@@ -1,4 +1,39 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global sMixFuncs__9JASDriver
+sMixFuncs__9JASDriver:
+	.4byte mixMonoTrack__9JASDriverFPsUlPFl_Ps
+	.4byte mixMonoTrackWide__9JASDriverFPsUlPFl_Ps
+	.4byte mixExtraTrack__9JASDriverFPsUlPFl_Ps
+	.4byte mixInterleaveTrack__9JASDriverFPsUlPFl_Ps
+.global lbl_804795F8
+lbl_804795F8:
+	.4byte 0x5346522D
+	.4byte 0x55504441
+	.4byte 0x54450000
+.global lbl_80479604
+lbl_80479604:
+	.4byte 0x6B696C6C
+	.4byte 0x20445350
+	.4byte 0x20636861
+	.4byte 0x6E6E656C
+	.4byte 0x00000000
+	.4byte 0x4453502D
+	.4byte 0x4D41494E
+	.4byte 0x00000000
+.global lbl_80479624
+lbl_80479624:
+	.4byte 0x4D4F4E4F
+	.4byte 0x2D4D4958
+	.4byte 0x00000000
+.global lbl_80479630
+lbl_80479630:
+	.4byte 0x4D4F4E4F
+	.4byte 0x2857292D
+	.4byte 0x4D495800
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sDspDacBufferCount__9JASDriver

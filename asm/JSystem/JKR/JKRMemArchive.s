@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473A78
+lbl_80473A78:
+	.asciz "JKRMemArchive.cpp"
+	.skip 2
+.global lbl_80473A8C
+lbl_80473A8C:
+	.asciz ":::??? bad sequence\n"
+	.skip 3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection

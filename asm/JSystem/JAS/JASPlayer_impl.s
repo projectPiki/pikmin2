@@ -1,4 +1,104 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global s_key_table
+s_key_table:
+	.float 1.0
+	.4byte 0x3F801DD2
+	.4byte 0x3F803BAC
+	.4byte 0x3F80598E
+	.4byte 0x3F807770
+	.4byte 0x3F809564
+	.4byte 0x3F80B357
+	.4byte 0x3F80D152
+	.4byte 0x3F80EF56
+	.4byte 0x3F810D5A
+	.4byte 0x3F812B6F
+	.4byte 0x3F814984
+	.4byte 0x3F8167A1
+	.4byte 0x3F8185CF
+	.4byte 0x3F81A3F4
+	.4byte 0x3F81C22B
+	.4byte 0x3F81E069
+	.4byte 0x3F81FEA8
+	.4byte 0x3F821CEF
+	.4byte 0x3F823B3F
+	.4byte 0x3F825996
+	.4byte 0x3F8277F7
+	.4byte 0x3F82965F
+	.4byte 0x3F82B4C8
+	.4byte 0x3F82D339
+	.4byte 0x3F82F1BB
+	.4byte 0x3F83103D
+	.4byte 0x3F832EBE
+	.4byte 0x3F834D51
+	.4byte 0x3F836BEC
+	.4byte 0x3F838A87
+	.4byte 0x3F83A92A
+	.4byte 0x3F83C7D6
+	.4byte 0x3F83E68A
+	.4byte 0x3F840547
+	.4byte 0x3F84240B
+	.4byte 0x3F8442D0
+	.4byte 0x3F8461A6
+	.4byte 0x3F84807C
+	.4byte 0x3F849F5A
+	.4byte 0x3F84BE40
+	.4byte 0x3F84DD2F
+	.4byte 0x3F84FC1E
+	.4byte 0x3F851B1E
+	.4byte 0x3F853A1D
+	.4byte 0x3F855925
+	.4byte 0x3F857836
+	.4byte 0x3F85974E
+	.4byte 0x3F85B670
+	.4byte 0x3F85D599
+	.4byte 0x3F85F4C3
+	.4byte 0x3F8613FD
+	.4byte 0x3F863337
+	.4byte 0x3F86527A
+	.4byte 0x3F8671C5
+	.4byte 0x3F869119
+	.4byte 0x3F86B075
+	.4byte 0x3F86CFD1
+	.4byte 0x3F86EF3D
+	.4byte 0x3F870EAA
+	.4byte 0x3F872E1F
+	.4byte 0x3F874D9C
+	.4byte 0x3F876D22
+	.4byte 0x3F878CB0
+.global sAdsrDef__9JASPlayer
+sAdsrDef__9JASPlayer:
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+.global sEnvelopeDef__9JASPlayer
+sEnvelopeDef__9JASPlayer:
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte sRelTable__9JASPlayer
+	.float 1.0
+	.4byte 0x00000000
+.global sVibratoDef__9JASPlayer
+sVibratoDef__9JASPlayer:
+	.4byte 0x00000001
+	.float 0.5
+	.4byte sVibTable__9JASPlayer
+	.4byte sVibTable__9JASPlayer
+	.4byte 0x00000000
+	.float 1.0
+.global sTremoroDef__9JASPlayer
+sTremoroDef__9JASPlayer:
+	.4byte 0x00000000
+	.float 0.5
+	.4byte sTreTable__9JASPlayer
+	.4byte sTreTable__9JASPlayer
+	.4byte 0x00000000
+	.float 1.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global extend8to16__9JASPlayerFUc

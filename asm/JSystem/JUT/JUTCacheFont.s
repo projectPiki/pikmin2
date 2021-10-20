@@ -1,4 +1,38 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80478420
+lbl_80478420:
+	.4byte 0x4A555443
+	.4byte 0x61636865
+	.4byte 0x466F6E74
+	.4byte 0x3A20556E
+	.4byte 0x6B6E6F77
+	.4byte 0x6E206461
+	.4byte 0x74612062
+	.4byte 0x6C6F636B
+	.4byte 0x0A000000
+	.4byte 0x4A555443
+	.4byte 0x61636865
+	.4byte 0x466F6E74
+	.4byte 0x2E637070
+	.4byte 0x00000000
+	.4byte 0x74726F75
+	.4byte 0x626C6520
+	.4byte 0x6F636375
+	.4byte 0x72726564
+	.4byte 0x20696E20
+	.4byte 0x4A4B524D
+	.4byte 0x61696E52
+	.4byte 0x616D546F
+	.4byte 0x4172616D
+	.4byte 0x2E000000
+	.4byte 0x556E6B6E
+	.4byte 0x6F776E20
+	.4byte 0x64617461
+	.4byte 0x20626C6F
+	.4byte 0x636B0A00
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap

@@ -1,4 +1,30 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473540
+lbl_80473540:
+	.4byte 0x64697265
+	.4byte 0x6374696F
+	.4byte 0x6E203D20
+	.4byte 0x25780A00
+	.4byte 0x736F7572
+	.4byte 0x6365203D
+	.4byte 0x2025780A
+	.4byte 0x00000000
+	.4byte 0x64657374
+	.4byte 0x696E6174
+	.4byte 0x696F6E20
+	.4byte 0x3D202578
+	.4byte 0x0A000000
+	.4byte 0x6C656E67
+	.4byte 0x7468203D
+	.4byte 0x2025780A
+	.4byte 0x00000000
+	.4byte 0x4A4B5241
+	.4byte 0x72616D50
+	.4byte 0x69656365
+	.4byte 0x2E637070
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global sendCommand__12JKRAramPieceFP12JKRAMCommand

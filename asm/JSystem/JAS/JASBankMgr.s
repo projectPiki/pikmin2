@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global OSC_RELEASE_TABLE__10JASBankMgr
+OSC_RELEASE_TABLE__10JASBankMgr:
+	.4byte 0x0001000A
+	.4byte 0x0000000F
+	.4byte 0x00000000
+.global OSC_ENV__10JASBankMgr
+OSC_ENV__10JASBankMgr:
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte OSC_RELEASE_TABLE__10JASBankMgr
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__10JASBankMgrFi

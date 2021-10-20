@@ -1,4 +1,57 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80478700
+lbl_80478700:
+	.4byte 0x00008000
+	.4byte 0x00020000
+	.4byte 0x00080000
+	.4byte 0x00000000
+	.4byte 0x00000008
+	.4byte 0x00000004
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.float 0.5
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.5
+	.float 0.0
+.global lbl_80478738
+lbl_80478738:
+	.asciz "Success\n"
+	.skip 3
+.global lbl_80478744
+lbl_80478744:
+	.asciz "J3DErrType : Material has No Material Animation\n"
+	.skip 3
+.global lbl_80478778
+lbl_80478778:
+	.asciz "J3DErrType : Model Data is Locked\n"
+	.skip 1
+.global lbl_8047879C
+lbl_8047879C:
+	.asciz "J3DErrType : Binary Resource is Null\n"
+	.skip 2
+.global lbl_804787C4
+lbl_804787C4:
+	.asciz "J3DErrType : Out Of Memory\n"
+.global lbl_804787E0
+lbl_804787E0:
+	.asciz "J3DErrType : Argument is Invalid\n"
+	.skip 2
+.global lbl_80478804
+lbl_80478804:
+	.asciz "J3DErrType : Data is Invalid\n"
+	.skip 2
+	.4byte lbl_80478738
+	.4byte lbl_80478744
+	.4byte lbl_80478778
+	.4byte lbl_8047879C
+	.4byte lbl_804787C4
+	.4byte lbl_804787E0
+	.4byte lbl_80478804
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global ColorBlack

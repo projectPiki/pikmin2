@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804785D0
+lbl_804785D0:
+	.4byte 0x00000000
+	.4byte 0x00000002
+	.4byte 0x00000001
+	.4byte 0x00000003
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__13J2DColorBlockFv

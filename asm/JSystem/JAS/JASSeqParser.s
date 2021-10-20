@@ -1,4 +1,72 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global Arglist
+Arglist:
+	.4byte 0x00000000
+	.4byte 0x00020008
+	.4byte 0x00020008
+	.4byte 0x00010002
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00010000
+	.4byte 0x00010002
+	.4byte 0x00000000
+	.4byte 0x00010001
+	.4byte 0x00000000
+	.4byte 0x00020000
+	.4byte 0x0002000C
+	.4byte 0x00010000
+	.4byte 0x00010000
+	.4byte 0x00010003
+	.4byte 0x00000000
+	.4byte 0x0002000C
+	.4byte 0x0002000C
+	.4byte 0x00000000
+	.4byte 0x00010000
+	.4byte 0x00010000
+	.4byte 0x00010000
+	.4byte 0x00020008
+	.4byte 0x00050155
+	.4byte 0x00010000
+	.4byte 0x00010000
+	.4byte 0x00010000
+	.4byte 0x00010001
+	.4byte 0x00020004
+	.4byte 0x00010000
+	.4byte 0x00020008
+	.4byte 0x00010000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00020004
+	.4byte 0x00010000
+	.4byte 0x00010001
+	.4byte 0x00010001
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00010002
+	.4byte 0x00050000
+	.4byte 0x00040055
+	.4byte 0x00010002
+	.4byte 0x00010002
+	.4byte 0x00030000
+	.4byte 0x00010000
+	.4byte 0x00010000
+	.4byte 0x00030028
+	.4byte 0x00010000
+	.4byte 0x00010000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00010001
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00010001
+	.4byte 0x00010001
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global cmdOpenTrack__12JASSeqParserFP8JASTrackPUl

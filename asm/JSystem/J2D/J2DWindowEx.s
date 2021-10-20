@@ -1,4 +1,70 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804784E0
+lbl_804784E0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0F080A0F
+	.4byte 0x0F080A0F
+	.4byte 0x0F0A000F
+	.4byte 0x0204080F
+	.4byte 0x0204080F
+	.4byte 0x0F0F0F0A
+	.4byte 0x07040507
+	.4byte 0x05070707
+	.4byte 0x07050007
+	.4byte 0x01020407
+	.4byte 0x07070702
+	.4byte 0x07070705
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x01000000
+	.4byte 0x00010000
+	.4byte 0x00000100
+	.4byte 0x00000001
+	.4byte 0x00000000
+	.4byte 0x01000000
+.global lbl_804785C0
+lbl_804785C0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial

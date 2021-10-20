@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_804735C8
+lbl_804735C8:
+	.4byte 0x4A4B5243
+	.4byte 0x6F6D7041
+	.4byte 0x72636869
+	.4byte 0x76652E63
+	.4byte 0x70700000
+.global lbl_804735DC
+lbl_804735DC:
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x61726368
+	.4byte 0x6976652E
+	.4byte 0x00000000
+.global lbl_804735F0
+lbl_804735F0:
+	.4byte 0x696C6C65
+	.4byte 0x67616C20
+	.4byte 0x7265736F
+	.4byte 0x75726365
+	.4byte 0x2E000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection

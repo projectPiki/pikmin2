@@ -1,4 +1,68 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global relTableSampleCell__13JASOscillator
+relTableSampleCell__13JASOscillator:
+	.float 1.0
+	.4byte 0x3F7871F8
+	.4byte 0x3F480193
+	.4byte 0x3F0BD912
+	.4byte 0x3ECCB189
+	.4byte 0x3E942118
+	.4byte 0x3E5931CA
+	.4byte 0x3E214163
+	.4byte 0x3DE6A1A5
+	.4byte 0x3DA7814E
+	.4byte 0x3D6D81E4
+	.4byte 0x3D32C16E
+	.4byte 0x3CFC81FC
+	.4byte 0x3CC2418E
+	.4byte 0x3C7A0225
+	.4byte 0x3C160129
+	.4byte 0x00000000
+.global relTableSqRoot__13JASOscillator
+relTableSqRoot__13JASOscillator:
+	.float 1.0
+	.4byte 0x3F60FFFC
+	.4byte 0x3F440000
+	.4byte 0x3F28FFFC
+	.4byte 0x3F100000
+	.4byte 0x3EF1FFF8
+	.4byte 0x3EC80000
+	.4byte 0x3EA1FFF8
+	.float 0.25
+	.4byte 0x3E43FFEF
+	.4byte 0x3E100000
+	.4byte 0x3DC7FFF9
+	.4byte 0x3D800000
+	.4byte 0x3D0FFFF3
+	.4byte 0x3C800000
+	.4byte 0x3B800000
+	.4byte 0x00000000
+.global relTableSquare__13JASOscillator
+relTableSquare__13JASOscillator:
+	.float 1.0
+	.4byte 0x3F77DEF8
+	.4byte 0x3F6F774B
+	.4byte 0x3F66C15D
+	.4byte 0x3F5DB3D0
+	.4byte 0x3F544391
+	.4byte 0x3F4A62BB
+	.4byte 0x3F400000
+	.4byte 0x3F3504F7
+	.4byte 0x3F295400
+	.4byte 0x3F1CC469
+	.4byte 0x3F0F1BBD
+	.float 0.5
+	.4byte 0x3EDDB3E1
+	.4byte 0x3EB504E6
+	.float 0.25
+	.4byte 0x00000000
+.global oscTableForceStop__13JASOscillator
+oscTableForceStop__13JASOscillator:
+	.4byte 0x0000000F
+	.4byte 0x0000000F
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__13JASOscillatorFv

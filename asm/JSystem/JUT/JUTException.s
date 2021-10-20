@@ -1,4 +1,132 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80473C18
+lbl_80473C18:
+	.asciz "SYSTEM RESET"
+	.skip 3
+.global lbl_80473C28
+lbl_80473C28:
+	.asciz "MACHINE CHECK"
+	.skip 2
+.global lbl_80473C38
+lbl_80473C38:
+	.asciz "EXTERNAL INTERRUPT"
+	.skip 1
+.global lbl_80473C4C
+lbl_80473C4C:
+	.asciz "ALIGNMENT"
+	.skip 2
+.global lbl_80473C58
+lbl_80473C58:
+	.asciz "FLOATING POINT"
+	.skip 1
+.global lbl_80473C68
+lbl_80473C68:
+	.asciz "DECREMENTER"
+.global lbl_80473C74
+lbl_80473C74:
+	.asciz "SYSTEM CALL"
+.global lbl_80473C80
+lbl_80473C80:
+	.asciz "PERFORMACE MONITOR"
+	.skip 1
+.global lbl_80473C94
+lbl_80473C94:
+	.asciz "BREAK POINT"
+.global lbl_80473CA0
+lbl_80473CA0:
+	.asciz "SYSTEM INTERRUPT"
+	.skip 3
+.global lbl_80473CB4
+lbl_80473CB4:
+	.asciz "THERMAL INTERRUPT"
+	.skip 2
+.global lbl_80473CC8
+lbl_80473CC8:
+	.asciz "PROTECTION"
+	.skip 1
+.global lbl_80473CD4
+lbl_80473CD4:
+	.asciz "%s in \"%s\" on line %d\n"
+	.skip 1
+	.asciz "F%02d: Nan      "
+	.skip 3
+	.asciz "F%02d:+Inf     "
+	.asciz "F%02d:-Inf     "
+	.asciz "F%02d: 0.0      "
+	.skip 3
+	.asciz "F%02d:%+.3E"
+	.asciz "-------------------------------- FPR\n"
+	.skip 2
+	.asciz "-------------------------------- TRACE\n"
+	.asciz "Address:   BackChain   LR save\n"
+	.asciz "Suppress trace.\n"
+	.skip 3
+	.asciz "%08X:  %08X    %08X\n"
+	.skip 3
+	.asciz "CONTEXT:%08XH  (%s EXCEPTION)\n"
+	.skip 1
+	.asciz "CONTEXT:%08XH\n"
+	.skip 1
+	.asciz " FPE: Invalid operation\n"
+	.skip 3
+	.asciz " Infinity - Infinity\n"
+	.skip 2
+	.asciz " Infinity / Infinity\n"
+	.skip 2
+	.asciz " Infinity * 0\n"
+	.skip 1
+	.asciz " Invalid compare\n"
+	.skip 2
+	.asciz " Software request\n"
+	.skip 1
+	.asciz " Invalid square root\n"
+	.skip 2
+	.asciz " Invalid integer convert\n"
+	.skip 2
+	.asciz " FPE: Overflow\n"
+	.asciz " FPE: Underflow\n"
+	.skip 3
+	.asciz " FPE: Zero division\n"
+	.skip 3
+	.asciz " FPE: Inexact result\n"
+	.skip 2
+	.asciz "SRR0:   %08XH   SRR1:%08XH\n"
+	.asciz "DSISR:  %08XH   DAR: %08XH\n"
+	.asciz "-------------------------------- GPR\n"
+	.skip 2
+	.asciz "R%02d:%08XH  R%02d:%08XH  R%02d:%08XH\n"
+	.skip 1
+	.asciz "R%02d:%08XH  R%02d:%08XH\n"
+	.skip 2
+.global lbl_80473FBC
+lbl_80473FBC:
+	.asciz "%s %s:%x section:%d\n"
+	.skip 3
+	.asciz "-------------------------------- GPRMAP\n"
+	.skip 3
+	.asciz "R%02d: %08XH"
+	.skip 3
+	.asciz "  no information\n"
+	.skip 2
+	.asciz "  no register which seem to address.\n"
+	.skip 2
+	.asciz "-------------------------------- SRR0MAP\n"
+	.skip 2
+	.asciz "SRR0: %08XH"
+	.asciz " MSR:%08XH\t FPSCR:%08XH\n"
+	.skip 3
+	.asciz "******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n"
+	.skip 1
+	.asciz "******** USER HALT ********\nFrameMemory:%XH\n"
+	.skip 3
+	.asciz "--------------------------------\n"
+	.skip 2
+.global lbl_8047412C
+lbl_8047412C:
+	.asciz "  [%08X]: .%s [%08X: %XH]\n  %s\n"
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sMessageBuffer__12JUTException

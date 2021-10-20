@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"
+"saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@":
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte "composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_raw___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_index___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_parameter___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_add___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_subtract___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_multiply___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+	.4byte "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+	.4byte "getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl

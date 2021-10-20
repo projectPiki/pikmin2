@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 0x8
+.global lbl_80479688
+lbl_80479688:
+	.asciz "JaiInit.aaf"
+.global lbl_80479694
+lbl_80479694:
+	.asciz "AudioRes/"
+	.skip 2
+.global lbl_804796A0
+lbl_804796A0:
+	.asciz "JaiSeqs.arc"
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global distanceParameterMoveTime__18JAIGlobalParameter
