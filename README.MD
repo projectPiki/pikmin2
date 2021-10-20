@@ -61,50 +61,50 @@ When compiling the project, this patch is automatically applied, if it fails to 
 ## Progress
 ### DONE
 - sysGCU
-	- sysGCU/appThread.cpp
-	- sysGCU/controller.cpp
-	- sysGCU/dvdErrorMessage.cpp
-	- sysGCU/rootMenuSection.cpp
-	- sysGCU/simpleMessage.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/appThread.cpp">sysGCU/appThread.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/controller.cpp">sysGCU/controller.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/dvdErrorMessage.cpp">sysGCU/dvdErrorMessage.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/rootMenuSection.cpp">sysGCU/rootMenuSection.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/simpleMessage.cpp">sysGCU/simpleMessage.cpp</a>
 - sysCommonU
-	- sysCommonU/sysTemplates.cpp
-	- sysCommonU/tagparams_jank.cpp
-	- sysCommonU/tagparams.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/sysTemplates.cpp">sysCommonU/sysTemplates.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/tagparams_jank.cpp">sysCommonU/tagparams_jank.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/tagparams.cpp">sysCommonU/tagparams.cpp</a>
 - utilityU
 - plugProjectKonoU
 - plugProjectOgawaU
 - plugProjectKandoU
-	- plugProjectKandoU/gameSoundEvent.cpp
-	- plugProjectKandoU/pelletConfig.cpp
-	- plugProjectKandoU/vsCoinOtakaraName.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gameSoundEvent.cpp">plugProjectKandoU/gameSoundEvent.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/pelletConfig.cpp">plugProjectKandoU/pelletConfig.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/vsCoinOtakaraName.cpp">plugProjectKandoU/vsCoinOtakaraName.cpp</a>
 - plugProjectHikinoU
-	- plugProjectHikinoU/PSCreatureMgr.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectHikinoU/PSCreatureMgr.cpp">plugProjectHikinoU/PSCreatureMgr.cpp</a>
 - plugProjectEbisawaU
-	- plugProjectEbisawaU/ebiScreenFramework.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenFramework.cpp">plugProjectEbisawaU/ebiScreenFramework.cpp</a>
 - plugProjectMorimuraU
 - plugProjectNishimuraU
 - plugProjectYamashitaU
 - JSystem
-	- JSystem/JAD/JADHioNode.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAD/JADHioNode.cpp">JSystem/JAD/JADHioNode.cpp</a>
 ### WIP
 - sysBootupU
 - sysGCU
-	- sysGCU/system.cpp
-	- sysGCU/THPDraw.c
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/system.cpp">sysGCU/system.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/THPDraw.c">sysGCU/THPDraw.c</a>
 - sysCommonU
-	- sysCommonU/id32.cpp
-	- sysCommonU/node.cpp
-	- sysCommonU/sysMath.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/id32.cpp">sysCommonU/id32.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/node.cpp">sysCommonU/node.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/sysMath.cpp">sysCommonU/sysMath.cpp</a>
 - utilityU
 - plugProjectKonoU
 - plugProjectOgawaU
 - plugProjectKandoU
-	- plugProjectKandoU/interactBattle.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/interactBattle.cpp">plugProjectKandoU/interactBattle.cpp</a>
 - plugProjectHikinoU
 - plugProjectEbisawaU
-	- plugProjectEbisawaU/ebiP2TitleCamera.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleCamera.cpp">plugProjectEbisawaU/ebiP2TitleCamera.cpp</a>
 - plugProjectMorimuraU
 - plugProjectNishimuraU
 - plugProjectYamashitaU
 - JSystem
-	- JSystem/JAL/JALCalc.cpp
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAL/JALCalc.cpp">JSystem/JAL/JALCalc.cpp</a>
