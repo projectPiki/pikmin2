@@ -83,4 +83,4 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - sysCommonU/node.cpp
 - sysCommonU/sysMath.cpp
 - sysGCU/system.cpp
-- sysGCU/THPDraw.cpp
+- sysGCU/THPDraw.c
