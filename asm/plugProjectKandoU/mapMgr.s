@@ -75,6 +75,99 @@ lbl_8047E1A8:
 	.4byte 0x20252E31
 	.4byte 0x66000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B18A8
+lbl_804B18A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game11ShapeMapMgr
+__vt__Q24Game11ShapeMapMgr:
+	.4byte 0
+	.4byte 0
+	.4byte hasHiddenCollision__Q24Game6MapMgrFv
+	.4byte constraintBoundBox__Q24Game6MapMgrFRQ23Sys6Sphere
+	.4byte "getStartPosition__Q24Game6MapMgrFR10Vector3<f>i"
+	.4byte getDemoMatrix__Q24Game6MapMgrFv
+	.4byte getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d
+	.4byte getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox
+	.4byte findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo
+	.4byte traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof
+	.4byte "getMinY__Q24Game11ShapeMapMgrFR10Vector3<f>"
+	.4byte getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo
+	.4byte createTriangles__Q24Game11ShapeMapMgrFRQ23Sys17CreateTriangleArg
+	.4byte setupJUTTextures__Q24Game6MapMgrFv
+	.4byte frozenable__Q24Game6MapMgrFv
+	.4byte update__Q24Game6MapMgrFv
+	.4byte do_update__Q24Game11ShapeMapMgrFv
+	.4byte drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere
+	.4byte doSimulation__Q24Game6MapMgrFf
+	.4byte doDirectDraw__Q24Game6MapMgrFR8Graphics
+	.4byte doAnimation__Q24Game11ShapeMapMgrFv
+	.4byte doSetView__Q24Game11ShapeMapMgrFi
+	.4byte doViewCalc__Q24Game11ShapeMapMgrFv
+	.4byte doEntry__Q24Game11ShapeMapMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@84@4@doAnimation__Q24Game11ShapeMapMgrFv"
+	.4byte "@84@4@doEntry__Q24Game11ShapeMapMgrFv"
+	.4byte "@84@4@doSetView__Q24Game11ShapeMapMgrFi"
+	.4byte "@84@4@doViewCalc__Q24Game11ShapeMapMgrFv"
+	.4byte "@84@4@doSimulation__Q24Game6MapMgrFf"
+	.4byte "@84@4@doDirectDraw__Q24Game6MapMgrFR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte "@84@4@frozenable__Q24Game6MapMgrFv"
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+.global __vt__Q24Game6MapMgr
+__vt__Q24Game6MapMgr:
+	.4byte 0
+	.4byte 0
+	.4byte hasHiddenCollision__Q24Game6MapMgrFv
+	.4byte constraintBoundBox__Q24Game6MapMgrFRQ23Sys6Sphere
+	.4byte "getStartPosition__Q24Game6MapMgrFR10Vector3<f>i"
+	.4byte getDemoMatrix__Q24Game6MapMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte findRayIntersection__Q24Game6MapMgrFRQ23Sys16RayIntersectInfo
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte createTriangles__Q24Game6MapMgrFRQ23Sys17CreateTriangleArg
+	.4byte setupJUTTextures__Q24Game6MapMgrFv
+	.4byte frozenable__Q24Game6MapMgrFv
+	.4byte update__Q24Game6MapMgrFv
+	.4byte do_update__Q24Game6MapMgrFv
+	.4byte 0
+	.4byte doSimulation__Q24Game6MapMgrFf
+	.4byte doDirectDraw__Q24Game6MapMgrFR8Graphics
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte doEntry__16GenericObjectMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@36@4@doSimulation__Q24Game6MapMgrFf"
+	.4byte "@36@4@doDirectDraw__Q24Game6MapMgrFR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte "@36@4@frozenable__Q24Game6MapMgrFv"
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+.global "__vt__26Iterator<Q24Game8WaterBox>"
+"__vt__26Iterator<Q24Game8WaterBox>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__26Iterator<Q24Game8WaterBox>Fv"
+	.4byte "next__26Iterator<Q24Game8WaterBox>Fv"
+	.4byte "isDone__26Iterator<Q24Game8WaterBox>Fv"
+	.4byte "__ml__26Iterator<Q24Game8WaterBox>Fv"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei
 store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei:

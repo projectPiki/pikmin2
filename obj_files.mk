@@ -473,6 +473,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/treasureLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/effectAnimator.o\
+	$(BUILD_DIR)/asm/data_0.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/collinfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDynamics.o\
@@ -517,7 +518,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
-	$(BUILD_DIR)/asm/data_0.o\
 	
 TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\

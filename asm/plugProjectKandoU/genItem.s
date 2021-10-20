@@ -50,6 +50,27 @@ lbl_8047F880:
 	.4byte 0x82F094AD
 	.4byte 0x90B60000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game7GenItem
+__vt__Q24Game7GenItem:
+	.4byte 0
+	.4byte 0
+	.4byte doWrite__Q24Game7GenItemFR6Stream
+	.4byte ramSaveParameters__Q24Game7GenItemFR6Stream
+	.4byte ramLoadParameters__Q24Game7GenItemFR6Stream
+	.4byte doEvent__Q24Game7GenItemFUl
+	.4byte doRead__Q24Game7GenItemFR6Stream
+	.4byte update__Q24Game9GenObjectFPQ24Game9Generator
+	.4byte render__Q24Game9GenObjectFR8GraphicsPQ24Game9Generator
+	.4byte getLatestVersion__Q24Game9GenObjectFv
+	.4byte getShape__Q24Game7GenItemFv
+	.4byte updateUseList__Q24Game7GenItemFPQ24Game9Generatori
+	.4byte generate__Q24Game7GenItemFPQ24Game9Generator
+	.4byte birth__Q24Game7GenItemFPQ24Game6GenArg
+	.4byte "generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3<f>"
+	.4byte getDebugInfo__Q24Game9GenObjectFPc
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeItem__Fv
 makeItem__Fv:

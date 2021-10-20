@@ -51,6 +51,65 @@ lbl_8047FA9C:
 	.4byte 0x65656441
 	.4byte 0x72670000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B5A00
+lbl_804B5A00:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804B5A0C
+lbl_804B5A0C:
+	.4byte lbl_801B3A04
+	.4byte lbl_801B3A54
+	.4byte lbl_801B3ABC
+	.4byte lbl_801B3B58
+	.4byte lbl_801B3B88
+	.4byte lbl_801B3BB8
+	.4byte lbl_801B3AEC
+	.4byte lbl_801B3BE8
+	.4byte lbl_801B3A8C
+	.4byte lbl_801B399C
+.global __vt__Q26PikiAI12ActBridgeArg
+__vt__Q26PikiAI12ActBridgeArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI12ActBridgeArgFv
+.global __vt__Q26PikiAI15ActBreakRockArg
+__vt__Q26PikiAI15ActBreakRockArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI15ActBreakRockArgFv
+.global __vt__Q26PikiAI15ActBreakGateArg
+__vt__Q26PikiAI15ActBreakGateArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI15ActBreakGateArgFv
+.global __vt__Q26PikiAI15ActTransportArg
+__vt__Q26PikiAI15ActTransportArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI15ActTransportArgFv
+.global __vt__Q26PikiAI12ActAttackArg
+__vt__Q26PikiAI12ActAttackArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI12ActAttackArgFv
+.global __vt__Q26PikiAI10ActWeedArg
+__vt__Q26PikiAI10ActWeedArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI10ActWeedArgFv
+.global "__vt__26Iterator<Q24Game8ItemGate>"
+"__vt__26Iterator<Q24Game8ItemGate>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__26Iterator<Q24Game8ItemGate>Fv"
+	.4byte "next__26Iterator<Q24Game8ItemGate>Fv"
+	.4byte "isDone__26Iterator<Q24Game8ItemGate>Fv"
+	.4byte "__ml__26Iterator<Q24Game8ItemGate>Fv"
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sGraspSituationOptimise__Q24Game4Piki

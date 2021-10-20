@@ -65,6 +65,203 @@ lbl_8047C918:
 	.4byte 0x6F6E4172
 	.4byte 0x67000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B0990
+lbl_804B0990:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game4Piki
+__vt__Q24Game4Piki:
+	.4byte 0
+	.4byte 0
+	.4byte getPosition__Q24Game8FakePikiFv
+	.4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+	.4byte getBoundingSphere__Q24Game8FakePikiFRQ23Sys6Sphere
+	.4byte collisionUpdatable__Q24Game8CreatureFv
+	.4byte isPiki__Q24Game8CreatureFv
+	.4byte isNavi__Q24Game8CreatureFv
+	.4byte deferPikiCollision__Q24Game4PikiFv
+	.4byte getTypeName__Q24Game8CreatureFv
+	.4byte getObjType__Q24Game8CreatureFv
+	.4byte constructor__Q24Game8CreatureFv
+	.4byte onInit__Q24Game4PikiFPQ24Game15CreatureInitArg
+	.4byte onKill__Q24Game4PikiFPQ24Game15CreatureKillArg
+	.4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	.4byte doAnimation__Q24Game4PikiFv
+	.4byte doEntry__Q24Game8FakePikiFv
+	.4byte doSetView__Q24Game8CreatureFi
+	.4byte doViewCalc__Q24Game8CreatureFv
+	.4byte doSimulation__Q24Game8FakePikiFf
+	.4byte doDirectDraw__Q24Game4PikiFR8Graphics
+	.4byte getBodyRadius__Q24Game8CreatureFv
+	.4byte getCellRadius__Q24Game8CreatureFv
+	.4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte getFaceDir__Q24Game8FakePikiFv
+	.4byte "setVelocity__Q24Game8FakePikiFR10Vector3<f>"
+	.4byte getVelocity__Q24Game8FakePikiFv
+	.4byte "onSetPosition__Q24Game8FakePikiFR10Vector3<f>"
+	.4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
+	.4byte updateTrMatrix__Q24Game8FakePikiFv
+	.4byte isTeki__Q24Game8CreatureFv
+	.4byte isPellet__Q24Game8CreatureFv
+	.4byte inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox
+	.4byte outWaterCallback__Q24Game4PikiFv
+	.4byte inWater__Q24Game8FakePikiFv
+	.4byte getFlockMgr__Q24Game8CreatureFv
+	.4byte onStartCapture__Q24Game8CreatureFv
+	.4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
+	.4byte onEndCapture__Q24Game8CreatureFv
+	.4byte isAtari__Q24Game8CreatureFv
+	.4byte setAtari__Q24Game8CreatureFb
+	.4byte isAlive__Q24Game4PikiFv
+	.4byte setAlive__Q24Game8CreatureFb
+	.4byte isCollisionFlick__Q24Game8CreatureFv
+	.4byte setCollisionFlick__Q24Game8CreatureFb
+	.4byte isMovieActor__Q24Game8CreatureFv
+	.4byte isMovieExtra__Q24Game8CreatureFv
+	.4byte isMovieMotion__Q24Game8CreatureFv
+	.4byte setMovieMotion__Q24Game8CreatureFb
+	.4byte isBuried__Q24Game8CreatureFv
+	.4byte isFlying__Q24Game8CreatureFv
+	.4byte isUnderground__Q24Game8CreatureFv
+	.4byte isLivingThing__Q24Game8CreatureFv
+	.4byte isDebugCollision__Q24Game8CreatureFv
+	.4byte setDebugCollision__Q24Game8CreatureFb
+	.4byte doSave__Q24Game8CreatureFR6Stream
+	.4byte doLoad__Q24Game8CreatureFR6Stream
+	.4byte bounceCallback__Q24Game4PikiFPQ23Sys8Triangle
+	.4byte collisionCallback__Q24Game4PikiFRQ24Game9CollEvent
+	.4byte platCallback__Q24Game4PikiFRQ24Game9PlatEvent
+	.4byte getJAIObject__Q24Game4PikiFv
+	.4byte getPSCreature__Q24Game4PikiFv
+	.4byte getSound_AILOD__Q24Game8CreatureFv
+	.4byte getSound_PosPtr__Q24Game8FakePikiFv
+	.4byte sound_culling__Q24Game8CreatureFv
+	.4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
+	.4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
+	.4byte on_movie_begin__Q24Game4PikiFb
+	.4byte on_movie_end__Q24Game4PikiFb
+	.4byte movieStartAnimation__Q24Game4PikiFUl
+	.4byte movieStartDemoAnimation__Q24Game4PikiFPQ28SysShape8AnimInfo
+	.4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
+	.4byte "movieSetTranslation__Q24Game4PikiFR10Vector3<f>f"
+	.4byte movieSetFaceDir__Q24Game8FakePikiFf
+	.4byte "movieGotoPosition__Q24Game4PikiFR10Vector3<f>"
+	.4byte movieUserCommand__Q24Game4PikiFUlPQ24Game11MoviePlayer
+	.4byte getShadowParam__Q24Game4PikiFRQ24Game11ShadowParam
+	.4byte needShadow__Q24Game8CreatureFv
+	.4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
+	.4byte getLODSphere__Q24Game4PikiFRQ23Sys6Sphere
+	.4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
+	.4byte startPick__Q24Game8CreatureFv
+	.4byte endPick__Q24Game8CreatureFb
+	.4byte getMabiki__Q24Game8CreatureFv
+	.4byte getFootmarks__Q24Game8CreatureFv
+	.4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickStartSelf__Q24Game4PikiFPQ24Game8Creature
+	.4byte onStickEndSelf__Q24Game4PikiFPQ24Game8Creature
+	.4byte isSlotFree__Q24Game8CreatureFs
+	.4byte getFreeStickSlot__Q24Game8CreatureFv
+	.4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+	.4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+	.4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+	.4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+	.4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+	.4byte "getVelocityAt__Q24Game8FakePikiFR10Vector3<f>R10Vector3<f>"
+	.4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte ignoreAtari__Q24Game4PikiFPQ24Game8Creature
+	.4byte getSuckPos__Q24Game8CreatureFv
+	.4byte getGoalPos__Q24Game8CreatureFv
+	.4byte isSuckReady__Q24Game8CreatureFv
+	.4byte isSuckArriveWait__Q24Game8CreatureFv
+	.4byte stimulate__Q24Game4PikiFRQ24Game11Interaction
+	.4byte getCreatureName__Q24Game4PikiFv
+	.4byte getCreatureID__Q24Game4PikiFv
+	.4byte 0
+	.4byte 0
+	.4byte "@376@onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent"
+	.4byte getDownfloorMass__Q24Game4PikiFv
+	.4byte isPikmin__Q24Game4PikiFv
+	.4byte doColorChange__Q24Game4PikiFv
+	.4byte doDebugDL__Q24Game4PikiFv
+	.4byte update__Q24Game4PikiFv
+	.4byte move__Q24Game8FakePikiFf
+	.4byte useMoveRotation__Q24Game8FakePikiFv
+	.4byte setMoveRotation__Q24Game8FakePikiFb
+	.4byte useUpdateTrMatrix__Q24Game8FakePikiFv
+	.4byte setUpdateTrMatrix__Q24Game8FakePikiFb
+	.4byte useMoveVelocity__Q24Game8FakePikiFv
+	.4byte setMoveVelocity__Q24Game8FakePikiFb
+	.4byte useMapCollision__Q24Game8FakePikiFv
+	.4byte setMapCollision__Q24Game8FakePikiFb
+	.4byte isZikatu__Q24Game8FakePikiFv
+	.4byte setZikatu__Q24Game8FakePikiFb
+	.4byte wasZikatu__Q24Game8FakePikiFv
+	.4byte getMapCollisionRadius__Q24Game8FakePikiFv
+	.4byte "wallCallback__Q24Game4PikiFR10Vector3<f>"
+	.4byte startMotion__Q24Game4PikiFiiPQ28SysShape14MotionListenerPQ28SysShape14MotionListener
+	.4byte onKeyEvent__Q24Game4PikiFRCQ28SysShape8KeyEvent
+	.4byte updateLookCreature__Q24Game8FakePikiFv
+	.4byte do_updateLookCreature__Q24Game4PikiFv
+	.4byte onSetPosition__Q24Game4PikiFv
+	.4byte isWalking__Q24Game4PikiFv
+.global __vt__Q23efx12TPkBlackDown
+__vt__Q23efx12TPkBlackDown:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx12TPkBlackDownFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx12TPkBlackDownFv
+.global __vt__Q23efx7TPkMoeA
+__vt__Q23efx7TPkMoeA:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx7TPkMoeAFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx7TPkMoeAFv
+.global "__vt__Q24Game26StateMachine<Q24Game4Piki>"
+"__vt__Q24Game26StateMachine<Q24Game4Piki>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
+	.4byte "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+	.4byte "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
+	.4byte "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game4PikiFv
 __ct__Q24Game4PikiFv:

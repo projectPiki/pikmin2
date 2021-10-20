@@ -307,6 +307,315 @@ lbl_8047CD88:
 	.4byte 0x0A000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B0C70
+lbl_804B0C70:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global UfoMenuResult__Q22og6Screen
+UfoMenuResult__Q22og6Screen:
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000000
+.global lbl_804B0C8C
+lbl_804B0C8C:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>"
+.global lbl_804B0C98
+lbl_804B0C98:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte dvdloadGameSystem__Q24Game15BaseGameSectionFv
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
+	.4byte 0x00000000
+	.4byte 0x000000B0
+	.4byte 0x00000000
+.global lbl_804B0CC8
+lbl_804B0CC8:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte "changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>"
+.global lbl_804B0CD4
+lbl_804B0CD4:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte setupFixMemory_dvdload__Q24Game15BaseGameSectionFv
+.global "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"
+"__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv"
+.global __vt__15ModelEffectData
+__vt__15ModelEffectData:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15ModelEffectDataFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__10Controller
+__vt__10Controller:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10ControllerFv
+.global __vt__27PikiCond_ExceptChappyPikmin
+__vt__27PikiCond_ExceptChappyPikmin:
+	.4byte 0
+	.4byte 0
+	.4byte satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q26PikiAI19ActFormationInitArg
+__vt__Q26PikiAI19ActFormationInitArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI17CreatureActionArgFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>"
+"__vt__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>"
+.global "__vt__25IDelegate1<R10Vector3<f>>"
+"__vt__25IDelegate1<R10Vector3<f>>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__17Container<5Plane>"
+"__vt__17Container<5Plane>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__17Container<5Plane>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__17Container<5Plane>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__17Container<5Plane>Fi"
+	.4byte "getTo__17Container<5Plane>Fv"
+.global "__vt__22ArrayContainer<5Plane>"
+"__vt__22ArrayContainer<5Plane>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__22ArrayContainer<5Plane>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__17Container<5Plane>FPv"
+	.4byte "getNext__22ArrayContainer<5Plane>FPv"
+	.4byte "getStart__22ArrayContainer<5Plane>Fv"
+	.4byte "getEnd__22ArrayContainer<5Plane>Fv"
+	.4byte "get__22ArrayContainer<5Plane>FPv"
+	.4byte "getAt__22ArrayContainer<5Plane>Fi"
+	.4byte "getTo__22ArrayContainer<5Plane>Fv"
+	.4byte "writeObject__22ArrayContainer<5Plane>FR6StreamR5Plane"
+	.4byte "readObject__22ArrayContainer<5Plane>FR6StreamR5Plane"
+	.4byte "write__22ArrayContainer<5Plane>FR6Stream"
+	.4byte "read__22ArrayContainer<5Plane>FR6Stream"
+	.4byte "alloc__22ArrayContainer<5Plane>Fi"
+	.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+	.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+.global __vt__9CullPlane
+__vt__9CullPlane:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__9CullPlaneFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__17Container<5Plane>FPv"
+	.4byte "getNext__22ArrayContainer<5Plane>FPv"
+	.4byte "getStart__22ArrayContainer<5Plane>Fv"
+	.4byte "getEnd__22ArrayContainer<5Plane>Fv"
+	.4byte "get__22ArrayContainer<5Plane>FPv"
+	.4byte "getAt__22ArrayContainer<5Plane>Fi"
+	.4byte "getTo__22ArrayContainer<5Plane>Fv"
+	.4byte writeObject__9CullPlaneFR6StreamR5Plane
+	.4byte readObject__9CullPlaneFR6StreamR5Plane
+	.4byte "write__22ArrayContainer<5Plane>FR6Stream"
+	.4byte "read__22ArrayContainer<5Plane>FR6Stream"
+	.4byte "alloc__22ArrayContainer<5Plane>Fi"
+	.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+	.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+.global "__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"
+"__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl"
+.global "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"
+"__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__34Delegate<Q24Game15BaseGameSection>"
+"__vt__34Delegate<Q24Game15BaseGameSection>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__34Delegate<Q24Game15BaseGameSection>Fv"
+.global __vt__9IDelegate
+__vt__9IDelegate:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game15BaseGameSection
+__vt__Q24Game15BaseGameSection:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game15BaseGameSectionFv
+	.4byte run__7SectionFv
+	.4byte update__7SectionFv
+	.4byte draw__7SectionFR8Graphics
+	.4byte init__Q24Game15BaseGameSectionFv
+	.4byte drawInit__7SectionFR8Graphics
+	.4byte drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode
+	.4byte doExit__7SectionFv
+	.4byte forceFinish__Q24Game15BaseGameSectionFv
+	.4byte forceReset__7SectionFv
+	.4byte getCurrentSection__7SectionFv
+	.4byte doLoadingStart__7SectionFv
+	.4byte doLoading__7SectionFv
+	.4byte doUpdate__Q24Game15BaseGameSectionFv
+	.4byte doDraw__Q24Game15BaseGameSectionFR8Graphics
+	.4byte isFinishable__7SectionFv
+	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
+	.4byte sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage
+	.4byte pre2dDraw__Q24Game15BaseGameSectionFR8Graphics
+	.4byte getCurrFloor__Q24Game15BaseGameSectionFv
+	.4byte isDevelopSection__Q24Game15BaseGameSectionFv
+	.4byte addChallengeScore__Q24Game15BaseGameSectionFi
+	.4byte startMainBgm__Q24Game15BaseGameSectionFv
+	.4byte section_fadeout__Q24Game15BaseGameSectionFv
+	.4byte goNextFloor__Q24Game15BaseGameSectionFPQ34Game8ItemHole4Item
+	.4byte goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item
+	.4byte goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item
+	.4byte getCaveID__Q24Game15BaseGameSectionFv
+	.4byte getCurrentCourseInfo__Q24Game15BaseGameSectionFv
+	.4byte challengeDisablePelplant__Q24Game15BaseGameSectionFv
+	.4byte getCaveFilename__Q24Game15BaseGameSectionFv
+	.4byte getEditorFilename__Q24Game15BaseGameSectionFv
+	.4byte getVsEditNumber__Q24Game15BaseGameSectionFv
+	.4byte openContainerWindow__Q24Game15BaseGameSectionFv
+	.4byte closeContainerWindow__Q24Game15BaseGameSectionFv
+	.4byte playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature
+	.4byte playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon
+	.4byte playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki
+	.4byte enableTimer__Q24Game15BaseGameSectionFfUl
+	.4byte disableTimer__Q24Game15BaseGameSectionFUl
+	.4byte getTimerType__Q24Game15BaseGameSectionFv
+	.4byte onMovieStart__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
+	.4byte onMovieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
+	.4byte onMovieCommand__Q24Game15BaseGameSectionFi
+	.4byte startFadeout__Q24Game15BaseGameSectionFf
+	.4byte startFadein__Q24Game15BaseGameSectionFf
+	.4byte startFadeoutin__Q24Game15BaseGameSectionFf
+	.4byte startFadeblack__Q24Game15BaseGameSectionFv
+	.4byte startFadewhite__Q24Game15BaseGameSectionFv
+	.4byte gmOrimaDown__Q24Game15BaseGameSectionFi
+	.4byte gmPikminZero__Q24Game15BaseGameSectionFv
+	.4byte openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi
+	.4byte openCaveMoreMenu__Q24Game15BaseGameSectionFPQ34Game8ItemHole4ItemP10Controller
+	.4byte openKanketuMenu__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller
+	.4byte on_setCamController__Q24Game15BaseGameSectionFi
+	.4byte onTogglePlayer__Q24Game15BaseGameSectionFv
+	.4byte onPlayerJoin__Q24Game15BaseGameSectionFv
+	.4byte onInit__Q24Game15BaseGameSectionFv
+	.4byte onUpdate__Q24Game15BaseGameSectionFv
+	.4byte initJ3D__Q24Game15BaseGameSectionFv
+	.4byte initViewports__Q24Game15BaseGameSectionFR8Graphics
+	.4byte initResources__Q24Game15BaseGameSectionFv
+	.4byte initGenerators__Q24Game15BaseGameSectionFv
+	.4byte initLights__Q24Game15BaseGameSectionFv
+	.4byte draw3D__Q24Game15BaseGameSectionFR8Graphics
+	.4byte draw2D__Q24Game15BaseGameSectionFR8Graphics
+	.4byte drawParticle__Q24Game15BaseGameSectionFR8Graphicsi
+	.4byte draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics
+	.4byte do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
+	.4byte onSetupFloatMemory__Q24Game15BaseGameSectionFv
+	.4byte postSetupFloatMemory__Q24Game15BaseGameSectionFv
+	.4byte onSetSoundScene__Q24Game15BaseGameSectionFv
+	.4byte onStartHeap__Q24Game15BaseGameSectionFv
+	.4byte onClearHeap__Q24Game15BaseGameSectionFv
+.global "__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>"
+"__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg"
+.global "__vt__30IDelegate1<PQ24Game9CameraArg>"
+"__vt__30IDelegate1<PQ24Game9CameraArg>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"
+"__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>"
+.global "__vt__21IDelegate1<R7Rect<f>>"
+"__vt__21IDelegate1<R7Rect<f>>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sOptDraw__Q24Game15BaseGameSection

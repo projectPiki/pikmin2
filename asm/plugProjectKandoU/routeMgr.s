@@ -67,6 +67,97 @@ lbl_8047E5DC:
 	.4byte 0x0A000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game14EditorRouteMgr
+__vt__Q24Game14EditorRouteMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game14EditorRouteMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+	.4byte getNext__Q24Game14EditorRouteMgrFPv
+	.4byte getStart__Q24Game14EditorRouteMgrFv
+	.4byte getEnd__Q24Game14EditorRouteMgrFv
+	.4byte get__Q24Game14EditorRouteMgrFPv
+	.4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+	.4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+	.4byte getWayPoint__Q24Game14EditorRouteMgrFs
+	.4byte read__Q24Game14EditorRouteMgrFR6Stream
+	.4byte write__Q24Game8RouteMgrFR6Stream
+.global __vt__Q34Game14EditorRouteMgr6WPNode
+__vt__Q34Game14EditorRouteMgr6WPNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game14EditorRouteMgr6WPNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game12GameRouteMgr
+__vt__Q24Game12GameRouteMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game12GameRouteMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+	.4byte getNext__Q24Game12GameRouteMgrFPv
+	.4byte getStart__Q24Game12GameRouteMgrFv
+	.4byte getEnd__Q24Game12GameRouteMgrFv
+	.4byte get__Q24Game12GameRouteMgrFPv
+	.4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+	.4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+	.4byte getWayPoint__Q24Game12GameRouteMgrFs
+	.4byte read__Q24Game12GameRouteMgrFR6Stream
+	.4byte write__Q24Game8RouteMgrFR6Stream
+.global "__vt__26Iterator<Q24Game8WayPoint>"
+"__vt__26Iterator<Q24Game8WayPoint>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__26Iterator<Q24Game8WayPoint>Fv"
+	.4byte "next__26Iterator<Q24Game8WayPoint>Fv"
+	.4byte "isDone__26Iterator<Q24Game8WayPoint>Fv"
+	.4byte "__ml__26Iterator<Q24Game8WayPoint>Fv"
+.global __vt__Q24Game8RouteMgr
+__vt__Q24Game8RouteMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game8RouteMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+	.4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte write__Q24Game8RouteMgrFR6Stream
+.global "__vt__27Container<Q24Game8WayPoint>"
+"__vt__27Container<Q24Game8WayPoint>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__27Container<Q24Game8WayPoint>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+	.4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+.global __vt__Q24Game8WayPoint
+__vt__Q24Game8WayPoint:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game8WayPointFv
+	.4byte directDraw__Q24Game8WayPointFR8Graphics
+	.4byte directDraw_Simple__Q24Game8WayPointFR8Graphics
+.global __vt__Q34Game8WayPoint8RoomList
+__vt__Q34Game8WayPoint8RoomList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game8WayPoint8RoomListFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb
 __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb:

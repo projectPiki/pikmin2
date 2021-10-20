@@ -36,6 +36,43 @@ lbl_8047E308:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B19F0
+lbl_804B19F0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game11HIORootNode
+__vt__Q24Game11HIORootNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game11HIORootNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game14BaseHIOSection
+__vt__Q24Game14BaseHIOSection:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game14BaseHIOSectionFv
+	.4byte run__7SectionFv
+	.4byte update__7SectionFv
+	.4byte draw__7SectionFR8Graphics
+	.4byte init__7SectionFv
+	.4byte drawInit__7SectionFR8Graphics
+	.4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+	.4byte doExit__7SectionFv
+	.4byte forceFinish__7SectionFv
+	.4byte forceReset__7SectionFv
+	.4byte getCurrentSection__7SectionFv
+	.4byte doLoadingStart__7SectionFv
+	.4byte doLoading__7SectionFv
+	.4byte doUpdate__Q24Game14BaseHIOSectionFv
+	.4byte 0
+	.4byte isFinishable__7SectionFv
+	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14BaseHIOSectionFP7JKRHeap
 __ct__Q24Game14BaseHIOSectionFP7JKRHeap:

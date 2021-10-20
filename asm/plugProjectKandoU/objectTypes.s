@@ -25,6 +25,57 @@ lbl_8047EABC:
 	.asciz "ujamushi"
 	.skip 0x3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global infos
+infos:
+	.4byte 0x00000000
+	.4byte lbl_80518B60
+	.4byte 0x00010000
+	.4byte lbl_80518B68
+	.4byte 0x00020000
+	.4byte lbl_80518B70
+	.4byte 0x04010000
+	.4byte lbl_80518B78
+	.4byte 0x04020000
+	.4byte lbl_80518B80
+	.4byte 0x04030000
+	.4byte lbl_80518B88
+	.4byte 0x04040000
+	.4byte lbl_80518B8C
+	.4byte 0x04050000
+	.4byte lbl_80518B94
+	.4byte 0x04060000
+	.4byte lbl_80518B9C
+	.4byte 0x04070000
+	.4byte lbl_8047EA80
+	.4byte 0x04080000
+	.4byte lbl_80518BA4
+	.4byte 0x04090000
+	.4byte lbl_80518BAC
+	.4byte 0x040A0000
+	.4byte lbl_80518BB4
+	.4byte 0x040B0000
+	.4byte lbl_8047EA8C
+	.4byte 0x040C0000
+	.4byte lbl_8047EA98
+	.4byte 0x040D0000
+	.4byte lbl_80518BBC
+	.4byte 0x040E0000
+	.4byte lbl_8047EAA4
+	.4byte 0x040F0000
+	.4byte lbl_8047EAB0
+	.4byte 0x04110000
+	.4byte lbl_8047EABC
+	.4byte 0x04120000
+	.4byte lbl_80518BC4
+	.4byte 0x04130000
+	.4byte lbl_80518BCC
+	.4byte 0xFFFE0000
+	.4byte lbl_80518BD4
+	.4byte 0xFFFF0000
+	.4byte lbl_80518BDC
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getName__Q24Game7ObjTypeFUs
 getName__Q24Game7ObjTypeFUs:

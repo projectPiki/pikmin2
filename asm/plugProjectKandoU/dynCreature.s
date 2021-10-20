@@ -22,6 +22,275 @@ lbl_8047F654:
 	.4byte 0x6F720A00
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B5218
+lbl_804B5218:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte "tracemoveCallback__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
+.global __vt__Q24Game11DynCreature
+__vt__Q24Game11DynCreature:
+	.4byte 0
+	.4byte 0
+	.4byte getPosition__Q24Game11DynCreatureFv
+	.4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+	.4byte 0
+	.4byte collisionUpdatable__Q24Game8CreatureFv
+	.4byte isPiki__Q24Game8CreatureFv
+	.4byte isNavi__Q24Game8CreatureFv
+	.4byte deferPikiCollision__Q24Game10CellObjectFv
+	.4byte getTypeName__Q24Game8CreatureFv
+	.4byte getObjType__Q24Game8CreatureFv
+	.4byte constructor__Q24Game8CreatureFv
+	.4byte onInit__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	.4byte onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+	.4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	.4byte doAnimation__Q24Game8CreatureFv
+	.4byte doEntry__Q24Game8CreatureFv
+	.4byte doSetView__Q24Game8CreatureFi
+	.4byte doViewCalc__Q24Game8CreatureFv
+	.4byte doSimulation__Q24Game8CreatureFf
+	.4byte doDirectDraw__Q24Game8CreatureFR8Graphics
+	.4byte getBodyRadius__Q24Game8CreatureFv
+	.4byte getCellRadius__Q24Game8CreatureFv
+	.4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte 0
+	.4byte "setVelocity__Q24Game11DynCreatureFR10Vector3<f>"
+	.4byte getVelocity__Q24Game11DynCreatureFv
+	.4byte "onSetPosition__Q24Game11DynCreatureFR10Vector3<f>"
+	.4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
+	.4byte 0
+	.4byte isTeki__Q24Game8CreatureFv
+	.4byte isPellet__Q24Game8CreatureFv
+	.4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
+	.4byte outWaterCallback__Q24Game8CreatureFv
+	.4byte inWater__Q24Game8CreatureFv
+	.4byte getFlockMgr__Q24Game8CreatureFv
+	.4byte onStartCapture__Q24Game8CreatureFv
+	.4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
+	.4byte onEndCapture__Q24Game8CreatureFv
+	.4byte isAtari__Q24Game8CreatureFv
+	.4byte setAtari__Q24Game8CreatureFb
+	.4byte isAlive__Q24Game8CreatureFv
+	.4byte setAlive__Q24Game8CreatureFb
+	.4byte isCollisionFlick__Q24Game8CreatureFv
+	.4byte setCollisionFlick__Q24Game8CreatureFb
+	.4byte isMovieActor__Q24Game8CreatureFv
+	.4byte isMovieExtra__Q24Game8CreatureFv
+	.4byte isMovieMotion__Q24Game8CreatureFv
+	.4byte setMovieMotion__Q24Game8CreatureFb
+	.4byte isBuried__Q24Game8CreatureFv
+	.4byte isFlying__Q24Game8CreatureFv
+	.4byte isUnderground__Q24Game8CreatureFv
+	.4byte isLivingThing__Q24Game8CreatureFv
+	.4byte isDebugCollision__Q24Game8CreatureFv
+	.4byte setDebugCollision__Q24Game8CreatureFb
+	.4byte doSave__Q24Game8CreatureFR6Stream
+	.4byte doLoad__Q24Game8CreatureFR6Stream
+	.4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
+	.4byte collisionCallback__Q24Game8CreatureFRQ24Game9CollEvent
+	.4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
+	.4byte getJAIObject__Q24Game8CreatureFv
+	.4byte getPSCreature__Q24Game8CreatureFv
+	.4byte getSound_AILOD__Q24Game8CreatureFv
+	.4byte getSound_PosPtr__Q24Game8CreatureFv
+	.4byte sound_culling__Q24Game8CreatureFv
+	.4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
+	.4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
+	.4byte on_movie_begin__Q24Game8CreatureFb
+	.4byte on_movie_end__Q24Game8CreatureFb
+	.4byte movieStartAnimation__Q24Game8CreatureFUl
+	.4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
+	.4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
+	.4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
+	.4byte movieSetFaceDir__Q24Game8CreatureFf
+	.4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
+	.4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
+	.4byte needShadow__Q24Game8CreatureFv
+	.4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
+	.4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
+	.4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
+	.4byte startPick__Q24Game8CreatureFv
+	.4byte endPick__Q24Game8CreatureFb
+	.4byte getMabiki__Q24Game8CreatureFv
+	.4byte getFootmarks__Q24Game8CreatureFv
+	.4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
+	.4byte isSlotFree__Q24Game8CreatureFs
+	.4byte getFreeStickSlot__Q24Game8CreatureFv
+	.4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+	.4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+	.4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+	.4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+	.4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+	.4byte "getVelocityAt__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte "getAngularEffect__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte "applyImpulse__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
+	.4byte getSuckPos__Q24Game8CreatureFv
+	.4byte getGoalPos__Q24Game8CreatureFv
+	.4byte isSuckReady__Q24Game8CreatureFv
+	.4byte isSuckArriveWait__Q24Game8CreatureFv
+	.4byte stimulate__Q24Game8CreatureFRQ24Game11Interaction
+	.4byte getCreatureName__Q24Game8CreatureFv
+	.4byte getCreatureID__Q24Game8CreatureFv
+	.4byte onSetPosition__Q24Game11DynCreatureFv
+.global "__vt__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>"
+"__vt__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>FR10Vector3<f>R10Vector3<f>"
+.global "__vt__39IDelegate2<R10Vector3<f>,R10Vector3<f>>"
+"__vt__39IDelegate2<R10Vector3<f>,R10Vector3<f>>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game14DynParticleMgr
+__vt__Q24Game14DynParticleMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game14DynParticleMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__31Container<Q24Game11DynParticle>FPv"
+	.4byte "getNext__35MonoObjectMgr<Q24Game11DynParticle>FPv"
+	.4byte "getStart__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "getEnd__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "get__35MonoObjectMgr<Q24Game11DynParticle>FPv"
+	.4byte "getAt__35MonoObjectMgr<Q24Game11DynParticle>Fi"
+	.4byte "getTo__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
+	.4byte "@28@doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
+	.4byte "@28@doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__Q24Game14DynParticleMgrFv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
+	.4byte "doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
+	.4byte "doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
+	.4byte "birth__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte resetMgr__Q24Game14DynParticleMgrFv
+	.4byte "clearMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "onAlloc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+.global "__vt__31Container<Q24Game11DynParticle>"
+"__vt__31Container<Q24Game11DynParticle>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__31Container<Q24Game11DynParticle>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__31Container<Q24Game11DynParticle>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__31Container<Q24Game11DynParticle>Fi"
+	.4byte "getTo__31Container<Q24Game11DynParticle>Fv"
+.global "__vt__31ObjectMgr<Q24Game11DynParticle>"
+"__vt__31ObjectMgr<Q24Game11DynParticle>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__31ObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__31Container<Q24Game11DynParticle>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__31Container<Q24Game11DynParticle>Fi"
+	.4byte "getTo__31Container<Q24Game11DynParticle>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doEntry__31ObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doSetView__31ObjectMgr<Q24Game11DynParticle>Fi"
+	.4byte "@28@doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff"
+	.4byte "@28@doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doEntry__31ObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doSetView__31ObjectMgr<Q24Game11DynParticle>Fi"
+	.4byte "doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff"
+	.4byte "doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics"
+.global "__vt__35MonoObjectMgr<Q24Game11DynParticle>"
+"__vt__35MonoObjectMgr<Q24Game11DynParticle>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__31Container<Q24Game11DynParticle>FPv"
+	.4byte "getNext__35MonoObjectMgr<Q24Game11DynParticle>FPv"
+	.4byte "getStart__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "getEnd__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "get__35MonoObjectMgr<Q24Game11DynParticle>FPv"
+	.4byte "getAt__35MonoObjectMgr<Q24Game11DynParticle>Fi"
+	.4byte "getTo__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
+	.4byte "@28@doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "@28@doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
+	.4byte "@28@doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
+	.4byte "doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
+	.4byte "doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
+	.4byte "birth__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "clearMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+	.4byte "onAlloc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+.global __vt__Q24Game11DynParticle
+__vt__Q24Game11DynParticle:
+	.4byte 0
+	.4byte 0
+	.4byte constructor__Q24Game11DynParticleFv
+	.4byte doAnimation__Q24Game11DynParticleFv
+	.4byte doEntry__Q24Game11DynParticleFv
+	.4byte doSetView__Q24Game11DynParticleFUl
+	.4byte doViewCalc__Q24Game11DynParticleFv
+	.4byte doSimulation__Q24Game11DynParticleFf
+	.4byte doDirectDraw__Q24Game11DynParticleFR8Graphics
+.global "__vt__30Iterator<Q24Game11DynParticle>"
+"__vt__30Iterator<Q24Game11DynParticle>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__30Iterator<Q24Game11DynParticle>Fv"
+	.4byte "next__30Iterator<Q24Game11DynParticle>Fv"
+	.4byte "isDone__30Iterator<Q24Game11DynParticle>Fv"
+	.4byte "__ml__30Iterator<Q24Game11DynParticle>Fv"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14DynParticleMgrFi
 __ct__Q24Game14DynParticleMgrFi:

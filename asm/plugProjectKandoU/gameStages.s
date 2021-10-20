@@ -55,6 +55,27 @@ lbl_8047F914:
 	.4byte 0x25640000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game10CourseInfo
+__vt__Q24Game10CourseInfo:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game10CourseInfoFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game8LimitGen
+__vt__Q24Game8LimitGen:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game8LimitGenFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game11CaveOtakara
+__vt__Q24Game11CaveOtakara:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game11CaveOtakaraFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q24Game11CaveOtakaraFv
 __dt__Q24Game11CaveOtakaraFv:

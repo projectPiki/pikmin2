@@ -25,6 +25,23 @@ lbl_8047F23C:
 	.4byte 0x7320210A
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game8Stickers
+__vt__Q24Game8Stickers:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game8StickersFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8Creature>FPv"
+	.4byte getNext__Q24Game8StickersFPv
+	.4byte getStart__Q24Game8StickersFv
+	.4byte getEnd__Q24Game8StickersFv
+	.4byte get__Q24Game8StickersFPv
+	.4byte "getAt__27Container<Q24Game8Creature>Fi"
+	.4byte "getTo__27Container<Q24Game8Creature>Fv"
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global maxBuffer__Q24Game8Stickers

@@ -53,6 +53,45 @@ lbl_8047F1E0:
 	.4byte 0x67000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B4CF0
+lbl_804B4CF0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q26PikiAI12ActFormation
+__vt__Q26PikiAI12ActFormation:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q26PikiAI12ActFormationFPQ26PikiAI9ActionArg
+	.4byte exec__Q26PikiAI12ActFormationFv
+	.4byte cleanup__Q26PikiAI12ActFormationFv
+	.4byte emotion_success__Q26PikiAI6ActionFv
+	.4byte emotion_fail__Q26PikiAI6ActionFv
+	.4byte applicable__Q26PikiAI6ActionFv
+	.4byte getNextAIType__Q26PikiAI12ActFormationFv
+	.4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+	.4byte collisionCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9CollEvent
+	.4byte platCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9PlatEvent
+	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
+	.4byte "wallCallback__Q26PikiAI12ActFormationFR10Vector3<f>"
+	.4byte getInfo__Q26PikiAI6ActionFPc
+	.4byte resumable__Q26PikiAI12ActFormationFv
+	.4byte inform__Q26PikiAI12ActFormationFi
+	.4byte onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent
+	.4byte 0
+	.4byte 0
+	.4byte "@100@4@inform__Q26PikiAI12ActFormationFi"
+	.4byte 0
+	.4byte 0
+	.4byte "@108@4@onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent"
+.global __vt__Q24Game18SlotChangeListener
+__vt__Q24Game18SlotChangeListener:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global newVer

@@ -236,6 +236,627 @@ lbl_8047EA5C:
 lbl_8047EA74:
 	.asciz "ItemInitArg"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B2420
+lbl_804B2420:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game9ItemOnyon3Mgr
+__vt__Q34Game9ItemOnyon3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte doAnimation__Q34Game9ItemOnyon3MgrFv
+	.4byte doEntry__Q34Game9ItemOnyon3MgrFv
+	.4byte doSetView__Q34Game9ItemOnyon3MgrFi
+	.4byte doViewCalc__Q34Game9ItemOnyon3MgrFv
+	.4byte doSimulation__Q34Game9ItemOnyon3MgrFf
+	.4byte doDirectDraw__Q34Game9ItemOnyon3MgrFR8Graphics
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__Q24Game11BaseItemMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte initDependency__Q34Game9ItemOnyon3MgrFv
+	.4byte killAll__Q24Game11BaseItemMgrFv
+	.4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
+	.4byte setupSoundViewerAndBas__Q34Game9ItemOnyon3MgrFv
+	.4byte onLoadResources__Q24Game11BaseItemMgrFv
+	.4byte loadEverytime__Q24Game11BaseItemMgrFv
+	.4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+	.4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+	.4byte generatorGetID__Q34Game9ItemOnyon3MgrFv
+	.4byte "generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
+	.4byte generatorWrite__Q34Game9ItemOnyon3MgrFR6StreamPQ24Game11GenItemParm
+	.4byte generatorRead__Q34Game9ItemOnyon3MgrFR6StreamPQ24Game11GenItemParmUl
+	.4byte generatorLocalVersion__Q34Game9ItemOnyon3MgrFv
+	.4byte generatorGetShape__Q34Game9ItemOnyon3MgrFPQ24Game11GenItemParm
+	.4byte generatorNewItemParm__Q34Game9ItemOnyon3MgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@48@__dt__Q34Game9ItemOnyon3MgrFv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__24Container<Q24Game5Onyon>FPv"
+	.4byte "@48@getNext__Q34Game9ItemOnyon3MgrFPv"
+	.4byte "@48@getStart__Q34Game9ItemOnyon3MgrFv"
+	.4byte "@48@getEnd__Q34Game9ItemOnyon3MgrFv"
+	.4byte "@48@get__Q34Game9ItemOnyon3MgrFPv"
+	.4byte "getAt__24Container<Q24Game5Onyon>Fi"
+	.4byte "getTo__24Container<Q24Game5Onyon>Fv"
+	.4byte __dt__Q34Game9ItemOnyon3MgrFv
+	.4byte get__Q34Game9ItemOnyon3MgrFPv
+	.4byte getNext__Q34Game9ItemOnyon3MgrFPv
+	.4byte getStart__Q34Game9ItemOnyon3MgrFv
+	.4byte getEnd__Q34Game9ItemOnyon3MgrFv
+.global "__vt__26TObjectNode<Q24Game5Onyon>"
+"__vt__26TObjectNode<Q24Game5Onyon>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__26TObjectNode<Q24Game5Onyon>Fv"
+	.4byte getChildCount__5CNodeFv
+.global "__vt__28NodeObjectMgr<Q24Game5Onyon>"
+"__vt__28NodeObjectMgr<Q24Game5Onyon>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__28NodeObjectMgr<Q24Game5Onyon>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__24Container<Q24Game5Onyon>FPv"
+	.4byte "getNext__28NodeObjectMgr<Q24Game5Onyon>FPv"
+	.4byte "getStart__28NodeObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "getEnd__28NodeObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "get__28NodeObjectMgr<Q24Game5Onyon>FPv"
+	.4byte "getAt__24Container<Q24Game5Onyon>Fi"
+	.4byte "getTo__24Container<Q24Game5Onyon>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "@28@doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "@28@doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+	.4byte "@28@doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "@28@doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+	.4byte "@28@doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+	.4byte "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+	.4byte "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+	.4byte "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
+.global "__vt__24ObjectMgr<Q24Game5Onyon>"
+"__vt__24ObjectMgr<Q24Game5Onyon>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__24Container<Q24Game5Onyon>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__24Container<Q24Game5Onyon>Fi"
+	.4byte "getTo__24Container<Q24Game5Onyon>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "@28@doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "@28@doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+	.4byte "@28@doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "@28@doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+	.4byte "@28@doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+	.4byte "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+	.4byte "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+	.4byte "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+.global "__vt__24Container<Q24Game5Onyon>"
+"__vt__24Container<Q24Game5Onyon>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__24Container<Q24Game5Onyon>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__24Container<Q24Game5Onyon>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__24Container<Q24Game5Onyon>Fi"
+	.4byte "getTo__24Container<Q24Game5Onyon>Fv"
+.global __vt__12GenOnyonParm
+__vt__12GenOnyonParm:
+	.4byte 0
+	.4byte 0
+	.4byte getShapeID__Q24Game11GenItemParmFv
+.global __vt__Q24Game11GenItemParm
+__vt__Q24Game11GenItemParm:
+	.4byte 0
+	.4byte 0
+	.4byte getShapeID__Q24Game11GenItemParmFv
+.global __vt__Q23efx14TOnyonPuffKira
+__vt__Q23efx14TOnyonPuffKira:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx14TOnyonPuffPuff
+__vt__Q23efx14TOnyonPuffPuff:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx8TPodSuck
+__vt__Q23efx8TPodSuck:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx10TOnyonEatC
+__vt__Q23efx10TOnyonEatC:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx7ArgType
+__vt__Q23efx7ArgType:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q23efx7ArgTypeFv
+.global __vt__Q23efx9TOnyonLay
+__vt__Q23efx9TOnyonLay:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx12OnyonSpotArg
+__vt__Q23efx12OnyonSpotArg:
+	.4byte 0
+	.4byte 0
+	.4byte getID__Q23efx12OnyonSpotArgFv
+.global __vt__20ModelEffectCreateArg
+__vt__20ModelEffectCreateArg:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game5Onyon
+__vt__Q24Game5Onyon:
+	.4byte 0
+	.4byte 0
+	.4byte getPosition__Q24Game8BaseItemFv
+	.4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+	.4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
+	.4byte collisionUpdatable__Q24Game8CreatureFv
+	.4byte isPiki__Q24Game8CreatureFv
+	.4byte isNavi__Q24Game8CreatureFv
+	.4byte deferPikiCollision__Q24Game10CellObjectFv
+	.4byte getTypeName__Q24Game8CreatureFv
+	.4byte getObjType__Q24Game8CreatureFv
+	.4byte constructor__Q24Game8BaseItemFv
+	.4byte onInit__Q24Game5OnyonFPQ24Game15CreatureInitArg
+	.4byte onKill__Q24Game5OnyonFPQ24Game15CreatureKillArg
+	.4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	.4byte doAnimation__Q24Game8BaseItemFv
+	.4byte doEntry__Q24Game8BaseItemFv
+	.4byte doSetView__Q24Game8CreatureFi
+	.4byte doViewCalc__Q24Game8CreatureFv
+	.4byte doSimulation__Q24Game8BaseItemFf
+	.4byte doDirectDraw__Q24Game5OnyonFR8Graphics
+	.4byte getBodyRadius__Q24Game8CreatureFv
+	.4byte getCellRadius__Q24Game8CreatureFv
+	.4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte getFaceDir__Q24Game5OnyonFv
+	.4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
+	.4byte getVelocity__Q24Game8BaseItemFv
+	.4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
+	.4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
+	.4byte updateTrMatrix__Q24Game8BaseItemFv
+	.4byte isTeki__Q24Game8CreatureFv
+	.4byte isPellet__Q24Game8CreatureFv
+	.4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
+	.4byte outWaterCallback__Q24Game8CreatureFv
+	.4byte inWater__Q24Game8CreatureFv
+	.4byte getFlockMgr__Q24Game8CreatureFv
+	.4byte onStartCapture__Q24Game8CreatureFv
+	.4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
+	.4byte onEndCapture__Q24Game8CreatureFv
+	.4byte isAtari__Q24Game8CreatureFv
+	.4byte setAtari__Q24Game8CreatureFb
+	.4byte isAlive__Q24Game8CreatureFv
+	.4byte setAlive__Q24Game8CreatureFb
+	.4byte isCollisionFlick__Q24Game8CreatureFv
+	.4byte setCollisionFlick__Q24Game8CreatureFb
+	.4byte isMovieActor__Q24Game8CreatureFv
+	.4byte isMovieExtra__Q24Game8CreatureFv
+	.4byte isMovieMotion__Q24Game8CreatureFv
+	.4byte setMovieMotion__Q24Game8CreatureFb
+	.4byte isBuried__Q24Game8CreatureFv
+	.4byte isFlying__Q24Game8CreatureFv
+	.4byte isUnderground__Q24Game8CreatureFv
+	.4byte isLivingThing__Q24Game8CreatureFv
+	.4byte isDebugCollision__Q24Game8CreatureFv
+	.4byte setDebugCollision__Q24Game8CreatureFb
+	.4byte doSave__Q24Game8CreatureFR6Stream
+	.4byte doLoad__Q24Game8CreatureFR6Stream
+	.4byte bounceCallback__Q24Game8BaseItemFPQ23Sys8Triangle
+	.4byte collisionCallback__Q24Game8BaseItemFRQ24Game9CollEvent
+	.4byte platCallback__Q24Game8BaseItemFRQ24Game9PlatEvent
+	.4byte getJAIObject__Q24Game8BaseItemFv
+	.4byte getPSCreature__Q24Game8BaseItemFv
+	.4byte getSound_AILOD__Q24Game8CreatureFv
+	.4byte getSound_PosPtr__Q24Game8BaseItemFv
+	.4byte sound_culling__Q24Game5OnyonFv
+	.4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
+	.4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
+	.4byte on_movie_begin__Q24Game8CreatureFb
+	.4byte on_movie_end__Q24Game5OnyonFb
+	.4byte movieStartAnimation__Q24Game8BaseItemFUl
+	.4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
+	.4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
+	.4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
+	.4byte movieSetFaceDir__Q24Game8CreatureFf
+	.4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
+	.4byte getShadowParam__Q24Game5OnyonFRQ24Game11ShadowParam
+	.4byte needShadow__Q24Game5OnyonFv
+	.4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
+	.4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
+	.4byte getLODCylinder__Q24Game5OnyonFRQ23Sys8Cylinder
+	.4byte startPick__Q24Game8CreatureFv
+	.4byte endPick__Q24Game8CreatureFb
+	.4byte getMabiki__Q24Game8CreatureFv
+	.4byte getFootmarks__Q24Game8CreatureFv
+	.4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
+	.4byte isSlotFree__Q24Game8CreatureFs
+	.4byte getFreeStickSlot__Q24Game8CreatureFv
+	.4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+	.4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+	.4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+	.4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+	.4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+	.4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
+	.4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
+	.4byte getSuckPos__Q24Game5OnyonFv
+	.4byte getGoalPos__Q24Game5OnyonFv
+	.4byte isSuckReady__Q24Game5OnyonFv
+	.4byte isSuckArriveWait__Q24Game5OnyonFv
+	.4byte stimulate__Q24Game5OnyonFRQ24Game11Interaction
+	.4byte getCreatureName__Q24Game5OnyonFv
+	.4byte getCreatureID__Q24Game8BaseItemFv
+	.4byte 0
+	.4byte 0
+	.4byte "@376@onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent"
+	.4byte initDependency__Q24Game8BaseItemFv
+	.4byte startSound__Q24Game8BaseItemFUl
+	.4byte makeTrMatrix__Q24Game5OnyonFv
+	.4byte doAI__Q24Game5OnyonFv
+	.4byte move__Q24Game8BaseItemFf
+	.4byte changeMaterial__Q24Game5OnyonFv
+	.4byte do_updateLOD__Q24Game5OnyonFv
+	.4byte do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm
+	.4byte getMapCollisionRadius__Q24Game8BaseItemFv
+	.4byte interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack
+	.4byte interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge
+	.4byte interactEat__Q24Game8BaseItemFRQ24Game11InteractEat
+	.4byte interactFlockAttack__Q24Game8BaseItemFRQ24Game19InteractFlockAttack
+	.4byte interactAbsorb__Q24Game8BaseItemFRQ24Game14InteractAbsorb
+	.4byte interactFue__Q24Game8BaseItemFRQ24Game11InteractFue
+	.4byte interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero
+	.4byte interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero
+	.4byte interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey
+	.4byte "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>"
+	.4byte getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere
+	.4byte do_doAnimation__Q24Game5OnyonFv
+	.4byte updateBoundSphere__Q24Game8BaseItemFv
+	.4byte update__Q24Game8BaseItemFv
+	.4byte entryShape__Q24Game8BaseItemFv
+	.4byte onSetPosition__Q24Game5OnyonFv
+	.4byte onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent
+	.4byte onKeyEvent_UFO__Q24Game5OnyonFRCQ28SysShape8KeyEvent
+	.4byte onKeyEvent_Onyon__Q24Game5OnyonFRCQ28SysShape8KeyEvent
+.global __vt__Q23efx11TOnyonEatAB
+__vt__Q23efx11TOnyonEatAB:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx11TUfoPodGepu
+__vt__Q23efx11TUfoPodGepu:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q23efx8TPodGepu
+__vt__Q23efx8TPodGepu:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global __vt__Q24Game16InteractSuckDone
+__vt__Q24Game16InteractSuckDone:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q23efx11TUfoPodSuck
+__vt__Q23efx11TUfoPodSuck:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q24Game18InteractSuckArrive
+__vt__Q24Game18InteractSuckArrive:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global "__vt__Q23efx28TSyncGroup2<Q23efx8TForever>"
+"__vt__Q23efx28TSyncGroup2<Q23efx8TForever>":
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+.global __vt__Q23efx9TForever2
+__vt__Q23efx9TForever2:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+.global "__vt__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>"
+"__vt__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>":
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+.global __vt__Q23efx14TChasePosYRot2
+__vt__Q23efx14TChasePosYRot2:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+.global __vt__Q23efx8TPodKira
+__vt__Q23efx8TPodKira:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx8TPodKiraFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx8TPodKiraFv
+.global __vt__Q23efx8TPodSpot
+__vt__Q23efx8TPodSpot:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+.global __vt__Q23efx9TPodOpenB
+__vt__Q23efx9TPodOpenB:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx9TPodOpenBFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx9TPodOpenBFv
+.global __vt__Q23efx9TPodOpenA
+__vt__Q23efx9TPodOpenA:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx9TPodOpenAFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx9TPodOpenAFv
+.global __vt__Q23efx10TUfoGasOut
+__vt__Q23efx10TUfoGasOut:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx10TUfoGasOutFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx10TUfoGasOutFv
+.global __vt__Q23efx9TUfoGasIn
+__vt__Q23efx9TUfoGasIn:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx9TUfoGasInFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx9TUfoGasInFv
+.global __vt__Q23efx11TUfoPodOpen
+__vt__Q23efx11TUfoPodOpen:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+.global __vt__Q23efx17TUfoSpotact_ver01
+__vt__Q23efx17TUfoSpotact_ver01:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+.global __vt__Q23efx15TUfoPodOpenSuck
+__vt__Q23efx15TUfoPodOpenSuck:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx15TUfoPodOpenSuckFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx15TUfoPodOpenSuckFv
+.global __vt__Q23efx8TUfoSpot
+__vt__Q23efx8TUfoSpot:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+.global __vt__Q23efx8TForever
+__vt__Q23efx8TForever:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx8TForeverFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx8TForeverFv
+.global __vt__Q34Game12ItemPikihead7InitArg
+__vt__Q34Game12ItemPikihead7InitArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q34Game12ItemPikihead7InitArgFv
+.global __vt__Q24Game11ItemInitArg
+__vt__Q24Game11ItemInitArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q24Game11ItemInitArgFv
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E60
 lbl_80520E60:

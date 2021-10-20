@@ -25,6 +25,57 @@ lbl_8047F3E8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q26PikiAI7ActExit
+__vt__Q26PikiAI7ActExit:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q26PikiAI7ActExitFPQ26PikiAI9ActionArg
+	.4byte exec__Q26PikiAI7ActExitFv
+	.4byte cleanup__Q26PikiAI7ActExitFv
+	.4byte emotion_success__Q26PikiAI6ActionFv
+	.4byte emotion_fail__Q26PikiAI6ActionFv
+	.4byte applicable__Q26PikiAI6ActionFv
+	.4byte getNextAIType__Q26PikiAI6ActionFv
+	.4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+	.4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
+	.4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
+	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
+	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+	.4byte getInfo__Q26PikiAI6ActionFPc
+.global __vt__Q26PikiAI14ClimbActionArg
+__vt__Q26PikiAI14ClimbActionArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI14ClimbActionArgFv
+.global __vt__Q26PikiAI16GotoPosActionArg
+__vt__Q26PikiAI16GotoPosActionArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI16GotoPosActionArgFv
+.global __vt__Q26PikiAI8ActEnter
+__vt__Q26PikiAI8ActEnter:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q26PikiAI8ActEnterFPQ26PikiAI9ActionArg
+	.4byte exec__Q26PikiAI8ActEnterFv
+	.4byte cleanup__Q26PikiAI8ActEnterFv
+	.4byte emotion_success__Q26PikiAI6ActionFv
+	.4byte emotion_fail__Q26PikiAI6ActionFv
+	.4byte applicable__Q26PikiAI6ActionFv
+	.4byte getNextAIType__Q26PikiAI6ActionFv
+	.4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+	.4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
+	.4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
+	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
+	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+	.4byte getInfo__Q26PikiAI6ActionFPc
+	.4byte onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent
+	.4byte 0
+	.4byte 0
+	.4byte "@96@4@onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI8ActEnterFPQ24Game4Piki
 __ct__Q26PikiAI8ActEnterFPQ24Game4Piki:

@@ -653,6 +653,159 @@ lbl_8047E164:
 	.4byte 0x4B696C6C
 	.4byte 0x41726700
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B1698
+lbl_804B1698:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804B16A4
+lbl_804B16A4:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte createModelCallback__Q24Game7PikiMgrFPQ28SysShape5Model
+.global "__vt__45Delegate1<Q24Game7PikiMgr,PQ28SysShape5Model>"
+"__vt__45Delegate1<Q24Game7PikiMgr,PQ28SysShape5Model>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__45Delegate1<Q24Game7PikiMgr,PQ28SysShape5Model>FPQ28SysShape5Model"
+.global "__vt__30IDelegate1<PQ28SysShape5Model>"
+"__vt__30IDelegate1<PQ28SysShape5Model>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game7PikiMgr
+__vt__Q24Game7PikiMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game7PikiMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<Q24Game4Piki>FPv"
+	.4byte "getNext__27MonoObjectMgr<Q24Game4Piki>FPv"
+	.4byte "getStart__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "getEnd__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "get__27MonoObjectMgr<Q24Game4Piki>FPv"
+	.4byte "getAt__27MonoObjectMgr<Q24Game4Piki>Fi"
+	.4byte "getTo__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__Q24Game7PikiMgrFv"
+	.4byte "@28@doEntry__Q24Game7PikiMgrFv"
+	.4byte "@28@doSetView__27MonoObjectMgr<Q24Game4Piki>Fi"
+	.4byte "@28@doViewCalc__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "@28@doSimulation__27MonoObjectMgr<Q24Game4Piki>Ff"
+	.4byte "@28@doDirectDraw__27MonoObjectMgr<Q24Game4Piki>FR8Graphics"
+	.4byte "@28@doSimpleDraw__Q24Game7PikiMgrFP8Viewport"
+	.4byte "@28@loadResources__Q24Game7PikiMgrFv"
+	.4byte "@28@resetMgr__Q24Game7PikiMgrFv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte "@28@getMatrixLoadType__Q24Game7PikiMgrFv"
+	.4byte doAnimation__Q24Game7PikiMgrFv
+	.4byte doEntry__Q24Game7PikiMgrFv
+	.4byte "doSetView__27MonoObjectMgr<Q24Game4Piki>Fi"
+	.4byte "doViewCalc__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "doSimulation__27MonoObjectMgr<Q24Game4Piki>Ff"
+	.4byte "doDirectDraw__27MonoObjectMgr<Q24Game4Piki>FR8Graphics"
+	.4byte birth__Q24Game7PikiMgrFv
+	.4byte resetMgr__Q24Game7PikiMgrFv
+	.4byte "clearMgr__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte onAlloc__Q24Game7PikiMgrFv
+	.4byte doSimpleDraw__Q24Game7PikiMgrFP8Viewport
+	.4byte getMatrixLoadType__Q24Game7PikiMgrFv
+	.4byte getMgrName__Q24Game7PikiMgrFv
+	.4byte loadResources__Q24Game7PikiMgrFv
+	.4byte loadResources__Q24Game7PikiMgrFi
+.global "__vt__23Container<Q24Game4Piki>"
+"__vt__23Container<Q24Game4Piki>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__23Container<Q24Game4Piki>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<Q24Game4Piki>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__23Container<Q24Game4Piki>Fi"
+	.4byte "getTo__23Container<Q24Game4Piki>Fv"
+.global "__vt__23ObjectMgr<Q24Game4Piki>"
+"__vt__23ObjectMgr<Q24Game4Piki>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__23ObjectMgr<Q24Game4Piki>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<Q24Game4Piki>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__23Container<Q24Game4Piki>Fi"
+	.4byte "getTo__23Container<Q24Game4Piki>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__23ObjectMgr<Q24Game4Piki>Fv"
+	.4byte "@28@doEntry__23ObjectMgr<Q24Game4Piki>Fv"
+	.4byte "@28@doSetView__23ObjectMgr<Q24Game4Piki>Fi"
+	.4byte "@28@doViewCalc__23ObjectMgr<Q24Game4Piki>Fv"
+	.4byte "@28@doSimulation__23ObjectMgr<Q24Game4Piki>Ff"
+	.4byte "@28@doDirectDraw__23ObjectMgr<Q24Game4Piki>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__23ObjectMgr<Q24Game4Piki>Fv"
+	.4byte "doEntry__23ObjectMgr<Q24Game4Piki>Fv"
+	.4byte "doSetView__23ObjectMgr<Q24Game4Piki>Fi"
+	.4byte "doViewCalc__23ObjectMgr<Q24Game4Piki>Fv"
+	.4byte "doSimulation__23ObjectMgr<Q24Game4Piki>Ff"
+	.4byte "doDirectDraw__23ObjectMgr<Q24Game4Piki>FR8Graphics"
+.global "__vt__27MonoObjectMgr<Q24Game4Piki>"
+"__vt__27MonoObjectMgr<Q24Game4Piki>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<Q24Game4Piki>FPv"
+	.4byte "getNext__27MonoObjectMgr<Q24Game4Piki>FPv"
+	.4byte "getStart__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "getEnd__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "get__27MonoObjectMgr<Q24Game4Piki>FPv"
+	.4byte "getAt__27MonoObjectMgr<Q24Game4Piki>Fi"
+	.4byte "getTo__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "@28@doEntry__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "@28@doSetView__27MonoObjectMgr<Q24Game4Piki>Fi"
+	.4byte "@28@doViewCalc__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "@28@doSimulation__27MonoObjectMgr<Q24Game4Piki>Ff"
+	.4byte "@28@doDirectDraw__27MonoObjectMgr<Q24Game4Piki>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "doEntry__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "doSetView__27MonoObjectMgr<Q24Game4Piki>Fi"
+	.4byte "doViewCalc__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "doSimulation__27MonoObjectMgr<Q24Game4Piki>Ff"
+	.4byte "doDirectDraw__27MonoObjectMgr<Q24Game4Piki>FR8Graphics"
+	.4byte "birth__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "resetMgr__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "clearMgr__27MonoObjectMgr<Q24Game4Piki>Fv"
+	.4byte "onAlloc__27MonoObjectMgr<Q24Game4Piki>Fv"
+.global __vt__Q24Game9PikiParms
+__vt__Q24Game9PikiParms:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game9PikiParmsFR6Stream
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7PikiMgrFv
 __ct__Q24Game7PikiMgrFv:

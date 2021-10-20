@@ -59,6 +59,189 @@ lbl_8047C63C:
 	.4byte 0x2F25640D
 	.4byte 0x0A000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__11AgeCollPart
+__vt__11AgeCollPart:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11AgeCollPartFv
+	.4byte getChildCount__8CollPartFv
+	.4byte isMouth__8CollPartFv
+	.4byte draw__11AgeCollPartFR8Graphics
+	.4byte constructor__8CollPartFv
+	.4byte doAnimation__8CollPartFv
+	.4byte doEntry__8CollPartFv
+	.4byte doSetView__8CollPartFUl
+	.4byte doViewCalc__8CollPartFv
+	.4byte doSimulation__8CollPartFf
+	.4byte doDirectDraw__8CollPartFR8Graphics
+.global __vt__15CollPartFactory
+__vt__15CollPartFactory:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15CollPartFactoryFv
+	.4byte getChildCount__8CollPartFv
+	.4byte isMouth__8CollPartFv
+	.4byte draw__8CollPartFR8Graphics
+	.4byte constructor__8CollPartFv
+	.4byte doAnimation__8CollPartFv
+	.4byte doEntry__8CollPartFv
+	.4byte doSetView__8CollPartFUl
+	.4byte doViewCalc__8CollPartFv
+	.4byte doSimulation__8CollPartFf
+	.4byte doDirectDraw__8CollPartFR8Graphics
+.global __vt__13MouthCollPart
+__vt__13MouthCollPart:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13MouthCollPartFv
+	.4byte getChildCount__8CollPartFv
+	.4byte isMouth__13MouthCollPartFv
+	.4byte draw__8CollPartFR8Graphics
+	.4byte constructor__8CollPartFv
+	.4byte doAnimation__8CollPartFv
+	.4byte doEntry__8CollPartFv
+	.4byte doSetView__8CollPartFUl
+	.4byte doViewCalc__8CollPartFv
+	.4byte doSimulation__8CollPartFf
+	.4byte doDirectDraw__8CollPartFR8Graphics
+.global __vt__8CollPart
+__vt__8CollPart:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8CollPartFv
+	.4byte getChildCount__8CollPartFv
+	.4byte isMouth__8CollPartFv
+	.4byte draw__8CollPartFR8Graphics
+	.4byte constructor__8CollPartFv
+	.4byte doAnimation__8CollPartFv
+	.4byte doEntry__8CollPartFv
+	.4byte doSetView__8CollPartFUl
+	.4byte doViewCalc__8CollPartFv
+	.4byte doSimulation__8CollPartFf
+	.4byte doDirectDraw__8CollPartFR8Graphics
+.global __vt__Q23Sys3OBB
+__vt__Q23Sys3OBB:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23Sys3OBBFv
+	.4byte getChildCount__5CNodeFv
+.global "__vt__12Container<i>"
+"__vt__12Container<i>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__12Container<i>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__12Container<i>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__12Container<i>Fi"
+	.4byte "getTo__12Container<i>Fv"
+.global "__vt__17ArrayContainer<i>"
+"__vt__17ArrayContainer<i>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__17ArrayContainer<i>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__12Container<i>FPv"
+	.4byte "getNext__17ArrayContainer<i>FPv"
+	.4byte "getStart__17ArrayContainer<i>Fv"
+	.4byte "getEnd__17ArrayContainer<i>Fv"
+	.4byte "get__17ArrayContainer<i>FPv"
+	.4byte "getAt__17ArrayContainer<i>Fi"
+	.4byte "getTo__17ArrayContainer<i>Fv"
+	.4byte "writeObject__17ArrayContainer<i>FR6StreamRi"
+	.4byte "readObject__17ArrayContainer<i>FR6StreamRi"
+	.4byte "write__17ArrayContainer<i>FR6Stream"
+	.4byte "read__17ArrayContainer<i>FR6Stream"
+	.4byte "alloc__17ArrayContainer<i>Fi"
+	.4byte "addOne__17ArrayContainer<i>FRi"
+	.4byte "setArray__17ArrayContainer<i>FPii"
+.global __vt__Q23Sys9IndexList
+__vt__Q23Sys9IndexList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23Sys9IndexListFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__12Container<i>FPv"
+	.4byte "getNext__17ArrayContainer<i>FPv"
+	.4byte "getStart__17ArrayContainer<i>Fv"
+	.4byte "getEnd__17ArrayContainer<i>Fv"
+	.4byte "get__17ArrayContainer<i>FPv"
+	.4byte "getAt__17ArrayContainer<i>Fi"
+	.4byte "getTo__17ArrayContainer<i>Fv"
+	.4byte writeObject__Q23Sys9IndexListFR6StreamRi
+	.4byte readObject__Q23Sys9IndexListFR6StreamRi
+	.4byte "write__17ArrayContainer<i>FR6Stream"
+	.4byte "read__17ArrayContainer<i>FR6Stream"
+	.4byte "alloc__17ArrayContainer<i>Fi"
+	.4byte "addOne__17ArrayContainer<i>FRi"
+	.4byte "setArray__17ArrayContainer<i>FPii"
+.global __vt__Q23Sys12TriIndexList
+__vt__Q23Sys12TriIndexList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23Sys12TriIndexListFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__12Container<i>FPv"
+	.4byte "getNext__17ArrayContainer<i>FPv"
+	.4byte "getStart__17ArrayContainer<i>Fv"
+	.4byte "getEnd__17ArrayContainer<i>Fv"
+	.4byte "get__17ArrayContainer<i>FPv"
+	.4byte "getAt__17ArrayContainer<i>Fi"
+	.4byte "getTo__17ArrayContainer<i>Fv"
+	.4byte writeObject__Q23Sys9IndexListFR6StreamRi
+	.4byte readObject__Q23Sys9IndexListFR6StreamRi
+	.4byte "write__17ArrayContainer<i>FR6Stream"
+	.4byte "read__17ArrayContainer<i>FR6Stream"
+	.4byte "alloc__17ArrayContainer<i>Fi"
+	.4byte "addOne__17ArrayContainer<i>FRi"
+	.4byte "setArray__17ArrayContainer<i>FPii"
+.global "__vt__28ArrayContainer<10Vector3<f>>"
+"__vt__28ArrayContainer<10Vector3<f>>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__28ArrayContainer<10Vector3<f>>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<10Vector3<f>>FPv"
+	.4byte "getNext__28ArrayContainer<10Vector3<f>>FPv"
+	.4byte "getStart__28ArrayContainer<10Vector3<f>>Fv"
+	.4byte "getEnd__28ArrayContainer<10Vector3<f>>Fv"
+.global lbl_804B0004
+lbl_804B0004:
+	.4byte "get__28ArrayContainer<10Vector3<f>>FPv"
+	.4byte "getAt__28ArrayContainer<10Vector3<f>>Fi"
+	.4byte "getTo__28ArrayContainer<10Vector3<f>>Fv"
+	.4byte "writeObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>"
+	.4byte "readObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>"
+	.4byte "write__28ArrayContainer<10Vector3<f>>FR6Stream"
+	.4byte "read__28ArrayContainer<10Vector3<f>>FR6Stream"
+	.4byte "alloc__28ArrayContainer<10Vector3<f>>Fi"
+	.4byte "addOne__28ArrayContainer<10Vector3<f>>FR10Vector3<f>"
+	.4byte "setArray__28ArrayContainer<10Vector3<f>>FP10Vector3<f>i"
+.global "__vt__23Container<10Vector3<f>>"
+"__vt__23Container<10Vector3<f>>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__23Container<10Vector3<f>>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<10Vector3<f>>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__23Container<10Vector3<f>>Fi"
+	.4byte "getTo__23Container<10Vector3<f>>Fv"
+.global __vt__8Platform
+__vt__8Platform:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8PlatformFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8PlatformFv
 __ct__8PlatformFv:

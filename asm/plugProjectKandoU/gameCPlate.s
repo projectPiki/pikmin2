@@ -53,6 +53,35 @@ lbl_8047F030:
 	.4byte 0x2025640A
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global "__vt__27Container<Q24Game8Creature>"
+"__vt__27Container<Q24Game8Creature>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__27Container<Q24Game8Creature>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8Creature>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__27Container<Q24Game8Creature>Fi"
+	.4byte "getTo__27Container<Q24Game8Creature>Fv"
+.global __vt__Q24Game6CPlate
+__vt__Q24Game6CPlate:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game6CPlateFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8Creature>FPv"
+	.4byte getNext__Q24Game6CPlateFPv
+	.4byte getStart__Q24Game6CPlateFv
+	.4byte getEnd__Q24Game6CPlateFv
+	.4byte get__Q24Game6CPlateFPv
+	.4byte "getAt__27Container<Q24Game8Creature>Fi"
+	.4byte "getTo__27Container<Q24Game8Creature>Fv"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global get__Q24Game6CPlateFPv
 get__Q24Game6CPlateFPv:

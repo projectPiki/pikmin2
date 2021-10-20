@@ -44,6 +44,25 @@ lbl_8047C648:
 	.4byte 0x83672044
 	.4byte 0x616D7000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__13DynamicsParms
+__vt__13DynamicsParms:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "@12@__dt__13DynamicsParmsFv"
+	.4byte __dt__13DynamicsParmsFv
+.global "__vt__7Parm<b>"
+"__vt__7Parm<b>":
+	.4byte 0
+	.4byte 0
+	.4byte "size__7Parm<b>Fv"
+	.4byte "write__7Parm<b>FR6Stream"
+	.4byte "read__7Parm<b>FR6Stream"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13DynamicsParmsFv
 __ct__13DynamicsParmsFv:

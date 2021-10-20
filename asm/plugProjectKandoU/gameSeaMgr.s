@@ -61,6 +61,175 @@ lbl_8047F988:
 	.4byte 0x6B000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B57A8
+lbl_804B57A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game6SeaMgr
+__vt__Q24Game6SeaMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game6SeaMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8WaterBox>FPv"
+	.4byte "getNext__31NodeObjectMgr<Q24Game8WaterBox>FPv"
+	.4byte "getStart__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "getEnd__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "get__31NodeObjectMgr<Q24Game8WaterBox>FPv"
+	.4byte "getAt__27Container<Q24Game8WaterBox>Fi"
+	.4byte "getTo__27Container<Q24Game8WaterBox>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+	.4byte "@28@doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+	.4byte "@28@doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+	.4byte "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+	.4byte "doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+	.4byte "resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+.global "__vt__29TObjectNode<Q24Game8WaterBox>"
+"__vt__29TObjectNode<Q24Game8WaterBox>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__29TObjectNode<Q24Game8WaterBox>Fv"
+	.4byte getChildCount__5CNodeFv
+.global "__vt__31NodeObjectMgr<Q24Game8WaterBox>"
+"__vt__31NodeObjectMgr<Q24Game8WaterBox>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8WaterBox>FPv"
+	.4byte "getNext__31NodeObjectMgr<Q24Game8WaterBox>FPv"
+	.4byte "getStart__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "getEnd__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "get__31NodeObjectMgr<Q24Game8WaterBox>FPv"
+	.4byte "getAt__27Container<Q24Game8WaterBox>Fi"
+	.4byte "getTo__27Container<Q24Game8WaterBox>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+	.4byte "@28@doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+	.4byte "@28@doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+	.4byte "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+	.4byte "doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+	.4byte "resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+.global "__vt__27ObjectMgr<Q24Game8WaterBox>"
+"__vt__27ObjectMgr<Q24Game8WaterBox>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8WaterBox>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__27Container<Q24Game8WaterBox>Fi"
+	.4byte "getTo__27Container<Q24Game8WaterBox>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+	.4byte "@28@doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "@28@doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+	.4byte "@28@doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+	.4byte "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+	.4byte "doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+	.4byte "doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+.global "__vt__27Container<Q24Game8WaterBox>"
+"__vt__27Container<Q24Game8WaterBox>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__27Container<Q24Game8WaterBox>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__27Container<Q24Game8WaterBox>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__27Container<Q24Game8WaterBox>Fi"
+	.4byte "getTo__27Container<Q24Game8WaterBox>Fv"
+.global __vt__Q24Game12AABBWaterBox
+__vt__Q24Game12AABBWaterBox:
+	.4byte 0
+	.4byte 0
+	.4byte inWater__Q24Game12AABBWaterBoxFRQ23Sys6Sphere
+	.4byte inWater2d__Q24Game12AABBWaterBoxFRQ23Sys6Sphere
+	.4byte getSeaLevel__Q24Game12AABBWaterBoxFv
+	.4byte getSeaHeightPtr__Q24Game12AABBWaterBoxFv
+	.4byte update__Q24Game12AABBWaterBoxFv
+	.4byte startDown__Q24Game12AABBWaterBoxFf
+	.4byte startUp__Q24Game12AABBWaterBoxFf
+	.4byte directDraw__Q24Game12AABBWaterBoxFR8Graphics
+	.4byte doAnimation__Q24Game12AABBWaterBoxFv
+	.4byte doEntry__Q24Game12AABBWaterBoxFv
+	.4byte doSetView__Q24Game12AABBWaterBoxFi
+	.4byte doViewCalc__Q24Game12AABBWaterBoxFv
+	.4byte doSimulation__Q24Game8WaterBoxFf
+	.4byte doDirectDraw__Q24Game8WaterBoxFR8Graphics
+	.4byte attachModel__Q24Game12AABBWaterBoxFP12J3DModelDataPQ23Sys15MatTexAnimationf
+	.4byte calcMatrix__Q24Game12AABBWaterBoxFv
+.global __vt__Q24Game8WaterBox
+__vt__Q24Game8WaterBox:
+	.4byte 0
+	.4byte 0
+	.4byte inWater__Q24Game8WaterBoxFRQ23Sys6Sphere
+	.4byte inWater2d__Q24Game8WaterBoxFRQ23Sys6Sphere
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte startDown__Q24Game8WaterBoxFf
+	.4byte startUp__Q24Game8WaterBoxFf
+	.4byte directDraw__Q24Game8WaterBoxFR8Graphics
+	.4byte doAnimation__Q24Game8WaterBoxFv
+	.4byte doEntry__Q24Game8WaterBoxFv
+	.4byte doSetView__Q24Game8WaterBoxFi
+	.4byte doViewCalc__Q24Game8WaterBoxFv
+	.4byte doSimulation__Q24Game8WaterBoxFf
+	.4byte doDirectDraw__Q24Game8WaterBoxFR8Graphics
+	.4byte attachModel__Q24Game8WaterBoxFP12J3DModelDataPQ23Sys15MatTexAnimationf
+	.4byte calcMatrix__Q24Game8WaterBoxFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global startDown__Q24Game12AABBWaterBoxFf
 startDown__Q24Game12AABBWaterBoxFf:

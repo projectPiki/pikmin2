@@ -84,6 +84,65 @@ lbl_8047F728:
 	.4byte 0x0D0A0000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B55F0
+lbl_804B55F0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game12GeneratorMgr
+__vt__Q24Game12GeneratorMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game12GeneratorMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte doAnimation__Q24Game12GeneratorMgrFv
+	.4byte doEntry__Q24Game12GeneratorMgrFv
+	.4byte doSetView__Q24Game12GeneratorMgrFi
+	.4byte doViewCalc__Q24Game12GeneratorMgrFv
+.global __vt__Q24Game9Generator
+__vt__Q24Game9Generator:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game9GeneratorFv
+	.4byte getChildCount__5CNodeFv
+	.4byte doAnimation__Q24Game9GeneratorFv
+	.4byte doEntry__Q24Game9GeneratorFv
+	.4byte doSetView__Q24Game9GeneratorFi
+	.4byte doViewCalc__Q24Game9GeneratorFv
+.global __vt__Q24Game9GenObject
+__vt__Q24Game9GenObject:
+	.4byte 0
+	.4byte 0
+	.4byte doWrite__Q24Game7GenBaseFR6Stream
+	.4byte ramSaveParameters__Q24Game7GenBaseFR6Stream
+	.4byte ramLoadParameters__Q24Game7GenBaseFR6Stream
+	.4byte doEvent__Q24Game7GenBaseFUl
+	.4byte doRead__Q24Game7GenBaseFR6Stream
+	.4byte update__Q24Game9GenObjectFPQ24Game9Generator
+	.4byte render__Q24Game9GenObjectFR8GraphicsPQ24Game9Generator
+	.4byte getLatestVersion__Q24Game9GenObjectFv
+	.4byte getShape__Q24Game7GenBaseFv
+	.4byte updateUseList__Q24Game9GenObjectFPQ24Game9Generatori
+	.4byte generate__Q24Game9GenObjectFPQ24Game9Generator
+	.4byte 0
+	.4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
+	.4byte getDebugInfo__Q24Game9GenObjectFPc
+.global __vt__Q24Game7GenBase
+__vt__Q24Game7GenBase:
+	.4byte 0
+	.4byte 0
+	.4byte doWrite__Q24Game7GenBaseFR6Stream
+	.4byte ramSaveParameters__Q24Game7GenBaseFR6Stream
+	.4byte ramLoadParameters__Q24Game7GenBaseFR6Stream
+	.4byte doEvent__Q24Game7GenBaseFUl
+	.4byte doRead__Q24Game7GenBaseFR6Stream
+	.4byte update__Q24Game7GenBaseFPQ24Game9Generator
+	.4byte render__Q24Game7GenBaseFR8GraphicsPQ24Game9Generator
+	.4byte getLatestVersion__Q24Game7GenBaseFv
+	.4byte getShape__Q24Game7GenBaseFv
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global GeneratorCurrentVersion

@@ -463,6 +463,147 @@ lbl_8047D648:
 	.4byte 0x6D640000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game7NaviMgr
+__vt__Q24Game7NaviMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game7NaviMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<Q24Game4Navi>FPv"
+	.4byte "getNext__27MonoObjectMgr<Q24Game4Navi>FPv"
+	.4byte "getStart__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "getEnd__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "get__27MonoObjectMgr<Q24Game4Navi>FPv"
+	.4byte "getAt__27MonoObjectMgr<Q24Game4Navi>Fi"
+	.4byte "getTo__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__Q24Game7NaviMgrFv"
+	.4byte "@28@doEntry__Q24Game7NaviMgrFv"
+	.4byte "@28@doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
+	.4byte "@28@doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "@28@doSimulation__Q24Game7NaviMgrFf"
+	.4byte "@28@doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte "@28@loadResources__Q24Game7NaviMgrFv"
+	.4byte "@28@resetMgr__Q24Game7NaviMgrFv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte "@28@frozenable__Q24Game7NaviMgrFv"
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte doAnimation__Q24Game7NaviMgrFv
+	.4byte doEntry__Q24Game7NaviMgrFv
+	.4byte "doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
+	.4byte "doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte doSimulation__Q24Game7NaviMgrFf
+	.4byte "doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
+	.4byte birth__Q24Game7NaviMgrFv
+	.4byte resetMgr__Q24Game7NaviMgrFv
+	.4byte "clearMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@48@__dt__Q24Game7NaviMgrFv"
+	.4byte killAll__Q24Game7NaviMgrFv
+	.4byte getMgrName__Q24Game7NaviMgrFv
+	.4byte frozenable__Q24Game7NaviMgrFv
+	.4byte loadResources__Q24Game7NaviMgrFv
+.global "__vt__23Container<Q24Game4Navi>"
+"__vt__23Container<Q24Game4Navi>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__23Container<Q24Game4Navi>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<Q24Game4Navi>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__23Container<Q24Game4Navi>Fi"
+	.4byte "getTo__23Container<Q24Game4Navi>Fv"
+.global "__vt__23ObjectMgr<Q24Game4Navi>"
+"__vt__23ObjectMgr<Q24Game4Navi>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__23ObjectMgr<Q24Game4Navi>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<Q24Game4Navi>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__23Container<Q24Game4Navi>Fi"
+	.4byte "getTo__23Container<Q24Game4Navi>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__23ObjectMgr<Q24Game4Navi>Fv"
+	.4byte "@28@doEntry__23ObjectMgr<Q24Game4Navi>Fv"
+	.4byte "@28@doSetView__23ObjectMgr<Q24Game4Navi>Fi"
+	.4byte "@28@doViewCalc__23ObjectMgr<Q24Game4Navi>Fv"
+	.4byte "@28@doSimulation__23ObjectMgr<Q24Game4Navi>Ff"
+	.4byte "@28@doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__23ObjectMgr<Q24Game4Navi>Fv"
+	.4byte "doEntry__23ObjectMgr<Q24Game4Navi>Fv"
+	.4byte "doSetView__23ObjectMgr<Q24Game4Navi>Fi"
+	.4byte "doViewCalc__23ObjectMgr<Q24Game4Navi>Fv"
+	.4byte "doSimulation__23ObjectMgr<Q24Game4Navi>Ff"
+	.4byte "doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics"
+.global "__vt__27MonoObjectMgr<Q24Game4Navi>"
+"__vt__27MonoObjectMgr<Q24Game4Navi>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__23Container<Q24Game4Navi>FPv"
+	.4byte "getNext__27MonoObjectMgr<Q24Game4Navi>FPv"
+	.4byte "getStart__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "getEnd__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "get__27MonoObjectMgr<Q24Game4Navi>FPv"
+	.4byte "getAt__27MonoObjectMgr<Q24Game4Navi>Fi"
+	.4byte "getTo__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "@28@doEntry__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "@28@doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
+	.4byte "@28@doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "@28@doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff"
+	.4byte "@28@doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "doEntry__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
+	.4byte "doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff"
+	.4byte "doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
+	.4byte "birth__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "clearMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
+	.4byte "onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv"
+.global __vt__Q24Game13FakePikiParms
+__vt__Q24Game13FakePikiParms:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game13FakePikiParmsFR6Stream
+.global __vt__Q24Game9NaviParms
+__vt__Q24Game9NaviParms:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game9NaviParmsFR6Stream
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7NaviMgrFv
 __ct__Q24Game7NaviMgrFv:

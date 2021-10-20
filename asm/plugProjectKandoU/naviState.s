@@ -89,6 +89,779 @@ lbl_8047EBD8:
 	.4byte 0x67536D6F
 	.4byte 0x6B650000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B2D40
+lbl_804B2D40:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000000
+.global "se_taisos__23@unnamed@naviState_cpp@"
+"se_taisos__23@unnamed@naviState_cpp@":
+	.4byte 0x00000883
+	.4byte 0x00000884
+	.4byte 0x00000885
+.global "se_chats__23@unnamed@naviState_cpp@"
+"se_chats__23@unnamed@naviState_cpp@":
+	.4byte 0x00000886
+	.4byte 0x00000887
+	.4byte 0x00000888
+.global "se_lookbacks__23@unnamed@naviState_cpp@"
+"se_lookbacks__23@unnamed@naviState_cpp@":
+	.4byte 0x00000880
+	.4byte 0x00000881
+	.4byte 0x00000882
+.global "se_novis__23@unnamed@naviState_cpp@"
+"se_novis__23@unnamed@naviState_cpp@":
+	.4byte 0x0000087D
+	.4byte 0x0000087E
+	.4byte 0x0000087F
+.global "se_jumps__23@unnamed@naviState_cpp@"
+"se_jumps__23@unnamed@naviState_cpp@":
+	.4byte 0x00000874
+	.4byte 0x00000875
+	.4byte 0x00000876
+.global "se_kyoros__23@unnamed@naviState_cpp@"
+"se_kyoros__23@unnamed@naviState_cpp@":
+	.4byte 0x0000087A
+	.4byte 0x0000087B
+	.4byte 0x0000087C
+.global lbl_804B2DA4
+lbl_804B2DA4:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte hitCallback__Q24Game14NaviPunchStateFP8CollPart
+.global lbl_804B2DB0
+lbl_804B2DB0:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte doAnimCallback__Q24Game18NaviThrowWaitStateFv
+.global __vt__Q24Game16NaviPressedState
+__vt__Q24Game16NaviPressedState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game16NaviPressedStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game16NaviPressedStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game16NaviPressedStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game16NaviPressedStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game16NaviPressedStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game16NaviPressedStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game20NaviDemo_HoleInState
+__vt__Q24Game20NaviDemo_HoleInState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game20NaviDemo_HoleInStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game20NaviDemo_HoleInStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game20NaviDemo_HoleInStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game20NaviDemo_HoleInStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game17NaviDemo_UfoState
+__vt__Q24Game17NaviDemo_UfoState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game17NaviDemo_UfoStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game17NaviDemo_UfoStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game17NaviDemo_UfoStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game15NaviPelletState
+__vt__Q24Game15NaviPelletState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game15NaviPelletStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game15NaviPelletStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game15NaviPelletStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game15NaviPelletStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game15NaviPelletStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game14NaviThrowState
+__vt__Q24Game14NaviThrowState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game14NaviThrowStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game14NaviThrowStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game14NaviThrowStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+	.4byte onKeyEvent__Q24Game14NaviThrowStateFRCQ28SysShape8KeyEvent
+	.4byte 0
+	.4byte 0
+	.4byte "@32@4@onKeyEvent__Q24Game14NaviThrowStateFRCQ28SysShape8KeyEvent"
+.global __vt__Q24Game18NaviThrowWaitState
+__vt__Q24Game18NaviThrowWaitState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game18NaviThrowWaitStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game18NaviThrowWaitStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game18NaviThrowWaitStateFPQ24Game4Navi
+	.4byte resume__Q24Game18NaviThrowWaitStateFPQ24Game4Navi
+	.4byte restart__Q24Game18NaviThrowWaitStateFPQ24Game4Navi
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game18NaviThrowWaitStateFR14J2DGrafContextRi
+	.4byte onKeyEvent__Q24Game18NaviThrowWaitStateFRCQ28SysShape8KeyEvent
+	.4byte 0
+	.4byte 0
+	.4byte "@60@4@onKeyEvent__Q24Game18NaviThrowWaitStateFRCQ28SysShape8KeyEvent"
+.global "__vt__37Delegate<Q24Game18NaviThrowWaitState>"
+"__vt__37Delegate<Q24Game18NaviThrowWaitState>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__37Delegate<Q24Game18NaviThrowWaitState>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game15NaviGatherState
+__vt__Q24Game15NaviGatherState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game15NaviGatherStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game15NaviGatherStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game15NaviGatherStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game13NaviDeadState
+__vt__Q24Game13NaviDeadState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game13NaviDeadStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game13NaviDeadStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game13NaviDeadStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game13NaviDeadStateFv
+	.4byte onKeyEvent__Q24Game13NaviDeadStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game13NaviDeadStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game13NaviDeadStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game16NaviDamagedState
+__vt__Q24Game16NaviDamagedState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game16NaviDamagedStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game16NaviDamagedStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game16NaviDamagedStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game16NaviDamagedStateFv
+	.4byte onKeyEvent__Q24Game16NaviDamagedStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game16NaviDamagedStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game15NaviAbsorbState
+__vt__Q24Game15NaviAbsorbState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game15NaviAbsorbStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game15NaviAbsorbStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game15NaviAbsorbStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game15NaviAbsorbStateFv
+	.4byte onKeyEvent__Q24Game15NaviAbsorbStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game15NaviAbsorbStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game15NaviAbsorbStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q32og6Screen17DispMemberContena
+__vt__Q32og6Screen17DispMemberContena:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen17DispMemberContenaFv
+	.4byte getOwnerID__Q32og6Screen17DispMemberContenaFv
+	.4byte getMemberID__Q32og6Screen17DispMemberContenaFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen17DispMemberUfoMenu
+__vt__Q32og6Screen17DispMemberUfoMenu:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen17DispMemberUfoMenuFv
+	.4byte getOwnerID__Q32og6Screen17DispMemberUfoMenuFv
+	.4byte getMemberID__Q32og6Screen17DispMemberUfoMenuFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen18DispMemberUfoGroup
+__vt__Q32og6Screen18DispMemberUfoGroup:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen18DispMemberUfoGroupFv
+	.4byte getOwnerID__Q32og6Screen18DispMemberUfoGroupFv
+	.4byte getMemberID__Q32og6Screen18DispMemberUfoGroupFv
+	.4byte doSetSubMemberAll__Q32og6Screen18DispMemberUfoGroupFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game18NaviContainerState
+__vt__Q24Game18NaviContainerState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game18NaviContainerStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game18NaviContainerStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game18NaviContainerStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game18NaviContainerStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game18NaviSaraiExitState
+__vt__Q24Game18NaviSaraiExitState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game18NaviSaraiExitStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game18NaviSaraiExitStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game18NaviSaraiExitStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game18NaviSaraiExitStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game18NaviSaraiExitStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game14NaviSaraiState
+__vt__Q24Game14NaviSaraiState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game14NaviSaraiStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game14NaviSaraiStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game14NaviSaraiStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game14NaviSaraiStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game19NaviKokeDamageState
+__vt__Q24Game19NaviKokeDamageState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game19NaviKokeDamageStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game19NaviKokeDamageStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game19NaviKokeDamageStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game19NaviKokeDamageStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game19NaviKokeDamageStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game19NaviKokeDamageStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game14NaviFlickState
+__vt__Q24Game14NaviFlickState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game14NaviFlickStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game14NaviFlickStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game14NaviFlickStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game14NaviFlickStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game14NaviFlickStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game14NaviFlickStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game14NaviFlickStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game17NaviFallMeckState
+__vt__Q24Game17NaviFallMeckState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game17NaviFallMeckStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game17NaviFallMeckStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game17NaviFallMeckStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game17NaviFallMeckStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game17NaviFallMeckStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game17NaviFallMeckStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game14NaviClimbState
+__vt__Q24Game14NaviClimbState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game14NaviClimbStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game14NaviClimbStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game14NaviClimbStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q23efx14ArgDopingSmoke
+__vt__Q23efx14ArgDopingSmoke:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q23efx14ArgDopingSmokeFv
+.global __vt__Q24Game13NaviDopeState
+__vt__Q24Game13NaviDopeState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game13NaviDopeStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game13NaviDopeStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game13NaviDopeStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game13NaviDopeStateFv
+	.4byte onKeyEvent__Q24Game13NaviDopeStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game19NaviNukuAdjustState
+__vt__Q24Game19NaviNukuAdjustState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game19NaviNukuAdjustStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game19NaviNukuAdjustStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game19NaviNukuAdjustStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game19NaviNukuAdjustStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game19NaviNukuAdjustStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game19NaviNukuAdjustStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game13NaviNukuState
+__vt__Q24Game13NaviNukuState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game13NaviNukuStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game13NaviNukuStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game13NaviNukuStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game13NaviNukuStateFv
+	.4byte onKeyEvent__Q24Game13NaviNukuStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game17NaviPathMoveState
+__vt__Q24Game17NaviPathMoveState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game17NaviPathMoveStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game17NaviPathMoveStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game17NaviPathMoveStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global "__vt__45Delegate1<Q24Game14NaviPunchState,P8CollPart>"
+"__vt__45Delegate1<Q24Game14NaviPunchState,P8CollPart>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__45Delegate1<Q24Game14NaviPunchState,P8CollPart>FP8CollPart"
+.global "__vt__22IDelegate1<P8CollPart>"
+"__vt__22IDelegate1<P8CollPart>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q23efx11TOrimapunch
+__vt__Q23efx11TOrimapunch:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game14NaviPunchState
+__vt__Q24Game14NaviPunchState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game14NaviPunchStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game14NaviPunchStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game14NaviPunchStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game14NaviPunchStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game15NaviFollowState
+__vt__Q24Game15NaviFollowState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game15NaviFollowStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game15NaviFollowStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game15NaviFollowStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game15NaviFollowStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game15NaviFollowStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game15NaviChangeState
+__vt__Q24Game15NaviChangeState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game15NaviChangeStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game15NaviChangeStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game15NaviChangeStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game15NaviChangeStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game13NaviWalkState
+__vt__Q24Game13NaviWalkState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game13NaviWalkStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game13NaviWalkStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game13NaviWalkStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game13NaviWalkStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game13NaviWalkStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game13NaviWalkStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game13NaviWalkStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q24Game14NaviStuckState
+__vt__Q24Game14NaviStuckState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game14NaviStuckStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game14NaviStuckStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game14NaviStuckStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game14NaviStuckStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+.global __vt__Q24Game18NaviCarryBombState
+__vt__Q24Game18NaviCarryBombState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game18NaviCarryBombStateFPQ24Game4NaviPQ24Game8StateArg
+	.4byte exec__Q24Game18NaviCarryBombStateFPQ24Game4Navi
+	.4byte cleanup__Q24Game18NaviCarryBombStateFPQ24Game4Navi
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game18NaviCarryBombStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__Q24Game22FSMState<Q24Game4Navi>"
+"__vt__Q24Game22FSMState<Q24Game4Navi>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviPQ24Game8StateArg"
+	.4byte "exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "cleanup__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+.global __vt__Q24Game7NaviFSM
+__vt__Q24Game7NaviFSM:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game7NaviFSMFPQ24Game4Navi
+	.4byte "start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte "exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte transit__Q24Game7NaviFSMFPQ24Game4NaviiPQ24Game8StateArg
+.global __vt__Q24Game9NaviState
+__vt__Q24Game9NaviState:
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviPQ24Game8StateArg"
+	.4byte "exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "cleanup__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+	.4byte invincible__Q24Game9NaviStateFv
+	.4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+	.4byte pressable__Q24Game9NaviStateFv
+	.4byte callable__Q24Game9NaviStateFv
+	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+	.4byte needYChangeMotion__Q24Game9NaviStateFv
+	.4byte vsUsableY__Q24Game9NaviStateFv
+	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
 draw2d__Q24Game9NaviStateFR14J2DGrafContextRi:

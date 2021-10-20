@@ -113,6 +113,169 @@ lbl_8047F4C4:
 	.4byte 0x61746541
 	.4byte 0x72670000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B5008
+lbl_804B5008:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game17PelletReturnState
+__vt__Q24Game17PelletReturnState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game17PelletReturnStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game17PelletReturnStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game17PelletReturnStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game11PelletStateFv
+	.4byte appeared__Q24Game11PelletStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global __vt__Q24Game13PelletUpState
+__vt__Q24Game13PelletUpState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game13PelletUpStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game13PelletUpStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game13PelletUpStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game13PelletUpStateFv
+	.4byte appeared__Q24Game11PelletStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global __vt__Q24Game16PelletZukanState
+__vt__Q24Game16PelletZukanState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game16PelletZukanStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game16PelletZukanStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game16PelletZukanStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game11PelletStateFv
+	.4byte appeared__Q24Game11PelletStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global __vt__Q24Game15PelletBuryState
+__vt__Q24Game15PelletBuryState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game15PelletBuryStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game15PelletBuryStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game15PelletBuryStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game15PelletBuryStateFv
+	.4byte appeared__Q24Game11PelletStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global __vt__Q24Game22PelletScaleAppearState
+__vt__Q24Game22PelletScaleAppearState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game22PelletScaleAppearStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game22PelletScaleAppearStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game22PelletScaleAppearStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game11PelletStateFv
+	.4byte appeared__Q24Game22PelletScaleAppearStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global __vt__Q23efx12TTsuyuGrowon
+__vt__Q23efx12TTsuyuGrowon:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q24Game17PelletAppearState
+__vt__Q24Game17PelletAppearState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game17PelletAppearStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game17PelletAppearStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game17PelletAppearStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game11PelletStateFv
+	.4byte appeared__Q24Game17PelletAppearStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global __vt__Q24Game15PelletGoalState
+__vt__Q24Game15PelletGoalState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game15PelletGoalStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game15PelletGoalStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game15PelletGoalStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game11PelletStateFv
+	.4byte appeared__Q24Game11PelletStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global __vt__Q24Game19PelletGoalWaitState
+__vt__Q24Game19PelletGoalWaitState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game19PelletGoalWaitStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game19PelletGoalWaitStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game19PelletGoalWaitStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game11PelletStateFv
+	.4byte appeared__Q24Game11PelletStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global __vt__Q24Game17PelletNormalState
+__vt__Q24Game17PelletNormalState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game17PelletNormalStateFPQ24Game6PelletPQ24Game8StateArg
+	.4byte exec__Q24Game17PelletNormalStateFPQ24Game6Pellet
+	.4byte cleanup__Q24Game17PelletNormalStateFPQ24Game6Pellet
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game11PelletStateFv
+	.4byte appeared__Q24Game11PelletStateFv
+	.4byte isPickable__Q24Game17PelletNormalStateFv
+.global __vt__Q24Game11PelletState
+__vt__Q24Game11PelletState:
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletPQ24Game8StateArg"
+	.4byte "exec__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "cleanup__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte isBuried__Q24Game11PelletStateFv
+	.4byte appeared__Q24Game11PelletStateFv
+	.4byte isPickable__Q24Game11PelletStateFv
+.global "__vt__Q24Game24FSMState<Q24Game6Pellet>"
+"__vt__Q24Game24FSMState<Q24Game6Pellet>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletPQ24Game8StateArg"
+	.4byte "exec__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "cleanup__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "resume__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "restart__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+.global __vt__Q24Game9PelletFSM
+__vt__Q24Game9PelletFSM:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q24Game9PelletFSMFPQ24Game6Pellet
+	.4byte "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+	.4byte "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
+	.4byte "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q24Game9PelletFSMFPQ24Game6Pellet
 init__Q24Game9PelletFSMFPQ24Game6Pellet:

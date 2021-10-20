@@ -51,6 +51,19 @@ lbl_8047D01C:
 	.4byte 0x2121210A
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__13SweepCallback
+__vt__13SweepCallback:
+	.4byte 0
+	.4byte 0
+	.4byte invoke__13SweepCallbackFPQ210SweepPrune6ObjectPQ210SweepPrune6Object
+.global __vt__Q310SweepPrune5World8Callback
+__vt__Q310SweepPrune5World8Callback:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sOptResolveColl__Q24Game11CellPyramid

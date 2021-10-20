@@ -61,6 +61,185 @@ lbl_8047EF40:
 	.4byte 0x67000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B47D0
+lbl_804B47D0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q26PikiAI12ActBattleArg
+__vt__Q26PikiAI12ActBattleArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI12ActBattleArgFv
+.global __vt__Q24Game14InteractBattle
+__vt__Q24Game14InteractBattle:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game14InteractBattleFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game11InteractGas
+__vt__Q24Game11InteractGas:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractGasFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractGasFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game14InteractBubble
+__vt__Q24Game14InteractBubble:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game14InteractBubbleFPQ24Game4Piki
+	.4byte actNavi__Q24Game14InteractBubbleFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game16InteractAstonish
+__vt__Q24Game16InteractAstonish:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game16InteractAstonishFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game12InteractFire
+__vt__Q24Game12InteractFire:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game12InteractFireFPQ24Game4Piki
+	.4byte actNavi__Q24Game12InteractFireFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game20InteractSuikomi_Test
+__vt__Q24Game20InteractSuikomi_Test:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game20InteractSuikomi_TestFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game12InteractBury
+__vt__Q24Game12InteractBury:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game12InteractBuryFPQ24Game4Piki
+	.4byte actNavi__Q24Game12InteractBuryFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game16InteractFallMeck
+__vt__Q24Game16InteractFallMeck:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game16InteractFallMeckFPQ24Game4Piki
+	.4byte actNavi__Q24Game16InteractFallMeckFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game13InteractDenki
+__vt__Q24Game13InteractDenki:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game13InteractDenkiFPQ24Game4Piki
+	.4byte actNavi__Q24Game13InteractDenkiFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game12InteractBomb
+__vt__Q24Game12InteractBomb:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game12InteractBombFPQ24Game4Piki
+	.4byte actNavi__Q24Game12InteractBombFPQ24Game4Navi
+	.4byte actEnemy__Q24Game12InteractBombFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game20InteractHanaChirashi
+__vt__Q24Game20InteractHanaChirashi:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game20InteractHanaChirashiFPQ24Game4Piki
+	.4byte actNavi__Q24Game12InteractWindFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game12InteractWind
+__vt__Q24Game12InteractWind:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game12InteractWindFPQ24Game4Piki
+	.4byte actNavi__Q24Game12InteractWindFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game12InteractDope
+__vt__Q24Game12InteractDope:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game12InteractDopeFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game12InteractDopeFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game11InteractFue
+__vt__Q24Game11InteractFue:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractFueFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractFueFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractFueFPQ24Game8BaseItem
+.global __vt__Q24Game15InteractFueFuki
+__vt__Q24Game15InteractFueFuki:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki
+	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki
 actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki:
