@@ -1,4 +1,66 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23efx11THdamaShoot
+__vt__Q23efx11THdamaShoot:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TSimpleMtx3FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple3Fv
+	.4byte fade__Q23efx8TSimple3Fv
+.global __vt__Q23efx11THdamaSight
+__vt__Q23efx11THdamaSight:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx11THdamaSightFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx11THdamaSightFv
+.global __vt__Q23efx10THdamaHit1
+__vt__Q23efx10THdamaHit1:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple5FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple5Fv
+	.4byte fade__Q23efx8TSimple5Fv
+.global __vt__Q23efx10THdamaHit2
+__vt__Q23efx10THdamaHit2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple4FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple4Fv
+	.4byte fade__Q23efx8TSimple4Fv
+.global __vt__Q23efx10THdamaHit3
+__vt__Q23efx10THdamaHit3:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple4FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple4Fv
+	.4byte fade__Q23efx8TSimple4Fv
+.global __vt__Q23efx6ArgDir
+__vt__Q23efx6ArgDir:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q23efx6ArgDirFv
+.global __vt__Q34Game6Houdai17HoudaiShotGunNode
+__vt__Q34Game6Houdai17HoudaiShotGunNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game6Houdai17HoudaiShotGunNodeFv
+	.4byte getChildCount__5CNodeFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi

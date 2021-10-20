@@ -780,6 +780,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ImomushiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ImomushiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Imomushi.o\
+	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiMgr.o\
@@ -801,7 +802,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageMgr.o\
-	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurage.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureMgr.o\
