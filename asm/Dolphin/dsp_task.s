@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A79B8
+lbl_804A79B8:
+	.asciz "DSP is booting task: 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : IRAM MMEM ADDR: 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : IRAM DSP ADDR : 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : IRAM LENGTH   : 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : DRAM MMEM ADDR: 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_boot_task()  : Start Vector  : 0x%08X\n"
+	.skip 3
+	.asciz "__DSP_add_task() : Added task    : 0x%08X\n"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __DSP_exec_task

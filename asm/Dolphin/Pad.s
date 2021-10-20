@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A9E60
+lbl_804A9E60:
+	.asciz "<< Dolphin SDK - PAD\trelease build: Aug  6 2003 04:30:02 (0x2301) >>"
+	.skip 3
+.global ResetFunctionInfo_3
+ResetFunctionInfo_3:
+	.4byte OnReset3
+	.4byte 0x0000007F
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __PADVersion

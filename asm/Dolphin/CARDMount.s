@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global SectorSizeTable
+SectorSizeTable:
+	.4byte 0x00002000
+	.4byte 0x00004000
+	.4byte 0x00008000
+	.4byte 0x00010000
+	.4byte 0x00020000
+	.4byte 0x00040000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global LatencyTable
+LatencyTable:
+	.4byte 0x00000004
+	.4byte 0x00000008
+	.4byte 0x00000010
+	.4byte 0x00000020
+	.4byte 0x00000040
+	.4byte 0x00000080
+	.4byte 0x00000100
+	.4byte 0x00000200
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global IsCard

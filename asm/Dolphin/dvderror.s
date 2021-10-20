@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global ErrorTable
+ErrorTable:
+	.4byte 0x00000000
+	.4byte 0x00023A00
+	.4byte 0x00062800
+	.4byte 0x00030200
+	.4byte 0x00031100
+	.4byte 0x00052000
+	.4byte 0x00052001
+	.4byte 0x00052100
+	.4byte 0x00052400
+	.4byte 0x00052401
+	.4byte 0x00052402
+	.4byte 0x000B5A01
+	.4byte 0x00056300
+	.4byte 0x00020401
+	.4byte 0x00020400
+	.4byte 0x00040800
+	.4byte 0x00100007
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global ErrorCode2Num

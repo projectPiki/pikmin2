@@ -34,6 +34,13 @@ __THPAANScaleFactor:
 	.double 0.5411961078643799
 	.double 0.27589938044548035
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global THP_VERSION_STRING
+THP_VERSION_STRING:
+	.asciz "<< Dolphin SDK - THP\trelease build: Jan  9 2004 13:06:55 (0x2301) >>"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __THPVersion

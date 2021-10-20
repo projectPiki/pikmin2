@@ -236,6 +236,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUData.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUDataMgr.o\
+	$(BUILD_DIR)/asm/data_0.o\
 	$(BUILD_DIR)/asm/Dolphin/mainloop.o\
 	$(BUILD_DIR)/asm/Dolphin/nubevent.o\
 	$(BUILD_DIR)/src/Dolphin/nubinit.o\
@@ -282,6 +283,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/arith.o\
 	$(BUILD_DIR)/asm/Dolphin/buffer_io.o\
 	$(BUILD_DIR)/src/Dolphin/critical_regions.gamecube.o\
+	$(BUILD_DIR)/asm/Dolphin/ctype.o\
 	$(BUILD_DIR)/src/Dolphin/ctype.o\
 	$(BUILD_DIR)/asm/Dolphin/direct_io.o\
 	$(BUILD_DIR)/asm/Dolphin/file_io.o\
@@ -421,7 +423,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/GBARead.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAWrite.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAXfer.o\
-	$(BUILD_DIR)/asm/data_0.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantState.o\

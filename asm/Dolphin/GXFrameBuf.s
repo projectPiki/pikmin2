@@ -1,4 +1,92 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global GXNtsc480IntDf
+GXNtsc480IntDf:
+	.4byte 0x00000000
+	.4byte 0x028001E0
+	.4byte 0x01E00028
+	.4byte 0x00000280
+	.4byte 0x01E00000
+	.4byte 0x00000001
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060808
+	.4byte 0x0A0C0A08
+	.4byte 0x08000000
+.global GXNtsc480Int
+GXNtsc480Int:
+	.4byte 0x00000000
+	.4byte 0x028001E0
+	.4byte 0x01E00028
+	.4byte 0x00000280
+	.4byte 0x01E00000
+	.4byte 0x00000001
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060000
+	.4byte 0x15161500
+	.4byte 0x00000000
+.global GXMpal480IntDf
+GXMpal480IntDf:
+	.4byte 0x00000008
+	.4byte 0x028001E0
+	.4byte 0x01E00028
+	.4byte 0x00000280
+	.4byte 0x01E00000
+	.4byte 0x00000001
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060808
+	.4byte 0x0A0C0A08
+	.4byte 0x08000000
+.global GXPal528IntDf
+GXPal528IntDf:
+	.4byte 0x00000004
+	.4byte 0x02800210
+	.4byte 0x02100028
+	.4byte 0x00170280
+	.4byte 0x02100000
+	.4byte 0x00000001
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060808
+	.4byte 0x0A0C0A08
+	.4byte 0x08000000
+.global GXEurgb60Hz480IntDf
+GXEurgb60Hz480IntDf:
+	.4byte 0x00000014
+	.4byte 0x028001E0
+	.4byte 0x01E00028
+	.4byte 0x00000280
+	.4byte 0x01E00000
+	.4byte 0x00000001
+	.4byte 0x00000606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060606
+	.4byte 0x06060808
+	.4byte 0x0A0C0A08
+	.4byte 0x08000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXSetDispCopySrc

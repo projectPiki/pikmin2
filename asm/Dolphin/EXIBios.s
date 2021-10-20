@@ -1,4 +1,31 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7ED0
+lbl_804A7ED0:
+	.asciz "<< Dolphin SDK - EXI\trelease build: Apr 17 2003 12:33:17 (0x2301) >>"
+	.skip 3
+	.asciz "Memory Card 59"
+	.skip 1
+	.asciz "Memory Card 123"
+	.asciz "Memory Card 251"
+	.asciz "Memory Card 507"
+	.asciz "Memory Card 1019"
+	.skip 3
+	.asciz "Memory Card 2043"
+	.skip 3
+	.asciz "USB Adapter"
+	.asciz "Net Card"
+	.skip 3
+	.asciz "Artist Ether"
+	.skip 3
+	.asciz "Broadband Adapter"
+	.skip 2
+	.asciz "Stream Hanger"
+	.skip 2
+	.asciz "IS-DOL-VIEWER"
+	.skip 2
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __EXIVersion

@@ -1,4 +1,147 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A8060
+lbl_804A8060:
+	.asciz "<< Dolphin SDK - GX\trelease build: Nov 26 2003 05:19:07 (0x2301) >>"
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global DefaultTexData
+DefaultTexData:
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+.global GXDefaultVATList
+GXDefaultVATList:
+	.4byte 0x00000009
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x0000000A
+	.4byte 0x00000000
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x0000000B
+	.4byte 0x00000001
+	.4byte 0x00000005
+	.4byte 0x00000000
+	.4byte 0x0000000C
+	.4byte 0x00000001
+	.4byte 0x00000005
+	.4byte 0x00000000
+	.4byte 0x0000000D
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x0000000E
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x0000000F
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x00000010
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x00000011
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x00000012
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x00000013
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x00000014
+	.4byte 0x00000001
+	.4byte 0x00000004
+	.4byte 0x00000000
+	.4byte 0x000000FF
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global GXDefaultProjData
+GXDefaultProjData:
+	.float 1.0
+	.float 0.0
+	.float 1.0
+	.float 0.0
+	.float -1.0
+	.float -2.0
+	.float 0.0
+.global GXTexRegionAddrTable
+GXTexRegionAddrTable:
+	.4byte 0x00000000
+	.4byte 0x00010000
+	.4byte 0x00020000
+	.4byte 0x00030000
+	.4byte 0x00040000
+	.4byte 0x00050000
+	.4byte 0x00060000
+	.4byte 0x00070000
+	.4byte 0x00008000
+	.4byte 0x00018000
+	.4byte 0x00028000
+	.4byte 0x00038000
+	.4byte 0x00048000
+	.4byte 0x00058000
+	.4byte 0x00068000
+	.4byte 0x00078000
+	.4byte 0x00000000
+	.4byte 0x00090000
+	.4byte 0x00020000
+	.4byte 0x000B0000
+	.4byte 0x00040000
+	.4byte 0x00098000
+	.4byte 0x00060000
+	.4byte 0x000B8000
+	.4byte 0x00080000
+	.4byte 0x00010000
+	.4byte 0x000A0000
+	.4byte 0x00030000
+	.4byte 0x00088000
+	.4byte 0x00050000
+	.4byte 0x000A8000
+	.4byte 0x00070000
+	.4byte 0x00000000
+	.4byte 0x00090000
+	.4byte 0x00020000
+	.4byte 0x000B0000
+	.4byte 0x00040000
+	.4byte 0x00090000
+	.4byte 0x00060000
+	.4byte 0x000B0000
+	.4byte 0x00080000
+	.4byte 0x00010000
+	.4byte 0x000A0000
+	.4byte 0x00030000
+	.4byte 0x00080000
+	.4byte 0x00050000
+	.4byte 0x000A0000
+	.4byte 0x00070000
+.global GXResetFuncInfo
+GXResetFuncInfo:
+	.4byte __GXShutdown
+	.4byte 0x0000007F
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __GXVersion

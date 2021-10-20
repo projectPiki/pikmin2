@@ -1,4 +1,53 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A8F90
+lbl_804A8F90:
+	.asciz " in \"%s\" on line %d.\n"
+	.skip 2
+	.asciz "\nAddress:      Back Chain    LR Save\n"
+	.skip 2
+	.asciz "0x%08x:   0x%08x    0x%08x\n"
+	.asciz "Non-recoverable Exception %d"
+	.skip 3
+	.asciz "Unhandled Exception %d"
+	.skip 1
+	.asciz "\nDSISR = 0x%08x                   DAR  = 0x%08x\n"
+	.skip 3
+	.asciz "TB = 0x%016llx\n"
+	.asciz "\nInstruction at 0x%x (read from SRR0) attempted to access invalid address 0x%x (read from DAR)\n"
+	.asciz "\nAttempted to fetch instruction from invalid address 0x%x (read from SRR0)\n"
+	.asciz "\nInstruction at 0x%x (read from SRR0) attempted to access unaligned address 0x%x (read from DAR)\n"
+	.skip 2
+	.asciz "\nProgram exception : Possible illegal instruction/operation at or around 0x%x (read from SRR0)\n"
+	.asciz "AI DMA Address =   0x%04x%04x\n"
+	.skip 1
+	.asciz "ARAM DMA Address = 0x%04x%04x\n"
+	.skip 1
+	.asciz "DI DMA Address =   0x%08x\n"
+	.skip 1
+	.asciz "\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n"
+	.skip 3
+.global lbl_804A926C
+lbl_804A926C:
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDCBC
+	.4byte lbl_800EDCD4
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDCE8
+	.4byte lbl_800EDD00
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD64
+	.4byte lbl_800EDD18
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __OSFpscrEnableBits

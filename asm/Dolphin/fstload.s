@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7E60
+lbl_804A7E60:
+	.asciz "  Game Name ... %c%c%c%c\n"
+	.skip 2
+	.asciz "  Company ..... %c%c\n"
+	.skip 2
+	.asciz "  Disk # ...... %d\n"
+	.asciz "  Game ver .... %d\n"
+	.asciz "  Streaming ... %s\n"
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global lbl_80514950

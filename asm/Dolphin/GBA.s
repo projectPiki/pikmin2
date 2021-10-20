@@ -1,4 +1,17 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global GBA_VERSION_STRING
+GBA_VERSION_STRING:
+	.asciz "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>"
+	.skip 3
+.global ResetFunctionInfo_4
+ResetFunctionInfo_4:
+	.4byte OnReset4
+	.4byte 0x0000007E
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __GBAVersion

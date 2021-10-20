@@ -1,5 +1,93 @@
 .include "macros.inc"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __files
+__files:
+	.4byte 0x00000000
+	.4byte 0x0A800000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte stdin_buff
+	.4byte 0x00000100
+	.4byte stdin_buff
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte __read_console
+	.4byte __write_console
+	.4byte __close_console
+	.4byte 0x00000000
+	.4byte lbl_804A6998
+lbl_804A6998:
+	.4byte 0x00000001
+	.4byte 0x12800000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte stdout_buff
+	.4byte 0x00000100
+	.4byte stdout_buff
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte __read_console
+	.4byte __write_console
+	.4byte __close_console
+	.4byte 0x00000000
+	.4byte lbl_804A69E8
+lbl_804A69E8:
+	.4byte 0x00000002
+	.4byte 0x10800000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte stderr_buff
+	.4byte 0x00000100
+	.4byte stderr_buff
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte __read_console
+	.4byte __write_console
+	.4byte __close_console
+	.4byte 0x00000000
+	.4byte lbl_804A6A38
+lbl_804A6A38:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __flush_all
 __flush_all:

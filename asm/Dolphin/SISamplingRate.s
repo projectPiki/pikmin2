@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global XYNTSC
+XYNTSC:
+	.4byte 0x00F60200
+	.4byte 0x000F1200
+	.4byte 0x001E0900
+	.4byte 0x002C0600
+	.4byte 0x00340500
+	.4byte 0x00410400
+	.4byte 0x00570300
+	.4byte 0x00570300
+	.4byte 0x00570300
+	.4byte 0x00830200
+	.4byte 0x00830200
+	.4byte 0x00830200
+.global XYPAL
+XYPAL:
+	.4byte 0x01280200
+	.4byte 0x000F1500
+	.4byte 0x001D0B00
+	.4byte 0x002D0700
+	.4byte 0x00340600
+	.4byte 0x003F0500
+	.4byte 0x004E0400
+	.4byte 0x00680300
+	.4byte 0x00680300
+	.4byte 0x00680300
+	.4byte 0x00680300
+	.4byte 0x009C0200
+	.asciz "SISetSamplingRate: unknown TV format. Use default."
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global SISetSamplingRate

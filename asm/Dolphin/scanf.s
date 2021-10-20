@@ -14,6 +14,63 @@ lbl_8047A0D8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7158
+lbl_804A7158:
+	.4byte lbl_800CA318
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA318
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA300
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA408
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA318
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA368
+	.4byte lbl_800CA300
+	.4byte lbl_800CA318
+	.4byte lbl_800CA318
+	.4byte lbl_800CA318
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA300
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA5A4
+	.4byte lbl_800CA300
+	.4byte lbl_800CA354
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA394
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA300
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA59C
+	.4byte lbl_800CA300
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global sscanf
 sscanf:

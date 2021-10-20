@@ -1,4 +1,41 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A9EB8
+lbl_804A9EB8:
+	.asciz "<< Dolphin SDK - SI\trelease build: Apr 17 2003 12:33:19 (0x2301) >>"
+.global Si
+Si:
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global Type
+Type:
+	.4byte 0x00000008
+	.4byte 0x00000008
+	.4byte 0x00000008
+	.4byte 0x00000008
+	.asciz "No response"
+	.asciz "N64 controller"
+	.skip 1
+	.asciz "N64 microphone"
+	.skip 1
+	.asciz "N64 keyboard"
+	.skip 3
+	.asciz "N64 mouse"
+	.skip 2
+	.asciz "GameBoy Advance"
+	.asciz "Standard controller"
+	.asciz "Wireless receiver"
+	.skip 2
+	.asciz "WaveBird controller"
+	.asciz "Keyboard"
+	.skip 3
+	.asciz "Steering"
+	.skip 3
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __SIVersion

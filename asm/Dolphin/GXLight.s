@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A8530
+lbl_804A8530:
+	.4byte lbl_800E69EC
+	.4byte lbl_800E68FC
+	.4byte lbl_800E6910
+	.4byte lbl_800E6930
+	.4byte lbl_800E6950
+	.4byte lbl_800E697C
+	.4byte lbl_800E69B0
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXInitLightAttn

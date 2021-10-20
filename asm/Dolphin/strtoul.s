@@ -1,4 +1,44 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7228
+lbl_804A7228:
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBBB4
+	.4byte lbl_800CBC54
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBC9C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBCEC
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBE6C
+	.4byte lbl_800CBCEC
+.global lbl_804A726C
+lbl_804A726C:
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CBFA4
+	.4byte lbl_800CC044
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC08C
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC0DC
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC1F0
+	.4byte lbl_800CC0DC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global strtol

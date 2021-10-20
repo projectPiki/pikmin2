@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7FE0
+lbl_804A7FE0:
+	.4byte lbl_800E1CE8
+	.4byte lbl_800E1CF0
+	.4byte lbl_800E1D00
+	.4byte lbl_800E1D14
+	.4byte lbl_800E1D28
+	.4byte lbl_800E1D3C
+	.4byte lbl_800E1D50
+	.4byte lbl_800E1D64
+	.4byte lbl_800E1D78
+	.4byte lbl_800E1D8C
+	.4byte lbl_800E1D94
+	.4byte lbl_800E1DC4
+	.4byte lbl_800E1DE0
+	.4byte lbl_800E1DFC
+	.4byte lbl_800E1E18
+	.4byte lbl_800E1E34
+	.4byte lbl_800E1E50
+	.4byte lbl_800E1E6C
+	.4byte lbl_800E1E88
+	.4byte lbl_800E1EA4
+	.4byte lbl_800E1EC0
+	.4byte lbl_800E1ED8
+	.4byte lbl_800E1ED8
+	.4byte lbl_800E1ED8
+	.4byte lbl_800E1ED8
+	.4byte lbl_800E1DAC
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GDSetVtxDescv

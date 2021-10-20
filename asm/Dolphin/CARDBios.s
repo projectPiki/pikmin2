@@ -1,4 +1,23 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7710
+lbl_804A7710:
+	.asciz "<< Dolphin SDK - CARD\trelease build: Apr 17 2003 12:34:19 (0x2301) >>"
+	.skip 2
+.global ResetFunctionInfo
+ResetFunctionInfo:
+	.4byte OnReset
+	.4byte 0x0000007F
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __CARDVersion

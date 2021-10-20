@@ -1,4 +1,33 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A8B88
+lbl_804A8B88:
+	.asciz ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n"
+	.skip 3
+	.asciz "Machine check received\n"
+	.asciz "HID2 = 0x%x   SRR1 = 0x%x\n"
+	.skip 1
+	.asciz "Machine check was not DMA/locked cache related\n"
+	.asciz "DMAErrorHandler(): An error occurred while processing DMA.\n"
+	.asciz "The following errors have been detected and cleared :\n"
+	.skip 1
+	.asciz "\t- Requested a locked cache tag that was already in the cache\n"
+	.skip 1
+	.asciz "\t- DMA attempted to access normal cache\n"
+	.skip 3
+	.asciz "\t- DMA missed in data cache\n"
+	.skip 3
+	.asciz "\t- DMA queue overflowed\n"
+	.skip 3
+	.asciz "L1 i-caches initialized\n"
+	.skip 3
+	.asciz "L1 d-caches initialized\n"
+	.skip 3
+	.asciz "L2 cache initialized\n"
+	.skip 2
+	.asciz "Locked cache machine check handler installed\n"
+	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DCEnable

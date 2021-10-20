@@ -136,6 +136,27 @@ lbl_80479AEC:
 lbl_80479AF4:
 	.4byte 0x0A000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A6878
+lbl_804A6878:
+	.4byte lbl_800BD0A8
+	.4byte lbl_800BD0C8
+	.4byte lbl_800BD0A0
+	.4byte lbl_800BD0C8
+	.4byte lbl_800BD0B0
+	.4byte lbl_800BD0B8
+	.4byte lbl_800BD0C0
+.global lbl_804A6894
+lbl_804A6894:
+	.4byte lbl_800BD2EC
+	.4byte lbl_800BD30C
+	.4byte lbl_800BD2E4
+	.4byte lbl_800BD30C
+	.4byte lbl_800BD2F4
+	.4byte lbl_800BD2FC
+	.4byte lbl_800BD304
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKDoSetOption
 TRKDoSetOption:

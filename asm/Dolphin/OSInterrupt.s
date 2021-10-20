@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global InterruptPrioTable
+InterruptPrioTable:
+	.4byte 0x00000100
+	.4byte 0x00000040
+	.4byte 0xF8000000
+	.4byte 0x00000200
+	.4byte 0x00000080
+	.4byte 0x00003000
+	.4byte 0x00000020
+	.4byte 0x03FF8C00
+	.4byte 0x04000000
+	.4byte 0x00004000
+	.4byte 0xFFFFFFFF
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global OSDisableInterrupts

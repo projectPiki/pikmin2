@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global YearDays
+YearDays:
+	.4byte 0x00000000
+	.4byte 0x0000001F
+	.4byte 0x0000003B
+	.4byte 0x0000005A
+	.4byte 0x00000078
+	.4byte 0x00000097
+	.4byte 0x000000B5
+	.4byte 0x000000D4
+	.4byte 0x000000F3
+	.4byte 0x00000111
+	.4byte 0x00000130
+	.4byte 0x0000014E
+.global LeapYearDays
+LeapYearDays:
+	.4byte 0x00000000
+	.4byte 0x0000001F
+	.4byte 0x0000003C
+	.4byte 0x0000005B
+	.4byte 0x00000079
+	.4byte 0x00000098
+	.4byte 0x000000B6
+	.4byte 0x000000D5
+	.4byte 0x000000F4
+	.4byte 0x00000112
+	.4byte 0x00000131
+	.4byte 0x0000014F
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global OSGetTime

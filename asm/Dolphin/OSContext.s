@@ -1,4 +1,33 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A8DB8
+lbl_804A8DB8:
+	.asciz "------------------------- Context 0x%08x -------------------------\n"
+	.asciz "r%-2d  = 0x%08x (%14d)  r%-2d  = 0x%08x (%14d)\n"
+	.asciz "LR   = 0x%08x                   CR   = 0x%08x\n"
+	.skip 1
+	.asciz "SRR0 = 0x%08x                   SRR1 = 0x%08x\n"
+	.skip 1
+	.asciz "\nGQRs----------\n"
+	.skip 3
+	.asciz "gqr%d = 0x%08x \t gqr%d = 0x%08x\n"
+	.skip 3
+	.asciz "\n\nFPRs----------\n"
+	.skip 2
+	.asciz "fr%d \t= %d \t fr%d \t= %d\n"
+	.skip 3
+	.asciz "\n\nPSFs----------\n"
+	.skip 2
+	.asciz "ps%d \t= 0x%x \t ps%d \t= 0x%x\n"
+	.skip 3
+	.asciz "\nAddress:      Back Chain    LR Save\n"
+	.skip 2
+	.asciz "0x%08x:   0x%08x    0x%08x\n"
+.global lbl_804A8F6C
+lbl_804A8F6C:
+	.asciz "FPU-unavailable handler installed\n"
+	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __OSLoadFPUContext

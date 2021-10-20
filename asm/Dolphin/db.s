@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7920
+lbl_804A7920:
+	.asciz "DBExceptionDestination\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DBInit

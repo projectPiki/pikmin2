@@ -1,4 +1,105 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A82A0
+lbl_804A82A0:
+	.4byte lbl_800E42A4
+	.4byte lbl_800E42B8
+	.4byte lbl_800E42CC
+	.4byte lbl_800E42E0
+	.4byte lbl_800E42F4
+	.4byte lbl_800E4308
+	.4byte lbl_800E431C
+	.4byte lbl_800E4330
+	.4byte lbl_800E4344
+	.4byte lbl_800E4358
+	.4byte lbl_800E436C
+	.4byte lbl_800E43D4
+	.4byte lbl_800E43E8
+	.4byte lbl_800E43FC
+	.4byte lbl_800E4410
+	.4byte lbl_800E4424
+	.4byte lbl_800E4438
+	.4byte lbl_800E444C
+	.4byte lbl_800E4460
+	.4byte lbl_800E4474
+	.4byte lbl_800E4488
+	.4byte lbl_800E4498
+	.4byte lbl_800E4498
+	.4byte lbl_800E4498
+	.4byte lbl_800E4498
+	.4byte lbl_800E43A0
+.global lbl_804A8308
+lbl_804A8308:
+	.4byte lbl_800E4744
+	.4byte lbl_800E476C
+	.4byte lbl_800E47C0
+	.4byte lbl_800E47DC
+	.4byte lbl_800E47F8
+	.4byte lbl_800E4820
+	.4byte lbl_800E4848
+	.4byte lbl_800E4870
+	.4byte lbl_800E4898
+	.4byte lbl_800E48C0
+	.4byte lbl_800E48E8
+	.4byte lbl_800E4910
+	.4byte lbl_800E4934
+	.4byte lbl_800E4934
+	.4byte lbl_800E4934
+	.4byte lbl_800E4934
+	.4byte lbl_800E476C
+.global lbl_804A834C
+lbl_804A834C:
+	.4byte lbl_800E49B4
+	.4byte lbl_800E49DC
+	.4byte lbl_800E4A30
+	.4byte lbl_800E4A4C
+	.4byte lbl_800E4A68
+	.4byte lbl_800E4A90
+	.4byte lbl_800E4AB8
+	.4byte lbl_800E4AE0
+	.4byte lbl_800E4B08
+	.4byte lbl_800E4B30
+	.4byte lbl_800E4B58
+	.4byte lbl_800E4B80
+	.4byte lbl_800E4BA4
+	.4byte lbl_800E4BA4
+	.4byte lbl_800E4BA4
+	.4byte lbl_800E4BA4
+	.4byte lbl_800E49DC
+.global lbl_804A8390
+lbl_804A8390:
+	.4byte lbl_800E4EE8
+	.4byte lbl_800E4EFC
+	.4byte lbl_800E4F10
+	.4byte lbl_800E4F24
+	.4byte lbl_800E4F38
+	.4byte lbl_800E4F4C
+	.4byte lbl_800E4F60
+.global lbl_804A83AC
+lbl_804A83AC:
+	.4byte lbl_800E4D54
+	.4byte lbl_800E4D60
+	.4byte lbl_800E4D6C
+	.4byte lbl_800E4D78
+	.4byte lbl_800E4D94
+	.4byte lbl_800E4D9C
+	.4byte lbl_800E4DA4
+	.4byte lbl_800E4DAC
+	.4byte lbl_800E4DB4
+	.4byte lbl_800E4DBC
+	.4byte lbl_800E4DC4
+	.4byte lbl_800E4DCC
+	.4byte lbl_800E4DD0
+	.4byte lbl_800E4DD0
+	.4byte lbl_800E4DD0
+	.4byte lbl_800E4DD0
+	.4byte lbl_800E4DD0
+	.4byte lbl_800E4DD0
+	.4byte lbl_800E4DD0
+	.4byte lbl_800E4D84
+	.4byte lbl_800E4D8C
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global tbl1$263

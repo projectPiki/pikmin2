@@ -1,4 +1,70 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A8810
+lbl_804A8810:
+	.4byte lbl_800E9EEC
+	.4byte lbl_800E9F08
+	.4byte lbl_800E9F24
+	.4byte lbl_800E9F40
+	.4byte lbl_800E9F94
+	.4byte lbl_800E9FB0
+	.4byte lbl_800E9FCC
+	.4byte lbl_800E9FE8
+	.4byte lbl_800E9F5C
+	.4byte lbl_800EA004
+	.4byte lbl_800EA034
+	.4byte lbl_800EA064
+	.4byte lbl_800EA094
+	.4byte lbl_800EA0C4
+	.4byte lbl_800EA0F4
+	.4byte lbl_800EA124
+	.4byte lbl_800EA154
+	.4byte lbl_800EA180
+	.4byte lbl_800EA190
+	.4byte lbl_800EA1A0
+	.4byte lbl_800EA1B0
+	.4byte lbl_800E9F78
+	.4byte lbl_800EA1BC
+.global lbl_804A886C
+lbl_804A886C:
+	.4byte lbl_800E9AC0
+	.4byte lbl_800E9AE0
+	.4byte lbl_800E9B00
+	.4byte lbl_800E9B20
+	.4byte lbl_800E9B40
+	.4byte lbl_800E9B60
+	.4byte lbl_800E9B80
+	.4byte lbl_800E9BA0
+	.4byte lbl_800E9BC0
+	.4byte lbl_800E9BE0
+	.4byte lbl_800E9C20
+	.4byte lbl_800E9C40
+	.4byte lbl_800E9C5C
+	.4byte lbl_800E9C78
+	.4byte lbl_800E9C94
+	.4byte lbl_800E9CB0
+	.4byte lbl_800E9CCC
+	.4byte lbl_800E9CE8
+	.4byte lbl_800E9D04
+	.4byte lbl_800E9D20
+	.4byte lbl_800E9D3C
+	.4byte lbl_800E9D58
+	.4byte lbl_800E9D74
+	.4byte lbl_800E9D90
+	.4byte lbl_800E9DAC
+	.4byte lbl_800E9DC8
+	.4byte lbl_800E9DE4
+	.4byte lbl_800E9E00
+	.4byte lbl_800E9E1C
+	.4byte lbl_800E9E38
+	.4byte lbl_800E9E54
+	.4byte lbl_800E9E70
+	.4byte lbl_800E9E8C
+	.4byte lbl_800E9EA8
+	.4byte lbl_800E9C00
+	.4byte lbl_800E9EC0
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXSetGPMetric

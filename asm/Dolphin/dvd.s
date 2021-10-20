@@ -1,4 +1,73 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7C98
+lbl_804A7C98:
+	.asciz "<< Dolphin SDK - DVD\trelease build: Sep 16 2003 09:50:54 (0x2301) >>"
+	.skip 3
+.global lbl_804A7CE0
+lbl_804A7CE0:
+	.asciz "load fst\n"
+	.skip 2
+.global lbl_804A7CEC
+lbl_804A7CEC:
+	.asciz "DVDChangeDisk(): FST in the new disc is too big.   "
+.global lbl_804A7D20
+lbl_804A7D20:
+	.4byte lbl_800DE2B4
+	.4byte lbl_800DE028
+	.4byte lbl_800DE0C8
+	.4byte lbl_800DE0EC
+	.4byte lbl_800DE028
+	.4byte lbl_800DDFFC
+	.4byte lbl_800DE10C
+	.4byte lbl_800DE170
+	.4byte lbl_800DE19C
+	.4byte lbl_800DE1D0
+	.4byte lbl_800DE1F4
+	.4byte lbl_800DE218
+	.4byte lbl_800DE23C
+	.4byte lbl_800DE260
+	.4byte lbl_800DE288
+	.4byte lbl_800DE0FC
+.global ImmCommand
+ImmCommand:
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.asciz "DVDChangeDiskAsync(): You can't specify NULL to company name.  \n"
+	.skip 3
+.global lbl_804A7DB0
+lbl_804A7DB0:
+	.4byte lbl_800DEF0C
+	.4byte lbl_800DEF0C
+	.4byte lbl_800DEF2C
+	.4byte lbl_800DEF70
+	.4byte lbl_800DEFBC
+	.4byte lbl_800DF038
+	.4byte lbl_800DF038
+	.4byte lbl_800DF038
+	.4byte lbl_800DF038
+	.4byte lbl_800DF110
+	.4byte lbl_800DF110
+	.4byte lbl_800DEF0C
+	.4byte lbl_800DF038
+.global lbl_804A7DE4
+lbl_804A7DE4:
+	.4byte lbl_800DF2A8
+	.4byte lbl_800DF2B0
+	.4byte lbl_800DF2A0
+	.4byte lbl_800DF2A0
+	.4byte lbl_800DF2A8
+	.4byte lbl_800DF2A8
+	.4byte lbl_800DF2A8
+	.4byte lbl_800DF2A8
+	.4byte lbl_800DF2A8
+	.4byte lbl_800DF2B0
+	.4byte lbl_800DF2A0
+	.4byte lbl_800DF2A0
+	.4byte lbl_800DF2A8
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __DVDVersion

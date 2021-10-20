@@ -1,4 +1,59 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A8900
+lbl_804A8900:
+	.asciz "<< Dolphin SDK - OS\trelease build: Nov 26 2003 05:18:37 (0x2301) >>"
+	.asciz "\nDolphin OS\n"
+	.skip 3
+	.asciz "Kernel built : %s %s\n"
+	.skip 2
+	.asciz "Nov 26 2003"
+	.asciz "05:18:37"
+	.skip 3
+	.asciz "Console Type : "
+	.asciz "Retail %d\n"
+	.skip 1
+	.asciz "Mac Emulator\n"
+	.skip 2
+	.asciz "PC Emulator\n"
+	.skip 3
+	.asciz "EPPC Arthur\n"
+	.skip 3
+	.asciz "EPPC Minnow\n"
+	.skip 3
+	.asciz "Development HW%d (%08x)\n"
+	.skip 3
+	.asciz "Memory %d MB\n"
+	.skip 2
+	.asciz "Arena : 0x%x - 0x%x\n"
+	.skip 3
+.global __OSExceptionLocations
+__OSExceptionLocations:
+	.4byte 0x00000100
+	.4byte 0x00000200
+	.4byte 0x00000300
+	.4byte 0x00000400
+	.4byte 0x00000500
+	.4byte 0x00000600
+	.4byte 0x00000700
+	.4byte 0x00000800
+	.4byte 0x00000900
+	.4byte 0x00000C00
+	.4byte 0x00000D00
+	.4byte 0x00000F00
+	.4byte 0x00001300
+	.4byte 0x00001400
+	.4byte 0x00001700
+	.asciz "Installing OSDBIntegrator\n"
+	.skip 1
+	.asciz ">>> OSINIT: exception %d commandeered by TRK\n"
+	.skip 2
+	.asciz ">>> OSINIT: exception %d vectored to debugger\n"
+	.skip 1
+	.asciz "Exceptions initialized...\n"
+	.skip 1
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __OSVersion

@@ -60,6 +60,103 @@
 	.4byte 0x00323536
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global pow_10$416
+pow_10$416:
+	.4byte 0x40240000
+	.4byte 0x00000000
+	.4byte 0x40590000
+	.4byte 0x00000000
+	.4byte 0x408F4000
+	.4byte 0x00000000
+	.4byte 0x40C38800
+	.4byte 0x00000000
+	.4byte 0x40F86A00
+	.4byte 0x00000000
+	.4byte 0x412E8480
+	.4byte 0x00000000
+	.4byte 0x416312D0
+	.4byte 0x00000000
+	.4byte 0x4197D784
+	.4byte 0x00000000
+.global lbl_804A6AC8
+lbl_804A6AC8:
+	.4byte lbl_800C473C
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C4838
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C4934
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C4A30
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C5BD8
+	.4byte lbl_800C4B2C
+	.4byte lbl_800C4C28
+	.4byte lbl_800C4D24
+	.4byte lbl_800C4E20
+	.4byte lbl_800C4F1C
+	.4byte lbl_800C5018
+	.4byte lbl_800C5114
+	.4byte lbl_800C5210
+	.4byte lbl_800C530C
+	.4byte lbl_800C5404
+	.4byte lbl_800C54FC
+	.4byte lbl_800C55F4
+	.4byte lbl_800C56EC
+	.4byte lbl_800C57E8
+	.4byte lbl_800C58E4
+	.4byte lbl_800C59E0
+	.4byte lbl_800C5ADC
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dec2num
 __dec2num:

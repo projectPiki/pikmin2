@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global p2f$362
+p2f$362:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000004
+	.4byte 0x00000004
+	.4byte 0x00000004
+	.4byte 0x00000005
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXSetFog

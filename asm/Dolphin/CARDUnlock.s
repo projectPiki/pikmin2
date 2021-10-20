@@ -1,4 +1,97 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global CardData
+CardData:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000021
+	.4byte 0x02FF0021
+	.4byte 0x13061203
+	.4byte 0x12041305
+	.4byte 0x009200FF
+	.4byte 0x0088FFFF
+	.4byte 0x0089FFFF
+	.4byte 0x008AFFFF
+	.4byte 0x008BFFFF
+	.4byte 0x8F0002BF
+	.4byte 0x008816FC
+	.4byte 0xDCD116FD
+	.4byte 0x000016FB
+	.4byte 0x000102BF
+	.4byte 0x008E25FF
+	.4byte 0x0380FF00
+	.4byte 0x02940027
+	.4byte 0x02BF008E
+	.4byte 0x1FDF24FF
+	.4byte 0x02400FFF
+	.4byte 0x00980400
+	.4byte 0x009A0010
+	.4byte 0x00990000
+	.4byte 0x8E0002BF
+	.4byte 0x009402BF
+	.4byte 0x864402BF
+	.4byte 0x008816FC
+	.4byte 0xDCD116FD
+	.4byte 0x000316FB
+	.4byte 0x00018F00
+	.4byte 0x02BF008E
+	.4byte 0x0380CDD1
+	.4byte 0x02940048
+	.4byte 0x27FF0380
+	.4byte 0x00010295
+	.4byte 0x005A0380
+	.4byte 0x00020295
+	.4byte 0x8000029F
+	.4byte 0x00480021
+	.4byte 0x8E0002BF
+	.4byte 0x008E25FF
+	.4byte 0x02BF008E
+	.4byte 0x25FF02BF
+	.4byte 0x008E25FF
+	.4byte 0x02BF008E
+	.4byte 0x00C5FFFF
+	.4byte 0x03400FFF
+	.4byte 0x1C9F02BF
+	.4byte 0x008E00C7
+	.4byte 0xFFFF02BF
+	.4byte 0x008E00C6
+	.4byte 0xFFFF02BF
+	.4byte 0x008E00C0
+	.4byte 0xFFFF02BF
+	.4byte 0x008E20FF
+	.4byte 0x03400FFF
+	.4byte 0x1F5F02BF
+	.4byte 0x008E21FF
+	.4byte 0x02BF008E
+	.4byte 0x23FF1205
+	.4byte 0x1206029F
+	.4byte 0x80B50021
+	.4byte 0x27FC03C0
+	.4byte 0x8000029D
+	.4byte 0x008802DF
+	.4byte 0x27FE03C0
+	.4byte 0x8000029C
+	.4byte 0x008E02DF
+	.4byte 0x2ECE2CCF
+	.4byte 0x00F8FFCD
+	.4byte 0x00F9FFC9
+	.4byte 0x00FAFFCB
+	.4byte 0x26C902C0
+	.4byte 0x0004029D
+	.4byte 0x009C02DF
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global next_1

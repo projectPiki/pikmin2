@@ -1,4 +1,25 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7AF8
+lbl_804A7AF8:
+	.asciz "DVDConvertEntrynumToPath(possibly DVDOpen or DVDChangeDir or DVDOpenDir): specified directory or file (%s) doesn't match standard 8.3 format. This is a temporary restriction and will be removed soon\n"
+.global lbl_804A7BC0
+lbl_804A7BC0:
+	.asciz "Warning: DVDOpen(): file '%s' was not found under %s.\n"
+	.skip 1
+.global lbl_804A7BF8
+lbl_804A7BF8:
+	.asciz "DVDReadAsync(): specified area is out of the file  "
+.global lbl_804A7C2C
+lbl_804A7C2C:
+	.asciz "DVDRead(): specified area is out of the file  "
+	.skip 1
+.global lbl_804A7C5C
+lbl_804A7C5C:
+	.asciz "Warning: DVDOpenDir(): file '%s' was not found under %s.\n"
+	.skip 2
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global lbl_80514930

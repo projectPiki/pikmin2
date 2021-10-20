@@ -48,6 +48,27 @@ lbl_80479C28:
 	.4byte 0x53746570
 	.4byte 0x28290A00
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global gTRKRestoreFlags
+gTRKRestoreFlags:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global gTRKExceptionStatus
+gTRKExceptionStatus:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x01000000
+.global gTRKStepStatus
+gTRKStepStatus:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __TRK_get_MSR
 __TRK_get_MSR:

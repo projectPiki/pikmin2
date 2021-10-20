@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A7680
+lbl_804A7680:
+	.asciz "<< Dolphin SDK - AR\trelease build: Nov 26 2003 05:19:42 (0x2301) >>"
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global __ARVersion

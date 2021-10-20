@@ -22,6 +22,39 @@ lbl_804798EC:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A6808
+lbl_804A6808:
+	.4byte lbl_800BC548
+	.4byte lbl_800BC46C
+	.4byte lbl_800BC47C
+	.4byte lbl_800BC48C
+	.4byte lbl_800BC4AC
+	.4byte lbl_800BC4BC
+	.4byte lbl_800BC548
+	.4byte lbl_800BC49C
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC4CC
+	.4byte lbl_800BC4DC
+	.4byte lbl_800BC4EC
+	.4byte lbl_800BC4FC
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC548
+	.4byte lbl_800BC53C
+	.4byte lbl_800BC50C
+	.4byte lbl_800BC51C
+	.4byte lbl_800BC52C
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKDispatchMessage
 TRKDispatchMessage:

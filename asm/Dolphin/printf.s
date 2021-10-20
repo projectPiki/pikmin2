@@ -14,6 +14,157 @@
 	.4byte 0x006E616E
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A6F28
+lbl_804A6F28:
+	.4byte lbl_800C8C20
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8BC0
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8BC0
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8BF8
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C0C
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C30
+	.4byte lbl_800C8C20
+.global lbl_804A6FAC
+lbl_804A6FAC:
+	.4byte lbl_800C8EE4
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EAC
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EAC
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EC4
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8ED4
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EF0
+	.4byte lbl_800C8EE4
+.global lbl_804A7030
+lbl_804A7030:
+	.4byte lbl_800C9420
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9470
+	.4byte lbl_800C93E8
+	.4byte lbl_800C945C
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C93A0
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9420
+	.4byte lbl_800C9550
+	.4byte lbl_800C94D4
+	.4byte lbl_800C93A0
+	.4byte lbl_800C9470
+	.4byte lbl_800C93E8
+	.4byte lbl_800C945C
+	.4byte lbl_800C9550
+	.4byte lbl_800C93A0
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C9538
+	.4byte lbl_800C93A0
+	.4byte lbl_800C94B0
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C950C
+	.4byte lbl_800C9550
+	.4byte lbl_800C93A0
+	.4byte lbl_800C9550
+	.4byte lbl_800C9550
+	.4byte lbl_800C93A0
+.global lbl_804A7110
+lbl_804A7110:
+	.4byte lbl_800C9150
+	.4byte lbl_800C918C
+	.4byte lbl_800C918C
+	.4byte lbl_800C9168
+	.4byte lbl_800C918C
+	.4byte lbl_800C918C
+	.4byte lbl_800C918C
+	.4byte lbl_800C918C
+	.4byte lbl_800C918C
+	.4byte lbl_800C918C
+	.4byte lbl_800C918C
+	.4byte lbl_800C9144
+	.4byte lbl_800C918C
+	.4byte lbl_800C9138
+	.4byte lbl_800C918C
+	.4byte lbl_800C918C
+	.4byte lbl_800C9174
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "@wstringBase0"
