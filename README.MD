@@ -60,27 +60,51 @@ When compiling the project, this patch is automatically applied, if it fails to 
 
 ## Progress
 ### DONE
-- JSystem/JAD/JADHioNode.cpp
-- plugProjectEbisawaU/ebiScreenFramework.cpp
-- plugProjectHikinoU/PSCreatureMgr.cpp
-- plugProjectKandoU/gameSoundEvent.cpp
-- plugProjectKandoU/pelletConfig.cpp
-- plugProjectKandoU/vsCoinOtakaraName.cpp
-- sysBootupU/sysBootup.cpp
-- sysCommonU/sysTemplates.cpp
-- sysCommonU/tagparams_jank.cpp
-- sysCommonU/tagparams.cpp
-- sysGCU/appThread.cpp
-- sysGCU/controller.cpp
-- sysGCU/dvdErrorMessage.cpp
-- sysGCU/rootMenuSection.cpp
-- sysGCU/simpleMessage.cpp
+- sysGCU
+	- sysGCU/appThread.cpp
+	- sysGCU/controller.cpp
+	- sysGCU/dvdErrorMessage.cpp
+	- sysGCU/rootMenuSection.cpp
+	- sysGCU/simpleMessage.cpp
+- sysCommonU
+	- sysCommonU/sysTemplates.cpp
+	- sysCommonU/tagparams_jank.cpp
+	- sysCommonU/tagparams.cpp
+- utilityU
+- plugProjectKonoU
+- plugProjectOgawaU
+- plugProjectKandoU
+	- plugProjectKandoU/gameSoundEvent.cpp
+	- plugProjectKandoU/pelletConfig.cpp
+	- plugProjectKandoU/vsCoinOtakaraName.cpp
+- plugProjectHikinoU
+	- plugProjectHikinoU/PSCreatureMgr.cpp
+- plugProjectEbisawaU
+	- plugProjectEbisawaU/ebiScreenFramework.cpp
+- plugProjectMorimuraU
+- plugProjectNishimuraU
+- plugProjectYamashitaU
+- JSystem
+	- JSystem/JAD/JADHioNode.cpp
 ### WIP
-- JSystem/JAL/JALCalc.cpp
-- plugProjectEbisawaU/ebiP2TitleCamera.cpp
-- plugProjectKandoU/interactBattle.cpp
-- sysCommonU/id32.cpp
-- sysCommonU/node.cpp
-- sysCommonU/sysMath.cpp
-- sysGCU/system.cpp
-- sysGCU/THPDraw.c
+- sysBootupU
+- sysGCU
+	- sysGCU/system.cpp
+	- sysGCU/THPDraw.c
+- sysCommonU
+	- sysCommonU/id32.cpp
+	- sysCommonU/node.cpp
+	- sysCommonU/sysMath.cpp
+- utilityU
+- plugProjectKonoU
+- plugProjectOgawaU
+- plugProjectKandoU
+	- plugProjectKandoU/interactBattle.cpp
+- plugProjectHikinoU
+- plugProjectEbisawaU
+	- plugProjectEbisawaU/ebiP2TitleCamera.cpp
+- plugProjectMorimuraU
+- plugProjectNishimuraU
+- plugProjectYamashitaU
+- JSystem
+	- JSystem/JAL/JALCalc.cpp
