@@ -80,6 +80,23 @@ lbl_80482D30:
 	.4byte 0x74726163
 	.4byte 0x74000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C0A18
+lbl_804C0A18:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global "__vt__Q24Game30EnemyIterator<Q34Game3Pom3Obj>"
+"__vt__Q24Game30EnemyIterator<Q34Game3Pom3Obj>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
+	.4byte "next__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
+	.4byte "isDone__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
+	.4byte "__ml__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global demoCheck__Q24Game4NaviFv
 demoCheck__Q24Game4NaviFv:

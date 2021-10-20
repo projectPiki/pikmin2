@@ -27,7 +27,7 @@ aPiecePriority__Q29JFWSystem11CSetUpParam:
 	.4byte 0x00000006
 .global systemFontRes__Q29JFWSystem11CSetUpParam
 systemFontRes__Q29JFWSystem11CSetUpParam:
-	.4byte lbl_804742C0
+	.4byte JUTResFONT_Ascfont_fix12
 .global renderMode__Q29JFWSystem11CSetUpParam
 renderMode__Q29JFWSystem11CSetUpParam:
 	.4byte GXNtsc480IntDf

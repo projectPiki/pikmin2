@@ -145,6 +145,187 @@ lbl_804800EC:
 	.4byte 0x69744172
 	.4byte 0x67000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B60E8
+lbl_804B60E8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game20GameMessageVsUseCard
+__vt__Q24Game20GameMessageVsUseCard:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game20GameMessageVsUseCardFPQ24Game13VsGameSection
+.global __vt__Q24Game20GameMessageVsGotCard
+__vt__Q24Game20GameMessageVsGotCard:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game20GameMessageVsGotCardFPQ24Game13VsGameSection
+.global __vt__Q24Game23GameMessageVsPikminDead
+__vt__Q24Game23GameMessageVsPikminDead:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game23GameMessageVsPikminDeadFPQ24Game13VsGameSection
+.global __vt__Q24Game30GameMessageVsBirthTekiTreasure
+__vt__Q24Game30GameMessageVsBirthTekiTreasure:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game30GameMessageVsBirthTekiTreasureFPQ24Game13VsGameSection
+.global __vt__Q24Game21GameMessagePelletDead
+__vt__Q24Game21GameMessagePelletDead:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game21GameMessagePelletDeadFPQ24Game13VsGameSection
+.global __vt__Q24Game21GameMessagePelletBorn
+__vt__Q24Game21GameMessagePelletBorn:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game21GameMessagePelletBornFPQ24Game13VsGameSection
+.global __vt__Q24Game21GameMessageVsAddEnemy
+__vt__Q24Game21GameMessageVsAddEnemy:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game21GameMessageVsAddEnemyFPQ24Game13VsGameSection
+.global __vt__Q24Game23GameMessageVsGetOtakara
+__vt__Q24Game23GameMessageVsGetOtakara:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game23GameMessageVsGetOtakaraFPQ24Game13VsGameSection
+.global __vt__Q24Game27GameMessageVsRedOrSuckStart
+__vt__Q24Game27GameMessageVsRedOrSuckStart:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game27GameMessageVsRedOrSuckStartFPQ24Game13VsGameSection
+.global __vt__Q24Game27GameMessageVsBattleFinished
+__vt__Q24Game27GameMessageVsBattleFinished:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game27GameMessageVsBattleFinishedFPQ24Game13VsGameSection
+.global __vt__Q24Game22GameMessageVsGetDoping
+__vt__Q24Game22GameMessageVsGetDoping:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
+	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
+	.4byte actVs__Q24Game22GameMessageVsGetDopingFPQ24Game13VsGameSection
+.global "__vt__Q24Game36StateMachine<Q24Game13VsGameSection>"
+"__vt__Q24Game36StateMachine<Q24Game13VsGameSection>":
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+	.4byte "start__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
+	.4byte "exec__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+	.4byte "transit__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
+.global __vt__Q24Game13VsGameSection
+__vt__Q24Game13VsGameSection:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game13VsGameSectionFv
+	.4byte run__7SectionFv
+	.4byte update__7SectionFv
+	.4byte draw__7SectionFR8Graphics
+	.4byte init__Q24Game15BaseGameSectionFv
+	.4byte drawInit__7SectionFR8Graphics
+	.4byte drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode
+	.4byte doExit__7SectionFv
+	.4byte forceFinish__Q24Game15BaseGameSectionFv
+	.4byte forceReset__7SectionFv
+	.4byte getCurrentSection__7SectionFv
+	.4byte doLoadingStart__7SectionFv
+	.4byte doLoading__7SectionFv
+	.4byte doUpdate__Q24Game13VsGameSectionFv
+	.4byte doDraw__Q24Game13VsGameSectionFR8Graphics
+	.4byte isFinishable__7SectionFv
+	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
+	.4byte sendMessage__Q24Game13VsGameSectionFRQ24Game11GameMessage
+	.4byte pre2dDraw__Q24Game13VsGameSectionFR8Graphics
+	.4byte getCurrFloor__Q24Game13VsGameSectionFv
+	.4byte isDevelopSection__Q24Game15BaseGameSectionFv
+	.4byte addChallengeScore__Q24Game13VsGameSectionFi
+	.4byte startMainBgm__Q24Game13VsGameSectionFv
+	.4byte section_fadeout__Q24Game13VsGameSectionFv
+	.4byte goNextFloor__Q24Game13VsGameSectionFPQ34Game8ItemHole4Item
+	.4byte goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item
+	.4byte goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item
+	.4byte getCaveID__Q24Game15BaseGameSectionFv
+	.4byte getCurrentCourseInfo__Q24Game15BaseGameSectionFv
+	.4byte challengeDisablePelplant__Q24Game13VsGameSectionFv
+	.4byte getCaveFilename__Q24Game13VsGameSectionFv
+	.4byte getEditorFilename__Q24Game13VsGameSectionFv
+	.4byte getVsEditNumber__Q24Game13VsGameSectionFv
+	.4byte openContainerWindow__Q24Game15BaseGameSectionFv
+	.4byte closeContainerWindow__Q24Game15BaseGameSectionFv
+	.4byte playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature
+	.4byte playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon
+	.4byte playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki
+	.4byte enableTimer__Q24Game15BaseGameSectionFfUl
+	.4byte disableTimer__Q24Game15BaseGameSectionFUl
+	.4byte getTimerType__Q24Game15BaseGameSectionFv
+	.4byte onMovieStart__Q24Game13VsGameSectionFPQ24Game11MovieConfigUlUl
+	.4byte onMovieDone__Q24Game13VsGameSectionFPQ24Game11MovieConfigUlUl
+	.4byte onMovieCommand__Q24Game15BaseGameSectionFi
+	.4byte startFadeout__Q24Game15BaseGameSectionFf
+	.4byte startFadein__Q24Game15BaseGameSectionFf
+	.4byte startFadeoutin__Q24Game15BaseGameSectionFf
+	.4byte startFadeblack__Q24Game15BaseGameSectionFv
+	.4byte startFadewhite__Q24Game15BaseGameSectionFv
+	.4byte gmOrimaDown__Q24Game13VsGameSectionFi
+	.4byte gmPikminZero__Q24Game13VsGameSectionFv
+	.4byte openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi
+	.4byte openCaveMoreMenu__Q24Game13VsGameSectionFPQ34Game8ItemHole4ItemP10Controller
+	.4byte openKanketuMenu__Q24Game13VsGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller
+	.4byte on_setCamController__Q24Game15BaseGameSectionFi
+	.4byte onTogglePlayer__Q24Game15BaseGameSectionFv
+	.4byte onPlayerJoin__Q24Game15BaseGameSectionFv
+	.4byte onInit__Q24Game13VsGameSectionFv
+	.4byte onUpdate__Q24Game15BaseGameSectionFv
+	.4byte initJ3D__Q24Game15BaseGameSectionFv
+	.4byte initViewports__Q24Game15BaseGameSectionFR8Graphics
+	.4byte initResources__Q24Game15BaseGameSectionFv
+	.4byte initGenerators__Q24Game15BaseGameSectionFv
+	.4byte initLights__Q24Game15BaseGameSectionFv
+	.4byte draw3D__Q24Game15BaseGameSectionFR8Graphics
+	.4byte draw2D__Q24Game15BaseGameSectionFR8Graphics
+	.4byte drawParticle__Q24Game15BaseGameSectionFR8Graphicsi
+	.4byte draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics
+	.4byte do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
+	.4byte onSetupFloatMemory__Q24Game13VsGameSectionFv
+	.4byte postSetupFloatMemory__Q24Game13VsGameSectionFv
+	.4byte onSetSoundScene__Q24Game13VsGameSectionFv
+	.4byte onStartHeap__Q24Game15BaseGameSectionFv
+	.4byte onClearHeap__Q24Game13VsGameSectionFv
+	.4byte player2enabled__Q24Game13VsGameSectionFv
+.global __vt__Q34Game6VsGame3FSM
+__vt__Q34Game6VsGame3FSM:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6VsGame3FSMFPQ24Game13VsGameSection
+	.4byte "start__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
+	.4byte "exec__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+	.4byte transit__Q34Game6VsGame3FSMFPQ24Game13VsGameSectioniPQ24Game8StateArg
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E68
 lbl_80520E68:

@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game14InteractKaisan
+__vt__Q24Game14InteractKaisan:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+	.4byte actNavi__Q24Game14InteractKaisanFPQ24Game4Navi
+	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.global __vt__Q24Game13InteractSarai
+__vt__Q24Game13InteractSarai:
+	.4byte 0
+	.4byte 0
+	.4byte actCommon__Q24Game15InteractSwallowFPQ24Game8Creature
+	.4byte actPiki__Q24Game15InteractSwallowFPQ24Game4Piki
+	.4byte actNavi__Q24Game13InteractSaraiFPQ24Game4Navi
+	.4byte actEnemy__Q24Game14InteractAttackFPQ24Game9EnemyBase
+	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+	.4byte actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global stimulate__Q24Game4NaviFRQ24Game11Interaction

@@ -103,6 +103,25 @@ lbl_80480F30:
 	.4byte 0x96000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game8PlayData
+__vt__Q24Game8PlayData:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game8PlayDataFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game17PelletFirstMemory
+__vt__Q24Game17PelletFirstMemory:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game16PelletCropMemoryFR6Stream
+	.4byte write__Q24Game16PelletCropMemoryFR6Stream
+	.4byte firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet
+	.4byte obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
+	.4byte losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game11KindCounterFv
 __ct__Q24Game11KindCounterFv:

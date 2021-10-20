@@ -129,6 +129,77 @@ lbl_80483680:
 	.4byte 0x6E20210A
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C0F08
+lbl_804C0F08:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q32og6Screen12DispMemberVs
+__vt__Q32og6Screen12DispMemberVs:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen12DispMemberVsFv
+	.4byte getOwnerID__Q32og6Screen12DispMemberVsFv
+	.4byte getMemberID__Q32og6Screen12DispMemberVsFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen21DispMemberChallenge1P
+__vt__Q32og6Screen21DispMemberChallenge1P:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen21DispMemberChallenge1PFv
+	.4byte getOwnerID__Q32og6Screen21DispMemberChallenge1PFv
+	.4byte getMemberID__Q32og6Screen21DispMemberChallenge1PFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32kh6Screen17DispWinLoseReason
+__vt__Q32kh6Screen17DispWinLoseReason:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32kh6Screen17DispWinLoseReasonFv
+	.4byte getOwnerID__Q32kh6Screen17DispWinLoseReasonFv
+	.4byte getMemberID__Q32kh6Screen17DispWinLoseReasonFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32kh6Screen11DispWinLose
+__vt__Q32kh6Screen11DispWinLose:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32kh6Screen11DispWinLoseFv
+	.4byte getOwnerID__Q32kh6Screen11DispWinLoseFv
+	.4byte getMemberID__Q32kh6Screen11DispWinLoseFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen21DispMemberChallenge2P
+__vt__Q32og6Screen21DispMemberChallenge2P:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen21DispMemberChallenge2PFv
+	.4byte getOwnerID__Q32og6Screen21DispMemberChallenge2PFv
+	.4byte getMemberID__Q32og6Screen21DispMemberChallenge2PFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q34Game6VsGame9GameState
+__vt__Q34Game6VsGame9GameState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6VsGame9GameStateFPQ24Game13VsGameSectionPQ24Game8StateArg
+	.4byte exec__Q34Game6VsGame9GameStateFPQ24Game13VsGameSection
+	.4byte cleanup__Q34Game6VsGame9GameStateFPQ24Game13VsGameSection
+	.4byte "resume__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+	.4byte "restart__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+	.4byte "transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
+	.4byte draw__Q34Game6VsGame9GameStateFPQ24Game13VsGameSectionR8Graphics
+	.4byte pre2dDraw__Q34Game6VsGame9GameStateFR8GraphicsPQ24Game13VsGameSection
+	.4byte onOrimaDown__Q34Game6VsGame9GameStateFPQ24Game13VsGameSectioni
+	.4byte onMovieStart__Q34Game6VsGame9GameStateFPQ24Game13VsGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onMovieDone__Q34Game6VsGame9GameStateFPQ24Game13VsGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onNextFloor__Q34Game6VsGame9GameStateFPQ24Game13VsGameSectionPQ34Game8ItemHole4Item
+	.4byte on_section_fadeout__Q34Game6VsGame9GameStateFPQ24Game13VsGameSection
+	.4byte goingToCave__Q34Game6VsGame9GameStateFPQ24Game13VsGameSection
+	.4byte onBattleFinished__Q34Game6VsGame9GameStateFPQ24Game13VsGameSectionib
+	.4byte onRedOrBlueSuckStart__Q34Game6VsGame9GameStateFPQ24Game13VsGameSectionib
+	.4byte isCardUsable__Q34Game6VsGame9GameStateFPQ24Game13VsGameSection
+	.4byte drawStatus__Q34Game6VsGame9GameStateFR8GraphicsPQ24Game13VsGameSection
+	.4byte do_init__Q34Game6VsGame9GameStateFPQ24Game13VsGameSection
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame9GameStateFv
 __ct__Q34Game6VsGame9GameStateFv:

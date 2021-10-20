@@ -16,6 +16,15 @@ lbl_80483EBC:
 	.asciz "user/Kando/texCaster/arc.szs"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q29TexCaster6Caster
+__vt__Q29TexCaster6Caster:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q29TexCaster6CasterFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q29TexCaster6CasterFv
 __dt__Q29TexCaster6CasterFv:

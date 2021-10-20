@@ -12,6 +12,29 @@ lbl_80481FB0:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804BFB60
+lbl_804BFB60:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q24Game12BaseFlockMgr
+__vt__Q24Game12BaseFlockMgr:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte do_update__Q24Game12BaseFlockMgrFv
+	.4byte 0
+	.4byte doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai
+	.4byte isWeed__Q24Game12BaseFlockMgrFi
+	.4byte fear__Q24Game12BaseFlockMgrFi
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q24Game12BaseFlockMgrFv
 update__Q24Game12BaseFlockMgrFv:

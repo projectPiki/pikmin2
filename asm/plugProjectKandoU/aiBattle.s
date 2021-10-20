@@ -27,6 +27,31 @@ lbl_80483890:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q26PikiAI9ActBattle
+__vt__Q26PikiAI9ActBattle:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q26PikiAI9ActBattleFPQ26PikiAI9ActionArg
+	.4byte exec__Q26PikiAI9ActBattleFv
+	.4byte cleanup__Q26PikiAI9ActBattleFv
+	.4byte emotion_success__Q26PikiAI9ActBattleFv
+	.4byte emotion_fail__Q26PikiAI6ActionFv
+	.4byte applicable__Q26PikiAI6ActionFv
+	.4byte getNextAIType__Q26PikiAI6ActionFv
+	.4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+	.4byte collisionCallback__Q26PikiAI9ActBattleFPQ24Game4PikiRQ24Game9CollEvent
+	.4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
+	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
+	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+	.4byte getInfo__Q26PikiAI6ActionFPc
+	.4byte onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent
+	.4byte 0
+	.4byte 0
+	.4byte "@32@4@onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI9ActBattleFPQ24Game4Piki
 __ct__Q26PikiAI9ActBattleFPQ24Game4Piki:

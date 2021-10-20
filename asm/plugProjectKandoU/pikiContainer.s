@@ -29,6 +29,15 @@ lbl_8048144C:
 	.4byte 0x0D0A0000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game13PikiContainer
+__vt__Q24Game13PikiContainer:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game13PikiContainerFR6Stream
+	.4byte write__Q24Game13PikiContainerFR6Stream
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game13PikiContainerFv
 __ct__Q24Game13PikiContainerFv:

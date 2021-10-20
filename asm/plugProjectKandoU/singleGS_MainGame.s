@@ -181,6 +181,99 @@ lbl_80482418:
 	.4byte 0x75700000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C04D8
+lbl_804C04D8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q32og6Screen14DispMemberSave
+__vt__Q32og6Screen14DispMemberSave:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen14DispMemberSaveFv
+	.4byte getOwnerID__Q32og6Screen14DispMemberSaveFv
+	.4byte getMemberID__Q32og6Screen14DispMemberSaveFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen19DispMemberSMenuCont
+__vt__Q32og6Screen19DispMemberSMenuCont:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen19DispMemberSMenuContFv
+	.4byte getOwnerID__Q32og6Screen19DispMemberSMenuContFv
+	.4byte getMemberID__Q32og6Screen19DispMemberSMenuContFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen22DispMemberSMenuPauseVS
+__vt__Q32og6Screen22DispMemberSMenuPauseVS:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen22DispMemberSMenuPauseVSFv
+	.4byte getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv
+	.4byte getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen18DispMemberSMenuMap
+__vt__Q32og6Screen18DispMemberSMenuMap:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen18DispMemberSMenuMapFv
+	.4byte getOwnerID__Q32og6Screen18DispMemberSMenuMapFv
+	.4byte getMemberID__Q32og6Screen18DispMemberSMenuMapFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen19DispMemberSMenuItem
+__vt__Q32og6Screen19DispMemberSMenuItem:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen19DispMemberSMenuItemFv
+	.4byte getOwnerID__Q32og6Screen19DispMemberSMenuItemFv
+	.4byte getMemberID__Q32og6Screen19DispMemberSMenuItemFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen27DispMemberSMenuPauseDoukutu
+__vt__Q32og6Screen27DispMemberSMenuPauseDoukutu:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
+	.4byte getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
+	.4byte getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen20DispMemberSMenuPause
+__vt__Q32og6Screen20DispMemberSMenuPause:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen20DispMemberSMenuPauseFv
+	.4byte getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv
+	.4byte getMemberID__Q32og6Screen20DispMemberSMenuPauseFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32og6Screen18DispMemberSMenuAll
+__vt__Q32og6Screen18DispMemberSMenuAll:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen18DispMemberSMenuAllFv
+	.4byte getOwnerID__Q32og6Screen18DispMemberSMenuAllFv
+	.4byte getMemberID__Q32og6Screen18DispMemberSMenuAllFv
+	.4byte doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv
+.global __vt__Q34Game10SingleGame9GameState
+__vt__Q34Game10SingleGame9GameState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
+	.4byte exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
+	.4byte cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
+	.4byte "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+	.4byte "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+	.4byte "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
+	.4byte draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics
+	.4byte onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
+	.4byte onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onMovieCommand__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
+	.4byte onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
+	.4byte onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
+	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
+	.4byte on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
+	.4byte on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:

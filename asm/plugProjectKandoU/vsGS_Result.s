@@ -37,6 +37,53 @@ lbl_80483770:
 	.4byte 0x656E652E
 	.4byte 0x68000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C0FE0
+lbl_804C0FE0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804C0FEC
+lbl_804C0FEC:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte dvdload__Q34Game6VsGame11ResultStateFv
+.global __vt__Q28Morimura25DispMemberChallengeResult
+__vt__Q28Morimura25DispMemberChallengeResult:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q28Morimura25DispMemberChallengeResultFv
+	.4byte getOwnerID__Q28Morimura25DispMemberChallengeResultFv
+	.4byte getMemberID__Q28Morimura25DispMemberChallengeResultFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q34Game6VsGame11ResultState
+__vt__Q34Game6VsGame11ResultState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSectionPQ24Game8StateArg
+	.4byte exec__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection
+	.4byte cleanup__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSection
+	.4byte "resume__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+	.4byte "restart__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+	.4byte "transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
+	.4byte draw__Q34Game6VsGame11ResultStateFPQ24Game13VsGameSectionR8Graphics
+	.4byte pre2dDraw__Q34Game6VsGame5StateFR8GraphicsPQ24Game13VsGameSection
+	.4byte onOrimaDown__Q34Game6VsGame5StateFPQ24Game13VsGameSectioni
+	.4byte onMovieStart__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onMovieDone__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onNextFloor__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ34Game8ItemHole4Item
+	.4byte on_section_fadeout__Q34Game6VsGame5StateFPQ24Game13VsGameSection
+	.4byte goingToCave__Q34Game6VsGame5StateFPQ24Game13VsGameSection
+	.4byte onBattleFinished__Q34Game6VsGame5StateFPQ24Game13VsGameSectionib
+	.4byte onRedOrBlueSuckStart__Q34Game6VsGame5StateFPQ24Game13VsGameSectionib
+	.4byte isCardUsable__Q34Game6VsGame5StateFPQ24Game13VsGameSection
+.global "__vt__37Delegate<Q34Game6VsGame11ResultState>"
+"__vt__37Delegate<Q34Game6VsGame11ResultState>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__37Delegate<Q34Game6VsGame11ResultState>Fv"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame11ResultStateFv
 __ct__Q34Game6VsGame11ResultStateFv:

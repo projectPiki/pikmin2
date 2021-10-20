@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__7OgDummy
+__vt__7OgDummy:
+	.4byte 0
+	.4byte 0
+	.4byte getPosition__7OgDummyFv
+.global __vt__Q25Radar5Point
+__vt__Q25Radar5Point:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q25Radar5PointFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getPosition__Q25Radar5PointFv

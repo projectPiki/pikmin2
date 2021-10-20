@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game9PartsView
+__vt__Q24Game9PartsView:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game9PartsViewFv
+	.4byte getChildCount__5CNodeFv
+	.4byte constructor__Q24Game9PartsViewFv
+	.4byte doAnimation__Q24Game9PartsViewFv
+	.4byte doEntry__Q24Game9PartsViewFv
+	.4byte doSetView__Q24Game9PartsViewFi
+	.4byte doViewCalc__Q24Game9PartsViewFv
+	.4byte doSimulation__Q24Game9PartsViewFf
+	.4byte doDirectDraw__Q24Game9PartsViewFR8Graphics
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9PartsViewFv

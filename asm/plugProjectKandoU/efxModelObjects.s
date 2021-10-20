@@ -24,6 +24,33 @@ lbl_80481CD0:
 	.asciz "onyonspot_yellow.brk"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23efx13OnyonSpotData
+__vt__Q23efx13OnyonSpotData:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q23efx13OnyonSpotDataFv
+	.4byte getChildCount__5CNodeFv
+	.4byte loadResources__Q23efx13OnyonSpotDataFv
+	.4byte getID__Q23efx13OnyonSpotDataFv
+	.4byte onCreate__Q23efx13OnyonSpotDataFP20ModelEffectCreateArg
+.global __vt__Q23efx9OnyonSpot
+__vt__Q23efx9OnyonSpot:
+	.4byte 0
+	.4byte 0
+	.4byte constructor__11ModelEffectFv
+	.4byte doAnimation__11ModelEffectFv
+	.4byte doEntry__11ModelEffectFv
+	.4byte doSetView__11ModelEffectFi
+	.4byte doViewCalc__11ModelEffectFv
+	.4byte changeMaterial__Q23efx9OnyonSpotFv
+	.4byte getLODSphere__Q23efx9OnyonSpotFRQ23Sys6Sphere
+	.4byte useCylinderLOD__Q23efx9OnyonSpotFv
+	.4byte getLODCylinder__Q23efx9OnyonSpotFRQ23Sys8Cylinder
+	.4byte doSimulation__11ModelEffectFf
+	.4byte doDirectDraw__11ModelEffectFR8Graphics
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getLODSphere__Q23efx9OnyonSpotFRQ23Sys6Sphere
 getLODSphere__Q23efx9OnyonSpotFRQ23Sys6Sphere:

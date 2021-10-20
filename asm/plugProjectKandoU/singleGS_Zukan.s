@@ -170,6 +170,251 @@ lbl_80483170:
 	.4byte 0x2F25640D
 	.4byte 0x0A000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C0A40
+lbl_804C0A40:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000000
+.global "sDirName__28@unnamed@singleGS_Zukan_cpp@"
+"sDirName__28@unnamed@singleGS_Zukan_cpp@":
+	.4byte lbl_80482E7C
+	.4byte lbl_8051A100
+	.4byte lbl_80482E88
+	.4byte lbl_8051A108
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte dvdloadA__Q34Game10SingleGame10ZukanStateFv
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q28Morimura19DispMemberZukanItem
+__vt__Q28Morimura19DispMemberZukanItem:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q28Morimura19DispMemberZukanItemFv
+	.4byte getOwnerID__Q28Morimura19DispMemberZukanItemFv
+	.4byte getMemberID__Q28Morimura19DispMemberZukanItemFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q28Morimura20DispMemberZukanEnemy
+__vt__Q28Morimura20DispMemberZukanEnemy:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q28Morimura20DispMemberZukanEnemyFv
+	.4byte getOwnerID__Q28Morimura20DispMemberZukanEnemyFv
+	.4byte getMemberID__Q28Morimura20DispMemberZukanEnemyFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q28Morimura19DispMemberZukanBase
+__vt__Q28Morimura19DispMemberZukanBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"
+"__vt__41Delegate<Q34Game10SingleGame10ZukanState>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q34Game10SingleGame10ZukanState
+__vt__Q34Game10SingleGame10ZukanState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
+	.4byte exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
+	.4byte cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
+	.4byte "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+	.4byte "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+	.4byte "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
+	.4byte draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
+	.4byte onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni
+	.4byte onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni
+	.4byte onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
+	.4byte onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
+	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
+	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
+	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q34Game15IllustratedBook6Camera
+__vt__Q34Game15IllustratedBook6Camera:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook6CameraFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__17Container<5Plane>FPv"
+	.4byte "getNext__22ArrayContainer<5Plane>FPv"
+	.4byte "getStart__22ArrayContainer<5Plane>Fv"
+	.4byte "getEnd__22ArrayContainer<5Plane>Fv"
+	.4byte "get__22ArrayContainer<5Plane>FPv"
+	.4byte "getAt__22ArrayContainer<5Plane>Fi"
+	.4byte "getTo__22ArrayContainer<5Plane>Fv"
+	.4byte writeObject__9CullPlaneFR6StreamR5Plane
+	.4byte readObject__9CullPlaneFR6StreamR5Plane
+	.4byte "write__22ArrayContainer<5Plane>FR6Stream"
+	.4byte "read__22ArrayContainer<5Plane>FR6Stream"
+	.4byte "alloc__22ArrayContainer<5Plane>Fi"
+	.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+	.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+	.4byte getViewMatrix__6CameraFb
+	.4byte getPosition__6CameraFv
+	.4byte updatePlanes__6CameraFv
+	.4byte updateScreenConstants__6CameraFv
+	.4byte getLookAtPosition___12LookAtCameraFv
+	.4byte getTargetDistance__6CameraFv
+	.4byte getPositionPtr__6CameraFv
+	.4byte on_getPositionPtr__12LookAtCameraFv
+	.4byte getSoundPositionPtr__6CameraFv
+	.4byte getSoundMatrixPtr__6CameraFv
+	.4byte isSpecialCamera__6CameraFv
+	.4byte updateMatrix__12LookAtCameraFv
+	.4byte doUpdate__Q34Game15IllustratedBook6CameraFv
+	.4byte startVibration__Q34Game15IllustratedBook6CameraFi
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q34Game15IllustratedBook11EnemyTexMgr
+__vt__Q34Game15IllustratedBook11EnemyTexMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook11EnemyTexMgrFv
+.global __vt__Q34Game15IllustratedBook10DebugParms
+__vt__Q34Game15IllustratedBook10DebugParms:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game15IllustratedBook10DebugParmsFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game15IllustratedBook6CameraFP10Controller
 __ct__Q34Game15IllustratedBook6CameraFP10Controller:

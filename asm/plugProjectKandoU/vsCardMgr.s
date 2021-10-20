@@ -104,6 +104,75 @@ lbl_80483CBC:
 	.asciz "ArgScaleColorColor"
 	.skip 1
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C1470
+lbl_804C1470:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global "tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"
+"tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@":
+	.4byte lbl_80483AE8
+	.4byte lbl_80483AF8
+	.4byte lbl_80483B08
+	.4byte lbl_80483B18
+	.4byte lbl_80483B28
+	.4byte lbl_80483B38
+	.4byte lbl_80483B48
+	.4byte lbl_80483C00
+	.4byte lbl_80483B70
+	.4byte lbl_80483B80
+	.4byte lbl_80483C18
+	.4byte lbl_80483B90
+.global lbl_804C14AC
+lbl_804C14AC:
+	.4byte lbl_80237714
+	.4byte lbl_802370B0
+	.4byte lbl_802370DC
+	.4byte lbl_802371E4
+	.4byte lbl_80237258
+	.4byte lbl_802372BC
+	.4byte lbl_80237598
+	.4byte lbl_802375D0
+	.4byte lbl_80237488
+	.4byte lbl_802374C0
+	.4byte lbl_802376B0
+.global __vt__Q25efx2d5TBase
+__vt__Q25efx2d5TBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte setGroup__Q25efx2d5TBaseFUc
+.global __vt__Q25efx2d7TBaseIF
+__vt__Q25efx2d7TBaseIF:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q25efx2d18ArgScaleColorColor
+__vt__Q25efx2d18ArgScaleColorColor:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q25efx2d18ArgScaleColorColorFv
+.global __vt__Q25efx2d3Arg
+__vt__Q25efx2d3Arg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q25efx2d3ArgFv
+.global __vt__Q23efx8TPkGlow2
+__vt__Q23efx8TPkGlow2:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr
 __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr:

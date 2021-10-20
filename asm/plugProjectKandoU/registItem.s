@@ -40,6 +40,15 @@ lbl_80480DB0:
 	.4byte 0x4B696C6C
 	.4byte 0x41726700
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804BA360
+lbl_804BA360:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createManagers__Q24Game7ItemMgrFUl
 createManagers__Q24Game7ItemMgrFUl:

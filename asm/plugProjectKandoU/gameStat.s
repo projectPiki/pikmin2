@@ -12,6 +12,15 @@ lbl_80480510:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game8GameStat11PikiCounter
+__vt__Q34Game8GameStat11PikiCounter:
+	.4byte 0
+	.4byte 0
+	.4byte __opi__Q34Game8GameStat11PikiCounterFv
+	.4byte __cl__Q34Game8GameStat11PikiCounterFi
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game8GameStatFv
 clear__Q24Game8GameStatFv:

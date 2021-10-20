@@ -48,6 +48,507 @@ lbl_804805E8:
 	.4byte 0x4B696C6C
 	.4byte 0x41726700
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game9ItemHoney3Mgr
+__vt__Q34Game9ItemHoney3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte "doAnimation__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doEntry__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doSetView__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fi"
+	.4byte "doViewCalc__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doSimulation__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Ff"
+	.4byte "doDirectDraw__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__Q24Game11BaseItemMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "initDependency__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "killAll__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
+	.4byte setupSoundViewerAndBas__Q24Game11BaseItemMgrFv
+	.4byte onLoadResources__Q34Game9ItemHoney3MgrFv
+	.4byte loadEverytime__Q24Game11BaseItemMgrFv
+	.4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+	.4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+	.4byte generatorGetID__Q34Game9ItemHoney3MgrFv
+	.4byte "generatorBirth__Q34Game9ItemHoney3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
+	.4byte generatorWrite__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParm
+	.4byte generatorRead__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParmUl
+	.4byte generatorLocalVersion__Q24Game11BaseItemMgrFv
+	.4byte generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm
+	.4byte generatorNewItemParm__Q24Game11BaseItemMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@48@__dt__Q34Game9ItemHoney3MgrFv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__33Container<Q34Game9ItemHoney4Item>FPv"
+	.4byte "@48@getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "@48@getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@48@getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@48@get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getAt__33Container<Q34Game9ItemHoney4Item>Fi"
+	.4byte "getTo__33Container<Q34Game9ItemHoney4Item>Fv"
+	.4byte onCreateModel__Q34Game9ItemHoney3MgrFPQ28SysShape5Model
+	.4byte birth__Q34Game9ItemHoney3MgrFv
+	.4byte "kill__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item"
+	.4byte "get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte __dt__Q34Game9ItemHoney3MgrFv
+.global "__vt__33ObjectMgr<Q34Game9ItemHoney4Item>"
+"__vt__33ObjectMgr<Q34Game9ItemHoney4Item>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__33Container<Q34Game9ItemHoney4Item>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__33Container<Q34Game9ItemHoney4Item>Fi"
+	.4byte "getTo__33Container<Q34Game9ItemHoney4Item>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@28@doEntry__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@28@doSetView__33ObjectMgr<Q34Game9ItemHoney4Item>Fi"
+	.4byte "@28@doViewCalc__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@28@doSimulation__33ObjectMgr<Q34Game9ItemHoney4Item>Ff"
+	.4byte "@28@doDirectDraw__33ObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doEntry__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doSetView__33ObjectMgr<Q34Game9ItemHoney4Item>Fi"
+	.4byte "doViewCalc__33ObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doSimulation__33ObjectMgr<Q34Game9ItemHoney4Item>Ff"
+	.4byte "doDirectDraw__33ObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
+.global "__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>"
+"__vt__37MonoObjectMgr<Q34Game9ItemHoney4Item>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__33Container<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getNext__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getStart__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "getEnd__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "get__37MonoObjectMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getAt__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
+	.4byte "getTo__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@28@doEntry__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@28@doSetView__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
+	.4byte "@28@doViewCalc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@28@doSimulation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Ff"
+	.4byte "@28@doDirectDraw__37MonoObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doEntry__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doSetView__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fi"
+	.4byte "doViewCalc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doSimulation__37MonoObjectMgr<Q34Game9ItemHoney4Item>Ff"
+	.4byte "doDirectDraw__37MonoObjectMgr<Q34Game9ItemHoney4Item>FR8Graphics"
+	.4byte "birth__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "resetMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "clearMgr__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "onAlloc__37MonoObjectMgr<Q34Game9ItemHoney4Item>Fv"
+.global "__vt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>"
+"__vt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>":
+	.4byte 0
+	.4byte 0
+	.4byte "doAnimation__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doEntry__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doSetView__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fi"
+	.4byte "doViewCalc__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "doSimulation__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Ff"
+	.4byte "doDirectDraw__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__Q24Game11BaseItemMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "initDependency__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "killAll__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
+	.4byte setupSoundViewerAndBas__Q24Game11BaseItemMgrFv
+	.4byte onLoadResources__Q24Game11BaseItemMgrFv
+	.4byte loadEverytime__Q24Game11BaseItemMgrFv
+	.4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+	.4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+	.4byte 0
+	.4byte 0
+	.4byte generatorWrite__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParm
+	.4byte generatorRead__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParmUl
+	.4byte generatorLocalVersion__Q24Game11BaseItemMgrFv
+	.4byte generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm
+	.4byte generatorNewItemParm__Q24Game11BaseItemMgrFv
+	.4byte 0
+	.4byte 0
+	.4byte "@48@__dt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__33Container<Q34Game9ItemHoney4Item>FPv"
+	.4byte "@48@getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "@48@getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@48@getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "@48@get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getAt__33Container<Q34Game9ItemHoney4Item>Fi"
+	.4byte "getTo__33Container<Q34Game9ItemHoney4Item>Fv"
+	.4byte "onCreateModel__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ28SysShape5Model"
+	.4byte "birth__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "kill__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ34Game9ItemHoney4Item"
+	.4byte "get__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getNext__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPv"
+	.4byte "getStart__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "getEnd__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+	.4byte "__dt__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>Fv"
+.global "__vt__33Container<Q34Game9ItemHoney4Item>"
+"__vt__33Container<Q34Game9ItemHoney4Item>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__33Container<Q34Game9ItemHoney4Item>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__33Container<Q34Game9ItemHoney4Item>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__33Container<Q34Game9ItemHoney4Item>Fi"
+	.4byte "getTo__33Container<Q34Game9ItemHoney4Item>Fv"
+.global __vt__Q34Game9ItemHoney4Item
+__vt__Q34Game9ItemHoney4Item:
+	.4byte 0
+	.4byte 0
+	.4byte getPosition__Q24Game8BaseItemFv
+	.4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+	.4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
+	.4byte collisionUpdatable__Q24Game8CreatureFv
+	.4byte isPiki__Q24Game8CreatureFv
+	.4byte isNavi__Q24Game8CreatureFv
+	.4byte deferPikiCollision__Q24Game10CellObjectFv
+	.4byte getTypeName__Q24Game8CreatureFv
+	.4byte getObjType__Q24Game8CreatureFv
+	.4byte constructor__Q24Game8CFSMItemFv
+	.4byte onInit__Q34Game9ItemHoney4ItemFPQ24Game15CreatureInitArg
+	.4byte onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+	.4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	.4byte doAnimation__Q24Game8BaseItemFv
+	.4byte doEntry__Q24Game8BaseItemFv
+	.4byte doSetView__Q24Game8CreatureFi
+	.4byte doViewCalc__Q24Game8CreatureFv
+	.4byte doSimulation__Q34Game9ItemHoney4ItemFf
+	.4byte doDirectDraw__Q34Game9ItemHoney4ItemFR8Graphics
+	.4byte getBodyRadius__Q24Game8CreatureFv
+	.4byte getCellRadius__Q24Game8CreatureFv
+	.4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte getFaceDir__Q24Game8BaseItemFv
+	.4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
+	.4byte getVelocity__Q24Game8BaseItemFv
+	.4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
+	.4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
+	.4byte updateTrMatrix__Q24Game8BaseItemFv
+	.4byte isTeki__Q24Game8CreatureFv
+	.4byte isPellet__Q24Game8CreatureFv
+	.4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
+	.4byte outWaterCallback__Q24Game8CreatureFv
+	.4byte inWater__Q24Game8CreatureFv
+	.4byte getFlockMgr__Q24Game8CreatureFv
+	.4byte onStartCapture__Q34Game9ItemHoney4ItemFv
+	.4byte onUpdateCapture__Q34Game9ItemHoney4ItemFR7Matrixf
+	.4byte onEndCapture__Q34Game9ItemHoney4ItemFv
+	.4byte isAtari__Q24Game8CreatureFv
+	.4byte setAtari__Q24Game8CreatureFb
+	.4byte isAlive__Q24Game8CreatureFv
+	.4byte setAlive__Q24Game8CreatureFb
+	.4byte isCollisionFlick__Q24Game8CreatureFv
+	.4byte setCollisionFlick__Q24Game8CreatureFb
+	.4byte isMovieActor__Q24Game8CreatureFv
+	.4byte isMovieExtra__Q24Game8CreatureFv
+	.4byte isMovieMotion__Q24Game8CreatureFv
+	.4byte setMovieMotion__Q24Game8CreatureFb
+	.4byte isBuried__Q24Game8CreatureFv
+	.4byte isFlying__Q24Game8CreatureFv
+	.4byte isUnderground__Q24Game8CreatureFv
+	.4byte isLivingThing__Q24Game8CreatureFv
+	.4byte isDebugCollision__Q24Game8CreatureFv
+	.4byte setDebugCollision__Q24Game8CreatureFb
+	.4byte doSave__Q24Game8CreatureFR6Stream
+	.4byte doLoad__Q24Game8CreatureFR6Stream
+	.4byte bounceCallback__Q24Game8CFSMItemFPQ23Sys8Triangle
+	.4byte collisionCallback__Q34Game9ItemHoney4ItemFRQ24Game9CollEvent
+	.4byte platCallback__Q24Game8CFSMItemFRQ24Game9PlatEvent
+	.4byte getJAIObject__Q24Game8BaseItemFv
+	.4byte getPSCreature__Q24Game8BaseItemFv
+	.4byte getSound_AILOD__Q24Game8CreatureFv
+	.4byte getSound_PosPtr__Q24Game8BaseItemFv
+	.4byte sound_culling__Q24Game8CreatureFv
+	.4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
+	.4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
+	.4byte on_movie_begin__Q24Game8CreatureFb
+	.4byte on_movie_end__Q34Game9ItemHoney4ItemFb
+	.4byte movieStartAnimation__Q24Game8BaseItemFUl
+	.4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
+	.4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
+	.4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
+	.4byte movieSetFaceDir__Q24Game8CreatureFf
+	.4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
+	.4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
+	.4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
+	.4byte needShadow__Q24Game8CreatureFv
+	.4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
+	.4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
+	.4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
+	.4byte startPick__Q24Game8CreatureFv
+	.4byte endPick__Q24Game8CreatureFb
+	.4byte getMabiki__Q24Game8CreatureFv
+	.4byte getFootmarks__Q24Game8CreatureFv
+	.4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
+	.4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
+	.4byte isSlotFree__Q24Game8CreatureFs
+	.4byte getFreeStickSlot__Q24Game8CreatureFv
+	.4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+	.4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+	.4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+	.4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+	.4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+	.4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
+	.4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+	.4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
+	.4byte getSuckPos__Q24Game8CreatureFv
+	.4byte getGoalPos__Q24Game8CreatureFv
+	.4byte isSuckReady__Q24Game8CreatureFv
+	.4byte isSuckArriveWait__Q24Game8CreatureFv
+	.4byte stimulate__Q24Game8BaseItemFRQ24Game11Interaction
+	.4byte getCreatureName__Q34Game9ItemHoney4ItemFv
+	.4byte getCreatureID__Q24Game8BaseItemFv
+	.4byte 0
+	.4byte 0
+	.4byte "@376@onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent"
+	.4byte initDependency__Q24Game8BaseItemFv
+	.4byte startSound__Q24Game8BaseItemFUl
+	.4byte makeTrMatrix__Q34Game9ItemHoney4ItemFv
+	.4byte doAI__Q34Game9ItemHoney4ItemFv
+	.4byte move__Q24Game8BaseItemFf
+	.4byte changeMaterial__Q34Game9ItemHoney4ItemFv
+	.4byte do_updateLOD__Q24Game8BaseItemFv
+	.4byte do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm
+	.4byte getMapCollisionRadius__Q34Game9ItemHoney4ItemFv
+	.4byte interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack
+	.4byte interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge
+	.4byte interactEat__Q24Game8BaseItemFRQ24Game11InteractEat
+	.4byte interactFlockAttack__Q24Game8BaseItemFRQ24Game19InteractFlockAttack
+	.4byte interactAbsorb__Q34Game9ItemHoney4ItemFRQ24Game14InteractAbsorb
+	.4byte interactFue__Q24Game8BaseItemFRQ24Game11InteractFue
+	.4byte interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero
+	.4byte interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero
+	.4byte interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey
+	.4byte "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>"
+	.4byte getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere
+	.4byte do_doAnimation__Q24Game8BaseItemFv
+	.4byte updateBoundSphere__Q34Game9ItemHoney4ItemFv
+	.4byte update__Q24Game8BaseItemFv
+	.4byte entryShape__Q24Game8BaseItemFv
+	.4byte onSetPosition__Q34Game9ItemHoney4ItemFv
+	.4byte createFSM__Q34Game9ItemHoney4ItemFv
+	.4byte onKeyEvent__Q34Game9ItemHoney4ItemFRCQ28SysShape8KeyEvent
+	.4byte absorbable__Q34Game9ItemHoney4ItemFv
+	.4byte demoOK__Q34Game9ItemHoney4ItemFv
+.global __vt__Q34Game9ItemHoney9DemoState
+__vt__Q34Game9ItemHoney9DemoState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItemPQ24Game8StateArg
+	.4byte exec__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItem
+	.4byte cleanup__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItem
+	.4byte "resume__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "restart__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "transit__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+	.4byte onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf
+	.4byte onKeyEvent__Q34Game9ItemHoney9DemoStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent
+	.4byte onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle
+	.4byte onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent
+	.4byte onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte collisionCallback__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte interactAbsorb__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb
+	.4byte absorbable__Q34Game9ItemHoney5StateFv
+.global __vt__Q34Game9ItemHoney10TouchState
+__vt__Q34Game9ItemHoney10TouchState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemPQ24Game8StateArg
+	.4byte exec__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItem
+	.4byte cleanup__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItem
+	.4byte "resume__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "restart__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "transit__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+	.4byte onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf
+	.4byte onKeyEvent__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent
+	.4byte onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle
+	.4byte onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent
+	.4byte onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte collisionCallback__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte interactAbsorb__Q34Game9ItemHoney10TouchStateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb
+	.4byte absorbable__Q34Game9ItemHoney10TouchStateFv
+.global __vt__Q34Game9ItemHoney11ShrinkState
+__vt__Q34Game9ItemHoney11ShrinkState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemPQ24Game8StateArg
+	.4byte exec__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItem
+	.4byte cleanup__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItem
+	.4byte "resume__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "restart__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "transit__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+	.4byte onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf
+	.4byte onKeyEvent__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent
+	.4byte onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle
+	.4byte onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent
+	.4byte onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte collisionCallback__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte interactAbsorb__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb
+	.4byte absorbable__Q34Game9ItemHoney11ShrinkStateFv
+.global __vt__Q34Game9ItemHoney9WaitState
+__vt__Q34Game9ItemHoney9WaitState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemPQ24Game8StateArg
+	.4byte exec__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItem
+	.4byte cleanup__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItem
+	.4byte "resume__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "restart__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "transit__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+	.4byte onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf
+	.4byte onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent
+	.4byte onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle
+	.4byte onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent
+	.4byte onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte collisionCallback__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte interactAbsorb__Q34Game9ItemHoney9WaitStateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb
+	.4byte absorbable__Q34Game9ItemHoney9WaitStateFv
+.global __vt__Q23efx11THoneydownB
+__vt__Q23efx11THoneydownB:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx11THoneydownR
+__vt__Q23efx11THoneydownR:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q23efx11THoneydownY
+__vt__Q23efx11THoneydownY:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global __vt__Q34Game9ItemHoney11BounceState
+__vt__Q34Game9ItemHoney11BounceState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItemPQ24Game8StateArg
+	.4byte exec__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItem
+	.4byte cleanup__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItem
+	.4byte "resume__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "restart__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "transit__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+	.4byte onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf
+	.4byte onKeyEvent__Q34Game9ItemHoney11BounceStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent
+	.4byte onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle
+	.4byte onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent
+	.4byte onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte collisionCallback__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte interactAbsorb__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb
+	.4byte absorbable__Q34Game9ItemHoney5StateFv
+.global __vt__Q34Game9ItemHoney9FallState
+__vt__Q34Game9ItemHoney9FallState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItemPQ24Game8StateArg
+	.4byte exec__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItem
+	.4byte cleanup__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItem
+	.4byte "resume__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "restart__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "transit__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+	.4byte onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf
+	.4byte onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent
+	.4byte onBounce__Q34Game9ItemHoney9FallStateFPQ24Game8CFSMItemPQ23Sys8Triangle
+	.4byte onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent
+	.4byte onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte collisionCallback__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte interactAbsorb__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb
+	.4byte absorbable__Q34Game9ItemHoney5StateFv
+.global __vt__Q34Game9ItemHoney5State
+__vt__Q34Game9ItemHoney5State:
+	.4byte 0
+	.4byte 0
+	.4byte "init__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemPQ24Game8StateArg"
+	.4byte "exec__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "cleanup__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "resume__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "restart__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "transit__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+	.4byte onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf
+	.4byte onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent
+	.4byte onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle
+	.4byte onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent
+	.4byte onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte collisionCallback__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game9CollEvent
+	.4byte interactAbsorb__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb
+	.4byte absorbable__Q34Game9ItemHoney5StateFv
+.global __vt__Q34Game9ItemHoney3FSM
+__vt__Q34Game9ItemHoney3FSM:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem
+	.4byte "start__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+	.4byte "exec__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+	.4byte "transit__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+.global lbl_804B8528
+lbl_804B8528:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte "createModelCallback__Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>FPQ28SysShape5Model"
+.global "__vt__79Delegate1<Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>,PQ28SysShape5Model>"
+"__vt__79Delegate1<Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>,PQ28SysShape5Model>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__79Delegate1<Q24Game40FixedSizeItemMgr<Q34Game9ItemHoney4Item>,PQ28SysShape5Model>FPQ28SysShape5Model"
+.global "__vt__32Iterator<Q34Game9ItemHoney4Item>"
+"__vt__32Iterator<Q34Game9ItemHoney4Item>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__32Iterator<Q34Game9ItemHoney4Item>Fv"
+	.4byte "next__32Iterator<Q34Game9ItemHoney4Item>Fv"
+	.4byte "isDone__32Iterator<Q34Game9ItemHoney4Item>Fv"
+	.4byte "__ml__32Iterator<Q34Game9ItemHoney4Item>Fv"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem
 init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem:

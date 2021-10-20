@@ -14,6 +14,29 @@ lbl_80483D40:
 	.asciz "draw_calc"
 	.skip 2
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C1590
+lbl_804C1590:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804C159C
+lbl_804C159C:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte newdraw_drawAll__Q24Game15BaseGameSectionFP8Viewport
+.global "__vt__46Delegate1<Q24Game15BaseGameSection,P8Viewport>"
+"__vt__46Delegate1<Q24Game15BaseGameSection,P8Viewport>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__46Delegate1<Q24Game15BaseGameSection,P8Viewport>FP8Viewport"
+.global "__vt__22IDelegate1<P8Viewport>"
+"__vt__22IDelegate1<P8Viewport>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics
 newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics:

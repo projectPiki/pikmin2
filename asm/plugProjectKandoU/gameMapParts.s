@@ -219,6 +219,357 @@ lbl_8047FF64:
 	.4byte 0x0A000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804B5C20
+lbl_804B5C20:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804B5C2C
+lbl_804B5C2C:
+	.4byte lbl_801B7350
+	.4byte lbl_801B74A8
+	.4byte lbl_801B75B4
+	.4byte lbl_801B6FA4
+	.4byte lbl_801B7120
+	.4byte lbl_801B728C
+	.4byte lbl_801B71A4
+	.4byte lbl_801B7218
+.global __vt__Q24Game10RoomMapMgr
+__vt__Q24Game10RoomMapMgr:
+	.4byte 0
+	.4byte 0
+	.4byte hasHiddenCollision__Q24Game10RoomMapMgrFv
+	.4byte constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere
+	.4byte "getStartPosition__Q24Game10RoomMapMgrFR10Vector3<f>i"
+	.4byte getDemoMatrix__Q24Game10RoomMapMgrFv
+	.4byte getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d
+	.4byte getBoundBox__Q24Game10RoomMapMgrFR8BoundBox
+	.4byte findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo
+	.4byte traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
+	.4byte "getMinY__Q24Game10RoomMapMgrFR10Vector3<f>"
+	.4byte getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo
+	.4byte createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg
+	.4byte setupJUTTextures__Q24Game10RoomMapMgrFv
+	.4byte frozenable__Q24Game6MapMgrFv
+	.4byte update__Q24Game6MapMgrFv
+	.4byte do_update__Q24Game6MapMgrFv
+	.4byte drawCollision__Q24Game10RoomMapMgrFR8GraphicsRQ23Sys6Sphere
+	.4byte doSimulation__Q24Game10RoomMapMgrFf
+	.4byte doDirectDraw__Q24Game10RoomMapMgrFR8Graphics
+	.4byte doAnimation__Q24Game10RoomMapMgrFv
+	.4byte doEntry__Q24Game10RoomMapMgrFv
+	.4byte doSetView__Q24Game10RoomMapMgrFi
+	.4byte doViewCalc__Q24Game10RoomMapMgrFv
+	.4byte traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
+	.4byte traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
+	.4byte 0
+	.4byte 0
+	.4byte "@280@4@doAnimation__Q24Game10RoomMapMgrFv"
+	.4byte "@280@4@doEntry__Q24Game10RoomMapMgrFv"
+	.4byte "@280@4@doSetView__Q24Game10RoomMapMgrFi"
+	.4byte "@280@4@doViewCalc__Q24Game10RoomMapMgrFv"
+	.4byte "@280@4@doSimulation__Q24Game10RoomMapMgrFf"
+	.4byte "@280@4@doDirectDraw__Q24Game10RoomMapMgrFR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte "@280@4@frozenable__Q24Game6MapMgrFv"
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+.global __vt__Q24Game4Door
+__vt__Q24Game4Door:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game4DoorFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game16MapUnitInterface
+__vt__Q24Game16MapUnitInterface:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game16MapUnitInterfaceFv
+	.4byte getChildCount__5CNodeFv
+	.4byte constructor__Q24Game9PartsViewFv
+	.4byte doAnimation__Q24Game9PartsViewFv
+	.4byte doEntry__Q24Game9PartsViewFv
+	.4byte doSetView__Q24Game9PartsViewFi
+	.4byte doViewCalc__Q24Game9PartsViewFv
+	.4byte doSimulation__Q24Game9PartsViewFf
+	.4byte doDirectDraw__Q24Game9PartsViewFR8Graphics
+.global "__vt__25Iterator<Q24Game7MapRoom>"
+"__vt__25Iterator<Q24Game7MapRoom>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__25Iterator<Q24Game7MapRoom>Fv"
+	.4byte "next__25Iterator<Q24Game7MapRoom>Fv"
+	.4byte "isDone__25Iterator<Q24Game7MapRoom>Fv"
+	.4byte "__ml__25Iterator<Q24Game7MapRoom>Fv"
+.global "__vt__26Container<Q24Game7MapRoom>"
+"__vt__26Container<Q24Game7MapRoom>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__26Container<Q24Game7MapRoom>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q24Game7MapRoom>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__26Container<Q24Game7MapRoom>Fi"
+	.4byte "getTo__26Container<Q24Game7MapRoom>Fv"
+.global "__vt__26ObjectMgr<Q24Game7MapRoom>"
+"__vt__26ObjectMgr<Q24Game7MapRoom>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__26ObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q24Game7MapRoom>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__26Container<Q24Game7MapRoom>Fi"
+	.4byte "getTo__26Container<Q24Game7MapRoom>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "@28@doEntry__26ObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "@28@doSetView__26ObjectMgr<Q24Game7MapRoom>Fi"
+	.4byte "@28@doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "@28@doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff"
+	.4byte "@28@doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "doEntry__26ObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "doSetView__26ObjectMgr<Q24Game7MapRoom>Fi"
+	.4byte "doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff"
+	.4byte "doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics"
+.global "__vt__30MonoObjectMgr<Q24Game7MapRoom>"
+"__vt__30MonoObjectMgr<Q24Game7MapRoom>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q24Game7MapRoom>FPv"
+	.4byte "getNext__30MonoObjectMgr<Q24Game7MapRoom>FPv"
+	.4byte "getStart__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "getEnd__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "get__30MonoObjectMgr<Q24Game7MapRoom>FPv"
+	.4byte "getAt__30MonoObjectMgr<Q24Game7MapRoom>Fi"
+	.4byte "getTo__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "@28@doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "@28@doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi"
+	.4byte "@28@doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "@28@doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff"
+	.4byte "@28@doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi"
+	.4byte "doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff"
+	.4byte "doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics"
+	.4byte "birth__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "clearMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+	.4byte "onAlloc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+.global __vt__Q24Game7MapRoom
+__vt__Q24Game7MapRoom:
+	.4byte 0
+	.4byte 0
+	.4byte getPosition__Q24Game7MapRoomFv
+	.4byte checkCollision__Q24Game10CellObjectFPQ24Game10CellObject
+	.4byte getBoundingSphere__Q24Game7MapRoomFRQ23Sys6Sphere
+	.4byte collisionUpdatable__Q24Game7MapRoomFv
+	.4byte isPiki__Q24Game10CellObjectFv
+	.4byte isNavi__Q24Game10CellObjectFv
+	.4byte deferPikiCollision__Q24Game10CellObjectFv
+	.4byte getTypeName__Q24Game7MapRoomFv
+	.4byte getObjType__Q24Game7MapRoomFv
+	.4byte constructor__Q24Game7MapRoomFv
+	.4byte doAnimation__Q24Game7MapRoomFv
+	.4byte doEntry__Q24Game7MapRoomFv
+	.4byte doSetView__Q24Game7MapRoomFi
+	.4byte doViewCalc__Q24Game7MapRoomFv
+	.4byte doSimulation__Q24Game7MapRoomFf
+	.4byte doDirectDraw__Q24Game7MapRoomFR8Graphics
+.global __vt__Q24Game15ItemGateInitArg
+__vt__Q24Game15ItemGateInitArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q24Game15ItemGateInitArgFv
+.global __vt__Q34Game15ItemBigFountain7InitArg
+__vt__Q34Game15ItemBigFountain7InitArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q34Game15ItemBigFountain7InitArgFv
+.global __vt__Q34Game8ItemHole7InitArg
+__vt__Q34Game8ItemHole7InitArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q34Game8ItemHole7InitArgFv
+.global "__vt__25Iterator<Q24Game7MapUnit>"
+"__vt__25Iterator<Q24Game7MapUnit>":
+	.4byte 0
+	.4byte 0
+	.4byte "first__25Iterator<Q24Game7MapUnit>Fv"
+	.4byte "next__25Iterator<Q24Game7MapUnit>Fv"
+	.4byte "isDone__25Iterator<Q24Game7MapUnit>Fv"
+	.4byte "__ml__25Iterator<Q24Game7MapUnit>Fv"
+.global __vt__Q24Game10MapUnitMgr
+__vt__Q24Game10MapUnitMgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game10MapUnitMgrFv
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q24Game7MapUnit>FPv"
+	.4byte "getNext__30NodeObjectMgr<Q24Game7MapUnit>FPv"
+	.4byte "getStart__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "getEnd__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "get__30NodeObjectMgr<Q24Game7MapUnit>FPv"
+	.4byte getAt__Q24Game10MapUnitMgrFi
+	.4byte "getTo__26Container<Q24Game7MapUnit>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
+	.4byte "@28@doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
+	.4byte "@28@doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
+	.4byte "doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
+	.4byte "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
+	.4byte "resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+.global "__vt__28TObjectNode<Q24Game7MapUnit>"
+"__vt__28TObjectNode<Q24Game7MapUnit>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__28TObjectNode<Q24Game7MapUnit>Fv"
+	.4byte getChildCount__5CNodeFv
+.global "__vt__30NodeObjectMgr<Q24Game7MapUnit>"
+"__vt__30NodeObjectMgr<Q24Game7MapUnit>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q24Game7MapUnit>FPv"
+	.4byte "getNext__30NodeObjectMgr<Q24Game7MapUnit>FPv"
+	.4byte "getStart__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "getEnd__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "get__30NodeObjectMgr<Q24Game7MapUnit>FPv"
+	.4byte "getAt__26Container<Q24Game7MapUnit>Fi"
+	.4byte "getTo__26Container<Q24Game7MapUnit>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
+	.4byte "@28@doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
+	.4byte "@28@doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte "@28@resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
+	.4byte "doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
+	.4byte "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
+	.4byte "resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+.global "__vt__26ObjectMgr<Q24Game7MapUnit>"
+"__vt__26ObjectMgr<Q24Game7MapUnit>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q24Game7MapUnit>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__26Container<Q24Game7MapUnit>Fi"
+	.4byte "getTo__26Container<Q24Game7MapUnit>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte "@28@doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
+	.4byte "@28@doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "@28@doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
+	.4byte "@28@doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
+	.4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+	.4byte loadResources__16GenericObjectMgrFv
+	.4byte resetMgr__16GenericObjectMgrFv
+	.4byte pausable__16GenericObjectMgrFv
+	.4byte frozenable__16GenericObjectMgrFv
+	.4byte getMatrixLoadType__16GenericObjectMgrFv
+	.4byte "doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
+	.4byte "doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
+	.4byte "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
+	.4byte "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
+.global "__vt__26Container<Q24Game7MapUnit>"
+"__vt__26Container<Q24Game7MapUnit>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__26Container<Q24Game7MapUnit>Fv"
+	.4byte getChildCount__5CNodeFv
+	.4byte "getObject__26Container<Q24Game7MapUnit>FPv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "getAt__26Container<Q24Game7MapUnit>Fi"
+	.4byte "getTo__26Container<Q24Game7MapUnit>Fv"
+.global __vt__Q24Game7MapUnit
+__vt__Q24Game7MapUnit:
+	.4byte 0
+	.4byte 0
+	.4byte constructor__Q24Game7MapUnitFv
+	.4byte doAnimation__Q24Game7MapUnitFv
+	.4byte doEntry__Q24Game7MapUnitFv
+	.4byte doSetView__Q24Game7MapUnitFi
+	.4byte doViewCalc__Q24Game7MapUnitFv
+	.4byte doSimulation__Q24Game7MapUnitFf
+	.4byte doDirectDraw__Q24Game7MapUnitFR8Graphics
+.global __vt__Q24Game8DoorLink
+__vt__Q24Game8DoorLink:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game8DoorLinkFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getDoor__Q24Game16MapUnitInterfaceFi
 getDoor__Q24Game16MapUnitInterfaceFi:

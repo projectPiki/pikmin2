@@ -116,6 +116,73 @@ lbl_804807B4:
 	.4byte 0x20210A00
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@"
+"enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@":
+	.4byte lbl_805196CC
+	.4byte lbl_805196D0
+	.4byte lbl_80480688
+	.4byte lbl_805196D8
+	.4byte 0
+	.4byte 0
+.global "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@"
+"enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@":
+	.4byte lbl_805196E0
+	.4byte lbl_805196E8
+	.4byte lbl_80480698
+.global __vt__Q34Game4Cave8CaveInfo
+__vt__Q34Game4Cave8CaveInfo:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave8CaveInfoFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game4Cave8CaveInfoFR6Stream
+.global __vt__Q34Game4Cave9FloorInfo
+__vt__Q34Game4Cave9FloorInfo:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave9FloorInfoFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game4Cave9FloorInfoFR6Stream
+.global __vt__Q34Game4Cave7CapInfo
+__vt__Q34Game4Cave7CapInfo:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave7CapInfoFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game4Cave7CapInfoFR6Stream
+.global __vt__Q34Game4Cave8GateInfo
+__vt__Q34Game4Cave8GateInfo:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave8GateInfoFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game4Cave8GateInfoFR6Stream
+.global __vt__Q34Game4Cave8ItemInfo
+__vt__Q34Game4Cave8ItemInfo:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave8ItemInfoFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game4Cave8ItemInfoFR6Stream
+.global __vt__Q34Game4Cave8TekiInfo
+__vt__Q34Game4Cave8TekiInfo:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave8TekiInfoFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game4Cave8TekiInfoFR6Stream
+.global __vt__Q34Game4Cave7BaseGen
+__vt__Q34Game4Cave7BaseGen:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game4Cave7BaseGenFv
+	.4byte getChildCount__5CNodeFv
+	.4byte read__Q34Game4Cave7BaseGenFR6Stream
+	.4byte draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"

@@ -39,6 +39,97 @@ lbl_8048395C:
 	.4byte 0x6F6E4172
 	.4byte 0x67000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q26PikiAI10ActOneshot
+__vt__Q26PikiAI10ActOneshot:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q26PikiAI10ActOneshotFPQ26PikiAI9ActionArg
+	.4byte exec__Q26PikiAI10ActOneshotFv
+	.4byte cleanup__Q26PikiAI10ActOneshotFv
+	.4byte emotion_success__Q26PikiAI6ActionFv
+	.4byte emotion_fail__Q26PikiAI6ActionFv
+	.4byte applicable__Q26PikiAI6ActionFv
+	.4byte getNextAIType__Q26PikiAI6ActionFv
+	.4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+	.4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
+	.4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
+	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
+	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+	.4byte getInfo__Q26PikiAI6ActionFPc
+	.4byte finish__Q26PikiAI10ActOneshotFv
+	.4byte onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent
+	.4byte 0
+	.4byte 0
+	.4byte "@28@4@onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent"
+.global __vt__Q26PikiAI7ActRest
+__vt__Q26PikiAI7ActRest:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q26PikiAI7ActRestFPQ26PikiAI9ActionArg
+	.4byte exec__Q26PikiAI7ActRestFv
+	.4byte cleanup__Q26PikiAI7ActRestFv
+	.4byte emotion_success__Q26PikiAI6ActionFv
+	.4byte emotion_fail__Q26PikiAI6ActionFv
+	.4byte applicable__Q26PikiAI6ActionFv
+	.4byte getNextAIType__Q26PikiAI6ActionFv
+	.4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+	.4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
+	.4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
+	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
+	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+	.4byte getInfo__Q26PikiAI6ActionFPc
+	.4byte finish__Q26PikiAI7ActRestFv
+	.4byte onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent
+	.4byte 0
+	.4byte 0
+	.4byte "@28@4@onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent"
+.global __vt__Q26PikiAI11ActBoreBase
+__vt__Q26PikiAI11ActBoreBase:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q26PikiAI6ActionFPQ26PikiAI9ActionArg
+	.4byte exec__Q26PikiAI6ActionFv
+	.4byte cleanup__Q26PikiAI6ActionFv
+	.4byte emotion_success__Q26PikiAI6ActionFv
+	.4byte emotion_fail__Q26PikiAI6ActionFv
+	.4byte applicable__Q26PikiAI6ActionFv
+	.4byte getNextAIType__Q26PikiAI6ActionFv
+	.4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+	.4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
+	.4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
+	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
+	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+	.4byte getInfo__Q26PikiAI6ActionFPc
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q26PikiAI13ActOneshotArg
+__vt__Q26PikiAI13ActOneshotArg:
+	.4byte 0
+	.4byte 0
+	.4byte getName__Q26PikiAI9ActionArgFv
+.global __vt__Q26PikiAI7ActBore
+__vt__Q26PikiAI7ActBore:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q26PikiAI7ActBoreFPQ26PikiAI9ActionArg
+	.4byte exec__Q26PikiAI7ActBoreFv
+	.4byte cleanup__Q26PikiAI7ActBoreFv
+	.4byte emotion_success__Q26PikiAI6ActionFv
+	.4byte emotion_fail__Q26PikiAI6ActionFv
+	.4byte applicable__Q26PikiAI6ActionFv
+	.4byte getNextAIType__Q26PikiAI6ActionFv
+	.4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+	.4byte collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent
+	.4byte platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent
+	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
+	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
+	.4byte getInfo__Q26PikiAI6ActionFPc
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActBoreFPQ24Game4Piki
 __ct__Q26PikiAI7ActBoreFPQ24Game4Piki:

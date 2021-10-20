@@ -20,6 +20,17 @@ lbl_804837E8:
 	.4byte 0x74654D67
 	.4byte 0x72000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__12CellMgrParms
+__vt__12CellMgrParms:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "@12@__dt__12CellMgrParmsFv"
+	.4byte __dt__12CellMgrParmsFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__12CellMgrParmsFv
 __dt__12CellMgrParmsFv:

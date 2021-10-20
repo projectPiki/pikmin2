@@ -10,6 +10,71 @@ lbl_80482598:
 	.4byte 0x74000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C0648
+lbl_804C0648:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804C0654
+lbl_804C0654:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadResource__Q34Game10SingleGame15MainResultStateFv
+.global lbl_804C0660
+lbl_804C0660:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte beforeSave__Q34Game10SingleGame15MainResultStateFv
+.global __vt__Q32kh6Screen20DispDayEndResultTitl
+__vt__Q32kh6Screen20DispDayEndResultTitl:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32kh6Screen20DispDayEndResultTitlFv
+	.4byte getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv
+	.4byte getMemberID__Q32kh6Screen20DispDayEndResultTitlFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.global __vt__Q32kh6Screen16DispDayEndResult
+__vt__Q32kh6Screen16DispDayEndResult:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32kh6Screen16DispDayEndResultFv
+	.4byte getOwnerID__Q32kh6Screen16DispDayEndResultFv
+	.4byte getMemberID__Q32kh6Screen16DispDayEndResultFv
+	.4byte doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv
+.global __vt__Q34Game10SingleGame15MainResultState
+__vt__Q34Game10SingleGame15MainResultState:
+	.4byte 0
+	.4byte 0
+	.4byte init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
+	.4byte exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
+	.4byte cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
+	.4byte "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+	.4byte "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+	.4byte "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
+	.4byte draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Graphics
+	.4byte onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni
+	.4byte onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+	.4byte onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni
+	.4byte onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
+	.4byte onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
+	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
+	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
+	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
+.global __vt__Q34Game6Result5TNode
+__vt__Q34Game6Result5TNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game6Result5TNodeFv
+	.4byte getChildCount__Q24Game5DNodeFv
+.global "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"
+"__vt__46Delegate<Q34Game10SingleGame15MainResultState>":
+	.4byte 0
+	.4byte 0
+	.4byte "invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame15MainResultStateFv
 __ct__Q34Game10SingleGame15MainResultStateFv:

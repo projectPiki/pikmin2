@@ -36,6 +36,39 @@ lbl_804837D4:
 	.4byte 0x83570000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804C10F0
+lbl_804C10F0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q34Game6VsGame9StageList
+__vt__Q34Game6VsGame9StageList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game6VsGame9StageListFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game6VsGame9StageData
+__vt__Q34Game6VsGame9StageData:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game6VsGame9StageDataFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game13ChallengeGame9StageList
+__vt__Q34Game13ChallengeGame9StageList:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game13ChallengeGame9StageListFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game13ChallengeGame9StageData
+__vt__Q34Game13ChallengeGame9StageData:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game13ChallengeGame9StageDataFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global read__Q34Game13ChallengeGame9StageDataFR6Stream
 read__Q34Game13ChallengeGame9StageDataFR6Stream:

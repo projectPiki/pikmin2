@@ -1,7 +1,7 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 0x8
-.global lbl_804742C0
-lbl_804742C0:
+.global JUTResFONT_Ascfont_fix12
+JUTResFONT_Ascfont_fix12:
 	.4byte 0x464F4E54
 	.4byte 0x62666E31
 	.4byte 0x00004160

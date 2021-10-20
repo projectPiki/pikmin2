@@ -24,6 +24,19 @@ lbl_80483A1C:
 lbl_80483A28:
 	.asciz "illegal index [%d] [0..%d)\n"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q34Game11IconTexture3Mgr
+__vt__Q34Game11IconTexture3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game11IconTexture3MgrFv
+.global __vt__Q34Game11IconTexture6Loader
+__vt__Q34Game11IconTexture6Loader:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game11IconTexture6LoaderFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11IconTexture6LoaderFv
 __ct__Q34Game11IconTexture6LoaderFv:

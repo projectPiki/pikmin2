@@ -99,6 +99,21 @@ lbl_804832B8:
 	.4byte 0x25642921
 	.4byte 0x0A000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game5DNode
+__vt__Q24Game5DNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game5DNodeFv
+	.4byte getChildCount__Q24Game5DNodeFv
+.global __vt__Q34Game12ResultTexMgr3Mgr
+__vt__Q34Game12ResultTexMgr3Mgr:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game12ResultTexMgr3MgrFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12ResultTexMgr3MgrFv
 __ct__Q34Game12ResultTexMgr3MgrFv:

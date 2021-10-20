@@ -10,6 +10,15 @@ lbl_80483AA0:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game8Lowscore
+__vt__Q24Game8Lowscore:
+	.4byte 0
+	.4byte 0
+	.4byte do_higher__Q24Game8LowscoreFii
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14PlayCommonDataFv
 __ct__Q24Game14PlayCommonDataFv:

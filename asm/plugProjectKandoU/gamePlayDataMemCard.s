@@ -271,6 +271,15 @@ lbl_80482B8C:
 	.asciz "\t# active player id\r\n"
 	.skip 2
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game16PelletCropMemory
+__vt__Q24Game16PelletCropMemory:
+	.4byte 0
+	.4byte 0
+	.4byte read__Q24Game16PelletCropMemoryFR6Stream
+	.4byte write__Q24Game16PelletCropMemoryFR6Stream
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global mVersion__Q24Game8PlayData
