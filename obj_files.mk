@@ -801,6 +801,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageMgr.o\
+	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurage.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureMgr.o\
@@ -847,7 +848,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudaiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TyreShadow.o\
-	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDopingScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogPikminCounter.o\

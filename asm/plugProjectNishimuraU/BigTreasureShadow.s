@@ -73,6 +73,15 @@ lbl_8048C968:
 	.4byte 0x656E6E61
 	.4byte 0x32000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game17TubeShadowPosNode
+__vt__Q24Game17TubeShadowPosNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game17TubeShadowPosNodeFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj
 __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj:

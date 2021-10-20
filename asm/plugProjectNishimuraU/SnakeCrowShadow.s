@@ -64,6 +64,21 @@ lbl_8048D2E0:
 	.4byte lbl_8048D2C8
 	.4byte lbl_8048D2D4
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game25SnakeCrowSphereShadowNode
+__vt__Q24Game25SnakeCrowSphereShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game25SnakeCrowSphereShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game23SnakeCrowTubeShadowNode
+__vt__Q24Game23SnakeCrowTubeShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game23SnakeCrowTubeShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"
 "makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>":

@@ -12,6 +12,15 @@ lbl_8048DCB4:
 	.4byte 0x6261636B
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game18TyreTubeShadowNode
+__vt__Q24Game18TyreTubeShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game18TyreTubeShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf
 makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf:
