@@ -10,6 +10,27 @@ lbl_8048DE5C:
 	.asciz "anim group is overflow!!\n"
 	.skip 2
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og6Screen8AnimPane
+__vt__Q32og6Screen8AnimPane:
+	.4byte 0
+	.4byte 0
+	.4byte start__Q32og6Screen8AnimPaneFv
+	.4byte moveAnim__Q32og6Screen8AnimPaneFv
+.global __vt__Q32og6Screen10AnimScreen
+__vt__Q32og6Screen10AnimScreen:
+	.4byte 0
+	.4byte 0
+	.4byte start__Q32og6Screen10AnimScreenFv
+	.4byte moveAnim__Q32og6Screen10AnimScreenFv
+.global __vt__Q32og6Screen12AnimBaseBase
+__vt__Q32og6Screen12AnimBaseBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global start__Q32og6Screen12AnimBaseBaseFf
 start__Q32og6Screen12AnimBaseBaseFf:

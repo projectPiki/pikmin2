@@ -13,6 +13,19 @@ lbl_8048F550:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og6Screen15CallBack_Furiko
+__vt__Q32og6Screen15CallBack_Furiko:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og6Screen15CallBack_FurikoFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32og6Screen15CallBack_FurikoFv
+	.4byte draw__Q32og6Screen15CallBack_FurikoFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global stop__Q32og6Screen15CallBack_FurikoFv
 stop__Q32og6Screen15CallBack_FurikoFv:

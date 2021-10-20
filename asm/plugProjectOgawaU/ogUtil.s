@@ -9,6 +9,23 @@ lbl_8048E778:
 	.4byte 0x25732573
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804D8B00
+lbl_804D8B00:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804D8B0C
+lbl_804D8B0C:
+	.4byte lbl_80317FB0
+	.4byte lbl_80317FB8
+	.4byte lbl_80317FC0
+	.4byte lbl_80317FE0
+	.4byte lbl_80317FC8
+	.4byte lbl_80317FD0
+	.4byte lbl_80317FD8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global checkMovieActive__Q22og9newScreenFv
 checkMovieActive__Q22og9newScreenFv:

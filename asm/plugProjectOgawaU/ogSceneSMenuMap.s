@@ -85,6 +85,89 @@ lbl_8048E420:
 	.4byte 0x61702E73
 	.4byte 0x7A730000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804D8520
+lbl_804D8520:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_804D852C
+lbl_804D852C:
+	.4byte lbl_80312E64
+	.4byte lbl_80312E64
+	.4byte lbl_80312E64
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E64
+	.4byte lbl_80312E64
+	.4byte lbl_80312E64
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E64
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E64
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E68
+	.4byte lbl_80312E64
+.global __vt__Q32og9newScreen8SMenuMap
+__vt__Q32og9newScreen8SMenuMap:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32og9newScreen8SMenuMapFv
+	.4byte getOwnerID__Q32og9newScreen8SMenuMapFv
+	.4byte getMemberID__Q32og9newScreen8SMenuMapFv
+	.4byte isUseBackupSceneInfo__Q32og9newScreen8SMenuMapFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32og9newScreen8SMenuMapCFv
+	.4byte doCreateObj__Q32og9newScreen8SMenuMapFP10JKRArchive
+	.4byte doUserCallBackFunc__Q32og9newScreen8SMenuMapFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q32og9newScreen8SMenuMapFv
+	.4byte doConfirmSetScene__Q32og9newScreen8SMenuMapFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q32og9newScreen8SMenuMapFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q32og9newScreen14SceneSMenuBaseFv
+.global __vt__Q32og9newScreen14SceneSMenuBase
+__vt__Q32og9newScreen14SceneSMenuBase:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte 0
+	.4byte 0
+	.4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q26Screen9SceneBaseFv
+	.4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q32og9newScreen14SceneSMenuBaseFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen8SMenuMapFv
 __ct__Q32og9newScreen8SMenuMapFv:

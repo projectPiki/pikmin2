@@ -8,6 +8,41 @@ lbl_8048CDD8:
 	.float 0.1
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804D4C58
+lbl_804D4C58:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__Q23efx11TChibiShell
+__vt__Q23efx11TChibiShell:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx11TChibiShellFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx11TChibiShellFv
+.global __vt__Q34Game10MiniHoudai21MiniHoudaiShotGunNode
+__vt__Q34Game10MiniHoudai21MiniHoudaiShotGunNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global verticalRotationCallBack__Q24Game10MiniHoudaiFP8J3DJointi
 verticalRotationCallBack__Q24Game10MiniHoudaiFP8J3DJointi:

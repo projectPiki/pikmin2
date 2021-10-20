@@ -8,6 +8,21 @@ lbl_8048D1C0:
 lbl_8048D1CC:
 	.asciz "weak_joint2"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game24UmimushiSphereShadowNode
+__vt__Q24Game24UmimushiSphereShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game24UmimushiSphereShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q24Game22UmimushiTubeShadowNode
+__vt__Q24Game22UmimushiTubeShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game22UmimushiTubeShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>"
 "makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>":

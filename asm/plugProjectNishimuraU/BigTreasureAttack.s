@@ -17,6 +17,223 @@ lbl_8048D228:
 	.asciz "otakara_water_eff"
 	.skip 2
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q23efx12TOootaWbShot
+__vt__Q23efx12TOootaWbShot:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple2Fv
+	.4byte fade__Q23efx8TSimple2Fv
+.global "__vt__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>"
+"__vt__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>":
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+	.4byte "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+.global __vt__Q23efx10TChaseMtx6
+__vt__Q23efx10TChaseMtx6:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+	.4byte "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+.global __vt__Q23efx17TOootaElecAttack2
+__vt__Q23efx17TOootaElecAttack2:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+.global __vt__Q23efx17TOootaElecAttack1
+__vt__Q23efx17TOootaElecAttack1:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx17TOootaElecAttack1Fv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx17TOootaElecAttack1Fv
+.global __vt__Q23efx13TOootaElecLeg
+__vt__Q23efx13TOootaElecLeg:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx13TOootaElecLegFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx13TOootaElecLegFv
+.global __vt__Q23efx9TOootaGas
+__vt__Q23efx9TOootaGas:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+.global __vt__Q23efx11TOootaPdead
+__vt__Q23efx11TOootaPdead:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple1Fv
+	.4byte fade__Q23efx8TSimple1Fv
+.global "__vt__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>"
+"__vt__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>":
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+.global __vt__Q23efx24TChasePosPosLocalZScale3
+__vt__Q23efx24TChasePosPosLocalZScale3:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+.global __vt__Q23efx13TOootaPhouden
+__vt__Q23efx13TOootaPhouden:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+.global __vt__Q23efx15TOootaElecparts
+__vt__Q23efx15TOootaElecparts:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx5TSyncFPQ23efx3Arg
+	.4byte forceKill__Q23efx5TSyncFv
+	.4byte fade__Q23efx5TSyncFv
+	.4byte 0
+	.4byte 0
+	.4byte "@4@__dt__Q23efx15TOootaElecpartsFv"
+	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
+	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+	.4byte startDemoDrawOff__Q23efx5TSyncFv
+	.4byte endDemoDrawOn__Q23efx5TSyncFv
+	.4byte __dt__Q23efx15TOootaElecpartsFv
+.global __vt__Q23efx10TOootaElec
+__vt__Q23efx10TOootaElec:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+	.4byte "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+.global __vt__Q34Game11BigTreasure21BigTreasureElecAttack
+__vt__Q34Game11BigTreasure21BigTreasureElecAttack:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game11BigTreasure21BigTreasureElecAttackFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q23efx11TOootaWbHit
+__vt__Q23efx11TOootaWbHit:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q23efx8TSimple4FPQ23efx3Arg
+	.4byte forceKill__Q23efx8TSimple4Fv
+	.4byte fade__Q23efx8TSimple4Fv
+.global "__vt__Q23efx29TSyncGroup4<Q23efx9TChasePos>"
+"__vt__Q23efx29TSyncGroup4<Q23efx9TChasePos>":
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+.global __vt__Q23efx10TChasePos4
+__vt__Q23efx10TChasePos4:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+.global __vt__Q23efx11TOootaWbomb
+__vt__Q23efx11TOootaWbomb:
+	.4byte 0
+	.4byte 0
+	.4byte "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
+	.4byte "forceKill__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+	.4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+.global __vt__Q34Game11BigTreasure22BigTreasureWaterAttack
+__vt__Q34Game11BigTreasure22BigTreasureWaterAttack:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game11BigTreasure22BigTreasureWaterAttackFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game11BigTreasure20BigTreasureGasAttack
+__vt__Q34Game11BigTreasure20BigTreasureGasAttack:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game11BigTreasure20BigTreasureGasAttackFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game11BigTreasure21BigTreasureFireAttack
+__vt__Q34Game11BigTreasure21BigTreasureFireAttack:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game11BigTreasure21BigTreasureFireAttackFv
+	.4byte getChildCount__5CNodeFv
+.global __vt__Q34Game11BigTreasure16AttackShadowNode
+__vt__Q34Game11BigTreasure16AttackShadowNode:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q34Game11BigTreasure16AttackShadowNodeFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv
 makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv:

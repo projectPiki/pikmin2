@@ -1,4 +1,136 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og6Screen24PikminCounterChallenge1P
+__vt__Q32og6Screen24PikminCounterChallenge1P:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og6Screen24PikminCounterChallenge1PFv
+	.4byte getTypeID__9J2DScreenCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__7J2DPaneFff
+	.4byte setCullBack__7J2DPaneFb
+	.4byte setCullBack__7J2DPaneF11_GXCullMode
+	.4byte setAlpha__7J2DPaneFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__9J2DScreenFv
+	.4byte update__Q32og6Screen13PikminCounterFv
+	.4byte drawSelf__7J2DPaneFff
+	.4byte drawSelf__9J2DScreenFffPA3_A4_f
+	.4byte search__9J2DScreenFUx
+	.4byte searchUserInfo__9J2DScreenFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__9J2DScreenFPC7ResTIMG
+	.4byte isUsed__9J2DScreenFPC7ResFONT
+	.4byte clearAnmTransform__9J2DScreenFv
+	.4byte rewriteAlpha__7J2DPaneFv
+	.4byte setAnimation__9J2DScreenFP10J2DAnmBase
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTransform
+	.4byte setAnimation__9J2DScreenFP11J2DAnmColor
+	.4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
+	.4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
+	.4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
+	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
+	.4byte setCallBack__Q32og6Screen24PikminCounterChallenge1PFP10JKRArchive
+.global __vt__Q32og6Screen17PikminCounterCave
+__vt__Q32og6Screen17PikminCounterCave:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og6Screen17PikminCounterCaveFv
+	.4byte getTypeID__9J2DScreenCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__7J2DPaneFff
+	.4byte setCullBack__7J2DPaneFb
+	.4byte setCullBack__7J2DPaneF11_GXCullMode
+	.4byte setAlpha__7J2DPaneFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__9J2DScreenFv
+	.4byte update__Q32og6Screen13PikminCounterFv
+	.4byte drawSelf__7J2DPaneFff
+	.4byte drawSelf__9J2DScreenFffPA3_A4_f
+	.4byte search__9J2DScreenFUx
+	.4byte searchUserInfo__9J2DScreenFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__9J2DScreenFPC7ResTIMG
+	.4byte isUsed__9J2DScreenFPC7ResFONT
+	.4byte clearAnmTransform__9J2DScreenFv
+	.4byte rewriteAlpha__7J2DPaneFv
+	.4byte setAnimation__9J2DScreenFP10J2DAnmBase
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTransform
+	.4byte setAnimation__9J2DScreenFP11J2DAnmColor
+	.4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
+	.4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
+	.4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
+	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
+	.4byte setCallBack__Q32og6Screen17PikminCounterCaveFP10JKRArchive
+.global __vt__Q32og6Screen13PikminCounter
+__vt__Q32og6Screen13PikminCounter:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og6Screen13PikminCounterFv
+	.4byte getTypeID__9J2DScreenCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__7J2DPaneFff
+	.4byte setCullBack__7J2DPaneFb
+	.4byte setCullBack__7J2DPaneF11_GXCullMode
+	.4byte setAlpha__7J2DPaneFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__9J2DScreenFv
+	.4byte update__Q32og6Screen13PikminCounterFv
+	.4byte drawSelf__7J2DPaneFff
+	.4byte drawSelf__9J2DScreenFffPA3_A4_f
+	.4byte search__9J2DScreenFUx
+	.4byte searchUserInfo__9J2DScreenFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__9J2DScreenFPC7ResTIMG
+	.4byte isUsed__9J2DScreenFPC7ResFONT
+	.4byte clearAnmTransform__9J2DScreenFv
+	.4byte rewriteAlpha__7J2DPaneFv
+	.4byte setAnimation__9J2DScreenFP10J2DAnmBase
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTransform
+	.4byte setAnimation__9J2DScreenFP11J2DAnmColor
+	.4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
+	.4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
+	.4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
+	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
+	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
+	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
+	.4byte setCallBack__Q32og6Screen13PikminCounterFP10JKRArchive
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen13PikminCounterFv

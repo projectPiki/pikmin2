@@ -18,6 +18,19 @@ lbl_8048E018:
 	.asciz "ColorType ERR!!\n"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og6Screen15AnimText_Screen
+__vt__Q32og6Screen15AnimText_Screen:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og6Screen15AnimText_ScreenFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32og6Screen15AnimText_ScreenFv
+	.4byte draw__Q32og6Screen15CallBack_ScreenFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setAnimTextScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
 setAnimTextScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx:

@@ -9,6 +9,29 @@ lbl_8048E084:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q26Screen8IObjBase
+__vt__Q26Screen8IObjBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q26Screen8IObjBaseFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q26Screen8IObjBaseFv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q26Screen7ObjBaseFv
 __dt__Q26Screen7ObjBaseFv:

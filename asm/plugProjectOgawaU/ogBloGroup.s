@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__8Graphics
+__vt__8Graphics:
+	.4byte 0
+	.4byte 0
+	.4byte doJ3DDrawInit__8GraphicsFv
+	.4byte doJ3DDraw__8GraphicsFi
+	.4byte doJ3DFrameInit__8GraphicsFv
+	.4byte doJ3DAnimation__8GraphicsFv
+	.4byte doJ3DUpdateInit__8GraphicsFv
+	.4byte doJ3DSetView__8GraphicsFi
+	.4byte doJ3DViewCalc__8GraphicsFv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen8BloGroupFUs

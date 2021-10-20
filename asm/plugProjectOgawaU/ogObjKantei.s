@@ -78,6 +78,69 @@ lbl_8048EA70:
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804D8BE8
+lbl_804D8BE8:
+	.4byte lbl_8031924C
+	.4byte lbl_80318FC8
+	.4byte lbl_80318FDC
+	.4byte lbl_80319070
+	.4byte lbl_80319090
+	.4byte lbl_8031924C
+	.4byte lbl_803190F4
+	.4byte lbl_80319128
+	.4byte lbl_80319218
+.global __vt__Q25efx2d12T2DOtakantei
+__vt__Q25efx2d12T2DOtakantei:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d9TForeverNFv
+	.4byte fade__Q25efx2d9TForeverNFv
+	.4byte setGroup__Q25efx2d9TForeverNFUc
+.global __vt__Q25efx2d9TForever5
+__vt__Q25efx2d9TForever5:
+	.4byte 0
+	.4byte 0
+	.4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+	.4byte kill__Q25efx2d9TForeverNFv
+	.4byte fade__Q25efx2d9TForeverNFv
+	.4byte setGroup__Q25efx2d9TForeverNFUc
+.global __vt__Q32og9newScreen9ObjKantei
+__vt__Q32og9newScreen9ObjKantei:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og9newScreen9ObjKanteiFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q32og9newScreen9ObjKanteiFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q32og9newScreen9ObjKanteiFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q32og9newScreen9ObjKanteiFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q32og9newScreen9ObjKanteiFP10JKRArchive
+	.4byte doUpdateFadein__Q32og9newScreen9ObjKanteiFv
+	.4byte doUpdateFadeinFinish__Q32og9newScreen9ObjKanteiFv
+	.4byte doUpdate__Q32og9newScreen9ObjKanteiFv
+	.4byte doUpdateFinish__Q32og9newScreen9ObjKanteiFv
+	.4byte doUpdateFadeout__Q32og9newScreen9ObjKanteiFv
+	.4byte doUpdateFadeoutFinish__Q32og9newScreen9ObjKanteiFv
+	.4byte doDraw__Q32og9newScreen9ObjKanteiFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen9ObjKanteiFPCc
 __ct__Q32og9newScreen9ObjKanteiFPCc:

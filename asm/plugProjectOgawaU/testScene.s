@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og6Screen15DispMemberDummy
+__vt__Q32og6Screen15DispMemberDummy:
+	.4byte 0
+	.4byte 0
+	.4byte getSize__Q32og6Screen15DispMemberDummyFv
+	.4byte getOwnerID__Q32og6Screen15DispMemberDummyFv
+	.4byte getMemberID__Q32og6Screen15DispMemberDummyFv
+	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global isUseBackupSceneInfo__Q26Screen9SceneBaseFv

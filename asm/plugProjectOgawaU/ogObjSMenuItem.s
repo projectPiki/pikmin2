@@ -72,6 +72,93 @@ lbl_8048E438:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global EquipItemList__Q24Game5Equip
+EquipItemList__Q24Game5Equip:
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000004
+	.4byte 0x00000005
+	.4byte 0x00000006
+	.4byte 0x00000001
+	.4byte 0x00000007
+	.4byte 0x00000000
+	.4byte 0x00000008
+	.4byte 0x0000000A
+	.4byte 0x0000000B
+	.4byte 0x00000009
+.global ItemMsgID_List__Q22og9newScreen
+ItemMsgID_List__Q22og9newScreen:
+	.4byte 0x00363132
+	.4byte 0x325F3030
+	.4byte 0x00363131
+	.4byte 0x395F3030
+	.4byte 0x00363132
+	.4byte 0x365F3030
+	.4byte 0x00363131
+	.4byte 0x365F3030
+	.4byte 0x00363131
+	.4byte 0x375F3030
+	.4byte 0x00363132
+	.4byte 0x395F3030
+	.4byte 0x00363132
+	.4byte 0x305F3030
+	.4byte 0x00363131
+	.4byte 0x385F3030
+	.4byte 0x00363132
+	.4byte 0x315F3030
+	.4byte 0x00363132
+	.4byte 0x375F3030
+	.4byte 0x00363132
+	.4byte 0x385F3030
+	.4byte 0x00363132
+	.4byte 0x335F3030
+.global __vt__Q32og9newScreen12ObjSMenuItem
+__vt__Q32og9newScreen12ObjSMenuItem:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og9newScreen12ObjSMenuItemFv
+	.4byte getChildCount__5CNodeFv
+	.4byte 0
+	.4byte 0
+	.4byte "@24@__dt__Q32og9newScreen12ObjSMenuItemFv"
+	.4byte update__Q26Screen7ObjBaseFv
+	.4byte draw__Q26Screen7ObjBaseFR8Graphics
+	.4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+	.4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+	.4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+	.4byte getOwner__Q26Screen7ObjBaseCFv
+	.4byte create__Q26Screen7ObjBaseFP10JKRArchive
+	.4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+	.4byte doStart__Q32og9newScreen12ObjSMenuItemFPCQ26Screen13StartSceneArg
+	.4byte doEnd__Q32og9newScreen12ObjSMenuItemFPCQ26Screen11EndSceneArg
+	.4byte doCreate__Q32og9newScreen12ObjSMenuItemFP10JKRArchive
+	.4byte doUpdateFadein__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doUpdateFadeinFinish__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doUpdate__Q32og9newScreen12ObjSMenuItemFv
+	.4byte doUpdateFinish__Q32og9newScreen12ObjSMenuItemFv
+	.4byte doUpdateFadeout__Q32og9newScreen12ObjSMenuItemFv
+	.4byte doUpdateFadeoutFinish__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doDraw__Q32og9newScreen12ObjSMenuItemFR8Graphics
+	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+	.4byte in_L__Q32og9newScreen12ObjSMenuItemFv
+	.4byte in_R__Q32og9newScreen12ObjSMenuItemFv
+	.4byte wait__Q32og9newScreen12ObjSMenuItemFv
+	.4byte out_L__Q32og9newScreen12ObjSMenuItemFv
+	.4byte out_R__Q32og9newScreen12ObjSMenuItemFv
+	.4byte loop__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte doUpdateCancelAction__Q32og9newScreen12ObjSMenuItemFv
+	.4byte doUpdateRAction__Q32og9newScreen12ObjSMenuItemFv
+	.4byte doUpdateLAction__Q32og9newScreen12ObjSMenuItemFv
+	.4byte updateFadeIn__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
+	.4byte commonUpdate__Q32og9newScreen12ObjSMenuItemFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuItemFPCc
 __ct__Q32og9newScreen12ObjSMenuItemFPCc:

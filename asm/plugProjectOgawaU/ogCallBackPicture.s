@@ -34,6 +34,19 @@ lbl_8048F6F8:
 	.4byte 0x5F33322E
 	.4byte 0x62747000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q32og6Screen16CallBack_Picture
+__vt__Q32og6Screen16CallBack_Picture:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q32og6Screen16CallBack_PictureFv
+	.4byte getChildCount__5CNodeFv
+	.4byte update__Q32og6Screen16CallBack_PictureFv
+	.4byte draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext
+	.4byte doInit__Q29P2DScreen4NodeFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q32og6Screen16CallBack_PictureFv
 update__Q32og6Screen16CallBack_PictureFv:
