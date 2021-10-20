@@ -926,10 +926,10 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAngleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuCont.o\
+	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
 
 TEXT_PT3:=\
-	$(BUILD_DIR)/asm/data_0a.o\
 	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o\
