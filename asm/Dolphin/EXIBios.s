@@ -32,6 +32,12 @@ lbl_804A7ED0:
 __EXIVersion:
 	.4byte lbl_804A7ED0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global IDSerialPort1
+IDSerialPort1:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global SetExiInterruptMask
 SetExiInterruptMask:

@@ -67,6 +67,48 @@ lbl_805149CC:
 lbl_805149D4:
 	.asciz "%s\n"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global BootInfo_1
+BootInfo_1:
+	.skip 0x4
+.global BI2DebugFlag
+BI2DebugFlag:
+	.skip 0x4
+.global BI2DebugFlagHolder
+BI2DebugFlagHolder:
+	.skip 0x4
+.global __OSIsGcam
+__OSIsGcam:
+	.skip 0x4
+.global ZeroF
+ZeroF:
+	.skip 0x8
+.global ZeroPS
+ZeroPS:
+	.skip 0x8
+.global AreWeInitialized
+AreWeInitialized:
+	.skip 0x4
+.global OSExceptionTable
+OSExceptionTable:
+	.skip 0x4
+.global __OSSavedRegionEnd
+__OSSavedRegionEnd:
+	.skip 0x4
+.global __OSSavedRegionStart
+__OSSavedRegionStart:
+	.skip 0x4
+.global __OSInIPL
+__OSInIPL:
+	.skip 0x8
+.global __OSStartTime
+__OSStartTime:
+	.skip 0x4
+.global lbl_805155CC
+lbl_805155CC:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __OSFPRInit
 __OSFPRInit:

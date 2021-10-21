@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global Chan
+Chan:
+	.skip 0x4
+.global Dev
+Dev:
+	.skip 0x4
+.global Enabled
+Enabled:
+	.skip 0x4
+.global BarnacleEnabled
+BarnacleEnabled:
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global ProbeBarnacle

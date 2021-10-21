@@ -1,4 +1,4 @@
-extern int __OSArenaHi;
+static int __OSArenaHi;
 int __OSArenaLo = -1;
 
 /*

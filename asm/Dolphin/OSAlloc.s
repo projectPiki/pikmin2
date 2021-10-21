@@ -5,6 +5,21 @@
 __OSCurrHeap:
 	.4byte 0xFFFFFFFF
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global HeapArray
+HeapArray:
+	.skip 0x4
+.global NumHeaps
+NumHeaps:
+	.skip 0x4
+.global ArenaStart
+ArenaStart:
+	.skip 0x4
+.global ArenaEnd
+ArenaEnd:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DLInsert
 DLInsert:

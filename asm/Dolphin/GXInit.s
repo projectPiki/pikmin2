@@ -148,6 +148,36 @@ GXResetFuncInfo:
 __GXVersion:
 	.4byte lbl_804A8060
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global __piReg
+__piReg:
+	.skip 0x4
+.global __cpReg
+__cpReg:
+	.skip 0x4
+.global __peReg
+__peReg:
+	.skip 0x4
+.global __memReg
+__memReg:
+	.skip 0x4
+.global peCount$35
+peCount$35:
+	.skip 0x8
+.global time$36
+time$36:
+	.skip 0x4
+.global lbl_8051554C
+lbl_8051554C:
+	.skip 0x4
+.global calledOnce$37
+calledOnce$37:
+	.skip 0x4
+.global resetFuncRegistered$70
+resetFuncRegistered$70:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __GXDefaultTexRegionCallback
 __GXDefaultTexRegionCallback:
