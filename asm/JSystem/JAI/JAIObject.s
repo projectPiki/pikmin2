@@ -1,4 +1,40 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q27JAInter6Object
+__vt__Q27JAInter6Object:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JAInter6ObjectFv
+	.4byte startSound__Q27JAInter6ObjectFUlUl
+	.4byte startSound__Q27JAInter10ObjectBaseFUcUlUl
+	.4byte startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
+	.4byte stopAllSound__Q27JAInter10ObjectBaseFv
+	.4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+	.4byte enable__Q27JAInter10ObjectBaseFv
+	.4byte disable__Q27JAInter6ObjectFv
+	.4byte dispose__Q27JAInter10ObjectBaseFv
+	.4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+	.4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+	.4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+	.4byte loop__Q27JAInter6ObjectFv
+.global __vt__Q27JAInter10ObjectBase
+__vt__Q27JAInter10ObjectBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JAInter10ObjectBaseFv
+	.4byte startSound__Q27JAInter10ObjectBaseFUlUl
+	.4byte startSound__Q27JAInter10ObjectBaseFUcUlUl
+	.4byte startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
+	.4byte stopAllSound__Q27JAInter10ObjectBaseFv
+	.4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+	.4byte enable__Q27JAInter10ObjectBaseFv
+	.4byte disable__Q27JAInter10ObjectBaseFv
+	.4byte dispose__Q27JAInter10ObjectBaseFv
+	.4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+	.4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+	.4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q27JAInter10ObjectBaseFv

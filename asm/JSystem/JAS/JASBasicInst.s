@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__12JASBasicInst
+__vt__12JASBasicInst:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JASBasicInstFv
+	.4byte getParam__12JASBasicInstCFiiP12JASInstParam
+	.4byte getType__12JASBasicInstCFv
+	.4byte getKeymapIndex__12JASBasicInstCFi
+.global __vt__7JASInst
+__vt__7JASInst:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__7JASInstFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12JASBasicInstFv

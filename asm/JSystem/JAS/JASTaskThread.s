@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__13JASTaskThread
+__vt__13JASTaskThread:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13JASTaskThreadFv
+	.4byte run__13JASTaskThreadFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13JASTaskThreadFiiUl

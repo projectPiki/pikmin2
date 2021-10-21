@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sCurrentDir__16JASWaveArcLoader
+sCurrentDir__16JASWaveArcLoader:
+	.4byte 0x2F42616E
+	.4byte 0x6B732F00
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__10JASWaveArc
+__vt__10JASWaveArc:
+	.4byte 0
+	.4byte 0
+	.4byte onDispose__10JASWaveArcFv
+	.4byte onLoadDone__10JASWaveArcFv
+	.4byte onEraseDone__10JASWaveArcFv
+.global __vt__11JASDisposer
+__vt__11JASDisposer:
+	.4byte 0
+	.4byte 0
+	.4byte onDispose__11JASDisposerFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__16JASWaveArcLoaderFP7JASHeap

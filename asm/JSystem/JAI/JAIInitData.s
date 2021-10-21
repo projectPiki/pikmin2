@@ -1,4 +1,19 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A62A0
+lbl_804A62A0:
+	.4byte lbl_800ADCFC
+	.4byte lbl_800ADD04
+	.4byte lbl_800ADD48
+	.4byte lbl_800ADD5C
+	.4byte lbl_800ADD70
+	.4byte lbl_800ADD7C
+	.4byte lbl_800ADDD4
+	.4byte lbl_800ADE48
+	.4byte lbl_800ADE74
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global wsInitCallback__Q27JAInter8InitData

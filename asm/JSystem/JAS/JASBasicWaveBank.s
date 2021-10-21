@@ -1,4 +1,42 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q216JASBasicWaveBank10TWaveGroup
+__vt__Q216JASBasicWaveBank10TWaveGroup:
+	.4byte 0
+	.4byte 0
+	.4byte onDispose__10JASWaveArcFv
+	.4byte onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv
+	.4byte onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv
+.global __vt__13JASWaveHandle
+__vt__13JASWaveHandle:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13JASWaveHandleFv
+	.4byte 0
+	.4byte 0
+.global __vt__Q216JASBasicWaveBank11TWaveHandle
+__vt__Q216JASBasicWaveBank11TWaveHandle:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q216JASBasicWaveBank11TWaveHandleFv
+	.4byte getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv
+	.4byte getWavePtr__Q216JASBasicWaveBank11TWaveHandleCFv
+.global __vt__16JASBasicWaveBank
+__vt__16JASBasicWaveBank:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__16JASBasicWaveBankFv
+	.4byte getWaveHandle__16JASBasicWaveBankCFUl
+	.4byte getWaveArc__16JASBasicWaveBankFi
+.global __vt__11JASWaveBank
+__vt__11JASWaveBank:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11JASWaveBankFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__16JASBasicWaveBankFv

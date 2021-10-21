@@ -8,6 +8,15 @@ lbl_804795D8:
 	.4byte 0x41430000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__14JASAudioThread
+__vt__14JASAudioThread:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14JASAudioThreadFv
+	.4byte run__14JASAudioThreadFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__14JASAudioThreadFl
 create__14JASAudioThreadFl:

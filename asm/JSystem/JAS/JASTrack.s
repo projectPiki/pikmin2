@@ -5,6 +5,47 @@
 zz_80514788:
 	.double 0.0078125
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A4350
+lbl_804A4350:
+	.4byte lbl_800A184C
+	.4byte lbl_800A185C
+	.4byte lbl_800A186C
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A188C
+	.4byte lbl_800A1940
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19FC
+	.4byte lbl_800A19D4
+.global lbl_804A4394
+lbl_804A4394:
+	.4byte lbl_800A1C3C
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1C5C
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1C80
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1C70
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CBC
+	.4byte lbl_800A1CB8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8JASTrackFv
 __ct__8JASTrackFv:

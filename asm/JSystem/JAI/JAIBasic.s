@@ -1,4 +1,19 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__8JAIBasic
+__vt__8JAIBasic:
+	.4byte 0
+	.4byte 0
+	.4byte makeSequence__8JAIBasicFv
+	.4byte makeSe__8JAIBasicFv
+	.4byte makeStream__8JAIBasicFv
+	.4byte getMapInfoFxline__8JAIBasicFUl
+	.4byte getMapInfoGround__8JAIBasicFUl
+	.4byte getMapInfoFxParameter__8JAIBasicFUl
+	.4byte setSeExtParameter__8JAIBasicFP8JAISound
+	.4byte setRegisterTrackCallback__8JAIBasicFv
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global msStopStatus__8JAIBasic

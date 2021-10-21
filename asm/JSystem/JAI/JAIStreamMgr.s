@@ -10,6 +10,19 @@ lbl_804796B0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A6638
+lbl_804A6638:
+	.4byte lbl_800B7EE4
+	.4byte lbl_800B7DC8
+	.4byte lbl_800B7DF8
+	.4byte lbl_800B7E64
+	.4byte lbl_800B7E24
+	.4byte lbl_800B7ED0
+	.4byte lbl_800B7E94
+	.4byte lbl_800B7EB4
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sChannelMax__Q27JAInter9StreamMgr

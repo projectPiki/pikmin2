@@ -16,6 +16,27 @@ OSC_ENV:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A44A0
+lbl_804A44A0:
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AEC
+	.4byte lbl_800A9B00
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte lbl_800A9AF8
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initSystem__13JASAramStreamFUlUl
 initSystem__13JASAramStreamFUlUl:

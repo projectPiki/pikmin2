@@ -350,6 +350,17 @@ connect_table$774:
 	.4byte 0x0F400FA0
 	.4byte 0x0B0009A0
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global SEND_TABLE__6JASDsp
+SEND_TABLE__6JASDsp:
+	.4byte 0x0D000D60
+	.4byte 0x0DC00E20
+	.4byte 0x0E800EE0
+	.4byte 0x0CA00F40
+	.4byte 0x0FA00B00
+	.4byte 0x09A00000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global COMP_BLOCKSAMPLES$600

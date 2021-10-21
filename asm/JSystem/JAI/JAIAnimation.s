@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__13JAIAnimeSound
+__vt__13JAIAnimeSound:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13JAIAnimeSoundFv
+	.4byte startSound__Q27JAInter6ObjectFUlUl
+	.4byte startSound__Q27JAInter10ObjectBaseFUcUlUl
+	.4byte startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
+	.4byte stopAllSound__Q27JAInter10ObjectBaseFv
+	.4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+	.4byte enable__Q27JAInter10ObjectBaseFv
+	.4byte disable__Q27JAInter6ObjectFv
+	.4byte dispose__Q27JAInter10ObjectBaseFv
+	.4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+	.4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+	.4byte handleStop__13JAIAnimeSoundFUcUl
+	.4byte loop__Q27JAInter6ObjectFv
+	.4byte playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc
+	.4byte startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc
+	.4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global handleStop__13JAIAnimeSoundFUcUl

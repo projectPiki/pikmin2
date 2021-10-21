@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global dummyZeroVec__Q27JAInter5Const
+dummyZeroVec__Q27JAInter5Const:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sCInfos_0__Q27JAInter5Const
+sCInfos_0__Q27JAInter5Const:
+	.4byte 0x04020402
+	.4byte 0x04020402
+	.4byte 0x04020402
+	.4byte 0x04020402
+	.4byte 0x04020402
+	.4byte 0x04020402
+	.4byte 0x04020402
+	.4byte 0x04020402
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global transInitDataFile__7JAInterFPUcUl

@@ -26,6 +26,43 @@ calc_sw_table__10JASChannel:
 	.4byte 0x02000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A43D8
+lbl_804A43D8:
+	.4byte lbl_800A4580
+	.4byte lbl_800A4554
+	.4byte lbl_800A455C
+	.4byte lbl_800A4564
+	.4byte lbl_800A4580
+	.4byte lbl_800A456C
+	.4byte lbl_800A4574
+	.4byte lbl_800A457C
+.global lbl_804A43F8
+lbl_804A43F8:
+	.4byte lbl_800A44A0
+	.4byte lbl_800A4474
+	.4byte lbl_800A447C
+	.4byte lbl_800A4484
+	.4byte lbl_800A44A0
+	.4byte lbl_800A448C
+	.4byte lbl_800A4494
+	.4byte lbl_800A449C
+.global __vt__10JASChannel
+__vt__10JASChannel:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte "@16@__dt__10JASChannelFv"
+	.4byte __dt__10JASChannelFv
+.global "__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>"
+"__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
 __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
