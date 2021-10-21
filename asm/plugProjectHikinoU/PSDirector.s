@@ -103,6 +103,12 @@ __vt__Q28PSSystem12DirectorBase:
 	.4byte onDirectOn__Q28PSSystem12DirectorBaseFv
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sToolMode__Q28PSSystem12DirectorBase
+sToolMode__Q28PSSystem12DirectorBase:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E1F0

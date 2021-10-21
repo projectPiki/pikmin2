@@ -405,6 +405,15 @@ __vt__Q28PSSystem11SeqDataList:
 	.4byte "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global oldID$2940
+oldID$2940:
+	.skip 0x4
+.global init$2941
+init$2941:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E0A0

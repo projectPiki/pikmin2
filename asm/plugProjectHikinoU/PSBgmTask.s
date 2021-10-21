@@ -96,6 +96,12 @@ __vt__Q28PSSystem16ModParamWithFade:
 	.4byte 0
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sInstance__Q28PSSystem11BankRandPrm
+sInstance__Q28PSSystem11BankRandPrm:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E178

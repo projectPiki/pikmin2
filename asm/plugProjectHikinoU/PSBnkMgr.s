@@ -29,6 +29,12 @@ __vt__Q28PSSystem7BankMgr:
 	.4byte 0
 	.4byte __dt__Q28PSSystem7BankMgrFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sBankMgr__Q28PSSystem7BankMgr
+sBankMgr__Q28PSSystem7BankMgr:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createInstance__Q28PSSystem7BankMgrFv
 createInstance__Q28PSSystem7BankMgrFv:

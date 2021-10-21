@@ -51,6 +51,18 @@ __vt__Q28PSSystem5SysIF:
 sDistanceParameterMoveTime__8PSSystem:
 	.4byte 0x05000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global spSysIF__8PSSystem
+spSysIF__8PSSystem:
+	.skip 0x4
+.global oRandom__8PSSystem
+oRandom__8PSSystem:
+	.skip 0x4
+.global sMakeJAISeCallback__Q28PSSystem5SysIF
+sMakeJAISeCallback__Q28PSSystem5SysIF:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E150

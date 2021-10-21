@@ -252,6 +252,15 @@ __vt__Q29PSAutoBgm9Conductor:
 	.4byte "save__Q210JADUtility7Prm<Uc>FR21JSUMemoryOutputStream"
 	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sHeap__Q29PSAutoBgm12ConductorMgr
+sHeap__Q29PSAutoBgm12ConductorMgr:
+	.skip 0x4
+.global sInstance__Q29PSAutoBgm15ConductorArcMgr
+sInstance__Q29PSAutoBgm15ConductorArcMgr:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E160
