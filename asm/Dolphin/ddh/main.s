@@ -68,6 +68,12 @@ lbl_80479E18:
 	.4byte 0x325F496E
 	.4byte 0x69740A00
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global gIsInitialized
+gIsInitialized:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global ddh_cc_initinterrupts
 ddh_cc_initinterrupts:

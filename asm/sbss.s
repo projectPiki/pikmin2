@@ -939,33 +939,3 @@ init$484:
 .global oRandom$483
 oRandom$483:
 	.skip 0x4
-.global gTRKInputPendingPtr
-gTRKInputPendingPtr:
-	.skip 0x8
-.global gIsInitialized
-gIsInitialized:
-	.skip 0x8
-.global gIsInitialized_1
-gIsInitialized_1:
-	.skip 0x8
-.global __global_destructor_chain
-__global_destructor_chain:
-	.skip 0x8
-.global __aborting
-__aborting:
-	.skip 0x4
-.global __atexit_curr_func
-__atexit_curr_func:
-	.skip 0x4
-.global __stdio_exit
-__stdio_exit:
-	.skip 0x4
-.global __console_exit
-__console_exit:
-	.skip 0x4
-.global init$193
-init$193:
-	.skip 0x8
-.global errno
-errno:
-	.skip 0x8

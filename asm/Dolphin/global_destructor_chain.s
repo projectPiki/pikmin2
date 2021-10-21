@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global __global_destructor_chain
+__global_destructor_chain:
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __destroy_global_chain
