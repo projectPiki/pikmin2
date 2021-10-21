@@ -1,4 +1,26 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__7JUTFont
+__vt__7JUTFont:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__7JUTFontFv
+	.4byte 0
+	.4byte setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte getCellWidth__7JUTFontCFv
+	.4byte getCellHeight__7JUTFontCFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__7JUTFontFv

@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sapfnIsLeadByte___Q28JMessage18TResourceContainer
+sapfnIsLeadByte___Q28JMessage18TResourceContainer:
+	.4byte 0x00000000
+	.4byte isLeadByte_1Byte__7JUTFontFi
+	.4byte isLeadByte_2Byte__7JUTFontFi
+	.4byte isLeadByte_ShiftJIS__7JUTFontFi
+.global __vt__Q28JMessage12TParse_color
+__vt__Q28JMessage12TParse_color:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28JMessage12TParse_colorFv
+	.4byte parseHeader_next__Q28JMessage12TParse_colorFPPCvPUlUl
+	.4byte parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl
+.global __vt__Q28JMessage6TParse
+__vt__Q28JMessage6TParse:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28JMessage6TParseFv
+	.4byte parseHeader_next__Q28JMessage6TParseFPPCvPUlUl
+	.4byte parseBlock_next__Q28JMessage6TParseFPPCvPUlUl
+.global __vt__Q37JGadget6binary19TParse_header_block
+__vt__Q37JGadget6binary19TParse_header_block:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q38JMessage18TResourceContainer10TCResource
+__vt__Q38JMessage18TResourceContainer10TCResource:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q38JMessage18TResourceContainer10TCResourceFv
+	.4byte Do_create__Q38JMessage18TResourceContainer10TCResourceFv
+	.4byte Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource
+.global "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"
+"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>":
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb

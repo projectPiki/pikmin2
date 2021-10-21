@@ -1,4 +1,74 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__15J2DAnmTevRegKey
+__vt__15J2DAnmTevRegKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15J2DAnmTevRegKeyFv
+	.4byte searchUpdateMaterialID__15J2DAnmTevRegKeyFP9J2DScreen
+.global __vt__16J2DAnmTexPattern
+__vt__16J2DAnmTexPattern:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__16J2DAnmTexPatternFv
+	.4byte searchUpdateMaterialID__16J2DAnmTexPatternFP9J2DScreen
+.global __vt__19J2DAnmTextureSRTKey
+__vt__19J2DAnmTextureSRTKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__19J2DAnmTextureSRTKeyFv
+	.4byte searchUpdateMaterialID__19J2DAnmTextureSRTKeyFP9J2DScreen
+.global __vt__17J2DAnmVtxColorKey
+__vt__17J2DAnmVtxColorKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__17J2DAnmVtxColorKeyFv
+	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+	.4byte getColor__17J2DAnmVtxColorKeyCFUcUsP8_GXColor
+.global __vt__18J2DAnmVtxColorFull
+__vt__18J2DAnmVtxColorFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__18J2DAnmVtxColorFullFv
+	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+	.4byte getColor__18J2DAnmVtxColorFullCFUcUsP8_GXColor
+.global __vt__14J2DAnmColorKey
+__vt__14J2DAnmColorKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14J2DAnmColorKeyFv
+	.4byte searchUpdateMaterialID__11J2DAnmColorFP9J2DScreen
+	.4byte getColor__14J2DAnmColorKeyCFUsP8_GXColor
+.global __vt__15J2DAnmColorFull
+__vt__15J2DAnmColorFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15J2DAnmColorFullFv
+	.4byte searchUpdateMaterialID__11J2DAnmColorFP9J2DScreen
+	.4byte getColor__15J2DAnmColorFullCFUsP8_GXColor
+.global __vt__11J2DAnmColor
+__vt__11J2DAnmColor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11J2DAnmColorFv
+	.4byte searchUpdateMaterialID__11J2DAnmColorFP9J2DScreen
+	.4byte getColor__11J2DAnmColorCFUsP8_GXColor
+.global __vt__18J2DAnmTransformKey
+__vt__18J2DAnmTransformKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__18J2DAnmTransformKeyFv
+	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+	.4byte getTransform__18J2DAnmTransformKeyCFUsP16J3DTransformInfo
+	.4byte calcTransform__18J2DAnmTransformKeyCFfUsP16J3DTransformInfo
+.global __vt__19J2DAnmTransformFull
+__vt__19J2DAnmTransformFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__19J2DAnmTransformFullFv
+	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+	.4byte getTransform__19J2DAnmTransformFullCFUsP16J3DTransformInfo
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getTransform__19J2DAnmTransformFullCFUsP16J3DTransformInfo

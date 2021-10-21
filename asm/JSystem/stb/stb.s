@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q37JStudio3stb6TParse
+__vt__Q37JStudio3stb6TParse:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3stb6TParseFv
+	.4byte parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl
+	.4byte parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl
+	.4byte parseHeader__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
+	.4byte parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
+	.4byte parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl
+.global __vt__Q37JStudio3stb8TFactory
+__vt__Q37JStudio3stb8TFactory:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3stb8TFactoryFv
+	.4byte create__Q37JStudio3stb8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
+	.4byte destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
+.global __vt__Q37JStudio3stb8TControl
+__vt__Q37JStudio3stb8TControl:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3stb8TControlFv
+.global __vt__Q37JStudio3stb15TObject_control
+__vt__Q37JStudio3stb15TObject_control:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3stb15TObject_controlFv
+	.4byte do_begin__Q37JStudio3stb7TObjectFv
+	.4byte do_end__Q37JStudio3stb7TObjectFv
+	.4byte do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl
+	.4byte do_wait__Q37JStudio3stb7TObjectFUl
+	.4byte do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
+.global __vt__Q37JStudio3stb7TObject
+__vt__Q37JStudio3stb7TObject:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3stb7TObjectFv
+	.4byte do_begin__Q37JStudio3stb7TObjectFv
+	.4byte do_end__Q37JStudio3stb7TObjectFv
+	.4byte do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl
+	.4byte do_wait__Q37JStudio3stb7TObjectFUl
+	.4byte do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q37JStudio3stb7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_object

@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__20JSUMemoryInputStream
+__vt__20JSUMemoryInputStream:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__20JSUMemoryInputStreamFv
+	.4byte getAvailable__20JSURandomInputStreamCFv
+	.4byte skip__20JSURandomInputStreamFl
+	.4byte readData__20JSUMemoryInputStreamFPvl
+	.4byte getLength__20JSUMemoryInputStreamCFv
+	.4byte getPosition__20JSUMemoryInputStreamCFv
+	.4byte seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setBuffer__20JSUMemoryInputStreamFPCvl

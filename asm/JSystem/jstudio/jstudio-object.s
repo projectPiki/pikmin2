@@ -112,6 +112,1023 @@ sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound:
 	.4byte 0x00000001
 	.4byte 0x00000002
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_8049E698
+lbl_8049E698:
+	.4byte 0x00000000
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000038
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000038
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000040
+	.4byte 0x00000000
+.global lbl_8049E6F8
+lbl_8049E6F8:
+	.4byte lbl_8000D254
+	.4byte lbl_8000D204
+	.4byte lbl_8000D214
+	.4byte lbl_8000D224
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D254
+	.4byte lbl_8000D234
+	.4byte lbl_8000D254
+	.4byte lbl_8000D244
+	.4byte 0x00000000
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000040
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000044
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000048
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000004C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000024
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000002C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000030
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000034
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000038
+	.4byte 0x00000000
+.global lbl_8049E7D4
+lbl_8049E7D4:
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCAC
+	.4byte lbl_8000DCB8
+	.4byte lbl_8000DCC4
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCD0
+	.4byte lbl_8000DCF8
+	.4byte lbl_8000DCDC
+.global lbl_8049E820
+lbl_8049E820:
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DBF8
+	.4byte lbl_8000DC04
+	.4byte lbl_8000DC10
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC1C
+	.4byte lbl_8000DC48
+	.4byte lbl_8000DC28
+.global lbl_8049E86C
+lbl_8049E86C:
+	.4byte lbl_8000DB54
+	.4byte lbl_8000DB5C
+	.4byte lbl_8000DB64
+	.4byte lbl_8000DB9C
+	.4byte lbl_8000DB6C
+	.4byte lbl_8000DB74
+	.4byte lbl_8000DB7C
+	.4byte lbl_8000DBA8
+	.4byte lbl_8000DB84
+	.4byte lbl_8000DB8C
+	.4byte lbl_8000DB94
+	.4byte lbl_8000DBB4
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DA60
+	.4byte lbl_8000DA7C
+	.4byte lbl_8000DA98
+	.4byte lbl_8000DAE0
+	.4byte lbl_8000DAFC
+	.4byte lbl_8000DB18
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000D9D4
+	.4byte lbl_8000D9F0
+	.4byte lbl_8000DB44
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DA0C
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DB4C
+	.4byte lbl_8000DA28
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DA44
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DBC0
+	.4byte lbl_8000DAC4
+.global lbl_8049E990
+lbl_8049E990:
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DF58
+	.4byte lbl_8000DF64
+	.4byte lbl_8000DF70
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DF7C
+	.4byte lbl_8000DFA4
+	.4byte lbl_8000DF88
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000024
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000002C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000030
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000034
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000038
+	.4byte 0x00000000
+.global lbl_8049EA30
+lbl_8049EA30:
+	.4byte lbl_8000E434
+	.4byte lbl_8000E3E8
+	.4byte lbl_8000E3F4
+	.4byte lbl_8000E400
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E434
+	.4byte lbl_8000E40C
+	.4byte lbl_8000E434
+	.4byte lbl_8000E418
+.global lbl_8049EA7C
+lbl_8049EA7C:
+	.4byte lbl_8000E384
+	.4byte lbl_8000E334
+	.4byte lbl_8000E340
+	.4byte lbl_8000E34C
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E384
+	.4byte lbl_8000E358
+	.4byte lbl_8000E384
+	.4byte lbl_8000E364
+.global lbl_8049EAC8
+lbl_8049EAC8:
+	.4byte lbl_8000E278
+	.4byte lbl_8000E280
+	.4byte lbl_8000E288
+	.4byte lbl_8000E2C8
+	.4byte lbl_8000E290
+	.4byte lbl_8000E298
+	.4byte lbl_8000E2A0
+	.4byte lbl_8000E2DC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2B0
+	.4byte lbl_8000E2A8
+	.4byte lbl_8000E2B8
+	.4byte lbl_8000E2C0
+	.4byte lbl_8000E2F0
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E194
+	.4byte lbl_8000E1B0
+	.4byte lbl_8000E1CC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E2FC
+	.4byte lbl_8000E1F8
+	.4byte lbl_8000E214
+	.4byte lbl_8000E230
+	.4byte lbl_8000E24C
+.global lbl_8049EBC8
+lbl_8049EBC8:
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6A0
+	.4byte lbl_8000E6AC
+	.4byte lbl_8000E6B8
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6C4
+	.4byte lbl_8000E6EC
+	.4byte lbl_8000E6D0
+.global lbl_8049EC14
+lbl_8049EC14:
+	.4byte lbl_8000E618
+	.4byte lbl_8000E620
+	.4byte lbl_8000E628
+	.4byte lbl_8000E630
+	.4byte lbl_8000E648
+	.4byte lbl_8000E65C
+	.4byte lbl_8000E67C
+	.4byte lbl_8000E67C
+	.4byte lbl_8000E67C
+	.4byte lbl_8000E67C
+	.4byte lbl_8000E67C
+	.4byte lbl_8000E67C
+	.4byte lbl_8000E67C
+	.4byte lbl_8000E67C
+	.4byte lbl_8000E638
+	.4byte lbl_8000E640
+	.4byte lbl_8000E670
+.global lbl_8049EC58
+lbl_8049EC58:
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x00000000
+.global lbl_8049EC64
+lbl_8049EC64:
+	.4byte 0x00000000
+	.4byte 0x00000024
+	.4byte 0x00000000
+.global lbl_8049EC70
+lbl_8049EC70:
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAB0
+	.4byte lbl_8000EABC
+	.4byte lbl_8000EAC8
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAD4
+	.4byte lbl_8000EAFC
+	.4byte lbl_8000EAE0
+.global lbl_8049ECBC
+lbl_8049ECBC:
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA04
+	.4byte lbl_8000EA10
+	.4byte lbl_8000EA1C
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA28
+	.4byte lbl_8000EA54
+	.4byte lbl_8000EA34
+.global lbl_8049ED08
+lbl_8049ED08:
+	.4byte lbl_8000E950
+	.4byte lbl_8000E958
+	.4byte lbl_8000E960
+	.4byte lbl_8000E9A8
+	.4byte lbl_8000E968
+	.4byte lbl_8000E970
+	.4byte lbl_8000E978
+	.4byte lbl_8000E9B4
+	.4byte lbl_8000E930
+	.4byte lbl_8000E938
+	.4byte lbl_8000E940
+	.4byte lbl_8000E948
+	.4byte lbl_8000E990
+	.4byte lbl_8000E99C
+	.4byte lbl_8000E980
+	.4byte lbl_8000E988
+	.4byte lbl_8000E9C0
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E9CC
+	.4byte lbl_8000E8DC
+	.4byte lbl_8000E90C
+.global lbl_8049ED94
+lbl_8049ED94:
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000024
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000002C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000030
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000034
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000038
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000003C
+	.4byte 0x00000000
+.global lbl_8049EE00
+lbl_8049EE00:
+	.4byte lbl_8000F144
+	.4byte lbl_8000F0F8
+	.4byte lbl_8000F104
+	.4byte lbl_8000F110
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F144
+	.4byte lbl_8000F11C
+	.4byte lbl_8000F144
+	.4byte lbl_8000F128
+.global lbl_8049EE4C
+lbl_8049EE4C:
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F04C
+	.4byte lbl_8000F058
+	.4byte lbl_8000F064
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F070
+	.4byte lbl_8000F09C
+	.4byte lbl_8000F07C
+.global lbl_8049EE98
+lbl_8049EE98:
+	.4byte lbl_8000EF38
+	.4byte lbl_8000EF40
+	.4byte lbl_8000EF48
+	.4byte lbl_8000EFC0
+	.4byte lbl_8000EF50
+	.4byte lbl_8000EF58
+	.4byte lbl_8000EF60
+	.4byte lbl_8000EFCC
+	.4byte lbl_8000EF68
+	.4byte lbl_8000EF70
+	.4byte lbl_8000EF78
+	.4byte lbl_8000EFD8
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000EF80
+	.4byte lbl_8000EF88
+	.4byte lbl_8000EF90
+	.4byte lbl_8000EF98
+	.4byte lbl_8000EFE4
+	.4byte lbl_8000EFF0
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000EE84
+	.4byte lbl_8000EEBC
+	.4byte lbl_8000EED8
+	.4byte lbl_8000EEF4
+	.4byte lbl_8000EF10
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000EE4C
+	.4byte lbl_8000EFA0
+	.4byte lbl_8000EFA8
+	.4byte lbl_8000EFB0
+	.4byte lbl_8000EFB8
+	.4byte lbl_8000EFFC
+	.4byte lbl_8000F008
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000F014
+	.4byte lbl_8000EE68
+	.4byte lbl_8000EEA0
+	.4byte 0x00000000
+	.4byte 0x00000020
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000024
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000028
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000002C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000030
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000034
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000038
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000003C
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000040
+	.4byte 0x00000000
+.global lbl_8049F024
+lbl_8049F024:
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5A8
+	.4byte lbl_8000F5B4
+	.4byte lbl_8000F5C0
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5CC
+	.4byte lbl_8000F5F4
+	.4byte lbl_8000F5D8
+.global lbl_8049F070
+lbl_8049F070:
+	.4byte lbl_8000F544
+	.4byte lbl_8000F4F4
+	.4byte lbl_8000F500
+	.4byte lbl_8000F50C
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F544
+	.4byte lbl_8000F518
+	.4byte lbl_8000F544
+	.4byte lbl_8000F524
+.global lbl_8049F0BC
+lbl_8049F0BC:
+	.4byte lbl_8000F46C
+	.4byte lbl_8000F474
+	.4byte lbl_8000F47C
+	.4byte lbl_8000F4AC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F388
+	.4byte lbl_8000F3C0
+	.4byte lbl_8000F3DC
+	.4byte lbl_8000F3F8
+	.4byte lbl_8000F414
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F440
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F350
+	.4byte lbl_8000F484
+	.4byte lbl_8000F48C
+	.4byte lbl_8000F494
+	.4byte lbl_8000F49C
+	.4byte lbl_8000F4A4
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F4BC
+	.4byte lbl_8000F36C
+	.4byte lbl_8000F3A4
+.global __vt__Q27JStudio13TObject_sound
+__vt__Q27JStudio13TObject_sound:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio13TObject_soundFv
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte do_paragraph__Q27JStudio13TObject_soundFUlPCvUl
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.global __vt__Q27JStudio14TAdaptor_sound
+__vt__Q27JStudio14TAdaptor_sound:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q27JStudio16TObject_particle
+__vt__Q27JStudio16TObject_particle:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio16TObject_particleFv
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte do_paragraph__Q27JStudio16TObject_particleFUlPCvUl
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q27JStudio15TObject_message
+__vt__Q27JStudio15TObject_message:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio15TObject_messageFv
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte do_paragraph__Q27JStudio15TObject_messageFUlPCvUl
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.global __vt__Q27JStudio16TAdaptor_message
+__vt__Q27JStudio16TAdaptor_message:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte 0
+.global __vt__Q27JStudio13TObject_light
+__vt__Q27JStudio13TObject_light:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio13TObject_lightFv
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte do_paragraph__Q27JStudio13TObject_lightFUlPCvUl
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.global __vt__Q27JStudio14TAdaptor_light
+__vt__Q27JStudio14TAdaptor_light:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte 0
+	.4byte 0
+.global __vt__Q27JStudio11TObject_fog
+__vt__Q27JStudio11TObject_fog:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio11TObject_fogFv
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte do_paragraph__Q27JStudio11TObject_fogFUlPCvUl
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.global __vt__Q27JStudio12TAdaptor_fog
+__vt__Q27JStudio12TAdaptor_fog:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+.global __vt__Q27JStudio14TObject_camera
+__vt__Q27JStudio14TObject_camera:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio14TObject_cameraFv
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.global __vt__Q27JStudio15TAdaptor_camera
+__vt__Q27JStudio15TAdaptor_camera:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q27JStudio20TObject_ambientLight
+__vt__Q27JStudio20TObject_ambientLight:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio20TObject_ambientLightFv
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte do_paragraph__Q27JStudio20TObject_ambientLightFUlPCvUl
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.global __vt__Q27JStudio21TAdaptor_ambientLight
+__vt__Q27JStudio21TAdaptor_ambientLight:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+.global __vt__Q27JStudio13TObject_actor
+__vt__Q27JStudio13TObject_actor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio13TObject_actorFv
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte do_paragraph__Q27JStudio13TObject_actorFUlPCvUl
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.global __vt__Q27JStudio14TAdaptor_actor
+__vt__Q27JStudio14TAdaptor_actor:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q27JStudio7TObject
+__vt__Q27JStudio7TObject:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte do_begin__Q27JStudio7TObjectFv
+	.4byte do_end__Q27JStudio7TObjectFv
+	.4byte 0
+	.4byte do_wait__Q27JStudio7TObjectFUl
+	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.global __vt__Q27JStudio8TAdaptor
+__vt__Q27JStudio8TAdaptor:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+.global __vt__Q37JStudio14TVariableValue13TOutput_none_
+__vt__Q37JStudio14TVariableValue13TOutput_none_:
+	.4byte 0
+	.4byte 0
+	.4byte __cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor
+	.4byte __dt__Q37JStudio14TVariableValue13TOutput_none_Fv
+.global __vt__Q37JStudio14TVariableValue7TOutput
+__vt__Q37JStudio14TVariableValue7TOutput:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global lbl_8049F4A8
+lbl_8049F4A8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>CFfPQ27JStudio8TAdaptor"
+	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"
+.global lbl_8049F4B8
+lbl_8049F4B8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>CFfPQ27JStudio8TAdaptor"
+	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>Fv"
+.global lbl_8049F4C8
+lbl_8049F4C8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>CFfPQ27JStudio8TAdaptor"
+	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>Fv"
+.global lbl_8049F4D8
+lbl_8049F4D8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>CFfPQ27JStudio8TAdaptor"
+	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"
+.global lbl_8049F4E8
+lbl_8049F4E8:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>CFfPQ27JStudio8TAdaptor"
+	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q37JStudio14TVariableValue7TOutputFv
 __dt__Q37JStudio14TVariableValue7TOutputFv:

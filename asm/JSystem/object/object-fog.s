@@ -1,4 +1,48 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_8049F820
+lbl_8049F820:
+	.4byte 0x00000000
+	.4byte 0x00000048
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000044
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000050
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x0000004C
+	.4byte 0x00000000
+.global __vt__Q214JStudio_JStage12TAdaptor_fog
+__vt__Q214JStudio_JStage12TAdaptor_fog:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214JStudio_JStage12TAdaptor_fogFv
+	.4byte adaptor_do_prepare__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global "__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>"
+"__vt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>":
+	.4byte 0
+	.4byte 0
+	.4byte "__cl__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>CFfPQ27JStudio8TAdaptor"
+	.4byte "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JStage12TAdaptor_fogFPCQ26JStage7TSystemPQ26JStage4TFog

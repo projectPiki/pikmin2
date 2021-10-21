@@ -1,4 +1,92 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__10J2DPicture
+__vt__10J2DPicture:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10J2DPictureFv
+	.4byte getTypeID__10J2DPictureCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__7J2DPaneFff
+	.4byte setCullBack__7J2DPaneFb
+	.4byte setCullBack__7J2DPaneF11_GXCullMode
+	.4byte setAlpha__7J2DPaneFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__7J2DPaneFv
+	.4byte update__7J2DPaneFv
+	.4byte drawSelf__10J2DPictureFff
+	.4byte drawSelf__10J2DPictureFffPA3_A4_f
+	.4byte search__7J2DPaneFUx
+	.4byte searchUserInfo__7J2DPaneFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__10J2DPictureFPC7ResTIMG
+	.4byte isUsed__10J2DPictureFPC7ResFONT
+	.4byte clearAnmTransform__7J2DPaneFv
+	.4byte rewriteAlpha__10J2DPictureFv
+	.4byte setAnimation__7J2DPaneFP10J2DAnmBase
+	.4byte setAnimation__7J2DPaneFP15J2DAnmTransform
+	.4byte setAnimation__7J2DPaneFP11J2DAnmColor
+	.4byte setAnimation__7J2DPaneFP16J2DAnmTexPattern
+	.4byte setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__7J2DPaneFP15J2DAnmTevRegKey
+	.4byte setAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
+	.4byte initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT
+	.4byte prepareTexture__10J2DPictureFUc
+	.4byte append__10J2DPictureFPC7ResTIMGf
+	.4byte append__10J2DPictureFPC7ResTIMGP10JUTPalettef
+	.4byte append__10J2DPictureFPCcf
+	.4byte append__10J2DPictureFPCcP10JUTPalettef
+	.4byte append__10J2DPictureFP10JUTTexturef
+	.4byte prepend__10J2DPictureFPC7ResTIMGf
+	.4byte prepend__10J2DPictureFPC7ResTIMGP10JUTPalettef
+	.4byte prepend__10J2DPictureFPCcf
+	.4byte prepend__10J2DPictureFPCcP10JUTPalettef
+	.4byte prepend__10J2DPictureFP10JUTTexturef
+	.4byte insert__10J2DPictureFPC7ResTIMGUcf
+	.4byte insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf
+	.4byte insert__10J2DPictureFPCcUcf
+	.4byte insert__10J2DPictureFPCcP10JUTPaletteUcf
+	.4byte insert__10J2DPictureFP10JUTTextureUcf
+	.4byte remove__10J2DPictureFUc
+	.4byte remove__10J2DPictureFv
+	.4byte remove__10J2DPictureFP10JUTTexture
+	.4byte draw__10J2DPictureFffbbb
+	.4byte draw__10J2DPictureFffUcbbb
+	.4byte draw__10J2DPictureFffffbbb
+	.4byte drawOut__10J2DPictureFffffff
+	.4byte drawOut__10J2DPictureFffffffff
+	.4byte "drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+	.4byte load__10J2DPictureF11_GXTexMapIDUc
+	.4byte load__10J2DPictureFUc
+	.4byte setBlendRatio__10J2DPictureFffffffff
+	.4byte setBlendColorRatio__10J2DPictureFffffffff
+	.4byte setBlendAlphaRatio__10J2DPictureFffffffff
+	.4byte changeTexture__10J2DPictureFPC7ResTIMGUc
+	.4byte changeTexture__10J2DPictureFPCcUc
+	.4byte changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette
+	.4byte changeTexture__10J2DPictureFPCcUcP10JUTPalette
+	.4byte getTexture__10J2DPictureCFUc
+	.4byte getTextureCount__10J2DPictureCFv
+	.4byte setBlack__10J2DPictureFQ28JUtility6TColor
+	.4byte setWhite__10J2DPictureFQ28JUtility6TColor
+	.4byte setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor
+	.4byte getBlack__10J2DPictureCFv
+	.4byte getWhite__10J2DPictureCFv
+	.4byte getMaterial__10J2DPictureCFv
+	.4byte drawFullSet__10J2DPictureFffffPA3_A4_f
+	.4byte drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f
+	.4byte getUsableTlut__10J2DPictureFUc
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10J2DPictureFv

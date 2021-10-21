@@ -18,6 +18,59 @@ lbl_804786C8:
 	.4byte 0x01000000
 	.4byte 0x00010000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__12J2DTextBoxEx
+__vt__12J2DTextBoxEx:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12J2DTextBoxExFv
+	.4byte getTypeID__10J2DTextBoxCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__10J2DTextBoxFff
+	.4byte setCullBack__12J2DTextBoxExFb
+	.4byte setCullBack__12J2DTextBoxExF11_GXCullMode
+	.4byte setAlpha__12J2DTextBoxExFUc
+	.4byte setConnectParent__10J2DTextBoxFb
+	.4byte calcMtx__7J2DPaneFv
+	.4byte update__7J2DPaneFv
+	.4byte drawSelf__10J2DTextBoxFff
+	.4byte drawSelf__12J2DTextBoxExFffPA3_A4_f
+	.4byte search__7J2DPaneFUx
+	.4byte searchUserInfo__7J2DPaneFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__12J2DTextBoxExFPC7ResTIMG
+	.4byte isUsed__12J2DTextBoxExFPC7ResFONT
+	.4byte clearAnmTransform__7J2DPaneFv
+	.4byte rewriteAlpha__12J2DTextBoxExFv
+	.4byte setAnimation__12J2DTextBoxExFP10J2DAnmBase
+	.4byte setAnimation__12J2DTextBoxExFP15J2DAnmTransform
+	.4byte setAnimation__12J2DTextBoxExFP11J2DAnmColor
+	.4byte setAnimation__12J2DTextBoxExFP16J2DAnmTexPattern
+	.4byte setAnimation__12J2DTextBoxExFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__12J2DTextBoxExFP15J2DAnmTevRegKey
+	.4byte setAnimation__12J2DTextBoxExFP20J2DAnmVisibilityFull
+	.4byte setAnimation__12J2DTextBoxExFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+	.4byte animationPane__12J2DTextBoxExFPC15J2DAnmTransform
+	.4byte draw__12J2DTextBoxExFff
+	.4byte draw__12J2DTextBoxExFfff18J2DTextBoxHBinding
+	.4byte setFont__12J2DTextBoxExFP7JUTFont
+	.4byte getFont__12J2DTextBoxExCFv
+	.4byte setBlack__12J2DTextBoxExFQ28JUtility6TColor
+	.4byte setWhite__12J2DTextBoxExFQ28JUtility6TColor
+	.4byte setBlackWhite__12J2DTextBoxExFQ28JUtility6TColorQ28JUtility6TColor
+	.4byte getBlack__12J2DTextBoxExCFv
+	.4byte getWhite__12J2DTextBoxExCFv
+	.4byte getMaterial__12J2DTextBoxExCFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
 __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial:

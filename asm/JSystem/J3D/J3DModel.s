@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__8J3DModel
+__vt__8J3DModel:
+	.4byte 0
+	.4byte 0
+	.4byte update__8J3DModelFv
+	.4byte entry__8J3DModelFv
+	.4byte calc__8J3DModelFv
+	.4byte calcMaterial__8J3DModelFv
+	.4byte calcDiffTexMtx__8J3DModelFv
+	.4byte viewCalc__8J3DModelFv
+	.4byte __dt__8J3DModelFv
+.global __vt__12J3DMtxBuffer
+__vt__12J3DMtxBuffer:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12J3DMtxBufferFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__8J3DModelFv

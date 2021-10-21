@@ -1,4 +1,163 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__14J3DPEBlockNull
+__vt__14J3DPEBlockNull:
+	.4byte 0
+	.4byte 0
+	.4byte reset__10J3DPEBlockFP10J3DPEBlock
+	.4byte load__14J3DPEBlockNullFv
+	.4byte patch__10J3DPEBlockFv
+	.4byte diff__10J3DPEBlockFUl
+	.4byte diffFog__10J3DPEBlockFv
+	.4byte diffBlend__10J3DPEBlockFv
+	.4byte countDLSize__10J3DPEBlockFv
+	.4byte getType__14J3DPEBlockNullFv
+	.4byte setFog__10J3DPEBlockF6J3DFog
+	.4byte setFog__10J3DPEBlockFP6J3DFog
+	.4byte getFog__10J3DPEBlockFv
+	.4byte setAlphaComp__10J3DPEBlockFPC12J3DAlphaComp
+	.4byte setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp
+	.4byte getAlphaComp__10J3DPEBlockFv
+	.4byte setBlend__10J3DPEBlockFPC8J3DBlend
+	.4byte setBlend__10J3DPEBlockFRC8J3DBlend
+	.4byte getBlend__10J3DPEBlockFv
+	.4byte setZMode__10J3DPEBlockFPC8J3DZMode
+	.4byte setZMode__10J3DPEBlockF8J3DZMode
+	.4byte getZMode__10J3DPEBlockFv
+	.4byte setZCompLoc__10J3DPEBlockFPCUc
+	.4byte setZCompLoc__10J3DPEBlockFUc
+	.4byte getZCompLoc__10J3DPEBlockCFv
+	.4byte setDither__10J3DPEBlockFPCUc
+	.4byte setDither__10J3DPEBlockFUc
+	.4byte getDither__10J3DPEBlockCFv
+	.4byte getFogOffset__10J3DPEBlockCFv
+	.4byte setFogOffset__10J3DPEBlockFUl
+	.4byte __dt__14J3DPEBlockNullFv
+.global __vt__15J3DTevBlockNull
+__vt__15J3DTevBlockNull:
+	.4byte 0
+	.4byte 0
+	.4byte reset__15J3DTevBlockNullFP11J3DTevBlock
+	.4byte load__11J3DTevBlockFv
+	.4byte diff__11J3DTevBlockFUl
+	.4byte diffTexNo__11J3DTevBlockFv
+	.4byte diffTevReg__11J3DTevBlockFv
+	.4byte diffTexCoordScale__11J3DTevBlockFv
+	.4byte diffTevStage__11J3DTevBlockFv
+	.4byte diffTevStageIndirect__11J3DTevBlockFv
+	.4byte patch__11J3DTevBlockFv
+	.4byte patchTexNo__11J3DTevBlockFv
+	.4byte patchTevReg__11J3DTevBlockFv
+	.4byte patchTexNoAndTexCoordScale__11J3DTevBlockFv
+	.4byte ptrToIndex__15J3DTevBlockNullFv
+	.4byte indexToPtr__15J3DTevBlockNullFv
+	.4byte getType__15J3DTevBlockNullFv
+	.4byte countDLSize__11J3DTevBlockFv
+	.4byte setTexNo__11J3DTevBlockFUlPCUs
+	.4byte setTexNo__11J3DTevBlockFUlUs
+	.4byte getTexNo__11J3DTevBlockCFUl
+	.4byte setTevOrder__11J3DTevBlockFUlPC11J3DTevOrder
+	.4byte setTevOrder__11J3DTevBlockFUl11J3DTevOrder
+	.4byte getTevOrder__11J3DTevBlockFUl
+	.4byte setTevColor__11J3DTevBlockFUlPC13J3DGXColorS10
+	.4byte setTevColor__11J3DTevBlockFUl13J3DGXColorS10
+	.4byte getTevColor__11J3DTevBlockFUl
+	.4byte setTevKColor__11J3DTevBlockFUlPC10J3DGXColor
+	.4byte setTevKColor__11J3DTevBlockFUl10J3DGXColor
+	.4byte getTevKColor__11J3DTevBlockFUl
+	.4byte setTevKColorSel__11J3DTevBlockFUlPCUc
+	.4byte setTevKColorSel__11J3DTevBlockFUlUc
+	.4byte getTevKColorSel__11J3DTevBlockFUl
+	.4byte setTevKAlphaSel__11J3DTevBlockFUlPCUc
+	.4byte setTevKAlphaSel__11J3DTevBlockFUlUc
+	.4byte getTevKAlphaSel__11J3DTevBlockFUl
+	.4byte setTevStageNum__11J3DTevBlockFPCUc
+	.4byte setTevStageNum__11J3DTevBlockFUc
+	.4byte getTevStageNum__11J3DTevBlockCFv
+	.4byte setTevStage__11J3DTevBlockFUlPC11J3DTevStage
+	.4byte setTevStage__11J3DTevBlockFUl11J3DTevStage
+	.4byte getTevStage__11J3DTevBlockFUl
+	.4byte setTevSwapModeInfo__11J3DTevBlockFUlPC18J3DTevSwapModeInfo
+	.4byte setTevSwapModeInfo__11J3DTevBlockFUl18J3DTevSwapModeInfo
+	.4byte setTevSwapModeTable__11J3DTevBlockFUlPC19J3DTevSwapModeTable
+	.4byte setTevSwapModeTable__11J3DTevBlockFUl19J3DTevSwapModeTable
+	.4byte getTevSwapModeTable__11J3DTevBlockFUl
+	.4byte setIndTevStage__11J3DTevBlockFUlPC14J3DIndTevStage
+	.4byte setIndTevStage__11J3DTevBlockFUl14J3DIndTevStage
+	.4byte getIndTevStage__11J3DTevBlockFUl
+	.4byte getTexNoOffset__11J3DTevBlockCFv
+	.4byte getTevRegOffset__11J3DTevBlockCFv
+	.4byte setTexNoOffset__11J3DTevBlockFUl
+	.4byte setTevRegOffset__11J3DTevBlockFUl
+	.4byte __dt__15J3DTevBlockNullFv
+.global __vt__18J3DTexGenBlockNull
+__vt__18J3DTexGenBlockNull:
+	.4byte 0
+	.4byte 0
+	.4byte reset__14J3DTexGenBlockFP14J3DTexGenBlock
+	.4byte calc__18J3DTexGenBlockNullFPA4_Cf
+	.4byte calcWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf
+	.4byte calcPostTexMtx__18J3DTexGenBlockNullFPA4_Cf
+	.4byte calcPostTexMtxWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf
+	.4byte load__18J3DTexGenBlockNullFv
+	.4byte patch__18J3DTexGenBlockNullFv
+	.4byte diff__18J3DTexGenBlockNullFUl
+	.4byte diffTexMtx__18J3DTexGenBlockNullFv
+	.4byte diffTexGen__18J3DTexGenBlockNullFv
+	.4byte countDLSize__14J3DTexGenBlockFv
+	.4byte getType__18J3DTexGenBlockNullFv
+	.4byte setTexGenNum__14J3DTexGenBlockFPCUl
+	.4byte setTexGenNum__14J3DTexGenBlockFUl
+	.4byte getTexGenNum__14J3DTexGenBlockCFv
+	.4byte setTexCoord__14J3DTexGenBlockFUlPC11J3DTexCoord
+	.4byte getTexCoord__14J3DTexGenBlockFUl
+	.4byte setTexMtx__14J3DTexGenBlockFUlP9J3DTexMtx
+	.4byte getTexMtx__14J3DTexGenBlockFUl
+	.4byte setNBTScale__14J3DTexGenBlockFPC11J3DNBTScale
+	.4byte setNBTScale__14J3DTexGenBlockF11J3DNBTScale
+	.4byte getNBTScale__14J3DTexGenBlockFv
+	.4byte getTexMtxOffset__14J3DTexGenBlockCFv
+	.4byte setTexMtxOffset__14J3DTexGenBlockFUl
+	.4byte __dt__18J3DTexGenBlockNullFv
+.global __vt__17J3DColorBlockNull
+__vt__17J3DColorBlockNull:
+	.4byte 0
+	.4byte 0
+	.4byte load__13J3DColorBlockFv
+	.4byte reset__13J3DColorBlockFP13J3DColorBlock
+	.4byte patch__13J3DColorBlockFv
+	.4byte patchMatColor__13J3DColorBlockFv
+	.4byte patchLight__13J3DColorBlockFv
+	.4byte diff__13J3DColorBlockFUl
+	.4byte diffMatColor__13J3DColorBlockFv
+	.4byte diffLight__13J3DColorBlockFv
+	.4byte countDLSize__13J3DColorBlockFv
+	.4byte getType__17J3DColorBlockNullFv
+	.4byte setMatColor__13J3DColorBlockFUlPC10J3DGXColor
+	.4byte setMatColor__13J3DColorBlockFUl10J3DGXColor
+	.4byte getMatColor__13J3DColorBlockFUl
+	.4byte setAmbColor__13J3DColorBlockFUlPC10J3DGXColor
+	.4byte setAmbColor__13J3DColorBlockFUl10J3DGXColor
+	.4byte getAmbColor__13J3DColorBlockFUl
+	.4byte setColorChanNum__13J3DColorBlockFUc
+	.4byte setColorChanNum__13J3DColorBlockFPCUc
+	.4byte getColorChanNum__13J3DColorBlockCFv
+	.4byte setColorChan__13J3DColorBlockFUlRC12J3DColorChan
+	.4byte setColorChan__13J3DColorBlockFUlPC12J3DColorChan
+	.4byte getColorChan__13J3DColorBlockFUl
+	.4byte setLight__13J3DColorBlockFUlP11J3DLightObj
+	.4byte getLight__13J3DColorBlockFUl
+	.4byte setCullMode__13J3DColorBlockFPCUc
+	.4byte setCullMode__13J3DColorBlockFUc
+	.4byte getCullMode__13J3DColorBlockCFv
+	.4byte getMatColorOffset__13J3DColorBlockCFv
+	.4byte getColorChanOffset__13J3DColorBlockCFv
+	.4byte setMatColorOffset__13J3DColorBlockFUl
+	.4byte setColorChanOffset__13J3DColorBlockFUl
+	.4byte __dt__17J3DColorBlockNullFv
+	.4byte 0
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E48
 lbl_80520E48:

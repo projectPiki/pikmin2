@@ -1,4 +1,52 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sDifferedRegister
+sDifferedRegister:
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x01000000
+	.4byte 0x10000000
+	.4byte 0x20000000
+	.4byte 0x02000000
+	.4byte 0x08000000
+.global sSizeOfDiffered
+sSizeOfDiffered:
+	.4byte 0x0000000D
+	.4byte 0x00000015
+	.4byte 0x00000078
+	.4byte 0x00000037
+	.4byte 0x0000000F
+	.4byte 0x00000013
+	.4byte 0x0000002D
+.global __vt__14J3DShapePacket
+__vt__14J3DShapePacket:
+	.4byte 0
+	.4byte 0
+	.4byte entry__9J3DPacketFP13J3DDrawBuffer
+	.4byte draw__14J3DShapePacketFv
+	.4byte __dt__14J3DShapePacketFv
+.global __vt__12J3DMatPacket
+__vt__12J3DMatPacket:
+	.4byte 0
+	.4byte 0
+	.4byte entry__12J3DMatPacketFP13J3DDrawBuffer
+	.4byte draw__12J3DMatPacketFv
+	.4byte __dt__12J3DMatPacketFv
+.global __vt__13J3DDrawPacket
+__vt__13J3DDrawPacket:
+	.4byte 0
+	.4byte 0
+	.4byte entry__9J3DPacketFP13J3DDrawBuffer
+	.4byte draw__13J3DDrawPacketFv
+	.4byte __dt__13J3DDrawPacketFv
+.global __vt__9J3DPacket
+__vt__9J3DPacket:
+	.4byte 0
+	.4byte 0
+	.4byte entry__9J3DPacketFP13J3DDrawBuffer
+	.4byte draw__9J3DPacketFv
+	.4byte __dt__9J3DPacketFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global newDisplayList__17J3DDisplayListObjFUl

@@ -17,6 +17,40 @@ lbl_80473524:
 	.4byte 0x6E63650A
 	.4byte 0x00000000
 	.4byte 0x00000000
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__7JKRFile
+__vt__7JKRFile:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__7JKRFileFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__14JKRAramArchive
+__vt__14JKRAramArchive:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14JKRAramArchiveFv
+	.4byte unmount__13JKRFileLoaderFv
+	.4byte becomeCurrent__10JKRArchiveFPCc
+	.4byte getResource__10JKRArchiveFPCc
+	.4byte getResource__10JKRArchiveFUlPCc
+	.4byte readResource__10JKRArchiveFPvUlPCc
+	.4byte readResource__10JKRArchiveFPvUlUlPCc
+	.4byte removeResourceAll__10JKRArchiveFv
+	.4byte removeResource__10JKRArchiveFPv
+	.4byte detachResource__10JKRArchiveFPv
+	.4byte getResSize__10JKRArchiveCFPCv
+	.4byte countFile__10JKRArchiveCFPCc
+	.4byte getFirstFile__10JKRArchiveCFPCc
+	.4byte getExpandedResSize__14JKRAramArchiveCFPCv
+	.4byte fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl
+	.4byte fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
+	.4byte setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
+	.4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection

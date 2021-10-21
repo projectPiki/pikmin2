@@ -58,6 +58,55 @@ lbl_804789E0:
 	.4byte 0x74652E0A
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global e_mtx
+e_mtx:
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global clear_z_TX
+clear_z_TX:
+	.4byte 0x00FF00FF
+	.4byte 0x00FF00FF
+	.4byte 0x00FF00FF
+	.4byte 0x00FF00FF
+	.4byte 0x00FF00FF
+	.4byte 0x00FF00FF
+	.4byte 0x00FF00FF
+	.4byte 0x00FF00FF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+.global __vt__10JFWDisplay
+__vt__10JFWDisplay:
+	.4byte 0
+	.4byte 0
+	.4byte beginRender__10JFWDisplayFv
+	.4byte endRender__10JFWDisplayFv
+	.4byte endFrame__10JFWDisplayFv
+	.4byte __dt__10JFWDisplayFv
+	.4byte 0
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__10JFWDisplayFv
 __dt__10JFWDisplayFv:

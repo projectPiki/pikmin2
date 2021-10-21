@@ -1,4 +1,60 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A1930
+lbl_804A1930:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte entryMatSort__13J3DDrawBufferFP12J3DMatPacket
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte entryZSort__13J3DDrawBufferFP12J3DMatPacket
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte entryModelSort__13J3DDrawBufferFP12J3DMatPacket
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte entryNonSort__13J3DDrawBufferFP12J3DMatPacket
+.global sortFuncTable__13J3DDrawBuffer
+sortFuncTable__13J3DDrawBuffer:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte drawHead__13J3DDrawBufferCFv
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte drawTail__13J3DDrawBufferCFv
+.global drawFuncTable__13J3DDrawBuffer
+drawFuncTable__13J3DDrawBuffer:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__13J3DDrawBufferFv

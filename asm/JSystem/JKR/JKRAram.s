@@ -42,6 +42,31 @@ lbl_8047348C:
 	.4byte 0x73796E63
 	.4byte 0x2E0A0000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sMessageBuffer__7JKRAram
+sMessageBuffer__7JKRAram:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sMessageQueue__7JKRAram
+sMessageQueue__7JKRAram:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__7JKRAram
+__vt__7JKRAram:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__7JKRAramFv
+	.4byte run__7JKRAramFv
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sSZSBufferSize__7JKRAram

@@ -34,6 +34,31 @@ lbl_80478420:
 	.4byte 0x636B0A00
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__12JUTCacheFont
+__vt__12JUTCacheFont:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JUTCacheFontFv
+	.4byte setGX__10JUTResFontFv
+	.4byte setGX__10JUTResFontFQ28JUtility6TColorQ28JUtility6TColor
+	.4byte drawChar_scale__10JUTResFontFffffib
+	.4byte getLeading__10JUTResFontCFv
+	.4byte getAscent__10JUTResFontCFv
+	.4byte getDescent__10JUTResFontCFv
+	.4byte getHeight__10JUTResFontCFv
+	.4byte getWidth__10JUTResFontCFv
+	.4byte getWidthEntry__10JUTResFontCFiPQ27JUTFont6TWidth
+	.4byte getCellWidth__10JUTResFontCFv
+	.4byte getCellHeight__10JUTResFontCFv
+	.4byte getFontType__10JUTResFontCFv
+	.4byte getResFont__10JUTResFontCFv
+	.4byte isLeadByte__10JUTResFontCFi
+	.4byte loadImage__12JUTCacheFontFi11_GXTexMapID
+	.4byte setBlock__12JUTCacheFontFv
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap
 __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap:

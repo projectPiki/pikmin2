@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__13J2DPerspGraph
+__vt__13J2DPerspGraph:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13J2DPerspGraphFv
+	.4byte "place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+	.4byte place__14J2DGrafContextFffff
+	.4byte setPort__13J2DPerspGraphFv
+	.4byte setup2D__14J2DGrafContextFv
+	.4byte setScissor__14J2DGrafContextFv
+	.4byte getGrafType__13J2DPerspGraphCFv
+	.4byte setLookat__13J2DPerspGraphFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13J2DPerspGraphFv

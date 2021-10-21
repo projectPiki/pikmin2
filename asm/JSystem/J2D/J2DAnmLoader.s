@@ -1,4 +1,54 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__20J2DAnmFullLoader_v15
+__vt__20J2DAnmFullLoader_v15:
+	.4byte 0
+	.4byte 0
+	.4byte load__20J2DAnmFullLoader_v15FPCv
+	.4byte setResource__20J2DAnmFullLoader_v15FP10J2DAnmBasePCv
+	.4byte __dt__20J2DAnmFullLoader_v15Fv
+.global __vt__19J2DAnmKeyLoader_v15
+__vt__19J2DAnmKeyLoader_v15:
+	.4byte 0
+	.4byte 0
+	.4byte load__19J2DAnmKeyLoader_v15FPCv
+	.4byte setResource__19J2DAnmKeyLoader_v15FP10J2DAnmBasePCv
+	.4byte __dt__19J2DAnmKeyLoader_v15Fv
+.global __vt__12J2DAnmLoader
+__vt__12J2DAnmLoader:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12J2DAnmLoaderFv
+.global __vt__20J2DAnmVisibilityFull
+__vt__20J2DAnmVisibilityFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__20J2DAnmVisibilityFullFv
+	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+.global __vt__14J2DAnmVtxColor
+__vt__14J2DAnmVtxColor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14J2DAnmVtxColorFv
+	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+	.4byte getColor__14J2DAnmVtxColorCFUcUsP8_GXColor
+.global __vt__15J2DAnmTransform
+__vt__15J2DAnmTransform:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15J2DAnmTransformFv
+	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+	.4byte getTransform__15J2DAnmTransformCFUsP16J3DTransformInfo
+.global __vt__10J2DAnmBase
+__vt__10J2DAnmBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10J2DAnmBaseFv
+	.4byte searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__20J2DAnmLoaderDataBaseFPCv

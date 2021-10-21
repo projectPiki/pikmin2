@@ -1,4 +1,32 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__15J2DIndBlockNull
+__vt__15J2DIndBlockNull:
+	.4byte 0
+	.4byte 0
+	.4byte initialize__11J2DIndBlockFv
+	.4byte setGX__15J2DIndBlockNullFv
+	.4byte getType__15J2DIndBlockNullFv
+	.4byte setIndTexStageNum__11J2DIndBlockFUc
+	.4byte getIndTexStageNum__11J2DIndBlockCFv
+	.4byte setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder
+	.4byte getIndTexOrder__11J2DIndBlockFUl
+	.4byte setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx
+	.4byte getIndTexMtx__11J2DIndBlockFUl
+	.4byte setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale
+	.4byte getIndTexCoordScale__11J2DIndBlockFUl
+	.4byte __dt__15J2DIndBlockNullFv
+.global __vt__11J2DMaterial
+__vt__11J2DMaterial:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11J2DMaterialFv
+.global __vt__13J2DColorBlock
+__vt__13J2DColorBlock:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13J2DColorBlockFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11J2DMaterialFv

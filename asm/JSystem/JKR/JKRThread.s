@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__7JKRTask
+__vt__7JKRTask:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__7JKRTaskFv
+	.4byte run__7JKRTaskFv
+.global __vt__9JKRThread
+__vt__9JKRThread:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__9JKRThreadFv
+	.4byte run__9JKRThreadFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9JKRThreadFUlii

@@ -1,4 +1,25 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sChannelMask__Q210JUTGamePad7CRumble
+sChannelMask__Q210JUTGamePad7CRumble:
+	.4byte 0x80000000
+	.4byte 0x40000000
+	.4byte 0x20000000
+	.4byte 0x10000000
+.global channel_mask
+channel_mask:
+	.4byte 0x80000000
+	.4byte 0x40000000
+	.4byte 0x20000000
+	.4byte 0x10000000
+.global __vt__10JUTGamePad
+__vt__10JUTGamePad:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10JUTGamePadFv
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sStickMode__10JUTGamePad

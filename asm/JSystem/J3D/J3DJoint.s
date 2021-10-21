@@ -22,6 +22,61 @@ lbl_804789D4:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>"
+"__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
+	.4byte "setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform"
+	.4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
+	.4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFUc
+	.4byte setWeight__10J3DMtxCalcFUcf
+	.4byte getWeight__10J3DMtxCalcCFUc
+	.4byte "init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
+	.4byte "calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
+.global "__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
+"__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+	.4byte "setAnmTransform__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FP15J3DAnmTransform"
+	.4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
+	.4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFUc
+	.4byte setWeight__10J3DMtxCalcFUcf
+	.4byte getWeight__10J3DMtxCalcCFUc
+	.4byte "init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
+	.4byte "calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+.global "__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>"
+"__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
+	.4byte "setAnmTransform__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FP15J3DAnmTransform"
+	.4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
+	.4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFUc
+	.4byte setWeight__10J3DMtxCalcFUcf
+	.4byte getWeight__10J3DMtxCalcCFUc
+	.4byte "init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
+	.4byte "calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
+.global __vt__17J3DMtxCalcAnmBase
+__vt__17J3DMtxCalcAnmBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__17J3DMtxCalcAnmBaseFv
+	.4byte setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform
+	.4byte getAnmTransform__17J3DMtxCalcAnmBaseFv
+	.4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFUc
+	.4byte setWeight__10J3DMtxCalcFUcf
+	.4byte getWeight__10J3DMtxCalcCFUc
+	.4byte 0
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
 init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf:

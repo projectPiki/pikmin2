@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q214JStudio_JStage13TCreateObject
+__vt__Q214JStudio_JStage13TCreateObject:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214JStudio_JStage13TCreateObjectFv
+	.4byte create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q214JStudio_JStage13TCreateObjectFv

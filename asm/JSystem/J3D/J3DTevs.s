@@ -84,6 +84,93 @@ lbl_804789A4:
 	.4byte 0x2A2D3033
 	.4byte 0x36393C00
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global qMtx$1682
+qMtx$1682:
+	.float 0.5
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xBF000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+.global qMtx2$1683
+qMtx2$1683:
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0xBF000000
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_804A1870
+lbl_804A1870:
+	.4byte lbl_80064FB8
+	.4byte lbl_80064EDC
+	.4byte lbl_80064F20
+	.4byte lbl_80064F20
+	.4byte lbl_80064F74
+	.4byte lbl_80064F20
+	.4byte lbl_80064E84
+	.4byte lbl_80064DC4
+	.4byte lbl_80064D5C
+	.4byte lbl_80064D5C
+	.4byte lbl_80064E1C
+	.4byte lbl_80064D5C
+.global qMtx$1744
+qMtx$1744:
+	.float 0.5
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xBF000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+.global qMtx2$1745
+qMtx2$1745:
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0xBF000000
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_804A1900
+lbl_804A1900:
+	.4byte lbl_80065310
+	.4byte lbl_80065200
+	.4byte lbl_80065234
+	.4byte lbl_80065288
+	.4byte lbl_800652CC
+	.4byte lbl_80065234
+	.4byte lbl_800651B8
+	.4byte lbl_80065108
+	.4byte lbl_80065048
+	.4byte lbl_800650B0
+	.4byte lbl_80065150
+	.4byte lbl_80065048
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__11J3DLightObjCFUl
 load__11J3DLightObjCFUl:

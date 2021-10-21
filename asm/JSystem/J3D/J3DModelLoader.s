@@ -1,4 +1,120 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__18J3DModelLoader_v21
+__vt__18J3DModelLoader_v21:
+	.4byte 0
+	.4byte 0
+	.4byte load__14J3DModelLoaderFPCvUl
+	.4byte loadMaterialTable__14J3DModelLoaderFPCv
+	.4byte loadBinaryDisplayList__14J3DModelLoaderFPCvUl
+	.4byte calcLoadSize__14J3DModelLoaderFPCvUl
+	.4byte calcLoadMaterialTableSize__14J3DModelLoaderFPCv
+	.4byte calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl
+	.4byte countMaterialNum__14J3DModelLoaderFPCv
+	.4byte setupBBoardInfo__14J3DModelLoaderFv
+	.4byte __dt__18J3DModelLoader_v21Fv
+	.4byte readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
+	.4byte readMaterial_v21__18J3DModelLoader_v21FPC20J3DMaterialBlock_v21Ul
+	.4byte readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl
+	.4byte readMaterialTable_v21__18J3DModelLoader_v21FPC20J3DMaterialBlock_v21Ul
+	.4byte calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
+	.4byte calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl
+.global __vt__18J3DModelLoader_v26
+__vt__18J3DModelLoader_v26:
+	.4byte 0
+	.4byte 0
+	.4byte load__14J3DModelLoaderFPCvUl
+	.4byte loadMaterialTable__14J3DModelLoaderFPCv
+	.4byte loadBinaryDisplayList__14J3DModelLoaderFPCvUl
+	.4byte calcLoadSize__14J3DModelLoaderFPCvUl
+	.4byte calcLoadMaterialTableSize__14J3DModelLoaderFPCv
+	.4byte calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl
+	.4byte countMaterialNum__14J3DModelLoaderFPCv
+	.4byte setupBBoardInfo__14J3DModelLoaderFv
+	.4byte __dt__18J3DModelLoader_v26Fv
+	.4byte readMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
+	.4byte readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul
+	.4byte readMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
+	.4byte readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul
+	.4byte calcSizeMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
+	.4byte calcSizeMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
+.global "__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>"
+"__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv"
+	.4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFv
+	.4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFUc
+	.4byte setWeight__10J3DMtxCalcFUcf
+	.4byte getWeight__10J3DMtxCalcCFUc
+	.4byte "init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
+	.4byte "calc__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv"
+.global "__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>"
+"__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+	.4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFv
+	.4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFUc
+	.4byte setWeight__10J3DMtxCalcFUcf
+	.4byte getWeight__10J3DMtxCalcCFUc
+	.4byte "init__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
+	.4byte "calc__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+.global "__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>"
+"__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>":
+	.4byte 0
+	.4byte 0
+	.4byte "__dt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>Fv"
+	.4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFv
+	.4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFUc
+	.4byte setWeight__10J3DMtxCalcFUcf
+	.4byte getWeight__10J3DMtxCalcCFUc
+	.4byte "init__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
+	.4byte "calc__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>Fv"
+.global __vt__19J3DMtxCalcNoAnmBase
+__vt__19J3DMtxCalcNoAnmBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__19J3DMtxCalcNoAnmBaseFv
+	.4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFv
+	.4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+	.4byte getAnmTransform__10J3DMtxCalcFUc
+	.4byte setWeight__10J3DMtxCalcFUcf
+	.4byte getWeight__10J3DMtxCalcCFUc
+	.4byte 0
+	.4byte 0
+.global __vt__10J3DTexture
+__vt__10J3DTexture:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10J3DTextureFv
+.global __vt__14J3DModelLoader
+__vt__14J3DModelLoader:
+	.4byte 0
+	.4byte 0
+	.4byte load__14J3DModelLoaderFPCvUl
+	.4byte loadMaterialTable__14J3DModelLoaderFPCv
+	.4byte loadBinaryDisplayList__14J3DModelLoaderFPCvUl
+	.4byte calcLoadSize__14J3DModelLoaderFPCvUl
+	.4byte calcLoadMaterialTableSize__14J3DModelLoaderFPCv
+	.4byte calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl
+	.4byte countMaterialNum__14J3DModelLoaderFPCv
+	.4byte setupBBoardInfo__14J3DModelLoaderFv
+	.4byte __dt__14J3DModelLoaderFv
+	.4byte readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
+	.4byte readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul
+	.4byte readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl
+	.4byte readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul
+	.4byte calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
+	.4byte calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__22J3DModelLoaderDataBaseFPCvUl

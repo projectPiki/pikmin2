@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_
+__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_:
+	.4byte 0
+	.4byte 0
+	.4byte __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor
+	.4byte __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv
+.global __vt__Q214JStudio_JStage14TAdaptor_light
+__vt__Q214JStudio_JStage14TAdaptor_light:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214JStudio_JStage14TAdaptor_lightFv
+	.4byte adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight

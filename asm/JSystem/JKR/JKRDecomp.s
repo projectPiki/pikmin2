@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sMessageBuffer__9JKRDecomp
+sMessageBuffer__9JKRDecomp:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sMessageQueue__9JKRDecomp
+sMessageQueue__9JKRDecomp:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__9JKRDecomp
+__vt__9JKRDecomp:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__9JKRDecompFv
+	.4byte run__9JKRDecompFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__9JKRDecompFl

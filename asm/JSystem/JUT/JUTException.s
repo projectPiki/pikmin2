@@ -127,6 +127,55 @@ lbl_80473FBC:
 lbl_8047412C:
 	.asciz "  [%08X]: .%s [%08X: %XH]\n  %s\n"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sMessageQueue__12JUTException
+sMessageQueue__12JUTException:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global c3bcnt
+c3bcnt:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sCpuExpName__12JUTException
+sCpuExpName__12JUTException:
+	.4byte lbl_80473C18
+	.4byte lbl_80473C28
+	.4byte lbl_80516610
+	.4byte lbl_80516614
+	.4byte lbl_80473C38
+	.4byte lbl_80473C4C
+	.4byte lbl_80516618
+	.4byte lbl_80473C58
+	.4byte lbl_80473C68
+	.4byte lbl_80473C74
+	.4byte lbl_80516620
+	.4byte lbl_80473C80
+	.4byte lbl_80473C94
+	.4byte lbl_80473CA0
+	.4byte lbl_80473CB4
+	.4byte lbl_80473CC8
+	.4byte lbl_80473C58
+.global __vt__12JUTException
+__vt__12JUTException:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JUTExceptionFv
+	.4byte run__12JUTExceptionFv
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sMessageBuffer__12JUTException

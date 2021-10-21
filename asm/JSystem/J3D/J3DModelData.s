@@ -1,4 +1,16 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__13J3DShapeTable
+__vt__13J3DShapeTable:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13J3DShapeTableFv
+.global __vt__12J3DModelData
+__vt__12J3DModelData:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12J3DModelDataFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__12J3DModelDataFv

@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__14J2DGrafContext
+__vt__14J2DGrafContext:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14J2DGrafContextFv
+	.4byte "place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+	.4byte place__14J2DGrafContextFffff
+	.4byte setPort__14J2DGrafContextFv
+	.4byte setup2D__14J2DGrafContextFv
+	.4byte setScissor__14J2DGrafContextFv
+	.4byte getGrafType__14J2DGrafContextCFv
+	.4byte setLookat__14J2DGrafContextFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__14J2DGrafContextFffff

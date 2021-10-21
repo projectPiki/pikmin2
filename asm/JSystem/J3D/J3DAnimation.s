@@ -1,4 +1,90 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__14J3DAnmColorKey
+__vt__14J3DAnmColorKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14J3DAnmColorKeyFv
+	.4byte getKind__14J3DAnmColorKeyCFv
+	.4byte getColor__14J3DAnmColorKeyCFUsP8_GXColor
+.global __vt__10J3DAnmBase
+__vt__10J3DAnmBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10J3DAnmBaseFv
+	.4byte 0
+.global __vt__11J3DAnmColor
+__vt__11J3DAnmColor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11J3DAnmColorFv
+	.4byte getKind__11J3DAnmColorCFv
+	.4byte getColor__11J3DAnmColorCFUsP8_GXColor
+.global __vt__15J3DAnmColorFull
+__vt__15J3DAnmColorFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15J3DAnmColorFullFv
+	.4byte getKind__15J3DAnmColorFullCFv
+	.4byte getColor__15J3DAnmColorFullCFUsP8_GXColor
+.global __vt__17J3DAnmVtxColorKey
+__vt__17J3DAnmVtxColorKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__17J3DAnmVtxColorKeyFv
+	.4byte getKind__17J3DAnmVtxColorKeyCFv
+	.4byte getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor
+.global __vt__14J3DAnmVtxColor
+__vt__14J3DAnmVtxColor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14J3DAnmVtxColorFv
+	.4byte getKind__14J3DAnmVtxColorCFv
+	.4byte getColor__14J3DAnmVtxColorCFUcUsP8_GXColor
+.global __vt__18J3DAnmVtxColorFull
+__vt__18J3DAnmVtxColorFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__18J3DAnmVtxColorFullFv
+	.4byte getKind__18J3DAnmVtxColorFullCFv
+	.4byte getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor
+.global __vt__16J3DAnmClusterKey
+__vt__16J3DAnmClusterKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__16J3DAnmClusterKeyFv
+	.4byte getKind__16J3DAnmClusterKeyCFv
+	.4byte getWeight__16J3DAnmClusterKeyCFUs
+.global __vt__13J3DAnmCluster
+__vt__13J3DAnmCluster:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13J3DAnmClusterFv
+	.4byte getKind__13J3DAnmClusterCFv
+	.4byte getWeight__13J3DAnmClusterCFUs
+.global __vt__17J3DAnmClusterFull
+__vt__17J3DAnmClusterFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__17J3DAnmClusterFullFv
+	.4byte getKind__17J3DAnmClusterFullCFv
+	.4byte getWeight__17J3DAnmClusterFullCFUs
+.global __vt__19J3DAnmTransformFull
+__vt__19J3DAnmTransformFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__19J3DAnmTransformFullFv
+	.4byte getKind__19J3DAnmTransformFullCFv
+	.4byte getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo
+.global __vt__15J3DAnmTransform
+__vt__15J3DAnmTransform:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15J3DAnmTransformFv
+	.4byte getKind__15J3DAnmTransformCFv
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__12J3DFrameCtrlFs

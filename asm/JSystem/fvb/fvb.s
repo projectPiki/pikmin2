@@ -20,6 +20,95 @@
 	.4byte "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
 	.4byte "getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_8049E548
+lbl_8049E548:
+	.4byte lbl_8000BD3C
+	.4byte lbl_8000BBE4
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BD30
+	.4byte lbl_8000BC04
+	.4byte lbl_8000BC6C
+	.4byte lbl_8000BCC0
+	.4byte lbl_8000BCDC
+	.4byte lbl_8000BCF0
+	.4byte lbl_8000BD04
+	.4byte lbl_8000BD20
+.global __vt__Q37JStudio3fvb6TParse
+__vt__Q37JStudio3fvb6TParse:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb6TParseFv
+	.4byte parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl
+	.4byte parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl
+.global __vt__Q37JStudio3fvb8TFactory
+__vt__Q37JStudio3fvb8TFactory:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb8TFactoryFv
+	.4byte create__Q37JStudio3fvb8TFactoryFRCQ47JStudio3fvb4data13TParse_TBlock
+	.4byte destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject
+.global __vt__Q37JStudio3fvb8TControl
+__vt__Q37JStudio3fvb8TControl:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb8TControlFv
+.global __vt__Q37JStudio3fvb15TObject_hermite
+__vt__Q37JStudio3fvb15TObject_hermite:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb15TObject_hermiteFv
+	.4byte prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+.global __vt__Q37JStudio3fvb22TObject_list_parameter
+__vt__Q37JStudio3fvb22TObject_list_parameter:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb22TObject_list_parameterFv
+	.4byte prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+.global __vt__Q37JStudio3fvb12TObject_list
+__vt__Q37JStudio3fvb12TObject_list:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb12TObject_listFv
+	.4byte prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+.global __vt__Q37JStudio3fvb18TObject_transition
+__vt__Q37JStudio3fvb18TObject_transition:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb18TObject_transitionFv
+	.4byte prepare_data___Q37JStudio3fvb18TObject_transitionFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+.global __vt__Q37JStudio3fvb16TObject_constant
+__vt__Q37JStudio3fvb16TObject_constant:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb16TObject_constantFv
+	.4byte prepare_data___Q37JStudio3fvb16TObject_constantFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+.global __vt__Q37JStudio3fvb17TObject_composite
+__vt__Q37JStudio3fvb17TObject_composite:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q37JStudio3fvb17TObject_compositeFv
+	.4byte prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+.global __vt__Q37JStudio3fvb7TObject
+__vt__Q37JStudio3fvb7TObject:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl
 prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl:

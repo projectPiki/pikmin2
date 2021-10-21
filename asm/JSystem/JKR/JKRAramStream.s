@@ -18,6 +18,31 @@ lbl_804735AC:
 	.4byte 0x72790A00
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global sMessageBuffer__13JKRAramStream
+sMessageBuffer__13JKRAramStream:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global sMessageQueue__13JKRAramStream
+sMessageQueue__13JKRAramStream:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global __vt__13JKRAramStream
+__vt__13JKRAramStream:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13JKRAramStreamFv
+	.4byte run__13JKRAramStreamFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__13JKRAramStreamFl
 create__13JKRAramStreamFl:

@@ -8,6 +8,79 @@
 	.4byte extrapolateParameter_turn__Q27JStudio13functionvalueFdd
 	.4byte extrapolateParameter_clamp__Q27JStudio13functionvalueFdd
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q27JStudio22TFunctionValue_hermite
+__vt__Q27JStudio22TFunctionValue_hermite:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio22TFunctionValue_hermiteFv
+	.4byte getType__Q27JStudio22TFunctionValue_hermiteCFv
+	.4byte getAttributeSet__Q27JStudio22TFunctionValue_hermiteFv
+	.4byte initialize__Q27JStudio22TFunctionValue_hermiteFv
+	.4byte prepare__Q27JStudio22TFunctionValue_hermiteFv
+	.4byte getValue__Q27JStudio22TFunctionValue_hermiteFd
+.global __vt__Q27JStudio29TFunctionValue_list_parameter
+__vt__Q27JStudio29TFunctionValue_list_parameter:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio29TFunctionValue_list_parameterFv
+	.4byte getType__Q27JStudio29TFunctionValue_list_parameterCFv
+	.4byte getAttributeSet__Q27JStudio29TFunctionValue_list_parameterFv
+	.4byte initialize__Q27JStudio29TFunctionValue_list_parameterFv
+	.4byte prepare__Q27JStudio29TFunctionValue_list_parameterFv
+	.4byte getValue__Q27JStudio29TFunctionValue_list_parameterFd
+.global __vt__Q27JStudio19TFunctionValue_list
+__vt__Q27JStudio19TFunctionValue_list:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio19TFunctionValue_listFv
+	.4byte getType__Q27JStudio19TFunctionValue_listCFv
+	.4byte getAttributeSet__Q27JStudio19TFunctionValue_listFv
+	.4byte initialize__Q27JStudio19TFunctionValue_listFv
+	.4byte prepare__Q27JStudio19TFunctionValue_listFv
+	.4byte getValue__Q27JStudio19TFunctionValue_listFd
+.global __vt__Q27JStudio25TFunctionValue_transition
+__vt__Q27JStudio25TFunctionValue_transition:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio25TFunctionValue_transitionFv
+	.4byte getType__Q27JStudio25TFunctionValue_transitionCFv
+	.4byte getAttributeSet__Q27JStudio25TFunctionValue_transitionFv
+	.4byte initialize__Q27JStudio25TFunctionValue_transitionFv
+	.4byte prepare__Q27JStudio25TFunctionValue_transitionFv
+	.4byte getValue__Q27JStudio25TFunctionValue_transitionFd
+.global __vt__Q27JStudio23TFunctionValue_constant
+__vt__Q27JStudio23TFunctionValue_constant:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio23TFunctionValue_constantFv
+	.4byte getType__Q27JStudio23TFunctionValue_constantCFv
+	.4byte getAttributeSet__Q27JStudio23TFunctionValue_constantFv
+	.4byte initialize__Q27JStudio23TFunctionValue_constantFv
+	.4byte prepare__Q27JStudio23TFunctionValue_constantFv
+	.4byte getValue__Q27JStudio23TFunctionValue_constantFd
+.global __vt__Q27JStudio24TFunctionValue_composite
+__vt__Q27JStudio24TFunctionValue_composite:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio24TFunctionValue_compositeFv
+	.4byte getType__Q27JStudio24TFunctionValue_compositeCFv
+	.4byte getAttributeSet__Q27JStudio24TFunctionValue_compositeFv
+	.4byte initialize__Q27JStudio24TFunctionValue_compositeFv
+	.4byte prepare__Q27JStudio24TFunctionValue_compositeFv
+	.4byte getValue__Q27JStudio24TFunctionValue_compositeFd
+.global __vt__Q27JStudio14TFunctionValue
+__vt__Q27JStudio14TFunctionValue:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global extrapolateParameter_raw__Q27JStudio13functionvalueFdd
 extrapolateParameter_raw__Q27JStudio13functionvalueFdd:

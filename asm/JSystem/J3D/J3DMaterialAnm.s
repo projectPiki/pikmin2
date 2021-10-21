@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__14J3DMaterialAnm
+__vt__14J3DMaterialAnm:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14J3DMaterialAnmFv
+	.4byte calc__14J3DMaterialAnmCFP11J3DMaterial
+.global __vt__11J3DTexNoAnm
+__vt__11J3DTexNoAnm:
+	.4byte 0
+	.4byte 0
+	.4byte calc__11J3DTexNoAnmCFPUs
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__14J3DMaterialAnmFv

@@ -32,6 +32,35 @@ lbl_80473B98:
 	.asciz "%d / %d bytes (%6.2f%%) used\n"
 	.skip 2
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__12JKRSolidHeap
+__vt__12JKRSolidHeap:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JKRSolidHeapFv
+	.4byte callAllDisposer__7JKRHeapFv
+	.4byte getHeapType__12JKRSolidHeapFv
+	.4byte check__12JKRSolidHeapFv
+	.4byte dump_sort__7JKRHeapFv
+	.4byte dump__12JKRSolidHeapFv
+	.4byte do_destroy__12JKRSolidHeapFv
+	.4byte do_alloc__12JKRSolidHeapFUli
+	.4byte do_free__12JKRSolidHeapFPv
+	.4byte do_freeAll__12JKRSolidHeapFv
+	.4byte do_freeTail__12JKRSolidHeapFv
+	.4byte do_fillFreeArea__12JKRSolidHeapFv
+	.4byte do_resize__12JKRSolidHeapFPvUl
+	.4byte do_getSize__12JKRSolidHeapFPv
+	.4byte do_getFreeSize__12JKRSolidHeapFv
+	.4byte do_getMaxFreeBlock__12JKRSolidHeapFv
+	.4byte do_getTotalFreeSize__12JKRSolidHeapFv
+	.4byte do_changeGroupID__7JKRHeapFUc
+	.4byte do_getCurrentGroupId__7JKRHeapFv
+	.4byte state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl
+	.4byte state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
+	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__12JKRSolidHeapFUlP7JKRHeapb
 create__12JKRSolidHeapFUlP7JKRHeapb:

@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q214JStudio_JAudio13TCreateObject
+__vt__Q214JStudio_JAudio13TCreateObject:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214JStudio_JAudio13TCreateObjectFv
+	.4byte create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem"

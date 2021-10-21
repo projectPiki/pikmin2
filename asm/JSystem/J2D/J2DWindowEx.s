@@ -66,6 +66,63 @@ lbl_804785C0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__11J2DWindowEx
+__vt__11J2DWindowEx:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11J2DWindowExFv
+	.4byte getTypeID__9J2DWindowCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__9J2DWindowFff
+	.4byte setCullBack__11J2DWindowExFb
+	.4byte setCullBack__11J2DWindowExF11_GXCullMode
+	.4byte setAlpha__11J2DWindowExFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__7J2DPaneFv
+	.4byte update__7J2DPaneFv
+	.4byte drawSelf__9J2DWindowFff
+	.4byte drawSelf__11J2DWindowExFffPA3_A4_f
+	.4byte search__7J2DPaneFUx
+	.4byte searchUserInfo__7J2DPaneFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__11J2DWindowExFPC7ResTIMG
+	.4byte isUsed__11J2DWindowExFPC7ResFONT
+	.4byte clearAnmTransform__7J2DPaneFv
+	.4byte rewriteAlpha__11J2DWindowExFv
+	.4byte setAnimation__11J2DWindowExFP10J2DAnmBase
+	.4byte setAnimation__11J2DWindowExFP15J2DAnmTransform
+	.4byte setAnimation__11J2DWindowExFP11J2DAnmColor
+	.4byte setAnimation__11J2DWindowExFP16J2DAnmTexPattern
+	.4byte setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__11J2DWindowExFP15J2DAnmTevRegKey
+	.4byte setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull
+	.4byte setAnimation__11J2DWindowExFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+	.4byte animationPane__11J2DWindowExFPC15J2DAnmTransform
+	.4byte "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
+	.4byte "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+	.4byte draw__11J2DWindowExFffff
+	.4byte setBlack__11J2DWindowExFQ28JUtility6TColor
+	.4byte setWhite__11J2DWindowExFQ28JUtility6TColor
+	.4byte setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor
+	.4byte getBlack__11J2DWindowExCFv
+	.4byte getWhite__11J2DWindowExCFv
+	.4byte getFrameTexture__11J2DWindowExCFUcUc
+	.4byte getContentsTexture__11J2DWindowExCFUc
+	.4byte getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial
+	.4byte getFrameMaterial__11J2DWindowExCFUc
+	.4byte getContentsMaterial__11J2DWindowExCFv
+	.4byte "drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
 __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial:

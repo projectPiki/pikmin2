@@ -1,4 +1,12 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__15J3DVtxColorCalc
+__vt__15J3DVtxColorCalc:
+	.4byte 0
+	.4byte 0
+	.4byte calc__15J3DVtxColorCalcFP15J3DVertexBuffer
+	.4byte __dt__15J3DVtxColorCalcFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global deform__13J3DSkinDeformFP8J3DModel

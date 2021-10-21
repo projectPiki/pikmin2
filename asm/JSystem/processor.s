@@ -1,4 +1,76 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q28JMessage19TRenderingProcessor
+__vt__Q28JMessage19TRenderingProcessor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28JMessage19TRenderingProcessorFv
+	.4byte do_reset__Q28JMessage10TProcessorFv
+	.4byte do_character__Q28JMessage10TProcessorFi
+	.4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
+	.4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+	.4byte do_select_begin__Q28JMessage10TProcessorFUl
+	.4byte do_select_end__Q28JMessage10TProcessorFv
+	.4byte do_select_separate__Q28JMessage10TProcessorFv
+	.4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+	.4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+	.4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+	.4byte do_end___Q28JMessage19TRenderingProcessorFv
+	.4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+	.4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+	.4byte do_begin__Q28JMessage19TRenderingProcessorFPCvPCc
+	.4byte do_end__Q28JMessage19TRenderingProcessorFv
+.global __vt__Q28JMessage18TSequenceProcessor
+__vt__Q28JMessage18TSequenceProcessor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28JMessage18TSequenceProcessorFv
+	.4byte do_reset__Q28JMessage10TProcessorFv
+	.4byte do_character__Q28JMessage10TProcessorFi
+	.4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
+	.4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+	.4byte do_select_begin__Q28JMessage10TProcessorFUl
+	.4byte do_select_end__Q28JMessage10TProcessorFv
+	.4byte do_select_separate__Q28JMessage10TProcessorFv
+	.4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
+	.4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
+	.4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
+	.4byte do_end___Q28JMessage18TSequenceProcessorFv
+	.4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
+	.4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
+	.4byte do_begin__Q28JMessage18TSequenceProcessorFPCvPCc
+	.4byte do_end__Q28JMessage18TSequenceProcessorFv
+	.4byte do_isReady__Q28JMessage18TSequenceProcessorFv
+	.4byte do_jump_isReady__Q28JMessage18TSequenceProcessorFv
+	.4byte do_jump__Q28JMessage18TSequenceProcessorFPCvPCc
+	.4byte do_branch_query__Q28JMessage18TSequenceProcessorFUs
+	.4byte do_branch_queryResult__Q28JMessage18TSequenceProcessorFv
+	.4byte do_branch__Q28JMessage18TSequenceProcessorFPCvPCc
+.global __vt__Q28JMessage10TProcessor
+__vt__Q28JMessage10TProcessor:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28JMessage10TProcessorFv
+	.4byte do_reset__Q28JMessage10TProcessorFv
+	.4byte do_character__Q28JMessage10TProcessorFi
+	.4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
+	.4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+	.4byte do_select_begin__Q28JMessage10TProcessorFUl
+	.4byte do_select_end__Q28JMessage10TProcessorFv
+	.4byte do_select_separate__Q28JMessage10TProcessorFv
+	.4byte 0
+	.4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q28JMessage10TReference
+__vt__Q28JMessage10TReference:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q28JMessage10TReferenceFv
+	.4byte do_word__Q28JMessage10TReferenceCFUl
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q28JMessage10TReferenceFv

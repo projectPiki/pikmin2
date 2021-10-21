@@ -5,6 +5,35 @@
 lbl_80473A68:
 	.asciz "JKRHeap.cpp"
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__7JKRHeap
+__vt__7JKRHeap:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__7JKRHeapFv
+	.4byte callAllDisposer__7JKRHeapFv
+	.4byte 0
+	.4byte 0
+	.4byte dump_sort__7JKRHeapFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte do_changeGroupID__7JKRHeapFUc
+	.4byte do_getCurrentGroupId__7JKRHeapFv
+	.4byte state_register__7JKRHeapCFPQ27JKRHeap6TStateUl
+	.4byte state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
+	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global sDefaultFillFlag__7JKRHeap

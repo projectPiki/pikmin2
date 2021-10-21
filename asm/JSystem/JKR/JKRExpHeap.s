@@ -232,6 +232,35 @@ lbl_80473720:
 	.4byte 0x456E640A
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__10JKRExpHeap
+__vt__10JKRExpHeap:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10JKRExpHeapFv
+	.4byte callAllDisposer__7JKRHeapFv
+	.4byte getHeapType__10JKRExpHeapFv
+	.4byte check__10JKRExpHeapFv
+	.4byte dump_sort__10JKRExpHeapFv
+	.4byte dump__10JKRExpHeapFv
+	.4byte do_destroy__10JKRExpHeapFv
+	.4byte do_alloc__10JKRExpHeapFUli
+	.4byte do_free__10JKRExpHeapFPv
+	.4byte do_freeAll__10JKRExpHeapFv
+	.4byte do_freeTail__10JKRExpHeapFv
+	.4byte do_fillFreeArea__10JKRExpHeapFv
+	.4byte do_resize__10JKRExpHeapFPvUl
+	.4byte do_getSize__10JKRExpHeapFPv
+	.4byte do_getFreeSize__10JKRExpHeapFv
+	.4byte do_getMaxFreeBlock__10JKRExpHeapFv
+	.4byte do_getTotalFreeSize__10JKRExpHeapFv
+	.4byte do_changeGroupID__10JKRExpHeapFUc
+	.4byte do_getCurrentGroupId__10JKRExpHeapFv
+	.4byte state_register__10JKRExpHeapCFPQ27JKRHeap6TStateUl
+	.4byte state_compare__10JKRExpHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
+	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createRoot__10JKRExpHeapFib
 createRoot__10JKRExpHeapFib:

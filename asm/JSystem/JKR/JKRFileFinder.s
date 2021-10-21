@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__12JKRDvdFinder
+__vt__12JKRDvdFinder:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JKRDvdFinderFv
+	.4byte findNextFile__12JKRDvdFinderFv
+.global __vt__12JKRArcFinder
+__vt__12JKRArcFinder:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JKRArcFinderFv
+	.4byte findNextFile__12JKRArcFinderFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12JKRArcFinderFP10JKRArchivell

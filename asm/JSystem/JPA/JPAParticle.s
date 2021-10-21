@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__19JPAParticleCallBack
+__vt__19JPAParticleCallBack:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
+	.4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__19JPAParticleCallBackFv

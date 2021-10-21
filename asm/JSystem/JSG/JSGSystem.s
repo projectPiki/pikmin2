@@ -1,4 +1,28 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q26JStage7TSystem
+__vt__Q26JStage7TSystem:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte JSGFGetType__Q26JStage7TSystemCFv
+	.4byte JSGGetName__Q26JStage7TObjectCFv
+	.4byte JSGUpdate__Q26JStage7TObjectFv
+	.4byte JSGGetFlag__Q26JStage7TObjectCFv
+	.4byte JSGSetFlag__Q26JStage7TObjectFUl
+	.4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+	.4byte JSGSetData__Q26JStage7TObjectFUlPCvUl
+	.4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+	.4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+	.4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+	.4byte JSGFindNodeID__Q26JStage7TObjectCFPCc
+	.4byte JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f
+	.4byte JSGFindObject__Q26JStage7TSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject
+	.4byte JSGCreateObject__Q26JStage7TSystemFPCcQ26JStage8TEObjectUl
+	.4byte JSGDestroyObject__Q26JStage7TSystemFPQ26JStage7TObject
+	.4byte JSGGetSystemData__Q26JStage7TSystemFUl
+	.4byte JSGSetSystemData__Q26JStage7TSystemFUlUl
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q26JStage7TSystemFv

@@ -8,6 +8,63 @@ lbl_804732E0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_
+__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv
+	.4byte execute__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_FP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+.global __vt__Q217JStudio_JParticle17TAdaptor_particle
+__vt__Q217JStudio_JParticle17TAdaptor_particle:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q217JStudio_JParticle17TAdaptor_particleFv
+	.4byte adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte adaptor_do_PARTICLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+.global __vt__18JPAEmitterCallBack
+__vt__18JPAEmitterCallBack:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+.global __vt__Q27JStudio17TAdaptor_particle
+__vt__Q27JStudio17TAdaptor_particle:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem
 __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem:

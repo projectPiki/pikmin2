@@ -1,4 +1,55 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A2048
+lbl_804A2048:
+	.4byte lbl_80075010
+	.4byte lbl_8007502C
+	.4byte lbl_80075068
+	.4byte lbl_8007507C
+	.4byte lbl_80075090
+	.4byte lbl_800750AC
+	.4byte lbl_800750C8
+	.4byte lbl_800750E0
+	.4byte lbl_800750F0
+	.4byte lbl_80075100
+	.4byte lbl_80075110
+	.4byte lbl_80075120
+	.4byte lbl_8007512C
+	.4byte lbl_8007512C
+	.4byte lbl_8007512C
+	.4byte lbl_8007512C
+	.4byte lbl_8007502C
+.global lbl_804A208C
+lbl_804A208C:
+	.4byte lbl_80075488
+	.4byte lbl_80075494
+	.4byte lbl_800754A0
+	.4byte lbl_800754AC
+	.4byte lbl_800754C8
+	.4byte lbl_800754D0
+	.4byte lbl_800754D8
+	.4byte lbl_800754E0
+	.4byte lbl_800754E8
+	.4byte lbl_800754F0
+	.4byte lbl_800754F8
+	.4byte lbl_80075500
+	.4byte lbl_80075508
+	.4byte lbl_80075510
+	.4byte lbl_80075518
+	.4byte lbl_80075520
+	.4byte lbl_80075528
+	.4byte lbl_80075530
+	.4byte lbl_80075538
+	.4byte lbl_800754B8
+	.4byte lbl_800754C0
+.global c2r$1298
+c2r$1298:
+	.4byte 0x00010001
+	.4byte 0x00010705
+	.4byte 0x06000000
+	.4byte 0x00000007
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global cm2hw$551

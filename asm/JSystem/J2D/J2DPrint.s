@@ -1,4 +1,38 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A0880
+lbl_804A0880:
+	.4byte lbl_8003EB18
+	.4byte lbl_8003EB34
+	.4byte lbl_8003EB8C
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EBB0
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EC10
+	.4byte lbl_8003EBC4
+	.4byte lbl_8003EBD8
+	.4byte lbl_8003EBEC
+	.4byte lbl_8003EC00
+.global __vt__8J2DPrint
+__vt__8J2DPrint:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8J2DPrintFv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8J2DPrintFP7JUTFontf

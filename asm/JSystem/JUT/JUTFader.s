@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__8JUTFader
+__vt__8JUTFader:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__8JUTFaderFv
+	.4byte startFadeIn__8JUTFaderFi
+	.4byte startFadeOut__8JUTFaderFi
+	.4byte draw__8JUTFaderFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8JUTFaderFiiiiQ28JUtility6TColor

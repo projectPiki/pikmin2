@@ -1,4 +1,25 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__13JKRFileLoader
+__vt__13JKRFileLoader:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13JKRFileLoaderFv
+	.4byte unmount__13JKRFileLoaderFv
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global rootPath$2747

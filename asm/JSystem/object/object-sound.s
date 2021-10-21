@@ -1,4 +1,70 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_8049F910
+lbl_8049F910:
+	.4byte 0x00000000
+	.4byte 0x00000080
+	.4byte 0x00000010
+	.4byte 0x00000000
+	.4byte 0x00000084
+	.4byte 0x00000010
+	.4byte 0x00000000
+	.4byte 0x00000088
+	.4byte 0x00000010
+	.4byte 0x00000000
+	.4byte 0x00000044
+	.4byte 0x00000010
+	.4byte 0x00000000
+	.4byte 0x0000008C
+	.4byte 0x00000010
+.global __vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_
+__vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_:
+	.4byte 0
+	.4byte 0
+	.4byte __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor
+	.4byte __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv
+.global __vt__Q214JStudio_JAudio14TAdaptor_sound
+__vt__Q214JStudio_JAudio14TAdaptor_sound:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q214JStudio_JAudio14TAdaptor_soundFv
+	.4byte adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem

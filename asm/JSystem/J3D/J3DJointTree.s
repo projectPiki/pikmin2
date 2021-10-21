@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A2F70
+lbl_804A2F70:
+	.4byte lbl_8008839C
+	.4byte lbl_8008836C
+	.4byte lbl_80088390
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883F0
+	.4byte lbl_800883A0
+	.4byte lbl_800883BC
+	.4byte lbl_800883D8
+.global __vt__12J3DJointTree
+__vt__12J3DJointTree:
+	.4byte 0
+	.4byte 0
+	.4byte calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf
+	.4byte __dt__12J3DJointTreeFv
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12J3DJointTreeFv

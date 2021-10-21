@@ -1,4 +1,46 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q26JStage7TCamera
+__vt__Q26JStage7TCamera:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte JSGFGetType__Q26JStage7TCameraCFv
+	.4byte JSGGetName__Q26JStage7TObjectCFv
+	.4byte JSGUpdate__Q26JStage7TObjectFv
+	.4byte JSGGetFlag__Q26JStage7TObjectCFv
+	.4byte JSGSetFlag__Q26JStage7TObjectFUl
+	.4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+	.4byte JSGSetData__Q26JStage7TObjectFUlPCvUl
+	.4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+	.4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+	.4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+	.4byte JSGFindNodeID__Q26JStage7TObjectCFPCc
+	.4byte JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f
+	.4byte JSGGetProjectionType__Q26JStage7TCameraCFv
+	.4byte JSGSetProjectionType__Q26JStage7TCameraFQ26JStage18TECameraProjection
+	.4byte JSGGetProjectionNear__Q26JStage7TCameraCFv
+	.4byte JSGSetProjectionNear__Q26JStage7TCameraFf
+	.4byte JSGGetProjectionFar__Q26JStage7TCameraCFv
+	.4byte JSGSetProjectionFar__Q26JStage7TCameraFf
+	.4byte JSGGetProjectionFovy__Q26JStage7TCameraCFv
+	.4byte JSGSetProjectionFovy__Q26JStage7TCameraFf
+	.4byte JSGGetProjectionAspect__Q26JStage7TCameraCFv
+	.4byte JSGSetProjectionAspect__Q26JStage7TCameraFf
+	.4byte JSGGetProjectionField__Q26JStage7TCameraCFPf
+	.4byte JSGSetProjectionField__Q26JStage7TCameraFPCf
+	.4byte JSGGetViewType__Q26JStage7TCameraCFv
+	.4byte JSGSetViewType__Q26JStage7TCameraFQ26JStage12TECameraView
+	.4byte JSGGetViewPosition__Q26JStage7TCameraCFP3Vec
+	.4byte JSGSetViewPosition__Q26JStage7TCameraFRC3Vec
+	.4byte JSGGetViewUpVector__Q26JStage7TCameraCFP3Vec
+	.4byte JSGSetViewUpVector__Q26JStage7TCameraFRC3Vec
+	.4byte JSGGetViewTargetPosition__Q26JStage7TCameraCFP3Vec
+	.4byte JSGSetViewTargetPosition__Q26JStage7TCameraFRC3Vec
+	.4byte JSGGetViewRoll__Q26JStage7TCameraCFv
+	.4byte JSGSetViewRoll__Q26JStage7TCameraFf
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q26JStage7TCameraFv

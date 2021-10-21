@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q216JStudio_JMessage16TAdaptor_message
+__vt__Q216JStudio_JMessage16TAdaptor_message:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q216JStudio_JMessage16TAdaptor_messageFv
+	.4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+	.4byte adaptor_do_MESSAGE__Q216JStudio_JMessage16TAdaptor_messageFQ37JStudio4data15TEOperationDataPCvUl
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q216JStudio_JMessage16TAdaptor_messageFPQ28JMessage8TControl

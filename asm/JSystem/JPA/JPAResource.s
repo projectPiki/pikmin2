@@ -1,4 +1,146 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global jpa_pos
+jpa_pos:
+	.4byte 0x00000032
+	.4byte 0x000032CE
+	.4byte 0x0000CE00
+	.4byte 0xE7000019
+	.4byte 0x000019CE
+	.4byte 0x00E7CE00
+	.4byte 0xCE000000
+	.4byte 0x000000CE
+	.4byte 0x00CECE00
+	.4byte 0x00190032
+	.4byte 0x190032E7
+	.4byte 0x0000E700
+	.4byte 0xE7190019
+	.4byte 0x190019E7
+	.4byte 0x00E7E700
+	.4byte 0xCE190000
+	.4byte 0x190000E7
+	.4byte 0x00CEE700
+	.4byte 0x00320032
+	.4byte 0x32003200
+	.4byte 0x00000000
+	.4byte 0xE7320019
+	.4byte 0x32001900
+	.4byte 0x00E70000
+	.4byte 0xCE320000
+	.4byte 0x32000000
+	.4byte 0x00CE0000
+	.4byte 0x00000032
+	.4byte 0x00003200
+	.4byte 0x32000032
+	.4byte 0xE7000019
+	.4byte 0x00001900
+	.4byte 0x32E70032
+	.4byte 0xCE000000
+	.4byte 0x00000000
+	.4byte 0x32CE0032
+	.4byte 0x0000E732
+	.4byte 0x00E73200
+	.4byte 0x19000019
+	.4byte 0xE700E719
+	.4byte 0x00E71900
+	.4byte 0x19E70019
+	.4byte 0xCE00E700
+	.4byte 0x00E70000
+	.4byte 0x19CE0019
+	.4byte 0x0000CE32
+	.4byte 0x00CE3200
+	.4byte 0x00000000
+	.4byte 0xE700CE19
+	.4byte 0x00CE1900
+	.4byte 0x00E70000
+	.4byte 0xCE00CE00
+	.4byte 0x00CE0000
+	.4byte 0x00CE0000
+	.4byte 0x00000000
+	.4byte 0x003200CE
+	.4byte 0x3200CE00
+	.4byte 0x0000E700
+	.4byte 0x001900CE
+	.4byte 0x1900CEE7
+	.4byte 0x0000CE00
+	.4byte 0x000000CE
+	.4byte 0x0000CECE
+	.4byte 0x00190000
+	.4byte 0x193200E7
+	.4byte 0x3200E700
+	.4byte 0x0019E700
+	.4byte 0x191900E7
+	.4byte 0x1900E7E7
+	.4byte 0x0019CE00
+	.4byte 0x190000E7
+	.4byte 0x0000E7CE
+	.4byte 0x00320000
+	.4byte 0x32320000
+	.4byte 0x32000000
+	.4byte 0x0032E700
+	.4byte 0x32190000
+	.4byte 0x190000E7
+	.4byte 0x0032CE00
+	.4byte 0x32000000
+	.4byte 0x000000CE
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global jpa_crd
+jpa_crd:
+	.4byte 0x00000100
+	.4byte 0x01010001
+	.4byte 0x00000200
+	.4byte 0x02010001
+	.4byte 0x00000100
+	.4byte 0x01020002
+	.4byte 0x00000200
+	.4byte 0x02020002
+.global lbl_804A3500
+lbl_804A3500:
+	.4byte lbl_80096AC0
+	.4byte lbl_80096AD4
+	.4byte lbl_80096A08
+	.4byte lbl_80096A68
+	.4byte lbl_80096A68
+	.4byte lbl_80096AE4
+	.4byte lbl_80096AE4
+	.4byte lbl_80096AAC
+	.4byte lbl_80096AAC
+	.4byte lbl_80096A98
+	.4byte lbl_80096A38
+.global lbl_804A352C
+lbl_804A352C:
+	.4byte lbl_80096764
+	.4byte lbl_80096778
+	.4byte lbl_800966AC
+	.4byte lbl_8009670C
+	.4byte lbl_8009670C
+	.4byte lbl_80096788
+	.4byte lbl_80096788
+	.4byte lbl_80096750
+	.4byte lbl_80096750
+	.4byte lbl_8009673C
+	.4byte lbl_800966DC
+.global lbl_804A3558
+lbl_804A3558:
+	.4byte lbl_80097DD0
+	.4byte lbl_80097DDC
+	.4byte lbl_80097E50
+	.4byte lbl_80097DF4
+	.4byte lbl_80097E00
+	.4byte lbl_80097E50
+	.4byte lbl_80097E18
+	.4byte lbl_80097E24
+	.4byte lbl_80097E30
+	.4byte lbl_80097E3C
+	.4byte lbl_80097E48
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11JPAResourceFv

@@ -1,4 +1,218 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A2C98
+lbl_804A2C98:
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxIndx_PNGP__11J3DShapeMtxCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxIndx_PCPU__11J3DShapeMtxCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxIndx_NCPU__11J3DShapeMtxCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs
+.global sMtxLoadPipeline__11J3DShapeMtx
+sMtxLoadPipeline__11J3DShapeMtx:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs
+.global sMtxLoadPipeline__21J3DShapeMtxConcatView
+sMtxLoadPipeline__21J3DShapeMtxConcatView:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs
+	.4byte 0x00000000
+	.4byte 0xFFFFFFFF
+	.4byte loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs
+.global sMtxLoadLODPipeline__21J3DShapeMtxConcatView
+sMtxLoadLODPipeline__21J3DShapeMtxConcatView:
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global qMtx$1532
+qMtx$1532:
+	.float 0.5
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0xBF000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+.global qMtx2$1533
+qMtx2$1533:
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0xBF000000
+	.4byte 0x00000000
+	.float 0.5
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_804A2E18
+lbl_804A2E18:
+	.4byte lbl_800867CC
+	.4byte lbl_800865A8
+	.4byte lbl_800865E4
+	.4byte lbl_80086588
+	.4byte lbl_800867CC
+	.4byte lbl_800865F4
+	.4byte lbl_800865A8
+	.4byte lbl_800865A8
+	.4byte lbl_800865E4
+	.4byte lbl_80086588
+	.4byte lbl_80086728
+	.4byte lbl_80086684
+.global lbl_804A2E48
+lbl_804A2E48:
+	.4byte lbl_80086504
+	.4byte lbl_8008631C
+	.4byte lbl_8008632C
+	.4byte lbl_8008630C
+	.4byte lbl_80086504
+	.4byte lbl_8008635C
+	.4byte lbl_8008631C
+	.4byte lbl_8008631C
+	.4byte lbl_8008632C
+	.4byte lbl_8008630C
+	.4byte lbl_80086470
+	.4byte lbl_800863DC
+.global mtxCache$1887
+mtxCache$1887:
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+	.4byte 0xFFFFFFFF
+.global __vt__28J3DShapeMtxYBBoardConcatView
+__vt__28J3DShapeMtxYBBoardConcatView:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__28J3DShapeMtxYBBoardConcatViewFv
+	.4byte getType__28J3DShapeMtxYBBoardConcatViewCFv
+	.4byte getUseMtxNum__11J3DShapeMtxCFv
+	.4byte getUseMtxIndex__11J3DShapeMtxCFUs
+	.4byte load__28J3DShapeMtxYBBoardConcatViewCFv
+	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
+	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
+.global __vt__27J3DShapeMtxBBoardConcatView
+__vt__27J3DShapeMtxBBoardConcatView:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__27J3DShapeMtxBBoardConcatViewFv
+	.4byte getType__27J3DShapeMtxBBoardConcatViewCFv
+	.4byte getUseMtxNum__11J3DShapeMtxCFv
+	.4byte getUseMtxIndex__11J3DShapeMtxCFUs
+	.4byte load__27J3DShapeMtxBBoardConcatViewCFv
+	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
+	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
+.global __vt__26J3DShapeMtxMultiConcatView
+__vt__26J3DShapeMtxMultiConcatView:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__26J3DShapeMtxMultiConcatViewFv
+	.4byte getType__26J3DShapeMtxMultiConcatViewCFv
+	.4byte getUseMtxNum__26J3DShapeMtxMultiConcatViewCFv
+	.4byte getUseMtxIndex__26J3DShapeMtxMultiConcatViewCFUs
+	.4byte load__26J3DShapeMtxMultiConcatViewCFv
+	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+	.4byte loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUs
+	.4byte loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f
+.global __vt__16J3DShapeMtxMulti
+__vt__16J3DShapeMtxMulti:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__16J3DShapeMtxMultiFv
+	.4byte getType__16J3DShapeMtxMultiCFv
+	.4byte getUseMtxNum__16J3DShapeMtxMultiCFv
+	.4byte getUseMtxIndex__16J3DShapeMtxMultiCFUs
+	.4byte load__16J3DShapeMtxMultiCFv
+	.4byte calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f
+.global __vt__21J3DShapeMtxConcatView
+__vt__21J3DShapeMtxConcatView:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__21J3DShapeMtxConcatViewFv
+	.4byte getType__21J3DShapeMtxConcatViewCFv
+	.4byte getUseMtxNum__11J3DShapeMtxCFv
+	.4byte getUseMtxIndex__11J3DShapeMtxCFUs
+	.4byte load__21J3DShapeMtxConcatViewCFv
+	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
+	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
+.global __vt__11J3DShapeMtx
+__vt__11J3DShapeMtx:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11J3DShapeMtxFv
+	.4byte getType__11J3DShapeMtxCFv
+	.4byte getUseMtxNum__11J3DShapeMtxCFv
+	.4byte getUseMtxIndex__11J3DShapeMtxCFUs
+	.4byte load__11J3DShapeMtxCFv
+	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global resetMtxLoadCache__11J3DShapeMtxFv

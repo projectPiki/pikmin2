@@ -1,4 +1,20 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q216JStudio_JMessage13TCreateObject
+__vt__Q216JStudio_JMessage13TCreateObject:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q216JStudio_JMessage13TCreateObjectFv
+	.4byte create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+	.4byte find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object
+.global __vt__Q216JStudio_JMessage18TCreateObject_base
+__vt__Q216JStudio_JMessage18TCreateObject_base:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "createObject_MESSAGE_JMS___Q216JStudio_JMessage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl"

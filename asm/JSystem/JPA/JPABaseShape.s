@@ -1,4 +1,139 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global jpa_dl
+jpa_dl:
+	.4byte 0x80000400
+	.4byte 0x00010102
+	.4byte 0x02030300
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global jpa_dl_x
+jpa_dl_x:
+	.4byte 0x80000800
+	.4byte 0x00010102
+	.4byte 0x02030348
+	.4byte 0x0049014A
+	.4byte 0x024B0300
+	.4byte 0x00000000
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global p_prj
+p_prj:
+	.4byte noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf
+	.4byte loadPrj__FPC18JPAEmitterWorkDataPA4_Cf
+	.4byte loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf
+.global p_direction
+p_direction:
+	.4byte "dirTypeVel__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
+	.4byte "dirTypePos__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
+	.4byte "dirTypePosInv__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
+	.4byte "dirTypeEmtrDir__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
+	.4byte "dirTypePrevPtcl__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
+.global p_rot
+p_rot:
+	.4byte rotTypeY__FffRA3_A4_f
+	.4byte rotTypeX__FffRA3_A4_f
+	.4byte rotTypeZ__FffRA3_A4_f
+	.4byte rotTypeXYZ__FffRA3_A4_f
+	.4byte rotTypeY__FffRA3_A4_f
+.global p_plane
+p_plane:
+	.4byte basePlaneTypeXY__FPA4_fff
+	.4byte basePlaneTypeXZ__FPA4_fff
+	.4byte basePlaneTypeX__FPA4_fff
+.global st_bm__12JPABaseShape
+st_bm__12JPABaseShape:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+.global st_bf__12JPABaseShape
+st_bf__12JPABaseShape:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000002
+	.4byte 0x00000003
+	.4byte 0x00000004
+	.4byte 0x00000005
+	.4byte 0x00000006
+	.4byte 0x00000007
+.global st_lo__12JPABaseShape
+st_lo__12JPABaseShape:
+	.4byte 0x00000000
+	.4byte 0x0000000F
+	.4byte 0x00000003
+	.4byte 0x0000000C
+	.4byte 0x00000005
+	.4byte 0x0000000A
+	.4byte 0x00000001
+	.4byte 0x0000000E
+	.4byte 0x00000007
+	.4byte 0x00000008
+	.4byte 0x00000006
+	.4byte 0x00000009
+	.4byte 0x00000002
+	.4byte 0x00000004
+	.4byte 0x0000000B
+	.4byte 0x0000000D
+.global st_c__12JPABaseShape
+st_c__12JPABaseShape:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000003
+	.4byte 0x00000002
+	.4byte 0x00000005
+	.4byte 0x00000006
+	.4byte 0x00000004
+	.4byte 0x00000007
+.global st_ao__12JPABaseShape
+st_ao__12JPABaseShape:
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+.global st_ca__12JPABaseShape
+st_ca__12JPABaseShape:
+	.4byte 0x0000000F
+	.4byte 0x00000008
+	.4byte 0x0000000C
+	.4byte 0x0000000F
+	.4byte 0x0000000F
+	.4byte 0x00000002
+	.4byte 0x00000008
+	.4byte 0x0000000F
+	.4byte 0x00000002
+	.4byte 0x0000000C
+	.4byte 0x00000008
+	.4byte 0x0000000F
+	.4byte 0x00000004
+	.4byte 0x00000002
+	.4byte 0x00000008
+	.4byte 0x0000000F
+	.4byte 0x0000000F
+	.4byte 0x00000008
+	.4byte 0x00000002
+	.4byte 0x00000004
+	.4byte 0x0000000F
+	.4byte 0x0000000F
+	.4byte 0x0000000F
+	.4byte 0x00000002
+.global st_aa__12JPABaseShape
+st_aa__12JPABaseShape:
+	.4byte 0x00000007
+	.4byte 0x00000004
+	.4byte 0x00000001
+	.4byte 0x00000007
+	.4byte 0x00000007
+	.4byte 0x00000007
+	.4byte 0x00000007
+	.4byte 0x00000001
+	.4byte 0x00000000
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 0x8
 .global p_dl

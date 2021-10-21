@@ -8,6 +8,37 @@ lbl_80473340:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q27JStudio6TParse
+__vt__Q27JStudio6TParse:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio6TParseFv
+	.4byte parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl
+	.4byte parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl
+	.4byte parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
+	.4byte parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
+	.4byte parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl
+.global __vt__Q27JStudio8TFactory
+__vt__Q27JStudio8TFactory:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio8TFactoryFv
+	.4byte create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
+	.4byte destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
+.global __vt__Q27JStudio13TCreateObject
+__vt__Q27JStudio13TCreateObject:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.global __vt__Q27JStudio8TControl
+__vt__Q27JStudio8TControl:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q27JStudio8TControlFv
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q27JStudio8TControlFv
 __ct__Q27JStudio8TControlFv:

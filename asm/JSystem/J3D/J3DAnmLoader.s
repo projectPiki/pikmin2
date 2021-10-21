@@ -1,4 +1,58 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__19J3DAnmKeyLoader_v15
+__vt__19J3DAnmKeyLoader_v15:
+	.4byte 0
+	.4byte 0
+	.4byte load__19J3DAnmKeyLoader_v15FPCv
+	.4byte setResource__19J3DAnmKeyLoader_v15FP10J3DAnmBasePCv
+	.4byte __dt__19J3DAnmKeyLoader_v15Fv
+.global __vt__20J3DAnmFullLoader_v15
+__vt__20J3DAnmFullLoader_v15:
+	.4byte 0
+	.4byte 0
+	.4byte load__20J3DAnmFullLoader_v15FPCv
+	.4byte setResource__20J3DAnmFullLoader_v15FP10J3DAnmBasePCv
+	.4byte __dt__20J3DAnmFullLoader_v15Fv
+.global __vt__12J3DAnmLoader
+__vt__12J3DAnmLoader:
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12J3DAnmLoaderFv
+.global __vt__20J3DAnmVisibilityFull
+__vt__20J3DAnmVisibilityFull:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__20J3DAnmVisibilityFullFv
+	.4byte getKind__20J3DAnmVisibilityFullCFv
+.global __vt__16J3DAnmTexPattern
+__vt__16J3DAnmTexPattern:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__16J3DAnmTexPatternFv
+	.4byte getKind__16J3DAnmTexPatternCFv
+.global __vt__15J3DAnmTevRegKey
+__vt__15J3DAnmTevRegKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15J3DAnmTevRegKeyFv
+	.4byte getKind__15J3DAnmTevRegKeyCFv
+.global __vt__19J3DAnmTextureSRTKey
+__vt__19J3DAnmTextureSRTKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__19J3DAnmTextureSRTKeyFv
+	.4byte getKind__19J3DAnmTextureSRTKeyCFv
+.global __vt__18J3DAnmTransformKey
+__vt__18J3DAnmTransformKey:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__18J3DAnmTransformKeyFv
+	.4byte getKind__18J3DAnmTransformKeyCFv
+	.4byte getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__20J3DAnmLoaderDataBaseFPCv

@@ -1,4 +1,88 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A3268
+lbl_804A3268:
+	.4byte lbl_800934C8
+	.4byte lbl_800934FC
+	.4byte lbl_80093530
+	.4byte lbl_80093564
+	.4byte lbl_80093598
+	.4byte lbl_800935CC
+	.4byte lbl_80093600
+	.4byte lbl_80093634
+	.4byte lbl_80093668
+.global __vt__12JPAFieldBase
+__vt__12JPAFieldBase:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JPAFieldBaseFv
+	.4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte 0
+.global __vt__12JPAFieldSpin
+__vt__12JPAFieldSpin:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JPAFieldSpinFv
+	.4byte prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.global __vt__12JPAFieldDrag
+__vt__12JPAFieldDrag:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JPAFieldDragFv
+	.4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.global __vt__14JPAFieldRandom
+__vt__14JPAFieldRandom:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14JPAFieldRandomFv
+	.4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.global __vt__18JPAFieldConvection
+__vt__18JPAFieldConvection:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__18JPAFieldConvectionFv
+	.4byte prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.global __vt__14JPAFieldVortex
+__vt__14JPAFieldVortex:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14JPAFieldVortexFv
+	.4byte prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.global __vt__14JPAFieldNewton
+__vt__14JPAFieldNewton:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14JPAFieldNewtonFv
+	.4byte prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.global __vt__14JPAFieldMagnet
+__vt__14JPAFieldMagnet:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__14JPAFieldMagnetFv
+	.4byte prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.global __vt__11JPAFieldAir
+__vt__11JPAFieldAir:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__11JPAFieldAirFv
+	.4byte prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.global __vt__15JPAFieldGravity
+__vt__15JPAFieldGravity:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__15JPAFieldGravityFv
+	.4byte prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
+	.4byte calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock

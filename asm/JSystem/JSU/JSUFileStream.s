@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__18JSUFileInputStream
+__vt__18JSUFileInputStream:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__18JSUFileInputStreamFv
+	.4byte getAvailable__20JSURandomInputStreamCFv
+	.4byte skip__20JSURandomInputStreamFl
+	.4byte readData__18JSUFileInputStreamFPvl
+	.4byte getLength__18JSUFileInputStreamCFv
+	.4byte getPosition__18JSUFileInputStreamCFv
+	.4byte seekPos__18JSUFileInputStreamFl17JSUStreamSeekFrom
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__18JSUFileInputStreamFP7JKRFile

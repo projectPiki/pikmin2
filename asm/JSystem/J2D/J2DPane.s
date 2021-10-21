@@ -1,4 +1,56 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global lbl_804A0678
+lbl_804A0678:
+	.4byte lbl_80039544
+	.4byte lbl_80039558
+	.4byte lbl_80039594
+	.4byte lbl_800395CC
+	.4byte lbl_80039580
+	.4byte lbl_800395BC
+	.4byte lbl_800395A8
+	.4byte lbl_8003956C
+.global __vt__7J2DPane
+__vt__7J2DPane:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__7J2DPaneFv
+	.4byte getTypeID__7J2DPaneCFv
+	.4byte move__7J2DPaneFff
+	.4byte add__7J2DPaneFff
+	.4byte resize__7J2DPaneFff
+	.4byte setCullBack__7J2DPaneFb
+	.4byte setCullBack__7J2DPaneF11_GXCullMode
+	.4byte setAlpha__7J2DPaneFUc
+	.4byte setConnectParent__7J2DPaneFb
+	.4byte calcMtx__7J2DPaneFv
+	.4byte update__7J2DPaneFv
+	.4byte drawSelf__7J2DPaneFff
+	.4byte drawSelf__7J2DPaneFffPA3_A4_f
+	.4byte search__7J2DPaneFUx
+	.4byte searchUserInfo__7J2DPaneFUx
+	.4byte makeMatrix__7J2DPaneFff
+	.4byte makeMatrix__7J2DPaneFffff
+	.4byte isUsed__7J2DPaneFPC7ResTIMG
+	.4byte isUsed__7J2DPaneFPC7ResFONT
+	.4byte clearAnmTransform__7J2DPaneFv
+	.4byte rewriteAlpha__7J2DPaneFv
+	.4byte setAnimation__7J2DPaneFP10J2DAnmBase
+	.4byte setAnimation__7J2DPaneFP15J2DAnmTransform
+	.4byte setAnimation__7J2DPaneFP11J2DAnmColor
+	.4byte setAnimation__7J2DPaneFP16J2DAnmTexPattern
+	.4byte setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey
+	.4byte setAnimation__7J2DPaneFP15J2DAnmTevRegKey
+	.4byte setAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+	.4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+	.4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__7J2DPaneFv

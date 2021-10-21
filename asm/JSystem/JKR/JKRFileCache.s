@@ -1,4 +1,34 @@
 .include "macros.inc"
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__13JKRFileFinder
+__vt__13JKRFileFinder:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__13JKRFileFinderFv
+	.4byte 0
+.global __vt__12JKRFileCache
+__vt__12JKRFileCache:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__12JKRFileCacheFv
+	.4byte unmount__13JKRFileLoaderFv
+	.4byte becomeCurrent__12JKRFileCacheFPCc
+	.4byte getResource__12JKRFileCacheFPCc
+	.4byte getResource__12JKRFileCacheFUlPCc
+	.4byte readResource__12JKRFileCacheFPvUlPCc
+	.4byte readResource__12JKRFileCacheFPvUlUlPCc
+	.4byte removeResourceAll__12JKRFileCacheFv
+	.4byte removeResource__12JKRFileCacheFPv
+	.4byte detachResource__12JKRFileCacheFPv
+	.4byte getResSize__12JKRFileCacheCFPCv
+	.4byte countFile__12JKRFileCacheCFPCc
+	.4byte getFirstFile__12JKRFileCacheCFPCc
+	.4byte getFsResource__12JKRFileCacheFPCc
+	.4byte getNameResource__12JKRFileCacheFUlPCc
+	.4byte readFsResource__12JKRFileCacheFPvUlPCc
+	.4byte readNameResource__12JKRFileCacheFPvUlUlPCc
+	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global mount__12JKRFileCacheFPCcP7JKRHeapPCc

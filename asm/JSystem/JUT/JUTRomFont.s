@@ -11,6 +11,37 @@ lbl_80474298:
 	.skip 1
 	.skip 0xC
 
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global saoAboutEncoding___10JUTRomFont
+saoAboutEncoding___10JUTRomFont:
+	.4byte 0x00000000
+	.4byte 0x00020120
+	.4byte isLeadByte_1Byte__7JUTFontFi
+	.4byte 0x00000002
+	.4byte 0x00120F00
+	.4byte isLeadByte_ShiftJIS__7JUTFontFi
+.global __vt__10JUTRomFont
+__vt__10JUTRomFont:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__10JUTRomFontFv
+	.4byte setGX__10JUTRomFontFv
+	.4byte setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
+	.4byte drawChar_scale__10JUTRomFontFffffib
+	.4byte getLeading__10JUTRomFontCFv
+	.4byte getAscent__10JUTRomFontCFv
+	.4byte getDescent__10JUTRomFontCFv
+	.4byte getHeight__10JUTRomFontCFv
+	.4byte getWidth__10JUTRomFontCFv
+	.4byte getWidthEntry__10JUTRomFontCFiPQ27JUTFont6TWidth
+	.4byte getCellWidth__10JUTRomFontCFv
+	.4byte getCellHeight__10JUTRomFontCFv
+	.4byte getFontType__10JUTRomFontCFv
+	.4byte getResFont__10JUTRomFontCFv
+	.4byte isLeadByte__10JUTRomFontCFi
+	.4byte 0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTRomFontFP7JKRHeap
 __ct__10JUTRomFontFP7JKRHeap:
