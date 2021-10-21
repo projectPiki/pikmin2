@@ -97,6 +97,15 @@ lbl_804C0A18:
 	.4byte "__ml__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515C40
+lbl_80515C40:
+	.skip 0x4
+.global lbl_80515C44
+lbl_80515C44:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global demoCheck__Q24Game4NaviFv
 demoCheck__Q24Game4NaviFv:

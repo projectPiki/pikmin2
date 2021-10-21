@@ -549,6 +549,12 @@ lbl_804B8528:
 	.4byte "isDone__32Iterator<Q34Game9ItemHoney4Item>Fv"
 	.4byte "__ml__32Iterator<Q34Game9ItemHoney4Item>Fv"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mgr__Q24Game9ItemHoney
+mgr__Q24Game9ItemHoney:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem
 init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem:

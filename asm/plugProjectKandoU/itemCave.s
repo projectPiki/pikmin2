@@ -520,6 +520,18 @@ __vt__Q34Game8ItemCave3FSM:
 	.4byte "exec__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 	.4byte "transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515B18
+lbl_80515B18:
+	.skip 0x4
+.global lbl_80515B1C
+lbl_80515B1C:
+	.skip 0x4
+.global mgr__Q24Game8ItemCave
+mgr__Q24Game8ItemCave:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item
 init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item:

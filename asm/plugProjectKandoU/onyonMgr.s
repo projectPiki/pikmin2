@@ -857,6 +857,21 @@ __vt__Q24Game11ItemInitArg:
 	.4byte 0
 	.4byte getName__Q24Game11ItemInitArgFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805159A8
+lbl_805159A8:
+	.skip 0x4
+.global lbl_805159AC
+lbl_805159AC:
+	.skip 0x4
+.global mgr__Q24Game9ItemOnyon
+mgr__Q24Game9ItemOnyon:
+	.skip 0x4
+.global sVolveFlag
+sVolveFlag:
+	.skip 0x4
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E60
 lbl_80520E60:

@@ -718,6 +718,18 @@ __vt__Q34Game13ItemDownFloor3FSM:
 	.4byte "transit__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515B58
+lbl_80515B58:
+	.skip 0x4
+.global lbl_80515B5C
+lbl_80515B5C:
+	.skip 0x4
+.global mgr__Q24Game13ItemDownFloor
+mgr__Q24Game13ItemDownFloor:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game13ItemDownFloor3FSMFPQ34Game13ItemDownFloor4Item
 init__Q34Game13ItemDownFloor3FSMFPQ34Game13ItemDownFloor4Item:

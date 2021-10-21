@@ -116,6 +116,15 @@ __vt__Q26PikiAI10ActWeedArg:
 sGraspSituationOptimise__Q24Game4Piki:
 	.4byte 0x01000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515A58
+lbl_80515A58:
+	.skip 0x4
+.global lbl_80515A5C
+lbl_80515A5C:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global graspSituation_Fast__Q24Game4PikiFPPQ24Game8Creature
 graspSituation_Fast__Q24Game4PikiFPPQ24Game8Creature:

@@ -664,6 +664,18 @@ __vt__Q34Game12ItemTreasure3FSM:
 	.4byte "exec__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
 	.4byte "transit__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515B48
+lbl_80515B48:
+	.skip 0x4
+.global lbl_80515B4C
+lbl_80515B4C:
+	.skip 0x4
+.global mgr__Q24Game12ItemTreasure
+mgr__Q24Game12ItemTreasure:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item
 init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item:

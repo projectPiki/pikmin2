@@ -242,6 +242,12 @@ __vt__8Platform:
 	.4byte __dt__8PlatformFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mDebug__8CollTree
+mDebug__8CollTree:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8PlatformFv
 __ct__8PlatformFv:

@@ -415,6 +415,18 @@ __vt__Q34Game15IllustratedBook10DebugParms:
 	.4byte getChildCount__5CNodeFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515C48
+lbl_80515C48:
+	.skip 0x4
+.global lbl_80515C4C
+lbl_80515C4C:
+	.skip 0x4
+.global sParentHeapFreeSize_1
+sParentHeapFreeSize_1:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game15IllustratedBook6CameraFP10Controller
 __ct__Q34Game15IllustratedBook6CameraFP10Controller:

@@ -758,6 +758,18 @@ __vt__Q34Game15ItemBigFountain3FSM:
 	.4byte "transit__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515B28
+lbl_80515B28:
+	.skip 0x4
+.global lbl_80515B2C
+lbl_80515B2C:
+	.skip 0x4
+.global mgr__Q24Game15ItemBigFountain
+mgr__Q24Game15ItemBigFountain:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item
 init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item:

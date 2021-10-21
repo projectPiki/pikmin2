@@ -173,6 +173,15 @@ __vt__Q23efx8TPkGlow2:
 	.4byte fade__Q23efx8TSimple2Fv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515CA8
+lbl_80515CA8:
+	.skip 0x4
+.global lbl_80515CAC
+lbl_80515CAC:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr
 __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr:

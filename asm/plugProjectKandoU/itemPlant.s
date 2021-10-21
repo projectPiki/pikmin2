@@ -806,6 +806,12 @@ __vt__Q34Game9ItemPlant3FSM:
 	.4byte "transit__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mgr__Q24Game9ItemPlant
+mgr__Q24Game9ItemPlant:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item
 init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item:

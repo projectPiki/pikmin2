@@ -381,6 +381,18 @@ __vt__Q34Game8ItemHole3FSM:
 	.4byte "exec__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
 	.4byte "transit__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515AC0
+lbl_80515AC0:
+	.skip 0x4
+.global lbl_80515AC4
+lbl_80515AC4:
+	.skip 0x4
+.global mgr__Q24Game8ItemHole
+mgr__Q24Game8ItemHole:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8ItemHole3FSMFPQ24Game8CFSMItem
 init__Q34Game8ItemHole3FSMFPQ24Game8CFSMItem:

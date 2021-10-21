@@ -622,6 +622,27 @@ __vt__Q24Game15BaseGameSection:
 sOptDraw__Q24Game15BaseGameSection:
 	.4byte 0x03000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515928
+lbl_80515928:
+	.skip 0x4
+.global lbl_8051592C
+lbl_8051592C:
+	.skip 0x4
+.global cameraMgrCallback
+cameraMgrCallback:
+	.skip 0x4
+.global theExpHeap
+theExpHeap:
+	.skip 0x4
+.global col$4567
+col$4567:
+	.skip 0x4
+.global init$4568
+init$4568:
+	.skip 0x4
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E58
 lbl_80520E58:

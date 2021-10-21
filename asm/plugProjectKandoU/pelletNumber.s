@@ -401,6 +401,12 @@ __vt__Q34Game12PelletNumber6Object:
 	.4byte "isDone__38Iterator<Q34Game12PelletNumber6Object>Fv"
 	.4byte "__ml__38Iterator<Q34Game12PelletNumber6Object>Fv"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mgr__Q24Game12PelletNumber
+mgr__Q24Game12PelletNumber:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game12PelletNumber6ObjectFPQ24Game15CreatureInitArg
 do_onInit__Q34Game12PelletNumber6ObjectFPQ24Game15CreatureInitArg:

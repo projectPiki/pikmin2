@@ -162,6 +162,12 @@ __vt__Q24Game11CourseCache:
 	.4byte __dt__Q24Game11CourseCacheFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global generatorCache__4Game
+generatorCache__4Game:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14GeneratorCacheFv
 __ct__Q24Game14GeneratorCacheFv:

@@ -93,6 +93,21 @@ __vt__Q24Game10GameSystem:
 	.4byte startFadewhite__Q24Game10GameSystemFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515A60
+lbl_80515A60:
+	.skip 0x4
+.global lbl_80515A64
+lbl_80515A64:
+	.skip 0x4
+.global gameSystem__4Game
+gameSystem__4Game:
+	.skip 0x4
+.global mInstance__Q24Game18OptimiseController
+mInstance__Q24Game18OptimiseController:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection
 __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection:

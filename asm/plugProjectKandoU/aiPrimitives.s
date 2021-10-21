@@ -242,6 +242,15 @@ __vt__Q26PikiAI10ActGotoPos:
 	.4byte getInfo__Q26PikiAI6ActionFPc
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805159E0
+lbl_805159E0:
+	.skip 0x4
+.global lbl_805159E4
+lbl_805159E4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki
 __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki:

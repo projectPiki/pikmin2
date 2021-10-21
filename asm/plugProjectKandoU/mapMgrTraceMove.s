@@ -14,6 +14,15 @@ lbl_804BEF00:
 mTraceMoveOptLevel__Q24Game6MapMgr:
 	.4byte 0x01000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515BB0
+lbl_80515BB0:
+	.skip 0x4
+.global lbl_80515BB4
+lbl_80515BB4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof
 traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof:

@@ -351,6 +351,18 @@ __vt__Q34Game11PelletFruit6Object:
 	.4byte "__ml__37Iterator<Q34Game11PelletFruit6Object>Fv"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515B88
+lbl_80515B88:
+	.skip 0x4
+.global lbl_80515B8C
+lbl_80515B8C:
+	.skip 0x4
+.global mgr__Q24Game11PelletFruit
+mgr__Q24Game11PelletFruit:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game11PelletFruit6ObjectFPQ24Game15CreatureInitArg
 do_onInit__Q34Game11PelletFruit6ObjectFPQ24Game15CreatureInitArg:

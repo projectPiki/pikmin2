@@ -274,6 +274,15 @@ __vt__Q34Game10SingleGame9GameState:
 	.4byte on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515BE8
+lbl_80515BE8:
+	.skip 0x4
+.global lbl_80515BEC
+lbl_80515BEC:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:

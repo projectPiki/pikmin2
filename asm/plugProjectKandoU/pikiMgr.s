@@ -806,6 +806,24 @@ __vt__Q24Game9PikiParms:
 	.4byte 0
 	.4byte read__Q24Game9PikiParmsFR6Stream
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515968
+lbl_80515968:
+	.skip 0x4
+.global lbl_8051596C
+lbl_8051596C:
+	.skip 0x4
+.global throwPikiDebug__Q24Game7PikiMgr
+throwPikiDebug__Q24Game7PikiMgr:
+	.skip 0x4
+.global pikiMgr__4Game
+pikiMgr__4Game:
+	.skip 0x4
+.global mBirthMode__Q24Game7PikiMgr
+mBirthMode__Q24Game7PikiMgr:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7PikiMgrFv
 __ct__Q24Game7PikiMgrFv:

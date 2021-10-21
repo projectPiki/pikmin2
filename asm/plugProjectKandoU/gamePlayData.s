@@ -122,6 +122,12 @@ __vt__Q24Game17PelletFirstMemory:
 	.4byte losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global playData__4Game
+playData__4Game:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game11KindCounterFv
 __ct__Q24Game11KindCounterFv:

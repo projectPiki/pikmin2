@@ -149,6 +149,39 @@ __vt__Q24Game7GenBase:
 GeneratorCurrentVersion:
 	.ascii "v0.3"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515A18
+lbl_80515A18:
+	.skip 0x4
+.global lbl_80515A1C
+lbl_80515A1C:
+	.skip 0x4
+.global factory__Q24Game16GenObjectFactory
+factory__Q24Game16GenObjectFactory:
+	.skip 0x4
+.global ramMode__Q24Game9Generator
+ramMode__Q24Game9Generator:
+	.skip 0x4
+.global generatorMgr__4Game
+generatorMgr__4Game:
+	.skip 0x4
+.global onceGeneratorMgr__4Game
+onceGeneratorMgr__4Game:
+	.skip 0x4
+.global limitGeneratorMgr__4Game
+limitGeneratorMgr__4Game:
+	.skip 0x4
+.global plantsGeneratorMgr__4Game
+plantsGeneratorMgr__4Game:
+	.skip 0x4
+.global dayGeneratorMgr__4Game
+dayGeneratorMgr__4Game:
+	.skip 0x4
+.global cursorCallback__Q24Game12GeneratorMgr
+cursorCallback__Q24Game12GeneratorMgr:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7GenBaseFUlPcPc
 __ct__Q24Game7GenBaseFUlPcPc:

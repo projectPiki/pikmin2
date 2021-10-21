@@ -362,6 +362,18 @@ __vt__Q34Game13PelletOtakara6Object:
 	.4byte sound_otakaraEventFinish__Q34Game13PelletOtakara6ObjectFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515B98
+lbl_80515B98:
+	.skip 0x4
+.global lbl_80515B9C
+lbl_80515B9C:
+	.skip 0x4
+.global mgr__Q24Game13PelletOtakara
+mgr__Q24Game13PelletOtakara:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global constructor__Q34Game13PelletOtakara6ObjectFv
 constructor__Q34Game13PelletOtakara6ObjectFv:

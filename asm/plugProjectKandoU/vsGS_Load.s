@@ -46,6 +46,15 @@ __vt__Q34Game6VsGame9LoadState:
 	.4byte 0
 	.4byte "invoke__34Delegate<Q34Game6VsGame9LoadState>Fv"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515C78
+lbl_80515C78:
+	.skip 0x4
+.global lbl_80515C7C
+lbl_80515C7C:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame9LoadStateFv
 __ct__Q34Game6VsGame9LoadStateFv:

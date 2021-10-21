@@ -25,6 +25,18 @@ lbl_804B8610:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515AD8
+lbl_80515AD8:
+	.skip 0x4
+.global lbl_80515ADC
+lbl_80515ADC:
+	.skip 0x4
+.global drawInfo__Q24Game5AILOD
+drawInfo__Q24Game5AILOD:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9AILODParmFv
 __ct__Q24Game9AILODParmFv:

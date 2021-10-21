@@ -796,6 +796,24 @@ __vt__Q24Game15InteractMattuan:
 sFromTekiEnable__Q24Game6Pellet:
 	.4byte 0x01000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515998
+lbl_80515998:
+	.skip 0x4
+.global lbl_8051599C
+lbl_8051599C:
+	.skip 0x4
+.global pelletMgr__4Game
+pelletMgr__4Game:
+	.skip 0x4
+.global mDebug__Q24Game9PelletMgr
+mDebug__Q24Game9PelletMgr:
+	.skip 0x1
+.global disableDynamics__Q24Game9PelletMgr
+disableDynamics__Q24Game9PelletMgr:
+	.skip 0x3
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getCreatureName__Q24Game6PelletFv
 getCreatureName__Q24Game6PelletFv:

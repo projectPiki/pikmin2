@@ -73,6 +73,30 @@ sOptResolveColl__Q24Game11CellPyramid:
 sCellBugName__Q24Game11CellPyramid:
 	.4byte lbl_80518640
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global cellMgr__4Game
+cellMgr__4Game:
+	.skip 0x4
+.global platCellMgr__4Game
+platCellMgr__4Game:
+	.skip 0x4
+.global mapRoomCellMgr__4Game
+mapRoomCellMgr__4Game:
+	.skip 0x4
+.global disableAICulling__Q24Game11CellPyramid
+disableAICulling__Q24Game11CellPyramid:
+	.skip 0x1
+.global sSpeedUpResolveColl__Q24Game11CellPyramid
+sSpeedUpResolveColl__Q24Game11CellPyramid:
+	.skip 0x3
+.global sCurrCellMgr__Q24Game4Cell
+sCurrCellMgr__Q24Game4Cell:
+	.skip 0x4
+.global sCellBugID__Q24Game11CellPyramid
+sCellBugID__Q24Game11CellPyramid:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>"
 "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>":

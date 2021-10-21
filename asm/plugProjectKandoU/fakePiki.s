@@ -196,6 +196,21 @@ __vt__Q24Game8FakePiki:
 kAngleSpeed__Q23efx7TCursor:
 	.float 0.05235988
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515900
+lbl_80515900:
+	.skip 0x4
+.global lbl_80515904
+lbl_80515904:
+	.skip 0x4
+.global sCurrNeckTheta__Q24Game8FakePiki
+sCurrNeckTheta__Q24Game8FakePiki:
+	.skip 0x4
+.global sCurrNeckPhi__Q24Game8FakePiki
+sCurrNeckPhi__Q24Game8FakePiki:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game8FakePikiFv
 __ct__Q24Game8FakePikiFv:

@@ -104,6 +104,21 @@ __vt__Q34Game10SingleGame11SelectState:
 	.4byte "invoke__42Delegate<Q34Game10SingleGame11SelectState>Fv"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515C10
+lbl_80515C10:
+	.skip 0x4
+.global lbl_80515C14
+lbl_80515C14:
+	.skip 0x4
+.global sParentHeapFreeSize
+sParentHeapFreeSize:
+	.skip 0x4
+.global sParentHeapFreeSize_Last
+sParentHeapFreeSize_Last:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame11SelectStateFv
 __ct__Q34Game10SingleGame11SelectStateFv:

@@ -604,6 +604,15 @@ __vt__Q24Game9NaviParms:
 	.4byte read__Q24Game9NaviParmsFR6Stream
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global naviMgr__4Game
+naviMgr__4Game:
+	.skip 0x4
+.global animMgr__Q24Game7NaviMgr
+animMgr__Q24Game7NaviMgr:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7NaviMgrFv
 __ct__Q24Game7NaviMgrFv:

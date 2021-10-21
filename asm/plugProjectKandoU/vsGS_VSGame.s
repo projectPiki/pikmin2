@@ -50,6 +50,15 @@ __vt__Q34Game6VsGame7VSState:
 	.4byte drawStatus__Q34Game6VsGame9GameStateFR8GraphicsPQ24Game13VsGameSection
 	.4byte do_init__Q34Game6VsGame7VSStateFPQ24Game13VsGameSection
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515C90
+lbl_80515C90:
+	.skip 0x4
+.global lbl_80515C94
+lbl_80515C94:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame7VSStateFv
 __ct__Q34Game6VsGame7VSStateFv:

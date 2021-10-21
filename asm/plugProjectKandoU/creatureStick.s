@@ -48,6 +48,18 @@ __vt__Q24Game8Stickers:
 maxBuffer__Q24Game8Stickers:
 	.4byte 0x0000006E
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global numBuffer__Q24Game8Stickers
+numBuffer__Q24Game8Stickers:
+	.skip 0x4
+.global mutex__Q24Game8Stickers
+mutex__Q24Game8Stickers:
+	.skip 0x4
+.global buffer__Q24Game8Stickers
+buffer__Q24Game8Stickers:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clearStick__Q24Game8CreatureFv
 clearStick__Q24Game8CreatureFv:

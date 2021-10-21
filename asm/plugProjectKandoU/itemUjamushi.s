@@ -909,6 +909,18 @@ __vt__Q34Game12ItemUjamushi13BoidParameter:
 	.4byte __dt__Q34Game12ItemUjamushi13BoidParameterFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515BB8
+lbl_80515BB8:
+	.skip 0x4
+.global lbl_80515BBC
+lbl_80515BBC:
+	.skip 0x4
+.global mgr__Q24Game12ItemUjamushi
+mgr__Q24Game12ItemUjamushi:
+	.skip 0x8
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E80
 lbl_80520E80:

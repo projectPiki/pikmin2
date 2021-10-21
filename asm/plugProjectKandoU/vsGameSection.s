@@ -326,6 +326,24 @@ __vt__Q34Game6VsGame3FSM:
 	.4byte "exec__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
 	.4byte transit__Q34Game6VsGame3FSMFPQ24Game13VsGameSectioniPQ24Game8StateArg
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515A88
+lbl_80515A88:
+	.skip 0x4
+.global lbl_80515A8C
+lbl_80515A8C:
+	.skip 0x4
+.global mRedWinCount__Q24Game13VsGameSection
+mRedWinCount__Q24Game13VsGameSection:
+	.skip 0x4
+.global mBlueWinCount__Q24Game13VsGameSection
+mBlueWinCount__Q24Game13VsGameSection:
+	.skip 0x4
+.global mDrawCount__Q24Game13VsGameSection
+mDrawCount__Q24Game13VsGameSection:
+	.skip 0x8
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E68
 lbl_80520E68:

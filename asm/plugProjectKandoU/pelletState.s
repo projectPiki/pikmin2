@@ -276,6 +276,15 @@ __vt__Q24Game9PelletFSM:
 	.4byte "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 	.4byte "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515A08
+lbl_80515A08:
+	.skip 0x4
+.global lbl_80515A0C
+lbl_80515A0C:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q24Game9PelletFSMFPQ24Game6Pellet
 init__Q24Game9PelletFSMFPQ24Game6Pellet:

@@ -262,6 +262,15 @@ __vt__Q23efx7TPkMoeA:
 	.4byte "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515920
+lbl_80515920:
+	.skip 0x4
+.global lbl_80515924
+lbl_80515924:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game4PikiFv
 __ct__Q24Game4PikiFv:

@@ -428,6 +428,18 @@ __vt__Q23efx7TFueact:
 	.4byte "transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515910
+lbl_80515910:
+	.skip 0x4
+.global lbl_80515914
+lbl_80515914:
+	.skip 0x4
+.global numSearch
+numSearch:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam
 getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam:

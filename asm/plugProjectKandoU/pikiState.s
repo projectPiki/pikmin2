@@ -1308,6 +1308,15 @@ __vt__Q24Game9PikiState:
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805159C0
+lbl_805159C0:
+	.skip 0x4
+.global lbl_805159C4
+lbl_805159C4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global dump__Q24Game9PikiStateFv
 dump__Q24Game9PikiStateFv:

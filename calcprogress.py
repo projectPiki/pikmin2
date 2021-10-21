@@ -32,7 +32,7 @@ import math
 ###############################################
 
 DOL_PATH = "baserom.dol"
-MAP_PATH = "build/pikmin2.usa/pikmin2.map"
+MAP_PATH = "build/pikmin2.usa/pikmin2UP.MAP"
 
 MEM1_HI = 0x81200000
 MEM1_LO = 0x80004000

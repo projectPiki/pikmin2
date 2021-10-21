@@ -69,6 +69,15 @@ __vt__Q34Game13ChallengeGame9StageData:
 	.4byte getChildCount__5CNodeFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515C80
+lbl_80515C80:
+	.skip 0x4
+.global lbl_80515C84
+lbl_80515C84:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global read__Q34Game13ChallengeGame9StageDataFR6Stream
 read__Q34Game13ChallengeGame9StageDataFR6Stream:

@@ -75,6 +75,18 @@ __vt__Q34Game6Result5TNode:
 	.4byte 0
 	.4byte "invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515BF8
+lbl_80515BF8:
+	.skip 0x4
+.global lbl_80515BFC
+lbl_80515BFC:
+	.skip 0x4
+.global theTekiHeap
+theTekiHeap:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame15MainResultStateFv
 __ct__Q34Game10SingleGame15MainResultStateFv:

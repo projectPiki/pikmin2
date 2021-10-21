@@ -18,6 +18,12 @@ lbl_80483F40:
 	.4byte 0x66666572
 	.4byte 0x0A000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sNum__Q24Game17PelletBirthBuffer
+sNum__Q24Game17PelletBirthBuffer:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game17PelletBirthBufferFv
 clear__Q24Game17PelletBirthBufferFv:

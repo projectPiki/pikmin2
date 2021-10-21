@@ -44,6 +44,15 @@ lbl_8047F47C:
 	.4byte 0x2025640A
 	.4byte 0x00000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global testPathfinder__4Game
+testPathfinder__4Game:
+	.skip 0x4
+.global routeMgr__Q24Game15PathfindContext
+routeMgr__Q24Game15PathfindContext:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10PathfinderFv
 __ct__Q24Game10PathfinderFv:

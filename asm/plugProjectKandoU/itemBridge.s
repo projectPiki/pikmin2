@@ -722,6 +722,12 @@ __vt__Q34Game10ItemBridge3FSM:
 	.4byte "exec__Q24Game38StateMachine<Q34Game10ItemBridge4Item>FPQ34Game10ItemBridge4Item"
 	.4byte "transit__Q24Game38StateMachine<Q34Game10ItemBridge4Item>FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mgr__Q24Game10ItemBridge
+mgr__Q24Game10ItemBridge:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10ItemBridge3FSMFPQ34Game10ItemBridge4Item
 init__Q34Game10ItemBridge3FSMFPQ34Game10ItemBridge4Item:

@@ -14,6 +14,12 @@ __vt__Q25Radar5Point:
 	.4byte getChildCount__5CNodeFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mgr__5Radar
+mgr__5Radar:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getPosition__Q25Radar5PointFv
 getPosition__Q25Radar5PointFv:

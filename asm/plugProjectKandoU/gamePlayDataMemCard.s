@@ -286,6 +286,15 @@ __vt__Q24Game16PelletCropMemory:
 mVersion__Q24Game8PlayData:
 	.ascii "j009"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sCurrPlayDataSize__Q24Game8PlayData
+sCurrPlayDataSize__Q24Game8PlayData:
+	.skip 0x4
+.global sMaxPlayDataSize__Q24Game8PlayData
+sMaxPlayDataSize__Q24Game8PlayData:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global write__Q24Game8PlayDataFR6Stream
 write__Q24Game8PlayDataFR6Stream:

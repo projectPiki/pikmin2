@@ -76,6 +76,12 @@ __vt__Q24Game11CaveOtakara:
 	.4byte __dt__Q24Game11CaveOtakaraFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global stageList__4Game
+stageList__4Game:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q24Game11CaveOtakaraFv
 __dt__Q24Game11CaveOtakaraFv:

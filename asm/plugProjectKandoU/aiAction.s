@@ -24,6 +24,15 @@ __vt__Q26PikiAI6Action:
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805159D8
+lbl_805159D8:
+	.skip 0x4
+.global lbl_805159DC
+lbl_805159DC:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI6ActionFPQ24Game4Piki
 __ct__Q26PikiAI6ActionFPQ24Game4Piki:

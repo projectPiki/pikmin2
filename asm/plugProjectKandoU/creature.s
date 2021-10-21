@@ -169,6 +169,18 @@ __vt__Q24Game15TPositionObject:
 usePacketCulling__Q24Game8Creature:
 	.4byte 0x01000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805158F0
+lbl_805158F0:
+	.skip 0x4
+.global lbl_805158F4
+lbl_805158F4:
+	.skip 0x4
+.global currOp__Q24Game8Creature
+currOp__Q24Game8Creature:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game8CreatureFv
 __ct__Q24Game8CreatureFv:

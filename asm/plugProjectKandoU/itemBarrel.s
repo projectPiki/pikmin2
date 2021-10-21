@@ -680,6 +680,18 @@ __vt__Q34Game10ItemBarrel3FSM:
 	.4byte "transit__Q24Game38StateMachine<Q34Game10ItemBarrel4Item>FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515B68
+lbl_80515B68:
+	.skip 0x4
+.global lbl_80515B6C
+lbl_80515B6C:
+	.skip 0x4
+.global mgr__Q24Game10ItemBarrel
+mgr__Q24Game10ItemBarrel:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10ItemBarrel3FSMFPQ34Game10ItemBarrel4Item
 init__Q34Game10ItemBarrel3FSMFPQ34Game10ItemBarrel4Item:

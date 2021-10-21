@@ -141,6 +141,15 @@ __vt__Q34Game6VsGame5State:
 	.4byte "transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515C60
+lbl_80515C60:
+	.skip 0x4
+.global lbl_80515C64
+lbl_80515C64:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame10TitleStateFv
 __ct__Q34Game6VsGame10TitleStateFv:

@@ -240,6 +240,15 @@ __vt__Q24Game15InteractFueFuki:
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805159C8
+lbl_805159C8:
+	.skip 0x4
+.global lbl_805159CC
+lbl_805159CC:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki
 actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki:

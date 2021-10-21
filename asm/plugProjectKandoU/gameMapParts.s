@@ -570,6 +570,21 @@ __vt__Q24Game8DoorLink:
 	.4byte getChildCount__5CNodeFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515A78
+lbl_80515A78:
+	.skip 0x4
+.global lbl_80515A7C
+lbl_80515A7C:
+	.skip 0x4
+.global numRoomCulled__Q24Game10RoomMapMgr
+numRoomCulled__Q24Game10RoomMapMgr:
+	.skip 0x4
+.global mUseCylinderViewCulling__Q24Game10RoomMapMgr
+mUseCylinderViewCulling__Q24Game10RoomMapMgr:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getDoor__Q24Game16MapUnitInterfaceFi
 getDoor__Q24Game16MapUnitInterfaceFi:

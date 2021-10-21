@@ -946,6 +946,21 @@ __vt__Q24Game7GateFSM:
 	.4byte "transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515AA8
+lbl_80515AA8:
+	.skip 0x4
+.global lbl_80515AAC
+lbl_80515AAC:
+	.skip 0x4
+.global itemGateMgr__4Game
+itemGateMgr__4Game:
+	.skip 0x4
+.global mgr__Q24Game15ItemDengekiGate
+mgr__Q24Game15ItemDengekiGate:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q24Game7GateFSMFPQ24Game8ItemGate
 init__Q24Game7GateFSMFPQ24Game8ItemGate:

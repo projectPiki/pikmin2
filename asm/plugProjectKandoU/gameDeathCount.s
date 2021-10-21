@@ -25,6 +25,12 @@ lbl_80483920:
 	.4byte 0x746E6572
 	.4byte 0x00000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mSoundDeathCount__Q24Game8DeathMgr
+mSoundDeathCount__Q24Game8DeathMgr:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game8BirthMgrFv
 clear__Q24Game8BirthMgrFv:

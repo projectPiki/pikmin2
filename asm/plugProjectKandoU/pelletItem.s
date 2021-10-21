@@ -347,6 +347,12 @@ __vt__Q34Game10PelletItem6Object:
 	.4byte sound_otakaraEventStop__Q34Game10PelletItem6ObjectFv
 	.4byte sound_otakaraEventFinish__Q34Game10PelletItem6ObjectFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mgr__Q24Game10PelletItem
+mgr__Q24Game10PelletItem:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game10PelletItem6ObjectFPQ24Game15CreatureInitArg
 do_onInit__Q34Game10PelletItem6ObjectFPQ24Game15CreatureInitArg:

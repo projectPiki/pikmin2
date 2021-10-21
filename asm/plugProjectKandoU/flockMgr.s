@@ -35,6 +35,15 @@ __vt__Q24Game12BaseFlockMgr:
 	.4byte fear__Q24Game12BaseFlockMgrFi
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515BD0
+lbl_80515BD0:
+	.skip 0x4
+.global lbl_80515BD4
+lbl_80515BD4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q24Game12BaseFlockMgrFv
 update__Q24Game12BaseFlockMgrFv:

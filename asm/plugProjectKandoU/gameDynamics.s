@@ -63,6 +63,12 @@ __vt__13DynamicsParms:
 	.4byte "read__7Parm<b>FR6Stream"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mInstance__13DynamicsParms
+mInstance__13DynamicsParms:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13DynamicsParmsFv
 __ct__13DynamicsParmsFv:
