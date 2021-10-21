@@ -94,6 +94,7 @@ When compiling the project, this patch is automatically applied, if it fails to 
 - sysCommonU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/id32.cpp">sysCommonU/id32.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/node.cpp">sysCommonU/node.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/parameters.cpp">sysCommonU/parameters.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/sysMath.cpp">sysCommonU/sysMath.cpp</a>
 - utilityU
 - plugProjectKonoU
