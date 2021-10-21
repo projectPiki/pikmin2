@@ -119,6 +119,18 @@ __vt__13CarryInfoList:
 	.4byte draw__13CarryInfoListFR8Graphics
 	.4byte isFinish__13CarryInfoListFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515890
+lbl_80515890:
+	.skip 0x4
+.global lbl_80515894
+lbl_80515894:
+	.skip 0x4
+.global carryInfoMgr
+carryInfoMgr:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global disappear__9CarryInfoFv
 disappear__9CarryInfoFv:

@@ -198,6 +198,21 @@ __vt__Q34Game15IllustratedBook12ColorSetting:
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q34Game15IllustratedBook12ColorSettingFR6Stream
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805158C8
+lbl_805158C8:
+	.skip 0x4
+.global lbl_805158CC
+lbl_805158CC:
+	.skip 0x4
+.global sZukanState__Q34Game15IllustratedBook5Parms
+sZukanState__Q34Game15IllustratedBook5Parms:
+	.skip 0x4
+.global sCamera__Q34Game15IllustratedBook5Parms
+sCamera__Q34Game15IllustratedBook5Parms:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game15IllustratedBook12ColorSettingFv
 __ct__Q34Game15IllustratedBook12ColorSettingFv:

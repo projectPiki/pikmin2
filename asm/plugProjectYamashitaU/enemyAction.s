@@ -63,6 +63,15 @@ __vt__Q34Game9EnemyFunc21ConditionPikminNearby:
 	.4byte "__ml__22Iterator<Q24Game4Navi>Fv"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515878
+lbl_80515878:
+	.skip 0x4
+.global lbl_8051587C
+lbl_8051587C:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>":

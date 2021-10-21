@@ -209,6 +209,18 @@ __vt__16GenericObjectMgr:
 	.4byte frozenable__16GenericObjectMgrFv
 	.4byte getMatrixLoadType__16GenericObjectMgrFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global generalEnemyMgr__4Game
+generalEnemyMgr__4Game:
+	.skip 0x4
+.global mCullCount__Q24Game15GeneralEnemyMgr
+mCullCount__Q24Game15GeneralEnemyMgr:
+	.skip 0x4
+.global mTotalCount__Q24Game15GeneralEnemyMgr
+mTotalCount__Q24Game15GeneralEnemyMgr:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii
 createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii:

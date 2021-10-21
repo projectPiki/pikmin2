@@ -24,6 +24,15 @@ __vt__Q28SysShape18BlendQuadraticFunc:
 	.4byte 0
 	.4byte getValue__Q28SysShape18BlendQuadraticFuncFf
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sBlendLinearFun__Q24Game22EnemyBlendAnimatorBase
+sBlendLinearFun__Q24Game22EnemyBlendAnimatorBase:
+	.skip 0x4
+.global sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase
+sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game22EnemyBlendAnimatorBaseFv
 __ct__Q24Game22EnemyBlendAnimatorBaseFv:

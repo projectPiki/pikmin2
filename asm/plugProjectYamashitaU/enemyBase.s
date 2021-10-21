@@ -700,6 +700,48 @@ __vt__Q34Game12EnemyBaseFSM5State:
 	.4byte bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
 	.4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515820
+lbl_80515820:
+	.skip 0x4
+.global lbl_80515824
+lbl_80515824:
+	.skip 0x4
+.global gParmArc__4Game
+gParmArc__4Game:
+	.skip 0x4
+.global "sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"
+"sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"
+"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"
+"sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"
+"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"
+"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"
+"sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>":
+	.skip 0x4
+.global "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"
+"sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>":
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
 animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase:

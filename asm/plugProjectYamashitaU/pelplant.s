@@ -768,6 +768,15 @@ __vt__Q34Game8Pelplant21BlendAccelerationFunc:
 	.4byte 0
 	.4byte getValue__Q34Game8Pelplant21BlendAccelerationFuncFf
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global farmMgr__Q24Game4Farm
+farmMgr__Q24Game4Farm:
+	.skip 0x4
+.global sCurrentObj__Q34Game8Pelplant3Obj
+sCurrentObj__Q34Game8Pelplant3Obj:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getValue__Q34Game8Pelplant21BlendAccelerationFuncFf
 getValue__Q34Game8Pelplant21BlendAccelerationFuncFf:

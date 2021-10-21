@@ -199,6 +199,15 @@ __vt__Q24Game20GameLightTimeSetting:
 	.4byte __dt__Q24Game20GameLightTimeSettingFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805158A0
+lbl_805158A0:
+	.skip 0x4
+.global lbl_805158A4
+lbl_805158A4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game20GameLightTimeSettingFv
 __ct__Q24Game20GameLightTimeSettingFv:

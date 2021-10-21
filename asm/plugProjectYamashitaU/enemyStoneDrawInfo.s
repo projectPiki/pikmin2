@@ -130,6 +130,12 @@ __vt__Q34Game10EnemyStone12StateMachine:
 	.4byte makeMatrix__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfoP7Matrixf
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sOwnerEnemy__Q34Game10EnemyStone8DrawInfo
+sOwnerEnemy__Q34Game10EnemyStone8DrawInfo:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfo
 init__Q34Game10EnemyStone12StateMachineFPQ34Game10EnemyStone8DrawInfo:

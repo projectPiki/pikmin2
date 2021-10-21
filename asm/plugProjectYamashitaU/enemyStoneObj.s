@@ -25,6 +25,15 @@ __vt__Q34Game10EnemyStone3Obj:
 	.4byte getChildCount__5CNodeFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_805158B8
+lbl_805158B8:
+	.skip 0x4
+.global lbl_805158BC
+lbl_805158BC:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10EnemyStone3ObjFPQ24Game9EnemyBasePQ34Game10EnemyStone4Info
 __ct__Q34Game10EnemyStone3ObjFPQ24Game9EnemyBasePQ34Game10EnemyStone4Info:
