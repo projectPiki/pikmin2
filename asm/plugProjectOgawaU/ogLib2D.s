@@ -8,6 +8,12 @@ __vt__Q22og5Lib2D:
 	.4byte __dt__Q22og5Lib2DFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global gLib2D__2og
+gLib2D__2og:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q22og5Lib2DFv
 __dt__Q22og5Lib2DFv:

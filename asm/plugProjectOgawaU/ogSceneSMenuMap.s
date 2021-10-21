@@ -168,6 +168,15 @@ __vt__Q32og9newScreen14SceneSMenuBase:
 	.4byte doGetFinishState__Q32og9newScreen14SceneSMenuBaseFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515E58
+lbl_80515E58:
+	.skip 0x4
+.global lbl_80515E5C
+lbl_80515E5C:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen8SMenuMapFv
 __ct__Q32og9newScreen8SMenuMapFv:

@@ -112,6 +112,15 @@ __vt__Q32og9newScreen20TitleMessageAnalyzer:
 	.4byte tagPosition__Q25P2JME8AnalyzerFUsPCvUl
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sFrame$4053
+sFrame$4053:
+	.skip 0x4
+.global init$4054
+init$4054:
+	.skip 0x4
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EB8
 lbl_80520EB8:

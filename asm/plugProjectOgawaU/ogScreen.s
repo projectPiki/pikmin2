@@ -134,6 +134,27 @@ __vt__Q29P2DScreen4Node:
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global wkPtr$3542
+wkPtr$3542:
+	.skip 0x4
+.global init$3543
+init$3543:
+	.skip 0x4
+.global Max$3545
+Max$3545:
+	.skip 0x4
+.global init$3546
+init$3546:
+	.skip 0x4
+.global wkMax$3548
+wkMax$3548:
+	.skip 0x4
+.global init$3549
+init$3549:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSpeed__Q32og6Screen15ArrowAlphaBlinkFf
 setSpeed__Q32og6Screen15ArrowAlphaBlinkFf:

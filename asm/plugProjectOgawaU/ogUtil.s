@@ -26,6 +26,15 @@ lbl_804D8B0C:
 	.4byte lbl_80317FD0
 	.4byte lbl_80317FD8
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515E70
+lbl_80515E70:
+	.skip 0x4
+.global lbl_80515E74
+lbl_80515E74:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global checkMovieActive__Q22og9newScreenFv
 checkMovieActive__Q22og9newScreenFv:

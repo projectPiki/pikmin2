@@ -45,6 +45,12 @@ __vt__Q32og9newScreen6Ground:
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sGameFlag_MainBgm_Evening__Q22og9newScreen
+sGameFlag_MainBgm_Evening__Q22og9newScreen:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initGround__Q22og9newScreenFv
 initGround__Q22og9newScreenFv:

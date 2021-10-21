@@ -124,6 +124,15 @@ __vt__Q26Screen13StartSceneArg:
 	.4byte getSceneType__Q26Screen12SceneArgBaseCFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global angle$3853
+angle$3853:
+	.skip 0x4
+.global init$3854
+init$3854:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuBaseFv
 __ct__Q32og9newScreen12ObjSMenuBaseFv:

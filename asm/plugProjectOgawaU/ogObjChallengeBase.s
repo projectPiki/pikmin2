@@ -40,6 +40,15 @@ __vt__Q32og9newScreen16ObjChallengeBase:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte doCreateAfter__Q32og9newScreen16ObjChallengeBaseFP10JKRArchivePQ32og6Screen18CallBack_CounterRV
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515EB0
+lbl_80515EB0:
+	.skip 0x4
+.global lbl_80515EB4
+lbl_80515EB4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen16ObjChallengeBaseFv
 __ct__Q32og9newScreen16ObjChallengeBaseFv:

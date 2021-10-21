@@ -11,6 +11,12 @@ lbl_8048E030:
 	.skip 2
 	.asciz "get sound scene at\ninvalid timming\n"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global ogSound__2og
+ogSound__2og:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSE__Q22og5SoundFUl
 setSE__Q22og5SoundFUl:

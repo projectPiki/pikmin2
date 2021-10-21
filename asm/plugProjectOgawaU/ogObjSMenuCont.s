@@ -128,6 +128,12 @@ __vt__Q32og9newScreen12ObjSMenuCont:
 	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
 	.4byte commonUpdate__Q32og9newScreen12ObjSMenuContFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global msVal__Q32og9newScreen12ObjSMenuCont
+msVal__Q32og9newScreen12ObjSMenuCont:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuContFPCc
 __ct__Q32og9newScreen12ObjSMenuContFPCc:
