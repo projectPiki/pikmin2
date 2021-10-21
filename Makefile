@@ -46,7 +46,7 @@ PATCHLINKER := patch_linker.sh
 # Outputs
 DOL     := $(BUILD_DIR)/main.dol
 ELF     := $(DOL:.dol=.elf)
-MAP     := $(BUILD_DIR)/pikmin2.map
+MAP     := $(BUILD_DIR)/pikmin2UP.MAP
 
 include obj_files.mk
 
