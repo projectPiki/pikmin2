@@ -414,6 +414,29 @@ mDemoSpeedUpMax__Q28Morimura16TChallengeResult:
 mFlashColor__Q28Morimura16TChallengeResult:
 	.4byte 0xFFFF00FF
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global mForceDemoStart__Q28Morimura16TChallengeResult
+mForceDemoStart__Q28Morimura16TChallengeResult:
+	.skip 0x1
+.global mTestStageId__Q28Morimura16TChallengeResult
+mTestStageId__Q28Morimura16TChallengeResult:
+	.skip 0x3
+.global mDebugHeapParent__Q28Morimura16TChallengeResult
+mDebugHeapParent__Q28Morimura16TChallengeResult:
+	.skip 0x4
+.global mDebugHeap__Q28Morimura16TChallengeResult
+mDebugHeap__Q28Morimura16TChallengeResult:
+	.skip 0x4
+.global mLeafTexture__Q28Morimura16TChallengeResult
+mLeafTexture__Q28Morimura16TChallengeResult:
+	.skip 0x4
+.global mFlowerTexture__Q28Morimura16TChallengeResult
+mFlowerTexture__Q28Morimura16TChallengeResult:
+	.skip 0x4
+.global mRedFlowerTexture__Q28Morimura16TChallengeResult
+mRedFlowerTexture__Q28Morimura16TChallengeResult:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051F080

@@ -634,6 +634,35 @@ mMoveSpeed__Q28Morimura16TChallengeSelect:
 mSelectIconScale__Q28Morimura16TChallengeSelect:
 	.float 1.5
 
+.section .sbss # 0x80514D80 - 0x80516360
+.global mRightOffset__Q28Morimura16TChallengeSelect
+mRightOffset__Q28Morimura16TChallengeSelect:
+	.skip 0x4
+.global mDownOffset__Q28Morimura16TChallengeSelect
+mDownOffset__Q28Morimura16TChallengeSelect:
+	.skip 0x4
+.global mFrameAnimAlpha__Q28Morimura16TChallengeSelect
+mFrameAnimAlpha__Q28Morimura16TChallengeSelect:
+	.skip 0x1
+.global mAllCourseOpen__Q28Morimura16TChallengeSelect
+mAllCourseOpen__Q28Morimura16TChallengeSelect:
+	.skip 0x1
+.global mForceDemoStart__Q28Morimura16TChallengeSelect
+mForceDemoStart__Q28Morimura16TChallengeSelect:
+	.skip 0x2
+.global mDivePikiNum__Q28Morimura16TChallengeSelect
+mDivePikiNum__Q28Morimura16TChallengeSelect:
+	.skip 0x4
+.global mMetOffset__Q28Morimura16TChallengeSelect
+mMetOffset__Q28Morimura16TChallengeSelect:
+	.skip 0x8
+.global mDebugHeapParent__Q28Morimura16TChallengeSelect
+mDebugHeapParent__Q28Morimura16TChallengeSelect:
+	.skip 0x4
+.global mDebugHeap__Q28Morimura16TChallengeSelect
+mDebugHeap__Q28Morimura16TChallengeSelect:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051EF88
