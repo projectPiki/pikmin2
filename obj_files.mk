@@ -410,6 +410,7 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/OSThread.o\
 	$(BUILD_DIR)/asm/Dolphin/OSTime.o\
 	$(BUILD_DIR)/asm/Dolphin/__ppc_eabi_init.o\
+	$(BUILD_DIR)/asm/Dolphin/__start.o\
 	$(BUILD_DIR)/asm/Dolphin/Padclamp.o\
 	$(BUILD_DIR)/asm/Dolphin/Pad.o\
 	$(BUILD_DIR)/asm/Dolphin/SIBios.o\

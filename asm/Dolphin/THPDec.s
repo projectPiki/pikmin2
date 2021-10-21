@@ -47,6 +47,60 @@ THP_VERSION_STRING:
 __THPVersion:
 	.4byte THP_VERSION_STRING
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global Ydchuff
+Ydchuff:
+	.skip 0x20
+.global Udchuff
+Udchuff:
+	.skip 0x20
+.global Vdchuff
+Vdchuff:
+	.skip 0x20
+.global Yachuff
+Yachuff:
+	.skip 0x20
+.global Uachuff
+Uachuff:
+	.skip 0x20
+.global Vachuff
+Vachuff:
+	.skip 0x4
+.global __THPHuffmanBits
+__THPHuffmanBits:
+	.skip 0x4
+.global __THPHuffmanSizeTab
+__THPHuffmanSizeTab:
+	.skip 0x4
+.global __THPHuffmanCodeTab
+__THPHuffmanCodeTab:
+	.skip 0x14
+.global Gbase
+Gbase:
+	.skip 0x20
+.global Gwid
+Gwid:
+	.skip 0x20
+.global Gq
+Gq:
+	.skip 0x4
+.global __THPOldGQR5
+__THPOldGQR5:
+	.skip 0x4
+.global __THPOldGQR6
+__THPOldGQR6:
+	.skip 0x4
+.global __THPWorkArea
+__THPWorkArea:
+	.skip 0x4
+.global __THPInfo
+__THPInfo:
+	.skip 0x4
+.global __THPInitFlag
+__THPInitFlag:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global THPVideoDecode
 THPVideoDecode:

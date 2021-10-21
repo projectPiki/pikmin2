@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global SaveStart
+SaveStart:
+	.skip 0x4
+.global SaveEnd
+SaveEnd:
+	.skip 0x4
+.global Prepared
+Prepared:
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global Run

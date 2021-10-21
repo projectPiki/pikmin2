@@ -720,6 +720,21 @@ Zenkaku2Code:
 fontEncode$80:
 	.4byte 0xFFFF0000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global FontData
+FontData:
+	.skip 0x4
+.global SheetImage
+SheetImage:
+	.skip 0x4
+.global WidthTable
+WidthTable:
+	.skip 0x4
+.global CharsInSheet
+CharsInSheet:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GetFontCode
 GetFontCode:

@@ -42,6 +42,18 @@ Type:
 __SIVersion:
 	.4byte lbl_804A9EB8
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global cmdTypeAndStatus$78
+cmdTypeAndStatus$78:
+	.skip 0x4
+.global cmdTypeAndStatus$372
+cmdTypeAndStatus$372:
+	.skip 0x4
+.global __PADFixBits
+__PADFixBits:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global SIBusy
 SIBusy:

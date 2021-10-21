@@ -18,6 +18,15 @@ ResetFunctionInfo_4:
 __GBAVersion:
 	.4byte GBA_VERSION_STRING
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global Initialized_1
+Initialized_1:
+	.skip 0x4
+.global __GBAReset
+__GBAReset:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global ShortCommandProc
 ShortCommandProc:

@@ -39,6 +39,42 @@ CmdReadOrigin:
 CmdCalibrate:
 	.4byte 0x42000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global Initialized
+Initialized:
+	.skip 0x4
+.global EnabledBits
+EnabledBits:
+	.skip 0x4
+.global ResettingBits
+ResettingBits:
+	.skip 0x4
+.global RecalibrateBits
+RecalibrateBits:
+	.skip 0x4
+.global WaitingBits
+WaitingBits:
+	.skip 0x4
+.global CheckingBits
+CheckingBits:
+	.skip 0x4
+.global PendingBits
+PendingBits:
+	.skip 0x4
+.global BarrelBits
+BarrelBits:
+	.skip 0x4
+.global SamplingCallback
+SamplingCallback:
+	.skip 0x4
+.global recalibrated$388
+recalibrated$388:
+	.skip 0x4
+.global __PADSpec
+__PADSpec:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global UpdateOrigin
 UpdateOrigin:

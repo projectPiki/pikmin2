@@ -5,6 +5,18 @@
 SwitchThreadCallback:
 	.4byte DefaultSwitchThreadCallback
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global RunQueueBits
+RunQueueBits:
+	.skip 0x4
+.global RunQueueHint
+RunQueueHint:
+	.skip 0x4
+.global Reschedule
+Reschedule:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DefaultSwitchThreadCallback
 DefaultSwitchThreadCallback:
