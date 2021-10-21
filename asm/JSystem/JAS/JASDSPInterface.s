@@ -372,6 +372,24 @@ COMP_BLOCKBYTES$601:
 	.4byte 0x09050810
 	.4byte 0x01010101
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global CH_BUF__6JASDsp
+CH_BUF__6JASDsp:
+	.skip 0x4
+.global FX_BUF__6JASDsp
+FX_BUF__6JASDsp:
+	.skip 0x4
+.global sDSPVolume__6JASDsp
+sDSPVolume__6JASDsp:
+	.skip 0x4
+.global first$389
+first$389:
+	.skip 0x1
+.global init$390
+init$390:
+	.skip 0x3
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global boot__6JASDspFPFPv_v
 boot__6JASDspFPFPv_v:

@@ -214,6 +214,33 @@ __vt__11J3DShapeMtx:
 	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sCurrentPipeline__11J3DShapeMtx
+sCurrentPipeline__11J3DShapeMtx:
+	.skip 0x4
+.global sCurrentScaleFlag__11J3DShapeMtx
+sCurrentScaleFlag__11J3DShapeMtx:
+	.skip 0x4
+.global sNBTFlag__11J3DShapeMtx
+sNBTFlag__11J3DShapeMtx:
+	.skip 0x1
+.global sLODFlag__11J3DShapeMtx
+sLODFlag__11J3DShapeMtx:
+	.skip 0x3
+.global sTexMtxLoadType__11J3DShapeMtx
+sTexMtxLoadType__11J3DShapeMtx:
+	.skip 0x4
+.global sMtxPtrTbl__21J3DShapeMtxConcatView
+sMtxPtrTbl__21J3DShapeMtxConcatView:
+	.skip 0x8
+.global sTexGenBlock__17J3DDifferedTexMtx
+sTexGenBlock__17J3DDifferedTexMtx:
+	.skip 0x4
+.global sTexMtxObj__17J3DDifferedTexMtx
+sTexMtxObj__17J3DDifferedTexMtx:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global resetMtxLoadCache__11J3DShapeMtxFv
 resetMtxLoadCache__11J3DShapeMtxFv:

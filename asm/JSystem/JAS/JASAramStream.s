@@ -37,6 +37,27 @@ lbl_804A44A0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sLoadThread__13JASAramStream
+sLoadThread__13JASAramStream:
+	.skip 0x4
+.global sReadBuffer__13JASAramStream
+sReadBuffer__13JASAramStream:
+	.skip 0x4
+.global sBlockSize__13JASAramStream
+sBlockSize__13JASAramStream:
+	.skip 0x4
+.global sChannelMax__13JASAramStream
+sChannelMax__13JASAramStream:
+	.skip 0x4
+.global sSystemPauseFlag__13JASAramStream
+sSystemPauseFlag__13JASAramStream:
+	.skip 0x1
+.global sFatalErrorFlag__13JASAramStream
+sFatalErrorFlag__13JASAramStream:
+	.skip 0x7
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initSystem__13JASAramStreamFUlUl
 initSystem__13JASAramStreamFUlUl:

@@ -10,6 +10,21 @@ __vt__8J3DShape:
 	.4byte simpleDraw__8J3DShapeCFv
 	.4byte simpleDrawCache__8J3DShapeCFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sOldVcdVatCmd__8J3DShape
+sOldVcdVatCmd__8J3DShape:
+	.skip 0x4
+.global sEnvelopeFlag__8J3DShape
+sEnvelopeFlag__8J3DShape:
+	.skip 0x4
+.global sInterruptFlag$1728
+sInterruptFlag$1728:
+	.skip 0x4
+.global init$1729
+init$1729:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__8J3DShapeFv
 initialize__8J3DShapeFv:

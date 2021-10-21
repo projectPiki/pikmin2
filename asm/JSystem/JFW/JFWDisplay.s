@@ -107,6 +107,33 @@ __vt__10JFWDisplay:
 	.4byte 0
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sManager__10JFWDisplay
+sManager__10JFWDisplay:
+	.skip 0x4
+.global prevFrame$3378
+prevFrame$3378:
+	.skip 0x4
+.global init$3379
+init$3379:
+	.skip 0x8
+.global nextTick$3423
+nextTick$3423:
+	.skip 0x4
+.global lbl_8051507C
+lbl_8051507C:
+	.skip 0x4
+.global init$3424
+init$3424:
+	.skip 0x4
+.global nextCount$3431
+nextCount$3431:
+	.skip 0x4
+.global init$3432
+init$3432:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__10JFWDisplayFv
 __dt__10JFWDisplayFv:

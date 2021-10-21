@@ -48,6 +48,12 @@ __vt__9J3DPacket:
 	.4byte draw__9J3DPacketFv
 	.4byte __dt__9J3DPacketFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sInterruptFlag__17J3DDisplayListObj
+sInterruptFlag__17J3DDisplayListObj:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global newDisplayList__17J3DDisplayListObjFUl
 newDisplayList__17J3DDisplayListObjFUl:

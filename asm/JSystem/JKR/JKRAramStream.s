@@ -43,6 +43,21 @@ __vt__13JKRAramStream:
 	.4byte __dt__13JKRAramStreamFv
 	.4byte run__13JKRAramStreamFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sAramStreamObject__13JKRAramStream
+sAramStreamObject__13JKRAramStream:
+	.skip 0x4
+.global transBuffer__13JKRAramStream
+transBuffer__13JKRAramStream:
+	.skip 0x4
+.global transSize__13JKRAramStream
+transSize__13JKRAramStream:
+	.skip 0x4
+.global transHeap__13JKRAramStream
+transHeap__13JKRAramStream:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__13JKRAramStreamFl
 create__13JKRAramStreamFl:

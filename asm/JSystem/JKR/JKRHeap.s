@@ -41,6 +41,42 @@ sDefaultFillFlag__7JKRHeap:
 	.byte 1
 	.skip 3
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sSystemHeap__7JKRHeap
+sSystemHeap__7JKRHeap:
+	.skip 0x4
+.global sCurrentHeap__7JKRHeap
+sCurrentHeap__7JKRHeap:
+	.skip 0x4
+.global sRootHeap__7JKRHeap
+sRootHeap__7JKRHeap:
+	.skip 0x4
+.global mErrorHandler__7JKRHeap
+mErrorHandler__7JKRHeap:
+	.skip 0x4
+.global sDefaultFillCheckFlag__7JKRHeap
+sDefaultFillCheckFlag__7JKRHeap:
+	.skip 0x4
+.global mCodeStart__7JKRHeap
+mCodeStart__7JKRHeap:
+	.skip 0x4
+.global mCodeEnd__7JKRHeap
+mCodeEnd__7JKRHeap:
+	.skip 0x4
+.global mUserRamStart__7JKRHeap
+mUserRamStart__7JKRHeap:
+	.skip 0x4
+.global mUserRamEnd__7JKRHeap
+mUserRamEnd__7JKRHeap:
+	.skip 0x4
+.global mMemorySize__7JKRHeap
+mMemorySize__7JKRHeap:
+	.skip 0x4
+.global bVerbose___Q27JKRHeap6TState
+bVerbose___Q27JKRHeap6TState:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__7JKRHeapFPvUlP7JKRHeapb
 __ct__7JKRHeapFPvUlP7JKRHeapb:

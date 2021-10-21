@@ -37,6 +37,54 @@ errorRetry__12JKRDvdRipper:
 sSZSBufferSize__12JKRDvdRipper:
 	.4byte 0x00000400
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global szpBuf_2
+szpBuf_2:
+	.skip 0x4
+.global szpEnd_2
+szpEnd_2:
+	.skip 0x4
+.global refBuf_2
+refBuf_2:
+	.skip 0x4
+.global refEnd_2
+refEnd_2:
+	.skip 0x4
+.global refCurrent_2
+refCurrent_2:
+	.skip 0x4
+.global srcOffset_2
+srcOffset_2:
+	.skip 0x4
+.global transLeft_2
+transLeft_2:
+	.skip 0x4
+.global srcLimit_2
+srcLimit_2:
+	.skip 0x4
+.global srcFile_2
+srcFile_2:
+	.skip 0x4
+.global fileOffset_2
+fileOffset_2:
+	.skip 0x4
+.global readCount_2
+readCount_2:
+	.skip 0x4
+.global maxDest_2
+maxDest_2:
+	.skip 0x4
+.global isInitMutex_2
+isInitMutex_2:
+	.skip 0x4
+.global tsPtr_2
+tsPtr_2:
+	.skip 0x4
+.global tsArea_2
+tsArea_2:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
 loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl:

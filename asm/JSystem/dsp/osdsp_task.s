@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global DSP_prior_yield
+DSP_prior_yield:
+	.skip 0x4
+.global AUDIO_UPDATE_REQUEST
+AUDIO_UPDATE_REQUEST:
+	.skip 0x4
+.global DSP_prior_task
+DSP_prior_task:
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __DSPHandler

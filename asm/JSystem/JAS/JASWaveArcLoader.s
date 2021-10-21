@@ -32,6 +32,12 @@ __vt__11JASDisposer:
 	.4byte 0
 	.4byte onDispose__11JASDisposerFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sAramHeap__16JASWaveArcLoader
+sAramHeap__16JASWaveArcLoader:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__16JASWaveArcLoaderFP7JASHeap
 init__16JASWaveArcLoaderFP7JASHeap:

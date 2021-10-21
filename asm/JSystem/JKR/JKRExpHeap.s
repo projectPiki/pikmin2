@@ -261,6 +261,24 @@ __vt__10JKRExpHeap:
 	.4byte state_compare__10JKRExpHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
 	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global DBfoundSize
+DBfoundSize:
+	.skip 0x4
+.global DBfoundOffset
+DBfoundOffset:
+	.skip 0x4
+.global DBfoundBlock
+DBfoundBlock:
+	.skip 0x4
+.global DBnewFreeBlock
+DBnewFreeBlock:
+	.skip 0x4
+.global DBnewUsedBlock
+DBnewUsedBlock:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createRoot__10JKRExpHeapFib
 createRoot__10JKRExpHeapFib:

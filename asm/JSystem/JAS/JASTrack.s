@@ -46,6 +46,21 @@ lbl_804A4394:
 	.4byte lbl_800A1CBC
 	.4byte lbl_800A1CB8
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sCallBackFunc__8JASTrack
+sCallBackFunc__8JASTrack:
+	.skip 0x4
+.global sParser__8JASTrack
+sParser__8JASTrack:
+	.skip 0x4
+.global sFreeList__8JASTrack
+sFreeList__8JASTrack:
+	.skip 0x4
+.global sFreeListEnd__8JASTrack
+sFreeListEnd__8JASTrack:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8JASTrackFv
 __ct__8JASTrackFv:

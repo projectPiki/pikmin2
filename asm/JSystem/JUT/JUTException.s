@@ -182,6 +182,33 @@ __vt__12JUTException:
 sMessageBuffer__12JUTException:
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sErrorManager__12JUTException
+sErrorManager__12JUTException:
+	.skip 0x4
+.global sPreUserCallback__12JUTException
+sPreUserCallback__12JUTException:
+	.skip 0x4
+.global sPostUserCallback__12JUTException
+sPostUserCallback__12JUTException:
+	.skip 0x4
+.global sConsoleBuffer__12JUTException
+sConsoleBuffer__12JUTException:
+	.skip 0x4
+.global sConsoleBufferSize__12JUTException
+sConsoleBufferSize__12JUTException:
+	.skip 0x4
+.global sConsole__12JUTException
+sConsole__12JUTException:
+	.skip 0x4
+.global msr__12JUTException
+msr__12JUTException:
+	.skip 0x4
+.global fpscr__12JUTException
+fpscr__12JUTException:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__12JUTExceptionFP14JUTDirectPrint
 create__12JUTExceptionFP14JUTDirectPrint:

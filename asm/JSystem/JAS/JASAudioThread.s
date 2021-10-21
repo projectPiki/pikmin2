@@ -17,6 +17,24 @@ __vt__14JASAudioThread:
 	.4byte __dt__14JASAudioThreadFv
 	.4byte run__14JASAudioThreadFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sAudioThread__14JASAudioThread
+sAudioThread__14JASAudioThread:
+	.skip 0x4
+.global sThreadQueue__14JASAudioThread
+sThreadQueue__14JASAudioThread:
+	.skip 0x8
+.global sVFrameCounter__14JASAudioThread
+sVFrameCounter__14JASAudioThread:
+	.skip 0x4
+.global snIntCount__14JASAudioThread
+snIntCount__14JASAudioThread:
+	.skip 0x4
+.global sbPauseFlag__14JASAudioThread
+sbPauseFlag__14JASAudioThread:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__14JASAudioThreadFl
 create__14JASAudioThreadFl:

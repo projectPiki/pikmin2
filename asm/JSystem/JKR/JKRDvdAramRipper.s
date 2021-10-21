@@ -8,6 +8,63 @@ errorRetry__16JKRDvdAramRipper:
 sSZSBufferSize__16JKRDvdAramRipper:
 	.4byte 0x00000400
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global szpBuf_1
+szpBuf_1:
+	.skip 0x4
+.global szpEnd_1
+szpEnd_1:
+	.skip 0x4
+.global refBuf_1
+refBuf_1:
+	.skip 0x4
+.global refEnd_1
+refEnd_1:
+	.skip 0x4
+.global refCurrent_1
+refCurrent_1:
+	.skip 0x4
+.global dmaBuf
+dmaBuf:
+	.skip 0x4
+.global dmaEnd
+dmaEnd:
+	.skip 0x4
+.global dmaCurrent
+dmaCurrent:
+	.skip 0x4
+.global srcOffset_1
+srcOffset_1:
+	.skip 0x4
+.global transLeft_1
+transLeft_1:
+	.skip 0x4
+.global srcLimit_1
+srcLimit_1:
+	.skip 0x4
+.global srcFile
+srcFile:
+	.skip 0x4
+.global fileOffset_1
+fileOffset_1:
+	.skip 0x4
+.global readCount_1
+readCount_1:
+	.skip 0x4
+.global maxDest_1
+maxDest_1:
+	.skip 0x4
+.global isInitMutex_1
+isInitMutex_1:
+	.skip 0x4
+.global tsPtr_1
+tsPtr_1:
+	.skip 0x4
+.global tsArea_1
+tsArea_1:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
 loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl:

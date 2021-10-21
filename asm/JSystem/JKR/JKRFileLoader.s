@@ -27,6 +27,12 @@ rootPath$2747:
 	.byte 0x2f
 	.skip 0x3
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sCurrentVolume__13JKRFileLoader
+sCurrentVolume__13JKRFileLoader:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13JKRFileLoaderFv
 __ct__13JKRFileLoaderFv:

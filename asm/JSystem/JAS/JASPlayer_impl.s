@@ -397,6 +397,21 @@ sTreTable__9JASPlayer:
 	.4byte 0x00000001
 	.4byte 0x00000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sV0$663
+sV0$663:
+	.skip 0x4
+.global init$664
+init$664:
+	.skip 0x4
+.global sV1$666
+sV1$666:
+	.skip 0x4
+.global init$667
+init$667:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global extend8to16__9JASPlayerFUc
 extend8to16__9JASPlayerFUc:

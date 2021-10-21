@@ -92,6 +92,12 @@ ColorBlack:
 ColorWhite:
 	.4byte 0xffffffff
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global j3dDefaultViewNo
+j3dDefaultViewNo:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__6J3DSysFv
 __ct__6J3DSysFv:

@@ -16,6 +16,21 @@ OSC_ENV__10JASBankMgr:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sTableSize__10JASBankMgr
+sTableSize__10JASBankMgr:
+	.skip 0x4
+.global sBankArray__10JASBankMgr
+sBankArray__10JASBankMgr:
+	.skip 0x4
+.global sVir2PhyTable__10JASBankMgr
+sVir2PhyTable__10JASBankMgr:
+	.skip 0x4
+.global "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"
+"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>":
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__10JASBankMgrFi
 init__10JASBankMgrFi:

@@ -73,6 +73,57 @@ __vt__7JKRAram:
 sSZSBufferSize__7JKRAram:
 	.4byte 0x00000400
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sAramObject__7JKRAram
+sAramObject__7JKRAram:
+	.skip 0x4
+.global szpBuf
+szpBuf:
+	.skip 0x4
+.global szpEnd
+szpEnd:
+	.skip 0x4
+.global refBuf
+refBuf:
+	.skip 0x4
+.global refEnd
+refEnd:
+	.skip 0x4
+.global refCurrent
+refCurrent:
+	.skip 0x4
+.global srcOffset
+srcOffset:
+	.skip 0x4
+.global transLeft
+transLeft:
+	.skip 0x4
+.global srcLimit
+srcLimit:
+	.skip 0x4
+.global srcAddress
+srcAddress:
+	.skip 0x4
+.global fileOffset
+fileOffset:
+	.skip 0x4
+.global readCount
+readCount:
+	.skip 0x4
+.global maxDest
+maxDest:
+	.skip 0x4
+.global isInitMutex
+isInitMutex:
+	.skip 0x4
+.global tsPtr
+tsPtr:
+	.skip 0x4
+.global tsArea
+tsArea:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__7JKRAramFUlUllll
 create__7JKRAramFUlUllll:

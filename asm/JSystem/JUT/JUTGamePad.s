@@ -41,6 +41,51 @@ sResetPattern__Q210JUTGamePad13C3ButtonReset:
 sResetMaskPattern__Q210JUTGamePad13C3ButtonReset:
 	.4byte 0x0000ffff
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mListInitialized__10JUTGamePad
+mListInitialized__10JUTGamePad:
+	.skip 0x4
+.global mPadAssign__10JUTGamePad
+mPadAssign__10JUTGamePad:
+	.skip 0x4
+.global sSuppressPadReset__10JUTGamePad
+sSuppressPadReset__10JUTGamePad:
+	.skip 0x4
+.global sAnalogMode__10JUTGamePad
+sAnalogMode__10JUTGamePad:
+	.skip 0x4
+.global sRumbleSupported__10JUTGamePad
+sRumbleSupported__10JUTGamePad:
+	.skip 0x4
+.global mStatus__Q210JUTGamePad7CRumble
+mStatus__Q210JUTGamePad7CRumble:
+	.skip 0x4
+.global mEnabled__Q210JUTGamePad7CRumble
+mEnabled__Q210JUTGamePad7CRumble:
+	.skip 0x4
+.global sCallback__Q210JUTGamePad13C3ButtonReset
+sCallback__Q210JUTGamePad13C3ButtonReset:
+	.skip 0x4
+.global sCallbackArg__Q210JUTGamePad13C3ButtonReset
+sCallbackArg__Q210JUTGamePad13C3ButtonReset:
+	.skip 0x8
+.global sThreshold__Q210JUTGamePad13C3ButtonReset
+sThreshold__Q210JUTGamePad13C3ButtonReset:
+	.skip 0x4
+.global lbl_80514F5C
+lbl_80514F5C:
+	.skip 0x4
+.global sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset
+sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset:
+	.skip 0x1
+.global sResetOccurred__Q210JUTGamePad13C3ButtonReset
+sResetOccurred__Q210JUTGamePad13C3ButtonReset:
+	.skip 0x3
+.global sResetOccurredPort__Q210JUTGamePad13C3ButtonReset
+sResetOccurredPort__Q210JUTGamePad13C3ButtonReset:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
 __ct__10JUTGamePadFQ210JUTGamePad8EPadPort:

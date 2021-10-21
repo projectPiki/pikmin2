@@ -35,6 +35,33 @@ renderMode__Q29JFWSystem11CSetUpParam:
 exConsoleBufferSize__Q29JFWSystem11CSetUpParam:
 	.4byte 0x000024FC
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global rootHeap__9JFWSystem
+rootHeap__9JFWSystem:
+	.skip 0x4
+.global systemHeap__9JFWSystem
+systemHeap__9JFWSystem:
+	.skip 0x4
+.global mainThread__9JFWSystem
+mainThread__9JFWSystem:
+	.skip 0x4
+.global debugPrint__9JFWSystem
+debugPrint__9JFWSystem:
+	.skip 0x4
+.global systemFont__9JFWSystem
+systemFont__9JFWSystem:
+	.skip 0x4
+.global systemConsoleManager__9JFWSystem
+systemConsoleManager__9JFWSystem:
+	.skip 0x4
+.global systemConsole__9JFWSystem
+systemConsole__9JFWSystem:
+	.skip 0x4
+.global sInitCalled__9JFWSystem
+sInitCalled__9JFWSystem:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__9JFWSystemFv
 init__9JFWSystemFv:

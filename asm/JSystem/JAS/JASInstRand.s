@@ -8,6 +8,15 @@ __vt__11JASInstRand:
 	.4byte getY__11JASInstRandCFii
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global init$644
+init$644:
+	.skip 0x4
+.global oRandom$643
+oRandom$643:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getY__11JASInstRandCFii
 getY__11JASInstRandCFii:

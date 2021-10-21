@@ -8,6 +8,24 @@ oneFrameRate:
 oneFrameRateUser:
 	.float 10.0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sManager__10JUTProcBar
+sManager__10JUTProcBar:
+	.skip 0x4
+.global cnt$2595
+cnt$2595:
+	.skip 0x4
+.global init$2596
+init$2596:
+	.skip 0x4
+.global cntUser$2644
+cntUser$2644:
+	.skip 0x4
+.global init$2645
+init$2645:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q210JUTProcBar5CTimeFv
 __ct__Q210JUTProcBar5CTimeFv:

@@ -8,6 +8,18 @@ __vt__10JUTConsole:
 	.4byte __dt__10JUTConsoleFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sManager__17JUTConsoleManager
+sManager__17JUTConsoleManager:
+	.skip 0x4
+.global sReportConsole
+sReportConsole:
+	.skip 0x4
+.global sWarningConsole
+sWarningConsole:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__10JUTConsoleFUiUiP7JKRHeap
 create__10JUTConsoleFUiUiP7JKRHeap:

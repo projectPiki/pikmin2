@@ -6,6 +6,12 @@
 	.byte 1
 	.skip 3
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
+"sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__12JUTAssertionFv
 create__12JUTAssertionFv:

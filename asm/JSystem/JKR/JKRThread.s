@@ -14,6 +14,21 @@ __vt__9JKRThread:
 	.4byte __dt__9JKRThreadFv
 	.4byte run__9JKRThreadFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sManager__15JKRThreadSwitch
+sManager__15JKRThreadSwitch:
+	.skip 0x4
+.global sTotalCount__15JKRThreadSwitch
+sTotalCount__15JKRThreadSwitch:
+	.skip 0x4
+.global sTotalStart__15JKRThreadSwitch
+sTotalStart__15JKRThreadSwitch:
+	.skip 0x4
+.global lbl_80514EE4
+lbl_80514EE4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9JKRThreadFUlii
 __ct__9JKRThreadFUlii:

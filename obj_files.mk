@@ -5,7 +5,6 @@ GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/ctors.o\
 	$(BUILD_DIR)/asm/dtors.o\
 	$(BUILD_DIR)/asm/bss.o\
-	$(BUILD_DIR)/asm/sbss.o\
 	$(BUILD_DIR)/asm/sdata2.o\
 
 TEXT_O_FILES:=\

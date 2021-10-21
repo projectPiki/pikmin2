@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sCurrentHeap__11JASWaveBank
+sCurrentHeap__11JASWaveBank:
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getCurrentHeap__11JASWaveBankFv

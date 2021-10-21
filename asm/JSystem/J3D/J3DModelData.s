@@ -12,6 +12,15 @@ __vt__12J3DModelData:
 	.4byte 0
 	.4byte __dt__12J3DModelDataFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sInterruptFlag$1509
+sInterruptFlag$1509:
+	.skip 0x4
+.global init$1510
+init$1510:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__12J3DModelDataFv
 clear__12J3DModelDataFv:

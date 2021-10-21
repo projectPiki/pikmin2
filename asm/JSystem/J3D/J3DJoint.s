@@ -77,6 +77,18 @@ __vt__17J3DMtxCalcAnmBase:
 	.4byte 0
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mMtxBuffer__10J3DMtxCalc
+mMtxBuffer__10J3DMtxCalc:
+	.skip 0x4
+.global mJoint__10J3DMtxCalc
+mJoint__10J3DMtxCalc:
+	.skip 0x4
+.global mCurrentMtxCalc__8J3DJoint
+mCurrentMtxCalc__8J3DJoint:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
 init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf:

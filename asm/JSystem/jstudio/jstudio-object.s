@@ -1129,6 +1129,12 @@ lbl_8049F4E8:
 	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global soOutput_none___Q27JStudio14TVariableValue
+soOutput_none___Q27JStudio14TVariableValue:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q37JStudio14TVariableValue7TOutputFv
 __dt__Q37JStudio14TVariableValue7TOutputFv:

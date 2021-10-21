@@ -8,6 +8,27 @@ __vt__8JUTVideo:
 	.4byte __dt__8JUTVideoFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sManager__8JUTVideo
+sManager__8JUTVideo:
+	.skip 0x4
+.global sVideoLastTick__8JUTVideo
+sVideoLastTick__8JUTVideo:
+	.skip 0x4
+.global sVideoInterval__8JUTVideo
+sVideoInterval__8JUTVideo:
+	.skip 0x4
+.global sDrawWaiting
+sDrawWaiting:
+	.skip 0x4
+.global frameBuffer$2452
+frameBuffer$2452:
+	.skip 0x4
+.global init$2453
+init$2453:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createManager__8JUTVideoFPC16_GXRenderModeObj
 createManager__8JUTVideoFPC16_GXRenderModeObj:

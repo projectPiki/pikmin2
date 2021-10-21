@@ -64,6 +64,48 @@ sMixMode__9JASDriver:
 sDacRate__9JASDriver:
 	.float 32028.5
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sDspDacBuffer__9JASDriver
+sDspDacBuffer__9JASDriver:
+	.skip 0x4
+.global sDspDacWriteBuffer__9JASDriver
+sDspDacWriteBuffer__9JASDriver:
+	.skip 0x4
+.global sDspDacReadBuffer__9JASDriver
+sDspDacReadBuffer__9JASDriver:
+	.skip 0x4
+.global sDspStatus__9JASDriver
+sDspStatus__9JASDriver:
+	.skip 0x4
+.global sDspDacCallback__9JASDriver
+sDspDacCallback__9JASDriver:
+	.skip 0x4
+.global lastRspMadep__9JASDriver
+lastRspMadep__9JASDriver:
+	.skip 0x4
+.global dacCallbackFunc__9JASDriver
+dacCallbackFunc__9JASDriver:
+	.skip 0x4
+.global extMixCallback__9JASDriver
+extMixCallback__9JASDriver:
+	.skip 0x4
+.global sOutputRate__9JASDriver
+sOutputRate__9JASDriver:
+	.skip 0x4
+.global dacp$428
+dacp$428:
+	.skip 0x4
+.global init$429
+init$429:
+	.skip 0x4
+.global old_time$446
+old_time$446:
+	.skip 0x4
+.global init$447
+init$447:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initAI__9JASDriverFPFv_v
 initAI__9JASDriverFPFv_v:

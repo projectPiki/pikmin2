@@ -34,6 +34,21 @@ __vt__8J2DPrint:
 	.4byte __dt__8J2DPrintFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mStrBuff__8J2DPrint
+mStrBuff__8J2DPrint:
+	.skip 0x4
+.global mHeapFlag__8J2DPrint
+mHeapFlag__8J2DPrint:
+	.skip 0x4
+.global mStrBuffSize__8J2DPrint
+mStrBuffSize__8J2DPrint:
+	.skip 0x4
+.global mBufferNotEnough__8J2DPrint
+mBufferNotEnough__8J2DPrint:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8J2DPrintFP7JUTFontf
 __ct__8J2DPrintFP7JUTFontf:

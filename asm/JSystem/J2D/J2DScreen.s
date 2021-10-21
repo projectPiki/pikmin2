@@ -44,6 +44,12 @@ __vt__9J2DScreen:
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mDataManage__9J2DScreen
+mDataManage__9J2DScreen:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9J2DScreenFv
 __ct__9J2DScreenFv:
