@@ -5,18 +5,19 @@
 
 extern
 
-/*
- * --INFO--
- * Address:	80413658
- * Size:	0000AC
- */
-BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* comment)
-	: m_id()
-	, m_comment(comment)
+    /*
+     * --INFO--
+     * Address:	80413658
+     * Size:	0000AC
+     */
+    BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* comment)
+    : m_id()
+    , m_comment(comment)
 {
 	BaseParm* parm1;
 	BaseParm* parm2 = nullptr;
-	for (parm1 = parameters->m_parmsHead; parm1 != NULL; parm1 = parm2->m_next) {
+	for (parm1 = parameters->m_parmsHead; parm1 != NULL;
+	     parm1 = parm2->m_next) {
 		parm2 = parm1;
 	}
 	if (parm2 != nullptr) {
@@ -24,7 +25,7 @@ BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* comment)
 	} else {
 		parameters->m_parmsHead = this;
 	}
-	m_id = rawID;
+	m_id   = rawID;
 	m_next = nullptr;
 }
 
@@ -73,7 +74,7 @@ void Parameters::read(Stream& stream)
 		char buffer[256];
 		currentID.sprint(buffer);
 		int parmSize = stream.readInt();
-		currentParm = findParm(currentID.m_id.raw);
+		currentParm  = findParm(currentID.m_id.raw);
 		if (currentParm != nullptr) {
 			currentParm->read(stream);
 		} else {
@@ -92,8 +93,6 @@ void Parameters::read(Stream& stream)
  * Size:	000004
  */
 void BaseParm::read(Stream& stream) { return; }
-
-
 
 /*
  * --INFO--
@@ -115,56 +114,74 @@ BaseParm* Parameters::findParm(ulong rawID)
  * Address:	80413924
  * Size:	000034
  */
-template<> void Parm<int>::read(Stream& stream) { m_value = stream.readInt(); }
+template <> void Parm<int>::read(Stream& stream) { m_value = stream.readInt(); }
 
 /*
  * --INFO--
  * Address:	80413958
  * Size:	00002C
  */
-template<> void Parm<int>::write(Stream& stream) { stream.writeInt(m_value); }
+template <> void Parm<int>::write(Stream& stream) { stream.writeInt(m_value); }
 
 /*
  * --INFO--
  * Address:	80413984
  * Size:	000034
  */
-template<> void Parm<unsigned char>::read(Stream& stream) { m_value = stream.readByte(); }
+template <> void Parm<unsigned char>::read(Stream& stream)
+{
+	m_value = stream.readByte();
+}
 
 /*
  * --INFO--
  * Address:	804139B8
  * Size:	00002C
  */
-template<> void Parm<unsigned char>::write(Stream& stream) { stream.writeByte((u8)m_value); }
+template <> void Parm<unsigned char>::write(Stream& stream)
+{
+	stream.writeByte((u8)m_value);
+}
 
 /*
  * --INFO--
  * Address:	804139E4
  * Size:	000044
  */
-template<> void Parm<bool>::read(Stream& stream) { m_value = (bool)stream.readByte(); }
+template <> void Parm<bool>::read(Stream& stream)
+{
+	m_value = (bool)stream.readByte();
+}
 
 /*
  * --INFO--
  * Address:	80413A28
  * Size:	000034
  */
-template<> void Parm<bool>::write(Stream& stream) { stream.writeByte(m_value ? 1 : 0); }
+template <> void Parm<bool>::write(Stream& stream)
+{
+	stream.writeByte(m_value ? 1 : 0);
+}
 
 /*
  * --INFO--
  * Address:	80413A5C
  * Size:	000034
  */
-template<> void Parm<float>::read(Stream& stream) { m_value = stream.readFloat(); }
+template <> void Parm<float>::read(Stream& stream)
+{
+	m_value = stream.readFloat();
+}
 
 /*
  * --INFO--
  * Address:	80413A90
  * Size:	000028
  */
-template<> void Parm<float>::write(Stream& stream) { stream.writeFloat(m_value); }
+template <> void Parm<float>::write(Stream& stream)
+{
+	stream.writeFloat(m_value);
+}
 
 #ifdef NOPE
 
@@ -173,12 +190,13 @@ template<> void Parm<float>::write(Stream& stream) { stream.writeFloat(m_value);
  * Address:	80413AB8
  * Size:	0001B0
  */
-ParmString::ParmString(Parameters* parameters, char* value, int length, ulong rawID, char* comment)
-	: BaseParm(parameters, rawID, comment)
-	, m_length(length)
+ParmString::ParmString(Parameters* parameters, char* value, int length,
+                       ulong rawID, char* comment)
+    : BaseParm(parameters, rawID, comment)
+    , m_length(length)
 {
-	char* buffer = new char[m_length+1];
-	m_value = buffer;
+	char* buffer     = new char[m_length + 1];
+	m_value          = buffer;
 	int actualLength = strlen(value);
 	int i;
 	for (i = 0; i < actualLength; ++i) {

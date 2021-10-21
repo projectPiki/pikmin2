@@ -36,5 +36,4 @@ struct ParmString : public BaseParm {
 	int m_length;
 };
 
-
 #endif

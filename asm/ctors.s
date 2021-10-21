@@ -241,4 +241,3 @@ __init_cpp_exceptions_reference:
   	.4byte __sinit_PSMainSide_Scene_cpp
   	.4byte __sinit_PSMainSide_Sound_cpp
   	.4byte __sinit_PSMainSide_CreaturePrm_cpp
-	
