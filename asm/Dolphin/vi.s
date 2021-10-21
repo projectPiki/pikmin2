@@ -250,6 +250,75 @@ lbl_805148EC:
 	.asciz "vi.c"
 	.skip 3
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global IsInitialized
+IsInitialized:
+	.skip 0x4
+.global retraceCount
+retraceCount:
+	.skip 0x4
+.global flushFlag
+flushFlag:
+	.skip 0x4
+.global retraceQueue
+retraceQueue:
+	.skip 0x8
+.global PreCB
+PreCB:
+	.skip 0x4
+.global PostCB
+PostCB:
+	.skip 0x4
+.global PositionCallback
+PositionCallback:
+	.skip 0x4
+.global encoderType
+encoderType:
+	.skip 0x4
+.global displayOffsetH
+displayOffsetH:
+	.skip 0x2
+.global displayOffsetV
+displayOffsetV:
+	.skip 0x2
+.global changeMode
+changeMode:
+	.skip 0x8
+.global changed
+changed:
+	.skip 0x4
+.global lbl_805153AC
+lbl_805153AC:
+	.skip 0x4
+.global shdwChangeMode
+shdwChangeMode:
+	.skip 0x8
+.global shdwChanged
+shdwChanged:
+	.skip 0x4
+.global lbl_805153BC
+lbl_805153BC:
+	.skip 0x4
+.global CurrTiming
+CurrTiming:
+	.skip 0x4
+.global CurrTvMode
+CurrTvMode:
+	.skip 0x4
+.global NextBufAddr
+NextBufAddr:
+	.skip 0x4
+.global CurrBufAddr
+CurrBufAddr:
+	.skip 0x4
+.global FBSet
+FBSet:
+	.skip 0x4
+.global message$343
+message$343:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __VIRetraceHandler
 __VIRetraceHandler:

@@ -87,6 +87,63 @@ lbl_80514944:
 DmaCommand:
 	.4byte 0xFFFFFFFF
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global executing
+executing:
+	.skip 0x4
+.global IDShouldBe
+IDShouldBe:
+	.skip 0x4
+.global bootInfo
+bootInfo:
+	.skip 0x4
+.global PauseFlag
+PauseFlag:
+	.skip 0x4
+.global PausingFlag
+PausingFlag:
+	.skip 0x4
+.global AutoFinishing
+AutoFinishing:
+	.skip 0x4
+.global FatalErrorFlag
+FatalErrorFlag:
+	.skip 0x4
+.global CurrCommand
+CurrCommand:
+	.skip 0x4
+.global Canceling
+Canceling:
+	.skip 0x4
+.global CancelCallback
+CancelCallback:
+	.skip 0x4
+.global ResumeFromHere
+ResumeFromHere:
+	.skip 0x4
+.global CancelLastError
+CancelLastError:
+	.skip 0x4
+.global LastError
+LastError:
+	.skip 0x4
+.global NumInternalRetry
+NumInternalRetry:
+	.skip 0x4
+.global ResetRequired
+ResetRequired:
+	.skip 0x4
+.global FirstTimeInBootrom
+FirstTimeInBootrom:
+	.skip 0x4
+.global DVDInitialized
+DVDInitialized:
+	.skip 0x4
+.global LastState
+LastState:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global defaultOptionalCommandChecker
 defaultOptionalCommandChecker:

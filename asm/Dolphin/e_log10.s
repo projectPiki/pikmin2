@@ -1,4 +1,8 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+zero:
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ieee754_log10
@@ -19,7 +23,7 @@ __ieee754_log10:
 /* 800CD088 000C9FC8  40 82 00 1C */	bne lbl_800CD0A4
 /* 800CD08C 000C9FCC  C8 22 8F 68 */	lfd f1, lbl_805172C8@sda21(r2)
 /* 800CD090 000C9FD0  38 00 00 21 */	li r0, 0x21
-/* 800CD094 000C9FD4  C8 0D 8C D8 */	lfd f0, zero_1@sda21(r13)
+/* 800CD094 000C9FD4  C8 0D 8C D8 */	lfd f0, zero@sda21(r13)
 /* 800CD098 000C9FD8  90 0D 8C C0 */	stw r0, errno@sda21(r13)
 /* 800CD09C 000C9FDC  FC 21 00 24 */	fdiv f1, f1, f0
 /* 800CD0A0 000C9FE0  48 00 00 B0 */	b lbl_800CD150
@@ -27,7 +31,7 @@ lbl_800CD0A4:
 /* 800CD0A4 000C9FE4  2C 05 00 00 */	cmpwi r5, 0
 /* 800CD0A8 000C9FE8  40 80 00 1C */	bge lbl_800CD0C4
 /* 800CD0AC 000C9FEC  FC 21 08 28 */	fsub f1, f1, f1
-/* 800CD0B0 000C9FF0  C8 0D 8C D8 */	lfd f0, zero_1@sda21(r13)
+/* 800CD0B0 000C9FF0  C8 0D 8C D8 */	lfd f0, zero@sda21(r13)
 /* 800CD0B4 000C9FF4  38 00 00 21 */	li r0, 0x21
 /* 800CD0B8 000C9FF8  90 0D 8C C0 */	stw r0, errno@sda21(r13)
 /* 800CD0BC 000C9FFC  FC 21 00 24 */	fdiv f1, f1, f0

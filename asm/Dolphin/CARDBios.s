@@ -24,6 +24,12 @@ ResetFunctionInfo:
 __CARDVersion:
 	.4byte lbl_804A7710
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global __CARDEncode
+__CARDEncode:
+	.skip 0x2
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __CARDDefaultApiCallback
 __CARDDefaultApiCallback:

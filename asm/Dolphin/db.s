@@ -5,6 +5,15 @@
 lbl_804A7920:
 	.asciz "DBExceptionDestination\n"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global __DBInterface
+__DBInterface:
+	.skip 0x4
+.global DBVerbose
+DBVerbose:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DBInit
 DBInit:

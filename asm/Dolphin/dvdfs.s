@@ -26,6 +26,30 @@ lbl_804A7C5C:
 lbl_80514930:
 	.asciz "dvdfs.c"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global BootInfo
+BootInfo:
+	.skip 0x4
+.global FstStart
+FstStart:
+	.skip 0x4
+.global FstStringStart
+FstStringStart:
+	.skip 0x4
+.global MaxEntryNum
+MaxEntryNum:
+	.skip 0x4
+.global currentDirectory
+currentDirectory:
+	.skip 0x4
+.global __DVDLongFileNameFlag
+__DVDLongFileNameFlag:
+	.skip 0x4
+.global __DVDThreadQueue
+__DVDThreadQueue:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __DVDFSInit
 __DVDFSInit:

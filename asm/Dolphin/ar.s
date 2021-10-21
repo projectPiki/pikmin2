@@ -11,6 +11,33 @@ lbl_804A7680:
 __ARVersion:
 	.4byte lbl_804A7680
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global __AR_Callback
+__AR_Callback:
+	.skip 0x4
+.global __AR_Size
+__AR_Size:
+	.skip 0x4
+.global __AR_InternalSize
+__AR_InternalSize:
+	.skip 0x4
+.global __AR_ExpansionSize
+__AR_ExpansionSize:
+	.skip 0x4
+.global __AR_StackPointer
+__AR_StackPointer:
+	.skip 0x4
+.global __AR_FreeBlocks
+__AR_FreeBlocks:
+	.skip 0x4
+.global __AR_BlockLength
+__AR_BlockLength:
+	.skip 0x4
+.global __AR_init_flag
+__AR_init_flag:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global ARRegisterDMACallback
 ARRegisterDMACallback:

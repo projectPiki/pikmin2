@@ -5,6 +5,60 @@
 FirstRead:
 	.4byte 0x00000001
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global StopAtNextInt
+StopAtNextInt:
+	.skip 0x4
+.global LastLength
+LastLength:
+	.skip 0x4
+.global Callback_1
+Callback_1:
+	.skip 0x4
+.global ResetCoverCallback
+ResetCoverCallback:
+	.skip 0x4
+.global LastResetEnd
+LastResetEnd:
+	.skip 0x4
+.global lbl_8051545C
+lbl_8051545C:
+	.skip 0x4
+.global ResetOccurred
+ResetOccurred:
+	.skip 0x4
+.global WaitingCoverClose
+WaitingCoverClose:
+	.skip 0x4
+.global Breaking
+Breaking:
+	.skip 0x4
+.global WorkAroundType
+WorkAroundType:
+	.skip 0x4
+.global WorkAroundSeekLocation
+WorkAroundSeekLocation:
+	.skip 0x8
+.global LastReadFinished
+LastReadFinished:
+	.skip 0x4
+.global lbl_8051547C
+lbl_8051547C:
+	.skip 0x4
+.global LastReadIssued
+LastReadIssued:
+	.skip 0x4
+.global lbl_80515484
+lbl_80515484:
+	.skip 0x4
+.global LastCommandWasRead
+LastCommandWasRead:
+	.skip 0x4
+.global NextCommandNumber
+NextCommandNumber:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __DVDInitWA
 __DVDInitWA:

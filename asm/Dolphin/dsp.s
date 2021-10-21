@@ -17,6 +17,12 @@ lbl_804A7938:
 __DSPVersion:
 	.4byte lbl_804A7938
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global __DSP_init_flag
+__DSP_init_flag:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DSPCheckMailToDSP
 DSPCheckMailToDSP:

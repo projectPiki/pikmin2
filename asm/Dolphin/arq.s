@@ -12,6 +12,39 @@ lbl_804A76C8:
 __ARQVersion:
 	.4byte lbl_804A76C8
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global __ARQRequestQueueHi
+__ARQRequestQueueHi:
+	.skip 0x4
+.global __ARQRequestTailHi
+__ARQRequestTailHi:
+	.skip 0x4
+.global __ARQRequestQueueLo
+__ARQRequestQueueLo:
+	.skip 0x4
+.global __ARQRequestTailLo
+__ARQRequestTailLo:
+	.skip 0x4
+.global __ARQRequestPendingHi
+__ARQRequestPendingHi:
+	.skip 0x4
+.global __ARQRequestPendingLo
+__ARQRequestPendingLo:
+	.skip 0x4
+.global __ARQCallbackHi
+__ARQCallbackHi:
+	.skip 0x4
+.global __ARQCallbackLo
+__ARQCallbackLo:
+	.skip 0x4
+.global __ARQChunkSize
+__ARQChunkSize:
+	.skip 0x4
+.global __ARQ_init_flag
+__ARQ_init_flag:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ARQServiceQueueLo
 __ARQServiceQueueLo:

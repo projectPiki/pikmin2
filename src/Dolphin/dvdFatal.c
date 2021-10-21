@@ -1,4 +1,4 @@
-extern void (*FatalFunc)();
+static void (*FatalFunc)();
 
 /*
  * --INFO--
