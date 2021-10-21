@@ -274,6 +274,7 @@ __vt__Q211Pikmin2ARAM3Mgr:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global gPikmin2AramMgr
 gPikmin2AramMgr:
 	.skip 0x8

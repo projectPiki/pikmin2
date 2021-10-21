@@ -17,6 +17,7 @@ __vt__Q23Sys7OBBTree:
 	.4byte do_clone__Q23Sys10TriDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global debugTraceMove__Q23Sys7OBBTree
 debugTraceMove__Q23Sys7OBBTree:
 	.skip 0x8

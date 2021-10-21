@@ -15,6 +15,7 @@ lbl_80499654:
 	.skip 0xC
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global "__init__zero__10Vector3<f>"
 "__init__zero__10Vector3<f>":
 	.skip 0x8

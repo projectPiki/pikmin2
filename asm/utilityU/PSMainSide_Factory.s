@@ -245,6 +245,7 @@ __vt__Q23PSM12Env_Pollutin:
 	.4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_80516308
 lbl_80516308:
 	.skip 0x4

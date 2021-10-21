@@ -415,6 +415,7 @@ mFlashColor__Q28Morimura16TChallengeResult:
 	.4byte 0xFFFF00FF
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global mForceDemoStart__Q28Morimura16TChallengeResult
 mForceDemoStart__Q28Morimura16TChallengeResult:
 	.skip 0x1

@@ -63,6 +63,7 @@ cInitialCode__Q23ebi11CardEReader:
 	.ascii "PSAJ"
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global gCardEMgr__3ebi
 gCardEMgr__3ebi:
 	.skip 0x8

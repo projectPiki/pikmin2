@@ -9,6 +9,7 @@ lbl_804EC810:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_80516240
 lbl_80516240:
 	.skip 0x4

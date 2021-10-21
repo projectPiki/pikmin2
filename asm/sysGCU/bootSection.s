@@ -197,6 +197,7 @@ sTinyPikminNum__13TinyPikminMgr:
 	.4byte 10
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_80516290
 lbl_80516290:
 	.skip 0x4

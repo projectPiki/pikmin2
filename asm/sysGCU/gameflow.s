@@ -188,6 +188,7 @@ mActiveSectionFlag__8GameFlow:
 	.4byte 0x00000015
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_80516188
 lbl_80516188:
 	.skip 0x4

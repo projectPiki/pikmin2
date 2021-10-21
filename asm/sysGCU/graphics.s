@@ -32,6 +32,7 @@ __vt__8Splitter:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_80516190
 lbl_80516190:
 	.skip 0x4

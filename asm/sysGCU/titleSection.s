@@ -268,6 +268,7 @@ __vt__Q25Title7Section:
 	.byte 0xFF
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_805162A0
 lbl_805162A0:
 	.skip 0x4

@@ -21,6 +21,7 @@ __vt__Q24ARAM4Node:
 	.4byte getChildCount__5CNodeFv
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global gAramMgr
 gAramMgr:
 	.skip 0x8

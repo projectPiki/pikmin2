@@ -492,6 +492,7 @@ __vt__Q33ebi5title8TObjBase:
 	.4byte isCalc__Q33ebi5title8TObjBaseFv
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_805160A0
 lbl_805160A0:
 	.skip 0x4

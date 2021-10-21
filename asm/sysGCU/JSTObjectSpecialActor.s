@@ -92,6 +92,7 @@ __vt__Q34Game5P2JST18ObjectSpecialActor:
 	.4byte parseUserData___Q34Game5P2JST18ObjectSpecialActorFUlPCv
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_80516248
 lbl_80516248:
 	.skip 0x4

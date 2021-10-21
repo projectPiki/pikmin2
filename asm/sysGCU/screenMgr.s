@@ -147,6 +147,7 @@ __vt__Q26Screen13SceneInfoList:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_805162E0
 lbl_805162E0:
 	.skip 0x4

@@ -197,6 +197,7 @@ cMapFileName:
 	.4byte str_MapFileName
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global mRenderMode__6System
 mRenderMode__6System:
 	.skip 0x4

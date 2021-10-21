@@ -131,6 +131,7 @@ __vt__11CullFrustum:
 	.4byte updatePlanes__11CullFrustumFv
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_80516158
 lbl_80516158:
 	.skip 0x4

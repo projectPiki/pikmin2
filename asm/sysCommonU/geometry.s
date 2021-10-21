@@ -98,6 +98,7 @@ __vt__Q23Sys11GridDivider:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global debug__Q23Sys8Triangle
 debug__Q23Sys8Triangle:
 	.skip 0x8

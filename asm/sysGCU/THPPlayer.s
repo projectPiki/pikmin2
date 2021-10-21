@@ -121,6 +121,7 @@ ActivePlayer:
 	.skip 0x1D0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global Initialized_2
 Initialized_2:
 	.skip 0x4

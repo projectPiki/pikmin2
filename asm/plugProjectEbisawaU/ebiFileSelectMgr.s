@@ -249,6 +249,7 @@ __vt__Q33ebi10FileSelect15FSMStateMachine:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global msInstance__Q33ebi10FileSelect4TMgr
 msInstance__Q33ebi10FileSelect4TMgr:
 	.skip 0x8

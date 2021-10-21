@@ -271,6 +271,7 @@ __vt__Q33ebi4Save15FSMStateMachine:
 	.4byte "transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global msInstance__Q33ebi4Save4TMgr
 msInstance__Q33ebi4Save4TMgr:
 	.skip 0x8

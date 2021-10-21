@@ -173,6 +173,7 @@ __vt__Q32kh6Screen11DispPayDept:
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global msVal__Q32kh6Screen10ObjPayDept
 msVal__Q32kh6Screen10ObjPayDept:
 	.skip 0x8

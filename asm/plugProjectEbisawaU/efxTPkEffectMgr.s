@@ -72,6 +72,7 @@ __vt__Q23efx19TPkOneEmitterSimple:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global pkEffectMgr
 pkEffectMgr:
 	.skip 0x4

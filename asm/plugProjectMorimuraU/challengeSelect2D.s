@@ -635,6 +635,7 @@ mSelectIconScale__Q28Morimura16TChallengeSelect:
 	.float 1.5
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global mRightOffset__Q28Morimura16TChallengeSelect
 mRightOffset__Q28Morimura16TChallengeSelect:
 	.skip 0x4

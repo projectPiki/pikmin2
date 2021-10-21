@@ -604,6 +604,7 @@ msVal__Q32kh6Screen19ObjDayEndResultBase:
 	.skip 0x54
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global msVal__Q32kh6Screen19ObjDayEndResultTitl
 msVal__Q32kh6Screen19ObjDayEndResultTitl:
 	.skip 0x8

@@ -127,6 +127,7 @@ __vt__Q34Game5P2JST10ObjectBase:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_805161D8
 lbl_805161D8:
 	.skip 0x4

@@ -9,6 +9,7 @@ __vt__Q25P2JME10TReference:
 	.4byte do_word__Q25P2JME10TReferenceCFUl
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global frm$674
 frm$674:
 	.skip 0x1

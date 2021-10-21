@@ -19,6 +19,7 @@ __vt__Q33ebi5title14TTitleLightMgr:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_805160C8
 lbl_805160C8:
 	.skip 0x4

@@ -1081,6 +1081,7 @@ __vt__Q23PSM7ObjBase:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global sBigBoss__Q23PSM12EnemyBigBoss
 sBigBoss__Q23PSM12EnemyBigBoss:
 	.skip 0x4

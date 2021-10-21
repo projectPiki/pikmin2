@@ -50,6 +50,7 @@ lbl_80520AA8:
 	.4byte 0x6F6F7400
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global gLoadResourceMgr
 gLoadResourceMgr:
 	.skip 0x8

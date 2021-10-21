@@ -233,6 +233,7 @@ __vt__Q35P2JME5Movie10WindowPane:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global lbl_80516238
 lbl_80516238:
 	.skip 0x4

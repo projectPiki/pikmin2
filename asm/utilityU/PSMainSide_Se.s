@@ -185,6 +185,7 @@ sLaderNoiseFuefukiVolumeMax:
 	.float 0.5
 
 .section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
 .global tmpVol$3526
 tmpVol$3526:
 	.skip 0x4
