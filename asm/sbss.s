@@ -2418,6 +2418,3 @@ sInstance__Q29TexCaster3Mgr:
 .global sNum__Q24Game17PelletBirthBuffer
 sNum__Q24Game17PelletBirthBuffer:
 	.skip 0x8
-.global mGpStatus__6VSFifo
-mGpStatus__6VSFifo:
-	.skip 0x8

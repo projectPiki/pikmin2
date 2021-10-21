@@ -14,6 +14,12 @@ __vt__6VSFifo:
 	.4byte 0
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mGpStatus__6VSFifo
+mGpStatus__6VSFifo:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__6VSFifoFUl
 __ct__6VSFifoFUl:
