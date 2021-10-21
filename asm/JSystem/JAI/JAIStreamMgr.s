@@ -32,6 +32,66 @@ sChannelMax__Q27JAInter9StreamMgr:
 decodedBufferBlocks__Q27JAInter9StreamMgr:
 	.4byte 0x00002760
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global flags__Q27JAInter9StreamMgr
+flags__Q27JAInter9StreamMgr:
+	.skip 0x2
+.global prepareSw__Q27JAInter9StreamMgr
+prepareSw__Q27JAInter9StreamMgr:
+	.skip 0x1
+.global prepareFlag__Q27JAInter9StreamMgr
+prepareFlag__Q27JAInter9StreamMgr:
+	.skip 0x1
+.global externalAram__Q27JAInter9StreamMgr
+externalAram__Q27JAInter9StreamMgr:
+	.skip 0x1
+.global finishFlag__Q27JAInter9StreamMgr
+finishFlag__Q27JAInter9StreamMgr:
+	.skip 0x3
+.global streamUpdate__Q27JAInter9StreamMgr
+streamUpdate__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global streamList__Q27JAInter9StreamMgr
+streamList__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global streamSound__Q27JAInter9StreamMgr
+streamSound__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global initOnCodeStrm__Q27JAInter9StreamMgr
+initOnCodeStrm__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global streamSystem__Q27JAInter9StreamMgr
+streamSystem__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global systemStatus__Q27JAInter9StreamMgr
+systemStatus__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global controlStatus__Q27JAInter9StreamMgr
+controlStatus__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global aramBufferHeap__Q27JAInter9StreamMgr
+aramBufferHeap__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global aramParentHeap__Q27JAInter9StreamMgr
+aramParentHeap__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global allocCallback__Q27JAInter9StreamMgr
+allocCallback__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global deallocCallback__Q27JAInter9StreamMgr
+deallocCallback__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global externalAramCallback__Q27JAInter9StreamMgr
+externalAramCallback__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global dataFileNumber__Q27JAInter9StreamMgr
+dataFileNumber__Q27JAInter9StreamMgr:
+	.skip 0x4
+.global mgrCallback__Q27JAInter9StreamMgr
+mgrCallback__Q27JAInter9StreamMgr:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q27JAInter9StreamMgrFv
 init__Q27JAInter9StreamMgrFv:

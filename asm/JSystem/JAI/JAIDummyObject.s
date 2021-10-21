@@ -1,4 +1,15 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global deadObjectFreePointer__Q27JAInter14DummyObjectMgr
+deadObjectFreePointer__Q27JAInter14DummyObjectMgr:
+	.skip 0x4
+.global deadObjectUsedPointer__Q27JAInter14DummyObjectMgr
+deadObjectUsedPointer__Q27JAInter14DummyObjectMgr:
+	.skip 0x4
+.global deadObjectObject__Q27JAInter14DummyObjectMgr
+deadObjectObject__Q27JAInter14DummyObjectMgr:
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q27JAInter14DummyObjectMgrFv

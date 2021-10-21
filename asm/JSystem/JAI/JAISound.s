@@ -230,6 +230,18 @@ __vt__8JAISound:
 	.4byte onGet__8JAISoundFv
 	.4byte onRelease__8JAISoundFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global _port$2234
+_port$2234:
+	.skip 0x2
+.global _port$2291
+_port$2291:
+	.skip 0x2
+.global init$2292
+init$2292:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11JAISequenceFv
 __ct__11JAISequenceFv:

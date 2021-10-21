@@ -1,4 +1,21 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global initOnCodeFxScene__Q27JAInter2Fx
+initOnCodeFxScene__Q27JAInter2Fx:
+	.skip 0x4
+.global mSceneMax__Q27JAInter2Fx
+mSceneMax__Q27JAInter2Fx:
+	.skip 0x4
+.global mBufferSizeMax__Q27JAInter2Fx
+mBufferSizeMax__Q27JAInter2Fx:
+	.skip 0x4
+.global mBufferPointer__Q27JAInter2Fx
+mBufferPointer__Q27JAInter2Fx:
+	.skip 0x4
+.global mFxconfigTable__Q27JAInter2Fx
+mFxconfigTable__Q27JAInter2Fx:
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q27JAInter2FxFv

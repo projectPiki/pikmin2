@@ -1,4 +1,21 @@
 .include "macros.inc"
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global seqTrackInfo__Q27JAInter11SequenceMgr
+seqTrackInfo__Q27JAInter11SequenceMgr:
+	.skip 0x4
+.global FixSeqBufPointer__Q27JAInter11SequenceMgr
+FixSeqBufPointer__Q27JAInter11SequenceMgr:
+	.skip 0x4
+.global seqControl__Q27JAInter11SequenceMgr
+seqControl__Q27JAInter11SequenceMgr:
+	.skip 0x8
+.global arcPointer__Q27JAInter11SequenceMgr
+arcPointer__Q27JAInter11SequenceMgr:
+	.skip 0x4
+.global customHeapCallback__Q27JAInter11SequenceMgr
+customHeapCallback__Q27JAInter11SequenceMgr:
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q27JAInter11SequenceMgrFv

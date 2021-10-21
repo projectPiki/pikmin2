@@ -148,6 +148,18 @@ seDistanceWaitMax__18JAIGlobalParameter:
 seDistancepitchMax__18JAIGlobalParameter:
 	.float 0.2
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global seDefaultFx__18JAIGlobalParameter
+seDefaultFx__18JAIGlobalParameter:
+	.skip 0x4
+.global interfaceHeapSize__18JAIGlobalParameter
+interfaceHeapSize__18JAIGlobalParameter:
+	.skip 0x4
+.global minDistanceVolume__18JAIGlobalParameter
+minDistanceVolume__18JAIGlobalParameter:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setParamInitDataPointer__18JAIGlobalParameterFPv
 setParamInitDataPointer__18JAIGlobalParameterFPv:

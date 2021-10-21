@@ -23,6 +23,12 @@ wsInitCallback__Q27JAInter8InitData:
 bnkInitCallback__Q27JAInter8InitData:
 	.4byte initBnkList__Q27JAInter8InitDataFPUl
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global aafPointer__Q27JAInter8InitData
+aafPointer__Q27JAInter8InitData:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setWsInitCallback__Q27JAInter8InitDataFPFPUl_v
 setWsInitCallback__Q27JAInter8InitDataFPFPUl_v:

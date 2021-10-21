@@ -5,6 +5,36 @@
 seStartCallback__Q27JAInter5SeMgr:
 	.4byte startSeSequence__Q27JAInter5SeMgrFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global seTrackUpdate__Q27JAInter5SeMgr
+seTrackUpdate__Q27JAInter5SeMgr:
+	.skip 0x4
+.global categoryInfoTable__Q27JAInter5SeMgr
+categoryInfoTable__Q27JAInter5SeMgr:
+	.skip 0x4
+.global sePlaySound__Q27JAInter5SeMgr
+sePlaySound__Q27JAInter5SeMgr:
+	.skip 0x4
+.global seRegist__Q27JAInter5SeMgr
+seRegist__Q27JAInter5SeMgr:
+	.skip 0x4
+.global seHandle__Q27JAInter5SeMgr
+seHandle__Q27JAInter5SeMgr:
+	.skip 0x4
+.global seScene__Q27JAInter5SeMgr
+seScene__Q27JAInter5SeMgr:
+	.skip 0x4
+.global seqMuteFlagFromSe__Q27JAInter5SeMgr
+seqMuteFlagFromSe__Q27JAInter5SeMgr:
+	.skip 0x4
+.global seCategoryVolume__Q27JAInter5SeMgr
+seCategoryVolume__Q27JAInter5SeMgr:
+	.skip 0x4
+.global seEntryCancel__Q27JAInter5SeMgr
+seEntryCancel__Q27JAInter5SeMgr:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q27JAInter5SeMgrFv
 init__Q27JAInter5SeMgrFv:

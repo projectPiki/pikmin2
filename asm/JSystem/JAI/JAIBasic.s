@@ -20,6 +20,33 @@ __vt__8JAIBasic:
 msStopStatus__8JAIBasic:
 	.4byte 0x03000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global msBasic__8JAIBasic
+msBasic__8JAIBasic:
+	.skip 0x4
+.global msCurrentHeap__8JAIBasic
+msCurrentHeap__8JAIBasic:
+	.skip 0x4
+.global msStopMode__8JAIBasic
+msStopMode__8JAIBasic:
+	.skip 0x4
+.global msAudioStopTime__8JAIBasic
+msAudioStopTime__8JAIBasic:
+	.skip 0x4
+.global msDspLevel__8JAIBasic
+msDspLevel__8JAIBasic:
+	.skip 0x4
+.global msAutoLevel__8JAIBasic
+msAutoLevel__8JAIBasic:
+	.skip 0x4
+.global msAutoDif__8JAIBasic
+msAutoDif__8JAIBasic:
+	.skip 0x4
+.global msDspDif__8JAIBasic
+msDspDif__8JAIBasic:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8JAIBasicFv
 __ct__8JAIBasicFv:
