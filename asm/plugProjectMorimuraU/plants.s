@@ -1262,6 +1262,15 @@ __vt__Q34Game6Plants3Obj:
 	.4byte "@704@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515F38
+lbl_80515F38:
+	.skip 0x4
+.global lbl_80515F3C
+lbl_80515F3C:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E550

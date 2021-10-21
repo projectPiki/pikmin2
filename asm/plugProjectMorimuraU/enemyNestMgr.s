@@ -296,6 +296,12 @@ __vt__Q34Game4Nest3Mgr:
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mMatColor__Q24Game4Nest
+mMatColor__Q24Game4Nest:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Nest3MgrFiUc
 __ct__Q34Game4Nest3MgrFiUc:

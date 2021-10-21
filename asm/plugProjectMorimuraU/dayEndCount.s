@@ -257,6 +257,18 @@ mColor__Q28Morimura12TDayEndCount:
 mNumberColor__Q28Morimura12TDayEndCount:
 	.4byte 0xFF6400FF
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mColorTest__Q28Morimura12TDayEndCount
+mColorTest__Q28Morimura12TDayEndCount:
+	.skip 0x1
+.global mTestChangeColor__Q28Morimura12TDayEndCount
+mTestChangeColor__Q28Morimura12TDayEndCount:
+	.skip 0x1
+.global mCountDownType__Q28Morimura12TDayEndCount
+mCountDownType__Q28Morimura12TDayEndCount:
+	.skip 0x6
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E1F8

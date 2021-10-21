@@ -243,6 +243,27 @@ __vt__Q34Game11ShijimiChou3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mMatColorY0__Q24Game11ShijimiChou
+mMatColorY0__Q24Game11ShijimiChou:
+	.skip 0x8
+.global mMatColorR0__Q24Game11ShijimiChou
+mMatColorR0__Q24Game11ShijimiChou:
+	.skip 0x8
+.global mMatColorB0__Q24Game11ShijimiChou
+mMatColorB0__Q24Game11ShijimiChou:
+	.skip 0x8
+.global mMatKColorY__Q24Game11ShijimiChou
+mMatKColorY__Q24Game11ShijimiChou:
+	.skip 0x4
+.global mMatKColorR__Q24Game11ShijimiChou
+mMatKColorR__Q24Game11ShijimiChou:
+	.skip 0x4
+.global mMatKColorB__Q24Game11ShijimiChou
+mMatKColorB__Q24Game11ShijimiChou:
+	.skip 0x8
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051EEF8

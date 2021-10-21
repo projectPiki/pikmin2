@@ -204,6 +204,15 @@ __vt__Q34Game10KingChappy3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515F40
+lbl_80515F40:
+	.skip 0x4
+.global lbl_80515F44
+lbl_80515F44:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E568

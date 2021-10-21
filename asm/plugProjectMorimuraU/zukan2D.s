@@ -1483,6 +1483,63 @@ mCategoryAlphaRate__Q28Morimura10TZukanBase:
 mDrawLineType__Q28Morimura10TZukanBase:
 	.4byte 0x02000000
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515F70
+lbl_80515F70:
+	.skip 0x4
+.global lbl_80515F74
+lbl_80515F74:
+	.skip 0x4
+.global mShowAllObjects__Q28Morimura10TZukanBase
+mShowAllObjects__Q28Morimura10TZukanBase:
+	.skip 0x1
+.global mAllNewSupply__Q28Morimura10TZukanBase
+mAllNewSupply__Q28Morimura10TZukanBase:
+	.skip 0x1
+.global mZukanShortenTest__Q28Morimura10TZukanBase
+mZukanShortenTest__Q28Morimura10TZukanBase:
+	.skip 0x1
+.global mZukanCategoryTest__Q28Morimura10TZukanBase
+mZukanCategoryTest__Q28Morimura10TZukanBase:
+	.skip 0x1
+.global mRandShowRate__Q28Morimura10TZukanBase
+mRandShowRate__Q28Morimura10TZukanBase:
+	.skip 0x4
+.global mNewOffset__Q28Morimura10TZukanBase
+mNewOffset__Q28Morimura10TZukanBase:
+	.skip 0x8
+.global mLargeNewOffset__Q28Morimura10TZukanBase
+mLargeNewOffset__Q28Morimura10TZukanBase:
+	.skip 0x8
+.global mNewColor0__Q28Morimura10TZukanBase
+mNewColor0__Q28Morimura10TZukanBase:
+	.skip 0x4
+.global mNewColor1__Q28Morimura10TZukanBase
+mNewColor1__Q28Morimura10TZukanBase:
+	.skip 0x4
+.global mCategoryScale__Q28Morimura10TZukanBase
+mCategoryScale__Q28Morimura10TZukanBase:
+	.skip 0x8
+.global mCategoryColor0w__Q28Morimura10TZukanBase
+mCategoryColor0w__Q28Morimura10TZukanBase:
+	.skip 0x4
+.global mCategoryColor0b__Q28Morimura10TZukanBase
+mCategoryColor0b__Q28Morimura10TZukanBase:
+	.skip 0x4
+.global mCategoryColor1w__Q28Morimura10TZukanBase
+mCategoryColor1w__Q28Morimura10TZukanBase:
+	.skip 0x4
+.global mCategoryColor1b__Q28Morimura10TZukanBase
+mCategoryColor1b__Q28Morimura10TZukanBase:
+	.skip 0x4
+.global mDebugHeapParent__Q28Morimura10TZukanBase
+mDebugHeapParent__Q28Morimura10TZukanBase:
+	.skip 0x4
+.global mDebugHeap__Q28Morimura10TZukanBase
+mDebugHeap__Q28Morimura10TZukanBase:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051EB20

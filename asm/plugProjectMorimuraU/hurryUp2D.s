@@ -189,6 +189,15 @@ mScaleRate__Q28Morimura10THurryUp2D:
 mColorUpSp__Q28Morimura10THurryUp2D:
 	.float 1.0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515F18
+lbl_80515F18:
+	.skip 0x4
+.global lbl_80515F1C
+lbl_80515F1C:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E258

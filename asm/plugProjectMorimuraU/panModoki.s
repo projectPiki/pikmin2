@@ -457,6 +457,15 @@ __vt__Q24Game18InteractSuckFinish:
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515F30
+lbl_80515F30:
+	.skip 0x4
+.global lbl_80515F34
+lbl_80515F34:
+	.skip 0x4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051E490

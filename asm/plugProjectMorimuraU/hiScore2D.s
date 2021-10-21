@@ -398,6 +398,18 @@ mListOffsetY__Q28Morimura8THiScore:
 mClearListHeightRate__Q28Morimura8THiScore:
 	.float 1.55
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global mForceClear__Q28Morimura8THiScore
+mForceClear__Q28Morimura8THiScore:
+	.skip 0x1
+.global mForceClear2__Q28Morimura8THiScore
+mForceClear2__Q28Morimura8THiScore:
+	.skip 0x1
+.global mLoopDrum__Q28Morimura8THiScore
+mLoopDrum__Q28Morimura8THiScore:
+	.skip 0x6
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 0x8
 .global lbl_8051EC18
