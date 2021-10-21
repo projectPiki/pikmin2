@@ -62,6 +62,12 @@ __vt__Q34Game6Houdai17HoudaiShotGunNode:
 	.4byte __dt__Q34Game6Houdai17HoudaiShotGunNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sHoudaiShotGunMgr__Q24Game6Houdai
+sHoudaiShotGunMgr__Q24Game6Houdai:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi
 levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi:

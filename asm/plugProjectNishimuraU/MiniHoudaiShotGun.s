@@ -43,6 +43,18 @@ __vt__Q34Game10MiniHoudai21MiniHoudaiShotGunNode:
 	.4byte __dt__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515DF0
+lbl_80515DF0:
+	.skip 0x4
+.global lbl_80515DF4
+lbl_80515DF4:
+	.skip 0x4
+.global sMiniHoudaiShotGunMgr__Q24Game10MiniHoudai
+sMiniHoudaiShotGunMgr__Q24Game10MiniHoudai:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global verticalRotationCallBack__Q24Game10MiniHoudaiFP8J3DJointi
 verticalRotationCallBack__Q24Game10MiniHoudaiFP8J3DJointi:

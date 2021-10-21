@@ -308,6 +308,15 @@ __vt__Q34Game3Pom3Mgr:
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515D30
+lbl_80515D30:
+	.skip 0x4
+.global lbl_80515D34
+lbl_80515D34:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game3Pom3MgrFiUc
 __ct__Q34Game3Pom3MgrFiUc:

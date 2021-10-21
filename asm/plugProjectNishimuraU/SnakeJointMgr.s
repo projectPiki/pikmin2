@@ -42,6 +42,12 @@ lbl_8048BD20:
 	.4byte lbl_8048BD08
 	.4byte lbl_8048BD14
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global sSnakeJointMgr__4Game
+sSnakeJointMgr__4Game:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global SnakeJointCallBack__4GameFP8J3DJointi
 SnakeJointCallBack__4GameFP8J3DJointi:

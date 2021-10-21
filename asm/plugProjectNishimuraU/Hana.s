@@ -238,6 +238,15 @@ __vt__Q34Game4Hana3Obj:
 	.4byte "@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515E00
+lbl_80515E00:
+	.skip 0x4
+.global lbl_80515E04
+lbl_80515E04:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Hana3ObjFv
 __ct__Q34Game4Hana3ObjFv:

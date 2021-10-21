@@ -391,6 +391,15 @@ __vt__Q34Game9OniKurage3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515DD0
+lbl_80515DD0:
+	.skip 0x4
+.global lbl_80515DD4
+lbl_80515DD4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9OniKurage3ObjFv
 __ct__Q34Game9OniKurage3ObjFv:

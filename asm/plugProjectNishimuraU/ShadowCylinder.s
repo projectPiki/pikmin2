@@ -174,6 +174,15 @@ __vt__Q24Game12CylinderBase:
 	.4byte drawCylinder__Q24Game12CylinderBaseFR7Matrixfi
 	.4byte drawFinish__Q24Game12CylinderBaseFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515CE8
+lbl_80515CE8:
+	.skip 0x4
+.global lbl_80515CEC
+lbl_80515CEC:
+	.skip 0x4
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E88
 lbl_80520E88:

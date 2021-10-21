@@ -175,6 +175,15 @@ __vt__Q34Game10MiniHoudai3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515DE8
+lbl_80515DE8:
+	.skip 0x4
+.global lbl_80515DEC
+lbl_80515DEC:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10MiniHoudai3FSMFPQ24Game9EnemyBase
 init__Q34Game10MiniHoudai3FSMFPQ24Game9EnemyBase:

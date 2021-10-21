@@ -425,6 +425,15 @@ __vt__Q34Game9SnakeCrow3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515D60
+lbl_80515D60:
+	.skip 0x4
+.global lbl_80515D64
+lbl_80515D64:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9SnakeCrow3ObjFv
 __ct__Q34Game9SnakeCrow3ObjFv:

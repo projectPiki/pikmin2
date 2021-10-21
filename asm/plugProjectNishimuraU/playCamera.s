@@ -60,6 +60,15 @@ __vt__Q24Game10PlayCamera:
 	.4byte startVibration__Q24Game10PlayCameraFi
 	.4byte init__Q24Game10PlayCameraFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515CF0
+lbl_80515CF0:
+	.skip 0x4
+.global lbl_80515CF4
+lbl_80515CF4:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10PlayCameraFPQ24Game4Navi
 __ct__Q24Game10PlayCameraFPQ24Game4Navi:

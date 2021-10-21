@@ -77,6 +77,12 @@ __vt__Q24Game9RumbleMgr:
 	.4byte __dt__Q24Game9RumbleMgrFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global rumbleMgr__4Game
+rumbleMgr__4Game:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9RumbleMgrFv
 __ct__Q24Game9RumbleMgrFv:

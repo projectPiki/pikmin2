@@ -77,6 +77,18 @@ __vt__Q24Game19JointShadowRootNode:
 	.4byte getChildCount__5CNodeFv
 	.4byte 0
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global lbl_80515CF8
+lbl_80515CF8:
+	.skip 0x4
+.global lbl_80515CFC
+lbl_80515CFC:
+	.skip 0x4
+.global shadowMgr__4Game
+shadowMgr__4Game:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
 __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature:

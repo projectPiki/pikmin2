@@ -29,6 +29,12 @@ __vt__Q34Game4Cave10RandMapMgr:
 	.4byte __dt__Q34Game4Cave10RandMapMgrFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 0x8
+.global randMapMgr__Q24Game4Cave
+randMapMgr__Q24Game4Cave:
+	.skip 0x8
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave10RandMapMgrFb
 __ct__Q34Game4Cave10RandMapMgrFb:
