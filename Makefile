@@ -42,6 +42,7 @@ C_FILES := $(wildcard src/*.c)
 CPP_FILES := $(wildcard src/*.cpp)
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
 PATCHLINKER := patch_linker.sh
+READMEGEN := tools/UpdateReadme.exe
 
 # Outputs
 DOL     := $(BUILD_DIR)/main.dol
@@ -121,6 +122,7 @@ $(DOL): $(ELF) | tools
 	$(ELF2DOL) $< $@ $(SDATA_PDHR) $(SBSS_PDHR) $(TARGET_COL)
 	$(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
 	$(PYTHON) calcprogress.py $@
+	./$(READMEGEN)
 
 clean:
 	rm -f -d -r build
