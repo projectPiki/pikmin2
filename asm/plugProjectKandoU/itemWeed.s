@@ -678,6 +678,71 @@ lbl_80515BDC:
 mgr__Q24Game8ItemWeed:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519EF8
+lbl_80519EF8:
+	.4byte 0x00000000
+.global lbl_80519EFC
+lbl_80519EFC:
+	.float 1.0
+.global lbl_80519F00
+lbl_80519F00:
+	.4byte 0x47000000
+.global lbl_80519F04
+lbl_80519F04:
+	.4byte 0x40C90FDB
+.global lbl_80519F08
+lbl_80519F08:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519F10
+lbl_80519F10:
+	.4byte 0x42700000
+.global lbl_80519F14
+lbl_80519F14:
+	.4byte 0x40400000
+.global lbl_80519F18
+lbl_80519F18:
+	.4byte 0x43A2F983
+.global lbl_80519F1C
+lbl_80519F1C:
+	.4byte 0xC3A2F983
+.global lbl_80519F20
+lbl_80519F20:
+	.4byte 0x42960000
+.global lbl_80519F24
+lbl_80519F24:
+	.4byte 0x3F6B851F
+.global lbl_80519F28
+lbl_80519F28:
+	.4byte 0x41200000
+.global lbl_80519F2C
+lbl_80519F2C:
+	.4byte 0x40000000
+.global lbl_80519F30
+lbl_80519F30:
+	.4byte 0x40490FDB
+.global lbl_80519F34
+lbl_80519F34:
+	.4byte 0x41F00000
+.global lbl_80519F38
+lbl_80519F38:
+	.4byte 0x43480000
+.global lbl_80519F3C
+lbl_80519F3C:
+	.4byte 0x6172632E
+	.4byte 0x737A7300
+.global lbl_80519F44
+lbl_80519F44:
+	.4byte 0x77656564
+	.4byte 0x00000000
+.global lbl_80519F4C
+lbl_80519F4C:
+	.4byte 0x57656564
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8ItemWeed4WeedFv
 __ct__Q34Game8ItemWeed4WeedFv:

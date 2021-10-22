@@ -295,6 +295,21 @@ sCurrPlayDataSize__Q24Game8PlayData:
 sMaxPlayDataSize__Q24Game8PlayData:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A078
+lbl_8051A078:
+	.4byte 0x0D0A0000
+.global lbl_8051A07C
+lbl_8051A07C:
+	.4byte 0x09232025
+	.4byte 0x730D0A00
+.global lbl_8051A084
+lbl_8051A084:
+	.4byte 0x6C6F6F70
+	.4byte 0x73000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global write__Q24Game8PlayDataFR6Stream
 write__Q24Game8PlayDataFR6Stream:

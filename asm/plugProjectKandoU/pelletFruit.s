@@ -363,6 +363,19 @@ lbl_80515B8C:
 mgr__Q24Game11PelletFruit:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519D08
+lbl_80519D08:
+	.4byte 0x42C80000
+.global lbl_80519D0C
+lbl_80519D0C:
+	.4byte 0x00000000
+.global lbl_80519D10
+lbl_80519D10:
+	.4byte 0x66727569
+	.4byte 0x74000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game11PelletFruit6ObjectFPQ24Game15CreatureInitArg
 do_onInit__Q34Game11PelletFruit6ObjectFPQ24Game15CreatureInitArg:

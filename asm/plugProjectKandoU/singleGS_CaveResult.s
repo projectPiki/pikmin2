@@ -97,6 +97,15 @@ lbl_80515C08:
 lbl_80515C0C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A048
+lbl_8051A048:
+	.float 1.0
+.global lbl_8051A04C
+lbl_8051A04C:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame15CaveResultStateFv
 __ct__Q34Game10SingleGame15CaveResultStateFv:

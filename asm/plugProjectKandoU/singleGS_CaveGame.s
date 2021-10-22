@@ -143,6 +143,41 @@ lbl_80515BF0:
 lbl_80515BF4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A000
+lbl_8051A000:
+	.float 1.0
+.global lbl_8051A004
+lbl_8051A004:
+	.4byte 0x46480000
+.global lbl_8051A008
+lbl_8051A008:
+	.4byte 0x00000000
+.global lbl_8051A00C
+lbl_8051A00C:
+	.4byte 0x47FA0000
+.global lbl_8051A010
+lbl_8051A010:
+	.4byte 0x736D2D63
+	.4byte 0x616E6300
+.global lbl_8051A018
+lbl_8051A018:
+	.4byte 0x6F70656E
+	.4byte 0x2D736D00
+.global lbl_8051A020
+lbl_8051A020:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051A028
+lbl_8051A028:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A030
+lbl_8051A030:
+	.4byte 0x44610000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:

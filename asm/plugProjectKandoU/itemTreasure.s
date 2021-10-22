@@ -676,6 +676,79 @@ lbl_80515B4C:
 mgr__Q24Game12ItemTreasure:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519BD0
+lbl_80519BD0:
+	.4byte 0x00000000
+.global lbl_80519BD4
+lbl_80519BD4:
+	.float 0.25
+.global lbl_80519BD8
+lbl_80519BD8:
+	.float 0.5
+.global lbl_80519BDC
+lbl_80519BDC:
+	.4byte 0x47000000
+.global lbl_80519BE0
+lbl_80519BE0:
+	.4byte 0x41200000
+.global lbl_80519BE4
+lbl_80519BE4:
+	.4byte 0x43160000
+.global lbl_80519BE8
+lbl_80519BE8:
+	.4byte 0x40400000
+	.4byte 0x00000000
+.global lbl_80519BF0
+lbl_80519BF0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519BF8
+lbl_80519BF8:
+	.float 1.0
+.global lbl_80519BFC
+lbl_80519BFC:
+	.4byte 0x40A00000
+.global lbl_80519C00
+lbl_80519C00:
+	.4byte 0x3F400000
+.global lbl_80519C04
+lbl_80519C04:
+	.4byte 0x3F59999A
+.global lbl_80519C08
+lbl_80519C08:
+	.4byte 0x61636365
+	.4byte 0x6C000000
+.global lbl_80519C10
+lbl_80519C10:
+	.float 0.1
+.global lbl_80519C14
+lbl_80519C14:
+	.4byte 0x3C23D70A
+.global lbl_80519C18
+lbl_80519C18:
+	.4byte 0x40000000
+.global lbl_80519C1C
+lbl_80519C1C:
+	.float 0.3
+.global lbl_80519C20
+lbl_80519C20:
+	.4byte 0x437A0000
+.global lbl_80519C24
+lbl_80519C24:
+	.4byte 0x476A6000
+.global lbl_80519C28
+lbl_80519C28:
+	.4byte 0x443B8000
+.global lbl_80519C2C
+lbl_80519C2C:
+	.4byte 0x44960000
+.global lbl_80519C30
+lbl_80519C30:
+	.4byte 0x44BB8000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item
 init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item:

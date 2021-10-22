@@ -51,6 +51,31 @@ __vt__Q23efx9OnyonSpot:
 	.4byte doSimulation__11ModelEffectFf
 	.4byte doDirectDraw__11ModelEffectFR8Graphics
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519D70
+lbl_80519D70:
+	.4byte 0x41200000
+.global lbl_80519D74
+lbl_80519D74:
+	.4byte 0x41A00000
+.global lbl_80519D78
+lbl_80519D78:
+	.4byte 0x43480000
+.global lbl_80519D7C
+lbl_80519D7C:
+	.float 0.5
+.global lbl_80519D80
+lbl_80519D80:
+	.4byte 0x00000000
+.global lbl_80519D84
+lbl_80519D84:
+	.float 1.0
+.global lbl_80519D88
+lbl_80519D88:
+	.4byte 0x41F00000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getLODSphere__Q23efx9OnyonSpotFRQ23Sys6Sphere
 getLODSphere__Q23efx9OnyonSpotFRQ23Sys6Sphere:

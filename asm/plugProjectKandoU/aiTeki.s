@@ -35,6 +35,51 @@ __vt__Q26PikiAI7ActTeki:
 	.4byte "@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519F68
+lbl_80519F68:
+	.4byte 0x54656B69
+	.4byte 0x00000000
+.global lbl_80519F70
+lbl_80519F70:
+	.4byte 0x00000000
+.global lbl_80519F74
+lbl_80519F74:
+	.4byte 0x46480000
+.global lbl_80519F78
+lbl_80519F78:
+	.4byte 0x42C80000
+.global lbl_80519F7C
+lbl_80519F7C:
+	.float 1.0
+.global lbl_80519F80
+lbl_80519F80:
+	.4byte 0x47000000
+.global lbl_80519F84
+lbl_80519F84:
+	.float 0.5
+.global lbl_80519F88
+lbl_80519F88:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519F90
+lbl_80519F90:
+	.4byte 0x42480000
+.global lbl_80519F94
+lbl_80519F94:
+	.4byte 0x41200000
+.global lbl_80519F98
+lbl_80519F98:
+	.float 0.3
+.global lbl_80519F9C
+lbl_80519F9C:
+	.float 0.1
+.global lbl_80519FA0
+lbl_80519FA0:
+	.4byte 0xBDCCCCCD
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActTekiFPQ24Game4Piki
 __ct__Q26PikiAI7ActTekiFPQ24Game4Piki:

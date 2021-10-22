@@ -374,6 +374,31 @@ lbl_80515B9C:
 mgr__Q24Game13PelletOtakara:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519D18
+lbl_80519D18:
+	.4byte 0x66627465
+	.4byte 0x78000000
+.global lbl_80519D20
+lbl_80519D20:
+	.4byte 0x00000000
+.global lbl_80519D24
+lbl_80519D24:
+	.float 1.0
+.global lbl_80519D28
+lbl_80519D28:
+	.4byte 0x4F74616B
+	.4byte 0x61726100
+.global lbl_80519D30
+lbl_80519D30:
+	.float 0.5
+.global lbl_80519D34
+lbl_80519D34:
+	.4byte 0x6F74616B
+	.4byte 0x61726100
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global constructor__Q34Game13PelletOtakara6ObjectFv
 constructor__Q34Game13PelletOtakara6ObjectFv:

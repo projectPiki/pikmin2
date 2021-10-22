@@ -87,6 +87,17 @@ lbl_80515BFC:
 theTekiHeap:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A038
+lbl_8051A038:
+	.4byte 0x00000000
+.global lbl_8051A03C
+lbl_8051A03C:
+	.4byte 0x6D725F6C
+	.4byte 0x6F616400
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame15MainResultStateFv
 __ct__Q34Game10SingleGame15MainResultStateFv:

@@ -544,6 +544,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/registItem.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayData.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemCave.o\
+	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemBigFountain.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemBridge.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiContainer.o\
@@ -573,7 +574,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_WorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_FileSelect.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayDataMemCard.o\
-	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/baseHIOparms.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/radarInfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Movie.o\

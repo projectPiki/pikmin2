@@ -64,6 +64,17 @@ __vt__Q26PikiAI9ActBridge:
 	.4byte "@52@4@onKeyEvent__Q26PikiAI9ActBridgeFRCQ28SysShape8KeyEvent"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519F58
+lbl_80519F58:
+	.4byte 0x42726964
+	.4byte 0x67650000
+.global lbl_80519F60
+lbl_80519F60:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI9ActBridgeFPQ24Game4Piki
 __ct__Q26PikiAI9ActBridgeFPQ24Game4Piki:

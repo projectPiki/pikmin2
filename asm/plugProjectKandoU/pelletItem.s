@@ -353,6 +353,19 @@ __vt__Q34Game10PelletItem6Object:
 mgr__Q24Game10PelletItem:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519D50
+lbl_80519D50:
+	.4byte 0x6B657900
+.global lbl_80519D54
+lbl_80519D54:
+	.float 0.5
+.global lbl_80519D58
+lbl_80519D58:
+	.4byte 0x6974656D
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game10PelletItem6ObjectFPQ24Game15CreatureInitArg
 do_onInit__Q34Game10PelletItem6ObjectFPQ24Game15CreatureInitArg:

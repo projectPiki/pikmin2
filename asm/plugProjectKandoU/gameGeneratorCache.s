@@ -168,6 +168,19 @@ __vt__Q24Game11CourseCache:
 generatorCache__4Game:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519BC0
+lbl_80519BC0:
+	.4byte 0x6E6F6E65
+	.4byte 0x00000000
+.global lbl_80519BC8
+lbl_80519BC8:
+	.4byte 0xBF800000
+.global lbl_80519BCC
+lbl_80519BCC:
+	.4byte 0x0D0A0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14GeneratorCacheFv
 __ct__Q24Game14GeneratorCacheFv:

@@ -44,6 +44,21 @@ lbl_80515BD0:
 lbl_80515BD4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519EE8
+lbl_80519EE8:
+	.4byte 0x46480000
+.global lbl_80519EEC
+lbl_80519EEC:
+	.4byte 0x00000000
+.global lbl_80519EF0
+lbl_80519EF0:
+	.float 0.5
+.global lbl_80519EF4
+lbl_80519EF4:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q24Game12BaseFlockMgrFv
 update__Q24Game12BaseFlockMgrFv:

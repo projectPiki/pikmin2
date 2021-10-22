@@ -407,6 +407,21 @@ __vt__Q34Game12PelletNumber6Object:
 mgr__Q24Game12PelletNumber:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519CE0
+lbl_80519CE0:
+	.4byte 0x6270656C
+	.4byte 0x31000000
+.global lbl_80519CE8
+lbl_80519CE8:
+	.float 0.5
+.global lbl_80519CEC
+lbl_80519CEC:
+	.4byte 0x6E756D62
+	.4byte 0x65720000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_onInit__Q34Game12PelletNumber6ObjectFPQ24Game15CreatureInitArg
 do_onInit__Q34Game12PelletNumber6ObjectFPQ24Game15CreatureInitArg:

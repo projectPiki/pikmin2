@@ -770,6 +770,91 @@ lbl_80515B2C:
 mgr__Q24Game15ItemBigFountain:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519A98
+lbl_80519A98:
+	.4byte 0x42340000
+.global lbl_80519A9C
+lbl_80519A9C:
+	.4byte 0x00000000
+.global lbl_80519AA0
+lbl_80519AA0:
+	.float 1.0
+.global lbl_80519AA4
+lbl_80519AA4:
+	.4byte 0x3F555555
+.global lbl_80519AA8
+lbl_80519AA8:
+	.4byte 0x41F00000
+.global lbl_80519AAC
+lbl_80519AAC:
+	.4byte 0x42700000
+.global lbl_80519AB0
+lbl_80519AB0:
+	.4byte 0x42F00000
+.global lbl_80519AB4
+lbl_80519AB4:
+	.4byte 0x42820000
+.global lbl_80519AB8
+lbl_80519AB8:
+	.4byte 0x3F99999A
+.global lbl_80519ABC
+lbl_80519ABC:
+	.4byte 0x616C7600
+.global lbl_80519AC0
+lbl_80519AC0:
+	.4byte 0x64656400
+.global lbl_80519AC4
+lbl_80519AC4:
+	.4byte 0x25732025
+	.4byte 0x73000000
+.global lbl_80519ACC
+lbl_80519ACC:
+	.4byte 0x76697300
+.global lbl_80519AD0
+lbl_80519AD0:
+	.4byte 0x78000000
+.global lbl_80519AD4
+lbl_80519AD4:
+	.4byte 0x42480000
+.global lbl_80519AD8
+lbl_80519AD8:
+	.float 0.5
+.global lbl_80519ADC
+lbl_80519ADC:
+	.float 0.25
+.global lbl_80519AE0
+lbl_80519AE0:
+	.4byte 0x61636365
+	.4byte 0x6C000000
+.global lbl_80519AE8
+lbl_80519AE8:
+	.float 0.1
+.global lbl_80519AEC
+lbl_80519AEC:
+	.4byte 0x3C23D70A
+.global lbl_80519AF0
+lbl_80519AF0:
+	.4byte 0x40000000
+.global lbl_80519AF4
+lbl_80519AF4:
+	.float 0.3
+.global lbl_80519AF8
+lbl_80519AF8:
+	.4byte 0x83898343
+	.4byte 0x83740000
+.global lbl_80519B00
+lbl_80519B00:
+	.4byte 0x447A0000
+.global lbl_80519B04
+lbl_80519B04:
+	.4byte 0x476A6000
+.global lbl_80519B08
+lbl_80519B08:
+	.4byte 0x6172632E
+	.4byte 0x737A7300
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item
 init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item:

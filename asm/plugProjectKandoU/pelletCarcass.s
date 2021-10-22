@@ -342,6 +342,17 @@ __vt__Q34Game13PelletCarcass6Object:
 mgr__Q24Game13PelletCarcass:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519CF8
+lbl_80519CF8:
+	.4byte 0x43617263
+	.4byte 0x61737300
+.global lbl_80519D00
+lbl_80519D00:
+	.4byte 0x63617263
+	.4byte 0x61737300
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game13PelletCarcass3MgrFv
 __ct__Q34Game13PelletCarcass3MgrFv:

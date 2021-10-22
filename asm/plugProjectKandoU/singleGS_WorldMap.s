@@ -119,6 +119,31 @@ sParentHeapFreeSize:
 sParentHeapFreeSize_Last:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A050
+lbl_8051A050:
+	.float 1.0
+.global lbl_8051A054
+lbl_8051A054:
+	.4byte 0x40800000
+.global lbl_8051A058
+lbl_8051A058:
+	.4byte 0x00000000
+.global lbl_8051A05C
+lbl_8051A05C:
+	.4byte 0x41800000
+.global lbl_8051A060
+lbl_8051A060:
+	.4byte 0x42700000
+.global lbl_8051A064
+lbl_8051A064:
+	.4byte 0x42F00000
+.global lbl_8051A068
+lbl_8051A068:
+	.4byte 0x64616D65
+	.4byte 0x6B0A0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame11SelectStateFv
 __ct__Q34Game10SingleGame11SelectStateFv:

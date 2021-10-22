@@ -119,6 +119,43 @@ lbl_80515BC8:
 lbl_80515BCC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519EB8
+lbl_80519EB8:
+	.asciz "SA"
+	.skip 1
+.global lbl_80519EBC
+lbl_80519EBC:
+	.asciz "AJ"
+	.skip 1
+.global lbl_80519EC0
+lbl_80519EC0:
+	.4byte lbl_80519EB8
+.global lbl_80519EC4
+lbl_80519EC4:
+	.4byte lbl_80519EBC
+.global lbl_80519EC8
+lbl_80519EC8:
+	.4byte 0x57656564
+	.4byte 0x20257300
+.global lbl_80519ED0
+lbl_80519ED0:
+	.4byte 0x57656564
+	.4byte 0x00000000
+.global lbl_80519ED8
+lbl_80519ED8:
+	.4byte 0x41200000
+.global lbl_80519EDC
+lbl_80519EDC:
+	.4byte 0x40800000
+.global lbl_80519EE0
+lbl_80519EE0:
+	.4byte 0xBF800000
+.global lbl_80519EE4
+lbl_80519EE4:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getInfo__Q26PikiAI7ActWeedFPc
 getInfo__Q26PikiAI7ActWeedFPc:

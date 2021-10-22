@@ -692,6 +692,61 @@ lbl_80515B6C:
 mgr__Q24Game10ItemBarrel:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519C90
+lbl_80519C90:
+	.4byte 0x00000000
+.global lbl_80519C94
+lbl_80519C94:
+	.4byte 0x41F00000
+.global lbl_80519C98
+lbl_80519C98:
+	.4byte 0xC2C80000
+.global lbl_80519C9C
+lbl_80519C9C:
+	.float 1.0
+.global lbl_80519CA0
+lbl_80519CA0:
+	.4byte 0x42617272
+	.4byte 0x656C0000
+.global lbl_80519CA8
+lbl_80519CA8:
+	.float 0.5
+.global lbl_80519CAC
+lbl_80519CAC:
+	.float 0.25
+.global lbl_80519CB0
+lbl_80519CB0:
+	.4byte 0x61636365
+	.4byte 0x6C000000
+.global lbl_80519CB8
+lbl_80519CB8:
+	.float 0.1
+.global lbl_80519CBC
+lbl_80519CBC:
+	.4byte 0x3C23D70A
+.global lbl_80519CC0
+lbl_80519CC0:
+	.4byte 0x40000000
+.global lbl_80519CC4
+lbl_80519CC4:
+	.float 0.3
+.global lbl_80519CC8
+lbl_80519CC8:
+	.4byte 0x83898343
+	.4byte 0x83740000
+.global lbl_80519CD0
+lbl_80519CD0:
+	.4byte 0x42C80000
+.global lbl_80519CD4
+lbl_80519CD4:
+	.4byte 0x476A6000
+.global lbl_80519CD8
+lbl_80519CD8:
+	.4byte 0x6172632E
+	.4byte 0x737A7300
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10ItemBarrel3FSMFPQ34Game10ItemBarrel4Item
 init__Q34Game10ItemBarrel3FSMFPQ34Game10ItemBarrel4Item:
