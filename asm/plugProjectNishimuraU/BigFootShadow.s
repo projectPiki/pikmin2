@@ -78,6 +78,53 @@ lbl_8048B76C:
 	.asciz "lfoot3jnt"
 	.skip 2
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C6E8
+lbl_8051C6E8:
+	.4byte 0x6B6F7369
+	.4byte 0x00000000
+.global lbl_8051C6F0
+lbl_8051C6F0:
+	.float 0.5
+.global lbl_8051C6F4
+lbl_8051C6F4:
+	.4byte 0x40400000
+.global lbl_8051C6F8
+lbl_8051C6F8:
+	.4byte 0x00000000
+.global lbl_8051C6FC
+lbl_8051C6FC:
+	.float 1.0
+.global lbl_8051C700
+lbl_8051C700:
+	.4byte 0xC2960000
+.global lbl_8051C704
+lbl_8051C704:
+	.4byte 0x40200000
+.global lbl_8051C708
+lbl_8051C708:
+	.4byte 0x42200000
+.global lbl_8051C70C
+lbl_8051C70C:
+	.4byte 0x42700000
+.global lbl_8051C710
+lbl_8051C710:
+	.4byte 0xC2820000
+.global lbl_8051C714
+lbl_8051C714:
+	.4byte 0x42910000
+.global lbl_8051C718
+lbl_8051C718:
+	.4byte 0xC1200000
+.global lbl_8051C71C
+lbl_8051C71C:
+	.4byte 0xC0A00000
+.global lbl_8051C720
+lbl_8051C720:
+	.4byte 0xC1000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7BigFoot16BigFootShadowMgrFPQ34Game7BigFoot3Obj
 __ct__Q34Game7BigFoot16BigFootShadowMgrFPQ34Game7BigFoot3Obj:

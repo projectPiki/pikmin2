@@ -533,6 +533,163 @@ __vt__Q34Game11BigTreasure5Parms:
 	.4byte read__Q34Game11BigTreasure5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051CAB0
+lbl_8051CAB0:
+	.asciz "elec"
+	.skip 3
+.global lbl_8051CAB8
+lbl_8051CAB8:
+	.asciz "fire"
+	.skip 3
+.global lbl_8051CAC0
+lbl_8051CAC0:
+	.asciz "gas"
+.global lbl_8051CAC4
+lbl_8051CAC4:
+	.asciz "water"
+	.skip 2
+.global lbl_8051CACC
+lbl_8051CACC:
+	.asciz "loozy"
+	.skip 2
+.global lbl_8051CAD4
+lbl_8051CAD4:
+	.float 3.0
+.global lbl_8051CAD8
+lbl_8051CAD8:
+	.float 0.0
+.global lbl_8051CADC
+lbl_8051CADC:
+	.4byte 0x41200000
+.global lbl_8051CAE0
+lbl_8051CAE0:
+	.4byte 0xBE4CCCCD
+.global lbl_8051CAE4
+lbl_8051CAE4:
+	.4byte 0xC0A00000
+.global lbl_8051CAE8
+lbl_8051CAE8:
+	.4byte 0x40A00000
+.global lbl_8051CAEC
+lbl_8051CAEC:
+	.float 0.5
+.global lbl_8051CAF0
+lbl_8051CAF0:
+	.4byte 0xC0000000
+.global lbl_8051CAF4
+lbl_8051CAF4:
+	.4byte 0xC1200000
+.global lbl_8051CAF8
+lbl_8051CAF8:
+	.4byte 0x42F00000
+.global lbl_8051CAFC
+lbl_8051CAFC:
+	.4byte 0x43480000
+.global lbl_8051CB00
+lbl_8051CB00:
+	.4byte 0x40200000
+.global lbl_8051CB04
+lbl_8051CB04:
+	.4byte 0x40333333
+.global lbl_8051CB08
+lbl_8051CB08:
+	.4byte 0x3F400000
+.global lbl_8051CB0C
+lbl_8051CB0C:
+	.float 1.0
+.global lbl_8051CB10
+lbl_8051CB10:
+	.4byte 0x3F266666
+.global lbl_8051CB14
+lbl_8051CB14:
+	.4byte 0x42C80000
+.global lbl_8051CB18
+lbl_8051CB18:
+	.4byte 0x43FA0000
+.global lbl_8051CB1C
+lbl_8051CB1C:
+	.4byte 0x435C0000
+.global lbl_8051CB20
+lbl_8051CB20:
+	.4byte 0x432A0000
+.global lbl_8051CB24
+lbl_8051CB24:
+	.4byte 0x402CCCCD
+.global lbl_8051CB28
+lbl_8051CB28:
+	.4byte 0x3CA3D70A
+.global lbl_8051CB2C
+lbl_8051CB2C:
+	.float 0.7
+.global lbl_8051CB30
+lbl_8051CB30:
+	.4byte 0x42A00000
+.global lbl_8051CB34
+lbl_8051CB34:
+	.4byte 0x437A0000
+.global lbl_8051CB38
+lbl_8051CB38:
+	.4byte 0x43AF0000
+.global lbl_8051CB3C
+lbl_8051CB3C:
+	.4byte 0x40900000
+.global lbl_8051CB40
+lbl_8051CB40:
+	.4byte 0x3F7851EC
+.global lbl_8051CB44
+lbl_8051CB44:
+	.4byte 0x42700000
+.global lbl_8051CB48
+lbl_8051CB48:
+	.4byte 0x428C0000
+.global lbl_8051CB4C
+lbl_8051CB4C:
+	.float 0.25
+.global lbl_8051CB50
+lbl_8051CB50:
+	.4byte 0x3E4CCCCD
+.global lbl_8051CB54
+lbl_8051CB54:
+	.4byte 0x3F7C28F6
+.global lbl_8051CB58
+lbl_8051CB58:
+	.4byte 0x42B40000
+.global lbl_8051CB5C
+lbl_8051CB5C:
+	.4byte 0x41A00000
+.global lbl_8051CB60
+lbl_8051CB60:
+	.float 0.15
+.global lbl_8051CB64
+lbl_8051CB64:
+	.4byte 0x3FA00000
+.global lbl_8051CB68
+lbl_8051CB68:
+	.4byte 0x3C75C28F
+.global lbl_8051CB6C
+lbl_8051CB6C:
+	.4byte 0x3C23D70A
+.global lbl_8051CB70
+lbl_8051CB70:
+	.4byte 0x3CF5C28F
+.global lbl_8051CB74
+lbl_8051CB74:
+	.4byte 0x41F00000
+.global lbl_8051CB78
+lbl_8051CB78:
+	.4byte 0x40000000
+.global lbl_8051CB7C
+lbl_8051CB7C:
+	.float 0.1
+.global lbl_8051CB80
+lbl_8051CB80:
+	.4byte 0x3ECCCCCD
+.global lbl_8051CB84
+lbl_8051CB84:
+	.4byte 0x42480000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11BigTreasure3MgrFiUc
 __ct__Q34Game11BigTreasure3MgrFiUc:

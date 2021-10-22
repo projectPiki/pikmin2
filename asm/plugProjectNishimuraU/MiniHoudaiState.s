@@ -184,6 +184,71 @@ lbl_80515DE8:
 lbl_80515DEC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051CF10
+lbl_8051CF10:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051CF18
+lbl_8051CF18:
+	.4byte 0x72656269
+	.4byte 0x72746800
+.global lbl_8051CF20
+lbl_8051CF20:
+	.4byte 0x6C6F7374
+	.4byte 0x00000000
+.global lbl_8051CF28
+lbl_8051CF28:
+	.4byte 0x61747461
+	.4byte 0x636B0000
+.global lbl_8051CF30
+lbl_8051CF30:
+	.4byte 0x666C6963
+	.4byte 0x6B000000
+.global lbl_8051CF38
+lbl_8051CF38:
+	.4byte 0x7475726E
+	.4byte 0x00000000
+.global lbl_8051CF40
+lbl_8051CF40:
+	.4byte 0x77616C6B
+	.4byte 0x00000000
+.global lbl_8051CF48
+lbl_8051CF48:
+	.4byte 0x00000000
+.global lbl_8051CF4C
+lbl_8051CF4C:
+	.float 1.0
+.global lbl_8051CF50
+lbl_8051CF50:
+	.4byte 0x3F400000
+.global lbl_8051CF54
+lbl_8051CF54:
+	.4byte 0xC47A0000
+.global lbl_8051CF58
+lbl_8051CF58:
+	.4byte 0x40490FDB
+.global lbl_8051CF5C
+lbl_8051CF5C:
+	.4byte 0x3BB60B61
+.global lbl_8051CF60
+lbl_8051CF60:
+	.4byte 0x3F490FDB
+.global lbl_8051CF64
+lbl_8051CF64:
+	.4byte 0x42340000
+.global lbl_8051CF68
+lbl_8051CF68:
+	.4byte 0x41F00000
+.global lbl_8051CF6C
+lbl_8051CF6C:
+	.4byte 0x3C23D70A
+.global lbl_8051CF70
+lbl_8051CF70:
+	.float 0.5
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10MiniHoudai3FSMFPQ24Game9EnemyBase
 init__Q34Game10MiniHoudai3FSMFPQ24Game9EnemyBase:

@@ -475,6 +475,21 @@ __vt__Q34Game14NormMiniHoudai3Mgr:
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D4D8
+lbl_8051D4D8:
+	.4byte 0x41F00000
+.global lbl_8051D4DC
+lbl_8051D4DC:
+	.float 1.0
+.global lbl_8051D4E0
+lbl_8051D4E0:
+	.4byte 0x43FA0000
+.global lbl_8051D4E4
+lbl_8051D4E4:
+	.4byte 0x41200000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game14NormMiniHoudai3MgrFiUc
 __ct__Q34Game14NormMiniHoudai3MgrFiUc:

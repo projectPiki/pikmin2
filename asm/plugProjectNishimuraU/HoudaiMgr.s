@@ -318,6 +318,51 @@ __vt__Q34Game6Houdai5Parms:
 	.4byte read__Q34Game6Houdai5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C478
+lbl_8051C478:
+	.4byte 0x40A00000
+.global lbl_8051C47C
+lbl_8051C47C:
+	.4byte 0x00000000
+.global lbl_8051C480
+lbl_8051C480:
+	.4byte 0x41200000
+.global lbl_8051C484
+lbl_8051C484:
+	.4byte 0xBECCCCCD
+.global lbl_8051C488
+lbl_8051C488:
+	.4byte 0xC0A00000
+.global lbl_8051C48C
+lbl_8051C48C:
+	.float 0.5
+.global lbl_8051C490
+lbl_8051C490:
+	.4byte 0xC0400000
+.global lbl_8051C494
+lbl_8051C494:
+	.4byte 0xC1200000
+.global lbl_8051C498
+lbl_8051C498:
+	.4byte 0x42B40000
+.global lbl_8051C49C
+lbl_8051C49C:
+	.4byte 0x43480000
+.global lbl_8051C4A0
+lbl_8051C4A0:
+	.4byte 0x40000000
+.global lbl_8051C4A4
+lbl_8051C4A4:
+	.float 1.0
+.global lbl_8051C4A8
+lbl_8051C4A8:
+	.4byte 0x43BE0000
+.global lbl_8051C4AC
+lbl_8051C4AC:
+	.4byte 0x43FA0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Houdai3MgrFiUc
 __ct__Q34Game6Houdai3MgrFiUc:

@@ -302,6 +302,43 @@ __vt__Q34Game8Damagumo5Parms:
 "cMatAnimBrkTexName__Q34Game8Damagumo25@unnamed@DamagumoMgr_cpp@":
 	.4byte lbl_804894F0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BEA0
+lbl_8051BEA0:
+	.4byte 0x40400000
+.global lbl_8051BEA4
+lbl_8051BEA4:
+	.4byte 0x00000000
+.global lbl_8051BEA8
+lbl_8051BEA8:
+	.4byte 0x41200000
+.global lbl_8051BEAC
+lbl_8051BEAC:
+	.4byte 0xBE4CCCCD
+.global lbl_8051BEB0
+lbl_8051BEB0:
+	.4byte 0xC0A00000
+.global lbl_8051BEB4
+lbl_8051BEB4:
+	.4byte 0x40A00000
+.global lbl_8051BEB8
+lbl_8051BEB8:
+	.float 0.5
+.global lbl_8051BEBC
+lbl_8051BEBC:
+	.4byte 0xC0000000
+.global lbl_8051BEC0
+lbl_8051BEC0:
+	.4byte 0xC1200000
+.global lbl_8051BEC4
+lbl_8051BEC4:
+	.4byte 0x42F00000
+.global lbl_8051BEC8
+lbl_8051BEC8:
+	.4byte 0x43480000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Damagumo3MgrFiUc
 __ct__Q34Game8Damagumo3MgrFiUc:

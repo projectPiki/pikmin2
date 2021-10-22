@@ -30,6 +30,61 @@ lbl_8048B030:
 	.asciz "lfoot3jnt"
 	.skip 2
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C4B0
+lbl_8051C4B0:
+	.4byte 0x6B6F7369
+	.4byte 0x00000000
+.global lbl_8051C4B8
+lbl_8051C4B8:
+	.float 0.5
+.global lbl_8051C4BC
+lbl_8051C4BC:
+	.4byte 0x40400000
+.global lbl_8051C4C0
+lbl_8051C4C0:
+	.4byte 0x00000000
+.global lbl_8051C4C4
+lbl_8051C4C4:
+	.float 1.0
+.global lbl_8051C4C8
+lbl_8051C4C8:
+	.4byte 0x41A00000
+.global lbl_8051C4CC
+lbl_8051C4CC:
+	.4byte 0x41F00000
+.global lbl_8051C4D0
+lbl_8051C4D0:
+	.4byte 0xC2480000
+.global lbl_8051C4D4
+lbl_8051C4D4:
+	.4byte 0x40200000
+.global lbl_8051C4D8
+lbl_8051C4D8:
+	.4byte 0xC1200000
+.global lbl_8051C4DC
+lbl_8051C4DC:
+	.4byte 0x41480000
+.global lbl_8051C4E0
+lbl_8051C4E0:
+	.4byte 0xC2340000
+.global lbl_8051C4E4
+lbl_8051C4E4:
+	.4byte 0xC0A00000
+.global lbl_8051C4E8
+lbl_8051C4E8:
+	.4byte 0x40C00000
+.global lbl_8051C4EC
+lbl_8051C4EC:
+	.4byte 0x41200000
+.global lbl_8051C4F0
+lbl_8051C4F0:
+	.4byte 0x40A00000
+.global lbl_8051C4F4
+lbl_8051C4F4:
+	.4byte 0x3FC00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Houdai15HoudaiShadowMgrFPQ34Game6Houdai3Obj
 __ct__Q34Game6Houdai15HoudaiShadowMgrFPQ34Game6Houdai3Obj:

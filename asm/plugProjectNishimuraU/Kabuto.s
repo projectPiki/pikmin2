@@ -222,6 +222,103 @@ __vt__Q34Game6Kabuto3Obj:
 	.4byte "@740@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051CDC8
+lbl_8051CDC8:
+	.4byte 0x43000000
+.global lbl_8051CDCC
+lbl_8051CDCC:
+	.4byte 0x00000000
+.global lbl_8051CDD0
+lbl_8051CDD0:
+	.4byte 0x63656E74
+	.4byte 0x65720000
+.global lbl_8051CDD8
+lbl_8051CDD8:
+	.4byte 0x40A00000
+.global lbl_8051CDDC
+lbl_8051CDDC:
+	.float 1.0
+.global lbl_8051CDE0
+lbl_8051CDE0:
+	.4byte 0x42480000
+.global lbl_8051CDE4
+lbl_8051CDE4:
+	.4byte 0x41200000
+.global lbl_8051CDE8
+lbl_8051CDE8:
+	.4byte 0x41C80000
+.global lbl_8051CDEC
+lbl_8051CDEC:
+	.4byte 0xC47A0000
+.global lbl_8051CDF0
+lbl_8051CDF0:
+	.4byte 0x7268616E
+	.4byte 0x64320000
+.global lbl_8051CDF8
+lbl_8051CDF8:
+	.4byte 0x41300000
+.global lbl_8051CDFC
+lbl_8051CDFC:
+	.4byte 0x726C6567
+	.4byte 0x00000000
+.global lbl_8051CE04
+lbl_8051CE04:
+	.4byte 0x41800000
+.global lbl_8051CE08
+lbl_8051CE08:
+	.4byte 0x6C68616E
+	.4byte 0x64320000
+.global lbl_8051CE10
+lbl_8051CE10:
+	.4byte 0x6C6C6567
+	.4byte 0x00000000
+.global lbl_8051CE18
+lbl_8051CE18:
+	.4byte 0x47000000
+.global lbl_8051CE1C
+lbl_8051CE1C:
+	.4byte 0x40490FDB
+.global lbl_8051CE20
+lbl_8051CE20:
+	.4byte 0x3FC90FDB
+.global lbl_8051CE24
+lbl_8051CE24:
+	.4byte 0x43A2F983
+.global lbl_8051CE28
+lbl_8051CE28:
+	.4byte 0xC3A2F983
+	.4byte 0x00000000
+.global lbl_8051CE30
+lbl_8051CE30:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051CE38
+lbl_8051CE38:
+	.float 0.5
+.global lbl_8051CE3C
+lbl_8051CE3C:
+	.4byte 0x3F400000
+.global lbl_8051CE40
+lbl_8051CE40:
+	.4byte 0x41700000
+.global lbl_8051CE44
+lbl_8051CE44:
+	.4byte 0x6D6F7574
+	.4byte 0x68000000
+.global lbl_8051CE4C
+lbl_8051CE4C:
+	.4byte 0x43340000
+.global lbl_8051CE50
+lbl_8051CE50:
+	.4byte 0x68656164
+	.4byte 0x00000000
+.global lbl_8051CE58
+lbl_8051CE58:
+	.4byte 0x3F666666
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Kabuto3ObjFv
 __ct__Q34Game6Kabuto3ObjFv:

@@ -21,6 +21,31 @@ __vt__Q24Game18TyreTubeShadowNode:
 	.4byte __dt__Q24Game18TyreTubeShadowNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D4E8
+lbl_8051D4E8:
+	.4byte 0x00000000
+.global lbl_8051D4EC
+lbl_8051D4EC:
+	.float 1.0
+.global lbl_8051D4F0
+lbl_8051D4F0:
+	.4byte 0x41200000
+.global lbl_8051D4F4
+lbl_8051D4F4:
+	.4byte 0x40A00000
+.global lbl_8051D4F8
+lbl_8051D4F8:
+	.4byte 0x41FC0000
+.global lbl_8051D4FC
+lbl_8051D4FC:
+	.4byte 0x418C0000
+.global lbl_8051D500
+lbl_8051D500:
+	.4byte 0xC18C0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf
 makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf:

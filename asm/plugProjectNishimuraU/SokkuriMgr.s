@@ -300,6 +300,45 @@ __vt__Q34Game7Sokkuri5Parms:
 	.4byte read__Q34Game7Sokkuri5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D0F0
+lbl_8051D0F0:
+	.float 1.0
+.global lbl_8051D0F4
+lbl_8051D0F4:
+	.4byte 0x00000000
+.global lbl_8051D0F8
+lbl_8051D0F8:
+	.4byte 0x41200000
+.global lbl_8051D0FC
+lbl_8051D0FC:
+	.4byte 0x42B40000
+.global lbl_8051D100
+lbl_8051D100:
+	.4byte 0x43340000
+.global lbl_8051D104
+lbl_8051D104:
+	.4byte 0x42340000
+.global lbl_8051D108
+lbl_8051D108:
+	.float 0.25
+.global lbl_8051D10C
+lbl_8051D10C:
+	.4byte 0x40000000
+.global lbl_8051D110
+lbl_8051D110:
+	.4byte 0x41C80000
+.global lbl_8051D114
+lbl_8051D114:
+	.4byte 0x447A0000
+.global lbl_8051D118
+lbl_8051D118:
+	.float 0.05
+.global lbl_8051D11C
+lbl_8051D11C:
+	.4byte 0x43B40000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7Sokkuri3MgrFiUc
 __ct__Q34Game7Sokkuri3MgrFiUc:

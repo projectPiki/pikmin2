@@ -55,6 +55,87 @@ lbl_80515DF4:
 sMiniHoudaiShotGunMgr__Q24Game10MiniHoudai:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D020
+lbl_8051D020:
+	.4byte 0x00000000
+.global lbl_8051D024
+lbl_8051D024:
+	.float 1.0
+.global lbl_8051D028
+lbl_8051D028:
+	.4byte 0x41200000
+.global lbl_8051D02C
+lbl_8051D02C:
+	.4byte 0x3F19999A
+.global lbl_8051D030
+lbl_8051D030:
+	.4byte 0x41A00000
+.global lbl_8051D034
+lbl_8051D034:
+	.4byte 0x3FA66666
+.global lbl_8051D038
+lbl_8051D038:
+	.float 0.7
+.global lbl_8051D03C
+lbl_8051D03C:
+	.4byte 0x447A0000
+.global lbl_8051D040
+lbl_8051D040:
+	.float 0.5
+.global lbl_8051D044
+lbl_8051D044:
+	.4byte 0x43160000
+.global lbl_8051D048
+lbl_8051D048:
+	.4byte 0x42C80000
+.global lbl_8051D04C
+lbl_8051D04C:
+	.4byte 0x42960000
+.global lbl_8051D050
+lbl_8051D050:
+	.4byte 0x6B757469
+	.4byte 0x00000000
+.global lbl_8051D058
+lbl_8051D058:
+	.4byte 0x41C80000
+.global lbl_8051D05C
+lbl_8051D05C:
+	.4byte 0x40000000
+.global lbl_8051D060
+lbl_8051D060:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051D068
+lbl_8051D068:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051D070
+lbl_8051D070:
+	.4byte 0x42480000
+.global lbl_8051D074
+lbl_8051D074:
+	.4byte 0x437A0000
+.global lbl_8051D078
+lbl_8051D078:
+	.float 0.1
+.global lbl_8051D07C
+lbl_8051D07C:
+	.4byte 0x3EE66666
+.global lbl_8051D080
+lbl_8051D080:
+	.4byte 0x3FC90FDB
+.global lbl_8051D084
+lbl_8051D084:
+	.4byte 0x40C90FDB
+.global lbl_8051D088
+lbl_8051D088:
+	.4byte 0x3C23D70A
+.global lbl_8051D08C
+lbl_8051D08C:
+	.4byte 0x3CCCCCCD
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global verticalRotationCallBack__Q24Game10MiniHoudaiFP8J3DJointi
 verticalRotationCallBack__Q24Game10MiniHoudaiFP8J3DJointi:

@@ -736,6 +736,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappyAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappy.o\
+	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiMgr.o\
@@ -847,7 +848,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudaiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TyreShadow.o\
-	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDopingScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogPikminCounter.o\

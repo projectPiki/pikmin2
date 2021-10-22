@@ -226,6 +226,105 @@ __vt__Q34Game12Hanachirashi3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BDB8
+lbl_8051BDB8:
+	.4byte 0x00000000
+.global lbl_8051BDBC
+lbl_8051BDBC:
+	.4byte 0x68616E61
+	.4byte 0x33000000
+.global lbl_8051BDC4
+lbl_8051BDC4:
+	.4byte 0x41F00000
+.global lbl_8051BDC8
+lbl_8051BDC8:
+	.4byte 0x6D756E65
+	.4byte 0x00000000
+.global lbl_8051BDD0
+lbl_8051BDD0:
+	.4byte 0x68656164
+	.4byte 0x00000000
+.global lbl_8051BDD8
+lbl_8051BDD8:
+	.float 0.5
+.global lbl_8051BDDC
+lbl_8051BDDC:
+	.float 1.0
+.global lbl_8051BDE0
+lbl_8051BDE0:
+	.4byte 0x42C80000
+.global lbl_8051BDE4
+lbl_8051BDE4:
+	.4byte 0x42480000
+.global lbl_8051BDE8
+lbl_8051BDE8:
+	.4byte 0xC1200000
+.global lbl_8051BDEC
+lbl_8051BDEC:
+	.4byte 0x43FA0000
+.global lbl_8051BDF0
+lbl_8051BDF0:
+	.4byte 0xC3A2F983
+.global lbl_8051BDF4
+lbl_8051BDF4:
+	.4byte 0x43A2F983
+.global lbl_8051BDF8
+lbl_8051BDF8:
+	.4byte 0x47000000
+.global lbl_8051BDFC
+lbl_8051BDFC:
+	.4byte 0x40490FDB
+.global lbl_8051BE00
+lbl_8051BE00:
+	.4byte 0x3FC90FDB
+	.4byte 0x00000000
+.global lbl_8051BE08
+lbl_8051BE08:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051BE10
+lbl_8051BE10:
+	.4byte 0xC0A00000
+.global lbl_8051BE14
+lbl_8051BE14:
+	.4byte 0x40A00000
+.global lbl_8051BE18
+lbl_8051BE18:
+	.4byte 0x41A00000
+.global lbl_8051BE1C
+lbl_8051BE1C:
+	.4byte 0x40C90FDB
+.global lbl_8051BE20
+lbl_8051BE20:
+	.4byte 0x3BB60B61
+.global lbl_8051BE24
+lbl_8051BE24:
+	.4byte 0x43340000
+.global lbl_8051BE28
+lbl_8051BE28:
+	.4byte 0x46480000
+.global lbl_8051BE2C
+lbl_8051BE2C:
+	.4byte 0xBF59999A
+.global lbl_8051BE30
+lbl_8051BE30:
+	.4byte 0x41C80000
+.global lbl_8051BE34
+lbl_8051BE34:
+	.4byte 0x40400000
+.global lbl_8051BE38
+lbl_8051BE38:
+	.4byte 0x3E4CCCCD
+.global lbl_8051BE3C
+lbl_8051BE3C:
+	.4byte 0x41200000
+.global lbl_8051BE40
+lbl_8051BE40:
+	.float 0.7
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12Hanachirashi3ObjFv
 __ct__Q34Game12Hanachirashi3ObjFv:

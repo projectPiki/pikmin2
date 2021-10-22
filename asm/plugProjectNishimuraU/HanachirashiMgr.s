@@ -313,6 +313,37 @@ __vt__Q34Game12Hanachirashi5Parms:
 "cMatAnimBrkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@":
 	.4byte lbl_804890FC
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BD90
+lbl_8051BD90:
+	.4byte 0x42B40000
+.global lbl_8051BD94
+lbl_8051BD94:
+	.4byte 0x00000000
+.global lbl_8051BD98
+lbl_8051BD98:
+	.4byte 0x43160000
+.global lbl_8051BD9C
+lbl_8051BD9C:
+	.float 1.0
+.global lbl_8051BDA0
+lbl_8051BDA0:
+	.4byte 0x41200000
+.global lbl_8051BDA4
+lbl_8051BDA4:
+	.4byte 0x40400000
+.global lbl_8051BDA8
+lbl_8051BDA8:
+	.4byte 0x40200000
+.global lbl_8051BDAC
+lbl_8051BDAC:
+	.4byte 0x40A00000
+.global lbl_8051BDB0
+lbl_8051BDB0:
+	.4byte 0x6D617431
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12Hanachirashi3MgrFiUc
 __ct__Q34Game12Hanachirashi3MgrFiUc:

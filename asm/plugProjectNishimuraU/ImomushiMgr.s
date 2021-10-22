@@ -276,6 +276,33 @@ __vt__Q34Game8Imomushi3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C3A0
+lbl_8051C3A0:
+	.4byte 0x40000000
+.global lbl_8051C3A4
+lbl_8051C3A4:
+	.4byte 0x00000000
+.global lbl_8051C3A8
+lbl_8051C3A8:
+	.4byte 0x41200000
+.global lbl_8051C3AC
+lbl_8051C3AC:
+	.float 0.3
+.global lbl_8051C3B0
+lbl_8051C3B0:
+	.4byte 0x42C80000
+.global lbl_8051C3B4
+lbl_8051C3B4:
+	.4byte 0x3F400000
+.global lbl_8051C3B8
+lbl_8051C3B8:
+	.float 0.05
+.global lbl_8051C3BC
+lbl_8051C3BC:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Imomushi3MgrFiUc
 __ct__Q34Game8Imomushi3MgrFiUc:

@@ -302,6 +302,31 @@ __vt__Q34Game11OtakaraBase5Parms:
 "cOtakaraChangeTexName__Q34Game11FireOtakara28@unnamed@FireOtakaraMgr_cpp@":
 	.4byte lbl_8048A3CC
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C2E8
+lbl_8051C2E8:
+	.4byte 0x42C80000
+.global lbl_8051C2EC
+lbl_8051C2EC:
+	.4byte 0x00000000
+.global lbl_8051C2F0
+lbl_8051C2F0:
+	.4byte 0x461C4000
+.global lbl_8051C2F4
+lbl_8051C2F4:
+	.float 1.0
+.global lbl_8051C2F8
+lbl_8051C2F8:
+	.4byte 0x41200000
+.global lbl_8051C2FC
+lbl_8051C2FC:
+	.4byte 0x3FA00000
+.global lbl_8051C300
+lbl_8051C300:
+	.4byte 0x40200000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11FireOtakara3MgrFiUc
 __ct__Q34Game11FireOtakara3MgrFiUc:

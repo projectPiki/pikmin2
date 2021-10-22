@@ -313,6 +313,207 @@ __vt__Q34Game10DangoMushi14ProperAnimator:
 	.4byte resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv
 	.4byte getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D3A8
+lbl_8051D3A8:
+	.4byte 0x00000000
+.global lbl_8051D3AC
+lbl_8051D3AC:
+	.4byte 0x42700000
+.global lbl_8051D3B0
+lbl_8051D3B0:
+	.4byte 0x41F00000
+.global lbl_8051D3B4
+lbl_8051D3B4:
+	.4byte 0x41200000
+.global lbl_8051D3B8
+lbl_8051D3B8:
+	.float 1.0
+.global lbl_8051D3BC
+lbl_8051D3BC:
+	.4byte 0x42C80000
+.global lbl_8051D3C0
+lbl_8051D3C0:
+	.4byte 0x42480000
+.global lbl_8051D3C4
+lbl_8051D3C4:
+	.4byte 0x42340000
+.global lbl_8051D3C8
+lbl_8051D3C8:
+	.4byte 0xBF000000
+.global lbl_8051D3CC
+lbl_8051D3CC:
+	.4byte 0xC47A0000
+.global lbl_8051D3D0
+lbl_8051D3D0:
+	.4byte 0x68616E64
+	.4byte 0x5F4C0000
+.global lbl_8051D3D8
+lbl_8051D3D8:
+	.4byte 0x40F00000
+.global lbl_8051D3DC
+lbl_8051D3DC:
+	.4byte 0x3F19999A
+.global lbl_8051D3E0
+lbl_8051D3E0:
+	.4byte 0x47000000
+.global lbl_8051D3E4
+lbl_8051D3E4:
+	.4byte 0x40490FDB
+.global lbl_8051D3E8
+lbl_8051D3E8:
+	.4byte 0x3FC90FDB
+.global lbl_8051D3EC
+lbl_8051D3EC:
+	.4byte 0x43A2F983
+.global lbl_8051D3F0
+lbl_8051D3F0:
+	.4byte 0xC3A2F983
+	.4byte 0x00000000
+.global lbl_8051D3F8
+lbl_8051D3F8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051D400
+lbl_8051D400:
+	.4byte 0x441C4000
+.global lbl_8051D404
+lbl_8051D404:
+	.4byte 0x43340000
+.global lbl_8051D408
+lbl_8051D408:
+	.4byte 0x3BB60B61
+.global lbl_8051D40C
+lbl_8051D40C:
+	.4byte 0x40A00000
+.global lbl_8051D410
+lbl_8051D410:
+	.4byte 0x40400000
+.global lbl_8051D414
+lbl_8051D414:
+	.4byte 0x00000013
+.global lbl_8051D418
+lbl_8051D418:
+	.4byte 0x00000025
+.global lbl_8051D41C
+lbl_8051D41C:
+	.4byte 0x0000000A
+.global lbl_8051D420
+lbl_8051D420:
+	.4byte 0x00000001
+.global lbl_8051D424
+lbl_8051D424:
+	.float 0.5
+.global lbl_8051D428
+lbl_8051D428:
+	.float 0.25
+.global lbl_8051D42C
+lbl_8051D42C:
+	.4byte 0x41700000
+.global lbl_8051D430
+lbl_8051D430:
+	.4byte 0x40060A92
+.global lbl_8051D434
+lbl_8051D434:
+	.4byte 0x428C0000
+.global lbl_8051D438
+lbl_8051D438:
+	.4byte 0x3F860A92
+.global lbl_8051D43C
+lbl_8051D43C:
+	.4byte 0x430C0000
+.global lbl_8051D440
+lbl_8051D440:
+	.float 0.1
+.global lbl_8051D444
+lbl_8051D444:
+	.4byte 0x3F060A92
+.global lbl_8051D448
+lbl_8051D448:
+	.4byte 0x435C0000
+.global lbl_8051D44C
+lbl_8051D44C:
+	.4byte 0x40C90FDB
+.global lbl_8051D450
+lbl_8051D450:
+	.4byte 0x447A0000
+.global lbl_8051D454
+lbl_8051D454:
+	.4byte 0x43FA0000
+.global lbl_8051D458
+lbl_8051D458:
+	.4byte 0x626F6430
+.global lbl_8051D45C
+lbl_8051D45C:
+	.4byte 0x626F6431
+.global lbl_8051D460
+lbl_8051D460:
+	.4byte 0x43160000
+.global lbl_8051D464
+lbl_8051D464:
+	.4byte 0x43960000
+.global lbl_8051D468
+lbl_8051D468:
+	.4byte 0x42F00000
+.global lbl_8051D46C
+lbl_8051D46C:
+	.4byte 0x437A0000
+.global lbl_8051D470
+lbl_8051D470:
+	.4byte 0xC1700000
+.global lbl_8051D474
+lbl_8051D474:
+	.4byte 0x428C0000
+.global lbl_8051D478
+lbl_8051D478:
+	.4byte 0xC1A00000
+.global lbl_8051D47C
+lbl_8051D47C:
+	.4byte 0xC2200000
+.global lbl_8051D480
+lbl_8051D480:
+	.4byte 0x41700000
+.global lbl_8051D484
+lbl_8051D484:
+	.4byte 0x41700000
+.global lbl_8051D488
+lbl_8051D488:
+	.4byte 0x68616E64
+	.4byte 0x5F520000
+.global lbl_8051D490
+lbl_8051D490:
+	.4byte 0x47FA0000
+.global lbl_8051D494
+lbl_8051D494:
+	.4byte 0xC7FA0000
+.global lbl_8051D498
+lbl_8051D498:
+	.4byte 0x61726D5F
+	.4byte 0x52303200
+.global lbl_8051D4A0
+lbl_8051D4A0:
+	.4byte 0x73746F6D
+	.4byte 0x61636800
+.global lbl_8051D4A8
+lbl_8051D4A8:
+	.4byte 0x3FA66666
+.global lbl_8051D4AC
+lbl_8051D4AC:
+	.4byte 0x422A0000
+.global lbl_8051D4B0
+lbl_8051D4B0:
+	.4byte 0xC1480000
+.global lbl_8051D4B4
+lbl_8051D4B4:
+	.4byte 0x41C80000
+.global lbl_8051D4B8
+lbl_8051D4B8:
+	.4byte 0x3F2E147B
+.global lbl_8051D4BC
+lbl_8051D4BC:
+	.4byte 0x3E4CCCCD
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10DangoMushi3ObjFv
 __ct__Q34Game10DangoMushi3ObjFv:

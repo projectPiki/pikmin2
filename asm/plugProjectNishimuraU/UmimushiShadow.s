@@ -23,6 +23,33 @@ __vt__Q24Game22UmimushiTubeShadowNode:
 	.4byte __dt__Q24Game22UmimushiTubeShadowNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D180
+lbl_8051D180:
+	.float 0.5
+.global lbl_8051D184
+lbl_8051D184:
+	.4byte 0x00000000
+.global lbl_8051D188
+lbl_8051D188:
+	.float 1.0
+.global lbl_8051D18C
+lbl_8051D18C:
+	.4byte 0x41C80000
+.global lbl_8051D190
+lbl_8051D190:
+	.4byte 0x40200000
+.global lbl_8051D194
+lbl_8051D194:
+	.4byte 0xC1480000
+.global lbl_8051D198
+lbl_8051D198:
+	.4byte 0x3FC00000
+.global lbl_8051D19C
+lbl_8051D19C:
+	.4byte 0x41700000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>"
 "makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>":

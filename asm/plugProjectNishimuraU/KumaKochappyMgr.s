@@ -87,6 +87,19 @@ __vt__Q34Game12KumaKochappy3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051CEB0
+lbl_8051CEB0:
+	.4byte 0x43960000
+.global lbl_8051CEB4
+lbl_8051CEB4:
+	.4byte 0x00000000
+.global lbl_8051CEB8
+lbl_8051CEB8:
+	.4byte 0x461C4000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12KumaKochappy3MgrFiUc
 __ct__Q34Game12KumaKochappy3MgrFiUc:

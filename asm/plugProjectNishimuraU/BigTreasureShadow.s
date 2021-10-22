@@ -82,6 +82,119 @@ __vt__Q24Game17TubeShadowPosNode:
 	.4byte __dt__Q24Game17TubeShadowPosNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051CB88
+lbl_8051CB88:
+	.4byte 0x6B6F7369
+	.4byte 0x00000000
+.global lbl_8051CB90
+lbl_8051CB90:
+	.4byte 0x6C61726D
+	.4byte 0x31000000
+.global lbl_8051CB98
+lbl_8051CB98:
+	.4byte 0x6C61726D
+	.4byte 0x32000000
+.global lbl_8051CBA0
+lbl_8051CBA0:
+	.4byte 0x6C61726D
+	.4byte 0x33000000
+.global lbl_8051CBA8
+lbl_8051CBA8:
+	.4byte 0x7261726D
+	.4byte 0x31000000
+.global lbl_8051CBB0
+lbl_8051CBB0:
+	.4byte 0x7261726D
+	.4byte 0x32000000
+.global lbl_8051CBB8
+lbl_8051CBB8:
+	.4byte 0x7261726D
+	.4byte 0x33000000
+.global lbl_8051CBC0
+lbl_8051CBC0:
+	.float 0.5
+.global lbl_8051CBC4
+lbl_8051CBC4:
+	.4byte 0x40400000
+.global lbl_8051CBC8
+lbl_8051CBC8:
+	.4byte 0x00000000
+.global lbl_8051CBCC
+lbl_8051CBCC:
+	.float 1.0
+.global lbl_8051CBD0
+lbl_8051CBD0:
+	.4byte 0xC1A00000
+.global lbl_8051CBD4
+lbl_8051CBD4:
+	.4byte 0x40A00000
+.global lbl_8051CBD8
+lbl_8051CBD8:
+	.4byte 0x40200000
+.global lbl_8051CBDC
+lbl_8051CBDC:
+	.4byte 0x43A2F983
+.global lbl_8051CBE0
+lbl_8051CBE0:
+	.4byte 0xC3A2F983
+.global lbl_8051CBE4
+lbl_8051CBE4:
+	.4byte 0x41A00000
+.global lbl_8051CBE8
+lbl_8051CBE8:
+	.4byte 0xC2960000
+.global lbl_8051CBEC
+lbl_8051CBEC:
+	.4byte 0xC1200000
+.global lbl_8051CBF0
+lbl_8051CBF0:
+	.4byte 0x41D80000
+.global lbl_8051CBF4
+lbl_8051CBF4:
+	.4byte 0x42B90000
+.global lbl_8051CBF8
+lbl_8051CBF8:
+	.4byte 0xC27A0000
+.global lbl_8051CBFC
+lbl_8051CBFC:
+	.4byte 0x42BE0000
+.global lbl_8051CC00
+lbl_8051CC00:
+	.4byte 0x41F00000
+.global lbl_8051CC04
+lbl_8051CC04:
+	.4byte 0xC20C0000
+.global lbl_8051CC08
+lbl_8051CC08:
+	.4byte 0x40800000
+.global lbl_8051CC0C
+lbl_8051CC0C:
+	.4byte 0x42480000
+.global lbl_8051CC10
+lbl_8051CC10:
+	.4byte 0xC0F00000
+.global lbl_8051CC14
+lbl_8051CC14:
+	.4byte 0x40000000
+.global lbl_8051CC18
+lbl_8051CC18:
+	.4byte 0x420C0000
+.global lbl_8051CC1C
+lbl_8051CC1C:
+	.4byte 0x425C0000
+.global lbl_8051CC20
+lbl_8051CC20:
+	.4byte 0x42160000
+.global lbl_8051CC24
+lbl_8051CC24:
+	.4byte 0xC1F00000
+.global lbl_8051CC28
+lbl_8051CC28:
+	.4byte 0x42200000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj
 __ct__Q34Game11BigTreasure20BigTreasureShadowMgrFPQ34Game11BigTreasure3Obj:

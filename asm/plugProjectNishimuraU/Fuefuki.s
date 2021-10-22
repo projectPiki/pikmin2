@@ -251,6 +251,59 @@ __vt__Q24Game25InteractFuefukiTimerReset:
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BC98
+lbl_8051BC98:
+	.4byte 0x40A00000
+.global lbl_8051BC9C
+lbl_8051BC9C:
+	.4byte 0x00000000
+.global lbl_8051BCA0
+lbl_8051BCA0:
+	.float 1.0
+.global lbl_8051BCA4
+lbl_8051BCA4:
+	.4byte 0x42960000
+.global lbl_8051BCA8
+lbl_8051BCA8:
+	.4byte 0x42480000
+.global lbl_8051BCAC
+lbl_8051BCAC:
+	.4byte 0x41700000
+.global lbl_8051BCB0
+lbl_8051BCB0:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051BCB8
+lbl_8051BCB8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051BCC0
+lbl_8051BCC0:
+	.4byte 0x40C90FDB
+.global lbl_8051BCC4
+lbl_8051BCC4:
+	.4byte 0x41C80000
+.global lbl_8051BCC8
+lbl_8051BCC8:
+	.4byte 0x40490FDB
+.global lbl_8051BCCC
+lbl_8051BCCC:
+	.4byte 0x3FC90FDB
+.global lbl_8051BCD0
+lbl_8051BCD0:
+	.4byte 0x43A2F983
+.global lbl_8051BCD4
+lbl_8051BCD4:
+	.4byte 0xC3A2F983
+.global lbl_8051BCD8
+lbl_8051BCD8:
+	.4byte 0x441C4000
+.global lbl_8051BCDC
+lbl_8051BCDC:
+	.4byte 0x40200000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actEnemy__Q24Game25InteractFuefukiTimerResetFPQ24Game9EnemyBase
 actEnemy__Q24Game25InteractFuefukiTimerResetFPQ24Game9EnemyBase:

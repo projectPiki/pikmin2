@@ -187,6 +187,89 @@ lbl_80515DC8:
 lbl_80515DCC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C8E8
+lbl_8051C8E8:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051C8F0
+lbl_8051C8F0:
+	.4byte 0x77616974
+	.4byte 0x00000000
+.global lbl_8051C8F8
+lbl_8051C8F8:
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+.global lbl_8051C900
+lbl_8051C900:
+	.4byte 0x63686173
+	.4byte 0x65000000
+.global lbl_8051C908
+lbl_8051C908:
+	.4byte 0x61747461
+	.4byte 0x636B0000
+.global lbl_8051C910
+lbl_8051C910:
+	.4byte 0x66616C6C
+	.4byte 0x00000000
+.global lbl_8051C918
+lbl_8051C918:
+	.4byte 0x64726F70
+	.4byte 0x00000000
+.global lbl_8051C920
+lbl_8051C920:
+	.4byte 0x6C616E64
+	.4byte 0x00000000
+.global lbl_8051C928
+lbl_8051C928:
+	.4byte 0x67726F75
+	.4byte 0x6E640000
+.global lbl_8051C930
+lbl_8051C930:
+	.4byte 0x74616B65
+	.4byte 0x6F666600
+.global lbl_8051C938
+lbl_8051C938:
+	.4byte 0x00000000
+.global lbl_8051C93C
+lbl_8051C93C:
+	.4byte 0x41F00000
+.global lbl_8051C940
+lbl_8051C940:
+	.4byte 0x42820000
+.global lbl_8051C944
+lbl_8051C944:
+	.4byte 0x41A00000
+.global lbl_8051C948
+lbl_8051C948:
+	.4byte 0x41980000
+.global lbl_8051C94C
+lbl_8051C94C:
+	.float 1.0
+.global lbl_8051C950
+lbl_8051C950:
+	.4byte 0x42C80000
+.global lbl_8051C954
+lbl_8051C954:
+	.4byte 0xC47A0000
+.global lbl_8051C958
+lbl_8051C958:
+	.4byte 0x40600000
+.global lbl_8051C95C
+lbl_8051C95C:
+	.4byte 0x40400000
+.global lbl_8051C960
+lbl_8051C960:
+	.4byte 0x41200000
+.global lbl_8051C964
+lbl_8051C964:
+	.4byte 0x441C4000
+.global lbl_8051C968
+lbl_8051C968:
+	.4byte 0x41C80000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9OniKurage3FSMFPQ24Game9EnemyBase
 init__Q34Game9OniKurage3FSMFPQ24Game9EnemyBase:

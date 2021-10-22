@@ -14,6 +14,43 @@ lbl_80489968:
 gIKSystemMgr__4Game:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BF70
+lbl_8051BF70:
+	.4byte 0x42C80000
+.global lbl_8051BF74
+lbl_8051BF74:
+	.4byte 0x00000000
+.global lbl_8051BF78
+lbl_8051BF78:
+	.float 1.0
+.global lbl_8051BF7C
+lbl_8051BF7C:
+	.4byte 0x40A00000
+.global lbl_8051BF80
+lbl_8051BF80:
+	.4byte 0x40490FDB
+.global lbl_8051BF84
+lbl_8051BF84:
+	.4byte 0x3BB60B61
+.global lbl_8051BF88
+lbl_8051BF88:
+	.4byte 0x43A2F983
+.global lbl_8051BF8C
+lbl_8051BF8C:
+	.4byte 0xC3A2F983
+.global lbl_8051BF90
+lbl_8051BF90:
+	.float 0.5
+.global lbl_8051BF94
+lbl_8051BF94:
+	.4byte 0x40C90FDB
+.global lbl_8051BF98
+lbl_8051BF98:
+	.float 0.25
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global IKJointCallBack__4GameFP8J3DJointi
 IKJointCallBack__4GameFP8J3DJointi:

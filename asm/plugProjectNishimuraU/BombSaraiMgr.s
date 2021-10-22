@@ -293,6 +293,51 @@ __vt__Q34Game9BombSarai5Parms:
 	.4byte read__Q34Game9BombSarai5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C1C0
+lbl_8051C1C0:
+	.4byte 0x42B40000
+.global lbl_8051C1C4
+lbl_8051C1C4:
+	.4byte 0x00000000
+.global lbl_8051C1C8
+lbl_8051C1C8:
+	.4byte 0x43160000
+.global lbl_8051C1CC
+lbl_8051C1CC:
+	.4byte 0x42480000
+.global lbl_8051C1D0
+lbl_8051C1D0:
+	.4byte 0x43960000
+.global lbl_8051C1D4
+lbl_8051C1D4:
+	.4byte 0x40200000
+.global lbl_8051C1D8
+lbl_8051C1D8:
+	.4byte 0x41200000
+.global lbl_8051C1DC
+lbl_8051C1DC:
+	.4byte 0x41A00000
+.global lbl_8051C1E0
+lbl_8051C1E0:
+	.4byte 0x3FC00000
+.global lbl_8051C1E4
+lbl_8051C1E4:
+	.4byte 0x40A00000
+.global lbl_8051C1E8
+lbl_8051C1E8:
+	.float 1.0
+.global lbl_8051C1EC
+lbl_8051C1EC:
+	.float 0.1
+.global lbl_8051C1F0
+lbl_8051C1F0:
+	.float 0.7
+.global lbl_8051C1F4
+lbl_8051C1F4:
+	.4byte 0x40400000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9BombSarai3MgrFiUc
 __ct__Q34Game9BombSarai3MgrFiUc:

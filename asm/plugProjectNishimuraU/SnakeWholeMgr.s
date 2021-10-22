@@ -277,6 +277,31 @@ __vt__Q34Game10SnakeWhole5Parms:
 	.4byte read__Q34Game10SnakeWhole5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C848
+lbl_8051C848:
+	.4byte 0x3F4CCCCD
+.global lbl_8051C84C
+lbl_8051C84C:
+	.4byte 0x00000000
+.global lbl_8051C850
+lbl_8051C850:
+	.float 1.0
+.global lbl_8051C854
+lbl_8051C854:
+	.4byte 0x40000000
+.global lbl_8051C858
+lbl_8051C858:
+	.4byte 0x41200000
+.global lbl_8051C85C
+lbl_8051C85C:
+	.4byte 0x43960000
+.global lbl_8051C860
+lbl_8051C860:
+	.4byte 0x461C4000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SnakeWhole3MgrFiUc
 __ct__Q34Game10SnakeWhole3MgrFiUc:

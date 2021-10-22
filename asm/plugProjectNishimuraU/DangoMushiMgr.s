@@ -299,6 +299,41 @@ __vt__Q34Game10DangoMushi5Parms:
 "cMatAnimBrkTexName__Q34Game10DangoMushi27@unnamed@DangoMushiMgr_cpp@":
 	.4byte lbl_8048D45C
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D378
+lbl_8051D378:
+	.4byte 0x43480000
+.global lbl_8051D37C
+lbl_8051D37C:
+	.4byte 0x00000000
+.global lbl_8051D380
+lbl_8051D380:
+	.4byte 0x43FA0000
+.global lbl_8051D384
+lbl_8051D384:
+	.float 0.1
+.global lbl_8051D388
+lbl_8051D388:
+	.float 1.0
+.global lbl_8051D38C
+lbl_8051D38C:
+	.4byte 0x41200000
+.global lbl_8051D390
+lbl_8051D390:
+	.4byte 0x43B40000
+.global lbl_8051D394
+lbl_8051D394:
+	.4byte 0x40F00000
+.global lbl_8051D398
+lbl_8051D398:
+	.4byte 0x41F00000
+.global lbl_8051D39C
+lbl_8051D39C:
+	.4byte 0x626F6479
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10DangoMushi3MgrFiUc
 __ct__Q34Game10DangoMushi3MgrFiUc:

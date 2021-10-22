@@ -429,6 +429,125 @@ lbl_80515DB0:
 lbl_80515DB4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C728
+lbl_8051C728:
+	.4byte 0x00000000
+.global lbl_8051C72C
+lbl_8051C72C:
+	.float 1.0
+.global lbl_8051C730
+lbl_8051C730:
+	.float 0.1
+.global lbl_8051C734
+lbl_8051C734:
+	.4byte 0x43FA0000
+.global lbl_8051C738
+lbl_8051C738:
+	.4byte 0x41200000
+.global lbl_8051C73C
+lbl_8051C73C:
+	.4byte 0xC47A0000
+.global lbl_8051C740
+lbl_8051C740:
+	.4byte 0x6B6F7369
+	.4byte 0x00000000
+.global lbl_8051C748
+lbl_8051C748:
+	.4byte 0x42C80000
+.global lbl_8051C74C
+lbl_8051C74C:
+	.float 0.5
+.global lbl_8051C750
+lbl_8051C750:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051C758
+lbl_8051C758:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051C760
+lbl_8051C760:
+	.4byte 0x40000000
+.global lbl_8051C764
+lbl_8051C764:
+	.4byte 0x40490FDB
+.global lbl_8051C768
+lbl_8051C768:
+	.4byte 0x3BB60B61
+.global lbl_8051C76C
+lbl_8051C76C:
+	.4byte 0xC3A2F983
+.global lbl_8051C770
+lbl_8051C770:
+	.4byte 0x43A2F983
+.global lbl_8051C774
+lbl_8051C774:
+	.4byte 0x441C4000
+.global lbl_8051C778
+lbl_8051C778:
+	.4byte 0x3FC90FDB
+.global lbl_8051C77C
+lbl_8051C77C:
+	.4byte 0x3F400000
+.global lbl_8051C780
+lbl_8051C780:
+	.4byte 0x42F00000
+.global lbl_8051C784
+lbl_8051C784:
+	.4byte 0x40400000
+.global lbl_8051C788
+lbl_8051C788:
+	.4byte 0xBE19999A
+.global lbl_8051C78C
+lbl_8051C78C:
+	.4byte 0xC0000000
+.global lbl_8051C790
+lbl_8051C790:
+	.4byte 0x42960000
+.global lbl_8051C794
+lbl_8051C794:
+	.4byte 0x41F00000
+.global lbl_8051C798
+lbl_8051C798:
+	.4byte 0x42700000
+.global lbl_8051C79C
+lbl_8051C79C:
+	.float 0.7
+.global lbl_8051C7A0
+lbl_8051C7A0:
+	.4byte 0xBFC00000
+.global lbl_8051C7A4
+lbl_8051C7A4:
+	.4byte 0x42200000
+.global lbl_8051C7A8
+lbl_8051C7A8:
+	.4byte 0x42480000
+.global lbl_8051C7AC
+lbl_8051C7AC:
+	.4byte 0x74616D61
+	.4byte 0x31000000
+.global lbl_8051C7B4
+lbl_8051C7B4:
+	.4byte 0x74616D61
+	.4byte 0x32000000
+.global lbl_8051C7BC
+lbl_8051C7BC:
+	.4byte 0x3F4CCCCD
+.global lbl_8051C7C0
+lbl_8051C7C0:
+	.4byte 0x3E333333
+.global lbl_8051C7C4
+lbl_8051C7C4:
+	.4byte 0x3EB33333
+.global lbl_8051C7C8
+lbl_8051C7C8:
+	.4byte 0x40800000
+.global lbl_8051C7CC
+lbl_8051C7CC:
+	.float 0.25
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global invokeOnGround__Q34Game7BigFoot21BigFootGroundCallBackFiPQ24Game8WaterBox
 invokeOnGround__Q34Game7BigFoot21BigFootGroundCallBackFiPQ24Game8WaterBox:

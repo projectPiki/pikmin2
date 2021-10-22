@@ -298,6 +298,37 @@ __vt__Q34Game7Fuefuki3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BC70
+lbl_8051BC70:
+	.4byte 0x41F00000
+.global lbl_8051BC74
+lbl_8051BC74:
+	.4byte 0x00000000
+.global lbl_8051BC78
+lbl_8051BC78:
+	.4byte 0x42C80000
+.global lbl_8051BC7C
+lbl_8051BC7C:
+	.4byte 0x41A00000
+.global lbl_8051BC80
+lbl_8051BC80:
+	.4byte 0x40400000
+.global lbl_8051BC84
+lbl_8051BC84:
+	.4byte 0x40A00000
+.global lbl_8051BC88
+lbl_8051BC88:
+	.4byte 0x41200000
+.global lbl_8051BC8C
+lbl_8051BC8C:
+	.float 0.5
+.global lbl_8051BC90
+lbl_8051BC90:
+	.float 1.0
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7Fuefuki3MgrFiUc
 __ct__Q34Game7Fuefuki3MgrFiUc:

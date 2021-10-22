@@ -1,4 +1,18 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D170
+lbl_8051D170:
+	.float 0.5
+.global lbl_8051D174
+lbl_8051D174:
+	.4byte 0x00000000
+.global lbl_8051D178
+lbl_8051D178:
+	.float 1.0
+.global lbl_8051D17C
+lbl_8051D17C:
+	.4byte 0x42C80000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeShadowSRT__Q24Game19TubeShadowTransNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"

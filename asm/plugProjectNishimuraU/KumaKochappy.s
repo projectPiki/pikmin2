@@ -216,6 +216,59 @@ __vt__Q34Game12KumaKochappy3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051CEC0
+lbl_8051CEC0:
+	.4byte 0x61676F00
+.global lbl_8051CEC4
+lbl_8051CEC4:
+	.4byte 0x40A00000
+.global lbl_8051CEC8
+lbl_8051CEC8:
+	.4byte 0x00000000
+.global lbl_8051CECC
+lbl_8051CECC:
+	.float 1.0
+.global lbl_8051CED0
+lbl_8051CED0:
+	.4byte 0x42480000
+.global lbl_8051CED4
+lbl_8051CED4:
+	.4byte 0x41A00000
+.global lbl_8051CED8
+lbl_8051CED8:
+	.4byte 0x41200000
+.global lbl_8051CEDC
+lbl_8051CEDC:
+	.4byte 0x6B616D75
+	.4byte 0x00000000
+.global lbl_8051CEE4
+lbl_8051CEE4:
+	.4byte 0x41700000
+.global lbl_8051CEE8
+lbl_8051CEE8:
+	.4byte 0x6173694C
+	.4byte 0x00000000
+.global lbl_8051CEF0
+lbl_8051CEF0:
+	.4byte 0x40800000
+.global lbl_8051CEF4
+lbl_8051CEF4:
+	.4byte 0x61736952
+	.4byte 0x00000000
+.global lbl_8051CEFC
+lbl_8051CEFC:
+	.4byte 0x47000000
+.global lbl_8051CF00
+lbl_8051CF00:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051CF08
+lbl_8051CF08:
+	.4byte 0x3ECCCCCD
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12KumaKochappy3ObjFv
 __ct__Q34Game12KumaKochappy3ObjFv:

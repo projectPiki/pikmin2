@@ -338,6 +338,51 @@ __vt__Q34Game7BigFoot5Parms:
 "cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@":
 	.4byte lbl_8048B228
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C6B0
+lbl_8051C6B0:
+	.4byte 0x40400000
+.global lbl_8051C6B4
+lbl_8051C6B4:
+	.4byte 0x00000000
+.global lbl_8051C6B8
+lbl_8051C6B8:
+	.4byte 0x41200000
+.global lbl_8051C6BC
+lbl_8051C6BC:
+	.4byte 0xBE4CCCCD
+.global lbl_8051C6C0
+lbl_8051C6C0:
+	.4byte 0xC0A00000
+.global lbl_8051C6C4
+lbl_8051C6C4:
+	.4byte 0x40A00000
+.global lbl_8051C6C8
+lbl_8051C6C8:
+	.float 0.5
+.global lbl_8051C6CC
+lbl_8051C6CC:
+	.4byte 0xC0200000
+.global lbl_8051C6D0
+lbl_8051C6D0:
+	.4byte 0xC1200000
+.global lbl_8051C6D4
+lbl_8051C6D4:
+	.4byte 0x42F00000
+.global lbl_8051C6D8
+lbl_8051C6D8:
+	.4byte 0x43480000
+.global lbl_8051C6DC
+lbl_8051C6DC:
+	.4byte 0xC0000000
+.global lbl_8051C6E0
+lbl_8051C6E0:
+	.4byte 0x42480000
+.global lbl_8051C6E4
+lbl_8051C6E4:
+	.4byte 0x42C80000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7BigFoot3MgrFiUc
 __ct__Q34Game7BigFoot3MgrFiUc:

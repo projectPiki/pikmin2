@@ -592,6 +592,215 @@ lbl_80515DE0:
 lbl_80515DE4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051CC30
+lbl_8051CC30:
+	.4byte 0x00000000
+.global lbl_8051CC34
+lbl_8051CC34:
+	.float 1.0
+.global lbl_8051CC38
+lbl_8051CC38:
+	.4byte 0x42700000
+.global lbl_8051CC3C
+lbl_8051CC3C:
+	.float 0.1
+.global lbl_8051CC40
+lbl_8051CC40:
+	.float 0.25
+.global lbl_8051CC44
+lbl_8051CC44:
+	.4byte 0x41200000
+.global lbl_8051CC48
+lbl_8051CC48:
+	.4byte 0xC47A0000
+.global lbl_8051CC4C
+lbl_8051CC4C:
+	.4byte 0x6B6F7369
+	.4byte 0x00000000
+.global lbl_8051CC54
+lbl_8051CC54:
+	.4byte 0x40000000
+.global lbl_8051CC58
+lbl_8051CC58:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051CC60
+lbl_8051CC60:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051CC68
+lbl_8051CC68:
+	.4byte 0x40400000
+.global lbl_8051CC6C
+lbl_8051CC6C:
+	.4byte 0x40800000
+.global lbl_8051CC70
+lbl_8051CC70:
+	.4byte 0x43960000
+.global lbl_8051CC74
+lbl_8051CC74:
+	.4byte 0x43610000
+.global lbl_8051CC78
+lbl_8051CC78:
+	.4byte 0x441C4000
+.global lbl_8051CC7C
+lbl_8051CC7C:
+	.4byte 0x40490FDB
+.global lbl_8051CC80
+lbl_8051CC80:
+	.4byte 0x3FC90FDB
+.global lbl_8051CC84
+lbl_8051CC84:
+	.4byte 0xC3A2F983
+.global lbl_8051CC88
+lbl_8051CC88:
+	.4byte 0x43A2F983
+.global lbl_8051CC8C
+lbl_8051CC8C:
+	.4byte 0x3F400000
+.global lbl_8051CC90
+lbl_8051CC90:
+	.4byte 0x42F00000
+.global lbl_8051CC94
+lbl_8051CC94:
+	.4byte 0xBE19999A
+.global lbl_8051CC98
+lbl_8051CC98:
+	.float 0.5
+.global lbl_8051CC9C
+lbl_8051CC9C:
+	.4byte 0xC0000000
+.global lbl_8051CCA0
+lbl_8051CCA0:
+	.4byte 0x42960000
+.global lbl_8051CCA4
+lbl_8051CCA4:
+	.float 30.0
+.global lbl_8051CCA8
+lbl_8051CCA8:
+	.float 0.7
+.global lbl_8051CCAC
+lbl_8051CCAC:
+	.float -1.5
+.global lbl_8051CCB0
+lbl_8051CCB0:
+	.asciz "elec"
+	.skip 3
+.global lbl_8051CCB8
+lbl_8051CCB8:
+	.asciz "fire"
+	.skip 3
+.global lbl_8051CCC0
+lbl_8051CCC0:
+	.asciz "gas"
+.global lbl_8051CCC4
+lbl_8051CCC4:
+	.asciz "water"
+	.skip 2
+.global lbl_8051CCCC
+lbl_8051CCCC:
+	.float 6000.0
+.global lbl_8051CCD0
+lbl_8051CCD0:
+	.asciz "loozy"
+	.skip 2
+.global lbl_8051CCD8
+lbl_8051CCD8:
+	.float 1.4
+.global lbl_8051CCDC
+lbl_8051CCDC:
+	.float 6.2831855
+.global lbl_8051CCE0
+lbl_8051CCE0:
+	.float 0.15
+.global lbl_8051CCE4
+lbl_8051CCE4:
+	.float -22.0
+.global lbl_8051CCE8
+lbl_8051CCE8:
+	.float 100.0
+.global lbl_8051CCEC
+lbl_8051CCEC:
+	.float 3000.0
+.global lbl_8051CCF0
+lbl_8051CCF0:
+	.4byte 0x43160000
+.global lbl_8051CCF4
+lbl_8051CCF4:
+	.4byte 0x463B8000
+.global lbl_8051CCF8
+lbl_8051CCF8:
+	.4byte 0x43340000
+.global lbl_8051CCFC
+lbl_8051CCFC:
+	.4byte 0x44A00000
+.global lbl_8051CD00
+lbl_8051CD00:
+	.4byte 0x3F490FDB
+.global lbl_8051CD04
+lbl_8051CD04:
+	.4byte 0x4016CBE4
+.global lbl_8051CD08
+lbl_8051CD08:
+	.4byte 0x407B53D2
+.global lbl_8051CD0C
+lbl_8051CD0C:
+	.4byte 0x40AFEDE0
+.global lbl_8051CD10
+lbl_8051CD10:
+	.4byte 0x40A00000
+.global lbl_8051CD14
+lbl_8051CD14:
+	.4byte 0x41A00000
+.global lbl_8051CD18
+lbl_8051CD18:
+	.4byte 0x437F0000
+.global lbl_8051CD1C
+lbl_8051CD1C:
+	.4byte 0x42B40000
+.global lbl_8051CD20
+lbl_8051CD20:
+	.4byte 0x43200000
+.global lbl_8051CD24
+lbl_8051CD24:
+	.4byte 0x428C0000
+.global lbl_8051CD28
+lbl_8051CD28:
+	.4byte 0x42A00000
+.global lbl_8051CD2C
+lbl_8051CD2C:
+	.4byte 0x42340000
+.global lbl_8051CD30
+lbl_8051CD30:
+	.4byte 0x435C0000
+.global lbl_8051CD34
+lbl_8051CD34:
+	.4byte 0x42880000
+.global lbl_8051CD38
+lbl_8051CD38:
+	.4byte 0x42200000
+.global lbl_8051CD3C
+lbl_8051CD3C:
+	.4byte 0x43480000
+.global lbl_8051CD40
+lbl_8051CD40:
+	.4byte 0x42800000
+.global lbl_8051CD44
+lbl_8051CD44:
+	.4byte 0x43660000
+.global lbl_8051CD48
+lbl_8051CD48:
+	.4byte 0x3C23D70A
+.global lbl_8051CD4C
+lbl_8051CD4C:
+	.4byte 0x3F99999A
+.global lbl_8051CD50
+lbl_8051CD50:
+	.4byte 0x3727C5AC
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global invokeOnGround__Q34Game11BigTreasure25BigTreasureGroundCallBackFiPQ24Game8WaterBox
 invokeOnGround__Q34Game11BigTreasure25BigTreasureGroundCallBackFiPQ24Game8WaterBox:

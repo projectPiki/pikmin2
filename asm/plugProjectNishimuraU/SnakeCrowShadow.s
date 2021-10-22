@@ -79,6 +79,27 @@ __vt__Q24Game23SnakeCrowTubeShadowNode:
 	.4byte __dt__Q24Game23SnakeCrowTubeShadowNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D2C0
+lbl_8051D2C0:
+	.float 0.5
+.global lbl_8051D2C4
+lbl_8051D2C4:
+	.4byte 0x00000000
+.global lbl_8051D2C8
+lbl_8051D2C8:
+	.float 1.0
+.global lbl_8051D2CC
+lbl_8051D2CC:
+	.4byte 0x40200000
+.global lbl_8051D2D0
+lbl_8051D2D0:
+	.4byte 0x42480000
+.global lbl_8051D2D4
+lbl_8051D2D4:
+	.4byte 0x42A00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>"
 "makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<f>R10Vector3<f>":

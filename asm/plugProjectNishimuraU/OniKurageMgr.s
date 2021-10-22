@@ -293,6 +293,33 @@ __vt__Q34Game9OniKurage5Parms:
 	.4byte read__Q34Game9OniKurage5ParmsFR6Stream
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C970
+lbl_8051C970:
+	.4byte 0x42B40000
+.global lbl_8051C974
+lbl_8051C974:
+	.4byte 0x00000000
+.global lbl_8051C978
+lbl_8051C978:
+	.4byte 0x43160000
+.global lbl_8051C97C
+lbl_8051C97C:
+	.float 1.0
+.global lbl_8051C980
+lbl_8051C980:
+	.4byte 0x41200000
+.global lbl_8051C984
+lbl_8051C984:
+	.4byte 0x40400000
+.global lbl_8051C988
+lbl_8051C988:
+	.4byte 0x40A00000
+.global lbl_8051C98C
+lbl_8051C98C:
+	.4byte 0x3CCCCCCD
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9OniKurage3MgrFiUc
 __ct__Q34Game9OniKurage3MgrFiUc:

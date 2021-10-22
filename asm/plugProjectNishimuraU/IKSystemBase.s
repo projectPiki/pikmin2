@@ -1,4 +1,44 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BFA0
+lbl_8051BFA0:
+	.4byte 0x00000000
+.global lbl_8051BFA4
+lbl_8051BFA4:
+	.4byte 0x40000000
+.global lbl_8051BFA8
+lbl_8051BFA8:
+	.float 1.0
+.global lbl_8051BFAC
+lbl_8051BFAC:
+	.4byte 0xC6480000
+.global lbl_8051BFB0
+lbl_8051BFB0:
+	.4byte 0x40C90FDB
+.global lbl_8051BFB4
+lbl_8051BFB4:
+	.4byte 0x43A2F983
+.global lbl_8051BFB8
+lbl_8051BFB8:
+	.4byte 0xC3A2F983
+	.4byte 0x00000000
+.global lbl_8051BFC0
+lbl_8051BFC0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051BFC8
+lbl_8051BFC8:
+	.4byte 0x3FAA3D71
+.global lbl_8051BFCC
+lbl_8051BFCC:
+	.float 0.25
+.global lbl_8051BFD0
+lbl_8051BFD0:
+	.4byte 0x42C80000
+.global lbl_8051BFD4
+lbl_8051BFD4:
+	.4byte 0xBF800000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game12IKSystemBaseFv

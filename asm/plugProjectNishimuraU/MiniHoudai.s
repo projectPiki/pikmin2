@@ -284,6 +284,103 @@ __vt__Q34Game10MiniHoudai3Obj:
 	.4byte "@776@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051CF88
+lbl_8051CF88:
+	.4byte 0x43000000
+.global lbl_8051CF8C
+lbl_8051CF8C:
+	.4byte 0x00000000
+.global lbl_8051CF90
+lbl_8051CF90:
+	.4byte 0x6B6F7369
+	.4byte 0x00000000
+.global lbl_8051CF98
+lbl_8051CF98:
+	.4byte 0x418C0000
+.global lbl_8051CF9C
+lbl_8051CF9C:
+	.4byte 0x40A00000
+.global lbl_8051CFA0
+lbl_8051CFA0:
+	.float 1.0
+.global lbl_8051CFA4
+lbl_8051CFA4:
+	.4byte 0x42C80000
+.global lbl_8051CFA8
+lbl_8051CFA8:
+	.4byte 0x42960000
+.global lbl_8051CFAC
+lbl_8051CFAC:
+	.4byte 0x42480000
+.global lbl_8051CFB0
+lbl_8051CFB0:
+	.4byte 0x41F00000
+.global lbl_8051CFB4
+lbl_8051CFB4:
+	.float 0.25
+.global lbl_8051CFB8
+lbl_8051CFB8:
+	.4byte 0x68616E64
+	.4byte 0x4C000000
+.global lbl_8051CFC0
+lbl_8051CFC0:
+	.4byte 0x68616E64
+	.4byte 0x52000000
+.global lbl_8051CFC8
+lbl_8051CFC8:
+	.4byte 0x41200000
+.global lbl_8051CFCC
+lbl_8051CFCC:
+	.4byte 0x43340000
+.global lbl_8051CFD0
+lbl_8051CFD0:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051CFD8
+lbl_8051CFD8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051CFE0
+lbl_8051CFE0:
+	.4byte 0x43A2F983
+.global lbl_8051CFE4
+lbl_8051CFE4:
+	.4byte 0xC3A2F983
+.global lbl_8051CFE8
+lbl_8051CFE8:
+	.float 0.5
+.global lbl_8051CFEC
+lbl_8051CFEC:
+	.4byte 0x3F400000
+.global lbl_8051CFF0
+lbl_8051CFF0:
+	.4byte 0x43480000
+.global lbl_8051CFF4
+lbl_8051CFF4:
+	.4byte 0x41C80000
+.global lbl_8051CFF8
+lbl_8051CFF8:
+	.4byte 0x6B757469
+	.4byte 0x00000000
+.global lbl_8051D000
+lbl_8051D000:
+	.4byte 0x68656164
+	.4byte 0x00000000
+.global lbl_8051D008
+lbl_8051D008:
+	.4byte 0x73656269
+	.4byte 0x72653100
+.global lbl_8051D010
+lbl_8051D010:
+	.4byte 0x73656269
+	.4byte 0x72653200
+.global lbl_8051D018
+lbl_8051D018:
+	.4byte 0x3F666666
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10MiniHoudai3ObjFv
 __ct__Q34Game10MiniHoudai3ObjFv:

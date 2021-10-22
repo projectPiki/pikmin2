@@ -51,6 +51,61 @@ __vt__Q24Game16SphereShadowNode:
 	.4byte __dt__Q24Game16SphereShadowNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051BFD8
+lbl_8051BFD8:
+	.4byte 0x6B6F7369
+	.4byte 0x00000000
+.global lbl_8051BFE0
+lbl_8051BFE0:
+	.float 0.5
+.global lbl_8051BFE4
+lbl_8051BFE4:
+	.4byte 0x40400000
+.global lbl_8051BFE8
+lbl_8051BFE8:
+	.4byte 0x00000000
+.global lbl_8051BFEC
+lbl_8051BFEC:
+	.float 1.0
+.global lbl_8051BFF0
+lbl_8051BFF0:
+	.4byte 0xC1F00000
+.global lbl_8051BFF4
+lbl_8051BFF4:
+	.4byte 0x40200000
+.global lbl_8051BFF8
+lbl_8051BFF8:
+	.4byte 0x41200000
+.global lbl_8051BFFC
+lbl_8051BFFC:
+	.4byte 0x418C0000
+.global lbl_8051C000
+lbl_8051C000:
+	.4byte 0x41F00000
+.global lbl_8051C004
+lbl_8051C004:
+	.4byte 0xC2480000
+.global lbl_8051C008
+lbl_8051C008:
+	.4byte 0x42840000
+.global lbl_8051C00C
+lbl_8051C00C:
+	.4byte 0xC28E0000
+.global lbl_8051C010
+lbl_8051C010:
+	.4byte 0xC1200000
+.global lbl_8051C014
+lbl_8051C014:
+	.4byte 0xC0A00000
+.global lbl_8051C018
+lbl_8051C018:
+	.4byte 0xC1000000
+.global lbl_8051C01C
+lbl_8051C01C:
+	.4byte 0x40A00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Damagumo17DamagumoShadowMgrFPQ34Game8Damagumo3Obj
 __ct__Q34Game8Damagumo17DamagumoShadowMgrFPQ34Game8Damagumo3Obj:

@@ -68,6 +68,85 @@ __vt__Q34Game6Houdai17HoudaiShotGunNode:
 sHoudaiShotGunMgr__Q24Game6Houdai:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051C588
+lbl_8051C588:
+	.4byte 0x00000000
+.global lbl_8051C58C
+lbl_8051C58C:
+	.float 1.0
+.global lbl_8051C590
+lbl_8051C590:
+	.4byte 0x41200000
+.global lbl_8051C594
+lbl_8051C594:
+	.4byte 0x3F19999A
+.global lbl_8051C598
+lbl_8051C598:
+	.4byte 0x41A00000
+.global lbl_8051C59C
+lbl_8051C59C:
+	.4byte 0x44BB8000
+.global lbl_8051C5A0
+lbl_8051C5A0:
+	.4byte 0x447A0000
+.global lbl_8051C5A4
+lbl_8051C5A4:
+	.float 0.5
+.global lbl_8051C5A8
+lbl_8051C5A8:
+	.4byte 0x42C80000
+.global lbl_8051C5AC
+lbl_8051C5AC:
+	.4byte 0x43FA0000
+.global lbl_8051C5B0
+lbl_8051C5B0:
+	.4byte 0x74616D61
+	.4byte 0x6A6E7400
+.global lbl_8051C5B8
+lbl_8051C5B8:
+	.4byte 0x67756E00
+.global lbl_8051C5BC
+lbl_8051C5BC:
+	.4byte 0x40000000
+.global lbl_8051C5C0
+lbl_8051C5C0:
+	.4byte 0x47000000
+.global lbl_8051C5C4
+lbl_8051C5C4:
+	.4byte 0x42340000
+.global lbl_8051C5C8
+lbl_8051C5C8:
+	.4byte 0x44160000
+	.4byte 0x00000000
+.global lbl_8051C5D0
+lbl_8051C5D0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051C5D8
+lbl_8051C5D8:
+	.float 0.05
+.global lbl_8051C5DC
+lbl_8051C5DC:
+	.4byte 0x40C90FDB
+.global lbl_8051C5E0
+lbl_8051C5E0:
+	.4byte 0x40490FDB
+.global lbl_8051C5E4
+lbl_8051C5E4:
+	.4byte 0x3CCCCCCD
+.global lbl_8051C5E8
+lbl_8051C5E8:
+	.4byte 0x3C23D70A
+.global lbl_8051C5EC
+lbl_8051C5EC:
+	.4byte 0x42480000
+.global lbl_8051C5F0
+lbl_8051C5F0:
+	.4byte 0x41726744
+	.4byte 0x69720000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi
 levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi:
