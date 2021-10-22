@@ -89,6 +89,25 @@ lbl_80515CFC:
 shadowMgr__4Game:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A6C0
+lbl_8051A6C0:
+	.float 0.1
+.global lbl_8051A6C4
+lbl_8051A6C4:
+	.4byte 0x00000000
+.global lbl_8051A6C8
+lbl_8051A6C8:
+	.4byte 0x3E4CCCCD
+.global lbl_8051A6CC
+lbl_8051A6CC:
+	.4byte 0x3CA3D70A
+.global lbl_8051A6D0
+lbl_8051A6D0:
+	.4byte 0x73686164
+	.4byte 0x6F770000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
 __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature:

@@ -216,6 +216,23 @@ __vt__Q34Game4Hiba3Obj:
 	.4byte "@716@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B020
+lbl_8051B020:
+	.4byte 0x00000000
+.global lbl_8051B024
+lbl_8051B024:
+	.4byte 0x47000000
+.global lbl_8051B028
+lbl_8051B028:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051B030
+lbl_8051B030:
+	.float 1.0
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Hiba3ObjFv
 __ct__Q34Game4Hiba3ObjFv:

@@ -21,6 +21,21 @@ __vt__Q24Game10RumbleNode:
 	.4byte __dt__Q24Game10RumbleNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A968
+lbl_8051A968:
+	.4byte 0x00000000
+.global lbl_8051A96C
+lbl_8051A96C:
+	.float 1.0
+.global lbl_8051A970
+lbl_8051A970:
+	.4byte 0x40400000
+.global lbl_8051A974
+lbl_8051A974:
+	.4byte 0x41F00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10ContRumbleFii
 __ct__Q24Game10ContRumbleFii:

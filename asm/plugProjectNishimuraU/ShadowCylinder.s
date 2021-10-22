@@ -183,6 +183,57 @@ lbl_80515CE8:
 lbl_80515CEC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A618
+lbl_8051A618:
+	.4byte 0x40C90FDB
+.global lbl_8051A61C
+lbl_8051A61C:
+	.float 0.5
+.global lbl_8051A620
+lbl_8051A620:
+	.4byte 0x00000000
+.global lbl_8051A624
+lbl_8051A624:
+	.4byte 0x43A2F983
+.global lbl_8051A628
+lbl_8051A628:
+	.4byte 0xC3A2F983
+.global lbl_8051A62C
+lbl_8051A62C:
+	.4byte 0xBF800000
+.global lbl_8051A630
+lbl_8051A630:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051A638
+lbl_8051A638:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A640
+lbl_8051A640:
+	.float 1.0
+.global lbl_8051A644
+lbl_8051A644:
+	.4byte 0x3F866666
+.global lbl_8051A648
+lbl_8051A648:
+	.4byte 0x3FACCCCD
+.global lbl_8051A64C
+lbl_8051A64C:
+	.4byte 0x46480000
+.global lbl_8051A650
+lbl_8051A650:
+	.4byte 0x40000000
+.global lbl_8051A654
+lbl_8051A654:
+	.4byte 0xFFFFFF04
+.global lbl_8051A658
+lbl_8051A658:
+	.4byte 0xFFFFFF7F
+	.4byte 0x00000000
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E88
 lbl_80520E88:

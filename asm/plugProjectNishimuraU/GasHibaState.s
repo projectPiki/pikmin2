@@ -58,6 +58,25 @@ __vt__Q34Game7GasHiba3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B038
+lbl_8051B038:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051B040
+lbl_8051B040:
+	.4byte 0x77616974
+	.4byte 0x00000000
+.global lbl_8051B048
+lbl_8051B048:
+	.4byte 0x61747461
+	.4byte 0x636B0000
+.global lbl_8051B050
+lbl_8051B050:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game7GasHiba3FSMFPQ24Game9EnemyBase
 init__Q34Game7GasHiba3FSMFPQ24Game9EnemyBase:

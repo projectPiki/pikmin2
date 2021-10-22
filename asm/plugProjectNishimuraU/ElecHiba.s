@@ -251,6 +251,41 @@ __vt__Q34Game8ElecHiba3Obj:
 	.4byte "@772@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B0E0
+lbl_8051B0E0:
+	.4byte 0x00000000
+.global lbl_8051B0E4
+lbl_8051B0E4:
+	.float 1.0
+.global lbl_8051B0E8
+lbl_8051B0E8:
+	.4byte 0xBF800000
+.global lbl_8051B0EC
+lbl_8051B0EC:
+	.4byte 0x47000000
+.global lbl_8051B0F0
+lbl_8051B0F0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051B0F8
+lbl_8051B0F8:
+	.float 0.5
+.global lbl_8051B0FC
+lbl_8051B0FC:
+	.4byte 0x41200000
+.global lbl_8051B100
+lbl_8051B100:
+	.4byte 0x3FC90FDB
+.global lbl_8051B104
+lbl_8051B104:
+	.4byte 0x43A2F983
+.global lbl_8051B108
+lbl_8051B108:
+	.4byte 0xC3A2F983
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8ElecHiba3ObjFv
 __ct__Q34Game8ElecHiba3ObjFv:

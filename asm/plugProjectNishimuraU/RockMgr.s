@@ -296,6 +296,33 @@ __vt__Q34Game4Rock9Generator:
 	.4byte draw__Q24Game18EnemyGeneratorBaseFR8GraphicsPQ24Game9Generator
 	.4byte getInitialParam__Q34Game4Rock9GeneratorFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051AD80
+lbl_8051AD80:
+	.4byte 0x42C80000
+.global lbl_8051AD84
+lbl_8051AD84:
+	.4byte 0x43FA0000
+.global lbl_8051AD88
+lbl_8051AD88:
+	.4byte 0x3ECCCCCD
+.global lbl_8051AD8C
+lbl_8051AD8C:
+	.4byte 0x43160000
+.global lbl_8051AD90
+lbl_8051AD90:
+	.4byte 0x00000000
+.global lbl_8051AD94
+lbl_8051AD94:
+	.4byte 0x447A0000
+.global lbl_8051AD98
+lbl_8051AD98:
+	.4byte 0x00000013
+.global lbl_8051AD9C
+lbl_8051AD9C:
+	.4byte 0x0000004A
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Rock9GeneratorFv
 __ct__Q34Game4Rock9GeneratorFv:

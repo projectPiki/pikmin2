@@ -16,6 +16,13 @@ __vt__Q34Game4Cave8ItemNode:
 	.4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
 	.4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A838
+lbl_8051A838:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave8ItemNodeFv
 __ct__Q34Game4Cave8ItemNodeFv:

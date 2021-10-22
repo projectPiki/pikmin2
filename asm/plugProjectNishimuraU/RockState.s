@@ -114,6 +114,39 @@ lbl_80515D40:
 lbl_80515D44:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051AD48
+lbl_8051AD48:
+	.4byte 0x77616974
+	.4byte 0x00000000
+.global lbl_8051AD50
+lbl_8051AD50:
+	.4byte 0x61707065
+	.4byte 0x61720000
+.global lbl_8051AD58
+lbl_8051AD58:
+	.4byte 0x66616C6C
+	.4byte 0x00000000
+.global lbl_8051AD60
+lbl_8051AD60:
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+.global lbl_8051AD68
+lbl_8051AD68:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051AD70
+lbl_8051AD70:
+	.4byte 0x00000000
+.global lbl_8051AD74
+lbl_8051AD74:
+	.4byte 0x3FC00000
+.global lbl_8051AD78
+lbl_8051AD78:
+	.4byte 0x41700000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game4Rock3FSMFPQ24Game9EnemyBase
 init__Q34Game4Rock3FSMFPQ24Game9EnemyBase:

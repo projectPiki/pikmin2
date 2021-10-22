@@ -317,6 +317,27 @@ lbl_80515D30:
 lbl_80515D34:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A990
+lbl_8051A990:
+	.4byte 0x41F00000
+.global lbl_8051A994
+lbl_8051A994:
+	.4byte 0x00000000
+.global lbl_8051A998
+lbl_8051A998:
+	.4byte 0x42700000
+.global lbl_8051A99C
+lbl_8051A99C:
+	.4byte 0x3FA00000
+.global lbl_8051A9A0
+lbl_8051A9A0:
+	.float 0.15
+.global lbl_8051A9A4
+lbl_8051A9A4:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game3Pom3MgrFiUc
 __ct__Q34Game3Pom3MgrFiUc:

@@ -217,6 +217,91 @@ __vt__Q34Game4Tobi3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051AF68
+lbl_8051AF68:
+	.4byte 0x6B6F7369
+	.4byte 0x6A6E7400
+.global lbl_8051AF70
+lbl_8051AF70:
+	.4byte 0x00000000
+.global lbl_8051AF74
+lbl_8051AF74:
+	.float 1.0
+.global lbl_8051AF78
+lbl_8051AF78:
+	.4byte 0x41100000
+.global lbl_8051AF7C
+lbl_8051AF7C:
+	.4byte 0x42480000
+.global lbl_8051AF80
+lbl_8051AF80:
+	.4byte 0x40200000
+.global lbl_8051AF84
+lbl_8051AF84:
+	.4byte 0x41F00000
+.global lbl_8051AF88
+lbl_8051AF88:
+	.4byte 0x6B616D75
+	.4byte 0x6A6E7400
+.global lbl_8051AF90
+lbl_8051AF90:
+	.4byte 0x41700000
+.global lbl_8051AF94
+lbl_8051AF94:
+	.4byte 0x3A83126F
+.global lbl_8051AF98
+lbl_8051AF98:
+	.float 0.5
+.global lbl_8051AF9C
+lbl_8051AF9C:
+	.4byte 0x40C90FDB
+.global lbl_8051AFA0
+lbl_8051AFA0:
+	.4byte 0x47000000
+.global lbl_8051AFA4
+lbl_8051AFA4:
+	.4byte 0x43A2F983
+.global lbl_8051AFA8
+lbl_8051AFA8:
+	.4byte 0xC3A2F983
+.global lbl_8051AFAC
+lbl_8051AFAC:
+	.4byte 0x40000000
+.global lbl_8051AFB0
+lbl_8051AFB0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051AFB8
+lbl_8051AFB8:
+	.4byte 0x41A00000
+.global lbl_8051AFBC
+lbl_8051AFBC:
+	.4byte 0x40A00000
+.global lbl_8051AFC0
+lbl_8051AFC0:
+	.4byte 0xC1A00000
+.global lbl_8051AFC4
+lbl_8051AFC4:
+	.4byte 0x437A0000
+.global lbl_8051AFC8
+lbl_8051AFC8:
+	.4byte 0x3F400000
+.global lbl_8051AFCC
+lbl_8051AFCC:
+	.4byte 0x40490FDB
+.global lbl_8051AFD0
+lbl_8051AFD0:
+	.4byte 0x3BB60B61
+.global lbl_8051AFD4
+lbl_8051AFD4:
+	.float 0.7
+.global lbl_8051AFD8
+lbl_8051AFD8:
+	.4byte 0x3EB33333
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Tobi3ObjFv
 __ct__Q34Game4Tobi3ObjFv:

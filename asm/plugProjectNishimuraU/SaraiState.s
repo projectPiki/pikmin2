@@ -159,6 +159,107 @@ __vt__Q34Game5Sarai3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B110
+lbl_8051B110:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051B118
+lbl_8051B118:
+	.4byte 0x66616C6C
+	.4byte 0x00000000
+.global lbl_8051B120
+lbl_8051B120:
+	.4byte 0x64616D61
+	.4byte 0x67650000
+.global lbl_8051B128
+lbl_8051B128:
+	.4byte 0x74616B65
+	.4byte 0x6F666600
+.global lbl_8051B130
+lbl_8051B130:
+	.4byte 0x666C6963
+	.4byte 0x6B000000
+.global lbl_8051B138
+lbl_8051B138:
+	.4byte 0x77616974
+	.4byte 0x00000000
+.global lbl_8051B140
+lbl_8051B140:
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+.global lbl_8051B148
+lbl_8051B148:
+	.4byte 0x61747461
+	.4byte 0x636B0000
+.global lbl_8051B150
+lbl_8051B150:
+	.4byte 0x6661696C
+	.4byte 0x00000000
+.global lbl_8051B158
+lbl_8051B158:
+	.4byte 0x00000000
+.global lbl_8051B15C
+lbl_8051B15C:
+	.4byte 0x41200000
+.global lbl_8051B160
+lbl_8051B160:
+	.float 1.0
+.global lbl_8051B164
+lbl_8051B164:
+	.4byte 0x3E8CCCCD
+.global lbl_8051B168
+lbl_8051B168:
+	.4byte 0x40C90FDB
+.global lbl_8051B16C
+lbl_8051B16C:
+	.4byte 0xC47A0000
+.global lbl_8051B170
+lbl_8051B170:
+	.4byte 0x47000000
+.global lbl_8051B174
+lbl_8051B174:
+	.float 0.5
+.global lbl_8051B178
+lbl_8051B178:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051B180
+lbl_8051B180:
+	.4byte 0x40400000
+.global lbl_8051B184
+lbl_8051B184:
+	.4byte 0x441C4000
+.global lbl_8051B188
+lbl_8051B188:
+	.4byte 0x40490FDB
+.global lbl_8051B18C
+lbl_8051B18C:
+	.4byte 0x3BB60B61
+.global lbl_8051B190
+lbl_8051B190:
+	.4byte 0x41F00000
+.global lbl_8051B194
+lbl_8051B194:
+	.4byte 0x418C0000
+.global lbl_8051B198
+lbl_8051B198:
+	.4byte 0xC51C4000
+.global lbl_8051B19C
+lbl_8051B19C:
+	.4byte 0x447A0000
+.global lbl_8051B1A0
+lbl_8051B1A0:
+	.4byte 0x41800000
+.global lbl_8051B1A4
+lbl_8051B1A4:
+	.4byte 0x41C80000
+.global lbl_8051B1A8
+lbl_8051B1A8:
+	.4byte 0x3D888889
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game5Sarai3FSMFPQ24Game9EnemyBase
 init__Q34Game5Sarai3FSMFPQ24Game9EnemyBase:

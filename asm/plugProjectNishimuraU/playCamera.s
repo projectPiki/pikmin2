@@ -69,6 +69,77 @@ lbl_80515CF0:
 lbl_80515CF4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A660
+lbl_8051A660:
+	.4byte 0x42C80000
+.global lbl_8051A664
+lbl_8051A664:
+	.4byte 0x00000000
+.global lbl_8051A668
+lbl_8051A668:
+	.4byte 0x41F00000
+.global lbl_8051A66C
+lbl_8051A66C:
+	.float 1.0
+.global lbl_8051A670
+lbl_8051A670:
+	.4byte 0x46480000
+.global lbl_8051A674
+lbl_8051A674:
+	.4byte 0x40490FDB
+.global lbl_8051A678
+lbl_8051A678:
+	.4byte 0x40C90FDB
+.global lbl_8051A67C
+lbl_8051A67C:
+	.4byte 0x3C8EFA35
+.global lbl_8051A680
+lbl_8051A680:
+	.4byte 0x41200000
+.global lbl_8051A684
+lbl_8051A684:
+	.4byte 0x447A0000
+.global lbl_8051A688
+lbl_8051A688:
+	.4byte 0x41DC0000
+.global lbl_8051A68C
+lbl_8051A68C:
+	.float 0.1
+.global lbl_8051A690
+lbl_8051A690:
+	.4byte 0x3E333333
+.global lbl_8051A694
+lbl_8051A694:
+	.4byte 0x3F533333
+.global lbl_8051A698
+lbl_8051A698:
+	.float 0.5
+.global lbl_8051A69C
+lbl_8051A69C:
+	.4byte 0xC3A2F983
+.global lbl_8051A6A0
+lbl_8051A6A0:
+	.4byte 0x43A2F983
+.global lbl_8051A6A4
+lbl_8051A6A4:
+	.4byte 0x42480000
+.global lbl_8051A6A8
+lbl_8051A6A8:
+	.4byte 0x41700000
+.global lbl_8051A6AC
+lbl_8051A6AC:
+	.4byte 0x47FA0000
+.global lbl_8051A6B0
+lbl_8051A6B0:
+	.4byte 0xC7FA0000
+	.4byte 0x00000000
+.global lbl_8051A6B8
+lbl_8051A6B8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10PlayCameraFPQ24Game4Navi
 __ct__Q24Game10PlayCameraFPQ24Game4Navi:

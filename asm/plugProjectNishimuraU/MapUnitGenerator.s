@@ -17,6 +17,23 @@ lbl_80515D10:
 lbl_80515D14:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A7D8
+lbl_8051A7D8:
+	.float 1.0
+.global lbl_8051A7DC
+lbl_8051A7DC:
+	.4byte 0x47000000
+.global lbl_8051A7E0
+lbl_8051A7E0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A7E8
+lbl_8051A7E8:
+	.4byte 0x41200000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave16MapUnitGeneratorFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit
 __ct__Q34Game4Cave16MapUnitGeneratorFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit:

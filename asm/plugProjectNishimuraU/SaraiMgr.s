@@ -312,6 +312,61 @@ __vt__Q34Game5Sarai3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B1B0
+lbl_8051B1B0:
+	.4byte 0x42C80000
+.global lbl_8051B1B4
+lbl_8051B1B4:
+	.4byte 0x00000000
+.global lbl_8051B1B8
+lbl_8051B1B8:
+	.4byte 0x43960000
+.global lbl_8051B1BC
+lbl_8051B1BC:
+	.4byte 0x42A00000
+.global lbl_8051B1C0
+lbl_8051B1C0:
+	.4byte 0x42480000
+.global lbl_8051B1C4
+lbl_8051B1C4:
+	.4byte 0x42960000
+.global lbl_8051B1C8
+lbl_8051B1C8:
+	.4byte 0x40400000
+.global lbl_8051B1CC
+lbl_8051B1CC:
+	.4byte 0x41200000
+.global lbl_8051B1D0
+lbl_8051B1D0:
+	.4byte 0x3FC00000
+.global lbl_8051B1D4
+lbl_8051B1D4:
+	.4byte 0x40A00000
+.global lbl_8051B1D8
+lbl_8051B1D8:
+	.float 1.0
+.global lbl_8051B1DC
+lbl_8051B1DC:
+	.float 0.1
+.global lbl_8051B1E0
+lbl_8051B1E0:
+	.float 0.7
+.global lbl_8051B1E4
+lbl_8051B1E4:
+	.float 0.3
+.global lbl_8051B1E8
+lbl_8051B1E8:
+	.4byte 0x3F733333
+.global lbl_8051B1EC
+lbl_8051B1EC:
+	.4byte 0x43480000
+.global lbl_8051B1F0
+lbl_8051B1F0:
+	.4byte 0x447A0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5Sarai3MgrFiUc
 __ct__Q34Game5Sarai3MgrFiUc:

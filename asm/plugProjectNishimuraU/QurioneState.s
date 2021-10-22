@@ -99,6 +99,41 @@ __vt__Q34Game7Qurione3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051AC88
+lbl_8051AC88:
+	.4byte 0x73746179
+	.4byte 0x00000000
+.global lbl_8051AC90
+lbl_8051AC90:
+	.4byte 0x61707065
+	.4byte 0x61720000
+.global lbl_8051AC98
+lbl_8051AC98:
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+.global lbl_8051ACA0
+lbl_8051ACA0:
+	.4byte 0x64726F70
+	.4byte 0x00000000
+.global lbl_8051ACA8
+lbl_8051ACA8:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_8051ACB0
+lbl_8051ACB0:
+	.4byte 0x00000000
+.global lbl_8051ACB4
+lbl_8051ACB4:
+	.float 1.0
+.global lbl_8051ACB8
+lbl_8051ACB8:
+	.4byte 0x40490FDB
+.global lbl_8051ACBC
+lbl_8051ACBC:
+	.4byte 0x40C90FDB
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game7Qurione3FSMFPQ24Game9EnemyBase
 init__Q34Game7Qurione3FSMFPQ24Game9EnemyBase:

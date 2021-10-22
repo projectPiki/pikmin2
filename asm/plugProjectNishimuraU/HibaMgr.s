@@ -332,6 +332,31 @@ __vt__Q24Game28EnemyMgrBaseAlwaysMovieActor:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B000
+lbl_8051B000:
+	.4byte 0x40200000
+.global lbl_8051B004
+lbl_8051B004:
+	.4byte 0x00000000
+.global lbl_8051B008
+lbl_8051B008:
+	.4byte 0x42C80000
+.global lbl_8051B00C
+lbl_8051B00C:
+	.4byte 0x41200000
+.global lbl_8051B010
+lbl_8051B010:
+	.4byte 0x3DAE147B
+.global lbl_8051B014
+lbl_8051B014:
+	.float 1.0
+.global lbl_8051B018
+lbl_8051B018:
+	.float 0.05
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Hiba3MgrFiUc
 __ct__Q34Game4Hiba3MgrFiUc:

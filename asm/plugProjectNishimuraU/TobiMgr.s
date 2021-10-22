@@ -277,6 +277,37 @@ __vt__Q34Game4Tobi3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051AF40
+lbl_8051AF40:
+	.float 0.5
+.global lbl_8051AF44
+lbl_8051AF44:
+	.4byte 0x00000000
+.global lbl_8051AF48
+lbl_8051AF48:
+	.float 1.0
+.global lbl_8051AF4C
+lbl_8051AF4C:
+	.float 0.7
+.global lbl_8051AF50
+lbl_8051AF50:
+	.4byte 0x42700000
+.global lbl_8051AF54
+lbl_8051AF54:
+	.4byte 0x43960000
+.global lbl_8051AF58
+lbl_8051AF58:
+	.4byte 0x461C4000
+.global lbl_8051AF5C
+lbl_8051AF5C:
+	.4byte 0x42960000
+.global lbl_8051AF60
+lbl_8051AF60:
+	.4byte 0x42C80000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Tobi3MgrFiUc
 __ct__Q34Game4Tobi3MgrFiUc:

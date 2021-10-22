@@ -306,6 +306,45 @@ __vt__Q34Game7Qurione9Generator:
 	.4byte draw__Q24Game18EnemyGeneratorBaseFR8GraphicsPQ24Game9Generator
 	.4byte getInitialParam__Q34Game7Qurione9GeneratorFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051ACC0
+lbl_8051ACC0:
+	.4byte 0x43480000
+.global lbl_8051ACC4
+lbl_8051ACC4:
+	.4byte 0x41F00000
+.global lbl_8051ACC8
+lbl_8051ACC8:
+	.4byte 0x42700000
+.global lbl_8051ACCC
+lbl_8051ACCC:
+	.4byte 0x00000000
+.global lbl_8051ACD0
+lbl_8051ACD0:
+	.4byte 0x43160000
+.global lbl_8051ACD4
+lbl_8051ACD4:
+	.4byte 0x40200000
+.global lbl_8051ACD8
+lbl_8051ACD8:
+	.4byte 0x41200000
+.global lbl_8051ACDC
+lbl_8051ACDC:
+	.4byte 0x41A00000
+.global lbl_8051ACE0
+lbl_8051ACE0:
+	.4byte 0x42480000
+.global lbl_8051ACE4
+lbl_8051ACE4:
+	.4byte 0x42C80000
+.global lbl_8051ACE8
+lbl_8051ACE8:
+	.4byte 0x447A0000
+.global lbl_8051ACEC
+lbl_8051ACEC:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7Qurione9GeneratorFv
 __ct__Q34Game7Qurione9GeneratorFv:

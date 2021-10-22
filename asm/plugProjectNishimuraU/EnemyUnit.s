@@ -30,6 +30,29 @@ __vt__Q24Game16ObjectLayoutNode:
 	.4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
 	.4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A708
+lbl_8051A708:
+	.4byte 0x00000000
+.global lbl_8051A70C
+lbl_8051A70C:
+	.4byte 0x47000000
+.global lbl_8051A710
+lbl_8051A710:
+	.4byte 0x40C90FDB
+.global lbl_8051A714
+lbl_8051A714:
+	.4byte 0xC3A2F983
+.global lbl_8051A718
+lbl_8051A718:
+	.4byte 0x43A2F983
+	.4byte 0x00000000
+.global lbl_8051A720
+lbl_8051A720:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave9EnemyNodeFv
 __ct__Q34Game4Cave9EnemyNodeFv:

@@ -34,6 +34,33 @@ lbl_80484178:
 	.4byte 0x736C6F74
 	.4byte 0x0A000000
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A840
+lbl_8051A840:
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_8051A848
+lbl_8051A848:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A850
+lbl_8051A850:
+	.4byte 0x6974656D
+	.4byte 0x00000000
+.global lbl_8051A858
+lbl_8051A858:
+	.4byte 0x47000000
+.global lbl_8051A85C
+lbl_8051A85C:
+	.float 0.5
+.global lbl_8051A860
+lbl_8051A860:
+	.4byte 0x43C80000
+.global lbl_8051A864
+lbl_8051A864:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator
 __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator:

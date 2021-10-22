@@ -612,6 +612,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o\
+	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
@@ -687,7 +688,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Sarai.o\
-	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankMgr.o\

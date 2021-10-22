@@ -35,6 +35,35 @@ __vt__Q34Game4Cave10RandMapMgr:
 randMapMgr__Q24Game4Cave:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A728
+lbl_8051A728:
+	.4byte 0x42480000
+.global lbl_8051A72C
+lbl_8051A72C:
+	.4byte 0x47000000
+.global lbl_8051A730
+lbl_8051A730:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A738
+lbl_8051A738:
+	.float 0.5
+.global lbl_8051A73C
+lbl_8051A73C:
+	.4byte 0x00000000
+.global lbl_8051A740
+lbl_8051A740:
+	.4byte 0x40000000
+.global lbl_8051A744
+lbl_8051A744:
+	.4byte 0x41000000
+.global lbl_8051A748
+lbl_8051A748:
+	.4byte 0x3D40C0C1
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave10RandMapMgrFb
 __ct__Q34Game4Cave10RandMapMgrFb:

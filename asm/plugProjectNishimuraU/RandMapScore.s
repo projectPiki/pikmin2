@@ -37,6 +37,51 @@ __vt__Q34Game4Cave10FixObjNode:
 	.4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
 	.4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A7F8
+lbl_8051A7F8:
+	.4byte 0x47000000
+	.4byte 0x00000000
+.global lbl_8051A800
+lbl_8051A800:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A808
+lbl_8051A808:
+	.float 1.0
+.global lbl_8051A80C
+lbl_8051A80C:
+	.float 0.5
+.global lbl_8051A810
+lbl_8051A810:
+	.4byte 0x00000001
+.global lbl_8051A814
+lbl_8051A814:
+	.4byte 0x00000002
+.global lbl_8051A818
+lbl_8051A818:
+	.4byte 0x01010000
+.global lbl_8051A81C
+lbl_8051A81C:
+	.4byte 0x00000000
+.global lbl_8051A820
+lbl_8051A820:
+	.4byte 0x6974656D
+	.4byte 0x00000000
+.global lbl_8051A828
+lbl_8051A828:
+	.4byte 0x00000001
+.global lbl_8051A82C
+lbl_8051A82C:
+	.4byte 0x00000002
+.global lbl_8051A830
+lbl_8051A830:
+	.4byte 0x01010000
+.global lbl_8051A834
+lbl_8051A834:
+	.4byte 0x43160000
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EA8
 lbl_80520EA8:

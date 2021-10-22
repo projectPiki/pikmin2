@@ -8,6 +8,35 @@ __vt__Q34Game4Cave7MapNode:
 	.4byte __dt__Q34Game4Cave7MapNodeFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A6E0
+lbl_8051A6E0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A6E8
+lbl_8051A6E8:
+	.float 0.5
+.global lbl_8051A6EC
+lbl_8051A6EC:
+	.4byte 0x00000000
+.global lbl_8051A6F0
+lbl_8051A6F0:
+	.4byte 0x432A0000
+.global lbl_8051A6F4
+lbl_8051A6F4:
+	.4byte 0xBFC90FDB
+.global lbl_8051A6F8
+lbl_8051A6F8:
+	.4byte 0x40C90FDB
+.global lbl_8051A6FC
+lbl_8051A6FC:
+	.4byte 0x40490FDB
+.global lbl_8051A700
+lbl_8051A700:
+	.4byte 0x43340000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave10AdjustInfoFv
 __ct__Q34Game4Cave10AdjustInfoFv:

@@ -92,6 +92,13 @@ __vt__Q34Game6Kogane3Mgr:
 	.4byte 0
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051AC20
+lbl_8051AC20:
+	.4byte 0x6B617261
+	.4byte 0x64610000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Kogane3MgrFiUc
 __ct__Q34Game6Kogane3MgrFiUc:

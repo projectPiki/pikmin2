@@ -277,6 +277,37 @@ __vt__Q34Game4Frog3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051AAA0
+lbl_8051AAA0:
+	.4byte 0x3FC00000
+.global lbl_8051AAA4
+lbl_8051AAA4:
+	.4byte 0x00000000
+.global lbl_8051AAA8
+lbl_8051AAA8:
+	.4byte 0x40A00000
+.global lbl_8051AAAC
+lbl_8051AAAC:
+	.4byte 0x43C80000
+.global lbl_8051AAB0
+lbl_8051AAB0:
+	.4byte 0x447A0000
+.global lbl_8051AAB4
+lbl_8051AAB4:
+	.4byte 0x3E4CCCCD
+.global lbl_8051AAB8
+lbl_8051AAB8:
+	.float 1.0
+.global lbl_8051AABC
+lbl_8051AABC:
+	.4byte 0x43960000
+.global lbl_8051AAC0
+lbl_8051AAC0:
+	.4byte 0x43FA0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Frog3MgrFiUc
 __ct__Q34Game4Frog3MgrFiUc:

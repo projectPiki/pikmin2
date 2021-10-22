@@ -1,4 +1,14 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A750
+lbl_8051A750:
+	.4byte 0x432A0000
+	.4byte 0x00000000
+.global lbl_8051A758
+lbl_8051A758:
+	.4byte 0x43300000
+	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave11RandMapDrawFPQ34Game4Cave16MapUnitGenerator

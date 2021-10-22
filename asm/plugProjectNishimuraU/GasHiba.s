@@ -220,6 +220,29 @@ __vt__Q34Game7GasHiba3Obj:
 	.4byte "@724@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051B078
+lbl_8051B078:
+	.4byte 0x00000000
+.global lbl_8051B07C
+lbl_8051B07C:
+	.4byte 0x47000000
+.global lbl_8051B080
+lbl_8051B080:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051B088
+lbl_8051B088:
+	.float 1.0
+.global lbl_8051B08C
+lbl_8051B08C:
+	.4byte 0x41C80000
+.global lbl_8051B090
+lbl_8051B090:
+	.4byte 0x42960000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7GasHiba3ObjFv
 __ct__Q34Game7GasHiba3ObjFv:
