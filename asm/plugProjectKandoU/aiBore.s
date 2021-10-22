@@ -130,6 +130,45 @@ __vt__Q26PikiAI7ActBore:
 	.4byte getInfo__Q26PikiAI6ActionFPc
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A370
+lbl_8051A370:
+	.4byte 0x47000000
+.global lbl_8051A374
+lbl_8051A374:
+	.4byte 0x40000000
+.global lbl_8051A378
+lbl_8051A378:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8051A380
+lbl_8051A380:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A388
+lbl_8051A388:
+	.4byte 0x40C00000
+.global lbl_8051A38C
+lbl_8051A38C:
+	.4byte 0x42700000
+.global lbl_8051A390
+lbl_8051A390:
+	.4byte 0x40A00000
+.global lbl_8051A394
+lbl_8051A394:
+	.4byte 0x40800000
+.global lbl_8051A398
+lbl_8051A398:
+	.4byte 0x41F00000
+.global lbl_8051A39C
+lbl_8051A39C:
+	.float 0.5
+.global lbl_8051A3A0
+lbl_8051A3A0:
+	.4byte 0x40400000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActBoreFPQ24Game4Piki
 __ct__Q26PikiAI7ActBoreFPQ24Game4Piki:

@@ -106,6 +106,36 @@ lbl_80515C40:
 lbl_80515C44:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A0D8
+lbl_8051A0D8:
+	.float 350.0
+.global lbl_8051A0DC
+lbl_8051A0DC:
+	.float 125.0
+.global lbl_8051A0E0
+lbl_8051A0E0:
+	.float 1600.0
+.global lbl_8051A0E4
+lbl_8051A0E4:
+	.float 750.0
+.global lbl_8051A0E8
+lbl_8051A0E8:
+	.float 200.0
+.global lbl_8051A0EC
+lbl_8051A0EC:
+	.float 100.0
+.global lbl_8051A0F0
+lbl_8051A0F0:
+	.float 60.0
+.global lbl_8051A0F4
+lbl_8051A0F4:
+	.float 40.0
+.global lbl_8051A0F8
+lbl_8051A0F8:
+	.float 0.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global demoCheck__Q24Game4NaviFv
 demoCheck__Q24Game4NaviFv:

@@ -37,6 +37,17 @@ __vt__12CellMgrParms:
 mInstance__12CellMgrParms:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A2F0
+lbl_8051A2F0:
+	.4byte 0x43656C6C
+	.4byte 0x4D677200
+.global lbl_8051A2F8
+lbl_8051A2F8:
+	.4byte 0x472D4861
+	.4byte 0x6C660000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__12CellMgrParmsFv
 __dt__12CellMgrParmsFv:

@@ -65,6 +65,15 @@ __vt__Q34Game10PelletList3Mgr:
 mInstance__Q34Game10PelletList3Mgr:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A248
+lbl_8051A248:
+	.4byte 0x6A706E00
+.global lbl_8051A24C
+lbl_8051A24C:
+	.4byte 0x75730000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
 getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind:

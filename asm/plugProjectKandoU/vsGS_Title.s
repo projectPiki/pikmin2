@@ -150,6 +150,25 @@ lbl_80515C60:
 lbl_80515C64:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A250
+lbl_8051A250:
+	.4byte 0x00000000
+.global lbl_8051A254
+lbl_8051A254:
+	.float 1.0
+.global lbl_8051A258
+lbl_8051A258:
+	.4byte 0xBF800000
+.global lbl_8051A25C
+lbl_8051A25C:
+	.float 0.5
+.global lbl_8051A260
+lbl_8051A260:
+	.4byte 0x3F7FBE77
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame10TitleStateFv
 __ct__Q34Game6VsGame10TitleStateFv:

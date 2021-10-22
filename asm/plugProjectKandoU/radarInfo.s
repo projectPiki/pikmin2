@@ -20,6 +20,45 @@ __vt__Q25Radar5Point:
 mgr__5Radar:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A090
+lbl_8051A090:
+	.4byte 0x00000000
+.global lbl_8051A094
+lbl_8051A094:
+	.4byte 0xC4104000
+.global lbl_8051A098
+lbl_8051A098:
+	.4byte 0xC2140000
+.global lbl_8051A09C
+lbl_8051A09C:
+	.4byte 0x44F80000
+.global lbl_8051A0A0
+lbl_8051A0A0:
+	.4byte 0xC3BC8000
+.global lbl_8051A0A4
+lbl_8051A0A4:
+	.4byte 0x4506B000
+.global lbl_8051A0A8
+lbl_8051A0A8:
+	.4byte 0xC3990000
+.global lbl_8051A0AC
+lbl_8051A0AC:
+	.4byte 0x44E3E000
+.global lbl_8051A0B0
+lbl_8051A0B0:
+	.4byte 0x42800000
+.global lbl_8051A0B4
+lbl_8051A0B4:
+	.4byte 0x44F70000
+.global lbl_8051A0B8
+lbl_8051A0B8:
+	.float -337.0
+.global lbl_8051A0BC
+lbl_8051A0BC:
+	.float 2101.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getPosition__Q25Radar5PointFv
 getPosition__Q25Radar5PointFv:

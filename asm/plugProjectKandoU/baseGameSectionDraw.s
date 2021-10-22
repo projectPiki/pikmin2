@@ -46,6 +46,21 @@ lbl_80515CB0:
 lbl_80515CB4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A520
+lbl_8051A520:
+	.4byte 0x6A647261
+	.4byte 0x77000000
+.global lbl_8051A528
+lbl_8051A528:
+	.4byte 0x64697265
+	.4byte 0x63740000
+.global lbl_8051A530
+lbl_8051A530:
+	.4byte 0x6A33642D
+	.4byte 0x65746300
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics
 newdraw_draw3D_all__Q24Game15BaseGameSectionFR8Graphics:

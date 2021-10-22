@@ -182,6 +182,211 @@ lbl_80515CA8:
 lbl_80515CAC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A3D8
+lbl_8051A3D8:
+	.4byte 0x00000000
+.global lbl_8051A3DC
+lbl_8051A3DC:
+	.4byte 0xC2C7CCCD
+.global lbl_8051A3E0
+lbl_8051A3E0:
+	.4byte 0x47000000
+.global lbl_8051A3E4
+lbl_8051A3E4:
+	.4byte 0x41400000
+.global lbl_8051A3E8
+lbl_8051A3E8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A3F0
+lbl_8051A3F0:
+	.4byte 0x42200000
+.global lbl_8051A3F4
+lbl_8051A3F4:
+	.4byte 0x74657374
+	.4byte 0x00000000
+.global lbl_8051A3FC
+lbl_8051A3FC:
+	.4byte 0xBF800000
+.global lbl_8051A400
+lbl_8051A400:
+	.4byte 0x440AC000
+.global lbl_8051A404
+lbl_8051A404:
+	.4byte 0xC37A0000
+.global lbl_8051A408
+lbl_8051A408:
+	.4byte 0x458CA000
+.global lbl_8051A40C
+lbl_8051A40C:
+	.float 0.98
+.global lbl_8051A410
+lbl_8051A410:
+	.4byte 0x686C2E62
+	.4byte 0x74690000
+.global lbl_8051A418
+lbl_8051A418:
+	.4byte 0x4400C000
+.global lbl_8051A41C
+lbl_8051A41C:
+	.4byte 0x42E60000
+.global lbl_8051A420
+lbl_8051A420:
+	.4byte 0x439D8000
+.global lbl_8051A424
+lbl_8051A424:
+	.4byte 0x42A00000
+.global lbl_8051A428
+lbl_8051A428:
+	.4byte 0x41B33333
+.global lbl_8051A42C
+lbl_8051A42C:
+	.4byte 0x40000000
+.global lbl_8051A430
+lbl_8051A430:
+	.4byte 0x41000000
+.global lbl_8051A434
+lbl_8051A434:
+	.4byte 0x42700000
+.global lbl_8051A438
+lbl_8051A438:
+	.4byte 0x41F00000
+.global lbl_8051A43C
+lbl_8051A43C:
+	.float 0.5
+.global lbl_8051A440
+lbl_8051A440:
+	.4byte 0x42480000
+.global lbl_8051A444
+lbl_8051A444:
+	.4byte 0x42C80000
+.global lbl_8051A448
+lbl_8051A448:
+	.4byte 0x40C90FDB
+.global lbl_8051A44C
+lbl_8051A44C:
+	.4byte 0x43A2F983
+.global lbl_8051A450
+lbl_8051A450:
+	.4byte 0xC3A2F983
+.global lbl_8051A454
+lbl_8051A454:
+	.float 1.0
+.global lbl_8051A458
+lbl_8051A458:
+	.4byte 0x42B40000
+.global lbl_8051A45C
+lbl_8051A45C:
+	.4byte 0x43160000
+.global lbl_8051A460
+lbl_8051A460:
+	.4byte 0x3ECCCCCD
+.global lbl_8051A464
+lbl_8051A464:
+	.4byte 0x40A00000
+.global lbl_8051A468
+lbl_8051A468:
+	.4byte 0x3E4CCCCD
+.global lbl_8051A46C
+lbl_8051A46C:
+	.float 0.7
+.global lbl_8051A470
+lbl_8051A470:
+	.4byte 0x3F4CCCCD
+.global lbl_8051A474
+lbl_8051A474:
+	.4byte 0x40800000
+.global lbl_8051A478
+lbl_8051A478:
+	.4byte 0x3FA0D97C
+.global lbl_8051A47C
+lbl_8051A47C:
+	.4byte 0xC0C90FDB
+.global lbl_8051A480
+lbl_8051A480:
+	.4byte 0x3D8F5C29
+.global lbl_8051A484
+lbl_8051A484:
+	.4byte 0xC1490FDB
+.global lbl_8051A488
+lbl_8051A488:
+	.4byte 0x40400000
+.global lbl_8051A48C
+lbl_8051A48C:
+	.4byte 0x402CCCCD
+.global lbl_8051A490
+lbl_8051A490:
+	.4byte 0xBFB0EF3C
+.global lbl_8051A494
+lbl_8051A494:
+	.4byte 0x3F99999A
+.global lbl_8051A498
+lbl_8051A498:
+	.4byte 0x3F060A92
+.global lbl_8051A49C
+lbl_8051A49C:
+	.4byte 0x43960000
+.global lbl_8051A4A0
+lbl_8051A4A0:
+	.4byte 0x41A00000
+.global lbl_8051A4A4
+lbl_8051A4A4:
+	.4byte 0x3D000000
+.global lbl_8051A4A8
+lbl_8051A4A8:
+	.4byte 0x14141480
+.global lbl_8051A4AC
+lbl_8051A4AC:
+	.4byte 0xFFFFFFCA
+.global lbl_8051A4B0
+lbl_8051A4B0:
+	.4byte 0xFFFFFFFF
+.global lbl_8051A4B4
+lbl_8051A4B4:
+	.4byte 0xFFFFFFFF
+.global lbl_8051A4B8
+lbl_8051A4B8:
+	.4byte 0x3E860A92
+.global lbl_8051A4BC
+lbl_8051A4BC:
+	.4byte 0x25640000
+.global lbl_8051A4C0
+lbl_8051A4C0:
+	.4byte 0x405FE000
+	.4byte 0x00000000
+.global lbl_8051A4C8
+lbl_8051A4C8:
+	.4byte 0x3EB33333
+.global lbl_8051A4CC
+lbl_8051A4CC:
+	.4byte 0xC1700000
+.global lbl_8051A4D0
+lbl_8051A4D0:
+	.4byte 0xC0E00000
+.global lbl_8051A4D4
+lbl_8051A4D4:
+	.4byte 0xC1C00000
+.global lbl_8051A4D8
+lbl_8051A4D8:
+	.4byte 0x41800000
+.global lbl_8051A4DC
+lbl_8051A4DC:
+	.4byte 0x41200000
+.global lbl_8051A4E0
+lbl_8051A4E0:
+	.4byte 0x40490FDB
+.global lbl_8051A4E4
+lbl_8051A4E4:
+	.4byte 0x3BB60B61
+.global lbl_8051A4E8
+lbl_8051A4E8:
+	.4byte 0x43B40000
+.global lbl_8051A4EC
+lbl_8051A4EC:
+	.4byte 0x41726700
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr
 __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr:

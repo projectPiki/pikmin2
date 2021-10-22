@@ -74,6 +74,73 @@ lbl_80515CC8:
 lbl_80515CCC:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A578
+lbl_8051A578:
+	.4byte 0x00000000
+.global lbl_8051A57C
+lbl_8051A57C:
+	.4byte 0x3FC00000
+.global lbl_8051A580
+lbl_8051A580:
+	.4byte 0x41A00000
+.global lbl_8051A584
+lbl_8051A584:
+	.float 0.5
+.global lbl_8051A588
+lbl_8051A588:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051A590
+lbl_8051A590:
+	.4byte 0x3FC90FDB
+.global lbl_8051A594
+lbl_8051A594:
+	.float 1.0
+.global lbl_8051A598
+lbl_8051A598:
+	.4byte 0xBF800000
+.global lbl_8051A59C
+lbl_8051A59C:
+	.4byte 0xBFC90FDB
+.global lbl_8051A5A0
+lbl_8051A5A0:
+	.4byte 0x447FE000
+.global lbl_8051A5A4
+lbl_8051A5A4:
+	.4byte 0x3F400000
+.global lbl_8051A5A8
+lbl_8051A5A8:
+	.4byte 0xC3A2F983
+.global lbl_8051A5AC
+lbl_8051A5AC:
+	.4byte 0x43A2F983
+.global lbl_8051A5B0
+lbl_8051A5B0:
+	.4byte 0x3E4CCCCD
+.global lbl_8051A5B4
+lbl_8051A5B4:
+	.4byte 0x3E00ADFD
+.global lbl_8051A5B8
+lbl_8051A5B8:
+	.4byte 0x40C90FDB
+.global lbl_8051A5BC
+lbl_8051A5BC:
+	.4byte 0x3D80ADFD
+.global lbl_8051A5C0
+lbl_8051A5C0:
+	.4byte 0x3F08B8DD
+.global lbl_8051A5C4
+lbl_8051A5C4:
+	.4byte 0x40000000
+.global lbl_8051A5C8
+lbl_8051A5C8:
+	.4byte 0x40C00000
+.global lbl_8051A5CC
+lbl_8051A5CC:
+	.4byte 0x41200000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
 drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics:

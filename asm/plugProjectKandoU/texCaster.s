@@ -31,6 +31,37 @@ __vt__Q29TexCaster6Caster:
 sInstance__Q29TexCaster3Mgr:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A5D8
+lbl_8051A5D8:
+	.4byte 0x00000000
+.global lbl_8051A5DC
+lbl_8051A5DC:
+	.float 1.0
+.global lbl_8051A5E0
+lbl_8051A5E0:
+	.4byte 0x437F0000
+.global lbl_8051A5E4
+lbl_8051A5E4:
+	.4byte 0x7465782E
+	.4byte 0x62746900
+.global lbl_8051A5EC
+lbl_8051A5EC:
+	.float 0.1
+.global lbl_8051A5F0
+lbl_8051A5F0:
+	.float 0.5
+.global lbl_8051A5F4
+lbl_8051A5F4:
+	.4byte 0x3E6147AE
+.global lbl_8051A5F8
+lbl_8051A5F8:
+	.4byte 0x3D000000
+.global lbl_8051A5FC
+lbl_8051A5FC:
+	.4byte 0x41F00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q29TexCaster6CasterFv
 __dt__Q29TexCaster6CasterFv:

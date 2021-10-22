@@ -83,6 +83,51 @@ lbl_80515CC0:
 lbl_80515CC4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A538
+lbl_8051A538:
+	.4byte 0x00000000
+.global lbl_8051A53C
+lbl_8051A53C:
+	.4byte 0x64617965
+	.4byte 0x6E640000
+.global lbl_8051A544
+lbl_8051A544:
+	.4byte 0x40800000
+.global lbl_8051A548
+lbl_8051A548:
+	.4byte 0x431C0000
+.global lbl_8051A54C
+lbl_8051A54C:
+	.4byte 0x43260000
+.global lbl_8051A550
+lbl_8051A550:
+	.4byte 0x42480000
+.global lbl_8051A554
+lbl_8051A554:
+	.4byte 0x43340000
+.global lbl_8051A558
+lbl_8051A558:
+	.4byte 0x47000000
+.global lbl_8051A55C
+lbl_8051A55C:
+	.4byte 0x40C90FDB
+.global lbl_8051A560
+lbl_8051A560:
+	.4byte 0x41F00000
+.global lbl_8051A564
+lbl_8051A564:
+	.4byte 0x43A2F983
+.global lbl_8051A568
+lbl_8051A568:
+	.4byte 0xC3A2F983
+	.4byte 0x00000000
+.global lbl_8051A570
+lbl_8051A570:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:

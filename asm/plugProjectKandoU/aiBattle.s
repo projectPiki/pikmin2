@@ -52,6 +52,57 @@ __vt__Q26PikiAI9ActBattle:
 	.4byte "@32@4@onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A320
+lbl_8051A320:
+	.4byte 0x42617474
+	.4byte 0x6C650000
+.global lbl_8051A328
+lbl_8051A328:
+	.4byte 0x47000000
+.global lbl_8051A32C
+lbl_8051A32C:
+	.float 0.5
+.global lbl_8051A330
+lbl_8051A330:
+	.4byte 0x3F666666
+.global lbl_8051A334
+lbl_8051A334:
+	.4byte 0x42700000
+.global lbl_8051A338
+lbl_8051A338:
+	.4byte 0x00000000
+.global lbl_8051A33C
+lbl_8051A33C:
+	.4byte 0xC47A0000
+.global lbl_8051A340
+lbl_8051A340:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051A348
+lbl_8051A348:
+	.4byte 0x41200000
+.global lbl_8051A34C
+lbl_8051A34C:
+	.float 1.0
+.global lbl_8051A350
+lbl_8051A350:
+	.4byte 0x42480000
+.global lbl_8051A354
+lbl_8051A354:
+	.4byte 0x42C80000
+.global lbl_8051A358
+lbl_8051A358:
+	.4byte 0x400CCCCD
+.global lbl_8051A35C
+lbl_8051A35C:
+	.4byte 0x40200000
+.global lbl_8051A360
+lbl_8051A360:
+	.4byte 0xBF800000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI9ActBattleFPQ24Game4Piki
 __ct__Q26PikiAI9ActBattleFPQ24Game4Piki:

@@ -49,6 +49,43 @@ __vt__Q26PikiAI9ActRescue:
 	.4byte 0
 	.4byte "@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A4F0
+lbl_8051A4F0:
+	.4byte 0x52657363
+	.4byte 0x75650000
+.global lbl_8051A4F8
+lbl_8051A4F8:
+	.4byte 0x41200000
+.global lbl_8051A4FC
+lbl_8051A4FC:
+	.4byte 0xBF800000
+.global lbl_8051A500
+lbl_8051A500:
+	.4byte 0x437A0000
+.global lbl_8051A504
+lbl_8051A504:
+	.4byte 0x40400000
+.global lbl_8051A508
+lbl_8051A508:
+	.4byte 0x00000000
+.global lbl_8051A50C
+lbl_8051A50C:
+	.float 0.5
+.global lbl_8051A510
+lbl_8051A510:
+	.4byte 0x42480000
+.global lbl_8051A514
+lbl_8051A514:
+	.4byte 0x40000000
+.global lbl_8051A518
+lbl_8051A518:
+	.4byte 0x43A2F983
+.global lbl_8051A51C
+lbl_8051A51C:
+	.4byte 0xC3A2F983
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI9ActRescueFPQ24Game4Piki
 __ct__Q26PikiAI9ActRescueFPQ24Game4Piki:

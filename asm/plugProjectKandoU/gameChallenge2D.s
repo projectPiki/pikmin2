@@ -9,6 +9,13 @@ lbl_80483AC4:
 	.asciz "P2Assert"
 	.skip 3
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A3B8
+lbl_8051A3B8:
+	.4byte 0x5A414E4E
+	.4byte 0x454E0A00
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game21Challenge2D_TitleInfoFi
 __ct__Q24Game21Challenge2D_TitleInfoFi:

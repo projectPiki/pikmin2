@@ -78,6 +78,19 @@ lbl_80515C80:
 lbl_80515C84:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A2E0
+lbl_8051A2E0:
+	.4byte 0x43480000
+.global lbl_8051A2E4
+lbl_8051A2E4:
+	.4byte 0x42C80000
+.global lbl_8051A2E8
+lbl_8051A2E8:
+	.4byte 0x72616E64
+	.4byte 0x6F6D0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global read__Q34Game13ChallengeGame9StageDataFR6Stream
 read__Q34Game13ChallengeGame9StageDataFR6Stream:

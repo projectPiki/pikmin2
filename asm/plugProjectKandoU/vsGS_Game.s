@@ -209,6 +209,61 @@ lbl_80515C68:
 lbl_80515C6C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A268
+lbl_8051A268:
+	.float 1.0
+.global lbl_8051A26C
+lbl_8051A26C:
+	.4byte 0x46480000
+.global lbl_8051A270
+lbl_8051A270:
+	.float 0.25
+.global lbl_8051A274
+lbl_8051A274:
+	.4byte 0x00000000
+.global lbl_8051A278
+lbl_8051A278:
+	.float 0.5
+.global lbl_8051A27C
+lbl_8051A27C:
+	.4byte 0x74696D65
+	.4byte 0x75700000
+.global lbl_8051A284
+lbl_8051A284:
+	.4byte 0x42C80000
+.global lbl_8051A288
+lbl_8051A288:
+	.4byte 0x736D2D63
+	.4byte 0x616E6300
+.global lbl_8051A290
+lbl_8051A290:
+	.4byte 0x82C882A2
+	.4byte 0x0A000000
+.global lbl_8051A298
+lbl_8051A298:
+	.4byte 0x736D2D71
+	.4byte 0x75697400
+.global lbl_8051A2A0
+lbl_8051A2A0:
+	.4byte 0x6F70656E
+	.4byte 0x2D736D00
+.global lbl_8051A2A8
+lbl_8051A2A8:
+	.4byte 0x72656164
+	.4byte 0x79676F00
+.global lbl_8051A2B0
+lbl_8051A2B0:
+	.4byte 0x3F666666
+.global lbl_8051A2B4
+lbl_8051A2B4:
+	.4byte 0x451A5000
+.global lbl_8051A2B8
+lbl_8051A2B8:
+	.4byte 0x47C34F80
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame9GameStateFv
 __ct__Q34Game6VsGame9GameStateFv:

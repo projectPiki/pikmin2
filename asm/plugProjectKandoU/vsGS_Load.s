@@ -55,6 +55,23 @@ lbl_80515C78:
 lbl_80515C7C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051A2C8
+lbl_8051A2C8:
+	.4byte 0x41700000
+.global lbl_8051A2CC
+lbl_8051A2CC:
+	.4byte 0x635F2530
+	.4byte 0x32640000
+.global lbl_8051A2D4
+lbl_8051A2D4:
+	.4byte 0x76732530
+	.4byte 0x32640000
+.global lbl_8051A2DC
+lbl_8051A2DC:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame9LoadStateFv
 __ct__Q34Game6VsGame9LoadStateFv:

@@ -573,6 +573,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_WorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_FileSelect.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayDataMemCard.o\
+	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/baseHIOparms.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/radarInfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Movie.o\
@@ -612,7 +613,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o\
-	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
