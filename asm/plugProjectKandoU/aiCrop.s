@@ -60,6 +60,61 @@ __vt__Q26PikiAI7ActCrop:
 	.4byte "@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent"
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519940
+lbl_80519940:
+	.4byte 0x43726F70
+	.4byte 0x00000000
+.global lbl_80519948
+lbl_80519948:
+	.4byte 0x00000000
+.global lbl_8051994C
+lbl_8051994C:
+	.float 1.0
+.global lbl_80519950
+lbl_80519950:
+	.4byte 0x41C80000
+.global lbl_80519954
+lbl_80519954:
+	.4byte 0x40000000
+.global lbl_80519958
+lbl_80519958:
+	.4byte 0x41A00000
+.global lbl_8051995C
+lbl_8051995C:
+	.4byte 0x47000000
+.global lbl_80519960
+lbl_80519960:
+	.4byte 0x40C90FDB
+	.4byte 0x00000000
+.global lbl_80519968
+lbl_80519968:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519970
+lbl_80519970:
+	.4byte 0x42200000
+.global lbl_80519974
+lbl_80519974:
+	.4byte 0x43A2F983
+.global lbl_80519978
+lbl_80519978:
+	.4byte 0xC3A2F983
+.global lbl_8051997C
+lbl_8051997C:
+	.4byte 0x43480000
+.global lbl_80519980
+lbl_80519980:
+	.4byte 0x3F666666
+.global lbl_80519984
+lbl_80519984:
+	.4byte 0xBF666666
+.global lbl_80519988
+lbl_80519988:
+	.4byte 0x41200000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActCropFPQ24Game4Piki
 __ct__Q26PikiAI7ActCropFPQ24Game4Piki:

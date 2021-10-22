@@ -184,6 +184,15 @@ mUseCellMgr__Q24Game7PlatMgr:
 platMgr__4Game:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519588
+lbl_80519588:
+	.4byte 0x00000000
+.global lbl_8051958C
+lbl_8051958C:
+	.4byte 0x4B435000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setCollision__Q24Game12PlatInstanceFb
 setCollision__Q24Game12PlatInstanceFb:

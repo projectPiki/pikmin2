@@ -758,6 +758,63 @@ lbl_80515AEC:
 mgr__Q24Game12ItemPikihead:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805197B0
+lbl_805197B0:
+	.4byte 0x47000000
+.global lbl_805197B4
+lbl_805197B4:
+	.4byte 0x41200000
+.global lbl_805197B8
+lbl_805197B8:
+	.float 0.5
+.global lbl_805197BC
+lbl_805197BC:
+	.4byte 0x3E4CCCCD
+.global lbl_805197C0
+lbl_805197C0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805197C8
+lbl_805197C8:
+	.4byte 0x42C80000
+.global lbl_805197CC
+lbl_805197CC:
+	.4byte 0x00000000
+.global lbl_805197D0
+lbl_805197D0:
+	.4byte 0x3F99999A
+.global lbl_805197D4
+lbl_805197D4:
+	.4byte 0x40000000
+.global lbl_805197D8
+lbl_805197D8:
+	.4byte 0x41F00000
+.global lbl_805197DC
+lbl_805197DC:
+	.4byte 0x40A00000
+.global lbl_805197E0
+lbl_805197E0:
+	.4byte 0xBF800000
+.global lbl_805197E4
+lbl_805197E4:
+	.float 1.0
+.global lbl_805197E8
+lbl_805197E8:
+	.4byte 0x40800000
+.global lbl_805197EC
+lbl_805197EC:
+	.4byte 0x41A00000
+.global lbl_805197F0
+lbl_805197F0:
+	.4byte 0x6172632E
+	.4byte 0x737A7300
+.global lbl_805197F8
+lbl_805197F8:
+	.4byte 0x40400000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game12ItemPikihead3FSMFPQ34Game12ItemPikihead4Item
 init__Q34Game12ItemPikihead3FSMFPQ34Game12ItemPikihead4Item:

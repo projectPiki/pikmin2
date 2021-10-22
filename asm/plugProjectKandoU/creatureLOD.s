@@ -37,6 +37,47 @@ lbl_80515ADC:
 drawInfo__Q24Game5AILOD:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519750
+lbl_80519750:
+	.float 0.07
+.global lbl_80519754
+lbl_80519754:
+	.float 0.02
+.global lbl_80519758
+lbl_80519758:
+	.asciz "near"
+	.skip 3
+.global lbl_80519760
+lbl_80519760:
+	.asciz "mid"
+.global lbl_80519764
+lbl_80519764:
+	.asciz "far"
+.global lbl_80519768
+lbl_80519768:
+	.float 1.0
+.global lbl_8051976C
+lbl_8051976C:
+	.4byte 0x70000000
+.global lbl_80519770
+lbl_80519770:
+	.4byte 0x5F000000
+.global lbl_80519774
+lbl_80519774:
+	.4byte 0x76000000
+.global lbl_80519778
+lbl_80519778:
+	.4byte 0x78000000
+.global lbl_8051977C
+lbl_8051977C:
+	.4byte 0x41700000
+.global lbl_80519780
+lbl_80519780:
+	.4byte 0x3C25663E
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9AILODParmFv
 __ct__Q24Game9AILODParmFv:

@@ -190,6 +190,84 @@ __vt__Q34Game4Cave7BaseGen:
 	.4byte lbl_805196F0
 	.4byte lbl_805196F8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805196C0
+lbl_805196C0:
+	.asciz "BaseGen"
+.global lbl_805196C8
+lbl_805196C8:
+	.float 0.0
+.global lbl_805196CC
+lbl_805196CC:
+	.4byte 0x93790000
+.global lbl_805196D0
+lbl_805196D0:
+	.4byte 0x8381835E
+	.4byte 0x838B0000
+.global lbl_805196D8
+lbl_805196D8:
+	.4byte 0x835E8343
+	.4byte 0x838B0000
+.global lbl_805196E0
+lbl_805196E0:
+	.4byte 0x92CA8FED
+	.4byte 0x00000000
+.global lbl_805196E8
+lbl_805196E8:
+	.4byte 0x837B8358
+	.4byte 0x00000000
+.global lbl_805196F0
+lbl_805196F0:
+	.4byte 0x82C882B5
+	.4byte 0x00000000
+.global lbl_805196F8
+lbl_805196F8:
+	.4byte 0x82A082E8
+	.4byte 0x00000000
+.global lbl_80519700
+lbl_80519700:
+	.float 1.0
+.global lbl_80519704
+lbl_80519704:
+	.asciz "test"
+	.skip 3
+.global lbl_8051970C
+lbl_8051970C:
+	.asciz "VRBOX"
+	.skip 2
+.global lbl_80519714
+lbl_80519714:
+	.4byte 0x83BF91AE
+	.4byte 0x90AB0000
+.global lbl_8051971C
+lbl_8051971C:
+	.4byte 0x83C091AE
+	.4byte 0x90AB0000
+.global lbl_80519724
+lbl_80519724:
+	.4byte 0x894282B5
+	.4byte 0x8FB00000
+.global lbl_8051972C
+lbl_8051972C:
+	.4byte 0x56657273
+	.4byte 0x696F6E00
+.global lbl_80519734
+lbl_80519734:
+	.4byte 0x461C4000
+.global lbl_80519738
+lbl_80519738:
+	.4byte 0x92BE82DE
+	.4byte 0x95C70000
+.global lbl_80519740
+lbl_80519740:
+	.4byte 0x8A4B9177
+	.4byte 0x00000000
+.global lbl_80519748
+lbl_80519748:
+	.asciz "%s"
+	.skip 1
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave7BaseGenFv
 __ct__Q34Game4Cave7BaseGenFv:

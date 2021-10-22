@@ -737,6 +737,93 @@ __vt__Q34Game8ItemRock3FSM:
 mgr__Q24Game8ItemRock:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805198C8
+lbl_805198C8:
+	.4byte 0x00000000
+.global lbl_805198CC
+lbl_805198CC:
+	.float 1.0
+.global lbl_805198D0
+lbl_805198D0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805198D8
+lbl_805198D8:
+	.4byte 0x41F00000
+.global lbl_805198DC
+lbl_805198DC:
+	.4byte 0x43340000
+.global lbl_805198E0
+lbl_805198E0:
+	.4byte 0x47000000
+.global lbl_805198E4
+lbl_805198E4:
+	.4byte 0x40A00000
+.global lbl_805198E8
+lbl_805198E8:
+	.4byte 0x3E4CCCCD
+.global lbl_805198EC
+lbl_805198EC:
+	.4byte 0x41200000
+.global lbl_805198F0
+lbl_805198F0:
+	.4byte 0x41C80000
+.global lbl_805198F4
+lbl_805198F4:
+	.4byte 0x42700000
+.global lbl_805198F8
+lbl_805198F8:
+	.float 0.5
+.global lbl_805198FC
+lbl_805198FC:
+	.float 0.25
+.global lbl_80519900
+lbl_80519900:
+	.4byte 0x61636365
+	.4byte 0x6C000000
+.global lbl_80519908
+lbl_80519908:
+	.float 0.1
+.global lbl_8051990C
+lbl_8051990C:
+	.4byte 0x3C23D70A
+.global lbl_80519910
+lbl_80519910:
+	.4byte 0x40000000
+.global lbl_80519914
+lbl_80519914:
+	.float 0.3
+.global lbl_80519918
+lbl_80519918:
+	.4byte 0x44BB8000
+.global lbl_8051991C
+lbl_8051991C:
+	.4byte 0x476A6000
+.global lbl_80519920
+lbl_80519920:
+	.4byte 0x44960000
+.global lbl_80519924
+lbl_80519924:
+	.4byte 0x443B8000
+.global lbl_80519928
+lbl_80519928:
+	.4byte 0x437A0000
+.global lbl_8051992C
+lbl_8051992C:
+	.4byte 0x43160000
+.global lbl_80519930
+lbl_80519930:
+	.4byte 0x420C0000
+.global lbl_80519934
+lbl_80519934:
+	.4byte 0x41A00000
+.global lbl_80519938
+lbl_80519938:
+	.4byte 0x6172632E
+	.4byte 0x737A7300
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item
 init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item:

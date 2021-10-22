@@ -7,7 +7,7 @@ GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/bss.o\
 	$(BUILD_DIR)/asm/sdata2.o\
 
-TEXT_O_FILES:=\
+JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/object/object-particle.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/control.o\
 	$(BUILD_DIR)/asm/JSystem/resource.o\
@@ -234,6 +234,8 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUData.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUDataMgr.o\
+
+DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/mainloop.o\
 	$(BUILD_DIR)/asm/Dolphin/nubevent.o\
 	$(BUILD_DIR)/src/Dolphin/nubinit.o\
@@ -422,6 +424,8 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/GBARead.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAWrite.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAXfer.o\
+
+YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantState.o\
@@ -474,6 +478,8 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/treasureLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/effectAnimator.o\
+
+KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/collinfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDynamics.o\
@@ -518,8 +524,6 @@ TEXT_O_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
-	
-TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
@@ -544,7 +548,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/registItem.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayData.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemCave.o\
-	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemBigFountain.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemBridge.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiContainer.o\
@@ -613,6 +616,8 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsFifo.o\
+
+NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/nslibmath.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
@@ -848,6 +853,8 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudaiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TyreShadow.o\
+
+OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDopingScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogPikminCounter.o\
@@ -929,7 +936,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuCont.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
 
-TEXT_PT3:=\
+HIKINO:=\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSystemIF.o\
@@ -944,6 +951,8 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSScene.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTrack.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o\
+
+MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/dayEndCount.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/hurryUp2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/gameOver2D.o\
@@ -1004,6 +1013,8 @@ TEXT_PT3:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\
+
+EBISAWA:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxBase.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemy.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o\
@@ -1069,8 +1080,10 @@ KONO:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khMailSaveData.o\
 
-TEXT_PART_TWO:=\
+BOOTUP:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
+
+COMMON:=\
 	$(BUILD_DIR)/src/sysCommonU/node.o\
 	$(BUILD_DIR)/asm/sysCommonU/node.o\
 	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
@@ -1092,6 +1105,8 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
+
+GC:=\
 	$(BUILD_DIR)/src/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/system.o\
 	$(BUILD_DIR)/asm/sysGCU/section.o\
@@ -1165,6 +1180,8 @@ TEXT_PART_TWO:=\
 	$(BUILD_DIR)/src/sysGCU/dvdErrorMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2AramMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/messageAnalyzer.o\
+
+UTILITY:=\
 	$(BUILD_DIR)/asm/utilityU/menu.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Director.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_Factory.o\

@@ -624,6 +624,25 @@ __vt__Q24Game8BaseItem:
 itemMgr__4Game:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519618
+lbl_80519618:
+	.4byte 0x00000000
+.global lbl_8051961C
+lbl_8051961C:
+	.float 1.0
+.global lbl_80519620
+lbl_80519620:
+	.4byte 0x3F19999A
+.global lbl_80519624
+lbl_80519624:
+	.4byte 0x41F00000
+.global lbl_80519628
+lbl_80519628:
+	.4byte 0x25732F25
+	.4byte 0x73000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game8BaseItemFi
 __ct__Q24Game8BaseItemFi:

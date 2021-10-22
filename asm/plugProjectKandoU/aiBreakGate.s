@@ -76,6 +76,13 @@ __vt__Q26PikiAI12ActBreakGate:
 	.4byte 0
 	.4byte "@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519630
+lbl_80519630:
+	.float 0.7
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki
 __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki:

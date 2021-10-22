@@ -961,6 +961,91 @@ itemGateMgr__4Game:
 mgr__Q24Game15ItemDengekiGate:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519590
+lbl_80519590:
+	.4byte 0x432A0000
+.global lbl_80519594
+lbl_80519594:
+	.4byte 0x42C80000
+.global lbl_80519598
+lbl_80519598:
+	.4byte 0x00000000
+.global lbl_8051959C
+lbl_8051959C:
+	.4byte 0x47000000
+.global lbl_805195A0
+lbl_805195A0:
+	.4byte 0x40C90FDB
+	.4byte 0x00000000
+.global lbl_805195A8
+lbl_805195A8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805195B0
+lbl_805195B0:
+	.4byte 0x41200000
+.global lbl_805195B4
+lbl_805195B4:
+	.4byte 0x67617465
+	.4byte 0x00000000
+.global lbl_805195BC
+lbl_805195BC:
+	.4byte 0x41F00000
+.global lbl_805195C0
+lbl_805195C0:
+	.4byte 0x46480000
+.global lbl_805195C4
+lbl_805195C4:
+	.4byte 0x42480000
+.global lbl_805195C8
+lbl_805195C8:
+	.4byte 0x43A2F983
+.global lbl_805195CC
+lbl_805195CC:
+	.4byte 0xC3A2F983
+.global lbl_805195D0
+lbl_805195D0:
+	.4byte 0x41A00000
+.global lbl_805195D4
+lbl_805195D4:
+	.4byte 0x42990000
+.global lbl_805195D8
+lbl_805195D8:
+	.4byte 0x6D6F7665
+	.4byte 0x00000000
+.global lbl_805195E0
+lbl_805195E0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_805195E8
+lbl_805195E8:
+	.4byte 0x42F00000
+.global lbl_805195EC
+lbl_805195EC:
+	.4byte 0x47617465
+	.4byte 0x00000000
+.global lbl_805195F4
+lbl_805195F4:
+	.4byte 0x66697800
+.global lbl_805195F8
+lbl_805195F8:
+	.4byte 0x706F6C65
+	.4byte 0x00000000
+.global lbl_80519600
+lbl_80519600:
+	.4byte 0x652D6761
+	.4byte 0x74650000
+.global lbl_80519608
+lbl_80519608:
+	.4byte 0x41726752
+	.4byte 0x6F745900
+.global lbl_80519610
+lbl_80519610:
+	.4byte 0x6974656D
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q24Game7GateFSMFPQ24Game8ItemGate
 init__Q24Game7GateFSMFPQ24Game8ItemGate:

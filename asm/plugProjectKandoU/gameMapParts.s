@@ -585,6 +585,79 @@ numRoomCulled__Q24Game10RoomMapMgr:
 mUseCylinderViewCulling__Q24Game10RoomMapMgr:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519440
+lbl_80519440:
+	.4byte 0x00000000
+.global lbl_80519444
+lbl_80519444:
+	.4byte 0x47000000
+.global lbl_80519448
+lbl_80519448:
+	.4byte 0xC7000000
+.global lbl_8051944C
+lbl_8051944C:
+	.4byte 0x432A0000
+.global lbl_80519450
+lbl_80519450:
+	.4byte 0x47FA0000
+.global lbl_80519454
+lbl_80519454:
+	.4byte 0xC7FA0000
+.global lbl_80519458
+lbl_80519458:
+	.float 1.0
+.global lbl_8051945C
+lbl_8051945C:
+	.float 0.5
+.global lbl_80519460
+lbl_80519460:
+	.4byte 0x41F00000
+.global lbl_80519464
+lbl_80519464:
+	.4byte 0x43A00000
+.global lbl_80519468
+lbl_80519468:
+	.4byte 0xC2B40000
+	.4byte 0x00000000
+.global lbl_80519470
+lbl_80519470:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80519478
+lbl_80519478:
+	.4byte 0x41200000
+.global lbl_8051947C
+lbl_8051947C:
+	.4byte 0x3C800000
+.global lbl_80519480
+lbl_80519480:
+	.4byte 0x3F19999A
+.global lbl_80519484
+lbl_80519484:
+	.4byte 0x4B435000
+.global lbl_80519488
+lbl_80519488:
+	.4byte 0x48A02800
+.global lbl_8051948C
+lbl_8051948C:
+	.4byte 0x40490FDB
+.global lbl_80519490
+lbl_80519490:
+	.4byte 0x3BB60B61
+.global lbl_80519494
+lbl_80519494:
+	.4byte 0x42C80000
+.global lbl_80519498
+lbl_80519498:
+	.4byte 0x454E542D
+	.4byte 0x4D415000
+.global lbl_805194A0
+lbl_805194A0:
+	.4byte 0x726F6F6D
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getDoor__Q24Game16MapUnitInterfaceFi
 getDoor__Q24Game16MapUnitInterfaceFi:

@@ -58,6 +58,41 @@ lbl_80515B08:
 lbl_80515B0C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519990
+lbl_80519990:
+	.4byte 0x2D576565
+	.4byte 0x642D0000
+.global lbl_80519998
+lbl_80519998:
+	.4byte 0x2D506C61
+	.4byte 0x6E742D00
+.global lbl_805199A0
+lbl_805199A0:
+	.4byte 0x2D526F63
+	.4byte 0x6B2D0000
+.global lbl_805199A8
+lbl_805199A8:
+	.4byte 0x2D486F6E
+	.4byte 0x65792D00
+.global lbl_805199B0
+lbl_805199B0:
+	.4byte 0x2D4F6E79
+	.4byte 0x6F6E2D00
+.global lbl_805199B8
+lbl_805199B8:
+	.4byte 0x2D486F6C
+	.4byte 0x652D0000
+.global lbl_805199C0
+lbl_805199C0:
+	.4byte 0x2D436176
+	.4byte 0x652D0000
+.global lbl_805199C8
+lbl_805199C8:
+	.4byte 0x2D476174
+	.4byte 0x652D0000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createManagers__Q24Game7ItemMgrFUl
 createManagers__Q24Game7ItemMgrFUl:

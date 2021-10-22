@@ -532,6 +532,125 @@ lbl_80515B1C:
 mgr__Q24Game8ItemCave:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805199E0
+lbl_805199E0:
+	.4byte 0x466F6750
+	.4byte 0x61726D00
+.global lbl_805199E8
+lbl_805199E8:
+	.4byte 0x73746172
+	.4byte 0x745A0000
+.global lbl_805199F0
+lbl_805199F0:
+	.4byte 0x42000000
+.global lbl_805199F4
+lbl_805199F4:
+	.float 1.0
+.global lbl_805199F8
+lbl_805199F8:
+	.4byte 0x46480000
+.global lbl_805199FC
+lbl_805199FC:
+	.4byte 0x656E645A
+	.4byte 0x00000000
+.global lbl_80519A04
+lbl_80519A04:
+	.4byte 0x44960000
+.global lbl_80519A08
+lbl_80519A08:
+	.4byte 0x40000000
+.global lbl_80519A0C
+lbl_80519A0C:
+	.4byte 0x00000000
+.global lbl_80519A10
+lbl_80519A10:
+	.4byte 0x41F00000
+.global lbl_80519A14
+lbl_80519A14:
+	.4byte 0x656E6454
+	.4byte 0x696D6500
+.global lbl_80519A1C
+lbl_80519A1C:
+	.4byte 0x52656400
+.global lbl_80519A20
+lbl_80519A20:
+	.4byte 0x47726565
+	.4byte 0x6E000000
+.global lbl_80519A28
+lbl_80519A28:
+	.4byte 0x426C7565
+	.4byte 0x00000000
+.global lbl_80519A30
+lbl_80519A30:
+	.4byte 0x44FA0000
+.global lbl_80519A34
+lbl_80519A34:
+	.4byte 0x433E0000
+.global lbl_80519A38
+lbl_80519A38:
+	.4byte 0x43700000
+.global lbl_80519A3C
+lbl_80519A3C:
+	.4byte 0x42480000
+.global lbl_80519A40
+lbl_80519A40:
+	.4byte 0x42820000
+.global lbl_80519A44
+lbl_80519A44:
+	.4byte 0x42960000
+.global lbl_80519A48
+lbl_80519A48:
+	.4byte 0x42200000
+.global lbl_80519A4C
+lbl_80519A4C:
+	.4byte 0x48EF4200
+.global lbl_80519A50
+lbl_80519A50:
+	.4byte 0x666C6167
+	.4byte 0x00000000
+.global lbl_80519A58
+lbl_80519A58:
+	.4byte 0x3FC00000
+.global lbl_80519A5C
+lbl_80519A5C:
+	.float 0.5
+.global lbl_80519A60
+lbl_80519A60:
+	.4byte 0x44800000
+.global lbl_80519A64
+lbl_80519A64:
+	.4byte 0x43FA0000
+.global lbl_80519A68
+lbl_80519A68:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80519A70
+lbl_80519A70:
+	.float 0.15
+.global lbl_80519A74
+lbl_80519A74:
+	.4byte 0x3DAE147B
+.global lbl_80519A78
+lbl_80519A78:
+	.4byte 0x41200000
+.global lbl_80519A7C
+lbl_80519A7C:
+	.4byte 0x42700000
+.global lbl_80519A80
+lbl_80519A80:
+	.4byte 0x43617665
+	.4byte 0x00000000
+.global lbl_80519A88
+lbl_80519A88:
+	.4byte 0x6172632E
+	.4byte 0x737A7300
+.global lbl_80519A90
+lbl_80519A90:
+	.4byte 0x0D0A0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item
 init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item:

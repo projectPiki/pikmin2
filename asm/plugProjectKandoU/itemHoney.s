@@ -555,6 +555,45 @@ lbl_804B8528:
 mgr__Q24Game9ItemHoney:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519680
+lbl_80519680:
+	.float 0.0
+.global lbl_80519684
+lbl_80519684:
+	.float 100.0
+.global lbl_80519688
+lbl_80519688:
+	.float 15.0
+.global lbl_8051968C
+lbl_8051968C:
+	.float 32768.0
+.global lbl_80519690
+lbl_80519690:
+	.float 3.0
+.global lbl_80519694
+lbl_80519694:
+	.float 30.0
+.global lbl_80519698
+lbl_80519698:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805196A0
+lbl_805196A0:
+	.float 7.5
+.global lbl_805196A4
+lbl_805196A4:
+	.asciz "mitu1"
+	.skip 2
+.global lbl_805196AC
+lbl_805196AC:
+	.asciz "Honey"
+	.skip 2
+.global lbl_805196B4
+lbl_805196B4:
+	.asciz "arc.szs"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem
 init__Q34Game9ItemHoney3FSMFPQ24Game8CFSMItem:

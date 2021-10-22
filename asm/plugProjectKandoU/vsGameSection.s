@@ -344,6 +344,155 @@ mBlueWinCount__Q24Game13VsGameSection:
 mDrawCount__Q24Game13VsGameSection:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805194A8
+lbl_805194A8:
+	.4byte 0x00000000
+.global lbl_805194AC
+lbl_805194AC:
+	.float 0.5
+.global lbl_805194B0
+lbl_805194B0:
+	.4byte 0x72616E64
+	.4byte 0x6F6D0000
+.global lbl_805194B8
+lbl_805194B8:
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_805194C0
+lbl_805194C0:
+	.4byte 0x40490000
+	.4byte 0x00000000
+.global lbl_805194C8
+lbl_805194C8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805194D0
+lbl_805194D0:
+	.4byte 0x6F702D6B
+	.4byte 0x6B000000
+.global lbl_805194D8
+lbl_805194D8:
+	.4byte 0x6D6F7265
+	.4byte 0x2D6E6F00
+.global lbl_805194E0
+lbl_805194E0:
+	.4byte 0x6B6B2D79
+	.4byte 0x65730000
+.global lbl_805194E8
+lbl_805194E8:
+	.4byte 0x6B6B2D6E
+	.4byte 0x6F000000
+.global lbl_805194F0
+lbl_805194F0:
+	.4byte 0x47000000
+.global lbl_805194F4
+lbl_805194F4:
+	.4byte 0x41700000
+.global lbl_805194F8
+lbl_805194F8:
+	.4byte 0x41F00000
+.global lbl_805194FC
+lbl_805194FC:
+	.4byte 0x40C90FDB
+.global lbl_80519500
+lbl_80519500:
+	.4byte 0x44408000
+.global lbl_80519504
+lbl_80519504:
+	.4byte 0x44548000
+.global lbl_80519508
+lbl_80519508:
+	.4byte 0x42F00000
+.global lbl_8051950C
+lbl_8051950C:
+	.4byte 0x43A2F983
+.global lbl_80519510
+lbl_80519510:
+	.4byte 0xC3A2F983
+.global lbl_80519514
+lbl_80519514:
+	.4byte 0x4528C000
+.global lbl_80519518
+lbl_80519518:
+	.4byte 0x43160000
+.global lbl_8051951C
+lbl_8051951C:
+	.4byte 0x41200000
+.global lbl_80519520
+lbl_80519520:
+	.4byte 0x41A00000
+.global lbl_80519524
+lbl_80519524:
+	.4byte 0x3E4CCCCD
+.global lbl_80519528
+lbl_80519528:
+	.4byte 0x3F4CCCCD
+.global lbl_8051952C
+lbl_8051952C:
+	.float 0.1
+.global lbl_80519530
+lbl_80519530:
+	.4byte 0xBDCCCCCD
+.global lbl_80519534
+lbl_80519534:
+	.4byte 0xBF000000
+.global lbl_80519538
+lbl_80519538:
+	.4byte 0xBF4CCCCD
+.global lbl_8051953C
+lbl_8051953C:
+	.4byte 0x3D50E560
+.global lbl_80519540
+lbl_80519540:
+	.4byte 0x3C23D70A
+.global lbl_80519544
+lbl_80519544:
+	.4byte 0x41C80000
+.global lbl_80519548
+lbl_80519548:
+	.4byte 0x3ECCCCCD
+.global lbl_8051954C
+lbl_8051954C:
+	.4byte 0x3F19999A
+.global lbl_80519550
+lbl_80519550:
+	.float 0.3
+.global lbl_80519554
+lbl_80519554:
+	.4byte 0x3F0CCCCD
+.global lbl_80519558
+lbl_80519558:
+	.4byte 0x3F666666
+.global lbl_8051955C
+lbl_8051955C:
+	.4byte 0x40000000
+.global lbl_80519560
+lbl_80519560:
+	.4byte 0x40400000
+	.4byte 0x00000000
+.global lbl_80519568
+lbl_80519568:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_80519570
+lbl_80519570:
+	.4byte 0x430C0000
+.global lbl_80519574
+lbl_80519574:
+	.4byte 0xC1200000
+.global lbl_80519578
+lbl_80519578:
+	.4byte 0xBF800000
+.global lbl_8051957C
+lbl_8051957C:
+	.4byte 0x40800000
+.global lbl_80519580
+lbl_80519580:
+	.float 0.25
+	.4byte 0x00000000
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520E68
 lbl_80520E68:

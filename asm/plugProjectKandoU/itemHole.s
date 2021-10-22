@@ -393,6 +393,56 @@ lbl_80515AC4:
 mgr__Q24Game8ItemHole:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80519638
+lbl_80519638:
+	.4byte 0x00000000
+.global lbl_8051963C
+lbl_8051963C:
+	.4byte 0x41C80000
+.global lbl_80519640
+lbl_80519640:
+	.float 1.0
+.global lbl_80519644
+lbl_80519644:
+	.4byte 0x3F555555
+.global lbl_80519648
+lbl_80519648:
+	.4byte 0x42700000
+.global lbl_8051964C
+lbl_8051964C:
+	.4byte 0x42F00000
+.global lbl_80519650
+lbl_80519650:
+	.4byte 0x666C6167
+	.4byte 0x00000000
+.global lbl_80519658
+lbl_80519658:
+	.4byte 0x42480000
+.global lbl_8051965C
+lbl_8051965C:
+	.4byte 0x42960000
+.global lbl_80519660
+lbl_80519660:
+	.4byte 0x42200000
+.global lbl_80519664
+lbl_80519664:
+	.4byte 0x3D99999A
+.global lbl_80519668
+lbl_80519668:
+	.4byte 0x3D2E147B
+.global lbl_8051966C
+lbl_8051966C:
+	.4byte 0x41200000
+.global lbl_80519670
+lbl_80519670:
+	.4byte 0x486F6C65
+	.4byte 0x00000000
+.global lbl_80519678
+lbl_80519678:
+	.asciz "arc.szs"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8ItemHole3FSMFPQ24Game8CFSMItem
 init__Q34Game8ItemHole3FSMFPQ24Game8CFSMItem:
