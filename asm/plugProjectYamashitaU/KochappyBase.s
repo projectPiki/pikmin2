@@ -210,6 +210,45 @@ __vt__Q34Game12KochappyBase3Obj:
 	.4byte "@728@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805180E0
+lbl_805180E0:
+	.4byte 0x61676F00
+.global lbl_805180E4
+lbl_805180E4:
+	.4byte 0x00000000
+.global lbl_805180E8
+lbl_805180E8:
+	.4byte 0x40000000
+.global lbl_805180EC
+lbl_805180EC:
+	.float 1.0
+.global lbl_805180F0
+lbl_805180F0:
+	.4byte 0x42C80000
+.global lbl_805180F4
+lbl_805180F4:
+	.4byte 0x41200000
+.global lbl_805180F8
+lbl_805180F8:
+	.4byte 0x6B616D75
+	.4byte 0x00000000
+.global lbl_80518100
+lbl_80518100:
+	.4byte 0x41700000
+.global lbl_80518104
+lbl_80518104:
+	.4byte 0x6173694C
+	.4byte 0x00000000
+.global lbl_8051810C
+lbl_8051810C:
+	.4byte 0x61736952
+	.4byte 0x00000000
+.global lbl_80518114
+lbl_80518114:
+	.4byte 0x40800000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12KochappyBase3ObjFv
 __ct__Q34Game12KochappyBase3ObjFv:

@@ -72,6 +72,31 @@ lbl_80515878:
 lbl_8051587C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517A78
+lbl_80517A78:
+	.4byte 0x40490FDB
+.global lbl_80517A7C
+lbl_80517A7C:
+	.4byte 0x3BB60B61
+.global lbl_80517A80
+lbl_80517A80:
+	.4byte 0x00000000
+.global lbl_80517A84
+lbl_80517A84:
+	.4byte 0x47000000
+.global lbl_80517A88
+lbl_80517A88:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80517A90
+lbl_80517A90:
+	.float 1.0
+.global lbl_80517A94
+lbl_80517A94:
+	.float 0.5
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
 "getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>":

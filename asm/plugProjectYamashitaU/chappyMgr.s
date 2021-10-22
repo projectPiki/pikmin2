@@ -292,6 +292,27 @@ __vt__Q34Game6Chappy3Mgr:
 "cChappyChangeTexName1__Q34Game6Chappy23@unnamed@chappyMgr_cpp@":
 	.4byte lbl_8047AEF8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517B10
+lbl_80517B10:
+	.4byte 0x42480000
+.global lbl_80517B14
+lbl_80517B14:
+	.4byte 0x00000000
+.global lbl_80517B18
+lbl_80517B18:
+	.4byte 0x42C80000
+.global lbl_80517B1C
+lbl_80517B1C:
+	.4byte 0x43960000
+.global lbl_80517B20
+lbl_80517B20:
+	.4byte 0x447A0000
+.global lbl_80517B24
+lbl_80517B24:
+	.4byte 0x43C80000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Chappy3MgrFiUc
 __ct__Q34Game6Chappy3MgrFiUc:

@@ -29,6 +29,35 @@ __vt__Q24Game16FieldVtxColorMgr:
 	.4byte "@12@__dt__Q24Game16FieldVtxColorMgrFv"
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517CC0
+lbl_80517CC0:
+	.4byte 0x41200000
+.global lbl_80517CC4
+lbl_80517CC4:
+	.4byte 0x00000000
+.global lbl_80517CC8
+lbl_80517CC8:
+	.float 1.0
+.global lbl_80517CCC
+lbl_80517CCC:
+	.4byte 0x3C23D70A
+.global lbl_80517CD0
+lbl_80517CD0:
+	.4byte 0x437F0000
+.global lbl_80517CD4
+lbl_80517CD4:
+	.float 0.5
+.global lbl_80517CD8
+lbl_80517CD8:
+	.4byte 0x401C0000
+	.4byte 0x00000000
+.global lbl_80517CE0
+lbl_80517CE0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData
 __ct__Q24Game16FieldVtxColorMgrFP12J3DModelData:

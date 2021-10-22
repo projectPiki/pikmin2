@@ -145,6 +145,75 @@ __vt__Q34Game10ChappyBase3FSM:
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517AA0
+lbl_80517AA0:
+	.4byte 0x00000000
+.global lbl_80517AA4
+lbl_80517AA4:
+	.4byte 0x43340000
+.global lbl_80517AA8
+lbl_80517AA8:
+	.4byte 0x736C6565
+	.4byte 0x70000000
+.global lbl_80517AB0
+lbl_80517AB0:
+	.4byte 0x428C0000
+.global lbl_80517AB4
+lbl_80517AB4:
+	.4byte 0x41F00000
+.global lbl_80517AB8
+lbl_80517AB8:
+	.4byte 0x42700000
+.global lbl_80517ABC
+lbl_80517ABC:
+	.4byte 0x64656164
+	.4byte 0x00000000
+.global lbl_80517AC4
+lbl_80517AC4:
+	.float 1.0
+.global lbl_80517AC8
+lbl_80517AC8:
+	.4byte 0x3F666666
+.global lbl_80517ACC
+lbl_80517ACC:
+	.4byte 0x41200000
+.global lbl_80517AD0
+lbl_80517AD0:
+	.4byte 0x40490FDB
+.global lbl_80517AD4
+lbl_80517AD4:
+	.4byte 0x3BB60B61
+.global lbl_80517AD8
+lbl_80517AD8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80517AE0
+lbl_80517AE0:
+	.4byte 0x7475726E
+	.4byte 0x00000000
+.global lbl_80517AE8
+lbl_80517AE8:
+	.4byte 0x42200000
+.global lbl_80517AEC
+lbl_80517AEC:
+	.4byte 0x57616C6B
+	.4byte 0x00000000
+.global lbl_80517AF4
+lbl_80517AF4:
+	.4byte 0x41747461
+	.4byte 0x636B0000
+.global lbl_80517AFC
+lbl_80517AFC:
+	.4byte 0x466C6963
+	.4byte 0x6B000000
+.global lbl_80517B04
+lbl_80517B04:
+	.4byte 0x476F486F
+	.4byte 0x6D650000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10ChappyBase3FSMFPQ24Game9EnemyBase
 init__Q34Game10ChappyBase3FSMFPQ24Game9EnemyBase:

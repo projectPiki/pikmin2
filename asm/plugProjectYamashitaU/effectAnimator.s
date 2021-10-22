@@ -283,6 +283,19 @@ __vt__Q214EffectAnimator3Obj:
 	.4byte getChildCount__5CNodeFv
 	.4byte update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_805181F8
+lbl_805181F8:
+	.4byte 0x00000000
+.global lbl_805181FC
+lbl_805181FC:
+	.float 0.25
+.global lbl_80518200
+lbl_80518200:
+	.float 1.0
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf
 update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf:

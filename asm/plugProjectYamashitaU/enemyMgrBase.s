@@ -176,6 +176,23 @@ __vt__Q24Game12EnemyMgrBase:
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80518130
+lbl_80518130:
+	.4byte 0x00000000
+.global lbl_80518134
+lbl_80518134:
+	.4byte 0x652D7570
+	.4byte 0x64000000
+.global lbl_8051813C
+lbl_8051813C:
+	.4byte 0x652D646F
+	.4byte 0x61000000
+.global lbl_80518144
+lbl_80518144:
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game13EnemyBirthArgFv
 __ct__Q24Game13EnemyBirthArgFv:

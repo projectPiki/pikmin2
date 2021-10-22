@@ -14,6 +14,31 @@ __vt__Q24Game17EnemyAnimatorBase:
 	.4byte resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv
 	.4byte getTypeID__Q24Game17EnemyAnimatorBaseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global defaultAnimSpeed__Q24Game17EnemyAnimatorBase
+defaultAnimSpeed__Q24Game17EnemyAnimatorBase:
+	.4byte 0x41F00000
+.global lbl_80517F9C
+lbl_80517F9C:
+	.4byte 0x41F00000
+.global lbl_80517FA0
+lbl_80517FA0:
+	.float 1.0
+.global lbl_80517FA4
+lbl_80517FA4:
+	.4byte 0x3F666666
+.global lbl_80517FA8
+lbl_80517FA8:
+	.float 0.1
+.global lbl_80517FAC
+lbl_80517FAC:
+	.4byte 0x00000000
+.global lbl_80517FB0
+lbl_80517FB0:
+	.4byte 0x3F8CCCCD
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game17EnemyAnimatorBaseFv
 __ct__Q24Game17EnemyAnimatorBaseFv:

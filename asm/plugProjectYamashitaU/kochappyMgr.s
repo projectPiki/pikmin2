@@ -267,6 +267,31 @@ __vt__Q34Game12KochappyBase5Parms:
 "cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@":
 	.4byte lbl_8047AB44
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517A58
+lbl_80517A58:
+	.4byte 0x40000000
+.global lbl_80517A5C
+lbl_80517A5C:
+	.4byte 0x00000000
+.global lbl_80517A60
+lbl_80517A60:
+	.4byte 0x42C80000
+.global lbl_80517A64
+lbl_80517A64:
+	.4byte 0x43960000
+.global lbl_80517A68
+lbl_80517A68:
+	.4byte 0x447A0000
+.global lbl_80517A6C
+lbl_80517A6C:
+	.4byte 0x42B40000
+.global lbl_80517A70
+lbl_80517A70:
+	.4byte 0x43340000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Kochappy3MgrFiUc
 __ct__Q34Game8Kochappy3MgrFiUc:

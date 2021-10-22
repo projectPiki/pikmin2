@@ -47,6 +47,31 @@ __vt__Q34Game4Farm5Plant:
 	.4byte __dt__Q34Game4Farm5PlantFv
 	.4byte getChildCount__5CNodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517E78
+lbl_80517E78:
+	.4byte 0x00000000
+.global lbl_80517E7C
+lbl_80517E7C:
+	.4byte 0x945F8D6B
+	.4byte 0x00000000
+.global lbl_80517E84
+lbl_80517E84:
+	.4byte 0x6D646C44
+	.4byte 0x61746100
+.global lbl_80517E8C
+lbl_80517E8C:
+	.4byte 0x00000000
+.global lbl_80517E90
+lbl_80517E90:
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_80517E98
+lbl_80517E98:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setPower__Q34Game4Farm8ObstacleFf
 setPower__Q34Game4Farm8ObstacleFf:

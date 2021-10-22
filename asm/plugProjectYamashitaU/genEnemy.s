@@ -533,6 +533,105 @@ __vt__Q24Game14GenObjectEnemy:
 	.4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
 	.4byte getDebugInfo__Q24Game9GenObjectFPc
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517EA8
+lbl_80517EA8:
+	.4byte 0x42C80000
+.global lbl_80517EAC
+lbl_80517EAC:
+	.4byte 0x00000000
+.global lbl_80517EB0
+lbl_80517EB0:
+	.4byte 0x47000000
+.global lbl_80517EB4
+lbl_80517EB4:
+	.4byte 0x40C90FDB
+.global lbl_80517EB8
+lbl_80517EB8:
+	.4byte 0x420C0000
+.global lbl_80517EBC
+lbl_80517EBC:
+	.float 1.0
+.global lbl_80517EC0
+lbl_80517EC0:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_80517EC8
+lbl_80517EC8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_80517ED0
+lbl_80517ED0:
+	.4byte 0x40490FDB
+.global lbl_80517ED4
+lbl_80517ED4:
+	.4byte 0x3BB60B61
+.global lbl_80517ED8
+lbl_80517ED8:
+	.4byte 0x74656B69
+	.4byte 0x00000000
+.global lbl_80517EE0
+lbl_80517EE0:
+	.4byte 0x8352834B
+	.4byte 0x836C0000
+.global lbl_80517EE8
+lbl_80517EE8:
+	.4byte 0x8371836F
+	.4byte 0x00000000
+.global lbl_80517EF0
+lbl_80517EF0:
+	.4byte 0x8369837D
+	.4byte 0x83590000
+.global lbl_80517EF8
+lbl_80517EF8:
+	.4byte 0x8349835E
+	.4byte 0x837D0000
+.global lbl_80517F00
+lbl_80517F00:
+	.4byte 0x82ED82BD
+	.4byte 0x82B00000
+.global lbl_80517F08
+lbl_80517F08:
+	.4byte 0x82C282AD
+	.4byte 0x82B50000
+.global lbl_80517F10
+lbl_80517F10:
+	.4byte 0x90E791E3
+	.4byte 0x8E860000
+.global lbl_80517F18
+lbl_80517F18:
+	.4byte 0x8357834F
+	.4byte 0x83820000
+.global lbl_80517F20
+lbl_80517F20:
+	.4byte 0x8D9582A2
+	.4byte 0x906C0000
+.global lbl_80517F28
+lbl_80517F28:
+	.4byte 0x96A2936F
+	.4byte 0x985E0000
+.global lbl_80517F30
+lbl_80517F30:
+	.4byte 0x42480000
+.global lbl_80517F34
+lbl_80517F34:
+	.4byte 0x41200000
+.global lbl_80517F38
+lbl_80517F38:
+	.4byte 0x42200000
+.global lbl_80517F3C
+lbl_80517F3C:
+	.4byte 0xC1200000
+.global lbl_80517F40
+lbl_80517F40:
+	.4byte 0x25732078
+	.4byte 0x20256400
+.global lbl_80517F48
+lbl_80517F48:
+	.4byte 0x47656E41
+	.4byte 0x72670000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeObjectEnemy__4GameFv
 makeObjectEnemy__4GameFv:

@@ -742,6 +742,131 @@ gParmArc__4Game:
 "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>":
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_80517798
+lbl_80517798:
+	.4byte 0x43960000
+.global lbl_8051779C
+lbl_8051779C:
+	.4byte 0x47000000
+.global lbl_805177A0
+lbl_805177A0:
+	.4byte 0x40C90FDB
+.global lbl_805177A4
+lbl_805177A4:
+	.4byte 0x42480000
+.global lbl_805177A8
+lbl_805177A8:
+	.4byte 0xC3A2F983
+.global lbl_805177AC
+lbl_805177AC:
+	.4byte 0x43A2F983
+.global lbl_805177B0
+lbl_805177B0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_805177B8
+lbl_805177B8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_805177C0
+lbl_805177C0:
+	.4byte 0x40000000
+.global lbl_805177C4
+lbl_805177C4:
+	.float 1.0
+.global lbl_805177C8
+lbl_805177C8:
+	.4byte 0x3E4CCCCD
+.global lbl_805177CC
+lbl_805177CC:
+	.4byte 0x40490FDB
+.global lbl_805177D0
+lbl_805177D0:
+	.4byte 0x40800000
+.global lbl_805177D4
+lbl_805177D4:
+	.float 0.25
+.global lbl_805177D8
+lbl_805177D8:
+	.4byte 0x3C8EFA36
+	.4byte 0x00000000
+.global lbl_805177E0
+lbl_805177E0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_805177E8
+lbl_805177E8:
+	.4byte 0x41707065
+	.4byte 0x61720000
+.global lbl_805177F0
+lbl_805177F0:
+	.4byte 0x4C697669
+	.4byte 0x6E670000
+.global lbl_805177F8
+lbl_805177F8:
+	.4byte 0x53746F6E
+	.4byte 0x65000000
+.global lbl_80517800
+lbl_80517800:
+	.4byte 0x46697400
+.global lbl_80517804
+lbl_80517804:
+	.4byte 0x40200000
+.global lbl_80517808
+lbl_80517808:
+	.4byte 0x3F7D70A4
+.global lbl_8051780C
+lbl_8051780C:
+	.4byte 0x3F666666
+.global lbl_80517810
+lbl_80517810:
+	.4byte 0x3F59999A
+.global lbl_80517814
+lbl_80517814:
+	.float 0.5
+.global lbl_80517818
+lbl_80517818:
+	.4byte 0x41200000
+.global lbl_8051781C
+lbl_8051781C:
+	.4byte 0x437A0000
+.global lbl_80517820
+lbl_80517820:
+	.4byte 0x652D6361
+	.4byte 0x6C630000
+.global lbl_80517828
+lbl_80517828:
+	.4byte 0x40400000
+.global lbl_8051782C
+lbl_8051782C:
+	.4byte 0x3F19999A
+.global lbl_80517830
+lbl_80517830:
+	.4byte 0x3D0EFA36
+.global lbl_80517834
+lbl_80517834:
+	.4byte 0x3D32B8C3
+.global lbl_80517838
+lbl_80517838:
+	.4byte 0x43480000
+.global lbl_8051783C
+lbl_8051783C:
+	.4byte 0x41000000
+.global lbl_80517840
+lbl_80517840:
+	.4byte 0x43160000
+.global lbl_80517844
+lbl_80517844:
+	.4byte 0x42C80000
+.global lbl_80517848
+lbl_80517848:
+	.4byte 0x3FC00000
+.global lbl_8051784C
+lbl_8051784C:
+	.4byte 0x41726700
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
 animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase:
