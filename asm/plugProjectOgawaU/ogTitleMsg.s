@@ -121,6 +121,81 @@ sFrame$4053:
 init$4054:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E008
+lbl_8051E008:
+	.4byte 0x00000000
+.global lbl_8051E00C
+lbl_8051E00C:
+	.float 1.0
+.global lbl_8051E010
+lbl_8051E010:
+	.4byte 0xC1200000
+.global lbl_8051E014
+lbl_8051E014:
+	.float 0.5
+.global lbl_8051E018
+lbl_8051E018:
+	.4byte 0x40400000
+.global lbl_8051E01C
+lbl_8051E01C:
+	.4byte 0x42C80000
+.global lbl_8051E020
+lbl_8051E020:
+	.4byte 0x47000000
+.global lbl_8051E024
+lbl_8051E024:
+	.4byte 0x40A00000
+.global lbl_8051E028
+lbl_8051E028:
+	.4byte 0x43480000
+	.4byte 0x00000000
+.global lbl_8051E030
+lbl_8051E030:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051E038
+lbl_8051E038:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051E040
+lbl_8051E040:
+	.4byte 0xBE99999A
+.global lbl_8051E044
+lbl_8051E044:
+	.4byte 0x3DF5C28F
+.global lbl_8051E048
+lbl_8051E048:
+	.4byte 0x40E00000
+.global lbl_8051E04C
+lbl_8051E04C:
+	.4byte 0x3FC00000
+.global lbl_8051E050
+lbl_8051E050:
+	.4byte 0x3D8F5C29
+.global lbl_8051E054
+lbl_8051E054:
+	.4byte 0x3E4CCCCD
+.global lbl_8051E058
+lbl_8051E058:
+	.4byte 0x40C90FDB
+.global lbl_8051E05C
+lbl_8051E05C:
+	.4byte 0x3E000000
+.global lbl_8051E060
+lbl_8051E060:
+	.float 0.25
+.global lbl_8051E064
+lbl_8051E064:
+	.float 0.1
+.global lbl_8051E068
+lbl_8051E068:
+	.4byte 0x42480000
+.global lbl_8051E06C
+lbl_8051E06C:
+	.4byte 0x3ECCCCCD
+
 .section .sbss2 # 0x80520e40 - 0x80520ED8
 .global lbl_80520EB8
 lbl_80520EB8:

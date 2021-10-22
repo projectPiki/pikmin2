@@ -922,6 +922,7 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneChallengeBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackPicture.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDrawAfter.o\
+	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogOtakaraSensor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAngleMgr.o\
@@ -929,7 +930,6 @@ TEXT_PT1:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
 
 TEXT_PT3:=\
-	$(BUILD_DIR)/asm/sdata2_a.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSGame.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSystemIF.o\

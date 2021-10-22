@@ -134,6 +134,18 @@ __vt__Q32og9newScreen12ObjSMenuCont:
 msVal__Q32og9newScreen12ObjSMenuCont:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051E090
+lbl_8051E090:
+	.4byte 0x00000000
+.global lbl_8051E094
+lbl_8051E094:
+	.4byte 0x41700000
+.global lbl_8051E098
+lbl_8051E098:
+	.float 1.0
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuContFPCc
 __ct__Q32og9newScreen12ObjSMenuContFPCc:
