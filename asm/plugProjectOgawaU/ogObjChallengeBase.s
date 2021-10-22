@@ -49,6 +49,19 @@ lbl_80515EB0:
 lbl_80515EB4:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DF40
+lbl_8051DF40:
+	.4byte 0x00000000
+.global lbl_8051DF44
+lbl_8051DF44:
+	.float 0.3
+.global lbl_8051DF48
+lbl_8051DF48:
+	.float 0.1
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen16ObjChallengeBaseFv
 __ct__Q32og9newScreen16ObjChallengeBaseFv:

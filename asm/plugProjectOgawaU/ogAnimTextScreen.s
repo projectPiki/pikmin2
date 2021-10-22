@@ -31,6 +31,45 @@ __vt__Q32og6Screen15AnimText_Screen:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D640
+lbl_8051D640:
+	.4byte 0x00000000
+.global lbl_8051D644
+lbl_8051D644:
+	.4byte 0x00000000
+.global lbl_8051D648
+lbl_8051D648:
+	.float 1.0
+.global lbl_8051D64C
+lbl_8051D64C:
+	.float 0.1
+.global lbl_8051D650
+lbl_8051D650:
+	.4byte 0x40C90FDB
+.global lbl_8051D654
+lbl_8051D654:
+	.4byte 0xC3A2F983
+.global lbl_8051D658
+lbl_8051D658:
+	.4byte 0x43A2F983
+.global lbl_8051D65C
+lbl_8051D65C:
+	.float 0.5
+.global lbl_8051D660
+lbl_8051D660:
+	.4byte 0x40400000
+.global lbl_8051D664
+lbl_8051D664:
+	.float 0.05
+.global lbl_8051D668
+lbl_8051D668:
+	.4byte 0x437F0000
+.global lbl_8051D66C
+lbl_8051D66C:
+	.4byte 0xBF800000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setAnimTextScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
 setAnimTextScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx:

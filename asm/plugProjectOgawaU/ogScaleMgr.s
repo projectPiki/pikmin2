@@ -1,4 +1,36 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DE68
+lbl_8051DE68:
+	.float 1.0
+.global lbl_8051DE6C
+lbl_8051DE6C:
+	.float 0.5
+.global lbl_8051DE70
+lbl_8051DE70:
+	.4byte 0x41F00000
+.global lbl_8051DE74
+lbl_8051DE74:
+	.4byte 0x3F4CCCCD
+.global lbl_8051DE78
+lbl_8051DE78:
+	.4byte 0x00000000
+.global lbl_8051DE7C
+lbl_8051DE7C:
+	.float 0.25
+.global lbl_8051DE80
+lbl_8051DE80:
+	.4byte 0x420C0000
+.global lbl_8051DE84
+lbl_8051DE84:
+	.4byte 0x3C23D70A
+.global lbl_8051DE88
+lbl_8051DE88:
+	.4byte 0xC3A2F983
+.global lbl_8051DE8C
+lbl_8051DE8C:
+	.4byte 0x43A2F983
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen8ScaleMgrFv

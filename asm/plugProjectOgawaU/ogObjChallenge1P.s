@@ -94,6 +94,53 @@ lbl_80515E90:
 lbl_80515E94:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DE28
+lbl_8051DE28:
+	.4byte 0x00000000
+.global lbl_8051DE2C
+lbl_8051DE2C:
+	.float 1.0
+.global lbl_8051DE30
+lbl_8051DE30:
+	.4byte 0x3F666666
+.global lbl_8051DE34
+lbl_8051DE34:
+	.4byte 0x451A5000
+.global lbl_8051DE38
+lbl_8051DE38:
+	.4byte 0xC3928000
+.global lbl_8051DE3C
+lbl_8051DE3C:
+	.4byte 0xC3250000
+.global lbl_8051DE40
+lbl_8051DE40:
+	.4byte 0xC3200000
+.global lbl_8051DE44
+lbl_8051DE44:
+	.4byte 0xC3480000
+.global lbl_8051DE48
+lbl_8051DE48:
+	.4byte 0x40490FDB
+.global lbl_8051DE4C
+lbl_8051DE4C:
+	.4byte 0x43A2F983
+.global lbl_8051DE50
+lbl_8051DE50:
+	.4byte 0x43960000
+.global lbl_8051DE54
+lbl_8051DE54:
+	.float 0.5
+.global lbl_8051DE58
+lbl_8051DE58:
+	.4byte 0x3ECCCCCD
+	.4byte 0x00000000
+.global lbl_8051DE60
+lbl_8051DE60:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen14ObjChallenge1PFPCc
 __ct__Q32og9newScreen14ObjChallenge1PFPCc:

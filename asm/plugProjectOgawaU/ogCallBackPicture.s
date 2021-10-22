@@ -47,6 +47,25 @@ __vt__Q32og6Screen16CallBack_Picture:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DF60
+lbl_8051DF60:
+	.4byte 0x00000000
+.global lbl_8051DF64
+lbl_8051DF64:
+	.float 0.25
+.global lbl_8051DF68
+lbl_8051DF68:
+	.4byte 0x41A80000
+.global lbl_8051DF6C
+lbl_8051DF6C:
+	.4byte 0x42200000
+.global lbl_8051DF70
+lbl_8051DF70:
+	.4byte 0x41A00000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q32og6Screen16CallBack_PictureFv
 update__Q32og6Screen16CallBack_PictureFv:

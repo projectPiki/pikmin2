@@ -141,6 +141,63 @@ __vt__Q32og9newScreen9ObjKantei:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D938
+lbl_8051D938:
+	.4byte 0x00000000
+.global lbl_8051D93C
+lbl_8051D93C:
+	.float 0.1
+.global lbl_8051D940
+lbl_8051D940:
+	.4byte 0x43980000
+.global lbl_8051D944
+lbl_8051D944:
+	.4byte 0x43420000
+.global lbl_8051D948
+lbl_8051D948:
+	.float 1.0
+.global lbl_8051D94C
+lbl_8051D94C:
+	.4byte 0x437F0000
+.global lbl_8051D950
+lbl_8051D950:
+	.float 0.3
+.global lbl_8051D954
+lbl_8051D954:
+	.4byte 0x3E4CCCCD
+.global lbl_8051D958
+lbl_8051D958:
+	.4byte 0x3F2AAAAB
+.global lbl_8051D95C
+lbl_8051D95C:
+	.4byte 0x40333333
+.global lbl_8051D960
+lbl_8051D960:
+	.4byte 0x41D80000
+.global lbl_8051D964
+lbl_8051D964:
+	.float 0.5
+.global lbl_8051D968
+lbl_8051D968:
+	.4byte 0x41200000
+.global lbl_8051D96C
+lbl_8051D96C:
+	.4byte 0xC2200000
+.global lbl_8051D970
+lbl_8051D970:
+	.4byte 0x3F4CCCCD
+.global lbl_8051D974
+lbl_8051D974:
+	.4byte 0x41F00000
+.global lbl_8051D978
+lbl_8051D978:
+	.float 0.7
+.global lbl_8051D97C
+lbl_8051D97C:
+	.4byte 0x40400000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen9ObjKanteiFPCc
 __ct__Q32og9newScreen9ObjKanteiFPCc:

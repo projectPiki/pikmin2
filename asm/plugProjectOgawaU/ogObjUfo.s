@@ -62,6 +62,51 @@ __vt__Q32og9newScreen10ObjUfoMenu:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DD28
+lbl_8051DD28:
+	.4byte 0x44480000
+.global lbl_8051DD2C
+lbl_8051DD2C:
+	.4byte 0x00000000
+.global lbl_8051DD30
+lbl_8051DD30:
+	.4byte 0x75666F2E
+	.4byte 0x626C6F00
+.global lbl_8051DD38
+lbl_8051DD38:
+	.4byte 0x75666F2E
+	.4byte 0x62636B00
+.global lbl_8051DD40
+lbl_8051DD40:
+	.float 0.5
+.global lbl_8051DD44
+lbl_8051DD44:
+	.4byte 0x75666F2E
+	.4byte 0x62706B00
+.global lbl_8051DD4C
+lbl_8051DD4C:
+	.float 0.1
+.global lbl_8051DD50
+lbl_8051DD50:
+	.float 1.0
+.global lbl_8051DD54
+lbl_8051DD54:
+	.4byte 0xC4480000
+.global lbl_8051DD58
+lbl_8051DD58:
+	.4byte 0x3FC00000
+.global lbl_8051DD5C
+lbl_8051DD5C:
+	.4byte 0x3EB33333
+.global lbl_8051DD60
+lbl_8051DD60:
+	.float 0.7
+.global lbl_8051DD64
+lbl_8051DD64:
+	.4byte 0x3FB33333
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen10ObjUfoMenuFPCc
 __ct__Q32og9newScreen10ObjUfoMenuFPCc:

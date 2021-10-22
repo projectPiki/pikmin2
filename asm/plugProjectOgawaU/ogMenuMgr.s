@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D680
+lbl_8051D680:
+	.4byte 0x00000000
+.global lbl_8051D684
+lbl_8051D684:
+	.float 1.0
+.global lbl_8051D688
+lbl_8051D688:
+	.4byte 0x3E4CCCCD
+.global lbl_8051D68C
+lbl_8051D68C:
+	.4byte 0x42480000
+.global lbl_8051D690
+lbl_8051D690:
+	.float 0.5
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen7MenuMgrFv

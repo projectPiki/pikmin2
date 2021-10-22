@@ -26,6 +26,33 @@ __vt__Q32og6Screen15CallBack_Furiko:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DEA8
+lbl_8051DEA8:
+	.4byte 0x00000000
+.global lbl_8051DEAC
+lbl_8051DEAC:
+	.4byte 0x43660000
+.global lbl_8051DEB0
+lbl_8051DEB0:
+	.4byte 0x42660000
+.global lbl_8051DEB4
+lbl_8051DEB4:
+	.4byte 0x3EDC28F6
+.global lbl_8051DEB8
+lbl_8051DEB8:
+	.4byte 0x3D088889
+.global lbl_8051DEBC
+lbl_8051DEBC:
+	.4byte 0x42B40000
+.global lbl_8051DEC0
+lbl_8051DEC0:
+	.4byte 0x42652EE0
+.global lbl_8051DEC4
+lbl_8051DEC4:
+	.float 0.5
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global stop__Q32og6Screen15CallBack_FurikoFv
 stop__Q32og6Screen15CallBack_FurikoFv:

@@ -54,6 +54,51 @@ __vt__Q32og6Screen17CallBack_SunMeter:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D5F0
+lbl_8051D5F0:
+	.4byte 0x00000000
+.global lbl_8051D5F4
+lbl_8051D5F4:
+	.4byte 0x3E981062
+.global lbl_8051D5F8
+lbl_8051D5F8:
+	.float 0.3
+.global lbl_8051D5FC
+lbl_8051D5FC:
+	.4byte 0x3EFE76C9
+.global lbl_8051D600
+lbl_8051D600:
+	.float 0.5
+.global lbl_8051D604
+lbl_8051D604:
+	.4byte 0x3F326E98
+.global lbl_8051D608
+lbl_8051D608:
+	.float 0.7
+.global lbl_8051D60C
+lbl_8051D60C:
+	.float 1.0
+.global lbl_8051D610
+lbl_8051D610:
+	.4byte 0x40000000
+.global lbl_8051D614
+lbl_8051D614:
+	.4byte 0x40490FDB
+.global lbl_8051D618
+lbl_8051D618:
+	.4byte 0x3BB60B61
+.global lbl_8051D61C
+lbl_8051D61C:
+	.4byte 0x433F0000
+.global lbl_8051D620
+lbl_8051D620:
+	.4byte 0x42800000
+.global lbl_8051D624
+lbl_8051D624:
+	.4byte 0x41F00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q32og6Screen17CallBack_SunMeterFv
 update__Q32og6Screen17CallBack_SunMeterFv:

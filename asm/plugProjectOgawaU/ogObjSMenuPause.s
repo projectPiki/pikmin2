@@ -96,6 +96,37 @@ __vt__Q32og9newScreen13ObjSMenuPause:
 	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
 	.4byte commonUpdate__Q32og9newScreen13ObjSMenuPauseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D858
+lbl_8051D858:
+	.4byte 0x00000000
+.global lbl_8051D85C
+lbl_8051D85C:
+	.float 0.1
+.global lbl_8051D860
+lbl_8051D860:
+	.4byte 0x3E4CCCCD
+.global lbl_8051D864
+lbl_8051D864:
+	.float 0.5
+.global lbl_8051D868
+lbl_8051D868:
+	.4byte 0x3F19999A
+.global lbl_8051D86C
+lbl_8051D86C:
+	.float 0.7
+.global lbl_8051D870
+lbl_8051D870:
+	.float 1.0
+.global lbl_8051D874
+lbl_8051D874:
+	.4byte 0x41700000
+.global lbl_8051D878
+lbl_8051D878:
+	.float 0.3
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getMenuColor__Q42og9newScreen13ObjSMenuPause9ObjHIOValFPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColor
 getMenuColor__Q42og9newScreen13ObjSMenuPause9ObjHIOValFPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColor:

@@ -72,6 +72,55 @@ __vt__Q29P2DScreen12CallBackNode:
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D5B0
+lbl_8051D5B0:
+	.float 1.0
+.global lbl_8051D5B4
+lbl_8051D5B4:
+	.4byte 0x41880000
+.global lbl_8051D5B8
+lbl_8051D5B8:
+	.4byte 0x00000000
+.global lbl_8051D5BC
+lbl_8051D5BC:
+	.4byte 0x43000000
+.global lbl_8051D5C0
+lbl_8051D5C0:
+	.4byte 0x40490FDB
+.global lbl_8051D5C4
+lbl_8051D5C4:
+	.float 0.5
+.global lbl_8051D5C8
+lbl_8051D5C8:
+	.4byte 0x3ECCCCCD
+.global lbl_8051D5CC
+lbl_8051D5CC:
+	.4byte 0x41F00000
+.global lbl_8051D5D0
+lbl_8051D5D0:
+	.4byte 0x3F19999A
+.global lbl_8051D5D4
+lbl_8051D5D4:
+	.4byte 0x42480000
+.global lbl_8051D5D8
+lbl_8051D5D8:
+	.4byte 0xC3A2F983
+.global lbl_8051D5DC
+lbl_8051D5DC:
+	.4byte 0x43A2F983
+.global lbl_8051D5E0
+lbl_8051D5E0:
+	.float 0.7
+.global lbl_8051D5E4
+lbl_8051D5E4:
+	.4byte 0x437F0000
+.global lbl_8051D5E8
+lbl_8051D5E8:
+	.float 0.3
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen18CallBack_LifeGaugeFv
 __ct__Q32og6Screen18CallBack_LifeGaugeFv:

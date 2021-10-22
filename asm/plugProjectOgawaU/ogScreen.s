@@ -155,6 +155,61 @@ wkMax$3548:
 init$3549:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D508
+lbl_8051D508:
+	.4byte 0x41F00000
+.global lbl_8051D50C
+lbl_8051D50C:
+	.4byte 0x40C90FDB
+.global lbl_8051D510
+lbl_8051D510:
+	.float 1.0
+.global lbl_8051D514
+lbl_8051D514:
+	.4byte 0xC3A2F983
+.global lbl_8051D518
+lbl_8051D518:
+	.4byte 0x43A2F983
+.global lbl_8051D51C
+lbl_8051D51C:
+	.4byte 0x00000000
+.global lbl_8051D520
+lbl_8051D520:
+	.float 0.5
+	.4byte 0x00000000
+.global lbl_8051D528
+lbl_8051D528:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051D530
+lbl_8051D530:
+	.4byte 0x3F4CCCCD
+	.4byte 0x00000000
+.global lbl_8051D538
+lbl_8051D538:
+	.4byte 0x3FF00000
+	.4byte 0x00000000
+.global lbl_8051D540
+lbl_8051D540:
+	.4byte 0x3FC90FDB
+.global lbl_8051D544
+lbl_8051D544:
+	.4byte 0x3E4CCCCC
+.global lbl_8051D548
+lbl_8051D548:
+	.4byte 0x40240000
+	.4byte 0x00000000
+.global lbl_8051D550
+lbl_8051D550:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051D558
+lbl_8051D558:
+	.4byte 0x437F0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSpeed__Q32og6Screen15ArrowAlphaBlinkFf
 setSpeed__Q32og6Screen15ArrowAlphaBlinkFf:

@@ -46,6 +46,27 @@ __vt__Q32og6Screen15TotalPokoScreen:
 	.4byte setCallBack__Q32og6Screen15TotalPokoScreenFP10JKRArchiveffff
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DF28
+lbl_8051DF28:
+	.4byte 0x00000000
+.global lbl_8051DF2C
+lbl_8051DF2C:
+	.4byte 0x3F4CCCCD
+.global lbl_8051DF30
+lbl_8051DF30:
+	.4byte 0x41A00000
+.global lbl_8051DF34
+lbl_8051DF34:
+	.float 0.3
+.global lbl_8051DF38
+lbl_8051DF38:
+	.float 0.5
+.global lbl_8051DF3C
+lbl_8051DF3C:
+	.4byte 0xC2A00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen15TotalPokoScreenFv
 __ct__Q32og6Screen15TotalPokoScreenFv:

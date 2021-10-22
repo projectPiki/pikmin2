@@ -135,6 +135,105 @@ angle$4147:
 init$4148:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DC88
+lbl_8051DC88:
+	.4byte 0x44480000
+.global lbl_8051DC8C
+lbl_8051DC8C:
+	.4byte 0x00000000
+.global lbl_8051DC90
+lbl_8051DC90:
+	.float 0.5
+.global lbl_8051DC94
+lbl_8051DC94:
+	.float 1.0
+.global lbl_8051DC98
+lbl_8051DC98:
+	.float 0.3
+.global lbl_8051DC9C
+lbl_8051DC9C:
+	.float 0.1
+.global lbl_8051DCA0
+lbl_8051DCA0:
+	.4byte 0x41F00000
+.global lbl_8051DCA4
+lbl_8051DCA4:
+	.4byte 0x3F4CCCCD
+.global lbl_8051DCA8
+lbl_8051DCA8:
+	.float 0.05
+.global lbl_8051DCAC
+lbl_8051DCAC:
+	.4byte 0x420C0000
+.global lbl_8051DCB0
+lbl_8051DCB0:
+	.4byte 0x40C90FDB
+.global lbl_8051DCB4
+lbl_8051DCB4:
+	.4byte 0xC3A2F983
+.global lbl_8051DCB8
+lbl_8051DCB8:
+	.4byte 0x43A2F983
+.global lbl_8051DCBC
+lbl_8051DCBC:
+	.4byte 0x3ECCCCCD
+.global lbl_8051DCC0
+lbl_8051DCC0:
+	.4byte 0xBECCCCCD
+.global lbl_8051DCC4
+lbl_8051DCC4:
+	.4byte 0x42C80000
+.global lbl_8051DCC8
+lbl_8051DCC8:
+	.4byte 0xC2C80000
+.global lbl_8051DCCC
+lbl_8051DCCC:
+	.4byte 0x40000000
+.global lbl_8051DCD0
+lbl_8051DCD0:
+	.4byte 0x437F0000
+.global lbl_8051DCD4
+lbl_8051DCD4:
+	.4byte 0xC4480000
+.global lbl_8051DCD8
+lbl_8051DCD8:
+	.4byte 0x41A00000
+.global lbl_8051DCDC
+lbl_8051DCDC:
+	.float 0.06
+.global lbl_8051DCE0
+lbl_8051DCE0:
+	.4byte 0x3F99999A
+.global lbl_8051DCE4
+lbl_8051DCE4:
+	.4byte 0x3F19999A
+.global lbl_8051DCE8
+lbl_8051DCE8:
+	.4byte 0x43660000
+.global lbl_8051DCEC
+lbl_8051DCEC:
+	.4byte 0x42660000
+.global lbl_8051DCF0
+lbl_8051DCF0:
+	.4byte 0x3EDC28F6
+.global lbl_8051DCF4
+lbl_8051DCF4:
+	.4byte 0x3E4CCCCD
+.global lbl_8051DCF8
+lbl_8051DCF8:
+	.4byte 0x3FE66666
+.global lbl_8051DCFC
+lbl_8051DCFC:
+	.4byte 0xBF800000
+.global lbl_8051DD00
+lbl_8051DD00:
+	.4byte 0x3F0CCCCD
+.global lbl_8051DD04
+lbl_8051DD04:
+	.4byte 0x3D88CE70
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen10ObjContenaFPCc
 __ct__Q32og9newScreen10ObjContenaFPCc:

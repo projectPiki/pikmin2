@@ -132,6 +132,27 @@ __vt__Q32og6Screen13PikminCounter:
 	.4byte setCallBack__Q32og6Screen13PikminCounterFP10JKRArchive
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D580
+lbl_8051D580:
+	.4byte 0x00000000
+.global lbl_8051D584
+lbl_8051D584:
+	.float 1.0
+.global lbl_8051D588
+lbl_8051D588:
+	.4byte 0x442F0000
+.global lbl_8051D58C
+lbl_8051D58C:
+	.4byte 0x41A00000
+.global lbl_8051D590
+lbl_8051D590:
+	.4byte 0x3E4CCCCD
+.global lbl_8051D594
+lbl_8051D594:
+	.float 0.5
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen13PikminCounterFv
 __ct__Q32og6Screen13PikminCounterFv:

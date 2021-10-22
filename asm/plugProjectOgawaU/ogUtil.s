@@ -35,6 +35,39 @@ lbl_80515E70:
 lbl_80515E74:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D8F8
+lbl_8051D8F8:
+	.4byte 0x656E672F
+	.4byte 0x00000000
+.global lbl_8051D900
+lbl_8051D900:
+	.4byte 0x6672612F
+	.4byte 0x00000000
+.global lbl_8051D908
+lbl_8051D908:
+	.4byte 0x6765722F
+	.4byte 0x00000000
+.global lbl_8051D910
+lbl_8051D910:
+	.4byte 0x6974612F
+	.4byte 0x00000000
+.global lbl_8051D918
+lbl_8051D918:
+	.4byte 0x6A706E2F
+	.4byte 0x00000000
+.global lbl_8051D920
+lbl_8051D920:
+	.4byte 0x7370612F
+	.4byte 0x00000000
+.global lbl_8051D928
+lbl_8051D928:
+	.4byte 0x00000000
+.global lbl_8051D92C
+lbl_8051D92C:
+	.4byte 0x25730000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global checkMovieActive__Q22og9newScreenFv
 checkMovieActive__Q22og9newScreenFv:

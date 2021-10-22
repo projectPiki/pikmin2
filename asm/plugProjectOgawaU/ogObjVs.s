@@ -87,6 +87,109 @@ __vt__Q32og9newScreen5ObjVs:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DD98
+lbl_8051DD98:
+	.4byte 0x00000000
+.global lbl_8051DD9C
+lbl_8051DD9C:
+	.4byte 0x40808889
+.global lbl_8051DDA0
+lbl_8051DDA0:
+	.float 0.05
+.global lbl_8051DDA4
+lbl_8051DDA4:
+	.float 1.0
+.global lbl_8051DDA8
+lbl_8051DDA8:
+	.4byte 0x47C34F80
+.global lbl_8051DDAC
+lbl_8051DDAC:
+	.4byte 0x437F0000
+.global lbl_8051DDB0
+lbl_8051DDB0:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051DDB8
+lbl_8051DDB8:
+	.4byte 0x3F19999A
+.global lbl_8051DDBC
+lbl_8051DDBC:
+	.4byte 0x40000000
+.global lbl_8051DDC0
+lbl_8051DDC0:
+	.4byte 0xC3A2F983
+.global lbl_8051DDC4
+lbl_8051DDC4:
+	.4byte 0x43A2F983
+.global lbl_8051DDC8
+lbl_8051DDC8:
+	.float 0.5
+.global lbl_8051DDCC
+lbl_8051DDCC:
+	.4byte 0x41200000
+.global lbl_8051DDD0
+lbl_8051DDD0:
+	.4byte 0x3ECCCCCD
+.global lbl_8051DDD4
+lbl_8051DDD4:
+	.4byte 0x40C90FDB
+.global lbl_8051DDD8
+lbl_8051DDD8:
+	.4byte 0x41A00000
+.global lbl_8051DDDC
+lbl_8051DDDC:
+	.4byte 0x40490FDB
+.global lbl_8051DDE0
+lbl_8051DDE0:
+	.4byte 0xC3960000
+.global lbl_8051DDE4
+lbl_8051DDE4:
+	.4byte 0x43960000
+.global lbl_8051DDE8
+lbl_8051DDE8:
+	.4byte 0x44200000
+	.4byte 0x00000000
+.global lbl_8051DDF0
+lbl_8051DDF0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051DDF8
+lbl_8051DDF8:
+	.4byte 0x3E4CCCCD
+.global lbl_8051DDFC
+lbl_8051DDFC:
+	.4byte 0xBFC00000
+.global lbl_8051DE00
+lbl_8051DE00:
+	.4byte 0x43E60000
+.global lbl_8051DE04
+lbl_8051DE04:
+	.4byte 0x43570000
+.global lbl_8051DE08
+lbl_8051DE08:
+	.4byte 0x43D70000
+.global lbl_8051DE0C
+lbl_8051DE0C:
+	.4byte 0x42E60000
+.global lbl_8051DE10
+lbl_8051DE10:
+	.4byte 0x41F00000
+.global lbl_8051DE14
+lbl_8051DE14:
+	.4byte 0x43750000
+.global lbl_8051DE18
+lbl_8051DE18:
+	.float 0.7
+.global lbl_8051DE1C
+lbl_8051DE1C:
+	.4byte 0x40E00000
+.global lbl_8051DE20
+lbl_8051DE20:
+	.4byte 0x40600000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen5ObjVsFPCc
 __ct__Q32og9newScreen5ObjVsFPCc:

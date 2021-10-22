@@ -174,6 +174,13 @@ __vt__Q32og9newScreen10CourseName:
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D930
+lbl_8051D930:
+	.4byte 0x00000000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen10CourseNameFv
 __ct__Q32og9newScreen10CourseNameFv:

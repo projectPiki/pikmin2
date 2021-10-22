@@ -370,6 +370,47 @@ __vt__Q32og9newScreen10ObjAnaDemo:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DC10
+lbl_8051DC10:
+	.4byte 0x00000000
+.global lbl_8051DC14
+lbl_8051DC14:
+	.float 0.5
+.global lbl_8051DC18
+lbl_8051DC18:
+	.4byte 0x3F19999A
+.global lbl_8051DC1C
+lbl_8051DC1C:
+	.float 0.7
+.global lbl_8051DC20
+lbl_8051DC20:
+	.float 1.0
+.global lbl_8051DC24
+lbl_8051DC24:
+	.float 0.1
+.global lbl_8051DC28
+lbl_8051DC28:
+	.4byte 0x41F00000
+.global lbl_8051DC2C
+lbl_8051DC2C:
+	.4byte 0xC4480000
+.global lbl_8051DC30
+lbl_8051DC30:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051DC38
+lbl_8051DC38:
+	.4byte 0x44480000
+.global lbl_8051DC3C
+lbl_8051DC3C:
+	.float 0.3
+.global lbl_8051DC40
+lbl_8051DC40:
+	.4byte 0x423C0000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global caveIDtoMsgID__Q22og9newScreenFUl
 caveIDtoMsgID__Q22og9newScreenFUl:

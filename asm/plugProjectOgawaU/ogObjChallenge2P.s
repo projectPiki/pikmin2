@@ -78,6 +78,51 @@ __vt__Q32og9newScreen14ObjChallenge2P:
 	.4byte doCreateAfter__Q32og9newScreen16ObjChallengeBaseFP10JKRArchivePQ32og6Screen18CallBack_CounterRV
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DC48
+lbl_8051DC48:
+	.4byte 0x00000000
+.global lbl_8051DC4C
+lbl_8051DC4C:
+	.float 1.0
+.global lbl_8051DC50
+lbl_8051DC50:
+	.4byte 0x3F666666
+.global lbl_8051DC54
+lbl_8051DC54:
+	.4byte 0x451A5000
+.global lbl_8051DC58
+lbl_8051DC58:
+	.4byte 0x40490FDB
+.global lbl_8051DC5C
+lbl_8051DC5C:
+	.4byte 0x43A2F983
+.global lbl_8051DC60
+lbl_8051DC60:
+	.float 0.5
+.global lbl_8051DC64
+lbl_8051DC64:
+	.4byte 0xC3960000
+.global lbl_8051DC68
+lbl_8051DC68:
+	.4byte 0x43960000
+	.4byte 0x00000000
+.global lbl_8051DC70
+lbl_8051DC70:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051DC78
+lbl_8051DC78:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051DC80
+lbl_8051DC80:
+	.4byte 0x3F19999A
+.global lbl_8051DC84
+lbl_8051DC84:
+	.4byte 0x3E4CCCCD
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen14ObjChallenge2PFPCc
 __ct__Q32og9newScreen14ObjChallenge2PFPCc:

@@ -58,6 +58,19 @@ __vt__Q32og6Screen26DispMemberWorldMapInfoWin1:
 	.4byte getMemberID__Q32og6Screen26DispMemberWorldMapInfoWin1Fv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DF18
+lbl_8051DF18:
+	.float 0.5
+.global lbl_8051DF1C
+lbl_8051DF1C:
+	.4byte 0x3F19999A
+.global lbl_8051DF20
+lbl_8051DF20:
+	.float 0.7
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen22ObjWorldMapInfoWindow1FPCc
 __ct__Q32og9newScreen22ObjWorldMapInfoWindow1FPCc:

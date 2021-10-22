@@ -92,6 +92,67 @@ lbl_80515E78:
 lbl_80515E7C:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DBC0
+lbl_8051DBC0:
+	.4byte 0x00000000
+.global lbl_8051DBC4
+lbl_8051DBC4:
+	.float 1.0
+.global lbl_8051DBC8
+lbl_8051DBC8:
+	.4byte 0x44610000
+.global lbl_8051DBCC
+lbl_8051DBCC:
+	.4byte 0x40000000
+.global lbl_8051DBD0
+lbl_8051DBD0:
+	.float 0.5
+.global lbl_8051DBD4
+lbl_8051DBD4:
+	.4byte 0x40490FDB
+.global lbl_8051DBD8
+lbl_8051DBD8:
+	.4byte 0x3ECCCCCD
+.global lbl_8051DBDC
+lbl_8051DBDC:
+	.4byte 0x43A2F983
+.global lbl_8051DBE0
+lbl_8051DBE0:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051DBE8
+lbl_8051DBE8:
+	.float 0.3
+.global lbl_8051DBEC
+lbl_8051DBEC:
+	.float 0.1
+.global lbl_8051DBF0
+lbl_8051DBF0:
+	.4byte 0xC2480000
+.global lbl_8051DBF4
+lbl_8051DBF4:
+	.4byte 0x3F666666
+.global lbl_8051DBF8
+lbl_8051DBF8:
+	.4byte 0xC1F00000
+.global lbl_8051DBFC
+lbl_8051DBFC:
+	.4byte 0x3E4CCCCD
+.global lbl_8051DC00
+lbl_8051DC00:
+	.float 0.25
+.global lbl_8051DC04
+lbl_8051DC04:
+	.4byte 0xC1700000
+.global lbl_8051DC08
+lbl_8051DC08:
+	.4byte 0xC2000000
+.global lbl_8051DC0C
+lbl_8051DC0C:
+	.4byte 0x40A00000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen7ObjCaveFPCc
 __ct__Q32og9newScreen7ObjCaveFPCc:

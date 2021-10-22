@@ -59,6 +59,25 @@ __vt__Q32og9newScreen15ObjSMenuPauseVS:
 	.4byte out_menu_1__Q32og9newScreen15ObjSMenuPauseVSFv
 	.4byte getResult__Q32og9newScreen15ObjSMenuPauseVSFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DE90
+lbl_8051DE90:
+	.4byte 0x00000000
+.global lbl_8051DE94
+lbl_8051DE94:
+	.float 0.5
+.global lbl_8051DE98
+lbl_8051DE98:
+	.4byte 0x3F19999A
+.global lbl_8051DE9C
+lbl_8051DE9C:
+	.4byte 0x3F4CCCCD
+.global lbl_8051DEA0
+lbl_8051DEA0:
+	.4byte 0x41700000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen15ObjSMenuPauseVSFPCc
 __ct__Q32og9newScreen15ObjSMenuPauseVSFPCc:

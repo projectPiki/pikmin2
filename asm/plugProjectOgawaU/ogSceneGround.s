@@ -51,6 +51,23 @@ __vt__Q32og9newScreen6Ground:
 sGameFlag_MainBgm_Evening__Q22og9newScreen:
 	.skip 0x8
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D6D8
+lbl_8051D6D8:
+	.float 1.0
+.global lbl_8051D6DC
+lbl_8051D6DC:
+	.4byte 0x3F666666
+.global lbl_8051D6E0
+lbl_8051D6E0:
+	.4byte 0x00000000
+	.4byte 0x00000000
+.global lbl_8051D6E8
+lbl_8051D6E8:
+	.4byte 0x43300000
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initGround__Q22og9newScreenFv
 initGround__Q22og9newScreenFv:

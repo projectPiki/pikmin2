@@ -53,6 +53,15 @@ __vt__Q32og9newScreen7ObjSave:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DD68
+lbl_8051DD68:
+	.4byte 0x00000000
+.global lbl_8051DD6C
+lbl_8051DD6C:
+	.float 0.1
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen7ObjSaveFPCc
 __ct__Q32og9newScreen7ObjSaveFPCc:

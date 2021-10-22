@@ -105,6 +105,301 @@ __vt__Q32og9newScreen8ObjFloor:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D998
+lbl_8051D998:
+	.4byte 0x00000000
+.global lbl_8051D99C
+lbl_8051D99C:
+	.float 1.0
+.global lbl_8051D9A0
+lbl_8051D9A0:
+	.4byte 0x00000000
+.global lbl_8051D9A4
+lbl_8051D9A4:
+	.4byte 0x38333935
+	.4byte 0x5F303000
+.global lbl_8051D9AC
+lbl_8051D9AC:
+	.4byte 0x38333939
+	.4byte 0x5F303000
+.global lbl_8051D9B4
+lbl_8051D9B4:
+	.4byte 0x38343030
+	.4byte 0x5F303000
+.global lbl_8051D9BC
+lbl_8051D9BC:
+	.4byte 0x38333936
+	.4byte 0x5F303000
+.global lbl_8051D9C4
+lbl_8051D9C4:
+	.4byte 0x38333938
+	.4byte 0x5F303000
+.global lbl_8051D9CC
+lbl_8051D9CC:
+	.4byte 0x38343031
+	.4byte 0x5F303000
+.global lbl_8051D9D4
+lbl_8051D9D4:
+	.4byte 0x38343130
+	.4byte 0x5F303000
+.global lbl_8051D9DC
+lbl_8051D9DC:
+	.4byte 0x38333937
+	.4byte 0x5F303000
+.global lbl_8051D9E4
+lbl_8051D9E4:
+	.4byte 0x38343032
+	.4byte 0x5F303000
+.global lbl_8051D9EC
+lbl_8051D9EC:
+	.4byte 0x38343033
+	.4byte 0x5F303000
+.global lbl_8051D9F4
+lbl_8051D9F4:
+	.4byte 0x38343131
+	.4byte 0x5F303000
+.global lbl_8051D9FC
+lbl_8051D9FC:
+	.4byte 0x38343132
+	.4byte 0x5F303000
+.global lbl_8051DA04
+lbl_8051DA04:
+	.4byte 0x38343133
+	.4byte 0x5F303000
+.global lbl_8051DA0C
+lbl_8051DA0C:
+	.4byte 0x38343134
+	.4byte 0x5F303000
+.global lbl_8051DA14
+lbl_8051DA14:
+	.4byte 0x34393030
+	.4byte 0x5F303000
+.global lbl_8051DA1C
+lbl_8051DA1C:
+	.4byte 0x34393031
+	.4byte 0x5F303000
+.global lbl_8051DA24
+lbl_8051DA24:
+	.4byte 0x34393032
+	.4byte 0x5F303000
+.global lbl_8051DA2C
+lbl_8051DA2C:
+	.4byte 0x34393033
+	.4byte 0x5F303000
+.global lbl_8051DA34
+lbl_8051DA34:
+	.4byte 0x34393034
+	.4byte 0x5F303000
+.global lbl_8051DA3C
+lbl_8051DA3C:
+	.4byte 0x34393035
+	.4byte 0x5F303000
+.global lbl_8051DA44
+lbl_8051DA44:
+	.4byte 0x34393036
+	.4byte 0x5F303000
+.global lbl_8051DA4C
+lbl_8051DA4C:
+	.4byte 0x34393037
+	.4byte 0x5F303000
+.global lbl_8051DA54
+lbl_8051DA54:
+	.4byte 0x34393038
+	.4byte 0x5F303000
+.global lbl_8051DA5C
+lbl_8051DA5C:
+	.4byte 0x34393039
+	.4byte 0x5F303000
+.global lbl_8051DA64
+lbl_8051DA64:
+	.4byte 0x34393130
+	.4byte 0x5F303000
+.global lbl_8051DA6C
+lbl_8051DA6C:
+	.4byte 0x34393131
+	.4byte 0x5F303000
+.global lbl_8051DA74
+lbl_8051DA74:
+	.4byte 0x34393132
+	.4byte 0x5F303000
+.global lbl_8051DA7C
+lbl_8051DA7C:
+	.4byte 0x34393133
+	.4byte 0x5F303000
+.global lbl_8051DA84
+lbl_8051DA84:
+	.4byte 0x34393134
+	.4byte 0x5F303000
+.global lbl_8051DA8C
+lbl_8051DA8C:
+	.4byte 0x34393135
+	.4byte 0x5F303000
+.global lbl_8051DA94
+lbl_8051DA94:
+	.4byte 0x34393136
+	.4byte 0x5F303000
+.global lbl_8051DA9C
+lbl_8051DA9C:
+	.4byte 0x34393137
+	.4byte 0x5F303000
+.global lbl_8051DAA4
+lbl_8051DAA4:
+	.4byte 0x34393138
+	.4byte 0x5F303000
+.global lbl_8051DAAC
+lbl_8051DAAC:
+	.4byte 0x34393139
+	.4byte 0x5F303000
+.global lbl_8051DAB4
+lbl_8051DAB4:
+	.4byte 0x34393230
+	.4byte 0x5F303000
+.global lbl_8051DABC
+lbl_8051DABC:
+	.4byte 0x34393231
+	.4byte 0x5F303000
+.global lbl_8051DAC4
+lbl_8051DAC4:
+	.4byte 0x34393232
+	.4byte 0x5F303000
+.global lbl_8051DACC
+lbl_8051DACC:
+	.4byte 0x34393233
+	.4byte 0x5F303000
+.global lbl_8051DAD4
+lbl_8051DAD4:
+	.4byte 0x34393234
+	.4byte 0x5F303000
+.global lbl_8051DADC
+lbl_8051DADC:
+	.4byte 0x34393235
+	.4byte 0x5F303000
+.global lbl_8051DAE4
+lbl_8051DAE4:
+	.4byte 0x34393236
+	.4byte 0x5F303000
+.global lbl_8051DAEC
+lbl_8051DAEC:
+	.4byte 0x34393237
+	.4byte 0x5F303000
+.global lbl_8051DAF4
+lbl_8051DAF4:
+	.4byte 0x34393238
+	.4byte 0x5F303000
+.global lbl_8051DAFC
+lbl_8051DAFC:
+	.4byte 0x34393239
+	.4byte 0x5F303000
+.global lbl_8051DB04
+lbl_8051DB04:
+	.4byte 0x34373730
+	.4byte 0x5F303000
+.global lbl_8051DB0C
+lbl_8051DB0C:
+	.4byte 0x34373731
+	.4byte 0x5F303000
+.global lbl_8051DB14
+lbl_8051DB14:
+	.4byte 0x34373732
+	.4byte 0x5F303000
+.global lbl_8051DB1C
+lbl_8051DB1C:
+	.4byte 0x34373733
+	.4byte 0x5F303000
+.global lbl_8051DB24
+lbl_8051DB24:
+	.4byte 0x34373734
+	.4byte 0x5F303000
+.global lbl_8051DB2C
+lbl_8051DB2C:
+	.4byte 0x34373735
+	.4byte 0x5F303000
+.global lbl_8051DB34
+lbl_8051DB34:
+	.4byte 0x34373736
+	.4byte 0x5F303000
+.global lbl_8051DB3C
+lbl_8051DB3C:
+	.4byte 0x34373737
+	.4byte 0x5F303000
+.global lbl_8051DB44
+lbl_8051DB44:
+	.4byte 0x34373738
+	.4byte 0x5F303000
+.global lbl_8051DB4C
+lbl_8051DB4C:
+	.4byte 0x34373739
+	.4byte 0x5F303000
+.global lbl_8051DB54
+lbl_8051DB54:
+	.4byte 0x39393936
+	.4byte 0x5F303000
+.global lbl_8051DB5C
+lbl_8051DB5C:
+	.4byte 0x25730000
+.global lbl_8051DB60
+lbl_8051DB60:
+	.4byte 0x47000000
+.global lbl_8051DB64
+lbl_8051DB64:
+	.4byte 0x40C00000
+.global lbl_8051DB68
+lbl_8051DB68:
+	.4byte 0x38333832
+	.4byte 0x5F303000
+.global lbl_8051DB70
+lbl_8051DB70:
+	.4byte 0x43300000
+	.4byte 0x80000000
+.global lbl_8051DB78
+lbl_8051DB78:
+	.float 0.5
+.global lbl_8051DB7C
+lbl_8051DB7C:
+	.4byte 0x437F0000
+.global lbl_8051DB80
+lbl_8051DB80:
+	.4byte 0x43300000
+	.4byte 0x00000000
+.global lbl_8051DB88
+lbl_8051DB88:
+	.float 0.3
+.global lbl_8051DB8C
+lbl_8051DB8C:
+	.4byte 0x3E4CCCCD
+.global lbl_8051DB90
+lbl_8051DB90:
+	.4byte 0x40400000
+.global lbl_8051DB94
+lbl_8051DB94:
+	.4byte 0xC1700000
+.global lbl_8051DB98
+lbl_8051DB98:
+	.4byte 0x41F00000
+.global lbl_8051DB9C
+lbl_8051DB9C:
+	.4byte 0xC2480000
+.global lbl_8051DBA0
+lbl_8051DBA0:
+	.4byte 0x3FC00000
+.global lbl_8051DBA4
+lbl_8051DBA4:
+	.4byte 0x41700000
+.global lbl_8051DBA8
+lbl_8051DBA8:
+	.4byte 0x3DF5C28F
+.global lbl_8051DBAC
+lbl_8051DBAC:
+	.4byte 0x40E00000
+.global lbl_8051DBB0
+lbl_8051DBB0:
+	.float 0.06
+.global lbl_8051DBB4
+lbl_8051DBB4:
+	.4byte 0x41200000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen8ObjFloorFPCc
 __ct__Q32og9newScreen8ObjFloorFPCc:

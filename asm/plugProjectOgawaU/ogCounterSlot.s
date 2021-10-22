@@ -35,6 +35,49 @@ __vt__Q32og6Screen20CallBack_CounterSlot:
 	.4byte setValue__Q32og6Screen20CallBack_CounterSlotFbb
 	.4byte setValue__Q32og6Screen20CallBack_CounterSlotFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DEC8
+lbl_8051DEC8:
+	.4byte 0x00000000
+.global lbl_8051DECC
+lbl_8051DECC:
+	.float 0.1
+.global lbl_8051DED0
+lbl_8051DED0:
+	.4byte 0x40000000
+.global lbl_8051DED4
+lbl_8051DED4:
+	.4byte 0x420C0000
+.global lbl_8051DED8
+lbl_8051DED8:
+	.float 0.3
+	.4byte 0x00000000
+.global lbl_8051DEE0
+lbl_8051DEE0:
+	.4byte 0x40240000
+	.4byte 0x00000000
+.global lbl_8051DEE8
+lbl_8051DEE8:
+	.4byte 0x47000000
+.global lbl_8051DEEC
+lbl_8051DEEC:
+	.4byte 0x41100000
+.global lbl_8051DEF0
+lbl_8051DEF0:
+	.4byte 0x3CCCCCCD
+.global lbl_8051DEF4
+lbl_8051DEF4:
+	.float 0.5
+.global lbl_8051DEF8
+lbl_8051DEF8:
+	.float 1.0
+	.4byte 0x00000000
+.global lbl_8051DF00
+lbl_8051DF00:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb
 init__Q32og6Screen20CallBack_CounterSlotFP9J2DScreenUxUxUxPUlb:

@@ -60,6 +60,31 @@ __vt__Q32og6Screen12DopingScreen:
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
 	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D560
+lbl_8051D560:
+	.4byte 0x00000000
+.global lbl_8051D564
+lbl_8051D564:
+	.float 1.0
+.global lbl_8051D568
+lbl_8051D568:
+	.float 0.1
+.global lbl_8051D56C
+lbl_8051D56C:
+	.4byte 0x41A00000
+.global lbl_8051D570
+lbl_8051D570:
+	.4byte 0x3E4CCCCD
+.global lbl_8051D574
+lbl_8051D574:
+	.4byte 0x41F00000
+.global lbl_8051D578
+lbl_8051D578:
+	.4byte 0x3F4CCCCD
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen12DopingScreenFv
 __ct__Q32og6Screen12DopingScreenFv:

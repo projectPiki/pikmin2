@@ -31,6 +31,23 @@ __vt__Q32og6Screen12AnimBaseBase:
 	.4byte 0
 	.4byte 0
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D598
+lbl_8051D598:
+	.4byte 0x00000000
+.global lbl_8051D59C
+lbl_8051D59C:
+	.float 1.0
+.global lbl_8051D5A0
+lbl_8051D5A0:
+	.4byte 0x3C888889
+	.4byte 0x00000000
+.global lbl_8051D5A8
+lbl_8051D5A8:
+	.4byte 0x43300000
+	.4byte 0x80000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global start__Q32og6Screen12AnimBaseBaseFf
 start__Q32og6Screen12AnimBaseBaseFf:

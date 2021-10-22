@@ -159,6 +159,37 @@ __vt__Q32og9newScreen12ObjSMenuItem:
 	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
 	.4byte commonUpdate__Q32og9newScreen12ObjSMenuItemFv
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051D830
+lbl_8051D830:
+	.4byte 0xC2C00000
+.global lbl_8051D834
+lbl_8051D834:
+	.4byte 0x00000000
+.global lbl_8051D838
+lbl_8051D838:
+	.4byte 0xC2C80000
+.global lbl_8051D83C
+lbl_8051D83C:
+	.4byte 0x42A00000
+.global lbl_8051D840
+lbl_8051D840:
+	.float 1.0
+.global lbl_8051D844
+lbl_8051D844:
+	.4byte 0x41700000
+.global lbl_8051D848
+lbl_8051D848:
+	.4byte 0xC1D80000
+.global lbl_8051D84C
+lbl_8051D84C:
+	.4byte 0x3F733333
+.global lbl_8051D850
+lbl_8051D850:
+	.4byte 0x3F666666
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuItemFPCc
 __ct__Q32og9newScreen12ObjSMenuItemFPCc:

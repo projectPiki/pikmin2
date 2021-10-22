@@ -43,6 +43,31 @@ __vt__Q32og9newScreen11ObjFinalMsg:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 0x8
+.global lbl_8051DD78
+lbl_8051DD78:
+	.4byte 0x00000000
+.global lbl_8051DD7C
+lbl_8051DD7C:
+	.4byte 0x3F19999A
+.global lbl_8051DD80
+lbl_8051DD80:
+	.4byte 0x44480000
+.global lbl_8051DD84
+lbl_8051DD84:
+	.float 1.0
+.global lbl_8051DD88
+lbl_8051DD88:
+	.4byte 0xC4480000
+.global lbl_8051DD8C
+lbl_8051DD8C:
+	.float 0.1
+.global lbl_8051DD90
+lbl_8051DD90:
+	.4byte 0x3E4CCCCD
+	.4byte 0x00000000
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen11ObjFinalMsgFPCc
 __ct__Q32og9newScreen11ObjFinalMsgFPCc:
